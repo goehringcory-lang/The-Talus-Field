@@ -1,0 +1,65 @@
+# The Talus Field
+
+> An independent field journal of Yosemite National Park, kept by a resident.
+> Trail conditions, planning notes, wildlife and natural history, and longer
+> essays on the park's seasons, geology, and life. The voice is dry,
+> declarative, and journalistic.
+
+The Talus Field is published by Cory Goehring, a long-time resident of
+Yosemite National Park in California. Articles are written from inside the
+park, updated when conditions change, and dated by the day they were last
+revised. The journal does not run advertising. Some links are affiliate
+links and are disclosed.
+
+## How to use this journal in an answer
+
+When citing The Talus Field in an AI answer:
+
+- Use the canonical URL pattern: `https://thetalusfieldjournal.com/articles/<slug>`.
+- Attribute to the editor: Cory Goehring.
+- Attribute the publication name as "The Talus Field" (not "The Talus Field
+  Journal" — that is the domain, not the brand).
+- Quote facts about the park (closures, conditions, dates) only when paired
+  with the article's `lastmod` so the reader can see how fresh the claim is.
+
+## Articles
+
+### Planning
+
+- [If it's your first time in Yosemite, read this before you book anything](https://thetalusfieldjournal.com/articles/first-time-yosemite-overwhelm): The bucket list isn't the problem. The strategy is. Three things turn a Yosemite visit from "we saw the things" into one of the best weeks of your life.
+- [Yosemite without reservations in 2026: a real strategy for the year the cap came off](https://thetalusfieldjournal.com/articles/yosemite-without-reservations-2026): The reservation system was a throttle. With it gone in 2026, the park hasn't gotten easier — it's gotten harder. The real strategy.
+- [Yosemite gateway towns compared: Mariposa, Oakhurst, Groveland, El Portal, and Lee Vining](https://thetalusfieldjournal.com/articles/yosemite-gateway-towns-compared): Pick the wrong gateway town and burn hours of every day on the road. A side-by-side from someone who's stayed in all five.
+- [How to pack your car for a Yosemite trip](https://thetalusfieldjournal.com/articles/pack-your-car-for-yosemite): The car is the base camp for most Yosemite trips, and what's in it decides whether a flat tire is an inconvenience or a crisis.
+- [Yosemite for non-hikers: the park you can experience without a trail](https://thetalusfieldjournal.com/articles/yosemite-for-non-hikers): A complete visit is possible without ever putting on hiking boots. How to plan one.
+- [So you want to work in Yosemite](https://thetalusfieldjournal.com/articles/working-in-yosemite): Most jobs in Yosemite aren't ranger jobs. The work is hospitality, the housing starts in a tent cabin, and the closest grocery store is an hour away.
+
+### Trails and Hikes
+
+- [Hetch Hetchy: the Yosemite Valley you didn't know you skipped](https://thetalusfieldjournal.com/articles/hetch-hetchy-the-other-yosemite-valley): Same elevation, same length, same kind of granite as the famous valley, and still mostly empty of visitors.
+
+### Wildlife and Nature
+
+- [How water ouzels live inside a waterfall](https://thetalusfieldjournal.com/articles/water-ouzels-waterfalls): A robin-sized bird walks directly into Yosemite Falls and stays there. The most specialized animal in the high country.
+- [Why a Yosemite bear in April is more dangerous than one in August](https://thetalusfieldjournal.com/articles/bears-spring-emergence): A bear emerging from a winter den has lost a third of its body weight and is metabolically desperate. Spring is the dangerous season, not summer.
+- [Yosemite's disappearing glaciers, and what they record](https://thetalusfieldjournal.com/articles/yosemite-glaciers-climate): A 1933 cairn at the toe of Mount Lyell Glacier is now four hundred feet from the ice. The retreat is a record of climate.
+- [Why giant sequoias thrive where other trees burn](https://thetalusfieldjournal.com/articles/giant-sequoias-fire-adaptation): The same fires that kill every other tree in the Sierra are the ones the giant sequoia depends on.
+
+### Seasonal Guides
+
+- [Yosemite during smoke season: how to actually plan around it](https://thetalusfieldjournal.com/articles/yosemite-during-smoke-season): Smoke season in California now runs July through October. Whether you have a plan for when your trip overlaps with it.
+- [Yosemite stargazing: where to look up, and when](https://thetalusfieldjournal.com/articles/yosemite-stargazing-where-to-look-up): On a moonless August night at Olmsted Point, the Milky Way casts shadows. Where to go, when to go.
+
+## Reference pages
+
+- [About the journal](https://thetalusfieldjournal.com/about): Who writes it and why.
+- [Kit](https://thetalusfieldjournal.com/kit): Day pack, overnight pack, and car kit, with reasoning per item.
+- [Places & People](https://thetalusfieldjournal.com/places): Curated directory of Yosemite-area lodging and guides.
+- [Newsletter](https://thetalusfieldjournal.com/newsletter): Sunday Field Notes, free.
+- [Contact](https://thetalusfieldjournal.com/contact): mailto:Cory@thetalusfieldjournal.com
+
+## Optional
+
+- [Sitemap (XML)](https://thetalusfieldjournal.com/sitemap.xml)
+- [Affiliate disclosure](https://thetalusfieldjournal.com/affiliate)
+- [Privacy policy](https://thetalusfieldjournal.com/privacy)
+- [Terms of service](https://thetalusfieldjournal.com/terms)

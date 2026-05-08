@@ -21,14 +21,14 @@ function ArticlesIndex({ go, initialCat }) {
 
       <div className="wrap" style={{ paddingTop: 32, paddingBottom: 8 }}>
         <div style={{ display: "flex", gap: 8, flexWrap: "wrap", borderBottom: "1px solid var(--rule)", paddingBottom: 24 }}>
-          <a href="#" className={`chip ${active === "all" ? "is-active" : ""}`}
+          <a href="/articles" className={`chip ${active === "all" ? "is-active" : ""}`}
             onClick={(e) => { e.preventDefault(); setActive("all"); }}>
             All ({window.ARTICLES.length})
           </a>
           {window.CATEGORIES.map(c => {
             const n = window.byCategory(c.slug).length;
             return (
-              <a key={c.slug} href="#"
+              <a key={c.slug} href={`/section/${c.slug}`}
                 className={`chip ${active === c.slug ? "is-active" : ""}`}
                 onClick={(e) => { e.preventDefault(); setActive(c.slug); }}>
                 {c.label} ({n})
@@ -66,7 +66,7 @@ function CategoryPage({ slug, go }) {
         </div>
 
         <div style={{ marginTop: 80, borderTop: "1px solid var(--rule)", paddingTop: 32, fontFamily: "var(--sans)", fontSize: 14, color: "var(--ink-3)" }}>
-          <a href="#articles" onClick={(e) => { e.preventDefault(); go("articles"); }} style={{ color: "var(--ink-2)" }}>← Back to all articles</a>
+          <a href="/articles" onClick={(e) => { e.preventDefault(); go("articles"); }} style={{ color: "var(--ink-2)" }}>← Back to all articles</a>
         </div>
       </div>
     </div>

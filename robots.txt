@@ -1,0 +1,140 @@
+# The Talus Field — robots.txt
+# Permissions for traditional search engines and AI assistant crawlers.
+# Sitemap and AI content map:
+
+Sitemap: https://thetalusfieldjournal.com/sitemap.xml
+
+# ---------------------------------------------------------------
+# Default: allow well-behaved crawlers everywhere on the site.
+# ---------------------------------------------------------------
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /open
+Disallow: /login
+Crawl-delay: 1
+
+# ---------------------------------------------------------------
+# Major search engines (explicitly allowed for clarity).
+# ---------------------------------------------------------------
+User-agent: Googlebot
+Allow: /
+
+User-agent: Googlebot-Image
+Allow: /
+
+User-agent: Googlebot-News
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+User-agent: Slurp
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+User-agent: YandexBot
+Allow: /
+
+User-agent: Baiduspider
+Allow: /
+
+# ---------------------------------------------------------------
+# AI search and answer engines — allowed.
+# These crawlers power ChatGPT, Gemini, Claude, Perplexity, and
+# Apple Intelligence's on-device search. Allowing them is what
+# lets the journal surface as a citation in AI answers.
+# ---------------------------------------------------------------
+
+# OpenAI: search index that powers ChatGPT search results.
+User-agent: OAI-SearchBot
+Allow: /
+
+# OpenAI: on-demand fetch when a ChatGPT user asks about a URL.
+User-agent: ChatGPT-User
+Allow: /
+
+# OpenAI: training/evaluation crawler.
+User-agent: GPTBot
+Allow: /
+
+# Anthropic: Claude's web crawler (training and on-demand).
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+# Google: signal that AI products (Gemini, Vertex AI) may use this
+# site. Without this, Google-Extended is blocked by default for AI
+# even if Googlebot is allowed for search.
+User-agent: Google-Extended
+Allow: /
+
+# Apple Intelligence training/answer signal.
+User-agent: Applebot-Extended
+Allow: /
+
+# Perplexity: answer engine crawler.
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+# You.com search.
+User-agent: YouBot
+Allow: /
+
+# Common Crawl — open web corpus that many AI systems train on.
+User-agent: CCBot
+Allow: /
+
+# Mistral.
+User-agent: MistralAI-User
+Allow: /
+
+# Meta / Facebook AI crawlers.
+User-agent: FacebookBot
+Allow: /
+
+User-agent: Meta-ExternalAgent
+Allow: /
+
+User-agent: Meta-ExternalFetcher
+Allow: /
+
+# Bytespider (TikTok / ByteDance).
+User-agent: Bytespider
+Allow: /
+
+# Diffbot (used by many enterprise AI systems).
+User-agent: Diffbot
+Allow: /
+
+# Cohere.
+User-agent: cohere-ai
+Allow: /
+
+# ---------------------------------------------------------------
+# Misbehaving / abusive scrapers — blocked.
+# ---------------------------------------------------------------
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: DotBot
+Disallow: /

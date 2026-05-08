@@ -54,12 +54,12 @@ function AdvertisePage({ go }) {
 
           <a
             className="places-pitch__cta"
-            href="#contact"
+            href="/contact"
             onClick={(e) => { e.preventDefault(); go("contact"); }}
           >Inquire about a listing →</a>
 
           <p className="places-pitch__fineprint">
-            All paid placements are reviewed before they go live. Listings can be removed at the editor's discretion if a business stops meeting basic standards. The <a href="#affiliate" onClick={(e) => { e.preventDefault(); go("affiliate"); }}>full advertising and affiliate policy</a> is on the disclosure page.
+            All paid placements are reviewed before they go live. Listings can be removed at the editor's discretion if a business stops meeting basic standards. The <a href="/affiliate" onClick={(e) => { e.preventDefault(); go("affiliate"); }}>full advertising and affiliate policy</a> is on the disclosure page.
           </p>
         </div>
       </section>
@@ -74,7 +74,7 @@ function AdvertisePage({ go }) {
           The directory shows up in a moment of decision, on a site the reader already trusts to give them straight answers. That's the placement.
         </p>
         <p style={{ fontFamily: "var(--serif)", fontSize: 18, color: "var(--ink-2)", lineHeight: 1.55 }}>
-          If you're an operator who fits, and you'd be willing to send a friend to your business, write to <a href="mailto:Cory@thetalusfieldjournal.com">Cory@thetalusfieldjournal.com</a> or use <a href="#contact" onClick={(e) => { e.preventDefault(); go("contact"); }}>the contact form</a>. I read every inquiry.
+          If you're an operator who fits, and you'd be willing to send a friend to your business, write to <a href="mailto:Cory@thetalusfieldjournal.com">Cory@thetalusfieldjournal.com</a> or use <a href="/contact" onClick={(e) => { e.preventDefault(); go("contact"); }}>the contact form</a>. I read every inquiry.
         </p>
       </section>
 

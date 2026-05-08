@@ -1,0 +1,129 @@
+/* global React */
+
+window.ARTICLE_BODIES = window.ARTICLE_BODIES || {};
+
+window.ARTICLE_BODIES["yosemite-glaciers-climate"] = function YosemiteGlaciersBody() {
+  return (
+    <>
+      <p className="dropcap">
+        In 1933, a park ranger marked the terminus of Mount Lyell Glacier with a carefully built cairn, stacking rocks at the precise point where the ice met bare rock and soil. The placement was not accidental. The ranger was documenting the glacier's extent that year as part of regular surveys that had been happening for decades. The cairn would serve as a reference point. Subsequent surveyors could return to that same spot and measure how far the glacier had retreated.
+      </p>
+
+      <p>
+        That cairn is now roughly four hundred feet downslope, across terrain that has melted free of ice and transformed from glacial environment to exposed rock and pioneer vegetation in the span of ninety years.
+      </p>
+
+      <p>
+        This is not a story about crisis (though crisis is part of it). It's a story about reading time. Glaciers are archives. Every winter's accumulation of snow becomes a layer in the ice. Every summer's melt removes some of that layer. The result is a chronological record, written in ice, that documents what happened to the climate year by year. Yosemite's glaciers, dwindling though they are, hold some of the most precise climate data available from the High Sierra.
+      </p>
+
+      <h2>How glaciers archive climate</h2>
+
+      <p>
+        A glacier is a time machine that works by accumulation. When snow falls on a glacier in winter, it lands on existing ice. It compresses under the weight of subsequent snowfall. Over years, it becomes firn. Over decades, it becomes glacier ice. The transformation happens because the weight of overlying snow removes air spaces, compacting the material until it's dense enough to flow slowly downslope under its own weight.
+      </p>
+
+      <p>
+        This means that if you drill vertically into a glacier, you can extract ice that represents decades or centuries of climate history. Each layer corresponds to a single year's accumulation. Count the layers, and you know how old that ice is. Analyze the chemical composition of each layer (isotopes of oxygen and hydrogen in the water molecules, trapped air bubbles, dust particles), and you can reconstruct what the climate was like when that snow fell.
+      </p>
+
+      <p>
+        Yosemite's glaciers sit high enough (most above 10,000 feet, with the highest near 13,000) that they still accumulate snow in most years. They are small compared to glaciers in the greater Sierra, and they are shrinking. But they are still there, and the records they hold are recent enough to be directly relevant to understanding how Yosemite's mountain environment is changing right now.
+      </p>
+
+      <p>
+        The specific glaciers that still exist in Yosemite are <strong>Mount Lyell</strong> (the largest and furthest descended), <strong>Mount Dana</strong>, <strong>Mount Maclure</strong>, and a handful of smaller accumulations in cirques on the Cathedral Range. The 1933 <em>Nature Notes</em> Vol. 12, No. 4 survey documented all four major glaciers with measurements and observations. These measurements have been repeated at intervals since then, creating a dataset that spans more than a century.
+      </p>
+
+      <p>The data is unambiguous: all four glaciers have retreated significantly. Most have retreated more than half their length since 1933.</p>
+
+      <h2>The recession timeline</h2>
+
+      <p>
+        Mount Lyell's retreat is the most dramatic because it's the longest glacier in the range and therefore the most visible to hikers. In 1933, the glacier's terminus (the downslope edge where ice ends and bare rock begins) sat at approximately 9,500 feet of elevation. Today it sits near 9,900 feet. That's not just a loss of length. That's a loss of elevation, which means the glacier has thinned as well as retreated. A glacier that once flowed down the slope to lower elevations no longer reaches those lower elevations.
+      </p>
+
+      <p>
+        Why does this matter for climate? Because the position of a glacier's terminus is determined by a balance between snow accumulation on the upper glacier and melt on the lower glacier. If the terminus moves upslope and uphill, it means one of two things has happened (or both): less snow is accumulating in the upper glacier, or more melt is happening on the lower glacier. Either way, the signal is clear: the climate has warmed.
+      </p>
+
+      <p>
+        More specifically, the retreat tells us that summer temperatures have increased over the period of observation. Snow that used to survive the summer in regions lower down the glacier now melts completely. The glacier has adjusted its extent to a new balance point, where the amount of melt at lower elevations now equals the amount of accumulation at higher elevations. That new balance point is at a higher elevation than it was a century ago.
+      </p>
+
+      <p>
+        Mount Dana and Mount Maclure show similar patterns, though their termini are less accessible and therefore less precisely documented. The 1928 <em>Nature Notes</em> Vol. 7, No. 9 entry titled "A Nature Guide Party Conquers Mt. Lyell" offers direct observations from that era of glacier extent, altitude, and appearance. Comparing those observations to the modern state of the same features shows unmistakable retreat across every measurable glacier in the park.
+      </p>
+
+      <p>
+        What makes the glacier data particularly valuable is precision. A retreat of even a few hundred feet represents a measurable change in climate. And that change happened in ninety years, which is recent enough that we have other records to compare it to. Temperature records. Precipitation records. Streamflow measurements. The glacier data doesn't exist in isolation. It's one data stream among many, and it corroborates what the others show: the Sierra Nevada has warmed, particularly at high elevations, and the warming has been especially pronounced in recent decades.
+      </p>
+
+      <h2>Where the water goes</h2>
+
+      <p>
+        This is the question that matters most for Yosemite and the broader San Francisco Bay Area. About half of California's fresh water comes from the Sierra Nevada, and much of it comes from snowmelt and glacier melt. When glaciers shrink, they're not just a climate signal. They're a declining water source.
+      </p>
+
+      <p>
+        The mechanism is straightforward. In summer, glacier melt feeds streams. A glacier is like a high-elevation reservoir. It accumulates snow in winter (when the water that falls is locked in ice), and releases it gradually in summer (through melt). This steady summer release helps sustain streamflow during the dry season. Without glaciers, the same amount of snow might fall, but much of it would melt in spring, and the stream would be lower in summer.
+      </p>
+
+      <p>
+        For Yosemite Valley, this matters because the streams that fall from the High Sierra (Tenaya, Merced, Tuolumne) derive significant flow from glacier melt during the warmest, driest months. A visitor to Yosemite in August will see these falls running because of that melt. As glaciers shrink, the July and August flow of these streams will gradually decline. Not immediately dramatically, but perceptibly over decades.
+      </p>
+
+      <p>
+        The implications extend beyond aesthetics. The aquatic ecosystems in these streams depend on cold water from glacier melt. The fish that live in them (mostly native trout and adjacent populations of other coldwater species) are cold-water adapted. They thrive when glacier-fed streams stay cold and well-oxygenated. As glacier melt declines and stream temperatures warm, these populations may struggle.
+      </p>
+
+      <p>
+        Additionally, the managed reservoirs downstream (Hetch Hetchy, Don Pedro, Folsom) depend on Sierra snowmelt and glacier melt for much of their annual recharge. Smaller glaciers mean less reliable summer water supply for these systems.
+      </p>
+
+      <h2>Reading a deglaciated landscape</h2>
+
+      <p>
+        When a glacier retreats, it leaves behind a landscape that tells the story of its presence and its loss. Immediately adjacent to where Lyell Glacier's terminus sat in 1933, the terrain is now bare, weathered granodiorite. The rock shows no lichen (lichen colonizes slowly, and ninety years is not long enough for significant colonization on exposed granite at high elevation). It shows no soil development. It's pristine stone, freshly revealed, looking not so much ancient as newly born.
+      </p>
+
+      <p>
+        As you move further from the 1933 terminus line, the landscape ages. Rock surfaces show lichen colonization. Small pioneer plants (sedges, cushion plants) establish in small fractures. This transition zone reveals the chronology of recession. The terrain closest to the current glacier terminus has been exposed recently, perhaps within the last few decades. Terrain slightly further away has been exposed longer, and shows more plant colonization.
+      </p>
+
+      <p>
+        The moraine (the ridge of rocky debris pushed downslope by the glacier) marks the maximum extent during the last few centuries. Some of Lyell's moraine material dates from the 1600s and 1700s. That moraine has been colonized by substantial plants, even small trees, by now. The contrast between the moraine landscape (vegetated, soil-developed, integrated into the alpine ecosystem) and the freshly deglaciated terrain (bare rock, pioneer stage) is dramatic. You can literally walk backward in time as you hike away from the glacier, watching the landscape transition from very recent exposure to older, more developed terrain.
+      </p>
+
+      <p>
+        This landscape reading is available to any visitor willing to hike to the glacier. The cairn that the 1933 ranger built may be gone, but the terrain itself is a more precise cairn. The bare rock marks where the glacier no longer reaches. The lichen patterns mark time. The moraine marks what the glacier used to do.
+      </p>
+
+      <h2>What the data means, and what it doesn't</h2>
+
+      <p>
+        Yosemite's glaciers are not anomalies. They're part of a broader pattern of recession happening across the entire Sierra Nevada and the entire western mountain range system. Glaciers in the Cascades, the Rockies, and the coastal ranges of California and Oregon are all retreating. Many have disappeared entirely.
+      </p>
+
+      <p>
+        The cause is not mysterious. The High Sierra's climate has warmed by roughly 1.5 degrees Celsius since 1900, with most of that warming concentrated in the last few decades. Summer temperatures have warmed more than winter temperatures. This is precisely what you'd expect to see if you asked a climate model to show you how greenhouse gas accumulation would affect a mountain range. The warming is consistent with climate projections. It's not noise. It's signal.
+      </p>
+
+      <p>
+        What the glacier data doesn't tell us is what the weather will do tomorrow, or next year. Glaciers respond to long-term climate averages, not individual seasons. A particularly snowy winter might slow the rate of glacier retreat in a given year. An exceptionally hot summer might accelerate it. But these individual-year variations are noise compared to the underlying trend. The trend is toward warmer summers and less glacier extent.
+      </p>
+
+      <p>
+        For Yosemite, this means that the park's landscape, the streams that define it, and the ecosystems that depend on those streams are in transition. Not crisis, necessarily, but change. The question is not whether change will happen. The question is what Yosemite will do to adapt as it happens.
+      </p>
+
+      <h3>Further reading</h3>
+      <ul style={{ fontSize: 14 }}>
+        <li><em>Nature Notes</em> Vol. 12, No. 4 (1933). Comprehensive glacier survey of Lyell, Dana, and Maclure glaciers with measurements and terminus observations.</li>
+        <li><em>Nature Notes</em> Vol. 7, No. 9 (1928). "A Nature Guide Party Conquers Mt. Lyell," with field observations of glacier extent and high-altitude terrain conditions.</li>
+        <li>USGS historical glacier survey data for the Sierra Nevada, available through Yosemite's resource library and the California Water Science Center.</li>
+        <li>Modern glacier monitoring studies through UC Berkeley's glaciology program, comparing contemporary glacier extent to historical records.</li>
+      </ul>
+    </>
+  );
+};

@@ -118,7 +118,7 @@ function Header({ current, go }) {
       <div className="masthead__main">
         <a
           className="brand-block"
-          href="#home"
+          href="/"
           onClick={(e) => { e.preventDefault(); go("home"); }}
           style={{ textDecoration: "none", color: "inherit" }}
         >
@@ -132,7 +132,7 @@ function Header({ current, go }) {
           {primaryNav.map(([key, label]) => (
             <a
               key={key}
-              href={`#${key}`}
+              href={window.routeToPath ? window.routeToPath(key) : `/${key}`}
               className={current === key ? "is-active" : ""}
               onClick={(e) => { e.preventDefault(); go(key); }}
             >{label}</a>
@@ -154,7 +154,7 @@ function Header({ current, go }) {
                   <a
                     key={key}
                     role="menuitem"
-                    href={`#${key}`}
+                    href={window.routeToPath ? window.routeToPath(key) : `/${key}`}
                     className={`${current === key ? "is-active" : ""} ${extra || ""}`.trim()}
                     onClick={(e) => { e.preventDefault(); setMoreOpen(false); go(key); }}
                   >{label}</a>
@@ -162,12 +162,6 @@ function Header({ current, go }) {
               </div>
             )}
           </div>
-
-          <a
-            href="#guide"
-            className={`nav__primary ${current === "guide" ? "is-active" : ""}`}
-            onClick={(e) => { e.preventDefault(); go("guide"); }}
-          >The Field Guide →</a>
         </nav>
       </div>
     </header>
@@ -192,7 +186,7 @@ function Footer({ go }) {
             <ul>
               {window.CATEGORIES.map(c => (
                 <li key={c.slug}>
-                  <a href={`#cat:${c.slug}`} onClick={(e) => { e.preventDefault(); go(`cat:${c.slug}`); }}>{c.label}</a>
+                  <a href={`/section/${c.slug}`} onClick={(e) => { e.preventDefault(); go(`cat:${c.slug}`); }}>{c.label}</a>
                 </li>
               ))}
             </ul>
@@ -200,32 +194,32 @@ function Footer({ go }) {
           <div>
             <h4>Site</h4>
             <ul>
-              <li><a href="#about" onClick={(e) => { e.preventDefault(); go("about"); }}>About</a></li>
-              <li><a href="#articles" onClick={(e) => { e.preventDefault(); go("articles"); }}>All articles</a></li>
-              <li><a href="#places" onClick={(e) => { e.preventDefault(); go("places"); }}>Places &amp; People</a></li>
-              <li><a href="#newsletter" onClick={(e) => { e.preventDefault(); go("newsletter"); }}>Newsletter</a></li>
-              <li><a href="#contact" onClick={(e) => { e.preventDefault(); go("contact"); }}>Contact</a></li>
+              <li><a href="/about" onClick={(e) => { e.preventDefault(); go("about"); }}>About</a></li>
+              <li><a href="/articles" onClick={(e) => { e.preventDefault(); go("articles"); }}>All articles</a></li>
+              <li><a href="/places" onClick={(e) => { e.preventDefault(); go("places"); }}>Places &amp; People</a></li>
+              <li><a href="/newsletter" onClick={(e) => { e.preventDefault(); go("newsletter"); }}>Newsletter</a></li>
+              <li><a href="/contact" onClick={(e) => { e.preventDefault(); go("contact"); }}>Contact</a></li>
             </ul>
           </div>
           <div>
             <h4>Legal</h4>
             <ul>
-              <li><a href="#privacy" onClick={(e) => { e.preventDefault(); go("privacy"); }}>Privacy</a></li>
-              <li><a href="#terms" onClick={(e) => { e.preventDefault(); go("terms"); }}>Terms</a></li>
-              <li><a href="#affiliate" onClick={(e) => { e.preventDefault(); go("affiliate"); }}>Affiliate disclosure</a></li>
-              <li><a href="#contact" onClick={(e) => { e.preventDefault(); go("contact"); }}>Contact</a></li>
+              <li><a href="/privacy" onClick={(e) => { e.preventDefault(); go("privacy"); }}>Privacy</a></li>
+              <li><a href="/terms" onClick={(e) => { e.preventDefault(); go("terms"); }}>Terms</a></li>
+              <li><a href="/affiliate" onClick={(e) => { e.preventDefault(); go("affiliate"); }}>Affiliate disclosure</a></li>
+              <li><a href="/contact" onClick={(e) => { e.preventDefault(); go("contact"); }}>Contact</a></li>
             </ul>
           </div>
         </div>
         <div className="site-footer__disclosure">
-          Some links on this site are affiliate links. If you book or buy through one, The Talus Field may earn a small commission at no extra cost to you. <a href="#affiliate" onClick={(e) => { e.preventDefault(); go("affiliate"); }}>Full disclosure here.</a>
+          Some links on this site are affiliate links. If you book or buy through one, The Talus Field may earn a small commission at no extra cost to you. <a href="/affiliate" onClick={(e) => { e.preventDefault(); go("affiliate"); }}>Full disclosure here.</a>
         </div>
         <div className="site-footer__legal">
           <div>© 2026 The Talus Field. Independent. Not affiliated with the National Park Service.</div>
           <div>
-            <a href="#privacy" onClick={(e) => { e.preventDefault(); go("privacy"); }}>Privacy</a>
-            <a href="#terms" onClick={(e) => { e.preventDefault(); go("terms"); }}>Terms</a>
-            <a href="#affiliate" onClick={(e) => { e.preventDefault(); go("affiliate"); }}>Affiliate</a>
+            <a href="/privacy" onClick={(e) => { e.preventDefault(); go("privacy"); }}>Privacy</a>
+            <a href="/terms" onClick={(e) => { e.preventDefault(); go("terms"); }}>Terms</a>
+            <a href="/affiliate" onClick={(e) => { e.preventDefault(); go("affiliate"); }}>Affiliate</a>
           </div>
         </div>
       </div>
@@ -241,7 +235,7 @@ function ArticleCard({ article, go, size }) {
   return (
     <a
       className="card"
-      href={`#a:${article.slug}`}
+      href={`/articles/${article.slug}`}
       onClick={(e) => { e.preventDefault(); go(`a:${article.slug}`); }}
     >
       <Placeholder
@@ -273,31 +267,18 @@ function ArticleCard({ article, go, size }) {
 // Inline newsletter box
 // ============================================================
 function NewsletterInline({ heading, blurb }) {
-  const [email, setEmail] = useState("");
-  const [done, setDone] = useState(false);
   return (
     <div className="nlbox">
       <h3>{heading || "Sunday Field Notes"}</h3>
       <p>{blurb || "A short note on Sundays, when there is something to say."}</p>
-      {done ? (
-        <div style={{ fontFamily: "var(--sans)", fontSize: 14, color: "var(--moss)" }}>
-          Thanks. Check your inbox to confirm.
-        </div>
-      ) : (
-        <form
-          className="nlbox__form"
-          onSubmit={(e) => { e.preventDefault(); if (email) setDone(true); }}
-        >
-          <input
-            type="email"
-            placeholder="you@email.com"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-          <button type="submit">Subscribe →</button>
-        </form>
-      )}
+      <form
+        className="nlbox__form"
+        action="https://buttondown.com/api/emails/embed-subscribe/goehring"
+        method="post"
+      >
+        <input type="email" name="email" placeholder="you@email.com" required />
+        <button type="submit">Subscribe →</button>
+      </form>
     </div>
   );
 }

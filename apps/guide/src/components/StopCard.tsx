@@ -40,7 +40,7 @@ export default function StopCard({ stop, compact = true }: Props) {
       )}
 
       <div className="eyebrow eyebrow--moss">
-        {KIND_LABEL[stop.kind]} · Day {stop.day}
+        {KIND_LABEL[stop.kind]}
       </div>
       <h2 className="stop-card__title">{stop.title}</h2>
 

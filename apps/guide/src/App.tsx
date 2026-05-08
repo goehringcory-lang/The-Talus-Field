@@ -4,8 +4,7 @@ import Open from './routes/Open'
 import Login from './routes/Login'
 import Home from './routes/Home'
 import Account from './routes/Account'
-import Trip from './routes/Trip'
-import Day from './routes/Day'
+import Region from './routes/Region'
 import StopDetail from './routes/StopDetail'
 import InstallPrompt from './components/InstallPrompt'
 import UpdateBanner from './components/UpdateBanner'
@@ -26,18 +25,10 @@ export default function App() {
           }
         />
         <Route
-          path="/trip/:tripId"
+          path="/region/:regionId"
           element={
             <RequireAuth>
-              <Trip />
-            </RequireAuth>
-          }
-        />
-        <Route
-          path="/trip/:tripId/day/:dayN"
-          element={
-            <RequireAuth>
-              <Day />
+              <Region />
             </RequireAuth>
           }
         />
@@ -57,6 +48,7 @@ export default function App() {
             </RequireAuth>
           }
         />
+        <Route path="/trip/*" element={<Navigate to="/" replace />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
       <InstallPrompt />
