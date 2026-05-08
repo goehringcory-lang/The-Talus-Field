@@ -242,6 +242,7 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
   align-items: baseline;
   gap: 0;
   line-height: 1;
+  white-space: nowrap;
 }
 .brand__sub {
   display: block;
@@ -258,6 +259,7 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
   flex-direction: row;
   align-items: center;
   gap: 14px;
+  flex-shrink: 0;
 }
 .brand-block__text { display: flex; flex-direction: column; gap: 0; }
 .brand__mark {
@@ -269,7 +271,7 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
 .nav {
   display: flex;
   align-items: center;
-  gap: 26px;
+  gap: 22px;
   margin-left: auto;
   font-family: var(--sans);
   font-size: 12px;
@@ -282,6 +284,7 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
   font-weight: 600;
   padding-bottom: 2px;
   border-bottom: 1px solid transparent;
+  white-space: nowrap;
 }
 .nav a:hover { color: var(--ink); border-bottom-color: var(--ink); }
 .nav a.is-active { color: var(--ink); border-bottom-color: var(--moss); }
@@ -292,33 +295,38 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
 }
 .nav__cta:hover { background: var(--ink); color: var(--paper) !important; }
 
-/* "More" dropdown */
-.nav__more { position: relative; }
-.nav__more-trigger {
+/* Mobile hamburger menu. Hidden at desktop, shown when inline links collapse. */
+.nav__menu-wrap { position: relative; display: none; }
+.nav__menu-toggle {
   background: none;
   border: 0;
-  padding: 0 0 2px;
-  font: inherit;
-  font-family: var(--sans);
-  font-size: 12px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  font-weight: 600;
-  color: var(--ink-2);
+  padding: 6px 4px;
   cursor: pointer;
-  border-bottom: 1px solid transparent;
+  color: var(--ink-2);
   display: inline-flex;
   align-items: center;
-  gap: 4px;
+  justify-content: center;
+  transition: color 0.15s;
 }
-.nav__more-trigger:hover { color: var(--ink); border-bottom-color: var(--ink); }
-.nav__more-trigger.is-active { color: var(--ink); border-bottom-color: var(--moss); }
-.nav__more-caret { font-size: 10px; line-height: 1; transform: translateY(-1px); }
+.nav__menu-toggle:hover { color: var(--ink); }
+.nav__menu-bars {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 22px;
+  height: 14px;
+}
+.nav__menu-bars > span {
+  display: block;
+  width: 100%;
+  height: 1.5px;
+  background: currentColor;
+}
 .nav__menu {
   position: absolute;
   top: calc(100% + 14px);
   right: 0;
-  min-width: 180px;
+  min-width: 200px;
   background: var(--paper);
   border: 1px solid var(--ink);
   padding: 8px 0;
@@ -328,23 +336,12 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
   flex-direction: column;
 }
 .nav__menu a {
-  padding: 10px 18px;
+  padding: 12px 18px;
   border-bottom: 0 !important;
   white-space: nowrap;
 }
 .nav__menu a:hover { background: var(--paper-2); color: var(--ink); }
 .nav__menu a.is-active { color: var(--ink); }
-/* Articles/Kit are mirrored into the dropdown for mobile fallback. Hide at desktop. */
-.nav__menu a.is-mobile-only { display: none; }
-@media (max-width: 420px) {
-  .nav__menu a.is-mobile-only { display: block; }
-  /* visual divider after the mobile-only group */
-  .nav__menu a.is-mobile-only + a:not(.is-mobile-only) {
-    border-top: 1px solid var(--rule-soft);
-    margin-top: 6px;
-    padding-top: 14px;
-  }
-}
 .nav__menu a.is-active::before {
   content: "";
   display: inline-block;
@@ -1381,7 +1378,10 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
 @media (max-width: 880px) {
   .hero__grid { grid-template-columns: 1fr; gap: 32px; }
   .site-footer__grid { grid-template-columns: 1fr 1fr; }
-  .nav { gap: 14px; font-size: 11px; }
+  /* Inline links don't fit comfortably at this width — collapse into the hamburger menu. */
+  .nav { gap: 0; }
+  .nav__link { display: none; }
+  .nav__menu-wrap { display: block; }
   .statblock { grid-template-columns: 1fr 1fr; }
   .masthead__top { font-size: 9px; }
 }
@@ -1417,19 +1417,15 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
   section.wrap[style*="padding-top: 64"],
   section.wrap[style*="padding-top: 56"] { padding-top: 40px !important; }
 
-  /* Masthead. Show all key destinations at mobile, just smaller. */
+  /* Masthead. Smaller brand at phone widths. Hamburger already active from 880px down. */
   .masthead__main { padding: 12px var(--gutter); gap: 12px; }
   .brand { font-size: 22px; }
   .brand__sub { display: none; }
   .brand__mark { height: 40px; }
   .brand-block { gap: 10px; }
-  .nav { gap: 14px; font-size: 11px; margin-left: auto; flex-wrap: nowrap; }
-  .nav a, .nav__more-trigger { letter-spacing: 0.08em; }
-  .nav a:not(.nav__primary):not(.nav__cta) { padding: 4px 0; }
-  /* Hide the secondary text links on the narrowest phones. The dropdown still has Articles/Kit-adjacent items. */
   .nav__primary { padding: 7px 12px; font-size: 10px; letter-spacing: 0.08em; }
 
-  .nav__menu { right: -8px; min-width: 200px; }
+  .nav__menu { right: -8px; min-width: 220px; }
   .nav__menu a { padding: 14px 18px; font-size: 14px; }
 
   .masthead__top { padding: 6px var(--gutter); }
@@ -1527,14 +1523,12 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
   /* Chips wrap nicely */
   .chip { padding: 8px 12px; font-size: 11px; }
 
-  /* Tap target floor for nav links */
-  .nav a, .nav__more-trigger { min-height: 32px; display: inline-flex; align-items: center; }
+  /* Tap target floor for the visible mobile nav trigger. */
+  .nav__menu-toggle { min-height: 32px; }
 }
 
 @media (max-width: 420px) {
-  /* Smallest phones. Drop the "Articles" + "Kit" text links so the masthead doesn't wrap. */
-  .nav > a:not(.nav__primary) { display: none; }
-  .nav { gap: 10px; }
+  /* Smallest phones. Tighten brand block so the menu button stays comfortable. */
   .nav__primary { padding: 6px 10px; font-size: 10px; }
   .brand { font-size: 20px; }
   .brand__mark { height: 34px; }
