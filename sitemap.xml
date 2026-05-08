@@ -136,6 +136,10 @@
     <lastmod>2026-05-08</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+    <image:image>
+      <image:loc>https://thetalusfieldjournal.com/img/tuolumne-meadows.jpg</image:loc>
+      <image:title>Tuolumne Meadows, the head of Lyell Canyon</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://thetalusfieldjournal.com/articles/giant-sequoias-fire-adaptation</loc>
