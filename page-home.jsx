@@ -24,10 +24,10 @@ function HomePage({ go }) {
               A field journal of one national park. Trails, weather, what is open and what is not, and the occasional longer essay when something is worth sitting with.
             </p>
             <div className="hero__cta">
-              <a className="btn" href="#articles" onClick={(e) => { e.preventDefault(); go("articles"); }}>
+              <a className="btn" href="/articles" onClick={(e) => { e.preventDefault(); go("articles"); }}>
                 Start reading <span className="btn__arrow">→</span>
               </a>
-              <a className="btn btn--ghost" href="#newsletter" onClick={(e) => { e.preventDefault(); go("newsletter"); }}>
+              <a className="btn btn--ghost" href="/newsletter" onClick={(e) => { e.preventDefault(); go("newsletter"); }}>
                 Sunday Field Notes
               </a>
             </div>
@@ -47,13 +47,13 @@ function HomePage({ go }) {
       <section className="wrap" style={{ paddingTop: 56 }}>
         <div className="section-head">
           <h2>This Week</h2>
-          <a href="#articles" onClick={(e) => { e.preventDefault(); go("articles"); }}>All entries →</a>
+          <a href="/articles" onClick={(e) => { e.preventDefault(); go("articles"); }}>All entries →</a>
         </div>
 
         <div style={{ display: "grid", gridTemplateColumns: "1.4fr 1fr", gap: 48, alignItems: "start" }}>
           <a
             className="card"
-            href={`#a:${featured.slug}`}
+            href={`/articles/${featured.slug}`}
             onClick={(e) => { e.preventDefault(); go(`a:${featured.slug}`); }}
           >
             <Placeholder
@@ -82,7 +82,7 @@ function HomePage({ go }) {
               {latest.slice(0, 4).map(a => (
                 <li key={a.slug} style={{ borderTop: "1px solid var(--rule)", padding: "16px 0" }}>
                   <a
-                    href={`#a:${a.slug}`}
+                    href={`/articles/${a.slug}`}
                     onClick={(e) => { e.preventDefault(); go(`a:${a.slug}`); }}
                     style={{ textDecoration: "none", color: "inherit", display: "block" }}
                   >
@@ -101,7 +101,7 @@ function HomePage({ go }) {
       <section className="wrap" style={{ paddingTop: 80 }}>
         <div className="section-head">
           <h2>By Section</h2>
-          <a href="#articles" onClick={(e) => { e.preventDefault(); go("articles"); }}>Everything →</a>
+          <a href="/articles" onClick={(e) => { e.preventDefault(); go("articles"); }}>Everything →</a>
         </div>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 0, borderTop: "1px solid var(--ink)", borderLeft: "1px solid var(--ink)" }}>
           {window.CATEGORIES.map((c, i) => {
@@ -109,7 +109,7 @@ function HomePage({ go }) {
             return (
               <a
                 key={c.slug}
-                href={`#cat:${c.slug}`}
+                href={`/section/${c.slug}`}
                 onClick={(e) => { e.preventDefault(); go(`cat:${c.slug}`); }}
                 style={{
                   textDecoration: "none",
@@ -134,7 +134,7 @@ function HomePage({ go }) {
       <section className="wrap" style={{ paddingTop: 80 }}>
         <div className="section-head">
           <h2>The Archive</h2>
-          <a href="#articles" onClick={(e) => { e.preventDefault(); go("articles"); }}>Browse all →</a>
+          <a href="/articles" onClick={(e) => { e.preventDefault(); go("articles"); }}>Browse all →</a>
         </div>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 36, rowGap: 48 }}>
           {latest.map(a => <ArticleCard key={a.slug} article={a} go={go} />)}
@@ -150,7 +150,7 @@ function HomePage({ go }) {
             <p style={{ fontFamily: "var(--display)", fontStyle: "italic", fontSize: 19, color: "var(--ink-2)", lineHeight: 1.5, marginBottom: 24 }}>
               The park looks like a single place from a postcard and like four different ones from a parking lot. This is a record of looking at it slowly.
             </p>
-            <a className="btn btn--ghost" href="#about" onClick={(e) => { e.preventDefault(); go("about"); }}>
+            <a className="btn btn--ghost" href="/about" onClick={(e) => { e.preventDefault(); go("about"); }}>
               About the editor →
             </a>
           </div>

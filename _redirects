@@ -1,0 +1,6 @@
+# Cloudflare Pages routing.
+# Every non-file request falls through to index.html so the React
+# router can resolve /articles/<slug>, /section/<slug>, etc.
+# Status 200 keeps the URL in the browser bar for proper SEO.
+
+/*    /index.html   200

@@ -51,7 +51,7 @@ function AboutPage({ go }) {
           <h2>Money</h2>
 
           <p>
-            Some entries link to lodging or guidebooks through affiliate programs. If you book or buy through one, the site receives a small commission at no cost to you. Whether or not you use the link, the recommendation is the same. Every entry containing an affiliate link is marked. The full disclosure is <a href="#affiliate" onClick={(e) => { e.preventDefault(); go("affiliate"); }}>here</a>.
+            Some entries link to lodging or guidebooks through affiliate programs. If you book or buy through one, the site receives a small commission at no cost to you. Whether or not you use the link, the recommendation is the same. Every entry containing an affiliate link is marked. The full disclosure is <a href="/affiliate" onClick={(e) => { e.preventDefault(); go("affiliate"); }}>here</a>.
           </p>
 
           <p>
@@ -61,7 +61,7 @@ function AboutPage({ go }) {
           <h2>Editor</h2>
 
           <p>
-            Cory Goehring. Lives in Yosemite National Park. Reachable at <a href="mailto:Cory@thetalusfieldjournal.com">Cory@thetalusfieldjournal.com</a> and through <a href="#contact" onClick={(e) => { e.preventDefault(); go("contact"); }}>the contact page</a>.
+            Cory Goehring. Lives in Yosemite National Park. Reachable at <a href="mailto:Cory@thetalusfieldjournal.com">Cory@thetalusfieldjournal.com</a> and through <a href="/contact" onClick={(e) => { e.preventDefault(); go("contact"); }}>the contact page</a>.
           </p>
 
           <hr />

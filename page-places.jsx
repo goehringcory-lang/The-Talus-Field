@@ -93,7 +93,7 @@ function PlacesPage({ go }) {
       {/* Quiet sponsorship disclosure */}
       <section className="wrap wrap--narrow" style={{ paddingTop: 64 }}>
         <p style={{ fontFamily: "var(--sans)", fontSize: 13, color: "var(--ink-3)", lineHeight: 1.6, margin: 0 }}>
-          A small number of listings are paid placements from vetted operators and are labeled where they appear. The editorial standard is the same either way. See the <a href="#affiliate" onClick={(e) => { e.preventDefault(); go("affiliate"); }}>affiliate disclosure</a> for the full policy.
+          A small number of listings are paid placements from vetted operators and are labeled where they appear. The editorial standard is the same either way. See the <a href="/affiliate" onClick={(e) => { e.preventDefault(); go("affiliate"); }}>affiliate disclosure</a> for the full policy.
         </p>
       </section>
 

@@ -42,7 +42,7 @@ function NewsletterPage({ go }) {
         </div>
 
         <div style={{ marginTop: 64, paddingTop: 32, borderTop: "1px solid var(--rule)", fontFamily: "var(--sans)", fontSize: 11, color: "var(--ink-3)", lineHeight: 1.6, textTransform: "uppercase", letterSpacing: "0.14em", fontWeight: 600 }}>
-          <a href="#privacy" onClick={(e) => { e.preventDefault(); go("privacy"); }} style={{ color: "var(--ink-2)" }}>Privacy →</a>
+          <a href="/privacy" onClick={(e) => { e.preventDefault(); go("privacy"); }} style={{ color: "var(--ink-2)" }}>Privacy →</a>
         </div>
       </div>
     </div>

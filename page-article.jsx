@@ -13,7 +13,7 @@ function ArticlePage({ slug, go }) {
         {/* Article hero */}
         <header className="wrap wrap--narrow" style={{ paddingTop: 64, paddingBottom: 32 }}>
           <div className="eyebrow eyebrow--moss" style={{ marginBottom: 18 }}>
-            <a href={`#cat:${cat.slug}`} onClick={(e) => { e.preventDefault(); go(`cat:${cat.slug}`); }}
+            <a href={`/section/${cat.slug}`} onClick={(e) => { e.preventDefault(); go(`cat:${cat.slug}`); }}
               style={{ color: "var(--moss)", textDecoration: "none" }}>
               {cat.label}
             </a>
@@ -76,7 +76,7 @@ function ArticlePage({ slug, go }) {
         <section className="wrap" style={{ paddingTop: 48, paddingBottom: 32 }}>
           <div className="section-head">
             <h2>More from {cat.label}</h2>
-            <a href={`#cat:${cat.slug}`} onClick={(e) => { e.preventDefault(); go(`cat:${cat.slug}`); }}>All in {cat.label} →</a>
+            <a href={`/section/${cat.slug}`} onClick={(e) => { e.preventDefault(); go(`cat:${cat.slug}`); }}>All in {cat.label} →</a>
           </div>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 36 }}>
             {related.map(a => <ArticleCard key={a.slug} article={a} go={go} />)}

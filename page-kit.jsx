@@ -14,7 +14,7 @@ function KitPage({ go }) {
           What I carry
         </h1>
         <p style={{ fontFamily: "var(--serif)", fontSize: 21, lineHeight: 1.5, color: "var(--ink-2)", maxWidth: "62ch", textWrap: "pretty" }}>
-          Three lists, plus a short page of places and people. The links go to the products themselves; some are affiliate links. The <a href="#affiliate" onClick={(e) => { e.preventDefault(); go("affiliate"); }}>disclosure page</a> explains the rules I keep.
+          Three lists, plus a short page of places and people. The links go to the products themselves; some are affiliate links. The <a href="/affiliate" onClick={(e) => { e.preventDefault(); go("affiliate"); }}>disclosure page</a> explains the rules I keep.
         </p>
       </section>
 
@@ -85,14 +85,14 @@ function KitPage({ go }) {
               <p style={{ fontFamily: "var(--serif)", fontSize: 17, color: "var(--ink-2)", lineHeight: 1.55, margin: "0 0 16px", maxWidth: "60ch" }}>{list.essay.blurb}</p>
               <a
                 className="btn btn--ghost"
-                href={`#a:${list.essay.slug}`}
+                href={`/articles/${list.essay.slug}`}
                 onClick={(e) => { e.preventDefault(); go(`a:${list.essay.slug}`); }}
               >Read the essay →</a>
             </aside>
           )}
 
           <div className="kit__disclosure">
-            Some of the links above are affiliate links. <a href="#affiliate" onClick={(e) => { e.preventDefault(); go("affiliate"); }}>How that works.</a>
+            Some of the links above are affiliate links. <a href="/affiliate" onClick={(e) => { e.preventDefault(); go("affiliate"); }}>How that works.</a>
           </div>
         </section>
       ))}
@@ -104,12 +104,12 @@ function KitPage({ go }) {
             <div className="eyebrow eyebrow--moss" style={{ marginBottom: 12 }}>Looking for lodging or a guide?</div>
             <h2 style={{ fontFamily: "var(--display)", fontSize: 32, fontWeight: 500, lineHeight: 1.1, margin: "0 0 12px" }}>The directory lives on its own page now.</h2>
             <p style={{ fontFamily: "var(--serif)", fontSize: 17, color: "var(--ink-2)", margin: 0, lineHeight: 1.5 }}>
-              Lodges, inns, guiding services, and outfitters in and around Yosemite, moved into <a href="#places" onClick={(e) => { e.preventDefault(); go("places"); }}>Places &amp; People</a> to keep this page about gear.
+              Lodges, inns, guiding services, and outfitters in and around Yosemite, moved into <a href="/places" onClick={(e) => { e.preventDefault(); go("places"); }}>Places &amp; People</a> to keep this page about gear.
             </p>
           </div>
           <a
             className="btn"
-            href="#places"
+            href="/places"
             onClick={(e) => { e.preventDefault(); go("places"); }}
           >Open the directory →</a>
         </div>
