@@ -10,5 +10,9 @@
   },
   "compatibility_flags": [
     "nodejs_compat"
+  ],
+  "routes": [
+    { "pattern": "thetalusfieldjournal.com", "custom_domain": true },
+    { "pattern": "www.thetalusfieldjournal.com", "custom_domain": true }
   ]
 }
