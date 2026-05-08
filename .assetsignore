@@ -1,0 +1,16 @@
+# Files in the repo that should not be uploaded as public assets.
+# Wrangler reads this when deploying Workers static assets.
+
+# Version control and build internals
+.git
+.gitignore
+.wrangler
+.claude
+
+# Sub-projects with their own deployments
+apps
+workers
+wrangler.jsonc
+
+# Repo documentation
+*.md

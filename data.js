@@ -134,7 +134,8 @@ window.ARTICLES = [
     dek: "A ranger built a cairn at the toe of Mount Lyell Glacier in 1933. That cairn is now four hundred feet from the ice. The retreat is also a record of climate, written into the High Sierra in something like real time.",
     date: "May 8, 2026",
     read: "8 min",
-    placeholder: "High Sierra granite at the head of Lyell Canyon",
+    placeholder: "Tuolumne Meadows, the head of Lyell Canyon",
+    image: "img/tuolumne-meadows.jpg",
   },
   {
     slug: "giant-sequoias-fire-adaptation",

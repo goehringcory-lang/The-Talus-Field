@@ -3,13 +3,93 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>The Talus Field. Yosemite, written from inside it</title>
+
+  <title>The Talus Field — Yosemite, written from inside it</title>
+  <meta name="description" content="A field journal of Yosemite National Park, kept by a resident. Trail conditions, planning notes, wildlife, and longer essays on the park's seasons, geology, and life." />
+  <meta name="author" content="Cory Goehring" />
+  <meta name="keywords" content="Yosemite, Yosemite National Park, Yosemite trip planning, Yosemite trails, Yosemite wildlife, Yosemite stargazing, Tuolumne Meadows, Hetch Hetchy, Half Dome, Tunnel View, El Portal, gateway towns, Sierra Nevada, field journal" />
+
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+  <meta name="googlebot" content="index, follow, max-image-preview:large, max-snippet:-1" />
+
+  <link rel="canonical" href="https://thetalusfieldjournal.com/" />
+  <link rel="icon" href="/img/talus-field-mark.png" type="image/png" />
+  <link rel="apple-touch-icon" href="/img/talus-field-mark.png" />
+
+  <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
+  <link rel="alternate" type="application/rss+xml" title="The Talus Field" href="/feed.xml" />
+
+  <meta name="theme-color" content="#1a1a1a" />
+  <meta name="format-detection" content="telephone=no" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="The Talus Field" />
+  <meta property="og:title" content="The Talus Field — Yosemite, written from inside it" />
+  <meta property="og:description" content="A field journal of Yosemite National Park, kept by a resident. Trail conditions, planning notes, wildlife, and longer essays on the park's seasons, geology, and life." />
+  <meta property="og:url" content="https://thetalusfieldjournal.com/" />
+  <meta property="og:image" content="https://thetalusfieldjournal.com/img/Half%20Dome%20Main%20Photo.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:locale" content="en_US" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="The Talus Field — Yosemite, written from inside it" />
+  <meta name="twitter:description" content="A field journal of Yosemite National Park, kept by a resident." />
+  <meta name="twitter:image" content="https://thetalusfieldjournal.com/img/Half%20Dome%20Main%20Photo.jpg" />
+
+  <meta name="geo.region" content="US-CA" />
+  <meta name="geo.placename" content="Yosemite National Park" />
+  <meta name="geo.position" content="37.8651;-119.5383" />
+  <meta name="ICBM" content="37.8651, -119.5383" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Source+Serif+4:ital,opsz,wght@0,8..60,300..700;1,8..60,300..700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
 
   <link rel="stylesheet" href="styles.css?v=25" />
+
+  <script type="application/ld+json" id="ld-website">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "The Talus Field",
+    "alternateName": "The Talus Field Journal",
+    "url": "https://thetalusfieldjournal.com/",
+    "description": "A field journal of Yosemite National Park, kept by a resident.",
+    "inLanguage": "en-US",
+    "publisher": { "@id": "https://thetalusfieldjournal.com/#publisher" },
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "https://thetalusfieldjournal.com/articles?q={search_term_string}",
+      "query-input": "required name=search_term_string"
+    }
+  }
+  </script>
+
+  <script type="application/ld+json" id="ld-publisher">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "@id": "https://thetalusfieldjournal.com/#publisher",
+    "name": "The Talus Field",
+    "url": "https://thetalusfieldjournal.com/",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://thetalusfieldjournal.com/img/talus-field-mark.png"
+    },
+    "founder": {
+      "@type": "Person",
+      "name": "Cory Goehring",
+      "url": "https://thetalusfieldjournal.com/about"
+    },
+    "areaServed": {
+      "@type": "Place",
+      "name": "Yosemite National Park",
+      "geo": { "@type": "GeoCoordinates", "latitude": 37.8651, "longitude": -119.5383 }
+    },
+    "sameAs": []
+  }
+  </script>
 
   <script>
     window.TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
@@ -23,11 +103,59 @@
   <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
 </head>
 <body>
-  <div id="root"></div>
+  <div id="root">
+    <!--
+      No-JS / pre-render fallback. Search engines and AI crawlers that don't
+      execute JavaScript see this content. The full site renders on top of it
+      once React boots.
+    -->
+    <noscript>
+      <header>
+        <h1>The Talus Field</h1>
+        <p><em>A field journal of Yosemite National Park, kept by a resident.</em></p>
+        <nav>
+          <a href="/articles">Articles</a> ·
+          <a href="/section/planning">Planning</a> ·
+          <a href="/section/trails">Trails &amp; Hikes</a> ·
+          <a href="/section/wildlife">Wildlife &amp; Nature</a> ·
+          <a href="/section/seasonal">Seasonal Guides</a> ·
+          <a href="/kit">Kit</a> ·
+          <a href="/places">Places &amp; People</a> ·
+          <a href="/about">About</a> ·
+          <a href="/newsletter">Newsletter</a> ·
+          <a href="/contact">Contact</a>
+        </nav>
+      </header>
+      <main>
+        <p>This site requires JavaScript to render its full reading experience.
+           The articles below are also available with JavaScript enabled.</p>
+        <h2>Articles</h2>
+        <ul>
+          <li><a href="/articles/working-in-yosemite">So you want to work in Yosemite</a> — Most jobs in Yosemite aren't ranger jobs. The honest version of what it's like to live here.</li>
+          <li><a href="/articles/water-ouzels-waterfalls">How water ouzels live inside a waterfall</a> — A robin-sized bird walks directly into Yosemite Falls and stays there.</li>
+          <li><a href="/articles/bears-spring-emergence">Why a Yosemite bear in April is more dangerous than one in August</a> — Spring, not summer, is the dangerous season for bears.</li>
+          <li><a href="/articles/yosemite-glaciers-climate">Yosemite's disappearing glaciers, and what they record</a> — A 1933 cairn at Mount Lyell Glacier is now four hundred feet from the ice.</li>
+          <li><a href="/articles/giant-sequoias-fire-adaptation">Why giant sequoias thrive where other trees burn</a> — Two-foot bark, embedded tannins, and seedling ecology that fails without fire.</li>
+          <li><a href="/articles/hetch-hetchy-the-other-yosemite-valley">Hetch Hetchy: the Yosemite Valley you didn't know you skipped</a> — Same elevation, same granite, mostly empty.</li>
+          <li><a href="/articles/yosemite-stargazing-where-to-look-up">Yosemite stargazing: where to look up, and when</a> — Olmsted Point on a moonless August night.</li>
+          <li><a href="/articles/yosemite-for-non-hikers">Yosemite for non-hikers: the park you can experience without a trail</a></li>
+          <li><a href="/articles/pack-your-car-for-yosemite">How to pack your car for a Yosemite trip</a> — The car is the base camp for most trips.</li>
+          <li><a href="/articles/yosemite-gateway-towns-compared">Yosemite gateway towns compared: Mariposa, Oakhurst, Groveland, El Portal, Lee Vining</a></li>
+          <li><a href="/articles/yosemite-during-smoke-season">Yosemite during smoke season: how to actually plan around it</a></li>
+          <li><a href="/articles/yosemite-without-reservations-2026">Yosemite without reservations in 2026: a real strategy for the year the cap came off</a></li>
+          <li><a href="/articles/first-time-yosemite-overwhelm">If it's your first time in Yosemite, read this before you book anything</a></li>
+        </ul>
+        <h2>About</h2>
+        <p>The Talus Field is an independent publication operated by Cory Goehring,
+           based in Yosemite National Park, California. Contact:
+           <a href="mailto:Cory@thetalusfieldjournal.com">Cory@thetalusfieldjournal.com</a>.</p>
+      </main>
+    </noscript>
+  </div>
 
-  <script src="data.js?v=25"></script>
+  <script src="data.js?v=27"></script>
   <script type="text/babel" src="tweaks-panel.jsx"></script>
-  <script type="text/babel" src="components.jsx?v=27"></script>
+  <script type="text/babel" src="components.jsx?v=28"></script>
 
   <!-- Article bodies. Add one line per article. -->
   <script type="text/babel" src="bodies/first-time-yosemite-overwhelm.jsx?v=20"></script>
@@ -44,15 +172,15 @@
   <script type="text/babel" src="bodies/water-ouzels-waterfalls.jsx?v=1"></script>
   <script type="text/babel" src="bodies/working-in-yosemite.jsx?v=1"></script>
 
-  <script type="text/babel" src="page-home.jsx?v=20"></script>
-  <script type="text/babel" src="page-about.jsx?v=20"></script>
-  <script type="text/babel" src="page-articles.jsx?v=20"></script>
-  <script type="text/babel" src="page-article.jsx?v=21"></script>
-  <script type="text/babel" src="page-newsletter-contact.jsx?v=21"></script>
-  <script type="text/babel" src="page-legal.jsx?v=22"></script>
-  <script type="text/babel" src="page-kit.jsx?v=23"></script>
-  <script type="text/babel" src="page-places.jsx?v=24"></script>
-  <script type="text/babel" src="page-advertise.jsx?v=22"></script>
-  <script type="text/babel" src="app.jsx?v=24"></script>
+  <script type="text/babel" src="page-home.jsx?v=21"></script>
+  <script type="text/babel" src="page-about.jsx?v=21"></script>
+  <script type="text/babel" src="page-articles.jsx?v=21"></script>
+  <script type="text/babel" src="page-article.jsx?v=22"></script>
+  <script type="text/babel" src="page-newsletter-contact.jsx?v=22"></script>
+  <script type="text/babel" src="page-legal.jsx?v=23"></script>
+  <script type="text/babel" src="page-kit.jsx?v=24"></script>
+  <script type="text/babel" src="page-places.jsx?v=25"></script>
+  <script type="text/babel" src="page-advertise.jsx?v=23"></script>
+  <script type="text/babel" src="app.jsx?v=25"></script>
 </body>
 </html>
