@@ -22,12 +22,6 @@ const GUIDE_NEXT_OPEN = "June 1";
 
 function GuidePage({ go }) {
   const [sold, setSold] = React.useState(GUIDE_FALLBACK_SOLD);
-  const [buying, setBuying] = React.useState(false);
-  const [buyError, setBuyError] = React.useState(null);
-  // apiReady flips true only when /api/inventory responds. When false, the buy
-  // button stays in passive "preview" mode so local dev (no Worker) doesn't
-  // surface a real-looking error to visitors.
-  const [apiReady, setApiReady] = React.useState(false);
 
   React.useEffect(() => {
     let cancelled = false;
@@ -36,40 +30,10 @@ function GuidePage({ go }) {
       .then((data) => {
         if (cancelled) return;
         if (data && typeof data.sold === "number") setSold(data.sold);
-        setApiReady(true);
       })
       .catch(() => {});
     return () => { cancelled = true; };
   }, []);
-
-  async function startCheckout() {
-    if (buying) return;
-    if (!apiReady) {
-      setBuyError("Checkout opens at launch.");
-      return;
-    }
-    setBuying(true);
-    setBuyError(null);
-    try {
-      const res = await fetch(`${GUIDE_API_BASE}/api/checkout/start`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-      });
-      if (res.status === 409) {
-        const body = await res.json();
-        setSold(body.cap || GUIDE_MONTHLY_CAP);
-        return;
-      }
-      if (!res.ok) throw new Error(`HTTP ${res.status}`);
-      const { url } = await res.json();
-      window.location = url;
-    } catch (err) {
-      setBuyError("Couldn't start checkout. Try again or email Cory.");
-      console.error(err);
-    } finally {
-      setBuying(false);
-    }
-  }
 
   const remaining = Math.max(0, GUIDE_MONTHLY_CAP - sold);
   const isSoldOut = remaining <= 0;

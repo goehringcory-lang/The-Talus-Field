@@ -320,8 +320,8 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
 .daybar__dot--active { background: var(--ink); }
 .daybar__dot:hover { background: var(--moss); border-color: var(--moss); }
 
-/* Trip picker card — used on the hub */
-.trip-picker-card {
+/* Region picker card — used on the hub */
+.region-picker-card {
   display: block;
   border: 1px solid var(--rule);
   background: var(--paper-2);
@@ -330,20 +330,20 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
   color: var(--ink);
   transition: transform 0.15s ease, background 0.15s ease;
 }
-.trip-picker-card:hover {
+.region-picker-card:hover {
   background: var(--paper-3);
   transform: translateY(-2px);
   text-decoration: none;
   color: var(--ink);
 }
-.trip-picker-card__title {
+.region-picker-card__title {
   font-family: var(--display);
   font-size: clamp(28px, 4vw, 40px);
   font-weight: 500;
   line-height: 1.05;
   margin: 8px 0 12px;
 }
-.trip-picker-card__teaser {
+.region-picker-card__teaser {
   font-family: var(--serif);
   font-size: 15px;
   color: var(--ink-2);

@@ -10,10 +10,10 @@ type Props = {
 
 export default function RegionPickerCard({ region, title, teaser, stopCount }: Props) {
   return (
-    <Link to={`/region/${region}`} className="trip-picker-card">
+    <Link to={`/region/${region}`} className="region-picker-card">
       <div className="eyebrow eyebrow--moss">The Field Guide</div>
-      <h2 className="trip-picker-card__title">{title}</h2>
-      <p className="trip-picker-card__teaser">{teaser}</p>
+      <h2 className="region-picker-card__title">{title}</h2>
+      <p className="region-picker-card__teaser">{teaser}</p>
       <div className="dateline">
         {stopCount} {stopCount === 1 ? 'stop' : 'stops'}
       </div>

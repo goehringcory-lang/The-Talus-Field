@@ -3,7 +3,7 @@ import jwt from '@tsndr/cloudflare-worker-jwt'
 const TTL_SECONDS = 60 * 60 * 24 * 90 // 90 days
 
 export type AccessClaims = {
-  sub: string  // buyer email (lowercased)
+  sub: string  // buyer email (lowercased) for /api/auth/login, or username for /api/auth/dev-login
   iat: number
   exp: number
 }
