@@ -7,40 +7,8 @@ function ArticlePage({ slug, go }) {
   const related = window.ARTICLES.filter(a => a.slug !== slug && a.cat === article.cat).slice(0, 3);
   const Body = (window.ARTICLE_BODIES || {})[slug];
 
-  // Sticky "Get the Field Guide" bar appears once the reader has scrolled past the dropcap.
-  const [showGuideBar, setShowGuideBar] = React.useState(false);
-  React.useEffect(() => {
-    setShowGuideBar(false);
-    const el = document.querySelector(".prose .dropcap");
-    if (!el || typeof IntersectionObserver === "undefined") return;
-    const io = new IntersectionObserver(
-      ([entry]) => {
-        // Show the bar once the dropcap has scrolled out of view above the viewport.
-        const past = entry.boundingClientRect.bottom < 0;
-        setShowGuideBar(past);
-      },
-      { threshold: 0, rootMargin: "0px" }
-    );
-    io.observe(el);
-    return () => io.disconnect();
-  }, [slug]);
-
   return (
     <div className="page">
-      {/* Sticky Field Guide promo bar */}
-      <div className={`guide-bar ${showGuideBar ? "is-visible" : ""}`} role="region" aria-label="Field Guide promotion">
-        <div className="wrap guide-bar__inner">
-          <div className="guide-bar__copy">
-            <span className="guide-bar__eyebrow">The Field Guide ·</span>
-            <span className="guide-bar__pitch">Three trip plans, GPS for every parking spot and trailhead, elevation profiles. The version of this article without the gaps.</span>
-          </div>
-          <a
-            className="guide-bar__cta"
-            href="#guide"
-            onClick={(e) => { e.preventDefault(); go("guide"); }}
-          >Get the guide →</a>
-        </div>
-      </div>
       <article>
         {/* Article hero */}
         <header className="wrap wrap--narrow" style={{ paddingTop: 64, paddingBottom: 32 }}>
@@ -94,19 +62,6 @@ function ArticlePage({ slug, go }) {
             {Body ? <Body /> : (
               <p style={{ color: "var(--ink-3)", fontStyle: "italic" }}>This article is coming soon.</p>
             )}
-
-            <aside className="guide-cta">
-              <div className="guide-cta__eyebrow">Plan the actual trip</div>
-              <h3 className="guide-cta__title">Want this, but for the whole trip?</h3>
-              <p className="guide-cta__body">
-                The Field Guide is one PDF that gives you three full itineraries (one day, three days, five days), GPS coordinates for every parking spot and trailhead I trust, elevation profiles for the hikes, and the contingency tree for when the plan doesn't survive contact with the park.
-              </p>
-              <a
-                className="guide-cta__btn"
-                href="#guide"
-                onClick={(e) => { e.preventDefault(); go("guide"); }}
-              >Read about the Field Guide →</a>
-            </aside>
           </div>
 
           <NewsletterInline
