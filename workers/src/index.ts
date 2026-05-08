@@ -4,6 +4,11 @@ import type { Env } from './env'
 import { auth } from './routes/auth'
 import { checkout } from './routes/checkout'
 import { stripe } from './routes/stripe'
+import {
+  currentMonthLabel,
+  firstOfNextMonthIso,
+  getInventoryCount,
+} from './lib/kv'
 
 const app = new Hono<{ Bindings: Env }>()
 
@@ -30,6 +35,13 @@ app.use(
 )
 
 app.get('/', (c) => c.text('Talus Field Guide API. See /api/inventory.'))
+
+app.get('/api/inventory', async (c) => {
+  const monthLabel = currentMonthLabel()
+  const sold = await getInventoryCount(c.env, monthLabel)
+  const cap = Number.parseInt(c.env.GUIDE_MONTHLY_CAP, 10)
+  return c.json({ sold, cap, monthLabel, reopens: firstOfNextMonthIso() })
+})
 
 app.route('/api/auth', auth)
 app.route('/api/checkout', checkout)

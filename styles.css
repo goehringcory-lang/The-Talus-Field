@@ -1667,6 +1667,13 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
   color: var(--ink-2);
 }
 .kit__disclosure a { color: var(--ink); }
+.kit__essay {
+  margin-top: 48px;
+  padding: 32px 32px 36px;
+  background: var(--paper-2);
+  border: 1px solid var(--rule);
+  border-left: 3px solid var(--moss);
+}
 .kit__rec-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;

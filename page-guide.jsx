@@ -137,16 +137,16 @@ function GuidePage({ go }) {
               The guide gives you those choices. The hour to be there. The direction to come from. The viewpoint twenty yards off the marked spot that nobody else is standing at. The five-minute window where the light does what you came for.
             </p>
 
-            <h2>The itineraries</h2>
+            <h2>The regional guides</h2>
 
             <p>
-              All of this is organized into three trip lengths so the day-by-day plan matches the visit you're actually taking. You read the one that matches your dates and skim the others for variations.
+              All of this is organized by where you are in the park, not how long you're staying. Pick the region you're heading to, read the stops in suggested order, and do the ones that fit your day.
             </p>
 
             <ul>
-              <li><strong>The One-Day Plan.</strong> A complete strategy for visitors arriving on a single day, with hour-by-hour timing, two backup variations for crowded conditions, and the three things never to skip.</li>
-              <li><strong>The Three-Day Plan.</strong> The most common Yosemite trip. A balanced itinerary with rest blocks, evening light recommendations, and a flex day that absorbs whatever the park throws at you.</li>
-              <li><strong>The Five-Day Plan.</strong> The trip that actually shows you what the park is. A full Tuolumne day, a Hetch Hetchy day, the high-country sunset most visitors never see, and the unhurried mornings that turn a vacation into a memory.</li>
+              <li><strong>Yosemite Valley & surrounding areas.</strong> The valley floor and the rim viewpoints that look down into it. Tunnel View, the meadows, the climbing wall on El Capitan, the Mist Trail to Vernal and Nevada Falls, and the valley lodgings.</li>
+              <li><strong>Glacier Point & the Mariposa Grove.</strong> The southern rim and the giant sequoias. Higher elevation, more driving, and the panoramas that put the whole valley below you. Closed in winter.</li>
+              <li><strong>Tuolumne Meadows & the Highway 120 corridor.</strong> The high country. Granite domes, alpine lakes, the meadow that turns the trip into something bigger than the valley. Tioga Road open roughly June through October.</li>
             </ul>
 
             <p>Inside each itinerary, alongside the parking and trailhead coordinates, you also get:</p>
@@ -272,7 +272,7 @@ function GuidePage({ go }) {
             )}
 
             <p style={{ fontFamily: "var(--serif)", fontSize: 14, color: "var(--ink-2)", lineHeight: 1.55, margin: 0 }}>
-              An offline app. Tappable GPS for hidden parking, the trailheads that stay quiet, and tactics for the famous spots. Three itineraries (one, three, five days). Updates push automatically through the 2026 season. Refund if it doesn't earn its keep.
+              An offline app. Tappable GPS for hidden parking, the trailheads that stay quiet, and tactics for the famous spots. Three regional guides (the Valley, Glacier Point & Mariposa, Tuolumne & Hwy 120). Updates push automatically through the 2026 season. Refund if it doesn't earn its keep.
             </p>
 
             <div style={{ borderTop: "1px solid var(--rule)", marginTop: 24, paddingTop: 20 }}>
@@ -281,7 +281,7 @@ function GuidePage({ go }) {
                 <li>· Tappable GPS for hidden parking and trailheads</li>
                 <li>· Elevation profiles per hike</li>
                 <li>· Embedded day-maps</li>
-                <li>· One-day, three-day, five-day plans</li>
+                <li>· Valley, Glacier Point & Mariposa, and Tuolumne guides</li>
                 <li>· Works offline anywhere in the park</li>
                 <li>· Hour-by-hour time budgets</li>
                 <li>· Contingency tree for closures</li>

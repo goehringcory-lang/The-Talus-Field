@@ -9,13 +9,6 @@ import { createCheckoutSession } from '../lib/stripe'
 
 export const checkout = new Hono<{ Bindings: Env }>()
 
-checkout.get('/inventory', async (c) => {
-  const monthLabel = currentMonthLabel()
-  const sold = await getInventoryCount(c.env, monthLabel)
-  const cap = Number.parseInt(c.env.GUIDE_MONTHLY_CAP, 10)
-  return c.json({ sold, cap, monthLabel, reopens: firstOfNextMonthIso() })
-})
-
 checkout.post('/start', async (c) => {
   const monthLabel = currentMonthLabel()
   const sold = await getInventoryCount(c.env, monthLabel)

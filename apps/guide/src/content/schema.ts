@@ -1,7 +1,7 @@
 import { z } from 'zod'
 
-export const TripEnum = z.enum(['1day', '3day', '5day'])
-export type Trip = z.infer<typeof TripEnum>
+export const RegionEnum = z.enum(['valley', 'glacier-mariposa', 'tuolumne'])
+export type Region = z.infer<typeof RegionEnum>
 
 export const StopKindEnum = z.enum([
   'viewpoint',
@@ -14,11 +14,10 @@ export const StopKindEnum = z.enum([
 export type StopKind = z.infer<typeof StopKindEnum>
 
 export const Stop = z.object({
-  id: z.string(),                         // "tunnel-view-arrival"
+  id: z.string(),                         // "tunnel-view"
   title: z.string(),
-  trip: TripEnum,
-  day: z.number(),                        // 1-indexed within the trip
-  order: z.number(),                      // sort within day
+  region: RegionEnum,
+  order: z.number(),                      // sort within region
   kind: StopKindEnum,
   coord: z.tuple([z.number(), z.number()]).optional(),  // [lng, lat]
   elevationFt: z.number().optional(),

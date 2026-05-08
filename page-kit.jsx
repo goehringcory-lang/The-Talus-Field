@@ -78,6 +78,19 @@ function KitPage({ go }) {
             ))}
           </ol>
 
+          {list.essay && (
+            <aside className="kit__essay">
+              <div className="eyebrow eyebrow--moss" style={{ marginBottom: 12 }}>The essay behind the list</div>
+              <h3 style={{ fontFamily: "var(--display)", fontSize: 28, fontWeight: 500, lineHeight: 1.15, margin: "0 0 12px" }}>{list.essay.title}</h3>
+              <p style={{ fontFamily: "var(--serif)", fontSize: 17, color: "var(--ink-2)", lineHeight: 1.55, margin: "0 0 16px", maxWidth: "60ch" }}>{list.essay.blurb}</p>
+              <a
+                className="btn btn--ghost"
+                href={`#a:${list.essay.slug}`}
+                onClick={(e) => { e.preventDefault(); go(`a:${list.essay.slug}`); }}
+              >Read the essay →</a>
+            </aside>
+          )}
+
           <div className="kit__disclosure">
             Some of the links above are affiliate links. <a href="#affiliate" onClick={(e) => { e.preventDefault(); go("affiliate"); }}>How that works.</a>
           </div>

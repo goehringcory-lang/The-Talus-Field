@@ -1,5 +1,5 @@
 import { Link, Navigate, useParams } from 'react-router-dom'
-import { getStopById, getStopsByDay } from '../content'
+import { getRegionMeta, getStopById, getStopsByRegion } from '../content'
 import GatedChrome from '../components/GatedChrome'
 import StopCard from '../components/StopCard'
 
@@ -8,17 +8,18 @@ export default function StopDetail() {
   const stop = params.stopId ? getStopById(params.stopId) : undefined
   if (!stop) return <Navigate to="/" replace />
 
-  const siblings = getStopsByDay(stop.trip, stop.day)
+  const siblings = getStopsByRegion(stop.region)
   const idx = siblings.findIndex((s) => s.id === stop.id)
   const prev = idx > 0 ? siblings[idx - 1] : null
   const next = idx >= 0 && idx < siblings.length - 1 ? siblings[idx + 1] : null
+  const regionMeta = getRegionMeta(stop.region)
 
   return (
     <GatedChrome>
       <main className="wrap wrap--narrow" style={{ paddingTop: 56, paddingBottom: 96 }}>
         <p style={{ marginBottom: 24 }}>
           <Link
-            to={`/trip/${stop.trip}/day/${stop.day}`}
+            to={`/region/${stop.region}`}
             style={{
               fontFamily: 'var(--sans)',
               fontSize: 12,
@@ -27,7 +28,7 @@ export default function StopDetail() {
               fontWeight: 600,
             }}
           >
-            ← Day {stop.day}
+            ← {regionMeta?.title ?? 'Region'}
           </Link>
         </p>
 
@@ -53,7 +54,7 @@ export default function StopDetail() {
               <span style={{ opacity: 0.4 }}>
                 <div className="eyebrow" style={{ marginBottom: 6 }}>← Previous</div>
                 <div style={{ fontFamily: 'var(--display)', fontSize: 18, color: 'var(--ink-3)' }}>
-                  Start of day
+                  Start of region
                 </div>
               </span>
             )}
@@ -68,7 +69,7 @@ export default function StopDetail() {
               <span style={{ opacity: 0.4 }}>
                 <div className="eyebrow" style={{ marginBottom: 6 }}>Next →</div>
                 <div style={{ fontFamily: 'var(--display)', fontSize: 18, color: 'var(--ink-3)' }}>
-                  End of day
+                  End of region
                 </div>
               </span>
             )}

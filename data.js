@@ -62,6 +62,11 @@ window.KIT = {
       title: "Car trip",
       summary: "What to keep in the trunk for any Yosemite drive. Adds peace of mind, takes no thought.",
       icon: "III",
+      essay: {
+        slug: "pack-your-car-for-yosemite",
+        title: "How to pack your car for a Yosemite trip",
+        blurb: "The full essay behind this list. Why each item earns its space, the small tactics that change the math on your trip, and the bear rules that apply to your car too.",
+      },
       items: [
         { name: "The John box", note: "Named after my friend John, who came up with the idea. The John box is a single durable storage box that holds every camping essential you ever bring: double-burner Coleman stove, propane, hatchet, paracord, firestarter, flashlight, spare headlamp and batteries, a lantern, a tarp, even a deck of playing cards. Mine doubles as a camp chair and a small table. The whole point is that you don't unpack it between trips. You load it once, store it loaded, and grab it on the way out the door. You'll never forget the propane again. If you'd rather skip the build, John sells a premade version with everything you need to survive and thrive in the wild: myjonbox.com.", aff: "https://www.myjonbox.com/" },
         { name: "Tire chains (Nov through April)", note: "Required by California law during chain controls, and the rangers do check. Practice once at home.", aff: "#" },
@@ -129,7 +134,7 @@ window.ARTICLES = [
     title: "How to pack your car for a Yosemite trip",
     dek: "Nobody writes about packing the car. But the car is the base camp for most Yosemite trips, and what's in it decides whether a flat tire is an inconvenience or a crisis.",
     date: "April 26, 2026",
-    read: "7 min",
+    read: "12 min",
     placeholder: "Loaded car at a trailhead pullout",
     image: "img/cathedral-rocks.jpg",
   },
