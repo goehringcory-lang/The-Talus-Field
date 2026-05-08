@@ -98,6 +98,16 @@ window.KIT = {
 
 window.ARTICLES = [
   {
+    slug: "working-in-yosemite",
+    cat: "planning",
+    title: "So you want to work in Yosemite",
+    dek: "Most jobs in Yosemite aren't ranger jobs. The work is hospitality, the housing starts in a tent cabin, and the closest grocery store is an hour away. The honest version of what it's like to live here, before you sign anything.",
+    date: "May 8, 2026",
+    read: "10 min",
+    placeholder: "Valley meadow, late spring",
+    image: "img/wildflowers.jpg",
+  },
+  {
     slug: "water-ouzels-waterfalls",
     cat: "wildlife",
     title: "How water ouzels live inside a waterfall",
