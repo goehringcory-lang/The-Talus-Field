@@ -122,8 +122,11 @@ function Header({ current, go }) {
           onClick={(e) => { e.preventDefault(); go("home"); }}
           style={{ textDecoration: "none", color: "inherit" }}
         >
-          <span className="brand">The Talus Field</span>
-          <span className="brand__sub">A field journal of Yosemite</span>
+          <img className="brand__mark" src="img/talus-field-mark.png" alt="" aria-hidden="true" />
+          <span className="brand-block__text">
+            <span className="brand">The Talus Field</span>
+            <span className="brand__sub">A field journal of Yosemite</span>
+          </span>
         </a>
         <nav className="nav">
           {primaryNav.map(([key, label]) => (
