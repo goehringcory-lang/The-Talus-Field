@@ -71,7 +71,7 @@ CORS in `index.ts` allow-lists the editorial origin, the PWA origin, and `http:/
 
 ## Brand & voice
 
-The brand is **The Talus Field** (formerly "Yosemite Sentinel"; the GitHub repo may still be named `yosemite-sentinel`). The editorial voice is dry, declarative, journalistic — no marketing fluff, no exclamation marks, em-dashes have been deliberately removed across the codebase. Match the existing tone when writing copy.
+The brand is **The Talus Field** (formerly "Yosemite Sentinel"). The editorial voice is dry, declarative, journalistic — no marketing fluff, no exclamation marks, em-dashes have been deliberately removed across the codebase. Match the existing tone when writing copy.
 
 ## Things that have surprised past edits
 

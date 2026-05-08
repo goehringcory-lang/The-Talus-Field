@@ -1,6 +1,6 @@
 /* global React, ReactDOM, Header, Footer,
    HomePage, AboutPage, ArticlesIndex, CategoryPage, ArticlePage,
-   GuidePage, CapPage, KitPage, PlacesPage, AdvertisePage,
+   KitPage, PlacesPage, AdvertisePage,
    NewsletterPage, ContactPage, PrivacyPage, TermsPage, AffiliatePage,
    TweaksPanel, useTweaks, TweakSection, TweakRadio, TweakToggle */
 
@@ -42,12 +42,6 @@ function App() {
   } else if (route === "kit") {
     page = <KitPage go={go} />;
     currentNav = "kit";
-  } else if (route === "guide") {
-    page = <GuidePage go={go} />;
-    currentNav = "guide";
-  } else if (route === "cap") {
-    page = <CapPage go={go} />;
-    currentNav = "guide";
   } else if (route === "places") {
     page = <PlacesPage go={go} />;
     currentNav = "places";

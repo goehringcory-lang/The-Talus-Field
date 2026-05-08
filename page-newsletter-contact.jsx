@@ -2,9 +2,6 @@
 const { useState } = React;
 
 function NewsletterPage({ go }) {
-  const [email, setEmail] = useState("");
-  const [done, setDone] = useState(false);
-
   return (
     <div className="page">
       <div className="wrap wrap--narrow" style={{ paddingTop: 96, paddingBottom: 96 }}>
@@ -14,28 +11,20 @@ function NewsletterPage({ go }) {
           A short note on Sundays, when there is something to say. Subscribing is free.
         </p>
 
-        {done ? (
-          <div style={{ border: "1px solid var(--moss)", padding: 32, background: "var(--paper-2)" }}>
-            <div className="eyebrow eyebrow--moss">Subscribed</div>
-            <h2 style={{ fontSize: 24, marginTop: 8, marginBottom: 8 }}>Check your inbox.</h2>
-            <p style={{ color: "var(--ink-2)", margin: 0 }}>I sent you a confirmation. Click the link inside and you are in.</p>
-          </div>
-        ) : (
-          <form
-            onSubmit={(e) => { e.preventDefault(); if (email) setDone(true); }}
-            style={{ borderTop: "1px solid var(--ink)", borderBottom: "1px solid var(--ink)", padding: "24px 0", display: "flex", gap: 16, alignItems: "center", marginBottom: 48 }}
-          >
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="you@email.com"
-              required
-              style={{ flex: 1, fontFamily: "var(--serif)", fontSize: 22, background: "transparent", border: 0, outline: "none", color: "var(--ink)" }}
-            />
-            <button className="btn" type="submit">Subscribe →</button>
-          </form>
-        )}
+        <form
+          action="https://buttondown.com/api/emails/embed-subscribe/goehring"
+          method="post"
+          style={{ borderTop: "1px solid var(--ink)", borderBottom: "1px solid var(--ink)", padding: "24px 0", display: "flex", gap: 16, alignItems: "center", marginBottom: 48 }}
+        >
+          <input
+            type="email"
+            name="email"
+            placeholder="you@email.com"
+            required
+            style={{ flex: 1, fontFamily: "var(--serif)", fontSize: 22, background: "transparent", border: 0, outline: "none", color: "var(--ink)" }}
+          />
+          <button className="btn" type="submit">Subscribe →</button>
+        </form>
 
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 40, marginTop: 64 }}>
           <div>

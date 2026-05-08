@@ -162,12 +162,6 @@ function Header({ current, go }) {
               </div>
             )}
           </div>
-
-          <a
-            href="#guide"
-            className={`nav__primary ${current === "guide" ? "is-active" : ""}`}
-            onClick={(e) => { e.preventDefault(); go("guide"); }}
-          >The Field Guide →</a>
         </nav>
       </div>
     </header>
@@ -273,31 +267,18 @@ function ArticleCard({ article, go, size }) {
 // Inline newsletter box
 // ============================================================
 function NewsletterInline({ heading, blurb }) {
-  const [email, setEmail] = useState("");
-  const [done, setDone] = useState(false);
   return (
     <div className="nlbox">
       <h3>{heading || "Sunday Field Notes"}</h3>
       <p>{blurb || "A short note on Sundays, when there is something to say."}</p>
-      {done ? (
-        <div style={{ fontFamily: "var(--sans)", fontSize: 14, color: "var(--moss)" }}>
-          Thanks. Check your inbox to confirm.
-        </div>
-      ) : (
-        <form
-          className="nlbox__form"
-          onSubmit={(e) => { e.preventDefault(); if (email) setDone(true); }}
-        >
-          <input
-            type="email"
-            placeholder="you@email.com"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-          <button type="submit">Subscribe →</button>
-        </form>
-      )}
+      <form
+        className="nlbox__form"
+        action="https://buttondown.com/api/emails/embed-subscribe/goehring"
+        method="post"
+      >
+        <input type="email" name="email" placeholder="you@email.com" required />
+        <button type="submit">Subscribe →</button>
+      </form>
     </div>
   );
 }
