@@ -63,34 +63,26 @@ function MotifTrees() {
 // Masthead
 // ============================================================
 function Header({ current, go }) {
-  // Primary text links. Content people read every visit.
-  const primaryNav = [
+  // All nav items on a single bar at desktop. Collapsed behind a hamburger on mobile.
+  const navItems = [
     ["articles", "Articles"],
     ["kit", "Kit"],
-  ];
-  // Secondary items, lower-frequency utility. Tucked behind a dropdown.
-  // Articles + Kit are duplicated here (and CSS-hidden at desktop) so the dropdown
-  // is a complete fallback nav at narrow widths, where the primary text links collapse.
-  const moreNav = [
-    ["articles", "Articles", "is-mobile-only"],
-    ["kit", "Kit", "is-mobile-only"],
     ["places", "Places & People"],
     ["about", "About"],
     ["newsletter", "Newsletter"],
     ["contact", "Contact"],
   ];
-  const moreContains = moreNav.some(([k]) => k === current);
 
-  const [moreOpen, setMoreOpen] = React.useState(false);
-  const moreRef = React.useRef(null);
+  const [menuOpen, setMenuOpen] = React.useState(false);
+  const menuRef = React.useRef(null);
   React.useEffect(() => {
-    if (!moreOpen) return;
-    const onDoc = (e) => { if (moreRef.current && !moreRef.current.contains(e.target)) setMoreOpen(false); };
-    const onKey = (e) => { if (e.key === "Escape") setMoreOpen(false); };
+    if (!menuOpen) return;
+    const onDoc = (e) => { if (menuRef.current && !menuRef.current.contains(e.target)) setMenuOpen(false); };
+    const onKey = (e) => { if (e.key === "Escape") setMenuOpen(false); };
     document.addEventListener("mousedown", onDoc);
     document.addEventListener("keydown", onKey);
     return () => { document.removeEventListener("mousedown", onDoc); document.removeEventListener("keydown", onKey); };
-  }, [moreOpen]);
+  }, [menuOpen]);
 
   const today = new Date().toLocaleDateString("en-US", {
     weekday: "long", year: "numeric", month: "long", day: "numeric"
@@ -129,34 +121,37 @@ function Header({ current, go }) {
           </span>
         </a>
         <nav className="nav">
-          {primaryNav.map(([key, label]) => (
+          {navItems.map(([key, label]) => (
             <a
               key={key}
               href={window.routeToPath ? window.routeToPath(key) : `/${key}`}
-              className={current === key ? "is-active" : ""}
+              className={`nav__link ${current === key ? "is-active" : ""}`}
               onClick={(e) => { e.preventDefault(); go(key); }}
             >{label}</a>
           ))}
 
-          <div className="nav__more" ref={moreRef}>
+          <div className="nav__menu-wrap" ref={menuRef}>
             <button
               type="button"
-              className={`nav__more-trigger ${moreContains ? "is-active" : ""}`}
+              className="nav__menu-toggle"
               aria-haspopup="true"
-              aria-expanded={moreOpen}
-              onClick={() => setMoreOpen(o => !o)}
+              aria-expanded={menuOpen}
+              aria-label="Menu"
+              onClick={() => setMenuOpen(o => !o)}
             >
-              More <span className="nav__more-caret" aria-hidden="true">▾</span>
+              <span className="nav__menu-bars" aria-hidden="true">
+                <span></span><span></span><span></span>
+              </span>
             </button>
-            {moreOpen && (
+            {menuOpen && (
               <div className="nav__menu" role="menu">
-                {moreNav.map(([key, label, extra]) => (
+                {navItems.map(([key, label]) => (
                   <a
                     key={key}
                     role="menuitem"
                     href={window.routeToPath ? window.routeToPath(key) : `/${key}`}
-                    className={`${current === key ? "is-active" : ""} ${extra || ""}`.trim()}
-                    onClick={(e) => { e.preventDefault(); setMoreOpen(false); go(key); }}
+                    className={current === key ? "is-active" : ""}
+                    onClick={(e) => { e.preventDefault(); setMenuOpen(false); go(key); }}
                   >{label}</a>
                 ))}
               </div>
