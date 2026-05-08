@@ -9,6 +9,11 @@ const GUIDE_API_BASE =
   (typeof window !== "undefined" && window.GUIDE_API_BASE) ||
   "https://api.thetalusfieldjournal.com";
 
+// Public URL of the PWA. Override at runtime via window.GUIDE_APP_BASE.
+const GUIDE_APP_BASE =
+  (typeof window !== "undefined" && window.GUIDE_APP_BASE) ||
+  "https://guide.thetalusfieldjournal.com";
+
 // Scarcity defaults. Used as fallback if /api/inventory is unreachable.
 const GUIDE_FALLBACK_SOLD = 53;
 const GUIDE_MONTHLY_CAP = 100;
@@ -245,31 +250,17 @@ function GuidePage({ go }) {
               </div>
             </div>
 
-            {isSoldOut ? (
-              <button
-                className="btn"
-                type="button"
-                disabled
-                style={{ display: "block", width: "100%", textAlign: "center", marginBottom: 14, opacity: 0.45, cursor: "not-allowed", border: 0, font: "inherit" }}
-              >
-                Sold out. Back {GUIDE_NEXT_OPEN}
-              </button>
-            ) : (
-              <button
-                className="btn"
-                type="button"
-                onClick={startCheckout}
-                disabled={buying}
-                style={{ display: "block", width: "100%", textAlign: "center", marginBottom: 14, border: 0, font: "inherit", cursor: buying ? "wait" : "pointer" }}
-              >
-                {buying ? "Opening checkout…" : "Reserve a copy →"}
-              </button>
-            )}
-            {buyError && (
-              <p style={{ color: "var(--moss)", fontFamily: "var(--sans)", fontSize: 13, margin: "0 0 14px" }}>
-                {buyError}
-              </p>
-            )}
+            {/* Pre-Stripe preview: send buyers to the PWA sign-in screen
+                where username + access code are validated by the Worker.
+                The sold-out branch and checkout state above are kept in
+                place for when the real purchase flow comes back online. */}
+            <a
+              className="btn"
+              href={`${GUIDE_APP_BASE}/login`}
+              style={{ display: "block", width: "100%", textAlign: "center", marginBottom: 14, border: 0, font: "inherit", textDecoration: "none" }}
+            >
+              Sign in to the guide →
+            </a>
 
             <p style={{ fontFamily: "var(--serif)", fontSize: 14, color: "var(--ink-2)", lineHeight: 1.55, margin: 0 }}>
               An offline app. Tappable GPS for hidden parking, the trailheads that stay quiet, and tactics for the famous spots. Three regional guides (the Valley, Glacier Point & Mariposa, Tuolumne & Hwy 120). Updates push automatically through the 2026 season. Refund if it doesn't earn its keep.

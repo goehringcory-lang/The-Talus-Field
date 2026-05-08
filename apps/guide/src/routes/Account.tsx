@@ -14,7 +14,7 @@ export default function Account() {
 
         <div className="card" style={{ marginBottom: 28 }}>
           <div className="eyebrow" style={{ marginBottom: 8 }}>Signed in as</div>
-          <div style={{ fontFamily: 'var(--display)', fontSize: 22 }}>{session?.email}</div>
+          <div style={{ fontFamily: 'var(--display)', fontSize: 22 }}>{session?.username}</div>
         </div>
 
         <p>

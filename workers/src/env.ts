@@ -15,4 +15,11 @@ export type Env = {
   STRIPE_WEBHOOK_SECRET: string
   MAGIC_LINK_SIGNING_SECRET: string
   RESEND_API_KEY: string
+
+  // Pre-Stripe dev / admin sign-in. Used by /api/auth/dev-login.
+  // All four are optional; if a pair is unset, that login path is disabled.
+  DEV_USERNAME?: string
+  DEV_CODE?: string
+  ADMIN_USERNAME?: string
+  ADMIN_CODE?: string
 }
