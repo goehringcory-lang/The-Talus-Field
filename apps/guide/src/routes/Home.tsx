@@ -54,7 +54,7 @@ export default function Home() {
         <UpdatedStamp />
 
         <p style={{ marginTop: 32, color: 'var(--ink-3)', fontSize: 13 }}>
-          Signed in as <strong>{session?.email}</strong>. <Link to="/account">Account →</Link>
+          Signed in as <strong>{session?.username}</strong>. <Link to="/account">Account →</Link>
         </p>
       </main>
     </GatedChrome>

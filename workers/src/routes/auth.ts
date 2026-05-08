@@ -57,3 +57,33 @@ auth.post('/login', async (c) => {
   const jwt = await signAccessJwt(email, c.env.MAGIC_LINK_SIGNING_SECRET)
   return c.json({ jwt })
 })
+
+// Pre-Stripe dev / admin login. Username + code are checked against env
+// secrets. Two pairs are honored: a "dev" pair for previewing the buyer
+// experience, and an "admin" pair for the operator. Either issues the same
+// JWT shape as the buyer login above, so the rest of the PWA is unchanged.
+auth.post('/dev-login', async (c) => {
+  const body = await c.req
+    .json<{ username?: string; code?: string }>()
+    .catch(() => ({} as { username?: string; code?: string }))
+  const username = body.username?.trim()
+  const code = body.code?.trim()
+  if (!username || !code) return c.json({ error: 'Missing username or code' }, 400)
+
+  const adminU = c.env.ADMIN_USERNAME
+  const adminC = c.env.ADMIN_CODE
+  const devU = c.env.DEV_USERNAME
+  const devC = c.env.DEV_CODE
+
+  const adminMatch =
+    !!adminU && !!adminC && constantTimeEquals(username, adminU) && constantTimeEquals(code, adminC)
+  const devMatch =
+    !!devU && !!devC && constantTimeEquals(username, devU) && constantTimeEquals(code, devC)
+
+  if (!adminMatch && !devMatch) {
+    return c.json({ error: 'Username or code does not match' }, 401)
+  }
+
+  const jwt = await signAccessJwt(username, c.env.MAGIC_LINK_SIGNING_SECRET)
+  return c.json({ jwt })
+})

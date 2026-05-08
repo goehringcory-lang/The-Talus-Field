@@ -28,7 +28,7 @@ export function clearStoredJwt(): void {
   localStorage.removeItem(KEY)
 }
 
-export function readSessionFromStorage(): { jwt: string; email: string } | null {
+export function readSessionFromStorage(): { jwt: string; username: string } | null {
   const jwt = getStoredJwt()
   if (!jwt) return null
   const claims = decodeClaims(jwt)
@@ -40,5 +40,5 @@ export function readSessionFromStorage(): { jwt: string; email: string } | null 
     clearStoredJwt()
     return null
   }
-  return { jwt, email: claims.sub }
+  return { jwt, username: claims.sub }
 }

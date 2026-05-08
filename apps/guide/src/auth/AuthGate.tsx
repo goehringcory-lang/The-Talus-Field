@@ -7,7 +7,7 @@ import {
   setStoredJwt,
 } from './storage'
 
-type Session = { jwt: string; email: string } | null
+type Session = { jwt: string; username: string } | null
 
 type AuthContextValue = {
   session: Session

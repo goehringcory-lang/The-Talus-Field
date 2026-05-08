@@ -9,7 +9,7 @@ type LoginResponse = { jwt: string }
 export default function Login() {
   const navigate = useNavigate()
   const { signIn } = useAuth()
-  const [email, setEmail] = useState('')
+  const [username, setUsername] = useState('')
   const [code, setCode] = useState('')
   const [busy, setBusy] = useState(false)
   const [error, setError] = useState<string | null>(null)
@@ -19,17 +19,15 @@ export default function Login() {
     setBusy(true)
     setError(null)
     try {
-      const res = await apiFetch<LoginResponse>('/api/auth/login', {
+      const res = await apiFetch<LoginResponse>('/api/auth/dev-login', {
         method: 'POST',
-        body: JSON.stringify({ email: email.trim().toLowerCase(), code: code.trim() }),
+        body: JSON.stringify({ username: username.trim(), code: code.trim() }),
       })
       signIn(res.jwt)
       navigate('/', { replace: true })
     } catch (err) {
-      if (err instanceof ApiError && err.status === 429) {
-        setError('Too many attempts. Try again in an hour.')
-      } else if (err instanceof ApiError && err.status === 401) {
-        setError("That code doesn't match. Check the email we sent you.")
+      if (err instanceof ApiError && err.status === 401) {
+        setError("That username and code don't match.")
       } else {
         setError(err instanceof Error ? err.message : 'Sign-in failed.')
       }
@@ -46,33 +44,34 @@ export default function Login() {
         </div>
         <h1 style={{ marginBottom: 18 }}>Sign in</h1>
         <p style={{ color: 'var(--ink-2)', marginBottom: 36 }}>
-          Enter the email you bought the guide with and the 6-digit code from your purchase email.
+          Enter the username and access code you were given.
         </p>
 
         <form onSubmit={onSubmit} style={{ display: 'grid', gap: 18, maxWidth: 420 }}>
           <label style={{ display: 'grid', gap: 6 }}>
-            <span className="eyebrow">Email</span>
-            <input
-              className="input"
-              type="email"
-              required
-              autoComplete="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-          </label>
-          <label style={{ display: 'grid', gap: 6 }}>
-            <span className="eyebrow">6-digit code</span>
+            <span className="eyebrow">Username</span>
             <input
               className="input"
               type="text"
               required
-              inputMode="numeric"
-              pattern="[0-9]{6}"
-              maxLength={6}
-              autoComplete="one-time-code"
+              autoComplete="username"
+              autoCapitalize="none"
+              spellCheck={false}
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+            />
+          </label>
+          <label style={{ display: 'grid', gap: 6 }}>
+            <span className="eyebrow">Access code</span>
+            <input
+              className="input"
+              type="password"
+              required
+              autoComplete="current-password"
+              autoCapitalize="none"
+              spellCheck={false}
               value={code}
-              onChange={(e) => setCode(e.target.value.replace(/\D/g, ''))}
+              onChange={(e) => setCode(e.target.value)}
             />
           </label>
 
