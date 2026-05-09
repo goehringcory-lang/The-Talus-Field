@@ -1,5 +1,11 @@
 // Shared content for The Talus Field prototype.
 // Articles are stored once and pulled by every page that needs them.
+//
+// NOTE: Article and category metadata is mirrored in /articles.json and
+// /categories.json so the Cloudflare Pages Function in /functions/_middleware.js
+// can inject per-route SEO into the static HTML before any JS executes.
+// When you add or edit an article here, update articles.json (and feed.xml +
+// sitemap.xml) to match.
 
 window.SITE = {
   brand: "The Talus Field",
