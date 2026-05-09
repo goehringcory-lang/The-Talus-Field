@@ -1,0 +1,6 @@
+[
+  { "slug": "planning",   "label": "Planning",            "blurb": "Permits, timing, transit, lodging." },
+  { "slug": "trails",     "label": "Trails and Hikes",    "blurb": "Routes and conditions, kept current." },
+  { "slug": "wildlife",   "label": "Wildlife and Nature", "blurb": "What is moving and what is blooming." },
+  { "slug": "seasonal",   "label": "Seasonal Guides",     "blurb": "The park, month by month." }
+]

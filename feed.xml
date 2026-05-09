@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <channel>
+    <title>The Talus Field</title>
+    <link>https://thetalusfieldjournal.com/</link>
+    <atom:link href="https://thetalusfieldjournal.com/feed.xml" rel="self" type="application/rss+xml" />
+    <description>A field journal of Yosemite National Park, kept by a resident. Trail conditions, planning notes, wildlife, and longer essays on the park's seasons, geology, and life.</description>
+    <language>en-us</language>
+    <copyright>© 2026 The Talus Field</copyright>
+    <managingEditor>Cory@thetalusfieldjournal.com (Cory Goehring)</managingEditor>
+    <webMaster>Cory@thetalusfieldjournal.com (Cory Goehring)</webMaster>
+    <lastBuildDate>Fri, 08 May 2026 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>https://thetalusfieldjournal.com/img/talus-field-mark.png</url>
+      <title>The Talus Field</title>
+      <link>https://thetalusfieldjournal.com/</link>
+    </image>
+
+    <item>
+      <title>So you want to work in Yosemite</title>
+      <link>https://thetalusfieldjournal.com/articles/working-in-yosemite</link>
+      <guid isPermaLink="true">https://thetalusfieldjournal.com/articles/working-in-yosemite</guid>
+      <pubDate>Fri, 08 May 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Cory Goehring</dc:creator>
+      <category>Planning</category>
+      <description>Most jobs in Yosemite aren't ranger jobs. The work is hospitality, the housing starts in a tent cabin, and the closest grocery store is an hour away. The honest version of what it's like to live here, before you sign anything.</description>
+    </item>
+    <item>
+      <title>How water ouzels live inside a waterfall</title>
+      <link>https://thetalusfieldjournal.com/articles/water-ouzels-waterfalls</link>
+      <guid isPermaLink="true">https://thetalusfieldjournal.com/articles/water-ouzels-waterfalls</guid>
+      <pubDate>Fri, 08 May 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Cory Goehring</dc:creator>
+      <category>Wildlife and Nature</category>
+      <description>A robin-sized bird walks directly into Yosemite Falls and stays there. The water ouzel is the most specialized animal in the high country, and its presence tells you the stream is healthy.</description>
+    </item>
+    <item>
+      <title>Why a Yosemite bear in April is more dangerous than one in August</title>
+      <link>https://thetalusfieldjournal.com/articles/bears-spring-emergence</link>
+      <guid isPermaLink="true">https://thetalusfieldjournal.com/articles/bears-spring-emergence</guid>
+      <pubDate>Fri, 08 May 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Cory Goehring</dc:creator>
+      <category>Wildlife and Nature</category>
+      <description>A bear emerging from a winter den has lost a third of its body weight, has a digestive system that's barely awake, and is metabolically desperate. That's why spring, not summer, is the dangerous season.</description>
+    </item>
+    <item>
+      <title>Yosemite's disappearing glaciers, and what they record</title>
+      <link>https://thetalusfieldjournal.com/articles/yosemite-glaciers-climate</link>
+      <guid isPermaLink="true">https://thetalusfieldjournal.com/articles/yosemite-glaciers-climate</guid>
+      <pubDate>Fri, 08 May 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Cory Goehring</dc:creator>
+      <category>Wildlife and Nature</category>
+      <description>A ranger built a cairn at the toe of Mount Lyell Glacier in 1933. That cairn is now four hundred feet from the ice. The retreat is also a record of climate, written into the High Sierra in something like real time.</description>
+    </item>
+    <item>
+      <title>Why giant sequoias thrive where other trees burn</title>
+      <link>https://thetalusfieldjournal.com/articles/giant-sequoias-fire-adaptation</link>
+      <guid isPermaLink="true">https://thetalusfieldjournal.com/articles/giant-sequoias-fire-adaptation</guid>
+      <pubDate>Fri, 08 May 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Cory Goehring</dc:creator>
+      <category>Wildlife and Nature</category>
+      <description>The same fires that kill every other tree in the Sierra are the ones the giant sequoia depends on. Two-foot bark, embedded tannins, and a seedling ecology that fails without burning.</description>
+    </item>
+    <item>
+      <title>Hetch Hetchy: the Yosemite Valley you didn't know you skipped</title>
+      <link>https://thetalusfieldjournal.com/articles/hetch-hetchy-the-other-yosemite-valley</link>
+      <guid isPermaLink="true">https://thetalusfieldjournal.com/articles/hetch-hetchy-the-other-yosemite-valley</guid>
+      <pubDate>Mon, 27 Apr 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Cory Goehring</dc:creator>
+      <category>Trails and Hikes</category>
+      <description>Same elevation. Same length. Same kind of granite. Carved by the same kind of glacier as the famous one, and still mostly empty of visitors. Why almost no one goes, and why you should.</description>
+    </item>
+    <item>
+      <title>Yosemite stargazing: where to look up, and when</title>
+      <link>https://thetalusfieldjournal.com/articles/yosemite-stargazing-where-to-look-up</link>
+      <guid isPermaLink="true">https://thetalusfieldjournal.com/articles/yosemite-stargazing-where-to-look-up</guid>
+      <pubDate>Mon, 27 Apr 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Cory Goehring</dc:creator>
+      <category>Seasonal Guides</category>
+      <description>On a moonless August night at Olmsted Point, the Milky Way doesn't look like a thin band. It casts shadows. Where to go, when to go, and how to see the sky the way our ancestors did.</description>
+    </item>
+    <item>
+      <title>Yosemite for non-hikers: the park you can experience without a trail</title>
+      <link>https://thetalusfieldjournal.com/articles/yosemite-for-non-hikers</link>
+      <guid isPermaLink="true">https://thetalusfieldjournal.com/articles/yosemite-for-non-hikers</guid>
+      <pubDate>Sun, 26 Apr 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Cory Goehring</dc:creator>
+      <category>Planning</category>
+      <description>Yosemite is built for non-hikers more thoroughly than almost any park in the country. A complete visit is possible without ever putting on hiking boots. Here's how to plan one.</description>
+    </item>
+    <item>
+      <title>How to pack your car for a Yosemite trip</title>
+      <link>https://thetalusfieldjournal.com/articles/pack-your-car-for-yosemite</link>
+      <guid isPermaLink="true">https://thetalusfieldjournal.com/articles/pack-your-car-for-yosemite</guid>
+      <pubDate>Sun, 26 Apr 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Cory Goehring</dc:creator>
+      <category>Planning</category>
+      <description>Nobody writes about packing the car. But the car is the base camp for most Yosemite trips, and what's in it decides whether a flat tire is an inconvenience or a crisis.</description>
+    </item>
+    <item>
+      <title>Yosemite gateway towns compared: Mariposa, Oakhurst, Groveland, El Portal, and Lee Vining</title>
+      <link>https://thetalusfieldjournal.com/articles/yosemite-gateway-towns-compared</link>
+      <guid isPermaLink="true">https://thetalusfieldjournal.com/articles/yosemite-gateway-towns-compared</guid>
+      <pubDate>Sun, 26 Apr 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Cory Goehring</dc:creator>
+      <category>Planning</category>
+      <description>Pick the wrong gateway town and you'll burn hours of every day on the road. Pick the right one and the rest of the trip gets easier. A side-by-side from someone who's stayed in all five.</description>
+    </item>
+    <item>
+      <title>Yosemite during smoke season: how to actually plan around it</title>
+      <link>https://thetalusfieldjournal.com/articles/yosemite-during-smoke-season</link>
+      <guid isPermaLink="true">https://thetalusfieldjournal.com/articles/yosemite-during-smoke-season</guid>
+      <pubDate>Sun, 26 Apr 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Cory Goehring</dc:creator>
+      <category>Seasonal Guides</category>
+      <description>Smoke season in California now runs July through October. The question isn't whether your trip will overlap with it. It's whether you have a plan for when it does.</description>
+    </item>
+    <item>
+      <title>Yosemite without reservations in 2026: a real strategy for the year the cap came off</title>
+      <link>https://thetalusfieldjournal.com/articles/yosemite-without-reservations-2026</link>
+      <guid isPermaLink="true">https://thetalusfieldjournal.com/articles/yosemite-without-reservations-2026</guid>
+      <pubDate>Sun, 26 Apr 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Cory Goehring</dc:creator>
+      <category>Planning</category>
+      <description>The reservation system was a throttle. With it gone in 2026, the park hasn't gotten easier. It's gotten harder. Here's the real strategy.</description>
+    </item>
+    <item>
+      <title>If it's your first time in Yosemite, read this before you book anything</title>
+      <link>https://thetalusfieldjournal.com/articles/first-time-yosemite-overwhelm</link>
+      <guid isPermaLink="true">https://thetalusfieldjournal.com/articles/first-time-yosemite-overwhelm</guid>
+      <pubDate>Sat, 25 Apr 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Cory Goehring</dc:creator>
+      <category>Planning</category>
+      <description>The bucket list isn't the problem. The strategy is. Three things turn a Yosemite visit from "we saw the things" into one of the best weeks of your life.</description>
+    </item>
+  </channel>
+</rss>
