@@ -11,6 +11,7 @@ desktop.ini
 
 # Misc
 *.log
+*.tsbuildinfo
 
 # wrangler files
 .wrangler

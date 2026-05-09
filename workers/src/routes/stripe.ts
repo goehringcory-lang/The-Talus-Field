@@ -43,7 +43,12 @@ stripe.post('/webhook', async (c) => {
   })
   if (!ok) return c.json({ error: 'Invalid signature' }, 400)
 
-  const event = JSON.parse(rawBody) as GenericStripeEvent
+  let event: GenericStripeEvent
+  try {
+    event = JSON.parse(rawBody) as GenericStripeEvent
+  } catch {
+    return c.json({ error: 'Invalid JSON' }, 400)
+  }
   if (event.type !== 'checkout.session.completed') {
     return c.json({ received: true, ignored: event.type })
   }

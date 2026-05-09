@@ -9,14 +9,13 @@ export default function Open() {
   const [params] = useSearchParams()
   const navigate = useNavigate()
   const { signIn } = useAuth()
-  const [error, setError] = useState<string | null>(null)
   const token = params.get('token')
+  const [error, setError] = useState<string | null>(
+    token ? null : 'Missing token in URL.',
+  )
 
   useEffect(() => {
-    if (!token) {
-      setError('Missing token in URL.')
-      return
-    }
+    if (!token) return
     let cancelled = false
     apiFetch<ExchangeResponse>('/api/auth/exchange', {
       method: 'POST',
