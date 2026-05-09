@@ -549,6 +549,189 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
   .places-pitch__grid, .places-pitch__tiers { grid-template-columns: 1fr; }
 }
 
+/* ===== Directory page ===== */
+/* Three-region photo triptych. Replaces the old NPS map. */
+.region-triptych {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.region-tile {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+.region-tile__frame {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  background: var(--paper-2);
+  border: 1px solid var(--rule);
+}
+.region-tile__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: saturate(0.92);
+}
+.region-tile figcaption { padding-top: 14px; }
+.region-tile__eyebrow {
+  font-family: var(--sans);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--moss);
+  margin-bottom: 6px;
+}
+.region-tile__name {
+  font-family: var(--display);
+  font-size: 22px;
+  font-weight: 500;
+  line-height: 1.15;
+  color: var(--ink);
+  margin-bottom: 6px;
+}
+.region-tile__note {
+  font-family: var(--serif);
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--ink-2);
+  max-width: 36ch;
+}
+
+/* "The standard" body block */
+.places-standard__heading {
+  font-family: var(--display);
+  font-size: 28px;
+  font-weight: 500;
+  line-height: 1.15;
+  margin: 0 0 18px;
+  color: var(--ink);
+}
+.places-standard__body {
+  font-family: var(--serif);
+  font-size: 18px;
+  line-height: 1.6;
+  color: var(--ink-2);
+  margin: 0 0 18px;
+}
+.places-standard__body:last-child { margin-bottom: 0; }
+
+/* Yosemite Conservancy callout. The single real entry. */
+.conservancy {
+  border-top: 2px solid var(--ink);
+  border-bottom: 1px solid var(--rule);
+  padding: 28px 0 32px;
+}
+.conservancy__eyebrow {
+  font-family: var(--sans);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--moss);
+  margin-bottom: 14px;
+}
+.conservancy__name {
+  font-family: var(--display);
+  font-size: 36px;
+  font-weight: 500;
+  line-height: 1.1;
+  margin: 0 0 14px;
+  color: var(--ink);
+}
+.conservancy__body {
+  font-family: var(--serif);
+  font-size: 17px;
+  line-height: 1.6;
+  color: var(--ink-2);
+  margin: 0 0 18px;
+  max-width: 64ch;
+}
+.conservancy__link {
+  display: inline-block;
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid var(--ink);
+  padding-bottom: 2px;
+}
+.conservancy__link:hover { color: var(--moss); border-bottom-color: var(--moss); }
+
+/* Categories index. Inclusion criteria, not empty slots. */
+.dir-cats { list-style: none; padding: 0; margin: 0; }
+.dir-cats__item {
+  display: grid;
+  grid-template-columns: 1fr 2fr auto;
+  gap: 32px;
+  align-items: baseline;
+  padding: 22px 0;
+  border-top: 1px solid var(--rule);
+}
+.dir-cats__item:last-child { border-bottom: 1px solid var(--rule); }
+.dir-cats__name {
+  font-family: var(--display);
+  font-size: 22px;
+  font-weight: 500;
+  line-height: 1.15;
+  color: var(--ink);
+}
+.dir-cats__note {
+  font-family: var(--serif);
+  font-size: 16px;
+  line-height: 1.55;
+  color: var(--ink-2);
+  max-width: 56ch;
+}
+.dir-cats__status {
+  font-family: var(--sans);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  white-space: nowrap;
+}
+
+/* Operator CTA. Quiet. */
+.dir-cta__body {
+  font-family: var(--serif);
+  font-size: 17px;
+  line-height: 1.6;
+  color: var(--ink-2);
+  margin: 0 0 24px;
+}
+.dir-cta__link {
+  display: inline-block;
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--moss);
+  text-decoration: none;
+  border-bottom: 1px solid var(--moss);
+  padding-bottom: 2px;
+}
+.dir-cta__link:hover { color: var(--ink); border-bottom-color: var(--ink); }
+
+@media (max-width: 720px) {
+  .region-triptych { grid-template-columns: 1fr; gap: 32px; }
+  .conservancy__name { font-size: 28px; }
+  .dir-cats__item {
+    grid-template-columns: 1fr;
+    gap: 8px;
+    padding: 18px 0;
+  }
+  .dir-cats__status { margin-top: 4px; }
+}
+
 /* Footer affiliate disclosure */
 .site-footer__disclosure {
   border-top: 1px solid var(--rule);
