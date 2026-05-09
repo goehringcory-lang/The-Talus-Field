@@ -35,7 +35,7 @@ function AboutPage({ go }) {
           <h2>Shape</h2>
 
           <p>
-            Entries here come out when an entry is ready. There is no schedule. Some are short. Some are several thousand words. Some are trail reports. Some are weather. Some are arguments with myself about what the park does in February. The categories on the site are a rough sort, not a content plan.
+            Entries come out when an entry is ready. There is no schedule. Some are short. Some are several thousand words. Some are trail reports. Some are weather. Some are arguments with myself about what the park does in February. The categories on the site are a rough sort, not a content plan.
           </p>
 
           <p>
@@ -48,20 +48,16 @@ function AboutPage({ go }) {
             The reader I have in mind is someone planning a first trip and feeling slightly buried by the logistics. If you are a fortieth-time visitor looking for trail beta, you may still find something here, but most of the writing is pitched a little earlier than that.
           </p>
 
-          <h2>Money</h2>
+          <h2>Practice</h2>
 
           <p>
-            Some entries link to lodging or guidebooks through affiliate programs. If you book or buy through one, the site receives a small commission at no cost to you. Whether or not you use the link, the recommendation is the same. Every entry containing an affiliate link is marked. The full disclosure is <a href="/affiliate" onClick={(e) => { e.preventDefault(); go("affiliate"); }}>here</a>.
-          </p>
-
-          <p>
-            Nothing on the site is sponsored. No company has paid for placement, and none will.
+            Recommendations are for things I have used, walked in, slept in, read cover to cover, or worked alongside. Nothing on the site is built from a search-result roundup or a press kit. If a piece of gear is here, I have walked at least fifty miles in it. If a guidebook is here, I have read it cover to cover. If a lodge is here, I have stayed there or know someone who has, and I will tell you which.
           </p>
 
           <h2>Editor</h2>
 
           <p>
-            Cory Goehring. Lives in Yosemite National Park. Reachable at <a href="mailto:Cory@thetalusfieldjournal.com">Cory@thetalusfieldjournal.com</a> and through <a href="/contact" onClick={(e) => { e.preventDefault(); go("contact"); }}>the contact page</a>.
+            Cory Goehring. Lives in Yosemite National Park. Has worked in and around it for twenty seasons, mostly on foot. Reachable at <a href="mailto:Cory@thetalusfieldjournal.com">Cory@thetalusfieldjournal.com</a> and through <a href="/contact" onClick={(e) => { e.preventDefault(); go("contact"); }}>the contact page</a>.
           </p>
 
           <hr />

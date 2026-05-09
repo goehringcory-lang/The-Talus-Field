@@ -97,14 +97,14 @@ function KitPage({ go }) {
         </section>
       ))}
 
-      {/* Pointer to the standalone Places & People directory */}
+      {/* Pointer to the standalone Directory page */}
       <section className="wrap" style={{ paddingTop: 56, paddingBottom: 80, borderTop: "1px solid var(--rule)" }}>
         <div style={{ display: "flex", alignItems: "center", gap: 32, flexWrap: "wrap" }}>
           <div style={{ flex: 1, minWidth: 280 }}>
             <div className="eyebrow eyebrow--moss" style={{ marginBottom: 12 }}>Looking for lodging or a guide?</div>
             <h2 style={{ fontFamily: "var(--display)", fontSize: 32, fontWeight: 500, lineHeight: 1.1, margin: "0 0 12px" }}>The directory lives on its own page now.</h2>
             <p style={{ fontFamily: "var(--serif)", fontSize: 17, color: "var(--ink-2)", margin: 0, lineHeight: 1.5 }}>
-              Lodges, inns, guiding services, and outfitters in and around Yosemite, moved into <a href="/places" onClick={(e) => { e.preventDefault(); go("places"); }}>Places &amp; People</a> to keep this page about gear.
+              Lodges, inns, guiding services, and outfitters in and around Yosemite, moved into <a href="/places" onClick={(e) => { e.preventDefault(); go("places"); }}>The Directory</a> to keep this page about gear.
             </p>
           </div>
           <a

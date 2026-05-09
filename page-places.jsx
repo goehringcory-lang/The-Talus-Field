@@ -9,10 +9,10 @@ function PlacesPage({ go }) {
       {/* Page head */}
       <section className="page-head">
         <div className="wrap wrap--narrow">
-          <div className="eyebrow eyebrow--moss">Places & People</div>
-          <h1>Where to stay and who to hire.</h1>
+          <div className="eyebrow eyebrow--moss">Lodging &amp; Guides</div>
+          <h1>The Directory</h1>
           <p className="page-head__dek">
-            A small, curated directory of lodging, outfitters, and guiding services in and around Yosemite. Drawn from twenty seasons of working in and around the park. The standard for inclusion is the same one I'd use sending a friend.
+            Where to stay and who to hire in Yosemite. A small, curated list of lodging, outfitters, and guiding services in and around the park, drawn from twenty seasons of working here. The standard for inclusion is the same one I'd use sending a friend.
           </p>
         </div>
       </section>

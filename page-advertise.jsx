@@ -9,7 +9,7 @@ function AdvertisePage({ go }) {
           <div className="eyebrow eyebrow--moss">For Operators</div>
           <h1>List your business on The Talus Field.</h1>
           <p className="page-head__dek">
-            The Talus Field is read by people actively planning a Yosemite trip. The audience that's about to book lodging, hire a guide, or buy a tour. If you operate a lodge, an inn, a guiding service, an outfitter, a transportation company, or any other Yosemite-adjacent business, a placement in the Places &amp; People directory puts you in front of the right reader at the right moment.
+            The Talus Field is read by people actively planning a Yosemite trip. The audience that's about to book lodging, hire a guide, or buy a tour. If you operate a lodge, an inn, a guiding service, an outfitter, a transportation company, or any other Yosemite-adjacent business, a placement in The Directory puts you in front of the right reader at the right moment.
           </p>
         </div>
       </section>
