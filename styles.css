@@ -1417,7 +1417,7 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
   section.wrap[style*="padding-top: 64"],
   section.wrap[style*="padding-top: 56"] { padding-top: 40px !important; }
 
-  /* Masthead. Smaller brand at phone widths. Hamburger already active from 880px down. */
+  /* Hamburger already active from the 880px breakpoint, so no nav rules here. */
   .masthead__main { padding: 12px var(--gutter); gap: 12px; }
   .brand { font-size: 22px; }
   .brand__sub { display: none; }
