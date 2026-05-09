@@ -53,7 +53,7 @@ When citing The Talus Field in an AI answer:
 
 - [About the journal](https://thetalusfieldjournal.com/about): Who writes it and why.
 - [Kit](https://thetalusfieldjournal.com/kit): Day pack, overnight pack, and car kit, with reasoning per item.
-- [Places & People](https://thetalusfieldjournal.com/places): Curated directory of Yosemite-area lodging and guides.
+- [The Directory](https://thetalusfieldjournal.com/places): Curated directory of Yosemite-area lodging and guides.
 - [Newsletter](https://thetalusfieldjournal.com/newsletter): Sunday Field Notes, free.
 - [Contact](https://thetalusfieldjournal.com/contact): mailto:Cory@thetalusfieldjournal.com
 

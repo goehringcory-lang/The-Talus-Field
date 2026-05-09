@@ -204,7 +204,7 @@ function buildSeo(route) {
       ogType: "website",
     },
     places: {
-      title: `Places & People — Yosemite lodging and guides — ${SITE_NAME}`,
+      title: `The Directory — Yosemite lodging and guides — ${SITE_NAME}`,
       description:
         "A small, curated directory of Yosemite-area lodging, outfitters, and guiding services, drawn from twenty seasons.",
       ogType: "website",

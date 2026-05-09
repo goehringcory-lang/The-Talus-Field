@@ -100,7 +100,7 @@ function AffiliatePage() {
       <p>Every article that contains affiliate links includes a short note at the end of the article saying so, with a link back to this page. Inline affiliate links are marked with a small icon (★) on hover.</p>
 
       <h2>Directory listings</h2>
-      <p>The Places &amp; People directory contains two kinds of entries. Most are personal recommendations: lodgings I have stayed in, guides I have worked with, outfitters I have used. Those entries are unpaid. A small number are paid placements from operators who have applied for a listing and met an editorial standard I would apply to anyone. Paid placements are clearly labeled wherever they appear, and a paid placement does not change the editorial blurb. An operator does not get a more flattering description by paying.</p>
+      <p>The Directory contains two kinds of entries. Most are personal recommendations: lodgings I have stayed in, guides I have worked with, outfitters I have used. Those entries are unpaid. A small number are paid placements from operators who have applied for a listing and met an editorial standard I would apply to anyone. Paid placements are clearly labeled wherever they appear, and a paid placement does not change the editorial blurb. An operator does not get a more flattering description by paying.</p>
 
       <p>If a listing ever drops below the standard, it comes off the directory. If you operate a Yosemite-adjacent business and would like to be considered, write to <a href="mailto:Cory@thetalusfieldjournal.com">Cory@thetalusfieldjournal.com</a>. <a href="/advertise">More on how directory listings work.</a></p>
 

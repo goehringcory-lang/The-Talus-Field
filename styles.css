@@ -371,7 +371,7 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
   border-color: var(--moss) !important;
 }
 
-/* ===== Places & People. Quiet "for operators" strip ===== */
+/* ===== Directory. Quiet "for operators" strip ===== */
 .places-strip {
   display: flex;
   align-items: center;
@@ -411,7 +411,7 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
 }
 .places-strip__cta:hover { color: var(--moss) !important; border-bottom-color: var(--moss); }
 
-/* ===== Places & People. Sponsorship pitch ===== */
+/* ===== Directory. Sponsorship pitch ===== */
 .places-pitch {
   border: 1px solid var(--ink);
   border-left: 6px solid var(--moss);
