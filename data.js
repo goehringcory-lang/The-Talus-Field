@@ -145,6 +145,8 @@ window.ARTICLES = [
     date: "May 8, 2026",
     read: "7 min",
     placeholder: "Mariposa Grove, fire-scarred sequoia",
+    image: "img/grizzly-giant.jpg",
+    credit: "Photo: Mike Murphy / Wikimedia Commons (public domain)",
   },
   {
     slug: "hetch-hetchy-the-other-yosemite-valley",
