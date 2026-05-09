@@ -8,6 +8,11 @@
 // for every article. The browser-side code in app.jsx still updates these
 // tags after hydration; this just makes the static HTML correct from the
 // first byte.
+//
+// For article routes we also fetch /bodies/{slug}.jsx, transform it from
+// JSX-prose to plain HTML, and inject it into the existing <noscript> block.
+// That gives non-JS crawlers (GPTBot, ClaudeBot, PerplexityBot, CCBot) the
+// full article body to read and cite — not just the metadata.
 
 import articles from "../articles.json" with { type: "json" };
 import categories from "../categories.json" with { type: "json" };
@@ -28,8 +33,68 @@ function absoluteImage(url) {
 }
 
 function safeJsonForScript(obj) {
-  // Defend against premature </script> termination if any string contains it.
   return JSON.stringify(obj).replace(/<\/(script)/gi, "<\\/$1");
+}
+
+function escapeHtml(s) {
+  return String(s ?? "").replace(/[&<>"']/g, (c) =>
+    ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c])
+  );
+}
+
+// Strip the JS wrapper from a body file and convert the JSX-prose inside the
+// `return ( ... )` into plain HTML. The bodies are intentionally HTML-shaped
+// JSX (no custom React components, no embedded expressions in prose), so this
+// is a small set of regex passes rather than a real parser.
+function transformJsxBodyToHtml(jsx) {
+  const match = jsx.match(/return\s*\(\s*([\s\S]*?)\s*\)\s*;\s*\}/);
+  if (!match) return null;
+  let html = match[1];
+  html = html.replace(/^\s*<>\s*/, "").replace(/\s*<\/>\s*$/, "");
+  html = html.replace(/\{\/\*[\s\S]*?\*\/\}/g, "");
+  html = html.replace(/\bclassName=/g, "class=");
+  html = html.replace(
+    /style=\{\{\s*fontSize:\s*(\d+)\s*\}\}/g,
+    'style="font-size: $1px"'
+  );
+  return html.trim();
+}
+
+async function fetchArticleBodyHtml(slug, origin) {
+  try {
+    const res = await fetch(`${origin}/bodies/${slug}.jsx`, {
+      cf: { cacheTtl: 3600, cacheEverything: true },
+    });
+    if (!res.ok) return null;
+    return transformJsxBodyToHtml(await res.text());
+  } catch {
+    return null;
+  }
+}
+
+function buildArticleNoscript(article, category, bodyHtml) {
+  const crumbs = [
+    `<a href="/">The Talus Field</a>`,
+    `<a href="/articles">Articles</a>`,
+    category ? `<a href="/section/${category.slug}">${escapeHtml(category.label)}</a>` : null,
+  ]
+    .filter(Boolean)
+    .join(" · ");
+
+  const moreLink = category
+    ? `<p><a href="/section/${category.slug}">More from ${escapeHtml(category.label)}</a> · <a href="/articles">All articles</a></p>`
+    : `<p><a href="/articles">All articles</a></p>`;
+
+  return `
+      <header>
+        <p>${crumbs}</p>
+        <h1>${escapeHtml(article.title)}</h1>
+        <p><em>${escapeHtml(article.dek)}</em></p>
+        <p>By ${escapeHtml(AUTHOR_NAME)} · ${escapeHtml(article.date)} · ${escapeHtml(article.read)} read</p>
+      </header>
+      <article>${bodyHtml}</article>
+      <footer>${moreLink}</footer>
+    `;
 }
 
 function seoForPath(pathname) {
@@ -48,6 +113,8 @@ function seoForPath(pathname) {
       canonical: url,
       ogType: "article",
       image,
+      article: a,
+      category: cat || null,
       jsonLd: {
         "@context": "https://schema.org",
         "@type": "Article",
@@ -179,7 +246,15 @@ export async function onRequest({ request, next }) {
   const ct = response.headers.get("content-type") || "";
   if (!ct.toLowerCase().includes("text/html")) return response;
 
-  return new HTMLRewriter()
+  let articleNoscriptHtml = null;
+  if (seo.article) {
+    const bodyHtml = await fetchArticleBodyHtml(seo.article.slug, url.origin);
+    if (bodyHtml) {
+      articleNoscriptHtml = buildArticleNoscript(seo.article, seo.category, bodyHtml);
+    }
+  }
+
+  const rewriter = new HTMLRewriter()
     .on("title", {
       element(el) {
         el.setInnerContent(seo.title);
@@ -244,6 +319,15 @@ export async function onRequest({ request, next }) {
           );
         }
       },
-    })
-    .transform(response);
+    });
+
+  if (articleNoscriptHtml) {
+    rewriter.on("noscript", {
+      element(el) {
+        el.setInnerContent(articleNoscriptHtml, { html: true });
+      },
+    });
+  }
+
+  return rewriter.transform(response);
 }
