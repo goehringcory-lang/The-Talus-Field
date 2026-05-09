@@ -34,12 +34,20 @@ type GenericStripeEvent = {
 export const stripe = new Hono<{ Bindings: Env }>()
 
 stripe.post('/webhook', async (c) => {
+  const webhookSecret = c.env.STRIPE_WEBHOOK_SECRET
+  if (!webhookSecret) {
+    return c.json(
+      { error: 'Stripe webhook is not enabled in this environment.' },
+      503,
+    )
+  }
+
   const rawBody = await c.req.text()
   const sig = c.req.header('stripe-signature') ?? null
   const ok = await verifyStripeSignature({
     rawBody,
     signatureHeader: sig,
-    secret: c.env.STRIPE_WEBHOOK_SECRET,
+    secret: webhookSecret,
   })
   if (!ok) return c.json({ error: 'Invalid signature' }, 400)
 
@@ -81,8 +89,21 @@ stripe.post('/webhook', async (c) => {
   await putBuyer(c.env, record)
   await incrementInventory(c.env, currentMonthLabel(new Date(purchasedAt * 1000)))
 
-  const magicLink = `${c.env.APP_BASE_URL}/open?token=${accessToken}`
-  await sendMagicLink(c.env, { to: email, magicLink, code: accessCode })
+  // Email send is best-effort. The buyer record + access code are already in
+  // KV, so the buyer can still log in via /api/auth/login with the code we
+  // ship out-of-band if email fails. Returning 200 either way prevents Stripe
+  // from retrying the whole webhook, which would re-issue tokens and orphan
+  // the previous KV state.
+  if (c.env.RESEND_API_KEY) {
+    const magicLink = `${c.env.APP_BASE_URL}/open?token=${accessToken}`
+    try {
+      await sendMagicLink(c.env, { to: email, magicLink, code: accessCode })
+    } catch (err) {
+      console.error('sendMagicLink failed for', email, err)
+    }
+  } else {
+    console.warn('RESEND_API_KEY not set; skipping magic-link email for', email)
+  }
 
   return c.json({ received: true })
 })

@@ -10,6 +10,13 @@ import { createCheckoutSession } from '../lib/stripe'
 export const checkout = new Hono<{ Bindings: Env }>()
 
 checkout.post('/start', async (c) => {
+  if (!c.env.STRIPE_SECRET_KEY) {
+    return c.json(
+      { error: 'Checkout is not enabled in this environment.' },
+      503,
+    )
+  }
+
   const monthLabel = currentMonthLabel()
   const sold = await getInventoryCount(c.env, monthLabel)
   const cap = Number.parseInt(c.env.GUIDE_MONTHLY_CAP, 10)

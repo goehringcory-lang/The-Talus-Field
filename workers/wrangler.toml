@@ -26,16 +26,22 @@ GUIDE_MONTHLY_CAP = "100"
 pattern = "api.thetalusfieldjournal.com/*"
 zone_name = "thetalusfieldjournal.com"
 
-# === Pre-Stripe dev / admin sign-in =========================================
-# /api/auth/dev-login accepts a username + code pair and issues the same JWT
-# the post-purchase login does, so we can preview the PWA without Stripe.
-# Set both pairs as secrets:
-#   wrangler secret put DEV_USERNAME      # e.g. "preview"
-#   wrangler secret put DEV_CODE          # any string you'll remember
-#   wrangler secret put ADMIN_USERNAME    # e.g. "cory"
-#   wrangler secret put ADMIN_CODE        # any string you'll remember
-# Either pair lets you in. Remove or rotate before public launch.
-# ===========================================================================
+# === Secrets =================================================================
+# Required for any sign-in to work:
+#   wrangler secret put MAGIC_LINK_SIGNING_SECRET   # any long random string
+#
+# Pre-Stripe dev / admin sign-in (/api/auth/dev-login). Either pair lets you in.
+# Remove or rotate before public launch.
+#   wrangler secret put DEV_USERNAME       # e.g. "preview"
+#   wrangler secret put DEV_CODE           # any string you'll remember
+#   wrangler secret put ADMIN_USERNAME     # e.g. "cory"
+#   wrangler secret put ADMIN_CODE         # any string you'll remember
+#
+# Optional — when unset, the corresponding route returns 503 instead of 500:
+#   wrangler secret put STRIPE_SECRET_KEY        # disables /api/checkout/start
+#   wrangler secret put STRIPE_WEBHOOK_SECRET    # disables /api/stripe/webhook
+#   wrangler secret put RESEND_API_KEY           # webhook completes without email
+# =============================================================================
 
 # === Local dev override ====================================================
 # For local development, copy this file to wrangler.local.toml and replace

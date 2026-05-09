@@ -10,11 +10,15 @@ export type Env = {
   GUIDE_PRODUCT_TAG: string    // "field_guide_2026"
   GUIDE_MONTHLY_CAP: string    // "100"
 
-  // Secrets (wrangler secret put)
-  STRIPE_SECRET_KEY: string
-  STRIPE_WEBHOOK_SECRET: string
+  // Secrets (wrangler secret put). Required for the Worker to issue any JWT.
   MAGIC_LINK_SIGNING_SECRET: string
-  RESEND_API_KEY: string
+
+  // Optional secrets — when unset, the corresponding route returns 503 so a
+  // preview deploy without Stripe/Resend wired up doesn't 500 on call. Set
+  // them via `wrangler secret put` to enable each path.
+  STRIPE_SECRET_KEY?: string
+  STRIPE_WEBHOOK_SECRET?: string
+  RESEND_API_KEY?: string
 
   // Pre-Stripe dev / admin sign-in. Used by /api/auth/dev-login.
   // All four are optional; if a pair is unset, that login path is disabled.
