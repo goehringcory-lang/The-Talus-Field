@@ -63,7 +63,6 @@ function MotifTrees() {
 // Masthead
 // ============================================================
 function Header({ current, go }) {
-  // All nav items on a single bar at desktop. Collapsed behind a hamburger on mobile.
   const navItems = [
     ["articles", "Articles"],
     ["kit", "Kit"],
@@ -83,6 +82,16 @@ function Header({ current, go }) {
     document.addEventListener("keydown", onKey);
     return () => { document.removeEventListener("mousedown", onDoc); document.removeEventListener("keydown", onKey); };
   }, [menuOpen]);
+
+  const renderLink = (key, label, { baseClass, role, onNavigate } = {}) => (
+    <a
+      key={key}
+      role={role}
+      href={window.routeToPath ? window.routeToPath(key) : `/${key}`}
+      className={[baseClass, current === key && "is-active"].filter(Boolean).join(" ")}
+      onClick={(e) => { e.preventDefault(); if (onNavigate) onNavigate(); go(key); }}
+    >{label}</a>
+  );
 
   const today = new Date().toLocaleDateString("en-US", {
     weekday: "long", year: "numeric", month: "long", day: "numeric"
@@ -121,14 +130,7 @@ function Header({ current, go }) {
           </span>
         </a>
         <nav className="nav">
-          {navItems.map(([key, label]) => (
-            <a
-              key={key}
-              href={window.routeToPath ? window.routeToPath(key) : `/${key}`}
-              className={`nav__link ${current === key ? "is-active" : ""}`}
-              onClick={(e) => { e.preventDefault(); go(key); }}
-            >{label}</a>
-          ))}
+          {navItems.map(([key, label]) => renderLink(key, label, { baseClass: "nav__link" }))}
 
           <div className="nav__menu-wrap" ref={menuRef}>
             <button
@@ -145,15 +147,7 @@ function Header({ current, go }) {
             </button>
             {menuOpen && (
               <div className="nav__menu" role="menu">
-                {navItems.map(([key, label]) => (
-                  <a
-                    key={key}
-                    role="menuitem"
-                    href={window.routeToPath ? window.routeToPath(key) : `/${key}`}
-                    className={current === key ? "is-active" : ""}
-                    onClick={(e) => { e.preventDefault(); setMenuOpen(false); go(key); }}
-                  >{label}</a>
-                ))}
+                {navItems.map(([key, label]) => renderLink(key, label, { role: "menuitem", onNavigate: () => setMenuOpen(false) }))}
               </div>
             )}
           </div>
