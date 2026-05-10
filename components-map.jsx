@@ -113,15 +113,20 @@ function MapView({ features, selectedPinId, selectionSource, hoveredPinId, onPin
       attributionControl: true,
     });
 
-    // Esri World Topographic Map. Same topographic styling as USGS Topo
-    // (contour lines, peak labels, USGS data underneath) but served from
-    // Esri's CDN, which is multi-host and much more reliable than the
-    // single-host basemap.nationalmap.gov. The recurring "scattered
-    // tiles + gray gaps" symptom matched a server-side delivery problem,
-    // not a Leaflet bug — USGS was returning maybe 30% of requested
-    // tiles. Esri returns the rest.
+    // Tiles are served by our own Worker at api.thetalusfieldjournal.com,
+    // which proxies Esri World Topographic. We can't hit
+    // server.arcgisonline.com directly because many ad-blockers and DNS
+    // filters (EasyPrivacy, uBlock defaults, Pi-hole, Brave Shields'
+    // fingerprinting protection, NextDNS) block map-tile CDN hostnames as
+    // trackers — the request volume + unique coordinates per URL look
+    // exactly like fingerprinting to a blocklist heuristic. Proxying
+    // through our first-party domain avoids every common blocker, so the
+    // map works for visitors regardless of what's running locally. The
+    // Worker route caches each tile at Cloudflare's edge for 30 days, so
+    // Esri itself gets hit at most once per tile per cache-lifetime per
+    // region.
     L.tileLayer(
-      "https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}",
+      "https://api.thetalusfieldjournal.com/tiles/{z}/{y}/{x}",
       {
         maxZoom: 19,
         attribution:
