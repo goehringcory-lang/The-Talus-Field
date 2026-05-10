@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Link, useNavigate, useSearchParams } from 'react-router-dom'
 import { apiFetch } from '../lib/api'
-import { useAuth } from '../auth/AuthGate'
+import { useAuth } from '../auth/useAuth'
 
 type ExchangeResponse = { jwt: string }
 
@@ -9,14 +9,13 @@ export default function Open() {
   const [params] = useSearchParams()
   const navigate = useNavigate()
   const { signIn } = useAuth()
-  const [error, setError] = useState<string | null>(null)
+  const [apiError, setApiError] = useState<string | null>(null)
   const token = params.get('token')
+  // Derive the "missing token" case during render rather than setState in effect.
+  const error = token ? apiError : 'Missing token in URL.'
 
   useEffect(() => {
-    if (!token) {
-      setError('Missing token in URL.')
-      return
-    }
+    if (!token) return
     let cancelled = false
     apiFetch<ExchangeResponse>('/api/auth/exchange', {
       method: 'POST',
@@ -29,7 +28,7 @@ export default function Open() {
       })
       .catch((err) => {
         if (cancelled) return
-        setError(err.message ?? 'Could not sign you in.')
+        setApiError(err.message ?? 'Could not sign you in.')
       })
     return () => {
       cancelled = true
