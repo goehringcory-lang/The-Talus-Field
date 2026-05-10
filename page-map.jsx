@@ -7,10 +7,8 @@
 // initializes a single map inside the container ref. Markers come from the
 // geojson; clicking one opens an InfoWindow with the stop's name and blurb.
 //
-// API KEY: replace YOUR_GOOGLE_MAPS_API_KEY in index.html with a real key.
-// Restrict it in the Google Cloud console to HTTP-referrer
-// `https://thetalusfieldjournal.com/*` (and `http://localhost:8765/*` for dev)
-// before pushing to production. Maps JS API must be enabled on the project.
+// API KEY: set in index.html, restricted to thetalusfieldjournal.com and
+// localhost:8765 in the Google Cloud console. Maps JS API must remain enabled.
 // =============================================================================
 
 const { useEffect, useRef, useState } = React;
