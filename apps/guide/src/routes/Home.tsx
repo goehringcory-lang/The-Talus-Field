@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { useAuth } from '../auth/AuthGate'
+import { useAuth } from '../auth/useAuth'
 import { REGIONS, getStopsByRegion } from '../content'
 import GatedChrome from '../components/GatedChrome'
 import RegionPickerCard from '../components/RegionPickerCard'

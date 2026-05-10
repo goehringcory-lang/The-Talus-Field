@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { useAuth } from '../auth/AuthGate'
+import { useAuth } from '../auth/useAuth'
 import GatedChrome from '../components/GatedChrome'
 
 export default function Account() {
