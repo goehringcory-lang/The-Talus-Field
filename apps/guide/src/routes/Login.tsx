@@ -2,7 +2,7 @@ import { useState } from 'react'
 import type { FormEvent } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { apiFetch, ApiError } from '../lib/api'
-import { useAuth } from '../auth/AuthGate'
+import { useAuth } from '../auth/auth-context'
 
 type LoginResponse = { jwt: string }
 
