@@ -1934,7 +1934,11 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
 .map-page {
   display: flex;
   flex-direction: column;
-  height: calc(100vh - 64px); /* leaves room for site header */
+  /* dvh tracks the *visible* viewport (excludes mobile address bar) and
+     updates as it collapses/expands, so the map container always matches
+     what the user can see. vh stays as a fallback for older browsers. */
+  height: calc(100vh - 64px);
+  height: calc(100dvh - 64px);
   min-height: 600px;
   background: var(--paper);
   color: var(--ink);
@@ -2347,10 +2351,18 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
 
 /* --- Mobile fallback (phase 1: stack vertically; bottom sheet is phase 2). --- */
 @media (max-width: 720px) {
-  .map-page { height: calc(100vh - 56px); }
+  .map-page {
+    height: calc(100vh - 56px);
+    height: calc(100dvh - 56px);
+    /* Drop the desktop min-height — on small phones it forces the page
+       taller than the viewport and the map ends up partially offscreen
+       at first paint, which is the worst time for Leaflet to size itself. */
+    min-height: 0;
+  }
   .map-page__split {
     grid-template-columns: 1fr;
     grid-template-rows: minmax(260px, 45vh) 1fr;
+    grid-template-rows: minmax(260px, 45dvh) 1fr;
   }
   .map-page__list {
     border-right: none;
