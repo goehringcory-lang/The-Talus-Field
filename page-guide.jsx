@@ -73,7 +73,7 @@ function GuidePage({ go }) {
             </p>
 
             <p>
-              This guide assumes you've done that reading. What it gives you is the other half of the trip: the parking spots and trailheads most visitors never find, and the insider tactics for visiting the famous places well — when to go, where to come from, and what most people get wrong. It's the version of the conversation we'd have if you sat across from me at a picnic table in El Portal and said, "I have five days. Show me what to do."
+              This guide assumes you've done that reading. What it gives you is the other half of the trip: the parking spots and trailheads most visitors never find, and the insider tactics for visiting the famous places well: when to go, where to come from, and what most people get wrong. It's the version of the conversation we'd have if you sat across from me at a picnic table in El Portal and said, "I have five days. Show me what to do."
             </p>
 
             <h2>The parking nobody tells you about</h2>
@@ -89,7 +89,7 @@ function GuidePage({ go }) {
             <h2>The trailheads where you find solitude</h2>
 
             <p>
-              Yosemite has hundreds of miles of trail and ninety percent of visitors hike on five percent of it. The other ninety-five percent is where the park you came for actually lives. The guide has GPS coordinates to the trailheads most visitors skip — the ones that aren't on the top-ten lists, the ones with no signs from the road, the ones where you'll see more deer than people.
+              Yosemite has hundreds of miles of trail and ninety percent of visitors hike on five percent of it. The other ninety-five percent is where the park you came for actually lives. The guide has GPS coordinates to the trailheads most visitors skip: the ones that aren't on the top-ten lists, the ones with no signs from the road, the ones where you'll see more deer than people.
             </p>
 
             <p>
