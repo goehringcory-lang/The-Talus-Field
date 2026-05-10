@@ -87,99 +87,85 @@ function MapView({ features, selectedPinId, selectionSource, hoveredPinId, onPin
   const mapRef = useRef(null);
   const markersRef = useRef({}); // id → L.marker
   const layerRef = useRef(null); // L.layerGroup containing all markers
+  const boundsRef = useRef(null); // bounds we framed to, for resize re-fits
 
-  // One-time init.
+  // Init Leaflet ONCE the features array is non-empty. By waiting for
+  // features we know what bounds to frame to, and by the time MapView
+  // mounted the container's CSS has been applied — so we can fitBounds
+  // synchronously with the container at its real size, no race.
+  //
+  // Earlier iterations of this code tried every variant of "init at
+  // default zoom, defer to rAF, poll invalidateSize, etc." and each
+  // produced a different rendering bug. Stripped back to the simplest
+  // pattern: one fitBounds, one window-resize handler, nothing else.
   useEffect(() => {
-    if (mapRef.current || !containerRef.current) return;
+    if (mapRef.current || !containerRef.current || features.length === 0) return;
     const container = containerRef.current;
-    // Initialise with a tight Yosemite-centred view so the map starts
-    // in a loaded state at roughly the final framing. PR #23 tried
-    // dropping center/zoom here to avoid a tile race with fitBounds,
-    // but that left some browsers in a state where setView never
-    // happened cleanly — the map ended up at a default zoom showing
-    // all of central California instead. With an explicit initial
-    // view, tiles load for ~the right area immediately and the
-    // marker effect's deferred fitBounds just fine-tunes from there.
+
+    const bounds = L.latLngBounds(
+      features.map((f) => [f.geometry.coordinates[1], f.geometry.coordinates[0]])
+    );
+    boundsRef.current = bounds;
+
     const map = L.map(container, {
-      center: [37.74, -119.55], // approximate park centroid
-      zoom: 9,
       scrollWheelZoom: true,
       zoomControl: true,
       attributionControl: true,
     });
 
-    // USGS National Map Topo basemap. WMTS-style endpoint, no API key.
+    // Esri World Topographic Map. Same topographic styling as USGS Topo
+    // (contour lines, peak labels, USGS data underneath) but served from
+    // Esri's CDN, which is multi-host and much more reliable than the
+    // single-host basemap.nationalmap.gov. The recurring "scattered
+    // tiles + gray gaps" symptom matched a server-side delivery problem,
+    // not a Leaflet bug — USGS was returning maybe 30% of requested
+    // tiles. Esri returns the rest.
     L.tileLayer(
-      "https://basemap.nationalmap.gov/arcgis/rest/services/USGSTopo/MapServer/tile/{z}/{y}/{x}",
+      "https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}",
       {
-        maxZoom: 16,
+        maxZoom: 19,
         attribution:
-          'Tiles &copy; <a href="https://www.usgs.gov/" target="_blank" rel="noopener">USGS</a> The National Map',
+          'Tiles &copy; <a href="https://www.esri.com/" target="_blank" rel="noopener">Esri</a>, USGS, NOAA',
       }
     ).addTo(map);
 
     layerRef.current = L.layerGroup().addTo(map);
     mapRef.current = map;
 
-    // Sync Leaflet's cached size with the real DOM size. Without this, the
-    // map only paints tiles for whatever size the container had at
-    // L.map() time — any later shift (CSS settling, font swap, mobile
-    // reflow, address bar collapse, orientation change) leaves the new
-    // area as gray tile chunks until the user pans or zooms.
-    let pendingFrame = null;
-    const invalidate = () => {
-      if (pendingFrame) return;
-      pendingFrame = requestAnimationFrame(() => {
-        pendingFrame = null;
-        if (mapRef.current) mapRef.current.invalidateSize();
-      });
+    // fitBounds is the FIRST view-set on this map, so it's also when
+    // the tile layer starts loading. Calling it once here against the
+    // settled container size avoids the wrong-zoom-then-can't-correct
+    // cycle that was producing chunked tiles at the wrong scale.
+    map.fitBounds(bounds, { padding: [40, 40], maxZoom: 12, animate: false });
+
+    // Refit on window resize so the framing keeps matching the
+    // container even after orientation changes / browser resizes —
+    // invalidateSize alone would only load more tiles at the same
+    // (possibly wrong) zoom.
+    const handleResize = () => {
+      const m = mapRef.current;
+      const b = boundsRef.current;
+      if (!m || !b) return;
+      m.invalidateSize();
+      m.fitBounds(b, { padding: [40, 40], maxZoom: 12, animate: false });
     };
-
-    // Two settle timers — one immediate, one late. The earlier 5-timer
-    // poll was firing during the selection flyTo's 600ms animation and
-    // confusing Leaflet's tile pruning, leaving residual layers visible
-    // as a second tile cluster. ResizeObserver covers any later resize
-    // (orientation change, address bar collapse, window resize).
-    const settleTimers = [0, 1500].map((delay) => setTimeout(invalidate, delay));
-
-    // Defer ResizeObserver.observe() to a microtask. The spec says the
-    // initial callback fires asynchronously, but defending against any
-    // browser that fires it synchronously during observe(): we don't
-    // want an invalidateSize racing with the marker effect's
-    // synchronous fitBounds that's about to run in this same render
-    // commit. The microtask defer guarantees the first fitBounds
-    // completes before any ResizeObserver invalidate fires.
-    let ro = null;
-    queueMicrotask(() => {
-      if (!mapRef.current) return;
-      if (typeof ResizeObserver !== "undefined") {
-        ro = new ResizeObserver(invalidate);
-        ro.observe(container);
-      }
-    });
-    window.addEventListener("resize", invalidate);
-    window.addEventListener("orientationchange", invalidate);
-    window.addEventListener("pageshow", invalidate);
+    window.addEventListener("resize", handleResize);
 
     if (typeof onMapReady === "function") onMapReady(map);
 
     return () => {
-      if (pendingFrame) cancelAnimationFrame(pendingFrame);
-      settleTimers.forEach(clearTimeout);
-      if (ro) ro.disconnect();
-      window.removeEventListener("resize", invalidate);
-      window.removeEventListener("orientationchange", invalidate);
-      window.removeEventListener("pageshow", invalidate);
+      window.removeEventListener("resize", handleResize);
       if (typeof onMapReady === "function") onMapReady(null);
       map.remove();
       mapRef.current = null;
       layerRef.current = null;
       markersRef.current = {};
+      boundsRef.current = null;
     };
     // onMapReady is intentionally not in the dep list — we only want to init
     // the map once. If the parent's callback identity changes, fine.
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [features]);
 
   // Reconcile markers when features change.
   useEffect(() => {
@@ -208,24 +194,16 @@ function MapView({ features, selectedPinId, selectionSource, hoveredPinId, onPin
       markersRef.current[id] = marker;
     }
 
-    // After rebuilding markers, fit the bounds to all features. Call
-    // invalidateSize+fitBounds synchronously first so tiles are framed
-    // correctly on the very first paint, then re-run them on the next
-    // animation frame as a belt-and-braces against the container
-    // settling into final CSS dimensions (font load, dvh resolution,
-    // mobile address bar collapse) right after this synchronous pass.
+    // Update bounds and refit. On the very first render this re-fits
+    // to the same bounds the init effect just framed — no-op cost,
+    // but keeps the code path uniform. On filter changes, it reframes
+    // to the new filtered set.
     if (features.length > 0) {
       const bounds = L.latLngBounds(
         features.map((f) => [f.geometry.coordinates[1], f.geometry.coordinates[0]])
       );
-      map.invalidateSize();
+      boundsRef.current = bounds;
       map.fitBounds(bounds, { padding: [40, 40], maxZoom: 12, animate: false });
-      requestAnimationFrame(() => {
-        const m = mapRef.current;
-        if (!m) return;
-        m.invalidateSize();
-        m.fitBounds(bounds, { padding: [40, 40], maxZoom: 12, animate: false });
-      });
     }
     // Note: deliberately not depending on selectedPinId here — selection visuals
     // are handled by a separate effect below to avoid full marker rebuild on
