@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import ReactMarkdown from 'react-markdown'
 import type { StopT } from '../content'
 import MapsLink from './MapsLink'
+import PhotoPlaceholder from './PhotoPlaceholder'
 
 type Props = {
   stop: StopT
@@ -32,11 +33,22 @@ export default function StopCard({ stop, compact = true }: Props) {
   const photo = stop.photos[0]
   return (
     <article className="stop-card">
-      {photo && (
+      {photo ? (
         <>
-          <img className="stop-card__photo" src={photo.src} alt={photo.caption ?? stop.title} />
+          <img
+            className="stop-card__photo"
+            src={photo.src}
+            alt={photo.caption ?? stop.title}
+            loading="lazy"
+            decoding="async"
+            width={1200}
+            height={900}
+            style={{ aspectRatio: '4 / 3', objectFit: 'cover' }}
+          />
           {photo.caption && <p className="stop-card__caption">{photo.caption}</p>}
         </>
+      ) : (
+        <PhotoPlaceholder />
       )}
 
       <div className="eyebrow eyebrow--moss">

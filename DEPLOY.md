@@ -110,8 +110,8 @@ Custom domain (optional): `thetalusfieldjournal.com` apex.
 1. Open the deployed editorial site → click `Field Guide` → buy button shows the live `sold/cap` count (no longer in greyed "preview" mode).
 2. Click buy → Stripe checkout opens. Use test card `4242 4242 4242 4242`, any future date, any CVC, any zip.
 3. Payment completes → redirected to `?guide=success` → email arrives within ~30s with a 6-digit code and a magic link.
-4. Click the magic link → opens `<guide-url>/open?token=...` → "Signing you in…" → redirects to the home with three trip cards.
-5. Pick a trip → pick a day → pick a stop. Read the body. Click "Open in Maps" → native maps app opens at the coordinate (note: most coords are still flagged TODO and will land you near, not on, the actual spot).
+4. Click the magic link → opens `<guide-url>/open?token=...` → "Signing you in…" → redirects to the home with three region cards (`valley`, `glacier-mariposa`, `tuolumne`).
+5. Pick a region → pick a stop. Read the body. Click "Open in Maps" → native maps app opens at the coordinate (note: most coords are still flagged TODO and will land you near, not on, the actual spot).
 6. **PWA install:** in mobile Chrome/Safari, the install prompt appears; install to home screen.
 7. **Offline:** turn on airplane mode, reopen the installed app → home and stop pages still render from cache.
 8. **Update flow:** push a code change, redeploy Pages → reopen the app → update banner appears at the top → click → reloads with new build.
@@ -136,5 +136,5 @@ Open the printed URL → JWT is issued, you're in.
 - Swap Stripe test keys → live keys (`wrangler secret put STRIPE_SECRET_KEY`).
 - Re-create the webhook in Stripe live mode and update `STRIPE_WEBHOOK_SECRET`.
 - Make sure Resend domain is verified and `FROM` in [workers/src/lib/email.ts](workers/src/lib/email.ts) points at it.
-- Verify the 35 stop coordinates in [apps/guide/src/content/stops.ts](apps/guide/src/content/stops.ts) and remove the `TODO: verify` comments.
+- Verify the ~21 stop coordinates in [apps/guide/src/content/stops.ts](apps/guide/src/content/stops.ts) and remove the `TODO: verify` comments. Stops are organized into three regions: `valley`, `glacier-mariposa`, `tuolumne`.
 - Drop photos into [apps/guide/public/photos/](apps/guide/public/photos/) and add `photos: [{ src, caption }]` entries on the matching stops.

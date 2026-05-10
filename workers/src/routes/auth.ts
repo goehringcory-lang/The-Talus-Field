@@ -1,9 +1,11 @@
 import { Hono } from 'hono'
 import type { Env } from '../env'
 import {
+  clearDevLoginAttempts,
   clearLoginAttempts,
   getBuyer,
   getEmailByAccessToken,
+  recordDevLoginAttempt,
   recordLoginAttempt,
 } from '../lib/kv'
 import { signAccessJwt } from '../lib/jwt'
@@ -70,6 +72,15 @@ auth.post('/dev-login', async (c) => {
   const code = body.code?.trim()
   if (!username || !code) return c.json({ error: 'Missing username or code' }, 400)
 
+  // Cloudflare always sets cf-connecting-ip in production. Fall back to a
+  // sentinel so the bucket key is still well-formed (e.g. for `wrangler dev`
+  // local requests without the header).
+  const ip = c.req.header('cf-connecting-ip') ?? 'unknown'
+  const attempts = await recordDevLoginAttempt(c.env, ip, username)
+  if (attempts > MAX_LOGIN_ATTEMPTS_PER_HOUR) {
+    return c.json({ error: 'Too many attempts. Try again later.' }, 429)
+  }
+
   const adminU = c.env.ADMIN_USERNAME
   const adminC = c.env.ADMIN_CODE
   const devU = c.env.DEV_USERNAME
@@ -84,6 +95,7 @@ auth.post('/dev-login', async (c) => {
     return c.json({ error: 'Username or code does not match' }, 401)
   }
 
+  await clearDevLoginAttempts(c.env, ip, username)
   const jwt = await signAccessJwt(username, c.env.MAGIC_LINK_SIGNING_SECRET)
   return c.json({ jwt })
 })

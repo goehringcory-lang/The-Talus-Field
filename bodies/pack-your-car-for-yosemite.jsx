@@ -6,7 +6,7 @@ window.ARTICLE_BODIES["pack-your-car-for-yosemite"] = function PackYourCarForYos
   return (
     <>
       <p className="dropcap">
-        Nobody writes about packing the car. Everybody writes about packing the backpack, the day pack, the cooler. But the car is the base camp for most Yosemite trips — car campers, lodge guests, and day-trippers alike — and what you have in it determines whether a flat tire at Crane Flat is a twenty-minute inconvenience or a three-hour ordeal, whether a surprise thunderstorm sends you home early or sends you to the backup plan, and whether the best spontaneous detour of your trip actually happens or gets killed by "we don't have what we need."
+        Nobody writes about packing the car. Everybody writes about packing the backpack, the day pack, the cooler. But the car is the base camp for most Yosemite trips, car campers, lodge guests, and day-trippers alike, and what you have in it determines whether a flat tire at Crane Flat is a twenty-minute inconvenience or a three-hour ordeal, whether a surprise thunderstorm sends you home early or sends you to the backup plan, and whether the best spontaneous detour of your trip actually happens or gets killed by "we don't have what we need."
       </p>
 
       <p>
@@ -28,7 +28,7 @@ window.ARTICLE_BODIES["pack-your-car-for-yosemite"] = function PackYourCarForYos
       </p>
 
       <p>
-        Pack the cooler in layers. Ice on the bottom, things you'll eat last on the bottom, things you'll eat first on top. Freeze water bottles and use them as ice blocks — they double as cold drinking water as they melt. Pre-make sandwiches and wraps for the first two days. Cut fruit and vegetables at home and store them in containers. If you're car camping, bring eggs, cheese, and tortillas for camp breakfasts.
+        Pack the cooler in layers. Ice on the bottom, things you'll eat last on the bottom, things you'll eat first on top. Freeze water bottles and use them as ice blocks. They double as cold drinking water as they melt. Pre-make sandwiches and wraps for the first two days. Cut fruit and vegetables at home and store them in containers. If you're car camping, bring eggs, cheese, and tortillas for camp breakfasts.
       </p>
 
       <p>
@@ -42,7 +42,7 @@ window.ARTICLE_BODIES["pack-your-car-for-yosemite"] = function PackYourCarForYos
       </p>
 
       <p>
-        Bring a rigid water jug — four to seven gallons depending on your group size and trip length. The square-shaped jugs with a bottom spigot are best because they don't tip in the trunk and you can dispense water without lifting and tilting a heavy container. That matters more than you think after three days of use. Fill it at home before you leave.
+        Bring a rigid water jug, four to seven gallons depending on your group size and trip length. The square-shaped jugs with a bottom spigot are best because they don't tip in the trunk and you can dispense water without lifting and tilting a heavy container. That matters more than you think after three days of use. Fill it at home before you leave.
       </p>
 
       <p>
@@ -50,7 +50,7 @@ window.ARTICLE_BODIES["pack-your-car-for-yosemite"] = function PackYourCarForYos
       </p>
 
       <p>
-        Tap water is available in the Valley — filling stations at the visitor center and at campgrounds. But the jug in the trunk is the thing that keeps you from driving twenty minutes back to the Valley every time someone's thirsty. It lives in the car, it's always available, and on a hot July day you'll go through more of it than you expect.
+        Tap water is available in the Valley, filling stations at the visitor center and at campgrounds. But the jug in the trunk is the thing that keeps you from driving twenty minutes back to the Valley every time someone's thirsty. It lives in the car, it's always available, and on a hot July day you'll go through more of it than you expect.
       </p>
 
       <h2>The sealed trash container</h2>
@@ -64,7 +64,7 @@ window.ARTICLE_BODIES["pack-your-car-for-yosemite"] = function PackYourCarForYos
       </p>
 
       <p>
-        Bring two large garbage bags as well — one for overflow trash when you find a bear-proof dumpster to empty into, and one for wet or dirty gear that you don't want touching the inside of your car. But the daily-use trash goes in the sealed bin.
+        Bring two large garbage bags as well. One for overflow trash when you find a bear-proof dumpster to empty into, and one for wet or dirty gear that you don't want touching the inside of your car. But the daily-use trash goes in the sealed bin.
       </p>
 
       <h2>Layers in the car, not just on your back</h2>
@@ -84,7 +84,7 @@ window.ARTICLE_BODIES["pack-your-car-for-yosemite"] = function PackYourCarForYos
       <h2>A ground mat at the tailgate</h2>
 
       <p>
-        This is a small thing that solves a constant annoyance. A simple outdoor mat — nothing fancy, just a two-by-three-foot piece of durable fabric — placed on the ground at your tailgate or car door.
+        This is a small thing that solves a constant annoyance. A simple outdoor mat, nothing fancy, just a two-by-three-foot piece of durable fabric, placed on the ground at your tailgate or car door.
       </p>
 
       <p>
@@ -102,7 +102,7 @@ window.ARTICLE_BODIES["pack-your-car-for-yosemite"] = function PackYourCarForYos
       </p>
 
       <p>
-        A simple tarp — nothing elaborate, just an eight-by-ten or ten-by-twelve with grommets and some cord — creates a livable outdoor space that works in both conditions. Rig it between two trees, or between the car and a tree, and you've got a shaded kitchen, a dry place to sit when it's raining, and a spot where you can relax during the heat of the day without retreating into a broiling tent.
+        A simple tarp, nothing elaborate, just an eight-by-ten or ten-by-twelve with grommets and some cord, creates a livable outdoor space that works in both conditions. Rig it between two trees, or between the car and a tree, and you've got a shaded kitchen, a dry place to sit when it's raining, and a spot where you can relax during the heat of the day without retreating into a broiling tent.
       </p>
 
       <p>
@@ -128,7 +128,7 @@ window.ARTICLE_BODIES["pack-your-car-for-yosemite"] = function PackYourCarForYos
       </p>
 
       <p>
-        If you're driving to Yosemite from the east on Tioga Road, know that there is no gas between Lee Vining and Crane Flat — that's 60 miles of mountain highway with serious elevation changes. Fill up before you enter the park from any direction.
+        If you're driving to Yosemite from the east on Tioga Road, know that there is no gas between Lee Vining and Crane Flat. That's 60 miles of mountain highway with serious elevation changes. Fill up before you enter the park from any direction.
       </p>
 
       <h2>The roadside kit</h2>
@@ -138,7 +138,7 @@ window.ARTICLE_BODIES["pack-your-car-for-yosemite"] = function PackYourCarForYos
       </p>
 
       <p>
-        A portable jump starter. These are better than jumper cables because they don't require a second car, and dead batteries in Yosemite parking lots are absurdly common — headlights left on, cold mornings at elevation, old batteries pushed past their limit. A good portable unit is the size of a paperback book and starts a car engine multiple times on a single charge.
+        A portable jump starter. These are better than jumper cables because they don't require a second car, and dead batteries in Yosemite parking lots are absurdly common. Headlights left on, cold mornings at elevation, old batteries pushed past their limit. A good portable unit is the size of a paperback book and starts a car engine multiple times on a single charge.
       </p>
 
       <p>
@@ -146,17 +146,17 @@ window.ARTICLE_BODIES["pack-your-car-for-yosemite"] = function PackYourCarForYos
       </p>
 
       <p>
-        A basic tool kit: pliers, a screwdriver, duct tape, zip ties, a few spring clamps. The clamps are surprisingly versatile in camp — securing a tarp grommet, clamping a tablecloth to a picnic table in the wind, holding a wet towel to the roof rack to dry. They cost a dollar each and weigh nothing.
+        A basic tool kit: pliers, a screwdriver, duct tape, zip ties, a few spring clamps. The clamps are surprisingly versatile in camp, securing a tarp grommet, clamping a tablecloth to a picnic table in the wind, holding a wet towel to the roof rack to dry. They cost a dollar each and weigh nothing.
       </p>
 
       <p>
-        A real flashlight. Not your phone flashlight — a flashlight that works when your phone is dead, which it will be, because you've been using it for photos and navigation all day.
+        A real flashlight. Not your phone flashlight. A flashlight that works when your phone is dead, which it will be, because you've been using it for photos and navigation all day.
       </p>
 
       <h2>The things people forget</h2>
 
       <p>
-        <strong>Binoculars.</strong> Yosemite is a place where things happen far away — a peregrine falcon hunting off the face of El Capitan, a black bear crossing a meadow at 300 yards, climbers on the Regular Northwest Face at a distance that makes them look like ants. A pair of binoculars turns those moments from squinting into actually seeing. An 8x42 pair lives in my car year-round and gets used almost every trip. If you only bring one "extra" thing, make it binoculars.
+        <strong>Binoculars.</strong> Yosemite is a place where things happen far away. A peregrine falcon hunting off the face of El Capitan, a black bear crossing a meadow at 300 yards, climbers on the Regular Northwest Face at a distance that makes them look like ants. A pair of binoculars turns those moments from squinting into actually seeing. An 8x42 pair lives in my car year-round and gets used almost every trip. If you only bring one "extra" thing, make it binoculars.
       </p>
 
       <p>
@@ -164,7 +164,7 @@ window.ARTICLE_BODIES["pack-your-car-for-yosemite"] = function PackYourCarForYos
       </p>
 
       <p>
-        <strong>Camp chairs.</strong> Even if you're staying in a lodge. A pair of lightweight camp chairs in the trunk means you can set up anywhere — at a picnic area, at a pullout on Glacier Point Road, in a meadow at sunset. Some of the best hours I've ever spent in this park happened sitting in a camp chair doing absolutely nothing, watching the light change on the granite.
+        <strong>Camp chairs.</strong> Even if you're staying in a lodge. A pair of lightweight camp chairs in the trunk means you can set up anywhere: at a picnic area, at a pullout on Glacier Point Road, in a meadow at sunset. Some of the best hours I've ever spent in this park happened sitting in a camp chair doing absolutely nothing, watching the light change on the granite.
       </p>
 
       <p>
@@ -182,7 +182,7 @@ window.ARTICLE_BODIES["pack-your-car-for-yosemite"] = function PackYourCarForYos
       </p>
 
       <p>
-        If you're in Yosemite and there is food in your car — any food, including sealed coolers, wrapped granola bars, canned drinks, gum, sunscreen, chapstick, and that banana you forgot in the door pocket — the food must be stored properly when you're not in the vehicle.
+        If you're in Yosemite and there is food in your car (any food, including sealed coolers, wrapped granola bars, canned drinks, gum, sunscreen, chapstick, and that banana you forgot in the door pocket) the food must be stored properly when you're not in the vehicle.
       </p>
 
       <p>
@@ -190,7 +190,7 @@ window.ARTICLE_BODIES["pack-your-car-for-yosemite"] = function PackYourCarForYos
       </p>
 
       <p>
-        When you're at a trailhead or parking area during the day, the rule is simpler: food stays in the trunk, out of sight, windows closed. If you have a hatchback or SUV with no separate trunk, cover the cooler and any food bags so they're not visible. A sealed trash container helps here too — the bear can't smell what it can't detect.
+        When you're at a trailhead or parking area during the day, the rule is simpler: food stays in the trunk, out of sight, windows closed. If you have a hatchback or SUV with no separate trunk, cover the cooler and any food bags so they're not visible. A sealed trash container helps here too. The bear can't smell what it can't detect.
       </p>
 
       <p>
@@ -238,7 +238,7 @@ window.ARTICLE_BODIES["pack-your-car-for-yosemite"] = function PackYourCarForYos
       </p>
 
       <p>
-        Most people spend hours researching which trail to hike and about fifteen minutes throwing things in the car. Flip that ratio a little. Thirty minutes of thoughtful packing before you leave home pays off every single day you're in the park. It's the difference between a trip that's reactive — always driving back for the thing you forgot — and a trip that's free. Free to chase the light, stay for sunset, take the detour, say yes to the thing you didn't plan for.
+        Most people spend hours researching which trail to hike and about fifteen minutes throwing things in the car. Flip that ratio a little. Thirty minutes of thoughtful packing before you leave home pays off every single day you're in the park. It's the difference between a trip that's reactive, always driving back for the thing you forgot, and a trip that's free. Free to chase the light, stay for sunset, take the detour, say yes to the thing you didn't plan for.
       </p>
 
       <p>
