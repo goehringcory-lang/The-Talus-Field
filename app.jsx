@@ -1,6 +1,6 @@
 /* global React, ReactDOM, Header, Footer,
    HomePage, AboutPage, ArticlesIndex, CategoryPage, ArticlePage,
-   KitPage, PlacesPage, AdvertisePage, GuidePage, CapPage,
+   KitPage, PlacesPage, AdvertisePage, GuidePage, CapPage, MapPage,
    NewsletterPage, ContactPage, PrivacyPage, TermsPage, AffiliatePage,
    TweaksPanel, useTweaks, TweakSection, TweakRadio, TweakToggle */
 
@@ -257,6 +257,14 @@ function buildSeo(route) {
         "The reasoning behind a hard monthly cap on Field Guide sales. Carrying capacity, editorial integrity, and why the cart closes when it closes.",
       ogType: "website",
     },
+    map: {
+      // Hidden preview. URL-only access while the feature is being tested.
+      // robots:noindex keeps it out of search even if someone shares the URL.
+      title: `Map — ${SITE_NAME}`,
+      description: SITE_DEFAULT_DESC,
+      ogType: "website",
+      robots: "noindex, nofollow",
+    },
   };
   const meta = known[route] || known.home;
   return {
@@ -266,14 +274,22 @@ function buildSeo(route) {
     ogType: meta.ogType || "website",
     image: SITE_DEFAULT_IMAGE,
     jsonLd: null,
+    robots: meta.robots || null,
   };
 }
+
+// Default robots policy — must match the static <meta name="robots"> in
+// index.html so we restore it when navigating off a hidden route.
+const DEFAULT_ROBOTS =
+  "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1";
 
 function applySeo(route) {
   const seo = buildSeo(route);
   document.title = seo.title;
   setMeta("description", seo.description);
   setLink("canonical", seo.canonical);
+  // Per-route robots override (e.g. /map ships with noindex while hidden).
+  setMeta("robots", seo.robots || DEFAULT_ROBOTS);
 
   // Open Graph
   setMeta("og:title", seo.title, "property");
@@ -385,6 +401,11 @@ function App() {
     page = <GuidePage go={go} />;
   } else if (route === "cap") {
     page = <CapPage go={go} />;
+  } else if (route === "map") {
+    // Hidden preview route. Intentionally not added to the nav, sitemap, or
+    // article footer — typed-URL access only while the feature is tested.
+    page = <MapPage go={go} />;
+    // currentNav stays "home" so no nav link highlights.
   } else {
     page = <HomePage go={go} />;
   }
