@@ -106,13 +106,21 @@ function MapView({ features, selectedPinId, selectionSource, hoveredPinId, onPin
       attributionControl: true,
     });
 
-    // USGS National Map Topo basemap. WMTS-style endpoint, no API key.
+    // OpenStreetMap basemap. Swapped from the USGS Topo endpoint
+    // (basemap.nationalmap.gov) — that server's tile delivery was
+    // unreliable enough from mobile that tiles arrived in scattered
+    // clusters with gray gaps regardless of the container-sizing
+    // fixes we'd already applied. OSM has the most robust tiling
+    // infrastructure available without an API key, and the {s}
+    // subdomain rotation parallelises requests across three hosts so
+    // a single slow host can't bottleneck the load.
     L.tileLayer(
-      "https://basemap.nationalmap.gov/arcgis/rest/services/USGSTopo/MapServer/tile/{z}/{y}/{x}",
+      "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
       {
-        maxZoom: 16,
+        maxZoom: 19,
+        subdomains: ["a", "b", "c"],
         attribution:
-          'Tiles &copy; <a href="https://www.usgs.gov/" target="_blank" rel="noopener">USGS</a> The National Map',
+          '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> contributors',
       }
     ).addTo(map);
 
