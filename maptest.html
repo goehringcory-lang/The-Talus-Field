@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Map Test — Talus Field</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <style>
+    /* No site CSS at all — keep this isolated. */
+    html, body { margin: 0; padding: 0; height: 100%; }
+    body { font: 14px/1.4 system-ui, sans-serif; background: #ddd; }
+    #map { height: 70vh; width: 100%; background: #eee; }
+    #info { padding: 12px 16px; background: #fff; border-bottom: 1px solid #ccc; }
+    #info code { background: #f4f4f4; padding: 1px 5px; border-radius: 3px; }
+    #log { padding: 12px 16px; font-family: monospace; font-size: 12px; background: #1a1a1a; color: #c8e6c9; white-space: pre-wrap; max-height: 30vh; overflow: auto; }
+  </style>
+</head>
+<body>
+  <div id="info">
+    <strong>Leaflet diagnostic page.</strong>
+    Bare HTML — no React, no Babel, no editorial CSS. If this map renders fully and the log shows tiles loading, Leaflet works fine on this domain and the bug is somewhere in the editorial site's React/CSS wrapping. If it renders the same chunked pattern, the issue is environmental.
+  </div>
+  <div id="map"></div>
+  <pre id="log"></pre>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script>
+    var log = document.getElementById('log');
+    function logMsg(msg) {
+      var t = new Date().toISOString().substr(11, 8);
+      log.textContent += '[' + t + '] ' + msg + '\n';
+      log.scrollTop = log.scrollHeight;
+    }
+
+    logMsg('Page loaded. Leaflet ' + (window.L ? L.version : 'NOT LOADED'));
+    var container = document.getElementById('map');
+    var rect = container.getBoundingClientRect();
+    logMsg('Container before init: ' + Math.round(rect.width) + ' x ' + Math.round(rect.height) + ' px');
+
+    var map = L.map('map', {
+      center: [37.74, -119.55],
+      zoom: 10,
+      scrollWheelZoom: true,
+    });
+
+    var tilesLoaded = 0, tilesError = 0, tilesRequested = 0;
+    var layer = L.tileLayer(
+      'https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}',
+      { maxZoom: 19, attribution: 'Tiles &copy; Esri' }
+    );
+    layer.on('tileloadstart', function () { tilesRequested++; });
+    layer.on('tileload', function () { tilesLoaded++; logMsg('tile #' + tilesLoaded + ' / ' + tilesRequested + ' loaded'); });
+    layer.on('tileerror', function (e) { tilesError++; logMsg('tile ERROR (' + tilesError + '): ' + (e.tile ? e.tile.src.split('/').slice(-3).join('/') : '?')); });
+    layer.addTo(map);
+
+    setTimeout(function () {
+      var r = container.getBoundingClientRect();
+      var s = map.getSize();
+      logMsg('After 2s — container ' + Math.round(r.width) + 'x' + Math.round(r.height) + ', map._size ' + s.x + 'x' + s.y + ', center ' + map.getCenter().toString() + ', zoom ' + map.getZoom() + ', tiles loaded ' + tilesLoaded + '/' + tilesRequested + ', errors ' + tilesError);
+    }, 2000);
+  </script>
+</body>
+</html>
