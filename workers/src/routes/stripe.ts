@@ -31,6 +31,11 @@ type GenericStripeEvent = {
   type: string
 }
 
+// Stripe retries failed webhooks for up to ~3 days; 30 days is comfortably
+// longer and bounds KV growth.
+const STRIPE_EVENT_DEDUPE_TTL_SECONDS = 60 * 60 * 24 * 30
+const STRIPE_EVENT_DEDUPE_KEY = (eventId: string) => `stripe_event:${eventId}`
+
 export const stripe = new Hono<{ Bindings: Env }>()
 
 stripe.post('/webhook', async (c) => {
@@ -44,6 +49,16 @@ stripe.post('/webhook', async (c) => {
   if (!ok) return c.json({ error: 'Invalid signature' }, 400)
 
   const event = JSON.parse(rawBody) as GenericStripeEvent
+
+  // Idempotency: if we have already processed this event id, short-circuit.
+  // This must happen *after* signature verification so unauthenticated callers
+  // can't probe or poison the dedupe set.
+  const dedupeKey = STRIPE_EVENT_DEDUPE_KEY(event.id)
+  const alreadyProcessed = await c.env.GUIDE_BUYERS.get(dedupeKey)
+  if (alreadyProcessed) {
+    return c.json({ received: true, deduped: true })
+  }
+
   if (event.type !== 'checkout.session.completed') {
     return c.json({ received: true, ignored: event.type })
   }
@@ -76,8 +91,19 @@ stripe.post('/webhook', async (c) => {
   await putBuyer(c.env, record)
   await incrementInventory(c.env, currentMonthLabel(new Date(purchasedAt * 1000)))
 
+  // Email is the only step that talks to a third party and can fail
+  // transiently. Don't mark the event deduped if it throws — let Stripe retry.
   const magicLink = `${c.env.APP_BASE_URL}/open?token=${accessToken}`
-  await sendMagicLink(c.env, { to: email, magicLink, code: accessCode })
+  try {
+    await sendMagicLink(c.env, { to: email, magicLink, code: accessCode })
+  } catch (err) {
+    console.error('sendMagicLink failed', { eventId: event.id, email, err })
+    return c.json({ error: 'Email delivery failed' }, 500)
+  }
+
+  await c.env.GUIDE_BUYERS.put(dedupeKey, '1', {
+    expirationTtl: STRIPE_EVENT_DEDUPE_TTL_SECONDS,
+  })
 
   return c.json({ received: true })
 })

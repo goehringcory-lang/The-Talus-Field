@@ -11,7 +11,7 @@ window.SITE = {
   brand: "The Talus Field",
   tagline: "Yosemite, written by someone who lives here",
   authorName: "Cory Goehring",
-  authorBio: "Writes from the heart of Yosemite National Park, California.",
+  authorBio: "Writes from El Portal, California.",
   email: "Cory@thetalusfieldjournal.com",
 };
 

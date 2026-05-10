@@ -12,6 +12,8 @@ const BUYER_KEY = (email: string) => `buyer:${email.toLowerCase()}`
 const TOKEN_INDEX_KEY = (token: string) => `token:${token}`
 const INVENTORY_KEY = (yyyymm: string) => `inventory:${yyyymm}`
 const LOGIN_ATTEMPTS_KEY = (email: string) => `loginAttempts:${email.toLowerCase()}`
+const DEV_LOGIN_ATTEMPTS_KEY = (ip: string, username: string) =>
+  `devLoginAttempts:${ip}:${username.toLowerCase()}`
 
 export function currentMonthLabel(at = new Date()): string {
   const y = at.getUTCFullYear()
@@ -64,4 +66,25 @@ export async function recordLoginAttempt(env: Env, email: string): Promise<numbe
 
 export async function clearLoginAttempts(env: Env, email: string): Promise<void> {
   await env.GUIDE_BUYERS.delete(LOGIN_ATTEMPTS_KEY(email))
+}
+
+export async function recordDevLoginAttempt(
+  env: Env,
+  ip: string,
+  username: string,
+): Promise<number> {
+  const key = DEV_LOGIN_ATTEMPTS_KEY(ip, username)
+  const raw = await env.GUIDE_BUYERS.get(key)
+  const next = (raw ? Number.parseInt(raw, 10) : 0) + 1
+  // 1-hour TTL gives a rolling window per (IP, username) pair.
+  await env.GUIDE_BUYERS.put(key, String(next), { expirationTtl: 60 * 60 })
+  return next
+}
+
+export async function clearDevLoginAttempts(
+  env: Env,
+  ip: string,
+  username: string,
+): Promise<void> {
+  await env.GUIDE_BUYERS.delete(DEV_LOGIN_ATTEMPTS_KEY(ip, username))
 }

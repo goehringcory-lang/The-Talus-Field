@@ -1,6 +1,6 @@
 /* global React, ReactDOM, Header, Footer,
    HomePage, AboutPage, ArticlesIndex, CategoryPage, ArticlePage,
-   KitPage, PlacesPage, AdvertisePage,
+   KitPage, PlacesPage, AdvertisePage, GuidePage, CapPage,
    NewsletterPage, ContactPage, PrivacyPage, TermsPage, AffiliatePage,
    TweaksPanel, useTweaks, TweakSection, TweakRadio, TweakToggle */
 
@@ -245,6 +245,18 @@ function buildSeo(route) {
         "How affiliate links work on The Talus Field, and the editorial standards that don't change for paid placements.",
       ogType: "website",
     },
+    guide: {
+      title: `The Field Guide — ${SITE_NAME}`,
+      description:
+        "An offline web app for Yosemite. Tappable GPS for the parking turnouts, quiet trailheads, and insider tactics that locals use. Works at the trailhead when service dies.",
+      ogType: "website",
+    },
+    cap: {
+      title: `Why the Field Guide is capped at 100 a month — ${SITE_NAME}`,
+      description:
+        "The reasoning behind a hard monthly cap on Field Guide sales. Carrying capacity, editorial integrity, and why the cart closes when it closes.",
+      ogType: "website",
+    },
   };
   const meta = known[route] || known.home;
   return {
@@ -369,6 +381,10 @@ function App() {
     page = <TermsPage />;
   } else if (route === "affiliate") {
     page = <AffiliatePage />;
+  } else if (route === "guide") {
+    page = <GuidePage go={go} />;
+  } else if (route === "cap") {
+    page = <CapPage go={go} />;
   } else {
     page = <HomePage go={go} />;
   }

@@ -17,7 +17,7 @@ function HomePage({ go }) {
           <div>
             <div className="hero__kicker">
               <span className="dot"></span>
-              <span>Vol. III · No. 18 · The April Issue</span>
+              <span>Vol. III · No. 19 · The May Issue</span>
             </div>
             <h1>Notes from the Field.</h1>
             <p className="hero__dek">
