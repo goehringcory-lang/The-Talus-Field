@@ -92,35 +92,29 @@ function MapView({ features, selectedPinId, selectionSource, hoveredPinId, onPin
   useEffect(() => {
     if (mapRef.current || !containerRef.current) return;
     const container = containerRef.current;
-    // Init Leaflet WITHOUT a default center/zoom. With no view set, the
-    // tile layer queues up but doesn't paint until the marker effect's
-    // fitBounds calls setView — which means tiles only load once, for
-    // the final framed view. Previously we initialised at zoom 10
-    // centered on the park, so tiles for that frame loaded immediately,
-    // and when fitBounds later snapped the view to a different zoom the
-    // old tiles were sometimes left in the DOM, visible as a separate
-    // cluster of tiles at a different scale.
+    // Initialise with a tight Yosemite-centred view so the map starts
+    // in a loaded state at roughly the final framing. PR #23 tried
+    // dropping center/zoom here to avoid a tile race with fitBounds,
+    // but that left some browsers in a state where setView never
+    // happened cleanly — the map ended up at a default zoom showing
+    // all of central California instead. With an explicit initial
+    // view, tiles load for ~the right area immediately and the
+    // marker effect's deferred fitBounds just fine-tunes from there.
     const map = L.map(container, {
+      center: [37.74, -119.55], // approximate park centroid
+      zoom: 9,
       scrollWheelZoom: true,
       zoomControl: true,
       attributionControl: true,
     });
 
-    // OpenStreetMap basemap. Swapped from the USGS Topo endpoint
-    // (basemap.nationalmap.gov) — that server's tile delivery was
-    // unreliable enough from mobile that tiles arrived in scattered
-    // clusters with gray gaps regardless of the container-sizing
-    // fixes we'd already applied. OSM has the most robust tiling
-    // infrastructure available without an API key, and the {s}
-    // subdomain rotation parallelises requests across three hosts so
-    // a single slow host can't bottleneck the load.
+    // USGS National Map Topo basemap. WMTS-style endpoint, no API key.
     L.tileLayer(
-      "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+      "https://basemap.nationalmap.gov/arcgis/rest/services/USGSTopo/MapServer/tile/{z}/{y}/{x}",
       {
-        maxZoom: 19,
-        subdomains: ["a", "b", "c"],
+        maxZoom: 16,
         attribution:
-          '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> contributors',
+          'Tiles &copy; <a href="https://www.usgs.gov/" target="_blank" rel="noopener">USGS</a> The National Map',
       }
     ).addTo(map);
 
@@ -148,11 +142,21 @@ function MapView({ features, selectedPinId, selectionSource, hoveredPinId, onPin
     // (orientation change, address bar collapse, window resize).
     const settleTimers = [0, 1500].map((delay) => setTimeout(invalidate, delay));
 
+    // Defer ResizeObserver.observe() to a microtask. The spec says the
+    // initial callback fires asynchronously, but defending against any
+    // browser that fires it synchronously during observe(): we don't
+    // want an invalidateSize racing with the marker effect's
+    // synchronous fitBounds that's about to run in this same render
+    // commit. The microtask defer guarantees the first fitBounds
+    // completes before any ResizeObserver invalidate fires.
     let ro = null;
-    if (typeof ResizeObserver !== "undefined") {
-      ro = new ResizeObserver(invalidate);
-      ro.observe(container);
-    }
+    queueMicrotask(() => {
+      if (!mapRef.current) return;
+      if (typeof ResizeObserver !== "undefined") {
+        ro = new ResizeObserver(invalidate);
+        ro.observe(container);
+      }
+    });
     window.addEventListener("resize", invalidate);
     window.addEventListener("orientationchange", invalidate);
     window.addEventListener("pageshow", invalidate);
@@ -204,17 +208,18 @@ function MapView({ features, selectedPinId, selectionSource, hoveredPinId, onPin
       markersRef.current[id] = marker;
     }
 
-    // After rebuilding markers, fit the bounds to all features (or center if
-    // empty). Defer to the next animation frame so the container has had a
-    // chance to settle into its real CSS dimensions — otherwise fitBounds
-    // frames the *pre-settle* container, picks a zoom for that smaller box,
-    // and tiles only load for that under-sized framing. The settle timer's
-    // first invalidateSize also fires on the next frame, so this aligns the
-    // two and lets fitBounds run against the correct cached size.
+    // After rebuilding markers, fit the bounds to all features. Call
+    // invalidateSize+fitBounds synchronously first so tiles are framed
+    // correctly on the very first paint, then re-run them on the next
+    // animation frame as a belt-and-braces against the container
+    // settling into final CSS dimensions (font load, dvh resolution,
+    // mobile address bar collapse) right after this synchronous pass.
     if (features.length > 0) {
       const bounds = L.latLngBounds(
         features.map((f) => [f.geometry.coordinates[1], f.geometry.coordinates[0]])
       );
+      map.invalidateSize();
+      map.fitBounds(bounds, { padding: [40, 40], maxZoom: 12, animate: false });
       requestAnimationFrame(() => {
         const m = mapRef.current;
         if (!m) return;

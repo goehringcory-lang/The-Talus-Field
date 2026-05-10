@@ -2370,4 +2370,11 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
     order: 2;
   }
   .map-page__map-wrap { order: 1; }
+  /* Guarantee a non-zero height on the leaflet container even if the
+     grid row resolves momentarily to 0 during a paint race. Without
+     this safety net, fitBounds can read a 0×0 container and pick
+     zoom 0 (world view) — producing the "all of California" framing
+     instead of Yosemite. */
+  .map-page__map { min-height: 260px; }
+  .map-page__map-wrap { min-height: 260px; }
 }
