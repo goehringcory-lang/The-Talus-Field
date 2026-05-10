@@ -113,20 +113,16 @@ function MapView({ features, selectedPinId, selectionSource, hoveredPinId, onPin
       attributionControl: true,
     });
 
-    // Tiles are served by our own Worker at api.thetalusfieldjournal.com,
-    // which proxies Esri World Topographic. We can't hit
-    // server.arcgisonline.com directly because many ad-blockers and DNS
-    // filters (EasyPrivacy, uBlock defaults, Pi-hole, Brave Shields'
-    // fingerprinting protection, NextDNS) block map-tile CDN hostnames as
-    // trackers — the request volume + unique coordinates per URL look
-    // exactly like fingerprinting to a blocklist heuristic. Proxying
-    // through our first-party domain avoids every common blocker, so the
-    // map works for visitors regardless of what's running locally. The
-    // Worker route caches each tile at Cloudflare's edge for 30 days, so
-    // Esri itself gets hit at most once per tile per cache-lifetime per
-    // region.
+    // Esri World Topographic, served direct. The Worker /tiles proxy
+    // (workers/src/index.ts) is the long-term home for these — first-party
+    // hostname avoids ad-blockers/DNS filters that classify tile CDNs as
+    // trackers — but the Worker deploys manually (`wrangler deploy` from
+    // workers/) and hadn't been published when the proxy URL went live,
+    // so tiles 404'd and the map rendered empty. Going back to direct
+    // Esri until the Worker is deployed; flipping back is a one-line
+    // change to this URL plus maptest.html.
     L.tileLayer(
-      "https://api.thetalusfieldjournal.com/tiles/{z}/{y}/{x}",
+      "https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}",
       {
         maxZoom: 19,
         attribution:
