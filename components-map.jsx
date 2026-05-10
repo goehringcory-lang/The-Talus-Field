@@ -91,7 +91,8 @@ function MapView({ features, selectedPinId, selectionSource, hoveredPinId, onPin
   // One-time init.
   useEffect(() => {
     if (mapRef.current || !containerRef.current) return;
-    const map = L.map(containerRef.current, {
+    const container = containerRef.current;
+    const map = L.map(container, {
       center: [37.8451, -119.5383], // approximate park centroid
       zoom: 10,
       scrollWheelZoom: true,
@@ -111,10 +112,46 @@ function MapView({ features, selectedPinId, selectionSource, hoveredPinId, onPin
 
     layerRef.current = L.layerGroup().addTo(map);
     mapRef.current = map;
+
+    // Sync Leaflet's cached size with the real DOM size. Without this, the
+    // map only paints tiles for whatever size the container had at
+    // L.map() time — any later shift (CSS settling, font swap, mobile
+    // reflow, address bar collapse, orientation change) leaves the new
+    // area as gray tile chunks until the user pans or zooms.
+    let pendingFrame = null;
+    const invalidate = () => {
+      if (pendingFrame) return;
+      pendingFrame = requestAnimationFrame(() => {
+        pendingFrame = null;
+        if (mapRef.current) mapRef.current.invalidateSize();
+      });
+    };
+
+    // Poll a few times after mount. Mobile in particular can settle in
+    // stages: initial paint, CSS apply, font swap, address bar collapse.
+    // Each invalidate is cheap and idempotent if size hasn't changed.
+    const settleTimers = [0, 100, 300, 800, 1500].map((delay) =>
+      setTimeout(invalidate, delay)
+    );
+
+    let ro = null;
+    if (typeof ResizeObserver !== "undefined") {
+      ro = new ResizeObserver(invalidate);
+      ro.observe(container);
+    }
+    window.addEventListener("resize", invalidate);
+    window.addEventListener("orientationchange", invalidate);
+    window.addEventListener("pageshow", invalidate);
+
     if (typeof onMapReady === "function") onMapReady(map);
 
     return () => {
-      // Cleanup if the page unmounts.
+      if (pendingFrame) cancelAnimationFrame(pendingFrame);
+      settleTimers.forEach(clearTimeout);
+      if (ro) ro.disconnect();
+      window.removeEventListener("resize", invalidate);
+      window.removeEventListener("orientationchange", invalidate);
+      window.removeEventListener("pageshow", invalidate);
       if (typeof onMapReady === "function") onMapReady(null);
       map.remove();
       mapRef.current = null;
@@ -155,10 +192,18 @@ function MapView({ features, selectedPinId, selectionSource, hoveredPinId, onPin
 
     // After rebuilding markers, fit the bounds to all features (or center if empty).
     if (features.length > 0) {
+      // fitBounds reads the container size — make sure Leaflet's cached size
+      // matches the DOM before we compute the framing.
+      map.invalidateSize();
       const bounds = L.latLngBounds(
         features.map((f) => [f.geometry.coordinates[1], f.geometry.coordinates[0]])
       );
       map.fitBounds(bounds, { padding: [40, 40], maxZoom: 12, animate: false });
+      // Belt-and-braces: re-invalidate on the next frame so any tiles that
+      // didn't render during the synchronous fitBounds get a chance to paint.
+      requestAnimationFrame(() => {
+        if (mapRef.current) mapRef.current.invalidateSize();
+      });
     }
     // Note: deliberately not depending on selectedPinId here — selection visuals
     // are handled by a separate effect below to avoid full marker rebuild on
