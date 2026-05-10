@@ -91,7 +91,8 @@ function MapView({ features, selectedPinId, selectionSource, hoveredPinId, onPin
   // One-time init.
   useEffect(() => {
     if (mapRef.current || !containerRef.current) return;
-    const map = L.map(containerRef.current, {
+    const container = containerRef.current;
+    const map = L.map(container, {
       center: [37.8451, -119.5383], // approximate park centroid
       zoom: 10,
       scrollWheelZoom: true,
@@ -100,10 +101,16 @@ function MapView({ features, selectedPinId, selectionSource, hoveredPinId, onPin
     });
 
     // USGS National Map Topo basemap. WMTS-style endpoint, no API key.
+    // keepBuffer + updateWhenIdle:false avoid the visible "tile chunk" gaps
+    // when the container gets resized after init (CSS load, mobile reflow,
+    // sidebar layout shift): Leaflet otherwise only paints tiles for the
+    // viewport it knew about at init.
     L.tileLayer(
       "https://basemap.nationalmap.gov/arcgis/rest/services/USGSTopo/MapServer/tile/{z}/{y}/{x}",
       {
         maxZoom: 16,
+        keepBuffer: 4,
+        updateWhenIdle: false,
         attribution:
           'Tiles &copy; <a href="https://www.usgs.gov/" target="_blank" rel="noopener">USGS</a> The National Map',
       }
@@ -111,10 +118,27 @@ function MapView({ features, selectedPinId, selectionSource, hoveredPinId, onPin
 
     layerRef.current = L.layerGroup().addTo(map);
     mapRef.current = map;
+
+    // Watch the container for size changes and tell Leaflet about them.
+    // Without this, tiles only cover the area the container had at init —
+    // any growth (font swap, mobile orientation, layout shift) shows as
+    // gray squares until the user pans or zooms.
+    let ro = null;
+    if (typeof ResizeObserver !== "undefined") {
+      ro = new ResizeObserver(() => map.invalidateSize());
+      ro.observe(container);
+    }
+    // First invalidate on the next frame, after the browser has applied
+    // any pending layout. Catches the common case where the map div was
+    // briefly smaller during the React render that mounts it.
+    const rafId = requestAnimationFrame(() => map.invalidateSize());
+
     if (typeof onMapReady === "function") onMapReady(map);
 
     return () => {
       // Cleanup if the page unmounts.
+      cancelAnimationFrame(rafId);
+      if (ro) ro.disconnect();
       if (typeof onMapReady === "function") onMapReady(null);
       map.remove();
       mapRef.current = null;
@@ -155,6 +179,9 @@ function MapView({ features, selectedPinId, selectionSource, hoveredPinId, onPin
 
     // After rebuilding markers, fit the bounds to all features (or center if empty).
     if (features.length > 0) {
+      // fitBounds reads the container size — make sure Leaflet's cached size
+      // matches the DOM before we compute the framing.
+      map.invalidateSize();
       const bounds = L.latLngBounds(
         features.map((f) => [f.geometry.coordinates[1], f.geometry.coordinates[0]])
       );
