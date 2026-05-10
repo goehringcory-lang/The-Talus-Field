@@ -97,6 +97,11 @@ function MapView({ features, selectedPinId, selectionSource, hoveredPinId, onPin
       scrollWheelZoom: true,
       zoomControl: true,
       attributionControl: true,
+      // Disable Leaflet's fade-in animation. Without this, tiles can get stuck
+      // at opacity:0 if the container resizes between map init and tile load
+      // (e.g. when /map is loaded directly and the layout settles after React
+      // hydration). With fadeAnimation:false, tiles appear immediately.
+      fadeAnimation: false,
     });
 
     // USGS National Map Topo basemap. WMTS-style endpoint, no API key.
@@ -113,8 +118,22 @@ function MapView({ features, selectedPinId, selectionSource, hoveredPinId, onPin
     mapRef.current = map;
     if (typeof onMapReady === "function") onMapReady(map);
 
+    // Watch the container for size changes and tell Leaflet about them. The
+    // editorial layout flips between a mobile-stacked column (<720px) and a
+    // desktop split-view as the viewport changes, and the map can also be
+    // initialized while the React tree is still settling. Without this, the
+    // map's internal size stays at whatever it was on first paint and tiles
+    // render for the wrong viewport (visible as a narrow strip of tiles or
+    // tiles stuck at opacity 0). invalidateSize() recomputes everything.
+    const ro = new ResizeObserver(() => {
+      // animate:false avoids a flash of motion when the user just resized.
+      map.invalidateSize({ animate: false });
+    });
+    ro.observe(containerRef.current);
+
     return () => {
       // Cleanup if the page unmounts.
+      ro.disconnect();
       if (typeof onMapReady === "function") onMapReady(null);
       map.remove();
       mapRef.current = null;
