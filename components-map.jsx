@@ -127,12 +127,12 @@ function MapView({ features, selectedPinId, selectionSource, hoveredPinId, onPin
       });
     };
 
-    // Poll a few times after mount. Mobile in particular can settle in
-    // stages: initial paint, CSS apply, font swap, address bar collapse.
-    // Each invalidate is cheap and idempotent if size hasn't changed.
-    const settleTimers = [0, 100, 300, 800, 1500].map((delay) =>
-      setTimeout(invalidate, delay)
-    );
+    // Two settle timers — one immediate, one late. The earlier 5-timer
+    // poll was firing during the selection flyTo's 600ms animation and
+    // confusing Leaflet's tile pruning, leaving residual layers visible
+    // as a second tile cluster. ResizeObserver covers any later resize
+    // (orientation change, address bar collapse, window resize).
+    const settleTimers = [0, 1500].map((delay) => setTimeout(invalidate, delay));
 
     let ro = null;
     if (typeof ResizeObserver !== "undefined") {
@@ -190,19 +190,22 @@ function MapView({ features, selectedPinId, selectionSource, hoveredPinId, onPin
       markersRef.current[id] = marker;
     }
 
-    // After rebuilding markers, fit the bounds to all features (or center if empty).
+    // After rebuilding markers, fit the bounds to all features (or center if
+    // empty). Defer to the next animation frame so the container has had a
+    // chance to settle into its real CSS dimensions — otherwise fitBounds
+    // frames the *pre-settle* container, picks a zoom for that smaller box,
+    // and tiles only load for that under-sized framing. The settle timer's
+    // first invalidateSize also fires on the next frame, so this aligns the
+    // two and lets fitBounds run against the correct cached size.
     if (features.length > 0) {
-      // fitBounds reads the container size — make sure Leaflet's cached size
-      // matches the DOM before we compute the framing.
-      map.invalidateSize();
       const bounds = L.latLngBounds(
         features.map((f) => [f.geometry.coordinates[1], f.geometry.coordinates[0]])
       );
-      map.fitBounds(bounds, { padding: [40, 40], maxZoom: 12, animate: false });
-      // Belt-and-braces: re-invalidate on the next frame so any tiles that
-      // didn't render during the synchronous fitBounds get a chance to paint.
       requestAnimationFrame(() => {
-        if (mapRef.current) mapRef.current.invalidateSize();
+        const m = mapRef.current;
+        if (!m) return;
+        m.invalidateSize();
+        m.fitBounds(bounds, { padding: [40, 40], maxZoom: 12, animate: false });
       });
     }
     // Note: deliberately not depending on selectedPinId here — selection visuals
@@ -233,11 +236,29 @@ function MapView({ features, selectedPinId, selectionSource, hoveredPinId, onPin
     if (selectedPinId && markersRef.current[selectedPinId]) {
       const marker = markersRef.current[selectedPinId];
       const latlng = marker.getLatLng();
-      const shouldFly = selectionSource === "list" || selectionSource === "url";
-      if (shouldFly) {
-        map.flyTo(latlng, Math.max(map.getZoom(), 13), { duration: 0.6 });
-      }
-      marker.openPopup();
+      // Cap the zoom delta. Without this, fitBounds at zoom 9 + flyTo to 13
+      // is a 4-level jump; Leaflet keeps both source and destination tile
+      // sets around for the 600ms animation, and any invalidateSize that
+      // fires mid-fly (resize, dvh settle) can leave one of those layers
+      // permanently un-pruned — visible as two clusters of tiles at
+      // different scales with gaps between them.
+      const currentZoom = map.getZoom();
+      const targetZoom = Math.min(currentZoom + 2, 13);
+      // Defer to next frame so we run after the marker effect's
+      // (also-deferred) fitBounds. Otherwise both compete for the view in
+      // the same render cycle.
+      requestAnimationFrame(() => {
+        const m = mapRef.current;
+        if (!m || !markersRef.current[selectedPinId]) return;
+        if (selectionSource === "url") {
+          // Initial deep-link: snap instantly, no animation, so there's no
+          // window for layered tile sets to coexist.
+          m.setView(latlng, targetZoom, { animate: false });
+        } else if (selectionSource === "list") {
+          m.flyTo(latlng, targetZoom, { duration: 0.6 });
+        }
+        markersRef.current[selectedPinId].openPopup();
+      });
     } else {
       map.closePopup();
     }
