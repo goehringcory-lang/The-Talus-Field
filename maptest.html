@@ -45,9 +45,11 @@
     });
 
     var tilesLoaded = 0, tilesError = 0, tilesRequested = 0;
+    // Proxy via our own Worker so ad-blockers / DNS filters can't drop
+    // requests to public tile CDNs. See workers/src/index.ts /tiles/...
     var layer = L.tileLayer(
-      'https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}',
-      { maxZoom: 19, attribution: 'Tiles &copy; Esri' }
+      'https://api.thetalusfieldjournal.com/tiles/{z}/{y}/{x}',
+      { maxZoom: 19, attribution: 'Tiles &copy; Esri (via Talus Field proxy)' }
     );
     layer.on('tileloadstart', function () { tilesRequested++; });
     layer.on('tileload', function () { tilesLoaded++; logMsg('tile #' + tilesLoaded + ' / ' + tilesRequested + ' loaded'); });

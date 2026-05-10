@@ -36,6 +36,46 @@ app.use(
 
 app.get('/', (c) => c.text('Talus Field Guide API. See /api/inventory.'))
 
+// Tile proxy. Reasons:
+//   1. Map tile CDNs (server.arcgisonline.com, tile.openstreetmap.org,
+//      basemap.nationalmap.gov, etc.) are widely blocked by ad-blockers
+//      and DNS filters — EasyPrivacy and most default blocklists
+//      classify them as fingerprinting trackers because each tile URL
+//      carries unique coordinates and the request volume is high.
+//   2. Proxying through our own first-party domain bypasses every
+//      common blocker, so the map works for all visitors regardless of
+//      what they're running locally.
+//   3. Cloudflare's edge cache (cf.cacheTtl + cacheEverything) means
+//      Esri only gets hit once per tile per cache-lifetime per region.
+//      Tiles are effectively static — 30 days is a safe TTL.
+//
+// Mounted at the root level, not under /api/*, so the CORS middleware
+// above doesn't run on image requests (Leaflet uses plain <img> tags
+// with no crossOrigin attribute, so the browser wouldn't preflight
+// anyway, but this keeps the path clean).
+app.get('/tiles/:z/:y/:x', async (c) => {
+  const { z, y, x } = c.req.param()
+  // Validate against path traversal / non-numeric input.
+  if (!/^\d+$/.test(z) || !/^\d+$/.test(y) || !/^\d+$/.test(x)) {
+    return c.text('Bad tile coordinates', 400)
+  }
+  const upstream = `https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/${z}/${y}/${x}`
+  const resp = await fetch(upstream, {
+    cf: { cacheTtl: 2592000, cacheEverything: true },
+  })
+  if (!resp.ok) {
+    return new Response(null, { status: resp.status })
+  }
+  return new Response(resp.body, {
+    status: 200,
+    headers: {
+      'Content-Type': resp.headers.get('Content-Type') ?? 'image/png',
+      'Cache-Control': 'public, max-age=2592000, immutable',
+      'Access-Control-Allow-Origin': '*',
+    },
+  })
+})
+
 app.get('/api/inventory', async (c) => {
   const monthLabel = currentMonthLabel()
   const sold = await getInventoryCount(c.env, monthLabel)
