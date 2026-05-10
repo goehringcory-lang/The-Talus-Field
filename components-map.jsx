@@ -101,16 +101,10 @@ function MapView({ features, selectedPinId, selectionSource, hoveredPinId, onPin
     });
 
     // USGS National Map Topo basemap. WMTS-style endpoint, no API key.
-    // keepBuffer + updateWhenIdle:false avoid the visible "tile chunk" gaps
-    // when the container gets resized after init (CSS load, mobile reflow,
-    // sidebar layout shift): Leaflet otherwise only paints tiles for the
-    // viewport it knew about at init.
     L.tileLayer(
       "https://basemap.nationalmap.gov/arcgis/rest/services/USGSTopo/MapServer/tile/{z}/{y}/{x}",
       {
         maxZoom: 16,
-        keepBuffer: 4,
-        updateWhenIdle: false,
         attribution:
           'Tiles &copy; <a href="https://www.usgs.gov/" target="_blank" rel="noopener">USGS</a> The National Map',
       }
@@ -119,26 +113,43 @@ function MapView({ features, selectedPinId, selectionSource, hoveredPinId, onPin
     layerRef.current = L.layerGroup().addTo(map);
     mapRef.current = map;
 
-    // Watch the container for size changes and tell Leaflet about them.
-    // Without this, tiles only cover the area the container had at init —
-    // any growth (font swap, mobile orientation, layout shift) shows as
-    // gray squares until the user pans or zooms.
+    // Sync Leaflet's cached size with the real DOM size whenever the
+    // container resizes. Without this, the map only paints tiles for the
+    // size it had at L.map() time — any later layout shift (CSS settling,
+    // font swap, mobile reflow, window resize) leaves the new area as
+    // gray "tile chunks" until the user pans or zooms.
+    //
+    // The observer is debounced through rAF and only fires after the
+    // initial commit so we don't race with the marker/fitBounds effect
+    // that runs on the same render.
+    let pendingFrame = null;
+    let initialFire = true;
+    const scheduleInvalidate = () => {
+      if (initialFire) {
+        // ResizeObserver always fires once on observe(); skip that one —
+        // the marker effect's own invalidateSize() handles it.
+        initialFire = false;
+        return;
+      }
+      if (pendingFrame) return;
+      pendingFrame = requestAnimationFrame(() => {
+        pendingFrame = null;
+        if (mapRef.current) mapRef.current.invalidateSize();
+      });
+    };
     let ro = null;
     if (typeof ResizeObserver !== "undefined") {
-      ro = new ResizeObserver(() => map.invalidateSize());
+      ro = new ResizeObserver(scheduleInvalidate);
       ro.observe(container);
     }
-    // First invalidate on the next frame, after the browser has applied
-    // any pending layout. Catches the common case where the map div was
-    // briefly smaller during the React render that mounts it.
-    const rafId = requestAnimationFrame(() => map.invalidateSize());
+    window.addEventListener("resize", scheduleInvalidate);
 
     if (typeof onMapReady === "function") onMapReady(map);
 
     return () => {
-      // Cleanup if the page unmounts.
-      cancelAnimationFrame(rafId);
+      if (pendingFrame) cancelAnimationFrame(pendingFrame);
       if (ro) ro.disconnect();
+      window.removeEventListener("resize", scheduleInvalidate);
       if (typeof onMapReady === "function") onMapReady(null);
       map.remove();
       mapRef.current = null;
