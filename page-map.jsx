@@ -1,81 +1,66 @@
-/* global React, MapView, PinList, FilterChips, AdminOverlay, CATEGORY_META */
+/* global React */
 // =============================================================================
-// MAP PAGE — `/map` route. Hidden preview while the feature is being tested:
-// not linked from nav, not in sitemap, ships with <meta name="robots" noindex>.
+// MAP PAGE — `/map` route. Google Maps JavaScript API.
 //
-// Owns all map state. Fetches points.geojson, parses URL params, and renders
-// the split-view layout (filter chips + sidebar list + Leaflet map). The
-// admin overlay activates when ?admin=1 is present in the query string.
+// The Maps API <script> tag lives in index.html (loaded async). This component
+// fetches /points.geojson, waits for window.google.maps to be ready, then
+// initializes a single map inside the container ref. Markers come from the
+// geojson; clicking one opens an InfoWindow with the stop's name and blurb.
+//
+// API KEY: set in index.html, restricted to thetalusfieldjournal.com and
+// localhost:8765 in the Google Cloud console. Maps JS API must remain enabled.
 // =============================================================================
 
-const { useEffect, useMemo, useState, useCallback } = React;
+const { useEffect, useRef, useState } = React;
 
 const POINTS_URL = "/points.geojson?v=1";
 
-// Read URL state on mount (and on popstate). Returns parsed state.
-function readUrlState() {
-  const params = new URLSearchParams(window.location.search);
-  const stop = params.get("stop") || null;
-  const catParam = params.get("cat");
-  const cats = catParam
-    ? catParam
-        .split(",")
-        .map((s) => s.trim())
-        .filter(Boolean)
-    : [];
-  const admin = params.get("admin") === "1";
-  return { stop, cats, admin };
-}
-
-// Replace the current URL with one that reflects current state, without
-// pushing a new history entry. Selection + filter live in the query string;
-// the path stays /map.
-function writeUrlState({ selectedPinId, filterCategories, admin }) {
-  const params = new URLSearchParams();
-  if (selectedPinId) params.set("stop", selectedPinId);
-  if (filterCategories && filterCategories.length > 0) {
-    params.set("cat", filterCategories.join(","));
-  }
-  if (admin) params.set("admin", "1");
-  const qs = params.toString();
-  const newUrl = "/map" + (qs ? `?${qs}` : "");
-  if (newUrl !== window.location.pathname + window.location.search) {
-    window.history.replaceState(window.history.state, "", newUrl);
-  }
+// Polls window.google.maps for up to 8s. The script in index.html loads
+// async, so the namespace may not exist yet when MapPage mounts.
+function waitForGoogleMaps(timeoutMs = 8000) {
+  return new Promise((resolve, reject) => {
+    if (window.google && window.google.maps) {
+      resolve(window.google.maps);
+      return;
+    }
+    const start = Date.now();
+    const interval = setInterval(() => {
+      if (window.google && window.google.maps) {
+        clearInterval(interval);
+        resolve(window.google.maps);
+      } else if (Date.now() - start > timeoutMs) {
+        clearInterval(interval);
+        reject(
+          new Error(
+            "Google Maps API didn't load. Check the API key in index.html and that the Maps JavaScript API is enabled in the Cloud console."
+          )
+        );
+      }
+    }, 100);
+  });
 }
 
 function MapPage() {
-  const [features, setFeatures] = useState(null); // null = loading, [] = loaded empty
+  const containerRef = useRef(null);
+  const mapRef = useRef(null);
+  const [features, setFeatures] = useState(null); // null = loading
   const [error, setError] = useState(null);
-
-  // Read initial URL state once. Subsequent state changes write back to URL.
-  const initial = useMemo(() => readUrlState(), []);
-  const [selectedPinId, setSelectedPinId] = useState(initial.stop);
-  const [selectionSource, setSelectionSource] = useState(
-    initial.stop ? "url" : null
-  );
-  const [filterCategories, setFilterCategories] = useState(initial.cats);
-  const [hoveredPinId, setHoveredPinId] = useState(null);
-  const [mapInstance, setMapInstance] = useState(null);
-
-  const adminMode = initial.admin;
 
   // Fetch points.geojson once.
   useEffect(() => {
     let cancelled = false;
     fetch(POINTS_URL)
       .then((r) => {
-        if (!r.ok) throw new Error(`HTTP ${r.status}`);
+        if (!r.ok) throw new Error(`HTTP ${r.status} fetching ${POINTS_URL}`);
         return r.json();
       })
       .then((data) => {
         if (cancelled) return;
-        const fc = (data && data.features) || [];
-        setFeatures(fc);
+        setFeatures((data && data.features) || []);
       })
       .catch((err) => {
         if (cancelled) return;
-        setError(err.message || String(err));
+        setError(err.message);
         setFeatures([]);
       });
     return () => {
@@ -83,70 +68,72 @@ function MapPage() {
     };
   }, []);
 
-  // Sync URL with state. Skip on initial mount (initial state already came
-  // from the URL) — but the dependency array does this implicitly: the first
-  // render writes a no-op URL update which short-circuits inside writeUrlState.
+  // Initialize the map once Google Maps is ready AND features have loaded
+  // AND the container is in the DOM. Waiting for features means we know what
+  // bounds to fit at init, so the very first paint is already framed to the
+  // pin set rather than starting at a default zoom and snapping.
   useEffect(() => {
-    writeUrlState({ selectedPinId, filterCategories, admin: adminMode });
-  }, [selectedPinId, filterCategories, adminMode]);
+    if (mapRef.current) return; // already initialized
+    if (!features || features.length === 0) return;
+    if (!containerRef.current) return;
 
-  // Filtered feature set. Empty filterCategories means "show all".
-  const filteredFeatures = useMemo(() => {
-    if (!features) return [];
-    if (filterCategories.length === 0) return features;
-    return features.filter((f) =>
-      filterCategories.includes(f.properties.category)
-    );
-  }, [features, filterCategories]);
+    let listener = null;
+    waitForGoogleMaps()
+      .then((maps) => {
+        const map = new maps.Map(containerRef.current, {
+          center: { lat: 37.85, lng: -119.55 }, // Yosemite National Park
+          zoom: 10,
+          mapTypeId: "terrain",
+          mapTypeControl: true,
+          streetViewControl: false,
+          fullscreenControl: true,
+          gestureHandling: "greedy", // single-finger pan on mobile
+        });
+        mapRef.current = map;
 
-  // If the selected pin gets filtered out, drop the selection so the map
-  // doesn't try to fly to a marker that isn't rendered. Skip while features
-  // are still loading — otherwise a deep-linked ?stop=... selection gets
-  // wiped out before the data even arrives.
-  useEffect(() => {
-    if (!selectedPinId) return;
-    if (!features) return;
-    const inFiltered = filteredFeatures.some(
-      (f) => f.properties.id === selectedPinId
-    );
-    if (!inFiltered) {
-      setSelectedPinId(null);
-      setSelectionSource(null);
-    }
-  }, [features, filteredFeatures, selectedPinId]);
+        // One bounds + marker pass. Drop a default pin per feature with an
+        // InfoWindow on click. (For category-colored custom pins later, swap
+        // `new maps.Marker` for `new maps.marker.AdvancedMarkerElement` and
+        // build a content DOM node — requires the `marker` library, which is
+        // already requested in the script-tag URL.)
+        const bounds = new maps.LatLngBounds();
+        const info = new maps.InfoWindow();
 
-  // Sync state from URL on browser back/forward. Without this, popstate
-  // updates window.location but MapPage doesn't notice because the route
-  // (`map`) is unchanged.
-  useEffect(() => {
-    const onPop = () => {
-      const next = readUrlState();
-      setSelectedPinId(next.stop);
-      setSelectionSource(next.stop ? "url" : null);
-      setFilterCategories(next.cats);
+        for (const feature of features) {
+          const [lng, lat] = feature.geometry.coordinates;
+          const p = feature.properties;
+          const position = { lat, lng };
+          bounds.extend(position);
+
+          const marker = new maps.Marker({
+            position,
+            map,
+            title: p.name,
+          });
+
+          marker.addListener("click", () => {
+            info.setContent(buildInfoHtml(p));
+            info.open({ anchor: marker, map });
+          });
+        }
+
+        // Frame to fit all markers (40px padding on each side), but cap how
+        // far in we zoom — fitBounds on a single point would zoom to 21.
+        map.fitBounds(bounds, 40);
+        listener = maps.event.addListenerOnce(map, "idle", () => {
+          if (map.getZoom() > 12) map.setZoom(12);
+        });
+      })
+      .catch((err) => {
+        setError(err.message);
+      });
+
+    return () => {
+      if (listener && window.google && window.google.maps) {
+        window.google.maps.event.removeListener(listener);
+      }
     };
-    window.addEventListener("popstate", onPop);
-    return () => window.removeEventListener("popstate", onPop);
-  }, []);
-
-  // Selection handlers. Source distinguishes who clicked — the map,
-  // the list, or a URL deep-link — so MapView and PinList can decide
-  // whether to fly/scroll or sit still.
-  const selectFromList = useCallback((id) => {
-    setSelectedPinId(id);
-    setSelectionSource("list");
-  }, []);
-  const selectFromMap = useCallback((id) => {
-    setSelectedPinId(id);
-    setSelectionSource("map");
-  }, []);
-
-  const toggleCategory = useCallback((cat) => {
-    setFilterCategories((prev) =>
-      prev.includes(cat) ? prev.filter((c) => c !== cat) : [...prev, cat]
-    );
-  }, []);
-  const clearCategories = useCallback(() => setFilterCategories([]), []);
+  }, [features]);
 
   if (features === null) {
     return (
@@ -156,52 +143,43 @@ function MapPage() {
     );
   }
 
-  if (error && features.length === 0) {
-    return (
-      <div className="map-page map-page--error">
-        <p>Map data failed to load: {error}</p>
-      </div>
-    );
-  }
-
   return (
     <div className="map-page">
-      <div className="map-page__top">
-        <h1 className="map-page__title">
-          The Talus Field map{" "}
-          <span className="map-page__hidden-tag" title="Hidden preview — URL access only, noindex.">
-            preview
-          </span>
-        </h1>
-        <FilterChips
-          allFeatures={features}
-          activeCategories={filterCategories}
-          onToggle={toggleCategory}
-          onClear={clearCategories}
-        />
-      </div>
-      <div className="map-page__split">
-        <PinList
-          features={filteredFeatures}
-          selectedPinId={selectedPinId}
-          selectionSource={selectionSource}
-          onSelect={selectFromList}
-          onHover={setHoveredPinId}
-        />
-        <div className="map-page__map-wrap">
-          <MapView
-            features={filteredFeatures}
-            selectedPinId={selectedPinId}
-            selectionSource={selectionSource}
-            hoveredPinId={hoveredPinId}
-            onPinClick={selectFromMap}
-            onMapReady={setMapInstance}
-          />
-          {adminMode && mapInstance && <AdminOverlay map={mapInstance} />}
+      {error && (
+        <div className="map-page__error" role="alert">
+          Map failed to load: {error}
         </div>
-      </div>
+      )}
+      <div ref={containerRef} id="map" className="map-page__map" />
     </div>
   );
+}
+
+// Plain-string HTML for the InfoWindow. Google Maps' InfoWindow takes either
+// a string or a DOM node; string is simplest and fine for this content.
+function buildInfoHtml(p) {
+  const blurb = p.blurb ? `<p style="margin:6px 0 0;">${escapeHtml(p.blurb)}</p>` : "";
+  const cat = p.category
+    ? `<span style="text-transform:uppercase;font-size:11px;letter-spacing:0.06em;color:#777;">${escapeHtml(
+        p.category
+      )}</span>`
+    : "";
+  return `
+    <div style="font:14px/1.4 system-ui,sans-serif;max-width:240px;color:#222;">
+      <strong style="font-size:15px;">${escapeHtml(p.name || "")}</strong><br/>
+      ${cat}
+      ${blurb}
+    </div>
+  `;
+}
+
+function escapeHtml(s) {
+  return String(s)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
 }
 
 window.MapPage = MapPage;
