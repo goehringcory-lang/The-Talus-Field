@@ -1,10 +1,14 @@
 # Cloudflare Pages response headers.
 
-# Default for all routes.
+# Default for all routes. The /* fall-through is also where HTML pages
+# (rendered from index.html via the SPA history router) get their headers
+# — keep them on no-cache so users always pick up the latest cache-buster
+# query strings on /styles.css?v=N and /*.jsx?v=N.
 /*
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin
   Permissions-Policy: interest-cohort=()
+  Cache-Control: public, max-age=0, must-revalidate
   Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://unpkg.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://api.thetalusfieldjournal.com https://www.google-analytics.com; frame-ancestors 'none'; form-action 'self'
 
 # robots.txt and sitemap should never be cached aggressively so

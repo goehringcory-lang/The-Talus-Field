@@ -92,9 +92,15 @@ function MapView({ features, selectedPinId, selectionSource, hoveredPinId, onPin
   useEffect(() => {
     if (mapRef.current || !containerRef.current) return;
     const container = containerRef.current;
+    // Init Leaflet WITHOUT a default center/zoom. With no view set, the
+    // tile layer queues up but doesn't paint until the marker effect's
+    // fitBounds calls setView — which means tiles only load once, for
+    // the final framed view. Previously we initialised at zoom 10
+    // centered on the park, so tiles for that frame loaded immediately,
+    // and when fitBounds later snapped the view to a different zoom the
+    // old tiles were sometimes left in the DOM, visible as a separate
+    // cluster of tiles at a different scale.
     const map = L.map(container, {
-      center: [37.8451, -119.5383], // approximate park centroid
-      zoom: 10,
       scrollWheelZoom: true,
       zoomControl: true,
       attributionControl: true,
