@@ -33,8 +33,9 @@ function HomePage({ go }) {
             </div>
           </div>
           <Placeholder
-            caption={"Half Dome at first light"}
-            image="img/Half%20Dome%20Main%20Photo.jpg"
+            caption={"El Capitan and Bridalveil at sunset"}
+            credit={"Rodrigo Soares / Unsplash"}
+            image="img/valley-view-sunset-rodrigo-soares.jpg"
             tag="PLATE I"
             size="lg"
             style={{ aspectRatio: "4 / 5" }}
