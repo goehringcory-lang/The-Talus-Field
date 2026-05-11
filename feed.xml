@@ -9,13 +9,22 @@
     <copyright>© 2026 The Talus Field</copyright>
     <managingEditor>Cory@thetalusfieldjournal.com (Cory Goehring)</managingEditor>
     <webMaster>Cory@thetalusfieldjournal.com (Cory Goehring)</webMaster>
-    <lastBuildDate>Fri, 08 May 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 11 May 2026 00:00:00 +0000</lastBuildDate>
     <image>
       <url>https://thetalusfieldjournal.com/img/talus-field-mark.png</url>
       <title>The Talus Field</title>
       <link>https://thetalusfieldjournal.com/</link>
     </image>
 
+    <item>
+      <title>The Mist Trail: everything the internet isn't telling you</title>
+      <link>https://thetalusfieldjournal.com/articles/mist-trail-the-real-guide</link>
+      <guid isPermaLink="true">https://thetalusfieldjournal.com/articles/mist-trail-the-real-guide</guid>
+      <pubDate>Mon, 11 May 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Cory Goehring</dc:creator>
+      <category>Trails and Hikes</category>
+      <description>The most hiked trail in any national park generates more questions than every other Yosemite trail combined. The honest answers about shoes, water, when to go, and whether you can actually die out there.</description>
+    </item>
     <item>
       <title>So you want to work in Yosemite</title>
       <link>https://thetalusfieldjournal.com/articles/working-in-yosemite</link>
