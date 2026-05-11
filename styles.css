@@ -1926,10 +1926,11 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
 }
 
 /* ============================================================
-   /MAP — hidden preview. Google Maps + itinerary sidebar.
-   The map container needs defined size + overflow:hidden so the
-   map's internally-positioned tiles can never bleed past its
-   bounds and overlap surrounding UI.
+   /MAP — hidden preview. Google Maps + itinerary toolbar.
+   Layout: a fixed-width left toolbar (`.map-page__sidebar`) plus
+   the map container (`#map`). The toolbar reads as its own panel,
+   not a translucent overlay; sections inside grow over time as
+   filters get added.
    ============================================================ */
 
 .map-page {
@@ -1956,43 +1957,84 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
   border-radius: 4px;
 }
 
-/* --- Sidebar --- */
+/* ------------------------------------------------------------
+   Toolbar (left rail).
+   Sturdier than the previous "panel" treatment: darker than the
+   page background so it reads as a permanent rail, hard right
+   edge instead of a hairline, sticky header so the title stays
+   in view as the day list scrolls.
+   ------------------------------------------------------------ */
 .map-page__sidebar {
-  flex: 0 0 320px;
-  width: 320px;
+  flex: 0 0 340px;
+  width: 340px;
   height: 100%;
   overflow-y: auto;
-  border-right: 1px solid var(--rule-soft);
-  background: var(--paper);
-  padding: 18px 16px 24px;
+  background: var(--paper-2);
+  border-right: 1px solid var(--rule);
+  box-shadow: inset -1px 0 0 var(--rule);
   font-family: var(--sans);
   color: var(--ink);
   -webkit-overflow-scrolling: touch;
 }
 
+.map-sidebar__header {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background: var(--paper-2);
+  padding: 16px 20px 12px;
+  border-bottom: 1px solid var(--rule-soft);
+}
 .map-sidebar__title {
-  margin: 0 4px 12px;
+  margin: 0;
   font-family: var(--serif, var(--sans));
-  font-size: 18px;
+  font-size: 19px;
   font-weight: 600;
-  letter-spacing: 0.01em;
+  letter-spacing: 0.005em;
   color: var(--ink);
 }
+.map-sidebar__subtitle {
+  margin: 4px 0 0;
+  font-size: 12.5px;
+  color: var(--ink-2);
+  line-height: 1.4;
+}
 
+/* Sections divide the toolbar into stacked groups (Itineraries,
+   Day by day, Filters). Each has a small caps label and a rule
+   below it so future sections drop in cleanly. */
+.map-sidebar__section {
+  padding: 16px 20px 18px;
+  border-bottom: 1px solid var(--rule-soft);
+}
+.map-sidebar__section:last-child {
+  border-bottom: none;
+}
+.map-sidebar__section-label {
+  margin: 0 0 10px;
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+/* Itinerary buttons. White-ish cards sitting on the rail's paper-2
+   so they pop without needing borders to do the work. */
 .map-sidebar__itineraries {
   list-style: none;
   padding: 0;
-  margin: 0 0 18px;
+  margin: 0;
   display: flex;
   flex-direction: column;
   gap: 6px;
 }
-
 .map-sidebar__itinerary {
   display: block;
   width: 100%;
   text-align: left;
-  padding: 10px 12px 11px;
+  padding: 11px 12px 12px;
   border: 1px solid var(--rule-soft);
   border-left: 3px solid transparent;
   border-radius: 3px;
@@ -2003,24 +2045,25 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
   transition: background 120ms, border-color 120ms;
 }
 .map-sidebar__itinerary:hover {
-  background: var(--paper-2);
+  background: var(--paper-3);
   border-color: var(--rule);
 }
 .map-sidebar__itinerary--selected {
-  border-left-color: var(--moss, #7a8a5a);
-  background: var(--paper-2);
+  border-left-color: var(--moss);
+  background: var(--paper);
+  border-color: var(--rule);
 }
 .map-sidebar__itinerary-label {
   display: block;
   font-size: 14px;
   font-weight: 600;
-  letter-spacing: 0.01em;
+  letter-spacing: 0.005em;
   color: var(--ink);
 }
 .map-sidebar__itinerary-sub {
   display: block;
   font-size: 12px;
-  color: var(--ink-2, #666);
+  color: var(--ink-2);
   margin-top: 2px;
 }
 .map-sidebar__itinerary-count {
@@ -2028,33 +2071,31 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
   font-size: 11px;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  color: var(--ink-3, #888);
+  color: var(--ink-3);
   margin-top: 4px;
 }
 
-/* --- Day-by-day stop list --- */
+/* Day-by-day stop list, shown under Itineraries when one is active. */
 .map-sidebar__days {
   display: flex;
   flex-direction: column;
   gap: 14px;
-  border-top: 1px solid var(--rule-soft);
-  padding-top: 14px;
 }
 .map-sidebar__day-name {
   display: flex;
   justify-content: space-between;
   align-items: baseline;
-  margin: 0 4px 6px;
+  margin: 0 0 6px;
   font-family: var(--sans);
-  font-size: 12px;
-  font-weight: 600;
+  font-size: 11.5px;
+  font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--ink-2, #666);
+  color: var(--ink-2);
 }
 .map-sidebar__day-count {
   font-weight: 500;
-  color: var(--ink-3, #888);
+  color: var(--ink-3);
 }
 .map-sidebar__stops {
   list-style: none;
@@ -2073,7 +2114,7 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
   text-align: left;
   background: transparent;
   border: none;
-  padding: 8px 8px 8px 10px;
+  padding: 7px 8px 7px 10px;
   border-radius: 2px;
   cursor: pointer;
   font-family: inherit;
@@ -2083,10 +2124,10 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
   transition: background 100ms;
 }
 .map-sidebar__stop:hover {
-  background: var(--paper-2);
+  background: var(--paper);
 }
 .map-sidebar__stop--selected {
-  background: var(--paper-2);
+  background: var(--paper);
   font-weight: 600;
 }
 .map-sidebar__stop-name {
@@ -2097,11 +2138,26 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
   font-size: 10.5px;
   text-transform: uppercase;
   letter-spacing: 0.06em;
-  color: var(--ink-3, #888);
+  color: var(--ink-3);
   font-weight: 400;
 }
 
-/* --- Map area (right pane) --- */
+/* Placeholder section for future filter UI. Muted so it doesn't
+   compete with the active itinerary picker. */
+.map-sidebar__section--muted {
+  opacity: 0.78;
+}
+.map-sidebar__placeholder {
+  margin: 0;
+  font-size: 12.5px;
+  line-height: 1.45;
+  color: var(--ink-3);
+  font-style: italic;
+}
+
+/* ------------------------------------------------------------
+   Map area (right of the toolbar).
+   ------------------------------------------------------------ */
 .map-page__main {
   flex: 1 1 auto;
   min-width: 0;        /* lets the flex child shrink instead of overflowing */
@@ -2135,37 +2191,37 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
     flex: 0 0 auto;
     width: 100%;
     height: auto;
-    max-height: 45dvh;
+    max-height: 50dvh;
     border-right: none;
-    border-bottom: 1px solid var(--rule-soft);
-    padding: 12px 12px 14px;
+    border-bottom: 1px solid var(--rule);
+    box-shadow: none;
+  }
+  .map-sidebar__header {
+    padding: 12px 14px 10px;
+  }
+  .map-sidebar__section {
+    padding: 12px 14px 14px;
   }
   .map-sidebar__itineraries {
     /* Horizontal pill row, one tap per itinerary. */
     flex-direction: row;
     overflow-x: auto;
     gap: 8px;
-    margin-bottom: 12px;
     padding-bottom: 4px;
     -webkit-overflow-scrolling: touch;
   }
   .map-sidebar__itinerary {
     flex: 0 0 auto;
-    min-width: 160px;
+    min-width: 170px;
     border-left-width: 1px;
     border-top: 3px solid transparent;
   }
   .map-sidebar__itinerary--selected {
     border-left-color: var(--rule-soft);
-    border-top-color: var(--moss, #7a8a5a);
-  }
-  .map-sidebar__days {
-    border-top: none;
-    padding-top: 0;
+    border-top-color: var(--moss);
   }
   #map,
   .map-page__map {
     min-height: 50dvh;
   }
 }
-

@@ -305,68 +305,85 @@ function ItinerarySidebar({
 
   return (
     <aside className="map-page__sidebar">
-      <h2 className="map-sidebar__title">Plan a trip</h2>
-      <ul className="map-sidebar__itineraries">
-        <li>
-          <ItineraryButton
-            label="All locations"
-            subtitle="Every region · Hetch Hetchy included"
-            count={counts.null}
-            selected={selectedItinerary === null}
-            onClick={() => onSelectItinerary(null)}
-          />
-        </li>
-        {ITINERARY_KEYS.map((key) => {
-          const meta = ITINERARIES[key];
-          return (
-            <li key={key}>
-              <ItineraryButton
-                label={meta.label}
-                subtitle={meta.subtitle}
-                count={counts[key]}
-                selected={selectedItinerary === key}
-                onClick={() => onSelectItinerary(key)}
-              />
-            </li>
-          );
-        })}
-      </ul>
+      <header className="map-sidebar__header">
+        <h2 className="map-sidebar__title">Trip planner</h2>
+        <p className="map-sidebar__subtitle">Pick a length, see suggested stops.</p>
+      </header>
 
-      {selectedItinerary && (
-        <div className="map-sidebar__days">
-          {ITINERARIES[selectedItinerary].days.map((day) => {
-            const stopsInDay = features.filter((f) =>
-              day.regions.includes(f.properties.region)
-            );
+      <div className="map-sidebar__section">
+        <h3 className="map-sidebar__section-label">Itineraries</h3>
+        <ul className="map-sidebar__itineraries">
+          <li>
+            <ItineraryButton
+              label="All locations"
+              subtitle="Every region · Hetch Hetchy included"
+              count={counts.null}
+              selected={selectedItinerary === null}
+              onClick={() => onSelectItinerary(null)}
+            />
+          </li>
+          {ITINERARY_KEYS.map((key) => {
+            const meta = ITINERARIES[key];
             return (
-              <section key={day.name} className="map-sidebar__day">
-                <h3 className="map-sidebar__day-name">
-                  {day.name}
-                  <span className="map-sidebar__day-count">{stopsInDay.length}</span>
-                </h3>
-                <ul className="map-sidebar__stops">
-                  {stopsInDay.map((f) => {
-                    const p = f.properties;
-                    const isSelected = p.id === selectedStopId;
-                    return (
-                      <li key={p.id}>
-                        <button
-                          type="button"
-                          className={`map-sidebar__stop${isSelected ? " map-sidebar__stop--selected" : ""}`}
-                          onClick={() => onSelectStop(p.id)}
-                        >
-                          <span className="map-sidebar__stop-name">{p.name}</span>
-                          <span className="map-sidebar__stop-cat">{p.category}</span>
-                        </button>
-                      </li>
-                    );
-                  })}
-                </ul>
-              </section>
+              <li key={key}>
+                <ItineraryButton
+                  label={meta.label}
+                  subtitle={meta.subtitle}
+                  count={counts[key]}
+                  selected={selectedItinerary === key}
+                  onClick={() => onSelectItinerary(key)}
+                />
+              </li>
             );
           })}
+        </ul>
+      </div>
+
+      {selectedItinerary && (
+        <div className="map-sidebar__section">
+          <h3 className="map-sidebar__section-label">Day by day</h3>
+          <div className="map-sidebar__days">
+            {ITINERARIES[selectedItinerary].days.map((day) => {
+              const stopsInDay = features.filter((f) =>
+                day.regions.includes(f.properties.region)
+              );
+              return (
+                <section key={day.name} className="map-sidebar__day">
+                  <h4 className="map-sidebar__day-name">
+                    {day.name}
+                    <span className="map-sidebar__day-count">{stopsInDay.length}</span>
+                  </h4>
+                  <ul className="map-sidebar__stops">
+                    {stopsInDay.map((f) => {
+                      const p = f.properties;
+                      const isSelected = p.id === selectedStopId;
+                      return (
+                        <li key={p.id}>
+                          <button
+                            type="button"
+                            className={`map-sidebar__stop${isSelected ? " map-sidebar__stop--selected" : ""}`}
+                            onClick={() => onSelectStop(p.id)}
+                          >
+                            <span className="map-sidebar__stop-name">{p.name}</span>
+                            <span className="map-sidebar__stop-cat">{p.category}</span>
+                          </button>
+                        </li>
+                      );
+                    })}
+                  </ul>
+                </section>
+              );
+            })}
+          </div>
         </div>
       )}
+
+      <div className="map-sidebar__section map-sidebar__section--muted">
+        <h3 className="map-sidebar__section-label">Filters</h3>
+        <p className="map-sidebar__placeholder">
+          Category and region filters coming as more pin types are added.
+        </p>
+      </div>
     </aside>
   );
 }
