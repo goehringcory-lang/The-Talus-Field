@@ -116,8 +116,9 @@ window.ARTICLES = [
     isoDate: "2026-05-11",
     isoModified: "2026-05-11",
     read: "9 min",
-    placeholder: "Half Dome at first light, from the rim",
-    image: "img/Half Dome Main Photo.jpg",
+    placeholder: "Half Dome at sunset, from Glacier Point",
+    image: "img/half-dome-sunset-glacier-point-joshua-earle.jpg",
+    credit: "Photo: Joshua Earle / Unsplash",
   },
   {
     slug: "mist-trail-the-real-guide",
