@@ -31,7 +31,7 @@
   </url>
   <url>
     <loc>https://thetalusfieldjournal.com/section/seasonal</loc>
-    <lastmod>2026-04-27</lastmod>
+    <lastmod>2026-05-11</lastmod>
   </url>
 
   <!-- Static pages -->
@@ -81,6 +81,14 @@
   </url>
 
   <!-- Articles -->
+  <url>
+    <loc>https://thetalusfieldjournal.com/articles/glacier-point-road-open-2026</loc>
+    <lastmod>2026-05-11</lastmod>
+    <image:image>
+      <image:loc>https://thetalusfieldjournal.com/img/Half%20Dome%20Main%20Photo.jpg</image:loc>
+      <image:title>Half Dome at first light, from the rim</image:title>
+    </image:image>
+  </url>
   <url>
     <loc>https://thetalusfieldjournal.com/articles/mist-trail-the-real-guide</loc>
     <lastmod>2026-05-11</lastmod>
