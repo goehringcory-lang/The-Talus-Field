@@ -14,7 +14,7 @@ function Placeholder({ caption, tag, size, style, motif, image, credit }) {
       {image && (
         <img
           className="placeholder__img"
-          src={image}
+          src={/^(https?:|\/)/i.test(image) ? image : `/${image}`}
           alt={caption || ""}
           loading="lazy"
           referrerPolicy="no-referrer"

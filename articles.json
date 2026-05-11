@@ -1,5 +1,15 @@
 [
   {
+    "slug": "mist-trail-the-real-guide",
+    "cat": "trails",
+    "title": "The Mist Trail: everything the internet isn't telling you",
+    "dek": "The most hiked trail in any national park generates more questions than every other Yosemite trail combined. The honest answers about shoes, water, when to go, and whether you can actually die out there.",
+    "date": "May 11, 2026",
+    "isoDate": "2026-05-11",
+    "read": "12 min",
+    "image": "img/nevada-fall-liberty-cap-ryan-oconnor.jpg"
+  },
+  {
     "slug": "working-in-yosemite",
     "cat": "planning",
     "title": "So you want to work in Yosemite",
@@ -46,7 +56,8 @@
     "dek": "The same fires that kill every other tree in the Sierra are the ones the giant sequoia depends on. Two-foot bark, embedded tannins, and a seedling ecology that fails without burning.",
     "date": "May 8, 2026",
     "isoDate": "2026-05-08",
-    "read": "7 min"
+    "read": "7 min",
+    "image": "img/wawona-tunnel-tree-historic.jpg"
   },
   {
     "slug": "hetch-hetchy-the-other-yosemite-valley",

@@ -5,7 +5,7 @@
   <!-- Hub pages -->
   <url>
     <loc>https://thetalusfieldjournal.com/</loc>
-    <lastmod>2026-05-08</lastmod>
+    <lastmod>2026-05-11</lastmod>
     <image:image>
       <image:loc>https://thetalusfieldjournal.com/img/Half%20Dome%20Main%20Photo.jpg</image:loc>
       <image:title>Half Dome at first light</image:title>
@@ -13,7 +13,7 @@
   </url>
   <url>
     <loc>https://thetalusfieldjournal.com/articles</loc>
-    <lastmod>2026-05-08</lastmod>
+    <lastmod>2026-05-11</lastmod>
   </url>
 
   <!-- Sections -->
@@ -23,7 +23,7 @@
   </url>
   <url>
     <loc>https://thetalusfieldjournal.com/section/trails</loc>
-    <lastmod>2026-04-27</lastmod>
+    <lastmod>2026-05-11</lastmod>
   </url>
   <url>
     <loc>https://thetalusfieldjournal.com/section/wildlife</loc>
@@ -82,6 +82,14 @@
 
   <!-- Articles -->
   <url>
+    <loc>https://thetalusfieldjournal.com/articles/mist-trail-the-real-guide</loc>
+    <lastmod>2026-05-11</lastmod>
+    <image:image>
+      <image:loc>https://thetalusfieldjournal.com/img/nevada-fall-liberty-cap-ryan-oconnor.jpg</image:loc>
+      <image:title>Nevada Fall and Liberty Cap from the John Muir Trail</image:title>
+    </image:image>
+  </url>
+  <url>
     <loc>https://thetalusfieldjournal.com/articles/working-in-yosemite</loc>
     <lastmod>2026-05-08</lastmod>
     <image:image>
@@ -113,6 +121,10 @@
   <url>
     <loc>https://thetalusfieldjournal.com/articles/giant-sequoias-fire-adaptation</loc>
     <lastmod>2026-05-08</lastmod>
+    <image:image>
+      <image:loc>https://thetalusfieldjournal.com/img/wawona-tunnel-tree-historic.jpg</image:loc>
+      <image:title>The Wawona Tunnel Tree, Mariposa Grove (fell 1969)</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://thetalusfieldjournal.com/articles/hetch-hetchy-the-other-yosemite-valley</loc>

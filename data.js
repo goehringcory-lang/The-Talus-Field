@@ -104,6 +104,17 @@ window.KIT = {
 
 window.ARTICLES = [
   {
+    slug: "mist-trail-the-real-guide",
+    cat: "trails",
+    title: "The Mist Trail: everything the internet isn't telling you",
+    dek: "The most hiked trail in any national park generates more questions than every other Yosemite trail combined. The honest answers about shoes, water, when to go, and whether you can actually die out there.",
+    date: "May 11, 2026",
+    read: "12 min",
+    placeholder: "Nevada Fall and Liberty Cap from the John Muir Trail",
+    image: "img/nevada-fall-liberty-cap-ryan-oconnor.jpg",
+    credit: "Photo: Ryan O'Connor / Unsplash",
+  },
+  {
     slug: "working-in-yosemite",
     cat: "planning",
     title: "So you want to work in Yosemite",
@@ -150,7 +161,8 @@ window.ARTICLES = [
     dek: "The same fires that kill every other tree in the Sierra are the ones the giant sequoia depends on. Two-foot bark, embedded tannins, and a seedling ecology that fails without burning.",
     date: "May 8, 2026",
     read: "7 min",
-    placeholder: "Mariposa Grove, fire-scarred sequoia",
+    placeholder: "The Wawona Tunnel Tree, Mariposa Grove (fell 1969)",
+    image: "img/wawona-tunnel-tree-historic.jpg",
   },
   {
     slug: "hetch-hetchy-the-other-yosemite-valley",
