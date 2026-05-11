@@ -108,6 +108,18 @@ window.KIT = {
 
 window.ARTICLES = [
   {
+    slug: "glacier-point-road-open-2026",
+    cat: "seasonal",
+    title: "Glacier Point Road is open: a plan for the early season",
+    dek: "The road climbs seventeen miles to a viewpoint at 7,200 feet that puts you at eye level with Half Dome. What is open at the top, what is not, and how to think about the first weeks of the 2026 season.",
+    date: "May 11, 2026",
+    isoDate: "2026-05-11",
+    isoModified: "2026-05-11",
+    read: "9 min",
+    placeholder: "Half Dome at first light, from the rim",
+    image: "img/Half Dome Main Photo.jpg",
+  },
+  {
     slug: "mist-trail-the-real-guide",
     cat: "trails",
     title: "The Mist Trail: everything the internet isn't telling you",
