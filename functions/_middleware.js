@@ -17,7 +17,7 @@ const SITE_NAME = "The Talus Field";
 const SITE_TAGLINE = "Yosemite, written from inside it";
 const SITE_DEFAULT_IMAGE = `${SITE_ORIGIN}/img/Half%20Dome%20Main%20Photo.jpg`;
 const SITE_DEFAULT_DESC =
-  "A field journal of Yosemite National Park, kept by a resident. Trail conditions, planning notes, wildlife, and longer essays on the park's seasons, geology, and life.";
+  "A field journal of Yosemite National Park, kept by a resident. Trails, planning notes, wildlife, and essays on the park's seasons and life.";
 const AUTHOR_NAME = "Cory Goehring";
 const PUBLISHER_LOGO = `${SITE_ORIGIN}/img/talus-field-mark.png`;
 
@@ -30,6 +30,19 @@ function absoluteImage(url) {
 function safeJsonForScript(obj) {
   // Defend against premature </script> termination if any string contains it.
   return JSON.stringify(obj).replace(/<\/(script)/gi, "<\\/$1");
+}
+
+// Build a BreadcrumbList from an array of [name, url] (last item omits url).
+function breadcrumbLd(crumbs) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: crumbs.map(([name, url], i) => {
+      const item = { "@type": "ListItem", position: i + 1, name };
+      if (url) item.item = url;
+      return item;
+    }),
+  };
 }
 
 function seoForPath(pathname) {
@@ -55,7 +68,7 @@ function seoForPath(pathname) {
         description: a.dek,
         image: [image],
         datePublished: a.isoDate || a.date,
-        dateModified: a.isoDate || a.date,
+        dateModified: a.isoModified || a.isoDate || a.date,
         articleSection: cat ? cat.label : undefined,
         author: { "@type": "Person", name: AUTHOR_NAME, url: `${SITE_ORIGIN}/about` },
         publisher: {
@@ -67,6 +80,11 @@ function seoForPath(pathname) {
         isAccessibleForFree: true,
         inLanguage: "en-US",
       },
+      breadcrumb: breadcrumbLd([
+        ["Home", `${SITE_ORIGIN}/`],
+        cat ? [cat.label, `${SITE_ORIGIN}/section/${cat.slug}`] : null,
+        [a.title, null],
+      ].filter(Boolean)),
     };
   }
 
@@ -98,6 +116,10 @@ function seoForPath(pathname) {
           datePublished: a.isoDate || a.date,
         })),
       },
+      breadcrumb: breadcrumbLd([
+        ["Home", `${SITE_ORIGIN}/`],
+        [cat.label, null],
+      ]),
     };
   }
 
@@ -156,6 +178,23 @@ function seoForPath(pathname) {
       description:
         "How affiliate links work on The Talus Field, and the editorial standards that don't change for paid placements.",
     },
+    "/guide": {
+      title: `The Field Guide — ${SITE_NAME}`,
+      description:
+        "An offline web app for Yosemite. Tappable GPS for the parking turnouts, quiet trailheads, and insider tactics that locals use. Works at the trailhead when service dies.",
+    },
+    "/cap": {
+      title: `Why the Field Guide is capped at 100 a month — ${SITE_NAME}`,
+      description:
+        "The reasoning behind a hard monthly cap on Field Guide sales. Carrying capacity, editorial integrity, and why the cart closes when it closes.",
+    },
+    "/map": {
+      // Hidden preview. URL-only access while the feature is being tested.
+      // robots:noindex keeps it out of search even if someone shares the URL.
+      title: `Map — ${SITE_NAME}`,
+      description: SITE_DEFAULT_DESC,
+      robots: "noindex, nofollow",
+    },
   };
 
   const meta = known[path];
@@ -167,6 +206,7 @@ function seoForPath(pathname) {
     ogType: "website",
     image: SITE_DEFAULT_IMAGE,
     jsonLd: null,
+    robots: meta.robots || null,
   };
 }
 
@@ -235,11 +275,22 @@ export async function onRequest({ request, next }) {
         el.setAttribute("href", seo.canonical);
       },
     })
+    .on('meta[name="robots"]', {
+      element(el) {
+        if (seo.robots) el.setAttribute("content", seo.robots);
+      },
+    })
     .on("head", {
       element(el) {
         if (seo.jsonLd) {
           el.append(
             `<script type="application/ld+json" id="ld-page">${safeJsonForScript(seo.jsonLd)}</script>`,
+            { html: true }
+          );
+        }
+        if (seo.breadcrumb) {
+          el.append(
+            `<script type="application/ld+json" id="ld-breadcrumb">${safeJsonForScript(seo.breadcrumb)}</script>`,
             { html: true }
           );
         }
