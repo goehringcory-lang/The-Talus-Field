@@ -42,7 +42,7 @@ function ArticlePage({ slug, go }) {
             credit={article.credit}
             tag="PLATE I"
             size="lg"
-            style={{ aspectRatio: "16 / 10" }}
+            natural
             motif={<MotifMountains />}
           />
         </div>
