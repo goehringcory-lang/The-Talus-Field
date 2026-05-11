@@ -38,7 +38,7 @@ function HomePage({ go }) {
             image="img/valley-view-sunset-rodrigo-soares.jpg"
             tag="PLATE I"
             size="lg"
-            style={{ aspectRatio: "4 / 5" }}
+            natural
             motif={<MotifMountains />}
           />
         </div>

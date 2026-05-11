@@ -1080,6 +1080,18 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
 .placeholder--lg .placeholder__credit { bottom: 62px; }
 .placeholder--sm .placeholder__credit { bottom: 48px; font-size: 8px; padding: 3px 6px; }
 
+/* Natural mode: the photo dictates the container's aspect ratio so the
+   entire image is visible (no cropping). Used for hero plates where we
+   want to honor the photographer's framing. */
+.placeholder--natural { height: auto; }
+.placeholder--natural .placeholder__img {
+  position: static;
+  inset: auto;
+  width: 100%;
+  height: auto;
+  object-fit: initial;
+}
+
 /* ===== Article cards ===== */
 .card {
   display: block;
