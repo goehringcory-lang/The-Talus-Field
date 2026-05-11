@@ -4,10 +4,10 @@ const { useState, useEffect, useMemo, useRef } = React;
 // ============================================================
 // Photo placeholder. Nature-journal treatment.
 // ============================================================
-function Placeholder({ caption, tag, size, style, motif, image, credit }) {
+function Placeholder({ caption, tag, size, style, motif, image, credit, natural }) {
   return (
     <div
-      className={`placeholder ${size === "lg" ? "placeholder--lg" : ""} ${size === "sm" ? "placeholder--sm" : ""} ${image ? "placeholder--photo" : ""}`}
+      className={`placeholder ${size === "lg" ? "placeholder--lg" : ""} ${size === "sm" ? "placeholder--sm" : ""} ${image ? "placeholder--photo" : ""} ${natural ? "placeholder--natural" : ""}`}
       data-tag={tag || "PLATE"}
       style={style}
     >
