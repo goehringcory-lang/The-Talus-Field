@@ -43,6 +43,7 @@ function ArticlePage({ slug, go }) {
             tag="PLATE I"
             size="lg"
             natural
+            eager
             motif={<MotifMountains />}
           />
         </div>

@@ -52,7 +52,7 @@ const SITE_NAME = "The Talus Field";
 const SITE_TAGLINE = "Yosemite, written from inside it";
 const SITE_DEFAULT_IMAGE = `${SITE_ORIGIN}/img/Half%20Dome%20Main%20Photo.jpg`;
 const SITE_DEFAULT_DESC =
-  "A field journal of Yosemite National Park, kept by a resident. Trail conditions, planning notes, wildlife, and longer essays on the park's seasons, geology, and life.";
+  "A field journal of Yosemite National Park, kept by a resident. Trails, planning notes, wildlife, and essays on the park's seasons and life.";
 
 function setMeta(name, content, attr = "name") {
   if (!content) return;
@@ -97,6 +97,19 @@ function absolute(url) {
   return `${SITE_ORIGIN}/${url.replace(/^\//, "")}`;
 }
 
+// Build a BreadcrumbList from an array of [name, url] (last item omits url).
+function breadcrumbLd(crumbs) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: crumbs.map(([name, url], i) => {
+      const item = { "@type": "ListItem", position: i + 1, name };
+      if (url) item.item = url;
+      return item;
+    }),
+  };
+}
+
 // Build per-route SEO data (title, description, image, JSON-LD).
 function buildSeo(route) {
   const path = routeToPath(route);
@@ -122,8 +135,8 @@ function buildSeo(route) {
           headline: a.title,
           description: desc,
           image: [image],
-          datePublished: a.date,
-          dateModified: a.date,
+          datePublished: a.isoDate || a.date,
+          dateModified: a.isoModified || a.isoDate || a.date,
           articleSection: cat ? cat.label : undefined,
           author: {
             "@type": "Person",
@@ -142,6 +155,11 @@ function buildSeo(route) {
           isAccessibleForFree: true,
           inLanguage: "en-US",
         },
+        breadcrumb: breadcrumbLd([
+          ["Home", `${SITE_ORIGIN}/`],
+          cat ? [cat.label, `${SITE_ORIGIN}/section/${cat.slug}`] : null,
+          [a.title, null],
+        ].filter(Boolean)),
       };
     }
   }
@@ -171,9 +189,13 @@ function buildSeo(route) {
             headline: a.title,
             description: a.dek,
             url: `${SITE_ORIGIN}/articles/${a.slug}`,
-            datePublished: a.date,
+            datePublished: a.isoDate || a.date,
           })),
         },
+        breadcrumb: breadcrumbLd([
+          ["Home", `${SITE_ORIGIN}/`],
+          [cat.label, null],
+        ]),
       };
     }
   }
@@ -308,6 +330,8 @@ function applySeo(route) {
   // Per-page JSON-LD
   if (seo.jsonLd) setJsonLd("ld-page", seo.jsonLd);
   else clearJsonLd("ld-page");
+  if (seo.breadcrumb) setJsonLd("ld-breadcrumb", seo.breadcrumb);
+  else clearJsonLd("ld-breadcrumb");
 }
 
 // ============================================================

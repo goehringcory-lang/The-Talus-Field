@@ -14,7 +14,7 @@ function ArticlesIndex({ go, initialCat }) {
           <div className="eyebrow eyebrow--moss">Articles</div>
           <h1>Entries.</h1>
           <p className="page-head__dek">
-            In reverse order. Filter by section if you like.
+            Every essay and trail report from The Talus Field, in reverse chronological order. Yosemite planning notes, trail conditions, wildlife and natural history, and seasonal guides. Filter by section, or read the whole thing.
           </p>
         </div>
       </div>

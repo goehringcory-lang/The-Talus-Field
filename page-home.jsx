@@ -17,7 +17,7 @@ function HomePage({ go }) {
           <div>
             <div className="hero__kicker">
               <span className="dot"></span>
-              <span>Vol. III · No. 19 · The May Issue</span>
+              <span>{(window.SITE && window.SITE.issue) || "Vol. III"}{window.SITE && window.SITE.issueDetail ? ` · ${window.SITE.issueDetail}` : ""}</span>
             </div>
             <h1>Notes from the Field.</h1>
             <p className="hero__dek">
@@ -39,6 +39,7 @@ function HomePage({ go }) {
             tag="PLATE I"
             size="lg"
             natural
+            eager
             motif={<MotifMountains />}
           />
         </div>

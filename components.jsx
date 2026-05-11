@@ -3,8 +3,10 @@ const { useState, useEffect, useMemo, useRef } = React;
 
 // ============================================================
 // Photo placeholder. Nature-journal treatment.
+// Pass eager={true} for the LCP image on a page (page hero / article hero)
+// so it loads with priority instead of being deprioritized as lazy.
 // ============================================================
-function Placeholder({ caption, tag, size, style, motif, image, credit, natural }) {
+function Placeholder({ caption, tag, size, style, motif, image, credit, natural, eager }) {
   return (
     <div
       className={`placeholder ${size === "lg" ? "placeholder--lg" : ""} ${size === "sm" ? "placeholder--sm" : ""} ${image ? "placeholder--photo" : ""} ${natural ? "placeholder--natural" : ""}`}
@@ -16,7 +18,9 @@ function Placeholder({ caption, tag, size, style, motif, image, credit, natural 
           className="placeholder__img"
           src={/^(https?:|\/)/i.test(image) ? image : `/${image}`}
           alt={caption || ""}
-          loading="lazy"
+          loading={eager ? "eager" : "lazy"}
+          fetchpriority={eager ? "high" : "auto"}
+          decoding={eager ? "sync" : "async"}
           referrerPolicy="no-referrer"
         />
       )}
@@ -100,7 +104,7 @@ function Header({ current, go }) {
     <header className="masthead">
       <div className="masthead__top">
         <div>
-          <span>Vol. III · No. 18</span>
+          <span>{(window.SITE && window.SITE.issue) || "Vol. III"}</span>
           <span>{today}</span>
         </div>
         <div className="masthead__weather">
@@ -185,7 +189,9 @@ function Footer({ go }) {
             <ul>
               <li><a href="/about" onClick={(e) => { e.preventDefault(); go("about"); }}>About</a></li>
               <li><a href="/articles" onClick={(e) => { e.preventDefault(); go("articles"); }}>All articles</a></li>
+              <li><a href="/kit" onClick={(e) => { e.preventDefault(); go("kit"); }}>Kit</a></li>
               <li><a href="/places" onClick={(e) => { e.preventDefault(); go("places"); }}>Directory</a></li>
+              <li><a href="/guide" onClick={(e) => { e.preventDefault(); go("guide"); }}>Field Guide</a></li>
               <li><a href="/newsletter" onClick={(e) => { e.preventDefault(); go("newsletter"); }}>Newsletter</a></li>
               <li><a href="/contact" onClick={(e) => { e.preventDefault(); go("contact"); }}>Contact</a></li>
             </ul>
