@@ -1,22 +1,79 @@
 /* global React */
 // =============================================================================
-// MAP PAGE — `/map` route. Google Maps JavaScript API.
+// MAP PAGE — `/map` route. Google Maps JavaScript API + itinerary sidebar.
 //
 // The Maps API <script> tag lives in index.html (loaded async). This component
 // fetches /points.geojson, waits for window.google.maps to be ready, then
-// initializes a single map inside the container ref. Markers come from the
-// geojson; clicking one opens an InfoWindow with the stop's name and blurb.
+// initializes a single map. A left sidebar lets visitors pick from preset
+// itineraries (1/2/3 day) which filter the visible markers by region.
 //
 // API KEY: set in index.html, restricted to thetalusfieldjournal.com and
 // localhost:8765 in the Google Cloud console. Maps JS API must remain enabled.
 // =============================================================================
 
-const { useEffect, useRef, useState } = React;
+const { useEffect, useMemo, useRef, useState, useCallback } = React;
 
 const POINTS_URL = "/points.geojson?v=1";
 
+// Itinerary presets. Each is a list of "days", each day pinned to one or more
+// region keys from points.geojson. Stop counts in the sidebar are derived
+// from the actual feature set at render time, so adding/removing points
+// updates the UI without touching this config.
+const ITINERARIES = {
+  "1day": {
+    label: "1 day",
+    subtitle: "Yosemite Valley",
+    days: [{ name: "Day 1 — Yosemite Valley", regions: ["valley"] }],
+  },
+  "2day": {
+    label: "2 days",
+    subtitle: "Valley + Glacier Point & Mariposa",
+    days: [
+      { name: "Day 1 — Yosemite Valley", regions: ["valley"] },
+      { name: "Day 2 — Glacier Point & Mariposa Grove", regions: ["glacier-mariposa"] },
+    ],
+  },
+  "3day": {
+    label: "3 days",
+    subtitle: "+ Tuolumne Meadows",
+    days: [
+      { name: "Day 1 — Yosemite Valley", regions: ["valley"] },
+      { name: "Day 2 — Glacier Point & Mariposa Grove", regions: ["glacier-mariposa"] },
+      { name: "Day 3 — Tuolumne Meadows", regions: ["tuolumne"] },
+    ],
+  },
+};
+
+const ITINERARY_KEYS = ["1day", "2day", "3day"];
+
+// ---------------------------------------------------------------------------
+// URL state helpers. /map?itinerary=2day&stop=tunnel-view
+// ---------------------------------------------------------------------------
+function readUrlState() {
+  const params = new URLSearchParams(window.location.search);
+  const itin = params.get("itinerary");
+  const stop = params.get("stop");
+  return {
+    itinerary: ITINERARY_KEYS.includes(itin) ? itin : null,
+    stop: stop || null,
+  };
+}
+
+function writeUrlState({ itinerary, stop }) {
+  const params = new URLSearchParams();
+  if (itinerary) params.set("itinerary", itinerary);
+  if (stop) params.set("stop", stop);
+  const qs = params.toString();
+  const newUrl = "/map" + (qs ? `?${qs}` : "");
+  if (newUrl !== window.location.pathname + window.location.search) {
+    window.history.replaceState(window.history.state, "", newUrl);
+  }
+}
+
+// ---------------------------------------------------------------------------
 // Polls window.google.maps for up to 8s. The script in index.html loads
 // async, so the namespace may not exist yet when MapPage mounts.
+// ---------------------------------------------------------------------------
 function waitForGoogleMaps(timeoutMs = 8000) {
   return new Promise((resolve, reject) => {
     if (window.google && window.google.maps) {
@@ -43,8 +100,16 @@ function waitForGoogleMaps(timeoutMs = 8000) {
 function MapPage() {
   const containerRef = useRef(null);
   const mapRef = useRef(null);
-  const [features, setFeatures] = useState(null); // null = loading
+  const markersRef = useRef({}); // id -> google.maps.Marker
+  const infoRef = useRef(null); // single shared InfoWindow
+
+  const [features, setFeatures] = useState(null);
   const [error, setError] = useState(null);
+  const [mapReady, setMapReady] = useState(false);
+
+  const initial = useMemo(() => readUrlState(), []);
+  const [selectedItinerary, setSelectedItinerary] = useState(initial.itinerary);
+  const [selectedStopId, setSelectedStopId] = useState(initial.stop);
 
   // Fetch points.geojson once.
   useEffect(() => {
@@ -68,72 +133,123 @@ function MapPage() {
     };
   }, []);
 
-  // Initialize the map once Google Maps is ready AND features have loaded
-  // AND the container is in the DOM. Waiting for features means we know what
-  // bounds to fit at init, so the very first paint is already framed to the
-  // pin set rather than starting at a default zoom and snapping.
+  // Sync state back to the URL.
   useEffect(() => {
-    if (mapRef.current) return; // already initialized
+    writeUrlState({ itinerary: selectedItinerary, stop: selectedStopId });
+  }, [selectedItinerary, selectedStopId]);
+
+  // Restore state from URL on browser back/forward.
+  useEffect(() => {
+    const onPop = () => {
+      const next = readUrlState();
+      setSelectedItinerary(next.itinerary);
+      setSelectedStopId(next.stop);
+    };
+    window.addEventListener("popstate", onPop);
+    return () => window.removeEventListener("popstate", onPop);
+  }, []);
+
+  // Derive the visible feature set from the selected itinerary.
+  const visibleFeatures = useMemo(() => {
+    if (!features) return [];
+    if (!selectedItinerary) return features;
+    const regions = new Set(
+      ITINERARIES[selectedItinerary].days.flatMap((d) => d.regions)
+    );
+    return features.filter((f) => regions.has(f.properties.region));
+  }, [features, selectedItinerary]);
+
+  // ---- Map init (runs once, after features have loaded) -------------------
+  useEffect(() => {
+    if (mapRef.current) return;
     if (!features || features.length === 0) return;
     if (!containerRef.current) return;
 
-    let listener = null;
     waitForGoogleMaps()
       .then((maps) => {
         const map = new maps.Map(containerRef.current, {
-          center: { lat: 37.85, lng: -119.55 }, // Yosemite National Park
+          center: { lat: 37.85, lng: -119.55 },
           zoom: 10,
           mapTypeId: "terrain",
           mapTypeControl: true,
           streetViewControl: false,
           fullscreenControl: true,
-          gestureHandling: "greedy", // single-finger pan on mobile
+          gestureHandling: "greedy",
         });
         mapRef.current = map;
-
-        // One bounds + marker pass. Drop a default pin per feature with an
-        // InfoWindow on click. (For category-colored custom pins later, swap
-        // `new maps.Marker` for `new maps.marker.AdvancedMarkerElement` and
-        // build a content DOM node — requires the `marker` library, which is
-        // already requested in the script-tag URL.)
-        const bounds = new maps.LatLngBounds();
-        const info = new maps.InfoWindow();
-
-        for (const feature of features) {
-          const [lng, lat] = feature.geometry.coordinates;
-          const p = feature.properties;
-          const position = { lat, lng };
-          bounds.extend(position);
-
-          const marker = new maps.Marker({
-            position,
-            map,
-            title: p.name,
-          });
-
-          marker.addListener("click", () => {
-            info.setContent(buildInfoHtml(p));
-            info.open({ anchor: marker, map });
-          });
-        }
-
-        // Frame to fit all markers (40px padding on each side), but cap how
-        // far in we zoom — fitBounds on a single point would zoom to 21.
-        map.fitBounds(bounds, 40);
-        listener = maps.event.addListenerOnce(map, "idle", () => {
-          if (map.getZoom() > 12) map.setZoom(12);
-        });
+        infoRef.current = new maps.InfoWindow();
+        // Flip the gate so the marker reconciliation effect can run.
+        setMapReady(true);
       })
       .catch((err) => {
         setError(err.message);
       });
-
-    return () => {
-      if (listener && window.google && window.google.maps) {
-        window.google.maps.event.removeListener(listener);
-      }
-    };
   }, [features]);
+
+  // ---- Marker reconciliation (runs whenever visibleFeatures changes) ------
+  useEffect(() => {
+    if (!mapReady) return;
+    const map = mapRef.current;
+    if (!map) return;
+    const maps = window.google.maps;
+
+    // Clear existing markers.
+    for (const id of Object.keys(markersRef.current)) {
+      markersRef.current[id].setMap(null);
+    }
+    markersRef.current = {};
+
+    if (visibleFeatures.length === 0) return;
+
+    // Add markers for the visible set.
+    const bounds = new maps.LatLngBounds();
+    for (const feature of visibleFeatures) {
+      const [lng, lat] = feature.geometry.coordinates;
+      const p = feature.properties;
+      const position = { lat, lng };
+      bounds.extend(position);
+
+      const marker = new maps.Marker({ position, map, title: p.name });
+      marker.addListener("click", () => {
+        infoRef.current.setContent(buildInfoHtml(p));
+        infoRef.current.open({ anchor: marker, map });
+        setSelectedStopId(p.id);
+      });
+      markersRef.current[p.id] = marker;
+    }
+
+    // Reframe to the new set, with a zoom cap so single-region itineraries
+    // don't zoom to street level.
+    map.fitBounds(bounds, 40);
+    const listener = maps.event.addListenerOnce(map, "idle", () => {
+      if (map.getZoom() > 12) map.setZoom(12);
+    });
+    return () => {
+      maps.event.removeListener(listener);
+    };
+  }, [visibleFeatures, mapReady]);
+
+  // ---- Selection effect: pan/zoom to selected stop, open InfoWindow -------
+  useEffect(() => {
+    if (!mapReady || !selectedStopId) return;
+    const map = mapRef.current;
+    const marker = markersRef.current[selectedStopId];
+    if (!map || !marker) return;
+    map.panTo(marker.getPosition());
+    if (map.getZoom() < 13) map.setZoom(13);
+    const props = getFeatureProps(visibleFeatures, selectedStopId);
+    infoRef.current.setContent(buildInfoHtml(props));
+    infoRef.current.open({ anchor: marker, map });
+  }, [selectedStopId, mapReady, visibleFeatures]);
+
+  const handleSelectItinerary = useCallback((key) => {
+    setSelectedItinerary(key);
+    setSelectedStopId(null); // clear stop when itinerary changes
+  }, []);
+
+  const handleSelectStop = useCallback((id) => {
+    setSelectedStopId(id);
+  }, []);
 
   if (features === null) {
     return (
@@ -145,24 +261,160 @@ function MapPage() {
 
   return (
     <div className="map-page">
-      {error && (
-        <div className="map-page__error" role="alert">
-          Map failed to load: {error}
-        </div>
-      )}
-      <div ref={containerRef} id="map" className="map-page__map" />
+      <ItinerarySidebar
+        features={features}
+        selectedItinerary={selectedItinerary}
+        selectedStopId={selectedStopId}
+        onSelectItinerary={handleSelectItinerary}
+        onSelectStop={handleSelectStop}
+      />
+      <div className="map-page__main">
+        {error && (
+          <div className="map-page__error" role="alert">
+            Map failed to load: {error}
+          </div>
+        )}
+        <div ref={containerRef} id="map" className="map-page__map" />
+      </div>
     </div>
   );
 }
 
-// Plain-string HTML for the InfoWindow. Google Maps' InfoWindow takes either
-// a string or a DOM node; string is simplest and fine for this content.
+// ---------------------------------------------------------------------------
+// Sidebar: itinerary buttons + day-by-day stop list.
+// ---------------------------------------------------------------------------
+function ItinerarySidebar({
+  features,
+  selectedItinerary,
+  selectedStopId,
+  onSelectItinerary,
+  onSelectStop,
+}) {
+  // Stop counts per itinerary, derived live.
+  const counts = useMemo(() => {
+    const all = features.length;
+    const out = { null: all };
+    for (const key of ITINERARY_KEYS) {
+      const regions = new Set(
+        ITINERARIES[key].days.flatMap((d) => d.regions)
+      );
+      out[key] = features.filter((f) => regions.has(f.properties.region)).length;
+    }
+    return out;
+  }, [features]);
+
+  return (
+    <aside className="map-page__sidebar">
+      <header className="map-sidebar__header">
+        <h2 className="map-sidebar__title">Trip planner</h2>
+        <p className="map-sidebar__subtitle">Pick a length, see suggested stops.</p>
+      </header>
+
+      <div className="map-sidebar__section">
+        <h3 className="map-sidebar__section-label">Itineraries</h3>
+        <ul className="map-sidebar__itineraries">
+          <li>
+            <ItineraryButton
+              label="All locations"
+              subtitle="Every region · Hetch Hetchy included"
+              count={counts.null}
+              selected={selectedItinerary === null}
+              onClick={() => onSelectItinerary(null)}
+            />
+          </li>
+          {ITINERARY_KEYS.map((key) => {
+            const meta = ITINERARIES[key];
+            return (
+              <li key={key}>
+                <ItineraryButton
+                  label={meta.label}
+                  subtitle={meta.subtitle}
+                  count={counts[key]}
+                  selected={selectedItinerary === key}
+                  onClick={() => onSelectItinerary(key)}
+                />
+              </li>
+            );
+          })}
+        </ul>
+      </div>
+
+      {selectedItinerary && (
+        <div className="map-sidebar__section">
+          <h3 className="map-sidebar__section-label">Day by day</h3>
+          <div className="map-sidebar__days">
+            {ITINERARIES[selectedItinerary].days.map((day) => {
+              const stopsInDay = features.filter((f) =>
+                day.regions.includes(f.properties.region)
+              );
+              return (
+                <section key={day.name} className="map-sidebar__day">
+                  <h4 className="map-sidebar__day-name">
+                    {day.name}
+                    <span className="map-sidebar__day-count">{stopsInDay.length}</span>
+                  </h4>
+                  <ul className="map-sidebar__stops">
+                    {stopsInDay.map((f) => {
+                      const p = f.properties;
+                      const isSelected = p.id === selectedStopId;
+                      return (
+                        <li key={p.id}>
+                          <button
+                            type="button"
+                            className={`map-sidebar__stop${isSelected ? " map-sidebar__stop--selected" : ""}`}
+                            onClick={() => onSelectStop(p.id)}
+                          >
+                            <span className="map-sidebar__stop-name">{p.name}</span>
+                            <span className="map-sidebar__stop-cat">{p.category}</span>
+                          </button>
+                        </li>
+                      );
+                    })}
+                  </ul>
+                </section>
+              );
+            })}
+          </div>
+        </div>
+      )}
+
+      <div className="map-sidebar__section map-sidebar__section--muted">
+        <h3 className="map-sidebar__section-label">Filters</h3>
+        <p className="map-sidebar__placeholder">
+          Category and region filters coming as more pin types are added.
+        </p>
+      </div>
+    </aside>
+  );
+}
+
+function ItineraryButton({ label, subtitle, count, selected, onClick }) {
+  return (
+    <button
+      type="button"
+      className={`map-sidebar__itinerary${selected ? " map-sidebar__itinerary--selected" : ""}`}
+      onClick={onClick}
+      aria-pressed={selected}
+    >
+      <span className="map-sidebar__itinerary-label">{label}</span>
+      <span className="map-sidebar__itinerary-sub">{subtitle}</span>
+      <span className="map-sidebar__itinerary-count">{count} stops</span>
+    </button>
+  );
+}
+
+// ---------------------------------------------------------------------------
+// Helpers
+// ---------------------------------------------------------------------------
+function getFeatureProps(features, id) {
+  const f = features.find((x) => x.properties.id === id);
+  return f ? f.properties : {};
+}
+
 function buildInfoHtml(p) {
   const blurb = p.blurb ? `<p style="margin:6px 0 0;">${escapeHtml(p.blurb)}</p>` : "";
   const cat = p.category
-    ? `<span style="text-transform:uppercase;font-size:11px;letter-spacing:0.06em;color:#777;">${escapeHtml(
-        p.category
-      )}</span>`
+    ? `<span style="text-transform:uppercase;font-size:11px;letter-spacing:0.06em;color:#777;">${escapeHtml(p.category)}</span>`
     : "";
   return `
     <div style="font:14px/1.4 system-ui,sans-serif;max-width:240px;color:#222;">
