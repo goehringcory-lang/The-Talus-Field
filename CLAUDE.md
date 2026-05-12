@@ -8,9 +8,11 @@ This repo contains three subsystems for **The Talus Field**, a Yosemite editoria
 
 | Path | What it is | Stack |
 |---|---|---|
-| repo root (`*.jsx`, `index.html`, `styles.css`, `bodies/`, `img/`) | **Editorial site** at `thetalusfieldjournal.com`. Static, no build. | Vanilla React via `<script type="text/babel">` from a CDN; styled with hand-written CSS in `styles.css`. |
+| repo root (`*.jsx`, `index.html`, `styles.css`, `bodies/`, `img/`, `points.geojson`) | **Editorial site** at `thetalusfieldjournal.com`. Static assets + a single edge function. | Vanilla React via `<script type="text/babel">` from a CDN; styled with hand-written CSS in `styles.css`; Google Maps JS API on `/map`. |
+| `functions/` | **Cloudflare Pages Functions** that wrap the editorial site. Currently one: `_middleware.js` rewrites `<head>` per route for SEO. | Pages Functions runtime + `HTMLRewriter`. |
 | `apps/guide/` | **Field Guide PWA** at `guide.thetalusfieldjournal.com`. Buyer-only, offline-capable. | Vite + React 19 + TypeScript + react-router-dom + tailwind 4 + zod. |
 | `workers/` | **API** at `api.thetalusfieldjournal.com`. Auth, Stripe checkout/webhook, KV-backed buyer records. | Cloudflare Worker + Hono + `@tsndr/cloudflare-worker-jwt` + KV. |
+| `scripts/` | One-shot Node ETL scripts. `seed-points-from-stops.mjs` regenerates `points.geojson` from the PWA's `stops.ts`. | Node ESM, no deps. |
 
 DEPLOY.md has a full deployment runbook. Note that DEPLOY.md was written against the older trip-based PWA model (`1day`/`3day`/`5day`, "35 stops"). The PWA was since refactored to region-based (`valley`/`glacier-mariposa`/`tuolumne`, ~21 stops); treat the smoke-test section as directionally correct but stale on specifics.
 
@@ -37,15 +39,25 @@ npm --prefix apps/guide run lint
 npm --prefix workers run typecheck      # tsc --noEmit
 ```
 
-Deployment is **not** done from this repo's CI. `main` auto-deploys to Cloudflare Pages for the editorial site and PWA; the Worker requires a manual `wrangler deploy` from `workers/` (with KV namespace IDs filled into `wrangler.toml` and secrets set via `wrangler secret put`).
+Deployment is **not** done from this repo's CI. `main` auto-deploys to Cloudflare Pages for the editorial site (assets + `functions/_middleware.js`, configured by the root `wrangler.jsonc`) and for the PWA; the Worker requires a manual `wrangler deploy` from `workers/` (with KV namespace IDs filled into `workers/wrangler.toml` and secrets set via `wrangler secret put`).
 
 ## Editorial site conventions
 
-- **No build step.** `index.html` loads each `*.jsx` file directly via `<script type="text/babel" src="...?v=N">`. Babel transforms in-browser. This is intentional: the site is meant to be readable and editable without tooling.
-- **Cache-buster discipline.** When you edit a JSX file or `styles.css`, bump its `?v=N` query in `index.html`. Cloudflare and browsers both cache aggressively otherwise. Recent versions visible in git history give the next number.
+- **No client build step.** `index.html` loads each `*.jsx` file directly via `<script type="text/babel" src="...?v=N">`. Babel transforms in-browser. This is intentional: the site is meant to be readable and editable without tooling. The only server-side code is `functions/_middleware.js` (see below).
+- **Cache-buster discipline.** When you edit a JSX file or `styles.css`, bump its `?v=N` query in `index.html`. Cloudflare and browsers both cache aggressively otherwise. Recent versions visible in git history give the next number. The no-cache header on HTML in `_headers` is what lets the new `?v=N` propagate immediately — don't relax it.
 - **Globals via `window`.** Each JSX file attaches its top-level component to `window` (e.g. `window.GuidePage = GuidePage`) so siblings can reference it. The list of `/* global */` comments at the top of each file declares what it consumes.
-- **Article bodies** live in `bodies/*.jsx`. Each is registered in `index.html` and indexed in `data.js`.
+- **Article bodies** live in `bodies/*.jsx`. Each is registered in `index.html` and indexed in `data.js`. New articles must *also* be added to `articles.json` (consumed by the edge SEO function) and `sitemap.xml`/`feed.xml`.
+- **`/map` route.** `page-map.jsx` + `points.geojson` + Google Maps JS API. The API key is inline in `index.html` (restricted in Google Cloud to the production host + `localhost:8765`). 1/2/3-day itinerary presets in `page-map.jsx` filter pins by `region`. `/map` is `noindex` (set by the edge function) — it's a hidden preview.
 - **`page-guide.jsx` runtime URL overrides:** `window.GUIDE_API_BASE` and `window.GUIDE_APP_BASE` can be set in a console snippet to point at local dev (`http://localhost:8787` and `http://localhost:5173`) before the script loads.
+- **GA4** is loaded in `index.html` (gtag from `googletagmanager.com`). Any new third-party script or `fetch()` host must be added to the CSP in `_headers`.
+
+## Pages Functions, headers, and SEO
+
+- **`functions/_middleware.js`** runs on every editorial-site request. For known paths (`/`, `/articles`, `/articles/:slug`, `/section/:cat`, `/about`, `/kit`, `/places`, `/advertise`, `/newsletter`, `/contact`, `/privacy`, `/terms`, `/affiliate`, `/guide`, `/cap`, `/map`) it `HTMLRewriter`-patches the static `index.html` to inject the right `<title>`, meta description, canonical, OG/Twitter, and JSON-LD (Article + BreadcrumbList for articles, CollectionPage for sections). Unknown paths pass through unchanged. The client-side code in `app.jsx` still updates these tags after hydration; the function just makes the first byte correct for crawlers and social scrapers.
+- **`articles.json` and `categories.json`** are the source of truth for the edge function. They're imported with `with { type: "json" }` at the top of `_middleware.js`. Keep them in sync with `data.js` when adding/editing articles, or the edge metadata will diverge from what the client renders.
+- **`_headers`** sets the CSP (script-src includes `googletagmanager.com`, `unpkg.com`, `maps.googleapis.com`, `maps.gstatic.com`; connect-src includes the API host, GA, Maps), no-cache for HTML, immutable for `/img/*`, and 1-day cache for `*.jsx`/`styles.css`. Adding a new script CDN or `fetch()` host requires editing the CSP here.
+- **`wrangler.jsonc`** at the repo root configures the editorial site's Pages deployment (assets-as-SPA, custom domains). The Worker has its own `workers/wrangler.toml` — don't confuse the two.
+- **Static SEO files.** `sitemap.xml`, `robots.txt`, `feed.xml` (RSS), and `llms.txt` are hand-maintained and served with 5-minute cache. Update them when publishing or unpublishing articles.
 
 ## PWA architecture
 
@@ -80,3 +92,7 @@ The brand is **The Talus Field** (formerly "Yosemite Sentinel"). The editorial v
 - The Worker `/api/auth/login` route looks dead from the PWA side but is intentionally retained for the future Stripe-based flow.
 - Stripe checkout, Resend email, and the inventory cap are all wired up but currently unreachable from the UI (the `/guide` CTA was swapped to a sign-in link). Don't delete this code — it's pre-Stripe-relaunch scaffolding.
 - Photos for the new region-based stops mostly don't exist in `apps/guide/public/photos/` yet (only `tunnel-view.jpg`). A previous photo-wiring pass targeted the old trip-based stop IDs and was dropped during the merge.
+- The editorial site has **two sources of article metadata**: `data.js` (consumed by the in-browser React) and `articles.json` (consumed by the edge SEO function). They must be kept in sync when adding/editing articles.
+- `points.geojson` is hand-maintained after the initial seed; re-running `scripts/seed-points-from-stops.mjs` will **overwrite** any edits. The PWA's `kind` enum and the map's `category` enum don't line up 1:1 — see the override map in the seed script before regenerating.
+- `MAP_INTEGRATION_PLAN.md` was the design doc for `/map`; the feature has since shipped, so treat the plan as historical. `AUDIT.md` is a prioritized punch-list from a one-off audit — useful as a pointer to known gaps but not authoritative.
+- The Google Maps API key is **inline in `index.html`** (intentional — Maps JS API keys are designed to be public, scoped by HTTP referrer in the Cloud console). If you rotate it, update the referrer allow-list too.
