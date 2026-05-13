@@ -116,8 +116,8 @@ window.ARTICLES = [
     isoDate: "2026-05-12",
     isoModified: "2026-05-12",
     read: "17 min",
-    placeholder: "Half Dome at first light, from the Valley",
-    image: "img/Half Dome Main Photo.jpg",
+    placeholder: "Half Dome from the Valley floor",
+    image: "img/half-dome.jpg",
   },
   {
     slug: "half-dome-permit-lottery-2026",
@@ -128,8 +128,9 @@ window.ARTICLES = [
     isoDate: "2026-05-12",
     isoModified: "2026-05-12",
     read: "13 min",
-    placeholder: "Half Dome from the Valley floor",
-    image: "img/half-dome.jpg",
+    placeholder: "Half Dome at alpenglow",
+    image: "img/half-dome-alpenglow-madhu-shesharam.jpg",
+    credit: "Photo: Madhu Shesharam / Unsplash",
   },
   {
     slug: "glacier-point-road-open-2026",
