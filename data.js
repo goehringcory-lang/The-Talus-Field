@@ -116,7 +116,7 @@ window.ARTICLES = [
     isoDate: "2026-05-12",
     isoModified: "2026-05-12",
     read: "17 min",
-    placeholder: "Half Dome from the Valley floor",
+    placeholder: "Half Dome from Glacier Point",
     image: "img/half-dome.jpg",
   },
   {
