@@ -5,7 +5,7 @@
   <!-- Hub pages -->
   <url>
     <loc>https://thetalusfieldjournal.com/</loc>
-    <lastmod>2026-05-11</lastmod>
+    <lastmod>2026-05-12</lastmod>
     <image:image>
       <image:loc>https://thetalusfieldjournal.com/img/Half%20Dome%20Main%20Photo.jpg</image:loc>
       <image:title>Half Dome at first light</image:title>
@@ -13,17 +13,17 @@
   </url>
   <url>
     <loc>https://thetalusfieldjournal.com/articles</loc>
-    <lastmod>2026-05-11</lastmod>
+    <lastmod>2026-05-12</lastmod>
   </url>
 
   <!-- Sections -->
   <url>
     <loc>https://thetalusfieldjournal.com/section/planning</loc>
-    <lastmod>2026-05-08</lastmod>
+    <lastmod>2026-05-12</lastmod>
   </url>
   <url>
     <loc>https://thetalusfieldjournal.com/section/trails</loc>
-    <lastmod>2026-05-11</lastmod>
+    <lastmod>2026-05-12</lastmod>
   </url>
   <url>
     <loc>https://thetalusfieldjournal.com/section/wildlife</loc>
@@ -81,6 +81,22 @@
   </url>
 
   <!-- Articles -->
+  <url>
+    <loc>https://thetalusfieldjournal.com/articles/so-you-want-to-hike-half-dome</loc>
+    <lastmod>2026-05-12</lastmod>
+    <image:image>
+      <image:loc>https://thetalusfieldjournal.com/img/Half%20Dome%20Main%20Photo.jpg</image:loc>
+      <image:title>Half Dome at first light, from the Valley</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://thetalusfieldjournal.com/articles/half-dome-permit-lottery-2026</loc>
+    <lastmod>2026-05-12</lastmod>
+    <image:image>
+      <image:loc>https://thetalusfieldjournal.com/img/half-dome.jpg</image:loc>
+      <image:title>Half Dome from the Valley floor</image:title>
+    </image:image>
+  </url>
   <url>
     <loc>https://thetalusfieldjournal.com/articles/glacier-point-road-open-2026</loc>
     <lastmod>2026-05-11</lastmod>

@@ -1,5 +1,27 @@
 [
   {
+    "slug": "so-you-want-to-hike-half-dome",
+    "cat": "trails",
+    "title": "So you want to hike Half Dome",
+    "dek": "The honest case for the cables, and the better hike most visitors don't know about: Clouds Rest, a thousand feet higher than Half Dome, with bigger views and no permit required.",
+    "date": "May 12, 2026",
+    "isoDate": "2026-05-12",
+    "isoModified": "2026-05-12",
+    "read": "17 min",
+    "image": "img/Half Dome Main Photo.jpg"
+  },
+  {
+    "slug": "half-dome-permit-lottery-2026",
+    "cat": "planning",
+    "title": "How the Half Dome permit lottery actually works",
+    "dek": "There are two lotteries, not one. The preseason in March and the daily lottery every day the cables are up. The real odds, the strategy that works, and what to do if you don't win.",
+    "date": "May 12, 2026",
+    "isoDate": "2026-05-12",
+    "isoModified": "2026-05-12",
+    "read": "13 min",
+    "image": "img/half-dome.jpg"
+  },
+  {
     "slug": "glacier-point-road-open-2026",
     "cat": "seasonal",
     "title": "Glacier Point Road is open: a plan for the early season",
