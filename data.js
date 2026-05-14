@@ -108,6 +108,18 @@ window.KIT = {
 
 window.ARTICLES = [
   {
+    slug: "yosemite-with-kids-no-reservations-2026",
+    cat: "planning",
+    title: "Your last-minute Yosemite trip with kids: a naturalist's honest guide",
+    dek: "A senior Yosemite naturalist's honest guide to visiting with kids in 2026, no advance reservations needed. Kid-friendly hikes, timing tricks, YARTS bus tips, and what most families get wrong.",
+    date: "May 14, 2026",
+    isoDate: "2026-05-14",
+    isoModified: "2026-05-14",
+    read: "16 min",
+    placeholder: "Toddler on the Lower Yosemite Fall boardwalk, Upper Yosemite Fall behind",
+    image: "img/kid-yosemite-falls-boardwalk.jpg",
+  },
+  {
     slug: "tioga-road-opening-weekend-2026",
     cat: "seasonal",
     title: "Tioga Road opens May 15: a plan for opening weekend",
