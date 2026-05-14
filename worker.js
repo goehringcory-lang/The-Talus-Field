@@ -1,16 +1,21 @@
-// Cloudflare Pages Function. Rewrites the static index.html on the edge so
-// each route ships its own <title>, meta description, canonical, Open Graph,
+// Cloudflare Worker entry. Wraps the static-assets binding so each route
+// can ship its own <title>, meta description, canonical, Open Graph,
 // Twitter, and JSON-LD structured data — without a build step.
 //
-// Why this exists: the editorial site is a client-rendered SPA. Without this
-// rewrite, every URL serves the homepage's <head>, so non-JS crawlers (most
-// AI bots, social card scrapers, Bingbot under load) see the same metadata
-// for every article. The browser-side code in app.jsx still updates these
-// tags after hydration; this just makes the static HTML correct from the
-// first byte.
+// Why this exists: the editorial site is a client-rendered SPA. Without
+// this rewrite every URL serves the homepage's <head>, so non-JS crawlers
+// (most AI bots, social card scrapers, Bingbot under load) see the same
+// metadata for every article. The browser-side code in app.jsx still
+// updates these tags after hydration; this just makes the static HTML
+// correct from the first byte.
+//
+// Previously lived at functions/_middleware.js (Cloudflare Pages
+// convention). The site is deployed as a Worker with Assets, not Pages,
+// so the functions/ directory was inert — it was being served as a static
+// file rather than executed. This file is the Worker equivalent.
 
-import articles from "../articles.json" with { type: "json" };
-import categories from "../categories.json" with { type: "json" };
+import articles from "./articles.json" with { type: "json" };
+import categories from "./categories.json" with { type: "json" };
 
 const SITE_ORIGIN = "https://thetalusfieldjournal.com";
 const SITE_NAME = "The Talus Field";
@@ -27,8 +32,8 @@ function absoluteImage(url) {
   return `${SITE_ORIGIN}/${url.replace(/^\//, "")}`;
 }
 
+// Defend against premature </script> termination if any string contains it.
 function safeJsonForScript(obj) {
-  // Defend against premature </script> termination if any string contains it.
   return JSON.stringify(obj).replace(/<\/(script)/gi, "<\\/$1");
 }
 
@@ -210,15 +215,7 @@ function seoForPath(pathname) {
   };
 }
 
-export async function onRequest({ request, next }) {
-  const url = new URL(request.url);
-  const seo = seoForPath(url.pathname);
-  if (!seo) return next();
-
-  const response = await next();
-  const ct = response.headers.get("content-type") || "";
-  if (!ct.toLowerCase().includes("text/html")) return response;
-
+function transformHtml(response, seo) {
   return new HTMLRewriter()
     .on("title", {
       element(el) {
@@ -298,3 +295,20 @@ export async function onRequest({ request, next }) {
     })
     .transform(response);
 }
+
+export default {
+  async fetch(request, env) {
+    const url = new URL(request.url);
+    const seo = seoForPath(url.pathname);
+
+    // Most requests (images, css, jsx, json, robots, sitemap) don't need
+    // transformation — short-circuit to the assets binding.
+    if (!seo) return env.ASSETS.fetch(request);
+
+    const response = await env.ASSETS.fetch(request);
+    const ct = response.headers.get("content-type") || "";
+    if (!ct.toLowerCase().includes("text/html")) return response;
+
+    return transformHtml(response, seo);
+  },
+};

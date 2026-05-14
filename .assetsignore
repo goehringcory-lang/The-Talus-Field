@@ -12,5 +12,8 @@ apps
 workers
 wrangler.jsonc
 
+# Worker entry (executed, not served as a static asset)
+worker.js
+
 # Repo documentation
 *.md
