@@ -1,0 +1,222 @@
+/* global React */
+
+window.ARTICLE_BODIES = window.ARTICLE_BODIES || {};
+
+window.ARTICLE_BODIES["tioga-road-opening-weekend-2026"] = function TiogaRoadOpeningWeekend2026Body() {
+  return (
+    <>
+      <p className="dropcap">
+        Tioga Road (Highway 120) in Yosemite National Park opens Friday, May 15, 2026. That is well ahead of the long-term average opening of May 28. <a href="/articles/glacier-point-road-open-2026">Glacier Point Road already opened on May 9</a>. <a href="/articles/yosemite-without-reservations-2026">No day-use reservations are required to enter Yosemite this year</a>, just a standard entrance pass.
+      </p>
+
+      <p>
+        <strong>Tioga Pass status (May 13, 2026):</strong> plowed, gate scheduled to come up Friday morning. For live updates, text "ynptraffic" to 333111 or check <a href="https://www.nps.gov/yose/planyourvisit/tioga.htm" target="_blank" rel="noopener noreferrer">nps.gov/yose/planyourvisit/tioga.htm</a>.
+      </p>
+
+      <h2>What's open on Tioga Road opening weekend</h2>
+
+      <p>
+        There is a difference between "the road is open" and "Tuolumne Meadows is open for the season," and opening weekend lives entirely in the first one. On Friday the pavement is plowed, but most of what you might picture, the store, the grill, the lodge, the campground services, the wilderness center staff. All of that comes online over the following weeks.
+      </p>
+
+      <p>
+        What you get this weekend is the road itself. A ribbon of asphalt through twelve-foot snow walls, glassy half-frozen lakes, snowmelt creeks running hard, and a high country still pulling itself out of winter. That is a spectacular thing to drive through. It is also a spectacular thing to be unprepared for.
+      </p>
+
+      <p>
+        Snow conditions in mid-May still include big drifts at Olmsted Point, ice along Tenaya Lake's shaded shore, and lingering snowpack on most trails above 8,500 feet.
+      </p>
+
+      <p>Here is the honest breakdown.</p>
+
+      <h3>What's open</h3>
+
+      <ul>
+        <li>Tioga Road and Tioga Pass entrance station</li>
+        <li>Olmsted Point and the major pullouts</li>
+        <li>Tenaya Lake parking (the lake itself may still hold ice along the shaded shores)</li>
+        <li>Tuolumne Meadows pullouts</li>
+        <li>Crane Flat gas station (24/7, pay at pump, credit and debit only)</li>
+        <li>Vault toilets along the road</li>
+        <li>The Tuolumne Meadows Campground, freshly rebuilt after a multi-year rehabilitation, is reservable on Recreation.gov this season</li>
+      </ul>
+
+      <h3>What's not open yet</h3>
+
+      <ul>
+        <li>Tuolumne Meadows Grill: opens May 30</li>
+        <li>Tuolumne Meadows Lodge and dining room: opens June 5</li>
+        <li>Tuolumne Meadows Store and Post Office: opens later in summer (currently scheduled for August)</li>
+        <li>Tuolumne Meadows Visitor Center and Wilderness Center: limited or no staffing until late May</li>
+        <li>White Wolf Lodge and campground: closed for the season due to sewer line damage</li>
+        <li>Gas at Tuolumne Meadows: not in operation (offline for several years now)</li>
+        <li>Potable water: not available anywhere along the road</li>
+      </ul>
+
+      <p>Pack like you are heading into the backcountry, even if you are just driving up for the day.</p>
+
+      <h2>Tioga Road conditions and what to bring before you go</h2>
+
+      <p>
+        Gas up before you start climbing. Crane Flat is the only fuel inside the park on the western side, and it is pay-at-pump only. On the east side, your next gas is in Lee Vining, about 45 minutes past Tuolumne. Bring all your water (two liters per person minimum if you are walking anywhere), bring all your food (sandwiches, snacks, a thermos of coffee), and plan for vault toilets. There is nothing to buy along Tioga Road on opening weekend, and there is no potable water. Cell service is essentially zero from Crane Flat to Lee Vining, so download offline maps before you leave the Valley.
+      </p>
+
+      <p>
+        <strong>Carry chains, layers, and a full tank.</strong> Tioga Pass tops out at 9,945 feet. Morning temperatures will be in the 20s and 30s, even when the Valley is mild. Black ice at dawn and dusk is real, especially near Olmsted Point and the climb to the pass.
+      </p>
+
+      <p>
+        <strong>Arrive early.</strong> The Park Service recommends arriving before 8 a.m. to avoid congestion and full parking lots, especially on opening weekend. Sunrise at Olmsted is one of the best photographs you will ever take in Yosemite, and you will share it with almost no one.
+      </p>
+
+      <h2>The best Tioga Road stops and short hikes for opening weekend</h2>
+
+      <p>Here is how I would build the day, and how I do build the day, every single year that the road opens.</p>
+
+      <h3>Stop one: Olmsted Point</h3>
+
+      <p>
+        You can see Half Dome from a lot of angles in Yosemite, but only from Olmsted Point do you see its back side, the broad northern face, with Clouds Rest rising to its left and Tenaya Canyon dropping away below. The half-mile nature trail south of the parking lot is usually walkable on opening weekend; the slickrock catches the sun and dries fast, even with snow patches in the shaded hollows. The glacial erratics scattered across the polished granite are doing a lot of teaching, if you let them. Each one was carried here by an ice sheet and left when the ice melted out from under it.
+      </p>
+
+      <p>Wear shoes with grip. Bring sunglasses. Snow glare at altitude is fierce.</p>
+
+      <h3>Stop two: Tenaya Lake</h3>
+
+      <p>
+        Ten minutes further east, Tenaya Lake will likely still be ice-rimmed on opening weekend, with open water in the middle reflecting Tenaya Peak. Park at the east beach pullout. The walk down to the sand is short and easy, and it is one of the few places where you can be at the edge of an alpine lake in mid-May without committing to a real hike.
+      </p>
+
+      <p>
+        The full Tenaya Lake Loop Trail crosses the inlet on <a href="https://yosemite.org/projects/tenaya-lake-loop-trail-2021/" target="_blank" rel="noopener noreferrer">a boardwalk that Yosemite Conservancy donors helped fund</a> and then traces the south shore through forest. That south shore holds snow and mud longer than anywhere else in the area. If you want to attempt the full 2.5-mile loop, bring waterproof boots, expect slush, and stay on the trail. The <a href="https://yosemite.org/projects/tenaya-lake-loop-trail-revegetation-2023/" target="_blank" rel="noopener noreferrer">revegetation work along the loop</a> is fragile, and meadow soils take years to recover from a single boot print in the wrong place.
+      </p>
+
+      <p>For most people, an unhurried hour along the east beach is exactly the right move.</p>
+
+      <h3>Stop three: a short wander in Tuolumne Meadows</h3>
+
+      <p>
+        A few more miles east, the road drops into the great open of Tuolumne. The meadow itself will be a patchwork of last year's brown grass, the first hints of green, sheets of meltwater, and lingering drifts. Do not walk across the meadow. Pull off at one of the half-dozen designated pullouts, stand at the edge, and let the Cathedral Range do the work.
+      </p>
+
+      <p>If you want to stretch your legs, two short options are reliable on opening weekend:</p>
+
+      <ul>
+        <li><strong>Pothole Dome</strong> at the west end of the meadow. A one-mile round-trip scramble up polished granite with a panoramic view of Tuolumne, Lembert Dome, and the Sierra crest. The approach across the meadow edge will be wet, sometimes flooded, so stick to the established path. The granite itself dries fast.</li>
+        <li><strong>Soda Springs and Parsons Lodge</strong> from the Lembert Dome parking area, about 1.5 miles round-trip on a flat dirt road. The historic lodge building is closed until summer staffing arrives, but the exterior, the naturally carbonated springs bubbling up through iron-orange sediment, and the Tuolumne River running hard with snowmelt are all yours. Kids love the springs.</li>
+      </ul>
+
+      <p>
+        Skip Lukens Lake, May Lake, Cathedral Lakes, and Lembert Dome's summit. Those trails are snowbound at this point in May, and a few of them will not be reasonable until late June.
+      </p>
+
+      <h2>Driving Tioga Pass east to Lee Vining and Mono Lake</h2>
+
+      <p>
+        This is the part that makes opening weekend a full trip rather than a day in the park. Once you cross Tioga Pass at 9,945 feet, the road drops more than 3,000 feet in twelve miles down to the Mono Basin, and the world changes underneath you. Granite gives way to volcanic landscape. The Sierra wall stands behind you, the Great Basin opens ahead, and Mono Lake spreads out below with its white tufa towers and a summer population of up to two million migratory birds.
+      </p>
+
+      <p>
+        Three pullouts are worth the brake-tap on the way down. <strong>Tioga Lake</strong> just below the pass, where Mount Dana sits in the reflection. <strong>Ellery Lake</strong> a mile farther. And the <strong>Mono Lake Vista Point</strong> before the canyon drops, where the Mono Basin opens up for the first time.
+      </p>
+
+      <h3>Where to eat in Lee Vining</h3>
+
+      <p>Lee Vining has more lore than it has dining options, and not all of the lore is still earned.</p>
+
+      <p>
+        <strong>Whoa Nellie Deli</strong> at the Tioga Gas Mart is the famous one. The fish tacos built its reputation in the late 1990s, and they are still on the menu. The original chef, Matt Toomey, left in 2012 to open his own place in Mammoth, and over the years the deli has slipped a little. Portions are still generous, the view of Mono Lake from the picnic tables is still wonderful, and the Thursday and Sunday evening live music is still a great scene. But prices have crept up, the food is more uneven than it used to be, and the "world famous" billing is doing a lot of heavy lifting now. Go for the experience and the view. Order the tacos and the fries. Manage your expectations.
+      </p>
+
+      <p>
+        <strong>Latte Da Coffee Café</strong> at the El Mono Motel, just down Highway 395 in town, is what I find myself recommending more often these days. It is small, family-run, and all-organic. There is a garden out back with a few tables, and the pace is exactly the opposite of the Mobil-station bustle. Pastries, espresso, an unhurried breakfast. The El Mono Motel itself is one of those quirky eleven-room places that the eastern Sierra still has a few of, every room decorated differently, and the café is folded right into it. If you are doing a full day on the road, Latte Da in the morning and a Whoa Nellie picnic in the afternoon is a nice way to honor both eras.
+      </p>
+
+      <p>
+        Other reliable options in town: Nicely's for a classic diner breakfast, Bodie Mike's for barbecue, the Lee Vining Market for picnic supplies.
+      </p>
+
+      <h3>Make a day of Mono Lake</h3>
+
+      <p>
+        If you have a few hours left in the afternoon, drive south of Lee Vining on Highway 395 to <strong>South Tufa</strong> at the Mono Lake Tufa State Natural Reserve (south on 395, then east on Highway 120, about ten miles all told). Three dollars per adult, free under 16, and your America the Beautiful pass covers it. A boardwalk and a one-mile loop carry you through a forest of calcium carbonate towers that grew underwater at freshwater springs, then emerged when the lake dropped after Los Angeles began diverting the basin's streams in 1941. The story of how the lake was saved is one of the great American conservation stories, and the <strong>Mono Lake Committee Information Center and Bookstore</strong> in downtown Lee Vining (open 9 a.m. to 5 p.m. daily) is the right place to learn it. Their HD film, "The Mono Lake Story," is a roughly twenty-five-minute primer.
+      </p>
+
+      <p>
+        In mid-May the lake is filling with nesting California gulls (the eared grebes and phalaropes that make Mono Lake famous arrive later, in summer and fall). By August the shoreline is carpeted in dark, shifting bands of brine flies. If you have never seen a million birds eating a trillion flies, it is something to come back for.
+      </p>
+
+      <h2>What to pack for Tioga Road in May</h2>
+
+      <p>For the high country on opening weekend, the difference between a good day and a frustrating one is footwear.</p>
+
+      <ul>
+        <li>Waterproof hiking boots. Not optional. Every trail will have wet, muddy, or partially snow-covered sections.</li>
+        <li>Microspikes (Kahtoola or equivalent) in the pack for any shaded snow patch.</li>
+        <li>Trekking poles for slush, mud, and slick granite.</li>
+        <li>Layers: a puffy jacket and a shell, even if the forecast looks mild. Temperatures swing 30 to 40 degrees between dawn and afternoon.</li>
+        <li>Sunglasses and sunscreen. Snow glare and 9,000-foot UV are a combination.</li>
+        <li>Plenty of water and food. There is no source for either on Tioga Road yet.</li>
+        <li>A bear-aware approach to food even on a day hike. Black bears are out of dens, hungry, and active in meadows. Use the lockers at trailheads.</li>
+      </ul>
+
+      <p>
+        For my full lists, see the <a href="/kit">day pack and car trip kit</a>.
+      </p>
+
+      <h2>A note on visiting responsibly in the early season</h2>
+
+      <p>
+        Early-season Tioga Road is the most fragile version of Tioga Road. The meadow soils are saturated. The vegetation is just emerging. The trails are soft. A single off-trail boot print in the wrong place in May can leave a scar that will still be visible in August.
+      </p>
+
+      <p>
+        Stay on trails. Stay on boardwalks. Use the pullouts. Pack out everything you bring in. Give wildlife room (50 yards from <a href="https://yosemite.org/keep-bears-wild/" target="_blank" rel="noopener noreferrer">black bears</a> is the park standard). Bear spray is not permitted in Yosemite. Store all scented items in lockers or canisters, even snacks in your car at a trailhead.
+      </p>
+
+      <p>
+        The whole reason the high country is worth visiting is that someone in 1864, and 1890, and 1916, and 1984, and every year since, decided it was worth protecting. Treat it like the inheritance it is.
+      </p>
+
+      <h2>Tioga Road 2026: frequently asked questions</h2>
+
+      <h3>When does Tioga Road open in 2026?</h3>
+      <p>Friday, May 15, 2026. That is well ahead of Tioga's long-term average opening date of May 28.</p>
+
+      <h3>Is Tioga Pass open right now?</h3>
+      <p>
+        As of May 13, 2026, the road is plowed and scheduled to open Friday. Text "ynptraffic" to 333111 for live updates, or check <a href="https://www.nps.gov/yose/planyourvisit/tioga.htm" target="_blank" rel="noopener noreferrer">nps.gov/yose/planyourvisit/tioga.htm</a>.
+      </p>
+
+      <h3>Is Highway 120 through Yosemite open?</h3>
+      <p>
+        Yes. Highway 120 (Tioga Road) through Yosemite opens Friday, May 15, 2026. Highway 120 west of the park (Big Oak Flat to Crane Flat) is open year-round.
+      </p>
+
+      <h3>What is the elevation of Tioga Pass?</h3>
+      <p>
+        Tioga Pass sits at 9,945 feet (3,031 meters), the highest state highway pass in California. Tioga Road climbs from 6,200 feet at Crane Flat to the pass over roughly 39 miles.
+      </p>
+
+      <h3>Do I need a reservation to enter Yosemite in 2026?</h3>
+      <p>No. The day-use reservation system is not in effect this year. A standard entrance pass is required.</p>
+
+      <h3>Is the Tuolumne Meadows store open on opening weekend?</h3>
+      <p>
+        No. The grill opens May 30, the lodge June 5, and the store opens later in the summer (currently scheduled for August).
+      </p>
+
+      <h3>Can I camp at Tuolumne Meadows on opening weekend?</h3>
+      <p>Yes. The newly rehabilitated campground is reservable on Recreation.gov for the 2026 season.</p>
+
+      <h3>How long does it take to drive Tioga Road?</h3>
+      <p>
+        Tioga Road runs about 39 miles from Crane Flat to the Tioga Pass entrance station. Allow roughly 90 minutes one-way without stops, or a full day with Olmsted Point, Tenaya Lake, and Tuolumne Meadows. With Lee Vining and Mono Lake added on, plan a long, perfect day.
+      </p>
+
+      <p style={{ marginTop: 32, fontStyle: "italic", color: "var(--ink-3)" }}>
+        For more on the early season up high, see <a href="/articles/glacier-point-road-open-2026">Glacier Point Road is open</a>. For 2026 strategy, see <a href="/articles/yosemite-without-reservations-2026">Yosemite without reservations in 2026</a>.
+      </p>
+    </>
+  );
+};
