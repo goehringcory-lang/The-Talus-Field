@@ -108,6 +108,18 @@ window.KIT = {
 
 window.ARTICLES = [
   {
+    slug: "tioga-road-opening-weekend-2026",
+    cat: "seasonal",
+    title: "Tioga Road opens May 15: a plan for opening weekend",
+    dek: "Tioga Road and Tioga Pass open Friday, May 15, well ahead of the long-term average. What's open in Tuolumne Meadows, the road conditions, the short hikes that actually work in mid-May, and how to make a day of it east to Lee Vining and Mono Lake.",
+    date: "May 13, 2026",
+    isoDate: "2026-05-13",
+    isoModified: "2026-05-13",
+    read: "11 min",
+    placeholder: "Tuolumne Meadows in early season, Tioga Road",
+    image: "img/TMweb.webp",
+  },
+  {
     slug: "so-you-want-to-hike-half-dome",
     cat: "trails",
     title: "So you want to hike Half Dome",

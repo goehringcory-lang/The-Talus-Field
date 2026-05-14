@@ -45,6 +45,19 @@ function breadcrumbLd(crumbs) {
   };
 }
 
+// Build a FAQPage from an array of {q, a} pairs.
+function faqLd(pairs) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: pairs.map(({ q, a }) => ({
+      "@type": "Question",
+      name: q,
+      acceptedAnswer: { "@type": "Answer", text: a },
+    })),
+  };
+}
+
 function seoForPath(pathname) {
   const path = pathname.replace(/\/+$/, "") || "/";
 
@@ -85,6 +98,7 @@ function seoForPath(pathname) {
         cat ? [cat.label, `${SITE_ORIGIN}/section/${cat.slug}`] : null,
         [a.title, null],
       ].filter(Boolean)),
+      faq: Array.isArray(a.faq) && a.faq.length ? faqLd(a.faq) : null,
     };
   }
 
@@ -291,6 +305,12 @@ export async function onRequest({ request, next }) {
         if (seo.breadcrumb) {
           el.append(
             `<script type="application/ld+json" id="ld-breadcrumb">${safeJsonForScript(seo.breadcrumb)}</script>`,
+            { html: true }
+          );
+        }
+        if (seo.faq) {
+          el.append(
+            `<script type="application/ld+json" id="ld-faq">${safeJsonForScript(seo.faq)}</script>`,
             { html: true }
           );
         }

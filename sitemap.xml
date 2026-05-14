@@ -5,7 +5,7 @@
   <!-- Hub pages -->
   <url>
     <loc>https://thetalusfieldjournal.com/</loc>
-    <lastmod>2026-05-12</lastmod>
+    <lastmod>2026-05-13</lastmod>
     <image:image>
       <image:loc>https://thetalusfieldjournal.com/img/Half%20Dome%20Main%20Photo.jpg</image:loc>
       <image:title>Half Dome at first light</image:title>
@@ -13,7 +13,7 @@
   </url>
   <url>
     <loc>https://thetalusfieldjournal.com/articles</loc>
-    <lastmod>2026-05-12</lastmod>
+    <lastmod>2026-05-13</lastmod>
   </url>
 
   <!-- Sections -->
@@ -31,7 +31,7 @@
   </url>
   <url>
     <loc>https://thetalusfieldjournal.com/section/seasonal</loc>
-    <lastmod>2026-05-11</lastmod>
+    <lastmod>2026-05-13</lastmod>
   </url>
 
   <!-- Static pages -->
@@ -81,6 +81,14 @@
   </url>
 
   <!-- Articles -->
+  <url>
+    <loc>https://thetalusfieldjournal.com/articles/tioga-road-opening-weekend-2026</loc>
+    <lastmod>2026-05-13</lastmod>
+    <image:image>
+      <image:loc>https://thetalusfieldjournal.com/img/TMweb.webp</image:loc>
+      <image:title>Tuolumne Meadows in early season, Tioga Road</image:title>
+    </image:image>
+  </url>
   <url>
     <loc>https://thetalusfieldjournal.com/articles/so-you-want-to-hike-half-dome</loc>
     <lastmod>2026-05-12</lastmod>
