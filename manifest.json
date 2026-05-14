@@ -1,0 +1,19 @@
+{
+  "name": "The Talus Field",
+  "short_name": "Talus Field",
+  "description": "A field journal of Yosemite National Park, kept by a resident.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#1a1a1a",
+  "theme_color": "#1a1a1a",
+  "lang": "en-US",
+  "icons": [
+    {
+      "src": "/img/talus-field-mark.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}

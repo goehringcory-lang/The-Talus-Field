@@ -34,8 +34,16 @@
   Cache-Control: public, max-age=2592000, immutable
 
 /styles.css
-  Cache-Control: public, max-age=86400
+  Cache-Control: public, max-age=300, stale-while-revalidate=600
 
 # JSX bodies and pages are loaded with explicit version query strings.
+# Short TTL + stale-while-revalidate means a forgotten ?v=N bump heals
+# in minutes rather than the previous 24-hour cache window.
 /*.jsx
+  Cache-Control: public, max-age=300, stale-while-revalidate=600
+
+# IndexNow ownership key file. Served as plain text per the IndexNow
+# protocol so Bing/Yandex/Seznam can verify and accept URL submissions.
+/a1c4a884dc3d1469bbe8aaa26caa7a87.txt
   Cache-Control: public, max-age=86400
+  Content-Type: text/plain; charset=utf-8
