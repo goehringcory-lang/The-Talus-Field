@@ -4,6 +4,12 @@
 
 Sitemap: https://thetalusfieldjournal.com/sitemap.xml
 
+# IndexNow ownership key (Bing / Yandex / Seznam / Naver / Yep).
+# Key file:
+#   https://thetalusfieldjournal.com/a1c4a884dc3d1469bbe8aaa26caa7a87.txt
+# Submit URL changes via POST to https://api.indexnow.org/IndexNow
+# or via the Worker endpoint at api.thetalusfieldjournal.com/api/indexnow/submit.
+
 # ---------------------------------------------------------------
 # Default: allow well-behaved crawlers everywhere on the site.
 # ---------------------------------------------------------------

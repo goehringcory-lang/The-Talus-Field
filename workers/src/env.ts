@@ -22,4 +22,12 @@ export type Env = {
   DEV_CODE?: string
   ADMIN_USERNAME?: string
   ADMIN_CODE?: string
+
+  // IndexNow push-indexing for Bing / Yandex / Seznam / Naver / Yep.
+  // INDEXNOW_KEY is the 32-char hex string published at
+  //   https://thetalusfieldjournal.com/<INDEXNOW_KEY>.txt
+  // INDEXNOW_ADMIN_TOKEN gates POST /api/indexnow/submit. Both optional;
+  // if either is unset the endpoint returns 503.
+  INDEXNOW_KEY?: string
+  INDEXNOW_ADMIN_TOKEN?: string
 }
