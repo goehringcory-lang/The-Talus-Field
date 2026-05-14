@@ -38,7 +38,6 @@ window.ARTICLE_BODIES["tioga-road-opening-weekend-2026"] = function TiogaRoadOpe
         <li>Tuolumne Meadows pullouts</li>
         <li>Crane Flat gas station (24/7, pay at pump, credit and debit only)</li>
         <li>Vault toilets along the road</li>
-        <li>The Tuolumne Meadows Campground, freshly rebuilt after a multi-year rehabilitation, is reservable on Recreation.gov this season</li>
       </ul>
 
       <h3>What's not open yet</h3>
@@ -48,6 +47,7 @@ window.ARTICLE_BODIES["tioga-road-opening-weekend-2026"] = function TiogaRoadOpe
         <li>Tuolumne Meadows Lodge and dining room: opens June 5</li>
         <li>Tuolumne Meadows Store and Post Office: opens later in summer (currently scheduled for August)</li>
         <li>Tuolumne Meadows Visitor Center and Wilderness Center: limited or no staffing until late May</li>
+        <li>Tuolumne Meadows Campground: rehabilitated, but not yet open for the 2026 season. Check <a href="https://www.recreation.gov/camping/campgrounds/232448" target="_blank" rel="noopener noreferrer">Recreation.gov</a> for the opening date.</li>
         <li>White Wolf Lodge and campground: closed for the season due to sewer line damage</li>
         <li>Gas at Tuolumne Meadows: not in operation (offline for several years now)</li>
         <li>Potable water: not available anywhere along the road</li>
@@ -207,7 +207,7 @@ window.ARTICLE_BODIES["tioga-road-opening-weekend-2026"] = function TiogaRoadOpe
       </p>
 
       <h3>Can I camp at Tuolumne Meadows on opening weekend?</h3>
-      <p>Yes. The newly rehabilitated campground is reservable on Recreation.gov for the 2026 season.</p>
+      <p>Not yet. The newly rehabilitated Tuolumne Meadows Campground is not open for the 2026 season as of opening weekend. Check <a href="https://www.recreation.gov/camping/campgrounds/232448" target="_blank" rel="noopener noreferrer">Recreation.gov</a> for the official opening date.</p>
 
       <h3>How long does it take to drive Tioga Road?</h3>
       <p>
