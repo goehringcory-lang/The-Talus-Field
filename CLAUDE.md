@@ -19,8 +19,9 @@ DEPLOY.md has a full deployment runbook. Note that DEPLOY.md was written against
 Local dev hosts (matches `.claude/launch.json`):
 
 ```bash
-# Editorial site — port 8765
-python -m http.server 8765
+# Editorial site — port 8766
+python serve.py 8766       # http.server wrapper with SPA fallback,
+                           # so refresh on /articles/<slug> doesn't 404
 
 # PWA — port 5173
 npm --prefix apps/guide run dev
