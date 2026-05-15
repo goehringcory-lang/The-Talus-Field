@@ -59,8 +59,10 @@ self.addEventListener('fetch', (event) => {
 
   const url = new URL(request.url)
 
-  // Skip cross-origin requests (fonts, API, etc.) — let the browser handle them.
-  // Google Fonts gets cached by browser HTTP cache; the API needs to stay fresh.
+  // Skip cross-origin requests (fonts, API, Google Maps tiles, etc.) — let the
+  // browser handle them. Google Fonts gets cached by browser HTTP cache; the
+  // API needs to stay fresh; Google Maps JS + tile URLs are deliberately
+  // not cached (signed/rotating URLs, and Google's ToS forbids tile caching).
   if (url.origin !== self.location.origin) return
 
   // Navigation: network-first, fall back to cached app shell.
