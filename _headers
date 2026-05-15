@@ -33,6 +33,12 @@
 /img/*
   Cache-Control: public, max-age=2592000, immutable
 
+# Favicon. Keep TTL moderate so an icon refresh propagates within a day
+# rather than the /img/* month-long TTL.
+/favicon.ico
+  Cache-Control: public, max-age=86400, must-revalidate
+  Content-Type: image/x-icon
+
 /styles.css
   Cache-Control: public, max-age=300, stale-while-revalidate=600
 
