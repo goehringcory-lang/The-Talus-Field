@@ -5,7 +5,7 @@
   <!-- Hub pages -->
   <url>
     <loc>https://thetalusfieldjournal.com/</loc>
-    <lastmod>2026-05-13</lastmod>
+    <lastmod>2026-05-14</lastmod>
     <image:image>
       <image:loc>https://thetalusfieldjournal.com/img/Half%20Dome%20Main%20Photo.jpg</image:loc>
       <image:title>Half Dome at first light</image:title>
@@ -13,13 +13,13 @@
   </url>
   <url>
     <loc>https://thetalusfieldjournal.com/articles</loc>
-    <lastmod>2026-05-13</lastmod>
+    <lastmod>2026-05-14</lastmod>
   </url>
 
   <!-- Sections -->
   <url>
     <loc>https://thetalusfieldjournal.com/section/planning</loc>
-    <lastmod>2026-05-12</lastmod>
+    <lastmod>2026-05-14</lastmod>
   </url>
   <url>
     <loc>https://thetalusfieldjournal.com/section/trails</loc>
@@ -81,6 +81,14 @@
   </url>
 
   <!-- Articles -->
+  <url>
+    <loc>https://thetalusfieldjournal.com/articles/yosemite-with-kids-no-reservations-2026</loc>
+    <lastmod>2026-05-14</lastmod>
+    <image:image>
+      <image:loc>https://thetalusfieldjournal.com/img/kid-yosemite-falls-boardwalk.jpg</image:loc>
+      <image:title>Toddler on the Lower Yosemite Fall boardwalk, Upper Yosemite Fall behind</image:title>
+    </image:image>
+  </url>
   <url>
     <loc>https://thetalusfieldjournal.com/articles/tioga-road-opening-weekend-2026</loc>
     <lastmod>2026-05-13</lastmod>
