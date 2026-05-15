@@ -148,7 +148,9 @@ function buildSeo(route) {
             name: SITE_NAME,
             logo: {
               "@type": "ImageObject",
-              url: `${SITE_ORIGIN}/img/talus-field-mark.png`,
+              url: `${SITE_ORIGIN}/img/talus-field-mark-square.png`,
+              width: 512,
+              height: 512,
             },
           },
           mainEntityOfPage: { "@type": "WebPage", "@id": url },

@@ -34,8 +34,18 @@
   <meta name="p:domain_verify" content="REPLACE_WITH_PINTEREST_TOKEN" />
 
   <link rel="canonical" href="https://thetalusfieldjournal.com/" />
-  <link rel="icon" href="/img/talus-field-mark.png" type="image/png" />
-  <link rel="apple-touch-icon" href="/img/talus-field-mark.png" />
+
+  <!--
+    Favicons. Google search requires a square image at a multiple of 48px
+    to render the site's icon next to the result; without it Google falls
+    back to its generic globe. The .ico at the site root is the legacy
+    path some crawlers still probe directly.
+  -->
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="48x48" href="/img/favicon-48.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="/img/favicon-192.png" />
+  <link rel="icon" type="image/png" sizes="512x512" href="/img/favicon-512.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png" />
 
   <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
   <link rel="alternate" type="application/rss+xml" title="The Talus Field" href="/feed.xml" />
@@ -104,7 +114,9 @@
     "url": "https://thetalusfieldjournal.com/",
     "logo": {
       "@type": "ImageObject",
-      "url": "https://thetalusfieldjournal.com/img/talus-field-mark.png"
+      "url": "https://thetalusfieldjournal.com/img/talus-field-mark-square.png",
+      "width": 512,
+      "height": 512
     },
     "founder": {
       "@type": "Person",

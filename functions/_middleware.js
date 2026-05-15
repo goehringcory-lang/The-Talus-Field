@@ -19,7 +19,7 @@ const SITE_DEFAULT_IMAGE = `${SITE_ORIGIN}/img/Half%20Dome%20Main%20Photo.jpg`;
 const SITE_DEFAULT_DESC =
   "A field journal of Yosemite National Park, kept by a resident. Trails, planning notes, wildlife, and essays on the park's seasons and life.";
 const AUTHOR_NAME = "Cory Goehring";
-const PUBLISHER_LOGO = `${SITE_ORIGIN}/img/talus-field-mark.png`;
+const PUBLISHER_LOGO = `${SITE_ORIGIN}/img/talus-field-mark-square.png`;
 
 function absoluteImage(url) {
   if (!url) return SITE_DEFAULT_IMAGE;
