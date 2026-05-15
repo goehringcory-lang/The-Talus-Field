@@ -6,6 +6,7 @@ import Home from './routes/Home'
 import Account from './routes/Account'
 import Region from './routes/Region'
 import StopDetail from './routes/StopDetail'
+import Map from './routes/Map'
 import InstallPrompt from './components/InstallPrompt'
 import UpdateBanner from './components/UpdateBanner'
 
@@ -37,6 +38,14 @@ export default function App() {
           element={
             <RequireAuth>
               <StopDetail />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="/map"
+          element={
+            <RequireAuth>
+              <Map />
             </RequireAuth>
           }
         />
