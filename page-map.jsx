@@ -13,7 +13,7 @@
 
 const { useEffect, useMemo, useRef, useState, useCallback } = React;
 
-const POINTS_URL = "/points.geojson?v=1";
+const POINTS_URL = "/points.geojson?v=2";
 
 // Itinerary presets. Each is a list of "days", each day pinned to one or more
 // region keys from points.geojson. Stop counts in the sidebar are derived
@@ -48,15 +48,12 @@ const ITINERARY_KEYS = ["1day", "2day", "3day"];
 
 // Pin color + display label per category. Categories come from
 // points.geojson — add a new entry here whenever a new category is
-// introduced (picnic / eat / pullout, etc.). The fallback color is
-// used for any category not listed.
+// introduced. The fallback color is used for any category not listed.
 const CATEGORY_STYLES = {
-  viewpoint: { color: "#1e6fb8", label: "Viewpoints" },
-  waterfall: { color: "#0aa3a3", label: "Waterfalls" },
-  hike:      { color: "#2f8a3e", label: "Hikes" },
-  geology:   { color: "#a05a2c", label: "Geology" },
-  sequoia:   { color: "#7a4ea8", label: "Giant sequoias" },
-  lodging:   { color: "#c64a2a", label: "Lodging" },
+  hike:    { color: "#2f8a3e", label: "Hike" },
+  vista:   { color: "#1e6fb8", label: "Vista" },
+  picnic:  { color: "#e07a1a", label: "Picnic" },
+  parking: { color: "#6b6b6b", label: "Parking" },
 };
 const CATEGORY_FALLBACK = { color: "#666", label: "Other" };
 

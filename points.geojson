@@ -6,44 +6,18 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -119.6776,
-          37.7158
+          -119.6294,
+          37.7174
         ]
       },
       "properties": {
-        "id": "tunnel-view",
-        "name": "Tunnel View",
-        "category": "viewpoint",
-        "region": "valley",
-        "blurb": "You come out of the Wawona Tunnel and the whole valley is there at once.",
-        "image": "img/tunnel-view.jpg",
-        "articles": [
-          "first-time-yosemite-overwhelm",
-          "yosemite-for-non-hikers"
-        ],
-        "verified": false
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -119.5874,
-          37.7466
-        ]
-      },
-      "properties": {
-        "id": "cooks-meadow-loop",
-        "name": "Cook's Meadow Loop",
+        "id": "el-capitan-bridge",
+        "name": "El Capitan Bridge",
         "category": "hike",
         "region": "valley",
-        "blurb": "A flat one-mile boardwalk through the meadow at the heart of the valley.",
-        "image": "img/lower-yosemite-fall.jpg",
-        "articles": [
-          "first-time-yosemite-overwhelm",
-          "yosemite-for-non-hikers"
-        ],
+        "blurb": "The bridge over the Merced just east of El Capitan. Short flat walk with the wall straight overhead.",
+        "image": null,
+        "articles": [],
         "verified": false
       }
     },
@@ -52,39 +26,16 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -119.648,
-          37.7172
+          -119.581,
+          37.748
         ]
       },
       "properties": {
-        "id": "bridalveil-fall",
-        "name": "Bridalveil Fall",
-        "category": "waterfall",
-        "region": "valley",
-        "blurb": "Five-minute walk on a paved path.",
-        "image": "img/cathedral-rocks.jpg",
-        "articles": [
-          "first-time-yosemite-overwhelm",
-          "water-ouzels-waterfalls"
-        ],
-        "verified": false
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -119.6451,
-          37.7238
-        ]
-      },
-      "properties": {
-        "id": "old-big-oak-flat-road",
-        "name": "Old Big Oak Flat Road and Ribbon Fall",
+        "id": "church-bowl-indian-creek",
+        "name": "Church Bowl & Indian Creek Trail",
         "category": "hike",
         "region": "valley",
-        "blurb": "A small dirt pullout on Northside Drive, between the Pohono Bridge and El Capitan.",
+        "blurb": "Quiet picnic meadow under the Royal Arches with the Indian Canyon trail climbing out the back.",
         "image": null,
         "articles": [],
         "verified": false
@@ -102,7 +53,7 @@
       "properties": {
         "id": "el-capitan-meadow",
         "name": "El Capitan Meadow",
-        "category": "viewpoint",
+        "category": "vista",
         "region": "valley",
         "blurb": "Pull off Northside Drive at the meadow and look up.",
         "image": "img/el-capitan-winter.jpg",
@@ -118,60 +69,16 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -119.557,
-          37.7464
-        ]
-      },
-      "properties": {
-        "id": "mirror-lake",
-        "name": "Mirror Lake",
-        "category": "hike",
-        "region": "valley",
-        "blurb": "Two miles round trip from the shuttle stop, mostly flat.",
-        "image": null,
-        "articles": [
-          "yosemite-for-non-hikers"
-        ],
-        "verified": false
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -119.5594,
-          37.7338
-        ]
-      },
-      "properties": {
-        "id": "mist-trail",
-        "name": "Mist Trail to Vernal Fall (and Nevada",
-        "category": "hike",
-        "region": "valley",
-        "blurb": "The hike that earns the trip.",
-        "image": "img/vernal-fall.jpg",
-        "articles": [
-          "water-ouzels-waterfalls"
-        ],
-        "verified": false
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
           -119.5747,
           37.7458
         ]
       },
       "properties": {
-        "id": "ahwahnee-hotel",
-        "name": "The Ahwahnee Hotel",
-        "category": "lodging",
+        "id": "ahwahnee",
+        "name": "The Ahwahnee",
+        "category": "vista",
         "region": "valley",
-        "blurb": "You don't have to be a guest.",
+        "blurb": "You don't have to be a guest. The Great Lounge and the back lawn are open to anyone.",
         "image": null,
         "articles": [
           "yosemite-for-non-hikers"
@@ -185,20 +92,82 @@
         "type": "Point",
         "coordinates": [
           -119.5867,
-          37.7421
+          37.7418
         ]
       },
       "properties": {
-        "id": "sentinel-bridge-sunset",
-        "name": "Sentinel Bridge",
-        "category": "viewpoint",
+        "id": "sentinel-bridge-south",
+        "name": "Sentinel Bridge South Side",
+        "category": "vista",
         "region": "valley",
-        "blurb": "Half Dome catches the last light from here.",
+        "blurb": "Half Dome catches the last light from the south end of the bridge.",
         "image": "img/half-dome.jpg",
         "articles": [
           "first-time-yosemite-overwhelm",
           "yosemite-for-non-hikers"
         ],
+        "verified": false
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -119.4885,
+          37.8095
+        ]
+      },
+      "properties": {
+        "id": "muirs-glacial-erratic",
+        "name": "Muir's Glacial Erratic",
+        "category": "vista",
+        "region": "tuolumne",
+        "blurb": "The boulder John Muir used as evidence the valleys were carved by ice. Sits on bare granite a short walk from Olmsted Point.",
+        "image": null,
+        "articles": [
+          "yosemite-glaciers-climate"
+        ],
+        "verified": false
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -119.5783,
+          37.7404
+        ]
+      },
+      "properties": {
+        "id": "housekeeping-camp-swimming",
+        "name": "Housekeeping Camp Swimming",
+        "category": "picnic",
+        "region": "valley",
+        "blurb": "Sandy beach on the Merced behind Housekeeping Camp. Shallow, slow, and shaded by afternoon.",
+        "image": null,
+        "articles": [],
+        "verified": false
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -119.716,
+          37.7178
+        ]
+      },
+      "properties": {
+        "id": "cascade-picnic-area",
+        "name": "Cascade Picnic Area",
+        "category": "picnic",
+        "region": "valley",
+        "blurb": "Tables along Cascade Creek just inside the Arch Rock entrance. Easy stop on the way in or out.",
+        "image": null,
+        "articles": [],
         "verified": false
       }
     },
@@ -212,379 +181,11 @@
         ]
       },
       "properties": {
-        "id": "curry-village",
-        "name": "Curry Village",
-        "category": "lodging",
+        "id": "curry-village-trailhead-parking",
+        "name": "Trailhead Parking at Curry Village",
+        "category": "parking",
         "region": "valley",
-        "blurb": "Tent cabins or wood cabins, your call.",
-        "image": null,
-        "articles": [
-          "first-time-yosemite-overwhelm",
-          "yosemite-without-reservations-2026"
-        ],
-        "verified": false
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -119.5841,
-          37.7236
-        ]
-      },
-      "properties": {
-        "id": "sentinel-dome",
-        "name": "Sentinel Dome and Taft Point",
-        "category": "viewpoint",
-        "region": "glacier-mariposa",
-        "blurb": "The Sentinel-Dome-to-Taft-Point loop is the right move: 5 miles, ~700 ft of gain, both viewpoints in one walk.",
-        "image": "img/milky-way-sentinel-dome.jpg",
-        "articles": [
-          "yosemite-stargazing-where-to-look-up"
-        ],
-        "verified": false
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -119.5731,
-          37.7283
-        ]
-      },
-      "properties": {
-        "id": "glacier-point",
-        "name": "Glacier Point",
-        "category": "viewpoint",
-        "region": "glacier-mariposa",
-        "blurb": "Half Dome at eye level.",
-        "image": "img/half-dome.jpg",
-        "articles": [
-          "first-time-yosemite-overwhelm",
-          "yosemite-for-non-hikers"
-        ],
-        "verified": false
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -119.6083,
-          37.5108
-        ]
-      },
-      "properties": {
-        "id": "mariposa-grove",
-        "name": "Mariposa Grove of Giant Sequoias",
-        "category": "sequoia",
-        "region": "glacier-mariposa",
-        "blurb": "You park at the Welcome Plaza and ride the free shuttle two miles up to the grove.",
-        "image": null,
-        "articles": [
-          "giant-sequoias-fire-adaptation"
-        ],
-        "verified": false
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -119.4884,
-          37.8096
-        ]
-      },
-      "properties": {
-        "id": "olmsted-point",
-        "name": "Olmsted Point",
-        "category": "viewpoint",
-        "region": "tuolumne",
-        "blurb": "A short walk from the parking lot to a granite slab pocked with glacial erratics — boulders left here when the ice melted.",
-        "image": "img/half-dome.jpg",
-        "articles": [
-          "yosemite-stargazing-where-to-look-up"
-        ],
-        "verified": false
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -119.4548,
-          37.833
-        ]
-      },
-      "properties": {
-        "id": "tenaya-lake",
-        "name": "Tenaya Lake",
-        "category": "viewpoint",
-        "region": "tuolumne",
-        "blurb": "The east beach is the spot.",
-        "image": null,
-        "articles": [],
-        "verified": false
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -119.3829,
-          37.8732
-        ]
-      },
-      "properties": {
-        "id": "cathedral-lakes",
-        "name": "Cathedral Lakes",
-        "category": "hike",
-        "region": "tuolumne",
-        "blurb": "The high-country day hike.",
-        "image": null,
-        "articles": [],
-        "verified": false
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -119.3589,
-          37.8772
-        ]
-      },
-      "properties": {
-        "id": "soda-springs-parsons-lodge",
-        "name": "Soda Springs and Parsons Lodge",
-        "category": "hike",
-        "region": "tuolumne",
-        "blurb": "A 1.5-mile round trip from the Lembert Dome parking lot.",
-        "image": "img/tuolumne-meadows.jpg",
-        "articles": [],
-        "verified": false
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -119.532939,
-          37.746036
-        ]
-      },
-      "properties": {
-        "id": "half-dome",
-        "name": "Half Dome",
-        "category": "geology",
-        "region": "valley",
-        "blurb": "The granite anchor of the valley. Pin marks the summit; you look at it, you don't go there without a permit.",
-        "image": "img/half-dome.jpg",
-        "articles": [
-          "first-time-yosemite-overwhelm",
-          "yosemite-glaciers-climate"
-        ],
-        "verified": false
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -119.405621,
-          37.847828
-        ]
-      },
-      "properties": {
-        "id": "cathedral-peak",
-        "name": "Cathedral Peak",
-        "category": "geology",
-        "region": "tuolumne",
-        "blurb": "The granite arête John Muir camped on in 1869. 10,916 ft, the centerpiece of the Cathedral Range.",
-        "image": null,
-        "articles": [],
-        "verified": false
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -119.788333,
-          37.9475
-        ]
-      },
-      "properties": {
-        "id": "hetch-hetchy-dam",
-        "name": "O'Shaughnessy Dam",
-        "category": "viewpoint",
-        "region": "hetch-hetchy",
-        "blurb": "The dam that flooded the other Yosemite Valley in 1923. Walk the crest for the long view up the reservoir.",
-        "image": null,
-        "articles": [
-          "hetch-hetchy-the-other-yosemite-valley"
-        ],
-        "verified": false
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -119.765555,
-          37.967222
-        ]
-      },
-      "properties": {
-        "id": "wapama-falls",
-        "name": "Wapama Falls",
-        "category": "waterfall",
-        "region": "hetch-hetchy",
-        "blurb": "1,080 feet of tiered falls. The bridge crossing gets soaked in spring; bring a layer.",
-        "image": null,
-        "articles": [
-          "hetch-hetchy-the-other-yosemite-valley",
-          "water-ouzels-waterfalls"
-        ],
-        "verified": false
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -119.772777,
-          37.964166
-        ]
-      },
-      "properties": {
-        "id": "tueeulala-falls",
-        "name": "Tueeulala Falls",
-        "category": "waterfall",
-        "region": "hetch-hetchy",
-        "blurb": "An 880-foot plunge fall on the north side of the reservoir. Dries by midsummer.",
-        "image": null,
-        "articles": [
-          "hetch-hetchy-the-other-yosemite-valley"
-        ],
-        "verified": false
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -119.269166,
-          37.743055
-        ]
-      },
-      "properties": {
-        "id": "mt-lyell-glacier",
-        "name": "Mt. Lyell Glacier",
-        "category": "geology",
-        "region": "tuolumne",
-        "blurb": "Historically the park's largest glacier. The 1933 cairn is now four hundred feet from the ice.",
-        "image": "img/tuolumne-meadows.jpg",
-        "articles": [
-          "yosemite-glaciers-climate"
-        ],
-        "verified": false
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -119.667232,
-          37.717431
-        ]
-      },
-      "properties": {
-        "id": "valley-view",
-        "name": "Valley View",
-        "category": "viewpoint",
-        "region": "valley",
-        "blurb": "Gates of the Valley. Lower angle than Tunnel View, fewer cars, El Capitan straight ahead.",
-        "image": null,
-        "articles": [
-          "first-time-yosemite-overwhelm"
-        ],
-        "verified": false
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -119.573,
-          37.720388
-        ]
-      },
-      "properties": {
-        "id": "washburn-point",
-        "name": "Washburn Point",
-        "category": "viewpoint",
-        "region": "glacier-mariposa",
-        "blurb": "7,450 feet. Edge-on profile of Half Dome and the Vernal-Nevada chain. Often empty when Glacier Point is mobbed.",
-        "image": null,
-        "articles": [
-          "first-time-yosemite-overwhelm"
-        ],
-        "verified": false
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -119.6365,
-          37.71472
-        ]
-      },
-      "properties": {
-        "id": "cathedral-rocks",
-        "name": "Cathedral Rocks",
-        "category": "geology",
-        "region": "valley",
-        "blurb": "Middle Cathedral Rock at 6,648 ft, due south of El Capitan. Best seen from the Bridalveil parking lot.",
-        "image": "img/cathedral-rocks.jpg",
-        "articles": [],
-        "verified": false
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
-          -119.418651,
-          37.909501
-        ]
-      },
-      "properties": {
-        "id": "glen-aulin",
-        "name": "Glen Aulin",
-        "category": "lodging",
-        "region": "tuolumne",
-        "blurb": "High Sierra Camp at 7,800 ft in the Tuolumne River gorge. Tent cabins, meals, a swimming hole below the falls.",
+        "blurb": "The day-use lot at Curry Village. Closest paid parking for the Mist Trail and the Happy Isles trailhead.",
         "image": null,
         "articles": [],
         "verified": false
