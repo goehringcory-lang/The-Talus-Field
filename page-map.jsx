@@ -13,7 +13,7 @@
 
 const { useEffect, useMemo, useRef, useState, useCallback } = React;
 
-const POINTS_URL = "/points.geojson?v=1";
+const POINTS_URL = "/points.geojson?v=2";
 
 // Itinerary presets. Each is a list of "days", each day pinned to one or more
 // region keys from points.geojson. Stop counts in the sidebar are derived
@@ -45,6 +45,40 @@ const ITINERARIES = {
 };
 
 const ITINERARY_KEYS = ["1day", "2day", "3day"];
+
+// Pin color + display label per category. Categories come from
+// points.geojson — add a new entry here whenever a new category is
+// introduced. The fallback color is used for any category not listed.
+const CATEGORY_STYLES = {
+  hike:    { color: "#2f8a3e", label: "Hike" },
+  vista:   { color: "#1e6fb8", label: "Vista" },
+  picnic:  { color: "#e07a1a", label: "Picnic" },
+  parking: { color: "#6b6b6b", label: "Parking" },
+};
+const CATEGORY_FALLBACK = { color: "#666", label: "Other" };
+
+function getCategoryStyle(category) {
+  return CATEGORY_STYLES[category] || CATEGORY_FALLBACK;
+}
+
+// Teardrop pin shape, anchored at the tip. Rendered as a Google Maps
+// Symbol so we can recolor without shipping image assets.
+const PIN_PATH =
+  "M 0,0 C -2,-18 -11,-22 -11,-30 A 11,11 0 1,1 11,-30 C 11,-22 2,-18 0,0 z";
+
+function buildMarkerIcon(category) {
+  const { color } = getCategoryStyle(category);
+  return {
+    path: PIN_PATH,
+    fillColor: color,
+    fillOpacity: 1,
+    strokeColor: "#ffffff",
+    strokeWeight: 2,
+    scale: 1,
+    anchor: new window.google.maps.Point(0, 0),
+    labelOrigin: new window.google.maps.Point(0, -28),
+  };
+}
 
 // ---------------------------------------------------------------------------
 // URL state helpers. /map?itinerary=2day&stop=tunnel-view
@@ -209,7 +243,12 @@ function MapPage() {
       const position = { lat, lng };
       bounds.extend(position);
 
-      const marker = new maps.Marker({ position, map, title: p.name });
+      const marker = new maps.Marker({
+        position,
+        map,
+        title: p.name,
+        icon: buildMarkerIcon(p.category),
+      });
       marker.addListener("click", () => {
         infoRef.current.setContent(buildInfoHtml(p));
         infoRef.current.open({ anchor: marker, map });
@@ -365,7 +404,12 @@ function ItinerarySidebar({
                             onClick={() => onSelectStop(p.id)}
                           >
                             <span className="map-sidebar__stop-name">{p.name}</span>
-                            <span className="map-sidebar__stop-cat">{p.category}</span>
+                            <span
+                              className="map-sidebar__stop-cat"
+                              style={{ color: getCategoryStyle(p.category).color }}
+                            >
+                              {p.category}
+                            </span>
                           </button>
                         </li>
                       );
@@ -378,13 +422,43 @@ function ItinerarySidebar({
         </div>
       )}
 
-      <div className="map-sidebar__section map-sidebar__section--muted">
-        <h3 className="map-sidebar__section-label">Filters</h3>
-        <p className="map-sidebar__placeholder">
-          Category and region filters coming as more pin types are added.
-        </p>
-      </div>
+      <CategoryLegend features={features} />
     </aside>
+  );
+}
+
+// Legend keyed off the categories that actually appear in the current
+// feature set, so it stays in sync with points.geojson without manual edits.
+function CategoryLegend({ features }) {
+  const present = useMemo(() => {
+    const seen = new Set();
+    for (const f of features) {
+      if (f.properties && f.properties.category) seen.add(f.properties.category);
+    }
+    return Array.from(seen).sort();
+  }, [features]);
+
+  if (present.length === 0) return null;
+
+  return (
+    <div className="map-sidebar__section">
+      <h3 className="map-sidebar__section-label">Legend</h3>
+      <ul className="map-sidebar__legend">
+        {present.map((cat) => {
+          const { color, label } = getCategoryStyle(cat);
+          return (
+            <li key={cat} className="map-sidebar__legend-item">
+              <span
+                className="map-sidebar__legend-dot"
+                style={{ backgroundColor: color }}
+                aria-hidden="true"
+              />
+              <span className="map-sidebar__legend-label">{label}</span>
+            </li>
+          );
+        })}
+      </ul>
+    </div>
   );
 }
 
@@ -413,8 +487,12 @@ function getFeatureProps(features, id) {
 
 function buildInfoHtml(p) {
   const blurb = p.blurb ? `<p style="margin:6px 0 0;">${escapeHtml(p.blurb)}</p>` : "";
+  const style = getCategoryStyle(p.category);
   const cat = p.category
-    ? `<span style="text-transform:uppercase;font-size:11px;letter-spacing:0.06em;color:#777;">${escapeHtml(p.category)}</span>`
+    ? `<span style="display:inline-flex;align-items:center;gap:6px;text-transform:uppercase;font-size:11px;letter-spacing:0.06em;color:${style.color};font-weight:600;">
+         <span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:${style.color};"></span>
+         ${escapeHtml(p.category)}
+       </span>`
     : "";
   return `
     <div style="font:14px/1.4 system-ui,sans-serif;max-width:240px;color:#222;">
