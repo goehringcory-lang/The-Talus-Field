@@ -156,8 +156,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -119.716,
-          37.7178
+          -119.713439,
+          37.7228195
         ]
       },
       "properties": {
@@ -169,7 +169,7 @@
         "image": null,
         "articles": [],
         "gmapsUrl": "https://maps.app.goo.gl/9gVNF6YTwykaLCts5",
-        "verified": false
+        "verified": true
       }
     },
     {
