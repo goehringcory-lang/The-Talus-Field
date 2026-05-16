@@ -115,21 +115,22 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -119.4885,
-          37.8095
+          -119.644898,
+          37.721236
         ]
       },
       "properties": {
         "id": "muirs-glacial-erratic",
         "name": "Muir's Glacial Erratic",
         "category": "vista",
-        "region": "tuolumne",
-        "blurb": "The boulder John Muir used as evidence the valleys were carved by ice. Sits on bare granite a short walk from Olmsted Point.",
+        "region": "valley",
+        "blurb": "The boulder John Muir used as evidence the valley was carved by ice. Sits in the woods below El Capitan.",
         "image": null,
         "articles": [
           "yosemite-glaciers-climate"
         ],
-        "verified": false
+        "gmapsUrl": "https://maps.app.goo.gl/sL32hyfkzbHcFwEg9",
+        "verified": true
       }
     },
     {
@@ -179,8 +180,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -119.5688,
-          37.7395
+          -119.566577,
+          37.735344
         ]
       },
       "properties": {
@@ -191,7 +192,49 @@
         "blurb": "The day-use lot at Curry Village. Closest paid parking for the Mist Trail and the Happy Isles trailhead.",
         "image": null,
         "articles": [],
-        "verified": false
+        "gmapsUrl": "https://maps.app.goo.gl/vV7r5knTwNA6y7pr8",
+        "verified": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -119.6012117,
+          37.741385
+        ]
+      },
+      "properties": {
+        "id": "yosemite-lodge",
+        "name": "Yosemite Lodge",
+        "category": "parking",
+        "region": "valley",
+        "blurb": "One of the best home bases for moving around the Valley. The lot fills up last because cars have to do the full loop before they end up parking here.",
+        "image": null,
+        "articles": [],
+        "gmapsUrl": "https://maps.app.goo.gl/cpe2ocy1QEH5v5WL9",
+        "verified": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -119.5610822,
+          37.7317659
+        ]
+      },
+      "properties": {
+        "id": "the-fen",
+        "name": "The Fen",
+        "category": "vista",
+        "region": "valley",
+        "blurb": "One of the most peaceful areas of Yosemite Valley. Good spot for birding.",
+        "image": null,
+        "articles": [],
+        "verified": true
       }
     }
   ]
