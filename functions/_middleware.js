@@ -74,6 +74,13 @@ function seoForPath(pathname) {
       canonical: url,
       ogType: "article",
       image,
+      imageAlt: a.placeholder || a.title,
+      articleOg: {
+        publishedTime: a.isoDate || null,
+        modifiedTime: a.isoModified || a.isoDate || null,
+        author: AUTHOR_NAME,
+        section: cat ? cat.label : null,
+      },
       jsonLd: {
         "@context": "https://schema.org",
         "@type": "Article",
@@ -294,8 +301,40 @@ export async function onRequest({ request, next }) {
         if (seo.robots) el.setAttribute("content", seo.robots);
       },
     })
+    .on('meta[property="og:image:alt"]', {
+      element(el) {
+        if (seo.imageAlt) el.setAttribute("content", seo.imageAlt);
+      },
+    })
     .on("head", {
       element(el) {
+        if (seo.articleOg) {
+          const og = seo.articleOg;
+          if (og.publishedTime) {
+            el.append(
+              `<meta property="article:published_time" content="${og.publishedTime}" />`,
+              { html: true }
+            );
+          }
+          if (og.modifiedTime) {
+            el.append(
+              `<meta property="article:modified_time" content="${og.modifiedTime}" />`,
+              { html: true }
+            );
+          }
+          if (og.author) {
+            el.append(
+              `<meta property="article:author" content="${og.author}" />`,
+              { html: true }
+            );
+          }
+          if (og.section) {
+            el.append(
+              `<meta property="article:section" content="${og.section}" />`,
+              { html: true }
+            );
+          }
+        }
         if (seo.jsonLd) {
           el.append(
             `<script type="application/ld+json" id="ld-page">${safeJsonForScript(seo.jsonLd)}</script>`,

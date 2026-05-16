@@ -129,6 +129,13 @@ function buildSeo(route) {
         canonical: url,
         ogType: "article",
         image,
+        imageAlt: a.placeholder || a.title,
+        articleOg: {
+          publishedTime: a.isoDate || null,
+          modifiedTime: a.isoModified || a.isoDate || null,
+          author: window.SITE.authorName,
+          section: cat ? cat.label : null,
+        },
         jsonLd: {
           "@context": "https://schema.org",
           "@type": "Article",
@@ -307,6 +314,18 @@ function buildSeo(route) {
 const DEFAULT_ROBOTS =
   "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1";
 
+function removeMeta(name, attr = "name") {
+  const el = document.head.querySelector(`meta[${attr}="${name}"]`);
+  if (el) el.remove();
+}
+
+const ARTICLE_OG_TAGS = [
+  "article:published_time",
+  "article:modified_time",
+  "article:author",
+  "article:section",
+];
+
 function applySeo(route) {
   const seo = buildSeo(route);
   document.title = seo.title;
@@ -321,7 +340,24 @@ function applySeo(route) {
   setMeta("og:url", seo.canonical, "property");
   setMeta("og:type", seo.ogType, "property");
   setMeta("og:image", seo.image, "property");
+  setMeta("og:image:alt", seo.imageAlt || SITE_DEFAULT_DESC, "property");
   setMeta("og:site_name", SITE_NAME, "property");
+
+  // Article-specific OG tags. Set on article routes, removed elsewhere so
+  // they don't bleed across SPA navigations.
+  if (seo.articleOg) {
+    const og = seo.articleOg;
+    if (og.publishedTime) setMeta("article:published_time", og.publishedTime, "property");
+    else removeMeta("article:published_time", "property");
+    if (og.modifiedTime) setMeta("article:modified_time", og.modifiedTime, "property");
+    else removeMeta("article:modified_time", "property");
+    if (og.author) setMeta("article:author", og.author, "property");
+    else removeMeta("article:author", "property");
+    if (og.section) setMeta("article:section", og.section, "property");
+    else removeMeta("article:section", "property");
+  } else {
+    ARTICLE_OG_TAGS.forEach((t) => removeMeta(t, "property"));
+  }
 
   // Twitter
   setMeta("twitter:card", "summary_large_image");
