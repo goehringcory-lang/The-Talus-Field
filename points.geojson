@@ -180,8 +180,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -119.5688,
-          37.7395
+          -119.566577,
+          37.735344
         ]
       },
       "properties": {
@@ -192,7 +192,8 @@
         "blurb": "The day-use lot at Curry Village. Closest paid parking for the Mist Trail and the Happy Isles trailhead.",
         "image": null,
         "articles": [],
-        "verified": false
+        "gmapsUrl": "https://maps.app.goo.gl/vV7r5knTwNA6y7pr8",
+        "verified": true
       }
     },
     {
