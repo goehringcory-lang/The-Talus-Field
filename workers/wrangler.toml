@@ -19,12 +19,13 @@ GUIDE_PRICE_CENTS = "2900"
 GUIDE_PRODUCT_TAG = "field_guide_2026"
 GUIDE_MONTHLY_CAP = "100"
 
-# Routes the Worker to api.thetalusfieldjournal.com.
-# DNS prerequisite: in Cloudflare DNS, add a CNAME `api` -> `<worker-name>.workers.dev`
-# (or use the AAAA shortcut Cloudflare offers when you assign a custom route).
+# Routes the Worker to api.thetalusfieldjournal.com via a Custom Domain
+# binding. Wrangler creates the DNS record automatically on deploy — no
+# manual CNAME / AAAA step needed. Custom domains bind every path on the
+# host, so no wildcard is required in the pattern.
 [[routes]]
-pattern = "api.thetalusfieldjournal.com/*"
-zone_name = "thetalusfieldjournal.com"
+pattern = "api.thetalusfieldjournal.com"
+custom_domain = true
 
 # === Pre-Stripe dev / admin sign-in =========================================
 # /api/auth/dev-login accepts a username + code pair and issues the same JWT
