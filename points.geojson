@@ -214,6 +214,26 @@
         "gmapsUrl": "https://maps.app.goo.gl/cpe2ocy1QEH5v5WL9",
         "verified": true
       }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -119.5610822,
+          37.7317659
+        ]
+      },
+      "properties": {
+        "id": "the-fen",
+        "name": "The Fen",
+        "category": "vista",
+        "region": "valley",
+        "blurb": "One of the most peaceful areas of Yosemite Valley. Good spot for birding.",
+        "image": null,
+        "articles": [],
+        "verified": true
+      }
     }
   ]
 }
