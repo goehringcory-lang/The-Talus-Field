@@ -74,7 +74,7 @@ function AdvertisePage({ go }) {
           The directory shows up in a moment of decision, on a site the reader already trusts to give them straight answers. That's the placement.
         </p>
         <p style={{ fontFamily: "var(--serif)", fontSize: 18, color: "var(--ink-2)", lineHeight: 1.55 }}>
-          If you're an operator who fits, and you'd be willing to send a friend to your business, write to <a href="mailto:Goehring.cory@gmail.com">Goehring.cory@gmail.com</a> or use <a href="/contact" onClick={(e) => { e.preventDefault(); go("contact"); }}>the contact form</a>. I read every inquiry.
+          If you're an operator who fits, and you'd be willing to send a friend to your business, write to <a href="mailto:Goehring.Cory@gmail.com">Goehring.Cory@gmail.com</a> or use <a href="/contact" onClick={(e) => { e.preventDefault(); go("contact"); }}>the contact form</a>. I read every inquiry.
         </p>
       </section>
 

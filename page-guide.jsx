@@ -247,7 +247,7 @@ function GuidePage({ go }) {
             <div style={{ borderTop: "1px solid var(--rule)", marginTop: 24, paddingTop: 20 }}>
               <div className="eyebrow" style={{ marginBottom: 10 }}>Questions</div>
               <p style={{ fontFamily: "var(--sans)", fontSize: 13, color: "var(--ink-3)", lineHeight: 1.55, margin: 0 }}>
-                Email <a href="mailto:Goehring.cory@gmail.com" style={{ color: "var(--ink-2)" }}>Goehring.cory@gmail.com</a> or use <a href="#contact" onClick={(e) => { e.preventDefault(); go("contact"); }} style={{ color: "var(--ink-2)" }}>the contact form</a>.
+                Email <a href="mailto:Goehring.Cory@gmail.com" style={{ color: "var(--ink-2)" }}>Goehring.Cory@gmail.com</a> or use <a href="#contact" onClick={(e) => { e.preventDefault(); go("contact"); }} style={{ color: "var(--ink-2)" }}>the contact form</a>.
               </p>
             </div>
           </aside>
