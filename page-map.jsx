@@ -13,7 +13,7 @@
 
 const { useEffect, useMemo, useRef, useState, useCallback } = React;
 
-const POINTS_URL = "/points.geojson?v=2";
+const POINTS_URL = "/points.geojson?v=3";
 
 // Itinerary presets. Each is a list of "days", each day pinned to one or more
 // region keys from points.geojson. Stop counts in the sidebar are derived
@@ -494,11 +494,18 @@ function buildInfoHtml(p) {
          ${escapeHtml(p.category)}
        </span>`
     : "";
+  // Only render a Google Maps link when the stop carries a verified URL —
+  // synthesizing one from coordinates would point at a generic dropped pin
+  // rather than the named place with its photos and reviews.
+  const gmaps = p.gmapsUrl
+    ? `<p style="margin:8px 0 0;"><a href="${escapeHtml(p.gmapsUrl)}" target="_blank" rel="noopener noreferrer" style="color:#1e6fb8;text-decoration:underline;font-weight:500;">Open in Google Maps →</a></p>`
+    : "";
   return `
     <div style="font:14px/1.4 system-ui,sans-serif;max-width:240px;color:#222;">
       <strong style="font-size:15px;">${escapeHtml(p.name || "")}</strong><br/>
       ${cat}
       ${blurb}
+      ${gmaps}
     </div>
   `;
 }
