@@ -9,8 +9,8 @@ compatibility_flags = ["nodejs_compat"]
 #   wrangler kv namespace create GUIDE_BUYERS --preview
 [[kv_namespaces]]
 binding = "GUIDE_BUYERS"
-id = "REPLACE_ME_AFTER_kv_namespace_create"
-preview_id = "REPLACE_ME_FOR_LOCAL_DEV"
+id = "4d2bf553bdd249448407094e3d282825"
+preview_id = "3fee98d84a5d461e996ddb6d52a4545a"
 
 [vars]
 APP_BASE_URL = "https://guide.thetalusfieldjournal.com"
