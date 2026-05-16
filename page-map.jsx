@@ -13,7 +13,7 @@
 
 const { useEffect, useMemo, useRef, useState, useCallback } = React;
 
-const POINTS_URL = "/points.geojson?v=5";
+const POINTS_URL = "/points.geojson?v=6";
 
 // Itinerary presets. Each is a list of "days", each day pinned to one or more
 // region keys from points.geojson. Stop counts in the sidebar are derived

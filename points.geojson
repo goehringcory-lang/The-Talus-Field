@@ -137,8 +137,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -119.5783,
-          37.7404
+          -119.5822847,
+          37.7432772
         ]
       },
       "properties": {
@@ -149,7 +149,8 @@
         "blurb": "Sandy beach on the Merced behind Housekeeping Camp. Shallow, slow, and shaded by afternoon.",
         "image": null,
         "articles": [],
-        "verified": false
+        "gmapsUrl": "https://maps.app.goo.gl/45ehcWd3skLUubgt9",
+        "verified": true
       }
     },
     {
