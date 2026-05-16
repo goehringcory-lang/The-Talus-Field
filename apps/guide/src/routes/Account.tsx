@@ -19,7 +19,7 @@ export default function Account() {
 
         <p>
           Questions? Email{' '}
-          <a href="mailto:Cory@thetalusfieldjournal.com">Cory@thetalusfieldjournal.com</a>.
+          <a href="mailto:Goehring.cory@gmail.com">Goehring.cory@gmail.com</a>.
         </p>
 
         <div style={{ marginTop: 36, display: 'flex', gap: 12 }}>
