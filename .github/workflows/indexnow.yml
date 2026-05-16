@@ -1,0 +1,63 @@
+# Push fresh URLs to Bing/Yandex/Seznam/Naver/Yep when editorial
+# content changes on main. Cloudflare Pages auto-deploys main; by the
+# time the search engines act on the IndexNow notification, the new
+# content is live at the edge.
+#
+# Requires the repository secret INDEXNOW_ADMIN_TOKEN, which must match
+# the Worker's INDEXNOW_ADMIN_TOKEN. Without it, the workflow logs a
+# notice and exits cleanly instead of failing.
+
+name: IndexNow
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "data.js"
+      - "articles.json"
+      - "sitemap.xml"
+      - "bodies/**"
+      - "index.html"
+
+jobs:
+  ping:
+    name: Push URLs to IndexNow
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check INDEXNOW_ADMIN_TOKEN
+        id: check_secret
+        env:
+          INDEXNOW_ADMIN_TOKEN: ${{ secrets.INDEXNOW_ADMIN_TOKEN }}
+        run: |
+          if [[ -z "${INDEXNOW_ADMIN_TOKEN:-}" ]]; then
+            echo "::notice::INDEXNOW_ADMIN_TOKEN secret is not configured. Skipping IndexNow ping."
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "skip=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Compute URL list and ping IndexNow
+        if: steps.check_secret.outputs.skip != 'true'
+        env:
+          INDEXNOW_ADMIN_TOKEN: ${{ secrets.INDEXNOW_ADMIN_TOKEN }}
+        run: |
+          python3 <<'PY' > urls.txt
+          import json
+          base = "https://thetalusfieldjournal.com"
+          urls = [
+              f"{base}/",
+              f"{base}/articles",
+              f"{base}/planning",
+          ]
+          with open("articles.json") as f:
+              for a in json.load(f):
+                  urls.append(f"{base}/articles/{a['slug']}")
+          for u in urls:
+              print(u)
+          PY
+
+          mapfile -t urls < urls.txt
+          echo "Pinging IndexNow with ${#urls[@]} URLs..."
+          bash scripts/indexnow-ping.sh "${urls[@]}"
