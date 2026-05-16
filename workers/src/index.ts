@@ -3,6 +3,7 @@ import { cors } from 'hono/cors'
 import type { Env } from './env'
 import { auth } from './routes/auth'
 import { checkout } from './routes/checkout'
+import { contact } from './routes/contact'
 import { indexnow } from './routes/indexnow'
 import { stripe } from './routes/stripe'
 import {
@@ -86,6 +87,7 @@ app.get('/api/inventory', async (c) => {
 
 app.route('/api/auth', auth)
 app.route('/api/checkout', checkout)
+app.route('/api/contact', contact)
 app.route('/api/indexnow', indexnow)
 app.route('/api/stripe', stripe)
 

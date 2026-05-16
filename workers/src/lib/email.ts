@@ -1,6 +1,8 @@
 import type { Env } from '../env'
 
 const FROM = 'The Field Guide <hello@thetalusfieldjournal.com>'
+const CONTACT_FROM = 'The Talus Field <contact@thetalusfieldjournal.com>'
+const CONTACT_TO = 'Goehring.cory@gmail.com'
 
 type ResendBody = {
   from: string
@@ -8,6 +10,7 @@ type ResendBody = {
   subject: string
   text: string
   html: string
+  reply_to?: string
 }
 
 export async function sendMagicLink(
@@ -53,6 +56,63 @@ export async function sendMagicLink(
     subject: 'Your Field Guide is ready',
     text,
     html,
+  }
+
+  const res = await fetch('https://api.resend.com/emails', {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${env.RESEND_API_KEY}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(body),
+  })
+
+  if (!res.ok) {
+    const detail = await res.text()
+    throw new Error(`Resend send failed (${res.status}): ${detail}`)
+  }
+}
+
+function escapeHtml(s: string): string {
+  return s
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;')
+}
+
+export async function sendContactMessage(
+  env: Env,
+  args: { name: string; email: string; subject: string; message: string },
+): Promise<void> {
+  const { name, email, subject, message } = args
+
+  const text = [
+    `New contact-form message.`,
+    ``,
+    `From:    ${name} <${email}>`,
+    `Subject: ${subject}`,
+    ``,
+    message,
+  ].join('\n')
+
+  const html = `
+    <div style="font-family: -apple-system, Segoe UI, sans-serif; line-height: 1.55; color: #14110c;">
+      <p style="margin: 0 0 14px;"><strong>New contact-form message.</strong></p>
+      <p style="margin: 0 0 6px;"><strong>From:</strong> ${escapeHtml(name)} &lt;${escapeHtml(email)}&gt;</p>
+      <p style="margin: 0 0 18px;"><strong>Subject:</strong> ${escapeHtml(subject)}</p>
+      <pre style="white-space: pre-wrap; font-family: inherit; font-size: 15px; margin: 0; padding: 16px; background: #f7f1e1; border-left: 3px solid #14110c;">${escapeHtml(message)}</pre>
+    </div>
+  `.trim()
+
+  const body: ResendBody = {
+    from: CONTACT_FROM,
+    to: [CONTACT_TO],
+    subject: `[Talus Field contact] ${subject}`,
+    text,
+    html,
+    reply_to: email,
   }
 
   const res = await fetch('https://api.resend.com/emails', {

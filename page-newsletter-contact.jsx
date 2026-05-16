@@ -1,6 +1,12 @@
 /* global React */
 const { useState } = React;
 
+// API base for the Worker. Override at runtime via window.GUIDE_API_BASE
+// (same convention as page-guide.jsx).
+const CONTACT_API_BASE =
+  (typeof window !== "undefined" && window.GUIDE_API_BASE) ||
+  "https://api.thetalusfieldjournal.com";
+
 function NewsletterPage({ go }) {
   return (
     <div className="page">
@@ -50,10 +56,35 @@ function NewsletterPage({ go }) {
 }
 
 function ContactPage() {
-  const [form, setForm] = useState({ name: "", email: "", subject: "general", message: "" });
+  const [form, setForm] = useState({ name: "", email: "", subject: "general", message: "", website: "" });
   const [done, setDone] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [error, setError] = useState(null);
 
   function update(k, v) { setForm({ ...form, [k]: v }); }
+
+  async function submit(e) {
+    e.preventDefault();
+    if (sending) return;
+    setSending(true);
+    setError(null);
+    try {
+      const res = await fetch(`${CONTACT_API_BASE}/api/contact`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        throw new Error(data.error || `Send failed (${res.status})`);
+      }
+      setDone(true);
+    } catch (err) {
+      setError(err.message || "Could not send. Please email directly.");
+    } finally {
+      setSending(false);
+    }
+  }
 
   return (
     <div className="page">
@@ -76,7 +107,7 @@ function ContactPage() {
               <p style={{ color: "var(--ink-2)" }}>I read every note. I will write back when I can, usually within a few days.</p>
             </div>
           ) : (
-            <form onSubmit={(e) => { e.preventDefault(); setDone(true); }}>
+            <form onSubmit={submit}>
               <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 24 }}>
                 <div className="field">
                   <label>Your name</label>
@@ -106,7 +137,25 @@ function ContactPage() {
                   placeholder="Be as specific as you can."
                 />
               </div>
-              <button className="btn" type="submit">Send →</button>
+              {/* Honeypot. Hidden from humans; bots fill everything. */}
+              <div style={{ position: "absolute", left: "-10000px", width: 1, height: 1, overflow: "hidden" }} aria-hidden="true">
+                <label>Website</label>
+                <input
+                  type="text"
+                  tabIndex={-1}
+                  autoComplete="off"
+                  value={form.website}
+                  onChange={(e) => update("website", e.target.value)}
+                />
+              </div>
+              {error && (
+                <p style={{ color: "#a02b1f", fontFamily: "var(--sans)", fontSize: 14, marginBottom: 16 }}>
+                  {error} You can also email <a href="mailto:Goehring.cory@gmail.com">Goehring.cory@gmail.com</a> directly.
+                </p>
+              )}
+              <button className="btn" type="submit" disabled={sending}>
+                {sending ? "Sending…" : "Send →"}
+              </button>
             </form>
           )}
 
