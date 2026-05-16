@@ -8,7 +8,8 @@
     "isoDate": "2026-05-14",
     "isoModified": "2026-05-14",
     "read": "16 min",
-    "image": "img/kid-yosemite-falls-boardwalk.jpg"
+    "image": "img/kid-yosemite-falls-boardwalk.jpg",
+    "placeholder": "Toddler on the Lower Yosemite Fall boardwalk, Upper Yosemite Fall behind"
   },
   {
     "slug": "tioga-road-opening-weekend-2026",
@@ -20,6 +21,7 @@
     "isoModified": "2026-05-13",
     "read": "11 min",
     "image": "img/TMweb.webp",
+    "placeholder": "Tuolumne Meadows in early season, Tioga Road",
     "faq": [
       { "q": "When does Tioga Road open in 2026?", "a": "Tioga Road in Yosemite National Park opens Friday, May 15, 2026, well ahead of the long-term average of May 28." },
       { "q": "Is Tioga Pass open right now?", "a": "As of May 13, 2026, Tioga Pass is plowed and scheduled to open Friday, May 15. Text 'ynptraffic' to 333111 for live updates, or check nps.gov/yose/planyourvisit/tioga.htm." },
@@ -40,7 +42,8 @@
     "isoDate": "2026-05-12",
     "isoModified": "2026-05-12",
     "read": "17 min",
-    "image": "img/half-dome.jpg"
+    "image": "img/half-dome.jpg",
+    "placeholder": "Half Dome rising 4,800 feet from the Yosemite Valley floor"
   },
   {
     "slug": "half-dome-permit-lottery-2026",
@@ -51,7 +54,8 @@
     "isoDate": "2026-05-12",
     "isoModified": "2026-05-12",
     "read": "13 min",
-    "image": "img/half-dome-alpenglow-madhu-shesharam.jpg"
+    "image": "img/half-dome-alpenglow-madhu-shesharam.jpg",
+    "placeholder": "Half Dome at alpenglow from Glacier Point"
   },
   {
     "slug": "glacier-point-road-open-2026",
@@ -62,7 +66,8 @@
     "isoDate": "2026-05-11",
     "isoModified": "2026-05-11",
     "read": "9 min",
-    "image": "img/half-dome-sunset-glacier-point-joshua-earle.jpg"
+    "image": "img/half-dome-sunset-glacier-point-joshua-earle.jpg",
+    "placeholder": "Half Dome at sunset, from Glacier Point"
   },
   {
     "slug": "mist-trail-the-real-guide",
@@ -73,7 +78,8 @@
     "isoDate": "2026-05-11",
     "isoModified": "2026-05-11",
     "read": "12 min",
-    "image": "img/nevada-fall-liberty-cap-ryan-oconnor.jpg"
+    "image": "img/nevada-fall-liberty-cap-ryan-oconnor.jpg",
+    "placeholder": "Nevada Fall and Liberty Cap from the John Muir Trail"
   },
   {
     "slug": "working-in-yosemite",
@@ -84,7 +90,8 @@
     "isoDate": "2026-05-08",
     "isoModified": "2026-05-08",
     "read": "10 min",
-    "image": "img/wildflowers.jpg"
+    "image": "img/wildflowers.jpg",
+    "placeholder": "Wildflowers in a Yosemite Valley meadow, late spring"
   },
   {
     "slug": "water-ouzels-waterfalls",
@@ -95,7 +102,8 @@
     "isoDate": "2026-05-08",
     "isoModified": "2026-05-08",
     "read": "7 min",
-    "image": "img/lower-yosemite-fall.jpg"
+    "image": "img/lower-yosemite-fall.jpg",
+    "placeholder": "Lower Yosemite Fall in May, peak flow"
   },
   {
     "slug": "bears-spring-emergence",
@@ -106,7 +114,8 @@
     "isoDate": "2026-05-08",
     "isoModified": "2026-05-08",
     "read": "8 min",
-    "image": "img/black-bear.jpg"
+    "image": "img/black-bear.jpg",
+    "placeholder": "Black bear foraging at meadow margin"
   },
   {
     "slug": "yosemite-glaciers-climate",
@@ -117,7 +126,8 @@
     "isoDate": "2026-05-08",
     "isoModified": "2026-05-08",
     "read": "8 min",
-    "image": "img/tuolumne-meadows.jpg"
+    "image": "img/tuolumne-meadows.jpg",
+    "placeholder": "Tuolumne Meadows, the head of Lyell Canyon"
   },
   {
     "slug": "giant-sequoias-fire-adaptation",
@@ -128,7 +138,8 @@
     "isoDate": "2026-05-08",
     "isoModified": "2026-05-08",
     "read": "7 min",
-    "image": "img/wawona-tunnel-tree-historic.jpg"
+    "image": "img/wawona-tunnel-tree-historic.jpg",
+    "placeholder": "The Wawona Tunnel Tree, Mariposa Grove (fell 1969)"
   },
   {
     "slug": "hetch-hetchy-the-other-yosemite-valley",
@@ -139,7 +150,8 @@
     "isoDate": "2026-04-27",
     "isoModified": "2026-04-27",
     "read": "10 min",
-    "image": "img/vernal-fall.jpg"
+    "image": "img/vernal-fall.jpg",
+    "placeholder": "Wapama Falls in spring snowmelt"
   },
   {
     "slug": "yosemite-stargazing-where-to-look-up",
@@ -150,7 +162,8 @@
     "isoDate": "2026-04-27",
     "isoModified": "2026-04-27",
     "read": "10 min",
-    "image": "img/milky-way-sentinel-dome.jpg"
+    "image": "img/milky-way-sentinel-dome.jpg",
+    "placeholder": "Milky Way over Sentinel Dome, July"
   },
   {
     "slug": "yosemite-for-non-hikers",
@@ -161,7 +174,8 @@
     "isoDate": "2026-04-26",
     "isoModified": "2026-04-26",
     "read": "8 min",
-    "image": "img/tunnel-view.jpg"
+    "image": "img/tunnel-view.jpg",
+    "placeholder": "Tunnel View from the overlook parking"
   },
   {
     "slug": "pack-your-car-for-yosemite",
@@ -172,7 +186,8 @@
     "isoDate": "2026-04-26",
     "isoModified": "2026-04-26",
     "read": "12 min",
-    "image": "img/cathedral-rocks.jpg"
+    "image": "img/cathedral-rocks.jpg",
+    "placeholder": "Cathedral Rocks across the Yosemite Valley, from a roadside pullout"
   },
   {
     "slug": "yosemite-gateway-towns-compared",
@@ -183,7 +198,8 @@
     "isoDate": "2026-04-26",
     "isoModified": "2026-04-26",
     "read": "9 min",
-    "image": "img/lower-yosemite-fall.jpg"
+    "image": "img/lower-yosemite-fall.jpg",
+    "placeholder": "El Portal, dusk on the Merced"
   },
   {
     "slug": "yosemite-during-smoke-season",
@@ -194,7 +210,8 @@
     "isoDate": "2026-04-26",
     "isoModified": "2026-04-26",
     "read": "7 min",
-    "image": "img/half-dome.jpg"
+    "image": "img/half-dome.jpg",
+    "placeholder": "Half Dome through summer haze"
   },
   {
     "slug": "yosemite-without-reservations-2026",
@@ -205,7 +222,8 @@
     "isoDate": "2026-04-26",
     "isoModified": "2026-04-26",
     "read": "8 min",
-    "image": "img/cathedral-rocks.jpg"
+    "image": "img/cathedral-rocks.jpg",
+    "placeholder": "Cathedral Rocks rising above the Merced River, Yosemite Valley"
   },
   {
     "slug": "first-time-yosemite-overwhelm",
@@ -216,6 +234,7 @@
     "isoDate": "2026-04-25",
     "isoModified": "2026-04-25",
     "read": "6 min",
-    "image": "img/tunnel-view.jpg"
+    "image": "img/tunnel-view.jpg",
+    "placeholder": "Tunnel View at first light, May"
   }
 ]
