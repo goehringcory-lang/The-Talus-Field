@@ -46,8 +46,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -119.631,
-          37.7212
+          -119.6333758,
+          37.7239766
         ]
       },
       "properties": {
@@ -61,7 +61,8 @@
           "first-time-yosemite-overwhelm",
           "yosemite-for-non-hikers"
         ],
-        "verified": false
+        "gmapsUrl": "https://maps.app.goo.gl/h3mEtZQSky2JiLKeA",
+        "verified": true
       }
     },
     {
@@ -136,8 +137,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -119.5783,
-          37.7404
+          -119.5822847,
+          37.7432772
         ]
       },
       "properties": {
@@ -148,7 +149,8 @@
         "blurb": "Sandy beach on the Merced behind Housekeeping Camp. Shallow, slow, and shaded by afternoon.",
         "image": null,
         "articles": [],
-        "verified": false
+        "gmapsUrl": "https://maps.app.goo.gl/45ehcWd3skLUubgt9",
+        "verified": true
       }
     },
     {
@@ -156,8 +158,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -119.716,
-          37.7178
+          -119.713439,
+          37.7228195
         ]
       },
       "properties": {
@@ -168,7 +170,8 @@
         "blurb": "Tables along Cascade Creek just inside the Arch Rock entrance. Easy stop on the way in or out.",
         "image": null,
         "articles": [],
-        "verified": false
+        "gmapsUrl": "https://maps.app.goo.gl/9gVNF6YTwykaLCts5",
+        "verified": true
       }
     },
     {
