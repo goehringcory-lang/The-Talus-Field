@@ -113,7 +113,7 @@ function ContactPage() {
           <aside style={{ borderLeft: "1px solid var(--rule)", paddingLeft: 32 }}>
             <div className="eyebrow" style={{ marginBottom: 12 }}>Direct</div>
             <p style={{ fontFamily: "var(--serif)", fontSize: 17, marginBottom: 6 }}>
-              <a href="mailto:Cory@thetalusfieldjournal.com">Cory@thetalusfieldjournal.com</a>
+              <a href="mailto:Goehring.cory@gmail.com">Goehring.cory@gmail.com</a>
             </p>
             <p style={{ fontFamily: "var(--sans)", fontSize: 13, color: "var(--ink-3)", lineHeight: 1.55, marginBottom: 28 }}>
               I check this once or twice a day. Usually faster on Mondays.

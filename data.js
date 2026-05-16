@@ -13,7 +13,7 @@ window.SITE = {
   tagline: "Yosemite, written by someone who lives here",
   authorName: "Cory Goehring",
   authorBio: "Writes from El Portal, California.",
-  email: "Cory@thetalusfieldjournal.com",
+  email: "Goehring.cory@gmail.com",
   // Masthead issue label. One source of truth — Header and HomePage both read this.
   issue: "Vol. III · No. 19",
   issueDetail: "The May Issue",

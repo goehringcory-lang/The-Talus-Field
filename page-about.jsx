@@ -57,7 +57,7 @@ function AboutPage({ go }) {
           <h2>Editor</h2>
 
           <p>
-            Cory Goehring. Lives in Yosemite National Park. Has worked in and around it for twenty seasons, mostly on foot. Reachable at <a href="mailto:Cory@thetalusfieldjournal.com">Cory@thetalusfieldjournal.com</a> and through <a href="/contact" onClick={(e) => { e.preventDefault(); go("contact"); }}>the contact page</a>.
+            Cory Goehring. Lives in Yosemite National Park. Has worked in and around it for twenty seasons, mostly on foot. Reachable at <a href="mailto:Goehring.cory@gmail.com">Goehring.cory@gmail.com</a> and through <a href="/contact" onClick={(e) => { e.preventDefault(); go("contact"); }}>the contact page</a>.
           </p>
 
           <hr />
