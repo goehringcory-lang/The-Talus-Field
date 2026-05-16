@@ -161,6 +161,11 @@ function seoForPath(pathname) {
       description:
         "Plan a Yosemite trip in 2026: gateway towns, reservations, Half Dome, smoke season, the seasonal calendar. A curated hub through The Talus Field's planning archive.",
     },
+    "/checklist": {
+      title: `The Yosemite First-Week Checklist — ${SITE_NAME}`,
+      description:
+        "A printable single-page checklist for planning a Yosemite trip in 2026: when to come, what to book, what to pack, gateway choice, and the non-negotiables. Free.",
+    },
     "/about": {
       title: `About — ${SITE_NAME}`,
       description:

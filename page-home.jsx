@@ -27,6 +27,9 @@ function HomePage({ go }) {
               <a className="btn" href="/articles" onClick={(e) => { e.preventDefault(); go("articles"); }}>
                 Start reading <span className="btn__arrow">→</span>
               </a>
+              <a className="btn btn--ghost" href="/checklist" onClick={(e) => { e.preventDefault(); go("checklist"); }}>
+                Free checklist
+              </a>
               <a className="btn btn--ghost" href="/newsletter" onClick={(e) => { e.preventDefault(); go("newsletter"); }}>
                 Sunday Field Notes
               </a>
