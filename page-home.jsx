@@ -132,6 +132,35 @@ function HomePage({ go }) {
         </div>
       </section>
 
+      {/* Planning Guide hub callout */}
+      <section className="wrap" style={{ paddingTop: 80 }}>
+        <a
+          href="/planning"
+          onClick={(e) => { e.preventDefault(); go("planning"); }}
+          style={{
+            display: "block",
+            textDecoration: "none",
+            color: "inherit",
+            borderTop: "2px solid var(--ink)",
+            borderBottom: "2px solid var(--ink)",
+            padding: "40px 0",
+          }}
+        >
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 2fr", gap: 48, alignItems: "center" }}>
+            <div>
+              <div className="eyebrow eyebrow--moss" style={{ marginBottom: 12 }}>The Planning Guide</div>
+              <div style={{ fontFamily: "var(--display)", fontSize: 36, fontWeight: 400, lineHeight: 1.1, letterSpacing: "-0.01em" }}>Yosemite, planned properly.</div>
+            </div>
+            <div>
+              <p style={{ fontFamily: "var(--serif)", fontSize: 19, lineHeight: 1.5, color: "var(--ink-2)", margin: 0, marginBottom: 16 }}>
+                The full archive, organized for a real trip. Gateway towns, reservations, Half Dome, smoke season, the seasonal calendar. Read in the order you'll actually need them.
+              </p>
+              <div className="mono" style={{ color: "var(--moss)", fontWeight: 700, fontSize: 11, textTransform: "uppercase", letterSpacing: "0.18em" }}>Read the guide →</div>
+            </div>
+          </div>
+        </a>
+      </section>
+
       {/* Latest grid */}
       <section className="wrap" style={{ paddingTop: 80 }}>
         <div className="section-head">

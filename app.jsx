@@ -1,6 +1,7 @@
 /* global React, ReactDOM, Header, Footer,
    HomePage, AboutPage, ArticlesIndex, CategoryPage, ArticlePage,
    KitPage, PlacesPage, AdvertisePage, GuidePage, CapPage, MapPage,
+   PlanningGuide,
    NewsletterPage, ContactPage, PrivacyPage, TermsPage, AffiliatePage,
    TweaksPanel, useTweaks, TweakSection, TweakRadio, TweakToggle */
 
@@ -222,6 +223,12 @@ function buildSeo(route) {
         "Every entry, in reverse chronological order. Yosemite trip planning, trails, wildlife, and seasonal guides.",
       ogType: "website",
     },
+    planning: {
+      title: `The Yosemite Planning Guide — ${SITE_NAME}`,
+      description:
+        "Plan a Yosemite trip in 2026: gateway towns, reservations, Half Dome, smoke season, the seasonal calendar. A curated hub through The Talus Field's planning archive.",
+      ogType: "website",
+    },
     about: {
       title: `About — ${SITE_NAME}`,
       description:
@@ -440,6 +447,9 @@ function App() {
     page = <AdvertisePage go={go} />;
   } else if (route === "articles") {
     page = <ArticlesIndex go={go} />;
+    currentNav = "articles";
+  } else if (route === "planning") {
+    page = <PlanningGuide go={go} />;
     currentNav = "articles";
   } else if (route.startsWith("cat:")) {
     page = <CategoryPage slug={route.slice(4)} go={go} />;

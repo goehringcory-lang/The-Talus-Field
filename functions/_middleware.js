@@ -156,6 +156,11 @@ function seoForPath(pathname) {
       description:
         "Every entry, in reverse chronological order. Yosemite trip planning, trails, wildlife, and seasonal guides.",
     },
+    "/planning": {
+      title: `The Yosemite Planning Guide — ${SITE_NAME}`,
+      description:
+        "Plan a Yosemite trip in 2026: gateway towns, reservations, Half Dome, smoke season, the seasonal calendar. A curated hub through The Talus Field's planning archive.",
+    },
     "/about": {
       title: `About — ${SITE_NAME}`,
       description:
