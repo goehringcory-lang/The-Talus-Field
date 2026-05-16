@@ -215,7 +215,7 @@ window.ARTICLE_BODIES["tioga-road-opening-weekend-2026"] = function TiogaRoadOpe
       </p>
 
       <p style={{ marginTop: 32, fontStyle: "italic", color: "var(--ink-3)" }}>
-        For more on the early season up high, see <a href="/articles/glacier-point-road-open-2026">Glacier Point Road is open</a>. For 2026 strategy, see <a href="/articles/yosemite-without-reservations-2026">Yosemite without reservations in 2026</a>.
+        For more on the early season up high, see <a href="/articles/glacier-point-road-open-2026">Glacier Point Road is open</a>. For 2026 strategy, see <a href="/articles/yosemite-without-reservations-2026">Yosemite without reservations in 2026</a>. Once Tioga is open, the high country also becomes the best <a href="/articles/yosemite-stargazing-where-to-look-up">stargazing</a> in the park.
       </p>
     </>
   );

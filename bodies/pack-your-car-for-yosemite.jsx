@@ -10,7 +10,7 @@ window.ARTICLE_BODIES["pack-your-car-for-yosemite"] = function PackYourCarForYos
       </p>
 
       <p>
-        I've spent close to twenty years watching people arrive at this park. The ones who have great trips and the ones who have frustrating ones are almost never separated by fitness or budget. They're separated by what was in the car when they pulled through the entrance station. Here's what should be in yours, and why each item earns its space.
+        I've spent close to twenty years watching people arrive at this park. The ones who have great trips and the ones who have frustrating ones are almost never separated by fitness or budget. They're separated by what was in the car when they pulled through the entrance station. (If it's your first trip, the <a href="/articles/first-time-yosemite-overwhelm">first-timer's guide</a> is the broader-strategy companion to this one.) Here's what should be in yours, and why each item earns its space.
       </p>
 
       <h2>The cooler changes everything</h2>
@@ -128,7 +128,7 @@ window.ARTICLE_BODIES["pack-your-car-for-yosemite"] = function PackYourCarForYos
       </p>
 
       <p>
-        If you're driving to Yosemite from the east on Tioga Road, know that there is no gas between Lee Vining and Crane Flat. That's 60 miles of mountain highway with serious elevation changes. Fill up before you enter the park from any direction.
+        If you're driving to Yosemite from the east on Tioga Road, know that there is no gas between <a href="/articles/yosemite-gateway-towns-compared">Lee Vining</a> and Crane Flat. That's 60 miles of mountain highway with serious elevation changes. Fill up before you enter the park from any direction.
       </p>
 
       <h2>The roadside kit</h2>

@@ -78,7 +78,7 @@ window.ARTICLE_BODIES["giant-sequoias-fire-adaptation"] = function GiantSequoias
       <p>What the policy didn't account for was that the cathedral had been burning regularly for two thousand years. And what the trees didn't account for was what would happen if they weren't.</p>
 
       <p>
-        In the absence of fire, the forest changed. Shade-tolerant species colonized the understory. Fuel accumulated on the ground: dead wood, needles, smaller branches. The forest became denser, darker. Sequoia seedlings couldn't find the light they needed. And simultaneously, if a fire did occur despite prevention efforts, it would be hotter, longer, and more devastating than the low-intensity fires that had shaped this ecosystem for millennia.
+        In the absence of fire, the forest changed. Shade-tolerant species colonized the understory. Fuel accumulated on the ground: dead wood, needles, smaller branches. The forest became denser, darker. Sequoia seedlings couldn't find the light they needed. And simultaneously, if a fire did occur despite prevention efforts, it would be hotter, longer, and more devastating than the low-intensity fires that had shaped this ecosystem for millennia. (This is the chain of consequence behind <a href="/articles/yosemite-during-smoke-season">the smoke seasons</a> California now sees most years: a century of suppression created the fuel load for the megafires that put gauze over the sky every summer.)
       </p>
 
       <p>
@@ -90,7 +90,7 @@ window.ARTICLE_BODIES["giant-sequoias-fire-adaptation"] = function GiantSequoias
       <h2>The practical reading</h2>
 
       <p>
-        If you hike into a sequoia grove, take time to find a heavily scarred tree and place your hand against the bark. That char is old. That blackness has been there for centuries, protecting the wood beneath it. The scar will probably be slightly depressed, outlined by rings of new bark that the tree grew after the fire passed. If the scar is deep, you can sometimes work your fingers into it. You're reading a specific moment in the tree's life when fire came and the tree lived.
+        If you hike into a sequoia grove (or visit via the <a href="/articles/yosemite-for-non-hikers">accessible lower loop</a> in the Mariposa Grove), take time to find a heavily scarred tree and place your hand against the bark. That char is old. That blackness has been there for centuries, protecting the wood beneath it. The scar will probably be slightly depressed, outlined by rings of new bark that the tree grew after the fire passed. If the scar is deep, you can sometimes work your fingers into it. You're reading a specific moment in the tree's life when fire came and the tree lived.
       </p>
 
       <p>

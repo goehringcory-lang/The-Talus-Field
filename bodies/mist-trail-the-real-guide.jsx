@@ -41,6 +41,10 @@ window.ARTICLE_BODIES["mist-trail-the-real-guide"] = function MistTrailBody() {
         <strong>The loop return via the John Muir Trail</strong> (total ~6.5 miles). From the top of Nevada Fall, you can return via the JMT, which switchbacks down more gently through forest. This makes a loop and saves your knees on the descent. Most experienced hikers go up the Mist Trail and down the JMT.
       </p>
 
+      <p>
+        Past the top of Nevada Fall, this trail is also the standard approach to Half Dome. If that's your goal, read the <a href="/articles/half-dome-permit-lottery-2026">permit lottery guide</a> first, and <a href="/articles/so-you-want-to-hike-half-dome">the honest case for the cables</a> before you commit.
+      </p>
+
       <h2>The wet granite reality</h2>
 
       <p>
@@ -164,7 +168,7 @@ window.ARTICLE_BODIES["mist-trail-the-real-guide"] = function MistTrailBody() {
       </p>
 
       <p>
-        Come prepared. Read the <a href="/kit">day pack packing list</a>. Start early. Wear real shoes. Bring a ziplock for your phone and a dry shirt for the top.
+        Come prepared. Read the <a href="/kit">day pack packing list</a>, and <a href="/articles/pack-your-car-for-yosemite">pack the car</a> the night before so the early start actually happens. Start early. Wear real shoes. Bring a ziplock for your phone and a dry shirt for the top.
       </p>
 
       <p>

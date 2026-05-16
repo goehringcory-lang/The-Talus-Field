@@ -6,7 +6,7 @@ window.ARTICLE_BODIES["yosemite-during-smoke-season"] = function YosemiteDuringS
   return (
     <>
       <p className="dropcap">
-        The first time I watched Yosemite Valley fill with wildfire smoke from a fire I couldn't see, the smoke arrived as a smell before it arrived as a sight. By midday, El Capitan was a gray suggestion behind a wall that started at about 200 feet up. By late afternoon, the entire upper Valley had vanished. The visitors who'd planned to drive to Glacier Point that day were standing at Tunnel View looking at gauze. The visitors who flexed and drove up to Tuolumne were sitting at 8,600 feet in clean air, watching the smoke stay in the lower elevations, and having a much better day.
+        The first time I watched Yosemite Valley fill with wildfire smoke from a fire I couldn't see, the smoke arrived as a smell before it arrived as a sight. By midday, El Capitan was a gray suggestion behind a wall that started at about 200 feet up. By late afternoon, the entire upper Valley had vanished. The visitors who'd planned to drive to Glacier Point that day were standing at Tunnel View looking at gauze. The visitors who flexed and drove up <a href="/articles/tioga-road-opening-weekend-2026">Tioga Road to Tuolumne</a> were sitting at 8,600 feet in clean air, watching the smoke stay in the lower elevations, and having a much better day.
       </p>
 
       <p>
@@ -162,6 +162,10 @@ window.ARTICLE_BODIES["yosemite-during-smoke-season"] = function YosemiteDuringS
 
       <p>
         The Sierra is not going to stop being a fire-prone landscape. Your trip planning has to adapt. The version of Yosemite you're going to fall in love with is the one you actually got to see, not the one you canceled because the smoke arrived and you didn't have a backup.
+      </p>
+
+      <p>
+        And remember: in 2026 the entrance reservation system is gone, which means the smoke decision and the crowd decision now compound on the same day. See <a href="/articles/yosemite-without-reservations-2026">the 2026 crowd strategy</a> for the other half of it.
       </p>
 
       <p>Plan for both. Visit anyway.</p>

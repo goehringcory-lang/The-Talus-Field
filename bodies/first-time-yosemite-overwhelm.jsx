@@ -79,6 +79,10 @@ window.ARTICLE_BODIES["first-time-yosemite-overwhelm"] = function FirstTimeYosem
 
       <p>That's what this whole site is for.</p>
 
+      <p>
+        If you want a place to start: <a href="/articles/yosemite-without-reservations-2026">what changed in 2026</a> is the most important context for any first trip this year. <a href="/articles/yosemite-gateway-towns-compared">Pick your gateway town</a> before you book lodging. And <a href="/articles/pack-your-car-for-yosemite">pack the car</a> like the trip depends on it, because it does.
+      </p>
+
       <p>Let's plan a good one.</p>
     </>
   );
