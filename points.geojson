@@ -115,21 +115,22 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -119.4885,
-          37.8095
+          -119.644898,
+          37.721236
         ]
       },
       "properties": {
         "id": "muirs-glacial-erratic",
         "name": "Muir's Glacial Erratic",
         "category": "vista",
-        "region": "tuolumne",
-        "blurb": "The boulder John Muir used as evidence the valleys were carved by ice. Sits on bare granite a short walk from Olmsted Point.",
+        "region": "valley",
+        "blurb": "The boulder John Muir used as evidence the valley was carved by ice. Sits in the woods below El Capitan.",
         "image": null,
         "articles": [
           "yosemite-glaciers-climate"
         ],
-        "verified": false
+        "gmapsUrl": "https://maps.app.goo.gl/sL32hyfkzbHcFwEg9",
+        "verified": true
       }
     },
     {
