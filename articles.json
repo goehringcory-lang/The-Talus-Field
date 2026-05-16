@@ -9,7 +9,9 @@
     "isoModified": "2026-05-14",
     "read": "16 min",
     "image": "img/kid-yosemite-falls-boardwalk.jpg",
-    "placeholder": "Toddler on the Lower Yosemite Fall boardwalk, Upper Yosemite Fall behind"
+    "placeholder": "Toddler on the Lower Yosemite Fall boardwalk, Upper Yosemite Fall behind",
+    "wordCount": 2792,
+    "keywords": ["Yosemite with kids", "Yosemite family trip 2026", "YARTS bus", "Junior Ranger Yosemite", "Lower Yosemite Fall"]
   },
   {
     "slug": "tioga-road-opening-weekend-2026",
@@ -22,6 +24,8 @@
     "read": "11 min",
     "image": "img/TMweb.webp",
     "placeholder": "Tuolumne Meadows in early season, Tioga Road",
+    "wordCount": 2346,
+    "keywords": ["Tioga Road open 2026", "Tuolumne Meadows", "Tioga Pass", "Olmsted Point", "Mono Lake"],
     "faq": [
       { "q": "When does Tioga Road open in 2026?", "a": "Tioga Road in Yosemite National Park opens Friday, May 15, 2026, well ahead of the long-term average of May 28." },
       { "q": "Is Tioga Pass open right now?", "a": "As of May 13, 2026, Tioga Pass is plowed and scheduled to open Friday, May 15. Text 'ynptraffic' to 333111 for live updates, or check nps.gov/yose/planyourvisit/tioga.htm." },
@@ -43,7 +47,9 @@
     "isoModified": "2026-05-12",
     "read": "17 min",
     "image": "img/half-dome.jpg",
-    "placeholder": "Half Dome rising 4,800 feet from the Yosemite Valley floor"
+    "placeholder": "Half Dome rising 4,800 feet from the Yosemite Valley floor",
+    "wordCount": 2998,
+    "keywords": ["Half Dome", "Clouds Rest", "Half Dome cables", "Yosemite day hike", "Half Dome alternative"]
   },
   {
     "slug": "half-dome-permit-lottery-2026",
@@ -55,7 +61,17 @@
     "isoModified": "2026-05-12",
     "read": "13 min",
     "image": "img/half-dome-alpenglow-madhu-shesharam.jpg",
-    "placeholder": "Half Dome at alpenglow from Glacier Point"
+    "placeholder": "Half Dome at alpenglow from Glacier Point",
+    "wordCount": 2319,
+    "keywords": ["Half Dome permit lottery 2026", "Recreation.gov Half Dome", "preseason lottery", "daily lottery", "Half Dome odds"],
+    "faq": [
+      { "q": "When are the Half Dome permit lotteries?", "a": "There are two. The preseason lottery runs March 1-31 (Eastern time) with results in mid-April. The daily lottery runs every day the cables are up, with applications due by 4 PM Pacific two days before your planned hike." },
+      { "q": "What are the real odds of getting a Half Dome permit?", "a": "In 2024 the preseason lottery had a 22% application success rate. The daily lottery ran 19% overall — about 22% on weekdays and 14% on weekends. Late-season weekdays in September and October have the best odds of any window." },
+      { "q": "What happens if I don't win the Half Dome lottery?", "a": "Run the daily lottery every day of your trip. Five tries at roughly 20% odds is about a 67% chance of winning at least once. If you still don't get a permit, hike Clouds Rest instead — it's a thousand feet higher than Half Dome and requires no permit." },
+      { "q": "Can I hike Half Dome without a permit?", "a": "Not legally. The permit checkpoint at the base of the subdome is staffed by rangers. Hiking past it without a permit is a federal violation (36 CFR 1.6), punishable by a fine of up to $5,000 or six months in jail." },
+      { "q": "When are the cables up on Half Dome?", "a": "Typically the Friday before Memorial Day through the day after the second Monday in October. The Park Service announces actual dates each year based on snow, weather, and crew availability." },
+      { "q": "How much does the Half Dome permit cost?", "a": "$10 per application (non-refundable) plus $10 per person if awarded. Each application can cover up to six people. The per-person fee is refundable if you cancel by 11:59 PM Pacific the day before your hike date." }
+    ]
   },
   {
     "slug": "glacier-point-road-open-2026",
@@ -67,7 +83,9 @@
     "isoModified": "2026-05-11",
     "read": "9 min",
     "image": "img/half-dome-sunset-glacier-point-joshua-earle.jpg",
-    "placeholder": "Half Dome at sunset, from Glacier Point"
+    "placeholder": "Half Dome at sunset, from Glacier Point",
+    "wordCount": 1429,
+    "keywords": ["Glacier Point Road open 2026", "Glacier Point", "Sentinel Dome", "Taft Point", "Yosemite early season"]
   },
   {
     "slug": "mist-trail-the-real-guide",
@@ -79,7 +97,17 @@
     "isoModified": "2026-05-11",
     "read": "12 min",
     "image": "img/nevada-fall-liberty-cap-ryan-oconnor.jpg",
-    "placeholder": "Nevada Fall and Liberty Cap from the John Muir Trail"
+    "placeholder": "Nevada Fall and Liberty Cap from the John Muir Trail",
+    "wordCount": 1874,
+    "keywords": ["Mist Trail", "Vernal Fall", "Nevada Fall", "Yosemite hiking", "Mist Trail safety"],
+    "faq": [
+      { "q": "How hard is the Mist Trail?", "a": "It depends on how far you go. The 1.6-mile round trip to the Vernal Fall footbridge is moderate. The 2.6-mile round trip to the top of Vernal Fall climbs 1,000 feet on wet granite stairs and is strenuous. The full 5.4-mile round trip to the top of Nevada Fall gains 2,000 feet and takes most people 4-6 hours." },
+      { "q": "What shoes should I wear on the Mist Trail?", "a": "Hiking boots or trail shoes with real tread. The granite staircase below Vernal Fall is wet for most of May and June, and slippery footwear is the cause of most Mist Trail injuries. Worn sneakers, flip-flops, and sandals are genuinely dangerous here." },
+      { "q": "When is the Mist Trail wettest?", "a": "Peak waterfall flow runs mid-April through late June, with the heaviest spray between the base and top of Vernal Fall in May. You'll get soaked, not sprinkled. By August the falls are reduced and the trail is mostly dry." },
+      { "q": "Can kids hike the Mist Trail?", "a": "Older, reasonably fit kids can do the 1.6-mile round trip to the Vernal Fall footbridge. Past the bridge, the staircase to the top of Vernal Fall is steep, wet, and exposed — not appropriate for young children. The full route to Nevada Fall is a serious workout." },
+      { "q": "Can I die on the Mist Trail?", "a": "People have. In 2025 roughly 30% of Yosemite's search-and-rescue operations originated on the Mist Trail corridor, and the park averages close to one fatality per month on this trail and the falls above it. Stay behind the railings and don't wade above either waterfall." },
+      { "q": "Should I go up the Mist Trail and down the John Muir Trail?", "a": "Yes if you're doing the full route to Nevada Fall. Up the Mist Trail for the waterfall experience, down the JMT for gentler grades that are easier on knees. Total loop is about 6.5 miles. Most experienced hikers do it this way." }
+    ]
   },
   {
     "slug": "working-in-yosemite",
@@ -91,7 +119,9 @@
     "isoModified": "2026-05-08",
     "read": "10 min",
     "image": "img/wildflowers.jpg",
-    "placeholder": "Wildflowers in a Yosemite Valley meadow, late spring"
+    "placeholder": "Wildflowers in a Yosemite Valley meadow, late spring",
+    "wordCount": 1935,
+    "keywords": ["working in Yosemite", "Yosemite jobs", "Yosemite Hospitality Aramark", "Curry Village housing", "Yosemite naturalist"]
   },
   {
     "slug": "water-ouzels-waterfalls",
@@ -103,7 +133,9 @@
     "isoModified": "2026-05-08",
     "read": "7 min",
     "image": "img/lower-yosemite-fall.jpg",
-    "placeholder": "Lower Yosemite Fall in May, peak flow"
+    "placeholder": "Lower Yosemite Fall in May, peak flow",
+    "wordCount": 1693,
+    "keywords": ["water ouzel", "American dipper", "Cinclus mexicanus", "Yosemite Falls", "Yosemite birds"]
   },
   {
     "slug": "bears-spring-emergence",
@@ -115,7 +147,9 @@
     "isoModified": "2026-05-08",
     "read": "8 min",
     "image": "img/black-bear.jpg",
-    "placeholder": "Black bear foraging at meadow margin"
+    "placeholder": "Black bear foraging at meadow margin",
+    "wordCount": 1731,
+    "keywords": ["Yosemite bears spring", "black bear emergence", "bear torpor", "bear safety Yosemite", "April bear behavior"]
   },
   {
     "slug": "yosemite-glaciers-climate",
@@ -127,7 +161,9 @@
     "isoModified": "2026-05-08",
     "read": "8 min",
     "image": "img/tuolumne-meadows.jpg",
-    "placeholder": "Tuolumne Meadows, the head of Lyell Canyon"
+    "placeholder": "Tuolumne Meadows, the head of Lyell Canyon",
+    "wordCount": 1835,
+    "keywords": ["Yosemite glaciers", "Mount Lyell Glacier", "glacier retreat Sierra Nevada", "climate change Yosemite", "Mount Dana Mount Maclure"]
   },
   {
     "slug": "giant-sequoias-fire-adaptation",
@@ -139,7 +175,9 @@
     "isoModified": "2026-05-08",
     "read": "7 min",
     "image": "img/wawona-tunnel-tree-historic.jpg",
-    "placeholder": "The Wawona Tunnel Tree, Mariposa Grove (fell 1969)"
+    "placeholder": "The Wawona Tunnel Tree, Mariposa Grove (fell 1969)",
+    "wordCount": 1557,
+    "keywords": ["giant sequoia", "Sequoiadendron giganteum", "sequoia fire adaptation", "Mariposa Grove", "fire ecology Yosemite"]
   },
   {
     "slug": "hetch-hetchy-the-other-yosemite-valley",
@@ -151,7 +189,9 @@
     "isoModified": "2026-04-27",
     "read": "10 min",
     "image": "img/vernal-fall.jpg",
-    "placeholder": "Wapama Falls in spring snowmelt"
+    "placeholder": "Wapama Falls in spring snowmelt",
+    "wordCount": 2600,
+    "keywords": ["Hetch Hetchy", "O'Shaughnessy Dam", "Wapama Falls", "John Muir Hetch Hetchy", "Hetch Hetchy Reservoir"]
   },
   {
     "slug": "yosemite-stargazing-where-to-look-up",
@@ -163,7 +203,9 @@
     "isoModified": "2026-04-27",
     "read": "10 min",
     "image": "img/milky-way-sentinel-dome.jpg",
-    "placeholder": "Milky Way over Sentinel Dome, July"
+    "placeholder": "Milky Way over Sentinel Dome, July",
+    "wordCount": 2516,
+    "keywords": ["Yosemite stargazing", "Milky Way Yosemite", "Glacier Point stars", "Olmsted Point dark sky", "Yosemite Star Party"]
   },
   {
     "slug": "yosemite-for-non-hikers",
@@ -175,7 +217,9 @@
     "isoModified": "2026-04-26",
     "read": "8 min",
     "image": "img/tunnel-view.jpg",
-    "placeholder": "Tunnel View from the overlook parking"
+    "placeholder": "Tunnel View from the overlook parking",
+    "wordCount": 2032,
+    "keywords": ["Yosemite without hiking", "Yosemite accessible", "Yosemite for seniors", "Yosemite by car", "Yosemite drive"]
   },
   {
     "slug": "pack-your-car-for-yosemite",
@@ -187,7 +231,9 @@
     "isoModified": "2026-04-26",
     "read": "12 min",
     "image": "img/cathedral-rocks.jpg",
-    "placeholder": "Cathedral Rocks across the Yosemite Valley, from a roadside pullout"
+    "placeholder": "Cathedral Rocks across the Yosemite Valley, from a roadside pullout",
+    "wordCount": 2771,
+    "keywords": ["pack car Yosemite", "Yosemite car kit", "Yosemite bear-aware", "Yosemite road trip preparation", "Yosemite trunk essentials"]
   },
   {
     "slug": "yosemite-gateway-towns-compared",
@@ -199,7 +245,16 @@
     "isoModified": "2026-04-26",
     "read": "9 min",
     "image": "img/lower-yosemite-fall.jpg",
-    "placeholder": "El Portal, dusk on the Merced"
+    "placeholder": "El Portal, dusk on the Merced",
+    "wordCount": 2210,
+    "keywords": ["Yosemite gateway towns", "Mariposa Yosemite", "Oakhurst Yosemite", "El Portal Lee Vining", "where to stay Yosemite"],
+    "faq": [
+      { "q": "Which Yosemite gateway town is closest to the Valley?", "a": "El Portal, about 14 miles and 25-30 minutes from Yosemite Valley via Highway 140. Mariposa is next at 45 miles and 45-60 minutes. Lee Vining is closest to Tuolumne Meadows (25 minutes) but 90+ minutes from the Valley." },
+      { "q": "Which Yosemite gateway town is cheapest?", "a": "Groveland and Mariposa typically have the widest price range and the most budget options. El Portal lodging is priced like in-park lodging because of the location. Oakhurst has predictable chain prices. Lee Vining has limited inventory and is priced accordingly." },
+      { "q": "Which Yosemite gateway town is best for families?", "a": "Mariposa, by a wide margin. It has full-service grocery stores, multiple restaurants, a wide range of lodging from budget motels to inns, and a real downtown to spend an evening in. The 45-minute drive to the Valley is a fair trade for the amenities." },
+      { "q": "Which Yosemite gateway towns have full grocery stores?", "a": "Mariposa and Oakhurst have full grocery stores. Groveland has a smaller one. El Portal has a market, not a real grocery. Lee Vining has limited groceries. Stock up at the larger town before you head in." },
+      { "q": "Do Yosemite gateway towns have reliable cell service?", "a": "Patchy in all five gateways and essentially nonexistent inside the park past Crane Flat. Don't rely on real-time Google Maps once you're past the entrance station. Download offline maps before you leave the gateway." }
+    ]
   },
   {
     "slug": "yosemite-during-smoke-season",
@@ -211,7 +266,9 @@
     "isoModified": "2026-04-26",
     "read": "7 min",
     "image": "img/half-dome.jpg",
-    "placeholder": "Half Dome through summer haze"
+    "placeholder": "Half Dome through summer haze",
+    "wordCount": 1643,
+    "keywords": ["Yosemite smoke season", "wildfire smoke Yosemite", "Yosemite AQI", "California smoke planning", "Yosemite air quality"]
   },
   {
     "slug": "yosemite-without-reservations-2026",
@@ -223,7 +280,16 @@
     "isoModified": "2026-04-26",
     "read": "8 min",
     "image": "img/cathedral-rocks.jpg",
-    "placeholder": "Cathedral Rocks rising above the Merced River, Yosemite Valley"
+    "placeholder": "Cathedral Rocks rising above the Merced River, Yosemite Valley",
+    "wordCount": 1898,
+    "keywords": ["Yosemite 2026 reservations", "Yosemite without reservation", "Yosemite parking strategy", "Yosemite crowds 2026", "Yosemite entrance station"],
+    "faq": [
+      { "q": "Do I need a reservation to enter Yosemite in 2026?", "a": "No. The day-use vehicle reservation system is not in effect in 2026. A standard Yosemite entrance pass is required." },
+      { "q": "When does Yosemite Valley fill up?", "a": "Day-use parking in the Valley typically fills by 9 a.m. on summer weekends and 10-11 a.m. on weekdays. Tunnel View fills earlier, often by 7:30 a.m. on peak days. Once lots are full, you're circling." },
+      { "q": "What time should I enter Yosemite to beat the crowds?", "a": "Be inside the park by 6:30 a.m. on any peak day. Earlier is better. The drive in is faster, the entrance stations are quiet, and you'll be parked at your first stop while everyone else is still in line." },
+      { "q": "What changed in Yosemite in 2026?", "a": "The day-use entrance reservation system was dropped. The reservation requirement that throttled vehicles during peak hours in 2024 and 2025 is gone, and the park is expected to see its heaviest crowds in years as a result." },
+      { "q": "How do I find parking in Yosemite Valley?", "a": "Arrive before 8 a.m. for the central lots. Yosemite Village day-use parking is the most useful base. If those are full, the lot near Yosemite Valley Lodge usually has turnover by mid-morning. Don't waste time circling Curry Village." }
+    ]
   },
   {
     "slug": "first-time-yosemite-overwhelm",
@@ -235,6 +301,15 @@
     "isoModified": "2026-04-25",
     "read": "6 min",
     "image": "img/tunnel-view.jpg",
-    "placeholder": "Tunnel View at first light, May"
+    "placeholder": "Tunnel View at first light, May",
+    "wordCount": 1129,
+    "keywords": ["first time Yosemite", "Yosemite first trip", "Yosemite planning", "Yosemite for beginners", "Yosemite trip strategy"],
+    "faq": [
+      { "q": "How long should I spend in Yosemite for a first trip?", "a": "At minimum two full days. Three to four is better — it gives you time to see Yosemite Valley properly and have one full day elsewhere (Glacier Point, Mariposa Grove, or Tioga Road). A single-day trip is possible but you'll be moving constantly." },
+      { "q": "What month is best for visiting Yosemite for the first time?", "a": "Late May and early June for peak waterfalls; September and October for low crowds and golden light. July and August are warm and crowded. April has waterfalls and fewer people but Tioga Road and Glacier Point Road are usually still closed." },
+      { "q": "Do I need a reservation to enter Yosemite in 2026?", "a": "No. The day-use entrance reservation system is not in effect in 2026. A standard Yosemite entrance pass is required." },
+      { "q": "Where should I stay on a first Yosemite trip?", "a": "Mariposa is the most practical first-timer choice — about 45 minutes from the Valley, a real downtown, full-service. El Portal is closer (25-30 minutes) but smaller and more expensive. In-park lodging fills six to twelve months ahead." },
+      { "q": "How much driving is involved in a Yosemite trip?", "a": "More than most people expect. A gateway town to the Valley is 25 to 90 minutes each way. Glacier Point Road and Tioga Road each add an hour or more in-park. Pack the car like you're going to drive a lot, because you will." }
+    ]
   }
 ]

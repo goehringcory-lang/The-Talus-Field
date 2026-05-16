@@ -90,6 +90,8 @@ function seoForPath(pathname) {
         datePublished: a.isoDate || a.date,
         dateModified: a.isoModified || a.isoDate || a.date,
         articleSection: cat ? cat.label : undefined,
+        wordCount: typeof a.wordCount === "number" ? a.wordCount : undefined,
+        keywords: Array.isArray(a.keywords) && a.keywords.length ? a.keywords : undefined,
         author: { "@type": "Person", name: AUTHOR_NAME, url: `${SITE_ORIGIN}/about` },
         publisher: {
           "@type": "Organization",
