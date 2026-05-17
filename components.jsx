@@ -268,10 +268,10 @@ function NewsletterInline({ heading, blurb }) {
       <p>{blurb || "A short note on Sundays, when there is something to say."}</p>
       <form
         className="nlbox__form"
-        action="https://buttondown.email/api/emails/embed-subscribe/goehring"
+        action="https://buttondown.com/api/emails/embed-subscribe/goehring"
         method="post"
         target="popupwindow"
-        onSubmit={() => window.open("https://buttondown.email/goehring", "popupwindow")}
+        onSubmit={() => window.open("https://buttondown.com/goehring", "popupwindow")}
       >
         <input type="email" name="email" placeholder="you@email.com" required />
         <input type="hidden" name="embed" value="1" />

@@ -220,10 +220,10 @@ function GuidePage({ go }) {
                 small link in the description below. The scarcity bar
                 and sold-out state above stay intact for the relaunch. */}
             <form
-              action="https://buttondown.email/api/emails/embed-subscribe/goehring"
+              action="https://buttondown.com/api/emails/embed-subscribe/goehring"
               method="post"
               target="popupwindow"
-              onSubmit={() => window.open("https://buttondown.email/goehring", "popupwindow")}
+              onSubmit={() => window.open("https://buttondown.com/goehring", "popupwindow")}
               style={{ display: "flex", flexDirection: "column", gap: 10, marginBottom: 14 }}
             >
               <input type="hidden" name="tag" value="guide-waitlist" />
