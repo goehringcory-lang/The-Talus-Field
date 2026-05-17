@@ -26,10 +26,16 @@ checkout.post('/start', async (c) => {
     )
   }
 
-  const session = await createCheckoutSession(c.env, {
-    successUrl: `${c.env.EDITORIAL_BASE_URL}/?guide=success`,
-    cancelUrl: `${c.env.EDITORIAL_BASE_URL}/?guide=cancel`,
-  })
+  let session
+  try {
+    session = await createCheckoutSession(c.env, {
+      successUrl: `${c.env.EDITORIAL_BASE_URL}/?guide=success`,
+      cancelUrl: `${c.env.EDITORIAL_BASE_URL}/?guide=cancel`,
+    })
+  } catch (err) {
+    console.error('createCheckoutSession failed', err)
+    return c.json({ error: 'Checkout temporarily unavailable' }, 503)
+  }
 
   return c.json({ url: session.url })
 })
