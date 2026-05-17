@@ -123,7 +123,9 @@ function buildSeo(route) {
     if (a) {
       const cat = window.findCategory(a.cat);
       const image = absolute(a.image || "img/Half%20Dome%20Main%20Photo.jpg");
-      const desc = a.dek;
+      // Prefer a short SEO description when authored (≤160 chars to fit Bing/Google
+      // SERPs). Fall back to the visible dek otherwise.
+      const desc = a.seoDek || a.dek;
       return {
         title: `${a.title} — ${SITE_NAME}`,
         description: desc,
@@ -226,7 +228,7 @@ function buildSeo(route) {
     planning: {
       title: `The Yosemite Planning Guide — ${SITE_NAME}`,
       description:
-        "Plan a Yosemite trip in 2026: gateway towns, reservations, Half Dome, smoke season, the seasonal calendar. A curated hub through The Talus Field's planning archive.",
+        "Plan a Yosemite trip in 2026: gateway towns, reservations, Half Dome, smoke season, the seasonal calendar. A hub for The Talus Field's planning archive.",
       ogType: "website",
     },
     checklist: {
@@ -292,7 +294,7 @@ function buildSeo(route) {
     guide: {
       title: `The Field Guide — ${SITE_NAME}`,
       description:
-        "An offline web app for Yosemite. Tappable GPS for the parking turnouts, quiet trailheads, and insider tactics that locals use. Works at the trailhead when service dies.",
+        "An offline web app for Yosemite. Tappable GPS for the parking turnouts, quiet trailheads, and insider tactics locals use. Works when service dies.",
       ogType: "website",
     },
     cap: {
