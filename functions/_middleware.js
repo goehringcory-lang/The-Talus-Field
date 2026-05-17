@@ -68,9 +68,12 @@ function seoForPath(pathname) {
     const cat = categories.find((c) => c.slug === a.cat);
     const image = absoluteImage(a.image);
     const url = `${SITE_ORIGIN}/articles/${a.slug}`;
+    // Prefer the short SEO description when authored, otherwise fall back to
+    // the visible dek. Keeps Bing/Google snippets under the 160-char cutoff.
+    const desc = a.seoDek || a.dek;
     return {
       title: `${a.title} — ${SITE_NAME}`,
-      description: a.dek,
+      description: desc,
       canonical: url,
       ogType: "article",
       image,
@@ -85,7 +88,7 @@ function seoForPath(pathname) {
         "@context": "https://schema.org",
         "@type": "Article",
         headline: a.title,
-        description: a.dek,
+        description: desc,
         image: [image],
         datePublished: a.isoDate || a.date,
         dateModified: a.isoModified || a.isoDate || a.date,
@@ -134,7 +137,7 @@ function seoForPath(pathname) {
         hasPart: items.map((a) => ({
           "@type": "Article",
           headline: a.title,
-          description: a.dek,
+          description: a.seoDek || a.dek,
           url: `${SITE_ORIGIN}/articles/${a.slug}`,
           datePublished: a.isoDate || a.date,
         })),
