@@ -48,7 +48,13 @@ stripe.post('/webhook', async (c) => {
   })
   if (!ok) return c.json({ error: 'Invalid signature' }, 400)
 
-  const event = JSON.parse(rawBody) as GenericStripeEvent
+  let event: GenericStripeEvent
+  try {
+    event = JSON.parse(rawBody) as GenericStripeEvent
+  } catch (err) {
+    console.error('stripe webhook: malformed JSON body', err)
+    return c.json({ error: 'Malformed event body' }, 400)
+  }
 
   // Idempotency: if we have already processed this event id, short-circuit.
   // This must happen *after* signature verification so unauthenticated callers
@@ -75,6 +81,13 @@ stripe.post('/webhook', async (c) => {
     return c.json({ error: 'Missing customer email' }, 400)
   }
 
+  // Claim the dedupe slot first. KV is eventually consistent, so writing it
+  // before the data writes is the only way to prevent a fast Stripe retry
+  // from double-provisioning the buyer and double-counting inventory.
+  await c.env.GUIDE_BUYERS.put(dedupeKey, '1', {
+    expirationTtl: STRIPE_EVENT_DEDUPE_TTL_SECONDS,
+  })
+
   const purchasedAt = session.created
   const expiresAt = purchasedAt + EIGHTEEN_MONTHS_SECONDS
   const accessToken = generateAccessToken()
@@ -91,8 +104,6 @@ stripe.post('/webhook', async (c) => {
   await putBuyer(c.env, record)
   await incrementInventory(c.env, currentMonthLabel(new Date(purchasedAt * 1000)))
 
-  // Email is the only step that talks to a third party and can fail
-  // transiently. Don't mark the event deduped if it throws — let Stripe retry.
   const magicLink = `${c.env.APP_BASE_URL}/open?token=${accessToken}`
   try {
     await sendMagicLink(c.env, { to: email, magicLink, code: accessCode })
@@ -100,10 +111,6 @@ stripe.post('/webhook', async (c) => {
     console.error('sendMagicLink failed', { eventId: event.id, email, err })
     return c.json({ error: 'Email delivery failed' }, 500)
   }
-
-  await c.env.GUIDE_BUYERS.put(dedupeKey, '1', {
-    expirationTtl: STRIPE_EVENT_DEDUPE_TTL_SECONDS,
-  })
 
   return c.json({ received: true })
 })
