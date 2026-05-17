@@ -14,6 +14,8 @@ function NewsletterPage({ go }) {
         <form
           action="https://buttondown.com/api/emails/embed-subscribe/goehring"
           method="post"
+          target="popupwindow"
+          onSubmit={() => window.open("https://buttondown.com/goehring", "popupwindow")}
           style={{ borderTop: "1px solid var(--ink)", borderBottom: "1px solid var(--ink)", padding: "24px 0", display: "flex", gap: 16, alignItems: "center", marginBottom: 48 }}
         >
           <input
@@ -23,6 +25,7 @@ function NewsletterPage({ go }) {
             required
             style={{ flex: 1, fontFamily: "var(--serif)", fontSize: 22, background: "transparent", border: 0, outline: "none", color: "var(--ink)" }}
           />
+          <input type="hidden" name="embed" value="1" />
           <button className="btn" type="submit">Subscribe →</button>
         </form>
 
