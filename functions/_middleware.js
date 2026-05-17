@@ -90,6 +90,8 @@ function seoForPath(pathname) {
         datePublished: a.isoDate || a.date,
         dateModified: a.isoModified || a.isoDate || a.date,
         articleSection: cat ? cat.label : undefined,
+        wordCount: typeof a.wordCount === "number" ? a.wordCount : undefined,
+        keywords: Array.isArray(a.keywords) && a.keywords.length ? a.keywords : undefined,
         author: { "@type": "Person", name: AUTHOR_NAME, url: `${SITE_ORIGIN}/about` },
         publisher: {
           "@type": "Organization",
@@ -153,6 +155,16 @@ function seoForPath(pathname) {
       title: `Articles — ${SITE_NAME}`,
       description:
         "Every entry, in reverse chronological order. Yosemite trip planning, trails, wildlife, and seasonal guides.",
+    },
+    "/planning": {
+      title: `The Yosemite Planning Guide — ${SITE_NAME}`,
+      description:
+        "Plan a Yosemite trip in 2026: gateway towns, reservations, Half Dome, smoke season, the seasonal calendar. A curated hub through The Talus Field's planning archive.",
+    },
+    "/checklist": {
+      title: `The Yosemite First-Week Checklist — ${SITE_NAME}`,
+      description:
+        "A printable single-page checklist for planning a Yosemite trip in 2026: when to come, what to book, what to pack, gateway choice, and the non-negotiables. Free.",
     },
     "/about": {
       title: `About — ${SITE_NAME}`,

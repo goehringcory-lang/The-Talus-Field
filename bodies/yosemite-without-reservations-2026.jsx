@@ -1,4 +1,4 @@
-/* global React */
+/* global React, NewsletterInline */
 
 window.ARTICLE_BODIES = window.ARTICLE_BODIES || {};
 
@@ -11,7 +11,7 @@ window.ARTICLE_BODIES["yosemite-without-reservations-2026"] = function YosemiteW
       <p>
         The reservation system, for all its faults, was a throttle. It capped the number of vehicles that could enter the park during peak hours. Without it, that cap is gone. The expected result, based on what park staff have been saying publicly and what the Yosemite Conservancy has flagged in its planning advisories, is the heaviest crowds Yosemite has seen in years. Maybe ever. The 2024 and 2025 seasons, with reservations, set a baseline. 2026 is going to push past it.
       </p>
-      <p>This is not a reason not to visit. It is a reason to visit smart.</p>
+      <p>This is not a reason not to visit. It is a reason to visit smart. (If it's your first trip, the <a href="/articles/first-time-yosemite-overwhelm">first-timer's guide</a> is the broader-strategy companion.)</p>
       <p>
         Here is the actual strategy. Not the generic "go early" advice that's already on every tourism blog. The real version, with specific timing, alternatives, and contingencies for when your first plan doesn't work.
       </p>
@@ -36,6 +36,13 @@ window.ARTICLE_BODIES["yosemite-without-reservations-2026"] = function YosemiteW
         <li>The southern and western corners. Wawona, Mariposa Grove off-peak, and Hetch Hetchy are fundamentally less-crowded zones.</li>
         <li>Any place more than a mile off the road. Crowds in Yosemite are crowds at the parking lot. They thin dramatically with distance.</li>
       </ul>
+
+      <div style={{ margin: "48px 0" }}>
+        <NewsletterInline
+          heading="Sunday Field Notes"
+          blurb="One Yosemite email a week, when there is something to say. Free."
+        />
+      </div>
 
       <h2>The toolkit: three levers you actually have</h2>
       <p>You can't book your way to a quiet Yosemite in 2026. You can use three levers instead.</p>
@@ -64,6 +71,9 @@ window.ARTICLE_BODIES["yosemite-without-reservations-2026"] = function YosemiteW
         <li><strong>Tioga Road outside the headline stops</strong>. Pothole Dome, Lembert Dome, the east end of Tenaya Lake, the trail to Glen Aulin. All accessible from Tioga Road but rarely backed up.</li>
         <li><strong>Anywhere a half mile off a major trail.</strong> The standard hike to Vernal Fall is often a conga line. The trail past the top of Vernal Fall, continuing to Nevada Fall via the John Muir Trail, drops the crowd by 80%.</li>
       </ul>
+      <p>
+        Add wildfire smoke to the mix and the under-visited zones become even more valuable: the high country is often above the inversion layer that holds smoke in the Valley. See <a href="/articles/yosemite-during-smoke-season">smoke season planning</a> for the full version.
+      </p>
 
       <h3>Lever 3: attitude</h3>
       <p>This is the lever most people don't use, and it's the one that will save your trip when the first two fail.</p>
@@ -83,7 +93,7 @@ window.ARTICLE_BODIES["yosemite-without-reservations-2026"] = function YosemiteW
       <h3>A single weekend day</h3>
       <p>This is the hardest mode. You have one day, the park is at peak, and you need everything to line up. The strategy:</p>
       <ul>
-        <li>Sleep in or near the park the night before. Driving in from the Bay Area on the morning of a peak Saturday is a recipe for arriving at 11 a.m. with no parking.</li>
+        <li>Sleep in or near the park the night before. <a href="/articles/yosemite-gateway-towns-compared">El Portal or Mariposa</a> is the strongest base for an early-Saturday start. Driving in from the Bay Area on the morning of a peak Saturday is a recipe for arriving at 11 a.m. with no parking.</li>
         <li>Be inside the gate by 6 a.m. Do Tunnel View, the Cook's Meadow loop, and Lower Yosemite Falls before 9 a.m.</li>
         <li>Eat an early lunch (10:30 to 11 a.m.) at Degnan's or pack from outside.</li>
         <li>Use the midday hours for something low-friction. The Valley museum, a slow walk on the south-side path along the Merced, the Ansel Adams Gallery.</li>

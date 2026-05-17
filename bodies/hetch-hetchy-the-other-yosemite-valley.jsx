@@ -14,7 +14,7 @@ window.ARTICLE_BODIES["hetch-hetchy-the-other-yosemite-valley"] = function Hetch
       </p>
 
       <p>
-        It is also the most underused major destination in Yosemite. On a Saturday in July when the Valley is bumper-to-bumper at the entrance station, you can drive into Hetch Hetchy in the morning, cross the dam, hike five miles to one of the great waterfalls in the Sierra, and see fewer than a hundred people the entire day.
+        It is also the most underused major destination in Yosemite. On a Saturday in July when <a href="/articles/yosemite-without-reservations-2026">the Valley is bumper-to-bumper at the entrance station</a>, you can drive into Hetch Hetchy in the morning, cross the dam, hike five miles to one of the great waterfalls in the Sierra, and see fewer than a hundred people the entire day.
       </p>
 
       <p>This is how to do that, and what to think about while you're doing it.</p>
@@ -86,7 +86,7 @@ window.ARTICLE_BODIES["hetch-hetchy-the-other-yosemite-valley"] = function Hetch
       <p>Hetch Hetchy works as a single full-day trip from anywhere in the park. It does not work as a half-day add-on, because of the drive in and out.</p>
 
       <p>
-        <strong>The dam itself.</strong> O'Shaughnessy Dam is open to foot traffic. The walk across the dam is a quarter mile and takes you through a hand-cut tunnel into the valley proper. From the middle of the dam, you can see the reservoir extending east toward Wapama Falls and the upper valley. The dam was built in two phases (1923 and 1938), and the seam between the two construction periods is visible from the upstream side. There are interpretive signs at the eastern end of the dam.
+        <strong>The dam itself.</strong> O'Shaughnessy Dam is open to foot traffic. The walk across the dam is a quarter mile and takes you through a hand-cut tunnel into the valley proper. It's flat, paved, and one of the few <a href="/articles/yosemite-for-non-hikers">non-hiker-accessible</a> ways to stand inside a Sierra granite valley. From the middle of the dam, you can see the reservoir extending east toward Wapama Falls and the upper valley. The dam was built in two phases (1923 and 1938), and the seam between the two construction periods is visible from the upstream side. There are interpretive signs at the eastern end of the dam.
       </p>
 
       <p>

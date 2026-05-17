@@ -140,7 +140,7 @@ window.ARTICLES = [
     isoDate: "2026-05-12",
     isoModified: "2026-05-12",
     read: "17 min",
-    placeholder: "Half Dome from the Valley floor",
+    placeholder: "Half Dome rising 4,800 feet from the Yosemite Valley floor",
     image: "img/half-dome.jpg",
   },
   {
@@ -152,7 +152,7 @@ window.ARTICLES = [
     isoDate: "2026-05-12",
     isoModified: "2026-05-12",
     read: "13 min",
-    placeholder: "Half Dome at alpenglow",
+    placeholder: "Half Dome at alpenglow from Glacier Point",
     image: "img/half-dome-alpenglow-madhu-shesharam.jpg",
     credit: "Photo: Madhu Shesharam / Unsplash",
   },
@@ -191,7 +191,7 @@ window.ARTICLES = [
     isoDate: "2026-05-08",
     isoModified: "2026-05-08",
     read: "10 min",
-    placeholder: "Valley meadow, late spring",
+    placeholder: "Wildflowers in a Yosemite Valley meadow, late spring",
     image: "img/wildflowers.jpg",
   },
   {
@@ -288,7 +288,7 @@ window.ARTICLES = [
     isoDate: "2026-04-26",
     isoModified: "2026-04-26",
     read: "12 min",
-    placeholder: "Loaded car at a trailhead pullout",
+    placeholder: "Cathedral Rocks across the Yosemite Valley, from a roadside pullout",
     image: "img/cathedral-rocks.jpg",
   },
   {
@@ -324,7 +324,7 @@ window.ARTICLES = [
     isoDate: "2026-04-26",
     isoModified: "2026-04-26",
     read: "8 min",
-    placeholder: "Cathedral Rocks from the Valley floor",
+    placeholder: "Cathedral Rocks rising above the Merced River, Yosemite Valley",
     image: "img/cathedral-rocks.jpg",
   },
   {

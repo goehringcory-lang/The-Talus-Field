@@ -108,11 +108,15 @@ window.ARTICLE_BODIES["water-ouzels-waterfalls"] = function WaterOuzelsBody() {
       <h2>The practical observation</h2>
 
       <p>
-        The next time you're at a Yosemite waterfall, pause and look for ouzels. They're small and often in motion, so you might miss them. But if you see one, watch it move in the water. Watch how it grips the rock. Notice how it forages directly in the fast current. Understand that you're observing an animal that has specialized so completely to this specific environment that it seems almost impossible that such an animal could exist.
+        The next time you're at a Yosemite waterfall, pause and look for ouzels. The bridge below Vernal Fall on <a href="/articles/mist-trail-the-real-guide">the Mist Trail</a> is one of the most reliable spots. They're small and often in motion, so you might miss them. But if you see one, watch it move in the water. Watch how it grips the rock. Notice how it forages directly in the fast current. Understand that you're observing an animal that has specialized so completely to this specific environment that it seems almost impossible that such an animal could exist.
       </p>
 
       <p>
         That impossibility is the evidence of a waterfall ecosystem working at full capacity. The ouzel is the proof of life thriving in one of Yosemite's most extreme environments. And if you don't see an ouzel, that absence might tell you something important about how that stream has changed, or what we've lost through altered water flow.
+      </p>
+
+      <p>
+        For another category of subtle Yosemite observation that rewards patience, see the guide to <a href="/articles/yosemite-stargazing-where-to-look-up">stargazing in the high country</a>: a different kind of looking, in different light.
       </p>
 
       <h3>Further reading</h3>
