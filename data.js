@@ -108,6 +108,19 @@ window.KIT = {
 
 window.ARTICLES = [
   {
+    slug: "four-mile-up-panorama-down",
+    cat: "trails",
+    title: "My favorite day hike in Yosemite: Four Mile up, Panorama down",
+    dek: "Up the Four Mile Trail to Glacier Point, down the Panorama Trail past Illilouette and Nevada Falls. A 13-mile loop that climbs 3,200 feet and gives you back the whole park. The logistics that make it work.",
+    date: "May 17, 2026",
+    isoDate: "2026-05-17",
+    isoModified: "2026-05-17",
+    read: "13 min",
+    placeholder: "Looking up the Four Mile Trail toward Glacier Point",
+    image: "img/960px-Four_Mile_Trailhead_with_constrast_mask.jpg",
+    credit: "Photo: Alex / Wikimedia Commons (CC BY 3.0)",
+  },
+  {
     slug: "yosemite-with-kids-no-reservations-2026",
     cat: "planning",
     title: "Your last-minute Yosemite trip with kids: a naturalist's honest guide",
