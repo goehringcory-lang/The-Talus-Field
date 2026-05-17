@@ -222,9 +222,12 @@ function GuidePage({ go }) {
             <form
               action="https://buttondown.com/api/emails/embed-subscribe/goehring"
               method="post"
+              target="popupwindow"
+              onSubmit={() => window.open("https://buttondown.com/goehring", "popupwindow")}
               style={{ display: "flex", flexDirection: "column", gap: 10, marginBottom: 14 }}
             >
               <input type="hidden" name="tag" value="guide-waitlist" />
+              <input type="hidden" name="embed" value="1" />
               <label
                 htmlFor="guide-waitlist-email"
                 className="eyebrow"
