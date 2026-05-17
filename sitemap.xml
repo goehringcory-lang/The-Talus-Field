@@ -5,7 +5,7 @@
   <!-- Hub pages -->
   <url>
     <loc>https://thetalusfieldjournal.com/</loc>
-    <lastmod>2026-05-14</lastmod>
+    <lastmod>2026-05-17</lastmod>
     <image:image>
       <image:loc>https://thetalusfieldjournal.com/img/Half%20Dome%20Main%20Photo.jpg</image:loc>
       <image:title>Half Dome at first light</image:title>
@@ -13,7 +13,7 @@
   </url>
   <url>
     <loc>https://thetalusfieldjournal.com/articles</loc>
-    <lastmod>2026-05-14</lastmod>
+    <lastmod>2026-05-17</lastmod>
   </url>
   <url>
     <loc>https://thetalusfieldjournal.com/planning</loc>
@@ -35,7 +35,7 @@
   </url>
   <url>
     <loc>https://thetalusfieldjournal.com/section/trails</loc>
-    <lastmod>2026-05-12</lastmod>
+    <lastmod>2026-05-17</lastmod>
   </url>
   <url>
     <loc>https://thetalusfieldjournal.com/section/wildlife</loc>
@@ -93,6 +93,14 @@
   </url>
 
   <!-- Articles -->
+  <url>
+    <loc>https://thetalusfieldjournal.com/articles/four-mile-up-panorama-down</loc>
+    <lastmod>2026-05-17</lastmod>
+    <image:image>
+      <image:loc>https://thetalusfieldjournal.com/img/960px-Four_Mile_Trailhead_with_constrast_mask.jpg</image:loc>
+      <image:title>Looking up the Four Mile Trail toward Glacier Point</image:title>
+    </image:image>
+  </url>
   <url>
     <loc>https://thetalusfieldjournal.com/articles/yosemite-with-kids-no-reservations-2026</loc>
     <lastmod>2026-05-14</lastmod>
