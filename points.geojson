@@ -6,8 +6,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -119.6294,
-          37.7174
+          -119.631483,
+          37.723979
         ]
       },
       "properties": {
@@ -18,7 +18,8 @@
         "blurb": "The bridge over the Merced just east of El Capitan. Short flat walk with the wall straight overhead.",
         "image": null,
         "articles": [],
-        "verified": false
+        "gmapsUrl": "https://maps.app.goo.gl/JtKkszF9UTyDrTFq8",
+        "verified": true
       }
     },
     {
