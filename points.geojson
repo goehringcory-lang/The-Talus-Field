@@ -257,6 +257,27 @@
         "gmapsUrl": "https://maps.app.goo.gl/fDhduBPHiZ2dnTiC8",
         "verified": true
       }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -119.338421,
+          37.877318
+        ]
+      },
+      "properties": {
+        "id": "lyell-canyon",
+        "name": "Lyell Canyon",
+        "category": "hike",
+        "region": "tuolumne",
+        "blurb": "An 8-mile trail through a broad subalpine canyon with only 200 feet of gain. Starts across from the Dog Lake parking area. The further you go, the fewer people you see. Tioga Road season only.",
+        "image": null,
+        "articles": [],
+        "gmapsUrl": "https://maps.app.goo.gl/t2TTcTfM9XqGtL5o8",
+        "verified": true
+      }
     }
   ]
 }
