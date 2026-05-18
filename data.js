@@ -366,7 +366,6 @@ window.ARTICLES = [
     isoDate: "2026-04-25",
     isoModified: "2026-04-25",
     read: "6 min",
-    feature: true,
     placeholder: "Tunnel View at first light, May",
     image: "img/tunnel-view.jpg",
   },
