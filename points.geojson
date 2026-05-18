@@ -6,8 +6,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -119.6294,
-          37.7174
+          -119.631483,
+          37.723979
         ]
       },
       "properties": {
@@ -18,7 +18,8 @@
         "blurb": "The bridge over the Merced just east of El Capitan. Short flat walk with the wall straight overhead.",
         "image": null,
         "articles": [],
-        "verified": false
+        "gmapsUrl": "https://maps.app.goo.gl/JtKkszF9UTyDrTFq8",
+        "verified": true
       }
     },
     {
@@ -92,8 +93,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -119.5867,
-          37.7418
+          -119.58961,
+          37.743668
         ]
       },
       "properties": {
@@ -107,7 +108,8 @@
           "first-time-yosemite-overwhelm",
           "yosemite-for-non-hikers"
         ],
-        "verified": false
+        "gmapsUrl": "https://maps.app.goo.gl/pFeyiUnJmaDcYgAZA",
+        "verified": true
       }
     },
     {
@@ -124,7 +126,7 @@
         "name": "Muir's Glacial Erratic",
         "category": "vista",
         "region": "valley",
-        "blurb": "The boulder John Muir used as evidence the valley was carved by ice. Sits in the woods below El Capitan.",
+        "blurb": "The boulder John Muir used as evidence the valley was carved by ice. Sits in the Merced. Look for the large feldspar chunks.",
         "image": null,
         "articles": [
           "yosemite-glaciers-climate"
@@ -234,6 +236,48 @@
         "blurb": "One of the most peaceful areas of Yosemite Valley. Good spot for birding.",
         "image": null,
         "articles": [],
+        "verified": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -119.628235,
+          37.670483
+        ]
+      },
+      "properties": {
+        "id": "mcgurk-meadow",
+        "name": "McGurk Meadow",
+        "category": "hike",
+        "region": "glacier-mariposa",
+        "blurb": "A 3.7-mile round trip off Glacier Point Road. One of the best wildflower hikes in the park; the old sheepherder's cabin partway in belongs to John McGurk. Wildflowers peak June through August.",
+        "image": null,
+        "articles": [],
+        "gmapsUrl": "https://maps.app.goo.gl/fDhduBPHiZ2dnTiC8",
+        "verified": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -119.338421,
+          37.877318
+        ]
+      },
+      "properties": {
+        "id": "lyell-canyon",
+        "name": "Lyell Canyon",
+        "category": "hike",
+        "region": "tuolumne",
+        "blurb": "An 8-mile trail through a broad subalpine canyon with only 200 feet of gain. Starts across from the Dog Lake parking area. The further you go, the fewer people you see. Tioga Road season only.",
+        "image": null,
+        "articles": [],
+        "gmapsUrl": "https://maps.app.goo.gl/t2TTcTfM9XqGtL5o8",
         "verified": true
       }
     }
