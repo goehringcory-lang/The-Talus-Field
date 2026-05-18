@@ -93,8 +93,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -119.5867,
-          37.7418
+          -119.58961,
+          37.743668
         ]
       },
       "properties": {
@@ -108,7 +108,8 @@
           "first-time-yosemite-overwhelm",
           "yosemite-for-non-hikers"
         ],
-        "verified": false
+        "gmapsUrl": "https://maps.app.goo.gl/pFeyiUnJmaDcYgAZA",
+        "verified": true
       }
     },
     {
