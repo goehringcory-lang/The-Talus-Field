@@ -30,7 +30,13 @@ export function firstOfNextMonthIso(at = new Date()): string {
 
 export async function getBuyer(env: Env, email: string): Promise<BuyerRecord | null> {
   const raw = await env.GUIDE_BUYERS.get(BUYER_KEY(email))
-  return raw ? (JSON.parse(raw) as BuyerRecord) : null
+  if (!raw) return null
+  try {
+    return JSON.parse(raw) as BuyerRecord
+  } catch (err) {
+    console.error('getBuyer: corrupt KV record', { email, err })
+    return null
+  }
 }
 
 export async function putBuyer(env: Env, record: BuyerRecord): Promise<void> {

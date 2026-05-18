@@ -171,6 +171,9 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex-wrap: wrap;
+  row-gap: 4px;
+  column-gap: 12px;
   padding: 8px var(--gutter);
   max-width: 1240px;
   margin: 0 auto;
@@ -220,8 +223,19 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
 .masthead__paper a:hover { color: var(--ink); border-bottom-color: currentColor; }
 .masthead__paper-label { color: var(--ink-3); }
 @media (max-width: 720px) {
-  .masthead__weather { display: none; }
-  .masthead__paper { display: none; }
+  .masthead__top { padding: 6px var(--gutter); column-gap: 10px; }
+  .masthead__top span + span { margin-left: 12px; }
+  .masthead__weather { flex-wrap: wrap; gap: 6px 10px; }
+  .masthead__weather-label { margin-right: 0; }
+  .masthead__weather a,
+  .masthead__paper a { padding: 4px 0; }
+  .masthead__weather-cityfull { display: none; }
+  .masthead__paper {
+    margin-left: 0;
+    padding-left: 0;
+    border-left: 0;
+  }
+  .masthead__paper-label { display: none; }
 }
 .masthead__main {
   display: flex;

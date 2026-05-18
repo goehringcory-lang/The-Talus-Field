@@ -114,7 +114,7 @@ window.ARTICLE_BODIES["yosemite-for-non-hikers"] = function YosemiteForNonHikers
       <p>Both of these are scenic drives that deliver views non-hikers can't get from anywhere else in the park.</p>
 
       <p>
-        <strong>Glacier Point Road</strong> is open from approximately late May or early June through October or early November, depending on snow. The drive from the Valley takes about an hour each way. The parking lot at Glacier Point is a few hundred yards from the overlook itself. The path from the lot to the viewing platform is paved, with a moderate descent. The view from Glacier Point puts you at 7,200 feet looking straight down into the Valley with Half Dome at eye level. This is one of the great viewpoints in the National Park system. It requires no real hiking.
+        <strong><a href="/articles/glacier-point-road-open-2026">Glacier Point Road</a></strong> is open from approximately late May or early June through October or early November, depending on snow. The drive from the Valley takes about an hour each way. The parking lot at Glacier Point is a few hundred yards from the overlook itself. The path from the lot to the viewing platform is paved, with a moderate descent. The view from Glacier Point puts you at 7,200 feet looking straight down into the Valley with Half Dome at eye level. This is one of the great viewpoints in the National Park system. It requires no real hiking.
       </p>
 
       <p>
@@ -122,7 +122,7 @@ window.ARTICLE_BODIES["yosemite-for-non-hikers"] = function YosemiteForNonHikers
       </p>
 
       <ul>
-        <li><strong>Olmsted Point.</strong> A parking lot view back into the head of Tenaya Canyon, including the back side of Half Dome. A short walk to a viewing platform.</li>
+        <li><strong>Olmsted Point.</strong> A parking lot view back into the head of Tenaya Canyon, including the back side of Half Dome. A short walk to a viewing platform. (At night, it's also the best <a href="/articles/yosemite-stargazing-where-to-look-up">stargazing pullout</a> in the park.)</li>
         <li><strong>Tenaya Lake.</strong> A subalpine lake with a granite shoreline. Several pullouts. The east end has a small beach reachable from the parking area.</li>
         <li><strong>Tuolumne Meadows.</strong> A broad alpine meadow at 8,600 feet. Several pullouts. The Soda Springs walking path is mostly flat and accessible.</li>
       </ul>

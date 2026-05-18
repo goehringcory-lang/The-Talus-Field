@@ -1,6 +1,7 @@
 /* global React, ReactDOM, Header, Footer,
    HomePage, AboutPage, ArticlesIndex, CategoryPage, ArticlePage,
    KitPage, PlacesPage, AdvertisePage, GuidePage, CapPage, MapPage,
+   PlanningGuide, ChecklistPage,
    NewsletterPage, ContactPage, PrivacyPage, TermsPage, AffiliatePage,
    TweaksPanel, useTweaks, TweakSection, TweakRadio, TweakToggle */
 
@@ -122,7 +123,9 @@ function buildSeo(route) {
     if (a) {
       const cat = window.findCategory(a.cat);
       const image = absolute(a.image || "img/Half%20Dome%20Main%20Photo.jpg");
-      const desc = a.dek;
+      // Prefer a short SEO description when authored (≤160 chars to fit Bing/Google
+      // SERPs). Fall back to the visible dek otherwise.
+      const desc = a.seoDek || a.dek;
       return {
         title: `${a.title} — ${SITE_NAME}`,
         description: desc,
@@ -222,6 +225,18 @@ function buildSeo(route) {
         "Every entry, in reverse chronological order. Yosemite trip planning, trails, wildlife, and seasonal guides.",
       ogType: "website",
     },
+    planning: {
+      title: `The Yosemite Planning Guide — ${SITE_NAME}`,
+      description:
+        "Plan a Yosemite trip in 2026: gateway towns, reservations, Half Dome, smoke season, the seasonal calendar. A hub for The Talus Field's planning archive.",
+      ogType: "website",
+    },
+    checklist: {
+      title: `The Yosemite First-Week Checklist — ${SITE_NAME}`,
+      description:
+        "A printable single-page checklist for planning a Yosemite trip in 2026: when to come, what to book, what to pack, gateway choice, and the non-negotiables. Free.",
+      ogType: "website",
+    },
     about: {
       title: `About — ${SITE_NAME}`,
       description:
@@ -279,7 +294,7 @@ function buildSeo(route) {
     guide: {
       title: `The Field Guide — ${SITE_NAME}`,
       description:
-        "An offline web app for Yosemite. Tappable GPS for the parking turnouts, quiet trailheads, and insider tactics that locals use. Works at the trailhead when service dies.",
+        "An offline web app for Yosemite. Tappable GPS for the parking turnouts, quiet trailheads, and insider tactics locals use. Works when service dies.",
       ogType: "website",
     },
     cap: {
@@ -440,6 +455,12 @@ function App() {
     page = <AdvertisePage go={go} />;
   } else if (route === "articles") {
     page = <ArticlesIndex go={go} />;
+    currentNav = "articles";
+  } else if (route === "planning") {
+    page = <PlanningGuide go={go} />;
+    currentNav = "articles";
+  } else if (route === "checklist") {
+    page = <ChecklistPage go={go} />;
     currentNav = "articles";
   } else if (route.startsWith("cat:")) {
     page = <CategoryPage slug={route.slice(4)} go={go} />;

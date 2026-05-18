@@ -68,9 +68,12 @@ function seoForPath(pathname) {
     const cat = categories.find((c) => c.slug === a.cat);
     const image = absoluteImage(a.image);
     const url = `${SITE_ORIGIN}/articles/${a.slug}`;
+    // Prefer the short SEO description when authored, otherwise fall back to
+    // the visible dek. Keeps Bing/Google snippets under the 160-char cutoff.
+    const desc = a.seoDek || a.dek;
     return {
       title: `${a.title} — ${SITE_NAME}`,
-      description: a.dek,
+      description: desc,
       canonical: url,
       ogType: "article",
       image,
@@ -85,11 +88,13 @@ function seoForPath(pathname) {
         "@context": "https://schema.org",
         "@type": "Article",
         headline: a.title,
-        description: a.dek,
+        description: desc,
         image: [image],
         datePublished: a.isoDate || a.date,
         dateModified: a.isoModified || a.isoDate || a.date,
         articleSection: cat ? cat.label : undefined,
+        wordCount: typeof a.wordCount === "number" ? a.wordCount : undefined,
+        keywords: Array.isArray(a.keywords) && a.keywords.length ? a.keywords : undefined,
         author: { "@type": "Person", name: AUTHOR_NAME, url: `${SITE_ORIGIN}/about` },
         publisher: {
           "@type": "Organization",
@@ -132,7 +137,7 @@ function seoForPath(pathname) {
         hasPart: items.map((a) => ({
           "@type": "Article",
           headline: a.title,
-          description: a.dek,
+          description: a.seoDek || a.dek,
           url: `${SITE_ORIGIN}/articles/${a.slug}`,
           datePublished: a.isoDate || a.date,
         })),
@@ -153,6 +158,16 @@ function seoForPath(pathname) {
       title: `Articles — ${SITE_NAME}`,
       description:
         "Every entry, in reverse chronological order. Yosemite trip planning, trails, wildlife, and seasonal guides.",
+    },
+    "/planning": {
+      title: `The Yosemite Planning Guide — ${SITE_NAME}`,
+      description:
+        "Plan a Yosemite trip in 2026: gateway towns, reservations, Half Dome, smoke season, the seasonal calendar. A curated hub through The Talus Field's planning archive.",
+    },
+    "/checklist": {
+      title: `The Yosemite First-Week Checklist — ${SITE_NAME}`,
+      description:
+        "A printable single-page checklist for planning a Yosemite trip in 2026: when to come, what to book, what to pack, gateway choice, and the non-negotiables. Free.",
     },
     "/about": {
       title: `About — ${SITE_NAME}`,

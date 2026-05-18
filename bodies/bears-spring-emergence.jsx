@@ -56,7 +56,7 @@ window.ARTICLE_BODIES["bears-spring-emergence"] = function BearsSpringEmergenceB
       </p>
 
       <p>
-        By May, a spring bear is actively foraging for hours each day, moving extensively through meadows and along stream margins, investigating potential food sources. The bear is more likely to approach human settlements, to attempt entry into cabins or food storage areas, to persist in areas where human food or garbage is available. The motivation is not aggression. It's hunger.
+        By May, a spring bear is actively foraging for hours each day, moving extensively through meadows and along stream margins, investigating potential food sources. The bear is more likely to approach human settlements, to attempt entry into cabins or food storage areas, to persist in areas where human food or garbage is available. (Anyone who has <a href="/articles/working-in-yosemite">lived in employee housing</a> in the Valley has stories about spring bears at the tent cabins; this is the season when bear-box discipline matters most.) The motivation is not aggression. It's hunger.
       </p>
 
       <p>
@@ -105,7 +105,7 @@ window.ARTICLE_BODIES["bears-spring-emergence"] = function BearsSpringEmergenceB
         This doesn't mean bears are not dangerous. Bears are large, strong, and potentially lethal predators. But the danger is not unpredictable. It flows directly from the conditions of the season: the bear's metabolic state, the availability of food, the bear's desperation. A bear in April is more dangerous than a bear in August, not because the April bear is inherently more aggressive, but because the April bear is hungrier and more motivated.
       </p>
 
-      <p>For humans in Yosemite, this means spring requires the most rigorous food storage practices. It means avoiding surprise encounters by making noise on the trail. It means understanding that a bear's boldness in spring is an expression of metabolic urgency, not malice.</p>
+      <p>For humans in Yosemite, this means spring requires the most rigorous food storage practices. It means avoiding surprise encounters by making noise on the trail. May and June overlap exactly with peak season on <a href="/articles/mist-trail-the-real-guide">the Mist Trail</a> and the other Valley hikes, when bears are foraging the same lower meadows that visitors pass through. It means understanding that a bear's boldness in spring is an expression of metabolic urgency, not malice.</p>
 
       <p>
         For the bears themselves, spring in Yosemite is often a period of high stress. If natural food is not readily available, bears may starve despite successfully emerging from torpor. If food is available (as it is in years with abundant mast crops the previous fall, or in locations where humans provide easy access to food), bears thrive. The harsh spring season has shaped bear behavior and ecology for centuries.

@@ -5,8 +5,7 @@
 // HOME
 // ============================================================
 function HomePage({ go }) {
-  const featured = window.ARTICLES.find(a => a.feature);
-  const latest = window.ARTICLES.filter(a => a !== featured).slice(0, 6);
+  const recent = window.ARTICLES.slice(0, 6);
   const seasonal = window.byCategory("seasonal").slice(0, 2);
 
   return (
@@ -27,6 +26,9 @@ function HomePage({ go }) {
               <a className="btn" href="/articles" onClick={(e) => { e.preventDefault(); go("articles"); }}>
                 Start reading <span className="btn__arrow">→</span>
               </a>
+              <a className="btn btn--ghost" href="/checklist" onClick={(e) => { e.preventDefault(); go("checklist"); }}>
+                Free checklist
+              </a>
               <a className="btn btn--ghost" href="/newsletter" onClick={(e) => { e.preventDefault(); go("newsletter"); }}>
                 Sunday Field Notes
               </a>
@@ -45,57 +47,14 @@ function HomePage({ go }) {
         </div>
       </section>
 
-      {/* Featured */}
+      {/* This Week — recent articles feed */}
       <section className="wrap" style={{ paddingTop: 56 }}>
         <div className="section-head">
           <h2>This Week</h2>
           <a href="/articles" onClick={(e) => { e.preventDefault(); go("articles"); }}>All entries →</a>
         </div>
-
-        <div style={{ display: "grid", gridTemplateColumns: "1.4fr 1fr", gap: 48, alignItems: "start" }}>
-          <a
-            className="card"
-            href={`/articles/${featured.slug}`}
-            onClick={(e) => { e.preventDefault(); go(`a:${featured.slug}`); }}
-          >
-            <Placeholder
-              caption={featured.placeholder}
-              image={featured.image}
-              tag="FEATURE"
-              size="lg"
-              style={{ aspectRatio: "16 / 10" }}
-              motif={<MotifMountains />}
-            />
-            <div style={{ marginTop: 18 }}>
-              <div className="card__cat">{window.findCategory(featured.cat).label}</div>
-              <div className="card__title" style={{ fontFamily: "var(--display)", fontSize: 40, marginBottom: 12, lineHeight: 1.05, fontWeight: 500 }}>{featured.title}</div>
-              <div className="card__dek" style={{ fontSize: 19 }}>{featured.dek}</div>
-              <div className="card__meta">
-                <span>{featured.date}</span>
-                <span>{featured.read}</span>
-                <span>by {window.SITE.authorName}</span>
-              </div>
-            </div>
-          </a>
-
-          <div>
-            <div className="eyebrow eyebrow--moss" style={{ marginBottom: 16 }}>Also this week</div>
-            <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
-              {latest.slice(0, 4).map(a => (
-                <li key={a.slug} style={{ borderTop: "1px solid var(--rule)", padding: "16px 0" }}>
-                  <a
-                    href={`/articles/${a.slug}`}
-                    onClick={(e) => { e.preventDefault(); go(`a:${a.slug}`); }}
-                    style={{ textDecoration: "none", color: "inherit", display: "block" }}
-                  >
-                    <div className="card__cat" style={{ fontSize: 9, marginBottom: 6 }}>{window.findCategory(a.cat).label}</div>
-                    <div style={{ fontFamily: "var(--display)", fontSize: 19, fontWeight: 500, lineHeight: 1.2, marginBottom: 6 }}>{a.title}</div>
-                    <div style={{ fontFamily: "var(--sans)", fontSize: 10, textTransform: "uppercase", letterSpacing: "0.14em", color: "var(--ink-3)", fontWeight: 600 }}>{a.date} · {a.read}</div>
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 36, rowGap: 48 }}>
+          {recent.map(a => <ArticleCard key={a.slug} article={a} go={go} />)}
         </div>
       </section>
 
@@ -132,15 +91,33 @@ function HomePage({ go }) {
         </div>
       </section>
 
-      {/* Latest grid */}
+      {/* Planning Guide hub callout */}
       <section className="wrap" style={{ paddingTop: 80 }}>
-        <div className="section-head">
-          <h2>The Archive</h2>
-          <a href="/articles" onClick={(e) => { e.preventDefault(); go("articles"); }}>Browse all →</a>
-        </div>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 36, rowGap: 48 }}>
-          {latest.map(a => <ArticleCard key={a.slug} article={a} go={go} />)}
-        </div>
+        <a
+          href="/planning"
+          onClick={(e) => { e.preventDefault(); go("planning"); }}
+          style={{
+            display: "block",
+            textDecoration: "none",
+            color: "inherit",
+            borderTop: "2px solid var(--ink)",
+            borderBottom: "2px solid var(--ink)",
+            padding: "40px 0",
+          }}
+        >
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 2fr", gap: 48, alignItems: "center" }}>
+            <div>
+              <div className="eyebrow eyebrow--moss" style={{ marginBottom: 12 }}>The Planning Guide</div>
+              <div style={{ fontFamily: "var(--display)", fontSize: 36, fontWeight: 400, lineHeight: 1.1, letterSpacing: "-0.01em" }}>Yosemite, planned properly.</div>
+            </div>
+            <div>
+              <p style={{ fontFamily: "var(--serif)", fontSize: 19, lineHeight: 1.5, color: "var(--ink-2)", margin: 0, marginBottom: 16 }}>
+                The full archive, organized for a real trip. Gateway towns, reservations, Half Dome, smoke season, the seasonal calendar. Read in the order you'll actually need them.
+              </p>
+              <div className="mono" style={{ color: "var(--moss)", fontWeight: 700, fontSize: 11, textTransform: "uppercase", letterSpacing: "0.18em" }}>Read the guide →</div>
+            </div>
+          </div>
+        </a>
       </section>
 
       {/* About + Newsletter strip */}

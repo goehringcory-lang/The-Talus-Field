@@ -109,9 +109,9 @@ function Header({ current, go }) {
         </div>
         <div className="masthead__weather">
           <span className="masthead__weather-label">Conditions</span>
-          <a href="https://forecast.weather.gov/MapClick.php?lat=37.7456&lon=-119.5936" target="_blank" rel="noopener noreferrer">Yosemite Valley</a>
+          <a href="https://forecast.weather.gov/MapClick.php?lat=37.7456&lon=-119.5936" target="_blank" rel="noopener noreferrer"><span className="masthead__weather-cityfull">Yosemite </span>Valley</a>
           <span className="masthead__weather-sep">·</span>
-          <a href="https://forecast.weather.gov/MapClick.php?lat=37.8731&lon=-119.3503" target="_blank" rel="noopener noreferrer">Tuolumne Meadows</a>
+          <a href="https://forecast.weather.gov/MapClick.php?lat=37.8731&lon=-119.3503" target="_blank" rel="noopener noreferrer">Tuolumne<span className="masthead__weather-cityfull"> Meadows</span></a>
           <span className="masthead__weather-sep">·</span>
           <a href="https://forecast.weather.gov/MapClick.php?lat=37.5341&lon=-119.6315" target="_blank" rel="noopener noreferrer">Wawona</a>
           <span className="masthead__paper">
@@ -268,10 +268,13 @@ function NewsletterInline({ heading, blurb }) {
       <p>{blurb || "A short note on Sundays, when there is something to say."}</p>
       <form
         className="nlbox__form"
-        action="https://buttondown.com/api/emails/embed-subscribe/goehring"
+        action="https://buttondown.email/api/emails/embed-subscribe/goehring"
         method="post"
+        target="popupwindow"
+        onSubmit={() => window.open("https://buttondown.email/goehring", "popupwindow")}
       >
         <input type="email" name="email" placeholder="you@email.com" required />
+        <input type="hidden" name="embed" value="1" />
         <button type="submit">Subscribe →</button>
       </form>
     </div>

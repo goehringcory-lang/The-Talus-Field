@@ -58,7 +58,7 @@ window.ARTICLE_BODIES["glacier-point-road-open-2026"] = function GlacierPointRoa
       </p>
 
       <p>
-        If you are bringing kids, there is a third plan: Glacier Point itself only. The walk to the overlook is paved, short, and stroller-friendly. The view is the highest-bang-per-step view in the park. Eat your sandwiches on the wall, count peregrines, and drive back down. That is a complete day.
+        If you are bringing kids — or <a href="/articles/yosemite-for-non-hikers">visitors who can't hike</a> — there is a third plan: Glacier Point itself only. The walk to the overlook is paved, short, and stroller-friendly. The view is the highest-bang-per-step view in the park. Eat your sandwiches on the wall, count peregrines, and drive back down. That is a complete day.
       </p>
 
       <h2>What you will probably notice first</h2>
@@ -68,7 +68,7 @@ window.ARTICLE_BODIES["glacier-point-road-open-2026"] = function GlacierPointRoa
       </p>
 
       <p>
-        The second is the snow. Looking east from Glacier Point you see the Cathedral Range, Mount Hoffman, Mount Clark, and behind them the high peaks of the Clark Range. Even in this thin snowpack year (more on that later this week), the high country still looks like winter from up here. Tioga Road is still closed. The high lakes are still frozen. The Sentinel Range above Tenaya Canyon will hold snow for another six weeks. You are looking at country that is two months behind the Valley you just drove out of.
+        The second is the snow. Looking east from Glacier Point you see the Cathedral Range, Mount Hoffman, Mount Clark, and behind them the high peaks of the Clark Range. Even in this thin snowpack year (more on that later this week), the high country still looks like winter from up here. <a href="/articles/tioga-road-opening-weekend-2026">Tioga Road</a> is still closed. The high lakes are still frozen. The Sentinel Range above Tenaya Canyon will hold snow for another six weeks. You are looking at country that is two months behind the Valley you just drove out of.
       </p>
 
       <p>

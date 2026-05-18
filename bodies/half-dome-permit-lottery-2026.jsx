@@ -1,4 +1,4 @@
-/* global React */
+/* global React, NewsletterInline */
 
 window.ARTICLE_BODIES = window.ARTICLE_BODIES || {};
 
@@ -38,6 +38,13 @@ window.ARTICLE_BODIES["half-dome-permit-lottery-2026"] = function HalfDomePermit
       <p>
         Both day-hiker lotteries are run through Recreation.gov. Both charge a $10 non-refundable application fee per application (not per person). If you win, there's an additional $10 per person recreation fee. So if you and three friends apply and win, you've paid $10 to apply and $40 for your four permits. That's $50 total for one of the best hikes in the national park system.
       </p>
+
+      <div style={{ margin: "48px 0" }}>
+        <NewsletterInline
+          heading="Sunday Field Notes"
+          blurb="One Yosemite email a week, when there is something to say. Free."
+        />
+      </div>
 
       <h2>The preseason lottery</h2>
 
@@ -130,7 +137,7 @@ window.ARTICLE_BODIES["half-dome-permit-lottery-2026"] = function HalfDomePermit
       </p>
 
       <p>
-        Get to the trailhead at Happy Isles before dawn. The hike is 14 to 16 miles round trip with 4,800 feet of elevation gain. Most people take 10 to 12 hours. Starting by 5 AM (earlier is better) gives you time to summit and descend before afternoon thunderstorms. Have a non-negotiable turnaround time: if you haven't reached the summit by 3:30 PM, turn around regardless. You do not want to be on the cables in a lightning storm or descending the Mist Trail in the dark without a headlamp.
+        Get to the trailhead at Happy Isles before dawn. The hike is 14 to 16 miles round trip with 4,800 feet of elevation gain. Most people take 10 to 12 hours. Starting by 5 AM (earlier is better) gives you time to summit and descend before afternoon thunderstorms. Have a non-negotiable turnaround time: if you haven't reached the summit by 3:30 PM, turn around regardless. You do not want to be on the cables in a lightning storm or descending <a href="/articles/mist-trail-the-real-guide">the Mist Trail</a> in the dark without a headlamp.
       </p>
 
       <p>
