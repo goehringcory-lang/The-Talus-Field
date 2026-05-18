@@ -27,8 +27,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -119.581,
-          37.748
+          -119.581604,
+          37.748692
         ]
       },
       "properties": {
@@ -39,7 +39,7 @@
         "blurb": "Quiet picnic meadow under the Royal Arches with the Indian Canyon trail climbing out the back.",
         "image": null,
         "articles": [],
-        "verified": false
+        "verified": true
       }
     },
     {
