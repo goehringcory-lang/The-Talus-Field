@@ -304,6 +304,27 @@
         "gmapsUrl": "https://maps.app.goo.gl/UTZYCsQKoPx1euDs6",
         "verified": true
       }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -119.258173,
+          37.9101685
+        ]
+      },
+      "properties": {
+        "id": "gaylor-lake",
+        "name": "Gaylor Lake",
+        "category": "hike",
+        "region": "tuolumne",
+        "blurb": "Steep but short. The trail leaves the Tioga Pass entrance station at 9,945 ft and climbs a little over a mile to a ridge at 10,500 ft, then drops into the Gaylor Lakes basin: granite shores, the Cathedral Range across the south, and the ruins of an 1880s silver mine on the slope above. The first half hour earns the rest. Best in late summer, July and August, once the snow is off the upper switchbacks.",
+        "image": null,
+        "articles": [],
+        "gmapsUrl": "https://maps.app.goo.gl/8wdDGpXQb8MdwohVA",
+        "verified": true
+      }
     }
   ]
 }
