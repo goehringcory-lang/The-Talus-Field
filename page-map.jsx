@@ -627,14 +627,124 @@ function TripPlannerSidebar({
     onSetSheetState(order[(idx + 1) % order.length]);
   };
 
+  // ---- Mobile bottom-sheet swipe ------------------------------------------
+  // The handle accepts vertical drag in addition to taps. During a drag we
+  // bypass the CSS snap classes by writing translateY directly to the aside;
+  // on release we choose the nearest snap (biased by flick velocity).
+  const dragRef = useRef(null);
+  const skipNextClickRef = useRef(false);
+  const [dragOffsetPx, setDragOffsetPx] = useState(null);
+
+  const baseTranslateYFor = (state) => {
+    const vh = window.innerHeight;
+    if (state === "peek") return vh * 0.9 - 60;
+    if (state === "half") return vh * 0.4;
+    return 0; // "full"
+  };
+
+  const snapForRelease = (currentTy, vy) => {
+    const vh = window.innerHeight;
+    const peekTy = vh * 0.9 - 60;
+    const halfTy = vh * 0.4;
+    const fullTy = 0;
+    // Flick: bias toward the next snap in the swipe direction.
+    if (vy < -600) return currentTy <= halfTy ? "full" : "half";
+    if (vy > 600) return currentTy >= halfTy ? "peek" : "half";
+    // Otherwise: nearest of the three snap points.
+    const ranked = [
+      ["full", Math.abs(currentTy - fullTy)],
+      ["half", Math.abs(currentTy - halfTy)],
+      ["peek", Math.abs(currentTy - peekTy)],
+    ].sort((a, b) => a[1] - b[1]);
+    return ranked[0][0];
+  };
+
+  const onHandlePointerDown = (e) => {
+    if (window.innerWidth > 720) return; // bottom sheet is mobile-only
+    if (e.button !== undefined && e.button !== 0) return;
+    dragRef.current = {
+      pointerId: e.pointerId,
+      startY: e.clientY,
+      lastY: e.clientY,
+      lastT: performance.now(),
+      base: baseTranslateYFor(sheetState),
+      moved: false,
+    };
+    try {
+      e.currentTarget.setPointerCapture(e.pointerId);
+    } catch (_) {
+      // Older browsers / unusual pointer types; gesture still works without capture.
+    }
+  };
+
+  const onHandlePointerMove = (e) => {
+    const d = dragRef.current;
+    if (!d || d.pointerId !== e.pointerId) return;
+    const dy = e.clientY - d.startY;
+    if (!d.moved && Math.abs(dy) < 6) return; // disambiguate tap from drag
+    d.moved = true;
+    const now = performance.now();
+    // Sample velocity over a ~60ms window so the value isn't dominated by a
+    // single noisy frame at release.
+    if (now - d.lastT > 60) {
+      d.lastY = e.clientY;
+      d.lastT = now;
+    }
+    const vh = window.innerHeight;
+    const peekTy = vh * 0.9 - 60;
+    const next = Math.max(0, Math.min(peekTy, d.base + dy));
+    setDragOffsetPx(next);
+  };
+
+  const onHandlePointerEnd = (e) => {
+    const d = dragRef.current;
+    if (!d) return;
+    if (d.moved) {
+      const vh = window.innerHeight;
+      const peekTy = vh * 0.9 - 60;
+      const finalTy = Math.max(
+        0,
+        Math.min(peekTy, d.base + (e.clientY - d.startY))
+      );
+      const dt = Math.max(1, performance.now() - d.lastT);
+      const vy = ((e.clientY - d.lastY) / dt) * 1000;
+      onSetSheetState(snapForRelease(finalTy, vy));
+      // The browser fires a click after pointerup on touch; swallow it so the
+      // chosen snap isn't immediately cycled away.
+      skipNextClickRef.current = true;
+    }
+    dragRef.current = null;
+    setDragOffsetPx(null);
+  };
+
+  const onHandleClick = () => {
+    if (skipNextClickRef.current) {
+      skipNextClickRef.current = false;
+      return;
+    }
+    cycleSheet();
+  };
+
+  const asideStyle =
+    dragOffsetPx != null
+      ? { transform: `translateY(${dragOffsetPx}px)`, transition: "none" }
+      : undefined;
+
   return (
-    <aside className={`map-page__sidebar map-page__sidebar--${sheetState}`}>
+    <aside
+      className={`map-page__sidebar map-page__sidebar--${sheetState}`}
+      style={asideStyle}
+    >
       {/* Mobile-only handle for bottom-sheet snap points. CSS hides on desktop. */}
       <button
         type="button"
         className="map-sidebar__sheet-handle"
-        onClick={cycleSheet}
-        aria-label={`Trip planner panel — currently ${sheetState}. Tap to expand.`}
+        onClick={onHandleClick}
+        onPointerDown={onHandlePointerDown}
+        onPointerMove={onHandlePointerMove}
+        onPointerUp={onHandlePointerEnd}
+        onPointerCancel={onHandlePointerEnd}
+        aria-label={`Trip planner panel — currently ${sheetState}. Tap or swipe up to expand.`}
       >
         <span className="map-sidebar__sheet-bar" aria-hidden="true" />
         <span className="map-sidebar__sheet-text">
