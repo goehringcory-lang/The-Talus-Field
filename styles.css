@@ -2535,6 +2535,11 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
     position: sticky;
     top: 0;
     z-index: 2;
+    /* Reserve vertical drag for the swipe gesture; without this the browser
+       would steal touchmoves to pan the page and cancel our pointer events. */
+    touch-action: none;
+    user-select: none;
+    -webkit-user-select: none;
   }
   .map-sidebar__sheet-bar {
     width: 36px;
