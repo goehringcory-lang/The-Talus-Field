@@ -244,8 +244,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -119.5876,
-          37.7484
+          -119.5852533,
+          37.7480702
         ]
       },
       "properties": {
@@ -256,7 +256,8 @@
         "blurb": "Build-your-own deli sandwiches in Yosemite Village. Decent and filling for $10 to $12. The everyday lunch option when you don't want to drive out of the Valley.",
         "image": null,
         "articles": [],
-        "verified": false
+        "gmapsUrl": "https://maps.app.goo.gl/JUBTZTe6kyRh22mC7",
+        "verified": true
       }
     },
     {
