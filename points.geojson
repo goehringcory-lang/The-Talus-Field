@@ -280,6 +280,27 @@
         "gmapsUrl": "https://maps.app.goo.gl/t2TTcTfM9XqGtL5o8",
         "verified": true
       }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -119.4912341,
+          37.8324607
+        ]
+      },
+      "properties": {
+        "id": "may-lake",
+        "name": "May Lake",
+        "category": "hike",
+        "region": "tuolumne",
+        "blurb": "The best moderate hike in the high country. 1.2 miles each way and 500 feet of gain to an alpine lake under Mount Hoffmann. The grade is steady but not steep, which makes it the right pick for pushing kids past where a flat walk would have ended. Swimming on warm afternoons, granite slabs on the east shore. Tioga Road season only.",
+        "image": null,
+        "articles": [],
+        "gmapsUrl": "https://maps.app.goo.gl/UTZYCsQKoPx1euDs6",
+        "verified": true
+      }
     }
   ]
 }
