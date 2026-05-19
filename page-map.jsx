@@ -12,7 +12,7 @@
 
 const { useEffect, useMemo, useRef, useState, useCallback } = React;
 
-const POINTS_URL = "/points.geojson?v=20";
+const POINTS_URL = "/points.geojson?v=21";
 const STORAGE_KEY = "tfg.trip";
 const STORAGE_VERSION = 1;
 const TRIP_CAP = 20;
@@ -44,6 +44,7 @@ const CATEGORY_STYLES = {
   vista:   { color: "#1e6fb8", label: "Vista" },
   picnic:  { color: "#e07a1a", label: "Picnic" },
   parking: { color: "#6b6b6b", label: "Parking" },
+  eat:     { color: "#b9453d", label: "Eat" },
 };
 const CATEGORY_FALLBACK = { color: "#666", label: "Other" };
 
