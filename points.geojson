@@ -244,6 +244,46 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
+          -119.5876,
+          37.7484
+        ]
+      },
+      "properties": {
+        "id": "degnans-deli",
+        "name": "Degnan's Deli",
+        "category": "eat",
+        "region": "valley",
+        "blurb": "Build-your-own deli sandwiches in Yosemite Village. Decent and filling for $10 to $12. The everyday lunch option when you don't want to drive out of the Valley.",
+        "image": null,
+        "articles": [],
+        "verified": false
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -119.5734,
+          37.7378
+        ]
+      },
+      "properties": {
+        "id": "curry-village-pizza-deck",
+        "name": "Curry Village Pizza Deck",
+        "category": "eat",
+        "region": "valley",
+        "blurb": "Outdoor pizza deck at Curry Village. Once decent, now genuinely good. The Half Dome is the standout.",
+        "image": null,
+        "articles": [],
+        "verified": false
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
           -119.628235,
           37.670483
         ]
