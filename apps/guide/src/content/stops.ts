@@ -278,10 +278,24 @@ const seed: StopInput[] = [
     photos: [{ src: '/photos/half-dome.jpg', caption: 'Half Dome from the high country side.' }],
   },
   {
+    id: 'may-lake',
+    title: 'May Lake, the moderate hike that earns the high country',
+    region: 'tuolumne',
+    order: 3,
+    kind: 'trailhead',
+    coord: [-119.4912341, 37.8324607],
+    elevationFt: 9329,
+    timeBudgetMin: 180,
+    body:
+      'The best moderate hike in the high country. Turn north off Tioga Road onto the Old Tioga Road spur (between Olmsted Point and Tenaya Lake) and follow it 1.7 miles to the trailhead parking. The hike itself is 1.2 miles each way with about 500 feet of gain on a well-graded trail through lodgepole pine and over open granite. The grade is steady but not steep, which makes it the right pick for pushing kids past the point where a flat walk would have ended. Most families do it.\n\nMay Lake sits at 9,329 ft with Mount Hoffmann (the geographic center of the park) rising directly above the north shore. The water is cold but swimmable on a warm afternoon, and the granite slabs on the east side are the place to do it. Bring a towel and lunch. Stronger hikers can push another 2 miles and 1,500 ft to the summit of Hoffmann (10,850 ft) for a 360-degree view of the park.',
+    swap:
+      'The trailhead spur road is rough dirt, passable in any car taken slowly, but it rattles. If the parking lot is full (it holds maybe twenty cars), there is no overflow; come back early next morning or skip to Tenaya Lake. The lake holds snow into late June some years; check conditions before late-spring trips.',
+  },
+  {
     id: 'tenaya-lake',
     title: 'Tenaya Lake',
     region: 'tuolumne',
-    order: 3,
+    order: 4,
     kind: 'viewpoint',
     coord: [-119.4548, 37.8330], // TODO: verify
     elevationFt: 8150,
@@ -293,7 +307,7 @@ const seed: StopInput[] = [
     id: 'cathedral-lakes',
     title: 'Cathedral Lakes',
     region: 'tuolumne',
-    order: 4,
+    order: 5,
     kind: 'trailhead',
     coord: [-119.3829, 37.8732], // TODO: VERIFY URGENTLY — body says "new TH at visitor center" but the historical Cathedral Lakes TH is on Tioga Rd at -119.3829. Confirm whether NPS has actually relocated the trailhead before relying on this coord.
     elevationFt: 8560,
@@ -307,7 +321,7 @@ const seed: StopInput[] = [
     id: 'soda-springs-parsons-lodge',
     title: 'Soda Springs and Parsons Lodge',
     region: 'tuolumne',
-    order: 5,
+    order: 6,
     kind: 'trailhead',
     coord: [-119.3589, 37.8772], // TODO: verify (Lembert Dome parking lot, start of Soda Springs walk; was off ~900 m)
     elevationFt: 8600,
