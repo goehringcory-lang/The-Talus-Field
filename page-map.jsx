@@ -762,6 +762,14 @@ function TripPlannerSidebar({
         </p>
       </header>
 
+      {/* Framing — what the curated pin set is and isn't. */}
+      <div className="map-sidebar__section">
+        <h3 className="map-sidebar__section-label">About these places</h3>
+        <p className="map-sidebar__subtitle">
+          Not every must-see in Yosemite lives on this map. Mist Trail, Tunnel View, and Lower Yosemite Falls still belong on your list. These pins are the curated in-between: quieter places worth a stop, and alternates for when the famous overlooks are full.
+        </p>
+      </div>
+
       {/* My Trip */}
       <div className="map-sidebar__section">
         <div className="map-sidebar__trip-head">
