@@ -330,6 +330,20 @@ const seed: StopInput[] = [
       'A 1.5-mile round trip from the Lembert Dome parking lot. Soda Springs is a naturally carbonated spring bubbling up out of the meadow — taste it if you want, it\'s safe (a little metallic). Parsons Lodge is a 1915 stone Sierra Club building, sometimes staffed in summer. End the high-country day here. Drive back to the valley in twilight; the Tioga Road in low light is a memory you keep.',
     photos: [{ src: '/photos/tuolumne-meadows.jpg', caption: 'Tuolumne Meadows from the Soda Springs walk.' }],
   },
+  {
+    id: 'gaylor-lake',
+    title: 'Gaylor Lake, the short, steep payoff at Tioga Pass',
+    region: 'tuolumne',
+    order: 7,
+    kind: 'trailhead',
+    coord: [-119.258173, 37.9101685],
+    elevationFt: 9945,
+    timeBudgetMin: 150,
+    body:
+      'The trail starts at the Tioga Pass entrance station, 9,945 ft, and climbs about a mile straight up a sun-baked grade to a ridge at 10,500 ft. The first half hour is steep enough that you stop a few times. Then the ridge opens and you drop into the Gaylor Lakes basin: Middle Gaylor Lake at 10,300 ft, granite shores, and the Cathedral Range across the south. The reward is out of proportion to the distance.\n\nBest July and August. Earlier and the upper switchbacks are slick or snow-covered; later and the meadows have browned out. The trail continues another mile north past Middle Gaylor to Upper Gaylor Lake and the ruins of the Great Sierra Mine, a late-1880s silver dig that never produced enough to pay for itself. Stone chimneys are still standing. Plan 2 to 3 hours round trip including time at the lake.',
+    swap:
+      'The parking at the Tioga Pass entrance station is small and fills early in summer. Get there before 9 a.m. or accept a roadside spot a few hundred yards back. Sea-level visitors should pace themselves on the climb: you start at 9,945 ft and gain another 550 to reach the ridge.',
+  },
 ]
 
 // Validate the entire collection at module-load. Any schema violation throws
