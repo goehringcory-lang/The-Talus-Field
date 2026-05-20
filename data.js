@@ -104,6 +104,38 @@ window.KIT = {
 
 window.ARTICLES = [
   {
+    slug: "where-to-eat-yosemite",
+    cat: "planning",
+    title: "Where to eat in and around Yosemite",
+    dek: "Eight or nine restaurants worth knowing in and around Yosemite. The Half Dome pizza, the Mariposa brisket, the east-side coffee. Nothing else, and nothing chain.",
+    date: "May 19, 2026",
+    read: "6 min",
+    placeholder: "Meadow at the foot of Half Dome, the post-hike picnic spot",
+    image: "img/half-dome-meadow-deer-johannes-andersson.jpg",
+    credit: "Photo: Johannes Andersson / Unsplash",
+  },
+  {
+    slug: "yosemite-in-one-or-two-days",
+    cat: "planning",
+    title: "One day or two in Yosemite: a minimalist itinerary",
+    dek: "One day in Yosemite is enough. Two days is enough plus the part where you slow down. The honest version of what a short Valley visit actually buys you in 2026.",
+    date: "May 19, 2026",
+    read: "9 min",
+    placeholder: "Tunnel View on an autumn morning, before the lot fills",
+    image: "img/tunnel-view-autumn-aniket-deole.jpg",
+    credit: "Photo: Aniket Deole / Unsplash",
+  },
+  {
+    slug: "yosemite-with-kids-no-reservations-2026",
+    cat: "planning",
+    title: "Your last-minute Yosemite trip with kids: a naturalist's honest guide",
+    dek: "A senior Yosemite naturalist's honest guide to visiting with kids in 2026, no advance reservations needed. Kid-friendly hikes, timing tricks, YARTS bus tips, and what most families get wrong.",
+    date: "May 14, 2026",
+    read: "16 min",
+    placeholder: "Lower Yosemite Fall, where the family-friendly loop ends",
+    image: "img/lower-yosemite-fall.jpg",
+  },
+  {
     slug: "working-in-yosemite",
     cat: "planning",
     title: "So you want to work in Yosemite",
@@ -234,6 +266,14 @@ window.ARTICLES = [
     placeholder: "Tunnel View at first light, May",
     image: "img/tunnel-view.jpg",
   },
+];
+
+// Curated onboarding row on the homepage. Order is the read order.
+window.START_HERE = [
+  "first-time-yosemite-overwhelm",
+  "yosemite-without-reservations-2026",
+  "yosemite-gateway-towns-compared",
+  "yosemite-with-kids-no-reservations-2026",
 ];
 
 // Helpers
