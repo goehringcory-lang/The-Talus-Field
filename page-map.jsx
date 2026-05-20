@@ -441,9 +441,9 @@ function MapPage() {
         title: p.name,
         content: pin,
       });
-      // Use gmp-click event (the legacy 'click' bubbles via addListener but
-      // logs a deprecation warning on each click).
-      marker.addEventListener("gmp-click", () => {
+      // Standard DOM click — more reliable than gmp-click, which requires a
+      // cloud-provisioned Map ID (DEMO_MAP_ID doesn't fire it consistently).
+      marker.addEventListener("click", () => {
         openFeatureRef.current = feature;
         infoRef.current.setContent(buildInfoHtml(p, feature.geometry.coordinates, tripStopIdsRef.current));
         infoRef.current.open({ anchor: marker, map });
