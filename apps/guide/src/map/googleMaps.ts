@@ -47,13 +47,33 @@ export function directionsUrl(coord: [number, number]): string {
   return `https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}&travelmode=driving`
 }
 
+// Reads the Maps JS API key from the already-loaded script element so we can
+// reuse it for Street View Static API thumbnails without storing it separately.
+function getMapsApiKey(): string | null {
+  const el = document.querySelector('script[src*="maps.googleapis.com/maps/api/js"]')
+  if (!el) return null
+  try { return new URL((el as HTMLScriptElement).src).searchParams.get('key') } catch { return null }
+}
+
+function streetViewUrl(lat: number, lng: number, apiKey: string): string {
+  return `https://maps.googleapis.com/maps/api/streetview?size=280x120&location=${lat},${lng}&key=${encodeURIComponent(apiKey)}&pitch=10&fov=80`
+}
+
 export function buildInfoHtml(stop: StopT): string {
   const style = getKindStyle(stop.kind)
 
+  let photoHtml = ''
   const photo = stop.photos[0]
-  const photoHtml = photo
-    ? `<img src="${escapeHtml(photo.src)}" alt="" loading="lazy" style="width:100%;height:120px;object-fit:cover;display:block;border-radius:3px;margin-bottom:10px;">`
-    : ''
+  if (photo) {
+    photoHtml = `<img src="${escapeHtml(photo.src)}" alt="" loading="lazy" style="width:100%;height:120px;object-fit:cover;display:block;border-radius:3px;margin-bottom:10px;">`
+  } else if (stop.coord) {
+    const apiKey = getMapsApiKey()
+    if (apiKey) {
+      const [lng, lat] = stop.coord
+      const svUrl = streetViewUrl(lat, lng, apiKey)
+      photoHtml = `<img src="${svUrl}" alt="" loading="lazy" onerror="this.style.display='none'" style="width:100%;height:120px;object-fit:cover;display:block;border-radius:3px;margin-bottom:10px;">`
+    }
+  }
 
   const kindChip = `
     <span style="display:inline-flex;align-items:center;gap:5px;text-transform:uppercase;font-size:10px;letter-spacing:0.06em;color:${style.color};font-weight:600;">

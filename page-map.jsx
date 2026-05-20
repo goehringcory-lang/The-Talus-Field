@@ -444,8 +444,8 @@ function MapPage() {
       // Use gmp-click event (the legacy 'click' bubbles via addListener but
       // logs a deprecation warning on each click).
       marker.addEventListener("gmp-click", () => {
-        openFeatureRef.current = p;
-        infoRef.current.setContent(buildInfoHtml(p, tripStopIdsRef.current));
+        openFeatureRef.current = feature;
+        infoRef.current.setContent(buildInfoHtml(p, feature.geometry.coordinates, tripStopIdsRef.current));
         infoRef.current.open({ anchor: marker, map });
         setSelectedStopId(p.id);
       });
@@ -494,7 +494,8 @@ function MapPage() {
     if (!mapReady) return;
     const info = infoRef.current;
     if (!info || !info.getMap() || !openFeatureRef.current) return;
-    info.setContent(buildInfoHtml(openFeatureRef.current, tripStopIds));
+    const of = openFeatureRef.current;
+    info.setContent(buildInfoHtml(of.properties, of.geometry.coordinates, tripStopIds));
   }, [tripStopIds, mapReady]);
 
   // ---- InfoWindow button wireup. On every InfoWindow open, locate
@@ -537,9 +538,9 @@ function MapPage() {
     if (map.getZoom() < 13) map.setZoom(13);
     const feature = features && features.find((f) => f.properties.id === selectedStopId);
     if (feature) {
-      openFeatureRef.current = feature.properties;
+      openFeatureRef.current = feature;
       infoRef.current.setContent(
-        buildInfoHtml(feature.properties, tripStopIdsRef.current)
+        buildInfoHtml(feature.properties, feature.geometry.coordinates, tripStopIdsRef.current)
       );
       infoRef.current.open({ anchor: marker, map });
     }
@@ -997,11 +998,37 @@ function CategoryLegend({ features }) {
 // ---------------------------------------------------------------------------
 // Helpers
 // ---------------------------------------------------------------------------
-function buildInfoHtml(p, tripStopIds) {
+
+// Reads the Google Maps JS API key from the already-loaded script element so
+// we can reuse it for Street View Static API image URLs without a second key.
+function getMapsApiKey() {
+  const el = document.querySelector('script[src*="maps.googleapis.com/maps/api/js"]');
+  if (!el) return null;
+  try { return new URL(el.src).searchParams.get("key"); } catch { return null; }
+}
+
+// Returns a Street View Static API thumbnail URL for the given lat/lng.
+// Falls back gracefully: the <img> carries onerror="this.style.display='none'"
+// so missing Street View coverage (remote trailheads, etc.) is invisible.
+function streetViewUrl(lat, lng, apiKey) {
+  return `https://maps.googleapis.com/maps/api/streetview?size=280x120&location=${lat},${lng}&key=${encodeURIComponent(apiKey)}&pitch=10&fov=80`;
+}
+
+// coords is [lng, lat] from GeoJSON geometry.coordinates, passed through from
+// the feature so we don't have to re-look it up from properties.
+function buildInfoHtml(p, coords, tripStopIds) {
   const style = getCategoryStyle(p.category);
-  const photo = p.image
-    ? `<img src="/${p.image}" alt="" loading="lazy" style="width:100%;height:120px;object-fit:cover;display:block;border-radius:3px;margin-bottom:10px;">`
-    : "";
+  let photo = "";
+  if (p.image) {
+    photo = `<img src="/${p.image}" alt="" loading="lazy" style="width:100%;height:120px;object-fit:cover;display:block;border-radius:3px;margin-bottom:10px;">`;
+  } else if (coords) {
+    const apiKey = getMapsApiKey();
+    if (apiKey) {
+      const [lng, lat] = coords;
+      const svUrl = streetViewUrl(lat, lng, apiKey);
+      photo = `<img src="${svUrl}" alt="" loading="lazy" onerror="this.style.display='none'" style="width:100%;height:120px;object-fit:cover;display:block;border-radius:3px;margin-bottom:10px;">`;
+    }
+  }
   const cat = p.category
     ? `<span style="display:inline-flex;align-items:center;gap:5px;text-transform:uppercase;font-size:10px;letter-spacing:0.06em;color:${style.color};font-weight:600;">
          <span style="width:7px;height:7px;border-radius:50%;background:${style.color};display:inline-block;flex-shrink:0;"></span>
