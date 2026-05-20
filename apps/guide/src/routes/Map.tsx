@@ -129,7 +129,7 @@ export default function Map() {
           gestureHandling: 'greedy',
         })
         mapRef.current = map
-        infoWindowRef.current = new maps.InfoWindow()
+        infoWindowRef.current = new maps.InfoWindow({ maxWidth: 300 })
         setMapReady(true)
       })
       .catch((err: Error) => {

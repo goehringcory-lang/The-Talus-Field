@@ -49,25 +49,54 @@ export function directionsUrl(coord: [number, number]): string {
 
 export function buildInfoHtml(stop: StopT): string {
   const style = getKindStyle(stop.kind)
+
+  const photo = stop.photos[0]
+  const photoHtml = photo
+    ? `<img src="${escapeHtml(photo.src)}" alt="" loading="lazy" style="width:100%;height:120px;object-fit:cover;display:block;border-radius:3px;margin-bottom:10px;">`
+    : ''
+
   const kindChip = `
-    <span style="display:inline-flex;align-items:center;gap:6px;text-transform:uppercase;font-size:11px;letter-spacing:0.06em;color:${style.color};font-weight:600;">
-      <span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:${style.color};"></span>
+    <span style="display:inline-flex;align-items:center;gap:5px;text-transform:uppercase;font-size:10px;letter-spacing:0.06em;color:${style.color};font-weight:600;">
+      <span style="width:7px;height:7px;border-radius:50%;background:${style.color};display:inline-block;flex-shrink:0;"></span>
       ${escapeHtml(style.label)}
     </span>`
-  const directions = stop.coord
-    ? `<p style="margin:10px 0 0;"><a href="${directionsUrl(stop.coord)}" target="_blank" rel="noopener" style="display:inline-block;font:600 12px/1 system-ui,sans-serif;text-transform:uppercase;letter-spacing:0.08em;color:#1e6fb8;text-decoration:none;border:1px solid #1e6fb8;padding:8px 12px;border-radius:4px;">Open in Google Maps →</a></p>`
-    : ''
+
+  const excerpt = extractExcerpt(stop.body)
+
   const swap = stop.swap
-    ? `<p style="margin:8px 0 0;font-size:13px;color:#555;"><em>${escapeHtml(stop.swap)}</em></p>`
+    ? `<p style="margin:7px 0 0;font-size:12px;color:#777;line-height:1.4;font-style:italic;">${escapeHtml(truncate(stop.swap, 110))}</p>`
     : ''
+
+  const directions = stop.coord
+    ? `<p style="margin:10px 0 0;"><a href="${directionsUrl(stop.coord)}" target="_blank" rel="noopener" style="display:inline-block;font:600 11px/1 system-ui,sans-serif;text-transform:uppercase;letter-spacing:0.07em;color:#1e6fb8;text-decoration:none;border:1px solid #1e6fb8;padding:7px 12px;border-radius:4px;">Open in Google Maps →</a></p>`
+    : ''
+
   return `
-    <div style="font:14px/1.4 system-ui,sans-serif;max-width:260px;color:#222;">
-      <strong style="font-size:15px;">${escapeHtml(stop.title)}</strong><br/>
+    <div style="font:13px/1.5 system-ui,sans-serif;max-width:280px;color:#222;">
+      ${photoHtml}
+      <strong style="font-size:14px;display:block;margin:0 0 4px;line-height:1.3;">${escapeHtml(stop.title)}</strong>
       ${kindChip}
+      <p style="margin:7px 0 0;font-size:12px;color:#444;line-height:1.5;">${escapeHtml(excerpt)}</p>
       ${swap}
       ${directions}
-    </div>
-  `
+    </div>`
+}
+
+function extractExcerpt(body: string, maxLen = 170): string {
+  const firstSentence = body.match(/^[^.!?\n]+[.!?]/)
+  if (firstSentence && firstSentence[0].length <= maxLen) {
+    return firstSentence[0].trim()
+  }
+  const chunk = body.slice(0, maxLen)
+  const lastSpace = chunk.lastIndexOf(' ')
+  return (lastSpace > 100 ? chunk.slice(0, lastSpace) : chunk) + '…'
+}
+
+function truncate(s: string, maxLen: number): string {
+  if (s.length <= maxLen) return s
+  const chunk = s.slice(0, maxLen)
+  const lastSpace = chunk.lastIndexOf(' ')
+  return (lastSpace > maxLen * 0.6 ? chunk.slice(0, lastSpace) : chunk) + '…'
 }
 
 function escapeHtml(s: string): string {

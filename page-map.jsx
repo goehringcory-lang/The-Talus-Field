@@ -400,7 +400,7 @@ function MapPage() {
         });
         mapRef.current = map;
         markerLibRef.current = markerLib;
-        infoRef.current = new maps.InfoWindow();
+        infoRef.current = new maps.InfoWindow({ maxWidth: 300 });
         infoRef.current.addListener("closeclick", () => {
           openFeatureRef.current = null;
           setSelectedStopId(null);
@@ -998,28 +998,32 @@ function CategoryLegend({ features }) {
 // Helpers
 // ---------------------------------------------------------------------------
 function buildInfoHtml(p, tripStopIds) {
-  const blurb = p.blurb ? `<p style="margin:6px 0 0;">${escapeHtml(p.blurb)}</p>` : "";
   const style = getCategoryStyle(p.category);
+  const photo = p.image
+    ? `<img src="/${p.image}" alt="" loading="lazy" style="width:100%;height:120px;object-fit:cover;display:block;border-radius:3px;margin-bottom:10px;">`
+    : "";
   const cat = p.category
-    ? `<span style="display:inline-flex;align-items:center;gap:6px;text-transform:uppercase;font-size:11px;letter-spacing:0.06em;color:${style.color};font-weight:600;">
-         <span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:${style.color};"></span>
-         ${escapeHtml(p.category)}
+    ? `<span style="display:inline-flex;align-items:center;gap:5px;text-transform:uppercase;font-size:10px;letter-spacing:0.06em;color:${style.color};font-weight:600;">
+         <span style="width:7px;height:7px;border-radius:50%;background:${style.color};display:inline-block;flex-shrink:0;"></span>
+         ${escapeHtml(style.label)}
        </span>`
     : "";
+  const blurb = p.blurb ? `<p style="margin:7px 0 0;font-size:12px;color:#444;line-height:1.5;">${escapeHtml(p.blurb)}</p>` : "";
   const inTrip = Array.isArray(tripStopIds) && tripStopIds.includes(p.id);
   const btnLabel = inTrip ? "Remove from trip" : "Add to trip";
   const btnBg = inTrip ? "#ffffff" : TRIP_PIN_COLOR;
   const btnColor = inTrip ? TRIP_PIN_COLOR : "#ffffff";
-  const btn = `<button type="button" data-trip-toggle data-stop-id="${escapeHtml(p.id)}" style="margin-top:10px;display:inline-flex;align-items:center;gap:6px;padding:6px 12px;font:600 13px system-ui,sans-serif;background:${btnBg};color:${btnColor};border:1px solid ${TRIP_PIN_COLOR};border-radius:3px;cursor:pointer;">${escapeHtml(btnLabel)}</button>`;
+  const btn = `<button type="button" data-trip-toggle data-stop-id="${escapeHtml(p.id)}" style="margin-top:10px;display:inline-flex;align-items:center;gap:6px;padding:6px 12px;font:600 12px system-ui,sans-serif;background:${btnBg};color:${btnColor};border:1px solid ${TRIP_PIN_COLOR};border-radius:3px;cursor:pointer;">${escapeHtml(btnLabel)}</button>`;
   // Only render a Google Maps link when the stop carries a verified URL —
   // synthesizing one from coordinates would point at a generic dropped pin
   // rather than the named place with its photos and reviews.
   const gmaps = p.gmapsUrl
-    ? `<p style="margin:8px 0 0;"><a href="${escapeHtml(p.gmapsUrl)}" target="_blank" rel="noopener noreferrer" style="color:#1e6fb8;text-decoration:underline;font-weight:500;">Open in Google Maps →</a></p>`
+    ? `<p style="margin:8px 0 0;"><a href="${escapeHtml(p.gmapsUrl)}" target="_blank" rel="noopener noreferrer" style="color:#1e6fb8;text-decoration:underline;font-weight:500;font-size:12px;">Open in Google Maps →</a></p>`
     : "";
   return `
-    <div style="font:14px/1.4 system-ui,sans-serif;max-width:240px;color:#222;">
-      <strong style="font-size:15px;">${escapeHtml(p.name || "")}</strong><br/>
+    <div style="font:13px/1.5 system-ui,sans-serif;max-width:280px;color:#222;">
+      ${photo}
+      <strong style="font-size:14px;display:block;margin:0 0 4px;line-height:1.3;">${escapeHtml(p.name || "")}</strong>
       ${cat}
       ${blurb}
       ${btn}
