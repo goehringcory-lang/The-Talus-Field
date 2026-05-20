@@ -108,6 +108,32 @@ window.KIT = {
 
 window.ARTICLES = [
   {
+    slug: "where-to-eat-yosemite",
+    cat: "planning",
+    title: "Where to eat in and around Yosemite",
+    dek: "Eight or nine restaurants worth knowing in and around Yosemite. The Half Dome pizza, the Mariposa brisket, the east-side coffee. Nothing else, and nothing chain.",
+    date: "May 19, 2026",
+    isoDate: "2026-05-19",
+    isoModified: "2026-05-19",
+    read: "6 min",
+    placeholder: "Meadow at the foot of Half Dome, the post-hike picnic spot",
+    image: "img/half-dome-meadow-deer-johannes-andersson.jpg",
+    credit: "Photo: Johannes Andersson / Unsplash",
+  },
+  {
+    slug: "yosemite-in-one-or-two-days",
+    cat: "planning",
+    title: "One day or two in Yosemite: a minimalist itinerary",
+    dek: "One day in Yosemite is enough. Two days is enough plus the part where you slow down. The honest version of what a short Valley visit actually buys you in 2026.",
+    date: "May 19, 2026",
+    isoDate: "2026-05-19",
+    isoModified: "2026-05-19",
+    read: "9 min",
+    placeholder: "Tunnel View on an autumn morning, before the lot fills",
+    image: "img/tunnel-view-autumn-aniket-deole.jpg",
+    credit: "Photo: Aniket Deole / Unsplash",
+  },
+  {
     slug: "four-mile-up-panorama-down",
     cat: "trails",
     title: "My favorite day hike in Yosemite: Four Mile up, Panorama down",
@@ -369,6 +395,14 @@ window.ARTICLES = [
     placeholder: "Tunnel View at first light, May",
     image: "img/tunnel-view.jpg",
   },
+];
+
+// Curated onboarding row on the homepage. Order is the read order.
+window.START_HERE = [
+  "first-time-yosemite-overwhelm",
+  "yosemite-without-reservations-2026",
+  "yosemite-gateway-towns-compared",
+  "yosemite-with-kids-no-reservations-2026",
 ];
 
 // Helpers

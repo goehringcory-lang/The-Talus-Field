@@ -7,6 +7,9 @@
 function HomePage({ go }) {
   const recent = window.ARTICLES.slice(0, 6);
   const seasonal = window.byCategory("seasonal").slice(0, 2);
+  const startHere = (window.START_HERE || [])
+    .map(slug => window.findArticle(slug))
+    .filter(Boolean);
 
   return (
     <div className="page">
@@ -23,8 +26,15 @@ function HomePage({ go }) {
               A field journal of one national park. Trails, weather, what is open and what is not, and the occasional longer essay when something is worth sitting with.
             </p>
             <div className="hero__cta">
-              <a className="btn" href="/articles" onClick={(e) => { e.preventDefault(); go("articles"); }}>
-                Start reading <span className="btn__arrow">→</span>
+              <a
+                className="btn"
+                href="#start-here"
+                onClick={(e) => {
+                  e.preventDefault();
+                  document.getElementById("start-here")?.scrollIntoView({ behavior: "smooth", block: "start" });
+                }}
+              >
+                First Time Visitor to Yosemite: Start Here <span className="btn__arrow">→</span>
               </a>
               <a className="btn btn--ghost" href="/map" onClick={(e) => { e.preventDefault(); go("map"); }}>
                 Open the map
@@ -50,8 +60,27 @@ function HomePage({ go }) {
         </div>
       </section>
 
+      {/* Start Here — curated onboarding row for first-time visitors */}
+      {startHere.length > 0 && (
+        <section id="start-here" className="wrap" style={{ paddingTop: 72, scrollMarginTop: 24 }}>
+          <div style={{ marginBottom: 32 }}>
+            <div className="eyebrow eyebrow--moss" style={{ marginBottom: 14 }}>For first-time visitors</div>
+            <h2 style={{ fontFamily: "var(--display)", fontSize: 44, lineHeight: 1.05, marginBottom: 12, fontWeight: 500, letterSpacing: "-0.01em", textTransform: "none" }}>Start here.</h2>
+            <p style={{ fontFamily: "var(--display)", fontStyle: "italic", fontSize: 19, color: "var(--ink-2)", lineHeight: 1.5, maxWidth: "60ch" }}>
+              The four pieces to read before you book anything.
+            </p>
+          </div>
+          <div
+            className="start-here-grid"
+            style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 32, rowGap: 40 }}
+          >
+            {startHere.map(a => <ArticleCard key={a.slug} article={a} go={go} />)}
+          </div>
+        </section>
+      )}
+
       {/* This Week — recent articles feed */}
-      <section className="wrap" style={{ paddingTop: 56 }}>
+      <section className="wrap" style={{ paddingTop: 80 }}>
         <div className="section-head">
           <h2>This Week</h2>
           <a href="/articles" onClick={(e) => { e.preventDefault(); go("articles"); }}>All entries →</a>
