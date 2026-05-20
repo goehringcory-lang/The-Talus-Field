@@ -26,6 +26,9 @@ function HomePage({ go }) {
               <a className="btn" href="/articles" onClick={(e) => { e.preventDefault(); go("articles"); }}>
                 Start reading <span className="btn__arrow">→</span>
               </a>
+              <a className="btn btn--ghost" href="/map" onClick={(e) => { e.preventDefault(); go("map"); }}>
+                Open the map
+              </a>
               <a className="btn btn--ghost" href="/checklist" onClick={(e) => { e.preventDefault(); go("checklist"); }}>
                 Free checklist
               </a>
@@ -91,6 +94,35 @@ function HomePage({ go }) {
         </div>
       </section>
 
+      {/* Map callout */}
+      <section className="wrap" style={{ paddingTop: 80 }}>
+        <a
+          href="/map"
+          onClick={(e) => { e.preventDefault(); go("map"); }}
+          style={{
+            display: "block",
+            textDecoration: "none",
+            color: "inherit",
+            borderTop: "2px solid var(--ink)",
+            borderBottom: "2px solid var(--ink)",
+            padding: "40px 0",
+          }}
+        >
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 2fr", gap: 48, alignItems: "center" }}>
+            <div>
+              <div className="eyebrow eyebrow--moss" style={{ marginBottom: 12 }}>The Map</div>
+              <div style={{ fontFamily: "var(--display)", fontSize: 36, fontWeight: 400, lineHeight: 1.1, letterSpacing: "-0.01em" }}>Yosemite, on a map.</div>
+            </div>
+            <div>
+              <p style={{ fontFamily: "var(--serif)", fontSize: 19, lineHeight: 1.5, color: "var(--ink-2)", margin: 0, marginBottom: 16 }}>
+                Every vista, trailhead, parking turnout, and meal in one interactive map. Build a trip by tapping pins, or load a suggested one-, two-, or three-day route.
+              </p>
+              <div className="mono" style={{ color: "var(--moss)", fontWeight: 700, fontSize: 11, textTransform: "uppercase", letterSpacing: "0.18em" }}>Open the planner →</div>
+            </div>
+          </div>
+        </a>
+      </section>
+
       {/* Planning Guide hub callout */}
       <section className="wrap" style={{ paddingTop: 80 }}>
         <a
@@ -115,6 +147,35 @@ function HomePage({ go }) {
                 The full archive, organized for a real trip. Gateway towns, reservations, Half Dome, smoke season, the seasonal calendar. Read in the order you'll actually need them.
               </p>
               <div className="mono" style={{ color: "var(--moss)", fontWeight: 700, fontSize: 11, textTransform: "uppercase", letterSpacing: "0.18em" }}>Read the guide →</div>
+            </div>
+          </div>
+        </a>
+      </section>
+
+      {/* Kit callout */}
+      <section className="wrap" style={{ paddingTop: 80 }}>
+        <a
+          href="/kit"
+          onClick={(e) => { e.preventDefault(); go("kit"); }}
+          style={{
+            display: "block",
+            textDecoration: "none",
+            color: "inherit",
+            borderTop: "2px solid var(--ink)",
+            borderBottom: "2px solid var(--ink)",
+            padding: "40px 0",
+          }}
+        >
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 2fr", gap: 48, alignItems: "center" }}>
+            <div>
+              <div className="eyebrow eyebrow--moss" style={{ marginBottom: 12 }}>The Kit</div>
+              <div style={{ fontFamily: "var(--display)", fontSize: 36, fontWeight: 400, lineHeight: 1.1, letterSpacing: "-0.01em" }}>What I carry.</div>
+            </div>
+            <div>
+              <p style={{ fontFamily: "var(--serif)", fontSize: 19, lineHeight: 1.5, color: "var(--ink-2)", margin: 0, marginBottom: 16 }}>
+                Three lists for three trips. A day pack for the trail, an overnight pack for backcountry nights, and the car kit for everything in between. The actual gear, with the actual reasons.
+              </p>
+              <div className="mono" style={{ color: "var(--moss)", fontWeight: 700, fontSize: 11, textTransform: "uppercase", letterSpacing: "0.18em" }}>See the kit →</div>
             </div>
           </div>
         </a>
