@@ -171,6 +171,9 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex-wrap: wrap;
+  row-gap: 4px;
+  column-gap: 12px;
   padding: 8px var(--gutter);
   max-width: 1240px;
   margin: 0 auto;
@@ -220,8 +223,19 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
 .masthead__paper a:hover { color: var(--ink); border-bottom-color: currentColor; }
 .masthead__paper-label { color: var(--ink-3); }
 @media (max-width: 720px) {
-  .masthead__weather { display: none; }
-  .masthead__paper { display: none; }
+  .masthead__top { padding: 6px var(--gutter); column-gap: 10px; }
+  .masthead__top span + span { margin-left: 12px; }
+  .masthead__weather { flex-wrap: wrap; gap: 6px 10px; }
+  .masthead__weather-label { margin-right: 0; }
+  .masthead__weather a,
+  .masthead__paper a { padding: 4px 0; }
+  .masthead__weather-cityfull { display: none; }
+  .masthead__paper {
+    margin-left: 0;
+    padding-left: 0;
+    border-left: 0;
+  }
+  .masthead__paper-label { display: none; }
 }
 .masthead__main {
   display: flex;
@@ -1080,6 +1094,18 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
 .placeholder--lg .placeholder__credit { bottom: 62px; }
 .placeholder--sm .placeholder__credit { bottom: 48px; font-size: 8px; padding: 3px 6px; }
 
+/* Natural mode: the photo dictates the container's aspect ratio so the
+   entire image is visible (no cropping). Used for hero plates where we
+   want to honor the photographer's framing. */
+.placeholder--natural { height: auto; }
+.placeholder--natural .placeholder__img {
+  position: static;
+  inset: auto;
+  width: 100%;
+  height: auto;
+  object-fit: initial;
+}
+
 /* ===== Article cards ===== */
 .card {
   display: block;
@@ -1926,11 +1952,13 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
 }
 
 /* ============================================================
-   /MAP — hidden preview. Google Maps + itinerary toolbar.
-   Layout: a fixed-width left toolbar (`.map-page__sidebar`) plus
-   the map container (`#map`). The toolbar reads as its own panel,
-   not a translucent overlay; sections inside grow over time as
-   filters get added.
+   /MAP — Google Maps + region-grouped trip builder.
+   Layout: a fixed-width left rail (`.map-page__sidebar`) plus the
+   map container (`#map`). The rail leads with My Trip (the trip
+   the visitor is assembling), then Suggested-trip quick picks,
+   then Browse-by-area accordions, then the category legend.
+   On mobile the rail collapses to a three-snap bottom sheet
+   (peek / half / full) so the map stays full-screen by default.
    ============================================================ */
 
 .map-page {
@@ -1958,11 +1986,9 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
 }
 
 /* ------------------------------------------------------------
-   Toolbar (left rail).
-   Sturdier than the previous "panel" treatment: darker than the
-   page background so it reads as a permanent rail, hard right
-   edge instead of a hairline, sticky header so the title stays
-   in view as the day list scrolls.
+   Sidebar / left rail. Stays a permanent panel on desktop;
+   becomes a bottom sheet at <=720px via the --peek/--half/--full
+   modifiers (defined in the mobile block at the bottom).
    ------------------------------------------------------------ */
 .map-page__sidebar {
   flex: 0 0 340px;
@@ -1975,6 +2001,12 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
   font-family: var(--sans);
   color: var(--ink);
   -webkit-overflow-scrolling: touch;
+}
+
+/* The drag handle is only relevant on mobile (bottom sheet).
+   CSS hides it on desktop; @media block re-shows it. */
+.map-sidebar__sheet-handle {
+  display: none;
 }
 
 .map-sidebar__header {
@@ -2000,9 +2032,6 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
   line-height: 1.4;
 }
 
-/* Sections divide the toolbar into stacked groups (Itineraries,
-   Day by day, Filters). Each has a small caps label and a rule
-   below it so future sections drop in cleanly. */
 .map-sidebar__section {
   padding: 16px 20px 18px;
   border-bottom: 1px solid var(--rule-soft);
@@ -2020,139 +2049,402 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
   color: var(--ink-3);
 }
 
-/* Itinerary buttons. White-ish cards sitting on the rail's paper-2
-   so they pop without needing borders to do the work. */
-.map-sidebar__itineraries {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-.map-sidebar__itinerary {
-  display: block;
-  width: 100%;
-  text-align: left;
-  padding: 11px 12px 12px;
-  border: 1px solid var(--rule-soft);
-  border-left: 3px solid transparent;
-  border-radius: 3px;
-  background: var(--paper);
-  cursor: pointer;
-  font-family: inherit;
-  color: var(--ink);
-  transition: background 120ms, border-color 120ms;
-}
-.map-sidebar__itinerary:hover {
-  background: var(--paper-3);
-  border-color: var(--rule);
-}
-.map-sidebar__itinerary--selected {
-  border-left-color: var(--moss);
-  background: var(--paper);
-  border-color: var(--rule);
-}
-.map-sidebar__itinerary-label {
-  display: block;
-  font-size: 14px;
-  font-weight: 600;
-  letter-spacing: 0.005em;
-  color: var(--ink);
-}
-.map-sidebar__itinerary-sub {
-  display: block;
-  font-size: 12px;
-  color: var(--ink-2);
-  margin-top: 2px;
-}
-.map-sidebar__itinerary-count {
-  display: block;
-  font-size: 11px;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--ink-3);
-  margin-top: 4px;
-}
-
-/* Day-by-day stop list, shown under Itineraries when one is active. */
-.map-sidebar__days {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-}
-.map-sidebar__day-name {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  margin: 0 0 6px;
-  font-family: var(--sans);
-  font-size: 11.5px;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--ink-2);
-}
-.map-sidebar__day-count {
-  font-weight: 500;
-  color: var(--ink-3);
-}
-.map-sidebar__stops {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-.map-sidebar__stop {
+/* ------------------------------------------------------------
+   My Trip — ordered list of stops the visitor has selected.
+   Each row: position number, name + category, action buttons
+   (up, down, remove).
+   ------------------------------------------------------------ */
+.map-sidebar__trip-head {
   display: flex;
   justify-content: space-between;
   align-items: baseline;
   gap: 8px;
-  width: 100%;
+}
+.map-sidebar__section-label {
+  flex: 1 1 auto;
+}
+.map-sidebar__trip-clear {
+  flex: 0 0 auto;
+  background: transparent;
+  border: none;
+  padding: 0;
+  font-family: inherit;
+  font-size: 12px;
+  color: var(--ink-3);
+  text-decoration: underline;
+  text-decoration-color: var(--rule);
+  cursor: pointer;
+}
+.map-sidebar__trip-clear:hover {
+  color: var(--ink-2);
+  text-decoration-color: var(--ink-3);
+}
+
+.map-sidebar__trip-empty {
+  margin: 0;
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: var(--ink-3);
+  font-style: italic;
+}
+
+.map-sidebar__trip-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.map-sidebar__trip-item {
+  display: grid;
+  grid-template-columns: 22px 1fr auto;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 8px 6px 6px;
+  background: var(--paper);
+  border: 1px solid var(--rule-soft);
+  border-left: 3px solid var(--moss);
+  border-radius: 3px;
+  transition: background 100ms, border-color 100ms;
+}
+.map-sidebar__trip-item:focus {
+  outline: none;
+  border-color: var(--moss);
+  background: var(--paper-3);
+}
+.map-sidebar__trip-item--selected {
+  background: var(--paper-3);
+  border-color: var(--rule);
+}
+.map-sidebar__trip-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--moss);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  font-family: var(--sans);
+}
+.map-sidebar__trip-name {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
   text-align: left;
   background: transparent;
   border: none;
-  padding: 7px 8px 7px 10px;
-  border-radius: 2px;
-  cursor: pointer;
+  padding: 2px 4px;
   font-family: inherit;
   color: var(--ink);
+  cursor: pointer;
+  min-width: 0;
+}
+.map-sidebar__trip-text {
   font-size: 13.5px;
-  line-height: 1.3;
-  transition: background 100ms;
+  line-height: 1.25;
+  font-weight: 500;
 }
-.map-sidebar__stop:hover {
-  background: var(--paper);
-}
-.map-sidebar__stop--selected {
-  background: var(--paper);
-  font-weight: 600;
-}
-.map-sidebar__stop-name {
-  flex: 1 1 auto;
-}
-.map-sidebar__stop-cat {
-  flex: 0 0 auto;
-  font-size: 10.5px;
+.map-sidebar__trip-cat {
+  font-size: 10px;
   text-transform: uppercase;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.08em;
   color: var(--ink-3);
-  font-weight: 400;
+}
+.map-sidebar__trip-actions {
+  display: flex;
+  gap: 2px;
+}
+.map-sidebar__trip-btn {
+  flex: 0 0 auto;
+  width: 22px;
+  height: 22px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  background: transparent;
+  border: 1px solid var(--rule-soft);
+  border-radius: 2px;
+  font: 13px/1 var(--sans);
+  color: var(--ink-2);
+  cursor: pointer;
+  transition: background 80ms, color 80ms, border-color 80ms;
+}
+.map-sidebar__trip-btn:hover:not(:disabled) {
+  background: var(--paper-3);
+  border-color: var(--rule);
+  color: var(--ink);
+}
+.map-sidebar__trip-btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+.map-sidebar__trip-btn--remove {
+  font-size: 15px;
+  line-height: 1;
+}
+.map-sidebar__trip-btn--remove:hover:not(:disabled) {
+  color: #8a2a2a;
+  border-color: #d8a8a8;
 }
 
-/* Placeholder section for future filter UI. Muted so it doesn't
-   compete with the active itinerary picker. */
-.map-sidebar__section--muted {
-  opacity: 0.78;
+/* Visually-hidden live-region announcer for screen readers. */
+.map-sidebar__sr-announcer {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
 }
-.map-sidebar__placeholder {
+
+/* ------------------------------------------------------------
+   Suggested trips — three pill buttons that REPLACE the
+   current trip with a preset region selection.
+   ------------------------------------------------------------ */
+.map-sidebar__hint {
+  margin: 0 0 8px;
+  font-size: 12px;
+  color: var(--ink-3);
+  line-height: 1.4;
+}
+.map-sidebar__quickpicks {
+  display: flex;
+  gap: 6px;
+}
+.map-sidebar__quickpick {
+  flex: 1 1 0;
+  padding: 8px 6px;
+  background: var(--paper);
+  border: 1px solid var(--rule-soft);
+  border-radius: 3px;
+  font: 600 13px var(--sans);
+  color: var(--ink);
+  cursor: pointer;
+  transition: background 100ms, border-color 100ms;
+}
+.map-sidebar__quickpick:hover {
+  background: var(--paper-3);
+  border-color: var(--rule);
+}
+
+/* ------------------------------------------------------------
+   Browse by area — 4 collapsible region accordions. Each
+   header has a toggle button (chevron + name + count) and an
+   Add-all action. Body lists each stop with a +/✓ toggle.
+   ------------------------------------------------------------ */
+.map-sidebar__regions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.map-sidebar__region {
+  background: var(--paper);
+  border: 1px solid var(--rule-soft);
+  border-radius: 3px;
+  overflow: hidden;
+}
+.map-sidebar__region-head {
+  display: flex;
+  align-items: stretch;
+  border-bottom: 1px solid transparent;
+}
+.map-sidebar__region:has(.map-sidebar__region-stops),
+.map-sidebar__region:has(.map-sidebar__region-empty) {
+  /* When body is rendered, give the head a soft separator. */
+}
+.map-sidebar__region:has(.map-sidebar__region-stops) .map-sidebar__region-head,
+.map-sidebar__region:has(.map-sidebar__region-empty) .map-sidebar__region-head {
+  border-bottom-color: var(--rule-soft);
+}
+.map-sidebar__region-toggle {
+  flex: 1 1 auto;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 10px 9px 8px;
+  background: transparent;
+  border: none;
+  font: 600 13.5px var(--sans);
+  color: var(--ink);
+  cursor: pointer;
+  text-align: left;
+  min-width: 0;
+}
+.map-sidebar__region-toggle:hover {
+  background: var(--paper-3);
+}
+.map-sidebar__region-chev {
+  flex: 0 0 auto;
+  width: 12px;
+  font-size: 11px;
+  color: var(--ink-3);
+}
+.map-sidebar__region-name {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.map-sidebar__region-count {
+  flex: 0 0 auto;
+  font-weight: 500;
+  font-size: 12px;
+  color: var(--ink-3);
+}
+.map-sidebar__region-add {
+  flex: 0 0 auto;
+  padding: 0 12px;
+  background: transparent;
+  border: none;
+  border-left: 1px solid var(--rule-soft);
+  font: 600 11.5px var(--sans);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--moss);
+  cursor: pointer;
+  transition: background 80ms, color 80ms;
+}
+.map-sidebar__region-add:hover:not(:disabled) {
+  background: var(--paper-3);
+}
+.map-sidebar__region-add:disabled {
+  color: var(--ink-3);
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.map-sidebar__region-empty {
   margin: 0;
+  padding: 10px 12px 12px;
   font-size: 12.5px;
-  line-height: 1.45;
   color: var(--ink-3);
   font-style: italic;
+}
+
+.map-sidebar__region-stops {
+  list-style: none;
+  margin: 0;
+  padding: 4px 0 6px;
+}
+.map-sidebar__region-row {
+  display: flex;
+  align-items: stretch;
+  gap: 4px;
+  padding: 0 4px 0 8px;
+}
+.map-sidebar__region-row:hover {
+  background: var(--paper-3);
+}
+.map-sidebar__region-row--selected {
+  background: var(--paper-3);
+}
+.map-sidebar__region-stop {
+  flex: 1 1 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 8px;
+  padding: 6px 4px;
+  background: transparent;
+  border: none;
+  font-family: inherit;
+  font-size: 13px;
+  color: var(--ink);
+  cursor: pointer;
+  text-align: left;
+  min-width: 0;
+}
+.map-sidebar__region-stop-name {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.map-sidebar__region-stop-cat {
+  flex: 0 0 auto;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-weight: 500;
+}
+.map-sidebar__region-stop-add {
+  flex: 0 0 auto;
+  width: 24px;
+  height: 24px;
+  align-self: center;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  background: transparent;
+  border: 1px solid var(--rule-soft);
+  border-radius: 50%;
+  font: 14px/1 var(--sans);
+  color: var(--ink-2);
+  cursor: pointer;
+  transition: background 80ms, border-color 80ms, color 80ms;
+}
+.map-sidebar__region-stop-add:hover:not(:disabled) {
+  background: var(--paper);
+  border-color: var(--moss);
+  color: var(--moss);
+}
+.map-sidebar__region-stop-add--in {
+  background: var(--moss);
+  border-color: var(--moss);
+  color: #fff;
+}
+.map-sidebar__region-stop-add--in:hover:not(:disabled) {
+  background: #6b7f4d;
+  border-color: #6b7f4d;
+  color: #fff;
+}
+.map-sidebar__region-stop-add:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* ------------------------------------------------------------
+   Category legend — colored dots matching the map pins.
+   ------------------------------------------------------------ */
+.map-sidebar__legend {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px 12px;
+}
+.map-sidebar__legend-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12.5px;
+  line-height: 1.3;
+  color: var(--ink-2);
+}
+.map-sidebar__legend-dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 1.5px solid #fff;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.15);
+  flex: 0 0 auto;
+}
+.map-sidebar__legend-label {
+  flex: 1 1 auto;
 }
 
 /* ------------------------------------------------------------
@@ -2182,46 +2474,105 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
   background: #e8eae6;
 }
 
+/* ------------------------------------------------------------
+   Mobile: three-snap bottom sheet.
+   The sidebar becomes a fixed bottom panel anchored to the
+   viewport. A tappable handle cycles through peek/half/full so
+   the map stays visible by default and the trip planner opens
+   on demand.
+   ------------------------------------------------------------ */
 @media (max-width: 720px) {
   .map-page {
-    flex-direction: column;
     height: calc(100dvh - 56px);
+    overflow: hidden;
   }
-  .map-page__sidebar {
-    flex: 0 0 auto;
-    width: 100%;
-    height: auto;
-    max-height: 50dvh;
-    border-right: none;
-    border-bottom: 1px solid var(--rule);
-    box-shadow: none;
-  }
-  .map-sidebar__header {
-    padding: 12px 14px 10px;
-  }
-  .map-sidebar__section {
-    padding: 12px 14px 14px;
-  }
-  .map-sidebar__itineraries {
-    /* Horizontal pill row, one tap per itinerary. */
-    flex-direction: row;
-    overflow-x: auto;
-    gap: 8px;
-    padding-bottom: 4px;
-    -webkit-overflow-scrolling: touch;
-  }
-  .map-sidebar__itinerary {
-    flex: 0 0 auto;
-    min-width: 170px;
-    border-left-width: 1px;
-    border-top: 3px solid transparent;
-  }
-  .map-sidebar__itinerary--selected {
-    border-left-color: var(--rule-soft);
-    border-top-color: var(--moss);
+  .map-page__main {
+    height: 100%;
   }
   #map,
   .map-page__map {
-    min-height: 50dvh;
+    min-height: 0;
+    height: 100%;
+  }
+  .map-page__sidebar {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: auto;
+    width: 100%;
+    height: 90dvh;
+    max-height: 90dvh;
+    border-right: none;
+    border-top: 1px solid var(--rule);
+    box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.12);
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    transition: transform 240ms cubic-bezier(0.2, 0.8, 0.2, 1);
+    z-index: 10;
+  }
+  .map-page__sidebar--peek {
+    transform: translateY(calc(90dvh - 60px));
+  }
+  .map-page__sidebar--half {
+    transform: translateY(40dvh);
+  }
+  .map-page__sidebar--full {
+    transform: translateY(0);
+  }
+  .map-sidebar__sheet-handle {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    width: 100%;
+    padding: 8px 16px 6px;
+    background: var(--paper-2);
+    border: none;
+    border-bottom: 1px solid var(--rule-soft);
+    cursor: pointer;
+    font-family: inherit;
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    /* Reserve vertical drag for the swipe gesture; without this the browser
+       would steal touchmoves to pan the page and cancel our pointer events. */
+    touch-action: none;
+    user-select: none;
+    -webkit-user-select: none;
+  }
+  .map-sidebar__sheet-bar {
+    width: 36px;
+    height: 4px;
+    border-radius: 2px;
+    background: var(--rule);
+  }
+  .map-sidebar__sheet-text {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--ink-2);
+  }
+  .map-sidebar__header {
+    padding: 12px 16px 10px;
+    /* The sheet handle is the sticky element on mobile; release the header. */
+    position: static;
+  }
+  .map-sidebar__section {
+    padding: 12px 16px 16px;
+  }
+  .map-sidebar__trip-list {
+    gap: 6px;
+  }
+  .map-sidebar__trip-btn {
+    width: 28px;
+    height: 28px;
+    font-size: 15px;
+  }
+  .map-sidebar__region-stop-add {
+    width: 28px;
+    height: 28px;
+    font-size: 16px;
   }
 }

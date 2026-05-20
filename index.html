@@ -15,18 +15,41 @@
   </script>
 
   <title>The Talus Field — Yosemite, written from inside it</title>
-  <meta name="description" content="A field journal of Yosemite National Park, kept by a resident. Trail conditions, planning notes, wildlife, and longer essays on the park's seasons, geology, and life." />
+  <meta name="description" content="A field journal of Yosemite National Park, kept by a resident. Trails, planning notes, wildlife, and essays on the park's seasons and life." />
   <meta name="author" content="Cory Goehring" />
 
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
   <meta name="googlebot" content="index, follow, max-image-preview:large, max-snippet:-1" />
 
+  <!--
+    Webmaster verification tokens. Generate each by signing in:
+      Bing      → bing.com/webmasters          (msvalidate.01)
+      Yandex    → webmaster.yandex.com         (yandex-verification)
+      Pinterest → pinterest.com/settings/claim (p:domain_verify)
+    Replace REPLACE_WITH_*_TOKEN with the string the dashboard hands you.
+    Until then the metas are harmless — they just don't verify anything.
+  -->
+  <meta name="msvalidate.01" content="REPLACE_WITH_BING_TOKEN" />
+  <meta name="yandex-verification" content="REPLACE_WITH_YANDEX_TOKEN" />
+  <meta name="p:domain_verify" content="REPLACE_WITH_PINTEREST_TOKEN" />
+
   <link rel="canonical" href="https://thetalusfieldjournal.com/" />
-  <link rel="icon" href="/img/talus-field-mark.png" type="image/png" />
-  <link rel="apple-touch-icon" href="/img/talus-field-mark.png" />
+
+  <!--
+    Favicons. Google search requires a square image at a multiple of 48px
+    to render the site's icon next to the result; without it Google falls
+    back to its generic globe. The .ico at the site root is the legacy
+    path some crawlers still probe directly.
+  -->
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="48x48" href="/img/favicon-48.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="/img/favicon-192.png" />
+  <link rel="icon" type="image/png" sizes="512x512" href="/img/favicon-512.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png" />
 
   <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
   <link rel="alternate" type="application/rss+xml" title="The Talus Field" href="/feed.xml" />
+  <link rel="alternate" type="application/atom+xml" title="The Talus Field" href="/feed.xml" />
 
   <meta name="theme-color" content="#1a1a1a" />
   <meta name="format-detection" content="telephone=no" />
@@ -34,11 +57,12 @@
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="The Talus Field" />
   <meta property="og:title" content="The Talus Field — Yosemite, written from inside it" />
-  <meta property="og:description" content="A field journal of Yosemite National Park, kept by a resident. Trail conditions, planning notes, wildlife, and longer essays on the park's seasons, geology, and life." />
+  <meta property="og:description" content="A field journal of Yosemite National Park, kept by a resident. Trails, planning notes, wildlife, and essays on the park's seasons and life." />
   <meta property="og:url" content="https://thetalusfieldjournal.com/" />
   <meta property="og:image" content="https://thetalusfieldjournal.com/img/Half%20Dome%20Main%20Photo.jpg" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Half Dome at first light, from the Yosemite Valley floor" />
   <meta property="og:locale" content="en_US" />
 
   <meta name="twitter:card" content="summary_large_image" />
@@ -55,7 +79,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Source+Serif+4:ital,opsz,wght@0,8..60,300..700;1,8..60,300..700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
 
-  <link rel="stylesheet" href="styles.css?v=41" />
+  <link rel="stylesheet" href="/styles.css?v=75" />
 
   <!--
     Google Maps JavaScript API. Loaded async on every page; lightweight
@@ -74,16 +98,10 @@
     "@context": "https://schema.org",
     "@type": "WebSite",
     "name": "The Talus Field",
-    "alternateName": "The Talus Field Journal",
     "url": "https://thetalusfieldjournal.com/",
     "description": "A field journal of Yosemite National Park, kept by a resident.",
     "inLanguage": "en-US",
-    "publisher": { "@id": "https://thetalusfieldjournal.com/#publisher" },
-    "potentialAction": {
-      "@type": "SearchAction",
-      "target": "https://thetalusfieldjournal.com/articles?q={search_term_string}",
-      "query-input": "required name=search_term_string"
-    }
+    "publisher": { "@id": "https://thetalusfieldjournal.com/#publisher" }
   }
   </script>
 
@@ -96,7 +114,9 @@
     "url": "https://thetalusfieldjournal.com/",
     "logo": {
       "@type": "ImageObject",
-      "url": "https://thetalusfieldjournal.com/img/talus-field-mark.png"
+      "url": "https://thetalusfieldjournal.com/img/talus-field-mark-square.png",
+      "width": 512,
+      "height": 512
     },
     "founder": {
       "@type": "Person",
@@ -107,8 +127,7 @@
       "@type": "Place",
       "name": "Yosemite National Park",
       "geo": { "@type": "GeoCoordinates", "latitude": 37.8651, "longitude": -119.5383 }
-    },
-    "sameAs": []
+    }
   }
   </script>
 
@@ -124,6 +143,17 @@
   <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
 </head>
 <body>
+  <!--
+    Static H1 for crawlers that parse the HTML markup directly and so neither
+    execute JavaScript nor render <noscript> (Bing's page auditor is the
+    notable one). Hidden visually with the standard screen-reader-only inline
+    style so it remains accessible to assistive tech. React renders its own
+    per-route H1 inside #root and never touches this element.
+  -->
+  <h1 style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0;">
+    The Talus Field — Yosemite, written from inside it
+  </h1>
+
   <div id="root">
     <!--
       No-JS / pre-render fallback. Search engines and AI crawlers that don't
@@ -136,6 +166,8 @@
         <p><em>A field journal of Yosemite National Park, kept by a resident.</em></p>
         <nav>
           <a href="/articles">Articles</a> ·
+          <a href="/planning">Planning Guide</a> ·
+          <a href="/checklist">First-Week Checklist</a> ·
           <a href="/section/planning">Planning</a> ·
           <a href="/section/trails">Trails &amp; Hikes</a> ·
           <a href="/section/wildlife">Wildlife &amp; Nature</a> ·
@@ -152,6 +184,13 @@
            The articles below are also available with JavaScript enabled.</p>
         <h2>Articles</h2>
         <ul>
+          <li><a href="/articles/four-mile-up-panorama-down">My favorite day hike in Yosemite: Four Mile up, Panorama down</a> — The 13-mile loop up the Four Mile Trail to Glacier Point and down the Panorama Trail past Illilouette and Nevada Falls. The most complete day hike in the park.</li>
+          <li><a href="/articles/yosemite-with-kids-no-reservations-2026">Your last-minute Yosemite trip with kids: a naturalist's honest guide</a> — A senior naturalist's honest guide to visiting with kids in 2026, no advance reservations needed. Kid-friendly hikes, timing, YARTS, and what most families get wrong.</li>
+          <li><a href="/articles/tioga-road-opening-weekend-2026">Tioga Road opens May 15: a plan for opening weekend</a> — Highway 120 opens Friday, well ahead of the long-term average. What's open in Tuolumne Meadows, conditions, hikes, and stops.</li>
+          <li><a href="/articles/so-you-want-to-hike-half-dome">So you want to hike Half Dome</a> — The honest case for the cables, and the better hike most visitors don't know about: Clouds Rest, a thousand feet higher and no permit required.</li>
+          <li><a href="/articles/half-dome-permit-lottery-2026">How the Half Dome permit lottery actually works</a> — There are two lotteries, not one. The preseason in March and the daily lottery every day the cables are up. Real odds and a strategy that works.</li>
+          <li><a href="/articles/glacier-point-road-open-2026">Glacier Point Road is open: a plan for the early season</a> — Seventeen miles to a 7,200-foot viewpoint at eye level with Half Dome. What's open at the top and how to plan the first weeks.</li>
+          <li><a href="/articles/mist-trail-the-real-guide">The Mist Trail: everything the internet isn't telling you</a> — The most hiked trail in any national park, demystified. Shoes, water, safety, and when to go.</li>
           <li><a href="/articles/working-in-yosemite">So you want to work in Yosemite</a> — Most jobs in Yosemite aren't ranger jobs. The honest version of what it's like to live here.</li>
           <li><a href="/articles/water-ouzels-waterfalls">How water ouzels live inside a waterfall</a> — A robin-sized bird walks directly into Yosemite Falls and stays there.</li>
           <li><a href="/articles/bears-spring-emergence">Why a Yosemite bear in April is more dangerous than one in August</a> — Spring, not summer, is the dangerous season for bears.</li>
@@ -172,45 +211,53 @@
         <h2>About</h2>
         <p>The Talus Field is an independent publication operated by Cory Goehring,
            based in Yosemite National Park, California. Contact:
-           <a href="mailto:Cory@thetalusfieldjournal.com">Cory@thetalusfieldjournal.com</a>.</p>
+           <a href="mailto:Goehring.cory@gmail.com">Goehring.cory@gmail.com</a>.</p>
       </main>
     </noscript>
   </div>
 
-  <script src="data.js?v=29"></script>
-  <script type="text/babel" src="tweaks-panel.jsx"></script>
-  <script type="text/babel" src="components.jsx?v=31"></script>
+  <script src="/data.js?v=76"></script>
+  <script type="text/babel" src="/tweaks-panel.jsx?v=75"></script>
+  <script type="text/babel" src="/components.jsx?v=75"></script>
 
   <!-- Article bodies. Add one line per article. -->
-  <script type="text/babel" src="bodies/first-time-yosemite-overwhelm.jsx?v=20"></script>
-  <script type="text/babel" src="bodies/yosemite-without-reservations-2026.jsx?v=20"></script>
-  <script type="text/babel" src="bodies/yosemite-during-smoke-season.jsx?v=20"></script>
-  <script type="text/babel" src="bodies/yosemite-gateway-towns-compared.jsx?v=20"></script>
-  <script type="text/babel" src="bodies/pack-your-car-for-yosemite.jsx?v=22"></script>
-  <script type="text/babel" src="bodies/yosemite-for-non-hikers.jsx?v=20"></script>
-  <script type="text/babel" src="bodies/yosemite-stargazing-where-to-look-up.jsx?v=20"></script>
-  <script type="text/babel" src="bodies/hetch-hetchy-the-other-yosemite-valley.jsx?v=20"></script>
-  <script type="text/babel" src="bodies/yosemite-glaciers-climate.jsx?v=1"></script>
-  <script type="text/babel" src="bodies/giant-sequoias-fire-adaptation.jsx?v=1"></script>
-  <script type="text/babel" src="bodies/bears-spring-emergence.jsx?v=1"></script>
-  <script type="text/babel" src="bodies/water-ouzels-waterfalls.jsx?v=1"></script>
-  <script type="text/babel" src="bodies/working-in-yosemite.jsx?v=1"></script>
-  <script type="text/babel" src="bodies/yosemite-with-kids-no-reservations-2026.jsx?v=1"></script>
-  <script type="text/babel" src="bodies/yosemite-in-one-or-two-days.jsx?v=1"></script>
-  <script type="text/babel" src="bodies/where-to-eat-yosemite.jsx?v=1"></script>
+  <script type="text/babel" src="/bodies/four-mile-up-panorama-down.jsx?v=75"></script>
+  <script type="text/babel" src="/bodies/yosemite-with-kids-no-reservations-2026.jsx?v=75"></script>
+  <script type="text/babel" src="/bodies/tioga-road-opening-weekend-2026.jsx?v=75"></script>
+  <script type="text/babel" src="/bodies/so-you-want-to-hike-half-dome.jsx?v=75"></script>
+  <script type="text/babel" src="/bodies/half-dome-permit-lottery-2026.jsx?v=75"></script>
+  <script type="text/babel" src="/bodies/glacier-point-road-open-2026.jsx?v=75"></script>
+  <script type="text/babel" src="/bodies/mist-trail-the-real-guide.jsx?v=75"></script>
+  <script type="text/babel" src="/bodies/first-time-yosemite-overwhelm.jsx?v=75"></script>
+  <script type="text/babel" src="/bodies/yosemite-without-reservations-2026.jsx?v=75"></script>
+  <script type="text/babel" src="/bodies/yosemite-during-smoke-season.jsx?v=75"></script>
+  <script type="text/babel" src="/bodies/yosemite-gateway-towns-compared.jsx?v=75"></script>
+  <script type="text/babel" src="/bodies/pack-your-car-for-yosemite.jsx?v=75"></script>
+  <script type="text/babel" src="/bodies/yosemite-for-non-hikers.jsx?v=75"></script>
+  <script type="text/babel" src="/bodies/yosemite-stargazing-where-to-look-up.jsx?v=75"></script>
+  <script type="text/babel" src="/bodies/hetch-hetchy-the-other-yosemite-valley.jsx?v=75"></script>
+  <script type="text/babel" src="/bodies/yosemite-glaciers-climate.jsx?v=75"></script>
+  <script type="text/babel" src="/bodies/giant-sequoias-fire-adaptation.jsx?v=75"></script>
+  <script type="text/babel" src="/bodies/bears-spring-emergence.jsx?v=75"></script>
+  <script type="text/babel" src="/bodies/water-ouzels-waterfalls.jsx?v=75"></script>
+  <script type="text/babel" src="/bodies/working-in-yosemite.jsx?v=75"></script>
+  <script type="text/babel" src="/bodies/yosemite-in-one-or-two-days.jsx?v=76"></script>
+  <script type="text/babel" src="/bodies/where-to-eat-yosemite.jsx?v=76"></script>
 
-  <script type="text/babel" src="page-home.jsx?v=23"></script>
-  <script type="text/babel" src="page-about.jsx?v=23"></script>
-  <script type="text/babel" src="page-articles.jsx?v=21"></script>
-  <script type="text/babel" src="page-article.jsx?v=24"></script>
-  <script type="text/babel" src="page-newsletter-contact.jsx?v=22"></script>
-  <script type="text/babel" src="page-legal.jsx?v=23"></script>
-  <script type="text/babel" src="page-kit.jsx?v=24"></script>
-  <script type="text/babel" src="page-places.jsx?v=27"></script>
-  <script type="text/babel" src="page-advertise.jsx?v=23"></script>
-  <script type="text/babel" src="page-guide.jsx?v=25"></script>
-  <script type="text/babel" src="page-cap.jsx?v=1"></script>
-  <script type="text/babel" src="page-map.jsx?v=5"></script>
-  <script type="text/babel" src="app.jsx?v=27"></script>
+  <script type="text/babel" src="/page-home.jsx?v=76"></script>
+  <script type="text/babel" src="/page-planning-guide.jsx?v=75"></script>
+  <script type="text/babel" src="/page-checklist.jsx?v=75"></script>
+  <script type="text/babel" src="/page-about.jsx?v=75"></script>
+  <script type="text/babel" src="/page-articles.jsx?v=75"></script>
+  <script type="text/babel" src="/page-article.jsx?v=75"></script>
+  <script type="text/babel" src="/page-newsletter-contact.jsx?v=75"></script>
+  <script type="text/babel" src="/page-legal.jsx?v=75"></script>
+  <script type="text/babel" src="/page-kit.jsx?v=75"></script>
+  <script type="text/babel" src="/page-places.jsx?v=75"></script>
+  <script type="text/babel" src="/page-advertise.jsx?v=75"></script>
+  <script type="text/babel" src="/page-guide.jsx?v=75"></script>
+  <script type="text/babel" src="/page-cap.jsx?v=75"></script>
+  <script type="text/babel" src="/page-map.jsx?v=75"></script>
+  <script type="text/babel" src="/app.jsx?v=75"></script>
 </body>
 </html>

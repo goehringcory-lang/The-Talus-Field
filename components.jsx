@@ -3,20 +3,24 @@ const { useState, useEffect, useMemo, useRef } = React;
 
 // ============================================================
 // Photo placeholder. Nature-journal treatment.
+// Pass eager={true} for the LCP image on a page (page hero / article hero)
+// so it loads with priority instead of being deprioritized as lazy.
 // ============================================================
-function Placeholder({ caption, tag, size, style, motif, image, credit }) {
+function Placeholder({ caption, tag, size, style, motif, image, credit, natural, eager }) {
   return (
     <div
-      className={`placeholder ${size === "lg" ? "placeholder--lg" : ""} ${size === "sm" ? "placeholder--sm" : ""} ${image ? "placeholder--photo" : ""}`}
+      className={`placeholder ${size === "lg" ? "placeholder--lg" : ""} ${size === "sm" ? "placeholder--sm" : ""} ${image ? "placeholder--photo" : ""} ${natural ? "placeholder--natural" : ""}`}
       data-tag={tag || "PLATE"}
       style={style}
     >
       {image && (
         <img
           className="placeholder__img"
-          src={image}
+          src={/^(https?:|\/)/i.test(image) ? image : `/${image}`}
           alt={caption || ""}
-          loading="lazy"
+          loading={eager ? "eager" : "lazy"}
+          fetchpriority={eager ? "high" : "auto"}
+          decoding={eager ? "sync" : "async"}
           referrerPolicy="no-referrer"
         />
       )}
@@ -63,14 +67,18 @@ function MotifTrees() {
 // Masthead
 // ============================================================
 function Header({ current, go }) {
-  const navItems = [
+  const primaryNavItems = [
     ["articles", "Articles"],
+    ["map", "Map"],
     ["kit", "Kit"],
     ["places", "Directory"],
     ["about", "About"],
+  ];
+  const overflowNavItems = [
     ["newsletter", "Newsletter"],
     ["contact", "Contact"],
   ];
+  const navItems = [...primaryNavItems, ...overflowNavItems];
 
   const [menuOpen, setMenuOpen] = React.useState(false);
   const menuRef = React.useRef(null);
@@ -100,14 +108,14 @@ function Header({ current, go }) {
     <header className="masthead">
       <div className="masthead__top">
         <div>
-          <span>Vol. III · No. 18</span>
+          <span>{(window.SITE && window.SITE.issue) || "Vol. III"}</span>
           <span>{today}</span>
         </div>
         <div className="masthead__weather">
           <span className="masthead__weather-label">Conditions</span>
-          <a href="https://forecast.weather.gov/MapClick.php?lat=37.7456&lon=-119.5936" target="_blank" rel="noopener noreferrer">Yosemite Valley</a>
+          <a href="https://forecast.weather.gov/MapClick.php?lat=37.7456&lon=-119.5936" target="_blank" rel="noopener noreferrer"><span className="masthead__weather-cityfull">Yosemite </span>Valley</a>
           <span className="masthead__weather-sep">·</span>
-          <a href="https://forecast.weather.gov/MapClick.php?lat=37.8731&lon=-119.3503" target="_blank" rel="noopener noreferrer">Tuolumne Meadows</a>
+          <a href="https://forecast.weather.gov/MapClick.php?lat=37.8731&lon=-119.3503" target="_blank" rel="noopener noreferrer">Tuolumne<span className="masthead__weather-cityfull"> Meadows</span></a>
           <span className="masthead__weather-sep">·</span>
           <a href="https://forecast.weather.gov/MapClick.php?lat=37.5341&lon=-119.6315" target="_blank" rel="noopener noreferrer">Wawona</a>
           <span className="masthead__paper">
@@ -130,7 +138,7 @@ function Header({ current, go }) {
           </span>
         </a>
         <nav className="nav">
-          {navItems.map(([key, label]) => renderLink(key, label, { baseClass: "nav__link" }))}
+          {primaryNavItems.map(([key, label]) => renderLink(key, label, { baseClass: "nav__link" }))}
 
           <div className="nav__menu-wrap" ref={menuRef}>
             <button
@@ -185,7 +193,9 @@ function Footer({ go }) {
             <ul>
               <li><a href="/about" onClick={(e) => { e.preventDefault(); go("about"); }}>About</a></li>
               <li><a href="/articles" onClick={(e) => { e.preventDefault(); go("articles"); }}>All articles</a></li>
+              <li><a href="/kit" onClick={(e) => { e.preventDefault(); go("kit"); }}>Kit</a></li>
               <li><a href="/places" onClick={(e) => { e.preventDefault(); go("places"); }}>Directory</a></li>
+              <li><a href="/guide" onClick={(e) => { e.preventDefault(); go("guide"); }}>Field Guide</a></li>
               <li><a href="/newsletter" onClick={(e) => { e.preventDefault(); go("newsletter"); }}>Newsletter</a></li>
               <li><a href="/contact" onClick={(e) => { e.preventDefault(); go("contact"); }}>Contact</a></li>
             </ul>
@@ -262,10 +272,13 @@ function NewsletterInline({ heading, blurb }) {
       <p>{blurb || "A short note on Sundays, when there is something to say."}</p>
       <form
         className="nlbox__form"
-        action="https://buttondown.com/api/emails/embed-subscribe/goehring"
+        action="https://buttondown.email/api/emails/embed-subscribe/goehring"
         method="post"
+        target="popupwindow"
+        onSubmit={() => window.open("https://buttondown.email/goehring", "popupwindow")}
       >
         <input type="email" name="email" placeholder="you@email.com" required />
+        <input type="hidden" name="embed" value="1" />
         <button type="submit">Subscribe →</button>
       </form>
     </div>

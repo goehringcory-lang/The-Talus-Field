@@ -56,7 +56,7 @@ window.ARTICLE_BODIES["working-in-yosemite"] = function WorkingInYosemiteBody() 
       <p>That stock starts with tent cabins.</p>
 
       <p>
-        If you are picturing a small wood platform, white canvas walls, a propane heater, a metal-frame bed, and a roommate you did not pick: yes. That's it. A new hire at Curry Village can expect a 10-by-10 tent shared with one to three other people, communal kitchens, communal bathrooms, communal laundry, and a bear box on the porch. The rent is somewhere south of twenty dollars a week, deducted from your paycheck. Less than a thousand dollars a year for a place to sleep in the middle of Yosemite Valley.
+        If you are picturing a small wood platform, white canvas walls, a propane heater, a metal-frame bed, and a roommate you did not pick: yes. That's it. A new hire at Curry Village can expect a 10-by-10 tent shared with one to three other people, communal kitchens, communal bathrooms, communal laundry, and a bear box on the porch — and in <a href="/articles/bears-spring-emergence">spring</a>, you learn quickly that the bear box is not a suggestion. The rent is somewhere south of twenty dollars a week, deducted from your paycheck. Less than a thousand dollars a year for a place to sleep in the middle of Yosemite Valley.
       </p>
 
       <p>That number is not a typo. It is also not the whole story.</p>
@@ -76,7 +76,7 @@ window.ARTICLE_BODIES["working-in-yosemite"] = function WorkingInYosemiteBody() 
       <h2>What "in town" means</h2>
 
       <p>
-        The closest grocery store with real selection is an hour's drive from Yosemite Valley. The closest hospital is an hour. The closest dentist, eye doctor, mall, multiplex, decent variety of restaurants: all an hour or more, in different directions. There is a small clinic in the Valley for routine care and stabilization. Everything else is a drive.
+        The closest grocery store with real selection is an hour's drive from Yosemite Valley — Mariposa for most Valley residents (see the <a href="/articles/yosemite-gateway-towns-compared">gateway towns comparison</a>). The closest hospital is an hour. The closest dentist, eye doctor, mall, multiplex, decent variety of restaurants: all an hour or more, in different directions. There is a small clinic in the Valley for routine care and stabilization. Everything else is a drive.
       </p>
 
       <p>

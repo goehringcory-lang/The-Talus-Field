@@ -278,10 +278,24 @@ const seed: StopInput[] = [
     photos: [{ src: '/photos/half-dome.jpg', caption: 'Half Dome from the high country side.' }],
   },
   {
+    id: 'may-lake',
+    title: 'May Lake, the moderate hike that earns the high country',
+    region: 'tuolumne',
+    order: 3,
+    kind: 'trailhead',
+    coord: [-119.4912341, 37.8324607],
+    elevationFt: 9329,
+    timeBudgetMin: 180,
+    body:
+      'The best moderate hike in the high country. Turn north off Tioga Road onto the Old Tioga Road spur (between Olmsted Point and Tenaya Lake) and follow it 1.7 miles to the trailhead parking. The hike itself is 1.2 miles each way with about 500 feet of gain on a well-graded trail through lodgepole pine and over open granite. The grade is steady but not steep, which makes it the right pick for pushing kids past the point where a flat walk would have ended. Most families do it.\n\nMay Lake sits at 9,329 ft with Mount Hoffmann (the geographic center of the park) rising directly above the north shore. The water is cold but swimmable on a warm afternoon, and the granite slabs on the east side are the place to do it. Bring a towel and lunch. Stronger hikers can push another 2 miles and 1,500 ft to the summit of Hoffmann (10,850 ft) for a 360-degree view of the park.',
+    swap:
+      'The trailhead spur road is rough dirt, passable in any car taken slowly, but it rattles. If the parking lot is full (it holds maybe twenty cars), there is no overflow; come back early next morning or skip to Tenaya Lake. The lake holds snow into late June some years; check conditions before late-spring trips.',
+  },
+  {
     id: 'tenaya-lake',
     title: 'Tenaya Lake',
     region: 'tuolumne',
-    order: 3,
+    order: 4,
     kind: 'viewpoint',
     coord: [-119.4548, 37.8330], // TODO: verify
     elevationFt: 8150,
@@ -293,7 +307,7 @@ const seed: StopInput[] = [
     id: 'cathedral-lakes',
     title: 'Cathedral Lakes',
     region: 'tuolumne',
-    order: 4,
+    order: 5,
     kind: 'trailhead',
     coord: [-119.3829, 37.8732], // TODO: VERIFY URGENTLY — body says "new TH at visitor center" but the historical Cathedral Lakes TH is on Tioga Rd at -119.3829. Confirm whether NPS has actually relocated the trailhead before relying on this coord.
     elevationFt: 8560,
@@ -307,7 +321,7 @@ const seed: StopInput[] = [
     id: 'soda-springs-parsons-lodge',
     title: 'Soda Springs and Parsons Lodge',
     region: 'tuolumne',
-    order: 5,
+    order: 6,
     kind: 'trailhead',
     coord: [-119.3589, 37.8772], // TODO: verify (Lembert Dome parking lot, start of Soda Springs walk; was off ~900 m)
     elevationFt: 8600,
@@ -315,6 +329,20 @@ const seed: StopInput[] = [
     body:
       'A 1.5-mile round trip from the Lembert Dome parking lot. Soda Springs is a naturally carbonated spring bubbling up out of the meadow — taste it if you want, it\'s safe (a little metallic). Parsons Lodge is a 1915 stone Sierra Club building, sometimes staffed in summer. End the high-country day here. Drive back to the valley in twilight; the Tioga Road in low light is a memory you keep.',
     photos: [{ src: '/photos/tuolumne-meadows.jpg', caption: 'Tuolumne Meadows from the Soda Springs walk.' }],
+  },
+  {
+    id: 'gaylor-lake',
+    title: 'Gaylor Lake, the short, steep payoff at Tioga Pass',
+    region: 'tuolumne',
+    order: 7,
+    kind: 'trailhead',
+    coord: [-119.258173, 37.9101685],
+    elevationFt: 9945,
+    timeBudgetMin: 150,
+    body:
+      'The trail starts at the Tioga Pass entrance station, 9,945 ft, and climbs about a mile straight up a sun-baked grade to a ridge at 10,500 ft. The first half hour is steep enough that you stop a few times. Then the ridge opens and you drop into the Gaylor Lakes basin: Middle Gaylor Lake at 10,300 ft, granite shores, and the Cathedral Range across the south. The reward is out of proportion to the distance.\n\nBest July and August. Earlier and the upper switchbacks are slick or snow-covered; later and the meadows have browned out. The trail continues another mile north past Middle Gaylor to Upper Gaylor Lake and the ruins of the Great Sierra Mine, a late-1880s silver dig that never produced enough to pay for itself. Stone chimneys are still standing. Plan 2 to 3 hours round trip including time at the lake.',
+    swap:
+      'The parking at the Tioga Pass entrance station is small and fills early in summer. Get there before 9 a.m. or accept a roadside spot a few hundred yards back. Sea-level visitors should pace themselves on the climb: you start at 9,945 ft and gain another 550 to reach the ridge.',
   },
 ]
 

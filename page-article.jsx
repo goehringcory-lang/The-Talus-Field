@@ -22,17 +22,24 @@ function ArticlePage({ slug, go }) {
           <p style={{ fontSize: 22, color: "var(--ink-2)", lineHeight: 1.45, fontFamily: "var(--serif)", marginBottom: 32 }}>
             {article.dek}
           </p>
-          <div style={{ display: "flex", gap: 18, alignItems: "center", fontFamily: "var(--sans)", fontSize: 13, color: "var(--ink-3)", borderTop: "1px solid var(--rule)", borderBottom: "1px solid var(--rule)", padding: "14px 0" }}>
+          <address style={{ display: "flex", gap: 18, alignItems: "center", fontFamily: "var(--sans)", fontSize: 13, color: "var(--ink-3)", borderTop: "1px solid var(--rule)", borderBottom: "1px solid var(--rule)", padding: "14px 0", fontStyle: "normal" }}>
             <div style={{ width: 36, height: 36, borderRadius: "50%", background: "var(--paper-2)", border: "1px solid var(--rule)", display: "flex", alignItems: "center", justifyContent: "center", fontFamily: "var(--serif)", fontWeight: 600, color: "var(--ink-2)" }}>CG</div>
             <div>
-              <div style={{ color: "var(--ink)", fontWeight: 500 }}>By {window.SITE.authorName}</div>
+              <div style={{ color: "var(--ink)", fontWeight: 500 }}>
+                By <a
+                  href="/about"
+                  rel="author"
+                  onClick={(e) => { e.preventDefault(); go("about"); }}
+                  style={{ color: "inherit", textDecoration: "none", borderBottom: "1px solid var(--rule)" }}
+                >{window.SITE.authorName}</a>
+              </div>
               <div>{window.SITE.authorBio}</div>
             </div>
             <div style={{ marginLeft: "auto", textAlign: "right" }}>
-              <div>{article.date}</div>
+              <time dateTime={article.isoModified || article.isoDate}>{article.date}</time>
               <div>{article.read} read</div>
             </div>
-          </div>
+          </address>
         </header>
 
         <div className="wrap wrap--narrow" style={{ paddingBottom: 32 }}>
@@ -42,7 +49,8 @@ function ArticlePage({ slug, go }) {
             credit={article.credit}
             tag="PLATE I"
             size="lg"
-            style={{ aspectRatio: "16 / 10" }}
+            natural
+            eager
             motif={<MotifMountains />}
           />
         </div>

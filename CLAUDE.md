@@ -42,7 +42,7 @@ Deployment is **not** done from this repo's CI. `main` auto-deploys to Cloudflar
 ## Editorial site conventions
 
 - **No build step.** `index.html` loads each `*.jsx` file directly via `<script type="text/babel" src="...?v=N">`. Babel transforms in-browser. This is intentional: the site is meant to be readable and editable without tooling.
-- **Cache-buster discipline.** When you edit a JSX file or `styles.css`, bump its `?v=N` query in `index.html`. Cloudflare and browsers both cache aggressively otherwise. Recent versions visible in git history give the next number.
+- **Cache-buster discipline.** When you edit a JSX file or `styles.css`, bump its `?v=N` query in `index.html`. Cloudflare and browsers both cache aggressively otherwise. Recent versions visible in git history give the next number. All files currently share the same version; bump them together to a new shared number when shipping a batch. Run `bash scripts/check-cache-busters.sh` before committing — it errors if any reference is missing a `?v=`.
 - **Globals via `window`.** Each JSX file attaches its top-level component to `window` (e.g. `window.GuidePage = GuidePage`) so siblings can reference it. The list of `/* global */` comments at the top of each file declares what it consumes.
 - **Article bodies** live in `bodies/*.jsx`. Each is registered in `index.html` and indexed in `data.js`.
 - **`page-guide.jsx` runtime URL overrides:** `window.GUIDE_API_BASE` and `window.GUIDE_APP_BASE` can be set in a console snippet to point at local dev (`http://localhost:8787` and `http://localhost:5173`) before the script loads.
@@ -64,6 +64,7 @@ Routes mounted in `workers/src/index.ts`:
 - `/api/auth/exchange` — exchanges a magic-link `accessToken` for a JWT.
 - `/api/checkout/*` — Stripe Checkout session start + inventory cap enforcement. The editorial `/guide` page still calls `/api/inventory` for the scarcity counter.
 - `/api/stripe/webhook` — Stripe `checkout.session.completed` handler; provisions a buyer record in KV and emails the access code.
+- `/api/indexnow/submit` — bearer-token-gated POST that forwards a `{ urls: [...] }` list to api.indexnow.org. Push-indexes Bing / Yandex / Seznam / Naver / Yep in a single call. Use `scripts/indexnow-ping.sh` after publishing an article. Requires `INDEXNOW_KEY` and `INDEXNOW_ADMIN_TOKEN` secrets.
 
 Both auth paths sign the same JWT shape (`{ sub, iat, exp }`, HS256, 90-day TTL) using `MAGIC_LINK_SIGNING_SECRET`. The `sub` claim carries an email for `/login` and a username for `/dev-login` — the PWA doesn't care which.
 

@@ -214,20 +214,56 @@ function GuidePage({ go }) {
               </div>
             </div>
 
-            {/* Pre-Stripe preview: send buyers to the PWA sign-in screen
-                where username + access code are validated by the Worker.
-                The sold-out branch and checkout state above are kept in
-                place for when the real purchase flow comes back online. */}
-            <a
-              className="btn"
-              href={`${GUIDE_APP_BASE}/login`}
-              style={{ display: "block", width: "100%", textAlign: "center", marginBottom: 14, border: 0, font: "inherit", textDecoration: "none" }}
+            {/* Pre-Stripe waitlist. Captures email with a Buttondown tag
+                so the warm list is ready when Stripe checkout reopens.
+                Existing buyers can still sign in to the PWA via the
+                small link in the description below. The scarcity bar
+                and sold-out state above stay intact for the relaunch. */}
+            <form
+              action="https://buttondown.email/api/emails/embed-subscribe/goehring"
+              method="post"
+              target="popupwindow"
+              onSubmit={() => window.open("https://buttondown.email/goehring", "popupwindow")}
+              style={{ display: "flex", flexDirection: "column", gap: 10, marginBottom: 14 }}
             >
-              Sign in to the guide →
-            </a>
+              <input type="hidden" name="tag" value="guide-waitlist" />
+              <input type="hidden" name="embed" value="1" />
+              <label
+                htmlFor="guide-waitlist-email"
+                className="eyebrow"
+                style={{ marginBottom: 0 }}
+              >
+                Join the waitlist
+              </label>
+              <input
+                id="guide-waitlist-email"
+                type="email"
+                name="email"
+                placeholder="you@email.com"
+                required
+                style={{
+                  padding: "12px 14px",
+                  border: "1px solid var(--ink)",
+                  background: "var(--paper)",
+                  fontFamily: "var(--sans)",
+                  fontSize: 14,
+                }}
+              />
+              <button
+                type="submit"
+                className="btn"
+                style={{ display: "block", width: "100%", textAlign: "center", border: 0, font: "inherit", cursor: "pointer" }}
+              >
+                Get first access →
+              </button>
+            </form>
 
             <p style={{ fontFamily: "var(--serif)", fontSize: 14, color: "var(--ink-2)", lineHeight: 1.55, margin: 0 }}>
-              An offline app. Tappable GPS for hidden parking, the trailheads that stay quiet, and tactics for the famous spots. Three regional guides (the Valley, Glacier Point & Mariposa, Tuolumne & Hwy 120). Updates push automatically through the 2026 season. Refund if it doesn't earn its keep.
+              The Field Guide PWA is in private preview. Join the waitlist for first access when checkout reopens. An offline app: tappable GPS for hidden parking, the trailheads that stay quiet, and tactics for the famous spots. Three regional guides (the Valley, Glacier Point & Mariposa, Tuolumne & Hwy 120). Updates push automatically through the 2026 season. Refund if it doesn't earn its keep.
+            </p>
+
+            <p style={{ fontFamily: "var(--sans)", fontSize: 12, color: "var(--ink-3)", lineHeight: 1.55, margin: "12px 0 0" }}>
+              Existing buyer? <a href={`${GUIDE_APP_BASE}/login`} style={{ color: "var(--ink-2)" }}>Sign in to the app →</a>
             </p>
 
             <div style={{ borderTop: "1px solid var(--rule)", marginTop: 24, paddingTop: 20 }}>
@@ -247,7 +283,7 @@ function GuidePage({ go }) {
             <div style={{ borderTop: "1px solid var(--rule)", marginTop: 24, paddingTop: 20 }}>
               <div className="eyebrow" style={{ marginBottom: 10 }}>Questions</div>
               <p style={{ fontFamily: "var(--sans)", fontSize: 13, color: "var(--ink-3)", lineHeight: 1.55, margin: 0 }}>
-                Email <a href="mailto:Cory@thetalusfieldjournal.com" style={{ color: "var(--ink-2)" }}>Cory@thetalusfieldjournal.com</a> or use <a href="#contact" onClick={(e) => { e.preventDefault(); go("contact"); }} style={{ color: "var(--ink-2)" }}>the contact form</a>.
+                Email <a href="mailto:Goehring.cory@gmail.com" style={{ color: "var(--ink-2)" }}>Goehring.cory@gmail.com</a> or use <a href="#contact" onClick={(e) => { e.preventDefault(); go("contact"); }} style={{ color: "var(--ink-2)" }}>the contact form</a>.
               </p>
             </div>
           </aside>

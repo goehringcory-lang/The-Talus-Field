@@ -96,7 +96,7 @@ window.ARTICLE_BODIES["yosemite-with-kids-no-reservations-2026"] = function Yose
       <h2>The hikes that actually work with kids</h2>
 
       <p>
-        I'm going to be honest about which trails work for which kids, because most Yosemite family guides recommend the Mist Trail as a "must-do family hike," and I think that's irresponsible. The Mist Trail is a legitimate workout with 600 granite steps, cliff exposure, and crowds that can make it dangerous. It's an outstanding hike for fit teens and adults. It's a miserable experience for a six-year-old. If your kids are 12 and up and in good shape, read the Mist Trail guide separately.
+        I'm going to be honest about which trails work for which kids, because most Yosemite family guides recommend the Mist Trail as a "must-do family hike," and I think that's irresponsible. The Mist Trail is a legitimate workout with 600 granite steps, cliff exposure, and crowds that can make it dangerous. It's an outstanding hike for fit teens and adults. It's a miserable experience for a six-year-old. If your kids are 12 and up and in good shape, read the <a href="/articles/mist-trail-the-real-guide">Mist Trail guide</a> separately.
       </p>
 
       <p>Here's what actually works.</p>
@@ -168,7 +168,7 @@ window.ARTICLE_BODIES["yosemite-with-kids-no-reservations-2026"] = function Yose
       <p>Lucky you. Here are three options, depending on what's open and what your kids can handle.</p>
 
       <p>
-        <strong>Glacier Point by car.</strong> Glacier Point Road opened May 9 this year. The drive takes about an hour from the Valley. The viewpoint at the end is fenced and safe for kids, and the view, Half Dome at eye level, the Valley 3,200 feet below, the entire Clark Range spread out to the south, is arguably the best in the park. No hiking required. Drive up, get out, look, eat lunch at the picnic area, drive back. On the way, stop at the Sentinel Dome trailhead for an easy 2.2-mile round trip to a bald granite dome with 360-degree views. Kids love the scramble to the top.
+        <strong>Glacier Point by car.</strong> <a href="/articles/glacier-point-road-open-2026">Glacier Point Road opened May 9</a> this year. The drive takes about an hour from the Valley. The viewpoint at the end is fenced and safe for kids, and the view, Half Dome at eye level, the Valley 3,200 feet below, the entire Clark Range spread out to the south, is arguably the best in the park. No hiking required. Drive up, get out, look, eat lunch at the picnic area, drive back. On the way, stop at the Sentinel Dome trailhead for an easy 2.2-mile round trip to a bald granite dome with 360-degree views. Kids love the scramble to the top.
       </p>
 
       <p>
@@ -176,7 +176,7 @@ window.ARTICLE_BODIES["yosemite-with-kids-no-reservations-2026"] = function Yose
       </p>
 
       <p>
-        <strong>Tioga Road and Tuolumne Meadows.</strong> If Tioga Road is open (it typically opens late May to early June, and is open this year as of May 15), the drive from the Valley up to Tuolumne Meadows is one of the great road trips in the American West. The meadow at 8,600 feet is cool, wide, and crisscrossed with easy walking paths. Soda Springs, a natural carbonated spring bubbling out of the ground, is a short walk from the road and kids think it's magic (because it kind of is). The water is fizzy. They can taste it. No reservation needed to drive Tioga Road.
+        <strong>Tioga Road and Tuolumne Meadows.</strong> If <a href="/articles/tioga-road-opening-weekend-2026">Tioga Road is open</a> (it typically opens late May to early June, and is open this year as of May 15), the drive from the Valley up to Tuolumne Meadows is one of the great road trips in the American West. The meadow at 8,600 feet is cool, wide, and crisscrossed with easy walking paths. Soda Springs, a natural carbonated spring bubbling out of the ground, is a short walk from the road and kids think it's magic (because it kind of is). The water is fizzy. They can taste it. No reservation needed to drive Tioga Road.
       </p>
 
       <h2>The naturalist's cheat sheet</h2>

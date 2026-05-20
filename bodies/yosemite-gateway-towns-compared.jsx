@@ -1,4 +1,4 @@
-/* global React */
+/* global React, NewsletterInline */
 
 window.ARTICLE_BODIES = window.ARTICLE_BODIES || {};
 
@@ -35,6 +35,13 @@ window.ARTICLE_BODIES["yosemite-gateway-towns-compared"] = function YosemiteGate
       </p>
 
       <p>Now the towns themselves.</p>
+
+      <div style={{ margin: "48px 0" }}>
+        <NewsletterInline
+          heading="Sunday Field Notes"
+          blurb="One Yosemite email a week, when there is something to say. Free."
+        />
+      </div>
 
       <h2>El Portal</h2>
 
@@ -75,7 +82,7 @@ window.ARTICLE_BODIES["yosemite-gateway-towns-compared"] = function YosemiteGate
       </p>
 
       <p>
-        Mariposa is the most full-service of the western gateway towns. It has a real downtown with restaurants, bars, coffee shops, a couple of bookstores, the Mariposa Museum and History Center (genuinely worth a visit), the historic Mariposa County Courthouse (the oldest continuously operating courthouse west of the Rockies, built in 1854), and a wide range of lodging from chain hotels on the highway to historic bed-and-breakfasts in town.
+        Mariposa is the most full-service of the western gateway towns. It has a real downtown with restaurants, bars, coffee shops, a couple of bookstores, the Mariposa Museum and History Center (genuinely worth a visit), the historic Mariposa County Courthouse (the oldest continuously operating courthouse west of the Rockies, built in 1854), and a wide range of lodging from chain hotels on the highway to historic bed-and-breakfasts in town. It's also where a lot of <a href="/articles/working-in-yosemite">people who work in the park</a> end up when they age out of in-park staff housing.
       </p>
 
       <p>The advantages:</p>
@@ -219,7 +226,7 @@ window.ARTICLE_BODIES["yosemite-gateway-towns-compared"] = function YosemiteGate
       </p>
 
       <p>
-        <strong>Gas and groceries.</strong> Mariposa and Oakhurst have full grocery stores. Groveland has a smaller one. El Portal has a market, not a real grocery. Lee Vining is similar. Plan accordingly.
+        <strong>Gas and groceries.</strong> Mariposa and Oakhurst have full grocery stores. Groveland has a smaller one. El Portal has a market, not a real grocery. Lee Vining is similar. Plan accordingly. Stock the cooler and the car kit at the larger town before you head in — see <a href="/articles/pack-your-car-for-yosemite">how to pack your car for a Yosemite trip</a>.
       </p>
 
       <p>

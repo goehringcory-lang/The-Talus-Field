@@ -1,6 +1,7 @@
 /* global React, ReactDOM, Header, Footer,
    HomePage, AboutPage, ArticlesIndex, CategoryPage, ArticlePage,
    KitPage, PlacesPage, AdvertisePage, GuidePage, CapPage, MapPage,
+   PlanningGuide, ChecklistPage,
    NewsletterPage, ContactPage, PrivacyPage, TermsPage, AffiliatePage,
    TweaksPanel, useTweaks, TweakSection, TweakRadio, TweakToggle */
 
@@ -52,7 +53,7 @@ const SITE_NAME = "The Talus Field";
 const SITE_TAGLINE = "Yosemite, written from inside it";
 const SITE_DEFAULT_IMAGE = `${SITE_ORIGIN}/img/Half%20Dome%20Main%20Photo.jpg`;
 const SITE_DEFAULT_DESC =
-  "A field journal of Yosemite National Park, kept by a resident. Trail conditions, planning notes, wildlife, and longer essays on the park's seasons, geology, and life.";
+  "A field journal of Yosemite National Park, kept by a resident. Trails, planning notes, wildlife, and essays on the park's seasons and life.";
 
 function setMeta(name, content, attr = "name") {
   if (!content) return;
@@ -97,6 +98,19 @@ function absolute(url) {
   return `${SITE_ORIGIN}/${url.replace(/^\//, "")}`;
 }
 
+// Build a BreadcrumbList from an array of [name, url] (last item omits url).
+function breadcrumbLd(crumbs) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: crumbs.map(([name, url], i) => {
+      const item = { "@type": "ListItem", position: i + 1, name };
+      if (url) item.item = url;
+      return item;
+    }),
+  };
+}
+
 // Build per-route SEO data (title, description, image, JSON-LD).
 function buildSeo(route) {
   const path = routeToPath(route);
@@ -109,21 +123,30 @@ function buildSeo(route) {
     if (a) {
       const cat = window.findCategory(a.cat);
       const image = absolute(a.image || "img/Half%20Dome%20Main%20Photo.jpg");
-      const desc = a.dek;
+      // Prefer a short SEO description when authored (≤160 chars to fit Bing/Google
+      // SERPs). Fall back to the visible dek otherwise.
+      const desc = a.seoDek || a.dek;
       return {
         title: `${a.title} — ${SITE_NAME}`,
         description: desc,
         canonical: url,
         ogType: "article",
         image,
+        imageAlt: a.placeholder || a.title,
+        articleOg: {
+          publishedTime: a.isoDate || null,
+          modifiedTime: a.isoModified || a.isoDate || null,
+          author: window.SITE.authorName,
+          section: cat ? cat.label : null,
+        },
         jsonLd: {
           "@context": "https://schema.org",
           "@type": "Article",
           headline: a.title,
           description: desc,
           image: [image],
-          datePublished: a.date,
-          dateModified: a.date,
+          datePublished: a.isoDate || a.date,
+          dateModified: a.isoModified || a.isoDate || a.date,
           articleSection: cat ? cat.label : undefined,
           author: {
             "@type": "Person",
@@ -135,13 +158,20 @@ function buildSeo(route) {
             name: SITE_NAME,
             logo: {
               "@type": "ImageObject",
-              url: `${SITE_ORIGIN}/img/talus-field-mark.png`,
+              url: `${SITE_ORIGIN}/img/talus-field-mark-square.png`,
+              width: 512,
+              height: 512,
             },
           },
           mainEntityOfPage: { "@type": "WebPage", "@id": url },
           isAccessibleForFree: true,
           inLanguage: "en-US",
         },
+        breadcrumb: breadcrumbLd([
+          ["Home", `${SITE_ORIGIN}/`],
+          cat ? [cat.label, `${SITE_ORIGIN}/section/${cat.slug}`] : null,
+          [a.title, null],
+        ].filter(Boolean)),
       };
     }
   }
@@ -171,9 +201,13 @@ function buildSeo(route) {
             headline: a.title,
             description: a.dek,
             url: `${SITE_ORIGIN}/articles/${a.slug}`,
-            datePublished: a.date,
+            datePublished: a.isoDate || a.date,
           })),
         },
+        breadcrumb: breadcrumbLd([
+          ["Home", `${SITE_ORIGIN}/`],
+          [cat.label, null],
+        ]),
       };
     }
   }
@@ -189,6 +223,18 @@ function buildSeo(route) {
       title: `Articles — ${SITE_NAME}`,
       description:
         "Every entry, in reverse chronological order. Yosemite trip planning, trails, wildlife, and seasonal guides.",
+      ogType: "website",
+    },
+    planning: {
+      title: `The Yosemite Planning Guide — ${SITE_NAME}`,
+      description:
+        "Plan a Yosemite trip in 2026: gateway towns, reservations, Half Dome, smoke season, the seasonal calendar. A hub for The Talus Field's planning archive.",
+      ogType: "website",
+    },
+    checklist: {
+      title: `The Yosemite First-Week Checklist — ${SITE_NAME}`,
+      description:
+        "A printable single-page checklist for planning a Yosemite trip in 2026: when to come, what to book, what to pack, gateway choice, and the non-negotiables. Free.",
       ogType: "website",
     },
     about: {
@@ -248,7 +294,7 @@ function buildSeo(route) {
     guide: {
       title: `The Field Guide — ${SITE_NAME}`,
       description:
-        "An offline web app for Yosemite. Tappable GPS for the parking turnouts, quiet trailheads, and insider tactics that locals use. Works at the trailhead when service dies.",
+        "An offline web app for Yosemite. Tappable GPS for the parking turnouts, quiet trailheads, and insider tactics locals use. Works when service dies.",
       ogType: "website",
     },
     cap: {
@@ -283,6 +329,18 @@ function buildSeo(route) {
 const DEFAULT_ROBOTS =
   "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1";
 
+function removeMeta(name, attr = "name") {
+  const el = document.head.querySelector(`meta[${attr}="${name}"]`);
+  if (el) el.remove();
+}
+
+const ARTICLE_OG_TAGS = [
+  "article:published_time",
+  "article:modified_time",
+  "article:author",
+  "article:section",
+];
+
 function applySeo(route) {
   const seo = buildSeo(route);
   document.title = seo.title;
@@ -297,7 +355,24 @@ function applySeo(route) {
   setMeta("og:url", seo.canonical, "property");
   setMeta("og:type", seo.ogType, "property");
   setMeta("og:image", seo.image, "property");
+  setMeta("og:image:alt", seo.imageAlt || SITE_DEFAULT_DESC, "property");
   setMeta("og:site_name", SITE_NAME, "property");
+
+  // Article-specific OG tags. Set on article routes, removed elsewhere so
+  // they don't bleed across SPA navigations.
+  if (seo.articleOg) {
+    const og = seo.articleOg;
+    if (og.publishedTime) setMeta("article:published_time", og.publishedTime, "property");
+    else removeMeta("article:published_time", "property");
+    if (og.modifiedTime) setMeta("article:modified_time", og.modifiedTime, "property");
+    else removeMeta("article:modified_time", "property");
+    if (og.author) setMeta("article:author", og.author, "property");
+    else removeMeta("article:author", "property");
+    if (og.section) setMeta("article:section", og.section, "property");
+    else removeMeta("article:section", "property");
+  } else {
+    ARTICLE_OG_TAGS.forEach((t) => removeMeta(t, "property"));
+  }
 
   // Twitter
   setMeta("twitter:card", "summary_large_image");
@@ -308,6 +383,8 @@ function applySeo(route) {
   // Per-page JSON-LD
   if (seo.jsonLd) setJsonLd("ld-page", seo.jsonLd);
   else clearJsonLd("ld-page");
+  if (seo.breadcrumb) setJsonLd("ld-breadcrumb", seo.breadcrumb);
+  else clearJsonLd("ld-breadcrumb");
 }
 
 // ============================================================
@@ -378,6 +455,12 @@ function App() {
     page = <AdvertisePage go={go} />;
   } else if (route === "articles") {
     page = <ArticlesIndex go={go} />;
+    currentNav = "articles";
+  } else if (route === "planning") {
+    page = <PlanningGuide go={go} />;
+    currentNav = "articles";
+  } else if (route === "checklist") {
+    page = <ChecklistPage go={go} />;
     currentNav = "articles";
   } else if (route.startsWith("cat:")) {
     page = <CategoryPage slug={route.slice(4)} go={go} />;

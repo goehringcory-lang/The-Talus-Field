@@ -37,6 +37,16 @@ zone_name = "thetalusfieldjournal.com"
 # Either pair lets you in. Remove or rotate before public launch.
 # ===========================================================================
 
+# === IndexNow push-indexing =================================================
+# /api/indexnow/submit forwards URL lists to api.indexnow.org so Bing,
+# Yandex, Seznam, Naver, and Yep all see the change at once. Both secrets
+# are required for the endpoint to function:
+#   wrangler secret put INDEXNOW_KEY           # the 32-char hex string also
+#                                              # served at /<key>.txt
+#   wrangler secret put INDEXNOW_ADMIN_TOKEN   # gates POST /api/indexnow/submit
+# Without them the route returns 503. See scripts/indexnow-ping.sh.
+# ===========================================================================
+
 # === Local dev override ====================================================
 # For local development, copy this file to wrangler.local.toml and replace
 # the URLs above with their localhost equivalents. wrangler picks it up via:

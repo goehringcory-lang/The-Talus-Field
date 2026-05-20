@@ -425,6 +425,7 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
   z-index: 20;
   display: flex;
   justify-content: flex-end;
+  gap: 20px;
   padding: 14px var(--gutter);
   background: color-mix(in oklab, var(--paper) 92%, transparent);
   backdrop-filter: blur(6px);
@@ -440,6 +441,7 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
   text-decoration: none;
 }
 .gated-chrome__link:hover { color: var(--moss); }
+.gated-chrome__link[aria-current='page'] { color: var(--ink-1); }
 
 /* Updated stamp on the hub footer */
 .updated-stamp {

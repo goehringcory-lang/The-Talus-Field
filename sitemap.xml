@@ -15,6 +15,18 @@
     <loc>https://thetalusfieldjournal.com/articles</loc>
     <lastmod>2026-05-19</lastmod>
   </url>
+  <url>
+    <loc>https://thetalusfieldjournal.com/planning</loc>
+    <lastmod>2026-05-16</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://thetalusfieldjournal.com/checklist</loc>
+    <lastmod>2026-05-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
 
   <!-- Sections -->
   <url>
@@ -23,7 +35,7 @@
   </url>
   <url>
     <loc>https://thetalusfieldjournal.com/section/trails</loc>
-    <lastmod>2026-04-27</lastmod>
+    <lastmod>2026-05-17</lastmod>
   </url>
   <url>
     <loc>https://thetalusfieldjournal.com/section/wildlife</loc>
@@ -31,7 +43,7 @@
   </url>
   <url>
     <loc>https://thetalusfieldjournal.com/section/seasonal</loc>
-    <lastmod>2026-04-27</lastmod>
+    <lastmod>2026-05-13</lastmod>
   </url>
 
   <!-- Static pages -->
@@ -98,11 +110,59 @@
     </image:image>
   </url>
   <url>
+    <loc>https://thetalusfieldjournal.com/articles/four-mile-up-panorama-down</loc>
+    <lastmod>2026-05-17</lastmod>
+    <image:image>
+      <image:loc>https://thetalusfieldjournal.com/img/960px-Four_Mile_Trailhead_with_constrast_mask.jpg</image:loc>
+      <image:title>Looking up the Four Mile Trail toward Glacier Point</image:title>
+    </image:image>
+  </url>
+  <url>
     <loc>https://thetalusfieldjournal.com/articles/yosemite-with-kids-no-reservations-2026</loc>
     <lastmod>2026-05-14</lastmod>
     <image:image>
-      <image:loc>https://thetalusfieldjournal.com/img/lower-yosemite-fall.jpg</image:loc>
-      <image:title>Lower Yosemite Fall</image:title>
+      <image:loc>https://thetalusfieldjournal.com/img/kid-yosemite-falls-boardwalk.jpg</image:loc>
+      <image:title>Toddler on the Lower Yosemite Fall boardwalk, Upper Yosemite Fall behind</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://thetalusfieldjournal.com/articles/tioga-road-opening-weekend-2026</loc>
+    <lastmod>2026-05-13</lastmod>
+    <image:image>
+      <image:loc>https://thetalusfieldjournal.com/img/TMweb.webp</image:loc>
+      <image:title>Tuolumne Meadows in early season, Tioga Road</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://thetalusfieldjournal.com/articles/so-you-want-to-hike-half-dome</loc>
+    <lastmod>2026-05-12</lastmod>
+    <image:image>
+      <image:loc>https://thetalusfieldjournal.com/img/half-dome.jpg</image:loc>
+      <image:title>Half Dome from the Valley floor</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://thetalusfieldjournal.com/articles/half-dome-permit-lottery-2026</loc>
+    <lastmod>2026-05-12</lastmod>
+    <image:image>
+      <image:loc>https://thetalusfieldjournal.com/img/half-dome-alpenglow-madhu-shesharam.jpg</image:loc>
+      <image:title>Half Dome at alpenglow</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://thetalusfieldjournal.com/articles/glacier-point-road-open-2026</loc>
+    <lastmod>2026-05-11</lastmod>
+    <image:image>
+      <image:loc>https://thetalusfieldjournal.com/img/half-dome-sunset-glacier-point-joshua-earle.jpg</image:loc>
+      <image:title>Half Dome at sunset, from Glacier Point</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://thetalusfieldjournal.com/articles/mist-trail-the-real-guide</loc>
+    <lastmod>2026-05-11</lastmod>
+    <image:image>
+      <image:loc>https://thetalusfieldjournal.com/img/nevada-fall-liberty-cap-ryan-oconnor.jpg</image:loc>
+      <image:title>Nevada Fall and Liberty Cap from the John Muir Trail</image:title>
     </image:image>
   </url>
   <url>
@@ -137,6 +197,10 @@
   <url>
     <loc>https://thetalusfieldjournal.com/articles/giant-sequoias-fire-adaptation</loc>
     <lastmod>2026-05-08</lastmod>
+    <image:image>
+      <image:loc>https://thetalusfieldjournal.com/img/wawona-tunnel-tree-historic.jpg</image:loc>
+      <image:title>The Wawona Tunnel Tree, Mariposa Grove (fell 1969)</image:title>
+    </image:image>
   </url>
   <url>
     <loc>https://thetalusfieldjournal.com/articles/hetch-hetchy-the-other-yosemite-valley</loc>

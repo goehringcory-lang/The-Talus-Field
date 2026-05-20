@@ -12,8 +12,10 @@ function NewsletterPage({ go }) {
         </p>
 
         <form
-          action="https://buttondown.com/api/emails/embed-subscribe/goehring"
+          action="https://buttondown.email/api/emails/embed-subscribe/goehring"
           method="post"
+          target="popupwindow"
+          onSubmit={() => window.open("https://buttondown.email/goehring", "popupwindow")}
           style={{ borderTop: "1px solid var(--ink)", borderBottom: "1px solid var(--ink)", padding: "24px 0", display: "flex", gap: 16, alignItems: "center", marginBottom: 48 }}
         >
           <input
@@ -23,6 +25,7 @@ function NewsletterPage({ go }) {
             required
             style={{ flex: 1, fontFamily: "var(--serif)", fontSize: 22, background: "transparent", border: 0, outline: "none", color: "var(--ink)" }}
           />
+          <input type="hidden" name="embed" value="1" />
           <button className="btn" type="submit">Subscribe →</button>
         </form>
 
@@ -113,7 +116,7 @@ function ContactPage() {
           <aside style={{ borderLeft: "1px solid var(--rule)", paddingLeft: 32 }}>
             <div className="eyebrow" style={{ marginBottom: 12 }}>Direct</div>
             <p style={{ fontFamily: "var(--serif)", fontSize: 17, marginBottom: 6 }}>
-              <a href="mailto:Cory@thetalusfieldjournal.com">Cory@thetalusfieldjournal.com</a>
+              <a href="mailto:Goehring.cory@gmail.com">Goehring.cory@gmail.com</a>
             </p>
             <p style={{ fontFamily: "var(--sans)", fontSize: 13, color: "var(--ink-3)", lineHeight: 1.55, marginBottom: 28 }}>
               I check this once or twice a day. Usually faster on Mondays.
