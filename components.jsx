@@ -67,14 +67,18 @@ function MotifTrees() {
 // Masthead
 // ============================================================
 function Header({ current, go }) {
-  const navItems = [
+  const primaryNavItems = [
     ["articles", "Articles"],
+    ["map", "Map"],
     ["kit", "Kit"],
     ["places", "Directory"],
     ["about", "About"],
+  ];
+  const overflowNavItems = [
     ["newsletter", "Newsletter"],
     ["contact", "Contact"],
   ];
+  const navItems = [...primaryNavItems, ...overflowNavItems];
 
   const [menuOpen, setMenuOpen] = React.useState(false);
   const menuRef = React.useRef(null);
@@ -134,7 +138,7 @@ function Header({ current, go }) {
           </span>
         </a>
         <nav className="nav">
-          {navItems.map(([key, label]) => renderLink(key, label, { baseClass: "nav__link" }))}
+          {primaryNavItems.map(([key, label]) => renderLink(key, label, { baseClass: "nav__link" }))}
 
           <div className="nav__menu-wrap" ref={menuRef}>
             <button
