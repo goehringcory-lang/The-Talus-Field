@@ -16,7 +16,7 @@ window.ARTICLE_BODIES["where-to-eat-yosemite"] = function WhereToEatYosemiteBody
       <h2>Inside the park, and on the way in</h2>
 
       <p>
-        <strong>Curry Village Pizza Deck — Yosemite Valley.</strong> The Half Dome is the order. A large, loaded with their house pepperoni, sausage, mushroom, bell pepper, onion, and olive, eaten on the wooden deck under the granite face of Glacier Point Apron after a long day. There is beer on tap. There are picnic tables, and there is almost always a wait, and the wait is part of the experience. This is the only restaurant inside the park that I would go out of my way to eat at. It is not the best pizza in California. It is the best pizza in Yosemite Valley by a wide margin, and on the right summer evening it is the best meal of the trip.
+        <strong>Curry Village Pizza Deck — Yosemite Valley.</strong> The Half Dome is the order. A large, house pepperoni and ricotta with fennel and a chili oil drizzle, eaten on the wooden deck under the granite face of Glacier Point Apron after a long day. There is beer on tap. There are picnic tables, and there is almost always a wait, and the wait is part of the experience. This is the only restaurant inside the park that I would go out of my way to eat at. It is not the best pizza in California. It is the best pizza in Yosemite Valley by a wide margin, and on the right summer evening it is the best meal of the trip.
       </p>
 
       <p>
