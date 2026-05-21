@@ -20,7 +20,7 @@ window.ARTICLE_BODIES["yosemite-in-one-or-two-days"] = function YosemiteInOneOrT
       </p>
 
       <p>
-        Cell service is essentially nonexistent past the entrance station. Download offline maps the night before. Tell whoever cares where you are going. Bring a paper park map; the rangers hand them out free at the gate. Your phone is a camera in Yosemite, not a navigation device.
+        Cell service in the Valley is unreliable and often absent on trails. Download offline maps the night before. Tell whoever cares where you are going. Bring a paper park map; the rangers hand them out free at the gate. Your phone is a camera in Yosemite, not a navigation device.
       </p>
 
       <p>
@@ -49,7 +49,7 @@ window.ARTICLE_BODIES["yosemite-in-one-or-two-days"] = function YosemiteInOneOrT
 
       <ol>
         <li><strong>Tunnel View</strong> at first light. This is the photograph you have seen of Yosemite, the framed one with El Capitan on the left, Bridalveil Fall on the right, and Half Dome down the middle. The overlook is a five-minute pullout on the way into the Valley from Wawona Road. Stop the car. Get out. Stand there a minute. Then keep driving.</li>
-        <li><strong>Bridalveil Fall.</strong> Half a mile round trip from the new parking lot. The walkway and approach reopened in April 2026 after a multi-year rehabilitation. In May and June the spray at the base soaks you. By August it is a trickle and the granite amphitheater is the show. Either is worth the stop.</li>
+        <li><strong>Bridalveil Fall.</strong> Half a mile round trip from the parking lot. The paved trail is accessible and well-maintained. In May and June the spray at the base soaks you. By August it is a trickle and the granite amphitheater is the show. Either is worth the stop.</li>
         <li><strong>Lower Yosemite Fall loop.</strong> One paved mile through the Valley. The 320-foot lower drop is at the end, with the 1,430-foot upper drop above it, together one of the tallest waterfall sequences in North America. Strollers fine. Wear a layer you do not mind getting wet in peak flow.</li>
         <li><strong>Cook's Meadow.</strong> Walk the boardwalk loop and look up. This is where you see Half Dome, Yosemite Falls, Sentinel Rock, and Royal Arches without trying. It is also the meadow Ansel Adams photographed more than any other.</li>
       </ol>
@@ -97,11 +97,11 @@ window.ARTICLE_BODIES["yosemite-in-one-or-two-days"] = function YosemiteInOneOrT
       </p>
 
       <p>
-        <strong>Mariposa Grove.</strong> An hour south of the Valley. Private cars stop at the Welcome Plaza; a free shuttle runs to the grove itself. The lower grove loop is two paved miles, flat. The Grizzly Giant is 2,700 years old. If sequoias are why you came to California, Day Two is when you see them.
+        <strong>Mariposa Grove.</strong> An hour south of the Valley. Private cars stop at the Welcome Plaza; a free shuttle runs to the grove itself. The lower grove loop is roughly two miles on a mix of paved path and unpaved trail, mostly flat. The Grizzly Giant is 2,700 years old. If sequoias are why you came to California, Day Two is when you see them.
       </p>
 
       <p>
-        <strong>A real hike, if you want one.</strong> The Vernal Fall footbridge (1.6 miles round trip) is the gentle option. The full Mist Trail to the top of Vernal Fall (2.4 miles round trip, 1,000 feet of gain, granite stairs in the spray) is the legitimate one. Both leave from Happy Isles. Both want an early start. Mirror Lake (2 miles round trip on packed dirt, flat) is the easiest. Pick one. Do it well.
+        <strong>A real hike, if you want one.</strong> The Vernal Fall footbridge (1.6 miles round trip) is the gentle option. The full Mist Trail to the top of Vernal Fall (~3 miles round trip, 1,000 feet of gain, granite stairs in the spray) is the legitimate one. Both leave from Happy Isles. Both want an early start. Mirror Lake (2 miles round trip, minimal elevation gain) is the easiest. Pick one. Do it well.
       </p>
 
       <Placeholder
@@ -131,7 +131,7 @@ window.ARTICLE_BODIES["yosemite-in-one-or-two-days"] = function YosemiteInOneOrT
       <h2>Where to eat</h2>
 
       <p>
-        Bring food. The cooler in your trunk is better than the Village Store on every dimension that matters. If you need a sit-down meal inside the park, the Curry Village Pizza Deck is the answer; Degnan's Deli is the only place in the Valley where lunch under twenty dollars exists and is not embarrassing. Outside the park, the picks depend on which gateway you are based in. The <a href="/articles/where-to-eat-yosemite">where to eat guide</a> has the locked list.
+        Bring food. The cooler in your trunk is better than the Village Store on every dimension that matters. If you need a sit-down meal inside the park, the Pizza Deck at Half Dome Village is the answer; Degnan's Kitchen is the only place in the Valley where lunch under twenty dollars exists and is not embarrassing. Outside the park, the picks depend on which gateway you are based in. The <a href="/articles/where-to-eat-yosemite">where to eat guide</a> has the locked list.
       </p>
 
       <h2>What to bring</h2>
