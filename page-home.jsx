@@ -1,5 +1,13 @@
 /* global React, Header, Footer, ArticleCard, Placeholder, NewsletterInline,
    MotifMountains, MotifSun, MotifTrees */
+const { useMemo } = React;
+
+const WEBCAMS = [
+  { label: "Half Dome",      img: "ahwahnee2-t.jpg",  href: "https://yosemite.org/webcams/half-dome/",      alt: "Live view of Half Dome from Ahwahnee Meadow" },
+  { label: "Yosemite Falls", img: "yosfalls-t.jpg",   href: "https://yosemite.org/webcams/yosemite-falls/", alt: "Live view of Upper Yosemite Falls" },
+  { label: "El Capitan",     img: "turtleback-t.jpg", href: "https://yosemite.org/webcams/el-capitan/",     alt: "Live view of El Capitan from Turtleback Dome" },
+  { label: "Wawona",         img: "wawona-t.jpg",     href: "https://yosemite.org/webcams/wawona/",         alt: "Live view of Wawona" },
+];
 
 // ============================================================
 // HOME
@@ -10,6 +18,7 @@ function HomePage({ go }) {
   const startHere = (window.START_HERE || [])
     .map(slug => window.findArticle(slug))
     .filter(Boolean);
+  const camCacheBust = useMemo(() => Date.now(), []);
 
   return (
     <div className="page">
@@ -57,6 +66,42 @@ function HomePage({ go }) {
             eager
             motif={<MotifMountains />}
           />
+        </div>
+      </section>
+
+      {/* From the park, right now — live webcam thumbnails from Yosemite Conservancy / Pixelcaster */}
+      <section className="wrap" style={{ paddingTop: 64 }}>
+        <div className="section-head">
+          <h2>From the park, right now</h2>
+          <a href="https://yosemite.org/webcams/" target="_blank" rel="noopener noreferrer">All cameras →</a>
+        </div>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 32 }}>
+          {WEBCAMS.map(cam => (
+            <a
+              key={cam.img}
+              className="cam-tile"
+              href={cam.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ textDecoration: "none", color: "inherit", display: "block" }}
+            >
+              <img
+                src={`https://pixelcaster.com/yosemite/webcams/${cam.img}?t=${camCacheBust}`}
+                alt={cam.alt}
+                loading="lazy"
+                decoding="async"
+                referrerPolicy="no-referrer"
+                onError={(e) => { const t = e.currentTarget.closest('.cam-tile'); if (t) t.style.display = 'none'; }}
+                style={{ width: "100%", aspectRatio: "3 / 2", objectFit: "cover", display: "block" }}
+              />
+              <div className="mono" style={{ marginTop: 10, fontSize: 11, textTransform: "uppercase", letterSpacing: "0.18em", color: "var(--ink-2)", fontWeight: 700 }}>
+                {cam.label}
+              </div>
+            </a>
+          ))}
+        </div>
+        <div className="mono" style={{ marginTop: 16, fontSize: 11, color: "var(--ink-3)", textAlign: "right" }}>
+          Live image · <a href="https://yosemite.org/webcams/" target="_blank" rel="noopener noreferrer" style={{ color: "inherit" }}>Yosemite Conservancy / Pixelcaster</a>
         </div>
       </section>
 
