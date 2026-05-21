@@ -108,6 +108,20 @@ window.KIT = {
 
 window.ARTICLES = [
   {
+    slug: "memorial-day-skip-the-valley-go-high-2026",
+    cat: "seasonal",
+    title: "So you decided to come to Yosemite on Memorial Day. What are you thinking?",
+    dek: "Yosemite Valley will be a parking lot on Memorial Day weekend 2026. With Tioga Road and Glacier Point Road both open early, the move is to skip the Valley and spend the weekend 4,000 feet up in the high country.",
+    seoDek: "Yosemite Valley will be gridlock on Memorial Day weekend 2026. Tioga Road and Glacier Point Road are open early. Skip the Valley, go to the high country.",
+    date: "May 20, 2026",
+    isoDate: "2026-05-20",
+    isoModified: "2026-05-20",
+    read: "7 min",
+    placeholder: "Half Dome from a Glacier Point Road overlook",
+    image: "img/half-dome-glacier-point-road-josh-carter.jpg",
+    credit: "Photo: Josh Carter / Unsplash",
+  },
+  {
     slug: "where-to-eat-yosemite",
     cat: "planning",
     title: "Where to eat in and around Yosemite",
