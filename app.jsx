@@ -212,6 +212,38 @@ function buildSeo(route) {
     }
   }
 
+  // Kit. Per-list ItemList JSON-LD so each gear list is its own indexed entity.
+  if (route === "kit") {
+    const k = window.KIT;
+    const itemLists = (k && k.lists ? k.lists : []).map((list) => ({
+      "@type": "ItemList",
+      name: list.title,
+      description: list.summary,
+      numberOfItems: list.items.length,
+      itemListOrder: "https://schema.org/ItemListOrderAscending",
+      url: `${SITE_ORIGIN}/kit#${list.slug}`,
+      itemListElement: list.items.map((it, i) => ({
+        "@type": "ListItem",
+        position: i + 1,
+        name: it.name,
+        description: it.note,
+      })),
+    }));
+    return {
+      title: `Kit: What I carry in Yosemite — ${SITE_NAME}`,
+      description:
+        "Three gear lists for Yosemite: a day pack, an overnight pack, and a car kit. The actual items, each with the reasoning behind it.",
+      canonical: url,
+      ogType: "website",
+      image: SITE_DEFAULT_IMAGE,
+      jsonLd: { "@context": "https://schema.org", "@graph": itemLists },
+      breadcrumb: breadcrumbLd([
+        ["Home", `${SITE_ORIGIN}/`],
+        ["Kit", null],
+      ]),
+    };
+  }
+
   // Static known routes
   const known = {
     home: {
@@ -241,12 +273,6 @@ function buildSeo(route) {
       title: `About — ${SITE_NAME}`,
       description:
         "About The Talus Field, an independent field journal of Yosemite kept by Cory Goehring, a resident of the park.",
-      ogType: "website",
-    },
-    kit: {
-      title: `Kit — What I carry in Yosemite — ${SITE_NAME}`,
-      description:
-        "Gear lists for Yosemite: a day pack, an overnight pack, and a car kit. Each item with the reasoning behind it.",
       ogType: "website",
     },
     places: {
@@ -409,6 +435,26 @@ function App() {
   useEffect(() => {
     applySeo(route);
   }, [route]);
+
+  // GA4 affiliate-click tracking. Delegated listener at the document root so it
+  // survives every SPA navigation without rebinding. Any anchor with a
+  // data-aff-network attribute fires an "affiliate_click" event.
+  useEffect(() => {
+    const onClick = (e) => {
+      const a = e.target.closest && e.target.closest("a[data-aff-network]");
+      if (!a) return;
+      if (typeof window.gtag !== "function") return;
+      window.gtag("event", "affiliate_click", {
+        aff_network: a.dataset.affNetwork || "unknown",
+        aff_list: a.dataset.affList || "",
+        aff_item_slug: a.dataset.affItemSlug || "",
+        aff_name: a.dataset.affName || "",
+        destination: a.href,
+      });
+    };
+    document.addEventListener("click", onClick, { capture: true });
+    return () => document.removeEventListener("click", onClick, { capture: true });
+  }, []);
 
   // Browser back/forward.
   useEffect(() => {
