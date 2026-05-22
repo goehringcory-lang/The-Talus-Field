@@ -3,7 +3,16 @@ const { useState: useStateK } = React;
 
 function KitPage({ go }) {
   const kit = window.KIT;
-  const [open, setOpen] = useStateK(kit.lists[0].slug);
+  const initialSlug = (() => {
+    const h = (window.location.hash || "").replace(/^#/, "");
+    const match = kit.lists.find(l => h.startsWith(l.slug));
+    return match ? match.slug : kit.lists[0].slug;
+  })();
+  const [open, setOpen] = useStateK(initialSlug);
+  const selectTab = (slug) => {
+    setOpen(slug);
+    history.replaceState({}, "", `/kit#${slug}`);
+  };
 
   return (
     <div>
@@ -25,7 +34,7 @@ function KitPage({ go }) {
             <button
               key={l.slug}
               className={`kit__tab ${open === l.slug ? "is-active" : ""}`}
-              onClick={() => setOpen(l.slug)}
+              onClick={() => selectTab(l.slug)}
             >
               <span className="kit__tab-roman">{l.icon}</span>
               <span className="kit__tab-label">{l.title}</span>
@@ -65,14 +74,40 @@ function KitPage({ go }) {
 
           <ol className="kit__list">
             {list.items.map((it, i) => (
-              <li key={i} className="kit__item">
-                <div className="kit__item-num">{String(i + 1).padStart(2, "0")}</div>
+              <li key={i} className="kit__item" id={`${list.slug}-${i + 1}`}>
+                <div className="kit__item-thumb">
+                  <Placeholder
+                    image={it.image}
+                    caption={it.imageAlt || it.name}
+                    credit={it.imageCredit}
+                    tag="ITEM"
+                    size="sm"
+                    style={{ aspectRatio: "1 / 1" }}
+                    motif={<MotifMountains />}
+                  />
+                </div>
                 <div className="kit__item-body">
+                  <div className="kit__item-num">{String(i + 1).padStart(2, "0")}</div>
                   <div className="kit__item-name">{it.name}</div>
                   <div className="kit__item-note">{it.note}</div>
+                  {it.articleSlug && (
+                    <a
+                      className="kit__item-article"
+                      href={`/articles/${it.articleSlug}`}
+                      onClick={(e) => { e.preventDefault(); go(`a:${it.articleSlug}`); }}
+                    >Read the piece →</a>
+                  )}
                 </div>
-                <div className="kit__item-link">
-                  <a href={it.aff} target="_blank" rel="noopener nofollow sponsored noreferrer">View ↗</a>
+                <div className="kit__item-cta">
+                  <a
+                    href={it.aff}
+                    target="_blank"
+                    rel={it.affNetwork === "none" ? "noopener noreferrer" : "noopener nofollow sponsored noreferrer"}
+                    data-aff-network={it.affNetwork || ""}
+                    data-aff-item-slug={`${list.slug}-${i + 1}`}
+                    data-aff-list={list.slug}
+                    data-aff-name={it.name}
+                  >{it.affLabel || "View"} ↗</a>
                 </div>
               </li>
             ))}
@@ -92,7 +127,9 @@ function KitPage({ go }) {
           )}
 
           <div className="kit__disclosure">
-            Some of the links above are affiliate links. <a href="/affiliate" onClick={(e) => { e.preventDefault(); go("affiliate"); }}>How that works.</a>
+            Some links above go to Amazon, REI, Bookshop, Backcountry, Patagonia, or a vendor's direct program.
+            If you buy through one, The Talus Field may earn a small commission at no extra cost to you.
+            The recommendations do not change either way. <a href="/affiliate" onClick={(e) => { e.preventDefault(); go("affiliate"); }}>The full disclosure.</a>
           </div>
         </section>
       ))}
