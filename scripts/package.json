@@ -1,0 +1,12 @@
+{
+  "name": "the-talus-field-tools",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Dev-only tooling for the build-free editorial site. Lives in scripts/ (NOT the repo root) so Cloudflare Pages keeps treating the root as a static, build-free deploy. The site never depends on this at runtime. Run: cd scripts && npm install && npm run images",
+  "scripts": {
+    "images": "node gen-responsive-images.mjs"
+  },
+  "devDependencies": {
+    "sharp": "^0.34.5"
+  }
+}

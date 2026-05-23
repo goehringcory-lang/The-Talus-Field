@@ -53,7 +53,7 @@ Legend: `[ ]` todo · `[~]` in progress · `[x]` done · `[-]` out of scope
 
 ## Phase 1 — Performance foundation
 - [x] `scripts/gen-responsive-images.mjs` (sharp) → committed `img/responsive/<slug>-<w>.{avif,webp,jpg}` at 400/800/1200/1600, no upscale, idempotent
-- [x] Root `package.json` with `sharp` devDependency + `images` script
+- [x] `scripts/package.json` with `sharp` devDependency + `images` script (kept OUT of the repo root so Cloudflare Pages keeps treating the root as a build-free static deploy — a root package.json silently flips Pages into build mode and blanks the site)
 - [x] `ResponsiveImage` component in `components.jsx` (+ `SIZES_HERO/CARD/BODY`)
 - [x] Wire `ResponsiveImage` into `Placeholder` (no changes to `data.js`/bodies)
 - [x] Static home-hero `<link rel=preload imagesrcset>` in `index.html`; render-time preload for article heroes (`preloadResponsive`)

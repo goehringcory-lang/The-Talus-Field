@@ -1,6 +1,8 @@
 #!/usr/bin/env node
 // Offline responsive-image generator for the build-free editorial site (and the
-// PWA's public photos). Run manually: `npm run images` (or `node scripts/gen-responsive-images.mjs`).
+// PWA's public photos). Run manually from this dir: `cd scripts && npm install && npm run images`.
+// The tooling's package.json lives here in scripts/ (NOT the repo root) so Cloudflare
+// Pages keeps deploying the root as a static, build-free site.
 //
 // For each source JPEG it writes AVIF + WebP + JPEG variants at several widths
 // into a sibling `responsive/` folder, using a slugified base name so the
