@@ -163,26 +163,38 @@ function seoForPath(pathname) {
       title: `The Yosemite Planning Guide — ${SITE_NAME}`,
       description:
         "Plan a Yosemite trip in 2026: gateway towns, reservations, Half Dome, smoke season, the seasonal calendar. A curated hub through The Talus Field's planning archive.",
+      breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Planning Guide", null]],
+      faq: [
+        { q: "Do I need a reservation to enter Yosemite in 2026?", a: "No. The day-use vehicle reservation system is not in effect in 2026. A standard Yosemite entrance pass ($35 per vehicle, valid 7 days) is required." },
+        { q: "What is the best time of year to visit Yosemite?", a: "Late May through early June for peak waterfalls and moderate crowds. September and October for warm days, smaller crowds, and golden light. July and August are the most crowded months. April has spring waterfalls but Tioga Road and Glacier Point Road are usually still closed." },
+        { q: "How much does it cost to enter Yosemite?", a: "$35 per vehicle (7-day pass), $20 per person entering on foot, bike, or motorcycle. The America the Beautiful annual pass ($80) covers entry to all national parks for one year and is worthwhile for two or more Yosemite visits." },
+        { q: "How long should I spend at Yosemite?", a: "Minimum two full days: one for the Valley floor, one for a second area like Glacier Point, Mariposa Grove, or Tioga Road. Three to four days lets you cover all of these without rushing. A single-day trip is doable but you'll be moving the entire time." },
+        { q: "Is Yosemite open year-round?", a: "Yosemite Valley is open year-round. Tioga Road (Highway 120 through the park) is typically closed November through May. Glacier Point Road closes in late November and reopens around Memorial Day. Mariposa Grove is open year-round but the tram is seasonal. Some campgrounds have seasonal closures." }
+      ],
     },
     "/checklist": {
       title: `The Yosemite First-Week Checklist — ${SITE_NAME}`,
       description:
         "A printable single-page checklist for planning a Yosemite trip in 2026: when to come, what to book, what to pack, gateway choice, and the non-negotiables. Free.",
+      breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Planning Checklist", null]],
     },
     "/about": {
       title: `About — ${SITE_NAME}`,
       description:
         "About The Talus Field, an independent field journal of Yosemite kept by Cory Goehring, a resident of the park.",
+      breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["About", null]],
     },
     "/kit": {
       title: `Kit — What I carry in Yosemite — ${SITE_NAME}`,
       description:
         "Gear lists for Yosemite: a day pack, an overnight pack, and a car kit. Each item with the reasoning behind it.",
+      breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Kit", null]],
     },
     "/places": {
       title: `The Directory — Yosemite lodging and guides — ${SITE_NAME}`,
       description:
         "A small, curated directory of Yosemite-area lodging, outfitters, and guiding services, drawn from twenty seasons.",
+      breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Directory", null]],
     },
     "/advertise": {
       title: `List your business — ${SITE_NAME}`,
@@ -242,6 +254,8 @@ function seoForPath(pathname) {
     ogType: "website",
     image: SITE_DEFAULT_IMAGE,
     jsonLd: null,
+    breadcrumb: meta.breadcrumb ? breadcrumbLd(meta.breadcrumb) : null,
+    faq: meta.faq ? faqLd(meta.faq) : null,
     robots: meta.robots || null,
   };
 }

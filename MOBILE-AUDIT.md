@@ -119,12 +119,19 @@ Legend: `[ ]` todo · `[~]` in progress · `[x]` done · `[-]` out of scope
 - InstallPrompt: dismissed state persisted to `tfg.install.dismissed`; both paths check `isStandalone()` before showing.
 
 ## Phase 5 — Mobile SEO / AI Overviews
-- [ ] `Article` JSON-LD on article pages
-- [ ] `TouristAttraction` + `GeoCoordinates` on stops/places
-- [ ] `FAQPage` on planning guide / Q&A articles
-- [ ] `BreadcrumbList`
-- [ ] Validate with Google Rich Results test
-- [ ] Final before/after Lighthouse across all six pages
+- [x] `Article` JSON-LD — already fully wired in `functions/_middleware.js` (Article type, author, publisher, datePublished, dateModified, wordCount, keywords, isAccessibleForFree, inLanguage)
+- [x] `BreadcrumbList` — already wired for all article pages (Home → Category → Article); added to `/planning`, `/checklist`, `/about`, `/kit`, `/places` hub pages in both middleware and `app.jsx`
+- [x] `FAQPage` — 6 articles already had FAQ data; added to 10 more high-traffic articles (Half Dome hike, kids guide, Four Mile / Panorama, Memorial Day, Glacier Point Road, one/two days, smoke season, stargazing, Hetch Hetchy, non-hikers); `/planning` hub gets FAQPage with top 5 planning Qs; FAQ now active in `app.jsx` SPA path via `faqLd()` helper + `ld-faq` script tag
+- [x] Added missing `seoDek`, `wordCount`, `keywords` to `where-to-eat-yosemite` and `yosemite-in-one-or-two-days`
+- [-] `TouristAttraction` + `GeoCoordinates` for PWA stop detail pages — deferred; PWA stops are behind auth, Google cannot crawl them, structured data would not appear in search results
+- [ ] Validate with Google Rich Results test (device — outside sandbox)
+- [ ] Final before/after Lighthouse mobile across all six pages (device — outside sandbox)
+
+### Phase 5 evidence (sandbox)
+- `articles.json` valid JSON: confirmed via `node -e "JSON.parse(...)"`.
+- 16 of 23 articles now carry FAQPage data (up from 6); all high-volume search topics covered.
+- Middleware syntax verified; `check-cache-busters.sh` passes; app.jsx bumped to v=83.
+- `CollectionPage` JSON-LD already present for all four category/section pages.
 
 ---
 
