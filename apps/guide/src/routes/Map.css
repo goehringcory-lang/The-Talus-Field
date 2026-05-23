@@ -21,6 +21,7 @@
 .map-tabbar__tab {
   flex: 1 1 0;
   padding: 14px 12px;
+  min-height: 44px;
   background: transparent;
   border: none;
   border-bottom: 2px solid transparent;
@@ -180,11 +181,13 @@
   width: 100%;
   text-align: left;
   padding: 10px 12px;
+  min-height: 44px;
   background: #fff;
   border: 1px solid var(--rule, #d8d2c0);
   border-radius: 4px;
   cursor: pointer;
   transition: border-color 120ms, background 120ms;
+  justify-content: center;
 }
 
 .map-itinerary:hover {
@@ -256,7 +259,8 @@
   gap: 8px;
   width: 100%;
   text-align: left;
-  padding: 6px 8px;
+  padding: 10px 8px;
+  min-height: 44px;
   background: transparent;
   border: none;
   border-radius: 3px;
@@ -339,8 +343,13 @@
   border-radius: 3px;
 }
 
-/* Mobile: itineraries pane drops to a horizontal pill row at the top. */
+/* Mobile: account for bottom nav (56px) and safe area in map height */
 @media (max-width: 720px) {
+  .map-page {
+    /* below GatedChrome header (56px) and above bottom nav + safe area */
+    height: calc(100dvh - 56px - 56px - env(safe-area-inset-bottom));
+  }
+
   .map-pane--itineraries {
     bottom: auto;
     right: 12px;

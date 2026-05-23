@@ -69,6 +69,16 @@
 * { box-sizing: border-box; }
 html, body { margin: 0; padding: 0; }
 
+/* ===== Global tap feedback ===== */
+button:focus-visible,
+a:focus-visible {
+  outline: 2px solid var(--moss);
+  outline-offset: 3px;
+  border-radius: 1px;
+}
+button:active:not(:disabled),
+a:active { opacity: 0.75; }
+
 html {
   background: var(--paper);
   color: var(--ink);
@@ -295,6 +305,9 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
   border: 1px solid var(--ink) !important;
   padding: 7px 14px;
   font-size: 11px;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
 }
 .nav__cta:hover { background: var(--ink); color: var(--paper) !important; }
 
@@ -363,6 +376,9 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.12em;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
 }
 .nav__primary:hover {
   background: var(--moss);
@@ -1717,7 +1733,7 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
   .chip { padding: 8px 12px; font-size: 11px; }
 
   /* Tap target floor for the visible mobile nav trigger. */
-  .nav__menu-toggle { min-height: 32px; }
+  .nav__menu-toggle { min-height: 44px; min-width: 44px; }
 }
 
 @media (max-width: 420px) {
@@ -2177,8 +2193,8 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
 }
 .map-sidebar__trip-btn {
   flex: 0 0 auto;
-  width: 22px;
-  height: 22px;
+  width: 32px;
+  height: 32px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -2222,6 +2238,26 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
   border: 0;
 }
 
+/* Visual toast — brief confirmation on add/remove, animates in then fades. */
+@keyframes toast-slide-in {
+  from { opacity: 0; transform: translateY(4px); }
+  to   { opacity: 1; transform: none; }
+}
+.map-sidebar__toast {
+  position: sticky;
+  bottom: 0;
+  background: var(--ink);
+  color: var(--paper);
+  padding: 10px 14px;
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-align: center;
+  animation: toast-slide-in 0.18s ease;
+  border-radius: 0 0 3px 3px;
+}
+
 /* ------------------------------------------------------------
    Suggested trips — three pill buttons that REPLACE the
    current trip with a preset region selection.
@@ -2239,6 +2275,7 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
 .map-sidebar__quickpick {
   flex: 1 1 0;
   padding: 8px 6px;
+  min-height: 44px;
   background: var(--paper);
   border: 1px solid var(--rule-soft);
   border-radius: 3px;
@@ -2287,6 +2324,7 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
   align-items: center;
   gap: 8px;
   padding: 9px 10px 9px 8px;
+  min-height: 44px;
   background: transparent;
   border: none;
   font: 600 13.5px var(--sans);
@@ -2320,6 +2358,8 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
 .map-sidebar__region-add {
   flex: 0 0 auto;
   padding: 0 12px;
+  min-height: 44px;
+  min-width: 44px;
   background: transparent;
   border: none;
   border-left: 1px solid var(--rule-soft);
@@ -2396,8 +2436,8 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
 }
 .map-sidebar__region-stop-add {
   flex: 0 0 auto;
-  width: 24px;
-  height: 24px;
+  width: 32px;
+  height: 32px;
   align-self: center;
   display: inline-flex;
   align-items: center;
@@ -2582,13 +2622,13 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
     gap: 6px;
   }
   .map-sidebar__trip-btn {
-    width: 28px;
-    height: 28px;
-    font-size: 15px;
+    width: 44px;
+    height: 44px;
+    font-size: 16px;
   }
   .map-sidebar__region-stop-add {
-    width: 28px;
-    height: 28px;
-    font-size: 16px;
+    width: 44px;
+    height: 44px;
+    font-size: 18px;
   }
 }

@@ -160,10 +160,12 @@ function MapPage() {
   const tripActionRef = useRef(() => {}); // latest toggleTripStop, called from InfoWindow button
   const tripStopIdsRef = useRef([]); // latest tripStopIds, read inside marker click handlers
   const announcerRef = useRef(null);
+  const toastTimerRef = useRef(null);
 
   const [features, setFeatures] = useState(null);
   const [error, setError] = useState(null);
   const [mapReady, setMapReady] = useState(false);
+  const [toast, setToast] = useState(null);
 
   const initial = useMemo(() => readUrlState(), []);
   const [selectedStopId, setSelectedStopId] = useState(initial.stop);
@@ -230,6 +232,9 @@ function MapPage() {
   // ---- Trip-mutation actions ----------------------------------------------
   const announce = useCallback((msg) => {
     if (announcerRef.current) announcerRef.current.textContent = msg;
+    setToast(msg);
+    if (toastTimerRef.current) clearTimeout(toastTimerRef.current);
+    toastTimerRef.current = setTimeout(() => setToast(null), 2500);
   }, []);
 
   const featureNameById = useCallback(
@@ -572,6 +577,7 @@ function MapPage() {
         onApplyQuickPick={applyQuickPick}
         onToggleRegion={handleToggleRegion}
         announcerRef={announcerRef}
+        toast={toast}
       />
       <div className="map-page__main">
         {error && (
@@ -604,6 +610,7 @@ function TripPlannerSidebar({
   onApplyQuickPick,
   onToggleRegion,
   announcerRef,
+  toast,
 }) {
   // Group stops by their sidebar region (one geojson key per stop maps to
   // exactly one REGIONS entry).
@@ -848,6 +855,11 @@ function TripPlannerSidebar({
               );
             })}
           </ol>
+        )}
+        {toast && (
+          <div className="map-sidebar__toast" role="status" aria-live="off">
+            {toast}
+          </div>
         )}
         <div
           ref={announcerRef}

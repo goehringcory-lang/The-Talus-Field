@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react'
 import { Link, useLocation } from 'react-router-dom'
+import BottomNav from './BottomNav'
 
 type Props = {
   children: ReactNode
@@ -27,7 +28,10 @@ export default function GatedChrome({ children }: Props) {
           Account →
         </Link>
       </header>
-      {children}
+      <div className="bottom-nav-offset">
+        {children}
+      </div>
+      <BottomNav />
     </div>
   )
 }

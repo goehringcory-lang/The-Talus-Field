@@ -78,13 +78,18 @@ Legend: `[ ]` todo · `[~]` in progress · `[x]` done · `[-]` out of scope
 > booting) must be done by the owner locally / on a device. PWA build verified here.
 
 ## Phase 2 — Touch targets & thumb zones
-- [ ] Editorial: nav CTA, map sidebar trip/up/down/remove, region-stop-add → ≥44px
-- [ ] Editorial: global `:active`/`:focus-visible` tap feedback
-- [ ] Editorial map: aria-live/toast on stop add/remove
-- [ ] PWA: GPS chips, meta chips, login/account buttons, map itinerary/stop-list buttons → ≥44px
-- [ ] PWA: bottom tab bar (Regions / Map / Account)
-- [ ] PWA: sticky Prev/Next on stop detail
-- [ ] Check-in: device-width walkthrough
+- [x] Editorial: nav CTA + primary (`min-height: 44px; display: inline-flex`) 
+- [x] Editorial: hamburger `nav__menu-toggle` bumped 32px → 44×44px
+- [x] Editorial: map sidebar `trip-btn` 22px → 32px desktop / 44px mobile; `region-stop-add` 24px → 32px/44px; `region-toggle` + `region-add` + `quickpick` → `min-height: 44px`
+- [x] Editorial: global `button/a :focus-visible` + `:active` tap feedback
+- [x] Editorial map: visual toast (`.map-sidebar__toast`) on stop add/remove (+ existing aria-live for SR)
+- [x] PWA: `.gps-chip` → `min-height: 44px; padding: 10px 12px; align-items: center`
+- [x] PWA: `.map-tabbar__tab`, `.map-itinerary`, `.map-stop` → `min-height: 44px`
+- [x] PWA: bottom tab bar `BottomNav.tsx` (Guide / Map / Account) in `GatedChrome`; fixed to viewport bottom with safe-area inset; content offset via `.bottom-nav-offset`; `GatedChrome` header hidden on ≤640px (bottom nav is primary)
+- [x] PWA: sticky Prev/Next — `.stop-prevnext` class; on ≤640px `position: sticky; bottom: calc(56px + safe-area + 8px)` with backdrop-blur
+- [x] PWA: Login `paddingTop/Bottom` → `clamp(32px, 10vh, 96px)`; `inputMode` + `enterKeyHint` on both fields; `autoCorrect="off"`; loading spinner (`.spinner` CSS animation)
+- [x] PWA: Map height adjusted for bottom nav (`100dvh - 56px - 56px - safe-area`)
+- [ ] Check-in: device-width walkthrough (outside sandbox)
 
 ## Phase 3 — Outdoor legibility & accessibility
 - [ ] Lift tertiary text contrast (`--ink-3`); enlarge 10px eyebrow/`.mono` on mobile

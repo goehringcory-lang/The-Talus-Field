@@ -35,6 +35,7 @@ export default function StopDetail() {
         <StopCard stop={stop} compact={false} />
 
         <nav
+          className="stop-prevnext"
           style={{
             display: 'flex',
             justifyContent: 'space-between',
