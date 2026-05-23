@@ -77,7 +77,10 @@ window.loadArticleBody = function loadArticleBody(slug) {
       return r.text();
     })
     .then((src) => {
-      const { code } = window.Babel.transform(src, { presets: ["react"], filename: `${slug}.jsx` });
+      // Must match index.html's data-presets: react,env. The env preset downlevels
+      // const/let to var; without it a body declaring a top-level const would collide
+      // with the globally-scoped declarations from the page scripts and fail to inject.
+      const { code } = window.Babel.transform(src, { presets: ["react", "env"], filename: `${slug}.jsx` });
       const script = document.createElement("script");
       script.textContent = code;
       document.body.appendChild(script);
