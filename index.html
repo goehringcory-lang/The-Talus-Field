@@ -232,29 +232,33 @@
   </div>
 
   <!--
-    data-presets="react" pins Babel to the React/JSX transform only, skipping the
-    heavier preset detection it does by default — measurably less per-file work.
-    Article bodies are NOT listed here; they load on demand via data.js#loadArticleBody
-    when an article is viewed, versioned by window.BODY_VERSIONS (see data.js).
+    data-presets="react,env" — the env preset is REQUIRED, do not drop it. Each
+    file declares `const { useState, ... } = React` at top level; Babel injects
+    every transformed file as a global <script>, so without env downleveling
+    const/let to var these collide ("Identifier 'useState' has already been
+    declared") and the whole site fails to boot. env keeps them as redeclarable
+    var. Article bodies are NOT listed here; they load on demand via
+    data.js#loadArticleBody when an article is viewed, versioned by
+    window.BODY_VERSIONS (see data.js).
   -->
-  <script src="/data.js?v=80"></script>
-  <script type="text/babel" data-presets="react" src="/tweaks-panel.jsx?v=80"></script>
-  <script type="text/babel" data-presets="react" src="/components.jsx?v=80"></script>
+  <script src="/data.js?v=84"></script>
+  <script type="text/babel" data-presets="react,env" src="/tweaks-panel.jsx?v=80"></script>
+  <script type="text/babel" data-presets="react,env" src="/components.jsx?v=80"></script>
 
-  <script type="text/babel" data-presets="react" src="/page-home.jsx?v=80"></script>
-  <script type="text/babel" data-presets="react" src="/page-planning-guide.jsx?v=80"></script>
-  <script type="text/babel" data-presets="react" src="/page-checklist.jsx?v=80"></script>
-  <script type="text/babel" data-presets="react" src="/page-about.jsx?v=80"></script>
-  <script type="text/babel" data-presets="react" src="/page-articles.jsx?v=80"></script>
-  <script type="text/babel" data-presets="react" src="/page-article.jsx?v=80"></script>
-  <script type="text/babel" data-presets="react" src="/page-newsletter-contact.jsx?v=80"></script>
-  <script type="text/babel" data-presets="react" src="/page-legal.jsx?v=80"></script>
-  <script type="text/babel" data-presets="react" src="/page-kit.jsx?v=80"></script>
-  <script type="text/babel" data-presets="react" src="/page-places.jsx?v=80"></script>
-  <script type="text/babel" data-presets="react" src="/page-advertise.jsx?v=80"></script>
-  <script type="text/babel" data-presets="react" src="/page-guide.jsx?v=80"></script>
-  <script type="text/babel" data-presets="react" src="/page-cap.jsx?v=80"></script>
-  <script type="text/babel" data-presets="react" src="/page-map.jsx?v=81"></script>
-  <script type="text/babel" data-presets="react" src="/app.jsx?v=83"></script>
+  <script type="text/babel" data-presets="react,env" src="/page-home.jsx?v=80"></script>
+  <script type="text/babel" data-presets="react,env" src="/page-planning-guide.jsx?v=80"></script>
+  <script type="text/babel" data-presets="react,env" src="/page-checklist.jsx?v=80"></script>
+  <script type="text/babel" data-presets="react,env" src="/page-about.jsx?v=80"></script>
+  <script type="text/babel" data-presets="react,env" src="/page-articles.jsx?v=80"></script>
+  <script type="text/babel" data-presets="react,env" src="/page-article.jsx?v=80"></script>
+  <script type="text/babel" data-presets="react,env" src="/page-newsletter-contact.jsx?v=80"></script>
+  <script type="text/babel" data-presets="react,env" src="/page-legal.jsx?v=80"></script>
+  <script type="text/babel" data-presets="react,env" src="/page-kit.jsx?v=80"></script>
+  <script type="text/babel" data-presets="react,env" src="/page-places.jsx?v=80"></script>
+  <script type="text/babel" data-presets="react,env" src="/page-advertise.jsx?v=80"></script>
+  <script type="text/babel" data-presets="react,env" src="/page-guide.jsx?v=80"></script>
+  <script type="text/babel" data-presets="react,env" src="/page-cap.jsx?v=80"></script>
+  <script type="text/babel" data-presets="react,env" src="/page-map.jsx?v=81"></script>
+  <script type="text/babel" data-presets="react,env" src="/app.jsx?v=83"></script>
 </body>
 </html>
