@@ -92,11 +92,15 @@ Legend: `[ ]` todo · `[~]` in progress · `[x]` done · `[-]` out of scope
 - [ ] Check-in: device-width walkthrough (outside sandbox)
 
 ## Phase 3 — Outdoor legibility & accessibility
-- [ ] Lift tertiary text contrast (`--ink-3`); enlarge 10px eyebrow/`.mono` on mobile
-- [ ] `prefers-color-scheme: dark` in both apps (default light)
-- [ ] Site-wide `:focus-visible` outlines
-- [ ] `prefers-reduced-motion` handling
-- [ ] Check-in: axe + Lighthouse a11y
+- [x] `--ink-3` contrast lifted in both apps, all 3 palettes:
+  - Default: `#6e5c43` → `#50402e` (~7:1 on --paper, up from ~4.9:1)
+  - Granite: `#5e5e54` → `#484840` (~6.7:1)
+  - Sierra: `#50596a` → `#3d4a58` (~6.5:1)
+- [x] Mobile eyebrow 10px → 12px; mono 11px → 13px at ≤480px (both apps)
+- [x] `prefers-color-scheme: dark` in both apps: full warm-dark palette (paper #1c1812, ink #f0e8d8, moss #d87040); all 3 palette variants; default light maintained for outdoor/sunlight use
+- [x] Site-wide `input/textarea/select :focus-visible` outline added (button/a already done in Phase 2)
+- [x] `prefers-reduced-motion: reduce` — universal `animation-duration/transition-duration: 0.01ms` in both apps
+- [ ] Check-in: axe + Lighthouse a11y on device (outside sandbox)
 
 ## Phase 4 — PWA mobile UX & offline honesty
 - [ ] Login/Open: `inputMode`, `enterKeyHint`, loading spinner, responsive padding
