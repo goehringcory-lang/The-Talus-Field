@@ -26,6 +26,71 @@ window.CATEGORIES = [
   { slug: "seasonal",   label: "Seasonal Guides",     blurb: "The park, month by month." },
 ];
 
+// ============================================================
+// Article bodies are loaded on demand (see window.loadArticleBody below) instead
+// of all 23 transpiling on every page. This map is the slug -> cache-buster
+// version, the equivalent of the old ?v=N on each <script> in index.html. Bump a
+// slug's number when you edit its bodies/<slug>.jsx file. scripts/check-cache-busters.sh
+// verifies this map stays in sync with the files in bodies/.
+// ============================================================
+window.BODY_VERSIONS = {
+  "memorial-day-skip-the-valley-go-high-2026": 77,
+  "four-mile-up-panorama-down": 75,
+  "yosemite-with-kids-no-reservations-2026": 75,
+  "tioga-road-opening-weekend-2026": 75,
+  "so-you-want-to-hike-half-dome": 75,
+  "half-dome-permit-lottery-2026": 75,
+  "glacier-point-road-open-2026": 75,
+  "mist-trail-the-real-guide": 75,
+  "first-time-yosemite-overwhelm": 75,
+  "yosemite-without-reservations-2026": 75,
+  "yosemite-during-smoke-season": 75,
+  "yosemite-gateway-towns-compared": 75,
+  "pack-your-car-for-yosemite": 75,
+  "yosemite-for-non-hikers": 75,
+  "yosemite-stargazing-where-to-look-up": 75,
+  "hetch-hetchy-the-other-yosemite-valley": 75,
+  "yosemite-glaciers-climate": 75,
+  "giant-sequoias-fire-adaptation": 75,
+  "bears-spring-emergence": 75,
+  "water-ouzels-waterfalls": 75,
+  "working-in-yosemite": 75,
+  "yosemite-in-one-or-two-days": 77,
+  "where-to-eat-yosemite": 79,
+};
+
+// Fetch a single article body, Babel-transform it in the browser, and run it so
+// it registers itself on window.ARTICLE_BODIES[slug]. Returns a promise resolving
+// to the body component (or null if it 404s / fails to register). Memoized per
+// slug so concurrent/repeat calls share one request.
+window.loadArticleBody = function loadArticleBody(slug) {
+  window.ARTICLE_BODIES = window.ARTICLE_BODIES || {};
+  if (window.ARTICLE_BODIES[slug]) return Promise.resolve(window.ARTICLE_BODIES[slug]);
+  window.__bodyPromises = window.__bodyPromises || {};
+  if (window.__bodyPromises[slug]) return window.__bodyPromises[slug];
+
+  const v = window.BODY_VERSIONS && window.BODY_VERSIONS[slug];
+  const url = `/bodies/${slug}.jsx${v ? `?v=${v}` : ""}`;
+  const p = fetch(url)
+    .then((r) => {
+      if (!r.ok) throw new Error(`Failed to load body "${slug}": ${r.status}`);
+      return r.text();
+    })
+    .then((src) => {
+      const { code } = window.Babel.transform(src, { presets: ["react"], filename: `${slug}.jsx` });
+      const script = document.createElement("script");
+      script.textContent = code;
+      document.body.appendChild(script);
+      return window.ARTICLE_BODIES[slug] || null;
+    })
+    .catch((err) => {
+      delete window.__bodyPromises[slug];
+      throw err;
+    });
+  window.__bodyPromises[slug] = p;
+  return p;
+};
+
 // Kit. Gear lists. Affiliate links go here, not in articles.
 window.KIT = {
   intro: "What I actually carry. Lists I would have wanted on my first trip and still pull up before a long day. The links go to the products themselves; some are affiliate links, which means a small commission if you buy through them at no extra cost to you. The disclosure page explains the rules I keep for it.",

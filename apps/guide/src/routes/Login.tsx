@@ -38,7 +38,7 @@ export default function Login() {
 
   return (
     <div className="app-shell">
-      <main className="wrap wrap--narrow" style={{ paddingTop: 96, paddingBottom: 96 }}>
+      <main className="wrap wrap--narrow" style={{ paddingTop: 'clamp(32px, 10vh, 96px)', paddingBottom: 'clamp(32px, 10vh, 96px)' }}>
         <div className="eyebrow eyebrow--moss" style={{ marginBottom: 14 }}>
           The Field Guide
         </div>
@@ -56,7 +56,10 @@ export default function Login() {
               required
               autoComplete="username"
               autoCapitalize="none"
+              autoCorrect="off"
               spellCheck={false}
+              inputMode="text"
+              enterKeyHint="next"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
             />
@@ -69,7 +72,10 @@ export default function Login() {
               required
               autoComplete="current-password"
               autoCapitalize="none"
+              autoCorrect="off"
               spellCheck={false}
+              inputMode="text"
+              enterKeyHint="go"
               value={code}
               onChange={(e) => setCode(e.target.value)}
             />
@@ -80,7 +86,12 @@ export default function Login() {
           )}
 
           <button className="btn" type="submit" disabled={busy}>
-            {busy ? 'Checking…' : 'Sign in →'}
+            {busy ? (
+              <span style={{ display: 'inline-flex', alignItems: 'center', gap: 10 }}>
+                <span className="spinner" aria-hidden="true" />
+                Checking…
+              </span>
+            ) : 'Sign in →'}
           </button>
         </form>
       </main>

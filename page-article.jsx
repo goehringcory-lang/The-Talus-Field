@@ -1,11 +1,46 @@
-/* global React, Placeholder, NewsletterInline, ArticleCard, MotifMountains */
+/* global React, Placeholder, NewsletterInline, ArticleCard, MotifMountains, preloadResponsive, SIZES_HERO */
 
 function ArticlePage({ slug, go }) {
   const article = window.findArticle(slug);
+
+  // Article bodies load on demand (data.js#loadArticleBody) rather than all 23
+  // transpiling up front. Hold the resolved component and a status for the
+  // loading / coming-soon states.
+  const [Body, setBody] = React.useState(() => (window.ARTICLE_BODIES || {})[slug] || null);
+  const [bodyState, setBodyState] = React.useState(
+    () => ((window.ARTICLE_BODIES || {})[slug] ? "ready" : "loading")
+  );
+
+  React.useEffect(() => {
+    let cancelled = false;
+    const existing = (window.ARTICLE_BODIES || {})[slug];
+    if (existing) {
+      setBody(() => existing);
+      setBodyState("ready");
+      return;
+    }
+    setBody(null);
+    setBodyState("loading");
+    window
+      .loadArticleBody(slug)
+      .then((fn) => {
+        if (cancelled) return;
+        if (fn) { setBody(() => fn); setBodyState("ready"); }
+        else setBodyState("missing");
+      })
+      .catch(() => { if (!cancelled) setBodyState("missing"); });
+    return () => { cancelled = true; };
+  }, [slug]);
+
+  // Preload the hero's responsive srcset so the LCP image fetches before the
+  // <picture> mounts.
+  React.useEffect(() => {
+    if (article && article.image) preloadResponsive(article.image, SIZES_HERO);
+  }, [slug]);
+
   if (!article) return <div className="wrap" style={{ padding: 80 }}>Not found.</div>;
   const cat = window.findCategory(article.cat);
   const related = window.ARTICLES.filter(a => a.slug !== slug && a.cat === article.cat).slice(0, 3);
-  const Body = (window.ARTICLE_BODIES || {})[slug];
 
   return (
     <div className="page">
@@ -67,7 +102,10 @@ function ArticlePage({ slug, go }) {
               </div>
             )}
 
-            {Body ? <Body /> : (
+            {bodyState === "ready" && Body ? <Body /> :
+             bodyState === "loading" ? (
+              <p style={{ color: "var(--ink-3)", fontStyle: "italic" }}>Loading…</p>
+            ) : (
               <p style={{ color: "var(--ink-3)", fontStyle: "italic" }}>This article is coming soon.</p>
             )}
           </div>

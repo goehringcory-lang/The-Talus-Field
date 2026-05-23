@@ -6,8 +6,39 @@
 .map-page {
   display: flex;
   flex-direction: column;
-  height: calc(100vh - 56px); /* below GatedChrome header */
+  /* 56px GatedChrome header + approx 32px online notice */
+  height: calc(100vh - 56px - 32px);
   min-height: 480px;
+}
+
+/* Online-only notice — always visible above the tab bar. */
+.map-online-notice {
+  flex: 0 0 auto;
+  padding: 7px 14px;
+  background: color-mix(in oklab, var(--gold, #8a661a) 12%, var(--paper, #f1ead6));
+  border-bottom: 1px solid color-mix(in oklab, var(--gold, #8a661a) 25%, var(--rule-soft, #c1ad84));
+  font-family: var(--sans, system-ui, sans-serif);
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--ink-2, #36291c);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+.map-online-notice__link {
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  font-weight: 600;
+  color: var(--moss, #7a2a10);
+  cursor: pointer;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
 }
 
 .map-tabbar {
@@ -21,6 +52,7 @@
 .map-tabbar__tab {
   flex: 1 1 0;
   padding: 14px 12px;
+  min-height: 44px;
   background: transparent;
   border: none;
   border-bottom: 2px solid transparent;
@@ -180,11 +212,13 @@
   width: 100%;
   text-align: left;
   padding: 10px 12px;
+  min-height: 44px;
   background: #fff;
   border: 1px solid var(--rule, #d8d2c0);
   border-radius: 4px;
   cursor: pointer;
   transition: border-color 120ms, background 120ms;
+  justify-content: center;
 }
 
 .map-itinerary:hover {
@@ -256,7 +290,8 @@
   gap: 8px;
   width: 100%;
   text-align: left;
-  padding: 6px 8px;
+  padding: 10px 8px;
+  min-height: 44px;
   background: transparent;
   border: none;
   border-radius: 3px;
@@ -339,8 +374,13 @@
   border-radius: 3px;
 }
 
-/* Mobile: itineraries pane drops to a horizontal pill row at the top. */
+/* Mobile: account for bottom nav (56px) and safe area in map height */
 @media (max-width: 720px) {
+  .map-page {
+    /* GatedChrome header hidden on <=640px; subtract notice bar + bottom nav + safe area */
+    height: calc(100dvh - 32px - 44px - 56px - env(safe-area-inset-bottom));
+  }
+
   .map-pane--itineraries {
     bottom: auto;
     right: 12px;

@@ -1,0 +1,13 @@
+{
+  "name": "the-talus-field-tools",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Dev-only tooling for the build-free editorial site. The site itself ships static files and never depends on this package at runtime.",
+  "type": "module",
+  "scripts": {
+    "images": "node scripts/gen-responsive-images.mjs"
+  },
+  "devDependencies": {
+    "sharp": "^0.34.5"
+  }
+}

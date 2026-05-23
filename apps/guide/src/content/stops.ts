@@ -51,6 +51,7 @@ const seed: StopInput[] = [
     order: 2,
     kind: 'drive',
     timeBudgetMin: 60,
+    photos: [{ src: '/photos/el-capitan-winter.jpg', caption: 'El Capitan from Northside Drive along the valley loop.' }],
     body:
       'Slow drive east on Southside Drive. Pullouts worth taking on the way: Bridalveil Fall parking, Cathedral Beach (El Capitan view across the river), the Swinging Bridge (kids and quiet water), Sentinel Beach (Half Dome reflection on calm mornings). Don\'t commit to a hike yet — you\'re previewing. Every stop here is a place worth coming back to with intention.',
   },
@@ -91,6 +92,7 @@ const seed: StopInput[] = [
     coord: [-119.6451, 37.7238],
     elevationFt: 4000,
     timeBudgetMin: 240,
+    photos: [{ src: '/photos/cathedral-rocks.jpg', caption: 'Cathedral Rocks, visible across the valley from the old road.' }],
     body:
       'A small dirt pullout on Northside Drive, between the Pohono Bridge and El Capitan. Most people drive past it. From this turnout you can climb the original Big Oak Flat Road — the wagon grade completed in 1874, one of the three original roads built to reach the valley floor. It carried stagecoaches for seventy years. A massive rockslide in 1945 closed it permanently, and it\'s never reopened to vehicles. Most of the old roadbed is still there: hand-stacked retaining walls, cut blocks, switchbacks wide enough for a six-horse coach. Almost nobody walks it.\n\nThe climb is rock-hopping and a little scrambly in places — nothing technical, doable with kids. About a mile and 800 feet of gain gets you to the first big preserved section of road. Bring lunch. Sit in the shade of incense cedars and look across the valley at Cathedral Rocks. Half a day, easy. A full day if you keep going.\n\nIn early spring — March through early May, depending on snowmelt — extend west from the old road to the base of Ribbon Fall. The traverse is unmarked and rough; you\'re following the sound of water through talus. The payoff is standing under a 1,612-foot single drop — the tallest waterfall in North America, taller than the Empire State Building. It only flows for a few weeks a year, fed entirely by snowmelt off the rim above. By late May it\'s usually dry. Most visitors never see it run.\n\nSummer or not, the road itself is the year-round draw. You\'re walking the grade that carried the first generation of Yosemite tourists down into the valley, and you\'ll have it to yourself.',
     swap:
@@ -118,6 +120,7 @@ const seed: StopInput[] = [
     coord: [-119.5570, 37.7464], // TODO: verify
     elevationFt: 4094,
     timeBudgetMin: 90,
+    photos: [{ src: '/photos/half-dome.jpg', caption: 'Half Dome reflected in the still water of Mirror Lake.' }],
     body:
       'Two miles round trip from the shuttle stop, mostly flat. The "lake" is really a pool in the Tenaya Creek drainage; it\'s a real lake in spring, mostly meadow by August. Either way it\'s the closest spot in the valley to Half Dome, looking up the back side of it. Go early — the trail is in shade until 10 a.m. and the reflection is gone by mid-morning when the breeze picks up.',
   },
@@ -286,6 +289,7 @@ const seed: StopInput[] = [
     coord: [-119.4912341, 37.8324607],
     elevationFt: 9329,
     timeBudgetMin: 180,
+    photos: [{ src: '/photos/tuolumne-meadows.jpg', caption: 'The high-country granite and meadow landscape around May Lake.' }],
     body:
       'The best moderate hike in the high country. Turn north off Tioga Road onto the Old Tioga Road spur (between Olmsted Point and Tenaya Lake) and follow it 1.7 miles to the trailhead parking. The hike itself is 1.2 miles each way with about 500 feet of gain on a well-graded trail through lodgepole pine and over open granite. The grade is steady but not steep, which makes it the right pick for pushing kids past the point where a flat walk would have ended. Most families do it.\n\nMay Lake sits at 9,329 ft with Mount Hoffmann (the geographic center of the park) rising directly above the north shore. The water is cold but swimmable on a warm afternoon, and the granite slabs on the east side are the place to do it. Bring a towel and lunch. Stronger hikers can push another 2 miles and 1,500 ft to the summit of Hoffmann (10,850 ft) for a 360-degree view of the park.',
     swap:
@@ -300,6 +304,7 @@ const seed: StopInput[] = [
     coord: [-119.4548, 37.8330], // TODO: verify
     elevationFt: 8150,
     timeBudgetMin: 60,
+    photos: [{ src: '/photos/tuolumne-meadows.jpg', caption: 'Open granite and clear high-country water at Tenaya Lake.' }],
     body:
       'The east beach is the spot. Granite cliffs on the south side, lodgepole forest on the north, Polly Dome rising at the west end. The water is 55–60°F even in August — short swims only. In late May the lake is often still partly iced over; by July it\'s sun-warmed at the edges. Stop here for lunch on the rocks.',
   },
@@ -309,6 +314,7 @@ const seed: StopInput[] = [
     region: 'tuolumne',
     order: 5,
     kind: 'trailhead',
+    photos: [{ src: '/photos/tuolumne-meadows.jpg', caption: 'Tuolumne high country — the landscape Cathedral Lakes sits in.' }],
     coord: [-119.3829, 37.8732], // TODO: VERIFY URGENTLY — body says "new TH at visitor center" but the historical Cathedral Lakes TH is on Tioga Rd at -119.3829. Confirm whether NPS has actually relocated the trailhead before relying on this coord.
     elevationFt: 8560,
     timeBudgetMin: 360,
@@ -339,6 +345,7 @@ const seed: StopInput[] = [
     coord: [-119.258173, 37.9101685],
     elevationFt: 9945,
     timeBudgetMin: 150,
+    photos: [{ src: '/photos/tuolumne-meadows.jpg', caption: 'High-country terrain near Tioga Pass and the Gaylor Lakes basin.' }],
     body:
       'The trail starts at the Tioga Pass entrance station, 9,945 ft, and climbs about a mile straight up a sun-baked grade to a ridge at 10,500 ft. The first half hour is steep enough that you stop a few times. Then the ridge opens and you drop into the Gaylor Lakes basin: Middle Gaylor Lake at 10,300 ft, granite shores, and the Cathedral Range across the south. The reward is out of proportion to the distance.\n\nBest July and August. Earlier and the upper switchbacks are slick or snow-covered; later and the meadows have browned out. The trail continues another mile north past Middle Gaylor to Upper Gaylor Lake and the ruins of the Great Sierra Mine, a late-1880s silver dig that never produced enough to pay for itself. Stone chimneys are still standing. Plan 2 to 3 hours round trip including time at the lake.',
     swap:

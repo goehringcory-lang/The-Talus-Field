@@ -3,6 +3,7 @@ import ReactMarkdown from 'react-markdown'
 import type { StopT } from '../content'
 import MapsLink from './MapsLink'
 import PhotoPlaceholder from './PhotoPlaceholder'
+import ResponsivePhoto from './ResponsivePhoto'
 
 type Props = {
   stop: StopT
@@ -35,12 +36,11 @@ export default function StopCard({ stop, compact = true }: Props) {
     <article className="stop-card">
       {photo ? (
         <>
-          <img
+          <ResponsivePhoto
             className="stop-card__photo"
             src={photo.src}
             alt={photo.caption ?? stop.title}
-            loading="lazy"
-            decoding="async"
+            loading={compact ? 'lazy' : 'eager'}
             width={1200}
             height={900}
             style={{ aspectRatio: '4 / 3', objectFit: 'cover' }}

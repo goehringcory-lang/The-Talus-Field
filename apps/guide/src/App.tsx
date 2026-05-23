@@ -1,65 +1,70 @@
+import { lazy, Suspense } from 'react'
 import { Routes, Route, Navigate } from 'react-router-dom'
 import { AuthProvider, RequireAuth } from './auth/AuthGate'
 import Open from './routes/Open'
 import Login from './routes/Login'
 import Home from './routes/Home'
-import Account from './routes/Account'
-import Region from './routes/Region'
-import StopDetail from './routes/StopDetail'
-import Map from './routes/Map'
 import InstallPrompt from './components/InstallPrompt'
 import UpdateBanner from './components/UpdateBanner'
+
+// Heavy routes lazy-loaded so /login doesn't download Map / Google Maps glue.
+const Map = lazy(() => import('./routes/Map'))
+const Account = lazy(() => import('./routes/Account'))
+const Region = lazy(() => import('./routes/Region'))
+const StopDetail = lazy(() => import('./routes/StopDetail'))
 
 export default function App() {
   return (
     <AuthProvider>
       <UpdateBanner />
-      <Routes>
-        <Route path="/open" element={<Open />} />
-        <Route path="/login" element={<Login />} />
-        <Route
-          path="/"
-          element={
-            <RequireAuth>
-              <Home />
-            </RequireAuth>
-          }
-        />
-        <Route
-          path="/region/:regionId"
-          element={
-            <RequireAuth>
-              <Region />
-            </RequireAuth>
-          }
-        />
-        <Route
-          path="/stop/:stopId"
-          element={
-            <RequireAuth>
-              <StopDetail />
-            </RequireAuth>
-          }
-        />
-        <Route
-          path="/map"
-          element={
-            <RequireAuth>
-              <Map />
-            </RequireAuth>
-          }
-        />
-        <Route
-          path="/account"
-          element={
-            <RequireAuth>
-              <Account />
-            </RequireAuth>
-          }
-        />
-        <Route path="/trip/*" element={<Navigate to="/" replace />} />
-        <Route path="*" element={<Navigate to="/" replace />} />
-      </Routes>
+      <Suspense fallback={null}>
+        <Routes>
+          <Route path="/open" element={<Open />} />
+          <Route path="/login" element={<Login />} />
+          <Route
+            path="/"
+            element={
+              <RequireAuth>
+                <Home />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="/region/:regionId"
+            element={
+              <RequireAuth>
+                <Region />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="/stop/:stopId"
+            element={
+              <RequireAuth>
+                <StopDetail />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="/map"
+            element={
+              <RequireAuth>
+                <Map />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="/account"
+            element={
+              <RequireAuth>
+                <Account />
+              </RequireAuth>
+            }
+          />
+          <Route path="/trip/*" element={<Navigate to="/" replace />} />
+          <Route path="*" element={<Navigate to="/" replace />} />
+        </Routes>
+      </Suspense>
       <InstallPrompt />
     </AuthProvider>
   )
