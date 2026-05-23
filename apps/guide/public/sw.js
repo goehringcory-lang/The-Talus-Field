@@ -38,8 +38,27 @@ self.addEventListener('activate', (event) => {
 })
 
 self.addEventListener('message', (event) => {
-  if (event.data && event.data.type === 'SKIP_WAITING') {
+  if (!event.data) return
+
+  if (event.data.type === 'SKIP_WAITING') {
     self.skipWaiting()
+    return
+  }
+
+  // Pre-warm the runtime cache with a list of photo URLs.
+  // Sent by Region.tsx when a region loads so stops are fully viewable offline.
+  if (event.data.type === 'PRECACHE_URLS') {
+    const urls = Array.isArray(event.data.urls) ? event.data.urls : []
+    caches.open(RUNTIME_CACHE).then((cache) => {
+      urls.forEach((url) => {
+        cache.match(url).then((cached) => {
+          if (cached) return
+          fetch(url).then((res) => {
+            if (res.ok) cache.put(url, res)
+          }).catch(() => { /* offline at precache time — will cache on next visit */ })
+        })
+      })
+    })
   }
 })
 

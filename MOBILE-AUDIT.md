@@ -103,14 +103,20 @@ Legend: `[ ]` todo · `[~]` in progress · `[x]` done · `[-]` out of scope
 - [ ] Check-in: axe + Lighthouse a11y on device (outside sandbox)
 
 ## Phase 4 — PWA mobile UX & offline honesty
-- [ ] Login/Open: `inputMode`, `enterKeyHint`, loading spinner, responsive padding
-- [ ] Route-based code splitting (`React.lazy`)
-- [ ] Map: online-only made explicit; verify native deep-link; tighten 720px breakpoint
-- [ ] SW pre-cache stop coords + photos on region load (`public/sw.js`)
-- [ ] Wire missing stop photos (~9 of ~21 exist)
-- [ ] Platform-aware `InstallPrompt.tsx` (Android prompt / iOS instructions)
-- [ ] Reconsider manifest `orientation` lock
-- [ ] Check-in: airplane-mode offline walkthrough
+- [x] Login/Open: `inputMode`, `enterKeyHint`, loading spinner, responsive `clamp(32px, 10vh, 96px)` padding
+- [x] Route-based code splitting (`React.lazy`) — Account/Region/StopDetail/Map each a separate chunk; /login users skip Map + Google Maps entirely
+- [x] Map: online-only notice bar with link to Info tab; GPS chip already deep-links to native Apple/Google Maps (MapsLink.tsx); mobile map height uses `100dvh` accounting for notice + tab bars
+- [x] SW `PRECACHE_URLS` message handler added; `Region.tsx` sends photo URLs on load → photos cached after first online visit
+- [x] Wire 7 missing stop photos (valley-loop-drive, old-big-oak-flat-road, mirror-lake, may-lake, tenaya-lake, cathedral-lakes, gaylor-lake); 4 stops still need new photography (ahwahnee-hotel, curry-village, curry-village-pizza, mariposa-grove)
+- [x] Platform-aware `InstallPrompt.tsx`: Android uses `beforeinstallprompt` native flow; iOS shows ⬆ Share + "Add to Home Screen" instruction banner; positioned above bottom nav
+- [x] Manifest `orientation` changed from `"portrait"` → `"any"` (landscape allowed — important for map view)
+- [ ] Check-in: airplane-mode offline walkthrough (device — outside sandbox)
+
+### Phase 4 evidence (sandbox)
+- Build output: Account 1.1 kB, Region 1.4 kB, StopDetail 2.1 kB, Map 10 kB — each chunk loads only when navigated to.
+- `npm run build` + `tsc -b` pass with zero errors.
+- Service worker PRECACHE_URLS: photos for all stops with `src` set pre-warm into runtime cache on region load.
+- InstallPrompt: dismissed state persisted to `tfg.install.dismissed`; both paths check `isStandalone()` before showing.
 
 ## Phase 5 — Mobile SEO / AI Overviews
 - [ ] `Article` JSON-LD on article pages

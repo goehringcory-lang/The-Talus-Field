@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { Link, Navigate, useParams } from 'react-router-dom'
 import { RegionEnum, getRegionMeta, getStopsByRegion } from '../content'
 import GatedChrome from '../components/GatedChrome'
@@ -11,6 +12,16 @@ export default function Region() {
 
   const meta = getRegionMeta(region)
   const stops = getStopsByRegion(region)
+
+  // Pre-warm SW cache with this region's photos so they're available offline.
+  useEffect(() => {
+    if (!('serviceWorker' in navigator)) return
+    const sw = navigator.serviceWorker.controller
+    if (!sw) return
+    const urls = stops.flatMap((s) => s.photos.map((p) => p.src)).filter(Boolean)
+    if (urls.length === 0) return
+    sw.postMessage({ type: 'PRECACHE_URLS', urls })
+  }, [stops])
 
   return (
     <GatedChrome>

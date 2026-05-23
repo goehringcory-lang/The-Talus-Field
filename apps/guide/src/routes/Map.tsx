@@ -242,6 +242,17 @@ export default function Map() {
   return (
     <GatedChrome>
       <div className="map-page">
+        <div className="map-online-notice" role="note">
+          Map requires signal.{' '}
+          <button
+            type="button"
+            className="map-online-notice__link"
+            onClick={() => handleTab('info')}
+          >
+            Set up offline navigation →
+          </button>
+        </div>
+
         <nav className="map-tabbar" aria-label="Map view">
           <button
             type="button"
