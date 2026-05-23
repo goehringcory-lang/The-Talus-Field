@@ -252,7 +252,7 @@ window.ARTICLES = [
     isoModified: "2026-05-13",
     read: "11 min",
     placeholder: "Tuolumne Meadows in early season, Tioga Road",
-    image: "img/TMweb.webp",
+    image: "img/tuolumne-meadows.jpg",
   },
   {
     slug: "so-you-want-to-hike-half-dome",
