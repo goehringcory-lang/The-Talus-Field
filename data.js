@@ -34,6 +34,7 @@ window.CATEGORIES = [
 // verifies this map stays in sync with the files in bodies/.
 // ============================================================
 window.BODY_VERSIONS = {
+  "yosemite-needs-a-reservation-system": 1,
   "memorial-day-skip-the-valley-go-high-2026": 77,
   "four-mile-up-panorama-down": 75,
   "yosemite-with-kids-no-reservations-2026": 75,
@@ -175,6 +176,20 @@ window.KIT = {
 };
 
 window.ARTICLES = [
+  {
+    slug: "yosemite-needs-a-reservation-system",
+    cat: "planning",
+    title: "Yosemite needs a reservation system",
+    dek: "Dropping the reservation system fails the park on both halves of its mission: this Memorial Day weekend, visitors couldn't recreate and the meadows took the damage. A naturalist's case for bringing it back.",
+    seoDek: "Without a reservation system, Memorial Day 2026 left Yosemite Valley gridlocked and its meadows damaged. Why the park needs timed entry back.",
+    date: "May 26, 2026",
+    isoDate: "2026-05-26",
+    isoModified: "2026-05-26",
+    read: "10 min",
+    placeholder: "Cars parked off the pavement along a Yosemite Valley road on Memorial Day weekend",
+    image: "img/cars-on-meadow-edge-cory-goehring.jpg",
+    credit: "Photo: Cory Goehring",
+  },
   {
     slug: "memorial-day-skip-the-valley-go-high-2026",
     cat: "seasonal",
