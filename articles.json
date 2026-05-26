@@ -1,5 +1,25 @@
 [
   {
+    "slug": "yosemite-needs-a-reservation-system",
+    "cat": "planning",
+    "title": "Yosemite needs a reservation system",
+    "dek": "Dropping the reservation system fails the park on both halves of its mission: this Memorial Day weekend, visitors couldn't recreate and the meadows took the damage. A naturalist's case for bringing it back.",
+    "seoDek": "Without a reservation system, Memorial Day 2026 left Yosemite Valley gridlocked and its meadows damaged. Why the park needs timed entry back.",
+    "date": "May 26, 2026",
+    "isoDate": "2026-05-26",
+    "isoModified": "2026-05-26",
+    "read": "10 min",
+    "image": "img/cars-on-meadow-edge-cory-goehring.jpg",
+    "placeholder": "Cars parked off the pavement along a Yosemite Valley road on Memorial Day weekend",
+    "wordCount": 1700,
+    "keywords": ["Yosemite reservation system", "Yosemite Memorial Day 2026", "Yosemite crowds", "Yosemite parking", "national park reservations", "Organic Act", "Ray McPadden", "timed entry"],
+    "faq": [
+      { "q": "Does Yosemite require a reservation in 2026?", "a": "No. Superintendent Ray McPadden announced on February 18, 2026 that Yosemite would not require vehicle reservations for the 2026 season. The park is relying on real-time traffic monitoring and promotion of areas outside the Valley instead." },
+      { "q": "What happened in Yosemite Valley on Memorial Day weekend 2026?", "a": "Parking lots filled before 8 a.m., entrance waits exceeded ninety minutes, and dozens of cars parked illegally on meadow edges and road shoulders. Three tow trucks were deployed to clear vehicles blocking shuttle routes." },
+      { "q": "Did the Yosemite reservation system actually work?", "a": "By the available data, yes. Surveys at parks with timed entry showed strong visitor approval, and 85 percent of verified Yosemite staff responses opposed dropping it. It spread demand across the day so visitors who arrived could actually use the park." }
+    ]
+  },
+  {
     "slug": "memorial-day-skip-the-valley-go-high-2026",
     "cat": "seasonal",
     "title": "So you decided to come to Yosemite on Memorial Day. What are you thinking?",

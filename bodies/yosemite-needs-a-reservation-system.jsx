@@ -1,0 +1,140 @@
+/* global React, NewsletterInline */
+
+window.ARTICLE_BODIES = window.ARTICLE_BODIES || {};
+
+window.ARTICLE_BODIES["yosemite-needs-a-reservation-system"] = function YosemiteNeedsAReservationSystemBody() {
+  return (
+    <>
+      <p className="dropcap">
+        I built this guide so people can enjoy their national park. I want them to see the Valley at sunrise, hear a hermit thrush at dusk, watch a bear graze a meadow edge in October. I want them to have an experience good enough that they go home and care about public lands for the rest of their lives. That is the whole point.
+      </p>
+
+      <p>
+        This Memorial Day weekend made it clear that without a reservation system, none of that is possible at Yosemite.
+      </p>
+
+      <h2>The mission, in plain language</h2>
+
+      <p>
+        The National Park Service was created by the Organic Act of 1916. The mission statement is one sentence long, and it has governed every national park in the country for 110 years:
+      </p>
+
+      <blockquote>
+        "...to conserve the scenery and the natural and historic objects and the wild life therein and to provide for the enjoyment of the same in such manner and by such means as will leave them unimpaired for the enjoyment of future generations."
+      </blockquote>
+
+      <p>
+        Read it again. There are two mandates in that sentence: conserve the resource, and provide for enjoyment. Not one or the other. Both. And the second mandate comes with a condition: enjoyment must happen in a way that leaves the park unimpaired for the people who come after us.
+      </p>
+
+      <p>
+        Yosemite without a reservation system is currently failing on both counts.
+      </p>
+
+      <h2>Failure one: people cannot enjoy their park</h2>
+
+      <p>
+        On Sunday of Memorial Day weekend 2026, visitors received a text alert at 7:39 a.m. telling them that parking lots in Yosemite Valley were already full. By mid-morning, the entrance stations had wait times exceeding ninety minutes. By evening, as one visitor told ABC7, "the entire park, it was impossible to park there. There's nowhere to park for anybody."
+      </p>
+
+      <p>
+        This is not an exaggeration and it is not an isolated incident. Since the reservation system was dropped for the 2026 season, Yosemite has recorded more than 836,000 visits through late May, roughly 100,000 more than the same period last year. March 2026 visitation jumped nearly 45 percent over the previous year. On peak days throughout the spring, Valley parking lots have been filling by 7 a.m.
+      </p>
+
+      <p>
+        When the lots fill, access to the eastern half of the Valley, including the Mist Trail, Happy Isles, Mirror Lake, and the Ahwahnee, becomes limited or effectively impossible for anyone arriving by car. The <a href="/articles/yosemite-without-reservations-2026">free shuttle system</a> helps, but only if you can find a parking spot to begin with.
+      </p>
+
+      <p>
+        Think about what that means for the family that drove three hours from the Central Valley on their one day off. They arrive at 10 a.m. because they didn't know the lots fill by seven. They circle for an hour looking for parking. They give up and drive home, or they park illegally and get towed. Either way, they did not recreate in their national park. The Organic Act's promise of enjoyment was a dead letter for them.
+      </p>
+
+      <p>
+        The reservation system, which Yosemite ran in various forms from 2020 through 2025 (every year except 2023), was not perfect. It required advance planning. It frustrated some spontaneous visitors. But it did something essential: it spread the demand across the day so that the people who showed up could actually use the park. Under reservations, the Valley felt, for the first time in decades, like a place where you could park your car, walk to a trailhead, and breathe. That was not a minor improvement. That was the park working the way it was designed to work.
+      </p>
+
+      <h2>Failure two: the resource is being damaged</h2>
+
+      <p>
+        Memorial Day weekend 2026 was not just inconvenient. It was destructive.
+      </p>
+
+      <p>
+        Videos from the holiday weekend showed dozens of cars parked illegally on meadow edges and road shoulders throughout the Valley. Visitors, unable to find legal parking, drove off pavement and onto the ground. Three tow trucks were deployed simultaneously to clear illegally parked vehicles from shuttle routes. Beth Pratt, a conservationist and author who has worked on Yosemite wildlife issues for years, described the scene plainly: people were "pulling onto meadows, pulling off pavement, going off-road."
+      </p>
+
+      <p>
+        Yosemite's meadows are not grass fields. They are complex ecosystems, home to rare sedges, native grasses, and invertebrate communities that have evolved over millennia in the Sierra's specific hydrology. A car driven onto a wet meadow compresses the soil, destroys root systems, and creates channels that alter water flow. The damage from a single vehicle can take years to recover. Multiply that by dozens of cars across a holiday weekend, and the cost to the resource is not theoretical. It is visible.
+      </p>
+
+      <p>
+        This is the second failure. The Organic Act does not say "conserve the scenery unless the parking lot is full." It says conserve. Period. And the condition on enjoyment, that it must leave the park "unimpaired for the enjoyment of future generations," means that when overcrowding causes direct, physical damage to the resource, the park is violating its own founding mandate. Cars on meadows is not a parking problem. It is a conservation failure.
+      </p>
+
+      <div style={{ margin: "48px 0" }}>
+        <NewsletterInline
+          heading="Sunday Field Notes"
+          blurb="One Yosemite email a week, when there is something to say. Free."
+        />
+      </div>
+
+      <h2>The data we already had</h2>
+
+      <p>
+        None of this is surprising. We have data that tells us exactly what happens when reservation systems work, and exactly what parks lose when they are removed.
+      </p>
+
+      <p>
+        At Arches National Park, a Utah State University survey of more than 500 visitors during the 2022 timed-entry pilot found that 84 percent of respondents wanted the reservation system to continue. Fifty-seven percent said timed entry made their experience "somewhat or much better." Eighty-nine percent of visitors were able to get a ticket, 98 percent entered on their desired day, and 86 percent received their preferred time slot. By any measure, the system worked for visitors and for the park.
+      </p>
+
+      <p>
+        In Yosemite, a March 2026 survey by the employee union found that 85 percent of 135 verified staff responses did not approve of Superintendent Ray McPadden's decision to drop the reservation system. These are the people who work in the park every day. They saw the reservation system work across five seasons. They know what the alternative looks like.
+      </p>
+
+      <p>
+        The alternative is what we saw this weekend.
+      </p>
+
+      <h2>Who made this decision</h2>
+
+      <p>
+        On February 18, 2026, Superintendent Ray McPadden announced that Yosemite would not require vehicle reservations for the 2026 season. He cited park data suggesting that "a season-wide reservation requirement is not the most effective approach for the coming season," pointing to weekday parking availability and manageable traffic flow on non-peak days.
+      </p>
+
+      <p>
+        That analysis is technically true and practically meaningless. Nobody was arguing that Tuesday mornings in April needed reservations. The problem has always been weekends from May through September, and especially holiday weekends. A season-wide evaluation that averages peak and off-peak days together will always dilute the severity of the peaks. It is an analytical choice that obscures the very problem it should be addressing.
+      </p>
+
+      <p>
+        The decision also did not happen in a vacuum. Interior Secretary Doug Burgum's Secretarial Order 3426, issued in April 2025, directed the National Park Service to keep parks "open and accessible" and required superintendent-level closures or service reductions to be reviewed by the NPS Director and the Assistant Secretary. The National Parks Conservation Association called the order "ill-conceived," warning that it "flies in the face of responsible management of national parks, risking both visitor safety and the very resources the Park Service was created and is mandated to protect." Four major parks dropped their reservation systems for 2026: Yosemite, Arches, Glacier, and Mount Rainier. Rocky Mountain National Park, notably, kept its timed entry in place.
+      </p>
+
+      <p>
+        Superintendent McPadden said the park would rely on "real-time traffic monitoring" and promotion of areas outside the Valley. Those are fine supplemental tools. They are not substitutes for managing the number of vehicles that enter the park on a given day. You cannot real-time-monitor your way out of a parking lot that filled three hours ago.
+      </p>
+
+      <h2>Why this matters beyond Yosemite</h2>
+
+      <p>
+        I write <a href="/articles/first-time-yosemite-overwhelm">this guide</a> so that people can plan a visit that works. I tell them to <a href="/articles/yosemite-without-reservations-2026">arrive early</a>. I tell them to <a href="/articles/pack-your-car-for-yosemite">pack their car right</a>. I tell them where to go when <a href="/articles/hetch-hetchy-the-other-yosemite-valley">the Valley is full</a>. I do this because I believe that a good experience in a national park is the beginning of a lifetime of caring about public land.
+      </p>
+
+      <p>
+        But there is a limit to what planning can fix. When the infrastructure cannot support the number of people who show up, no amount of advice about arriving before sunrise will solve the problem. The family that got turned away, the couple that spent ninety minutes in an entrance line, the solo hiker who watched cars drive onto a meadow: those people did not have a good experience. Some of them will not come back. And a person who drives away from a national park angry is a person who stops caring about national parks.
+      </p>
+
+      <p>
+        The reservation system was imperfect. It needed refinement, not elimination. Dynamic pricing, better shoulder-season incentives, improved cancellation policies, expanded public transit: all of these were available paths forward. Dropping the system entirely was the wrong call.
+      </p>
+
+      <p>
+        The data supports reservations. The staff supports reservations. The visitors, when surveyed at parks that had them, overwhelmingly support reservations. The Organic Act demands that enjoyment and conservation happen together. Right now, Yosemite is delivering neither.
+      </p>
+
+      <p>
+        I will be back out in the Valley tomorrow morning. If it is anything like this weekend, the parking lots will be full by seven, the meadow edges will have tire tracks in them, and a family from Fresno will be circling Yosemite Village wondering why they came. That is what the absence of a reservation system looks like from inside the park.
+      </p>
+    </>
+  );
+};

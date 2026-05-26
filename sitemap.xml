@@ -5,7 +5,7 @@
   <!-- Hub pages -->
   <url>
     <loc>https://thetalusfieldjournal.com/</loc>
-    <lastmod>2026-05-20</lastmod>
+    <lastmod>2026-05-26</lastmod>
     <image:image>
       <image:loc>https://thetalusfieldjournal.com/img/Half%20Dome%20Main%20Photo.jpg</image:loc>
       <image:title>Half Dome at first light</image:title>
@@ -13,7 +13,7 @@
   </url>
   <url>
     <loc>https://thetalusfieldjournal.com/articles</loc>
-    <lastmod>2026-05-20</lastmod>
+    <lastmod>2026-05-26</lastmod>
   </url>
   <url>
     <loc>https://thetalusfieldjournal.com/planning</loc>
@@ -31,7 +31,7 @@
   <!-- Sections -->
   <url>
     <loc>https://thetalusfieldjournal.com/section/planning</loc>
-    <lastmod>2026-05-20</lastmod>
+    <lastmod>2026-05-26</lastmod>
   </url>
   <url>
     <loc>https://thetalusfieldjournal.com/section/trails</loc>
@@ -93,6 +93,14 @@
   </url>
 
   <!-- Articles -->
+  <url>
+    <loc>https://thetalusfieldjournal.com/articles/yosemite-needs-a-reservation-system</loc>
+    <lastmod>2026-05-26</lastmod>
+    <image:image>
+      <image:loc>https://thetalusfieldjournal.com/img/cars-on-meadow-edge-cory-goehring.jpg</image:loc>
+      <image:title>Cars parked off the pavement along a Yosemite Valley road on Memorial Day weekend</image:title>
+    </image:image>
+  </url>
   <url>
     <loc>https://thetalusfieldjournal.com/articles/memorial-day-skip-the-valley-go-high-2026</loc>
     <lastmod>2026-05-20</lastmod>
