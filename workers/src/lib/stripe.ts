@@ -13,6 +13,10 @@ export async function createCheckoutSession(
   env: Env,
   args: { successUrl: string; cancelUrl: string },
 ): Promise<StripeCheckoutSession> {
+  if (!env.STRIPE_SECRET_KEY) {
+    throw new Error('STRIPE_SECRET_KEY not configured')
+  }
+
   const params = new URLSearchParams()
   params.set('mode', 'payment')
   params.set('success_url', args.successUrl)

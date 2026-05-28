@@ -17,13 +17,3 @@ export async function signAccessJwt(email: string, secret: string): Promise<stri
   }
   return jwt.sign(claims, secret, { algorithm: 'HS256' })
 }
-
-export async function verifyAccessJwt(
-  token: string,
-  secret: string,
-): Promise<AccessClaims | null> {
-  const ok = await jwt.verify(token, secret, { algorithm: 'HS256' })
-  if (!ok) return null
-  const decoded = jwt.decode<AccessClaims>(token)
-  return decoded.payload ?? null
-}

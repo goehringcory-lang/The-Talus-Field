@@ -39,6 +39,11 @@ const STRIPE_EVENT_DEDUPE_KEY = (eventId: string) => `stripe_event:${eventId}`
 export const stripe = new Hono<{ Bindings: Env }>()
 
 stripe.post('/webhook', async (c) => {
+  if (!c.env.STRIPE_WEBHOOK_SECRET) {
+    console.error('stripe webhook: STRIPE_WEBHOOK_SECRET not configured')
+    return c.json({ error: 'Webhook not configured' }, 500)
+  }
+
   const rawBody = await c.req.text()
   const sig = c.req.header('stripe-signature') ?? null
   const ok = await verifyStripeSignature({
@@ -81,13 +86,6 @@ stripe.post('/webhook', async (c) => {
     return c.json({ error: 'Missing customer email' }, 400)
   }
 
-  // Claim the dedupe slot first. KV is eventually consistent, so writing it
-  // before the data writes is the only way to prevent a fast Stripe retry
-  // from double-provisioning the buyer and double-counting inventory.
-  await c.env.GUIDE_BUYERS.put(dedupeKey, '1', {
-    expirationTtl: STRIPE_EVENT_DEDUPE_TTL_SECONDS,
-  })
-
   const purchasedAt = session.created
   const expiresAt = purchasedAt + EIGHTEEN_MONTHS_SECONDS
   const accessToken = generateAccessToken()
@@ -109,8 +107,20 @@ stripe.post('/webhook', async (c) => {
     await sendMagicLink(c.env, { to: email, magicLink, code: accessCode })
   } catch (err) {
     console.error('sendMagicLink failed', { eventId: event.id, email, err })
+    // Do NOT claim the dedupe slot here: returning 500 makes Stripe retry,
+    // and the retry must be allowed to re-attempt delivery rather than being
+    // short-circuited. putBuyer is idempotent on email, so re-provisioning is
+    // harmless; re-sending the code beats silently dropping it. (Inventory may
+    // be over-counted by a retry — acceptable at this volume, same trade-off
+    // noted in kv.ts incrementInventory.)
     return c.json({ error: 'Email delivery failed' }, 500)
   }
+
+  // Claim the dedupe slot only after the email is confirmed sent, so a failed
+  // delivery is retried by Stripe instead of being treated as already done.
+  await c.env.GUIDE_BUYERS.put(dedupeKey, '1', {
+    expirationTtl: STRIPE_EVENT_DEDUPE_TTL_SECONDS,
+  })
 
   return c.json({ received: true })
 })

@@ -14,6 +14,14 @@ checkout.post('/start', async (c) => {
   const sold = await getInventoryCount(c.env, monthLabel)
   const cap = Number.parseInt(c.env.GUIDE_MONTHLY_CAP, 10)
 
+  // A missing or non-numeric cap yields NaN, and `sold >= NaN` is always
+  // false — which would silently bypass the inventory cap and oversell.
+  // Fail closed instead.
+  if (Number.isNaN(cap)) {
+    console.error('checkout/start: GUIDE_MONTHLY_CAP is missing or non-numeric', c.env.GUIDE_MONTHLY_CAP)
+    return c.json({ error: 'Inventory cap misconfigured' }, 500)
+  }
+
   if (sold >= cap) {
     return c.json(
       {
