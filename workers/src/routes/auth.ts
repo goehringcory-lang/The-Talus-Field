@@ -86,10 +86,16 @@ auth.post('/dev-login', async (c) => {
   const devU = c.env.DEV_USERNAME
   const devC = c.env.DEV_CODE
 
-  const adminMatch =
-    !!adminU && !!adminC && constantTimeEquals(username, adminU) && constantTimeEquals(code, adminC)
-  const devMatch =
-    !!devU && !!devC && constantTimeEquals(username, devU) && constantTimeEquals(code, devC)
+  // Evaluate every comparison unconditionally against a fallback so the path
+  // doesn't short-circuit on a wrong username (or on creds being unset), which
+  // would otherwise leak via timing whether a pair is configured / half-right.
+  const adminUserOk = constantTimeEquals(username, adminU || '')
+  const adminCodeOk = constantTimeEquals(code, adminC || '')
+  const adminMatch = !!adminU && !!adminC && adminUserOk && adminCodeOk
+
+  const devUserOk = constantTimeEquals(username, devU || '')
+  const devCodeOk = constantTimeEquals(code, devC || '')
+  const devMatch = !!devU && !!devC && devUserOk && devCodeOk
 
   if (!adminMatch && !devMatch) {
     return c.json({ error: 'Username or code does not match' }, 401)

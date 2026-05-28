@@ -80,7 +80,10 @@ app.get('/tiles/:z/:y/:x', async (c) => {
 app.get('/api/inventory', async (c) => {
   const monthLabel = currentMonthLabel()
   const sold = await getInventoryCount(c.env, monthLabel)
-  const cap = Number.parseInt(c.env.GUIDE_MONTHLY_CAP, 10)
+  const parsedCap = Number.parseInt(c.env.GUIDE_MONTHLY_CAP, 10)
+  // Coerce a missing/non-numeric cap to 0 so the scarcity JSON never
+  // serializes `cap: null` (NaN -> null) and the counter reads as sold out.
+  const cap = Number.isNaN(parsedCap) ? 0 : parsedCap
   return c.json({ sold, cap, monthLabel, reopens: firstOfNextMonthIso() })
 })
 
