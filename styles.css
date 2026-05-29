@@ -1586,6 +1586,97 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
   .lightbox__controls button { min-width: 36px; padding: 6px 10px; font-size: 11px; }
 }
 
+/* ===== Exit-intent newsletter modal ===== */
+.nlmodal {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  animation: lbIn 0.18s ease;
+}
+.nlmodal__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(20, 18, 14, 0.6);
+}
+.nlmodal__card {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 480px;
+  background: var(--paper);
+  border: 1px solid var(--ink);
+  padding: 40px;
+  box-shadow: 0 24px 60px rgba(20, 18, 14, 0.35);
+}
+.nlmodal__card h3 {
+  font-family: var(--display);
+  font-size: 28px;
+  font-weight: 500;
+  font-style: italic;
+  line-height: 1.1;
+  margin-bottom: 10px;
+}
+.nlmodal__card p {
+  font-family: var(--serif);
+  font-size: 16px;
+  color: var(--ink-2);
+  line-height: 1.5;
+  margin-bottom: 20px;
+}
+.nlmodal__card .nlbox__form { border-bottom: 1px solid var(--ink); }
+.nlmodal__close {
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  background: transparent;
+  border: 0;
+  font-size: 18px;
+  line-height: 1;
+  cursor: pointer;
+  color: var(--ink-3);
+  padding: 6px;
+}
+.nlmodal__close:hover { color: var(--ink); }
+
+/* ===== Map newsletter gate ===== */
+.map-gate__body {
+  padding-top: 32px;
+  padding-bottom: 96px;
+  max-width: 640px;
+}
+.map-gate__list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 28px;
+  border-top: 1px solid var(--rule);
+}
+.map-gate__list li {
+  font-family: var(--serif);
+  font-size: 17px;
+  color: var(--ink-2);
+  line-height: 1.5;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--rule);
+}
+.map-gate__form { margin-bottom: 14px; }
+.map-gate__fine {
+  font-family: var(--sans);
+  font-size: 12px;
+  color: var(--ink-3);
+  line-height: 1.55;
+  margin: 0;
+}
+
+@media (max-width: 480px) {
+  .nlmodal { padding: 16px; }
+  .nlmodal__card { padding: 28px 22px; }
+  .nlmodal__card h3 { font-size: 24px; }
+}
+
 /* ===== Responsive ===== */
 @media (max-width: 880px) {
   .hero__grid { grid-template-columns: 1fr; gap: 32px; }

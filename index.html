@@ -14,6 +14,17 @@
     gtag('config', 'G-Y5W91X1XJ5');
   </script>
 
+  <!--
+    Single funnel-event entry point. Every JSX file calls window.track(name, params)
+    for conversion events (newsletter_signup, guide_cta_click, affiliate_click).
+    Guarded so it is a no-op when gtag is blocked (ad blockers) or not yet ready.
+  -->
+  <script>
+    window.track = function (name, params) {
+      try { if (typeof window.gtag === "function") window.gtag("event", name, params || {}); } catch (_e) {}
+    };
+  </script>
+
   <title>The Talus Field — Yosemite, written from inside it</title>
   <meta name="description" content="A field journal of Yosemite National Park, kept by a resident. Trails, planning notes, wildlife, and essays on the park's seasons and life." />
   <meta name="author" content="Cory Goehring" />
@@ -79,7 +90,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Source+Serif+4:ital,opsz,wght@0,8..60,300..700;1,8..60,300..700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
 
-  <link rel="stylesheet" href="/styles.css?v=88" />
+  <link rel="stylesheet" href="/styles.css?v=89" />
 
   <!--
     Preload the home hero's responsive AVIF so its fetch starts during HTML parse,
@@ -242,24 +253,23 @@
     data.js#loadArticleBody when an article is viewed, versioned by
     window.BODY_VERSIONS (see data.js).
   -->
-  <script src="/data.js?v=88"></script>
-  <script type="text/babel" data-presets="react,env" src="/tweaks-panel.jsx?v=88"></script>
-  <script type="text/babel" data-presets="react,env" src="/components.jsx?v=88"></script>
+  <script src="/data.js?v=89"></script>
+  <script type="text/babel" data-presets="react,env" src="/tweaks-panel.jsx?v=89"></script>
+  <script type="text/babel" data-presets="react,env" src="/components.jsx?v=89"></script>
 
-  <script type="text/babel" data-presets="react,env" src="/page-home.jsx?v=88"></script>
-  <script type="text/babel" data-presets="react,env" src="/page-planning-guide.jsx?v=88"></script>
-  <script type="text/babel" data-presets="react,env" src="/page-checklist.jsx?v=88"></script>
-  <script type="text/babel" data-presets="react,env" src="/page-about.jsx?v=88"></script>
-  <script type="text/babel" data-presets="react,env" src="/page-articles.jsx?v=88"></script>
-  <script type="text/babel" data-presets="react,env" src="/page-article.jsx?v=88"></script>
-  <script type="text/babel" data-presets="react,env" src="/page-newsletter-contact.jsx?v=88"></script>
-  <script type="text/babel" data-presets="react,env" src="/page-legal.jsx?v=88"></script>
-  <script type="text/babel" data-presets="react,env" src="/page-kit.jsx?v=88"></script>
-  <script type="text/babel" data-presets="react,env" src="/page-places.jsx?v=88"></script>
-  <script type="text/babel" data-presets="react,env" src="/page-advertise.jsx?v=88"></script>
-  <script type="text/babel" data-presets="react,env" src="/page-guide.jsx?v=88"></script>
-  <script type="text/babel" data-presets="react,env" src="/page-cap.jsx?v=88"></script>
-  <script type="text/babel" data-presets="react,env" src="/page-map.jsx?v=88"></script>
-  <script type="text/babel" data-presets="react,env" src="/app.jsx?v=88"></script>
+  <script type="text/babel" data-presets="react,env" src="/page-home.jsx?v=89"></script>
+  <script type="text/babel" data-presets="react,env" src="/page-planning-guide.jsx?v=89"></script>
+  <script type="text/babel" data-presets="react,env" src="/page-checklist.jsx?v=89"></script>
+  <script type="text/babel" data-presets="react,env" src="/page-about.jsx?v=89"></script>
+  <script type="text/babel" data-presets="react,env" src="/page-articles.jsx?v=89"></script>
+  <script type="text/babel" data-presets="react,env" src="/page-article.jsx?v=89"></script>
+  <script type="text/babel" data-presets="react,env" src="/page-newsletter-contact.jsx?v=89"></script>
+  <script type="text/babel" data-presets="react,env" src="/page-legal.jsx?v=89"></script>
+  <script type="text/babel" data-presets="react,env" src="/page-kit.jsx?v=89"></script>
+  <script type="text/babel" data-presets="react,env" src="/page-places.jsx?v=89"></script>
+  <script type="text/babel" data-presets="react,env" src="/page-advertise.jsx?v=89"></script>
+  <script type="text/babel" data-presets="react,env" src="/page-guide.jsx?v=89"></script>
+  <script type="text/babel" data-presets="react,env" src="/page-map.jsx?v=89"></script>
+  <script type="text/babel" data-presets="react,env" src="/app.jsx?v=89"></script>
 </body>
 </html>

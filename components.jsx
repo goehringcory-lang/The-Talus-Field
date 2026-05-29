@@ -155,7 +155,6 @@ function MotifTrees() {
 function Header({ current, go }) {
   const primaryNavItems = [
     ["articles", "Articles"],
-    ["map", "Map"],
     ["kit", "Kit"],
     ["places", "Directory"],
     ["about", "About"],
@@ -281,7 +280,7 @@ function Footer({ go }) {
               <li><a href="/articles" onClick={(e) => { e.preventDefault(); go("articles"); }}>All articles</a></li>
               <li><a href="/kit" onClick={(e) => { e.preventDefault(); go("kit"); }}>Kit</a></li>
               <li><a href="/places" onClick={(e) => { e.preventDefault(); go("places"); }}>Directory</a></li>
-              <li><a href="/guide" onClick={(e) => { e.preventDefault(); go("guide"); }}>Field Guide</a></li>
+              <li><a href="/guide" onClick={(e) => { e.preventDefault(); window.track && window.track("guide_cta_click", { location: "footer_guide_link" }); go("guide"); }}>Field Guide</a></li>
               <li><a href="/newsletter" onClick={(e) => { e.preventDefault(); go("newsletter"); }}>Newsletter</a></li>
               <li><a href="/contact" onClick={(e) => { e.preventDefault(); go("contact"); }}>Contact</a></li>
             </ul>
@@ -350,9 +349,25 @@ function ArticleCard({ article, go, size }) {
 }
 
 // ============================================================
-// Inline newsletter box
+// Newsletter submit side-effects (shared)
+// Buttondown posts into a named popup window and never reports back to the
+// page, so the conversion event and the local "subscribed" flag fire
+// optimistically on submit. The map and guide gates layer their own unlock
+// on top of this. Exposed on window so page-level forms (map gate, guide,
+// newsletter page) can reuse the exact same behavior.
 // ============================================================
-function NewsletterInline({ heading, blurb }) {
+function trackNewsletterSubmit(location, tag) {
+  if (window.track) window.track("newsletter_signup", { location: location || "unknown", tag: tag || "" });
+  try { window.localStorage.setItem("tfg.nl.subscribed", "1"); } catch (_e) {}
+  window.open("https://buttondown.email/goehring", "popupwindow");
+}
+window.trackNewsletterSubmit = trackNewsletterSubmit;
+
+// ============================================================
+// Inline newsletter box. `location` is the unique GA4 identifier for the
+// placement; `tag` is the Buttondown segmentation tag for that source.
+// ============================================================
+function NewsletterInline({ heading, blurb, location, tag }) {
   return (
     <div className="nlbox">
       <h3>{heading || "Sunday Field Notes"}</h3>
@@ -362,12 +377,105 @@ function NewsletterInline({ heading, blurb }) {
         action="https://buttondown.email/api/emails/embed-subscribe/goehring"
         method="post"
         target="popupwindow"
-        onSubmit={() => window.open("https://buttondown.email/goehring", "popupwindow")}
+        onSubmit={() => trackNewsletterSubmit(location, tag)}
       >
         <input type="email" name="email" placeholder="you@email.com" required />
+        {tag && <input type="hidden" name="tag" value={tag} />}
         <input type="hidden" name="embed" value="1" />
         <button type="submit">Subscribe →</button>
       </form>
+    </div>
+  );
+}
+
+// ============================================================
+// Exit-intent newsletter modal. Article pages mount one of these. It shows at
+// most once per 14 days (tfg.nl.exit.seen) and never once subscribed
+// (tfg.nl.subscribed). Desktop trigger is the cursor leaving toward the
+// browser chrome; touch devices have no exit signal, so they fall back to a
+// scroll-depth + dwell heuristic.
+// ============================================================
+const EXIT_COOLDOWN_DAYS = 14;
+
+function ExitIntentNewsletter() {
+  const [open, setOpen] = useState(false);
+  const firedRef = useRef(false);
+
+  useEffect(() => {
+    let suppressed = false;
+    try {
+      if (window.localStorage.getItem("tfg.nl.subscribed") === "1") suppressed = true;
+      const seen = window.localStorage.getItem("tfg.nl.exit.seen");
+      if (seen) {
+        const ageDays = (Date.now() - new Date(seen).getTime()) / 86400000;
+        if (ageDays < EXIT_COOLDOWN_DAYS) suppressed = true;
+      }
+    } catch (_e) {}
+    if (suppressed) return;
+
+    const reveal = () => {
+      if (firedRef.current) return;
+      firedRef.current = true;
+      try { window.localStorage.setItem("tfg.nl.exit.seen", new Date().toISOString()); } catch (_e) {}
+      setOpen(true);
+    };
+
+    const onMouseOut = (e) => { if (e.clientY <= 0 && !e.relatedTarget) reveal(); };
+
+    const isTouch = window.matchMedia && window.matchMedia("(hover: none)").matches;
+    const mountedAt = Date.now();
+    const onScroll = () => {
+      if (Date.now() - mountedAt < 25000) return;
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      if (max > 0 && window.scrollY / max >= 0.6) reveal();
+    };
+
+    if (isTouch) {
+      window.addEventListener("scroll", onScroll, { passive: true });
+    } else {
+      document.addEventListener("mouseout", onMouseOut);
+    }
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      document.removeEventListener("mouseout", onMouseOut);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e) => { if (e.key === "Escape") setOpen(false); };
+    document.addEventListener("keydown", onKey);
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.removeEventListener("keydown", onKey);
+      document.body.style.overflow = prev;
+    };
+  }, [open]);
+
+  if (!open) return null;
+
+  return (
+    <div className="nlmodal" role="dialog" aria-modal="true" aria-label="Subscribe to Sunday Field Notes">
+      <div className="nlmodal__backdrop" onClick={() => setOpen(false)} />
+      <div className="nlmodal__card">
+        <button type="button" className="nlmodal__close" aria-label="Close" onClick={() => setOpen(false)}>✕</button>
+        <div className="eyebrow eyebrow--moss" style={{ marginBottom: 12 }}>Before you go</div>
+        <h3>One letter a week. Sometimes none.</h3>
+        <p>Sunday Field Notes: what is open, what is blooming, and the occasional longer piece. Free, and you can leave anytime.</p>
+        <form
+          className="nlbox__form"
+          action="https://buttondown.email/api/emails/embed-subscribe/goehring"
+          method="post"
+          target="popupwindow"
+          onSubmit={() => { trackNewsletterSubmit("article_exit_intent", "exit-intent"); setOpen(false); }}
+        >
+          <input type="email" name="email" placeholder="you@email.com" required />
+          <input type="hidden" name="tag" value="exit-intent" />
+          <input type="hidden" name="embed" value="1" />
+          <button type="submit">Subscribe →</button>
+        </form>
+      </div>
     </div>
   );
 }
@@ -535,5 +643,5 @@ Object.assign(window, {
   Placeholder, ResponsiveImage, preloadResponsive,
   SIZES_HERO, SIZES_BODY, SIZES_CARD,
   MotifMountains, MotifSun, MotifTrees,
-  Header, Footer, ArticleCard, NewsletterInline, MapLightbox,
+  Header, Footer, ArticleCard, NewsletterInline, ExitIntentNewsletter, MapLightbox,
 });
