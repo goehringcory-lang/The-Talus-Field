@@ -111,7 +111,7 @@ function Placeholder({ caption, tag, size, style, motif, image, credit, natural,
         />
       )}
       {!image && motif && <div className="placeholder__motif">{motif}</div>}
-      {caption && <div className="placeholder__caption">{caption}</div>}
+      {/* Photo captions removed site-wide; `caption` is kept only to feed the image alt above (accessibility + SEO), not rendered as a visible description. Tag and credit remain. */}
       {credit && <div className="placeholder__credit">{credit}</div>}
     </div>
   );

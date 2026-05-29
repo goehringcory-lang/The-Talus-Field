@@ -361,13 +361,6 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
   margin: 0 0 18px;
   background: var(--paper-3);
 }
-.stop-card__caption {
-  font-family: var(--sans);
-  font-size: 11px;
-  color: var(--ink-3);
-  margin: -10px 0 18px;
-  font-style: italic;
-}
 .stop-card__title {
   font-family: var(--display);
   font-size: clamp(24px, 3vw, 32px);

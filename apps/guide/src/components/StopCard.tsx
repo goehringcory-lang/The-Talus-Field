@@ -45,7 +45,6 @@ export default function StopCard({ stop, compact = true }: Props) {
             height={900}
             style={{ aspectRatio: '4 / 3', objectFit: 'cover' }}
           />
-          {photo.caption && <p className="stop-card__caption">{photo.caption}</p>}
         </>
       ) : (
         <PhotoPlaceholder />
