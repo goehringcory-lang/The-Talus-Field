@@ -1030,23 +1030,6 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
   pointer-events: none;
   box-shadow: 3px 3px 0 0 var(--ink);
 }
-.placeholder__caption {
-  position: absolute;
-  left: 0; right: 0; bottom: 0;
-  z-index: 3;
-  font-family: var(--serif);
-  font-style: italic;
-  font-size: 13px;
-  line-height: 1.35;
-  color: var(--ink);
-  background: color-mix(in oklab, var(--paper) 92%, transparent);
-  padding: 10px 16px;
-  border-top: 1px solid var(--ink);
-  letter-spacing: 0;
-  margin: 0;
-}
-.placeholder--lg .placeholder__caption { font-size: 14px; padding: 12px 20px; }
-.placeholder--sm .placeholder__caption { font-size: 12px; padding: 8px 12px; }
 .placeholder__motif {
   position: absolute;
   inset: 0;
@@ -1080,14 +1063,10 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
   /* let the photo carry texture; drop the cross-hatch */
   background: var(--ink);
 }
-.placeholder--photo .placeholder__caption {
-  background: color-mix(in oklab, var(--paper) 88%, transparent);
-  backdrop-filter: blur(4px);
-}
 .placeholder__credit {
   position: absolute;
   left: 14px;
-  bottom: 56px;
+  bottom: 14px;
   z-index: 3;
   font-family: var(--sans);
   font-size: 9px;
@@ -1099,8 +1078,8 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
   pointer-events: none;
   max-width: calc(100% - 28px);
 }
-.placeholder--lg .placeholder__credit { bottom: 62px; }
-.placeholder--sm .placeholder__credit { bottom: 48px; font-size: 8px; padding: 3px 6px; }
+.placeholder--lg .placeholder__credit { bottom: 16px; }
+.placeholder--sm .placeholder__credit { bottom: 10px; font-size: 8px; padding: 3px 6px; }
 
 /* Natural mode: the photo dictates the container's aspect ratio so the
    entire image is visible (no cropping). Used for hero plates where we
@@ -1816,8 +1795,7 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
   [style*="repeat(4"] > a { padding: 18px !important; }
   [style*="repeat(4"] > a > div[style*="font-size: 26px"] { font-size: 20px !important; }
 
-  /* On mobile, hide photo overlays so they never block the image. */
-  .placeholder__caption { display: none; }
+  /* On mobile, hide the credit overlay so it never blocks the image. */
   .placeholder__credit { display: none; }
   .placeholder::after { display: none; }
 
