@@ -1415,6 +1415,36 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
 }
 .nlbox__form button:hover { color: var(--moss); }
 
+/* Slim variant. Lighter in-flow treatment for the mid-article nudge so it does
+   not read as a repeat of the heavier end-of-article block. No border box, no
+   Dispatch tab, a left rule instead. */
+.nlbox--slim {
+  border: 0;
+  border-left: 3px solid var(--moss);
+  background: transparent;
+  padding: 4px 0 4px 22px;
+  margin: 40px 0;
+}
+.nlbox--slim::before { content: none; }
+.nlbox--slim h3 { font-size: 21px; margin-bottom: 4px; }
+.nlbox--slim p { font-size: 15px; margin-bottom: 14px; }
+
+/* Combined newsletter + map block. Keeps the full .nlbox shell (the strong end
+   treatment) and advertises the map on the tab and via a secondary link. */
+.nlbox--map::before { content: "Free map"; }
+.nlbox__map-link {
+  font-family: var(--sans);
+  font-size: 13px;
+  color: var(--ink-3);
+  margin: 14px 0 0;
+}
+.nlbox__map-link a {
+  color: var(--moss);
+  font-weight: 700;
+  text-decoration: none;
+}
+.nlbox__map-link a:hover { text-decoration: underline; }
+
 /* ===== Hero (front-page lede) ===== */
 .hero {
   padding: 56px 0 48px;
@@ -1758,6 +1788,9 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
   .nlbox__form { flex-wrap: wrap; gap: 4px; }
   .nlbox__form input { width: 100%; font-size: 16px; padding: 10px 0; }
   .nlbox__form button { width: 100%; text-align: left; padding: 10px 0; }
+  /* Keep the slim variant slim (the generic .nlbox padding above would re-box it). */
+  .nlbox--slim { padding: 2px 0 2px 16px; margin: 28px 0; }
+  .nlbox--slim h3 { font-size: 20px; }
 
   /* Forms. Bump font to 16px to stop iOS zoom on focus. */
   .field input, .field textarea, .field select { font-size: 16px; }

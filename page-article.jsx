@@ -1,4 +1,4 @@
-/* global React, ReactDOM, Placeholder, NewsletterInline, ExitIntentNewsletter, ArticleCard, MotifMountains, preloadResponsive, SIZES_HERO */
+/* global React, ReactDOM, Placeholder, NewsletterInline, NewsletterMapBlock, ExitIntentNewsletter, ArticleCard, MotifMountains, preloadResponsive, SIZES_HERO */
 
 function ArticlePage({ slug, go }) {
   const article = window.findArticle(slug);
@@ -152,6 +152,7 @@ function ArticlePage({ slug, go }) {
 
           {midHost && ReactDOM.createPortal(
             <NewsletterInline
+              variant="slim"
               location="article_mid"
               tag="article-mid"
               heading="Keep reading next week"
@@ -160,31 +161,10 @@ function ArticlePage({ slug, go }) {
             midHost
           )}
 
-          {/* Map CTA. Points readers at the gated interactive map. */}
-          <a
-            href="/map"
-            onClick={(e) => { e.preventDefault(); go("map"); }}
-            style={{
-              display: "block", textDecoration: "none", color: "inherit",
-              border: "1px solid var(--ink)", padding: "24px 28px", marginTop: 40,
-            }}
-          >
-            <div className="eyebrow eyebrow--moss" style={{ marginBottom: 8 }}>The Map · Free</div>
-            <div style={{ fontFamily: "var(--display)", fontSize: 24, fontWeight: 500, lineHeight: 1.15, marginBottom: 6 }}>
-              Plan it on the interactive map.
-            </div>
-            <p style={{ fontFamily: "var(--serif)", fontSize: 16, color: "var(--ink-2)", lineHeight: 1.5, margin: 0 }}>
-              Every vista, trailhead, parking turnout, and meal worth the stop, on one map. Free with a newsletter signup.
-            </p>
-            <div className="mono" style={{ color: "var(--moss)", fontWeight: 700, fontSize: 11, textTransform: "uppercase", letterSpacing: "0.18em", marginTop: 12 }}>Open the map →</div>
-          </a>
-
-          <NewsletterInline
-            location="article_end"
-            tag="article-end"
-            heading="Sunday Field Notes"
-            blurb="One letter a week. If you found this useful, you'll probably like the rest."
-          />
+          {/* Combined end block. The map gate is itself a newsletter signup, so
+              the newsletter ask and the map ask are one unit here rather than two
+              stacked boxes. Submitting subscribes and unlocks the map together. */}
+          <NewsletterMapBlock go={go} location="article_end" tag="article-end" />
         </div>
       </article>
 

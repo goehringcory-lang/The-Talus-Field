@@ -366,10 +366,14 @@ window.trackNewsletterSubmit = trackNewsletterSubmit;
 // ============================================================
 // Inline newsletter box. `location` is the unique GA4 identifier for the
 // placement; `tag` is the Buttondown segmentation tag for that source.
+// `variant="slim"` is the lighter in-flow treatment used mid-article so it
+// does not read as a repeat of the heavier end-of-article block; the default
+// "box" keeps the full bordered Dispatch box used on the home strip, guide
+// footer, and elsewhere.
 // ============================================================
-function NewsletterInline({ heading, blurb, location, tag }) {
+function NewsletterInline({ heading, blurb, location, tag, variant }) {
   return (
-    <div className="nlbox">
+    <div className={variant === "slim" ? "nlbox nlbox--slim" : "nlbox"}>
       <h3>{heading || "Sunday Field Notes"}</h3>
       <p>{blurb || "A short note on Sundays, when there is something to say."}</p>
       <form
@@ -384,6 +388,46 @@ function NewsletterInline({ heading, blurb, location, tag }) {
         <input type="hidden" name="embed" value="1" />
         <button type="submit">Subscribe →</button>
       </form>
+    </div>
+  );
+}
+
+// ============================================================
+// Combined newsletter + map block. Used at the end of articles. The map gate
+// is itself a newsletter signup, so rather than stack a map CTA on top of a
+// newsletter box (the same ask twice), this is one unit: subscribing puts the
+// reader on the list and unlocks the interactive map in the same submit. It
+// reuses the full .nlbox shell so it reads as the strong end block, distinct
+// from the slim mid-article nudge. Like the guide gate, the unlock fires
+// optimistically since Buttondown posts into a popup with no callback.
+// ============================================================
+function NewsletterMapBlock({ go, location, tag, heading, blurb }) {
+  return (
+    <div className="nlbox nlbox--map">
+      <h3>{heading || "The newsletter and the map"}</h3>
+      <p>
+        {blurb ||
+          "One signup. Sunday Field Notes in your inbox, and the interactive map unlocked right now: every vista, trailhead, parking turnout, and meal worth the stop, on one map."}
+      </p>
+      <form
+        className="nlbox__form"
+        action="https://buttondown.email/api/emails/embed-subscribe/goehring"
+        method="post"
+        target="popupwindow"
+        onSubmit={() => {
+          trackNewsletterSubmit(location || "article_end", tag || "article-end");
+          try { window.localStorage.setItem("tfg.map.unlocked", "1"); } catch (_e) {}
+        }}
+      >
+        <input type="email" name="email" placeholder="you@email.com" required />
+        <input type="hidden" name="tag" value={tag || "article-end"} />
+        <input type="hidden" name="embed" value="1" />
+        <button type="submit">Subscribe and open the map →</button>
+      </form>
+      <p className="nlbox__map-link">
+        Already subscribed?{" "}
+        <a href="/map" onClick={(e) => { e.preventDefault(); if (go) go("map"); }}>Open the map →</a>
+      </p>
     </div>
   );
 }
@@ -643,5 +687,5 @@ Object.assign(window, {
   Placeholder, ResponsiveImage, preloadResponsive,
   SIZES_HERO, SIZES_BODY, SIZES_CARD,
   MotifMountains, MotifSun, MotifTrees,
-  Header, Footer, ArticleCard, NewsletterInline, ExitIntentNewsletter, MapLightbox,
+  Header, Footer, ArticleCard, NewsletterInline, NewsletterMapBlock, ExitIntentNewsletter, MapLightbox,
 });
