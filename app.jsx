@@ -231,10 +231,10 @@ function buildSeo(route) {
       "@type": "ItemList",
       name: list.title,
       description: list.summary,
-      numberOfItems: list.items.length,
+      numberOfItems: list.allItems.length,
       itemListOrder: "https://schema.org/ItemListOrderAscending",
       url: `${SITE_ORIGIN}/kit#${list.slug}`,
-      itemListElement: list.items.map((it, i) => ({
+      itemListElement: list.allItems.map((it, i) => ({
         "@type": "ListItem",
         position: i + 1,
         name: it.name,
@@ -242,9 +242,9 @@ function buildSeo(route) {
       })),
     }));
     return {
-      title: `Kit: What I carry in Yosemite — ${SITE_NAME}`,
+      title: `Packing checklists for Yosemite — ${SITE_NAME}`,
       description:
-        "Three gear lists for Yosemite: a day pack, an overnight pack, and a car kit. The actual items, each with the reasoning behind it.",
+        "Three Yosemite packing checklists to tick off as you plan: a day pack, what an overnight adds, and the full car load. The small, easily forgotten things included.",
       canonical: url,
       ogType: "website",
       image: SITE_DEFAULT_IMAGE,
