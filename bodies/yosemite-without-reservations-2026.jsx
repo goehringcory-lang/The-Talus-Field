@@ -1,4 +1,4 @@
-/* global React, NewsletterInline */
+/* global React */
 
 window.ARTICLE_BODIES = window.ARTICLE_BODIES || {};
 
@@ -36,13 +36,6 @@ window.ARTICLE_BODIES["yosemite-without-reservations-2026"] = function YosemiteW
         <li>The southern and western corners. Wawona, Mariposa Grove off-peak, and Hetch Hetchy are fundamentally less-crowded zones.</li>
         <li>Any place more than a mile off the road. Crowds in Yosemite are crowds at the parking lot. They thin dramatically with distance.</li>
       </ul>
-
-      <div style={{ margin: "48px 0" }}>
-        <NewsletterInline
-          heading="Sunday Field Notes"
-          blurb="One Yosemite email a week, when there is something to say. Free."
-        />
-      </div>
 
       <h2>The toolkit: three levers you actually have</h2>
       <p>You can't book your way to a quiet Yosemite in 2026. You can use three levers instead.</p>

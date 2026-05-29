@@ -1,4 +1,4 @@
-/* global React, NewsletterInline */
+/* global React */
 
 window.ARTICLE_BODIES = window.ARTICLE_BODIES || {};
 
@@ -44,13 +44,6 @@ window.ARTICLE_BODIES["mist-trail-the-real-guide"] = function MistTrailBody() {
       <p>
         Past the top of Nevada Fall, this trail is also the standard approach to Half Dome. If that's your goal, read the <a href="/articles/half-dome-permit-lottery-2026">permit lottery guide</a> first, and <a href="/articles/so-you-want-to-hike-half-dome">the honest case for the cables</a> before you commit.
       </p>
-
-      <div style={{ margin: "48px 0" }}>
-        <NewsletterInline
-          heading="Sunday Field Notes"
-          blurb="One Yosemite email a week, when there is something to say. Free."
-        />
-      </div>
 
       <h2>The wet granite reality</h2>
 

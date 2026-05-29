@@ -1,4 +1,4 @@
-/* global React, NewsletterInline */
+/* global React */
 
 window.ARTICLE_BODIES = window.ARTICLE_BODIES || {};
 
@@ -35,13 +35,6 @@ window.ARTICLE_BODIES["yosemite-gateway-towns-compared"] = function YosemiteGate
       </p>
 
       <p>Now the towns themselves.</p>
-
-      <div style={{ margin: "48px 0" }}>
-        <NewsletterInline
-          heading="Sunday Field Notes"
-          blurb="One Yosemite email a week, when there is something to say. Free."
-        />
-      </div>
 
       <h2>El Portal</h2>
 
