@@ -1,4 +1,4 @@
-/* global React, Placeholder, NewsletterInline, ArticleCard, MotifMountains, preloadResponsive, SIZES_HERO */
+/* global React, ReactDOM, Placeholder, NewsletterInline, ExitIntentNewsletter, ArticleCard, MotifMountains, preloadResponsive, SIZES_HERO */
 
 function ArticlePage({ slug, go }) {
   const article = window.findArticle(slug);
@@ -10,6 +10,12 @@ function ArticlePage({ slug, go }) {
   const [bodyState, setBodyState] = React.useState(
     () => ((window.ARTICLE_BODIES || {})[slug] ? "ready" : "loading")
   );
+
+  // Mid-article newsletter unit lives in a DOM node injected into the rendered
+  // body (see effect below); proseRef locates the body, midHost is the portal
+  // target once it exists.
+  const proseRef = React.useRef(null);
+  const [midHost, setMidHost] = React.useState(null);
 
   React.useEffect(() => {
     let cancelled = false;
@@ -37,6 +43,40 @@ function ArticlePage({ slug, go }) {
   React.useEffect(() => {
     if (article && article.image) preloadResponsive(article.image, SIZES_HERO);
   }, [slug]);
+
+  // Inject a mid-article newsletter unit. Article bodies are opaque <Body/>
+  // fragments; once "ready" their block-level elements are direct children of
+  // .prose, so we insert a host node after the middle block and portal the unit
+  // into it. The data-nl-mid guard plus teardown on slug/body change keep it
+  // idempotent across SPA article-to-article navigation. Short articles (fewer
+  // than 8 blocks) skip it so they are not interrupted and so mid and end units
+  // never collide.
+  React.useEffect(() => {
+    setMidHost(null);
+    if (bodyState !== "ready") return;
+    let host = null;
+    const raf = requestAnimationFrame(() => {
+      const prose = proseRef.current;
+      if (!prose || prose.querySelector("[data-nl-mid]")) return;
+      const blocks = Array.from(prose.children).filter(
+        (el) => !el.classList.contains("statblock") && !el.hasAttribute("data-nl-mid")
+      );
+      if (blocks.length < 8) return;
+      const anchor = blocks[Math.floor(blocks.length / 2)];
+      if (!anchor) return;
+      host = document.createElement("div");
+      host.setAttribute("data-nl-mid", "1");
+      anchor.insertAdjacentElement("afterend", host);
+      setMidHost(host);
+    });
+    // Remove the injected host on slug/body change before React re-renders the
+    // body, so the foreign node never interleaves with reconciliation and no
+    // empty host is orphaned into the next article.
+    return () => {
+      cancelAnimationFrame(raf);
+      if (host && host.parentNode) host.parentNode.removeChild(host);
+    };
+  }, [bodyState, slug, Body]);
 
   if (!article) return <div className="wrap" style={{ padding: 80 }}>Not found.</div>;
   const cat = window.findCategory(article.cat);
@@ -92,7 +132,7 @@ function ArticlePage({ slug, go }) {
 
         {/* Body */}
         <div className="wrap wrap--read">
-          <div className="prose">
+          <div className="prose" ref={proseRef}>
             {article.cat === "planning" && (
               <div className="statblock">
                 <div className="statblock__item"><span className="label">Best for</span><span className="val">First visits</span></div>
@@ -110,7 +150,38 @@ function ArticlePage({ slug, go }) {
             )}
           </div>
 
+          {midHost && ReactDOM.createPortal(
+            <NewsletterInline
+              location="article_mid"
+              tag="article-mid"
+              heading="Keep reading next week"
+              blurb="Sunday Field Notes: one short letter, only when there is something worth saying."
+            />,
+            midHost
+          )}
+
+          {/* Map CTA. Points readers at the gated interactive map. */}
+          <a
+            href="/map"
+            onClick={(e) => { e.preventDefault(); go("map"); }}
+            style={{
+              display: "block", textDecoration: "none", color: "inherit",
+              border: "1px solid var(--ink)", padding: "24px 28px", marginTop: 40,
+            }}
+          >
+            <div className="eyebrow eyebrow--moss" style={{ marginBottom: 8 }}>The Map · Free</div>
+            <div style={{ fontFamily: "var(--display)", fontSize: 24, fontWeight: 500, lineHeight: 1.15, marginBottom: 6 }}>
+              Plan it on the interactive map.
+            </div>
+            <p style={{ fontFamily: "var(--serif)", fontSize: 16, color: "var(--ink-2)", lineHeight: 1.5, margin: 0 }}>
+              Every vista, trailhead, parking turnout, and meal worth the stop, on one map. Free with a newsletter signup.
+            </p>
+            <div className="mono" style={{ color: "var(--moss)", fontWeight: 700, fontSize: 11, textTransform: "uppercase", letterSpacing: "0.18em", marginTop: 12 }}>Open the map →</div>
+          </a>
+
           <NewsletterInline
+            location="article_end"
+            tag="article-end"
             heading="Sunday Field Notes"
             blurb="One letter a week. If you found this useful, you'll probably like the rest."
           />
@@ -129,6 +200,8 @@ function ArticlePage({ slug, go }) {
           </div>
         </section>
       )}
+
+      <ExitIntentNewsletter />
     </div>
   );
 }

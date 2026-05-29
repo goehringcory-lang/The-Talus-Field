@@ -18,6 +18,18 @@ const STORAGE_VERSION = 1;
 const TRIP_CAP = 20;
 const TRIP_PIN_COLOR = "#7a8f5a"; // moss — matches --moss CSS var on the rail
 
+// Newsletter gate. The map is a free lead magnet: one Buttondown signup flips
+// this localStorage flag and reveals the map. Bypassable by design. Fails OPEN
+// when storage is unavailable (private mode) so the gate can never permanently
+// trap a reader who cannot persist the flag.
+const MAP_UNLOCK_KEY = "tfg.map.unlocked";
+function isMapUnlocked() {
+  try { return window.localStorage.getItem(MAP_UNLOCK_KEY) === "1"; } catch (_e) { return true; }
+}
+function setMapUnlocked() {
+  try { window.localStorage.setItem(MAP_UNLOCK_KEY, "1"); } catch (_e) {}
+}
+
 // Four-bucket region taxonomy. `keys` lists the geojson `region` values that
 // roll up into this UI group; "tuolumne-area" intentionally folds in Hetch
 // Hetchy so the high country reads as a single section.
@@ -110,7 +122,7 @@ function saveTripToStorage(ids) {
 
 // ---------------------------------------------------------------------------
 // Polls window.google.maps for up to 8s. The script in index.html loads
-// async, so the namespace may not exist yet when MapPage mounts.
+// async, so the namespace may not exist yet when MapView mounts.
 // ---------------------------------------------------------------------------
 function waitForGoogleMaps(timeoutMs = 8000) {
   return new Promise((resolve, reject) => {
@@ -150,7 +162,7 @@ function buildPinElement(markerLib, { background, glyphText }) {
   });
 }
 
-function MapPage() {
+function MapView() {
   const containerRef = useRef(null);
   const mapRef = useRef(null);
   const markerLibRef = useRef(null);
@@ -1078,6 +1090,61 @@ function escapeHtml(s) {
     .replace(/>/g, "&gt;")
     .replace(/"/g, "&quot;")
     .replace(/'/g, "&#39;");
+}
+
+// ---------------------------------------------------------------------------
+// Newsletter gate wrapper. Renders the gate until the reader signs up, then the
+// real map. Exported as MapPage so app.jsx's /map route and the page's
+// robots:noindex stay untouched. The signup also satisfies the shared
+// "subscribed" flag (via trackNewsletterSubmit), suppressing the exit-intent
+// modal elsewhere.
+// ---------------------------------------------------------------------------
+function MapGate({ onUnlock }) {
+  return (
+    <div className="page map-gate">
+      <section className="page-head">
+        <div className="wrap wrap--narrow">
+          <div className="eyebrow eyebrow--moss">The Map · Free</div>
+          <h1>Yosemite, on one interactive map.</h1>
+          <p className="page-head__dek">
+            Every vista, trailhead, parking turnout, and meal worth the stop, on a map you can build a trip from. Drop your email and it opens. Free.
+          </p>
+        </div>
+      </section>
+
+      <div className="wrap wrap--narrow map-gate__body">
+        <ul className="map-gate__list">
+          <li>Tap pins to build a one, two, or three day route.</li>
+          <li>Vistas, trailheads, parking turnouts, picnic spots, and places to eat.</li>
+          <li>Your trip saves on this device, so it is there when you come back.</li>
+        </ul>
+        <form
+          className="nlbox__form map-gate__form"
+          action="https://buttondown.email/api/emails/embed-subscribe/goehring"
+          method="post"
+          target="popupwindow"
+          onSubmit={() => {
+            if (window.trackNewsletterSubmit) window.trackNewsletterSubmit("map_gate", "map-gate");
+            else window.open("https://buttondown.email/goehring", "popupwindow");
+            setMapUnlocked();
+            onUnlock();
+          }}
+        >
+          <input type="email" name="email" placeholder="you@email.com" required />
+          <input type="hidden" name="tag" value="map-gate" />
+          <input type="hidden" name="embed" value="1" />
+          <button type="submit">Open the map →</button>
+        </form>
+        <p className="map-gate__fine">No spam. One short letter on Sundays, when there is something to say.</p>
+      </div>
+    </div>
+  );
+}
+
+function MapPage(props) {
+  const [unlocked, setUnlocked] = useState(() => isMapUnlocked());
+  if (!unlocked) return <MapGate onUnlock={() => setUnlocked(true)} />;
+  return <MapView {...props} />;
 }
 
 window.MapPage = MapPage;

@@ -231,11 +231,6 @@ function seoForPath(pathname) {
       description:
         "An offline web app for Yosemite. Tappable GPS for the parking turnouts, quiet trailheads, and insider tactics that locals use. Works at the trailhead when service dies.",
     },
-    "/cap": {
-      title: `Why the Field Guide is capped at 100 a month — ${SITE_NAME}`,
-      description:
-        "The reasoning behind a hard monthly cap on Field Guide sales. Carrying capacity, editorial integrity, and why the cart closes when it closes.",
-    },
     "/map": {
       // Hidden preview. URL-only access while the feature is being tested.
       // robots:noindex keeps it out of search even if someone shares the URL.
