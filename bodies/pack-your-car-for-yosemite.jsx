@@ -1,4 +1,4 @@
-/* global React, NewsletterInline */
+/* global React */
 
 window.ARTICLE_BODIES = window.ARTICLE_BODIES || {};
 
@@ -34,13 +34,6 @@ window.ARTICLE_BODIES["pack-your-car-for-yosemite"] = function PackYourCarForYos
       <p>
         The discipline that matters most: keep the cooler in the shade, in the trunk, lid closed. A cooler that stays shut and stays out of direct sun will hold ice for three to four days in Yosemite's summer. One that gets opened every thirty minutes and sits in the back seat in July lasts about eight hours. Every time you open it, you're letting the cold out and the clock starts over.
       </p>
-
-      <div style={{ margin: "48px 0" }}>
-        <NewsletterInline
-          heading="Sunday Field Notes"
-          blurb="One Yosemite email a week, when there is something to say. Free."
-        />
-      </div>
 
       <h2>A real water setup</h2>
 

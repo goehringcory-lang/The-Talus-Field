@@ -1,4 +1,4 @@
-/* global React, NewsletterInline */
+/* global React */
 
 window.ARTICLE_BODIES = window.ARTICLE_BODIES || {};
 
@@ -70,13 +70,6 @@ window.ARTICLE_BODIES["yosemite-needs-a-reservation-system"] = function Yosemite
       <p>
         This is the second failure. The Organic Act does not say "conserve the scenery unless the parking lot is full." It says conserve. Period. And the condition on enjoyment, that it must leave the park "unimpaired for the enjoyment of future generations," means that when overcrowding causes direct, physical damage to the resource, the park is violating its own founding mandate. Cars on meadows is not a parking problem. It is a conservation failure.
       </p>
-
-      <div style={{ margin: "48px 0" }}>
-        <NewsletterInline
-          heading="Sunday Field Notes"
-          blurb="One Yosemite email a week, when there is something to say. Free."
-        />
-      </div>
 
       <h2>The data we already had</h2>
 
