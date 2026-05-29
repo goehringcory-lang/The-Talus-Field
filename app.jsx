@@ -605,3 +605,8 @@ window.routeToPath = routeToPath;
 window.SITE_ORIGIN = SITE_ORIGIN;
 
 ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+
+// The static SEO <h1> in index.html exists for non-JS HTML parsers. Now that
+// React is mounting its own per-route <h1>, remove it so JS-rendering crawlers
+// (Google) and JS users see exactly one H1 per page.
+document.getElementById("seo-static-h1")?.remove();
