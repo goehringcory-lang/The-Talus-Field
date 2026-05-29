@@ -7,9 +7,16 @@ function NewsletterPage({ go }) {
       <div className="wrap wrap--narrow" style={{ paddingTop: 96, paddingBottom: 96 }}>
         <div className="eyebrow eyebrow--moss">Newsletter</div>
         <h1 style={{ marginTop: 16, marginBottom: 24 }}>Sunday Field Notes.</h1>
-        <p style={{ fontSize: 22, color: "var(--ink-2)", lineHeight: 1.5, marginBottom: 40, fontFamily: "var(--display)", fontStyle: "italic" }}>
+        <p style={{ fontSize: 22, color: "var(--ink-2)", lineHeight: 1.5, marginBottom: 32, fontFamily: "var(--display)", fontStyle: "italic" }}>
           A short note on Sundays, when there is something to say. Subscribing is free.
         </p>
+
+        <div style={{ border: "1px solid var(--moss)", background: "var(--paper-2)", padding: "20px 24px", marginBottom: 40 }}>
+          <div className="eyebrow eyebrow--moss" style={{ marginBottom: 8 }}>Free for subscribers</div>
+          <p style={{ fontFamily: "var(--serif)", fontSize: 17, lineHeight: 1.6, color: "var(--ink)", margin: 0 }}>
+            Sign up and get the free map planner: a printable Yosemite map for blocking out where to go and when, with parking turnouts, the major stops, and room to mark your own. It lands in your inbox the moment you confirm.
+          </p>
+        </div>
 
         <form
           action="https://buttondown.email/api/emails/embed-subscribe/goehring"

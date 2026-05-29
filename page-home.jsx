@@ -49,7 +49,7 @@ function HomePage({ go }) {
                 Free checklist
               </a>
               <a className="btn btn--ghost" href="/newsletter" onClick={(e) => { e.preventDefault(); go("newsletter"); }}>
-                Sunday Field Notes
+                Sunday Field Notes / Free Map Planner
               </a>
             </div>
           </div>
