@@ -10,7 +10,7 @@
   --paper-3: #d8c89e;
   --ink: #14110c;
   --ink-2: #36291c;
-  --ink-3: #6e5c43;
+  --ink-3: #50402e;      /* lifted from #6e5c43 → ~7:1 on --paper */
   --rule: #2a2118;
   --rule-soft: #c1ad84;
   --moss: #7a2a10;
@@ -33,7 +33,7 @@
   --paper-3: #cfc9b3;
   --ink: #14140f;
   --ink-2: #2f2f29;
-  --ink-3: #5e5e54;
+  --ink-3: #484840;
   --rule: #1c1c17;
   --rule-soft: #b9b39d;
   --moss: #243a26;
@@ -48,7 +48,7 @@
   --paper-3: #bfc6c0;
   --ink: #0c1014;
   --ink-2: #232a32;
-  --ink-3: #50596a;
+  --ink-3: #3d4a58;
   --rule: #11161c;
   --rule-soft: #a8b0b3;
   --moss: #1a2c40;
@@ -196,13 +196,14 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
 /* GPS chip — tappable coordinate that opens native Maps */
 .gps-chip {
   display: inline-flex;
-  align-items: baseline;
+  align-items: center;
   gap: 6px;
   font-family: var(--mono);
   font-size: 11px;
   letter-spacing: 0.04em;
   text-transform: uppercase;
-  padding: 6px 10px;
+  padding: 10px 12px;
+  min-height: 44px;
   border: 1px solid var(--rule);
   color: var(--ink);
   text-decoration: none;
@@ -454,4 +455,195 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
   margin-top: 56px;
   padding-top: 18px;
   border-top: 1px solid var(--rule-soft);
+}
+
+/* ===== Global tap feedback ===== */
+
+button:focus-visible,
+a:focus-visible {
+  outline: 2px solid var(--moss);
+  outline-offset: 3px;
+  border-radius: 1px;
+}
+
+button:active:not(:disabled),
+a:active {
+  opacity: 0.72;
+}
+
+/* ===== Loading spinner ===== */
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.spinner {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border: 2px solid currentColor;
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  flex-shrink: 0;
+}
+
+/* ===== Bottom tab bar ===== */
+
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  display: flex;
+  background: color-mix(in oklab, var(--paper) 94%, transparent);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-top: 1px solid var(--rule-soft);
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+.bottom-nav__tab {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  min-height: 56px;
+  padding: 8px 4px;
+  font-family: var(--sans);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  text-decoration: none;
+  transition: color 100ms;
+}
+
+.bottom-nav__tab[aria-current='page'] {
+  color: var(--moss);
+}
+
+.bottom-nav__tab:hover {
+  color: var(--ink-2);
+  text-decoration: none;
+}
+
+.bottom-nav__icon {
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+}
+
+/* Offset content so it isn't hidden behind the bottom nav */
+.bottom-nav-offset {
+  padding-bottom: calc(56px + env(safe-area-inset-bottom));
+}
+
+/* Gated chrome links become secondary to bottom nav on small screens */
+@media (max-width: 640px) {
+  .gated-chrome {
+    display: none;
+  }
+}
+
+/* ===== Sticky Prev/Next on stop detail ===== */
+
+@media (max-width: 640px) {
+  .stop-prevnext {
+    position: sticky;
+    bottom: calc(56px + env(safe-area-inset-bottom) + 8px);
+    background: color-mix(in oklab, var(--paper) 95%, transparent);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    padding-top: 16px;
+    padding-bottom: 16px;
+    margin-top: 48px;
+    z-index: 10;
+  }
+}
+
+/* ===== Mobile legibility ===== */
+
+@media (max-width: 480px) {
+  .eyebrow { font-size: 12px; letter-spacing: 0.18em; }
+  .mono    { font-size: 13px; }
+}
+
+/* ===== Input focus-visible ===== */
+
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--moss);
+  outline-offset: 2px;
+  border-radius: 1px;
+}
+
+/* ============================================================
+   Dark mode — default light is best in direct sun; dark honors
+   system preference for low-light / OLED battery savings.
+   ============================================================ */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper:     #1c1812;
+    --paper-2:   #252019;
+    --paper-3:   #302a1e;
+    --ink:       #f0e8d8;
+    --ink-2:     #c8b898;
+    --ink-3:     #a09070;
+    --rule:      #c0a87e;
+    --rule-soft: #3a3022;
+    --moss:      #d87040;
+    --moss-2:    #e07850;
+    --rust:      #d87040;
+    --gold:      #c09038;
+  }
+
+  [data-palette="granite"] {
+    --paper:     #1a1a15;
+    --paper-2:   #222220;
+    --paper-3:   #2c2c28;
+    --ink:       #ebebe0;
+    --ink-2:     #c5c5b8;
+    --ink-3:     #929280;
+    --rule:      #b0b0a0;
+    --rule-soft: #303028;
+    --moss:      #507850;
+    --moss-2:    #688a68;
+    --rust:      #a05830;
+    --gold:      #a89030;
+  }
+
+  [data-palette="sierra"] {
+    --paper:     #141820;
+    --paper-2:   #1c2030;
+    --paper-3:   #242a3e;
+    --ink:       #dde6f0;
+    --ink-2:     #b8c8d8;
+    --ink-3:     #8a9ab0;
+    --rule:      #a0b8d0;
+    --rule-soft: #283040;
+    --moss:      #4a7090;
+    --moss-2:    #6090b0;
+    --rust:      #8a5a38;
+    --gold:      #9a8030;
+  }
+}
+
+/* ============================================================
+   Reduced motion — disable all transitions / animations.
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

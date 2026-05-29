@@ -14,6 +14,10 @@ export async function sendMagicLink(
   env: Env,
   args: { to: string; magicLink: string; code: string },
 ): Promise<void> {
+  if (!env.RESEND_API_KEY) {
+    throw new Error('RESEND_API_KEY not configured')
+  }
+
   const { to, magicLink, code } = args
 
   const text = [

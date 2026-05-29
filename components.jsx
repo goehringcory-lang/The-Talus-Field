@@ -2,11 +2,99 @@
 const { useState, useEffect, useMemo, useRef } = React;
 
 // ============================================================
+// Responsive images. Variants are pre-generated offline by
+// scripts/gen-responsive-images.mjs into a sibling responsive/ folder
+// (AVIF + WebP + JPEG at 400/800/1200/1600). This helper derives the
+// URLs from the original image path with no manifest — keep slugify()
+// in sync with the script. External URLs (webcams, Unsplash) have no
+// variants and fall back to a plain <img>.
+// ============================================================
+const RESPONSIVE_WIDTHS = [400, 800, 1200, 1600];
+// sizes presets for the three image contexts on the site.
+const SIZES_HERO = "(max-width: 700px) 100vw, 700px";
+const SIZES_BODY = SIZES_HERO;
+const SIZES_CARD = "(max-width: 700px) 100vw, (max-width: 1100px) 50vw, 360px";
+
+function slugifyImage(image) {
+  const base = String(image).split("/").pop() || "";
+  return base
+    .toLowerCase()
+    .replace(/\.[^.]+$/, "")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+}
+
+function ResponsiveImage({ image, alt, sizes, widths, eager, className, style }) {
+  const isExternal = /^https?:/i.test(image);
+  const loadProps = {
+    loading: eager ? "eager" : "lazy",
+    fetchpriority: eager ? "high" : "auto",
+    decoding: eager ? "sync" : "async",
+    referrerPolicy: "no-referrer",
+  };
+
+  if (isExternal) {
+    return (
+      <img className={className} src={image} alt={alt || ""} style={style} {...loadProps} />
+    );
+  }
+
+  const cleaned = image.replace(/^\//, "");
+  const lastSlash = cleaned.lastIndexOf("/");
+  const dir = lastSlash >= 0 ? cleaned.slice(0, lastSlash) : "";
+  const respBase = `/${dir ? dir + "/" : ""}responsive/${slugifyImage(cleaned)}`;
+  const ws = widths || RESPONSIVE_WIDTHS;
+  const srcSet = (ext) => ws.map((w) => `${respBase}-${w}.${ext} ${w}w`).join(", ");
+  const sizesAttr = sizes || SIZES_HERO;
+
+  return (
+    <picture>
+      <source type="image/avif" srcSet={srcSet("avif")} sizes={sizesAttr} />
+      <source type="image/webp" srcSet={srcSet("webp")} sizes={sizesAttr} />
+      <img
+        className={className}
+        src={`/${cleaned}`}
+        srcSet={srcSet("jpg")}
+        sizes={sizesAttr}
+        alt={alt || ""}
+        style={style}
+        {...loadProps}
+      />
+    </picture>
+  );
+}
+
+// Inject a <link rel="preload"> for an eager (LCP) image's responsive srcset so
+// the browser fetches it before React mounts the <picture>. No-op for external
+// images. Mirrors the setLink pattern in app.jsx.
+function preloadResponsive(image, sizes) {
+  if (!image || /^https?:/i.test(image)) return;
+  const cleaned = image.replace(/^\//, "");
+  const lastSlash = cleaned.lastIndexOf("/");
+  const dir = lastSlash >= 0 ? cleaned.slice(0, lastSlash) : "";
+  const respBase = `/${dir ? dir + "/" : ""}responsive/${slugifyImage(cleaned)}`;
+  const id = `preload-${respBase}`;
+  if (document.getElementById(id)) return;
+  const link = document.createElement("link");
+  link.id = id;
+  link.rel = "preload";
+  link.as = "image";
+  link.type = "image/avif";
+  link.setAttribute(
+    "imagesrcset",
+    RESPONSIVE_WIDTHS.map((w) => `${respBase}-${w}.avif ${w}w`).join(", ")
+  );
+  link.setAttribute("imagesizes", sizes || SIZES_HERO);
+  link.setAttribute("fetchpriority", "high");
+  document.head.appendChild(link);
+}
+
+// ============================================================
 // Photo placeholder. Nature-journal treatment.
 // Pass eager={true} for the LCP image on a page (page hero / article hero)
 // so it loads with priority instead of being deprioritized as lazy.
 // ============================================================
-function Placeholder({ caption, tag, size, style, motif, image, credit, natural, eager }) {
+function Placeholder({ caption, tag, size, style, motif, image, credit, natural, eager, sizes }) {
   return (
     <div
       className={`placeholder ${size === "lg" ? "placeholder--lg" : ""} ${size === "sm" ? "placeholder--sm" : ""} ${image ? "placeholder--photo" : ""} ${natural ? "placeholder--natural" : ""}`}
@@ -14,14 +102,12 @@ function Placeholder({ caption, tag, size, style, motif, image, credit, natural,
       style={style}
     >
       {image && (
-        <img
+        <ResponsiveImage
           className="placeholder__img"
-          src={/^(https?:|\/)/i.test(image) ? image : `/${image}`}
+          image={image}
           alt={caption || ""}
-          loading={eager ? "eager" : "lazy"}
-          fetchpriority={eager ? "high" : "auto"}
-          decoding={eager ? "sync" : "async"}
-          referrerPolicy="no-referrer"
+          eager={eager}
+          sizes={sizes || SIZES_HERO}
         />
       )}
       {!image && motif && <div className="placeholder__motif">{motif}</div>}
@@ -242,6 +328,7 @@ function ArticleCard({ article, go, size }) {
         image={article.image}
         tag={cat.label.split(" ")[0]}
         size={size === "sm" ? "sm" : null}
+        sizes={SIZES_CARD}
         style={{ aspectRatio: size === "wide" ? "16/9" : "4/3" }}
         motif={
           article.cat === "trails" ? <MotifMountains /> :
@@ -445,6 +532,8 @@ function MapLightbox({ src, alt, caption, onClose }) {
 
 // Expose
 Object.assign(window, {
-  Placeholder, MotifMountains, MotifSun, MotifTrees,
+  Placeholder, ResponsiveImage, preloadResponsive,
+  SIZES_HERO, SIZES_BODY, SIZES_CARD,
+  MotifMountains, MotifSun, MotifTrees,
   Header, Footer, ArticleCard, NewsletterInline, MapLightbox,
 });

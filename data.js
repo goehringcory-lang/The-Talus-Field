@@ -26,6 +26,75 @@ window.CATEGORIES = [
   { slug: "seasonal",   label: "Seasonal Guides",     blurb: "The park, month by month." },
 ];
 
+// ============================================================
+// Article bodies are loaded on demand (see window.loadArticleBody below) instead
+// of all 23 transpiling on every page. This map is the slug -> cache-buster
+// version, the equivalent of the old ?v=N on each <script> in index.html. Bump a
+// slug's number when you edit its bodies/<slug>.jsx file. scripts/check-cache-busters.sh
+// verifies this map stays in sync with the files in bodies/.
+// ============================================================
+window.BODY_VERSIONS = {
+  "yosemite-needs-a-reservation-system": 1,
+  "memorial-day-skip-the-valley-go-high-2026": 77,
+  "four-mile-up-panorama-down": 75,
+  "yosemite-with-kids-no-reservations-2026": 75,
+  "tioga-road-opening-weekend-2026": 75,
+  "so-you-want-to-hike-half-dome": 75,
+  "half-dome-permit-lottery-2026": 75,
+  "glacier-point-road-open-2026": 75,
+  "mist-trail-the-real-guide": 75,
+  "first-time-yosemite-overwhelm": 75,
+  "yosemite-without-reservations-2026": 75,
+  "yosemite-during-smoke-season": 75,
+  "yosemite-gateway-towns-compared": 75,
+  "pack-your-car-for-yosemite": 75,
+  "yosemite-for-non-hikers": 75,
+  "yosemite-stargazing-where-to-look-up": 75,
+  "hetch-hetchy-the-other-yosemite-valley": 75,
+  "yosemite-glaciers-climate": 75,
+  "giant-sequoias-fire-adaptation": 75,
+  "bears-spring-emergence": 75,
+  "water-ouzels-waterfalls": 75,
+  "working-in-yosemite": 75,
+  "yosemite-in-one-or-two-days": 77,
+  "where-to-eat-yosemite": 79,
+};
+
+// Fetch a single article body, Babel-transform it in the browser, and run it so
+// it registers itself on window.ARTICLE_BODIES[slug]. Returns a promise resolving
+// to the body component (or null if it 404s / fails to register). Memoized per
+// slug so concurrent/repeat calls share one request.
+window.loadArticleBody = function loadArticleBody(slug) {
+  window.ARTICLE_BODIES = window.ARTICLE_BODIES || {};
+  if (window.ARTICLE_BODIES[slug]) return Promise.resolve(window.ARTICLE_BODIES[slug]);
+  window.__bodyPromises = window.__bodyPromises || {};
+  if (window.__bodyPromises[slug]) return window.__bodyPromises[slug];
+
+  const v = window.BODY_VERSIONS && window.BODY_VERSIONS[slug];
+  const url = `/bodies/${slug}.jsx${v ? `?v=${v}` : ""}`;
+  const p = fetch(url)
+    .then((r) => {
+      if (!r.ok) throw new Error(`Failed to load body "${slug}": ${r.status}`);
+      return r.text();
+    })
+    .then((src) => {
+      // Must match index.html's data-presets: react,env. The env preset downlevels
+      // const/let to var; without it a body declaring a top-level const would collide
+      // with the globally-scoped declarations from the page scripts and fail to inject.
+      const { code } = window.Babel.transform(src, { presets: ["react", "env"], filename: `${slug}.jsx` });
+      const script = document.createElement("script");
+      script.textContent = code;
+      document.body.appendChild(script);
+      return window.ARTICLE_BODIES[slug] || null;
+    })
+    .catch((err) => {
+      delete window.__bodyPromises[slug];
+      throw err;
+    });
+  window.__bodyPromises[slug] = p;
+  return p;
+};
+
 // Kit. Gear lists. Affiliate links go here, not in articles.
 window.KIT = {
   intro: "What I actually carry. Lists I would have wanted on my first trip and still pull up before a long day. The links go to the products themselves; some are affiliate links, which means a small commission if you buy through them at no extra cost to you. The disclosure page explains the rules I keep for it.",
@@ -108,6 +177,20 @@ window.KIT = {
 
 window.ARTICLES = [
   {
+    slug: "yosemite-needs-a-reservation-system",
+    cat: "planning",
+    title: "Yosemite needs a reservation system",
+    dek: "Dropping the reservation system fails the park on both halves of its mission: this Memorial Day weekend, visitors couldn't recreate and the meadows took the damage. A naturalist's case for bringing it back.",
+    seoDek: "Without a reservation system, Memorial Day 2026 left Yosemite Valley gridlocked and its meadows damaged. Why the park needs timed entry back.",
+    date: "May 26, 2026",
+    isoDate: "2026-05-26",
+    isoModified: "2026-05-26",
+    read: "10 min",
+    placeholder: "Cars parked off the pavement along a Yosemite Valley road on Memorial Day weekend",
+    image: "img/cars-on-meadow-edge-cory-goehring.jpg",
+    credit: "Photo: Cory Goehring",
+  },
+  {
     slug: "memorial-day-skip-the-valley-go-high-2026",
     cat: "seasonal",
     title: "So you decided to come to Yosemite on Memorial Day. What are you thinking?",
@@ -126,6 +209,7 @@ window.ARTICLES = [
     cat: "planning",
     title: "Where to eat in and around Yosemite",
     dek: "Eight or nine restaurants worth knowing in and around Yosemite. The Half Dome pizza, the Mariposa brisket, the east-side coffee. Nothing else, and nothing chain.",
+    seoDek: "Eight or nine restaurants worth knowing in and around Yosemite: the Half Dome pizza, the Mariposa brisket, the east-side coffee. No chains, no filler.",
     date: "May 19, 2026",
     isoDate: "2026-05-19",
     isoModified: "2026-05-19",
@@ -139,6 +223,7 @@ window.ARTICLES = [
     cat: "planning",
     title: "One day or two in Yosemite: a minimalist itinerary",
     dek: "One day in Yosemite is enough. Two days is enough plus the part where you slow down. The honest version of what a short Valley visit actually buys you in 2026.",
+    seoDek: "One day in Yosemite is enough; two adds the part where you slow down. A minimalist itinerary and what a short Valley visit actually buys you in 2026.",
     date: "May 19, 2026",
     isoDate: "2026-05-19",
     isoModified: "2026-05-19",
@@ -152,6 +237,7 @@ window.ARTICLES = [
     cat: "trails",
     title: "My favorite day hike in Yosemite: Four Mile up, Panorama down",
     dek: "Up the Four Mile Trail to Glacier Point, down the Panorama Trail past Illilouette and Nevada Falls. A 13-mile loop that climbs 3,200 feet and gives you back the whole park. The logistics that make it work.",
+    seoDek: "Four Mile Trail up to Glacier Point, Panorama Trail down past Nevada Fall. A 13-mile loop, 3,200 feet of climb, and the logistics that make it work.",
     date: "May 17, 2026",
     isoDate: "2026-05-17",
     isoModified: "2026-05-17",
@@ -184,7 +270,7 @@ window.ARTICLES = [
     isoModified: "2026-05-13",
     read: "11 min",
     placeholder: "Tuolumne Meadows in early season, Tioga Road",
-    image: "img/TMweb.webp",
+    image: "img/tuolumne-meadows.jpg",
   },
   {
     slug: "so-you-want-to-hike-half-dome",
@@ -390,6 +476,7 @@ window.ARTICLES = [
     cat: "planning",
     title: "Yosemite without reservations in 2026: a real strategy for the year the cap came off",
     dek: "The reservation system was a throttle. With it gone in 2026, the park hasn't gotten easier. It's gotten harder. Here's the real strategy.",
+    seoDek: "The reservation cap came off for 2026. The park didn't get easier, it got harder. A real strategy for visiting Yosemite without reservations.",
     date: "April 26, 2026",
     isoDate: "2026-04-26",
     isoModified: "2026-04-26",
@@ -402,6 +489,7 @@ window.ARTICLES = [
     cat: "planning",
     title: "If it's your first time in Yosemite, read this before you book anything",
     dek: "The bucket list isn't the problem. The strategy is. Three things turn a Yosemite visit from “we saw the things” into one of the best weeks of your life.",
+    seoDek: "The bucket list isn't the problem, the strategy is. Three things that turn a first Yosemite visit from a checklist into the best week of your year.",
     date: "April 25, 2026",
     isoDate: "2026-04-25",
     isoModified: "2026-04-25",

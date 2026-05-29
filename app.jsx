@@ -111,6 +111,18 @@ function breadcrumbLd(crumbs) {
   };
 }
 
+function faqLd(pairs) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: pairs.map(({ q, a }) => ({
+      "@type": "Question",
+      name: q,
+      acceptedAnswer: { "@type": "Answer", text: a },
+    })),
+  };
+}
+
 // Build per-route SEO data (title, description, image, JSON-LD).
 function buildSeo(route) {
   const path = routeToPath(route);
@@ -262,24 +274,35 @@ function buildSeo(route) {
       description:
         "Plan a Yosemite trip in 2026: gateway towns, reservations, Half Dome, smoke season, the seasonal calendar. A hub for The Talus Field's planning archive.",
       ogType: "website",
+      breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Planning Guide", null]],
+      faq: [
+        { q: "Do I need a reservation to enter Yosemite in 2026?", a: "No. The day-use vehicle reservation system is not in effect in 2026. A standard Yosemite entrance pass ($35 per vehicle, valid 7 days) is required." },
+        { q: "What is the best time of year to visit Yosemite?", a: "Late May through early June for peak waterfalls and moderate crowds. September and October for warm days, smaller crowds, and golden light. July and August are the most crowded months." },
+        { q: "How much does it cost to enter Yosemite?", a: "$35 per vehicle (7-day pass), $20 per person on foot or bike. The America the Beautiful annual pass ($80) covers all national parks for one year." },
+        { q: "How long should I spend at Yosemite?", a: "Minimum two full days. Three to four days lets you cover the Valley, Glacier Point, and Tioga Road without rushing." },
+        { q: "Is Yosemite open year-round?", a: "Yosemite Valley is open year-round. Tioga Road closes November through May. Glacier Point Road closes late November and reopens around Memorial Day." }
+      ],
     },
     checklist: {
       title: `The Yosemite First-Week Checklist — ${SITE_NAME}`,
       description:
         "A printable single-page checklist for planning a Yosemite trip in 2026: when to come, what to book, what to pack, gateway choice, and the non-negotiables. Free.",
       ogType: "website",
+      breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Planning Checklist", null]],
     },
     about: {
       title: `About — ${SITE_NAME}`,
       description:
         "About The Talus Field, an independent field journal of Yosemite kept by Cory Goehring, a resident of the park.",
       ogType: "website",
+      breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["About", null]],
     },
     places: {
       title: `The Directory — Yosemite lodging and guides — ${SITE_NAME}`,
       description:
         "A small, curated directory of Yosemite-area lodging, outfitters, and guiding services, drawn from twenty seasons.",
       ogType: "website",
+      breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Directory", null]],
     },
     advertise: {
       title: `List your business — ${SITE_NAME}`,
@@ -346,6 +369,8 @@ function buildSeo(route) {
     ogType: meta.ogType || "website",
     image: SITE_DEFAULT_IMAGE,
     jsonLd: null,
+    breadcrumb: meta.breadcrumb ? breadcrumbLd(meta.breadcrumb) : null,
+    faq: meta.faq ? faqLd(meta.faq) : null,
     robots: meta.robots || null,
   };
 }
@@ -411,6 +436,8 @@ function applySeo(route) {
   else clearJsonLd("ld-page");
   if (seo.breadcrumb) setJsonLd("ld-breadcrumb", seo.breadcrumb);
   else clearJsonLd("ld-breadcrumb");
+  if (seo.faq) setJsonLd("ld-faq", seo.faq);
+  else clearJsonLd("ld-faq");
 }
 
 // ============================================================

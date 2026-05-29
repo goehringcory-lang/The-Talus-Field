@@ -29,4 +29,35 @@ if [[ -n "$missing" ]]; then
   exit 1
 fi
 
+# Article bodies load on demand (data.js#loadArticleBody) and are versioned in the
+# window.BODY_VERSIONS map in data.js instead of as <script> tags in index.html.
+# Verify that map stays in sync with the files in bodies/ so no body is loaded
+# without a cache-buster, and no stale entry points at a deleted file.
+DATA="$ROOT/data.js"
+BODIES_DIR="$ROOT/bodies"
+if [[ -f "$DATA" && -d "$BODIES_DIR" ]]; then
+  # slugs declared in BODY_VERSIONS (keys between the object's braces)
+  declared=$(
+    awk '/window\.BODY_VERSIONS *= *\{/{f=1; next} f&&/\};/{f=0} f' "$DATA" \
+      | grep -oE '"[^"]+"' | tr -d '"' | sort -u
+  )
+  # slugs present on disk
+  on_disk=$(find "$BODIES_DIR" -maxdepth 1 -name '*.jsx' -exec basename {} .jsx \; | sort -u)
+
+  not_declared=$(comm -13 <(echo "$declared") <(echo "$on_disk") || true)
+  not_on_disk=$(comm -23 <(echo "$declared") <(echo "$on_disk") || true)
+
+  if [[ -n "$not_declared" ]]; then
+    echo "Article body files missing from window.BODY_VERSIONS in data.js:"
+    echo "$not_declared"
+    exit 1
+  fi
+  if [[ -n "$not_on_disk" ]]; then
+    echo "window.BODY_VERSIONS entries with no matching file in bodies/:"
+    echo "$not_on_disk"
+    exit 1
+  fi
+fi
+
 echo "All editorial JSX/JS/CSS references in index.html carry a ?v= query."
+echo "window.BODY_VERSIONS is in sync with bodies/."
