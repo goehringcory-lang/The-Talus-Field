@@ -19,7 +19,7 @@ function AdvertisePage({ go }) {
         <div className="places-pitch">
           <div className="places-pitch__grid">
             <div>
-              <h3>What a listing includes</h3>
+              <h2>What a listing includes</h2>
               <ul>
                 <li>Your business name, area, and a short editorial blurb</li>
                 <li>A direct outbound link to your booking page</li>
@@ -29,7 +29,7 @@ function AdvertisePage({ go }) {
               </ul>
             </div>
             <div>
-              <h3>What I won't do</h3>
+              <h2>What I won't do</h2>
               <ul>
                 <li>List businesses I'd talk a friend out of using</li>
                 <li>Hide that a listing is sponsored. Every paid placement is labeled</li>
