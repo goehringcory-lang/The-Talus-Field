@@ -44,6 +44,10 @@ The Talus Field repository demonstrates **strong foundational security practices
 | **P3** | Code Quality | Guide PWA | Service Worker static asset caching assumes Vite-hashed immutability; cache collision or bad deploy could serve stale JS indefinitely | `public/sw.js:122-132` | Add a `sha256(file)` hash check or cache invalidation on new app version. Or use a maximum TTL (e.g., 7 days) before forcing revalidation. |
 | **P3** | Code Quality | Editorial Site | Webmaster verification meta tags are still placeholders (`REPLACE_WITH_BING_TOKEN`, etc.) | `index.html:43-45` | Fill in the tokens from Bing, Yandex, and Pinterest webmaster consoles, or remove if not using those search engines. Current state is harmless (non-functional). |
 | **P3** | Documentation | Guide PWA | `// TODO: verify` markers remain on coord fields for stops that need ground-truth pass | `content/schema.ts:16-39` + `content/stops.ts` | Document which stops still need field verification. Consider a separate tracking issue in GitHub for the ground-truth pass. |
+| **P2** | Accessibility | Editorial Site | Heading hierarchy skip in advertise page: h1→h3 (skips h2), then h2 later | `page-advertise.jsx:10, 22, 32, 69` | Change lines 22 and 32 from `<h3>` to `<h2>` to maintain proper heading order per WCAG 2.1. |
+| **P2** | Accessibility | Editorial Site | Color contrast issues: `.masthead__weather-sep` with 50% opacity; disabled buttons at 0.35/0.4 opacity | `styles.css:210, 2305, 2559` | Increase `.masthead__weather-sep` opacity to 0.65+ or brighten `ink-3`. Increase disabled button opacity or use darker background. Weather sep currently ~5.2:1 contrast in sierra mode (below AA threshold). |
+| **P3** | Performance | Editorial Site | Brand logo missing `loading="eager"` in sticky header (LCP candidate) | `components.jsx:219` | Add `loading="eager"` to brand logo `<img>` since it's in the critical rendering path. |
+| **P3** | Security | Editorial Site | Article body injection via `window.Babel.transform()` in data.js:84 | `data.js:84` + `index.html:247-254` | Intentional by design, but represents attack surface if body files become user-editable. Document the constraint. |
 
 ---
 
@@ -65,11 +69,18 @@ The Talus Field repository demonstrates **strong foundational security practices
 4. **localStorage XSS surface (P1):** JWT stored in `localStorage` is vulnerable if any XSS payload ever executes. Mitigation: Move to `sessionStorage` or add robust CSP.
 5. **Google Maps API key (P1):** Visible in `index.html:119`. Assume it's restricted to referrers in Google Cloud Console; if not, regenerate and restrict.
 
+**Editorial Site Security:**
+- ✅ **No XSS vulnerabilities detected.** No `dangerouslySetInnerHTML`, `innerHTML`, or `eval` patterns found.
+- ✅ **Proper HTML escaping:** `page-map.jsx:1086-1092` correctly escapes all dynamic content (stop names, descriptions) via `escapeHtml()` function.
+- ⚠️ **Google Maps API key visible in `index.html:119`:** This is safe by design — key is restricted to HTTP referrer `thetalusfieldjournal.com` and localhost in Google Cloud Console. Verify restrictions exist.
+- ⚠️ **Article body injection via Babel:** `data.js:84` transforms article bodies via `window.Babel.transform()` and injects as scripts. This is intentional (documented in `index.html:247-254`) but represents an attack surface if body files become user-editable in the future.
+
 **Green Flags:**
 - Stripe webhook signature verification is robust (constant-time, timestamp tolerance).
 - IndexNow bearer token uses constant-time comparison.
 - No hardcoded credentials found.
 - CORS allow-list is properly scoped.
+- Editorial site properly uses `escapeHtml()` for all dynamic content.
 
 ---
 
@@ -130,9 +141,9 @@ The Talus Field repository demonstrates **strong foundational security practices
 ### 5. Accessibility
 
 **Findings Summary:**
-- ⚠️ **Gaps:** Form labels not semantically associated; focus indicators missing; heading hierarchy incomplete.
-- ✅ **Good:** Alt text present on Stop cards; BottomNav uses aria-current and aria-label.
-- ❌ **Weak:** Map page doesn't manage focus during aria-hidden tab switches.
+- ⚠️ **Gaps:** Form labels not semantically associated; focus indicators missing; heading hierarchy incomplete in PWA and editorial site.
+- ✅ **Good:** Alt text present on Stop cards; BottomNav uses aria-current and aria-label; editorial site has no XSS patterns.
+- ❌ **Weak:** Map page doesn't manage focus during aria-hidden tab switches; editorial site has heading hierarchy skip and color contrast issues.
 
 **Details:**
 1. **Form labels (P2):** `routes/Login.tsx:51-82` wraps labels and inputs but they're not semantically connected. `<label>` has no `for`, inputs have no `id`. Screen readers won't associate them. Fix: use `<label htmlFor="email">` + `<input id="email">` or nest input inside label.
@@ -142,6 +153,18 @@ The Talus Field repository demonstrates **strong foundational security practices
 5. **Alt text:** Stop cards use `alt={photo.caption ?? stop.title}` (good fallback). Page-map.jsx images have `alt=""` (correct for decorative use, but verify intent).
 6. **Navigation:** BottomNav uses `aria-current="page"` and `aria-label="Main navigation"`. ✅ Good.
 7. **Icons:** SVG icons have `aria-hidden="true"`. ✅ Good.
+
+**Editorial Site Additional Findings:**
+
+8. **Heading hierarchy skip (P2):** `page-advertise.jsx:10, 22, 32, 69` — page jumps from `<h1>` to `<h3>` (skipping `<h2>`), then later uses `<h2>` after `<h3>`s. Violates WCAG 2.1 heading order. Fix: change lines 22 and 32 from `<h3>` to `<h2>`.
+
+9. **Color contrast issues (P2):** 
+   - `styles.css:210` — `.masthead__weather-sep` with 50% opacity fails WCAG AAA (7:1); barely meets AA (4.5:1) in sierra mode. Appears as separator dots (low impact). Fix: increase opacity to 0.65+ or increase `ink-3` brightness.
+   - `styles.css:2305, 2559` — disabled button opacity (0.35, 0.4) reduces contrast significantly, may fail AA. Consider increasing opacity or using darker background.
+
+10. **Missing lazy-load on brand logo (P3):** `components.jsx:219` — header brand mark should have `loading="eager"` since it's in sticky header and an LCP candidate.
+
+11. **Alt text on secondary images confirmed correct (P2):** `page-map.jsx:1047, 1053` — Street View and stop photos in info popups use `alt=""`. This is correct per WCAG 2.1 for decorative/redundant images, but descriptive alt (e.g., `alt="Street view of {stop name}"`) would be better for context.
 
 ---
 
