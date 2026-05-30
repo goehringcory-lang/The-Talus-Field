@@ -216,7 +216,7 @@ function Header({ current, go }) {
           onClick={(e) => { e.preventDefault(); go("home"); }}
           style={{ textDecoration: "none", color: "inherit" }}
         >
-          <img className="brand__mark" src="img/talus-field-mark.png" alt="The Talus Field" />
+          <img className="brand__mark" src="img/talus-field-mark.png" alt="The Talus Field" loading="eager" />
           <span className="brand-block__text">
             <span className="brand">The Talus Field</span>
             <span className="brand__sub">A field journal of Yosemite</span>

@@ -207,7 +207,7 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
   color: var(--accent, var(--ink));
   border-bottom-color: currentColor;
 }
-.masthead__weather-sep { color: var(--ink-3); opacity: 0.5; }
+.masthead__weather-sep { color: var(--ink-3); opacity: 0.85; }
 .masthead__paper {
   margin-left: 14px;
   padding-left: 14px;
@@ -472,7 +472,7 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
   gap: 40px;
   margin-bottom: 40px;
 }
-.places-pitch__grid h3 {
+.places-pitch__grid h2 {
   font-family: var(--display);
   font-size: 19px;
   font-weight: 600;
@@ -2302,7 +2302,7 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
   color: var(--ink);
 }
 .map-sidebar__trip-btn:disabled {
-  opacity: 0.35;
+  opacity: 0.6;
   cursor: not-allowed;
 }
 .map-sidebar__trip-btn--remove {
@@ -2556,7 +2556,7 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
   color: #fff;
 }
 .map-sidebar__region-stop-add:disabled {
-  opacity: 0.4;
+  opacity: 0.6;
   cursor: not-allowed;
 }
 
