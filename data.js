@@ -56,7 +56,7 @@ window.BODY_VERSIONS = {
   "bears-spring-emergence": 75,
   "water-ouzels-waterfalls": 75,
   "working-in-yosemite": 75,
-  "yosemite-in-one-or-two-days": 77,
+  "yosemite-in-one-or-two-days": 78,
   "where-to-eat-yosemite": 79,
 };
 
@@ -648,13 +648,13 @@ window.ARTICLES = [
   {
     slug: "yosemite-in-one-or-two-days",
     cat: "planning",
-    title: "One day or two in Yosemite: a minimalist itinerary",
-    dek: "One day in Yosemite is enough. Two days is enough plus the part where you slow down. The honest version of what a short Valley visit actually buys you in 2026.",
-    seoDek: "One day in Yosemite is enough; two adds the part where you slow down. A minimalist itinerary and what a short Valley visit actually buys you in 2026.",
+    title: "One day in Yosemite: a minimalist itinerary for one or two days",
+    dek: "One day in Yosemite is enough if you start early and do less. A deliberate one-or-two-day itinerary for 2026: the Valley waterfall sequence, what to skip, and what a second day above the floor earns you.",
+    seoDek: "One day in Yosemite, done right: a 2026 itinerary for one or two days. The Valley waterfall sequence, what to skip, gas, parking, and a realistic hike.",
     date: "May 19, 2026",
     isoDate: "2026-05-19",
-    isoModified: "2026-05-19",
-    read: "9 min",
+    isoModified: "2026-05-31",
+    read: "16 min",
     placeholder: "Tunnel View on an autumn morning, before the lot fills",
     image: "img/tunnel-view-autumn-aniket-deole.jpg",
     credit: "Photo: Aniket Deole / Unsplash",
@@ -931,7 +931,7 @@ window.START_HERE = [
   "first-time-yosemite-overwhelm",
   "yosemite-without-reservations-2026",
   "yosemite-gateway-towns-compared",
-  "yosemite-with-kids-no-reservations-2026",
+  "yosemite-in-one-or-two-days",
 ];
 
 // Helpers

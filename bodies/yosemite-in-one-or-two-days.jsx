@@ -5,146 +5,132 @@ window.ARTICLE_BODIES = window.ARTICLE_BODIES || {};
 window.ARTICLE_BODIES["yosemite-in-one-or-two-days"] = function YosemiteInOneOrTwoDaysBody() {
   return (
     <>
-      <p className="dropcap">
-        One day in Yosemite is enough. Two days is enough plus the part where you actually slow down. The trip people most often regret is the four-day visit that becomes a three-day visit because someone got the flu, then a two-day visit because Tioga Road wasn't open, then a one-day visit because the lot at Curry Village filled before they got there. The trip people most often remember is the one-day visit where they showed up at sunrise, did three things well, and drove home in the dark. This piece is for the second kind of trip.
-      </p>
+      <p className="dropcap">One day in Yosemite is enough. Two days is enough plus the part where you actually slow down. The trip people most often regret is the four-day visit that shrinks to three because someone got the flu, then to two because Tioga Road was not open, then to one because the lot at Curry Village filled before they got there. The trip people most often remember is the one-day visit where they arrived at sunrise, did three things well, and drove home in the dark.</p>
 
-      <p>
-        2026 is the year the cap came off. The timed-entry reservation system the park ran in various forms from 2020 through 2024 is gone. The 2025 peak-hours system is gone too. You can drive into Yosemite at noon on a Saturday in July without a piece of paper, which sounds like good news and is, mostly, but also means that whatever crowd was being held back by the reservation gate is now arriving when it wants. The Valley still has the same number of parking spots it had in 1965. Plan accordingly.
-      </p>
-
-      <h2>Before you leave the gateway town</h2>
-
-      <p>
-        Gas in the Valley itself is not a thing. The pumps at Yosemite Village are gone. The closest gas inside the park is Crane Flat on Highway 120 (year-round when the road is open) or Wawona on Highway 41 (year-round). Outside the park, the closest options are El Portal on Highway 140, Lee Vining on the east side, and Oakhurst to the south. If you are entering from Mariposa or El Portal, fill up before you cross the entrance station. If you are coming over Tioga Pass, fill up in Lee Vining. The drive across the high country is sixty miles between gas pumps.
-      </p>
-
-      <p>
-        Cell service in the Valley is unreliable and often absent on trails. Download offline maps the night before. Tell whoever cares where you are going. Bring a paper park map; the rangers hand them out free at the gate. Your phone is a camera in Yosemite, not a navigation device.
-      </p>
-
-      <p>
-        Bears live here, and they have learned that cars contain food. Everything with a scent (groceries, sunscreen, the granola bar you forgot in the cup holder) goes in a bear box at the picnic area or in the trunk. Not the back seat. Not the truck bed. The trunk. Rangers do check, the fines are real, and a bear that learns to break into cars usually ends up dead. The <a href="/articles/pack-your-car-for-yosemite">car packing guide</a> has the full version of this, plus the cooler logic that makes everything downstream easier.
-      </p>
+      <p>For years the constraint on a Yosemite day was a permit. You planned your trip around whether you could secure a reservation, and the planning often soured the trip before it started. In 2026 that constraint is gone. What replaces it is older and more honest: logistics, timing, and parking. A deliberate one-day Yosemite itinerary is not a compromise, and a two-day one is the same trip with room to breathe. It is the version of Yosemite that respects your time and rewards an early alarm. The rest of this guide is about what to do in Yosemite in a day: doing less, earlier, on purpose. If the scale of the place is what worries you, start with <a href="/articles/first-time-yosemite-overwhelm">first-time Yosemite overwhelm</a> and come back.</p>
 
       <Placeholder
-        caption="Half Dome at first light from a Valley meadow, before the lots fill"
+        caption="Half Dome at first light from a Valley meadow, before the lots fill on a one-day Yosemite itinerary"
         image="img/half-dome-alpenglow-madhu-shesharam.jpg"
         credit="Photo: Madhu Shesharam / Unsplash"
+        tag="PLATE I"
+        size="lg"
+        style={{ aspectRatio: "16 / 10", margin: "32px 0" }}
+        motif={<MotifMountains />}
+      />
+
+      <h2>The 2026 reservation and crowd context</h2>
+      <p>There is no day-use reservation in Yosemite in 2026. There is no peak-hours reservation either. The timed-entry system that ran in various forms from 2020 through 2024, and the narrower peak-hours system that ran in 2025, are both gone. The Park Service announced the change around February 2026, citing 2025 traffic data that suggested the systems were no longer doing enough to justify the friction they created. For the first time in years a Yosemite day trip needs no advance permit: decide on a Thursday night, drive in Friday morning, and simply do it.</p>
+      <p>The catch is that demand did not disappear when the reservation did. It moved. It moved to the parking lots, which fill on their own schedule, and to the entrance-gate lines, which back up when everyone arrives at once. The reservation used to ration the road. Now nothing does, which means you ration yourself. The practical takeaway is the one rangers have given for decades and that the data still supports: arrive before 8 a.m., and choose a weekday over a weekend if you have any choice at all. We cover the no-reservation logistics in more depth in <a href="/articles/yosemite-without-reservations-2026">Yosemite without reservations in 2026</a>.</p>
+      <p>One more 2026 wrinkle, held loosely: for international visitors there is reportedly a new $100 surcharge added on top of the standard entrance fee. The details have been moving, so confirm it before you budget around it. It does not affect domestic visitors.</p>
+
+      <h2>Before you leave the gateway town</h2>
+      <p>The single most useful thing you can do for a Yosemite day happens before you reach the gate. Fuel up outside the park. There is no gas in Yosemite Valley or Yosemite Village. In-park fuel exists only at Crane Flat on Highway 120 and at Wawona on Highway 41, plus a seasonal station at Tuolumne Meadows, and all three are priced like the captive options they are. The nearest reasonable fill is in the gateway towns: El Portal on Highway 140, Oakhurst on Highway 41 (generally the cheapest of the bunch), and Lee Vining on the east side (generally the most expensive). For a fuller comparison of where to base yourself, see <a href="/articles/yosemite-gateway-towns-compared">Yosemite gateway towns compared</a>.</p>
+      <p>Buy your entrance in advance. The $35 seven-day vehicle pass on Recreation.gov moves you through the gate faster than paying on the spot, and if you visit parks more than once a year the $80 America the Beautiful annual pass pays for itself. Cell service inside the park is thin to nonexistent, so download offline maps the night before and grab a paper map at the gate; do not assume your phone will route you once you are past El Portal.</p>
+      <p>Then there are the bears, which are not a metaphor. Food, coolers, and anything scented stay out of sight with the windows closed, in daylight only, and never overnight in a parked car. A bear that learns your trunk is a bear that opens it, and the citations for an improperly stored car run up to $5,000. A bear-aware packing routine starts at home; see <a href="/articles/pack-your-car-for-yosemite">how to pack your car for Yosemite</a>.</p>
+      <p>If parking is the part you dread, skip it. YARTS, the regional transit system, runs into the Valley on Highway 140 from Merced, Mariposa, and El Portal; on Highway 41 from Fresno; on Highway 120 from Sonora; and on Highway 395 from Mammoth and Lee Vining. The fare includes your park entrance fee, so the bus is often cheaper than it looks once you account for the gate.</p>
+
+      <h2>One day in Yosemite Valley: the four-stop sequence</h2>
+      <p>One day in Yosemite turns entirely on when you arrive. Show up early enough that the day-use lots are still half empty: in the park by 8 a.m. on a weekday, by 7 a.m. on a Saturday. On busy weekends the lots fill from early to mid-morning, and once they are full your day becomes a hunt for a space instead of a visit. Get parked first. The free Valley shuttle is genuinely excellent once you are out of the car, running roughly 7 a.m. to 10 p.m. across about nineteen stops, but it is a tool for getting around after you have parked, not a substitute for having parked. It does not drive you in from the gate.</p>
+      <p>With that settled, here is the sequence. Four stops, in this order, because the order is the point.</p>
+      <ol>
+        <li><strong>Tunnel View at first light.</strong> A roadside pullout on Wawona Road, and the most efficient view in the park: El Capitan on the left, Bridalveil Fall on the right, Half Dome at the back of the frame, all at once. Early light does the work for you and the lot is empty at dawn.</li>
+        <li><strong>Bridalveil Fall.</strong> About a half mile round trip on pavement, reopened in 2023 after a long rehabilitation. In May and June the spray reaches the trail; by August the fall thins to a ribbon and you are standing in a quiet granite amphitheater instead. Both are worth the walk.</li>
+        <li><strong>Lower Yosemite Fall loop.</strong> Roughly a mile, paved and flat. The 320-foot lower drop is the one you stand under; the 1,430-foot upper drop is the one you crane your neck at. Together they make the tallest waterfall in North America, and the loop gives you both without a climb.</li>
+        <li><strong>Cook's Meadow loop.</strong> About a mile of boardwalk that hands you Half Dome, Yosemite Falls, Sentinel Rock, and Royal Arches without your having to try. This is Ansel Adams's meadow, and it photographs almost as well for you as it did for him.</li>
+      </ol>
+      <p>Done at a reasonable pace, that sequence leaves you finished by mid-afternoon. Use what is left. Find a flat rock on the Merced River, sit down, and do nothing in particular for an hour. That hour is the part one-day visitors skip on their way to a fifth stop, and it is the part return visitors come back for.</p>
+
+      <Placeholder
+        caption="Valley View on the way out, late afternoon, the Merced reflecting El Capitan"
+        image="img/valley-view-sunset-rodrigo-soares.jpg"
+        credit="Photo: Rodrigo Soares / Unsplash"
         tag="PLATE II"
         size="lg"
         style={{ aspectRatio: "16 / 10", margin: "32px 0" }}
         motif={<MotifMountains />}
       />
 
-      <h2>One day, the Valley</h2>
-
-      <p>
-        Show up early enough that the day-use lots are still half empty. That means in the park by 8 AM on a weekday and by 7 on a Saturday. The Yosemite Falls and Curry Village lots typically fill between 9 and 11. After that, you join a slow loop of cars looking for spaces that will not exist for hours. The Village shuttle is excellent once you are parked. It is not a substitute for being parked.
-      </p>
-
-      <p>
-        The one-day Valley sequence that has worked for two decades of first-time visitors, in order:
-      </p>
-
-      <ol>
-        <li><strong>Tunnel View</strong> at first light. This is the photograph you have seen of Yosemite, the framed one with El Capitan on the left, Bridalveil Fall on the right, and Half Dome down the middle. The overlook is a five-minute pullout on the way into the Valley from Wawona Road. Stop the car. Get out. Stand there a minute. Then keep driving.</li>
-        <li><strong>Bridalveil Fall.</strong> Half a mile round trip from the parking lot. The paved trail is accessible and well-maintained. In May and June the spray at the base soaks you. By August it is a trickle and the granite amphitheater is the show. Either is worth the stop.</li>
-        <li><strong>Lower Yosemite Fall loop.</strong> One paved mile through the Valley. The 320-foot lower drop is at the end, with the 1,430-foot upper drop above it, together one of the tallest waterfall sequences in North America. Strollers fine. Wear a layer you do not mind getting wet in peak flow.</li>
-        <li><strong>Cook's Meadow.</strong> Walk the boardwalk loop and look up. This is where you see Half Dome, Yosemite Falls, Sentinel Rock, and Royal Arches without trying. It is also the meadow Ansel Adams photographed more than any other.</li>
-      </ol>
-
-      <p>
-        Four stops, paved trails, the icons of the park, no overnight required. If you have moved through that list by mid-afternoon, you have time for an unstructured hour somewhere along the Merced River. The river is the part most one-day visitors skip and most return visitors keep talking about.
-      </p>
-
       <h2>What to skip on a one-day visit</h2>
+      <p>The hardest part of a one-day Valley itinerary is not what you do. It is what you refuse to do. Yosemite hands you a list of famous places, and most of them are an hour or more from the Valley floor in directions that point away from each other. Saying yes to two of them is how a one-day trip turns into a day spent in the car looking at the back of the car ahead of you. The cuts below are not the park being smaller than advertised. They are the park being honest about a clock.</p>
+      <p><strong>Glacier Point Road.</strong> The overlook is one of the great views in North America, and on a one-day trip it is the wrong move. The round trip from the Valley runs roughly two to three hours of driving once you account for stops, which is a third of your usable daylight spent on a road. Save it. It is the centerpiece of a second day, not an add-on to the first.</p>
+      <p><strong>Mariposa Grove.</strong> An hour-plus each way from the Valley, plus the shuttle from the Welcome Plaza, plus the time you will actually want to spend among trees that predate the Roman Empire. It is a wonderful half-day destination and a terrible thing to bolt onto a Valley day.</p>
+      <p><strong>Tioga Road and Tuolumne Meadows.</strong> Half a day each way. The high country is a separate trip, not a side quest, and trying to fold it into a Valley day means you will see neither one properly. Our <a href="/articles/tioga-road-opening-weekend-2026">Tioga Road guide</a> lays out how.</p>
+      <p><strong>The full Mist Trail to the top of Vernal Fall</strong>, if you only have an afternoon. This is a real workout, not a casual stroll, and we cover the gentler version of it in the next section rather than cutting it outright.</p>
+      <p>The meta-point is the only one that matters. On a one-day trip, skipping is the strategy, not a compromise on it. Anything that moves the car at midday is the enemy. Pick the Valley, stay in the Valley, and let the rest wait for a trip that has room for it.</p>
 
-      <p>
-        <strong>Glacier Point Road</strong> if you only have a day. The road climbs from the Valley to 7,200 feet and the round trip is two hours of driving without stops, three with. That is a third of your day on the road. If your view of Half Dome from above is the trip, then plan two days. If you want one day in Yosemite, Glacier Point is the trade you make.
-      </p>
+      <h2>A realistic hike, if you want one</h2>
+      <p>You do not have to hike to have done Yosemite right, and our <a href="/articles/yosemite-for-non-hikers">non-hiker's guide</a> makes that case without apology. But if you want a trail on a one-day trip, the question is not which hike is best. It is which hike fits the hours you have left and the legs you brought. Here are the honest tiers, easiest to hardest.</p>
+      <ul>
+        <li><strong>Vernal Fall footbridge.</strong> About 1.6 miles round trip, roughly 400 feet of gain. This is the gentle option, and it is not a consolation prize. The footbridge delivers most of the visual payoff of the climb above it: Vernal Fall framed dead ahead, the Merced roaring underneath you.</li>
+        <li><strong>Top of Vernal Fall via the Mist Trail.</strong> About 3 miles round trip, roughly 1,000 feet of gain, and around 600 granite steps in the spray. This is a legitimate workout. Expect full sun on the climb out, a bottleneck of people on the stairs, and a soaking on the way up in high water. Read the <a href="/articles/mist-trail-the-real-guide">dedicated Mist Trail guide</a> before you go; it is the difference between a good morning and a miserable one.</li>
+        <li><strong>Top of Nevada Fall, for the ambitious.</strong> About 7 miles round trip, roughly 1,900 feet of gain. This is most of a day on its own, which makes it a stretch for a one-day Valley trip.</li>
+        <li><strong>Mirror Lake.</strong> About 2 miles round trip, paved and easy, with the option of the longer Tenaya Creek loop at roughly 4.5 to 5 miles. Best in spring, when there is actually water to reflect. By late summer the lake is a meadow.</li>
+      </ul>
+      <p>A seasonal caveat that catches people every year: the steep Mist Trail steps close in winter and icy conditions, and hikers reroute via the longer, gentler John Muir Trail. Spray and slick rock peak in spring snowmelt, which is exactly when the trail is most beautiful and most treacherous. All of these leave from Happy Isles or the nearby shuttle stops. Start early, carry water, wear real shoes, and set a turnaround time before you leave the car. Then pick one and do it well. One trail done properly beats two trails done in a hurry.</p>
 
-      <p>
-        <strong>Mariposa Grove of giant sequoias.</strong> An hour each way from the Valley plus the shuttle to the grove plus the walk in the grove. A great half-day if it is a destination. A bad cut from a one-day Valley itinerary.
-      </p>
-
-      <p>
-        <strong>Tioga Road.</strong> The high-country traverse to Tuolumne Meadows is one of the great drives in the West. It is also half a day each way. Plan a separate trip, or plan a multi-day visit that bases on the east side at Lee Vining.
-      </p>
-
-      <p>
-        <strong>The Mist Trail to the top of Vernal Fall</strong> is a legitimate workout that is not a casual afternoon outing. 600 granite steps in the spray, full sun on the climb out, and a crowd in the bottleneck. If you have a half-day and you are reasonably fit, the Vernal Fall footbridge (round trip about 1.6 miles, 400 feet of gain) gets you most of the visual payoff for a third of the effort.
-      </p>
+      <h2>Two days in Yosemite: if you have a second day</h2>
+      <p>A second day changes the math more than it sounds like it should. It does not just give you twice the time. It gives you permission to leave the Valley floor, which is where the trip stops being a checklist and starts being a place. Day One stays the Valley four-stop sequence above. Day Two earns altitude and leaves the floor entirely. There are three good ways to spend it.</p>
+      <h3>Glacier Point</h3>
+      <p>Glacier Point Road reopened May 9, 2026, after a multi-season rehabilitation, and it is the single best second day for most visitors. The overlook gives you Half Dome at eye level and the Valley 3,000 feet below in one frame, with no hike required to earn it. One note that matters: there is no drinking water at the overlook this season, so bring your own. On the way up, two short detours pay off well: Sentinel Dome (about 2.2 miles round trip) for a 360-degree summit, and Taft Point for a vertigo-inducing look straight down into the Valley. The full picture is in our <a href="/articles/glacier-point-road-open-2026">Glacier Point Road guide</a>.</p>
 
       <Placeholder
-        caption="Valley View on the way out, late afternoon, the Merced reflecting El Capitan"
-        image="img/valley-view-sunset-rodrigo-soares.jpg"
-        credit="Photo: Rodrigo Soares / Unsplash"
+        caption="Glacier Point, day two of a two-day Yosemite trip. Half Dome at eye level, the Valley three thousand feet below."
+        image="img/half-dome-sunset-glacier-point-joshua-earle.jpg"
+        credit="Photo: Joshua Earle / Unsplash"
         tag="PLATE III"
         size="lg"
         style={{ aspectRatio: "16 / 10", margin: "32px 0" }}
         motif={<MotifMountains />}
       />
 
-      <h2>If you have a second day</h2>
-
-      <p>
-        A second day changes the math more than it sounds like. Day One stays the Valley, run the four-stop sequence above. Day Two leaves the Valley floor and earns altitude.
-      </p>
-
-      <p>
-        <strong>Glacier Point.</strong> Glacier Point Road opened May 9, 2026, after a multi-season rehabilitation. The viewpoint at the end of the road delivers Half Dome at eye level and the Valley three thousand feet below, both in a single composition you do not have to hike for. There is no drinking water at the overlook this season; bring your own. On the way up, the Sentinel Dome trailhead is a 2.2-mile round trip to a bare granite summit with 360-degree views that are arguably better than the one at the official overlook.
-      </p>
-
-      <p>
-        <strong>Mariposa Grove.</strong> An hour south of the Valley. Private cars stop at the Welcome Plaza; a free shuttle runs to the grove itself. The lower grove loop is roughly two miles on a mix of paved path and unpaved trail, mostly flat. The Grizzly Giant is 2,700 years old. If sequoias are why you came to California, Day Two is when you see them.
-      </p>
-
-      <p>
-        <strong>A real hike, if you want one.</strong> The Vernal Fall footbridge (1.6 miles round trip) is the gentle option. The full Mist Trail to the top of Vernal Fall (~3 miles round trip, 1,000 feet of gain, granite stairs in the spray) is the legitimate one. Both leave from Happy Isles. Both want an early start. Mirror Lake (2 miles round trip, minimal elevation gain) is the easiest. Pick one. Do it well.
-      </p>
-
-      <Placeholder
-        caption="Glacier Point, late light. The whole park in one frame."
-        image="img/half-dome-sunset-glacier-point-joshua-earle.jpg"
-        credit="Photo: Joshua Earle / Unsplash"
-        tag="PLATE IV"
-        size="lg"
-        style={{ aspectRatio: "16 / 10", margin: "32px 0" }}
-        motif={<MotifMountains />}
-      />
+      <h3>Mariposa Grove</h3>
+      <p>An hour south of the Valley, and the right second day if you came to California for the big trees. Private cars stop at the Welcome Plaza (about 300 spaces, which fills by late morning), and a free shuttle runs up to the grove from there. The lower-grove Grizzly Giant loop is about 2 miles and mostly flat. The Grizzly Giant itself is an estimated 2,000-plus years old, and standing under it does something a photograph cannot.</p>
+      <h3>Tioga Road high country</h3>
+      <p>Tioga Road opened May 15, 2026, the earliest in 11 years, which makes this an unusually good season to point the second day east. Tuolumne Meadows, Tenaya Lake, and Olmsted Point are the marquee stops, and the whole thing is comfortably a half-day if you keep moving. Basing east at Lee Vining works well if your trip runs over Tioga Pass anyway.</p>
+      <p>Two things to keep in mind. Both Glacier Point Road and Tioga Road close in winter, so this entire menu is a late-spring-through-fall proposition. And if you are a strong hiker, there is a fourth option that beats all three for sheer payoff: the Four Mile up, Panorama down loop, which climbs from the Valley to Glacier Point and descends past Nevada and Vernal Falls. It is a full, hard day, and it is the one we would do. Our <a href="/articles/four-mile-up-panorama-down">Four Mile and Panorama guide</a> walks through it.</p>
 
       <h2>Where to sleep</h2>
+      <p>For a one-day trip, base in <strong>El Portal</strong> if you can get a room. It is 14 miles to the Valley and about 25 minutes to Tunnel View, which is the closest you can sleep without paying in-park prices. <strong>Mariposa</strong> adds roughly 20 minutes to that drive and gives you a real town in return: gas, groceries, dinner that is not a park concession. For most one-day visitors, Mariposa is the better balance of cost and convenience.</p>
+      <p>For a two-day trip, the right base depends on what Day Two is. If you are headed to Mariposa Grove, <strong>Oakhurst</strong> is closer to the south end of the park. If Day Two is Tuolumne, <strong>Lee Vining</strong> on the east side puts you at the top of Tioga Road instead of the bottom. Match the bed to the second day, not the first.</p>
+      <p>In-park lodging is the convenience play if you can land it. <strong>Yosemite Valley Lodge</strong> sits across from the falls, <strong>Curry Village</strong> (also called Half Dome Village) runs tent cabins at the lower end, and <strong>The Ahwahnee</strong> is the premium, historic option. All three book months out and cost more than the gateway towns. One scheduling note: the Wawona Hotel has been closed since December 2024 for a condition assessment, with no announced reopening, so do not plan around it.</p>
 
-      <p>
-        For a one-day trip, base in <strong>El Portal</strong> if you can get a room. Fourteen miles to the Valley, twenty-five minutes door to Tunnel View. If El Portal is booked or too expensive, Mariposa adds another twenty minutes and gives you a real town to come back to. The full breakdown is in the <a href="/articles/yosemite-gateway-towns-compared">gateway towns guide</a>.
-      </p>
-
-      <p>
-        For a two-day trip, the same logic applies, unless your Day Two is the Mariposa Grove (then Oakhurst is closer) or your Day Two is Tuolumne Meadows (then Lee Vining is closer). The right base depends on the second day, not the first.
-      </p>
-
-      <p>
-        In-park lodging (Yosemite Valley Lodge, Curry Village, The Ahwahnee) books months out and costs more. If you can get a room, take it; the walk to Lower Falls from Valley Lodge is worth every dollar of the markup. If you cannot get a room, do not let it kill the trip. The gateway towns are fine.
-      </p>
+      <h2>When to go to Yosemite: month by month</h2>
+      <p>Yosemite is open all year, but it is four different parks across the seasons. The waterfalls, the crowds, the open roads, and the light all swing hard depending on when you arrive. Pick the month that matches what you actually came to see.</p>
+      <p><strong>Spring (April through June).</strong> This is the reason most people should come. Snowmelt drives the waterfalls to their peak, and Yosemite Falls, Bridalveil, and Vernal all run loud and full. The Valley is cool and green, the meadows wake up, and the whole place feels alive in a way it does not for the rest of the year. The catch is the high country: Tioga Road and Glacier Point Road often stay closed into May while crews clear snow, so an early-spring trip is a Valley trip by default.</p>
+      <p><strong>Summer (July and August).</strong> Hottest and most crowded, in that order. Valley parking lots fill in the early morning, and there are real delays at the entrance gates on weekends. The waterfalls are already dropping by late summer, so the spring spectacle is mostly gone. The relief valve is elevation: with Tioga Road open, the high country around Tuolumne Meadows runs cooler, emptier, and more open than the Valley floor.</p>
+      <p><strong>Fall (September and October).</strong> Arguably the connoisseur's season. The crowds thin, the oaks and dogwoods turn in the Valley, and the light goes crisp and low. The trade is water: the waterfalls are reduced to a trickle or dry by now, so come for the color and the quiet rather than the cascades.</p>
+      <p><strong>Winter (November through March).</strong> Tioga Road and Glacier Point Road close for the season, leaving the Valley, Wawona, and Hetch Hetchy as your range. What you get in return is quiet and snow on the granite. Mid-to-late February brings the Firefall, when the setting sun lights Horsetail Fall on El Capitan so it glows like molten orange. It is weather and water dependent, it does not happen every year, and no reservation is required in 2026. Treat any specific date you read as a forecast, not a guarantee.</p>
 
       <h2>Where to eat</h2>
-
-      <p>
-        Bring food. The cooler in your trunk is better than the Village Store on every dimension that matters. If you need a sit-down meal inside the park, the Pizza Deck at Half Dome Village is the answer; Degnan's Kitchen is the only place in the Valley where lunch under twenty dollars exists and is not embarrassing. Outside the park, the picks depend on which gateway you are based in. The <a href="/articles/where-to-eat-yosemite">where to eat guide</a> has the locked list.
-      </p>
+      <p>The honest answer is to bring your own food. A cooler in your trunk beats the Village Store on price, on time, and on every other dimension that matters, and it lets you eat at the overlook instead of waiting in a line behind it. Just remember the rule that governs everything edible in this park: food stays out of sight, windows closed, and nothing left in the car overnight.</p>
+      <p>If you do want a sit-down meal in the park, the options are short and known. The food court at Yosemite Valley Lodge is the fast, reliable default for a hot plate. Degnan's in Yosemite Village handles a quick lunch without much ceremony. The Ahwahnee dining room is the splurge, a grand room with a dress code and prices to match, and worth doing once if the budget allows. For the full locked-down list of what is open and what it costs, see <a href="/articles/where-to-eat-yosemite">where to eat in Yosemite</a>.</p>
 
       <h2>What to bring</h2>
+      <p>A day in Yosemite is altitude, weather, and granite glare, and most visitors do not pack for any of the three. The Valley floor sits around 4,000 feet and runs warm; Glacier Point sits at about 7,200 feet and can be ten degrees cooler and twenty miles an hour windier on the same afternoon. Dress for the day you will actually have, not the one in the parking lot.</p>
+      <ul>
+        <li><strong>Water.</strong> There is no water at Glacier Point. Bring your own, and more than you think.</li>
+        <li><strong>Layers.</strong> A warm top for the overlooks even in summer; the temperature drops with elevation.</li>
+        <li><strong>Sun protection.</strong> Sunscreen and a hat. Granite reflects glare straight back at you.</li>
+        <li><strong>Sturdy shoes.</strong> The Mist Trail is granite steps, often wet. Sandals will betray you.</li>
+        <li><strong>A map.</strong> Paper or offline. Cell coverage in the Valley is unreliable and gone entirely on the high roads.</li>
+        <li><strong>A full tank of gas.</strong> Fill up before you enter.</li>
+      </ul>
+      <p>For the long version, see our <a href="/kit">kit</a> page and the essay on <a href="/articles/pack-your-car-for-yosemite">how to pack your car for Yosemite</a>.</p>
 
-      <p>
-        A day in Yosemite is a half-day of altitude, weather, and granite reflectivity that most visitors are not packing for. The Valley floor at 4,000 feet runs twenty degrees warmer than Glacier Point at 7,200 feet on the same afternoon. Sunscreen and a hat are not optional. The car needs water, snacks, layers, and a paper map. The full version of all of this lives in the <a href="/kit">kit</a> page and the <a href="/articles/pack-your-car-for-yosemite">car packing essay</a>.
-      </p>
+      <h2>Common questions</h2>
+      <p><strong>How many days do you need in Yosemite?</strong> One full day, started early, covers the Valley highlights. A second day adds Glacier Point, Mariposa Grove, or Tioga Road above the Valley floor. Beyond two days you are into backcountry and repeat-visit territory.</p>
+      <p><strong>Do I need a reservation to enter Yosemite in 2026?</strong> No. Yosemite has no day-use or peak-hours reservation in 2026. You still need a valid entrance pass ($35 per vehicle for seven days).</p>
+      <p><strong>When do the waterfalls run?</strong> Spring snowmelt is the engine, and the peak is roughly April through June. By late summer the falls are low to dry, and a few stop entirely.</p>
+      <p><strong>Is Glacier Point Road open?</strong> Yes. It reopened for the season on May 9, 2026. Note that there is no water at the overlook, so fill your bottles before you drive up.</p>
+      <p><strong>Is Tioga Road open?</strong> Yes. It opened on May 15, 2026, the gateway to the high country and Tuolumne Meadows. It closes again with the first heavy snow in fall.</p>
+      <p><strong>Where do I get gas?</strong> Not in Yosemite Valley; there are no pumps there. In-park gas is at Crane Flat and Wawona, and outside the park you can fill at El Portal, Oakhurst, or Lee Vining.</p>
+      <p><strong>Can I leave food in my car?</strong> Out of sight, windows closed, in daylight only, and never overnight. The fines for improper food storage run up to $5,000. When in doubt, use the bear lockers at the trailheads.</p>
+      <p><strong>Is the Wawona Hotel open?</strong> No. It has been closed since December 2024 for a condition assessment, and there is no announced reopening date.</p>
 
       <h2>The honest pitch</h2>
-
-      <p>
-        One day in Yosemite, done early and done deliberately, beats three days of arriving at noon and circling for parking. Two days, with the second one above the Valley floor, is what most first-time visitors should plan for if they can. Anything beyond that is a different kind of trip and a different essay. Show up early. Do less. Sit by the river an hour. You will remember it longer than the bucket list says you will.
-      </p>
+      <p>The thesis has not changed across all these words. One day in Yosemite, started early and spent deliberately, beats three days of arriving at noon and circling the lots for parking. If you can manage two days, make the second one above the Valley floor, on Glacier Point Road or up Tioga to the high country, and you will have seen the park most first-time visitors miss. That is the plan we would hand almost anyone coming for the first time.</p>
+      <p>Show up early. Do less than the lists tell you to. Sit by the Merced for an hour and watch the light move on the granite. You will remember that longer than you will remember the bucket list, and it costs you nothing but the willingness to stop.</p>
     </>
   );
 };
