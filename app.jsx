@@ -184,6 +184,7 @@ function buildSeo(route) {
           cat ? [cat.label, `${SITE_ORIGIN}/section/${cat.slug}`] : null,
           [a.title, null],
         ].filter(Boolean)),
+        faq: a.faq ? faqLd(a.faq) : null,
       };
     }
   }

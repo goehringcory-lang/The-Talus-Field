@@ -658,6 +658,40 @@ window.ARTICLES = [
     placeholder: "Tunnel View on an autumn morning, before the lot fills",
     image: "img/tunnel-view-autumn-aniket-deole.jpg",
     credit: "Photo: Aniket Deole / Unsplash",
+    faq: [
+      {
+        q: "How many days do you need in Yosemite?",
+        a: "One full day, started early, covers the Valley highlights. A second day adds Glacier Point, Mariposa Grove, or Tioga Road above the Valley floor. Beyond two days you are into backcountry and repeat-visit territory.",
+      },
+      {
+        q: "Do I need a reservation to enter Yosemite in 2026?",
+        a: "No. Yosemite has no day-use or peak-hours reservation in 2026. You still need a valid entrance pass ($35 per vehicle for seven days).",
+      },
+      {
+        q: "When do the Yosemite waterfalls run?",
+        a: "Spring snowmelt is the engine, and the peak is roughly April through June. By late summer the falls are low to dry, and a few stop entirely.",
+      },
+      {
+        q: "Is Glacier Point Road open?",
+        a: "Yes. It reopened for the season on May 9, 2026. There is no water at the overlook, so fill your bottles before you drive up.",
+      },
+      {
+        q: "Is Tioga Road open?",
+        a: "Yes. It opened on May 15, 2026, the gateway to the high country and Tuolumne Meadows. It closes again with the first heavy snow in fall.",
+      },
+      {
+        q: "Where do I get gas in Yosemite?",
+        a: "Not in Yosemite Valley; there are no pumps there. In-park gas is at Crane Flat and Wawona, and outside the park you can fill at El Portal, Oakhurst, or Lee Vining.",
+      },
+      {
+        q: "Can I leave food in my car in Yosemite?",
+        a: "Out of sight, windows closed, in daylight only, and never overnight. The fines for improper food storage run up to $5,000. When in doubt, use the bear lockers at the trailheads.",
+      },
+      {
+        q: "Is the Wawona Hotel open?",
+        a: "No. It has been closed since December 2024 for a condition assessment, and there is no announced reopening date.",
+      },
+    ],
   },
   {
     slug: "four-mile-up-panorama-down",
