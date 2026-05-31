@@ -1,6 +1,12 @@
 /* global React */
 const { useState } = React;
 
+// API base for the Worker. Override at runtime via window.GUIDE_API_BASE
+// (same convention as page-guide.jsx) to point at local dev.
+const CONTACT_API_BASE =
+  (typeof window !== "undefined" && window.GUIDE_API_BASE) ||
+  "https://api.thetalusfieldjournal.com";
+
 function NewsletterPage({ go }) {
   const [done, setDone] = useState(false);
   return (
@@ -72,10 +78,35 @@ function NewsletterPage({ go }) {
 }
 
 function ContactPage() {
-  const [form, setForm] = useState({ name: "", email: "", subject: "general", message: "" });
+  const [form, setForm] = useState({ name: "", email: "", subject: "general", message: "", website: "" });
   const [done, setDone] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [error, setError] = useState(null);
 
   function update(k, v) { setForm({ ...form, [k]: v }); }
+
+  async function submit(e) {
+    e.preventDefault();
+    if (sending) return;
+    setSending(true);
+    setError(null);
+    try {
+      const res = await fetch(`${CONTACT_API_BASE}/api/contact`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        throw new Error(data.error || `Send failed (${res.status})`);
+      }
+      setDone(true);
+    } catch (err) {
+      setError(err.message || "Could not send. Please email directly.");
+    } finally {
+      setSending(false);
+    }
+  }
 
   return (
     <div className="page">
@@ -92,26 +123,26 @@ function ContactPage() {
       <div className="wrap" style={{ paddingTop: 56, paddingBottom: 96 }}>
         <div style={{ display: "grid", gridTemplateColumns: "1.4fr 1fr", gap: 64, alignItems: "start" }}>
           {done ? (
-            <div style={{ border: "1px solid var(--moss)", padding: 40, background: "var(--paper-2)" }}>
+            <div role="status" style={{ border: "1px solid var(--moss)", padding: 40, background: "var(--paper-2)" }}>
               <div className="eyebrow eyebrow--moss">Sent</div>
               <h2 style={{ fontSize: 26, marginTop: 8, marginBottom: 12 }}>Got it. Thanks.</h2>
               <p style={{ color: "var(--ink-2)" }}>I read every note. I will write back when I can, usually within a few days.</p>
             </div>
           ) : (
-            <form onSubmit={(e) => { e.preventDefault(); setDone(true); }}>
+            <form onSubmit={submit}>
               <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 24 }}>
                 <div className="field">
-                  <label>Your name</label>
-                  <input type="text" required value={form.name} onChange={(e) => update("name", e.target.value)} />
+                  <label htmlFor="contact-name">Your name</label>
+                  <input id="contact-name" type="text" required value={form.name} onChange={(e) => update("name", e.target.value)} />
                 </div>
                 <div className="field">
-                  <label>Email</label>
-                  <input type="email" required value={form.email} onChange={(e) => update("email", e.target.value)} />
+                  <label htmlFor="contact-email">Email</label>
+                  <input id="contact-email" type="email" required value={form.email} onChange={(e) => update("email", e.target.value)} />
                 </div>
               </div>
               <div className="field">
-                <label>What's this about</label>
-                <select value={form.subject} onChange={(e) => update("subject", e.target.value)}>
+                <label htmlFor="contact-subject">What's this about</label>
+                <select id="contact-subject" value={form.subject} onChange={(e) => update("subject", e.target.value)}>
                   <option value="general">A general note</option>
                   <option value="planning">A trip-planning question</option>
                   <option value="correction">A correction or update to an article</option>
@@ -120,22 +151,42 @@ function ContactPage() {
                 </select>
               </div>
               <div className="field">
-                <label>Message</label>
+                <label htmlFor="contact-message">Message</label>
                 <textarea
+                  id="contact-message"
                   required
                   value={form.message}
                   onChange={(e) => update("message", e.target.value)}
                   placeholder="Be as specific as you can."
                 />
               </div>
-              <button className="btn" type="submit">Send →</button>
+              {/* Honeypot. Hidden from humans; bots fill everything. */}
+              <div style={{ position: "absolute", left: "-10000px", width: 1, height: 1, overflow: "hidden" }} aria-hidden="true">
+                <label htmlFor="contact-website">Website</label>
+                <input
+                  id="contact-website"
+                  type="text"
+                  tabIndex={-1}
+                  autoComplete="off"
+                  value={form.website}
+                  onChange={(e) => update("website", e.target.value)}
+                />
+              </div>
+              {error && (
+                <p style={{ color: "#a02b1f", fontFamily: "var(--sans)", fontSize: 14, marginBottom: 16 }}>
+                  {error} You can also email <a href="mailto:cory@thetalusfieldjournal.com">cory@thetalusfieldjournal.com</a> directly.
+                </p>
+              )}
+              <button className="btn" type="submit" disabled={sending}>
+                {sending ? "Sending…" : "Send →"}
+              </button>
             </form>
           )}
 
           <aside style={{ borderLeft: "1px solid var(--rule)", paddingLeft: 32 }}>
             <div className="eyebrow" style={{ marginBottom: 12 }}>Direct</div>
             <p style={{ fontFamily: "var(--serif)", fontSize: 17, marginBottom: 6 }}>
-              <a href="mailto:Goehring.cory@gmail.com">Goehring.cory@gmail.com</a>
+              <a href="mailto:cory@thetalusfieldjournal.com">cory@thetalusfieldjournal.com</a>
             </p>
             <p style={{ fontFamily: "var(--sans)", fontSize: 13, color: "var(--ink-3)", lineHeight: 1.55, marginBottom: 28 }}>
               I check this once or twice a day. Usually faster on Mondays.
