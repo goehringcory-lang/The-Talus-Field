@@ -1120,14 +1120,15 @@ function MapGate({ onUnlock }) {
         </ul>
         <form
           className="nlbox__form map-gate__form"
-          action="https://buttondown.email/api/emails/embed-subscribe/goehring"
+          action="https://buttondown.com/api/emails/embed-subscribe/goehring"
           method="post"
-          target="popupwindow"
+          target="buttondown-target"
           onSubmit={() => {
             if (window.trackNewsletterSubmit) window.trackNewsletterSubmit("map_gate", "map-gate");
-            else window.open("https://buttondown.email/goehring", "popupwindow");
             setMapUnlocked();
-            onUnlock();
+            // Defer the gate-to-map swap one tick so the form's native POST into
+            // the hidden iframe fires before onUnlock unmounts this form.
+            setTimeout(onUnlock, 0);
           }}
         >
           <input type="email" name="email" placeholder="you@email.com" required />
