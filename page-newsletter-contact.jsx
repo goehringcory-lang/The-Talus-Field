@@ -2,6 +2,7 @@
 const { useState } = React;
 
 function NewsletterPage({ go }) {
+  const [done, setDone] = useState(false);
   return (
     <div className="page">
       <div className="wrap wrap--narrow" style={{ paddingTop: 96, paddingBottom: 96 }}>
@@ -18,24 +19,34 @@ function NewsletterPage({ go }) {
           </p>
         </div>
 
-        <form
-          action="https://buttondown.email/api/emails/embed-subscribe/goehring"
-          method="post"
-          target="popupwindow"
-          onSubmit={() => window.trackNewsletterSubmit ? window.trackNewsletterSubmit("newsletter_page", "newsletter-page") : window.open("https://buttondown.email/goehring", "popupwindow")}
-          style={{ borderTop: "1px solid var(--ink)", borderBottom: "1px solid var(--ink)", padding: "24px 0", display: "flex", gap: 16, alignItems: "center", marginBottom: 48 }}
-        >
-          <input
-            type="email"
-            name="email"
-            placeholder="you@email.com"
-            required
-            style={{ flex: 1, fontFamily: "var(--serif)", fontSize: 22, background: "transparent", border: 0, outline: "none", color: "var(--ink)" }}
-          />
-          <input type="hidden" name="tag" value="newsletter-page" />
-          <input type="hidden" name="embed" value="1" />
-          <button className="btn" type="submit">Subscribe →</button>
-        </form>
+        {done ? (
+          <p style={{ borderTop: "1px solid var(--ink)", borderBottom: "1px solid var(--ink)", padding: "24px 0", marginBottom: 48, fontFamily: "var(--display)", fontStyle: "italic", fontSize: 22, color: "var(--moss)" }}>
+            Thanks. Check your inbox to confirm your subscription.
+          </p>
+        ) : (
+          <form
+            action="https://buttondown.com/api/emails/embed-subscribe/goehring"
+            method="post"
+            target="buttondown-target"
+            onSubmit={() => {
+              if (window.trackNewsletterSubmit) window.trackNewsletterSubmit("newsletter_page", "newsletter-page");
+              setTimeout(() => setDone(true), 0);
+            }}
+            style={{ borderTop: "1px solid var(--ink)", borderBottom: "1px solid var(--ink)", padding: "24px 0", display: "flex", gap: 16, alignItems: "center", marginBottom: 48 }}
+          >
+            <input
+              type="email"
+              name="email"
+              aria-label="Email address"
+              placeholder="you@email.com"
+              required
+              style={{ flex: 1, fontFamily: "var(--serif)", fontSize: 22, background: "transparent", border: 0, outline: "none", color: "var(--ink)" }}
+            />
+            <input type="hidden" name="tag" value="newsletter-page" />
+            <input type="hidden" name="embed" value="1" />
+            <button className="btn" type="submit">Subscribe →</button>
+          </form>
+        )}
 
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 40, marginTop: 64 }}>
           <div>

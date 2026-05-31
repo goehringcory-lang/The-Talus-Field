@@ -147,12 +147,11 @@ function GuidePage({ go }) {
                 and puts the reader on the list for the rest of the guide. Buttondown
                 posts into a popup, so the unlock fires optimistically on submit. */}
             <form
-              action="https://buttondown.email/api/emails/embed-subscribe/goehring"
+              action="https://buttondown.com/api/emails/embed-subscribe/goehring"
               method="post"
-              target="popupwindow"
+              target="buttondown-target"
               onSubmit={() => {
                 if (window.trackNewsletterSubmit) window.trackNewsletterSubmit("guide_gate", "guide-free");
-                else window.open("https://buttondown.email/goehring", "popupwindow");
                 if (window.track) window.track("guide_cta_click", { location: "guide_gate" });
                 try { window.localStorage.setItem("tfg.map.unlocked", "1"); } catch (_e) {}
               }}

@@ -350,16 +350,16 @@ function ArticleCard({ article, go, size }) {
 
 // ============================================================
 // Newsletter submit side-effects (shared)
-// Buttondown posts into a named popup window and never reports back to the
-// page, so the conversion event and the local "subscribed" flag fire
-// optimistically on submit. The map and guide gates layer their own unlock
-// on top of this. Exposed on window so page-level forms (map gate, guide,
-// newsletter page) can reuse the exact same behavior.
+// The subscribe forms POST into a hidden iframe (target="buttondown-target",
+// declared in index.html) so the page never navigates and no popup opens.
+// Buttondown never reports back to the page, so the conversion event and the
+// local "subscribed" flag fire optimistically on submit. The map and guide
+// gates layer their own unlock on top of this. Exposed on window so page-level
+// forms (map gate, guide, newsletter page) can reuse the exact same behavior.
 // ============================================================
 function trackNewsletterSubmit(location, tag) {
   if (window.track) window.track("newsletter_signup", { location: location || "unknown", tag: tag || "" });
   try { window.localStorage.setItem("tfg.nl.subscribed", "1"); } catch (_e) {}
-  window.open("https://buttondown.email/goehring", "popupwindow");
 }
 window.trackNewsletterSubmit = trackNewsletterSubmit;
 
@@ -368,22 +368,29 @@ window.trackNewsletterSubmit = trackNewsletterSubmit;
 // placement; `tag` is the Buttondown segmentation tag for that source.
 // ============================================================
 function NewsletterInline({ heading, blurb, location, tag }) {
+  const [done, setDone] = useState(false);
   return (
     <div className="nlbox">
       <h3>{heading || "Sunday Field Notes"}</h3>
       <p>{blurb || "A short note on Sundays, when there is something to say."}</p>
-      <form
-        className="nlbox__form"
-        action="https://buttondown.email/api/emails/embed-subscribe/goehring"
-        method="post"
-        target="popupwindow"
-        onSubmit={() => trackNewsletterSubmit(location, tag)}
-      >
-        <input type="email" name="email" placeholder="you@email.com" required />
-        {tag && <input type="hidden" name="tag" value={tag} />}
-        <input type="hidden" name="embed" value="1" />
-        <button type="submit">Subscribe →</button>
-      </form>
+      {done ? (
+        <p style={{ fontFamily: "var(--serif)", fontSize: 17, color: "var(--moss)", margin: 0, padding: "8px 0" }}>
+          Thanks. Check your inbox to confirm your subscription.
+        </p>
+      ) : (
+        <form
+          className="nlbox__form"
+          action="https://buttondown.com/api/emails/embed-subscribe/goehring"
+          method="post"
+          target="buttondown-target"
+          onSubmit={() => { trackNewsletterSubmit(location, tag); setTimeout(() => setDone(true), 0); }}
+        >
+          <input type="email" name="email" aria-label="Email address" placeholder="you@email.com" required />
+          {tag && <input type="hidden" name="tag" value={tag} />}
+          <input type="hidden" name="embed" value="1" />
+          <button type="submit">Subscribe →</button>
+        </form>
+      )}
     </div>
   );
 }
@@ -465,10 +472,10 @@ function ExitIntentNewsletter() {
         <p>Sunday Field Notes: what is open, what is blooming, and the occasional longer piece. Free, and you can leave anytime.</p>
         <form
           className="nlbox__form"
-          action="https://buttondown.email/api/emails/embed-subscribe/goehring"
+          action="https://buttondown.com/api/emails/embed-subscribe/goehring"
           method="post"
-          target="popupwindow"
-          onSubmit={() => { trackNewsletterSubmit("article_exit_intent", "exit-intent"); setOpen(false); }}
+          target="buttondown-target"
+          onSubmit={() => { trackNewsletterSubmit("article_exit_intent", "exit-intent"); setTimeout(() => setOpen(false), 0); }}
         >
           <input type="email" name="email" placeholder="you@email.com" required />
           <input type="hidden" name="tag" value="exit-intent" />
