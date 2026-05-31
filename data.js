@@ -56,7 +56,7 @@ window.BODY_VERSIONS = {
   "bears-spring-emergence": 75,
   "water-ouzels-waterfalls": 75,
   "working-in-yosemite": 75,
-  "yosemite-in-one-or-two-days": 77,
+  "yosemite-in-one-or-two-days": 78,
   "where-to-eat-yosemite": 79,
 };
 
@@ -648,16 +648,50 @@ window.ARTICLES = [
   {
     slug: "yosemite-in-one-or-two-days",
     cat: "planning",
-    title: "One day or two in Yosemite: a minimalist itinerary",
-    dek: "One day in Yosemite is enough. Two days is enough plus the part where you slow down. The honest version of what a short Valley visit actually buys you in 2026.",
-    seoDek: "One day in Yosemite is enough; two adds the part where you slow down. A minimalist itinerary and what a short Valley visit actually buys you in 2026.",
+    title: "One day in Yosemite: a minimalist itinerary for one or two days",
+    dek: "One day in Yosemite is enough if you start early and do less. A deliberate one-or-two-day itinerary for 2026: the Valley waterfall sequence, what to skip, and what a second day above the floor earns you.",
+    seoDek: "One day in Yosemite, done right: a 2026 itinerary for one or two days. The Valley waterfall sequence, what to skip, gas, parking, and a realistic hike.",
     date: "May 19, 2026",
     isoDate: "2026-05-19",
-    isoModified: "2026-05-19",
-    read: "9 min",
+    isoModified: "2026-05-31",
+    read: "16 min",
     placeholder: "Tunnel View on an autumn morning, before the lot fills",
     image: "img/tunnel-view-autumn-aniket-deole.jpg",
     credit: "Photo: Aniket Deole / Unsplash",
+    faq: [
+      {
+        q: "How many days do you need in Yosemite?",
+        a: "One full day, started early, covers the Valley highlights. A second day adds Glacier Point, Mariposa Grove, or Tioga Road above the Valley floor. Beyond two days you are into backcountry and repeat-visit territory.",
+      },
+      {
+        q: "Do I need a reservation to enter Yosemite in 2026?",
+        a: "No. Yosemite has no day-use or peak-hours reservation in 2026. You still need a valid entrance pass ($35 per vehicle for seven days).",
+      },
+      {
+        q: "When do the Yosemite waterfalls run?",
+        a: "Spring snowmelt is the engine, and the peak is roughly April through June. By late summer the falls are low to dry, and a few stop entirely.",
+      },
+      {
+        q: "Is Glacier Point Road open?",
+        a: "Yes. It reopened for the season on May 9, 2026. There is no water at the overlook, so fill your bottles before you drive up.",
+      },
+      {
+        q: "Is Tioga Road open?",
+        a: "Yes. It opened on May 15, 2026, the gateway to the high country and Tuolumne Meadows. It closes again with the first heavy snow in fall.",
+      },
+      {
+        q: "Where do I get gas in Yosemite?",
+        a: "Not in Yosemite Valley; there are no pumps there. In-park gas is at Crane Flat and Wawona, and outside the park you can fill at El Portal, Oakhurst, or Lee Vining.",
+      },
+      {
+        q: "Can I leave food in my car in Yosemite?",
+        a: "Out of sight, windows closed, in daylight only, and never overnight. The fines for improper food storage run up to $5,000. When in doubt, use the bear lockers at the trailheads.",
+      },
+      {
+        q: "Is the Wawona Hotel open?",
+        a: "No. It has been closed since December 2024 for a condition assessment, and there is no announced reopening date.",
+      },
+    ],
   },
   {
     slug: "four-mile-up-panorama-down",
@@ -931,7 +965,7 @@ window.START_HERE = [
   "first-time-yosemite-overwhelm",
   "yosemite-without-reservations-2026",
   "yosemite-gateway-towns-compared",
-  "yosemite-with-kids-no-reservations-2026",
+  "yosemite-in-one-or-two-days",
 ];
 
 // Helpers
