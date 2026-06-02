@@ -614,8 +614,8 @@ window.ARTICLES = [
     isoDate: "2026-06-02",
     isoModified: "2026-06-02",
     read: "12 min",
-    placeholder: "Granite domes and a high-country lake in Tuolumne, seen from Tioga Road",
-    image: "img/tuolumne-meadows-from-tioga-road-cory-goehring.jpg",
+    placeholder: "Granite domes and the Tuolumne high country seen from a ridge above Cathedral Lakes",
+    image: "img/tuolumne-high-country-cory-goehring.jpg",
     credit: "Photo: Cory Goehring",
   },
   {
