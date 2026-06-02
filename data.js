@@ -8,6 +8,10 @@
 // sitemap.xml) to match. Bump isoModified when an article is meaningfully
 // revised so Google sees the update.
 
+// Masthead issue label. The month name tracks the current date so the
+// "The June Issue" label rolls over automatically each month.
+const ISSUE_MONTH = new Date().toLocaleDateString("en-US", { month: "long" });
+
 window.SITE = {
   brand: "The Talus Field",
   tagline: "Yosemite, written by someone who lives here",
@@ -16,7 +20,7 @@ window.SITE = {
   email: "cory@thetalusfieldjournal.com",
   // Masthead issue label. One source of truth — Header and HomePage both read this.
   issue: "Vol. III · No. 19",
-  issueDetail: "The May Issue",
+  issueDetail: `The ${ISSUE_MONTH} Issue`,
 };
 
 window.CATEGORIES = [
