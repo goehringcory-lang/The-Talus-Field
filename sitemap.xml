@@ -13,7 +13,7 @@
   </url>
   <url>
     <loc>https://thetalusfieldjournal.com/articles</loc>
-    <lastmod>2026-05-26</lastmod>
+    <lastmod>2026-06-02</lastmod>
   </url>
   <url>
     <loc>https://thetalusfieldjournal.com/planning</loc>
@@ -43,7 +43,7 @@
   </url>
   <url>
     <loc>https://thetalusfieldjournal.com/section/seasonal</loc>
-    <lastmod>2026-05-20</lastmod>
+    <lastmod>2026-06-02</lastmod>
   </url>
 
   <!-- Static pages -->
@@ -89,6 +89,14 @@
   </url>
 
   <!-- Articles -->
+  <url>
+    <loc>https://thetalusfieldjournal.com/articles/yosemite-in-june-2026</loc>
+    <lastmod>2026-06-02</lastmod>
+    <image:image>
+      <image:loc>https://thetalusfieldjournal.com/img/yosemite-falls-spring-blossoms-cory-goehring.jpg</image:loc>
+      <image:title>Upper Yosemite Fall framed by spring blossoms from the Valley floor</image:title>
+    </image:image>
+  </url>
   <url>
     <loc>https://thetalusfieldjournal.com/articles/cathedral-lakes-day-hike</loc>
     <lastmod>2026-06-02</lastmod>
