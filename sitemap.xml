@@ -90,6 +90,14 @@
 
   <!-- Articles -->
   <url>
+    <loc>https://thetalusfieldjournal.com/articles/cathedral-lakes-day-hike</loc>
+    <lastmod>2026-06-02</lastmod>
+    <image:image>
+      <image:loc>https://thetalusfieldjournal.com/img/tuolumne-meadows-from-tioga-road-cory-goehring.jpg</image:loc>
+      <image:title>Granite domes and a high-country lake in Tuolumne, seen from Tioga Road</image:title>
+    </image:image>
+  </url>
+  <url>
     <loc>https://thetalusfieldjournal.com/articles/yosemite-needs-a-reservation-system</loc>
     <lastmod>2026-05-26</lastmod>
     <image:image>

@@ -34,6 +34,7 @@ window.CATEGORIES = [
 // verifies this map stays in sync with the files in bodies/.
 // ============================================================
 window.BODY_VERSIONS = {
+  "cathedral-lakes-day-hike": 1,
   "yosemite-needs-a-reservation-system": 80,
   "memorial-day-skip-the-valley-go-high-2026": 77,
   "four-mile-up-panorama-down": 75,
@@ -603,6 +604,20 @@ window.KIT.lists.forEach((l) => {
 });
 
 window.ARTICLES = [
+  {
+    slug: "cathedral-lakes-day-hike",
+    cat: "trails",
+    title: "Cathedral Lakes: the high-country day hike worth driving up for",
+    dek: "The standard high-country day hike out of Tuolumne Meadows, and it still earns the listing. Trail distance, elevation, the best months, what to actually look at, and how to do Lower and Upper Cathedral Lakes well.",
+    seoDek: "Cathedral Lakes is the best day hike in Tuolumne Meadows. Trail distance, elevation, best months, what to see, and how to hike Lower and Upper Cathedral Lakes in Yosemite.",
+    date: "June 2, 2026",
+    isoDate: "2026-06-02",
+    isoModified: "2026-06-02",
+    read: "12 min",
+    placeholder: "Granite domes and a high-country lake in Tuolumne, seen from Tioga Road",
+    image: "img/tuolumne-meadows-from-tioga-road-cory-goehring.jpg",
+    credit: "Photo: Cory Goehring",
+  },
   {
     slug: "yosemite-needs-a-reservation-system",
     cat: "planning",
