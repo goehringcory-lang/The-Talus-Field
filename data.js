@@ -34,6 +34,7 @@ window.CATEGORIES = [
 // verifies this map stays in sync with the files in bodies/.
 // ============================================================
 window.BODY_VERSIONS = {
+  "yosemite-in-june-2026": 1,
   "cathedral-lakes-day-hike": 1,
   "yosemite-needs-a-reservation-system": 80,
   "memorial-day-skip-the-valley-go-high-2026": 77,
@@ -604,6 +605,20 @@ window.KIT.lists.forEach((l) => {
 });
 
 window.ARTICLES = [
+  {
+    slug: "yosemite-in-june-2026",
+    cat: "seasonal",
+    title: "Yosemite in June 2026: Two Junes, One Month",
+    dek: "Low snowpack pushed everything earlier and the reservation system is gone. The waterfalls, the road openings, the crowds, the bears, and how to plan for the June you are actually getting.",
+    seoDek: "A Yosemite naturalist breaks down June 2026 conditions: low snowpack, no reservations, early waterfall peak, Tioga Road open, and how to plan around all of it.",
+    date: "June 2, 2026",
+    isoDate: "2026-06-02",
+    isoModified: "2026-06-02",
+    read: "10 min",
+    placeholder: "Upper Yosemite Fall framed by spring blossoms from the Valley floor",
+    image: "img/yosemite-falls-spring-blossoms-cory-goehring.jpg",
+    credit: "Photo: Cory Goehring",
+  },
   {
     slug: "cathedral-lakes-day-hike",
     cat: "trails",
