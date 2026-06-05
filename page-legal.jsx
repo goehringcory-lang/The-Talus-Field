@@ -58,7 +58,7 @@ function PrivacyPage() {
 function TermsPage() {
   return (
     <LegalShell title="Terms of Service" eyebrow="Legal" updated="April 1, 2026">
-      <p>These terms govern your use of The Talus Field (thetalusfieldjournal.com). By using the site, you agree to them.</p>
+      <p>These terms govern your use of The Talus Field (thetalusfieldjournal.com). By using the site, you agree to them. The Field Guide and interactive map are provided free of charge. No purchase is required.</p>
 
       <h2>1. Use of content</h2>
       <p>All articles, photographs, and other content on this site are copyrighted by Cory Goehring unless otherwise noted. You may quote up to 300 words in another work with a clear link back to the original article. You may not republish, syndicate, or train machine learning models on any content without written permission.</p>

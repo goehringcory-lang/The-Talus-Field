@@ -114,7 +114,7 @@ window.ARTICLE_BODIES["yosemite-glaciers-climate"] = function YosemiteGlaciersBo
       </p>
 
       <p>
-        For Yosemite, this means that the park's landscape, the streams that define it, and the ecosystems that depend on those streams are in transition. Not crisis, necessarily, but change. The same warming that has shrunk Lyell Glacier is also reshaping how <a href="/articles/giant-sequoias-fire-adaptation">giant sequoia groves respond to fire</a> — both archives of climate written into the park, in ice and in bark. The question is not whether change will happen. The question is what Yosemite will do to adapt as it happens.
+        For Yosemite, this means that the park's landscape, the streams that define it, and the ecosystems that depend on those streams are in transition. Not crisis, necessarily, but change. The same warming that has shrunk Lyell Glacier is also reshaping how <a href="/articles/giant-sequoias-fire-adaptation">giant sequoia groves respond to fire</a>, both archives of climate written into the park, in ice and in bark. The question is not whether change will happen. The question is what Yosemite will do to adapt as it happens.
       </p>
 
       <h3>Further reading</h3>
