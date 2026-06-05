@@ -1202,6 +1202,8 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
 }
 .field input:focus,
 .field textarea:focus { border-bottom-color: var(--moss); }
+.field input:focus-visible,
+.field textarea:focus-visible { outline: 2px solid var(--moss); outline-offset: 2px; }
 .field textarea { min-height: 140px; resize: vertical; line-height: 1.5; }
 
 /* ===== Article body ===== */
@@ -1380,6 +1382,7 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
   padding: 8px 0;
   outline: none;
 }
+.nlbox__form input:focus-visible { outline: 2px solid var(--moss); outline-offset: 2px; }
 .nlbox__form button {
   background: transparent;
   border: 0;
@@ -2230,8 +2233,9 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
   border-radius: 3px;
   transition: background 100ms, border-color 100ms;
 }
-.map-sidebar__trip-item:focus {
-  outline: none;
+.map-sidebar__trip-item:focus-visible {
+  outline: 2px solid var(--moss);
+  outline-offset: 2px;
   border-color: var(--moss);
   background: var(--paper-3);
 }

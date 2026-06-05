@@ -5,16 +5,7 @@
 // a plain <img>.
 
 import type { CSSProperties } from 'react'
-
-const RESPONSIVE_WIDTHS = [400, 800, 1200, 1600]
-
-function slugify(name: string): string {
-  return name
-    .toLowerCase()
-    .replace(/\.[^.]+$/, '')
-    .replace(/[^a-z0-9]+/g, '-')
-    .replace(/^-+|-+$/g, '')
-}
+import { RESPONSIVE_WIDTHS, responsiveBase } from '../utils/photo'
 
 type Props = {
   src: string
@@ -45,9 +36,7 @@ export default function ResponsivePhoto({
   }
 
   const cleaned = src.replace(/^\//, '')
-  const lastSlash = cleaned.lastIndexOf('/')
-  const dir = lastSlash >= 0 ? cleaned.slice(0, lastSlash) : ''
-  const respBase = `/${dir ? dir + '/' : ''}responsive/${slugify(cleaned.split('/').pop() ?? cleaned)}`
+  const respBase = responsiveBase(src)
   const srcSet = (ext: string) => RESPONSIVE_WIDTHS.map((w) => `${respBase}-${w}.${ext} ${w}w`).join(', ')
 
   return (
