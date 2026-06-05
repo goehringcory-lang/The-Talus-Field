@@ -58,7 +58,7 @@ window.ARTICLE_BODIES["glacier-point-road-open-2026"] = function GlacierPointRoa
       </p>
 
       <p>
-        If you are bringing kids — or <a href="/articles/yosemite-for-non-hikers">visitors who can't hike</a> — there is a third plan: Glacier Point itself only. The walk to the overlook is paved, short, and stroller-friendly. The view is the highest-bang-per-step view in the park. Eat your sandwiches on the wall, count peregrines, and drive back down. That is a complete day.
+        If you are bringing kids, or <a href="/articles/yosemite-for-non-hikers">visitors who can't hike</a>, there is a third plan: Glacier Point itself only. The walk to the overlook is paved, short, and stroller-friendly. The view is the highest-bang-per-step view in the park. Eat your sandwiches on the wall, count peregrines, and drive back down. That is a complete day.
       </p>
 
       <h2>What you will probably notice first</h2>

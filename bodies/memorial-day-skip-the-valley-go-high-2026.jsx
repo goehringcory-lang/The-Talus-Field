@@ -78,7 +78,7 @@ window.ARTICLE_BODIES["memorial-day-skip-the-valley-go-high-2026"] = function Me
       </p>
 
       <p style={{ fontStyle: "italic", color: "var(--ink-3)" }}>
-        More: <a href="/articles/glacier-point-road-open-2026">Glacier Point Road just opened for 2026</a> · <a href="/articles/sentinel-dome-or-taft-point">Sentinel Dome or Taft Point?</a> · <a href="/articles/glacier-point-road-end-to-end">a Glacier Point Road guide, end to end</a>
+        More: <a href="/articles/glacier-point-road-open-2026">Glacier Point Road just opened for 2026</a>
       </p>
 
       <h2>Option 2: Tioga Road (open 2026), the high country two months ahead of the Valley</h2>
@@ -102,7 +102,7 @@ window.ARTICLE_BODIES["memorial-day-skip-the-valley-go-high-2026"] = function Me
       </p>
 
       <p style={{ fontStyle: "italic", color: "var(--ink-3)" }}>
-        More: <a href="/articles/tioga-road-opening-weekend-2026">what to expect on Tioga's opening weekend</a> · <a href="/articles/what-low-snowpack-means-2026">why everything opened early this year</a> · <a href="/articles/eastern-sierra-loop-with-tioga">keep driving east into the Eastern Sierra</a>
+        More: <a href="/articles/tioga-road-opening-weekend-2026">what to expect on Tioga's opening weekend</a>
       </p>
 
       <h2>A few practical things</h2>
@@ -112,7 +112,7 @@ window.ARTICLE_BODIES["memorial-day-skip-the-valley-go-high-2026"] = function Me
       </p>
 
       <p>
-        And if your plans go sideways anyway (lots full, weather turns, a road closes), don't fight the park. Flex. There's almost always a great option the crowd hasn't thought of, and we've got a whole <a href="/articles/when-your-yosemite-plans-fall-apart">guide for when the plan falls apart</a>. (The Valley's marquee hike, the Mist Trail, is closed in 2026 too, which is one more reason the climb you actually want this weekend is a different one.)
+        And if your plans go sideways anyway (lots full, weather turns, a road closes), don't fight the park. Flex. There's almost always a great option the crowd hasn't thought of. (The Valley's marquee hike, the Mist Trail, gets weekday afternoon restrictions starting June 30, but over Memorial Day weekend it is fully open and will be mobbed.)
       </p>
 
       <h2>What I'd tell a friend</h2>

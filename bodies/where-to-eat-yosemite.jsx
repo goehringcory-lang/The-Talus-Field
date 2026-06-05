@@ -16,19 +16,19 @@ window.ARTICLE_BODIES["where-to-eat-yosemite"] = function WhereToEatYosemiteBody
       <h2>Inside the park, and on the way in</h2>
 
       <p>
-        <strong>Half Dome Village Pizza Deck — Yosemite Valley.</strong> The Half Dome is the order: house pepperoni and ricotta with fennel and a chili oil drizzle. Eaten on the wooden deck under the granite face of Glacier Point Apron at the end of a long day, beer on tap, picnic tables, and a line of people who have been doing the same thing all summer. There is almost always a wait, and the wait is part of the experience. This is the only restaurant inside the park that I would go out of my way to eat at. It is not the best pizza in California. It is the best pizza in Yosemite Valley by a wide margin, and on the right summer evening it is the best meal of the trip. (The location is officially Half Dome Village; most people still call it Curry Village.)
+        <strong>Half Dome Village Pizza Deck: Yosemite Valley.</strong> The Half Dome is the order: house pepperoni and ricotta with fennel and a chili oil drizzle. Eaten on the wooden deck under the granite face of Glacier Point Apron at the end of a long day, beer on tap, picnic tables, and a line of people who have been doing the same thing all summer. There is almost always a wait, and the wait is part of the experience. This is the only restaurant inside the park that I would go out of my way to eat at. It is not the best pizza in California. It is the best pizza in Yosemite Valley by a wide margin, and on the right summer evening it is the best meal of the trip. (The location is officially Half Dome Village; most people still call it Curry Village.)
       </p>
 
       <p>
-        <strong>Degnan's Kitchen — Yosemite Valley.</strong> The only place inside the park to get a halfway decent lunch for under twenty dollars. Order a sandwich at the counter, take it outside, eat it on a bench. The bread is real, the meat is fine, the line moves. If you forgot to pack a cooler, Degnan's is the fallback that does not feel like a fallback. A coffee and a breakfast sandwich there at 7 AM is also one of the better moves in the Valley if you slept inside the park.
+        <strong>Degnan's Kitchen: Yosemite Valley.</strong> The only place inside the park to get a halfway decent lunch for under twenty dollars. Order a sandwich at the counter, take it outside, eat it on a bench. The bread is real, the meat is fine, the line moves. If you forgot to pack a cooler, Degnan's is the fallback that does not feel like a fallback. A coffee and a breakfast sandwich there at 7 AM is also one of the better moves in the Valley if you slept inside the park.
       </p>
 
       <p>
-        <strong>The Ahwahnee Dining Room — Yosemite Valley.</strong> Worth noting for visitors who want a special-occasion meal without driving to Oakhurst. As of April 2026, the Ahwahnee moved to prix fixe only: five courses at $95 a person or seven courses at $125, dinner service, reservations required. This is not a spontaneous stop. If the night calls for it, book ahead.
+        <strong>The Ahwahnee Dining Room: Yosemite Valley.</strong> Worth noting for visitors who want a special-occasion meal without driving to Oakhurst. As of April 2026, the Ahwahnee moved to prix fixe only: five courses at $95 a person or seven courses at $125, dinner service, reservations required. This is not a spontaneous stop. If the night calls for it, book ahead.
       </p>
 
       <p>
-        <strong>Latte Da Cafe — Lee Vining.</strong> The east side breakfast and coffee stop. If you are coming over Tioga Pass from Mammoth or Bishop or down from Lake Tahoe, this is the first real coffee on the route in either direction. The pastries are made in-house, the drip is honest, and the staff is the kind that remembers you the second time. Park behind the building, walk in, eat outside. Going east on a Tuesday in July, this is where the trip starts.
+        <strong>Latte Da Cafe: Lee Vining.</strong> The east side breakfast and coffee stop. If you are coming over Tioga Pass from Mammoth or Bishop or down from Lake Tahoe, this is the first real coffee on the route in either direction. The pastries are made in-house, the drip is honest, and the staff is the kind that remembers you the second time. Park behind the building, walk in, eat outside. Going east on a Tuesday in July, this is where the trip starts.
       </p>
 
       <h2>Mariposa restaurants</h2>

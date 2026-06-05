@@ -194,7 +194,7 @@ function GuidePage({ go }) {
             </p>
 
             <p style={{ fontFamily: "var(--sans)", fontSize: 12, color: "var(--ink-3)", lineHeight: 1.55, margin: "12px 0 0" }}>
-              Existing buyer? <a href={`${GUIDE_APP_BASE}/login`} style={{ color: "var(--ink-2)" }}>Sign in to the app →</a>
+              Have a guide account? <a href={`${GUIDE_APP_BASE}/login`} style={{ color: "var(--ink-2)" }}>Sign in to the app →</a>
             </p>
 
             <div style={{ borderTop: "1px solid var(--rule)", marginTop: 24, paddingTop: 20 }}>
