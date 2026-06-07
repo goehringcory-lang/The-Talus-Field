@@ -38,6 +38,7 @@ window.CATEGORIES = [
 // verifies this map stays in sync with the files in bodies/.
 // ============================================================
 window.BODY_VERSIONS = {
+  "yosemite-trip-cost-budget-2026": 1,
   "yosemite-in-june-2026": 1,
   "cathedral-lakes-day-hike": 1,
   "yosemite-needs-a-reservation-system": 80,
@@ -609,6 +610,20 @@ window.KIT.lists.forEach((l) => {
 });
 
 window.ARTICLES = [
+  {
+    slug: "yosemite-trip-cost-budget-2026",
+    cat: "planning",
+    title: "What a Yosemite Trip Actually Costs in 2026",
+    dek: "Entrance fees, lodging, food, gas, gear, and guided programs, with real 2026 numbers and three full trip totals: shoestring, comfortable mid-range, and splurge.",
+    seoDek: "What a Yosemite trip costs in 2026: entrance fees, lodging, food, gas, and gear, with real budget, mid-range, and splurge totals.",
+    date: "June 7, 2026",
+    isoDate: "2026-06-07",
+    isoModified: "2026-06-07",
+    read: "10 min",
+    placeholder: "The road into Yosemite winding up the Merced River canyon",
+    image: "img/merced-canyon-road-cory-goehring.jpg",
+    credit: "Photo: Cory Goehring",
+  },
   {
     slug: "yosemite-in-june-2026",
     cat: "seasonal",

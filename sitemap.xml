@@ -13,7 +13,7 @@
   </url>
   <url>
     <loc>https://thetalusfieldjournal.com/articles</loc>
-    <lastmod>2026-06-02</lastmod>
+    <lastmod>2026-06-07</lastmod>
   </url>
   <url>
     <loc>https://thetalusfieldjournal.com/planning</loc>
@@ -31,7 +31,7 @@
   <!-- Sections -->
   <url>
     <loc>https://thetalusfieldjournal.com/section/planning</loc>
-    <lastmod>2026-05-26</lastmod>
+    <lastmod>2026-06-07</lastmod>
   </url>
   <url>
     <loc>https://thetalusfieldjournal.com/section/trails</loc>
@@ -89,6 +89,14 @@
   </url>
 
   <!-- Articles -->
+  <url>
+    <loc>https://thetalusfieldjournal.com/articles/yosemite-trip-cost-budget-2026</loc>
+    <lastmod>2026-06-07</lastmod>
+    <image:image>
+      <image:loc>https://thetalusfieldjournal.com/img/merced-canyon-road-cory-goehring.jpg</image:loc>
+      <image:title>The road into Yosemite winding up the Merced River canyon</image:title>
+    </image:image>
+  </url>
   <url>
     <loc>https://thetalusfieldjournal.com/articles/yosemite-in-june-2026</loc>
     <lastmod>2026-06-02</lastmod>
