@@ -1,4 +1,4 @@
-/* global React, ReactDOM, Header, Footer,
+/* global React, ReactDOM, Header, Footer, ExitIntentNewsletter,
    HomePage, AboutPage, ArticlesIndex, CategoryPage, ArticlePage,
    KitPage, PlacesPage, AdvertisePage, GuidePage, MapPage,
    PlanningGuide, ChecklistPage,
@@ -559,11 +559,17 @@ function App() {
     page = <HomePage go={go} />;
   }
 
+  // Exit-intent newsletter modal, mounted site-wide (outside the keyed <main>
+  // so it persists across SPA navigation and does not re-arm). Suppressed on
+  // pages where a popup is redundant or out of place.
+  const exitDisabled = ["newsletter", "contact", "privacy", "terms", "affiliate"].includes(route);
+
   return (
     <>
       <Header current={currentNav} go={go} />
       <main key={route}>{page}</main>
       <Footer go={go} />
+      <ExitIntentNewsletter disabled={exitDisabled} />
 
       <TweaksPanel title="Tweaks">
         <TweakSection title="Palette" subtitle="The look of every page on the site.">

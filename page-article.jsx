@@ -1,4 +1,4 @@
-/* global React, ReactDOM, Placeholder, NewsletterInline, ExitIntentNewsletter, ArticleCard, MotifMountains, preloadResponsive, SIZES_HERO */
+/* global React, ReactDOM, Placeholder, NewsletterInline, ArticleCard, MotifMountains, preloadResponsive, SIZES_HERO */
 
 function ArticlePage({ slug, go }) {
   const article = window.findArticle(slug);
@@ -200,8 +200,6 @@ function ArticlePage({ slug, go }) {
           </div>
         </section>
       )}
-
-      <ExitIntentNewsletter />
     </div>
   );
 }
