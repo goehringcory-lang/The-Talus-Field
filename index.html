@@ -34,13 +34,13 @@
 
   <!--
     Webmaster verification tokens. Generate each by signing in:
-      Bing      → bing.com/webmasters          (msvalidate.01)
       Yandex    → webmaster.yandex.com         (yandex-verification)
       Pinterest → pinterest.com/settings/claim (p:domain_verify)
     Replace REPLACE_WITH_*_TOKEN with the string the dashboard hands you.
     Until then the metas are harmless — they just don't verify anything.
+    Bing is verified by import from Google Search Console, so it needs no
+    msvalidate.01 meta tag here.
   -->
-  <meta name="msvalidate.01" content="REPLACE_WITH_BING_TOKEN" />
   <meta name="yandex-verification" content="REPLACE_WITH_YANDEX_TOKEN" />
   <meta name="p:domain_verify" content="REPLACE_WITH_PINTEREST_TOKEN" />
 
