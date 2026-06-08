@@ -50,6 +50,10 @@ function legacyHashToRoute(hash) {
 // PerplexityBot, Google-Extended) read these on render.
 // ============================================================
 const SITE_NAME = "The Talus Field";
+// Single author node defined in index.html (<script id="ld-person">). Article
+// schema references it by @id so there is one Person entity for the whole site,
+// matching functions/_middleware.js (edge) and the Organization founder.
+const PERSON_ID = `${SITE_ORIGIN}/#person-cory-goehring`;
 const SITE_TAGLINE = "Yosemite, written from inside it";
 const SITE_DEFAULT_IMAGE = `${SITE_ORIGIN}/img/Half%20Dome%20Main%20Photo.jpg`;
 const SITE_DEFAULT_DESC =
@@ -160,11 +164,7 @@ function buildSeo(route) {
           datePublished: a.isoDate || a.date,
           dateModified: a.isoModified || a.isoDate || a.date,
           articleSection: cat ? cat.label : undefined,
-          author: {
-            "@type": "Person",
-            name: window.SITE.authorName,
-            url: `${SITE_ORIGIN}/about`,
-          },
+          author: { "@id": PERSON_ID },
           publisher: {
             "@type": "Organization",
             name: SITE_NAME,
@@ -387,6 +387,15 @@ const ARTICLE_OG_TAGS = [
   "article:section",
 ];
 
+// True once the first applySeo has run. functions/_middleware.js injects the
+// per-route ld-faq / ld-trail into the static HTML for crawlers that don't run
+// JS. On the very first paint (the only state a crawler that *does* render JS,
+// e.g. Googlebot, ever sees per URL) we must not clear an edge-injected ld-faq
+// just because this route carries no inline faq in data.js — that would strip
+// the FAQ rich result on hydration. On later SPA navigations we clear as usual
+// so stale schema does not bleed across routes.
+let seoApplied = false;
+
 function applySeo(route) {
   const seo = buildSeo(route);
   document.title = seo.title;
@@ -432,7 +441,9 @@ function applySeo(route) {
   if (seo.breadcrumb) setJsonLd("ld-breadcrumb", seo.breadcrumb);
   else clearJsonLd("ld-breadcrumb");
   if (seo.faq) setJsonLd("ld-faq", seo.faq);
-  else clearJsonLd("ld-faq");
+  else if (seoApplied) clearJsonLd("ld-faq");
+
+  seoApplied = true;
 }
 
 // ============================================================
