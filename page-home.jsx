@@ -1,6 +1,54 @@
 /* global React, Header, Footer, ArticleCard, Placeholder, NewsletterInline,
-   MotifMountains, MotifSun, MotifTrees */
-const { useMemo } = React;
+   MotifMountains, MotifSun, MotifTrees, useNewsletterImpression, isSubscribed */
+const { useMemo, useState } = React;
+
+// ============================================================
+// Above-the-fold hero capture. A single-field subscribe form leading with the
+// free map planner incentive, with the same impression tracking and
+// subscribed-suppression as NewsletterInline (location "home_hero", tag "home").
+// ============================================================
+function HomeHeroCapture() {
+  const [done, setDone] = useState(false);
+  const subscribed = isSubscribed();
+  const ref = useNewsletterImpression("home_hero", "home", !subscribed && !done);
+
+  if (subscribed && !done) {
+    return (
+      <p className="hero__capture-note" ref={ref}>
+        You're on the list. The map planner is in your inbox.
+      </p>
+    );
+  }
+
+  if (done) {
+    return (
+      <p className="hero__capture-note" ref={ref}>
+        The map planner is on its way once you confirm. Check your inbox.
+      </p>
+    );
+  }
+
+  return (
+    <div ref={ref}>
+      <form
+        className="hero__capture nlbox__form"
+        action="https://buttondown.com/api/emails/embed-subscribe/goehring"
+        method="post"
+        target="buttondown-target"
+        onSubmit={() => {
+          if (window.trackNewsletterSubmit) window.trackNewsletterSubmit("home_hero", "home");
+          setTimeout(() => setDone(true), 0);
+        }}
+      >
+        <input type="email" name="email" aria-label="Email address" placeholder="you@email.com" required />
+        <input type="hidden" name="tag" value="home" />
+        <input type="hidden" name="embed" value="1" />
+        <button type="submit">Get the free planner →</button>
+      </form>
+      <p className="hero__capture-note">Free printable Yosemite map planner, plus a short note on Sundays.</p>
+    </div>
+  );
+}
 
 const WEBCAMS = [
   { label: "Half Dome",      img: "ahwahnee2-t.jpg",  href: "https://yosemite.org/webcams/half-dome/",      alt: "Live view of Half Dome from Ahwahnee Meadow" },
@@ -52,6 +100,7 @@ function HomePage({ go }) {
                 Sunday Field Notes / Free Map Planner
               </a>
             </div>
+            <HomeHeroCapture />
           </div>
           <Placeholder
             caption={"El Capitan and Bridalveil at sunset"}

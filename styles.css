@@ -1397,6 +1397,15 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
 }
 .nlbox__form button:hover { color: var(--moss); }
 
+/* Soft state for readers who already subscribed: acknowledge, do not re-ask. */
+.nlbox--subscribed { padding: 20px 36px; }
+.nlbox__already {
+  font-family: var(--serif);
+  font-size: 16px;
+  color: var(--moss);
+  margin: 0;
+}
+
 /* ===== Hero (front-page lede) ===== */
 .hero {
   padding: 56px 0 48px;
@@ -1437,6 +1446,23 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
   margin-bottom: 32px;
 }
 .hero__cta { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+
+/* Above-the-fold hero email capture. Reuses .nlbox__form for the field/button;
+   the wrapper keeps it light (no .nlbox chrome) so it does not echo the bottom
+   newsletter strip. */
+.hero__capture {
+  margin-top: 20px;
+  max-width: 30rem;
+  border-top: 1px solid var(--ink);
+}
+.hero__capture button { white-space: nowrap; }
+.hero__capture-note {
+  font-family: var(--sans);
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  color: var(--ink-3);
+  margin-top: 8px;
+}
 
 /* ===== Map trigger (Places page) ===== */
 .map-trigger {

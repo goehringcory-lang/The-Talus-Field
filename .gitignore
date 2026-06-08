@@ -16,6 +16,9 @@ dist/
 # Misc
 *.log
 
+# Local CDN mirror used by smoke tests (npm copies of unpkg.com assets)
+_local_cdn/
+
 # wrangler files
 .wrangler
 .dev.vars*

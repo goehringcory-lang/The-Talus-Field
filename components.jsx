@@ -363,19 +363,83 @@ function trackNewsletterSubmit(location, tag) {
 }
 window.trackNewsletterSubmit = trackNewsletterSubmit;
 
+// Impression counterpart to trackNewsletterSubmit. Fires when a newsletter unit
+// scrolls into view so GA4 can compute a view -> signup rate per placement
+// (same `location` as the matching submit). No localStorage side effect.
+function trackNewsletterImpression(location, tag) {
+  if (window.track) window.track("newsletter_impression", { location: location || "unknown", tag: tag || "" });
+}
+window.trackNewsletterImpression = trackNewsletterImpression;
+
+// Single read-path for the subscribed flag. localStorage can throw in private
+// mode, so it is always wrapped.
+function isSubscribed() {
+  try { return window.localStorage.getItem("tfg.nl.subscribed") === "1"; } catch (_e) { return false; }
+}
+window.isSubscribed = isSubscribed;
+
+// Fire-once impression hook. Returns a ref to spread onto a unit's outer node;
+// the impression fires the first time that node is 40% visible, then the
+// observer disconnects. Pass enabled={false} to skip firing (e.g. when the unit
+// is rendering its already-subscribed soft state) so conversion-rate
+// denominators only count real asks. Falls back to firing immediately where
+// IntersectionObserver is unavailable.
+function useNewsletterImpression(location, tag, enabled) {
+  const ref = useRef(null);
+  const firedRef = useRef(false);
+  useEffect(() => {
+    if (enabled === false) return;
+    const node = ref.current;
+    if (!node) return;
+    const fire = () => {
+      if (firedRef.current) return;
+      firedRef.current = true;
+      trackNewsletterImpression(location, tag);
+    };
+    if (typeof IntersectionObserver === "undefined") { fire(); return; }
+    const io = new IntersectionObserver((entries) => {
+      for (const e of entries) {
+        if (e.isIntersecting) { fire(); io.disconnect(); break; }
+      }
+    }, { threshold: 0.4 });
+    io.observe(node);
+    return () => io.disconnect();
+  }, [location, tag, enabled]);
+  return ref;
+}
+window.useNewsletterImpression = useNewsletterImpression;
+
 // ============================================================
 // Inline newsletter box. `location` is the unique GA4 identifier for the
 // placement; `tag` is the Buttondown segmentation tag for that source.
 // ============================================================
-function NewsletterInline({ heading, blurb, location, tag }) {
+function NewsletterInline({ heading, blurb, location, tag, incentive }) {
   const [done, setDone] = useState(false);
+  const subscribed = isSubscribed();
+  // Lead with the map-planner incentive by default, but never override a
+  // caller's explicit blurb (so existing per-placement copy is untouched).
+  const showIncentive = incentive !== false && !blurb;
+  // Only count an impression when an actual ask is on screen, not the
+  // subscribed soft state or the post-submit confirmation.
+  const ref = useNewsletterImpression(location, tag, !subscribed && !done);
+
+  if (subscribed && !done) {
+    return (
+      <div className="nlbox nlbox--subscribed" ref={ref}>
+        <p className="nlbox__already">You're on the list. The map planner is in your inbox.</p>
+      </div>
+    );
+  }
+
   return (
-    <div className="nlbox">
+    <div className="nlbox" ref={ref}>
       <h3>{heading || "Sunday Field Notes"}</h3>
-      <p>{blurb || "A short note on Sundays, when there is something to say."}</p>
+      <p>{showIncentive
+          ? "Subscribe and get the free printable map planner: parking turnouts, the major stops, and room to mark your own. A short note follows on Sundays."
+          : (blurb || "A short note on Sundays, when there is something to say.")}</p>
       {done ? (
         <p style={{ fontFamily: "var(--serif)", fontSize: 17, color: "var(--moss)", margin: 0, padding: "8px 0" }}>
-          Thanks. Check your inbox to confirm your subscription.
+          The map planner is on its way once you confirm. Check your inbox.
         </p>
       ) : (
         <form
@@ -404,11 +468,12 @@ function NewsletterInline({ heading, blurb, location, tag }) {
 // ============================================================
 const EXIT_COOLDOWN_DAYS = 14;
 
-function ExitIntentNewsletter() {
+function ExitIntentNewsletter({ disabled }) {
   const [open, setOpen] = useState(false);
   const firedRef = useRef(false);
 
   useEffect(() => {
+    if (disabled) return;
     let suppressed = false;
     try {
       if (window.localStorage.getItem("tfg.nl.subscribed") === "1") suppressed = true;
@@ -424,6 +489,8 @@ function ExitIntentNewsletter() {
       if (firedRef.current) return;
       firedRef.current = true;
       try { window.localStorage.setItem("tfg.nl.exit.seen", new Date().toISOString()); } catch (_e) {}
+      if (window.track) window.track("newsletter_exit_intent_shown", { location: "article_exit_intent", tag: "exit-intent" });
+      trackNewsletterImpression("article_exit_intent", "exit-intent");
       setOpen(true);
     };
 
@@ -446,7 +513,7 @@ function ExitIntentNewsletter() {
       window.removeEventListener("scroll", onScroll);
       document.removeEventListener("mouseout", onMouseOut);
     };
-  }, []);
+  }, [disabled]);
 
   useEffect(() => {
     if (!open) return;
