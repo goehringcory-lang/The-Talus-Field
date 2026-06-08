@@ -19,6 +19,9 @@ const SITE_DEFAULT_IMAGE = `${SITE_ORIGIN}/img/Half%20Dome%20Main%20Photo.jpg`;
 const SITE_DEFAULT_DESC =
   "A field journal of Yosemite National Park, kept by a resident. Trails, planning notes, wildlife, and essays on the park's seasons and life.";
 const AUTHOR_NAME = "Cory Goehring";
+// Single author node lives in index.html (<script id="ld-person">). Article
+// schema references it by @id so there is one Person entity for the whole site.
+const AUTHOR_ID = `${SITE_ORIGIN}/#person-cory-goehring`;
 const PUBLISHER_LOGO = `${SITE_ORIGIN}/img/talus-field-mark-square.png`;
 
 function absoluteImage(url) {
@@ -58,6 +61,33 @@ function faqLd(pairs) {
   };
 }
 
+// Build a TouristAttraction for a trail guide from the article's `trail` facts
+// (seo-data.json). HikingTrail is not a type Google parses for rich results, so
+// the hike stats ride along as additionalProperty PropertyValues. Numbers come
+// from the article body; geo is emitted only when a trailhead coord is verified.
+function trailLd(a, url) {
+  const t = a.trail;
+  const props = [];
+  if (t.distance) props.push({ "@type": "PropertyValue", name: "Distance", value: t.distance });
+  if (t.elevationGain) props.push({ "@type": "PropertyValue", name: "Elevation gain", value: t.elevationGain });
+  if (t.difficulty) props.push({ "@type": "PropertyValue", name: "Difficulty", value: t.difficulty });
+  const ld = {
+    "@context": "https://schema.org",
+    "@type": "TouristAttraction",
+    name: t.name || a.title,
+    description: a.seoDek || a.dek,
+    url,
+    touristType: "Hikers",
+    isAccessibleForFree: true,
+    containedInPlace: { "@type": "Place", name: "Yosemite National Park" },
+  };
+  if (props.length) ld.additionalProperty = props;
+  if (t.geo && typeof t.geo.lat === "number" && typeof t.geo.lng === "number") {
+    ld.geo = { "@type": "GeoCoordinates", latitude: t.geo.lat, longitude: t.geo.lng };
+  }
+  return ld;
+}
+
 function seoForPath(pathname) {
   const path = pathname.replace(/\/+$/, "") || "/";
 
@@ -95,7 +125,7 @@ function seoForPath(pathname) {
         articleSection: cat ? cat.label : undefined,
         wordCount: typeof a.wordCount === "number" ? a.wordCount : undefined,
         keywords: Array.isArray(a.keywords) && a.keywords.length ? a.keywords : undefined,
-        author: { "@type": "Person", name: AUTHOR_NAME, url: `${SITE_ORIGIN}/about` },
+        author: { "@id": AUTHOR_ID },
         publisher: {
           "@type": "Organization",
           name: SITE_NAME,
@@ -111,6 +141,7 @@ function seoForPath(pathname) {
         [a.title, null],
       ].filter(Boolean)),
       faq: Array.isArray(a.faq) && a.faq.length ? faqLd(a.faq) : null,
+      trail: a.trail ? trailLd(a, url) : null,
     };
   }
 
@@ -374,6 +405,12 @@ export async function onRequest({ request, next }) {
         if (seo.faq) {
           el.append(
             `<script type="application/ld+json" id="ld-faq">${safeJsonForScript(seo.faq)}</script>`,
+            { html: true }
+          );
+        }
+        if (seo.trail) {
+          el.append(
+            `<script type="application/ld+json" id="ld-trail">${safeJsonForScript(seo.trail)}</script>`,
             { html: true }
           );
         }

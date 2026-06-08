@@ -5,7 +5,7 @@
   <!-- Hub pages -->
   <url>
     <loc>https://thetalusfieldjournal.com/</loc>
-    <lastmod>2026-05-26</lastmod>
+    <lastmod>2026-06-07</lastmod>
     <image:image>
       <image:loc>https://thetalusfieldjournal.com/img/Half%20Dome%20Main%20Photo.jpg</image:loc>
       <image:title>Half Dome at first light</image:title>
@@ -35,7 +35,7 @@
   </url>
   <url>
     <loc>https://thetalusfieldjournal.com/section/trails</loc>
-    <lastmod>2026-05-17</lastmod>
+    <lastmod>2026-06-02</lastmod>
   </url>
   <url>
     <loc>https://thetalusfieldjournal.com/section/wildlife</loc>
@@ -134,15 +134,15 @@
     <lastmod>2026-05-19</lastmod>
     <image:image>
       <image:loc>https://thetalusfieldjournal.com/img/half-dome-meadow-deer-johannes-andersson.jpg</image:loc>
-      <image:title>Meadow at the foot of Half Dome</image:title>
+      <image:title>Meadow at the foot of Half Dome, the post-hike picnic spot</image:title>
     </image:image>
   </url>
   <url>
     <loc>https://thetalusfieldjournal.com/articles/yosemite-in-one-or-two-days</loc>
-    <lastmod>2026-05-19</lastmod>
+    <lastmod>2026-05-31</lastmod>
     <image:image>
       <image:loc>https://thetalusfieldjournal.com/img/tunnel-view-autumn-aniket-deole.jpg</image:loc>
-      <image:title>Tunnel View on an autumn morning</image:title>
+      <image:title>Tunnel View on an autumn morning, before the lot fills</image:title>
     </image:image>
   </url>
   <url>
@@ -165,7 +165,7 @@
     <loc>https://thetalusfieldjournal.com/articles/tioga-road-opening-weekend-2026</loc>
     <lastmod>2026-05-13</lastmod>
     <image:image>
-      <image:loc>https://thetalusfieldjournal.com/img/TMweb.webp</image:loc>
+      <image:loc>https://thetalusfieldjournal.com/img/tuolumne-meadows.jpg</image:loc>
       <image:title>Tuolumne Meadows in early season, Tioga Road</image:title>
     </image:image>
   </url>
@@ -174,7 +174,7 @@
     <lastmod>2026-05-12</lastmod>
     <image:image>
       <image:loc>https://thetalusfieldjournal.com/img/half-dome.jpg</image:loc>
-      <image:title>Half Dome from the Valley floor</image:title>
+      <image:title>Half Dome rising 4,800 feet from the Yosemite Valley floor</image:title>
     </image:image>
   </url>
   <url>
@@ -182,7 +182,7 @@
     <lastmod>2026-05-12</lastmod>
     <image:image>
       <image:loc>https://thetalusfieldjournal.com/img/half-dome-alpenglow-madhu-shesharam.jpg</image:loc>
-      <image:title>Half Dome at alpenglow</image:title>
+      <image:title>Half Dome at alpenglow from Glacier Point</image:title>
     </image:image>
   </url>
   <url>
@@ -206,6 +206,7 @@
     <lastmod>2026-05-08</lastmod>
     <image:image>
       <image:loc>https://thetalusfieldjournal.com/img/wildflowers.jpg</image:loc>
+      <image:title>Wildflowers in a Yosemite Valley meadow, late spring</image:title>
     </image:image>
   </url>
   <url>
@@ -213,6 +214,7 @@
     <lastmod>2026-05-08</lastmod>
     <image:image>
       <image:loc>https://thetalusfieldjournal.com/img/lower-yosemite-fall.jpg</image:loc>
+      <image:title>Lower Yosemite Fall in May, peak flow</image:title>
     </image:image>
   </url>
   <url>
@@ -220,6 +222,7 @@
     <lastmod>2026-05-08</lastmod>
     <image:image>
       <image:loc>https://thetalusfieldjournal.com/img/black-bear.jpg</image:loc>
+      <image:title>Black bear foraging at meadow margin</image:title>
     </image:image>
   </url>
   <url>
@@ -243,6 +246,7 @@
     <lastmod>2026-04-27</lastmod>
     <image:image>
       <image:loc>https://thetalusfieldjournal.com/img/vernal-fall.jpg</image:loc>
+      <image:title>Wapama Falls in spring snowmelt</image:title>
     </image:image>
   </url>
   <url>
@@ -250,6 +254,7 @@
     <lastmod>2026-04-27</lastmod>
     <image:image>
       <image:loc>https://thetalusfieldjournal.com/img/milky-way-sentinel-dome.jpg</image:loc>
+      <image:title>Milky Way over Sentinel Dome, July</image:title>
     </image:image>
   </url>
   <url>
@@ -257,6 +262,7 @@
     <lastmod>2026-04-26</lastmod>
     <image:image>
       <image:loc>https://thetalusfieldjournal.com/img/tunnel-view.jpg</image:loc>
+      <image:title>Tunnel View from the overlook parking</image:title>
     </image:image>
   </url>
   <url>
@@ -264,6 +270,7 @@
     <lastmod>2026-04-26</lastmod>
     <image:image>
       <image:loc>https://thetalusfieldjournal.com/img/cathedral-rocks.jpg</image:loc>
+      <image:title>Cathedral Rocks across the Yosemite Valley, from a roadside pullout</image:title>
     </image:image>
   </url>
   <url>
@@ -271,6 +278,7 @@
     <lastmod>2026-04-26</lastmod>
     <image:image>
       <image:loc>https://thetalusfieldjournal.com/img/lower-yosemite-fall.jpg</image:loc>
+      <image:title>El Portal, dusk on the Merced</image:title>
     </image:image>
   </url>
   <url>
@@ -278,6 +286,7 @@
     <lastmod>2026-04-26</lastmod>
     <image:image>
       <image:loc>https://thetalusfieldjournal.com/img/half-dome.jpg</image:loc>
+      <image:title>Half Dome through summer haze</image:title>
     </image:image>
   </url>
   <url>
@@ -285,6 +294,7 @@
     <lastmod>2026-04-26</lastmod>
     <image:image>
       <image:loc>https://thetalusfieldjournal.com/img/cathedral-rocks.jpg</image:loc>
+      <image:title>Cathedral Rocks rising above the Merced River, Yosemite Valley</image:title>
     </image:image>
   </url>
   <url>
@@ -292,6 +302,7 @@
     <lastmod>2026-04-25</lastmod>
     <image:image>
       <image:loc>https://thetalusfieldjournal.com/img/tunnel-view.jpg</image:loc>
+      <image:title>Tunnel View at first light, May</image:title>
     </image:image>
   </url>
 </urlset>

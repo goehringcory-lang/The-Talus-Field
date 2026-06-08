@@ -4,7 +4,9 @@
   "private": true,
   "description": "Dev-only tooling for the build-free editorial site. Lives in scripts/ (NOT the repo root) so Cloudflare Pages keeps treating the root as a static, build-free deploy. The site never depends on this at runtime. Run: cd scripts && npm install && npm run images",
   "scripts": {
-    "images": "node gen-responsive-images.mjs"
+    "images": "node gen-responsive-images.mjs",
+    "seo": "node gen-seo-artifacts.mjs",
+    "seo:check": "node gen-seo-artifacts.mjs --check"
   },
   "devDependencies": {
     "sharp": "^0.34.5"

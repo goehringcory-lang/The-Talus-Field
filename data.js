@@ -1,12 +1,21 @@
 // Shared content for The Talus Field prototype.
 // Articles are stored once and pulled by every page that needs them.
 //
-// NOTE: Article and category metadata is mirrored in /articles.json and
-// /categories.json so the Cloudflare Pages Function in /functions/_middleware.js
-// can inject per-route SEO into the static HTML before any JS executes.
-// When you add or edit an article here, update articles.json (and feed.xml +
-// sitemap.xml) to match. Bump isoModified when an article is meaningfully
-// revised so Google sees the update.
+// NOTE: window.ARTICLES below is the single source of truth for the article
+// catalog and core metadata. SEO enrichment that the browser does not need
+// (keywords, wordCount, faq, trail facts) lives in /seo-data.json, keyed by
+// slug, to keep this runtime file small.
+//
+// The mirror files consumed by crawlers — /articles.json (read by the Pages
+// Function in /functions/_middleware.js), /sitemap.xml, /feed.xml, and the
+// article list in /llms.txt — are GENERATED from data.js + seo-data.json. Do
+// not hand-edit them. When you add or edit an article:
+//   1. edit window.ARTICLES here (and its bodies/<slug>.jsx),
+//   2. add any enrichment to seo-data.json,
+//   3. run `npm --prefix scripts run seo` (and commit the regenerated files).
+// Bump isoModified when an article is meaningfully revised so Google and AI
+// answer engines see the update. `npm --prefix scripts run seo:check` fails if
+// the mirrors are stale.
 
 // Masthead issue label. The month name tracks the current date so the
 // "The June Issue" label rolls over automatically each month.
