@@ -286,8 +286,22 @@ function seoForPath(pathname) {
   };
 }
 
+// Yandex site-verification file. Served directly with 200 so Cloudflare Pages'
+// clean-URL redirect (/x.html -> /x) does not break Yandex's file check, which
+// does not follow redirects. Mirrors the static /yandex_4b86906a5e0be825.html.
+const YANDEX_VERIFY_PATH = "/yandex_4b86906a5e0be825.html";
+const YANDEX_VERIFY_BODY =
+  '<html>\n    <head>\n        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">\n    </head>\n    <body>Verification: 4b86906a5e0be825</body>\n</html>';
+
 export async function onRequest({ request, next }) {
   const url = new URL(request.url);
+
+  if (url.pathname === YANDEX_VERIFY_PATH) {
+    return new Response(YANDEX_VERIFY_BODY, {
+      headers: { "content-type": "text/html; charset=UTF-8", "cache-control": "no-cache" },
+    });
+  }
+
   const seo = seoForPath(url.pathname);
   if (!seo) return next();
 
