@@ -58,10 +58,13 @@ export async function verifyStripeSignature(args: {
   const tolerance = args.toleranceSeconds ?? 300
   if (!signatureHeader) return false
 
+  // Split each pair on the first '=' only and trim, so a value containing '='
+  // or a proxy that normalizes header whitespace can't break the parse.
   const parts = Object.fromEntries(
     signatureHeader.split(',').map((kv) => {
-      const [k, v] = kv.split('=')
-      return [k, v]
+      const i = kv.indexOf('=')
+      if (i === -1) return [kv.trim(), '']
+      return [kv.slice(0, i).trim(), kv.slice(i + 1).trim()]
     }),
   )
   const t = parts['t']
