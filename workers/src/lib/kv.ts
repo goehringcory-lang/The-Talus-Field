@@ -61,6 +61,8 @@ export async function incrementInventory(env: Env, monthLabel: string): Promise<
   return next
 }
 
+// Read-modify-write on KV is not atomic, so concurrent requests can undercount
+// attempts (same trade-off as incrementInventory above). The cap is best-effort.
 export async function recordLoginAttempt(env: Env, email: string): Promise<number> {
   const key = LOGIN_ATTEMPTS_KEY(email)
   const raw = await env.GUIDE_BUYERS.get(key)

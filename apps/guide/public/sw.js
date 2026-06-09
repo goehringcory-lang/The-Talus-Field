@@ -4,6 +4,8 @@
 
 const VERSION = '__BUILD_DATE__'
 const SHELL_CACHE = `tfg-shell-${VERSION}`
+// Deliberately unversioned: wiping it on deploy would destroy the offline
+// photos buyers rely on in the park. Growth is bounded by the stop catalog.
 const RUNTIME_CACHE = 'tfg-runtime'
 
 const SHELL_ASSETS = [
@@ -47,25 +49,35 @@ self.addEventListener('message', (event) => {
 
   // Pre-warm the runtime cache with a list of photo URLs.
   // Sent by Region.tsx when a region loads so stops are fully viewable offline.
+  // Fetches run through a small concurrency-limited queue so a long URL list
+  // doesn't saturate a slow (park-edge) connection with parallel requests.
   if (event.data.type === 'PRECACHE_URLS') {
     const urls = Array.isArray(event.data.urls) ? event.data.urls : []
-    caches.open(RUNTIME_CACHE).then((cache) => {
-      urls.forEach((url) => {
-        cache.match(url).then((cached) => {
-          if (cached) return
-          fetch(url).then((res) => {
-            if (res.ok) cache.put(url, res)
-          }).catch(() => { /* offline at precache time — will cache on next visit */ })
-        })
-      })
-    })
+    event.waitUntil(precacheUrls(urls))
   }
 })
+
+const PRECACHE_CONCURRENCY = 4
+
+async function precacheUrls(urls) {
+  const cache = await caches.open(RUNTIME_CACHE)
+  const queue = [...urls]
+  const worker = async () => {
+    for (let url = queue.shift(); url !== undefined; url = queue.shift()) {
+      try {
+        if (await cache.match(url)) continue
+        const res = await fetch(url)
+        if (res.ok) await cache.put(url, res)
+      } catch { /* offline at precache time — will cache on next visit */ }
+    }
+  }
+  await Promise.all(Array.from({ length: PRECACHE_CONCURRENCY }, worker))
+}
 
 const RUNTIME_PATTERNS = [
   /\/photos\//,
   /\.woff2$/,
-  /\.(svg|png|jpg|jpeg|webp)$/,
+  /\.(svg|png|jpg|jpeg|webp|avif)$/,
 ]
 
 function isRuntimeAsset(url) {

@@ -24,7 +24,7 @@ indexnow.post('/submit', async (c) => {
   }
 
   const auth = c.req.header('Authorization') ?? ''
-  const presented = auth.startsWith('Bearer ') ? auth.slice(7) : ''
+  const presented = auth.startsWith('Bearer ') ? auth.slice(7).trim() : ''
   if (!presented || !constantTimeEquals(presented, adminToken)) {
     return c.json({ error: 'Unauthorized' }, 401)
   }

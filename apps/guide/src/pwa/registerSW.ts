@@ -26,12 +26,12 @@ export function registerServiceWorker(onUpdate: UpdateHandler): void {
 
       // Periodic + focus-based update checks.
       setInterval(() => {
-        registration.update().catch(() => {})
+        registration.update().catch((err) => console.warn('SW update check failed', err))
       }, UPDATE_POLL_MS)
 
       document.addEventListener('visibilitychange', () => {
         if (document.visibilityState === 'visible') {
-          registration.update().catch(() => {})
+          registration.update().catch((err) => console.warn('SW update check failed', err))
         }
       })
     })

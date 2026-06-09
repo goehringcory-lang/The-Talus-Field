@@ -1044,13 +1044,13 @@ function buildInfoHtml(p, coords, tripStopIds) {
   const style = getCategoryStyle(p.category);
   let photo = "";
   if (p.image) {
-    photo = `<img src="/${p.image}" alt="" loading="lazy" style="width:100%;height:120px;object-fit:cover;display:block;border-radius:3px;margin-bottom:10px;">`;
+    photo = `<img src="/${p.image}" alt="${escapeHtml(p.name || "Place photo")}" loading="lazy" style="width:100%;height:120px;object-fit:cover;display:block;border-radius:3px;margin-bottom:10px;">`;
   } else if (coords) {
     const apiKey = getMapsApiKey();
     if (apiKey) {
       const [lng, lat] = coords;
       const svUrl = streetViewUrl(lat, lng, apiKey);
-      photo = `<img src="${svUrl}" alt="" loading="lazy" onerror="this.style.display='none'" style="width:100%;height:120px;object-fit:cover;display:block;border-radius:3px;margin-bottom:10px;">`;
+      photo = `<img src="${svUrl}" alt="Street View of ${escapeHtml(p.name || "this location")}" loading="lazy" onerror="this.style.display='none'" style="width:100%;height:120px;object-fit:cover;display:block;border-radius:3px;margin-bottom:10px;">`;
     }
   }
   const cat = p.category
