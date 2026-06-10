@@ -1650,33 +1650,13 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
 }
 .nlmodal__close:hover { color: var(--ink); }
 
-/* ===== Map newsletter gate ===== */
-.map-gate__body {
-  padding-top: 32px;
-  padding-bottom: 96px;
-  max-width: 640px;
-}
-.map-gate__list {
-  list-style: none;
-  padding: 0;
-  margin: 0 0 28px;
-  border-top: 1px solid var(--rule);
-}
-.map-gate__list li {
-  font-family: var(--serif);
-  font-size: 17px;
-  color: var(--ink-2);
-  line-height: 1.5;
-  padding: 14px 0;
-  border-bottom: 1px solid var(--rule);
-}
-.map-gate__form { margin-bottom: 14px; }
+/* ===== Map signup gate modal (fine print under the .nlmodal form) ===== */
 .map-gate__fine {
   font-family: var(--sans);
   font-size: 12px;
   color: var(--ink-3);
   line-height: 1.55;
-  margin: 0;
+  margin: 12px 0 0;
 }
 
 @media (max-width: 480px) {
@@ -2228,6 +2208,30 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
 .map-sidebar__trip-clear:hover {
   color: var(--ink-2);
   text-decoration-color: var(--ink-3);
+}
+
+/* Share + route-export buttons under the trip list */
+.map-sidebar__trip-tools {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 10px;
+}
+.map-sidebar__trip-tool {
+  flex: 0 0 auto;
+  background: transparent;
+  border: 1px solid var(--rule);
+  border-radius: 3px;
+  padding: 6px 10px;
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ink-2);
+  cursor: pointer;
+}
+.map-sidebar__trip-tool:hover {
+  border-color: var(--moss);
+  color: var(--moss);
 }
 
 .map-sidebar__trip-empty {
