@@ -263,11 +263,27 @@ function seoForPath(pathname) {
         "An offline web app for Yosemite. Tappable GPS for the parking turnouts, quiet trailheads, and insider tactics that locals use. Works at the trailhead when service dies.",
     },
     "/map": {
-      // Hidden preview. URL-only access while the feature is being tested.
-      // robots:noindex keeps it out of search even if someone shares the URL.
-      title: `Map — ${SITE_NAME}`,
-      description: SITE_DEFAULT_DESC,
-      robots: "noindex, nofollow",
+      title: `Yosemite Trip Planner Map — ${SITE_NAME}`,
+      description:
+        "An interactive Yosemite map of vistas, trailheads, parking turnouts, picnic spots, and places to eat, with a trip builder. Curated by a resident of the park. Free.",
+      breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Map", null]],
+      // Honest, static WebPage node. The pin list itself stays out of the
+      // structured data until the new points pass a ground-truth check.
+      jsonLd: {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        name: `Yosemite Trip Planner Map — ${SITE_NAME}`,
+        url: `${SITE_ORIGIN}/map`,
+        description:
+          "An interactive Yosemite map of vistas, trailheads, parking turnouts, picnic spots, and places to eat, with a trip builder. Curated by a resident of the park. Free.",
+        isAccessibleForFree: true,
+        inLanguage: "en-US",
+        about: {
+          "@type": "Place",
+          name: "Yosemite National Park",
+          geo: { "@type": "GeoCoordinates", latitude: 37.8651, longitude: -119.5383 },
+        },
+      },
     },
   };
 
@@ -279,7 +295,7 @@ function seoForPath(pathname) {
     canonical: `${SITE_ORIGIN}${path === "/" ? "/" : path}`,
     ogType: "website",
     image: SITE_DEFAULT_IMAGE,
-    jsonLd: null,
+    jsonLd: meta.jsonLd || null,
     breadcrumb: meta.breadcrumb ? breadcrumbLd(meta.breadcrumb) : null,
     faq: meta.faq ? faqLd(meta.faq) : null,
     robots: meta.robots || null,
