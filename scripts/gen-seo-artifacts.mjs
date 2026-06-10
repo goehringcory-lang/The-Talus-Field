@@ -192,6 +192,7 @@ function buildSitemap(merged, categories) {
   const staticPages = [
     ["/about", "2026-04-01"],
     ["/kit", "2026-04-26"],
+    ["/films", "2026-06-10"],
     ["/places", "2026-04-26"],
     ["/advertise", "2026-04-01"],
     ["/newsletter", "2026-04-01"],
