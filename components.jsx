@@ -280,6 +280,7 @@ function Footer({ go }) {
               <li><a href="/articles" onClick={(e) => { e.preventDefault(); go("articles"); }}>All articles</a></li>
               <li><a href="/kit" onClick={(e) => { e.preventDefault(); go("kit"); }}>Kit</a></li>
               <li><a href="/places" onClick={(e) => { e.preventDefault(); go("places"); }}>Directory</a></li>
+              <li><a href="/map" onClick={(e) => { e.preventDefault(); go("map"); }}>The Map</a></li>
               <li><a href="/guide" onClick={(e) => { e.preventDefault(); window.track && window.track("guide_cta_click", { location: "footer_guide_link" }); go("guide"); }}>Field Guide</a></li>
               <li><a href="/newsletter" onClick={(e) => { e.preventDefault(); go("newsletter"); }}>Newsletter</a></li>
               <li><a href="/contact" onClick={(e) => { e.preventDefault(); go("contact"); }}>Contact</a></li>
@@ -416,7 +417,7 @@ window.useNewsletterImpression = useNewsletterImpression;
 function NewsletterInline({ heading, blurb, location, tag, incentive }) {
   const [done, setDone] = useState(false);
   const subscribed = isSubscribed();
-  // Lead with the map-planner incentive by default, but never override a
+  // Lead with the interactive-map incentive by default, but never override a
   // caller's explicit blurb (so existing per-placement copy is untouched).
   const showIncentive = incentive !== false && !blurb;
   // Only count an impression when an actual ask is on screen, not the
@@ -426,7 +427,7 @@ function NewsletterInline({ heading, blurb, location, tag, incentive }) {
   if (subscribed && !done) {
     return (
       <div className="nlbox nlbox--subscribed" ref={ref}>
-        <p className="nlbox__already">You're on the list. The map planner is in your inbox.</p>
+        <p className="nlbox__already">You're on the list. <a href="/map">The interactive map is open to you →</a></p>
       </div>
     );
   }
@@ -435,11 +436,11 @@ function NewsletterInline({ heading, blurb, location, tag, incentive }) {
     <div className="nlbox" ref={ref}>
       <h3>{heading || "Sunday Field Notes"}</h3>
       <p>{showIncentive
-          ? "Subscribe and get the free printable map planner: parking turnouts, the major stops, and room to mark your own. A short note follows on Sundays."
+          ? "Subscribe and unlock the interactive Yosemite map: vistas, trailheads, parking turnouts, places to eat, and a trip builder that saves on your device. A short note follows on Sundays."
           : (blurb || "A short note on Sundays, when there is something to say.")}</p>
       {done ? (
         <p style={{ fontFamily: "var(--serif)", fontSize: 17, color: "var(--moss)", margin: 0, padding: "8px 0" }}>
-          The map planner is on its way once you confirm. Check your inbox.
+          You're in. <a href="/map">The map is open to you →</a>
         </p>
       ) : (
         <form

@@ -160,7 +160,8 @@ function ArticlePage({ slug, go }) {
             midHost
           )}
 
-          {/* Map CTA. Points readers at the gated interactive map. */}
+          {/* Map CTA. Points readers at the interactive map (browsable free;
+              the trip builder is behind the newsletter signup). */}
           <a
             href="/map"
             onClick={(e) => { e.preventDefault(); go("map"); }}
@@ -174,7 +175,7 @@ function ArticlePage({ slug, go }) {
               Plan it on the interactive map.
             </div>
             <p style={{ fontFamily: "var(--serif)", fontSize: 16, color: "var(--ink-2)", lineHeight: 1.5, margin: 0 }}>
-              Every vista, trailhead, parking turnout, and meal worth the stop, on one map. Free with a newsletter signup.
+              Every vista, trailhead, parking turnout, and meal worth the stop, on one map. Browse it free, then build a trip from the pins.
             </p>
             <div className="mono" style={{ color: "var(--moss)", fontWeight: 700, fontSize: 11, textTransform: "uppercase", letterSpacing: "0.18em", marginTop: 12 }}>Open the map →</div>
           </a>
