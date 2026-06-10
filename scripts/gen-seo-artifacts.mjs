@@ -200,6 +200,7 @@ function buildSitemap(merged, categories) {
     ["/terms", "2026-04-01"],
     ["/affiliate", "2026-04-01"],
     ["/guide", "2026-05-10"],
+    ["/map", "2026-06-10"],
   ].map(([loc, lastmod]) => urlBlock({ loc, lastmod }));
 
   const articles = merged.map((a) =>
@@ -238,6 +239,7 @@ function buildFeed(merged, categories) {
         `      <dc:creator>${AUTHOR_NAME}</dc:creator>\n` +
         `      <category>${xml(label[a.cat] || a.cat)}</category>\n` +
         `      <description>${xml(a.dek)}</description>\n` +
+        `      <media:content url="${imageUrl(a.image)}" medium="image" />\n` +
         `    </item>`
       );
     })
@@ -245,7 +247,7 @@ function buildFeed(merged, categories) {
 
   return (
     `<?xml version="1.0" encoding="UTF-8"?>\n` +
-    `<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">\n` +
+    `<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:media="http://search.yahoo.com/mrss/">\n` +
     `  <channel>\n` +
     `    <title>The Talus Field</title>\n` +
     `    <link>${SITE_ORIGIN}/</link>\n` +

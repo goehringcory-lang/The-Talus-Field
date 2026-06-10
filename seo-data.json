@@ -170,12 +170,26 @@
 
   "working-in-yosemite": {
     "wordCount": 1935,
-    "keywords": ["working in Yosemite", "Yosemite jobs", "Yosemite Hospitality Aramark", "Curry Village housing", "Yosemite naturalist"]
+    "keywords": ["working in Yosemite", "Yosemite jobs", "Yosemite Hospitality Aramark", "Curry Village housing", "Yosemite naturalist"],
+    "faq": [
+      { "q": "Who employs most of the workers in Yosemite?", "a": "Not the National Park Service. Most jobs in the park, including lodging, food service, retail, shuttles, and front desk, are run by the authorized concessionaire, Yosemite Hospitality, a subsidiary of Aramark. NPS jobs are fewer and harder to land. Yosemite Conservancy hires a small team of seasonal naturalists, NatureBridge runs environmental education, and the Ansel Adams Gallery is tiny." },
+      { "q": "What is employee housing in Yosemite like?", "a": "Entry level is a 10-by-10 tent cabin at Curry Village shared with one to three roommates, with communal kitchens, bathrooms, and laundry, and a bear box on the porch. Rent is under twenty dollars a week, deducted from your paycheck. The housing ladder climbs to hard-walled cabins, dorm rooms, and eventually a solo room or studio, but the full climb takes years." },
+      { "q": "Can you live in Yosemite without working there?", "a": "No, with a few grandfathered exceptions. Living in the park requires working in the park, and working in the park does not always come with housing." },
+      { "q": "Can Yosemite employees bring pets?", "a": "Mostly no. Most park housing prohibits pets and most trails prohibit them too. Service animals are protected by law, and emotional support animals are allowed in housing but not at work or on the trails." },
+      { "q": "How far is the nearest grocery store or hospital from Yosemite Valley?", "a": "About an hour's drive. The closest grocery store with real selection is in Mariposa for most Valley residents, and the closest hospital, dentist, and eye doctor are all an hour or more away. A small clinic in the Valley handles routine care and stabilization." }
+    ]
   },
 
   "water-ouzels-waterfalls": {
     "wordCount": 1693,
-    "keywords": ["water ouzel", "American dipper", "Cinclus mexicanus", "Yosemite Falls", "Yosemite birds"]
+    "keywords": ["water ouzel", "American dipper", "Cinclus mexicanus", "Yosemite Falls", "Yosemite birds"],
+    "faq": [
+      { "q": "What is a water ouzel?", "a": "The water ouzel, also called the American dipper (Cinclus mexicanus), is a dark, robin-sized songbird that walks underwater in cold, fast mountain streams and forages directly inside waterfalls. It is the most specialized stream bird in the Yosemite high country." },
+      { "q": "How does a water ouzel survive inside a waterfall?", "a": "It is built for it. Dense plumage waterproofed by an exceptionally effective oil gland, short powerful legs, sharp claws with specialized tendons that grip rock against the current, and eyes that focus underwater nearly as well as in air. It does not swim through the torrent; it walks the stream bottom." },
+      { "q": "Where can I see a water ouzel in Yosemite?", "a": "The bridge below Vernal Fall on the Mist Trail is one of the most reliable spots. The base of Yosemite Falls in early summer is another. Look for a compact, dark gray-brown bird moving in and out of fast water." },
+      { "q": "What do water ouzels eat?", "a": "Aquatic insects and their larvae, including mayfly, caddisfly, and stonefly larvae, plus small aquatic crustaceans. These insects live on the bottoms of cold, fast-moving, well-oxygenated streams, which is why the ouzel stays so close to cascades and falls." },
+      { "q": "What does seeing a water ouzel tell you about a stream?", "a": "That the stream is healthy. Ouzels require cold, fast-moving, well-oxygenated water with a rich population of specialized aquatic insects, so their presence confirms those conditions. Their absence from a stream where they were historically recorded signals that the water has become warmer, slower, or more degraded." }
+    ]
   },
 
   "bears-spring-emergence": {
