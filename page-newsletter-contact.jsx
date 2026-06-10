@@ -21,13 +21,13 @@ function NewsletterPage({ go }) {
         <div style={{ border: "1px solid var(--moss)", background: "var(--paper-2)", padding: "20px 24px", marginBottom: 40 }}>
           <div className="eyebrow eyebrow--moss" style={{ marginBottom: 8 }}>Free for subscribers</div>
           <p style={{ fontFamily: "var(--serif)", fontSize: 17, lineHeight: 1.6, color: "var(--ink)", margin: 0 }}>
-            Sign up and get the free map planner: a printable Yosemite map for blocking out where to go and when, with parking turnouts, the major stops, and room to mark your own. It lands in your inbox the moment you confirm.
+            Sign up and unlock <a href="/map" onClick={(e) => { e.preventDefault(); go("map"); }}>the interactive Yosemite map</a>: vistas, trailheads, parking turnouts, picnic spots, and places to eat, with a trip builder that saves your route on your device. It opens the moment you subscribe.
           </p>
         </div>
 
         {done ? (
           <p style={{ borderTop: "1px solid var(--ink)", borderBottom: "1px solid var(--ink)", padding: "24px 0", marginBottom: 48, fontFamily: "var(--display)", fontStyle: "italic", fontSize: 22, color: "var(--moss)" }}>
-            Thanks. Check your inbox to confirm your subscription.
+            Thanks. <a href="/map" onClick={(e) => { e.preventDefault(); go("map"); }}>The map is open to you →</a>
           </p>
         ) : (
           <form

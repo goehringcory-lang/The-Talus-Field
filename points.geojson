@@ -366,6 +366,340 @@
         "gmapsUrl": "https://maps.app.goo.gl/8wdDGpXQb8MdwohVA",
         "verified": true
       }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -119.6336,
+          37.5485
+        ]
+      },
+      "properties": {
+        "id": "chilnualna-falls-trailhead",
+        "name": "Chilnualna Falls Trailhead",
+        "category": "hike",
+        "region": "wawona",
+        "blurb": "Wawona's serious hike. Eight miles round trip and 2,400 feet up to a chain of cascades that most Valley visitors never hear about. The lower falls are a quarter mile in if you only want a taste. Small lot at the end of Chilnualna Falls Road.",
+        "image": null,
+        "articles": [],
+        "gmapsUrl": "https://www.google.com/maps/search/?api=1&query=Chilnualna+Falls+Trailhead+Yosemite",
+        "verified": false
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -119.6555,
+          37.536
+        ]
+      },
+      "properties": {
+        "id": "wawona-meadow-loop",
+        "name": "Wawona Meadow Loop",
+        "category": "hike",
+        "region": "wawona",
+        "blurb": "A flat 3.5-mile loop around the meadow on an old fire road, starting across from the Wawona Hotel. Wildflowers in late spring, almost nobody on a weekday. One of the few Yosemite trails where a stroller works.",
+        "image": null,
+        "articles": [],
+        "gmapsUrl": "https://www.google.com/maps/search/?api=1&query=Wawona+Meadow+Loop+Trailhead",
+        "verified": false
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -119.6555,
+          37.5399
+        ]
+      },
+      "properties": {
+        "id": "pioneer-history-center",
+        "name": "Pioneer Yosemite History Center",
+        "category": "vista",
+        "region": "wawona",
+        "blurb": "Relocated historic cabins, a covered bridge over the South Fork, and the wagons that hauled visitors in before the roads were paved. Twenty minutes, free, and a good leg stretch between the south entrance and the Valley.",
+        "image": null,
+        "articles": [],
+        "gmapsUrl": "https://www.google.com/maps/search/?api=1&query=Pioneer+Yosemite+History+Center",
+        "verified": false
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -119.6568,
+          37.5374
+        ]
+      },
+      "properties": {
+        "id": "wawona-hotel-dining",
+        "name": "Wawona Hotel Dining Room",
+        "category": "eat",
+        "region": "wawona",
+        "blurb": "White tablecloths on a Victorian porch, 1879 vintage. The dining room serves three meals in season and the lawn chairs out front are free with a drink from the bar. The only real sit-down option between Oakhurst and the Valley.",
+        "image": null,
+        "articles": [],
+        "gmapsUrl": "https://www.google.com/maps/search/?api=1&query=Wawona+Hotel+Dining+Room",
+        "verified": false
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -119.6395,
+          37.5462
+        ]
+      },
+      "properties": {
+        "id": "swinging-bridge-wawona",
+        "name": "Swinging Bridge Picnic Area (Wawona)",
+        "category": "picnic",
+        "region": "wawona",
+        "blurb": "Not the Valley's Swinging Bridge. This one crosses the South Fork east of the Wawona settlement, with granite slabs and swimming holes when the water drops in mid-summer. Locals' spot. Pack out everything.",
+        "image": null,
+        "articles": [],
+        "gmapsUrl": "https://www.google.com/maps/search/?api=1&query=Swinging+Bridge+Wawona",
+        "verified": false
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -119.7882,
+          37.9466
+        ]
+      },
+      "properties": {
+        "id": "oshaughnessy-dam",
+        "name": "O'Shaughnessy Dam",
+        "category": "vista",
+        "region": "hetch-hetchy",
+        "blurb": "The dam that drowned the other Yosemite Valley. Walk across the top, through the tunnel blasted into the cliff, and look up-canyon at Kolana Rock and the falls. The whole reservoir story is written in the plaques.",
+        "image": null,
+        "articles": [
+          "hetch-hetchy-the-other-yosemite-valley"
+        ],
+        "gmapsUrl": "https://www.google.com/maps/search/?api=1&query=O'Shaughnessy+Dam+Hetch+Hetchy",
+        "verified": false
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -119.7659,
+          37.952
+        ]
+      },
+      "properties": {
+        "id": "wapama-falls",
+        "name": "Wapama Falls Trail",
+        "category": "hike",
+        "region": "hetch-hetchy",
+        "blurb": "Five miles round trip from the dam along the reservoir's north shore to the footbridges under Wapama Falls. In big snowmelt years the spray soaks the bridges and the park closes them; in May it is the best waterfall walk nobody is on.",
+        "image": null,
+        "articles": [
+          "hetch-hetchy-the-other-yosemite-valley"
+        ],
+        "gmapsUrl": "https://www.google.com/maps/search/?api=1&query=Wapama+Falls+Trail+Hetch+Hetchy",
+        "verified": false
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -119.785,
+          37.9335
+        ]
+      },
+      "properties": {
+        "id": "lookout-point-hetch-hetchy",
+        "name": "Lookout Point",
+        "category": "hike",
+        "region": "hetch-hetchy",
+        "blurb": "A short climb from the Hetch Hetchy entrance road to a granite knob with the reservoir, Wapama Falls, and Kolana Rock laid out below. Two miles round trip. Go in spring when the falls are loud and the wildflowers are in.",
+        "image": null,
+        "articles": [
+          "hetch-hetchy-the-other-yosemite-valley"
+        ],
+        "gmapsUrl": null,
+        "verified": false
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -119.6052,
+          37.7126
+        ]
+      },
+      "properties": {
+        "id": "taft-point",
+        "name": "Taft Point",
+        "category": "vista",
+        "region": "glacier-point",
+        "blurb": "A 2.2-mile round trip from the Sentinel Dome lot to a ledge 3,000 feet above the Valley floor, with The Fissures cracking the rim beside it. One railing, otherwise just you and the exposure. El Capitan straight across. Sunset here beats Glacier Point's crowd ten to one.",
+        "image": null,
+        "articles": [
+          "memorial-day-skip-the-valley-go-high-2026",
+          "glacier-point-road-open-2026"
+        ],
+        "gmapsUrl": "https://www.google.com/maps/search/?api=1&query=Taft+Point+Yosemite",
+        "verified": false
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -119.5865,
+          37.7233
+        ]
+      },
+      "properties": {
+        "id": "sentinel-dome",
+        "name": "Sentinel Dome",
+        "category": "hike",
+        "region": "glacier-point",
+        "blurb": "The easiest 360-degree summit in the park. A 2.2-mile round trip from the same lot as Taft Point, ending on a bare granite dome with Half Dome, Yosemite Falls, and El Capitan in one slow turn. Full moon and star nights up here are the real show.",
+        "image": null,
+        "articles": [
+          "memorial-day-skip-the-valley-go-high-2026",
+          "glacier-point-road-open-2026",
+          "yosemite-stargazing-where-to-look-up"
+        ],
+        "gmapsUrl": "https://www.google.com/maps/search/?api=1&query=Sentinel+Dome+Yosemite",
+        "verified": false
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -119.5722,
+          37.7203
+        ]
+      },
+      "properties": {
+        "id": "washburn-point",
+        "name": "Washburn Point",
+        "category": "vista",
+        "region": "glacier-point",
+        "blurb": "The pullout just before Glacier Point, and the better angle on Vernal and Nevada Falls stacked in the Merced canyon. Most cars drive past it for the famous name a half mile on. Stop here first.",
+        "image": null,
+        "articles": [
+          "glacier-point-road-open-2026"
+        ],
+        "gmapsUrl": "https://www.google.com/maps/search/?api=1&query=Washburn+Point+Yosemite",
+        "verified": false
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -119.3905,
+          37.8767
+        ]
+      },
+      "properties": {
+        "id": "pothole-dome",
+        "name": "Pothole Dome",
+        "category": "hike",
+        "region": "tuolumne",
+        "blurb": "The low dome at the west end of Tuolumne Meadows. Twenty minutes of easy granite walking puts you above the whole meadow with the Cathedral Range behind it. The classic sunset spot in the high country, and the parking is a roadside shoulder, so arrive before the light does.",
+        "image": null,
+        "articles": [
+          "tioga-road-opening-weekend-2026"
+        ],
+        "gmapsUrl": "https://www.google.com/maps/search/?api=1&query=Pothole+Dome+Tuolumne+Meadows",
+        "verified": false
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -119.3505,
+          37.878
+        ]
+      },
+      "properties": {
+        "id": "lembert-dome",
+        "name": "Lembert Dome",
+        "category": "hike",
+        "region": "tuolumne",
+        "blurb": "The big dome at the east end of the meadows. The trail wraps around the back for a walkable line to the top at 9,450 feet; the glacier-polished granite up there explains the whole landscape in one look. About 2.8 miles round trip from the lot off Tioga Road.",
+        "image": null,
+        "articles": [
+          "tioga-road-opening-weekend-2026"
+        ],
+        "gmapsUrl": "https://www.google.com/maps/search/?api=1&query=Lembert+Dome+Trailhead",
+        "verified": false
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -119.8059,
+          37.7565
+        ]
+      },
+      "properties": {
+        "id": "tuolumne-grove",
+        "name": "Tuolumne Grove Trailhead",
+        "category": "hike",
+        "region": "tuolumne",
+        "blurb": "Two dozen giant sequoias without the Mariposa Grove logistics. A mile down an old road from the Crane Flat lot, including a dead tree you can walk through, then the climb back out. No reservations, no shuttle, just go early for parking.",
+        "image": null,
+        "articles": [],
+        "gmapsUrl": "https://www.google.com/maps/search/?api=1&query=Tuolumne+Grove+Trailhead",
+        "verified": false
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -119.6225,
+          37.8512
+        ]
+      },
+      "properties": {
+        "id": "lukens-lake",
+        "name": "Lukens Lake Trailhead",
+        "category": "hike",
+        "region": "tuolumne",
+        "blurb": "The gentlest lake walk on Tioga Road. A mile and a half through fir forest to a quiet lake ringed by a wildflower meadow that peaks in July. Good first altitude leg stretch on the drive up, and a reliable corn lily show.",
+        "image": null,
+        "articles": [],
+        "gmapsUrl": "https://www.google.com/maps/search/?api=1&query=Lukens+Lake+Trailhead",
+        "verified": false
+      }
     }
   ]
 }

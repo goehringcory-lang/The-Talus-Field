@@ -4,7 +4,7 @@ const { useMemo, useState } = React;
 
 // ============================================================
 // Above-the-fold hero capture. A single-field subscribe form leading with the
-// free map planner incentive, with the same impression tracking and
+// free interactive map incentive, with the same impression tracking and
 // subscribed-suppression as NewsletterInline (location "home_hero", tag "home").
 // ============================================================
 function HomeHeroCapture() {
@@ -15,7 +15,7 @@ function HomeHeroCapture() {
   if (subscribed && !done) {
     return (
       <p className="hero__capture-note" ref={ref}>
-        You're on the list. The map planner is in your inbox.
+        You're on the list. <a href="/map">The interactive map is open to you →</a>
       </p>
     );
   }
@@ -23,7 +23,7 @@ function HomeHeroCapture() {
   if (done) {
     return (
       <p className="hero__capture-note" ref={ref}>
-        The map planner is on its way once you confirm. Check your inbox.
+        You're in. <a href="/map">The map is open to you →</a>
       </p>
     );
   }
@@ -43,9 +43,9 @@ function HomeHeroCapture() {
         <input type="email" name="email" aria-label="Email address" placeholder="you@email.com" required />
         <input type="hidden" name="tag" value="home" />
         <input type="hidden" name="embed" value="1" />
-        <button type="submit">Get the free planner →</button>
+        <button type="submit">Unlock the map →</button>
       </form>
-      <p className="hero__capture-note">Free printable Yosemite map planner, plus a short note on Sundays.</p>
+      <p className="hero__capture-note">Free interactive Yosemite map with a trip builder, plus a short note on Sundays.</p>
     </div>
   );
 }
@@ -97,7 +97,7 @@ function HomePage({ go }) {
                 Free checklist
               </a>
               <a className="btn btn--ghost" href="/newsletter" onClick={(e) => { e.preventDefault(); go("newsletter"); }}>
-                Sunday Field Notes / Free Map Planner
+                Sunday Field Notes / The Map
               </a>
             </div>
             <HomeHeroCapture />
@@ -235,7 +235,7 @@ function HomePage({ go }) {
             </div>
             <div>
               <p style={{ fontFamily: "var(--serif)", fontSize: 19, lineHeight: 1.5, color: "var(--ink-2)", margin: 0, marginBottom: 16 }}>
-                Every vista, trailhead, parking turnout, and meal in one interactive map. Free with a newsletter signup. Build a trip by tapping pins, or load a suggested one-, two-, or three-day route.
+                Every vista, trailhead, parking turnout, and meal in one interactive map. Browse it free. A newsletter signup unlocks the trip builder: tap pins to assemble a route, or load a suggested one-, two-, or three-day trip.
               </p>
               <div className="mono" style={{ color: "var(--moss)", fontWeight: 700, fontSize: 11, textTransform: "uppercase", letterSpacing: "0.18em" }}>Open the map →</div>
             </div>

@@ -348,12 +348,10 @@ function buildSeo(route) {
       ogType: "website",
     },
     map: {
-      // Hidden preview. URL-only access while the feature is being tested.
-      // robots:noindex keeps it out of search even if someone shares the URL.
-      title: `Map — ${SITE_NAME}`,
-      description: SITE_DEFAULT_DESC,
+      title: `Yosemite Trip Planner Map — ${SITE_NAME}`,
+      description:
+        "An interactive Yosemite map of vistas, trailheads, parking turnouts, picnic spots, and places to eat, with a trip builder. Curated by a resident of the park. Free.",
       ogType: "website",
-      robots: "noindex, nofollow",
     },
   };
   const meta = known[route] || known.home;
@@ -562,8 +560,6 @@ function App() {
   } else if (route === "guide") {
     page = <GuidePage go={go} />;
   } else if (route === "map") {
-    // Hidden preview route. Intentionally not added to the nav, sitemap, or
-    // article footer — typed-URL access only while the feature is tested.
     page = <MapPage go={go} />;
     // currentNav stays "home" so no nav link highlights.
   } else {
