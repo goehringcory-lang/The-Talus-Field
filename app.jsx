@@ -1,6 +1,6 @@
 /* global React, ReactDOM, Header, Footer, ExitIntentNewsletter,
    HomePage, AboutPage, ArticlesIndex, CategoryPage, ArticlePage,
-   KitPage, PlacesPage, AdvertisePage, GuidePage, MapPage,
+   KitPage, PlacesPage, AdvertisePage, GuidePage, MapPage, FilmsPage,
    PlanningGuide, ChecklistPage,
    NewsletterPage, ContactPage, PrivacyPage, TermsPage, AffiliatePage,
    TweaksPanel, useTweaks, TweakSection, TweakRadio, TweakToggle */
@@ -253,6 +253,43 @@ function buildSeo(route) {
       breadcrumb: breadcrumbLd([
         ["Home", `${SITE_ORIGIN}/`],
         ["Kit", null],
+      ]),
+    };
+  }
+
+  // Films. ItemList of VideoObject nodes built from the archive catalog.
+  // uploadDate is deliberately omitted: only publication years are sourced,
+  // and a fabricated full date is worse than none.
+  if (route === "films") {
+    const nn = window.NATURE_NOTES;
+    const episodes = (nn && nn.episodes) || [];
+    return {
+      title: `Moving Pictures — the Yosemite Nature Notes film archive — ${SITE_NAME}`,
+      description:
+        "The complete Yosemite Nature Notes film series from the National Park Service, grouped by subject. Public domain, free to watch, most under ten minutes.",
+      canonical: url,
+      ogType: "website",
+      image: SITE_DEFAULT_IMAGE,
+      jsonLd: {
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        name: "Yosemite Nature Notes — the film archive",
+        url,
+        numberOfItems: episodes.length,
+        itemListElement: episodes.map((ep, i) => ({
+          "@type": "VideoObject",
+          position: i + 1,
+          name: ep.title,
+          description: ep.dek,
+          thumbnailUrl: `https://i.ytimg.com/vi/${ep.youtubeId}/hqdefault.jpg`,
+          embedUrl: `https://www.youtube-nocookie.com/embed/${ep.youtubeId}`,
+          publisher: { "@type": "Organization", name: "National Park Service" },
+          isAccessibleForFree: true,
+        })),
+      },
+      breadcrumb: breadcrumbLd([
+        ["Home", `${SITE_ORIGIN}/`],
+        ["Films", null],
       ]),
     };
   }
@@ -528,6 +565,9 @@ function App() {
   } else if (route === "places") {
     page = <PlacesPage go={go} />;
     currentNav = "places";
+  } else if (route === "films") {
+    page = <FilmsPage />;
+    currentNav = "films";
   } else if (route === "advertise") {
     page = <AdvertisePage go={go} />;
   } else if (route === "articles") {
@@ -569,7 +609,8 @@ function App() {
   // Exit-intent newsletter modal, mounted site-wide (outside the keyed <main>
   // so it persists across SPA navigation and does not re-arm). Suppressed on
   // pages where a popup is redundant or out of place.
-  const exitDisabled = ["newsletter", "contact", "privacy", "terms", "affiliate"].includes(route);
+  // "films" is included so the popup never interrupts a playing film.
+  const exitDisabled = ["newsletter", "contact", "privacy", "terms", "affiliate", "films"].includes(route);
 
   return (
     <>

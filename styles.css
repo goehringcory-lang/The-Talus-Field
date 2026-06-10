@@ -2757,6 +2757,147 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
 }
 
 /* ============================================================
+   Moving Pictures — the Yosemite Nature Notes film archive.
+   Click-to-load facades: a thumbnail inside a <button> until the
+   reader presses play, then a youtube-nocookie iframe of the same
+   16:9 footprint. The facade crops hqdefault's 4:3 letterbox bars
+   with object-fit: cover.
+   ============================================================ */
+.films__credit {
+  padding: 28px 32px;
+  background: var(--paper-2);
+  border: 1px solid var(--rule);
+  border-left: 3px solid var(--moss);
+  max-width: 72ch;
+}
+.films__credit p {
+  font-family: var(--serif);
+  font-size: 16px;
+  line-height: 1.55;
+  color: var(--ink-2);
+}
+.films__credit a {
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid var(--moss);
+}
+.films__credit a:hover { color: var(--moss); }
+
+.film-section__count {
+  font-family: var(--sans);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-weight: 600;
+  color: var(--ink-3);
+}
+.film-section__note {
+  font-family: var(--serif);
+  font-size: 17px;
+  font-style: italic;
+  color: var(--ink-2);
+  margin: -16px 0 28px;
+}
+
+.film-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 40px 32px;
+  padding-bottom: 32px;
+}
+
+.film-card {
+  border-top: 1px solid var(--rule);
+  padding-top: 18px;
+}
+.film-card__meta {
+  font-family: var(--sans);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--ink-3);
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  font-weight: 600;
+  margin-top: 14px;
+}
+.film-card__meta span + span::before {
+  content: "·";
+  margin-right: 12px;
+  color: var(--rule-soft);
+}
+.film-card__title {
+  font-family: var(--display);
+  font-size: 24px;
+  font-weight: 500;
+  letter-spacing: -0.005em;
+  line-height: 1.15;
+  margin: 10px 0;
+  text-wrap: balance;
+  color: var(--ink);
+}
+.film-card__dek {
+  font-family: var(--serif);
+  font-size: 16px;
+  color: var(--ink-2);
+  line-height: 1.45;
+  font-style: italic;
+}
+
+/* Facade button. Reset chrome; the global button:focus-visible rule
+   provides the focus ring. */
+.film__facade {
+  position: relative;
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  padding: 0;
+  margin: 0;
+  border: 1px solid var(--rule);
+  background: var(--ink);
+  cursor: pointer;
+  overflow: hidden;
+}
+.film__thumb {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: saturate(0.85);
+  transition: filter 160ms ease, transform 240ms ease;
+}
+.film__facade:hover .film__thumb {
+  filter: saturate(1);
+  transform: scale(1.02);
+}
+.film__play {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #f0e8d8;
+  opacity: 0.92;
+  transition: opacity 160ms ease;
+}
+.film__play svg { filter: drop-shadow(0 1px 6px rgba(0, 0, 0, 0.55)); }
+.film__facade:hover .film__play { opacity: 1; }
+
+.film__frame {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: 1px solid var(--rule);
+  background: #000;
+}
+.film__frame iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+}
+
+/* ============================================================
    Dark mode — default light palette is better in direct
    sunlight; dark mode honors system preference for dusk/OLED.
    ============================================================ */

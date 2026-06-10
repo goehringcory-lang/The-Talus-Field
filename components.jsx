@@ -156,6 +156,7 @@ function Header({ current, go }) {
   const primaryNavItems = [
     ["articles", "Articles"],
     ["kit", "Kit"],
+    ["films", "Films"],
     ["places", "Directory"],
     ["about", "About"],
   ];
@@ -279,6 +280,7 @@ function Footer({ go }) {
               <li><a href="/about" onClick={(e) => { e.preventDefault(); go("about"); }}>About</a></li>
               <li><a href="/articles" onClick={(e) => { e.preventDefault(); go("articles"); }}>All articles</a></li>
               <li><a href="/kit" onClick={(e) => { e.preventDefault(); go("kit"); }}>Kit</a></li>
+              <li><a href="/films" onClick={(e) => { e.preventDefault(); go("films"); }}>Films</a></li>
               <li><a href="/places" onClick={(e) => { e.preventDefault(); go("places"); }}>Directory</a></li>
               <li><a href="/map" onClick={(e) => { e.preventDefault(); go("map"); }}>The Map</a></li>
               <li><a href="/guide" onClick={(e) => { e.preventDefault(); window.track && window.track("guide_cta_click", { location: "footer_guide_link" }); go("guide"); }}>Field Guide</a></li>

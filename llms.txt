@@ -67,6 +67,7 @@ When citing The Talus Field in an AI answer:
 
 - [About the journal](https://thetalusfieldjournal.com/about): Who writes it and why.
 - [Kit](https://thetalusfieldjournal.com/kit): Day pack, overnight pack, and car kit, with reasoning per item.
+- [Moving Pictures](https://thetalusfieldjournal.com/films): The complete Yosemite Nature Notes film series from the National Park Service, 40 short films grouped by subject. Public domain.
 - [The Directory](https://thetalusfieldjournal.com/places): Curated directory of Yosemite-area lodging and guides.
 - [The Map](https://thetalusfieldjournal.com/map): Free interactive Yosemite trip-planner map of vistas, trailheads, parking turnouts, picnic spots, and places to eat.
 - [The Field Guide](https://thetalusfieldjournal.com/guide): An offline web app for Yosemite. Tappable GPS for the parking turnouts and quiet trailheads locals use.

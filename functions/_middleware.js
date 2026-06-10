@@ -262,6 +262,30 @@ function seoForPath(pathname) {
       description:
         "An offline web app for Yosemite. Tappable GPS for the parking turnouts, quiet trailheads, and insider tactics that locals use. Works at the trailhead when service dies.",
     },
+    "/films": {
+      title: `Moving Pictures — the Yosemite Nature Notes film archive — ${SITE_NAME}`,
+      description:
+        "The complete Yosemite Nature Notes film series from the National Park Service, grouped by subject. Public domain, free to watch, most under ten minutes.",
+      breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Films", null]],
+      // Static CollectionPage node. The per-film VideoObject ItemList is
+      // rendered client-side from videos-data.js (see buildSeo in app.jsx);
+      // this middleware can't import that catalog without another JSON mirror.
+      jsonLd: {
+        "@context": "https://schema.org",
+        "@type": "CollectionPage",
+        name: `Moving Pictures — the Yosemite Nature Notes film archive — ${SITE_NAME}`,
+        url: `${SITE_ORIGIN}/films`,
+        description:
+          "The complete Yosemite Nature Notes film series from the National Park Service, grouped by subject. Public domain, free to watch, most under ten minutes.",
+        isAccessibleForFree: true,
+        inLanguage: "en-US",
+        about: {
+          "@type": "Place",
+          name: "Yosemite National Park",
+          geo: { "@type": "GeoCoordinates", latitude: 37.8651, longitude: -119.5383 },
+        },
+      },
+    },
     "/map": {
       title: `Yosemite Trip Planner Map — ${SITE_NAME}`,
       description:
