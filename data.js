@@ -47,6 +47,7 @@ window.CATEGORIES = [
 // verifies this map stays in sync with the files in bodies/.
 // ============================================================
 window.BODY_VERSIONS = {
+  "when-to-visit-yosemite-2026-crowd-forecast": 1,
   "yosemite-trip-cost-budget-2026": 1,
   "yosemite-in-june-2026": 1,
   "cathedral-lakes-day-hike": 1,
@@ -619,6 +620,20 @@ window.KIT.lists.forEach((l) => {
 });
 
 window.ARTICLES = [
+  {
+    slug: "when-to-visit-yosemite-2026-crowd-forecast",
+    cat: "planning",
+    title: "When to Visit Yosemite in 2026: What the Traffic Data Says",
+    dek: "The reservation system is gone and the park is pacing toward its second-busiest year ever. A decade of NPS visitation data, a month-by-month forecast for the rest of 2026, and the days that still work.",
+    seoDek: "Yosemite has no reservation system in 2026 and is pacing toward its second-busiest year ever. NPS data, a month-by-month crowd forecast, and the best days to visit.",
+    date: "June 11, 2026",
+    isoDate: "2026-06-11",
+    isoModified: "2026-06-11",
+    read: "11 min",
+    placeholder: "Cars parked along the edge of a Yosemite Valley meadow on a crowded weekend",
+    image: "img/cars-on-meadow-edge-cory-goehring.jpg",
+    credit: "Photo: Cory Goehring",
+  },
   {
     slug: "yosemite-trip-cost-budget-2026",
     cat: "planning",

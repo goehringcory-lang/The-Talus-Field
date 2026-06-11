@@ -1,6 +1,19 @@
 {
   "__comment": "SEO enrichment for the editorial site, keyed by article slug. NOT loaded by the browser runtime (kept out of data.js so the per-page JS payload stays small). The build script scripts/gen-seo-artifacts.mjs merges this with window.ARTICLES from data.js to regenerate articles.json (consumed by functions/_middleware.js), sitemap.xml, feed.xml, and the article section of llms.txt. Fields: wordCount (number), keywords (string[]), faq ({q,a}[]), trail ({name,distance,elevationGain,difficulty} for hike guides). FAQ answers and trail numbers are drawn from each article's published body; do not invent facts. The one article whose faq lives inline in data.js (yosemite-in-one-or-two-days) is intentionally omitted here; data.js takes precedence for faq.",
 
+  "when-to-visit-yosemite-2026-crowd-forecast": {
+    "wordCount": 2075,
+    "keywords": ["when to visit Yosemite", "Yosemite 2026 no reservations", "Yosemite crowds 2026", "Yosemite traffic", "Yosemite visitation statistics", "Yosemite crowd calendar", "best time to visit Yosemite 2026", "Yosemite entrance wait times"],
+    "faq": [
+      { "q": "Do I need a reservation to visit Yosemite in 2026?", "a": "No. The National Park Service announced in late December 2025 that the entrance reservation system would not return in 2026. You still pay the standard entrance fee, but no timed-entry ticket is required, and the February firefall viewing also ran without reservations this year." },
+      { "q": "How busy will Yosemite be in 2026?", "a": "Very. Through April the park logged 836,458 visits, 13 percent ahead of 2025, and March was up 45 percent year over year. Projecting the rest of the year puts 2026 at roughly 4.6 to 4.7 million visits, which would be the second-busiest year on record behind 2016." },
+      { "q": "What is the best time to visit Yosemite in 2026?", "a": "Midweek from September 8 to 30 is the best remaining window: summer conditions, the full park open, and crowd pressure down about a third from July. Midweek October is nearly as good, and early-November weekdays are quieter still." },
+      { "q": "What time of day should I enter Yosemite to avoid traffic?", "a": "Be through the gate before 8 a.m., before 7 on summer weekends, or arrive after 4 p.m. The busiest entry window runs roughly 9 a.m. to 2 p.m., and afternoon delays can reach two to three hours on peak weekends. Text ynptraffic to 333111 for the park's live updates." },
+      { "q": "What are the worst days to visit Yosemite in 2026?", "a": "July 3 to 5 (July 4 falls on a Saturday), any summer Saturday arriving after 8:30 a.m., Labor Day weekend, and the holiday week in late December. Memorial Day weekend 2026 produced 90-minute entrance lines and full Valley parking lots by mid-morning." },
+      { "q": "What was Yosemite's busiest year ever?", "a": "2016, with just over 5 million visits. 2025 was the fourth-busiest at about 4.28 million, and 2026 is pacing to land second at roughly 4.6 to 4.7 million." }
+    ]
+  },
+
   "yosemite-trip-cost-budget-2026": {
     "wordCount": 1907,
     "keywords": ["Yosemite trip cost", "Yosemite budget 2026", "Yosemite entrance fee", "Yosemite lodging cost", "Yosemite camping cost", "cost of Yosemite vacation", "how much does Yosemite cost", "Yosemite trip planning"],
