@@ -1,12 +1,24 @@
 import { Link } from 'react-router-dom'
 import { useAuth } from '../auth/useAuth'
-import { REGIONS, getStopsByRegion } from '../content'
+import { ESSENTIALS, ESSENTIALS_META, REGIONS, SECRET_META, SECRET_SPOTS, getStopById, getStopsByRegion, secretsLocked } from '../content'
+import { useFavorites } from '../lib/favorites'
+import { isPackCompleted } from '../offline/useDownloads'
 import GatedChrome from '../components/GatedChrome'
 import RegionPickerCard from '../components/RegionPickerCard'
+import SectionCard from '../components/SectionCard'
 import UpdatedStamp from '../components/UpdatedStamp'
+
+// Pack ids mirrored from offline/manifest.ts: one photo pack per region plus
+// the map. Used only for the status line; the manager itself lives on Account.
+const PACK_IDS = [...REGIONS.map((r) => `photos-${r.id}`), 'park-map']
 
 export default function Home() {
   const { session } = useAuth()
+  const { ids: favoriteIds } = useFavorites()
+  const savedStops = favoriteIds
+    .map((id) => getStopById(id))
+    .filter((s): s is NonNullable<typeof s> => Boolean(s))
+  const downloadedCount = PACK_IDS.filter((id) => isPackCompleted(id)).length
 
   return (
     <GatedChrome>
@@ -29,7 +41,48 @@ export default function Home() {
               stopCount={getStopsByRegion(region.id).length}
             />
           ))}
+          <SectionCard
+            to="/essentials"
+            eyebrow="Know before you go"
+            title={ESSENTIALS_META.title}
+            teaser={ESSENTIALS_META.teaser}
+            meta={`${ESSENTIALS.length} topics`}
+          />
+          <SectionCard
+            to="/secret-spots"
+            eyebrow="Included with purchase"
+            title={SECRET_META.title}
+            teaser={SECRET_META.teaser}
+            meta={secretsLocked() ? 'Coming soon' : `${SECRET_SPOTS.length} ${SECRET_SPOTS.length === 1 ? 'spot' : 'spots'}`}
+            locked={secretsLocked()}
+          />
         </div>
+
+        <Link to="/account" className="offline-status-card">
+          {downloadedCount === PACK_IDS.length ? (
+            <>Downloaded for offline. The whole guide works in airplane mode. Manage →</>
+          ) : (
+            <>
+              <strong>Offline:</strong> {downloadedCount} of {PACK_IDS.length} packs on this
+              device. Download the guide and the park map before you leave wifi →
+            </>
+          )}
+        </Link>
+
+        {savedStops.length > 0 && (
+          <section aria-label="Saved stops" style={{ marginTop: 40 }}>
+            <div className="eyebrow" style={{ marginBottom: 10 }}>Saved stops</div>
+            <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'grid', gap: 8 }}>
+              {savedStops.map((stop) => (
+                <li key={stop.id}>
+                  <Link to={`/stop/${stop.id}`} style={{ fontFamily: 'var(--display)', fontSize: 18 }}>
+                    {stop.title} →
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
 
         <UpdatedStamp />
 

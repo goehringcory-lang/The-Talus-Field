@@ -5,6 +5,8 @@
 const VERSION = '__BUILD_DATE__'
 const SHELL_CACHE = `tfg-shell-${VERSION}`
 const RUNTIME_CACHE = 'tfg-runtime'
+// Map tiles. Unversioned on purpose: a downloaded park map survives deploys.
+const TILES_CACHE = 'tfg-tiles'
 
 const SHELL_ASSETS = [
   '/',
@@ -15,6 +17,10 @@ const SHELL_ASSETS = [
   '/icon-512.png',
   '/icon-maskable.png',
   '/apple-touch-icon.png',
+  '/fonts/eb-garamond.woff2',
+  '/fonts/eb-garamond-italic.woff2',
+  '/fonts/inter.woff2',
+  '/fonts/jetbrains-mono.woff2',
 ]
 
 self.addEventListener('install', (event) => {
@@ -78,10 +84,26 @@ self.addEventListener('fetch', (event) => {
 
   const url = new URL(request.url)
 
-  // Skip cross-origin requests (fonts, API, Google Maps tiles, etc.) — let the
-  // browser handle them. Google Fonts gets cached by browser HTTP cache; the
-  // API needs to stay fresh; Google Maps JS + tile URLs are deliberately
-  // not cached (signed/rotating URLs, and Google's ToS forbids tile caching).
+  // Map tiles from the Worker proxy: cache-first into the unversioned tile
+  // cache. Matched by path (origin-agnostic) so localhost dev and production
+  // both work without baking the API host into this static file. The Worker
+  // sends ACAO * and immutable cache headers, so storing the response is fine.
+  if (/^\/tiles\/\d+\/\d+\/\d+$/.test(url.pathname)) {
+    event.respondWith(
+      (async () => {
+        const cache = await caches.open(TILES_CACHE)
+        const cached = await cache.match(request)
+        if (cached) return cached
+        const fresh = await fetch(request)
+        if (fresh.ok) cache.put(request, fresh.clone())
+        return fresh
+      })(),
+    )
+    return
+  }
+
+  // Skip remaining cross-origin requests (the API needs to stay fresh, and
+  // analytics shouldn't be cached). Fonts are self-hosted, so same-origin.
   if (url.origin !== self.location.origin) return
 
   // Navigation: network-first, fall back to cached app shell.

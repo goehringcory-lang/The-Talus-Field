@@ -3,6 +3,38 @@
    Stays in sync visually with the editorial site at thetalusfieldjournal.com.
    ============================================================ */
 
+/* Self-hosted fonts (variable woff2, latin subset). The SW precaches these
+   with the app shell, so typography survives offline — a cross-origin Google
+   Fonts link would not. */
+@font-face {
+  font-family: 'EB Garamond';
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url('/fonts/eb-garamond.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'EB Garamond';
+  font-style: italic;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url('/fonts/eb-garamond-italic.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url('/fonts/inter.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: normal;
+  font-weight: 400 500;
+  font-display: swap;
+  src: url('/fonts/jetbrains-mono.woff2') format('woff2');
+}
+
 :root {
   /* Golden hour. Warm cream paper, oxidized iron red */
   --paper: #f1ead6;
@@ -574,6 +606,311 @@ select:focus-visible {
   outline: 2px solid var(--moss);
   outline-offset: 2px;
   border-radius: 1px;
+}
+
+/* ===== Locked section card (Secret Spots before release) ===== */
+
+.region-picker-card--locked {
+  background:
+    repeating-linear-gradient(
+      -45deg,
+      transparent 0,
+      transparent 10px,
+      color-mix(in oklab, var(--ink) 4%, transparent) 10px,
+      color-mix(in oklab, var(--ink) 4%, transparent) 11px
+    ),
+    var(--paper-2);
+  border-style: dashed;
+}
+.region-picker-card--locked .region-picker-card__title {
+  color: var(--ink-2);
+}
+
+.lock-badge {
+  width: 14px;
+  height: 14px;
+  vertical-align: -2px;
+  margin-right: 6px;
+}
+
+.secret-locked {
+  border: 1px dashed var(--rule);
+  background: var(--paper-2);
+  padding: clamp(32px, 6vw, 56px);
+  text-align: center;
+  margin-top: 8px;
+}
+.secret-locked__icon {
+  width: 34px;
+  height: 34px;
+  color: var(--moss);
+  margin-bottom: 18px;
+}
+.secret-locked__teaser {
+  font-family: var(--display);
+  font-size: clamp(20px, 3vw, 26px);
+  font-weight: 500;
+  line-height: 1.25;
+  margin: 0 auto 16px;
+  max-width: 30ch;
+}
+
+/* ===== Essentials list rows ===== */
+
+.essential-row {
+  display: block;
+  padding: 24px 0;
+  text-decoration: none;
+  color: var(--ink);
+}
+.essential-row:hover {
+  text-decoration: none;
+  color: var(--ink);
+}
+.essential-row__title {
+  font-family: var(--display);
+  font-size: clamp(22px, 3vw, 30px);
+  font-weight: 500;
+  line-height: 1.1;
+  margin: 0 0 8px;
+}
+.essential-row:hover .essential-row__title {
+  color: var(--moss);
+}
+.essential-row__teaser {
+  font-family: var(--serif);
+  font-size: 15px;
+  color: var(--ink-2);
+  line-height: 1.5;
+  margin: 0 0 10px;
+}
+.essential-row__cta {
+  font-family: var(--sans);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-weight: 600;
+  color: var(--moss);
+}
+
+/* ===== Packing checklist ===== */
+
+.checklist {
+  border: 1px solid var(--rule);
+  background: var(--paper-2);
+  padding: 24px;
+  margin-top: 32px;
+}
+.checklist__count {
+  margin-bottom: 14px;
+}
+.checklist__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 2px;
+}
+.checklist__row {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 9px 4px;
+  cursor: pointer;
+}
+.checklist__row input[type='checkbox'] {
+  width: 18px;
+  height: 18px;
+  margin-top: 2px;
+  flex-shrink: 0;
+  accent-color: var(--moss);
+  cursor: pointer;
+}
+.checklist__label {
+  font-family: var(--serif);
+  font-size: 15px;
+  line-height: 1.45;
+  color: var(--ink);
+}
+.checklist__label--done {
+  color: var(--ink-3);
+  text-decoration: line-through;
+  text-decoration-color: var(--ink-3);
+}
+.checklist__season {
+  font-family: var(--sans);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-weight: 600;
+  color: var(--moss);
+  border: 1px solid currentColor;
+  padding: 1px 6px;
+  margin-left: 8px;
+  white-space: nowrap;
+  vertical-align: 2px;
+}
+
+/* ===== Offline download manager ===== */
+
+.download-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 6px 16px;
+  align-items: center;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--rule-soft);
+}
+.download-row__label {
+  font-family: var(--display);
+  font-size: 17px;
+  font-weight: 500;
+}
+.download-row__size {
+  font-family: var(--sans);
+  font-size: 12px;
+  color: var(--ink-3);
+}
+.download-row__status {
+  font-family: var(--sans);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 600;
+  color: var(--moss);
+}
+.download-row__actions {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+}
+.download-row__btn {
+  font-family: var(--sans);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-weight: 600;
+  color: var(--moss);
+  background: none;
+  border: 1px solid var(--moss);
+  padding: 7px 14px;
+  cursor: pointer;
+  min-height: 34px;
+}
+.download-row__btn:hover {
+  background: var(--moss);
+  color: var(--paper);
+}
+.download-row__btn--ghost {
+  border-color: transparent;
+  color: var(--ink-3);
+}
+.download-row__btn--ghost:hover {
+  background: none;
+  color: var(--ink);
+}
+.download-progress {
+  grid-column: 1 / -1;
+  height: 3px;
+  background: var(--rule-soft);
+  overflow: hidden;
+}
+.download-progress__fill {
+  height: 100%;
+  background: var(--moss);
+  transition: width 0.2s ease;
+}
+.offline-status-card {
+  display: block;
+  border: 1px solid var(--rule);
+  background: var(--paper-2);
+  padding: 16px 20px;
+  margin-top: 24px;
+  font-family: var(--sans);
+  font-size: 13px;
+  color: var(--ink-2);
+  text-decoration: none;
+  line-height: 1.5;
+}
+.offline-status-card:hover {
+  background: var(--paper-3);
+  text-decoration: none;
+  color: var(--ink);
+}
+
+/* ===== Search ===== */
+
+.search-input {
+  width: 100%;
+  padding: 14px 16px;
+  border: 1px solid var(--ink);
+  background: var(--paper-2);
+  font-family: var(--serif);
+  font-size: 17px;
+  color: var(--ink);
+}
+.search-result {
+  display: block;
+  padding: 18px 0;
+  text-decoration: none;
+  color: var(--ink);
+  border-bottom: 1px solid var(--rule-soft);
+}
+.search-result:hover {
+  text-decoration: none;
+  color: var(--ink);
+}
+.search-result__title {
+  font-family: var(--display);
+  font-size: 19px;
+  font-weight: 500;
+  margin: 4px 0 6px;
+}
+.search-result:hover .search-result__title {
+  color: var(--moss);
+}
+.search-result__snippet {
+  font-family: var(--serif);
+  font-size: 14px;
+  color: var(--ink-2);
+  line-height: 1.5;
+  margin: 0;
+}
+
+.stop-card__titlerow {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+/* ===== Favorite (saved stop) toggle ===== */
+
+.fav-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  margin-left: auto;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  color: var(--ink-3);
+}
+.fav-toggle:hover {
+  color: var(--moss);
+}
+.fav-toggle[aria-pressed='true'] {
+  color: var(--moss);
+}
+.fav-toggle__icon {
+  width: 22px;
+  height: 22px;
+}
+.fav-toggle[aria-pressed='true'] .fav-toggle__icon {
+  fill: currentColor;
 }
 
 /* ============================================================

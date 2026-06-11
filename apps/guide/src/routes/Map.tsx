@@ -2,17 +2,21 @@
 // /map route — three-tab map experience for the Field Guide PWA.
 //
 // Tabs: GPS points / Itineraries / Information.
-// The Google Map instance is created once on mount and lives inside a div that
+// The MapLibre instance is created once on mount and lives inside a div that
 // is never unmounted (panes overlay it via absolute positioning + visibility
 // toggling). State is reflected in the URL:
 //   /map?tab=points|itineraries|info&itinerary=1day|2day|3day&stop=<id>
 //
-// API key wiring: VITE_GOOGLE_MAPS_API_KEY is substituted into index.html at
-// build time; the Maps JS bootstrap is loaded async there. This component just
-// polls for window.google.maps to be ready.
+// Tiles come from the Worker's /tiles proxy and are served cache-first by the
+// service worker, so once the offline map pack is downloaded (Account →
+// Offline) the whole map works in airplane mode. Turn-by-turn routing stays a
+// deeplink into the native Google Maps app.
 // =============================================================================
 
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
+import maplibregl from 'maplibre-gl'
+import 'maplibre-gl/dist/maplibre-gl.css'
 import GatedChrome from '../components/GatedChrome'
 import { stops as allStops, getStopById, type StopT } from '../content'
 import {
@@ -21,14 +25,10 @@ import {
   isItineraryKey,
   type ItineraryKey,
 } from '../content/itineraries'
-import {
-  KIND_STYLES,
-  buildInfoHtml,
-  buildMarkerIcon,
-  directionsUrl,
-  getKindStyle,
-  waitForGoogleMaps,
-} from '../map/googleMaps'
+import { KIND_STYLES, buildPinElement, directionsUrl, getKindStyle } from '../map/kinds'
+import { buildMapStyle } from '../map/style'
+import { isPackCompleted } from '../offline/useDownloads'
+import { responsiveBase } from '../utils/photo'
 import './Map.css'
 
 type Tab = 'points' | 'itineraries' | 'info'
@@ -67,14 +67,82 @@ function writeUrlState(next: UrlState) {
   }
 }
 
-export default function Map() {
-  const containerRef = useRef<HTMLDivElement | null>(null)
-  const mapRef = useRef<google.maps.Map | null>(null)
-  const markersRef = useRef<Record<string, google.maps.Marker>>({})
-  const infoWindowRef = useRef<google.maps.InfoWindow | null>(null)
+function extractExcerpt(body: string, maxLen = 170): string {
+  const firstSentence = body.match(/^[^.!?\n]+[.!?]/)
+  if (firstSentence && firstSentence[0].length <= maxLen) {
+    return firstSentence[0].trim()
+  }
+  const chunk = body.slice(0, maxLen)
+  const lastSpace = chunk.lastIndexOf(' ')
+  return (lastSpace > 100 ? chunk.slice(0, lastSpace) : chunk) + '…'
+}
 
-  const [error, setError] = useState<string | null>(null)
+// Popup content built as DOM so the "Open stop" action can route through
+// react-router instead of a full page load.
+function buildPopupContent(stop: StopT, onOpenStop: (id: string) => void): HTMLElement {
+  const style = getKindStyle(stop.kind)
+  const root = document.createElement('div')
+  root.className = 'map-popup'
+
+  const photo = stop.photos[0]
+  if (photo) {
+    const img = document.createElement('img')
+    img.src = `${responsiveBase(photo.src)}-400.jpg`
+    img.alt = ''
+    img.loading = 'lazy'
+    img.className = 'map-popup__photo'
+    root.appendChild(img)
+  }
+
+  const title = document.createElement('strong')
+  title.className = 'map-popup__title'
+  title.textContent = stop.title
+  root.appendChild(title)
+
+  const chip = document.createElement('span')
+  chip.className = 'map-popup__kind'
+  chip.style.color = style.color
+  chip.textContent = style.label
+  root.appendChild(chip)
+
+  const excerpt = document.createElement('p')
+  excerpt.className = 'map-popup__excerpt'
+  excerpt.textContent = extractExcerpt(stop.body)
+  root.appendChild(excerpt)
+
+  const actions = document.createElement('p')
+  actions.className = 'map-popup__actions'
+
+  const open = document.createElement('button')
+  open.type = 'button'
+  open.className = 'map-popup__btn'
+  open.textContent = 'Open stop →'
+  open.addEventListener('click', () => onOpenStop(stop.id))
+  actions.appendChild(open)
+
+  if (stop.coord) {
+    const dir = document.createElement('a')
+    dir.className = 'map-popup__btn map-popup__btn--dir'
+    dir.href = directionsUrl(stop.coord)
+    dir.target = '_blank'
+    dir.rel = 'noopener'
+    dir.textContent = 'Directions →'
+    actions.appendChild(dir)
+  }
+
+  root.appendChild(actions)
+  return root
+}
+
+export default function Map() {
+  const navigate = useNavigate()
+  const containerRef = useRef<HTMLDivElement | null>(null)
+  const mapRef = useRef<maplibregl.Map | null>(null)
+  const markersRef = useRef<Record<string, maplibregl.Marker>>({})
+  const popupRef = useRef<maplibregl.Popup | null>(null)
+
   const [mapReady, setMapReady] = useState(false)
+  const mapDownloaded = useMemo(() => isPackCompleted('park-map'), [])
 
   const initial = useMemo(() => readUrlState(), [])
   const [tab, setTab] = useState<Tab>(initial.tab)
@@ -110,35 +178,42 @@ export default function Map() {
     return () => window.removeEventListener('popstate', onPop)
   }, [])
 
-  // Map init — runs once. Polls for window.google.maps then creates the Map.
-  useEffect(() => {
-    if (mapRef.current) return
-    if (!containerRef.current) return
+  const openStop = useCallback(
+    (id: string) => {
+      navigate(`/stop/${id}`)
+    },
+    [navigate],
+  )
 
-    let cancelled = false
-    waitForGoogleMaps()
-      .then((maps) => {
-        if (cancelled || !containerRef.current) return
-        const map = new maps.Map(containerRef.current, {
-          center: { lat: 37.85, lng: -119.55 },
-          zoom: 10,
-          mapTypeId: 'terrain',
-          mapTypeControl: true,
-          streetViewControl: false,
-          fullscreenControl: true,
-          gestureHandling: 'greedy',
-        })
-        mapRef.current = map
-        infoWindowRef.current = new maps.InfoWindow({ maxWidth: 300 })
-        setMapReady(true)
-      })
-      .catch((err: Error) => {
-        if (cancelled) return
-        setError(err.message)
-      })
+  // Map init — runs once per mount.
+  useEffect(() => {
+    if (mapRef.current || !containerRef.current) return
+
+    const map = new maplibregl.Map({
+      container: containerRef.current,
+      style: buildMapStyle(),
+      center: [-119.55, 37.85],
+      zoom: 9,
+      maxZoom: 16,
+      // Padded park bbox: keeps panning on the cached tile set.
+      maxBounds: [
+        [-120.8, 36.8],
+        [-118.2, 38.8],
+      ],
+      attributionControl: { compact: true },
+    })
+    map.addControl(new maplibregl.NavigationControl({ showCompass: false }), 'top-left')
+    map.addControl(new maplibregl.ScaleControl({ unit: 'imperial' }), 'bottom-left')
+
+    mapRef.current = map
+    popupRef.current = new maplibregl.Popup({ maxWidth: '300px', offset: 30 })
+    map.on('load', () => setMapReady(true))
 
     return () => {
-      cancelled = true
+      popupRef.current?.remove()
+      popupRef.current = null
+      map.remove()
+      mapRef.current = null
     }
   }, [])
 
@@ -147,62 +222,44 @@ export default function Map() {
     if (!mapReady) return
     const map = mapRef.current
     if (!map) return
-    const maps = window.google.maps
 
-    // Clear existing markers.
     for (const id of Object.keys(markersRef.current)) {
-      markersRef.current[id].setMap(null)
+      markersRef.current[id].remove()
     }
     markersRef.current = {}
 
     if (visibleStops.length === 0) return
 
-    const bounds = new maps.LatLngBounds()
+    const bounds = new maplibregl.LngLatBounds()
     for (const stop of visibleStops) {
       if (!stop.coord) continue
       const [lng, lat] = stop.coord
-      const position = { lat, lng }
-      bounds.extend(position)
+      bounds.extend([lng, lat])
 
-      const marker = new maps.Marker({
-        position,
-        map,
-        title: stop.title,
-        icon: buildMarkerIcon(stop.kind),
-      })
-      marker.addListener('click', () => {
-        const iw = infoWindowRef.current
-        if (!iw) return
-        iw.setContent(buildInfoHtml(stop))
-        iw.open({ anchor: marker, map })
-        setSelectedStopId(stop.id)
-      })
+      const el = buildPinElement(stop.kind)
+      el.addEventListener('click', () => setSelectedStopId(stop.id))
+      const marker = new maplibregl.Marker({ element: el, anchor: 'bottom' })
+        .setLngLat([lng, lat])
+        .addTo(map)
       markersRef.current[stop.id] = marker
     }
 
-    map.fitBounds(bounds, 40)
-    const listener = maps.event.addListenerOnce(map, 'idle', () => {
-      if ((map.getZoom() ?? 0) > 12) map.setZoom(12)
-    })
-    return () => {
-      maps.event.removeListener(listener)
-    }
+    map.fitBounds(bounds, { padding: 48, maxZoom: 12, animate: false })
   }, [visibleStops, mapReady])
 
-  // Selection effect — pan/zoom + open InfoWindow when selectedStopId changes.
+  // Selection effect — pan/zoom + open popup when selectedStopId changes.
   useEffect(() => {
     if (!mapReady || !selectedStopId) return
     const map = mapRef.current
     const marker = markersRef.current[selectedStopId]
-    const iw = infoWindowRef.current
+    const popup = popupRef.current
     const stop = getStopById(selectedStopId)
-    if (!map || !marker || !iw || !stop) return
-    const pos = marker.getPosition()
-    if (pos) map.panTo(pos)
-    if ((map.getZoom() ?? 0) < 13) map.setZoom(13)
-    iw.setContent(buildInfoHtml(stop))
-    iw.open({ anchor: marker, map })
-  }, [selectedStopId, mapReady, visibleStops])
+    if (!map || !marker || !popup || !stop) return
+
+    const lngLat = marker.getLngLat()
+    map.easeTo({ center: lngLat, zoom: Math.max(map.getZoom(), 13) })
+    popup.setLngLat(lngLat).setDOMContent(buildPopupContent(stop, openStop)).addTo(map)
+  }, [selectedStopId, mapReady, visibleStops, openStop])
 
   const handleTab = useCallback((next: Tab) => {
     setTab(next)
@@ -243,14 +300,16 @@ export default function Map() {
     <GatedChrome>
       <div className="map-page">
         <div className="map-online-notice" role="note">
-          Map requires signal.{' '}
-          <button
-            type="button"
-            className="map-online-notice__link"
-            onClick={() => handleTab('info')}
-          >
-            Set up offline navigation →
-          </button>
+          {mapDownloaded ? (
+            <>Map downloaded. Works offline, even in airplane mode.</>
+          ) : (
+            <>
+              Viewing online.{' '}
+              <Link className="map-online-notice__link" to="/account">
+                Download the map for offline →
+              </Link>
+            </>
+          )}
         </div>
 
         <nav className="map-tabbar" aria-label="Map view">
@@ -281,12 +340,6 @@ export default function Map() {
         </nav>
 
         <div className="map-page__stage">
-          {error && (
-            <div className="map-page__error" role="alert">
-              Map failed to load: {error}
-            </div>
-          )}
-
           <div ref={containerRef} className="map-page__map" />
 
           <aside className="map-pane map-pane--points" aria-hidden={tab !== 'points'}>
@@ -381,7 +434,7 @@ export default function Map() {
           </aside>
 
           <section className="map-pane map-pane--info" aria-hidden={tab !== 'info'}>
-            <InfoPane presentKinds={presentKinds} />
+            <InfoPane presentKinds={presentKinds} mapDownloaded={mapDownloaded} />
           </section>
         </div>
       </div>
@@ -412,55 +465,55 @@ function ItineraryButton({ label, subtitle, count, selected, onClick }: Itinerar
   )
 }
 
-function InfoPane({ presentKinds }: { presentKinds: StopT['kind'][] }) {
-  // Sample directions URL for the "what the link looks like" example below.
-  const sample = directionsUrl([-119.6776, 37.7158])
+function InfoPane({
+  presentKinds,
+  mapDownloaded,
+}: {
+  presentKinds: StopT['kind'][]
+  mapDownloaded: boolean
+}) {
   return (
     <div className="map-info">
-      <h1>How to use the map offline</h1>
+      <h1>How the map works offline</h1>
       <p className="lede">
-        The embedded map needs a signal. Routing inside Yosemite does not.
-        Set up your phone before you arrive and the map will keep working
-        once the bars drop to nothing.
+        This map is built to work with zero bars. Download it once and the
+        topo tiles live on your device; the pins are part of the app itself.
       </p>
 
-      <h2>Before you leave home</h2>
+      <h2>Before you leave wifi</h2>
       <ol>
         <li>
-          Open the Google Maps app and search <em>Yosemite National Park</em>.
+          Open <Link to="/account">Account → Offline</Link> and download the
+          <strong> offline park map</strong> (about 20 MB) and the photo packs
+          for the regions you're visiting.
         </li>
         <li>
-          Tap your profile photo → <strong>Offline maps</strong> →
-          <strong> Select your own map</strong>.
+          {mapDownloaded
+            ? 'Done on this device. The map pans and zooms in airplane mode.'
+            : 'Once downloaded, this map pans and zooms in airplane mode.'}
         </li>
         <li>
-          Frame the box to cover the valley, Glacier Point Road, and Tioga
-          Road if you're going to the high country. Download.
-        </li>
-        <li>
-          Confirm the download is finished before you leave cell service.
-          It expires after about a year; refresh it when you re-enter coverage.
+          For turn-by-turn <em>driving</em> directions, also download an
+          offline area in the Google Maps app: search <em>Yosemite National
+          Park</em>, tap your profile photo → <strong>Offline maps</strong> →
+          <strong> Select your own map</strong>, frame the park, download.
         </li>
       </ol>
 
       <h2>In the park</h2>
       <ul>
         <li>
-          Open this page on the <strong>GPS points</strong> tab. Pins are
-          colored by what they are (see legend below).
+          Open the <strong>GPS points</strong> tab. Pins are colored by what
+          they are (see legend below).
         </li>
         <li>
-          Tap a pin. The popup has an <strong>Open in Google Maps →</strong>
-          button.
+          Tap a pin. The popup has <strong>Open stop →</strong> (the full
+          write-up in this guide) and <strong>Directions →</strong>.
         </li>
         <li>
-          That button deep-links into the native Google Maps app, which uses
-          the offline area you downloaded to route you to the turnout.
-          Apple Maps does not have this data.
-        </li>
-        <li>
-          The link looks like <code>{sample}</code>. Save it directly if
-          you want to share a pin.
+          Directions deep-links into the native Google Maps app, which routes
+          you to the turnout using the offline area you downloaded. The
+          handoff works without signal if that area is on your phone.
         </li>
       </ul>
 
@@ -468,7 +521,7 @@ function InfoPane({ presentKinds }: { presentKinds: StopT['kind'][] }) {
       <p>
         Filter the pin set by suggested trip length. 1 day stays in the
         valley; 2 days adds the southern rim; 3 days adds Tuolumne. Use
-        the day-by-day list to walk through stops in order — the map pans
+        the day-by-day list to walk through stops in order; the map pans
         to each selection.
       </p>
 
@@ -489,15 +542,18 @@ function InfoPane({ presentKinds }: { presentKinds: StopT['kind'][] }) {
         })}
       </ul>
 
-      <h2>What this map does not do</h2>
+      <h2>The fine print</h2>
       <ul>
-        <li>It does not work fully offline by itself — only the handoff to Google Maps does.</li>
-        <li>It does not route. Routing happens in Google Maps with the offline area you downloaded.</li>
         <li>
-          A handful of coordinates here are still flagged for verification in
-          the source file. Trust the turnout names over the precise pin
-          until that pass is done.
+          This map shows where things are; it does not calculate driving
+          routes. Routing happens in Google Maps via the Directions button.
         </li>
+        <li>
+          A handful of coordinates are still flagged for verification in the
+          source file. Trust the turnout names over the precise pin until
+          that pass is done.
+        </li>
+        <li>Map tiles: Esri, USGS. © OpenStreetMap contributors.</li>
       </ul>
     </div>
   )

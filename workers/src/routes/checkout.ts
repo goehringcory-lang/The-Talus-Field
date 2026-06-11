@@ -37,8 +37,8 @@ checkout.post('/start', async (c) => {
   let session
   try {
     session = await createCheckoutSession(c.env, {
-      successUrl: `${c.env.EDITORIAL_BASE_URL}/?guide=success`,
-      cancelUrl: `${c.env.EDITORIAL_BASE_URL}/?guide=cancel`,
+      successUrl: `${c.env.EDITORIAL_BASE_URL}/guide?guide=success`,
+      cancelUrl: `${c.env.EDITORIAL_BASE_URL}/guide?guide=cancel`,
     })
   } catch (err) {
     console.error('createCheckoutSession failed', err)
