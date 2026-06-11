@@ -1,12 +1,15 @@
 import { Link } from 'react-router-dom'
 import ReactMarkdown from 'react-markdown'
 import type { StopT } from '../content'
+import { useFavorites } from '../lib/favorites'
 import MapsLink from './MapsLink'
 import PhotoPlaceholder from './PhotoPlaceholder'
 import ResponsivePhoto from './ResponsivePhoto'
 
+// Secret spots are stops minus `region`, which this card never reads —
+// widening the prop lets both render through the same component.
 type Props = {
-  stop: StopT
+  stop: Omit<StopT, 'region'>
   compact?: boolean
 }
 
@@ -32,6 +35,8 @@ function formatTime(min: number): string {
 
 export default function StopCard({ stop, compact = true }: Props) {
   const photo = stop.photos[0]
+  const { toggle, isFavorite } = useFavorites()
+  const saved = isFavorite(stop.id)
   return (
     <article className="stop-card">
       {photo ? (
@@ -50,10 +55,26 @@ export default function StopCard({ stop, compact = true }: Props) {
         <PhotoPlaceholder />
       )}
 
-      <div className="eyebrow eyebrow--moss">
-        {KIND_LABEL[stop.kind]}
+      <div className="stop-card__titlerow">
+        <div style={{ minWidth: 0 }}>
+          <div className="eyebrow eyebrow--moss">
+            {KIND_LABEL[stop.kind]}
+          </div>
+          <h2 className="stop-card__title">{stop.title}</h2>
+        </div>
+        <button
+          type="button"
+          className="fav-toggle"
+          aria-pressed={saved}
+          aria-label={saved ? `Remove ${stop.title} from saved stops` : `Save ${stop.title}`}
+          title={saved ? 'Saved' : 'Save stop'}
+          onClick={() => toggle(stop.id)}
+        >
+          <svg className="fav-toggle__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+            <path d="M6 3h12a1 1 0 0 1 1 1v17l-7-4.5L5 21V4a1 1 0 0 1 1-1z" />
+          </svg>
+        </button>
       </div>
-      <h2 className="stop-card__title">{stop.title}</h2>
 
       {(stop.coord || stop.elevationFt || stop.timeBudgetMin) && (
         <div className="meta-row">

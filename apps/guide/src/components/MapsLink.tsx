@@ -1,4 +1,4 @@
-import { directionsUrl } from '../map/googleMaps'
+import { directionsUrl } from '../map/kinds'
 
 type Props = {
   coord: [number, number] | undefined

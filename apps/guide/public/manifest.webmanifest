@@ -1,7 +1,7 @@
 {
-  "name": "The Field Guide",
-  "short_name": "Field Guide",
-  "description": "Yosemite, in your pocket. Offline.",
+  "name": "Yosemite Field Guide — The Talus Field",
+  "short_name": "Yosemite Guide",
+  "description": "The Yosemite field guide that works offline. Three regional guides, tappable GPS, time budgets, and an offline topo map of the park.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",

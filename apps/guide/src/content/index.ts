@@ -1,9 +1,12 @@
 import { stops } from './stops'
-import type { Region, StopT } from './schema'
+import { ESSENTIALS } from './essentials'
+import type { EssentialTopicT, Region, StopT } from './schema'
 
-export { Stop, Stops, RegionEnum, StopKindEnum } from './schema'
-export type { StopT, Region, StopKind } from './schema'
+export { Stop, Stops, RegionEnum, StopKindEnum, SecretSpot, SecretSpots, EssentialTopic, EssentialTopics } from './schema'
+export type { StopT, Region, StopKind, SecretSpotT, EssentialTopicT } from './schema'
 export { stops } from './stops'
+export { ESSENTIALS, ESSENTIALS_META } from './essentials'
+export { SECRET_SPOTS, SECRET_META, secretsLocked } from './secret-spots'
 
 export const REGIONS: { id: Region; title: string; teaser: string }[] = [
   {
@@ -37,4 +40,8 @@ export function getStopById(id: string): StopT | undefined {
 export function getRegionMeta(id: Region): { title: string; teaser: string } | undefined {
   const r = REGIONS.find((r) => r.id === id)
   return r ? { title: r.title, teaser: r.teaser } : undefined
+}
+
+export function getEssentialById(id: string): EssentialTopicT | undefined {
+  return ESSENTIALS.find((t) => t.id === id)
 }

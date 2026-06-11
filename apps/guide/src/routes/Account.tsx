@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom'
 import { useAuth } from '../auth/useAuth'
 import GatedChrome from '../components/GatedChrome'
+import DownloadManager from '../components/DownloadManager'
+import { MAP_ATTRIBUTION } from '../map/style'
 
 export default function Account() {
   const { session, signOut } = useAuth()
@@ -17,6 +19,10 @@ export default function Account() {
           <div style={{ fontFamily: 'var(--display)', fontSize: 22 }}>{session?.username}</div>
         </div>
 
+        <div className="card" style={{ marginBottom: 28 }}>
+          <DownloadManager />
+        </div>
+
         <p>
           Questions? Email{' '}
           <a href="mailto:cory@thetalusfieldjournal.com">cory@thetalusfieldjournal.com</a>.
@@ -28,6 +34,12 @@ export default function Account() {
             Sign out
           </button>
         </div>
+
+        <p style={{ marginTop: 40, color: 'var(--ink-3)', fontSize: 12, fontFamily: 'var(--sans)', lineHeight: 1.6 }}>
+          2026 Edition · Build {import.meta.env.VITE_BUILD_DATE}
+          <br />
+          Map tiles: {MAP_ATTRIBUTION}
+        </p>
       </main>
     </GatedChrome>
   )

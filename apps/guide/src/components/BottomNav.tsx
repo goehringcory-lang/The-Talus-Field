@@ -3,8 +3,13 @@ import { Link, useLocation } from 'react-router-dom'
 export default function BottomNav() {
   const { pathname } = useLocation()
   const isGuide =
-    pathname === '/' || pathname.startsWith('/region/') || pathname.startsWith('/stop/')
+    pathname === '/' ||
+    pathname.startsWith('/region/') ||
+    pathname.startsWith('/stop/') ||
+    pathname.startsWith('/essentials') ||
+    pathname.startsWith('/secret-spots')
   const isMap = pathname === '/map' || pathname.startsWith('/map/')
+  const isSearch = pathname === '/search'
   const isAccount = pathname === '/account'
 
   return (
@@ -21,6 +26,13 @@ export default function BottomNav() {
           <path d="M9 3v15M15 6v15" />
         </svg>
         <span>Map</span>
+      </Link>
+      <Link to="/search" className="bottom-nav__tab" aria-current={isSearch ? 'page' : undefined}>
+        <svg className="bottom-nav__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+          <circle cx="11" cy="11" r="7" />
+          <path d="M21 21l-4.35-4.35" />
+        </svg>
+        <span>Search</span>
       </Link>
       <Link to="/account" className="bottom-nav__tab" aria-current={isAccount ? 'page' : undefined}>
         <svg className="bottom-nav__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
