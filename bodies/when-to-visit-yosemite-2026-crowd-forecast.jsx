@@ -132,52 +132,60 @@ window.ARTICLE_BODIES["when-to-visit-yosemite-2026-crowd-forecast"] = function W
     );
   }
 
-  // Crowd calendar: HTML grid so the labels stay readable on phones.
+  // Crowd calendar: months as rows with paired weekday/weekend bars, so it
+  // stays readable at phone widths (a 12-column layout collapses there).
   function CrowdCalendar() {
-    const cellBase = {
-      position: "relative",
-      padding: "10px 0 9px",
-      textAlign: "center",
-      fontFamily: "var(--mono)",
-      fontSize: 13,
-      lineHeight: 1,
-    };
-    const rowLabel = {
+    const headStyle = {
       fontFamily: "var(--sans)",
       fontSize: 12,
       letterSpacing: "0.06em",
       textTransform: "uppercase",
       color: "var(--ink-3)",
-      alignSelf: "center",
-      paddingRight: 8,
-      textAlign: "right",
+      paddingBottom: 4,
     };
-    const cell = (v) => (
-      <div style={cellBase}>
-        <div style={{ position: "absolute", top: 0, right: 0, bottom: 0, left: 0, background: "var(--moss)", opacity: Math.max(v / 100, 0.07) }} />
-        <span style={{ position: "relative", color: v > 55 ? "var(--paper)" : "var(--ink)" }}>{v}</span>
+    const monthStyle = {
+      ...headStyle,
+      paddingBottom: 0,
+      alignSelf: "center",
+      textAlign: "right",
+      paddingRight: 8,
+      whiteSpace: "nowrap",
+    };
+    const bar = (v) => (
+      <div style={{ position: "relative", background: "var(--paper-2)", height: 24 }}>
+        <div style={{ position: "absolute", top: 0, bottom: 0, left: 0, width: v + "%", background: "var(--moss)" }} />
+        <span style={{
+          position: "absolute",
+          top: "50%",
+          transform: "translateY(-50%)",
+          fontFamily: "var(--mono)",
+          fontSize: 12,
+          lineHeight: 1,
+          ...(v >= 20
+            ? { right: 100 - v + "%", paddingRight: 5, color: "var(--paper)" }
+            : { left: v + "%", paddingLeft: 5, color: "var(--ink)" }),
+        }}>{v}</span>
       </div>
     );
     return (
-      <div role="img" aria-label="Crowd calendar for 2026. Crowd pressure on a 0 to 100 scale, where 100 is a projected July weekend. Weekends run roughly 45 percent above weekdays all year. June and July weekends score 100, September weekends 85, October weekends 68, and January weekdays 16.">
-        <div style={{ display: "grid", gridTemplateColumns: "auto repeat(12, 1fr)", gap: 3 }}>
-          <div style={rowLabel}></div>
-          {MONTHS.map((m) => (
-            <div key={m} style={{ ...rowLabel, textAlign: "center", paddingRight: 0, paddingBottom: 4 }}>{m[0]}</div>
-          ))}
-          <div style={rowLabel}>Wkday</div>
-          {CROWD.map((c, i) => <React.Fragment key={"wd" + i}>{cell(c.wd)}</React.Fragment>)}
-          <div style={rowLabel}>Wkend</div>
-          {CROWD.map((c, i) => <React.Fragment key={"we" + i}>{cell(c.we)}</React.Fragment>)}
-          <div style={rowLabel}></div>
+      <div role="img" aria-label="Crowd calendar for 2026, one row per month with weekday and weekend bars. Crowd pressure on a 0 to 100 scale, where 100 is a projected July weekend. Weekends run roughly 45 percent above weekdays all year. June and July weekends score 100, September weekends 85, October weekends 68, and January weekdays 16. Markers flag holiday spikes in February, May, July, September, November, and December.">
+        <div style={{ display: "grid", gridTemplateColumns: "auto 1fr 1fr", gap: "3px 6px" }}>
+          <div style={headStyle}></div>
+          <div style={headStyle}>Weekday</div>
+          <div style={headStyle}>Weekend</div>
           {CROWD.map((c, i) => (
-            <div key={"n" + i} style={{ fontFamily: "var(--sans)", fontSize: 10.5, color: "var(--rust)", textAlign: "center", paddingTop: 4, minHeight: 26, lineHeight: 1.15 }}>
-              {c.note ? "▲ " + c.note : ""}
-            </div>
+            <React.Fragment key={MONTHS[i]}>
+              <div style={monthStyle}>
+                {MONTHS[i]}
+                {c.note ? <span style={{ color: "var(--rust)" }}> ▲</span> : null}
+              </div>
+              {bar(c.wd)}
+              {bar(c.we)}
+            </React.Fragment>
           ))}
         </div>
-        <div style={{ fontFamily: "var(--sans)", fontSize: 12, color: "var(--ink-3)", marginTop: 6 }}>
-          Crowd pressure, 0 to 100. 100 = a projected July 2026 weekend day. ▲ marks a holiday spike above the cell's value.
+        <div style={{ fontFamily: "var(--sans)", fontSize: 12, color: "var(--ink-3)", marginTop: 8, lineHeight: 1.45 }}>
+          Crowd pressure, 0 to 100. 100 = a projected July 2026 weekend day. ▲ marks a holiday spike above the bar's value: firefall weekends in February, Memorial Day in May, July 4, Labor Day in September, Thanksgiving week in November, and the holiday week in December.
         </div>
       </div>
     );

@@ -47,7 +47,7 @@ window.CATEGORIES = [
 // verifies this map stays in sync with the files in bodies/.
 // ============================================================
 window.BODY_VERSIONS = {
-  "when-to-visit-yosemite-2026-crowd-forecast": 1,
+  "when-to-visit-yosemite-2026-crowd-forecast": 2,
   "yosemite-trip-cost-budget-2026": 1,
   "yosemite-in-june-2026": 1,
   "cathedral-lakes-day-hike": 1,
