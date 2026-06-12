@@ -29,6 +29,22 @@ if [[ -n "$missing" ]]; then
   exit 1
 fi
 
+# All local script/stylesheet references in index.html share ONE version
+# number, bumped together when shipping a batch. The leading ="/ anchor
+# limits the match to same-origin files, so external https:// URLs are
+# excluded. points.geojson (own counter inside page-map.jsx) and article
+# bodies (per-slug BODY_VERSIONS, checked below) are exempt because they
+# are not referenced from index.html.
+shared_versions=$(
+  grep -oE '(src|href)="/[^"]+\.(jsx|js|css)\?v=[0-9]+"' "$INDEX" \
+    | grep -oE '\?v=[0-9]+' | sort -u
+)
+if [[ $(echo "$shared_versions" | wc -l) -ne 1 ]]; then
+  echo "Shared ?v= values in index.html are not identical (one canonical number expected):"
+  grep -nE '(src|href)="/[^"]+\.(jsx|js|css)\?v=[0-9]+"' "$INDEX"
+  exit 1
+fi
+
 # Article bodies load on demand (data.js#loadArticleBody) and are versioned in the
 # window.BODY_VERSIONS map in data.js instead of as <script> tags in index.html.
 # Verify that map stays in sync with the files in bodies/ so no body is loaded
@@ -59,5 +75,6 @@ if [[ -f "$DATA" && -d "$BODIES_DIR" ]]; then
   fi
 fi
 
-echo "All editorial JSX/JS/CSS references in index.html carry a ?v= query."
+echo "All editorial JSX/JS/CSS references in index.html carry a ?v= query,"
+echo "all sharing one canonical version number."
 echo "window.BODY_VERSIONS is in sync with bodies/."
