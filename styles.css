@@ -224,6 +224,28 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
 }
 .masthead__paper a:hover { color: var(--ink); border-bottom-color: currentColor; }
 .masthead__paper-label { color: var(--ink-3); }
+.masthead__waits {
+  margin-left: 14px;
+  padding-left: 14px;
+  border-left: 1px solid var(--rule);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+/* The whole cluster is one link to the NPS display page; underline
+   only the values, not the muted label, and keep state colors. */
+.masthead__weather a.masthead__waits { border-bottom: 0; padding-bottom: 0; }
+.masthead__waits-label { color: var(--ink-3); }
+.masthead__wait {
+  white-space: nowrap;
+  border-bottom: 1px solid var(--rule);
+  padding-bottom: 1px;
+}
+.masthead__waits:hover .masthead__wait { border-bottom-color: currentColor; }
+.masthead__wait--good { color: var(--ink-2); }
+.masthead__wait--moderate { color: var(--gold); font-weight: 600; }
+.masthead__wait--long { color: var(--rust); font-weight: 700; }
+.masthead__wait--nodata { color: var(--ink-3); }
 @media (max-width: 720px) {
   .masthead__top { padding: 6px var(--gutter); column-gap: 10px; }
   .masthead__top span + span { margin-left: 12px; }
@@ -238,6 +260,13 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
     border-left: 0;
   }
   .masthead__paper-label { display: none; }
+  .masthead__waits {
+    margin-left: 0;
+    padding-left: 0;
+    border-left: 0;
+    flex-wrap: wrap;
+    gap: 6px 10px;
+  }
 }
 .masthead__main {
   display: flex;

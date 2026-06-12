@@ -150,6 +150,104 @@ function MotifTrees() {
 }
 
 // ============================================================
+// Entrance wait times. The NPS publishes live waits for the three
+// drive-in entrances (Arch Rock / 140, Big Oak Flat / 120, South / 41)
+// as a public S3 JSON feed. waits.json is ~1 MB because weeks of
+// history follow the summary array, so we fetch only the first 8 KB
+// via a Range request (the bucket's CORS allows the Range header) and
+// bracket-match the summary out of the truncated JSON. Fails quiet:
+// any fetch or parse problem and the masthead renders without it.
+// ============================================================
+const WAITS_BASE = "https://npsvms-338365424831-us-west-1-an.s3.us-west-1.amazonaws.com/yose/transit-time/display/public/";
+const WAITS_URL = WAITS_BASE + "waits.json";
+const WAITS_PAGE_URL = WAITS_BASE + "index.html";
+const WAITS_REFRESH_MS = 5 * 60 * 1000;
+// Short labels for the masthead; unknown pairs fall back to the
+// pair_name with its " Wait Time" suffix stripped.
+const WAITS_SHORT_NAMES = {
+  "South Entrance Wait Time": "South",
+  "Arch Rock Wait Time": "Arch Rock",
+  "Big Oak Flat Wait Time": "Big Oak Flat",
+};
+
+function parseWaitsSummary(text) {
+  const key = text.indexOf('"summary"');
+  if (key === -1) return null;
+  const start = text.indexOf("[", key);
+  if (start === -1) return null;
+  let depth = 0;
+  for (let i = start; i < text.length; i++) {
+    const ch = text[i];
+    if (ch === "[") depth++;
+    else if (ch === "]" && --depth === 0) {
+      try { return JSON.parse(text.slice(start, i + 1)); } catch (e) { return null; }
+    }
+  }
+  return null;
+}
+
+// Thresholds are the NPS display page's own: ≤5 good, ≤15 moderate.
+function waitClass(min) {
+  if (min == null) return "nodata";
+  if (min <= 5) return "good";
+  if (min <= 15) return "moderate";
+  return "long";
+}
+
+function formatWaitMinutes(min) {
+  if (min < 60) return Math.round(min) + " min";
+  const h = Math.floor(min / 60);
+  return h + "h " + Math.round(min % 60) + "m";
+}
+
+function EntranceWaits() {
+  const [waits, setWaits] = useState(null);
+
+  useEffect(() => {
+    let cancelled = false;
+    const load = () => {
+      fetch(WAITS_URL, { headers: { Range: "bytes=0-8191" } })
+        .then((r) => (r.ok ? r.text() : Promise.reject(new Error("HTTP " + r.status))))
+        .then((text) => {
+          const summary = parseWaitsSummary(text);
+          if (!cancelled && Array.isArray(summary) && summary.length) setWaits(summary);
+        })
+        .catch(() => {});
+    };
+    load();
+    const timer = setInterval(load, WAITS_REFRESH_MS);
+    return () => { cancelled = true; clearInterval(timer); };
+  }, []);
+
+  if (!waits) return null;
+  return (
+    <a
+      className="masthead__waits"
+      href={WAITS_PAGE_URL}
+      target="_blank"
+      rel="noopener noreferrer"
+      title="Live entrance station wait times, National Park Service"
+    >
+      <span className="masthead__waits-label">Entrance waits</span>
+      {waits.map((pair, i) => {
+        const name = WAITS_SHORT_NAMES[pair.pair_name]
+          || String(pair.pair_name || "").replace(/\s*Wait Time$/i, "")
+          || "Entrance";
+        const min = pair.stale ? null : pair.current_wait_minutes;
+        return (
+          <React.Fragment key={pair.pair_name || i}>
+            {i > 0 && <span className="masthead__weather-sep">·</span>}
+            <span className={`masthead__wait masthead__wait--${waitClass(min)}`}>
+              {name} {min == null ? "n/a" : formatWaitMinutes(min)}
+            </span>
+          </React.Fragment>
+        );
+      })}
+    </a>
+  );
+}
+
+// ============================================================
 // Masthead
 // ============================================================
 function Header({ current, go }) {
@@ -204,6 +302,7 @@ function Header({ current, go }) {
           <a href="https://forecast.weather.gov/MapClick.php?lat=37.8731&lon=-119.3503" target="_blank" rel="noopener noreferrer">Tuolumne<span className="masthead__weather-cityfull"> Meadows</span></a>
           <span className="masthead__weather-sep">·</span>
           <a href="https://forecast.weather.gov/MapClick.php?lat=37.5341&lon=-119.6315" target="_blank" rel="noopener noreferrer">Wawona</a>
+          <EntranceWaits />
           <span className="masthead__paper">
             <span className="masthead__paper-label">Current issue</span>
             <a href="https://www.nps.gov/yose/planyourvisit/guide.htm" target="_blank" rel="noopener noreferrer">Yosemite Guide ↗</a>
