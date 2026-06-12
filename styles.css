@@ -224,48 +224,66 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
 }
 .masthead__paper a:hover { color: var(--ink); border-bottom-color: currentColor; }
 .masthead__paper-label { color: var(--ink-3); }
-.masthead__waits {
-  margin-left: 14px;
-  padding-left: 14px;
-  border-left: 1px solid var(--rule);
+/* Wait cluster: one link to the NPS display page, rendered as the
+   strip's own second row. The conditions row is at capacity on
+   desktop, so the cluster always wraps below it, right-aligned
+   under the weather links. Underline only the values, not the
+   muted label, and keep the per-entry state colors. */
+a.masthead__waits {
+  margin-left: auto;
   display: inline-flex;
   align-items: center;
   gap: 8px;
+  text-decoration: none;
 }
-/* The whole cluster is one link to the NPS display page; underline
-   only the values, not the muted label, and keep state colors. */
-.masthead__weather a.masthead__waits { border-bottom: 0; padding-bottom: 0; }
-.masthead__waits-label { color: var(--ink-3); }
+/* The strip-level span + span margin (above) would stack on the
+   cluster's own gap; spacing inside the cluster is gap-only. */
+.masthead__waits span + span { margin-left: 0; }
+.masthead__waits-label { color: var(--ink-3); white-space: nowrap; }
 .masthead__wait {
   white-space: nowrap;
   border-bottom: 1px solid var(--rule);
   padding-bottom: 1px;
+  transition: border-color 0.15s;
 }
-.masthead__waits:hover .masthead__wait { border-bottom-color: currentColor; }
+a.masthead__waits:hover .masthead__wait { border-bottom-color: currentColor; }
 .masthead__wait--good { color: var(--ink-2); }
 .masthead__wait--moderate { color: var(--gold); font-weight: 600; }
 .masthead__wait--long { color: var(--rust); font-weight: 700; }
 .masthead__wait--nodata { color: var(--ink-3); }
-@media (max-width: 720px) {
-  .masthead__top { padding: 6px var(--gutter); column-gap: 10px; }
-  .masthead__top span + span { margin-left: 12px; }
-  .masthead__weather { flex-wrap: wrap; gap: 6px 10px; }
-  .masthead__weather-label { margin-right: 0; }
-  .masthead__weather a,
-  .masthead__paper a { padding: 4px 0; }
+/* Mid widths: the conditions row only fits with the short place
+   names, so the long forms drop out well before the phone layout. */
+@media (max-width: 1150px) {
   .masthead__weather-cityfull { display: none; }
+  .masthead__paper-label { display: none; }
+}
+/* Mobile: the strip becomes three labeled rows (issue + date,
+   conditions + guide, entrance waits) instead of one free-flowing
+   wrap. Dot separators give way to even flex gaps so nothing
+   orphans at a line edge. */
+@media (max-width: 720px) {
+  .masthead__top { padding: 6px var(--gutter); letter-spacing: 0.12em; row-gap: 6px; }
+  .masthead__issueline {
+    flex-basis: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+  .masthead__issueline span + span { margin-left: 12px; }
+  .masthead__weather { flex-basis: 100%; flex-wrap: wrap; gap: 6px 12px; }
+  .masthead__weather-label { margin-right: 0; }
+  .masthead__weather-sep { display: none; }
+  .masthead__weather a,
+  .masthead__paper a { padding: 4px 0; white-space: nowrap; }
   .masthead__paper {
     margin-left: 0;
     padding-left: 0;
     border-left: 0;
   }
-  .masthead__paper-label { display: none; }
-  .masthead__waits {
+  a.masthead__waits {
+    flex-basis: 100%;
     margin-left: 0;
-    padding-left: 0;
-    border-left: 0;
     flex-wrap: wrap;
-    gap: 6px 10px;
+    gap: 6px 12px;
   }
 }
 .masthead__main {

@@ -228,7 +228,7 @@ function EntranceWaits() {
       rel="noopener noreferrer"
       title="Live entrance station wait times, National Park Service"
     >
-      <span className="masthead__waits-label">Entrance waits</span>
+      <span className="masthead__waits-label"><span className="masthead__weather-cityfull">Entrance </span>waits</span>
       {waits.map((pair, i) => {
         const name = WAITS_SHORT_NAMES[pair.pair_name]
           || String(pair.pair_name || "").replace(/\s*Wait Time$/i, "")
@@ -291,7 +291,7 @@ function Header({ current, go }) {
   return (
     <header className="masthead">
       <div className="masthead__top">
-        <div>
+        <div className="masthead__issueline">
           <span>{(window.SITE && window.SITE.issue) || "Vol. III"}</span>
           <span>{today}</span>
         </div>
@@ -302,12 +302,12 @@ function Header({ current, go }) {
           <a href="https://forecast.weather.gov/MapClick.php?lat=37.8731&lon=-119.3503" target="_blank" rel="noopener noreferrer">Tuolumne<span className="masthead__weather-cityfull"> Meadows</span></a>
           <span className="masthead__weather-sep">·</span>
           <a href="https://forecast.weather.gov/MapClick.php?lat=37.5341&lon=-119.6315" target="_blank" rel="noopener noreferrer">Wawona</a>
-          <EntranceWaits />
           <span className="masthead__paper">
             <span className="masthead__paper-label">Current issue</span>
-            <a href="https://www.nps.gov/yose/planyourvisit/guide.htm" target="_blank" rel="noopener noreferrer">Yosemite Guide ↗</a>
+            <a href="https://www.nps.gov/yose/planyourvisit/guide.htm" target="_blank" rel="noopener noreferrer"><span className="masthead__weather-cityfull">Yosemite </span>Guide ↗</a>
           </span>
         </div>
+        <EntranceWaits />
       </div>
       <div className="masthead__main">
         <a
