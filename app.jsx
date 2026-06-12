@@ -511,8 +511,7 @@ function App() {
     const onClick = (e) => {
       const a = e.target.closest && e.target.closest("a[data-aff-network]");
       if (!a) return;
-      if (typeof window.gtag !== "function") return;
-      window.gtag("event", "affiliate_click", {
+      window.track("affiliate_click", {
         aff_network: a.dataset.affNetwork || "unknown",
         aff_list: a.dataset.affList || "",
         aff_item_slug: a.dataset.affItemSlug || "",
@@ -650,6 +649,33 @@ function App() {
 // real href attributes that match what go() will navigate to.
 window.routeToPath = routeToPath;
 window.SITE_ORIGIN = SITE_ORIGIN;
+
+// Boot-time registration check. Every component the route chain above
+// references must already be on window because each page script registers
+// itself as a global. Without this, one script that 404s or fails its Babel
+// transform surfaces only as a bare ReferenceError when its route renders.
+// Render proceeds either way; the failure just stops being anonymous.
+const REQUIRED_GLOBALS = [
+  "Header", "Footer", "ExitIntentNewsletter",
+  "HomePage", "AboutPage", "ArticlesIndex", "CategoryPage", "ArticlePage",
+  "KitPage", "PlacesPage", "AdvertisePage", "GuidePage", "MapPage", "FilmsPage",
+  "PlanningGuide", "ChecklistPage", "NewsletterPage", "ContactPage",
+  "PrivacyPage", "TermsPage", "AffiliatePage",
+  "TweaksPanel", "useTweaks", "TweakSection", "TweakRadio",
+];
+const missingGlobals = REQUIRED_GLOBALS.filter((n) => typeof window[n] === "undefined");
+if (missingGlobals.length) {
+  console.error(
+    "app.jsx boot: missing page globals (a script failed to load or register):",
+    missingGlobals.join(", ")
+  );
+  if (window.location.hostname === "localhost") {
+    const warn = document.createElement("div");
+    warn.style.cssText = "position:fixed;top:0;left:0;right:0;z-index:9999;background:#b9453d;color:#fff;font:13px/1.4 monospace;padding:8px 14px;";
+    warn.textContent = "Missing globals: " + missingGlobals.join(", ");
+    document.body.appendChild(warn);
+  }
+}
 
 ReactDOM.createRoot(document.getElementById("root")).render(<App />);
 
