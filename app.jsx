@@ -294,6 +294,44 @@ function buildSeo(route) {
     };
   }
 
+  // Articles index. CollectionPage whose mainEntity is the full catalog as an
+  // ItemList. Mirrored at the edge in functions/_middleware.js; building it
+  // here too means the hydration clear of #ld-page replaces like with like
+  // instead of stripping the edge node for JS-rendering crawlers.
+  if (route === "articles") {
+    const all = window.ARTICLES || [];
+    const desc =
+      "Every entry, in reverse chronological order. Yosemite trip planning, trails, wildlife, and seasonal guides.";
+    return {
+      title: `Articles — ${SITE_NAME}`,
+      description: desc,
+      canonical: url,
+      ogType: "website",
+      image: SITE_DEFAULT_IMAGE,
+      jsonLd: {
+        "@context": "https://schema.org",
+        "@type": "CollectionPage",
+        name: `Articles — ${SITE_NAME}`,
+        url,
+        description: desc,
+        inLanguage: "en-US",
+        isPartOf: { "@type": "WebSite", name: SITE_NAME, url: SITE_ORIGIN },
+        mainEntity: {
+          "@type": "ItemList",
+          numberOfItems: all.length,
+          itemListElement: all.map((a, i) => ({
+            "@type": "ListItem",
+            position: i + 1,
+            url: `${SITE_ORIGIN}/articles/${a.slug}`,
+            name: a.title,
+          })),
+        },
+      },
+      breadcrumb: null,
+      faq: null,
+    };
+  }
+
   // Static known routes
   const known = {
     home: {

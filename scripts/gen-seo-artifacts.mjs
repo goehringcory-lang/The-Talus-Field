@@ -3,15 +3,20 @@
 // Regenerates the SEO/AI-search mirror files from a single source of truth.
 //
 // Source of truth:
-//   - data.js (window.ARTICLES / window.CATEGORIES) — the live runtime catalog
-//     and core per-article metadata. Harvested via node:vm with a stubbed
-//     window; data.js has no top-level browser-API calls, so this is safe.
+//   - data.js (window.ARTICLES / window.CATEGORIES / window.KIT) — the live
+//     runtime catalog, core per-article metadata, and the packing lists.
+//     Harvested via node:vm with a stubbed window; data.js has no top-level
+//     browser-API calls, so this is safe.
+//   - videos-data.js (window.NATURE_NOTES) — the film archive. Same vm harvest;
+//     its only top-level browser touch is a localhost-guarded integrity IIFE.
 //   - seo-data.json — non-runtime SEO enrichment keyed by slug (wordCount,
 //     keywords, faq, trail). Kept out of data.js so the browser payload stays
 //     small.
 //
 // Generates (deterministically, idempotently):
 //   - articles.json   merged core + enrichment; consumed by functions/_middleware.js
+//   - videos.json     slim film mirror; feeds the /films VideoObject ItemList
+//   - kit.json        slim packing-list mirror; feeds the /kit ItemList @graph
 //   - sitemap.xml     hub/section/static routes + one <url> per article (image + lastmod)
 //   - feed.xml        RSS 2.0 channel + one <item> per article
 //   - llms.txt        the "## Articles" section only (header/reference/optional preserved)
@@ -24,10 +29,11 @@
 // add any enrichment to seo-data.json, then run this script. Do NOT hand-edit
 // articles.json / sitemap.xml / feed.xml / the llms.txt article list.
 
-import { readFileSync, writeFileSync } from "node:fs";
+import { readFileSync, writeFileSync, existsSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import path from "node:path";
 import vm from "node:vm";
+import sharp from "sharp";
 
 const ROOT = path.resolve(fileURLToPath(import.meta.url), "../..");
 const SITE_ORIGIN = "https://thetalusfieldjournal.com";
@@ -66,11 +72,77 @@ function loadDataJs() {
     console.error("data.js did not populate window.ARTICLES / window.CATEGORIES");
     process.exit(2);
   }
-  return { articles: w.ARTICLES, categories: w.CATEGORIES };
+  return { articles: w.ARTICLES, categories: w.CATEGORIES, kit: w.KIT };
+}
+
+function loadVideosJs() {
+  const src = readFileSync(path.join(ROOT, "videos-data.js"), "utf8");
+  // Same stubbed-window harvest as data.js. videos-data.js's only top-level
+  // browser touch is an integrity IIFE guarded by `window.location &&`, which
+  // short-circuits against the empty stub.
+  const sandbox = {
+    window: {},
+    document: { createElement: () => ({}), querySelector: () => null, head: {} },
+    navigator: { userAgent: "node" },
+    console,
+  };
+  vm.createContext(sandbox);
+  try {
+    vm.runInContext(src, sandbox, { filename: "videos-data.js" });
+  } catch (e) {
+    console.error(
+      "Failed to evaluate videos-data.js under node:vm. Keep its top-level code " +
+        "Node-safe (no document/window API calls outside function bodies).\n" +
+        e.stack
+    );
+    process.exit(2);
+  }
+  const nn = sandbox.window.NATURE_NOTES;
+  if (!nn || !Array.isArray(nn.episodes)) {
+    console.error("videos-data.js did not populate window.NATURE_NOTES.episodes");
+    process.exit(2);
+  }
+  return nn.episodes;
 }
 
 function loadSeoData() {
   return JSON.parse(readFileSync(path.join(ROOT, "seo-data.json"), "utf8"));
+}
+
+// Mirror of slugify() in scripts/gen-responsive-images.mjs and the browser
+// ResponsiveImage helper — keep in sync. Used to derive the slug-named social
+// image variant from a source filename.
+function slugify(basename) {
+  return basename
+    .toLowerCase()
+    .replace(/\.[^.]+$/, "")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+}
+
+// Resolve the social-share image for an article: prefer the pre-generated
+// 1600px responsive JPEG variant (slug-named, a few hundred KB, well under the
+// social scrapers' size caps) over the source JPEG (which can be many MB).
+// Returns { url, width, height } with the real pixel dimensions, or null for
+// external/missing images (the middleware then falls back to art.image and the
+// static og:image:width/height in index.html).
+async function ogImageFor(art) {
+  const img = art.image;
+  if (!img || /^https?:/i.test(img)) return null;
+  const variant = `img/responsive/${slugify(path.basename(img))}-1600.jpg`;
+  const variantPath = path.join(ROOT, variant);
+  let url, filePath;
+  if (existsSync(variantPath)) {
+    url = variant;
+    filePath = variantPath;
+  } else {
+    url = img.replace(/^\/+/, "");
+    filePath = path.join(ROOT, url);
+  }
+  if (!existsSync(filePath)) return null;
+  const meta = await sharp(filePath).metadata();
+  if (!meta.width || !meta.height) return null;
+  return { url, width: meta.width, height: meta.height };
 }
 
 // ----------------------------------------------------------------------------
@@ -122,7 +194,7 @@ function jsonCompact(value, indent = 0) {
 // Merge
 // ----------------------------------------------------------------------------
 
-function mergeArticles(articles, seoData) {
+function mergeArticles(articles, seoData, ogImages) {
   return articles.map((art) => {
     const seo = seoData[art.slug] || {};
     const o = {
@@ -137,6 +209,7 @@ function mergeArticles(articles, seoData) {
     o.isoModified = art.isoModified;
     o.read = art.read;
     o.image = art.image;
+    if (ogImages[art.slug]) o.ogImage = ogImages[art.slug];
     if (art.placeholder) o.placeholder = art.placeholder;
     if (typeof seo.wordCount === "number") o.wordCount = seo.wordCount;
     if (Array.isArray(seo.keywords) && seo.keywords.length) o.keywords = seo.keywords;
@@ -154,6 +227,36 @@ function mergeArticles(articles, seoData) {
 
 function buildArticlesJson(merged) {
   return jsonCompact(merged, 0) + "\n";
+}
+
+// Slim film mirror for functions/_middleware.js. Only the fields the /films
+// VideoObject ItemList needs; theme/episode/year are dropped (the JSON-LD does
+// not use them, and uploadDate is deliberately omitted, see app.jsx).
+function buildVideosJson(episodes) {
+  const slim = episodes.map((ep) => ({
+    id: ep.id,
+    title: ep.title,
+    dek: ep.dek,
+    youtubeId: ep.youtubeId,
+  }));
+  return jsonCompact(slim, 0) + "\n";
+}
+
+// Slim packing-list mirror for functions/_middleware.js. Only name + note per
+// item; aff/icon/groups/articleSlug are dropped (the /kit ItemList @graph does
+// not use them).
+function buildKitJson(kit) {
+  const lists = (kit && kit.lists ? kit.lists : []).map((list) => ({
+    slug: list.slug,
+    title: list.title,
+    summary: list.summary,
+    items: (list.allItems || []).map((it) => {
+      const item = { name: it.name };
+      if (it.note) item.note = it.note;
+      return item;
+    }),
+  }));
+  return jsonCompact({ lists }, 0) + "\n";
 }
 
 function buildSitemap(merged, categories) {
@@ -303,8 +406,9 @@ function buildLlms(existing, merged, categories) {
 // Main
 // ----------------------------------------------------------------------------
 
-function main() {
-  const { articles, categories } = loadDataJs();
+async function main() {
+  const { articles, categories, kit } = loadDataJs();
+  const episodes = loadVideosJs();
   const seoData = loadSeoData();
 
   // Validate seo-data slugs against the catalog.
@@ -315,10 +419,19 @@ function main() {
     process.exit(2);
   }
 
-  const merged = mergeArticles(articles, seoData);
+  // Resolve the social-share image variant + dimensions for each article.
+  const ogImages = {};
+  for (const art of articles) {
+    const og = await ogImageFor(art);
+    if (og) ogImages[art.slug] = og;
+  }
+
+  const merged = mergeArticles(articles, seoData, ogImages);
 
   const targets = {
     "articles.json": buildArticlesJson(merged),
+    "videos.json": buildVideosJson(episodes),
+    "kit.json": buildKitJson(kit),
     "sitemap.xml": buildSitemap(merged, categories),
     "feed.xml": buildFeed(merged, categories),
     "llms.txt": buildLlms(readFileSync(path.join(ROOT, "llms.txt"), "utf8"), merged, categories),
@@ -350,4 +463,7 @@ function main() {
   }
 }
 
-main();
+main().catch((e) => {
+  console.error(e.stack || e);
+  process.exit(2);
+});
