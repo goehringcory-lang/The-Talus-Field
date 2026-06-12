@@ -11,6 +11,8 @@
 
 import articles from "../articles.json" with { type: "json" };
 import categories from "../categories.json" with { type: "json" };
+import videos from "../videos.json" with { type: "json" };
+import kit from "../kit.json" with { type: "json" };
 
 const SITE_ORIGIN = "https://thetalusfieldjournal.com";
 const SITE_NAME = "The Talus Field";
@@ -96,7 +98,9 @@ function seoForPath(pathname) {
     const a = articles.find((x) => x.slug === articleMatch[1]);
     if (!a) return null;
     const cat = categories.find((c) => c.slug === a.cat);
-    const image = absoluteImage(a.image);
+    // Prefer the slug-named responsive variant (a few hundred KB, under the
+    // social scrapers' size caps) over the multi-MB source JPEG.
+    const image = absoluteImage(a.ogImage ? a.ogImage.url : a.image);
     const url = `${SITE_ORIGIN}/articles/${a.slug}`;
     // Prefer the short SEO description when authored, otherwise fall back to
     // the visible dek. Keeps Bing/Google snippets under the 160-char cutoff.
@@ -107,6 +111,8 @@ function seoForPath(pathname) {
       canonical: url,
       ogType: "article",
       image,
+      imageWidth: a.ogImage ? a.ogImage.width : null,
+      imageHeight: a.ogImage ? a.ogImage.height : null,
       imageAlt: a.placeholder || a.title,
       articleOg: {
         publishedTime: a.isoDate || null,
@@ -189,6 +195,30 @@ function seoForPath(pathname) {
       title: `Articles — ${SITE_NAME}`,
       description:
         "Every entry, in reverse chronological order. Yosemite trip planning, trails, wildlife, and seasonal guides.",
+      // CollectionPage whose mainEntity is the full catalog as an ItemList.
+      // Mirrored client-side in app.jsx buildSeo so hydration replaces like
+      // with like. Slim ListItems (url + name) avoid duplicating the Article
+      // entities that live on the detail pages.
+      jsonLd: {
+        "@context": "https://schema.org",
+        "@type": "CollectionPage",
+        name: `Articles — ${SITE_NAME}`,
+        url: `${SITE_ORIGIN}/articles`,
+        description:
+          "Every entry, in reverse chronological order. Yosemite trip planning, trails, wildlife, and seasonal guides.",
+        inLanguage: "en-US",
+        isPartOf: { "@type": "WebSite", name: SITE_NAME, url: SITE_ORIGIN },
+        mainEntity: {
+          "@type": "ItemList",
+          numberOfItems: articles.length,
+          itemListElement: articles.map((a, i) => ({
+            "@type": "ListItem",
+            position: i + 1,
+            url: `${SITE_ORIGIN}/articles/${a.slug}`,
+            name: a.title,
+          })),
+        },
+      },
     },
     "/planning": {
       title: `The Yosemite Planning Guide — ${SITE_NAME}`,
@@ -220,6 +250,26 @@ function seoForPath(pathname) {
       description:
         "Gear lists for Yosemite: a day pack, an overnight pack, and a car kit. Each item with the reasoning behind it.",
       breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Kit", null]],
+      // One ItemList per packing list. Matches the @graph app.jsx builds
+      // client-side from window.KIT, so JS and non-JS crawlers see the same
+      // entities. Sourced from the kit.json mirror.
+      jsonLd: {
+        "@context": "https://schema.org",
+        "@graph": kit.lists.map((list) => ({
+          "@type": "ItemList",
+          name: list.title,
+          description: list.summary,
+          numberOfItems: list.items.length,
+          itemListOrder: "https://schema.org/ItemListOrderAscending",
+          url: `${SITE_ORIGIN}/kit#${list.slug}`,
+          itemListElement: list.items.map((it, i) => ({
+            "@type": "ListItem",
+            position: i + 1,
+            name: it.name,
+            description: it.note,
+          })),
+        })),
+      },
     },
     "/places": {
       title: `The Directory — Yosemite lodging and guides — ${SITE_NAME}`,
@@ -267,23 +317,26 @@ function seoForPath(pathname) {
       description:
         "The complete Yosemite Nature Notes film series from the National Park Service, grouped by subject. Public domain, free to watch, most under ten minutes.",
       breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Films", null]],
-      // Static CollectionPage node. The per-film VideoObject ItemList is
-      // rendered client-side from videos-data.js (see buildSeo in app.jsx);
-      // this middleware can't import that catalog without another JSON mirror.
+      // ItemList of VideoObject nodes, one per episode, built from the
+      // videos.json mirror. Matches the shape app.jsx builds client-side from
+      // videos-data.js so JS and non-JS crawlers see the same entity.
+      // uploadDate is deliberately omitted: only publication years are sourced.
       jsonLd: {
         "@context": "https://schema.org",
-        "@type": "CollectionPage",
-        name: `Moving Pictures — the Yosemite Nature Notes film archive — ${SITE_NAME}`,
+        "@type": "ItemList",
+        name: "Yosemite Nature Notes — the film archive",
         url: `${SITE_ORIGIN}/films`,
-        description:
-          "The complete Yosemite Nature Notes film series from the National Park Service, grouped by subject. Public domain, free to watch, most under ten minutes.",
-        isAccessibleForFree: true,
-        inLanguage: "en-US",
-        about: {
-          "@type": "Place",
-          name: "Yosemite National Park",
-          geo: { "@type": "GeoCoordinates", latitude: 37.8651, longitude: -119.5383 },
-        },
+        numberOfItems: videos.length,
+        itemListElement: videos.map((ep, i) => ({
+          "@type": "VideoObject",
+          position: i + 1,
+          name: ep.title,
+          description: ep.dek,
+          thumbnailUrl: `https://i.ytimg.com/vi/${ep.youtubeId}/hqdefault.jpg`,
+          embedUrl: `https://www.youtube-nocookie.com/embed/${ep.youtubeId}`,
+          publisher: { "@type": "Organization", name: "National Park Service" },
+          isAccessibleForFree: true,
+        })),
       },
     },
     "/map": {
@@ -384,6 +437,16 @@ export async function onRequest({ request, next }) {
     .on('meta[property="og:image"]', {
       element(el) {
         el.setAttribute("content", seo.image);
+      },
+    })
+    .on('meta[property="og:image:width"]', {
+      element(el) {
+        if (seo.imageWidth) el.setAttribute("content", String(seo.imageWidth));
+      },
+    })
+    .on('meta[property="og:image:height"]', {
+      element(el) {
+        if (seo.imageHeight) el.setAttribute("content", String(seo.imageHeight));
       },
     })
     .on('link[rel="canonical"]', {

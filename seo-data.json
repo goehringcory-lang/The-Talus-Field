@@ -207,17 +207,35 @@
 
   "bears-spring-emergence": {
     "wordCount": 1731,
-    "keywords": ["Yosemite bears spring", "black bear emergence", "bear torpor", "bear safety Yosemite", "April bear behavior"]
+    "keywords": ["Yosemite bears spring", "black bear emergence", "bear torpor", "bear safety Yosemite", "April bear behavior"],
+    "faq": [
+      { "q": "When do black bears emerge from their dens in Yosemite?", "a": "Bears begin emerging in April, after five to seven months in torpor. The trigger is not hunger but lengthening days and rising temperatures, which reset the bear's circadian rhythm and restart its metabolism. A bear that emerges in mid-April has spent the winter burning stored fat at roughly 25 percent of its normal metabolic rate." },
+      { "q": "Why are Yosemite bears most dangerous in spring?", "a": "Spring is when bears are most motivated, not most aggressive. A newly emerged bear has lost 20 to 40 percent of its body weight and faces acute caloric demand while only low-calorie spring vegetation is available. That metabolic urgency makes spring bears bolder: they hold their ground around humans, persist at food sources, and are more likely to attempt entry into cabins or food storage areas." },
+      { "q": "What is torpor and how is it different from hibernation?", "a": "Torpor is the near-hibernation state Yosemite bears enter in November or December. Heart rate drops from 70 to 100 beats per minute to 8 to 10, body temperature falls from about 38 degrees Celsius into the low 30s, the kidneys nearly shut down, and the bear neither eats, drinks, nor defecates. Unlike true hibernation, the bear can wake if disturbed." },
+      { "q": "How should visitors behave around bears in spring?", "a": "Spring requires the most rigorous food storage practices and bear-box discipline, since this is when bears most aggressively seek human food. Make noise on the trail to avoid surprise encounters, especially on lower Valley hikes like the Mist Trail where May and June foraging overlaps with peak hiking season." }
+    ]
   },
 
   "yosemite-glaciers-climate": {
     "wordCount": 1835,
-    "keywords": ["Yosemite glaciers", "Mount Lyell Glacier", "glacier retreat Sierra Nevada", "climate change Yosemite", "Mount Dana Mount Maclure"]
+    "keywords": ["Yosemite glaciers", "Mount Lyell Glacier", "glacier retreat Sierra Nevada", "climate change Yosemite", "Mount Dana Mount Maclure"],
+    "faq": [
+      { "q": "Does Yosemite still have glaciers?", "a": "Yes. Four glaciers remain: Mount Lyell (the largest and lowest descending), Mount Dana, Mount Maclure, and a handful of smaller cirque accumulations on the Cathedral Range. Most sit above 10,000 feet, and all are reached from Tioga Road, so visits are seasonal, roughly late June through October." },
+      { "q": "How much have Yosemite's glaciers retreated?", "a": "All four have retreated significantly since a 1933 survey, most by more than half their length. Mount Lyell's terminus has moved from about 9,500 feet of elevation in 1933 to near 9,900 feet today, meaning the glacier has thinned as well as shortened. A cairn a ranger built at the 1933 terminus now sits roughly 400 feet downslope from the ice." },
+      { "q": "Why are the glaciers shrinking?", "a": "The High Sierra has warmed by roughly 1.5 degrees Celsius since 1900, with most of that concentrated in recent decades and summer temperatures warming more than winter. An upslope retreat of a glacier's terminus signals either less snow accumulation or more summer melt; either way it points to a warmed climate, consistent with what climate models project." },
+      { "q": "Why do the glaciers matter for California's water?", "a": "About half of California's fresh water comes from the Sierra Nevada, much of it from snowmelt and glacier melt. Glaciers act as high-elevation reservoirs, storing winter snow as ice and releasing it gradually through summer melt to sustain streams like the Tenaya, Merced, and Tuolumne. As glaciers shrink, July and August streamflow will gradually decline and cold-water aquatic ecosystems will be stressed." }
+    ]
   },
 
   "giant-sequoias-fire-adaptation": {
     "wordCount": 1557,
-    "keywords": ["giant sequoia", "Sequoiadendron giganteum", "sequoia fire adaptation", "Mariposa Grove", "fire ecology Yosemite"]
+    "keywords": ["giant sequoia", "Sequoiadendron giganteum", "sequoia fire adaptation", "Mariposa Grove", "fire ecology Yosemite"],
+    "faq": [
+      { "q": "Why do giant sequoias need fire?", "a": "Fire clears competing vegetation and exposes the bare mineral soil that tiny sequoia seeds need to establish, and it opens the canopy to give seedlings light. In a fire-suppressed forest, shade-tolerant species like white fir colonize the understory, the canopy closes, and sequoia seedlings are starved of light. A sequoia grove without fire is a grove in slow decline." },
+      { "q": "How do giant sequoias survive fires that kill other trees?", "a": "Mature sequoia bark can be two feet thick, loose and fibrous so it barely conducts heat, and rich in tannin that resists flame. When fire passes, the outer bark chars and that charring insulates the living wood beneath. Thinner-barked trees like white fir and sugar pine can be killed by ten or twenty minutes of sustained ground-fire heat, while the sequoia survives with only a scar." },
+      { "q": "How often did fire burn in the Mariposa Grove?", "a": "A 1929 fire-scar survey documented in Nature Notes counted at least two major burns per century over the past two thousand years. Trees that germinated in the 1600s grew in a forest that burned roughly every ten to thirty years; a single two-thousand-year-old sequoia may carry eight or ten distinct fire scars." },
+      { "q": "Why did Yosemite change its fire policy?", "a": "For about 150 years the park tried to prevent all fire, which let fuel accumulate and shade-tolerant species crowd the understory, leaving groves unable to regenerate and primed for hotter, more destructive fires. Land managers now treat fire as a necessity and run carefully timed, low-intensity restoration burns in groves like Mariposa, Tuolumne, and Merced to mimic the natural fire regime." }
+    ]
   },
 
   "hetch-hetchy-the-other-yosemite-valley": {
