@@ -102,9 +102,17 @@ window.loadArticleBody = function loadArticleBody(slug) {
       const script = document.createElement("script");
       script.textContent = code;
       document.body.appendChild(script);
-      return window.ARTICLE_BODIES[slug] || null;
+      const body = window.ARTICLE_BODIES[slug] || null;
+      if (!body) {
+        console.error(`loadArticleBody: bodies/${slug}.jsx loaded but did not register window.ARTICLE_BODIES["${slug}"]`);
+      }
+      return body;
     })
     .catch((err) => {
+      // Surfaces both fetch failures (404 from a stale BODY_VERSIONS entry)
+      // and Babel syntax errors; without this the page only shows the
+      // "coming soon" fallback with no trace of why.
+      console.error(`loadArticleBody: article body "${slug}" failed`, err);
       delete window.__bodyPromises[slug];
       throw err;
     });

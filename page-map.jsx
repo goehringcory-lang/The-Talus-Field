@@ -29,10 +29,13 @@ const ROUTE_STOP_LIMIT = 11;
 // permanently trap a reader who cannot persist the flag.
 const MAP_UNLOCK_KEY = "tfg.map.unlocked";
 function isMapUnlocked() {
-  try { return window.localStorage.getItem(MAP_UNLOCK_KEY) === "1"; } catch (_e) { return true; }
+  // The "1" fallback is what makes the gate fail open: safeStorage.get
+  // returns it only when storage itself throws, never when the key is
+  // merely absent.
+  return window.safeStorage.get(MAP_UNLOCK_KEY, "1") === "1";
 }
 function setMapUnlocked() {
-  try { window.localStorage.setItem(MAP_UNLOCK_KEY, "1"); } catch (_e) {}
+  window.safeStorage.set(MAP_UNLOCK_KEY, "1");
 }
 
 // Four-bucket region taxonomy. `keys` lists the geojson `region` values that
@@ -108,40 +111,27 @@ function writeUrlState({ stop }) {
 }
 
 // ---------------------------------------------------------------------------
-// localStorage helpers. Wrapped to survive Safari private mode (setItem
-// throws) and quota errors. Falls back silently to in-memory state.
+// Trip persistence via window.safeStorage (see storage.js); an unavailable
+// storage falls back silently to in-memory state.
 // ---------------------------------------------------------------------------
 function loadTripFromStorage(validIds) {
-  try {
-    const raw = window.localStorage.getItem(STORAGE_KEY);
-    if (!raw) return [];
-    const parsed = JSON.parse(raw);
-    if (!parsed || !Array.isArray(parsed.ids)) return [];
-    const seen = new Set();
-    const out = [];
-    for (const id of parsed.ids) {
-      if (typeof id !== "string") continue;
-      if (!validIds.has(id)) continue;
-      if (seen.has(id)) continue;
-      seen.add(id);
-      out.push(id);
-      if (out.length >= TRIP_CAP) break;
-    }
-    return out;
-  } catch (_e) {
-    return [];
+  const parsed = window.safeStorage.getJSON(STORAGE_KEY);
+  if (!parsed || !Array.isArray(parsed.ids)) return [];
+  const seen = new Set();
+  const out = [];
+  for (const id of parsed.ids) {
+    if (typeof id !== "string") continue;
+    if (!validIds.has(id)) continue;
+    if (seen.has(id)) continue;
+    seen.add(id);
+    out.push(id);
+    if (out.length >= TRIP_CAP) break;
   }
+  return out;
 }
 
 function saveTripToStorage(ids) {
-  try {
-    window.localStorage.setItem(
-      STORAGE_KEY,
-      JSON.stringify({ v: STORAGE_VERSION, ids })
-    );
-  } catch (_e) {
-    // Safari private mode, quota exceeded, etc. — silent.
-  }
+  window.safeStorage.setJSON(STORAGE_KEY, { v: STORAGE_VERSION, ids });
 }
 
 // ---------------------------------------------------------------------------

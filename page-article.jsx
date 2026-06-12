@@ -34,7 +34,12 @@ function ArticlePage({ slug, go }) {
         if (fn) { setBody(() => fn); setBodyState("ready"); }
         else setBodyState("missing");
       })
-      .catch(() => { if (!cancelled) setBodyState("missing"); });
+      .catch((err) => {
+        // loadArticleBody memoizes rejected promises, so on SPA re-navigation
+        // this catch can fire without the data.js log repeating.
+        console.error(`ArticlePage: body for "${slug}" unavailable`, err);
+        if (!cancelled) setBodyState("missing");
+      });
     return () => { cancelled = true; };
   }, [slug]);
 

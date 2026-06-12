@@ -6,7 +6,8 @@
   "scripts": {
     "images": "node gen-responsive-images.mjs",
     "seo": "node gen-seo-artifacts.mjs",
-    "seo:check": "node gen-seo-artifacts.mjs --check"
+    "seo:check": "node gen-seo-artifacts.mjs --check",
+    "check": "bash check-cache-busters.sh && bash check-seo-artifacts.sh"
   },
   "devDependencies": {
     "sharp": "^0.34.5"

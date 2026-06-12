@@ -362,7 +362,7 @@ function ArticleCard({ article, go, size }) {
 // ============================================================
 function trackNewsletterSubmit(location, tag) {
   if (window.track) window.track("newsletter_signup", { location: location || "unknown", tag: tag || "" });
-  try { window.localStorage.setItem("tfg.nl.subscribed", "1"); } catch (_e) {}
+  window.safeStorage.set("tfg.nl.subscribed", "1");
 }
 window.trackNewsletterSubmit = trackNewsletterSubmit;
 
@@ -374,10 +374,11 @@ function trackNewsletterImpression(location, tag) {
 }
 window.trackNewsletterImpression = trackNewsletterImpression;
 
-// Single read-path for the subscribed flag. localStorage can throw in private
-// mode, so it is always wrapped.
+// Single read-path for the subscribed flag. Reads through window.safeStorage,
+// which returns null when storage is unavailable, so this is false in private
+// mode just as before.
 function isSubscribed() {
-  try { return window.localStorage.getItem("tfg.nl.subscribed") === "1"; } catch (_e) { return false; }
+  return window.safeStorage.get("tfg.nl.subscribed") === "1";
 }
 window.isSubscribed = isSubscribed;
 
@@ -477,21 +478,18 @@ function ExitIntentNewsletter({ disabled }) {
 
   useEffect(() => {
     if (disabled) return;
-    let suppressed = false;
-    try {
-      if (window.localStorage.getItem("tfg.nl.subscribed") === "1") suppressed = true;
-      const seen = window.localStorage.getItem("tfg.nl.exit.seen");
-      if (seen) {
-        const ageDays = (Date.now() - new Date(seen).getTime()) / 86400000;
-        if (ageDays < EXIT_COOLDOWN_DAYS) suppressed = true;
-      }
-    } catch (_e) {}
+    let suppressed = window.safeStorage.get("tfg.nl.subscribed") === "1";
+    const seen = window.safeStorage.get("tfg.nl.exit.seen");
+    if (seen) {
+      const ageDays = (Date.now() - new Date(seen).getTime()) / 86400000;
+      if (ageDays < EXIT_COOLDOWN_DAYS) suppressed = true;
+    }
     if (suppressed) return;
 
     const reveal = () => {
       if (firedRef.current) return;
       firedRef.current = true;
-      try { window.localStorage.setItem("tfg.nl.exit.seen", new Date().toISOString()); } catch (_e) {}
+      window.safeStorage.set("tfg.nl.exit.seen", new Date().toISOString());
       if (window.track) window.track("newsletter_exit_intent_shown", { location: "article_exit_intent", tag: "exit-intent" });
       trackNewsletterImpression("article_exit_intent", "exit-intent");
       setOpen(true);
