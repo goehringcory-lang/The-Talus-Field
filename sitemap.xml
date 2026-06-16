@@ -5,7 +5,7 @@
   <!-- Hub pages -->
   <url>
     <loc>https://thetalusfieldjournal.com/</loc>
-    <lastmod>2026-06-11</lastmod>
+    <lastmod>2026-06-16</lastmod>
     <image:image>
       <image:loc>https://thetalusfieldjournal.com/img/Half%20Dome%20Main%20Photo.jpg</image:loc>
       <image:title>Half Dome at first light</image:title>
@@ -13,7 +13,7 @@
   </url>
   <url>
     <loc>https://thetalusfieldjournal.com/articles</loc>
-    <lastmod>2026-06-11</lastmod>
+    <lastmod>2026-06-16</lastmod>
   </url>
   <url>
     <loc>https://thetalusfieldjournal.com/planning</loc>
@@ -43,7 +43,7 @@
   </url>
   <url>
     <loc>https://thetalusfieldjournal.com/section/seasonal</loc>
-    <lastmod>2026-06-02</lastmod>
+    <lastmod>2026-06-16</lastmod>
   </url>
 
   <!-- Static pages -->
@@ -97,6 +97,14 @@
   </url>
 
   <!-- Articles -->
+  <url>
+    <loc>https://thetalusfieldjournal.com/articles/yosemite-heat-safety-guide</loc>
+    <lastmod>2026-06-16</lastmod>
+    <image:image>
+      <image:loc>https://thetalusfieldjournal.com/img/yosemite-valley-granite-summer-cory-goehring.jpg</image:loc>
+      <image:title>A granite outcrop above Yosemite Valley with El Capitan across the canyon on a hot, cloudless summer afternoon</image:title>
+    </image:image>
+  </url>
   <url>
     <loc>https://thetalusfieldjournal.com/articles/when-to-visit-yosemite-2026-crowd-forecast</loc>
     <lastmod>2026-06-11</lastmod>

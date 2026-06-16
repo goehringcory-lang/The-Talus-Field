@@ -47,6 +47,7 @@ window.CATEGORIES = [
 // verifies this map stays in sync with the files in bodies/.
 // ============================================================
 window.BODY_VERSIONS = {
+  "yosemite-heat-safety-guide": 1,
   "when-to-visit-yosemite-2026-crowd-forecast": 2,
   "yosemite-trip-cost-budget-2026": 1,
   "yosemite-in-june-2026": 1,
@@ -628,6 +629,20 @@ window.KIT.lists.forEach((l) => {
 });
 
 window.ARTICLES = [
+  {
+    slug: "yosemite-heat-safety-guide",
+    cat: "seasonal",
+    title: "Yosemite Heat Safety: A Naturalist's Survival Guide",
+    dek: "Yosemite Valley is a granite oven in July and August. A naturalist on which trails will cook you, the water math, where to swim safely, and how to escape the heat uphill.",
+    seoDek: "How hot does Yosemite get in summer? A naturalist's guide to which trails to avoid, where to swim, and how to stay safe in Yosemite Valley heat.",
+    date: "June 16, 2026",
+    isoDate: "2026-06-16",
+    isoModified: "2026-06-16",
+    read: "16 min",
+    placeholder: "A granite outcrop above Yosemite Valley with El Capitan across the canyon on a hot, cloudless summer afternoon",
+    image: "img/yosemite-valley-granite-summer-cory-goehring.jpg",
+    credit: "Photo: Cory Goehring",
+  },
   {
     slug: "when-to-visit-yosemite-2026-crowd-forecast",
     cat: "planning",

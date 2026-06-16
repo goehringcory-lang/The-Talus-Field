@@ -1,5 +1,31 @@
 [
   {
+    "slug": "yosemite-heat-safety-guide",
+    "cat": "seasonal",
+    "title": "Yosemite Heat Safety: A Naturalist's Survival Guide",
+    "dek": "Yosemite Valley is a granite oven in July and August. A naturalist on which trails will cook you, the water math, where to swim safely, and how to escape the heat uphill.",
+    "seoDek": "How hot does Yosemite get in summer? A naturalist's guide to which trails to avoid, where to swim, and how to stay safe in Yosemite Valley heat.",
+    "date": "June 16, 2026",
+    "isoDate": "2026-06-16",
+    "isoModified": "2026-06-16",
+    "read": "16 min",
+    "image": "img/yosemite-valley-granite-summer-cory-goehring.jpg",
+    "ogImage": { "url": "img/responsive/yosemite-valley-granite-summer-cory-goehring-1600.jpg", "width": 1600, "height": 721 },
+    "placeholder": "A granite outcrop above Yosemite Valley with El Capitan across the canyon on a hot, cloudless summer afternoon",
+    "wordCount": 3088,
+    "keywords": ["Yosemite heat safety", "how hot is Yosemite in summer", "Yosemite summer temperatures", "Yosemite Valley heat", "exposed trails Yosemite", "hiking Yosemite in July", "where to swim in Yosemite", "Yosemite thunderstorm safety", "heat exhaustion vs heat stroke", "Tuolumne Meadows temperature", "Yosemite swimming safety", "best time to hike Yosemite summer"],
+    "faq": [
+      { "q": "How hot does Yosemite get in summer?", "a": "In July and August, daytime highs in Yosemite Valley (4,000 feet) regularly reach about 90 degrees Fahrenheit and occasionally crack 100. Those are shade temperatures at a weather station; granite surfaces in direct sun can hit 140 to 160 degrees. Tuolumne Meadows, at 8,600 feet, runs 18 to 20 degrees cooler, around 70 to 72 degrees." },
+      { "q": "What is the best time of day to hike Yosemite in the heat?", "a": "Before 7 AM. Start early and be done with exposed, south-facing sections by 10 or 11 in the morning. The afternoon combination of direct sun and radiant heat off the granite is what fills the clinic." },
+      { "q": "Which Yosemite trails are most dangerous in the heat?", "a": "The Four Mile Trail to Glacier Point, which the NPS calls very dangerous and exposed; the Upper Yosemite Falls trail above Columbia Rock; the Mist Trail above the Vernal Fall footbridge; the Half Dome subdome and cables; and the Panorama Trail. All are south-facing or fully exposed with little to no shade and limited water." },
+      { "q": "How much water should I carry hiking Yosemite in summer?", "a": "The NPS baseline is one quart per hour of hiking in the heat. A full day on an exposed trail in July means 4 to 6 liters per person. Pair it with electrolytes or salty snacks: drinking large amounts of plain water without replacing sodium can cause hyponatremia, which mimics heat exhaustion." },
+      { "q": "When is it safe to swim in the Merced River in Yosemite?", "a": "Roughly mid-July through mid-September, once snowmelt drops and the water warms. Do not swim in May or June, when the river is high, fast, and cold; most river fatalities in Yosemite happen during the high-water period. Never swim above a waterfall." },
+      { "q": "Where can you swim in Yosemite?", "a": "In the Valley: Sentinel Beach, Cathedral Beach, the Housekeeping Camp area, and Swinging Bridge for wading. Outside the Valley: Tenaya Lake along Tioga Road for subalpine swimming (55 to 60 degree water), and Wawona, which has the warmest water in the park." },
+      { "q": "How do you stay safe from afternoon thunderstorms in Yosemite?", "a": "Be off exposed ridges, peaks, and open granite by noon. Sierra afternoon thunderstorms build like clockwork in July and August, often producing lightning by 1 PM. If you hear thunder above treeline you are already in strike range: get below treeline, off water, and crouch low with your feet together. The monsoon pattern runs from mid-July through September." },
+      { "q": "How much cooler is Tuolumne Meadows than Yosemite Valley?", "a": "About 18 to 20 degrees cooler. When it is 90 degrees on the Valley floor, Tuolumne Meadows at 8,600 feet is around 72. Temperature drops roughly 3.5 degrees Fahrenheit for every thousand feet of elevation gain, which is why driving up Tioga Road is the single best heat escape in the park." }
+    ]
+  },
+  {
     "slug": "when-to-visit-yosemite-2026-crowd-forecast",
     "cat": "planning",
     "title": "When to Visit Yosemite in 2026: What the Traffic Data Says",
