@@ -9,13 +9,23 @@
     <copyright>© 2026 The Talus Field</copyright>
     <managingEditor>cory@thetalusfieldjournal.com (Cory Goehring)</managingEditor>
     <webMaster>cory@thetalusfieldjournal.com (Cory Goehring)</webMaster>
-    <lastBuildDate>Thu, 11 Jun 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 16 Jun 2026 00:00:00 +0000</lastBuildDate>
     <image>
       <url>https://thetalusfieldjournal.com/img/talus-field-mark.png</url>
       <title>The Talus Field</title>
       <link>https://thetalusfieldjournal.com/</link>
     </image>
 
+    <item>
+      <title>Yosemite Heat Safety: A Naturalist's Survival Guide</title>
+      <link>https://thetalusfieldjournal.com/articles/yosemite-heat-safety-guide</link>
+      <guid isPermaLink="true">https://thetalusfieldjournal.com/articles/yosemite-heat-safety-guide</guid>
+      <pubDate>Tue, 16 Jun 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Cory Goehring</dc:creator>
+      <category>Seasonal Guides</category>
+      <description>Yosemite Valley is a granite oven in July and August. A naturalist on which trails will cook you, the water math, where to swim safely, and how to escape the heat uphill.</description>
+      <media:content url="https://thetalusfieldjournal.com/img/yosemite-valley-granite-summer-cory-goehring.jpg" medium="image" />
+    </item>
     <item>
       <title>When to Visit Yosemite in 2026: What the Traffic Data Says</title>
       <link>https://thetalusfieldjournal.com/articles/when-to-visit-yosemite-2026-crowd-forecast</link>
