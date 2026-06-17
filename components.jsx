@@ -287,17 +287,6 @@ function Header({ current, go }) {
     return () => { document.removeEventListener("mousedown", onDoc); document.removeEventListener("keydown", onKey); };
   }, [menuOpen]);
 
-  const [condOpen, setCondOpen] = React.useState(false);
-  const condRef = React.useRef(null);
-  React.useEffect(() => {
-    if (!condOpen) return;
-    const onDoc = (e) => { if (condRef.current && !condRef.current.contains(e.target)) setCondOpen(false); };
-    const onKey = (e) => { if (e.key === "Escape") setCondOpen(false); };
-    document.addEventListener("mousedown", onDoc);
-    document.addEventListener("keydown", onKey);
-    return () => { document.removeEventListener("mousedown", onDoc); document.removeEventListener("keydown", onKey); };
-  }, [condOpen]);
-
   const renderLink = (key, label, { baseClass, role, onNavigate } = {}) => (
     <a
       key={key}
@@ -333,24 +322,6 @@ function Header({ current, go }) {
           </div>
           <EntranceWaits />
           <a className="masthead__guide" href="https://www.nps.gov/yose/planyourvisit/guide.htm" target="_blank" rel="noopener noreferrer">Yosemite Guide ↗</a>
-          <div className="masthead__cond-wrap" ref={condRef}>
-            <button
-              type="button"
-              className="masthead__cond-toggle"
-              aria-haspopup="true"
-              aria-expanded={condOpen}
-              onClick={() => setCondOpen(o => !o)}
-            >Conditions <span aria-hidden="true">▾</span></button>
-            {condOpen && (
-              <div className="masthead__cond-menu" role="menu">
-                <a role="menuitem" href="https://forecast.weather.gov/MapClick.php?lat=37.7456&lon=-119.5936" target="_blank" rel="noopener noreferrer">Yosemite Valley</a>
-                <a role="menuitem" href="https://forecast.weather.gov/MapClick.php?lat=37.8731&lon=-119.3503" target="_blank" rel="noopener noreferrer">Tuolumne Meadows</a>
-                <a role="menuitem" href="https://forecast.weather.gov/MapClick.php?lat=37.5341&lon=-119.6315" target="_blank" rel="noopener noreferrer">Wawona</a>
-                <a role="menuitem" href={WAITS_PAGE_URL} target="_blank" rel="noopener noreferrer">Entrance Waits</a>
-                <a role="menuitem" href="https://www.nps.gov/yose/planyourvisit/guide.htm" target="_blank" rel="noopener noreferrer">Yosemite Guide ↗</a>
-              </div>
-            )}
-          </div>
         </div>
       </div>
       <div className="masthead__main">

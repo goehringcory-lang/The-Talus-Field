@@ -173,7 +173,7 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 12px 24px;
+  gap: 12px 16px;
   padding: 8px var(--gutter);
   max-width: 1240px;
   margin: 0 auto;
@@ -181,20 +181,32 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
   font-family: var(--sans);
   font-size: 10px;
   text-transform: uppercase;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.14em;
   color: var(--ink-3);
 }
 .masthead__dateline {
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 12px;
   min-width: 0;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 .masthead__utility {
   display: flex;
   align-items: center;
-  gap: 18px;
+  gap: 10px;
+  min-width: 0;
 }
+/* Thin vertical rule between the three utility groups (Conditions /
+   Entrance waits / Guide) so the long single line stays parseable. The
+   waits placeholder resets it so no stray rule shows before data loads. */
+.masthead__waits,
+.masthead__guide {
+  border-left: 1px solid var(--rule-soft);
+  padding-left: 10px;
+}
+.masthead__guide { white-space: nowrap; }
 .masthead__weather {
   display: flex;
   align-items: center;
@@ -222,9 +234,15 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  min-width: 240px;
+  white-space: nowrap;
 }
-.masthead__waits--ph { min-width: 0; }
+/* Placeholder reserves a modest slot so the sticky masthead does not shift
+   when live waits populate, without forcing the real content to break. */
+.masthead__waits--ph {
+  min-width: 180px;
+  border-left: 0;
+  padding-left: 0;
+}
 .masthead__waits-label { color: var(--ink-3); }
 .masthead__wait {
   white-space: nowrap;
@@ -237,58 +255,45 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
 .masthead__wait--long { color: var(--rust); font-weight: 700; }
 .masthead__wait--nodata { color: var(--ink-3); }
 
-/* Mobile-only conditions dropdown */
-.masthead__cond-wrap { position: relative; display: none; }
-.masthead__cond-toggle {
-  background: none;
-  border: 0;
-  padding: 0;
-  cursor: pointer;
-  font-family: var(--sans);
-  font-size: 10px;
-  text-transform: uppercase;
-  letter-spacing: 0.18em;
-  color: var(--ink-2);
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  transition: color 0.15s;
-}
-.masthead__cond-toggle:hover { color: var(--ink); }
-.masthead__cond-menu {
-  position: absolute;
-  top: calc(100% + 10px);
-  right: 0;
-  min-width: 200px;
-  background: var(--paper);
-  border: 1px solid var(--ink);
-  padding: 8px 0;
-  z-index: 50;
-  box-shadow: 0 6px 24px rgba(20, 20, 20, 0.08);
-  display: flex;
-  flex-direction: column;
-  text-transform: none;
-  letter-spacing: normal;
-}
-.masthead__cond-menu a {
-  padding: 12px 18px;
-  color: var(--ink-2);
-  text-decoration: none;
-  white-space: nowrap;
-  font-size: 14px;
-}
-.masthead__cond-menu a:hover { background: var(--paper-2); color: var(--ink); }
 .masthead__date--short { display: none; }
 @media (max-width: 720px) {
-  .masthead__top { padding: 6px var(--gutter); gap: 10px; }
+  /* Stack the dateline above a full-width conditions strip. The strip keeps
+     every group inline (live color-coded waits included) and scrolls
+     horizontally rather than hiding behind a tap target, so the live data
+     stays visible on phones. */
+  .masthead__top {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 6px var(--gutter) 0;
+    gap: 6px;
+  }
   .masthead__dateline { gap: 10px; }
-  .masthead__weather,
-  .masthead__guide,
-  .masthead__waits { display: none; }
-  .masthead__cond-wrap { display: block; }
-  .masthead__cond-toggle { min-height: 44px; }
   .masthead__date--full { display: none; }
   .masthead__date--short { display: inline; }
+  .masthead__utility {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    gap: 14px;
+    padding-bottom: 8px;
+    font-size: 11px;
+    /* Hide the scrollbar; the overflowing content signals scrollability. */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    /* Soft right-edge fade hints there is more to scroll to. */
+    -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 28px), transparent 100%);
+    mask-image: linear-gradient(to right, #000 calc(100% - 28px), transparent 100%);
+  }
+  .masthead__utility::-webkit-scrollbar { display: none; }
+  .masthead__weather { flex: 0 0 auto; }
+  .masthead__waits,
+  .masthead__guide {
+    flex: 0 0 auto;
+    white-space: nowrap;
+    padding-left: 14px;
+  }
+  /* Trailing pad so the last item clears the mask fade when fully scrolled. */
+  .masthead__guide { padding-right: 12px; }
 }
 .masthead__main {
   display: flex;
