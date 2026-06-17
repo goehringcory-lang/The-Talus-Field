@@ -1305,6 +1305,34 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
   color: var(--moss);
 }
 
+/* ===== Article table of contents (A/B: article_toc) ===== */
+.toc {
+  border: 1px solid var(--rule);
+  border-left: 4px solid var(--moss);
+  background: var(--paper-2);
+  padding: 14px 18px;
+  margin: 0 0 30px;
+}
+.toc summary {
+  font-family: var(--sans);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-weight: 700;
+  color: var(--ink-2);
+  cursor: pointer;
+}
+.toc ul { list-style: none; padding: 0; margin: 14px 0 2px; }
+.toc li { margin-bottom: 7px; }
+.toc a {
+  font-family: var(--serif);
+  font-size: 16px;
+  color: var(--ink-2);
+  text-decoration: none;
+  border-bottom: 1px solid var(--rule-soft);
+}
+.toc a:hover { color: var(--moss); border-bottom-color: var(--moss); }
+
 /* ===== Stat block (field guide) ===== */
 .statblock {
   border-top: 1px solid var(--ink);

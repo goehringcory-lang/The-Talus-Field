@@ -3,6 +3,11 @@
 function ArticlePage({ slug, go }) {
   const article = window.findArticle(slug);
 
+  // A/B buckets (sticky per device; abVariant is not a hook). Read up top so the
+  // hooks below can list them as dependencies safely.
+  const articleTocVariant = window.abVariant("article_toc");
+  const midVariant = window.abVariant("mid_copy");
+
   // Article bodies load on demand (data.js#loadArticleBody) rather than all 23
   // transpiling up front. Hold the resolved component and a status for the
   // loading / coming-soon states.
@@ -16,6 +21,27 @@ function ArticlePage({ slug, go }) {
   // target once it exists.
   const proseRef = React.useRef(null);
   const [midHost, setMidHost] = React.useState(null);
+
+  // C9 (article_toc): once the body is ready, scrape its H2 section headings,
+  // give each a stable id, and expose a jump list for long pieces (>= 5
+  // sections). Only computed for bucket "b"; control renders no TOC.
+  const [toc, setToc] = React.useState([]);
+  React.useEffect(() => {
+    if (articleTocVariant !== "b" || bodyState !== "ready") { setToc([]); return; }
+    const raf = requestAnimationFrame(() => {
+      const prose = proseRef.current;
+      if (!prose) return;
+      const items = Array.from(prose.querySelectorAll("h2")).map((h, i) => {
+        if (!h.id) {
+          const base = (h.textContent || "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "").slice(0, 40);
+          h.id = "sec-" + i + (base ? "-" + base : "");
+        }
+        return { id: h.id, text: h.textContent || "" };
+      }).filter((it) => it.text);
+      setToc(items.length >= 5 ? items : []);
+    });
+    return () => cancelAnimationFrame(raf);
+  }, [articleTocVariant, bodyState, slug, Body]);
 
   React.useEffect(() => {
     let cancelled = false;
@@ -137,6 +163,25 @@ function ArticlePage({ slug, go }) {
 
         {/* Body */}
         <div className="wrap wrap--read">
+          {articleTocVariant === "b" && toc.length > 0 && (
+            <details className="toc">
+              <summary>In this guide</summary>
+              <ul>
+                {toc.map((it) => (
+                  <li key={it.id}>
+                    <a
+                      href={"#" + it.id}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        document.getElementById(it.id)?.scrollIntoView({ behavior: "smooth", block: "start" });
+                        if (window.track) window.track("toc_jump", { slug, variant: "b" });
+                      }}
+                    >{it.text}</a>
+                  </li>
+                ))}
+              </ul>
+            </details>
+          )}
           <div className="prose" ref={proseRef}>
             {article.cat === "planning" && (
               <div className="statblock">
@@ -159,8 +204,12 @@ function ArticlePage({ slug, go }) {
             <NewsletterInline
               location="article_mid"
               tag="article-mid"
-              heading="Keep reading next week"
-              blurb="Sunday Field Notes: one short letter, only when there is something worth saying."
+              variant={midVariant}
+              {...(midVariant === "b"
+                /* b: drop the cadence-hedge heading/blurb so the unit falls
+                   through to the default map-first incentive copy. */
+                ? {}
+                : { heading: "Keep reading next week", blurb: "Sunday Field Notes: one short letter, only when there is something worth saying." })}
             />,
             midHost
           )}
@@ -188,6 +237,7 @@ function ArticlePage({ slug, go }) {
           <NewsletterInline
             location="article_end"
             tag="article-end"
+            abTest="nl_valueprop"
             heading="Sunday Field Notes"
             blurb="One letter a week. If you found this useful, you'll probably like the rest."
           />
