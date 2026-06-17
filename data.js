@@ -89,17 +89,16 @@ window.loadArticleBody = function loadArticleBody(slug) {
   if (window.__bodyPromises[slug]) return window.__bodyPromises[slug];
 
   const v = window.BODY_VERSIONS && window.BODY_VERSIONS[slug];
-  const url = `/bodies/${slug}.jsx${v ? `?v=${v}` : ""}`;
+  // Bodies are precompiled to plain JS under /dist/bodies by
+  // scripts/gen-compiled.mjs (same block-scoping downlevel as the page scripts),
+  // so we inject them directly with no in-browser Babel transform.
+  const url = `/dist/bodies/${slug}.js${v ? `?v=${v}` : ""}`;
   const p = fetch(url)
     .then((r) => {
       if (!r.ok) throw new Error(`Failed to load body "${slug}": ${r.status}`);
       return r.text();
     })
-    .then((src) => {
-      // Must match index.html's data-presets: react,env. The env preset downlevels
-      // const/let to var; without it a body declaring a top-level const would collide
-      // with the globally-scoped declarations from the page scripts and fail to inject.
-      const { code } = window.Babel.transform(src, { presets: ["react", "env"], filename: `${slug}.jsx` });
+    .then((code) => {
       const script = document.createElement("script");
       script.textContent = code;
       document.body.appendChild(script);

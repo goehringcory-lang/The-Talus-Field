@@ -88,7 +88,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Source+Serif+4:ital,opsz,wght@0,8..60,300..700;1,8..60,300..700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
 
-  <link rel="stylesheet" href="/styles.css?v=114" />
+  <link rel="stylesheet" href="/styles.css?v=115" />
 
   <!--
     Preload the home hero's responsive AVIF so its fetch starts during HTML parse,
@@ -184,7 +184,6 @@
 
   <script src="https://unpkg.com/react@18.3.1/umd/react.production.min.js" crossorigin="anonymous"></script>
   <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js" crossorigin="anonymous"></script>
-  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" crossorigin="anonymous"></script>
 </head>
 <body>
   <!--
@@ -271,35 +270,39 @@
   </div>
 
   <!--
-    data-presets="react,env" — the env preset is REQUIRED, do not drop it. Each
-    file declares `const { useState, ... } = React` at top level; Babel injects
-    every transformed file as a global <script>, so without env downleveling
-    const/let to var these collide ("Identifier 'useState' has already been
-    declared") and the whole site fails to boot. env keeps them as redeclarable
-    var. Article bodies are NOT listed here; they load on demand via
-    data.js#loadArticleBody when an article is viewed, versioned by
-    window.BODY_VERSIONS (see data.js).
+    Page scripts are PRECOMPILED to plain JS under /dist by
+    scripts/gen-compiled.mjs (committed, build-free at the root), so the browser
+    no longer downloads @babel/standalone (~900 KB) or transforms ~15 files on
+    load. The readable *.jsx files remain the source of truth; edit them, then
+    run `npm --prefix scripts run compile` and commit /dist. The compile step
+    downlevels top-level const/let to var (block-scoping) because these load as
+    classic <script>s sharing one lexical scope; without it a second file's
+    `const { useState } = React` collides ("already declared"). Article bodies
+    are NOT listed here; they load on demand from /dist/bodies/<slug>.js via
+    data.js#loadArticleBody, versioned by window.BODY_VERSIONS.
+    To roll back to in-browser Babel, restore the @babel/standalone tag above
+    and the original text/babel script tags that loaded the jsx sources here.
   -->
-  <script src="/storage.js?v=114"></script>
-  <script src="/data.js?v=114"></script>
-  <script src="/videos-data.js?v=114"></script>
-  <script type="text/babel" data-presets="react,env" src="/tweaks-panel.jsx?v=114"></script>
-  <script type="text/babel" data-presets="react,env" src="/components.jsx?v=114"></script>
+  <script src="/storage.js?v=115"></script>
+  <script src="/data.js?v=115"></script>
+  <script src="/videos-data.js?v=115"></script>
+  <script src="/dist/tweaks-panel.js?v=115"></script>
+  <script src="/dist/components.js?v=115"></script>
 
-  <script type="text/babel" data-presets="react,env" src="/page-home.jsx?v=114"></script>
-  <script type="text/babel" data-presets="react,env" src="/page-planning-guide.jsx?v=114"></script>
-  <script type="text/babel" data-presets="react,env" src="/page-checklist.jsx?v=114"></script>
-  <script type="text/babel" data-presets="react,env" src="/page-about.jsx?v=114"></script>
-  <script type="text/babel" data-presets="react,env" src="/page-articles.jsx?v=114"></script>
-  <script type="text/babel" data-presets="react,env" src="/page-article.jsx?v=114"></script>
-  <script type="text/babel" data-presets="react,env" src="/page-newsletter-contact.jsx?v=114"></script>
-  <script type="text/babel" data-presets="react,env" src="/page-legal.jsx?v=114"></script>
-  <script type="text/babel" data-presets="react,env" src="/page-kit.jsx?v=114"></script>
-  <script type="text/babel" data-presets="react,env" src="/page-films.jsx?v=114"></script>
-  <script type="text/babel" data-presets="react,env" src="/page-places.jsx?v=114"></script>
-  <script type="text/babel" data-presets="react,env" src="/page-advertise.jsx?v=114"></script>
-  <script type="text/babel" data-presets="react,env" src="/page-guide.jsx?v=114"></script>
-  <script type="text/babel" data-presets="react,env" src="/page-map.jsx?v=114"></script>
-  <script type="text/babel" data-presets="react,env" src="/app.jsx?v=114"></script>
+  <script src="/dist/page-home.js?v=115"></script>
+  <script src="/dist/page-planning-guide.js?v=115"></script>
+  <script src="/dist/page-checklist.js?v=115"></script>
+  <script src="/dist/page-about.js?v=115"></script>
+  <script src="/dist/page-articles.js?v=115"></script>
+  <script src="/dist/page-article.js?v=115"></script>
+  <script src="/dist/page-newsletter-contact.js?v=115"></script>
+  <script src="/dist/page-legal.js?v=115"></script>
+  <script src="/dist/page-kit.js?v=115"></script>
+  <script src="/dist/page-films.js?v=115"></script>
+  <script src="/dist/page-places.js?v=115"></script>
+  <script src="/dist/page-advertise.js?v=115"></script>
+  <script src="/dist/page-guide.js?v=115"></script>
+  <script src="/dist/page-map.js?v=115"></script>
+  <script src="/dist/app.js?v=115"></script>
 </body>
 </html>
