@@ -34,6 +34,7 @@ window.CATEGORIES = [
 // verifies this map stays in sync with the files in bodies/.
 // ============================================================
 window.BODY_VERSIONS = {
+  "yosemite-bears-safety-guide": 80,
   "yosemite-needs-a-reservation-system": 80,
   "memorial-day-skip-the-valley-go-high-2026": 77,
   "four-mile-up-panorama-down": 75,
@@ -603,6 +604,20 @@ window.KIT.lists.forEach((l) => {
 });
 
 window.ARTICLES = [
+  {
+    slug: "yosemite-bears-safety-guide",
+    cat: "wildlife",
+    title: "The Bear Spray You Packed for Yosemite Is Illegal",
+    dek: "Bear spray is illegal in Yosemite, and so is most of what you think you know about bears. A naturalist debunks six myths and explains what actually keeps you safe.",
+    seoDek: "Bear spray is banned in Yosemite. So is most of what you think you know about bears. A naturalist's guide to six myths and what actually keeps you safe.",
+    date: "June 16, 2026",
+    isoDate: "2026-06-16",
+    isoModified: "2026-06-16",
+    read: "16 min",
+    placeholder: "A brown-phase black bear foraging at the edge of a Yosemite roadside",
+    image: "img/black-bear-roadside.jpg",
+    credit: "Photo: Cory Goehring",
+  },
   {
     slug: "yosemite-needs-a-reservation-system",
     cat: "planning",
