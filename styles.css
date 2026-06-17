@@ -173,20 +173,28 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
   display: flex;
   align-items: center;
   justify-content: space-between;
-  flex-wrap: wrap;
-  row-gap: 4px;
-  column-gap: 12px;
+  gap: 12px 24px;
   padding: 8px var(--gutter);
   max-width: 1240px;
   margin: 0 auto;
   border-bottom: 1px solid var(--rule-soft);
   font-family: var(--sans);
-  font-size: 11px;
+  font-size: 10px;
   text-transform: uppercase;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.18em;
   color: var(--ink-3);
 }
-.masthead__top span + span { margin-left: 18px; }
+.masthead__dateline {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-width: 0;
+}
+.masthead__utility {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
 .masthead__weather {
   display: flex;
   align-items: center;
@@ -196,50 +204,27 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
   margin-right: 4px;
   color: var(--ink-3);
 }
-.masthead__weather a {
+.masthead__weather a,
+.masthead__guide {
   color: var(--ink-2);
   text-decoration: none;
   border-bottom: 1px solid var(--rule);
   padding-bottom: 1px;
   transition: color 0.15s, border-color 0.15s;
 }
-.masthead__weather a:hover {
+.masthead__weather a:hover,
+.masthead__guide:hover {
   color: var(--accent, var(--ink));
   border-bottom-color: currentColor;
 }
 .masthead__weather-sep { color: var(--ink-3); opacity: 0.85; }
-.masthead__paper {
-  margin-left: 14px;
-  padding-left: 14px;
-  border-left: 1px solid var(--rule);
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-}
-.masthead__paper a {
-  color: var(--ink-2);
-  text-decoration: none;
-  border-bottom: 1px solid var(--rule);
-  padding-bottom: 1px;
-}
-.masthead__paper a:hover { color: var(--ink); border-bottom-color: currentColor; }
-.masthead__paper-label { color: var(--ink-3); }
 .masthead__waits {
-  margin-left: 14px;
-  padding-left: 14px;
-  border-left: 1px solid var(--rule);
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  /* Reserve the slot so live NPS waits do not shift the sticky masthead when
-     they populate after first paint (CLS). The empty placeholder reuses this. */
   min-width: 240px;
 }
-/* Empty pre-load placeholder: reserve width but no dangling border/values. */
-.masthead__waits--ph { border-left: 0; }
-/* The whole cluster is one link to the NPS display page; underline
-   only the values, not the muted label, and keep state colors. */
-.masthead__weather a.masthead__waits { border-bottom: 0; padding-bottom: 0; }
+.masthead__waits--ph { min-width: 0; }
 .masthead__waits-label { color: var(--ink-3); }
 .masthead__wait {
   white-space: nowrap;
@@ -251,28 +236,59 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
 .masthead__wait--moderate { color: var(--gold); font-weight: 600; }
 .masthead__wait--long { color: var(--rust); font-weight: 700; }
 .masthead__wait--nodata { color: var(--ink-3); }
+
+/* Mobile-only conditions dropdown */
+.masthead__cond-wrap { position: relative; display: none; }
+.masthead__cond-toggle {
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  font-family: var(--sans);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--ink-2);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  transition: color 0.15s;
+}
+.masthead__cond-toggle:hover { color: var(--ink); }
+.masthead__cond-menu {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  min-width: 200px;
+  background: var(--paper);
+  border: 1px solid var(--ink);
+  padding: 8px 0;
+  z-index: 50;
+  box-shadow: 0 6px 24px rgba(20, 20, 20, 0.08);
+  display: flex;
+  flex-direction: column;
+  text-transform: none;
+  letter-spacing: normal;
+}
+.masthead__cond-menu a {
+  padding: 12px 18px;
+  color: var(--ink-2);
+  text-decoration: none;
+  white-space: nowrap;
+  font-size: 14px;
+}
+.masthead__cond-menu a:hover { background: var(--paper-2); color: var(--ink); }
+.masthead__date--short { display: none; }
 @media (max-width: 720px) {
-  .masthead__top { padding: 6px var(--gutter); column-gap: 10px; }
-  .masthead__top span + span { margin-left: 12px; }
-  .masthead__weather { flex-wrap: wrap; gap: 6px 10px; }
-  .masthead__weather-label { margin-right: 0; }
-  .masthead__weather a,
-  .masthead__paper a { padding: 4px 0; }
-  .masthead__weather-cityfull { display: none; }
-  .masthead__paper {
-    margin-left: 0;
-    padding-left: 0;
-    border-left: 0;
-  }
-  .masthead__paper-label { display: none; }
-  .masthead__waits {
-    margin-left: 0;
-    padding-left: 0;
-    border-left: 0;
-    flex-wrap: wrap;
-    gap: 6px 10px;
-    min-width: 0;
-  }
+  .masthead__top { padding: 6px var(--gutter); gap: 10px; }
+  .masthead__dateline { gap: 10px; }
+  .masthead__weather,
+  .masthead__guide,
+  .masthead__waits { display: none; }
+  .masthead__cond-wrap { display: block; }
+  .masthead__cond-toggle { min-height: 44px; }
+  .masthead__date--full { display: none; }
+  .masthead__date--short { display: inline; }
 }
 .masthead__main {
   display: flex;

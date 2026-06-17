@@ -287,6 +287,17 @@ function Header({ current, go }) {
     return () => { document.removeEventListener("mousedown", onDoc); document.removeEventListener("keydown", onKey); };
   }, [menuOpen]);
 
+  const [condOpen, setCondOpen] = React.useState(false);
+  const condRef = React.useRef(null);
+  React.useEffect(() => {
+    if (!condOpen) return;
+    const onDoc = (e) => { if (condRef.current && !condRef.current.contains(e.target)) setCondOpen(false); };
+    const onKey = (e) => { if (e.key === "Escape") setCondOpen(false); };
+    document.addEventListener("mousedown", onDoc);
+    document.addEventListener("keydown", onKey);
+    return () => { document.removeEventListener("mousedown", onDoc); document.removeEventListener("keydown", onKey); };
+  }, [condOpen]);
+
   const renderLink = (key, label, { baseClass, role, onNavigate } = {}) => (
     <a
       key={key}
@@ -297,28 +308,49 @@ function Header({ current, go }) {
     >{label}</a>
   );
 
-  const today = new Date().toLocaleDateString("en-US", {
+  const todayFull = new Date().toLocaleDateString("en-US", {
     weekday: "long", year: "numeric", month: "long", day: "numeric"
+  });
+  const todayShort = new Date().toLocaleDateString("en-US", {
+    month: "short", day: "numeric"
   });
   return (
     <header className="masthead">
       <div className="masthead__top">
-        <div>
-          <span>{(window.SITE && window.SITE.issue) || "Vol. III"}</span>
-          <span>{today}</span>
+        <div className="masthead__dateline">
+          <span className="masthead__vol">{(window.SITE && window.SITE.issue) || "Vol. III"}</span>
+          <span className="masthead__date masthead__date--full">{todayFull}</span>
+          <span className="masthead__date masthead__date--short">{todayShort}</span>
         </div>
-        <div className="masthead__weather">
-          <span className="masthead__weather-label">Conditions</span>
-          <a href="https://forecast.weather.gov/MapClick.php?lat=37.7456&lon=-119.5936" target="_blank" rel="noopener noreferrer"><span className="masthead__weather-cityfull">Yosemite </span>Valley</a>
-          <span className="masthead__weather-sep">·</span>
-          <a href="https://forecast.weather.gov/MapClick.php?lat=37.8731&lon=-119.3503" target="_blank" rel="noopener noreferrer">Tuolumne<span className="masthead__weather-cityfull"> Meadows</span></a>
-          <span className="masthead__weather-sep">·</span>
-          <a href="https://forecast.weather.gov/MapClick.php?lat=37.5341&lon=-119.6315" target="_blank" rel="noopener noreferrer">Wawona</a>
+        <div className="masthead__utility">
+          <div className="masthead__weather">
+            <span className="masthead__weather-label">Conditions</span>
+            <a href="https://forecast.weather.gov/MapClick.php?lat=37.7456&lon=-119.5936" target="_blank" rel="noopener noreferrer">Valley</a>
+            <span className="masthead__weather-sep">·</span>
+            <a href="https://forecast.weather.gov/MapClick.php?lat=37.8731&lon=-119.3503" target="_blank" rel="noopener noreferrer">Tuolumne</a>
+            <span className="masthead__weather-sep">·</span>
+            <a href="https://forecast.weather.gov/MapClick.php?lat=37.5341&lon=-119.6315" target="_blank" rel="noopener noreferrer">Wawona</a>
+          </div>
           <EntranceWaits />
-          <span className="masthead__paper">
-            <span className="masthead__paper-label">Current issue</span>
-            <a href="https://www.nps.gov/yose/planyourvisit/guide.htm" target="_blank" rel="noopener noreferrer">Yosemite Guide ↗</a>
-          </span>
+          <a className="masthead__guide" href="https://www.nps.gov/yose/planyourvisit/guide.htm" target="_blank" rel="noopener noreferrer">Yosemite Guide ↗</a>
+          <div className="masthead__cond-wrap" ref={condRef}>
+            <button
+              type="button"
+              className="masthead__cond-toggle"
+              aria-haspopup="true"
+              aria-expanded={condOpen}
+              onClick={() => setCondOpen(o => !o)}
+            >Conditions <span aria-hidden="true">▾</span></button>
+            {condOpen && (
+              <div className="masthead__cond-menu" role="menu">
+                <a role="menuitem" href="https://forecast.weather.gov/MapClick.php?lat=37.7456&lon=-119.5936" target="_blank" rel="noopener noreferrer">Yosemite Valley</a>
+                <a role="menuitem" href="https://forecast.weather.gov/MapClick.php?lat=37.8731&lon=-119.3503" target="_blank" rel="noopener noreferrer">Tuolumne Meadows</a>
+                <a role="menuitem" href="https://forecast.weather.gov/MapClick.php?lat=37.5341&lon=-119.6315" target="_blank" rel="noopener noreferrer">Wawona</a>
+                <a role="menuitem" href={WAITS_PAGE_URL} target="_blank" rel="noopener noreferrer">Entrance Waits</a>
+                <a role="menuitem" href="https://www.nps.gov/yose/planyourvisit/guide.htm" target="_blank" rel="noopener noreferrer">Yosemite Guide ↗</a>
+              </div>
+            )}
+          </div>
         </div>
       </div>
       <div className="masthead__main">

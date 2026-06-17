@@ -98,6 +98,14 @@
 
   <!-- Articles -->
   <url>
+    <loc>https://thetalusfieldjournal.com/articles/yosemite-bears-safety-guide</loc>
+    <lastmod>2026-06-16</lastmod>
+    <image:image>
+      <image:loc>https://thetalusfieldjournal.com/img/black-bear-roadside.jpg</image:loc>
+      <image:title>A brown-phase black bear foraging at the edge of a Yosemite roadside</image:title>
+    </image:image>
+  </url>
+  <url>
     <loc>https://thetalusfieldjournal.com/articles/yosemite-heat-safety-guide</loc>
     <lastmod>2026-06-16</lastmod>
     <image:image>
