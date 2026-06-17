@@ -110,6 +110,12 @@ function seoForPath(pathname) {
       description: desc,
       canonical: url,
       ogType: "article",
+      // Prerender hooks (see onRequest): the slug locates the committed
+      // /prerender/<slug>.html prose fragment, the title heads the injected
+      // block, and the hero path drives the per-route LCP preload (C12).
+      prerenderSlug: a.slug,
+      articleTitle: a.title,
+      heroImagePath: a.image || null,
       image,
       imageWidth: a.ogImage ? a.ogImage.width : null,
       imageHeight: a.ogImage ? a.ogImage.height : null,
@@ -379,7 +385,31 @@ function seoForPath(pathname) {
   };
 }
 
-export async function onRequest({ request, next }) {
+// Mirror of slugifyImage in components.jsx / the gen scripts: derive the
+// responsive variant basename from an image path.
+function slugifyImagePath(image) {
+  const base = String(image).split("/").pop() || "";
+  return base.toLowerCase().replace(/\.[^.]+$/, "").replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
+}
+
+// Per-route hero LCP preload (C12), mirroring index.html's home-hero preload:
+// a responsive AVIF imagesrcset so the browser fetches the LCP image during HTML
+// parse, ahead of React. Null for external/missing images.
+function heroPreloadTag(imagePath) {
+  if (!imagePath || /^https?:/i.test(imagePath)) return null;
+  const cleaned = imagePath.replace(/^\/+/, "");
+  const slash = cleaned.lastIndexOf("/");
+  const dir = slash >= 0 ? cleaned.slice(0, slash) : "";
+  const base = `/${dir ? dir + "/" : ""}responsive/${slugifyImagePath(cleaned)}`;
+  const srcset = [400, 800, 1200, 1600].map((w) => `${base}-${w}.avif ${w}w`).join(", ");
+  return `<link rel="preload" as="image" type="image/avif" imagesrcset="${srcset}" imagesizes="(max-width: 700px) 100vw, 700px" fetchpriority="high" />`;
+}
+
+function escapeHtmlText(s) {
+  return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+}
+
+export async function onRequest({ request, next, env }) {
   const url = new URL(request.url);
   const seo = seoForPath(url.pathname);
   if (!seo) return next();
@@ -387,6 +417,18 @@ export async function onRequest({ request, next }) {
   const response = await next();
   const ct = response.headers.get("content-type") || "";
   if (!ct.toLowerCase().includes("text/html")) return response;
+
+  // For article routes, fetch the committed prerendered prose fragment so the
+  // first byte of HTML carries real article text for non-JS crawlers. Fails
+  // open: any miss just leaves the SPA-only #root (current behavior).
+  let proseHtml = null;
+  if (seo.prerenderSlug && env && env.ASSETS) {
+    try {
+      const pr = await env.ASSETS.fetch(new URL(`/prerender/${seo.prerenderSlug}.html`, url.origin));
+      if (pr.ok) proseHtml = await pr.text();
+    } catch (_e) { /* fail open: no injected prose */ }
+  }
+  const heroPreload = seo.prerenderSlug ? heroPreloadTag(seo.heroImagePath) : null;
 
   return new HTMLRewriter()
     .on("title", {
@@ -514,6 +556,23 @@ export async function onRequest({ request, next }) {
         if (seo.trail) {
           el.append(
             `<script type="application/ld+json" id="ld-trail">${safeJsonForScript(seo.trail)}</script>`,
+            { html: true }
+          );
+        }
+        if (heroPreload) {
+          el.append(heroPreload, { html: true });
+        }
+      },
+    })
+    .on("#root", {
+      element(el) {
+        // Inject the prerendered prose as the first child of #root so non-JS
+        // crawlers see article text. The client boots with createRoot().render()
+        // which replaces #root's children, and app.jsx also removes
+        // #prerender-prose on boot, so JS users only ever see React's copy.
+        if (proseHtml) {
+          el.prepend(
+            `<div id="prerender-prose"><h1>${escapeHtmlText(seo.articleTitle || "")}</h1>${proseHtml}</div>`,
             { html: true }
           );
         }

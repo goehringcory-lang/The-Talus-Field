@@ -721,3 +721,8 @@ ReactDOM.createRoot(document.getElementById("root")).render(<App />);
 // React is mounting its own per-route <h1>, remove it so JS-rendering crawlers
 // (Google) and JS users see exactly one H1 per page.
 document.getElementById("seo-static-h1")?.remove();
+
+// The edge middleware injects prerendered article prose into #root as
+// #prerender-prose for non-JS crawlers. createRoot().render() above already
+// replaces #root's children; remove it explicitly too so it never flashes.
+document.getElementById("prerender-prose")?.remove();

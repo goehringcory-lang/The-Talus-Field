@@ -89,6 +89,9 @@ function preloadResponsive(image, sizes) {
   document.head.appendChild(link);
 }
 
+// NOTE: Placeholder / ResponsiveImage / Motif* below are stubbed for crawler
+// prerender in scripts/gen-prerender.mjs. If their rendered markup changes,
+// update those stubs; `npm --prefix scripts run prerender:check` guards drift.
 // ============================================================
 // Photo placeholder. Nature-journal treatment.
 // Pass eager={true} for the LCP image on a page (page hero / article hero)
