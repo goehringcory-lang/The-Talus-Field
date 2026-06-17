@@ -7,9 +7,18 @@
     "images": "node gen-responsive-images.mjs",
     "seo": "node gen-seo-artifacts.mjs",
     "seo:check": "node gen-seo-artifacts.mjs --check",
-    "check": "bash check-cache-busters.sh && bash check-seo-artifacts.sh"
+    "prerender": "node gen-prerender.mjs",
+    "prerender:check": "node gen-prerender.mjs --check",
+    "compile": "node gen-compiled.mjs",
+    "compile:check": "node gen-compiled.mjs --check",
+    "check": "bash check-cache-busters.sh && bash check-seo-artifacts.sh && node gen-prerender.mjs --check && node gen-compiled.mjs --check"
   },
   "devDependencies": {
+    "@babel/core": "^8.0.0",
+    "@babel/preset-env": "^8.0.0",
+    "@babel/preset-react": "^8.0.0",
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7",
     "sharp": "^0.34.5"
   }
 }

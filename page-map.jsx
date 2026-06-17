@@ -135,8 +135,30 @@ function saveTripToStorage(ids) {
 }
 
 // ---------------------------------------------------------------------------
-// Polls window.google.maps for up to 8s. The script in index.html loads
-// async, so the namespace may not exist yet when MapView mounts.
+// Google Maps JS API key. Formerly loaded globally in index.html on every page;
+// now injected on demand only when the /map route mounts (see injectGoogleMaps),
+// so non-map pages do not pay the script's parse/exec cost. The key is a public,
+// HTTP-referrer-restricted key (thetalusfieldjournal.com + localhost), safe to
+// ship client-side. CSP already allow-lists maps.googleapis.com in _headers.
+// ---------------------------------------------------------------------------
+const MAPS_API_KEY = "AIzaSyA03kEmQWQ52I7PiT9E2VyomelcpeKb_IU";
+const MAPS_JS_SRC =
+  `https://maps.googleapis.com/maps/api/js?key=${MAPS_API_KEY}&v=weekly&libraries=marker&loading=async`;
+
+// Inject the Maps JS API <script> once, lazily. Idempotent: re-mounting /map
+// (SPA navigation away and back) reuses the already-present script/namespace.
+function injectGoogleMaps() {
+  if (window.google && window.google.maps) return;
+  if (document.querySelector('script[src*="maps.googleapis.com/maps/api/js"]')) return;
+  const s = document.createElement("script");
+  s.src = MAPS_JS_SRC;
+  s.async = true;
+  document.head.appendChild(s);
+}
+
+// ---------------------------------------------------------------------------
+// Injects the Maps script on first call, then polls window.google.maps for up
+// to 8s for the namespace to come online (the script loads async).
 // ---------------------------------------------------------------------------
 function waitForGoogleMaps(timeoutMs = 8000) {
   return new Promise((resolve, reject) => {
@@ -144,6 +166,7 @@ function waitForGoogleMaps(timeoutMs = 8000) {
       resolve(window.google.maps);
       return;
     }
+    injectGoogleMaps();
     const start = Date.now();
     const interval = setInterval(() => {
       if (window.google && window.google.maps) {
@@ -1215,12 +1238,11 @@ function CategoryLegend({ features }) {
 // Helpers
 // ---------------------------------------------------------------------------
 
-// Reads the Google Maps JS API key from the already-loaded script element so
-// we can reuse it for Street View Static API image URLs without a second key.
+// The Maps JS API key, reused for Street View Static API image URLs without a
+// second key. Now a module constant (the script is injected on demand by
+// injectGoogleMaps rather than read from a global index.html tag).
 function getMapsApiKey() {
-  const el = document.querySelector('script[src*="maps.googleapis.com/maps/api/js"]');
-  if (!el) return null;
-  try { return new URL(el.src).searchParams.get("key"); } catch { return null; }
+  return MAPS_API_KEY;
 }
 
 // Returns a Street View Static API thumbnail URL for the given lat/lng.

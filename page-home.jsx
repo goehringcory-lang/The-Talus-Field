@@ -7,10 +7,10 @@ const { useMemo, useState } = React;
 // free interactive map incentive, with the same impression tracking and
 // subscribed-suppression as NewsletterInline (location "home_hero", tag "home").
 // ============================================================
-function HomeHeroCapture() {
+function HomeHeroCapture({ variant }) {
   const [done, setDone] = useState(false);
   const subscribed = isSubscribed();
-  const ref = useNewsletterImpression("home_hero", "home", !subscribed && !done);
+  const ref = useNewsletterImpression("home_hero", "home", !subscribed && !done, variant);
 
   if (subscribed && !done) {
     return (
@@ -36,7 +36,7 @@ function HomeHeroCapture() {
         method="post"
         target="buttondown-target"
         onSubmit={() => {
-          if (window.trackNewsletterSubmit) window.trackNewsletterSubmit("home_hero", "home");
+          if (window.trackNewsletterSubmit) window.trackNewsletterSubmit("home_hero", "home", variant);
           setTimeout(() => setDone(true), 0);
         }}
       >
@@ -68,6 +68,57 @@ function HomePage({ go }) {
     .filter(Boolean);
   const camCacheBust = useMemo(() => Date.now(), []);
 
+  // A/B buckets for the three home-page conversion tests. abVariant is sticky
+  // per device, so these are stable across re-renders.
+  const heroVariant = window.abVariant("hero_actions");
+  const webcamVariant = window.abVariant("home_webcams");
+  const calloutVariant = window.abVariant("callout_bands");
+
+  const scrollToStartHere = (e) => {
+    e.preventDefault();
+    document.getElementById("start-here")?.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
+
+  // Live webcam strip. In control it sits directly under the hero; in the
+  // home_webcams variant it moves below "Start Here" so the four off-site links
+  // do not pull readers away before they reach the capture and onboarding row.
+  const webcamsSection = (
+    <section className="wrap" style={{ paddingTop: 64 }}>
+      <div className="section-head">
+        <h2>From the park, right now</h2>
+        <a href="https://yosemite.org/webcams/" target="_blank" rel="noopener noreferrer">All cameras →</a>
+      </div>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 32 }}>
+        {WEBCAMS.map(cam => (
+          <a
+            key={cam.img}
+            className="cam-tile"
+            href={cam.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ textDecoration: "none", color: "inherit", display: "block" }}
+          >
+            <img
+              src={`https://pixelcaster.com/yosemite/webcams/${cam.img}?t=${camCacheBust}`}
+              alt={cam.alt}
+              loading="lazy"
+              decoding="async"
+              referrerPolicy="no-referrer"
+              onError={(e) => { const t = e.currentTarget.closest('.cam-tile'); if (t) t.style.display = 'none'; }}
+              style={{ width: "100%", aspectRatio: "3 / 2", objectFit: "cover", display: "block" }}
+            />
+            <div className="mono" style={{ marginTop: 10, fontSize: 11, textTransform: "uppercase", letterSpacing: "0.18em", color: "var(--ink-2)", fontWeight: 700 }}>
+              {cam.label}
+            </div>
+          </a>
+        ))}
+      </div>
+      <div className="mono" style={{ marginTop: 16, fontSize: 11, color: "var(--ink-3)", textAlign: "right" }}>
+        Live image · <a href="https://yosemite.org/webcams/" target="_blank" rel="noopener noreferrer" style={{ color: "inherit" }}>Yosemite Conservancy / Pixelcaster</a>
+      </div>
+    </section>
+  );
+
   return (
     <div className="page">
       {/* Hero */}
@@ -82,25 +133,37 @@ function HomePage({ go }) {
             <p className="hero__dek">
               A field journal of one national park. Trails, weather, what is open and what is not, and the occasional longer essay when something is worth sitting with.
             </p>
-            <div className="hero__cta">
-              <a
-                className="btn"
-                href="#start-here"
-                onClick={(e) => {
-                  e.preventDefault();
-                  document.getElementById("start-here")?.scrollIntoView({ behavior: "smooth", block: "start" });
-                }}
-              >
-                First Time Visitor to Yosemite: Start Here <span className="btn__arrow">→</span>
-              </a>
-              <a className="btn btn--ghost" href="/checklist" onClick={(e) => { e.preventDefault(); go("checklist"); }}>
-                Free checklist
-              </a>
-              <a className="btn btn--ghost" href="/newsletter" onClick={(e) => { e.preventDefault(); go("newsletter"); }}>
-                Sunday Field Notes / The Map
-              </a>
-            </div>
-            <HomeHeroCapture />
+            {heroVariant === "b" ? (
+              /* Variant b: lead with the email/map capture (the real goal), and
+                 reduce the competing actions to a single quiet text link. */
+              <>
+                <HomeHeroCapture variant={heroVariant} />
+                <div className="hero__cta" style={{ marginTop: 18 }}>
+                  <a
+                    href="#start-here"
+                    onClick={scrollToStartHere}
+                    style={{ fontFamily: "var(--sans)", fontSize: 12, fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.14em", color: "var(--ink-2)", textDecoration: "none", borderBottom: "1px solid var(--rule)", paddingBottom: 2 }}
+                  >
+                    First time in Yosemite? Start here →
+                  </a>
+                </div>
+              </>
+            ) : (
+              <>
+                <div className="hero__cta">
+                  <a className="btn" href="#start-here" onClick={scrollToStartHere}>
+                    First Time Visitor to Yosemite: Start Here <span className="btn__arrow">→</span>
+                  </a>
+                  <a className="btn btn--ghost" href="/checklist" onClick={(e) => { e.preventDefault(); go("checklist"); }}>
+                    Free checklist
+                  </a>
+                  <a className="btn btn--ghost" href="/newsletter" onClick={(e) => { e.preventDefault(); go("newsletter"); }}>
+                    Sunday Field Notes / The Map
+                  </a>
+                </div>
+                <HomeHeroCapture variant={heroVariant} />
+              </>
+            )}
           </div>
           <Placeholder
             caption={"El Capitan and Bridalveil at sunset"}
@@ -115,41 +178,7 @@ function HomePage({ go }) {
         </div>
       </section>
 
-      {/* From the park, right now — live webcam thumbnails from Yosemite Conservancy / Pixelcaster */}
-      <section className="wrap" style={{ paddingTop: 64 }}>
-        <div className="section-head">
-          <h2>From the park, right now</h2>
-          <a href="https://yosemite.org/webcams/" target="_blank" rel="noopener noreferrer">All cameras →</a>
-        </div>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 32 }}>
-          {WEBCAMS.map(cam => (
-            <a
-              key={cam.img}
-              className="cam-tile"
-              href={cam.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{ textDecoration: "none", color: "inherit", display: "block" }}
-            >
-              <img
-                src={`https://pixelcaster.com/yosemite/webcams/${cam.img}?t=${camCacheBust}`}
-                alt={cam.alt}
-                loading="lazy"
-                decoding="async"
-                referrerPolicy="no-referrer"
-                onError={(e) => { const t = e.currentTarget.closest('.cam-tile'); if (t) t.style.display = 'none'; }}
-                style={{ width: "100%", aspectRatio: "3 / 2", objectFit: "cover", display: "block" }}
-              />
-              <div className="mono" style={{ marginTop: 10, fontSize: 11, textTransform: "uppercase", letterSpacing: "0.18em", color: "var(--ink-2)", fontWeight: 700 }}>
-                {cam.label}
-              </div>
-            </a>
-          ))}
-        </div>
-        <div className="mono" style={{ marginTop: 16, fontSize: 11, color: "var(--ink-3)", textAlign: "right" }}>
-          Live image · <a href="https://yosemite.org/webcams/" target="_blank" rel="noopener noreferrer" style={{ color: "inherit" }}>Yosemite Conservancy / Pixelcaster</a>
-        </div>
-      </section>
+      {webcamVariant !== "b" && webcamsSection}
 
       {/* Start Here — curated onboarding row for first-time visitors */}
       {startHere.length > 0 && (
@@ -169,6 +198,8 @@ function HomePage({ go }) {
           </div>
         </section>
       )}
+
+      {webcamVariant === "b" && webcamsSection}
 
       {/* This Week — recent articles feed */}
       <section className="wrap" style={{ paddingTop: 80 }}>
@@ -219,7 +250,18 @@ function HomePage({ go }) {
         <a
           href="/map"
           onClick={(e) => { e.preventDefault(); go("map"); }}
-          style={{
+          style={calloutVariant === "b" ? {
+            /* callout_bands variant: the Map band is the only one of the three
+               with a direct conversion path, so break the identical-band pattern
+               with a tinted ground and a moss spine to stop the eye. */
+            display: "block",
+            textDecoration: "none",
+            color: "inherit",
+            border: "1px solid var(--ink)",
+            borderLeft: "6px solid var(--moss)",
+            background: "var(--paper-2)",
+            padding: "36px 32px",
+          } : {
             display: "block",
             textDecoration: "none",
             color: "inherit",

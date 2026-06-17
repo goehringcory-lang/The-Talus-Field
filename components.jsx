@@ -89,6 +89,9 @@ function preloadResponsive(image, sizes) {
   document.head.appendChild(link);
 }
 
+// NOTE: Placeholder / ResponsiveImage / Motif* below are stubbed for crawler
+// prerender in scripts/gen-prerender.mjs. If their rendered markup changes,
+// update those stubs; `npm --prefix scripts run prerender:check` guards drift.
 // ============================================================
 // Photo placeholder. Nature-journal treatment.
 // Pass eager={true} for the LCP image on a page (page hero / article hero)
@@ -219,7 +222,11 @@ function EntranceWaits() {
     return () => { cancelled = true; clearInterval(timer); };
   }, []);
 
-  if (!waits) return null;
+  // Reserve the slot while the live NPS data is in flight (or never arrives) so
+  // the sticky masthead does not shift when the waits populate after first paint.
+  // The placeholder carries the same .masthead__waits min-width as the filled
+  // state; it is empty and hidden from assistive tech.
+  if (!waits) return <span className="masthead__waits masthead__waits--ph" aria-hidden="true" />;
   return (
     <a
       className="masthead__waits"
@@ -266,6 +273,11 @@ function Header({ current, go }) {
 
   const [menuOpen, setMenuOpen] = React.useState(false);
   const menuRef = React.useRef(null);
+  // A/B (mobile_cta): bucket "b" shows a persistent "The Map" CTA in the
+  // masthead. On mobile the inline nav collapses to the hamburger, leaving no
+  // visible path to the funnel; this fills that gap. The map is browsable free
+  // and its trip builder is the newsletter gate, so it is the softest on-ramp.
+  const [ctaVariant] = React.useState(() => window.abVariant("mobile_cta"));
   React.useEffect(() => {
     if (!menuOpen) return;
     const onDoc = (e) => { if (menuRef.current && !menuRef.current.contains(e.target)) setMenuOpen(false); };
@@ -324,6 +336,18 @@ function Header({ current, go }) {
         </a>
         <nav className="nav">
           {primaryNavItems.map(([key, label]) => renderLink(key, label, { baseClass: "nav__link" }))}
+
+          {ctaVariant === "b" && (
+            <a
+              className="nav__primary"
+              href={window.routeToPath ? window.routeToPath("map") : "/map"}
+              onClick={(e) => {
+                e.preventDefault();
+                if (window.track) window.track("cta_click", { location: "masthead_cta", target: "map", variant: ctaVariant });
+                go("map");
+              }}
+            >The Map</a>
+          )}
 
           <div className="nav__menu-wrap" ref={menuRef}>
             <button
@@ -459,8 +483,8 @@ function ArticleCard({ article, go, size }) {
 // gates layer their own unlock on top of this. Exposed on window so page-level
 // forms (map gate, guide, newsletter page) can reuse the exact same behavior.
 // ============================================================
-function trackNewsletterSubmit(location, tag) {
-  if (window.track) window.track("newsletter_signup", { location: location || "unknown", tag: tag || "" });
+function trackNewsletterSubmit(location, tag, variant) {
+  if (window.track) window.track("newsletter_signup", { location: location || "unknown", tag: tag || "", variant: variant || "" });
   window.safeStorage.set("tfg.nl.subscribed", "1");
 }
 window.trackNewsletterSubmit = trackNewsletterSubmit;
@@ -468,10 +492,31 @@ window.trackNewsletterSubmit = trackNewsletterSubmit;
 // Impression counterpart to trackNewsletterSubmit. Fires when a newsletter unit
 // scrolls into view so GA4 can compute a view -> signup rate per placement
 // (same `location` as the matching submit). No localStorage side effect.
-function trackNewsletterImpression(location, tag) {
-  if (window.track) window.track("newsletter_impression", { location: location || "unknown", tag: tag || "" });
+// `variant` is the A/B bucket (see abVariant) so view->signup is computable per arm.
+function trackNewsletterImpression(location, tag, variant) {
+  if (window.track) window.track("newsletter_impression", { location: location || "unknown", tag: tag || "", variant: variant || "" });
 }
 window.trackNewsletterImpression = trackNewsletterImpression;
+
+// ============================================================
+// Lightweight A/B bucketing. No third-party tool: assign a sticky 50/50 bucket
+// per device, persisted through window.safeStorage, and tag it onto the GA4
+// `variant` param of the matching impression/signup events so each test's
+// view->signup rate is sliceable per arm. Fails OPEN to "a" (control) when
+// storage is unavailable, mirroring the map gate, so a private-mode visitor
+// always sees the safe variant and never a half-applied experiment.
+// ============================================================
+function abVariant(testKey) {
+  const storeKey = "tfg.ab." + testKey;
+  const existing = window.safeStorage.get(storeKey);
+  if (existing === "a" || existing === "b") return existing;
+  const assigned = Math.random() < 0.5 ? "a" : "b";
+  // set() returns false when storage is unavailable; in that case we cannot make
+  // the bucket sticky, so fall open to control rather than reshuffle every render.
+  if (!window.safeStorage.set(storeKey, assigned)) return "a";
+  return assigned;
+}
+window.abVariant = abVariant;
 
 // Single read-path for the subscribed flag. Reads through window.safeStorage,
 // which returns null when storage is unavailable, so this is false in private
@@ -487,7 +532,7 @@ window.isSubscribed = isSubscribed;
 // is rendering its already-subscribed soft state) so conversion-rate
 // denominators only count real asks. Falls back to firing immediately where
 // IntersectionObserver is unavailable.
-function useNewsletterImpression(location, tag, enabled) {
+function useNewsletterImpression(location, tag, enabled, variant) {
   const ref = useRef(null);
   const firedRef = useRef(false);
   useEffect(() => {
@@ -497,7 +542,7 @@ function useNewsletterImpression(location, tag, enabled) {
     const fire = () => {
       if (firedRef.current) return;
       firedRef.current = true;
-      trackNewsletterImpression(location, tag);
+      trackNewsletterImpression(location, tag, variant);
     };
     if (typeof IntersectionObserver === "undefined") { fire(); return; }
     const io = new IntersectionObserver((entries) => {
@@ -507,7 +552,7 @@ function useNewsletterImpression(location, tag, enabled) {
     }, { threshold: 0.4 });
     io.observe(node);
     return () => io.disconnect();
-  }, [location, tag, enabled]);
+  }, [location, tag, enabled, variant]);
   return ref;
 }
 window.useNewsletterImpression = useNewsletterImpression;
@@ -516,15 +561,22 @@ window.useNewsletterImpression = useNewsletterImpression;
 // Inline newsletter box. `location` is the unique GA4 identifier for the
 // placement; `tag` is the Buttondown segmentation tag for that source.
 // ============================================================
-function NewsletterInline({ heading, blurb, location, tag, incentive }) {
+function NewsletterInline({ heading, blurb, location, tag, incentive, abTest, variant: variantProp }) {
   const [done, setDone] = useState(false);
   const subscribed = isSubscribed();
+  // Optional A/B. Either the component self-buckets (abTest = test key) and
+  // bucket "b" forces the map-first incentive copy over the caller's blurb, or
+  // the caller controls the copy itself and just passes `variant` for tagging.
+  // Either way variant is tagged onto the GA4 events for per-arm rates.
+  const variant = abTest ? window.abVariant(abTest) : (variantProp || "");
+  const forceIncentive = abTest && variant === "b";
   // Lead with the interactive-map incentive by default, but never override a
-  // caller's explicit blurb (so existing per-placement copy is untouched).
-  const showIncentive = incentive !== false && !blurb;
+  // caller's explicit blurb (so existing per-placement copy is untouched)
+  // unless the A/B bucket says to.
+  const showIncentive = forceIncentive || (incentive !== false && !blurb);
   // Only count an impression when an actual ask is on screen, not the
   // subscribed soft state or the post-submit confirmation.
-  const ref = useNewsletterImpression(location, tag, !subscribed && !done);
+  const ref = useNewsletterImpression(location, tag, !subscribed && !done, variant);
 
   if (subscribed && !done) {
     return (
@@ -550,7 +602,7 @@ function NewsletterInline({ heading, blurb, location, tag, incentive }) {
           action="https://buttondown.com/api/emails/embed-subscribe/goehring"
           method="post"
           target="buttondown-target"
-          onSubmit={() => { trackNewsletterSubmit(location, tag); setTimeout(() => setDone(true), 0); }}
+          onSubmit={() => { trackNewsletterSubmit(location, tag, variant); setTimeout(() => setDone(true), 0); }}
         >
           <input type="email" name="email" aria-label="Email address" placeholder="you@email.com" required />
           {tag && <input type="hidden" name="tag" value={tag} />}
@@ -573,6 +625,10 @@ const EXIT_COOLDOWN_DAYS = 14;
 
 function ExitIntentNewsletter({ disabled }) {
   const [open, setOpen] = useState(false);
+  // A/B (exit_copy): bucket "b" leads with the free-map unlock, the strongest
+  // reason to subscribe, instead of the low-urgency cadence framing. Read once
+  // on mount so the impression and the rendered copy use the same arm.
+  const [variant] = useState(() => window.abVariant("exit_copy"));
   const firedRef = useRef(false);
 
   useEffect(() => {
@@ -589,8 +645,8 @@ function ExitIntentNewsletter({ disabled }) {
       if (firedRef.current) return;
       firedRef.current = true;
       window.safeStorage.set("tfg.nl.exit.seen", new Date().toISOString());
-      if (window.track) window.track("newsletter_exit_intent_shown", { location: "article_exit_intent", tag: "exit-intent" });
-      trackNewsletterImpression("article_exit_intent", "exit-intent");
+      if (window.track) window.track("newsletter_exit_intent_shown", { location: "article_exit_intent", tag: "exit-intent", variant });
+      trackNewsletterImpression("article_exit_intent", "exit-intent", variant);
       setOpen(true);
     };
 
@@ -613,7 +669,7 @@ function ExitIntentNewsletter({ disabled }) {
       window.removeEventListener("scroll", onScroll);
       document.removeEventListener("mouseout", onMouseOut);
     };
-  }, [disabled]);
+  }, [disabled, variant]);
 
   useEffect(() => {
     if (!open) return;
@@ -635,14 +691,23 @@ function ExitIntentNewsletter({ disabled }) {
       <div className="nlmodal__card">
         <button type="button" className="nlmodal__close" aria-label="Close" onClick={() => setOpen(false)}>✕</button>
         <div className="eyebrow eyebrow--moss" style={{ marginBottom: 12 }}>Before you go</div>
-        <h3>One letter a week. Sometimes none.</h3>
-        <p>Sunday Field Notes: what is open, what is blooming, and the occasional longer piece. Free, and you can leave anytime.</p>
+        {variant === "b" ? (
+          <>
+            <h3>The interactive map is free for subscribers.</h3>
+            <p>Subscribe and the trip builder opens right away: vistas, trailheads, parking turnouts, and places to eat on one map. A short note follows on Sundays.</p>
+          </>
+        ) : (
+          <>
+            <h3>One letter a week. Sometimes none.</h3>
+            <p>Sunday Field Notes: what is open, what is blooming, and the occasional longer piece. Free, and you can leave anytime.</p>
+          </>
+        )}
         <form
           className="nlbox__form"
           action="https://buttondown.com/api/emails/embed-subscribe/goehring"
           method="post"
           target="buttondown-target"
-          onSubmit={() => { trackNewsletterSubmit("article_exit_intent", "exit-intent"); setTimeout(() => setOpen(false), 0); }}
+          onSubmit={() => { trackNewsletterSubmit("article_exit_intent", "exit-intent", variant); setTimeout(() => setOpen(false), 0); }}
         >
           <input type="email" name="email" placeholder="you@email.com" required />
           <input type="hidden" name="tag" value="exit-intent" />
