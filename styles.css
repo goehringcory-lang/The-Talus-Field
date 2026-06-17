@@ -257,43 +257,35 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
 
 .masthead__date--short { display: none; }
 @media (max-width: 720px) {
-  /* Stack the dateline above a full-width conditions strip. The strip keeps
-     every group inline (live color-coded waits included) and scrolls
-     horizontally rather than hiding behind a tap target, so the live data
-     stays visible on phones. */
+  /* Stack the dateline above the three conditions groups, each on its own
+     line, so Conditions / Entrance waits / Yosemite Guide are all visible at
+     once with no horizontal scrolling. */
   .masthead__top {
     flex-direction: column;
     align-items: stretch;
-    padding: 6px var(--gutter) 0;
-    gap: 6px;
+    padding: 8px var(--gutter);
+    gap: 8px;
   }
   .masthead__dateline { gap: 10px; }
   .masthead__date--full { display: none; }
   .masthead__date--short { display: inline; }
   .masthead__utility {
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    gap: 14px;
-    padding-bottom: 8px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
     font-size: 11px;
-    /* Hide the scrollbar; the overflowing content signals scrollability. */
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-    /* Soft right-edge fade hints there is more to scroll to. */
-    -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 28px), transparent 100%);
-    mask-image: linear-gradient(to right, #000 calc(100% - 28px), transparent 100%);
   }
-  .masthead__utility::-webkit-scrollbar { display: none; }
-  .masthead__weather { flex: 0 0 auto; }
+  /* Each group is its own row now: drop the inline vertical dividers and let
+     a group's contents wrap rather than overflow. */
+  .masthead__weather,
+  .masthead__waits { flex-wrap: wrap; }
   .masthead__waits,
   .masthead__guide {
-    flex: 0 0 auto;
-    white-space: nowrap;
-    padding-left: 14px;
+    border-left: 0;
+    padding-left: 0;
   }
-  /* Trailing pad so the last item clears the mask fade when fully scrolled. */
-  .masthead__guide { padding-right: 12px; }
+  /* Hide the empty waits placeholder so it leaves no blank row pre-load. */
+  .masthead__waits--ph { display: none; }
 }
 .masthead__main {
   display: flex;
