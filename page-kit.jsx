@@ -5,35 +5,22 @@ const { useState: useStateK, useCallback: useCallbackK } = React;
 const KIT_STORAGE_KEY = "tfg.kit.checked";
 const KIT_STORAGE_VERSION = 1;
 
-// localStorage helpers. Wrapped to survive Safari private mode (setItem throws)
-// and quota errors; falls back silently to in-memory state. Mirrors the
-// pattern in page-map.jsx. We store only ticked ids, so items added to a list
-// later default to unchecked with no migration.
+// Checklist persistence via window.safeStorage (see storage.js); an
+// unavailable storage falls back silently to in-memory state. We store only
+// ticked ids, so items added to a list later default to unchecked with no
+// migration.
 function loadKitChecked() {
-  try {
-    const raw = window.localStorage.getItem(KIT_STORAGE_KEY);
-    if (!raw) return {};
-    const parsed = JSON.parse(raw);
-    if (!parsed || typeof parsed.ids !== "object" || parsed.ids === null) return {};
-    const out = {};
-    for (const k of Object.keys(parsed.ids)) {
-      if (parsed.ids[k] === true) out[k] = true;
-    }
-    return out;
-  } catch (_e) {
-    return {};
+  const parsed = window.safeStorage.getJSON(KIT_STORAGE_KEY);
+  if (!parsed || typeof parsed.ids !== "object" || parsed.ids === null) return {};
+  const out = {};
+  for (const k of Object.keys(parsed.ids)) {
+    if (parsed.ids[k] === true) out[k] = true;
   }
+  return out;
 }
 
 function saveKitChecked(ids) {
-  try {
-    window.localStorage.setItem(
-      KIT_STORAGE_KEY,
-      JSON.stringify({ v: KIT_STORAGE_VERSION, ids })
-    );
-  } catch (_e) {
-    // Safari private mode, quota exceeded, etc. Silent.
-  }
+  window.safeStorage.setJSON(KIT_STORAGE_KEY, { v: KIT_STORAGE_VERSION, ids });
 }
 
 function KitPage({ go }) {

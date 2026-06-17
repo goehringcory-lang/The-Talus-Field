@@ -1,6 +1,6 @@
 import { getStoredJwt } from '../auth/storage'
 
-const API_BASE: string =
+export const API_BASE: string =
   import.meta.env.VITE_API_BASE ?? 'http://localhost:8787'
 
 export class ApiError extends Error {

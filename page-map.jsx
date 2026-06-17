@@ -3,7 +3,7 @@
 // MAP PAGE — `/map` route. Google Maps JavaScript API + region-grouped trip
 // builder. Visitors browse Yosemite pins by area, tap pins on the map or "+"
 // buttons in the sidebar to assemble a trip. The trip persists in localStorage
-// so it survives a refresh.
+// so it survives a refresh, and can be shared via /map?trip=id1,id2.
 //
 // API KEY: set in index.html, restricted to thetalusfieldjournal.com and
 // localhost:8765 in the Google Cloud console. Maps JS API + marker library
@@ -12,22 +12,30 @@
 
 const { useEffect, useMemo, useRef, useState, useCallback } = React;
 
-const POINTS_URL = "/points.geojson?v=22";
+const POINTS_URL = "/points.geojson?v=23";
 const STORAGE_KEY = "tfg.trip";
 const STORAGE_VERSION = 1;
-const TRIP_CAP = 20;
+const TRIP_CAP = 30;
 const TRIP_PIN_COLOR = "#7a8f5a"; // moss — matches --moss CSS var on the rail
+// Google's dir URL accepts origin + destination + 9 waypoints. Stops past the
+// limit are dropped from the exported route (the user is told via toast).
+const ROUTE_STOP_LIMIT = 11;
 
-// Newsletter gate. The map is a free lead magnet: one Buttondown signup flips
-// this localStorage flag and reveals the map. Bypassable by design. Fails OPEN
-// when storage is unavailable (private mode) so the gate can never permanently
-// trap a reader who cannot persist the flag.
+// Newsletter gate. The map is browsable by everyone; the trip BUILDER is the
+// free lead magnet. The first trip-adding action opens a signup modal, and one
+// Buttondown signup flips this localStorage flag (a prior signup anywhere on
+// the site, via tfg.nl.subscribed, also counts). Bypassable by design. Fails
+// OPEN when storage is unavailable (private mode) so the gate can never
+// permanently trap a reader who cannot persist the flag.
 const MAP_UNLOCK_KEY = "tfg.map.unlocked";
 function isMapUnlocked() {
-  try { return window.localStorage.getItem(MAP_UNLOCK_KEY) === "1"; } catch (_e) { return true; }
+  // The "1" fallback is what makes the gate fail open: safeStorage.get
+  // returns it only when storage itself throws, never when the key is
+  // merely absent.
+  return window.safeStorage.get(MAP_UNLOCK_KEY, "1") === "1";
 }
 function setMapUnlocked() {
-  try { window.localStorage.setItem(MAP_UNLOCK_KEY, "1"); } catch (_e) {}
+  window.safeStorage.set(MAP_UNLOCK_KEY, "1");
 }
 
 // Four-bucket region taxonomy. `keys` lists the geojson `region` values that
@@ -65,12 +73,31 @@ function getCategoryStyle(category) {
 }
 
 // ---------------------------------------------------------------------------
-// URL state helpers. /map?stop=tunnel-view  (no more ?itinerary= — the
-// day-presets are now in-sidebar quick picks that don't persist to URL.)
+// URL state helpers. /map?stop=tunnel-view selects a pin; /map?trip=id1,id2 is
+// a one-shot shared trip that replaces the local trip on load, then the URL
+// normalizes back to /map. (No more ?itinerary= — the day-presets are now
+// in-sidebar quick picks that don't persist to URL.) ?trip= must be captured
+// before the first writeUrlState effect runs, which strips unknown params.
 // ---------------------------------------------------------------------------
 function readUrlState() {
   const params = new URLSearchParams(window.location.search);
-  return { stop: params.get("stop") || null };
+  return { stop: params.get("stop") || null, trip: params.get("trip") || null };
+}
+
+// Parses a ?trip= value ("id1,id2,...") against the loaded feature set.
+// Unknown ids and duplicates are dropped; the result respects TRIP_CAP.
+function parseTripParam(raw, validIds) {
+  if (!raw) return [];
+  const seen = new Set();
+  const out = [];
+  for (const id of raw.split(",")) {
+    const trimmed = id.trim();
+    if (!trimmed || !validIds.has(trimmed) || seen.has(trimmed)) continue;
+    seen.add(trimmed);
+    out.push(trimmed);
+    if (out.length >= TRIP_CAP) break;
+  }
+  return out;
 }
 
 function writeUrlState({ stop }) {
@@ -84,45 +111,54 @@ function writeUrlState({ stop }) {
 }
 
 // ---------------------------------------------------------------------------
-// localStorage helpers. Wrapped to survive Safari private mode (setItem
-// throws) and quota errors. Falls back silently to in-memory state.
+// Trip persistence via window.safeStorage (see storage.js); an unavailable
+// storage falls back silently to in-memory state.
 // ---------------------------------------------------------------------------
 function loadTripFromStorage(validIds) {
-  try {
-    const raw = window.localStorage.getItem(STORAGE_KEY);
-    if (!raw) return [];
-    const parsed = JSON.parse(raw);
-    if (!parsed || !Array.isArray(parsed.ids)) return [];
-    const seen = new Set();
-    const out = [];
-    for (const id of parsed.ids) {
-      if (typeof id !== "string") continue;
-      if (!validIds.has(id)) continue;
-      if (seen.has(id)) continue;
-      seen.add(id);
-      out.push(id);
-      if (out.length >= TRIP_CAP) break;
-    }
-    return out;
-  } catch (_e) {
-    return [];
+  const parsed = window.safeStorage.getJSON(STORAGE_KEY);
+  if (!parsed || !Array.isArray(parsed.ids)) return [];
+  const seen = new Set();
+  const out = [];
+  for (const id of parsed.ids) {
+    if (typeof id !== "string") continue;
+    if (!validIds.has(id)) continue;
+    if (seen.has(id)) continue;
+    seen.add(id);
+    out.push(id);
+    if (out.length >= TRIP_CAP) break;
   }
+  return out;
 }
 
 function saveTripToStorage(ids) {
-  try {
-    window.localStorage.setItem(
-      STORAGE_KEY,
-      JSON.stringify({ v: STORAGE_VERSION, ids })
-    );
-  } catch (_e) {
-    // Safari private mode, quota exceeded, etc. — silent.
-  }
+  window.safeStorage.setJSON(STORAGE_KEY, { v: STORAGE_VERSION, ids });
 }
 
 // ---------------------------------------------------------------------------
-// Polls window.google.maps for up to 8s. The script in index.html loads
-// async, so the namespace may not exist yet when MapView mounts.
+// Google Maps JS API key. Formerly loaded globally in index.html on every page;
+// now injected on demand only when the /map route mounts (see injectGoogleMaps),
+// so non-map pages do not pay the script's parse/exec cost. The key is a public,
+// HTTP-referrer-restricted key (thetalusfieldjournal.com + localhost), safe to
+// ship client-side. CSP already allow-lists maps.googleapis.com in _headers.
+// ---------------------------------------------------------------------------
+const MAPS_API_KEY = "AIzaSyA03kEmQWQ52I7PiT9E2VyomelcpeKb_IU";
+const MAPS_JS_SRC =
+  `https://maps.googleapis.com/maps/api/js?key=${MAPS_API_KEY}&v=weekly&libraries=marker&loading=async`;
+
+// Inject the Maps JS API <script> once, lazily. Idempotent: re-mounting /map
+// (SPA navigation away and back) reuses the already-present script/namespace.
+function injectGoogleMaps() {
+  if (window.google && window.google.maps) return;
+  if (document.querySelector('script[src*="maps.googleapis.com/maps/api/js"]')) return;
+  const s = document.createElement("script");
+  s.src = MAPS_JS_SRC;
+  s.async = true;
+  document.head.appendChild(s);
+}
+
+// ---------------------------------------------------------------------------
+// Injects the Maps script on first call, then polls window.google.maps for up
+// to 8s for the namespace to come online (the script loads async).
 // ---------------------------------------------------------------------------
 function waitForGoogleMaps(timeoutMs = 8000) {
   return new Promise((resolve, reject) => {
@@ -130,6 +166,7 @@ function waitForGoogleMaps(timeoutMs = 8000) {
       resolve(window.google.maps);
       return;
     }
+    injectGoogleMaps();
     const start = Date.now();
     const interval = setInterval(() => {
       if (window.google && window.google.maps) {
@@ -162,7 +199,7 @@ function buildPinElement(markerLib, { background, glyphText }) {
   });
 }
 
-function MapView() {
+function MapView({ go }) {
   const containerRef = useRef(null);
   const mapRef = useRef(null);
   const markerLibRef = useRef(null);
@@ -171,6 +208,8 @@ function MapView() {
   const openFeatureRef = useRef(null); // properties of feature whose InfoWindow is open
   const tripActionRef = useRef(() => {}); // latest toggleTripStop, called from InfoWindow button
   const tripStopIdsRef = useRef([]); // latest tripStopIds, read inside marker click handlers
+  const goRef = useRef(go); // latest SPA navigate, called from InfoWindow article links
+  const pendingActionRef = useRef(null); // trip action deferred behind the signup gate
   const announcerRef = useRef(null);
   const toastTimerRef = useRef(null);
 
@@ -178,6 +217,7 @@ function MapView() {
   const [error, setError] = useState(null);
   const [mapReady, setMapReady] = useState(false);
   const [toast, setToast] = useState(null);
+  const [gateOpen, setGateOpen] = useState(false);
 
   const initial = useMemo(() => readUrlState(), []);
   const [selectedStopId, setSelectedStopId] = useState(initial.stop);
@@ -187,6 +227,10 @@ function MapView() {
   );
   // Mobile bottom-sheet state. Ignored on desktop (CSS scopes it to <=720px).
   const [sheetState, setSheetState] = useState("peek");
+
+  useEffect(() => {
+    goRef.current = go;
+  });
 
   // Keep refs in sync with latest state for the long-lived handlers
   // (marker click, InfoWindow domready) that need to read current trip state.
@@ -207,7 +251,15 @@ function MapView() {
         const feats = (data && data.features) || [];
         setFeatures(feats);
         const validIds = new Set(feats.map((f) => f.properties.id));
-        setTripStopIds(loadTripFromStorage(validIds));
+        // A shared ?trip= link replaces whatever trip was saved on this device.
+        const shared = parseTripParam(initial.trip, validIds);
+        if (shared.length > 0) {
+          setTripStopIds(shared);
+          announce(`Loaded a shared trip. ${shared.length} ${shared.length === 1 ? "stop" : "stops"}.`);
+          if (window.track) window.track("trip_share_open", { trip_size: shared.length });
+        } else {
+          setTripStopIds(loadTripFromStorage(validIds));
+        }
       })
       .catch((err) => {
         if (cancelled) return;
@@ -258,7 +310,37 @@ function MapView() {
     [features]
   );
 
-  const toggleTripStop = useCallback(
+  // ---- Signup gate ---------------------------------------------------------
+  // Browsing is free; building a trip costs an email. requireUnlock runs the
+  // action immediately for unlocked visitors (including anyone who subscribed
+  // through any other newsletter unit on the site), otherwise it parks the
+  // action and opens the gate modal. The parked action runs after signup and
+  // is discarded if the modal is dismissed.
+  const requireUnlock = useCallback((action) => {
+    if (isMapUnlocked() || (window.isSubscribed && window.isSubscribed())) {
+      setMapUnlocked();
+      action();
+      return;
+    }
+    pendingActionRef.current = action;
+    setGateOpen(true);
+    if (window.trackNewsletterImpression) window.trackNewsletterImpression("map_gate", "map-gate");
+  }, []);
+
+  const handleGateSubscribed = useCallback(() => {
+    setMapUnlocked();
+    setGateOpen(false);
+    const action = pendingActionRef.current;
+    pendingActionRef.current = null;
+    if (action) action();
+  }, []);
+
+  const handleGateClose = useCallback(() => {
+    pendingActionRef.current = null;
+    setGateOpen(false);
+  }, []);
+
+  const performToggleTripStop = useCallback(
     (id) => {
       setTripStopIds((prev) => {
         if (prev.includes(id)) {
@@ -282,6 +364,30 @@ function MapView() {
       });
     },
     [announce, featureNameById]
+  );
+
+  // Public toggle: removal is always allowed, adding goes through the gate.
+  // Membership is read from the ref (not inside the state updater) so the
+  // gate decision happens before any state change.
+  const toggleTripStop = useCallback(
+    (id, source) => {
+      const adding = !tripStopIdsRef.current.includes(id);
+      if (!adding) {
+        performToggleTripStop(id);
+        return;
+      }
+      requireUnlock(() => {
+        if (window.track && tripStopIdsRef.current.length < TRIP_CAP) {
+          window.track("trip_add", {
+            stop_id: id,
+            trip_size: tripStopIdsRef.current.length + 1,
+            source: source || "sidebar",
+          });
+        }
+        performToggleTripStop(id);
+      });
+    },
+    [performToggleTripStop, requireUnlock]
   );
 
   const removeTripStop = useCallback(
@@ -324,7 +430,7 @@ function MapView() {
     });
   }, [announce]);
 
-  const addAllFromRegion = useCallback(
+  const performAddAllFromRegion = useCallback(
     (regionId) => {
       setTripStopIds((prev) => {
         if (!features) return prev;
@@ -353,7 +459,17 @@ function MapView() {
     [announce, features]
   );
 
-  const applyQuickPick = useCallback(
+  const addAllFromRegion = useCallback(
+    (regionId) => {
+      requireUnlock(() => {
+        if (window.track) window.track("trip_add_all", { region: regionId });
+        performAddAllFromRegion(regionId);
+      });
+    },
+    [requireUnlock, performAddAllFromRegion]
+  );
+
+  const performApplyQuickPick = useCallback(
     (quickPickId) => {
       if (!features) return;
       const qp = QUICK_PICKS.find((q) => q.id === quickPickId);
@@ -374,6 +490,65 @@ function MapView() {
     },
     [announce, features]
   );
+
+  const applyQuickPick = useCallback(
+    (quickPickId) => {
+      requireUnlock(() => {
+        if (window.track) window.track("trip_quick_pick", { pick: quickPickId });
+        performApplyQuickPick(quickPickId);
+      });
+    },
+    [requireUnlock, performApplyQuickPick]
+  );
+
+  // ---- Trip share + route export -------------------------------------------
+  const shareTrip = useCallback(() => {
+    const ids = tripStopIdsRef.current;
+    if (ids.length === 0) return;
+    const url = `${window.location.origin}/map?trip=${ids.join(",")}`;
+    const done = () => {
+      announce("Link copied. Anyone who opens it gets this trip.");
+      if (window.track) window.track("trip_share", { trip_size: ids.length });
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(url).then(done).catch(() => {
+        window.prompt("Copy this link:", url);
+        done();
+      });
+    } else {
+      window.prompt("Copy this link:", url);
+      done();
+    }
+  }, [announce]);
+
+  // Coordinate-based DIRECTIONS links are fine here: they route navigation,
+  // unlike coordinate-synthesized PLACE links (forbidden above, see gmapsUrl),
+  // which would land on a generic dropped pin instead of the named place.
+  const openTripRoute = useCallback(() => {
+    if (!features) return;
+    const byId = new Map(features.map((f) => [f.properties.id, f]));
+    const coords = tripStopIdsRef.current
+      .map((id) => byId.get(id))
+      .filter(Boolean)
+      .map((f) => f.geometry.coordinates);
+    if (coords.length < 2) return;
+    const used = coords.slice(0, ROUTE_STOP_LIMIT);
+    const fmt = ([lng, lat]) => `${lat},${lng}`;
+    const origin = fmt(used[0]);
+    const destination = fmt(used[used.length - 1]);
+    const waypoints = used.slice(1, -1).map(fmt).join("|");
+    let url =
+      `https://www.google.com/maps/dir/?api=1` +
+      `&origin=${encodeURIComponent(origin)}` +
+      `&destination=${encodeURIComponent(destination)}` +
+      `&travelmode=driving`;
+    if (waypoints) url += `&waypoints=${encodeURIComponent(waypoints)}`;
+    if (coords.length > ROUTE_STOP_LIMIT) {
+      announce(`Route opens with the first ${ROUTE_STOP_LIMIT} stops. Google Maps caps waypoints.`);
+    }
+    if (window.track) window.track("trip_route_open", { trip_size: tripStopIdsRef.current.length });
+    window.open(url, "_blank", "noopener");
+  }, [features, announce]);
 
   // Keep the InfoWindow button's callback fresh for the domready wireup.
   useEffect(() => {
@@ -461,6 +636,7 @@ function MapView() {
       // Standard DOM click — more reliable than gmp-click, which requires a
       // cloud-provisioned Map ID (DEMO_MAP_ID doesn't fire it consistently).
       marker.addEventListener("click", () => {
+        if (window.track) window.track("map_pin_click", { stop_id: p.id, category: p.category || "" });
         openFeatureRef.current = feature;
         infoRef.current.setContent(buildInfoHtml(p, feature.geometry.coordinates, tripStopIdsRef.current));
         infoRef.current.open({ anchor: marker, map });
@@ -515,10 +691,11 @@ function MapView() {
     info.setContent(buildInfoHtml(of.properties, of.geometry.coordinates, tripStopIds));
   }, [tripStopIds, mapReady]);
 
-  // ---- InfoWindow button wireup. On every InfoWindow open, locate
-  // any [data-trip-toggle] buttons in the DOM and attach a click handler
-  // that calls the latest toggleTripStop via tripActionRef. cloneNode
-  // wipes any prior listener so we don't double-fire after setContent.
+  // ---- InfoWindow wireup. On every InfoWindow open, locate any
+  // [data-trip-toggle] buttons and [data-article-link] anchors in the DOM and
+  // attach click handlers that call the latest toggleTripStop / go via refs.
+  // cloneNode wipes any prior listener so we don't double-fire after
+  // setContent.
   useEffect(() => {
     if (!mapReady) return;
     const info = infoRef.current;
@@ -532,7 +709,22 @@ function MapView() {
         fresh.addEventListener("click", (e) => {
           e.preventDefault();
           const id = fresh.getAttribute("data-stop-id");
-          if (id) tripActionRef.current(id);
+          if (id) tripActionRef.current(id, "infowindow");
+        });
+      });
+      // Article cross-links route through the SPA navigator so the journal
+      // opens without a full page load (plain hrefs 404 under the local
+      // python server, which has no route rewrites).
+      const links = document.querySelectorAll("[data-article-link]");
+      links.forEach((link) => {
+        const fresh = link.cloneNode(true);
+        link.parentNode.replaceChild(fresh, link);
+        fresh.addEventListener("click", (e) => {
+          e.preventDefault();
+          const slug = fresh.getAttribute("data-article-slug");
+          if (!slug) return;
+          if (window.track) window.track("map_article_click", { slug });
+          if (goRef.current) goRef.current("a:" + slug);
         });
       });
     });
@@ -588,6 +780,8 @@ function MapView() {
         onAddAllFromRegion={addAllFromRegion}
         onApplyQuickPick={applyQuickPick}
         onToggleRegion={handleToggleRegion}
+        onShareTrip={shareTrip}
+        onOpenRoute={openTripRoute}
         announcerRef={announcerRef}
         toast={toast}
       />
@@ -599,6 +793,9 @@ function MapView() {
         )}
         <div ref={containerRef} id="map" className="map-page__map" />
       </div>
+      {gateOpen && (
+        <MapGateModal onSubscribed={handleGateSubscribed} onClose={handleGateClose} />
+      )}
     </div>
   );
 }
@@ -621,6 +818,8 @@ function TripPlannerSidebar({
   onAddAllFromRegion,
   onApplyQuickPick,
   onToggleRegion,
+  onShareTrip,
+  onOpenRoute,
   announcerRef,
   toast,
 }) {
@@ -868,6 +1067,22 @@ function TripPlannerSidebar({
             })}
           </ol>
         )}
+        {tripStopIds.length > 0 && (
+          <div className="map-sidebar__trip-tools">
+            <button
+              type="button"
+              className="map-sidebar__trip-tool"
+              onClick={onShareTrip}
+            >Copy link to this trip</button>
+            {tripStopIds.length >= 2 && (
+              <button
+                type="button"
+                className="map-sidebar__trip-tool"
+                onClick={onOpenRoute}
+              >Open route in Google Maps</button>
+            )}
+          </div>
+        )}
         {toast && (
           <div className="map-sidebar__toast" role="status" aria-live="off">
             {toast}
@@ -1023,12 +1238,11 @@ function CategoryLegend({ features }) {
 // Helpers
 // ---------------------------------------------------------------------------
 
-// Reads the Google Maps JS API key from the already-loaded script element so
-// we can reuse it for Street View Static API image URLs without a second key.
+// The Maps JS API key, reused for Street View Static API image URLs without a
+// second key. Now a module constant (the script is injected on demand by
+// injectGoogleMaps rather than read from a global index.html tag).
 function getMapsApiKey() {
-  const el = document.querySelector('script[src*="maps.googleapis.com/maps/api/js"]');
-  if (!el) return null;
-  try { return new URL(el.src).searchParams.get("key"); } catch { return null; }
+  return MAPS_API_KEY;
 }
 
 // Returns a Street View Static API thumbnail URL for the given lat/lng.
@@ -1071,6 +1285,27 @@ function buildInfoHtml(p, coords, tripStopIds) {
   const gmaps = p.gmapsUrl
     ? `<p style="margin:8px 0 0;"><a href="${escapeHtml(p.gmapsUrl)}" target="_blank" rel="noopener noreferrer" style="color:#1e6fb8;text-decoration:underline;font-weight:500;font-size:12px;">Open in Google Maps →</a></p>`
     : "";
+  // Cross-links into the journal. Slugs come from points.geojson; anything
+  // that no longer resolves against the live catalog is skipped silently.
+  // The anchors get real hrefs for hover/long-press affordance, but clicks
+  // are intercepted in the InfoWindow domready wireup and routed via go().
+  let journal = "";
+  if (Array.isArray(p.articles) && p.articles.length > 0) {
+    const links = p.articles
+      .map((slug) => {
+        const a = (window.ARTICLES || []).find((x) => x.slug === slug);
+        if (!a) return "";
+        return `<p style="margin:4px 0 0;font-size:12px;line-height:1.4;"><a href="/articles/${escapeHtml(slug)}" data-article-link data-article-slug="${escapeHtml(slug)}" style="color:#1e6fb8;text-decoration:underline;font-weight:500;">${escapeHtml(a.title)}</a></p>`;
+      })
+      .filter(Boolean);
+    if (links.length > 0) {
+      journal =
+        `<div style="margin:10px 0 0;padding-top:8px;border-top:1px solid #e3ddcf;">` +
+        `<span style="text-transform:uppercase;font-size:10px;letter-spacing:0.06em;color:#8a8675;font-weight:600;">From the journal</span>` +
+        links.join("") +
+        `</div>`;
+    }
+  }
   return `
     <div style="font:13px/1.5 system-ui,sans-serif;max-width:280px;color:#222;">
       ${photo}
@@ -1079,6 +1314,7 @@ function buildInfoHtml(p, coords, tripStopIds) {
       ${blurb}
       ${btn}
       ${gmaps}
+      ${journal}
     </div>
   `;
 }
@@ -1093,47 +1329,48 @@ function escapeHtml(s) {
 }
 
 // ---------------------------------------------------------------------------
-// Newsletter gate wrapper. Renders the gate until the reader signs up, then the
-// real map. Exported as MapPage so app.jsx's /map route and the page's
-// robots:noindex stay untouched. The signup also satisfies the shared
+// Signup gate modal. Opens when a locked visitor tries to build a trip; the
+// blocked action runs after the form submits. Reuses the exit-intent modal's
+// .nlmodal styling from styles.css. The signup also satisfies the shared
 // "subscribed" flag (via trackNewsletterSubmit), suppressing the exit-intent
-// modal elsewhere.
+// modal elsewhere on the site.
 // ---------------------------------------------------------------------------
-function MapGate({ onUnlock }) {
-  return (
-    <div className="page map-gate">
-      <section className="page-head">
-        <div className="wrap wrap--narrow">
-          <div className="eyebrow eyebrow--moss">The Map · Free</div>
-          <h1>Yosemite, on one interactive map.</h1>
-          <p className="page-head__dek">
-            Every vista, trailhead, parking turnout, and meal worth the stop, on a map you can build a trip from. Drop your email and it opens. Free.
-          </p>
-        </div>
-      </section>
+function MapGateModal({ onSubscribed, onClose }) {
+  useEffect(() => {
+    const onKey = (e) => { if (e.key === "Escape") onClose(); };
+    document.addEventListener("keydown", onKey);
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.removeEventListener("keydown", onKey);
+      document.body.style.overflow = prev;
+    };
+  }, [onClose]);
 
-      <div className="wrap wrap--narrow map-gate__body">
-        <ul className="map-gate__list">
-          <li>Tap pins to build a one, two, or three day route.</li>
-          <li>Vistas, trailheads, parking turnouts, picnic spots, and places to eat.</li>
-          <li>Your trip saves on this device, so it is there when you come back.</li>
-        </ul>
+  return (
+    <div className="nlmodal" role="dialog" aria-modal="true" aria-label="Unlock the trip builder">
+      <div className="nlmodal__backdrop" onClick={onClose} />
+      <div className="nlmodal__card">
+        <button type="button" className="nlmodal__close" aria-label="Close" onClick={onClose}>✕</button>
+        <div className="eyebrow eyebrow--moss" style={{ marginBottom: 12 }}>The Map · Free</div>
+        <h3>Save this trip.</h3>
+        <p>Drop your email and the trip builder opens: add stops, reorder them, share the link. Your trip saves on this device. Free.</p>
         <form
-          className="nlbox__form map-gate__form"
-          action="https://buttondown.email/api/emails/embed-subscribe/goehring"
+          className="nlbox__form"
+          action="https://buttondown.com/api/emails/embed-subscribe/goehring"
           method="post"
-          target="popupwindow"
+          target="buttondown-target"
           onSubmit={() => {
             if (window.trackNewsletterSubmit) window.trackNewsletterSubmit("map_gate", "map-gate");
-            else window.open("https://buttondown.email/goehring", "popupwindow");
-            setMapUnlocked();
-            onUnlock();
+            // Defer one tick so the form's native POST into the hidden iframe
+            // fires before onSubscribed unmounts this form.
+            setTimeout(onSubscribed, 0);
           }}
         >
           <input type="email" name="email" placeholder="you@email.com" required />
           <input type="hidden" name="tag" value="map-gate" />
           <input type="hidden" name="embed" value="1" />
-          <button type="submit">Open the map →</button>
+          <button type="submit">Open the trip builder →</button>
         </form>
         <p className="map-gate__fine">No spam. One short letter on Sundays, when there is something to say.</p>
       </div>
@@ -1141,9 +1378,9 @@ function MapGate({ onUnlock }) {
   );
 }
 
+// The map itself is open to everyone (and indexable); only trip building sits
+// behind the signup modal above.
 function MapPage(props) {
-  const [unlocked, setUnlocked] = useState(() => isMapUnlocked());
-  if (!unlocked) return <MapGate onUnlock={() => setUnlocked(true)} />;
   return <MapView {...props} />;
 }
 

@@ -5,6 +5,137 @@ const GUIDE_APP_BASE =
   (typeof window !== "undefined" && window.GUIDE_APP_BASE) ||
   "https://guide.thetalusfieldjournal.com";
 
+// Worker API base. Override at runtime via window.GUIDE_API_BASE.
+const GUIDE_API_BASE =
+  (typeof window !== "undefined" && window.GUIDE_API_BASE) ||
+  "https://api.thetalusfieldjournal.com";
+
+// Reads ?guide=success|cancel left behind by the Stripe redirect.
+function readCheckoutOutcome() {
+  try {
+    const params = new URLSearchParams(window.location.search);
+    const value = params.get("guide");
+    return value === "success" || value === "cancel" ? value : null;
+  } catch (_e) {
+    return null;
+  }
+}
+
+function formatReopens(iso) {
+  try {
+    const d = new Date(iso);
+    return d.toLocaleDateString("en-US", { month: "long", day: "numeric" });
+  } catch (_e) {
+    return "the first of next month";
+  }
+}
+
+function GuideBuyBox() {
+  const [busy, setBusy] = React.useState(false);
+  const [soldOut, setSoldOut] = React.useState(null); // { reopens } or null
+  const [error, setError] = React.useState(null);
+  const [outcome] = React.useState(readCheckoutOutcome);
+
+  async function startCheckout() {
+    setBusy(true);
+    setError(null);
+    if (window.track) window.track("guide_buy_click", { location: "guide_aside" });
+    try {
+      const res = await fetch(`${GUIDE_API_BASE}/api/checkout/start`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+      });
+      const body = await res.json().catch(() => ({}));
+      if (res.status === 409 && body.soldOut) {
+        setSoldOut({ reopens: body.reopens });
+        return;
+      }
+      if (!res.ok || !body.url) {
+        throw new Error(body.error || `HTTP ${res.status}`);
+      }
+      window.location = body.url;
+    } catch (_e) {
+      setError(
+        "Checkout didn't start. Try again in a minute, or email cory@thetalusfieldjournal.com."
+      );
+    } finally {
+      setBusy(false);
+    }
+  }
+
+  return (
+    <aside style={{ position: "sticky", top: 100, alignSelf: "start", border: "1px solid var(--ink)", padding: 32, background: "var(--paper-2)" }}>
+      <div className="eyebrow eyebrow--moss" style={{ marginBottom: 14 }}>The Field Guide</div>
+      <div style={{ fontFamily: "var(--display)", fontSize: 44, lineHeight: 1.05, fontWeight: 500, marginBottom: 8 }}>$9.</div>
+      <div style={{ fontFamily: "var(--sans)", fontSize: 12, textTransform: "uppercase", letterSpacing: "0.14em", color: "var(--ink-3)", fontWeight: 600, marginBottom: 24 }}>
+        Offline app · 2026 Edition
+      </div>
+
+      {outcome === "success" && (
+        <p style={{ fontFamily: "var(--sans)", fontSize: 14, color: "var(--ink)", lineHeight: 1.55, margin: "0 0 18px", border: "1px solid var(--ink)", padding: "12px 14px", background: "var(--paper)" }}>
+          Payment received. Your access code and sign-in link are on their way to your email. Check spam if nothing arrives in a few minutes.
+        </p>
+      )}
+      {outcome === "cancel" && (
+        <p style={{ fontFamily: "var(--sans)", fontSize: 14, color: "var(--ink-2)", lineHeight: 1.55, margin: "0 0 18px" }}>
+          Checkout was cancelled. Nothing was charged.
+        </p>
+      )}
+
+      {soldOut ? (
+        <p style={{ fontFamily: "var(--serif)", fontSize: 15, color: "var(--ink)", lineHeight: 1.55, margin: "0 0 14px" }}>
+          This month's copies are gone. Sales reopen {formatReopens(soldOut.reopens)}. The sign-up form at the bottom of the page will tell you when.
+        </p>
+      ) : (
+        <button
+          type="button"
+          className="btn"
+          disabled={busy}
+          onClick={startCheckout}
+          style={{ display: "block", width: "100%", textAlign: "center", border: 0, font: "inherit", cursor: busy ? "wait" : "pointer", marginBottom: 14 }}
+        >
+          {busy ? "Opening checkout…" : "Buy the guide → $9"}
+        </button>
+      )}
+
+      {error && (
+        <p style={{ fontFamily: "var(--sans)", fontSize: 13, color: "var(--moss)", lineHeight: 1.55, margin: "0 0 14px" }}>
+          {error}
+        </p>
+      )}
+
+      <p style={{ fontFamily: "var(--serif)", fontSize: 14, color: "var(--ink-2)", lineHeight: 1.55, margin: 0 }}>
+        One payment. The app, every photo, and the offline park map are yours for 18 months on every device you own. Updates push automatically through the 2026 season, including the Secret Spots section as it lands.
+      </p>
+
+      <p style={{ fontFamily: "var(--sans)", fontSize: 12, color: "var(--ink-3)", lineHeight: 1.55, margin: "12px 0 0" }}>
+        Already bought it? <a href={`${GUIDE_APP_BASE}/login`} style={{ color: "var(--ink-2)" }}>Sign in to the app →</a>
+      </p>
+
+      <div style={{ borderTop: "1px solid var(--rule)", marginTop: 24, paddingTop: 20 }}>
+        <div className="eyebrow" style={{ marginBottom: 10 }}>In the app</div>
+        <ul style={{ listStyle: "none", padding: 0, margin: 0, fontFamily: "var(--sans)", fontSize: 13, color: "var(--ink-2)", lineHeight: 1.7 }}>
+          <li>· Three regional guides: the Valley, Glacier Point & Mariposa, Tuolumne</li>
+          <li>· Tappable GPS for every stop</li>
+          <li>· An offline topo map of the park, all stops pinned</li>
+          <li>· Download the whole guide for offline, about 45 MB</li>
+          <li>· Time budgets and a swap for when the lot is full</li>
+          <li>· Know-before-you-go essentials and a packing checklist you check off in-app</li>
+          <li>· Search across everything</li>
+          <li>· Secret Spots: coming soon, included with purchase</li>
+        </ul>
+      </div>
+
+      <div style={{ borderTop: "1px solid var(--rule)", marginTop: 24, paddingTop: 20 }}>
+        <div className="eyebrow" style={{ marginBottom: 10 }}>Questions</div>
+        <p style={{ fontFamily: "var(--sans)", fontSize: 13, color: "var(--ink-3)", lineHeight: 1.55, margin: 0 }}>
+          Email <a href="mailto:cory@thetalusfieldjournal.com" style={{ color: "var(--ink-2)" }}>cory@thetalusfieldjournal.com</a>.
+        </p>
+      </div>
+    </aside>
+  );
+}
+
 function GuidePage({ go }) {
   return (
     <div className="page">
@@ -14,7 +145,7 @@ function GuidePage({ go }) {
           <div className="eyebrow eyebrow--moss">The Field Guide · Offline app · 2026 Edition</div>
           <h1>The Yosemite guide for people who already know about Glacier Point.</h1>
           <p className="page-head__dek">
-            A web app you add to your home screen. Tappable GPS for the parking spots locals use, the trailheads that stay quiet, and the insider tactics for visiting the famous places without the crowd. Works offline at the trailhead when service dies. Not a PDF. Not another tourist checklist. The trip you actually came for.
+            A web app you add to your home screen. Three regional guides with tappable GPS, time budgets, a swap for when the plan dies, and an offline topo map of the whole park. Works at the trailhead when service doesn't. Not a PDF. Not another tourist checklist.
           </p>
         </div>
       </section>
@@ -40,43 +171,13 @@ function GuidePage({ go }) {
             </p>
 
             <p>
-              This guide assumes you've done that reading. What it gives you is the other half of the trip: the parking spots and trailheads most visitors never find, and the insider tactics for visiting the famous places well: when to go, where to come from, and what most people get wrong. It's the version of the conversation we'd have if you sat across from me at a picnic table in El Portal and said, "I have five days. Show me what to do."
-            </p>
-
-            <h2>The parking nobody tells you about</h2>
-
-            <p>
-              Half the misery of a Yosemite day is the parking. The big lots fill by mid-morning and you spend the next hour circling. Most visitors never find out about the small turnouts a quarter mile down the road, the unmarked pull-offs at the back side of the meadow, the ranger-station lots that empty out at 10am, or the back-side approaches that put you on the trail two miles closer to where you actually want to be.
-            </p>
-
-            <p>
-              The guide has tappable GPS coordinates for every one of them. Tap the coordinate, your Maps app opens with the line drawn for you. Park where the locals park.
-            </p>
-
-            <h2>The trailheads where you find solitude</h2>
-
-            <p>
-              Yosemite has hundreds of miles of trail and ninety percent of visitors hike on five percent of it. The other ninety-five percent is where the park you came for actually lives. The guide has GPS coordinates to the trailheads most visitors skip: the ones that aren't on the top-ten lists, the ones with no signs from the road, the ones where you'll see more deer than people.
-            </p>
-
-            <p>
-              Each trailhead comes with an elevation profile so you know exactly what you're walking into: total gain, peak elevation, and the section where the trail actually gets hard.
-            </p>
-
-            <h2>How to visit the bucket-list spots without the crowd</h2>
-
-            <p>
-              Glacier Point. Mariposa Grove. Tunnel View. Yosemite Falls. The Half Dome view from the Valley floor. Yes, you should see them. They're on your list for a reason. But the difference between the version that becomes a memory and the version that becomes a parking-lot photo is timing, approach, and a few small choices most visitors don't know to make.
-            </p>
-
-            <p>
-              The guide gives you those choices. The hour to be there. The direction to come from. The viewpoint twenty yards off the marked spot that nobody else is standing at. The five-minute window where the light does what you came for.
+              This guide assumes you've done that reading. It's the version of the conversation we'd have if you sat across from me at a picnic table in El Portal and said, "I have three days. Show me how to do this well." Which stops are worth your morning, which can wait, where to park, how long each one actually takes, and what to do instead when the lot is full.
             </p>
 
             <h2>The regional guides</h2>
 
             <p>
-              All of this is organized by where you are in the park, not how long you're staying. Pick the region you're heading to, read the stops in suggested order, and do the ones that fit your day.
+              The guide is organized by where you are in the park, not how long you're staying. Pick the region you're heading to, read the stops in suggested order, and do the ones that fit your day.
             </p>
 
             <ul>
@@ -85,18 +186,36 @@ function GuidePage({ go }) {
               <li><strong>Tuolumne Meadows & the Highway 120 corridor.</strong> The high country. Granite domes, alpine lakes, the meadow that turns the trip into something bigger than the valley. Tioga Road open roughly June through October.</li>
             </ul>
 
-            <p>Inside each itinerary, alongside the parking and trailhead coordinates, you also get:</p>
+            <h2>What every stop gives you</h2>
 
             <ul>
-              <li><strong>Trip-planning maps</strong> with the day's route, the alternates, and the swap points if the original plan dies.</li>
-              <li><strong>Time budgets</strong> for every stop, drive, and meal. The kind of timing that prevents the late-afternoon scramble.</li>
-              <li><strong>A seasonal packing checklist.</strong> Check items off in-app or print it for the dresser.</li>
-              <li><strong>The contingency tree.</strong> What to do if the road is closed, the lot is full, the smoke rolled in, the weather turned.</li>
+              <li><strong>A tappable GPS coordinate.</strong> Tap it and your Maps app opens with the line drawn for you. No copying, no typing.</li>
+              <li><strong>A time budget.</strong> How long the stop actually takes, drive included. The kind of timing that prevents the late-afternoon scramble.</li>
+              <li><strong>A swap.</strong> What to do when the lot is full, the road is closed, or the crowd beat you there. Each major stop lists its alternate.</li>
+              <li><strong>The read.</strong> When to go, which direction to come from, and what most people get wrong. Written the way the articles on this site are written.</li>
             </ul>
+
+            <h2>The offline map</h2>
+
+            <p>
+              Every stop is pinned on a topographic map of the park that downloads to your device, about 20 MB. Lose service past the tunnel, on Glacier Point Road, or anywhere along Tioga, and the map still pans, still zooms, and still shows you where the next stop is. Turn-by-turn driving stays in your Maps app; the guide hands you off with one tap.
+            </p>
+
+            <h2>Know before you go</h2>
+
+            <p>
+              The app ships with an essentials section: how entrance reservations work, how to get around the Valley without moving your car, what the bears actually want, where cell coverage dies, what the roads do by season, and a packing checklist you check off in the app the night before.
+            </p>
+
+            <h2>The secret spots</h2>
+
+            <p>
+              There is a section of the guide I am still writing: the parking turnouts locals use when the big lots fill, the trailheads with no signs from the road, and the insider moves I don't publish in articles. It ships as an update later this season, and it's included with your purchase. Buy now and it appears in your app the day it lands, no re-download, no second charge.
+            </p>
 
             <h2>What's NOT inside</h2>
 
-            <p>I think you should know what you're not getting before you sign up.</p>
+            <p>I think you should know what you're not getting before you pay.</p>
 
             <ul>
               <li>This is not the standard tourist guide. If you want a list of the ten most famous viewpoints with the basic directions to each, every other Yosemite site already gives you that for free. This guide is what comes after that.</li>
@@ -108,7 +227,7 @@ function GuidePage({ go }) {
             <h2>Who it's for</h2>
 
             <p>
-              First-time visitors who want a real plan, not a list. Second-time visitors who came home from their first trip feeling like they'd missed the actual park and want to fix it. Returning visitors who realize the trip they've been doing for years has been the wrong version. Families coordinating a multi-generational trip and trying to keep everyone happy. Anyone who'd rather spend an evening reading the guide than three weekends researching it.
+              First-time visitors who want a real plan, not a list. Second-time visitors who came home from their first trip feeling like they'd missed the actual park and want to fix it. Families coordinating a multi-generational trip and trying to keep everyone happy. Anyone who'd rather spend an evening reading the guide than three weekends researching it.
             </p>
 
             <p>
@@ -119,11 +238,9 @@ function GuidePage({ go }) {
 
             <ul>
               <li><strong>A web app you add to your home screen.</strong> Looks and feels like a native app. It is not a PDF and not a printed book. No App Store, no install wait, no version to keep updated.</li>
-              <li><strong>Works offline.</strong> The whole guide, every photo, and offline map tiles for Yosemite cache to your device on first open. Lose service in the Valley or up at Tuolumne, the guide is still there.</li>
-              <li><strong>Tappable GPS coordinates</strong> that open Apple Maps or Google Maps directly. No copying, no typing.</li>
-              <li><strong>Embedded maps for every day,</strong> with all stops on one screen.</li>
-              <li><strong>Updates push silently through the 2026 season.</strong> New advice, route swaps, seasonal addenda all arrive without you re-downloading anything.</li>
-              <li><strong>Sign up once, log in on every device you own.</strong> iPad in the car, iPhone at the trailhead, laptop the night before.</li>
+              <li><strong>Works offline.</strong> One tap downloads the whole guide, every photo, and the park map to your device, about 45 MB. Lose service in the Valley or up at Tuolumne, the guide is still there.</li>
+              <li><strong>Updates push silently through the 2026 season.</strong> New advice, route swaps, seasonal addenda, and the Secret Spots section all arrive without you re-downloading anything.</li>
+              <li><strong>Pay once, sign in on every device you own.</strong> iPad in the car, iPhone at the trailhead, laptop the night before. Access lasts 18 months.</li>
             </ul>
 
             <h2>One small promise</h2>
@@ -132,93 +249,11 @@ function GuidePage({ go }) {
               If the guide doesn't earn its place on your home screen, write to me and tell me why. I'd rather fix the trip that didn't work than pretend it did. The address is on the contact page.
             </p>
 
-            <p>That's the offer.</p>
+            <p>That's the offer. Nine dollars.</p>
           </div>
 
-          {/* Right column. Sticky free-access aside */}
-          <aside style={{ position: "sticky", top: 100, alignSelf: "start", border: "1px solid var(--ink)", padding: 32, background: "var(--paper-2)" }}>
-            <div className="eyebrow eyebrow--moss" style={{ marginBottom: 14 }}>The Field Guide</div>
-            <div style={{ fontFamily: "var(--display)", fontSize: 44, lineHeight: 1.05, fontWeight: 500, marginBottom: 8 }}>Free.</div>
-            <div style={{ fontFamily: "var(--sans)", fontSize: 12, textTransform: "uppercase", letterSpacing: "0.14em", color: "var(--ink-3)", fontWeight: 600, marginBottom: 24 }}>
-              Offline app · 2026 Edition
-            </div>
-
-            {/* Free email gate. One signup unlocks the interactive map right away
-                and puts the reader on the list for the rest of the guide. Buttondown
-                posts into a popup, so the unlock fires optimistically on submit. */}
-            <form
-              action="https://buttondown.email/api/emails/embed-subscribe/goehring"
-              method="post"
-              target="popupwindow"
-              onSubmit={() => {
-                if (window.trackNewsletterSubmit) window.trackNewsletterSubmit("guide_gate", "guide-free");
-                else window.open("https://buttondown.email/goehring", "popupwindow");
-                if (window.track) window.track("guide_cta_click", { location: "guide_gate" });
-                try { window.localStorage.setItem("tfg.map.unlocked", "1"); } catch (_e) {}
-              }}
-              style={{ display: "flex", flexDirection: "column", gap: 10, marginBottom: 14 }}
-            >
-              <input type="hidden" name="tag" value="guide-free" />
-              <input type="hidden" name="embed" value="1" />
-              <label htmlFor="guide-email" className="eyebrow" style={{ marginBottom: 0 }}>
-                Get free access
-              </label>
-              <input
-                id="guide-email"
-                type="email"
-                name="email"
-                placeholder="you@email.com"
-                required
-                style={{
-                  padding: "12px 14px",
-                  border: "1px solid var(--ink)",
-                  background: "var(--paper)",
-                  fontFamily: "var(--sans)",
-                  fontSize: 14,
-                }}
-              />
-              <button
-                type="submit"
-                className="btn"
-                style={{ display: "block", width: "100%", textAlign: "center", border: 0, font: "inherit", cursor: "pointer" }}
-              >
-                Get free access →
-              </button>
-            </form>
-
-            <p style={{ fontFamily: "var(--serif)", fontSize: 14, color: "var(--ink-2)", lineHeight: 1.55, margin: 0 }}>
-              Enter your email and the interactive map opens right away. An offline app: tappable GPS for hidden parking, the trailheads that stay quiet, and tactics for the famous spots. Three regional guides (the Valley, Glacier Point & Mariposa, Tuolumne & Hwy 120). Updates push automatically through the 2026 season.
-            </p>
-
-            <p style={{ fontFamily: "var(--sans)", fontSize: 13, color: "var(--ink-2)", lineHeight: 1.55, margin: "12px 0 0" }}>
-              Already signed up? <a href="/map" onClick={(e) => { e.preventDefault(); go("map"); }} style={{ color: "var(--ink-2)" }}>Open the map →</a>
-            </p>
-
-            <p style={{ fontFamily: "var(--sans)", fontSize: 12, color: "var(--ink-3)", lineHeight: 1.55, margin: "12px 0 0" }}>
-              Existing buyer? <a href={`${GUIDE_APP_BASE}/login`} style={{ color: "var(--ink-2)" }}>Sign in to the app →</a>
-            </p>
-
-            <div style={{ borderTop: "1px solid var(--rule)", marginTop: 24, paddingTop: 20 }}>
-              <div className="eyebrow" style={{ marginBottom: 10 }}>In the app</div>
-              <ul style={{ listStyle: "none", padding: 0, margin: 0, fontFamily: "var(--sans)", fontSize: 13, color: "var(--ink-2)", lineHeight: 1.7 }}>
-                <li>· Tappable GPS for hidden parking and trailheads</li>
-                <li>· Elevation profiles per hike</li>
-                <li>· Embedded day-maps</li>
-                <li>· Valley, Glacier Point & Mariposa, and Tuolumne guides</li>
-                <li>· Works offline anywhere in the park</li>
-                <li>· Hour-by-hour time budgets</li>
-                <li>· Contingency tree for closures</li>
-                <li>· Seasonal packing list</li>
-              </ul>
-            </div>
-
-            <div style={{ borderTop: "1px solid var(--rule)", marginTop: 24, paddingTop: 20 }}>
-              <div className="eyebrow" style={{ marginBottom: 10 }}>Questions</div>
-              <p style={{ fontFamily: "var(--sans)", fontSize: 13, color: "var(--ink-3)", lineHeight: 1.55, margin: 0 }}>
-                Email <a href="mailto:cory@thetalusfieldjournal.com" style={{ color: "var(--ink-2)" }}>cory@thetalusfieldjournal.com</a> or use <a href="#contact" onClick={(e) => { e.preventDefault(); go("contact"); }} style={{ color: "var(--ink-2)" }}>the contact form</a>.
-              </p>
-            </div>
-          </aside>
+          {/* Right column. Sticky buy box */}
+          <GuideBuyBox />
         </div>
       </div>
 
@@ -228,7 +263,7 @@ function GuidePage({ go }) {
           location="guide_footer"
           tag="guide"
           heading="Sunday Field Notes"
-          blurb="A short note on Sundays. Subscribers hear about Field Guide updates and seasonal addenda first."
+          blurb="A short note on Sundays. Subscribers hear about Field Guide updates, the Secret Spots release, and seasonal addenda first."
         />
       </div>
     </div>

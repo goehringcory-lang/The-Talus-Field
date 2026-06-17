@@ -8,9 +8,9 @@ This repo contains three subsystems for **The Talus Field**, a Yosemite editoria
 
 | Path | What it is | Stack |
 |---|---|---|
-| repo root (`*.jsx`, `index.html`, `styles.css`, `bodies/`, `img/`) | **Editorial site** at `thetalusfieldjournal.com`. Static, no build. | Vanilla React via `<script type="text/babel">` from a CDN; styled with hand-written CSS in `styles.css`. |
-| `apps/guide/` | **Field Guide PWA** at `guide.thetalusfieldjournal.com`. Buyer-only, offline-capable. | Vite + React 19 + TypeScript + react-router-dom + tailwind 4 + zod. |
-| `workers/` | **API** at `api.thetalusfieldjournal.com`. Auth, Stripe checkout/webhook, KV-backed buyer records. | Cloudflare Worker + Hono + `@tsndr/cloudflare-worker-jwt` + KV. |
+| repo root (`*.jsx`, `index.html`, `styles.css`, `bodies/`, `img/`) | **Editorial site** at `thetalusfieldjournal.com`: articles, interactive trip-planner map (`/map`), film archive (`/films`), packing checklists. Static, no build. | Vanilla React via `<script type="text/babel">` from a CDN; styled with hand-written CSS in `styles.css`. Edge SEO via the Pages Function `functions/_middleware.js`; response headers/CSP in `_headers`. |
+| `apps/guide/` | **Field Guide PWA** at `guide.thetalusfieldjournal.com`. Account-gated (currently free; see "free model" below), offline-capable. | Vite + React 19 + TypeScript + react-router-dom + tailwind 4 + zod. |
+| `workers/` | **API** at `api.thetalusfieldjournal.com`. Auth, Stripe checkout/webhook, KV-backed buyer records, contact form, IndexNow. | Cloudflare Worker + Hono + `@tsndr/cloudflare-worker-jwt` + KV. |
 
 DEPLOY.md has a full deployment runbook. Note that DEPLOY.md was written against the older trip-based PWA model (`1day`/`3day`/`5day`, "35 stops"). The PWA was since refactored to region-based (`valley`/`glacier-mariposa`/`tuolumne`, ~21 stops); treat the smoke-test section as directionally correct but stale on specifics.
 
@@ -29,31 +29,44 @@ npm --prefix apps/guide run dev
 cd workers && npm run dev      # = wrangler dev
 ```
 
-Build / typecheck:
+Build / typecheck / checks:
 
 ```bash
 npm --prefix apps/guide run build       # tsc -b && vite build → apps/guide/dist
 npm --prefix apps/guide run lint
 npm --prefix workers run typecheck      # tsc --noEmit
+
+bash scripts/check-cache-busters.sh     # editorial: ?v= and BODY_VERSIONS sync
+npm --prefix scripts run seo:check      # editorial: SEO mirror freshness
+npm --prefix scripts run seo            # regenerate SEO mirrors
+npm --prefix scripts run images         # regenerate responsive image variants (sharp)
 ```
+
+Dev tooling lives in `scripts/` with its own `package.json`, deliberately NOT at the repo root, so Cloudflare Pages keeps treating the root as a static, build-free deploy. Run `cd scripts && npm install` once before using the npm scripts above.
 
 Deployment is **not** done from this repo's CI. `main` auto-deploys to Cloudflare Pages for the editorial site and PWA; the Worker requires a manual `wrangler deploy` from `workers/` (with KV namespace IDs filled into `wrangler.toml` and secrets set via `wrangler secret put`).
 
 ## Editorial site conventions
 
 - **No build step.** `index.html` loads each `*.jsx` file directly via `<script type="text/babel" src="...?v=N">`. Babel transforms in-browser. This is intentional: the site is meant to be readable and editable without tooling.
-- **Cache-buster discipline.** When you edit a JSX file or `styles.css`, bump its `?v=N` query in `index.html`. Cloudflare and browsers both cache aggressively otherwise. Recent versions visible in git history give the next number. All files currently share the same version; bump them together to a new shared number when shipping a batch. Run `bash scripts/check-cache-busters.sh` before committing — it errors if any reference is missing a `?v=`.
-- **Globals via `window`.** Each JSX file attaches its top-level component to `window` (e.g. `window.GuidePage = GuidePage`) so siblings can reference it. The list of `/* global */` comments at the top of each file declares what it consumes.
-- **Article bodies** live in `bodies/*.jsx`. Each is registered in `index.html` and indexed in `data.js`.
+- **Cache-buster discipline.** When you edit a JSX file or `styles.css`, bump its `?v=N` query in `index.html`. Cloudflare and browsers both cache aggressively otherwise. All page scripts and the stylesheet share one version number; bump them together to a new shared number when shipping a batch. `points.geojson` is fetched inside `page-map.jsx` with its **own** `?v=` counter — bump that constant separately when editing pins. Run `bash scripts/check-cache-busters.sh` before committing — it errors if any reference is missing a `?v=` or if `window.BODY_VERSIONS` is out of sync with `bodies/`.
+- **Globals via `window`.** Each JSX file attaches its top-level component to `window` (e.g. `window.GuidePage = GuidePage`) so siblings can reference it. The list of `/* global */` comments at the top of each file declares what it consumes. The full `window.*` API surface, the GA4 event inventory, and the localStorage key inventory are documented in `ARCHITECTURE.md`. All localStorage access goes through `window.safeStorage` (storage.js), never `window.localStorage` directly.
+- **Article bodies** live in `bodies/*.jsx` and are **lazy-loaded**, not registered as `<script>` tags in `index.html`. `data.js` indexes each article in `window.ARTICLES` and versions each body per-slug in `window.BODY_VERSIONS`; `window.loadArticleBody(slug)` injects the script on demand. When you add or edit a body, add/bump its `BODY_VERSIONS` entry.
+- **SEO mirrors are generated, not hand-edited.** `data.js` (`window.ARTICLES`) is the single source of truth for the catalog; SEO enrichment the browser does not need (keywords, wordCount, FAQ, trail facts) lives in `seo-data.json` keyed by slug. `articles.json` (read by the edge SEO function `functions/_middleware.js`), `sitemap.xml`, `feed.xml`, and the article list in `llms.txt` are all generated by `scripts/gen-seo-artifacts.mjs`. After adding or editing an article (data.js + its body) and any enrichment (seo-data.json), run `npm --prefix scripts run seo`, then commit the regenerated files. Run `npm --prefix scripts run seo:check` (or `bash scripts/check-seo-artifacts.sh`) before committing — it fails if any mirror is stale. FAQ answers and trail numbers in `seo-data.json` must come from the article's published body; do not invent facts.
+- **Map page** (`page-map.jsx`, `/map` route): Google Maps JS API trip builder over `points.geojson`. The API key sits in `index.html`, domain-restricted in the Google Cloud console; `mapId` is required by AdvancedMarkerElement. Pins are maintained **by hand** in `points.geojson` (it was seeded once from the PWA's stops via `scripts/seed-points-from-stops.mjs`; re-running overwrites the file). The trip persists in localStorage (`tfg.trip`) and is shareable via `/map?trip=id1,id2`. The map is browsable by everyone; the trip *builder* is newsletter-gated (`tfg.map.unlocked`), bypassable by design and fails open when storage is unavailable.
+- **Film archive** (`page-films.jsx` + `videos-data.js`, `/films` route): the NPS *Yosemite Nature Notes* series as `window.NATURE_NOTES`. Embeds are click-to-load facades — only the YouTube thumbnail loads until the reader presses play, then a `youtube-nocookie.com` iframe replaces it. `youtubeId` values were verified against the published uploads; do not edit one without checking the video it points to. Deks are original Talus Field copy, not NPS copy.
+- **Responsive images.** `scripts/gen-responsive-images.mjs` writes AVIF/WebP/JPEG variants at several widths into sibling `responsive/` folders (under `img/` and `apps/guide/public/photos/`), slug-named so the in-browser `ResponsiveImage` helper derives URLs with no manifest. Run `npm --prefix scripts run images` after adding source JPEGs.
+- **CSP lives in `_headers`.** Any new third-party script, frame, or connect target must be allow-listed in the Content-Security-Policy there or it will be blocked in production (it works locally, which is the trap).
 - **`page-guide.jsx` runtime URL overrides:** `window.GUIDE_API_BASE` and `window.GUIDE_APP_BASE` can be set in a console snippet to point at local dev (`http://localhost:8787` and `http://localhost:5173`) before the script loads.
 
 ## PWA architecture
 
-- **Content model.** `apps/guide/src/content/schema.ts` defines `Stop` (zod schema) with a `region` enum: `valley` | `glacier-mariposa` | `tuolumne`. `content/stops.ts` is the seed array, validated at module load via `Stops.parse(seed)` — schema violations throw in the Vite overlay or fail the build. `content/index.ts` exports `REGIONS` (the picker metadata) and helpers `getStopsByRegion`, `getStopById`, `getRegionMeta`.
+- **Content model.** `apps/guide/src/content/schema.ts` defines `Stop` (zod schema) with a `region` enum: `valley` | `glacier-mariposa` | `tuolumne`. `content/stops.ts` is the seed array, validated at module load via `Stops.parse(seed)` — schema violations throw in the Vite overlay or fail the build. `content/index.ts` exports `REGIONS` (the picker metadata) and helpers `getStopsByRegion`, `getStopById`, `getRegionMeta`. `content/itineraries.ts` defines 1/2/3-day presets whose day stop lists are derived live from `getStopsByRegion()` — adding a stop to a region flows through with no itinerary edit.
 - **Coords are unverified.** Most stops carry `// TODO: verify` on `coord` because the field guide's value prop depends on accurate parking turnouts; never strip these markers without a real ground-truth pass.
-- **Routes** (see `App.tsx`): `/open` (magic-link landing), `/login`, `/` (region picker), `/region/:regionId`, `/stop/:stopId`, `/account`. Everything except `/open` and `/login` is wrapped in `RequireAuth`. `/trip/*` exists as a back-compat redirect to `/` from the old trip-based model.
+- **Routes** (see `App.tsx`): `/open` (magic-link landing), `/login`, `/` (region picker), `/region/:regionId`, `/stop/:stopId`, `/map` (Google Maps view, loader in `src/map/googleMaps.ts`), `/account`. Everything except `/open` and `/login` is wrapped in `RequireAuth`. `/trip/*` exists as a back-compat redirect to `/` from the old trip-based model.
 - **Auth state.** JWT lives in `localStorage` under key `tfg.jwt` (`auth/storage.ts`). Session shape: `{ jwt, username }` — the JWT `sub` claim is treated as a string label and surfaced as `username` regardless of which Worker auth path issued it.
 - **Service worker** (`public/sw.js`) caches the app shell + photos for offline use. The `UpdateBanner` component prompts when a new build is available.
+- **Stop photos are a placeholder pass.** `public/photos/` reuses editorial-site images (several stops share the same photo); many stops still have no matching image and need dedicated photography before launch.
 
 ## Worker architecture
 
@@ -64,6 +77,7 @@ Routes mounted in `workers/src/index.ts`:
 - `/api/auth/exchange` — exchanges a magic-link `accessToken` for a JWT.
 - `/api/checkout/*` — Stripe Checkout session start + inventory cap enforcement. The editorial `/guide` page still calls `/api/inventory` for the scarcity counter.
 - `/api/stripe/webhook` — Stripe `checkout.session.completed` handler; provisions a buyer record in KV and emails the access code.
+- `/api/contact` — editorial contact form backend (`page-newsletter-contact.jsx` posts here). Validates a fixed subject enum, uses a `website` honeypot field against bots, and relays via Resend (`lib/email.ts`).
 - `/api/indexnow/submit` — bearer-token-gated POST that forwards a `{ urls: [...] }` list to api.indexnow.org. Push-indexes Bing / Yandex / Seznam / Naver / Yep in a single call. Use `scripts/indexnow-ping.sh` after publishing an article. Requires `INDEXNOW_KEY` and `INDEXNOW_ADMIN_TOKEN` secrets.
 
 Both auth paths sign the same JWT shape (`{ sub, iat, exp }`, HS256, 90-day TTL) using `MAGIC_LINK_SIGNING_SECRET`. The `sub` claim carries an email for `/login` and a username for `/dev-login` — the PWA doesn't care which.
@@ -72,12 +86,13 @@ CORS in `index.ts` allow-lists the editorial origin, the PWA origin, and `http:/
 
 ## Brand & voice
 
-The brand is **The Talus Field** (formerly "Yosemite Sentinel"). The editorial voice is dry, declarative, journalistic — no marketing fluff, no exclamation marks, em-dashes have been deliberately removed across the codebase. Match the existing tone when writing copy.
+The brand is **The Talus Field** (formerly "Yosemite Sentinel"). The editorial voice is dry, declarative, journalistic — no marketing fluff, no exclamation marks. House style replaces em-dashes in reader-facing copy with commas, colons, or periods; a deliberate sweep removed them from article bodies, so don't reintroduce them when writing copy. Match the existing tone.
 
 ## Things that have surprised past edits
 
-- The editorial site has **no test suite, lint, or typecheck** — runtime errors only surface in the browser.
+- The editorial site has **no test suite, lint, or typecheck** — runtime errors only surface in the browser. `scripts/check-cache-busters.sh` and `npm --prefix scripts run seo:check` are the only pre-commit guards.
 - `DEPLOY.md` references `1day`/`3day`/`5day` trips and "35 stops"; the current model is region-based with ~21 stops.
-- The Worker `/api/auth/login` route looks dead from the PWA side but is intentionally retained for the future Stripe-based flow.
-- Stripe checkout, Resend email, and the inventory cap are all wired up but currently unreachable from the UI (the `/guide` CTA was swapped to a sign-in link). Don't delete this code — it's pre-Stripe-relaunch scaffolding.
-- Photos for the new region-based stops mostly don't exist in `apps/guide/public/photos/` yet (only `tunnel-view.jpg`). A previous photo-wiring pass targeted the old trip-based stop IDs and was dropped during the merge.
+- **The guide is currently free.** The `/guide` CTA is a sign-in link and the legal page states the Field Guide and map are provided free, no purchase required. Stripe checkout, Resend buyer emails, and the inventory cap are all wired up but intentionally unreachable from the UI — don't delete this code, it's pre-Stripe-relaunch scaffolding (same goes for the Worker `/api/auth/login` route, which looks dead from the PWA side).
+- The masthead issue label (`window.SITE.issue` / `issueDetail` in `data.js`) derives its month from the current date at runtime — don't hard-code a month name into masthead copy.
+- `points.geojson` carries its own `?v=` cache-buster inside `page-map.jsx`, separate from the shared `?v=N` that all page scripts use; editing pins without bumping it ships stale map data.
+- PWA stop photos look wired up but are placeholders recycled from the editorial site; several stops share the same image and the comment block at the top of `stops.ts` documents this.

@@ -122,11 +122,11 @@ function ChecklistPage({ go }) {
         <section className="checklist-section" style={sectionStyle}>
           <div style={sectionLabel}>IV · Gateway choice</div>
           <h2 style={sectionTitle}>Pick your base</h2>
-          <label style={item}><input type="checkbox" style={cb} /><strong><A r="a:yosemite-gateway-towns-compared">El Portal</A></strong> — closest to the Valley (25-30 min). Limited dining, year-round access.</label>
-          <label style={item}><input type="checkbox" style={cb} /><strong><A r="a:yosemite-gateway-towns-compared">Mariposa</A></strong> — 45 min from the Valley. Full service, best first-timer pick.</label>
-          <label style={item}><input type="checkbox" style={cb} /><strong><A r="a:yosemite-gateway-towns-compared">Oakhurst</A></strong> — closest to Mariposa Grove. Long drive to the Valley.</label>
-          <label style={item}><input type="checkbox" style={cb} /><strong><A r="a:yosemite-gateway-towns-compared">Groveland</A></strong> — Bay Area approach, near <A r="a:hetch-hetchy-the-other-yosemite-valley">Hetch Hetchy</A>.</label>
-          <label style={item}><input type="checkbox" style={cb} /><strong><A r="a:yosemite-gateway-towns-compared">Lee Vining</A></strong> — east side; <A r="a:tioga-road-opening-weekend-2026">Tuolumne and Mono Lake</A>. Summer only.</label>
+          <label style={item}><input type="checkbox" style={cb} /><strong><A r="a:yosemite-gateway-towns-compared">El Portal</A></strong>: closest to the Valley (25-30 min). Limited dining, year-round access.</label>
+          <label style={item}><input type="checkbox" style={cb} /><strong><A r="a:yosemite-gateway-towns-compared">Mariposa</A></strong>: 45 min from the Valley. Full service, best first-timer pick.</label>
+          <label style={item}><input type="checkbox" style={cb} /><strong><A r="a:yosemite-gateway-towns-compared">Oakhurst</A></strong>: closest to Mariposa Grove. Long drive to the Valley.</label>
+          <label style={item}><input type="checkbox" style={cb} /><strong><A r="a:yosemite-gateway-towns-compared">Groveland</A></strong>: Bay Area approach, near <A r="a:hetch-hetchy-the-other-yosemite-valley">Hetch Hetchy</A>.</label>
+          <label style={item}><input type="checkbox" style={cb} /><strong><A r="a:yosemite-gateway-towns-compared">Lee Vining</A></strong>: east side; <A r="a:tioga-road-opening-weekend-2026">Tuolumne and Mono Lake</A>. Summer only.</label>
         </section>
 
         <section className="checklist-section" style={sectionStyle}>
@@ -138,7 +138,7 @@ function ChecklistPage({ go }) {
           <label style={item}><input type="checkbox" style={cb} />Headlamp plus a spare battery.</label>
           <label style={item}><input type="checkbox" style={cb} /><A r="a:pack-your-car-for-yosemite">Tire chains</A>, November through April. Practice once at home.</label>
           <label style={item}><input type="checkbox" style={cb} />Cooler. <A r="a:where-to-eat-yosemite">Valley food</A> is limited and overpriced.</label>
-          <label style={item}><input type="checkbox" style={cb} />5 gallons of water (not for drinking — for radiators, rinsing, the unexpected).</label>
+          <label style={item}><input type="checkbox" style={cb} />5 gallons of water (not for drinking, for radiators, rinsing, the unexpected).</label>
           <label style={item}><input type="checkbox" style={cb} />Paper park map (cell service dies past Crane Flat).</label>
           <label style={item}><input type="checkbox" style={cb} />Sunscreen and a wide-brim hat. UV at elevation is brutal.</label>
           <label style={item}><input type="checkbox" style={cb} />Cash for the gate or your <A r="a:yosemite-without-reservations-2026">America the Beautiful pass</A>.</label>

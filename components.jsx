@@ -89,6 +89,9 @@ function preloadResponsive(image, sizes) {
   document.head.appendChild(link);
 }
 
+// NOTE: Placeholder / ResponsiveImage / Motif* below are stubbed for crawler
+// prerender in scripts/gen-prerender.mjs. If their rendered markup changes,
+// update those stubs; `npm --prefix scripts run prerender:check` guards drift.
 // ============================================================
 // Photo placeholder. Nature-journal treatment.
 // Pass eager={true} for the LCP image on a page (page hero / article hero)
@@ -150,12 +153,115 @@ function MotifTrees() {
 }
 
 // ============================================================
+// Entrance wait times. The NPS publishes live waits for the three
+// drive-in entrances (Arch Rock / 140, Big Oak Flat / 120, South / 41)
+// as a public S3 JSON feed. waits.json is ~1 MB because weeks of
+// history follow the summary array, so we fetch only the first 8 KB
+// via a Range request (the bucket's CORS allows the Range header) and
+// bracket-match the summary out of the truncated JSON. Fails quiet:
+// any fetch or parse problem and the masthead renders without it.
+// ============================================================
+const WAITS_BASE = "https://npsvms-338365424831-us-west-1-an.s3.us-west-1.amazonaws.com/yose/transit-time/display/public/";
+const WAITS_URL = WAITS_BASE + "waits.json";
+const WAITS_PAGE_URL = WAITS_BASE + "index.html";
+const WAITS_REFRESH_MS = 5 * 60 * 1000;
+// Short labels for the masthead; unknown pairs fall back to the
+// pair_name with its " Wait Time" suffix stripped.
+const WAITS_SHORT_NAMES = {
+  "South Entrance Wait Time": "South",
+  "Arch Rock Wait Time": "Arch Rock",
+  "Big Oak Flat Wait Time": "Big Oak Flat",
+};
+
+function parseWaitsSummary(text) {
+  const key = text.indexOf('"summary"');
+  if (key === -1) return null;
+  const start = text.indexOf("[", key);
+  if (start === -1) return null;
+  let depth = 0;
+  for (let i = start; i < text.length; i++) {
+    const ch = text[i];
+    if (ch === "[") depth++;
+    else if (ch === "]" && --depth === 0) {
+      try { return JSON.parse(text.slice(start, i + 1)); } catch (e) { return null; }
+    }
+  }
+  return null;
+}
+
+// Thresholds are the NPS display page's own: ≤5 good, ≤15 moderate.
+function waitClass(min) {
+  if (min == null) return "nodata";
+  if (min <= 5) return "good";
+  if (min <= 15) return "moderate";
+  return "long";
+}
+
+function formatWaitMinutes(min) {
+  if (min < 60) return Math.round(min) + " min";
+  const h = Math.floor(min / 60);
+  return h + "h " + Math.round(min % 60) + "m";
+}
+
+function EntranceWaits() {
+  const [waits, setWaits] = useState(null);
+
+  useEffect(() => {
+    let cancelled = false;
+    const load = () => {
+      fetch(WAITS_URL, { headers: { Range: "bytes=0-8191" } })
+        .then((r) => (r.ok ? r.text() : Promise.reject(new Error("HTTP " + r.status))))
+        .then((text) => {
+          const summary = parseWaitsSummary(text);
+          if (!cancelled && Array.isArray(summary) && summary.length) setWaits(summary);
+        })
+        .catch(() => {});
+    };
+    load();
+    const timer = setInterval(load, WAITS_REFRESH_MS);
+    return () => { cancelled = true; clearInterval(timer); };
+  }, []);
+
+  // Reserve the slot while the live NPS data is in flight (or never arrives) so
+  // the sticky masthead does not shift when the waits populate after first paint.
+  // The placeholder carries the same .masthead__waits min-width as the filled
+  // state; it is empty and hidden from assistive tech.
+  if (!waits) return <span className="masthead__waits masthead__waits--ph" aria-hidden="true" />;
+  return (
+    <a
+      className="masthead__waits"
+      href={WAITS_PAGE_URL}
+      target="_blank"
+      rel="noopener noreferrer"
+      title="Live entrance station wait times, National Park Service"
+    >
+      <span className="masthead__waits-label">Entrance waits</span>
+      {waits.map((pair, i) => {
+        const name = WAITS_SHORT_NAMES[pair.pair_name]
+          || String(pair.pair_name || "").replace(/\s*Wait Time$/i, "")
+          || "Entrance";
+        const min = pair.stale ? null : pair.current_wait_minutes;
+        return (
+          <React.Fragment key={pair.pair_name || i}>
+            {i > 0 && <span className="masthead__weather-sep">·</span>}
+            <span className={`masthead__wait masthead__wait--${waitClass(min)}`}>
+              {name} {min == null ? "n/a" : formatWaitMinutes(min)}
+            </span>
+          </React.Fragment>
+        );
+      })}
+    </a>
+  );
+}
+
+// ============================================================
 // Masthead
 // ============================================================
 function Header({ current, go }) {
   const primaryNavItems = [
     ["articles", "Articles"],
     ["kit", "Kit"],
+    ["films", "Films"],
     ["places", "Directory"],
     ["about", "About"],
   ];
@@ -167,6 +273,11 @@ function Header({ current, go }) {
 
   const [menuOpen, setMenuOpen] = React.useState(false);
   const menuRef = React.useRef(null);
+  // A/B (mobile_cta): bucket "b" shows a persistent "The Map" CTA in the
+  // masthead. On mobile the inline nav collapses to the hamburger, leaving no
+  // visible path to the funnel; this fills that gap. The map is browsable free
+  // and its trip builder is the newsletter gate, so it is the softest on-ramp.
+  const [ctaVariant] = React.useState(() => window.abVariant("mobile_cta"));
   React.useEffect(() => {
     if (!menuOpen) return;
     const onDoc = (e) => { if (menuRef.current && !menuRef.current.contains(e.target)) setMenuOpen(false); };
@@ -220,6 +331,7 @@ function Header({ current, go }) {
             <span className="masthead__weather-sep">·</span>
             <a href="https://forecast.weather.gov/MapClick.php?lat=37.5341&lon=-119.6315" target="_blank" rel="noopener noreferrer">Wawona</a>
           </div>
+          <EntranceWaits />
           <a className="masthead__guide" href="https://www.nps.gov/yose/planyourvisit/guide.htm" target="_blank" rel="noopener noreferrer">Yosemite Guide ↗</a>
           <div className="masthead__cond-wrap" ref={condRef}>
             <button
@@ -234,6 +346,7 @@ function Header({ current, go }) {
                 <a role="menuitem" href="https://forecast.weather.gov/MapClick.php?lat=37.7456&lon=-119.5936" target="_blank" rel="noopener noreferrer">Yosemite Valley</a>
                 <a role="menuitem" href="https://forecast.weather.gov/MapClick.php?lat=37.8731&lon=-119.3503" target="_blank" rel="noopener noreferrer">Tuolumne Meadows</a>
                 <a role="menuitem" href="https://forecast.weather.gov/MapClick.php?lat=37.5341&lon=-119.6315" target="_blank" rel="noopener noreferrer">Wawona</a>
+                <a role="menuitem" href={WAITS_PAGE_URL} target="_blank" rel="noopener noreferrer">Entrance Waits</a>
                 <a role="menuitem" href="https://www.nps.gov/yose/planyourvisit/guide.htm" target="_blank" rel="noopener noreferrer">Yosemite Guide ↗</a>
               </div>
             )}
@@ -255,6 +368,18 @@ function Header({ current, go }) {
         </a>
         <nav className="nav">
           {primaryNavItems.map(([key, label]) => renderLink(key, label, { baseClass: "nav__link" }))}
+
+          {ctaVariant === "b" && (
+            <a
+              className="nav__primary"
+              href={window.routeToPath ? window.routeToPath("map") : "/map"}
+              onClick={(e) => {
+                e.preventDefault();
+                if (window.track) window.track("cta_click", { location: "masthead_cta", target: "map", variant: ctaVariant });
+                go("map");
+              }}
+            >The Map</a>
+          )}
 
           <div className="nav__menu-wrap" ref={menuRef}>
             <button
@@ -310,7 +435,9 @@ function Footer({ go }) {
               <li><a href="/about" onClick={(e) => { e.preventDefault(); go("about"); }}>About</a></li>
               <li><a href="/articles" onClick={(e) => { e.preventDefault(); go("articles"); }}>All articles</a></li>
               <li><a href="/kit" onClick={(e) => { e.preventDefault(); go("kit"); }}>Kit</a></li>
+              <li><a href="/films" onClick={(e) => { e.preventDefault(); go("films"); }}>Films</a></li>
               <li><a href="/places" onClick={(e) => { e.preventDefault(); go("places"); }}>Directory</a></li>
+              <li><a href="/map" onClick={(e) => { e.preventDefault(); go("map"); }}>The Map</a></li>
               <li><a href="/guide" onClick={(e) => { e.preventDefault(); window.track && window.track("guide_cta_click", { location: "footer_guide_link" }); go("guide"); }}>Field Guide</a></li>
               <li><a href="/newsletter" onClick={(e) => { e.preventDefault(); go("newsletter"); }}>Newsletter</a></li>
               <li><a href="/contact" onClick={(e) => { e.preventDefault(); go("contact"); }}>Contact</a></li>
@@ -381,40 +508,140 @@ function ArticleCard({ article, go, size }) {
 
 // ============================================================
 // Newsletter submit side-effects (shared)
-// Buttondown posts into a named popup window and never reports back to the
-// page, so the conversion event and the local "subscribed" flag fire
-// optimistically on submit. The map and guide gates layer their own unlock
-// on top of this. Exposed on window so page-level forms (map gate, guide,
-// newsletter page) can reuse the exact same behavior.
+// The subscribe forms POST into a hidden iframe (target="buttondown-target",
+// declared in index.html) so the page never navigates and no popup opens.
+// Buttondown never reports back to the page, so the conversion event and the
+// local "subscribed" flag fire optimistically on submit. The map and guide
+// gates layer their own unlock on top of this. Exposed on window so page-level
+// forms (map gate, guide, newsletter page) can reuse the exact same behavior.
 // ============================================================
-function trackNewsletterSubmit(location, tag) {
-  if (window.track) window.track("newsletter_signup", { location: location || "unknown", tag: tag || "" });
-  try { window.localStorage.setItem("tfg.nl.subscribed", "1"); } catch (_e) {}
-  window.open("https://buttondown.email/goehring", "popupwindow");
+function trackNewsletterSubmit(location, tag, variant) {
+  if (window.track) window.track("newsletter_signup", { location: location || "unknown", tag: tag || "", variant: variant || "" });
+  window.safeStorage.set("tfg.nl.subscribed", "1");
 }
 window.trackNewsletterSubmit = trackNewsletterSubmit;
+
+// Impression counterpart to trackNewsletterSubmit. Fires when a newsletter unit
+// scrolls into view so GA4 can compute a view -> signup rate per placement
+// (same `location` as the matching submit). No localStorage side effect.
+// `variant` is the A/B bucket (see abVariant) so view->signup is computable per arm.
+function trackNewsletterImpression(location, tag, variant) {
+  if (window.track) window.track("newsletter_impression", { location: location || "unknown", tag: tag || "", variant: variant || "" });
+}
+window.trackNewsletterImpression = trackNewsletterImpression;
+
+// ============================================================
+// Lightweight A/B bucketing. No third-party tool: assign a sticky 50/50 bucket
+// per device, persisted through window.safeStorage, and tag it onto the GA4
+// `variant` param of the matching impression/signup events so each test's
+// view->signup rate is sliceable per arm. Fails OPEN to "a" (control) when
+// storage is unavailable, mirroring the map gate, so a private-mode visitor
+// always sees the safe variant and never a half-applied experiment.
+// ============================================================
+function abVariant(testKey) {
+  const storeKey = "tfg.ab." + testKey;
+  const existing = window.safeStorage.get(storeKey);
+  if (existing === "a" || existing === "b") return existing;
+  const assigned = Math.random() < 0.5 ? "a" : "b";
+  // set() returns false when storage is unavailable; in that case we cannot make
+  // the bucket sticky, so fall open to control rather than reshuffle every render.
+  if (!window.safeStorage.set(storeKey, assigned)) return "a";
+  return assigned;
+}
+window.abVariant = abVariant;
+
+// Single read-path for the subscribed flag. Reads through window.safeStorage,
+// which returns null when storage is unavailable, so this is false in private
+// mode just as before.
+function isSubscribed() {
+  return window.safeStorage.get("tfg.nl.subscribed") === "1";
+}
+window.isSubscribed = isSubscribed;
+
+// Fire-once impression hook. Returns a ref to spread onto a unit's outer node;
+// the impression fires the first time that node is 40% visible, then the
+// observer disconnects. Pass enabled={false} to skip firing (e.g. when the unit
+// is rendering its already-subscribed soft state) so conversion-rate
+// denominators only count real asks. Falls back to firing immediately where
+// IntersectionObserver is unavailable.
+function useNewsletterImpression(location, tag, enabled, variant) {
+  const ref = useRef(null);
+  const firedRef = useRef(false);
+  useEffect(() => {
+    if (enabled === false) return;
+    const node = ref.current;
+    if (!node) return;
+    const fire = () => {
+      if (firedRef.current) return;
+      firedRef.current = true;
+      trackNewsletterImpression(location, tag, variant);
+    };
+    if (typeof IntersectionObserver === "undefined") { fire(); return; }
+    const io = new IntersectionObserver((entries) => {
+      for (const e of entries) {
+        if (e.isIntersecting) { fire(); io.disconnect(); break; }
+      }
+    }, { threshold: 0.4 });
+    io.observe(node);
+    return () => io.disconnect();
+  }, [location, tag, enabled, variant]);
+  return ref;
+}
+window.useNewsletterImpression = useNewsletterImpression;
 
 // ============================================================
 // Inline newsletter box. `location` is the unique GA4 identifier for the
 // placement; `tag` is the Buttondown segmentation tag for that source.
 // ============================================================
-function NewsletterInline({ heading, blurb, location, tag }) {
+function NewsletterInline({ heading, blurb, location, tag, incentive, abTest, variant: variantProp }) {
+  const [done, setDone] = useState(false);
+  const subscribed = isSubscribed();
+  // Optional A/B. Either the component self-buckets (abTest = test key) and
+  // bucket "b" forces the map-first incentive copy over the caller's blurb, or
+  // the caller controls the copy itself and just passes `variant` for tagging.
+  // Either way variant is tagged onto the GA4 events for per-arm rates.
+  const variant = abTest ? window.abVariant(abTest) : (variantProp || "");
+  const forceIncentive = abTest && variant === "b";
+  // Lead with the interactive-map incentive by default, but never override a
+  // caller's explicit blurb (so existing per-placement copy is untouched)
+  // unless the A/B bucket says to.
+  const showIncentive = forceIncentive || (incentive !== false && !blurb);
+  // Only count an impression when an actual ask is on screen, not the
+  // subscribed soft state or the post-submit confirmation.
+  const ref = useNewsletterImpression(location, tag, !subscribed && !done, variant);
+
+  if (subscribed && !done) {
+    return (
+      <div className="nlbox nlbox--subscribed" ref={ref}>
+        <p className="nlbox__already">You're on the list. <a href="/map">The interactive map is open to you →</a></p>
+      </div>
+    );
+  }
+
   return (
-    <div className="nlbox">
+    <div className="nlbox" ref={ref}>
       <h3>{heading || "Sunday Field Notes"}</h3>
-      <p>{blurb || "A short note on Sundays, when there is something to say."}</p>
-      <form
-        className="nlbox__form"
-        action="https://buttondown.email/api/emails/embed-subscribe/goehring"
-        method="post"
-        target="popupwindow"
-        onSubmit={() => trackNewsletterSubmit(location, tag)}
-      >
-        <input type="email" name="email" placeholder="you@email.com" required />
-        {tag && <input type="hidden" name="tag" value={tag} />}
-        <input type="hidden" name="embed" value="1" />
-        <button type="submit">Subscribe →</button>
-      </form>
+      <p>{showIncentive
+          ? "Subscribe and unlock the interactive Yosemite map: vistas, trailheads, parking turnouts, places to eat, and a trip builder that saves on your device. A short note follows on Sundays."
+          : (blurb || "A short note on Sundays, when there is something to say.")}</p>
+      {done ? (
+        <p style={{ fontFamily: "var(--serif)", fontSize: 17, color: "var(--moss)", margin: 0, padding: "8px 0" }}>
+          You're in. <a href="/map">The map is open to you →</a>
+        </p>
+      ) : (
+        <form
+          className="nlbox__form"
+          action="https://buttondown.com/api/emails/embed-subscribe/goehring"
+          method="post"
+          target="buttondown-target"
+          onSubmit={() => { trackNewsletterSubmit(location, tag, variant); setTimeout(() => setDone(true), 0); }}
+        >
+          <input type="email" name="email" aria-label="Email address" placeholder="you@email.com" required />
+          {tag && <input type="hidden" name="tag" value={tag} />}
+          <input type="hidden" name="embed" value="1" />
+          <button type="submit">Subscribe →</button>
+        </form>
+      )}
     </div>
   );
 }
@@ -428,26 +655,30 @@ function NewsletterInline({ heading, blurb, location, tag }) {
 // ============================================================
 const EXIT_COOLDOWN_DAYS = 14;
 
-function ExitIntentNewsletter() {
+function ExitIntentNewsletter({ disabled }) {
   const [open, setOpen] = useState(false);
+  // A/B (exit_copy): bucket "b" leads with the free-map unlock, the strongest
+  // reason to subscribe, instead of the low-urgency cadence framing. Read once
+  // on mount so the impression and the rendered copy use the same arm.
+  const [variant] = useState(() => window.abVariant("exit_copy"));
   const firedRef = useRef(false);
 
   useEffect(() => {
-    let suppressed = false;
-    try {
-      if (window.localStorage.getItem("tfg.nl.subscribed") === "1") suppressed = true;
-      const seen = window.localStorage.getItem("tfg.nl.exit.seen");
-      if (seen) {
-        const ageDays = (Date.now() - new Date(seen).getTime()) / 86400000;
-        if (ageDays < EXIT_COOLDOWN_DAYS) suppressed = true;
-      }
-    } catch (_e) {}
+    if (disabled) return;
+    let suppressed = window.safeStorage.get("tfg.nl.subscribed") === "1";
+    const seen = window.safeStorage.get("tfg.nl.exit.seen");
+    if (seen) {
+      const ageDays = (Date.now() - new Date(seen).getTime()) / 86400000;
+      if (ageDays < EXIT_COOLDOWN_DAYS) suppressed = true;
+    }
     if (suppressed) return;
 
     const reveal = () => {
       if (firedRef.current) return;
       firedRef.current = true;
-      try { window.localStorage.setItem("tfg.nl.exit.seen", new Date().toISOString()); } catch (_e) {}
+      window.safeStorage.set("tfg.nl.exit.seen", new Date().toISOString());
+      if (window.track) window.track("newsletter_exit_intent_shown", { location: "article_exit_intent", tag: "exit-intent", variant });
+      trackNewsletterImpression("article_exit_intent", "exit-intent", variant);
       setOpen(true);
     };
 
@@ -470,7 +701,7 @@ function ExitIntentNewsletter() {
       window.removeEventListener("scroll", onScroll);
       document.removeEventListener("mouseout", onMouseOut);
     };
-  }, []);
+  }, [disabled, variant]);
 
   useEffect(() => {
     if (!open) return;
@@ -492,14 +723,23 @@ function ExitIntentNewsletter() {
       <div className="nlmodal__card">
         <button type="button" className="nlmodal__close" aria-label="Close" onClick={() => setOpen(false)}>✕</button>
         <div className="eyebrow eyebrow--moss" style={{ marginBottom: 12 }}>Before you go</div>
-        <h3>One letter a week. Sometimes none.</h3>
-        <p>Sunday Field Notes: what is open, what is blooming, and the occasional longer piece. Free, and you can leave anytime.</p>
+        {variant === "b" ? (
+          <>
+            <h3>The interactive map is free for subscribers.</h3>
+            <p>Subscribe and the trip builder opens right away: vistas, trailheads, parking turnouts, and places to eat on one map. A short note follows on Sundays.</p>
+          </>
+        ) : (
+          <>
+            <h3>One letter a week. Sometimes none.</h3>
+            <p>Sunday Field Notes: what is open, what is blooming, and the occasional longer piece. Free, and you can leave anytime.</p>
+          </>
+        )}
         <form
           className="nlbox__form"
-          action="https://buttondown.email/api/emails/embed-subscribe/goehring"
+          action="https://buttondown.com/api/emails/embed-subscribe/goehring"
           method="post"
-          target="popupwindow"
-          onSubmit={() => { trackNewsletterSubmit("article_exit_intent", "exit-intent"); setOpen(false); }}
+          target="buttondown-target"
+          onSubmit={() => { trackNewsletterSubmit("article_exit_intent", "exit-intent", variant); setTimeout(() => setOpen(false), 0); }}
         >
           <input type="email" name="email" placeholder="you@email.com" required />
           <input type="hidden" name="tag" value="exit-intent" />

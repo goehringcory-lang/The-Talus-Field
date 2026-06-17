@@ -11,6 +11,8 @@
 
 import articles from "../articles.json" with { type: "json" };
 import categories from "../categories.json" with { type: "json" };
+import videos from "../videos.json" with { type: "json" };
+import kit from "../kit.json" with { type: "json" };
 
 const SITE_ORIGIN = "https://thetalusfieldjournal.com";
 const SITE_NAME = "The Talus Field";
@@ -19,6 +21,9 @@ const SITE_DEFAULT_IMAGE = `${SITE_ORIGIN}/img/Half%20Dome%20Main%20Photo.jpg`;
 const SITE_DEFAULT_DESC =
   "A field journal of Yosemite National Park, kept by a resident. Trails, planning notes, wildlife, and essays on the park's seasons and life.";
 const AUTHOR_NAME = "Cory Goehring";
+// Single author node lives in index.html (<script id="ld-person">). Article
+// schema references it by @id so there is one Person entity for the whole site.
+const AUTHOR_ID = `${SITE_ORIGIN}/#person-cory-goehring`;
 const PUBLISHER_LOGO = `${SITE_ORIGIN}/img/talus-field-mark-square.png`;
 
 function absoluteImage(url) {
@@ -58,6 +63,33 @@ function faqLd(pairs) {
   };
 }
 
+// Build a TouristAttraction for a trail guide from the article's `trail` facts
+// (seo-data.json). HikingTrail is not a type Google parses for rich results, so
+// the hike stats ride along as additionalProperty PropertyValues. Numbers come
+// from the article body; geo is emitted only when a trailhead coord is verified.
+function trailLd(a, url) {
+  const t = a.trail;
+  const props = [];
+  if (t.distance) props.push({ "@type": "PropertyValue", name: "Distance", value: t.distance });
+  if (t.elevationGain) props.push({ "@type": "PropertyValue", name: "Elevation gain", value: t.elevationGain });
+  if (t.difficulty) props.push({ "@type": "PropertyValue", name: "Difficulty", value: t.difficulty });
+  const ld = {
+    "@context": "https://schema.org",
+    "@type": "TouristAttraction",
+    name: t.name || a.title,
+    description: a.seoDek || a.dek,
+    url,
+    touristType: "Hikers",
+    isAccessibleForFree: true,
+    containedInPlace: { "@type": "Place", name: "Yosemite National Park" },
+  };
+  if (props.length) ld.additionalProperty = props;
+  if (t.geo && typeof t.geo.lat === "number" && typeof t.geo.lng === "number") {
+    ld.geo = { "@type": "GeoCoordinates", latitude: t.geo.lat, longitude: t.geo.lng };
+  }
+  return ld;
+}
+
 function seoForPath(pathname) {
   const path = pathname.replace(/\/+$/, "") || "/";
 
@@ -66,7 +98,9 @@ function seoForPath(pathname) {
     const a = articles.find((x) => x.slug === articleMatch[1]);
     if (!a) return null;
     const cat = categories.find((c) => c.slug === a.cat);
-    const image = absoluteImage(a.image);
+    // Prefer the slug-named responsive variant (a few hundred KB, under the
+    // social scrapers' size caps) over the multi-MB source JPEG.
+    const image = absoluteImage(a.ogImage ? a.ogImage.url : a.image);
     const url = `${SITE_ORIGIN}/articles/${a.slug}`;
     // Prefer the short SEO description when authored, otherwise fall back to
     // the visible dek. Keeps Bing/Google snippets under the 160-char cutoff.
@@ -76,7 +110,15 @@ function seoForPath(pathname) {
       description: desc,
       canonical: url,
       ogType: "article",
+      // Prerender hooks (see onRequest): the slug locates the committed
+      // /prerender/<slug>.html prose fragment, the title heads the injected
+      // block, and the hero path drives the per-route LCP preload (C12).
+      prerenderSlug: a.slug,
+      articleTitle: a.title,
+      heroImagePath: a.image || null,
       image,
+      imageWidth: a.ogImage ? a.ogImage.width : null,
+      imageHeight: a.ogImage ? a.ogImage.height : null,
       imageAlt: a.placeholder || a.title,
       articleOg: {
         publishedTime: a.isoDate || null,
@@ -95,7 +137,7 @@ function seoForPath(pathname) {
         articleSection: cat ? cat.label : undefined,
         wordCount: typeof a.wordCount === "number" ? a.wordCount : undefined,
         keywords: Array.isArray(a.keywords) && a.keywords.length ? a.keywords : undefined,
-        author: { "@type": "Person", name: AUTHOR_NAME, url: `${SITE_ORIGIN}/about` },
+        author: { "@id": AUTHOR_ID },
         publisher: {
           "@type": "Organization",
           name: SITE_NAME,
@@ -111,6 +153,7 @@ function seoForPath(pathname) {
         [a.title, null],
       ].filter(Boolean)),
       faq: Array.isArray(a.faq) && a.faq.length ? faqLd(a.faq) : null,
+      trail: a.trail ? trailLd(a, url) : null,
     };
   }
 
@@ -158,6 +201,30 @@ function seoForPath(pathname) {
       title: `Articles — ${SITE_NAME}`,
       description:
         "Every entry, in reverse chronological order. Yosemite trip planning, trails, wildlife, and seasonal guides.",
+      // CollectionPage whose mainEntity is the full catalog as an ItemList.
+      // Mirrored client-side in app.jsx buildSeo so hydration replaces like
+      // with like. Slim ListItems (url + name) avoid duplicating the Article
+      // entities that live on the detail pages.
+      jsonLd: {
+        "@context": "https://schema.org",
+        "@type": "CollectionPage",
+        name: `Articles — ${SITE_NAME}`,
+        url: `${SITE_ORIGIN}/articles`,
+        description:
+          "Every entry, in reverse chronological order. Yosemite trip planning, trails, wildlife, and seasonal guides.",
+        inLanguage: "en-US",
+        isPartOf: { "@type": "WebSite", name: SITE_NAME, url: SITE_ORIGIN },
+        mainEntity: {
+          "@type": "ItemList",
+          numberOfItems: articles.length,
+          itemListElement: articles.map((a, i) => ({
+            "@type": "ListItem",
+            position: i + 1,
+            url: `${SITE_ORIGIN}/articles/${a.slug}`,
+            name: a.title,
+          })),
+        },
+      },
     },
     "/planning": {
       title: `The Yosemite Planning Guide — ${SITE_NAME}`,
@@ -189,6 +256,26 @@ function seoForPath(pathname) {
       description:
         "Gear lists for Yosemite: a day pack, an overnight pack, and a car kit. Each item with the reasoning behind it.",
       breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Kit", null]],
+      // One ItemList per packing list. Matches the @graph app.jsx builds
+      // client-side from window.KIT, so JS and non-JS crawlers see the same
+      // entities. Sourced from the kit.json mirror.
+      jsonLd: {
+        "@context": "https://schema.org",
+        "@graph": kit.lists.map((list) => ({
+          "@type": "ItemList",
+          name: list.title,
+          description: list.summary,
+          numberOfItems: list.items.length,
+          itemListOrder: "https://schema.org/ItemListOrderAscending",
+          url: `${SITE_ORIGIN}/kit#${list.slug}`,
+          itemListElement: list.items.map((it, i) => ({
+            "@type": "ListItem",
+            position: i + 1,
+            name: it.name,
+            description: it.note,
+          })),
+        })),
+      },
     },
     "/places": {
       title: `The Directory — Yosemite lodging and guides — ${SITE_NAME}`,
@@ -231,12 +318,55 @@ function seoForPath(pathname) {
       description:
         "An offline web app for Yosemite. Tappable GPS for the parking turnouts, quiet trailheads, and insider tactics that locals use. Works at the trailhead when service dies.",
     },
+    "/films": {
+      title: `Moving Pictures — the Yosemite Nature Notes film archive — ${SITE_NAME}`,
+      description:
+        "The complete Yosemite Nature Notes film series from the National Park Service, grouped by subject. Public domain, free to watch, most under ten minutes.",
+      breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Films", null]],
+      // ItemList of VideoObject nodes, one per episode, built from the
+      // videos.json mirror. Matches the shape app.jsx builds client-side from
+      // videos-data.js so JS and non-JS crawlers see the same entity.
+      // uploadDate is deliberately omitted: only publication years are sourced.
+      jsonLd: {
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        name: "Yosemite Nature Notes — the film archive",
+        url: `${SITE_ORIGIN}/films`,
+        numberOfItems: videos.length,
+        itemListElement: videos.map((ep, i) => ({
+          "@type": "VideoObject",
+          position: i + 1,
+          name: ep.title,
+          description: ep.dek,
+          thumbnailUrl: `https://i.ytimg.com/vi/${ep.youtubeId}/hqdefault.jpg`,
+          embedUrl: `https://www.youtube-nocookie.com/embed/${ep.youtubeId}`,
+          publisher: { "@type": "Organization", name: "National Park Service" },
+          isAccessibleForFree: true,
+        })),
+      },
+    },
     "/map": {
-      // Hidden preview. URL-only access while the feature is being tested.
-      // robots:noindex keeps it out of search even if someone shares the URL.
-      title: `Map — ${SITE_NAME}`,
-      description: SITE_DEFAULT_DESC,
-      robots: "noindex, nofollow",
+      title: `Yosemite Trip Planner Map — ${SITE_NAME}`,
+      description:
+        "An interactive Yosemite map of vistas, trailheads, parking turnouts, picnic spots, and places to eat, with a trip builder. Curated by a resident of the park. Free.",
+      breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Map", null]],
+      // Honest, static WebPage node. The pin list itself stays out of the
+      // structured data until the new points pass a ground-truth check.
+      jsonLd: {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        name: `Yosemite Trip Planner Map — ${SITE_NAME}`,
+        url: `${SITE_ORIGIN}/map`,
+        description:
+          "An interactive Yosemite map of vistas, trailheads, parking turnouts, picnic spots, and places to eat, with a trip builder. Curated by a resident of the park. Free.",
+        isAccessibleForFree: true,
+        inLanguage: "en-US",
+        about: {
+          "@type": "Place",
+          name: "Yosemite National Park",
+          geo: { "@type": "GeoCoordinates", latitude: 37.8651, longitude: -119.5383 },
+        },
+      },
     },
   };
 
@@ -248,14 +378,38 @@ function seoForPath(pathname) {
     canonical: `${SITE_ORIGIN}${path === "/" ? "/" : path}`,
     ogType: "website",
     image: SITE_DEFAULT_IMAGE,
-    jsonLd: null,
+    jsonLd: meta.jsonLd || null,
     breadcrumb: meta.breadcrumb ? breadcrumbLd(meta.breadcrumb) : null,
     faq: meta.faq ? faqLd(meta.faq) : null,
     robots: meta.robots || null,
   };
 }
 
-export async function onRequest({ request, next }) {
+// Mirror of slugifyImage in components.jsx / the gen scripts: derive the
+// responsive variant basename from an image path.
+function slugifyImagePath(image) {
+  const base = String(image).split("/").pop() || "";
+  return base.toLowerCase().replace(/\.[^.]+$/, "").replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
+}
+
+// Per-route hero LCP preload (C12), mirroring index.html's home-hero preload:
+// a responsive AVIF imagesrcset so the browser fetches the LCP image during HTML
+// parse, ahead of React. Null for external/missing images.
+function heroPreloadTag(imagePath) {
+  if (!imagePath || /^https?:/i.test(imagePath)) return null;
+  const cleaned = imagePath.replace(/^\/+/, "");
+  const slash = cleaned.lastIndexOf("/");
+  const dir = slash >= 0 ? cleaned.slice(0, slash) : "";
+  const base = `/${dir ? dir + "/" : ""}responsive/${slugifyImagePath(cleaned)}`;
+  const srcset = [400, 800, 1200, 1600].map((w) => `${base}-${w}.avif ${w}w`).join(", ");
+  return `<link rel="preload" as="image" type="image/avif" imagesrcset="${srcset}" imagesizes="(max-width: 700px) 100vw, 700px" fetchpriority="high" />`;
+}
+
+function escapeHtmlText(s) {
+  return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+}
+
+export async function onRequest({ request, next, env }) {
   const url = new URL(request.url);
   const seo = seoForPath(url.pathname);
   if (!seo) return next();
@@ -263,6 +417,18 @@ export async function onRequest({ request, next }) {
   const response = await next();
   const ct = response.headers.get("content-type") || "";
   if (!ct.toLowerCase().includes("text/html")) return response;
+
+  // For article routes, fetch the committed prerendered prose fragment so the
+  // first byte of HTML carries real article text for non-JS crawlers. Fails
+  // open: any miss just leaves the SPA-only #root (current behavior).
+  let proseHtml = null;
+  if (seo.prerenderSlug && env && env.ASSETS) {
+    try {
+      const pr = await env.ASSETS.fetch(new URL(`/prerender/${seo.prerenderSlug}.html`, url.origin));
+      if (pr.ok) proseHtml = await pr.text();
+    } catch (_e) { /* fail open: no injected prose */ }
+  }
+  const heroPreload = seo.prerenderSlug ? heroPreloadTag(seo.heroImagePath) : null;
 
   return new HTMLRewriter()
     .on("title", {
@@ -313,6 +479,16 @@ export async function onRequest({ request, next }) {
     .on('meta[property="og:image"]', {
       element(el) {
         el.setAttribute("content", seo.image);
+      },
+    })
+    .on('meta[property="og:image:width"]', {
+      element(el) {
+        if (seo.imageWidth) el.setAttribute("content", String(seo.imageWidth));
+      },
+    })
+    .on('meta[property="og:image:height"]', {
+      element(el) {
+        if (seo.imageHeight) el.setAttribute("content", String(seo.imageHeight));
       },
     })
     .on('link[rel="canonical"]', {
@@ -374,6 +550,29 @@ export async function onRequest({ request, next }) {
         if (seo.faq) {
           el.append(
             `<script type="application/ld+json" id="ld-faq">${safeJsonForScript(seo.faq)}</script>`,
+            { html: true }
+          );
+        }
+        if (seo.trail) {
+          el.append(
+            `<script type="application/ld+json" id="ld-trail">${safeJsonForScript(seo.trail)}</script>`,
+            { html: true }
+          );
+        }
+        if (heroPreload) {
+          el.append(heroPreload, { html: true });
+        }
+      },
+    })
+    .on("#root", {
+      element(el) {
+        // Inject the prerendered prose as the first child of #root so non-JS
+        // crawlers see article text. The client boots with createRoot().render()
+        // which replaces #root's children, and app.jsx also removes
+        // #prerender-prose on boot, so JS users only ever see React's copy.
+        if (proseHtml) {
+          el.prepend(
+            `<div id="prerender-prose"><h1>${escapeHtmlText(seo.articleTitle || "")}</h1>${proseHtml}</div>`,
             { html: true }
           );
         }

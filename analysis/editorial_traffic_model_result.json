@@ -1,0 +1,785 @@
+{
+  "n_trials": 200000,
+  "overlap": 0.8,
+  "thresholds": {
+    "total_traffic": 1.05,
+    "mobile_traffic": 1.03,
+    "usability": 0.995,
+    "newsletter_signups": 1.08
+  },
+  "target": 0.98,
+  "trajectory": [
+    {
+      "iteration": 0,
+      "phase": "baseline",
+      "gated": [],
+      "staged": [],
+      "p_success": 0.68362
+    },
+    {
+      "iteration": 1,
+      "phase": "ab_gate",
+      "gated": [
+        "C11"
+      ],
+      "staged": [],
+      "p_success": 0.703735
+    },
+    {
+      "iteration": 2,
+      "phase": "ab_gate",
+      "gated": [
+        "C11",
+        "C7"
+      ],
+      "staged": [],
+      "p_success": 0.71149
+    },
+    {
+      "iteration": 3,
+      "phase": "ab_gate",
+      "gated": [
+        "C11",
+        "C7",
+        "C8c"
+      ],
+      "staged": [],
+      "p_success": 0.714595
+    },
+    {
+      "iteration": 4,
+      "phase": "ab_gate",
+      "gated": [
+        "C11",
+        "C7",
+        "C8c",
+        "MIDCOPY"
+      ],
+      "staged": [],
+      "p_success": 0.71956
+    },
+    {
+      "iteration": 5,
+      "phase": "ab_gate",
+      "gated": [
+        "C11",
+        "C7",
+        "C8c",
+        "MIDCOPY",
+        "C5c"
+      ],
+      "staged": [],
+      "p_success": 0.718915
+    },
+    {
+      "iteration": 6,
+      "phase": "ab_gate",
+      "gated": [
+        "C11",
+        "C7",
+        "C8c",
+        "MIDCOPY",
+        "C5c",
+        "EXITCOPY"
+      ],
+      "staged": [],
+      "p_success": 0.71835
+    },
+    {
+      "iteration": 7,
+      "phase": "ab_gate",
+      "gated": [
+        "C11",
+        "C7",
+        "C8c",
+        "MIDCOPY",
+        "C5c",
+        "EXITCOPY",
+        "C1"
+      ],
+      "staged": [],
+      "p_success": 0.72116
+    },
+    {
+      "iteration": 8,
+      "phase": "ab_gate",
+      "gated": [
+        "C11",
+        "C7",
+        "C8c",
+        "MIDCOPY",
+        "C5c",
+        "EXITCOPY",
+        "C1",
+        "C9o"
+      ],
+      "staged": [],
+      "p_success": 0.75965
+    },
+    {
+      "iteration": 9,
+      "phase": "ab_gate",
+      "gated": [
+        "C11",
+        "C7",
+        "C8c",
+        "MIDCOPY",
+        "C5c",
+        "EXITCOPY",
+        "C1",
+        "C9o",
+        "C5u"
+      ],
+      "staged": [],
+      "p_success": 0.80578
+    },
+    {
+      "iteration": 10,
+      "phase": "ab_gate",
+      "gated": [
+        "C11",
+        "C7",
+        "C8c",
+        "MIDCOPY",
+        "C5c",
+        "EXITCOPY",
+        "C1",
+        "C9o",
+        "C5u",
+        "C10"
+      ],
+      "staged": [],
+      "p_success": 0.82045
+    },
+    {
+      "iteration": 11,
+      "phase": "ab_gate",
+      "gated": [
+        "C11",
+        "C7",
+        "C8c",
+        "MIDCOPY",
+        "C5c",
+        "EXITCOPY",
+        "C1",
+        "C9o",
+        "C5u",
+        "C10",
+        "C8o"
+      ],
+      "staged": [],
+      "p_success": 0.831965
+    },
+    {
+      "iteration": 12,
+      "phase": "ab_gate",
+      "gated": [
+        "C11",
+        "C7",
+        "C8c",
+        "MIDCOPY",
+        "C5c",
+        "EXITCOPY",
+        "C1",
+        "C9o",
+        "C5u",
+        "C10",
+        "C8o",
+        "C2m"
+      ],
+      "staged": [],
+      "p_success": 0.83225
+    },
+    {
+      "iteration": 13,
+      "phase": "ab_gate",
+      "gated": [
+        "C11",
+        "C7",
+        "C8c",
+        "MIDCOPY",
+        "C5c",
+        "EXITCOPY",
+        "C1",
+        "C9o",
+        "C5u",
+        "C10",
+        "C8o",
+        "C2m",
+        "C2u"
+      ],
+      "staged": [],
+      "p_success": 0.851895
+    },
+    {
+      "iteration": 14,
+      "phase": "ab_gate",
+      "gated": [
+        "C11",
+        "C7",
+        "C8c",
+        "MIDCOPY",
+        "C5c",
+        "EXITCOPY",
+        "C1",
+        "C9o",
+        "C5u",
+        "C10",
+        "C8o",
+        "C2m",
+        "C2u",
+        "HHIER"
+      ],
+      "staged": [],
+      "p_success": 0.85552
+    },
+    {
+      "iteration": 15,
+      "phase": "ab_gate",
+      "gated": [
+        "C11",
+        "C7",
+        "C8c",
+        "MIDCOPY",
+        "C5c",
+        "EXITCOPY",
+        "C1",
+        "C9o",
+        "C5u",
+        "C10",
+        "C8o",
+        "C2m",
+        "C2u",
+        "HHIER",
+        "C9u"
+      ],
+      "staged": [],
+      "p_success": 0.87183
+    },
+    {
+      "iteration": 16,
+      "phase": "ab_gate",
+      "gated": [
+        "C11",
+        "C7",
+        "C8c",
+        "MIDCOPY",
+        "C5c",
+        "EXITCOPY",
+        "C1",
+        "C9o",
+        "C5u",
+        "C10",
+        "C8o",
+        "C2m",
+        "C2u",
+        "HHIER",
+        "C9u",
+        "C4"
+      ],
+      "staged": [],
+      "p_success": 0.869515
+    },
+    {
+      "iteration": 17,
+      "phase": "ab_gate",
+      "gated": [
+        "C11",
+        "C7",
+        "C8c",
+        "MIDCOPY",
+        "C5c",
+        "EXITCOPY",
+        "C1",
+        "C9o",
+        "C5u",
+        "C10",
+        "C8o",
+        "C2m",
+        "C2u",
+        "HHIER",
+        "C9u",
+        "C4",
+        "C12"
+      ],
+      "staged": [],
+      "p_success": 0.871305
+    },
+    {
+      "iteration": 18,
+      "phase": "ab_gate",
+      "gated": [
+        "C11",
+        "C7",
+        "C8c",
+        "MIDCOPY",
+        "C5c",
+        "EXITCOPY",
+        "C1",
+        "C9o",
+        "C5u",
+        "C10",
+        "C8o",
+        "C2m",
+        "C2u",
+        "HHIER",
+        "C9u",
+        "C4",
+        "C12",
+        "CLS"
+      ],
+      "staged": [],
+      "p_success": 0.873055
+    },
+    {
+      "iteration": 19,
+      "phase": "ab_gate",
+      "gated": [
+        "C11",
+        "C7",
+        "C8c",
+        "MIDCOPY",
+        "C5c",
+        "EXITCOPY",
+        "C1",
+        "C9o",
+        "C5u",
+        "C10",
+        "C8o",
+        "C2m",
+        "C2u",
+        "HHIER",
+        "C9u",
+        "C4",
+        "C12",
+        "CLS",
+        "C6"
+      ],
+      "staged": [],
+      "p_success": 0.87407
+    },
+    {
+      "iteration": 20,
+      "phase": "stage_verify",
+      "gated": [
+        "C11",
+        "C7",
+        "C8c",
+        "MIDCOPY",
+        "C5c",
+        "EXITCOPY",
+        "C1",
+        "C9o",
+        "C5u",
+        "C10",
+        "C8o",
+        "C2m",
+        "C2u",
+        "HHIER",
+        "C9u",
+        "C4",
+        "C12",
+        "CLS",
+        "C6"
+      ],
+      "staged": [
+        "PRERENDER"
+      ],
+      "p_success": 0.95899
+    },
+    {
+      "iteration": 21,
+      "phase": "stage_verify",
+      "gated": [
+        "C11",
+        "C7",
+        "C8c",
+        "MIDCOPY",
+        "C5c",
+        "EXITCOPY",
+        "C1",
+        "C9o",
+        "C5u",
+        "C10",
+        "C8o",
+        "C2m",
+        "C2u",
+        "HHIER",
+        "C9u",
+        "C4",
+        "C12",
+        "CLS",
+        "C6"
+      ],
+      "staged": [
+        "PRERENDER",
+        "C3o"
+      ],
+      "p_success": 0.986045
+    }
+  ],
+  "final": {
+    "p_success": 0.986045,
+    "outcomes": {
+      "p_success": 0.986045,
+      "total_traffic": {
+        "mean": 1.2633960548742438,
+        "p05": 1.1174699903267256,
+        "p50": 1.251953965002022
+      },
+      "mobile_traffic": {
+        "mean": 1.3731516041418164,
+        "p05": 1.1885724434041969,
+        "p50": 1.3614686618088343
+      },
+      "usability": {
+        "mean": 1.0932783210434127,
+        "p05": 1.0147788283121055,
+        "p50": 1.0891764224206353
+      },
+      "newsletter_signups": {
+        "mean": 1.9658066658683322,
+        "p05": 1.4547870987840348,
+        "p50": 1.9215699886559652
+      }
+    },
+    "ship_directly": [
+      "C3m"
+    ],
+    "ship_ab_gated": [
+      "C1",
+      "C10",
+      "C11",
+      "C12",
+      "C2m",
+      "C2u",
+      "C4",
+      "C5c",
+      "C5u",
+      "C6",
+      "C7",
+      "C8c",
+      "C8o",
+      "C9o",
+      "C9u",
+      "CLS",
+      "EXITCOPY",
+      "HHIER",
+      "MIDCOPY"
+    ],
+    "stage_and_verify": [
+      "C3o",
+      "PRERENDER"
+    ]
+  },
+  "package": [
+    {
+      "id": "PRERENDER",
+      "label": "Pre-render/SSR article bodies so non-JS crawlers (Bing, AI engines) see prose",
+      "metric": "organic_traffic",
+      "effect_mean_pct": 15,
+      "effect_sd_pct": 10,
+      "p_negative": 0.04,
+      "confidence": 0.7,
+      "reversibility": 0.8,
+      "effort": "L",
+      "source": "seo",
+      "gated": false,
+      "staged": true
+    },
+    {
+      "id": "C3o",
+      "label": "Precompile JSX->JS, drop in-browser Babel (Core Web Vitals)",
+      "metric": "organic_traffic",
+      "effect_mean_pct": 4,
+      "effect_sd_pct": 4,
+      "p_negative": 0.08,
+      "confidence": 0.55,
+      "reversibility": 0.7,
+      "effort": "L",
+      "source": "seo",
+      "gated": false,
+      "staged": true
+    },
+    {
+      "id": "C9o",
+      "label": "On-page TOC / jump links on long articles (sitelinks + dwell)",
+      "metric": "organic_traffic",
+      "effect_mean_pct": 5,
+      "effect_sd_pct": 5,
+      "p_negative": 0.05,
+      "confidence": 0.5,
+      "reversibility": 0.9,
+      "effort": "M",
+      "source": "seo",
+      "gated": true,
+      "staged": false
+    },
+    {
+      "id": "C10",
+      "label": "Strengthen cross-category internal linking / planning funnel",
+      "metric": "organic_traffic",
+      "effect_mean_pct": 3,
+      "effect_sd_pct": 3,
+      "p_negative": 0.04,
+      "confidence": 0.55,
+      "reversibility": 0.9,
+      "effort": "M",
+      "source": "seo",
+      "gated": true,
+      "staged": false
+    },
+    {
+      "id": "C8o",
+      "label": "Make article H2 skimmable (dwell)",
+      "metric": "organic_traffic",
+      "effect_mean_pct": 1.5,
+      "effect_sd_pct": 2,
+      "p_negative": 0.05,
+      "confidence": 0.5,
+      "reversibility": 0.95,
+      "effort": "S",
+      "source": "seo",
+      "gated": true,
+      "staged": false
+    },
+    {
+      "id": "HHIER",
+      "label": "Fix inverted H2/H3 visual hierarchy",
+      "metric": "organic_traffic",
+      "effect_mean_pct": 1,
+      "effect_sd_pct": 1.5,
+      "p_negative": 0.05,
+      "confidence": 0.6,
+      "reversibility": 0.95,
+      "effort": "S",
+      "source": "seo",
+      "gated": true,
+      "staged": false
+    },
+    {
+      "id": "C3m",
+      "label": "Precompile JSX->JS, drop Babel transform-on-load (mobile INP/TBT)",
+      "metric": "mobile_traffic",
+      "effect_mean_pct": 4.5,
+      "effect_sd_pct": 2.5,
+      "p_negative": 0.02,
+      "confidence": 0.7,
+      "reversibility": 0.8,
+      "effort": "L",
+      "source": "mobile",
+      "gated": false,
+      "staged": false
+    },
+    {
+      "id": "C4",
+      "label": "Defer Google Maps JS API to the /map route only",
+      "metric": "mobile_traffic",
+      "effect_mean_pct": 2,
+      "effect_sd_pct": 1.5,
+      "p_negative": 0.03,
+      "confidence": 0.65,
+      "reversibility": 0.9,
+      "effort": "M",
+      "source": "mobile",
+      "gated": true,
+      "staged": false
+    },
+    {
+      "id": "C2m",
+      "label": "Persistent mobile masthead CTA (wire unused .nav__primary)",
+      "metric": "mobile_traffic",
+      "effect_mean_pct": 2.5,
+      "effect_sd_pct": 2,
+      "p_negative": 0.05,
+      "confidence": 0.55,
+      "reversibility": 0.95,
+      "effort": "S",
+      "source": "mobile",
+      "gated": true,
+      "staged": false
+    },
+    {
+      "id": "C12",
+      "label": "Per-route LCP preload at the edge",
+      "metric": "mobile_traffic",
+      "effect_mean_pct": 1.5,
+      "effect_sd_pct": 1.2,
+      "p_negative": 0.03,
+      "confidence": 0.6,
+      "reversibility": 0.95,
+      "effort": "S",
+      "source": "mobile",
+      "gated": true,
+      "staged": false
+    },
+    {
+      "id": "C6",
+      "label": "Raise mobile masthead micro-caps legibility (9px->11px)",
+      "metric": "usability",
+      "effect_mean_pct": 1.5,
+      "effect_sd_pct": 1.0,
+      "p_negative": 0.02,
+      "confidence": 0.8,
+      "reversibility": 1.0,
+      "effort": "S",
+      "source": "mobile",
+      "gated": true,
+      "staged": false
+    },
+    {
+      "id": "CLS",
+      "label": "Reserve a fixed slot for EntranceWaits to kill masthead CLS",
+      "metric": "usability",
+      "effect_mean_pct": 1.5,
+      "effect_sd_pct": 1.2,
+      "p_negative": 0.03,
+      "confidence": 0.65,
+      "reversibility": 0.9,
+      "effort": "S",
+      "source": "mobile",
+      "gated": true,
+      "staged": false
+    },
+    {
+      "id": "C5u",
+      "label": "Reorder above-fold webcams so capture isn't buried on mobile",
+      "metric": "usability",
+      "effect_mean_pct": 3,
+      "effect_sd_pct": 2.5,
+      "p_negative": 0.1,
+      "confidence": 0.5,
+      "reversibility": 0.95,
+      "effort": "S",
+      "source": "mobile",
+      "gated": true,
+      "staged": false
+    },
+    {
+      "id": "C9u",
+      "label": "Mobile TOC / jump links (task completion)",
+      "metric": "usability",
+      "effect_mean_pct": 2,
+      "effect_sd_pct": 1.8,
+      "p_negative": 0.04,
+      "confidence": 0.55,
+      "reversibility": 0.95,
+      "effort": "M",
+      "source": "mobile",
+      "gated": true,
+      "staged": false
+    },
+    {
+      "id": "C2u",
+      "label": "Persistent mobile CTA (shorter path to conversion)",
+      "metric": "usability",
+      "effect_mean_pct": 2.5,
+      "effect_sd_pct": 2,
+      "p_negative": 0.05,
+      "confidence": 0.55,
+      "reversibility": 0.95,
+      "effort": "S",
+      "source": "mobile",
+      "gated": true,
+      "staged": false
+    },
+    {
+      "id": "C1",
+      "label": "Collapse hero's 4 competing actions into one primary capture",
+      "metric": "newsletter_conv",
+      "effect_mean_pct": 14,
+      "effect_sd_pct": 8,
+      "p_negative": 0.04,
+      "confidence": 0.72,
+      "reversibility": 0.95,
+      "effort": "S",
+      "source": "cro",
+      "gated": true,
+      "staged": false
+    },
+    {
+      "id": "EXITCOPY",
+      "label": "Exit-intent modal leads with the free-map unlock (declarative)",
+      "metric": "newsletter_conv",
+      "effect_mean_pct": 9,
+      "effect_sd_pct": 6,
+      "p_negative": 0.08,
+      "confidence": 0.65,
+      "reversibility": 0.99,
+      "effort": "S",
+      "source": "cro",
+      "gated": true,
+      "staged": false
+    },
+    {
+      "id": "C7",
+      "label": "Differentiate the 3 identical callout bands (banner blindness)",
+      "metric": "newsletter_conv",
+      "effect_mean_pct": 7,
+      "effect_sd_pct": 6,
+      "p_negative": 0.12,
+      "confidence": 0.5,
+      "reversibility": 0.9,
+      "effort": "M",
+      "source": "cro",
+      "gated": true,
+      "staged": false
+    },
+    {
+      "id": "MIDCOPY",
+      "label": "Mid-article unit leads with map incentive, not cadence hedge",
+      "metric": "newsletter_conv",
+      "effect_mean_pct": 6,
+      "effect_sd_pct": 5,
+      "p_negative": 0.1,
+      "confidence": 0.6,
+      "reversibility": 0.99,
+      "effort": "S",
+      "source": "cro",
+      "gated": true,
+      "staged": false
+    },
+    {
+      "id": "C5c",
+      "label": "Reduce above-fold webcam exits (keep capture in view)",
+      "metric": "newsletter_conv",
+      "effect_mean_pct": 6,
+      "effect_sd_pct": 5,
+      "p_negative": 0.1,
+      "confidence": 0.55,
+      "reversibility": 0.95,
+      "effort": "S",
+      "source": "cro",
+      "gated": true,
+      "staged": false
+    },
+    {
+      "id": "C11",
+      "label": "A/B the newsletter value prop (map-first vs notes-first)",
+      "metric": "newsletter_conv",
+      "effect_mean_pct": 5,
+      "effect_sd_pct": 6,
+      "p_negative": 0.2,
+      "confidence": 0.45,
+      "reversibility": 0.99,
+      "effort": "S",
+      "source": "cro",
+      "gated": true,
+      "staged": false
+    },
+    {
+      "id": "C8c",
+      "label": "Skimmable H2 -> more scroll -> more newsletter impressions",
+      "metric": "newsletter_conv",
+      "effect_mean_pct": 4,
+      "effect_sd_pct": 4,
+      "p_negative": 0.15,
+      "confidence": 0.4,
+      "reversibility": 0.95,
+      "effort": "M",
+      "source": "cro",
+      "gated": true,
+      "staged": false
+    }
+  ]
+}

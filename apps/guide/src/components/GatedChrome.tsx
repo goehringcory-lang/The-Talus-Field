@@ -9,6 +9,7 @@ type Props = {
 export default function GatedChrome({ children }: Props) {
   const { pathname } = useLocation()
   const mapActive = pathname === '/map' || pathname.startsWith('/map/')
+  const searchActive = pathname === '/search'
   const accountActive = pathname === '/account'
   return (
     <div className="app-shell">
@@ -19,6 +20,13 @@ export default function GatedChrome({ children }: Props) {
           aria-current={mapActive ? 'page' : undefined}
         >
           Map →
+        </Link>
+        <Link
+          to="/search"
+          className="gated-chrome__link"
+          aria-current={searchActive ? 'page' : undefined}
+        >
+          Search →
         </Link>
         <Link
           to="/account"

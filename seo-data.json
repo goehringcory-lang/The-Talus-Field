@@ -1,0 +1,351 @@
+{
+  "__comment": "SEO enrichment for the editorial site, keyed by article slug. NOT loaded by the browser runtime (kept out of data.js so the per-page JS payload stays small). The build script scripts/gen-seo-artifacts.mjs merges this with window.ARTICLES from data.js to regenerate articles.json (consumed by functions/_middleware.js), sitemap.xml, feed.xml, and the article section of llms.txt. Fields: wordCount (number), keywords (string[]), faq ({q,a}[]), trail ({name,distance,elevationGain,difficulty} for hike guides). FAQ answers and trail numbers are drawn from each article's published body; do not invent facts. The one article whose faq lives inline in data.js (yosemite-in-one-or-two-days) is intentionally omitted here; data.js takes precedence for faq.",
+
+  "yosemite-heat-safety-guide": {
+    "wordCount": 3088,
+    "keywords": ["Yosemite heat safety", "how hot is Yosemite in summer", "Yosemite summer temperatures", "Yosemite Valley heat", "exposed trails Yosemite", "hiking Yosemite in July", "where to swim in Yosemite", "Yosemite thunderstorm safety", "heat exhaustion vs heat stroke", "Tuolumne Meadows temperature", "Yosemite swimming safety", "best time to hike Yosemite summer"],
+    "faq": [
+      { "q": "How hot does Yosemite get in summer?", "a": "In July and August, daytime highs in Yosemite Valley (4,000 feet) regularly reach about 90 degrees Fahrenheit and occasionally crack 100. Those are shade temperatures at a weather station; granite surfaces in direct sun can hit 140 to 160 degrees. Tuolumne Meadows, at 8,600 feet, runs 18 to 20 degrees cooler, around 70 to 72 degrees." },
+      { "q": "What is the best time of day to hike Yosemite in the heat?", "a": "Before 7 AM. Start early and be done with exposed, south-facing sections by 10 or 11 in the morning. The afternoon combination of direct sun and radiant heat off the granite is what fills the clinic." },
+      { "q": "Which Yosemite trails are most dangerous in the heat?", "a": "The Four Mile Trail to Glacier Point, which the NPS calls very dangerous and exposed; the Upper Yosemite Falls trail above Columbia Rock; the Mist Trail above the Vernal Fall footbridge; the Half Dome subdome and cables; and the Panorama Trail. All are south-facing or fully exposed with little to no shade and limited water." },
+      { "q": "How much water should I carry hiking Yosemite in summer?", "a": "The NPS baseline is one quart per hour of hiking in the heat. A full day on an exposed trail in July means 4 to 6 liters per person. Pair it with electrolytes or salty snacks: drinking large amounts of plain water without replacing sodium can cause hyponatremia, which mimics heat exhaustion." },
+      { "q": "When is it safe to swim in the Merced River in Yosemite?", "a": "Roughly mid-July through mid-September, once snowmelt drops and the water warms. Do not swim in May or June, when the river is high, fast, and cold; most river fatalities in Yosemite happen during the high-water period. Never swim above a waterfall." },
+      { "q": "Where can you swim in Yosemite?", "a": "In the Valley: Sentinel Beach, Cathedral Beach, the Housekeeping Camp area, and Swinging Bridge for wading. Outside the Valley: Tenaya Lake along Tioga Road for subalpine swimming (55 to 60 degree water), and Wawona, which has the warmest water in the park." },
+      { "q": "How do you stay safe from afternoon thunderstorms in Yosemite?", "a": "Be off exposed ridges, peaks, and open granite by noon. Sierra afternoon thunderstorms build like clockwork in July and August, often producing lightning by 1 PM. If you hear thunder above treeline you are already in strike range: get below treeline, off water, and crouch low with your feet together. The monsoon pattern runs from mid-July through September." },
+      { "q": "How much cooler is Tuolumne Meadows than Yosemite Valley?", "a": "About 18 to 20 degrees cooler. When it is 90 degrees on the Valley floor, Tuolumne Meadows at 8,600 feet is around 72. Temperature drops roughly 3.5 degrees Fahrenheit for every thousand feet of elevation gain, which is why driving up Tioga Road is the single best heat escape in the park." }
+    ]
+  },
+  "when-to-visit-yosemite-2026-crowd-forecast": {
+    "wordCount": 2075,
+    "keywords": ["when to visit Yosemite", "Yosemite 2026 no reservations", "Yosemite crowds 2026", "Yosemite traffic", "Yosemite visitation statistics", "Yosemite crowd calendar", "best time to visit Yosemite 2026", "Yosemite entrance wait times"],
+    "faq": [
+      { "q": "Do I need a reservation to visit Yosemite in 2026?", "a": "No. The National Park Service announced in late December 2025 that the entrance reservation system would not return in 2026. You still pay the standard entrance fee, but no timed-entry ticket is required, and the February firefall viewing also ran without reservations this year." },
+      { "q": "How busy will Yosemite be in 2026?", "a": "Very. Through April the park logged 836,458 visits, 13 percent ahead of 2025, and March was up 45 percent year over year. Projecting the rest of the year puts 2026 at roughly 4.6 to 4.7 million visits, which would be the second-busiest year on record behind 2016." },
+      { "q": "What is the best time to visit Yosemite in 2026?", "a": "Midweek from September 8 to 30 is the best remaining window: summer conditions, the full park open, and crowd pressure down about a third from July. Midweek October is nearly as good, and early-November weekdays are quieter still." },
+      { "q": "What time of day should I enter Yosemite to avoid traffic?", "a": "Be through the gate before 8 a.m., before 7 on summer weekends, or arrive after 4 p.m. The busiest entry window runs roughly 9 a.m. to 2 p.m., and afternoon delays can reach two to three hours on peak weekends. Text ynptraffic to 333111 for the park's live updates." },
+      { "q": "What are the worst days to visit Yosemite in 2026?", "a": "July 3 to 5 (July 4 falls on a Saturday), any summer Saturday arriving after 8:30 a.m., Labor Day weekend, and the holiday week in late December. Memorial Day weekend 2026 produced 90-minute entrance lines and full Valley parking lots by mid-morning." },
+      { "q": "What was Yosemite's busiest year ever?", "a": "2016, with just over 5 million visits. 2025 was the fourth-busiest at about 4.28 million, and 2026 is pacing to land second at roughly 4.6 to 4.7 million." }
+    ]
+  },
+
+  "yosemite-trip-cost-budget-2026": {
+    "wordCount": 1907,
+    "keywords": ["Yosemite trip cost", "Yosemite budget 2026", "Yosemite entrance fee", "Yosemite lodging cost", "Yosemite camping cost", "cost of Yosemite vacation", "how much does Yosemite cost", "Yosemite trip planning"],
+    "faq": [
+      { "q": "How much does a Yosemite trip cost in 2026?", "a": "It depends on how you do it. For two people on a four-day, three-night trip, a camping-based shoestring trip runs about $400 to $550 total, a comfortable mid-range trip about $1,400 to $1,800, and a splurge with the Ahwahnee and a guided day about $3,500 to $5,000 or more." },
+      { "q": "How much is the Yosemite entrance fee in 2026?", "a": "$35 per vehicle for a seven-day pass, $20 per person on foot or bicycle, and $30 per motorcycle. The America the Beautiful annual pass is $80 and covers every national park for a year, which pays off if you will visit Yosemite more than twice or see other parks." },
+      { "q": "How much does lodging cost in Yosemite?", "a": "Campsites run $24 to $36 a night, and Camp 4 is $10 per person. Half Dome Village tent cabins are $170 to $200, Yosemite Valley Lodge rooms $300 to $500, and the Ahwahnee starts around $580. Gateway-town motels run $120 to $300." },
+      { "q": "What is the cheapest way to visit Yosemite?", "a": "Camp and bring your own food. A campsite plus a cooler stocked at a gateway-town grocery store before you enter keeps food to about $15 to $25 per person per day. The park itself is cheap: $35 to enter, free shuttles, free trails, and free ranger programs." },
+      { "q": "How much should I budget for food in Yosemite?", "a": "A deli sandwich and a drink runs $18 to $25, a pizza at Half Dome Village $27 to $35, and a sit-down dinner $35 to $55 per person. The Ahwahnee dinner is prix fixe from $95. Bringing a cooler is the single biggest money-saver." }
+    ]
+  },
+
+  "yosemite-in-june-2026": {
+    "wordCount": 1869,
+    "keywords": ["Yosemite in June", "Yosemite June 2026", "Yosemite waterfalls June", "Tioga Road open 2026", "Yosemite crowds June", "Yosemite high country", "Yosemite snowpack 2026", "Yosemite without reservations"],
+    "faq": [
+      { "q": "Are the waterfalls running in Yosemite in June 2026?", "a": "The first two weeks of June are the window. The April 2026 snowpack was about 18 percent of average, the second lowest on record, so the falls peaked early and are declining. Expect Yosemite Falls to weaken noticeably by mid-June and drop to a trickle by early July." },
+      { "q": "Is Tioga Road open in June 2026?", "a": "Yes. Tioga Road opened May 15, 2026, the earliest since 2015, so the high country is available all month. Tuolumne Meadows Lodge, store, and grill open June 5." },
+      { "q": "How crowded is Yosemite in June 2026?", "a": "Very. With no reservation system, June 2026 is shaping up to be the most crowded month in years, and more than 836,000 visits were recorded through late May. Arrive before 7 a.m. on weekends, park once and use the shuttle, and visit midweek if you can." },
+      { "q": "How do I avoid the crowds in Yosemite in June 2026?", "a": "Go outside the Valley, which absorbs about 90 percent of visitors. With Tioga Road open the whole high country is available, and Cathedral Lakes, Hetch Hetchy, the Mariposa and Merced Groves, and Glacier Point Road are all far quieter than the Valley floor." },
+      { "q": "What should I pack for Yosemite in June 2026?", "a": "Valley highs run 80 to 90 degrees and the high country is 15 to 20 degrees cooler. Carry at least two liters of water per person for any hike over four miles, sun protection, and a warm layer for elevation. Afternoon thunderstorms are possible in Tuolumne by late June." }
+    ]
+  },
+
+  "cathedral-lakes-day-hike": {
+    "wordCount": 2240,
+    "keywords": ["Cathedral Lakes", "Cathedral Lakes trail", "Cathedral Peak", "Tuolumne Meadows hikes", "Cathedral Lakes elevation", "Lower Cathedral Lake", "Upper Cathedral Lake", "John Muir Trail", "Yosemite high country day hike"],
+    "trail": { "name": "Cathedral Lakes Trail", "distance": "9-10.5 miles round trip", "elevationGain": "1,000-1,400 ft", "difficulty": "Moderate to strenuous" },
+    "faq": [
+      { "q": "How long is the Cathedral Lakes hike?", "a": "Roughly 9 to 10.5 miles round trip from the new trailhead by the Tuolumne Meadows Visitor Center, depending on whether you visit Lower Cathedral Lake, Upper Cathedral Lake, or both, with about 1,000 to 1,400 feet of elevation gain. Plan five to seven hours including time at the lakes." },
+      { "q": "Where is the Cathedral Lakes trailhead?", "a": "At the new Cathedral Lakes trailhead parking next to the Tuolumne Meadows Visitor Center, about 8,500 feet. The old Tioga Road trailhead was retired during the Tuolumne redevelopment, so older guidebook distances read about three-quarters of a mile short." },
+      { "q": "What is the best time to hike Cathedral Lakes?", "a": "Mid-July through mid-September for the best conditions. Tioga Road has to be open, roughly late May or early June through October. The upper trail and lake basins hold snow into early or mid-July, so bring traction and be willing to turn around before then." },
+      { "q": "Is the Cathedral Lakes hike crowded?", "a": "It is one of the busier high-country day hikes, and at peak weekend hours the trail can feel like a parade. The lakes are large enough to absorb the crowd, and a weekday or an early start with the trailhead by 7 a.m. is dramatically quieter." },
+      { "q": "How do you get to the Cathedral Lakes trailhead?", "a": "Drive Tioga Road to Tuolumne Meadows, about 90 minutes from Yosemite Village, and park at the Cathedral Lakes trailhead by the visitor center. There is no reliable potable water on the trail, so carry at least three liters." }
+    ]
+  },
+
+  "yosemite-needs-a-reservation-system": {
+    "wordCount": 1700,
+    "keywords": ["Yosemite reservation system", "Yosemite Memorial Day 2026", "Yosemite crowds", "Yosemite parking", "national park reservations", "Organic Act", "Ray McPadden", "timed entry"],
+    "faq": [
+      { "q": "Does Yosemite require a reservation in 2026?", "a": "No. Superintendent Ray McPadden announced on February 18, 2026 that Yosemite would not require vehicle reservations for the 2026 season. The park is relying on real-time traffic monitoring and promotion of areas outside the Valley instead." },
+      { "q": "What happened in Yosemite Valley on Memorial Day weekend 2026?", "a": "Parking lots filled before 8 a.m., entrance waits exceeded ninety minutes, and dozens of cars parked illegally on meadow edges and road shoulders. Three tow trucks were deployed to clear vehicles blocking shuttle routes." },
+      { "q": "Did the Yosemite reservation system actually work?", "a": "By the available data, yes. Surveys at parks with timed entry showed strong visitor approval, and 85 percent of verified Yosemite staff responses opposed dropping it. It spread demand across the day so visitors who arrived could actually use the park." }
+    ]
+  },
+
+  "memorial-day-skip-the-valley-go-high-2026": {
+    "wordCount": 1320,
+    "keywords": ["Yosemite Memorial Day 2026", "Yosemite high country", "Tioga Road open 2026", "Glacier Point Road 2026", "Sentinel Dome", "Taft Point", "Tuolumne Meadows", "Yosemite crowds"],
+    "faq": [
+      { "q": "How crowded is Yosemite Valley on Memorial Day weekend?", "a": "Extremely crowded. Day-use parking fills before 9 a.m. Entrance lines on peak summer weekends can run 1-2 hours. Sunday evening traffic leaving the Valley backs up past the entrance stations. Memorial Day is one of the five busiest weekends of the year." },
+      { "q": "What is a better alternative to Yosemite Valley on Memorial Day 2026?", "a": "The high country. Both Glacier Point Road and Tioga Road opened in early May 2026, ahead of schedule. Sentinel Dome, Taft Point, Olmsted Point, Tenaya Lake, and the Tuolumne Meadows trailheads all offer comparable or superior experiences with a fraction of the Valley crowds." },
+      { "q": "What is open at Tuolumne Meadows on Memorial Day weekend 2026?", "a": "The road, trailheads, and day-use area are open. The Tuolumne Meadows Grill opens May 30; the lodge opens June 5; the store opens later in summer. Wilderness permits are available self-service at the trailhead permit box." },
+      { "q": "Is Sentinel Dome accessible on Memorial Day weekend 2026?", "a": "Yes. The trailhead is on Glacier Point Road, which opened in early May 2026. The 2.2-mile round trip to Sentinel Dome is above treeline with 360-degree views and no permit required, far less crowded than any Valley viewpoint on a holiday weekend." }
+    ]
+  },
+
+  "where-to-eat-yosemite": {
+    "wordCount": 1450,
+    "keywords": ["where to eat Yosemite", "Yosemite restaurants 2026", "Half Dome Village pizza", "Mariposa restaurants", "best food near Yosemite"],
+    "faq": [
+      { "q": "Where is the best place to eat in Yosemite Valley?", "a": "The Half Dome Village Pizza Deck. The Half Dome pie, eaten on the deck under the Glacier Point Apron, is the one in-park meal worth going out of your way for. Degnan's Kitchen is the best option for a lunch under twenty dollars, and the Ahwahnee Dining Room is the special-occasion meal." },
+      { "q": "Where should I eat in Mariposa near Yosemite?", "a": "1850 Restaurant and Brewing Co. for a sit-down dinner, Smokin Oak BBQ for brisket at lunch, and Tacos Sonora, a taco truck on Coakley Circle, for fast and cheap. 1850 and Smokin Oak are both closed Monday and Tuesday." },
+      { "q": "Where should I eat in Oakhurst near Yosemite?", "a": "South Gate Brewing Company is the everyday dinner default, with wood-fired pizza and house beer. The Elderberry House at Chateau du Sureau is the fine-dining destination, a daily-changing prix fixe well over $100 a person with reservations required." },
+      { "q": "Where can I get coffee on the east side of Yosemite?", "a": "Latte Da Cafe in Lee Vining. Coming over Tioga Pass from Mammoth, Bishop, or Lake Tahoe, it is the first real coffee on the route, with in-house pastries and honest drip." },
+      { "q": "Are there good restaurants inside Yosemite National Park?", "a": "A few. The Half Dome Village Pizza Deck, Degnan's Kitchen, and the Ahwahnee Dining Room are the ones worth knowing in Yosemite Valley. Beyond those, the better food is in the gateway towns, and a packed cooler beats most of it." }
+    ]
+  },
+
+  "yosemite-in-one-or-two-days": {
+    "comment": "faq intentionally omitted here; it lives inline in data.js (window.ARTICLES) and takes precedence in the generator.",
+    "wordCount": 2100,
+    "keywords": ["one day Yosemite itinerary", "two days in Yosemite", "Yosemite day trip", "Yosemite 2026 short visit", "Yosemite Valley highlights"]
+  },
+
+  "four-mile-up-panorama-down": {
+    "wordCount": 2580,
+    "keywords": ["Four Mile Trail Yosemite", "Panorama Trail", "Glacier Point hike", "Illilouette Fall", "Yosemite day hike loop"],
+    "trail": { "name": "Four Mile Trail to Panorama Trail loop", "distance": "13 miles round trip (loop)", "elevationGain": "3,200 ft", "difficulty": "Strenuous" },
+    "faq": [
+      { "q": "How hard is the Four Mile Trail and Panorama Trail loop?", "a": "Strenuous. The full loop is about 13 miles and gains 3,200 feet, almost all of it in the first 4.6 miles up the Four Mile Trail. The Panorama Trail descent is more gradual. Fit hikers take 7-10 hours. It is manageable for experienced day hikers; it is not a casual walk." },
+      { "q": "How do I set up the Four Mile / Panorama Trail loop?", "a": "Two practical options: (1) Park in Yosemite Valley, hike up the Four Mile Trail, down the Panorama Trail, and take the free Valley Shuttle back to your car. (2) Take the summer Glacier Point bus tour to Glacier Point and hike the Panorama Trail mostly downhill to the Valley. Option 2 is significantly less demanding." },
+      { "q": "Is there parking at the Four Mile Trailhead?", "a": "There is no dedicated parking lot. The Four Mile Trailhead is along Southside Drive near Sentinel Rock. Park in the general Valley day-use lots and walk or ride the Valley bike path roughly 1.5 miles to the trailhead." },
+      { "q": "Can I take the Glacier Point bus to do this hike one-way?", "a": "Yes. The Glacier Point bus tour runs daily in summer from Yosemite Valley, and it fills quickly, so book in advance. Ride up, hike the Panorama Trail down to the Valley, and take the free shuttle back to your car. This gives you a point-to-point mostly-downhill hike." }
+    ]
+  },
+
+  "yosemite-with-kids-no-reservations-2026": {
+    "wordCount": 2792,
+    "keywords": ["Yosemite with kids", "Yosemite family trip 2026", "YARTS bus", "Junior Ranger Yosemite", "Lower Yosemite Fall"],
+    "faq": [
+      { "q": "What are the best hikes for kids in Yosemite?", "a": "For young children: the Lower Yosemite Fall loop (1 mile, paved, nearly flat), the Valley bike path, and the Mirror Lake loop (5 miles, flat). Older kids can do the Vernal Fall footbridge (1.6 miles, moderate). Avoid the Mist Trail above the footbridge with children under 10 - the wet granite stairs are genuinely dangerous in spring and early summer." },
+      { "q": "Does Yosemite offer a Junior Ranger program for kids?", "a": "Yes. The free Junior Ranger activity booklet is available at the Valley Visitor Center, Big Oak Flat Information Station, and Tuolumne Meadows Visitor Center. Kids complete activities about wildlife, geology, and Leave No Trace, then take an oath and earn a badge. No reservation required." },
+      { "q": "Can I take YARTS to Yosemite with kids?", "a": "Yes, and with young children it is often easier than driving. YARTS runs from Merced (with an Amtrak connection), Mariposa, and in summer from the east side via Tioga Road. Kids 12 and under ride free on the Highway 140/Merced route. Inside the park, the free Valley Shuttle connects all major stops." },
+      { "q": "What age is appropriate for Yosemite with kids?", "a": "Any age with realistic expectations. Infants and toddlers do well in a carrier on short paved walks. Kids 4-7 can handle 2-3 miles on flat valley trails. By 8-10 most kids can manage the Mist Trail to Vernal Fall. Teenagers can handle summit hikes like Sentinel Dome and the full Mist Trail to Nevada Fall." },
+      { "q": "Do I need reservations for Yosemite with kids in 2026?", "a": "No day-use vehicle reservation is required in 2026. Summer campground reservations on Recreation.gov book out months in advance and are essential. In-park lodging fills 6-12 months ahead. YARTS does not require advance booking, though popular runs fill on peak weekends." }
+    ]
+  },
+
+  "tioga-road-opening-weekend-2026": {
+    "wordCount": 2346,
+    "keywords": ["Tioga Road open 2026", "Tuolumne Meadows", "Tioga Pass", "Olmsted Point", "Mono Lake"],
+    "faq": [
+      { "q": "When does Tioga Road open in 2026?", "a": "Tioga Road in Yosemite National Park opens Friday, May 15, 2026, well ahead of the long-term average of May 28." },
+      { "q": "Is Tioga Pass open right now?", "a": "As of May 13, 2026, Tioga Pass is plowed and scheduled to open Friday, May 15. Text 'ynptraffic' to 333111 for live updates, or check nps.gov/yose/planyourvisit/tioga.htm." },
+      { "q": "Is Highway 120 through Yosemite open?", "a": "Yes. Highway 120 (Tioga Road) through Yosemite opens Friday, May 15, 2026. Highway 120 west of the park is open year-round." },
+      { "q": "What is the elevation of Tioga Pass?", "a": "Tioga Pass sits at 9,945 feet (3,031 m), the highest state highway pass in California." },
+      { "q": "Do I need a reservation to enter Yosemite in 2026?", "a": "No. The day-use reservation system is not in effect in 2026. A standard Yosemite entrance pass is required." },
+      { "q": "Is the Tuolumne Meadows store open on opening weekend?", "a": "No. The Tuolumne Meadows Grill opens May 30, the lodge June 5, and the store opens later in summer (currently scheduled for August)." },
+      { "q": "Can I camp at Tuolumne Meadows on opening weekend?", "a": "Yes. The newly rehabilitated Tuolumne Meadows Campground is reservable on Recreation.gov for the 2026 season." },
+      { "q": "How long does it take to drive Tioga Road?", "a": "Tioga Road runs about 39 miles from Crane Flat to Tioga Pass. Allow about 90 minutes one-way without stops, or a full day with Olmsted Point, Tenaya Lake, and Tuolumne Meadows." }
+    ]
+  },
+
+  "so-you-want-to-hike-half-dome": {
+    "wordCount": 2998,
+    "keywords": ["Half Dome", "Clouds Rest", "Half Dome cables", "Yosemite day hike", "Half Dome alternative"],
+    "trail": { "name": "Half Dome via the cables", "distance": "14-16 miles round trip", "elevationGain": "4,800 ft", "difficulty": "Strenuous (permit required)" },
+    "faq": [
+      { "q": "How hard is the hike to the top of Half Dome?", "a": "The full round trip is 14-16 miles with 4,800 feet of elevation gain from Happy Isles. Most hikers take 10-14 hours. The final 400 feet on the cables is a hands-on scramble on 45-degree granite. It ranks among the hardest day hikes in the national park system." },
+      { "q": "Do I need a permit to hike Half Dome?", "a": "Yes. A permit is required to hike past the base of the subdome to the summit. There are two lottery systems: a preseason lottery in March and a daily lottery during cables season. Without a permit, rangers at the subdome checkpoint will turn you back." },
+      { "q": "What is Clouds Rest and is it a better hike than Half Dome?", "a": "Clouds Rest is a 10-mile round trip from Tenaya Lake that gains about 1,750 feet to a summit at 9,926 feet, roughly 1,000 feet higher than Half Dome, with views of the entire park. No permit required. It is less crowded, costs nothing extra, and the view is broader." },
+      { "q": "When are the cables up on Half Dome?", "a": "Typically from the Friday before Memorial Day through the day after Columbus Day (the second Monday in October). The Park Service announces exact dates each year based on snow, weather, and crew availability." },
+      { "q": "What should I bring to hike Half Dome?", "a": "At least 3-4 liters of water, trail shoes with real traction (not sandals), sun protection, food for 12+ hours, a headlamp in case you run late, and gloves for the cables. Starting before sunrise is standard practice on this route." }
+    ]
+  },
+
+  "half-dome-permit-lottery-2026": {
+    "wordCount": 2319,
+    "keywords": ["Half Dome permit lottery 2026", "Recreation.gov Half Dome", "preseason lottery", "daily lottery", "Half Dome odds"],
+    "faq": [
+      { "q": "When are the Half Dome permit lotteries?", "a": "There are two. The preseason lottery runs March 1-31 (Eastern time) with results in mid-April. The daily lottery runs every day the cables are up, with applications due by 4 PM Pacific two days before your planned hike." },
+      { "q": "What are the real odds of getting a Half Dome permit?", "a": "In 2024 the preseason lottery had a 22% application success rate. The daily lottery ran 19% overall, about 22% on weekdays and 14% on weekends. Late-season weekdays in September and October have the best odds of any window." },
+      { "q": "What happens if I don't win the Half Dome lottery?", "a": "Run the daily lottery every day of your trip. Five tries at roughly 20% odds is about a 67% chance of winning at least once. If you still don't get a permit, hike Clouds Rest instead, which is a thousand feet higher than Half Dome and requires no permit." },
+      { "q": "Can I hike Half Dome without a permit?", "a": "Not legally. The permit checkpoint at the base of the subdome is staffed by rangers. Hiking past it without a permit is a federal violation (36 CFR 1.6), punishable by a fine of up to $5,000 or six months in jail." },
+      { "q": "When are the cables up on Half Dome?", "a": "Typically the Friday before Memorial Day through the day after the second Monday in October. The Park Service announces actual dates each year based on snow, weather, and crew availability." },
+      { "q": "How much does the Half Dome permit cost?", "a": "$10 per application (non-refundable) plus $10 per person if awarded. Each application can cover up to six people. The per-person fee is refundable if you cancel by 11:59 PM Pacific the day before your hike date." }
+    ]
+  },
+
+  "glacier-point-road-open-2026": {
+    "wordCount": 1429,
+    "keywords": ["Glacier Point Road open 2026", "Glacier Point", "Sentinel Dome", "Taft Point", "Yosemite early season"],
+    "faq": [
+      { "q": "When does Glacier Point Road open in 2026?", "a": "Glacier Point Road opened in early May 2026, ahead of the typical Memorial Day weekend opening. The road runs 16 miles from Highway 41 to the Glacier Point overlook at 7,214 feet." },
+      { "q": "What is open at Glacier Point in early 2026?", "a": "The overlook, restrooms, and trailheads for Sentinel Dome and Taft Point open with the road. The Glacier Point Snack Stand typically opens later in May or June. Bring all your food and water for early-season visits." },
+      { "q": "What are the best hikes on Glacier Point Road?", "a": "Sentinel Dome (2.2 miles round trip, 400 feet gain, 360-degree summit views), Taft Point (2.2 miles round trip, dramatic granite overhang above the Valley), and the start of the Panorama Trail toward Nevada Fall (8.5 miles one-way). All trailheads are along the road." },
+      { "q": "How long is the drive on Glacier Point Road?", "a": "About 16 miles one-way from the Highway 41 turnoff. Allow 30-40 minutes each way without stops. The road is narrow and winding with no passing lanes for most of its length." },
+      { "q": "What is the elevation of Glacier Point?", "a": "7,214 feet. Half Dome's summit is at 8,839 feet. From the viewpoint, Half Dome appears roughly at eye level despite being about 1,600 feet higher, because the viewpoint itself sits on the valley rim." }
+    ]
+  },
+
+  "mist-trail-the-real-guide": {
+    "wordCount": 1874,
+    "keywords": ["Mist Trail", "Vernal Fall", "Nevada Fall", "Yosemite hiking", "Mist Trail safety"],
+    "trail": { "name": "Mist Trail to the top of Nevada Fall", "distance": "5.4 miles round trip (to the top of Nevada Fall)", "elevationGain": "2,000 ft", "difficulty": "Strenuous" },
+    "faq": [
+      { "q": "How hard is the Mist Trail?", "a": "It depends on how far you go. The 1.6-mile round trip to the Vernal Fall footbridge is moderate. The 2.6-mile round trip to the top of Vernal Fall climbs 1,000 feet on wet granite stairs and is strenuous. The full 5.4-mile round trip to the top of Nevada Fall gains 2,000 feet and takes most people 4-6 hours." },
+      { "q": "What shoes should I wear on the Mist Trail?", "a": "Hiking boots or trail shoes with real tread. The granite staircase below Vernal Fall is wet for most of May and June, and slippery footwear is the cause of most Mist Trail injuries. Worn sneakers, flip-flops, and sandals are genuinely dangerous here." },
+      { "q": "When is the Mist Trail wettest?", "a": "Peak waterfall flow runs mid-April through late June, with the heaviest spray between the base and top of Vernal Fall in May. You'll get soaked, not sprinkled. By August the falls are reduced and the trail is mostly dry." },
+      { "q": "Can kids hike the Mist Trail?", "a": "Older, reasonably fit kids can do the 1.6-mile round trip to the Vernal Fall footbridge. Past the bridge, the staircase to the top of Vernal Fall is steep, wet, and exposed, not appropriate for young children. The full route to Nevada Fall is a serious workout." },
+      { "q": "Can I die on the Mist Trail?", "a": "People have. In 2025 roughly 30% of Yosemite's search-and-rescue operations originated on the Mist Trail corridor, and the park averages close to one fatality per month on this trail and the falls above it. Stay behind the railings and don't wade above either waterfall." },
+      { "q": "Should I go up the Mist Trail and down the John Muir Trail?", "a": "Yes if you're doing the full route to Nevada Fall. Up the Mist Trail for the waterfall experience, down the JMT for gentler grades that are easier on knees. Total loop is about 6.5 miles. Most experienced hikers do it this way." }
+    ]
+  },
+
+  "working-in-yosemite": {
+    "wordCount": 1935,
+    "keywords": ["working in Yosemite", "Yosemite jobs", "Yosemite Hospitality Aramark", "Curry Village housing", "Yosemite naturalist"],
+    "faq": [
+      { "q": "Who employs most of the workers in Yosemite?", "a": "Not the National Park Service. Most jobs in the park, including lodging, food service, retail, shuttles, and front desk, are run by the authorized concessionaire, Yosemite Hospitality, a subsidiary of Aramark. NPS jobs are fewer and harder to land. Yosemite Conservancy hires a small team of seasonal naturalists, NatureBridge runs environmental education, and the Ansel Adams Gallery is tiny." },
+      { "q": "What is employee housing in Yosemite like?", "a": "Entry level is a 10-by-10 tent cabin at Curry Village shared with one to three roommates, with communal kitchens, bathrooms, and laundry, and a bear box on the porch. Rent is under twenty dollars a week, deducted from your paycheck. The housing ladder climbs to hard-walled cabins, dorm rooms, and eventually a solo room or studio, but the full climb takes years." },
+      { "q": "Can you live in Yosemite without working there?", "a": "No, with a few grandfathered exceptions. Living in the park requires working in the park, and working in the park does not always come with housing." },
+      { "q": "Can Yosemite employees bring pets?", "a": "Mostly no. Most park housing prohibits pets and most trails prohibit them too. Service animals are protected by law, and emotional support animals are allowed in housing but not at work or on the trails." },
+      { "q": "How far is the nearest grocery store or hospital from Yosemite Valley?", "a": "About an hour's drive. The closest grocery store with real selection is in Mariposa for most Valley residents, and the closest hospital, dentist, and eye doctor are all an hour or more away. A small clinic in the Valley handles routine care and stabilization." }
+    ]
+  },
+
+  "water-ouzels-waterfalls": {
+    "wordCount": 1693,
+    "keywords": ["water ouzel", "American dipper", "Cinclus mexicanus", "Yosemite Falls", "Yosemite birds"],
+    "faq": [
+      { "q": "What is a water ouzel?", "a": "The water ouzel, also called the American dipper (Cinclus mexicanus), is a dark, robin-sized songbird that walks underwater in cold, fast mountain streams and forages directly inside waterfalls. It is the most specialized stream bird in the Yosemite high country." },
+      { "q": "How does a water ouzel survive inside a waterfall?", "a": "It is built for it. Dense plumage waterproofed by an exceptionally effective oil gland, short powerful legs, sharp claws with specialized tendons that grip rock against the current, and eyes that focus underwater nearly as well as in air. It does not swim through the torrent; it walks the stream bottom." },
+      { "q": "Where can I see a water ouzel in Yosemite?", "a": "The bridge below Vernal Fall on the Mist Trail is one of the most reliable spots. The base of Yosemite Falls in early summer is another. Look for a compact, dark gray-brown bird moving in and out of fast water." },
+      { "q": "What do water ouzels eat?", "a": "Aquatic insects and their larvae, including mayfly, caddisfly, and stonefly larvae, plus small aquatic crustaceans. These insects live on the bottoms of cold, fast-moving, well-oxygenated streams, which is why the ouzel stays so close to cascades and falls." },
+      { "q": "What does seeing a water ouzel tell you about a stream?", "a": "That the stream is healthy. Ouzels require cold, fast-moving, well-oxygenated water with a rich population of specialized aquatic insects, so their presence confirms those conditions. Their absence from a stream where they were historically recorded signals that the water has become warmer, slower, or more degraded." }
+    ]
+  },
+
+  "bears-spring-emergence": {
+    "wordCount": 1731,
+    "keywords": ["Yosemite bears spring", "black bear emergence", "bear torpor", "bear safety Yosemite", "April bear behavior"],
+    "faq": [
+      { "q": "When do black bears emerge from their dens in Yosemite?", "a": "Bears begin emerging in April, after five to seven months in torpor. The trigger is not hunger but lengthening days and rising temperatures, which reset the bear's circadian rhythm and restart its metabolism. A bear that emerges in mid-April has spent the winter burning stored fat at roughly 25 percent of its normal metabolic rate." },
+      { "q": "Why are Yosemite bears most dangerous in spring?", "a": "Spring is when bears are most motivated, not most aggressive. A newly emerged bear has lost 20 to 40 percent of its body weight and faces acute caloric demand while only low-calorie spring vegetation is available. That metabolic urgency makes spring bears bolder: they hold their ground around humans, persist at food sources, and are more likely to attempt entry into cabins or food storage areas." },
+      { "q": "What is torpor and how is it different from hibernation?", "a": "Torpor is the near-hibernation state Yosemite bears enter in November or December. Heart rate drops from 70 to 100 beats per minute to 8 to 10, body temperature falls from about 38 degrees Celsius into the low 30s, the kidneys nearly shut down, and the bear neither eats, drinks, nor defecates. Unlike true hibernation, the bear can wake if disturbed." },
+      { "q": "How should visitors behave around bears in spring?", "a": "Spring requires the most rigorous food storage practices and bear-box discipline, since this is when bears most aggressively seek human food. Make noise on the trail to avoid surprise encounters, especially on lower Valley hikes like the Mist Trail where May and June foraging overlaps with peak hiking season." }
+    ]
+  },
+
+  "yosemite-glaciers-climate": {
+    "wordCount": 1835,
+    "keywords": ["Yosemite glaciers", "Mount Lyell Glacier", "glacier retreat Sierra Nevada", "climate change Yosemite", "Mount Dana Mount Maclure"],
+    "faq": [
+      { "q": "Does Yosemite still have glaciers?", "a": "Yes. Four glaciers remain: Mount Lyell (the largest and lowest descending), Mount Dana, Mount Maclure, and a handful of smaller cirque accumulations on the Cathedral Range. Most sit above 10,000 feet, and all are reached from Tioga Road, so visits are seasonal, roughly late June through October." },
+      { "q": "How much have Yosemite's glaciers retreated?", "a": "All four have retreated significantly since a 1933 survey, most by more than half their length. Mount Lyell's terminus has moved from about 9,500 feet of elevation in 1933 to near 9,900 feet today, meaning the glacier has thinned as well as shortened. A cairn a ranger built at the 1933 terminus now sits roughly 400 feet downslope from the ice." },
+      { "q": "Why are the glaciers shrinking?", "a": "The High Sierra has warmed by roughly 1.5 degrees Celsius since 1900, with most of that concentrated in recent decades and summer temperatures warming more than winter. An upslope retreat of a glacier's terminus signals either less snow accumulation or more summer melt; either way it points to a warmed climate, consistent with what climate models project." },
+      { "q": "Why do the glaciers matter for California's water?", "a": "About half of California's fresh water comes from the Sierra Nevada, much of it from snowmelt and glacier melt. Glaciers act as high-elevation reservoirs, storing winter snow as ice and releasing it gradually through summer melt to sustain streams like the Tenaya, Merced, and Tuolumne. As glaciers shrink, July and August streamflow will gradually decline and cold-water aquatic ecosystems will be stressed." }
+    ]
+  },
+
+  "giant-sequoias-fire-adaptation": {
+    "wordCount": 1557,
+    "keywords": ["giant sequoia", "Sequoiadendron giganteum", "sequoia fire adaptation", "Mariposa Grove", "fire ecology Yosemite"],
+    "faq": [
+      { "q": "Why do giant sequoias need fire?", "a": "Fire clears competing vegetation and exposes the bare mineral soil that tiny sequoia seeds need to establish, and it opens the canopy to give seedlings light. In a fire-suppressed forest, shade-tolerant species like white fir colonize the understory, the canopy closes, and sequoia seedlings are starved of light. A sequoia grove without fire is a grove in slow decline." },
+      { "q": "How do giant sequoias survive fires that kill other trees?", "a": "Mature sequoia bark can be two feet thick, loose and fibrous so it barely conducts heat, and rich in tannin that resists flame. When fire passes, the outer bark chars and that charring insulates the living wood beneath. Thinner-barked trees like white fir and sugar pine can be killed by ten or twenty minutes of sustained ground-fire heat, while the sequoia survives with only a scar." },
+      { "q": "How often did fire burn in the Mariposa Grove?", "a": "A 1929 fire-scar survey documented in Nature Notes counted at least two major burns per century over the past two thousand years. Trees that germinated in the 1600s grew in a forest that burned roughly every ten to thirty years; a single two-thousand-year-old sequoia may carry eight or ten distinct fire scars." },
+      { "q": "Why did Yosemite change its fire policy?", "a": "For about 150 years the park tried to prevent all fire, which let fuel accumulate and shade-tolerant species crowd the understory, leaving groves unable to regenerate and primed for hotter, more destructive fires. Land managers now treat fire as a necessity and run carefully timed, low-intensity restoration burns in groves like Mariposa, Tuolumne, and Merced to mimic the natural fire regime." }
+    ]
+  },
+
+  "hetch-hetchy-the-other-yosemite-valley": {
+    "wordCount": 2600,
+    "keywords": ["Hetch Hetchy", "O'Shaughnessy Dam", "Wapama Falls", "John Muir Hetch Hetchy", "Hetch Hetchy Reservoir"],
+    "trail": { "name": "Wapama Falls Trail, Hetch Hetchy", "distance": "4.8 miles round trip (to Wapama Falls)", "elevationGain": "500 ft", "difficulty": "Moderate" },
+    "faq": [
+      { "q": "How do I get to Hetch Hetchy in Yosemite?", "a": "Take Highway 120 west to Evergreen Road (about 1 mile past the Big Oak Flat entrance station), then Hetch Hetchy Road 16 miles to O'Shaughnessy Dam. The road has a gate with set hours, so check nps.gov/yose before driving out. The round trip from Yosemite Valley is about 3-4 hours including driving." },
+      { "q": "Can you hike to Wapama Falls at Hetch Hetchy?", "a": "Yes. The Wapama Falls trail is 4.8 miles round trip from the dam, gaining about 500 feet. In peak snowmelt (April-May) the crossing at the falls can be knee-deep and is sometimes closed. In summer it's a dry footbridge crossing. The falls are dramatically higher in May than in August." },
+      { "q": "Is Hetch Hetchy crowded?", "a": "Far less than Yosemite Valley. On a busy weekend, Hetch Hetchy sees a fraction of Valley traffic. The gated road hours limit early-morning surge further. If the Valley is slammed, Hetch Hetchy offers a wild Yosemite experience with essentially no wait." },
+      { "q": "Why was Hetch Hetchy Valley flooded?", "a": "In 1913 Congress passed the Raker Act authorizing O'Shaughnessy Dam, despite John Muir's national campaign to protect the valley. San Francisco needed a reliable water supply, and the valley's remote location inside federal land made it the proposed reservoir site. Muir called it a desecration equal to flooding the Sistine Chapel." },
+      { "q": "Can Hetch Hetchy be restored?", "a": "Engineering studies show the valley could be drained and would recover ecologically within decades. The political challenge is substantial: San Francisco still draws water and hydroelectric power from the reservoir. Replacement infrastructure would take years and billions of dollars. Restoration legislation is periodically introduced in Sacramento." }
+    ]
+  },
+
+  "yosemite-stargazing-where-to-look-up": {
+    "wordCount": 2516,
+    "keywords": ["Yosemite stargazing", "Milky Way Yosemite", "Glacier Point stars", "Olmsted Point dark sky", "Yosemite Star Party"],
+    "faq": [
+      { "q": "Where is the best stargazing in Yosemite?", "a": "Olmsted Point and Glacier Point are the most accessible high-altitude sites, both above 7,000 feet, away from Valley light, with wide sky exposure. Tuolumne Meadows has longer horizon lines. Sentinel Dome is excellent for Milky Way photography. The Valley floor has noticeably more light pollution than any of these." },
+      { "q": "When is the best time to stargaze in Yosemite?", "a": "New moon weekends from late July through September. The Milky Way core is highest in August, which is also the driest, warmest month for high-country nights. Use a moon phase calendar and timeanddate.com moonrise tables to find nights when the moon sets before midnight." },
+      { "q": "Is there a Yosemite Star Party?", "a": "Yes. The Yosemite Conservancy organizes annual stargazing programs at Glacier Point, typically in late summer, with telescopes and astronomy interpreters. Tickets are limited and sell out early, so check yosemite.org for dates and registration." },
+      { "q": "Can you see the Milky Way from Yosemite Valley?", "a": "On a moonless night, yes, but the Valley's lodging and village lighting reduce contrast. The high-country sites, Olmsted Point, Glacier Point, and Sentinel Dome, offer dramatically better views with comparable drive time from most gateway towns." },
+      { "q": "What should I bring for stargazing in Yosemite?", "a": "Warm layers (high-country nights drop to 40F even in August), a red-light flashlight to preserve night vision, a blanket or camp chair for lying back, and binoculars, which reveal far more than the naked eye without telescope setup. A free app like Stellarium helps identify constellations and planets." }
+    ]
+  },
+
+  "yosemite-for-non-hikers": {
+    "wordCount": 2032,
+    "keywords": ["Yosemite without hiking", "Yosemite accessible", "Yosemite for seniors", "Yosemite by car", "Yosemite drive"],
+    "faq": [
+      { "q": "Is Yosemite worth visiting if you don't hike?", "a": "Absolutely. The most dramatic viewpoints, Tunnel View, El Capitan Meadow, Valley View, Glacier Point, and Olmsted Point, are all drive-up or involve short paved walks under half a mile. The Valley tram tour, Mariposa Grove tram, and in-park shuttle require no hiking." },
+      { "q": "What can you see in Yosemite without hiking?", "a": "Tunnel View (drive-up), El Capitan and Yosemite Falls from roadside meadows, Bridalveil Fall (0.5-mile paved path), Lower Yosemite Fall loop (1-mile paved loop), Valley View (pull-out), Glacier Point overlook (drive-up), Olmsted Point (Tioga Road pull-out), and Mariposa Grove (tram tour available)." },
+      { "q": "Are there guided tours in Yosemite for non-hikers?", "a": "Yes. The Yosemite Valley Floor Tour is a 2-hour open-air tram covering the main Valley viewpoints. Glacier Point bus tours run daily in summer. The Mariposa Grove tram offers a narrated circuit through the sequoia grove. All are operated by the park concessionaire, bookable at yosemite.com." },
+      { "q": "Is Glacier Point accessible without hiking?", "a": "Yes. Glacier Point is a drive-up viewpoint with a paved overlook and restrooms. No hiking is required to reach the main viewpoint. In summer, a bus tour from the Valley also serves it for those who do not want to drive the narrow 16-mile road." },
+      { "q": "Can you visit Yosemite by bus or train?", "a": "Yes. Amtrak's San Joaquin line runs to Merced, where YARTS buses make the 2-hour trip to Yosemite Valley. YARTS runs year-round on the Highway 140/Merced route. In summer, YARTS also connects Lee Vining and Mammoth Lakes to the Valley via Tioga Road." }
+    ]
+  },
+
+  "pack-your-car-for-yosemite": {
+    "wordCount": 2771,
+    "keywords": ["pack car Yosemite", "Yosemite car kit", "Yosemite bear-aware", "Yosemite road trip preparation", "Yosemite trunk essentials"],
+    "faq": [
+      { "q": "What should I pack in my car for a Yosemite trip?", "a": "A well-packed cooler, a rigid water jug of four to seven gallons, layers (fleece, rain jacket, warm hat) for every person, a paper park map and offline maps, and a roadside kit with a portable jump starter, spare tire, and flashlight. Binoculars, a windshield sunshade, and camp chairs earn their space too." },
+      { "q": "Do I need to store food in my car in Yosemite because of bears?", "a": "Yes. Any food or scented item, including sealed coolers, granola bars, gum, sunscreen, and chapstick, must be stored properly. In campgrounds it goes in the bear box. At trailheads keep it in the trunk, out of sight, with windows closed. Bears recognize coolers through windows and peel doors open." },
+      { "q": "How long will a cooler stay cold in Yosemite?", "a": "Three to four days if it stays shut and in the shade in the trunk. A cooler that is opened every thirty minutes and sits in the back seat in July lasts about eight hours. Pack in layers and freeze water bottles to use as ice blocks and cold drinking water." },
+      { "q": "Is there cell service in Yosemite for navigation?", "a": "Not reliably outside the Valley. Carry the free paper park map and download offline maps over wifi before you enter. There is no gas between Lee Vining and Crane Flat, about 60 miles, so fill up before entering from any direction." },
+      { "q": "What roadside gear should I bring to Yosemite?", "a": "A portable jump starter (dead batteries are common at elevation), a spare tire with the tools and the know-how to change it, a basic tool kit with duct tape and zip ties, and a real flashlight that works when your phone is dead. Tows can be hours away." }
+    ]
+  },
+
+  "yosemite-gateway-towns-compared": {
+    "wordCount": 2210,
+    "keywords": ["Yosemite gateway towns", "Mariposa Yosemite", "Oakhurst Yosemite", "El Portal Lee Vining", "where to stay Yosemite"],
+    "faq": [
+      { "q": "Which Yosemite gateway town is closest to the Valley?", "a": "El Portal, about 14 miles and 25-30 minutes from Yosemite Valley via Highway 140. Mariposa is next at 45 miles and 45-60 minutes. Lee Vining is closest to Tuolumne Meadows (25 minutes) but 90+ minutes from the Valley." },
+      { "q": "Which Yosemite gateway town is cheapest?", "a": "Groveland and Mariposa typically have the widest price range and the most budget options. El Portal lodging is priced like in-park lodging because of the location. Oakhurst has predictable chain prices. Lee Vining has limited inventory and is priced accordingly." },
+      { "q": "Which Yosemite gateway town is best for families?", "a": "Mariposa, by a wide margin. It has full-service grocery stores, multiple restaurants, a wide range of lodging from budget motels to inns, and a real downtown to spend an evening in. The 45-minute drive to the Valley is a fair trade for the amenities." },
+      { "q": "Which Yosemite gateway towns have full grocery stores?", "a": "Mariposa and Oakhurst have full grocery stores. Groveland has a smaller one. El Portal has a market, not a real grocery. Lee Vining has limited groceries. Stock up at the larger town before you head in." },
+      { "q": "Do Yosemite gateway towns have reliable cell service?", "a": "Patchy in all five gateways and essentially nonexistent inside the park past Crane Flat. Don't rely on real-time Google Maps once you're past the entrance station. Download offline maps before you leave the gateway." }
+    ]
+  },
+
+  "yosemite-during-smoke-season": {
+    "wordCount": 1643,
+    "keywords": ["Yosemite smoke season", "wildfire smoke Yosemite", "Yosemite AQI", "California smoke planning", "Yosemite air quality"],
+    "faq": [
+      { "q": "When is smoke season at Yosemite?", "a": "Smoke season in California overlaps fire season: July through October. August and September are the most affected months on average, though clear stretches happen throughout and forecasts are unreliable beyond 48-72 hours." },
+      { "q": "How do I check air quality before visiting Yosemite?", "a": "AirNow.gov (EPA) is the standard source. The Yosemite NPS website posts air quality advisories. Check the AQI for the Yosemite Valley area 48-72 hours before departure and again the morning you travel, since conditions change fast during fire season." },
+      { "q": "Should I wear a mask in Yosemite smoke?", "a": "If AQI is above 100, an N95 or KN95 mask provides meaningful protection, especially for children, the elderly, and anyone with respiratory conditions. Surgical masks and cloth masks do not filter fine smoke particles effectively." },
+      { "q": "What is a good alternative if Yosemite is too smoky?", "a": "The eastern Sierra often has better air when prevailing winds carry smoke away from the park. Mono Lake, Mammoth Lakes, and the June Lake Loop are worth checking. Smoke also typically clears after cold fronts, so monitoring the forecast 48-72 hours out gives you a real window to reschedule." },
+      { "q": "Does wildfire smoke ruin a Yosemite trip?", "a": "Not necessarily. Haze produces warm, diffused light that photographers actively seek. On moderate-smoke days (AQI 50-100) most outdoor activities are fine for healthy adults. On heavy-smoke days (AQI 150+) strenuous outdoor exercise is not recommended, so use the time for indoor sites, driving routes, or the Ahwahnee." }
+    ]
+  },
+
+  "yosemite-without-reservations-2026": {
+    "wordCount": 1898,
+    "keywords": ["Yosemite 2026 reservations", "Yosemite without reservation", "Yosemite parking strategy", "Yosemite crowds 2026", "Yosemite entrance station"],
+    "faq": [
+      { "q": "Do I need a reservation to enter Yosemite in 2026?", "a": "No. The day-use vehicle reservation system is not in effect in 2026. A standard Yosemite entrance pass is required." },
+      { "q": "When does Yosemite Valley fill up?", "a": "Day-use parking in the Valley typically fills by 9 a.m. on summer weekends and 10-11 a.m. on weekdays. Tunnel View fills earlier, often by 7:30 a.m. on peak days. Once lots are full, you're circling." },
+      { "q": "What time should I enter Yosemite to beat the crowds?", "a": "Be inside the park by 6:30 a.m. on any peak day. Earlier is better. The drive in is faster, the entrance stations are quiet, and you'll be parked at your first stop while everyone else is still in line." },
+      { "q": "What changed in Yosemite in 2026?", "a": "The day-use entrance reservation system was dropped. The reservation requirement that throttled vehicles during peak hours in 2024 and 2025 is gone, and the park is expected to see its heaviest crowds in years as a result." },
+      { "q": "How do I find parking in Yosemite Valley?", "a": "Arrive before 8 a.m. for the central lots. Yosemite Village day-use parking is the most useful base. If those are full, the lot near Yosemite Valley Lodge usually has turnover by mid-morning. Don't waste time circling Curry Village." }
+    ]
+  },
+
+  "first-time-yosemite-overwhelm": {
+    "wordCount": 1129,
+    "keywords": ["first time Yosemite", "Yosemite first trip", "Yosemite planning", "Yosemite for beginners", "Yosemite trip strategy"],
+    "faq": [
+      { "q": "How long should I spend in Yosemite for a first trip?", "a": "At minimum two full days. Three to four is better, giving you time to see Yosemite Valley properly and have one full day elsewhere (Glacier Point, Mariposa Grove, or Tioga Road). A single-day trip is possible but you'll be moving constantly." },
+      { "q": "What month is best for visiting Yosemite for the first time?", "a": "Late May and early June for peak waterfalls; September and October for low crowds and golden light. July and August are warm and crowded. April has waterfalls and fewer people but Tioga Road and Glacier Point Road are usually still closed." },
+      { "q": "Do I need a reservation to enter Yosemite in 2026?", "a": "No. The day-use entrance reservation system is not in effect in 2026. A standard Yosemite entrance pass is required." },
+      { "q": "Where should I stay on a first Yosemite trip?", "a": "Mariposa is the most practical first-timer choice, about 45 minutes from the Valley, a real downtown, full-service. El Portal is closer (25-30 minutes) but smaller and more expensive. In-park lodging fills six to twelve months ahead." },
+      { "q": "How much driving is involved in a Yosemite trip?", "a": "More than most people expect. A gateway town to the Valley is 25 to 90 minutes each way. Glacier Point Road and Tioga Road each add an hour or more in-park. Pack the car like you're going to drive a lot, because you will." }
+    ]
+  }
+}

@@ -8,6 +8,7 @@ const CONTACT_API_BASE =
   "https://api.thetalusfieldjournal.com";
 
 function NewsletterPage({ go }) {
+  const [done, setDone] = useState(false);
   return (
     <div className="page">
       <div className="wrap wrap--narrow" style={{ paddingTop: 96, paddingBottom: 96 }}>
@@ -20,28 +21,38 @@ function NewsletterPage({ go }) {
         <div style={{ border: "1px solid var(--moss)", background: "var(--paper-2)", padding: "20px 24px", marginBottom: 40 }}>
           <div className="eyebrow eyebrow--moss" style={{ marginBottom: 8 }}>Free for subscribers</div>
           <p style={{ fontFamily: "var(--serif)", fontSize: 17, lineHeight: 1.6, color: "var(--ink)", margin: 0 }}>
-            Sign up and get the free map planner: a printable Yosemite map for blocking out where to go and when, with parking turnouts, the major stops, and room to mark your own. It lands in your inbox the moment you confirm.
+            Sign up and unlock <a href="/map" onClick={(e) => { e.preventDefault(); go("map"); }}>the interactive Yosemite map</a>: vistas, trailheads, parking turnouts, picnic spots, and places to eat, with a trip builder that saves your route on your device. It opens the moment you subscribe.
           </p>
         </div>
 
-        <form
-          action="https://buttondown.email/api/emails/embed-subscribe/goehring"
-          method="post"
-          target="popupwindow"
-          onSubmit={() => window.trackNewsletterSubmit ? window.trackNewsletterSubmit("newsletter_page", "newsletter-page") : window.open("https://buttondown.email/goehring", "popupwindow")}
-          style={{ borderTop: "1px solid var(--ink)", borderBottom: "1px solid var(--ink)", padding: "24px 0", display: "flex", gap: 16, alignItems: "center", marginBottom: 48 }}
-        >
-          <input
-            type="email"
-            name="email"
-            placeholder="you@email.com"
-            required
-            style={{ flex: 1, fontFamily: "var(--serif)", fontSize: 22, background: "transparent", border: 0, outline: "none", color: "var(--ink)" }}
-          />
-          <input type="hidden" name="tag" value="newsletter-page" />
-          <input type="hidden" name="embed" value="1" />
-          <button className="btn" type="submit">Subscribe →</button>
-        </form>
+        {done ? (
+          <p style={{ borderTop: "1px solid var(--ink)", borderBottom: "1px solid var(--ink)", padding: "24px 0", marginBottom: 48, fontFamily: "var(--display)", fontStyle: "italic", fontSize: 22, color: "var(--moss)" }}>
+            Thanks. <a href="/map" onClick={(e) => { e.preventDefault(); go("map"); }}>The map is open to you →</a>
+          </p>
+        ) : (
+          <form
+            action="https://buttondown.com/api/emails/embed-subscribe/goehring"
+            method="post"
+            target="buttondown-target"
+            onSubmit={() => {
+              if (window.trackNewsletterSubmit) window.trackNewsletterSubmit("newsletter_page", "newsletter-page");
+              setTimeout(() => setDone(true), 0);
+            }}
+            style={{ borderTop: "1px solid var(--ink)", borderBottom: "1px solid var(--ink)", padding: "24px 0", display: "flex", gap: 16, alignItems: "center", marginBottom: 48 }}
+          >
+            <input
+              type="email"
+              name="email"
+              aria-label="Email address"
+              placeholder="you@email.com"
+              required
+              style={{ flex: 1, fontFamily: "var(--serif)", fontSize: 22, background: "transparent", border: 0, outline: "none", color: "var(--ink)" }}
+            />
+            <input type="hidden" name="tag" value="newsletter-page" />
+            <input type="hidden" name="embed" value="1" />
+            <button className="btn" type="submit">Subscribe →</button>
+          </form>
+        )}
 
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 40, marginTop: 64 }}>
           <div>

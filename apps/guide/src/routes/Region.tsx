@@ -3,6 +3,7 @@ import { Link, Navigate, useParams } from 'react-router-dom'
 import { RegionEnum, getRegionMeta, getStopsByRegion } from '../content'
 import GatedChrome from '../components/GatedChrome'
 import StopCard from '../components/StopCard'
+import { allPhotoUrls } from '../utils/photo'
 
 export default function Region() {
   const params = useParams<{ regionId: string }>()
@@ -15,7 +16,7 @@ export default function Region() {
     if (!('serviceWorker' in navigator)) return
     const sw = navigator.serviceWorker.controller
     if (!sw) return
-    const urls = stops.flatMap((s) => s.photos.map((p) => p.src)).filter(Boolean)
+    const urls = stops.flatMap((s) => s.photos.flatMap((p) => allPhotoUrls(p.src))).filter(Boolean)
     if (urls.length === 0) return
     sw.postMessage({ type: 'PRECACHE_URLS', urls })
   }, [stops])

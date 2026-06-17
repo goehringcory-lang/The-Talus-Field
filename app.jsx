@@ -1,6 +1,6 @@
-/* global React, ReactDOM, Header, Footer,
+/* global React, ReactDOM, Header, Footer, ExitIntentNewsletter,
    HomePage, AboutPage, ArticlesIndex, CategoryPage, ArticlePage,
-   KitPage, PlacesPage, AdvertisePage, GuidePage, MapPage,
+   KitPage, PlacesPage, AdvertisePage, GuidePage, MapPage, FilmsPage,
    PlanningGuide, ChecklistPage,
    NewsletterPage, ContactPage, PrivacyPage, TermsPage, AffiliatePage,
    TweaksPanel, useTweaks, TweakSection, TweakRadio, TweakToggle */
@@ -50,6 +50,10 @@ function legacyHashToRoute(hash) {
 // PerplexityBot, Google-Extended) read these on render.
 // ============================================================
 const SITE_NAME = "The Talus Field";
+// Single author node defined in index.html (<script id="ld-person">). Article
+// schema references it by @id so there is one Person entity for the whole site,
+// matching functions/_middleware.js (edge) and the Organization founder.
+const PERSON_ID = `${SITE_ORIGIN}/#person-cory-goehring`;
 const SITE_TAGLINE = "Yosemite, written from inside it";
 const SITE_DEFAULT_IMAGE = `${SITE_ORIGIN}/img/Half%20Dome%20Main%20Photo.jpg`;
 const SITE_DEFAULT_DESC =
@@ -160,11 +164,7 @@ function buildSeo(route) {
           datePublished: a.isoDate || a.date,
           dateModified: a.isoModified || a.isoDate || a.date,
           articleSection: cat ? cat.label : undefined,
-          author: {
-            "@type": "Person",
-            name: window.SITE.authorName,
-            url: `${SITE_ORIGIN}/about`,
-          },
+          author: { "@id": PERSON_ID },
           publisher: {
             "@type": "Organization",
             name: SITE_NAME,
@@ -254,6 +254,81 @@ function buildSeo(route) {
         ["Home", `${SITE_ORIGIN}/`],
         ["Kit", null],
       ]),
+    };
+  }
+
+  // Films. ItemList of VideoObject nodes built from the archive catalog.
+  // uploadDate is deliberately omitted: only publication years are sourced,
+  // and a fabricated full date is worse than none.
+  if (route === "films") {
+    const nn = window.NATURE_NOTES;
+    const episodes = (nn && nn.episodes) || [];
+    return {
+      title: `Moving Pictures — the Yosemite Nature Notes film archive — ${SITE_NAME}`,
+      description:
+        "The complete Yosemite Nature Notes film series from the National Park Service, grouped by subject. Public domain, free to watch, most under ten minutes.",
+      canonical: url,
+      ogType: "website",
+      image: SITE_DEFAULT_IMAGE,
+      jsonLd: {
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        name: "Yosemite Nature Notes — the film archive",
+        url,
+        numberOfItems: episodes.length,
+        itemListElement: episodes.map((ep, i) => ({
+          "@type": "VideoObject",
+          position: i + 1,
+          name: ep.title,
+          description: ep.dek,
+          thumbnailUrl: `https://i.ytimg.com/vi/${ep.youtubeId}/hqdefault.jpg`,
+          embedUrl: `https://www.youtube-nocookie.com/embed/${ep.youtubeId}`,
+          publisher: { "@type": "Organization", name: "National Park Service" },
+          isAccessibleForFree: true,
+        })),
+      },
+      breadcrumb: breadcrumbLd([
+        ["Home", `${SITE_ORIGIN}/`],
+        ["Films", null],
+      ]),
+    };
+  }
+
+  // Articles index. CollectionPage whose mainEntity is the full catalog as an
+  // ItemList. Mirrored at the edge in functions/_middleware.js; building it
+  // here too means the hydration clear of #ld-page replaces like with like
+  // instead of stripping the edge node for JS-rendering crawlers.
+  if (route === "articles") {
+    const all = window.ARTICLES || [];
+    const desc =
+      "Every entry, in reverse chronological order. Yosemite trip planning, trails, wildlife, and seasonal guides.";
+    return {
+      title: `Articles — ${SITE_NAME}`,
+      description: desc,
+      canonical: url,
+      ogType: "website",
+      image: SITE_DEFAULT_IMAGE,
+      jsonLd: {
+        "@context": "https://schema.org",
+        "@type": "CollectionPage",
+        name: `Articles — ${SITE_NAME}`,
+        url,
+        description: desc,
+        inLanguage: "en-US",
+        isPartOf: { "@type": "WebSite", name: SITE_NAME, url: SITE_ORIGIN },
+        mainEntity: {
+          "@type": "ItemList",
+          numberOfItems: all.length,
+          itemListElement: all.map((a, i) => ({
+            "@type": "ListItem",
+            position: i + 1,
+            url: `${SITE_ORIGIN}/articles/${a.slug}`,
+            name: a.title,
+          })),
+        },
+      },
+      breadcrumb: null,
+      faq: null,
     };
   }
 
@@ -348,12 +423,10 @@ function buildSeo(route) {
       ogType: "website",
     },
     map: {
-      // Hidden preview. URL-only access while the feature is being tested.
-      // robots:noindex keeps it out of search even if someone shares the URL.
-      title: `Map — ${SITE_NAME}`,
-      description: SITE_DEFAULT_DESC,
+      title: `Yosemite Trip Planner Map — ${SITE_NAME}`,
+      description:
+        "An interactive Yosemite map of vistas, trailheads, parking turnouts, picnic spots, and places to eat, with a trip builder. Curated by a resident of the park. Free.",
       ogType: "website",
-      robots: "noindex, nofollow",
     },
   };
   const meta = known[route] || known.home;
@@ -386,6 +459,15 @@ const ARTICLE_OG_TAGS = [
   "article:author",
   "article:section",
 ];
+
+// True once the first applySeo has run. functions/_middleware.js injects the
+// per-route ld-faq / ld-trail into the static HTML for crawlers that don't run
+// JS. On the very first paint (the only state a crawler that *does* render JS,
+// e.g. Googlebot, ever sees per URL) we must not clear an edge-injected ld-faq
+// just because this route carries no inline faq in data.js — that would strip
+// the FAQ rich result on hydration. On later SPA navigations we clear as usual
+// so stale schema does not bleed across routes.
+let seoApplied = false;
 
 function applySeo(route) {
   const seo = buildSeo(route);
@@ -432,7 +514,9 @@ function applySeo(route) {
   if (seo.breadcrumb) setJsonLd("ld-breadcrumb", seo.breadcrumb);
   else clearJsonLd("ld-breadcrumb");
   if (seo.faq) setJsonLd("ld-faq", seo.faq);
-  else clearJsonLd("ld-faq");
+  else if (seoApplied) clearJsonLd("ld-faq");
+
+  seoApplied = true;
 }
 
 // ============================================================
@@ -465,8 +549,7 @@ function App() {
     const onClick = (e) => {
       const a = e.target.closest && e.target.closest("a[data-aff-network]");
       if (!a) return;
-      if (typeof window.gtag !== "function") return;
-      window.gtag("event", "affiliate_click", {
+      window.track("affiliate_click", {
         aff_network: a.dataset.affNetwork || "unknown",
         aff_list: a.dataset.affList || "",
         aff_item_slug: a.dataset.affItemSlug || "",
@@ -519,6 +602,9 @@ function App() {
   } else if (route === "places") {
     page = <PlacesPage go={go} />;
     currentNav = "places";
+  } else if (route === "films") {
+    page = <FilmsPage />;
+    currentNav = "films";
   } else if (route === "advertise") {
     page = <AdvertisePage go={go} />;
   } else if (route === "articles") {
@@ -551,19 +637,24 @@ function App() {
   } else if (route === "guide") {
     page = <GuidePage go={go} />;
   } else if (route === "map") {
-    // Hidden preview route. Intentionally not added to the nav, sitemap, or
-    // article footer — typed-URL access only while the feature is tested.
     page = <MapPage go={go} />;
     // currentNav stays "home" so no nav link highlights.
   } else {
     page = <HomePage go={go} />;
   }
 
+  // Exit-intent newsletter modal, mounted site-wide (outside the keyed <main>
+  // so it persists across SPA navigation and does not re-arm). Suppressed on
+  // pages where a popup is redundant or out of place.
+  // "films" is included so the popup never interrupts a playing film.
+  const exitDisabled = ["newsletter", "contact", "privacy", "terms", "affiliate", "films"].includes(route);
+
   return (
     <>
       <Header current={currentNav} go={go} />
       <main key={route}>{page}</main>
       <Footer go={go} />
+      <ExitIntentNewsletter disabled={exitDisabled} />
 
       <TweaksPanel title="Tweaks">
         <TweakSection title="Palette" subtitle="The look of every page on the site.">
@@ -597,9 +688,41 @@ function App() {
 window.routeToPath = routeToPath;
 window.SITE_ORIGIN = SITE_ORIGIN;
 
+// Boot-time registration check. Every component the route chain above
+// references must already be on window because each page script registers
+// itself as a global. Without this, one script that 404s or fails its Babel
+// transform surfaces only as a bare ReferenceError when its route renders.
+// Render proceeds either way; the failure just stops being anonymous.
+const REQUIRED_GLOBALS = [
+  "Header", "Footer", "ExitIntentNewsletter",
+  "HomePage", "AboutPage", "ArticlesIndex", "CategoryPage", "ArticlePage",
+  "KitPage", "PlacesPage", "AdvertisePage", "GuidePage", "MapPage", "FilmsPage",
+  "PlanningGuide", "ChecklistPage", "NewsletterPage", "ContactPage",
+  "PrivacyPage", "TermsPage", "AffiliatePage",
+  "TweaksPanel", "useTweaks", "TweakSection", "TweakRadio",
+];
+const missingGlobals = REQUIRED_GLOBALS.filter((n) => typeof window[n] === "undefined");
+if (missingGlobals.length) {
+  console.error(
+    "app.jsx boot: missing page globals (a script failed to load or register):",
+    missingGlobals.join(", ")
+  );
+  if (window.location.hostname === "localhost") {
+    const warn = document.createElement("div");
+    warn.style.cssText = "position:fixed;top:0;left:0;right:0;z-index:9999;background:#b9453d;color:#fff;font:13px/1.4 monospace;padding:8px 14px;";
+    warn.textContent = "Missing globals: " + missingGlobals.join(", ");
+    document.body.appendChild(warn);
+  }
+}
+
 ReactDOM.createRoot(document.getElementById("root")).render(<App />);
 
 // The static SEO <h1> in index.html exists for non-JS HTML parsers. Now that
 // React is mounting its own per-route <h1>, remove it so JS-rendering crawlers
 // (Google) and JS users see exactly one H1 per page.
 document.getElementById("seo-static-h1")?.remove();
+
+// The edge middleware injects prerendered article prose into #root as
+// #prerender-prose for non-JS crawlers. createRoot().render() above already
+// replaces #root's children; remove it explicitly too so it never flashes.
+document.getElementById("prerender-prose")?.remove();

@@ -12,6 +12,10 @@ const Map = lazy(() => import('./routes/Map'))
 const Account = lazy(() => import('./routes/Account'))
 const Region = lazy(() => import('./routes/Region'))
 const StopDetail = lazy(() => import('./routes/StopDetail'))
+const Essentials = lazy(() => import('./routes/Essentials'))
+const EssentialDetail = lazy(() => import('./routes/EssentialDetail'))
+const SecretSpots = lazy(() => import('./routes/SecretSpots'))
+const Search = lazy(() => import('./routes/Search'))
 
 export default function App() {
   return (
@@ -42,6 +46,38 @@ export default function App() {
             element={
               <RequireAuth>
                 <StopDetail />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="/essentials"
+            element={
+              <RequireAuth>
+                <Essentials />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="/essentials/:topicId"
+            element={
+              <RequireAuth>
+                <EssentialDetail />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="/secret-spots"
+            element={
+              <RequireAuth>
+                <SecretSpots />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="/search"
+            element={
+              <RequireAuth>
+                <Search />
               </RequireAuth>
             }
           />

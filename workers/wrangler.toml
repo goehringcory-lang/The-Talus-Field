@@ -15,7 +15,7 @@ preview_id = "REPLACE_ME_FOR_LOCAL_DEV"
 [vars]
 APP_BASE_URL = "https://guide.thetalusfieldjournal.com"
 EDITORIAL_BASE_URL = "https://thetalusfieldjournal.com"
-GUIDE_PRICE_CENTS = "2900"
+GUIDE_PRICE_CENTS = "900"
 GUIDE_PRODUCT_TAG = "field_guide_2026"
 GUIDE_MONTHLY_CAP = "100"
 

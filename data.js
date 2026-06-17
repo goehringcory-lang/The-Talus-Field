@@ -1,12 +1,25 @@
 // Shared content for The Talus Field prototype.
 // Articles are stored once and pulled by every page that needs them.
 //
-// NOTE: Article and category metadata is mirrored in /articles.json and
-// /categories.json so the Cloudflare Pages Function in /functions/_middleware.js
-// can inject per-route SEO into the static HTML before any JS executes.
-// When you add or edit an article here, update articles.json (and feed.xml +
-// sitemap.xml) to match. Bump isoModified when an article is meaningfully
-// revised so Google sees the update.
+// NOTE: window.ARTICLES below is the single source of truth for the article
+// catalog and core metadata. SEO enrichment that the browser does not need
+// (keywords, wordCount, faq, trail facts) lives in /seo-data.json, keyed by
+// slug, to keep this runtime file small.
+//
+// The mirror files consumed by crawlers — /articles.json (read by the Pages
+// Function in /functions/_middleware.js), /sitemap.xml, /feed.xml, and the
+// article list in /llms.txt — are GENERATED from data.js + seo-data.json. Do
+// not hand-edit them. When you add or edit an article:
+//   1. edit window.ARTICLES here (and its bodies/<slug>.jsx),
+//   2. add any enrichment to seo-data.json,
+//   3. run `npm --prefix scripts run seo` (and commit the regenerated files).
+// Bump isoModified when an article is meaningfully revised so Google and AI
+// answer engines see the update. `npm --prefix scripts run seo:check` fails if
+// the mirrors are stale.
+
+// Masthead issue label. The month name tracks the current date so the
+// "The June Issue" label rolls over automatically each month.
+const ISSUE_MONTH = new Date().toLocaleDateString("en-US", { month: "long" });
 
 window.SITE = {
   brand: "The Talus Field",
@@ -16,7 +29,7 @@ window.SITE = {
   email: "cory@thetalusfieldjournal.com",
   // Masthead issue label. One source of truth — Header and HomePage both read this.
   issue: "Vol. III · No. 19",
-  issueDetail: "The May Issue",
+  issueDetail: `The ${ISSUE_MONTH} Issue`,
 };
 
 window.CATEGORIES = [
@@ -35,30 +48,35 @@ window.CATEGORIES = [
 // ============================================================
 window.BODY_VERSIONS = {
   "yosemite-bears-safety-guide": 80,
+  "yosemite-heat-safety-guide": 1,
+  "when-to-visit-yosemite-2026-crowd-forecast": 2,
+  "yosemite-trip-cost-budget-2026": 1,
+  "yosemite-in-june-2026": 1,
+  "cathedral-lakes-day-hike": 1,
   "yosemite-needs-a-reservation-system": 80,
-  "memorial-day-skip-the-valley-go-high-2026": 77,
+  "memorial-day-skip-the-valley-go-high-2026": 78,
   "four-mile-up-panorama-down": 75,
   "yosemite-with-kids-no-reservations-2026": 75,
   "tioga-road-opening-weekend-2026": 75,
   "so-you-want-to-hike-half-dome": 75,
   "half-dome-permit-lottery-2026": 80,
-  "glacier-point-road-open-2026": 75,
+  "glacier-point-road-open-2026": 76,
   "mist-trail-the-real-guide": 80,
   "first-time-yosemite-overwhelm": 80,
   "yosemite-without-reservations-2026": 80,
   "yosemite-during-smoke-season": 75,
-  "yosemite-gateway-towns-compared": 80,
+  "yosemite-gateway-towns-compared": 81,
   "pack-your-car-for-yosemite": 80,
   "yosemite-for-non-hikers": 75,
   "yosemite-stargazing-where-to-look-up": 75,
   "hetch-hetchy-the-other-yosemite-valley": 75,
-  "yosemite-glaciers-climate": 75,
+  "yosemite-glaciers-climate": 76,
   "giant-sequoias-fire-adaptation": 75,
   "bears-spring-emergence": 75,
   "water-ouzels-waterfalls": 75,
-  "working-in-yosemite": 75,
+  "working-in-yosemite": 76,
   "yosemite-in-one-or-two-days": 78,
-  "where-to-eat-yosemite": 79,
+  "where-to-eat-yosemite": 80,
 };
 
 // Fetch a single article body, Babel-transform it in the browser, and run it so
@@ -72,23 +90,30 @@ window.loadArticleBody = function loadArticleBody(slug) {
   if (window.__bodyPromises[slug]) return window.__bodyPromises[slug];
 
   const v = window.BODY_VERSIONS && window.BODY_VERSIONS[slug];
-  const url = `/bodies/${slug}.jsx${v ? `?v=${v}` : ""}`;
+  // Bodies are precompiled to plain JS under /dist/bodies by
+  // scripts/gen-compiled.mjs (same block-scoping downlevel as the page scripts),
+  // so we inject them directly with no in-browser Babel transform.
+  const url = `/dist/bodies/${slug}.js${v ? `?v=${v}` : ""}`;
   const p = fetch(url)
     .then((r) => {
       if (!r.ok) throw new Error(`Failed to load body "${slug}": ${r.status}`);
       return r.text();
     })
-    .then((src) => {
-      // Must match index.html's data-presets: react,env. The env preset downlevels
-      // const/let to var; without it a body declaring a top-level const would collide
-      // with the globally-scoped declarations from the page scripts and fail to inject.
-      const { code } = window.Babel.transform(src, { presets: ["react", "env"], filename: `${slug}.jsx` });
+    .then((code) => {
       const script = document.createElement("script");
       script.textContent = code;
       document.body.appendChild(script);
-      return window.ARTICLE_BODIES[slug] || null;
+      const body = window.ARTICLE_BODIES[slug] || null;
+      if (!body) {
+        console.error(`loadArticleBody: bodies/${slug}.jsx loaded but did not register window.ARTICLE_BODIES["${slug}"]`);
+      }
+      return body;
     })
     .catch((err) => {
+      // Surfaces both fetch failures (404 from a stale BODY_VERSIONS entry)
+      // and Babel syntax errors; without this the page only shows the
+      // "coming soon" fallback with no trace of why.
+      console.error(`loadArticleBody: article body "${slug}" failed`, err);
       delete window.__bodyPromises[slug];
       throw err;
     });
@@ -616,6 +641,76 @@ window.ARTICLES = [
     read: "16 min",
     placeholder: "A brown-phase black bear foraging at the edge of a Yosemite roadside",
     image: "img/black-bear-roadside.jpg",
+    credit: "Photo: Cory Goehring",
+  },
+  {
+    slug: "yosemite-heat-safety-guide",
+    cat: "seasonal",
+    title: "Yosemite Heat Safety: A Naturalist's Survival Guide",
+    dek: "Yosemite Valley is a granite oven in July and August. A naturalist on which trails will cook you, the water math, where to swim safely, and how to escape the heat uphill.",
+    seoDek: "How hot does Yosemite get in summer? A naturalist's guide to which trails to avoid, where to swim, and how to stay safe in Yosemite Valley heat.",
+    date: "June 16, 2026",
+    isoDate: "2026-06-16",
+    isoModified: "2026-06-16",
+    read: "16 min",
+    placeholder: "A granite outcrop above Yosemite Valley with El Capitan across the canyon on a hot, cloudless summer afternoon",
+    image: "img/yosemite-valley-granite-summer-cory-goehring.jpg",
+    credit: "Photo: Cory Goehring",
+  },
+  {
+    slug: "when-to-visit-yosemite-2026-crowd-forecast",
+    cat: "planning",
+    title: "When to Visit Yosemite in 2026: What the Traffic Data Says",
+    dek: "The reservation system is gone and the park is pacing toward its second-busiest year ever. A decade of NPS visitation data, a month-by-month forecast for the rest of 2026, and the days that still work.",
+    seoDek: "Yosemite has no reservation system in 2026 and is pacing toward its second-busiest year ever. NPS data, a month-by-month crowd forecast, and the best days to visit.",
+    date: "June 11, 2026",
+    isoDate: "2026-06-11",
+    isoModified: "2026-06-11",
+    read: "11 min",
+    placeholder: "Cars parked along the edge of a Yosemite Valley meadow on a crowded weekend",
+    image: "img/cars-on-meadow-edge-cory-goehring.jpg",
+    credit: "Photo: Cory Goehring",
+  },
+  {
+    slug: "yosemite-trip-cost-budget-2026",
+    cat: "planning",
+    title: "What a Yosemite Trip Actually Costs in 2026",
+    dek: "Entrance fees, lodging, food, gas, gear, and guided programs, with real 2026 numbers and three full trip totals: shoestring, comfortable mid-range, and splurge.",
+    seoDek: "What a Yosemite trip costs in 2026: entrance fees, lodging, food, gas, and gear, with real budget, mid-range, and splurge totals.",
+    date: "June 7, 2026",
+    isoDate: "2026-06-07",
+    isoModified: "2026-06-07",
+    read: "10 min",
+    placeholder: "The road into Yosemite winding up the Merced River canyon",
+    image: "img/merced-canyon-road-cory-goehring.jpg",
+    credit: "Photo: Cory Goehring",
+  },
+  {
+    slug: "yosemite-in-june-2026",
+    cat: "seasonal",
+    title: "Yosemite in June 2026: Two Junes, One Month",
+    dek: "Low snowpack pushed everything earlier and the reservation system is gone. The waterfalls, the road openings, the crowds, the bears, and how to plan for the June you are actually getting.",
+    seoDek: "A Yosemite naturalist breaks down June 2026 conditions: low snowpack, no reservations, early waterfall peak, Tioga Road open, and how to plan around all of it.",
+    date: "June 2, 2026",
+    isoDate: "2026-06-02",
+    isoModified: "2026-06-02",
+    read: "10 min",
+    placeholder: "Upper Yosemite Fall framed by spring blossoms from the Valley floor",
+    image: "img/yosemite-falls-spring-blossoms-cory-goehring.jpg",
+    credit: "Photo: Cory Goehring",
+  },
+  {
+    slug: "cathedral-lakes-day-hike",
+    cat: "trails",
+    title: "Cathedral Lakes: the high-country day hike worth driving up for",
+    dek: "The standard high-country day hike out of Tuolumne Meadows, and it still earns the listing. Trail distance, elevation, the best months, what to actually look at, and how to do Lower and Upper Cathedral Lakes well.",
+    seoDek: "Cathedral Lakes is the best day hike in Tuolumne Meadows. Trail distance, elevation, best months, what to see, and how to hike Lower and Upper Cathedral Lakes in Yosemite.",
+    date: "June 2, 2026",
+    isoDate: "2026-06-02",
+    isoModified: "2026-06-02",
+    read: "12 min",
+    placeholder: "Granite domes and the Tuolumne high country seen from a ridge above Cathedral Lakes",
+    image: "img/tuolumne-high-country-cory-goehring.jpg",
     credit: "Photo: Cory Goehring",
   },
   {
