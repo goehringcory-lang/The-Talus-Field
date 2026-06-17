@@ -219,7 +219,11 @@ function EntranceWaits() {
     return () => { cancelled = true; clearInterval(timer); };
   }, []);
 
-  if (!waits) return null;
+  // Reserve the slot while the live NPS data is in flight (or never arrives) so
+  // the sticky masthead does not shift when the waits populate after first paint.
+  // The placeholder carries the same .masthead__waits min-width as the filled
+  // state; it is empty and hidden from assistive tech.
+  if (!waits) return <span className="masthead__waits masthead__waits--ph" aria-hidden="true" />;
   return (
     <a
       className="masthead__waits"
@@ -459,8 +463,8 @@ function ArticleCard({ article, go, size }) {
 // gates layer their own unlock on top of this. Exposed on window so page-level
 // forms (map gate, guide, newsletter page) can reuse the exact same behavior.
 // ============================================================
-function trackNewsletterSubmit(location, tag) {
-  if (window.track) window.track("newsletter_signup", { location: location || "unknown", tag: tag || "" });
+function trackNewsletterSubmit(location, tag, variant) {
+  if (window.track) window.track("newsletter_signup", { location: location || "unknown", tag: tag || "", variant: variant || "" });
   window.safeStorage.set("tfg.nl.subscribed", "1");
 }
 window.trackNewsletterSubmit = trackNewsletterSubmit;
@@ -468,10 +472,31 @@ window.trackNewsletterSubmit = trackNewsletterSubmit;
 // Impression counterpart to trackNewsletterSubmit. Fires when a newsletter unit
 // scrolls into view so GA4 can compute a view -> signup rate per placement
 // (same `location` as the matching submit). No localStorage side effect.
-function trackNewsletterImpression(location, tag) {
-  if (window.track) window.track("newsletter_impression", { location: location || "unknown", tag: tag || "" });
+// `variant` is the A/B bucket (see abVariant) so view->signup is computable per arm.
+function trackNewsletterImpression(location, tag, variant) {
+  if (window.track) window.track("newsletter_impression", { location: location || "unknown", tag: tag || "", variant: variant || "" });
 }
 window.trackNewsletterImpression = trackNewsletterImpression;
+
+// ============================================================
+// Lightweight A/B bucketing. No third-party tool: assign a sticky 50/50 bucket
+// per device, persisted through window.safeStorage, and tag it onto the GA4
+// `variant` param of the matching impression/signup events so each test's
+// view->signup rate is sliceable per arm. Fails OPEN to "a" (control) when
+// storage is unavailable, mirroring the map gate, so a private-mode visitor
+// always sees the safe variant and never a half-applied experiment.
+// ============================================================
+function abVariant(testKey) {
+  const storeKey = "tfg.ab." + testKey;
+  const existing = window.safeStorage.get(storeKey);
+  if (existing === "a" || existing === "b") return existing;
+  const assigned = Math.random() < 0.5 ? "a" : "b";
+  // set() returns false when storage is unavailable; in that case we cannot make
+  // the bucket sticky, so fall open to control rather than reshuffle every render.
+  if (!window.safeStorage.set(storeKey, assigned)) return "a";
+  return assigned;
+}
+window.abVariant = abVariant;
 
 // Single read-path for the subscribed flag. Reads through window.safeStorage,
 // which returns null when storage is unavailable, so this is false in private

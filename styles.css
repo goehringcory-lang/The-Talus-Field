@@ -181,9 +181,9 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
   margin: 0 auto;
   border-bottom: 1px solid var(--rule-soft);
   font-family: var(--sans);
-  font-size: 10px;
+  font-size: 11px;
   text-transform: uppercase;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.16em;
   color: var(--ink-3);
 }
 .masthead__top span + span { margin-left: 18px; }
@@ -231,7 +231,12 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
   display: inline-flex;
   align-items: center;
   gap: 8px;
+  /* Reserve the slot so live NPS waits do not shift the sticky masthead when
+     they populate after first paint (CLS). The empty placeholder reuses this. */
+  min-width: 240px;
 }
+/* Empty pre-load placeholder: reserve width but no dangling border/values. */
+.masthead__waits--ph { border-left: 0; }
 /* The whole cluster is one link to the NPS display page; underline
    only the values, not the muted label, and keep state colors. */
 .masthead__weather a.masthead__waits { border-bottom: 0; padding-bottom: 0; }
@@ -266,6 +271,7 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
     border-left: 0;
     flex-wrap: wrap;
     gap: 6px 10px;
+    min-width: 0;
   }
 }
 .masthead__main {
@@ -1240,9 +1246,12 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
 .prose p { margin: 0 0 1.2em; }
 .prose h2 {
   font-family: var(--sans);
-  font-size: 12px !important;
+  /* Raised from 12px micro-caps so an H2 reads as a real section break and is
+     not visually outranked by the italic 22px H3 below. Keeps the tracked
+     uppercase treatment as an aesthetic; the border-top still marks the section. */
+  font-size: 16px !important;
   text-transform: uppercase;
-  letter-spacing: 0.22em;
+  letter-spacing: 0.16em;
   font-weight: 700;
   margin: 2.4em 0 0.8em;
   border-top: 1px solid var(--rule);
@@ -1703,7 +1712,7 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
   .nav__link { display: none; }
   .nav__menu-wrap { display: block; }
   .statblock { grid-template-columns: 1fr 1fr; }
-  .masthead__top { font-size: 9px; }
+  .masthead__top { font-size: 11px; }
 }
 
 /* ===== Mobile (≤720px) ===== */
