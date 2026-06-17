@@ -47,7 +47,7 @@ window.CATEGORIES = [
 // verifies this map stays in sync with the files in bodies/.
 // ============================================================
 window.BODY_VERSIONS = {
-  "yosemite-bears-safety-guide": 80,
+  "yosemite-bears-safety-guide": 117,
   "yosemite-heat-safety-guide": 1,
   "when-to-visit-yosemite-2026-crowd-forecast": 2,
   "yosemite-trip-cost-budget-2026": 1,
