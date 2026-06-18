@@ -2101,6 +2101,16 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
 }
 .kit-check--callout .kit-check__links { margin-left: 46px; }
 
+/* Affiliate links carry a small star, revealed on hover/focus, so they are
+   identifiable per the Affiliate Disclosure. */
+.kit-check__aff::after {
+  content: " \2605";
+  opacity: 0;
+  transition: opacity 0.15s ease;
+}
+.kit-check__aff:hover::after,
+.kit-check__aff:focus-visible::after { opacity: 0.7; }
+
 @media (max-width: 720px) {
   .kit-group__title { font-size: 21px; }
   .kit-check__name { font-size: 17px; }

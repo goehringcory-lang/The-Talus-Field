@@ -78,6 +78,9 @@ function KitPage({ go }) {
         <p style={{ fontFamily: "var(--serif)", fontSize: 21, lineHeight: 1.5, color: "var(--ink-2)", maxWidth: "62ch", textWrap: "pretty" }}>
           Three packing checklists for a Yosemite trip: a day pack, what an overnight adds to it, and the full car load. Tick items off as you plan and pack. Your progress is saved in this browser, so you can close the tab and come back to it. Press Cmd+P or Ctrl+P for a clean printable copy.
         </p>
+        <p className="kit__aff-note" style={{ fontFamily: "var(--serif)", fontSize: 14, lineHeight: 1.5, color: "var(--ink-2)", marginTop: 14, maxWidth: "62ch" }}>
+          Some gear here links to Patagonia through an affiliate link, marked with a star. If you buy through it, the site may earn a small commission at no extra cost to you. See the <a href="/affiliate" onClick={(e) => { e.preventDefault(); go("affiliate"); }}>Affiliate Disclosure</a>.
+        </p>
       </section>
 
       {/* Tab strip */}
@@ -130,8 +133,13 @@ function KitPage({ go }) {
               <section key={group.id} className="kit-group">
                 <h3 className="kit-group__title">{group.title}</h3>
                 <ul className="kit-group__list">
-                  {group.items.map((it) => (
-                    <li key={it.id} id={it.id.replace(/:/g, "-")} className={`kit-check ${it.link ? "kit-check--callout" : ""}`}>
+                  {group.items.map((it) => {
+                    // A real aff URL (not the "#" placeholder) renders a tracked
+                    // "Shop Patagonia" CTA wired to the app.jsx affiliate-click
+                    // listener; see affiliate.js for how the links are built.
+                    const isAff = it.aff && it.aff !== "#";
+                    return (
+                    <li key={it.id} id={it.id.replace(/:/g, "-")} className={`kit-check ${(it.link || isAff) ? "kit-check--callout" : ""}`}>
                       <label className="kit-check__row">
                         <input
                           type="checkbox"
@@ -144,7 +152,7 @@ function KitPage({ go }) {
                           {it.note && <span className="kit-check__note">{it.note}</span>}
                         </span>
                       </label>
-                      {(it.link || it.articleSlug) && (
+                      {(it.link || isAff || it.articleSlug) && (
                         <div className="kit-check__links">
                           {it.link && (
                             <a
@@ -153,6 +161,18 @@ function KitPage({ go }) {
                               target="_blank"
                               rel="noopener noreferrer"
                             >{it.link.label} ↗</a>
+                          )}
+                          {isAff && (
+                            <a
+                              className="kit-check__link kit-check__aff"
+                              href={it.aff}
+                              target="_blank"
+                              rel="sponsored noopener noreferrer"
+                              data-aff-network="patagonia"
+                              data-aff-list={list.slug}
+                              data-aff-item-slug={it.id}
+                              data-aff-name={it.name}
+                            >Shop Patagonia ↗</a>
                           )}
                           {it.articleSlug && (
                             <a
@@ -164,7 +184,8 @@ function KitPage({ go }) {
                         </div>
                       )}
                     </li>
-                  ))}
+                    );
+                  })}
                 </ul>
               </section>
             ))}
