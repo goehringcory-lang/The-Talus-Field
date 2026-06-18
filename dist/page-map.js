@@ -139,16 +139,19 @@ function injectGoogleMaps() {
   s.async = true;
   document.head.appendChild(s);
 }
+function mapsApiReady() {
+  return !!(window.google && window.google.maps && typeof window.google.maps.importLibrary === "function");
+}
 function waitForGoogleMaps(timeoutMs = 8000) {
   return new Promise((resolve, reject) => {
-    if (window.google && window.google.maps) {
+    if (mapsApiReady()) {
       resolve(window.google.maps);
       return;
     }
     injectGoogleMaps();
     var start = Date.now();
     var interval = setInterval(() => {
-      if (window.google && window.google.maps) {
+      if (mapsApiReady()) {
         clearInterval(interval);
         resolve(window.google.maps);
       } else if (Date.now() - start > timeoutMs) {
