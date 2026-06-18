@@ -2750,6 +2750,35 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
   background: #e8eae6;
 }
 
+/* Map access gate. A covering overlay over .map-page (map + sidebar) that
+   blocks the map until the visitor subscribes. Scoped to .map-page, not fixed
+   to the viewport, so the global header and footer stay reachable (a reader is
+   never trapped). z-index clears the mobile bottom sheet (z-index: 10). The
+   card reuses .nlmodal__card styling. */
+.map-page__gate {
+  position: absolute;
+  inset: 0;
+  z-index: 30;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  animation: lbIn 0.18s ease;
+}
+.map-page__gate-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(20, 18, 14, 0.5);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+.map-page__gate-card {
+  z-index: 1;
+  max-width: 440px;
+}
+/* Teaser: blur the live map behind the gate so it reads as locked content. */
+.map-page--locked .map-page__map { filter: blur(2px); }
+
 /* ------------------------------------------------------------
    Mobile: three-snap bottom sheet.
    The sidebar becomes a fixed bottom panel anchored to the
