@@ -5,7 +5,7 @@ var {
   useState,
   useCallback
 } = React;
-var POINTS_URL = "/points.geojson?v=23";
+var POINTS_URL = "/points.geojson?v=24";
 var STORAGE_KEY = "tfg.trip";
 var STORAGE_VERSION = 1;
 var TRIP_CAP = 30;

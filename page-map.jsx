@@ -12,7 +12,7 @@
 
 const { useEffect, useMemo, useRef, useState, useCallback } = React;
 
-const POINTS_URL = "/points.geojson?v=23";
+const POINTS_URL = "/points.geojson?v=24";
 const STORAGE_KEY = "tfg.trip";
 const STORAGE_VERSION = 1;
 const TRIP_CAP = 30;

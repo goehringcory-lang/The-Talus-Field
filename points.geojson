@@ -435,27 +435,6 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          -119.6568,
-          37.5374
-        ]
-      },
-      "properties": {
-        "id": "wawona-hotel-dining",
-        "name": "Wawona Hotel Dining Room",
-        "category": "eat",
-        "region": "wawona",
-        "blurb": "White tablecloths on a Victorian porch, 1879 vintage. The dining room serves three meals in season and the lawn chairs out front are free with a drink from the bar. The only real sit-down option between Oakhurst and the Valley.",
-        "image": null,
-        "articles": [],
-        "gmapsUrl": "https://www.google.com/maps/search/?api=1&query=Wawona+Hotel+Dining+Room",
-        "verified": false
-      }
-    },
-    {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": [
           -119.6395,
           37.5462
         ]
