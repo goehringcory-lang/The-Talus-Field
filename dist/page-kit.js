@@ -88,7 +88,23 @@ function KitPage({
       maxWidth: "62ch",
       textWrap: "pretty"
     }
-  }, "Three packing checklists for a Yosemite trip: a day pack, what an overnight adds to it, and the full car load. Tick items off as you plan and pack. Your progress is saved in this browser, so you can close the tab and come back to it. Press Cmd+P or Ctrl+P for a clean printable copy.")), React.createElement("section", {
+  }, "Three packing checklists for a Yosemite trip: a day pack, what an overnight adds to it, and the full car load. Tick items off as you plan and pack. Your progress is saved in this browser, so you can close the tab and come back to it. Press Cmd+P or Ctrl+P for a clean printable copy."), React.createElement("p", {
+    className: "kit__aff-note",
+    style: {
+      fontFamily: "var(--serif)",
+      fontSize: 14,
+      lineHeight: 1.5,
+      color: "var(--ink-2)",
+      marginTop: 14,
+      maxWidth: "62ch"
+    }
+  }, "Some gear here links to Patagonia through an affiliate link, marked with a star. If you buy through it, the site may earn a small commission at no extra cost to you. See the ", React.createElement("a", {
+    href: "/affiliate",
+    onClick: e => {
+      e.preventDefault();
+      go("affiliate");
+    }
+  }, "Affiliate Disclosure"), ".")), React.createElement("section", {
     className: "wrap",
     style: {
       paddingTop: 24
@@ -163,38 +179,50 @@ function KitPage({
       className: "kit-group__title"
     }, group.title), React.createElement("ul", {
       className: "kit-group__list"
-    }, group.items.map(it => React.createElement("li", {
-      key: it.id,
-      id: it.id.replace(/:/g, "-"),
-      className: `kit-check ${it.link ? "kit-check--callout" : ""}`
-    }, React.createElement("label", {
-      className: "kit-check__row"
-    }, React.createElement("input", {
-      type: "checkbox",
-      className: "kit-check__box",
-      checked: !!checked[it.id],
-      onChange: () => toggle(it.id)
-    }), React.createElement("span", {
-      className: "kit-check__text"
-    }, React.createElement("span", {
-      className: "kit-check__name"
-    }, it.name), it.note && React.createElement("span", {
-      className: "kit-check__note"
-    }, it.note))), (it.link || it.articleSlug) && React.createElement("div", {
-      className: "kit-check__links"
-    }, it.link && React.createElement("a", {
-      className: "kit-check__link",
-      href: it.link.href,
-      target: "_blank",
-      rel: "noopener noreferrer"
-    }, it.link.label, " ↗"), it.articleSlug && React.createElement("a", {
-      className: "kit-check__article",
-      href: `/articles/${it.articleSlug}`,
-      onClick: e => {
-        e.preventDefault();
-        go(`a:${it.articleSlug}`);
-      }
-    }, "Read the piece →"))))))), list.essay && React.createElement("aside", {
+    }, group.items.map(it => {
+      var isAff = it.aff && it.aff !== "#";
+      return React.createElement("li", {
+        key: it.id,
+        id: it.id.replace(/:/g, "-"),
+        className: `kit-check ${it.link || isAff ? "kit-check--callout" : ""}`
+      }, React.createElement("label", {
+        className: "kit-check__row"
+      }, React.createElement("input", {
+        type: "checkbox",
+        className: "kit-check__box",
+        checked: !!checked[it.id],
+        onChange: () => toggle(it.id)
+      }), React.createElement("span", {
+        className: "kit-check__text"
+      }, React.createElement("span", {
+        className: "kit-check__name"
+      }, it.name), it.note && React.createElement("span", {
+        className: "kit-check__note"
+      }, it.note))), (it.link || isAff || it.articleSlug) && React.createElement("div", {
+        className: "kit-check__links"
+      }, it.link && React.createElement("a", {
+        className: "kit-check__link",
+        href: it.link.href,
+        target: "_blank",
+        rel: "noopener noreferrer"
+      }, it.link.label, " ↗"), isAff && React.createElement("a", {
+        className: "kit-check__link kit-check__aff",
+        href: it.aff,
+        target: "_blank",
+        rel: "sponsored noopener noreferrer",
+        "data-aff-network": "patagonia",
+        "data-aff-list": list.slug,
+        "data-aff-item-slug": it.id,
+        "data-aff-name": it.name
+      }, "Shop Patagonia ↗"), it.articleSlug && React.createElement("a", {
+        className: "kit-check__article",
+        href: `/articles/${it.articleSlug}`,
+        onClick: e => {
+          e.preventDefault();
+          go(`a:${it.articleSlug}`);
+        }
+      }, "Read the piece →")));
+    })))), list.essay && React.createElement("aside", {
       className: "kit__essay"
     }, React.createElement("div", {
       className: "eyebrow eyebrow--moss",

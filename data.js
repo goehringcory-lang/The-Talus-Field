@@ -123,10 +123,11 @@ window.loadArticleBody = function loadArticleBody(slug) {
 
 // Kit. Three packing checklists (day pack, overnight, car) that page-kit.jsx
 // renders as interactive, localStorage-backed checkboxes grouped by category.
-// Each item keeps a hidden aff: "#" placeholder so per-item affiliate links can
-// be switched back on later; the affiliate CTA render was removed from
-// page-kit.jsx pending the program. recommendations[] below is retained but is
-// not rendered by KitPage (the directory moved to page-places.jsx).
+// Each item carries an aff field. "#" is the dormant placeholder; a real
+// patagonia.pxf.io URL (built via window.buildPatagoniaAffiliateLink in
+// affiliate.js) makes KitPage render a tracked "Shop Patagonia" affiliate CTA
+// for that item. recommendations[] below is retained but is not rendered by
+// KitPage (the directory moved to page-places.jsx).
 window.KIT = {
   intro: "Three packing checklists for a Yosemite trip: a day pack, what an overnight adds to it, and the full car load. Tick items off as you plan and pack.",
   lists: [
@@ -152,8 +153,8 @@ window.KIT = {
           id: "sun-protection",
           title: "Sun protection",
           items: [
-            { id: "day-pack:sun-hat", name: "Wide-brim sun hat", note: "Granite reflects. A baseball cap is not enough above 7,000 feet.", aff: "#" },
-            { id: "day-pack:sun-shirt", name: "Long-sleeve sun shirt, UPF 50", note: "Light color, hood if you can find it. Wear it even in heat.", aff: "#" },
+            { id: "day-pack:sun-hat", name: "Wide-brim sun hat", note: "Granite reflects. A baseball cap is not enough above 7,000 feet.", aff: "https://patagonia.pxf.io/c/7338432/1948563/23649?u=https%3A%2F%2Fwww.patagonia.com%2Fsearch%2F%3Fq%3Dsun%2Bhat" },
+            { id: "day-pack:sun-shirt", name: "Long-sleeve sun shirt, UPF 50", note: "Light color, hood if you can find it. Wear it even in heat.", aff: "https://patagonia.pxf.io/c/7338432/1948563/23649?u=https%3A%2F%2Fwww.patagonia.com%2Fsearch%2F%3Fq%3Dsun%2Bhoody" },
             { id: "day-pack:sunscreen", name: "Sunscreen, SPF 50, reef-safe", note: "Reapply every two hours at elevation.", aff: "#" },
             { id: "day-pack:sunglasses", name: "Polarized sunglasses, UV400", note: "Polarized lenses cut glare off granite and water.", aff: "#" },
             { id: "day-pack:lip-balm", name: "SPF lip balm", note: "Lips chap and burn faster than skin at elevation.", aff: "#" }
@@ -163,9 +164,9 @@ window.KIT = {
           id: "clothing-insulation",
           title: "Clothing & insulation",
           items: [
-            { id: "day-pack:insulated-jacket", name: "Patagonia Nano Puff, or any packable insulated jacket", note: "The Valley is warm at 10am and 40°F at the rim by 3pm. Synthetic insulation still works if it gets wet.", aff: "#", articleSlug: "memorial-day-skip-the-valley-go-high-2026" },
-            { id: "day-pack:rain-shell", name: "Packable rain shell with taped seams", note: "Afternoon thunderstorms are common in summer high country.", aff: "#" },
-            { id: "day-pack:beanie", name: "Warm beanie", aff: "#" },
+            { id: "day-pack:insulated-jacket", name: "Patagonia Nano Puff, or any packable insulated jacket", note: "The Valley is warm at 10am and 40°F at the rim by 3pm. Synthetic insulation still works if it gets wet.", aff: "https://patagonia.pxf.io/c/7338432/1948563/23649?u=https%3A%2F%2Fwww.patagonia.com%2Fsearch%2F%3Fq%3Dnano%2Bpuff", articleSlug: "memorial-day-skip-the-valley-go-high-2026" },
+            { id: "day-pack:rain-shell", name: "Packable rain shell with taped seams", note: "Afternoon thunderstorms are common in summer high country.", aff: "https://patagonia.pxf.io/c/7338432/1948563/23649?u=https%3A%2F%2Fwww.patagonia.com%2Fsearch%2F%3Fq%3Drain%2Bjacket" },
+            { id: "day-pack:beanie", name: "Warm beanie", aff: "https://patagonia.pxf.io/c/7338432/1948563/23649?u=https%3A%2F%2Fwww.patagonia.com%2Fsearch%2F%3Fq%3Dbeanie" },
             { id: "day-pack:gloves", name: "Lightweight gloves", note: "Worth carrying for Tuolumne.", aff: "#" },
             { id: "day-pack:extra-socks", name: "Extra wool or synthetic socks", note: "Wet socks cause blisters. A dry pair costs almost no weight.", aff: "#" },
             { id: "day-pack:buff", name: "Buff or neck gaiter", aff: "#" }

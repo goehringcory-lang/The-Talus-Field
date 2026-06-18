@@ -316,17 +316,31 @@ function Header({
       go(key);
     }
   }, label);
-  var today = new Date().toLocaleDateString("en-US", {
+  var todayFull = new Date().toLocaleDateString("en-US", {
     weekday: "long",
     year: "numeric",
     month: "long",
+    day: "numeric"
+  });
+  var todayShort = new Date().toLocaleDateString("en-US", {
+    month: "short",
     day: "numeric"
   });
   return React.createElement("header", {
     className: "masthead"
   }, React.createElement("div", {
     className: "masthead__top"
-  }, React.createElement("div", null, React.createElement("span", null, window.SITE && window.SITE.issue || "Vol. III"), React.createElement("span", null, today)), React.createElement("div", {
+  }, React.createElement("div", {
+    className: "masthead__dateline"
+  }, React.createElement("span", {
+    className: "masthead__vol"
+  }, window.SITE && window.SITE.issue || "Vol. III"), React.createElement("span", {
+    className: "masthead__date masthead__date--full"
+  }, todayFull), React.createElement("span", {
+    className: "masthead__date masthead__date--short"
+  }, todayShort)), React.createElement("div", {
+    className: "masthead__utility"
+  }, React.createElement("div", {
     className: "masthead__weather"
   }, React.createElement("span", {
     className: "masthead__weather-label"
@@ -334,31 +348,24 @@ function Header({
     href: "https://forecast.weather.gov/MapClick.php?lat=37.7456&lon=-119.5936",
     target: "_blank",
     rel: "noopener noreferrer"
-  }, React.createElement("span", {
-    className: "masthead__weather-cityfull"
-  }, "Yosemite "), "Valley"), React.createElement("span", {
+  }, "Valley"), React.createElement("span", {
     className: "masthead__weather-sep"
   }, "·"), React.createElement("a", {
     href: "https://forecast.weather.gov/MapClick.php?lat=37.8731&lon=-119.3503",
     target: "_blank",
     rel: "noopener noreferrer"
-  }, "Tuolumne", React.createElement("span", {
-    className: "masthead__weather-cityfull"
-  }, " Meadows")), React.createElement("span", {
+  }, "Tuolumne"), React.createElement("span", {
     className: "masthead__weather-sep"
   }, "·"), React.createElement("a", {
     href: "https://forecast.weather.gov/MapClick.php?lat=37.5341&lon=-119.6315",
     target: "_blank",
     rel: "noopener noreferrer"
-  }, "Wawona"), React.createElement(EntranceWaits, null), React.createElement("span", {
-    className: "masthead__paper"
-  }, React.createElement("span", {
-    className: "masthead__paper-label"
-  }, "Current issue"), React.createElement("a", {
+  }, "Wawona")), React.createElement(EntranceWaits, null), React.createElement("a", {
+    className: "masthead__guide",
     href: "https://www.nps.gov/yose/planyourvisit/guide.htm",
     target: "_blank",
     rel: "noopener noreferrer"
-  }, "Yosemite Guide ↗")))), React.createElement("div", {
+  }, "Yosemite Guide ↗"))), React.createElement("div", {
     className: "masthead__main"
   }, React.createElement("a", {
     className: "brand-block",
