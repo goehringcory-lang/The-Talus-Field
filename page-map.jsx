@@ -12,7 +12,7 @@
 
 const { useEffect, useMemo, useRef, useState, useCallback } = React;
 
-const POINTS_URL = "/points.geojson?v=23";
+const POINTS_URL = "/points.geojson?v=24";
 const STORAGE_KEY = "tfg.trip";
 const STORAGE_VERSION = 1;
 const TRIP_CAP = 30;
@@ -21,12 +21,13 @@ const TRIP_PIN_COLOR = "#7a8f5a"; // moss — matches --moss CSS var on the rail
 // limit are dropped from the exported route (the user is told via toast).
 const ROUTE_STOP_LIMIT = 11;
 
-// Newsletter gate. The map is browsable by everyone; the trip BUILDER is the
-// free lead magnet. The first trip-adding action opens a signup modal, and one
-// Buttondown signup flips this localStorage flag (a prior signup anywhere on
-// the site, via tfg.nl.subscribed, also counts). Bypassable by design. Fails
-// OPEN when storage is unavailable (private mode) so the gate can never
-// permanently trap a reader who cannot persist the flag.
+// Newsletter gate. The whole map is the free lead magnet: a locked visitor
+// sees a covering signup overlay (MapAccessGate) and cannot reach the map or
+// the trip builder until they subscribe. One Buttondown signup flips this
+// localStorage flag (a prior signup anywhere on the site, via tfg.nl.subscribed,
+// also counts). Bypassable by design. Fails OPEN when storage is unavailable
+// (private mode) so the gate can never permanently trap a reader who cannot
+// persist the flag.
 const MAP_UNLOCK_KEY = "tfg.map.unlocked";
 function isMapUnlocked() {
   // The "1" fallback is what makes the gate fail open: safeStorage.get
@@ -226,7 +227,6 @@ function MapView({ go }) {
   const tripActionRef = useRef(() => {}); // latest toggleTripStop, called from InfoWindow button
   const tripStopIdsRef = useRef([]); // latest tripStopIds, read inside marker click handlers
   const goRef = useRef(go); // latest SPA navigate, called from InfoWindow article links
-  const pendingActionRef = useRef(null); // trip action deferred behind the signup gate
   const announcerRef = useRef(null);
   const toastTimerRef = useRef(null);
 
@@ -234,7 +234,13 @@ function MapView({ go }) {
   const [error, setError] = useState(null);
   const [mapReady, setMapReady] = useState(false);
   const [toast, setToast] = useState(null);
-  const [gateOpen, setGateOpen] = useState(false);
+  // View gate: the whole map sits behind a newsletter signup. Seeded once from
+  // the persisted unlock flag (or a prior signup anywhere on the site), so a
+  // returning subscriber never re-sees the gate. Fails OPEN via isMapUnlocked
+  // when storage throws (private mode), matching the rest of the site.
+  const [unlocked, setUnlocked] = useState(
+    () => isMapUnlocked() || (window.isSubscribed && window.isSubscribed())
+  );
 
   const initial = useMemo(() => readUrlState(), []);
   const [selectedStopId, setSelectedStopId] = useState(initial.stop);
@@ -328,34 +334,23 @@ function MapView({ go }) {
   );
 
   // ---- Signup gate ---------------------------------------------------------
-  // Browsing is free; building a trip costs an email. requireUnlock runs the
-  // action immediately for unlocked visitors (including anyone who subscribed
-  // through any other newsletter unit on the site), otherwise it parks the
-  // action and opens the gate modal. The parked action runs after signup and
-  // is discarded if the modal is dismissed.
-  const requireUnlock = useCallback((action) => {
-    if (isMapUnlocked() || (window.isSubscribed && window.isSubscribed())) {
-      setMapUnlocked();
-      action();
-      return;
-    }
-    pendingActionRef.current = action;
-    setGateOpen(true);
-    if (window.trackNewsletterImpression) window.trackNewsletterImpression("map_gate", "map-gate");
-  }, []);
-
+  // The whole map is gated: a locked visitor sees a covering signup overlay
+  // (see MapAccessGate in the render) and the map/sidebar behind it are inert.
+  // One signup flips the persisted unlock flag and reveals everything; a prior
+  // signup anywhere on the site (tfg.nl.subscribed) counts too and is already
+  // reflected in the seeded `unlocked` state. Because access is gated up front,
+  // the trip-building actions below no longer need their own per-action gate.
   const handleGateSubscribed = useCallback(() => {
     setMapUnlocked();
-    setGateOpen(false);
-    const action = pendingActionRef.current;
-    pendingActionRef.current = null;
-    if (action) action();
+    setUnlocked(true);
   }, []);
 
-  const handleGateClose = useCallback(() => {
-    pendingActionRef.current = null;
-    setGateOpen(false);
-  }, []);
+  // Record one impression the first time the gate is shown to a locked visitor.
+  useEffect(() => {
+    if (!unlocked && window.trackNewsletterImpression) {
+      window.trackNewsletterImpression("map_view_gate", "map-gate");
+    }
+  }, [unlocked]);
 
   const performToggleTripStop = useCallback(
     (id) => {
@@ -383,28 +378,22 @@ function MapView({ go }) {
     [announce, featureNameById]
   );
 
-  // Public toggle: removal is always allowed, adding goes through the gate.
-  // Membership is read from the ref (not inside the state updater) so the
-  // gate decision happens before any state change.
+  // Public toggle. Access to the map is already gated up front, so trip
+  // mutations run directly here. Membership is read from the ref (not inside
+  // the state updater) so the add/remove branch is decided before any change.
   const toggleTripStop = useCallback(
     (id, source) => {
       const adding = !tripStopIdsRef.current.includes(id);
-      if (!adding) {
-        performToggleTripStop(id);
-        return;
+      if (adding && window.track && tripStopIdsRef.current.length < TRIP_CAP) {
+        window.track("trip_add", {
+          stop_id: id,
+          trip_size: tripStopIdsRef.current.length + 1,
+          source: source || "sidebar",
+        });
       }
-      requireUnlock(() => {
-        if (window.track && tripStopIdsRef.current.length < TRIP_CAP) {
-          window.track("trip_add", {
-            stop_id: id,
-            trip_size: tripStopIdsRef.current.length + 1,
-            source: source || "sidebar",
-          });
-        }
-        performToggleTripStop(id);
-      });
+      performToggleTripStop(id);
     },
-    [performToggleTripStop, requireUnlock]
+    [performToggleTripStop]
   );
 
   const removeTripStop = useCallback(
@@ -478,12 +467,10 @@ function MapView({ go }) {
 
   const addAllFromRegion = useCallback(
     (regionId) => {
-      requireUnlock(() => {
-        if (window.track) window.track("trip_add_all", { region: regionId });
-        performAddAllFromRegion(regionId);
-      });
+      if (window.track) window.track("trip_add_all", { region: regionId });
+      performAddAllFromRegion(regionId);
     },
-    [requireUnlock, performAddAllFromRegion]
+    [performAddAllFromRegion]
   );
 
   const performApplyQuickPick = useCallback(
@@ -510,12 +497,10 @@ function MapView({ go }) {
 
   const applyQuickPick = useCallback(
     (quickPickId) => {
-      requireUnlock(() => {
-        if (window.track) window.track("trip_quick_pick", { pick: quickPickId });
-        performApplyQuickPick(quickPickId);
-      });
+      if (window.track) window.track("trip_quick_pick", { pick: quickPickId });
+      performApplyQuickPick(quickPickId);
     },
-    [requireUnlock, performApplyQuickPick]
+    [performApplyQuickPick]
   );
 
   // ---- Trip share + route export -------------------------------------------
@@ -781,7 +766,7 @@ function MapView({ go }) {
   }
 
   return (
-    <div className="map-page">
+    <div className={`map-page${unlocked ? "" : " map-page--locked"}`}>
       <TripPlannerSidebar
         features={features}
         tripStopIds={tripStopIds}
@@ -810,9 +795,7 @@ function MapView({ go }) {
         )}
         <div ref={containerRef} id="map" className="map-page__map" />
       </div>
-      {gateOpen && (
-        <MapGateModal onSubscribed={handleGateSubscribed} onClose={handleGateClose} />
-      )}
+      {!unlocked && <MapAccessGate onSubscribed={handleGateSubscribed} />}
     </div>
   );
 }
@@ -1346,39 +1329,31 @@ function escapeHtml(s) {
 }
 
 // ---------------------------------------------------------------------------
-// Signup gate modal. Opens when a locked visitor tries to build a trip; the
-// blocked action runs after the form submits. Reuses the exit-intent modal's
-// .nlmodal styling from styles.css. The signup also satisfies the shared
-// "subscribed" flag (via trackNewsletterSubmit), suppressing the exit-intent
-// modal elsewhere on the site.
+// Map access gate. A covering overlay scoped to .map-page (the map and sidebar
+// render behind it, blurred, as a teaser). The map is for subscribers: the
+// only way past is to submit the email or to have subscribed already anywhere
+// on the site. Deliberately non-dismissable (no close, no backdrop click, no
+// Escape) so a visitor must sign up to reach the map. The overlay does not lock
+// body scroll, leaving the global header and footer reachable so a reader is
+// never trapped. Reuses the exit-intent modal's .nlmodal card styling. The
+// signup also satisfies the shared "subscribed" flag (via trackNewsletterSubmit),
+// suppressing the exit-intent modal elsewhere on the site.
 // ---------------------------------------------------------------------------
-function MapGateModal({ onSubscribed, onClose }) {
-  useEffect(() => {
-    const onKey = (e) => { if (e.key === "Escape") onClose(); };
-    document.addEventListener("keydown", onKey);
-    const prev = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-    return () => {
-      document.removeEventListener("keydown", onKey);
-      document.body.style.overflow = prev;
-    };
-  }, [onClose]);
-
+function MapAccessGate({ onSubscribed }) {
   return (
-    <div className="nlmodal" role="dialog" aria-modal="true" aria-label="Unlock the trip builder">
-      <div className="nlmodal__backdrop" onClick={onClose} />
-      <div className="nlmodal__card">
-        <button type="button" className="nlmodal__close" aria-label="Close" onClick={onClose}>✕</button>
-        <div className="eyebrow eyebrow--moss" style={{ marginBottom: 12 }}>The Map · Free</div>
-        <h3>Save this trip.</h3>
-        <p>Drop your email and the trip builder opens: add stops, reorder them, share the link. Your trip saves on this device. Free.</p>
+    <div className="map-page__gate" role="dialog" aria-modal="true" aria-label="Subscribe to open the map">
+      <div className="map-page__gate-backdrop" />
+      <div className="nlmodal__card map-page__gate-card">
+        <div className="eyebrow eyebrow--moss" style={{ marginBottom: 12 }}>The Map · Subscribers</div>
+        <h3>See the map.</h3>
+        <p>The interactive Yosemite map is open to subscribers. Drop your email and it opens right here: browse the pins, build a trip, share the link. Free, and it stays unlocked on this device.</p>
         <form
           className="nlbox__form"
           action="https://buttondown.com/api/emails/embed-subscribe/goehring"
           method="post"
           target="buttondown-target"
           onSubmit={() => {
-            if (window.trackNewsletterSubmit) window.trackNewsletterSubmit("map_gate", "map-gate");
+            if (window.trackNewsletterSubmit) window.trackNewsletterSubmit("map_view_gate", "map-gate");
             // Defer one tick so the form's native POST into the hidden iframe
             // fires before onSubscribed unmounts this form.
             setTimeout(onSubscribed, 0);
@@ -1387,7 +1362,7 @@ function MapGateModal({ onSubscribed, onClose }) {
           <input type="email" name="email" placeholder="you@email.com" required />
           <input type="hidden" name="tag" value="map-gate" />
           <input type="hidden" name="embed" value="1" />
-          <button type="submit">Open the trip builder →</button>
+          <button type="submit">Open the map →</button>
         </form>
         <p className="map-gate__fine">No spam. One short letter on Sundays, when there is something to say.</p>
       </div>
@@ -1395,8 +1370,8 @@ function MapGateModal({ onSubscribed, onClose }) {
   );
 }
 
-// The map itself is open to everyone (and indexable); only trip building sits
-// behind the signup modal above.
+// The map page itself stays indexable, but the live map sits behind the
+// subscriber gate above (MapAccessGate, rendered by MapView when locked).
 function MapPage(props) {
   return <MapView {...props} />;
 }

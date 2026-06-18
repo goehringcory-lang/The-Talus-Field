@@ -5,7 +5,7 @@ var {
   useState,
   useCallback
 } = React;
-var POINTS_URL = "/points.geojson?v=23";
+var POINTS_URL = "/points.geojson?v=24";
 var STORAGE_KEY = "tfg.trip";
 var STORAGE_VERSION = 1;
 var TRIP_CAP = 30;
@@ -185,14 +185,13 @@ function MapView({
   var tripActionRef = useRef(() => {});
   var tripStopIdsRef = useRef([]);
   var goRef = useRef(go);
-  var pendingActionRef = useRef(null);
   var announcerRef = useRef(null);
   var toastTimerRef = useRef(null);
   var [features, setFeatures] = useState(null);
   var [error, setError] = useState(null);
   var [mapReady, setMapReady] = useState(false);
   var [toast, setToast] = useState(null);
-  var [gateOpen, setGateOpen] = useState(false);
+  var [unlocked, setUnlocked] = useState(() => isMapUnlocked() || window.isSubscribed && window.isSubscribed());
   var initial = useMemo(() => readUrlState(), []);
   var [selectedStopId, setSelectedStopId] = useState(initial.stop);
   var [tripStopIds, setTripStopIds] = useState([]);
@@ -261,27 +260,15 @@ function MapView({
     var f = features.find(x => x.properties.id === id);
     return f ? f.properties.name : id;
   }, [features]);
-  var requireUnlock = useCallback(action => {
-    if (isMapUnlocked() || window.isSubscribed && window.isSubscribed()) {
-      setMapUnlocked();
-      action();
-      return;
-    }
-    pendingActionRef.current = action;
-    setGateOpen(true);
-    if (window.trackNewsletterImpression) window.trackNewsletterImpression("map_gate", "map-gate");
-  }, []);
   var handleGateSubscribed = useCallback(() => {
     setMapUnlocked();
-    setGateOpen(false);
-    var action = pendingActionRef.current;
-    pendingActionRef.current = null;
-    if (action) action();
+    setUnlocked(true);
   }, []);
-  var handleGateClose = useCallback(() => {
-    pendingActionRef.current = null;
-    setGateOpen(false);
-  }, []);
+  useEffect(() => {
+    if (!unlocked && window.trackNewsletterImpression) {
+      window.trackNewsletterImpression("map_view_gate", "map-gate");
+    }
+  }, [unlocked]);
   var performToggleTripStop = useCallback(id => {
     setTripStopIds(prev => {
       if (prev.includes(id)) {
@@ -300,21 +287,15 @@ function MapView({
   }, [announce, featureNameById]);
   var toggleTripStop = useCallback((id, source) => {
     var adding = !tripStopIdsRef.current.includes(id);
-    if (!adding) {
-      performToggleTripStop(id);
-      return;
+    if (adding && window.track && tripStopIdsRef.current.length < TRIP_CAP) {
+      window.track("trip_add", {
+        stop_id: id,
+        trip_size: tripStopIdsRef.current.length + 1,
+        source: source || "sidebar"
+      });
     }
-    requireUnlock(() => {
-      if (window.track && tripStopIdsRef.current.length < TRIP_CAP) {
-        window.track("trip_add", {
-          stop_id: id,
-          trip_size: tripStopIdsRef.current.length + 1,
-          source: source || "sidebar"
-        });
-      }
-      performToggleTripStop(id);
-    });
-  }, [performToggleTripStop, requireUnlock]);
+    performToggleTripStop(id);
+  }, [performToggleTripStop]);
   var removeTripStop = useCallback(id => {
     setTripStopIds(prev => {
       if (!prev.includes(id)) return prev;
@@ -364,13 +345,11 @@ function MapView({
     });
   }, [announce, features]);
   var addAllFromRegion = useCallback(regionId => {
-    requireUnlock(() => {
-      if (window.track) window.track("trip_add_all", {
-        region: regionId
-      });
-      performAddAllFromRegion(regionId);
+    if (window.track) window.track("trip_add_all", {
+      region: regionId
     });
-  }, [requireUnlock, performAddAllFromRegion]);
+    performAddAllFromRegion(regionId);
+  }, [performAddAllFromRegion]);
   var performApplyQuickPick = useCallback(quickPickId => {
     if (!features) return;
     var qp = QUICK_PICKS.find(q => q.id === quickPickId);
@@ -388,13 +367,11 @@ function MapView({
     announce(`Loaded ${qp.label} suggested trip. ${stops.length} ${stops.length === 1 ? "stop" : "stops"}.`);
   }, [announce, features]);
   var applyQuickPick = useCallback(quickPickId => {
-    requireUnlock(() => {
-      if (window.track) window.track("trip_quick_pick", {
-        pick: quickPickId
-      });
-      performApplyQuickPick(quickPickId);
+    if (window.track) window.track("trip_quick_pick", {
+      pick: quickPickId
     });
-  }, [requireUnlock, performApplyQuickPick]);
+    performApplyQuickPick(quickPickId);
+  }, [performApplyQuickPick]);
   var shareTrip = useCallback(() => {
     var ids = tripStopIdsRef.current;
     if (ids.length === 0) return;
@@ -624,7 +601,7 @@ function MapView({
     }, React.createElement("p", null, "Loading map…"));
   }
   return React.createElement("div", {
-    className: "map-page"
+    className: `map-page${unlocked ? "" : " map-page--locked"}`
   }, React.createElement(TripPlannerSidebar, {
     features: features,
     tripStopIds: tripStopIds,
@@ -653,9 +630,8 @@ function MapView({
     ref: containerRef,
     id: "map",
     className: "map-page__map"
-  })), gateOpen && React.createElement(MapGateModal, {
-    onSubscribed: handleGateSubscribed,
-    onClose: handleGateClose
+  })), !unlocked && React.createElement(MapAccessGate, {
+    onSubscribed: handleGateSubscribed
   }));
 }
 function TripPlannerSidebar({
@@ -1065,49 +1041,30 @@ function buildInfoHtml(p, coords, tripStopIds) {
 function escapeHtml(s) {
   return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#39;");
 }
-function MapGateModal({
-  onSubscribed,
-  onClose
+function MapAccessGate({
+  onSubscribed
 }) {
-  useEffect(() => {
-    var onKey = e => {
-      if (e.key === "Escape") onClose();
-    };
-    document.addEventListener("keydown", onKey);
-    var prev = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-    return () => {
-      document.removeEventListener("keydown", onKey);
-      document.body.style.overflow = prev;
-    };
-  }, [onClose]);
   return React.createElement("div", {
-    className: "nlmodal",
+    className: "map-page__gate",
     role: "dialog",
     "aria-modal": "true",
-    "aria-label": "Unlock the trip builder"
+    "aria-label": "Subscribe to open the map"
   }, React.createElement("div", {
-    className: "nlmodal__backdrop",
-    onClick: onClose
+    className: "map-page__gate-backdrop"
   }), React.createElement("div", {
-    className: "nlmodal__card"
-  }, React.createElement("button", {
-    type: "button",
-    className: "nlmodal__close",
-    "aria-label": "Close",
-    onClick: onClose
-  }, "✕"), React.createElement("div", {
+    className: "nlmodal__card map-page__gate-card"
+  }, React.createElement("div", {
     className: "eyebrow eyebrow--moss",
     style: {
       marginBottom: 12
     }
-  }, "The Map · Free"), React.createElement("h3", null, "Save this trip."), React.createElement("p", null, "Drop your email and the trip builder opens: add stops, reorder them, share the link. Your trip saves on this device. Free."), React.createElement("form", {
+  }, "The Map · Subscribers"), React.createElement("h3", null, "See the map."), React.createElement("p", null, "The interactive Yosemite map is open to subscribers. Drop your email and it opens right here: browse the pins, build a trip, share the link. Free, and it stays unlocked on this device."), React.createElement("form", {
     className: "nlbox__form",
     action: "https://buttondown.com/api/emails/embed-subscribe/goehring",
     method: "post",
     target: "buttondown-target",
     onSubmit: () => {
-      if (window.trackNewsletterSubmit) window.trackNewsletterSubmit("map_gate", "map-gate");
+      if (window.trackNewsletterSubmit) window.trackNewsletterSubmit("map_view_gate", "map-gate");
       setTimeout(onSubscribed, 0);
     }
   }, React.createElement("input", {
@@ -1125,7 +1082,7 @@ function MapGateModal({
     value: "1"
   }), React.createElement("button", {
     type: "submit"
-  }, "Open the trip builder →")), React.createElement("p", {
+  }, "Open the map →")), React.createElement("p", {
     className: "map-gate__fine"
   }, "No spam. One short letter on Sundays, when there is something to say.")));
 }
