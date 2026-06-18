@@ -159,17 +159,34 @@ function injectGoogleMaps() {
 // ---------------------------------------------------------------------------
 // Injects the Maps script on first call, then polls window.google.maps for up
 // to 8s for the namespace to come online (the script loads async).
+//
+// Readiness is gated on `importLibrary` being a *function*, not merely on the
+// `google.maps` namespace existing: with `loading=async`, the bootstrap loader
+// assigns the namespace in stages, so there is a brief window where
+// `google.maps` is truthy but `importLibrary` is not yet attached. Resolving on
+// the bare namespace and then calling `maps.importLibrary("marker")` threw
+// "maps.importLibrary is not a function" on the first (uncached) load, while a
+// refresh (cached, faster exec) raced past the gap and worked. Waiting for the
+// function itself closes that race.
 // ---------------------------------------------------------------------------
+function mapsApiReady() {
+  return !!(
+    window.google &&
+    window.google.maps &&
+    typeof window.google.maps.importLibrary === "function"
+  );
+}
+
 function waitForGoogleMaps(timeoutMs = 8000) {
   return new Promise((resolve, reject) => {
-    if (window.google && window.google.maps) {
+    if (mapsApiReady()) {
       resolve(window.google.maps);
       return;
     }
     injectGoogleMaps();
     const start = Date.now();
     const interval = setInterval(() => {
-      if (window.google && window.google.maps) {
+      if (mapsApiReady()) {
         clearInterval(interval);
         resolve(window.google.maps);
       } else if (Date.now() - start > timeoutMs) {
