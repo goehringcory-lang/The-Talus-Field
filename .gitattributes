@@ -1,0 +1,30 @@
+# Force LF line endings for all text files, in the repo and in the working tree.
+#
+# Why this exists: the editorial build scripts (scripts/gen-compiled.mjs,
+# gen-prerender.mjs, gen-seo-artifacts.mjs) emit their artifacts with LF. The
+# repo has core.autocrlf=true, so before this file existed a Windows checkout
+# rewrote those same generated files to CRLF on disk. The build's
+# line-ending-sensitive guards (npm --prefix scripts run check) then reported
+# every generated file as "stale" even when its content was correct, and
+# git status showed permanent CRLF churn that masked real diffs.
+#
+# `eol=lf` pins LF on checkout regardless of autocrlf, so the working tree
+# matches what the generators write and `check` can pass on any platform.
+* text=auto eol=lf
+
+# Binary assets: never normalize line endings or attempt to diff/merge them.
+*.jpg   binary
+*.jpeg  binary
+*.png   binary
+*.gif   binary
+*.ico   binary
+*.webp  binary
+*.avif  binary
+*.woff  binary
+*.woff2 binary
+*.ttf   binary
+*.otf   binary
+*.eot   binary
+*.pdf   binary
+*.mp4   binary
+*.webm  binary
