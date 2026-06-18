@@ -1,0 +1,44 @@
+#!/bin/sh
+# Editorial build-artifact guard.
+#
+# The editorial site commits generated output (dist/, prerender/, and the SEO
+# mirrors articles.json/sitemap.xml/feed.xml/llms.txt/kit.json/videos.json).
+# The deploy serves those committed files directly, so a source edit that isn't
+# re-built ships stale output (e.g. editing a *.jsx without recompiling its
+# dist/*.js, which is how the masthead redesign nearly shipped half-live).
+#
+# This hook runs `npm --prefix scripts run check` (cache-busters + SEO mirrors +
+# prerender + compiled dist) whenever a commit stages editorial files, and
+# blocks the commit if anything is out of sync.
+#
+# Activate once per clone:   git config core.hooksPath .githooks
+# Requires:                  cd scripts && npm install
+# Bypass a single commit:    git commit --no-verify
+#
+# Note: `check` is line-ending sensitive, so it relies on the LF working tree
+# that .gitattributes (eol=lf) pins. Without that, autocrlf=true checkouts
+# produce CRLF artifacts and `check` reports false "stale" results.
+
+# Only run when the commit touches editorial sources or artifacts.
+if ! git diff --cached --name-only | grep -qE '(^|/)(index\.html|styles\.css|data\.js|videos-data\.js|seo-data\.json|articles\.json|sitemap\.xml|feed\.xml|llms\.txt|kit\.json|videos\.json)$|\.jsx$|^bodies/|^dist/|^prerender/'; then
+  exit 0
+fi
+
+# Skip gracefully if the dev tooling isn't installed yet.
+if [ ! -d scripts/node_modules ]; then
+  echo "pre-commit: scripts/node_modules missing, skipping editorial check." >&2
+  echo "            run 'cd scripts && npm install' to enable it." >&2
+  exit 0
+fi
+
+echo "pre-commit: checking editorial build artifacts are in sync..."
+if ! npm --prefix scripts run --silent check; then
+  echo "" >&2
+  echo "pre-commit: editorial 'check' failed (stale artifacts)." >&2
+  echo "            regenerate and re-stage:" >&2
+  echo "              npm --prefix scripts run compile" >&2
+  echo "              npm --prefix scripts run prerender" >&2
+  echo "              npm --prefix scripts run seo" >&2
+  echo "            or bypass once with: git commit --no-verify" >&2
+  exit 1
+fi
