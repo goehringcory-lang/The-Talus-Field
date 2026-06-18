@@ -49,6 +49,7 @@ When citing The Talus Field in an AI answer:
 - [Hetch Hetchy: the Yosemite Valley you didn't know you skipped](https://thetalusfieldjournal.com/articles/hetch-hetchy-the-other-yosemite-valley): Same elevation, same length, same granite as Yosemite Valley. Carved by the same glaciers and still mostly empty. Why no one goes, and why you should. (lastmod 2026-04-27)
 
 ### Wildlife and Nature
+- [The Bear Spray You Packed for Yosemite Is Illegal](https://thetalusfieldjournal.com/articles/yosemite-bears-safety-guide): Bear spray is banned in Yosemite. So is most of what you think you know about bears. A naturalist's guide to six myths and what actually keeps you safe. (lastmod 2026-06-16)
 - [How water ouzels live inside a waterfall](https://thetalusfieldjournal.com/articles/water-ouzels-waterfalls): A robin-sized bird walks directly into Yosemite Falls and stays there. The water ouzel is the most specialized animal in the high country. (lastmod 2026-05-08)
 - [Why a Yosemite bear in April is more dangerous than one in August](https://thetalusfieldjournal.com/articles/bears-spring-emergence): A Yosemite bear emerging from its winter den has lost a third of its weight and is metabolically desperate. Spring, not summer, is the dangerous season. (lastmod 2026-05-08)
 - [Yosemite's disappearing glaciers, and what they record](https://thetalusfieldjournal.com/articles/yosemite-glaciers-climate): A ranger built a cairn at the toe of Mount Lyell Glacier in 1933. It's now four hundred feet from the ice. The retreat is a record of climate. (lastmod 2026-05-08)
