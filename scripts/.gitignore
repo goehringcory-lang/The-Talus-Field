@@ -1,0 +1,4 @@
+# Transient system-checks output (CI artifact; the committed baseline-report.md
+# and lighthouse-history.json are the durable records).
+data/last-run-report.md
+.lighthouseci/

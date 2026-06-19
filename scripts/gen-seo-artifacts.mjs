@@ -29,121 +29,19 @@
 // add any enrichment to seo-data.json, then run this script. Do NOT hand-edit
 // articles.json / sitemap.xml / feed.xml / the llms.txt article list.
 
-import { readFileSync, writeFileSync, existsSync } from "node:fs";
-import { fileURLToPath } from "node:url";
+import { readFileSync, writeFileSync } from "node:fs";
 import path from "node:path";
-import vm from "node:vm";
-import sharp from "sharp";
-
-const ROOT = path.resolve(fileURLToPath(import.meta.url), "../..");
-const SITE_ORIGIN = "https://thetalusfieldjournal.com";
-const AUTHOR_NAME = "Cory Goehring";
+import {
+  ROOT,
+  SITE_ORIGIN,
+  AUTHOR_NAME,
+  loadDataJs,
+  loadVideosJs,
+  loadSeoData,
+  ogImageFor,
+} from "./lib/catalog.mjs";
 
 const CHECK = process.argv.includes("--check");
-
-// ----------------------------------------------------------------------------
-// Load sources
-// ----------------------------------------------------------------------------
-
-function loadDataJs() {
-  const src = readFileSync(path.join(ROOT, "data.js"), "utf8");
-  // data.js assigns to window.* and runs window.KIT.lists.forEach at load.
-  // A stubbed window is enough; document/navigator are defensive (loadArticleBody
-  // references them but is never called at load).
-  const sandbox = {
-    window: {},
-    document: { createElement: () => ({}), querySelector: () => null, head: {} },
-    navigator: { userAgent: "node" },
-    console,
-  };
-  vm.createContext(sandbox);
-  try {
-    vm.runInContext(src, sandbox, { filename: "data.js" });
-  } catch (e) {
-    console.error(
-      "Failed to evaluate data.js under node:vm. Keep its top-level code " +
-        "Node-safe (no document/window API calls outside function bodies).\n" +
-        e.stack
-    );
-    process.exit(2);
-  }
-  const w = sandbox.window;
-  if (!Array.isArray(w.ARTICLES) || !Array.isArray(w.CATEGORIES)) {
-    console.error("data.js did not populate window.ARTICLES / window.CATEGORIES");
-    process.exit(2);
-  }
-  return { articles: w.ARTICLES, categories: w.CATEGORIES, kit: w.KIT };
-}
-
-function loadVideosJs() {
-  const src = readFileSync(path.join(ROOT, "videos-data.js"), "utf8");
-  // Same stubbed-window harvest as data.js. videos-data.js's only top-level
-  // browser touch is an integrity IIFE guarded by `window.location &&`, which
-  // short-circuits against the empty stub.
-  const sandbox = {
-    window: {},
-    document: { createElement: () => ({}), querySelector: () => null, head: {} },
-    navigator: { userAgent: "node" },
-    console,
-  };
-  vm.createContext(sandbox);
-  try {
-    vm.runInContext(src, sandbox, { filename: "videos-data.js" });
-  } catch (e) {
-    console.error(
-      "Failed to evaluate videos-data.js under node:vm. Keep its top-level code " +
-        "Node-safe (no document/window API calls outside function bodies).\n" +
-        e.stack
-    );
-    process.exit(2);
-  }
-  const nn = sandbox.window.NATURE_NOTES;
-  if (!nn || !Array.isArray(nn.episodes)) {
-    console.error("videos-data.js did not populate window.NATURE_NOTES.episodes");
-    process.exit(2);
-  }
-  return nn.episodes;
-}
-
-function loadSeoData() {
-  return JSON.parse(readFileSync(path.join(ROOT, "seo-data.json"), "utf8"));
-}
-
-// Mirror of slugify() in scripts/gen-responsive-images.mjs and the browser
-// ResponsiveImage helper — keep in sync. Used to derive the slug-named social
-// image variant from a source filename.
-function slugify(basename) {
-  return basename
-    .toLowerCase()
-    .replace(/\.[^.]+$/, "")
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/^-+|-+$/g, "");
-}
-
-// Resolve the social-share image for an article: prefer the pre-generated
-// 1600px responsive JPEG variant (slug-named, a few hundred KB, well under the
-// social scrapers' size caps) over the source JPEG (which can be many MB).
-// Returns { url, width, height } with the real pixel dimensions, or null for
-// external/missing images (the middleware then falls back to art.image and the
-// static og:image:width/height in index.html).
-async function ogImageFor(art) {
-  const img = art.image;
-  if (!img || /^https?:/i.test(img)) return null;
-  const variant = `img/responsive/${slugify(path.basename(img))}-1600.jpg`;
-  const variantPath = path.join(ROOT, variant);
-  let url, filePath;
-  if (existsSync(variantPath)) {
-    url = variant;
-    filePath = variantPath;
-  } else {
-    url = img.replace(/^\/+/, "");
-    filePath = path.join(ROOT, url);
-  }
-  if (!existsSync(filePath)) return null;
-  const meta = await sharp(filePath).metadata();
-  if (!meta.width || !meta.height) return null;
-  return { url, width: meta.width, height: meta.height };
-}
 
 // ----------------------------------------------------------------------------
 // Helpers
