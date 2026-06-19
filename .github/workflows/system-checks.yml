@@ -1,0 +1,80 @@
+# Nightly system-checks suite for the editorial site: SEO/render/distribution
+# health (links, sitemap, feed, per-page SEO, og:image, JSON-LD, image hygiene,
+# email-auth) plus a Lighthouse Core Web Vitals trend.
+#
+# The site auto-deploys from main to Cloudflare Pages, so the live origin is the
+# right target for the online checks. Search-engine notification of new URLs is
+# already handled by indexnow.yml on push; this workflow does not duplicate it.
+#
+# Runs nightly and on manual dispatch. The checks job fails on error-severity
+# findings; Lighthouse is warn-only (drift is recorded, not gated) to avoid flaky
+# nightly failures.
+
+name: System checks
+
+on:
+  schedule:
+    - cron: "17 9 * * *" # 09:17 UTC nightly
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  checks:
+    name: SEO / render / distribution checks
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: scripts
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: scripts/package-lock.json
+      - run: npm ci
+      - name: Run system checks (online)
+        run: node system-checks.mjs --online --report=data/last-run-report.md
+      - name: Upload report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: system-checks-report
+          path: scripts/data/last-run-report.md
+
+  lighthouse:
+    name: Lighthouse Core Web Vitals trend
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: scripts/package-lock.json
+      - name: Run Lighthouse
+        uses: treosh/lighthouse-ci-action@v12
+        with:
+          urls: |
+            https://thetalusfieldjournal.com/
+            https://thetalusfieldjournal.com/articles/yosemite-heat-safety-guide
+          uploadArtifacts: true
+          temporaryPublicStorage: true
+      - name: Append to history
+        run: node scripts/lighthouse-log.mjs
+      - name: Commit history (scheduled/dispatch only)
+        if: github.event_name != 'pull_request'
+        run: |
+          if git diff --quiet -- scripts/data/lighthouse-history.json; then
+            echo "No Lighthouse history change."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add scripts/data/lighthouse-history.json
+          git commit -m "chore: record nightly Lighthouse run [skip ci]"
+          git push

@@ -11,6 +11,8 @@
     "prerender:check": "node gen-prerender.mjs --check",
     "compile": "node gen-compiled.mjs",
     "compile:check": "node gen-compiled.mjs --check",
+    "checks": "node system-checks.mjs",
+    "checks:online": "node system-checks.mjs --online",
     "check": "bash check-cache-busters.sh && bash check-seo-artifacts.sh && node gen-prerender.mjs --check && node gen-compiled.mjs --check"
   },
   "devDependencies": {
