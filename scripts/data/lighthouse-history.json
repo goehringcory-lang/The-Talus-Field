@@ -40,5 +40,26 @@
         "tbt": 105.5
       }
     ]
+  },
+  {
+    "date": "2026-06-21",
+    "runs": [
+      {
+        "url": "https://thetalusfieldjournal.com/",
+        "performance": 0.52,
+        "lcp": 10786.989000000001,
+        "cls": 0,
+        "fcp": 4383.386499999999,
+        "tbt": 422
+      },
+      {
+        "url": "https://thetalusfieldjournal.com/articles/yosemite-heat-safety-guide",
+        "performance": 0.66,
+        "lcp": 7975.75625,
+        "cls": 0.004134794914811515,
+        "fcp": 3857.8295,
+        "tbt": 101.99999999999955
+      }
+    ]
   }
 ]
