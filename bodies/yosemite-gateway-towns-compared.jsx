@@ -166,8 +166,8 @@ window.ARTICLE_BODIES["yosemite-gateway-towns-compared"] = function YosemiteGate
 
       <p>
         <strong>Distance to Yosemite Valley:</strong> about 75 miles via Tioga Pass, 90 minutes minimum, only when Tioga is open (typically late May or June through October or early November).<br />
-        <strong>Distance to Tuolumne Meadows:</strong> about 15 miles, 25 minutes.<br />
-        <strong>Distance to Mono Lake:</strong> 5 minutes.<br />
+        <strong>Distance to Tuolumne Meadows:</strong> about 20 miles, 30 minutes.<br />
+        <strong>Distance to Mono Lake:</strong> about 5 minutes to the visitor center, 15 to the South Tufa boardwalk.<br />
         <strong>Highway access:</strong> 395 north-south, 120 west into Yosemite (seasonal).<br />
         <strong>Character:</strong> a tiny eastern Sierra town built around tourism to Mono Lake and the high-elevation Yosemite.
       </p>
@@ -241,6 +241,10 @@ window.ARTICLE_BODIES["yosemite-gateway-towns-compared"] = function YosemiteGate
       </p>
 
       <p>That's the decision. Make it once, well, and the rest of your trip gets easier.</p>
+
+      <p>
+        If you are still working out how to approach the park, start with the <a href="/articles/first-time-yosemite-overwhelm">first-timer's guide</a>, read <a href="/articles/yosemite-without-reservations-2026">what changed for 2026</a> before you book, and see <a href="/articles/yosemite-in-one-or-two-days">how to spend one or two days</a> once your base is set.
+      </p>
 
       <h3>Sources</h3>
       <ul style={{ fontSize: 14 }}>

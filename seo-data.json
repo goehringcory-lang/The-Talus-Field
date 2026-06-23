@@ -100,8 +100,8 @@
 
   "yosemite-in-one-or-two-days": {
     "comment": "faq intentionally omitted here; it lives inline in data.js (window.ARTICLES) and takes precedence in the generator.",
-    "wordCount": 2100,
-    "keywords": ["one day Yosemite itinerary", "two days in Yosemite", "Yosemite day trip", "Yosemite 2026 short visit", "Yosemite Valley highlights"]
+    "wordCount": 3700,
+    "keywords": ["one day Yosemite itinerary", "two days in Yosemite", "Yosemite day trip", "Yosemite 2026 short visit", "Yosemite Valley highlights", "what to do in Yosemite in one day", "is one day enough for Yosemite"]
   },
 
   "four-mile-up-panorama-down": {
@@ -302,10 +302,11 @@
   },
 
   "yosemite-gateway-towns-compared": {
-    "wordCount": 2210,
-    "keywords": ["Yosemite gateway towns", "Mariposa Yosemite", "Oakhurst Yosemite", "El Portal Lee Vining", "where to stay Yosemite"],
+    "wordCount": 2280,
+    "keywords": ["Yosemite gateway towns", "Mariposa Yosemite", "Oakhurst Yosemite", "El Portal Yosemite", "Lee Vining Yosemite", "where to stay Yosemite", "closest town to Yosemite Valley", "Groveland Yosemite"],
     "faq": [
-      { "q": "Which Yosemite gateway town is closest to the Valley?", "a": "El Portal, about 14 miles and 25-30 minutes from Yosemite Valley via Highway 140. Mariposa is next at 45 miles and 45-60 minutes. Lee Vining is closest to Tuolumne Meadows (25 minutes) but 90+ minutes from the Valley." },
+      { "q": "Which Yosemite gateway town is closest to the Valley?", "a": "El Portal, about 14 miles and 25-30 minutes from Yosemite Valley via Highway 140. Mariposa is next at 45 miles and 45-60 minutes. Lee Vining is closest to Tuolumne Meadows (about 30 minutes) but 90+ minutes from the Valley." },
+      { "q": "Which Yosemite gateway town is best for first-time visitors?", "a": "Mariposa, for most first-timers. It pairs a real town (groceries, dinner, lodging at several price points) with the reliable, year-round Highway 140 approach. El Portal is closer if you can get a room, but Mariposa is the better all-round balance of cost and convenience." },
       { "q": "Which Yosemite gateway town is cheapest?", "a": "Groveland and Mariposa typically have the widest price range and the most budget options. El Portal lodging is priced like in-park lodging because of the location. Oakhurst has predictable chain prices. Lee Vining has limited inventory and is priced accordingly." },
       { "q": "Which Yosemite gateway town is best for families?", "a": "Mariposa, by a wide margin. It has full-service grocery stores, multiple restaurants, a wide range of lodging from budget motels to inns, and a real downtown to spend an evening in. The 45-minute drive to the Valley is a fair trade for the amenities." },
       { "q": "Which Yosemite gateway towns have full grocery stores?", "a": "Mariposa and Oakhurst have full grocery stores. Groveland has a smaller one. El Portal has a market, not a real grocery. Lee Vining has limited groceries. Stock up at the larger town before you head in." },
@@ -326,26 +327,28 @@
   },
 
   "yosemite-without-reservations-2026": {
-    "wordCount": 1898,
-    "keywords": ["Yosemite 2026 reservations", "Yosemite without reservation", "Yosemite parking strategy", "Yosemite crowds 2026", "Yosemite entrance station"],
+    "wordCount": 2020,
+    "keywords": ["Yosemite 2026 reservations", "Yosemite without reservation", "Yosemite parking strategy", "Yosemite no reservations 2026", "Yosemite entrance station"],
     "faq": [
       { "q": "Do I need a reservation to enter Yosemite in 2026?", "a": "No. The day-use vehicle reservation system is not in effect in 2026. A standard Yosemite entrance pass is required." },
-      { "q": "When does Yosemite Valley fill up?", "a": "Day-use parking in the Valley typically fills by 9 a.m. on summer weekends and 10-11 a.m. on weekdays. Tunnel View fills earlier, often by 7:30 a.m. on peak days. Once lots are full, you're circling." },
+      { "q": "When does Yosemite Valley fill up?", "a": "Day-use parking in the Valley typically fills by 8 a.m. on summer weekends, often closer to 7:30, and by late morning on weekdays. Tunnel View fills earlier still on peak days. Once lots are full, you're circling." },
       { "q": "What time should I enter Yosemite to beat the crowds?", "a": "Be inside the park by 6:30 a.m. on any peak day. Earlier is better. The drive in is faster, the entrance stations are quiet, and you'll be parked at your first stop while everyone else is still in line." },
-      { "q": "What changed in Yosemite in 2026?", "a": "The day-use entrance reservation system was dropped. The reservation requirement that throttled vehicles during peak hours in 2024 and 2025 is gone, and the park is expected to see its heaviest crowds in years as a result." },
+      { "q": "What changed in Yosemite in 2026?", "a": "Two things. The day-use entrance reservation system was dropped, so the requirement that throttled vehicles during peak hours in 2024 and 2025 is gone and the park is expected to see its heaviest crowds in years. Separately, since January 1, 2026, international visitors pay a $100 surcharge per person on top of the standard entrance fee; domestic visitors are unaffected." },
       { "q": "How do I find parking in Yosemite Valley?", "a": "Arrive before 8 a.m. for the central lots. Yosemite Village day-use parking is the most useful base. If those are full, the lot near Yosemite Valley Lodge usually has turnover by mid-morning. Don't waste time circling Curry Village." }
     ]
   },
 
   "first-time-yosemite-overwhelm": {
     "wordCount": 1129,
-    "keywords": ["first time Yosemite", "Yosemite first trip", "Yosemite planning", "Yosemite for beginners", "Yosemite trip strategy"],
+    "keywords": ["first time Yosemite", "Yosemite first trip", "Yosemite planning", "Yosemite for beginners", "Yosemite trip strategy", "first time Yosemite tips", "how to plan a Yosemite trip"],
     "faq": [
+      { "q": "What should I figure out before planning a Yosemite trip?", "a": "Three things, before you book anything. What season you'll visit and what's open then (Tioga Road and Glacier Point Road are closed into late spring most years). Which two of granite, waterfalls, old-growth, high country, and solitude matter most to you. And what your backup plan is when the park doesn't cooperate." },
       { "q": "How long should I spend in Yosemite for a first trip?", "a": "At minimum two full days. Three to four is better, giving you time to see Yosemite Valley properly and have one full day elsewhere (Glacier Point, Mariposa Grove, or Tioga Road). A single-day trip is possible but you'll be moving constantly." },
       { "q": "What month is best for visiting Yosemite for the first time?", "a": "Late May and early June for peak waterfalls; September and October for low crowds and golden light. July and August are warm and crowded. April has waterfalls and fewer people but Tioga Road and Glacier Point Road are usually still closed." },
       { "q": "Do I need a reservation to enter Yosemite in 2026?", "a": "No. The day-use entrance reservation system is not in effect in 2026. A standard Yosemite entrance pass is required." },
       { "q": "Where should I stay on a first Yosemite trip?", "a": "Mariposa is the most practical first-timer choice, about 45 minutes from the Valley, a real downtown, full-service. El Portal is closer (25-30 minutes) but smaller and more expensive. In-park lodging fills six to twelve months ahead." },
-      { "q": "How much driving is involved in a Yosemite trip?", "a": "More than most people expect. A gateway town to the Valley is 25 to 90 minutes each way. Glacier Point Road and Tioga Road each add an hour or more in-park. Pack the car like you're going to drive a lot, because you will." }
+      { "q": "How much driving is involved in a Yosemite trip?", "a": "More than most people expect. A gateway town to the Valley is 25 to 90 minutes each way. Glacier Point Road and Tioga Road each add an hour or more in-park. Pack the car like you're going to drive a lot, because you will." },
+      { "q": "Is there an extra fee for international visitors in 2026?", "a": "Yes. Since January 1, 2026, international visitors pay a $100 surcharge per person age 16 and older, on top of the standard entrance fee. A $250 nonresident annual pass waives it. U.S. residents are unaffected." }
     ]
   }
 }
