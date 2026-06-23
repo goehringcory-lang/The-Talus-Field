@@ -43,8 +43,7 @@ export const STATIC_ROUTES = [
   "/map",
 ];
 
-function harvestWindow(file) {
-  const src = readFileSync(path.join(ROOT, file), "utf8");
+function harvestWindow(file, preload = []) {
   // data.js / videos-data.js assign to window.* and may run small top-level
   // IIFEs. A stubbed window/document/navigator is enough; neither file makes
   // un-guarded browser-API calls at load. See gen-seo-artifacts.mjs history.
@@ -55,11 +54,18 @@ function harvestWindow(file) {
     console,
   };
   vm.createContext(sandbox);
+  // Evaluate any window-global dependencies first, mirroring index.html's
+  // script order (e.g. affiliate.js before data.js, so data.js can call
+  // window.buildPatagoniaAffiliateLink for kit aff links).
+  const files = [...preload, file];
+  let current = file;
   try {
-    vm.runInContext(src, sandbox, { filename: file });
+    for (current of files) {
+      vm.runInContext(readFileSync(path.join(ROOT, current), "utf8"), sandbox, { filename: current });
+    }
   } catch (e) {
     console.error(
-      `Failed to evaluate ${file} under node:vm. Keep its top-level code ` +
+      `Failed to evaluate ${current} under node:vm. Keep its top-level code ` +
         "Node-safe (no document/window API calls outside function bodies).\n" +
         e.stack
     );
@@ -69,7 +75,7 @@ function harvestWindow(file) {
 }
 
 export function loadDataJs() {
-  const w = harvestWindow("data.js");
+  const w = harvestWindow("data.js", ["affiliate.js"]);
   if (!Array.isArray(w.ARTICLES) || !Array.isArray(w.CATEGORIES)) {
     console.error("data.js did not populate window.ARTICLES / window.CATEGORIES");
     process.exit(2);

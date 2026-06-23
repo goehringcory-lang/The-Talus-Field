@@ -1,4 +1,4 @@
-/* global React */
+/* global React, AffiliateNote */
 
 window.ARTICLE_BODIES = window.ARTICLE_BODIES || {};
 
@@ -74,7 +74,7 @@ window.ARTICLE_BODIES["pack-your-car-for-yosemite"] = function PackYourCarForYos
       </p>
 
       <p>
-        Keep a fleece, a rain jacket, and a warm hat in the car at all times, for every person in the vehicle. I don't care if the forecast says 95 and sunny. The forecast is for the Valley floor. The park goes from 2,000 feet at El Portal to 13,000 feet at the crest, and the weather at those two elevations has almost nothing to do with each other.
+        Keep a <a className="aff-link" href={window.buildPatagoniaAffiliateLink("https://www.patagonia.com/search/?q=fleece")} target="_blank" rel="sponsored noopener noreferrer" data-aff-network="patagonia" data-aff-list="article" data-aff-item-slug="pack-your-car-for-yosemite" data-aff-name="Fleece">fleece</a>, a <a className="aff-link" href={window.buildPatagoniaAffiliateLink("https://www.patagonia.com/search/?q=rain+jacket")} target="_blank" rel="sponsored noopener noreferrer" data-aff-network="patagonia" data-aff-list="article" data-aff-item-slug="pack-your-car-for-yosemite" data-aff-name="Packable rain jacket">rain jacket</a>, and a warm hat in the car at all times, for every person in the vehicle. I don't care if the forecast says 95 and sunny. The forecast is for the Valley floor. The park goes from 2,000 feet at El Portal to 13,000 feet at the crest, and the weather at those two elevations has almost nothing to do with each other.
       </p>
 
       <p>
@@ -244,6 +244,8 @@ window.ARTICLE_BODIES["pack-your-car-for-yosemite"] = function PackYourCarForYos
       <p>
         Pack the car like you're packing for the trip you don't know you're going to take yet. That's the one that's usually the best.
       </p>
+
+      <AffiliateNote />
     </>
   );
 };

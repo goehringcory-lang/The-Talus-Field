@@ -2111,6 +2111,29 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
 .kit-check__aff:hover::after,
 .kit-check__aff:focus-visible::after { opacity: 0.7; }
 
+/* Inline affiliate links inside article bodies carry the same hover star as
+   the kit list, so they are identifiable per the Affiliate Disclosure. */
+.aff-link::after {
+  content: " \2605";
+  font-size: 0.85em;
+  opacity: 0;
+  transition: opacity 0.15s ease;
+}
+.aff-link:hover::after,
+.aff-link:focus-visible::after { opacity: 0.7; }
+
+/* End-of-article affiliate disclosure note (window.AffiliateNote). */
+.article-aff-note {
+  border-top: 1px solid var(--rule);
+  margin-top: 40px;
+  padding-top: 18px;
+  font-family: var(--sans);
+  font-size: 13px;
+  color: var(--ink-3);
+  line-height: 1.6;
+}
+.article-aff-note a { color: var(--ink-2); text-decoration: underline; }
+
 @media (max-width: 720px) {
   .kit-group__title { font-size: 21px; }
   .kit-check__name { font-size: 17px; }
