@@ -6,7 +6,9 @@ window.ARTICLE_BODIES["first-time-yosemite-overwhelm"] = function FirstTimeYosem
     href: "/articles/yosemite-without-reservations-2026"
   }, "what changed in 2026"), " is the most important context for any first trip this year. ", React.createElement("a", {
     href: "/articles/yosemite-gateway-towns-compared"
-  }, "Pick your gateway town"), " before you book lodging. And ", React.createElement("a", {
+  }, "Pick your gateway town"), " before you book lodging. Once you know roughly how long you have, ", React.createElement("a", {
+    href: "/articles/yosemite-in-one-or-two-days"
+  }, "one or two days in Yosemite"), " turns the strategy into an itinerary. And ", React.createElement("a", {
     href: "/articles/pack-your-car-for-yosemite"
   }, "pack the car"), " like the trip depends on it, because it does."), React.createElement("p", null, "Let's plan a good one."));
 };
