@@ -1,6 +1,9 @@
 {
   "__comment": "SEO enrichment for the editorial site, keyed by article slug. NOT loaded by the browser runtime (kept out of data.js so the per-page JS payload stays small). The build script scripts/gen-seo-artifacts.mjs merges this with window.ARTICLES from data.js to regenerate articles.json (consumed by functions/_middleware.js), sitemap.xml, feed.xml, and the article section of llms.txt. Fields: wordCount (number), keywords (string[]), faq ({q,a}[]), trail ({name,distance,elevationGain,difficulty} for hike guides). FAQ answers and trail numbers are drawn from each article's published body; do not invent facts. The one article whose faq lives inline in data.js (yosemite-in-one-or-two-days) is intentionally omitted here; data.js takes precedence for faq.",
 
+  "yosemite-bears-safety-guide": {
+    "keywords": ["Yosemite bears", "bear safety Yosemite", "is bear spray legal in Yosemite", "black bears Yosemite", "what to do if you see a bear in Yosemite", "Yosemite food storage rules", "bear canister Yosemite", "are black bears dangerous", "Yosemite bear myths"]
+  },
   "yosemite-heat-safety-guide": {
     "wordCount": 3088,
     "keywords": ["Yosemite heat safety", "how hot is Yosemite in summer", "Yosemite summer temperatures", "Yosemite Valley heat", "exposed trails Yosemite", "hiking Yosemite in July", "where to swim in Yosemite", "Yosemite thunderstorm safety", "heat exhaustion vs heat stroke", "Tuolumne Meadows temperature", "Yosemite swimming safety", "best time to hike Yosemite summer"],
