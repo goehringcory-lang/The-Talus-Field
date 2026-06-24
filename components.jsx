@@ -441,6 +441,22 @@ function Footer({ go }) {
 }
 
 // ============================================================
+// Affiliate note
+// ============================================================
+// End-of-article disclosure for any body that carries inline affiliate
+// links, per the convention stated on the /affiliate page. The /affiliate
+// href is a plain link; the app.jsx SPA router intercepts it like the
+// /articles/* links inside bodies. Rendered as the last element of a body.
+function AffiliateNote() {
+  return (
+    <p className="article-aff-note">
+      Some links in this piece are affiliate links to Patagonia. If you buy through one, The Talus Field may earn a small commission at no extra cost to you. <a href="/affiliate">Full disclosure.</a>
+    </p>
+  );
+}
+window.AffiliateNote = AffiliateNote;
+
+// ============================================================
 // Article card
 // ============================================================
 function ArticleCard({ article, go, size }) {

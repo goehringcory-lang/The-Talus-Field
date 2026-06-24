@@ -1,4 +1,4 @@
-/* global React */
+/* global React, AffiliateNote */
 
 window.ARTICLE_BODIES = window.ARTICLE_BODIES || {};
 
@@ -80,7 +80,7 @@ window.ARTICLE_BODIES["mist-trail-the-real-guide"] = function MistTrailBody() {
       </p>
 
       <p>
-        A rain jacket helps but isn't necessary if the day is warm. In July and August, when the falls are lower, you might get misted rather than soaked. In May and June, the rain jacket keeps you warm on the way up but you'll be sweating under it.
+        A <a className="aff-link" href={window.buildPatagoniaAffiliateLink("https://www.patagonia.com/search/?q=rain+jacket")} target="_blank" rel="sponsored noopener noreferrer" data-aff-network="patagonia" data-aff-list="article" data-aff-item-slug="mist-trail-the-real-guide" data-aff-name="Packable rain jacket">rain jacket</a> helps but isn't necessary if the day is warm. In July and August, when the falls are lower, you might get misted rather than soaked. In May and June, the rain jacket keeps you warm on the way up but you'll be sweating under it.
       </p>
 
       <p>
@@ -174,6 +174,8 @@ window.ARTICLE_BODIES["mist-trail-the-real-guide"] = function MistTrailBody() {
       <p>
         Then get ready to get soaked, because the Mist Trail earned its name, and it's worth every wet, steep, breathless step.
       </p>
+
+      <AffiliateNote />
     </>
   );
 };

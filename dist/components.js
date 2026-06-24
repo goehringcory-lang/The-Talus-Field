@@ -560,6 +560,14 @@ function Footer({
     }
   }, "Affiliate")))));
 }
+function AffiliateNote() {
+  return React.createElement("p", {
+    className: "article-aff-note"
+  }, "Some links in this piece are affiliate links to Patagonia. If you buy through one, The Talus Field may earn a small commission at no extra cost to you. ", React.createElement("a", {
+    href: "/affiliate"
+  }, "Full disclosure."));
+}
+window.AffiliateNote = AffiliateNote;
 function ArticleCard({
   article,
   go,

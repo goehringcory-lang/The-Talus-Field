@@ -48,7 +48,7 @@ window.CATEGORIES = [
 // ============================================================
 window.BODY_VERSIONS = {
   "yosemite-bears-safety-guide": 117,
-  "yosemite-heat-safety-guide": 1,
+  "yosemite-heat-safety-guide": 2,
   "when-to-visit-yosemite-2026-crowd-forecast": 2,
   "yosemite-trip-cost-budget-2026": 1,
   "yosemite-in-june-2026": 1,
@@ -61,12 +61,12 @@ window.BODY_VERSIONS = {
   "so-you-want-to-hike-half-dome": 75,
   "half-dome-permit-lottery-2026": 80,
   "glacier-point-road-open-2026": 76,
-  "mist-trail-the-real-guide": 80,
+  "mist-trail-the-real-guide": 81,
   "first-time-yosemite-overwhelm": 81,
   "yosemite-without-reservations-2026": 81,
   "yosemite-during-smoke-season": 75,
   "yosemite-gateway-towns-compared": 82,
-  "pack-your-car-for-yosemite": 80,
+  "pack-your-car-for-yosemite": 81,
   "yosemite-for-non-hikers": 75,
   "yosemite-stargazing-where-to-look-up": 75,
   "hetch-hetchy-the-other-yosemite-valley": 75,
@@ -141,7 +141,7 @@ window.KIT = {
           id: "navigation",
           title: "Navigation",
           items: [
-            { id: "day-pack:pack", name: "20–25L pack with a hip belt", note: "Hip belt matters more than the brand. It should sit on your iliac crest, not your waist.", aff: "#" },
+            { id: "day-pack:pack", name: "20–25L pack with a hip belt", note: "Hip belt matters more than the brand. It should sit on your iliac crest, not your waist.", aff: window.buildPatagoniaAffiliateLink("https://www.patagonia.com/search/?q=daypack") },
             { id: "day-pack:paper-map", name: "Paper map of the park", note: "Cell service dies past Crane Flat. A physical map does not need a signal.", aff: "#" },
             { id: "day-pack:compass", name: "Baseplate compass", note: "Paired with the paper map, it is useful when the phone is dead or lost.", aff: "#" },
             { id: "day-pack:offline-maps", name: "Downloaded offline maps", note: "Gaia or Maps.me. Download the tile set at home before you leave; the park has no reliable data connection.", aff: "#" },
@@ -153,8 +153,8 @@ window.KIT = {
           id: "sun-protection",
           title: "Sun protection",
           items: [
-            { id: "day-pack:sun-hat", name: "Wide-brim sun hat", note: "Granite reflects. A baseball cap is not enough above 7,000 feet.", aff: "https://patagonia.pxf.io/c/7338432/1948563/23649?u=https%3A%2F%2Fwww.patagonia.com%2Fsearch%2F%3Fq%3Dsun%2Bhat" },
-            { id: "day-pack:sun-shirt", name: "Long-sleeve sun shirt, UPF 50", note: "Light color, hood if you can find it. Wear it even in heat.", aff: "https://patagonia.pxf.io/c/7338432/1948563/23649?u=https%3A%2F%2Fwww.patagonia.com%2Fsearch%2F%3Fq%3Dsun%2Bhoody" },
+            { id: "day-pack:sun-hat", name: "Wide-brim sun hat", note: "Granite reflects. A baseball cap is not enough above 7,000 feet.", aff: window.buildPatagoniaAffiliateLink("https://www.patagonia.com/search/?q=sun+hat") },
+            { id: "day-pack:sun-shirt", name: "Long-sleeve sun shirt, UPF 50", note: "Light color, hood if you can find it. Wear it even in heat.", aff: window.buildPatagoniaAffiliateLink("https://www.patagonia.com/search/?q=sun+hoody") },
             { id: "day-pack:sunscreen", name: "Sunscreen, SPF 50, reef-safe", note: "Reapply every two hours at elevation.", aff: "#" },
             { id: "day-pack:sunglasses", name: "Polarized sunglasses, UV400", note: "Polarized lenses cut glare off granite and water.", aff: "#" },
             { id: "day-pack:lip-balm", name: "SPF lip balm", note: "Lips chap and burn faster than skin at elevation.", aff: "#" }
@@ -164,12 +164,12 @@ window.KIT = {
           id: "clothing-insulation",
           title: "Clothing & insulation",
           items: [
-            { id: "day-pack:insulated-jacket", name: "Patagonia Nano Puff, or any packable insulated jacket", note: "The Valley is warm at 10am and 40°F at the rim by 3pm. Synthetic insulation still works if it gets wet.", aff: "https://patagonia.pxf.io/c/7338432/1948563/23649?u=https%3A%2F%2Fwww.patagonia.com%2Fsearch%2F%3Fq%3Dnano%2Bpuff", articleSlug: "memorial-day-skip-the-valley-go-high-2026" },
-            { id: "day-pack:rain-shell", name: "Packable rain shell with taped seams", note: "Afternoon thunderstorms are common in summer high country.", aff: "https://patagonia.pxf.io/c/7338432/1948563/23649?u=https%3A%2F%2Fwww.patagonia.com%2Fsearch%2F%3Fq%3Drain%2Bjacket" },
-            { id: "day-pack:beanie", name: "Warm beanie", aff: "https://patagonia.pxf.io/c/7338432/1948563/23649?u=https%3A%2F%2Fwww.patagonia.com%2Fsearch%2F%3Fq%3Dbeanie" },
-            { id: "day-pack:gloves", name: "Lightweight gloves", note: "Worth carrying for Tuolumne.", aff: "#" },
-            { id: "day-pack:extra-socks", name: "Extra wool or synthetic socks", note: "Wet socks cause blisters. A dry pair costs almost no weight.", aff: "#" },
-            { id: "day-pack:buff", name: "Buff or neck gaiter", aff: "#" }
+            { id: "day-pack:insulated-jacket", name: "Patagonia Nano Puff, or any packable insulated jacket", note: "The Valley is warm at 10am and 40°F at the rim by 3pm. Synthetic insulation still works if it gets wet.", aff: window.buildPatagoniaAffiliateLink("https://www.patagonia.com/search/?q=nano+puff"), articleSlug: "memorial-day-skip-the-valley-go-high-2026" },
+            { id: "day-pack:rain-shell", name: "Packable rain shell with taped seams", note: "Afternoon thunderstorms are common in summer high country.", aff: window.buildPatagoniaAffiliateLink("https://www.patagonia.com/search/?q=rain+jacket") },
+            { id: "day-pack:beanie", name: "Warm beanie", aff: window.buildPatagoniaAffiliateLink("https://www.patagonia.com/search/?q=beanie") },
+            { id: "day-pack:gloves", name: "Lightweight gloves", note: "Worth carrying for Tuolumne.", aff: window.buildPatagoniaAffiliateLink("https://www.patagonia.com/search/?q=lightweight+gloves") },
+            { id: "day-pack:extra-socks", name: "Extra wool or synthetic socks", note: "Wet socks cause blisters. A dry pair costs almost no weight.", aff: window.buildPatagoniaAffiliateLink("https://www.patagonia.com/search/?q=hiking+socks") },
+            { id: "day-pack:buff", name: "Buff or neck gaiter", aff: window.buildPatagoniaAffiliateLink("https://www.patagonia.com/search/?q=neck+gaiter") }
           ]
         },
         {
@@ -253,7 +253,7 @@ window.KIT = {
           id: "carry-sleep",
           title: "Carry & sleep system",
           items: [
-            { id: "overnight-pack:pack", name: "55 to 65L pack", note: "Bigger than you need is worse than tighter than you want.", aff: "#" },
+            { id: "overnight-pack:pack", name: "55 to 65L pack", note: "Bigger than you need is worse than tighter than you want.", aff: window.buildPatagoniaAffiliateLink("https://www.patagonia.com/search/?q=backpacking+pack") },
             { id: "overnight-pack:tent", name: "Three-season tent", note: "Freestanding, two doors, under three pounds if you can afford it.", aff: "#" },
             { id: "overnight-pack:footprint", name: "Tent footprint", aff: "#" },
             { id: "overnight-pack:stakes", name: "Extra tent stakes", note: "Longer stakes hold in sandy, rocky soil.", aff: "#" },
@@ -293,10 +293,10 @@ window.KIT = {
           id: "clothing-additions",
           title: "Clothing additions",
           items: [
-            { id: "overnight-pack:puffy", name: "Insulated puffy jacket", aff: "#" },
-            { id: "overnight-pack:base-layers", name: "Warm base layers for sleep", aff: "#" },
-            { id: "overnight-pack:warm-hat-gloves", name: "Warm hat and light gloves", aff: "#" },
-            { id: "overnight-pack:dry-socks", name: "Extra dry socks", aff: "#" },
+            { id: "overnight-pack:puffy", name: "Insulated puffy jacket", aff: window.buildPatagoniaAffiliateLink("https://www.patagonia.com/search/?q=down+jacket") },
+            { id: "overnight-pack:base-layers", name: "Warm base layers for sleep", aff: window.buildPatagoniaAffiliateLink("https://www.patagonia.com/search/?q=base+layer") },
+            { id: "overnight-pack:warm-hat-gloves", name: "Warm hat and light gloves", aff: window.buildPatagoniaAffiliateLink("https://www.patagonia.com/search/?q=fleece+gloves") },
+            { id: "overnight-pack:dry-socks", name: "Extra dry socks", aff: window.buildPatagoniaAffiliateLink("https://www.patagonia.com/search/?q=hiking+socks") },
             { id: "overnight-pack:camp-shoes", name: "Camp shoes", note: "Cheap foam sandals. Worth their weight every single night.", aff: "#" }
           ]
         },
@@ -573,23 +573,23 @@ window.KIT = {
           id: "clothing-footwear",
           title: "Clothing & footwear",
           items: [
-            { id: "car-trip:base-layers", name: "Moisture-wicking base layers", aff: "#" },
-            { id: "car-trip:mid-layer", name: "Mid-layer fleece or down", aff: "#" },
-            { id: "car-trip:outer-jacket", name: "Insulated outer jacket", aff: "#" },
-            { id: "car-trip:rain-jacket", name: "Packable rain jacket", note: "Summer afternoon thunderstorms are not rare.", aff: "#" },
-            { id: "car-trip:rain-pants", name: "Rain pants", aff: "#" },
-            { id: "car-trip:hiking-pants", name: "Zip-off hiking pants", aff: "#" },
-            { id: "car-trip:camp-pants", name: "Camp pants or shorts", aff: "#" },
-            { id: "car-trip:tshirts", name: "T-shirts", aff: "#" },
-            { id: "car-trip:sun-shirt", name: "Long-sleeve UPF 50 sun shirt", aff: "#" },
-            { id: "car-trip:beanie", name: "Beanie", aff: "#" },
-            { id: "car-trip:sun-hat", name: "Wide-brim sun hat", aff: "#" },
-            { id: "car-trip:gloves", name: "Lightweight gloves", aff: "#" },
+            { id: "car-trip:base-layers", name: "Moisture-wicking base layers", aff: window.buildPatagoniaAffiliateLink("https://www.patagonia.com/search/?q=base+layer") },
+            { id: "car-trip:mid-layer", name: "Mid-layer fleece or down", aff: window.buildPatagoniaAffiliateLink("https://www.patagonia.com/search/?q=fleece") },
+            { id: "car-trip:outer-jacket", name: "Insulated outer jacket", aff: window.buildPatagoniaAffiliateLink("https://www.patagonia.com/search/?q=insulated+jacket") },
+            { id: "car-trip:rain-jacket", name: "Packable rain jacket", note: "Summer afternoon thunderstorms are not rare.", aff: window.buildPatagoniaAffiliateLink("https://www.patagonia.com/search/?q=rain+jacket") },
+            { id: "car-trip:rain-pants", name: "Rain pants", aff: window.buildPatagoniaAffiliateLink("https://www.patagonia.com/search/?q=rain+pants") },
+            { id: "car-trip:hiking-pants", name: "Zip-off hiking pants", aff: window.buildPatagoniaAffiliateLink("https://www.patagonia.com/search/?q=hiking+pants") },
+            { id: "car-trip:camp-pants", name: "Camp pants or shorts", aff: window.buildPatagoniaAffiliateLink("https://www.patagonia.com/search/?q=pants") },
+            { id: "car-trip:tshirts", name: "T-shirts", aff: window.buildPatagoniaAffiliateLink("https://www.patagonia.com/search/?q=t-shirt") },
+            { id: "car-trip:sun-shirt", name: "Long-sleeve UPF 50 sun shirt", aff: window.buildPatagoniaAffiliateLink("https://www.patagonia.com/search/?q=sun+hoody") },
+            { id: "car-trip:beanie", name: "Beanie", aff: window.buildPatagoniaAffiliateLink("https://www.patagonia.com/search/?q=beanie") },
+            { id: "car-trip:sun-hat", name: "Wide-brim sun hat", aff: window.buildPatagoniaAffiliateLink("https://www.patagonia.com/search/?q=sun+hat") },
+            { id: "car-trip:gloves", name: "Lightweight gloves", aff: window.buildPatagoniaAffiliateLink("https://www.patagonia.com/search/?q=lightweight+gloves") },
             { id: "car-trip:boots", name: "Broken-in hiking boots", aff: "#" },
             { id: "car-trip:camp-shoes", name: "Camp shoes or sandals", aff: "#" },
-            { id: "car-trip:socks", name: "Extra socks, two pairs per day", aff: "#" },
-            { id: "car-trip:swimwear", name: "Swimwear", note: "The Merced swimming holes are real, cold, and worth it.", aff: "#" },
-            { id: "car-trip:underwear", name: "Underwear, plus extras", aff: "#" },
+            { id: "car-trip:socks", name: "Extra socks, two pairs per day", aff: window.buildPatagoniaAffiliateLink("https://www.patagonia.com/search/?q=hiking+socks") },
+            { id: "car-trip:swimwear", name: "Swimwear", note: "The Merced swimming holes are real, cold, and worth it.", aff: window.buildPatagoniaAffiliateLink("https://www.patagonia.com/search/?q=boardshorts") },
+            { id: "car-trip:underwear", name: "Underwear, plus extras", aff: window.buildPatagoniaAffiliateLink("https://www.patagonia.com/search/?q=underwear") },
             { id: "car-trip:sleepwear", name: "Dedicated sleepwear", aff: "#" },
             { id: "car-trip:gaiters", name: "Low gaiters", aff: "#" }
           ]

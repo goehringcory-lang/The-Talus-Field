@@ -1,4 +1,4 @@
-/* global React, Placeholder, MotifMountains, MotifSun */
+/* global React, Placeholder, MotifMountains, MotifSun, AffiliateNote */
 
 window.ARTICLE_BODIES = window.ARTICLE_BODIES || {};
 
@@ -56,7 +56,7 @@ window.ARTICLE_BODIES["yosemite-heat-safety-guide"] = function YosemiteHeatSafet
       <p>You should know the difference between heat exhaustion and heat stroke because one is a bad afternoon and the other is a medical emergency. Heat exhaustion means heavy sweating, nausea, dizziness, pale and clammy skin. You feel terrible. You get into shade, you rest, you drink water with electrolytes, and you recover. Heat stroke means sweating stops. Skin goes red and dry. Confusion sets in, sometimes aggressiveness or slurred speech. This is a 911 call. This is a person whose body has lost the ability to cool itself. Cool them aggressively. Wet clothing, shade, fanning. Get medical help immediately. By some estimates, roughly a quarter of nontraumatic search and rescue missions in Yosemite are dehydration or heat related. That's nearly one in four. You don't want to be in that statistic.</p>
 
       <h2>What to wear on the trail</h2>
-      <p>A quick note on clothing, because what you wear matters as much as what you carry. Light-colored, loose-fitting clothing reflects heat better than dark clothes. A wide-brim hat is not optional. UPF-rated sun hoodies have become standard gear for anyone who works outside in the Sierra, and there's a reason for that: they cover more skin than sunscreen and don't wear off. Speaking of sunscreen, reapply every two hours, and know that the UV at 4,000 feet is already stronger than at sea level, and at 8,000 feet it's meaningfully more intense. The granite reflects UV from below, the thin air filters less of it from above, and the combination will burn you faster than you expect. A bandana or cooling towel soaked in cold creek water and draped around your neck is the single cheapest piece of heat management gear you can carry.</p>
+      <p>A quick note on clothing, because what you wear matters as much as what you carry. Light-colored, loose-fitting clothing reflects heat better than dark clothes. A <a className="aff-link" href={window.buildPatagoniaAffiliateLink("https://www.patagonia.com/search/?q=sun+hat")} target="_blank" rel="sponsored noopener noreferrer" data-aff-network="patagonia" data-aff-list="article" data-aff-item-slug="yosemite-heat-safety-guide" data-aff-name="Wide-brim sun hat">wide-brim hat</a> is not optional. <a className="aff-link" href={window.buildPatagoniaAffiliateLink("https://www.patagonia.com/search/?q=sun+hoody")} target="_blank" rel="sponsored noopener noreferrer" data-aff-network="patagonia" data-aff-list="article" data-aff-item-slug="yosemite-heat-safety-guide" data-aff-name="UPF sun hoody">UPF-rated sun hoodies</a> have become standard gear for anyone who works outside in the Sierra, and there's a reason for that: they cover more skin than sunscreen and don't wear off. Speaking of sunscreen, reapply every two hours, and know that the UV at 4,000 feet is already stronger than at sea level, and at 8,000 feet it's meaningfully more intense. The granite reflects UV from below, the thin air filters less of it from above, and the combination will burn you faster than you expect. A bandana or cooling towel soaked in cold creek water and draped around your neck is the single cheapest piece of heat management gear you can carry.</p>
 
       <h2>The escape uphill</h2>
       <p>The single best heat strategy in Yosemite is also the simplest: go higher. Temperature drops roughly 3.5 degrees Fahrenheit per thousand feet of elevation gain. The math works in your favor quickly.</p>
@@ -104,6 +104,8 @@ window.ARTICLE_BODIES["yosemite-heat-safety-guide"] = function YosemiteHeatSafet
         <li><a href="https://yosemite.org/our-favorite-swimming-holes/" target="_blank" rel="noopener noreferrer">Swimming in Yosemite, Yosemite Conservancy</a></li>
         <li><a href="https://www.nps.gov/articles/lightning-safety.htm" target="_blank" rel="noopener noreferrer">Lightning Safety, NPS</a></li>
       </ul>
+
+      <AffiliateNote />
     </>
   );
 };
