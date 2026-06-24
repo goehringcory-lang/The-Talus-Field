@@ -1,0 +1,219 @@
+/* global React */
+
+window.ARTICLE_BODIES = window.ARTICLE_BODIES || {};
+
+window.ARTICLE_BODIES["where-to-propose-in-yosemite"] = function WhereToProposeInYosemiteBody() {
+  return (
+    <>
+      <p className="dropcap">
+        I have seen the ring come out of jacket pockets, backpack hip belts, socks, water bottles, and once, memorably, a bear canister. The bear canister proposal was at Cathedral Lakes. The man could not get the lid open. His partner stood there watching him wrestle with bear-proof plastic at 9,500 feet while the alpine lake reflected Cathedral Peak behind them. He got it open. She said yes. The lid had left a red mark on his palm. That was the detail she mentioned when she told me the story afterward. Not the lake. Not the mountain. The mark on his hand from trying.
+      </p>
+
+      <p>
+        I have been a naturalist in Yosemite for two decades. In that time I have watched hundreds of proposals, maybe more. I have seen them at overlooks and on summits, in meadows and at waterfalls, at sunrise and under the Milky Way. I have seen a man propose at the base of Yosemite Falls in April when the mist was so heavy his partner could not hear the question. I have seen a woman propose on North Dome with Half Dome filling the entire background like a cathedral wall and her partner crying before she finished the sentence. I have seen a proposal fall apart at Tunnel View because a tour bus unloaded forty-seven people at the exact wrong moment. And I have learned, over all these years, a few things about what makes a proposal work in this park and what does not.
+      </p>
+
+      <p>
+        The short version: the park does the heavy lifting. Your job is to get out of its way.
+      </p>
+
+      <h2>The Rules of the Granite</h2>
+
+      <p>
+        Before you plan anything, know what the National Park Service does not allow. No decorations. No rose petals. No candles. No balloon arches. No drones, and this one carries a fine up to $5,000. No confetti, no streamers, no signs staked into meadow grass. If you are imagining a Pinterest board come to life against a granite backdrop, Yosemite is not the place for it.
+      </p>
+
+      <p>Good.</p>
+
+      <p>
+        The best proposals I have witnessed in this park were the simplest. Two people, a question, a view. The regulations are not obstacles to romance. They are guardrails that force you toward what actually works. Yosemite does not need decoration. It has been decorating itself for roughly ten million years. The glacier-carved walls, the 3,000-foot waterfalls, the sugar pines, the light that comes through the Valley at golden hour and turns the granite the color of warm bread. You do not need to add to this. You need to show up and pay attention to it.
+      </p>
+
+      <p>
+        One practical note that surprises people: you do not need a permit to propose. The park draws a clear line between proposals and weddings. A proposal is a personal moment between two people. No permit, no fee, no paperwork. Weddings are a different matter entirely, hundreds happen in the park each year, and those require a Special Use Permit. But the question itself is free. The EXPLORE Act of 2025 also clarified photography rules: groups of eight or fewer do not need a photography permit. So you and your photographer, assuming you want one, are covered.
+      </p>
+
+      <h2>The Famous Walls</h2>
+
+      <p>
+        Let me walk through the iconic proposal spots, because you are going to consider them and you should know what you are getting into.
+      </p>
+
+      <p>
+        <strong>Glacier Point</strong> is the most popular proposal location in Yosemite, and it earns that reputation. The view is legitimate. Half Dome fills your sightline at eye level, Vernal and Nevada Falls thread silver down the canyon below, and the Valley floor sits 3,214 feet straight down. The overlook is ADA accessible once <a href="/articles/glacier-point-road-open-2026">Glacier Point Road</a> opens for the season, usually late May. The parking lot is paved and the walk to the railing is short. For people who want a <a href="/articles/yosemite-for-non-hikers">world-class view without a hike</a>, this is the answer.
+      </p>
+
+      <p>
+        The problem is that everyone else had the same idea. On a July afternoon you will share the overlook with two hundred people minimum. Tour buses cycle through. Families jostle for photos. There is a gift shop. The vibe is more scenic rest stop than intimate moment. If you propose at Glacier Point, go at sunrise. The road gate opens and the earliest cars arrive to a nearly empty overlook with morning light painting Half Dome pink. You will have maybe twenty minutes of relative solitude. That window is enough. Those who want to earn the view can <a href="/articles/four-mile-up-panorama-down">hike Four Mile Trail up</a>.
+      </p>
+
+      <p>
+        <strong>Tunnel View</strong> is the single most photographed spot in the park, near where Ansel Adams made "Clearing Winter Storm" around 1937 from Inspiration Point, establishing an entire visual vocabulary for how Americans see Yosemite. El Capitan on the left, Bridalveil Fall on the right, Half Dome centered in the distance. It is genuinely magnificent. It is also a pullout on a highway. Cars idle. Exhaust hangs in the air on still mornings. People stand three deep at the stone wall. I have seen proposals here that worked, but they worked despite the location, not because of it. The view deserves its fame. The experience of standing at the overlook in peak season does not.
+      </p>
+
+      <p>
+        <strong>Taft Point</strong> is the spot I have the most complicated feelings about. The view is extraordinary, a sheer 3,000-foot drop to the Valley floor with El Capitan across the void, and the hike is moderate, about 2 miles round trip from the Sentinel Dome/Taft Point trailhead. At the point itself, there are fissures in the granite where you can look straight down through cracks in the earth to the trees far below. The exposure is real and the railing, where it exists, is minimal.
+      </p>
+
+      <p>
+        I need to be honest about this place. In 2018, Vishnu Viswanath and Meenakshi Moorthy fell to their deaths from the cliffs near Taft Point while taking photographs. These are not isolated incidents. The beauty of Taft Point is inseparable from its danger, and proposals at cliff edges with fatal exposure carry a weight I do not think most people have fully considered. If you go, stay well back from the edge. The view is stunning from twenty feet back. It is not worth more from twenty feet closer.
+      </p>
+
+      <p>
+        <strong>Sentinel Dome</strong>, at 8,122 feet with a full 360-degree panorama, is the better choice of the two if you are already driving out Glacier Point Road. The summit is broad and open, the exposure is manageable, and on a clear day you can see from the Clark Range to the High Sierra crest. The famous Jeffrey pine that Ansel Adams photographed here is gone now, killed by drought in the 1970s, but the granite dome remains, smooth and pale, with wind and light and nothing else.
+      </p>
+
+      <h2>Where to Disappear</h2>
+
+      <p>
+        The proposals I remember best are not the ones at famous overlooks. They are the ones where I rounded a corner and stumbled onto two people in a quiet place, completely alone, clearly in the middle of something. They barely noticed me. That is the quality you want.
+      </p>
+
+      <p>
+        <strong>Cathedral Beach</strong> is the location I recommend most often, and most people have never heard of it. It is a small sandy beach on the Merced River, accessible from a pullout on Southside Drive, and it offers genuine privacy in the middle of Yosemite Valley. The river bends here and the beach faces upstream toward El Capitan. In late afternoon the light is soft and the water is calm enough to reflect the granite. You can sit on the sand with your feet in the river and not see another person for an hour. In the Valley. In summer. That almost never happens, and it happens here.
+      </p>
+
+      <p>
+        <strong>McGurk Meadow</strong> requires a short hike, about 1.6 miles round trip from a trailhead on Glacier Point Road, and it rewards the effort with a wet meadow ringed by lodgepole pines where wildflowers bloom through June and July. The meadow has a boardwalk to protect the plants, and the walk itself passes through a quiet forest with an old pioneer cabin along the trail. I have never seen more than a handful of people here, even on busy weekends. The meadow is not dramatic. It is gentle. That is its power.
+      </p>
+
+      <p>
+        <strong>Dewey Point</strong> is the longer walk, about 8 miles round trip from the same Glacier Point Road corridor, and it delivers a Valley rim view similar to Glacier Point but without any of the infrastructure or crowds. You stand at the edge of the south rim and look across to El Capitan and the Valley floor. The silence is the first thing you notice. No idling engines, no gift shop chatter, no shutter clicks from strangers. Just wind in the red firs and the enormous space of the Valley below.
+      </p>
+
+      <p>
+        <strong>Cook's Meadow at dawn</strong> is the simplest option and one of the best. This is the large meadow in the heart of Yosemite Village, boardwalk paths crossing through it, with views of Half Dome, Yosemite Falls, and Sentinel Rock. At midday it is a crowded crossroads. At first light it is empty and silver with dew. The meadow fills with mist some mornings, and when it clears, the walls of the Valley emerge one at a time like curtains opening. If you are staying in the Valley and want something easy and private, set an alarm. Get there before the world wakes up. The park is different before 7 a.m. and most people never see that version of it.
+      </p>
+
+      <h2>Proposals You Walk To</h2>
+
+      <p>
+        There is something to be said for earning the moment. A proposal at the end of a hike has a built-in narrative: you walked together, you climbed together, you arrived somewhere together. The effort becomes part of the story.
+      </p>
+
+      <p>
+        <strong>The top of Vernal Fall</strong> is 2.4 miles from Happy Isles on the <a href="/articles/mist-trail-the-real-guide">Mist Trail</a>, gaining about 1,000 feet of elevation on a granite staircase that gets drenched in waterfall spray during spring. When you reach the top, the Merced River slides over a broad granite lip and drops 317 feet into the canyon below. There is a railing at the overlook and a wide, flat area to rest. The hike is strenuous enough to feel earned and short enough to be accessible for most fit adults. In May and June, when the fall is running at full volume, the sound is so consuming it becomes a kind of silence. You cannot hear anything else. The world narrows to the water, the granite, and the person next to you.
+      </p>
+
+      <p>
+        <strong>Cathedral Lakes</strong>, where our bear canister story began, is a 7.6-mile round trip from the trailhead on Tioga Road in <a href="/articles/first-time-yosemite-overwhelm">Tuolumne Meadows</a>. The trail climbs through lodgepole forest and breaks out into subalpine meadows before reaching the lower lake at about 9,500 feet. Cathedral Peak, a sharp granite spire, rises directly above the lake. The water is cold and clear and reflects the peak like a mirror on calm mornings. This is the High Sierra, austere and luminous, and it requires Tioga Road to be open, typically late May through November. The hike is moderate but the elevation gain and altitude make it feel harder than the mileage suggests. Bring water. Bring sunscreen. Bring the ring somewhere you can actually reach it.
+      </p>
+
+      <p>
+        <strong>Mirror Lake in spring</strong> is a mostly flat 2-mile walk from the shuttle stop, and in April and May, when snowmelt fills the lake bed, it creates a reflection of Half Dome so perfect it looks fabricated. By late summer the lake dries to a meadow, so timing matters. The spring window, roughly late April through early June depending on snowpack, is when this spot earns its name. The walk is easy, the crowds are lighter than you might expect for something this accessible, and the reflection of Half Dome in still water is one of the most quietly staggering things in the park.
+      </p>
+
+      <p>
+        <strong>Lembert Dome</strong> in Tuolumne Meadows is about 3.8 miles round trip to the summit of a glacially polished granite dome at 9,450 feet. The final push is a scramble up smooth rock, nothing technical but you will use your hands, and the top opens to a view of the entire Tuolumne high country: meadows, the Tuolumne River, Cathedral Range, Mount Dana. At 8,600 feet of base elevation, the air is thin and the sky is a shade of blue that does not exist in the Valley. This is the proposal spot for people who want altitude, solitude, and the feeling of standing on top of something.
+      </p>
+
+      <p>
+        <strong>North Dome</strong> is the proposal location I would choose if someone asked me, and almost nobody knows about it. The trail is about 10 miles round trip from the Porcupine Creek trailhead off Tioga Road, mostly flat through forest with a final descent to the dome itself. And then you see it. Half Dome, directly across the Valley, closer than from any other vantage point, at eye level, filling your entire field of vision. Glacier Point is visible below and across the gap. The Valley floor is a green ribbon far below. You are looking at the <a href="/articles/so-you-want-to-hike-half-dome">most famous rock face in North America</a> from a place where, on a Tuesday in June, you might be completely alone. No railing. No parking lot. No gift shop. Just granite underfoot and granite across the sky. The hike back out is uphill and longer than you expect, so plan accordingly.
+      </p>
+
+      <h2>The Dark Ones</h2>
+
+      <p>Some of the best proposals happen after sunset.</p>
+
+      <p>
+        Yosemite has some of the darkest skies in the Sierra Nevada foothills, particularly in the high country. Tuolumne Meadows, at 8,600 feet, is far from any significant light pollution, and on a clear moonless night the Milky Way is not a suggestion in the sky but a physical presence, a river of light dense enough to cast faint shadows on the granite.
+      </p>
+
+      <p>
+        The math matters. Check a moon phase calendar. You want a new moon or as close to it as possible. The Milky Way core is best positioned from about late May through September, rising in the southeast and arcing overhead by midnight. A June new moon with clear skies in Tuolumne is one of the most beautiful things available on this planet, full stop.
+      </p>
+
+      <p>
+        In the Valley, <a href="/articles/yosemite-stargazing-where-to-look-up">stargazing</a> is good but not great. The Valley walls block portions of the sky and there is some ambient light from lodges and campgrounds. But Sentinel Meadow, behind Yosemite Lodge, offers a decent dark-sky view with the silhouette of Yosemite Falls against a star field, and the meadow is empty after dark. Cook's Meadow works for this too.
+      </p>
+
+      <p>
+        The logistics of a night proposal are simple but require thought. Bring a headlamp with a red light mode so you do not destroy your night vision. Know your route in daylight first. Tell someone where you are going. And give your eyes thirty minutes to fully adapt to the dark once you turn off the headlamp. The Milky Way does not reveal itself to people staring at phone screens. It reveals itself to people who wait.
+      </p>
+
+      <h2>Waterfall Season</h2>
+
+      <p>If timing is flexible, spring changes everything.</p>
+
+      <p>
+        Yosemite's waterfalls peak between late April and early June, fed by Sierra snowmelt, and during that window the park operates on a different frequency. Yosemite Falls, at 2,425 feet one of the tallest waterfalls in North America, throws so much water that the mist plume rises hundreds of feet above the base and drifts across the meadow like weather. The sound reaches you before you see the falls. It is not background noise. It is an environment.
+      </p>
+
+      <p>
+        <strong>Bridalveil Fall</strong> is the first waterfall most visitors see, visible from Tunnel View and accessible by a short paved walk from a parking lot near the Valley entrance. In May it is magnificent, a 620-foot plume of water that catches wind and sends spray across the viewing area. The Ahwahneechee people called it Pohono, "Spirit of the Puffing Wind," and believed the mist carried a spirit that could enchant or doom those who breathed it in. The story has variations. In some tellings, to breathe the mist is a curse. In others, it is a blessing, particularly for lovers. I am not superstitious, but I will note that proposals in the spray of Bridalveil Fall have, in my experience, a perfect track record. Interpret that however you like.
+      </p>
+
+      <p>
+        <strong>Vernal Fall on the Mist Trail</strong> in spring is not a hike. It is a commitment. The granite staircase above the footbridge runs directly through the fall's spray zone, and in peak flow you will be soaked completely by the time you reach the top. Waterproof your ring box. Waterproof your phone. Accept that you will be drenched and laughing and that this is actually the ideal state in which to ask someone to marry you. The combination of physical effort, cold water, roaring sound, and arrival at the top, where the falls drop away and the river stretches upstream into the canyon, is one of the most exhilarating experiences in the park. If you are the kind of couple that finishes a hike soaking wet and grinning, this is your spot.
+      </p>
+
+      <h2>The Off-Season Play</h2>
+
+      <p>
+        Peak season in Yosemite runs roughly June through September, which means the park is at its most crowded, most expensive, and most logistically challenging during those months. There is another way.
+      </p>
+
+      <p>
+        <strong>October</strong> is the best-kept secret in Yosemite. The summer crowds thin dramatically after Labor Day. The black oaks in the Valley turn gold and orange. The light drops lower and warmer. The waterfalls are mostly dry, but the Merced River still runs, and the reflection of golden oaks in the river, backed by granite walls, is a different kind of beautiful. The air is cool and clean. Glacier Point Road is usually still open. Tioga Road often stays open into early November. The Valley in October feels like a place exhaling after holding its breath all summer.
+      </p>
+
+      <p>
+        <strong>December through February</strong> offers true solitude. Visitor numbers drop by more than 80 percent from summer peaks. The Valley floor can be dusted with snow while the granite walls glow in low winter light. Yosemite Falls often resumes flowing with early winter storms. The Ahwahnee Hotel, now officially called The Majestic Yosemite Hotel but still The Ahwahnee to anyone who has been here longer than the trademark dispute, is warm and lit and serves as a basecamp for winter proposals that is hard to argue with. Ansel Adams married Virginia Best in the park in 1928, in the middle of a landscape he would spend the rest of his life photographing. Winter Yosemite is where that kind of quiet devotion lives.
+      </p>
+
+      <p>
+        <strong>February</strong> carries a particular advantage: the Horsetail Fall Firefall. For roughly two weeks in mid-to-late February, if conditions align, the setting sun hits Horsetail Fall on El Capitan's east face at an angle that turns the water molten orange. It looks like flowing lava. The phenomenon is natural, dependent on water flow and clear skies, and it draws photographers from around the world. It also falls reliably close to Valentine's Day. A Firefall proposal requires some luck with conditions, but when it works, it is the kind of thing people describe for the rest of their lives.
+      </p>
+
+      <h2>What to Know Before</h2>
+
+      <p>A few practical matters.</p>
+
+      <p>
+        This article is about proposals. If you are planning a Yosemite elopement, that is a different process with different permit requirements.
+      </p>
+
+      <p>
+        <strong>Photography.</strong> The EXPLORE Act of 2025 eliminated the photography permit requirement for groups of eight or fewer on public lands. This means you and a hired photographer can shoot without a permit, as long as your total group (couple plus photographer plus any assistants) stays at eight or under and you are not using props, sets, or models. If you hire a Yosemite proposal photographer, find one who knows the park. Light angles, crowd timing, and trail conditions make a difference that generic portrait photographers often miss. Yosemite has a small community of permitted photographers who specialize in engagement photos and elopements. They are worth the investment.
+      </p>
+
+      <p>
+        <strong>The ring.</strong> Do not carry it loose in your pocket. Do not put it in an outside pocket of your backpack where it can fall out when you reach for a water bottle. Use a hard-sided box, stash it in an interior zip pocket, and check on it at every rest stop. I have seen exactly two rings lost in the park. One went into the Merced River at the Vernal Fall footbridge. One rolled off a granite slab on Sentinel Dome. Neither was recovered. Granite is unforgiving and rivers do not give things back.
+      </p>
+
+      <p>
+        <strong>Champagne.</strong> Technically, alcohol is permitted in picnic areas and developed campgrounds. Glass bottles are allowed in most locations except sandy beaches along the Merced River, where the NPS requests aluminum or plastic to protect bare feet. Do not pop a champagne cork into the wilderness. Pack out every piece of foil and wire cage. If you want to celebrate with a bottle, Cathedral Beach picnic area or one of the Valley pullouts with a picnic table works well.
+      </p>
+
+      <p>
+        <strong>The Yosemite Chapel.</strong> If you want the proposal to double as a location scouting trip, know that the Yosemite Chapel, built in 1879, is the oldest structure in the Valley and hosts weddings regularly. The first recorded wedding there was in 1884. It sits in a meadow below Sentinel Rock with a view that would make any architect weep. Weddings at the chapel require a Special Use Permit from the NPS and are booked well in advance. For couples thinking about what comes after the engagement, the chapel is worth a quiet visit.
+      </p>
+
+      <p>
+        <strong>Timing.</strong> I have said this several ways already, but it deserves a final emphasis. Early morning and late afternoon are different parks than midday. The light is better. The crowds are thinner. The animals are more active. The air is cooler. If your plan involves any of the popular viewpoints, sunrise is not just an advantage. It is the difference between a private moment and a public performance. Set the alarm.
+      </p>
+
+      <p>
+        <strong>If you need a place to stay</strong> after, the options range from <a href="/articles/yosemite-gateway-towns-compared">gateway town hotels</a> at various distances to the historic lodges inside the park itself. <a href="/articles/pack-your-car-for-yosemite">Packing the car right</a> matters more than most people expect, especially if you are planning a hike-to proposal and need to manage ring security, camera gear, and celebratory supplies alongside the usual ten essentials.
+      </p>
+
+      <h2>After Twenty Years</h2>
+
+      <p>
+        I have been in this park long enough to watch the oaks I knew as saplings grow into canopy. Long enough to see the rivers flood and recede and flood again. Long enough to see proposals become more produced, more photographed, more public, and to notice that the ones I remember have almost nothing to do with production value.
+      </p>
+
+      <p>
+        The proposal I think about most was not at a famous overlook. It was on the Valley Loop trail, near Housekeeping Camp, on a completely unremarkable stretch of path on a Wednesday morning in October. A couple in their fifties or sixties, hiking slowly, stopped under a black oak that was dropping yellow leaves. The man took both the woman's hands and said something I could not hear. She put her forehead against his forehead. They stood like that for a long time. No ring that I could see. No photographer. No one else on the trail except me, and I kept walking.
+      </p>
+
+      <p>
+        I do not know their names. I do not know what he said. I know that the oak above them was the most beautiful thing in a park full of beautiful things, and they were not looking at it. They were looking at each other. The leaves kept falling around them like the park was doing the decorating no one is allowed to do.
+      </p>
+
+      <p>
+        After twenty years of watching, the pattern is this: the proposals that work are the ones where both people are present. Not performing. Not documenting. Not worrying about the angle or the light or the crowd behind them. Just there, in the park, looking at each other. Everything else is scenery. And Yosemite has plenty of that to spare.
+      </p>
+    </>
+  );
+};

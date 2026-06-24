@@ -47,6 +47,7 @@ window.CATEGORIES = [
 // verifies this map stays in sync with the files in bodies/.
 // ============================================================
 window.BODY_VERSIONS = {
+  "where-to-propose-in-yosemite": 1,
   "yosemite-bears-safety-guide": 117,
   "yosemite-heat-safety-guide": 2,
   "when-to-visit-yosemite-2026-crowd-forecast": 2,
@@ -630,6 +631,20 @@ window.KIT.lists.forEach((l) => {
 });
 
 window.ARTICLES = [
+  {
+    slug: "where-to-propose-in-yosemite",
+    cat: "planning",
+    title: "Where to Propose in Yosemite: What Twenty Years of Watching Taught Me",
+    dek: "A naturalist who has watched hundreds of proposals on which Yosemite spots actually work, which famous overlooks are too crowded to bother with, the regulations nobody mentions, and why the simplest moments are the ones that land.",
+    seoDek: "A Yosemite naturalist's guide to the best proposal spots. Which locations work, which are too crowded, and what makes the moment land.",
+    date: "June 24, 2026",
+    isoDate: "2026-06-24",
+    isoModified: "2026-06-24",
+    read: "20 min",
+    placeholder: "A lavender wreath hanging from a wooden post above a blooming lavender field",
+    image: "img/lavender-wreath-proposal-cory-goehring.jpg",
+    credit: "Photo: Cory Goehring",
+  },
   {
     slug: "yosemite-bears-safety-guide",
     cat: "wildlife",

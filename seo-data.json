@@ -353,5 +353,17 @@
       { "q": "How much driving is involved in a Yosemite trip?", "a": "More than most people expect. A gateway town to the Valley is 25 to 90 minutes each way. Glacier Point Road and Tioga Road each add an hour or more in-park. Pack the car like you're going to drive a lot, because you will." },
       { "q": "Is there an extra fee for international visitors in 2026?", "a": "Yes. Since January 1, 2026, international visitors pay a $100 surcharge per person age 16 and older, on top of the standard entrance fee. A $250 nonresident annual pass waives it. U.S. residents are unaffected." }
     ]
+  },
+
+  "where-to-propose-in-yosemite": {
+    "wordCount": 4021,
+    "keywords": ["where to propose in Yosemite", "best proposal spots Yosemite", "Yosemite proposal", "Yosemite engagement", "do you need a permit to propose in Yosemite", "Yosemite proposal photography permit", "Glacier Point proposal", "Taft Point", "North Dome Yosemite", "Cathedral Beach", "Tunnel View proposal", "Yosemite Firefall proposal", "best time to propose in Yosemite"],
+    "faq": [
+      { "q": "Do you need a permit to propose in Yosemite?", "a": "No. The park draws a clear line between proposals and weddings: a proposal is a personal moment between two people, with no permit, fee, or paperwork required. Weddings are different and require a Special Use Permit from the NPS." },
+      { "q": "Do you need a photography permit for a Yosemite proposal?", "a": "No, in most cases. The EXPLORE Act of 2025 eliminated the photography permit requirement for groups of eight or fewer on public lands, so a couple plus a hired photographer is covered, as long as the total group stays at eight or under and you are not using props, sets, or models." },
+      { "q": "What is the best place to propose in Yosemite?", "a": "The naturalist's own pick is North Dome, which looks straight across at Half Dome from eye level and is often empty on a weekday. For privacy in the Valley, Cathedral Beach on the Merced River is the most recommended spot. Glacier Point has the most famous view but is best at sunrise to avoid the crowds." },
+      { "q": "Are decorations or drones allowed for a Yosemite proposal?", "a": "No. The National Park Service prohibits decorations, rose petals, candles, balloon arches, confetti, streamers, and signs staked into meadows. Drones are also banned and carry a fine of up to $5,000." },
+      { "q": "When is the best time to propose in Yosemite?", "a": "Early morning and late afternoon beat midday at every popular viewpoint for light and crowds. Spring (late April through early June) brings peak waterfalls, October offers golden oaks and thin crowds, and mid-to-late February can deliver the Horsetail Fall Firefall near Valentine's Day. For night proposals, aim for a new moon in the high country from late May through September." }
+    ]
   }
 }
