@@ -50,6 +50,56 @@ function HomeHeroCapture({ variant }) {
   );
 }
 
+// ============================================================
+// Resume band. Renders only when a recent article was left unfinished
+// (tfg.read.last, written by the article page's progress tracker) and the
+// piece still exists in the catalog. One quiet line under the hero: the
+// cheapest engagement win on the page is a returning reader with an open
+// thread. Clicking sets the one-shot tfg.read.resume flag so the article
+// page jumps back to the saved depth.
+// ============================================================
+const RESUME_MAX_AGE_DAYS = 30;
+
+function ResumeReading({ go }) {
+  const last = React.useMemo(() => (window.readHistory ? window.readHistory.last() : null), []);
+  const article = last ? window.findArticle(last.slug) : null;
+  const ageDays = last && last.at ? (Date.now() - new Date(last.at).getTime()) / 86400000 : 0;
+  const show = Boolean(article) && ageDays < RESUME_MAX_AGE_DAYS;
+
+  React.useEffect(() => {
+    if (show && window.track) window.track("resume_shown", { slug: last.slug, percent: last.pct });
+  }, [show]);
+
+  if (!show) return null;
+
+  // "About n min left" from the catalog's read estimate; falls back to the
+  // saved depth when the estimate does not parse.
+  const totalMin = parseInt(article.read, 10);
+  const remaining = Number.isFinite(totalMin)
+    ? `About ${Math.max(1, Math.round(totalMin * (100 - last.pct) / 100))} min left`
+    : `${last.pct}% read`;
+
+  return (
+    <section className="wrap" style={{ paddingTop: 40 }}>
+      <a
+        className="resume-band"
+        href={`/articles/${article.slug}`}
+        onClick={(e) => {
+          e.preventDefault();
+          window.safeStorage.set("tfg.read.resume", article.slug);
+          if (window.track) window.track("resume_click", { slug: article.slug, percent: last.pct });
+          go(`a:${article.slug}`);
+        }}
+      >
+        <span className="eyebrow eyebrow--moss">Where you left off</span>
+        <span className="resume-band__title">{article.title}</span>
+        <span className="resume-band__meta">{remaining}</span>
+        <span className="mono resume-band__cta">Keep reading →</span>
+      </a>
+    </section>
+  );
+}
+
 const WEBCAMS = [
   { label: "Half Dome",      img: "ahwahnee2-t.jpg",  href: "https://yosemite.org/webcams/half-dome/",      alt: "Live view of Half Dome from Ahwahnee Meadow" },
   { label: "Yosemite Falls", img: "yosfalls-t.jpg",   href: "https://yosemite.org/webcams/yosemite-falls/", alt: "Live view of Upper Yosemite Falls" },
@@ -177,6 +227,8 @@ function HomePage({ go }) {
           />
         </div>
       </section>
+
+      <ResumeReading go={go} />
 
       {webcamVariant !== "b" && webcamsSection}
 

@@ -1354,6 +1354,63 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
 }
 .toc a:hover { color: var(--moss); border-bottom-color: var(--moss); }
 
+/* ===== Reading progress bar (article pages) =====
+   A thin fixed bar across the very top of the viewport; page-article.jsx
+   drives the fill's scaleX imperatively as the body scrolls. Above the sticky
+   masthead (z 50), below modals (z 1000), and pointer-events: none so it can
+   never intercept a tap. */
+.readbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  z-index: 60;
+  pointer-events: none;
+}
+.readbar__fill {
+  height: 100%;
+  background: var(--moss);
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+}
+
+/* ===== Resume band (home) =====
+   One quiet line for a reader with an unfinished article, rendered by
+   ResumeReading in page-home.jsx. */
+.resume-band {
+  display: flex;
+  align-items: baseline;
+  gap: 18px;
+  flex-wrap: wrap;
+  text-decoration: none;
+  color: inherit;
+  border-top: 1px solid var(--ink);
+  border-bottom: 1px solid var(--ink);
+  padding: 18px 0;
+}
+.resume-band__title {
+  font-family: var(--display);
+  font-size: 20px;
+  font-weight: 500;
+  letter-spacing: -0.005em;
+}
+.resume-band:hover .resume-band__title { color: var(--moss); }
+.resume-band__meta {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 15px;
+  color: var(--ink-3);
+}
+.resume-band__cta {
+  margin-left: auto;
+  color: var(--moss);
+  font-weight: 700;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+}
+
 /* ===== Stat block (field guide) ===== */
 .statblock {
   border-top: 1px solid var(--ink);

@@ -59,6 +59,72 @@ function ArticlePage({
   React.useEffect(() => {
     if (article && article.image) preloadResponsive(article.image, SIZES_HERO);
   }, [slug]);
+  var barRef = React.useRef(null);
+  React.useEffect(() => {
+    if (bodyState !== "ready") return;
+    var prose = proseRef.current;
+    if (!prose) return;
+    var fired = {};
+    var maxPct = 0;
+    var savedPct = 0;
+    var raf = 0;
+    var measure = () => {
+      raf = 0;
+      var rect = prose.getBoundingClientRect();
+      if (rect.height <= 0) return;
+      var seen = Math.min(rect.height, Math.max(0, window.innerHeight - rect.top));
+      var pct = Math.round(seen / rect.height * 100);
+      if (barRef.current) barRef.current.style.transform = `scaleX(${pct / 100})`;
+      if (pct <= maxPct) return;
+      maxPct = pct;
+      [25, 50, 75, 100].forEach(t => {
+        if (pct >= t && !fired[t]) {
+          fired[t] = true;
+          if (window.track) window.track("article_progress", {
+            slug,
+            percent: t
+          });
+        }
+      });
+      if (pct >= 90 && !fired.done) {
+        fired.done = true;
+        window.readHistory.markDone(slug);
+        window.readHistory.clearLast(slug);
+      }
+      if (maxPct >= 10 && maxPct < 90 && maxPct >= savedPct + 5) {
+        savedPct = maxPct;
+        window.readHistory.setLast(slug, maxPct);
+      }
+    };
+    var onScroll = () => {
+      if (!raf) raf = requestAnimationFrame(measure);
+    };
+    var resume = window.safeStorage.get("tfg.read.resume");
+    if (resume) window.safeStorage.remove("tfg.read.resume");
+    var saved = window.readHistory.last();
+    if (resume === slug && saved && saved.slug === slug && saved.pct > 0) {
+      var top = window.scrollY + prose.getBoundingClientRect().top + saved.pct / 100 * prose.getBoundingClientRect().height - window.innerHeight;
+      if (top > 0) window.scrollTo({
+        top
+      });
+    }
+    var saveUnfinished = () => {
+      if (maxPct >= 10 && maxPct < 90) window.readHistory.setLast(slug, maxPct);
+    };
+    measure();
+    window.addEventListener("scroll", onScroll, {
+      passive: true
+    });
+    window.addEventListener("resize", onScroll);
+    window.addEventListener("pagehide", saveUnfinished);
+    return () => {
+      if (raf) cancelAnimationFrame(raf);
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+      window.removeEventListener("pagehide", saveUnfinished);
+      saveUnfinished();
+    };
+  }, [bodyState, slug]);
   React.useEffect(() => {
     setMidHost(null);
     if (bodyState !== "ready") return;
@@ -87,10 +153,21 @@ function ArticlePage({
     }
   }, "Not found.");
   var cat = window.findCategory(article.cat);
-  var related = window.ARTICLES.filter(a => a.slug !== slug && a.cat === article.cat).slice(0, 3);
+  var doneSlugs = window.readHistory.done();
+  var unreadFirst = list => [...list.filter(a => !doneSlugs.has(a.slug)), ...list.filter(a => doneSlugs.has(a.slug))];
+  var sameCat = window.ARTICLES.filter(a => a.slug !== slug && a.cat === article.cat);
+  var otherCat = window.ARTICLES.filter(a => a.slug !== slug && a.cat !== article.cat);
+  var related = [...unreadFirst(sameCat), ...unreadFirst(otherCat)].slice(0, 3);
+  var relatedSameCat = related.every(a => a.cat === article.cat);
   return React.createElement("div", {
     className: "page"
-  }, React.createElement("article", null, React.createElement("header", {
+  }, React.createElement("div", {
+    className: "readbar",
+    "aria-hidden": "true"
+  }, React.createElement("div", {
+    className: "readbar__fill",
+    ref: barRef
+  })), React.createElement("article", null, React.createElement("header", {
     className: "wrap wrap--narrow",
     style: {
       paddingTop: 64,
@@ -313,13 +390,19 @@ function ArticlePage({
     }
   }, React.createElement("div", {
     className: "section-head"
-  }, React.createElement("h2", null, "More from ", cat.label), React.createElement("a", {
+  }, React.createElement("h2", null, relatedSameCat ? `More from ${cat.label}` : "Keep reading"), relatedSameCat ? React.createElement("a", {
     href: `/section/${cat.slug}`,
     onClick: e => {
       e.preventDefault();
       go(`cat:${cat.slug}`);
     }
-  }, "All in ", cat.label, " →")), React.createElement("div", {
+  }, "All in ", cat.label, " →") : React.createElement("a", {
+    href: "/articles",
+    onClick: e => {
+      e.preventDefault();
+      go("articles");
+    }
+  }, "All entries →")), React.createElement("div", {
     style: {
       display: "grid",
       gridTemplateColumns: "repeat(3, 1fr)",
@@ -328,7 +411,13 @@ function ArticlePage({
   }, related.map(a => React.createElement(ArticleCard, {
     key: a.slug,
     article: a,
-    go: go
+    go: go,
+    onNav: () => {
+      if (window.track) window.track("related_click", {
+        slug: a.slug,
+        from: slug
+      });
+    }
   })))));
 }
 window.ArticlePage = ArticlePage;

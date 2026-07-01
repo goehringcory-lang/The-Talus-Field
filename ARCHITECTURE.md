@@ -21,7 +21,7 @@ Inline in `<head>`: `window.gtag`/`dataLayer` (GA4 bootstrap), `window.track` (g
 | Global | Defined in | What it is |
 |---|---|---|
 | `track(name, params)` | index.html | The single GA4 event sender. Guarded: no-op when gtag is blocked or not ready. Every conversion event on the site goes through it. |
-| `safeStorage` | storage.js | Safe localStorage wrapper: `get(key, fallback)`, `set`, `getJSON`, `setJSON`. The only file that touches localStorage directly. `get` returns `fallback` only when storage throws, never when a key is merely absent. |
+| `safeStorage` | storage.js | Safe localStorage wrapper: `get(key, fallback)`, `set`, `remove`, `getJSON`, `setJSON`. The only file that touches localStorage directly. `get` returns `fallback` only when storage throws, never when a key is merely absent. |
 | `SITE`, `ARTICLES`, `CATEGORIES`, `START_HERE`, `KIT` | data.js | Masthead info, article catalog (source of truth for SEO mirrors), categories, featured slugs, packing checklists. |
 | `byCategory`, `findArticle`, `findCategory` | data.js | Catalog lookups. |
 | `BODY_VERSIONS`, `loadArticleBody`, `ARTICLE_BODIES` | data.js | Lazy article-body system: per-slug cache busters, the on-demand loader, and the registry each body file writes itself into. |
@@ -29,6 +29,7 @@ Inline in `<head>`: `window.gtag`/`dataLayer` (GA4 bootstrap), `window.track` (g
 | `Header`, `Footer`, `ArticleCard`, `NewsletterInline`, `ExitIntentNewsletter`, `Placeholder`, `ResponsiveImage`, `MapLightbox`, `MotifMountains`, `MotifSun`, `MotifTrees` | components.jsx | Shared components (implicit globals). |
 | `preloadResponsive`, `SIZES_HERO`, `SIZES_BODY`, `SIZES_CARD` | components.jsx | LCP image preloading and the shared `sizes` strings for ResponsiveImage. |
 | `trackNewsletterSubmit`, `trackNewsletterImpression`, `useNewsletterImpression`, `isSubscribed` | components.jsx | Newsletter funnel helpers. All delegate to `window.track`; submit also sets the subscribed flag. |
+| `readHistory` | components.jsx | Read-history store over safeStorage: `last`/`setLast`/`clearLast` (the unfinished article behind the home resume band) and `done`/`markDone` (finished slugs, used to rank the article related rail unread-first). |
 | `TweaksPanel`, `useTweaks`, `TweakSection`, `TweakRadio`, plus the other `Tweak*` controls | tweaks-panel.jsx | The site-wide tweaks drawer (implicit globals). |
 | `TWEAK_DEFAULTS` | index.html | Default palette and density consumed by `useTweaks` in app.jsx. |
 | `HomePage`, `ArticlesIndex`, `CategoryPage`, `ArticlePage`, `AboutPage`, `KitPage`, `PlacesPage`, `FilmsPage`, `MapPage`, `GuidePage`, `PlanningGuide`, `ChecklistPage`, `NewsletterPage`, `ContactPage`, `AdvertisePage`, `PrivacyPage`, `TermsPage`, `AffiliatePage` | the matching page-*.jsx (page-articles.jsx, page-legal.jsx, and page-newsletter-contact.jsx each export more than one) | Page components, mounted by the route chain in app.jsx. |
@@ -48,6 +49,9 @@ All events fire through `window.track`. Names and where they fire:
 | `guide_buy_click` | page-guide.jsx |
 | `film_play` | page-films.jsx |
 | `affiliate_click` | app.jsx (delegated document listener on `a[data-aff-network]`) |
+| `article_progress` | page-article.jsx (reading depth against the body at the 25/50/75/100 marks, once per view) |
+| `related_click` | page-article.jsx (related-rail card clicks, with `from` = the referring slug) |
+| `resume_shown`, `resume_click` | page-home.jsx (the "Where you left off" band) |
 | `trip_add`, `trip_add_all`, `trip_quick_pick`, `trip_share`, `trip_share_open`, `trip_route_open`, `map_pin_click`, `map_article_click` | page-map.jsx |
 
 ## localStorage key inventory
@@ -61,3 +65,6 @@ All access goes through `window.safeStorage`.
 | `tfg.nl.subscribed` | components.jsx | Optimistic subscribed flag, set on any newsletter submit. |
 | `tfg.nl.exit.seen` | components.jsx | Exit-intent cooldown timestamp (14 days). |
 | `tfg.map.unlocked` | page-map.jsx | Trip-builder gate. Fails OPEN: when storage is unavailable the gate reads as unlocked. |
+| `tfg.read.last` | page-article.jsx (via `readHistory`) | Most recent article left 10–90% read: `{ slug, pct, at }`. Feeds the home resume band; cleared when the piece is finished. |
+| `tfg.read.done` | page-article.jsx (via `readHistory`) | Slugs read past ~90%, capped at 100. Deprioritizes finished pieces in the related rail. |
+| `tfg.read.resume` | page-home.jsx | One-shot handoff flag set by a resume-band click; the article page consumes it and jumps back to the saved depth. |

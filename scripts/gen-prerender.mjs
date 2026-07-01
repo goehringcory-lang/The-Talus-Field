@@ -73,6 +73,27 @@ const MotifMountains = () => null;
 const MotifSun = () => null;
 const MotifTrees = () => null;
 
+// End-of-body affiliate disclosure. Keep the copy in sync with AffiliateNote
+// in components.jsx.
+function AffiliateNote() {
+  return React.createElement(
+    "p",
+    { className: "article-aff-note" },
+    "Some links in this piece are affiliate links to Patagonia. If you buy through one, The Talus Field may earn a small commission at no extra cost to you. ",
+    React.createElement("a", { href: "/affiliate" }, "Full disclosure.")
+  );
+}
+
+// Bodies with inline affiliate links call window.buildPatagoniaAffiliateLink
+// at render time (affiliate.js in the browser). Mirror it here, minus the
+// console warning, so those hrefs prerender to the same tracking URLs the SPA
+// renders. Keep the base in sync with affiliate.js.
+const PATAGONIA_AFFILIATE_BASE = "https://patagonia.pxf.io/c/7338432/1948563/23649";
+function buildPatagoniaAffiliateLink(targetUrl) {
+  if (!targetUrl) return PATAGONIA_AFFILIATE_BASE;
+  return PATAGONIA_AFFILIATE_BASE + "?u=" + encodeURIComponent(targetUrl);
+}
+
 function renderBody(slug, src) {
   // Classic runtime so JSX compiles to React.createElement / React.Fragment that
   // resolve against the `React` global we put in the vm sandbox (mirrors the
@@ -86,13 +107,14 @@ function renderBody(slug, src) {
 
   const sandbox = {
     React,
-    window: { ARTICLE_BODIES: {} },
+    window: { ARTICLE_BODIES: {}, buildPatagoniaAffiliateLink },
     console,
     ResponsiveImage,
     Placeholder,
     MotifMountains,
     MotifSun,
     MotifTrees,
+    AffiliateNote,
   };
   vm.createContext(sandbox);
   vm.runInContext(code, sandbox, { filename: `${slug}.jsx` });
