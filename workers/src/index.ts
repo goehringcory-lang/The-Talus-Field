@@ -28,6 +28,15 @@ app.use(
         'http://localhost:5174',
         'http://localhost:8000',
       ])
+      // The PWA's unlisted Cloudflare Pages URLs: the stable production
+      // alias plus per-deploy preview hosts (<hash>.talus-field-guide.pages.dev).
+      if (
+        origin === 'https://talus-field-guide.pages.dev' ||
+        (origin.startsWith('https://') &&
+          origin.endsWith('.talus-field-guide.pages.dev'))
+      ) {
+        return origin
+      }
       return allowed.has(origin) ? origin : c.env.APP_BASE_URL
     },
     allowMethods: ['GET', 'POST', 'OPTIONS'],
