@@ -55,6 +55,50 @@ function HomeHeroCapture({
     className: "hero__capture-note"
   }, "Free interactive Yosemite map with a trip builder, plus a short note on Sundays."));
 }
+var RESUME_MAX_AGE_DAYS = 30;
+function ResumeReading({
+  go
+}) {
+  var last = React.useMemo(() => window.readHistory ? window.readHistory.last() : null, []);
+  var article = last ? window.findArticle(last.slug) : null;
+  var ageDays = last && last.at ? (Date.now() - new Date(last.at).getTime()) / 86400000 : 0;
+  var show = Boolean(article) && ageDays < RESUME_MAX_AGE_DAYS;
+  React.useEffect(() => {
+    if (show && window.track) window.track("resume_shown", {
+      slug: last.slug,
+      percent: last.pct
+    });
+  }, [show]);
+  if (!show) return null;
+  var totalMin = parseInt(article.read, 10);
+  var remaining = Number.isFinite(totalMin) ? `About ${Math.max(1, Math.round(totalMin * (100 - last.pct) / 100))} min left` : `${last.pct}% read`;
+  return React.createElement("section", {
+    className: "wrap",
+    style: {
+      paddingTop: 40
+    }
+  }, React.createElement("a", {
+    className: "resume-band",
+    href: `/articles/${article.slug}`,
+    onClick: e => {
+      e.preventDefault();
+      window.safeStorage.set("tfg.read.resume", article.slug);
+      if (window.track) window.track("resume_click", {
+        slug: article.slug,
+        percent: last.pct
+      });
+      go(`a:${article.slug}`);
+    }
+  }, React.createElement("span", {
+    className: "eyebrow eyebrow--moss"
+  }, "Where you left off"), React.createElement("span", {
+    className: "resume-band__title"
+  }, article.title), React.createElement("span", {
+    className: "resume-band__meta"
+  }, remaining), React.createElement("span", {
+    className: "mono resume-band__cta"
+  }, "Keep reading →")));
+}
 var WEBCAMS = [{
   label: "Half Dome",
   img: "ahwahnee2-t.jpg",
@@ -229,7 +273,9 @@ function HomePage({
     natural: true,
     eager: true,
     motif: React.createElement(MotifMountains, null)
-  }))), webcamVariant !== "b" && webcamsSection, startHere.length > 0 && React.createElement("section", {
+  }))), React.createElement(ResumeReading, {
+    go: go
+  }), webcamVariant !== "b" && webcamsSection, startHere.length > 0 && React.createElement("section", {
     id: "start-here",
     className: "wrap",
     style: {

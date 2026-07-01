@@ -568,10 +568,42 @@ function AffiliateNote() {
   }, "Full disclosure."));
 }
 window.AffiliateNote = AffiliateNote;
+var READ_LAST_KEY = "tfg.read.last";
+var READ_DONE_KEY = "tfg.read.done";
+var READ_DONE_CAP = 100;
+var readHistory = {
+  last() {
+    var v = window.safeStorage.getJSON(READ_LAST_KEY);
+    return v && typeof v.slug === "string" && typeof v.pct === "number" ? v : null;
+  },
+  setLast(slug, pct) {
+    window.safeStorage.setJSON(READ_LAST_KEY, {
+      slug,
+      pct,
+      at: new Date().toISOString()
+    });
+  },
+  clearLast(slug) {
+    var cur = this.last();
+    if (cur && cur.slug === slug) window.safeStorage.remove(READ_LAST_KEY);
+  },
+  done() {
+    var v = window.safeStorage.getJSON(READ_DONE_KEY);
+    return new Set(Array.isArray(v) ? v : []);
+  },
+  markDone(slug) {
+    var set = this.done();
+    if (set.has(slug)) return;
+    set.add(slug);
+    window.safeStorage.setJSON(READ_DONE_KEY, Array.from(set).slice(-READ_DONE_CAP));
+  }
+};
+window.readHistory = readHistory;
 function ArticleCard({
   article,
   go,
-  size
+  size,
+  onNav
 }) {
   var cat = window.findCategory(article.cat);
   return React.createElement("a", {
@@ -579,6 +611,7 @@ function ArticleCard({
     href: `/articles/${article.slug}`,
     onClick: e => {
       e.preventDefault();
+      if (onNav) onNav(article);
       go(`a:${article.slug}`);
     }
   }, React.createElement(Placeholder, {

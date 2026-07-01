@@ -10,6 +10,7 @@
 //   fallback so "storage threw" and "key absent" stay distinguishable.
 // getJSON(key): parsed value, or null when absent, unparseable, or unavailable.
 // set / setJSON: true on success, false when storage is unavailable.
+// remove(key): deletes the key; true on success, false when unavailable.
 window.safeStorage = {
   get(key, fallback) {
     try {
@@ -21,6 +22,14 @@ window.safeStorage = {
   set(key, value) {
     try {
       window.localStorage.setItem(key, value);
+      return true;
+    } catch (_e) {
+      return false;
+    }
+  },
+  remove(key) {
+    try {
+      window.localStorage.removeItem(key);
       return true;
     } catch (_e) {
       return false;

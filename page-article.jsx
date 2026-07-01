@@ -75,6 +75,85 @@ function ArticlePage({ slug, go }) {
     if (article && article.image) preloadResponsive(article.image, SIZES_HERO);
   }, [slug]);
 
+  // Reading progress. Depth is measured against the body (.prose), not the
+  // document, so the related rail and footer never count as "read". Drives
+  // three things: the thin bar fixed at the top of the viewport (written
+  // imperatively through barRef so scrolling never re-renders the page), an
+  // article_progress GA4 event at each quarter mark (once per view), and the
+  // read history behind the home resume band. A piece scrolled past 90% is
+  // recorded done; anything abandoned between 10% and 90% is saved as the
+  // resume target on navigation away or tab close.
+  const barRef = React.useRef(null);
+  React.useEffect(() => {
+    if (bodyState !== "ready") return;
+    const prose = proseRef.current;
+    if (!prose) return;
+    const fired = {};
+    let maxPct = 0;
+    let savedPct = 0;
+    let raf = 0;
+
+    const measure = () => {
+      raf = 0;
+      const rect = prose.getBoundingClientRect();
+      if (rect.height <= 0) return;
+      const seen = Math.min(rect.height, Math.max(0, window.innerHeight - rect.top));
+      const pct = Math.round((seen / rect.height) * 100);
+      if (barRef.current) barRef.current.style.transform = `scaleX(${pct / 100})`;
+      if (pct <= maxPct) return;
+      maxPct = pct;
+      [25, 50, 75, 100].forEach((t) => {
+        if (pct >= t && !fired[t]) {
+          fired[t] = true;
+          if (window.track) window.track("article_progress", { slug, percent: t });
+        }
+      });
+      if (pct >= 90 && !fired.done) {
+        fired.done = true;
+        window.readHistory.markDone(slug);
+        window.readHistory.clearLast(slug);
+      }
+      // Write the resume target through as the reader goes (every 5 points of
+      // new depth), not only on teardown: on SPA navigation the next page
+      // renders before this effect's cleanup runs, so a cleanup-only save
+      // would always be one page behind the resume band reading it.
+      if (maxPct >= 10 && maxPct < 90 && maxPct >= savedPct + 5) {
+        savedPct = maxPct;
+        window.readHistory.setLast(slug, maxPct);
+      }
+    };
+    const onScroll = () => { if (!raf) raf = requestAnimationFrame(measure); };
+
+    // A resume click on the home page sets tfg.read.resume before navigating;
+    // jump back to the saved depth once, then behave like a normal read. The
+    // flag is consumed (removed) whether or not it matches, so it can never go
+    // stale and surprise a later pageview.
+    const resume = window.safeStorage.get("tfg.read.resume");
+    if (resume) window.safeStorage.remove("tfg.read.resume");
+    const saved = window.readHistory.last();
+    if (resume === slug && saved && saved.slug === slug && saved.pct > 0) {
+      const top = window.scrollY + prose.getBoundingClientRect().top
+        + (saved.pct / 100) * prose.getBoundingClientRect().height - window.innerHeight;
+      if (top > 0) window.scrollTo({ top });
+    }
+
+    const saveUnfinished = () => {
+      if (maxPct >= 10 && maxPct < 90) window.readHistory.setLast(slug, maxPct);
+    };
+
+    measure();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    window.addEventListener("pagehide", saveUnfinished);
+    return () => {
+      if (raf) cancelAnimationFrame(raf);
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+      window.removeEventListener("pagehide", saveUnfinished);
+      saveUnfinished();
+    };
+  }, [bodyState, slug]);
+
   // Inject a mid-article newsletter unit. Article bodies are opaque <Body/>
   // fragments; once "ready" their block-level elements are direct children of
   // .prose, so we insert a host node after the middle block and portal the unit
@@ -111,10 +190,23 @@ function ArticlePage({ slug, go }) {
 
   if (!article) return <div className="wrap" style={{ padding: 80 }}>Not found.</div>;
   const cat = window.findCategory(article.cat);
-  const related = window.ARTICLES.filter(a => a.slug !== slug && a.cat === article.cat).slice(0, 3);
+  // Related rail: same-section pieces the reader has not finished come first,
+  // then finished same-section pieces, then other sections (unread-first), so
+  // the rail always fills its three slots and repeat visitors are not shown
+  // the same three pieces they already read.
+  const doneSlugs = window.readHistory.done();
+  const unreadFirst = (list) => [
+    ...list.filter(a => !doneSlugs.has(a.slug)),
+    ...list.filter(a => doneSlugs.has(a.slug)),
+  ];
+  const sameCat = window.ARTICLES.filter(a => a.slug !== slug && a.cat === article.cat);
+  const otherCat = window.ARTICLES.filter(a => a.slug !== slug && a.cat !== article.cat);
+  const related = [...unreadFirst(sameCat), ...unreadFirst(otherCat)].slice(0, 3);
+  const relatedSameCat = related.every(a => a.cat === article.cat);
 
   return (
     <div className="page">
+      <div className="readbar" aria-hidden="true"><div className="readbar__fill" ref={barRef} /></div>
       <article>
         {/* Article hero */}
         <header className="wrap wrap--narrow" style={{ paddingTop: 64, paddingBottom: 32 }}>
@@ -248,11 +340,22 @@ function ArticlePage({ slug, go }) {
       {related.length > 0 && (
         <section className="wrap" style={{ paddingTop: 48, paddingBottom: 32 }}>
           <div className="section-head">
-            <h2>More from {cat.label}</h2>
-            <a href={`/section/${cat.slug}`} onClick={(e) => { e.preventDefault(); go(`cat:${cat.slug}`); }}>All in {cat.label} →</a>
+            <h2>{relatedSameCat ? `More from ${cat.label}` : "Keep reading"}</h2>
+            {relatedSameCat ? (
+              <a href={`/section/${cat.slug}`} onClick={(e) => { e.preventDefault(); go(`cat:${cat.slug}`); }}>All in {cat.label} →</a>
+            ) : (
+              <a href="/articles" onClick={(e) => { e.preventDefault(); go("articles"); }}>All entries →</a>
+            )}
           </div>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 36 }}>
-            {related.map(a => <ArticleCard key={a.slug} article={a} go={go} />)}
+            {related.map(a => (
+              <ArticleCard
+                key={a.slug}
+                article={a}
+                go={go}
+                onNav={() => { if (window.track) window.track("related_click", { slug: a.slug, from: slug }); }}
+              />
+            ))}
           </div>
         </section>
       )}

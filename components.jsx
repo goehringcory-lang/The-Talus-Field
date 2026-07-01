@@ -457,15 +457,55 @@ function AffiliateNote() {
 window.AffiliateNote = AffiliateNote;
 
 // ============================================================
+// Read history. The article page's progress tracker (page-article.jsx) writes
+// two keys through safeStorage: tfg.read.last, the most recent piece left
+// unfinished, and tfg.read.done, slugs read to roughly the end (capped). The
+// home page reads them for the resume band; the article page reads done() to
+// rank its related rail unread-first. Fails quiet everywhere: no storage means
+// no history, no resume band, and the untouched default related order.
+// ============================================================
+const READ_LAST_KEY = "tfg.read.last";
+const READ_DONE_KEY = "tfg.read.done";
+const READ_DONE_CAP = 100;
+
+const readHistory = {
+  last() {
+    const v = window.safeStorage.getJSON(READ_LAST_KEY);
+    return v && typeof v.slug === "string" && typeof v.pct === "number" ? v : null;
+  },
+  setLast(slug, pct) {
+    window.safeStorage.setJSON(READ_LAST_KEY, { slug, pct, at: new Date().toISOString() });
+  },
+  clearLast(slug) {
+    const cur = this.last();
+    if (cur && cur.slug === slug) window.safeStorage.remove(READ_LAST_KEY);
+  },
+  done() {
+    const v = window.safeStorage.getJSON(READ_DONE_KEY);
+    return new Set(Array.isArray(v) ? v : []);
+  },
+  markDone(slug) {
+    const set = this.done();
+    if (set.has(slug)) return;
+    set.add(slug);
+    window.safeStorage.setJSON(READ_DONE_KEY, Array.from(set).slice(-READ_DONE_CAP));
+  },
+};
+window.readHistory = readHistory;
+
+// ============================================================
 // Article card
 // ============================================================
-function ArticleCard({ article, go, size }) {
+// `onNav` (optional) fires just before navigation so a surface can tag the
+// click (e.g. the related rail's related_click event) without every card
+// paying for it.
+function ArticleCard({ article, go, size, onNav }) {
   const cat = window.findCategory(article.cat);
   return (
     <a
       className="card"
       href={`/articles/${article.slug}`}
-      onClick={(e) => { e.preventDefault(); go(`a:${article.slug}`); }}
+      onClick={(e) => { e.preventDefault(); if (onNav) onNav(article); go(`a:${article.slug}`); }}
     >
       <Placeholder
         caption={article.placeholder}
