@@ -1,3 +1,8 @@
+# The app is auth-gated and should never appear in search results,
+# on the unlisted pages.dev host or the production domain.
+/*
+  X-Robots-Tag: noindex
+
 /sw.js
   Cache-Control: public, max-age=0, must-revalidate
 
