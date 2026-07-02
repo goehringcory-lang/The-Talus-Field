@@ -5,6 +5,7 @@ import { auth } from './routes/auth'
 import { checkout } from './routes/checkout'
 import { contact } from './routes/contact'
 import { indexnow } from './routes/indexnow'
+import { ingestNpsWindow, programs } from './routes/programs'
 import { stripe } from './routes/stripe'
 import {
   currentMonthLabel,
@@ -94,13 +95,35 @@ app.get('/api/inventory', async (c) => {
   // Coerce a missing/non-numeric cap to 0 so the scarcity JSON never
   // serializes `cap: null` (NaN -> null) and the counter reads as sold out.
   const cap = Number.isNaN(parsedCap) ? 0 : parsedCap
-  return c.json({ sold, cap, monthLabel, reopens: firstOfNextMonthIso() })
+  // priceCents lets the editorial buy box render the live price, so the
+  // number is edited in exactly one place: [vars] in wrangler.toml.
+  const parsedPrice = Number.parseInt(c.env.GUIDE_PRICE_CENTS, 10)
+  const priceCents = Number.isNaN(parsedPrice) ? null : parsedPrice
+  return c.json({ sold, cap, monthLabel, priceCents, reopens: firstOfNextMonthIso() })
 })
 
 app.route('/api/auth', auth)
 app.route('/api/checkout', checkout)
 app.route('/api/contact', contact)
 app.route('/api/indexnow', indexnow)
+app.route('/api/programs', programs)
 app.route('/api/stripe', stripe)
 
-export default app
+// Daily cron ([triggers] in wrangler.toml): refresh the KV program cache from
+// the NPS Events API so /api/programs answers from KV, not a live fetch.
+async function scheduled(
+  _controller: ScheduledController,
+  env: Env,
+  ctx: ExecutionContext,
+): Promise<void> {
+  ctx.waitUntil(
+    ingestNpsWindow(env).catch((err) => {
+      console.error('scheduled: NPS ingest failed', err)
+    }),
+  )
+}
+
+export default {
+  fetch: app.fetch,
+  scheduled,
+}

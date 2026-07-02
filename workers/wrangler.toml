@@ -12,10 +12,24 @@ binding = "GUIDE_BUYERS"
 id = "REPLACE_ME_AFTER_kv_namespace_create"
 preview_id = "REPLACE_ME_FOR_LOCAL_DEV"
 
+# Program/event cache for /api/programs (daily cron ingest of the NPS Events
+# API). Create with:
+#   wrangler kv namespace create GUIDE_PROGRAMS
+#   wrangler kv namespace create GUIDE_PROGRAMS --preview
+[[kv_namespaces]]
+binding = "GUIDE_PROGRAMS"
+id = "REPLACE_ME_AFTER_kv_namespace_create"
+preview_id = "REPLACE_ME_FOR_LOCAL_DEV"
+
+# Daily program ingest, ~2-3am Pacific. The route also self-heals: if KV is
+# missing or >48h old it fetches NPS live and backfills.
+[triggers]
+crons = ["0 10 * * *"]
+
 [vars]
 APP_BASE_URL = "https://guide.thetalusfieldjournal.com"
 EDITORIAL_BASE_URL = "https://thetalusfieldjournal.com"
-GUIDE_PRICE_CENTS = "900"
+GUIDE_PRICE_CENTS = "1900"
 GUIDE_PRODUCT_TAG = "field_guide_2026"
 GUIDE_MONTHLY_CAP = "100"
 
@@ -35,6 +49,13 @@ zone_name = "thetalusfieldjournal.com"
 #   wrangler secret put ADMIN_USERNAME    # e.g. "cory"
 #   wrangler secret put ADMIN_CODE        # any string you'll remember
 # Either pair lets you in. Remove or rotate before public launch.
+# ===========================================================================
+
+# === NPS Events API =========================================================
+# /api/programs and the daily cron read the National Park Service Events API.
+# Free key, self-serve signup at developer.nps.gov/get-started:
+#   wrangler secret put NPS_API_KEY
+# Optional; without it the feed serves manual curation only.
 # ===========================================================================
 
 # === IndexNow push-indexing =================================================

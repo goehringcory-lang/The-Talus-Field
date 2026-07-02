@@ -1,0 +1,174 @@
+// =============================================================================
+// useTripPlan — localStorage-backed plan state with module-level subscribers,
+// the same pattern as lib/favorites.ts, so "Add to trip" buttons on stop
+// pages, the map popup, and program rows stay in sync with /trip without a
+// context provider. Corrupt storage drops to an empty plan.
+// =============================================================================
+
+import { useCallback, useEffect, useState } from 'react'
+import { readTripDates, writeTripDates } from '../programs/usePrograms'
+import type { ProgramEventT } from '../programs/schema'
+import {
+  TripPlan,
+  programItemId,
+  stopItemId,
+  type TripItemT,
+  type TripPlanT,
+} from './schema'
+
+const STORAGE_KEY = 'tfg.trip.plan'
+const subscribers = new Set<() => void>()
+
+function todayIso(): string {
+  return new Date().toISOString().slice(0, 10)
+}
+
+function emptyPlan(): TripPlanT {
+  const dates = readTripDates() ?? { start: todayIso(), end: todayIso() }
+  return { version: 1, dates, items: [], updatedAt: new Date(0).toISOString() }
+}
+
+function read(): TripPlanT {
+  try {
+    const raw = window.localStorage.getItem(STORAGE_KEY)
+    if (!raw) return emptyPlan()
+    const parsed = TripPlan.safeParse(JSON.parse(raw))
+    if (parsed.success) return parsed.data
+  } catch {
+    /* fall through */
+  }
+  return emptyPlan()
+}
+
+function write(plan: TripPlanT) {
+  try {
+    window.localStorage.setItem(STORAGE_KEY, JSON.stringify(plan))
+  } catch {
+    /* non-fatal: the plan just won't persist */
+  }
+  for (const fn of subscribers) fn()
+}
+
+function update(mutate: (plan: TripPlanT) => TripPlanT) {
+  const next = mutate(read())
+  write({ ...next, updatedAt: new Date().toISOString() })
+}
+
+function clampDay(day: string, dates: TripPlanT['dates']): string {
+  if (day < dates.start) return dates.start
+  if (day > dates.end) return dates.end
+  return day
+}
+
+export function useTripPlan() {
+  const [plan, setPlan] = useState<TripPlanT>(read)
+
+  useEffect(() => {
+    const refresh = () => setPlan(read())
+    subscribers.add(refresh)
+    const onStorage = (e: StorageEvent) => {
+      if (e.key === STORAGE_KEY) refresh()
+    }
+    window.addEventListener('storage', onStorage)
+    return () => {
+      subscribers.delete(refresh)
+      window.removeEventListener('storage', onStorage)
+    }
+  }, [])
+
+  const setDates = useCallback((start: string, end: string) => {
+    writeTripDates({ start, end })
+    update((p) => ({
+      ...p,
+      dates: { start, end },
+      // Items keep their day even if it now falls outside the window; the
+      // agenda renders them under an "outside your dates" section instead of
+      // silently deleting the user's picks.
+    }))
+  }, [])
+
+  const addStop = useCallback((stopId: string, day?: string) => {
+    update((p) => {
+      const target = clampDay(day ?? p.dates.start, p.dates)
+      const itemId = stopItemId(stopId, target)
+      if (p.items.some((it) => it.itemId === itemId)) return p
+      return {
+        ...p,
+        items: [...p.items, { type: 'stop', itemId, stopId, day: target }],
+      }
+    })
+  }, [])
+
+  const addProgram = useCallback((ev: ProgramEventT) => {
+    update((p) => {
+      const itemId = programItemId(ev.id)
+      if (p.items.some((it) => it.itemId === itemId)) return p
+      return {
+        ...p,
+        items: [...p.items, { type: 'program', itemId, programId: ev.id, snapshot: ev }],
+      }
+    })
+  }, [])
+
+  const removeItem = useCallback((itemId: string) => {
+    update((p) => ({ ...p, items: p.items.filter((it) => it.itemId !== itemId) }))
+  }, [])
+
+  const setStopTime = useCallback((itemId: string, startTime: string | undefined) => {
+    update((p) => ({
+      ...p,
+      items: p.items.map((it) =>
+        it.itemId === itemId && it.type === 'stop' ? { ...it, startTime } : it,
+      ),
+    }))
+  }, [])
+
+  const moveStopToDay = useCallback((itemId: string, day: string) => {
+    update((p) => ({
+      ...p,
+      items: p.items.map((it) =>
+        it.itemId === itemId && it.type === 'stop'
+          ? { ...it, day, itemId: stopItemId(it.stopId, day) }
+          : it,
+      ),
+    }))
+  }, [])
+
+  const clear = useCallback(() => {
+    update((p) => ({ ...p, items: [] }))
+  }, [])
+
+  const hasItem = useCallback(
+    (itemId: string) => plan.items.some((it) => it.itemId === itemId),
+    [plan],
+  )
+
+  return {
+    plan,
+    setDates,
+    addStop,
+    addProgram,
+    removeItem,
+    setStopTime,
+    moveStopToDay,
+    clear,
+    hasItem,
+  }
+}
+
+/** Cheap add-from-anywhere entry points (map popup lives outside React state). */
+export function addStopToPlan(stopId: string, day?: string) {
+  const p = read()
+  const target = clampDay(day ?? p.dates.start, p.dates)
+  const itemId = stopItemId(stopId, target)
+  if (p.items.some((it: TripItemT) => it.itemId === itemId)) return
+  write({
+    ...p,
+    items: [...p.items, { type: 'stop', itemId, stopId, day: target }],
+    updatedAt: new Date().toISOString(),
+  })
+}
+
+export function isStopPlanned(stopId: string): boolean {
+  return read().items.some((it) => it.type === 'stop' && it.stopId === stopId)
+}

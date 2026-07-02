@@ -9,6 +9,7 @@ export default function BottomNav() {
     pathname.startsWith('/essentials') ||
     pathname.startsWith('/secret-spots')
   const isMap = pathname === '/map' || pathname.startsWith('/map/')
+  const isPrograms = pathname === '/programs' || pathname.startsWith('/trip')
   const isSearch = pathname === '/search'
   const isAccount = pathname === '/account'
 
@@ -26,6 +27,13 @@ export default function BottomNav() {
           <path d="M9 3v15M15 6v15" />
         </svg>
         <span>Map</span>
+      </Link>
+      <Link to="/programs" className="bottom-nav__tab" aria-current={isPrograms ? 'page' : undefined}>
+        <svg className="bottom-nav__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+          <rect x="3" y="5" width="18" height="16" rx="2" />
+          <path d="M8 3v4M16 3v4M3 10h18M8 15h3M13 15h3" />
+        </svg>
+        <span>Plan</span>
       </Link>
       <Link to="/search" className="bottom-nav__tab" aria-current={isSearch ? 'page' : undefined}>
         <svg className="bottom-nav__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">

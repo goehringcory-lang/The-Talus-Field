@@ -58,27 +58,31 @@ function PrivacyPage() {
 function TermsPage() {
   return (
     <LegalShell title="Terms of Service" eyebrow="Legal" updated="April 1, 2026">
-      <p>These terms govern your use of The Talus Field (thetalusfieldjournal.com). By using the site, you agree to them. The Field Guide and interactive map are provided free of charge. No purchase is required.</p>
+      <p>These terms govern your use of The Talus Field (thetalusfieldjournal.com) and the Field Guide app (guide.thetalusfieldjournal.com). By using either, you agree to them. The articles and the interactive trip-planner map on this site are free to browse. The Field Guide app is a paid product; its purchase terms are in section 1.</p>
 
-      <h2>1. Use of content</h2>
+      <h2>1. The Field Guide purchase</h2>
+      <p>The Field Guide is a one-time purchase, not a subscription. Payment is processed by Stripe; we never see or store your card number. A purchase grants access to the Field Guide for 18 months from the purchase date, on any device you sign in to, including all updates published during that window. Access is for you and the people traveling with you, not for redistribution.</p>
+      <p>If the guide does not work as described, email cory@thetalusfieldjournal.com within 30 days of purchase and we will refund it in full. After a refund, your access code is deactivated.</p>
+
+      <h2>2. Use of content</h2>
       <p>All articles, photographs, and other content on this site are copyrighted by Cory Goehring unless otherwise noted. You may quote up to 300 words in another work with a clear link back to the original article. You may not republish, syndicate, or train machine learning models on any content without written permission.</p>
 
-      <h2>2. Accuracy</h2>
+      <h2>3. Accuracy</h2>
       <p>I try to keep everything on this site accurate, and I update articles when conditions change. That said, conditions in Yosemite change constantly. Trail closures, road closures, weather, wildlife behavior, and permit rules are all subject to change without notice. Always verify current conditions with the National Park Service before any trip.</p>
 
-      <h2>3. No warranty</h2>
+      <h2>4. No warranty</h2>
       <p>The site is provided as-is. I make no warranty, express or implied, that any information on the site is accurate, complete, or fit for any particular purpose. You assume all risk for your own choices in the park.</p>
 
-      <h2>4. Limitation of liability</h2>
+      <h2>5. Limitation of liability</h2>
       <p>To the fullest extent permitted by law, The Talus Field is not liable for any injury, loss, or damage arising from your use of this site or your activities in Yosemite National Park. The mountains are real. Walk carefully.</p>
 
-      <h2>5. Third-party links</h2>
+      <h2>6. Third-party links</h2>
       <p>The site contains links to third-party sites, including affiliate links to lodging and gear vendors. We are not responsible for the content or practices of those sites.</p>
 
-      <h2>6. Governing law</h2>
+      <h2>7. Governing law</h2>
       <p>These terms are governed by the laws of the State of California.</p>
 
-      <h2>7. Changes</h2>
+      <h2>8. Changes</h2>
       <p>If these terms change in any meaningful way, the change will be announced in the newsletter and the "last updated" date above will change.</p>
     </LegalShell>
   );

@@ -138,3 +138,16 @@ Open the printed URL → JWT is issued, you're in.
 - Make sure Resend domain is verified and `FROM` in [workers/src/lib/email.ts](workers/src/lib/email.ts) points at it.
 - Verify the ~21 stop coordinates in [apps/guide/src/content/stops.ts](apps/guide/src/content/stops.ts) and remove the `TODO: verify` comments. Stops are organized into three regions: `valley`, `glacier-mariposa`, `tuolumne`.
 - Drop photos into [apps/guide/public/photos/](apps/guide/public/photos/) and add `photos: [{ src, caption }]` entries on the matching stops.
+
+## 2026 relaunch: enabling the $19 paid model
+
+The buy box, checkout route, webhook, KV buyer records, and email delivery are all in the tree; the paid path is enabled purely by configuration. Checklist, in order:
+
+1. **Price.** `GUIDE_PRICE_CENTS = "1900"` in [workers/wrangler.toml](workers/wrangler.toml) is the single source of truth. The editorial buy box reads it live from `GET /api/inventory` (`priceCents`) with a static $19 fallback in [page-guide.jsx](page-guide.jsx). Change the var, `wrangler deploy`, done.
+2. **KV.** `wrangler kv namespace create GUIDE_BUYERS` and `... --preview`, then fill `id` / `preview_id` in `wrangler.toml` (currently `REPLACE_ME_*`).
+3. **Secrets.** `wrangler secret put` each of: `STRIPE_SECRET_KEY`, `STRIPE_WEBHOOK_SECRET`, `MAGIC_LINK_SIGNING_SECRET`, `RESEND_API_KEY`. Rotate or delete `DEV_USERNAME`/`DEV_CODE` before launch; keep `ADMIN_*` as the operator door.
+4. **Webhook.** In the Stripe dashboard, add endpoint `https://api.thetalusfieldjournal.com/api/stripe/webhook` for event `checkout.session.completed`; the endpoint's signing secret is `STRIPE_WEBHOOK_SECRET`.
+5. **Deploy + verify fail-closed traps.** `wrangler deploy`, then `curl https://api.thetalusfieldjournal.com/api/inventory` must show `sold: 0`, `cap: 100`, `priceCents: 1900`. The inventory check fails closed: a missing/garbled `GUIDE_MONTHLY_CAP` reads as sold out.
+6. **Test-mode pass.** Full smoke test in section 8 (test card 4242…) before swapping to live keys per "Going live".
+
+No PWA change is needed: [apps/guide/src/routes/Login.tsx](apps/guide/src/routes/Login.tsx) already tries the buyer email + code path first and falls back to dev-login.
