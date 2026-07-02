@@ -229,6 +229,37 @@
   flex: 0 0 auto;
 }
 
+/* Landmark legend entry: hollow ring matching the hollow landmark pins. */
+.map-legend__dot--hollow {
+  background: #f5efdd;
+  border-width: 2px;
+  border-style: solid;
+  box-shadow: none;
+}
+
+/* Landmark pins stack below stop pins so curated stops stay tappable. */
+.map-pin--landmark {
+  z-index: 0;
+}
+
+.map-landmarks-toggle {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-family: var(--sans, system-ui, sans-serif);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ink-1, #2a2820);
+  margin-bottom: 10px;
+  cursor: pointer;
+  min-height: 24px;
+}
+.map-landmarks-toggle input {
+  accent-color: var(--moss, #7a2a10);
+  width: 15px;
+  height: 15px;
+}
+
 /* Itineraries pane: left sidebar with the day list. */
 .map-pane--itineraries {
   top: 12px;

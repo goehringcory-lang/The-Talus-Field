@@ -18,6 +18,7 @@ const SecretSpots = lazy(() => import('./routes/SecretSpots'))
 const Search = lazy(() => import('./routes/Search'))
 const Programs = lazy(() => import('./routes/Programs'))
 const Trip = lazy(() => import('./routes/Trip'))
+const GpsDirectory = lazy(() => import('./routes/GpsDirectory'))
 
 export default function App() {
   return (
@@ -56,6 +57,16 @@ export default function App() {
             element={
               <RequireAuth>
                 <Essentials />
+              </RequireAuth>
+            }
+          />
+          {/* Static segment outranks :topicId; the essentials.ts stub entry
+              with the same id only feeds the index row and search. */}
+          <Route
+            path="/essentials/gps-directory"
+            element={
+              <RequireAuth>
+                <GpsDirectory />
               </RequireAuth>
             }
           />

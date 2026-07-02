@@ -46,6 +46,43 @@ export type SecretSpotT = z.infer<typeof SecretSpot>
 
 export const SecretSpots = z.array(SecretSpot)
 
+// Landmarks: the major-destination pin layer + GPS directory. Reference
+// coordinates only — no editorial body, so the curated stops stay the star.
+export const LandmarkAreaEnum = z.enum([
+  'valley',
+  'south',        // Glacier Point Road corridor
+  'wawona',
+  'tioga',        // Tioga Road / Tuolumne corridor
+  'hetch-hetchy',
+  'entrances',
+  'practical',    // gas, gateway towns
+])
+export type LandmarkArea = z.infer<typeof LandmarkAreaEnum>
+
+export const LandmarkKindEnum = z.enum([...StopKindEnum.options, 'entrance', 'facility'])
+export type LandmarkKind = z.infer<typeof LandmarkKindEnum>
+
+export const Landmark = z.object({
+  id: z.string(),
+  name: z.string(),
+  area: LandmarkAreaEnum,
+  kind: LandmarkKindEnum,
+  coord: z
+    .tuple([z.number(), z.number()])      // [lng, lat] — required, unlike Stop
+    .refine(
+      ([lng, lat]) => lng >= -120.8 && lng <= -118.2 && lat >= 36.8 && lat <= 38.8,
+      { message: 'coord outside the Yosemite bbox — swapped lat/lng?' },
+    ),
+  pointsAt: z.enum(['parking', 'feature']), // what the pin marks for navigation
+  note: z.string(),                          // one line, incl. pairing ("Park at the dam; 2.5 mi hike")
+  seasonal: z.string().optional(),           // "Glacier Point Road closed ~Nov–late May"
+  verified: z.boolean(),                     // false = TODO-grade coordinate
+})
+
+export type LandmarkT = z.infer<typeof Landmark>
+
+export const Landmarks = z.array(Landmark)
+
 export const EssentialTopic = z.object({
   id: z.string(),                         // "entrance-reservations"
   title: z.string(),

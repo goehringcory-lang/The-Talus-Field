@@ -1,0 +1,74 @@
+/* /essentials/gps-directory — grouped landmark coordinate reference. */
+
+.gps-area {
+  margin-bottom: 36px;
+}
+.gps-area__title {
+  font-family: var(--sans, system-ui, sans-serif);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-weight: 700;
+  color: var(--ink, #14110c);
+  border-top: 1px solid var(--ink, #14110c);
+  border-bottom: 1px solid var(--rule-soft, #d5c6a4);
+  background: var(--paper-2, #e9e0c9);
+  padding: 8px 2px;
+  margin: 0 0 4px;
+}
+
+.gps-row {
+  padding: 12px 2px;
+  border-bottom: 1px solid var(--rule-soft, #d5c6a4);
+}
+.gps-row__main {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.gps-row__name {
+  font-family: var(--display, Georgia, serif);
+  font-size: 16px;
+  line-height: 1.3;
+  margin: 0;
+}
+.gps-row__coord {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 13px;
+  color: var(--ink-2, #36291c);
+  background: var(--paper-2, #e9e0c9);
+  border: 1px solid var(--rule-soft, #d5c6a4);
+  border-radius: 3px;
+  padding: 2px 6px;
+  user-select: all;
+  -webkit-user-select: all;
+  white-space: nowrap;
+}
+.gps-row__note {
+  font-family: var(--serif, Georgia, serif);
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: var(--ink-2, #36291c);
+  margin: 6px 0 0;
+}
+.gps-row__note em {
+  color: var(--ink-3, #6b5c49);
+}
+.gps-row__meta {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  align-items: center;
+  font-family: var(--sans, system-ui, sans-serif);
+  font-size: 12px;
+  color: var(--ink-3, #6b5c49);
+  margin: 6px 0 0;
+}
+.gps-row__meta a {
+  font-weight: 600;
+  min-height: 32px;
+  display: inline-flex;
+  align-items: center;
+}

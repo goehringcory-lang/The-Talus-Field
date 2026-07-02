@@ -2,11 +2,12 @@ import { stops } from './stops'
 import { ESSENTIALS } from './essentials'
 import type { EssentialTopicT, Region, StopT } from './schema'
 
-export { Stop, Stops, RegionEnum, StopKindEnum, SecretSpot, SecretSpots, EssentialTopic, EssentialTopics } from './schema'
-export type { StopT, Region, StopKind, SecretSpotT, EssentialTopicT } from './schema'
+export { Stop, Stops, RegionEnum, StopKindEnum, SecretSpot, SecretSpots, EssentialTopic, EssentialTopics, Landmark, Landmarks, LandmarkAreaEnum, LandmarkKindEnum } from './schema'
+export type { StopT, Region, StopKind, SecretSpotT, EssentialTopicT, LandmarkT, LandmarkArea, LandmarkKind } from './schema'
 export { stops } from './stops'
 export { ESSENTIALS, ESSENTIALS_META } from './essentials'
 export { SECRET_SPOTS, SECRET_META, secretsLocked } from './secret-spots'
+export { LANDMARKS, LANDMARK_AREAS, getLandmarkById, landmarksByArea } from './landmarks'
 
 export const REGIONS: { id: Region; title: string; teaser: string }[] = [
   {

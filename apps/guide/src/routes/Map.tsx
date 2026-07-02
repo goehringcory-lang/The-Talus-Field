@@ -18,14 +18,14 @@ import { Link, useNavigate } from 'react-router-dom'
 import maplibregl from 'maplibre-gl'
 import 'maplibre-gl/dist/maplibre-gl.css'
 import GatedChrome from '../components/GatedChrome'
-import { stops as allStops, getStopById, type StopT } from '../content'
+import { LANDMARKS, getLandmarkById, stops as allStops, getStopById, type LandmarkT, type StopT } from '../content'
 import {
   ITINERARIES,
   ITINERARY_KEYS,
   isItineraryKey,
   type ItineraryKey,
 } from '../content/itineraries'
-import { KIND_STYLES, buildPinElement, directionsUrl, getKindStyle } from '../map/kinds'
+import { KIND_STYLES, LANDMARK_STYLE, buildLandmarkPinElement, buildPinElement, directionsUrl, getKindStyle } from '../map/kinds'
 import { addStopToPlan, isStopPlanned } from '../trip/useTripPlan'
 import { buildMapStyle } from '../map/style'
 import { isPackCompleted } from '../offline/useDownloads'
@@ -42,6 +42,7 @@ type UrlState = {
   tab: Tab
   itinerary: ItineraryKey | null
   stop: string | null
+  landmark: string | null
 }
 
 function readUrlState(): UrlState {
@@ -49,10 +50,12 @@ function readUrlState(): UrlState {
   const tab = params.get('tab')
   const itin = params.get('itinerary')
   const stop = params.get('stop')
+  const landmark = params.get('landmark')
   return {
     tab: isTab(tab) ? tab : 'points',
     itinerary: isItineraryKey(itin) ? itin : null,
     stop: stop || null,
+    landmark: landmark || null,
   }
 }
 
@@ -61,6 +64,7 @@ function writeUrlState(next: UrlState) {
   if (next.tab && next.tab !== 'points') params.set('tab', next.tab)
   if (next.itinerary) params.set('itinerary', next.itinerary)
   if (next.stop) params.set('stop', next.stop)
+  if (next.landmark) params.set('landmark', next.landmark)
   const qs = params.toString()
   const newUrl = '/map' + (qs ? `?${qs}` : '')
   if (newUrl !== window.location.pathname + window.location.search) {
@@ -145,11 +149,56 @@ function buildPopupContent(stop: StopT, onOpenStop: (id: string) => void): HTMLE
   return root
 }
 
+// Landmark popup: reference info + Directions only — no stop write-up exists.
+function buildLandmarkPopupContent(lm: LandmarkT): HTMLElement {
+  const root = document.createElement('div')
+  root.className = 'map-popup'
+
+  const title = document.createElement('strong')
+  title.className = 'map-popup__title'
+  title.textContent = lm.name
+  root.appendChild(title)
+
+  const chip = document.createElement('span')
+  chip.className = 'map-popup__kind'
+  chip.style.color = LANDMARK_STYLE.color
+  chip.textContent = LANDMARK_STYLE.label
+  root.appendChild(chip)
+
+  const note = document.createElement('p')
+  note.className = 'map-popup__excerpt'
+  note.textContent = lm.note
+  root.appendChild(note)
+
+  const hint = document.createElement('p')
+  hint.className = 'map-popup__excerpt'
+  hint.style.fontStyle = 'italic'
+  hint.textContent =
+    (lm.pointsAt === 'parking' ? 'Pin marks the parking area.' : 'Pin marks the feature itself.') +
+    (lm.verified ? '' : ' Position approximate.') +
+    (lm.seasonal ? ` ${lm.seasonal}` : '')
+  root.appendChild(hint)
+
+  const actions = document.createElement('p')
+  actions.className = 'map-popup__actions'
+  const dir = document.createElement('a')
+  dir.className = 'map-popup__btn map-popup__btn--dir'
+  dir.href = directionsUrl(lm.coord)
+  dir.target = '_blank'
+  dir.rel = 'noopener'
+  dir.textContent = 'Directions →'
+  actions.appendChild(dir)
+  root.appendChild(actions)
+
+  return root
+}
+
 export default function Map() {
   const navigate = useNavigate()
   const containerRef = useRef<HTMLDivElement | null>(null)
   const mapRef = useRef<maplibregl.Map | null>(null)
   const markersRef = useRef<Record<string, maplibregl.Marker>>({})
+  const landmarkMarkersRef = useRef<Record<string, maplibregl.Marker>>({})
   const popupRef = useRef<maplibregl.Popup | null>(null)
 
   const [mapReady, setMapReady] = useState(false)
@@ -159,6 +208,10 @@ export default function Map() {
   const [tab, setTab] = useState<Tab>(initial.tab)
   const [selectedItinerary, setSelectedItinerary] = useState<ItineraryKey | null>(initial.itinerary)
   const [selectedStopId, setSelectedStopId] = useState<string | null>(initial.stop)
+  const [selectedLandmarkId, setSelectedLandmarkId] = useState<string | null>(initial.landmark)
+  // Transient view preference — not persisted, not in the URL. A ?landmark=
+  // deep link force-enables it below.
+  const [showLandmarks, setShowLandmarks] = useState(true)
 
   // Only stops with a coord can be mapped.
   const mappableStops = useMemo<StopT[]>(() => allStops.filter((s) => !!s.coord), [])
@@ -174,8 +227,13 @@ export default function Map() {
 
   // Sync state to URL.
   useEffect(() => {
-    writeUrlState({ tab, itinerary: selectedItinerary, stop: selectedStopId })
-  }, [tab, selectedItinerary, selectedStopId])
+    writeUrlState({
+      tab,
+      itinerary: selectedItinerary,
+      stop: selectedStopId,
+      landmark: selectedLandmarkId,
+    })
+  }, [tab, selectedItinerary, selectedStopId, selectedLandmarkId])
 
   // Restore from URL on browser back/forward.
   useEffect(() => {
@@ -184,6 +242,7 @@ export default function Map() {
       setTab(next.tab)
       setSelectedItinerary(next.itinerary)
       setSelectedStopId(next.stop)
+      setSelectedLandmarkId(next.landmark)
     }
     window.addEventListener('popstate', onPop)
     return () => window.removeEventListener('popstate', onPop)
@@ -248,7 +307,10 @@ export default function Map() {
       bounds.extend([lng, lat])
 
       const el = buildPinElement(stop.kind)
-      el.addEventListener('click', () => setSelectedStopId(stop.id))
+      el.addEventListener('click', () => {
+        setSelectedLandmarkId(null)
+        setSelectedStopId(stop.id)
+      })
       const marker = new maplibregl.Marker({ element: el, anchor: 'bottom' })
         .setLngLat([lng, lat])
         .addTo(map)
@@ -257,6 +319,46 @@ export default function Map() {
 
     map.fitBounds(bounds, { padding: 48, maxZoom: 12, animate: false })
   }, [visibleStops, mapReady])
+
+  // Landmark marker reconciliation — a second, subordinate pin set. No
+  // fitBounds here: landmarks must never change the stop-set framing.
+  useEffect(() => {
+    if (!mapReady) return
+    const map = mapRef.current
+    if (!map) return
+
+    for (const id of Object.keys(landmarkMarkersRef.current)) {
+      landmarkMarkersRef.current[id].remove()
+    }
+    landmarkMarkersRef.current = {}
+    if (!showLandmarks) return
+
+    for (const lm of LANDMARKS) {
+      const el = buildLandmarkPinElement(lm.name)
+      el.addEventListener('click', () => {
+        setSelectedStopId(null)
+        setSelectedLandmarkId(lm.id)
+      })
+      const marker = new maplibregl.Marker({ element: el, anchor: 'bottom' })
+        .setLngLat(lm.coord)
+        .addTo(map)
+      landmarkMarkersRef.current[lm.id] = marker
+    }
+  }, [showLandmarks, mapReady])
+
+  // Landmark selection — resolve the coord from content (not the marker ref)
+  // so a ?landmark= deep link works even before the marker effect has run.
+  useEffect(() => {
+    if (!mapReady || !selectedLandmarkId) return
+    const map = mapRef.current
+    const popup = popupRef.current
+    const lm = getLandmarkById(selectedLandmarkId)
+    if (!map || !popup || !lm) return
+
+    setShowLandmarks(true)
+    map.easeTo({ center: lm.coord, zoom: Math.max(map.getZoom(), 12) })
+    popup.setLngLat(lm.coord).setDOMContent(buildLandmarkPopupContent(lm)).addTo(map)
+  }, [selectedLandmarkId, mapReady])
 
   // Selection effect — pan/zoom + open popup when selectedStopId changes.
   useEffect(() => {
@@ -279,9 +381,11 @@ export default function Map() {
   const handleSelectItinerary = useCallback((key: ItineraryKey | null) => {
     setSelectedItinerary(key)
     setSelectedStopId(null)
+    setSelectedLandmarkId(null)
   }, [])
 
   const handleSelectStop = useCallback((id: string) => {
+    setSelectedLandmarkId(null)
     setSelectedStopId(id)
   }, [])
 
@@ -354,6 +458,17 @@ export default function Map() {
           <div ref={containerRef} className="map-page__map" />
 
           <aside className="map-pane map-pane--points" aria-hidden={tab !== 'points'}>
+            <label className="map-landmarks-toggle">
+              <input
+                type="checkbox"
+                checked={showLandmarks}
+                onChange={(e) => {
+                  setShowLandmarks(e.target.checked)
+                  if (!e.target.checked) setSelectedLandmarkId(null)
+                }}
+              />
+              Show landmarks ({LANDMARKS.length})
+            </label>
             <h3 className="map-pane__title">Legend</h3>
             <ul className="map-legend">
               {presentKinds.map((kind) => {
@@ -369,6 +484,16 @@ export default function Map() {
                   </li>
                 )
               })}
+              {showLandmarks && (
+                <li className="map-legend__item">
+                  <span
+                    className="map-legend__dot map-legend__dot--hollow"
+                    style={{ borderColor: LANDMARK_STYLE.color }}
+                    aria-hidden
+                  />
+                  {LANDMARK_STYLE.label}
+                </li>
+              )}
             </ul>
           </aside>
 
@@ -551,6 +676,14 @@ function InfoPane({
             </li>
           )
         })}
+        <li className="map-legend__item">
+          <span
+            className="map-legend__dot map-legend__dot--hollow"
+            style={{ borderColor: LANDMARK_STYLE.color }}
+            aria-hidden
+          />
+          {LANDMARK_STYLE.label} — major destinations for reference; hollow pins, toggle in the GPS points tab
+        </li>
       </ul>
 
       <h2>The fine print</h2>
@@ -560,9 +693,10 @@ function InfoPane({
           routes. Routing happens in Google Maps via the Directions button.
         </li>
         <li>
-          A handful of coordinates are still flagged for verification in the
-          source file. Trust the turnout names over the precise pin until
-          that pass is done.
+          Coordinates were audited against NPS and survey sources in mid-2026.
+          A few spots that only a field visit can confirm (unsigned pullouts,
+          unmarked viewpoints) are noted as approximate in their popups; trust
+          the turnout descriptions over the precise pin for those.
         </li>
         <li>Map tiles: Esri, USGS. © OpenStreetMap contributors.</li>
       </ul>

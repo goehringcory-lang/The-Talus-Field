@@ -8,10 +8,12 @@
 // fits the time they have.
 //
 // Bodies: drafted to match the editorial voice. Expect to refine.
-// Coords: best-effort from public knowledge. Every coord marked
-//   `// TODO: verify` should be checked against the actual spot before
-//   relying on it for navigation. The PWA opens these in native Maps,
-//   so a wrong coord lands the buyer at the wrong turnout.
+// Coords: audited 2026-07 against NPS place pages, LOC HAER survey points,
+//   and topo aggregators. `// verified: <source> 2026-07` = multiple sources
+//   agree on a signed lot or named feature. `// TODO: verify` = still needs
+//   a field visit (unsigned pullouts, ambiguous lots) — never strip one
+//   without ground truth. The PWA opens these in native Maps, so a wrong
+//   coord lands the buyer at the wrong turnout.
 // Photos: placeholder pass. Reusing editorial-site photos from /img/, copied
 //   into public/photos/. Many stops still have no matching image and should
 //   get dedicated photography before launch.
@@ -35,7 +37,7 @@ const seed: StopInput[] = [
     region: 'valley',
     order: 1,
     kind: 'viewpoint',
-    coord: [-119.6776, 37.7158], // TODO: verify
+    coord: [-119.67723, 37.71548], // verified: latitude.to/NPS place pin, 2026-07
     elevationFt: 4400,
     timeBudgetMin: 25,
     body:
@@ -61,7 +63,7 @@ const seed: StopInput[] = [
     region: 'valley',
     order: 3,
     kind: 'trailhead',
-    coord: [-119.5874, 37.7466], // TODO: verify (Cook's Meadow boardwalk)
+    coord: [-119.5874, 37.7466], // TODO: verify (Cook's Meadow boardwalk; plausible but no authoritative decimal found)
     elevationFt: 4035,
     timeBudgetMin: 60,
     body:
@@ -76,7 +78,7 @@ const seed: StopInput[] = [
     region: 'valley',
     order: 4,
     kind: 'trailhead',
-    coord: [-119.6480, 37.7172], // TODO: verify
+    coord: [-119.6466, 37.7168], // TODO: verify (main/historic lot; two lots since the 2023 rebuild, confirm which the guide should target)
     elevationFt: 4100,
     timeBudgetMin: 30,
     body:
@@ -89,7 +91,7 @@ const seed: StopInput[] = [
     region: 'valley',
     order: 5,
     kind: 'trailhead',
-    coord: [-119.6451, 37.7238],
+    coord: [-119.6449, 37.7215], // TODO: verify (unsigned dirt pullout; moved roadside near the Muir's-erratic pin, old value sat ~285 m upslope)
     elevationFt: 4000,
     timeBudgetMin: 240,
     photos: [{ src: '/photos/cathedral-rocks.jpg', caption: 'Cathedral Rocks, visible across the valley from the old road.' }],
@@ -104,7 +106,7 @@ const seed: StopInput[] = [
     region: 'valley',
     order: 6,
     kind: 'parking',
-    coord: [-119.6451, 37.7238], // TODO: verify (dirt pullout, Northside Drive between Pohono Bridge and El Capitan)
+    coord: [-119.6449, 37.7215], // TODO: verify (unsigned dirt pullout, Northside Drive; field-verify before relying on it)
     elevationFt: 4000,
     timeBudgetMin: 10,
     body:
@@ -116,7 +118,7 @@ const seed: StopInput[] = [
     region: 'valley',
     order: 7,
     kind: 'viewpoint',
-    coord: [-119.6608, 37.7255], // TODO: verify (Rainbow View on the old Big Oak Flat Road grade)
+    coord: [-119.6608, 37.7255], // TODO: verify (GNIS feature 'Rainbow View' confirmed to exist per LOC HAER; exact coord unresolved)
     elevationFt: 4800,
     timeBudgetMin: 90,
     body:
@@ -128,7 +130,7 @@ const seed: StopInput[] = [
     region: 'valley',
     order: 8,
     kind: 'viewpoint',
-    coord: [-119.6503, 37.7300], // TODO: verify (base of Ribbon Fall amphitheater, west of El Capitan)
+    coord: [-119.6478, 37.7335], // TODO: verify (derived: below the verified fall lip at [-119.6475, 37.73607]; old value was ~250 m west of the fall line)
     elevationFt: 4400,
     timeBudgetMin: 120,
     body:
@@ -142,7 +144,7 @@ const seed: StopInput[] = [
     region: 'valley',
     order: 9,
     kind: 'viewpoint',
-    coord: [-119.7134, 37.7228], // TODO: verify (Cascade picnic area, Hwy 140 just inside the Arch Rock entrance)
+    coord: [-119.7134, 37.7228], // TODO: verify (Cascades picnic area, Hwy 140; matches editorial pin, NPS decimal not found)
     elevationFt: 3800,
     timeBudgetMin: 60,
     body:
@@ -154,7 +156,7 @@ const seed: StopInput[] = [
     region: 'valley',
     order: 10,
     kind: 'viewpoint',
-    coord: [-119.6310, 37.7212], // TODO: verify
+    coord: [-119.63338, 37.72398], // verified: topozone + editorial Northside pin, 2026-07 (old value plotted at/south of the Merced)
     elevationFt: 4000,
     timeBudgetMin: 60,
     body:
@@ -167,7 +169,7 @@ const seed: StopInput[] = [
     region: 'valley',
     order: 11,
     kind: 'trailhead',
-    coord: [-119.5570, 37.7464], // TODO: verify
+    coord: [-119.5570, 37.7464], // TODO: verify (the lake itself; trailhead is separate near [-119.5600, 37.7393])
     elevationFt: 4094,
     timeBudgetMin: 90,
     photos: [{ src: '/photos/half-dome.jpg', caption: 'Half Dome reflected in the still water of Mirror Lake.' }],
@@ -180,7 +182,7 @@ const seed: StopInput[] = [
     region: 'valley',
     order: 12,
     kind: 'trailhead',
-    coord: [-119.5594, 37.7338], // TODO: verify (Happy Isles)
+    coord: [-119.55804, 37.73218], // TODO: verify (Happy Isles trail start; tightened ~215 m, 2026-07)
     elevationFt: 4035,
     timeBudgetMin: 360,
     body:
@@ -195,7 +197,7 @@ const seed: StopInput[] = [
     region: 'valley',
     order: 13,
     kind: 'viewpoint',
-    coord: [-119.5747, 37.7458], // TODO: verify (Ahwahnee Hotel; was off ~600 m east)
+    coord: [-119.57433, 37.74623], // verified: maplogs/mapcarta, 2026-07
     timeBudgetMin: 45,
     body:
       'You don\'t have to be a guest. The lobby and Great Lounge are open to the public. Walk through. The 1927 building is a national historic landmark — Native American motifs, exposed beams, a 24-foot fireplace. Sit by the fire if it\'s lit. Order a drink at the bar. The dining room requires reservations and dress code; the bar doesn\'t. This is the kind of place worth spending an hour in just to absorb.',
@@ -206,7 +208,7 @@ const seed: StopInput[] = [
     region: 'valley',
     order: 14,
     kind: 'viewpoint',
-    coord: [-119.5867, 37.7421], // TODO: verify (Sentinel Bridge)
+    coord: [-119.5896, 37.7437], // verified: LOC HAER CA-94-8 survey, 2026-07 (old value ~290 m SE of the bridge)
     elevationFt: 4000,
     timeBudgetMin: 60,
     body:
@@ -219,7 +221,7 @@ const seed: StopInput[] = [
     region: 'valley',
     order: 15,
     kind: 'lodging',
-    coord: [-119.5688, 37.7395], // TODO: verify (Curry Village core)
+    coord: [-119.5697, 37.7386], // TODO: verify (registration/core area; old value was the NE parking edge)
     body:
       'Tent cabins or wood cabins, your call. The tent cabins have history (this is the original 1899 camp); the wood cabins have insulation. Either way, the location is what you\'re paying for: walking distance to the dining hall, the shuttle stop, and the trailhead for Mist Trail in the morning. For a multi-night trip, stay all your nights here — the time you save on packing each morning is worth more than the variety. Reservations open thirteen months out and the good months sell in minutes.',
     swap:
@@ -231,7 +233,7 @@ const seed: StopInput[] = [
     region: 'valley',
     order: 16,
     kind: 'meal',
-    coord: [-119.5688, 37.7395], // TODO: verify (Curry Village core)
+    coord: [-119.5697, 37.7386], // TODO: verify (registration/core area; old value was the NE parking edge)
     timeBudgetMin: 60,
     body:
       'You\'ll be hungry off the Mist Trail. The Curry Village pizza patio is right there, fast, and good after a hike. Loft has a slightly better menu if you have patience. The Ahwahnee dining room is available for lunch but you\'ll need a reservation and you\'ll want to clean up first.',
@@ -248,7 +250,7 @@ const seed: StopInput[] = [
     region: 'glacier-mariposa',
     order: 1,
     kind: 'drive',
-    coord: [-119.6386, 37.6517], // TODO: verify (Chinquapin junction; was 37.6573, ~620 m off)
+    coord: [-119.6386, 37.6517], // verified: Wikipedia Chinquapin survey coord, 2026-07 (exact match)
     timeBudgetMin: 120,
     body:
       'Sixteen miles from the Chinquapin junction to Glacier Point itself. Most people drive it straight through to the viewpoint and complain about the parking. Don\'t. The road is the experience. Pothole Meadows (mile 10) for wildflowers in early summer, Sentinel Dome / Taft Point trailhead (mile 13.6), Washburn Point (mile 15.5) for the Half Dome / Vernal-Nevada view that\'s arguably better than Glacier Point itself. Plan three to four hours for the round trip with stops, not one.\n\nThe road is closed November through May (sometimes longer). If you\'re here in winter, this whole region flips to a Hetch Hetchy day instead.',
@@ -260,7 +262,7 @@ const seed: StopInput[] = [
     region: 'glacier-mariposa',
     order: 2,
     kind: 'trailhead',
-    coord: [-119.5841, 37.7236], // TODO: verify (Sentinel Dome summit; was 37.7155, ~900 m off)
+    coord: [-119.58645, 37.71235], // verified: NPS Sentinel Dome & Taft Point trailhead lot, 2026-07 (old value was the summit, ~1.25 km off)
     elevationFt: 8122,
     timeBudgetMin: 120,
     body:
@@ -275,7 +277,7 @@ const seed: StopInput[] = [
     region: 'glacier-mariposa',
     order: 3,
     kind: 'viewpoint',
-    coord: [-119.5731, 37.7283], // TODO: verify
+    coord: [-119.5733, 37.72833], // verified: Wikipedia survey coord, 2026-07
     elevationFt: 7214,
     timeBudgetMin: 75,
     body:
@@ -290,7 +292,7 @@ const seed: StopInput[] = [
     region: 'glacier-mariposa',
     order: 4,
     kind: 'trailhead',
-    coord: [-119.6083, 37.5108], // TODO: verify (Mariposa Grove Welcome Plaza; was off ~700 m)
+    coord: [-119.6304, 37.5067], // TODO: verify (Welcome Plaza; moved ~2 km west from the grove-road value, confirm against NPS)
     elevationFt: 5600,
     timeBudgetMin: 180,
     body:
@@ -311,7 +313,7 @@ const seed: StopInput[] = [
     region: 'tuolumne',
     order: 1,
     kind: 'drive',
-    coord: [-119.7973, 37.7551], // TODO: verify (Crane Flat junction)
+    coord: [-119.79667, 37.75278], // verified: Crane Flat gas station, 2026-07
     timeBudgetMin: 120,
     body:
       '47 miles from Crane Flat to Tioga Pass (9,945 ft). Gas up at Crane Flat — there is no gas on Tioga Road itself. The road climbs through fir forest, then lodgepole pine, then opens into granite domes and meadows. Tioga is closed November through May (sometimes longer). When it opens — late May or early June in 2026 — the first two weeks are extraordinary: snowmelt, no crowds, hardly anyone on the road yet.',
@@ -323,7 +325,7 @@ const seed: StopInput[] = [
     region: 'tuolumne',
     order: 2,
     kind: 'viewpoint',
-    coord: [-119.4884, 37.8096], // TODO: verify
+    coord: [-119.4852, 37.8107], // TODO: verify (viewpoint end of the lot; tightened ~310 m, 2026-07)
     elevationFt: 8300,
     timeBudgetMin: 30,
     body:
@@ -336,7 +338,7 @@ const seed: StopInput[] = [
     region: 'tuolumne',
     order: 3,
     kind: 'trailhead',
-    coord: [-119.4912341, 37.8324607],
+    coord: [-119.491181, 37.832633], // verified: NPS May Lake trailhead, 2026-07 (pin = trailhead; the lake is 1.2 mi up-trail)
     elevationFt: 9329,
     timeBudgetMin: 180,
     photos: [{ src: '/photos/tuolumne-meadows.jpg', caption: 'The high-country granite and meadow landscape around May Lake.' }],
@@ -351,7 +353,7 @@ const seed: StopInput[] = [
     region: 'tuolumne',
     order: 4,
     kind: 'viewpoint',
-    coord: [-119.4548, 37.8330], // TODO: verify
+    coord: [-119.4548, 37.8330], // TODO: verify (east beach/parking; no authoritative lot decimal found)
     elevationFt: 8150,
     timeBudgetMin: 60,
     photos: [{ src: '/photos/tuolumne-meadows.jpg', caption: 'Open granite and clear high-country water at Tenaya Lake.' }],
@@ -365,11 +367,11 @@ const seed: StopInput[] = [
     order: 5,
     kind: 'trailhead',
     photos: [{ src: '/photos/tuolumne-meadows.jpg', caption: 'Tuolumne high country — the landscape Cathedral Lakes sits in.' }],
-    coord: [-119.3829, 37.8732], // TODO: VERIFY URGENTLY — body says "new TH at visitor center" but the historical Cathedral Lakes TH is on Tioga Rd at -119.3829. Confirm whether NPS has actually relocated the trailhead before relying on this coord.
+    coord: [-119.3829, 37.8732], // TODO: verify (the trail START, confirmed; parking relocated to a new lot ~0.5 mi east in 2024 — get the lot coord from NPS)
     elevationFt: 8560,
     timeBudgetMin: 360,
     body:
-      'The high-country day hike. The new trailhead is at the Tuolumne Meadows Visitor Center. 9 miles round trip to Lower Cathedral Lake (1,000 ft of gain), or 10.5 miles for both lakes. Lower Cathedral sits at 9,288 ft with Cathedral Peak rising directly behind it — the granodiorite peak John Muir camped on in 1869. Best mid-July through mid-September; trail can hold snow into late June. Plan 5–7 hours with lake time. Bring layers.',
+      'The high-country day hike. The trail starts on Tioga Road at the historic trailhead; the old roadside parking was removed, and the new lot is about half a mile east, adding a short connector walk each way. 9 miles round trip to Lower Cathedral Lake (1,000 ft of gain), or 10.5 miles for both lakes. Lower Cathedral sits at 9,288 ft with Cathedral Peak rising directly behind it — the granodiorite peak John Muir camped on in 1869. Best mid-July through mid-September; trail can hold snow into late June. Plan 5–7 hours with lake time. Bring layers.',
     swap:
       'If a 9-mile hike is too much, do the Pothole Dome short scramble at the west end of Tuolumne Meadows instead (0.5 mi, ~200 ft, 360-degree view). Soda Springs / Parsons Lodge from there is another easy 1.5 miles round trip.',
   },
@@ -379,7 +381,7 @@ const seed: StopInput[] = [
     region: 'tuolumne',
     order: 6,
     kind: 'trailhead',
-    coord: [-119.3589, 37.8772], // TODO: verify (Lembert Dome parking lot, start of Soda Springs walk; was off ~900 m)
+    coord: [-119.3570, 37.8784], // verified: NPS Lembert Dome/Dog Lake trailhead lot, 2026-07
     elevationFt: 8600,
     timeBudgetMin: 90,
     body:
@@ -392,7 +394,7 @@ const seed: StopInput[] = [
     region: 'tuolumne',
     order: 7,
     kind: 'trailhead',
-    coord: [-119.258173, 37.9101685],
+    coord: [-119.2579, 37.9104], // verified: LOC HAER Tioga Pass entrance station, 2026-07
     elevationFt: 9945,
     timeBudgetMin: 150,
     photos: [{ src: '/photos/tuolumne-meadows.jpg', caption: 'High-country terrain near Tioga Pass and the Gaylor Lakes basin.' }],

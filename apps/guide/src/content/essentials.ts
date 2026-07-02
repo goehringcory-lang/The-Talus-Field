@@ -97,6 +97,17 @@ const seed: EssentialInput[] = [
       '**Summer heat.** The valley floor sits around 4,000 feet and runs hot in July and August, mid-90s on the worst days. The rim and the high country run ten to twenty degrees cooler, which is half the argument for Tuolumne in this guide.',
   },
   {
+    // Stub entry: the /essentials/gps-directory route renders a custom page
+    // (routes/GpsDirectory.tsx). This entry exists so the Essentials index,
+    // prev/next links, and search all treat the directory as a topic.
+    id: 'gps-directory',
+    title: 'GPS directory: every landmark, one list',
+    order: 7,
+    teaser: 'Coordinates for the major destinations: the falls, the viewpoints, all five entrances, Hetch Hetchy, Wawona, the Tioga corridor. Tappable directions for each.',
+    body:
+      'Every major destination in the park with its GPS coordinate, grouped by area, with one-tap directions. Works offline.',
+  },
+  {
     id: 'packing-checklist',
     title: 'The packing checklist',
     order: 6,
