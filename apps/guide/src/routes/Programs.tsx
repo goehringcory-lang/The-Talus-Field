@@ -235,6 +235,7 @@ export default function Programs() {
                       {ev.location && <span>{ev.location}</span>}
                       <span>{SOURCE_LABELS[ev.source]}</span>
                       {ev.isFree === true && <span className="program-row__badge">Free</span>}
+                      {ev.isFree === false && <span className="program-row__badge">Paid</span>}
                       {ev.reservationRequired === true && (
                         <span className="program-row__badge">Reservation</span>
                       )}
@@ -243,8 +244,18 @@ export default function Programs() {
                 </summary>
                 <p className="program-row__body">
                   {ev.description || 'No description published for this program.'}
-                  {ev.timeEnd && `\nEnds around ${formatTime(ev.timeEnd)}.`}
+                  {ev.timeEnd && `\nEnds around ${formatTime(ev.timeEnd)}`}
                 </p>
+                {ev.isFree === false && (
+                  <p className="program-row__body program-row__tickets">
+                    Paid program. Buy tickets before your trip; departures sell out in season.
+                  </p>
+                )}
+                {ev.isFree !== false && ev.reservationRequired === true && (
+                  <p className="program-row__body program-row__tickets">
+                    Free, but a reservation is required. Book a spot before you arrive.
+                  </p>
+                )}
                 <p
                   className="program-row__body"
                   style={{ marginTop: 8, display: 'flex', gap: 14, alignItems: 'center', flexWrap: 'wrap' }}
@@ -265,7 +276,12 @@ export default function Programs() {
                   )}
                   {ev.url && (
                     <a href={ev.url} target="_blank" rel="noreferrer">
-                      Details{offline ? ' (needs signal)' : ''} →
+                      {ev.isFree === false
+                        ? 'Buy tickets'
+                        : ev.reservationRequired === true
+                          ? 'Reserve a spot'
+                          : 'Details'}
+                      {offline ? ' (needs signal)' : ''} →
                     </a>
                   )}
                 </p>

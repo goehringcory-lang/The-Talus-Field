@@ -131,7 +131,16 @@ function toFields(slotted: SlottedItem): EventFields | null {
     summary: ev.title,
     description: [
       ev.description,
-      ev.url,
+      // Paid and reservation-gated programs get a labeled buy-ahead line so
+      // the reminder survives into the calendar, where the trip actually
+      // gets lived.
+      ev.url
+        ? ev.isFree === false
+          ? `Paid program, buy tickets ahead: ${ev.url}`
+          : ev.reservationRequired === true
+            ? `Reservation required, book ahead: ${ev.url}`
+            : ev.url
+        : undefined,
       ev.coord ? `Directions: ${directionsUrl(ev.coord)}` : undefined,
     ]
       .filter(Boolean)

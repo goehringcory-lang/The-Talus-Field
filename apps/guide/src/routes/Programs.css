@@ -152,6 +152,17 @@
   }
 }
 
+/* Buy-ahead disclaimer inside a paid or reservation-required row. Rides the
+ * __body class for the open-state indent; this only restyles it as a note. */
+.program-row__tickets {
+  font: 12px/1.5 var(--sans, system-ui, sans-serif);
+  color: var(--ink-2, #36291c);
+  border: 1px solid color-mix(in oklab, var(--gold, #8a661a) 40%, var(--rule, #c1ad84));
+  background: color-mix(in oklab, var(--gold, #8a661a) 12%, var(--paper, #f1ead6));
+  padding: 8px 10px;
+  white-space: normal;
+}
+
 .programs-empty {
   padding: 32px 0;
   font-family: var(--serif, Georgia, serif);

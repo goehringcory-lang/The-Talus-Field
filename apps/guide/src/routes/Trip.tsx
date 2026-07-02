@@ -279,7 +279,22 @@ export default function Trip() {
                               )}
                             </select>
                           ) : (
-                            <span>{item.snapshot.location ?? 'Program'}</span>
+                            <>
+                              <span>{item.snapshot.location ?? 'Program'}</span>
+                              {(item.snapshot.isFree === false ||
+                                item.snapshot.reservationRequired === true) &&
+                                item.snapshot.url && (
+                                  <a
+                                    href={item.snapshot.url}
+                                    target="_blank"
+                                    rel="noreferrer"
+                                  >
+                                    {item.snapshot.isFree === false
+                                      ? 'Buy tickets ahead →'
+                                      : 'Reserve ahead →'}
+                                  </a>
+                                )}
+                            </>
                           )}
                         </span>
                       </div>
