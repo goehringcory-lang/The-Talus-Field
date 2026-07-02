@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useAuth } from '../auth/useAuth'
 import { ESSENTIALS, ESSENTIALS_META, REGIONS, SECRET_META, SECRET_SPOTS, getStopById, getStopsByRegion, secretsLocked } from '../content'
@@ -11,6 +12,47 @@ import UpdatedStamp from '../components/UpdatedStamp'
 // Pack ids mirrored from offline/manifest.ts: one photo pack per region plus
 // the map. Used only for the status line; the manager itself lives on Account.
 const PACK_IDS = [...REGIONS.map((r) => `photos-${r.id}`), 'park-map']
+
+const BEFORE_YOU_GO_DISMISS_KEY = 'tfg.beforeYouGo.dismissed'
+
+// One-time nudge toward the night-before downloads. Same dismissal pattern as
+// InstallPrompt (tfg.install.dismissed).
+function BeforeYouGoNudge() {
+  const [dismissed, setDismissed] = useState(
+    () => localStorage.getItem(BEFORE_YOU_GO_DISMISS_KEY) === '1',
+  )
+  if (dismissed) return null
+  return (
+    <div
+      style={{
+        border: '1px solid var(--rule)',
+        borderLeft: '3px solid var(--moss)',
+        background: 'var(--paper-2)',
+        padding: '14px 16px',
+        marginBottom: 24,
+        display: 'flex',
+        gap: 12,
+        alignItems: 'center',
+      }}
+    >
+      <div style={{ flex: 1, fontFamily: 'var(--serif)', fontSize: 14, lineHeight: 1.5 }}>
+        Going soon? Do the <Link to="/essentials/before-you-go">night-before downloads</Link>{' '}
+        while you still have wifi: the offline maps, this guide, and the current Yosemite Guide PDF.
+      </div>
+      <button
+        type="button"
+        className="btn btn--ghost"
+        style={{ padding: '6px 10px', fontSize: 13, minHeight: 44, flexShrink: 0 }}
+        onClick={() => {
+          localStorage.setItem(BEFORE_YOU_GO_DISMISS_KEY, '1')
+          setDismissed(true)
+        }}
+      >
+        Got it
+      </button>
+    </div>
+  )
+}
 
 export default function Home() {
   const { session } = useAuth()
@@ -31,6 +73,8 @@ export default function Home() {
           Pick a region. Each one is a flat list of stops in a suggested order — read them all or just the ones that fit your day.
         </p>
 
+        <BeforeYouGoNudge />
+
         <div style={{ display: 'grid', gap: 18 }}>
           {REGIONS.map((region) => (
             <RegionPickerCard
@@ -47,6 +91,13 @@ export default function Home() {
             title={ESSENTIALS_META.title}
             teaser={ESSENTIALS_META.teaser}
             meta={`${ESSENTIALS.length} topics`}
+          />
+          <SectionCard
+            to="/programs"
+            eyebrow="Plan your days"
+            title="Programs during your trip"
+            teaser="Pick your dates and see the ranger walks, Junior Ranger tables, tours, and star parties running while you're there. Syncs online, readable offline."
+            meta="Trip dates → day-by-day list"
           />
           <SectionCard
             to="/secret-spots"

@@ -14,6 +14,28 @@ type EssentialInput = z.input<typeof EssentialTopics>[number]
 
 const seed: EssentialInput[] = [
   {
+    id: 'before-you-go',
+    title: 'Before you go: the night-before downloads',
+    order: 0,
+    teaser: 'Five downloads and checks to do on wifi the night before. Twenty minutes now buys a trip that works without signal.',
+    body:
+      'Most of the park has no usable cell service. Everything on this list works around that, and all of it has to happen **before** you lose signal, ideally the night before on hotel or home wifi.\n\n' +
+      '**1. Download an offline area in Google Maps.** This is what keeps turn-by-turn driving directions working past the entrance station. In Google Maps: tap your profile picture → **Offline maps** → **Select your own map** → pinch and drag until the rectangle covers the whole park plus the highway you\'re arriving on → **Download**. It\'s a few hundred megabytes, so do it on wifi. Offline areas expire after about thirty days, so refresh it if you downloaded it a while ago. Apple Maps on recent iOS versions has the same feature under your profile → **Offline Maps**. Every GPS pin in this guide hands off to your Maps app with one tap; the offline area is what makes that handoff work at a trailhead with no bars.\n\n' +
+      '**2. Download this guide and the park map.** Open **Account → Offline** in this app and download the guide, your region\'s photos, and the offline park map (about 20 MB). After that the whole app, the topo map included, works in airplane mode. The app\'s own map does not depend on Google\'s: it keeps working even if you skip step 1, but you\'ll want both.\n\n' +
+      '**3. Grab the current Yosemite Guide.** The park publishes a seasonal newspaper, the *Yosemite Guide*, with the ranger program schedule, shuttle map, and visitor center hours for the exact weeks you\'re there. Download the current PDF from **nps.gov/yose/planyourvisit/guide.htm** and it lives on your phone for the trip.\n\n' +
+      '**4. Check the reservation and road situation.** Timed-entry rules change year to year; verify at nps.gov/yose whether your dates and arrival time need a reservation. If your trip touches Glacier Point Road or Tioga Road, check the road status page too.\n\n' +
+      '**5. Fuel and cash.** There is no gas in Yosemite Valley. Fill up in the gateway towns, and again at Crane Flat if you\'re heading up Tioga Road.',
+    checklist: [
+      { id: 'gmaps-offline', label: 'Google or Apple Maps offline area covering the park and your approach highway' },
+      { id: 'app-offline', label: 'This guide, photos, and the park map downloaded (Account → Offline)' },
+      { id: 'yosemite-guide-pdf', label: 'Current Yosemite Guide PDF saved from nps.gov' },
+      { id: 'reservation-check', label: 'Timed-entry reservation rules checked for your dates' },
+      { id: 'road-status', label: 'Glacier Point and Tioga road status checked, if your plan needs them' },
+      { id: 'fuel', label: 'Gas tank filled outside the park' },
+      { id: 'batteries', label: 'Phone and battery pack charged' },
+    ],
+  },
+  {
     id: 'entrances-and-reservations',
     title: 'Entrances, fees, and the reservation question',
     order: 1,

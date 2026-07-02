@@ -10,6 +10,15 @@ const GUIDE_API_BASE =
   (typeof window !== "undefined" && window.GUIDE_API_BASE) ||
   "https://api.thetalusfieldjournal.com";
 
+// Shown until /api/inventory answers with the live price; keep in sync with
+// GUIDE_PRICE_CENTS in workers/wrangler.toml.
+const GUIDE_PRICE_FALLBACK_CENTS = 1900;
+
+function formatPrice(cents) {
+  const dollars = cents / 100;
+  return Number.isInteger(dollars) ? `$${dollars}` : `$${dollars.toFixed(2)}`;
+}
+
 // Reads ?guide=success|cancel left behind by the Stripe redirect.
 function readCheckoutOutcome() {
   try {
@@ -35,6 +44,22 @@ function GuideBuyBox() {
   const [soldOut, setSoldOut] = React.useState(null); // { reopens } or null
   const [error, setError] = React.useState(null);
   const [outcome] = React.useState(readCheckoutOutcome);
+  const [priceCents, setPriceCents] = React.useState(GUIDE_PRICE_FALLBACK_CENTS);
+
+  React.useEffect(() => {
+    let cancelled = false;
+    fetch(`${GUIDE_API_BASE}/api/inventory`)
+      .then((res) => (res.ok ? res.json() : null))
+      .then((body) => {
+        if (!cancelled && body && Number.isFinite(body.priceCents) && body.priceCents > 0) {
+          setPriceCents(body.priceCents);
+        }
+      })
+      .catch(() => {});
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
   async function startCheckout() {
     setBusy(true);
@@ -66,7 +91,7 @@ function GuideBuyBox() {
   return (
     <aside style={{ position: "sticky", top: 100, alignSelf: "start", border: "1px solid var(--ink)", padding: 32, background: "var(--paper-2)" }}>
       <div className="eyebrow eyebrow--moss" style={{ marginBottom: 14 }}>The Field Guide</div>
-      <div style={{ fontFamily: "var(--display)", fontSize: 44, lineHeight: 1.05, fontWeight: 500, marginBottom: 8 }}>$9.</div>
+      <div style={{ fontFamily: "var(--display)", fontSize: 44, lineHeight: 1.05, fontWeight: 500, marginBottom: 8 }}>{formatPrice(priceCents)}.</div>
       <div style={{ fontFamily: "var(--sans)", fontSize: 12, textTransform: "uppercase", letterSpacing: "0.14em", color: "var(--ink-3)", fontWeight: 600, marginBottom: 24 }}>
         Offline app · 2026 Edition
       </div>
@@ -94,7 +119,7 @@ function GuideBuyBox() {
           onClick={startCheckout}
           style={{ display: "block", width: "100%", textAlign: "center", border: 0, font: "inherit", cursor: busy ? "wait" : "pointer", marginBottom: 14 }}
         >
-          {busy ? "Opening checkout…" : "Buy the guide → $9"}
+          {busy ? "Opening checkout…" : `Buy the guide → ${formatPrice(priceCents)}`}
         </button>
       )}
 
@@ -120,7 +145,9 @@ function GuideBuyBox() {
           <li>· An offline topo map of the park, all stops pinned</li>
           <li>· Download the whole guide for offline, about 45 MB</li>
           <li>· Time budgets and a swap for when the lot is full</li>
-          <li>· Know-before-you-go essentials and a packing checklist you check off in-app</li>
+          <li>· Programs by your dates: ranger walks, Junior Ranger, tours, star parties. Synced online, readable offline</li>
+          <li>· A trip planner that exports your days to Google or Apple Calendar, GPS included</li>
+          <li>· Know-before-you-go essentials, a night-before checklist, and a packing list you check off in-app</li>
           <li>· Search across everything</li>
           <li>· Secret Spots: coming soon, included with purchase</li>
         </ul>
@@ -145,7 +172,7 @@ function GuidePage({ go }) {
           <div className="eyebrow eyebrow--moss">The Field Guide · Offline app · 2026 Edition</div>
           <h1>The Yosemite guide for people who already know about Glacier Point.</h1>
           <p className="page-head__dek">
-            A web app you add to your home screen. Three regional guides with tappable GPS, time budgets, a swap for when the plan dies, and an offline topo map of the whole park. Works at the trailhead when service doesn't. Not a PDF. Not another tourist checklist.
+            A web app you add to your home screen. Three regional guides with tappable GPS, time budgets, a swap for when the plan dies, an offline topo map of the whole park, the ranger and partner program schedule on your dates, and a trip planner that exports straight to your calendar. Works at the trailhead when service doesn't. Not a PDF. Not another tourist checklist.
           </p>
         </div>
       </section>
@@ -201,10 +228,22 @@ function GuidePage({ go }) {
               Every stop is pinned on a topographic map of the park that downloads to your device, about 20 MB. Lose service past the tunnel, on Glacier Point Road, or anywhere along Tioga, and the map still pans, still zooms, and still shows you where the next stop is. Turn-by-turn driving stays in your Maps app; the guide hands you off with one tap.
             </p>
 
+            <h2>The programs, on your dates</h2>
+
+            <p>
+              The park runs more than most visitors ever find out about: ranger walks, Junior Ranger tables, Conservancy naturalist programs and evening talks at Parsons Memorial Lodge, guided tours, and the summer nights when the astronomy clubs haul telescopes up to Glacier Point. The schedules live in a half-dozen places. The app pulls them into one list. Pick your trip dates, sync once while you have signal, and scroll your days: what's running, when, where, what's free, what needs a reservation. The list stays on your phone, so it still reads at a picnic table with no bars.
+            </p>
+
+            <h2>The trip planner</h2>
+
+            <p>
+              Add the stops you want and the programs you picked, and the app lays out each day: your stops in a sensible order with real time budgets, flowed around the programs' published times. Adjust anything. Then export the whole trip as a calendar file that drops into Google Calendar, Apple Calendar, or Outlook in one import. Every event carries the GPS coordinates and a directions link, so your calendar reminder at the trailhead is also the navigation.
+            </p>
+
             <h2>Know before you go</h2>
 
             <p>
-              The app ships with an essentials section: how entrance reservations work, how to get around the Valley without moving your car, what the bears actually want, where cell coverage dies, what the roads do by season, and a packing checklist you check off in the app the night before.
+              The app ships with an essentials section: how entrance reservations work, how to get around the Valley without moving your car, what the bears actually want, where cell coverage dies, what the roads do by season, and a packing checklist you check off in the app the night before. A night-before checklist walks you through the downloads that make the whole trip work offline, including the Google Maps offline area that keeps turn-by-turn directions alive past the entrance station.
             </p>
 
             <h2>The secret spots</h2>
@@ -249,7 +288,7 @@ function GuidePage({ go }) {
               If the guide doesn't earn its place on your home screen, write to me and tell me why. I'd rather fix the trip that didn't work than pretend it did. The address is on the contact page.
             </p>
 
-            <p>That's the offer. Nine dollars.</p>
+            <p>That's the offer. Nineteen dollars.</p>
           </div>
 
           {/* Right column. Sticky buy box */}

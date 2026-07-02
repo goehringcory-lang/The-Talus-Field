@@ -99,10 +99,60 @@ const seed: StopInput[] = [
       'The dirt pullout holds maybe four or five cars. If it\'s full, park at the Bridalveil Fall lot a quarter mile east and walk back along Northside Drive. Adds fifteen minutes each way and a touch of road noise, but you don\'t lose the day.',
   },
   {
+    id: 'old-road-trailhead-pullout',
+    title: 'Old Big Oak Flat Road pullout, where to park',
+    region: 'valley',
+    order: 6,
+    kind: 'parking',
+    coord: [-119.6451, 37.7238], // TODO: verify (dirt pullout, Northside Drive between Pohono Bridge and El Capitan)
+    elevationFt: 4000,
+    timeBudgetMin: 10,
+    body:
+      'The dirt pullout on Northside Drive, between the Pohono Bridge and El Capitan, on the north side of the road. It holds four or five cars and has no sign worth the name; the tell is the old roadbed angling up into the trees behind it. This pin exists so you can navigate straight to it instead of hunting for it at 15 mph with traffic behind you.\n\nIf it\'s full, park at the Bridalveil Fall lot a quarter mile east and walk back along Northside Drive. Adds fifteen minutes each way. From the pullout, the climb starts immediately: see [Old Big Oak Flat Road and Ribbon Fall](/stop/old-big-oak-flat-road) for the day itself.',
+  },
+  {
+    id: 'rainbow-view-old-road',
+    title: 'Rainbow View, the old road\'s reward',
+    region: 'valley',
+    order: 7,
+    kind: 'viewpoint',
+    coord: [-119.6608, 37.7255], // TODO: verify (Rainbow View on the old Big Oak Flat Road grade)
+    elevationFt: 4800,
+    timeBudgetMin: 90,
+    body:
+      'The viewpoint the stagecoach drivers used to stop at. Partway up the old Big Oak Flat Road grade, the trees open and you\'re looking across the valley at Bridalveil Fall from above its rim: the whole ribbon of it, the Cathedral Rocks stacked behind, the Merced threading the valley floor below. In the 1870s this was the first full look at the valley most visitors ever got, and the road was aligned to deliver it. Now nobody\'s here.\n\nThe light is best in the morning, when the south wall is lit and the fall carries its spray rainbow (that\'s the name). Reached only on foot via the old road from [the Northside Drive pullout](/stop/old-road-trailhead-pullout); budget the climb as part of the [Old Big Oak Flat Road half day](/stop/old-big-oak-flat-road).',
+  },
+  {
+    id: 'ribbon-fall-base',
+    title: 'Ribbon Fall, the few weeks it runs',
+    region: 'valley',
+    order: 8,
+    kind: 'viewpoint',
+    coord: [-119.6503, 37.7300], // TODO: verify (base of Ribbon Fall amphitheater, west of El Capitan)
+    elevationFt: 4400,
+    timeBudgetMin: 120,
+    body:
+      'A 1,612-foot single drop, the tallest waterfall in North America, and it only exists for a few weeks a year. Ribbon Fall is fed entirely by snowmelt off the rim west of El Capitan: it wakes in March, peaks in April and early May, and is usually a stain on the wall by late May. There is no sign, no trail marker, and no crowd.\n\nThe approach leaves the [old Big Oak Flat Road](/stop/old-big-oak-flat-road) and traverses west through talus toward the sound of water. It\'s unmarked and rough, a route rather than a trail; wear real shoes and take your time on the blocks. The amphitheater at the base is loud, cold, and yours. Check the seasonal window before committing the day: in a dry year the show can be over by the first week of May.',
+    swap:
+      'If the traverse is more than the group wants, Bridalveil Fall runs year-round and its viewing platform is a five-minute paved walk. Same geology lesson, one tenth the effort.',
+  },
+  {
+    id: 'foresta-cascades',
+    title: 'Cascade Creek and the Foresta side',
+    region: 'valley',
+    order: 9,
+    kind: 'viewpoint',
+    coord: [-119.7134, 37.7228], // TODO: verify (Cascade picnic area, Hwy 140 just inside the Arch Rock entrance)
+    elevationFt: 3800,
+    timeBudgetMin: 60,
+    body:
+      'Where the old Big Oak Flat Road corridor meets the modern one. Cascade Creek comes off the north rim in a long stairstep of whitewater, best in April and May, and the picnic tables along the creek just inside the Arch Rock entrance are the quietest lunch stop on the west end of the valley. If you\'re entering on Highway 140, this is the first place worth stopping; if you\'ve spent the morning on the [old road](/stop/old-big-oak-flat-road), it\'s the closing move.\n\nAbove the rim sits Foresta, the small private inholding the 1990 A-Rock fire burned through; the meadow there is a wildflower show in June and one of the park\'s better deer and bear sightlines at dusk. The Foresta road leaves Big Oak Flat Road (the modern highway) near Crane Flat.',
+  },
+  {
     id: 'el-capitan-meadow',
     title: 'El Capitan Meadow, watching the wall',
     region: 'valley',
-    order: 6,
+    order: 10,
     kind: 'viewpoint',
     coord: [-119.6310, 37.7212], // TODO: verify
     elevationFt: 4000,
@@ -115,7 +165,7 @@ const seed: StopInput[] = [
     id: 'mirror-lake',
     title: 'Mirror Lake, before the crowd',
     region: 'valley',
-    order: 7,
+    order: 11,
     kind: 'trailhead',
     coord: [-119.5570, 37.7464], // TODO: verify
     elevationFt: 4094,
@@ -128,7 +178,7 @@ const seed: StopInput[] = [
     id: 'mist-trail',
     title: 'Mist Trail to Vernal Fall (and Nevada, if you have it)',
     region: 'valley',
-    order: 8,
+    order: 12,
     kind: 'trailhead',
     coord: [-119.5594, 37.7338], // TODO: verify (Happy Isles)
     elevationFt: 4035,
@@ -143,7 +193,7 @@ const seed: StopInput[] = [
     id: 'ahwahnee-hotel',
     title: 'The Ahwahnee Hotel, lobby visit',
     region: 'valley',
-    order: 9,
+    order: 13,
     kind: 'viewpoint',
     coord: [-119.5747, 37.7458], // TODO: verify (Ahwahnee Hotel; was off ~600 m east)
     timeBudgetMin: 45,
@@ -154,7 +204,7 @@ const seed: StopInput[] = [
     id: 'sentinel-bridge-sunset',
     title: 'Sentinel Bridge, the last hour',
     region: 'valley',
-    order: 10,
+    order: 14,
     kind: 'viewpoint',
     coord: [-119.5867, 37.7421], // TODO: verify (Sentinel Bridge)
     elevationFt: 4000,
@@ -167,7 +217,7 @@ const seed: StopInput[] = [
     id: 'curry-village',
     title: 'Curry Village, base camp',
     region: 'valley',
-    order: 11,
+    order: 15,
     kind: 'lodging',
     coord: [-119.5688, 37.7395], // TODO: verify (Curry Village core)
     body:
@@ -179,7 +229,7 @@ const seed: StopInput[] = [
     id: 'curry-village-pizza',
     title: 'Lunch at Curry Village',
     region: 'valley',
-    order: 12,
+    order: 16,
     kind: 'meal',
     coord: [-119.5688, 37.7395], // TODO: verify (Curry Village core)
     timeBudgetMin: 60,

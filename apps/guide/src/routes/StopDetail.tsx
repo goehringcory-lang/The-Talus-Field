@@ -2,11 +2,14 @@ import { Link, Navigate, useParams } from 'react-router-dom'
 import { getRegionMeta, getStopById, getStopsByRegion } from '../content'
 import GatedChrome from '../components/GatedChrome'
 import StopCard from '../components/StopCard'
+import { useTripPlan } from '../trip/useTripPlan'
 
 export default function StopDetail() {
   const params = useParams<{ stopId: string }>()
   const stop = params.stopId ? getStopById(params.stopId) : undefined
+  const { plan, addStop } = useTripPlan()
   if (!stop) return <Navigate to="/" replace />
+  const planned = plan.items.some((it) => it.type === 'stop' && it.stopId === stop.id)
 
   const siblings = getStopsByRegion(stop.region)
   const idx = siblings.findIndex((s) => s.id === stop.id)
@@ -33,6 +36,23 @@ export default function StopDetail() {
         </p>
 
         <StopCard stop={stop} compact={false} />
+
+        <p style={{ marginTop: 20 }}>
+          {planned ? (
+            <Link to="/trip" className="btn btn--ghost" style={{ display: 'inline-block' }}>
+              In your trip plan →
+            </Link>
+          ) : (
+            <button
+              type="button"
+              className="btn"
+              style={{ minHeight: 44 }}
+              onClick={() => addStop(stop.id)}
+            >
+              Add to trip
+            </button>
+          )}
+        </p>
 
         <nav
           className="stop-prevnext"
