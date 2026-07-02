@@ -18,9 +18,13 @@ const BEFORE_YOU_GO_DISMISS_KEY = 'tfg.beforeYouGo.dismissed'
 // One-time nudge toward the night-before downloads. Same dismissal pattern as
 // InstallPrompt (tfg.install.dismissed).
 function BeforeYouGoNudge() {
-  const [dismissed, setDismissed] = useState(
-    () => localStorage.getItem(BEFORE_YOU_GO_DISMISS_KEY) === '1',
-  )
+  const [dismissed, setDismissed] = useState(() => {
+    try {
+      return localStorage.getItem(BEFORE_YOU_GO_DISMISS_KEY) === '1'
+    } catch {
+      return false
+    }
+  })
   if (dismissed) return null
   return (
     <div
@@ -44,7 +48,11 @@ function BeforeYouGoNudge() {
         className="btn btn--ghost"
         style={{ padding: '6px 10px', fontSize: 13, minHeight: 44, flexShrink: 0 }}
         onClick={() => {
-          localStorage.setItem(BEFORE_YOU_GO_DISMISS_KEY, '1')
+          try {
+            localStorage.setItem(BEFORE_YOU_GO_DISMISS_KEY, '1')
+          } catch {
+            /* non-fatal: nudge may reappear next launch */
+          }
           setDismissed(true)
         }}
       >

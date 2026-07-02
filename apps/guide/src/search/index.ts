@@ -111,10 +111,20 @@ export function search(query: string, limit = 24): SearchHit[] {
     }
     if (score === 0) continue
 
-    // Original-case body for the snippet; index stores lowercase only.
-    const originalBody = entry.section === 'Essentials'
-      ? ESSENTIALS.find((t) => t.id === entry.id)?.body ?? ''
-      : (stops.find((s) => s.id === entry.id) ?? SECRET_SPOTS.find((s) => s.id === entry.id))?.body ?? ''
+    // Original-case body for the snippet; index stores lowercase only. For
+    // Essentials the indexed bodyText appends checklist labels, so the
+    // original must too or snippetAround's index would fall past the string
+    // (empty snippet when the match is only in a checklist label).
+    let originalBody: string
+    if (entry.section === 'Essentials') {
+      const topic = ESSENTIALS.find((t) => t.id === entry.id)
+      originalBody = topic
+        ? topic.body + ' ' + (topic.checklist ?? []).map((c) => c.label).join(' ')
+        : ''
+    } else {
+      originalBody =
+        (stops.find((s) => s.id === entry.id) ?? SECRET_SPOTS.find((s) => s.id === entry.id))?.body ?? ''
+    }
 
     hits.push({
       id: entry.id,

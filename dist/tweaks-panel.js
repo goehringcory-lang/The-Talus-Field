@@ -204,11 +204,16 @@ function TweaksPanel({
 }
 function TweakSection({
   label,
+  title,
+  subtitle,
   children
 }) {
+  var heading = title != null ? title : label;
   return React.createElement(React.Fragment, null, React.createElement("div", {
     className: "twk-sect"
-  }, label), children);
+  }, heading), subtitle != null && React.createElement("div", {
+    className: "twk-sect-sub"
+  }, subtitle), children);
 }
 function TweakRow({
   label,

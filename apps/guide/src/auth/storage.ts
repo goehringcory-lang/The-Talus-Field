@@ -16,16 +16,31 @@ function decodeClaims(jwt: string): JwtClaims | null {
   }
 }
 
+// localStorage access can throw (Safari "Block all cookies", storage-denied
+// embedded contexts). Since readSessionFromStorage runs during AuthProvider's
+// initial render, an unguarded throw here would blank the whole app at boot.
 export function getStoredJwt(): string | null {
-  return localStorage.getItem(KEY)
+  try {
+    return localStorage.getItem(KEY)
+  } catch {
+    return null
+  }
 }
 
 export function setStoredJwt(jwt: string): void {
-  localStorage.setItem(KEY, jwt)
+  try {
+    localStorage.setItem(KEY, jwt)
+  } catch {
+    /* non-fatal: session just won't persist across reloads */
+  }
 }
 
 export function clearStoredJwt(): void {
-  localStorage.removeItem(KEY)
+  try {
+    localStorage.removeItem(KEY)
+  } catch {
+    /* non-fatal */
+  }
 }
 
 export function readSessionFromStorage(): { jwt: string; username: string } | null {

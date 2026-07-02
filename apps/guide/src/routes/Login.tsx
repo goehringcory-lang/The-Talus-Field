@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import type { FormEvent } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { apiFetch, ApiError } from '../lib/api'
 import { useAuth } from '../auth/useAuth'
 
@@ -8,6 +8,7 @@ type LoginResponse = { jwt: string }
 
 export default function Login() {
   const navigate = useNavigate()
+  const location = useLocation()
   const { signIn } = useAuth()
   const [email, setEmail] = useState('')
   const [code, setCode] = useState('')
@@ -38,7 +39,9 @@ export default function Login() {
         }
       }
       signIn(res.jwt)
-      navigate('/', { replace: true })
+      // Return to the deep link the user was gated out of, if any.
+      const from = (location.state as { from?: string } | null)?.from
+      navigate(from ?? '/', { replace: true })
     } catch (err) {
       if (err instanceof ApiError && err.status === 401) {
         setError("That email and code don't match. The code is in your purchase email.")

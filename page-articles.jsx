@@ -49,6 +49,7 @@ function ArticlesIndex({ go, initialCat }) {
 
 function CategoryPage({ slug, go }) {
   const cat = window.findCategory(slug);
+  if (!cat) return <div className="wrap" style={{ padding: 80 }}>Not found.</div>;
   const items = window.byCategory(slug);
   return (
     <div className="page">

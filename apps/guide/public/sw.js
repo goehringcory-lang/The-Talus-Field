@@ -55,16 +55,20 @@ self.addEventListener('message', (event) => {
   // Sent by Region.tsx when a region loads so stops are fully viewable offline.
   if (event.data.type === 'PRECACHE_URLS') {
     const urls = Array.isArray(event.data.urls) ? event.data.urls : []
-    caches.open(RUNTIME_CACHE).then((cache) => {
-      urls.forEach((url) => {
-        cache.match(url).then((cached) => {
-          if (cached) return
-          fetch(url).then((res) => {
-            if (res.ok) cache.put(url, res)
-          }).catch(() => { /* offline at precache time — will cache on next visit */ })
-        })
-      })
-    })
+    event.waitUntil(
+      caches.open(RUNTIME_CACHE).then((cache) =>
+        Promise.all(
+          urls.map((url) =>
+            cache.match(url).then((cached) => {
+              if (cached) return
+              return fetch(url).then((res) => {
+                if (res.ok) return cache.put(url, res)
+              }).catch(() => { /* offline at precache time — will cache on next visit */ })
+            }),
+          ),
+        ),
+      ),
+    )
   }
 })
 
@@ -112,8 +116,12 @@ self.addEventListener('fetch', (event) => {
       (async () => {
         try {
           const fresh = await fetch(request)
-          const cache = await caches.open(SHELL_CACHE)
-          cache.put('/index.html', fresh.clone())
+          // Only cache successful shells — caching a 5xx/maintenance page
+          // would poison every later offline launch with an error page.
+          if (fresh.ok) {
+            const cache = await caches.open(SHELL_CACHE)
+            cache.put('/index.html', fresh.clone())
+          }
           return fresh
         } catch {
           const cache = await caches.open(SHELL_CACHE)

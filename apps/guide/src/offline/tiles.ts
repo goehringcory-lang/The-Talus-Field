@@ -20,7 +20,9 @@ export const PARK_BBOX: Bbox = [-119.93, 37.45, -119.05, 38.2]
 // The three corridors every stop in the guide sits inside.
 const VALLEY_BBOX: Bbox = [-119.75, 37.66, -119.53, 37.77]
 const GLACIER_MARIPOSA_BBOX: Bbox = [-119.72, 37.49, -119.55, 37.73]
-const TIOGA_BBOX: Bbox = [-119.8, 37.83, -119.25, 37.95]
+// Extended west/south to the Crane Flat junction so tioga-road-drive
+// (-119.7973, 37.7551) still gets trailhead-zoom tiles offline.
+const TIOGA_BBOX: Bbox = [-119.82, 37.74, -119.25, 37.95]
 
 const PARK_ZOOMS = [8, 9, 10, 11, 12]
 const CORRIDOR_ZOOMS = [13, 14]

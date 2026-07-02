@@ -8,6 +8,7 @@
 import { useCallback, useEffect, useState } from 'react'
 import { readTripDates, writeTripDates } from '../programs/usePrograms'
 import type { ProgramEventT } from '../programs/schema'
+import { todayIso } from '../utils/date'
 import {
   TripPlan,
   programItemId,
@@ -18,10 +19,6 @@ import {
 
 const STORAGE_KEY = 'tfg.trip.plan'
 const subscribers = new Set<() => void>()
-
-function todayIso(): string {
-  return new Date().toISOString().slice(0, 10)
-}
 
 function emptyPlan(): TripPlanT {
   const dates = readTripDates() ?? { start: todayIso(), end: todayIso() }
@@ -124,14 +121,23 @@ export function useTripPlan() {
   }, [])
 
   const moveStopToDay = useCallback((itemId: string, day: string) => {
-    update((p) => ({
-      ...p,
-      items: p.items.map((it) =>
-        it.itemId === itemId && it.type === 'stop'
-          ? { ...it, day, itemId: stopItemId(it.stopId, day) }
-          : it,
-      ),
-    }))
+    update((p) => {
+      const moving = p.items.find((it) => it.itemId === itemId && it.type === 'stop')
+      if (!moving || moving.type !== 'stop') return p
+      const newId = stopItemId(moving.stopId, day)
+      if (newId === itemId) return p
+      // Target day already holds this stop: dedupe by dropping the moved copy
+      // instead of minting a colliding itemId (duplicate React keys / UID).
+      if (p.items.some((it) => it.itemId === newId)) {
+        return { ...p, items: p.items.filter((it) => it.itemId !== itemId) }
+      }
+      return {
+        ...p,
+        items: p.items.map((it) =>
+          it.itemId === itemId && it.type === 'stop' ? { ...it, day, itemId: newId } : it,
+        ),
+      }
+    })
   }, [])
 
   const clear = useCallback(() => {

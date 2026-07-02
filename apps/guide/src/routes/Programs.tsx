@@ -12,6 +12,7 @@ import { Link } from 'react-router-dom'
 import GatedChrome from '../components/GatedChrome'
 import { programItemId } from '../trip/schema'
 import { useTripPlan } from '../trip/useTripPlan'
+import { addDaysIso, todayIso } from '../utils/date'
 import {
   readTripDates,
   usePrograms,
@@ -27,16 +28,6 @@ import {
 import './Programs.css'
 
 const MAX_SPAN_DAYS = 31
-
-function todayIso(): string {
-  return new Date().toISOString().slice(0, 10)
-}
-
-function addDaysIso(date: string, days: number): string {
-  const d = new Date(`${date}T00:00:00Z`)
-  d.setUTCDate(d.getUTCDate() + days)
-  return d.toISOString().slice(0, 10)
-}
 
 function formatDayHeader(date: string): string {
   return new Date(`${date}T12:00:00Z`).toLocaleDateString('en-US', {
