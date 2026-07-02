@@ -4,6 +4,7 @@ import { useAuth } from '../auth/useAuth'
 import { ESSENTIALS, ESSENTIALS_META, REGIONS, SECRET_META, SECRET_SPOTS, getStopById, getStopsByRegion, secretsLocked } from '../content'
 import { useFavorites } from '../lib/favorites'
 import { isPackCompleted } from '../offline/useDownloads'
+import { useTripPlan } from '../trip/useTripPlan'
 import GatedChrome from '../components/GatedChrome'
 import RegionPickerCard from '../components/RegionPickerCard'
 import SectionCard from '../components/SectionCard'
@@ -65,6 +66,7 @@ function BeforeYouGoNudge() {
 export default function Home() {
   const { session } = useAuth()
   const { ids: favoriteIds } = useFavorites()
+  const { plan } = useTripPlan()
   const savedStops = favoriteIds
     .map((id) => getStopById(id))
     .filter((s): s is NonNullable<typeof s> => Boolean(s))
@@ -102,10 +104,21 @@ export default function Home() {
           />
           <SectionCard
             to="/programs"
-            eyebrow="Plan your days"
+            eyebrow="What's on in the park"
             title="Programs during your trip"
-            teaser="Pick your dates and see the ranger walks, Junior Ranger tables, tours, and star parties running while you're there. Syncs online, readable offline."
-            meta="Trip dates → day-by-day list"
+            teaser="Ranger walks, Junior Ranger tables, tours, and star parties running while you're there. Syncs online, readable offline."
+            meta="Day-by-day list for your dates"
+          />
+          <SectionCard
+            to="/trip"
+            eyebrow="Plan your days"
+            title="Your trip plan"
+            teaser="Dates, programs, and stops assembled into a day-by-day plan, then exported to your calendar. Events carry GPS coordinates and a directions link, so the calendar becomes the itinerary."
+            meta={
+              plan.items.length > 0
+                ? `${plan.items.length} ${plan.items.length === 1 ? 'item' : 'items'} planned`
+                : 'Dates → programs → stops → calendar'
+            }
           />
           <SectionCard
             to="/secret-spots"

@@ -2,6 +2,7 @@ import { Link, Navigate, useParams } from 'react-router-dom'
 import { getRegionMeta, getStopById, getStopsByRegion } from '../content'
 import GatedChrome from '../components/GatedChrome'
 import StopCard from '../components/StopCard'
+import { directionsUrl } from '../map/kinds'
 import { useTripPlan } from '../trip/useTripPlan'
 
 export default function StopDetail() {
@@ -37,9 +38,13 @@ export default function StopDetail() {
 
         <StopCard stop={stop} compact={false} />
 
-        <p style={{ marginTop: 20 }}>
+        <p style={{ marginTop: 20, display: 'flex', gap: 10, flexWrap: 'wrap', alignItems: 'center' }}>
           {planned ? (
-            <Link to="/trip" className="btn btn--ghost" style={{ display: 'inline-block' }}>
+            <Link
+              to="/trip"
+              className="btn btn--ghost"
+              style={{ minHeight: 44, display: 'inline-flex', alignItems: 'center' }}
+            >
               In your trip plan →
             </Link>
           ) : (
@@ -51,6 +56,17 @@ export default function StopDetail() {
             >
               Add to trip
             </button>
+          )}
+          {stop.coord && (
+            <a
+              className="btn btn--ghost"
+              href={directionsUrl(stop.coord)}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ minHeight: 44, display: 'inline-flex', alignItems: 'center' }}
+            >
+              Directions →
+            </a>
           )}
         </p>
 
