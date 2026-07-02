@@ -27,6 +27,10 @@ export type ProgramsState = {
 // Also read by the trip planner — keep the shape stable.
 export const TRIP_DATES_KEY = 'tfg.trip.dates'
 
+// Longest window /api/programs will answer (MAX_SPAN_DAYS in the Worker);
+// the date pickers on /programs and /trip both clamp to it.
+export const MAX_SPAN_DAYS = 31
+
 export type TripDates = { start: string; end: string }
 
 export function readTripDates(): TripDates | null {

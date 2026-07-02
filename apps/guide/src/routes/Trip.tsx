@@ -12,7 +12,8 @@ import GatedChrome from '../components/GatedChrome'
 import { getStopById } from '../content'
 import { ITINERARIES, type ItineraryKey } from '../content/itineraries'
 import { getStopsByRegion } from '../content'
-import { readTripDates } from '../programs/usePrograms'
+import { MAX_SPAN_DAYS, readTripDates } from '../programs/usePrograms'
+import { addDaysIso } from '../utils/date'
 import { exportTripIcs, type ExportMethod } from '../trip/exportTrip'
 import { buildTripIcs } from '../trip/ics'
 import { slotPlan, toHhmm } from '../trip/slotting'
@@ -83,6 +84,16 @@ export default function Trip() {
 
   const itemCount = plan.items.length
 
+  // Same clamp as /programs: end never before start, window capped at what
+  // the programs API will answer. Both pages share tfg.trip.dates.
+  function updateDates(nextStart: string, nextEnd: string) {
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(nextStart)) return
+    let boundedEnd = nextEnd
+    if (boundedEnd < nextStart) boundedEnd = nextStart
+    if (boundedEnd > addDaysIso(nextStart, MAX_SPAN_DAYS)) boundedEnd = addDaysIso(nextStart, MAX_SPAN_DAYS)
+    if (/^\d{4}-\d{2}-\d{2}$/.test(boundedEnd)) setDates(nextStart, boundedEnd)
+  }
+
   return (
     <GatedChrome>
       <main className="wrap wrap--narrow" style={{ paddingTop: 56, paddingBottom: 96 }}>
@@ -90,12 +101,38 @@ export default function Trip() {
           The Field Guide · 2026 Edition
         </div>
         <h1 style={{ marginBottom: 18 }}>Your trip plan</h1>
-        <p style={{ color: 'var(--ink-2)', marginBottom: 24 }}>
-          {formatDayHeader(plan.dates.start)} to {formatDayHeader(plan.dates.end)} ·{' '}
-          <Link to="/programs">change dates on the Programs page</Link>. Add stops from their
-          pages or the map, add programs from the list, then export the whole thing to your
-          calendar.
+        <p style={{ color: 'var(--ink-2)', marginBottom: 20 }}>
+          Set your dates, then fill the days: programs from the list, stops from their pages or
+          the map. Export the finished plan to your calendar.
         </p>
+
+        <div className="trip-dates">
+          <label>
+            Arriving
+            <input
+              type="date"
+              value={plan.dates.start}
+              onChange={(e) => updateDates(e.target.value, plan.dates.end)}
+            />
+          </label>
+          <label>
+            Leaving
+            <input
+              type="date"
+              value={plan.dates.end}
+              min={plan.dates.start}
+              max={addDaysIso(plan.dates.start, MAX_SPAN_DAYS)}
+              onChange={(e) => updateDates(plan.dates.start, e.target.value)}
+            />
+          </label>
+          <Link
+            to="/programs"
+            className="btn btn--ghost"
+            style={{ minHeight: 44, display: 'inline-flex', alignItems: 'center' }}
+          >
+            Browse programs running these dates →
+          </Link>
+        </div>
 
         <div className="trip-toolbar">
           <button
@@ -142,8 +179,9 @@ export default function Trip() {
         {exportResult === 'downloaded' && (
           <div className="trip-export-hint">
             Downloaded. Open the .ics file and your calendar app imports the whole trip: Google
-            Calendar, Apple Calendar, and Outlook all read it. Each event carries the GPS
-            coordinates and a directions link.
+            Calendar, Apple Calendar, and Outlook all read it. Events carry GPS coordinates and a
+            Google Maps directions link wherever we know the exact spot; programs without a
+            published location link to the operator's page instead.
           </div>
         )}
         {exportResult === 'failed' && (
@@ -154,11 +192,25 @@ export default function Trip() {
         )}
 
         {itemCount === 0 ? (
-          <p className="trip-empty">
-            Nothing planned yet. Open a stop and tap <strong>Add to trip</strong>, add programs
-            from the <Link to="/programs">Programs list</Link>, or seed a day from a preset above.
-            The plan lives on this device and works offline.
-          </p>
+          <div className="trip-empty">
+            <p style={{ margin: '0 0 10px' }}>Nothing planned yet. How this works:</p>
+            <ol>
+              <li>Set your dates above.</li>
+              <li>
+                Add programs from the <Link to="/programs">Programs list</Link>: ranger walks,
+                tours, star parties.
+              </li>
+              <li>
+                Add stops from their pages or the <Link to="/map">map</Link>, or seed a day from
+                a preset above.
+              </li>
+              <li>
+                Export to your calendar. Events carry GPS coordinates and a directions link, so
+                tapping an event on the day launches navigation.
+              </li>
+            </ol>
+            <p style={{ margin: '10px 0 0' }}>The plan lives on this device and works offline.</p>
+          </div>
         ) : (
           [...slotted.entries()].map(([day, items]) => {
             const totalMin = items.reduce((sum, s) => sum + (s.startMin !== null ? s.durationMin : 0), 0)

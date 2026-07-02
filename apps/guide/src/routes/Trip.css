@@ -1,6 +1,35 @@
 /* /trip route — day-by-day agenda built from picked stops and programs,
  * exported as an .ics calendar file. */
 
+/* Date pickers, same bones as .programs-dates (Programs.css) but duplicated
+ * so /trip never depends on another route's stylesheet being loaded. */
+.trip-dates {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  align-items: end;
+  margin-bottom: 24px;
+}
+.trip-dates label {
+  display: grid;
+  gap: 4px;
+  font-family: var(--sans, system-ui, sans-serif);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-weight: 600;
+  color: var(--ink-3, #6b5c49);
+}
+.trip-dates input[type='date'] {
+  font: 15px var(--sans, system-ui, sans-serif);
+  padding: 8px 10px;
+  border: 1px solid var(--rule, #c1ad84);
+  background: var(--paper, #f1ead6);
+  color: var(--ink, #14110c);
+  border-radius: 4px;
+  min-height: 44px;
+}
+
 .trip-toolbar {
   display: flex;
   gap: 10px;
@@ -122,6 +151,12 @@
   font-family: var(--serif, Georgia, serif);
   color: var(--ink-2, #36291c);
   line-height: 1.65;
+}
+.trip-empty ol {
+  margin: 0;
+  padding-left: 20px;
+  display: grid;
+  gap: 6px;
 }
 
 .trip-export-hint {

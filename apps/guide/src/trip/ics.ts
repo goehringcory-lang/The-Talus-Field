@@ -113,7 +113,10 @@ function toFields(slotted: SlottedItem): EventFields | null {
       summary: stop.title,
       description:
         `${teaser}\n\nFrom The Talus Field Field Guide: ` +
-        `https://guide.${UID_DOMAIN}/stop/${stop.id}`,
+        `https://guide.${UID_DOMAIN}/stop/${stop.id}` +
+        // Google Calendar mostly drops the URL property on import, so the
+        // directions deeplink rides in the description too.
+        (stop.coord ? `\n\nDirections: ${directionsUrl(stop.coord)}` : ''),
       location: `${stop.title}, Yosemite National Park${stop.coord ? ` ${coordText(stop.coord)}` : ''}`,
       coord: stop.coord,
       url: stop.coord ? directionsUrl(stop.coord) : undefined,
@@ -126,12 +129,20 @@ function toFields(slotted: SlottedItem): EventFields | null {
   return {
     uid: `tfg-trip-${item.itemId}@${UID_DOMAIN}`,
     summary: ev.title,
-    description: [ev.description, ev.url].filter(Boolean).join('\n\n'),
+    description: [
+      ev.description,
+      ev.url,
+      ev.coord ? `Directions: ${directionsUrl(ev.coord)}` : undefined,
+    ]
+      .filter(Boolean)
+      .join('\n\n'),
     location: ev.location
       ? `${ev.location}, Yosemite National Park${ev.coord ? ` ${coordText(ev.coord)}` : ''}`
       : 'Yosemite National Park',
     coord: ev.coord,
-    url: ev.url,
+    // Prefer tap-to-navigate when we know the spot; the operator's info page
+    // is already in the description either way.
+    url: ev.coord ? directionsUrl(ev.coord) : ev.url,
     day: slotted.day,
     startMin: slotted.startMin,
     durationMin: slotted.durationMin,

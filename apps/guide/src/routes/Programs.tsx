@@ -14,6 +14,7 @@ import { programItemId } from '../trip/schema'
 import { useTripPlan } from '../trip/useTripPlan'
 import { addDaysIso, todayIso } from '../utils/date'
 import {
+  MAX_SPAN_DAYS,
   readTripDates,
   usePrograms,
   writeTripDates,
@@ -26,8 +27,6 @@ import {
   type ProgramSourceT,
 } from '../programs/schema'
 import './Programs.css'
-
-const MAX_SPAN_DAYS = 31
 
 function formatDayHeader(date: string): string {
   return new Date(`${date}T12:00:00Z`).toLocaleDateString('en-US', {
@@ -246,20 +245,26 @@ export default function Programs() {
                   {ev.description || 'No description published for this program.'}
                   {ev.timeEnd && `\nEnds around ${formatTime(ev.timeEnd)}.`}
                 </p>
-                <p className="program-row__body" style={{ marginTop: 8 }}>
+                <p
+                  className="program-row__body"
+                  style={{ marginTop: 8, display: 'flex', gap: 14, alignItems: 'center', flexWrap: 'wrap' }}
+                >
                   {hasItem(programItemId(ev.id)) ? (
-                    <Link to="/trip">In your trip plan →</Link>
+                    <Link to="/trip" className="btn btn--ghost" style={{ minHeight: 44, display: 'inline-flex', alignItems: 'center' }}>
+                      In your trip plan →
+                    </Link>
                   ) : (
                     <button
                       type="button"
-                      className="programs-chip"
+                      className="btn"
+                      style={{ minHeight: 44 }}
                       onClick={() => addProgram(ev)}
                     >
                       Add to trip
                     </button>
                   )}
                   {ev.url && (
-                    <a href={ev.url} target="_blank" rel="noreferrer" style={{ marginLeft: 14 }}>
+                    <a href={ev.url} target="_blank" rel="noreferrer">
                       Details{offline ? ' (needs signal)' : ''} →
                     </a>
                   )}

@@ -29,11 +29,48 @@ const ManualEntry = ProgramEvent.omit({ id: true, date: true }).extend({
 })
 type ManualEntryT = z.infer<typeof ManualEntry>
 
-// ── Seed: recurring anchors, dates to be filled from the operators' pages ───
-// The 2026 summer schedules publish in late spring. The entries below are the
-// standing programs this file exists for, seeded with their known cadence.
-// Replace/extend the `dates` arrays from the linked pages each season.
+// ── Confirmed entries only ───────────────────────────────────────────────────
+// Verification pass 2026-07-02: only the Valley Floor Tour's daily year-round
+// operation is supported by the operator's page (travelyosemite.com). The
+// Parsons series and the star parties sit in PENDING_VERIFICATION below until
+// their 2026 dated schedules publish.
 const entries: ManualEntryT[] = [
+  {
+    key: 'aramark-valley-floor-tour',
+    source: 'aramark',
+    category: 'tour',
+    title: 'Valley Floor Tour (Yosemite Hospitality)',
+    description:
+      'The two-hour open-air tram (or heated coach, off-season) loop of the valley floor with a guide. ' +
+      'Departs Yosemite Valley Lodge daily, multiple departures. Paid; book at travelyosemite.com. ' +
+      'Dates here mark availability, not a single departure time.',
+    // Verified 2026-07-02: travelyosemite.com lists the tour as departing
+    // daily, year-round (tram in warm months, heated coach off-season).
+    dates: buildDailyDates('2026-07-01', '2026-10-31'),
+    location: 'Yosemite Valley Lodge',
+    coord: [-119.5989, 37.7439],
+    isFree: false,
+    reservationRequired: true,
+    url: 'https://www.travelyosemite.com/things-to-do/guided-bus-tours/',
+  },
+]
+
+// ── Pending verification: NOT served ─────────────────────────────────────────
+// Checked 2026-07-02 and withheld under the "only dates confirmed on the
+// operator's own page" rule. Move an entry back into `entries` with real
+// dates once its 2026 schedule publishes.
+//
+// - parsons-summer-series: yosemite.org confirms the series runs in 2026
+//   (see their "Yosemite Art and Traditions" project page) but has not
+//   published the dated 2026 schedule; the newest dated page is 2025.
+// - glacier-point-star-party: no 2026 club weekends posted on the Night Sky
+//   Network or the clubs' own sites as of the check.
+//
+// Stale-date traps seen in search results during the check, do not reuse:
+// "Poetry Festival August 17–18" is the 2024 festival, and the NPS
+// event-details star-party listing offering "July 26 & 27, Aug 2 & 3,
+// Aug 9 & 10" matches the 2024/2025 calendars, not 2026 weekends.
+export const PENDING_VERIFICATION: ManualEntryT[] = [
   {
     key: 'parsons-summer-series',
     source: 'conservancy',
@@ -43,9 +80,8 @@ const entries: ManualEntryT[] = [
       'Free talks, music, and poetry in the 1915 stone Sierra Club lodge at Tuolumne Meadows. ' +
       'Programs run summer weekends and close with the Tuolumne Meadows Poetry Festival in mid-August. ' +
       'Confirm the current season schedule on yosemite.org before planning around a date.',
-    // TODO: verify — placeholder cadence; replace with the dated list from
-    // yosemite.org's Parsons series page before marketing this feed.
-    dates: ['2026-07-11', '2026-07-12', '2026-07-18', '2026-07-19', '2026-07-25', '2026-07-26', '2026-08-01', '2026-08-02', '2026-08-08', '2026-08-09'],
+    // TODO: fill from yosemite.org's 2026 Parsons series page when it posts.
+    dates: ['2026-07-11'],
     timeStart: '14:00',
     location: 'Parsons Memorial Lodge, Tuolumne Meadows',
     coord: [-119.3589, 37.8772],
@@ -62,30 +98,13 @@ const entries: ManualEntryT[] = [
       'San Jose Astronomical Association, and others) set up telescopes at Glacier Point and share the sky ' +
       'with the public. Free, weather permitting. Each club posts its own weekend; check the Night Sky ' +
       'Network and the Yosemite Guide for the current summer calendar.',
-    // TODO: verify — placeholder weekends; replace with each club's posted
-    // Night Sky Network dates before marketing this feed.
-    dates: ['2026-07-17', '2026-07-18', '2026-07-24', '2026-07-25', '2026-08-07', '2026-08-08', '2026-08-14', '2026-08-15'],
+    // TODO: fill from each club's posted Night Sky Network dates when they post.
+    dates: ['2026-07-17'],
     timeStart: '21:00',
     location: 'Glacier Point',
     coord: [-119.5731, 37.7283],
     isFree: true,
     url: 'https://nightsky.jpl.nasa.gov/',
-  },
-  {
-    key: 'aramark-valley-floor-tour',
-    source: 'aramark',
-    category: 'tour',
-    title: 'Valley Floor Tour (Yosemite Hospitality)',
-    description:
-      'The two-hour open-air tram (or heated coach, off-season) loop of the valley floor with a guide. ' +
-      'Departs Yosemite Valley Lodge daily, multiple departures. Paid; book at travelyosemite.com. ' +
-      'Dates here mark availability, not a single departure time.',
-    dates: buildDailyDates('2026-07-01', '2026-10-31'),
-    location: 'Yosemite Valley Lodge',
-    coord: [-119.5989, 37.7439],
-    isFree: false,
-    reservationRequired: true,
-    url: 'https://www.travelyosemite.com/things-to-do/guided-bus-tours/',
   },
 ]
 
@@ -111,10 +130,11 @@ function buildDailyDates(start: string, end: string): string[] {
 }
 
 const parsed = z.array(ManualEntry).parse(entries)
+z.array(ManualEntry).parse(PENDING_VERIFICATION) // keep the parked entries valid too
 
 // Version label surfaced in the /api/programs `sources` block so the app can
 // show which curation pass the offline copy came from.
-export const MANUAL_PROGRAMS_VERSION = '2026-summer-seed'
+export const MANUAL_PROGRAMS_VERSION = '2026-summer-confirmed-only'
 
 export const MANUAL_PROGRAMS: ProgramEventT[] = sortEvents(parsed.flatMap(expand))
 
