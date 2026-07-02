@@ -58,15 +58,13 @@ export async function verifyStripeSignature(args: {
   const tolerance = args.toleranceSeconds ?? 300
   if (!signatureHeader) return false
 
-  const parts = Object.fromEntries(
-    signatureHeader.split(',').map((kv) => {
-      const [k, v] = kv.split('=')
-      return [k, v]
-    }),
-  )
-  const t = parts['t']
-  const v1 = parts['v1']
-  if (!t || !v1) return false
+  const parts = signatureHeader.split(',').map((kv) => kv.split('='))
+  const t = parts.find(([k]) => k === 't')?.[1]
+  // Stripe sends one v1 per active secret; during a secret rotation there are
+  // several. Collect them all and accept if any matches, or a valid webhook
+  // gets rejected whenever the matching signature isn't the last entry.
+  const v1s = parts.filter(([k]) => k === 'v1').map(([, v]) => v)
+  if (!t || v1s.length === 0) return false
 
   const timestamp = Number.parseInt(t, 10)
   if (Number.isNaN(timestamp)) return false
@@ -85,11 +83,13 @@ export async function verifyStripeSignature(args: {
     .map((b) => b.toString(16).padStart(2, '0'))
     .join('')
 
-  // Constant-time compare.
-  if (expected.length !== v1.length) return false
-  let diff = 0
-  for (let i = 0; i < expected.length; i++) {
-    diff |= expected.charCodeAt(i) ^ v1.charCodeAt(i)
-  }
-  return diff === 0
+  // Constant-time compare against each candidate signature.
+  return v1s.some((v1) => {
+    if (expected.length !== v1.length) return false
+    let diff = 0
+    for (let i = 0; i < expected.length; i++) {
+      diff |= expected.charCodeAt(i) ^ v1.charCodeAt(i)
+    }
+    return diff === 0
+  })
 }

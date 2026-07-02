@@ -76,6 +76,15 @@ stripe.post('/webhook', async (c) => {
 
   const completed = event as CheckoutSessionCompletedEvent
   const session = completed.data.object
+
+  // Only provision the field guide for OUR product. Any other item sold
+  // through the same Stripe account (a payment link, a donation, a print)
+  // also fires checkout.session.completed; without this guard those buyers
+  // would be handed 18-month guide access and decrement inventory.
+  if (session.metadata?.product !== c.env.GUIDE_PRODUCT_TAG) {
+    return c.json({ received: true, ignored: 'wrong product' })
+  }
+
   const email =
     session.customer_details?.email?.trim().toLowerCase() ??
     session.customer_email?.trim().toLowerCase() ??

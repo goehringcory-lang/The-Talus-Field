@@ -238,6 +238,9 @@ export default function Map() {
       markersRef.current[id].remove()
     }
     markersRef.current = {}
+    // Close any open popup: its marker was just removed, so a floating popup
+    // (with a live "Add to trip") would otherwise hang over the filtered map.
+    popupRef.current?.remove()
 
     if (visibleStops.length === 0) return
 

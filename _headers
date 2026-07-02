@@ -9,7 +9,7 @@
   Referrer-Policy: strict-origin-when-cross-origin
   Permissions-Policy: interest-cohort=()
   Cache-Control: public, max-age=0, must-revalidate
-  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://unpkg.com https://maps.googleapis.com https://maps.gstatic.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://api.thetalusfieldjournal.com https://www.google-analytics.com https://maps.googleapis.com https://maps.gstatic.com https://npsvms-338365424831-us-west-1-an.s3.us-west-1.amazonaws.com; worker-src 'self' blob:; frame-src 'self' https://buttondown.com https://www.youtube-nocookie.com; frame-ancestors 'none'; form-action 'self' https://buttondown.com
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://unpkg.com https://maps.googleapis.com https://maps.gstatic.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://api.thetalusfieldjournal.com https://www.google-analytics.com https://region1.google-analytics.com https://maps.googleapis.com https://maps.gstatic.com https://npsvms-338365424831-us-west-1-an.s3.us-west-1.amazonaws.com; worker-src 'self' blob:; frame-src 'self' https://buttondown.com https://www.youtube-nocookie.com; frame-ancestors 'none'; form-action 'self' https://buttondown.com
 
 # robots.txt and sitemap should never be cached aggressively so
 # updates to AI/search permissions propagate quickly.

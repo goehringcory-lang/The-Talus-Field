@@ -21,11 +21,19 @@ const isIOS =
 
 // Shared dismiss state
 function useDismissed() {
-  const [dismissed, setDismissed] = useState(
-    () => isStandalone() || localStorage.getItem(DISMISS_KEY) === '1',
-  )
+  const [dismissed, setDismissed] = useState(() => {
+    try {
+      return isStandalone() || localStorage.getItem(DISMISS_KEY) === '1'
+    } catch {
+      return false
+    }
+  })
   const dismiss = () => {
-    localStorage.setItem(DISMISS_KEY, '1')
+    try {
+      localStorage.setItem(DISMISS_KEY, '1')
+    } catch {
+      /* non-fatal: banner may reappear next launch */
+    }
     setDismissed(true)
   }
   return { dismissed, dismiss }

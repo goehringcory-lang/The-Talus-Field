@@ -438,7 +438,7 @@ function applySeo(route) {
 }
 function App() {
   var [route, setRoute] = useState(() => {
-    if (window.location.hash) {
+    if (window.location.hash && window.location.pathname === "/") {
       var fromHash = legacyHashToRoute(window.location.hash);
       if (fromHash) {
         var path = routeToPath(fromHash);

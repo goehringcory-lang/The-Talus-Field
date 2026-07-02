@@ -72,6 +72,12 @@ function CategoryPage({
   go
 }) {
   var cat = window.findCategory(slug);
+  if (!cat) return React.createElement("div", {
+    className: "wrap",
+    style: {
+      padding: 80
+    }
+  }, "Not found.");
   var items = window.byCategory(slug);
   return React.createElement("div", {
     className: "page"

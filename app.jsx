@@ -525,8 +525,10 @@ function applySeo(route) {
 function App() {
   const [route, setRoute] = useState(() => {
     // Convert legacy hash URLs (e.g. /#a:foo, /#about) into real paths
-    // so subsequent navigation and indexing use proper URLs.
-    if (window.location.hash) {
+    // so subsequent navigation and indexing use proper URLs. Legacy hash
+    // URLs only ever lived at the root, so ignore in-page anchors like
+    // /kit#overnight-pack that belong to a real page.
+    if (window.location.hash && window.location.pathname === "/") {
       const fromHash = legacyHashToRoute(window.location.hash);
       if (fromHash) {
         const path = routeToPath(fromHash);

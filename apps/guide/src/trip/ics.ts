@@ -68,8 +68,20 @@ function fold(line: string): string[] {
   return out
 }
 
+function addDays(day: string, n: number): string {
+  const d = new Date(`${day}T00:00:00Z`)
+  d.setUTCDate(d.getUTCDate() + n)
+  return d.toISOString().slice(0, 10)
+}
+
 function dtLocal(day: string, minutes: number): string {
-  return `${day.replace(/-/g, '')}T${toHhmm(minutes).replace(':', '')}00`
+  // An event that runs past midnight (e.g. a 23:30 program + 60 min) must roll
+  // the calendar date forward, otherwise DTEND lands before DTSTART and
+  // Google/Apple Calendar reject the VEVENT.
+  const dayOffset = Math.floor(minutes / 1440)
+  const dayStr = dayOffset > 0 ? addDays(day, dayOffset) : day
+  const timeOfDay = ((minutes % 1440) + 1440) % 1440
+  return `${dayStr.replace(/-/g, '')}T${toHhmm(timeOfDay).replace(':', '')}00`
 }
 
 function coordText(coord: [number, number]): string {

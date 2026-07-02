@@ -33,6 +33,7 @@ function readCheckoutOutcome() {
 function formatReopens(iso) {
   try {
     const d = new Date(iso);
+    if (Number.isNaN(d.getTime())) return "the first of next month";
     return d.toLocaleDateString("en-US", { month: "long", day: "numeric" });
   } catch (_e) {
     return "the first of next month";

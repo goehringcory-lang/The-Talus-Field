@@ -36,6 +36,22 @@ const MAX_SPAN_DAYS = 31
 const STALE_AFTER_MS = 48 * 60 * 60 * 1000
 export const INGEST_WINDOW_DAYS = 120
 
+// Program dates are park-local (Pacific) calendar strings. "Today" must be
+// computed in that zone, not UTC: after ~5pm PDT the UTC date is already
+// tomorrow, so a UTC-based ingest window would start tomorrow and drop
+// tonight's programs when it rewrites the month buckets.
+function parkToday(): string {
+  return new Intl.DateTimeFormat('en-CA', { timeZone: 'America/Los_Angeles' }).format(new Date())
+}
+
+// Two program events are "the same" listing when they fall on the same date
+// with a title that normalizes identically. Used to drop a hand-curated
+// partner entry when NPS staff have entered the same event (e.g. the Parsons
+// Lodge series appears in both sources).
+function normalizeTitle(title: string): string {
+  return title.toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim()
+}
+
 export const programs = new Hono<{ Bindings: Env }>()
 
 programs.get('/', async (c) => {
@@ -69,10 +85,14 @@ programs.get('/', async (c) => {
     syncedAt = meta.fetchedAt
   }
 
-  const events = sortEvents([
-    ...npsEvents.filter((ev) => ev.date >= start && ev.date <= end),
-    ...manualProgramsInRange(start, end),
-  ])
+  const npsInRange = npsEvents.filter((ev) => ev.date >= start && ev.date <= end)
+  // Drop manual entries that NPS already carries on the same date, so a
+  // program curated in both sources doesn't render twice.
+  const npsKeys = new Set(npsInRange.map((ev) => `${ev.date}|${normalizeTitle(ev.title)}`))
+  const manual = manualProgramsInRange(start, end).filter(
+    (ev) => !npsKeys.has(`${ev.date}|${normalizeTitle(ev.title)}`),
+  )
+  const events = sortEvents([...npsInRange, ...manual])
 
   return c.json(
     {
@@ -105,7 +125,7 @@ export async function ingestNpsWindow(env: Env): Promise<void> {
     console.error('ingestNpsWindow: NPS_API_KEY not set; skipping ingest')
     return
   }
-  const today = new Date().toISOString().slice(0, 10)
+  const today = parkToday()
   const horizon = addDays(today, INGEST_WINDOW_DAYS)
   const events = await fetchNpsEvents(env, today, horizon)
   const byMonth = groupByMonth(events)

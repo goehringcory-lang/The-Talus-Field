@@ -247,10 +247,12 @@ function TweaksPanel({ title = 'Tweaks', children }) {
 
 // ── Layout helpers ──────────────────────────────────────────────────────────
 
-function TweakSection({ label, children }) {
+function TweakSection({ label, title, subtitle, children }) {
+  const heading = title != null ? title : label;
   return (
     <>
-      <div className="twk-sect">{label}</div>
+      <div className="twk-sect">{heading}</div>
+      {subtitle != null && <div className="twk-sect-sub">{subtitle}</div>}
       {children}
     </>
   );

@@ -11,6 +11,12 @@ export function registerServiceWorker(onUpdate: UpdateHandler): void {
 
   window.addEventListener('load', () => {
     navigator.serviceWorker.register('/sw.js').then((registration) => {
+      // A worker may already be waiting from a prior visit where the user
+      // never tapped the banner; updatefound won't fire again, so surface it.
+      if (registration.waiting && navigator.serviceWorker.controller) {
+        onUpdate(registration)
+      }
+
       registration.addEventListener('updatefound', () => {
         const installing = registration.installing
         if (!installing) return
