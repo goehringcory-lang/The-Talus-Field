@@ -61,8 +61,11 @@ export default function ChecklistBlock({ items }: Props) {
         {done} of {items.length} packed
       </div>
       <ul className="checklist__list">
-        {items.map((item) => (
+        {items.map((item, i) => (
           <li key={item.id}>
+            {item.group && item.group !== items[i - 1]?.group && (
+              <div className="eyebrow" style={{ margin: '18px 0 6px' }}>{item.group}</div>
+            )}
             <label className="checklist__row">
               <input
                 type="checkbox"
@@ -72,6 +75,11 @@ export default function ChecklistBlock({ items }: Props) {
               <span className={checked[item.id] ? 'checklist__label checklist__label--done' : 'checklist__label'}>
                 {item.label}
                 {item.season && <span className="checklist__season">{item.season}</span>}
+                {item.note && (
+                  <span style={{ display: 'block', fontSize: 13, color: 'var(--ink-3)', marginTop: 2 }}>
+                    {item.note}
+                  </span>
+                )}
               </span>
             </label>
           </li>
