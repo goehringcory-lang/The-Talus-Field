@@ -10,9 +10,10 @@
 import { useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import GatedChrome from '../components/GatedChrome'
+import { announceTripAdd } from '../trip/addFeedback'
 import { programItemId } from '../trip/schema'
 import { useTripPlan } from '../trip/useTripPlan'
-import { addDaysIso, todayIso } from '../utils/date'
+import { addDaysIso, formatDayHeader, todayIso } from '../utils/date'
 import {
   MAX_SPAN_DAYS,
   readTripDates,
@@ -27,15 +28,6 @@ import {
   type ProgramSourceT,
 } from '../programs/schema'
 import './Programs.css'
-
-function formatDayHeader(date: string): string {
-  return new Date(`${date}T12:00:00Z`).toLocaleDateString('en-US', {
-    weekday: 'long',
-    month: 'long',
-    day: 'numeric',
-    timeZone: 'UTC',
-  })
-}
 
 function formatTime(hhmm?: string): string {
   if (!hhmm) return 'All day'
@@ -240,6 +232,27 @@ export default function Programs() {
                       )}
                     </span>
                   </span>
+                  {hasItem(programItemId(ev.id)) ? (
+                    <span className="program-row__inplan" aria-label="In your trip plan">
+                      ✓
+                    </span>
+                  ) : (
+                    <button
+                      type="button"
+                      className="program-row__quickadd"
+                      aria-label={`Add ${ev.title} to trip`}
+                      onClick={(e) => {
+                        // A click inside <summary> toggles the row by default;
+                        // preventDefault keeps the add from expanding it.
+                        e.preventDefault()
+                        e.stopPropagation()
+                        addProgram(ev)
+                        announceTripAdd(ev.title)
+                      }}
+                    >
+                      + Add
+                    </button>
+                  )}
                 </summary>
                 <p className="program-row__body">
                   {ev.description || 'No description published for this program.'}
@@ -258,7 +271,10 @@ export default function Programs() {
                       type="button"
                       className="btn"
                       style={{ minHeight: 44 }}
-                      onClick={() => addProgram(ev)}
+                      onClick={() => {
+                        addProgram(ev)
+                        announceTripAdd(ev.title)
+                      }}
                     >
                       Add to trip
                     </button>

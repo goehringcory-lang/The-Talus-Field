@@ -168,3 +168,126 @@
   padding: 10px 12px;
   margin-top: 16px;
 }
+
+/* Numbered step headers: dates → fill days → review & finalize. */
+.trip-step {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin: 28px 0 12px;
+}
+.trip-step__num {
+  font: 700 12px var(--sans, system-ui, sans-serif);
+  border: 1px solid var(--ink, #14110c);
+  border-radius: 999px;
+  width: 22px;
+  height: 22px;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+}
+.trip-step__title {
+  font-family: var(--sans, system-ui, sans-serif);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-weight: 700;
+  margin: 0;
+}
+.trip-step__hint {
+  font-family: var(--sans, system-ui, sans-serif);
+  font-size: 12px;
+  color: var(--ink-3, #6b5c49);
+  margin: 10px 0 0;
+}
+
+/* Review panel: the exact calendar events the export will create. */
+.trip-review {
+  border: 1px solid var(--rule, #c1ad84);
+  background: var(--paper-2, #e9e0c9);
+  padding: 14px 14px 16px;
+  margin-top: 12px;
+}
+.trip-review__day {
+  font-family: var(--sans, system-ui, sans-serif);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-weight: 700;
+  margin: 14px 0 4px;
+}
+.trip-review__day:first-child {
+  margin-top: 0;
+}
+.trip-review__event {
+  display: grid;
+  grid-template-columns: 84px 1fr;
+  gap: 10px;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--rule-soft, #d5c6a4);
+  font-family: var(--sans, system-ui, sans-serif);
+  font-size: 13px;
+}
+.trip-review__event-time {
+  font-weight: 600;
+  color: var(--ink-2, #36291c);
+  white-space: nowrap;
+}
+.trip-review__event-title {
+  display: block;
+  color: var(--ink, #14110c);
+}
+.trip-review__event-meta {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  font-size: 12px;
+  color: var(--ink-3, #6b5c49);
+}
+.trip-review__overflow {
+  border: 1px solid color-mix(in oklab, var(--moss, #7a2a10) 40%, var(--rule, #c1ad84));
+  background: color-mix(in oklab, var(--moss, #7a2a10) 8%, var(--paper, #f1ead6));
+  padding: 10px 12px;
+  margin: 10px 0;
+}
+.trip-review__overflow-note {
+  font-family: var(--sans, system-ui, sans-serif);
+  font-size: 12px;
+  color: var(--moss, #7a2a10);
+  margin: 0 0 8px;
+}
+.trip-review__actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  align-items: center;
+  padding: 6px 0;
+  font-family: var(--sans, system-ui, sans-serif);
+  font-size: 13px;
+}
+.trip-review__actions input[type='time'],
+.trip-review__actions select {
+  font: 12px var(--sans, system-ui, sans-serif);
+  padding: 4px 6px;
+  border: 1px solid var(--rule, #c1ad84);
+  background: var(--paper, #f1ead6);
+  color: var(--ink-2, #36291c);
+  border-radius: 4px;
+  min-height: 36px;
+}
+.trip-review__footer {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid var(--rule, #c1ad84);
+}
+.trip-review__summary {
+  font-family: var(--sans, system-ui, sans-serif);
+  font-size: 12px;
+  color: var(--ink-2, #36291c);
+  margin: 0;
+}

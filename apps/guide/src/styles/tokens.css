@@ -563,9 +563,69 @@ a:active {
   flex-shrink: 0;
 }
 
+.bottom-nav__iconwrap {
+  position: relative;
+  display: inline-flex;
+}
+
+/* Live trip-plan item count on the Plan tab */
+.bottom-nav__badge {
+  position: absolute;
+  top: -5px;
+  right: -9px;
+  min-width: 15px;
+  height: 15px;
+  border-radius: 999px;
+  background: var(--moss);
+  color: var(--paper);
+  font: 700 9px var(--sans);
+  display: grid;
+  place-items: center;
+  padding: 0 3px;
+}
+
 /* Offset content so it isn't hidden behind the bottom nav */
 .bottom-nav-offset {
   padding-bottom: calc(56px + env(safe-area-inset-bottom));
+}
+
+/* "Added to trip" confirmation bar (TripAddNotice), fixed just above the
+ * bottom nav; z-index below the nav so the tabs stay tappable. */
+.trip-add-notice {
+  position: fixed;
+  left: 12px;
+  right: 12px;
+  bottom: calc(56px + env(safe-area-inset-bottom) + 8px);
+  z-index: 99;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  background: var(--ink);
+  color: var(--paper);
+  font-family: var(--sans);
+  font-size: 13px;
+  padding: 4px 14px;
+  border-radius: 6px;
+  animation: trip-add-notice-in 160ms ease-out;
+}
+.trip-add-notice a {
+  color: var(--paper);
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  font-weight: 600;
+}
+@keyframes trip-add-notice-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* Gated chrome links become secondary to bottom nav on small screens */

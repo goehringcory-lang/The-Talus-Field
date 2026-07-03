@@ -97,12 +97,36 @@
   cursor: pointer;
   list-style: none;
   display: grid;
-  grid-template-columns: 64px 1fr;
+  grid-template-columns: 64px 1fr auto;
   gap: 12px;
   align-items: baseline;
 }
 .program-row summary::-webkit-details-marker {
   display: none;
+}
+/* One-tap add from the collapsed row; preventDefault in the click handler
+ * keeps it from toggling the <details>. */
+.program-row__quickadd {
+  font: 600 12px var(--sans, system-ui, sans-serif);
+  min-height: 36px;
+  min-width: 44px;
+  padding: 6px 12px;
+  border: 1px solid var(--rule, #c1ad84);
+  border-radius: 999px;
+  background: var(--paper, #f1ead6);
+  color: var(--moss, #7a2a10);
+  cursor: pointer;
+  align-self: center;
+  white-space: nowrap;
+}
+.program-row__quickadd:hover {
+  border-color: var(--moss, #7a2a10);
+}
+.program-row__inplan {
+  font: 700 14px var(--sans, system-ui, sans-serif);
+  color: var(--moss, #7a2a10);
+  align-self: center;
+  padding: 0 8px;
 }
 .program-row__time {
   font: 600 13px var(--sans, system-ui, sans-serif);

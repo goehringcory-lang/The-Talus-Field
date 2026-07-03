@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import BottomNav from './BottomNav'
+import TripAddNotice from './TripAddNotice'
 
 type Props = {
   children: ReactNode
@@ -39,6 +40,7 @@ export default function GatedChrome({ children }: Props) {
       <div className="bottom-nav-offset">
         {children}
       </div>
+      <TripAddNotice />
       <BottomNav />
     </div>
   )

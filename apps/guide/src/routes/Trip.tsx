@@ -1,40 +1,37 @@
 // =============================================================================
-// /trip — the day-by-day plan built from stops and programs, exported to a
-// calendar as one .ics file. Times: programs keep their published times,
-// stops the user timed keep those, everything else is auto-slotted greedily
-// (see trip/slotting.ts). Works fully offline: content is bundled, program
-// items carry snapshots, and ICS generation is client-side.
+// /trip — the day-by-day plan built from stops and programs, finalized into
+// a calendar as one .ics file. The page reads as a guided sequence: pick
+// dates, fill the days, then review the exact events and create them.
+// Times: programs keep their published times, stops the user timed keep
+// those, everything else is auto-slotted greedily (see trip/slotting.ts).
+// Works fully offline: content is bundled, program items carry snapshots,
+// and ICS generation is client-side.
 // =============================================================================
 
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import GatedChrome from '../components/GatedChrome'
+import TripReview from '../components/TripReview'
 import { getStopById } from '../content'
 import { ITINERARIES, type ItineraryKey } from '../content/itineraries'
 import { getStopsByRegion } from '../content'
 import { MAX_SPAN_DAYS, readTripDates } from '../programs/usePrograms'
-import { addDaysIso } from '../utils/date'
+import { addDaysIso, formatClock, formatDayHeader } from '../utils/date'
 import { exportTripIcs, type ExportMethod } from '../trip/exportTrip'
 import { buildTripIcs } from '../trip/ics'
 import { slotPlan, toHhmm } from '../trip/slotting'
 import { useTripPlan } from '../trip/useTripPlan'
 import './Trip.css'
 
-function formatDayHeader(date: string): string {
-  return new Date(`${date}T12:00:00Z`).toLocaleDateString('en-US', {
-    weekday: 'long',
-    month: 'long',
-    day: 'numeric',
-    timeZone: 'UTC',
-  })
-}
-
-function formatClock(minutes: number): string {
-  const h = Math.floor(minutes / 60)
-  const m = minutes % 60
-  const ampm = h >= 12 ? 'p.m.' : 'a.m.'
-  const hour12 = h % 12 === 0 ? 12 : h % 12
-  return m === 0 ? `${hour12} ${ampm}` : `${hour12}:${String(m).padStart(2, '0')} ${ampm}`
+function StepHeader({ n, title }: { n: number; title: string }) {
+  return (
+    <div className="trip-step">
+      <span className="trip-step__num" aria-hidden="true">
+        {n}
+      </span>
+      <h2 className="trip-step__title">{title}</h2>
+    </div>
+  )
 }
 
 function daysInWindow(start: string, end: string): string[] {
@@ -51,6 +48,9 @@ function daysInWindow(start: string, end: string): string[] {
 export default function Trip() {
   const { plan, addStop, removeItem, setStopTime, moveStopToDay, clear, setDates } = useTripPlan()
   const [exportResult, setExportResult] = useState<ExportMethod | null>(null)
+  const [reviewOpen, setReviewOpen] = useState(false)
+  const [exporting, setExporting] = useState(false)
+  const reviewRef = useRef<HTMLDivElement>(null)
 
   // Keep the plan window in step with the dates picked on /programs.
   useEffect(() => {
@@ -63,10 +63,23 @@ export default function Trip() {
   const slotted = useMemo(() => slotPlan(plan.items), [plan])
   const windowDays = daysInWindow(plan.dates.start, plan.dates.end)
 
-  async function onExport() {
-    const ics = buildTripIcs(slotted)
-    const result = await exportTripIcs(ics, `yosemite-trip-${plan.dates.start}.ics`)
-    setExportResult(result)
+  function toggleReview() {
+    setExportResult(null)
+    const opening = !reviewOpen
+    setReviewOpen(opening)
+    if (opening) reviewRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+  }
+
+  async function onCreateEvents() {
+    setExporting(true)
+    try {
+      // Build synchronously before the await: iOS only allows the share
+      // sheet inside the user-gesture task.
+      const ics = buildTripIcs(slotted)
+      setExportResult(await exportTripIcs(ics, `yosemite-trip-${plan.dates.start}.ics`))
+    } finally {
+      setExporting(false)
+    }
   }
 
   function seedItinerary(key: ItineraryKey) {
@@ -103,9 +116,10 @@ export default function Trip() {
         <h1 style={{ marginBottom: 18 }}>Your trip plan</h1>
         <p style={{ color: 'var(--ink-2)', marginBottom: 20 }}>
           Set your dates, then fill the days: programs from the list, stops from their pages or
-          the map. Export the finished plan to your calendar.
+          the map. When the plan is final, review it and create the calendar events in one go.
         </p>
 
+        <StepHeader n={1} title="Pick your dates" />
         <div className="trip-dates">
           <label>
             Arriving
@@ -134,20 +148,12 @@ export default function Trip() {
           </Link>
         </div>
 
+        <StepHeader n={2} title="Fill your days" />
         <div className="trip-toolbar">
-          <button
-            type="button"
-            className="btn"
-            onClick={onExport}
-            disabled={itemCount === 0}
-            style={{ minHeight: 44 }}
-          >
-            Export to calendar (.ics)
-          </button>
           {itemCount === 0 && (
             <>
               <span style={{ fontFamily: 'var(--sans)', fontSize: 12, color: 'var(--ink-3)' }}>
-                or start from a preset:
+                Start from a preset:
               </span>
               {(Object.keys(ITINERARIES) as ItineraryKey[]).map((key) => (
                 <button
@@ -169,28 +175,6 @@ export default function Trip() {
           )}
         </div>
 
-        {exportResult === 'shared' && (
-          <div className="trip-export-hint">
-            Shared. On iPhone: choose <strong>Save to Files</strong>, then open the saved file and
-            tap <strong>Add All</strong> to put the trip in your calendar. Or share it straight to
-            Mail and open the attachment on any device.
-          </div>
-        )}
-        {exportResult === 'downloaded' && (
-          <div className="trip-export-hint">
-            Downloaded. Open the .ics file and your calendar app imports the whole trip: Google
-            Calendar, Apple Calendar, and Outlook all read it. Events carry GPS coordinates and a
-            Google Maps directions link wherever we know the exact spot; programs without a
-            published location link to the operator's page instead.
-          </div>
-        )}
-        {exportResult === 'failed' && (
-          <div className="trip-export-hint">
-            The export didn't start. Try again, or from a desktop browser if your phone blocks
-            file downloads.
-          </div>
-        )}
-
         {itemCount === 0 ? (
           <div className="trip-empty">
             <p style={{ margin: '0 0 10px' }}>Nothing planned yet. How this works:</p>
@@ -205,8 +189,8 @@ export default function Trip() {
                 a preset above.
               </li>
               <li>
-                Export to your calendar. Events carry GPS coordinates and a directions link, so
-                tapping an event on the day launches navigation.
+                Finalize the plan below to create the calendar events. They carry GPS coordinates
+                and a directions link, so tapping an event on the day launches navigation.
               </li>
             </ol>
             <p style={{ margin: '10px 0 0' }}>The plan lives on this device and works offline.</p>
@@ -214,7 +198,9 @@ export default function Trip() {
         ) : (
           [...slotted.entries()].map(([day, items]) => {
             const totalMin = items.reduce((sum, s) => sum + (s.startMin !== null ? s.durationMin : 0), 0)
-            const overflow = items.filter((s) => s.startMin === null)
+            // Fixed items without a slot are untimed programs: deliberately
+            // all-day, not a scheduling failure.
+            const overflow = items.filter((s) => s.startMin === null && !s.fixed)
             return (
               <section className="trip-day" key={day} aria-label={formatDayHeader(day)}>
                 <div className="trip-day__header">
@@ -297,13 +283,43 @@ export default function Trip() {
                 {overflow.length > 0 && (
                   <p className="trip-overflow">
                     {overflow.length} {overflow.length === 1 ? 'item doesn’t' : 'items don’t'} fit
-                    in this day before 9 p.m. Move something to another day or set times by hand.
+                    in this day before 9 p.m. Move something to another day, set times by hand, or
+                    resolve it in Review &amp; finalize below. Unresolved items land on the calendar
+                    as all-day events.
                   </p>
                 )}
               </section>
             )
           })
         )}
+
+        <div ref={reviewRef} style={{ scrollMarginTop: 24 }}>
+          <StepHeader n={3} title="Review & finalize" />
+          <button
+            type="button"
+            className="btn"
+            style={{ minHeight: 44 }}
+            disabled={itemCount === 0}
+            onClick={toggleReview}
+          >
+            {reviewOpen ? 'Hide review' : 'Finalize trip'}
+          </button>
+          {itemCount === 0 && (
+            <p className="trip-step__hint">
+              Add at least one stop or program first. The calendar events are built from your
+              days above.
+            </p>
+          )}
+          {reviewOpen && itemCount > 0 && (
+            <TripReview
+              slotted={slotted}
+              windowDays={windowDays}
+              exportResult={exportResult}
+              exporting={exporting}
+              onCreate={onCreateEvents}
+            />
+          )}
+        </div>
 
         <p style={{ marginTop: 40, fontFamily: 'var(--sans)', fontSize: 11, color: 'var(--ink-3)', lineHeight: 1.6 }}>
           Times are suggestions built from each stop's time budget plus a 30-minute travel buffer;
