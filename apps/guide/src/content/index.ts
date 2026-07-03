@@ -7,7 +7,7 @@ export type { StopT, Region, StopKind, SecretSpotT, EssentialTopicT, EssentialSe
 export { stops } from './stops'
 export { ESSENTIALS, ESSENTIALS_META } from './essentials'
 export { SECRET_SPOTS, SECRET_META, secretsLocked } from './secret-spots'
-export { SEASONAL_EVENTS, seasonalWindowsInRange, seasonalDaysInRange, seasonalToProgramEvent } from './seasonal'
+export { SEASONAL_EVENTS, seasonalWindowsInRange, seasonalDaysInRange, seasonalToProgramEvent, seasonalRangeLabel } from './seasonal'
 
 // Section headers for the /essentials list, in display order.
 export const ESSENTIAL_SECTIONS: { id: EssentialSectionT; title: string }[] = [

@@ -176,6 +176,27 @@
   }
 }
 
+/* Seasonal almanac windows — the "in season during your dates" cards. Same
+ * row anatomy as program rows, but the time column holds a date range. */
+.season-windows {
+  margin-bottom: 24px;
+}
+.season-windows .program-row summary {
+  grid-template-columns: 92px 1fr auto;
+}
+.season-windows .program-row__time {
+  white-space: normal;
+  line-height: 1.35;
+}
+.season-windows .program-row[open] .program-row__body {
+  margin-left: 104px;
+}
+@media (max-width: 480px) {
+  .season-windows .program-row[open] .program-row__body {
+    margin-left: 0;
+  }
+}
+
 .programs-empty {
   padding: 32px 0;
   font-family: var(--serif, Georgia, serif);
