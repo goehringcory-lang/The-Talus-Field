@@ -36,6 +36,12 @@ export const REGIONS: { id: Region; title: string; teaser: string }[] = [
     teaser:
       'The high country. Granite domes, alpine lakes, the meadow that turns the trip into something bigger than the valley. Tioga Road open roughly June through October.',
   },
+  {
+    id: 'hetch-hetchy',
+    title: 'Hetch Hetchy & the Evergreen Road corridor',
+    teaser:
+      'The other granite valley, half of it under a reservoir, with its own entrance and day-use gate hours. Open year-round and nearly empty.',
+  },
 ]
 
 export function getStopsByRegion(region: Region): StopT[] {

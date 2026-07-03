@@ -1,7 +1,7 @@
 import { z } from 'zod'
 import { ProgramCategory } from '../programs/schema'
 
-export const RegionEnum = z.enum(['valley', 'glacier-mariposa', 'tuolumne'])
+export const RegionEnum = z.enum(['valley', 'glacier-mariposa', 'tuolumne', 'hetch-hetchy'])
 export type Region = z.infer<typeof RegionEnum>
 
 export const StopKindEnum = z.enum([

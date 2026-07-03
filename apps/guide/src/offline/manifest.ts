@@ -38,6 +38,7 @@ const REGION_LABELS: Record<Region, string> = {
   valley: 'Yosemite Valley photos',
   'glacier-mariposa': 'Glacier Point & Mariposa photos',
   tuolumne: 'Tuolumne photos',
+  'hetch-hetchy': 'Hetch Hetchy photos',
 }
 
 // Display estimates. Photos: every responsive variant of a base image sums
@@ -63,7 +64,7 @@ export function buildPacks(): Pack[] {
   const mapPack: Pack = {
     id: 'park-map',
     label: 'Offline park map',
-    detail: 'Topo tiles for the whole park and the three road corridors',
+    detail: 'Topo tiles for the whole park and the road corridors',
     cacheName: TILES_CACHE,
     urls: tileUrls,
     approxBytes: tileUrls.length * TILE_BYTES,

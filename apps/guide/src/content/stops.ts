@@ -365,7 +365,7 @@ const seed: StopInput[] = [
     order: 5,
     kind: 'trailhead',
     photos: [{ src: '/photos/tuolumne-meadows.jpg', caption: 'Tuolumne high country — the landscape Cathedral Lakes sits in.' }],
-    coord: [-119.3829, 37.8732], // TODO: VERIFY URGENTLY — body says "new TH at visitor center" but the historical Cathedral Lakes TH is on Tioga Rd at -119.3829. Confirm whether NPS has actually relocated the trailhead before relying on this coord.
+    coord: [-119.3592, 37.8735], // TODO: verify — NPS relocated this trailhead to the Tuolumne Meadows Visitor Center parking in 2022 (Tioga Road Rehabilitation Project; roadside parking at the old TH was removed). Coord targets the visitor center lot; ground-truth before launch.
     elevationFt: 8560,
     timeBudgetMin: 360,
     body:
