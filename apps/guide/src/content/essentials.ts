@@ -17,6 +17,7 @@ const seed: EssentialInput[] = [
     id: 'before-you-go',
     title: 'Before you go: the night-before downloads',
     order: 0,
+    section: 'plan',
     teaser: 'Five downloads and checks to do on wifi the night before. Twenty minutes now buys a trip that works without signal.',
     body:
       'Most of the park has no usable cell service. Everything on this list works around that, and all of it has to happen **before** you lose signal, ideally the night before on hotel or home wifi.\n\n' +
@@ -39,6 +40,7 @@ const seed: EssentialInput[] = [
     id: 'entrances-and-reservations',
     title: 'Entrances, fees, and the reservation question',
     order: 1,
+    section: 'plan',
     teaser: 'Which gate you actually want, what it costs, and how to find out if you need a timed-entry reservation this year.',
     body:
       'Yosemite has five entrances and most visitors only ever hear about one of them.\n\n' +
@@ -49,7 +51,8 @@ const seed: EssentialInput[] = [
   {
     id: 'getting-around',
     title: 'Getting around: park once, ride the shuttle',
-    order: 2,
+    order: 20,
+    section: 'on-the-ground',
     teaser: 'The free valley shuttle, the one-way road system, and why moving your car after 9 a.m. is the mistake.',
     body:
       'The single biggest tactical decision of a valley day is where your car stops moving.\n\n' +
@@ -60,7 +63,8 @@ const seed: EssentialInput[] = [
   {
     id: 'bear-safety',
     title: 'Bears, and the food rules that are actually laws',
-    order: 3,
+    order: 40,
+    section: 'safety',
     teaser: 'Black bears, not grizzlies. What they want is your cooler, and the storage rules are enforced.',
     body:
       'Yosemite has black bears. There are no grizzlies in California and there have not been for about a century. A Yosemite black bear does not want you; it wants the granola bar in your daypack and the cooler in your back seat, and it is shockingly good at getting both.\n\n' +
@@ -74,7 +78,8 @@ const seed: EssentialInput[] = [
   {
     id: 'cell-coverage-offline',
     title: 'Cell coverage, and how this app behaves without it',
-    order: 4,
+    order: 21,
+    section: 'on-the-ground',
     teaser: 'Where service dies, why GPS still works, and the two downloads to do the night before.',
     body:
       'Plan on having no usable signal for most of your trip. There is some coverage around Yosemite Village and parts of the valley floor, and effectively none on the trails, on Glacier Point Road, and along most of Tioga Road. The gateway towns have normal service. In between, nothing you can count on.\n\n' +
@@ -87,7 +92,8 @@ const seed: EssentialInput[] = [
   {
     id: 'seasons-and-roads',
     title: 'What the seasons do to the roads and the falls',
-    order: 5,
+    order: 2,
+    section: 'plan',
     teaser: 'Tioga and Glacier Point close for half the year. The waterfalls keep a schedule too.',
     body:
       'The park you get depends almost entirely on when you come.\n\n' +
@@ -99,7 +105,8 @@ const seed: EssentialInput[] = [
   {
     id: 'packing-checklist',
     title: 'The packing checklist',
-    order: 6,
+    order: 60,
+    section: 'packing',
     teaser: 'Check items off in the app the night before. Seasonal items are marked.',
     body:
       'This is the dresser-top list, not an expedition manifest. It assumes day trips from a bed, not backpacking. Check things off below; the app remembers between visits.\n\n' +

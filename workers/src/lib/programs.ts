@@ -20,6 +20,7 @@ export const ProgramSource = z.enum([
   'aramark',      // Yosemite Hospitality / travelyosemite.com (manual curation)
   'astronomy',    // Glacier Point star parties etc. (manual curation)
   'manual',       // anything else curated by hand
+  'seasonal',     // bundled seasonal almanac in the PWA; the Worker never emits it
 ])
 export type ProgramSourceT = z.infer<typeof ProgramSource>
 

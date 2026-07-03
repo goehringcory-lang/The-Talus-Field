@@ -8,7 +8,7 @@
 
 import { z } from 'zod'
 
-export const ProgramSource = z.enum(['nps', 'conservancy', 'aramark', 'astronomy', 'manual'])
+export const ProgramSource = z.enum(['nps', 'conservancy', 'aramark', 'astronomy', 'manual', 'seasonal'])
 export type ProgramSourceT = z.infer<typeof ProgramSource>
 
 export const ProgramCategory = z.enum([
@@ -62,6 +62,7 @@ export const SOURCE_LABELS: Record<ProgramSourceT, string> = {
   aramark: 'Yosemite Hospitality',
   astronomy: 'Astronomy clubs',
   manual: 'Curated',
+  seasonal: 'Seasonal almanac',
 }
 
 export const CATEGORY_LABELS: Record<ProgramCategoryT, string> = {

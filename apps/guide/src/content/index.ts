@@ -1,12 +1,21 @@
 import { stops } from './stops'
 import { ESSENTIALS } from './essentials'
-import type { EssentialTopicT, Region, StopT } from './schema'
+import type { EssentialSectionT, EssentialTopicT, Region, StopT } from './schema'
 
-export { Stop, Stops, RegionEnum, StopKindEnum, SecretSpot, SecretSpots, EssentialTopic, EssentialTopics } from './schema'
-export type { StopT, Region, StopKind, SecretSpotT, EssentialTopicT } from './schema'
+export { Stop, Stops, RegionEnum, StopKindEnum, SecretSpot, SecretSpots, EssentialTopic, EssentialTopics, EssentialSection, SeasonalEvent, SeasonalEvents, SeasonalConfidence } from './schema'
+export type { StopT, Region, StopKind, SecretSpotT, EssentialTopicT, EssentialSectionT, SeasonalEventT, SeasonalConfidenceT } from './schema'
 export { stops } from './stops'
 export { ESSENTIALS, ESSENTIALS_META } from './essentials'
 export { SECRET_SPOTS, SECRET_META, secretsLocked } from './secret-spots'
+export { SEASONAL_EVENTS, seasonalWindowsInRange, seasonalDaysInRange, seasonalToProgramEvent } from './seasonal'
+
+// Section headers for the /essentials list, in display order.
+export const ESSENTIAL_SECTIONS: { id: EssentialSectionT; title: string }[] = [
+  { id: 'plan', title: 'Planning the trip' },
+  { id: 'on-the-ground', title: 'On the ground' },
+  { id: 'safety', title: 'Safety' },
+  { id: 'packing', title: 'Packing' },
+]
 
 export const REGIONS: { id: Region; title: string; teaser: string }[] = [
   {
