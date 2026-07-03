@@ -93,8 +93,10 @@ export default function Home() {
   const { session } = useAuth()
   const { ids: favoriteIds } = useFavorites()
   const { plan } = useTripPlan()
+  // Favorites can point at regular stops or secret spots; resolve both so a
+  // saved secret spot does not silently vanish from this list.
   const savedStops = favoriteIds
-    .map((id) => getStopById(id))
+    .map((id) => getStopById(id) ?? SECRET_SPOTS.find((s) => s.id === id))
     .filter((s): s is NonNullable<typeof s> => Boolean(s))
   const downloadedCount = PACK_IDS.filter((id) => isPackCompleted(id)).length
 
@@ -175,7 +177,10 @@ export default function Home() {
             <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'grid', gap: 8 }}>
               {savedStops.map((stop) => (
                 <li key={stop.id}>
-                  <Link to={`/stop/${stop.id}`} style={{ fontFamily: 'var(--display)', fontSize: 18 }}>
+                  <Link
+                    to={getStopById(stop.id) ? `/stop/${stop.id}` : '/secret-spots'}
+                    style={{ fontFamily: 'var(--display)', fontSize: 18 }}
+                  >
                     {stop.title} →
                   </Link>
                 </li>
