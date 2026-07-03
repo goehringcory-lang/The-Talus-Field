@@ -16,3 +16,22 @@ export function addDaysIso(date: string, days: number): string {
   d.setUTCDate(d.getUTCDate() + days)
   return d.toISOString().slice(0, 10)
 }
+
+/** "Tuesday, July 14" for a YYYY-MM-DD date (calendar date, timezone-safe). */
+export function formatDayHeader(date: string): string {
+  return new Date(`${date}T12:00:00Z`).toLocaleDateString('en-US', {
+    weekday: 'long',
+    month: 'long',
+    day: 'numeric',
+    timeZone: 'UTC',
+  })
+}
+
+/** "9:30 a.m." for minutes from midnight, house style. */
+export function formatClock(minutes: number): string {
+  const h = Math.floor(minutes / 60)
+  const m = minutes % 60
+  const ampm = h >= 12 ? 'p.m.' : 'a.m.'
+  const hour12 = h % 12 === 0 ? 12 : h % 12
+  return m === 0 ? `${hour12} ${ampm}` : `${hour12}:${String(m).padStart(2, '0')} ${ampm}`
+}

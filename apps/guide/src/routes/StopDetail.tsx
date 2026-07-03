@@ -3,6 +3,7 @@ import { getRegionMeta, getStopById, getStopsByRegion } from '../content'
 import GatedChrome from '../components/GatedChrome'
 import StopCard from '../components/StopCard'
 import { directionsUrl } from '../map/kinds'
+import { announceTripAdd } from '../trip/addFeedback'
 import { useTripPlan } from '../trip/useTripPlan'
 
 export default function StopDetail() {
@@ -52,7 +53,10 @@ export default function StopDetail() {
               type="button"
               className="btn"
               style={{ minHeight: 44 }}
-              onClick={() => addStop(stop.id)}
+              onClick={() => {
+                addStop(stop.id)
+                announceTripAdd(stop.title)
+              }}
             >
               Add to trip
             </button>

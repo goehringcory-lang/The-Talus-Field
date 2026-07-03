@@ -26,6 +26,7 @@ import {
   type ItineraryKey,
 } from '../content/itineraries'
 import { KIND_STYLES, buildPinElement, directionsUrl, getKindStyle } from '../map/kinds'
+import { announceTripAdd } from '../trip/addFeedback'
 import { addStopToPlan, isStopPlanned } from '../trip/useTripPlan'
 import { buildMapStyle } from '../map/style'
 import { isPackCompleted } from '../offline/useDownloads'
@@ -126,7 +127,10 @@ function buildPopupContent(stop: StopT, onOpenStop: (id: string) => void): HTMLE
   addTrip.className = 'map-popup__btn'
   addTrip.textContent = isStopPlanned(stop.id) ? 'In trip ✓' : 'Add to trip'
   addTrip.addEventListener('click', () => {
-    addStopToPlan(stop.id)
+    if (!isStopPlanned(stop.id)) {
+      addStopToPlan(stop.id)
+      announceTripAdd(stop.title)
+    }
     addTrip.textContent = 'In trip ✓'
   })
   actions.appendChild(addTrip)

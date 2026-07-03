@@ -1,8 +1,10 @@
 // =============================================================================
-// ICS generation, hand-rolled and dependency-free. One VEVENT per slotted
-// trip item, local Pacific times via a static VTIMEZONE block (DST-proof;
-// Google Calendar and Apple Calendar both import TZID-scoped local times
-// correctly). Stable UIDs mean a re-import updates events in place instead
+// ICS generation, hand-rolled and dependency-free. One VEVENT per trip item:
+// slotted items get local Pacific times via a static VTIMEZONE block, items
+// without a slot (untimed programs, day overflow) become all-day events
+// rather than being dropped. Local times are DST-proof, and Google Calendar
+// and Apple Calendar both import TZID-scoped local times correctly.
+// Stable UIDs mean a re-import updates events in place instead
 // of duplicating them. Runs entirely client-side, so export works offline.
 // =============================================================================
 
@@ -89,7 +91,7 @@ function coordText(coord: [number, number]): string {
   return `(${lat.toFixed(5)}, ${lng.toFixed(5)})`
 }
 
-type EventFields = {
+export type EventFields = {
   uid: string
   summary: string
   description: string
@@ -97,13 +99,17 @@ type EventFields = {
   coord?: [number, number]
   url?: string
   day: string
-  startMin: number
+  startMin: number | null // null = exported as an all-day event
   durationMin: number
+  allDay: boolean
 }
 
-function toFields(slotted: SlottedItem): EventFields | null {
-  if (slotted.startMin === null) return null
+// The review panel renders from these same fields, so what the user confirms
+// is what the .ics contains. Returns null only when a stop id no longer
+// resolves against the bundled content.
+export function slottedToEventFields(slotted: SlottedItem): EventFields | null {
   const { item } = slotted
+  const allDay = slotted.startMin === null
   if (item.type === 'stop') {
     const stop = getStopById(item.stopId)
     if (!stop) return null
@@ -116,13 +122,19 @@ function toFields(slotted: SlottedItem): EventFields | null {
         `https://guide.${UID_DOMAIN}/stop/${stop.id}` +
         // Google Calendar mostly drops the URL property on import, so the
         // directions deeplink rides in the description too.
-        (stop.coord ? `\n\nDirections: ${directionsUrl(stop.coord)}` : ''),
+        (stop.coord ? `\n\nDirections: ${directionsUrl(stop.coord)}` : '') +
+        // A stop only lands here without a slot when the day overflowed;
+        // say so in the event rather than silently shipping an all-day block.
+        (allDay
+          ? "\n\nUnscheduled: this didn't fit the day's timeline. Pick a time in the Field Guide trip planner."
+          : ''),
       location: `${stop.title}, Yosemite National Park${stop.coord ? ` ${coordText(stop.coord)}` : ''}`,
       coord: stop.coord,
       url: stop.coord ? directionsUrl(stop.coord) : undefined,
       day: slotted.day,
       startMin: slotted.startMin,
       durationMin: slotted.durationMin,
+      allDay,
     }
   }
   const ev = item.snapshot
@@ -146,6 +158,7 @@ function toFields(slotted: SlottedItem): EventFields | null {
     day: slotted.day,
     startMin: slotted.startMin,
     durationMin: slotted.durationMin,
+    allDay,
   }
 }
 
@@ -165,16 +178,24 @@ export function buildTripIcs(slottedByDay: Map<string, SlottedItem[]>): string {
 
   for (const slottedItems of slottedByDay.values()) {
     for (const slotted of slottedItems) {
-      const f = toFields(slotted)
+      const f = slottedToEventFields(slotted)
       if (!f) continue
-      lines.push(
-        'BEGIN:VEVENT',
-        `UID:${f.uid}`,
-        `DTSTAMP:${now}`,
-        `DTSTART;TZID=${TZID}:${dtLocal(f.day, f.startMin)}`,
-        `DTEND;TZID=${TZID}:${dtLocal(f.day, f.startMin + f.durationMin)}`,
-        `SUMMARY:${esc(f.summary)}`,
-      )
+      lines.push('BEGIN:VEVENT', `UID:${f.uid}`, `DTSTAMP:${now}`)
+      if (f.startMin === null) {
+        // No slot (untimed program, or a stop the day couldn't fit): an
+        // all-day event keeps it on the calendar instead of dropping it.
+        // DTEND is exclusive, so all-day means [day, day+1).
+        lines.push(
+          `DTSTART;VALUE=DATE:${f.day.replace(/-/g, '')}`,
+          `DTEND;VALUE=DATE:${addDays(f.day, 1).replace(/-/g, '')}`,
+        )
+      } else {
+        lines.push(
+          `DTSTART;TZID=${TZID}:${dtLocal(f.day, f.startMin)}`,
+          `DTEND;TZID=${TZID}:${dtLocal(f.day, f.startMin + f.durationMin)}`,
+        )
+      }
+      lines.push(`SUMMARY:${esc(f.summary)}`)
       if (f.location) lines.push(`LOCATION:${esc(f.location)}`)
       if (f.coord) {
         const [lng, lat] = f.coord
