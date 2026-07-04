@@ -6,8 +6,12 @@
 .map-page {
   display: flex;
   flex-direction: column;
-  /* 56px GatedChrome header + approx 32px online notice */
-  height: calc(100vh - 56px - 32px);
+  /* Subtract only the chrome OUTSIDE this element: the sticky GatedChrome
+   * header (~46px) and the fixed bottom nav (56px + safe area). The online
+   * notice and tab bar are flex children of .map-page, so they take their
+   * space from the interior — subtracting them here would leave a dead gap
+   * above the bottom nav. */
+  height: calc(100dvh - 46px - 56px - env(safe-area-inset-bottom));
   min-height: 480px;
 }
 
@@ -438,13 +442,17 @@
   border-radius: 3px;
 }
 
-/* Mobile: account for bottom nav (56px) and safe area in map height */
-@media (max-width: 720px) {
+/* Mobile: the GatedChrome header hides at <=640px (tokens.css), so stop
+ * subtracting it there. This breakpoint must match the header's own, or the
+ * 641–720px band renders a header no height rule accounts for. */
+@media (max-width: 640px) {
   .map-page {
-    /* GatedChrome header hidden on <=640px; subtract notice bar + bottom nav + safe area */
-    height: calc(100dvh - 32px - 44px - 56px - env(safe-area-inset-bottom));
+    height: calc(100dvh - 56px - env(safe-area-inset-bottom));
   }
+}
 
+/* Compact pane layout for narrow-ish screens. */
+@media (max-width: 720px) {
   .map-pane--itineraries {
     bottom: auto;
     right: 12px;

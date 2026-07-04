@@ -14,7 +14,7 @@
 // =============================================================================
 
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import maplibregl from 'maplibre-gl'
 import 'maplibre-gl/dist/maplibre-gl.css'
 import GatedChrome from '../components/GatedChrome'
@@ -162,7 +162,17 @@ export default function Map() {
   const initial = useMemo(() => readUrlState(), [])
   const [tab, setTab] = useState<Tab>(initial.tab)
   const [selectedItinerary, setSelectedItinerary] = useState<ItineraryKey | null>(initial.itinerary)
-  const [selectedStopId, setSelectedStopId] = useState<string | null>(initial.stop)
+  // Selection carries a nonce: the popup closes on map click / its X button
+  // without clearing state, so re-selecting the same stop must still re-run
+  // the selection effect — a bare id would bail out on the same-value set.
+  const [selection, setSelection] = useState<{ id: string | null; nonce: number }>({
+    id: initial.stop,
+    nonce: 0,
+  })
+  const selectedStopId = selection.id
+  const selectStop = useCallback((id: string | null) => {
+    setSelection((prev) => ({ id, nonce: prev.nonce + 1 }))
+  }, [])
 
   // Only stops with a coord can be mapped.
   const mappableStops = useMemo<StopT[]>(() => allStops.filter((s) => !!s.coord), [])
@@ -181,17 +191,25 @@ export default function Map() {
     writeUrlState({ tab, itinerary: selectedItinerary, stop: selectedStopId })
   }, [tab, selectedItinerary, selectedStopId])
 
-  // Restore from URL on browser back/forward.
+  // Restore from URL on every router navigation: back/forward (the router
+  // owns popstate) and bottom-nav "Map" re-taps that push a bare /map over a
+  // replaceState'd ?tab=… URL. The component doesn't remount for either, so
+  // pane state must follow the address bar or the two silently diverge.
+  const location = useLocation()
   useEffect(() => {
-    const onPop = () => {
+    // Deferred so no state update runs synchronously inside the effect body.
+    let cancelled = false
+    Promise.resolve().then(() => {
+      if (cancelled) return
       const next = readUrlState()
       setTab(next.tab)
       setSelectedItinerary(next.itinerary)
-      setSelectedStopId(next.stop)
+      selectStop(next.stop)
+    })
+    return () => {
+      cancelled = true
     }
-    window.addEventListener('popstate', onPop)
-    return () => window.removeEventListener('popstate', onPop)
-  }, [])
+  }, [location.key, selectStop])
 
   const openStop = useCallback(
     (id: string) => {
@@ -255,7 +273,7 @@ export default function Map() {
       bounds.extend([lng, lat])
 
       const el = buildPinElement(stop.kind)
-      el.addEventListener('click', () => setSelectedStopId(stop.id))
+      el.addEventListener('click', () => selectStop(stop.id))
       const marker = new maplibregl.Marker({ element: el, anchor: 'bottom' })
         .setLngLat([lng, lat])
         .addTo(map)
@@ -263,34 +281,40 @@ export default function Map() {
     }
 
     map.fitBounds(bounds, { padding: 48, maxZoom: 12, animate: false })
-  }, [visibleStops, mapReady])
+  }, [visibleStops, mapReady, selectStop])
 
-  // Selection effect — pan/zoom + open popup when selectedStopId changes.
+  // Selection effect — pan/zoom + open popup when the selection changes.
   useEffect(() => {
-    if (!mapReady || !selectedStopId) return
+    if (!mapReady || !selection.id) return
     const map = mapRef.current
-    const marker = markersRef.current[selectedStopId]
+    const marker = markersRef.current[selection.id]
     const popup = popupRef.current
-    const stop = getStopById(selectedStopId)
+    const stop = getStopById(selection.id)
     if (!map || !marker || !popup || !stop) return
 
     const lngLat = marker.getLngLat()
     map.easeTo({ center: lngLat, zoom: Math.max(map.getZoom(), 13) })
     popup.setLngLat(lngLat).setDOMContent(buildPopupContent(stop, openStop)).addTo(map)
-  }, [selectedStopId, mapReady, visibleStops, openStop])
+  }, [selection, mapReady, visibleStops, openStop])
 
   const handleTab = useCallback((next: Tab) => {
     setTab(next)
   }, [])
 
-  const handleSelectItinerary = useCallback((key: ItineraryKey | null) => {
-    setSelectedItinerary(key)
-    setSelectedStopId(null)
-  }, [])
+  const handleSelectItinerary = useCallback(
+    (key: ItineraryKey | null) => {
+      setSelectedItinerary(key)
+      selectStop(null)
+    },
+    [selectStop],
+  )
 
-  const handleSelectStop = useCallback((id: string) => {
-    setSelectedStopId(id)
-  }, [])
+  const handleSelectStop = useCallback(
+    (id: string) => {
+      selectStop(id)
+    },
+    [selectStop],
+  )
 
   // Counts for the itinerary buttons, derived live.
   const counts = useMemo(() => {

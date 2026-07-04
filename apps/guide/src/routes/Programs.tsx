@@ -13,9 +13,10 @@ import GatedChrome from '../components/GatedChrome'
 import { announceTripAdd } from '../trip/addFeedback'
 import { programItemId } from '../trip/schema'
 import { useTripPlan } from '../trip/useTripPlan'
-import { addDaysIso, formatDayHeader, todayIso } from '../utils/date'
+import { addDaysIso, formatDayHeader } from '../utils/date'
 import {
   MAX_SPAN_DAYS,
+  defaultTripDates,
   readTripDates,
   usePrograms,
   writeTripDates,
@@ -64,8 +65,9 @@ function relativeTime(iso: string): string {
 
 export default function Programs() {
   const stored = readTripDates()
-  const [start, setStart] = useState(stored?.start ?? todayIso())
-  const [end, setEnd] = useState(stored?.end ?? addDaysIso(todayIso(), 4))
+  const defaults = useMemo(() => defaultTripDates(), [])
+  const [start, setStart] = useState(stored?.start ?? defaults.start)
+  const [end, setEnd] = useState(stored?.end ?? defaults.end)
   const [categoryFilter, setCategoryFilter] = useState<ProgramCategoryT | null>(null)
   const [sourceFilter, setSourceFilter] = useState<ProgramSourceT | null>(null)
   const { addProgram, hasItem } = useTripPlan()
@@ -78,10 +80,15 @@ export default function Programs() {
 
   function updateDates(nextStart: string, nextEnd: string) {
     setStart(nextStart)
-    // Clamp the window so it stays inside what the API will answer.
+    // Clamp the window so it stays inside what the API will answer. Only when
+    // the start is a real date: clearing the picker fires onChange with '',
+    // and addDaysIso('') throws on Invalid Date.
     let boundedEnd = nextEnd
-    if (nextEnd < nextStart) boundedEnd = nextStart
-    if (nextEnd > addDaysIso(nextStart, MAX_SPAN_DAYS)) boundedEnd = addDaysIso(nextStart, MAX_SPAN_DAYS)
+    if (/^\d{4}-\d{2}-\d{2}$/.test(nextStart)) {
+      if (nextEnd < nextStart) boundedEnd = nextStart
+      const maxEnd = addDaysIso(nextStart, MAX_SPAN_DAYS)
+      if (boundedEnd > maxEnd) boundedEnd = maxEnd
+    }
     setEnd(boundedEnd)
     if (/^\d{4}-\d{2}-\d{2}$/.test(nextStart) && /^\d{4}-\d{2}-\d{2}$/.test(boundedEnd)) {
       writeTripDates({ start: nextStart, end: boundedEnd })
@@ -114,14 +121,31 @@ export default function Programs() {
     })
   }, [events, seasonalDays])
 
+  // Only offer chips for values present in the window; a row of dead filters
+  // is noise.
+  const presentCategories = useMemo(
+    () => [...new Set(allEvents.map((ev) => ev.category))],
+    [allEvents],
+  )
+  const presentSources = useMemo(() => [...new Set(allEvents.map((ev) => ev.source))], [allEvents])
+
+  // A stored filter whose value vanished from the window (dates changed)
+  // would hide its own chip while still filtering everything out — a dead-end
+  // "Nothing matches" with no visible control to clear it. Ignore such a
+  // filter instead of applying it; it re-applies if the value comes back.
+  const effectiveCategory =
+    categoryFilter && presentCategories.includes(categoryFilter) ? categoryFilter : null
+  const effectiveSource =
+    sourceFilter && presentSources.includes(sourceFilter) ? sourceFilter : null
+
   const filtered = useMemo(
     () =>
       allEvents.filter(
         (ev) =>
-          (!categoryFilter || ev.category === categoryFilter) &&
-          (!sourceFilter || ev.source === sourceFilter),
+          (!effectiveCategory || ev.category === effectiveCategory) &&
+          (!effectiveSource || ev.source === effectiveSource),
       ),
-    [allEvents, categoryFilter, sourceFilter],
+    [allEvents, effectiveCategory, effectiveSource],
   )
 
   const byDay = useMemo(() => {
@@ -133,14 +157,6 @@ export default function Programs() {
     }
     return [...map.entries()]
   }, [filtered])
-
-  // Only offer chips for values present in the window; a row of dead filters
-  // is noise.
-  const presentCategories = useMemo(
-    () => [...new Set(allEvents.map((ev) => ev.category))],
-    [allEvents],
-  )
-  const presentSources = useMemo(() => [...new Set(allEvents.map((ev) => ev.source))], [allEvents])
 
   const syncedStale = isOlderThanDays(syncedAt, 7)
   const showStaleWarning = offline || syncedStale || (coverage !== 'full' && events.length > 0)
@@ -297,8 +313,8 @@ export default function Programs() {
                 key={cat}
                 type="button"
                 className="programs-chip"
-                aria-pressed={categoryFilter === cat}
-                onClick={() => setCategoryFilter(categoryFilter === cat ? null : cat)}
+                aria-pressed={effectiveCategory === cat}
+                onClick={() => setCategoryFilter(effectiveCategory === cat ? null : cat)}
               >
                 {CATEGORY_LABELS[cat]}
               </button>
@@ -309,8 +325,8 @@ export default function Programs() {
                   key={src}
                   type="button"
                   className="programs-chip"
-                  aria-pressed={sourceFilter === src}
-                  onClick={() => setSourceFilter(sourceFilter === src ? null : src)}
+                  aria-pressed={effectiveSource === src}
+                  onClick={() => setSourceFilter(effectiveSource === src ? null : src)}
                 >
                   {SOURCE_LABELS[src]}
                 </button>

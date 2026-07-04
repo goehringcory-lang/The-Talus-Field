@@ -7,23 +7,35 @@ import { useCallback, useEffect, useState } from 'react'
 const STORAGE_KEY = 'tfg.favorites'
 const subscribers = new Set<() => void>()
 
-function read(): string[] {
+// In-memory copy is authoritative within the session. Without it, a failed
+// setItem (quota, storage-denied context) silently reverts the star on the
+// next read even though the tap "worked" — persistence is best-effort, the
+// visible state must not be.
+let memIds: string[] | null = null
+
+function readStorage(): string[] | null {
   try {
     const raw = window.localStorage.getItem(STORAGE_KEY)
-    if (!raw) return []
+    if (!raw) return null
     const parsed: unknown = JSON.parse(raw)
     if (Array.isArray(parsed)) return parsed.filter((x): x is string => typeof x === 'string')
   } catch {
     /* unreadable storage reads as no favorites */
   }
-  return []
+  return null
+}
+
+function read(): string[] {
+  if (memIds === null) memIds = readStorage() ?? []
+  return memIds
 }
 
 function write(ids: string[]) {
+  memIds = ids
   try {
     window.localStorage.setItem(STORAGE_KEY, JSON.stringify(ids))
   } catch {
-    /* non-fatal: the toggle just won't persist */
+    /* non-fatal: the toggle just won't persist past this session */
   }
   for (const fn of subscribers) fn()
 }
@@ -34,9 +46,13 @@ export function useFavorites() {
   useEffect(() => {
     const refresh = () => setIds(read())
     subscribers.add(refresh)
-    // Cross-tab sync.
+    // Cross-tab sync. The other tab's write is the fresher truth, so it
+    // replaces the in-memory copy before subscribers re-read.
     const onStorage = (e: StorageEvent) => {
-      if (e.key === STORAGE_KEY) refresh()
+      if (e.key === STORAGE_KEY) {
+        memIds = readStorage() ?? []
+        refresh()
+      }
     }
     window.addEventListener('storage', onStorage)
     return () => {

@@ -6,9 +6,8 @@
 // =============================================================================
 
 import { useCallback, useEffect, useState } from 'react'
-import { readTripDates, writeTripDates } from '../programs/usePrograms'
+import { defaultTripDates, readTripDates, writeTripDates } from '../programs/usePrograms'
 import type { ProgramEventT } from '../programs/schema'
-import { todayIso } from '../utils/date'
 import {
   TripPlan,
   programItemId,
@@ -21,27 +20,44 @@ const STORAGE_KEY = 'tfg.trip.plan'
 const subscribers = new Set<() => void>()
 
 function emptyPlan(): TripPlanT {
-  const dates = readTripDates() ?? { start: todayIso(), end: todayIso() }
+  // Same fallback window /programs renders, so a program added there before
+  // the user ever touched the date pickers lands inside the plan's dates.
+  const dates = readTripDates() ?? defaultTripDates()
   return { version: 1, dates, items: [], updatedAt: new Date(0).toISOString() }
 }
 
-function read(): TripPlanT {
+// In-memory copy is authoritative within the session. Without it, a failed
+// setItem (quota, storage-denied context) makes the next read() revert to the
+// stored plan while the "Added to trip" toast is still on screen. An
+// emptyPlan() derived when nothing is stored is deliberately NOT cached: its
+// dates come from tfg.trip.dates, which /programs may write later.
+let memPlan: TripPlanT | null = null
+
+function readStorage(): TripPlanT | null {
   try {
     const raw = window.localStorage.getItem(STORAGE_KEY)
-    if (!raw) return emptyPlan()
+    if (!raw) return null
     const parsed = TripPlan.safeParse(JSON.parse(raw))
     if (parsed.success) return parsed.data
   } catch {
-    /* fall through */
+    /* corrupt storage drops to an empty plan */
   }
-  return emptyPlan()
+  return null
+}
+
+function read(): TripPlanT {
+  if (memPlan) return memPlan
+  const stored = readStorage()
+  if (stored) memPlan = stored
+  return stored ?? emptyPlan()
 }
 
 function write(plan: TripPlanT) {
+  memPlan = plan
   try {
     window.localStorage.setItem(STORAGE_KEY, JSON.stringify(plan))
   } catch {
-    /* non-fatal: the plan just won't persist */
+    /* non-fatal: the plan just won't persist past this session */
   }
   for (const fn of subscribers) fn()
 }
@@ -63,8 +79,12 @@ export function useTripPlan() {
   useEffect(() => {
     const refresh = () => setPlan(read())
     subscribers.add(refresh)
+    // Cross-tab sync: the other tab's write replaces the in-memory copy.
     const onStorage = (e: StorageEvent) => {
-      if (e.key === STORAGE_KEY) refresh()
+      if (e.key === STORAGE_KEY) {
+        memPlan = readStorage()
+        refresh()
+      }
     }
     window.addEventListener('storage', onStorage)
     return () => {
