@@ -25,10 +25,38 @@ import sharp from "sharp";
 const ROOT = path.resolve(fileURLToPath(import.meta.url), "../..");
 
 // Directories whose JPEGs get responsive variants. Output lands in `<dir>/responsive/`.
+// `ogCards: true` additionally emits a `<slug>-og.jpg` social-card variant
+// (upscaled to OG_MIN_WIDTH) for sources too small for scrapers' 1200px
+// preference — editorial img/ only; the PWA photos never ship as og:image.
 const TARGET_DIRS = [
-  path.join(ROOT, "img"),
-  path.join(ROOT, "apps/guide/public/photos"),
+  { dir: path.join(ROOT, "img"), ogCards: true },
+  { dir: path.join(ROOT, "apps/guide/public/photos"), ogCards: false },
 ];
+
+// Social scrapers (Facebook, Twitter/X, LinkedIn, Slack) want og:image at
+// least 1200px wide for a full-bleed card. Sources below that get a dedicated
+// upscaled -og.jpg used ONLY as og:image; the displayed srcset variants are
+// never upscaled.
+const OG_MIN_WIDTH = 1200;
+
+// Per-source crop position overrides for the portrait→1200x630 og cards,
+// keyed by slugified basename. Default is a center crop; add an entry here
+// when the photo's subject sits away from the vertical center (verify the
+// output visually after changing).
+const OG_CROP_POSITION = {
+  "lower-yosemite-fall": "top",
+};
+
+// The sitewide default social card: a 1200x630 (the canonical 1.91:1 og ratio)
+// center crop of a landscape Half Dome source. Referenced by index.html,
+// app.jsx, and functions/_middleware.js as the og:image for every non-article
+// route. Regenerated only when the source is newer.
+const DEFAULT_OG_CARD = {
+  source: path.join(ROOT, "img/half-dome-alpenglow-madhu-shesharam.jpg"),
+  out: path.join(ROOT, "img/og-default.jpg"),
+  width: 1200,
+  height: 630,
+};
 
 const WIDTHS = [400, 800, 1200, 1600];
 
@@ -56,7 +84,7 @@ async function newerThan(a, b) {
   return sa.mtimeMs > sb.mtimeMs;
 }
 
-async function processDir(dir) {
+async function processDir(dir, ogCards) {
   if (!existsSync(dir)) return { dir, made: 0, skipped: 0, sources: 0 };
   const outDir = path.join(dir, "responsive");
   await mkdir(outDir, { recursive: true });
@@ -68,6 +96,9 @@ async function processDir(dir) {
   for (const file of entries) {
     const srcPath = path.join(dir, file);
     const slug = slugify(file);
+    // og-default.jpg is itself a generated social card (see DEFAULT_OG_CARD);
+    // it is never rendered in-page, so it needs no srcset variants.
+    if (slug === "og-default") continue;
     const meta = await sharp(srcPath).metadata();
     const srcWidth = meta.width || Math.max(...WIDTHS);
 
@@ -90,21 +121,61 @@ async function processDir(dir) {
         made++;
       }
     }
+
+    // Social-card variant: sources that make a bad og:image also get a
+    // <slug>-og.jpg. Used only as og:image (see scripts/lib/catalog.mjs
+    // ogImageFor), never in the displayed srcset. Two cases:
+    //   - portrait sources → 1200x630 saliency crop (scrapers center-crop
+    //     extreme portrait images unpredictably; every major platform wants
+    //     ~1.91:1)
+    //   - narrow landscape sources (< OG_MIN_WIDTH) → upscaled to 1200 wide
+    const portrait = (meta.height || 0) > srcWidth;
+    if (ogCards && (portrait || srcWidth < OG_MIN_WIDTH)) {
+      const ogPath = path.join(outDir, `${slug}-og.jpg`);
+      if (await newerThan(srcPath, ogPath)) {
+        const resize = portrait
+          ? { width: OG_MIN_WIDTH, height: 630, fit: "cover", position: OG_CROP_POSITION[slug] || "centre" }
+          : { width: OG_MIN_WIDTH };
+        await sharp(srcPath)
+          .resize(resize)
+          .jpeg({ quality: 78, mozjpeg: true })
+          .toFile(ogPath);
+        made++;
+      } else {
+        skipped++;
+      }
+    }
   }
 
   return { dir: path.relative(ROOT, dir), made, skipped, sources: entries.length };
 }
 
+async function makeDefaultOgCard() {
+  const { source, out, width, height } = DEFAULT_OG_CARD;
+  if (!existsSync(source)) {
+    console.error(`default og card source missing: ${path.relative(ROOT, source)}`);
+    process.exit(1);
+  }
+  if (!(await newerThan(source, out))) return false;
+  await sharp(source)
+    .resize({ width, height, fit: "cover" })
+    .jpeg({ quality: 78, mozjpeg: true })
+    .toFile(out);
+  return true;
+}
+
 async function main() {
   console.log("Generating responsive image variants...\n");
-  for (const dir of TARGET_DIRS) {
-    const r = await processDir(dir);
+  for (const { dir, ogCards } of TARGET_DIRS) {
+    const r = await processDir(dir, ogCards);
     console.log(
       `  ${r.dir.padEnd(28)} sources: ${String(r.sources).padStart(3)}  written: ${String(
         r.made
       ).padStart(4)}  up-to-date: ${String(r.skipped).padStart(4)}`
     );
   }
+  const wroteCard = await makeDefaultOgCard();
+  console.log(`  ${"img/og-default.jpg".padEnd(28)} ${wroteCard ? "written" : "up-to-date"}`);
   console.log("\nDone. Variants live in each directory's responsive/ subfolder.");
 }
 

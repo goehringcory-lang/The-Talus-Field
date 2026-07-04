@@ -62,6 +62,7 @@ export default async function checkSeo() {
     } else if (a.ogImage) {
       if (!a.ogImage.width || !a.ogImage.height) check.warn(`${id}: og:image missing width/height`);
       else if (a.ogImage.width < 1200) check.warn(`${id}: og:image width ${a.ogImage.width}px is small for a social card`);
+      else if (a.ogImage.height > a.ogImage.width) check.warn(`${id}: og:image is portrait (${a.ogImage.width}x${a.ogImage.height}); scrapers crop these badly — run npm run images for a landscape og card`);
     } else {
       check.warn(`${id}: no ogImage variant; falling back to source image ${img}`);
     }

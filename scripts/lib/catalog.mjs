@@ -109,25 +109,34 @@ export function slugify(basename) {
 
 // Resolve the social-share image for an article: prefer the pre-generated 1600px
 // responsive JPEG variant (slug-named, a few hundred KB) over the source JPEG
-// (which can be many MB). Returns { url, width, height } with real pixel
+// (which can be many MB). Sources that make a bad card — narrower than 1200px,
+// or portrait (scrapers center-crop extreme portrait images unpredictably) —
+// fall back to the dedicated <slug>-og.jpg card emitted by
+// gen-responsive-images.mjs (1200px-wide upscale, or a 1200x630 crop for
+// portrait sources). Returns { url, width, height } with real pixel
 // dimensions, or null for external/missing images.
+const OG_CARD_MIN_WIDTH = 1200;
+
 export async function ogImageFor(art) {
   const img = art.image;
   if (!img || /^https?:/i.test(img)) return null;
-  const variant = `img/responsive/${slugify(path.basename(img))}-1600.jpg`;
-  const variantPath = path.join(ROOT, variant);
-  let url, filePath;
-  if (existsSync(variantPath)) {
-    url = variant;
-    filePath = variantPath;
-  } else {
-    url = img.replace(/^\/+/, "");
-    filePath = path.join(ROOT, url);
+  const base = slugify(path.basename(img));
+  // In preference order: the real-pixel 1600 variant, the generated og card
+  // (wins when the source is sub-1200px or portrait), the raw source.
+  const candidates = [
+    `img/responsive/${base}-1600.jpg`,
+    `img/responsive/${base}-og.jpg`,
+    img.replace(/^\/+/, ""),
+  ].filter((rel) => existsSync(path.join(ROOT, rel)));
+  let fallback = null;
+  for (const rel of candidates) {
+    const meta = await sharp(path.join(ROOT, rel)).metadata();
+    if (!meta.width || !meta.height) continue;
+    const resolved = { url: rel, width: meta.width, height: meta.height };
+    if (meta.width >= OG_CARD_MIN_WIDTH && meta.width > meta.height) return resolved;
+    if (!fallback) fallback = resolved;
   }
-  if (!existsSync(filePath)) return null;
-  const meta = await sharp(filePath).metadata();
-  if (!meta.width || !meta.height) return null;
-  return { url, width: meta.width, height: meta.height };
+  return fallback;
 }
 
 // The canonical set of internal paths the site is expected to serve: static

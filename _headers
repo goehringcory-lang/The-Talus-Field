@@ -48,6 +48,18 @@
 /*.jsx
   Cache-Control: public, max-age=300, stale-while-revalidate=600
 
+# Precompiled page scripts under /dist load with the same explicit ?v=N
+# query strings as the jsx sources; same rationale as /*.jsx above. Without
+# this rule they fall through to /* and revalidate on every page load.
+/dist/*
+  Cache-Control: public, max-age=300, stale-while-revalidate=600
+
+# Prerendered article prose fragments are fetched by functions/_middleware.js
+# and injected into each article's HTML. The raw fragment URLs are duplicate
+# content and must never be indexed on their own.
+/prerender/*
+  X-Robots-Tag: noindex
+
 # IndexNow ownership key file. Served as plain text per the IndexNow
 # protocol so Bing/Yandex/Seznam can verify and accept URL submissions.
 /a1c4a884dc3d1469bbe8aaa26caa7a87.txt
