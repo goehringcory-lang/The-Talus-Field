@@ -1,7 +1,8 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useAuth } from '../auth/useAuth'
-import { ESSENTIALS, ESSENTIALS_META, REGIONS, SECRET_META, SECRET_SPOTS, getStopById, getStopsByRegion, secretsLocked } from '../content'
+import { ESSENTIALS, ESSENTIALS_META, REGIONS, SEASONAL_EVENTS, SECRET_META, SECRET_SPOTS, getStopById, getStopsByRegion, seasonalRangeLabel, secretsLocked } from '../content'
+import { todayIso } from '../utils/date'
 import { useFavorites } from '../lib/favorites'
 import { isPackCompleted } from '../offline/useDownloads'
 import { useTripPlan } from '../trip/useTripPlan'
@@ -63,12 +64,39 @@ function BeforeYouGoNudge() {
   )
 }
 
+// Up to three active or upcoming almanac entries, so the seasonal layer is
+// discoverable from the front page. The full agenda lives on /programs.
+function InSeasonStrip() {
+  const today = todayIso()
+  const upcoming = SEASONAL_EVENTS.filter((ev) => ev.dateEnd >= today).slice(0, 3)
+  if (upcoming.length === 0) return null
+  return (
+    <section aria-label="In season" style={{ marginTop: 28 }}>
+      <div className="eyebrow" style={{ marginBottom: 10 }}>In season</div>
+      <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'grid', gap: 8 }}>
+        {upcoming.map((ev) => (
+          <li key={ev.id} style={{ fontFamily: 'var(--serif)', fontSize: 14, lineHeight: 1.5 }}>
+            <span style={{ color: 'var(--ink-3)' }}>{seasonalRangeLabel(ev)} · </span>
+            {ev.title}
+            {ev.confidence === 'typical' ? <span style={{ color: 'var(--ink-3)' }}> (typical)</span> : null}
+          </li>
+        ))}
+      </ul>
+      <Link to="/programs" style={{ fontFamily: 'var(--sans)', fontSize: 13, display: 'inline-block', marginTop: 8 }}>
+        The full seasonal almanac, day by day →
+      </Link>
+    </section>
+  )
+}
+
 export default function Home() {
   const { session } = useAuth()
   const { ids: favoriteIds } = useFavorites()
   const { plan } = useTripPlan()
+  // Favorites can point at regular stops or secret spots; resolve both so a
+  // saved secret spot does not silently vanish from this list.
   const savedStops = favoriteIds
-    .map((id) => getStopById(id))
+    .map((id) => getStopById(id) ?? SECRET_SPOTS.find((s) => s.id === id))
     .filter((s): s is NonNullable<typeof s> => Boolean(s))
   const downloadedCount = PACK_IDS.filter((id) => isPackCompleted(id)).length
 
@@ -130,6 +158,8 @@ export default function Home() {
           />
         </div>
 
+        <InSeasonStrip />
+
         <Link to="/account" className="offline-status-card">
           {downloadedCount === PACK_IDS.length ? (
             <>Downloaded for offline. The whole guide works in airplane mode. Manage →</>
@@ -147,7 +177,10 @@ export default function Home() {
             <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'grid', gap: 8 }}>
               {savedStops.map((stop) => (
                 <li key={stop.id}>
-                  <Link to={`/stop/${stop.id}`} style={{ fontFamily: 'var(--display)', fontSize: 18 }}>
+                  <Link
+                    to={getStopById(stop.id) ? `/stop/${stop.id}` : '/secret-spots'}
+                    style={{ fontFamily: 'var(--display)', fontSize: 18 }}
+                  >
                     {stop.title} →
                   </Link>
                 </li>

@@ -30,8 +30,12 @@ const ManualEntry = ProgramEvent.omit({ id: true, date: true }).extend({
 type ManualEntryT = z.infer<typeof ManualEntry>
 
 // ── Confirmed entries only ───────────────────────────────────────────────────
-// Verification pass 2026-07-02: only the Valley Floor Tour's daily year-round
-// operation is supported by the operator's page (travelyosemite.com). The
+// Verification passes 2026-07-02 and 2026-07-03. Confirmed this pass: the
+// Valley Floor Tour's daily year-round operation (travelyosemite.com), the
+// Yosemite Facelift 2026 dates (Yosemite Climbing Association's own
+// registration page), and the 2026 Bracebridge Dinner performances
+// (travelyosemite.com Bracebridge page; the listed weekdays match the 2026
+// calendar, which is the tell against the stale-year traps below). The
 // Parsons series and the star parties sit in PENDING_VERIFICATION below until
 // their 2026 dated schedules publish.
 const entries: ManualEntryT[] = [
@@ -46,30 +50,81 @@ const entries: ManualEntryT[] = [
       'Dates here mark availability, not a single departure time.',
     // Verified 2026-07-02: travelyosemite.com lists the tour as departing
     // daily, year-round (tram in warm months, heated coach off-season).
-    dates: buildDailyDates('2026-07-01', '2026-10-31'),
+    // 2026-07-03: extended the availability window a year out on the same
+    // year-round basis; refresh on the next curation pass.
+    dates: buildDailyDates('2026-07-01', '2027-06-30'),
     location: 'Yosemite Valley Lodge',
     coord: [-119.5989, 37.7439],
     isFree: false,
     reservationRequired: true,
     url: 'https://www.travelyosemite.com/things-to-do/guided-bus-tours/',
   },
+  {
+    key: 'yca-facelift',
+    source: 'manual',
+    category: 'other',
+    title: 'Yosemite Facelift (Yosemite Climbing Association)',
+    description:
+      'The park\'s biggest volunteer cleanup: five days of trash collection, trail restoration, and ' +
+      'evening films and speakers, run by the Yosemite Climbing Association with the park. Free, ' +
+      'registration at yosemiteclimbing.org. Show up, grab a bag, meet the community.',
+    // Verified 2026-07-03: yosemiteclimbing.org's 2026 Facelift registration
+    // page lists September 23-27, 2026, daily 8 a.m. to 4 p.m.
+    dates: ['2026-09-23', '2026-09-24', '2026-09-25', '2026-09-26', '2026-09-27'],
+    timeStart: '08:00',
+    timeEnd: '16:00',
+    location: 'Yosemite Valley (registration in the valley; sites parkwide)',
+    isFree: true,
+    url: 'https://www.yosemiteclimbing.org/facelift',
+  },
+  {
+    key: 'bracebridge-dinner',
+    source: 'aramark',
+    category: 'arts',
+    title: 'Bracebridge Dinner (The Ahwahnee)',
+    description:
+      'The Ahwahnee dining room becomes a Tudor hall for a four-hour pageant of carols, Renaissance ' +
+      'theater, and a seven-course dinner; a park holiday tradition since 1927. Formal attire, not ' +
+      'recommended under age ten, tickets well in advance at travelyosemite.com. Confirm the full ' +
+      'performance calendar there before booking travel.',
+    // Verified 2026-07-03: travelyosemite.com's Bracebridge page lists 2026
+    // performances on Wed Dec 9, Tue Dec 15, and Sat Dec 19; those weekdays
+    // match the 2026 calendar. Re-check for added dates when the winter
+    // calendar firms up; some listings suggest a broader Dec 8-18 window.
+    dates: ['2026-12-09', '2026-12-15', '2026-12-19'],
+    timeStart: '17:00',
+    location: 'The Ahwahnee',
+    coord: [-119.5747, 37.7458],
+    isFree: false,
+    reservationRequired: true,
+    url: 'https://www.travelyosemite.com/things-to-do/specialty-events/food-and-wine-events/bracebridge-dinner',
+  },
 ]
 
 // ── Pending verification: NOT served ─────────────────────────────────────────
-// Checked 2026-07-02 and withheld under the "only dates confirmed on the
-// operator's own page" rule. Move an entry back into `entries` with real
-// dates once its 2026 schedule publishes.
+// Checked 2026-07-02, re-checked 2026-07-03, and withheld under the "only
+// dates confirmed on the operator's own page" rule. Move an entry back into
+// `entries` with real dates once its schedule publishes.
 //
 // - parsons-summer-series: yosemite.org confirms the series runs in 2026
 //   (see their "Yosemite Art and Traditions" project page) but has not
-//   published the dated 2026 schedule; the newest dated page is 2025.
+//   published the dated 2026 schedule; the newest dated page is 2025
+//   (which ran weekends July 19 to August 17).
 // - glacier-point-star-party: no 2026 club weekends posted on the Night Sky
-//   Network or the clubs' own sites as of the check.
+//   Network or the clubs' own sites as of the re-check.
+// - vintners-holidays (not yet drafted): partial 2026 dates are visible via
+//   participating wineries (e.g. Grgich Hills shows Session 2 Nov 11-14 and
+//   Session 3 Nov 18-21, 2026) but travelyosemite.com's full session
+//   calendar was not directly confirmable this pass. Draft the entry from
+//   the operator page when it can be read.
+// - chefs-holidays (not yet drafted): the January-to-early-February 2027
+//   session calendar is unannounced as of 2026-07-03.
 //
-// Stale-date traps seen in search results during the check, do not reuse:
+// Stale-date traps seen in search results during the checks, do not reuse:
 // "Poetry Festival August 17–18" is the 2024 festival, and the NPS
 // event-details star-party listing offering "July 26 & 27, Aug 2 & 3,
-// Aug 9 & 10" matches the 2024/2025 calendars, not 2026 weekends.
+// Aug 9 & 10" matches the 2024/2025 calendars, not 2026 weekends (it
+// resurfaced verbatim in the 2026-07-03 check; July 26, 2026 is a Sunday).
 export const PENDING_VERIFICATION: ManualEntryT[] = [
   {
     key: 'parsons-summer-series',
@@ -134,7 +189,7 @@ z.array(ManualEntry).parse(PENDING_VERIFICATION) // keep the parked entries vali
 
 // Version label surfaced in the /api/programs `sources` block so the app can
 // show which curation pass the offline copy came from.
-export const MANUAL_PROGRAMS_VERSION = '2026-summer-confirmed-only'
+export const MANUAL_PROGRAMS_VERSION = '2026-07-fall-winter-pass'
 
 export const MANUAL_PROGRAMS: ProgramEventT[] = sortEvents(parsed.flatMap(expand))
 

@@ -6,6 +6,7 @@
 import {
   ESSENTIALS,
   REGIONS,
+  SEASONAL_EVENTS,
   SECRET_SPOTS,
   secretsLocked,
   stops,
@@ -15,7 +16,7 @@ export type SearchHit = {
   id: string
   url: string
   title: string
-  section: 'Stops' | 'Essentials' | 'Secret Spots'
+  section: 'Stops' | 'Essentials' | 'Secret Spots' | 'Programs'
   eyebrow: string
   snippet: string
   score: number
@@ -33,6 +34,14 @@ type Entry = {
 }
 
 const REGION_LABEL = Object.fromEntries(REGIONS.map((r) => [r.id, r.title])) as Record<string, string>
+
+// Labels plus notes, in the same order they render, so the indexed text and
+// the original-body reconstruction below stay index-aligned for snippets.
+function essentialChecklistText(
+  checklist: (typeof ESSENTIALS)[number]['checklist'],
+): string {
+  return (checklist ?? []).map((c) => (c.note ? `${c.label} ${c.note}` : c.label)).join(' ')
+}
 
 function buildEntries(): Entry[] {
   const entries: Entry[] = stops.map((s) => ({
@@ -55,7 +64,23 @@ function buildEntries(): Entry[] {
       eyebrow: 'Know before you go',
       titleText: t.title.toLowerCase(),
       swapText: t.teaser.toLowerCase(),
-      bodyText: (t.body + ' ' + (t.checklist ?? []).map((c) => c.label).join(' ')).toLowerCase(),
+      bodyText: (t.body + ' ' + essentialChecklistText(t.checklist)).toLowerCase(),
+    })
+  }
+
+  // The seasonal almanac: full moons, road windows, waterfall windows. One
+  // entry per almanac event, all landing on /programs where the event shows
+  // once the trip dates overlap it.
+  for (const ev of SEASONAL_EVENTS) {
+    entries.push({
+      id: ev.id,
+      url: '/programs',
+      title: ev.title,
+      section: 'Programs',
+      eyebrow: 'Seasonal almanac',
+      titleText: ev.title.toLowerCase(),
+      swapText: '',
+      bodyText: ev.description.toLowerCase(),
     })
   }
 
@@ -118,9 +143,9 @@ export function search(query: string, limit = 24): SearchHit[] {
     let originalBody: string
     if (entry.section === 'Essentials') {
       const topic = ESSENTIALS.find((t) => t.id === entry.id)
-      originalBody = topic
-        ? topic.body + ' ' + (topic.checklist ?? []).map((c) => c.label).join(' ')
-        : ''
+      originalBody = topic ? topic.body + ' ' + essentialChecklistText(topic.checklist) : ''
+    } else if (entry.section === 'Programs') {
+      originalBody = SEASONAL_EVENTS.find((ev) => ev.id === entry.id)?.description ?? ''
     } else {
       originalBody =
         (stops.find((s) => s.id === entry.id) ?? SECRET_SPOTS.find((s) => s.id === entry.id))?.body ?? ''

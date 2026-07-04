@@ -33,9 +33,10 @@ export default function SecretSpots() {
             <p style={{ color: 'var(--ink-2)', fontSize: 15, lineHeight: 1.6, maxWidth: '52ch', margin: '0 auto' }}>
               The parking turnouts locals use when the big lots fill, the trailheads
               with no signs from the road, and the insider notes that do not get
-              published anywhere else. Each one ships with a verified GPS coordinate.
-              This section arrives as a free update later this season; it will appear
-              here the day it lands, no re-download, no second charge.
+              published anywhere else. Each one ships with a GPS pin that hands off
+              to your maps app. This section arrives as a free update later this
+              season; it will appear here the day it lands, no re-download, no
+              second charge.
             </p>
           </div>
         ) : (

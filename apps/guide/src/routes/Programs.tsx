@@ -27,6 +27,12 @@ import {
   type ProgramEventT,
   type ProgramSourceT,
 } from '../programs/schema'
+import {
+  seasonalDaysInRange,
+  seasonalRangeLabel,
+  seasonalToProgramEvent,
+  seasonalWindowsInRange,
+} from '../content'
 import './Programs.css'
 
 function formatTime(hhmm?: string): string {
@@ -82,14 +88,40 @@ export default function Programs() {
     }
   }
 
+  // The bundled seasonal almanac merges in client-side: one-day entries (full
+  // moons, deadline markers) become ordinary agenda rows, and multi-day
+  // windows render as cards above the day list. Ships with the app, so the
+  // agenda keeps a floor of content offline with nothing synced.
+  const seasonalDays = useMemo(
+    () =>
+      spanOk
+        ? seasonalDaysInRange(start, end).map((ev) => seasonalToProgramEvent(ev, ev.dateStart))
+        : [],
+    [spanOk, start, end],
+  )
+  const seasonalWindows = useMemo(
+    () => (spanOk ? seasonalWindowsInRange(start, end) : []),
+    [spanOk, start, end],
+  )
+  const allEvents = useMemo(() => {
+    if (seasonalDays.length === 0) return events
+    return [...events, ...seasonalDays].sort((a, b) => {
+      if (a.date !== b.date) return a.date < b.date ? -1 : 1
+      const at = a.timeStart ?? '99:99'
+      const bt = b.timeStart ?? '99:99'
+      if (at !== bt) return at < bt ? -1 : 1
+      return a.title.localeCompare(b.title)
+    })
+  }, [events, seasonalDays])
+
   const filtered = useMemo(
     () =>
-      events.filter(
+      allEvents.filter(
         (ev) =>
           (!categoryFilter || ev.category === categoryFilter) &&
           (!sourceFilter || ev.source === sourceFilter),
       ),
-    [events, categoryFilter, sourceFilter],
+    [allEvents, categoryFilter, sourceFilter],
   )
 
   const byDay = useMemo(() => {
@@ -105,10 +137,10 @@ export default function Programs() {
   // Only offer chips for values present in the window; a row of dead filters
   // is noise.
   const presentCategories = useMemo(
-    () => [...new Set(events.map((ev) => ev.category))],
-    [events],
+    () => [...new Set(allEvents.map((ev) => ev.category))],
+    [allEvents],
   )
-  const presentSources = useMemo(() => [...new Set(events.map((ev) => ev.source))], [events])
+  const presentSources = useMemo(() => [...new Set(allEvents.map((ev) => ev.source))], [allEvents])
 
   const syncedStale = isOlderThanDays(syncedAt, 7)
   const showStaleWarning = offline || syncedStale || (coverage !== 'full' && events.length > 0)
@@ -174,9 +206,91 @@ export default function Programs() {
               : 'Listings were saved earlier and programs do change. Cross-check the Yosemite Guide or a visitor center bulletin board for cancellations.'}
           </div>
         )}
-        {error && events.length === 0 && <div className="programs-stale">{error}</div>}
+        {error && allEvents.length === 0 && seasonalWindows.length === 0 && (
+          <div className="programs-stale">{error}</div>
+        )}
+        {error && (allEvents.length > 0 || seasonalWindows.length > 0) && (
+          <div className="programs-stale">
+            Live listings did not load. The seasonal almanac below ships with the guide and works
+            without signal; sync again for ranger programs and operator events.
+          </div>
+        )}
 
-        {events.length > 0 && (
+        {seasonalWindows.length > 0 && (
+          <section className="season-windows" aria-label="In season during your dates">
+            <div className="programs-day-header">In season during your dates</div>
+            {seasonalWindows.map((ev) => {
+              const pinDay = ev.dateStart > start ? ev.dateStart : start
+              const snapshot = seasonalToProgramEvent(ev, pinDay)
+              const inPlan = hasItem(programItemId(snapshot.id))
+              return (
+                <details className="program-row" key={ev.id}>
+                  <summary>
+                    <span className="program-row__time">{seasonalRangeLabel(ev)}</span>
+                    <span>
+                      <h2 className="program-row__title">{ev.title}</h2>
+                      <span className="program-row__meta">
+                        {ev.location && <span>{ev.location}</span>}
+                        <span className="program-row__badge">
+                          {ev.confidence === 'typical' ? 'Typical window' : 'Confirmed'}
+                        </span>
+                      </span>
+                    </span>
+                    {inPlan ? (
+                      <span className="program-row__inplan" aria-label="In your trip plan">
+                        ✓
+                      </span>
+                    ) : (
+                      <button
+                        type="button"
+                        className="program-row__quickadd"
+                        aria-label={`Add ${ev.title} to trip`}
+                        onClick={(e) => {
+                          e.preventDefault()
+                          e.stopPropagation()
+                          addProgram(snapshot)
+                          announceTripAdd(ev.title)
+                        }}
+                      >
+                        + Add
+                      </button>
+                    )}
+                  </summary>
+                  <p className="program-row__body">{ev.description}</p>
+                  <p
+                    className="program-row__body"
+                    style={{ marginTop: 8, display: 'flex', gap: 14, alignItems: 'center', flexWrap: 'wrap' }}
+                  >
+                    {inPlan ? (
+                      <Link to="/trip" className="btn btn--ghost" style={{ minHeight: 44, display: 'inline-flex', alignItems: 'center' }}>
+                        In your trip plan →
+                      </Link>
+                    ) : (
+                      <button
+                        type="button"
+                        className="btn"
+                        style={{ minHeight: 44 }}
+                        onClick={() => {
+                          addProgram(snapshot)
+                          announceTripAdd(ev.title)
+                        }}
+                      >
+                        Add to trip
+                      </button>
+                    )}
+                    {ev.url && (
+                      <a href={ev.url} target="_blank" rel="noreferrer">
+                        Details{offline ? ' (needs signal)' : ''} →
+                      </a>
+                    )}
+                  </p>
+                </details>
+              )
+            })}
+          </section>
+        )}
+
+        {allEvents.length > 0 && (
           <div className="programs-chips" role="group" aria-label="Filter programs">
             {presentCategories.map((cat) => (
               <button
@@ -204,13 +318,13 @@ export default function Programs() {
           </div>
         )}
 
-        {byDay.length === 0 && !loading && events.length === 0 && !error && (
+        {byDay.length === 0 && !loading && allEvents.length === 0 && !error && (
           <p className="programs-empty">
             Nothing listed for these dates yet. Programs post seasonally; sync again closer to your
             trip, and check the Yosemite Guide PDF for the printed schedule.
           </p>
         )}
-        {byDay.length === 0 && events.length > 0 && (
+        {byDay.length === 0 && allEvents.length > 0 && (
           <p className="programs-empty">Nothing matches the current filters.</p>
         )}
 
@@ -292,8 +406,10 @@ export default function Programs() {
 
         <p className="programs-attribution">
           Program listings sourced from the National Park Service, with Yosemite Conservancy,
-          Yosemite Hospitality, and astronomy-club schedules added by hand. Listings change;
-          the operators' own pages are authoritative.
+          Yosemite Hospitality, and astronomy-club schedules added by hand. The seasonal almanac
+          (full moons, road opening patterns, waterfall windows) ships with the guide; entries
+          marked "typical window" describe a historical pattern, not a published date. Listings
+          change; the operators' own pages are authoritative.
         </p>
       </main>
     </GatedChrome>
