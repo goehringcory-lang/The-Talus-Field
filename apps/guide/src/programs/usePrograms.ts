@@ -9,6 +9,7 @@
 
 import { useCallback, useEffect, useState } from 'react'
 import { apiFetch } from '../lib/api'
+import { addDaysIso, todayIso } from '../utils/date'
 import { readCachedWindow, readMeta, writeCachedWindow } from './cache'
 import { ProgramsResponse, type ProgramEventT } from './schema'
 
@@ -32,6 +33,16 @@ export const TRIP_DATES_KEY = 'tfg.trip.dates'
 export const MAX_SPAN_DAYS = 31
 
 export type TripDates = { start: string; end: string }
+
+/** The window both /programs and the trip planner assume when the user has
+ * never picked dates. Shared so the two pages can't drift apart: /programs
+ * renders this default without persisting it, and the planner's empty plan
+ * must fall back to the same span or a program added on day 3 lands
+ * "outside your dates". */
+export function defaultTripDates(): TripDates {
+  const today = todayIso()
+  return { start: today, end: addDaysIso(today, 4) }
+}
 
 export function readTripDates(): TripDates | null {
   try {
@@ -66,7 +77,13 @@ async function loadWindow(start: string, end: string): Promise<LoadResult> {
       `/api/programs?start=${encodeURIComponent(start)}&end=${encodeURIComponent(end)}`,
     )
     const payload = ProgramsResponse.parse(raw)
-    await writeCachedWindow(payload)
+    // Caching is best-effort: a quota or private-mode Cache API failure must
+    // not turn a successful sync into the offline "no saved listings" state.
+    try {
+      await writeCachedWindow(payload)
+    } catch {
+      /* payload still served from memory below */
+    }
     return {
       events: payload.events,
       syncedAt: payload.syncedAt,
@@ -115,7 +132,20 @@ export function usePrograms(start: string | null, end: string | null): ProgramsS
   const [reloadKey, setReloadKey] = useState(0)
 
   useEffect(() => {
-    if (!start || !end || end < start) return
+    if (!start || !end || end < start) {
+      // A sync may have been in flight when the window went invalid (date
+      // input cleared); its cancelled run never resets loading, so do it here
+      // or the Sync button stays stuck on "Syncing…". Deferred like the load
+      // below so no state update runs synchronously inside the effect body.
+      let cancelledReset = false
+      Promise.resolve().then(() => {
+        if (cancelledReset) return
+        setState((prev) => (prev.loading ? { ...prev, loading: false } : prev))
+      })
+      return () => {
+        cancelledReset = true
+      }
+    }
     let cancelled = false
     // Deferred so no state update runs synchronously inside the effect body.
     Promise.resolve().then(async () => {

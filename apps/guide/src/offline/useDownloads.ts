@@ -183,15 +183,24 @@ export function useDownloads() {
   const remove = useCallback(
     async (pack: Pack) => {
       if (!cachesAvailable()) return
-      const cache = await caches.open(pack.cacheName)
-      await Promise.all(pack.urls.map((url) => cache.delete(url)))
+      // Photos are reused across regions and packs share one cache bucket, so
+      // deleting this pack's full URL list would silently hole out other
+      // still-"Downloaded" packs. Keep anything another completed pack claims.
       const completed = readCompleted()
+      const keep = new Set<string>()
+      for (const other of packs) {
+        if (other.id === pack.id || other.cacheName !== pack.cacheName) continue
+        if (!completed[other.id]) continue
+        for (const url of other.urls) keep.add(url)
+      }
+      const cache = await caches.open(pack.cacheName)
+      await Promise.all(pack.urls.filter((url) => !keep.has(url)).map((url) => cache.delete(url)))
       delete completed[pack.id]
       writeCompleted(completed)
       setPackStatus(pack.id, { state: 'idle' })
       refreshEstimate()
     },
-    [refreshEstimate, setPackStatus],
+    [packs, refreshEstimate, setPackStatus],
   )
 
   return { packs, statuses, storageEstimate, download, cancel, remove }

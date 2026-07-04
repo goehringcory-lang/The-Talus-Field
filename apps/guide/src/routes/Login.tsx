@@ -29,11 +29,19 @@ export default function Login() {
       } catch (err) {
         // The operator's pre-Stripe username/code pair isn't a buyer record;
         // give it one shot at the env-backed path before reporting failure.
-        if (err instanceof ApiError && err.status === 401) {
-          res = await apiFetch<LoginResponse>('/api/auth/dev-login', {
-            method: 'POST',
-            body: JSON.stringify({ username: email.trim(), code: code.trim() }),
-          })
+        // 429 included: operator sign-ins never clear the legacy per-email
+        // attempt bucket, so after five of them /login rate-limits even
+        // though /dev-login (its own ip+username bucket) would succeed.
+        if (err instanceof ApiError && (err.status === 401 || err.status === 429)) {
+          try {
+            res = await apiFetch<LoginResponse>('/api/auth/dev-login', {
+              method: 'POST',
+              body: JSON.stringify({ username: email.trim(), code: code.trim() }),
+            })
+          } catch {
+            // Surface the buyer-path error; it matches what the user tried.
+            throw err
+          }
         } else {
           throw err
         }

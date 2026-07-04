@@ -12,6 +12,17 @@ const SHELL_ASSETS = [
   '/',
   '/index.html',
   '/manifest.webmanifest',
+]
+
+// Hashed JS/CSS emitted by the build, injected by vite.config.ts. Without
+// these an update that installs online but first runs offline has an
+// index.html whose script tags are in no cache — a blank page in the park.
+const BUILD_ASSETS = /* __BUILD_ASSETS__ */ []
+
+// Icons and fonts belong in the unversioned runtime cache: that is the cache
+// the fetch handler consults for them (see RUNTIME_PATTERNS below), and it
+// survives shell rotation so fonts don't re-download on every deploy.
+const RUNTIME_PRECACHE = [
   '/icon.svg',
   '/icon-192.png',
   '/icon-512.png',
@@ -25,7 +36,21 @@ const SHELL_ASSETS = [
 
 self.addEventListener('install', (event) => {
   event.waitUntil(
-    caches.open(SHELL_CACHE).then((cache) => cache.addAll(SHELL_ASSETS)),
+    (async () => {
+      const shell = await caches.open(SHELL_CACHE)
+      await shell.addAll(SHELL_ASSETS.concat(BUILD_ASSETS))
+      // Best-effort: a missing font must not brick the whole update.
+      const runtime = await caches.open(RUNTIME_CACHE)
+      await Promise.all(
+        RUNTIME_PRECACHE.map(async (url) => {
+          if (await runtime.match(url)) return
+          try {
+            const res = await fetch(url)
+            if (res.ok) await runtime.put(url, res)
+          } catch { /* offline at install time — cached on next visit */ }
+        }),
+      )
+    })(),
   )
 })
 
@@ -75,7 +100,7 @@ self.addEventListener('message', (event) => {
 const RUNTIME_PATTERNS = [
   /\/photos\//,
   /\.woff2$/,
-  /\.(svg|png|jpg|jpeg|webp)$/,
+  /\.(svg|png|jpg|jpeg|webp|avif)$/,
 ]
 
 function isRuntimeAsset(url) {
