@@ -1,4 +1,7 @@
 const KEY = 'tfg.jwt'
+// Set when a session ends because access lapsed (JWT expiry or a server-side
+// revocation), so /login can explain instead of silently bouncing the buyer.
+const ACCESS_ENDED_KEY = 'tfg.accessEndedAt'
 
 type JwtClaims = {
   sub: string
@@ -43,6 +46,33 @@ export function clearStoredJwt(): void {
   }
 }
 
+export function setAccessEndedAt(epochSeconds: number): void {
+  try {
+    localStorage.setItem(ACCESS_ENDED_KEY, String(epochSeconds))
+  } catch {
+    /* non-fatal: /login just won't show the explanation */
+  }
+}
+
+export function getAccessEndedAt(): number | null {
+  try {
+    const raw = localStorage.getItem(ACCESS_ENDED_KEY)
+    if (!raw) return null
+    const n = Number.parseInt(raw, 10)
+    return Number.isNaN(n) ? null : n
+  } catch {
+    return null
+  }
+}
+
+export function clearAccessEndedAt(): void {
+  try {
+    localStorage.removeItem(ACCESS_ENDED_KEY)
+  } catch {
+    /* non-fatal */
+  }
+}
+
 export function readSessionFromStorage(): { jwt: string; username: string } | null {
   const jwt = getStoredJwt()
   if (!jwt) return null
@@ -52,6 +82,9 @@ export function readSessionFromStorage(): { jwt: string; username: string } | nu
     return null
   }
   if (claims.exp * 1000 < Date.now()) {
+    // JWTs are signed to the buyer's access expiry, so hitting this means the
+    // paid window ended. Leave a marker so /login says so.
+    setAccessEndedAt(claims.exp)
     clearStoredJwt()
     return null
   }
