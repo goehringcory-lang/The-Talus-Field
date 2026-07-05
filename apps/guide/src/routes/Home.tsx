@@ -98,7 +98,7 @@ export default function Home() {
         <PageHeader
           eyebrow="Yosemite National Park"
           title="Where in the park are you going?"
-          intro="Pick a region. Each one is a flat list of stops in a suggested order — read them all or just the ones that fit your day."
+          intro="Pick a region. Each one is a flat list of stops in a suggested order: read them all or just the ones that fit your day."
         />
 
         <BeforeYouGoNudge />

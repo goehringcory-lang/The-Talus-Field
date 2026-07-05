@@ -154,16 +154,6 @@
   gap: 6px;
 }
 
-.trip-export-hint {
-  border: 1px solid var(--rule);
-  background: var(--paper-2);
-  font-family: var(--sans);
-  font-size: 13px;
-  line-height: 1.55;
-  padding: 10px 12px;
-  margin-top: 16px;
-}
-
 /* Numbered step headers: dates → fill days → review & finalize. */
 .trip-step {
   display: flex;
