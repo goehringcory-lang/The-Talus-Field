@@ -1,11 +1,10 @@
 // =============================================================================
-// SECRET SPOTS — the locked section.
+// SECRET SPOTS — the quiet-corners section, included with purchase.
 //
-// Seeded empty on purpose. The section unlocks itself the moment the first
-// spot is added to `seed` below: secret parking turnouts, unsigned trailheads,
-// insider notes. Same shape as a Stop minus `region` (these live outside the
-// three-region geography). Every coord added here needs a real ground-truth
-// pass before launch, same rule as stops.ts.
+// Ships populated (the old "seeded empty, unlocks later" machinery is gone).
+// Same shape as a Stop minus `region` (these live outside the four-region
+// geography). Every coord here still needs a real ground-truth pass before
+// launch, same rule as stops.ts — all are marked TODO: verify.
 // =============================================================================
 
 import { z } from 'zod'
@@ -141,8 +140,4 @@ export const SECRET_META = {
   title: 'The Secret Spots',
   teaser:
     'The quiet corners: the one-foot waterfall, the night meadow, the empty river beach. The things that do not go in articles. Included with your purchase.',
-}
-
-export function secretsLocked(): boolean {
-  return SECRET_SPOTS.length === 0
 }

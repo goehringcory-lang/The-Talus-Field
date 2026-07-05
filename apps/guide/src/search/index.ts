@@ -8,7 +8,6 @@ import {
   REGIONS,
   SEASONAL_EVENTS,
   SECRET_SPOTS,
-  secretsLocked,
   stops,
 } from '../content'
 
@@ -84,19 +83,17 @@ function buildEntries(): Entry[] {
     })
   }
 
-  if (!secretsLocked()) {
-    for (const s of SECRET_SPOTS) {
-      entries.push({
-        id: s.id,
-        url: '/secret-spots',
-        title: s.title,
-        section: 'Secret Spots',
-        eyebrow: 'Secret Spots',
-        titleText: s.title.toLowerCase(),
-        swapText: (s.swap ?? '').toLowerCase(),
-        bodyText: s.body.toLowerCase(),
-      })
-    }
+  for (const s of SECRET_SPOTS) {
+    entries.push({
+      id: s.id,
+      url: '/secret-spots',
+      title: s.title,
+      section: 'Secret Spots',
+      eyebrow: 'Secret Spots',
+      titleText: s.title.toLowerCase(),
+      swapText: (s.swap ?? '').toLowerCase(),
+      bodyText: s.body.toLowerCase(),
+    })
   }
 
   return entries
