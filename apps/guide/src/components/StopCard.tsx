@@ -4,6 +4,7 @@ import type { StopT } from '../content'
 import { useFavorites } from '../lib/favorites'
 import MapsLink from './MapsLink'
 import PhotoPlaceholder from './PhotoPlaceholder'
+import Plate from './Plate'
 import ResponsivePhoto from './ResponsivePhoto'
 import { Chip } from './ui/Chip'
 
@@ -44,10 +45,11 @@ export default function StopCard({ stop, compact = true }: Props) {
   const photo = stop.photos[0]
   const { toggle, isFavorite } = useFavorites()
   const saved = isFavorite(stop.id)
+  const plateTag = `Plate · ${KIND_LABEL[stop.kind]}`
   return (
     <article className="stop-card">
-      {photo ? (
-        <>
+      <Plate tag={plateTag} caption={!compact ? photo?.caption : undefined}>
+        {photo ? (
           <ResponsivePhoto
             className="stop-card__photo"
             src={photo.src}
@@ -57,10 +59,10 @@ export default function StopCard({ stop, compact = true }: Props) {
             height={900}
             style={{ aspectRatio: '4 / 3', objectFit: 'cover' }}
           />
-        </>
-      ) : (
-        <PhotoPlaceholder />
-      )}
+        ) : (
+          <PhotoPlaceholder />
+        )}
+      </Plate>
 
       <div className="stop-card__titlerow">
         <div style={{ minWidth: 0 }}>
@@ -101,7 +103,7 @@ export default function StopCard({ stop, compact = true }: Props) {
         </div>
       )}
 
-      <div className="prose">
+      <div className={compact ? 'prose' : 'prose prose--dropcap'}>
         <ReactMarkdown>{stop.body}</ReactMarkdown>
       </div>
 

@@ -96,7 +96,7 @@ export default function Home() {
     <GatedChrome>
       <main className="wrap wrap--narrow page">
         <PageHeader
-          eyebrow="The Field Guide · 2026 Edition"
+          eyebrow="Yosemite National Park"
           title="Where in the park are you going?"
           intro="Pick a region. Each one is a flat list of stops in a suggested order — read them all or just the ones that fit your day."
         />

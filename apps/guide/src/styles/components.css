@@ -4,6 +4,160 @@
    the legacy single-purpose classes live there.
    ============================================================ */
 
+/* ===== Masthead brand lockup (GatedChrome) ===== */
+
+.masthead-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+  color: var(--ink);
+  text-decoration: none;
+}
+.masthead-brand:hover { color: var(--ink); }
+.masthead-brand__mark {
+  height: 30px;
+  width: auto;
+  display: block;
+  flex-shrink: 0;
+}
+.masthead-brand__text {
+  display: grid;
+  line-height: 1.12;
+  white-space: nowrap;
+}
+.masthead-brand__title {
+  font-family: var(--display);
+  font-size: 17px;
+  font-weight: 500;
+  letter-spacing: -0.005em;
+}
+.masthead-brand__sub {
+  font-family: var(--sans);
+  font-size: 8px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.24em;
+  color: var(--ink-3);
+}
+
+/* Full lockup for the front door (login, magic-link landing). */
+.brand-lockup {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 0 0 var(--s6);
+}
+.brand-lockup__mark {
+  height: 48px;
+  width: auto;
+  display: block;
+}
+.brand-lockup__title {
+  font-family: var(--display);
+  font-size: 26px;
+  font-weight: 500;
+  letter-spacing: -0.005em;
+  line-height: 1.05;
+}
+.brand-lockup__sub {
+  font-family: var(--sans);
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.28em;
+  color: var(--ink-3);
+  margin-top: 4px;
+}
+
+/* ===== Login: the paid product's front door ===== */
+
+.login-wrap {
+  max-width: 620px;
+  padding-top: clamp(28px, 7vh, 72px);
+  padding-bottom: clamp(32px, 10vh, 96px);
+}
+.login-head { margin: var(--s6) 0 var(--s5); }
+.login-head .eyebrow { display: block; margin-bottom: 12px; }
+.login-title {
+  font-size: clamp(34px, 5vw, 52px);
+  margin-bottom: 12px;
+}
+.login-intro {
+  color: var(--ink-2);
+  margin: 0;
+}
+.login-aside {
+  color: var(--ink-3);
+  font-size: 13px;
+  margin-top: var(--s5);
+}
+
+/* ===== Plate photo treatment (Plate.tsx) =====
+   The editorial site's "Alpine Journal plate": ink border, engraved offset
+   shadow, uppercase label chip top-right. */
+
+.plate { margin: 0 0 18px; }
+.plate__frame {
+  position: relative;
+  border: 1px solid var(--ink);
+  box-shadow: 3px 3px 0 0 var(--ink);
+  background: var(--paper-3);
+}
+.plate__frame img { display: block; width: 100%; height: auto; }
+.plate__frame[data-tag]::after {
+  content: attr(data-tag);
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-family: var(--sans);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--paper);
+  background: color-mix(in oklab, var(--ink) 82%, transparent);
+  padding: 4px 8px;
+  pointer-events: none;
+}
+.plate__caption {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 13px;
+  color: var(--ink-2);
+  margin-top: 8px;
+}
+
+/* Photogravure placeholder tile for stops still awaiting photography. */
+.photo-placeholder {
+  aspect-ratio: 4 / 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background:
+    repeating-linear-gradient(135deg, color-mix(in oklab, var(--ink) 6%, transparent) 0 1px, transparent 1px 5px),
+    repeating-linear-gradient(45deg, color-mix(in oklab, var(--ink) 4%, transparent) 0 1px, transparent 1px 7px),
+    var(--paper-2);
+  color: var(--ink-3);
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+/* ===== Dropcap for the full stop read ===== */
+
+.prose--dropcap > p:first-child::first-letter {
+  float: left;
+  font-family: var(--display);
+  font-size: 4.4em;
+  line-height: 0.8;
+  padding: 8px 10px 0 0;
+  font-weight: 500;
+  color: var(--moss);
+}
+
 /* ===== Back link (BackLink.tsx) ===== */
 
 .back-row { margin: 0 0 var(--s5); }

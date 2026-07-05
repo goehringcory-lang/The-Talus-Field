@@ -75,6 +75,10 @@
      --radius-pill exists only for the nav count badge. */
   --radius: 0;
   --radius-pill: 999px;
+
+  /* Height of the sticky masthead, excluding the top safe-area inset. The
+     map page subtracts this (plus insets and the bottom nav) from 100dvh. */
+  --chrome-top-h: 52px;
 }
 
 * { box-sizing: border-box; }
@@ -382,7 +386,6 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
   display: block;
   width: 100%;
   height: auto;
-  margin: 0 0 18px;
   background: var(--paper-3);
 }
 .stop-card__title {
@@ -436,18 +439,29 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
   color: var(--ink-3);
 }
 
-/* Gated chrome — small top-right account link on every gated route */
+/* Gated chrome — the one-line masthead on every gated route: brand lockup
+   left, quick links right (links fold into the bottom nav on small screens,
+   the lockup stays). */
 .gated-chrome {
   position: sticky;
   top: 0;
   z-index: 20;
   display: flex;
-  justify-content: flex-end;
+  align-items: center;
+  justify-content: space-between;
   gap: 20px;
-  padding: 14px var(--gutter);
+  min-height: var(--chrome-top-h);
+  padding: env(safe-area-inset-top) var(--gutter) 0;
   background: color-mix(in oklab, var(--paper) 92%, transparent);
   backdrop-filter: blur(6px);
-  border-bottom: 1px solid var(--rule-soft);
+  -webkit-backdrop-filter: blur(6px);
+  border-bottom: 1px solid var(--rule);
+}
+.gated-chrome__links {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-shrink: 0;
 }
 .gated-chrome__link {
   font-family: var(--sans);
@@ -620,9 +634,10 @@ a:active {
   }
 }
 
-/* Gated chrome links become secondary to bottom nav on small screens */
+/* Quick links fold into the bottom nav on small screens; the brand lockup
+   stays so the app is never chromeless. */
 @media (max-width: 640px) {
-  .gated-chrome {
+  .gated-chrome__links {
     display: none;
   }
 }

@@ -4,6 +4,9 @@ import { useLocation, useNavigate } from 'react-router-dom'
 import { apiFetch, ApiError } from '../lib/api'
 import { useAuth } from '../auth/useAuth'
 import { getAccessEndedAt } from '../auth/storage'
+import Plate from '../components/Plate'
+import ResponsivePhoto from '../components/ResponsivePhoto'
+import Button from '../components/ui/Button'
 
 type LoginResponse = { jwt: string }
 
@@ -42,7 +45,7 @@ function ResendAccessEmail({ prefillEmail }: { prefillEmail: string }) {
 
   if (done) {
     return (
-      <p style={{ color: 'var(--ink-3)', fontSize: 13, marginTop: 28 }}>
+      <p className="login-aside">
         If that email bought the guide, your access email is on its way. Check spam too.
         Still stuck? Write to <a href="mailto:cory@thetalusfieldjournal.com">cory@thetalusfieldjournal.com</a>.
       </p>
@@ -51,35 +54,26 @@ function ResendAccessEmail({ prefillEmail }: { prefillEmail: string }) {
 
   if (!open) {
     return (
-      <p style={{ color: 'var(--ink-3)', fontSize: 13, marginTop: 28 }}>
+      <p className="login-aside">
         Lost the email?{' '}
-        <button
-          type="button"
+        <Button
+          variant="quiet"
           onClick={() => {
             setResendEmail(prefillEmail)
             setOpen(true)
           }}
-          style={{
-            background: 'none',
-            border: 'none',
-            padding: 0,
-            color: 'var(--moss)',
-            fontSize: 13,
-            textDecoration: 'underline',
-            cursor: 'pointer',
-          }}
         >
           Resend my access email
-        </button>
+        </Button>
         , or write to <a href="mailto:cory@thetalusfieldjournal.com">cory@thetalusfieldjournal.com</a>.
       </p>
     )
   }
 
   return (
-    <form onSubmit={onResend} style={{ display: 'grid', gap: 12, maxWidth: 420, marginTop: 28 }}>
-      <label style={{ display: 'grid', gap: 6 }}>
-        <span className="eyebrow">Email you bought with</span>
+    <form onSubmit={onResend} className="form-stack" style={{ marginTop: 28 }}>
+      <label className="field">
+        Email you bought with
         <input
           className="input"
           type="email"
@@ -93,9 +87,9 @@ function ResendAccessEmail({ prefillEmail }: { prefillEmail: string }) {
           onChange={(e) => setResendEmail(e.target.value)}
         />
       </label>
-      <button className="btn btn--ghost" type="submit" disabled={busy}>
+      <Button variant="ghost" type="submit" disabled={busy}>
         {busy ? 'Sending…' : 'Resend access email'}
-      </button>
+      </Button>
     </form>
   )
 }
@@ -163,18 +157,46 @@ export default function Login() {
 
   return (
     <div className="app-shell">
-      <main className="wrap wrap--narrow" style={{ paddingTop: 'clamp(32px, 10vh, 96px)', paddingBottom: 'clamp(32px, 10vh, 96px)' }}>
-        <div className="eyebrow eyebrow--moss" style={{ marginBottom: 14 }}>
-          The Field Guide
+      <main className="wrap login-wrap">
+        <header className="brand-lockup">
+          <img
+            className="brand-lockup__mark"
+            src="/brand/mark-96.png"
+            srcSet="/brand/mark-96.png 1x, /brand/mark-192.png 2x"
+            alt=""
+            width="61"
+            height="48"
+          />
+          <div>
+            <div className="brand-lockup__title">The Talus Field</div>
+            <div className="brand-lockup__sub">A field journal of Yosemite</div>
+          </div>
+        </header>
+
+        <Plate tag="Plate · Tunnel View">
+          <ResponsivePhoto
+            src="/photos/tunnel-view.jpg"
+            alt="Tunnel View at first light: El Capitan, Bridalveil Fall, and Half Dome"
+            loading="eager"
+            width={1200}
+            height={900}
+            sizes="(max-width: 720px) 100vw, 560px"
+            style={{ aspectRatio: '2 / 1', objectFit: 'cover' }}
+          />
+        </Plate>
+
+        <div className="login-head">
+          <span className="eyebrow eyebrow--moss">The Field Guide · 2026 Edition</span>
+          <h1 className="login-title">Sign in</h1>
+          <p className="login-intro">
+            Enter the email you bought the guide with and the 6-digit access code from your
+            purchase email.
+          </p>
         </div>
-        <h1 style={{ marginBottom: 18 }}>Sign in</h1>
-        <p style={{ color: 'var(--ink-2)', marginBottom: 36 }}>
-          Enter the email you bought the guide with and the 6-digit access code from your purchase email.
-        </p>
 
         {accessEndedAt !== null && (
-          <div className="card" style={{ marginBottom: 28, maxWidth: 420 }}>
-            <p style={{ color: 'var(--ink-2)', fontSize: 14, margin: 0 }}>
+          <div className="card" style={{ marginBottom: 28 }}>
+            <p className="card__note" style={{ margin: 0 }}>
               Your access period ended {formatEndedDate(accessEndedAt)}. Purchases include
               18 months of access. Email{' '}
               <a href="mailto:cory@thetalusfieldjournal.com">cory@thetalusfieldjournal.com</a>{' '}
@@ -183,9 +205,9 @@ export default function Login() {
           </div>
         )}
 
-        <form onSubmit={onSubmit} style={{ display: 'grid', gap: 18, maxWidth: 420 }}>
-          <label style={{ display: 'grid', gap: 6 }}>
-            <span className="eyebrow">Email</span>
+        <form onSubmit={onSubmit} className="form-stack">
+          <label className="field">
+            Email
             <input
               className="input"
               type="text"
@@ -200,8 +222,8 @@ export default function Login() {
               onChange={(e) => setEmail(e.target.value)}
             />
           </label>
-          <label style={{ display: 'grid', gap: 6 }}>
-            <span className="eyebrow">Access code</span>
+          <label className="field">
+            Access code
             <input
               className="input"
               type="password"
@@ -217,21 +239,25 @@ export default function Login() {
             />
           </label>
 
-          {error && (
-            <div style={{ color: 'var(--moss)', fontSize: 14 }}>{error}</div>
-          )}
+          {error && <div className="form-error">{error}</div>}
 
-          <button className="btn" type="submit" disabled={busy}>
+          <Button type="submit" disabled={busy}>
             {busy ? (
-              <span style={{ display: 'inline-flex', alignItems: 'center', gap: 10 }}>
+              <>
                 <span className="spinner" aria-hidden="true" />
                 Checking…
-              </span>
-            ) : 'Sign in →'}
-          </button>
+              </>
+            ) : (
+              'Sign in →'
+            )}
+          </Button>
         </form>
 
         <ResendAccessEmail prefillEmail={email} />
+
+        <p className="page-footnote">
+          Works offline once installed. Pay once, sign in on every device you own.
+        </p>
       </main>
     </div>
   )
