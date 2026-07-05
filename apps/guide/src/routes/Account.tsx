@@ -70,7 +70,7 @@ export default function Account() {
       <main className="wrap wrap--narrow page">
         <PageHeader eyebrow="Your copy of the guide" title="Account" />
 
-        <div className="card-stack">
+        <div className="card-stack card-stack--boxed">
           <div className="card">
             <span className="eyebrow" style={{ display: 'block', marginBottom: 8 }}>Signed in as</span>
             <div className="card__value">{session?.username}</div>

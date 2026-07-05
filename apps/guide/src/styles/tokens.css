@@ -349,21 +349,22 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
 .daybar__dot--active { background: var(--ink); }
 .daybar__dot:hover { background: var(--moss); border-color: var(--moss); }
 
-/* Region picker card — used on the hub */
+/* Section index rows on the hub — the editorial site's ruled article-card
+   anatomy: hairline rule, moss kicker, display title, italic serif dek,
+   dateline meta. Rules, not boxes. */
 .region-picker-card {
   display: block;
-  border: 1px solid var(--rule);
-  background: var(--paper-2);
-  padding: 32px;
+  border-top: 1px solid var(--rule);
+  padding: 20px 0 26px;
   text-decoration: none;
   color: var(--ink);
-  transition: transform 0.15s ease, background 0.15s ease;
 }
 .region-picker-card:hover {
-  background: var(--paper-3);
-  transform: translateY(-2px);
   text-decoration: none;
   color: var(--ink);
+}
+.region-picker-card:hover .region-picker-card__title {
+  color: var(--moss);
 }
 .region-picker-card__title {
   font-family: var(--display);
@@ -371,12 +372,14 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
   font-weight: 500;
   line-height: 1.05;
   margin: 8px 0 12px;
+  transition: color 0.12s ease;
 }
 .region-picker-card__teaser {
   font-family: var(--serif);
+  font-style: italic;
   font-size: 15px;
   color: var(--ink-2);
-  margin: 0 0 18px;
+  margin: 0 0 14px;
   line-height: 1.5;
 }
 

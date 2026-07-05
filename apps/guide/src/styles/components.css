@@ -393,6 +393,25 @@
 .prevnext__title { font-family: var(--display); font-size: 18px; }
 .prevnext__side--empty .prevnext__title { color: var(--ink-3); }
 
+/* ===== Route-chunk loading state (App.tsx Suspense fallback) ===== */
+
+.route-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--s5);
+  min-height: 60vh;
+}
+.route-loading__mark { opacity: 0.85; }
+.route-loading__lines {
+  display: grid;
+  gap: var(--s2);
+  width: min(300px, 70vw);
+  justify-items: center;
+}
+.route-loading__lines .skeleton { border-radius: var(--radius); }
+
 /* ===== Shared layout utilities ===== */
 
 /* Plain-text link lists (saved stops, hidden areas in a region). */
@@ -413,10 +432,18 @@
   align-items: center;
 }
 
-/* Stacked cards / sections. */
+/* Stacked cards / sections. Section index rows carry their own top rules,
+   so the stack itself only closes the run with a soft bottom rule. */
 .card-stack {
   display: grid;
+  gap: 0;
+  border-bottom: 1px solid var(--rule);
+}
+
+/* Account keeps boxed cards; give them their own rhythm. */
+.card-stack--boxed {
   gap: 18px;
+  border-bottom: 0;
 }
 
 /* Secondary page section with an eyebrow heading. */
