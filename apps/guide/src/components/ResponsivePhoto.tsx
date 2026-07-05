@@ -4,8 +4,9 @@
 // manifest — keep slugify() in sync with that script. External URLs fall back to
 // a plain <img>.
 
-import type { CSSProperties } from 'react'
+import { useCallback, useState, type CSSProperties } from 'react'
 import { RESPONSIVE_WIDTHS, responsiveBase } from '../utils/photo'
+import './ResponsivePhoto.css'
 
 type Props = {
   src: string
@@ -28,10 +29,49 @@ export default function ResponsivePhoto({
   loading = 'lazy',
   style,
 }: Props) {
+  const [loaded, setLoaded] = useState(false)
+  const [instant, setInstant] = useState(false)
+
+  // Cached images (back navigation, SW photo cache) are complete before
+  // onLoad can fire. The ref callback runs at commit, before paint, so
+  // flagging them here shows them at full opacity immediately, with the
+  // transition suppressed so nothing re-fades.
+  const imgRef = useCallback((img: HTMLImageElement | null) => {
+    if (img && img.complete) {
+      setInstant(true)
+      setLoaded(true)
+    }
+  }, [])
+
+  const fadeClass = [
+    'photo-fade',
+    loaded ? 'photo-fade--in' : '',
+    instant ? 'photo-fade--instant' : '',
+    className ?? '',
+  ]
+    .filter(Boolean)
+    .join(' ')
+  const handleLoad = () => setLoaded(true)
+  // On failure, reveal the element anyway so the alt text is readable instead
+  // of an invisible gap.
+  const handleError = () => setLoaded(true)
+
   const isExternal = /^https?:/i.test(src)
   if (isExternal) {
     return (
-      <img className={className} src={src} alt={alt} loading={loading} decoding="async" width={width} height={height} style={style} />
+      <img
+        ref={imgRef}
+        className={fadeClass}
+        src={src}
+        alt={alt}
+        loading={loading}
+        decoding="async"
+        width={width}
+        height={height}
+        style={style}
+        onLoad={handleLoad}
+        onError={handleError}
+      />
     )
   }
 
@@ -44,7 +84,8 @@ export default function ResponsivePhoto({
       <source type="image/avif" srcSet={srcSet('avif')} sizes={sizes} />
       <source type="image/webp" srcSet={srcSet('webp')} sizes={sizes} />
       <img
-        className={className}
+        ref={imgRef}
+        className={fadeClass}
         src={`/${cleaned}`}
         srcSet={srcSet('jpg')}
         sizes={sizes}
@@ -54,6 +95,8 @@ export default function ResponsivePhoto({
         width={width}
         height={height}
         style={style}
+        onLoad={handleLoad}
+        onError={handleError}
       />
     </picture>
   )

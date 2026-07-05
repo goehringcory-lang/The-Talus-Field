@@ -1,0 +1,40 @@
+/* Photo presentation — fade-in on load, plus the "photo coming" placeholder
+ * tile. Imported by ResponsivePhoto.tsx and PhotoPlaceholder.tsx. */
+
+/* Images start transparent and fade in once loaded. Already-cached images
+ * (back navigation, the service-worker photo cache) are detected via a ref
+ * callback that checks img.complete; those get --instant and render at full
+ * opacity with no re-fade. The global reduced-motion rule in tokens.css
+ * collapses the transition automatically. */
+.photo-fade {
+  opacity: 0;
+  transition: opacity 0.45s ease;
+}
+.photo-fade--in {
+  opacity: 1;
+}
+.photo-fade--instant {
+  transition: none;
+}
+
+/* PhotoPlaceholder tile. The compound selector outranks the base
+ * .stop-card__photo rule in tokens.css so the hatch wins over its flat
+ * --paper-3 background regardless of bundle order. Values mirror the former
+ * inline styles exactly. */
+.stop-card__photo.stop-card__photo--placeholder {
+  aspect-ratio: 4 / 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: repeating-linear-gradient(
+    135deg,
+    var(--paper-2, #ece6da) 0 12px,
+    var(--paper-3, #e2dccf) 12px 24px
+  );
+  color: var(--ink-3, #6f6a5d);
+  font-family: var(--sans);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 600;
+}

@@ -10,6 +10,7 @@
 import { useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import GatedChrome from '../components/GatedChrome'
+import Skeleton from '../components/Skeleton'
 import { announceTripAdd } from '../trip/addFeedback'
 import { programItemId } from '../trip/schema'
 import { useTripPlan } from '../trip/useTripPlan'
@@ -342,6 +343,32 @@ export default function Programs() {
         )}
         {byDay.length === 0 && allEvents.length > 0 && (
           <p className="programs-empty">Nothing matches the current filters.</p>
+        )}
+
+        {/* First sync for a window with nothing cached: sketch the day-header
+            + row anatomy so the agenda doesn't jump when listings land. Pure
+            placeholder; the skeleton blocks are aria-hidden and the sync
+            status above already announces progress. */}
+        {loading && events.length === 0 && (
+          <div className="programs-skeleton" aria-busy="true">
+            <div className="programs-day-header">
+              <Skeleton width={148} height={14} />
+            </div>
+            {[68, 82, 54, 74].map((titlePct, i) => (
+              <div className="program-row program-row--skeleton" key={titlePct}>
+                <Skeleton variant="text" width={i % 2 === 0 ? 44 : 56} />
+                <span>
+                  <Skeleton variant="title" width={`${titlePct}%`} />
+                  <Skeleton
+                    variant="text"
+                    className="program-row__skeleton-meta"
+                    width={`${Math.min(titlePct + 14, 90)}%`}
+                  />
+                </span>
+                <Skeleton className="program-row__skeleton-add" width={64} height={36} />
+              </div>
+            ))}
+          </div>
         )}
 
         {byDay.map(([date, dayEvents]) => (

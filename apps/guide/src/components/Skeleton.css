@@ -1,0 +1,42 @@
+/* Skeleton primitive — see Skeleton.tsx.
+ *
+ * Flat rectangles of --paper-3 with a slow, low-contrast sweep. The highlight
+ * lives on an ::after pseudo-element that rests at translateX(-100%), fully
+ * off-screen; the animation carries it across once per cycle. Under the
+ * global prefers-reduced-motion rule in tokens.css (animation-duration:
+ * 0.01ms, iteration-count: 1) the sweep completes instantly and the highlight
+ * parks back off-screen, leaving a static block. */
+
+.skeleton {
+  display: block;
+  position: relative;
+  overflow: hidden;
+  background: var(--paper-3, #d8c89e);
+}
+.skeleton::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  transform: translateX(-100%);
+  background: linear-gradient(
+    100deg,
+    transparent 25%,
+    color-mix(in oklab, var(--paper, #f1ead6) 45%, transparent) 50%,
+    transparent 75%
+  );
+  animation: skeleton-shimmer 2.8s ease-in-out infinite;
+}
+@keyframes skeleton-shimmer {
+  to {
+    transform: translateX(100%);
+  }
+}
+
+/* Line presets. Heights approximate one line of the app's title and caption
+ * type; width comes from the call site. */
+.skeleton--title {
+  height: 18px;
+}
+.skeleton--text {
+  height: 12px;
+}
