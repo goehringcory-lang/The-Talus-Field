@@ -1,0 +1,31 @@
+# Template for workers/.dev.vars — the secrets `wrangler dev` reads locally.
+# Copy to `.dev.vars` and fill in. `.dev.vars` is gitignored; this template is
+# committed so the secret surface is documented in one place. In production the
+# same names are set with `wrangler secret put <NAME>` (see wrangler.toml).
+
+# --- Operator / dev sign-in (POST /api/auth/dev-login) -----------------------
+# Either pair (ADMIN_* or DEV_*) lets you into the PWA. The login form accepts
+# the username as the "email" field and the code as the "access code" field.
+# Rotate before public launch.
+ADMIN_USERNAME="you@example.com"
+ADMIN_CODE="choose-a-code"
+# DEV_USERNAME="preview"
+# DEV_CODE="choose-a-code"
+
+# --- JWT signing (required for any login to issue a token) -------------------
+# Any non-empty string works locally; production uses a real random secret.
+MAGIC_LINK_SIGNING_SECRET="local-dev-signing-secret"
+
+# --- Stripe (checkout + webhook). Dummy values are fine for local dev. -------
+# STRIPE_SECRET_KEY="sk_test_..."
+# STRIPE_WEBHOOK_SECRET="whsec_..."
+
+# --- Resend (transactional email for magic links / contact form) ------------
+# RESEND_API_KEY="re_..."
+
+# --- NPS Events API (optional; /api/programs falls back to manual curation) --
+# NPS_API_KEY="..."
+
+# --- IndexNow push-indexing (optional; endpoint 503s without both) ----------
+# INDEXNOW_KEY="..."
+# INDEXNOW_ADMIN_TOKEN="..."
