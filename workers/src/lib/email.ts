@@ -22,6 +22,7 @@ export async function sendMagicLink(
   }
 
   const { to, magicLink, code } = args
+  const appOrigin = new URL(magicLink).origin
 
   const text = [
     `Welcome to The Field Guide.`,
@@ -30,7 +31,7 @@ export async function sendMagicLink(
     magicLink,
     ``,
     `Setting up a second device? Use this 6-digit code at`,
-    `${new URL(magicLink).origin}/login`,
+    `${appOrigin}/login`,
     ``,
     `    ${code}`,
     ``,
@@ -38,19 +39,38 @@ export async function sendMagicLink(
     `— Cory`,
   ].join('\n')
 
+  // Brand palette inlined by hex (mail clients strip <style> and custom
+  // properties): paper #f1ead6, paper-2 #e6dcc1, ink #14110c, ink-3 #50402e,
+  // rule #2a2118. Georgia stands in for EB Garamond, which mail clients
+  // cannot be relied on to load. The mark is served by the deployed app.
+  const serif = `Georgia, 'Times New Roman', serif`
+  const sans = `-apple-system, 'Segoe UI', Arial, sans-serif`
   const html = `
-    <div style="font-family: -apple-system, Segoe UI, sans-serif; line-height: 1.55; color: #14110c;">
-      <p style="margin: 0 0 18px;">Welcome to <strong>The Field Guide</strong>.</p>
-      <p style="margin: 0 0 14px;">Tap to open the app on this device:</p>
-      <p style="margin: 0 0 24px;">
-        <a href="${magicLink}" style="display:inline-block;padding:14px 22px;background:#14110c;color:#f1ead6;text-decoration:none;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;font-size:13px;">
-          Open the guide
-        </a>
-      </p>
-      <p style="margin: 0 0 8px;">Setting up a second device? Use this 6-digit code at <a href="${new URL(magicLink).origin}/login">${new URL(magicLink).origin}/login</a>:</p>
-      <p style="margin: 0 0 24px; font-family: ui-monospace, monospace; font-size: 28px; letter-spacing: 0.3em;">${code}</p>
-      <p style="margin: 0 0 6px; color: #6e5c43; font-size: 13px;">Both keep working for 18 months.</p>
-      <p style="margin: 0; color: #6e5c43; font-size: 13px;">— Cory</p>
+    <div style="background:#f1ead6;padding:36px 16px;">
+      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:520px;margin:0 auto;">
+        <tr>
+          <td style="padding:0 0 18px;">
+            <img src="${appOrigin}/brand/mark-192.png" width="60" height="47" alt="The Talus Field" style="display:block;border:0;" />
+            <div style="font-family:${serif};font-size:24px;color:#14110c;padding-top:12px;">The Talus Field</div>
+            <div style="font-family:${sans};font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#50402e;padding-top:4px;">The Field Guide &middot; 2026 Edition</div>
+          </td>
+        </tr>
+        <tr>
+          <td style="border-top:1px solid #2a2118;padding:24px 0 0;">
+            <p style="font-family:${serif};font-size:17px;line-height:1.55;color:#14110c;margin:0 0 18px;">Welcome to The Field Guide.</p>
+            <p style="font-family:${serif};font-size:15px;line-height:1.55;color:#14110c;margin:0 0 14px;">Tap to open the app on this device:</p>
+            <p style="margin:0 0 26px;">
+              <a href="${magicLink}" style="display:inline-block;padding:14px 22px;background:#14110c;color:#f1ead6;text-decoration:none;font-family:${sans};font-weight:600;letter-spacing:2px;text-transform:uppercase;font-size:13px;">
+                Open the guide
+              </a>
+            </p>
+            <p style="font-family:${serif};font-size:15px;line-height:1.55;color:#14110c;margin:0 0 10px;">Setting up a second device? Use this 6-digit code at <a href="${appOrigin}/login" style="color:#7a2a10;">${appOrigin}/login</a>:</p>
+            <p style="font-family:ui-monospace,Menlo,monospace;font-size:28px;letter-spacing:8px;color:#14110c;background:#e6dcc1;border:1px solid #2a2118;padding:12px 16px;margin:0 0 26px;display:inline-block;">${code}</p>
+            <p style="font-family:${sans};font-size:13px;color:#50402e;margin:0 0 6px;">Both keep working for 18 months, on every device you own.</p>
+            <p style="font-family:${sans};font-size:13px;color:#50402e;margin:0;">&mdash; Cory</p>
+          </td>
+        </tr>
+      </table>
     </div>
   `.trim()
 
