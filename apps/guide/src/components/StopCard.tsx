@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import ReactMarkdown from 'react-markdown'
 import type { StopT } from '../content'
 import { useFavorites } from '../lib/favorites'
+import AddToTripButton from './AddToTripButton'
 import MapsLink from './MapsLink'
 import PhotoPlaceholder from './PhotoPlaceholder'
 import Plate from './Plate'
@@ -73,18 +74,21 @@ export default function StopCard({ stop, compact = true }: Props) {
           </div>
           <h2 className="stop-card__title">{stop.title}</h2>
         </div>
-        <button
-          type="button"
-          className="fav-toggle"
-          aria-pressed={saved}
-          aria-label={saved ? `Remove ${stop.title} from saved stops` : `Save ${stop.title}`}
-          title={saved ? 'Saved' : 'Save stop'}
-          onClick={() => toggle(stop.id)}
-        >
-          <svg className="fav-toggle__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-            <path d="M6 3h12a1 1 0 0 1 1 1v17l-7-4.5L5 21V4a1 1 0 0 1 1-1z" />
-          </svg>
-        </button>
+        <div className="stop-card__actions">
+          <AddToTripButton stopId={stop.id} title={stop.title} />
+          <button
+            type="button"
+            className="fav-toggle"
+            aria-pressed={saved}
+            aria-label={saved ? `Remove ${stop.title} from saved stops` : `Save ${stop.title}`}
+            title={saved ? 'Saved' : 'Save stop'}
+            onClick={() => toggle(stop.id)}
+          >
+            <svg className="fav-toggle__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <path d="M6 3h12a1 1 0 0 1 1 1v17l-7-4.5L5 21V4a1 1 0 0 1 1-1z" />
+            </svg>
+          </button>
+        </div>
       </div>
 
       {(stop.coord || stop.elevationFt || stop.timeBudgetMin || stop.difficulty || stop.season) && (

@@ -1,33 +1,14 @@
 /* /trip route — day-by-day agenda built from picked stops and programs,
- * exported as an .ics calendar file. */
+ * exported as an .ics calendar file. Date/time inputs use the shared
+ * .field-control classes (components.css); this file owns the agenda
+ * anatomy only. */
 
-/* Date pickers, same bones as .programs-dates (Programs.css) but duplicated
- * so /trip never depends on another route's stylesheet being loaded. */
 .trip-dates {
   display: flex;
   gap: 12px;
   flex-wrap: wrap;
   align-items: end;
   margin-bottom: 24px;
-}
-.trip-dates label {
-  display: grid;
-  gap: 4px;
-  font-family: var(--sans, system-ui, sans-serif);
-  font-size: 11px;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  font-weight: 600;
-  color: var(--ink-3, #6b5c49);
-}
-.trip-dates input[type='date'] {
-  font: 15px var(--sans, system-ui, sans-serif);
-  padding: 8px 10px;
-  border: 1px solid var(--rule, #c1ad84);
-  background: var(--paper, #f1ead6);
-  color: var(--ink, #14110c);
-  border-radius: 4px;
-  min-height: 44px;
 }
 
 .trip-toolbar {
@@ -37,20 +18,25 @@
   align-items: center;
   margin-bottom: 24px;
 }
+.trip-toolbar__label {
+  font-family: var(--sans);
+  font-size: 12px;
+  color: var(--ink-3);
+}
 
 .trip-day {
   margin-bottom: 8px;
 }
 .trip-day__header {
-  border-top: 1px solid var(--ink, #14110c);
-  border-bottom: 1px solid var(--rule-soft, #d5c6a4);
-  background: var(--paper-2, #e9e0c9);
+  border-top: 1px solid var(--ink);
+  border-bottom: 1px solid var(--rule-soft);
+  background: var(--paper-2);
   padding: 8px 2px;
   display: flex;
   justify-content: space-between;
   align-items: baseline;
   gap: 12px;
-  font-family: var(--sans, system-ui, sans-serif);
+  font-family: var(--sans);
 }
 .trip-day__title {
   font-size: 12px;
@@ -61,44 +47,39 @@
 }
 .trip-day__total {
   font-size: 11px;
-  color: var(--ink-3, #6b5c49);
+  color: var(--ink-3);
 }
 
 .trip-item {
   display: grid;
-  grid-template-columns: 84px 1fr auto;
+  grid-template-columns: 96px 1fr auto;
   gap: 10px;
   align-items: start;
   padding: 12px 2px;
-  border-bottom: 1px solid var(--rule-soft, #d5c6a4);
+  border-bottom: 1px solid var(--rule-soft);
 }
 .trip-item__time {
   display: grid;
   gap: 4px;
 }
-.trip-item__time input[type='time'] {
-  font: 13px var(--sans, system-ui, sans-serif);
-  padding: 5px 6px;
-  border: 1px solid var(--rule, #c1ad84);
-  background: var(--paper, #f1ead6);
-  color: var(--ink, #14110c);
-  border-radius: 4px;
-  width: 84px;
-  min-height: 36px;
+.trip-item__time .field-control {
+  width: 96px;
+  padding-left: 6px;
+  padding-right: 6px;
 }
 .trip-item__fixed-time {
-  font: 600 13px var(--sans, system-ui, sans-serif);
-  color: var(--ink-2, #36291c);
+  font: 600 13px var(--sans);
+  color: var(--ink-2);
   padding-top: 8px;
 }
 .trip-item__auto {
-  font: 10px var(--sans, system-ui, sans-serif);
-  color: var(--ink-3, #6b5c49);
+  font: 10px var(--sans);
+  color: var(--ink-3);
   text-transform: uppercase;
   letter-spacing: 0.08em;
 }
 .trip-item__title {
-  font-family: var(--display, Georgia, serif);
+  font-family: var(--display);
   font-size: 16px;
   line-height: 1.3;
   margin: 0 0 3px;
@@ -107,49 +88,63 @@
   text-decoration: none;
   color: inherit;
 }
+.trip-item__title a:hover {
+  color: var(--moss);
+}
 .trip-item__meta {
-  font-family: var(--sans, system-ui, sans-serif);
+  font-family: var(--sans);
   font-size: 12px;
-  color: var(--ink-3, #6b5c49);
+  color: var(--ink-3);
   display: flex;
   gap: 10px;
   flex-wrap: wrap;
   align-items: center;
 }
-.trip-item__meta select {
-  font: 12px var(--sans, system-ui, sans-serif);
-  padding: 3px 4px;
-  border: 1px solid var(--rule, #c1ad84);
-  background: var(--paper, #f1ead6);
-  color: var(--ink-2, #36291c);
-  border-radius: 4px;
-  min-height: 32px;
-}
 .trip-item__remove {
   background: none;
   border: none;
-  font: 18px var(--sans, system-ui, sans-serif);
-  color: var(--ink-3, #6b5c49);
+  font: 18px var(--sans);
+  color: var(--ink-3);
   cursor: pointer;
   padding: 4px 8px;
   min-height: 36px;
   line-height: 1;
 }
 .trip-item__remove:hover {
-  color: var(--moss, #7a2a10);
+  color: var(--moss);
+}
+
+/* Estimated drive between consecutive placed rows. */
+.trip-transit {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 3px 2px 3px 106px;
+}
+.trip-transit__line {
+  width: 14px;
+  border-top: 1px dashed var(--rule-soft);
+}
+.trip-transit__label {
+  font-family: var(--sans);
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ink-3);
 }
 
 .trip-overflow {
-  font-family: var(--sans, system-ui, sans-serif);
+  font-family: var(--sans);
   font-size: 12px;
-  color: var(--moss, #7a2a10);
+  color: var(--moss);
   padding: 8px 2px 0;
 }
 
 .trip-empty {
   padding: 28px 0;
-  font-family: var(--serif, Georgia, serif);
-  color: var(--ink-2, #36291c);
+  font-family: var(--serif);
+  color: var(--ink-2);
   line-height: 1.65;
 }
 .trip-empty ol {
@@ -160,9 +155,9 @@
 }
 
 .trip-export-hint {
-  border: 1px solid var(--rule, #c1ad84);
-  background: var(--paper-2, #e9e0c9);
-  font-family: var(--sans, system-ui, sans-serif);
+  border: 1px solid var(--rule);
+  background: var(--paper-2);
+  font-family: var(--sans);
   font-size: 13px;
   line-height: 1.55;
   padding: 10px 12px;
@@ -177,9 +172,9 @@
   margin: 28px 0 12px;
 }
 .trip-step__num {
-  font: 700 12px var(--sans, system-ui, sans-serif);
-  border: 1px solid var(--ink, #14110c);
-  border-radius: 999px;
+  font: 700 12px var(--sans);
+  border: 1px solid var(--ink);
+  border-radius: var(--radius-pill);
   width: 22px;
   height: 22px;
   display: grid;
@@ -187,7 +182,7 @@
   flex-shrink: 0;
 }
 .trip-step__title {
-  font-family: var(--sans, system-ui, sans-serif);
+  font-family: var(--sans);
   font-size: 12px;
   text-transform: uppercase;
   letter-spacing: 0.14em;
@@ -195,21 +190,21 @@
   margin: 0;
 }
 .trip-step__hint {
-  font-family: var(--sans, system-ui, sans-serif);
+  font-family: var(--sans);
   font-size: 12px;
-  color: var(--ink-3, #6b5c49);
+  color: var(--ink-3);
   margin: 10px 0 0;
 }
 
 /* Review panel: the exact calendar events the export will create. */
 .trip-review {
-  border: 1px solid var(--rule, #c1ad84);
-  background: var(--paper-2, #e9e0c9);
+  border: 1px solid var(--rule);
+  background: var(--paper-2);
   padding: 14px 14px 16px;
   margin-top: 12px;
 }
 .trip-review__day {
-  font-family: var(--sans, system-ui, sans-serif);
+  font-family: var(--sans);
   font-size: 11px;
   text-transform: uppercase;
   letter-spacing: 0.14em;
@@ -224,36 +219,36 @@
   grid-template-columns: 84px 1fr;
   gap: 10px;
   padding: 8px 0;
-  border-bottom: 1px solid var(--rule-soft, #d5c6a4);
-  font-family: var(--sans, system-ui, sans-serif);
+  border-bottom: 1px solid var(--rule-soft);
+  font-family: var(--sans);
   font-size: 13px;
 }
 .trip-review__event-time {
   font-weight: 600;
-  color: var(--ink-2, #36291c);
+  color: var(--ink-2);
   white-space: nowrap;
 }
 .trip-review__event-title {
   display: block;
-  color: var(--ink, #14110c);
+  color: var(--ink);
 }
 .trip-review__event-meta {
   display: flex;
   gap: 10px;
   flex-wrap: wrap;
   font-size: 12px;
-  color: var(--ink-3, #6b5c49);
+  color: var(--ink-3);
 }
 .trip-review__overflow {
-  border: 1px solid color-mix(in oklab, var(--moss, #7a2a10) 40%, var(--rule, #c1ad84));
-  background: color-mix(in oklab, var(--moss, #7a2a10) 8%, var(--paper, #f1ead6));
+  border: 1px solid color-mix(in oklab, var(--moss) 40%, var(--rule));
+  background: color-mix(in oklab, var(--moss) 8%, var(--paper));
   padding: 10px 12px;
   margin: 10px 0;
 }
 .trip-review__overflow-note {
-  font-family: var(--sans, system-ui, sans-serif);
+  font-family: var(--sans);
   font-size: 12px;
-  color: var(--moss, #7a2a10);
+  color: var(--moss);
   margin: 0 0 8px;
 }
 .trip-review__actions {
@@ -262,18 +257,8 @@
   flex-wrap: wrap;
   align-items: center;
   padding: 6px 0;
-  font-family: var(--sans, system-ui, sans-serif);
+  font-family: var(--sans);
   font-size: 13px;
-}
-.trip-review__actions input[type='time'],
-.trip-review__actions select {
-  font: 12px var(--sans, system-ui, sans-serif);
-  padding: 4px 6px;
-  border: 1px solid var(--rule, #c1ad84);
-  background: var(--paper, #f1ead6);
-  color: var(--ink-2, #36291c);
-  border-radius: 4px;
-  min-height: 36px;
 }
 .trip-review__footer {
   display: flex;
@@ -283,11 +268,11 @@
   justify-content: space-between;
   margin-top: 14px;
   padding-top: 12px;
-  border-top: 1px solid var(--rule, #c1ad84);
+  border-top: 1px solid var(--rule);
 }
 .trip-review__summary {
-  font-family: var(--sans, system-ui, sans-serif);
+  font-family: var(--sans);
   font-size: 12px;
-  color: var(--ink-2, #36291c);
+  color: var(--ink-2);
   margin: 0;
 }

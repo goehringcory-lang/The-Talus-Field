@@ -393,6 +393,36 @@
 .prevnext__title { font-family: var(--display); font-size: 18px; }
 .prevnext__side--empty .prevnext__title { color: var(--ink-3); }
 
+/* ===== Plan sub-nav (PlanTabs.tsx): Trip plan | Programs ===== */
+
+.plan-tabs {
+  display: flex;
+  border-bottom: 1px solid var(--rule);
+  margin-bottom: var(--s5);
+}
+.plan-tabs__tab {
+  flex: 0 0 auto;
+  padding: 12px 18px 10px;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  text-decoration: none;
+}
+.plan-tabs__tab:first-child { padding-left: 2px; }
+.plan-tabs__tab:hover { color: var(--ink); }
+.plan-tabs__tab[aria-current='page'] {
+  color: var(--ink);
+  border-bottom-color: var(--moss);
+}
+
 /* ===== Route-chunk loading state (App.tsx Suspense fallback) ===== */
 
 .route-loading {

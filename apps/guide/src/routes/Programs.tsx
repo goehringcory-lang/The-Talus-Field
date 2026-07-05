@@ -9,6 +9,7 @@
 
 import { useMemo, useState } from 'react'
 import GatedChrome from '../components/GatedChrome'
+import PlanTabs from '../components/PlanTabs'
 import Button from '../components/ui/Button'
 import Callout from '../components/ui/Callout'
 import { Chip, ChipButton } from '../components/ui/Chip'
@@ -233,6 +234,7 @@ export default function Programs() {
   return (
     <GatedChrome>
       <main className="wrap wrap--narrow page">
+        <PlanTabs active="programs" />
         <PageHeader
           eyebrow="What's on in the park"
           title="Programs during your trip"

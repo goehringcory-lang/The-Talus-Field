@@ -907,7 +907,14 @@ select:focus-visible {
   gap: 8px;
 }
 
-/* ===== Favorite (saved stop) toggle ===== */
+/* ===== Stop-card action toggles (add-to-trip, favorite) ===== */
+
+.stop-card__actions {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+  flex-shrink: 0;
+}
 
 .fav-toggle {
   display: inline-flex;
@@ -915,7 +922,6 @@ select:focus-visible {
   justify-content: center;
   width: 44px;
   height: 44px;
-  margin-left: auto;
   background: none;
   border: none;
   padding: 0;

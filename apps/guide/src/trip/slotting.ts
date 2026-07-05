@@ -3,8 +3,8 @@
 //   - programs are fixed blocks at their published times
 //   - user-timed stops are fixed blocks at their chosen times
 //   - untimed stops fill the day from 08:00 in region `order`, taking
-//     timeBudgetMin (default 60) plus a 30-minute travel buffer, flowing
-//     around the fixed blocks
+//     timeBudgetMin (default 60) plus a travel buffer estimated from the
+//     driving distance to the previous stop, flowing around the fixed blocks
 // Used by both the /trip agenda and the ICS export so the calendar matches
 // the screen.
 // =============================================================================
@@ -22,9 +22,58 @@ export type SlottedItem = {
 
 const DAY_START = 8 * 60
 const DAY_END = 21 * 60
+// Fallback buffer when either side has no coordinate.
 const TRAVEL_BUFFER = 30
 const DEFAULT_STOP_MIN = 60
 const DEFAULT_PROGRAM_MIN = 60
+
+// Park driving heuristic. Yosemite roads average out well under highway
+// speed: curves, 25-35 mph limits, pullout traffic. 22 mph plus a flat
+// park-and-walk allowance keeps estimates honest without routing data —
+// the map's own copy says it does not calculate driving routes.
+const PARK_MPH = 22
+const PARK_AND_WALK_MIN = 10
+const EARTH_RADIUS_MI = 3958.8
+
+function haversineMiles(a: [number, number], b: [number, number]): number {
+  const toRad = (deg: number) => (deg * Math.PI) / 180
+  const [lngA, latA] = a
+  const [lngB, latB] = b
+  const dLat = toRad(latB - latA)
+  const dLng = toRad(lngB - lngA)
+  const s =
+    Math.sin(dLat / 2) ** 2 +
+    Math.cos(toRad(latA)) * Math.cos(toRad(latB)) * Math.sin(dLng / 2) ** 2
+  return 2 * EARTH_RADIUS_MI * Math.asin(Math.sqrt(s))
+}
+
+/** Coordinate of a trip item, when its stop or program carries one. */
+export function itemCoord(item: TripItemT): [number, number] | undefined {
+  if (item.type === 'stop') return getStopById(item.stopId)?.coord
+  return item.snapshot.coord ?? undefined
+}
+
+/**
+ * Straight-line-derived drive estimate between two items, rounded to 5
+ * minutes; null when either side has no coordinate, 0 when they share a
+ * parking area.
+ */
+export function driveMinutesBetween(a: TripItemT, b: TripItemT): number | null {
+  const ca = itemCoord(a)
+  const cb = itemCoord(b)
+  if (!ca || !cb) return null
+  const miles = haversineMiles(ca, cb)
+  if (miles < 0.15) return 0
+  return Math.max(5, Math.round(((miles / PARK_MPH) * 60) / 5) * 5)
+}
+
+/** Slotting buffer between consecutive coordinates: drive + park-and-walk. */
+function travelBufferMin(from?: [number, number], to?: [number, number]): number {
+  if (!from || !to) return TRAVEL_BUFFER
+  const miles = haversineMiles(from, to)
+  const min = Math.round((miles / PARK_MPH) * 60) + PARK_AND_WALK_MIN
+  return Math.min(75, Math.max(10, min))
+}
 
 export function toMinutes(hhmm: string): number {
   const [h, m] = hhmm.split(':').map(Number)
@@ -81,29 +130,39 @@ export function slotDay(day: string, items: TripItemT[]): SlottedItem[] {
     .filter((f) => f.startMin !== null)
     .sort((a, b) => (a.startMin ?? 0) - (b.startMin ?? 0))
 
-  // Greedy fill: suggested reading order within the region.
+  // Greedy fill: suggested reading order within the region. The travel
+  // buffer between consecutive placements comes from the actual distance
+  // between their coordinates, so Valley-to-Tuolumne days stop pretending
+  // the drive is 30 minutes.
   floating.sort((a, b) => stopOrder(a) - stopOrder(b))
   const placed: SlottedItem[] = []
   let cursor = DAY_START
+  let prevCoord: [number, number] | undefined
+  let firstPlacement = true
   for (const item of floating) {
     const duration =
       (item.type === 'stop'
         ? item.durationMin ?? getStopById(item.stopId)?.timeBudgetMin
         : undefined) ?? DEFAULT_STOP_MIN
+    const coord = itemCoord(item)
 
+    let start = firstPlacement ? cursor : cursor + travelBufferMin(prevCoord, coord)
     // Advance past any fixed block that overlaps the candidate slot.
-    let start = cursor
     for (const b of blocks) {
       const bStart = b.startMin ?? 0
       const bEnd = bStart + b.durationMin
-      if (start < bEnd && start + duration > bStart) start = bEnd + TRAVEL_BUFFER
+      if (start < bEnd && start + duration > bStart) {
+        start = bEnd + travelBufferMin(itemCoord(b.item), coord)
+      }
     }
     if (start + duration > DAY_END) {
       placed.push({ item, day, startMin: null, durationMin: duration, fixed: false })
       continue
     }
     placed.push({ item, day, startMin: start, durationMin: duration, fixed: false })
-    cursor = start + duration + TRAVEL_BUFFER
+    cursor = start + duration
+    prevCoord = coord ?? prevCoord
+    firstPlacement = false
   }
 
   return [...fixed, ...placed].sort((a, b) => (a.startMin ?? -1) - (b.startMin ?? -1))

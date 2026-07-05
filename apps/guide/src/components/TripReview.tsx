@@ -88,12 +88,14 @@ export default function TripReview({ slotted, windowDays, exportResult, exportin
                       {item.type === 'stop' && (
                         <>
                           <input
+                            className="field-control field-control--sm"
                             type="time"
                             value={item.startTime ?? ''}
                             onChange={(e) => setStopTime(item.itemId, e.target.value || undefined)}
                             aria-label={`Start time for ${title}`}
                           />
                           <select
+                            className="field-control field-control--sm"
                             value={item.day}
                             onChange={(e) => moveStopToDay(item.itemId, e.target.value)}
                             aria-label={`Day for ${title}`}
@@ -111,8 +113,7 @@ export default function TripReview({ slotted, windowDays, exportResult, exportin
                       )}
                       <button
                         type="button"
-                        className="btn btn--ghost"
-                        style={{ minHeight: 36 }}
+                        className="btn btn--ghost btn--sm"
                         onClick={() => removeItem(item.itemId)}
                       >
                         Remove
