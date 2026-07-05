@@ -5,6 +5,7 @@ import StopCard from '../components/StopCard'
 import { directionsUrl } from '../map/kinds'
 import { announceTripAdd } from '../trip/addFeedback'
 import { useTripPlan } from '../trip/useTripPlan'
+import '../styles/app.css'
 
 export default function StopDetail() {
   const params = useParams<{ stopId: string }>()
@@ -21,38 +22,24 @@ export default function StopDetail() {
 
   return (
     <GatedChrome>
-      <main className="wrap wrap--narrow" style={{ paddingTop: 56, paddingBottom: 96 }}>
-        <p style={{ marginBottom: 24 }}>
-          <Link
-            to={`/region/${stop.region}`}
-            style={{
-              fontFamily: 'var(--sans)',
-              fontSize: 12,
-              textTransform: 'uppercase',
-              letterSpacing: '0.14em',
-              fontWeight: 600,
-            }}
-          >
+      <main className="wrap wrap--narrow page">
+        <p className="backlink-row">
+          <Link to={`/region/${stop.region}`} className="backlink">
             ← {regionMeta?.title ?? 'Region'}
           </Link>
         </p>
 
         <StopCard stop={stop} compact={false} />
 
-        <p style={{ marginTop: 20, display: 'flex', gap: 10, flexWrap: 'wrap', alignItems: 'center' }}>
+        <p className="action-row">
           {planned ? (
-            <Link
-              to="/trip"
-              className="btn btn--ghost"
-              style={{ minHeight: 44, display: 'inline-flex', alignItems: 'center' }}
-            >
+            <Link to="/trip" className="btn btn--ghost btn--tall">
               In your trip plan →
             </Link>
           ) : (
             <button
               type="button"
-              className="btn"
-              style={{ minHeight: 44 }}
+              className="btn btn--tall"
               onClick={() => {
                 addStop(stop.id)
                 announceTripAdd(stop.title)
@@ -63,53 +50,42 @@ export default function StopDetail() {
           )}
           {stop.coord && (
             <a
-              className="btn btn--ghost"
+              className="btn btn--ghost btn--tall"
               href={directionsUrl(stop.coord)}
               target="_blank"
               rel="noopener noreferrer"
-              style={{ minHeight: 44, display: 'inline-flex', alignItems: 'center' }}
             >
               Directions →
             </a>
           )}
         </p>
 
-        <nav
-          className="stop-prevnext"
-          style={{
-            display: 'flex',
-            justifyContent: 'space-between',
-            gap: 24,
-            marginTop: 56,
-            paddingTop: 24,
-            borderTop: '1px solid var(--rule)',
-          }}
-        >
-          <div style={{ flex: 1 }}>
+        <nav className="stop-prevnext prevnext">
+          <div className="prevnext__cell">
             {prev ? (
-              <Link to={`/stop/${prev.id}`} style={{ display: 'block' }}>
-                <div className="eyebrow" style={{ marginBottom: 6 }}>← Previous</div>
-                <div style={{ fontFamily: 'var(--display)', fontSize: 18 }}>{prev.title}</div>
+              <Link to={`/stop/${prev.id}`} className="prevnext__link">
+                <div className="eyebrow">← Previous</div>
+                <div className="prevnext__title">{prev.title}</div>
               </Link>
             ) : (
-              <span style={{ opacity: 0.4 }}>
-                <div className="eyebrow" style={{ marginBottom: 6 }}>← Previous</div>
-                <div style={{ fontFamily: 'var(--display)', fontSize: 18, color: 'var(--ink-3)' }}>
+              <span className="prevnext__disabled">
+                <div className="eyebrow">← Previous</div>
+                <div className="prevnext__title prevnext__title--muted">
                   Start of region
                 </div>
               </span>
             )}
           </div>
-          <div style={{ flex: 1, textAlign: 'right' }}>
+          <div className="prevnext__cell prevnext__cell--next">
             {next ? (
-              <Link to={`/stop/${next.id}`} style={{ display: 'block' }}>
-                <div className="eyebrow" style={{ marginBottom: 6 }}>Next →</div>
-                <div style={{ fontFamily: 'var(--display)', fontSize: 18 }}>{next.title}</div>
+              <Link to={`/stop/${next.id}`} className="prevnext__link">
+                <div className="eyebrow">Next →</div>
+                <div className="prevnext__title">{next.title}</div>
               </Link>
             ) : (
-              <span style={{ opacity: 0.4 }}>
-                <div className="eyebrow" style={{ marginBottom: 6 }}>Next →</div>
-                <div style={{ fontFamily: 'var(--display)', fontSize: 18, color: 'var(--ink-3)' }}>
+              <span className="prevnext__disabled">
+                <div className="eyebrow">Next →</div>
+                <div className="prevnext__title prevnext__title--muted">
                   End of region
                 </div>
               </span>

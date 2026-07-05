@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { triggerUpdate } from '../pwa/registerSW'
+import '../styles/app.css'
 
 export default function UpdateBanner() {
   const [registration, setRegistration] =
@@ -19,26 +20,10 @@ export default function UpdateBanner() {
   return (
     <button
       type="button"
+      className="update-banner"
       onClick={() => triggerUpdate(registration)}
-      style={{
-        position: 'fixed',
-        top: 0,
-        left: 0,
-        right: 0,
-        background: 'var(--moss)',
-        color: 'var(--paper)',
-        border: 0,
-        padding: '10px 16px',
-        fontFamily: 'var(--sans)',
-        fontSize: 13,
-        fontWeight: 600,
-        letterSpacing: '0.04em',
-        cursor: 'pointer',
-        textAlign: 'center',
-        zIndex: 60,
-      }}
     >
-      Updated — tap to refresh.
+      A new version is ready. Tap to refresh.
     </button>
   )
 }

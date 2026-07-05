@@ -1,0 +1,328 @@
+/* ============================================================
+   App-level shared classes. Replaces the inline style={{}} patterns
+   repeated across the route and banner components. Vocabulary comes
+   from styles/tokens.css (--paper, --ink, --rule, --moss, --sans...).
+   ============================================================ */
+
+/* ===== Page scaffolding ===== */
+
+/* Standard gated-route page body; pairs with .wrap .wrap--narrow. */
+.page {
+  padding-top: 56px;
+  padding-bottom: 96px;
+}
+
+/* Auth screens center vertically on tall viewports. */
+.page--auth {
+  padding-top: clamp(32px, 10vh, 96px);
+  padding-bottom: clamp(32px, 10vh, 96px);
+}
+
+/* Eyebrow kicker above the page h1. */
+.page__kicker {
+  margin-bottom: 14px;
+}
+
+.page__title {
+  margin-bottom: 18px;
+}
+
+/* Intro paragraph under the h1. */
+.page__lede {
+  color: var(--ink-2);
+  margin-bottom: 36px;
+}
+
+/* ===== Notice banner (InstallPrompt, BeforeYouGoNudge) ===== */
+
+.notice-banner {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  padding: 12px 14px;
+}
+
+/* Floating variant, pinned above the bottom nav (InstallPrompt). */
+.notice-banner--fixed {
+  position: fixed;
+  bottom: calc(56px + env(safe-area-inset-bottom) + 8px);
+  left: 16px;
+  right: 16px;
+  max-width: 480px;
+  margin: 0 auto;
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(20, 17, 12, 0.12);
+  z-index: 200;
+}
+
+/* In-flow variant with a moss accent rule (BeforeYouGoNudge). */
+.notice-banner--inline {
+  border: 1px solid var(--rule);
+  border-left: 3px solid var(--moss);
+  background: var(--paper-2);
+  padding: 14px 16px;
+  margin-bottom: 24px;
+}
+
+.notice-banner__body {
+  flex: 1;
+  font-family: var(--serif);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.notice-banner__lead {
+  margin-bottom: 4px;
+}
+
+.notice-banner__hint {
+  font-family: var(--sans);
+  font-size: 12px;
+  color: var(--ink-2);
+  line-height: 1.5;
+}
+
+/* Small keycap-style glyph inside banner copy (iOS share icon). */
+.key-glyph {
+  display: inline-block;
+  vertical-align: middle;
+  padding: 0 3px;
+  border: 1px solid var(--rule-soft);
+  border-radius: 3px;
+  font-size: 13px;
+}
+
+/* ===== Update banner (new service worker ready) ===== */
+
+.update-banner {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: var(--moss);
+  color: var(--paper);
+  border: 0;
+  padding: 10px 16px;
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  text-align: center;
+  z-index: 60;
+}
+
+/* ===== Buttons ===== */
+
+/* Small banner-sized button that keeps the 44px tap target. */
+.btn--compact {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 12px;
+  font-size: 13px;
+  min-height: 44px;
+  flex-shrink: 0;
+}
+
+/* Full-size button aligned in a flex row with a 44px tap target. */
+.btn--tall {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+}
+
+/* Spinner + label inside a busy button. */
+.btn__busy {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Row of action buttons under content. */
+.action-row {
+  margin-top: 20px;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+/* ===== Home hub ===== */
+
+.card-grid {
+  display: grid;
+  gap: 18px;
+}
+
+.home-section {
+  margin-top: 40px;
+}
+
+.home-strip {
+  margin-top: 28px;
+}
+
+.section-eyebrow {
+  margin-bottom: 10px;
+}
+
+.plain-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 8px;
+}
+
+.plain-list__item {
+  font-family: var(--serif);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.muted {
+  color: var(--ink-3);
+}
+
+.strip-link {
+  font-family: var(--sans);
+  font-size: 13px;
+  display: inline-block;
+  margin-top: 8px;
+}
+
+.saved-link {
+  font-family: var(--display);
+  font-size: 18px;
+}
+
+.signin-note {
+  margin-top: 32px;
+  color: var(--ink-3);
+  font-size: 13px;
+}
+
+/* ===== Stop detail ===== */
+
+.backlink-row {
+  margin-bottom: 24px;
+}
+
+.backlink {
+  font-family: var(--sans);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-weight: 600;
+}
+
+/* Prev/next footer nav. Sits alongside .stop-prevnext, whose mobile
+   sticky treatment lives in tokens.css. */
+.prevnext {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  margin-top: 56px;
+  padding-top: 24px;
+  border-top: 1px solid var(--rule);
+}
+
+.prevnext__cell {
+  flex: 1;
+}
+
+.prevnext__cell--next {
+  text-align: right;
+}
+
+.prevnext__link {
+  display: block;
+}
+
+.prevnext .eyebrow {
+  margin-bottom: 6px;
+}
+
+.prevnext__title {
+  font-family: var(--display);
+  font-size: 18px;
+}
+
+.prevnext__title--muted {
+  color: var(--ink-3);
+}
+
+.prevnext__disabled {
+  opacity: 0.4;
+}
+
+/* ===== Account ===== */
+
+.card--spaced {
+  margin-bottom: 28px;
+}
+
+.card__eyebrow {
+  margin-bottom: 8px;
+}
+
+.account-identity {
+  font-family: var(--display);
+  font-size: 22px;
+}
+
+.account-actions {
+  margin-top: 36px;
+  display: flex;
+  gap: 12px;
+}
+
+.build-note {
+  margin-top: 40px;
+  color: var(--ink-3);
+  font-size: 12px;
+  font-family: var(--sans);
+  line-height: 1.6;
+}
+
+/* ===== Login ===== */
+
+.auth-form {
+  display: grid;
+  gap: 18px;
+  max-width: 420px;
+}
+
+.auth-form__field {
+  display: grid;
+  gap: 6px;
+}
+
+.form-error {
+  color: var(--moss);
+  font-size: 14px;
+}
+
+.auth-footnote {
+  color: var(--ink-3);
+  font-size: 13px;
+  margin-top: 28px;
+}
+
+/* ===== Search ===== */
+
+.search-hint {
+  color: var(--ink-3);
+  margin-top: 28px;
+}
+
+.search-section {
+  margin-top: 32px;
+}
+
+.search-section > .eyebrow {
+  margin-bottom: 4px;
+}
