@@ -292,6 +292,13 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
   display: block;
   margin-bottom: 4px;
 }
+/* Hazard variant — per-stop safety note on hidden-area stops */
+.swap-callout--hazard {
+  border-left-color: var(--rust);
+}
+.swap-callout--hazard .swap-callout__label {
+  color: var(--rust);
+}
 
 /* Markdown body */
 .prose {

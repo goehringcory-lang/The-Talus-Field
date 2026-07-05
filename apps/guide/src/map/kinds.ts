@@ -27,16 +27,21 @@ export function directionsUrl(coord: [number, number]): string {
   return `https://www.google.com/maps/dir/?api=1&destination=${lat},${lng}&travelmode=driving`
 }
 
+// Gold outline for hidden-area pins. Kind color stays authoritative so the
+// kind legend remains truthful; the outline is a second, orthogonal signal.
+export const HIDDEN_PIN_STROKE = '#e9c46a'
+
 /** Teardrop pin as a DOM element for maplibregl.Marker. */
-export function buildPinElement(kind: StopKind): HTMLElement {
+export function buildPinElement(kind: StopKind, hidden = false): HTMLElement {
   const { color, label } = getKindStyle(kind)
+  const stroke = hidden ? HIDDEN_PIN_STROKE : '#ffffff'
   const el = document.createElement('div')
-  el.className = 'map-pin'
-  el.setAttribute('aria-label', label)
+  el.className = hidden ? 'map-pin map-pin--hidden' : 'map-pin'
+  el.setAttribute('aria-label', hidden ? `${label} (hidden area)` : label)
   el.innerHTML = `
     <svg width="26" height="36" viewBox="0 0 26 36" aria-hidden="true">
-      <path d="M13 35C13 35 25 21 25 13A12 12 0 1 0 1 13C1 21 13 35 13 35Z" fill="${color}" stroke="#ffffff" stroke-width="2"/>
-      <circle cx="13" cy="13" r="4.5" fill="#ffffff"/>
+      <path d="M13 35C13 35 25 21 25 13A12 12 0 1 0 1 13C1 21 13 35 13 35Z" fill="${color}" stroke="${stroke}" stroke-width="2"/>
+      <circle cx="13" cy="13" r="4.5" fill="${stroke}"/>
     </svg>`
   return el
 }

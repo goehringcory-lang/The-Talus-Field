@@ -297,6 +297,18 @@ const seed: EssentialInput[] = [
       'Tactics that earn their keep: mornings are usually cleaner than afternoons, since smoke often peaks late in the day as wind picks up. Wind direction matters more than fire distance, a fire 80 miles upwind beats a fire 20 miles downwind. Cancel the long exposed hikes first and keep the short walks. Pack a few N95 masks; they are not a shield but they cut the dose, and if anyone in the group uses a rescue inhaler, carry it.\n\n' +
       'One distinction worth knowing: not all smoke means a wildfire emergency. The park also sets prescribed burns deliberately as forest management, and it announces them on the current conditions page. Either way, judge the day by the AQI reading, not by the smell. No one can tell you in advance whether your week will be clear. The reading on the morning of is the fact; plan to it.',
   },
+  {
+    id: 'quiet-trails',
+    title: 'The quiet trails, and the ones we left out',
+    order: 43,
+    section: 'safety',
+    teaser: 'What the Hidden Areas are, what they are not, and why the closed routes in the park\'s history get named here but never mapped.',
+    body:
+      'The Hidden Areas in this guide are maintained, signed park trails. Every one of them appears on the official park map; what makes them hidden is traffic, not legality or condition. But less traveled cuts both ways. On the Mist Trail, a twisted ankle means forty strangers offer help within the minute. On the trail to Stanford Point or Rancheria Falls, the next hiker may be hours behind you. The margin you carry has to be bigger out there: the full day-pack list, more water than the mileage suggests, and someone at home who knows your trail and your turnaround time.\n\n' +
+      'Creek fords are seasonal decisions, not fixed facts about a trail. A crossing that is a rock-hop in August can be a fast, thigh-deep problem in June, and snowmelt water is cold enough to take your footing and your judgment at the same time. The rule that keeps people alive is boring: if moving water is over your knees, turn around. The stop is still there next month.\n\n' +
+      'Some stops carry a short Caution note. It is not boilerplate; it names the specific thing that hurts people at that specific place, a slick lip above a cascade, an unrailed rim, a ford. Read it as part of the stop, not as fine print.\n\n' +
+      'Finally, the routes we left out. This guide names some famous ghosts, the Ledge Trail to Glacier Point, the Sierra Point overlook, Fern Ledge behind the upper fall, the descent of Tenaya Canyon, because they are part of the park\'s story and you will hear about them. It gives directions to none of them. The park closed or abandoned those routes for cause, the cause being rockfall, exposure, and a fatality list that is still growing, and no guidebook paragraph changes what the granite does. The history is yours to enjoy. The maintained trail next to it is the one to walk.',
+  },
 
   // ── Packing kits ported from the editorial KIT system (brand callouts and
   // affiliate links stripped; ids prefixed so the global tfg.checklist map

@@ -2,8 +2,8 @@ import { stops } from './stops'
 import { ESSENTIALS } from './essentials'
 import type { EssentialSectionT, EssentialTopicT, Region, StopT } from './schema'
 
-export { Stop, Stops, RegionEnum, StopKindEnum, SecretSpot, SecretSpots, EssentialTopic, EssentialTopics, EssentialSection, SeasonalEvent, SeasonalEvents, SeasonalConfidence } from './schema'
-export type { StopT, Region, StopKind, SecretSpotT, EssentialTopicT, EssentialSectionT, SeasonalEventT, SeasonalConfidenceT } from './schema'
+export { Stop, Stops, RegionEnum, StopKindEnum, StopCollection, SecretSpot, SecretSpots, EssentialTopic, EssentialTopics, EssentialSection, SeasonalEvent, SeasonalEvents, SeasonalConfidence } from './schema'
+export type { StopT, Region, StopKind, StopCollectionT, SecretSpotT, EssentialTopicT, EssentialSectionT, SeasonalEventT, SeasonalConfidenceT } from './schema'
 export { stops } from './stops'
 export { ESSENTIALS, ESSENTIALS_META } from './essentials'
 export { SECRET_SPOTS, SECRET_META } from './secret-spots'
@@ -44,8 +44,28 @@ export const REGIONS: { id: Region; title: string; teaser: string }[] = [
   },
 ]
 
-export function getStopsByRegion(region: Region): StopT[] {
-  return stops.filter((s) => s.region === region).sort((a, b) => a.order - b.order)
+// Hidden stops stay out of the curated region flow unless a caller opts in;
+// leaking them into a core surface should be a visible decision at the call site.
+export function getStopsByRegion(region: Region, opts?: { includeHidden?: boolean }): StopT[] {
+  return stops
+    .filter((s) => s.region === region && (opts?.includeHidden || s.collection !== 'hidden'))
+    .sort((a, b) => a.order - b.order)
+}
+
+export function getHiddenStops(): StopT[] {
+  const regionRank = new Map(REGIONS.map((r, i) => [r.id, i]))
+  return stops
+    .filter((s) => s.collection === 'hidden')
+    .sort(
+      (a, b) =>
+        (regionRank.get(a.region) ?? 0) - (regionRank.get(b.region) ?? 0) || a.order - b.order,
+    )
+}
+
+export const HIDDEN_META = {
+  title: 'The Hidden Areas',
+  teaser:
+    'Twenty maintained trails and viewpoints the crowds walk past. Real trails, real destinations, no scrambling. Included with your purchase.',
 }
 
 export function getStopById(id: string): StopT | undefined {

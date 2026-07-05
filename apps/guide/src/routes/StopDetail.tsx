@@ -1,5 +1,5 @@
 import { Link, Navigate, useParams } from 'react-router-dom'
-import { getRegionMeta, getStopById, getStopsByRegion } from '../content'
+import { getHiddenStops, getRegionMeta, getStopById, getStopsByRegion } from '../content'
 import GatedChrome from '../components/GatedChrome'
 import StopCard from '../components/StopCard'
 import { directionsUrl } from '../map/kinds'
@@ -13,18 +13,26 @@ export default function StopDetail() {
   if (!stop) return <Navigate to="/" replace />
   const planned = plan.items.some((it) => it.type === 'stop' && it.stopId === stop.id)
 
-  const siblings = getStopsByRegion(stop.region)
+  // Hidden stops page through the hidden set within their region; core stops
+  // page through the curated region sequence. Mixing them would put a hidden
+  // stop "between" core stops it was deliberately kept out of.
+  const isHidden = stop.collection === 'hidden'
+  const siblings = isHidden
+    ? getHiddenStops().filter((s) => s.region === stop.region)
+    : getStopsByRegion(stop.region)
   const idx = siblings.findIndex((s) => s.id === stop.id)
   const prev = idx > 0 ? siblings[idx - 1] : null
   const next = idx >= 0 && idx < siblings.length - 1 ? siblings[idx + 1] : null
   const regionMeta = getRegionMeta(stop.region)
+  const backTo = isHidden ? '/hidden-areas' : `/region/${stop.region}`
+  const backLabel = isHidden ? 'Hidden areas' : regionMeta?.title ?? 'Region'
 
   return (
     <GatedChrome>
       <main className="wrap wrap--narrow" style={{ paddingTop: 56, paddingBottom: 96 }}>
         <p style={{ marginBottom: 24 }}>
           <Link
-            to={`/region/${stop.region}`}
+            to={backTo}
             style={{
               fontFamily: 'var(--sans)',
               fontSize: 12,
@@ -33,7 +41,7 @@ export default function StopDetail() {
               fontWeight: 600,
             }}
           >
-            ← {regionMeta?.title ?? 'Region'}
+            ← {backLabel}
           </Link>
         </p>
 
