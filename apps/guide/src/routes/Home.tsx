@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useAuth } from '../auth/useAuth'
-import { ESSENTIALS, ESSENTIALS_META, REGIONS, SEASONAL_EVENTS, SECRET_META, SECRET_SPOTS, getStopById, getStopsByRegion, seasonalRangeLabel } from '../content'
+import { ESSENTIALS, ESSENTIALS_META, HIDDEN_META, REGIONS, SEASONAL_EVENTS, SECRET_META, SECRET_SPOTS, getHiddenStops, getStopById, getStopsByRegion, seasonalRangeLabel } from '../content'
 import { todayIso } from '../utils/date'
 import { useFavorites } from '../lib/favorites'
 import { isPackCompleted } from '../offline/useDownloads'
@@ -154,6 +154,13 @@ export default function Home() {
             title={SECRET_META.title}
             teaser={SECRET_META.teaser}
             meta={`${SECRET_SPOTS.length} ${SECRET_SPOTS.length === 1 ? 'spot' : 'spots'}`}
+          />
+          <SectionCard
+            to="/hidden-areas"
+            eyebrow="Included with purchase"
+            title={HIDDEN_META.title}
+            teaser={HIDDEN_META.teaser}
+            meta={`${getHiddenStops().length} areas`}
           />
         </div>
 

@@ -25,7 +25,7 @@ import {
   isItineraryKey,
   type ItineraryKey,
 } from '../content/itineraries'
-import { KIND_STYLES, buildPinElement, directionsUrl, getKindStyle } from '../map/kinds'
+import { HIDDEN_PIN_STROKE, KIND_STYLES, buildPinElement, directionsUrl, getKindStyle } from '../map/kinds'
 import { announceTripAdd } from '../trip/addFeedback'
 import { addStopToPlan, isStopPlanned } from '../trip/useTripPlan'
 import { buildMapStyle } from '../map/style'
@@ -181,12 +181,15 @@ export default function Map() {
   const mappableStops = useMemo<StopT[]>(() => allStops.filter((s) => !!s.coord), [])
 
   // Filter by itinerary when one is selected and the itineraries tab is active.
+  // Hidden-collection stops are excluded from itineraries: the presets are the
+  // mainstream path, and itinerary days are derived from regions, so without
+  // this filter hidden stops would silently inflate every preset.
   const visibleStops = useMemo<StopT[]>(() => {
     if (tab !== 'itineraries' || !selectedItinerary) return mappableStops
     const regions = new Set(
       ITINERARIES[selectedItinerary].days.flatMap((d) => d.regions),
     )
-    return mappableStops.filter((s) => regions.has(s.region))
+    return mappableStops.filter((s) => regions.has(s.region) && s.collection !== 'hidden')
   }, [mappableStops, selectedItinerary, tab])
 
   // Sync state to URL.
@@ -284,7 +287,7 @@ export default function Map() {
       const [lng, lat] = stop.coord
       bounds.extend([lng, lat])
 
-      const el = buildPinElement(stop.kind)
+      const el = buildPinElement(stop.kind, stop.collection === 'hidden')
       el.addEventListener('click', () => selectStop(stop.id))
       const marker = new maplibregl.Marker({ element: el, anchor: 'bottom' })
         .setLngLat([lng, lat])
@@ -338,7 +341,9 @@ export default function Map() {
     }
     for (const key of ITINERARY_KEYS) {
       const regions = new Set(ITINERARIES[key].days.flatMap((d) => d.regions))
-      out[key] = mappableStops.filter((s) => regions.has(s.region)).length
+      out[key] = mappableStops.filter(
+        (s) => regions.has(s.region) && s.collection !== 'hidden',
+      ).length
     }
     return out
   }, [mappableStops])
@@ -417,6 +422,14 @@ export default function Map() {
                   </li>
                 )
               })}
+              <li className="map-legend__item">
+                <span
+                  className="map-legend__dot"
+                  style={{ background: 'transparent', border: `2px solid ${HIDDEN_PIN_STROKE}` }}
+                  aria-hidden
+                />
+                Gold outline: hidden area
+              </li>
             </ul>
           </aside>
 
@@ -455,8 +468,8 @@ export default function Map() {
                 <h3 className="map-sidebar__section-label">Day by day</h3>
                 <div className="map-sidebar__days">
                   {ITINERARIES[selectedItinerary].days.map((day) => {
-                    const stopsInDay = mappableStops.filter((s) =>
-                      day.regions.includes(s.region),
+                    const stopsInDay = mappableStops.filter(
+                      (s) => day.regions.includes(s.region) && s.collection !== 'hidden',
                     )
                     return (
                       <section key={day.name}>
@@ -599,7 +612,21 @@ function InfoPane({
             </li>
           )
         })}
+        <li className="map-legend__item">
+          <span
+            className="map-legend__dot"
+            style={{ background: 'transparent', border: `2px solid ${HIDDEN_PIN_STROKE}` }}
+            aria-hidden
+          />
+          Gold outline: hidden area
+        </li>
       </ul>
+      <p>
+        A gold outline marks a <Link to="/hidden-areas">hidden area</Link>:
+        the lesser-known trails and viewpoints included with your purchase.
+        They stay out of the itinerary presets; add them to your trip from
+        the pin or the stop page.
+      </p>
 
       <h2>The fine print</h2>
       <ul>

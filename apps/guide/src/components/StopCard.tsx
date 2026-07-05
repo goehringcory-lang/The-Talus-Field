@@ -22,6 +22,12 @@ const KIND_LABEL: Record<StopT['kind'], string> = {
   drive: 'Drive',
 }
 
+const DIFFICULTY_LABEL: Record<NonNullable<StopT['difficulty']>, string> = {
+  easy: 'Easy',
+  moderate: 'Moderate',
+  strenuous: 'Strenuous',
+}
+
 function formatElevation(ft: number): string {
   return `${ft.toLocaleString('en-US')} ft`
 }
@@ -58,7 +64,9 @@ export default function StopCard({ stop, compact = true }: Props) {
       <div className="stop-card__titlerow">
         <div style={{ minWidth: 0 }}>
           <div className="eyebrow eyebrow--moss">
-            {KIND_LABEL[stop.kind]}
+            {stop.collection === 'hidden'
+              ? `Hidden area · ${KIND_LABEL[stop.kind]}`
+              : KIND_LABEL[stop.kind]}
           </div>
           <h2 className="stop-card__title">{stop.title}</h2>
         </div>
@@ -76,7 +84,7 @@ export default function StopCard({ stop, compact = true }: Props) {
         </button>
       </div>
 
-      {(stop.coord || stop.elevationFt || stop.timeBudgetMin) && (
+      {(stop.coord || stop.elevationFt || stop.timeBudgetMin || stop.difficulty || stop.season) && (
         <div className="meta-row">
           <MapsLink coord={stop.coord} label={stop.title} />
           {stop.elevationFt !== undefined && (
@@ -85,12 +93,23 @@ export default function StopCard({ stop, compact = true }: Props) {
           {stop.timeBudgetMin !== undefined && (
             <span className="meta-chip">{formatTime(stop.timeBudgetMin)}</span>
           )}
+          {stop.difficulty && (
+            <span className="meta-chip">{DIFFICULTY_LABEL[stop.difficulty]}</span>
+          )}
+          {stop.season && <span className="meta-chip">{stop.season}</span>}
         </div>
       )}
 
       <div className="prose">
         <ReactMarkdown>{stop.body}</ReactMarkdown>
       </div>
+
+      {stop.hazard && (
+        <aside className="swap-callout swap-callout--hazard">
+          <span className="swap-callout__label">Caution</span>
+          {stop.hazard}
+        </aside>
+      )}
 
       {stop.swap && (
         <aside className="swap-callout">

@@ -14,12 +14,22 @@ export const StopKindEnum = z.enum([
 ])
 export type StopKind = z.infer<typeof StopKindEnum>
 
+// Two collections share the Stop shape. 'core' is the curated region
+// reading flow; 'hidden' is the lesser-known set surfaced on /hidden-areas
+// and kept out of region lists and itinerary presets by default.
+export const StopCollection = z.enum(['core', 'hidden'])
+export type StopCollectionT = z.infer<typeof StopCollection>
+
 export const Stop = z.object({
   id: z.string(),                         // "tunnel-view"
   title: z.string(),
   region: RegionEnum,
-  order: z.number(),                      // sort within region
+  order: z.number(),                      // sort within region; hidden stops number from 101
   kind: StopKindEnum,
+  collection: StopCollection.default('core'),
+  difficulty: z.enum(['easy', 'moderate', 'strenuous']).optional(), // meta chip
+  season: z.string().optional(),          // chip-length window, e.g. "April to June"
+  hazard: z.string().optional(),          // 1-3 plain sentences; renders as a Caution callout
   coord: z.tuple([z.number(), z.number()]).optional(),  // [lng, lat]
   elevationFt: z.number().optional(),
   timeBudgetMin: z.number().optional(),

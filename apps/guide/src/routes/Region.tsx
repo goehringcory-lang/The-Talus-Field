@@ -1,6 +1,6 @@
 import { useEffect, useMemo } from 'react'
 import { Link, Navigate, useParams } from 'react-router-dom'
-import { RegionEnum, getRegionMeta, getStopsByRegion } from '../content'
+import { RegionEnum, getHiddenStops, getRegionMeta, getStopsByRegion } from '../content'
 import GatedChrome from '../components/GatedChrome'
 import StopCard from '../components/StopCard'
 import { allPhotoUrls } from '../utils/photo'
@@ -10,6 +10,10 @@ export default function Region() {
   const parsed = RegionEnum.safeParse(params.regionId)
   const region = parsed.success ? parsed.data : null
   const stops = useMemo(() => (region ? getStopsByRegion(region) : []), [region])
+  // Hidden areas stay out of the curated list but get a link block below it,
+  // so the region page remains the geographic index. /hidden-areas owns the
+  // full cards and the photo prewarm for these.
+  const hiddenStops = useMemo(() => (region ? getHiddenStops().filter((s) => s.region === region) : []), [region])
 
   // Pre-warm SW cache with this region's photos so they're available offline.
   useEffect(() => {
@@ -43,6 +47,29 @@ export default function Region() {
               {i < stops.length - 1 && <hr className="stop-divider" />}
             </div>
           ))
+        )}
+
+        {hiddenStops.length > 0 && (
+          <section aria-label="Hidden areas in this region" style={{ marginTop: 56 }}>
+            <div className="eyebrow" style={{ marginBottom: 10 }}>
+              Hidden areas in this region
+            </div>
+            <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'grid', gap: 8 }}>
+              {hiddenStops.map((stop) => (
+                <li key={stop.id}>
+                  <Link to={`/stop/${stop.id}`} style={{ fontFamily: 'var(--display)', fontSize: 18 }}>
+                    {stop.title} →
+                  </Link>
+                </li>
+              ))}
+            </ul>
+            <Link
+              to="/hidden-areas"
+              style={{ fontFamily: 'var(--sans)', fontSize: 13, display: 'inline-block', marginTop: 8 }}
+            >
+              All hidden areas →
+            </Link>
+          </section>
         )}
 
         <p style={{ marginTop: 56 }}>

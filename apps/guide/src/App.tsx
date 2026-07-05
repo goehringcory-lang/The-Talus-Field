@@ -15,6 +15,7 @@ const StopDetail = lazy(() => import('./routes/StopDetail'))
 const Essentials = lazy(() => import('./routes/Essentials'))
 const EssentialDetail = lazy(() => import('./routes/EssentialDetail'))
 const SecretSpots = lazy(() => import('./routes/SecretSpots'))
+const HiddenAreas = lazy(() => import('./routes/HiddenAreas'))
 const Search = lazy(() => import('./routes/Search'))
 const Programs = lazy(() => import('./routes/Programs'))
 const Trip = lazy(() => import('./routes/Trip'))
@@ -83,6 +84,14 @@ export default function App() {
             element={
               <RequireAuth>
                 <SecretSpots />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="/hidden-areas"
+            element={
+              <RequireAuth>
+                <HiddenAreas />
               </RequireAuth>
             }
           />

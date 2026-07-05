@@ -26,7 +26,8 @@ export type Pack = {
 
 function regionPhotoUrls(region: Region): string[] {
   const urls = new Set<string>()
-  for (const stop of getStopsByRegion(region)) {
+  // Hidden areas are paid content too; their photos belong in the pack.
+  for (const stop of getStopsByRegion(region, { includeHidden: true })) {
     for (const photo of stop.photos) {
       for (const url of allPhotoUrls(photo.src)) urls.add(url)
     }

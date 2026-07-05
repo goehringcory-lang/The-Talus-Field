@@ -15,7 +15,7 @@ export type SearchHit = {
   id: string
   url: string
   title: string
-  section: 'Stops' | 'Essentials' | 'Secret Spots' | 'Programs'
+  section: 'Stops' | 'Hidden Areas' | 'Essentials' | 'Secret Spots' | 'Programs'
   eyebrow: string
   snippet: string
   score: number
@@ -47,7 +47,7 @@ function buildEntries(): Entry[] {
     id: s.id,
     url: `/stop/${s.id}`,
     title: s.title,
-    section: 'Stops',
+    section: s.collection === 'hidden' ? ('Hidden Areas' as const) : ('Stops' as const),
     eyebrow: REGION_LABEL[s.region] ?? s.region,
     titleText: s.title.toLowerCase(),
     swapText: (s.swap ?? '').toLowerCase(),
