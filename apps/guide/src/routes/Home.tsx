@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useAuth } from '../auth/useAuth'
-import { ESSENTIALS, ESSENTIALS_META, REGIONS, SEASONAL_EVENTS, SECRET_META, SECRET_SPOTS, getStopById, getStopsByRegion, seasonalRangeLabel, secretsLocked } from '../content'
+import { ESSENTIALS, ESSENTIALS_META, REGIONS, SEASONAL_EVENTS, SECRET_META, SECRET_SPOTS, getStopById, getStopsByRegion, seasonalRangeLabel } from '../content'
 import { todayIso } from '../utils/date'
 import { useFavorites } from '../lib/favorites'
 import { isPackCompleted } from '../offline/useDownloads'
@@ -153,8 +153,7 @@ export default function Home() {
             eyebrow="Included with purchase"
             title={SECRET_META.title}
             teaser={SECRET_META.teaser}
-            meta={secretsLocked() ? 'Coming soon' : `${SECRET_SPOTS.length} ${SECRET_SPOTS.length === 1 ? 'spot' : 'spots'}`}
-            locked={secretsLocked()}
+            meta={`${SECRET_SPOTS.length} ${SECRET_SPOTS.length === 1 ? 'spot' : 'spots'}`}
           />
         </div>
 

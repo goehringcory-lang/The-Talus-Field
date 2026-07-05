@@ -1,73 +1,45 @@
-# React + TypeScript + Vite
+# The Talus Field — Field Guide PWA
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+The paid Yosemite field guide at `guide.thetalusfieldjournal.com`: $19 one-time,
+18 months of access. Offline-first by design — buyers download the guide, map
+tiles, and photos onto their phone before entering the park, where there is no
+signal.
 
-Currently, two official plugins are available:
+## Stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Vite + React 19 + TypeScript, react-router-dom for routing, zod to validate all
+content at build time, MapLibre GL for the offline topo map. Styling is
+hand-rolled CSS custom properties in `src/styles/tokens.css` (no utility
+framework in the components).
 
-## React Compiler
+## Commands
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm run dev      # local dev server on :5173
+npm run build    # tsc -b && vite build → dist/
+npm run lint     # eslint
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+The API lives in `../../workers/` (Cloudflare Worker); run it locally with
+`npm run dev` there (wrangler, :8787). `VITE_API_BASE` defaults to
+`http://localhost:8787` in dev and is set to the production API by
+`.env.production`. `VITE_BUILD_DATE` stamps the build (shown on /account).
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## Where things live
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+- **Content** — `src/content/`: `stops.ts` (the 34 stops, zod-validated at
+  module load), `essentials.ts`, `secret-spots.ts`, `seasonal.ts`,
+  `itineraries.ts`. Editing these files is how the guide's content changes;
+  a schema violation fails the build rather than shipping bad data.
+- **Auth** — `src/auth/`: JWT in localStorage, signed by the Worker to the
+  buyer's access expiry. `me.ts` mirrors the Worker's `/api/auth/me` response.
+- **Offline** — `public/sw.js` (hand-rolled service worker) plus
+  `src/offline/` (download packs, tile math) and the DownloadManager on
+  /account.
+- **Trip planner** — `src/trip/` (day slotting, ICS export).
+
+## Deploys
+
+Merging to `main` auto-deploys via Cloudflare Pages. The Worker deploys
+separately (`wrangler deploy` from `workers/`); deploy the Worker first when a
+change touches both. See `../../DEPLOY.md` for the full runbook.

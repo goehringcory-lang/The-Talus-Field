@@ -156,7 +156,8 @@ console.log('\n7. magic-link exchange')
   check('exchange -> jwt', r.status === 200 && typeof r.json.jwt === 'string', r)
   const claims = JSON.parse(Buffer.from(String(r.json.jwt).split('.')[1], 'base64url').toString())
   check('jwt sub = buyer email', claims.sub === 'hiker@example.com', claims)
-  check('jwt exp ~90 days out', Math.abs(claims.exp - claims.iat - 90 * 86400) < 5, claims)
+  const hikerRec = JSON.parse((await buyers.get('buyer:hiker@example.com'))!)
+  check('jwt exp = buyer expiresAt (full access window)', claims.exp === hikerRec.expiresAt, { exp: claims.exp, expiresAt: hikerRec.expiresAt })
   const bad = await call('/api/auth/exchange', { method: 'POST', body: JSON.stringify({ token: 'f'.repeat(64) }) })
   check('unknown token -> 401', bad.status === 401, bad)
 }
@@ -216,6 +217,63 @@ console.log('\n12. monthly cap fails closed / sells out')
   const req = new Request('https://api.thetalusfieldjournal.com/api/checkout/start', { method: 'POST' })
   const res = await worker.fetch(req, badCap as never, ctx)
   check('garbled cap fails closed -> 500', res.status === 500)
+}
+
+console.log('\n13. /api/auth/me')
+let hikerJwt = ''
+{
+  const login = await call('/api/auth/login', { method: 'POST', body: JSON.stringify({ email: 'hiker@example.com', code }) })
+  hikerJwt = String(login.json.jwt)
+  const me = await call('/api/auth/me', { headers: { authorization: `Bearer ${hikerJwt}` } })
+  check('me -> buyer identity', me.status === 200 && me.json.kind === 'buyer' && me.json.email === 'hiker@example.com', me)
+  check('me carries expiresAt, not expired', typeof me.json.expiresAt === 'number' && me.json.expired === false, me.json)
+  const noToken = await call('/api/auth/me')
+  check('me without token -> 401', noToken.status === 401, noToken)
+  const garbage = await call('/api/auth/me', { headers: { authorization: 'Bearer not.a.jwt' } })
+  check('me with garbage token -> 401', garbage.status === 401, garbage)
+}
+
+console.log('\n14. resend access email')
+{
+  const before = sentEmails.length
+  const r1 = await call('/api/auth/resend', { method: 'POST', body: JSON.stringify({ email: 'Hiker@Example.com' }) })
+  check('resend -> 200 + email re-sent', r1.status === 200 && r1.json.ok === true && sentEmails.length === before + 1, { status: r1.status, sent: sentEmails.length - before })
+  check('resent email carries same token', sentEmails[sentEmails.length - 1].text.includes(token!), sentEmails[sentEmails.length - 1].text)
+
+  const unknown = await call('/api/auth/resend', { method: 'POST', body: JSON.stringify({ email: 'stranger@example.com' }) })
+  check('unknown email -> 200 (no enumeration), nothing sent', unknown.status === 200 && unknown.json.ok === true && sentEmails.length === before + 1, unknown)
+
+  // Cap is 3/email/hour: attempts 2 and 3 send, the 4th is silently dropped.
+  await call('/api/auth/resend', { method: 'POST', body: JSON.stringify({ email: 'hiker@example.com' }) })
+  await call('/api/auth/resend', { method: 'POST', body: JSON.stringify({ email: 'hiker@example.com' }) })
+  const overCap = await call('/api/auth/resend', { method: 'POST', body: JSON.stringify({ email: 'hiker@example.com' }) })
+  check('over-cap resend -> still 200, no 4th email', overCap.status === 200 && overCap.json.ok === true && sentEmails.length === before + 3, { sent: sentEmails.length - before })
+}
+
+console.log('\n15. refund revokes access')
+{
+  const refund = {
+    id: 'evt_refund_1', type: 'charge.refunded',
+    data: { object: { id: 'ch_test_123', billing_details: { email: 'Hiker@Example.com' } } },
+  }
+  const body = JSON.stringify(refund)
+  const r = await call('/api/stripe/webhook', { method: 'POST', body, headers: { 'stripe-signature': await signWebhook(body, env.STRIPE_WEBHOOK_SECRET as string) } })
+  check('refund webhook -> revoked', r.status === 200 && r.json.revoked === 'hiker@example.com', r)
+
+  const login = await call('/api/auth/login', { method: 'POST', body: JSON.stringify({ email: 'hiker@example.com', code }) })
+  check('refunded login -> 401 expired', login.status === 401 && String(login.json.error).includes('expired'), login)
+  const ex = await call('/api/auth/exchange', { method: 'POST', body: JSON.stringify({ token }) })
+  check('refunded exchange -> 401', ex.status === 401, ex)
+  const me = await call('/api/auth/me', { headers: { authorization: `Bearer ${hikerJwt}` } })
+  check('me on already-issued jwt reports expired', me.status === 200 && me.json.expired === true, me.json)
+
+  const orphan = {
+    id: 'evt_refund_2', type: 'charge.refunded',
+    data: { object: { id: 'ch_test_456', billing_details: { email: 'nobody@example.com' } } },
+  }
+  const ob = JSON.stringify(orphan)
+  const r2 = await call('/api/stripe/webhook', { method: 'POST', body: ob, headers: { 'stripe-signature': await signWebhook(ob, env.STRIPE_WEBHOOK_SECRET as string) } })
+  check('refund for unknown buyer -> acknowledged, flagged', r2.status === 200 && r2.json.ignored === 'refund for unknown buyer', r2)
 }
 
 globalThis.fetch = realFetch

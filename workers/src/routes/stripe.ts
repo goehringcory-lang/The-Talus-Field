@@ -2,6 +2,7 @@ import { Hono } from 'hono'
 import type { Env } from '../env'
 import {
   currentMonthLabel,
+  getBuyer,
   incrementInventory,
   putBuyer,
   type BuyerRecord,
@@ -22,6 +23,18 @@ type CheckoutSessionCompletedEvent = {
       customer_details?: { email?: string | null } | null
       metadata?: Record<string, string> | null
       created: number
+    }
+  }
+}
+
+type ChargeRefundedEvent = {
+  id: string
+  type: 'charge.refunded'
+  data: {
+    object: {
+      id: string
+      billing_details?: { email?: string | null } | null
+      receipt_email?: string | null
     }
   }
 }
@@ -68,6 +81,45 @@ stripe.post('/webhook', async (c) => {
   const alreadyProcessed = await c.env.GUIDE_BUYERS.get(dedupeKey)
   if (alreadyProcessed) {
     return c.json({ received: true, deduped: true })
+  }
+
+  // Refunds revoke access. charge.refunded fires for full AND partial
+  // refunds; at $19 one-time the operator only ever issues full refunds, so
+  // any refund revokes. NOTE: the Stripe dashboard webhook endpoint must be
+  // configured to send charge.refunded or this branch never runs.
+  if (event.type === 'charge.refunded') {
+    const charge = (event as ChargeRefundedEvent).data.object
+    const email =
+      charge.billing_details?.email?.trim().toLowerCase() ??
+      charge.receipt_email?.trim().toLowerCase() ??
+      null
+
+    if (!email) {
+      console.error('charge.refunded missing email — revoke manually', { chargeId: charge.id })
+      return c.json({ received: true, ignored: 'refund without email' })
+    }
+
+    const buyer = await getBuyer(c.env, email)
+    if (!buyer) {
+      // Billing email can differ from the checkout email; flag for manual
+      // follow-up rather than failing (Stripe would retry forever).
+      console.error('charge.refunded: no buyer record — revoke manually', {
+        chargeId: charge.id,
+        email,
+      })
+      return c.json({ received: true, ignored: 'refund for unknown buyer' })
+    }
+
+    const now = Math.floor(Date.now() / 1000)
+    // Expiring the record is the revocation: /login, /exchange, and /me all
+    // key off expiresAt. The PWA revalidates via /me when online and signs
+    // the buyer out.
+    await putBuyer(c.env, { ...buyer, expiresAt: now, refundedAt: now })
+
+    await c.env.GUIDE_BUYERS.put(dedupeKey, '1', {
+      expirationTtl: STRIPE_EVENT_DEDUPE_TTL_SECONDS,
+    })
+    return c.json({ received: true, revoked: email })
   }
 
   if (event.type !== 'checkout.session.completed') {
