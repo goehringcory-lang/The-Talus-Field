@@ -1,0 +1,63 @@
+/* ============================================================
+   App shell polish: route fallback, page-enter transition,
+   skip link. Token-based; reduced motion is neutered globally
+   by the kill rule at the bottom of tokens.css.
+   ============================================================ */
+
+/* Lazy-route Suspense fallback (spinner keyframes live in tokens.css). */
+.route-fallback {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--paper);
+  color: var(--ink-3);
+}
+
+.route-fallback .spinner {
+  width: 22px;
+  height: 22px;
+}
+
+/* One-shot entrance for each routed page. */
+@keyframes page-enter {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.page-enter {
+  animation: page-enter 180ms ease-out;
+}
+
+/* Focus target for skip link and post-navigation focus; the container
+   itself needs no visible ring. */
+#main:focus {
+  outline: none;
+}
+
+/* Hidden until keyboard focus, then pinned above the chrome. */
+.skip-link {
+  position: fixed;
+  top: 8px;
+  left: 8px;
+  z-index: 300;
+  padding: 8px 14px;
+  background: var(--ink);
+  color: var(--paper);
+  font-family: var(--sans);
+  font-size: 13px;
+  text-decoration: none;
+  border-radius: 2px;
+  transform: translateY(calc(-100% - 12px));
+}
+
+.skip-link:focus {
+  transform: none;
+}

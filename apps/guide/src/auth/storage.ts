@@ -57,3 +57,13 @@ export function readSessionFromStorage(): { jwt: string; username: string } | nu
   }
   return { jwt, username: claims.sub }
 }
+
+// Expiry (ms since epoch) of the stored JWT, or null when there is no valid
+// session. Lets AuthProvider schedule a sign-out at the expiry moment.
+export function getStoredJwtExpiryMs(): number | null {
+  const jwt = getStoredJwt()
+  if (!jwt) return null
+  const claims = decodeClaims(jwt)
+  if (!claims || typeof claims.exp !== 'number') return null
+  return claims.exp * 1000
+}

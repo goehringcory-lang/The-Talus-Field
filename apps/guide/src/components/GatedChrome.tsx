@@ -2,6 +2,7 @@ import type { ReactNode } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import BottomNav from './BottomNav'
 import TripAddNotice from './TripAddNotice'
+import '../styles/shell.css'
 
 type Props = {
   children: ReactNode
@@ -14,6 +15,7 @@ export default function GatedChrome({ children }: Props) {
   const accountActive = pathname === '/account'
   return (
     <div className="app-shell">
+      <a className="skip-link" href="#main">Skip to content</a>
       <header className="gated-chrome">
         <Link
           to="/map"
@@ -38,7 +40,9 @@ export default function GatedChrome({ children }: Props) {
         </Link>
       </header>
       <div className="bottom-nav-offset">
-        {children}
+        <div key={pathname} id="main" tabIndex={-1} className="page-enter">
+          {children}
+        </div>
       </div>
       <TripAddNotice />
       <BottomNav />

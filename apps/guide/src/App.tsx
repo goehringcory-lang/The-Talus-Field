@@ -6,6 +6,8 @@ import Login from './routes/Login'
 import Home from './routes/Home'
 import InstallPrompt from './components/InstallPrompt'
 import UpdateBanner from './components/UpdateBanner'
+import RouteFallback from './components/RouteFallback'
+import ScrollManager from './components/ScrollManager'
 
 // Heavy routes lazy-loaded so /login doesn't download Map / Google Maps glue.
 const Map = lazy(() => import('./routes/Map'))
@@ -22,8 +24,9 @@ const Trip = lazy(() => import('./routes/Trip'))
 export default function App() {
   return (
     <AuthProvider>
+      <ScrollManager />
       <UpdateBanner />
-      <Suspense fallback={null}>
+      <Suspense fallback={<RouteFallback />}>
         <Routes>
           <Route path="/open" element={<Open />} />
           <Route path="/login" element={<Login />} />

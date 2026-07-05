@@ -2,6 +2,7 @@
   "name": "Yosemite Field Guide — The Talus Field",
   "short_name": "Yosemite Guide",
   "description": "The Yosemite field guide that works offline. Three regional guides, tappable GPS, time budgets, and an offline topo map of the park.",
+  "id": "/",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
@@ -12,5 +13,25 @@
     { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png" },
     { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png" },
     { "src": "/icon-maskable.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "shortcuts": [
+    {
+      "name": "Map",
+      "url": "/map",
+      "description": "The offline topo map of the park.",
+      "icons": [{ "src": "/icon-192.png", "sizes": "192x192", "type": "image/png" }]
+    },
+    {
+      "name": "Search",
+      "url": "/search",
+      "description": "Search every stop in the guide.",
+      "icons": [{ "src": "/icon-192.png", "sizes": "192x192", "type": "image/png" }]
+    },
+    {
+      "name": "Trip plan",
+      "url": "/trip",
+      "description": "Your day-by-day plan for the visit.",
+      "icons": [{ "src": "/icon-192.png", "sizes": "192x192", "type": "image/png" }]
+    }
   ]
 }

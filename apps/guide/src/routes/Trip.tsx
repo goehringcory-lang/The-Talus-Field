@@ -67,7 +67,7 @@ export default function Trip() {
     setExportResult(null)
     const opening = !reviewOpen
     setReviewOpen(opening)
-    if (opening) reviewRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    if (opening) reviewRef.current?.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' })
   }
 
   async function onCreateEvents() {
