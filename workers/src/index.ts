@@ -7,6 +7,7 @@ import { contact } from './routes/contact'
 import { indexnow } from './routes/indexnow'
 import { ingestNpsWindow, programs } from './routes/programs'
 import { stripe } from './routes/stripe'
+import { trip } from './routes/trip'
 import {
   currentMonthLabel,
   firstOfNextMonthIso,
@@ -40,7 +41,7 @@ app.use(
       }
       return allowed.has(origin) ? origin : c.env.APP_BASE_URL
     },
-    allowMethods: ['GET', 'POST', 'OPTIONS'],
+    allowMethods: ['GET', 'POST', 'DELETE', 'OPTIONS'],
     allowHeaders: ['Authorization', 'Content-Type', 'stripe-signature'],
     maxAge: 600,
   }),
@@ -108,6 +109,7 @@ app.route('/api/contact', contact)
 app.route('/api/indexnow', indexnow)
 app.route('/api/programs', programs)
 app.route('/api/stripe', stripe)
+app.route('/api/trip', trip)
 
 // Daily cron ([triggers] in wrangler.toml): refresh the KV program cache from
 // the NPS Events API so /api/programs answers from KV, not a live fetch.

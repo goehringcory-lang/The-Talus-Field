@@ -9,6 +9,15 @@ export type BuyerRecord = {
   refundedAt?: number          // epoch seconds; set when Stripe reports a refund
 }
 
+// One shareable calendar feed per account (/api/trip). The token is the URL
+// capability; tripfeedToken:<sub> is the reverse pointer so a re-publish
+// reuses it and DELETE can find it without scanning.
+export type TripFeedRecord = {
+  sub: string                  // JWT sub that owns the feed: buyer email or operator username
+  ics: string                  // full VCALENDAR text, served verbatim
+  updatedAt: string            // ISO timestamp of the last publish
+}
+
 const BUYER_KEY = (email: string) => `buyer:${email.toLowerCase()}`
 const TOKEN_INDEX_KEY = (token: string) => `token:${token}`
 const INVENTORY_KEY = (yyyymm: string) => `inventory:${yyyymm}`
@@ -17,6 +26,10 @@ const RESEND_ATTEMPTS_KEY = (email: string) => `resendAttempts:${email.toLowerCa
 const RESEND_ATTEMPTS_IP_KEY = (ip: string) => `resendAttemptsIp:${ip}`
 const DEV_LOGIN_ATTEMPTS_KEY = (ip: string, username: string) =>
   `devLoginAttempts:${ip}:${username.toLowerCase()}`
+const TRIP_FEED_KEY = (token: string) => `tripfeed:${token}`
+const TRIP_FEED_TOKEN_KEY = (sub: string) => `tripfeedToken:${sub.toLowerCase()}`
+const TRIP_FEED_WRITE_ATTEMPTS_KEY = (sub: string) =>
+  `tripfeedWriteAttempts:${sub.toLowerCase()}`
 
 export function currentMonthLabel(at = new Date()): string {
   const y = at.getUTCFullYear()
@@ -118,4 +131,55 @@ export async function clearDevLoginAttempts(
   username: string,
 ): Promise<void> {
   await env.GUIDE_BUYERS.delete(DEV_LOGIN_ATTEMPTS_KEY(ip, username))
+}
+
+// Calendar apps poll a subscribed feed indefinitely, so the keys live long:
+// 400 days covers any single trip's planning horizon, and every publish
+// refreshes both keys to the full TTL. An abandoned feed falls out of KV on
+// its own instead of accumulating forever.
+const TRIP_FEED_TTL_SECONDS = 400 * 24 * 60 * 60
+
+export async function getTripFeed(env: Env, token: string): Promise<TripFeedRecord | null> {
+  const raw = await env.GUIDE_BUYERS.get(TRIP_FEED_KEY(token))
+  if (!raw) return null
+  try {
+    return JSON.parse(raw) as TripFeedRecord
+  } catch (err) {
+    // Log only a prefix: the full token is a capability URL.
+    console.error('getTripFeed: corrupt KV record', { token: token.slice(0, 8), err })
+    return null
+  }
+}
+
+export async function putTripFeed(
+  env: Env,
+  token: string,
+  record: TripFeedRecord,
+): Promise<void> {
+  await env.GUIDE_BUYERS.put(TRIP_FEED_KEY(token), JSON.stringify(record), {
+    expirationTtl: TRIP_FEED_TTL_SECONDS,
+  })
+  // Reverse index so a re-publish resolves sub → token without scanning.
+  await env.GUIDE_BUYERS.put(TRIP_FEED_TOKEN_KEY(record.sub), token, {
+    expirationTtl: TRIP_FEED_TTL_SECONDS,
+  })
+}
+
+export async function getTripFeedToken(env: Env, sub: string): Promise<string | null> {
+  return env.GUIDE_BUYERS.get(TRIP_FEED_TOKEN_KEY(sub))
+}
+
+export async function deleteTripFeed(env: Env, sub: string): Promise<void> {
+  const token = await getTripFeedToken(env, sub)
+  if (token) await env.GUIDE_BUYERS.delete(TRIP_FEED_KEY(token))
+  await env.GUIDE_BUYERS.delete(TRIP_FEED_TOKEN_KEY(sub))
+}
+
+export async function recordTripFeedWriteAttempt(env: Env, sub: string): Promise<number> {
+  const key = TRIP_FEED_WRITE_ATTEMPTS_KEY(sub)
+  const raw = await env.GUIDE_BUYERS.get(key)
+  const next = (raw ? Number.parseInt(raw, 10) : 0) + 1
+  // 1-hour TTL gives a rolling window per sub.
+  await env.GUIDE_BUYERS.put(key, String(next), { expirationTtl: 60 * 60 })
+  return next
 }
