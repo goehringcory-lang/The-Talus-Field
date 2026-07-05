@@ -155,8 +155,17 @@ export default function Map() {
   const mapRef = useRef<maplibregl.Map | null>(null)
   const markersRef = useRef<Record<string, maplibregl.Marker>>({})
   const popupRef = useRef<maplibregl.Popup | null>(null)
+  // Joined visible-stop ids from the last fitBounds. Camera only refits when
+  // this string changes, so unrelated re-renders don't yank the view.
+  // null = no fit yet (fresh map), so the first reconcile always fits.
+  const fitIdsRef = useRef<string | null>(null)
 
   const [mapReady, setMapReady] = useState(false)
+  // Latched tile-failure flag. MapLibre fires a stream of error events while
+  // offline, so this latches on the first real one and clears only once a
+  // render cycle settles without fresh errors (or connectivity returns).
+  const [mapError, setMapError] = useState(false)
+  const lastErrorAtRef = useRef(0)
   const mapDownloaded = useMemo(() => isPackCompleted('park-map'), [])
 
   const initial = useMemo(() => readUrlState(), [])
@@ -173,6 +182,12 @@ export default function Map() {
   const selectStop = useCallback((id: string | null) => {
     setSelection((prev) => ({ id, nonce: prev.nonce + 1 }))
   }, [])
+  // Mirror of selectedStopId for the marker-diff effect, which must know the
+  // current selection without re-running on every selection change.
+  const selectedStopIdRef = useRef(selectedStopId)
+  useEffect(() => {
+    selectedStopIdRef.current = selectedStopId
+  }, [selectedStopId])
 
   // Only stops with a coord can be mapped.
   const mappableStops = useMemo<StopT[]>(() => allStops.filter((s) => !!s.coord), [])
@@ -240,47 +255,79 @@ export default function Map() {
 
     mapRef.current = map
     popupRef.current = new maplibregl.Popup({ maxWidth: '300px', offset: 30 })
-    map.on('load', () => setMapReady(true))
+    map.on('load', () => {
+      setMapReady(true)
+      setMapError(false)
+    })
+
+    map.on('error', (e) => {
+      // Ignore events without an actual Error payload.
+      if (!e?.error) return
+      lastErrorAtRef.current = Date.now()
+      setMapError(true)
+    })
+    map.on('idle', () => {
+      // 'idle' fires even when tiles failed, so only clear the latch once a
+      // render cycle completes without a fresh error.
+      if (Date.now() - lastErrorAtRef.current > 2000) setMapError(false)
+    })
+    const handleOnline = () => setMapError(false)
+    window.addEventListener('online', handleOnline)
 
     return () => {
+      window.removeEventListener('online', handleOnline)
       popupRef.current?.remove()
       popupRef.current = null
       map.remove()
       mapRef.current = null
+      markersRef.current = {}
+      fitIdsRef.current = null
     }
   }, [])
 
-  // Marker reconciliation — runs whenever the visible set changes.
+  // Marker reconciliation — diffs the existing marker set against the visible
+  // stops: removes only markers whose stop left the set, adds only new ones,
+  // leaves the rest untouched (so an open popup's marker survives re-renders).
   useEffect(() => {
     if (!mapReady) return
     const map = mapRef.current
     if (!map) return
 
-    for (const id of Object.keys(markersRef.current)) {
-      markersRef.current[id].remove()
+    const markers = markersRef.current
+    const visibleIds = new Set(visibleStops.map((s) => s.id))
+
+    for (const id of Object.keys(markers)) {
+      if (visibleIds.has(id)) continue
+      markers[id].remove()
+      delete markers[id]
+      // Close the popup only if it belonged to a removed marker: a floating
+      // popup (with a live "Add to trip") would otherwise hang over the
+      // filtered map.
+      if (id === selectedStopIdRef.current) popupRef.current?.remove()
     }
-    markersRef.current = {}
-    // Close any open popup: its marker was just removed, so a floating popup
-    // (with a live "Add to trip") would otherwise hang over the filtered map.
-    popupRef.current?.remove()
 
-    if (visibleStops.length === 0) return
-
-    const bounds = new maplibregl.LngLatBounds()
     for (const stop of visibleStops) {
-      if (!stop.coord) continue
+      if (!stop.coord || markers[stop.id]) continue
       const [lng, lat] = stop.coord
-      bounds.extend([lng, lat])
-
       const el = buildPinElement(stop.kind)
       el.addEventListener('click', () => selectStop(stop.id))
-      const marker = new maplibregl.Marker({ element: el, anchor: 'bottom' })
+      markers[stop.id] = new maplibregl.Marker({ element: el, anchor: 'bottom' })
         .setLngLat([lng, lat])
         .addTo(map)
-      markersRef.current[stop.id] = marker
     }
 
-    map.fitBounds(bounds, { padding: 48, maxZoom: 12, animate: false })
+    // Refit the camera only when the visible set actually changed.
+    const joinedIds = visibleStops.map((s) => s.id).join(',')
+    if (joinedIds !== fitIdsRef.current) {
+      fitIdsRef.current = joinedIds
+      if (visibleStops.length > 0) {
+        const bounds = new maplibregl.LngLatBounds()
+        for (const stop of visibleStops) {
+          if (stop.coord) bounds.extend([stop.coord[0], stop.coord[1]])
+        }
+        map.fitBounds(bounds, { padding: 48, maxZoom: 12, animate: false })
+      }
+    }
   }, [visibleStops, mapReady, selectStop])
 
   // Selection effect — pan/zoom + open popup when the selection changes.
@@ -293,7 +340,14 @@ export default function Map() {
     if (!map || !marker || !popup || !stop) return
 
     const lngLat = marker.getLngLat()
-    map.easeTo({ center: lngLat, zoom: Math.max(map.getZoom(), 13) })
+    // MapLibre animates regardless of the CSS reduced-motion kill switch, so
+    // honor the preference explicitly.
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    map.easeTo({
+      center: lngLat,
+      zoom: Math.max(map.getZoom(), 13),
+      ...(reduceMotion && { duration: 0 }),
+    })
     popup.setLngLat(lngLat).setDOMContent(buildPopupContent(stop, openStop)).addTo(map)
   }, [selection, mapReady, visibleStops, openStop])
 
@@ -383,6 +437,20 @@ export default function Map() {
 
         <div className="map-page__stage">
           <div ref={containerRef} className="map-page__map" />
+
+          {!mapReady && (
+            <div className="map-page__loading" role="status">
+              <span className="spinner" aria-hidden="true" />
+              Loading map
+            </div>
+          )}
+
+          {mapError && (
+            <div className="map-page__error" role="alert">
+              Map tiles are unavailable. If you are offline, download the park
+              map under Account.
+            </div>
+          )}
 
           <aside className="map-pane map-pane--points" aria-hidden={tab !== 'points'}>
             <h3 className="map-pane__title">Legend</h3>
