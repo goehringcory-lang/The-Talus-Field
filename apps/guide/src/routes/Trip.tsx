@@ -21,8 +21,6 @@ import { ITINERARIES, type ItineraryKey } from '../content/itineraries'
 import { getStopsByRegion } from '../content'
 import { MAX_SPAN_DAYS, readTripDates } from '../programs/usePrograms'
 import { addDaysIso, formatClock, formatDayHeader } from '../utils/date'
-import { exportTripIcs, type ExportMethod } from '../trip/exportTrip'
-import { buildTripIcs } from '../trip/ics'
 import { driveMinutesBetween, slotPlan, toHhmm, type SlottedItem } from '../trip/slotting'
 import { useTripPlan } from '../trip/useTripPlan'
 import './Trip.css'
@@ -67,9 +65,7 @@ function TransitRow({ prev, cur }: { prev: SlottedItem; cur: SlottedItem }) {
 
 export default function Trip() {
   const { plan, addStop, removeItem, setStopTime, moveStopToDay, clear, setDates } = useTripPlan()
-  const [exportResult, setExportResult] = useState<ExportMethod | null>(null)
   const [reviewOpen, setReviewOpen] = useState(false)
-  const [exporting, setExporting] = useState(false)
   const reviewRef = useRef<HTMLDivElement>(null)
 
   // Keep the plan window in step with the dates picked on /programs.
@@ -84,22 +80,9 @@ export default function Trip() {
   const windowDays = daysInWindow(plan.dates.start, plan.dates.end)
 
   function toggleReview() {
-    setExportResult(null)
     const opening = !reviewOpen
     setReviewOpen(opening)
     if (opening) reviewRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
-  }
-
-  async function onCreateEvents() {
-    setExporting(true)
-    try {
-      // Build synchronously before the await: iOS only allows the share
-      // sheet inside the user-gesture task.
-      const ics = buildTripIcs(slotted)
-      setExportResult(await exportTripIcs(ics, `yosemite-trip-${plan.dates.start}.ics`))
-    } finally {
-      setExporting(false)
-    }
   }
 
   // Seed a preset day only up to what a day can actually hold (08:00-21:00
@@ -326,13 +309,7 @@ export default function Trip() {
             </p>
           )}
           {reviewOpen && itemCount > 0 && (
-            <TripReview
-              slotted={slotted}
-              windowDays={windowDays}
-              exportResult={exportResult}
-              exporting={exporting}
-              onCreate={onCreateEvents}
-            />
+            <TripReview slotted={slotted} windowDays={windowDays} filenameDate={plan.dates.start} />
           )}
         </div>
 

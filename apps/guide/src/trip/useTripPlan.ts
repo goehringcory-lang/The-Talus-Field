@@ -182,6 +182,20 @@ export function useTripPlan() {
   }
 }
 
+/**
+ * Module-level subscription for non-React consumers (the calendar feed sync
+ * republishes after every plan write). Returns the unsubscribe.
+ */
+export function subscribeTripPlan(fn: () => void): () => void {
+  subscribers.add(fn)
+  return () => subscribers.delete(fn)
+}
+
+/** Current plan snapshot without a hook (feed sync runs outside React). */
+export function readTripPlan(): TripPlanT {
+  return read()
+}
+
 /** Cheap add-from-anywhere entry points (map popup lives outside React state). */
 export function addStopToPlan(stopId: string, day?: string) {
   const p = read()

@@ -8,6 +8,7 @@ import './content'
 import App from './App'
 import ErrorBoundary from './components/ErrorBoundary'
 import { registerServiceWorker } from './pwa/registerSW'
+import { startFeedSync } from './trip/feedSync'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
@@ -25,3 +26,7 @@ registerServiceWorker((registration) => {
     new CustomEvent('tfg:update-ready', { detail: registration }),
   )
 })
+
+// Keep the hosted calendar feed current with local plan edits (no-op until
+// the user subscribes from the trip page's calendar sheet).
+startFeedSync()

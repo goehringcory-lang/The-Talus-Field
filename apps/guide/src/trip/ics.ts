@@ -173,6 +173,13 @@ export function buildTripIcs(slottedByDay: Map<string, SlottedItem[]>): string {
     `PRODID:${PRODID}`,
     'CALSCALE:GREGORIAN',
     'METHOD:PUBLISH',
+    // Calendar-level metadata for the subscription feed: a name for the
+    // calendar list, and a suggested poll cadence for clients that honor it
+    // (Apple does; Google polls on its own schedule regardless).
+    'X-WR-CALNAME:Yosemite trip · The Talus Field',
+    `X-WR-TIMEZONE:${TZID}`,
+    'REFRESH-INTERVAL;VALUE=DURATION:PT12H',
+    'X-PUBLISHED-TTL:PT12H',
     ...VTIMEZONE,
   ]
 
@@ -203,6 +210,18 @@ export function buildTripIcs(slottedByDay: Map<string, SlottedItem[]>): string {
       }
       if (f.url) lines.push(`URL:${f.url}`)
       if (f.description) lines.push(`DESCRIPTION:${esc(f.description)}`)
+      if (f.startMin !== null) {
+        // 30-minute display reminder on timed events. Apple Calendar honors
+        // imported VALARMs; Google Calendar ignores them and applies the
+        // user's own defaults, which is why the copy never promises alerts.
+        lines.push(
+          'BEGIN:VALARM',
+          'ACTION:DISPLAY',
+          `DESCRIPTION:${esc(f.summary)}`,
+          'TRIGGER:-PT30M',
+          'END:VALARM',
+        )
+      }
       lines.push('END:VEVENT')
     }
   }
