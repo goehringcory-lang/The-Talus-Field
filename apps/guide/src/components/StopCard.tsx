@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import ReactMarkdown from 'react-markdown'
 import type { StopT } from '../content'
 import { useFavorites } from '../lib/favorites'
+import { announceNotice } from '../trip/addFeedback'
 import MapsLink from './MapsLink'
 import PhotoPlaceholder from './PhotoPlaceholder'
 import ResponsivePhoto from './ResponsivePhoto'
@@ -68,7 +69,10 @@ export default function StopCard({ stop, compact = true }: Props) {
           aria-pressed={saved}
           aria-label={saved ? `Remove ${stop.title} from saved stops` : `Save ${stop.title}`}
           title={saved ? 'Saved' : 'Save stop'}
-          onClick={() => toggle(stop.id)}
+          onClick={() => {
+            toggle(stop.id)
+            announceNotice({ kind: saved ? 'removed' : 'saved', title: stop.title })
+          }}
         >
           <svg className="fav-toggle__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
             <path d="M6 3h12a1 1 0 0 1 1 1v17l-7-4.5L5 21V4a1 1 0 0 1 1-1z" />

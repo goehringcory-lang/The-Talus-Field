@@ -3,6 +3,7 @@ import type { FormEvent } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { apiFetch, ApiError } from '../lib/api'
 import { useAuth } from '../auth/useAuth'
+import '../styles/app.css'
 
 type LoginResponse = { jwt: string }
 
@@ -65,17 +66,17 @@ export default function Login() {
 
   return (
     <div className="app-shell">
-      <main className="wrap wrap--narrow" style={{ paddingTop: 'clamp(32px, 10vh, 96px)', paddingBottom: 'clamp(32px, 10vh, 96px)' }}>
-        <div className="eyebrow eyebrow--moss" style={{ marginBottom: 14 }}>
+      <main className="wrap wrap--narrow page page--auth">
+        <div className="eyebrow eyebrow--moss page__kicker">
           The Field Guide
         </div>
-        <h1 style={{ marginBottom: 18 }}>Sign in</h1>
-        <p style={{ color: 'var(--ink-2)', marginBottom: 36 }}>
+        <h1 className="page__title">Sign in</h1>
+        <p className="page__lede">
           Enter the email you bought the guide with and the 6-digit access code from your purchase email.
         </p>
 
-        <form onSubmit={onSubmit} style={{ display: 'grid', gap: 18, maxWidth: 420 }}>
-          <label style={{ display: 'grid', gap: 6 }}>
+        <form onSubmit={onSubmit} className="auth-form">
+          <label className="auth-form__field">
             <span className="eyebrow">Email</span>
             <input
               className="input"
@@ -91,7 +92,7 @@ export default function Login() {
               onChange={(e) => setEmail(e.target.value)}
             />
           </label>
-          <label style={{ display: 'grid', gap: 6 }}>
+          <label className="auth-form__field">
             <span className="eyebrow">Access code</span>
             <input
               className="input"
@@ -109,12 +110,12 @@ export default function Login() {
           </label>
 
           {error && (
-            <div style={{ color: 'var(--moss)', fontSize: 14 }}>{error}</div>
+            <div className="form-error">{error}</div>
           )}
 
           <button className="btn" type="submit" disabled={busy}>
             {busy ? (
-              <span style={{ display: 'inline-flex', alignItems: 'center', gap: 10 }}>
+              <span className="btn__busy">
                 <span className="spinner" aria-hidden="true" />
                 Checking…
               </span>
@@ -122,7 +123,7 @@ export default function Login() {
           </button>
         </form>
 
-        <p style={{ color: 'var(--ink-3)', fontSize: 13, marginTop: 28 }}>
+        <p className="auth-footnote">
           Lost the email? Write to cory@thetalusfieldjournal.com and it will be resent.
         </p>
       </main>

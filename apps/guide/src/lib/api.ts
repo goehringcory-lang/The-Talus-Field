@@ -29,6 +29,13 @@ export async function apiFetch<T = unknown>(
     : await res.text()
 
   if (!res.ok) {
+    // A 401 outside the auth endpoints means the JWT the request carried is
+    // no longer accepted (expired, rotated secret). Tell AuthProvider so the
+    // UI signs out instead of failing quietly on every call. Auth endpoints
+    // are excluded: a wrong code at login is not a session expiry.
+    if (res.status === 401 && !path.startsWith('/api/auth/')) {
+      window.dispatchEvent(new CustomEvent('tfg:unauthorized'))
+    }
     const msg =
       typeof body === 'object' && body && 'error' in body
         ? String((body as { error: unknown }).error)

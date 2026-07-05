@@ -10,6 +10,7 @@ import GatedChrome from '../components/GatedChrome'
 import RegionPickerCard from '../components/RegionPickerCard'
 import SectionCard from '../components/SectionCard'
 import UpdatedStamp from '../components/UpdatedStamp'
+import '../styles/app.css'
 
 // Pack ids mirrored from offline/manifest.ts: one photo pack per region plus
 // the map. Used only for the status line; the manager itself lives on Account.
@@ -29,26 +30,14 @@ function BeforeYouGoNudge() {
   })
   if (dismissed) return null
   return (
-    <div
-      style={{
-        border: '1px solid var(--rule)',
-        borderLeft: '3px solid var(--moss)',
-        background: 'var(--paper-2)',
-        padding: '14px 16px',
-        marginBottom: 24,
-        display: 'flex',
-        gap: 12,
-        alignItems: 'center',
-      }}
-    >
-      <div style={{ flex: 1, fontFamily: 'var(--serif)', fontSize: 14, lineHeight: 1.5 }}>
+    <div className="notice-banner notice-banner--inline">
+      <div className="notice-banner__body">
         Going soon? Do the <Link to="/essentials/before-you-go">night-before downloads</Link>{' '}
         while you still have wifi: the offline maps, this guide, and the current Yosemite Guide PDF.
       </div>
       <button
         type="button"
-        className="btn btn--ghost"
-        style={{ padding: '6px 10px', fontSize: 13, minHeight: 44, flexShrink: 0 }}
+        className="btn btn--ghost btn--compact"
         onClick={() => {
           try {
             localStorage.setItem(BEFORE_YOU_GO_DISMISS_KEY, '1')
@@ -71,18 +60,18 @@ function InSeasonStrip() {
   const upcoming = SEASONAL_EVENTS.filter((ev) => ev.dateEnd >= today).slice(0, 3)
   if (upcoming.length === 0) return null
   return (
-    <section aria-label="In season" style={{ marginTop: 28 }}>
-      <div className="eyebrow" style={{ marginBottom: 10 }}>In season</div>
-      <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'grid', gap: 8 }}>
+    <section aria-label="In season" className="home-strip">
+      <div className="eyebrow section-eyebrow">In season</div>
+      <ul className="plain-list">
         {upcoming.map((ev) => (
-          <li key={ev.id} style={{ fontFamily: 'var(--serif)', fontSize: 14, lineHeight: 1.5 }}>
-            <span style={{ color: 'var(--ink-3)' }}>{seasonalRangeLabel(ev)} · </span>
+          <li key={ev.id} className="plain-list__item">
+            <span className="muted">{seasonalRangeLabel(ev)} · </span>
             {ev.title}
-            {ev.confidence === 'typical' ? <span style={{ color: 'var(--ink-3)' }}> (typical)</span> : null}
+            {ev.confidence === 'typical' ? <span className="muted"> (typical)</span> : null}
           </li>
         ))}
       </ul>
-      <Link to="/programs" style={{ fontFamily: 'var(--sans)', fontSize: 13, display: 'inline-block', marginTop: 8 }}>
+      <Link to="/programs" className="strip-link">
         The full seasonal almanac, day by day →
       </Link>
     </section>
@@ -102,18 +91,18 @@ export default function Home() {
 
   return (
     <GatedChrome>
-      <main className="wrap wrap--narrow" style={{ paddingTop: 56, paddingBottom: 96 }}>
-        <div className="eyebrow eyebrow--moss" style={{ marginBottom: 14 }}>
+      <main className="wrap wrap--narrow page">
+        <div className="eyebrow eyebrow--moss page__kicker">
           The Field Guide · 2026 Edition
         </div>
-        <h1 style={{ marginBottom: 18 }}>Where in the park are you going?</h1>
-        <p style={{ color: 'var(--ink-2)', marginBottom: 36 }}>
-          Pick a region. Each one is a flat list of stops in a suggested order — read them all or just the ones that fit your day.
+        <h1 className="page__title">Where in the park are you going?</h1>
+        <p className="page__lede">
+          Pick a region. Each one is a flat list of stops in a suggested order. Read them all or just the ones that fit your day.
         </p>
 
         <BeforeYouGoNudge />
 
-        <div style={{ display: 'grid', gap: 18 }}>
+        <div className="card-grid">
           {REGIONS.map((region) => (
             <RegionPickerCard
               key={region.id}
@@ -172,14 +161,14 @@ export default function Home() {
         </Link>
 
         {savedStops.length > 0 && (
-          <section aria-label="Saved stops" style={{ marginTop: 40 }}>
-            <div className="eyebrow" style={{ marginBottom: 10 }}>Saved stops</div>
-            <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'grid', gap: 8 }}>
+          <section aria-label="Saved stops" className="home-section">
+            <div className="eyebrow section-eyebrow">Saved stops</div>
+            <ul className="plain-list">
               {savedStops.map((stop) => (
                 <li key={stop.id}>
                   <Link
                     to={getStopById(stop.id) ? `/stop/${stop.id}` : '/secret-spots'}
-                    style={{ fontFamily: 'var(--display)', fontSize: 18 }}
+                    className="saved-link"
                   >
                     {stop.title} →
                   </Link>
@@ -191,7 +180,7 @@ export default function Home() {
 
         <UpdatedStamp />
 
-        <p style={{ marginTop: 32, color: 'var(--ink-3)', fontSize: 13 }}>
+        <p className="signin-note">
           Signed in as <strong>{session?.username}</strong>. <Link to="/account">Account →</Link>
         </p>
       </main>

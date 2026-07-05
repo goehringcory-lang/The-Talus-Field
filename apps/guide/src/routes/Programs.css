@@ -197,6 +197,28 @@
   }
 }
 
+/* Loading skeleton — first sync with nothing cached. Mirrors the day-header
+ * and row anatomy above (same classes, same grid, near-identical line
+ * heights) so nothing shifts when listings land. Shimmer and base appearance
+ * come from components/Skeleton.css. */
+.program-row--skeleton {
+  display: grid;
+  grid-template-columns: 64px 1fr auto;
+  gap: 12px;
+  align-items: center;
+}
+/* 18px block + 2px margins ≈ the 17px/1.3 title line. */
+.program-row--skeleton .skeleton--title {
+  margin: 2px 0;
+}
+/* 12px block + 5px gap ≈ the meta line plus its 3px margin-top. */
+.program-row--skeleton .program-row__skeleton-meta {
+  margin-top: 5px;
+}
+.program-row--skeleton .program-row__skeleton-add {
+  align-self: center;
+}
+
 .programs-empty {
   padding: 32px 0;
   font-family: var(--serif, Georgia, serif);
