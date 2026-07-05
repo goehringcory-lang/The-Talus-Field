@@ -7,13 +7,20 @@ import {
   getEmailByAccessToken,
   recordDevLoginAttempt,
   recordLoginAttempt,
+  recordResendAttempt,
+  recordResendAttemptByIp,
 } from '../lib/kv'
 import { signAccessJwt } from '../lib/jwt'
+import { requireAuth, type AuthVariables } from '../middleware/require-auth'
+import { sendMagicLink } from '../lib/email'
 import { constantTimeEquals } from '../lib/tokens'
 
 const MAX_LOGIN_ATTEMPTS_PER_HOUR = 5
+// Each resend attempt fires a real email, so the caps sit below login's 5/hr.
+const MAX_RESEND_PER_EMAIL_PER_HOUR = 3
+const MAX_RESEND_PER_IP_PER_HOUR = 10
 
-export const auth = new Hono<{ Bindings: Env }>()
+export const auth = new Hono<{ Bindings: Env; Variables: AuthVariables }>()
 
 auth.post('/exchange', async (c) => {
   const body = await c.req.json<{ token?: string }>().catch(() => ({} as { token?: string }))
@@ -29,7 +36,9 @@ auth.post('/exchange', async (c) => {
     return c.json({ error: 'Access has expired' }, 401)
   }
 
-  const jwt = await signAccessJwt(email, c.env.MAGIC_LINK_SIGNING_SECRET)
+  // Sign to the buyer's real access expiry so one magic-link click lasts the
+  // whole paid window instead of logging the buyer out every 90 days.
+  const jwt = await signAccessJwt(email, c.env.MAGIC_LINK_SIGNING_SECRET, buyer.expiresAt)
   return c.json({ jwt })
 })
 
@@ -56,8 +65,61 @@ auth.post('/login', async (c) => {
   }
 
   await clearLoginAttempts(c.env, email)
-  const jwt = await signAccessJwt(email, c.env.MAGIC_LINK_SIGNING_SECRET)
+  // Same as /exchange: the JWT lives as long as the purchased access does.
+  const jwt = await signAccessJwt(email, c.env.MAGIC_LINK_SIGNING_SECRET, buyer.expiresAt)
   return c.json({ jwt })
+})
+
+// Who am I, and when does my access end? The PWA's Account page renders the
+// access-ends date from this, and the app revalidates against it when online
+// so a refund actually signs the buyer out. Returns 200 with expired: true
+// (rather than a 401) for a lapsed buyer — the client needs the date to
+// explain what happened.
+auth.get('/me', requireAuth, async (c) => {
+  const sub = c.get('authSub')
+  const buyer = await getBuyer(c.env, sub)
+  if (!buyer) {
+    // No buyer record: a dev/admin session. Report the JWT's own expiry so
+    // the Account page has something sensible to show.
+    return c.json({ kind: 'operator', email: sub, expiresAt: c.get('authExp') })
+  }
+  return c.json({
+    kind: 'buyer',
+    email: buyer.email,
+    purchasedAt: buyer.purchasedAt,
+    expiresAt: buyer.expiresAt,
+    expired: buyer.expiresAt * 1000 < Date.now(),
+  })
+})
+
+// Self-serve "I lost my purchase email." Re-sends the existing magic link +
+// code to the address on the buyer record. Always answers 200 { ok: true } —
+// including for unknown emails, expired buyers, and over-cap callers — so the
+// endpoint can't be used to probe who bought the guide.
+auth.post('/resend', async (c) => {
+  const body = await c.req.json<{ email?: string }>().catch(() => ({} as { email?: string }))
+  const email = body.email?.trim().toLowerCase()
+  if (!email) return c.json({ error: 'Missing email' }, 400)
+
+  const ip = c.req.header('cf-connecting-ip') ?? 'unknown'
+  const emailAttempts = await recordResendAttempt(c.env, email)
+  const ipAttempts = await recordResendAttemptByIp(c.env, ip)
+  // Over cap: silently drop rather than 429 — a different status would leak
+  // that the request was being processed at all.
+  if (emailAttempts <= MAX_RESEND_PER_EMAIL_PER_HOUR && ipAttempts <= MAX_RESEND_PER_IP_PER_HOUR) {
+    const buyer = await getBuyer(c.env, email)
+    if (buyer && buyer.expiresAt * 1000 >= Date.now()) {
+      const magicLink = `${c.env.APP_BASE_URL}/open?token=${buyer.accessToken}`
+      try {
+        await sendMagicLink(c.env, { to: buyer.email, magicLink, code: buyer.accessCode })
+      } catch (err) {
+        // Still 200: the caller can retry, and the mailto fallback remains.
+        console.error('resend: sendMagicLink failed', { email, err })
+      }
+    }
+  }
+
+  return c.json({ ok: true })
 })
 
 // Pre-Stripe dev / admin login. Username + code are checked against env

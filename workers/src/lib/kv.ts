@@ -6,12 +6,15 @@ export type BuyerRecord = {
   expiresAt: number            // epoch seconds
   accessToken: string          // 64-char hex; one-time bootstrap from email
   accessCode: string           // 6-digit zero-padded; for new-device login
+  refundedAt?: number          // epoch seconds; set when Stripe reports a refund
 }
 
 const BUYER_KEY = (email: string) => `buyer:${email.toLowerCase()}`
 const TOKEN_INDEX_KEY = (token: string) => `token:${token}`
 const INVENTORY_KEY = (yyyymm: string) => `inventory:${yyyymm}`
 const LOGIN_ATTEMPTS_KEY = (email: string) => `loginAttempts:${email.toLowerCase()}`
+const RESEND_ATTEMPTS_KEY = (email: string) => `resendAttempts:${email.toLowerCase()}`
+const RESEND_ATTEMPTS_IP_KEY = (ip: string) => `resendAttemptsIp:${ip}`
 const DEV_LOGIN_ATTEMPTS_KEY = (ip: string, username: string) =>
   `devLoginAttempts:${ip}:${username.toLowerCase()}`
 
@@ -72,6 +75,28 @@ export async function recordLoginAttempt(env: Env, email: string): Promise<numbe
 
 export async function clearLoginAttempts(env: Env, email: string): Promise<void> {
   await env.GUIDE_BUYERS.delete(LOGIN_ATTEMPTS_KEY(email))
+}
+
+// Resend attempts are counted per email AND per IP. Each attempt sends a real
+// email through Resend, so the caps are lower than login's: the per-email
+// bucket protects an individual buyer's inbox from being spammed, the per-IP
+// bucket stops one caller probing many addresses.
+export async function recordResendAttempt(env: Env, email: string): Promise<number> {
+  const key = RESEND_ATTEMPTS_KEY(email)
+  const raw = await env.GUIDE_BUYERS.get(key)
+  const next = (raw ? Number.parseInt(raw, 10) : 0) + 1
+  // 1-hour TTL gives a rolling window per email.
+  await env.GUIDE_BUYERS.put(key, String(next), { expirationTtl: 60 * 60 })
+  return next
+}
+
+export async function recordResendAttemptByIp(env: Env, ip: string): Promise<number> {
+  const key = RESEND_ATTEMPTS_IP_KEY(ip)
+  const raw = await env.GUIDE_BUYERS.get(key)
+  const next = (raw ? Number.parseInt(raw, 10) : 0) + 1
+  // 1-hour TTL gives a rolling window per IP.
+  await env.GUIDE_BUYERS.put(key, String(next), { expirationTtl: 60 * 60 })
+  return next
 }
 
 export async function recordDevLoginAttempt(

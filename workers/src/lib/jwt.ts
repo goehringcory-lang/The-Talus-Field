@@ -8,12 +8,38 @@ export type AccessClaims = {
   exp: number
 }
 
-export async function signAccessJwt(email: string, secret: string): Promise<string> {
+// Buyer logins pass the buyer's KV expiresAt so one sign-in lasts the whole
+// paid access window (essential offline in the park — there is no network to
+// refresh against). Dev/admin logins omit it and get the 90-day default.
+export async function signAccessJwt(
+  sub: string,
+  secret: string,
+  expEpochSeconds?: number,
+): Promise<string> {
   const now = Math.floor(Date.now() / 1000)
   const claims: AccessClaims = {
-    sub: email,
+    sub,
     iat: now,
-    exp: now + TTL_SECONDS,
+    // Clamp a caller-supplied exp to at least a minute out so a buyer right at
+    // the edge of their window still gets a briefly usable token instead of
+    // one that is dead on arrival.
+    exp: expEpochSeconds !== undefined ? Math.max(expEpochSeconds, now + 60) : now + TTL_SECONDS,
   }
   return jwt.sign(claims, secret, { algorithm: 'HS256' })
+}
+
+// Returns the verified claims, or null on any failure (bad signature, expired,
+// malformed). verify() checks exp itself and resolves undefined rather than
+// throwing when throwError is left at its default of false.
+export async function verifyAccessJwt(
+  token: string,
+  secret: string,
+): Promise<AccessClaims | null> {
+  try {
+    const data = await jwt.verify<AccessClaims>(token, secret, { algorithm: 'HS256' })
+    if (!data?.payload?.sub || typeof data.payload.exp !== 'number') return null
+    return data.payload as AccessClaims
+  } catch {
+    return null
+  }
 }
