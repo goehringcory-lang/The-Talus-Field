@@ -23,7 +23,18 @@ export default function App() {
   return (
     <AuthProvider>
       <UpdateBanner />
-      <Suspense fallback={null}>
+      {/* Visible fallback: on a slow connection a lazy chunk can take seconds,
+          and a blank screen reads as broken. */}
+      <Suspense
+        fallback={
+          <div
+            className="app-shell"
+            style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: '60vh' }}
+          >
+            <span className="spinner" aria-label="Loading" />
+          </div>
+        }
+      >
         <Routes>
           <Route path="/open" element={<Open />} />
           <Route path="/login" element={<Login />} />

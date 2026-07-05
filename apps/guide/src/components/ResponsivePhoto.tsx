@@ -4,8 +4,10 @@
 // manifest — keep slugify() in sync with that script. External URLs fall back to
 // a plain <img>.
 
+import { useState } from 'react'
 import type { CSSProperties } from 'react'
 import { RESPONSIVE_WIDTHS, responsiveBase } from '../utils/photo'
+import PhotoPlaceholder from './PhotoPlaceholder'
 
 type Props = {
   src: string
@@ -28,10 +30,20 @@ export default function ResponsivePhoto({
   loading = 'lazy',
   style,
 }: Props) {
+  // A 404ing photo (bad path, evicted cache while offline) would render the
+  // browser's broken-image icon; fall back to the same tile used for stops
+  // with no photo at all. onError on the <img> fires only after the whole
+  // <picture> candidate chain has failed, so this is the right trigger.
+  const [failed, setFailed] = useState(false)
   const isExternal = /^https?:/i.test(src)
+
+  if (failed) {
+    return <PhotoPlaceholder className={className} />
+  }
+
   if (isExternal) {
     return (
-      <img className={className} src={src} alt={alt} loading={loading} decoding="async" width={width} height={height} style={style} />
+      <img className={className} src={src} alt={alt} loading={loading} decoding="async" width={width} height={height} style={style} onError={() => setFailed(true)} />
     )
   }
 
@@ -54,6 +66,7 @@ export default function ResponsivePhoto({
         width={width}
         height={height}
         style={style}
+        onError={() => setFailed(true)}
       />
     </picture>
   )

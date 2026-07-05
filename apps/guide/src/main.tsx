@@ -6,13 +6,17 @@ import './index.css'
 // surfaces immediately instead of when Phase 3 first reads a stop.
 import './content'
 import App from './App'
+import ErrorBoundary from './components/ErrorBoundary'
 import { registerServiceWorker } from './pwa/registerSW'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
+    {/* Outside the router so even a routing failure gets the reload card. */}
+    <ErrorBoundary>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </ErrorBoundary>
   </StrictMode>,
 )
 

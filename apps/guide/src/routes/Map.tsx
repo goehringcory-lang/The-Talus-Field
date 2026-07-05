@@ -93,6 +93,8 @@ function buildPopupContent(stop: StopT, onOpenStop: (id: string) => void): HTMLE
     img.alt = ''
     img.loading = 'lazy'
     img.className = 'map-popup__photo'
+    // A 404 in a 300px popup degrades to text-only, no placeholder needed.
+    img.onerror = () => img.remove()
     root.appendChild(img)
   }
 
@@ -157,6 +159,7 @@ export default function Map() {
   const popupRef = useRef<maplibregl.Popup | null>(null)
 
   const [mapReady, setMapReady] = useState(false)
+  const [mapFailed, setMapFailed] = useState(false)
   const mapDownloaded = useMemo(() => isPackCompleted('park-map'), [])
 
   const initial = useMemo(() => readUrlState(), [])
@@ -240,7 +243,16 @@ export default function Map() {
 
     mapRef.current = map
     popupRef.current = new maplibregl.Popup({ maxWidth: '300px', offset: 30 })
-    map.on('load', () => setMapReady(true))
+    map.on('load', () => {
+      setMapReady(true)
+      setMapFailed(false)
+    })
+    // MapLibre fires 'error' for every failed tile fetch, which is routine
+    // when semi-offline — only a failure BEFORE 'load' means a blank map
+    // (style/glyph/initial fetch failure) worth telling the user about.
+    map.on('error', () => {
+      if (!map.loaded()) setMapFailed(true)
+    })
 
     return () => {
       popupRef.current?.remove()
@@ -342,7 +354,12 @@ export default function Map() {
     <GatedChrome>
       <div className="map-page">
         <div className="map-online-notice" role="note">
-          {mapDownloaded ? (
+          {mapFailed && !mapReady ? (
+            <>
+              The map couldn't load. Check your connection and reload. GPS
+              points are still on each stop's page.
+            </>
+          ) : mapDownloaded ? (
             <>Map downloaded. Works offline, even in airplane mode.</>
           ) : (
             <>
