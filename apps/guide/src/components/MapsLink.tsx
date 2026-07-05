@@ -25,7 +25,7 @@ export default function MapsLink({ coord, label, mode = 'view' }: Props) {
         ? `maps://?ll=${lat},${lng}&q=${encodeURIComponent(label)}`
         : `https://maps.google.com/?q=${lat},${lng}`
   return (
-    <a className="gps-chip" href={url} rel="noopener">
+    <a className="chip chip--gps" href={url} rel="noopener">
       {lat.toFixed(5)}, {lng.toFixed(5)} →
     </a>
   )

@@ -1,18 +1,19 @@
-import { Link } from 'react-router-dom'
 import { SECRET_META, SECRET_SPOTS } from '../content'
 import GatedChrome from '../components/GatedChrome'
 import StopCard from '../components/StopCard'
+import BackLink from '../components/ui/BackLink'
+import PageHeader from '../components/ui/PageHeader'
 
 export default function SecretSpots() {
   return (
     <GatedChrome>
-      <main className="wrap wrap--narrow" style={{ paddingTop: 56, paddingBottom: 96 }}>
-        <div className="eyebrow eyebrow--moss" style={{ marginBottom: 14 }}>
-          The Field Guide · 2026 Edition
-        </div>
-        <h1 style={{ marginBottom: 18 }}>{SECRET_META.title}</h1>
+      <main className="wrap wrap--narrow page">
+        <PageHeader
+          eyebrow="Included with purchase"
+          title={SECRET_META.title}
+          intro={SECRET_META.teaser}
+        />
 
-        <p style={{ color: 'var(--ink-2)', marginBottom: 36 }}>{SECRET_META.teaser}</p>
         {SECRET_SPOTS.map((spot, i) => (
           <div key={spot.id}>
             <StopCard stop={spot} compact={false} />
@@ -20,20 +21,7 @@ export default function SecretSpots() {
           </div>
         ))}
 
-        <p style={{ marginTop: 56 }}>
-          <Link
-            to="/"
-            style={{
-              fontFamily: 'var(--sans)',
-              fontSize: 12,
-              textTransform: 'uppercase',
-              letterSpacing: '0.14em',
-              fontWeight: 600,
-            }}
-          >
-            ← Back to the guide
-          </Link>
-        </p>
+        <BackLink to="/" label="Back to the guide" />
       </main>
     </GatedChrome>
   )

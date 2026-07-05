@@ -17,28 +17,8 @@ export default function UpdateBanner() {
   if (!registration) return null
 
   return (
-    <button
-      type="button"
-      onClick={() => triggerUpdate(registration)}
-      style={{
-        position: 'fixed',
-        top: 0,
-        left: 0,
-        right: 0,
-        background: 'var(--moss)',
-        color: 'var(--paper)',
-        border: 0,
-        padding: '10px 16px',
-        fontFamily: 'var(--sans)',
-        fontSize: 13,
-        fontWeight: 600,
-        letterSpacing: '0.04em',
-        cursor: 'pointer',
-        textAlign: 'center',
-        zIndex: 60,
-      }}
-    >
-      Updated — tap to refresh.
+    <button type="button" className="update-banner" onClick={() => triggerUpdate(registration)}>
+      Updated. Tap to refresh.
     </button>
   )
 }

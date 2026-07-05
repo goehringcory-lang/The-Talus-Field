@@ -1,6 +1,7 @@
 /* /programs route — trip dates → date-grouped program list.
  * A scrolling agenda with sticky day headers, deliberately not a calendar
- * grid. Chips filter by category and source. */
+ * grid. Chip primitives (components.css) handle filters, badges, and the
+ * quick-add; this file owns the agenda anatomy only. */
 
 .programs-dates {
   display: flex;
@@ -9,45 +10,15 @@
   align-items: end;
   margin-bottom: 18px;
 }
-.programs-dates label {
-  display: grid;
-  gap: 4px;
-  font-family: var(--sans, system-ui, sans-serif);
-  font-size: 11px;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  font-weight: 600;
-  color: var(--ink-3, #6b5c49);
-}
-.programs-dates input[type='date'] {
-  font: 15px var(--sans, system-ui, sans-serif);
-  padding: 8px 10px;
-  border: 1px solid var(--rule, #c1ad84);
-  background: var(--paper, #f1ead6);
-  color: var(--ink, #14110c);
-  border-radius: 4px;
-  min-height: 44px;
-}
 
 .programs-sync {
   display: flex;
   gap: 10px;
   align-items: center;
   flex-wrap: wrap;
-  font-family: var(--sans, system-ui, sans-serif);
+  font-family: var(--sans);
   font-size: 12px;
-  color: var(--ink-3, #6b5c49);
-  margin-bottom: 8px;
-}
-
-.programs-stale {
-  border: 1px solid color-mix(in oklab, var(--gold, #8a661a) 40%, var(--rule, #c1ad84));
-  background: color-mix(in oklab, var(--gold, #8a661a) 12%, var(--paper, #f1ead6));
-  color: var(--ink-2, #36291c);
-  font-family: var(--sans, system-ui, sans-serif);
-  font-size: 13px;
-  line-height: 1.5;
-  padding: 10px 12px;
+  color: var(--ink-3);
   margin-bottom: 16px;
 }
 
@@ -57,41 +28,26 @@
   flex-wrap: wrap;
   margin-bottom: 20px;
 }
-.programs-chip {
-  font: 600 12px var(--sans, system-ui, sans-serif);
-  padding: 7px 12px;
-  min-height: 36px;
-  border: 1px solid var(--rule, #c1ad84);
-  border-radius: 999px;
-  background: var(--paper, #f1ead6);
-  color: var(--ink-2, #36291c);
-  cursor: pointer;
-}
-.programs-chip[aria-pressed='true'] {
-  background: var(--ink, #14110c);
-  border-color: var(--ink, #14110c);
-  color: var(--paper, #f1ead6);
-}
 
 .programs-day-header {
   position: sticky;
   top: 0;
   z-index: 5;
-  background: var(--paper-2, #e9e0c9);
-  border-top: 1px solid var(--ink, #14110c);
-  border-bottom: 1px solid var(--rule-soft, #d5c6a4);
+  background: var(--paper-2);
+  border-top: 1px solid var(--ink);
+  border-bottom: 1px solid var(--rule-soft);
   padding: 8px 2px;
-  font-family: var(--sans, system-ui, sans-serif);
+  font-family: var(--sans);
   font-size: 12px;
   text-transform: uppercase;
   letter-spacing: 0.14em;
   font-weight: 700;
-  color: var(--ink, #14110c);
+  color: var(--ink);
 }
 
 .program-row {
   padding: 14px 2px;
-  border-bottom: 1px solid var(--rule-soft, #d5c6a4);
+  border-bottom: 1px solid var(--rule-soft);
 }
 .program-row summary {
   cursor: pointer;
@@ -104,68 +60,51 @@
 .program-row summary::-webkit-details-marker {
   display: none;
 }
-/* One-tap add from the collapsed row; preventDefault in the click handler
- * keeps it from toggling the <details>. */
-.program-row__quickadd {
-  font: 600 12px var(--sans, system-ui, sans-serif);
-  min-height: 36px;
-  min-width: 44px;
-  padding: 6px 12px;
-  border: 1px solid var(--rule, #c1ad84);
-  border-radius: 999px;
-  background: var(--paper, #f1ead6);
-  color: var(--moss, #7a2a10);
-  cursor: pointer;
+.program-row__action {
   align-self: center;
-  white-space: nowrap;
-}
-.program-row__quickadd:hover {
-  border-color: var(--moss, #7a2a10);
 }
 .program-row__inplan {
-  font: 700 14px var(--sans, system-ui, sans-serif);
-  color: var(--moss, #7a2a10);
+  font: 700 14px var(--sans);
+  color: var(--moss);
   align-self: center;
   padding: 0 8px;
 }
 .program-row__time {
-  font: 600 13px var(--sans, system-ui, sans-serif);
-  color: var(--ink-2, #36291c);
+  font: 600 13px var(--sans);
+  color: var(--ink-2);
   white-space: nowrap;
 }
 .program-row__title {
-  font-family: var(--display, Georgia, serif);
+  font-family: var(--display);
   font-size: 17px;
   line-height: 1.3;
   margin: 0;
 }
 .program-row__meta {
-  font-family: var(--sans, system-ui, sans-serif);
+  font-family: var(--sans);
   font-size: 12px;
-  color: var(--ink-3, #6b5c49);
+  color: var(--ink-3);
   margin-top: 3px;
   display: flex;
   gap: 8px;
   flex-wrap: wrap;
   align-items: center;
 }
-.program-row__badge {
-  border: 1px solid var(--rule, #c1ad84);
-  border-radius: 3px;
-  padding: 1px 5px;
-  font-size: 10px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-}
 .program-row__body {
   grid-column: 2;
   margin: 10px 0 0;
-  font-family: var(--serif, Georgia, serif);
+  font-family: var(--serif);
   font-size: 14px;
   line-height: 1.6;
-  color: var(--ink-2, #36291c);
+  color: var(--ink-2);
   white-space: pre-line;
+}
+.program-row__footer {
+  margin-top: 8px;
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  flex-wrap: wrap;
 }
 .program-row[open] .program-row__body {
   margin-left: 76px;
@@ -174,6 +113,13 @@
   .program-row[open] .program-row__body {
     margin-left: 0;
   }
+}
+
+/* First-sync loading rows. */
+.program-row--skeleton {
+  display: grid;
+  grid-template-columns: 64px 1fr;
+  gap: 12px;
 }
 
 /* Seasonal almanac windows — the "in season during your dates" cards. Same
@@ -195,19 +141,4 @@
   .season-windows .program-row[open] .program-row__body {
     margin-left: 0;
   }
-}
-
-.programs-empty {
-  padding: 32px 0;
-  font-family: var(--serif, Georgia, serif);
-  color: var(--ink-2, #36291c);
-  line-height: 1.6;
-}
-
-.programs-attribution {
-  margin-top: 40px;
-  font-family: var(--sans, system-ui, sans-serif);
-  font-size: 11px;
-  color: var(--ink-3, #6b5c49);
-  line-height: 1.6;
 }

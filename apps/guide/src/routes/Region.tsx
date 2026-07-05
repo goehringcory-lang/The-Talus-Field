@@ -3,6 +3,9 @@ import { Link, Navigate, useParams } from 'react-router-dom'
 import { RegionEnum, getHiddenStops, getRegionMeta, getStopsByRegion } from '../content'
 import GatedChrome from '../components/GatedChrome'
 import StopCard from '../components/StopCard'
+import BackLink from '../components/ui/BackLink'
+import EmptyState from '../components/ui/EmptyState'
+import PageHeader from '../components/ui/PageHeader'
 import { allPhotoUrls } from '../utils/photo'
 
 export default function Region() {
@@ -31,15 +34,11 @@ export default function Region() {
 
   return (
     <GatedChrome>
-      <main className="wrap wrap--narrow" style={{ paddingTop: 56, paddingBottom: 96 }}>
-        <div className="eyebrow eyebrow--moss" style={{ marginBottom: 14 }}>
-          The Field Guide · 2026 Edition
-        </div>
-        <h1 style={{ marginBottom: 18 }}>{meta?.title}</h1>
-        <p style={{ color: 'var(--ink-2)', marginBottom: 36 }}>{meta?.teaser}</p>
+      <main className="wrap wrap--narrow page">
+        <PageHeader eyebrow="Regional guide" title={meta?.title} intro={meta?.teaser} />
 
         {stops.length === 0 ? (
-          <p style={{ color: 'var(--ink-3)', fontStyle: 'italic' }}>Coming soon.</p>
+          <EmptyState note="Coming soon." />
         ) : (
           stops.map((stop, i) => (
             <div key={stop.id}>
@@ -50,42 +49,22 @@ export default function Region() {
         )}
 
         {hiddenStops.length > 0 && (
-          <section aria-label="Hidden areas in this region" style={{ marginTop: 56 }}>
-            <div className="eyebrow" style={{ marginBottom: 10 }}>
-              Hidden areas in this region
-            </div>
-            <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'grid', gap: 8 }}>
+          <section aria-label="Hidden areas in this region" className="page-section">
+            <span className="eyebrow">Hidden areas in this region</span>
+            <ul className="link-list">
               {hiddenStops.map((stop) => (
                 <li key={stop.id}>
-                  <Link to={`/stop/${stop.id}`} style={{ fontFamily: 'var(--display)', fontSize: 18 }}>
-                    {stop.title} →
-                  </Link>
+                  <Link to={`/stop/${stop.id}`}>{stop.title} →</Link>
                 </li>
               ))}
             </ul>
-            <Link
-              to="/hidden-areas"
-              style={{ fontFamily: 'var(--sans)', fontSize: 13, display: 'inline-block', marginTop: 8 }}
-            >
+            <Link to="/hidden-areas" className="more-link">
               All hidden areas →
             </Link>
           </section>
         )}
 
-        <p style={{ marginTop: 56 }}>
-          <Link
-            to="/"
-            style={{
-              fontFamily: 'var(--sans)',
-              fontSize: 12,
-              textTransform: 'uppercase',
-              letterSpacing: '0.14em',
-              fontWeight: 600,
-            }}
-          >
-            ← Back to regions
-          </Link>
-        </p>
+        <BackLink to="/" label="Back to regions" />
       </main>
     </GatedChrome>
   )

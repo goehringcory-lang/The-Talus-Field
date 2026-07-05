@@ -5,6 +5,7 @@ import { useFavorites } from '../lib/favorites'
 import MapsLink from './MapsLink'
 import PhotoPlaceholder from './PhotoPlaceholder'
 import ResponsivePhoto from './ResponsivePhoto'
+import { Chip } from './ui/Chip'
 
 // Secret spots are stops minus `region`, which this card never reads —
 // widening the prop lets both render through the same component.
@@ -88,15 +89,15 @@ export default function StopCard({ stop, compact = true }: Props) {
         <div className="meta-row">
           <MapsLink coord={stop.coord} label={stop.title} />
           {stop.elevationFt !== undefined && (
-            <span className="meta-chip">{formatElevation(stop.elevationFt)}</span>
+            <Chip variant="meta">{formatElevation(stop.elevationFt)}</Chip>
           )}
           {stop.timeBudgetMin !== undefined && (
-            <span className="meta-chip">{formatTime(stop.timeBudgetMin)}</span>
+            <Chip variant="meta">{formatTime(stop.timeBudgetMin)}</Chip>
           )}
           {stop.difficulty && (
-            <span className="meta-chip">{DIFFICULTY_LABEL[stop.difficulty]}</span>
+            <Chip variant="meta">{DIFFICULTY_LABEL[stop.difficulty]}</Chip>
           )}
-          {stop.season && <span className="meta-chip">{stop.season}</span>}
+          {stop.season && <Chip variant="meta">{stop.season}</Chip>}
         </div>
       )}
 

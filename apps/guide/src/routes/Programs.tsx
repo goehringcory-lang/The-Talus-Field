@@ -8,8 +8,13 @@
 // =============================================================================
 
 import { useMemo, useState } from 'react'
-import { Link } from 'react-router-dom'
 import GatedChrome from '../components/GatedChrome'
+import Button from '../components/ui/Button'
+import Callout from '../components/ui/Callout'
+import { Chip, ChipButton } from '../components/ui/Chip'
+import EmptyState from '../components/ui/EmptyState'
+import PageHeader from '../components/ui/PageHeader'
+import Skeleton from '../components/ui/Skeleton'
 import { announceTripAdd } from '../trip/addFeedback'
 import { programItemId } from '../trip/schema'
 import { useTripPlan } from '../trip/useTripPlan'
@@ -61,6 +66,23 @@ function relativeTime(iso: string): string {
   if (hours < 48) return `${hours} ${hours === 1 ? 'hour' : 'hours'} ago`
   const days = Math.round(hours / 24)
   return `${days} days ago`
+}
+
+// Three ghost rows while the first sync for a window is in flight.
+function ProgramsSkeleton() {
+  return (
+    <div aria-hidden="true">
+      {[0, 1, 2].map((i) => (
+        <div className="program-row program-row--skeleton" key={i}>
+          <Skeleton width={64} height={14} />
+          <div style={{ display: 'grid', gap: 8 }}>
+            <Skeleton width="60%" height={16} />
+            <Skeleton width="40%" height={12} />
+          </div>
+        </div>
+      ))}
+    </div>
+  )
 }
 
 export default function Programs() {
@@ -161,31 +183,76 @@ export default function Programs() {
   const syncedStale = isOlderThanDays(syncedAt, 7)
   const showStaleWarning = offline || syncedStale || (coverage !== 'full' && events.length > 0)
 
+  // Row action shared by seasonal windows and program rows: quick-add from
+  // the collapsed summary, checkmark link once added.
+  function rowAction(inPlan: boolean, title: string, onAdd: () => void) {
+    if (inPlan) {
+      return (
+        <span className="program-row__inplan" aria-label="In your trip plan">
+          ✓
+        </span>
+      )
+    }
+    return (
+      <ChipButton
+        variant="action"
+        aria-label={`Add ${title} to trip`}
+        className="program-row__action"
+        onClick={(e) => {
+          // A click inside <summary> toggles the row by default;
+          // preventDefault keeps the add from expanding it.
+          e.preventDefault()
+          e.stopPropagation()
+          onAdd()
+        }}
+      >
+        + Add
+      </ChipButton>
+    )
+  }
+
+  function rowFooter(inPlan: boolean, onAdd: () => void, url?: string) {
+    return (
+      <p className="program-row__body program-row__footer">
+        {inPlan ? (
+          <Button variant="ghost" to="/trip">
+            In your trip plan →
+          </Button>
+        ) : (
+          <Button onClick={onAdd}>Add to trip</Button>
+        )}
+        {url && (
+          <a href={url} target="_blank" rel="noreferrer">
+            Details{offline ? ' (needs signal)' : ''} →
+          </a>
+        )}
+      </p>
+    )
+  }
+
   return (
     <GatedChrome>
-      <main className="wrap wrap--narrow" style={{ paddingTop: 56, paddingBottom: 96 }}>
-        <div className="eyebrow eyebrow--moss" style={{ marginBottom: 14 }}>
-          The Field Guide · 2026 Edition
-        </div>
-        <h1 style={{ marginBottom: 18 }}>Programs during your trip</h1>
-        <p style={{ color: 'var(--ink-2)', marginBottom: 28 }}>
-          Ranger walks, Junior Ranger tables, Conservancy programs, tours, and star parties, day by
-          day for the dates you pick. Sync while you have signal; the list stays readable in the
-          park without it.
-        </p>
+      <main className="wrap wrap--narrow page">
+        <PageHeader
+          eyebrow="What's on in the park"
+          title="Programs during your trip"
+          intro="Ranger walks, Junior Ranger tables, Conservancy programs, tours, and star parties, day by day for the dates you pick. Sync while you have signal; the list stays readable in the park without it."
+        />
 
         <div className="programs-dates">
-          <label>
+          <label className="field">
             Arriving
             <input
+              className="field-control"
               type="date"
               value={start}
               onChange={(e) => updateDates(e.target.value, end)}
             />
           </label>
-          <label>
+          <label className="field">
             Leaving
             <input
+              className="field-control"
               type="date"
               value={end}
               min={start}
@@ -193,15 +260,9 @@ export default function Programs() {
               onChange={(e) => updateDates(start, e.target.value)}
             />
           </label>
-          <button
-            type="button"
-            className="btn"
-            onClick={sync}
-            disabled={loading || !spanOk}
-            style={{ minHeight: 44 }}
-          >
+          <Button onClick={sync} disabled={loading || !spanOk}>
             {loading ? 'Syncing…' : 'Sync now'}
-          </button>
+          </Button>
         </div>
 
         <div className="programs-sync" aria-live="polite">
@@ -216,20 +277,20 @@ export default function Programs() {
         </div>
 
         {showStaleWarning && (
-          <div className="programs-stale">
+          <Callout tone="warn">
             {coverage === 'partial'
               ? 'The saved listings only cover part of these dates. Sync again when you have signal.'
               : 'Listings were saved earlier and programs do change. Cross-check the Yosemite Guide or a visitor center bulletin board for cancellations.'}
-          </div>
+          </Callout>
         )}
         {error && allEvents.length === 0 && seasonalWindows.length === 0 && (
-          <div className="programs-stale">{error}</div>
+          <Callout tone="warn">{error}</Callout>
         )}
         {error && (allEvents.length > 0 || seasonalWindows.length > 0) && (
-          <div className="programs-stale">
+          <Callout tone="warn">
             Live listings did not load. The seasonal almanac below ships with the guide and works
             without signal; sync again for ranger programs and operator events.
-          </div>
+          </Callout>
         )}
 
         {seasonalWindows.length > 0 && (
@@ -239,6 +300,10 @@ export default function Programs() {
               const pinDay = ev.dateStart > start ? ev.dateStart : start
               const snapshot = seasonalToProgramEvent(ev, pinDay)
               const inPlan = hasItem(programItemId(snapshot.id))
+              const add = () => {
+                addProgram(snapshot)
+                announceTripAdd(ev.title)
+              }
               return (
                 <details className="program-row" key={ev.id}>
                   <summary>
@@ -247,59 +312,15 @@ export default function Programs() {
                       <h2 className="program-row__title">{ev.title}</h2>
                       <span className="program-row__meta">
                         {ev.location && <span>{ev.location}</span>}
-                        <span className="program-row__badge">
+                        <Chip variant="badge">
                           {ev.confidence === 'typical' ? 'Typical window' : 'Confirmed'}
-                        </span>
+                        </Chip>
                       </span>
                     </span>
-                    {inPlan ? (
-                      <span className="program-row__inplan" aria-label="In your trip plan">
-                        ✓
-                      </span>
-                    ) : (
-                      <button
-                        type="button"
-                        className="program-row__quickadd"
-                        aria-label={`Add ${ev.title} to trip`}
-                        onClick={(e) => {
-                          e.preventDefault()
-                          e.stopPropagation()
-                          addProgram(snapshot)
-                          announceTripAdd(ev.title)
-                        }}
-                      >
-                        + Add
-                      </button>
-                    )}
+                    {rowAction(inPlan, ev.title, add)}
                   </summary>
                   <p className="program-row__body">{ev.description}</p>
-                  <p
-                    className="program-row__body"
-                    style={{ marginTop: 8, display: 'flex', gap: 14, alignItems: 'center', flexWrap: 'wrap' }}
-                  >
-                    {inPlan ? (
-                      <Link to="/trip" className="btn btn--ghost" style={{ minHeight: 44, display: 'inline-flex', alignItems: 'center' }}>
-                        In your trip plan →
-                      </Link>
-                    ) : (
-                      <button
-                        type="button"
-                        className="btn"
-                        style={{ minHeight: 44 }}
-                        onClick={() => {
-                          addProgram(snapshot)
-                          announceTripAdd(ev.title)
-                        }}
-                      >
-                        Add to trip
-                      </button>
-                    )}
-                    {ev.url && (
-                      <a href={ev.url} target="_blank" rel="noreferrer">
-                        Details{offline ? ' (needs signal)' : ''} →
-                      </a>
-                    )}
-                  </p>
+                  {rowFooter(inPlan, add, ev.url)}
                 </details>
               )
             })}
@@ -309,118 +330,74 @@ export default function Programs() {
         {allEvents.length > 0 && (
           <div className="programs-chips" role="group" aria-label="Filter programs">
             {presentCategories.map((cat) => (
-              <button
+              <ChipButton
                 key={cat}
-                type="button"
-                className="programs-chip"
-                aria-pressed={effectiveCategory === cat}
+                variant="filter"
+                pressed={effectiveCategory === cat}
                 onClick={() => setCategoryFilter(effectiveCategory === cat ? null : cat)}
               >
                 {CATEGORY_LABELS[cat]}
-              </button>
+              </ChipButton>
             ))}
             {presentSources.length > 1 &&
               presentSources.map((src) => (
-                <button
+                <ChipButton
                   key={src}
-                  type="button"
-                  className="programs-chip"
-                  aria-pressed={effectiveSource === src}
+                  variant="filter"
+                  pressed={effectiveSource === src}
                   onClick={() => setSourceFilter(effectiveSource === src ? null : src)}
                 >
                   {SOURCE_LABELS[src]}
-                </button>
+                </ChipButton>
               ))}
           </div>
         )}
 
+        {loading && allEvents.length === 0 && <ProgramsSkeleton />}
+
         {byDay.length === 0 && !loading && allEvents.length === 0 && !error && (
-          <p className="programs-empty">
-            Nothing listed for these dates yet. Programs post seasonally; sync again closer to your
-            trip, and check the Yosemite Guide PDF for the printed schedule.
-          </p>
+          <EmptyState note="Nothing listed for these dates yet. Programs post seasonally; sync again closer to your trip, and check the Yosemite Guide PDF for the printed schedule." />
         )}
         {byDay.length === 0 && allEvents.length > 0 && (
-          <p className="programs-empty">Nothing matches the current filters.</p>
+          <EmptyState note="Nothing matches the current filters." />
         )}
 
         {byDay.map(([date, dayEvents]) => (
           <section key={date} aria-label={formatDayHeader(date)}>
             <div className="programs-day-header">{formatDayHeader(date)}</div>
-            {dayEvents.map((ev) => (
-              <details className="program-row" key={ev.id}>
-                <summary>
-                  <span className="program-row__time">{formatTime(ev.timeStart)}</span>
-                  <span>
-                    <h2 className="program-row__title">{ev.title}</h2>
-                    <span className="program-row__meta">
-                      {ev.location && <span>{ev.location}</span>}
-                      <span>{SOURCE_LABELS[ev.source]}</span>
-                      {ev.isFree === true && <span className="program-row__badge">Free</span>}
-                      {ev.reservationRequired === true && (
-                        <span className="program-row__badge">Reservation</span>
-                      )}
+            {dayEvents.map((ev) => {
+              const inPlan = hasItem(programItemId(ev.id))
+              const add = () => {
+                addProgram(ev)
+                announceTripAdd(ev.title)
+              }
+              return (
+                <details className="program-row" key={ev.id}>
+                  <summary>
+                    <span className="program-row__time">{formatTime(ev.timeStart)}</span>
+                    <span>
+                      <h2 className="program-row__title">{ev.title}</h2>
+                      <span className="program-row__meta">
+                        {ev.location && <span>{ev.location}</span>}
+                        <span>{SOURCE_LABELS[ev.source]}</span>
+                        {ev.isFree === true && <Chip variant="badge">Free</Chip>}
+                        {ev.reservationRequired === true && <Chip variant="badge">Reservation</Chip>}
+                      </span>
                     </span>
-                  </span>
-                  {hasItem(programItemId(ev.id)) ? (
-                    <span className="program-row__inplan" aria-label="In your trip plan">
-                      ✓
-                    </span>
-                  ) : (
-                    <button
-                      type="button"
-                      className="program-row__quickadd"
-                      aria-label={`Add ${ev.title} to trip`}
-                      onClick={(e) => {
-                        // A click inside <summary> toggles the row by default;
-                        // preventDefault keeps the add from expanding it.
-                        e.preventDefault()
-                        e.stopPropagation()
-                        addProgram(ev)
-                        announceTripAdd(ev.title)
-                      }}
-                    >
-                      + Add
-                    </button>
-                  )}
-                </summary>
-                <p className="program-row__body">
-                  {ev.description || 'No description published for this program.'}
-                  {ev.timeEnd && `\nEnds around ${formatTime(ev.timeEnd)}.`}
-                </p>
-                <p
-                  className="program-row__body"
-                  style={{ marginTop: 8, display: 'flex', gap: 14, alignItems: 'center', flexWrap: 'wrap' }}
-                >
-                  {hasItem(programItemId(ev.id)) ? (
-                    <Link to="/trip" className="btn btn--ghost" style={{ minHeight: 44, display: 'inline-flex', alignItems: 'center' }}>
-                      In your trip plan →
-                    </Link>
-                  ) : (
-                    <button
-                      type="button"
-                      className="btn"
-                      style={{ minHeight: 44 }}
-                      onClick={() => {
-                        addProgram(ev)
-                        announceTripAdd(ev.title)
-                      }}
-                    >
-                      Add to trip
-                    </button>
-                  )}
-                  {ev.url && (
-                    <a href={ev.url} target="_blank" rel="noreferrer">
-                      Details{offline ? ' (needs signal)' : ''} →
-                    </a>
-                  )}
-                </p>
-              </details>
-            ))}
+                    {rowAction(inPlan, ev.title, add)}
+                  </summary>
+                  <p className="program-row__body">
+                    {ev.description || 'No description published for this program.'}
+                    {ev.timeEnd && `\nEnds around ${formatTime(ev.timeEnd)}.`}
+                  </p>
+                  {rowFooter(inPlan, add, ev.url)}
+                </details>
+              )
+            })}
           </section>
         ))}
 
-        <p className="programs-attribution">
+        <p className="page-footnote">
           Program listings sourced from the National Park Service, with Yosemite Conservancy,
           Yosemite Hospitality, and astronomy-club schedules added by hand. The seasonal almanac
           (full moons, road opening patterns, waterfall windows) ships with the guide; entries
