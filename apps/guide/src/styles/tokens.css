@@ -109,6 +109,8 @@ body {
   background-size: 4px 4px;
   background-position: 0 0;
   min-height: 100vh;
+  /* Stop scroll chaining / rubber-band at the app edge (standalone PWA feel). */
+  overscroll-behavior-y: contain;
 }
 
 a {
@@ -172,6 +174,10 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
   max-width: 1240px;
   margin: 0 auto;
   padding: 0 var(--gutter);
+  /* Inert until viewport-fit=cover ships (insets are 0 otherwise); then keeps
+     content clear of notches in landscape. */
+  padding-left: max(var(--gutter), env(safe-area-inset-left));
+  padding-right: max(var(--gutter), env(safe-area-inset-right));
 }
 .wrap--narrow { max-width: 780px; }
 .wrap--read { max-width: 660px; }
@@ -453,6 +459,10 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
   justify-content: flex-end;
   gap: 20px;
   padding: 14px var(--gutter);
+  /* Safe-area hardening; all env() terms are 0 until viewport-fit=cover lands. */
+  padding-top: calc(14px + env(safe-area-inset-top));
+  padding-left: max(var(--gutter), env(safe-area-inset-left));
+  padding-right: max(var(--gutter), env(safe-area-inset-right));
   background: color-mix(in oklab, var(--paper) 92%, transparent);
   backdrop-filter: blur(6px);
   border-bottom: 1px solid var(--rule-soft);
@@ -467,7 +477,7 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
   text-decoration: none;
 }
 .gated-chrome__link:hover { color: var(--moss); }
-.gated-chrome__link[aria-current='page'] { color: var(--ink-1); }
+.gated-chrome__link[aria-current='page'] { color: var(--ink); }
 
 /* Updated stamp on the hub footer */
 .updated-stamp {
@@ -527,6 +537,9 @@ a:active {
   -webkit-backdrop-filter: blur(8px);
   border-top: 1px solid var(--rule-soft);
   padding-bottom: env(safe-area-inset-bottom);
+  /* Keep landscape-notch insets from overlapping the outer tabs. */
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
 }
 
 .bottom-nav__tab {
