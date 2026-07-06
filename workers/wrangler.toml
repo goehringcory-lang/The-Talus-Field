@@ -36,6 +36,11 @@ crons = ["0 10 * * *"]
 # the CORS fallback origin. It currently points at the Cloudflare Pages URL the
 # app actually serves from; switch it to https://guide.thetalusfieldjournal.com
 # once that custom domain is attached to the Pages project.
+#
+# These MUST live under [vars]. As bare keys after [triggers] above, TOML
+# folds them into the triggers table and wrangler drops them, leaving
+# c.env.APP_BASE_URL and friends undefined at runtime.
+[vars]
 APP_BASE_URL = "https://talus-field-guide.pages.dev"
 EDITORIAL_BASE_URL = "https://thetalusfieldjournal.com"
 GUIDE_PRICE_CENTS = "1900"
