@@ -41,7 +41,8 @@ function writeFeedInfo(info: TripFeedInfo): void {
   }
 }
 
-function clearFeedInfo(): void {
+/** Drop the local feed record (feedSync clears it when the token is dead). */
+export function clearFeedInfo(): void {
   try {
     window.localStorage.removeItem(FEED_KEY)
   } catch {

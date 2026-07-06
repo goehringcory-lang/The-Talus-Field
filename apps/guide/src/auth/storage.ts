@@ -12,7 +12,10 @@ function decodeClaims(jwt: string): JwtClaims | null {
   try {
     const [, payload] = jwt.split('.')
     if (!payload) return null
-    const json = atob(payload.replace(/-/g, '+').replace(/_/g, '/'))
+    // atob yields latin1; a sub with multibyte characters needs a real
+    // UTF-8 decode or JSON.parse gets mojibake (or throws).
+    const bin = atob(payload.replace(/-/g, '+').replace(/_/g, '/'))
+    const json = new TextDecoder().decode(Uint8Array.from(bin, (c) => c.charCodeAt(0)))
     return JSON.parse(json)
   } catch {
     return null

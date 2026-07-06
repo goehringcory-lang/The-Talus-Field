@@ -1,6 +1,7 @@
 import { useEffect, useMemo } from 'react'
-import { Link, Navigate, useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { RegionEnum, getHiddenStops, getRegionMeta, getStopsByRegion } from '../content'
+import NotFound from './NotFound'
 import GatedChrome from '../components/GatedChrome'
 import StopCard from '../components/StopCard'
 import BackLink from '../components/ui/BackLink'
@@ -28,7 +29,14 @@ export default function Region() {
     sw.postMessage({ type: 'PRECACHE_URLS', urls })
   }, [stops])
 
-  if (!region) return <Navigate to="/" replace />
+  if (!region) {
+    return (
+      <NotFound
+        title="That region isn't in the guide."
+        intro="The guide covers four regions; pick one from the front page."
+      />
+    )
+  }
 
   const meta = getRegionMeta(region)
 

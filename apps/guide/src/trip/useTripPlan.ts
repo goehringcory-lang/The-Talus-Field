@@ -111,7 +111,10 @@ export function useTripPlan() {
       if (p.items.some((it) => it.itemId === itemId)) return p
       return {
         ...p,
-        items: [...p.items, { type: 'stop', itemId, stopId, day: target }],
+        items: [
+          ...p.items,
+          { type: 'stop', itemId, stopId, day: target, eventUid: crypto.randomUUID() },
+        ],
       }
     })
   }, [])
@@ -204,7 +207,10 @@ export function addStopToPlan(stopId: string, day?: string) {
   if (p.items.some((it: TripItemT) => it.itemId === itemId)) return
   write({
     ...p,
-    items: [...p.items, { type: 'stop', itemId, stopId, day: target }],
+    items: [
+      ...p.items,
+      { type: 'stop', itemId, stopId, day: target, eventUid: crypto.randomUUID() },
+    ],
     updatedAt: new Date().toISOString(),
   })
 }

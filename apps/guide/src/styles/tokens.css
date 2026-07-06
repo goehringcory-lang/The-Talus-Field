@@ -359,6 +359,19 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
   text-decoration: none;
   color: var(--ink);
 }
+.region-picker-card__media {
+  margin: 2px 0 14px;
+  aspect-ratio: 5 / 2;
+  overflow: hidden;
+  border: 1px solid var(--ink);
+}
+.region-picker-card__media img,
+.region-picker-card__media picture {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
 .region-picker-card:hover {
   text-decoration: none;
   color: var(--ink);

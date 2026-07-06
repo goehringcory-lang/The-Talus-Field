@@ -1,29 +1,20 @@
-import { directionsUrl } from '../map/kinds'
+import { isIOS } from '../utils/platform'
 
 type Props = {
   coord: [number, number] | undefined
   label: string
-  mode?: 'view' | 'directions'
 }
 
-const isAppleMaps =
-  typeof navigator !== 'undefined' &&
-  (/iPad|iPhone|iPod/.test(navigator.userAgent) ||
-    // iPadOS Safari reports as Mac; treat touch-Macs as iOS for the maps:// scheme.
-    (/Mac/.test(navigator.userAgent) && navigator.maxTouchPoints > 1))
-
-export default function MapsLink({ coord, label, mode = 'view' }: Props) {
+export default function MapsLink({ coord, label }: Props) {
   if (!coord) return null
   const [lng, lat] = coord
-  // Directions mode always sends to Google Maps (which on phones with the
-  // app + offline Yosemite area will route fully offline). Apple Maps lacks
-  // that offline data, so we deliberately skip the maps:// branch here.
-  const url =
-    mode === 'directions'
-      ? directionsUrl(coord)
-      : isAppleMaps
-        ? `maps://?ll=${lat},${lng}&q=${encodeURIComponent(label)}`
-        : `https://maps.google.com/?q=${lat},${lng}`
+  // View-a-pin link. iOS devices get the maps:// scheme (iPadOS Safari
+  // reports as Mac, which isIOS() accounts for); everyone else gets Google
+  // Maps. Turn-by-turn directions live on the map page via kinds.ts.
+  const preferAppleMaps = isIOS()
+  const url = preferAppleMaps
+    ? `maps://?ll=${lat},${lng}&q=${encodeURIComponent(label)}`
+    : `https://maps.google.com/?q=${lat},${lng}`
   return (
     <a className="chip chip--gps" href={url} rel="noopener">
       {lat.toFixed(5)}, {lng.toFixed(5)} →

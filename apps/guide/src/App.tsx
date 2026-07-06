@@ -19,6 +19,7 @@ const HiddenAreas = lazy(() => import('./routes/HiddenAreas'))
 const Search = lazy(() => import('./routes/Search'))
 const Programs = lazy(() => import('./routes/Programs'))
 const Trip = lazy(() => import('./routes/Trip'))
+const NotFound = lazy(() => import('./routes/NotFound'))
 
 export default function App() {
   return (
@@ -146,7 +147,14 @@ export default function App() {
           />
           {/* Old trip-based-model URLs (/trip/1day etc.) land on the planner. */}
           <Route path="/trip/*" element={<Navigate to="/trip" replace />} />
-          <Route path="*" element={<Navigate to="/" replace />} />
+          <Route
+            path="*"
+            element={
+              <RequireAuth>
+                <NotFound />
+              </RequireAuth>
+            }
+          />
         </Routes>
       </Suspense>
       <InstallPrompt />

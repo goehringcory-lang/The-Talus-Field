@@ -22,12 +22,18 @@ export type Pack = {
   cacheName: string
   urls: string[]
   approxBytes: number
+  // Fraction of URLs allowed to fail while still recording the pack as done.
+  // Photo packs tolerate nothing: every photo is paid content. The tile pack
+  // tolerates a few missing tiles at the bbox edge.
+  tolerateMissing: number
 }
 
-function regionPhotoUrls(region: Region): string[] {
+function regionPhotoUrls(region: (typeof REGIONS)[number]): string[] {
   const urls = new Set<string>()
+  // The region's picker-card hero belongs offline with its stops.
+  for (const url of allPhotoUrls(region.photo.src)) urls.add(url)
   // Hidden areas are paid content too; their photos belong in the pack.
-  for (const stop of getStopsByRegion(region, { includeHidden: true })) {
+  for (const stop of getStopsByRegion(region.id, { includeHidden: true })) {
     for (const photo of stop.photos) {
       for (const url of allPhotoUrls(photo.src)) urls.add(url)
     }
@@ -50,7 +56,7 @@ const TILE_BYTES = 25_000
 
 export function buildPacks(): Pack[] {
   const regionPacks: Pack[] = REGIONS.map((region) => {
-    const urls = regionPhotoUrls(region.id)
+    const urls = regionPhotoUrls(region)
     return {
       id: `photos-${region.id}`,
       label: REGION_LABELS[region.id],
@@ -58,6 +64,7 @@ export function buildPacks(): Pack[] {
       cacheName: RUNTIME_CACHE,
       urls,
       approxBytes: urls.length * PHOTO_BYTES_PER_URL,
+      tolerateMissing: 0,
     }
   })
 
@@ -69,6 +76,7 @@ export function buildPacks(): Pack[] {
     cacheName: TILES_CACHE,
     urls: tileUrls,
     approxBytes: tileUrls.length * TILE_BYTES,
+    tolerateMissing: 0.05,
   }
 
   return [...regionPacks, mapPack]

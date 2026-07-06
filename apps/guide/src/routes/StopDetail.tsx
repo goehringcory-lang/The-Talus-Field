@@ -1,5 +1,6 @@
-import { Navigate, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import { getHiddenStops, getRegionMeta, getStopById, getStopsByRegion } from '../content'
+import NotFound from './NotFound'
 import GatedChrome from '../components/GatedChrome'
 import PrevNextNav from '../components/PrevNextNav'
 import StopCard from '../components/StopCard'
@@ -13,7 +14,14 @@ export default function StopDetail() {
   const params = useParams<{ stopId: string }>()
   const stop = params.stopId ? getStopById(params.stopId) : undefined
   const { plan, addStop } = useTripPlan()
-  if (!stop) return <Navigate to="/" replace />
+  if (!stop) {
+    return (
+      <NotFound
+        title="That stop isn't in this edition."
+        intro="It may have been renamed or removed. Search knows every current page."
+      />
+    )
+  }
   const planned = plan.items.some((it) => it.type === 'stop' && it.stopId === stop.id)
 
   // Hidden stops page through the hidden set within their region; core stops

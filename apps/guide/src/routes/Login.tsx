@@ -5,6 +5,7 @@ import { apiFetch, ApiError } from '../lib/api'
 import { useAuth } from '../auth/useAuth'
 import { getAccessEndedAt } from '../auth/storage'
 import { readCachedMe } from '../auth/me'
+import { PHOTO_CREDITS, formatCredit } from '../content/photoCredits'
 import Plate from '../components/Plate'
 import ResponsivePhoto from '../components/ResponsivePhoto'
 import Button from '../components/ui/Button'
@@ -174,7 +175,14 @@ export default function Login() {
           </div>
         </header>
 
-        <Plate tag="Plate · Tunnel View">
+        <Plate
+          tag="Plate · Tunnel View"
+          credit={
+            PHOTO_CREDITS['/photos/tunnel-view.jpg']
+              ? formatCredit(PHOTO_CREDITS['/photos/tunnel-view.jpg'])
+              : undefined
+          }
+        >
           <ResponsivePhoto
             src="/photos/tunnel-view.jpg"
             alt="Tunnel View at first light: El Capitan, Bridalveil Fall, and Half Dome"

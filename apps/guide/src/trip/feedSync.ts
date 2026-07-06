@@ -6,8 +6,9 @@
 // last-updated stamp going stale is the honest signal.
 // =============================================================================
 
+import { ApiError } from '../lib/api'
 import { buildTripIcs } from './ics'
-import { publishFeed, readFeedInfo } from './feed'
+import { clearFeedInfo, publishFeed, readFeedInfo } from './feed'
 import { slotPlan } from './slotting'
 import { readTripPlan, subscribeTripPlan } from './useTripPlan'
 
@@ -20,7 +21,19 @@ export async function syncFeedNow(): Promise<void> {
   if (!readFeedInfo()) return
   if (!navigator.onLine) return
   const ics = buildTripIcs(slotPlan(readTripPlan().items))
-  await publishFeed(ics)
+  try {
+    await publishFeed(ics)
+  } catch (err) {
+    // A dead token or session (revoked, expired, rotated) will never succeed
+    // on retry; drop the local record so the calendar sheet honestly offers
+    // "Turn on calendar sync" again instead of an eternally stale stamp.
+    // Transient failures still rethrow into the callers' silent catch.
+    if (err instanceof ApiError && (err.status === 401 || err.status === 403 || err.status === 410)) {
+      clearFeedInfo()
+      return
+    }
+    throw err
+  }
 }
 
 function scheduleSync(): void {

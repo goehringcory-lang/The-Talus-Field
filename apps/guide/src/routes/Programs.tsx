@@ -59,7 +59,11 @@ function isOlderThanDays(iso: string | null, days: number): boolean {
 }
 
 function relativeTime(iso: string): string {
-  const ms = Date.now() - Date.parse(iso)
+  const t = Date.parse(iso)
+  // Guards a meta stamp saved from a pre-nullable Worker, whose unknown-sync
+  // fallback was epoch 0 and rendered here as "synced 20454 days ago".
+  if (!Number.isFinite(t) || t < Date.UTC(2020, 0, 1)) return 'at an unknown time'
+  const ms = Date.now() - t
   const minutes = Math.round(ms / 60_000)
   if (minutes < 2) return 'just now'
   if (minutes < 60) return `${minutes} minutes ago`
@@ -87,7 +91,9 @@ function ProgramsSkeleton() {
 }
 
 export default function Programs() {
-  const stored = readTripDates()
+  // Lazy initializer: readTripDates hits localStorage + JSON.parse, which
+  // only needs to happen once, not on every render.
+  const [stored] = useState(() => readTripDates())
   const defaults = useMemo(() => defaultTripDates(), [])
   const [start, setStart] = useState(stored?.start ?? defaults.start)
   const [end, setEnd] = useState(stored?.end ?? defaults.end)
@@ -96,7 +102,7 @@ export default function Programs() {
   const { addProgram, hasItem } = useTripPlan()
 
   const spanOk = /^\d{4}-\d{2}-\d{2}$/.test(start) && /^\d{4}-\d{2}-\d{2}$/.test(end) && end >= start
-  const { events, syncedAt, loading, offline, coverage, error, sync } = usePrograms(
+  const { events, syncedAt, loading, offline, coverage, failure, error, sync } = usePrograms(
     spanOk ? start : null,
     spanOk ? end : null,
   )
@@ -271,7 +277,11 @@ export default function Programs() {
           {syncedAt ? (
             <span>
               Listings synced {relativeTime(syncedAt)}
-              {offline ? ' · showing the copy saved on this device' : ''}
+              {offline
+                ? failure === 'server'
+                  ? ' · sync failed, showing listings saved earlier'
+                  : ' · showing the copy saved on this device'
+                : ''}
             </span>
           ) : (
             <span>Not synced yet. Pick your dates and sync while you have signal.</span>

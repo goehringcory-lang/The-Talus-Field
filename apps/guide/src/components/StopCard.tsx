@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import ReactMarkdown from 'react-markdown'
 import type { StopT } from '../content'
+import { PHOTO_CREDITS, formatCredit } from '../content/photoCredits'
 import { useFavorites } from '../lib/favorites'
 import AddToTripButton from './AddToTripButton'
 import MapsLink from './MapsLink'
@@ -44,12 +45,17 @@ function formatTime(min: number): string {
 
 export default function StopCard({ stop, compact = true }: Props) {
   const photo = stop.photos[0]
+  const credit = photo ? PHOTO_CREDITS[photo.src] : undefined
   const { toggle, isFavorite } = useFavorites()
   const saved = isFavorite(stop.id)
   const plateTag = `Plate · ${KIND_LABEL[stop.kind]}`
   return (
     <article className="stop-card">
-      <Plate tag={plateTag} caption={!compact ? photo?.caption : undefined}>
+      <Plate
+        tag={plateTag}
+        caption={!compact ? photo?.caption : undefined}
+        credit={!compact && credit ? formatCredit(credit) : undefined}
+      >
         {photo ? (
           <ResponsivePhoto
             className="stop-card__photo"

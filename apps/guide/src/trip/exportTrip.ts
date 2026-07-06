@@ -8,6 +8,8 @@
 // Both work offline. The caller shows a follow-up hint for the share path.
 // =============================================================================
 
+import { isIOS, isStandalonePWA } from '../utils/platform'
+
 export type ExportMethod = 'shared' | 'downloaded' | 'cancelled' | 'failed'
 
 export async function exportTripIcs(ics: string, filename: string): Promise<ExportMethod> {
@@ -20,6 +22,10 @@ export async function exportTripIcs(ics: string, filename: string): Promise<Expo
     } catch (err) {
       // AbortError = the user closed the sheet; don't force a download on them.
       if (err instanceof DOMException && err.name === 'AbortError') return 'cancelled'
+      // In an installed iOS PWA the anchor fallback is the dead-end preview
+      // this module exists to avoid; report failure so the caller's copy can
+      // point at the subscribe path instead.
+      if (isIOS() && isStandalonePWA()) return 'failed'
       /* fall through to download */
     }
   }

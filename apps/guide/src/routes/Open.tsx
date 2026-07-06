@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Link, useNavigate, useSearchParams } from 'react-router-dom'
 import { apiFetch } from '../lib/api'
 import { useAuth } from '../auth/useAuth'
@@ -16,9 +16,14 @@ export default function Open() {
   const token = params.get('token')
   // Derive the "missing token" case during render rather than setState in effect.
   const error = token ? apiError : 'Missing token in URL.'
+  // The exchange token is single-use; one POST per token, ever. StrictMode
+  // double-invokes this effect in dev, and the cancelled flag only stops the
+  // second setState, not the second network call that would burn the token.
+  const attempted = useRef<string | null>(null)
 
   useEffect(() => {
-    if (!token) return
+    if (!token || attempted.current === token) return
+    attempted.current = token
     let cancelled = false
     apiFetch<ExchangeResponse>('/api/auth/exchange', {
       method: 'POST',

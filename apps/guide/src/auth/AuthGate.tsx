@@ -9,6 +9,7 @@ import {
   setStoredJwt,
 } from './storage'
 import { clearCachedMe, fetchMe } from './me'
+import { ApiError } from '../lib/api'
 import { AuthContext, useAuth } from './useAuth'
 import type { Session } from './useAuth'
 
@@ -39,8 +40,18 @@ export function AuthProvider({ children }: { children: ReactNode }) {
           setSession(null)
         }
       })
-      .catch(() => {
-        /* offline, old worker, or transient failure: keep the session */
+      .catch((err) => {
+        if (cancelled) return
+        // A definitive 401 while online means the Worker rejected this JWT
+        // (revocation, secret rotation): sign out with no "access ended"
+        // marker, since the reason is unknown and /login's plain form is
+        // right. Anything else (network, 5xx, schema drift) keeps the
+        // session: offline must never punish the buyer.
+        if (err instanceof ApiError && err.status === 401) {
+          clearStoredJwt()
+          clearCachedMe()
+          setSession(null)
+        }
       })
     return () => {
       cancelled = true

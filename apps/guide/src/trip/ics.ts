@@ -126,7 +126,9 @@ export function slottedToEventFields(slotted: SlottedItem): EventFields | null {
     if (!stop) return null
     const teaser = stop.body.split('\n')[0]
     return {
-      uid: `tfg-trip-${item.itemId}@${UID_DOMAIN}`,
+      // eventUid survives day moves; itemId (which embeds the day) is the
+      // fallback for items stored before eventUid existed.
+      uid: `tfg-trip-${item.eventUid ?? item.itemId}@${UID_DOMAIN}`,
       summary: stop.title,
       description:
         `${teaser}\n\nFrom The Talus Field Field Guide: ` +

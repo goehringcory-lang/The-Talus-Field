@@ -19,8 +19,8 @@ const META_KEY = 'tfg.programs.meta'
 export type ProgramsMeta = {
   start: string
   end: string
-  syncedAt: string  // when the Worker last ingested source data
-  cachedAt: string  // when this device saved the window
+  syncedAt: string | null  // when the Worker last ingested source data; null = never
+  cachedAt: string         // when this device saved the window
 }
 
 function cachesAvailable(): boolean {

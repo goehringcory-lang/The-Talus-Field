@@ -30,7 +30,7 @@ import { announceTripAdd } from '../trip/addFeedback'
 import { addStopToPlan, isStopPlanned } from '../trip/useTripPlan'
 import { buildMapStyle } from '../map/style'
 import { isPackCompleted } from '../offline/useDownloads'
-import { responsiveBase } from '../utils/photo'
+import { popupPhotoUrl } from '../utils/photo'
 import './Map.css'
 
 type Tab = 'points' | 'itineraries' | 'info'
@@ -89,7 +89,7 @@ function buildPopupContent(stop: StopT, onOpenStop: (id: string) => void): HTMLE
   const photo = stop.photos[0]
   if (photo) {
     const img = document.createElement('img')
-    img.src = `${responsiveBase(photo.src)}-400.jpg`
+    img.src = popupPhotoUrl(photo.src)
     img.alt = ''
     img.loading = 'lazy'
     img.className = 'map-popup__photo'
@@ -160,7 +160,19 @@ export default function Map() {
 
   const [mapReady, setMapReady] = useState(false)
   const [mapFailed, setMapFailed] = useState(false)
-  const mapDownloaded = useMemo(() => isPackCompleted('park-map'), [])
+  const [mapDownloaded, setMapDownloaded] = useState(() => isPackCompleted('park-map'))
+
+  // The pack can complete in another tab (or on /account in this one);
+  // re-check whenever this tab regains focus so the offline notice is live.
+  useEffect(() => {
+    const recheck = () => setMapDownloaded(isPackCompleted('park-map'))
+    window.addEventListener('focus', recheck)
+    document.addEventListener('visibilitychange', recheck)
+    return () => {
+      window.removeEventListener('focus', recheck)
+      document.removeEventListener('visibilitychange', recheck)
+    }
+  }, [])
 
   const initial = useMemo(() => readUrlState(), [])
   const [tab, setTab] = useState<Tab>(initial.tab)
@@ -305,12 +317,20 @@ export default function Map() {
     const marker = markersRef.current[selection.id]
     const popup = popupRef.current
     const stop = getStopById(selection.id)
-    if (!map || !marker || !popup || !stop) return
+    if (!map || !popup) return
+    if (!marker || !stop) {
+      // Unknown id, no coord, or filtered out by the active itinerary: clear
+      // the selection (and with it the ?stop= in the URL) instead of leaving
+      // a stale deep link pointing at nothing. Loop-safe: this effect bails
+      // on a null id.
+      selectStop(null)
+      return
+    }
 
     const lngLat = marker.getLngLat()
     map.easeTo({ center: lngLat, zoom: Math.max(map.getZoom(), 13) })
     popup.setLngLat(lngLat).setDOMContent(buildPopupContent(stop, openStop)).addTo(map)
-  }, [selection, mapReady, visibleStops, openStop])
+  }, [selection, mapReady, visibleStops, openStop, selectStop])
 
   const handleTab = useCallback((next: Tab) => {
     setTab(next)
