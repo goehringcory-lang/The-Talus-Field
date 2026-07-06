@@ -4,8 +4,9 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "wrangler dev",
-    "deploy": "wrangler deploy",
+    "dev": "wrangler dev -c wrangler.toml",
+    "build": "tsc --noEmit && wrangler deploy --dry-run -c wrangler.toml",
+    "deploy": "wrangler deploy -c wrangler.toml",
     "typecheck": "tsc --noEmit",
     "test:flow": "tsx test/e2e-flow.mts"
   },
