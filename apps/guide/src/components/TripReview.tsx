@@ -33,10 +33,16 @@ export default function TripReview({ slotted, windowDays, filenameDate }: Props)
   const days = [...slotted.entries()]
   let eventCount = 0
   let allDayCount = 0
+  // Stop items whose id no longer resolves (removed by a content edit): they
+  // won't export, and pretending otherwise makes the count above a lie.
+  let missingCount = 0
   for (const [, items] of days) {
     for (const s of items) {
       const f = slottedToEventFields(s)
-      if (!f) continue
+      if (!f) {
+        missingCount += 1
+        continue
+      }
       eventCount += 1
       if (f.allDay) allDayCount += 1
     }
@@ -130,6 +136,13 @@ export default function TripReview({ slotted, windowDays, filenameDate }: Props)
       })}
 
       <div className="trip-review__footer">
+        {missingCount > 0 && (
+          <p className="trip-review__overflow-note">
+            {missingCount} planned {missingCount === 1 ? 'stop is' : 'stops are'} no longer in
+            the guide and won't be exported. Remove {missingCount === 1 ? 'it' : 'them'} in the
+            agenda above.
+          </p>
+        )}
         <p className="trip-review__summary">
           {eventCount} calendar {eventCount === 1 ? 'event' : 'events'} across{' '}
           {days.length} {days.length === 1 ? 'day' : 'days'}

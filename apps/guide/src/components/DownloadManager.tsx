@@ -1,15 +1,6 @@
 import { useDownloads, type PackStatus } from '../offline/useDownloads'
 import { formatBytes, type Pack } from '../offline/manifest'
-
-const isIos =
-  typeof navigator !== 'undefined' &&
-  (/iPad|iPhone|iPod/.test(navigator.userAgent) ||
-    (/Mac/.test(navigator.userAgent) && navigator.maxTouchPoints > 1))
-
-const isStandalone =
-  typeof window !== 'undefined' &&
-  (window.matchMedia('(display-mode: standalone)').matches ||
-    ('standalone' in navigator && (navigator as { standalone?: boolean }).standalone === true))
+import { isIOS, isStandalonePWA } from '../utils/platform'
 
 function statusLabel(status: PackStatus): string {
   switch (status.state) {
@@ -107,7 +98,7 @@ export default function DownloadManager() {
         about {formatBytes(totalBytes)}; once it's on the device, the whole app
         works in airplane mode.
       </p>
-      {isIos && !isStandalone && (
+      {isIOS() && !isStandalonePWA() && (
         <p style={{ color: 'var(--ink-3)', fontSize: 13, lineHeight: 1.55, margin: '0 0 8px' }}>
           On iPhone or iPad, add the app to your home screen first (Share →
           Add to Home Screen). Safari can clear storage for websites it thinks

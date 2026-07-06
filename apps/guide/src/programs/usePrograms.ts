@@ -8,19 +8,27 @@
 // =============================================================================
 
 import { useCallback, useEffect, useState } from 'react'
-import { apiFetch } from '../lib/api'
+import { ZodError } from 'zod'
+import { ApiError, apiFetch } from '../lib/api'
 import { addDaysIso, todayIso } from '../utils/date'
 import { readCachedWindow, readMeta, writeCachedWindow } from './cache'
 import { ProgramsResponse, type ProgramEventT } from './schema'
 
 export type Coverage = 'full' | 'partial' | 'none'
 
+// Why the live sync failed. 'server' means the API answered but the answer
+// was unusable (HTTP error or schema drift); 'network' means it never
+// answered. The UI copy differs: "no connection" is a lie when the request
+// landed and the server refused it.
+export type SyncFailure = 'network' | 'server' | null
+
 export type ProgramsState = {
   events: ProgramEventT[]
   syncedAt: string | null
   loading: boolean
-  offline: boolean       // showing cached data because the network failed
+  offline: boolean       // showing cached data because the live sync failed
   coverage: Coverage     // how much of the requested window the data covers
+  failure: SyncFailure
   error: string | null
   sync: () => void
 }
@@ -72,6 +80,7 @@ export function writeTripDates(dates: TripDates): void {
 type LoadResult = Omit<ProgramsState, 'sync' | 'loading'>
 
 async function loadWindow(start: string, end: string): Promise<LoadResult> {
+  let failure: Exclude<SyncFailure, null> = 'network'
   try {
     const raw = await apiFetch<unknown>(
       `/api/programs?start=${encodeURIComponent(start)}&end=${encodeURIComponent(end)}`,
@@ -89,10 +98,13 @@ async function loadWindow(start: string, end: string): Promise<LoadResult> {
       syncedAt: payload.syncedAt,
       offline: false,
       coverage: 'full',
+      failure: null,
       error: null,
     }
-  } catch {
-    /* fall through to the cached window */
+  } catch (err) {
+    // The cached fallback below serves both classes (stale beats none); only
+    // the messaging differs.
+    if (err instanceof ApiError || err instanceof ZodError) failure = 'server'
   }
 
   const cached = await readCachedWindow()
@@ -103,7 +115,11 @@ async function loadWindow(start: string, end: string): Promise<LoadResult> {
       syncedAt: null,
       offline: true,
       coverage: 'none',
-      error: 'No connection and no saved listings on this device yet.',
+      failure,
+      error:
+        failure === 'server'
+          ? 'The programs sync failed on the server side. Try again in a few minutes.'
+          : 'No connection and no saved listings on this device yet.',
     }
   }
 
@@ -116,6 +132,7 @@ async function loadWindow(start: string, end: string): Promise<LoadResult> {
     syncedAt: meta?.syncedAt ?? cached.syncedAt,
     offline: true,
     coverage: covers ? 'full' : overlaps ? 'partial' : 'none',
+    failure,
     error: overlaps ? null : 'The listings saved on this device cover different dates.',
   }
 }
@@ -127,6 +144,7 @@ export function usePrograms(start: string | null, end: string | null): ProgramsS
     loading: false,
     offline: false,
     coverage: 'none',
+    failure: null,
     error: null,
   })
   const [reloadKey, setReloadKey] = useState(0)

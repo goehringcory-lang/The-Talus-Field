@@ -5,6 +5,7 @@ import GatedChrome from '../components/GatedChrome'
 import DownloadManager from '../components/DownloadManager'
 import Button from '../components/ui/Button'
 import PageHeader from '../components/ui/PageHeader'
+import Skeleton from '../components/ui/Skeleton'
 import { MAP_ATTRIBUTION } from '../map/style'
 
 function formatAccessDate(epochSeconds: number): string {
@@ -21,6 +22,9 @@ function formatAccessDate(epochSeconds: number): string {
 // omitted rather than shown empty.
 function AccessStatusCard() {
   const [me, setMe] = useState<MeT | null>(() => readCachedMe())
+  // Skeleton only for the first online visit (no cache, fetch in flight);
+  // offline with no cache keeps the card omitted instead of loading forever.
+  const [checking, setChecking] = useState(() => readCachedMe() === null && navigator.onLine)
 
   useEffect(() => {
     let cancelled = false
@@ -31,11 +35,25 @@ function AccessStatusCard() {
       .catch(() => {
         /* offline or old worker: the cached copy (or nothing) stands */
       })
+      .finally(() => {
+        if (!cancelled) setChecking(false)
+      })
     return () => {
       cancelled = true
     }
   }, [])
 
+  if (!me && checking) {
+    return (
+      <div className="card" aria-hidden="true">
+        <span className="eyebrow" style={{ display: 'block', marginBottom: 8 }}>Access</span>
+        <div style={{ display: 'grid', gap: 8, maxWidth: 280 }}>
+          <Skeleton height={18} width="60%" />
+          <Skeleton height={13} width="90%" />
+        </div>
+      </div>
+    )
+  }
   if (!me) return null
   return (
     <div className="card">

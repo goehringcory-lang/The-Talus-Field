@@ -152,7 +152,8 @@ function SheetBody({ onClose, slotted, eventCount, filenameDate }: Omit<Props, '
             <>
               <p className="sheet__note">
                 Publishes your plan at a private link your calendar app watches. Edit the plan
-                here and the calendar picks it up on its next refresh.
+                here and the calendar picks it up on its next refresh. Your account has one
+                feed: publishing from this device replaces what any other device published.
               </p>
               {online ? (
                 <Button onClick={subscribe} disabled={publishing}>
@@ -216,8 +217,8 @@ function SheetBody({ onClose, slotted, eventCount, filenameDate }: Omit<Props, '
           )}
           {exportResult === 'failed' && (
             <p className="sheet__note sheet__note--muted">
-              The export didn't start. Try again, or from a desktop browser if your phone blocks
-              file downloads.
+              The export didn't start. Turn on calendar sync above, or save the file from a
+              desktop browser.
             </p>
           )}
         </section>

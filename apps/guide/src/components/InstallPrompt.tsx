@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import Button from './ui/Button'
+import { isIOS, isStandalonePWA } from '../utils/platform'
 
 interface BeforeInstallPromptEvent extends Event {
   prompt: () => Promise<void>
@@ -8,23 +9,11 @@ interface BeforeInstallPromptEvent extends Event {
 
 const DISMISS_KEY = 'tfg.install.dismissed'
 
-function isStandalone(): boolean {
-  return (
-    window.matchMedia('(display-mode: standalone)').matches ||
-    ('standalone' in window.navigator && (window.navigator as { standalone?: boolean }).standalone === true)
-  )
-}
-
-const isIOS =
-  typeof navigator !== 'undefined' &&
-  (/iPad|iPhone|iPod/.test(navigator.userAgent) ||
-    (/Mac/.test(navigator.userAgent) && navigator.maxTouchPoints > 1))
-
 // Shared dismiss state
 function useDismissed() {
   const [dismissed, setDismissed] = useState(() => {
     try {
-      return isStandalone() || localStorage.getItem(DISMISS_KEY) === '1'
+      return isStandalonePWA() || localStorage.getItem(DISMISS_KEY) === '1'
     } catch {
       return false
     }
@@ -113,6 +102,6 @@ function InstallBanner({ children }: { children: React.ReactNode }) {
 // ── Router — pick the right prompt based on platform ────────────────────────
 
 export default function InstallPrompt() {
-  if (isIOS) return <IOSBanner />
+  if (isIOS()) return <IOSBanner />
   return <AndroidPrompt />
 }

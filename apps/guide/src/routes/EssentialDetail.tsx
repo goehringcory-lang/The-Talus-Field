@@ -1,6 +1,7 @@
-import { Navigate, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import ReactMarkdown from 'react-markdown'
 import { ESSENTIALS, getEssentialById } from '../content'
+import NotFound from './NotFound'
 import GatedChrome from '../components/GatedChrome'
 import ChecklistBlock from '../components/ChecklistBlock'
 import PrevNextNav from '../components/PrevNextNav'
@@ -11,7 +12,15 @@ export default function EssentialDetail() {
   const params = useParams<{ topicId: string }>()
   const topic = params.topicId ? getEssentialById(params.topicId) : undefined
 
-  if (!topic) return <Navigate to="/essentials" replace />
+  if (!topic) {
+    return (
+      <NotFound
+        title="That topic isn't in the essentials."
+        backTo="/essentials"
+        backLabel="All essentials"
+      />
+    )
+  }
 
   const index = ESSENTIALS.findIndex((t) => t.id === topic.id)
   const prev = index > 0 ? ESSENTIALS[index - 1] : undefined

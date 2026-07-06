@@ -100,7 +100,7 @@ export default function Programs() {
   const { addProgram, hasItem } = useTripPlan()
 
   const spanOk = /^\d{4}-\d{2}-\d{2}$/.test(start) && /^\d{4}-\d{2}-\d{2}$/.test(end) && end >= start
-  const { events, syncedAt, loading, offline, coverage, error, sync } = usePrograms(
+  const { events, syncedAt, loading, offline, coverage, failure, error, sync } = usePrograms(
     spanOk ? start : null,
     spanOk ? end : null,
   )
@@ -275,7 +275,11 @@ export default function Programs() {
           {syncedAt ? (
             <span>
               Listings synced {relativeTime(syncedAt)}
-              {offline ? ' · showing the copy saved on this device' : ''}
+              {offline
+                ? failure === 'server'
+                  ? ' · sync failed, showing listings saved earlier'
+                  : ' · showing the copy saved on this device'
+                : ''}
             </span>
           ) : (
             <span>Not synced yet. Pick your dates and sync while you have signal.</span>
