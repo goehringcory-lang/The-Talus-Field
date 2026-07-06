@@ -1,6 +1,8 @@
 # The Talus Field — Field Guide PWA
 
-The paid Yosemite field guide at `guide.thetalusfieldjournal.com`: $19 one-time,
+The paid Yosemite field guide at `talus-field-guide.pages.dev` (the custom
+domain `guide.thetalusfieldjournal.com` is deliberately unattached until
+launch): $19 one-time,
 18 months of access. Offline-first by design — buyers download the guide, map
 tiles, and photos onto their phone before entering the park, where there is no
 signal.

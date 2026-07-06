@@ -80,7 +80,15 @@ cd workers
 wrangler secret put STRIPE_WEBHOOK_SECRET   # paste the whsec_... value
 ```
 
-## 6. Deploy the guide PWA to Cloudflare Pages
+## 6. Deploy the guide PWA (Cloudflare Pages, auto)
+
+The Pages project `talus-field-guide` is git-connected to `main` and builds
+automatically on every merge: root directory `apps/guide`, build command
+`npm run build`, output directory `dist`, Node pinned by `apps/guide/.nvmrc`.
+No dashboard env vars are required (`VITE_API_BASE` is committed in
+`apps/guide/.env.production`; a dashboard var of the same name overrides it).
+
+Manual fallback if a one-off deploy is ever needed:
 
 ```bash
 cd apps/guide
@@ -89,28 +97,37 @@ npm run build
 wrangler pages deploy dist --project-name talus-field-guide
 ```
 
-In the Pages project settings, add the env var `VITE_API_BASE=https://<worker-url>` (only matters if you rebuild from the dashboard; the local build picks it up from `.env.production`).
+The app serves at `https://talus-field-guide.pages.dev`. The custom domain
+`guide.thetalusfieldjournal.com` is deliberately unattached until launch; when
+attaching it, also flip the `GUIDE_APP_BASE` default in `page-guide.jsx`, the
+`APP_BASE_URL` var in `workers/wrangler.toml` (then redeploy the Worker), and
+the docs. Exported calendar links self-correct (they derive from the serving
+origin).
 
-Custom domain (optional for testing): `guide.thetalusfieldjournal.com` → CNAME to the Pages project.
+## 7. Deploy the editorial site (Cloudflare Workers Build, auto)
 
-## 7. Deploy the editorial site to Cloudflare Pages
+The editorial site deploys as the Worker `the-talus-field` (root
+`wrangler.jsonc`): static assets from the repo root filtered by
+`.assetsignore`, with `edge/seo.js` as the fetch handler for per-route SEO
+head rewriting. A git-connected Cloudflare Workers Build deploys it on every
+merge to `main` (it runs the root `npm run build` no-op shim, then
+`npx wrangler deploy`).
 
-The editorial site is plain static files at the repo root — no build step. Easiest:
+Manual fallback:
 
 ```bash
-wrangler pages deploy . --project-name talus-field-editorial
+npx wrangler deploy   # from the repo root
 ```
 
-Cloudflare will upload the working tree. The `apps/` and `workers/` folders ride along but won't be served (no `index.html` in them). If that bothers you, create a Pages project tied to the GitHub repo and set the build output directory to `.` with a `.cloudflareignore` excluding `apps/`, `workers/`, `node_modules/`, etc.
-
-Custom domain (optional): `thetalusfieldjournal.com` apex.
+Custom domains `thetalusfieldjournal.com` + `www` are bound in
+`wrangler.jsonc`.
 
 ## 8. Smoke test
 
 1. Open the deployed editorial site → click `Field Guide` → buy button shows the live `sold/cap` count (no longer in greyed "preview" mode).
 2. Click buy → Stripe checkout opens. Use test card `4242 4242 4242 4242`, any future date, any CVC, any zip.
 3. Payment completes → redirected to `?guide=success` → email arrives within ~30s with a 6-digit code and a magic link.
-4. Click the magic link → opens `<guide-url>/open?token=...` → "Signing you in…" → redirects to the home with three region cards (`valley`, `glacier-mariposa`, `tuolumne`).
+4. Click the magic link → opens `https://talus-field-guide.pages.dev/open?token=...` → "Signing you in…" → redirects to the home with three region cards (`valley`, `glacier-mariposa`, `tuolumne`).
 5. Pick a region → pick a stop. Read the body. Click "Open in Maps" → native maps app opens at the coordinate (note: most coords are still flagged TODO and will land you near, not on, the actual spot).
 6. **PWA install:** in mobile Chrome/Safari, the install prompt appears; install to home screen.
 7. **Offline:** turn on airplane mode, reopen the installed app → home and stop pages still render from cache.
@@ -126,10 +143,44 @@ NOW=$(date +%s)
 EXPIRES=$((NOW + 60*60*24*30*18))
 wrangler kv key put --binding=GUIDE_BUYERS "buyer:$EMAIL" "{\"email\":\"$EMAIL\",\"purchasedAt\":$NOW,\"expiresAt\":$EXPIRES,\"accessToken\":\"$TOKEN\",\"accessCode\":\"123456\"}" --remote
 wrangler kv key put --binding=GUIDE_BUYERS "token:$TOKEN" "$EMAIL" --remote
-echo "Magic link: https://<guide-url>/open?token=$TOKEN"
+echo "Magic link: https://talus-field-guide.pages.dev/open?token=$TOKEN"
 ```
 
 Open the printed URL → JWT is issued, you're in.
+
+## Owner access (permanent login)
+
+The owner's account is an ordinary buyer record with a far-future expiry.
+Because sign-in JWTs are stamped to the buyer's `expiresAt`
+(`workers/src/routes/auth.ts`), one login then lasts effectively forever,
+works offline, and shows a real access date on the Account page. Seed it once:
+
+```bash
+cd workers
+TOKEN=$(node -e "console.log(require('crypto').randomBytes(32).toString('hex'))")
+CODE=$(node -e "console.log(String(Math.floor(Math.random()*1e6)).padStart(6,'0'))")
+NOW=$(date +%s)
+# expiresAt 4102444800 = 2100-01-01T00:00:00Z
+wrangler kv key put --binding=GUIDE_BUYERS "buyer:goehring.cory@gmail.com" \
+  "{\"email\":\"goehring.cory@gmail.com\",\"purchasedAt\":$NOW,\"expiresAt\":4102444800,\"accessToken\":\"$TOKEN\",\"accessCode\":\"$CODE\"}" --remote
+wrangler kv key put --binding=GUIDE_BUYERS "token:$TOKEN" "goehring.cory@gmail.com" --remote
+echo "Access code (store in a password manager): $CODE"
+echo "Magic link: https://talus-field-guide.pages.dev/open?token=$TOKEN"
+```
+
+Rules that matter:
+
+- Never pass `--expiration`/`--ttl` flags: the app enforces expiry through the
+  record's `expiresAt` field, and a KV TTL would silently delete the whole
+  record.
+- The email must be lowercase in both the key and the JSON `email` field.
+- The access code must be exactly 6 characters (constant-time compare rejects
+  length mismatches).
+- Keep `ADMIN_USERNAME`/`ADMIN_CODE` secrets set as the break-glass operator
+  door; operator sessions carry a shorter 90-day JWT, so the buyer record
+  above is the primary login.
+- Sign in at `https://talus-field-guide.pages.dev/login` with the email and
+  code, or use the magic link once.
 
 ## Going live (after testing)
 

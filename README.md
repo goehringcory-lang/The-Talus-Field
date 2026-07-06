@@ -8,8 +8,8 @@ The repo holds three co-located subsystems so a single change (brand rename, cop
 
 | Path | What it is | Stack |
 |---|---|---|
-| repo root (`*.jsx`, `index.html`, `styles.css`, `bodies/`, `img/`) | Editorial site at `thetalusfieldjournal.com`. Static, no build. | Vanilla React via `<script type="text/babel">` from a CDN; styled with hand-written CSS in `styles.css`. |
-| `apps/guide/` | Field Guide PWA at `guide.thetalusfieldjournal.com`. Buyer-only, offline-capable. | Vite + React 19 + TypeScript + react-router-dom + tailwind 4 + zod. |
+| repo root (`*.jsx`, `index.html`, `styles.css`, `bodies/`, `img/`) | Editorial site at `thetalusfieldjournal.com`. Static, no bundler. | Vanilla React, `*.jsx` precompiled into `/dist/*.js` by `scripts/gen-compiled.mjs`; hand-written CSS in `styles.css`; edge SEO via the root Worker entry `edge/seo.js`. |
+| `apps/guide/` | Field Guide PWA at `talus-field-guide.pages.dev` (custom domain unattached until launch). Buyer-only, offline-capable. | Vite + React 19 + TypeScript + react-router-dom + zod. |
 | `workers/` | API at `api.thetalusfieldjournal.com`. Auth, Stripe checkout/webhook, KV-backed buyer records. | Cloudflare Worker + Hono + `@tsndr/cloudflare-worker-jwt` + KV. |
 
 ## Quick start
