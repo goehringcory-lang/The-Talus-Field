@@ -79,10 +79,40 @@ self.addEventListener('activate', (event) => {
           .filter((n) => n.startsWith('tfg-shell-') && n !== SHELL_CACHE)
           .map((n) => caches.delete(n)),
       )
+      // Self-heal poisoned runtime entries. Earlier builds referenced /photos/*
+      // files that did not exist yet; the SPA _redirects rule (/* /index.html
+      // 200) answered those requests with the HTML shell, and the cache-first
+      // handler below stored that HTML under the image URL. Because the runtime
+      // cache is unversioned and survives deploys, the region hero and stop
+      // photos then render as broken/placeholder even after the real files ship.
+      // Drop any runtime entry whose stored response is HTML; the next request
+      // refetches the real asset. Downloaded real photos (image/*) are kept.
+      await purgeHtmlFromCache(RUNTIME_CACHE)
+      await purgeHtmlFromCache(TILES_CACHE)
       await self.clients.claim()
     })(),
   )
 })
+
+// Delete cache entries whose stored response is the HTML shell (the SPA
+// _redirects fallback), which never belongs under an image/font/tile URL.
+async function purgeHtmlFromCache(cacheName) {
+  try {
+    const cache = await caches.open(cacheName)
+    const requests = await cache.keys()
+    await Promise.all(
+      requests.map(async (req) => {
+        const res = await cache.match(req)
+        if (res && isHtml(res)) await cache.delete(req)
+      }),
+    )
+  } catch { /* cache API unavailable — non-fatal */ }
+}
+
+function isHtml(res) {
+  const type = res.headers.get('content-type')
+  return !!type && type.includes('text/html')
+}
 
 self.addEventListener('message', (event) => {
   if (!event.data) return
@@ -165,7 +195,8 @@ self.addEventListener('fetch', (event) => {
         const cached = await cache.match(request)
         if (cached) return cached
         const fresh = await fetch(request)
-        if (fresh.ok) cache.put(request, fresh.clone())
+        // Never cache the SPA HTML fallback under a tile URL (see activate).
+        if (fresh.ok && !isHtml(fresh)) cache.put(request, fresh.clone())
         return fresh
       })(),
     )
@@ -214,7 +245,11 @@ self.addEventListener('fetch', (event) => {
         const cached = await cache.match(request)
         if (cached) return cached
         const fresh = await fetch(request)
-        if (fresh.ok) cache.put(request, fresh.clone())
+        // Guard against the SPA _redirects fallback: a missing asset returns
+        // index.html with a 200, and caching that HTML under an image/font URL
+        // poisons the entry (renders as a broken image, and the runtime cache
+        // survives deploys). Only store real asset responses.
+        if (fresh.ok && !isHtml(fresh)) cache.put(request, fresh.clone())
         return fresh
       })(),
     )
@@ -228,7 +263,9 @@ self.addEventListener('fetch', (event) => {
       const cached = await cache.match(request)
       if (cached) return cached
       const fresh = await fetch(request)
-      if (fresh.ok) cache.put(request, fresh.clone())
+      // A missing hashed asset also falls back to the HTML shell; caching that
+      // as a script/style would brick the app, so store real responses only.
+      if (fresh.ok && !isHtml(fresh)) cache.put(request, fresh.clone())
       return fresh
     })(),
   )
