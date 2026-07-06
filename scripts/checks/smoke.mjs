@@ -25,8 +25,9 @@ export default async function checkSmoke(ctx) {
   }
 
   const base = ctx.baseUrl || SITE_ORIGIN;
-  const sample = ctx.articles.slice(0, 3).map((a) => `/articles/${a.slug}`);
-  const paths = ["/", ...sample];
+  const sampleArticles = ctx.articles.slice(0, 3);
+  const expectedTitle = new Map(sampleArticles.map((a) => [`/articles/${a.slug}`, a.title]));
+  const paths = ["/", ...expectedTitle.keys()];
 
   for (const p of paths) {
     try {
@@ -37,6 +38,13 @@ export default async function checkSmoke(ctx) {
       }
       const title = (body.match(/<title>([\s\S]*?)<\/title>/i) || [])[1] || "";
       if (!title.trim()) check.error(`${p}: empty <title>`);
+      // Article URLs must carry their own title, not the homepage's. A
+      // non-empty-but-wrong title is exactly what a dead edge-SEO layer
+      // serves, and this check let that slip once; never again.
+      const expected = expectedTitle.get(p);
+      if (expected && !title.includes(expected)) {
+        check.error(`${p}: <title> is "${title.trim()}", expected it to include "${expected}" (edge SEO rewrite not running?)`);
+      }
       if (!/<nav|class="[^"]*nav/i.test(body)) check.warn(`${p}: no nav markup detected`);
       for (const re of LEAK) if (re.test(body)) check.error(`${p}: unrendered template leak (${re})`);
     } catch {

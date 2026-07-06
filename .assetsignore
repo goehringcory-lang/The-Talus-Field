@@ -12,6 +12,9 @@ apps
 workers
 wrangler.jsonc
 
+# Edge SEO Worker source (bundled via wrangler.jsonc `main`, not site content)
+edge
+
 # Root build-command shim for Cloudflare Workers Builds, not site content
 package.json
 package-lock.json
