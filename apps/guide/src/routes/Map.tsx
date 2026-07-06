@@ -655,9 +655,10 @@ function InfoPane({
           routes. Routing happens in Google Maps via the Directions button.
         </li>
         <li>
-          A handful of coordinates are still flagged for verification in the
-          source file. Trust the turnout names over the precise pin until
-          that pass is done.
+          Most pin coordinates are verified against NPS and USGS sources. A
+          few unsigned pullouts and off-trail spots are still flagged for a
+          ground check; for those, trust the turnout described in the stop
+          page over the precise pin.
         </li>
         <li>Map tiles: Esri, USGS. © OpenStreetMap contributors.</li>
       </ul>
