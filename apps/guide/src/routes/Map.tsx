@@ -111,7 +111,7 @@ function buildPopupContent(stop: StopT, onOpenStop: (id: string) => void): HTMLE
 
   const excerpt = document.createElement('p')
   excerpt.className = 'map-popup__excerpt'
-  excerpt.textContent = extractExcerpt(stop.body)
+  excerpt.textContent = stop.teaser ?? extractExcerpt(stop.body)
   root.appendChild(excerpt)
 
   const actions = document.createElement('p')

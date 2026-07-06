@@ -30,6 +30,8 @@ export const Stop = z.object({
   difficulty: z.enum(['easy', 'moderate', 'strenuous']).optional(), // meta chip
   season: z.string().optional(),          // chip-length window, e.g. "April to June"
   hazard: z.string().optional(),          // 1-3 plain sentences; renders as a Caution callout
+  teaser: z.string().optional(),          // 1-2 plain sentences for the map popup;
+                                          // facts from body only, no markdown
   coord: z.tuple([z.number(), z.number()]).optional(),  // [lng, lat]
   elevationFt: z.number().optional(),
   timeBudgetMin: z.number().optional(),

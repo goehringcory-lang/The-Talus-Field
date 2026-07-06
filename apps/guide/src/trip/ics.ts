@@ -124,7 +124,7 @@ export function slottedToEventFields(slotted: SlottedItem): EventFields | null {
   if (item.type === 'stop') {
     const stop = getStopById(item.stopId)
     if (!stop) return null
-    const teaser = stop.body.split('\n')[0]
+    const teaser = stop.teaser ?? stop.body.split('\n')[0]
     return {
       // eventUid survives day moves; itemId (which embeds the day) is the
       // fallback for items stored before eventUid existed.
