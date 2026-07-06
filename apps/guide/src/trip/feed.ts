@@ -71,7 +71,8 @@ export function webcalUrl(feedUrl: string): string {
   return feedUrl.replace(/^https?:\/\//, 'webcal://')
 }
 
-/** Google Calendar's add-by-URL entry point for the feed. */
+/** Google Calendar's add-by-URL entry point for the feed. Takes the plain
+ * https feed URL — Google's `cid` parameter expects http(s), not webcal. */
 export function googleCalendarSubscribeUrl(feedUrl: string): string {
-  return `https://calendar.google.com/calendar/render?cid=${encodeURIComponent(webcalUrl(feedUrl))}`
+  return `https://calendar.google.com/calendar/render?cid=${encodeURIComponent(feedUrl)}`
 }

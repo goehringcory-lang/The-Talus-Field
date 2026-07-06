@@ -53,26 +53,27 @@ export function itemCoord(item: TripItemT): [number, number] | undefined {
   return item.snapshot.coord ?? undefined
 }
 
-/**
- * Straight-line-derived drive estimate between two items, rounded to 5
- * minutes; null when either side has no coordinate, 0 when they share a
- * parking area.
- */
-export function driveMinutesBetween(a: TripItemT, b: TripItemT): number | null {
-  const ca = itemCoord(a)
-  const cb = itemCoord(b)
-  if (!ca || !cb) return null
-  const miles = haversineMiles(ca, cb)
-  if (miles < 0.15) return 0
-  return Math.max(5, Math.round(((miles / PARK_MPH) * 60) / 5) * 5)
-}
-
 /** Slotting buffer between consecutive coordinates: drive + park-and-walk. */
 function travelBufferMin(from?: [number, number], to?: [number, number]): number {
   if (!from || !to) return TRAVEL_BUFFER
   const miles = haversineMiles(from, to)
   const min = Math.round((miles / PARK_MPH) * 60) + PARK_AND_WALK_MIN
   return Math.min(75, Math.max(10, min))
+}
+
+/**
+ * Display estimate between two items, for the /trip transit rows. Reuses
+ * travelBufferMin so the on-screen number matches what actually placed the
+ * items (drive time plus a park-and-walk allowance) instead of a bare drive
+ * estimate that would silently run ~10 minutes short of the real gap; null
+ * when either side has no coordinate, 0 when they share a parking area.
+ */
+export function driveMinutesBetween(a: TripItemT, b: TripItemT): number | null {
+  const ca = itemCoord(a)
+  const cb = itemCoord(b)
+  if (!ca || !cb) return null
+  if (haversineMiles(ca, cb) < 0.15) return 0
+  return Math.round(travelBufferMin(ca, cb) / 5) * 5
 }
 
 export function toMinutes(hhmm: string): number {

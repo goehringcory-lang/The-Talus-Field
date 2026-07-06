@@ -111,7 +111,9 @@ function SheetBody({ onClose, slotted, eventCount, filenameDate }: Omit<Props, '
   async function copyLink() {
     if (!feed) return
     try {
-      await navigator.clipboard.writeText(webcalUrl(feed.feedUrl))
+      // Plain https, not webcal: pasted into a text field (email, notes, a
+      // calendar app's "subscribe by URL" box) http(s) is the portable form.
+      await navigator.clipboard.writeText(feed.feedUrl)
       setCopied(true)
       setTimeout(() => setCopied(false), 2500)
     } catch {
