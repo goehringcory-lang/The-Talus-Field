@@ -28,6 +28,9 @@ app.use(
         'https://www.thetalusfieldjournal.com',
         'http://localhost:5173',
         'http://localhost:5174',
+        // vite preview: the documented way to exercise the PWA's service
+        // worker locally (it registers in prod builds only).
+        'http://localhost:4173',
         'http://localhost:8000',
       ])
       // The PWA's unlisted Cloudflare Pages URLs: the stable production
