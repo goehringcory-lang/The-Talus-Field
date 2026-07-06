@@ -8,7 +8,7 @@ export type Env = {
   GUIDE_PROGRAMS: KVNamespace
 
   // Vars (wrangler.toml [vars])
-  APP_BASE_URL: string         // e.g. https://guide.thetalusfieldjournal.com
+  APP_BASE_URL: string         // PWA origin; e.g. https://talus-field-guide.pages.dev
   EDITORIAL_BASE_URL: string   // e.g. https://thetalusfieldjournal.com
   GUIDE_PRICE_CENTS: string    // "1900"
   GUIDE_PRODUCT_TAG: string    // "field_guide_2026"
