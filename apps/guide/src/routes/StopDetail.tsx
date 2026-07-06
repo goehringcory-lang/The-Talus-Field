@@ -1,7 +1,10 @@
-import { Link, Navigate, useParams } from 'react-router-dom'
+import { Navigate, useParams } from 'react-router-dom'
 import { getHiddenStops, getRegionMeta, getStopById, getStopsByRegion } from '../content'
 import GatedChrome from '../components/GatedChrome'
+import PrevNextNav from '../components/PrevNextNav'
 import StopCard from '../components/StopCard'
+import Button from '../components/ui/Button'
+import BackLink from '../components/ui/BackLink'
 import { directionsUrl } from '../map/kinds'
 import { announceTripAdd } from '../trip/addFeedback'
 import { useTripPlan } from '../trip/useTripPlan'
@@ -29,101 +32,40 @@ export default function StopDetail() {
 
   return (
     <GatedChrome>
-      <main className="wrap wrap--narrow" style={{ paddingTop: 56, paddingBottom: 96 }}>
-        <p style={{ marginBottom: 24 }}>
-          <Link
-            to={backTo}
-            style={{
-              fontFamily: 'var(--sans)',
-              fontSize: 12,
-              textTransform: 'uppercase',
-              letterSpacing: '0.14em',
-              fontWeight: 600,
-            }}
-          >
-            ← {backLabel}
-          </Link>
-        </p>
+      <main className="wrap wrap--narrow page">
+        <BackLink to={backTo} label={backLabel} placement="top" />
 
         <StopCard stop={stop} compact={false} />
 
-        <p style={{ marginTop: 20, display: 'flex', gap: 10, flexWrap: 'wrap', alignItems: 'center' }}>
+        <div className="action-row" style={{ marginTop: 20 }}>
           {planned ? (
-            <Link
-              to="/trip"
-              className="btn btn--ghost"
-              style={{ minHeight: 44, display: 'inline-flex', alignItems: 'center' }}
-            >
+            <Button variant="ghost" to="/trip">
               In your trip plan →
-            </Link>
+            </Button>
           ) : (
-            <button
-              type="button"
-              className="btn"
-              style={{ minHeight: 44 }}
+            <Button
               onClick={() => {
                 addStop(stop.id)
                 announceTripAdd(stop.title)
               }}
             >
               Add to trip
-            </button>
+            </Button>
           )}
           {stop.coord && (
-            <a
-              className="btn btn--ghost"
-              href={directionsUrl(stop.coord)}
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{ minHeight: 44, display: 'inline-flex', alignItems: 'center' }}
-            >
+            <Button variant="ghost" href={directionsUrl(stop.coord)} external>
               Directions →
-            </a>
+            </Button>
           )}
-        </p>
+        </div>
 
-        <nav
-          className="stop-prevnext"
-          style={{
-            display: 'flex',
-            justifyContent: 'space-between',
-            gap: 24,
-            marginTop: 56,
-            paddingTop: 24,
-            borderTop: '1px solid var(--rule)',
-          }}
-        >
-          <div style={{ flex: 1 }}>
-            {prev ? (
-              <Link to={`/stop/${prev.id}`} style={{ display: 'block' }}>
-                <div className="eyebrow" style={{ marginBottom: 6 }}>← Previous</div>
-                <div style={{ fontFamily: 'var(--display)', fontSize: 18 }}>{prev.title}</div>
-              </Link>
-            ) : (
-              <span style={{ opacity: 0.4 }}>
-                <div className="eyebrow" style={{ marginBottom: 6 }}>← Previous</div>
-                <div style={{ fontFamily: 'var(--display)', fontSize: 18, color: 'var(--ink-3)' }}>
-                  Start of region
-                </div>
-              </span>
-            )}
-          </div>
-          <div style={{ flex: 1, textAlign: 'right' }}>
-            {next ? (
-              <Link to={`/stop/${next.id}`} style={{ display: 'block' }}>
-                <div className="eyebrow" style={{ marginBottom: 6 }}>Next →</div>
-                <div style={{ fontFamily: 'var(--display)', fontSize: 18 }}>{next.title}</div>
-              </Link>
-            ) : (
-              <span style={{ opacity: 0.4 }}>
-                <div className="eyebrow" style={{ marginBottom: 6 }}>Next →</div>
-                <div style={{ fontFamily: 'var(--display)', fontSize: 18, color: 'var(--ink-3)' }}>
-                  End of region
-                </div>
-              </span>
-            )}
-          </div>
-        </nav>
+        <PrevNextNav
+          sticky
+          prev={prev ? { to: `/stop/${prev.id}`, title: prev.title } : null}
+          next={next ? { to: `/stop/${next.id}`, title: next.title } : null}
+          prevEmptyLabel="Start of region"
+          nextEmptyLabel="End of region"
+        />
       </main>
     </GatedChrome>
   )

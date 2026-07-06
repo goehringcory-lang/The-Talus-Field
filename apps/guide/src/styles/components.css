@@ -1,0 +1,681 @@
+/* ============================================================
+   Shared component styles for the UI primitives in
+   src/components/ui/. Loaded after tokens.css; brand tokens and
+   the legacy single-purpose classes live there.
+   ============================================================ */
+
+/* ===== Masthead brand lockup (GatedChrome) ===== */
+
+.masthead-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+  color: var(--ink);
+  text-decoration: none;
+}
+.masthead-brand:hover { color: var(--ink); }
+.masthead-brand__mark {
+  height: 30px;
+  width: auto;
+  display: block;
+  flex-shrink: 0;
+}
+.masthead-brand__text {
+  display: grid;
+  line-height: 1.12;
+  white-space: nowrap;
+}
+.masthead-brand__title {
+  font-family: var(--display);
+  font-size: 17px;
+  font-weight: 500;
+  letter-spacing: -0.005em;
+}
+.masthead-brand__sub {
+  font-family: var(--sans);
+  font-size: 8px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.24em;
+  color: var(--ink-3);
+}
+
+/* Full lockup for the front door (login, magic-link landing). */
+.brand-lockup {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 0 0 var(--s6);
+}
+.brand-lockup__mark {
+  height: 48px;
+  width: auto;
+  display: block;
+}
+.brand-lockup__title {
+  font-family: var(--display);
+  font-size: 26px;
+  font-weight: 500;
+  letter-spacing: -0.005em;
+  line-height: 1.05;
+}
+.brand-lockup__sub {
+  font-family: var(--sans);
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.28em;
+  color: var(--ink-3);
+  margin-top: 4px;
+}
+
+/* ===== Login: the paid product's front door ===== */
+
+.login-wrap {
+  max-width: 620px;
+  padding-top: clamp(28px, 7vh, 72px);
+  padding-bottom: clamp(32px, 10vh, 96px);
+}
+.login-head { margin: var(--s6) 0 var(--s5); }
+.login-head .eyebrow { display: block; margin-bottom: 12px; }
+.login-title {
+  font-size: clamp(34px, 5vw, 52px);
+  margin-bottom: 12px;
+}
+.login-intro {
+  color: var(--ink-2);
+  margin: 0;
+}
+.login-aside {
+  color: var(--ink-3);
+  font-size: 13px;
+  margin-top: var(--s5);
+}
+
+/* ===== Plate photo treatment (Plate.tsx) =====
+   The editorial site's "Alpine Journal plate": ink border, engraved offset
+   shadow, uppercase label chip top-right. */
+
+.plate { margin: 0 0 18px; }
+.plate__frame {
+  position: relative;
+  border: 1px solid var(--ink);
+  box-shadow: 3px 3px 0 0 var(--ink);
+  background: var(--paper-3);
+}
+.plate__frame img { display: block; width: 100%; height: auto; }
+.plate__frame[data-tag]::after {
+  content: attr(data-tag);
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-family: var(--sans);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--paper);
+  background: color-mix(in oklab, var(--ink) 82%, transparent);
+  padding: 4px 8px;
+  pointer-events: none;
+}
+.plate__caption {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 13px;
+  color: var(--ink-2);
+  margin-top: 8px;
+}
+
+/* Photogravure placeholder tile for stops still awaiting photography. */
+.photo-placeholder {
+  aspect-ratio: 4 / 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background:
+    repeating-linear-gradient(135deg, color-mix(in oklab, var(--ink) 6%, transparent) 0 1px, transparent 1px 5px),
+    repeating-linear-gradient(45deg, color-mix(in oklab, var(--ink) 4%, transparent) 0 1px, transparent 1px 7px),
+    var(--paper-2);
+  color: var(--ink-3);
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+/* ===== Dropcap for the full stop read ===== */
+
+.prose--dropcap > p:first-child::first-letter {
+  float: left;
+  font-family: var(--display);
+  font-size: 4.4em;
+  line-height: 0.8;
+  padding: 8px 10px 0 0;
+  font-weight: 500;
+  color: var(--moss);
+}
+
+/* ===== Back link (BackLink.tsx) ===== */
+
+.back-row { margin: 0 0 var(--s5); }
+.back-row--footer { margin: var(--s7) 0 0; }
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--ink-2);
+  text-decoration: none;
+}
+.back-link:hover { color: var(--moss); }
+
+/* ===== Page header (PageHeader.tsx) ===== */
+
+.page-header { margin: 0 0 var(--s6); }
+.page-header .eyebrow { display: block; margin-bottom: 14px; }
+.page-header h1 { margin-bottom: 18px; }
+.page-header__intro {
+  color: var(--ink-2);
+  margin: 0;
+  max-width: var(--measure);
+}
+
+/* ===== Chips (Chip.tsx) ===== */
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--sans);
+  border: 1px solid var(--rule-soft);
+  border-radius: var(--radius);
+  background: transparent;
+  color: var(--ink-2);
+  white-space: nowrap;
+}
+
+/* Non-interactive metadata (elevation, time budget, season). */
+.chip--meta {
+  align-items: baseline;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 6px 10px;
+}
+
+/* Small status badge (Free, Reservation, Typical window). */
+.chip--badge {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 1px 6px;
+  border-color: var(--rule);
+  color: inherit;
+}
+
+/* Tappable secondary action (+ Add, preset seeds). */
+.chip--action {
+  font-size: 12px;
+  font-weight: 600;
+  padding: 6px 12px;
+  min-height: 44px;
+  border-color: var(--rule);
+  background: var(--paper);
+  color: var(--moss);
+  cursor: pointer;
+}
+.chip--action:hover { border-color: var(--moss); }
+
+/* Toggleable filter; pressed inverts to ink. */
+.chip--filter {
+  font-size: 12px;
+  font-weight: 600;
+  padding: 7px 12px;
+  min-height: 44px;
+  border-color: var(--rule);
+  background: var(--paper);
+  color: var(--ink-2);
+  cursor: pointer;
+}
+.chip--filter[aria-pressed='true'] {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--paper);
+}
+
+/* Tappable coordinate that opens native Maps; mono for the digits. */
+.chip--gps {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 10px 12px;
+  min-height: 44px;
+  border-color: var(--rule);
+  background: var(--paper);
+  color: var(--ink);
+  text-decoration: none;
+}
+.chip--gps:hover {
+  background: var(--ink);
+  color: var(--paper);
+  border-color: var(--ink);
+}
+
+/* ===== Form fields (dates, times, selects) ===== */
+
+.field {
+  display: grid;
+  gap: 4px;
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--ink-3);
+}
+.field-control {
+  font: 15px var(--sans);
+  padding: 8px 10px;
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  background: var(--paper);
+  color: var(--ink);
+  min-height: 44px;
+}
+.field-control--sm {
+  font-size: 13px;
+  padding: 5px 8px;
+  min-height: 36px;
+}
+
+/* Vertical form layout (login, resend). */
+.form-stack {
+  display: grid;
+  gap: 18px;
+  max-width: 420px;
+}
+
+/* ===== Callout (Callout.tsx) ===== */
+
+.callout {
+  display: flex;
+  gap: var(--s3);
+  align-items: center;
+  border: 1px solid var(--rule);
+  border-left: 3px solid var(--moss);
+  border-radius: var(--radius);
+  background: var(--paper-2);
+  padding: 14px 16px;
+  margin: 0 0 var(--s5);
+  font-family: var(--serif);
+  font-size: 14px;
+  line-height: 1.5;
+}
+.callout__body { flex: 1; min-width: 0; }
+.callout--warn {
+  border-color: color-mix(in oklab, var(--gold) 40%, var(--rule));
+  border-left-color: var(--gold);
+  background: color-mix(in oklab, var(--gold) 12%, var(--paper));
+  font-family: var(--sans);
+  font-size: 13px;
+  color: var(--ink-2);
+}
+
+/* ===== Empty state (EmptyState.tsx) ===== */
+
+.empty-state {
+  border-top: 1px solid var(--rule);
+  padding: var(--s5) 0 0;
+  font-family: var(--serif);
+  color: var(--ink-2);
+  line-height: 1.65;
+}
+.empty-state__note {
+  font-style: italic;
+  margin: 0;
+  max-width: 52ch;
+}
+.empty-state__action { margin: var(--s4) 0 0; }
+
+/* ===== Skeleton (Skeleton.tsx) ===== */
+
+.skeleton {
+  position: relative;
+  overflow: hidden;
+  background: var(--paper-2);
+  border-radius: var(--radius);
+}
+.skeleton::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  transform: translateX(-100%);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    color-mix(in oklab, var(--paper) 65%, transparent),
+    transparent
+  );
+  animation: skeleton-shimmer 1.4s ease-in-out infinite;
+}
+@keyframes skeleton-shimmer {
+  to { transform: translateX(100%); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .skeleton::after { display: none; }
+}
+
+/* ===== Prev/next pagination (PrevNextNav.tsx) ===== */
+
+.prevnext {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--s5);
+  margin-top: var(--s7);
+  padding-top: var(--s5);
+  border-top: 1px solid var(--rule);
+}
+.prevnext__side { flex: 1; min-width: 0; }
+.prevnext__side--next { text-align: right; }
+.prevnext__side--empty { opacity: 0.4; }
+.prevnext__side a { display: block; }
+.prevnext__side .eyebrow { display: block; margin-bottom: 6px; }
+.prevnext__title { font-family: var(--display); font-size: 18px; }
+.prevnext__side--empty .prevnext__title { color: var(--ink-3); }
+
+/* ===== Plan sub-nav (PlanTabs.tsx): Trip plan | Programs ===== */
+
+.plan-tabs {
+  display: flex;
+  border-bottom: 1px solid var(--rule);
+  margin-bottom: var(--s5);
+}
+.plan-tabs__tab {
+  flex: 0 0 auto;
+  padding: 12px 18px 10px;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  text-decoration: none;
+}
+.plan-tabs__tab:first-child { padding-left: 2px; }
+.plan-tabs__tab:hover { color: var(--ink); }
+.plan-tabs__tab[aria-current='page'] {
+  color: var(--ink);
+  border-bottom-color: var(--moss);
+}
+
+/* ===== Route-chunk loading state (App.tsx Suspense fallback) ===== */
+
+.route-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--s5);
+  min-height: 60vh;
+}
+.route-loading__mark { opacity: 0.85; }
+.route-loading__lines {
+  display: grid;
+  gap: var(--s2);
+  width: min(300px, 70vw);
+  justify-items: center;
+}
+.route-loading__lines .skeleton { border-radius: var(--radius); }
+
+/* ===== Shared layout utilities ===== */
+
+/* Plain-text link lists (saved stops, hidden areas in a region). */
+.link-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: var(--s2);
+}
+.link-list a { font-family: var(--display); font-size: 18px; }
+
+/* Row of buttons or mixed inline actions. */
+.action-row {
+  display: flex;
+  gap: var(--s3);
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+/* Stacked cards / sections. Section index rows carry their own top rules,
+   so the stack itself only closes the run with a soft bottom rule. */
+.card-stack {
+  display: grid;
+  gap: 0;
+  border-bottom: 1px solid var(--rule);
+}
+
+/* Account keeps boxed cards; give them their own rhythm. */
+.card-stack--boxed {
+  gap: 18px;
+  border-bottom: 0;
+}
+
+/* Secondary page section with an eyebrow heading. */
+.page-section { margin-top: var(--s7); }
+.page-section > .eyebrow { display: block; margin-bottom: 10px; }
+
+/* Small sans follow-on link under a section. */
+.more-link {
+  display: inline-block;
+  margin-top: var(--s2);
+  font-family: var(--sans);
+  font-size: 13px;
+}
+
+/* Quiet closing line (build stamp, signed-in-as, methodology notes). */
+.page-footnote {
+  margin-top: var(--s6);
+  font-family: var(--sans);
+  font-size: 12px;
+  color: var(--ink-3);
+  line-height: 1.6;
+}
+
+/* Inline form error, moss like the editorial site's. */
+.form-error {
+  color: var(--moss);
+  font-size: 14px;
+}
+
+/* Card interior lines (Account). */
+.card__value {
+  font-family: var(--display);
+  font-size: 22px;
+}
+.card__note {
+  color: var(--ink-3);
+  font-size: 13px;
+  margin: 8px 0 0;
+}
+
+/* Search helper note under the input. */
+.search-note {
+  color: var(--ink-3);
+  margin-top: var(--s5);
+}
+
+/* Home "in season" strip. */
+.season-strip {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: var(--s2);
+  font-family: var(--serif);
+  font-size: 14px;
+  line-height: 1.5;
+}
+.season-strip__muted { color: var(--ink-3); }
+
+/* ===== Bottom sheet (TripCalendarSheet) ===== */
+
+.sheet-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 300;
+  background: color-mix(in oklab, var(--ink) 45%, transparent);
+}
+.sheet {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 301;
+  margin: 0 auto;
+  max-width: 560px;
+  max-height: 86dvh;
+  overflow-y: auto;
+  background: var(--paper);
+  border: 1px solid var(--ink);
+  border-bottom: 0;
+  padding: 18px var(--gutter) calc(20px + env(safe-area-inset-bottom));
+  animation: sheet-in 180ms ease-out;
+}
+@keyframes sheet-in {
+  from { transform: translateY(24px); opacity: 0.4; }
+  to { transform: translateY(0); opacity: 1; }
+}
+.sheet__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: var(--s4);
+}
+.sheet__close {
+  background: none;
+  border: none;
+  font: 22px var(--sans);
+  color: var(--ink-3);
+  cursor: pointer;
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+  line-height: 1;
+}
+.sheet__close:hover { color: var(--moss); }
+.sheet__section {
+  border-top: 1px solid var(--rule);
+  padding: 14px 0 18px;
+}
+.sheet__title {
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  margin: 0 0 8px;
+}
+.sheet__note {
+  font-family: var(--serif);
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--ink-2);
+  margin: 0 0 12px;
+}
+.sheet__note--muted {
+  font-family: var(--sans);
+  font-size: 12px;
+  color: var(--ink-3);
+  margin: 12px 0;
+}
+.sheet__buttons {
+  display: grid;
+  gap: 10px;
+  margin-bottom: 4px;
+}
+.sheet__fine {
+  font-family: var(--sans);
+  font-size: 11px;
+  color: var(--ink-3);
+  line-height: 1.6;
+  margin: 4px 0 0;
+  border-top: 1px solid var(--rule-soft);
+  padding-top: 12px;
+}
+
+/* ===== Fixed app banners (update, install) ===== */
+
+.update-banner {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 60;
+  border: 0;
+  border-radius: var(--radius);
+  background: var(--moss);
+  color: var(--paper);
+  padding: calc(10px + env(safe-area-inset-top)) 16px 10px;
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-align: center;
+  cursor: pointer;
+}
+
+.install-banner {
+  position: fixed;
+  bottom: calc(56px + env(safe-area-inset-bottom) + 8px);
+  left: 16px;
+  right: 16px;
+  max-width: 480px;
+  margin: 0 auto;
+  display: flex;
+  gap: var(--s3);
+  align-items: center;
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  background: var(--paper);
+  box-shadow: 3px 3px 0 0 var(--ink);
+  padding: 12px 14px;
+  z-index: 200;
+}
+.install-banner__body {
+  flex: 1;
+  font-family: var(--serif);
+  font-size: 14px;
+  line-height: 1.4;
+}
+.install-banner__hint {
+  font-family: var(--sans);
+  font-size: 12px;
+  color: var(--ink-2);
+  line-height: 1.5;
+  margin-top: 4px;
+}
+.install-banner__key {
+  display: inline-block;
+  vertical-align: middle;
+  padding: 0 3px;
+  border: 1px solid var(--rule-soft);
+  border-radius: var(--radius);
+  font-size: 13px;
+}

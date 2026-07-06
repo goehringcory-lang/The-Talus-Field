@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import Button from './ui/Button'
 
 interface BeforeInstallPromptEvent extends Event {
   prompt: () => Promise<void>
@@ -65,15 +66,13 @@ function AndroidPrompt() {
 
   return (
     <InstallBanner>
-      <div style={{ flex: 1, fontFamily: 'var(--serif)', fontSize: 14, lineHeight: 1.4 }}>
-        Add to home screen for offline access.
-      </div>
-      <button type="button" className="btn btn--ghost" onClick={dismiss} style={{ padding: '6px 10px', fontSize: 13, minHeight: 44 }}>
+      <div className="install-banner__body">Add to home screen for offline access.</div>
+      <Button variant="ghost" size="sm" onClick={dismiss}>
         Not now
-      </button>
-      <button type="button" className="btn" onClick={install} style={{ padding: '6px 14px', fontSize: 13, minHeight: 44 }}>
+      </Button>
+      <Button size="sm" onClick={install}>
         Install
-      </button>
+      </Button>
     </InstallBanner>
   )
 }
@@ -87,21 +86,16 @@ function IOSBanner() {
 
   return (
     <InstallBanner>
-      <div style={{ flex: 1 }}>
-        <div style={{ fontFamily: 'var(--serif)', fontSize: 14, lineHeight: 1.4, marginBottom: 4 }}>
-          Save for offline access:
-        </div>
-        <div style={{ fontFamily: 'var(--sans)', fontSize: 12, color: 'var(--ink-2)', lineHeight: 1.5 }}>
-          Tap{' '}
-          <span style={{ display: 'inline-block', verticalAlign: 'middle', padding: '0 3px', border: '1px solid var(--rule-soft)', borderRadius: 3, fontSize: 13 }}>
-            &#x2B06;
-          </span>
-          {' '}Share, then <strong>Add to Home Screen</strong>.
+      <div className="install-banner__body">
+        Save for offline access:
+        <div className="install-banner__hint">
+          Tap <span className="install-banner__key">&#x2B06;</span> Share, then{' '}
+          <strong>Add to Home Screen</strong>.
         </div>
       </div>
-      <button type="button" className="btn btn--ghost" onClick={dismiss} style={{ padding: '6px 10px', fontSize: 13, minHeight: 44, flexShrink: 0 }}>
+      <Button variant="ghost" size="sm" onClick={dismiss}>
         Got it
-      </button>
+      </Button>
     </InstallBanner>
   )
 }
@@ -110,27 +104,7 @@ function IOSBanner() {
 
 function InstallBanner({ children }: { children: React.ReactNode }) {
   return (
-    <div
-      role="dialog"
-      aria-label="Install The Field Guide"
-      style={{
-        position: 'fixed',
-        bottom: 'calc(56px + env(safe-area-inset-bottom) + 8px)',
-        left: 16,
-        right: 16,
-        maxWidth: 480,
-        margin: '0 auto',
-        background: 'var(--paper)',
-        border: '1px solid var(--rule)',
-        borderRadius: 8,
-        padding: '12px 14px',
-        boxShadow: '0 8px 24px rgba(20, 17, 12, 0.12)',
-        display: 'flex',
-        gap: 12,
-        alignItems: 'center',
-        zIndex: 200,
-      }}
-    >
+    <div role="dialog" aria-label="Install The Field Guide" className="install-banner">
       {children}
     </div>
   )

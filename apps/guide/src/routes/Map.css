@@ -1,17 +1,21 @@
 /* /map route — three-tab map experience.
  * The map container is always mounted; tab panes overlay on top.
  * Hidden panes use visibility:hidden (not display:none) so the map
- * container never sees a zero-size and we avoid resize churn. */
+ * container never sees a zero-size and we avoid resize churn.
+ * Panes and popups sit on the paper/ink palette like every other surface;
+ * only the tiles themselves are someone else's colors. */
 
 .map-page {
   display: flex;
   flex-direction: column;
-  /* Subtract only the chrome OUTSIDE this element: the sticky GatedChrome
-   * header (~46px) and the fixed bottom nav (56px + safe area). The online
-   * notice and tab bar are flex children of .map-page, so they take their
-   * space from the interior — subtracting them here would leave a dead gap
-   * above the bottom nav. */
-  height: calc(100dvh - 46px - 56px - env(safe-area-inset-bottom));
+  /* Subtract only the chrome OUTSIDE this element: the sticky masthead
+   * (--chrome-top-h plus the top safe-area inset it absorbs) and the fixed
+   * bottom nav (56px + safe area). The online notice and tab bar are flex
+   * children of .map-page, so they take their space from the interior —
+   * subtracting them here would leave a dead gap above the bottom nav. */
+  height: calc(
+    100dvh - var(--chrome-top-h) - env(safe-area-inset-top) - 56px - env(safe-area-inset-bottom)
+  );
   min-height: 480px;
 }
 
@@ -19,12 +23,12 @@
 .map-online-notice {
   flex: 0 0 auto;
   padding: 7px 14px;
-  background: color-mix(in oklab, var(--gold, #8a661a) 12%, var(--paper, #f1ead6));
-  border-bottom: 1px solid color-mix(in oklab, var(--gold, #8a661a) 25%, var(--rule-soft, #c1ad84));
-  font-family: var(--sans, system-ui, sans-serif);
+  background: color-mix(in oklab, var(--gold) 12%, var(--paper));
+  border-bottom: 1px solid color-mix(in oklab, var(--gold) 25%, var(--rule-soft));
+  font-family: var(--sans);
   font-size: 11px;
   font-weight: 500;
-  color: var(--ink-2, #36291c);
+  color: var(--ink-2);
   display: flex;
   align-items: center;
   gap: 4px;
@@ -36,7 +40,7 @@
   padding: 0;
   font: inherit;
   font-weight: 600;
-  color: var(--moss, #7a2a10);
+  color: var(--moss);
   cursor: pointer;
   text-decoration: underline;
   text-underline-offset: 2px;
@@ -52,21 +56,47 @@
   filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.3));
 }
 
+/* Brand the MapLibre popup shell itself: plate-style paper card instead of
+ * the library's default white rounded bubble. */
+.maplibregl-popup-content {
+  background: var(--paper);
+  color: var(--ink);
+  border: 1px solid var(--ink);
+  border-radius: var(--radius);
+  box-shadow: 3px 3px 0 0 var(--ink);
+  padding: 12px 14px;
+}
+.maplibregl-popup-anchor-bottom .maplibregl-popup-tip { border-top-color: var(--ink); }
+.maplibregl-popup-anchor-top .maplibregl-popup-tip { border-bottom-color: var(--ink); }
+.maplibregl-popup-anchor-left .maplibregl-popup-tip { border-right-color: var(--ink); }
+.maplibregl-popup-anchor-right .maplibregl-popup-tip { border-left-color: var(--ink); }
+.maplibregl-popup-close-button {
+  font-size: 18px;
+  color: var(--ink-3);
+  padding: 2px 8px;
+}
+.maplibregl-popup-close-button:hover {
+  background: transparent;
+  color: var(--moss);
+}
+
 .map-popup {
-  font: 13px/1.5 system-ui, sans-serif;
+  font: 13px/1.5 var(--sans);
   max-width: 280px;
-  color: #222;
+  color: var(--ink);
 }
 .map-popup__photo {
   width: 100%;
   height: 120px;
   object-fit: cover;
   display: block;
-  border-radius: 3px;
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
   margin-bottom: 10px;
 }
 .map-popup__title {
-  font-size: 14px;
+  font-family: var(--display);
+  font-size: 16px;
   display: block;
   margin: 0 0 4px;
   line-height: 1.3;
@@ -75,13 +105,14 @@
   display: inline-block;
   text-transform: uppercase;
   font-size: 10px;
-  letter-spacing: 0.06em;
-  font-weight: 600;
+  letter-spacing: 0.14em;
+  font-weight: 700;
 }
 .map-popup__excerpt {
   margin: 7px 0 0;
-  font-size: 12px;
-  color: #444;
+  font-family: var(--serif);
+  font-size: 13px;
+  color: var(--ink-2);
   line-height: 1.5;
 }
 .map-popup__actions {
@@ -92,28 +123,35 @@
 }
 .map-popup__btn {
   display: inline-block;
-  font: 600 11px/1 system-ui, sans-serif;
+  font: 600 11px/1 var(--sans);
   text-transform: uppercase;
-  letter-spacing: 0.07em;
-  color: #fff;
-  background: #2a2820;
+  letter-spacing: 0.1em;
+  color: var(--paper);
+  background: var(--ink);
   text-decoration: none;
-  border: 1px solid #2a2820;
-  padding: 8px 12px;
-  border-radius: 4px;
+  border: 1px solid var(--ink);
+  border-radius: var(--radius);
+  padding: 10px 12px;
   cursor: pointer;
 }
+.map-popup__btn:hover {
+  background: var(--moss);
+  border-color: var(--moss);
+}
 .map-popup__btn--dir {
-  color: #1e6fb8;
+  color: var(--moss);
   background: transparent;
-  border-color: #1e6fb8;
+  border-color: var(--moss);
+}
+.map-popup__btn--dir:hover {
+  color: var(--paper);
 }
 
 .map-tabbar {
   display: flex;
   gap: 0;
-  border-bottom: 1px solid var(--rule, #d8d2c0);
-  background: var(--paper, #f1ead6);
+  border-bottom: 1px solid var(--rule);
+  background: var(--paper);
   flex: 0 0 auto;
 }
 
@@ -124,23 +162,23 @@
   background: transparent;
   border: none;
   border-bottom: 2px solid transparent;
-  font-family: var(--sans, system-ui, sans-serif);
+  font-family: var(--sans);
   font-size: 12px;
   font-weight: 600;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--ink-2, #5a5648);
+  color: var(--ink-3);
   cursor: pointer;
   transition: color 120ms, border-color 120ms;
 }
 
 .map-tabbar__tab:hover {
-  color: var(--ink-1, #2a2820);
+  color: var(--ink);
 }
 
 .map-tabbar__tab[aria-current='page'] {
-  color: var(--ink-1, #2a2820);
-  border-bottom-color: var(--ink-1, #2a2820);
+  color: var(--ink);
+  border-bottom-color: var(--moss);
 }
 
 .map-page__stage {
@@ -154,7 +192,7 @@
   inset: 0;
   width: 100%;
   height: 100%;
-  background: #e7e1ce;
+  background: var(--paper-2);
 }
 
 .map-page__error {
@@ -164,13 +202,13 @@
   right: 16px;
   z-index: 20;
   padding: 12px 16px;
-  background: #fff;
-  border: 1px solid #b8442e;
-  color: #b8442e;
-  font-family: var(--sans, system-ui, sans-serif);
+  background: var(--paper);
+  border: 1px solid var(--rust);
+  color: var(--rust);
+  font-family: var(--sans);
   font-size: 13px;
-  border-radius: 4px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  border-radius: var(--radius);
+  box-shadow: 3px 3px 0 0 color-mix(in oklab, var(--ink) 30%, transparent);
 }
 
 .map-pane {
@@ -190,11 +228,13 @@
   right: 12px;
   max-width: 200px;
   padding: 12px 14px;
-  background: rgba(255, 255, 255, 0.94);
-  border: 1px solid var(--rule, #d8d2c0);
-  border-radius: 6px;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
-  font-family: var(--sans, system-ui, sans-serif);
+  background: color-mix(in oklab, var(--paper) 94%, transparent);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border: 1px solid var(--rule-soft);
+  border-radius: var(--radius);
+  box-shadow: 3px 3px 0 0 color-mix(in oklab, var(--ink) 22%, transparent);
+  font-family: var(--sans);
 }
 
 .map-pane__title {
@@ -202,7 +242,7 @@
   font-weight: 600;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--ink-2, #5a5648);
+  color: var(--ink-2);
   margin: 0 0 8px;
 }
 
@@ -220,7 +260,7 @@
   align-items: center;
   gap: 6px;
   font-size: 12px;
-  color: var(--ink-1, #2a2820);
+  color: var(--ink);
 }
 
 .map-legend__dot {
@@ -240,12 +280,14 @@
   bottom: 12px;
   width: min(360px, calc(100% - 24px));
   padding: 16px 18px;
-  background: rgba(255, 255, 255, 0.96);
-  border: 1px solid var(--rule, #d8d2c0);
-  border-radius: 6px;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+  background: color-mix(in oklab, var(--paper) 96%, transparent);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border: 1px solid var(--rule-soft);
+  border-radius: var(--radius);
+  box-shadow: 3px 3px 0 0 color-mix(in oklab, var(--ink) 22%, transparent);
   overflow-y: auto;
-  font-family: var(--sans, system-ui, sans-serif);
+  font-family: var(--sans);
 }
 
 .map-sidebar__section {
@@ -261,7 +303,7 @@
   font-weight: 600;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--ink-2, #5a5648);
+  color: var(--ink-2);
   margin: 0 0 10px;
 }
 
@@ -281,38 +323,38 @@
   text-align: left;
   padding: 10px 12px;
   min-height: 44px;
-  background: #fff;
-  border: 1px solid var(--rule, #d8d2c0);
-  border-radius: 4px;
+  background: var(--paper);
+  border: 1px solid var(--rule-soft);
+  border-radius: var(--radius);
   cursor: pointer;
   transition: border-color 120ms, background 120ms;
   justify-content: center;
 }
 
 .map-itinerary:hover {
-  border-color: var(--ink-2, #5a5648);
+  border-color: var(--ink-2);
 }
 
 .map-itinerary--selected {
-  border-color: var(--ink-1, #2a2820);
-  background: #faf7eb;
+  border-color: var(--ink);
+  background: var(--paper-2);
 }
 
 .map-itinerary__label {
   font-size: 14px;
   font-weight: 600;
-  color: var(--ink-1, #2a2820);
+  color: var(--ink);
 }
 
 .map-itinerary__sub {
   font-size: 12px;
-  color: var(--ink-2, #5a5648);
+  color: var(--ink-2);
   margin-top: 2px;
 }
 
 .map-itinerary__count {
   font-size: 11px;
-  color: var(--ink-3, #7a7464);
+  color: var(--ink-3);
   margin-top: 4px;
   text-transform: uppercase;
   letter-spacing: 0.06em;
@@ -327,7 +369,7 @@
 .map-day__name {
   font-size: 13px;
   font-weight: 600;
-  color: var(--ink-1, #2a2820);
+  color: var(--ink);
   margin: 0 0 6px;
   display: flex;
   justify-content: space-between;
@@ -337,7 +379,7 @@
 .map-day__count {
   font-size: 11px;
   font-weight: 500;
-  color: var(--ink-3, #7a7464);
+  color: var(--ink-3);
   text-transform: uppercase;
   letter-spacing: 0.06em;
 }
@@ -362,7 +404,7 @@
   min-height: 44px;
   background: transparent;
   border: none;
-  border-radius: 3px;
+  border-radius: var(--radius);
   cursor: pointer;
   font: inherit;
   color: inherit;
@@ -370,16 +412,16 @@
 }
 
 .map-stop:hover {
-  background: #f4eedd;
+  background: var(--paper-2);
 }
 
 .map-stop--selected {
-  background: #ebe2c4;
+  background: var(--paper-3);
 }
 
 .map-stop__name {
   font-size: 13px;
-  color: var(--ink-1, #2a2820);
+  color: var(--ink);
 }
 
 .map-stop__kind {
@@ -393,7 +435,7 @@
 /* Info pane: full-bleed text content, scrolls inside the stage. */
 .map-pane--info {
   inset: 0;
-  background: var(--paper, #f1ead6);
+  background: var(--paper);
   overflow-y: auto;
   padding: 32px 24px 64px;
 }
@@ -401,24 +443,24 @@
 .map-info {
   max-width: 720px;
   margin: 0 auto;
-  font-family: var(--sans, system-ui, sans-serif);
-  color: var(--ink-1, #2a2820);
+  font-family: var(--serif);
+  color: var(--ink);
 }
 
 .map-info h1 {
-  font-family: var(--display, var(--sans));
+  font-family: var(--display);
   font-size: 28px;
   margin: 0 0 8px;
 }
 
 .map-info p.lede {
-  color: var(--ink-2, #5a5648);
+  color: var(--ink-2);
   font-size: 15px;
   margin-bottom: 24px;
 }
 
 .map-info h2 {
-  font-family: var(--display, var(--sans));
+  font-family: var(--display);
   font-size: 18px;
   margin: 28px 0 8px;
 }
@@ -435,20 +477,11 @@
 }
 
 .map-info code {
-  font-family: var(--mono, ui-monospace, monospace);
+  font-family: var(--mono);
   font-size: 12px;
-  background: rgba(0, 0, 0, 0.04);
+  background: color-mix(in oklab, var(--ink) 5%, transparent);
   padding: 1px 4px;
-  border-radius: 3px;
-}
-
-/* Mobile: the GatedChrome header hides at <=640px (tokens.css), so stop
- * subtracting it there. This breakpoint must match the header's own, or the
- * 641–720px band renders a header no height rule accounts for. */
-@media (max-width: 640px) {
-  .map-page {
-    height: calc(100dvh - 56px - env(safe-area-inset-bottom));
-  }
+  border-radius: var(--radius);
 }
 
 /* Compact pane layout for narrow-ish screens. */

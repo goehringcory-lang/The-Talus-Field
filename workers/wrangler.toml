@@ -7,6 +7,10 @@ compatibility_flags = ["nodejs_compat"]
 #   wrangler kv namespace create GUIDE_BUYERS
 # Replace `preview_id` with the value from:
 #   wrangler kv namespace create GUIDE_BUYERS --preview
+# Besides buyer records, this namespace also holds the /api/trip calendar
+# feeds: tripfeed:<token> (the published ICS) and tripfeedToken:<sub> (the
+# owner's reuse pointer), both on a 400-day TTL refreshed by every publish,
+# plus the hourly tripfeedWriteAttempts:* rate-limit counters.
 [[kv_namespaces]]
 binding = "GUIDE_BUYERS"
 id = "REPLACE_ME_AFTER_kv_namespace_create"

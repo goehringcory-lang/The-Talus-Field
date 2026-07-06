@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import GatedChrome from '../components/GatedChrome'
+import PageHeader from '../components/ui/PageHeader'
 import { search, type SearchHit } from '../search'
 
 export default function Search() {
@@ -21,11 +22,8 @@ export default function Search() {
 
   return (
     <GatedChrome>
-      <main className="wrap wrap--narrow" style={{ paddingTop: 56, paddingBottom: 96 }}>
-        <div className="eyebrow eyebrow--moss" style={{ marginBottom: 14 }}>
-          The Field Guide
-        </div>
-        <h1 style={{ marginBottom: 18 }}>Search</h1>
+      <main className="wrap wrap--narrow page">
+        <PageHeader eyebrow="Every page, offline" title="Search" />
 
         <input
           className="search-input"
@@ -39,14 +37,14 @@ export default function Search() {
         />
 
         {trimmed.length === 0 && (
-          <p style={{ color: 'var(--ink-3)', marginTop: 28 }}>
+          <p className="search-note">
             Search every stop, the essentials, and the packing list. Works
             offline; the whole guide is on your device.
           </p>
         )}
 
         {trimmed.length > 0 && hits.length === 0 && (
-          <p style={{ color: 'var(--ink-3)', marginTop: 28 }}>
+          <p className="search-note">
             Nothing matched. Try a place name, or a single word like "parking"
             or "sunrise".
           </p>
@@ -54,7 +52,7 @@ export default function Search() {
 
         {Array.from(grouped.entries()).map(([section, sectionHits]) => (
           <section key={section} style={{ marginTop: 32 }}>
-            <div className="eyebrow" style={{ marginBottom: 4 }}>{section}</div>
+            <span className="eyebrow" style={{ display: 'block', marginBottom: 4 }}>{section}</span>
             {sectionHits.map((hit) => (
               <Link key={`${hit.section}-${hit.id}`} to={hit.url} className="search-result">
                 <div className="dateline">{hit.eyebrow}</div>

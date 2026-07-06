@@ -1,0 +1,8 @@
+{
+  "name": "the-talus-field-editorial",
+  "private": true,
+  "//": "The editorial site is static by design: no build step, no dependencies. This file exists solely because the Cloudflare Workers Build for the root worker runs `npm run build` before deploying; without it the deploy dies on ENOENT. Dev tooling lives in scripts/ with its own package.json. Do not add dependencies here.",
+  "scripts": {
+    "build": "echo 'Static editorial site: nothing to build. Deploy uploads the repo root as Worker assets per wrangler.jsonc and .assetsignore.'"
+  }
+}

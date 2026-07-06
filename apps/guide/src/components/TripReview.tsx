@@ -2,21 +2,22 @@
 // the export will create, from the same slottedToEventFields the .ics builder
 // uses, so what the user confirms is exactly what lands in their calendar.
 // Items the day couldn't fit are called out with resolution controls instead
-// of being silently exported (or, formerly, dropped).
+// of being silently exported (or, formerly, dropped). The footer opens the
+// add-to-calendar sheet (subscribe or one-time file).
 
+import { useState } from 'react'
 import { getStopById } from '../content'
-import type { ExportMethod } from '../trip/exportTrip'
 import { slottedToEventFields } from '../trip/ics'
 import type { SlottedItem } from '../trip/slotting'
 import { useTripPlan } from '../trip/useTripPlan'
 import { formatClock, formatDayHeader } from '../utils/date'
+import TripCalendarSheet from './TripCalendarSheet'
+import Button from './ui/Button'
 
 type Props = {
   slotted: Map<string, SlottedItem[]>
   windowDays: string[]
-  exportResult: ExportMethod | null
-  exporting: boolean
-  onCreate: () => void
+  filenameDate: string
 }
 
 function formatDuration(minutes: number): string {
@@ -25,8 +26,9 @@ function formatDuration(minutes: number): string {
     : `${minutes}m`
 }
 
-export default function TripReview({ slotted, windowDays, exportResult, exporting, onCreate }: Props) {
+export default function TripReview({ slotted, windowDays, filenameDate }: Props) {
   const { removeItem, setStopTime, moveStopToDay } = useTripPlan()
+  const [sheetOpen, setSheetOpen] = useState(false)
 
   const days = [...slotted.entries()]
   let eventCount = 0
@@ -88,12 +90,14 @@ export default function TripReview({ slotted, windowDays, exportResult, exportin
                       {item.type === 'stop' && (
                         <>
                           <input
+                            className="field-control field-control--sm"
                             type="time"
                             value={item.startTime ?? ''}
                             onChange={(e) => setStopTime(item.itemId, e.target.value || undefined)}
                             aria-label={`Start time for ${title}`}
                           />
                           <select
+                            className="field-control field-control--sm"
                             value={item.day}
                             onChange={(e) => moveStopToDay(item.itemId, e.target.value)}
                             aria-label={`Day for ${title}`}
@@ -111,8 +115,7 @@ export default function TripReview({ slotted, windowDays, exportResult, exportin
                       )}
                       <button
                         type="button"
-                        className="btn btn--ghost"
-                        style={{ minHeight: 36 }}
+                        className="btn btn--ghost btn--sm"
                         onClick={() => removeItem(item.itemId)}
                       >
                         Remove
@@ -128,47 +131,22 @@ export default function TripReview({ slotted, windowDays, exportResult, exportin
 
       <div className="trip-review__footer">
         <p className="trip-review__summary">
-          Creates {eventCount} calendar {eventCount === 1 ? 'event' : 'events'} across{' '}
+          {eventCount} calendar {eventCount === 1 ? 'event' : 'events'} across{' '}
           {days.length} {days.length === 1 ? 'day' : 'days'}
           {allDayCount > 0 ? ` · ${allDayCount} all-day` : ''}.
         </p>
-        <button
-          type="button"
-          className="btn"
-          style={{ minHeight: 44 }}
-          disabled={exporting || eventCount === 0}
-          onClick={onCreate}
-        >
-          {exporting ? 'Preparing…' : 'Create calendar events'}
-        </button>
+        <Button disabled={eventCount === 0} onClick={() => setSheetOpen(true)}>
+          Add to calendar
+        </Button>
       </div>
 
-      {exportResult === 'shared' && (
-        <div className="trip-export-hint">
-          Shared. On iPhone: choose <strong>Save to Files</strong>, then open the saved file and
-          tap <strong>Add All</strong> to put the trip in your calendar. Or share it straight to
-          Mail and open the attachment on any device.
-        </div>
-      )}
-      {exportResult === 'downloaded' && (
-        <div className="trip-export-hint">
-          Downloaded. Open the .ics file and your calendar app imports the whole trip: Google
-          Calendar, Apple Calendar, and Outlook all read it. Events carry GPS coordinates and a
-          Google Maps directions link wherever we know the exact spot; programs without a
-          published location link to the operator's page instead.
-        </div>
-      )}
-      {exportResult === 'cancelled' && (
-        <div className="trip-export-hint">
-          Share sheet closed, no events were created. Tap Create calendar events to try again.
-        </div>
-      )}
-      {exportResult === 'failed' && (
-        <div className="trip-export-hint">
-          The export didn't start. Try again, or from a desktop browser if your phone blocks
-          file downloads.
-        </div>
-      )}
+      <TripCalendarSheet
+        open={sheetOpen}
+        onClose={() => setSheetOpen(false)}
+        slotted={slotted}
+        eventCount={eventCount}
+        filenameDate={filenameDate}
+      />
     </section>
   )
 }

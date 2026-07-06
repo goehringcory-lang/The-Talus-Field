@@ -10,6 +10,9 @@ import GatedChrome from '../components/GatedChrome'
 import RegionPickerCard from '../components/RegionPickerCard'
 import SectionCard from '../components/SectionCard'
 import UpdatedStamp from '../components/UpdatedStamp'
+import Button from '../components/ui/Button'
+import Callout from '../components/ui/Callout'
+import PageHeader from '../components/ui/PageHeader'
 
 // Pack ids mirrored from offline/manifest.ts: one photo pack per region plus
 // the map. Used only for the status line; the manager itself lives on Account.
@@ -29,38 +32,27 @@ function BeforeYouGoNudge() {
   })
   if (dismissed) return null
   return (
-    <div
-      style={{
-        border: '1px solid var(--rule)',
-        borderLeft: '3px solid var(--moss)',
-        background: 'var(--paper-2)',
-        padding: '14px 16px',
-        marginBottom: 24,
-        display: 'flex',
-        gap: 12,
-        alignItems: 'center',
-      }}
+    <Callout
+      action={
+        <Button
+          variant="ghost"
+          size="sm"
+          onClick={() => {
+            try {
+              localStorage.setItem(BEFORE_YOU_GO_DISMISS_KEY, '1')
+            } catch {
+              /* non-fatal: nudge may reappear next launch */
+            }
+            setDismissed(true)
+          }}
+        >
+          Got it
+        </Button>
+      }
     >
-      <div style={{ flex: 1, fontFamily: 'var(--serif)', fontSize: 14, lineHeight: 1.5 }}>
-        Going soon? Do the <Link to="/essentials/before-you-go">night-before downloads</Link>{' '}
-        while you still have wifi: the offline maps, this guide, and the current Yosemite Guide PDF.
-      </div>
-      <button
-        type="button"
-        className="btn btn--ghost"
-        style={{ padding: '6px 10px', fontSize: 13, minHeight: 44, flexShrink: 0 }}
-        onClick={() => {
-          try {
-            localStorage.setItem(BEFORE_YOU_GO_DISMISS_KEY, '1')
-          } catch {
-            /* non-fatal: nudge may reappear next launch */
-          }
-          setDismissed(true)
-        }}
-      >
-        Got it
-      </button>
-    </div>
+      Going soon? Do the <Link to="/essentials/before-you-go">night-before downloads</Link>{' '}
+      while you still have wifi: the offline maps, this guide, and the current Yosemite Guide PDF.
+    </Callout>
   )
 }
 
@@ -71,18 +63,18 @@ function InSeasonStrip() {
   const upcoming = SEASONAL_EVENTS.filter((ev) => ev.dateEnd >= today).slice(0, 3)
   if (upcoming.length === 0) return null
   return (
-    <section aria-label="In season" style={{ marginTop: 28 }}>
-      <div className="eyebrow" style={{ marginBottom: 10 }}>In season</div>
-      <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'grid', gap: 8 }}>
+    <section aria-label="In season" className="page-section">
+      <span className="eyebrow">In season</span>
+      <ul className="season-strip">
         {upcoming.map((ev) => (
-          <li key={ev.id} style={{ fontFamily: 'var(--serif)', fontSize: 14, lineHeight: 1.5 }}>
-            <span style={{ color: 'var(--ink-3)' }}>{seasonalRangeLabel(ev)} · </span>
+          <li key={ev.id}>
+            <span className="season-strip__muted">{seasonalRangeLabel(ev)} · </span>
             {ev.title}
-            {ev.confidence === 'typical' ? <span style={{ color: 'var(--ink-3)' }}> (typical)</span> : null}
+            {ev.confidence === 'typical' ? <span className="season-strip__muted"> (typical)</span> : null}
           </li>
         ))}
       </ul>
-      <Link to="/programs" style={{ fontFamily: 'var(--sans)', fontSize: 13, display: 'inline-block', marginTop: 8 }}>
+      <Link to="/programs" className="more-link">
         The full seasonal almanac, day by day →
       </Link>
     </section>
@@ -102,18 +94,16 @@ export default function Home() {
 
   return (
     <GatedChrome>
-      <main className="wrap wrap--narrow" style={{ paddingTop: 56, paddingBottom: 96 }}>
-        <div className="eyebrow eyebrow--moss" style={{ marginBottom: 14 }}>
-          The Field Guide · 2026 Edition
-        </div>
-        <h1 style={{ marginBottom: 18 }}>Where in the park are you going?</h1>
-        <p style={{ color: 'var(--ink-2)', marginBottom: 36 }}>
-          Pick a region. Each one is a flat list of stops in a suggested order — read them all or just the ones that fit your day.
-        </p>
+      <main className="wrap wrap--narrow page">
+        <PageHeader
+          eyebrow="Yosemite National Park"
+          title="Where in the park are you going?"
+          intro="Pick a region. Each one is a flat list of stops in a suggested order: read them all or just the ones that fit your day."
+        />
 
         <BeforeYouGoNudge />
 
-        <div style={{ display: 'grid', gap: 18 }}>
+        <div className="card-stack">
           {REGIONS.map((region) => (
             <RegionPickerCard
               key={region.id}
@@ -178,15 +168,12 @@ export default function Home() {
         </Link>
 
         {savedStops.length > 0 && (
-          <section aria-label="Saved stops" style={{ marginTop: 40 }}>
-            <div className="eyebrow" style={{ marginBottom: 10 }}>Saved stops</div>
-            <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'grid', gap: 8 }}>
+          <section aria-label="Saved stops" className="page-section">
+            <span className="eyebrow">Saved stops</span>
+            <ul className="link-list">
               {savedStops.map((stop) => (
                 <li key={stop.id}>
-                  <Link
-                    to={getStopById(stop.id) ? `/stop/${stop.id}` : '/secret-spots'}
-                    style={{ fontFamily: 'var(--display)', fontSize: 18 }}
-                  >
+                  <Link to={getStopById(stop.id) ? `/stop/${stop.id}` : '/secret-spots'}>
                     {stop.title} →
                   </Link>
                 </li>
@@ -197,7 +184,7 @@ export default function Home() {
 
         <UpdatedStamp />
 
-        <p style={{ marginTop: 32, color: 'var(--ink-3)', fontSize: 13 }}>
+        <p className="page-footnote">
           Signed in as <strong>{session?.username}</strong>. <Link to="/account">Account →</Link>
         </p>
       </main>

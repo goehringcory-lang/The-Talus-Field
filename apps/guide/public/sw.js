@@ -23,11 +23,13 @@ const BUILD_ASSETS = /* __BUILD_ASSETS__ */ []
 // the fetch handler consults for them (see RUNTIME_PATTERNS below), and it
 // survives shell rotation so fonts don't re-download on every deploy.
 const RUNTIME_PRECACHE = [
-  '/icon.svg',
-  '/icon-192.png',
-  '/icon-512.png',
-  '/icon-maskable.png',
-  '/apple-touch-icon.png',
+  '/icon-192.v2.png',
+  '/icon-512.v2.png',
+  '/icon-maskable.v2.png',
+  '/apple-touch-icon.v2.png',
+  '/brand/favicon-64.png',
+  '/brand/mark-96.png',
+  '/brand/mark-192.png',
   '/fonts/eb-garamond.woff2',
   '/fonts/eb-garamond-italic.woff2',
   '/fonts/inter.woff2',

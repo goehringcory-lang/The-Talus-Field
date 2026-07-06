@@ -1,6 +1,5 @@
 import { defineConfig, type Plugin } from 'vite'
 import react from '@vitejs/plugin-react'
-import tailwindcss from '@tailwindcss/vite'
 import { readFile, readdir, writeFile } from 'node:fs/promises'
 import { resolve } from 'node:path'
 
@@ -35,7 +34,7 @@ function stampServiceWorker(): Plugin {
 }
 
 export default defineConfig({
-  plugins: [react(), tailwindcss(), stampServiceWorker()],
+  plugins: [react(), stampServiceWorker()],
   define: {
     'import.meta.env.VITE_BUILD_DATE': JSON.stringify(buildDate),
   },

@@ -8,18 +8,20 @@
 // and ICS generation is client-side.
 // =============================================================================
 
-import { useEffect, useMemo, useRef, useState } from 'react'
+import { Fragment, useEffect, useMemo, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import GatedChrome from '../components/GatedChrome'
+import PlanTabs from '../components/PlanTabs'
 import TripReview from '../components/TripReview'
+import Button from '../components/ui/Button'
+import { ChipButton } from '../components/ui/Chip'
+import PageHeader from '../components/ui/PageHeader'
 import { getStopById } from '../content'
 import { ITINERARIES, type ItineraryKey } from '../content/itineraries'
 import { getStopsByRegion } from '../content'
 import { MAX_SPAN_DAYS, readTripDates } from '../programs/usePrograms'
 import { addDaysIso, formatClock, formatDayHeader } from '../utils/date'
-import { exportTripIcs, type ExportMethod } from '../trip/exportTrip'
-import { buildTripIcs } from '../trip/ics'
-import { slotPlan, toHhmm } from '../trip/slotting'
+import { driveMinutesBetween, slotPlan, toHhmm, type SlottedItem } from '../trip/slotting'
 import { useTripPlan } from '../trip/useTripPlan'
 import './Trip.css'
 
@@ -45,11 +47,25 @@ function daysInWindow(start: string, end: string): string[] {
   return out
 }
 
+// Between two placed rows, the estimated drive. Rendered only when both
+// sides carry coordinates and the estimate is meaningful.
+function TransitRow({ prev, cur }: { prev: SlottedItem; cur: SlottedItem }) {
+  if (prev.startMin === null || cur.startMin === null) return null
+  const min = driveMinutesBetween(prev.item, cur.item)
+  if (min === null) return null
+  return (
+    <div className="trip-transit">
+      <span className="trip-transit__line" aria-hidden="true" />
+      <span className="trip-transit__label">
+        {min === 0 ? 'Same parking area' : `~${min} min drive`}
+      </span>
+    </div>
+  )
+}
+
 export default function Trip() {
   const { plan, addStop, removeItem, setStopTime, moveStopToDay, clear, setDates } = useTripPlan()
-  const [exportResult, setExportResult] = useState<ExportMethod | null>(null)
   const [reviewOpen, setReviewOpen] = useState(false)
-  const [exporting, setExporting] = useState(false)
   const reviewRef = useRef<HTMLDivElement>(null)
 
   // Keep the plan window in step with the dates picked on /programs.
@@ -64,31 +80,26 @@ export default function Trip() {
   const windowDays = daysInWindow(plan.dates.start, plan.dates.end)
 
   function toggleReview() {
-    setExportResult(null)
     const opening = !reviewOpen
     setReviewOpen(opening)
     if (opening) reviewRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
   }
 
-  async function onCreateEvents() {
-    setExporting(true)
-    try {
-      // Build synchronously before the await: iOS only allows the share
-      // sheet inside the user-gesture task.
-      const ics = buildTripIcs(slotted)
-      setExportResult(await exportTripIcs(ics, `yosemite-trip-${plan.dates.start}.ics`))
-    } finally {
-      setExporting(false)
-    }
-  }
-
+  // Seed a preset day only up to what a day can actually hold (08:00-21:00
+  // with travel buffers); dumping a whole region onto one date used to bury
+  // the plan in overflow warnings.
+  const DAY_CAPACITY_MIN = 13 * 60
   function seedItinerary(key: ItineraryKey) {
     const days = ITINERARIES[key].days
     days.forEach((day, i) => {
       const date = windowDays[Math.min(i, windowDays.length - 1)]
+      let budget = 0
       for (const region of day.regions) {
         for (const stop of getStopsByRegion(region)) {
           if (stop.kind === 'lodging') continue
+          const cost = (stop.timeBudgetMin ?? 60) + 30
+          if (budget + cost > DAY_CAPACITY_MIN) continue
+          budget += cost
           addStop(stop.id, date)
         }
       }
@@ -109,29 +120,29 @@ export default function Trip() {
 
   return (
     <GatedChrome>
-      <main className="wrap wrap--narrow" style={{ paddingTop: 56, paddingBottom: 96 }}>
-        <div className="eyebrow eyebrow--moss" style={{ marginBottom: 14 }}>
-          The Field Guide · 2026 Edition
-        </div>
-        <h1 style={{ marginBottom: 18 }}>Your trip plan</h1>
-        <p style={{ color: 'var(--ink-2)', marginBottom: 20 }}>
-          Set your dates, then fill the days: programs from the list, stops from their pages or
-          the map. When the plan is final, review it and create the calendar events in one go.
-        </p>
+      <main className="wrap wrap--narrow page">
+        <PlanTabs active="trip" />
+        <PageHeader
+          eyebrow="Plan your days"
+          title="Your trip plan"
+          intro="Set your dates, then fill the days: programs from the list, stops from their pages or the map. When the plan is final, review it and put it on your calendar."
+        />
 
         <StepHeader n={1} title="Pick your dates" />
         <div className="trip-dates">
-          <label>
+          <label className="field">
             Arriving
             <input
+              className="field-control"
               type="date"
               value={plan.dates.start}
               onChange={(e) => updateDates(e.target.value, plan.dates.end)}
             />
           </label>
-          <label>
+          <label className="field">
             Leaving
             <input
+              className="field-control"
               type="date"
               value={plan.dates.end}
               min={plan.dates.start}
@@ -139,39 +150,27 @@ export default function Trip() {
               onChange={(e) => updateDates(plan.dates.start, e.target.value)}
             />
           </label>
-          <Link
-            to="/programs"
-            className="btn btn--ghost"
-            style={{ minHeight: 44, display: 'inline-flex', alignItems: 'center' }}
-          >
+          <Button variant="ghost" to="/programs">
             Browse programs running these dates →
-          </Link>
+          </Button>
         </div>
 
         <StepHeader n={2} title="Fill your days" />
         <div className="trip-toolbar">
           {itemCount === 0 && (
             <>
-              <span style={{ fontFamily: 'var(--sans)', fontSize: 12, color: 'var(--ink-3)' }}>
-                Start from a preset:
-              </span>
+              <span className="trip-toolbar__label">Start from a preset:</span>
               {(Object.keys(ITINERARIES) as ItineraryKey[]).map((key) => (
-                <button
-                  key={key}
-                  type="button"
-                  className="btn btn--ghost"
-                  style={{ minHeight: 44 }}
-                  onClick={() => seedItinerary(key)}
-                >
+                <ChipButton key={key} variant="action" onClick={() => seedItinerary(key)}>
                   {ITINERARIES[key].label}
-                </button>
+                </ChipButton>
               ))}
             </>
           )}
           {itemCount > 0 && (
-            <button type="button" className="btn btn--ghost" style={{ minHeight: 44 }} onClick={clear}>
+            <Button variant="ghost" size="sm" onClick={clear}>
               Clear plan
-            </button>
+            </Button>
           )}
         </div>
 
@@ -189,7 +188,7 @@ export default function Trip() {
                 a preset above.
               </li>
               <li>
-                Finalize the plan below to create the calendar events. They carry GPS coordinates
+                Finalize the plan below to put it on your calendar. Events carry GPS coordinates
                 and a directions link, so tapping an event on the day launches navigation.
               </li>
             </ol>
@@ -212,72 +211,77 @@ export default function Trip() {
                     ~{Math.floor(totalMin / 60)}h{totalMin % 60 ? ` ${totalMin % 60}m` : ''} planned
                   </span>
                 </div>
-                {items.map((s) => {
+                {items.map((s, i) => {
                   const { item } = s
                   const isStop = item.type === 'stop'
                   const stop = isStop ? getStopById(item.stopId) : undefined
                   const title = isStop ? stop?.title ?? item.stopId : item.snapshot.title
                   const link = isStop ? `/stop/${item.stopId}` : undefined
                   return (
-                    <div className="trip-item" key={item.itemId}>
-                      <div className="trip-item__time">
-                        {isStop ? (
-                          <>
-                            <input
-                              type="time"
-                              value={item.startTime ?? (s.startMin !== null ? toHhmm(s.startMin) : '')}
-                              onChange={(e) => setStopTime(item.itemId, e.target.value || undefined)}
-                              aria-label={`Start time for ${title}`}
-                            />
-                            {!item.startTime && s.startMin !== null && (
-                              <span className="trip-item__auto">auto</span>
-                            )}
-                          </>
-                        ) : (
-                          <span className="trip-item__fixed-time">
-                            {s.startMin !== null ? formatClock(s.startMin) : 'All day'}
-                          </span>
-                        )}
-                      </div>
-                      <div>
-                        <h3 className="trip-item__title">
-                          {link ? <Link to={link}>{title}</Link> : title}
-                        </h3>
-                        <span className="trip-item__meta">
-                          <span>
-                            {s.durationMin >= 60
-                              ? `${Math.floor(s.durationMin / 60)}h${s.durationMin % 60 ? ` ${s.durationMin % 60}m` : ''}`
-                              : `${s.durationMin}m`}
-                          </span>
+                    <Fragment key={item.itemId}>
+                      {i > 0 && <TransitRow prev={items[i - 1]} cur={s} />}
+                      <div className="trip-item">
+                        <div className="trip-item__time">
                           {isStop ? (
-                            <select
-                              value={item.day}
-                              onChange={(e) => moveStopToDay(item.itemId, e.target.value)}
-                              aria-label={`Day for ${title}`}
-                            >
-                              {windowDays.map((d) => (
-                                <option key={d} value={d}>
-                                  {formatDayHeader(d)}
-                                </option>
-                              ))}
-                              {!windowDays.includes(item.day) && (
-                                <option value={item.day}>{formatDayHeader(item.day)}</option>
+                            <>
+                              <input
+                                className="field-control field-control--sm"
+                                type="time"
+                                value={item.startTime ?? (s.startMin !== null ? toHhmm(s.startMin) : '')}
+                                onChange={(e) => setStopTime(item.itemId, e.target.value || undefined)}
+                                aria-label={`Start time for ${title}`}
+                              />
+                              {!item.startTime && s.startMin !== null && (
+                                <span className="trip-item__auto">auto</span>
                               )}
-                            </select>
+                            </>
                           ) : (
-                            <span>{item.snapshot.location ?? 'Program'}</span>
+                            <span className="trip-item__fixed-time">
+                              {s.startMin !== null ? formatClock(s.startMin) : 'All day'}
+                            </span>
                           )}
-                        </span>
+                        </div>
+                        <div>
+                          <h3 className="trip-item__title">
+                            {link ? <Link to={link}>{title}</Link> : title}
+                          </h3>
+                          <span className="trip-item__meta">
+                            <span>
+                              {s.durationMin >= 60
+                                ? `${Math.floor(s.durationMin / 60)}h${s.durationMin % 60 ? ` ${s.durationMin % 60}m` : ''}`
+                                : `${s.durationMin}m`}
+                            </span>
+                            {isStop ? (
+                              <select
+                                className="field-control field-control--sm"
+                                value={item.day}
+                                onChange={(e) => moveStopToDay(item.itemId, e.target.value)}
+                                aria-label={`Day for ${title}`}
+                              >
+                                {windowDays.map((d) => (
+                                  <option key={d} value={d}>
+                                    {formatDayHeader(d)}
+                                  </option>
+                                ))}
+                                {!windowDays.includes(item.day) && (
+                                  <option value={item.day}>{formatDayHeader(item.day)}</option>
+                                )}
+                              </select>
+                            ) : (
+                              <span>{item.snapshot.location ?? 'Program'}</span>
+                            )}
+                          </span>
+                        </div>
+                        <button
+                          type="button"
+                          className="trip-item__remove"
+                          aria-label={`Remove ${title} from trip`}
+                          onClick={() => removeItem(item.itemId)}
+                        >
+                          ×
+                        </button>
                       </div>
-                      <button
-                        type="button"
-                        className="trip-item__remove"
-                        aria-label={`Remove ${title} from trip`}
-                        onClick={() => removeItem(item.itemId)}
-                      >
-                        ×
-                      </button>
-                    </div>
+                    </Fragment>
                   )
                 })}
                 {overflow.length > 0 && (
@@ -295,15 +299,9 @@ export default function Trip() {
 
         <div ref={reviewRef} style={{ scrollMarginTop: 24 }}>
           <StepHeader n={3} title="Review & finalize" />
-          <button
-            type="button"
-            className="btn"
-            style={{ minHeight: 44 }}
-            disabled={itemCount === 0}
-            onClick={toggleReview}
-          >
+          <Button disabled={itemCount === 0} onClick={toggleReview}>
             {reviewOpen ? 'Hide review' : 'Finalize trip'}
-          </button>
+          </Button>
           {itemCount === 0 && (
             <p className="trip-step__hint">
               Add at least one stop or program first. The calendar events are built from your
@@ -311,19 +309,14 @@ export default function Trip() {
             </p>
           )}
           {reviewOpen && itemCount > 0 && (
-            <TripReview
-              slotted={slotted}
-              windowDays={windowDays}
-              exportResult={exportResult}
-              exporting={exporting}
-              onCreate={onCreateEvents}
-            />
+            <TripReview slotted={slotted} windowDays={windowDays} filenameDate={plan.dates.start} />
           )}
         </div>
 
-        <p style={{ marginTop: 40, fontFamily: 'var(--sans)', fontSize: 11, color: 'var(--ink-3)', lineHeight: 1.6 }}>
-          Times are suggestions built from each stop's time budget plus a 30-minute travel buffer;
-          programs keep their published times. Everything here works offline once added.
+        <p className="page-footnote">
+          Times are suggestions built from each stop's time budget plus a travel buffer estimated
+          from the driving distance between stops; programs keep their published times. Everything
+          here works offline once added.
         </p>
       </main>
     </GatedChrome>

@@ -6,13 +6,16 @@ import type { StopKind } from '../content'
 
 export type KindStyle = { color: string; label: string }
 
+// Hues tuned to the print palette (slate, forest, grey-brown, aubergine,
+// --gold, --moss) while staying distinguishable from each other and legible
+// against the greens and tans of the topo tiles.
 export const KIND_STYLES: Record<StopKind, KindStyle> = {
-  viewpoint: { color: '#1e6fb8', label: 'Viewpoint' },
-  trailhead: { color: '#2f8a3e', label: 'Trailhead' },
-  parking: { color: '#6b6b6b', label: 'Parking' },
-  lodging: { color: '#7a4ea8', label: 'Lodging' },
-  meal: { color: '#e07a1a', label: 'Meal' },
-  drive: { color: '#b8442e', label: 'Drive' },
+  viewpoint: { color: '#2c4a63', label: 'Viewpoint' },
+  trailhead: { color: '#3d5a3f', label: 'Trailhead' },
+  parking: { color: '#6b6355', label: 'Parking' },
+  lodging: { color: '#5a3a5e', label: 'Lodging' },
+  meal: { color: '#8a661a', label: 'Meal' },
+  drive: { color: '#7a2a10', label: 'Drive' },
 }
 
 export function getKindStyle(kind: StopKind): KindStyle {

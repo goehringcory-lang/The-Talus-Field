@@ -12,5 +12,9 @@ apps
 workers
 wrangler.jsonc
 
+# Root build-command shim for Cloudflare Workers Builds, not site content
+package.json
+package-lock.json
+
 # Repo documentation
 *.md

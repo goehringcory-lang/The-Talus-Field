@@ -28,11 +28,20 @@ export default function App() {
           and a blank screen reads as broken. */}
       <Suspense
         fallback={
-          <div
-            className="app-shell"
-            style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: '60vh' }}
-          >
-            <span className="spinner" aria-label="Loading" />
+          <div className="app-shell route-loading" aria-label="Loading">
+            <img
+              className="route-loading__mark"
+              src="/brand/mark-96.png"
+              srcSet="/brand/mark-96.png 1x, /brand/mark-192.png 2x"
+              alt=""
+              width="61"
+              height="48"
+            />
+            <div className="route-loading__lines">
+              <div className="skeleton" style={{ width: '60%', height: 14 }} />
+              <div className="skeleton" style={{ width: '84%', height: 14 }} />
+              <div className="skeleton" style={{ width: '72%', height: 14 }} />
+            </div>
           </div>
         }
       >

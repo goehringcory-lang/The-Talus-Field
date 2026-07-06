@@ -57,36 +57,28 @@
 
   --measure: 66ch;
   --gutter: clamp(20px, 4vw, 48px);
-}
 
-[data-palette="granite"] {
-  --paper: #efece3;
-  --paper-2: #e1ddcd;
-  --paper-3: #cfc9b3;
-  --ink: #14140f;
-  --ink-2: #2f2f29;
-  --ink-3: #484840;
-  --rule: #1c1c17;
-  --rule-soft: #b9b39d;
-  --moss: #243a26;
-  --moss-2: #3d573f;
-  --rust: #7a3a1c;
-  --gold: #8a7020;
-}
+  /* Spacing scale. Inline pixel values migrate onto these; anything not on
+     the scale is a smell. */
+  --s1: 4px;
+  --s2: 8px;
+  --s3: 12px;
+  --s4: 16px;
+  --s5: 24px;
+  --s6: 32px;
+  --s7: 48px;
+  --s8: 64px;
+  --page-top: 40px;
+  --page-bottom: 96px;
 
-[data-palette="sierra"] {
-  --paper: #ebede9;
-  --paper-2: #d8ddd9;
-  --paper-3: #bfc6c0;
-  --ink: #0c1014;
-  --ink-2: #232a32;
-  --ink-3: #3d4a58;
-  --rule: #11161c;
-  --rule-soft: #a8b0b3;
-  --moss: #1a2c40;
-  --moss-2: #2c456b;
-  --rust: #5e3e25;
-  --gold: #75601f;
+  /* The editorial identity is square-cornered: rules and plates, not pills.
+     --radius-pill exists only for the nav count badge. */
+  --radius: 0;
+  --radius-pill: 999px;
+
+  /* Height of the sticky masthead, excluding the top safe-area inset. The
+     map page subtracts this (plus insets and the bottom nav) from 100dvh. */
+  --chrome-top-h: 52px;
 }
 
 * { box-sizing: border-box; }
@@ -176,6 +168,12 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
 .wrap--narrow { max-width: 780px; }
 .wrap--read { max-width: 660px; }
 
+/* Standard page body inside the gated chrome. */
+.page {
+  padding-top: var(--page-top);
+  padding-bottom: var(--page-bottom);
+}
+
 /* App-specific shell */
 .app-shell {
   min-height: 100vh;
@@ -189,13 +187,18 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.14em;
-  padding: 14px 22px;
+  padding: 10px 22px;
   background: var(--ink);
   color: var(--paper);
   border: 1px solid var(--ink);
+  border-radius: var(--radius);
   cursor: pointer;
   text-decoration: none;
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 44px;
 }
 .btn:hover { background: var(--moss); border-color: var(--moss); color: var(--paper); }
 .btn[disabled] { opacity: 0.45; cursor: not-allowed; }
@@ -205,6 +208,30 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
   color: var(--ink);
 }
 .btn--ghost:hover { background: var(--ink); color: var(--paper); }
+
+/* Text-link-as-button: for tertiary actions inside prose. */
+.btn--quiet {
+  background: none;
+  border: none;
+  padding: 0;
+  min-height: auto;
+  color: var(--moss);
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  letter-spacing: normal;
+  text-transform: none;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.btn--quiet:hover { background: none; border: none; color: var(--moss-2); }
+
+/* Compact button for dense rows (review panel, banners). */
+.btn--sm {
+  font-size: 12px;
+  padding: 6px 12px;
+  min-height: 36px;
+}
 
 .input {
   font-family: var(--sans);
@@ -224,44 +251,6 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
 }
 
 /* ===== Phase 3 components ===== */
-
-/* GPS chip — tappable coordinate that opens native Maps */
-.gps-chip {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-family: var(--mono);
-  font-size: 11px;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-  padding: 10px 12px;
-  min-height: 44px;
-  border: 1px solid var(--rule);
-  color: var(--ink);
-  text-decoration: none;
-  background: var(--paper);
-}
-.gps-chip:hover {
-  background: var(--ink);
-  color: var(--paper);
-  border-color: var(--ink);
-}
-
-/* Inline metadata chip (elevation, time budget) */
-.meta-chip {
-  display: inline-flex;
-  align-items: baseline;
-  gap: 6px;
-  font-family: var(--sans);
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  padding: 6px 10px;
-  border: 1px solid var(--rule-soft);
-  color: var(--ink-2);
-  background: transparent;
-}
 
 .meta-row {
   display: flex;
@@ -360,21 +349,22 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
 .daybar__dot--active { background: var(--ink); }
 .daybar__dot:hover { background: var(--moss); border-color: var(--moss); }
 
-/* Region picker card — used on the hub */
+/* Section index rows on the hub — the editorial site's ruled article-card
+   anatomy: hairline rule, moss kicker, display title, italic serif dek,
+   dateline meta. Rules, not boxes. */
 .region-picker-card {
   display: block;
-  border: 1px solid var(--rule);
-  background: var(--paper-2);
-  padding: 32px;
+  border-top: 1px solid var(--rule);
+  padding: 20px 0 26px;
   text-decoration: none;
   color: var(--ink);
-  transition: transform 0.15s ease, background 0.15s ease;
 }
 .region-picker-card:hover {
-  background: var(--paper-3);
-  transform: translateY(-2px);
   text-decoration: none;
   color: var(--ink);
+}
+.region-picker-card:hover .region-picker-card__title {
+  color: var(--moss);
 }
 .region-picker-card__title {
   font-family: var(--display);
@@ -382,12 +372,14 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
   font-weight: 500;
   line-height: 1.05;
   margin: 8px 0 12px;
+  transition: color 0.12s ease;
 }
 .region-picker-card__teaser {
   font-family: var(--serif);
+  font-style: italic;
   font-size: 15px;
   color: var(--ink-2);
-  margin: 0 0 18px;
+  margin: 0 0 14px;
   line-height: 1.5;
 }
 
@@ -397,7 +389,6 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
   display: block;
   width: 100%;
   height: auto;
-  margin: 0 0 18px;
   background: var(--paper-3);
 }
 .stop-card__title {
@@ -451,18 +442,29 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
   color: var(--ink-3);
 }
 
-/* Gated chrome — small top-right account link on every gated route */
+/* Gated chrome — the one-line masthead on every gated route: brand lockup
+   left, quick links right (links fold into the bottom nav on small screens,
+   the lockup stays). */
 .gated-chrome {
   position: sticky;
   top: 0;
   z-index: 20;
   display: flex;
-  justify-content: flex-end;
+  align-items: center;
+  justify-content: space-between;
   gap: 20px;
-  padding: 14px var(--gutter);
+  min-height: var(--chrome-top-h);
+  padding: env(safe-area-inset-top) var(--gutter) 0;
   background: color-mix(in oklab, var(--paper) 92%, transparent);
   backdrop-filter: blur(6px);
-  border-bottom: 1px solid var(--rule-soft);
+  -webkit-backdrop-filter: blur(6px);
+  border-bottom: 1px solid var(--rule);
+}
+.gated-chrome__links {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-shrink: 0;
 }
 .gated-chrome__link {
   font-family: var(--sans);
@@ -474,7 +476,7 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
   text-decoration: none;
 }
 .gated-chrome__link:hover { color: var(--moss); }
-.gated-chrome__link[aria-current='page'] { color: var(--ink-1); }
+.gated-chrome__link[aria-current='page'] { color: var(--ink); }
 
 /* Updated stamp on the hub footer */
 .updated-stamp {
@@ -613,7 +615,7 @@ a:active {
   font-family: var(--sans);
   font-size: 13px;
   padding: 4px 14px;
-  border-radius: 6px;
+  border-radius: var(--radius);
   animation: trip-add-notice-in 160ms ease-out;
 }
 .trip-add-notice a {
@@ -635,9 +637,10 @@ a:active {
   }
 }
 
-/* Gated chrome links become secondary to bottom nav on small screens */
+/* Quick links fold into the bottom nav on small screens; the brand lockup
+   stays so the app is never chromeless. */
 @media (max-width: 640px) {
-  .gated-chrome {
+  .gated-chrome__links {
     display: none;
   }
 }
@@ -904,7 +907,14 @@ select:focus-visible {
   gap: 8px;
 }
 
-/* ===== Favorite (saved stop) toggle ===== */
+/* ===== Stop-card action toggles (add-to-trip, favorite) ===== */
+
+.stop-card__actions {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+  flex-shrink: 0;
+}
 
 .fav-toggle {
   display: inline-flex;
@@ -912,7 +922,6 @@ select:focus-visible {
   justify-content: center;
   width: 44px;
   height: 44px;
-  margin-left: auto;
   background: none;
   border: none;
   padding: 0;
@@ -953,35 +962,6 @@ select:focus-visible {
     --gold:      #c09038;
   }
 
-  [data-palette="granite"] {
-    --paper:     #1a1a15;
-    --paper-2:   #222220;
-    --paper-3:   #2c2c28;
-    --ink:       #ebebe0;
-    --ink-2:     #c5c5b8;
-    --ink-3:     #929280;
-    --rule:      #b0b0a0;
-    --rule-soft: #303028;
-    --moss:      #507850;
-    --moss-2:    #688a68;
-    --rust:      #a05830;
-    --gold:      #a89030;
-  }
-
-  [data-palette="sierra"] {
-    --paper:     #141820;
-    --paper-2:   #1c2030;
-    --paper-3:   #242a3e;
-    --ink:       #dde6f0;
-    --ink-2:     #b8c8d8;
-    --ink-3:     #8a9ab0;
-    --rule:      #a0b8d0;
-    --rule-soft: #283040;
-    --moss:      #4a7090;
-    --moss-2:    #6090b0;
-    --rust:      #8a5a38;
-    --gold:      #9a8030;
-  }
 }
 
 /* ============================================================

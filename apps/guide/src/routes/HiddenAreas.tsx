@@ -1,8 +1,9 @@
 import { useEffect, useMemo } from 'react'
-import { Link } from 'react-router-dom'
-import { HIDDEN_META, REGIONS, getHiddenStops } from '../content'
+import { REGIONS, HIDDEN_META, getHiddenStops } from '../content'
 import GatedChrome from '../components/GatedChrome'
 import StopCard from '../components/StopCard'
+import BackLink from '../components/ui/BackLink'
+import PageHeader from '../components/ui/PageHeader'
 import { allPhotoUrls } from '../utils/photo'
 
 // The hidden-areas index: every `collection: 'hidden'` stop, grouped under
@@ -29,21 +30,22 @@ export default function HiddenAreas() {
 
   return (
     <GatedChrome>
-      <main className="wrap wrap--narrow" style={{ paddingTop: 56, paddingBottom: 96 }}>
-        <div className="eyebrow eyebrow--moss" style={{ marginBottom: 14 }}>
-          Included with purchase
-        </div>
-        <h1 style={{ marginBottom: 18 }}>{HIDDEN_META.title}</h1>
-        <p style={{ color: 'var(--ink-2)', marginBottom: 36 }}>{HIDDEN_META.teaser}</p>
+      <main className="wrap wrap--narrow page">
+        <PageHeader
+          eyebrow="Included with purchase"
+          title={HIDDEN_META.title}
+          intro={HIDDEN_META.teaser}
+        />
 
         {groups.map((group, gi) => (
-          <section key={group.region.id} aria-label={group.region.title}>
-            <div
-              className="eyebrow"
-              style={{ marginTop: gi === 0 ? 0 : 56, marginBottom: 18 }}
-            >
+          <section
+            key={group.region.id}
+            aria-label={group.region.title}
+            className={gi === 0 ? undefined : 'page-section'}
+          >
+            <span className="eyebrow" style={{ display: 'block', marginBottom: 18 }}>
               {group.region.title}
-            </div>
+            </span>
             {group.stops.map((stop, i) => (
               <div key={stop.id}>
                 <StopCard stop={stop} />
@@ -53,20 +55,7 @@ export default function HiddenAreas() {
           </section>
         ))}
 
-        <p style={{ marginTop: 56 }}>
-          <Link
-            to="/"
-            style={{
-              fontFamily: 'var(--sans)',
-              fontSize: 12,
-              textTransform: 'uppercase',
-              letterSpacing: '0.14em',
-              fontWeight: 600,
-            }}
-          >
-            ← Back to the guide
-          </Link>
-        </p>
+        <BackLink to="/" label="Back to the guide" />
       </main>
     </GatedChrome>
   )

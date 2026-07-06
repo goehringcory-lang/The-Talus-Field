@@ -2,9 +2,12 @@ import { Link } from 'react-router-dom'
 import ReactMarkdown from 'react-markdown'
 import type { StopT } from '../content'
 import { useFavorites } from '../lib/favorites'
+import AddToTripButton from './AddToTripButton'
 import MapsLink from './MapsLink'
 import PhotoPlaceholder from './PhotoPlaceholder'
+import Plate from './Plate'
 import ResponsivePhoto from './ResponsivePhoto'
+import { Chip } from './ui/Chip'
 
 // Secret spots are stops minus `region`, which this card never reads —
 // widening the prop lets both render through the same component.
@@ -43,10 +46,11 @@ export default function StopCard({ stop, compact = true }: Props) {
   const photo = stop.photos[0]
   const { toggle, isFavorite } = useFavorites()
   const saved = isFavorite(stop.id)
+  const plateTag = `Plate · ${KIND_LABEL[stop.kind]}`
   return (
     <article className="stop-card">
-      {photo ? (
-        <>
+      <Plate tag={plateTag} caption={!compact ? photo?.caption : undefined}>
+        {photo ? (
           <ResponsivePhoto
             className="stop-card__photo"
             src={photo.src}
@@ -56,10 +60,10 @@ export default function StopCard({ stop, compact = true }: Props) {
             height={900}
             style={{ aspectRatio: '4 / 3', objectFit: 'cover' }}
           />
-        </>
-      ) : (
-        <PhotoPlaceholder />
-      )}
+        ) : (
+          <PhotoPlaceholder />
+        )}
+      </Plate>
 
       <div className="stop-card__titlerow">
         <div style={{ minWidth: 0 }}>
@@ -70,37 +74,40 @@ export default function StopCard({ stop, compact = true }: Props) {
           </div>
           <h2 className="stop-card__title">{stop.title}</h2>
         </div>
-        <button
-          type="button"
-          className="fav-toggle"
-          aria-pressed={saved}
-          aria-label={saved ? `Remove ${stop.title} from saved stops` : `Save ${stop.title}`}
-          title={saved ? 'Saved' : 'Save stop'}
-          onClick={() => toggle(stop.id)}
-        >
-          <svg className="fav-toggle__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-            <path d="M6 3h12a1 1 0 0 1 1 1v17l-7-4.5L5 21V4a1 1 0 0 1 1-1z" />
-          </svg>
-        </button>
+        <div className="stop-card__actions">
+          <AddToTripButton stopId={stop.id} title={stop.title} />
+          <button
+            type="button"
+            className="fav-toggle"
+            aria-pressed={saved}
+            aria-label={saved ? `Remove ${stop.title} from saved stops` : `Save ${stop.title}`}
+            title={saved ? 'Saved' : 'Save stop'}
+            onClick={() => toggle(stop.id)}
+          >
+            <svg className="fav-toggle__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <path d="M6 3h12a1 1 0 0 1 1 1v17l-7-4.5L5 21V4a1 1 0 0 1 1-1z" />
+            </svg>
+          </button>
+        </div>
       </div>
 
       {(stop.coord || stop.elevationFt || stop.timeBudgetMin || stop.difficulty || stop.season) && (
         <div className="meta-row">
           <MapsLink coord={stop.coord} label={stop.title} />
           {stop.elevationFt !== undefined && (
-            <span className="meta-chip">{formatElevation(stop.elevationFt)}</span>
+            <Chip variant="meta">{formatElevation(stop.elevationFt)}</Chip>
           )}
           {stop.timeBudgetMin !== undefined && (
-            <span className="meta-chip">{formatTime(stop.timeBudgetMin)}</span>
+            <Chip variant="meta">{formatTime(stop.timeBudgetMin)}</Chip>
           )}
           {stop.difficulty && (
-            <span className="meta-chip">{DIFFICULTY_LABEL[stop.difficulty]}</span>
+            <Chip variant="meta">{DIFFICULTY_LABEL[stop.difficulty]}</Chip>
           )}
-          {stop.season && <span className="meta-chip">{stop.season}</span>}
+          {stop.season && <Chip variant="meta">{stop.season}</Chip>}
         </div>
       )}
 
-      <div className="prose">
+      <div className={compact ? 'prose' : 'prose prose--dropcap'}>
         <ReactMarkdown>{stop.body}</ReactMarkdown>
       </div>
 
