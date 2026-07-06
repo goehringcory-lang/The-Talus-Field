@@ -111,6 +111,7 @@ export default function Home() {
               title={region.title}
               teaser={region.teaser}
               stopCount={getStopsByRegion(region.id).length}
+              photo={region.photo}
             />
           ))}
           <SectionCard

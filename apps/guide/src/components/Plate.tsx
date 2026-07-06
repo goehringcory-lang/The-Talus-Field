@@ -9,16 +9,24 @@ type Props = {
   children: ReactNode
   tag?: string
   caption?: string
+  // One-line photographer/license credit, rendered under the caption. The
+  // full attribution list (with source links) lives on /account.
+  credit?: string
   className?: string
 }
 
-export default function Plate({ children, tag, caption, className }: Props) {
+export default function Plate({ children, tag, caption, credit, className }: Props) {
   return (
     <figure className={`plate${className ? ` ${className}` : ''}`}>
       <div className="plate__frame" {...(tag ? { 'data-tag': tag } : {})}>
         {children}
       </div>
-      {caption && <figcaption className="plate__caption">{caption}</figcaption>}
+      {(caption || credit) && (
+        <figcaption className="plate__caption">
+          {caption}
+          {credit && <span className="plate__credit">{credit}</span>}
+        </figcaption>
+      )}
     </figure>
   )
 }

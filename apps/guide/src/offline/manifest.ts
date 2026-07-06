@@ -28,10 +28,12 @@ export type Pack = {
   tolerateMissing: number
 }
 
-function regionPhotoUrls(region: Region): string[] {
+function regionPhotoUrls(region: (typeof REGIONS)[number]): string[] {
   const urls = new Set<string>()
+  // The region's picker-card hero belongs offline with its stops.
+  for (const url of allPhotoUrls(region.photo.src)) urls.add(url)
   // Hidden areas are paid content too; their photos belong in the pack.
-  for (const stop of getStopsByRegion(region, { includeHidden: true })) {
+  for (const stop of getStopsByRegion(region.id, { includeHidden: true })) {
     for (const photo of stop.photos) {
       for (const url of allPhotoUrls(photo.src)) urls.add(url)
     }
@@ -54,7 +56,7 @@ const TILE_BYTES = 25_000
 
 export function buildPacks(): Pack[] {
   const regionPacks: Pack[] = REGIONS.map((region) => {
-    const urls = regionPhotoUrls(region.id)
+    const urls = regionPhotoUrls(region)
     return {
       id: `photos-${region.id}`,
       label: REGION_LABELS[region.id],

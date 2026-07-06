@@ -663,6 +663,14 @@
   opacity: 0.8;
 }
 
+.plate__credit {
+  display: block;
+  margin-top: 2px;
+  font-size: 0.72rem;
+  font-style: normal;
+  color: var(--ink-3);
+}
+
 .install-banner {
   position: fixed;
   bottom: calc(56px + env(safe-area-inset-bottom) + 8px);

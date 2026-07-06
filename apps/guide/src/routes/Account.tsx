@@ -6,6 +6,7 @@ import DownloadManager from '../components/DownloadManager'
 import Button from '../components/ui/Button'
 import PageHeader from '../components/ui/PageHeader'
 import Skeleton from '../components/ui/Skeleton'
+import { PHOTO_CREDITS } from '../content/photoCredits'
 import { MAP_ATTRIBUTION } from '../map/style'
 
 function formatAccessDate(epochSeconds: number): string {
@@ -81,6 +82,42 @@ function AccessStatusCard() {
   )
 }
 
+// Full attribution for the guide's photography: author, license, and source
+// link per file. This is the Creative Commons compliance surface (the plate
+// captions carry only a courtesy line); it renders offline once cached.
+// Hidden until the credits manifest ships entries.
+function PhotoCreditsSection() {
+  const entries = Object.entries(PHOTO_CREDITS)
+  if (entries.length === 0) return null
+  return (
+    <section id="photo-credits" aria-label="Photo credits" style={{ marginTop: 28 }}>
+      <span className="eyebrow" style={{ display: 'block', marginBottom: 8 }}>Photography</span>
+      <p className="card__note" style={{ marginTop: 0 }}>
+        The photographs in this guide are public domain and Creative Commons works, credited
+        below, alongside our own field photography.
+      </p>
+      <ul className="link-list" style={{ fontSize: 13 }}>
+        {entries.map(([src, credit]) => {
+          const basename = src.split('/').pop() ?? src
+          return (
+            <li key={src}>
+              {basename}: {credit.author}, {credit.license}
+              {credit.source && (
+                <>
+                  {' · '}
+                  <a href={credit.source} target="_blank" rel="noopener noreferrer">
+                    source
+                  </a>
+                </>
+              )}
+            </li>
+          )
+        })}
+      </ul>
+    </section>
+  )
+}
+
 export default function Account() {
   const { session, signOut } = useAuth()
   return (
@@ -100,6 +137,8 @@ export default function Account() {
             <DownloadManager />
           </div>
         </div>
+
+        <PhotoCreditsSection />
 
         <p style={{ marginTop: 28 }}>
           Questions? Email{' '}

@@ -17,30 +17,34 @@ export const ESSENTIAL_SECTIONS: { id: EssentialSectionT; title: string }[] = [
   { id: 'packing', title: 'Packing' },
 ]
 
-export const REGIONS: { id: Region; title: string; teaser: string }[] = [
+export const REGIONS: { id: Region; title: string; teaser: string; photo: { src: string } }[] = [
   {
     id: 'valley',
     title: 'Yosemite Valley & surrounding areas',
     teaser:
       'The valley floor and the rim viewpoints that look down into it. Tunnel View, the meadows, the climbing wall, the Mist Trail, the lodgings.',
+    photo: { src: '/photos/region-valley.jpg' },
   },
   {
     id: 'glacier-mariposa',
     title: 'Glacier Point & the Mariposa Grove',
     teaser:
       'The southern rim and the giant sequoias. Higher elevation, more driving, big payoff views. Closed in winter.',
+    photo: { src: '/photos/region-glacier-mariposa.jpg' },
   },
   {
     id: 'tuolumne',
     title: 'Tuolumne Meadows & the Highway 120 corridor',
     teaser:
       'The high country. Granite domes, alpine lakes, the meadow that turns the trip into something bigger than the valley. Tioga Road open roughly June through October.',
+    photo: { src: '/photos/region-tuolumne.jpg' },
   },
   {
     id: 'hetch-hetchy',
     title: 'Hetch Hetchy & the Evergreen Road corridor',
     teaser:
       'The other granite valley, half of it under a reservoir, with its own entrance and day-use gate hours. Open year-round and nearly empty.',
+    photo: { src: '/photos/region-hetch-hetchy.jpg' },
   },
 ]
 
