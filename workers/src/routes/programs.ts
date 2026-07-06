@@ -68,7 +68,7 @@ programs.get('/', async (c) => {
   const stale = !meta || Date.now() - Date.parse(meta.fetchedAt) > STALE_AFTER_MS
 
   let npsEvents: ProgramEventT[]
-  let syncedAt: string
+  let syncedAt: string | null
   if (stale) {
     // Cold start or cron gap: serve live and backfill KV in the background.
     try {
@@ -78,7 +78,9 @@ programs.get('/', async (c) => {
     } catch (err) {
       console.error('programs: live NPS fetch failed, serving KV as-is', err)
       npsEvents = await readRange(c.env, start, end)
-      syncedAt = meta?.fetchedAt ?? new Date(0).toISOString()
+      // No KV meta means the sync moment is simply unknown; an epoch-0
+      // stamp used to render as "synced 56 years ago" in the PWA.
+      syncedAt = meta?.fetchedAt ?? null
     }
   } else {
     npsEvents = await readRange(c.env, start, end)
@@ -101,7 +103,9 @@ programs.get('/', async (c) => {
       syncedAt,
       events,
       sources: {
-        nps: { fetchedAt: syncedAt },
+        // Omitted (not null) when unknown so pre-nullable PWA builds,
+        // whose schema types fetchedAt as a plain string, still parse.
+        nps: syncedAt ? { fetchedAt: syncedAt } : undefined,
         manual: { version: MANUAL_PROGRAMS_VERSION },
       },
     },

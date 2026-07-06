@@ -90,9 +90,12 @@ export default function Trip() {
   // the plan in overflow warnings.
   const DAY_CAPACITY_MIN = 13 * 60
   function seedItinerary(key: ItineraryKey) {
-    const days = ITINERARIES[key].days
+    // Preset days beyond the picked window are not seeded. Collapsing them
+    // onto the last date used to grant each its own capacity budget and
+    // produce a single impossible day.
+    const days = ITINERARIES[key].days.slice(0, windowDays.length)
     days.forEach((day, i) => {
-      const date = windowDays[Math.min(i, windowDays.length - 1)]
+      const date = windowDays[i]
       let budget = 0
       for (const region of day.regions) {
         for (const stop of getStopsByRegion(region)) {

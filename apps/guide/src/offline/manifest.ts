@@ -22,6 +22,10 @@ export type Pack = {
   cacheName: string
   urls: string[]
   approxBytes: number
+  // Fraction of URLs allowed to fail while still recording the pack as done.
+  // Photo packs tolerate nothing: every photo is paid content. The tile pack
+  // tolerates a few missing tiles at the bbox edge.
+  tolerateMissing: number
 }
 
 function regionPhotoUrls(region: Region): string[] {
@@ -58,6 +62,7 @@ export function buildPacks(): Pack[] {
       cacheName: RUNTIME_CACHE,
       urls,
       approxBytes: urls.length * PHOTO_BYTES_PER_URL,
+      tolerateMissing: 0,
     }
   })
 
@@ -69,6 +74,7 @@ export function buildPacks(): Pack[] {
     cacheName: TILES_CACHE,
     urls: tileUrls,
     approxBytes: tileUrls.length * TILE_BYTES,
+    tolerateMissing: 0.05,
   }
 
   return [...regionPacks, mapPack]

@@ -4,6 +4,9 @@ import { triggerUpdate } from '../pwa/registerSW'
 export default function UpdateBanner() {
   const [registration, setRegistration] =
     useState<ServiceWorkerRegistration | null>(null)
+  const [updating, setUpdating] = useState(false)
+  // Session-only: the banner comes back on the next launch by design.
+  const [dismissed, setDismissed] = useState(false)
 
   useEffect(() => {
     function handler(e: Event) {
@@ -14,11 +17,29 @@ export default function UpdateBanner() {
     return () => window.removeEventListener('tfg:update-ready', handler)
   }, [])
 
-  if (!registration) return null
+  if (!registration || dismissed) return null
 
   return (
-    <button type="button" className="update-banner" onClick={() => triggerUpdate(registration)}>
-      Updated. Tap to refresh.
-    </button>
+    <div className="update-banner" role="status">
+      <button
+        type="button"
+        className="update-banner__action"
+        disabled={updating}
+        onClick={() => {
+          setUpdating(true)
+          void triggerUpdate(registration)
+        }}
+      >
+        {updating ? 'Refreshing…' : 'Updated. Tap to refresh.'}
+      </button>
+      <button
+        type="button"
+        className="update-banner__dismiss"
+        aria-label="Dismiss"
+        onClick={() => setDismissed(true)}
+      >
+        ×
+      </button>
+    </div>
   )
 }

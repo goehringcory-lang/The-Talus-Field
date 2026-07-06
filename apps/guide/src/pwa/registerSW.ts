@@ -54,10 +54,16 @@ export async function triggerUpdate(
   }
   // controllerchange fires once the new SW takes over; reload then so
   // the page is served by the fresh worker on the very next paint.
-  navigator.serviceWorker.addEventListener(
-    'controllerchange',
-    () => window.location.reload(),
-    { once: true },
-  )
+  let reloaded = false
+  const reload = () => {
+    if (reloaded) return
+    reloaded = true
+    window.location.reload()
+  }
+  navigator.serviceWorker.addEventListener('controllerchange', reload, { once: true })
   waiting.postMessage({ type: 'SKIP_WAITING' })
+  // Safety net: if controllerchange never fires (the waiting worker was
+  // already activated elsewhere, or the browser quietly dropped it), the
+  // tapped banner must still do something visible.
+  window.setTimeout(reload, 4000)
 }

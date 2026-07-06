@@ -119,6 +119,8 @@ export function useDownloads() {
         /* persistence is a hint; downloads proceed without it */
       }
 
+      // Downloads deliberately keep running if the component unmounts: they
+      // fill a shared cache in page context, so finishing beats aborting.
       const controller = new AbortController()
       abortRef.current[pack.id] = controller
       const total = pack.urls.length
@@ -127,7 +129,16 @@ export function useDownloads() {
 
       const cache = await caches.open(pack.cacheName)
       const queue = [...pack.urls]
-      let failed = 0
+      let failedUrls: string[] = []
+
+      async function fetchIntoCache(url: string): Promise<boolean> {
+        const cached = await cache.match(url)
+        if (cached) return true
+        const res = await fetch(url, { signal: controller.signal })
+        if (!res.ok) return false
+        await cache.put(url, res)
+        return true
+      }
 
       async function worker() {
         while (queue.length > 0) {
@@ -135,15 +146,10 @@ export function useDownloads() {
           const url = queue.shift()
           if (!url) return
           try {
-            const cached = await cache.match(url)
-            if (!cached) {
-              const res = await fetch(url, { signal: controller.signal })
-              if (res.ok) await cache.put(url, res)
-              else failed++
-            }
+            if (!(await fetchIntoCache(url))) failedUrls.push(url)
           } catch {
             if (controller.signal.aborted) return
-            failed++
+            failedUrls.push(url)
           }
           done++
           setPackStatus(pack.id, { state: 'downloading', done, total })
@@ -151,6 +157,24 @@ export function useDownloads() {
       }
 
       await Promise.all(Array.from({ length: CONCURRENCY }, () => worker()))
+
+      // One sequential retry pass: a transient hiccup shouldn't surface as a
+      // failed pack, and a paid offline product must not record "done" over
+      // silently missing files.
+      if (!controller.signal.aborted && failedUrls.length > 0) {
+        const retry = failedUrls
+        failedUrls = []
+        for (const url of retry) {
+          if (controller.signal.aborted) break
+          try {
+            if (!(await fetchIntoCache(url))) failedUrls.push(url)
+          } catch {
+            if (controller.signal.aborted) break
+            failedUrls.push(url)
+          }
+        }
+      }
+
       delete abortRef.current[pack.id]
 
       if (controller.signal.aborted) {
@@ -158,11 +182,10 @@ export function useDownloads() {
         return
       }
 
-      // A few missing tiles at the bbox edge shouldn't fail the whole pack.
-      if (failed > total * 0.05) {
+      if (failedUrls.length > total * pack.tolerateMissing) {
         setPackStatus(pack.id, {
           state: 'error',
-          message: 'Some files failed to download. Check your connection and try again.',
+          message: `${failedUrls.length} of ${total} files didn't download. Check your connection and try again.`,
         })
         return
       }

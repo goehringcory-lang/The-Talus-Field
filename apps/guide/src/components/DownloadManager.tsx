@@ -121,7 +121,11 @@ export default function DownloadManager() {
             type="button"
             className="download-row__btn"
             onClick={() => {
-              for (const pack of pending) void download(pack)
+              // Packs run one at a time; each already fetches 6 URLs at once,
+              // and fanning out every pack together swamps slow hotel wifi.
+              void (async () => {
+                for (const pack of pending) await download(pack)
+              })()
             }}
           >
             Download everything

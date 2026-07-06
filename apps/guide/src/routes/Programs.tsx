@@ -59,7 +59,11 @@ function isOlderThanDays(iso: string | null, days: number): boolean {
 }
 
 function relativeTime(iso: string): string {
-  const ms = Date.now() - Date.parse(iso)
+  const t = Date.parse(iso)
+  // Guards a meta stamp saved from a pre-nullable Worker, whose unknown-sync
+  // fallback was epoch 0 and rendered here as "synced 20454 days ago".
+  if (!Number.isFinite(t) || t < Date.UTC(2020, 0, 1)) return 'at an unknown time'
+  const ms = Date.now() - t
   const minutes = Math.round(ms / 60_000)
   if (minutes < 2) return 'just now'
   if (minutes < 60) return `${minutes} minutes ago`
