@@ -191,6 +191,9 @@ const seed: StopInput[] = [
     coord: [-119.5594, 37.7338], // TODO: verify (Happy Isles)
     elevationFt: 4035,
     timeBudgetMin: 360,
+    // Source: Yosemite Guide Vol 51 Issue 5 (June 10 - July 14, 2026).
+    hazard:
+      'Repair closures through 2026: the Mist Trail is closed Monday through Thursday, 7 a.m. to 3:30 p.m., June 30 through late October (open Fridays, weekends, and holidays, and outside those hours when conditions allow). The John Muir Trail between Clark Point and the Panorama Trail junction is closed until mid-July 2026, which blocks the usual descent. Check conditions at the Welcome Center before counting on the loop.',
     body:
       'The hike that earns the trip. Start at Happy Isles by 6:30 a.m. — earlier is better. The first 0.8 miles is paved and gets you to the Vernal Fall footbridge — most casual hikers turn around here. Past the bridge, the granite stairs start. You climb 600 stone steps in spray (May–June) or sun-baked rock (August). Vernal Fall is at the top of the stairs, 1.6 miles in. If you\'re still strong, push another 1.5 miles to Nevada Fall.\n\nDescend on the John Muir Trail — longer, gentler, easier on the knees, and you\'ll have it largely to yourself because most people return the way they came up. Loop total: about 7 miles, 2,000 ft of gain, 5–6 hours with breaks. The Mist Trail is wet and slippery; trekking poles help. Bring more water than you think.\n\n' +
       'About those 600 steps: the CCC carved and set them into the rock in the 1930s, and no two are alike. Some rise a foot, some closer to two, some tilt just enough to slide a wet boot. This staircase, not the exposure, is where most Mist Trail injuries happen, almost always someone in worn soles or sandals going down hard on soaked granite. Real tread is the difference between a great day and the clinic. The crowd stacks up here too: the footbridge is a parade and the staircase moves at a shuffle, but the trail thins fast above Vernal Fall, and the stretch on to Nevada can feel nearly empty on a weekday.\n\n' +
@@ -208,6 +211,9 @@ const seed: StopInput[] = [
     coord: [-119.6020, 37.7339], // TODO: verify (Four Mile Trailhead lot, Southside Drive near the Swinging Bridge)
     elevationFt: 4000,
     timeBudgetMin: 480,
+    // Source: Yosemite Guide Vol 51 Issue 5 (June 10 - July 14, 2026).
+    hazard:
+      'Through mid-July 2026 the John Muir Trail is closed between Clark Point and the Panorama Trail junction, and short Panorama Trail closures are possible, which can break this route\'s Panorama descent to Happy Isles. Confirm trail status before committing to the loop.',
     photos: [{ src: '/photos/vernal-fall.jpg', caption: 'Vernal Fall, one of the two falls the Panorama descent passes.' }],
     body:
       'The trailhead is a small lot on Southside Drive, about a mile west of Sentinel Beach near the Swinging Bridge, and it fills by 7 a.m. on busy days. If it\'s full, park at the day-use lot and ride the shuttle to the El Capitan stop (E6). Start at 5:30 or 6 in the morning, not because it\'s virtuous but because the first mile is the steepest and most exposed on the route and it bakes once the sun clears the rim. There is no water anywhere on this trail. Carry three liters minimum.\n\n' +
@@ -472,7 +478,7 @@ const seed: StopInput[] = [
     elevationFt: 5600,
     timeBudgetMin: 180,
     body:
-      'You park at the Welcome Plaza and ride the free shuttle two miles up to the grove. Walk the Grizzly Giant Loop (2 miles, 300 ft of gain) — past the Fallen Monarch, the Bachelor and Three Graces, the Grizzly Giant itself (around 2,700 years old). Don\'t skip the California Tunnel Tree just past Grizzly Giant. The shuttle runs every 15 minutes from April through November; first run is 8 a.m., last around 6. Late afternoon turns the canopy gold and the grove empties out. These trees are not redwoods. They\'re the largest trees on earth by volume, and they only grow in this strip of the Sierra.\n\n' +
+      'You park at the Welcome Plaza and ride the free shuttle two miles up to the grove. Walk the Grizzly Giant Loop (2 miles, 300 ft of gain) — past the Fallen Monarch, the Bachelor and Three Graces, the Grizzly Giant itself (around 2,700 years old). Don\'t skip the California Tunnel Tree just past Grizzly Giant. The shuttle runs every 15 minutes from April through November; first run at 8 a.m., and in summer the last ride up is around 7 p.m., with a final bus down at 8. Late afternoon turns the canopy gold and the grove empties out. These trees are not redwoods. They\'re the largest trees on earth by volume, and they only grow in this strip of the Sierra.\n\n' +
       'Those black fire scars on the big trunks aren\'t damage, they\'re a health record. A mature sequoia\'s bark runs up to two feet thick, fibrous and rich in tannin, so it barely conducts heat: a ground fire chars the surface, and the char itself insulates the living wood while the thinner-barked white fir and incense cedar nearby die. The tree needs those fires. Its seeds are no bigger than an oat seed and require the bare, ash-enriched mineral soil and sunlight a burn opens up. After a century and a half of suppression left the groves crowded and declining, the park now sets careful low-intensity burns in Mariposa to do what fire always did here.',
     swap:
       'If you have stamina, the Guardians Loop (6.5 miles, 1,200 ft) takes you up to the upper grove. Most visitors don\'t make it that far, which is the point.',
@@ -664,7 +670,7 @@ const seed: StopInput[] = [
     elevationFt: 8600,
     timeBudgetMin: 90,
     body:
-      'A 1.5-mile round trip from the Lembert Dome parking lot. Soda Springs is a naturally carbonated spring bubbling up out of the meadow — taste it if you want, it\'s safe (a little metallic). Parsons Lodge is a 1915 stone Sierra Club building, sometimes staffed in summer. End the high-country day here. Drive back to the valley in twilight; the Tioga Road in low light is a memory you keep.',
+      'A 1.5-mile round trip from the Lembert Dome parking lot. Soda Springs is a naturally carbonated spring bubbling up out of the meadow — taste it if you want, it\'s safe (a little metallic). Parsons Lodge is a 1915 stone Sierra Club building, staffed daily in high summer with an open reading room, typically 10 to 4 once Tioga Road opens; the current Yosemite Guide has the season dates. End the high-country day here. Drive back to the valley in twilight; the Tioga Road in low light is a memory you keep.',
     photos: [{ src: '/photos/tuolumne-meadows.jpg', caption: 'Tuolumne Meadows from the Soda Springs walk.' }],
   },
   {

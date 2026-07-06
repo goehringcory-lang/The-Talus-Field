@@ -99,6 +99,36 @@ const STAR_PARTY_DESC =
 
 const windowEntries: SeasonalInput[] = [
   {
+    id: 'mist-trail-repair-closure-2026',
+    title: 'Mist Trail weekday closure for repairs',
+    category: 'other',
+    confidence: 'confirmed',
+    // Source: Yosemite Guide Vol 51 Issue 5 (June 10 - July 14, 2026).
+    dateStart: '2026-06-30',
+    dateEnd: '2026-10-31',
+    location: 'Mist Trail, Vernal and Nevada Fall corridor',
+    url: 'https://www.nps.gov/yose/planyourvisit/conditions.htm',
+    description:
+      'The Mist Trail is closed for trail repairs Monday through Thursday, 7 a.m. to 3:30 p.m., from June 30 through the end of October 2026. It is open Fridays, Saturdays, Sundays, and holidays, and on weekdays before 7 and after 3:30 when conditions allow. If Vernal and Nevada Fall are the point of a weekday, start very early or plan the John Muir Trail side, and check conditions before committing.',
+    stopIds: ['mist-trail'],
+  },
+  {
+    id: 'jmt-clark-point-closure-2026',
+    title: 'John Muir Trail closed below Clark Point',
+    category: 'other',
+    confidence: 'confirmed',
+    // Source: Yosemite Guide Vol 51 Issue 5 (June 10 - July 14, 2026). The
+    // guide says "until mid-July"; dateEnd pins the card's disappearance and
+    // the description carries the hedge in words.
+    dateStart: '2026-06-10',
+    dateEnd: '2026-07-15',
+    location: 'John Muir Trail, Clark Point to the Panorama Trail junction',
+    url: 'https://www.nps.gov/yose/planyourvisit/conditions.htm',
+    description:
+      'The John Muir Trail is closed between Clark Point and the Panorama Trail junction for trail repair, scheduled through mid-July 2026. That blocks the usual gentle descent from Nevada Fall, and short Panorama Trail closures are possible during the work. Check at the Welcome Center before building a loop around it.',
+    stopIds: ['mist-trail', 'four-mile-trailhead'],
+  },
+  {
     id: 'star-party-season-2026',
     title: 'Glacier Point star party season',
     category: 'astronomy',
