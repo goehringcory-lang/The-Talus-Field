@@ -15,9 +15,12 @@
 // history, never with directions.
 //
 // Bodies: drafted to match the editorial voice. Expect to refine.
-// Coords: best-effort from public knowledge. Every coord marked
-//   `// TODO: verify` should be checked against the actual spot before
-//   relying on it for navigation. The PWA opens these in native Maps,
+// Coords: web-verified July 2026 against NPS place/trailhead pages, USGS
+//   GNIS, and OSM-derived sources; each coord line carries its source and
+//   any prior offset. Lines still marked `// TODO: verify on the ground`
+//   had no authoritative source (unsigned pullouts, off-trail features,
+//   conflicting sources) and must be checked at the actual spot before
+//   relying on them for navigation. The PWA opens these in native Maps,
 //   so a wrong coord lands the buyer at the wrong turnout.
 // Photos: placeholder pass. Reusing editorial-site photos from /img/, copied
 //   into public/photos/. Many stops still have no matching image and should
@@ -42,7 +45,7 @@ const seed: StopInput[] = [
     region: 'valley',
     order: 1,
     kind: 'viewpoint',
-    coord: [-119.6776, 37.7158], // TODO: verify
+    coord: [-119.6773, 37.7156], // verified 2026-07: Wawona Tunnel east-portal overlook lot (Hikespeak/latitude.to)
     elevationFt: 4400,
     timeBudgetMin: 25,
     teaser:
@@ -72,7 +75,7 @@ const seed: StopInput[] = [
     region: 'valley',
     order: 3,
     kind: 'trailhead',
-    coord: [-119.5874, 37.7466], // TODO: verify (Cook's Meadow boardwalk)
+    coord: [-119.5896, 37.7435], // verified 2026-07: loop start at Sentinel Bridge lot, shuttle stop 11 (NPS); was ~400 m off
     elevationFt: 4035,
     timeBudgetMin: 60,
     teaser:
@@ -89,7 +92,7 @@ const seed: StopInput[] = [
     region: 'valley',
     order: 4,
     kind: 'trailhead',
-    coord: [-119.6480, 37.7172], // TODO: verify
+    coord: [-119.6509, 37.7167], // verified 2026-07: rebuilt Bridalveil Fall lot at Wawona Rd / Southside Dr (NPS/Hikespeak); was ~260 m off
     elevationFt: 4100,
     timeBudgetMin: 30,
     teaser:
@@ -104,7 +107,7 @@ const seed: StopInput[] = [
     region: 'valley',
     order: 5,
     kind: 'trailhead',
-    coord: [-119.6451, 37.7238],
+    coord: [-119.6451, 37.7238], // TODO: verify on the ground — unsigned dirt pullout (V9), Northside Dr; trip reports match this spot but no source publishes the coord (2026-07 web pass; same pin as old-road-trailhead-pullout)
     elevationFt: 4000,
     timeBudgetMin: 240,
     photos: [{ src: '/photos/cathedral-rocks.jpg', caption: 'Cathedral Rocks, visible across the valley from the old road.' }],
@@ -121,7 +124,7 @@ const seed: StopInput[] = [
     region: 'valley',
     order: 6,
     kind: 'parking',
-    coord: [-119.6451, 37.7238], // TODO: verify (dirt pullout, Northside Drive between Pohono Bridge and El Capitan)
+    coord: [-119.6451, 37.7238], // TODO: verify on the ground — same pullout as old-big-oak-flat-road; no published coord (2026-07 web pass)
     elevationFt: 4000,
     timeBudgetMin: 10,
     teaser:
@@ -135,7 +138,7 @@ const seed: StopInput[] = [
     region: 'valley',
     order: 7,
     kind: 'viewpoint',
-    coord: [-119.6608, 37.7255], // TODO: verify (Rainbow View on the old Big Oak Flat Road grade)
+    coord: [-119.6608, 37.7255], // TODO: verify on the ground — Rainbow View bench on the old road grade; not in GNIS, route accounts only (2026-07 web pass)
     elevationFt: 4800,
     timeBudgetMin: 90,
     teaser:
@@ -149,7 +152,7 @@ const seed: StopInput[] = [
     region: 'valley',
     order: 8,
     kind: 'viewpoint',
-    coord: [-119.6503, 37.7300], // TODO: verify (base of Ribbon Fall amphitheater, west of El Capitan)
+    coord: [-119.6477, 37.7334], // TODO: verify on the ground — estimated directly below the WWD fall coord; no published coord for the amphitheater base (2026-07 web pass; prior pin sat ~440 m short, toward the road)
     elevationFt: 4400,
     timeBudgetMin: 120,
     teaser:
@@ -165,7 +168,7 @@ const seed: StopInput[] = [
     region: 'valley',
     order: 9,
     kind: 'viewpoint',
-    coord: [-119.7134, 37.7228], // TODO: verify (Cascade picnic area, Hwy 140 just inside the Arch Rock entrance)
+    coord: [-119.7134, 37.7228], // verified 2026-07: Cascades picnic area, El Portal Rd / Hwy 140 (NPS place page, lot-scale)
     elevationFt: 3800,
     timeBudgetMin: 60,
     teaser:
@@ -179,7 +182,7 @@ const seed: StopInput[] = [
     region: 'valley',
     order: 10,
     kind: 'viewpoint',
-    coord: [-119.6310, 37.7212], // TODO: verify
+    coord: [-119.6354, 37.7238], // verified 2026-07: El Capitan Meadow roadside pullouts, Northside Dr (GNIS); was ~480 m off
     elevationFt: 4000,
     timeBudgetMin: 60,
     teaser:
@@ -194,7 +197,7 @@ const seed: StopInput[] = [
     region: 'valley',
     order: 11,
     kind: 'trailhead',
-    coord: [-119.5570, 37.7464], // TODO: verify
+    coord: [-119.5600, 37.7393], // verified 2026-07: Mirror Lake trailhead at shuttle stop 17 (NPS/Hikespeak); was mid-trail, ~830 m off
     elevationFt: 4094,
     timeBudgetMin: 90,
     photos: [{ src: '/photos/half-dome.jpg', caption: 'Half Dome reflected in the still water of Mirror Lake.' }],
@@ -210,7 +213,7 @@ const seed: StopInput[] = [
     region: 'valley',
     order: 12,
     kind: 'trailhead',
-    coord: [-119.5594, 37.7338], // TODO: verify (Happy Isles)
+    coord: [-119.5580, 37.7322], // verified 2026-07: Happy Isles trailhead, shuttle stop 16 (Hikespeak/NPS); was ~215 m off
     elevationFt: 4035,
     timeBudgetMin: 360,
     // Source: Yosemite Guide Vol 51 Issue 5 (June 10 - July 14, 2026).
@@ -232,7 +235,7 @@ const seed: StopInput[] = [
     region: 'valley',
     order: 13,
     kind: 'trailhead',
-    coord: [-119.6020, 37.7339], // TODO: verify (Four Mile Trailhead lot, Southside Drive near the Swinging Bridge)
+    coord: [-119.6020, 37.7339], // verified 2026-07: roadside lot, Southside Dr west of the Swinging Bridge (NPS place page)
     elevationFt: 4000,
     timeBudgetMin: 480,
     // Source: Yosemite Guide Vol 51 Issue 5 (June 10 - July 14, 2026).
@@ -253,7 +256,7 @@ const seed: StopInput[] = [
     region: 'valley',
     order: 14,
     kind: 'viewpoint',
-    coord: [-119.5747, 37.7458], // TODO: verify (Ahwahnee Hotel; was off ~600 m east)
+    coord: [-119.5743, 37.7462], // verified 2026-07: Ahwahnee main entrance (OSM/Mapcarta)
     timeBudgetMin: 45,
     teaser:
       'The 1927 lobby and Great Lounge are open to anyone. Walk through, sit by the 24-foot fireplace, order a drink at the bar. No reservation needed.',
@@ -266,7 +269,7 @@ const seed: StopInput[] = [
     region: 'valley',
     order: 15,
     kind: 'viewpoint',
-    coord: [-119.5867, 37.7421], // TODO: verify (Sentinel Bridge)
+    coord: [-119.5898, 37.7425], // verified 2026-07: Sentinel Bridge and its small lot (NPS parking-area page); was ~280 m east
     elevationFt: 4000,
     timeBudgetMin: 60,
     teaser:
@@ -281,7 +284,7 @@ const seed: StopInput[] = [
     region: 'valley',
     order: 16,
     kind: 'lodging',
-    coord: [-119.5688, 37.7395], // TODO: verify (Curry Village core)
+    coord: [-119.5726, 37.7377], // verified 2026-07: Curry Village core, registration/dining (OSM); was ~390 m off (same pin as curry-village-pizza)
     teaser:
       'Tent or wood cabins at the original 1899 camp, walking distance to the dining hall, the shuttle, and the Mist Trail. Reservations open thirteen months out.',
     body:
@@ -295,7 +298,7 @@ const seed: StopInput[] = [
     region: 'valley',
     order: 17,
     kind: 'meal',
-    coord: [-119.5688, 37.7395], // TODO: verify (Curry Village core)
+    coord: [-119.5726, 37.7377], // verified 2026-07: Curry Village core (same pin as curry-village)
     timeBudgetMin: 60,
     teaser:
       'The pizza patio is right where you land off the Mist Trail: fast, good after a hike, no reservation. The Loft has the better menu if you have patience.',
@@ -314,7 +317,7 @@ const seed: StopInput[] = [
     kind: 'trailhead',
     collection: 'hidden',
     difficulty: 'easy',
-    coord: [-119.6697, 37.7135], // TODO: verify (Artist Point, old stagecoach road grade above Tunnel View)
+    coord: [-119.6697, 37.7135], // TODO: verify on the ground — GNIS (37.7121, -119.6749) conflicts with trail-guide geometry (~-119.667); current pin sits between the candidates (2026-07 web pass)
     elevationFt: 4700,
     timeBudgetMin: 120,
     photos: [],
@@ -331,7 +334,7 @@ const seed: StopInput[] = [
     kind: 'viewpoint',
     collection: 'hidden',
     difficulty: 'strenuous',
-    coord: [-119.5904, 37.7565], // TODO: verify (Yosemite Point, north rim east of Upper Yosemite Fall)
+    coord: [-119.5929, 37.7565], // verified 2026-07: Yosemite Point rim, 6,936 ft (OSM + Yosemite SAR dataset); was ~220 m off
     elevationFt: 6936,
     timeBudgetMin: 480,
     photos: [],
@@ -350,7 +353,7 @@ const seed: StopInput[] = [
     kind: 'trailhead',
     collection: 'hidden',
     difficulty: 'strenuous',
-    coord: [-119.6109, 37.7532], // TODO: verify (Eagle Peak summit; route via Yosemite Falls Trail)
+    coord: [-119.6149, 37.7458], // verified 2026-07: Eagle Peak summit (GNIS/OSM); was ~890 m off, on the canyon slope
     elevationFt: 7779,
     timeBudgetMin: 510,
     photos: [],
@@ -369,7 +372,7 @@ const seed: StopInput[] = [
     kind: 'trailhead',
     collection: 'hidden',
     difficulty: 'strenuous',
-    coord: [-119.5511, 37.7503], // TODO: verify (Snow Creek Trail junction, Tenaya Canyon beyond Mirror Lake)
+    coord: [-119.5446, 37.7530], // TODO: verify on the ground — junction derived from the NPS route description; no published coord (2026-07 web pass)
     elevationFt: 4100,
     timeBudgetMin: 360,
     photos: [],
@@ -389,7 +392,7 @@ const seed: StopInput[] = [
     collection: 'hidden',
     difficulty: 'moderate',
     season: 'April to June',
-    coord: [-119.5480, 37.7519], // TODO: verify (Tenaya Creek, ~0.5 mi upstream of Mirror Lake)
+    coord: [-119.5435, 37.7536], // TODO: verify on the ground — derived from route descriptions (~0.5 mi above Mirror Lake); no published coord (2026-07 web pass)
     elevationFt: 4300,
     timeBudgetMin: 180,
     photos: [],
@@ -409,7 +412,7 @@ const seed: StopInput[] = [
     collection: 'hidden',
     difficulty: 'easy',
     season: 'March to May',
-    coord: [-119.5915, 37.7452], // TODO: verify (Cook's Meadow, central viewing ground for the ephemeral falls)
+    coord: [-119.5915, 37.7452], // verified 2026-07: Cook's Meadow floor viewing ground (lot-scale)
     elevationFt: 4000,
     timeBudgetMin: 90,
     photos: [],
@@ -427,7 +430,7 @@ const seed: StopInput[] = [
     collection: 'hidden',
     difficulty: 'easy',
     season: 'March to May',
-    coord: [-119.6776, 37.7158], // TODO: verify (viewed from the Tunnel View overlook)
+    coord: [-119.6773, 37.7156], // verified 2026-07: viewed from the Tunnel View overlook (same pin as tunnel-view)
     elevationFt: 4400,
     timeBudgetMin: 45,
     photos: [],
@@ -448,7 +451,7 @@ const seed: StopInput[] = [
     region: 'glacier-mariposa',
     order: 1,
     kind: 'drive',
-    coord: [-119.6386, 37.6517], // TODO: verify (Chinquapin junction; was 37.6573, ~620 m off)
+    coord: [-119.7053, 37.6500], // TODO: verify on the ground — Chinquapin junction, GNIS-derived, sources spread ~300 m (2026-07 web pass; was ~5.9 km east, past Badger Pass)
     timeBudgetMin: 120,
     teaser:
       'Sixteen miles from Chinquapin to Glacier Point, and the road is the experience: Pothole Meadows, the Sentinel Dome lot, Washburn Point. Give it three or four hours.',
@@ -462,7 +465,7 @@ const seed: StopInput[] = [
     region: 'glacier-mariposa',
     order: 2,
     kind: 'trailhead',
-    coord: [-119.5841, 37.7236], // TODO: verify (Sentinel Dome summit; was 37.7155, ~900 m off)
+    coord: [-119.5842, 37.7233], // verified 2026-07: Sentinel Dome summit (GNIS); park at the shared lot, see taft-point
     elevationFt: 8122,
     timeBudgetMin: 120,
     teaser:
@@ -479,7 +482,7 @@ const seed: StopInput[] = [
     region: 'glacier-mariposa',
     order: 3,
     kind: 'trailhead',
-    coord: [-119.5861, 37.7124], // TODO: verify (Sentinel Dome / Taft Point shared lot, Glacier Point Road mile 13.6)
+    coord: [-119.5861, 37.7124], // verified 2026-07: Sentinel Dome / Taft Point shared lot, Glacier Point Rd mile 13.6 (NPS/Hikespeak)
     elevationFt: 7500,
     timeBudgetMin: 90,
     photos: [],
@@ -498,7 +501,7 @@ const seed: StopInput[] = [
     region: 'glacier-mariposa',
     order: 4,
     kind: 'viewpoint',
-    coord: [-119.5722, 37.7203], // TODO: verify (Washburn Point pullout, Glacier Point Road mile 15.5)
+    coord: [-119.5731, 37.7205], // verified 2026-07: Washburn Point pullout, Glacier Point Rd mile 15.5 (LOC HAER survey/Hikespeak); was ~80 m east
     elevationFt: 7850,
     timeBudgetMin: 30,
     photos: [{ src: '/photos/half-dome.jpg', caption: 'Half Dome. Washburn Point shows it in full profile, falls stacked below.' }],
@@ -514,7 +517,7 @@ const seed: StopInput[] = [
     region: 'glacier-mariposa',
     order: 5,
     kind: 'viewpoint',
-    coord: [-119.5731, 37.7283], // TODO: verify
+    coord: [-119.5731, 37.7283], // verified 2026-07: Glacier Point main lot / overlook path (Hikespeak/LOC HAER)
     elevationFt: 7214,
     timeBudgetMin: 75,
     teaser:
@@ -532,7 +535,7 @@ const seed: StopInput[] = [
     region: 'glacier-mariposa',
     order: 6,
     kind: 'trailhead',
-    coord: [-119.6083, 37.5108], // TODO: verify (Mariposa Grove Welcome Plaza; was off ~700 m)
+    coord: [-119.6320, 37.5085], // TODO: verify on the ground — Welcome Plaza lot, Hwy 41 at the South Entrance, derived ±150 m (2026-07 web pass; prior pin was inside the grove at parking closed to cars since 2018)
     elevationFt: 5600,
     timeBudgetMin: 180,
     teaser:
@@ -555,7 +558,7 @@ const seed: StopInput[] = [
     kind: 'trailhead',
     collection: 'hidden',
     difficulty: 'moderate',
-    coord: [-119.6367, 37.6640], // TODO: verify (Dewey Point trailhead pullout, Glacier Point Road)
+    coord: [-119.6282, 37.6705], // verified 2026-07: Dewey Point access is the McGurk Meadow lot since the 2022 repave (same pin as mcgurk-meadow); was ~1 km off
     elevationFt: 7300,
     timeBudgetMin: 420,
     photos: [],
@@ -575,7 +578,7 @@ const seed: StopInput[] = [
     collection: 'hidden',
     difficulty: 'easy',
     season: 'June to August',
-    coord: [-119.6403, 37.6686], // TODO: verify (McGurk Meadow trailhead pullout, Glacier Point Road)
+    coord: [-119.6282, 37.6705], // verified 2026-07: McGurk Meadow trailhead lot, Glacier Point Rd mile 7.5 (NPS/Trailforks); was ~1.1 km off
     elevationFt: 7000,
     timeBudgetMin: 100,
     photos: [],
@@ -592,7 +595,7 @@ const seed: StopInput[] = [
     kind: 'trailhead',
     collection: 'hidden',
     difficulty: 'easy',
-    coord: [-119.6202, 37.6600], // TODO: verify (Bridalveil Creek campground area, Glacier Point Road)
+    coord: [-119.6202, 37.6600], // TODO: verify on the ground — pin on the campground access road matches the body; no source pins a specific pullout (2026-07 web pass)
     elevationFt: 7000,
     timeBudgetMin: 150,
     photos: [],
@@ -610,7 +613,7 @@ const seed: StopInput[] = [
     collection: 'hidden',
     difficulty: 'strenuous',
     season: 'July to September',
-    coord: [-119.6153, 37.6547], // TODO: verify (Ostrander Lake trailhead, Glacier Point Road)
+    coord: [-119.6039, 37.6668], // verified 2026-07: Ostrander Lake trailhead, Glacier Point Rd mile 9 (Hiking Project/Modern Hiker); was ~1.7 km off
     elevationFt: 7000,
     timeBudgetMin: 420,
     photos: [],
@@ -627,7 +630,7 @@ const seed: StopInput[] = [
     kind: 'trailhead',
     collection: 'hidden',
     difficulty: 'easy',
-    coord: [-119.6580, 37.5370], // TODO: verify (Wawona Meadow Loop trailhead, across from the Wawona Hotel)
+    coord: [-119.6567, 37.5359], // TODO: verify on the ground — loop start across Hwy 41 from the Wawona Hotel, derived ±75 m (2026-07 web pass; prior pin was at the hotel itself)
     elevationFt: 4000,
     timeBudgetMin: 120,
     photos: [],
@@ -644,7 +647,7 @@ const seed: StopInput[] = [
     kind: 'trailhead',
     collection: 'hidden',
     difficulty: 'strenuous',
-    coord: [-119.6323, 37.5481], // TODO: verify (Chilnualna Falls trailhead, end of Chilnualna Falls Road, Wawona)
+    coord: [-119.6337, 37.5484], // verified 2026-07: Chilnualna Falls trailhead lot, end of Chilnualna Falls Rd (NPS/Hikespeak); was ~130 m off
     elevationFt: 4200,
     timeBudgetMin: 360,
     photos: [],
@@ -668,7 +671,7 @@ const seed: StopInput[] = [
     region: 'tuolumne',
     order: 1,
     kind: 'drive',
-    coord: [-119.7973, 37.7551], // TODO: verify (Crane Flat junction)
+    coord: [-119.8022, 37.7556], // verified 2026-07: Crane Flat wye, Big Oak Flat Rd / Tioga Rd (NPS gas-station page); was ~435 m off
     timeBudgetMin: 120,
     teaser:
       '47 miles from Crane Flat to Tioga Pass at 9,945 feet, fir forest opening into granite domes and meadows. Gas up at Crane Flat; there is none on the road.',
@@ -682,7 +685,7 @@ const seed: StopInput[] = [
     region: 'tuolumne',
     order: 2,
     kind: 'viewpoint',
-    coord: [-119.4884, 37.8096], // TODO: verify
+    coord: [-119.4852, 37.8107], // verified 2026-07: Olmsted Point pullout, south side of Tioga Rd (GNIS/Wikipedia); was ~300 m off
     elevationFt: 8300,
     timeBudgetMin: 30,
     teaser:
@@ -697,7 +700,7 @@ const seed: StopInput[] = [
     region: 'tuolumne',
     order: 3,
     kind: 'trailhead',
-    coord: [-119.4912341, 37.8324607],
+    coord: [-119.4912341, 37.8324607], // verified 2026-07: May Lake TH lot, end of the Old Tioga Rd spur (Hikespeak)
     elevationFt: 9329,
     timeBudgetMin: 180,
     photos: [{ src: '/photos/tuolumne-meadows.jpg', caption: 'The high-country granite and meadow landscape around May Lake.' }],
@@ -714,7 +717,7 @@ const seed: StopInput[] = [
     region: 'tuolumne',
     order: 4,
     kind: 'viewpoint',
-    coord: [-119.4548, 37.8330], // TODO: verify
+    coord: [-119.4473, 37.8381], // TODO: verify on the ground — east-beach lot, NE end (NPS picnic-area page), derived ±100 m (2026-07 web pass; prior pin sat mid-lake)
     elevationFt: 8150,
     timeBudgetMin: 60,
     photos: [{ src: '/photos/tuolumne-meadows.jpg', caption: 'Open granite and clear high-country water at Tenaya Lake.' }],
@@ -730,7 +733,7 @@ const seed: StopInput[] = [
     order: 5,
     kind: 'trailhead',
     photos: [{ src: '/photos/tuolumne-meadows.jpg', caption: 'Tuolumne high country — the landscape Cathedral Lakes sits in.' }],
-    coord: [-119.3592, 37.8735], // TODO: verify — NPS relocated this trailhead to the Tuolumne Meadows Visitor Center parking in 2022 (Tioga Road Rehabilitation Project; roadside parking at the old TH was removed). Coord targets the visitor center lot; ground-truth before launch.
+    coord: [-119.3586, 37.8732], // verified 2026-07: Tuolumne Meadows Visitor Center lot (NPS Cathedral Lakes TH page; trailhead relocated here 2022, old roadside parking removed)
     elevationFt: 8560,
     timeBudgetMin: 360,
     teaser:
@@ -748,7 +751,7 @@ const seed: StopInput[] = [
     region: 'tuolumne',
     order: 6,
     kind: 'trailhead',
-    coord: [-119.3589, 37.8772], // TODO: verify (Lembert Dome parking lot, start of Soda Springs walk; was off ~900 m)
+    coord: [-119.3512, 37.8776], // verified 2026-07: Lembert Dome lot, Tioga Rd (NPS TH page); was ~675 m off
     elevationFt: 8600,
     timeBudgetMin: 90,
     teaser:
@@ -763,7 +766,7 @@ const seed: StopInput[] = [
     region: 'tuolumne',
     order: 7,
     kind: 'trailhead',
-    coord: [-119.258173, 37.9101685],
+    coord: [-119.258173, 37.9101685], // verified 2026-07: Gaylor Lakes TH lot at the Tioga Pass entrance (NPS/Wikiloc)
     elevationFt: 9945,
     timeBudgetMin: 150,
     photos: [{ src: '/photos/tuolumne-meadows.jpg', caption: 'High-country terrain near Tioga Pass and the Gaylor Lakes basin.' }],
@@ -787,7 +790,7 @@ const seed: StopInput[] = [
     collection: 'hidden',
     difficulty: 'moderate',
     season: 'June to October',
-    coord: [-119.5477, 37.8106], // TODO: verify (Porcupine Creek trailhead, Tioga Road)
+    coord: [-119.5477, 37.8106], // TODO: verify on the ground — prose sources put the Porcupine Creek TH lot here (south side of Tioga Rd) but no published lot coord (2026-07 web pass)
     elevationFt: 8100,
     timeBudgetMin: 360,
     photos: [],
@@ -805,7 +808,7 @@ const seed: StopInput[] = [
     collection: 'hidden',
     difficulty: 'strenuous',
     season: 'June to October',
-    coord: [-119.4700, 37.8256], // TODO: verify (Sunrise Lakes trailhead, west end of Tenaya Lake)
+    coord: [-119.4700, 37.8256], // verified 2026-07: Sunrise Lakes TH lot, SW end of Tenaya Lake (NPS; matches road-distance geometry from Olmsted Point)
     elevationFt: 8150,
     timeBudgetMin: 480,
     photos: [],
@@ -825,7 +828,7 @@ const seed: StopInput[] = [
     collection: 'hidden',
     difficulty: 'easy',
     season: 'July to September',
-    coord: [-119.3379, 37.8730], // TODO: verify (Lyell Canyon / JMT trailhead near the Dog Lake parking area, Tuolumne Meadows)
+    coord: [-119.3390, 37.8783], // verified 2026-07: Dog Lake lot, Tuolumne Meadows Lodge Rd (NPS Lyell Canyon TH page); was ~600 m off, in the meadow
     elevationFt: 8700,
     timeBudgetMin: 240,
     photos: [],
@@ -845,7 +848,7 @@ const seed: StopInput[] = [
     collection: 'hidden',
     difficulty: 'moderate',
     season: 'July to September',
-    coord: [-119.2643, 37.8901], // TODO: verify (Mono Pass trailhead, Tioga Road at Dana Meadows)
+    coord: [-119.2627, 37.8909], // verified 2026-07: Mono Pass TH lot at Dana Meadows (yosemitehikes/Trailforks); was ~165 m off
     elevationFt: 9700,
     timeBudgetMin: 300,
     photos: [],
@@ -865,7 +868,7 @@ const seed: StopInput[] = [
     collection: 'hidden',
     difficulty: 'strenuous',
     season: 'June to October',
-    coord: [-119.7391, 37.7626], // TODO: verify (Tamarack Flat Campground, off Tioga Road)
+    coord: [-119.7366, 37.7521], // verified 2026-07: Tamarack Flat Campground road-end (latitude.to/CampingRoadTrip); was ~1.2 km up the spur road
     elevationFt: 6300,
     timeBudgetMin: 600,
     photos: [],
@@ -888,7 +891,7 @@ const seed: StopInput[] = [
     region: 'hetch-hetchy',
     order: 1,
     kind: 'drive',
-    coord: [-119.8790, 37.7986], // TODO: verify (Evergreen Road junction with Hwy 120, just outside the Big Oak Flat entrance)
+    coord: [-119.8760, 37.8120], // TODO: verify on the ground — Evergreen Rd / Hwy 120 junction, triangulated ±150 m (2026-07 web pass; prior pin was SW of the entrance, wrong side)
     timeBudgetMin: 90,
     photos: [],
     teaser:
@@ -904,7 +907,7 @@ const seed: StopInput[] = [
     region: 'hetch-hetchy',
     order: 2,
     kind: 'viewpoint',
-    coord: [-119.8237, 37.8817], // TODO: verify (Lookout Point knob, NE of the Mather entrance station)
+    coord: [-119.8414, 37.8933], // verified 2026-07: trailhead at the Mather entrance station (GNIS + LOC HAER survey); was ~2 km SE
     elevationFt: 4200,
     timeBudgetMin: 90,
     photos: [],
@@ -920,7 +923,7 @@ const seed: StopInput[] = [
     region: 'hetch-hetchy',
     order: 3,
     kind: 'viewpoint',
-    coord: [-119.7886, 37.9464], // TODO: verify (O'Shaughnessy Dam crest, road-end parking)
+    coord: [-119.7886, 37.9464], // verified 2026-07: dam road-end lot, SW abutment (bracketed by the Wikipedia dam-crest and NPS trailhead points)
     elevationFt: 3800,
     timeBudgetMin: 45,
     photos: [],
@@ -937,7 +940,7 @@ const seed: StopInput[] = [
     region: 'hetch-hetchy',
     order: 4,
     kind: 'trailhead',
-    coord: [-119.7911, 37.9453], // TODO: verify (trailhead parking at the dam road-end)
+    coord: [-119.7875, 37.9465], // verified 2026-07: Wapama/Rancheria trailhead at the dam road-end (NPS place page; same pin as rancheria-falls); was ~340 m off
     elevationFt: 3800,
     timeBudgetMin: 300,
     photos: [],
@@ -962,7 +965,7 @@ const seed: StopInput[] = [
     kind: 'trailhead',
     collection: 'hidden',
     difficulty: 'easy',
-    coord: [-119.8409, 37.7495], // TODO: verify (Merced Grove trailhead, Big Oak Flat Road)
+    coord: [-119.8461, 37.7566], // verified 2026-07: Merced Grove trailhead lot, Big Oak Flat Rd (OSM/OuterSpatial); was on the grove itself, 1.5 trail-miles past parking
     elevationFt: 5400,
     timeBudgetMin: 150,
     photos: [],
@@ -979,7 +982,7 @@ const seed: StopInput[] = [
     kind: 'trailhead',
     collection: 'hidden',
     difficulty: 'strenuous',
-    coord: [-119.7911, 37.9453], // TODO: verify (trailhead at the O'Shaughnessy Dam road-end; route continues past Wapama)
+    coord: [-119.7875, 37.9465], // verified 2026-07: same trailhead as wapama-falls-trail (NPS place page)
     elevationFt: 3800,
     timeBudgetMin: 420,
     photos: [],

@@ -257,7 +257,22 @@ export default function Map() {
     map.addControl(new maplibregl.ScaleControl({ unit: 'imperial' }), 'bottom-left')
 
     mapRef.current = map
-    popupRef.current = new maplibregl.Popup({ maxWidth: '300px', offset: 30 })
+    // closeOnClick is off because it only listens for real DOM clicks, which
+    // touch taps on the canvas never synthesize; the map 'click' handler
+    // below closes the popup on both mouse and touch instead.
+    popupRef.current = new maplibregl.Popup({
+      maxWidth: '300px',
+      offset: 30,
+      closeOnClick: false,
+    })
+    map.on('click', (e) => {
+      // MapLibre delivers this after the selection effect has opened the
+      // popup, so a tap that lands on a pin must not close it. Empty-map
+      // taps close it, matching the closeOnClick behavior this replaces.
+      const target = e.originalEvent.target
+      if (target instanceof Element && target.closest('.map-pin')) return
+      popupRef.current?.remove()
+    })
     map.on('load', () => {
       setMapReady(true)
       setMapFailed(false)
@@ -300,7 +315,15 @@ export default function Map() {
       bounds.extend([lng, lat])
 
       const el = buildPinElement(stop.kind, stop.collection === 'hidden')
-      el.addEventListener('click', () => selectStop(stop.id))
+      el.addEventListener('click', (e) => {
+        // Don't let the click reach the map canvas: the shared popup is
+        // closeOnClick, and MapLibre delivers the map's click after the
+        // selection effect has opened the popup, closing it in the same
+        // frame. Deep links and the sidebar never hit the canvas, which is
+        // why only pin taps were affected.
+        e.stopPropagation()
+        selectStop(stop.id)
+      })
       const marker = new maplibregl.Marker({ element: el, anchor: 'bottom' })
         .setLngLat([lng, lat])
         .addTo(map)
@@ -655,9 +678,10 @@ function InfoPane({
           routes. Routing happens in Google Maps via the Directions button.
         </li>
         <li>
-          A handful of coordinates are still flagged for verification in the
-          source file. Trust the turnout names over the precise pin until
-          that pass is done.
+          Most pin coordinates are verified against NPS and USGS sources. A
+          few unsigned pullouts and off-trail spots are still flagged for a
+          ground check; for those, trust the turnout described in the stop
+          page over the precise pin.
         </li>
         <li>Map tiles: Esri, USGS. © OpenStreetMap contributors.</li>
       </ul>
