@@ -45,7 +45,7 @@ npm --prefix scripts run checks         # editorial: offline system-checks suite
 npm --prefix scripts run checks:online  # + link liveness, sitemap 200s, template smoke, SPF/DKIM/DMARC
 ```
 
-Dev tooling lives in `scripts/` with its own `package.json`, deliberately NOT at the repo root, so Cloudflare Pages keeps treating the root as a static, build-free deploy. Run `cd scripts && npm install` once before using the npm scripts above.
+Dev tooling lives in `scripts/` with its own `package.json`, deliberately not at the repo root, so the root stays a static, build-free deploy. Run `cd scripts && npm install` once before using the npm scripts above. The root `package.json` is NOT a tooling home: it exists only because the Cloudflare Workers Build for the editorial worker runs `npm run build` before deploying, and its `build` script is a no-op echo. Do not add dependencies or real build steps to it (`.assetsignore` also excludes it from the asset upload).
 
 Deployment is **not** done from this repo's CI. `main` auto-deploys to Cloudflare Pages for the editorial site and PWA; the Worker requires a manual `wrangler deploy` from `workers/` (with KV namespace IDs filled into `wrangler.toml` and secrets set via `wrangler secret put`).
 
