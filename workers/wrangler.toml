@@ -30,8 +30,13 @@ preview_id = "REPLACE_ME_FOR_LOCAL_DEV"
 [triggers]
 crons = ["0 10 * * *"]
 
-[vars]
-APP_BASE_URL = "https://guide.thetalusfieldjournal.com"
+# APP_BASE_URL is the PWA's public origin. It feeds every buyer-facing link
+# the Worker emits: the magic-link (`${APP_BASE_URL}/open?token=`), the access
+# email's wordmark image and /login links (email.ts derives them from it), and
+# the CORS fallback origin. It currently points at the Cloudflare Pages URL the
+# app actually serves from; switch it to https://guide.thetalusfieldjournal.com
+# once that custom domain is attached to the Pages project.
+APP_BASE_URL = "https://talus-field-guide.pages.dev"
 EDITORIAL_BASE_URL = "https://thetalusfieldjournal.com"
 GUIDE_PRICE_CENTS = "1900"
 GUIDE_PRODUCT_TAG = "field_guide_2026"
