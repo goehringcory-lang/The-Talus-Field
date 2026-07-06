@@ -30,7 +30,7 @@ import { announceTripAdd } from '../trip/addFeedback'
 import { addStopToPlan, isStopPlanned } from '../trip/useTripPlan'
 import { buildMapStyle } from '../map/style'
 import { isPackCompleted } from '../offline/useDownloads'
-import { responsiveBase } from '../utils/photo'
+import { popupPhotoUrl } from '../utils/photo'
 import './Map.css'
 
 type Tab = 'points' | 'itineraries' | 'info'
@@ -89,7 +89,7 @@ function buildPopupContent(stop: StopT, onOpenStop: (id: string) => void): HTMLE
   const photo = stop.photos[0]
   if (photo) {
     const img = document.createElement('img')
-    img.src = `${responsiveBase(photo.src)}-400.jpg`
+    img.src = popupPhotoUrl(photo.src)
     img.alt = ''
     img.loading = 'lazy'
     img.className = 'map-popup__photo'

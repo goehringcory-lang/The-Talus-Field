@@ -86,7 +86,8 @@ function buildEntries(): Entry[] {
   for (const s of SECRET_SPOTS) {
     entries.push({
       id: s.id,
-      url: '/secret-spots',
+      // Hash anchor: /secret-spots scrolls to the matching card on mount.
+      url: `/secret-spots#${s.id}`,
       title: s.title,
       section: 'Secret Spots',
       eyebrow: 'Secret Spots',

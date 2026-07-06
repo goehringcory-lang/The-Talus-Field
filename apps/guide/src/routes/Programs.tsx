@@ -91,7 +91,9 @@ function ProgramsSkeleton() {
 }
 
 export default function Programs() {
-  const stored = readTripDates()
+  // Lazy initializer: readTripDates hits localStorage + JSON.parse, which
+  // only needs to happen once, not on every render.
+  const [stored] = useState(() => readTripDates())
   const defaults = useMemo(() => defaultTripDates(), [])
   const [start, setStart] = useState(stored?.start ?? defaults.start)
   const [end, setEnd] = useState(stored?.end ?? defaults.end)

@@ -19,6 +19,13 @@ export function responsiveBase(src: string): string {
   return `/${dir ? dir + '/' : ''}responsive/${slugify(cleaned.split('/').pop() ?? cleaned)}`
 }
 
+/** Smallest JPEG variant, for the map popup thumbnail. Derived from
+ * RESPONSIVE_WIDTHS so a widths change can't strand a hard-coded suffix. */
+export function popupPhotoUrl(src: string): string {
+  if (/^https?:/i.test(src)) return src
+  return `${responsiveBase(src)}-${RESPONSIVE_WIDTHS[0]}.jpg`
+}
+
 /** Returns every URL the browser may request for a photo (original + all responsive variants). */
 export function allPhotoUrls(src: string): string[] {
   if (/^https?:/i.test(src)) return [src]

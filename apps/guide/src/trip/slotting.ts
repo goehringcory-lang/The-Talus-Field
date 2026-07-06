@@ -148,12 +148,20 @@ export function slotDay(day: string, items: TripItemT[]): SlottedItem[] {
     const coord = itemCoord(item)
 
     let start = firstPlacement ? cursor : cursor + travelBufferMin(prevCoord, coord)
-    // Advance past any fixed block that overlaps the candidate slot.
-    for (const b of blocks) {
-      const bStart = b.startMin ?? 0
-      const bEnd = bStart + b.durationMin
-      if (start < bEnd && start + duration > bStart) {
-        start = bEnd + travelBufferMin(itemCoord(b.item), coord)
+    // Advance past any fixed block that overlaps the candidate slot. Re-scan
+    // after every move: a travel buffer can push the candidate into a block
+    // the single pass had already cleared. Terminates because start only
+    // moves forward past finitely many sorted blocks.
+    let moved = true
+    while (moved) {
+      moved = false
+      for (const b of blocks) {
+        const bStart = b.startMin ?? 0
+        const bEnd = bStart + b.durationMin
+        if (start < bEnd && start + duration > bStart) {
+          start = bEnd + travelBufferMin(itemCoord(b.item), coord)
+          moved = true
+        }
       }
     }
     if (start + duration > DAY_END) {
