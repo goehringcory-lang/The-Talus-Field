@@ -151,9 +151,10 @@ function SheetBody({ onClose, slotted, eventCount, filenameDate }: Omit<Props, '
           {!feed && (
             <>
               <p className="sheet__note">
-                Publishes your plan at a private link your calendar app watches. Edit the plan
-                here and the calendar picks it up on its next refresh. Your account has one
-                feed: publishing from this device replaces what any other device published.
+                Two steps: publish your plan at a private link, then add that link to your
+                calendar app. Edit the plan here and the calendar picks it up on its next
+                refresh. Your account has one feed: publishing from this device replaces what
+                any other device published.
               </p>
               {online ? (
                 <Button onClick={subscribe} disabled={publishing}>
@@ -168,6 +169,11 @@ function SheetBody({ onClose, slotted, eventCount, filenameDate }: Omit<Props, '
           )}
           {feed && (
             <>
+              <p className="sheet__note">
+                The feed is live, but it is not in your calendar yet. Add it once below. It
+                arrives as its own calendar named Yosemite trip, sitting alongside your main
+                calendar, and it follows every edit you make here.
+              </p>
               <div className="sheet__buttons">
                 <Button href={webcalUrl(feed.feedUrl)}>Apple Calendar</Button>
                 <Button href={googleCalendarSubscribeUrl(feed.feedUrl)} external>
@@ -178,9 +184,12 @@ function SheetBody({ onClose, slotted, eventCount, filenameDate }: Omit<Props, '
                 </Button>
               </div>
               <p className="sheet__note sheet__note--muted">
-                Feed updated {relativeStamp(feed.updatedAt)}. Calendars refresh subscriptions on
-                their own schedule, Google usually within a day, Apple per its Fetch New Data
-                setting. For same-day changes, use the file below.
+                Google only accepts a new subscription from a computer browser, never its phone
+                app: on a phone, copy the feed link and add it later at calendar.google.com,
+                under Other calendars, From URL. Once added it syncs to the phone app on its
+                own. Feed updated {relativeStamp(feed.updatedAt)}. Calendars refresh
+                subscriptions on their own schedule, Google usually within a day, Apple per its
+                Fetch New Data setting. For same-day changes, use the file below.
               </p>
               <Button variant="quiet" onClick={stopSync} disabled={revoking || !online}>
                 {revoking ? 'Stopping…' : 'Stop updating this feed'}
