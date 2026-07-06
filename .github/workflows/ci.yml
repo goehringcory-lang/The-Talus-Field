@@ -1,8 +1,9 @@
 # CI for the PWA and the Worker.
 #
-# The editorial site at the repo root has no build, no lint, and no tests by
-# design (in-browser Babel, hand-written CSS). It is intentionally not covered
-# here; runtime errors surface in the browser.
+# The editorial site at the repo root is static by design (hand-written CSS,
+# jsx sources precompiled into /dist by scripts/gen-compiled.mjs). Its guards
+# run locally via `npm --prefix scripts run check`; the nightly
+# system-checks.yml covers the live site. It is intentionally not built here.
 
 name: CI
 
@@ -22,7 +23,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
           cache: npm
           cache-dependency-path: apps/guide/package-lock.json
       - run: npm ci
@@ -39,7 +40,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
           cache: npm
           cache-dependency-path: workers/package-lock.json
       - run: npm ci
