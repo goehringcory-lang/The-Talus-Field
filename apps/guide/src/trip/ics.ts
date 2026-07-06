@@ -15,7 +15,18 @@ import { toHhmm } from './slotting'
 
 const PRODID = '-//The Talus Field//Field Guide Trip//EN'
 const TZID = 'America/Los_Angeles'
+// UID namespace only, never a link. UIDs are event identity: changing this
+// would duplicate every event when a subscriber's calendar refreshes or a
+// buyer re-imports the file. Leave it alone even if the app changes domains.
 const UID_DOMAIN = 'thetalusfieldjournal.com'
+// Buyer-facing link base for event descriptions. Derived from the serving
+// origin so calendar links keep working across any future domain cutover
+// (pages.dev today, a custom domain later). ICS generation is client-only;
+// the window guard is belt and braces for tests.
+const APP_BASE =
+  typeof window !== 'undefined' && window.location?.origin
+    ? window.location.origin
+    : 'https://talus-field-guide.pages.dev'
 
 // Standard US Pacific rules (in effect since 2007).
 const VTIMEZONE = [
@@ -119,7 +130,7 @@ export function slottedToEventFields(slotted: SlottedItem): EventFields | null {
       summary: stop.title,
       description:
         `${teaser}\n\nFrom The Talus Field Field Guide: ` +
-        `https://guide.${UID_DOMAIN}/stop/${stop.id}` +
+        `${APP_BASE}/stop/${stop.id}` +
         // Google Calendar mostly drops the URL property on import, so the
         // directions deeplink rides in the description too.
         (stop.coord ? `\n\nDirections: ${directionsUrl(stop.coord)}` : '') +
