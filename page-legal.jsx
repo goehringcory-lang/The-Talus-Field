@@ -58,7 +58,7 @@ function PrivacyPage() {
 function TermsPage() {
   return (
     <LegalShell title="Terms of Service" eyebrow="Legal" updated="April 1, 2026">
-      <p>These terms govern your use of The Talus Field (thetalusfieldjournal.com) and the Field Guide app (guide.thetalusfieldjournal.com). By using either, you agree to them. The articles and the interactive trip-planner map on this site are free to browse. The Field Guide app is a paid product; its purchase terms are in section 1.</p>
+      <p>These terms govern your use of The Talus Field (thetalusfieldjournal.com) and the Field Guide app. By using either, you agree to them. The articles and the interactive trip-planner map on this site are free to browse. The Field Guide app is a paid product; its purchase terms are in section 1.</p>
 
       <h2>1. The Field Guide purchase</h2>
       <p>The Field Guide is a one-time purchase, not a subscription. Payment is processed by Stripe; we never see or store your card number. A purchase grants access to the Field Guide for 18 months from the purchase date, on any device you sign in to, including all updates published during that window. Access is for you and the people traveling with you, not for redistribution.</p>

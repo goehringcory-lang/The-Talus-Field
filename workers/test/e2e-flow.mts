@@ -16,7 +16,7 @@ const programsKv = new MockKV()
 const env: Record<string, unknown> = {
   GUIDE_BUYERS: buyers,
   GUIDE_PROGRAMS: programsKv,
-  APP_BASE_URL: 'https://guide.thetalusfieldjournal.com',
+  APP_BASE_URL: 'https://talus-field-guide.pages.dev',
   EDITORIAL_BASE_URL: 'https://thetalusfieldjournal.com',
   GUIDE_PRICE_CENTS: '1900',
   GUIDE_PRODUCT_TAG: 'field_guide_2026',

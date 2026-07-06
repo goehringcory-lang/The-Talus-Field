@@ -4,6 +4,7 @@ import { useLocation, useNavigate } from 'react-router-dom'
 import { apiFetch, ApiError } from '../lib/api'
 import { useAuth } from '../auth/useAuth'
 import { getAccessEndedAt } from '../auth/storage'
+import { readCachedMe } from '../auth/me'
 import Plate from '../components/Plate'
 import ResponsivePhoto from '../components/ResponsivePhoto'
 import Button from '../components/ui/Button'
@@ -197,10 +198,21 @@ export default function Login() {
         {accessEndedAt !== null && (
           <div className="card" style={{ marginBottom: 28 }}>
             <p className="card__note" style={{ margin: 0 }}>
-              Your access period ended {formatEndedDate(accessEndedAt)}. Purchases include
-              18 months of access. Email{' '}
-              <a href="mailto:cory@thetalusfieldjournal.com">cory@thetalusfieldjournal.com</a>{' '}
-              about renewing.
+              {/* The renewal pitch only makes sense for a lapsed purchase. An
+                  operator session's shorter JWT expiring lands here too, so
+                  fall back to neutral copy unless the last /me said buyer. */}
+              {readCachedMe()?.kind === 'buyer' ? (
+                <>
+                  Your access period ended {formatEndedDate(accessEndedAt)}. Purchases
+                  include 18 months of access. Email{' '}
+                  <a href="mailto:cory@thetalusfieldjournal.com">
+                    cory@thetalusfieldjournal.com
+                  </a>{' '}
+                  about renewing.
+                </>
+              ) : (
+                <>Your session ended {formatEndedDate(accessEndedAt)}. Sign in again to continue.</>
+              )}
             </p>
           </div>
         )}

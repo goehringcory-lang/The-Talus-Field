@@ -1,12 +1,24 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "the-talus-field",
+  // Edge SEO: rewrites per-route <head> tags and injects prerendered article
+  // prose for crawlers. Routing is asset-first by default: any request that
+  // matches a real file (/dist/*, /styles.css, /img/*, /prerender/*, …) is
+  // served by the asset layer and never invokes the Worker; SPA routes
+  // (/articles/<slug>, /section/*, /guide, …) match no file, so the Worker
+  // runs and transforms the SPA-fallback index.html via env.ASSETS.fetch.
+  // Two consequences to know: `/` matches index.html and skips the Worker
+  // (harmless — the homepage's static <head> already equals what the Worker
+  // would write), and if a real file ever shadows an SPA route, add it to a
+  // "run_worker_first": ["/articles/*", …] list here.
+  "main": "edge/seo.js",
   "compatibility_date": "2026-05-08",
   "observability": {
     "enabled": true
   },
   "assets": {
     "directory": ".",
+    "binding": "ASSETS",
     "not_found_handling": "single-page-application"
   },
   "compatibility_flags": [

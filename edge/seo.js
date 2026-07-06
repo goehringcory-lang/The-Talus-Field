@@ -1,6 +1,7 @@
-// Cloudflare Pages Function. Rewrites the static index.html on the edge so
-// each route ships its own <title>, meta description, canonical, Open Graph,
-// Twitter, and JSON-LD structured data — without a build step.
+// Edge SEO Worker for the editorial site (the `main` entry in wrangler.jsonc,
+// serving alongside the static assets). Rewrites the static index.html on the
+// edge so each route ships its own <title>, meta description, canonical,
+// Open Graph, Twitter, and JSON-LD structured data — without a build step.
 //
 // Why this exists: the editorial site is a client-rendered SPA. Without this
 // rewrite, every URL serves the homepage's <head>, so non-JS crawlers (most
@@ -8,6 +9,14 @@
 // for every article. The browser-side code in app.jsx still updates these
 // tags after hydration; this just makes the static HTML correct from the
 // first byte.
+//
+// History: this began life as the Cloudflare Pages Function
+// functions/_middleware.js. When the site moved from Pages to a Worker with
+// static assets, Pages Functions stopped executing, so the same logic now
+// runs as the Worker's fetch handler. Requests that match a real file
+// (/dist/*, /styles.css, /img/*, /prerender/*, …) are served by the asset
+// layer and never reach this code; only SPA routes (no matching file) run it,
+// which reproduces the old context.next() flow via env.ASSETS.fetch.
 
 import articles from "../articles.json" with { type: "json" };
 import categories from "../categories.json" with { type: "json" };
@@ -411,7 +420,17 @@ function escapeHtmlText(s) {
   return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 }
 
-export async function onRequest({ request, next, env }) {
+export default {
+  fetch(request, env) {
+    // The asset layer answers requests that match real files before the
+    // Worker runs, so `next()` here is always the SPA-fallback index.html
+    // (or a 404-shaped asset response) — the same thing Pages' context.next()
+    // returned. Keeping the old handler shape makes the port a two-line diff.
+    return handleRequest({ request, env, next: () => env.ASSETS.fetch(request) });
+  },
+};
+
+async function handleRequest({ request, next, env }) {
   const url = new URL(request.url);
   const seo = seoForPath(url.pathname);
   if (!seo) return next();

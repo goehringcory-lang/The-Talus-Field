@@ -8,8 +8,8 @@ This repo contains three subsystems for **The Talus Field**, a Yosemite editoria
 
 | Path | What it is | Stack |
 |---|---|---|
-| repo root (`*.jsx`, `index.html`, `styles.css`, `bodies/`, `img/`) | **Editorial site** at `thetalusfieldjournal.com`: articles, interactive trip-planner map (`/map`), film archive (`/films`), packing checklists. Static, no build. | Vanilla React via `<script type="text/babel">` from a CDN; styled with hand-written CSS in `styles.css`. Edge SEO via the Pages Function `functions/_middleware.js`; response headers/CSP in `_headers`. |
-| `apps/guide/` | **Field Guide PWA** at `guide.thetalusfieldjournal.com`. Account-gated **paid product** ($19 one-time, 18-month access; see "paid model" below), offline-capable. | Vite + React 19 + TypeScript + react-router-dom + tailwind 4 + zod. |
+| repo root (`*.jsx`, `index.html`, `styles.css`, `bodies/`, `img/`) | **Editorial site** at `thetalusfieldjournal.com`: articles, interactive trip-planner map (`/map`), film archive (`/films`), packing checklists. Static, no bundler. | Vanilla React: `*.jsx` sources precompiled into `/dist/*.js` by `scripts/gen-compiled.mjs` (`index.html` loads the dist files); styled with hand-written CSS in `styles.css`. Edge SEO via the root Worker entry `edge/seo.js` (see `wrangler.jsonc`); response headers/CSP in `_headers`. |
+| `apps/guide/` | **Field Guide PWA** at `talus-field-guide.pages.dev` (the custom domain `guide.thetalusfieldjournal.com` is deliberately unattached until launch). Account-gated **paid product** ($19 one-time, 18-month access; see "paid model" below), offline-capable. | Vite + React 19 + TypeScript + react-router-dom + zod. |
 | `workers/` | **API** at `api.thetalusfieldjournal.com`. Auth, Stripe checkout/webhook, KV-backed buyer records, contact form, IndexNow, NPS programs feed (`/api/programs` + daily cron). | Cloudflare Worker + Hono + `@tsndr/cloudflare-worker-jwt` + KV. |
 
 DEPLOY.md has a full deployment runbook. Note that DEPLOY.md was written against the older trip-based PWA model (`1day`/`3day`/`5day`, "35 stops"). The PWA was since refactored to region-based (`valley`/`glacier-mariposa`/`tuolumne`/`hetch-hetchy`, ~34 stops); treat the smoke-test section as directionally correct but stale on specifics.
@@ -39,6 +39,9 @@ npm --prefix workers run typecheck      # tsc --noEmit
 bash scripts/check-cache-busters.sh     # editorial: ?v= and BODY_VERSIONS sync
 npm --prefix scripts run seo:check      # editorial: SEO mirror freshness
 npm --prefix scripts run seo            # regenerate SEO mirrors
+npm --prefix scripts run compile        # editorial: recompile *.jsx → /dist/*.js (run after any jsx edit)
+npm --prefix scripts run prerender      # editorial: regenerate /prerender article fragments
+npm --prefix scripts run check          # editorial: all pre-commit guards (cache-busters + seo + prerender + compile checks)
 npm --prefix scripts run images         # regenerate responsive image variants (sharp)
 
 npm --prefix scripts run checks         # editorial: offline system-checks suite (SEO/render/distribution)
@@ -47,11 +50,11 @@ npm --prefix scripts run checks:online  # + link liveness, sitemap 200s, templat
 
 Dev tooling lives in `scripts/` with its own `package.json`, deliberately not at the repo root, so the root stays a static, build-free deploy. Run `cd scripts && npm install` once before using the npm scripts above. The root `package.json` is NOT a tooling home: it exists only because the Cloudflare Workers Build for the editorial worker runs `npm run build` before deploying, and its `build` script is a no-op echo. Do not add dependencies or real build steps to it (`.assetsignore` also excludes it from the asset upload).
 
-Deployment is **not** done from this repo's CI. `main` auto-deploys to Cloudflare Pages for the editorial site and PWA; the Worker requires a manual `wrangler deploy` from `workers/` (with KV namespace IDs filled into `wrangler.toml` and secrets set via `wrangler secret put`).
+Deployment is **not** done from this repo's CI. On merge to `main`: the **editorial site** deploys via a git-connected Cloudflare **Workers Build** (root `wrangler.jsonc`; it runs the root `npm run build` shim then `npx wrangler deploy`, uploading the repo root as static assets with `edge/seo.js` as the Worker entry); the **PWA** deploys via the git-connected Cloudflare **Pages** project `talus-field-guide` (root dir `apps/guide`, build `npm run build`, output `dist`, Node pinned by `apps/guide/.nvmrc`). The **API Worker** never auto-deploys: it requires a manual `wrangler deploy` from `workers/` (with KV namespace IDs filled into `wrangler.toml` and secrets set via `wrangler secret put`).
 
 ## Editorial site conventions
 
-- **No build step.** `index.html` loads each `*.jsx` file directly via `<script type="text/babel" src="...?v=N">`. Babel transforms in-browser. This is intentional: the site is meant to be readable and editable without tooling.
+- **No bundler, but a compile step.** The `*.jsx` files at the root are the source of truth, but `index.html` loads the precompiled `/dist/*.js` versions (plain script tags, no in-browser Babel). After editing any root or `bodies/` jsx, run `npm --prefix scripts run compile` and commit the regenerated `dist/` files alongside the source; `npm --prefix scripts run check` fails if they drift. Edge SEO head rewriting is done by `edge/seo.js`, the root Worker's fetch handler (ported from the retired Pages Function `functions/_middleware.js`).
 - **Cache-buster discipline.** When you edit a JSX file or `styles.css`, bump its `?v=N` query in `index.html`. Cloudflare and browsers both cache aggressively otherwise. All page scripts and the stylesheet share one version number; bump them together to a new shared number when shipping a batch. `points.geojson` is fetched inside `page-map.jsx` with its **own** `?v=` counter — bump that constant separately when editing pins. Run `bash scripts/check-cache-busters.sh` before committing — it errors if any reference is missing a `?v=` or if `window.BODY_VERSIONS` is out of sync with `bodies/`.
 - **Globals via `window`.** Each JSX file attaches its top-level component to `window` (e.g. `window.GuidePage = GuidePage`) so siblings can reference it. The list of `/* global */` comments at the top of each file declares what it consumes. The full `window.*` API surface, the GA4 event inventory, and the localStorage key inventory are documented in `ARCHITECTURE.md`. All localStorage access goes through `window.safeStorage` (storage.js), never `window.localStorage` directly.
 - **Article bodies** live in `bodies/*.jsx` and are **lazy-loaded**, not registered as `<script>` tags in `index.html`. `data.js` indexes each article in `window.ARTICLES` and versions each body per-slug in `window.BODY_VERSIONS`; `window.loadArticleBody(slug)` injects the script on demand. When you add or edit a body, add/bump its `BODY_VERSIONS` entry.
@@ -100,7 +103,7 @@ The brand is **The Talus Field** (formerly "Yosemite Sentinel"). The editorial v
 
 ## Things that have surprised past edits
 
-- The editorial site has **no test suite, lint, or typecheck** — runtime errors only surface in the browser. `scripts/check-cache-busters.sh` and `npm --prefix scripts run seo:check` are the only pre-commit guards.
+- The editorial site has **no test suite, lint, or typecheck** — runtime errors only surface in the browser. The pre-commit guards are `npm --prefix scripts run check` (cache-busters + SEO mirrors + prerender + compiled-dist freshness in one command) plus the offline battery `npm --prefix scripts run checks`.
 - `DEPLOY.md` references `1day`/`3day`/`5day` trips and "35 stops"; the current model is region-based with ~34 stops across four regions.
 - **The guide is a paid product ($19 one-time, 18-month access).** `page-guide.jsx` renders a live Stripe buy box that POSTs `/api/checkout/start` and reads the price from `/api/inventory` (`GUIDE_PRICE_CENTS = "1900"` in `workers/wrangler.toml` is the single source of truth; the page falls back to a static $19 while loading). Going live still requires ops steps outside the tree — KV namespace ids, secrets, the Stripe webhook — see the "2026 relaunch" section of DEPLOY.md. `/api/auth/dev-login` remains the operator door; rotate `DEV_*` creds before launch.
 - The masthead issue label (`window.SITE.issue` / `issueDetail` in `data.js`) derives its month from the current date at runtime — don't hard-code a month name into masthead copy.
