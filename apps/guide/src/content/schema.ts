@@ -11,6 +11,7 @@ export const StopKindEnum = z.enum([
   'lodging',
   'meal',
   'drive',
+  'camping', // currently used only by map amenities, never by a Stop
 ])
 export type StopKind = z.infer<typeof StopKindEnum>
 
@@ -120,3 +121,23 @@ export const SeasonalEvent = z
 export type SeasonalEventT = z.infer<typeof SeasonalEvent>
 
 export const SeasonalEvents = z.array(SeasonalEvent)
+
+// Map-only amenity points: parking lots and campgrounds rendered as pins on
+// /map with a Directions deeplink. Deliberately NOT Stops — no pages, no
+// region lists, no search, no itinerary presets.
+export const AmenityKindEnum = z.enum(['parking', 'camping'])
+export type AmenityKind = z.infer<typeof AmenityKindEnum>
+
+export const Amenity = z.object({
+  id: z.string(),                         // "upper-pines-campground"
+  name: z.string(),
+  kind: AmenityKindEnum,                  // subset of StopKind, so pin styling is shared
+  region: RegionEnum,                     // itinerary-tab filtering only
+  coord: z.tuple([z.number(), z.number()]), // [lng, lat] — required, unlike Stop
+  note: z.string(),                       // 1-2 plain sentences for the popup
+  season: z.string().optional(),          // e.g. "Tioga Road season only"
+})
+
+export type AmenityT = z.infer<typeof Amenity>
+
+export const Amenities = z.array(Amenity)
