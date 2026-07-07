@@ -18,7 +18,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom'
 import maplibregl from 'maplibre-gl'
 import 'maplibre-gl/dist/maplibre-gl.css'
 import GatedChrome from '../components/GatedChrome'
-import { stops as allStops, getStopById, type StopT } from '../content'
+import { AMENITIES, stops as allStops, getStopById, type AmenityT, type Region, type StopT } from '../content'
 import {
   ITINERARIES,
   ITINERARY_KEYS,
@@ -151,11 +151,58 @@ function buildPopupContent(stop: StopT, onOpenStop: (id: string) => void): HTMLE
   return root
 }
 
+// Amenity popup: name, kind chip, note (+ season line), Directions only.
+// Amenities (parking lots, campgrounds) are map-only pins, not Stops, so
+// there is no "Open stop" or "Add to trip".
+function buildAmenityPopupContent(amenity: AmenityT): HTMLElement {
+  const style = getKindStyle(amenity.kind)
+  const root = document.createElement('div')
+  root.className = 'map-popup'
+
+  const title = document.createElement('strong')
+  title.className = 'map-popup__title'
+  title.textContent = amenity.name
+  root.appendChild(title)
+
+  const chip = document.createElement('span')
+  chip.className = 'map-popup__kind'
+  chip.style.color = style.color
+  chip.textContent = style.label
+  root.appendChild(chip)
+
+  const excerpt = document.createElement('p')
+  excerpt.className = 'map-popup__excerpt'
+  excerpt.textContent = amenity.note
+  root.appendChild(excerpt)
+
+  if (amenity.season) {
+    const season = document.createElement('p')
+    season.className = 'map-popup__excerpt'
+    const em = document.createElement('em')
+    em.textContent = amenity.season
+    season.appendChild(em)
+    root.appendChild(season)
+  }
+
+  const actions = document.createElement('p')
+  actions.className = 'map-popup__actions'
+  const dir = document.createElement('a')
+  dir.className = 'map-popup__btn map-popup__btn--dir'
+  dir.href = directionsUrl(amenity.coord)
+  dir.target = '_blank'
+  dir.rel = 'noopener'
+  dir.textContent = 'Directions →'
+  actions.appendChild(dir)
+  root.appendChild(actions)
+  return root
+}
+
 export default function Map() {
   const navigate = useNavigate()
   const containerRef = useRef<HTMLDivElement | null>(null)
   const mapRef = useRef<maplibregl.Map | null>(null)
   const markersRef = useRef<Record<string, maplibregl.Marker>>({})
+  const amenityMarkersRef = useRef<Record<string, maplibregl.Marker>>({})
   const popupRef = useRef<maplibregl.Popup | null>(null)
 
   const [mapReady, setMapReady] = useState(false)
@@ -192,17 +239,30 @@ export default function Map() {
   // Only stops with a coord can be mapped.
   const mappableStops = useMemo<StopT[]>(() => allStops.filter((s) => !!s.coord), [])
 
+  // The itinerary's region set, or null when no itinerary narrows the map.
+  const itineraryRegions = useMemo<Set<Region> | null>(() => {
+    if (tab !== 'itineraries' || !selectedItinerary) return null
+    return new Set(ITINERARIES[selectedItinerary].days.flatMap((d) => d.regions))
+  }, [selectedItinerary, tab])
+
   // Filter by itinerary when one is selected and the itineraries tab is active.
   // Hidden-collection stops are excluded from itineraries: the presets are the
   // mainstream path, and itinerary days are derived from regions, so without
   // this filter hidden stops would silently inflate every preset.
   const visibleStops = useMemo<StopT[]>(() => {
-    if (tab !== 'itineraries' || !selectedItinerary) return mappableStops
-    const regions = new Set(
-      ITINERARIES[selectedItinerary].days.flatMap((d) => d.regions),
+    if (!itineraryRegions) return mappableStops
+    return mappableStops.filter(
+      (s) => itineraryRegions.has(s.region) && s.collection !== 'hidden',
     )
-    return mappableStops.filter((s) => regions.has(s.region) && s.collection !== 'hidden')
-  }, [mappableStops, selectedItinerary, tab])
+  }, [mappableStops, itineraryRegions])
+
+  // Amenities follow the same region narrowing but never join the day-by-day
+  // lists or counts: on an itinerary view, "where do I park and camp" for
+  // those regions is the point; park-wide clutter is not.
+  const visibleAmenities = useMemo<AmenityT[]>(() => {
+    if (!itineraryRegions) return AMENITIES
+    return AMENITIES.filter((a) => itineraryRegions.has(a.region))
+  }, [itineraryRegions])
 
   // Sync state to URL.
   useEffect(() => {
@@ -333,6 +393,42 @@ export default function Map() {
     map.fitBounds(bounds, { padding: 48, maxZoom: 12, animate: false })
   }, [visibleStops, mapReady, selectStop])
 
+  // Amenity marker reconciliation. Amenities stay outside the stop pipeline:
+  // no selection state, no ?stop= URL param, and no fitBounds contribution,
+  // so a far-flung campground never stretches the auto-fit frame. Their pins
+  // open the shared popup directly.
+  useEffect(() => {
+    if (!mapReady) return
+    const map = mapRef.current
+    if (!map) return
+
+    for (const id of Object.keys(amenityMarkersRef.current)) {
+      amenityMarkersRef.current[id].remove()
+    }
+    amenityMarkersRef.current = {}
+
+    for (const amenity of visibleAmenities) {
+      const el = buildPinElement(amenity.kind)
+      el.addEventListener('click', (e) => {
+        // Same canvas-click race as the stop pins above.
+        e.stopPropagation()
+        // Clear any stop selection so ?stop= doesn't keep pointing at a stop
+        // whose popup this one just replaced.
+        selectStop(null)
+        popupRef.current
+          ?.setLngLat(amenity.coord)
+          .setDOMContent(buildAmenityPopupContent(amenity))
+          .addTo(map)
+      })
+      amenityMarkersRef.current[amenity.id] = new maplibregl.Marker({
+        element: el,
+        anchor: 'bottom',
+      })
+        .setLngLat(amenity.coord)
+        .addTo(map)
+    }
+  }, [visibleAmenities, mapReady, selectStop])
+
   // Selection effect — pan/zoom + open popup when the selection changes.
   useEffect(() => {
     if (!mapReady || !selection.id) return
@@ -391,10 +487,11 @@ export default function Map() {
     return out
   }, [mappableStops])
 
-  // Legend: only the kinds actually present in the stops.
+  // Legend: only the kinds actually present in the stops and amenities.
   const presentKinds = useMemo(() => {
     const seen = new Set<StopT['kind']>()
     for (const s of mappableStops) seen.add(s.kind)
+    for (const a of AMENITIES) seen.add(a.kind)
     return Array.from(seen)
   }, [mappableStops])
 
@@ -624,6 +721,10 @@ function InfoPane({
         <li>
           Tap a pin. The popup has <strong>Open stop →</strong> (the full
           write-up in this guide) and <strong>Directions →</strong>.
+        </li>
+        <li>
+          Parking-lot and campground pins are navigation aids: a short note
+          and a Directions button, no stop write-up.
         </li>
         <li>
           Directions deep-links into the native Google Maps app, which routes

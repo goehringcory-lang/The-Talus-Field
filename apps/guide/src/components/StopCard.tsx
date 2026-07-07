@@ -24,6 +24,7 @@ const KIND_LABEL: Record<StopT['kind'], string> = {
   lodging: 'Lodging',
   meal: 'Meal',
   drive: 'Drive',
+  camping: 'Camping', // amenity-only kind today; no Stop uses it
 }
 
 const DIFFICULTY_LABEL: Record<NonNullable<StopT['difficulty']>, string> = {

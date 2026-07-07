@@ -16,6 +16,7 @@ export const KIND_STYLES: Record<StopKind, KindStyle> = {
   lodging: { color: '#5a3a5e', label: 'Lodging' },
   meal: { color: '#8a661a', label: 'Meal' },
   drive: { color: '#7a2a10', label: 'Drive' },
+  camping: { color: '#1c6e63', label: 'Camping' },
 }
 
 export function getKindStyle(kind: StopKind): KindStyle {
