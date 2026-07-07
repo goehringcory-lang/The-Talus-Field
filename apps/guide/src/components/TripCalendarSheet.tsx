@@ -22,7 +22,9 @@ import {
   webcalUrl,
   type TripFeedInfo,
 } from '../trip/feed'
+import { readGoogleCalInfo } from '../trip/googleCalendar'
 import type { SlottedItem } from '../trip/slotting'
+import { relativeStamp } from '../utils/relativeStamp'
 import Button from './ui/Button'
 
 type Props = {
@@ -31,15 +33,6 @@ type Props = {
   slotted: Map<string, SlottedItem[]>
   eventCount: number
   filenameDate: string
-}
-
-function relativeStamp(iso: string): string {
-  const minutes = Math.round((Date.now() - Date.parse(iso)) / 60_000)
-  if (minutes < 2) return 'just now'
-  if (minutes < 60) return `${minutes} minutes ago`
-  const hours = Math.round(minutes / 60)
-  if (hours < 48) return `${hours} ${hours === 1 ? 'hour' : 'hours'} ago`
-  return new Date(iso).toLocaleDateString(undefined, { month: 'long', day: 'numeric' })
 }
 
 // Wrapper mounts the body fresh on every open, so state initializers read
@@ -52,6 +45,9 @@ export default function TripCalendarSheet({ open, ...rest }: Props) {
 
 function SheetBody({ onClose, slotted, eventCount, filenameDate }: Omit<Props, 'open'>) {
   const [feed, setFeed] = useState<TripFeedInfo | null>(() => readFeedInfo())
+  // Read once on open: if Google is already connected from the Account page,
+  // subscribing here too would double the trip in Google Calendar.
+  const [googleConnected] = useState(() => readGoogleCalInfo() !== null)
   const [online, setOnline] = useState(() => navigator.onLine)
   const [publishing, setPublishing] = useState(false)
   const [publishError, setPublishError] = useState<string | null>(null)
@@ -148,6 +144,13 @@ function SheetBody({ onClose, slotted, eventCount, filenameDate }: Omit<Props, '
 
         <section className="sheet__section">
           <h3 className="sheet__title">Subscribe, stays updated</h3>
+          {googleConnected && (
+            <p className="sheet__note sheet__note--muted">
+              You're already syncing straight into your Google Calendar from the Account page.
+              Subscribing here too would show the trip twice in Google. Use this only for a
+              different calendar app.
+            </p>
+          )}
           {!feed && (
             <>
               <p className="sheet__note">

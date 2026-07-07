@@ -14,11 +14,21 @@ export type Env = {
   GUIDE_PRODUCT_TAG: string    // "field_guide_2026"
   GUIDE_MONTHLY_CAP: string    // "100"
 
+  // Google OAuth client for the calendar push (/api/calendar). The client id
+  // is a public identifier and lives in [vars]; the secret is set with
+  // `wrangler secret put`. Both optional: without them /api/calendar/google/start
+  // returns 503 and the Account page's connect button is inert.
+  GOOGLE_OAUTH_CLIENT_ID?: string
+
   // Secrets (wrangler secret put)
   STRIPE_SECRET_KEY: string
   STRIPE_WEBHOOK_SECRET: string
   MAGIC_LINK_SIGNING_SECRET: string
   RESEND_API_KEY: string
+
+  // Google OAuth client secret for the calendar push. Paired with
+  // GOOGLE_OAUTH_CLIENT_ID above; optional (endpoint 503s when unset).
+  GOOGLE_OAUTH_CLIENT_SECRET?: string
 
   // NPS Events API key (free, developer.nps.gov/get-started). Server-side
   // only — the PWA never sees it. Optional: without it the programs cron

@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { useAuth } from '../auth/useAuth'
 import { fetchMe, readCachedMe, type MeT } from '../auth/me'
 import GatedChrome from '../components/GatedChrome'
+import CalendarCard from '../components/CalendarCard'
 import DownloadManager from '../components/DownloadManager'
 import Button from '../components/ui/Button'
 import PageHeader from '../components/ui/PageHeader'
@@ -132,6 +133,10 @@ export default function Account() {
           </div>
 
           <AccessStatusCard />
+
+          <div className="card">
+            <CalendarCard />
+          </div>
 
           <div className="card">
             <DownloadManager />
