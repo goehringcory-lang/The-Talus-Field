@@ -10,7 +10,10 @@ compatibility_flags = ["nodejs_compat"]
 # Besides buyer records, this namespace also holds the /api/trip calendar
 # feeds: tripfeed:<token> (the published ICS) and tripfeedToken:<sub> (the
 # owner's reuse pointer), both on a 400-day TTL refreshed by every publish,
-# plus the hourly tripfeedWriteAttempts:* rate-limit counters.
+# plus the hourly tripfeedWriteAttempts:* rate-limit counters. It also holds
+# the /api/calendar Google push state: gcal:<sub> (refresh token, no TTL),
+# gcalAccess:<sub> (cached access token), gcalEvents:<sub> (uid→eventId map),
+# gcalstate:<state> (10-min OAuth handoff), and gcalSyncAttempts:* counters.
 [[kv_namespaces]]
 binding = "GUIDE_BUYERS"
 id = "REPLACE_ME_AFTER_kv_namespace_create"
@@ -46,6 +49,11 @@ EDITORIAL_BASE_URL = "https://thetalusfieldjournal.com"
 GUIDE_PRICE_CENTS = "1900"
 GUIDE_PRODUCT_TAG = "field_guide_2026"
 GUIDE_MONTHLY_CAP = "100"
+# Google OAuth client id for the calendar push (/api/calendar). Public
+# identifier, safe to commit. Paired with the GOOGLE_OAUTH_CLIENT_SECRET secret.
+# Leave the placeholder until the OAuth client exists; the connect endpoint
+# 503s (button inert) until both id and secret are set.
+GOOGLE_OAUTH_CLIENT_ID = "REPLACE_WITH_GOOGLE_OAUTH_CLIENT_ID.apps.googleusercontent.com"
 
 # Routes the Worker to api.thetalusfieldjournal.com.
 # DNS prerequisite: in Cloudflare DNS, add a CNAME `api` -> `<worker-name>.workers.dev`
@@ -80,6 +88,20 @@ zone_name = "thetalusfieldjournal.com"
 #                                              # served at /<key>.txt
 #   wrangler secret put INDEXNOW_ADMIN_TOKEN   # gates POST /api/indexnow/submit
 # Without them the route returns 503. See scripts/indexnow-ping.sh.
+# ===========================================================================
+
+# === Google Calendar push ===================================================
+# /api/calendar/google/* runs an OAuth code flow and pushes the trip plan into
+# the buyer's primary Google calendar. Create a Web-application OAuth client in
+# the Google Cloud console (enable the Google Calendar API first), with these
+# authorized redirect URIs:
+#   https://api.thetalusfieldjournal.com/api/calendar/google/callback
+#   http://localhost:8787/api/calendar/google/callback   (wrangler dev)
+# Consent-screen scopes: openid, userinfo.email, .../auth/calendar.events.
+# Put the client id in [vars] above, and the secret here:
+#   wrangler secret put GOOGLE_OAUTH_CLIENT_SECRET
+# calendar.events is a sensitive scope: submit the app for verification before
+# public launch (Testing mode works immediately for added test users).
 # ===========================================================================
 
 # === Local dev override ====================================================
