@@ -199,7 +199,7 @@ function buildSitemap(merged, categories) {
     ["/advertise", "2026-04-01"],
     ["/newsletter", "2026-04-01"],
     ["/contact", "2026-04-01"],
-    ["/privacy", "2026-04-01"],
+    ["/privacy", "2026-07-08"],
     ["/terms", "2026-04-01"],
     ["/affiliate", "2026-04-01"],
     ["/guide", "2026-05-10"],
