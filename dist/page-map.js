@@ -11,6 +11,9 @@ var STORAGE_VERSION = 1;
 var TRIP_CAP = 30;
 var TRIP_PIN_COLOR = "#7a8f5a";
 var ROUTE_STOP_LIMIT = 11;
+var MOBILE_SELECT_PAN_Y = -80;
+var TOAST_MS = 2500;
+var TOAST_UNDO_MS = 6000;
 var MAP_UNLOCK_KEY = "tfg.map.unlocked";
 function isMapUnlocked() {
   return window.safeStorage.get(MAP_UNLOCK_KEY, "1") === "1";
@@ -77,11 +80,27 @@ var CATEGORY_FALLBACK = {
 function getCategoryStyle(category) {
   return CATEGORY_STYLES[category] || CATEGORY_FALLBACK;
 }
+var ALL_CATEGORIES = Object.keys(CATEGORY_STYLES);
+function parseCatParam(raw) {
+  if (raw === null || raw === undefined) return new Set(ALL_CATEGORIES);
+  if (raw === "") return new Set();
+  var out = new Set();
+  for (var token of raw.split(",")) {
+    var t = token.trim();
+    if (CATEGORY_STYLES[t]) out.add(t);
+  }
+  return out.size > 0 ? out : new Set(ALL_CATEGORIES);
+}
+function serializeCats(activeCats) {
+  if (ALL_CATEGORIES.every(c => activeCats.has(c))) return null;
+  return Array.from(activeCats).sort().join(",");
+}
 function readUrlState() {
   var params = new URLSearchParams(window.location.search);
   return {
     stop: params.get("stop") || null,
-    trip: params.get("trip") || null
+    trip: params.get("trip") || null,
+    cat: params.get("cat")
   };
 }
 function parseTripParam(raw, validIds) {
@@ -98,10 +117,12 @@ function parseTripParam(raw, validIds) {
   return out;
 }
 function writeUrlState({
-  stop
+  stop,
+  cat
 }) {
   var params = new URLSearchParams();
   if (stop) params.set("stop", stop);
+  if (cat !== null && cat !== undefined) params.set("cat", cat);
   var qs = params.toString();
   var newUrl = "/map" + (qs ? `?${qs}` : "");
   if (newUrl !== window.location.pathname + window.location.search) {
@@ -161,6 +182,55 @@ function waitForGoogleMaps(timeoutMs = 8000) {
     }, 100);
   });
 }
+var CLUSTERER_SRC = "https://unpkg.com/@googlemaps/markerclusterer@2.5.3/dist/index.min.js";
+var CLUSTER_MAX_ZOOM = 12;
+function markerClustererLoaded() {
+  return !!(window.markerClusterer && window.markerClusterer.MarkerClusterer);
+}
+function injectMarkerClusterer() {
+  if (markerClustererLoaded()) return;
+  if (document.querySelector(`script[src="${CLUSTERER_SRC}"]`)) return;
+  var s = document.createElement("script");
+  s.src = CLUSTERER_SRC;
+  s.async = true;
+  document.head.appendChild(s);
+}
+function waitForMarkerClusterer(timeoutMs = 8000) {
+  return new Promise(resolve => {
+    if (markerClustererLoaded()) {
+      resolve(window.markerClusterer);
+      return;
+    }
+    injectMarkerClusterer();
+    var start = Date.now();
+    var interval = setInterval(() => {
+      if (markerClustererLoaded()) {
+        clearInterval(interval);
+        resolve(window.markerClusterer);
+      } else if (Date.now() - start > timeoutMs) {
+        clearInterval(interval);
+        resolve(null);
+      }
+    }, 100);
+  });
+}
+function buildClusterRenderer(markerLib) {
+  return {
+    render({
+      count,
+      position
+    }) {
+      var div = document.createElement("div");
+      div.className = "map-cluster";
+      div.textContent = String(count);
+      return new markerLib.AdvancedMarkerElement({
+        position,
+        content: div,
+        zIndex: 1000 + count
+      });
+    }
+  };
+}
 function buildPinElement(markerLib, {
   background,
   glyphText
@@ -187,6 +257,9 @@ function MapView({
   var goRef = useRef(go);
   var announcerRef = useRef(null);
   var toastTimerRef = useRef(null);
+  var clustererRef = useRef(null);
+  var markerModesRef = useRef({});
+  var pendingUndoRef = useRef(null);
   var [features, setFeatures] = useState(null);
   var [error, setError] = useState(null);
   var [mapReady, setMapReady] = useState(false);
@@ -195,6 +268,8 @@ function MapView({
   var initial = useMemo(() => readUrlState(), []);
   var [selectedStopId, setSelectedStopId] = useState(initial.stop);
   var [tripStopIds, setTripStopIds] = useState([]);
+  var [activeCats, setActiveCats] = useState(() => parseCatParam(initial.cat));
+  var [hasClusterer, setHasClusterer] = useState(false);
   var [expandedRegions, setExpandedRegions] = useState(() => new Set(REGIONS.map(r => r.id)));
   var [sheetState, setSheetState] = useState("peek");
   useEffect(() => {
@@ -238,22 +313,52 @@ function MapView({
   }, [tripStopIds, features]);
   useEffect(() => {
     writeUrlState({
-      stop: selectedStopId
+      stop: selectedStopId,
+      cat: serializeCats(activeCats)
     });
-  }, [selectedStopId]);
+  }, [selectedStopId, activeCats]);
   useEffect(() => {
     var onPop = () => {
       var next = readUrlState();
       setSelectedStopId(next.stop);
+      setActiveCats(parseCatParam(next.cat));
     };
     window.addEventListener("popstate", onPop);
     return () => window.removeEventListener("popstate", onPop);
   }, []);
-  var announce = useCallback(msg => {
-    if (announcerRef.current) announcerRef.current.textContent = msg;
-    setToast(msg);
+  var toggleCategory = useCallback(cat => {
+    var next = new Set(activeCats);
+    var nowActive = !next.has(cat);
+    if (nowActive) next.add(cat);else next.delete(cat);
+    setActiveCats(next);
+    if (features) {
+      var tripSet = new Set(tripStopIdsRef.current);
+      var shown = features.filter(f => next.has(f.properties.category) || tripSet.has(f.properties.id)).length;
+      announce(`${getCategoryStyle(cat).label} pins ${nowActive ? "shown" : "hidden"}. ${shown} of ${features.length} stops shown.`);
+    }
+    if (window.track) {
+      window.track("map_filter_category", {
+        category: cat,
+        active: nowActive,
+        active_count: next.size
+      });
+    }
+  }, [activeCats, features, announce]);
+  var announce = useCallback((msg, opts) => {
+    var undoable = !!(opts && opts.undoable);
+    if (!undoable) pendingUndoRef.current = null;
+    if (announcerRef.current) {
+      announcerRef.current.textContent = undoable ? `${msg} Undo available.` : msg;
+    }
+    setToast({
+      msg,
+      undoable
+    });
     if (toastTimerRef.current) clearTimeout(toastTimerRef.current);
-    toastTimerRef.current = setTimeout(() => setToast(null), 2500);
+    toastTimerRef.current = setTimeout(() => {
+      setToast(null);
+      pendingUndoRef.current = null;
+    }, undoable ? TOAST_UNDO_MS : TOAST_MS);
   }, []);
   var featureNameById = useCallback(id => {
     if (!features) return id;
@@ -317,11 +422,25 @@ function MapView({
     });
   }, [announce, featureNameById]);
   var clearTrip = useCallback(() => {
-    setTripStopIds(prev => {
-      if (prev.length === 0) return prev;
-      announce("Cleared trip. 0 stops.");
-      return [];
+    var prev = tripStopIdsRef.current;
+    if (prev.length === 0) return;
+    pendingUndoRef.current = {
+      ids: prev
+    };
+    setTripStopIds([]);
+    announce("Cleared trip. 0 stops.", {
+      undoable: true
     });
+  }, [announce]);
+  var undoTripChange = useCallback(() => {
+    var saved = pendingUndoRef.current;
+    if (!saved) return;
+    pendingUndoRef.current = null;
+    setTripStopIds(saved.ids);
+    if (window.track) window.track("trip_undo", {
+      restored_size: saved.ids.length
+    });
+    announce(`Restored previous trip. ${saved.ids.length} ${saved.ids.length === 1 ? "stop" : "stops"}.`);
   }, [announce]);
   var performAddAllFromRegion = useCallback(regionId => {
     setTripStopIds(prev => {
@@ -329,7 +448,7 @@ function MapView({
       var region = REGIONS.find(r => r.id === regionId);
       if (!region) return prev;
       var keys = new Set(region.keys);
-      var regionStopIds = features.filter(f => keys.has(f.properties.region)).map(f => f.properties.id);
+      var regionStopIds = features.filter(f => keys.has(f.properties.region) && activeCats.has(f.properties.category)).map(f => f.properties.id);
       var have = new Set(prev);
       var next = [...prev];
       var added = 0;
@@ -343,7 +462,7 @@ function MapView({
       announce(`Added ${added} ${added === 1 ? "stop" : "stops"} from ${region.label}. ${next.length} ${next.length === 1 ? "stop" : "stops"} total.`);
       return next;
     });
-  }, [announce, features]);
+  }, [announce, features, activeCats]);
   var addAllFromRegion = useCallback(regionId => {
     if (window.track) window.track("trip_add_all", {
       region: regionId
@@ -363,8 +482,14 @@ function MapView({
       _loop(rid);
     }
     var stops = features.filter(f => keys.has(f.properties.region)).map(f => f.properties.id).slice(0, TRIP_CAP);
+    var prev = tripStopIdsRef.current;
+    if (prev.length > 0) pendingUndoRef.current = {
+      ids: prev
+    };
     setTripStopIds(stops);
-    announce(`Loaded ${qp.label} suggested trip. ${stops.length} ${stops.length === 1 ? "stop" : "stops"}.`);
+    announce(`Loaded ${qp.label} suggested trip. ${stops.length} ${stops.length === 1 ? "stop" : "stops"}.`, {
+      undoable: prev.length > 0
+    });
   }, [announce, features]);
   var applyQuickPick = useCallback(quickPickId => {
     if (window.track) window.track("trip_quick_pick", {
@@ -417,6 +542,7 @@ function MapView({
   });
   var handleSelectStop = useCallback(id => {
     setSelectedStopId(id);
+    if (window.innerWidth <= 720) setSheetState("peek");
   }, []);
   var handleToggleRegion = useCallback(regionId => {
     setExpandedRegions(prev => {
@@ -457,6 +583,26 @@ function MapView({
         setSelectedStopId(null);
       });
       setMapReady(true);
+      waitForMarkerClusterer().then(mc => {
+        if (cancelled || !mc) return;
+        clustererRef.current = new mc.MarkerClusterer({
+          map,
+          markers: [],
+          algorithm: new mc.SuperClusterAlgorithm({
+            maxZoom: CLUSTER_MAX_ZOOM,
+            radius: 60
+          }),
+          renderer: buildClusterRenderer(markerLib),
+          onClusterClick: (event, cluster, m) => {
+            if (window.track) window.track("map_cluster_click", {
+              count: cluster.count
+            });
+            m.fitBounds(cluster.bounds);
+          }
+        });
+        markerModesRef.current = {};
+        setHasClusterer(true);
+      });
     }).catch(err => {
       if (cancelled) return;
       setError(err.message);
@@ -485,7 +631,6 @@ function MapView({
       });
       var marker = new markerLib.AdvancedMarkerElement({
         position,
-        map,
         title: p.name,
         content: pin
       });
@@ -501,6 +646,7 @@ function MapView({
           map
         });
         setSelectedStopId(p.id);
+        if (window.innerWidth <= 720) setSheetState("peek");
       });
       markersRef.current[p.id] = marker;
     };
@@ -533,6 +679,40 @@ function MapView({
       marker.content = pin;
     }
   }, [tripStopIds, features, mapReady]);
+  useEffect(() => {
+    if (!mapReady || !features) return;
+    var map = mapRef.current;
+    if (!map) return;
+    var clusterer = clustererRef.current;
+    var tripSet = new Set(tripStopIds);
+    var modes = markerModesRef.current;
+    var clusterChanged = false;
+    for (var feature of features) {
+      var p = feature.properties;
+      var marker = markersRef.current[p.id];
+      if (!marker) continue;
+      var mode = tripSet.has(p.id) || p.id === selectedStopId ? "direct" : !activeCats.has(p.category) ? "hidden" : clusterer ? "clustered" : "direct";
+      if (modes[p.id] === mode) continue;
+      if (modes[p.id] === "clustered" && clusterer) {
+        clusterer.removeMarker(marker, true);
+        clusterChanged = true;
+      }
+      if (mode === "clustered") {
+        marker.map = null;
+        clusterer.addMarker(marker, true);
+        clusterChanged = true;
+      } else {
+        marker.map = mode === "direct" ? map : null;
+      }
+      modes[p.id] = mode;
+    }
+    if (clusterer && clusterChanged) clusterer.render();
+    var of = openFeatureRef.current;
+    if (of && modes[of.properties.id] === "hidden" && infoRef.current) {
+      infoRef.current.close();
+      openFeatureRef.current = null;
+    }
+  }, [tripStopIds, activeCats, selectedStopId, features, mapReady, hasClusterer]);
   useEffect(() => {
     if (!mapReady) return;
     var info = infoRef.current;
@@ -570,6 +750,18 @@ function MapView({
           if (goRef.current) goRef.current("a:" + slug);
         });
       });
+      var dirs = document.querySelectorAll("[data-directions-link]");
+      dirs.forEach(link => {
+        var fresh = link.cloneNode(true);
+        link.parentNode.replaceChild(fresh, link);
+        fresh.addEventListener("click", () => {
+          if (window.track) {
+            window.track("map_directions_click", {
+              stop_id: fresh.getAttribute("data-stop-id") || ""
+            });
+          }
+        });
+      });
     });
     return () => {
       maps.event.removeListener(listener);
@@ -593,6 +785,7 @@ function MapView({
         anchor: marker,
         map
       });
+      if (window.innerWidth <= 720) map.panBy(0, MOBILE_SELECT_PAN_Y);
     }
   }, [selectedStopId, mapReady, features]);
   if (features === null) {
@@ -606,6 +799,9 @@ function MapView({
     features: features,
     tripStopIds: tripStopIds,
     selectedStopId: selectedStopId,
+    activeCats: activeCats,
+    onToggleCategory: toggleCategory,
+    onUndo: undoTripChange,
     expandedRegions: expandedRegions,
     sheetState: sheetState,
     onSetSheetState: setSheetState,
@@ -638,6 +834,9 @@ function TripPlannerSidebar({
   features,
   tripStopIds,
   selectedStopId,
+  activeCats,
+  onToggleCategory,
+  onUndo,
   expandedRegions,
   sheetState,
   onSetSheetState,
@@ -654,16 +853,34 @@ function TripPlannerSidebar({
   announcerRef,
   toast
 }) {
+  var [searchQuery, setSearchQuery] = useState("");
+  var query = searchQuery.trim().toLowerCase();
   var regionGroups = useMemo(() => {
     return REGIONS.map(r => {
       var keys = new Set(r.keys);
-      var stops = features.filter(f => keys.has(f.properties.region));
+      var catStops = features.filter(f => keys.has(f.properties.region) && activeCats.has(f.properties.category));
+      var stops = query ? catStops.filter(f => f.properties.name.toLowerCase().includes(query)) : catStops;
       return {
         ...r,
-        stops
+        stops,
+        catStops
       };
     });
-  }, [features]);
+  }, [features, activeCats, query]);
+  var matchCount = useMemo(() => regionGroups.reduce((n, r) => n + r.stops.length, 0), [regionGroups]);
+  useEffect(() => {
+    if (!query) return;
+    var t = setTimeout(() => {
+      if (window.track) window.track("map_search", {
+        query: query.slice(0, 50),
+        matches: matchCount
+      });
+      if (announcerRef.current) {
+        announcerRef.current.textContent = matchCount === 0 ? "No stops match." : `${matchCount} ${matchCount === 1 ? "stop matches" : "stops match"}.`;
+      }
+    }, 800);
+    return () => clearTimeout(t);
+  }, [query, matchCount]);
   var tripFeatures = useMemo(() => {
     var byId = new Map(features.map(f => [f.properties.id, f]));
     return tripStopIds.map(id => byId.get(id)).filter(Boolean);
@@ -861,7 +1078,11 @@ function TripPlannerSidebar({
     className: "map-sidebar__toast",
     role: "status",
     "aria-live": "off"
-  }, toast), React.createElement("div", {
+  }, React.createElement("span", null, toast.msg), toast.undoable && React.createElement("button", {
+    type: "button",
+    className: "map-sidebar__toast-undo",
+    onClick: onUndo
+  }, "Undo")), React.createElement("div", {
     ref: announcerRef,
     className: "map-sidebar__sr-announcer",
     "aria-live": "polite",
@@ -879,19 +1100,34 @@ function TripPlannerSidebar({
     type: "button",
     className: "map-sidebar__quickpick",
     onClick: () => onApplyQuickPick(qp.id)
-  }, qp.label)))), React.createElement("div", {
+  }, qp.label)))), React.createElement(CategoryFilters, {
+    features: features,
+    activeCats: activeCats,
+    onToggleCategory: onToggleCategory
+  }), React.createElement("div", {
     className: "map-sidebar__section"
   }, React.createElement("h3", {
     className: "map-sidebar__section-label"
-  }, "Browse by area"), React.createElement("div", {
+  }, "Browse by area"), React.createElement("input", {
+    type: "search",
+    className: "map-sidebar__search",
+    placeholder: "Find a stop",
+    "aria-label": "Search stops by name",
+    value: searchQuery,
+    onChange: e => setSearchQuery(e.target.value)
+  }), query && React.createElement("p", {
+    className: "map-sidebar__search-count"
+  }, matchCount === 0 ? "No stops match." : `${matchCount} ${matchCount === 1 ? "stop matches" : "stops match"}.`), React.createElement("div", {
     className: "map-sidebar__regions"
   }, regionGroups.map(r => {
-    var isExpanded = expandedRegions.has(r.id);
+    if (query && r.stops.length === 0) return null;
+    var isExpanded = query ? true : expandedRegions.has(r.id);
     var stopCount = r.stops.length;
-    var inTripCount = r.stops.filter(f => tripSet.has(f.properties.id)).length;
-    var allInTrip = stopCount > 0 && inTripCount === stopCount;
-    var addAllDisabled = stopCount === 0 || allInTrip || tripFull;
-    var addAllTitle = stopCount === 0 ? "No stops in this region yet" : allInTrip ? "All stops in this region are already in your trip" : tripFull ? `Trip is full at ${TRIP_CAP} stops` : `Add all ${stopCount} stops from ${r.label}`;
+    var addableCount = r.catStops.length;
+    var inTripCount = r.catStops.filter(f => tripSet.has(f.properties.id)).length;
+    var allInTrip = addableCount > 0 && inTripCount === addableCount;
+    var addAllDisabled = addableCount === 0 || allInTrip || tripFull;
+    var addAllTitle = addableCount === 0 ? "No stops to add with the current filters" : allInTrip ? "All stops in this region are already in your trip" : tripFull ? `Trip is full at ${TRIP_CAP} stops` : `Add all ${addableCount} stops from ${r.label}`;
     return React.createElement("section", {
       key: r.id,
       className: "map-sidebar__region"
@@ -917,7 +1153,7 @@ function TripPlannerSidebar({
       title: addAllTitle
     }, "Add all")), isExpanded && (stopCount === 0 ? React.createElement("p", {
       className: "map-sidebar__region-empty"
-    }, "(no stops yet)") : React.createElement("ul", {
+    }, "(no stops with these filters)") : React.createElement("ul", {
       className: "map-sidebar__region-stops"
     }, r.stops.map(f => {
       var p = f.properties;
@@ -945,44 +1181,50 @@ function TripPlannerSidebar({
         "aria-label": inTrip ? `Remove ${p.name} from trip` : `Add ${p.name} to trip`
       }, inTrip ? "✓" : "+"));
     }))));
-  }))), React.createElement(CategoryLegend, {
-    features: features
-  }));
+  }))));
 }
-function CategoryLegend({
-  features
+function CategoryFilters({
+  features,
+  activeCats,
+  onToggleCategory
 }) {
   var present = useMemo(() => {
-    var seen = new Set();
+    var counts = new Map();
     for (var f of features) {
-      if (f.properties && f.properties.category) seen.add(f.properties.category);
+      var c = f.properties && f.properties.category;
+      if (!c) continue;
+      counts.set(c, (counts.get(c) || 0) + 1);
     }
-    return Array.from(seen).sort();
+    return Array.from(counts.entries()).sort((a, b) => a[0].localeCompare(b[0]));
   }, [features]);
   if (present.length === 0) return null;
   return React.createElement("div", {
     className: "map-sidebar__section"
   }, React.createElement("h3", {
     className: "map-sidebar__section-label"
-  }, "Legend"), React.createElement("ul", {
-    className: "map-sidebar__legend"
-  }, present.map(cat => {
+  }, "Filter by type"), React.createElement("p", {
+    className: "map-sidebar__hint"
+  }, "Chips toggle pin types on the map and in the list below. Trip stops stay visible."), React.createElement("div", {
+    className: "map-sidebar__filters"
+  }, present.map(([cat, count]) => {
     var {
       color,
       label
     } = getCategoryStyle(cat);
-    return React.createElement("li", {
+    var active = activeCats.has(cat);
+    return React.createElement("button", {
       key: cat,
-      className: "map-sidebar__legend-item"
+      type: "button",
+      className: "map-sidebar__filter-chip",
+      "aria-pressed": active,
+      onClick: () => onToggleCategory(cat)
     }, React.createElement("span", {
       className: "map-sidebar__legend-dot",
       style: {
         backgroundColor: color
       },
       "aria-hidden": "true"
-    }), React.createElement("span", {
-      className: "map-sidebar__legend-label"
-    }, label));
+    }), React.createElement("span", null, label, " (", count, ")"));
   })));
 }
 function getMapsApiKey() {
@@ -1008,12 +1250,19 @@ function buildInfoHtml(p, coords, tripStopIds) {
          <span style="width:7px;height:7px;border-radius:50%;background:${style.color};display:inline-block;flex-shrink:0;"></span>
          ${escapeHtml(style.label)}
        </span>` : "";
+  var approx = p.verified === false ? `<p style="margin:5px 0 0;font-size:11px;color:#8a8675;">Pin location is approximate.</p>` : "";
   var blurb = p.blurb ? `<p style="margin:7px 0 0;font-size:12px;color:#444;line-height:1.5;">${escapeHtml(p.blurb)}</p>` : "";
   var inTrip = Array.isArray(tripStopIds) && tripStopIds.includes(p.id);
   var btnLabel = inTrip ? "Remove from trip" : "Add to trip";
   var btnBg = inTrip ? "#ffffff" : TRIP_PIN_COLOR;
   var btnColor = inTrip ? TRIP_PIN_COLOR : "#ffffff";
   var btn = `<button type="button" data-trip-toggle data-stop-id="${escapeHtml(p.id)}" style="margin-top:10px;display:inline-flex;align-items:center;gap:6px;padding:6px 12px;font:600 12px system-ui,sans-serif;background:${btnBg};color:${btnColor};border:1px solid ${TRIP_PIN_COLOR};border-radius:3px;cursor:pointer;">${escapeHtml(btnLabel)}</button>`;
+  var directions = "";
+  if (coords) {
+    var [_lng, _lat] = coords;
+    var dirUrl = `https://www.google.com/maps/dir/?api=1` + `&destination=${encodeURIComponent(`${_lat},${_lng}`)}` + `&travelmode=driving`;
+    directions = `<p style="margin:8px 0 0;"><a href="${escapeHtml(dirUrl)}" data-directions-link data-stop-id="${escapeHtml(p.id)}" target="_blank" rel="noopener noreferrer" style="color:#1e6fb8;text-decoration:underline;font-weight:500;font-size:12px;">Directions →</a></p>`;
+  }
   var gmaps = p.gmapsUrl ? `<p style="margin:8px 0 0;"><a href="${escapeHtml(p.gmapsUrl)}" target="_blank" rel="noopener noreferrer" style="color:#1e6fb8;text-decoration:underline;font-weight:500;font-size:12px;">Open in Google Maps →</a></p>` : "";
   var journal = "";
   if (Array.isArray(p.articles) && p.articles.length > 0) {
@@ -1031,8 +1280,10 @@ function buildInfoHtml(p, coords, tripStopIds) {
       ${photo}
       <strong style="font-size:14px;display:block;margin:0 0 4px;line-height:1.3;">${escapeHtml(p.name || "")}</strong>
       ${cat}
+      ${approx}
       ${blurb}
       ${btn}
+      ${directions}
       ${gmaps}
       ${journal}
     </div>
