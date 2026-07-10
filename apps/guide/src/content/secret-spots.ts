@@ -1,14 +1,15 @@
 // =============================================================================
-// SECRET SPOTS — the quiet-corners section, included with purchase.
+// SECRET SPOTS — the region-less half of The Secret Guide (/secret-guide).
 //
 // Ships populated (the old "seeded empty, unlocks later" machinery is gone).
 // Same shape as a Stop minus `region` (these live outside the four-region
-// geography). Every coord here still needs a real ground-truth pass before
-// launch, same rule as stops.ts — all are marked TODO: verify.
+// geography); `category` places each spot under a Secret Guide filter tab.
+// Every coord here still needs a real ground-truth pass before launch, same
+// rule as stops.ts — all are marked TODO: verify.
 // =============================================================================
 
 import { z } from 'zod'
-import { SecretSpots, type SecretSpotT, type SecretSpotSectionT } from './schema'
+import { SecretSpots, type SecretSpotT } from './schema'
 
 type SecretSpotInput = z.input<typeof SecretSpots>[number]
 
@@ -17,6 +18,7 @@ const seed: SecretSpotInput[] = [
     id: 'fern-spring',
     title: 'Fern Spring, the smallest waterfall in the park',
     order: 1,
+    category: 'vistas',
     kind: 'viewpoint',
     coord: [-119.6657, 37.7167], // TODO: verify (Southside Drive just east of Pohono Bridge)
     elevationFt: 3900,
@@ -30,6 +32,7 @@ const seed: SecretSpotInput[] = [
     id: 'happy-isles-ouzel-watch',
     title: 'The ouzel watch, Merced riffles at Happy Isles',
     order: 2,
+    category: 'vistas',
     kind: 'viewpoint',
     coord: [-119.5583, 37.7322], // TODO: verify (Happy Isles bridge over the Merced)
     elevationFt: 4035,
@@ -44,6 +47,7 @@ const seed: SecretSpotInput[] = [
     id: 'el-cap-meadow-after-dark',
     title: 'El Capitan Meadow after dark',
     order: 3,
+    category: 'after-dark',
     kind: 'viewpoint',
     coord: [-119.6310, 37.7212], // TODO: verify (same pullout as the daytime El Capitan Meadow stop)
     elevationFt: 4000,
@@ -58,6 +62,7 @@ const seed: SecretSpotInput[] = [
     id: 'olmsted-point-at-night',
     title: 'Olmsted Point at night, the stargazing pullout',
     order: 4,
+    category: 'after-dark',
     kind: 'parking',
     coord: [-119.4884, 37.8096], // TODO: verify (Olmsted Point parking, Tioga Road)
     elevationFt: 8300,
@@ -70,24 +75,13 @@ const seed: SecretSpotInput[] = [
     swap:
       'If Tioga Road is closed, Glacier Point is the drive-to alternative on the south side (summer Saturdays often have telescope star parties). Tenaya Lake\'s east beach, ten minutes further up Tioga, trades the granite slabs for the Milky Way reflected in still water.',
   },
-  {
-    id: 'mcgurk-meadow',
-    title: 'McGurk Meadow and the 1890s cabin',
-    order: 5,
-    kind: 'trailhead',
-    coord: [-119.6281, 37.6657], // TODO: verify (roadside pullout on Glacier Point Road)
-    elevationFt: 7000,
-    timeBudgetMin: 90,
-    body:
-      'A small pullout on Glacier Point Road, about eight miles up from Chinquapin, with a trailhead sign most drivers never register because they are aimed at Glacier Point. The walk is 1.6 miles round trip, essentially flat, through quiet lodgepole forest to a wet meadow that blooms through June and July: shooting stars, lupine, corn lilies, the full subalpine catalog. In peak wildflower weeks you can have it to yourself while the Glacier Point lot up the road is circling for spaces.\n\n' +
-      'Just before the meadow the trail passes an old log cabin from the 1890s, a one-room sheepherder\'s shelter with a door built low. Kids find it fascinating; so do adults who thought they were just going to look at flowers. At the meadow itself, stay on the trail and the boardwalk sections. The ground is saturated most of the season and the plants you came for do not survive footprints.\n\n' +
-      'The meadow is not dramatic. There is no granite wall, no waterfall, no view that fits a phone screen. It is gentle, and after two days of the valley\'s scale that is precisely the correction. Budget an hour and a half including the drive-road dawdle, more if the bloom is on.',
-    photos: [],
-  },
+  // McGurk Meadow lives in stops.ts (hidden collection, glacier-mariposa):
+  // the entry there has the verified trailhead coord and the detail page.
   {
     id: 'tuolumne-grove-old-road',
     title: 'Tuolumne Grove, sequoias down the old road',
     order: 6,
+    category: 'trails',
     kind: 'trailhead',
     coord: [-119.8058, 37.7566], // TODO: verify (Tuolumne Grove parking at Crane Flat)
     elevationFt: 6200,
@@ -104,6 +98,7 @@ const seed: SecretSpotInput[] = [
     id: 'pothole-dome-sunset',
     title: 'Pothole Dome at last light',
     order: 7,
+    category: 'after-dark',
     kind: 'trailhead',
     coord: [-119.3966, 37.8740], // TODO: verify (pullout at the west end of Tuolumne Meadows)
     elevationFt: 8760,
@@ -118,6 +113,7 @@ const seed: SecretSpotInput[] = [
     id: 'cathedral-beach-quiet-picnic',
     title: 'Cathedral Beach, the quiet riverbank',
     order: 8,
+    category: 'vistas',
     kind: 'parking',
     coord: [-119.6188, 37.7189], // TODO: verify (Cathedral Beach picnic area, Southside Drive)
     elevationFt: 3950,
@@ -136,7 +132,7 @@ const seed: SecretSpotInput[] = [
     id: 'sentinel-beach-parking',
     title: 'Sentinel Beach, park first and swim',
     order: 9,
-    section: 'parking',
+    category: 'parking',
     kind: 'parking',
     coord: [-119.604146, 37.734834], // user-provided — TODO: verify on the ground
     body:
@@ -149,7 +145,7 @@ const seed: SecretSpotInput[] = [
     id: 'el-cap-crossover-parking',
     title: 'Park at El Capitan, skip the east valley',
     order: 10,
-    section: 'parking',
+    category: 'parking',
     kind: 'parking',
     coord: [-119.640974, 37.724523], // user-provided — TODO: verify on the ground
     body:
@@ -160,7 +156,7 @@ const seed: SecretSpotInput[] = [
     id: 'sentinel-dome-overflow',
     title: 'Sentinel Dome and Taft Point, the overflow move',
     order: 11,
-    section: 'parking',
+    category: 'parking',
     kind: 'parking',
     coord: [-119.580376, 37.719110], // user-provided — TODO: verify on the ground
     body:
@@ -171,7 +167,7 @@ const seed: SecretSpotInput[] = [
     id: 'foresta-barns-loop',
     title: 'The Foresta loop, barns and bridges',
     order: 12,
-    section: 'parking',
+    category: 'parking',
     kind: 'trailhead',
     coord: [-119.750678, 37.702540], // user-provided — TODO: verify on the ground
     body:
@@ -184,7 +180,7 @@ const seed: SecretSpotInput[] = [
     id: 'foresta-forest-service-camping',
     title: 'The Forest Service camp with the valley views',
     order: 13,
-    section: 'camping',
+    category: 'camping',
     kind: 'camping',
     coord: [-119.765725, 37.708092], // user-provided — TODO: verify on the ground
     body:
@@ -197,7 +193,7 @@ const seed: SecretSpotInput[] = [
     id: 'little-nellie-falls',
     title: 'Little Nellie Falls',
     order: 14,
-    section: 'camping',
+    category: 'camping',
     kind: 'camping',
     coord: [-119.782716, 37.720222], // user-provided — TODO: verify on the ground
     body:
@@ -208,7 +204,7 @@ const seed: SecretSpotInput[] = [
     id: 'inspiration-point',
     title: 'Inspiration Point, Tunnel View without the people',
     order: 15,
-    section: 'camping',
+    category: 'camping',
     kind: 'camping',
     coord: [-119.682513, 37.714671], // user-provided — TODO: verify on the ground
     body:
@@ -219,7 +215,7 @@ const seed: SecretSpotInput[] = [
     id: 'hidden-lake',
     title: 'Hidden Lake',
     order: 16,
-    section: 'camping',
+    category: 'camping',
     kind: 'camping',
     coord: [-119.495897, 37.805353], // user-provided — TODO: verify on the ground
     body:
@@ -232,15 +228,3 @@ export const SECRET_SPOTS: SecretSpotT[] = SecretSpots.parse(seed).sort(
   (a, b) => a.order - b.order,
 )
 
-export const SECRET_META = {
-  title: 'The Secret Spots',
-  teaser:
-    'The quiet corners: the one-foot waterfall, the night meadow, the empty river beach. Plus the parking moves and the quiet camping that do not go in articles. Included with your purchase.',
-}
-
-// Section headers for the grouped lists on /secret-spots, in display order.
-// Untagged spots render above these as the classic flat list.
-export const SECRET_SECTIONS: { id: SecretSpotSectionT; title: string }[] = [
-  { id: 'parking', title: 'Parking moves' },
-  { id: 'camping', title: 'Quiet camping' },
-]

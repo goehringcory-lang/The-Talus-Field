@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useAuth } from '../auth/useAuth'
-import { ESSENTIALS, ESSENTIALS_META, HIDDEN_META, REGIONS, SEASONAL_EVENTS, SECRET_META, SECRET_SPOTS, getHiddenStops, getStopById, getStopsByRegion, seasonalRangeLabel } from '../content'
+import { ESSENTIALS, ESSENTIALS_META, REGIONS, SEASONAL_EVENTS, SECRET_GUIDE_META, getSecretGuideEntries, getStopById, getStopsByRegion, seasonalRangeLabel } from '../content'
 import { todayIso } from '../utils/date'
 import { useFavorites } from '../lib/favorites'
 import { isPackCompleted } from '../offline/useDownloads'
@@ -85,10 +85,10 @@ export default function Home() {
   const { session } = useAuth()
   const { ids: favoriteIds } = useFavorites()
   const { plan } = useTripPlan()
-  // Favorites can point at regular stops or secret spots; resolve both so a
-  // saved secret spot does not silently vanish from this list.
+  // getStopById resolves regular stops and secret spots alike, so a saved
+  // secret spot does not silently vanish from this list.
   const savedStops = favoriteIds
-    .map((id) => getStopById(id) ?? SECRET_SPOTS.find((s) => s.id === id))
+    .map((id) => getStopById(id))
     .filter((s): s is NonNullable<typeof s> => Boolean(s))
   const downloadedCount = PACK_IDS.filter((id) => isPackCompleted(id)).length
 
@@ -140,18 +140,11 @@ export default function Home() {
             }
           />
           <SectionCard
-            to="/secret-spots"
+            to="/secret-guide"
             eyebrow="Included with purchase"
-            title={SECRET_META.title}
-            teaser={SECRET_META.teaser}
-            meta={`${SECRET_SPOTS.length} ${SECRET_SPOTS.length === 1 ? 'spot' : 'spots'}`}
-          />
-          <SectionCard
-            to="/hidden-areas"
-            eyebrow="Included with purchase"
-            title={HIDDEN_META.title}
-            teaser={HIDDEN_META.teaser}
-            meta={`${getHiddenStops().length} areas`}
+            title={SECRET_GUIDE_META.title}
+            teaser={SECRET_GUIDE_META.teaser}
+            meta={`${getSecretGuideEntries().length} entries · Vistas, trails, parking, camping, after dark`}
           />
         </div>
 
@@ -174,7 +167,7 @@ export default function Home() {
             <ul className="link-list">
               {savedStops.map((stop) => (
                 <li key={stop.id}>
-                  <Link to={getStopById(stop.id) ? `/stop/${stop.id}` : '/secret-spots'}>
+                  <Link to={`/stop/${stop.id}`}>
                     {stop.title} →
                   </Link>
                 </li>

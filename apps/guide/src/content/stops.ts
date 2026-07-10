@@ -7,12 +7,12 @@
 // thoughtful visitor would do them in), but the page presents them as a flat
 // list — visitors pick by what fits the time they have.
 //
-// Collections: entries with `collection: 'hidden'` are the Hidden Areas set,
-// surfaced on /hidden-areas and kept out of the default region lists and the
-// itinerary presets. They number from `order: 101` within each region so the
-// core reading sequence never reshuffles. Hidden entries are maintained,
-// signed park trails only; closed or abandoned routes are named in prose as
-// history, never with directions.
+// Collections: entries with `collection: 'hidden'` belong to The Secret
+// Guide, surfaced on /secret-guide (grouped by `category`) and kept out of
+// the default region lists and the itinerary presets. They number from
+// `order: 101` within each region so the core reading sequence never
+// reshuffles. Hidden entries are maintained, signed park trails only; closed
+// or abandoned routes are named in prose as history, never with directions.
 //
 // Bodies: drafted to match the editorial voice. Expect to refine.
 // Coords: web-verified July 2026 against NPS place/trailhead pages, USGS
@@ -316,6 +316,7 @@ const seed: StopInput[] = [
     order: 101,
     kind: 'trailhead',
     collection: 'hidden',
+    category: 'trails',
     difficulty: 'easy',
     coord: [-119.6697, 37.7135], // TODO: verify on the ground — GNIS (37.7121, -119.6749) conflicts with trail-guide geometry (~-119.667); current pin sits between the candidates (2026-07 web pass)
     elevationFt: 4700,
@@ -333,6 +334,7 @@ const seed: StopInput[] = [
     order: 102,
     kind: 'viewpoint',
     collection: 'hidden',
+    category: 'trails',
     difficulty: 'strenuous',
     coord: [-119.5929, 37.7565], // verified 2026-07: Yosemite Point rim, 6,936 ft (OSM + Yosemite SAR dataset); was ~220 m off
     elevationFt: 6936,
@@ -352,6 +354,7 @@ const seed: StopInput[] = [
     order: 103,
     kind: 'trailhead',
     collection: 'hidden',
+    category: 'trails',
     difficulty: 'strenuous',
     coord: [-119.6149, 37.7458], // verified 2026-07: Eagle Peak summit (GNIS/OSM); was ~890 m off, on the canyon slope
     elevationFt: 7779,
@@ -371,6 +374,7 @@ const seed: StopInput[] = [
     order: 104,
     kind: 'trailhead',
     collection: 'hidden',
+    category: 'trails',
     difficulty: 'strenuous',
     coord: [-119.5446, 37.7530], // TODO: verify on the ground — junction derived from the NPS route description; no published coord (2026-07 web pass)
     elevationFt: 4100,
@@ -390,6 +394,7 @@ const seed: StopInput[] = [
     order: 105,
     kind: 'trailhead',
     collection: 'hidden',
+    category: 'trails',
     difficulty: 'moderate',
     season: 'April to June',
     coord: [-119.5435, 37.7536], // TODO: verify on the ground — derived from route descriptions (~0.5 mi above Mirror Lake); no published coord (2026-07 web pass)
@@ -410,6 +415,7 @@ const seed: StopInput[] = [
     order: 106,
     kind: 'viewpoint',
     collection: 'hidden',
+    category: 'vistas',
     difficulty: 'easy',
     season: 'March to May',
     coord: [-119.5915, 37.7452], // verified 2026-07: Cook's Meadow floor viewing ground (lot-scale)
@@ -428,6 +434,7 @@ const seed: StopInput[] = [
     order: 107,
     kind: 'viewpoint',
     collection: 'hidden',
+    category: 'vistas',
     difficulty: 'easy',
     season: 'March to May',
     coord: [-119.6773, 37.7156], // verified 2026-07: viewed from the Tunnel View overlook (same pin as tunnel-view)
@@ -557,6 +564,7 @@ const seed: StopInput[] = [
     order: 101,
     kind: 'trailhead',
     collection: 'hidden',
+    category: 'trails',
     difficulty: 'moderate',
     coord: [-119.6282, 37.6705], // verified 2026-07: Dewey Point access is the McGurk Meadow lot since the 2022 repave (same pin as mcgurk-meadow); was ~1 km off
     elevationFt: 7300,
@@ -576,6 +584,7 @@ const seed: StopInput[] = [
     order: 102,
     kind: 'trailhead',
     collection: 'hidden',
+    category: 'trails',
     difficulty: 'easy',
     season: 'June to August',
     coord: [-119.6282, 37.6705], // verified 2026-07: McGurk Meadow trailhead lot, Glacier Point Rd mile 7.5 (NPS/Trailforks); was ~1.1 km off
@@ -585,7 +594,7 @@ const seed: StopInput[] = [
     teaser:
       'An easy 3.7 miles round trip to a pocket meadow with one of the park\'s best wildflower shows and an 1890s sheepherder\'s cabin at the door.',
     body:
-      'A pocket meadow a mile off Glacier Point Road that runs one of the best wildflower shows in the park: shooting star and camas early, then paintbrush, corn lily, and lupine in waves as the season moves through July. The walk is about 3.7 miles round trip at an easy grade, ninety minutes of walking plus however long the flowers hold you.\n\nJust before the meadow the trail passes a one-room log cabin, low enough that you duck through the door. It belonged to John McGurk, who summered sheep here in the 1890s until the new park pushed the flocks out. The cabin is the right place to say the quiet part: this meadow looks wild, and it is also a place people worked.\n\nThe trailhead is a signed pullout on Glacier Point Road. Go early or late in the day; the light is better and the deer come out to the meadow edges. The same trail continues past the meadow to join the Pohono Trail toward [Dewey, Crocker, and Stanford Points](/stop/crocker-stanford-points) for anyone assembling a bigger day.',
+      'A pocket meadow a mile off Glacier Point Road that runs one of the best wildflower shows in the park: shooting star and camas early, then paintbrush, corn lily, and lupine in waves as the season moves through July. The walk is about 3.7 miles round trip at an easy grade, ninety minutes of walking plus however long the flowers hold you.\n\nJust before the meadow the trail passes a one-room log cabin, low enough that you duck through the door. It belonged to John McGurk, who summered sheep here in the 1890s until the new park pushed the flocks out. The cabin is the right place to say the quiet part: this meadow looks wild, and it is also a place people worked.\n\nThe trailhead is a signed pullout on Glacier Point Road. Go early or late in the day; the light is better and the deer come out to the meadow edges. The same trail continues past the meadow to join the Pohono Trail toward [Dewey, Crocker, and Stanford Points](/stop/crocker-stanford-points) for anyone assembling a bigger day.\n\nThe meadow is not dramatic. There is no granite wall, no waterfall, no view that fits a phone screen. It is gentle, and after two days of the valley\'s scale that is precisely the correction.',
   },
   {
     id: 'bridalveil-creek-trail',
@@ -594,6 +603,7 @@ const seed: StopInput[] = [
     order: 103,
     kind: 'trailhead',
     collection: 'hidden',
+    category: 'trails',
     difficulty: 'easy',
     coord: [-119.6202, 37.6600], // TODO: verify on the ground — pin on the campground access road matches the body; no source pins a specific pullout (2026-07 web pass)
     elevationFt: 7000,
@@ -611,6 +621,7 @@ const seed: StopInput[] = [
     order: 104,
     kind: 'trailhead',
     collection: 'hidden',
+    category: 'trails',
     difficulty: 'strenuous',
     season: 'July to September',
     coord: [-119.6039, 37.6668], // verified 2026-07: Ostrander Lake trailhead, Glacier Point Rd mile 9 (Hiking Project/Modern Hiker); was ~1.7 km off
@@ -629,6 +640,7 @@ const seed: StopInput[] = [
     order: 105,
     kind: 'trailhead',
     collection: 'hidden',
+    category: 'trails',
     difficulty: 'easy',
     coord: [-119.6567, 37.5359], // TODO: verify on the ground — loop start across Hwy 41 from the Wawona Hotel, derived ±75 m (2026-07 web pass; prior pin was at the hotel itself)
     elevationFt: 4000,
@@ -646,6 +658,7 @@ const seed: StopInput[] = [
     order: 106,
     kind: 'trailhead',
     collection: 'hidden',
+    category: 'trails',
     difficulty: 'strenuous',
     coord: [-119.6337, 37.5484], // verified 2026-07: Chilnualna Falls trailhead lot, end of Chilnualna Falls Rd (NPS/Hikespeak); was ~130 m off
     elevationFt: 4200,
@@ -788,6 +801,7 @@ const seed: StopInput[] = [
     order: 101,
     kind: 'trailhead',
     collection: 'hidden',
+    category: 'trails',
     difficulty: 'moderate',
     season: 'June to October',
     coord: [-119.5477, 37.8106], // TODO: verify on the ground — prose sources put the Porcupine Creek TH lot here (south side of Tioga Rd) but no published lot coord (2026-07 web pass)
@@ -806,6 +820,7 @@ const seed: StopInput[] = [
     order: 102,
     kind: 'trailhead',
     collection: 'hidden',
+    category: 'trails',
     difficulty: 'strenuous',
     season: 'June to October',
     coord: [-119.4700, 37.8256], // verified 2026-07: Sunrise Lakes TH lot, SW end of Tenaya Lake (NPS; matches road-distance geometry from Olmsted Point)
@@ -826,6 +841,7 @@ const seed: StopInput[] = [
     order: 103,
     kind: 'trailhead',
     collection: 'hidden',
+    category: 'trails',
     difficulty: 'easy',
     season: 'July to September',
     coord: [-119.3390, 37.8783], // verified 2026-07: Dog Lake lot, Tuolumne Meadows Lodge Rd (NPS Lyell Canyon TH page); was ~600 m off, in the meadow
@@ -846,6 +862,7 @@ const seed: StopInput[] = [
     order: 104,
     kind: 'trailhead',
     collection: 'hidden',
+    category: 'trails',
     difficulty: 'moderate',
     season: 'July to September',
     coord: [-119.2627, 37.8909], // verified 2026-07: Mono Pass TH lot at Dana Meadows (yosemitehikes/Trailforks); was ~165 m off
@@ -866,6 +883,7 @@ const seed: StopInput[] = [
     order: 105,
     kind: 'trailhead',
     collection: 'hidden',
+    category: 'trails',
     difficulty: 'strenuous',
     season: 'June to October',
     coord: [-119.7366, 37.7521], // verified 2026-07: Tamarack Flat Campground road-end (latitude.to/CampingRoadTrip); was ~1.2 km up the spur road
@@ -964,6 +982,7 @@ const seed: StopInput[] = [
     order: 101,
     kind: 'trailhead',
     collection: 'hidden',
+    category: 'trails',
     difficulty: 'easy',
     coord: [-119.8461, 37.7566], // verified 2026-07: Merced Grove trailhead lot, Big Oak Flat Rd (OSM/OuterSpatial); was on the grove itself, 1.5 trail-miles past parking
     elevationFt: 5400,
@@ -981,6 +1000,7 @@ const seed: StopInput[] = [
     order: 102,
     kind: 'trailhead',
     collection: 'hidden',
+    category: 'trails',
     difficulty: 'strenuous',
     coord: [-119.7875, 37.9465], // verified 2026-07: same trailhead as wapama-falls-trail (NPS place page)
     elevationFt: 3800,

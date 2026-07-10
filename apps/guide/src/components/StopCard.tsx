@@ -11,10 +11,12 @@ import ResponsivePhoto from './ResponsivePhoto'
 import { Chip } from './ui/Chip'
 
 // Secret spots are stops minus `region`, which this card never reads —
-// widening the prop lets both render through the same component.
+// widening the prop lets both render through the same component. Pages that
+// mix regions (the Secret Guide) pass `regionLabel` for an extra meta chip.
 type Props = {
   stop: Omit<StopT, 'region'>
   compact?: boolean
+  regionLabel?: string
 }
 
 const KIND_LABEL: Record<StopT['kind'], string> = {
@@ -24,7 +26,7 @@ const KIND_LABEL: Record<StopT['kind'], string> = {
   lodging: 'Lodging',
   meal: 'Meal',
   drive: 'Drive',
-  camping: 'Camping', // amenity-only kind today; no Stop uses it
+  camping: 'Camping', // map amenities and secret spots; no core Stop uses it
 }
 
 const DIFFICULTY_LABEL: Record<NonNullable<StopT['difficulty']>, string> = {
@@ -44,7 +46,7 @@ function formatTime(min: number): string {
   return m === 0 ? `${h} hr` : `${h} hr ${m} min`
 }
 
-export default function StopCard({ stop, compact = true }: Props) {
+export default function StopCard({ stop, compact = true, regionLabel }: Props) {
   const photo = stop.photos[0]
   const credit = photo ? PHOTO_CREDITS[photo.src] : undefined
   const { toggle, isFavorite } = useFavorites()
@@ -76,7 +78,7 @@ export default function StopCard({ stop, compact = true }: Props) {
         <div style={{ minWidth: 0 }}>
           <div className="eyebrow eyebrow--moss">
             {stop.collection === 'hidden'
-              ? `Hidden area · ${KIND_LABEL[stop.kind]}`
+              ? `Secret Guide · ${KIND_LABEL[stop.kind]}`
               : KIND_LABEL[stop.kind]}
           </div>
           <h2 className="stop-card__title">{stop.title}</h2>
@@ -98,9 +100,10 @@ export default function StopCard({ stop, compact = true }: Props) {
         </div>
       </div>
 
-      {(stop.coord || stop.elevationFt || stop.timeBudgetMin || stop.difficulty || stop.season) && (
+      {(stop.coord || stop.elevationFt || stop.timeBudgetMin || stop.difficulty || stop.season || regionLabel) && (
         <div className="meta-row">
           <MapsLink coord={stop.coord} label={stop.title} />
+          {regionLabel && <Chip variant="meta">{regionLabel}</Chip>}
           {stop.elevationFt !== undefined && (
             <Chip variant="meta">{formatElevation(stop.elevationFt)}</Chip>
           )}

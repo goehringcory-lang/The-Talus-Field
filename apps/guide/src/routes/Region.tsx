@@ -14,8 +14,8 @@ export default function Region() {
   const parsed = RegionEnum.safeParse(params.regionId)
   const region = parsed.success ? parsed.data : null
   const stops = useMemo(() => (region ? getStopsByRegion(region) : []), [region])
-  // Hidden areas stay out of the curated list but get a link block below it,
-  // so the region page remains the geographic index. /hidden-areas owns the
+  // Hidden stops stay out of the curated list but get a link block below it,
+  // so the region page remains the geographic index. /secret-guide owns the
   // full cards and the photo prewarm for these.
   const hiddenStops = useMemo(() => (region ? getHiddenStops().filter((s) => s.region === region) : []), [region])
 
@@ -57,8 +57,8 @@ export default function Region() {
         )}
 
         {hiddenStops.length > 0 && (
-          <section aria-label="Hidden areas in this region" className="page-section">
-            <span className="eyebrow">Hidden areas in this region</span>
+          <section aria-label="From the Secret Guide, in this region" className="page-section">
+            <span className="eyebrow">From the Secret Guide, in this region</span>
             <ul className="link-list">
               {hiddenStops.map((stop) => (
                 <li key={stop.id}>
@@ -66,8 +66,8 @@ export default function Region() {
                 </li>
               ))}
             </ul>
-            <Link to="/hidden-areas" className="more-link">
-              All hidden areas →
+            <Link to="/secret-guide" className="more-link">
+              The Secret Guide →
             </Link>
           </section>
         )}

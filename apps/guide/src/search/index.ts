@@ -7,6 +7,7 @@ import {
   ESSENTIALS,
   REGIONS,
   SEASONAL_EVENTS,
+  SECRET_GUIDE_CATEGORY_TITLE,
   SECRET_SPOTS,
   stops,
 } from '../content'
@@ -15,7 +16,7 @@ export type SearchHit = {
   id: string
   url: string
   title: string
-  section: 'Stops' | 'Hidden Areas' | 'Essentials' | 'Secret Spots' | 'Programs'
+  section: 'Stops' | 'Secret Guide' | 'Essentials' | 'Programs'
   eyebrow: string
   snippet: string
   score: number
@@ -47,7 +48,7 @@ function buildEntries(): Entry[] {
     id: s.id,
     url: `/stop/${s.id}`,
     title: s.title,
-    section: s.collection === 'hidden' ? ('Hidden Areas' as const) : ('Stops' as const),
+    section: s.collection === 'hidden' ? ('Secret Guide' as const) : ('Stops' as const),
     eyebrow: REGION_LABEL[s.region] ?? s.region,
     titleText: s.title.toLowerCase(),
     swapText: (s.swap ?? '').toLowerCase(),
@@ -86,11 +87,10 @@ function buildEntries(): Entry[] {
   for (const s of SECRET_SPOTS) {
     entries.push({
       id: s.id,
-      // Hash anchor: /secret-spots scrolls to the matching card on mount.
-      url: `/secret-spots#${s.id}`,
+      url: `/stop/${s.id}`,
       title: s.title,
-      section: 'Secret Spots',
-      eyebrow: 'Secret Spots',
+      section: 'Secret Guide',
+      eyebrow: SECRET_GUIDE_CATEGORY_TITLE[s.category],
       titleText: s.title.toLowerCase(),
       swapText: (s.swap ?? '').toLowerCase(),
       bodyText: s.body.toLowerCase(),
