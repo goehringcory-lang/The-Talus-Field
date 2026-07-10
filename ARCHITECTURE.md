@@ -52,7 +52,7 @@ All events fire through `window.track`. Names and where they fire:
 | `article_progress` | page-article.jsx (reading depth against the body at the 25/50/75/100 marks, once per view) |
 | `related_click` | page-article.jsx (related-rail card clicks, with `from` = the referring slug) |
 | `resume_shown`, `resume_click` | page-home.jsx (the "Where you left off" band) |
-| `trip_add`, `trip_add_all`, `trip_quick_pick`, `trip_share`, `trip_share_open`, `trip_route_open`, `map_pin_click`, `map_article_click` | page-map.jsx |
+| `trip_add`, `trip_add_all`, `trip_quick_pick`, `trip_undo`, `trip_share`, `trip_share_open`, `trip_route_open`, `map_pin_click`, `map_article_click`, `map_filter_category`, `map_search`, `map_cluster_click`, `map_directions_click` | page-map.jsx |
 
 ## localStorage key inventory
 
