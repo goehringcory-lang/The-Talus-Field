@@ -1,5 +1,5 @@
 import { lazy, Suspense } from 'react'
-import { Routes, Route, Navigate } from 'react-router-dom'
+import { Routes, Route, Navigate, useLocation } from 'react-router-dom'
 import { AuthProvider, RequireAuth } from './auth/AuthGate'
 import Open from './routes/Open'
 import Login from './routes/Login'
@@ -14,12 +14,18 @@ const Region = lazy(() => import('./routes/Region'))
 const StopDetail = lazy(() => import('./routes/StopDetail'))
 const Essentials = lazy(() => import('./routes/Essentials'))
 const EssentialDetail = lazy(() => import('./routes/EssentialDetail'))
-const SecretSpots = lazy(() => import('./routes/SecretSpots'))
-const HiddenAreas = lazy(() => import('./routes/HiddenAreas'))
+const SecretGuide = lazy(() => import('./routes/SecretGuide'))
 const Search = lazy(() => import('./routes/Search'))
 const Programs = lazy(() => import('./routes/Programs'))
 const Trip = lazy(() => import('./routes/Trip'))
 const NotFound = lazy(() => import('./routes/NotFound'))
+
+// Navigate drops location.hash, and old /secret-spots#<id> search bookmarks
+// rely on it, so the redirect forwards the hash explicitly.
+function LegacySecretRedirect() {
+  const { hash } = useLocation()
+  return <Navigate to={{ pathname: '/secret-guide', hash }} replace />
+}
 
 export default function App() {
   return (
@@ -90,21 +96,16 @@ export default function App() {
             }
           />
           <Route
-            path="/secret-spots"
+            path="/secret-guide"
             element={
               <RequireAuth>
-                <SecretSpots />
+                <SecretGuide />
               </RequireAuth>
             }
           />
-          <Route
-            path="/hidden-areas"
-            element={
-              <RequireAuth>
-                <HiddenAreas />
-              </RequireAuth>
-            }
-          />
+          {/* Retired section URLs from before the Secret Guide merge. */}
+          <Route path="/secret-spots" element={<LegacySecretRedirect />} />
+          <Route path="/hidden-areas" element={<Navigate to="/secret-guide" replace />} />
           <Route
             path="/search"
             element={

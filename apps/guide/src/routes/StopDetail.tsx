@@ -1,5 +1,12 @@
 import { useParams } from 'react-router-dom'
-import { getHiddenStops, getRegionMeta, getStopById, getStopsByRegion } from '../content'
+import {
+  getRegionMeta,
+  getSecretGuideEntries,
+  getStopById,
+  getStopsByRegion,
+  isSecretGuideEntry,
+  type GuideStopT,
+} from '../content'
 import NotFound from './NotFound'
 import GatedChrome from '../components/GatedChrome'
 import PrevNextNav from '../components/PrevNextNav'
@@ -24,19 +31,22 @@ export default function StopDetail() {
   }
   const planned = plan.items.some((it) => it.type === 'stop' && it.stopId === stop.id)
 
-  // Hidden stops page through the hidden set within their region; core stops
-  // page through the curated region sequence. Mixing them would put a hidden
-  // stop "between" core stops it was deliberately kept out of.
-  const isHidden = stop.collection === 'hidden'
-  const siblings = isHidden
-    ? getHiddenStops().filter((s) => s.region === stop.region)
-    : getStopsByRegion(stop.region)
+  // Secret Guide members (hidden stops and secret spots) page through the
+  // merged category list; core stops page through the curated region
+  // sequence. Mixing them would put a guide entry "between" core stops it
+  // was deliberately kept out of.
+  const inSecretGuide = isSecretGuideEntry(stop)
+  const region = 'region' in stop ? stop.region : undefined
+  const siblings: GuideStopT[] =
+    inSecretGuide || !region ? getSecretGuideEntries(stop.category) : getStopsByRegion(region)
   const idx = siblings.findIndex((s) => s.id === stop.id)
   const prev = idx > 0 ? siblings[idx - 1] : null
   const next = idx >= 0 && idx < siblings.length - 1 ? siblings[idx + 1] : null
-  const regionMeta = getRegionMeta(stop.region)
-  const backTo = isHidden ? '/hidden-areas' : `/region/${stop.region}`
-  const backLabel = isHidden ? 'Hidden areas' : regionMeta?.title ?? 'Region'
+  const regionMeta = region ? getRegionMeta(region) : undefined
+  const backTo = inSecretGuide
+    ? `/secret-guide${stop.category ? `?cat=${stop.category}` : ''}`
+    : `/region/${region}`
+  const backLabel = inSecretGuide ? 'The Secret Guide' : regionMeta?.title ?? 'Region'
 
   return (
     <GatedChrome>
@@ -71,8 +81,8 @@ export default function StopDetail() {
           sticky
           prev={prev ? { to: `/stop/${prev.id}`, title: prev.title } : null}
           next={next ? { to: `/stop/${next.id}`, title: next.title } : null}
-          prevEmptyLabel="Start of region"
-          nextEmptyLabel="End of region"
+          prevEmptyLabel={inSecretGuide ? 'Start of category' : 'Start of region'}
+          nextEmptyLabel={inSecretGuide ? 'End of category' : 'End of region'}
         />
       </main>
     </GatedChrome>

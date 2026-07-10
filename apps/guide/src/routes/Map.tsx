@@ -18,7 +18,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom'
 import maplibregl from 'maplibre-gl'
 import 'maplibre-gl/dist/maplibre-gl.css'
 import GatedChrome from '../components/GatedChrome'
-import { AMENITIES, stops as allStops, getStopById, type AmenityT, type Region, type StopT } from '../content'
+import { AMENITIES, SECRET_SPOTS, stops as allStops, getStopById, isSecretGuideEntry, type AmenityT, type GuideStopT, type Region } from '../content'
 import {
   ITINERARIES,
   ITINERARY_KEYS,
@@ -81,7 +81,7 @@ function extractExcerpt(body: string, maxLen = 170): string {
 
 // Popup content built as DOM so the "Open stop" action can route through
 // react-router instead of a full page load.
-function buildPopupContent(stop: StopT, onOpenStop: (id: string) => void): HTMLElement {
+function buildPopupContent(stop: GuideStopT, onOpenStop: (id: string) => void): HTMLElement {
   const style = getKindStyle(stop.kind)
   const root = document.createElement('div')
   root.className = 'map-popup'
@@ -236,8 +236,12 @@ export default function Map() {
     setSelection((prev) => ({ id, nonce: prev.nonce + 1 }))
   }, [])
 
-  // Only stops with a coord can be mapped.
-  const mappableStops = useMemo<StopT[]>(() => allStops.filter((s) => !!s.coord), [])
+  // Only stops with a coord can be mapped. Secret spots (region-less Secret
+  // Guide entries) join the pin set alongside core and hidden stops.
+  const mappableStops = useMemo<GuideStopT[]>(
+    () => [...allStops, ...SECRET_SPOTS].filter((s) => !!s.coord),
+    [],
+  )
 
   // The itinerary's region set, or null when no itinerary narrows the map.
   const itineraryRegions = useMemo<Set<Region> | null>(() => {
@@ -246,13 +250,14 @@ export default function Map() {
   }, [selectedItinerary, tab])
 
   // Filter by itinerary when one is selected and the itineraries tab is active.
-  // Hidden-collection stops are excluded from itineraries: the presets are the
-  // mainstream path, and itinerary days are derived from regions, so without
-  // this filter hidden stops would silently inflate every preset.
-  const visibleStops = useMemo<StopT[]>(() => {
+  // Secret Guide entries (hidden stops and region-less secret spots) are
+  // excluded from itineraries: the presets are the mainstream path, and
+  // itinerary days are derived from regions, so without this filter the
+  // premium set would silently inflate every preset.
+  const visibleStops = useMemo<GuideStopT[]>(() => {
     if (!itineraryRegions) return mappableStops
     return mappableStops.filter(
-      (s) => itineraryRegions.has(s.region) && s.collection !== 'hidden',
+      (s) => 'region' in s && itineraryRegions.has(s.region) && s.collection !== 'hidden',
     )
   }, [mappableStops, itineraryRegions])
 
@@ -374,7 +379,7 @@ export default function Map() {
       const [lng, lat] = stop.coord
       bounds.extend([lng, lat])
 
-      const el = buildPinElement(stop.kind, stop.collection === 'hidden')
+      const el = buildPinElement(stop.kind, isSecretGuideEntry(stop))
       el.addEventListener('click', (e) => {
         // Don't let the click reach the map canvas: the shared popup is
         // closeOnClick, and MapLibre delivers the map's click after the
@@ -481,7 +486,7 @@ export default function Map() {
     for (const key of ITINERARY_KEYS) {
       const regions = new Set(ITINERARIES[key].days.flatMap((d) => d.regions))
       out[key] = mappableStops.filter(
-        (s) => regions.has(s.region) && s.collection !== 'hidden',
+        (s) => 'region' in s && regions.has(s.region) && s.collection !== 'hidden',
       ).length
     }
     return out
@@ -489,7 +494,7 @@ export default function Map() {
 
   // Legend: only the kinds actually present in the stops and amenities.
   const presentKinds = useMemo(() => {
-    const seen = new Set<StopT['kind']>()
+    const seen = new Set<GuideStopT['kind']>()
     for (const s of mappableStops) seen.add(s.kind)
     for (const a of AMENITIES) seen.add(a.kind)
     return Array.from(seen)
@@ -568,7 +573,7 @@ export default function Map() {
                   style={{ background: 'transparent', border: `2px solid ${HIDDEN_PIN_STROKE}` }}
                   aria-hidden
                 />
-                Gold outline: hidden area
+                Gold outline: Secret Guide
               </li>
             </ul>
           </aside>
@@ -609,7 +614,7 @@ export default function Map() {
                 <div className="map-sidebar__days">
                   {ITINERARIES[selectedItinerary].days.map((day) => {
                     const stopsInDay = mappableStops.filter(
-                      (s) => day.regions.includes(s.region) && s.collection !== 'hidden',
+                      (s) => 'region' in s && day.regions.includes(s.region) && s.collection !== 'hidden',
                     )
                     return (
                       <section key={day.name}>
@@ -681,7 +686,7 @@ function InfoPane({
   presentKinds,
   mapDownloaded,
 }: {
-  presentKinds: StopT['kind'][]
+  presentKinds: GuideStopT['kind'][]
   mapDownloaded: boolean
 }) {
   return (
@@ -762,14 +767,14 @@ function InfoPane({
             style={{ background: 'transparent', border: `2px solid ${HIDDEN_PIN_STROKE}` }}
             aria-hidden
           />
-          Gold outline: hidden area
+          Gold outline: Secret Guide
         </li>
       </ul>
       <p>
-        A gold outline marks a <Link to="/hidden-areas">hidden area</Link>:
-        the lesser-known trails and viewpoints included with your purchase.
-        They stay out of the itinerary presets; add them to your trip from
-        the pin or the stop page.
+        A gold outline marks a <Link to="/secret-guide">Secret Guide</Link> entry:
+        the quiet vistas, hidden trails, parking moves, camping, and after-dark
+        spots included with your purchase. They stay out of the itinerary
+        presets; add them to your trip from the pin or the stop page.
       </p>
 
       <h2>The fine print</h2>

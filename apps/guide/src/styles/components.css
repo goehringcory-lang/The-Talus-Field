@@ -252,6 +252,45 @@
   color: var(--paper);
 }
 
+/* ===== Secret Guide category filter (/secret-guide) =====
+   Sticks just below the gated masthead (.gated-chrome: sticky, z-index 20,
+   height --chrome-top-h plus the safe-area inset it absorbs). Full-bleed
+   against the .wrap gutter so the row can scroll edge to edge. */
+.secret-guide-tabs {
+  position: sticky;
+  top: calc(var(--chrome-top-h) + env(safe-area-inset-top, 0px));
+  z-index: 15;
+  margin: 0 calc(-1 * var(--gutter));
+  padding: 10px var(--gutter);
+  background: color-mix(in oklab, var(--paper) 92%, transparent);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border-bottom: 1px solid var(--rule);
+}
+.secret-guide-tabs__row {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.secret-guide-tabs__row::-webkit-scrollbar { display: none; }
+.secret-guide-tabs__row .chip--filter {
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+.secret-guide-tabs__count {
+  margin-left: 5px;
+  font-weight: 400;
+  opacity: 0.65;
+  font-variant-numeric: tabular-nums;
+}
+.secret-guide-tagline {
+  margin: 6px 0 20px;
+  color: var(--ink-2);
+  font-style: italic;
+}
+
 /* Tappable coordinate that opens native Maps; mono for the digits. */
 .chip--gps {
   font-family: var(--mono);
