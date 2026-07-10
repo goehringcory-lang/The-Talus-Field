@@ -397,7 +397,7 @@ const seed: StopInput[] = [
     category: 'trails',
     difficulty: 'moderate',
     season: 'April to June',
-    coord: [-119.5435, 37.7536], // TODO: verify on the ground — derived from route descriptions (~0.5 mi above Mirror Lake); no published coord (2026-07 web pass)
+    coord: [-119.529914, 37.759413], // user-provided GPS — TODO: verify on the ground
     elevationFt: 4300,
     timeBudgetMin: 180,
     photos: [],
