@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
-import { SECRET_META, SECRET_SPOTS } from '../content'
+import { SECRET_META, SECRET_SECTIONS, SECRET_SPOTS } from '../content'
 import GatedChrome from '../components/GatedChrome'
 import StopCard from '../components/StopCard'
 import BackLink from '../components/ui/BackLink'
@@ -16,6 +16,14 @@ export default function SecretSpots() {
     document.getElementById(location.hash.slice(1))?.scrollIntoView()
   }, [location.hash])
 
+  // Untagged spots keep the classic flat list; tagged spots group under
+  // their section header, mirroring the /essentials layout.
+  const classics = SECRET_SPOTS.filter((spot) => !spot.section)
+  const sections = SECRET_SECTIONS.map((s) => ({
+    ...s,
+    spots: SECRET_SPOTS.filter((spot) => spot.section === s.id),
+  })).filter((s) => s.spots.length > 0)
+
   return (
     <GatedChrome>
       <main className="wrap wrap--narrow page">
@@ -25,11 +33,23 @@ export default function SecretSpots() {
           intro={SECRET_META.teaser}
         />
 
-        {SECRET_SPOTS.map((spot, i) => (
+        {classics.map((spot, i) => (
           <div key={spot.id} id={spot.id} style={{ scrollMarginTop: 16 }}>
             <StopCard stop={spot} compact={false} />
-            {i < SECRET_SPOTS.length - 1 && <hr className="stop-divider" />}
+            {i < classics.length - 1 && <hr className="stop-divider" />}
           </div>
+        ))}
+
+        {sections.map((section) => (
+          <section key={section.id} aria-label={section.title} style={{ marginTop: 48 }}>
+            <span className="eyebrow" style={{ display: 'block', marginBottom: 8 }}>{section.title}</span>
+            {section.spots.map((spot, i) => (
+              <div key={spot.id} id={spot.id} style={{ scrollMarginTop: 16 }}>
+                <StopCard stop={spot} compact={false} />
+                {i < section.spots.length - 1 && <hr className="stop-divider" />}
+              </div>
+            ))}
+          </section>
         ))}
 
         <BackLink to="/" label="Back to the guide" />
