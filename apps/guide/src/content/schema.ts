@@ -11,7 +11,7 @@ export const StopKindEnum = z.enum([
   'lodging',
   'meal',
   'drive',
-  'camping', // currently used only by map amenities, never by a Stop
+  'camping', // used by map amenities and secret spots, never by a core Stop
 ])
 export type StopKind = z.infer<typeof StopKindEnum>
 
@@ -54,7 +54,14 @@ export const Stops = z.array(Stop)
 
 // Secret spots are stops without a region: they live in their own locked
 // section, not in the three-region geography. Same card shape otherwise.
-export const SecretSpot = Stop.omit({ region: true })
+// `section` groups spots under a header on /secret-spots; untagged spots
+// render first as the classic flat list.
+export const SecretSpotSection = z.enum(['parking', 'camping'])
+export type SecretSpotSectionT = z.infer<typeof SecretSpotSection>
+
+export const SecretSpot = Stop.omit({ region: true }).extend({
+  section: SecretSpotSection.optional(),
+})
 
 export type SecretSpotT = z.infer<typeof SecretSpot>
 

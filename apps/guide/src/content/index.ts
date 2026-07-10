@@ -2,12 +2,12 @@ import { stops } from './stops'
 import { ESSENTIALS } from './essentials'
 import type { EssentialSectionT, EssentialTopicT, Region, StopT } from './schema'
 
-export { Stop, Stops, RegionEnum, StopKindEnum, StopCollection, SecretSpot, SecretSpots, EssentialTopic, EssentialTopics, EssentialSection, SeasonalEvent, SeasonalEvents, SeasonalConfidence, Amenity, Amenities, AmenityKindEnum } from './schema'
-export type { StopT, Region, StopKind, StopCollectionT, SecretSpotT, EssentialTopicT, EssentialSectionT, SeasonalEventT, SeasonalConfidenceT, AmenityT, AmenityKind } from './schema'
+export { Stop, Stops, RegionEnum, StopKindEnum, StopCollection, SecretSpot, SecretSpots, SecretSpotSection, EssentialTopic, EssentialTopics, EssentialSection, SeasonalEvent, SeasonalEvents, SeasonalConfidence, Amenity, Amenities, AmenityKindEnum } from './schema'
+export type { StopT, Region, StopKind, StopCollectionT, SecretSpotT, SecretSpotSectionT, EssentialTopicT, EssentialSectionT, SeasonalEventT, SeasonalConfidenceT, AmenityT, AmenityKind } from './schema'
 export { stops } from './stops'
 export { AMENITIES } from './amenities'
 export { ESSENTIALS, ESSENTIALS_META } from './essentials'
-export { SECRET_SPOTS, SECRET_META } from './secret-spots'
+export { SECRET_SPOTS, SECRET_META, SECRET_SECTIONS } from './secret-spots'
 export { SEASONAL_EVENTS, seasonalWindowsInRange, seasonalDaysInRange, seasonalToProgramEvent, seasonalRangeLabel } from './seasonal'
 
 // Section headers for the /essentials list, in display order.

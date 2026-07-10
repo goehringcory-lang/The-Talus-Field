@@ -8,7 +8,7 @@
 // =============================================================================
 
 import { z } from 'zod'
-import { SecretSpots, type SecretSpotT } from './schema'
+import { SecretSpots, type SecretSpotT, type SecretSpotSectionT } from './schema'
 
 type SecretSpotInput = z.input<typeof SecretSpots>[number]
 
@@ -130,6 +130,102 @@ const seed: SecretSpotInput[] = [
     swap:
       'If the pullout is taken or the beach has company, Sentinel Beach is a mile east on the same road: same river, same picnic setup, Half Dome instead of El Capitan on a calm morning.',
   },
+
+  // --- Parking moves -------------------------------------------------------
+  {
+    id: 'sentinel-beach-parking',
+    title: 'Sentinel Beach, park first and swim',
+    order: 9,
+    section: 'parking',
+    kind: 'parking',
+    coord: [-119.604146, 37.734834], // user-provided — TODO: verify on the ground
+    body:
+      'Sentinel Beach is on the maps, so this is less a secret than a persistent gap in the parking wars: most of the time there are spaces here, and a nice sandy stretch of the Merced right off the lot to jump in for a swim. The pro move is to treat it as your base for the whole day. Park, swim, and bring a bike: from here you ride into the main section of the valley instead of joining the circling queue for a spot further east.',
+    hazard:
+      'In May and June the Merced is fast, cold snowmelt and the current is stronger than the surface suggests. Save the swim for mid and late summer, when the river has dropped and warmed.',
+    photos: [],
+  },
+  {
+    id: 'el-cap-crossover-parking',
+    title: 'Park at El Capitan, skip the east valley',
+    order: 10,
+    section: 'parking',
+    kind: 'parking',
+    coord: [-119.640974, 37.724523], // user-provided — TODO: verify on the ground
+    body:
+      'The east valley is where parking goes to die by mid-morning. Skip the battle for spaces entirely: park at El Capitan, where the lot holds out far longer, and enjoy the views while you are at it. From El Capitan Bridge, ride a bike in or take the free shuttle to the east end. You trade half an hour of circling for a short ride with the biggest wall in the park behind you.',
+    photos: [],
+  },
+  {
+    id: 'sentinel-dome-overflow',
+    title: 'Sentinel Dome and Taft Point, the overflow move',
+    order: 11,
+    section: 'parking',
+    kind: 'parking',
+    coord: [-119.580376, 37.719110], // user-provided — TODO: verify on the ground
+    body:
+      'The shared lot for Sentinel Dome and Taft Point is small and fills early on any good-weather day. A full lot is not a turnaround. Just along Glacier Point Road there is a service road with room to park; leave the car there and walk up to Sentinel Dome from the road. It adds a stretch of walking, not a change of plans.',
+    photos: [],
+  },
+  {
+    id: 'foresta-barns-loop',
+    title: 'The Foresta loop, barns and bridges',
+    order: 12,
+    section: 'parking',
+    kind: 'trailhead',
+    coord: [-119.750678, 37.702540], // user-provided — TODO: verify on the ground
+    body:
+      'Foresta is a small community off Big Oak Flat Road that visitors drive past without registering. Park next to the old barns and walk the loop: over the old bridge behind the green house, then around First Street and Dana Way. The views of El Capitan and Half Dome from out here are beautiful, and almost no one other than the locals and the short-term renters knows the walk exists. It is a neighborhood, so walk it like one: quietly, on the roads.',
+    photos: [],
+  },
+
+  // --- Quiet camping -------------------------------------------------------
+  {
+    id: 'foresta-forest-service-camping',
+    title: 'The Forest Service camp with the valley views',
+    order: 13,
+    section: 'camping',
+    kind: 'camping',
+    coord: [-119.765725, 37.708092], // user-provided — TODO: verify on the ground
+    body:
+      'Just outside Yosemite Valley there is Forest Service land where you can camp with views of El Capitan and Half Dome. No toilets, no amenities, no reservations needed, and no fee machinery, which is exactly why so few people know it is here. Pack out everything you pack in, and keep the location to yourself. Keep it secret, keep it safe.',
+    hazard:
+      'Dispersed camping with no toilets, no water, and no services. Check current fire restrictions before lighting anything.',
+    photos: [],
+  },
+  {
+    id: 'little-nellie-falls',
+    title: 'Little Nellie Falls',
+    order: 14,
+    section: 'camping',
+    kind: 'camping',
+    coord: [-119.782716, 37.720222], // user-provided — TODO: verify on the ground
+    body:
+      'A great location for a hike, and even better as an overnight: there is a backcountry campsite at the falls with a picnic table, which is more furniture than most wilderness sites offer. The falls are the destination; the quiet is the point.',
+    photos: [],
+  },
+  {
+    id: 'inspiration-point',
+    title: 'Inspiration Point, Tunnel View without the people',
+    order: 15,
+    section: 'camping',
+    kind: 'camping',
+    coord: [-119.682513, 37.714671], // user-provided — TODO: verify on the ground
+    body:
+      'The Tunnel View, with no people. Inspiration Point sits above the tunnel with the same framed valley composition, and almost everyone stays down at the parking lot. The quiet part is the paperwork: this is a backpacking zone with a permit you can actually register for, which means the view can be yours at sunrise, from a sleeping bag.',
+    photos: [],
+  },
+  {
+    id: 'hidden-lake',
+    title: 'Hidden Lake',
+    order: 16,
+    section: 'camping',
+    kind: 'camping',
+    coord: [-119.495897, 37.805353], // user-provided — TODO: verify on the ground
+    body:
+      'A great spot just off the road, with a backpacking permit that is actually attainable. Short approach, real lake, obtainable paperwork. That combination is rare enough in this park to earn the name.',
+    photos: [],
+  },
 ]
 
 export const SECRET_SPOTS: SecretSpotT[] = SecretSpots.parse(seed).sort(
@@ -139,5 +235,12 @@ export const SECRET_SPOTS: SecretSpotT[] = SecretSpots.parse(seed).sort(
 export const SECRET_META = {
   title: 'The Secret Spots',
   teaser:
-    'The quiet corners: the one-foot waterfall, the night meadow, the empty river beach. The things that do not go in articles. Included with your purchase.',
+    'The quiet corners: the one-foot waterfall, the night meadow, the empty river beach. Plus the parking moves and the quiet camping that do not go in articles. Included with your purchase.',
 }
+
+// Section headers for the grouped lists on /secret-spots, in display order.
+// Untagged spots render above these as the classic flat list.
+export const SECRET_SECTIONS: { id: SecretSpotSectionT; title: string }[] = [
+  { id: 'parking', title: 'Parking moves' },
+  { id: 'camping', title: 'Quiet camping' },
+]
