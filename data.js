@@ -47,6 +47,7 @@ window.CATEGORIES = [
 // verifies this map stays in sync with the files in bodies/.
 // ============================================================
 window.BODY_VERSIONS = {
+  "yosemite-camping-complete-guide": 1,
   "where-to-propose-in-yosemite": 1,
   "yosemite-bears-safety-guide": 117,
   "yosemite-heat-safety-guide": 2,
@@ -631,6 +632,30 @@ window.KIT.lists.forEach((l) => {
 });
 
 window.ARTICLES = [
+  {
+    slug: "yosemite-camping-complete-guide",
+    cat: "planning",
+    title: "The Dirt on Camping in Yosemite: All 13 Campgrounds",
+    dek: "Thirteen campgrounds, three booking windows, and a bear box you will come to respect. Twenty years of sleeping on this ground: how to get a site when they vanish in minutes, which campgrounds are worth it, and where to go when everything is full.",
+    seoDek: "Camping in Yosemite in 2026? All 13 campgrounds, reservation tips, cancellation tricks, and bear safety from a park naturalist who lives here.",
+    date: "July 10, 2026",
+    isoDate: "2026-07-10",
+    isoModified: "2026-07-10",
+    read: "21 min",
+    // INTERIM HERO. The intended hero is the public-domain Detroit Publishing
+    // Co. postcard "Camp Ahwahnee, Sentinel Rock" (a tent camp on the Valley
+    // floor, ca. early 1900s). Its pixels could not be fetched in the authoring
+    // environment, so a repo image stands in. To swap: add the postcard at
+    // img/camp-ahwahnee-sentinel-rock.jpg, replace the three active fields below
+    // with the three commented postcard fields, then run
+    // `npm --prefix scripts run images && npm --prefix scripts run seo`.
+    // placeholder: "A hand-colored postcard of a tent camp on the meadow floor beneath Sentinel Rock in Yosemite Valley",
+    // image: "img/camp-ahwahnee-sentinel-rock.jpg",
+    // credit: "Detroit Publishing Co. postcard, early 1900s. Public domain.",
+    placeholder: "Half Dome under a star-filled night sky above Yosemite Valley",
+    image: "img/half-dome-starry-night-casey-horner.jpg",
+    credit: "Photo: Casey Horner / Unsplash",
+  },
   {
     slug: "where-to-propose-in-yosemite",
     cat: "planning",

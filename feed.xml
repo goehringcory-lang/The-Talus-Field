@@ -9,13 +9,23 @@
     <copyright>© 2026 The Talus Field</copyright>
     <managingEditor>cory@thetalusfieldjournal.com (Cory Goehring)</managingEditor>
     <webMaster>cory@thetalusfieldjournal.com (Cory Goehring)</webMaster>
-    <lastBuildDate>Wed, 24 Jun 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 10 Jul 2026 00:00:00 +0000</lastBuildDate>
     <image>
       <url>https://thetalusfieldjournal.com/img/talus-field-mark.png</url>
       <title>The Talus Field</title>
       <link>https://thetalusfieldjournal.com/</link>
     </image>
 
+    <item>
+      <title>The Dirt on Camping in Yosemite: All 13 Campgrounds</title>
+      <link>https://thetalusfieldjournal.com/articles/yosemite-camping-complete-guide</link>
+      <guid isPermaLink="true">https://thetalusfieldjournal.com/articles/yosemite-camping-complete-guide</guid>
+      <pubDate>Fri, 10 Jul 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Cory Goehring</dc:creator>
+      <category>Planning</category>
+      <description>Thirteen campgrounds, three booking windows, and a bear box you will come to respect. Twenty years of sleeping on this ground: how to get a site when they vanish in minutes, which campgrounds are worth it, and where to go when everything is full.</description>
+      <media:content url="https://thetalusfieldjournal.com/img/half-dome-starry-night-casey-horner.jpg" medium="image" />
+    </item>
     <item>
       <title>Where to Propose in Yosemite: What Twenty Years of Watching Taught Me</title>
       <link>https://thetalusfieldjournal.com/articles/where-to-propose-in-yosemite</link>

@@ -5,7 +5,7 @@
   <!-- Hub pages -->
   <url>
     <loc>https://thetalusfieldjournal.com/</loc>
-    <lastmod>2026-06-24</lastmod>
+    <lastmod>2026-07-10</lastmod>
     <image:image>
       <image:loc>https://thetalusfieldjournal.com/img/Half%20Dome%20Main%20Photo.jpg</image:loc>
       <image:title>Half Dome at first light</image:title>
@@ -13,7 +13,7 @@
   </url>
   <url>
     <loc>https://thetalusfieldjournal.com/articles</loc>
-    <lastmod>2026-06-24</lastmod>
+    <lastmod>2026-07-10</lastmod>
   </url>
   <url>
     <loc>https://thetalusfieldjournal.com/planning</loc>
@@ -31,7 +31,7 @@
   <!-- Sections -->
   <url>
     <loc>https://thetalusfieldjournal.com/section/planning</loc>
-    <lastmod>2026-06-24</lastmod>
+    <lastmod>2026-07-10</lastmod>
   </url>
   <url>
     <loc>https://thetalusfieldjournal.com/section/trails</loc>
@@ -97,6 +97,14 @@
   </url>
 
   <!-- Articles -->
+  <url>
+    <loc>https://thetalusfieldjournal.com/articles/yosemite-camping-complete-guide</loc>
+    <lastmod>2026-07-10</lastmod>
+    <image:image>
+      <image:loc>https://thetalusfieldjournal.com/img/half-dome-starry-night-casey-horner.jpg</image:loc>
+      <image:title>Half Dome under a star-filled night sky above Yosemite Valley</image:title>
+    </image:image>
+  </url>
   <url>
     <loc>https://thetalusfieldjournal.com/articles/where-to-propose-in-yosemite</loc>
     <lastmod>2026-06-24</lastmod>
