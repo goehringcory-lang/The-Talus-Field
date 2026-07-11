@@ -285,7 +285,6 @@ function Header({
   var navItems = [...primaryNavItems, ...overflowNavItems];
   var [menuOpen, setMenuOpen] = React.useState(false);
   var menuRef = React.useRef(null);
-  var [ctaVariant] = React.useState(() => window.abVariant("mobile_cta"));
   React.useEffect(() => {
     if (!menuOpen) return;
     var onDoc = e => {
@@ -393,15 +392,14 @@ function Header({
     className: "nav"
   }, primaryNavItems.map(([key, label]) => renderLink(key, label, {
     baseClass: "nav__link"
-  })), ctaVariant === "b" && React.createElement("a", {
+  })), React.createElement("a", {
     className: "nav__primary",
     href: window.routeToPath ? window.routeToPath("map") : "/map",
     onClick: e => {
       e.preventDefault();
       if (window.track) window.track("cta_click", {
         location: "masthead_cta",
-        target: "map",
-        variant: ctaVariant
+        target: "map"
       });
       go("map");
     }
@@ -762,7 +760,6 @@ function ExitIntentNewsletter({
   disabled
 }) {
   var [open, setOpen] = useState(false);
-  var [variant] = useState(() => window.abVariant("exit_copy"));
   var firedRef = useRef(false);
   useEffect(() => {
     if (disabled) return;
@@ -779,10 +776,9 @@ function ExitIntentNewsletter({
       window.safeStorage.set("tfg.nl.exit.seen", new Date().toISOString());
       if (window.track) window.track("newsletter_exit_intent_shown", {
         location: "article_exit_intent",
-        tag: "exit-intent",
-        variant
+        tag: "exit-intent"
       });
-      trackNewsletterImpression("article_exit_intent", "exit-intent", variant);
+      trackNewsletterImpression("article_exit_intent", "exit-intent");
       setOpen(true);
     };
     var onMouseOut = e => {
@@ -806,7 +802,7 @@ function ExitIntentNewsletter({
       window.removeEventListener("scroll", onScroll);
       document.removeEventListener("mouseout", onMouseOut);
     };
-  }, [disabled, variant]);
+  }, [disabled]);
   useEffect(() => {
     if (!open) return;
     var onKey = e => {
@@ -841,13 +837,13 @@ function ExitIntentNewsletter({
     style: {
       marginBottom: 12
     }
-  }, "Before you go"), variant === "b" ? React.createElement(React.Fragment, null, React.createElement("h3", null, "The interactive map is free for subscribers."), React.createElement("p", null, "Subscribe and the trip builder opens right away: vistas, trailheads, parking turnouts, and places to eat on one map. A short note follows on Sundays.")) : React.createElement(React.Fragment, null, React.createElement("h3", null, "One letter a week. Sometimes none."), React.createElement("p", null, "Sunday Field Notes: what is open, what is blooming, and the occasional longer piece. Free, and you can leave anytime.")), React.createElement("form", {
+  }, "Before you go"), React.createElement("h3", null, "One letter a week. Sometimes none."), React.createElement("p", null, "Sunday Field Notes: what is open, what is blooming, and the occasional longer piece. Free, and you can leave anytime."), React.createElement("form", {
     className: "nlbox__form",
     action: "https://buttondown.com/api/emails/embed-subscribe/goehring",
     method: "post",
     target: "buttondown-target",
     onSubmit: () => {
-      trackNewsletterSubmit("article_exit_intent", "exit-intent", variant);
+      trackNewsletterSubmit("article_exit_intent", "exit-intent");
       setTimeout(() => setOpen(false), 0);
     }
   }, React.createElement("input", {

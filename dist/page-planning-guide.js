@@ -41,7 +41,17 @@ function PlanningGuide({
     className: "eyebrow eyebrow--moss"
   }, "The Planning Guide"), React.createElement("h1", null, "Yosemite, planned properly."), React.createElement("p", {
     className: "page-head__dek"
-  }, "The questions that come up before, during, and after a Yosemite trip, answered in the order most visitors actually run into them. Drawn from the full archive of The Talus Field, organized to read like a guide rather than a search result."))), React.createElement("div", {
+  }, "The questions that come up before, during, and after a Yosemite trip, answered in the order most visitors actually run into them. Drawn from the full archive of The Talus Field, organized to read like a guide rather than a search result."), React.createElement("p", {
+    className: "mono",
+    style: {
+      fontSize: 12,
+      textTransform: "uppercase",
+      letterSpacing: "0.14em",
+      color: "var(--ink-3)",
+      fontWeight: 700,
+      marginTop: 12
+    }
+  }, "Planning advice from inside the park, checked on foot."))), React.createElement("div", {
     className: "wrap",
     style: {
       paddingTop: 56
@@ -231,6 +241,8 @@ function PlanningGuide({
       go("articles");
     }
   }, "Browse all entries →")), React.createElement(NewsletterInline, {
+    location: "planning_hub",
+    tag: "planning",
     heading: "Sunday Field Notes",
     blurb: "One Yosemite email a week, when there is something to say. Free."
   })))));

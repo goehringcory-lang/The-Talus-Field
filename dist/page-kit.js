@@ -307,6 +307,16 @@ function KitPage({
       e.preventDefault();
       go("places");
     }
-  }, "Open the directory →"))));
+  }, "Open the directory →"))), React.createElement("section", {
+    className: "wrap",
+    style: {
+      paddingBottom: 80
+    }
+  }, React.createElement(NewsletterInline, {
+    location: "kit",
+    tag: "kit",
+    heading: "Gear notes with the letter",
+    blurb: "What's working this season, what wore out, and what changed in the packing list. Comes with Sunday Field Notes."
+  })));
 }
 window.KitPage = KitPage;

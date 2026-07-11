@@ -148,10 +148,20 @@ function FilmsPage() {
     className: "wrap",
     style: {
       paddingTop: 40,
-      paddingBottom: 72
+      paddingBottom: 48
     }
   }, React.createElement("div", {
     className: "films__credit"
-  }, React.createElement("p", null, "The series ran from 2009 to 2025 under producer Steven M. Bumgardner and a long roster of rangers, scientists, and historians. Your tax dollars paid for these films once already. Watching them is the closest thing to a free trip to the park."))));
+  }, React.createElement("p", null, "The series ran from 2009 to 2025 under producer Steven M. Bumgardner and a long roster of rangers, scientists, and historians. Your tax dollars paid for these films once already. Watching them is the closest thing to a free trip to the park."))), React.createElement("section", {
+    className: "wrap",
+    style: {
+      paddingBottom: 80
+    }
+  }, React.createElement(NewsletterInline, {
+    location: "films",
+    tag: "films",
+    heading: "Sunday Field Notes",
+    blurb: "One Yosemite email a week. Notes on the park worth reading alongside the films."
+  })));
 }
 window.FilmsPage = FilmsPage;

@@ -2,12 +2,10 @@ var {
   useMemo,
   useState
 } = React;
-function HomeHeroCapture({
-  variant
-}) {
+function HomeHeroCapture() {
   var [done, setDone] = useState(false);
   var subscribed = isSubscribed();
-  var ref = useNewsletterImpression("home_hero", "home", !subscribed && !done, variant);
+  var ref = useNewsletterImpression("home_hero", "home", !subscribed && !done);
   if (subscribed && !done) {
     return React.createElement("p", {
       className: "hero__capture-note",
@@ -32,7 +30,7 @@ function HomeHeroCapture({
     method: "post",
     target: "buttondown-target",
     onSubmit: () => {
-      if (window.trackNewsletterSubmit) window.trackNewsletterSubmit("home_hero", "home", variant);
+      if (window.trackNewsletterSubmit) window.trackNewsletterSubmit("home_hero", "home");
       setTimeout(() => setDone(true), 0);
     }
   }, React.createElement("input", {
@@ -127,9 +125,6 @@ function HomePage({
   var seasonal = window.byCategory("seasonal").slice(0, 2);
   var startHere = (window.START_HERE || []).map(slug => window.findArticle(slug)).filter(Boolean);
   var camCacheBust = useMemo(() => Date.now(), []);
-  var heroVariant = window.abVariant("hero_actions");
-  var webcamVariant = window.abVariant("home_webcams");
-  var calloutVariant = window.abVariant("callout_bands");
   var scrollToStartHere = e => {
     e.preventDefault();
     document.getElementById("start-here")?.scrollIntoView({
@@ -219,9 +214,7 @@ function HomePage({
     className: "dot"
   }), React.createElement("span", null, window.SITE && window.SITE.issue || "Vol. III", window.SITE && window.SITE.issueDetail ? ` · ${window.SITE.issueDetail}` : "")), React.createElement("h1", null, "Notes from the Field."), React.createElement("p", {
     className: "hero__dek"
-  }, "A field journal of one national park. Trails, weather, what is open and what is not, and the occasional longer essay when something is worth sitting with."), heroVariant === "b" ? React.createElement(React.Fragment, null, React.createElement(HomeHeroCapture, {
-    variant: heroVariant
-  }), React.createElement("div", {
+  }, "A field journal of one national park, written by someone who lives here. Trails, weather, what is open and what is not, and the occasional longer essay when something is worth sitting with."), React.createElement(HomeHeroCapture, null), React.createElement("div", {
     className: "hero__cta",
     style: {
       marginTop: 18
@@ -240,31 +233,7 @@ function HomePage({
       borderBottom: "1px solid var(--rule)",
       paddingBottom: 2
     }
-  }, "First time in Yosemite? Start here →"))) : React.createElement(React.Fragment, null, React.createElement("div", {
-    className: "hero__cta"
-  }, React.createElement("a", {
-    className: "btn",
-    href: "#start-here",
-    onClick: scrollToStartHere
-  }, "First Time Visitor to Yosemite: Start Here ", React.createElement("span", {
-    className: "btn__arrow"
-  }, "→")), React.createElement("a", {
-    className: "btn btn--ghost",
-    href: "/checklist",
-    onClick: e => {
-      e.preventDefault();
-      go("checklist");
-    }
-  }, "Free checklist"), React.createElement("a", {
-    className: "btn btn--ghost",
-    href: "/newsletter",
-    onClick: e => {
-      e.preventDefault();
-      go("newsletter");
-    }
-  }, "Sunday Field Notes / The Map")), React.createElement(HomeHeroCapture, {
-    variant: heroVariant
-  }))), React.createElement(Placeholder, {
+  }, "First time in Yosemite? Start here →"))), React.createElement(Placeholder, {
     caption: "El Capitan and Bridalveil at sunset",
     credit: "Rodrigo Soares / Unsplash",
     image: "img/valley-view-sunset-rodrigo-soares.jpg",
@@ -275,7 +244,7 @@ function HomePage({
     motif: React.createElement(MotifMountains, null)
   }))), React.createElement(ResumeReading, {
     go: go
-  }), webcamVariant !== "b" && webcamsSection, startHere.length > 0 && React.createElement("section", {
+  }), startHere.length > 0 && React.createElement("section", {
     id: "start-here",
     className: "wrap",
     style: {
@@ -322,7 +291,7 @@ function HomePage({
     key: a.slug,
     article: a,
     go: go
-  })))), webcamVariant === "b" && webcamsSection, React.createElement("section", {
+  })))), webcamsSection, React.createElement("section", {
     className: "wrap",
     style: {
       paddingTop: 80
@@ -429,7 +398,7 @@ function HomePage({
       e.preventDefault();
       go("map");
     },
-    style: calloutVariant === "b" ? {
+    style: {
       display: "block",
       textDecoration: "none",
       color: "inherit",
@@ -437,13 +406,6 @@ function HomePage({
       borderLeft: "6px solid var(--moss)",
       background: "var(--paper-2)",
       padding: "36px 32px"
-    } : {
-      display: "block",
-      textDecoration: "none",
-      color: "inherit",
-      borderTop: "2px solid var(--ink)",
-      borderBottom: "2px solid var(--ink)",
-      padding: "40px 0"
     }
   }, React.createElement("div", {
     style: {
