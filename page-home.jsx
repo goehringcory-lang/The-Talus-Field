@@ -7,10 +7,10 @@ const { useMemo, useState } = React;
 // free interactive map incentive, with the same impression tracking and
 // subscribed-suppression as NewsletterInline (location "home_hero", tag "home").
 // ============================================================
-function HomeHeroCapture({ variant }) {
+function HomeHeroCapture() {
   const [done, setDone] = useState(false);
   const subscribed = isSubscribed();
-  const ref = useNewsletterImpression("home_hero", "home", !subscribed && !done, variant);
+  const ref = useNewsletterImpression("home_hero", "home", !subscribed && !done);
 
   if (subscribed && !done) {
     return (
@@ -36,7 +36,7 @@ function HomeHeroCapture({ variant }) {
         method="post"
         target="buttondown-target"
         onSubmit={() => {
-          if (window.trackNewsletterSubmit) window.trackNewsletterSubmit("home_hero", "home", variant);
+          if (window.trackNewsletterSubmit) window.trackNewsletterSubmit("home_hero", "home");
           setTimeout(() => setDone(true), 0);
         }}
       >
@@ -118,20 +118,14 @@ function HomePage({ go }) {
     .filter(Boolean);
   const camCacheBust = useMemo(() => Date.now(), []);
 
-  // A/B buckets for the three home-page conversion tests. abVariant is sticky
-  // per device, so these are stable across re-renders.
-  const heroVariant = window.abVariant("hero_actions");
-  const webcamVariant = window.abVariant("home_webcams");
-  const calloutVariant = window.abVariant("callout_bands");
-
   const scrollToStartHere = (e) => {
     e.preventDefault();
     document.getElementById("start-here")?.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
-  // Live webcam strip. In control it sits directly under the hero; in the
-  // home_webcams variant it moves below "Start Here" so the four off-site links
-  // do not pull readers away before they reach the capture and onboarding row.
+  // Live webcam strip. Rendered below "Start Here" (see call site) so the
+  // four off-site links do not pull readers away before they reach the
+  // capture and onboarding row.
   const webcamsSection = (
     <section className="wrap" style={{ paddingTop: 64 }}>
       <div className="section-head">
@@ -181,39 +175,22 @@ function HomePage({ go }) {
             </div>
             <h1>Notes from the Field.</h1>
             <p className="hero__dek">
-              A field journal of one national park. Trails, weather, what is open and what is not, and the occasional longer essay when something is worth sitting with.
+              A field journal of one national park, written by someone who lives here. Trails, weather, what is open and what is not, and the occasional longer essay when something is worth sitting with.
             </p>
-            {heroVariant === "b" ? (
-              /* Variant b: lead with the email/map capture (the real goal), and
-                 reduce the competing actions to a single quiet text link. */
-              <>
-                <HomeHeroCapture variant={heroVariant} />
-                <div className="hero__cta" style={{ marginTop: 18 }}>
-                  <a
-                    href="#start-here"
-                    onClick={scrollToStartHere}
-                    style={{ fontFamily: "var(--sans)", fontSize: 12, fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.14em", color: "var(--ink-2)", textDecoration: "none", borderBottom: "1px solid var(--rule)", paddingBottom: 2 }}
-                  >
-                    First time in Yosemite? Start here →
-                  </a>
-                </div>
-              </>
-            ) : (
-              <>
-                <div className="hero__cta">
-                  <a className="btn" href="#start-here" onClick={scrollToStartHere}>
-                    First Time Visitor to Yosemite: Start Here <span className="btn__arrow">→</span>
-                  </a>
-                  <a className="btn btn--ghost" href="/checklist" onClick={(e) => { e.preventDefault(); go("checklist"); }}>
-                    Free checklist
-                  </a>
-                  <a className="btn btn--ghost" href="/newsletter" onClick={(e) => { e.preventDefault(); go("newsletter"); }}>
-                    Sunday Field Notes / The Map
-                  </a>
-                </div>
-                <HomeHeroCapture variant={heroVariant} />
-              </>
-            )}
+            {/* Lead with the email/map capture (the real goal), and reduce the
+                competing actions to a single quiet text link. Was A/B tested
+                (hero_actions); this capture-forward layout won and is now the
+                default. */}
+            <HomeHeroCapture />
+            <div className="hero__cta" style={{ marginTop: 18 }}>
+              <a
+                href="#start-here"
+                onClick={scrollToStartHere}
+                style={{ fontFamily: "var(--sans)", fontSize: 12, fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.14em", color: "var(--ink-2)", textDecoration: "none", borderBottom: "1px solid var(--rule)", paddingBottom: 2 }}
+              >
+                First time in Yosemite? Start here →
+              </a>
+            </div>
           </div>
           <Placeholder
             caption={"El Capitan and Bridalveil at sunset"}
@@ -229,8 +206,6 @@ function HomePage({ go }) {
       </section>
 
       <ResumeReading go={go} />
-
-      {webcamVariant !== "b" && webcamsSection}
 
       {/* Start Here — curated onboarding row for first-time visitors */}
       {startHere.length > 0 && (
@@ -251,7 +226,11 @@ function HomePage({ go }) {
         </section>
       )}
 
-      {webcamVariant === "b" && webcamsSection}
+      {/* Webcam strip sits below Start Here so the four off-site links do not
+          pull readers away before they reach the capture and onboarding row.
+          Was A/B tested (home_webcams); this position won and is now the
+          default. */}
+      {webcamsSection}
 
       {/* This Week — recent articles feed */}
       <section className="wrap" style={{ paddingTop: 80 }}>
@@ -302,10 +281,11 @@ function HomePage({ go }) {
         <a
           href="/map"
           onClick={(e) => { e.preventDefault(); go("map"); }}
-          style={calloutVariant === "b" ? {
-            /* callout_bands variant: the Map band is the only one of the three
-               with a direct conversion path, so break the identical-band pattern
-               with a tinted ground and a moss spine to stop the eye. */
+          style={{
+            /* The Map band is the only one of the three with a direct
+               conversion path, so it breaks the identical-band pattern with a
+               tinted ground and a moss spine to stop the eye. Was A/B tested
+               (callout_bands); this treatment won and is now the default. */
             display: "block",
             textDecoration: "none",
             color: "inherit",
@@ -313,13 +293,6 @@ function HomePage({ go }) {
             borderLeft: "6px solid var(--moss)",
             background: "var(--paper-2)",
             padding: "36px 32px",
-          } : {
-            display: "block",
-            textDecoration: "none",
-            color: "inherit",
-            borderTop: "2px solid var(--ink)",
-            borderBottom: "2px solid var(--ink)",
-            padding: "40px 0",
           }}
         >
           <div style={{ display: "grid", gridTemplateColumns: "1fr 2fr", gap: 48, alignItems: "center" }}>

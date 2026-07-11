@@ -472,6 +472,8 @@ function ChecklistPage({
   }, "The full Yosemite Planning Guide")))), React.createElement("div", {
     className: "checklist-section"
   }, React.createElement(NewsletterInline, {
+    location: "checklist",
+    tag: "checklist",
     heading: "Want updates through the season?",
     blurb: "One Yosemite email a week, when there is something to say. Free. Subscribers hear about updates to this checklist first."
   }))));

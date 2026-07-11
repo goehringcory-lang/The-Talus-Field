@@ -48,7 +48,7 @@ function AboutPage({ go }) {
             The reader I have in mind is someone planning a first trip and feeling slightly buried by the logistics. If you are a fortieth-time visitor looking for trail beta, you may still find something here, but most of the writing is pitched a little earlier than that.
           </p>
 
-          <h2>Practice</h2>
+          <h2 id="practice">Practice</h2>
 
           <p>
             Recommendations are for things I have used, walked in, slept in, read cover to cover, or worked alongside. Nothing on the site is built from a search-result roundup or a press kit. If a piece of gear is here, I have walked at least fifty miles in it. If a guidebook is here, I have read it cover to cover. If a lodge is here, I have stayed there or know someone who has, and I will tell you which.

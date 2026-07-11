@@ -184,6 +184,8 @@ function ChecklistPage({ go }) {
         {/* Newsletter capture */}
         <div className="checklist-section">
           <NewsletterInline
+            location="checklist"
+            tag="checklist"
             heading="Want updates through the season?"
             blurb="One Yosemite email a week, when there is something to say. Free. Subscribers hear about updates to this checklist first."
           />

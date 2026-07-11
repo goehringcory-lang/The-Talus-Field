@@ -1,17 +1,45 @@
+function formatIsoDate(iso) {
+  var d = new Date(iso + "T00:00:00");
+  if (Number.isNaN(d.getTime())) return null;
+  return d.toLocaleDateString("en-US", {
+    month: "long",
+    day: "numeric",
+    year: "numeric"
+  });
+}
+var END_NEWSLETTER_OFFER = {
+  planning: {
+    heading: "Get the conditions before you go",
+    blurb: "One Yosemite email a week: what's open, what's booked out, and what changed since you started planning. Free."
+  },
+  trails: {
+    heading: "Sunday Field Notes",
+    blurb: "One letter a week on trail conditions and what's worth the hike right now. Free, and you can leave anytime."
+  },
+  wildlife: {
+    heading: "Sunday Field Notes",
+    blurb: "One letter a week from someone who's out there year-round: wildlife notes, trail conditions, the occasional longer piece."
+  },
+  seasonal: {
+    heading: "Sunday Field Notes",
+    blurb: "One letter a week, timed to the season you're reading about: what's blooming, what's flowing, what's changed."
+  }
+};
+function newsletterTag(placement, cat) {
+  return cat ? `${placement}-${cat}` : placement;
+}
 function ArticlePage({
   slug,
   go
 }) {
   var article = window.findArticle(slug);
-  var articleTocVariant = window.abVariant("article_toc");
-  var midVariant = window.abVariant("mid_copy");
   var [Body, setBody] = React.useState(() => (window.ARTICLE_BODIES || {})[slug] || null);
   var [bodyState, setBodyState] = React.useState(() => (window.ARTICLE_BODIES || {})[slug] ? "ready" : "loading");
   var proseRef = React.useRef(null);
   var [midHost, setMidHost] = React.useState(null);
   var [toc, setToc] = React.useState([]);
   React.useEffect(() => {
-    if (articleTocVariant !== "b" || bodyState !== "ready") {
+    if (bodyState !== "ready") {
       setToc([]);
       return;
     }
@@ -31,7 +59,7 @@ function ArticlePage({
       setToc(items.length >= 5 ? items : []);
     });
     return () => cancelAnimationFrame(raf);
-  }, [articleTocVariant, bodyState, slug, Body]);
+  }, [bodyState, slug, Body]);
   React.useEffect(() => {
     var cancelled = false;
     var existing = (window.ARTICLE_BODIES || {})[slug];
@@ -251,7 +279,7 @@ function ArticlePage({
     }
   }, React.createElement("time", {
     dateTime: article.isoModified || article.isoDate
-  }, article.date), React.createElement("div", null, article.read, " read")))), React.createElement("div", {
+  }, article.date), React.createElement("div", null, article.read, " read"), article.isoModified && article.isoModified !== article.isoDate && formatIsoDate(article.isoModified) && React.createElement("div", null, "Updated ", formatIsoDate(article.isoModified))))), React.createElement("div", {
     className: "wrap wrap--narrow",
     style: {
       paddingBottom: 32
@@ -267,7 +295,7 @@ function ArticlePage({
     motif: React.createElement(MotifMountains, null)
   })), React.createElement("div", {
     className: "wrap wrap--read"
-  }, articleTocVariant === "b" && toc.length > 0 && React.createElement("details", {
+  }, toc.length > 0 && React.createElement("details", {
     className: "toc"
   }, React.createElement("summary", null, "In this guide"), React.createElement("ul", null, toc.map(it => React.createElement("li", {
     key: it.id
@@ -280,8 +308,7 @@ function ArticlePage({
         block: "start"
       });
       if (window.track) window.track("toc_jump", {
-        slug,
-        variant: "b"
+        slug
       });
     }
   }, it.text))))), React.createElement("div", {
@@ -323,14 +350,75 @@ function ArticlePage({
       color: "var(--ink-3)",
       fontStyle: "italic"
     }
-  }, "This article is coming soon.")), midHost && ReactDOM.createPortal(React.createElement(NewsletterInline, {
+  }, "This article is coming soon.")), React.createElement("div", {
+    style: {
+      display: "flex",
+      gap: 18,
+      alignItems: "flex-start",
+      borderTop: "1px solid var(--rule)",
+      padding: "24px 0",
+      marginTop: 40
+    }
+  }, React.createElement("div", {
+    style: {
+      width: 44,
+      height: 44,
+      flexShrink: 0,
+      borderRadius: "50%",
+      background: "var(--paper-2)",
+      border: "1px solid var(--rule)",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      fontFamily: "var(--serif)",
+      fontWeight: 600,
+      color: "var(--ink-2)"
+    }
+  }, "CG"), React.createElement("div", {
+    style: {
+      fontFamily: "var(--sans)",
+      fontSize: 13,
+      color: "var(--ink-2)",
+      lineHeight: 1.6
+    }
+  }, React.createElement("div", {
+    style: {
+      color: "var(--ink)",
+      fontWeight: 500,
+      marginBottom: 4
+    }
+  }, React.createElement("a", {
+    href: "/about",
+    rel: "author",
+    onClick: e => {
+      e.preventDefault();
+      go("about");
+    },
+    style: {
+      color: "inherit",
+      textDecoration: "none",
+      borderBottom: "1px solid var(--rule)"
+    }
+  }, window.SITE.authorName)), React.createElement("div", null, window.SITE.authorBio), React.createElement("div", {
+    style: {
+      marginTop: 6
+    }
+  }, React.createElement("a", {
+    href: "/about",
+    onClick: e => {
+      e.preventDefault();
+      go("about");
+    },
+    style: {
+      color: "var(--moss)",
+      textDecoration: "none",
+      borderBottom: "1px solid var(--rule)"
+    }
+  }, "Read how recommendations get made →")))), midHost && ReactDOM.createPortal(React.createElement(NewsletterInline, {
     location: "article_mid",
-    tag: "article-mid",
-    variant: midVariant,
-    ...(midVariant === "b" ? {} : {
-      heading: "Keep reading next week",
-      blurb: "Sunday Field Notes: one short letter, only when there is something worth saying."
-    })
+    tag: newsletterTag("article-mid", article.cat),
+    heading: "Keep reading next week",
+    blurb: "Sunday Field Notes: one short letter, only when there is something worth saying."
   }), midHost), React.createElement("a", {
     href: "/map",
     onClick: e => {
@@ -378,10 +466,9 @@ function ArticlePage({
     }
   }, "Open the map →")), React.createElement(NewsletterInline, {
     location: "article_end",
-    tag: "article-end",
-    abTest: "nl_valueprop",
-    heading: "Sunday Field Notes",
-    blurb: "One letter a week. If you found this useful, you'll probably like the rest."
+    tag: newsletterTag("article-end", article.cat),
+    heading: (END_NEWSLETTER_OFFER[article.cat] || {}).heading || "Sunday Field Notes",
+    blurb: (END_NEWSLETTER_OFFER[article.cat] || {}).blurb || "One letter a week. If you found this useful, you'll probably like the rest."
   }))), related.length > 0 && React.createElement("section", {
     className: "wrap",
     style: {

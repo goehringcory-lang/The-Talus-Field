@@ -1,4 +1,4 @@
-/* global React */
+/* global React, NewsletterInline */
 const { useState: useStateK, useCallback: useCallbackK } = React;
 
 // Ticked items persist here so a reader can plan over several sessions.
@@ -222,6 +222,15 @@ function KitPage({ go }) {
             onClick={(e) => { e.preventDefault(); go("places"); }}
           >Open the directory →</a>
         </div>
+      </section>
+
+      <section className="wrap" style={{ paddingBottom: 80 }}>
+        <NewsletterInline
+          location="kit"
+          tag="kit"
+          heading="Gear notes with the letter"
+          blurb="What's working this season, what wore out, and what changed in the packing list. Comes with Sunday Field Notes."
+        />
       </section>
     </div>
   );

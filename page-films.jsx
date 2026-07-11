@@ -1,4 +1,4 @@
-/* global React */
+/* global React, NewsletterInline */
 const { useState: useStateF, useEffect: useEffectF, useRef: useRefF } = React;
 
 // ============================================================
@@ -137,7 +137,7 @@ function FilmsPage() {
       })}
 
       {/* Closing note */}
-      <section className="wrap" style={{ paddingTop: 40, paddingBottom: 72 }}>
+      <section className="wrap" style={{ paddingTop: 40, paddingBottom: 48 }}>
         <div className="films__credit">
           <p>
             The series ran from 2009 to 2025 under producer Steven M. Bumgardner and a long
@@ -145,6 +145,15 @@ function FilmsPage() {
             films once already. Watching them is the closest thing to a free trip to the park.
           </p>
         </div>
+      </section>
+
+      <section className="wrap" style={{ paddingBottom: 80 }}>
+        <NewsletterInline
+          location="films"
+          tag="films"
+          heading="Sunday Field Notes"
+          blurb="One Yosemite email a week. Notes on the park worth reading alongside the films."
+        />
       </section>
     </div>
   );
