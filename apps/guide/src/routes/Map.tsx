@@ -30,6 +30,7 @@ import { announceTripAdd } from '../trip/addFeedback'
 import { addStopToPlan, isStopPlanned } from '../trip/useTripPlan'
 import { buildMapStyle } from '../map/style'
 import { isPackCompleted } from '../offline/useDownloads'
+import { formatMiles, haversineMiles } from '../utils/geo'
 import { popupPhotoUrl } from '../utils/photo'
 import './Map.css'
 
@@ -81,7 +82,11 @@ function extractExcerpt(body: string, maxLen = 170): string {
 
 // Popup content built as DOM so the "Open stop" action can route through
 // react-router instead of a full page load.
-function buildPopupContent(stop: GuideStopT, onOpenStop: (id: string) => void): HTMLElement {
+function buildPopupContent(
+  stop: GuideStopT,
+  onOpenStop: (id: string) => void,
+  userPos?: [number, number] | null,
+): HTMLElement {
   const style = getKindStyle(stop.kind)
   const root = document.createElement('div')
   root.className = 'map-popup'
@@ -113,6 +118,14 @@ function buildPopupContent(stop: GuideStopT, onOpenStop: (id: string) => void): 
   excerpt.className = 'map-popup__excerpt'
   excerpt.textContent = stop.teaser ?? extractExcerpt(stop.body)
   root.appendChild(excerpt)
+
+  // Straight-line only: the map's own copy says it does not calculate routes.
+  if (userPos && stop.coord) {
+    const dist = document.createElement('p')
+    dist.className = 'map-popup__distance'
+    dist.textContent = `${formatMiles(haversineMiles(userPos, stop.coord))} from you, straight line`
+    root.appendChild(dist)
+  }
 
   const actions = document.createElement('p')
   actions.className = 'map-popup__actions'
@@ -208,6 +221,15 @@ export default function Map() {
   const [mapReady, setMapReady] = useState(false)
   const [mapFailed, setMapFailed] = useState(false)
   const [mapDownloaded, setMapDownloaded] = useState(() => isPackCompleted('park-map'))
+
+  // Device position from the locate control. The ref mirrors the state so the
+  // selection effect can read the position at popup-open time without taking
+  // it as a dependency: with trackUserLocation on, every GPS tick would
+  // otherwise re-run easeTo and yank the camera back to the selected stop.
+  const [userPos, setUserPos] = useState<[number, number] | null>(null)
+  const userPosRef = useRef<[number, number] | null>(null)
+  const [geoDenied, setGeoDenied] = useState(false)
+  const [outOfPark, setOutOfPark] = useState(false)
 
   // The pack can complete in another tab (or on /account in this one);
   // re-check whenever this tab regains focus so the offline notice is live.
@@ -320,6 +342,33 @@ export default function Map() {
     })
     map.addControl(new maplibregl.NavigationControl({ showCompass: false }), 'top-left')
     map.addControl(new maplibregl.ScaleControl({ unit: 'imperial' }), 'bottom-left')
+
+    // Locate-me. GPS itself needs no signal, so this works in airplane mode.
+    // Only offered where it can work (https; localhost counts as secure), and
+    // never auto-triggered: the first fix waits for an explicit tap, which is
+    // also what makes iOS raise its permission prompt at a sensible moment.
+    if (window.isSecureContext && 'geolocation' in navigator) {
+      const geolocate = new maplibregl.GeolocateControl({
+        positionOptions: { enableHighAccuracy: true },
+        trackUserLocation: true,
+        fitBoundsOptions: { maxZoom: 14 },
+      })
+      map.addControl(geolocate, 'top-left')
+      const onFix = (pos: GeolocationPosition, outside: boolean) => {
+        const coord: [number, number] = [pos.coords.longitude, pos.coords.latitude]
+        userPosRef.current = coord
+        setUserPos(coord)
+        setOutOfPark(outside)
+        setGeoDenied(false)
+      }
+      geolocate.on('geolocate', (pos) => onFix(pos, false))
+      // Fired instead of 'geolocate' when the fix falls outside maxBounds,
+      // i.e. the reader is planning from home. Distances still render.
+      geolocate.on('outofmaxbounds', (pos) => onFix(pos, true))
+      geolocate.on('error', (err) => {
+        if (err.code === 1) setGeoDenied(true)
+      })
+    }
 
     mapRef.current = map
     // closeOnClick is off because it only listens for real DOM clicks, which
@@ -453,7 +502,10 @@ export default function Map() {
 
     const lngLat = marker.getLngLat()
     map.easeTo({ center: lngLat, zoom: Math.max(map.getZoom(), 13) })
-    popup.setLngLat(lngLat).setDOMContent(buildPopupContent(stop, openStop)).addTo(map)
+    popup
+      .setLngLat(lngLat)
+      .setDOMContent(buildPopupContent(stop, openStop, userPosRef.current))
+      .addTo(map)
   }, [selection, mapReady, visibleStops, openStop, selectStop])
 
   const handleTab = useCallback((next: Tab) => {
@@ -491,6 +543,16 @@ export default function Map() {
     }
     return out
   }, [mappableStops])
+
+  // The five closest mappable stops, for the "Near you" list. Straight-line
+  // distance; mappableStops already guarantees a coord.
+  const nearbyStops = useMemo(() => {
+    if (!userPos) return []
+    return mappableStops
+      .map((stop) => ({ stop, miles: haversineMiles(userPos, stop.coord!) }))
+      .sort((a, b) => a.miles - b.miles)
+      .slice(0, 5)
+  }, [mappableStops, userPos])
 
   // Legend: only the kinds actually present in the stops and amenities.
   const presentKinds = useMemo(() => {
@@ -552,6 +614,42 @@ export default function Map() {
           <div ref={containerRef} className="map-page__map" />
 
           <aside className="map-pane map-pane--points" aria-hidden={tab !== 'points'}>
+            {geoDenied && !userPos && (
+              <p className="map-nearby__note">
+                Location is off for this app. Enable it in your phone's
+                settings to see distances to stops.
+              </p>
+            )}
+            {nearbyStops.length > 0 && (
+              <div className="map-nearby">
+                <h3 className="map-pane__title">Near you</h3>
+                {outOfPark && (
+                  <p className="map-nearby__note">
+                    You're outside the park map area; distances are from your
+                    current location.
+                  </p>
+                )}
+                <ul className="map-nearby__list">
+                  {nearbyStops.map(({ stop, miles }) => {
+                    const { color, label } = getKindStyle(stop.kind)
+                    return (
+                      <li key={stop.id}>
+                        <button
+                          type="button"
+                          className={`map-stop${stop.id === selectedStopId ? ' map-stop--selected' : ''}`}
+                          onClick={() => handleSelectStop(stop.id)}
+                        >
+                          <span className="map-stop__name">{stop.title}</span>
+                          <span className="map-stop__kind" style={{ color }}>
+                            {label} · {formatMiles(miles)}
+                          </span>
+                        </button>
+                      </li>
+                    )
+                  })}
+                </ul>
+              </div>
+            )}
             <h3 className="map-pane__title">Legend</h3>
             <ul className="map-legend">
               {presentKinds.map((kind) => {

@@ -9,6 +9,8 @@ import { indexnow } from './routes/indexnow'
 import { ingestNpsWindow, programs } from './routes/programs'
 import { stripe } from './routes/stripe'
 import { trip } from './routes/trip'
+import { weather } from './routes/weather'
+import { refreshWeather } from './lib/weather'
 import {
   currentMonthLabel,
   firstOfNextMonthIso,
@@ -115,9 +117,12 @@ app.route('/api/indexnow', indexnow)
 app.route('/api/programs', programs)
 app.route('/api/stripe', stripe)
 app.route('/api/trip', trip)
+app.route('/api/weather', weather)
 
 // Daily cron ([triggers] in wrangler.toml): refresh the KV program cache from
-// the NPS Events API so /api/programs answers from KV, not a live fetch.
+// the NPS Events API so /api/programs answers from KV, not a live fetch, and
+// give the weather record a daily floor (its real freshness is owned by the
+// 2h on-demand refresh in the route).
 async function scheduled(
   _controller: ScheduledController,
   env: Env,
@@ -126,6 +131,11 @@ async function scheduled(
   ctx.waitUntil(
     ingestNpsWindow(env).catch((err) => {
       console.error('scheduled: NPS ingest failed', err)
+    }),
+  )
+  ctx.waitUntil(
+    refreshWeather(env).catch((err) => {
+      console.error('scheduled: weather refresh failed', err)
     }),
   )
 }

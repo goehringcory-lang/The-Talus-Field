@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { Link, useNavigate, useSearchParams } from 'react-router-dom'
 import { apiFetch } from '../lib/api'
 import { useAuth } from '../auth/useAuth'
+import { isOnboarded } from '../lib/onboarding'
 import Skeleton from '../components/ui/Skeleton'
 
 type ExchangeResponse = { jwt: string }
@@ -32,7 +33,9 @@ export default function Open() {
       .then((res) => {
         if (cancelled) return
         signIn(res.jwt)
-        navigate('/', { replace: true })
+        // First sign-in on this device goes through the setup page. replace,
+        // so Back never replays the burnt single-use token.
+        navigate(isOnboarded() ? '/' : '/welcome', { replace: true })
       })
       .catch((err) => {
         if (cancelled) return

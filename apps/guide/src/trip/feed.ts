@@ -52,10 +52,12 @@ export function clearFeedInfo(): void {
 
 /** Publish (or refresh) the hosted feed. The Worker reuses the account's token. */
 export async function publishFeed(ics: string): Promise<TripFeedInfo> {
-  const res = await apiFetch<{ token: string; feedUrl: string }>('/api/trip/feed', {
-    method: 'POST',
-    body: JSON.stringify({ ics }),
-  })
+  const res = await apiFetch<{ token: string; feedUrl: string }>(
+    '/api/trip/feed',
+    { method: 'POST', body: JSON.stringify({ ics }) },
+    // Full ICS upload over park cellular deserves more headroom than the default.
+    { timeoutMs: 30_000 },
+  )
   const info: TripFeedInfo = { ...res, updatedAt: new Date().toISOString() }
   writeFeedInfo(info)
   return info

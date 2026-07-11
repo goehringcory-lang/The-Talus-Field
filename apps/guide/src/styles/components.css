@@ -572,6 +572,25 @@
 }
 .season-strip__muted { color: var(--ink-3); }
 
+/* Weather strip (Home + region pages), same visual language as in-season. */
+.weather-strip {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: var(--s2);
+  font-family: var(--serif);
+  font-size: 14px;
+  line-height: 1.5;
+}
+.weather-strip__muted { color: var(--ink-3); }
+.weather-strip__stamp {
+  margin: var(--s2) 0 0;
+  font-family: var(--sans);
+  font-size: 12px;
+  color: var(--ink-3);
+}
+
 /* ===== Bottom sheet (TripCalendarSheet) ===== */
 
 .sheet-backdrop {
