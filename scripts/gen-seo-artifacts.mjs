@@ -44,6 +44,10 @@ import {
 
 const CHECK = process.argv.includes("--check");
 
+// GUIDE-LAUNCH: flip to true to restore /guide in sitemap.xml, then run:
+// npm --prefix scripts run seo
+const GUIDE_LISTED = false;
+
 // ----------------------------------------------------------------------------
 // Helpers
 // ----------------------------------------------------------------------------
@@ -202,7 +206,7 @@ function buildSitemap(merged, categories) {
     ["/privacy", "2026-07-08"],
     ["/terms", "2026-04-01"],
     ["/affiliate", "2026-04-01"],
-    ["/guide", "2026-05-10"],
+    ...(GUIDE_LISTED ? [["/guide", "2026-05-10"]] : []),
     ["/map", "2026-06-10"],
   ].map(([loc, lastmod]) => urlBlock({ loc, lastmod }));
 

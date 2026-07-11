@@ -486,15 +486,6 @@ function Footer({
       go("map");
     }
   }, "The Map")), React.createElement("li", null, React.createElement("a", {
-    href: "/guide",
-    onClick: e => {
-      e.preventDefault();
-      window.track && window.track("guide_cta_click", {
-        location: "footer_guide_link"
-      });
-      go("guide");
-    }
-  }, "Field Guide")), React.createElement("li", null, React.createElement("a", {
     href: "/newsletter",
     onClick: e => {
       e.preventDefault();
