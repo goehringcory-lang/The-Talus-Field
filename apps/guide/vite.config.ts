@@ -38,6 +38,22 @@ export default defineConfig({
   define: {
     'import.meta.env.VITE_BUILD_DATE': JSON.stringify(buildDate),
   },
+  build: {
+    rollupOptions: {
+      output: {
+        // Pin the framework into its own chunk: /assets/* is served immutable
+        // and the SW re-precaches the shell every deploy, so a vendor hash
+        // that only changes on dependency bumps is served from HTTP cache
+        // during updates instead of re-downloaded with every app change.
+        // Exact-name match so react-markdown et al. stay in their lazy chunks.
+        manualChunks(id) {
+          if (/node_modules\/(react|react-dom|react-router|react-router-dom|scheduler)\//.test(id)) {
+            return 'react-vendor'
+          }
+        },
+      },
+    },
+  },
   server: {
     port: 5173,
   },

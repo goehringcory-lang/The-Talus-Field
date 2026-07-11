@@ -26,16 +26,26 @@ export function popupPhotoUrl(src: string): string {
   return `${responsiveBase(src)}-${RESPONSIVE_WIDTHS[0]}.jpg`
 }
 
-/** Returns every URL the browser may request for a photo (original + all responsive variants). */
+/** Mid-ladder JPEG variant used as the <img src> fallback. Browsers with
+ * srcset support never request it; anything that does gets a sane size
+ * instead of the multi-MB original (which stays on disk only as generator
+ * input and is never fetched). */
+export function fallbackPhotoUrl(src: string): string {
+  if (/^https?:/i.test(src)) return src
+  return `${responsiveBase(src)}-${RESPONSIVE_WIDTHS[2]}.jpg`
+}
+
+/** Returns every URL the browser may request for a photo (all responsive
+ * variants; the original src is deliberately excluded — no rendering path
+ * requests it, and offline packs shouldn't pay for it over park cellular). */
 export function allPhotoUrls(src: string): string[] {
   if (/^https?:/i.test(src)) return [src]
   const base = responsiveBase(src)
-  const variants = RESPONSIVE_WIDTHS.flatMap((w) => [
+  return RESPONSIVE_WIDTHS.flatMap((w) => [
     `${base}-${w}.avif`,
     `${base}-${w}.webp`,
     `${base}-${w}.jpg`,
   ])
-  return [src, ...variants]
 }
 
 export type PhotoFormat = 'avif' | 'webp' | 'jpg'

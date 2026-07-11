@@ -94,9 +94,11 @@
   color: var(--ink-3);
   padding: 2px 8px;
 }
-.maplibregl-popup-close-button:hover {
-  background: transparent;
-  color: var(--moss);
+@media (hover: hover) {
+  .maplibregl-popup-close-button:hover {
+    background: transparent;
+    color: var(--moss);
+  }
 }
 
 .map-popup {
@@ -160,17 +162,21 @@
   padding: 10px 12px;
   cursor: pointer;
 }
-.map-popup__btn:hover {
-  background: var(--moss);
-  border-color: var(--moss);
+@media (hover: hover) {
+  .map-popup__btn:hover {
+    background: var(--moss);
+    border-color: var(--moss);
+  }
 }
 .map-popup__btn--dir {
   color: var(--moss);
   background: transparent;
   border-color: var(--moss);
 }
-.map-popup__btn--dir:hover {
-  color: var(--paper);
+@media (hover: hover) {
+  .map-popup__btn--dir:hover {
+    color: var(--paper);
+  }
 }
 
 .map-tabbar {
@@ -198,8 +204,10 @@
   transition: color 120ms, border-color 120ms;
 }
 
-.map-tabbar__tab:hover {
-  color: var(--ink);
+@media (hover: hover) {
+  .map-tabbar__tab:hover {
+    color: var(--ink);
+  }
 }
 
 .map-tabbar__tab[aria-current='page'] {
@@ -529,8 +537,10 @@
   justify-content: center;
 }
 
-.map-itinerary:hover {
-  border-color: var(--ink-2);
+@media (hover: hover) {
+  .map-itinerary:hover {
+    border-color: var(--ink-2);
+  }
 }
 
 .map-itinerary--selected {
@@ -609,8 +619,10 @@
   transition: background 100ms;
 }
 
-.map-stop:hover {
-  background: var(--paper-2);
+@media (hover: hover) {
+  .map-stop:hover {
+    background: var(--paper-2);
+  }
 }
 
 .map-stop--selected {

@@ -6,7 +6,7 @@
 
 import { useState } from 'react'
 import type { CSSProperties } from 'react'
-import { RESPONSIVE_WIDTHS, responsiveBase } from '../utils/photo'
+import { RESPONSIVE_WIDTHS, responsiveBase, fallbackPhotoUrl } from '../utils/photo'
 import PhotoPlaceholder from './PhotoPlaceholder'
 
 type Props = {
@@ -47,7 +47,6 @@ export default function ResponsivePhoto({
     )
   }
 
-  const cleaned = src.replace(/^\//, '')
   const respBase = responsiveBase(src)
   const srcSet = (ext: string) => RESPONSIVE_WIDTHS.map((w) => `${respBase}-${w}.${ext} ${w}w`).join(', ')
 
@@ -57,7 +56,7 @@ export default function ResponsivePhoto({
       <source type="image/webp" srcSet={srcSet('webp')} sizes={sizes} />
       <img
         className={className}
-        src={`/${cleaned}`}
+        src={fallbackPhotoUrl(src)}
         srcSet={srcSet('jpg')}
         sizes={sizes}
         alt={alt}

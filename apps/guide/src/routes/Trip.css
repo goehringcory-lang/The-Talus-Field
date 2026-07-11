@@ -88,8 +88,10 @@
   text-decoration: none;
   color: inherit;
 }
-.trip-item__title a:hover {
-  color: var(--moss);
+@media (hover: hover) {
+  .trip-item__title a:hover {
+    color: var(--moss);
+  }
 }
 .trip-item__meta {
   font-family: var(--sans);
@@ -110,8 +112,10 @@
   min-height: 36px;
   line-height: 1;
 }
-.trip-item__remove:hover {
-  color: var(--moss);
+@media (hover: hover) {
+  .trip-item__remove:hover {
+    color: var(--moss);
+  }
 }
 
 /* Estimated drive between consecutive placed rows. */

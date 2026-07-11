@@ -65,6 +65,7 @@ async function main() {
   // Maskable: Android crops up to a centered circle covering 80% of each
   // axis, so the mark stays inside ~66% of the canvas.
   await writeIcon(mark, 512, 340, join(publicDir, 'icon-maskable.v2.png'))
+  await writeIcon(mark, 192, 128, join(publicDir, 'icon-maskable-192.v2.png'))
 
   // Favicon.
   await writeIcon(mark, 64, 54, join(brandDir, 'favicon-64.png'))
@@ -80,7 +81,7 @@ async function main() {
     .png({ palette: true, compressionLevel: 9 })
     .toFile(join(brandDir, 'mark-192.png'))
 
-  console.log('Generated: icon-512.v2, icon-192.v2, apple-touch-icon.v2, icon-maskable.v2, brand/favicon-64, brand/mark-96, brand/mark-192')
+  console.log('Generated: icon-512.v2, icon-192.v2, apple-touch-icon.v2, icon-maskable.v2, icon-maskable-192.v2, brand/favicon-64, brand/mark-96, brand/mark-192')
 }
 
 main().catch((err) => {

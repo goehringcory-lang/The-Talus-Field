@@ -14,7 +14,9 @@
   color: var(--ink);
   text-decoration: none;
 }
-.masthead-brand:hover { color: var(--ink); }
+@media (hover: hover) {
+  .masthead-brand:hover { color: var(--ink); }
+}
 .masthead-brand__mark {
   height: 30px;
   width: auto;
@@ -174,7 +176,9 @@
   color: var(--ink-2);
   text-decoration: none;
 }
-.back-link:hover { color: var(--moss); }
+@media (hover: hover) {
+  .back-link:hover { color: var(--moss); }
+}
 
 /* ===== Page header (PageHeader.tsx) ===== */
 
@@ -233,7 +237,9 @@
   color: var(--moss);
   cursor: pointer;
 }
-.chip--action:hover { border-color: var(--moss); }
+@media (hover: hover) {
+  .chip--action:hover { border-color: var(--moss); }
+}
 
 /* Toggleable filter; pressed inverts to ink. */
 .chip--filter {
@@ -304,10 +310,12 @@
   color: var(--ink);
   text-decoration: none;
 }
-.chip--gps:hover {
-  background: var(--ink);
-  color: var(--paper);
-  border-color: var(--ink);
+@media (hover: hover) {
+  .chip--gps:hover {
+    background: var(--ink);
+    color: var(--paper);
+    border-color: var(--ink);
+  }
 }
 
 /* ===== Form fields (dates, times, selects) ===== */
@@ -323,7 +331,8 @@
   color: var(--ink-3);
 }
 .field-control {
-  font: 15px var(--sans);
+  /* 16px floor: anything smaller makes iOS Safari zoom the page on focus. */
+  font: 16px var(--sans);
   padding: 8px 10px;
   border: 1px solid var(--rule);
   border-radius: var(--radius);
@@ -332,8 +341,7 @@
   min-height: 44px;
 }
 .field-control--sm {
-  font-size: 13px;
-  padding: 5px 8px;
+  padding: 4px 7px;
   min-height: 36px;
 }
 
@@ -456,7 +464,9 @@
   text-decoration: none;
 }
 .plan-tabs__tab:first-child { padding-left: 2px; }
-.plan-tabs__tab:hover { color: var(--ink); }
+@media (hover: hover) {
+  .plan-tabs__tab:hover { color: var(--ink); }
+}
 .plan-tabs__tab[aria-current='page'] {
   color: var(--ink);
   border-bottom-color: var(--moss);
@@ -663,6 +673,9 @@
   max-width: 560px;
   max-height: 86dvh;
   overflow-y: auto;
+  /* Body scroll is locked while open, but without containment the sheet's
+     own rubber-band still chains scroll to the page behind it. */
+  overscroll-behavior: contain;
   background: var(--paper);
   border: 1px solid var(--ink);
   border-bottom: 0;
@@ -691,7 +704,9 @@
   flex-shrink: 0;
   line-height: 1;
 }
-.sheet__close:hover { color: var(--moss); }
+@media (hover: hover) {
+  .sheet__close:hover { color: var(--moss); }
+}
 .sheet__section {
   border-top: 1px solid var(--rule);
   padding: 14px 0 18px;
