@@ -7,8 +7,11 @@ import { todayIso } from '../utils/date'
 import { useFavorites } from '../lib/favorites'
 import { isPackCompleted } from '../offline/useDownloads'
 import { useTripPlan } from '../trip/useTripPlan'
+import { relativeStamp } from '../utils/relativeStamp'
 import GatedChrome from '../components/GatedChrome'
-import WeatherStrip from '../weather/WeatherStrip'
+import RegionForecast from '../weather/RegionForecast'
+import { useWeather } from '../weather/useWeather'
+import { HIDE_AFTER_MS, WARN_AFTER_MS } from '../weather/staleness'
 import RegionPickerCard from '../components/RegionPickerCard'
 import SectionCard from '../components/SectionCard'
 import UpdatedStamp from '../components/UpdatedStamp'
@@ -87,6 +90,7 @@ export default function Home() {
   const { session } = useAuth()
   const { ids: favoriteIds } = useFavorites()
   const { plan } = useTripPlan()
+  const weather = useWeather()
   // Read once per mount (render must stay pure). Existing signed-in users who
   // predate onboarding get routed through /welcome exactly once; deep links
   // (/stop/x, /map?...) are never intercepted, only the front page.
@@ -97,6 +101,11 @@ export default function Home() {
     .map((id) => getStopById(id))
     .filter((s): s is NonNullable<typeof s> => Boolean(s))
   const downloadedCount = PACK_IDS.filter((id) => isPackCompleted(id)).length
+
+  // Per-card five-day forecasts. One useWeather() for the whole page; past
+  // HIDE_AFTER every forecast and the attribution disappear together.
+  const showForecast = weather.spots.length > 0 && weather.ageMs <= HIDE_AFTER_MS
+  const weatherByRegion = new Map(weather.spots.map((s) => [s.id as string, s]))
 
   if (!onboarded) return <Navigate to="/welcome" replace />
 
@@ -111,19 +120,32 @@ export default function Home() {
 
         <BeforeYouGoNudge />
 
-        <WeatherStrip />
-
         <div className="card-stack">
-          {REGIONS.map((region) => (
-            <RegionPickerCard
-              key={region.id}
-              region={region.id}
-              title={region.title}
-              teaser={region.teaser}
-              stopCount={getStopsByRegion(region.id).length}
-              photo={region.photo}
-            />
-          ))}
+          {REGIONS.map((region) => {
+            const spot = weatherByRegion.get(region.id)
+            return (
+              <RegionPickerCard
+                key={region.id}
+                region={region.id}
+                title={region.title}
+                teaser={region.teaser}
+                stopCount={getStopsByRegion(region.id).length}
+                photo={region.photo}
+                forecast={showForecast && spot ? <RegionForecast spot={spot} /> : undefined}
+              />
+            )
+          })}
+          {/* One attribution for all four forecasts; repeating it per card is noise. */}
+          {showForecast && weather.fetchedAt && (
+            <p className="weather-attribution">
+              Forecast as of {relativeStamp(weather.fetchedAt)}
+              {weather.offline ? ', saved on this device' : ''}
+              {weather.ageMs > WARN_AFTER_MS
+                ? '. This forecast is old; conditions have likely moved on.'
+                : ''}
+              {' '}· National Weather Service
+            </p>
+          )}
           <SectionCard
             to="/essentials"
             eyebrow="Know before you go"

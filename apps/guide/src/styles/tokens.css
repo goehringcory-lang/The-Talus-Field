@@ -395,6 +395,7 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
   margin: 0 0 14px;
   line-height: 1.5;
 }
+.region-picker-card__footer { margin-top: var(--s3); }
 
 /* Stop card and the rule between cards in the day view */
 .stop-card { padding: 0 0 8px; }
