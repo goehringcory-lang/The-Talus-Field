@@ -71,7 +71,7 @@ Verify: `curl https://<worker-url>/` should return "Talus Field Guide API. See /
 In Stripe dashboard (test mode toggle on) → **Developers → Webhooks → Add endpoint**:
 
 - URL: `https://<worker-url>/api/stripe/webhook`
-- Events: `checkout.session.completed`
+- Events: `checkout.session.completed`, `charge.refunded`
 
 Copy the signing secret (`whsec_...`) and set it:
 
@@ -197,8 +197,17 @@ The buy box, checkout route, webhook, KV buyer records, and email delivery are a
 1. **Price.** `GUIDE_PRICE_CENTS = "1900"` in [workers/wrangler.toml](workers/wrangler.toml) is the single source of truth. The editorial buy box reads it live from `GET /api/inventory` (`priceCents`) with a static $19 fallback in [page-guide.jsx](page-guide.jsx). Change the var, `wrangler deploy`, done.
 2. **KV.** `wrangler kv namespace create GUIDE_BUYERS` and `... --preview`, then fill `id` / `preview_id` in `wrangler.toml` (currently `REPLACE_ME_*`).
 3. **Secrets.** `wrangler secret put` each of: `STRIPE_SECRET_KEY`, `STRIPE_WEBHOOK_SECRET`, `MAGIC_LINK_SIGNING_SECRET`, `RESEND_API_KEY`. Rotate or delete `DEV_USERNAME`/`DEV_CODE` before launch; keep `ADMIN_*` as the operator door.
-4. **Webhook.** In the Stripe dashboard, add endpoint `https://api.thetalusfieldjournal.com/api/stripe/webhook` for event `checkout.session.completed`; the endpoint's signing secret is `STRIPE_WEBHOOK_SECRET`.
-5. **Deploy + verify fail-closed traps.** `wrangler deploy`, then `curl https://api.thetalusfieldjournal.com/api/inventory` must show `sold: 0`, `cap: 100`, `priceCents: 1900`. The inventory check fails closed: a missing/garbled `GUIDE_MONTHLY_CAP` reads as sold out.
-6. **Test-mode pass.** Full smoke test in section 8 (test card 4242…) before swapping to live keys per "Going live".
+4. **Webhook.** In the Stripe dashboard, add endpoint `https://api.thetalusfieldjournal.com/api/stripe/webhook` for events `checkout.session.completed` **and** `charge.refunded`; the endpoint's signing secret is `STRIPE_WEBHOOK_SECRET`. Without `charge.refunded`, the refund-revocation branch in [workers/src/routes/stripe.ts](workers/src/routes/stripe.ts) never runs and refunded buyers keep access until the KV record is expired by hand.
+5. **Resend domain.** Verify the sending domain for `cory@thetalusfieldjournal.com` in the Resend dashboard **before** going live. With an unverified domain the webhook's email send fails after the buyer has already been charged, and no access code or magic link ever arrives.
+6. **Deploy + verify fail-closed traps.** `wrangler deploy`, then `curl https://api.thetalusfieldjournal.com/api/inventory` must show `sold: 0`, `cap: 100`, `priceCents: 1900`. The inventory check fails closed: a missing/garbled `GUIDE_MONTHLY_CAP` reads as sold out.
+7. **Test-mode pass.** Full smoke test in section 8 (test card 4242…) before swapping to live keys per "Going live". Include a refund: refund the test payment in the Stripe dashboard and confirm the buyer's login stops working.
+8. **Re-integrate /guide on the editorial site.** The page was de-linked and noindexed ahead of launch. Grep the repo for `GUIDE-LAUNCH:` and follow each marker: restore the footer link in [components.jsx](components.jsx), restore the noscript nav link in [index.html](index.html), remove the `robots` overrides in [app.jsx](app.jsx) and [edge/seo.js](edge/seo.js), flip `GUIDE_LISTED = true` in [scripts/gen-seo-artifacts.mjs](scripts/gen-seo-artifacts.mjs), and restore the llms.txt reference lines recorded below. Then `npm --prefix scripts run compile`, bump the shared `?v=` cache-buster in index.html, `npm --prefix scripts run seo`, and `npm --prefix scripts run check`.
+
+   Removed llms.txt lines, restore under "## Reference pages" (between The Map and Newsletter). The `/cap` line was also removed because the route does not exist in app.jsx; only restore it if that page ships:
+
+   ```
+   - [The Field Guide](https://thetalusfieldjournal.com/guide): An offline web app for Yosemite. Tappable GPS for the parking turnouts and quiet trailheads locals use.
+   - [Why the Field Guide is capped](https://thetalusfieldjournal.com/cap): The reasoning behind a hard monthly cap on Field Guide sales.
+   ```
 
 No PWA change is needed: [apps/guide/src/routes/Login.tsx](apps/guide/src/routes/Login.tsx) already tries the buyer email + code path first and falls back to dev-login.

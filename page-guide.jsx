@@ -102,7 +102,7 @@ function GuideBuyBox() {
 
       {outcome === "success" && (
         <p style={{ fontFamily: "var(--sans)", fontSize: 14, color: "var(--ink)", lineHeight: 1.55, margin: "0 0 18px", border: "1px solid var(--ink)", padding: "12px 14px", background: "var(--paper)" }}>
-          Payment received. Your access code and sign-in link are on their way to your email. Check spam if nothing arrives in a few minutes.
+          Payment received. Your access code and sign-in link are on their way to your email. Check spam if nothing arrives in a few minutes. Once you have the code, <a href={`${GUIDE_APP_BASE}/login`} style={{ color: "var(--ink-2)" }}>open the app and sign in →</a>
         </p>
       )}
       {outcome === "cancel" && (
@@ -134,7 +134,7 @@ function GuideBuyBox() {
       )}
 
       <p style={{ fontFamily: "var(--serif)", fontSize: 14, color: "var(--ink-2)", lineHeight: 1.55, margin: 0 }}>
-        One payment. The app, every photo, and the offline park map are yours for 18 months on every device you own. Updates push automatically through the 2026 season, including the Secret Spots section as it lands.
+        One payment. The app, every photo, and the offline park map are yours for 18 months on every device you own. Updates push automatically through the 2026 season, including the Secret Guide as it grows.
       </p>
 
       <p style={{ fontFamily: "var(--sans)", fontSize: 12, color: "var(--ink-3)", lineHeight: 1.55, margin: "12px 0 0" }}>
@@ -144,7 +144,7 @@ function GuideBuyBox() {
       <div style={{ borderTop: "1px solid var(--rule)", marginTop: 24, paddingTop: 20 }}>
         <div className="eyebrow" style={{ marginBottom: 10 }}>In the app</div>
         <ul style={{ listStyle: "none", padding: 0, margin: 0, fontFamily: "var(--sans)", fontSize: 13, color: "var(--ink-2)", lineHeight: 1.7 }}>
-          <li>· Three regional guides: the Valley, Glacier Point & Mariposa, Tuolumne</li>
+          <li>· Four regional guides: the Valley, Glacier Point & Mariposa, Tuolumne, Hetch Hetchy</li>
           <li>· Tappable GPS for every stop</li>
           <li>· An offline topo map of the park, all stops pinned</li>
           <li>· Download the whole guide for offline, about 45 MB</li>
@@ -153,7 +153,7 @@ function GuideBuyBox() {
           <li>· A trip planner that exports your days to Google or Apple Calendar, GPS included</li>
           <li>· Know-before-you-go essentials, a night-before checklist, and a packing list you check off in-app</li>
           <li>· Search across everything</li>
-          <li>· Secret Spots: coming soon, included with purchase</li>
+          <li>· The Secret Guide: unsigned turnouts, hidden stops, and secret spots, included</li>
         </ul>
       </div>
 
@@ -176,7 +176,7 @@ function GuidePage({ go }) {
           <div className="eyebrow eyebrow--moss">The Field Guide · Offline app · 2026 Edition</div>
           <h1>The Yosemite guide for people who already know about Glacier Point.</h1>
           <p className="page-head__dek">
-            A web app you add to your home screen. Three regional guides with tappable GPS, time budgets, a swap for when the plan dies, an offline topo map of the whole park, the ranger and partner program schedule on your dates, and a trip planner that exports straight to your calendar. Works at the trailhead when service doesn't. Not a PDF. Not another tourist checklist.
+            A web app you add to your home screen. Four regional guides with tappable GPS, time budgets, a swap for when the plan dies, an offline topo map of the whole park, the ranger and partner program schedule on your dates, and a trip planner that exports straight to your calendar. Works at the trailhead when service doesn't. Not a PDF. Not another tourist checklist.
           </p>
         </div>
       </section>
@@ -215,6 +215,7 @@ function GuidePage({ go }) {
               <li><strong>Yosemite Valley & surrounding areas.</strong> The valley floor and the rim viewpoints that look down into it. Tunnel View, the meadows, the climbing wall on El Capitan, the Mist Trail to Vernal and Nevada Falls, and the valley lodgings.</li>
               <li><strong>Glacier Point & the Mariposa Grove.</strong> The southern rim and the giant sequoias. Higher elevation, more driving, and the panoramas that put the whole valley below you. Closed in winter.</li>
               <li><strong>Tuolumne Meadows & the Highway 120 corridor.</strong> The high country. Granite domes, alpine lakes, the meadow that turns the trip into something bigger than the valley. Tioga Road open roughly June through October.</li>
+              <li><strong>Hetch Hetchy & the Evergreen Road corridor.</strong> The other granite valley, half of it under a reservoir, with its own entrance and day-use gate hours. Open year-round and nearly empty.</li>
             </ul>
 
             <h2>What every stop gives you</h2>
@@ -229,7 +230,7 @@ function GuidePage({ go }) {
             <h2>The offline map</h2>
 
             <p>
-              Every stop is pinned on a topographic map of the park that downloads to your device, about 20 MB. Lose service past the tunnel, on Glacier Point Road, or anywhere along Tioga, and the map still pans, still zooms, and still shows you where the next stop is. Turn-by-turn driving stays in your Maps app; the guide hands you off with one tap.
+              Every stop is pinned on a topographic map of the park that downloads to your device. The map is about 20 MB of the roughly 45 MB full offline download. Lose service past the tunnel, on Glacier Point Road, or anywhere along Tioga, and the map still pans, still zooms, and still shows you where the next stop is. Turn-by-turn driving stays in your Maps app; the guide hands you off with one tap.
             </p>
 
             <h2>The programs, on your dates</h2>
@@ -250,10 +251,10 @@ function GuidePage({ go }) {
               The app ships with an essentials section: how entrance reservations work, how to get around the Valley without moving your car, what the bears actually want, where cell coverage dies, what the roads do by season, and a packing checklist you check off in the app the night before. A night-before checklist walks you through the downloads that make the whole trip work offline, including the Google Maps offline area that keeps turn-by-turn directions alive past the entrance station.
             </p>
 
-            <h2>The secret spots</h2>
+            <h2>The Secret Guide</h2>
 
             <p>
-              There is a section of the guide I am still writing: the parking turnouts locals use when the big lots fill, the trailheads with no signs from the road, and the insider moves I don't publish in articles. It ships as an update later this season, and it's included with your purchase. Buy now and it appears in your app the day it lands, no re-download, no second charge.
+              There is a section of the guide that never makes it into articles: the parking turnouts locals use when the big lots fill, the trailheads with no signs from the road, and the spots that belong to no region at all. It's in the app now, browsable by category, every stop marked in gold on the offline map. It keeps growing through the season, and every addition arrives as a silent update, no re-download, no second charge.
             </p>
 
             <h2>What's NOT inside</h2>
@@ -282,7 +283,7 @@ function GuidePage({ go }) {
             <ul>
               <li><strong>A web app you add to your home screen.</strong> Looks and feels like a native app. It is not a PDF and not a printed book. No App Store, no install wait, no version to keep updated.</li>
               <li><strong>Works offline.</strong> One tap downloads the whole guide, every photo, and the park map to your device, about 45 MB. Lose service in the Valley or up at Tuolumne, the guide is still there.</li>
-              <li><strong>Updates push silently through the 2026 season.</strong> New advice, route swaps, seasonal addenda, and the Secret Spots section all arrive without you re-downloading anything.</li>
+              <li><strong>Updates push silently through the 2026 season.</strong> New advice, route swaps, seasonal addenda, and Secret Guide additions all arrive without you re-downloading anything.</li>
               <li><strong>Pay once, sign in on every device you own.</strong> iPad in the car, iPhone at the trailhead, laptop the night before. Access lasts 18 months.</li>
             </ul>
 
@@ -306,7 +307,7 @@ function GuidePage({ go }) {
           location="guide_footer"
           tag="guide"
           heading="Sunday Field Notes"
-          blurb="A short note on Sundays. Subscribers hear about Field Guide updates, the Secret Spots release, and seasonal addenda first."
+          blurb="A short note on Sundays. Subscribers hear about Field Guide updates, Secret Guide additions, and seasonal addenda first."
         />
       </div>
     </div>

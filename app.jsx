@@ -424,6 +424,8 @@ function buildSeo(route) {
       description:
         "An offline web app for Yosemite. Tappable GPS for the parking turnouts, quiet trailheads, and insider tactics locals use. Works when service dies.",
       ogType: "website",
+      // GUIDE-LAUNCH: remove this robots override when the guide goes on sale.
+      robots: "noindex, nofollow",
     },
     map: {
       title: `Yosemite Trip Planner Map — ${SITE_NAME}`,

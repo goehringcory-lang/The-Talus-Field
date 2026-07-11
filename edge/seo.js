@@ -328,6 +328,8 @@ function seoForPath(pathname) {
       title: `The Field Guide — ${SITE_NAME}`,
       description:
         "An offline web app for Yosemite. Tappable GPS for the parking turnouts, quiet trailheads, and insider tactics that locals use. Works at the trailhead when service dies.",
+      // GUIDE-LAUNCH: remove this robots override when the guide goes on sale.
+      robots: "noindex, nofollow",
     },
     "/films": {
       title: `Moving Pictures — the Yosemite Nature Notes film archive — ${SITE_NAME}`,
