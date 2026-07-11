@@ -2,9 +2,10 @@
 export type Env = {
   // KV namespaces
   GUIDE_BUYERS: KVNamespace
-  // Program/event cache written by the daily cron, read by /api/programs.
-  // Separate namespace from buyer records: different lifecycle, and a bad
-  // ingest can never touch purchase data.
+  // Guide data cache: program/event records written by the daily cron and
+  // read by /api/programs, plus the NWS weather record for /api/weather.
+  // Separate namespace from buyer records: different lifecycle, safe to
+  // lose, and a bad ingest can never touch purchase data.
   GUIDE_PROGRAMS: KVNamespace
 
   // Vars (wrangler.toml [vars])
