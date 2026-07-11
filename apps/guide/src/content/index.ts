@@ -52,6 +52,14 @@ export const REGIONS: { id: Region; title: string; teaser: string; photo: { src:
   },
 ]
 
+// Chip-length region names; the full REGIONS titles are card headlines.
+export const REGION_SHORT: Record<Region, string> = {
+  valley: 'Valley',
+  'glacier-mariposa': 'Glacier Point & Mariposa',
+  tuolumne: 'Tuolumne',
+  'hetch-hetchy': 'Hetch Hetchy',
+}
+
 // Hidden stops stay out of the curated region flow unless a caller opts in;
 // leaking them into a core surface should be a visible decision at the call site.
 export function getStopsByRegion(region: Region, opts?: { includeHidden?: boolean }): StopT[] {
