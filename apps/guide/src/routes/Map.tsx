@@ -18,7 +18,8 @@ import { Link, useLocation, useNavigate } from 'react-router-dom'
 import maplibregl from 'maplibre-gl'
 import 'maplibre-gl/dist/maplibre-gl.css'
 import GatedChrome from '../components/GatedChrome'
-import { AMENITIES, SECRET_SPOTS, stops as allStops, getStopById, isSecretGuideEntry, type AmenityT, type GuideStopT, type Region } from '../content'
+import { ChipButton } from '../components/ui/Chip'
+import { AMENITIES, REGIONS, REGION_SHORT, SECRET_SPOTS, stops as allStops, getStopById, isSecretGuideEntry, type AmenityT, type GuideStopT, type Region, type StopKind } from '../content'
 import {
   ITINERARIES,
   ITINERARY_KEYS,
@@ -27,7 +28,7 @@ import {
 } from '../content/itineraries'
 import { HIDDEN_PIN_STROKE, KIND_STYLES, buildPinElement, directionsUrl, getKindStyle } from '../map/kinds'
 import { announceTripAdd } from '../trip/addFeedback'
-import { addStopToPlan, isStopPlanned } from '../trip/useTripPlan'
+import { addStopToPlan, isStopPlanned, useTripPlan } from '../trip/useTripPlan'
 import { buildMapStyle } from '../map/style'
 import { isPackCompleted } from '../offline/useDownloads'
 import { formatMiles, haversineMiles } from '../utils/geo'
@@ -44,6 +45,14 @@ type UrlState = {
   tab: Tab
   itinerary: ItineraryKey | null
   stop: string | null
+  kinds: StopKind[] | null // null = no kind narrowing (all kinds show)
+  secret: boolean
+}
+
+const ALL_KINDS = Object.keys(KIND_STYLES) as StopKind[]
+
+function isStopKind(value: string): value is StopKind {
+  return value in KIND_STYLES
 }
 
 function readUrlState(): UrlState {
@@ -51,10 +60,16 @@ function readUrlState(): UrlState {
   const tab = params.get('tab')
   const itin = params.get('itinerary')
   const stop = params.get('stop')
+  const kindsRaw = params.get('kinds')
+  // Invalid tokens drop; an empty or complete list is the same as no
+  // narrowing, so both normalize to null and the param round-trips away.
+  const kinds = kindsRaw ? [...new Set(kindsRaw.split(',').filter(isStopKind))] : null
   return {
     tab: isTab(tab) ? tab : 'points',
     itinerary: isItineraryKey(itin) ? itin : null,
     stop: stop || null,
+    kinds: kinds && kinds.length > 0 && kinds.length < ALL_KINDS.length ? kinds : null,
+    secret: params.get('secret') !== '0',
   }
 }
 
@@ -63,6 +78,8 @@ function writeUrlState(next: UrlState) {
   if (next.tab && next.tab !== 'points') params.set('tab', next.tab)
   if (next.itinerary) params.set('itinerary', next.itinerary)
   if (next.stop) params.set('stop', next.stop)
+  if (next.kinds && next.kinds.length > 0) params.set('kinds', [...next.kinds].sort().join(','))
+  if (!next.secret) params.set('secret', '0')
   const qs = params.toString()
   const newUrl = '/map' + (qs ? `?${qs}` : '')
   if (newUrl !== window.location.pathname + window.location.search) {
@@ -217,6 +234,9 @@ export default function Map() {
   const markersRef = useRef<Record<string, maplibregl.Marker>>({})
   const amenityMarkersRef = useRef<Record<string, maplibregl.Marker>>({})
   const popupRef = useRef<maplibregl.Popup | null>(null)
+  // Camera refits only when the itinerary context changes, not on filter
+  // chip toggles: refitting on every tap yanks the map around.
+  const lastFitKeyRef = useRef<string | null>(null)
 
   const [mapReady, setMapReady] = useState(false)
   const [mapFailed, setMapFailed] = useState(false)
@@ -258,6 +278,21 @@ export default function Map() {
     setSelection((prev) => ({ id, nonce: prev.nonce + 1 }))
   }, [])
 
+  // Pin-group filters. kindFilter null means no narrowing; the chip row
+  // renders "All" pressed. showSecret hides the gold-outline Secret Guide
+  // entries (hidden stops and secret spots) when off.
+  const [kindFilter, setKindFilter] = useState<Set<StopKind> | null>(() =>
+    initial.kinds ? new Set(initial.kinds) : null,
+  )
+  const [showSecret, setShowSecret] = useState<boolean>(initial.secret)
+
+  // Stops already in the trip plan get a checkmark badge on their pin.
+  const { plan } = useTripPlan()
+  const plannedStopIds = useMemo(
+    () => new Set(plan.items.filter((it) => it.type === 'stop').map((it) => it.stopId)),
+    [plan],
+  )
+
   // Only stops with a coord can be mapped. Secret spots (region-less Secret
   // Guide entries) join the pin set alongside core and hidden stops.
   const mappableStops = useMemo<GuideStopT[]>(
@@ -265,36 +300,112 @@ export default function Map() {
     [],
   )
 
+  // Kinds actually present in the stops and amenities, in KIND_STYLES
+  // declaration order. Drives the chip row and the InfoPane legend.
+  const presentKinds = useMemo(() => {
+    const seen = new Set<GuideStopT['kind']>()
+    for (const s of mappableStops) seen.add(s.kind)
+    for (const a of AMENITIES) seen.add(a.kind)
+    return ALL_KINDS.filter((k) => seen.has(k))
+  }, [mappableStops])
+
+  const toggleKind = useCallback(
+    (kind: StopKind) => {
+      setKindFilter((prev) => {
+        const next = new Set(prev ?? [])
+        if (next.has(kind)) next.delete(kind)
+        else next.add(kind)
+        // Empty and complete both mean "no narrowing".
+        if (next.size === 0 || next.size === presentKinds.length) return null
+        return next
+      })
+    },
+    [presentKinds],
+  )
+  const clearKinds = useCallback(() => setKindFilter(null), [])
+  const resetFilters = useCallback(() => {
+    setKindFilter(null)
+    setShowSecret(true)
+  }, [])
+
   // The itinerary's region set, or null when no itinerary narrows the map.
   const itineraryRegions = useMemo<Set<Region> | null>(() => {
     if (tab !== 'itineraries' || !selectedItinerary) return null
     return new Set(ITINERARIES[selectedItinerary].days.flatMap((d) => d.regions))
   }, [selectedItinerary, tab])
 
-  // Filter by itinerary when one is selected and the itineraries tab is active.
-  // Secret Guide entries (hidden stops and region-less secret spots) are
-  // excluded from itineraries: the presets are the mainstream path, and
-  // itinerary days are derived from regions, so without this filter the
-  // premium set would silently inflate every preset.
-  const visibleStops = useMemo<GuideStopT[]>(() => {
-    if (!itineraryRegions) return mappableStops
-    return mappableStops.filter(
-      (s) => 'region' in s && itineraryRegions.has(s.region) && s.collection !== 'hidden',
-    )
-  }, [mappableStops, itineraryRegions])
+  // Filter by itinerary when one is selected and the itineraries tab is
+  // active, AND-composed with the kind and Secret Guide filters. Secret Guide
+  // entries (hidden stops and region-less secret spots) are excluded from
+  // itineraries: the presets are the mainstream path, and itinerary days are
+  // derived from regions, so without this filter the premium set would
+  // silently inflate every preset.
+  const visibleStops = useMemo<GuideStopT[]>(
+    () =>
+      mappableStops.filter((s) => {
+        if (kindFilter && !kindFilter.has(s.kind)) return false
+        if (!showSecret && isSecretGuideEntry(s)) return false
+        if (itineraryRegions) {
+          return 'region' in s && itineraryRegions.has(s.region) && s.collection !== 'hidden'
+        }
+        return true
+      }),
+    [mappableStops, itineraryRegions, kindFilter, showSecret],
+  )
 
-  // Amenities follow the same region narrowing but never join the day-by-day
-  // lists or counts: on an itinerary view, "where do I park and camp" for
-  // those regions is the point; park-wide clutter is not.
-  const visibleAmenities = useMemo<AmenityT[]>(() => {
-    if (!itineraryRegions) return AMENITIES
-    return AMENITIES.filter((a) => itineraryRegions.has(a.region))
-  }, [itineraryRegions])
+  // Amenities follow the same kind and region narrowing but never join the
+  // day-by-day lists or counts: on an itinerary view, "where do I park and
+  // camp" for those regions is the point; park-wide clutter is not.
+  const visibleAmenities = useMemo<AmenityT[]>(
+    () =>
+      AMENITIES.filter((a) => {
+        if (kindFilter && !kindFilter.has(a.kind)) return false
+        return !itineraryRegions || itineraryRegions.has(a.region)
+      }),
+    [itineraryRegions, kindFilter],
+  )
+
+  // Chip count badges: what enabling each kind yields under the OTHER active
+  // filters (itinerary narrowing and the secret toggle), never the kind
+  // filter itself, so a chip's number always states what tapping it shows.
+  const kindCounts = useMemo(() => {
+    const out = Object.fromEntries(presentKinds.map((k) => [k, 0])) as Record<StopKind, number>
+    for (const s of mappableStops) {
+      if (!showSecret && isSecretGuideEntry(s)) continue
+      if (
+        itineraryRegions &&
+        !('region' in s && itineraryRegions.has(s.region) && s.collection !== 'hidden')
+      ) {
+        continue
+      }
+      out[s.kind]++
+    }
+    for (const a of AMENITIES) {
+      if (itineraryRegions && !itineraryRegions.has(a.region)) continue
+      out[a.kind]++
+    }
+    return out
+  }, [mappableStops, itineraryRegions, showSecret, presentKinds])
+
+  const allCount = useMemo(
+    () => Object.values(kindCounts).reduce((a, b) => a + b, 0),
+    [kindCounts],
+  )
+  const secretCount = useMemo(
+    () => mappableStops.filter(isSecretGuideEntry).length,
+    [mappableStops],
+  )
 
   // Sync state to URL.
   useEffect(() => {
-    writeUrlState({ tab, itinerary: selectedItinerary, stop: selectedStopId })
-  }, [tab, selectedItinerary, selectedStopId])
+    writeUrlState({
+      tab,
+      itinerary: selectedItinerary,
+      stop: selectedStopId,
+      kinds: kindFilter ? [...kindFilter] : null,
+      secret: showSecret,
+    })
+  }, [tab, selectedItinerary, selectedStopId, kindFilter, showSecret])
 
   // Restore from URL on every router navigation: back/forward (the router
   // owns popstate) and bottom-nav "Map" re-taps that push a bare /map over a
@@ -309,6 +420,8 @@ export default function Map() {
       const next = readUrlState()
       setTab(next.tab)
       setSelectedItinerary(next.itinerary)
+      setKindFilter(next.kinds ? new Set(next.kinds) : null)
+      setShowSecret(next.secret)
       selectStop(next.stop)
     })
     return () => {
@@ -444,8 +557,25 @@ export default function Map() {
       markersRef.current[stop.id] = marker
     }
 
-    map.fitBounds(bounds, { padding: 48, maxZoom: 12, animate: false })
-  }, [visibleStops, mapReady, selectStop])
+    // Not advanced on the empty early-return above, so the first non-empty
+    // render after a reset still fits when the itinerary changed meanwhile.
+    const fitKey = itineraryRegions && selectedItinerary ? selectedItinerary : 'all'
+    if (lastFitKeyRef.current !== fitKey) {
+      map.fitBounds(bounds, { padding: 48, maxZoom: 12, animate: false })
+      lastFitKeyRef.current = fitKey
+    }
+  }, [visibleStops, mapReady, selectStop, itineraryRegions, selectedItinerary])
+
+  // Badge planned stops without rebuilding markers: a rebuild would close
+  // the popup in the same tap that pressed its "Add to trip" button.
+  // Declared after the reconciliation effect so it runs after every rebuild;
+  // visibleStops in the deps re-applies badges to fresh marker elements.
+  useEffect(() => {
+    if (!mapReady) return
+    for (const [id, marker] of Object.entries(markersRef.current)) {
+      marker.getElement().classList.toggle('map-pin--planned', plannedStopIds.has(id))
+    }
+  }, [plannedStopIds, visibleStops, mapReady])
 
   // Amenity marker reconciliation. Amenities stay outside the stop pipeline:
   // no selection state, no ?stop= URL param, and no fitBounds contribution,
@@ -554,13 +684,25 @@ export default function Map() {
       .slice(0, 5)
   }, [mappableStops, userPos])
 
-  // Legend: only the kinds actually present in the stops and amenities.
-  const presentKinds = useMemo(() => {
-    const seen = new Set<GuideStopT['kind']>()
-    for (const s of mappableStops) seen.add(s.kind)
-    for (const a of AMENITIES) seen.add(a.kind)
-    return Array.from(seen)
-  }, [mappableStops])
+  // "Browse by area" groups for the points pane: the four regions in REGIONS
+  // order plus a region-less "Secret spots" group. Derived from visibleStops
+  // so a row can never point at a filtered-out marker; empty groups drop.
+  const browseGroups = useMemo(() => {
+    const groups: { id: string; label: string; stops: GuideStopT[] }[] = REGIONS.map((r) => ({
+      id: r.id as string,
+      label: REGION_SHORT[r.id],
+      stops: visibleStops
+        .filter((s) => 'region' in s && s.region === r.id)
+        .sort((a, b) => a.order - b.order),
+    }))
+    const secretSpots = visibleStops
+      .filter((s) => !('region' in s))
+      .sort((a, b) => a.order - b.order)
+    if (secretSpots.length > 0) {
+      groups.push({ id: 'secret', label: 'Secret spots', stops: secretSpots })
+    }
+    return groups.filter((g) => g.stops.length > 0)
+  }, [visibleStops])
 
   return (
     <GatedChrome>
@@ -610,8 +752,61 @@ export default function Map() {
           </button>
         </nav>
 
+        <div
+          className={`map-filterbar${tab === 'info' ? ' map-filterbar--hidden' : ''}`}
+          role="group"
+          aria-label="Filter pins"
+        >
+          <div className="map-filterbar__row">
+            <ChipButton
+              variant="filter"
+              pressed={kindFilter === null}
+              aria-label={`All kinds, ${allCount} pins`}
+              onClick={clearKinds}
+            >
+              All <span className="map-filterbar__count">{allCount}</span>
+            </ChipButton>
+            {presentKinds.map((kind) => {
+              const { color, label } = getKindStyle(kind)
+              return (
+                <ChipButton
+                  key={kind}
+                  variant="filter"
+                  pressed={kindFilter?.has(kind) ?? false}
+                  aria-label={`${label}, ${kindCounts[kind]} pins`}
+                  onClick={() => toggleKind(kind)}
+                >
+                  <span className="map-filterbar__dot" style={{ background: color }} aria-hidden />
+                  {label} <span className="map-filterbar__count">{kindCounts[kind]}</span>
+                </ChipButton>
+              )
+            })}
+            {tab !== 'itineraries' && (
+              <ChipButton
+                variant="filter"
+                className="map-filterbar__secret"
+                pressed={showSecret}
+                aria-label={`Secret Guide entries, ${secretCount} pins`}
+                onClick={() => setShowSecret((v) => !v)}
+              >
+                <span className="map-filterbar__dot map-filterbar__dot--secret" aria-hidden />
+                Secret Guide <span className="map-filterbar__count">{secretCount}</span>
+              </ChipButton>
+            )}
+          </div>
+        </div>
+
         <div className="map-page__stage">
           <div ref={containerRef} className="map-page__map" />
+
+          {mapReady && visibleStops.length === 0 && visibleAmenities.length === 0 && (
+            <div className="map-page__empty" role="status">
+              <p>No pins match these filters.</p>
+              <button type="button" className="map-popup__btn" onClick={resetFilters}>
+                Show all pins
+              </button>
+            </div>
+          )}
 
           <aside className="map-pane map-pane--points" aria-hidden={tab !== 'points'}>
             {geoDenied && !userPos && (
@@ -650,30 +845,37 @@ export default function Map() {
                 </ul>
               </div>
             )}
-            <h3 className="map-pane__title">Legend</h3>
-            <ul className="map-legend">
-              {presentKinds.map((kind) => {
-                const { color, label } = getKindStyle(kind)
-                return (
-                  <li key={kind} className="map-legend__item">
-                    <span
-                      className="map-legend__dot"
-                      style={{ background: color }}
-                      aria-hidden
-                    />
-                    {label}
-                  </li>
-                )
-              })}
-              <li className="map-legend__item">
-                <span
-                  className="map-legend__dot"
-                  style={{ background: 'transparent', border: `2px solid ${HIDDEN_PIN_STROKE}` }}
-                  aria-hidden
-                />
-                Gold outline: Secret Guide
-              </li>
-            </ul>
+            <h3 className="map-pane__title">Browse by area</h3>
+            <div className="map-browse">
+              {browseGroups.map((group) => (
+                <details key={group.id} className="map-browse__region">
+                  <summary className="map-browse__summary">
+                    <span>{group.label}</span>
+                    <span className="map-browse__count">{group.stops.length}</span>
+                  </summary>
+                  <ul className="map-browse__list">
+                    {group.stops.map((s) => {
+                      const { color, label } = getKindStyle(s.kind)
+                      return (
+                        <li key={s.id}>
+                          <button
+                            type="button"
+                            className={`map-stop${s.id === selectedStopId ? ' map-stop--selected' : ''}`}
+                            onClick={() => handleSelectStop(s.id)}
+                          >
+                            <span className="map-stop__name">{s.title}</span>
+                            <span className="map-stop__kind" style={{ color }}>
+                              {label}
+                            </span>
+                          </button>
+                        </li>
+                      )
+                    })}
+                  </ul>
+                </details>
+              ))}
+            </div>
+            <p className="map-browse__footnote">Gold outline: Secret Guide entry.</p>
           </aside>
 
           <aside
@@ -711,8 +913,11 @@ export default function Map() {
                 <h3 className="map-sidebar__section-label">Day by day</h3>
                 <div className="map-sidebar__days">
                   {ITINERARIES[selectedItinerary].days.map((day) => {
-                    const stopsInDay = mappableStops.filter(
-                      (s) => 'region' in s && day.regions.includes(s.region) && s.collection !== 'hidden',
+                    // visibleStops already excludes hidden entries under an
+                    // active itinerary and applies the kind filter, so the
+                    // list never points at a missing marker.
+                    const stopsInDay = visibleStops.filter(
+                      (s) => 'region' in s && day.regions.includes(s.region),
                     )
                     return (
                       <section key={day.name}>
@@ -822,8 +1027,15 @@ function InfoPane({
           they are (see legend below).
         </li>
         <li>
+          Use the filter chips above the map to narrow pins by kind, or hide
+          the gold-outlined Secret Guide entries while you plan.
+        </li>
+        <li>
           Tap a pin. The popup has <strong>Open stop →</strong> (the full
           write-up in this guide) and <strong>Directions →</strong>.
+        </li>
+        <li>
+          A moss checkmark marks a stop already in your trip plan.
         </li>
         <li>
           Parking-lot and campground pins are navigation aids: a short note

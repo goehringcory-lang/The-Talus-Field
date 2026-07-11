@@ -1,11 +1,11 @@
 import { useEffect, useMemo } from 'react'
 import { useLocation, useSearchParams } from 'react-router-dom'
 import {
+  REGION_SHORT,
   SECRET_GUIDE_CATEGORIES,
   SECRET_GUIDE_META,
   SecretCategory,
   getSecretGuideEntries,
-  type Region,
   type SecretCategoryT,
 } from '../content'
 import GatedChrome from '../components/GatedChrome'
@@ -15,14 +15,6 @@ import PageHeader from '../components/ui/PageHeader'
 import { ChipButton } from '../components/ui/Chip'
 import { detectPhotoFormat, precachePhotoUrls } from '../utils/photo'
 import { precacheUrls } from '../pwa/precache'
-
-// Chip-length region names; the full REGIONS titles are card headlines.
-const REGION_SHORT: Record<Region, string> = {
-  valley: 'Valley',
-  'glacier-mariposa': 'Glacier Point & Mariposa',
-  tuolumne: 'Tuolumne',
-  'hetch-hetchy': 'Hetch Hetchy',
-}
 
 // The Secret Guide: every premium entry (region-less secret spots plus the
 // hidden-collection stops) in one place, filtered by the sticky category
