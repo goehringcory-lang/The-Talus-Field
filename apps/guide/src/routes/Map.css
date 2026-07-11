@@ -353,6 +353,34 @@
   font-family: var(--sans);
 }
 
+/* Collapse handle for the bottom-docked points pane. Hidden on wider
+   screens, where the pane is a floating card that stays open; the media
+   query at the foot of this file flips it to flex and drives the collapse. */
+.map-pane__handle {
+  display: none;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  min-height: 40px;
+  padding: 2px 2px;
+  background: none;
+  border: 0;
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+  cursor: pointer;
+}
+
+.map-pane__handle-caret {
+  font-size: 12px;
+  line-height: 1;
+  color: var(--ink-3);
+}
+
 /* "Near you" block above the legend, populated after a locate-me fix. */
 .map-nearby {
   margin: 0 0 12px;
@@ -703,13 +731,40 @@
     max-height: 50%;
   }
 
+  /* Bottom-docked pane. Opens collapsed to just its handle so the map is
+     the hero, then expands to a capped, scrollable list on tap. */
   .map-pane--points {
     top: auto;
     bottom: 12px;
     right: 12px;
     left: 12px;
     max-width: none;
-    max-height: 45%;
+    max-height: none;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .map-pane__handle {
+    display: flex;
+  }
+
+  .map-pane--points-open {
+    max-height: 60%;
+  }
+
+  .map-pane--points:not(.map-pane--points-open) .map-pane__scroll {
+    display: none;
+  }
+
+  .map-pane--points-open .map-pane__scroll {
+    min-height: 0;
+    overflow-y: auto;
+  }
+
+  /* The handle already labels the pane; the inner heading would repeat it. */
+  .map-pane--points .map-pane__title--browse {
+    display: none;
   }
 
   .map-legend {
