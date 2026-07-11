@@ -13,7 +13,8 @@ import StopCard from '../components/StopCard'
 import BackLink from '../components/ui/BackLink'
 import PageHeader from '../components/ui/PageHeader'
 import { ChipButton } from '../components/ui/Chip'
-import { allPhotoUrls } from '../utils/photo'
+import { detectPhotoFormat, precachePhotoUrls } from '../utils/photo'
+import { precacheUrls } from '../pwa/precache'
 
 // Chip-length region names; the full REGIONS titles are card headlines.
 const REGION_SHORT: Record<Region, string> = {
@@ -45,13 +46,13 @@ export default function SecretGuide() {
 
   // Pre-warm the SW cache with entry photos so paid content works offline.
   // Ported from the retired /hidden-areas page; this page owns the set now.
+  // Only the format this device renders; the download packs fetch everything.
   useEffect(() => {
-    if (!('serviceWorker' in navigator)) return
-    const sw = navigator.serviceWorker.controller
-    if (!sw) return
-    const urls = all.flatMap((s) => s.photos.flatMap((p) => allPhotoUrls(p.src))).filter(Boolean)
-    if (urls.length === 0) return
-    sw.postMessage({ type: 'PRECACHE_URLS', urls })
+    const srcs = all.flatMap((s) => s.photos.map((p) => p.src)).filter(Boolean)
+    if (srcs.length === 0) return
+    void detectPhotoFormat().then((format) =>
+      precacheUrls(srcs.flatMap((src) => precachePhotoUrls(src, format))),
+    )
   }, [all])
 
   const counts = useMemo(() => {

@@ -7,7 +7,9 @@ import StopCard from '../components/StopCard'
 import BackLink from '../components/ui/BackLink'
 import EmptyState from '../components/ui/EmptyState'
 import PageHeader from '../components/ui/PageHeader'
-import { allPhotoUrls } from '../utils/photo'
+import { detectPhotoFormat, precachePhotoUrls } from '../utils/photo'
+import { precacheUrls } from '../pwa/precache'
+import WeatherStrip from '../weather/WeatherStrip'
 
 export default function Region() {
   const params = useParams<{ regionId: string }>()
@@ -20,13 +22,13 @@ export default function Region() {
   const hiddenStops = useMemo(() => (region ? getHiddenStops().filter((s) => s.region === region) : []), [region])
 
   // Pre-warm SW cache with this region's photos so they're available offline.
+  // Only the format this device renders; the download packs fetch everything.
   useEffect(() => {
-    if (!('serviceWorker' in navigator)) return
-    const sw = navigator.serviceWorker.controller
-    if (!sw) return
-    const urls = stops.flatMap((s) => s.photos.flatMap((p) => allPhotoUrls(p.src))).filter(Boolean)
-    if (urls.length === 0) return
-    sw.postMessage({ type: 'PRECACHE_URLS', urls })
+    const srcs = stops.flatMap((s) => s.photos.map((p) => p.src)).filter(Boolean)
+    if (srcs.length === 0) return
+    void detectPhotoFormat().then((format) =>
+      precacheUrls(srcs.flatMap((src) => precachePhotoUrls(src, format))),
+    )
   }, [stops])
 
   if (!region) {
@@ -44,6 +46,8 @@ export default function Region() {
     <GatedChrome>
       <main className="wrap wrap--narrow page">
         <PageHeader eyebrow="Regional guide" title={meta?.title} intro={meta?.teaser} />
+
+        <WeatherStrip region={region} />
 
         {stops.length === 0 ? (
           <EmptyState note="Coming soon." />

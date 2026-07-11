@@ -128,6 +128,8 @@ export async function syncGoogleCalendarNow(): Promise<void> {
   const res = await apiFetch<{ ok: true; lastSyncAt: string }>(
     '/api/calendar/google/sync',
     { method: 'POST', body: JSON.stringify({ events }) },
+    // The Worker fans out to Google per event; give the round trip extra headroom.
+    { timeoutMs: 30_000 },
   )
   const prev = readGoogleCalInfo()
   writeGoogleCalInfo({ email: prev?.email, lastSyncAt: res.lastSyncAt })
