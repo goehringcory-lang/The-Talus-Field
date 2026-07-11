@@ -265,6 +265,10 @@ export default function Map() {
 
   const initial = useMemo(() => readUrlState(), [])
   const [tab, setTab] = useState<Tab>(initial.tab)
+  // On phones the points pane docks to the bottom over the map, so it opens
+  // collapsed to a single handle and expands on tap. The handle is hidden on
+  // wider screens (CSS), where the pane is a floating card that always shows.
+  const [pointsExpanded, setPointsExpanded] = useState(false)
   const [selectedItinerary, setSelectedItinerary] = useState<ItineraryKey | null>(initial.itinerary)
   // Selection carries a nonce: the popup closes on map click / its X button
   // without clearing state, so re-selecting the same stop must still re-run
@@ -814,7 +818,22 @@ export default function Map() {
             </div>
           )}
 
-          <aside className="map-pane map-pane--points" aria-hidden={tab !== 'points'}>
+          <aside
+            className={`map-pane map-pane--points${pointsExpanded ? ' map-pane--points-open' : ''}`}
+            aria-hidden={tab !== 'points'}
+          >
+            <button
+              type="button"
+              className="map-pane__handle"
+              aria-expanded={pointsExpanded}
+              onClick={() => setPointsExpanded((v) => !v)}
+            >
+              <span>Browse by area</span>
+              <span className="map-pane__handle-caret" aria-hidden>
+                {pointsExpanded ? '▾' : '▴'}
+              </span>
+            </button>
+            <div className="map-pane__scroll">
             {geoDenied && !userPos && (
               <p className="map-nearby__note">
                 Location is off for this app. Enable it in your phone's
@@ -851,7 +870,7 @@ export default function Map() {
                 </ul>
               </div>
             )}
-            <h3 className="map-pane__title">Browse by area</h3>
+            <h3 className="map-pane__title map-pane__title--browse">Browse by area</h3>
             <div className="map-browse">
               {browseGroups.map((group) => (
                 <details key={group.id} className="map-browse__region">
@@ -882,6 +901,7 @@ export default function Map() {
               ))}
             </div>
             <p className="map-browse__footnote">Gold outline: Secret Guide entry.</p>
+            </div>
           </aside>
 
           <aside
