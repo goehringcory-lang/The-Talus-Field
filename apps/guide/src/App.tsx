@@ -6,6 +6,7 @@ import Login from './routes/Login'
 import Home from './routes/Home'
 import InstallPrompt from './components/InstallPrompt'
 import UpdateBanner from './components/UpdateBanner'
+import ScrollToTop from './components/ScrollToTop'
 
 // Heavy routes lazy-loaded so /login doesn't download Map / Google Maps glue.
 const Map = lazy(() => import('./routes/Map'))
@@ -31,6 +32,7 @@ function LegacySecretRedirect() {
 export default function App() {
   return (
     <AuthProvider>
+      <ScrollToTop />
       <UpdateBanner />
       {/* Visible fallback: on a slow connection a lazy chunk can take seconds,
           and a blank screen reads as broken. */}

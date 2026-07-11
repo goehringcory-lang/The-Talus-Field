@@ -451,8 +451,14 @@ export default function Map() {
         [-120.8, 36.8],
         [-118.2, 38.8],
       ],
+      // North-up 2D only: with the compass hidden, an accidental two-finger
+      // rotate or pitch would leave the topo tilted with no way to reset.
+      dragRotate: false,
+      pitchWithRotate: false,
+      touchPitch: false,
       attributionControl: { compact: true },
     })
+    map.touchZoomRotate.disableRotation()
     map.addControl(new maplibregl.NavigationControl({ showCompass: false }), 'top-left')
     map.addControl(new maplibregl.ScaleControl({ unit: 'imperial' }), 'bottom-left')
 
