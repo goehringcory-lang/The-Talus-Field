@@ -18,6 +18,7 @@ const SecretGuide = lazy(() => import('./routes/SecretGuide'))
 const Search = lazy(() => import('./routes/Search'))
 const Programs = lazy(() => import('./routes/Programs'))
 const Trip = lazy(() => import('./routes/Trip'))
+const Welcome = lazy(() => import('./routes/Welcome'))
 const NotFound = lazy(() => import('./routes/NotFound'))
 
 // Navigate drops location.hash, and old /secret-spots#<id> search bookmarks
@@ -60,6 +61,16 @@ export default function App() {
             element={
               <RequireAuth>
                 <Home />
+              </RequireAuth>
+            }
+          />
+          {/* One-time first-run orientation; Open and Home route here until
+              tfg.onboarded is set. No GatedChrome: it reads as setup. */}
+          <Route
+            path="/welcome"
+            element={
+              <RequireAuth>
+                <Welcome />
               </RequireAuth>
             }
           />

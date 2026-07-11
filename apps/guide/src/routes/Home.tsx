@@ -1,12 +1,14 @@
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, Navigate } from 'react-router-dom'
 import { useAuth } from '../auth/useAuth'
+import { isOnboarded } from '../lib/onboarding'
 import { ESSENTIALS, ESSENTIALS_META, REGIONS, SEASONAL_EVENTS, SECRET_GUIDE_META, getSecretGuideEntries, getStopById, getStopsByRegion, seasonalRangeLabel } from '../content'
 import { todayIso } from '../utils/date'
 import { useFavorites } from '../lib/favorites'
 import { isPackCompleted } from '../offline/useDownloads'
 import { useTripPlan } from '../trip/useTripPlan'
 import GatedChrome from '../components/GatedChrome'
+import WeatherStrip from '../weather/WeatherStrip'
 import RegionPickerCard from '../components/RegionPickerCard'
 import SectionCard from '../components/SectionCard'
 import UpdatedStamp from '../components/UpdatedStamp'
@@ -85,12 +87,18 @@ export default function Home() {
   const { session } = useAuth()
   const { ids: favoriteIds } = useFavorites()
   const { plan } = useTripPlan()
+  // Read once per mount (render must stay pure). Existing signed-in users who
+  // predate onboarding get routed through /welcome exactly once; deep links
+  // (/stop/x, /map?...) are never intercepted, only the front page.
+  const [onboarded] = useState(() => isOnboarded())
   // getStopById resolves regular stops and secret spots alike, so a saved
   // secret spot does not silently vanish from this list.
   const savedStops = favoriteIds
     .map((id) => getStopById(id))
     .filter((s): s is NonNullable<typeof s> => Boolean(s))
   const downloadedCount = PACK_IDS.filter((id) => isPackCompleted(id)).length
+
+  if (!onboarded) return <Navigate to="/welcome" replace />
 
   return (
     <GatedChrome>
@@ -102,6 +110,8 @@ export default function Home() {
         />
 
         <BeforeYouGoNudge />
+
+        <WeatherStrip />
 
         <div className="card-stack">
           {REGIONS.map((region) => (
