@@ -115,6 +115,13 @@
   color: var(--ink-2);
   line-height: 1.5;
 }
+.map-popup__distance {
+  margin: 6px 0 0;
+  font-family: var(--sans);
+  font-size: 11px;
+  color: var(--ink-2);
+}
+
 .map-popup__actions {
   margin: 10px 0 0;
   display: flex;
@@ -227,6 +234,8 @@
   top: 12px;
   right: 12px;
   max-width: 200px;
+  max-height: calc(100% - 24px);
+  overflow-y: auto;
   padding: 12px 14px;
   background: color-mix(in oklab, var(--paper) 94%, transparent);
   backdrop-filter: blur(6px);
@@ -235,6 +244,32 @@
   border-radius: var(--radius);
   box-shadow: 3px 3px 0 0 color-mix(in oklab, var(--ink) 22%, transparent);
   font-family: var(--sans);
+}
+
+/* "Near you" block above the legend, populated after a locate-me fix. */
+.map-nearby {
+  margin: 0 0 12px;
+}
+
+.map-nearby__note {
+  margin: 0 0 8px;
+  font-size: 11px;
+  line-height: 1.45;
+  color: var(--ink-2);
+}
+
+.map-nearby__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.map-nearby__list .map-stop {
+  padding: 6px 4px;
+  min-height: 0;
 }
 
 .map-pane__title {

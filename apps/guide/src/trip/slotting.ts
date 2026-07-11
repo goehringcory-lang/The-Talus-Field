@@ -10,6 +10,7 @@
 // =============================================================================
 
 import { getStopById } from '../content'
+import { haversineMiles } from '../utils/geo'
 import type { TripItemT } from './schema'
 
 export type SlottedItem = {
@@ -33,19 +34,6 @@ const DEFAULT_PROGRAM_MIN = 60
 // the map's own copy says it does not calculate driving routes.
 const PARK_MPH = 22
 const PARK_AND_WALK_MIN = 10
-const EARTH_RADIUS_MI = 3958.8
-
-function haversineMiles(a: [number, number], b: [number, number]): number {
-  const toRad = (deg: number) => (deg * Math.PI) / 180
-  const [lngA, latA] = a
-  const [lngB, latB] = b
-  const dLat = toRad(latB - latA)
-  const dLng = toRad(lngB - lngA)
-  const s =
-    Math.sin(dLat / 2) ** 2 +
-    Math.cos(toRad(latA)) * Math.cos(toRad(latB)) * Math.sin(dLng / 2) ** 2
-  return 2 * EARTH_RADIUS_MI * Math.asin(Math.sqrt(s))
-}
 
 /** Coordinate of a trip item, when its stop or program carries one. */
 export function itemCoord(item: TripItemT): [number, number] | undefined {
