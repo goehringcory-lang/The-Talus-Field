@@ -1,3 +1,4 @@
+import type { ReactNode } from 'react'
 import type { Region } from '../content'
 import ResponsivePhoto from './ResponsivePhoto'
 import SectionCard from './SectionCard'
@@ -8,15 +9,18 @@ type Props = {
   teaser: string
   stopCount: number
   photo?: { src: string }
+  // Rendered node (the five-day forecast), so this card stays weather-ignorant.
+  forecast?: ReactNode
 }
 
-export default function RegionPickerCard({ region, title, teaser, stopCount, photo }: Props) {
+export default function RegionPickerCard({ region, title, teaser, stopCount, photo, forecast }: Props) {
   return (
     <SectionCard
       to={`/region/${region}`}
       title={title}
       teaser={teaser}
       meta={`${stopCount} ${stopCount === 1 ? 'stop' : 'stops'}`}
+      footer={forecast}
       media={
         photo ? (
           <ResponsivePhoto
