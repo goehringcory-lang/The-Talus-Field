@@ -40,7 +40,7 @@ window.ARTICLE_BODIES["yosemite-with-kids-no-reservations-2026"] = function Yose
       </p>
 
       <p>
-        <strong>Pack the car tonight, not tomorrow morning.</strong> The <a href="/articles/pack-your-car-for-yosemite">car packing guide</a> has the full list, but grab these five things you'll forget: sunscreen (the UV at elevation is brutal), a refillable water bottle for every person (including the toddler), a headlamp (if you stay for sunset, which you should, you'll walk back in the dark), layers (the Valley can be 95 degrees at noon and 55 degrees at sunset), and cash for the entrance fee if you don't have an America the Beautiful pass.
+        <strong>Pack the car tonight, not tomorrow morning.</strong> The <a href="/articles/pack-your-car-for-yosemite">car packing guide</a> has the full list, but grab these five things you'll forget: sunscreen (the UV at elevation is brutal), a refillable water bottle for every person (including the toddler), a headlamp (if you stay for sunset, which you should, you'll walk back in the dark), layers (the Valley can be 95 degrees at noon and 55 degrees at sunset), and a credit or debit card for the entrance fee if you don't have an America the Beautiful pass (the gate is cashless).
       </p>
 
       <p>

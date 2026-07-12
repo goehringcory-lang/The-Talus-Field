@@ -6,9 +6,14 @@ function PlanningGuide({
   var withoutReservations = find("yosemite-without-reservations-2026");
   var gateway = find("yosemite-gateway-towns-compared");
   var smoke = find("yosemite-during-smoke-season");
+  var gettingThere = find("getting-to-yosemite");
+  var wildernessPermits = find("yosemite-wilderness-permits-guide");
   var packCar = find("pack-your-car-for-yosemite");
   var withKids = find("yosemite-with-kids-no-reservations-2026");
   var nonHikers = find("yosemite-for-non-hikers");
+  var accessibility = find("yosemite-accessibility-guide");
+  var pets = find("pets-in-yosemite");
+  var rangerPrograms = find("yosemite-ranger-programs");
   var halfDomePermit = find("half-dome-permit-lottery-2026");
   var soYouWantHalfDome = find("so-you-want-to-hike-half-dome");
   var mistTrail = find("mist-trail-the-real-guide");
@@ -65,7 +70,7 @@ function PlanningGuide({
       maxWidth: 760,
       marginBottom: 56
     }
-  }, "Yosemite in 2026 is a different park from Yosemite in 2024. The entrance reservation system is gone, the crowds are heavier, the gateway towns matter more, and the difference between a great trip and a frustrating one is almost always strategy, not luck. Here is the strategy, in four parts."), React.createElement("section", {
+  }, "Yosemite in 2026 is a different park from Yosemite in 2024. The entrance reservation system is gone, the crowds are heavier, the gateway towns matter more, and the difference between a great trip and a frustrating one is almost always strategy, not luck. Here is the strategy, in five parts."), React.createElement("section", {
     style: {
       paddingTop: 32,
       paddingBottom: 56,
@@ -114,9 +119,38 @@ function PlanningGuide({
     }
   }, "Part Two"), React.createElement("h2", {
     style: sectionH2
+  }, "Getting there and getting in"), React.createElement("p", {
+    style: sectionLede
+  }, "Five entrances, four highways, one seasonal pass that does not exist half the year, and a permit system guarding the 95 percent of the park most visitors never see. The logistics of arrival, and the paperwork for going deeper."), React.createElement("div", {
+    style: {
+      display: "grid",
+      gridTemplateColumns: "repeat(2, 1fr)",
+      gap: 36,
+      rowGap: 48
+    }
+  }, React.createElement(ArticleCard, {
+    article: gettingThere,
+    go: go
+  }), React.createElement(ArticleCard, {
+    article: wildernessPermits,
+    go: go
+  }))), React.createElement("section", {
+    style: {
+      paddingTop: 32,
+      paddingBottom: 56,
+      borderTop: "1px solid var(--rule)"
+    }
+  }, React.createElement("div", {
+    className: "eyebrow eyebrow--moss",
+    style: {
+      marginTop: 32,
+      marginBottom: 12
+    }
+  }, "Part Three"), React.createElement("h2", {
+    style: sectionH2
   }, "When you arrive"), React.createElement("p", {
     style: sectionLede
-  }, "What is in the car, who you are traveling with, whether everyone in your group can hike. The pragmatic decisions that make a Yosemite day flow or stall. The cooler, the camp chair, the Junior Ranger booklet, the bridge view from a wheelchair."), React.createElement("div", {
+  }, "What is in the car, who you are traveling with, whether everyone in your group can hike. The pragmatic decisions that make a Yosemite day flow or stall. The cooler, the camp chair, the Junior Ranger booklet, the bridge view from a wheelchair, the dog."), React.createElement("div", {
     style: {
       display: "grid",
       gridTemplateColumns: "repeat(3, 1fr)",
@@ -132,6 +166,15 @@ function PlanningGuide({
   }), React.createElement(ArticleCard, {
     article: nonHikers,
     go: go
+  }), React.createElement(ArticleCard, {
+    article: accessibility,
+    go: go
+  }), React.createElement(ArticleCard, {
+    article: pets,
+    go: go
+  }), React.createElement(ArticleCard, {
+    article: rangerPrograms,
+    go: go
   }))), React.createElement("section", {
     style: {
       paddingTop: 32,
@@ -144,7 +187,7 @@ function PlanningGuide({
       marginTop: 32,
       marginBottom: 12
     }
-  }, "Part Three"), React.createElement("h2", {
+  }, "Part Four"), React.createElement("h2", {
     style: sectionH2
   }, "If you're hiking Half Dome"), React.createElement("p", {
     style: sectionLede
@@ -176,7 +219,7 @@ function PlanningGuide({
       marginTop: 32,
       marginBottom: 12
     }
-  }, "Part Four"), React.createElement("h2", {
+  }, "Part Five"), React.createElement("h2", {
     style: sectionH2
   }, "The seasonal calendar"), React.createElement("p", {
     style: sectionLede

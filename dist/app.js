@@ -307,7 +307,7 @@ function buildSeo(route) {
     },
     planning: {
       title: `The Yosemite Planning Guide — ${SITE_NAME}`,
-      description: "Plan a Yosemite trip in 2026: gateway towns, reservations, Half Dome, smoke season, the seasonal calendar. A hub for The Talus Field's planning archive.",
+      description: "Plan a Yosemite trip in 2026: entrances and getting there, gateway towns, permits, Half Dome, accessibility, smoke season, the seasonal calendar. A hub for The Talus Field's planning archive.",
       ogType: "website",
       breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Planning Guide", null]],
       faq: [{
@@ -318,7 +318,7 @@ function buildSeo(route) {
         a: "Late May through early June for peak waterfalls and moderate crowds. September and October for warm days, smaller crowds, and golden light. July and August are the most crowded months."
       }, {
         q: "How much does it cost to enter Yosemite?",
-        a: "$35 per vehicle (7-day pass), $20 per person on foot or bike. The America the Beautiful annual pass ($80) covers all national parks for one year."
+        a: "$35 per vehicle (7-day pass), $20 per person on foot or bike. Since January 1, 2026, international visitors pay a $100 per-person surcharge (age 16 and older). The America the Beautiful annual pass ($80 for U.S. residents, $250 for nonresidents) covers all national parks for one year."
       }, {
         q: "How long should I spend at Yosemite?",
         a: "Minimum two full days. Three to four days lets you cover the Valley, Glacier Point, and Tioga Road without rushing."

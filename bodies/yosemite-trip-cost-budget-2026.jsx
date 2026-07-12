@@ -32,6 +32,10 @@ window.ARTICLE_BODIES["yosemite-trip-cost-budget-2026"] = function YosemiteTripC
       </p>
 
       <p>
+        New for 2026, and it changes the math for visitors from abroad: since January 1, international visitors pay a <strong>$100 surcharge per person age 16 and older</strong>, on top of the standard entrance fee. A car of four foreign visitors pays the $35 vehicle fee plus $400. For a group like that, the $250 nonresident America the Beautiful annual pass can pay for itself in a single visit. The surcharge does not apply to U.S. residents.
+      </p>
+
+      <p>
         One thing that simplifies planning: Yosemite is not requiring timed-entry reservations in 2026. In previous years, a reservation was needed to drive in during peak hours. That system is not in effect this year, so the entrance fee is all you pay to get in. Check the current status before your trip, since the policy can change year to year.
       </p>
 

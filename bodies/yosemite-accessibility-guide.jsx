@@ -1,0 +1,82 @@
+/* global React, Placeholder, MotifMountains */
+
+window.ARTICLE_BODIES = window.ARTICLE_BODIES || {};
+
+window.ARTICLE_BODIES["yosemite-accessibility-guide"] = function YosemiteAccessibilityGuideBody() {
+  return (
+    <>
+      <p className="dropcap">
+        The best view in Yosemite Valley is from a flat, paved loop trail. That is not a consolation-prize sentence. The boardwalk through Cook's Meadow and the paved path to the base of Lower Yosemite Fall put you in front of the same granite and the same falling water that people climb thousands of feet to photograph from above, and they do it without a single step. Yosemite is genuinely better set up for visitors with mobility, hearing, and vision disabilities than almost any wild place in the country. It is also terrible at telling anyone this in advance. So here is the briefing.
+      </p>
+
+      <h2>The trails that actually work</h2>
+
+      <p>
+        <strong>Lower Yosemite Fall loop.</strong> The eastern portion of the loop, from shuttle stop 6 to the footbridge below the fall, is paved and wheelchair accessible. In May the spray reaches the bridge and the sound is physical. A manual chair may want a push on a couple of grades, but this is the single best accessible destination in the park and it is free, flat, and a mile round trip.
+      </p>
+
+      <p>
+        <strong>Bridalveil Fall.</strong> The western trail from the parking area to the viewing area is paved. The rebuilt plaza and paths from the 2023 rehabilitation made the whole approach smoother than it has been in decades. Spring is loud and wet; late summer is quiet and contemplative; both are worth it.
+      </p>
+
+      <p>
+        <strong>Cook's Meadow and the Valley boardwalks.</strong> Flat boardwalk loops with Half Dome, Yosemite Falls, and Sentinel Rock arranged around you. This is the classic photographic geography of the park, at grade.
+      </p>
+
+      <p>
+        <strong>Glacier Point.</strong> When the road is open (May through October or so), a short paved path leads from the parking area to the railing, 3,200 feet directly above the Valley floor with Half Dome at eye level. It is the greatest effort-to-view ratio in the National Park System.
+      </p>
+
+      <p>
+        <strong>Big Trees Loop, Mariposa Grove.</strong> A purpose-built accessible trail through giant sequoias, completed in the grove's 2018 restoration. Level, firm surface, benches, and trees older than the alphabet you are reading. Vehicles displaying a disability placard may drive the grove road when the shuttle is running, which turns an otherwise shuttle-dependent visit into a straightforward one.
+      </p>
+
+      <Placeholder
+        caption="Lower Yosemite Fall from the paved loop, the most accessible front-row seat in the park"
+        image="img/lower-yosemite-fall.jpg"
+        tag="PLATE I"
+        size="lg"
+        style={{ aspectRatio: "16 / 10", margin: "32px 0" }}
+        motif={<MotifMountains />}
+      />
+
+      <h2>Getting around without fighting for parking</h2>
+
+      <p>
+        The free Yosemite Valley shuttle is wheelchair accessible (ramps and securement points on the buses) and runs a loop of about nineteen stops covering the lodges, campgrounds, trailheads, and the visitor center, roughly 7 a.m. to 10 p.m. Park once in a designated accessible space (they exist at every major lot and trailhead, and your state placard is valid here) and let the shuttle do the Valley. The park also issues a temporary accessibility placard at entrance stations and visitor centers for visitors who need one during the trip; it also opens vehicle access to a few otherwise-restricted roads, the Mariposa Grove road among them.
+      </p>
+
+      <p>
+        Seasonally, manual wheelchairs can be rented in the Valley (ask at the bike rental stands at Yosemite Valley Lodge and Curry Village). Supplies are small; bringing your own equipment is safer in peak season.
+      </p>
+
+      <h2>Deaf services</h2>
+
+      <p>
+        Yosemite has run a dedicated Deaf Services program for decades, one of the oldest in the Park Service. American Sign Language interpretation is available for ranger programs; in the off-season, request an interpreter at least two weeks ahead so the park can contract one (yose_deaf_services@nps.gov, or 209-379-5250 by voice or text). A public videophone for Deaf visitors sits in the lobby of Yosemite Valley Lodge, and the park's films run captioned.
+      </p>
+
+      <h2>Low vision and blindness</h2>
+
+      <p>
+        Audio description, large-print and Braille publications, and tactile exhibits are available at the Valley Visitor Center; ask at the desk, because almost none of it is out on display. And a naturalist's note: Yosemite rewards ears. The Valley in May is a surround-sound installation (three waterfalls audible at once from the right meadow), and an evening ranger program does not care whether you can see the screen.
+      </p>
+
+      <h2>The pass worth knowing about</h2>
+
+      <p>
+        The Access Pass, free, lifetime, for U.S. citizens and permanent residents with a permanent disability, admits the pass holder and everyone in the vehicle to every national park and federal recreation site in the country. It also discounts about half the cost of most federal campgrounds. You can obtain it at the entrance station with documentation, and it replaces the $35 gate fee forever. If you qualify and do not have one, this is the first errand of the trip.
+      </p>
+
+      <h2>Planning honestly</h2>
+
+      <p>
+        Some arithmetic the brochures soften: the Valley floor is at 4,000 feet and the air is thinner than home; distances between shuttle stops are longer than they look on the cartoon map; and summer afternoon heat radiating off granite is real (our <a href="/articles/yosemite-heat-safety-guide">heat guide</a> applies double at a slower pace of travel). Mornings are cooler, emptier, and easier in every way. The general strategy this site recommends for everyone (arrive early, do less, do it properly) is not modified for accessibility. It simply matters more.
+      </p>
+
+      <p>
+        The park's own accessibility guide, downloadable from the NPS Yosemite site, is the authoritative document for current details, and unlike most government PDFs it is genuinely useful. Pair it with <a href="/articles/yosemite-for-non-hikers">our guide to Yosemite without hiking</a>, which shares most of its geography with this one, and with the <a href="/map">map</a> for laying out shuttle-stop distances before you commit to a day. The wheelchair view from the Sentinel Bridge area, Half Dome upstream and the Merced sliding underneath you, gives up nothing to any overlook in the park.
+      </p>
+    </>
+  );
+};

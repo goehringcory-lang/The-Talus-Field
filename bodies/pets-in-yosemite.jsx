@@ -1,0 +1,65 @@
+/* global React, Placeholder, MotifMountains */
+
+window.ARTICLE_BODIES = window.ARTICLE_BODIES || {};
+
+window.ARTICLE_BODIES["pets-in-yosemite"] = function PetsInYosemiteBody() {
+  return (
+    <>
+      <p className="dropcap">
+        The most common pet conversation I have in this park starts at a trailhead and ends in disappointment. A family has driven four hours with the dog, the dog is delighted, and the sign says no dogs beyond this point. Every trail they planned says the same thing. Nobody told them, because the truth (Yosemite is one of the least dog-friendly parks in the country, by design) does not make it into vacation-rental listings. So let me be the one who tells you, before the drive instead of after it.
+      </p>
+
+      <h2>The rules, without varnish</h2>
+
+      <p>
+        Pets are allowed in Yosemite on fully paved roads, sidewalks, and bike paths (unless posted otherwise), in developed areas, and in most drive-in campgrounds. The leash is mandatory and six feet is the maximum. That is essentially the entire list. Pets are not allowed on trails, on unpaved paths, in meadows, in the wilderness, on the shuttle buses, on beaches, inside any lodging, or in any public building. They cannot be left tied and unattended, and they cannot wait in a parked car in warm weather, which in a Valley parking lot means most daylight hours from May through September.
+      </p>
+
+      <p>
+        There are exactly two named trail exceptions, and they are both good walks:
+      </p>
+
+      <ol>
+        <li><strong>The Wawona Meadow Loop.</strong> A gentle lap around the big meadow near the Wawona Hotel grounds, shaded, flat, and quietly one of the best wildflower walks in the park in early summer.</li>
+        <li><strong>Old Big Oak Flat Road</strong> between Hodgdon Meadow and Hazel Green Creek, near the Big Oak Flat Entrance. An old roadbed through mixed conifer forest, more solitude than scenery, which some dogs would tell you is the correct priority.</li>
+      </ol>
+
+      <p>
+        Beyond those, the paved Valley Loop bike paths and the campground roads are the dog's Yosemite. A leashed morning walk on the Valley floor pavement, Half Dome overhead and the Merced alongside, is honestly not a bad life. But if your trip's centerpiece is the Mist Trail or anything else with a trailhead sign, the dog cannot come.
+      </p>
+
+      <Placeholder
+        caption="A Yosemite meadow in early summer. The Wawona Meadow Loop is one of only two trails where a leashed dog can join you"
+        image="img/wildflowers.jpg"
+        tag="PLATE I"
+        size="lg"
+        style={{ aspectRatio: "16 / 10", margin: "32px 0" }}
+        motif={<MotifMountains />}
+      />
+
+      <h2>Camping with a dog</h2>
+
+      <p>
+        Most drive-in campgrounds allow pets. The exceptions are Camp 4, all walk-in sites, and all group sites. The bear rules apply to the dog's supplies exactly as they apply to yours: pet food and bowls live in the bear box, never in the tent and never loose in the car. A dog dish of kibble left out overnight is bear bait with a picture of a Labrador on the bag, and <a href="/articles/yosemite-bears-safety-guide">the bears here</a> are professionals. Dogs must be attended at your site, and the leash rule does not relax after dark. Details on which campgrounds suit which trips are in <a href="/articles/yosemite-camping-complete-guide">the camping guide</a>.
+      </p>
+
+      <h2>Why the rules are this strict</h2>
+
+      <p>
+        It is not bureaucratic fussiness, and knowing the reasons makes them easier to respect. Dog scent reads as predator to the wildlife whose home this is; a single leashed dog on a trail measurably empties the surrounding forest of its animals for hours. Dogs carry diseases that jump to coyotes and foxes. And the traffic runs the other way too: coyotes in the Valley have learned to lure loose dogs, and a mountain lion does not distinguish your spaniel from its ordinary groceries. The leash is for the ecosystem and for the dog, in that order, and both reasons are load-bearing.
+      </p>
+
+      <h2>Service animals</h2>
+
+      <p>
+        Service dogs, as the ADA defines them (individually trained to perform tasks for a person with a disability), are exempt from these restrictions and may accompany their handlers on trails, in lodging, and on shuttles. Emotional support animals are not service animals under the ADA and receive no exemption. Rangers can and do ask the two permitted questions, and a service dog in the wilderness still has food-storage requirements; check with a wilderness center when planning.
+      </p>
+
+      <h2>The honest recommendation</h2>
+
+      <p>
+        Should you bring the dog to Yosemite? If your trip is a campground-based, meadow-strolling, scenery-and-picnics sort of visit: yes, cheerfully. The dog gets pavement miles with world-class views, and you get a warm alarm clock. If your trip is built around trails, then no, and the kindest version of no. Summer boarding options exist in the gateway towns (Oakhurst and Mariposa both have kennels; book ahead in peak season), and a dog waiting comfortably in air conditioning beats a dog waiting illegally in a hot car by every measure, including the up-to-$5,000 citation. Plan the trip first, then decide honestly which trip it is. The dog, to its credit, will forgive either answer.
+      </p>
+    </>
+  );
+};
