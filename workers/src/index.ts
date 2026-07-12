@@ -9,6 +9,7 @@ import { indexnow } from './routes/indexnow'
 import { ingestNpsWindow, programs } from './routes/programs'
 import { stripe } from './routes/stripe'
 import { trip } from './routes/trip'
+import { tripEmail } from './routes/trip-email'
 import { weather } from './routes/weather'
 import { refreshWeather } from './lib/weather'
 import {
@@ -116,6 +117,10 @@ app.route('/api/contact', contact)
 app.route('/api/indexnow', indexnow)
 app.route('/api/programs', programs)
 app.route('/api/stripe', stripe)
+// Mounted before /api/trip's router would see it: separate route so the
+// editorial map's unauthenticated sender never shares code with the PWA's
+// JWT-gated feed.
+app.route('/api/trip/email', tripEmail)
 app.route('/api/trip', trip)
 app.route('/api/weather', weather)
 

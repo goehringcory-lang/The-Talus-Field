@@ -40,6 +40,10 @@ function KitPage({
         ...prev
       };
       if (next[id]) delete next[id];else next[id] = true;
+      window.track("kit_item_toggle", {
+        item_id: id,
+        checked: !!next[id]
+      });
       saveKitChecked(next);
       return next;
     });

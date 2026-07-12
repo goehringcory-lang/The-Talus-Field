@@ -61,6 +61,8 @@ const PAGE_FILES = [
   "page-advertise.jsx",
   "page-guide.jsx",
   "page-map.jsx",
+  "page-itineraries.jsx",
+  "page-conditions.jsx",
   "app.jsx",
 ];
 

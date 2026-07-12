@@ -130,8 +130,8 @@ function PlanningGuide({ go }) {
             <NewsletterInline
               location="planning_hub"
               tag="planning"
-              heading="Sunday Field Notes"
-              blurb="One Yosemite email a week, when there is something to say. Free."
+              heading="Get the conditions before you go"
+              blurb="Reservation windows, road openings, what's booked out: one Yosemite email a week while you plan. Free."
             />
           </div>
         </section>

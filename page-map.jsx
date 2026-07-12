@@ -16,7 +16,15 @@
 
 const { useEffect, useMemo, useRef, useState, useCallback } = React;
 
-const POINTS_URL = "/points.geojson?v=24";
+const POINTS_URL = "/points.geojson?v=25";
+// Shared with /itineraries (page-itineraries.jsx), which resolves stop names
+// from the same pin data, so the cache-buster is bumped in exactly one place.
+window.POINTS_URL = POINTS_URL;
+// Worker API base for "email this trip". Override at runtime via
+// window.GUIDE_API_BASE (same convention as page-guide.jsx) for local dev.
+const MAP_API_BASE =
+  (typeof window !== "undefined" && window.GUIDE_API_BASE) ||
+  "https://api.thetalusfieldjournal.com";
 const STORAGE_KEY = "tfg.trip";
 const STORAGE_VERSION = 1;
 const TRIP_CAP = 30;
@@ -62,13 +70,14 @@ const REGIONS = [
   { id: "tuolumne-area",  label: "Tuolumne & Hetch Hetchy",          keys: ["tuolumne", "hetch-hetchy"] },
 ];
 
-// Suggested-trip presets keyed by sidebar region IDs. Each preset replaces
-// (not appends to) the user's current trip when clicked.
-const QUICK_PICKS = [
-  { id: "1day", label: "1 day",  regionIds: ["valley"] },
-  { id: "2day", label: "2 days", regionIds: ["valley", "glacier-point"] },
-  { id: "3day", label: "3 days", regionIds: ["valley", "glacier-point", "tuolumne-area"] },
-];
+// Suggested-trip presets: the curated, drive-ordered day plans from
+// itineraries-data.js (window.ITINERARIES), not region dumps. Each preset
+// replaces (not appends to) the user's current trip when clicked. The same
+// plans render in prose on /itineraries.
+const QUICK_PICKS = (window.ITINERARIES || []).map((it) => ({
+  id: it.id,
+  label: it.label,
+}));
 
 // Pin color + display label per category. Categories come from
 // points.geojson — add a new entry here whenever a new category is
@@ -675,15 +684,13 @@ function MapView({ go }) {
       if (!features) return;
       const qp = QUICK_PICKS.find((q) => q.id === quickPickId);
       if (!qp) return;
-      const keys = new Set();
-      for (const rid of qp.regionIds) {
-        const r = REGIONS.find((x) => x.id === rid);
-        if (r) for (const k of r.keys) keys.add(k);
-      }
-      const stops = features
-        .filter((f) => keys.has(f.properties.region))
-        .map((f) => f.properties.id)
+      // Curated drive order from itineraries-data.js, filtered against the
+      // pins that actually exist so a stale id can never wedge the trip.
+      const validIds = new Set(features.map((f) => f.properties.id));
+      const stops = (window.getItineraryStopIds ? window.getItineraryStopIds(qp.id) : [])
+        .filter((id) => validIds.has(id))
         .slice(0, TRIP_CAP);
+      if (stops.length === 0) return;
       // Quick picks replace the trip outright; snapshot the old one so the
       // toast can offer Undo when there was something to lose.
       const prev = tripStopIdsRef.current;
@@ -1010,6 +1017,32 @@ function MapView({ go }) {
           if (goRef.current) goRef.current("a:" + slug);
         });
       });
+      // Per-pin share links copy /map?stop=<id> to the clipboard instead of
+      // navigating (the pin is already selected; reloading would be noise).
+      const shares = document.querySelectorAll("[data-stop-share]");
+      shares.forEach((link) => {
+        const fresh = link.cloneNode(true);
+        link.parentNode.replaceChild(fresh, link);
+        fresh.addEventListener("click", (e) => {
+          e.preventDefault();
+          const id = fresh.getAttribute("data-stop-id");
+          if (!id) return;
+          const url = `${window.location.origin}/map?stop=${id}`;
+          const done = () => {
+            if (window.track) window.track("stop_share", { stop_id: id });
+            fresh.textContent = "Link copied";
+          };
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(url).then(done).catch(() => {
+              window.prompt("Copy this link:", url);
+              done();
+            });
+          } else {
+            window.prompt("Copy this link:", url);
+            done();
+          }
+        });
+      });
       // Directions links open natively (no preventDefault); the listener
       // only records the click.
       const dirs = document.querySelectorAll("[data-directions-link]");
@@ -1086,6 +1119,8 @@ function MapView({ go }) {
         onToggleRegion={handleToggleRegion}
         onShareTrip={shareTrip}
         onOpenRoute={openTripRoute}
+        onEmailSubscribed={handleGateSubscribed}
+        go={go}
         announcerRef={announcerRef}
         toast={toast}
       />
@@ -1098,6 +1133,178 @@ function MapView({ go }) {
         <div ref={containerRef} id="map" className="map-page__map" />
       </div>
       {gateOpen && <MapAccessGate onSubscribed={handleGateSubscribed} onClose={() => setGateOpen(false)} />}
+    </div>
+  );
+}
+
+// ---------------------------------------------------------------------------
+// "Email this trip to yourself." The natural capture moment: a built trip is
+// worth keeping, and the reader's inbox is where it survives a closed tab.
+// The form POSTs natively into the hidden Buttondown iframe (same optimistic
+// pattern as every other unit, tag map-trip) while the actual send rides
+// alongside as a fetch to the Worker (/api/trip/email), which builds the
+// share URL server-side from the id list. The Worker deploy is manual, so a
+// failed send falls back to copying the share link instead of dead-ending.
+// A reader who already subscribed skips the Buttondown POST; the send still
+// goes out.
+// ---------------------------------------------------------------------------
+function TripEmailBox({ tripStopIds, onFallbackCopy, onSubscribed }) {
+  const [state, setState] = useState("idle"); // idle | sending | sent | failed
+  const emailRef = useRef(null);
+  const hpRef = useRef(null);
+
+  // One impression per mount, matching the other newsletter units.
+  useEffect(() => {
+    if (window.trackNewsletterImpression) {
+      window.trackNewsletterImpression("map_trip_email", "map-trip");
+    }
+  }, []);
+
+  // The share-link fallback fires once, from an effect, so the copy happens
+  // after the failed state has rendered its explanation.
+  useEffect(() => {
+    if (state === "failed" && onFallbackCopy) onFallbackCopy();
+  }, [state, onFallbackCopy]);
+
+  const onSubmit = (e) => {
+    const email = emailRef.current ? emailRef.current.value.trim() : "";
+    const website = hpRef.current ? hpRef.current.value : "";
+    const ids = tripStopIds.slice(0, TRIP_CAP);
+    if (!email || ids.length === 0) {
+      e.preventDefault();
+      return;
+    }
+    const wasSubscribed = window.isSubscribed && window.isSubscribed();
+    if (wasSubscribed) {
+      // Already on the list: skip the Buttondown POST, keep the send.
+      e.preventDefault();
+    } else if (window.trackNewsletterSubmit) {
+      window.trackNewsletterSubmit("map_trip_email", "map-trip");
+    }
+    if (window.track) window.track("trip_email_send", { trip_size: ids.length });
+    // Unlock the trip builder like any other signup would; deferred a tick so
+    // the native POST into the iframe fires before any re-render.
+    if (!wasSubscribed && onSubscribed) setTimeout(onSubscribed, 0);
+    setTimeout(() => setState("sending"), 0);
+    fetch(`${MAP_API_BASE}/api/trip/email`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email, stops: ids, website }),
+    })
+      .then((r) => setState(r.ok ? "sent" : "failed"))
+      .catch(() => setState("failed"));
+  };
+
+  if (state === "sent") {
+    return (
+      <div className="map-sidebar__email">
+        <p className="map-sidebar__email-fine map-sidebar__email-fine--sent" role="status">
+          Sent. The trip is in your inbox.
+        </p>
+      </div>
+    );
+  }
+
+  return (
+    <div className="map-sidebar__email">
+      <h4 className="map-sidebar__email-label">Email this trip to yourself</h4>
+      <form
+        className="nlbox__form"
+        action="https://buttondown.com/api/emails/embed-subscribe/goehring"
+        method="post"
+        target="buttondown-target"
+        onSubmit={onSubmit}
+      >
+        <input
+          ref={emailRef}
+          type="email"
+          name="email"
+          placeholder="you@email.com"
+          required
+          aria-label="Email address"
+        />
+        <input type="hidden" name="tag" value="map-trip" />
+        <input type="hidden" name="embed" value="1" />
+        {/* Honeypot for the Worker payload; Buttondown ignores the field. */}
+        <div style={{ position: "absolute", left: "-10000px", width: 1, height: 1, overflow: "hidden" }} aria-hidden="true">
+          <label>
+            Website
+            <input ref={hpRef} type="text" name="website" tabIndex={-1} autoComplete="off" />
+          </label>
+        </div>
+        <button type="submit" disabled={state === "sending"}>
+          {state === "sending" ? "Sending…" : "Send the trip →"}
+        </button>
+      </form>
+      <p className="map-sidebar__email-fine">
+        {state === "failed"
+          ? "Could not send just now. The share link was copied instead."
+          : "The link opens your stops on this map. Sending also signs you up for Sunday Field Notes, one short letter a week. Free, leave anytime."}
+      </p>
+    </div>
+  );
+}
+
+// ---------------------------------------------------------------------------
+// Post-trip next steps. Once a trip has real shape (three stops or more) the
+// planner should not dead-end at "copy link": point at the journal piece the
+// trip's own pins cite most, and at the Field Guide waitlist. Text lines, not
+// a second form; the trip stays the hero.
+// ---------------------------------------------------------------------------
+function TripNextSteps({ tripFeatures, go }) {
+  // The article linked by the most stops in this trip wins; /planning is the
+  // fallback when no stop cites a piece.
+  const suggestion = useMemo(() => {
+    const counts = new Map();
+    tripFeatures.forEach((f) => {
+      ((f.properties && f.properties.articles) || []).forEach((slug) => {
+        counts.set(slug, (counts.get(slug) || 0) + 1);
+      });
+    });
+    let best = null;
+    counts.forEach((n, slug) => {
+      const article = (window.ARTICLES || []).find((a) => a.slug === slug);
+      if (!article) return;
+      if (!best || n > best.n) best = { n, article };
+    });
+    return best ? best.article : null;
+  }, [tripFeatures]);
+
+  return (
+    <div className="map-sidebar__next">
+      <h4 className="map-sidebar__next-label">Before you go</h4>
+      {suggestion ? (
+        <p className="map-sidebar__next-line">
+          Reading for this trip:{" "}
+          <a
+            href={`/articles/${suggestion.slug}`}
+            onClick={(e) => {
+              e.preventDefault();
+              if (window.track) window.track("map_article_click", { slug: suggestion.slug, source: "trip_next" });
+              go(`a:${suggestion.slug}`);
+            }}
+          >{suggestion.title}</a>.
+        </p>
+      ) : (
+        <p className="map-sidebar__next-line">
+          Reading for this trip:{" "}
+          <a
+            href="/planning"
+            onClick={(e) => { e.preventDefault(); go("planning"); }}
+          >the planning guide</a>.
+        </p>
+      )}
+      <p className="map-sidebar__next-line">
+        This trip, offline, at the trailhead. The Field Guide is coming;{" "}
+        <a
+          href="/guide"
+          onClick={(e) => {
+            e.preventDefault();
+            if (window.track) window.track("guide_teaser_click", { location: "map_sidebar" });
+            go("guide");
+          }}
+        >the waitlist is open</a>.
+      </p>
     </div>
   );
 }
@@ -1125,6 +1332,8 @@ function TripPlannerSidebar({
   onToggleRegion,
   onShareTrip,
   onOpenRoute,
+  onEmailSubscribed,
+  go,
   announcerRef,
   toast,
 }) {
@@ -1421,6 +1630,14 @@ function TripPlannerSidebar({
             )}
           </div>
         )}
+        {tripStopIds.length >= 2 && (
+          <TripEmailBox
+            tripStopIds={tripStopIds}
+            onFallbackCopy={onShareTrip}
+            onSubscribed={onEmailSubscribed}
+          />
+        )}
+        {tripFeatures.length >= 3 && <TripNextSteps tripFeatures={tripFeatures} go={go} />}
         {toast && (
           <div className="map-sidebar__toast" role="status" aria-live="off">
             <span>{toast.msg}</span>
@@ -1687,6 +1904,9 @@ function buildInfoHtml(p, coords, tripStopIds) {
   const gmaps = p.gmapsUrl
     ? `<p style="margin:8px 0 0;"><a href="${escapeHtml(p.gmapsUrl)}" target="_blank" rel="noopener noreferrer" style="color:#1e6fb8;text-decoration:underline;font-weight:500;font-size:12px;">Open in Google Maps →</a></p>`
     : "";
+  // Per-pin deep link. /map?stop=<id> already selects a pin on load, so the
+  // share URL costs nothing; the copy handler lives in the domready wireup.
+  const stopShare = `<p style="margin:8px 0 0;"><a href="/map?stop=${escapeHtml(p.id)}" data-stop-share data-stop-id="${escapeHtml(p.id)}" style="color:#1e6fb8;text-decoration:underline;font-weight:500;font-size:12px;">Copy link to this stop</a></p>`;
   // Cross-links into the journal. Slugs come from points.geojson; anything
   // that no longer resolves against the live catalog is skipped silently.
   // The anchors get real hrefs for hover/long-press affordance, but clicks
@@ -1718,6 +1938,7 @@ function buildInfoHtml(p, coords, tripStopIds) {
       ${btn}
       ${directions}
       ${gmaps}
+      ${stopShare}
       ${journal}
     </div>
   `;

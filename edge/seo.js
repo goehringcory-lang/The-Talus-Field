@@ -328,8 +328,9 @@ function seoForPath(pathname) {
       title: `The Field Guide — ${SITE_NAME}`,
       description:
         "An offline web app for Yosemite. Tappable GPS for the parking turnouts, quiet trailheads, and insider tactics that locals use. Works at the trailhead when service dies.",
-      // GUIDE-LAUNCH: remove this robots override when the guide goes on sale.
-      robots: "noindex, nofollow",
+      breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["The Field Guide", null]],
+      // Indexable pre-launch: the page carries a waitlist (GUIDE_ON_SALE in
+      // page-guide.jsx) and accumulates search authority while it waits.
     },
     "/films": {
       title: `Moving Pictures — the Yosemite Nature Notes film archive — ${SITE_NAME}`,
@@ -356,6 +357,78 @@ function seoForPath(pathname) {
           publisher: { "@type": "Organization", name: "National Park Service" },
           isAccessibleForFree: true,
         })),
+      },
+    },
+    "/conditions": {
+      title: `Yosemite Conditions — webcams, waits, and weather — ${SITE_NAME}`,
+      description:
+        "Live Yosemite webcams, entrance wait times, and elevation-aware weather forecasts on one page. Check it the morning you drive in.",
+      breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Conditions", null]],
+    },
+    "/itineraries": {
+      title: `Yosemite Itineraries — day plans on the map — ${SITE_NAME}`,
+      description:
+        "Curated Yosemite itineraries for one, two, or three days, plus a half-day plan for late arrivals. Each opens as a ready-made trip on the interactive map.",
+      breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Itineraries", null]],
+      // Hand-maintained mirror of itineraries-data.js (this Worker imports
+      // JSON mirrors only). Matches the ItemList app.jsx builds client-side;
+      // update when a plan's title or dek changes there.
+      jsonLd: {
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        name: "Yosemite itineraries",
+        url: `${SITE_ORIGIN}/itineraries`,
+        numberOfItems: 4,
+        itemListElement: [
+          {
+            "@type": "ListItem",
+            position: 1,
+            item: {
+              "@type": "TouristTrip",
+              name: "One day in the Valley",
+              description:
+                "The Valley floor, west to east, morning to dinner. Arrive early, park once if you can, and let the day move at walking pace between the famous walls.",
+              url: `${SITE_ORIGIN}/itineraries#1day`,
+              touristType: "National park visitors",
+            },
+          },
+          {
+            "@type": "ListItem",
+            position: 2,
+            item: {
+              "@type": "TouristTrip",
+              name: "The Valley, then the rim",
+              description:
+                "Day one on the Valley floor. Day two up Glacier Point Road, stopping in trailhead order, for the views that look back down on everything you walked the day before.",
+              url: `${SITE_ORIGIN}/itineraries#2day`,
+              touristType: "National park visitors",
+            },
+          },
+          {
+            "@type": "ListItem",
+            position: 3,
+            item: {
+              "@type": "TouristTrip",
+              name: "Valley, rim, and high country",
+              description:
+                "The two-day plan, then a third day on Tioga Road, west to east toward the pass. The high country is a different park: granite domes, subalpine lakes, and half the crowd.",
+              url: `${SITE_ORIGIN}/itineraries#3day`,
+              touristType: "National park visitors",
+            },
+          },
+          {
+            "@type": "ListItem",
+            position: 4,
+            item: {
+              "@type": "TouristTrip",
+              name: "Arriving at two",
+              description:
+                "The honest plan for a late arrival: skip the trailheads, take the meadows and the river, and end at the pizza deck while the light is still on the walls.",
+              url: `${SITE_ORIGIN}/itineraries#halfday`,
+              touristType: "National park visitors",
+            },
+          },
+        ],
       },
     },
     "/map": {

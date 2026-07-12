@@ -24,7 +24,7 @@ window.ARTICLE_BODIES["glacier-point-road-open-2026"] = function GlacierPointRoa
       </p>
 
       <p>
-        The trailheads accessible from the road include Sentinel Dome and Taft Point (the two most-walked short hikes off Glacier Point Road), Pohono (the long rim trail), the top of the Panorama Trail, the top of the Four Mile Trail, Mono Meadow, and the Bridalveil Creek area. Most of these will have snow on the shaded north faces and patchy slush in the trees through May. Trekking poles are not optional this time of year if you are going beyond the immediate viewpoint. Microspikes are useful on the first half mile of any trail off the road that climbs.
+        The trailheads accessible from the road include Sentinel Dome and <a href="/map?stop=taft-point">Taft Point</a> (the two most-walked short hikes off Glacier Point Road), Pohono (the long rim trail), the top of the Panorama Trail, the top of the Four Mile Trail, Mono Meadow, and the Bridalveil Creek area. Most of these will have snow on the shaded north faces and patchy slush in the trees through May. Trekking poles are not optional this time of year if you are going beyond the immediate viewpoint. Microspikes are useful on the first half mile of any trail off the road that climbs.
       </p>
 
       <p>

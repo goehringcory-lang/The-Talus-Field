@@ -49,6 +49,7 @@ const TRIP_FEED_KEY = (token: string) => `tripfeed:${token}`
 const TRIP_FEED_TOKEN_KEY = (sub: string) => `tripfeedToken:${sub.toLowerCase()}`
 const TRIP_FEED_WRITE_ATTEMPTS_KEY = (sub: string) =>
   `tripfeedWriteAttempts:${sub.toLowerCase()}`
+const TRIP_EMAIL_ATTEMPTS_KEY = (ipHash: string) => `tripEmailAttempts:${ipHash}`
 
 // Google Calendar OAuth push (/api/calendar). Unlike the trip feed, the client
 // holds no capability token: the refresh token lives here, keyed by the JWT
@@ -201,6 +202,18 @@ export async function deleteTripFeed(env: Env, sub: string): Promise<void> {
   const token = await getTripFeedToken(env, sub)
   if (token) await env.GUIDE_BUYERS.delete(TRIP_FEED_KEY(token))
   await env.GUIDE_BUYERS.delete(TRIP_FEED_TOKEN_KEY(sub))
+}
+
+// "Email this trip" sends a real email per call, so the window is tight.
+// Keyed by hashed IP: the endpoint is unauthenticated and the raw address
+// never needs to touch KV.
+export async function recordTripEmailAttempt(env: Env, ipHash: string): Promise<number> {
+  const key = TRIP_EMAIL_ATTEMPTS_KEY(ipHash)
+  const raw = await env.GUIDE_BUYERS.get(key)
+  const next = (raw ? Number.parseInt(raw, 10) : 0) + 1
+  // 1-hour TTL gives a rolling window per IP.
+  await env.GUIDE_BUYERS.put(key, String(next), { expirationTtl: 60 * 60 })
+  return next
 }
 
 export async function recordTripFeedWriteAttempt(env: Env, sub: string): Promise<number> {

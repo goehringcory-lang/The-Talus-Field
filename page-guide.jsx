@@ -17,6 +17,12 @@ const GUIDE_API_BASE =
 // GUIDE_PRICE_CENTS in workers/wrangler.toml.
 const GUIDE_PRICE_FALLBACK_CENTS = 1900;
 
+// GUIDE-LAUNCH: flip to true when the guide goes on sale. False renders the
+// waitlist aside (GuideWaitlistBox) in place of the Stripe buy box; true
+// restores GuideBuyBox unchanged. The robots/sitemap flips are separate (see
+// the GUIDE-LAUNCH markers in app.jsx, edge/seo.js, gen-seo-artifacts.mjs).
+const GUIDE_ON_SALE = false;
+
 function formatPrice(cents) {
   const dollars = cents / 100;
   return Number.isInteger(dollars) ? `$${dollars}` : `$${dollars.toFixed(2)}`;
@@ -140,6 +146,57 @@ function GuideBuyBox() {
       <p style={{ fontFamily: "var(--sans)", fontSize: 12, color: "var(--ink-3)", lineHeight: 1.55, margin: "12px 0 0" }}>
         Already bought it? <a href={`${GUIDE_APP_BASE}/login`} style={{ color: "var(--ink-2)" }}>Sign in to the app →</a>
       </p>
+
+      <div style={{ borderTop: "1px solid var(--rule)", marginTop: 24, paddingTop: 20 }}>
+        <div className="eyebrow" style={{ marginBottom: 10 }}>In the app</div>
+        <ul style={{ listStyle: "none", padding: 0, margin: 0, fontFamily: "var(--sans)", fontSize: 13, color: "var(--ink-2)", lineHeight: 1.7 }}>
+          <li>· Four regional guides: the Valley, Glacier Point & Mariposa, Tuolumne, Hetch Hetchy</li>
+          <li>· Tappable GPS for every stop</li>
+          <li>· An offline topo map of the park, all stops pinned</li>
+          <li>· Download the whole guide for offline, about 45 MB</li>
+          <li>· Time budgets and a swap for when the lot is full</li>
+          <li>· Programs by your dates: ranger walks, Junior Ranger, tours, star parties. Synced online, readable offline</li>
+          <li>· A trip planner that exports your days to Google or Apple Calendar, GPS included</li>
+          <li>· Know-before-you-go essentials, a night-before checklist, and a packing list you check off in-app</li>
+          <li>· Search across everything</li>
+          <li>· The Secret Guide: unsigned turnouts, hidden stops, and secret spots, included</li>
+        </ul>
+      </div>
+
+      <div style={{ borderTop: "1px solid var(--rule)", marginTop: 24, paddingTop: 20 }}>
+        <div className="eyebrow" style={{ marginBottom: 10 }}>Questions</div>
+        <p style={{ fontFamily: "var(--sans)", fontSize: 13, color: "var(--ink-3)", lineHeight: 1.55, margin: 0 }}>
+          Email <a href="mailto:cory@thetalusfieldjournal.com" style={{ color: "var(--ink-2)" }}>cory@thetalusfieldjournal.com</a>.
+        </p>
+      </div>
+    </aside>
+  );
+}
+
+// Pre-launch waitlist aside. Same sticky slot as GuideBuyBox; honest copy,
+// price kept visible as plain text for anchoring, no scarcity counter while
+// nothing is on sale. The form is a standard NewsletterInline (Buttondown
+// tag guide-waitlist), so signups flow through the existing newsletter
+// events with location guide_waitlist.
+function GuideWaitlistBox() {
+  return (
+    <aside style={{ position: "sticky", top: 100, alignSelf: "start", border: "1px solid var(--ink)", padding: 32, background: "var(--paper-2)" }}>
+      <div className="eyebrow eyebrow--moss" style={{ marginBottom: 14 }}>The Field Guide</div>
+      <div style={{ fontFamily: "var(--display)", fontSize: 44, lineHeight: 1.05, fontWeight: 500, marginBottom: 8 }}>Not out yet.</div>
+      <div style={{ fontFamily: "var(--sans)", fontSize: 12, textTransform: "uppercase", letterSpacing: "0.14em", color: "var(--ink-3)", fontWeight: 600, marginBottom: 24 }}>
+        Offline app · 2026 Edition
+      </div>
+
+      <p style={{ fontFamily: "var(--serif)", fontSize: 15, color: "var(--ink)", lineHeight: 1.55, margin: "0 0 18px" }}>
+        The guide is in final testing. It will be $19, one payment, 18 months of access on every device you own. Leave your email and you will hear the day it opens, before anyone else.
+      </p>
+
+      <NewsletterInline
+        location="guide_waitlist"
+        tag="guide-waitlist"
+        heading="The waitlist"
+        blurb="One email when the guide opens. Sunday Field Notes in the meantime, one short letter a week. Free, leave anytime."
+      />
 
       <div style={{ borderTop: "1px solid var(--rule)", marginTop: 24, paddingTop: 20 }}>
         <div className="eyebrow" style={{ marginBottom: 10 }}>In the app</div>
@@ -296,8 +353,8 @@ function GuidePage({ go }) {
             <p>That's the offer. Nineteen dollars.</p>
           </div>
 
-          {/* Right column. Sticky buy box */}
-          <GuideBuyBox />
+          {/* Right column. Sticky buy box while on sale, waitlist before. */}
+          {GUIDE_ON_SALE ? <GuideBuyBox /> : <GuideWaitlistBox />}
         </div>
       </div>
 

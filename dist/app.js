@@ -1,6 +1,7 @@
 var {
   useState,
-  useEffect
+  useEffect,
+  useRef
 } = React;
 var SITE_ORIGIN = "https://thetalusfieldjournal.com";
 function routeToPath(route) {
@@ -378,12 +379,61 @@ function buildSeo(route) {
       title: `The Field Guide — ${SITE_NAME}`,
       description: "An offline web app for Yosemite. Tappable GPS for the parking turnouts, quiet trailheads, and insider tactics locals use. Works when service dies.",
       ogType: "website",
-      robots: "noindex, nofollow"
+      breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["The Field Guide", null]]
     },
     map: {
       title: `Yosemite Trip Planner Map — ${SITE_NAME}`,
       description: "An interactive Yosemite map of vistas, trailheads, parking turnouts, picnic spots, and places to eat, with a trip builder. Curated by a resident of the park. Free.",
-      ogType: "website"
+      ogType: "website",
+      breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Map", null]],
+      jsonLd: {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        name: `Yosemite Trip Planner Map — ${SITE_NAME}`,
+        url: `${SITE_ORIGIN}/map`,
+        description: "An interactive Yosemite map of vistas, trailheads, parking turnouts, picnic spots, and places to eat, with a trip builder. Curated by a resident of the park. Free.",
+        isAccessibleForFree: true,
+        inLanguage: "en-US",
+        about: {
+          "@type": "Place",
+          name: "Yosemite National Park",
+          geo: {
+            "@type": "GeoCoordinates",
+            latitude: 37.8651,
+            longitude: -119.5383
+          }
+        }
+      }
+    },
+    conditions: {
+      title: `Yosemite Conditions — webcams, waits, and weather — ${SITE_NAME}`,
+      description: "Live Yosemite webcams, entrance wait times, and elevation-aware weather forecasts on one page. Check it the morning you drive in.",
+      ogType: "website",
+      breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Conditions", null]]
+    },
+    itineraries: {
+      title: `Yosemite Itineraries — day plans on the map — ${SITE_NAME}`,
+      description: "Curated Yosemite itineraries for one, two, or three days, plus a half-day plan for late arrivals. Each opens as a ready-made trip on the interactive map.",
+      ogType: "website",
+      breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Itineraries", null]],
+      jsonLd: {
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        name: "Yosemite itineraries",
+        url: `${SITE_ORIGIN}/itineraries`,
+        numberOfItems: (window.ITINERARIES || []).length,
+        itemListElement: (window.ITINERARIES || []).map((it, i) => ({
+          "@type": "ListItem",
+          position: i + 1,
+          item: {
+            "@type": "TouristTrip",
+            name: it.title,
+            description: it.dek,
+            url: `${SITE_ORIGIN}/itineraries#${it.id}`,
+            touristType: "National park visitors"
+          }
+        }))
+      }
     }
   };
   var meta = known[route] || known.home;
@@ -393,7 +443,7 @@ function buildSeo(route) {
     canonical: url,
     ogType: meta.ogType || "website",
     image: SITE_DEFAULT_IMAGE,
-    jsonLd: null,
+    jsonLd: meta.jsonLd || null,
     breadcrumb: meta.breadcrumb ? breadcrumbLd(meta.breadcrumb) : null,
     faq: meta.faq ? faqLd(meta.faq) : null,
     robots: meta.robots || null
@@ -451,20 +501,39 @@ function App() {
     }
     return pathToRoute(window.location.pathname);
   });
+  var initialPageView = useRef(true);
   useEffect(() => {
     applySeo(route);
+    if (initialPageView.current) {
+      initialPageView.current = false;
+      return;
+    }
+    window.track("page_view", {
+      page_location: window.location.href,
+      page_title: document.title
+    });
   }, [route]);
   useEffect(() => {
     var onClick = e => {
-      var a = e.target.closest && e.target.closest("a[data-aff-network]");
+      var a = e.target.closest && e.target.closest("a[href]");
       if (!a) return;
-      window.track("affiliate_click", {
-        aff_network: a.dataset.affNetwork || "unknown",
-        aff_list: a.dataset.affList || "",
-        aff_item_slug: a.dataset.affItemSlug || "",
-        aff_name: a.dataset.affName || "",
-        destination: a.href
-      });
+      if (a.dataset.affNetwork) {
+        window.track("affiliate_click", {
+          aff_network: a.dataset.affNetwork || "unknown",
+          aff_list: a.dataset.affList || "",
+          aff_item_slug: a.dataset.affItemSlug || "",
+          aff_name: a.dataset.affName || "",
+          destination: a.href
+        });
+        return;
+      }
+      if (a.target === "_blank" && a.host && a.host !== window.location.host) {
+        window.track("outbound_click", {
+          link_domain: a.host,
+          link_url: a.href,
+          location: window.location.pathname
+        });
+      }
     };
     document.addEventListener("click", onClick, {
       capture: true
@@ -576,6 +645,14 @@ function App() {
     page = React.createElement(GuidePage, {
       go: go
     });
+  } else if (route === "itineraries") {
+    page = React.createElement(ItinerariesPage, {
+      go: go
+    });
+  } else if (route === "conditions") {
+    page = React.createElement(ConditionsPage, {
+      go: go
+    });
   } else if (route === "map") {
     page = React.createElement(MapPage, {
       go: go
@@ -630,7 +707,7 @@ function App() {
 }
 window.routeToPath = routeToPath;
 window.SITE_ORIGIN = SITE_ORIGIN;
-var REQUIRED_GLOBALS = ["Header", "Footer", "ExitIntentNewsletter", "HomePage", "AboutPage", "ArticlesIndex", "CategoryPage", "ArticlePage", "KitPage", "PlacesPage", "AdvertisePage", "GuidePage", "MapPage", "FilmsPage", "PlanningGuide", "ChecklistPage", "NewsletterPage", "ContactPage", "PrivacyPage", "TermsPage", "AffiliatePage", "TweaksPanel", "useTweaks", "TweakSection", "TweakRadio"];
+var REQUIRED_GLOBALS = ["Header", "Footer", "ExitIntentNewsletter", "HomePage", "AboutPage", "ArticlesIndex", "CategoryPage", "ArticlePage", "KitPage", "PlacesPage", "AdvertisePage", "GuidePage", "MapPage", "FilmsPage", "ItinerariesPage", "ConditionsPage", "PlanningGuide", "ChecklistPage", "NewsletterPage", "ContactPage", "PrivacyPage", "TermsPage", "AffiliatePage", "TweaksPanel", "useTweaks", "TweakSection", "TweakRadio"];
 var missingGlobals = REQUIRED_GLOBALS.filter(n => typeof window[n] === "undefined");
 if (missingGlobals.length) {
   console.error("app.jsx boot: missing page globals (a script failed to load or register):", missingGlobals.join(", "));

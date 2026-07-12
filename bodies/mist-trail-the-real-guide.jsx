@@ -102,7 +102,7 @@ window.ARTICLE_BODIES["mist-trail-the-real-guide"] = function MistTrailBody() {
       </p>
 
       <p>
-        <strong>Time of day.</strong> Start early. The trailhead at Happy Isles fills by 8 a.m. on summer weekends. The Mist Trail is in shade in the early morning, which means cooler hiking and better light on the falls. By afternoon, the trail is in full sun and the heat on the granite stairs is punishing.
+        <strong>Time of day.</strong> Start early. The trailhead at Happy Isles fills by 8 a.m. on summer weekends. The closest parking is the trailhead lot at Curry Village, <a href="/map?stop=curry-village-trailhead-parking">pinned on the site's map</a>. The Mist Trail is in shade in the early morning, which means cooler hiking and better light on the falls. By afternoon, the trail is in full sun and the heat on the granite stairs is punishing.
       </p>
 
       <p>

@@ -25,6 +25,24 @@ var END_NEWSLETTER_OFFER = {
     blurb: "One letter a week, timed to the season you're reading about: what's blooming, what's flowing, what's changed."
   }
 };
+var END_NEWSLETTER_OFFER_B = {
+  planning: {
+    heading: "What changed this week in Yosemite",
+    blurb: "Reservation windows open and close. Roads do too. One Sunday note carries the week's changes so your plan doesn't age out."
+  },
+  trails: {
+    heading: "Trail status, Sundays",
+    blurb: "Trails close, creeks rise, the cables go up and come down. One letter a week with the status that matters before you drive in."
+  },
+  wildlife: {
+    heading: "What's moving in the park",
+    blurb: "Bears wake, owls fledge, the meadows turn week to week. One Sunday letter on what's happening out there right now."
+  },
+  seasonal: {
+    heading: "Hit the window, not the crowd",
+    blurb: "Waterfalls peak, colors turn, roads open late. One Sunday letter tracks the season so you time it right."
+  }
+};
 function newsletterTag(placement, cat) {
   return cat ? `${placement}-${cat}` : placement;
 }
@@ -464,12 +482,38 @@ function ArticlePage({
       letterSpacing: "0.18em",
       marginTop: 12
     }
-  }, "Open the map →")), React.createElement(NewsletterInline, {
-    location: "article_end",
-    tag: newsletterTag("article-end", article.cat),
-    heading: (END_NEWSLETTER_OFFER[article.cat] || {}).heading || "Sunday Field Notes",
-    blurb: (END_NEWSLETTER_OFFER[article.cat] || {}).blurb || "One letter a week. If you found this useful, you'll probably like the rest."
-  }))), related.length > 0 && React.createElement("section", {
+  }, "Open the map →")), (() => {
+    var endVariant = window.abVariant ? window.abVariant("article_end_copy") : "a";
+    var offers = endVariant === "b" ? END_NEWSLETTER_OFFER_B : END_NEWSLETTER_OFFER;
+    var offer = offers[article.cat] || {};
+    return React.createElement(NewsletterInline, {
+      location: "article_end",
+      tag: newsletterTag("article-end", article.cat),
+      heading: offer.heading || "Sunday Field Notes",
+      blurb: offer.blurb || "One letter a week. If you found this useful, you'll probably like the rest.",
+      variant: endVariant
+    });
+  })(), (article.cat === "trails" || article.cat === "planning") && React.createElement("p", {
+    style: {
+      fontFamily: "var(--sans)",
+      fontSize: 13,
+      color: "var(--ink-3)",
+      lineHeight: 1.6,
+      margin: "16px 0 0"
+    }
+  }, "The Field Guide, this site's advice as an offline app with GPS at the trailhead, is coming.", " ", React.createElement("a", {
+    href: "/guide",
+    onClick: e => {
+      e.preventDefault();
+      if (window.track) window.track("guide_teaser_click", {
+        location: "article_end"
+      });
+      go("guide");
+    },
+    style: {
+      color: "var(--ink-2)"
+    }
+  }, "The waitlist is open →")))), related.length > 0 && React.createElement("section", {
     className: "wrap",
     style: {
       paddingTop: 48,

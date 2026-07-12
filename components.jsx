@@ -407,8 +407,9 @@ function Footer({ go }) {
               <li><a href="/films" onClick={(e) => { e.preventDefault(); go("films"); }}>Films</a></li>
               <li><a href="/places" onClick={(e) => { e.preventDefault(); go("places"); }}>Directory</a></li>
               <li><a href="/map" onClick={(e) => { e.preventDefault(); go("map"); }}>The Map</a></li>
-              {/* GUIDE-LAUNCH: restore the Field Guide footer link here:
-                  <li><a href="/guide" onClick={(e) => { e.preventDefault(); window.track && window.track("guide_cta_click", { location: "footer_guide_link" }); go("guide"); }}>Field Guide</a></li> */}
+              <li><a href="/itineraries" onClick={(e) => { e.preventDefault(); go("itineraries"); }}>Itineraries</a></li>
+              <li><a href="/conditions" onClick={(e) => { e.preventDefault(); go("conditions"); }}>Conditions</a></li>
+              <li><a href="/guide" onClick={(e) => { e.preventDefault(); window.track && window.track("guide_cta_click", { location: "footer_guide_link" }); go("guide"); }}>Field Guide</a></li>
               <li><a href="/newsletter" onClick={(e) => { e.preventDefault(); go("newsletter"); }}>Newsletter</a></li>
               <li><a href="/contact" onClick={(e) => { e.preventDefault(); go("contact"); }}>Contact</a></li>
             </ul>
@@ -922,10 +923,61 @@ function MapLightbox({ src, alt, caption, onClose }) {
   );
 }
 
+// ============================================================
+// Live webcam strip (Yosemite Conservancy / Pixelcaster). Shared by the
+// homepage and /conditions. The cache-bust timestamp is fixed per mount so
+// the four thumbnails come from the same moment; a failed cam hides its own
+// tile. Every link is external and opens in a new tab, so the delegated
+// outbound_click listener in app.jsx measures the strip with no markup here.
+// ============================================================
+const WEBCAMS = [
+  { label: "Half Dome",      img: "ahwahnee2-t.jpg",  href: "https://yosemite.org/webcams/half-dome/",      alt: "Live view of Half Dome from Ahwahnee Meadow" },
+  { label: "Yosemite Falls", img: "yosfalls-t.jpg",   href: "https://yosemite.org/webcams/yosemite-falls/", alt: "Live view of Upper Yosemite Falls" },
+  { label: "El Capitan",     img: "turtleback-t.jpg", href: "https://yosemite.org/webcams/el-capitan/",     alt: "Live view of El Capitan from Turtleback Dome" },
+  { label: "Wawona",         img: "wawona-t.jpg",     href: "https://yosemite.org/webcams/wawona/",         alt: "Live view of Wawona" },
+];
+
+function WebcamStrip() {
+  const camCacheBust = useMemo(() => Date.now(), []);
+  return (
+    <>
+      <div className="cam-grid" style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 32 }}>
+        {WEBCAMS.map(cam => (
+          <a
+            key={cam.img}
+            className="cam-tile"
+            href={cam.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ textDecoration: "none", color: "inherit", display: "block" }}
+          >
+            <img
+              src={`https://pixelcaster.com/yosemite/webcams/${cam.img}?t=${camCacheBust}`}
+              alt={cam.alt}
+              loading="lazy"
+              decoding="async"
+              referrerPolicy="no-referrer"
+              onError={(e) => { const t = e.currentTarget.closest('.cam-tile'); if (t) t.style.display = 'none'; }}
+              style={{ width: "100%", aspectRatio: "3 / 2", objectFit: "cover", display: "block" }}
+            />
+            <div className="mono" style={{ marginTop: 10, fontSize: 11, textTransform: "uppercase", letterSpacing: "0.18em", color: "var(--ink-2)", fontWeight: 700 }}>
+              {cam.label}
+            </div>
+          </a>
+        ))}
+      </div>
+      <div className="mono" style={{ marginTop: 16, fontSize: 11, color: "var(--ink-3)", textAlign: "right" }}>
+        Live image · <a href="https://yosemite.org/webcams/" target="_blank" rel="noopener noreferrer" style={{ color: "inherit" }}>Yosemite Conservancy / Pixelcaster</a>
+      </div>
+    </>
+  );
+}
+
 // Expose
 Object.assign(window, {
   Placeholder, ResponsiveImage, preloadResponsive,
   SIZES_HERO, SIZES_BODY, SIZES_CARD,
   MotifMountains, MotifSun, MotifTrees,
   Header, Footer, ArticleCard, NewsletterInline, ExitIntentNewsletter, MapLightbox,
+  EntranceWaits, WebcamStrip,
 });

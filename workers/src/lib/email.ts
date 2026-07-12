@@ -97,6 +97,86 @@ export async function sendMagicLink(
   }
 }
 
+export async function sendTripLink(
+  env: Env,
+  args: { to: string; tripUrl: string; stopCount: number },
+): Promise<void> {
+  if (!env.RESEND_API_KEY) {
+    throw new Error('RESEND_API_KEY not configured')
+  }
+
+  const { to, tripUrl, stopCount } = args
+  const editorialOrigin = env.EDITORIAL_BASE_URL || 'https://thetalusfieldjournal.com'
+  const stopsLabel = stopCount === 1 ? '1 stop' : `${stopCount} stops`
+
+  const text = [
+    `Your Yosemite trip, ${stopsLabel}.`,
+    ``,
+    `Open it on the map:`,
+    tripUrl,
+    ``,
+    `The link keeps your stops in order. It works on any device.`,
+    ``,
+    `Sunday Field Notes carries what changed in the park each week.`,
+    `You are on the list if you asked to be; nothing else follows from this email.`,
+    `— Cory`,
+  ].join('\n')
+
+  // Same inlined brand palette as the magic-link email: mail clients strip
+  // <style>, so hex values ride along. The mark is served by the editorial
+  // site.
+  const serif = `Georgia, 'Times New Roman', serif`
+  const sans = `-apple-system, 'Segoe UI', Arial, sans-serif`
+  const html = `
+    <div style="background:#f1ead6;padding:36px 16px;">
+      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:520px;margin:0 auto;">
+        <tr>
+          <td style="padding:0 0 18px;">
+            <img src="${editorialOrigin}/img/mark-192.png" width="60" height="47" alt="The Talus Field" style="display:block;border:0;" />
+            <div style="font-family:${serif};font-size:24px;color:#14110c;padding-top:12px;">The Talus Field</div>
+            <div style="font-family:${sans};font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#50402e;padding-top:4px;">Trip Planner</div>
+          </td>
+        </tr>
+        <tr>
+          <td style="border-top:1px solid #2a2118;padding:24px 0 0;">
+            <p style="font-family:${serif};font-size:17px;line-height:1.55;color:#14110c;margin:0 0 18px;">Your Yosemite trip, ${stopsLabel}.</p>
+            <p style="margin:0 0 26px;">
+              <a href="${tripUrl}" style="display:inline-block;padding:14px 22px;background:#14110c;color:#f1ead6;text-decoration:none;font-family:${sans};font-weight:600;letter-spacing:2px;text-transform:uppercase;font-size:13px;">
+                Open the trip
+              </a>
+            </p>
+            <p style="font-family:${serif};font-size:15px;line-height:1.55;color:#14110c;margin:0 0 22px;">The link keeps your stops in order. It works on any device.</p>
+            <p style="font-family:${sans};font-size:13px;color:#50402e;margin:0 0 6px;">Sunday Field Notes carries what changed in the park each week. You are on the list if you asked to be; nothing else follows from this email.</p>
+            <p style="font-family:${sans};font-size:13px;color:#50402e;margin:0;">&mdash; Cory</p>
+          </td>
+        </tr>
+      </table>
+    </div>
+  `.trim()
+
+  const body: ResendBody = {
+    from: CONTACT_FROM,
+    to: [to],
+    subject: 'Your Yosemite trip',
+    text,
+    html,
+  }
+
+  const res = await fetch('https://api.resend.com/emails', {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${env.RESEND_API_KEY}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(body),
+  })
+
+  if (!res.ok) {
+    const detail = await res.text()
+    throw new Error(`Resend send failed (${res.status}): ${detail}`)
+  }
+}
+
 function escapeHtml(s: string): string {
   return s
     .replace(/&/g, '&amp;')
