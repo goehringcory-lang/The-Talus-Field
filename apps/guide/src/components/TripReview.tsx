@@ -33,10 +33,14 @@ export default function TripReview({ slotted, windowDays, filenameDate }: Props)
   const days = [...slotted.entries()]
   let eventCount = 0
   let allDayCount = 0
+  // Days that contribute at least one exportable event: a day whose only
+  // items are unresolvable stops must not inflate the "across N days" summary.
+  let dayCount = 0
   // Stop items whose id no longer resolves (removed by a content edit): they
   // won't export, and pretending otherwise makes the count above a lie.
   let missingCount = 0
   for (const [, items] of days) {
+    let dayEvents = 0
     for (const s of items) {
       const f = slottedToEventFields(s)
       if (!f) {
@@ -44,8 +48,10 @@ export default function TripReview({ slotted, windowDays, filenameDate }: Props)
         continue
       }
       eventCount += 1
+      dayEvents += 1
       if (f.allDay) allDayCount += 1
     }
+    if (dayEvents > 0) dayCount += 1
   }
 
   return (
@@ -145,7 +151,7 @@ export default function TripReview({ slotted, windowDays, filenameDate }: Props)
         )}
         <p className="trip-review__summary">
           {eventCount} calendar {eventCount === 1 ? 'event' : 'events'} across{' '}
-          {days.length} {days.length === 1 ? 'day' : 'days'}
+          {dayCount} {dayCount === 1 ? 'day' : 'days'}
           {allDayCount > 0 ? ` · ${allDayCount} all-day` : ''}.
         </p>
         <Button disabled={eventCount === 0} onClick={() => setSheetOpen(true)}>

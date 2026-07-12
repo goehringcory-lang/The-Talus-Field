@@ -19,7 +19,23 @@ const DEBOUNCE_MS = 4000
 let timer: ReturnType<typeof setTimeout> | undefined
 let started = false
 
-export async function syncCalendarNow(): Promise<void> {
+// Pushes are serialized through this chain: the debounce timer, the online
+// listener, and the boot catch-up can otherwise overlap, and the Worker
+// applies whichever event set arrives last — a slow POST carrying an older
+// plan would land after (and overwrite) a newer one. Each sync builds its
+// payload only after the previous request settles.
+let chain: Promise<void> = Promise.resolve()
+
+export function syncCalendarNow(): Promise<void> {
+  const run = chain.then(() => doSyncCalendar())
+  chain = run.then(
+    () => undefined,
+    () => undefined,
+  )
+  return run
+}
+
+async function doSyncCalendar(): Promise<void> {
   if (!readGoogleCalInfo()) return
   if (!navigator.onLine) return
   try {

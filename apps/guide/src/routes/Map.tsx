@@ -52,7 +52,9 @@ type UrlState = {
 const ALL_KINDS = Object.keys(KIND_STYLES) as StopKind[]
 
 function isStopKind(value: string): value is StopKind {
-  return value in KIND_STYLES
+  // Own-property check: `in` walks the prototype chain, so a URL like
+  // ?kinds=constructor would validate and hide every pin.
+  return Object.hasOwn(KIND_STYLES, value)
 }
 
 function readUrlState(): UrlState {
@@ -684,15 +686,18 @@ export default function Map() {
     return out
   }, [mappableStops])
 
-  // The five closest mappable stops, for the "Near you" list. Straight-line
-  // distance; mappableStops already guarantees a coord.
+  // The five closest visible stops, for the "Near you" list. Straight-line
+  // distance; a coord is guaranteed upstream. Derived from visibleStops (not
+  // mappableStops) for the same reason as browseGroups below: a row pointing
+  // at a filtered-out marker would select nothing and silently close any open
+  // popup.
   const nearbyStops = useMemo(() => {
     if (!userPos) return []
-    return mappableStops
+    return visibleStops
       .map((stop) => ({ stop, miles: haversineMiles(userPos, stop.coord!) }))
       .sort((a, b) => a.miles - b.miles)
       .slice(0, 5)
-  }, [mappableStops, userPos])
+  }, [visibleStops, userPos])
 
   // "Browse by area" groups for the points pane: the four regions in REGIONS
   // order plus a region-less "Secret spots" group. Derived from visibleStops

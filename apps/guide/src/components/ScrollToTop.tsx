@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 import { useLocation, useNavigationType } from 'react-router-dom'
 
 // BrowserRouter keeps the window scroll position across navigations, so a
@@ -8,9 +8,16 @@ import { useLocation, useNavigationType } from 'react-router-dom'
 export default function ScrollToTop() {
   const { pathname, hash } = useLocation()
   const navigationType = useNavigationType()
+  // Query-param-only navigations (filter chips via setSearchParams) must not
+  // scroll. pathname is deliberately the only location dep, but the effect
+  // also re-runs when navigationType flips (POP → PUSH after a Back), so gate
+  // on the pathname actually having changed.
+  const prevPathname = useRef(pathname)
 
   useEffect(() => {
-    if (navigationType !== 'POP' && !hash) {
+    const pathChanged = prevPathname.current !== pathname
+    prevPathname.current = pathname
+    if (pathChanged && navigationType !== 'POP' && !hash) {
       window.scrollTo(0, 0)
     }
   }, [pathname, hash, navigationType])

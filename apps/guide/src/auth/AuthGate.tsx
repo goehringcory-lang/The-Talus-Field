@@ -5,6 +5,7 @@ import {
   clearAccessEndedAt,
   clearStoredJwt,
   readSessionFromStorage,
+  sessionFromJwt,
   setAccessEndedAt,
   setStoredJwt,
 } from './storage'
@@ -65,7 +66,11 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     setStoredJwt(jwt)
     // A successful sign-in supersedes any "access ended" explanation.
     clearAccessEndedAt()
-    setSession(readSessionFromStorage())
+    // Derive the session from the JWT itself: in storage-blocked contexts
+    // setStoredJwt silently fails, and re-reading storage here would throw
+    // away a session the server just issued (and the magic-link token that
+    // bought it). The session then simply doesn't survive a reload.
+    setSession(sessionFromJwt(jwt))
   }, [])
 
   const signOut = useCallback(() => {
@@ -86,8 +91,15 @@ export function RequireAuth({ children }: { children: ReactNode }) {
   const { session } = useAuth()
   const location = useLocation()
   if (!session) {
-    // Keep the query string: /map?tab=…&stop=… is the shape shared links use.
-    return <Navigate to="/login" replace state={{ from: location.pathname + location.search }} />
+    // Keep the query string and hash: /map?tab=…&stop=… is the shape shared
+    // links use, and /secret-guide#<id> is the legacy bookmark shape.
+    return (
+      <Navigate
+        to="/login"
+        replace
+        state={{ from: location.pathname + location.search + location.hash }}
+      />
+    )
   }
   return <>{children}</>
 }

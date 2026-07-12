@@ -31,14 +31,18 @@ function formatDayLabel(date: string): string {
 }
 
 export function groupPeriodsIntoDays(periods: WeatherPeriodT[], maxDays = 5): ForecastDay[] {
-  // Insertion order is chronological order; first writer per slot wins,
-  // defensive against duplicate halves in a malformed feed.
+  // Insertion order is chronological order. Day halves keep the first writer
+  // (defensive against duplicates in a malformed feed). Night halves keep the
+  // LAST writer: an early-morning fetch legitimately opens with "Overnight"
+  // (the night now ending, dated today) followed later by "Tonight" (the
+  // coming night, also dated today), and the coming night's low is the one
+  // the card must show.
   const byDate = new Map<string, { day?: WeatherPeriodT; night?: WeatherPeriodT }>()
   for (const period of periods) {
     const date = period.startTime.slice(0, 10)
     const slot = byDate.get(date) ?? {}
     if (period.isDaytime) slot.day = slot.day ?? period
-    else slot.night = slot.night ?? period
+    else slot.night = period
     byDate.set(date, slot)
   }
 

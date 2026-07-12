@@ -188,7 +188,11 @@ export default function Programs() {
   }, [filtered])
 
   const syncedStale = isOlderThanDays(syncedAt, 7)
-  const showStaleWarning = offline || syncedStale || (coverage !== 'full' && events.length > 0)
+  // Only warn about saved listings when some actually exist: offline with an
+  // empty cache already renders the "no saved listings" error callout, and
+  // stacking "listings were saved earlier" on top of it is a contradiction.
+  const showStaleWarning =
+    syncedStale || ((offline || coverage !== 'full') && events.length > 0)
 
   // Row action shared by seasonal windows and program rows: quick-add from
   // the collapsed summary, checkmark link once added.

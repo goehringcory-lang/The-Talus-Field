@@ -105,14 +105,19 @@ function GoogleCalendarSection() {
   // param so a reload can't replay it. The strip changes `calendarParam` to
   // null, which re-runs this and hits the early return — no loop. Double-firing
   // under StrictMode is harmless: the sync and status fetch are idempotent.
+  //
+  // No cancellation flag, deliberately: the param strip below re-runs this
+  // effect immediately, so a cleanup flag would fire before the status fetch
+  // resolves and permanently skip the first calendar push — the card would
+  // claim "syncing now" while pushing nothing until the next plan edit. The
+  // work is idempotent and wanted even if the card unmounts mid-flight
+  // (setState after unmount is a no-op).
   useEffect(() => {
     if (!calendarParam) return
-    let cancelled = false
 
     // All setState lives inside this async task (not the effect body) so it
     // doesn't trip the no-synchronous-setState-in-effect rule.
     void (async () => {
-      if (cancelled) return
       if (calendarParam === 'denied') {
         setNote('denied')
       } else if (calendarParam === 'error') {
@@ -121,7 +126,7 @@ function GoogleCalendarSection() {
         setNote('connected')
         try {
           const status = await fetchGoogleStatus()
-          if (cancelled || !status.connected) return
+          if (!status.connected) return
           setState({
             kind: 'connected',
             email: status.email ?? undefined,
@@ -129,7 +134,6 @@ function GoogleCalendarSection() {
           })
           // First push of the current plan right after connecting.
           await syncGoogleCalendarNow()
-          if (cancelled) return
           const local = readGoogleCalInfo()
           if (local) setState({ kind: 'connected', email: local.email, lastSyncAt: local.lastSyncAt })
         } catch {
@@ -143,10 +147,6 @@ function GoogleCalendarSection() {
     const next = new URLSearchParams(params)
     next.delete('calendar')
     setParams(next, { replace: true })
-
-    return () => {
-      cancelled = true
-    }
   }, [calendarParam, params, setParams])
 
   async function connect() {

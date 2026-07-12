@@ -93,12 +93,18 @@ export function slotDay(day: string, items: TripItemT[]): SlottedItem[] {
     if (item.type === 'program') {
       const start = item.snapshot.timeStart ? toMinutes(item.snapshot.timeStart) : null
       const end = item.snapshot.timeEnd ? toMinutes(item.snapshot.timeEnd) : null
+      // An end at or before the start means the program runs past midnight
+      // (a 22:00–00:30 star party); the ICS layer already rolls DTEND's date
+      // forward, so give it the real duration instead of the 60-min default.
+      const duration =
+        start !== null && end !== null && end !== start
+          ? (end > start ? end : end + 1440) - start
+          : DEFAULT_PROGRAM_MIN
       fixed.push({
         item,
         day,
         startMin: start,
-        durationMin:
-          start !== null && end !== null && end > start ? end - start : DEFAULT_PROGRAM_MIN,
+        durationMin: duration,
         fixed: true,
       })
     } else if (item.startTime) {
