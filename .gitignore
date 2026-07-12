@@ -30,3 +30,7 @@ _local_cdn/
 !.dev.vars.example
 .env*
 !.env.example
+
+# Photo candidates awaiting selection (fetch-guide-photos.mjs); selected
+# photos land in apps/guide/public/photos/, candidates never ship.
+scripts/data/photo-candidates/

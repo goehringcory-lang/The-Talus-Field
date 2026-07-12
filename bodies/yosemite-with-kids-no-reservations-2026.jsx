@@ -40,7 +40,7 @@ window.ARTICLE_BODIES["yosemite-with-kids-no-reservations-2026"] = function Yose
       </p>
 
       <p>
-        <strong>Pack the car tonight, not tomorrow morning.</strong> The <a href="/articles/pack-your-car-for-yosemite">car packing guide</a> has the full list, but grab these five things you'll forget: sunscreen (the UV at elevation is brutal), a refillable water bottle for every person (including the toddler), a headlamp (if you stay for sunset, which you should, you'll walk back in the dark), layers (the Valley can be 95 degrees at noon and 55 degrees at sunset), and cash for the entrance fee if you don't have an America the Beautiful pass.
+        <strong>Pack the car tonight, not tomorrow morning.</strong> The <a href="/articles/pack-your-car-for-yosemite">car packing guide</a> has the full list, but grab these five things you'll forget: sunscreen (the UV at elevation is brutal), a refillable water bottle for every person (including the toddler), a headlamp (if you stay for sunset, which you should, you'll walk back in the dark), layers (the Valley can be 95 degrees at noon and 55 degrees at sunset), and a credit or debit card for the entrance fee if you don't have an America the Beautiful pass (the gate is cashless).
       </p>
 
       <p>
@@ -136,7 +136,7 @@ window.ARTICLE_BODIES["yosemite-with-kids-no-reservations-2026"] = function Yose
       </p>
 
       <p>
-        <strong>Picnic spots.</strong> Skip the Village Store bench. The Cascade Picnic Area is shaded, has tables, has a bathroom, and sits on the river. El Capitan Meadow has no tables but has the best views in the Valley. Bring a blanket and eat lunch with 3,000 feet of granite in front of you. Sentinel Bridge has a spot on the south bank of the Merced with river access and shade. All of these are better than any restaurant in the park, and your cooler food is better than anything you'd buy.
+        <strong>Picnic spots.</strong> Skip the Village Store bench. The <a href="/map?stop=cascade-picnic-area">Cascade Picnic Area</a> is shaded, has tables, has a bathroom, and sits on the river. El Capitan Meadow has no tables but has the best views in the Valley. Bring a blanket and eat lunch with 3,000 feet of granite in front of you. Sentinel Bridge has a spot on the south bank of the Merced with river access and shade. All of these are better than any restaurant in the park, and your cooler food is better than anything you'd buy.
       </p>
 
       <h2>The stuff that will ruin your day</h2>

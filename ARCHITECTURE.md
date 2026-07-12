@@ -45,14 +45,23 @@ All events fire through `window.track`. Names and where they fire:
 |---|---|
 | `newsletter_signup`, `newsletter_impression` | components.jsx helpers, called by every newsletter unit with a `location` param |
 | `newsletter_exit_intent_shown` | components.jsx (ExitIntentNewsletter) |
-| `guide_cta_click` | components.jsx (Header) |
+| `guide_cta_click` | components.jsx (Footer "Field Guide" link) |
 | `guide_buy_click` | page-guide.jsx |
 | `film_play` | page-films.jsx |
 | `affiliate_click` | app.jsx (delegated document listener on `a[data-aff-network]`) |
+| `outbound_click` | app.jsx (same delegated listener; external-host `target="_blank"` anchors without `data-aff-network`) |
+| `page_view` | app.jsx (SPA route changes after the first render; the initial pageview comes from the gtag config in index.html) |
+| `contact_submit` | page-newsletter-contact.jsx (successful contact-form send, with `subject`) |
+| `kit_item_toggle` | page-kit.jsx (checklist tick/untick, with `item_id` and `checked`) |
 | `article_progress` | page-article.jsx (reading depth against the body at the 25/50/75/100 marks, once per view) |
 | `related_click` | page-article.jsx (related-rail card clicks, with `from` = the referring slug) |
 | `resume_shown`, `resume_click` | page-home.jsx (the "Where you left off" band) |
-| `trip_add`, `trip_add_all`, `trip_quick_pick`, `trip_share`, `trip_share_open`, `trip_route_open`, `map_pin_click`, `map_article_click` | page-map.jsx |
+| `trip_add`, `trip_add_all`, `trip_quick_pick`, `trip_undo`, `trip_share`, `trip_share_open`, `trip_route_open`, `map_pin_click`, `map_article_click`, `map_filter_category`, `map_search`, `map_cluster_click`, `map_directions_click` | page-map.jsx |
+| `trip_email_send` | page-map.jsx (TripEmailBox, "email this trip to yourself", with `trip_size`) |
+| `stop_share` | page-map.jsx (InfoWindow "Copy link to this stop") |
+| `guide_teaser_click` | page-map.jsx (trip next-steps card), page-article.jsx (article-end line, trails/planning), page-home.jsx (About strip line) — with `location` |
+| `itinerary_open_map` | page-itineraries.jsx ("Open this trip on the map", with `itinerary`) |
+| `home_utility_click` | page-home.jsx ("Plan your trip" row, with `target`) |
 
 ## localStorage key inventory
 

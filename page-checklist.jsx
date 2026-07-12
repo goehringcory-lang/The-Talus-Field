@@ -107,14 +107,14 @@ function ChecklistPage({ go }) {
           <label style={item}><input type="checkbox" style={cb} /><A r="a:yosemite-gateway-towns-compared">Gateway-town lodging</A>: 1 to 3 months ahead for summer dates.</label>
           <label style={item}><input type="checkbox" style={cb} /><A r="a:half-dome-permit-lottery-2026">Half Dome preseason lottery</A>: apply March 1 to 31 on Recreation.gov.</label>
           <label style={item}><input type="checkbox" style={cb} /><A r="a:tioga-road-opening-weekend-2026">Tuolumne Meadows</A> campground: opens on Recreation.gov in advance; books fast.</label>
-          <label style={item}><input type="checkbox" style={cb} />Wilderness permits for overnight trips: apply 24 weeks ahead via Recreation.gov.</label>
+          <label style={item}><input type="checkbox" style={cb} /><A r="a:yosemite-wilderness-permits-guide">Wilderness permits</A> for overnight trips: apply 24 weeks ahead via Recreation.gov.</label>
         </section>
 
         <section className="checklist-section" style={sectionStyle}>
           <div style={sectionLabel}>III · What not to book</div>
           <h2 style={sectionTitle}>Common mistakes</h2>
           <label style={item}><input type="checkbox" style={cb} />Don't lock a <A r="a:first-time-yosemite-overwhelm">rigid day-by-day itinerary</A>. Weather and <A r="a:yosemite-during-smoke-season">smoke</A> flex everything.</label>
-          <label style={item}><input type="checkbox" style={cb} />Don't pay third-party sites for "Yosemite passes." <A r="a:yosemite-without-reservations-2026">Pay $35 at the gate</A> or use America the Beautiful.</label>
+          <label style={item}><input type="checkbox" style={cb} />Don't pay third-party sites for "Yosemite passes." <A r="a:yosemite-without-reservations-2026">Pay $35 at the gate</A> or use America the Beautiful. (International visitors: a $100 per-person surcharge applies in 2026.)</label>
           <label style={item}><input type="checkbox" style={cb} />Don't book Curry Village if you want quiet sleep. It's loud.</label>
           <label style={item}><input type="checkbox" style={cb} />Don't book <A r="a:yosemite-gateway-towns-compared">Oakhurst</A> if you're focused on the Valley. The drive is the longest of any gateway.</label>
         </section>
@@ -141,7 +141,7 @@ function ChecklistPage({ go }) {
           <label style={item}><input type="checkbox" style={cb} />5 gallons of water (not for drinking, for radiators, rinsing, the unexpected).</label>
           <label style={item}><input type="checkbox" style={cb} />Paper park map (cell service dies past Crane Flat).</label>
           <label style={item}><input type="checkbox" style={cb} />Sunscreen and a wide-brim hat. UV at elevation is brutal.</label>
-          <label style={item}><input type="checkbox" style={cb} />Cash for the gate or your <A r="a:yosemite-without-reservations-2026">America the Beautiful pass</A>.</label>
+          <label style={item}><input type="checkbox" style={cb} />A credit or debit card for the gate (the entrance stations are cashless) or your <A r="a:yosemite-without-reservations-2026">America the Beautiful pass</A>.</label>
           <p style={note}>Bear spray is not permitted in Yosemite. Don't bring it.</p>
         </section>
 
@@ -184,6 +184,8 @@ function ChecklistPage({ go }) {
         {/* Newsletter capture */}
         <div className="checklist-section">
           <NewsletterInline
+            location="checklist"
+            tag="checklist"
             heading="Want updates through the season?"
             blurb="One Yosemite email a week, when there is something to say. Free. Subscribers hear about updates to this checklist first."
           />

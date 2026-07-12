@@ -2,12 +2,10 @@ var {
   useMemo,
   useState
 } = React;
-function HomeHeroCapture({
-  variant
-}) {
+function HomeHeroCapture() {
   var [done, setDone] = useState(false);
   var subscribed = isSubscribed();
-  var ref = useNewsletterImpression("home_hero", "home", !subscribed && !done, variant);
+  var ref = useNewsletterImpression("home_hero", "home", !subscribed && !done);
   if (subscribed && !done) {
     return React.createElement("p", {
       className: "hero__capture-note",
@@ -32,7 +30,7 @@ function HomeHeroCapture({
     method: "post",
     target: "buttondown-target",
     onSubmit: () => {
-      if (window.trackNewsletterSubmit) window.trackNewsletterSubmit("home_hero", "home", variant);
+      if (window.trackNewsletterSubmit) window.trackNewsletterSubmit("home_hero", "home");
       setTimeout(() => setDone(true), 0);
     }
   }, React.createElement("input", {
@@ -99,37 +97,12 @@ function ResumeReading({
     className: "mono resume-band__cta"
   }, "Keep reading →")));
 }
-var WEBCAMS = [{
-  label: "Half Dome",
-  img: "ahwahnee2-t.jpg",
-  href: "https://yosemite.org/webcams/half-dome/",
-  alt: "Live view of Half Dome from Ahwahnee Meadow"
-}, {
-  label: "Yosemite Falls",
-  img: "yosfalls-t.jpg",
-  href: "https://yosemite.org/webcams/yosemite-falls/",
-  alt: "Live view of Upper Yosemite Falls"
-}, {
-  label: "El Capitan",
-  img: "turtleback-t.jpg",
-  href: "https://yosemite.org/webcams/el-capitan/",
-  alt: "Live view of El Capitan from Turtleback Dome"
-}, {
-  label: "Wawona",
-  img: "wawona-t.jpg",
-  href: "https://yosemite.org/webcams/wawona/",
-  alt: "Live view of Wawona"
-}];
 function HomePage({
   go
 }) {
   var recent = window.ARTICLES.slice(0, 6);
   var seasonal = window.byCategory("seasonal").slice(0, 2);
   var startHere = (window.START_HERE || []).map(slug => window.findArticle(slug)).filter(Boolean);
-  var camCacheBust = useMemo(() => Date.now(), []);
-  var heroVariant = window.abVariant("hero_actions");
-  var webcamVariant = window.abVariant("home_webcams");
-  var calloutVariant = window.abVariant("callout_bands");
   var scrollToStartHere = e => {
     e.preventDefault();
     document.getElementById("start-here")?.scrollIntoView({
@@ -145,68 +118,12 @@ function HomePage({
   }, React.createElement("div", {
     className: "section-head"
   }, React.createElement("h2", null, "From the park, right now"), React.createElement("a", {
-    href: "https://yosemite.org/webcams/",
-    target: "_blank",
-    rel: "noopener noreferrer"
-  }, "All cameras →")), React.createElement("div", {
-    style: {
-      display: "grid",
-      gridTemplateColumns: "repeat(4, 1fr)",
-      gap: 32
+    href: "/conditions",
+    onClick: e => {
+      e.preventDefault();
+      go("conditions");
     }
-  }, WEBCAMS.map(cam => React.createElement("a", {
-    key: cam.img,
-    className: "cam-tile",
-    href: cam.href,
-    target: "_blank",
-    rel: "noopener noreferrer",
-    style: {
-      textDecoration: "none",
-      color: "inherit",
-      display: "block"
-    }
-  }, React.createElement("img", {
-    src: `https://pixelcaster.com/yosemite/webcams/${cam.img}?t=${camCacheBust}`,
-    alt: cam.alt,
-    loading: "lazy",
-    decoding: "async",
-    referrerPolicy: "no-referrer",
-    onError: e => {
-      var t = e.currentTarget.closest('.cam-tile');
-      if (t) t.style.display = 'none';
-    },
-    style: {
-      width: "100%",
-      aspectRatio: "3 / 2",
-      objectFit: "cover",
-      display: "block"
-    }
-  }), React.createElement("div", {
-    className: "mono",
-    style: {
-      marginTop: 10,
-      fontSize: 11,
-      textTransform: "uppercase",
-      letterSpacing: "0.18em",
-      color: "var(--ink-2)",
-      fontWeight: 700
-    }
-  }, cam.label)))), React.createElement("div", {
-    className: "mono",
-    style: {
-      marginTop: 16,
-      fontSize: 11,
-      color: "var(--ink-3)",
-      textAlign: "right"
-    }
-  }, "Live image · ", React.createElement("a", {
-    href: "https://yosemite.org/webcams/",
-    target: "_blank",
-    rel: "noopener noreferrer",
-    style: {
-      color: "inherit"
-    }
-  }, "Yosemite Conservancy / Pixelcaster")));
+  }, "Conditions and webcams →")), React.createElement(WebcamStrip, null));
   return React.createElement("div", {
     className: "page"
   }, React.createElement("section", {
@@ -219,9 +136,7 @@ function HomePage({
     className: "dot"
   }), React.createElement("span", null, window.SITE && window.SITE.issue || "Vol. III", window.SITE && window.SITE.issueDetail ? ` · ${window.SITE.issueDetail}` : "")), React.createElement("h1", null, "Notes from the Field."), React.createElement("p", {
     className: "hero__dek"
-  }, "A field journal of one national park. Trails, weather, what is open and what is not, and the occasional longer essay when something is worth sitting with."), heroVariant === "b" ? React.createElement(React.Fragment, null, React.createElement(HomeHeroCapture, {
-    variant: heroVariant
-  }), React.createElement("div", {
+  }, "A field journal of one national park, written by someone who lives here. Trails, weather, what is open and what is not, and the occasional longer essay when something is worth sitting with."), React.createElement(HomeHeroCapture, null), React.createElement("div", {
     className: "hero__cta",
     style: {
       marginTop: 18
@@ -240,31 +155,7 @@ function HomePage({
       borderBottom: "1px solid var(--rule)",
       paddingBottom: 2
     }
-  }, "First time in Yosemite? Start here →"))) : React.createElement(React.Fragment, null, React.createElement("div", {
-    className: "hero__cta"
-  }, React.createElement("a", {
-    className: "btn",
-    href: "#start-here",
-    onClick: scrollToStartHere
-  }, "First Time Visitor to Yosemite: Start Here ", React.createElement("span", {
-    className: "btn__arrow"
-  }, "→")), React.createElement("a", {
-    className: "btn btn--ghost",
-    href: "/checklist",
-    onClick: e => {
-      e.preventDefault();
-      go("checklist");
-    }
-  }, "Free checklist"), React.createElement("a", {
-    className: "btn btn--ghost",
-    href: "/newsletter",
-    onClick: e => {
-      e.preventDefault();
-      go("newsletter");
-    }
-  }, "Sunday Field Notes / The Map")), React.createElement(HomeHeroCapture, {
-    variant: heroVariant
-  }))), React.createElement(Placeholder, {
+  }, "First time in Yosemite? Start here →"))), React.createElement(Placeholder, {
     caption: "El Capitan and Bridalveil at sunset",
     credit: "Rodrigo Soares / Unsplash",
     image: "img/valley-view-sunset-rodrigo-soares.jpg",
@@ -273,9 +164,33 @@ function HomePage({
     natural: true,
     eager: true,
     motif: React.createElement(MotifMountains, null)
-  }))), React.createElement(ResumeReading, {
+  }))), React.createElement("section", {
+    className: "wrap",
+    style: {
+      paddingTop: 28
+    }
+  }, React.createElement("nav", {
+    className: "home-utility",
+    "aria-label": "Trip tools"
+  }, React.createElement("span", {
+    className: "home-utility__label"
+  }, "Plan your trip"), [["map", "/map", "The Map"], ["itineraries", "/itineraries", "Itineraries"], ["planning", "/planning", "Planning Guide"], ["checklist", "/checklist", "Checklist"], ["conditions", "/conditions", "Conditions"]].map(([key, href, label], i) => React.createElement(React.Fragment, {
+    key: key
+  }, i > 0 && React.createElement("span", {
+    className: "home-utility__sep",
+    "aria-hidden": "true"
+  }, "·"), React.createElement("a", {
+    href: href,
+    onClick: e => {
+      e.preventDefault();
+      if (window.track) window.track("home_utility_click", {
+        target: key
+      });
+      go(key);
+    }
+  }, label))))), React.createElement(ResumeReading, {
     go: go
-  }), webcamVariant !== "b" && webcamsSection, startHere.length > 0 && React.createElement("section", {
+  }), startHere.length > 0 && React.createElement("section", {
     id: "start-here",
     className: "wrap",
     style: {
@@ -322,7 +237,7 @@ function HomePage({
     key: a.slug,
     article: a,
     go: go
-  })))), webcamVariant === "b" && webcamsSection, React.createElement("section", {
+  })))), webcamsSection, React.createElement("section", {
     className: "wrap",
     style: {
       paddingTop: 80
@@ -429,7 +344,7 @@ function HomePage({
       e.preventDefault();
       go("map");
     },
-    style: calloutVariant === "b" ? {
+    style: {
       display: "block",
       textDecoration: "none",
       color: "inherit",
@@ -437,13 +352,6 @@ function HomePage({
       borderLeft: "6px solid var(--moss)",
       background: "var(--paper-2)",
       padding: "36px 32px"
-    } : {
-      display: "block",
-      textDecoration: "none",
-      color: "inherit",
-      borderTop: "2px solid var(--ink)",
-      borderBottom: "2px solid var(--ink)",
-      padding: "40px 0"
     }
   }, React.createElement("div", {
     style: {
@@ -643,7 +551,27 @@ function HomePage({
       e.preventDefault();
       go("about");
     }
-  }, "About the editor →")), React.createElement(NewsletterInline, {
+  }, "About the editor →"), React.createElement("p", {
+    style: {
+      fontFamily: "var(--sans)",
+      fontSize: 13,
+      color: "var(--ink-3)",
+      lineHeight: 1.6,
+      margin: "20px 0 0"
+    }
+  }, "A paid Field Guide app is in final testing.", " ", React.createElement("a", {
+    href: "/guide",
+    onClick: e => {
+      e.preventDefault();
+      if (window.track) window.track("guide_teaser_click", {
+        location: "home_strip"
+      });
+      go("guide");
+    },
+    style: {
+      color: "var(--ink-2)"
+    }
+  }, "The waitlist is on the guide page →"))), React.createElement(NewsletterInline, {
     location: "home_strip",
     tag: "home"
   }))));

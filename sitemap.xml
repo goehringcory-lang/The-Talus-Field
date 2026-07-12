@@ -5,7 +5,7 @@
   <!-- Hub pages -->
   <url>
     <loc>https://thetalusfieldjournal.com/</loc>
-    <lastmod>2026-06-24</lastmod>
+    <lastmod>2026-07-12</lastmod>
     <image:image>
       <image:loc>https://thetalusfieldjournal.com/img/Half%20Dome%20Main%20Photo.jpg</image:loc>
       <image:title>Half Dome at first light</image:title>
@@ -13,7 +13,7 @@
   </url>
   <url>
     <loc>https://thetalusfieldjournal.com/articles</loc>
-    <lastmod>2026-06-24</lastmod>
+    <lastmod>2026-07-12</lastmod>
   </url>
   <url>
     <loc>https://thetalusfieldjournal.com/planning</loc>
@@ -31,7 +31,7 @@
   <!-- Sections -->
   <url>
     <loc>https://thetalusfieldjournal.com/section/planning</loc>
-    <lastmod>2026-06-24</lastmod>
+    <lastmod>2026-07-12</lastmod>
   </url>
   <url>
     <loc>https://thetalusfieldjournal.com/section/trails</loc>
@@ -77,7 +77,7 @@
   </url>
   <url>
     <loc>https://thetalusfieldjournal.com/privacy</loc>
-    <lastmod>2026-04-01</lastmod>
+    <lastmod>2026-07-08</lastmod>
   </url>
   <url>
     <loc>https://thetalusfieldjournal.com/terms</loc>
@@ -95,8 +95,64 @@
     <loc>https://thetalusfieldjournal.com/map</loc>
     <lastmod>2026-06-10</lastmod>
   </url>
+  <url>
+    <loc>https://thetalusfieldjournal.com/itineraries</loc>
+    <lastmod>2026-07-12</lastmod>
+  </url>
+  <url>
+    <loc>https://thetalusfieldjournal.com/conditions</loc>
+    <lastmod>2026-07-12</lastmod>
+  </url>
 
   <!-- Articles -->
+  <url>
+    <loc>https://thetalusfieldjournal.com/articles/getting-to-yosemite</loc>
+    <lastmod>2026-07-12</lastmod>
+    <image:image>
+      <image:loc>https://thetalusfieldjournal.com/img/merced-canyon-road-cory-goehring.jpg</image:loc>
+      <image:title>Highway 140 following the Merced River canyon toward the Arch Rock entrance</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://thetalusfieldjournal.com/articles/yosemite-wilderness-permits-guide</loc>
+    <lastmod>2026-07-11</lastmod>
+    <image:image>
+      <image:loc>https://thetalusfieldjournal.com/img/tuolumne-high-country-cory-goehring.jpg</image:loc>
+      <image:title>The Tuolumne high country under afternoon light, most of it a day's walk from any road</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://thetalusfieldjournal.com/articles/yosemite-accessibility-guide</loc>
+    <lastmod>2026-07-10</lastmod>
+    <image:image>
+      <image:loc>https://thetalusfieldjournal.com/img/lower-yosemite-fall.jpg</image:loc>
+      <image:title>Lower Yosemite Fall at peak flow above the paved, accessible loop trail</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://thetalusfieldjournal.com/articles/pets-in-yosemite</loc>
+    <lastmod>2026-07-09</lastmod>
+    <image:image>
+      <image:loc>https://thetalusfieldjournal.com/img/wildflowers.jpg</image:loc>
+      <image:title>Wildflowers in a meadow near Wawona, home of one of the park's two dog-legal trails</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://thetalusfieldjournal.com/articles/yosemite-ranger-programs</loc>
+    <lastmod>2026-07-08</lastmod>
+    <image:image>
+      <image:loc>https://thetalusfieldjournal.com/img/kid-yosemite-falls-boardwalk.jpg</image:loc>
+      <image:title>A child on the Lower Yosemite Fall boardwalk, Upper Yosemite Fall behind</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://thetalusfieldjournal.com/articles/yosemite-camping-complete-guide</loc>
+    <lastmod>2026-07-10</lastmod>
+    <image:image>
+      <image:loc>https://thetalusfieldjournal.com/img/half-dome-starry-night-casey-horner.jpg</image:loc>
+      <image:title>Half Dome under a star-filled night sky above Yosemite Valley</image:title>
+    </image:image>
+  </url>
   <url>
     <loc>https://thetalusfieldjournal.com/articles/where-to-propose-in-yosemite</loc>
     <lastmod>2026-06-24</lastmod>
@@ -131,7 +187,7 @@
   </url>
   <url>
     <loc>https://thetalusfieldjournal.com/articles/yosemite-trip-cost-budget-2026</loc>
-    <lastmod>2026-06-07</lastmod>
+    <lastmod>2026-07-12</lastmod>
     <image:image>
       <image:loc>https://thetalusfieldjournal.com/img/merced-canyon-road-cory-goehring.jpg</image:loc>
       <image:title>The road into Yosemite winding up the Merced River canyon</image:title>

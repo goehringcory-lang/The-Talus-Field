@@ -1,10 +1,11 @@
 // =============================================================================
-// SECRET SPOTS — the quiet-corners section, included with purchase.
+// SECRET SPOTS — the region-less half of The Secret Guide (/secret-guide).
 //
 // Ships populated (the old "seeded empty, unlocks later" machinery is gone).
 // Same shape as a Stop minus `region` (these live outside the four-region
-// geography). Every coord here still needs a real ground-truth pass before
-// launch, same rule as stops.ts — all are marked TODO: verify.
+// geography); `category` places each spot under a Secret Guide filter tab.
+// Every coord here still needs a real ground-truth pass before launch, same
+// rule as stops.ts — all are marked TODO: verify.
 // =============================================================================
 
 import { z } from 'zod'
@@ -17,6 +18,7 @@ const seed: SecretSpotInput[] = [
     id: 'fern-spring',
     title: 'Fern Spring, the smallest waterfall in the park',
     order: 1,
+    category: 'vistas',
     kind: 'viewpoint',
     coord: [-119.6657, 37.7167], // TODO: verify (Southside Drive just east of Pohono Bridge)
     elevationFt: 3900,
@@ -30,6 +32,7 @@ const seed: SecretSpotInput[] = [
     id: 'happy-isles-ouzel-watch',
     title: 'The ouzel watch, Merced riffles at Happy Isles',
     order: 2,
+    category: 'vistas',
     kind: 'viewpoint',
     coord: [-119.5583, 37.7322], // TODO: verify (Happy Isles bridge over the Merced)
     elevationFt: 4035,
@@ -44,6 +47,7 @@ const seed: SecretSpotInput[] = [
     id: 'el-cap-meadow-after-dark',
     title: 'El Capitan Meadow after dark',
     order: 3,
+    category: 'after-dark',
     kind: 'viewpoint',
     coord: [-119.6310, 37.7212], // TODO: verify (same pullout as the daytime El Capitan Meadow stop)
     elevationFt: 4000,
@@ -58,6 +62,7 @@ const seed: SecretSpotInput[] = [
     id: 'olmsted-point-at-night',
     title: 'Olmsted Point at night, the stargazing pullout',
     order: 4,
+    category: 'after-dark',
     kind: 'parking',
     coord: [-119.4884, 37.8096], // TODO: verify (Olmsted Point parking, Tioga Road)
     elevationFt: 8300,
@@ -70,24 +75,13 @@ const seed: SecretSpotInput[] = [
     swap:
       'If Tioga Road is closed, Glacier Point is the drive-to alternative on the south side (summer Saturdays often have telescope star parties). Tenaya Lake\'s east beach, ten minutes further up Tioga, trades the granite slabs for the Milky Way reflected in still water.',
   },
-  {
-    id: 'mcgurk-meadow',
-    title: 'McGurk Meadow and the 1890s cabin',
-    order: 5,
-    kind: 'trailhead',
-    coord: [-119.6281, 37.6657], // TODO: verify (roadside pullout on Glacier Point Road)
-    elevationFt: 7000,
-    timeBudgetMin: 90,
-    body:
-      'A small pullout on Glacier Point Road, about eight miles up from Chinquapin, with a trailhead sign most drivers never register because they are aimed at Glacier Point. The walk is 1.6 miles round trip, essentially flat, through quiet lodgepole forest to a wet meadow that blooms through June and July: shooting stars, lupine, corn lilies, the full subalpine catalog. In peak wildflower weeks you can have it to yourself while the Glacier Point lot up the road is circling for spaces.\n\n' +
-      'Just before the meadow the trail passes an old log cabin from the 1890s, a one-room sheepherder\'s shelter with a door built low. Kids find it fascinating; so do adults who thought they were just going to look at flowers. At the meadow itself, stay on the trail and the boardwalk sections. The ground is saturated most of the season and the plants you came for do not survive footprints.\n\n' +
-      'The meadow is not dramatic. There is no granite wall, no waterfall, no view that fits a phone screen. It is gentle, and after two days of the valley\'s scale that is precisely the correction. Budget an hour and a half including the drive-road dawdle, more if the bloom is on.',
-    photos: [],
-  },
+  // McGurk Meadow lives in stops.ts (hidden collection, glacier-mariposa):
+  // the entry there has the verified trailhead coord and the detail page.
   {
     id: 'tuolumne-grove-old-road',
     title: 'Tuolumne Grove, sequoias down the old road',
     order: 6,
+    category: 'trails',
     kind: 'trailhead',
     coord: [-119.8058, 37.7566], // TODO: verify (Tuolumne Grove parking at Crane Flat)
     elevationFt: 6200,
@@ -104,6 +98,7 @@ const seed: SecretSpotInput[] = [
     id: 'pothole-dome-sunset',
     title: 'Pothole Dome at last light',
     order: 7,
+    category: 'after-dark',
     kind: 'trailhead',
     coord: [-119.3966, 37.8740], // TODO: verify (pullout at the west end of Tuolumne Meadows)
     elevationFt: 8760,
@@ -118,6 +113,7 @@ const seed: SecretSpotInput[] = [
     id: 'cathedral-beach-quiet-picnic',
     title: 'Cathedral Beach, the quiet riverbank',
     order: 8,
+    category: 'vistas',
     kind: 'parking',
     coord: [-119.6188, 37.7189], // TODO: verify (Cathedral Beach picnic area, Southside Drive)
     elevationFt: 3950,
@@ -130,14 +126,105 @@ const seed: SecretSpotInput[] = [
     swap:
       'If the pullout is taken or the beach has company, Sentinel Beach is a mile east on the same road: same river, same picnic setup, Half Dome instead of El Capitan on a calm morning.',
   },
+
+  // --- Parking moves -------------------------------------------------------
+  {
+    id: 'sentinel-beach-parking',
+    title: 'Sentinel Beach, park first and swim',
+    order: 9,
+    category: 'parking',
+    kind: 'parking',
+    coord: [-119.604146, 37.734834], // user-provided — TODO: verify on the ground
+    body:
+      'Sentinel Beach is on the maps, so this is less a secret than a persistent gap in the parking wars: most of the time there are spaces here, and a nice sandy stretch of the Merced right off the lot to jump in for a swim. The pro move is to treat it as your base for the whole day. Park, swim, and bring a bike: from here you ride into the main section of the valley instead of joining the circling queue for a spot further east.',
+    hazard:
+      'In May and June the Merced is fast, cold snowmelt and the current is stronger than the surface suggests. Save the swim for mid and late summer, when the river has dropped and warmed.',
+    photos: [],
+  },
+  {
+    id: 'el-cap-crossover-parking',
+    title: 'Park at El Capitan, skip the east valley',
+    order: 10,
+    category: 'parking',
+    kind: 'parking',
+    coord: [-119.640974, 37.724523], // user-provided — TODO: verify on the ground
+    body:
+      'The east valley is where parking goes to die by mid-morning. Skip the battle for spaces entirely: park at El Capitan, where the lot holds out far longer, and enjoy the views while you are at it. From El Capitan Bridge, ride a bike in or take the free shuttle to the east end. You trade half an hour of circling for a short ride with the biggest wall in the park behind you.',
+    photos: [],
+  },
+  {
+    id: 'sentinel-dome-overflow',
+    title: 'Sentinel Dome and Taft Point, the overflow move',
+    order: 11,
+    category: 'parking',
+    kind: 'parking',
+    coord: [-119.580376, 37.719110], // user-provided — TODO: verify on the ground
+    body:
+      'The shared lot for Sentinel Dome and Taft Point is small and fills early on any good-weather day. A full lot is not a turnaround. Just along Glacier Point Road there is a service road with room to park; leave the car there and walk up to Sentinel Dome from the road. It adds a stretch of walking, not a change of plans.',
+    photos: [],
+  },
+  {
+    id: 'foresta-barns-loop',
+    title: 'The Foresta loop, barns and bridges',
+    order: 12,
+    category: 'parking',
+    kind: 'trailhead',
+    coord: [-119.750678, 37.702540], // user-provided — TODO: verify on the ground
+    body:
+      'Foresta is a small community off Big Oak Flat Road that visitors drive past without registering. Park next to the old barns and walk the loop: over the old bridge behind the green house, then around First Street and Dana Way. The views of El Capitan and Half Dome from out here are beautiful, and almost no one other than the locals and the short-term renters knows the walk exists. It is a neighborhood, so walk it like one: quietly, on the roads.',
+    photos: [],
+  },
+
+  // --- Quiet camping -------------------------------------------------------
+  {
+    id: 'foresta-forest-service-camping',
+    title: 'The Forest Service camp with the valley views',
+    order: 13,
+    category: 'camping',
+    kind: 'camping',
+    coord: [-119.765725, 37.708092], // user-provided — TODO: verify on the ground
+    body:
+      'Just outside Yosemite Valley there is Forest Service land where you can camp with views of El Capitan and Half Dome. No toilets, no amenities, no reservations needed, and no fee machinery, which is exactly why so few people know it is here. Pack out everything you pack in, and keep the location to yourself. Keep it secret, keep it safe.',
+    hazard:
+      'Dispersed camping with no toilets, no water, and no services. Check current fire restrictions before lighting anything.',
+    photos: [],
+  },
+  {
+    id: 'little-nellie-falls',
+    title: 'Little Nellie Falls',
+    order: 14,
+    category: 'camping',
+    kind: 'camping',
+    coord: [-119.782716, 37.720222], // user-provided — TODO: verify on the ground
+    body:
+      'A great location for a hike, and even better as an overnight: there is a backcountry campsite at the falls with a picnic table, which is more furniture than most wilderness sites offer. The falls are the destination; the quiet is the point.',
+    photos: [],
+  },
+  {
+    id: 'inspiration-point',
+    title: 'Inspiration Point, Tunnel View without the people',
+    order: 15,
+    category: 'camping',
+    kind: 'camping',
+    coord: [-119.682513, 37.714671], // user-provided — TODO: verify on the ground
+    body:
+      'The Tunnel View, with no people. Inspiration Point sits above the tunnel with the same framed valley composition, and almost everyone stays down at the parking lot. The quiet part is the paperwork: this is a backpacking zone with a permit you can actually register for, which means the view can be yours at sunrise, from a sleeping bag.',
+    photos: [],
+  },
+  {
+    id: 'hidden-lake',
+    title: 'Hidden Lake',
+    order: 16,
+    category: 'camping',
+    kind: 'camping',
+    coord: [-119.495897, 37.805353], // user-provided — TODO: verify on the ground
+    body:
+      'A great spot just off the road, with a backpacking permit that is actually attainable. Short approach, real lake, obtainable paperwork. That combination is rare enough in this park to earn the name.',
+    photos: [],
+  },
 ]
 
 export const SECRET_SPOTS: SecretSpotT[] = SecretSpots.parse(seed).sort(
   (a, b) => a.order - b.order,
 )
 
-export const SECRET_META = {
-  title: 'The Secret Spots',
-  teaser:
-    'The quiet corners: the one-foot waterfall, the night meadow, the empty river beach. The things that do not go in articles. Included with your purchase.',
-}

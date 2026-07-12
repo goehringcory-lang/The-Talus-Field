@@ -33,6 +33,19 @@ function emptyPlan(): TripPlanT {
 // dates come from tfg.trip.dates, which /programs may write later.
 let memPlan: TripPlanT | null = null
 
+// Cross-tab sync lives at module level, not inside the hook: memPlan is
+// authoritative once set, so if only this listener kept it fresh while a
+// useTripPlan hook happened to be mounted, another tab's edits made while
+// this tab sat on a plan-free route would be silently clobbered by the next
+// write here (stale base + one new item). Registered once for the session.
+if (typeof window !== 'undefined') {
+  window.addEventListener('storage', (e: StorageEvent) => {
+    if (e.key !== STORAGE_KEY) return
+    memPlan = readStorage()
+    for (const fn of subscribers) fn()
+  })
+}
+
 function readStorage(): TripPlanT | null {
   try {
     const raw = window.localStorage.getItem(STORAGE_KEY)
@@ -77,19 +90,12 @@ export function useTripPlan() {
   const [plan, setPlan] = useState<TripPlanT>(read)
 
   useEffect(() => {
+    // Cross-tab sync is handled by the module-level storage listener above,
+    // which refreshes memPlan and notifies every subscriber, this one included.
     const refresh = () => setPlan(read())
     subscribers.add(refresh)
-    // Cross-tab sync: the other tab's write replaces the in-memory copy.
-    const onStorage = (e: StorageEvent) => {
-      if (e.key === STORAGE_KEY) {
-        memPlan = readStorage()
-        refresh()
-      }
-    }
-    window.addEventListener('storage', onStorage)
     return () => {
       subscribers.delete(refresh)
-      window.removeEventListener('storage', onStorage)
     }
   }, [])
 
@@ -111,7 +117,10 @@ export function useTripPlan() {
       if (p.items.some((it) => it.itemId === itemId)) return p
       return {
         ...p,
-        items: [...p.items, { type: 'stop', itemId, stopId, day: target }],
+        items: [
+          ...p.items,
+          { type: 'stop', itemId, stopId, day: target, eventUid: crypto.randomUUID() },
+        ],
       }
     })
   }, [])
@@ -204,7 +213,10 @@ export function addStopToPlan(stopId: string, day?: string) {
   if (p.items.some((it: TripItemT) => it.itemId === itemId)) return
   write({
     ...p,
-    items: [...p.items, { type: 'stop', itemId, stopId, day: target }],
+    items: [
+      ...p.items,
+      { type: 'stop', itemId, stopId, day: target, eventUid: crypto.randomUUID() },
+    ],
     updatedAt: new Date().toISOString(),
   })
 }

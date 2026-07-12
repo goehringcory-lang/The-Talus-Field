@@ -25,7 +25,7 @@ window.SITE = {
   brand: "The Talus Field",
   tagline: "Yosemite, written by someone who lives here",
   authorName: "Cory Goehring",
-  authorBio: "Writes from El Portal, California.",
+  authorBio: "Yosemite naturalist and Conservancy interpreter, twenty seasons in the park. Writes from El Portal.",
   email: "cory@thetalusfieldjournal.com",
   // Masthead issue label. One source of truth — Header and HomePage both read this.
   issue: "Vol. III · No. 19",
@@ -47,37 +47,43 @@ window.CATEGORIES = [
 // verifies this map stays in sync with the files in bodies/.
 // ============================================================
 window.BODY_VERSIONS = {
+  "getting-to-yosemite": 1,
+  "yosemite-wilderness-permits-guide": 1,
+  "yosemite-accessibility-guide": 1,
+  "pets-in-yosemite": 1,
+  "yosemite-ranger-programs": 1,
+  "yosemite-camping-complete-guide": 1,
   "where-to-propose-in-yosemite": 1,
   "yosemite-bears-safety-guide": 117,
   "yosemite-heat-safety-guide": 2,
   "when-to-visit-yosemite-2026-crowd-forecast": 2,
-  "yosemite-trip-cost-budget-2026": 1,
+  "yosemite-trip-cost-budget-2026": 2,
   "yosemite-in-june-2026": 1,
   "cathedral-lakes-day-hike": 1,
   "yosemite-needs-a-reservation-system": 80,
-  "memorial-day-skip-the-valley-go-high-2026": 78,
+  "memorial-day-skip-the-valley-go-high-2026": 80,
   "four-mile-up-panorama-down": 75,
-  "yosemite-with-kids-no-reservations-2026": 75,
-  "tioga-road-opening-weekend-2026": 75,
+  "yosemite-with-kids-no-reservations-2026": 77,
+  "tioga-road-opening-weekend-2026": 76,
   "so-you-want-to-hike-half-dome": 75,
   "half-dome-permit-lottery-2026": 80,
-  "glacier-point-road-open-2026": 76,
-  "mist-trail-the-real-guide": 81,
-  "first-time-yosemite-overwhelm": 81,
+  "glacier-point-road-open-2026": 77,
+  "mist-trail-the-real-guide": 82,
+  "first-time-yosemite-overwhelm": 82,
   "yosemite-without-reservations-2026": 81,
   "yosemite-during-smoke-season": 75,
   "yosemite-gateway-towns-compared": 82,
   "pack-your-car-for-yosemite": 81,
-  "yosemite-for-non-hikers": 75,
-  "yosemite-stargazing-where-to-look-up": 75,
-  "hetch-hetchy-the-other-yosemite-valley": 75,
+  "yosemite-for-non-hikers": 76,
+  "yosemite-stargazing-where-to-look-up": 76,
+  "hetch-hetchy-the-other-yosemite-valley": 76,
   "yosemite-glaciers-climate": 76,
   "giant-sequoias-fire-adaptation": 75,
   "bears-spring-emergence": 75,
   "water-ouzels-waterfalls": 75,
   "working-in-yosemite": 76,
-  "yosemite-in-one-or-two-days": 79,
-  "where-to-eat-yosemite": 80,
+  "yosemite-in-one-or-two-days": 80,
+  "where-to-eat-yosemite": 81,
 };
 
 // Fetch a single article body, Babel-transform it in the browser, and run it so
@@ -237,7 +243,7 @@ window.KIT = {
             { id: "day-pack:trowel", name: "Trowel, TP, and Ziploc", note: "For catholes on longer day hikes.", aff: "#" },
             { id: "day-pack:trekking-poles", name: "Trekking poles", note: "They reduce knee stress on steep descents.", aff: "#" },
             { id: "day-pack:sit-pad", name: "Packable foam sit pad", aff: "#" },
-            { id: "day-pack:dry-bag", name: "Small dry bag for phone and electronics", aff: "#" },
+            { id: "day-pack:dry-bag", name: "Small dry bag for phone and electronics", aff: window.buildPatagoniaAffiliateLink("https://www.patagonia.com/search/?q=black+hole+dry+bag") },
             { id: "day-pack:cash", name: "Cash in small bills", note: "Parking is cash-only at several trailheads.", aff: "#" },
             { id: "day-pack:footwear", name: "Hiking boots or trail runners", note: "Road sneakers do not grip wet granite.", aff: "#" }
           ]
@@ -263,7 +269,7 @@ window.KIT = {
             { id: "overnight-pack:sleeping-pad", name: "Inflatable pad, R-value 4 or higher", note: "Cold ground steals heat all night.", aff: "#" },
             { id: "overnight-pack:pillow", name: "Compressible camp pillow", aff: "#" },
             { id: "overnight-pack:bag-liner", name: "Sleeping bag liner", note: "It adds 5 to 15°F of warmth.", aff: "#" },
-            { id: "overnight-pack:stuff-sacks", name: "Dry bags and stuff sacks", aff: "#" }
+            { id: "overnight-pack:stuff-sacks", name: "Dry bags and stuff sacks", aff: window.buildPatagoniaAffiliateLink("https://www.patagonia.com/search/?q=black+hole+cube") }
           ]
         },
         {
@@ -506,7 +512,7 @@ window.KIT = {
             { id: "car-trip:broom", name: "Whisk broom and dustpan", aff: "#" },
             { id: "car-trip:backup-pillow", name: "Inflatable backup pillow", aff: "#" },
             { id: "car-trip:quilt", name: "Packable quilt or outdoor blanket", aff: "#" },
-            { id: "car-trip:tote-bags", name: "Tote bags for grocery and bear-locker runs", aff: "#" }
+            { id: "car-trip:tote-bags", name: "Tote bags for grocery and bear-locker runs", aff: window.buildPatagoniaAffiliateLink("https://www.patagonia.com/search/?q=tote") }
           ]
         },
         {
@@ -632,6 +638,97 @@ window.KIT.lists.forEach((l) => {
 
 window.ARTICLES = [
   {
+    slug: "getting-to-yosemite",
+    cat: "planning",
+    title: "Getting to Yosemite: Five Entrances, and How to Pick the Right One",
+    dek: "Yosemite has five entrances and they are nothing alike. Which highway fits which trip, real drive times, why your phone's routing cannot be trusted, what winter chain control means, and the YARTS bus that solves parking entirely.",
+    seoDek: "How to get to Yosemite: all five entrances compared, drive times from San Francisco and Fresno, winter chain rules, GPS warnings, and YARTS bus routes.",
+    date: "July 12, 2026",
+    isoDate: "2026-07-12",
+    isoModified: "2026-07-12",
+    read: "7 min",
+    placeholder: "Highway 140 following the Merced River canyon toward the Arch Rock entrance",
+    image: "img/merced-canyon-road-cory-goehring.jpg",
+    credit: "Photo: Cory Goehring",
+  },
+  {
+    slug: "yosemite-wilderness-permits-guide",
+    cat: "planning",
+    title: "The Yosemite Wilderness Permit, Explained",
+    dek: "Ninety-five percent of Yosemite is wilderness, and sleeping in it takes a permit most visitors never figure out. The 24-week lottery, the seven-day release, the Half Dome add-on, and the strategy that actually gets you out there.",
+    seoDek: "How Yosemite wilderness permits work in 2026: the 24-week Recreation.gov lottery, the 7-day release, fees, the Half Dome add-on, and a strategy that works.",
+    date: "July 11, 2026",
+    isoDate: "2026-07-11",
+    isoModified: "2026-07-11",
+    read: "6 min",
+    placeholder: "The Tuolumne high country under afternoon light, most of it a day's walk from any road",
+    image: "img/tuolumne-high-country-cory-goehring.jpg",
+    credit: "Photo: Cory Goehring",
+  },
+  {
+    slug: "yosemite-accessibility-guide",
+    cat: "planning",
+    title: "An Accessible Yosemite: What Works, and How to Plan for It",
+    dek: "The best view in Yosemite Valley is from a flat, paved loop. Wheelchair-accessible trails, the accessible Valley shuttle, Deaf services, the free Access Pass, and the planning arithmetic the brochures soften.",
+    seoDek: "Accessible Yosemite: wheelchair-friendly trails, the accessible Valley shuttle, ASL and Deaf services, the free Access Pass, and honest planning advice.",
+    date: "July 10, 2026",
+    isoDate: "2026-07-10",
+    isoModified: "2026-07-10",
+    read: "6 min",
+    placeholder: "Lower Yosemite Fall at peak flow above the paved, accessible loop trail",
+    image: "img/lower-yosemite-fall.jpg",
+  },
+  {
+    slug: "pets-in-yosemite",
+    cat: "planning",
+    title: "Bringing a Dog to Yosemite: The Rules, the Two Trails, and an Honest Answer",
+    dek: "Yosemite is one of the least dog-friendly parks in the country, by design, and nobody tells you before the drive. Where a leashed dog can actually go, the two legal trails, campground rules, and when to leave the dog home.",
+    seoDek: "Are dogs allowed in Yosemite? The leash rules, the only two trails that allow pets, which campgrounds work, and an honest take on bringing the dog at all.",
+    date: "July 9, 2026",
+    isoDate: "2026-07-09",
+    isoModified: "2026-07-09",
+    read: "5 min",
+    placeholder: "Wildflowers in a meadow near Wawona, home of one of the park's two dog-legal trails",
+    image: "img/wildflowers.jpg",
+  },
+  {
+    slug: "yosemite-ranger-programs",
+    cat: "planning",
+    title: "The Best Thing in Yosemite Is Free: Ranger Programs and the Junior Ranger Badge",
+    dek: "Guided walks, evening amphitheater programs, and a badge ceremony performed with complete seriousness for five-year-olds and forty-five-year-olds alike. How to find the schedule and which program to pick if you only attend one.",
+    seoDek: "Yosemite's free ranger programs: guided walks, evening amphitheater talks, the Junior Ranger badge, and how to find the schedule in the Yosemite Guide.",
+    date: "July 8, 2026",
+    isoDate: "2026-07-08",
+    isoModified: "2026-07-08",
+    read: "5 min",
+    placeholder: "A child on the Lower Yosemite Fall boardwalk, Upper Yosemite Fall behind",
+    image: "img/kid-yosemite-falls-boardwalk.jpg",
+  },
+  {
+    slug: "yosemite-camping-complete-guide",
+    cat: "planning",
+    title: "The Dirt on Camping in Yosemite: All 13 Campgrounds",
+    dek: "Thirteen campgrounds, three booking windows, and a bear box you will come to respect. Twenty years of sleeping on this ground: how to get a site when they vanish in minutes, which campgrounds are worth it, and where to go when everything is full.",
+    seoDek: "Camping in Yosemite in 2026? All 13 campgrounds, reservation tips, cancellation tricks, and bear safety from a park naturalist who lives here.",
+    date: "July 10, 2026",
+    isoDate: "2026-07-10",
+    isoModified: "2026-07-10",
+    read: "21 min",
+    // INTERIM HERO. The intended hero is the public-domain Detroit Publishing
+    // Co. postcard "Camp Ahwahnee, Sentinel Rock" (a tent camp on the Valley
+    // floor, ca. early 1900s). Its pixels could not be fetched in the authoring
+    // environment, so a repo image stands in. To swap: add the postcard at
+    // img/camp-ahwahnee-sentinel-rock.jpg, replace the three active fields below
+    // with the three commented postcard fields, then run
+    // `npm --prefix scripts run images && npm --prefix scripts run seo`.
+    // placeholder: "A hand-colored postcard of a tent camp on the meadow floor beneath Sentinel Rock in Yosemite Valley",
+    // image: "img/camp-ahwahnee-sentinel-rock.jpg",
+    // credit: "Detroit Publishing Co. postcard, early 1900s. Public domain.",
+    placeholder: "Half Dome under a star-filled night sky above Yosemite Valley",
+    image: "img/half-dome-starry-night-casey-horner.jpg",
+    credit: "Photo: Casey Horner / Unsplash",
+  },
+  {
     slug: "where-to-propose-in-yosemite",
     cat: "planning",
     title: "Where to Propose in Yosemite: What Twenty Years of Watching Taught Me",
@@ -695,7 +792,7 @@ window.ARTICLES = [
     seoDek: "What a Yosemite trip costs in 2026: entrance fees, lodging, food, gas, and gear, with real budget, mid-range, and splurge totals.",
     date: "June 7, 2026",
     isoDate: "2026-06-07",
-    isoModified: "2026-06-07",
+    isoModified: "2026-07-12",
     read: "10 min",
     placeholder: "The road into Yosemite winding up the Merced River canyon",
     image: "img/merced-canyon-road-cory-goehring.jpg",
@@ -791,7 +888,7 @@ window.ARTICLES = [
       },
       {
         q: "Do I need a reservation to enter Yosemite in 2026?",
-        a: "No. Yosemite has no day-use or peak-hours reservation in 2026. You still need a valid entrance pass ($35 per vehicle for seven days).",
+        a: "No. Yosemite has no day-use or peak-hours reservation in 2026. You still need a valid entrance pass ($35 per vehicle for seven days), and international visitors pay a $100 per-person surcharge (age 16 and older) since January 1, 2026.",
       },
       {
         q: "When do the Yosemite waterfalls run?",

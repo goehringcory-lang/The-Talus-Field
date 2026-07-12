@@ -2,12 +2,16 @@ import { Hono } from 'hono'
 import { cors } from 'hono/cors'
 import type { Env } from './env'
 import { auth } from './routes/auth'
+import { calendar } from './routes/calendar'
 import { checkout } from './routes/checkout'
 import { contact } from './routes/contact'
 import { indexnow } from './routes/indexnow'
 import { ingestNpsWindow, programs } from './routes/programs'
 import { stripe } from './routes/stripe'
 import { trip } from './routes/trip'
+import { tripEmail } from './routes/trip-email'
+import { weather } from './routes/weather'
+import { refreshWeather } from './lib/weather'
 import {
   currentMonthLabel,
   firstOfNextMonthIso,
@@ -28,6 +32,9 @@ app.use(
         'https://www.thetalusfieldjournal.com',
         'http://localhost:5173',
         'http://localhost:5174',
+        // vite preview: the documented way to exercise the PWA's service
+        // worker locally (it registers in prod builds only).
+        'http://localhost:4173',
         'http://localhost:8000',
       ])
       // The PWA's unlisted Cloudflare Pages URLs: the stable production
@@ -104,15 +111,23 @@ app.get('/api/inventory', async (c) => {
 })
 
 app.route('/api/auth', auth)
+app.route('/api/calendar', calendar)
 app.route('/api/checkout', checkout)
 app.route('/api/contact', contact)
 app.route('/api/indexnow', indexnow)
 app.route('/api/programs', programs)
 app.route('/api/stripe', stripe)
+// Mounted before /api/trip's router would see it: separate route so the
+// editorial map's unauthenticated sender never shares code with the PWA's
+// JWT-gated feed.
+app.route('/api/trip/email', tripEmail)
 app.route('/api/trip', trip)
+app.route('/api/weather', weather)
 
 // Daily cron ([triggers] in wrangler.toml): refresh the KV program cache from
-// the NPS Events API so /api/programs answers from KV, not a live fetch.
+// the NPS Events API so /api/programs answers from KV, not a live fetch, and
+// give the weather record a daily floor (its real freshness is owned by the
+// 2h on-demand refresh in the route).
 async function scheduled(
   _controller: ScheduledController,
   env: Env,
@@ -121,6 +136,11 @@ async function scheduled(
   ctx.waitUntil(
     ingestNpsWindow(env).catch((err) => {
       console.error('scheduled: NPS ingest failed', err)
+    }),
+  )
+  ctx.waitUntil(
+    refreshWeather(env).catch((err) => {
+      console.error('scheduled: weather refresh failed', err)
     }),
   )
 }

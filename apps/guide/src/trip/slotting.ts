@@ -10,6 +10,7 @@
 // =============================================================================
 
 import { getStopById } from '../content'
+import { haversineMiles } from '../utils/geo'
 import type { TripItemT } from './schema'
 
 export type SlottedItem = {
@@ -33,19 +34,6 @@ const DEFAULT_PROGRAM_MIN = 60
 // the map's own copy says it does not calculate driving routes.
 const PARK_MPH = 22
 const PARK_AND_WALK_MIN = 10
-const EARTH_RADIUS_MI = 3958.8
-
-function haversineMiles(a: [number, number], b: [number, number]): number {
-  const toRad = (deg: number) => (deg * Math.PI) / 180
-  const [lngA, latA] = a
-  const [lngB, latB] = b
-  const dLat = toRad(latB - latA)
-  const dLng = toRad(lngB - lngA)
-  const s =
-    Math.sin(dLat / 2) ** 2 +
-    Math.cos(toRad(latA)) * Math.cos(toRad(latB)) * Math.sin(dLng / 2) ** 2
-  return 2 * EARTH_RADIUS_MI * Math.asin(Math.sqrt(s))
-}
 
 /** Coordinate of a trip item, when its stop or program carries one. */
 export function itemCoord(item: TripItemT): [number, number] | undefined {
@@ -105,12 +93,18 @@ export function slotDay(day: string, items: TripItemT[]): SlottedItem[] {
     if (item.type === 'program') {
       const start = item.snapshot.timeStart ? toMinutes(item.snapshot.timeStart) : null
       const end = item.snapshot.timeEnd ? toMinutes(item.snapshot.timeEnd) : null
+      // An end at or before the start means the program runs past midnight
+      // (a 22:00–00:30 star party); the ICS layer already rolls DTEND's date
+      // forward, so give it the real duration instead of the 60-min default.
+      const duration =
+        start !== null && end !== null && end !== start
+          ? (end > start ? end : end + 1440) - start
+          : DEFAULT_PROGRAM_MIN
       fixed.push({
         item,
         day,
         startMin: start,
-        durationMin:
-          start !== null && end !== null && end > start ? end - start : DEFAULT_PROGRAM_MIN,
+        durationMin: duration,
         fixed: true,
       })
     } else if (item.startTime) {
@@ -148,12 +142,20 @@ export function slotDay(day: string, items: TripItemT[]): SlottedItem[] {
     const coord = itemCoord(item)
 
     let start = firstPlacement ? cursor : cursor + travelBufferMin(prevCoord, coord)
-    // Advance past any fixed block that overlaps the candidate slot.
-    for (const b of blocks) {
-      const bStart = b.startMin ?? 0
-      const bEnd = bStart + b.durationMin
-      if (start < bEnd && start + duration > bStart) {
-        start = bEnd + travelBufferMin(itemCoord(b.item), coord)
+    // Advance past any fixed block that overlaps the candidate slot. Re-scan
+    // after every move: a travel buffer can push the candidate into a block
+    // the single pass had already cleared. Terminates because start only
+    // moves forward past finitely many sorted blocks.
+    let moved = true
+    while (moved) {
+      moved = false
+      for (const b of blocks) {
+        const bStart = b.startMin ?? 0
+        const bEnd = bStart + b.durationMin
+        if (start < bEnd && start + duration > bStart) {
+          start = bEnd + travelBufferMin(itemCoord(b.item), coord)
+          moved = true
+        }
       }
     }
     if (start + duration > DAY_END) {

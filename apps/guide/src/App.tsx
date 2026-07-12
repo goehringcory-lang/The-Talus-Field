@@ -1,11 +1,12 @@
 import { lazy, Suspense } from 'react'
-import { Routes, Route, Navigate } from 'react-router-dom'
+import { Routes, Route, Navigate, useLocation } from 'react-router-dom'
 import { AuthProvider, RequireAuth } from './auth/AuthGate'
 import Open from './routes/Open'
 import Login from './routes/Login'
 import Home from './routes/Home'
 import InstallPrompt from './components/InstallPrompt'
 import UpdateBanner from './components/UpdateBanner'
+import ScrollToTop from './components/ScrollToTop'
 
 // Heavy routes lazy-loaded so /login doesn't download Map / Google Maps glue.
 const Map = lazy(() => import('./routes/Map'))
@@ -14,15 +15,24 @@ const Region = lazy(() => import('./routes/Region'))
 const StopDetail = lazy(() => import('./routes/StopDetail'))
 const Essentials = lazy(() => import('./routes/Essentials'))
 const EssentialDetail = lazy(() => import('./routes/EssentialDetail'))
-const SecretSpots = lazy(() => import('./routes/SecretSpots'))
-const HiddenAreas = lazy(() => import('./routes/HiddenAreas'))
+const SecretGuide = lazy(() => import('./routes/SecretGuide'))
 const Search = lazy(() => import('./routes/Search'))
 const Programs = lazy(() => import('./routes/Programs'))
 const Trip = lazy(() => import('./routes/Trip'))
+const Welcome = lazy(() => import('./routes/Welcome'))
+const NotFound = lazy(() => import('./routes/NotFound'))
+
+// Navigate drops location.hash, and old /secret-spots#<id> search bookmarks
+// rely on it, so the redirect forwards the hash explicitly.
+function LegacySecretRedirect() {
+  const { hash } = useLocation()
+  return <Navigate to={{ pathname: '/secret-guide', hash }} replace />
+}
 
 export default function App() {
   return (
     <AuthProvider>
+      <ScrollToTop />
       <UpdateBanner />
       {/* Visible fallback: on a slow connection a lazy chunk can take seconds,
           and a blank screen reads as broken. */}
@@ -53,6 +63,16 @@ export default function App() {
             element={
               <RequireAuth>
                 <Home />
+              </RequireAuth>
+            }
+          />
+          {/* One-time first-run orientation; Open and Home route here until
+              tfg.onboarded is set. No GatedChrome: it reads as setup. */}
+          <Route
+            path="/welcome"
+            element={
+              <RequireAuth>
+                <Welcome />
               </RequireAuth>
             }
           />
@@ -89,21 +109,16 @@ export default function App() {
             }
           />
           <Route
-            path="/secret-spots"
+            path="/secret-guide"
             element={
               <RequireAuth>
-                <SecretSpots />
+                <SecretGuide />
               </RequireAuth>
             }
           />
-          <Route
-            path="/hidden-areas"
-            element={
-              <RequireAuth>
-                <HiddenAreas />
-              </RequireAuth>
-            }
-          />
+          {/* Retired section URLs from before the Secret Guide merge. */}
+          <Route path="/secret-spots" element={<LegacySecretRedirect />} />
+          <Route path="/hidden-areas" element={<Navigate to="/secret-guide" replace />} />
           <Route
             path="/search"
             element={
@@ -146,7 +161,14 @@ export default function App() {
           />
           {/* Old trip-based-model URLs (/trip/1day etc.) land on the planner. */}
           <Route path="/trip/*" element={<Navigate to="/trip" replace />} />
-          <Route path="*" element={<Navigate to="/" replace />} />
+          <Route
+            path="*"
+            element={
+              <RequireAuth>
+                <NotFound />
+              </RequireAuth>
+            }
+          />
         </Routes>
       </Suspense>
       <InstallPrompt />

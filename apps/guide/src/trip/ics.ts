@@ -55,7 +55,9 @@ function esc(text: string): string {
     .replace(/\\/g, '\\\\')
     .replace(/;/g, '\\;')
     .replace(/,/g, '\\,')
-    .replace(/\r?\n/g, '\\n')
+    // \r\n, bare \n, AND a bare \r: a raw CR mid-line is illegal in RFC 5545
+    // content lines and truncates the line for strict parsers.
+    .replace(/\r\n|\r|\n/g, '\\n')
 }
 
 // Fold lines to 75 octets (continuation lines start with a space).
@@ -124,9 +126,11 @@ export function slottedToEventFields(slotted: SlottedItem): EventFields | null {
   if (item.type === 'stop') {
     const stop = getStopById(item.stopId)
     if (!stop) return null
-    const teaser = stop.body.split('\n')[0]
+    const teaser = stop.teaser ?? stop.body.split('\n')[0]
     return {
-      uid: `tfg-trip-${item.itemId}@${UID_DOMAIN}`,
+      // eventUid survives day moves; itemId (which embeds the day) is the
+      // fallback for items stored before eventUid existed.
+      uid: `tfg-trip-${item.eventUid ?? item.itemId}@${UID_DOMAIN}`,
       summary: stop.title,
       description:
         `${teaser}\n\nFrom The Talus Field Field Guide: ` +

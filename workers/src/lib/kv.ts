@@ -18,6 +18,25 @@ export type TripFeedRecord = {
   updatedAt: string            // ISO timestamp of the last publish
 }
 
+// Google Calendar connection for one account. The refresh token is the
+// long-lived secret; it never leaves the Worker. `email` is the connected
+// Google account, shown in the app so the buyer can tell which calendar
+// they're pushing into.
+export type GcalConnectionRecord = {
+  sub: string                  // JWT sub that owns the connection
+  refreshToken: string         // Google OAuth refresh token (offline access)
+  email?: string               // connected Google account, from the id_token
+  connectedAt: string          // ISO timestamp of the OAuth grant
+}
+
+// uid → { Google event id, content hash } for every event we've pushed. Lets a
+// sync delete events dropped from the plan and skip events that haven't changed
+// without listing the user's calendar on every edit.
+export type GcalEventMap = {
+  events: Record<string, { id: string; hash: string }>
+  lastSyncAt: string           // ISO timestamp of the last successful sync
+}
+
 const BUYER_KEY = (email: string) => `buyer:${email.toLowerCase()}`
 const TOKEN_INDEX_KEY = (token: string) => `token:${token}`
 const INVENTORY_KEY = (yyyymm: string) => `inventory:${yyyymm}`
@@ -30,6 +49,16 @@ const TRIP_FEED_KEY = (token: string) => `tripfeed:${token}`
 const TRIP_FEED_TOKEN_KEY = (sub: string) => `tripfeedToken:${sub.toLowerCase()}`
 const TRIP_FEED_WRITE_ATTEMPTS_KEY = (sub: string) =>
   `tripfeedWriteAttempts:${sub.toLowerCase()}`
+const TRIP_EMAIL_ATTEMPTS_KEY = (ipHash: string) => `tripEmailAttempts:${ipHash}`
+
+// Google Calendar OAuth push (/api/calendar). Unlike the trip feed, the client
+// holds no capability token: the refresh token lives here, keyed by the JWT
+// sub, and the app only ever sees a boolean "connected" plus the email.
+const GCAL_STATE_KEY = (state: string) => `gcalstate:${state}`
+const GCAL_CONNECTION_KEY = (sub: string) => `gcal:${sub.toLowerCase()}`
+const GCAL_ACCESS_KEY = (sub: string) => `gcalAccess:${sub.toLowerCase()}`
+const GCAL_EVENTS_KEY = (sub: string) => `gcalEvents:${sub.toLowerCase()}`
+const GCAL_SYNC_ATTEMPTS_KEY = (sub: string) => `gcalSyncAttempts:${sub.toLowerCase()}`
 
 export function currentMonthLabel(at = new Date()): string {
   const y = at.getUTCFullYear()
@@ -175,8 +204,114 @@ export async function deleteTripFeed(env: Env, sub: string): Promise<void> {
   await env.GUIDE_BUYERS.delete(TRIP_FEED_TOKEN_KEY(sub))
 }
 
+// "Email this trip" sends a real email per call, so the window is tight.
+// Keyed by hashed IP: the endpoint is unauthenticated and the raw address
+// never needs to touch KV.
+export async function recordTripEmailAttempt(env: Env, ipHash: string): Promise<number> {
+  const key = TRIP_EMAIL_ATTEMPTS_KEY(ipHash)
+  const raw = await env.GUIDE_BUYERS.get(key)
+  const next = (raw ? Number.parseInt(raw, 10) : 0) + 1
+  // 1-hour TTL gives a rolling window per IP.
+  await env.GUIDE_BUYERS.put(key, String(next), { expirationTtl: 60 * 60 })
+  return next
+}
+
 export async function recordTripFeedWriteAttempt(env: Env, sub: string): Promise<number> {
   const key = TRIP_FEED_WRITE_ATTEMPTS_KEY(sub)
+  const raw = await env.GUIDE_BUYERS.get(key)
+  const next = (raw ? Number.parseInt(raw, 10) : 0) + 1
+  // 1-hour TTL gives a rolling window per sub.
+  await env.GUIDE_BUYERS.put(key, String(next), { expirationTtl: 60 * 60 })
+  return next
+}
+
+// --- Google Calendar (/api/calendar) ---------------------------------------
+
+// The OAuth state ties a callback (which arrives with no Authorization header)
+// back to the account that started the flow. Single-use and short-lived: 10
+// minutes is well past a slow consent screen but leaves no lingering handle.
+const GCAL_STATE_TTL_SECONDS = 10 * 60
+
+/** Stash the account behind a one-time OAuth state value. */
+export async function putGcalState(env: Env, state: string, sub: string): Promise<void> {
+  await env.GUIDE_BUYERS.put(GCAL_STATE_KEY(state), sub, {
+    expirationTtl: GCAL_STATE_TTL_SECONDS,
+  })
+}
+
+/** Resolve and consume an OAuth state (single use): returns the sub, or null. */
+export async function takeGcalState(env: Env, state: string): Promise<string | null> {
+  const sub = await env.GUIDE_BUYERS.get(GCAL_STATE_KEY(state))
+  if (sub) await env.GUIDE_BUYERS.delete(GCAL_STATE_KEY(state))
+  return sub
+}
+
+export async function getGcalConnection(
+  env: Env,
+  sub: string,
+): Promise<GcalConnectionRecord | null> {
+  const raw = await env.GUIDE_BUYERS.get(GCAL_CONNECTION_KEY(sub))
+  if (!raw) return null
+  try {
+    return JSON.parse(raw) as GcalConnectionRecord
+  } catch (err) {
+    console.error('getGcalConnection: corrupt KV record', { sub, err })
+    return null
+  }
+}
+
+/** Store the connection. No TTL: it holds the live refresh token and is
+ * removed explicitly on disconnect (or when Google reports the grant gone). */
+export async function putGcalConnection(
+  env: Env,
+  record: GcalConnectionRecord,
+): Promise<void> {
+  await env.GUIDE_BUYERS.put(GCAL_CONNECTION_KEY(record.sub), JSON.stringify(record))
+}
+
+/** Remove every key for one account's connection: record, cached access
+ * token, and event mapping. Used by disconnect and by a revoked-grant purge. */
+export async function deleteGcalConnection(env: Env, sub: string): Promise<void> {
+  await env.GUIDE_BUYERS.delete(GCAL_CONNECTION_KEY(sub))
+  await env.GUIDE_BUYERS.delete(GCAL_ACCESS_KEY(sub))
+  await env.GUIDE_BUYERS.delete(GCAL_EVENTS_KEY(sub))
+}
+
+export async function getGcalAccessToken(env: Env, sub: string): Promise<string | null> {
+  return env.GUIDE_BUYERS.get(GCAL_ACCESS_KEY(sub))
+}
+
+/** Cache a fresh access token just short of its real expiry so a cached read
+ * never hands out a token that dies mid-request. */
+export async function putGcalAccessToken(
+  env: Env,
+  sub: string,
+  token: string,
+  ttlSeconds: number,
+): Promise<void> {
+  // KV rejects TTLs under 60s; below that, skip the cache and let the next
+  // sync refresh again rather than store a token that's about to expire.
+  if (ttlSeconds < 60) return
+  await env.GUIDE_BUYERS.put(GCAL_ACCESS_KEY(sub), token, { expirationTtl: ttlSeconds })
+}
+
+export async function getGcalEventMap(env: Env, sub: string): Promise<GcalEventMap | null> {
+  const raw = await env.GUIDE_BUYERS.get(GCAL_EVENTS_KEY(sub))
+  if (!raw) return null
+  try {
+    return JSON.parse(raw) as GcalEventMap
+  } catch (err) {
+    console.error('getGcalEventMap: corrupt KV record', { sub, err })
+    return null
+  }
+}
+
+export async function putGcalEventMap(env: Env, sub: string, map: GcalEventMap): Promise<void> {
+  await env.GUIDE_BUYERS.put(GCAL_EVENTS_KEY(sub), JSON.stringify(map))
+}
+
+export async function recordGcalSyncAttempt(env: Env, sub: string): Promise<number> {
+  const key = GCAL_SYNC_ATTEMPTS_KEY(sub)
   const raw = await env.GUIDE_BUYERS.get(key)
   const next = (raw ? Number.parseInt(raw, 10) : 0) + 1
   // 1-hour TTL gives a rolling window per sub.

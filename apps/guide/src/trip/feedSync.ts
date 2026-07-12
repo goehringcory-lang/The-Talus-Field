@@ -6,8 +6,9 @@
 // last-updated stamp going stale is the honest signal.
 // =============================================================================
 
+import { ApiError } from '../lib/api'
 import { buildTripIcs } from './ics'
-import { publishFeed, readFeedInfo } from './feed'
+import { clearFeedInfo, publishFeed, readFeedInfo } from './feed'
 import { slotPlan } from './slotting'
 import { readTripPlan, subscribeTripPlan } from './useTripPlan'
 
@@ -16,11 +17,39 @@ const DEBOUNCE_MS = 4000
 let timer: ReturnType<typeof setTimeout> | undefined
 let started = false
 
-export async function syncFeedNow(): Promise<void> {
+// Publishes are serialized through this chain: the debounce timer, the online
+// listener, and the boot catch-up can otherwise overlap, and the Worker is
+// last-write-wins — a slow POST carrying an older plan would land after (and
+// overwrite) a newer one. Each sync renders its ICS only after the previous
+// request settles, so the final publish always reflects the latest plan.
+let chain: Promise<void> = Promise.resolve()
+
+export function syncFeedNow(): Promise<void> {
+  const run = chain.then(() => doSyncFeed())
+  chain = run.then(
+    () => undefined,
+    () => undefined,
+  )
+  return run
+}
+
+async function doSyncFeed(): Promise<void> {
   if (!readFeedInfo()) return
   if (!navigator.onLine) return
   const ics = buildTripIcs(slotPlan(readTripPlan().items))
-  await publishFeed(ics)
+  try {
+    await publishFeed(ics)
+  } catch (err) {
+    // A dead token or session (revoked, expired, rotated) will never succeed
+    // on retry; drop the local record so the calendar sheet honestly offers
+    // "Turn on calendar sync" again instead of an eternally stale stamp.
+    // Transient failures still rethrow into the callers' silent catch.
+    if (err instanceof ApiError && (err.status === 401 || err.status === 403 || err.status === 410)) {
+      clearFeedInfo()
+      return
+    }
+    throw err
+  }
 }
 
 function scheduleSync(): void {

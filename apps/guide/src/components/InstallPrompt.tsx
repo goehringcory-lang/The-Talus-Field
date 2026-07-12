@@ -1,30 +1,16 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import Button from './ui/Button'
-
-interface BeforeInstallPromptEvent extends Event {
-  prompt: () => Promise<void>
-  userChoice: Promise<{ outcome: 'accepted' | 'dismissed' }>
-}
+import { useIsOnboarded } from '../lib/onboarding'
+import { useDeferredInstallPrompt } from '../pwa/installPrompt'
+import { isIOS, isStandalonePWA } from '../utils/platform'
 
 const DISMISS_KEY = 'tfg.install.dismissed'
-
-function isStandalone(): boolean {
-  return (
-    window.matchMedia('(display-mode: standalone)').matches ||
-    ('standalone' in window.navigator && (window.navigator as { standalone?: boolean }).standalone === true)
-  )
-}
-
-const isIOS =
-  typeof navigator !== 'undefined' &&
-  (/iPad|iPhone|iPod/.test(navigator.userAgent) ||
-    (/Mac/.test(navigator.userAgent) && navigator.maxTouchPoints > 1))
 
 // Shared dismiss state
 function useDismissed() {
   const [dismissed, setDismissed] = useState(() => {
     try {
-      return isStandalone() || localStorage.getItem(DISMISS_KEY) === '1'
+      return isStandalonePWA() || localStorage.getItem(DISMISS_KEY) === '1'
     } catch {
       return false
     }
@@ -44,24 +30,14 @@ function useDismissed() {
 
 function AndroidPrompt() {
   const { dismissed, dismiss } = useDismissed()
-  const [promptEvent, setPromptEvent] = useState<BeforeInstallPromptEvent | null>(null)
+  // Module-level capture (pwa/installPrompt.ts): Chrome fires the event once,
+  // often before this banner mounts; a component-scoped listener missed it.
+  const { event, prompt } = useDeferredInstallPrompt()
 
-  useEffect(() => {
-    if (dismissed) return
-    function handler(e: Event) {
-      e.preventDefault()
-      setPromptEvent(e as BeforeInstallPromptEvent)
-    }
-    window.addEventListener('beforeinstallprompt', handler)
-    return () => window.removeEventListener('beforeinstallprompt', handler)
-  }, [dismissed])
-
-  if (dismissed || !promptEvent) return null
+  if (dismissed || !event) return null
 
   async function install() {
-    if (!promptEvent) return
-    await promptEvent.prompt()
-    setPromptEvent(null)
+    await prompt()
   }
 
   return (
@@ -113,6 +89,10 @@ function InstallBanner({ children }: { children: React.ReactNode }) {
 // ── Router — pick the right prompt based on platform ────────────────────────
 
 export default function InstallPrompt() {
-  if (isIOS) return <IOSBanner />
+  // The welcome page owns install messaging until onboarding is done or
+  // skipped; a banner on top of it would be the same pitch twice.
+  const onboarded = useIsOnboarded()
+  if (!onboarded) return null
+  if (isIOS()) return <IOSBanner />
   return <AndroidPrompt />
 }

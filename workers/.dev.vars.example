@@ -23,6 +23,14 @@ MAGIC_LINK_SIGNING_SECRET="local-dev-signing-secret"
 # --- Resend (transactional email for magic links / contact form) ------------
 # RESEND_API_KEY="re_..."
 
+# --- Google Calendar push (optional; /api/calendar/google/start 503s without) -
+# OAuth client from the Google Cloud console (Web application). The redirect
+# URI for local dev is http://localhost:8787/api/calendar/google/callback.
+# The client id also goes in wrangler.local.toml [vars]; setting it here too is
+# harmless (env wins) and keeps the pair documented together.
+# GOOGLE_OAUTH_CLIENT_ID="....apps.googleusercontent.com"
+# GOOGLE_OAUTH_CLIENT_SECRET="GOCSPX-..."
+
 # --- NPS Events API (optional; /api/programs falls back to manual curation) --
 # NPS_API_KEY="..."
 

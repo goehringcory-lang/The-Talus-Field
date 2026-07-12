@@ -9,8 +9,7 @@ export default function BottomNav() {
     pathname.startsWith('/region/') ||
     pathname.startsWith('/stop/') ||
     pathname.startsWith('/essentials') ||
-    pathname.startsWith('/secret-spots') ||
-    pathname.startsWith('/hidden-areas')
+    pathname.startsWith('/secret-guide')
   const isMap = pathname === '/map' || pathname.startsWith('/map/')
   const isPlan = pathname === '/programs' || pathname.startsWith('/trip')
   const isSearch = pathname === '/search'

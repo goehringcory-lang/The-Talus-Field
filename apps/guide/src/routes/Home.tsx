@@ -1,12 +1,17 @@
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, Navigate } from 'react-router-dom'
 import { useAuth } from '../auth/useAuth'
-import { ESSENTIALS, ESSENTIALS_META, HIDDEN_META, REGIONS, SEASONAL_EVENTS, SECRET_META, SECRET_SPOTS, getHiddenStops, getStopById, getStopsByRegion, seasonalRangeLabel } from '../content'
+import { isOnboarded } from '../lib/onboarding'
+import { ESSENTIALS, ESSENTIALS_META, REGIONS, SEASONAL_EVENTS, SECRET_GUIDE_META, getSecretGuideEntries, getStopById, getStopsByRegion, seasonalRangeLabel } from '../content'
 import { todayIso } from '../utils/date'
 import { useFavorites } from '../lib/favorites'
 import { isPackCompleted } from '../offline/useDownloads'
 import { useTripPlan } from '../trip/useTripPlan'
+import { relativeStamp } from '../utils/relativeStamp'
 import GatedChrome from '../components/GatedChrome'
+import RegionForecast from '../weather/RegionForecast'
+import { useWeather } from '../weather/useWeather'
+import { HIDE_AFTER_MS, WARN_AFTER_MS } from '../weather/staleness'
 import RegionPickerCard from '../components/RegionPickerCard'
 import SectionCard from '../components/SectionCard'
 import UpdatedStamp from '../components/UpdatedStamp'
@@ -85,12 +90,24 @@ export default function Home() {
   const { session } = useAuth()
   const { ids: favoriteIds } = useFavorites()
   const { plan } = useTripPlan()
-  // Favorites can point at regular stops or secret spots; resolve both so a
-  // saved secret spot does not silently vanish from this list.
+  const weather = useWeather()
+  // Read once per mount (render must stay pure). Existing signed-in users who
+  // predate onboarding get routed through /welcome exactly once; deep links
+  // (/stop/x, /map?...) are never intercepted, only the front page.
+  const [onboarded] = useState(() => isOnboarded())
+  // getStopById resolves regular stops and secret spots alike, so a saved
+  // secret spot does not silently vanish from this list.
   const savedStops = favoriteIds
-    .map((id) => getStopById(id) ?? SECRET_SPOTS.find((s) => s.id === id))
+    .map((id) => getStopById(id))
     .filter((s): s is NonNullable<typeof s> => Boolean(s))
   const downloadedCount = PACK_IDS.filter((id) => isPackCompleted(id)).length
+
+  // Per-card five-day forecasts. One useWeather() for the whole page; past
+  // HIDE_AFTER every forecast and the attribution disappear together.
+  const showForecast = weather.spots.length > 0 && weather.ageMs <= HIDE_AFTER_MS
+  const weatherByRegion = new Map(weather.spots.map((s) => [s.id as string, s]))
+
+  if (!onboarded) return <Navigate to="/welcome" replace />
 
   return (
     <GatedChrome>
@@ -104,15 +121,31 @@ export default function Home() {
         <BeforeYouGoNudge />
 
         <div className="card-stack">
-          {REGIONS.map((region) => (
-            <RegionPickerCard
-              key={region.id}
-              region={region.id}
-              title={region.title}
-              teaser={region.teaser}
-              stopCount={getStopsByRegion(region.id).length}
-            />
-          ))}
+          {REGIONS.map((region) => {
+            const spot = weatherByRegion.get(region.id)
+            return (
+              <RegionPickerCard
+                key={region.id}
+                region={region.id}
+                title={region.title}
+                teaser={region.teaser}
+                stopCount={getStopsByRegion(region.id).length}
+                photo={region.photo}
+                forecast={showForecast && spot ? <RegionForecast spot={spot} /> : undefined}
+              />
+            )
+          })}
+          {/* One attribution for all four forecasts; repeating it per card is noise. */}
+          {showForecast && weather.fetchedAt && (
+            <p className="weather-attribution">
+              Forecast as of {relativeStamp(weather.fetchedAt)}
+              {weather.offline ? ', saved on this device' : ''}
+              {weather.ageMs > WARN_AFTER_MS
+                ? '. This forecast is old; conditions have likely moved on.'
+                : ''}
+              {' '}· National Weather Service
+            </p>
+          )}
           <SectionCard
             to="/essentials"
             eyebrow="Know before you go"
@@ -139,18 +172,11 @@ export default function Home() {
             }
           />
           <SectionCard
-            to="/secret-spots"
+            to="/secret-guide"
             eyebrow="Included with purchase"
-            title={SECRET_META.title}
-            teaser={SECRET_META.teaser}
-            meta={`${SECRET_SPOTS.length} ${SECRET_SPOTS.length === 1 ? 'spot' : 'spots'}`}
-          />
-          <SectionCard
-            to="/hidden-areas"
-            eyebrow="Included with purchase"
-            title={HIDDEN_META.title}
-            teaser={HIDDEN_META.teaser}
-            meta={`${getHiddenStops().length} areas`}
+            title={SECRET_GUIDE_META.title}
+            teaser={SECRET_GUIDE_META.teaser}
+            meta={`${getSecretGuideEntries().length} entries · Vistas, trails, parking, camping, after dark`}
           />
         </div>
 
@@ -173,7 +199,7 @@ export default function Home() {
             <ul className="link-list">
               {savedStops.map((stop) => (
                 <li key={stop.id}>
-                  <Link to={getStopById(stop.id) ? `/stop/${stop.id}` : '/secret-spots'}>
+                  <Link to={`/stop/${stop.id}`}>
                     {stop.title} →
                   </Link>
                 </li>

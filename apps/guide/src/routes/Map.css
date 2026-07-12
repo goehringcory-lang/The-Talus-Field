@@ -51,9 +51,32 @@
 
 /* MapLibre marker pins (DOM elements) and popup content. */
 .map-pin {
+  /* Must stay absolute: MapLibre positions each marker with an inline
+   * transform against .maplibregl-marker { position: absolute }, and this
+   * same-specificity rule loads later in the cascade. Absolute also keeps
+   * the ::after planned-badge anchored to the pin. */
+  position: absolute;
   cursor: pointer;
   line-height: 0;
   filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.3));
+}
+
+/* Moss checkmark on pins whose stop is already in the trip plan. Applied by
+ * a class toggle, never a marker rebuild, so an open popup survives its own
+ * "Add to trip" tap. */
+.map-pin--planned::after {
+  content: '✓';
+  position: absolute;
+  top: -4px;
+  right: -7px;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: var(--moss);
+  color: var(--paper);
+  font: 700 10px/15px var(--sans);
+  text-align: center;
+  box-shadow: 0 0 0 1.5px var(--paper);
 }
 
 /* Brand the MapLibre popup shell itself: plate-style paper card instead of
@@ -75,9 +98,11 @@
   color: var(--ink-3);
   padding: 2px 8px;
 }
-.maplibregl-popup-close-button:hover {
-  background: transparent;
-  color: var(--moss);
+@media (hover: hover) {
+  .maplibregl-popup-close-button:hover {
+    background: transparent;
+    color: var(--moss);
+  }
 }
 
 .map-popup {
@@ -115,6 +140,13 @@
   color: var(--ink-2);
   line-height: 1.5;
 }
+.map-popup__distance {
+  margin: 6px 0 0;
+  font-family: var(--sans);
+  font-size: 11px;
+  color: var(--ink-2);
+}
+
 .map-popup__actions {
   margin: 10px 0 0;
   display: flex;
@@ -134,17 +166,21 @@
   padding: 10px 12px;
   cursor: pointer;
 }
-.map-popup__btn:hover {
-  background: var(--moss);
-  border-color: var(--moss);
+@media (hover: hover) {
+  .map-popup__btn:hover {
+    background: var(--moss);
+    border-color: var(--moss);
+  }
 }
 .map-popup__btn--dir {
   color: var(--moss);
   background: transparent;
   border-color: var(--moss);
 }
-.map-popup__btn--dir:hover {
-  color: var(--paper);
+@media (hover: hover) {
+  .map-popup__btn--dir:hover {
+    color: var(--paper);
+  }
 }
 
 .map-tabbar {
@@ -172,8 +208,10 @@
   transition: color 120ms, border-color 120ms;
 }
 
-.map-tabbar__tab:hover {
-  color: var(--ink);
+@media (hover: hover) {
+  .map-tabbar__tab:hover {
+    color: var(--ink);
+  }
 }
 
 .map-tabbar__tab[aria-current='page'] {
@@ -181,10 +219,90 @@
   border-bottom-color: var(--moss);
 }
 
+/* Filter chip row between the tab bar and the map stage. The colored dots
+ * make the row double as the legend. */
+.map-filterbar {
+  flex: 0 0 auto;
+  padding: 8px 12px;
+  background: var(--paper);
+  border-bottom: 1px solid var(--rule-soft);
+}
+
+.map-filterbar--hidden {
+  display: none;
+}
+
+.map-filterbar__row {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.map-filterbar__row::-webkit-scrollbar {
+  display: none;
+}
+
+.map-filterbar__row .chip--filter {
+  flex-shrink: 0;
+}
+
+.map-filterbar__dot {
+  display: inline-block;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  flex: 0 0 auto;
+}
+
+.map-filterbar__dot--secret {
+  background: transparent;
+  border: 2px solid #e9c46a; /* HIDDEN_PIN_STROKE */
+  width: 7px;
+  height: 7px;
+}
+
+.map-filterbar__count {
+  margin-left: 3px;
+  font-weight: 400;
+  opacity: 0.65;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Pressed secret chip keeps the gold identity instead of plain ink. */
+.map-filterbar__secret[aria-pressed='true'] {
+  background: color-mix(in oklab, #e9c46a 22%, var(--paper));
+  border-color: #e9c46a;
+  color: var(--ink);
+}
+
 .map-page__stage {
   position: relative;
   flex: 1 1 auto;
   min-height: 0;
+}
+
+/* Every-pin-filtered-out card, centered over the stage. */
+.map-page__empty {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 15;
+  padding: 16px 20px;
+  background: var(--paper);
+  border: 1px solid var(--ink);
+  border-radius: var(--radius);
+  box-shadow: 3px 3px 0 0 var(--ink);
+  font-family: var(--sans);
+  font-size: 13px;
+  color: var(--ink);
+  text-align: center;
+}
+
+.map-page__empty p {
+  margin: 0 0 10px;
 }
 
 .map-page__map {
@@ -222,11 +340,13 @@
   pointer-events: none;
 }
 
-/* Points pane: small floating legend in the top-right corner. */
+/* Points pane: floating "Near you" + browse-by-area card, top-right corner. */
 .map-pane--points {
   top: 12px;
   right: 12px;
-  max-width: 200px;
+  max-width: 240px;
+  max-height: calc(100% - 24px);
+  overflow-y: auto;
   padding: 12px 14px;
   background: color-mix(in oklab, var(--paper) 94%, transparent);
   backdrop-filter: blur(6px);
@@ -235,6 +355,60 @@
   border-radius: var(--radius);
   box-shadow: 3px 3px 0 0 color-mix(in oklab, var(--ink) 22%, transparent);
   font-family: var(--sans);
+}
+
+/* Collapse handle for the bottom-docked points pane. Hidden on wider
+   screens, where the pane is a floating card that stays open; the media
+   query at the foot of this file flips it to flex and drives the collapse. */
+.map-pane__handle {
+  display: none;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  min-height: 40px;
+  padding: 2px 2px;
+  background: none;
+  border: 0;
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+  cursor: pointer;
+}
+
+.map-pane__handle-caret {
+  font-size: 12px;
+  line-height: 1;
+  color: var(--ink-3);
+}
+
+/* "Near you" block above the legend, populated after a locate-me fix. */
+.map-nearby {
+  margin: 0 0 12px;
+}
+
+.map-nearby__note {
+  margin: 0 0 8px;
+  font-size: 11px;
+  line-height: 1.45;
+  color: var(--ink-2);
+}
+
+.map-nearby__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.map-nearby__list .map-stop {
+  padding: 6px 4px;
+  min-height: 0;
 }
 
 .map-pane__title {
@@ -246,6 +420,70 @@
   margin: 0 0 8px;
 }
 
+/* Browse-by-area: one native <details> per region in the points pane. */
+.map-browse {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.map-browse__region {
+  border-bottom: 1px solid var(--rule-soft);
+}
+
+.map-browse__summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  min-height: 40px;
+  padding: 6px 2px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ink);
+  cursor: pointer;
+  list-style: none;
+}
+
+.map-browse__summary::-webkit-details-marker {
+  display: none;
+}
+
+.map-browse__summary::after {
+  content: '+';
+  color: var(--ink-3);
+}
+
+.map-browse__region[open] > .map-browse__summary::after {
+  content: '–';
+}
+
+.map-browse__count {
+  margin-left: auto;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--ink-3);
+  font-variant-numeric: tabular-nums;
+}
+
+.map-browse__list {
+  list-style: none;
+  margin: 0 0 6px;
+  padding: 0;
+}
+
+.map-browse__list .map-stop {
+  padding: 6px 4px;
+  min-height: 36px;
+}
+
+.map-browse__footnote {
+  margin: 10px 0 0;
+  font-size: 11px;
+  color: var(--ink-2);
+}
+
+/* InfoPane reference legend. */
 .map-legend {
   list-style: none;
   margin: 0;
@@ -331,8 +569,10 @@
   justify-content: center;
 }
 
-.map-itinerary:hover {
-  border-color: var(--ink-2);
+@media (hover: hover) {
+  .map-itinerary:hover {
+    border-color: var(--ink-2);
+  }
 }
 
 .map-itinerary--selected {
@@ -411,8 +651,10 @@
   transition: background 100ms;
 }
 
-.map-stop:hover {
-  background: var(--paper-2);
+@media (hover: hover) {
+  .map-stop:hover {
+    background: var(--paper-2);
+  }
 }
 
 .map-stop--selected {
@@ -493,12 +735,40 @@
     max-height: 50%;
   }
 
+  /* Bottom-docked pane. Opens collapsed to just its handle so the map is
+     the hero, then expands to a capped, scrollable list on tap. */
   .map-pane--points {
     top: auto;
     bottom: 12px;
     right: 12px;
     left: 12px;
     max-width: none;
+    max-height: none;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .map-pane__handle {
+    display: flex;
+  }
+
+  .map-pane--points-open {
+    max-height: 60%;
+  }
+
+  .map-pane--points:not(.map-pane--points-open) .map-pane__scroll {
+    display: none;
+  }
+
+  .map-pane--points-open .map-pane__scroll {
+    min-height: 0;
+    overflow-y: auto;
+  }
+
+  /* The handle already labels the pane; the inner heading would repeat it. */
+  .map-pane--points .map-pane__title--browse {
+    display: none;
   }
 
   .map-legend {

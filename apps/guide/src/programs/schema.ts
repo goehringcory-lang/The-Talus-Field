@@ -44,7 +44,9 @@ export type ProgramEventT = z.infer<typeof ProgramEvent>
 export const ProgramsResponse = z.object({
   start: z.string(),
   end: z.string(),
-  syncedAt: z.string(),
+  // Null when the Worker has never managed an NPS sync (cold start with the
+  // live fetch failing); the UI renders that moment as unknown, not epoch 0.
+  syncedAt: z.string().nullable(),
   events: z.array(ProgramEvent),
   sources: z
     .object({

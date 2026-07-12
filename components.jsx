@@ -273,11 +273,6 @@ function Header({ current, go }) {
 
   const [menuOpen, setMenuOpen] = React.useState(false);
   const menuRef = React.useRef(null);
-  // A/B (mobile_cta): bucket "b" shows a persistent "The Map" CTA in the
-  // masthead. On mobile the inline nav collapses to the hamburger, leaving no
-  // visible path to the funnel; this fills that gap. The map is browsable free
-  // and its trip builder is the newsletter gate, so it is the softest on-ramp.
-  const [ctaVariant] = React.useState(() => window.abVariant("mobile_cta"));
   React.useEffect(() => {
     if (!menuOpen) return;
     const onDoc = (e) => { if (menuRef.current && !menuRef.current.contains(e.target)) setMenuOpen(false); };
@@ -331,7 +326,7 @@ function Header({ current, go }) {
           onClick={(e) => { e.preventDefault(); go("home"); }}
           style={{ textDecoration: "none", color: "inherit" }}
         >
-          <img className="brand__mark" src="img/talus-field-mark.png" alt="The Talus Field" loading="eager" />
+          <img className="brand__mark" src="/img/talus-field-mark.png" alt="The Talus Field" loading="eager" />
           <span className="brand-block__text">
             <span className="brand">The Talus Field</span>
             <span className="brand__sub">A field journal of Yosemite</span>
@@ -340,17 +335,20 @@ function Header({ current, go }) {
         <nav className="nav">
           {primaryNavItems.map(([key, label]) => renderLink(key, label, { baseClass: "nav__link" }))}
 
-          {ctaVariant === "b" && (
-            <a
-              className="nav__primary"
-              href={window.routeToPath ? window.routeToPath("map") : "/map"}
-              onClick={(e) => {
-                e.preventDefault();
-                if (window.track) window.track("cta_click", { location: "masthead_cta", target: "map", variant: ctaVariant });
-                go("map");
-              }}
-            >The Map</a>
-          )}
+          {/* Persistent "The Map" CTA. On mobile the inline nav collapses to
+              the hamburger, leaving no visible path to the funnel; this fills
+              that gap. The map is browsable free and its trip builder is the
+              newsletter gate, so it is the softest on-ramp. Was A/B tested
+              (mobile_cta); bucket b won the tradeoff and is now the default. */}
+          <a
+            className="nav__primary"
+            href={window.routeToPath ? window.routeToPath("map") : "/map"}
+            onClick={(e) => {
+              e.preventDefault();
+              if (window.track) window.track("cta_click", { location: "masthead_cta", target: "map" });
+              go("map");
+            }}
+          >The Map</a>
 
           <div className="nav__menu-wrap" ref={menuRef}>
             <button
@@ -409,6 +407,8 @@ function Footer({ go }) {
               <li><a href="/films" onClick={(e) => { e.preventDefault(); go("films"); }}>Films</a></li>
               <li><a href="/places" onClick={(e) => { e.preventDefault(); go("places"); }}>Directory</a></li>
               <li><a href="/map" onClick={(e) => { e.preventDefault(); go("map"); }}>The Map</a></li>
+              <li><a href="/itineraries" onClick={(e) => { e.preventDefault(); go("itineraries"); }}>Itineraries</a></li>
+              <li><a href="/conditions" onClick={(e) => { e.preventDefault(); go("conditions"); }}>Conditions</a></li>
               <li><a href="/guide" onClick={(e) => { e.preventDefault(); window.track && window.track("guide_cta_click", { location: "footer_guide_link" }); go("guide"); }}>Field Guide</a></li>
               <li><a href="/newsletter" onClick={(e) => { e.preventDefault(); go("newsletter"); }}>Newsletter</a></li>
               <li><a href="/contact" onClick={(e) => { e.preventDefault(); go("contact"); }}>Contact</a></li>
@@ -684,10 +684,6 @@ const EXIT_COOLDOWN_DAYS = 14;
 
 function ExitIntentNewsletter({ disabled }) {
   const [open, setOpen] = useState(false);
-  // A/B (exit_copy): bucket "b" leads with the free-map unlock, the strongest
-  // reason to subscribe, instead of the low-urgency cadence framing. Read once
-  // on mount so the impression and the rendered copy use the same arm.
-  const [variant] = useState(() => window.abVariant("exit_copy"));
   const firedRef = useRef(false);
 
   useEffect(() => {
@@ -704,8 +700,8 @@ function ExitIntentNewsletter({ disabled }) {
       if (firedRef.current) return;
       firedRef.current = true;
       window.safeStorage.set("tfg.nl.exit.seen", new Date().toISOString());
-      if (window.track) window.track("newsletter_exit_intent_shown", { location: "article_exit_intent", tag: "exit-intent", variant });
-      trackNewsletterImpression("article_exit_intent", "exit-intent", variant);
+      if (window.track) window.track("newsletter_exit_intent_shown", { location: "article_exit_intent", tag: "exit-intent" });
+      trackNewsletterImpression("article_exit_intent", "exit-intent");
       setOpen(true);
     };
 
@@ -728,7 +724,7 @@ function ExitIntentNewsletter({ disabled }) {
       window.removeEventListener("scroll", onScroll);
       document.removeEventListener("mouseout", onMouseOut);
     };
-  }, [disabled, variant]);
+  }, [disabled]);
 
   useEffect(() => {
     if (!open) return;
@@ -750,23 +746,14 @@ function ExitIntentNewsletter({ disabled }) {
       <div className="nlmodal__card">
         <button type="button" className="nlmodal__close" aria-label="Close" onClick={() => setOpen(false)}>✕</button>
         <div className="eyebrow eyebrow--moss" style={{ marginBottom: 12 }}>Before you go</div>
-        {variant === "b" ? (
-          <>
-            <h3>The interactive map is free for subscribers.</h3>
-            <p>Subscribe and the trip builder opens right away: vistas, trailheads, parking turnouts, and places to eat on one map. A short note follows on Sundays.</p>
-          </>
-        ) : (
-          <>
-            <h3>One letter a week. Sometimes none.</h3>
-            <p>Sunday Field Notes: what is open, what is blooming, and the occasional longer piece. Free, and you can leave anytime.</p>
-          </>
-        )}
+        <h3>One letter a week. Sometimes none.</h3>
+        <p>Sunday Field Notes: what is open, what is blooming, and the occasional longer piece. Free, and you can leave anytime.</p>
         <form
           className="nlbox__form"
           action="https://buttondown.com/api/emails/embed-subscribe/goehring"
           method="post"
           target="buttondown-target"
-          onSubmit={() => { trackNewsletterSubmit("article_exit_intent", "exit-intent", variant); setTimeout(() => setOpen(false), 0); }}
+          onSubmit={() => { trackNewsletterSubmit("article_exit_intent", "exit-intent"); setTimeout(() => setOpen(false), 0); }}
         >
           <input type="email" name="email" placeholder="you@email.com" required />
           <input type="hidden" name="tag" value="exit-intent" />
@@ -936,10 +923,61 @@ function MapLightbox({ src, alt, caption, onClose }) {
   );
 }
 
+// ============================================================
+// Live webcam strip (Yosemite Conservancy / Pixelcaster). Shared by the
+// homepage and /conditions. The cache-bust timestamp is fixed per mount so
+// the four thumbnails come from the same moment; a failed cam hides its own
+// tile. Every link is external and opens in a new tab, so the delegated
+// outbound_click listener in app.jsx measures the strip with no markup here.
+// ============================================================
+const WEBCAMS = [
+  { label: "Half Dome",      img: "ahwahnee2-t.jpg",  href: "https://yosemite.org/webcams/half-dome/",      alt: "Live view of Half Dome from Ahwahnee Meadow" },
+  { label: "Yosemite Falls", img: "yosfalls-t.jpg",   href: "https://yosemite.org/webcams/yosemite-falls/", alt: "Live view of Upper Yosemite Falls" },
+  { label: "El Capitan",     img: "turtleback-t.jpg", href: "https://yosemite.org/webcams/el-capitan/",     alt: "Live view of El Capitan from Turtleback Dome" },
+  { label: "Wawona",         img: "wawona-t.jpg",     href: "https://yosemite.org/webcams/wawona/",         alt: "Live view of Wawona" },
+];
+
+function WebcamStrip() {
+  const camCacheBust = useMemo(() => Date.now(), []);
+  return (
+    <>
+      <div className="cam-grid" style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 32 }}>
+        {WEBCAMS.map(cam => (
+          <a
+            key={cam.img}
+            className="cam-tile"
+            href={cam.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ textDecoration: "none", color: "inherit", display: "block" }}
+          >
+            <img
+              src={`https://pixelcaster.com/yosemite/webcams/${cam.img}?t=${camCacheBust}`}
+              alt={cam.alt}
+              loading="lazy"
+              decoding="async"
+              referrerPolicy="no-referrer"
+              onError={(e) => { const t = e.currentTarget.closest('.cam-tile'); if (t) t.style.display = 'none'; }}
+              style={{ width: "100%", aspectRatio: "3 / 2", objectFit: "cover", display: "block" }}
+            />
+            <div className="mono" style={{ marginTop: 10, fontSize: 11, textTransform: "uppercase", letterSpacing: "0.18em", color: "var(--ink-2)", fontWeight: 700 }}>
+              {cam.label}
+            </div>
+          </a>
+        ))}
+      </div>
+      <div className="mono" style={{ marginTop: 16, fontSize: 11, color: "var(--ink-3)", textAlign: "right" }}>
+        Live image · <a href="https://yosemite.org/webcams/" target="_blank" rel="noopener noreferrer" style={{ color: "inherit" }}>Yosemite Conservancy / Pixelcaster</a>
+      </div>
+    </>
+  );
+}
+
 // Expose
 Object.assign(window, {
   Placeholder, ResponsiveImage, preloadResponsive,
   SIZES_HERO, SIZES_BODY, SIZES_CARD,
   MotifMountains, MotifSun, MotifTrees,
   Header, Footer, ArticleCard, NewsletterInline, ExitIntentNewsletter, MapLightbox,
+  EntranceWaits, WebcamStrip,
 });

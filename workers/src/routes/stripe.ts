@@ -11,7 +11,7 @@ import { sendMagicLink } from '../lib/email'
 import { verifyStripeSignature } from '../lib/stripe'
 import { generateAccessCode, generateAccessToken } from '../lib/tokens'
 
-const EIGHTEEN_MONTHS_SECONDS = 60 * 60 * 24 * 30 * 18
+const EIGHTEEN_MONTHS_SECONDS = 60 * 60 * 24 * 548 // 18 calendar months is ~547.9 days; 30-day months undersold it by a week
 
 type CheckoutSessionCompletedEvent = {
   id: string

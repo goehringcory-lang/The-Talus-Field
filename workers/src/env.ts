@@ -2,9 +2,10 @@
 export type Env = {
   // KV namespaces
   GUIDE_BUYERS: KVNamespace
-  // Program/event cache written by the daily cron, read by /api/programs.
-  // Separate namespace from buyer records: different lifecycle, and a bad
-  // ingest can never touch purchase data.
+  // Guide data cache: program/event records written by the daily cron and
+  // read by /api/programs, plus the NWS weather record for /api/weather.
+  // Separate namespace from buyer records: different lifecycle, safe to
+  // lose, and a bad ingest can never touch purchase data.
   GUIDE_PROGRAMS: KVNamespace
 
   // Vars (wrangler.toml [vars])
@@ -14,11 +15,23 @@ export type Env = {
   GUIDE_PRODUCT_TAG: string    // "field_guide_2026"
   GUIDE_MONTHLY_CAP: string    // "100"
 
+  // Google OAuth client for the calendar push (/api/calendar). The client id
+  // is a public identifier and lives in [vars]; the secret is set with
+  // `wrangler secret put`. Both optional, and the committed REPLACE_WITH
+  // placeholder id counts as unset (lib/google.ts isGoogleOAuthConfigured):
+  // /api/calendar/google/start returns 503 and the Account page falls back to
+  // the Google add-by-URL feed subscription.
+  GOOGLE_OAUTH_CLIENT_ID?: string
+
   // Secrets (wrangler secret put)
   STRIPE_SECRET_KEY: string
   STRIPE_WEBHOOK_SECRET: string
   MAGIC_LINK_SIGNING_SECRET: string
   RESEND_API_KEY: string
+
+  // Google OAuth client secret for the calendar push. Paired with
+  // GOOGLE_OAUTH_CLIENT_ID above; optional (endpoint 503s when unset).
+  GOOGLE_OAUTH_CLIENT_SECRET?: string
 
   // NPS Events API key (free, developer.nps.gov/get-started). Server-side
   // only — the PWA never sees it. Optional: without it the programs cron

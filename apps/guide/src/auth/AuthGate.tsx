@@ -5,10 +5,12 @@ import {
   clearAccessEndedAt,
   clearStoredJwt,
   readSessionFromStorage,
+  sessionFromJwt,
   setAccessEndedAt,
   setStoredJwt,
 } from './storage'
 import { clearCachedMe, fetchMe } from './me'
+import { ApiError } from '../lib/api'
 import { AuthContext, useAuth } from './useAuth'
 import type { Session } from './useAuth'
 
@@ -39,8 +41,18 @@ export function AuthProvider({ children }: { children: ReactNode }) {
           setSession(null)
         }
       })
-      .catch(() => {
-        /* offline, old worker, or transient failure: keep the session */
+      .catch((err) => {
+        if (cancelled) return
+        // A definitive 401 while online means the Worker rejected this JWT
+        // (revocation, secret rotation): sign out with no "access ended"
+        // marker, since the reason is unknown and /login's plain form is
+        // right. Anything else (network, 5xx, schema drift) keeps the
+        // session: offline must never punish the buyer.
+        if (err instanceof ApiError && err.status === 401) {
+          clearStoredJwt()
+          clearCachedMe()
+          setSession(null)
+        }
       })
     return () => {
       cancelled = true
@@ -54,7 +66,11 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     setStoredJwt(jwt)
     // A successful sign-in supersedes any "access ended" explanation.
     clearAccessEndedAt()
-    setSession(readSessionFromStorage())
+    // Derive the session from the JWT itself: in storage-blocked contexts
+    // setStoredJwt silently fails, and re-reading storage here would throw
+    // away a session the server just issued (and the magic-link token that
+    // bought it). The session then simply doesn't survive a reload.
+    setSession(sessionFromJwt(jwt))
   }, [])
 
   const signOut = useCallback(() => {
@@ -75,8 +91,15 @@ export function RequireAuth({ children }: { children: ReactNode }) {
   const { session } = useAuth()
   const location = useLocation()
   if (!session) {
-    // Keep the query string: /map?tab=…&stop=… is the shape shared links use.
-    return <Navigate to="/login" replace state={{ from: location.pathname + location.search }} />
+    // Keep the query string and hash: /map?tab=…&stop=… is the shape shared
+    // links use, and /secret-guide#<id> is the legacy bookmark shape.
+    return (
+      <Navigate
+        to="/login"
+        replace
+        state={{ from: location.pathname + location.search + location.hash }}
+      />
+    )
   }
   return <>{children}</>
 }

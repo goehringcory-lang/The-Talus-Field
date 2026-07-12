@@ -44,6 +44,10 @@ import {
 
 const CHECK = process.argv.includes("--check");
 
+// /guide is listed pre-launch: the page carries the waitlist (GUIDE_ON_SALE
+// in page-guide.jsx) and accumulates search authority while it waits.
+const GUIDE_LISTED = true;
+
 // ----------------------------------------------------------------------------
 // Helpers
 // ----------------------------------------------------------------------------
@@ -199,11 +203,13 @@ function buildSitemap(merged, categories) {
     ["/advertise", "2026-04-01"],
     ["/newsletter", "2026-04-01"],
     ["/contact", "2026-04-01"],
-    ["/privacy", "2026-04-01"],
+    ["/privacy", "2026-07-08"],
     ["/terms", "2026-04-01"],
     ["/affiliate", "2026-04-01"],
-    ["/guide", "2026-05-10"],
+    ...(GUIDE_LISTED ? [["/guide", "2026-05-10"]] : []),
     ["/map", "2026-06-10"],
+    ["/itineraries", "2026-07-12"],
+    ["/conditions", "2026-07-12"],
   ].map(([loc, lastmod]) => urlBlock({ loc, lastmod }));
 
   const articles = merged.map((a) =>

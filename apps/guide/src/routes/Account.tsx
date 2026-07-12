@@ -2,9 +2,12 @@ import { useEffect, useState } from 'react'
 import { useAuth } from '../auth/useAuth'
 import { fetchMe, readCachedMe, type MeT } from '../auth/me'
 import GatedChrome from '../components/GatedChrome'
+import CalendarCard from '../components/CalendarCard'
 import DownloadManager from '../components/DownloadManager'
 import Button from '../components/ui/Button'
 import PageHeader from '../components/ui/PageHeader'
+import Skeleton from '../components/ui/Skeleton'
+import { PHOTO_CREDITS } from '../content/photoCredits'
 import { MAP_ATTRIBUTION } from '../map/style'
 
 function formatAccessDate(epochSeconds: number): string {
@@ -21,6 +24,9 @@ function formatAccessDate(epochSeconds: number): string {
 // omitted rather than shown empty.
 function AccessStatusCard() {
   const [me, setMe] = useState<MeT | null>(() => readCachedMe())
+  // Skeleton only for the first online visit (no cache, fetch in flight);
+  // offline with no cache keeps the card omitted instead of loading forever.
+  const [checking, setChecking] = useState(() => readCachedMe() === null && navigator.onLine)
 
   useEffect(() => {
     let cancelled = false
@@ -31,11 +37,25 @@ function AccessStatusCard() {
       .catch(() => {
         /* offline or old worker: the cached copy (or nothing) stands */
       })
+      .finally(() => {
+        if (!cancelled) setChecking(false)
+      })
     return () => {
       cancelled = true
     }
   }, [])
 
+  if (!me && checking) {
+    return (
+      <div className="card" aria-hidden="true">
+        <span className="eyebrow" style={{ display: 'block', marginBottom: 8 }}>Access</span>
+        <div style={{ display: 'grid', gap: 8, maxWidth: 280 }}>
+          <Skeleton height={18} width="60%" />
+          <Skeleton height={13} width="90%" />
+        </div>
+      </div>
+    )
+  }
   if (!me) return null
   return (
     <div className="card">
@@ -63,6 +83,42 @@ function AccessStatusCard() {
   )
 }
 
+// Full attribution for the guide's photography: author, license, and source
+// link per file. This is the Creative Commons compliance surface (the plate
+// captions carry only a courtesy line); it renders offline once cached.
+// Hidden until the credits manifest ships entries.
+function PhotoCreditsSection() {
+  const entries = Object.entries(PHOTO_CREDITS)
+  if (entries.length === 0) return null
+  return (
+    <section id="photo-credits" aria-label="Photo credits" style={{ marginTop: 28 }}>
+      <span className="eyebrow" style={{ display: 'block', marginBottom: 8 }}>Photography</span>
+      <p className="card__note" style={{ marginTop: 0 }}>
+        The photographs in this guide are public domain and Creative Commons works, credited
+        below, alongside our own field photography.
+      </p>
+      <ul className="link-list" style={{ fontSize: 13 }}>
+        {entries.map(([src, credit]) => {
+          const basename = src.split('/').pop() ?? src
+          return (
+            <li key={src}>
+              {basename}: {credit.author}, {credit.license}
+              {credit.source && (
+                <>
+                  {' · '}
+                  <a href={credit.source} target="_blank" rel="noopener noreferrer">
+                    source
+                  </a>
+                </>
+              )}
+            </li>
+          )
+        })}
+      </ul>
+    </section>
+  )
+}
+
 export default function Account() {
   const { session, signOut } = useAuth()
   return (
@@ -79,9 +135,15 @@ export default function Account() {
           <AccessStatusCard />
 
           <div className="card">
+            <CalendarCard />
+          </div>
+
+          <div className="card">
             <DownloadManager />
           </div>
         </div>
+
+        <PhotoCreditsSection />
 
         <p style={{ marginTop: 28 }}>
           Questions? Email{' '}

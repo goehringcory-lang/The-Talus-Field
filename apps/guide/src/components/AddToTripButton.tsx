@@ -1,6 +1,6 @@
 // Calendar-plus toggle in the stop-card title row, so every list surface
-// (region pages, secret spots, hidden areas) can plan without opening the
-// stop. Toggling off removes the stop from every day it was planned on.
+// (region pages, the Secret Guide) can plan without opening the stop.
+// Toggling off removes the stop from every day it was planned on.
 
 import { announceTripAdd } from '../trip/addFeedback'
 import { useTripPlan } from '../trip/useTripPlan'

@@ -19,6 +19,10 @@ export const TripStopItem = z.object({
   day: z.string().regex(DATE_RE),
   startTime: z.string().regex(TIME_RE).optional(), // set by the user; unset = auto-slotted
   durationMin: z.number().optional(),    // default: stop.timeBudgetMin ?? 60
+  // Calendar identity. itemId embeds the day, so moving a stop across days
+  // would change a UID built from it and orphan the old event on re-import.
+  // Minted once at add; optional so plans stored before it existed still parse.
+  eventUid: z.string().optional(),
 })
 export type TripStopItemT = z.infer<typeof TripStopItem>
 

@@ -1,9 +1,13 @@
 /* global React */
 // =============================================================================
 // MAP PAGE — `/map` route. Google Maps JavaScript API + region-grouped trip
-// builder. Visitors browse Yosemite pins by area, tap pins on the map or "+"
-// buttons in the sidebar to assemble a trip. The trip persists in localStorage
-// so it survives a refresh, and can be shared via /map?trip=id1,id2.
+// builder. Visitors browse Yosemite pins by area, filter them by category
+// chips (shareable via /map?cat=hike,vista), search the sidebar by name, and
+// tap pins on the map or "+" buttons in the sidebar to assemble a trip. Pins
+// cluster below zoom 13 (progressive enhancement; trip and selected pins
+// never cluster). The trip persists in localStorage so it survives a refresh,
+// and can be shared via /map?trip=id1,id2. Destructive trip actions (quick
+// picks, Clear all) offer a one-level Undo through the toast.
 //
 // API KEY: set in index.html, restricted to thetalusfieldjournal.com and
 // localhost:8765 in the Google Cloud console. Maps JS API + marker library
@@ -12,7 +16,15 @@
 
 const { useEffect, useMemo, useRef, useState, useCallback } = React;
 
-const POINTS_URL = "/points.geojson?v=24";
+const POINTS_URL = "/points.geojson?v=25";
+// Shared with /itineraries (page-itineraries.jsx), which resolves stop names
+// from the same pin data, so the cache-buster is bumped in exactly one place.
+window.POINTS_URL = POINTS_URL;
+// Worker API base for "email this trip". Override at runtime via
+// window.GUIDE_API_BASE (same convention as page-guide.jsx) for local dev.
+const MAP_API_BASE =
+  (typeof window !== "undefined" && window.GUIDE_API_BASE) ||
+  "https://api.thetalusfieldjournal.com";
 const STORAGE_KEY = "tfg.trip";
 const STORAGE_VERSION = 1;
 const TRIP_CAP = 30;
@@ -20,6 +32,15 @@ const TRIP_PIN_COLOR = "#7a8f5a"; // moss — matches --moss CSS var on the rail
 // Google's dir URL accepts origin + destination + 9 waypoints. Stops past the
 // limit are dropped from the exported route (the user is told via toast).
 const ROUTE_STOP_LIMIT = 11;
+// Mobile only: after the selection effect opens an InfoWindow, nudge the map
+// center up so the pin sits below center, leaving room for the InfoWindow
+// (which opens upward) above it and keeping the pin clear of the bottom
+// sheet's 60px peek bar.
+const MOBILE_SELECT_PAN_Y = -80;
+// Undoable toasts (quick-pick replace, Clear all) stay up longer than plain
+// status toasts; toast dismissal is also the undo expiry.
+const TOAST_MS = 2500;
+const TOAST_UNDO_MS = 6000;
 
 // Newsletter gate. The whole map is the free lead magnet: a locked visitor
 // sees a covering signup overlay (MapAccessGate) and cannot reach the map or
@@ -49,13 +70,14 @@ const REGIONS = [
   { id: "tuolumne-area",  label: "Tuolumne & Hetch Hetchy",          keys: ["tuolumne", "hetch-hetchy"] },
 ];
 
-// Suggested-trip presets keyed by sidebar region IDs. Each preset replaces
-// (not appends to) the user's current trip when clicked.
-const QUICK_PICKS = [
-  { id: "1day", label: "1 day",  regionIds: ["valley"] },
-  { id: "2day", label: "2 days", regionIds: ["valley", "glacier-point"] },
-  { id: "3day", label: "3 days", regionIds: ["valley", "glacier-point", "tuolumne-area"] },
-];
+// Suggested-trip presets: the curated, drive-ordered day plans from
+// itineraries-data.js (window.ITINERARIES), not region dumps. Each preset
+// replaces (not appends to) the user's current trip when clicked. The same
+// plans render in prose on /itineraries.
+const QUICK_PICKS = (window.ITINERARIES || []).map((it) => ({
+  id: it.id,
+  label: it.label,
+}));
 
 // Pin color + display label per category. Categories come from
 // points.geojson — add a new entry here whenever a new category is
@@ -73,6 +95,31 @@ function getCategoryStyle(category) {
   return CATEGORY_STYLES[category] || CATEGORY_FALLBACK;
 }
 
+const ALL_CATEGORIES = Object.keys(CATEGORY_STYLES);
+
+// Parses ?cat= into the Set of active (visible) categories. Absent means no
+// filter, i.e. every category active. An empty value ("/map?cat=") is the
+// legal all-off state. Unknown tokens are dropped; if every token is garbage
+// the filter falls back to all-active rather than an accidentally empty map.
+function parseCatParam(raw) {
+  if (raw === null || raw === undefined) return new Set(ALL_CATEGORIES);
+  if (raw === "") return new Set();
+  const out = new Set();
+  for (const token of raw.split(",")) {
+    const t = token.trim();
+    if (CATEGORY_STYLES[t]) out.add(t);
+  }
+  return out.size > 0 ? out : new Set(ALL_CATEGORIES);
+}
+
+// Serializes the active-category Set for ?cat=. Null when every category is
+// active (param omitted, the default state). Sorted so writeUrlState's
+// string comparison stays stable across toggles.
+function serializeCats(activeCats) {
+  if (ALL_CATEGORIES.every((c) => activeCats.has(c))) return null;
+  return Array.from(activeCats).sort().join(",");
+}
+
 // ---------------------------------------------------------------------------
 // URL state helpers. /map?stop=tunnel-view selects a pin; /map?trip=id1,id2 is
 // a one-shot shared trip that replaces the local trip on load, then the URL
@@ -82,7 +129,13 @@ function getCategoryStyle(category) {
 // ---------------------------------------------------------------------------
 function readUrlState() {
   const params = new URLSearchParams(window.location.search);
-  return { stop: params.get("stop") || null, trip: params.get("trip") || null };
+  return {
+    stop: params.get("stop") || null,
+    trip: params.get("trip") || null,
+    // "" (from "/map?cat=") and null (param absent) are distinct: empty
+    // string means all categories toggled off, absent means no filter.
+    cat: params.get("cat"),
+  };
 }
 
 // Parses a ?trip= value ("id1,id2,...") against the loaded feature set.
@@ -101,9 +154,14 @@ function parseTripParam(raw, validIds) {
   return out;
 }
 
-function writeUrlState({ stop }) {
+// The single URL writer. Callers must always pass BOTH keys — a partial call
+// would silently strip the other param (the one URL-sync effect in MapView is
+// the only caller for exactly this reason). Still deliberately strips
+// everything else, including the one-shot ?trip=.
+function writeUrlState({ stop, cat }) {
   const params = new URLSearchParams();
   if (stop) params.set("stop", stop);
+  if (cat !== null && cat !== undefined) params.set("cat", cat);
   const qs = params.toString();
   const newUrl = "/map" + (qs ? `?${qs}` : "");
   if (newUrl !== window.location.pathname + window.location.search) {
@@ -202,6 +260,69 @@ function waitForGoogleMaps(timeoutMs = 8000) {
   });
 }
 
+// ---------------------------------------------------------------------------
+// Marker clusterer (progressive enhancement). The UMD build ships from
+// unpkg, which the _headers CSP already allow-lists because React loads from
+// the same origin. Clustering is never required for the map to work: the
+// wait helper resolves null on timeout/failure and the map falls back to
+// plain un-clustered markers, exactly the pre-clusterer behavior.
+// ---------------------------------------------------------------------------
+const CLUSTERER_SRC =
+  "https://unpkg.com/@googlemaps/markerclusterer@2.5.3/dist/index.min.js";
+// Clusters form only below this zoom. The selection effect zooms to 13, so a
+// selected or deep-linked stop always lands above the clustering ceiling.
+const CLUSTER_MAX_ZOOM = 12;
+
+function markerClustererLoaded() {
+  return !!(window.markerClusterer && window.markerClusterer.MarkerClusterer);
+}
+
+function injectMarkerClusterer() {
+  if (markerClustererLoaded()) return;
+  if (document.querySelector(`script[src="${CLUSTERER_SRC}"]`)) return;
+  const s = document.createElement("script");
+  s.src = CLUSTERER_SRC;
+  s.async = true;
+  document.head.appendChild(s);
+}
+
+function waitForMarkerClusterer(timeoutMs = 8000) {
+  return new Promise((resolve) => {
+    if (markerClustererLoaded()) {
+      resolve(window.markerClusterer);
+      return;
+    }
+    injectMarkerClusterer();
+    const start = Date.now();
+    const interval = setInterval(() => {
+      if (markerClustererLoaded()) {
+        clearInterval(interval);
+        resolve(window.markerClusterer);
+      } else if (Date.now() - start > timeoutMs) {
+        clearInterval(interval);
+        resolve(null);
+      }
+    }, 100);
+  });
+}
+
+// Cluster badge renderer: a moss circle with the stop count (styles.css
+// .map-cluster). zIndex tracks count so denser clusters sit on top.
+function buildClusterRenderer(markerLib) {
+  return {
+    render({ count, position }) {
+      const div = document.createElement("div");
+      div.className = "map-cluster";
+      div.textContent = String(count);
+      return new markerLib.AdvancedMarkerElement({
+        position,
+        content: div,
+        zIndex: 1000 + count,
+      });
+    },
+  };
+}
+
 // Builds a fresh PinElement. PinElement instances are passed directly as
 // AdvancedMarkerElement.content (the legacy pattern of `pin.element` is
 // deprecated). `glyphText` is the position digit ("1", "2", ...) for
@@ -229,22 +350,39 @@ function MapView({ go }) {
   const goRef = useRef(go); // latest SPA navigate, called from InfoWindow article links
   const announcerRef = useRef(null);
   const toastTimerRef = useRef(null);
+  const clustererRef = useRef(null); // MarkerClusterer instance, null until (unless) the lib loads
+  const markerModesRef = useRef({}); // id -> last applied visibility mode ("direct"|"clustered"|"hidden")
+  const pendingUndoRef = useRef(null); // { ids } snapshot restorable while an undoable toast shows
 
   const [features, setFeatures] = useState(null);
   const [error, setError] = useState(null);
   const [mapReady, setMapReady] = useState(false);
   const [toast, setToast] = useState(null);
-  // View gate: the whole map sits behind a newsletter signup. Seeded once from
-  // the persisted unlock flag (or a prior signup anywhere on the site), so a
-  // returning subscriber never re-sees the gate. Fails OPEN via isMapUnlocked
-  // when storage throws (private mode), matching the rest of the site.
+  // Trip-builder gate: the map itself (pins, filters, search, shared trips) is
+  // browsable by everyone. Only a write action — adding a stop, "add all from
+  // region", or loading a suggested trip — opens the signup gate for a locked
+  // visitor (see openGate / gateOpen below). Seeded once from the persisted
+  // unlock flag (or a prior signup anywhere on the site), so a returning
+  // subscriber never sees the gate at all. Fails OPEN via isMapUnlocked when
+  // storage throws (private mode), matching the rest of the site.
   const [unlocked, setUnlocked] = useState(
     () => isMapUnlocked() || (window.isSubscribed && window.isSubscribed())
   );
+  // Whether the trip-builder gate modal is currently showing. Only ever true
+  // for a locked visitor who just attempted a trip-building action; dismissable
+  // (unlike the old full-view gate), since browsing the map needs no signup.
+  const [gateOpen, setGateOpen] = useState(false);
 
   const initial = useMemo(() => readUrlState(), []);
   const [selectedStopId, setSelectedStopId] = useState(initial.stop);
   const [tripStopIds, setTripStopIds] = useState([]);
+  // Active pin categories. Everything active is the default (no filter);
+  // toggled off categories hide their pins and sidebar rows, except stops
+  // that are in the trip or currently selected (see the visibility effect).
+  const [activeCats, setActiveCats] = useState(() => parseCatParam(initial.cat));
+  // Flips once if/when the clusterer library arrives; re-runs the visibility
+  // effect so already-placed markers re-home into the clusterer.
+  const [hasClusterer, setHasClusterer] = useState(false);
   const [expandedRegions, setExpandedRegions] = useState(
     () => new Set(REGIONS.map((r) => r.id))
   );
@@ -301,27 +439,67 @@ function MapView({ go }) {
     saveTripToStorage(tripStopIds);
   }, [tripStopIds, features]);
 
-  // Sync ?stop= back to URL.
+  // Sync ?stop= and ?cat= back to URL. Keep this the only writeUrlState
+  // caller: it always passes both keys, so neither param can strip the other.
   useEffect(() => {
-    writeUrlState({ stop: selectedStopId });
-  }, [selectedStopId]);
+    writeUrlState({ stop: selectedStopId, cat: serializeCats(activeCats) });
+  }, [selectedStopId, activeCats]);
 
   // Restore from URL on browser back/forward.
   useEffect(() => {
     const onPop = () => {
       const next = readUrlState();
       setSelectedStopId(next.stop);
+      setActiveCats(parseCatParam(next.cat));
     };
     window.addEventListener("popstate", onPop);
     return () => window.removeEventListener("popstate", onPop);
   }, []);
 
+  // ---- Category filter -----------------------------------------------------
+  const toggleCategory = useCallback(
+    (cat) => {
+      const next = new Set(activeCats);
+      const nowActive = !next.has(cat);
+      if (nowActive) next.add(cat);
+      else next.delete(cat);
+      setActiveCats(next);
+      if (features) {
+        const tripSet = new Set(tripStopIdsRef.current);
+        const shown = features.filter(
+          (f) => next.has(f.properties.category) || tripSet.has(f.properties.id)
+        ).length;
+        announce(
+          `${getCategoryStyle(cat).label} pins ${nowActive ? "shown" : "hidden"}. ${shown} of ${features.length} stops shown.`
+        );
+      }
+      if (window.track) {
+        window.track("map_filter_category", {
+          category: cat,
+          active: nowActive,
+          active_count: next.size,
+        });
+      }
+    },
+    [activeCats, features, announce]
+  );
+
   // ---- Trip-mutation actions ----------------------------------------------
-  const announce = useCallback((msg) => {
-    if (announcerRef.current) announcerRef.current.textContent = msg;
-    setToast(msg);
+  // Undoable announcements keep their toast up longer and surface an Undo
+  // button (see the toast render in TripPlannerSidebar). The undo snapshot
+  // lives only as long as its toast: expiry or replacement clears it.
+  const announce = useCallback((msg, opts) => {
+    const undoable = !!(opts && opts.undoable);
+    if (!undoable) pendingUndoRef.current = null;
+    if (announcerRef.current) {
+      announcerRef.current.textContent = undoable ? `${msg} Undo available.` : msg;
+    }
+    setToast({ msg, undoable });
     if (toastTimerRef.current) clearTimeout(toastTimerRef.current);
-    toastTimerRef.current = setTimeout(() => setToast(null), 2500);
+    toastTimerRef.current = setTimeout(() => {
+      setToast(null);
+      pendingUndoRef.current = null;
+    }, undoable ? TOAST_UNDO_MS : TOAST_MS);
   }, []);
 
   const featureNameById = useCallback(
@@ -334,23 +512,31 @@ function MapView({ go }) {
   );
 
   // ---- Signup gate ---------------------------------------------------------
-  // The whole map is gated: a locked visitor sees a covering signup overlay
-  // (see MapAccessGate in the render) and the map/sidebar behind it are inert.
-  // One signup flips the persisted unlock flag and reveals everything; a prior
-  // signup anywhere on the site (tfg.nl.subscribed) counts too and is already
-  // reflected in the seeded `unlocked` state. Because access is gated up front,
-  // the trip-building actions below no longer need their own per-action gate.
+  // Opens the trip-builder gate modal for a locked visitor. Each of the three
+  // write actions below (toggle a stop, add all from a region, load a quick
+  // pick) calls this instead of mutating trip state when !unlocked.
+  const openGate = useCallback(() => {
+    setGateOpen(true);
+  }, []);
+
+  // One signup flips the persisted unlock flag, reveals the trip builder, and
+  // closes the modal; a prior signup anywhere on the site (tfg.nl.subscribed)
+  // counts too and is already reflected in the seeded `unlocked` state.
   const handleGateSubscribed = useCallback(() => {
     setMapUnlocked();
     setUnlocked(true);
+    setGateOpen(false);
   }, []);
 
-  // Record one impression the first time the gate is shown to a locked visitor.
+  // Record one impression each time the gate is actually shown (not merely
+  // because the visitor is locked — browsing needs no signup, so a locked
+  // visitor who never attempts a write action never sees or counts as shown
+  // the gate).
   useEffect(() => {
-    if (!unlocked && window.trackNewsletterImpression) {
-      window.trackNewsletterImpression("map_view_gate", "map-gate");
+    if (gateOpen && window.trackNewsletterImpression) {
+      window.trackNewsletterImpression("map_trip_gate", "map-gate");
     }
-  }, [unlocked]);
+  }, [gateOpen]);
 
   const performToggleTripStop = useCallback(
     (id) => {
@@ -378,11 +564,12 @@ function MapView({ go }) {
     [announce, featureNameById]
   );
 
-  // Public toggle. Access to the map is already gated up front, so trip
-  // mutations run directly here. Membership is read from the ref (not inside
-  // the state updater) so the add/remove branch is decided before any change.
+  // Public toggle. A locked visitor's first add opens the signup gate instead
+  // of mutating trip state; membership is read from the ref (not inside the
+  // state updater) so the add/remove branch is decided before any change.
   const toggleTripStop = useCallback(
     (id, source) => {
+      if (!unlocked) { openGate(); return; }
       const adding = !tripStopIdsRef.current.includes(id);
       if (adding && window.track && tripStopIdsRef.current.length < TRIP_CAP) {
         window.track("trip_add", {
@@ -393,7 +580,7 @@ function MapView({ go }) {
       }
       performToggleTripStop(id);
     },
-    [performToggleTripStop]
+    [performToggleTripStop, unlocked, openGate]
   );
 
   const removeTripStop = useCallback(
@@ -429,11 +616,25 @@ function MapView({ go }) {
   );
 
   const clearTrip = useCallback(() => {
-    setTripStopIds((prev) => {
-      if (prev.length === 0) return prev;
-      announce("Cleared trip. 0 stops.");
-      return [];
-    });
+    const prev = tripStopIdsRef.current;
+    if (prev.length === 0) return;
+    pendingUndoRef.current = { ids: prev };
+    setTripStopIds([]);
+    announce("Cleared trip. 0 stops.", { undoable: true });
+  }, [announce]);
+
+  // Restores the trip snapshotted by the last destructive action (quick-pick
+  // replace or Clear all) while its toast is still up. Pin repaint and
+  // persistence follow from the tripStopIds effects; nothing else to do.
+  const undoTripChange = useCallback(() => {
+    const saved = pendingUndoRef.current;
+    if (!saved) return;
+    pendingUndoRef.current = null;
+    setTripStopIds(saved.ids);
+    if (window.track) window.track("trip_undo", { restored_size: saved.ids.length });
+    announce(
+      `Restored previous trip. ${saved.ids.length} ${saved.ids.length === 1 ? "stop" : "stops"}.`
+    );
   }, [announce]);
 
   const performAddAllFromRegion = useCallback(
@@ -443,8 +644,12 @@ function MapView({ go }) {
         const region = REGIONS.find((r) => r.id === regionId);
         if (!region) return prev;
         const keys = new Set(region.keys);
+        // Respects the category filter (never adds pins the user just hid)
+        // but not the sidebar search, which is a find tool, not a selection.
         const regionStopIds = features
-          .filter((f) => keys.has(f.properties.region))
+          .filter(
+            (f) => keys.has(f.properties.region) && activeCats.has(f.properties.category)
+          )
           .map((f) => f.properties.id);
         const have = new Set(prev);
         const next = [...prev];
@@ -462,15 +667,16 @@ function MapView({ go }) {
         return next;
       });
     },
-    [announce, features]
+    [announce, features, activeCats]
   );
 
   const addAllFromRegion = useCallback(
     (regionId) => {
+      if (!unlocked) { openGate(); return; }
       if (window.track) window.track("trip_add_all", { region: regionId });
       performAddAllFromRegion(regionId);
     },
-    [performAddAllFromRegion]
+    [performAddAllFromRegion, unlocked, openGate]
   );
 
   const performApplyQuickPick = useCallback(
@@ -478,18 +684,21 @@ function MapView({ go }) {
       if (!features) return;
       const qp = QUICK_PICKS.find((q) => q.id === quickPickId);
       if (!qp) return;
-      const keys = new Set();
-      for (const rid of qp.regionIds) {
-        const r = REGIONS.find((x) => x.id === rid);
-        if (r) for (const k of r.keys) keys.add(k);
-      }
-      const stops = features
-        .filter((f) => keys.has(f.properties.region))
-        .map((f) => f.properties.id)
+      // Curated drive order from itineraries-data.js, filtered against the
+      // pins that actually exist so a stale id can never wedge the trip.
+      const validIds = new Set(features.map((f) => f.properties.id));
+      const stops = (window.getItineraryStopIds ? window.getItineraryStopIds(qp.id) : [])
+        .filter((id) => validIds.has(id))
         .slice(0, TRIP_CAP);
+      if (stops.length === 0) return;
+      // Quick picks replace the trip outright; snapshot the old one so the
+      // toast can offer Undo when there was something to lose.
+      const prev = tripStopIdsRef.current;
+      if (prev.length > 0) pendingUndoRef.current = { ids: prev };
       setTripStopIds(stops);
       announce(
-        `Loaded ${qp.label} suggested trip. ${stops.length} ${stops.length === 1 ? "stop" : "stops"}.`
+        `Loaded ${qp.label} suggested trip. ${stops.length} ${stops.length === 1 ? "stop" : "stops"}.`,
+        { undoable: prev.length > 0 }
       );
     },
     [announce, features]
@@ -497,10 +706,11 @@ function MapView({ go }) {
 
   const applyQuickPick = useCallback(
     (quickPickId) => {
+      if (!unlocked) { openGate(); return; }
       if (window.track) window.track("trip_quick_pick", { pick: quickPickId });
       performApplyQuickPick(quickPickId);
     },
-    [performApplyQuickPick]
+    [performApplyQuickPick, unlocked, openGate]
   );
 
   // ---- Trip share + route export -------------------------------------------
@@ -559,6 +769,10 @@ function MapView({ go }) {
 
   const handleSelectStop = useCallback((id) => {
     setSelectedStopId(id);
+    // On mobile the sheet covers the map at half/full; drop it to peek so
+    // the InfoWindow this selection opens is actually visible. Evaluated at
+    // event time, same pattern as the sheet-drag guard.
+    if (window.innerWidth <= 720) setSheetState("peek");
   }, []);
 
   const handleToggleRegion = useCallback((regionId) => {
@@ -600,6 +814,24 @@ function MapView({ go }) {
           setSelectedStopId(null);
         });
         setMapReady(true);
+        // Clustering arrives whenever the lib does (or never, on a failed
+        // load — the map is already live either way). Resetting the mode
+        // cache makes the visibility effect re-home every marker cleanly.
+        waitForMarkerClusterer().then((mc) => {
+          if (cancelled || !mc) return;
+          clustererRef.current = new mc.MarkerClusterer({
+            map,
+            markers: [],
+            algorithm: new mc.SuperClusterAlgorithm({ maxZoom: CLUSTER_MAX_ZOOM, radius: 60 }),
+            renderer: buildClusterRenderer(markerLib),
+            onClusterClick: (event, cluster, m) => {
+              if (window.track) window.track("map_cluster_click", { count: cluster.count });
+              m.fitBounds(cluster.bounds);
+            },
+          });
+          markerModesRef.current = {};
+          setHasClusterer(true);
+        });
       })
       .catch((err) => {
         if (cancelled) return;
@@ -629,9 +861,10 @@ function MapView({ go }) {
       const pin = buildPinElement(markerLib, {
         background: getCategoryStyle(p.category).color,
       });
+      // Created detached: the visibility effect below is the single owner of
+      // marker.map / clusterer membership. Nothing else may attach markers.
       const marker = new markerLib.AdvancedMarkerElement({
         position,
-        map,
         title: p.name,
         content: pin,
       });
@@ -643,6 +876,9 @@ function MapView({ go }) {
         infoRef.current.setContent(buildInfoHtml(p, feature.geometry.coordinates, tripStopIdsRef.current));
         infoRef.current.open({ anchor: marker, map });
         setSelectedStopId(p.id);
+        // Tapping the map is a statement of intent to look at the map: on
+        // mobile, drop the sheet so the InfoWindow isn't opened behind it.
+        if (window.innerWidth <= 720) setSheetState("peek");
       });
       markersRef.current[p.id] = marker;
     }
@@ -681,6 +917,58 @@ function MapView({ go }) {
       marker.content = pin;
     }
   }, [tripStopIds, features, mapReady]);
+
+  // ---- Effect C: marker visibility. The single owner of marker.map and
+  // clusterer membership (Effect A creates markers detached). Trip and
+  // selected pins bypass the clusterer entirely so the numbered route always
+  // reads and the InfoWindow keeps a live anchor; pins whose category is
+  // toggled off are hidden unless they are in the trip or selected. Runs
+  // before the selection effect below (declaration order), so a selected
+  // marker is attached by the time the InfoWindow opens on it.
+  useEffect(() => {
+    if (!mapReady || !features) return;
+    const map = mapRef.current;
+    if (!map) return;
+    const clusterer = clustererRef.current;
+    const tripSet = new Set(tripStopIds);
+    const modes = markerModesRef.current;
+    let clusterChanged = false;
+    for (const feature of features) {
+      const p = feature.properties;
+      const marker = markersRef.current[p.id];
+      if (!marker) continue;
+      const mode =
+        tripSet.has(p.id) || p.id === selectedStopId
+          ? "direct"
+          : !activeCats.has(p.category)
+          ? "hidden"
+          : clusterer
+          ? "clustered"
+          : "direct";
+      if (modes[p.id] === mode) continue;
+      if (modes[p.id] === "clustered" && clusterer) {
+        clusterer.removeMarker(marker, true);
+        clusterChanged = true;
+      }
+      if (mode === "clustered") {
+        marker.map = null;
+        clusterer.addMarker(marker, true);
+        clusterChanged = true;
+      } else {
+        marker.map = mode === "direct" ? map : null;
+      }
+      modes[p.id] = mode;
+    }
+    if (clusterer && clusterChanged) clusterer.render();
+    // A chip toggle can hide the feature whose InfoWindow is open (only a
+    // non-selected one; selected stops are always direct). Close it rather
+    // than leave it anchored to a hidden marker.
+    const of = openFeatureRef.current;
+    if (of && modes[of.properties.id] === "hidden" && infoRef.current) {
+      infoRef.current.close();
+      openFeatureRef.current = null;
+    }
+  }, [tripStopIds, activeCats, selectedStopId, features, mapReady, hasClusterer]);
 
   // ---- InfoWindow content refresh: when the trip changes while an
   // InfoWindow is open, re-render its content so the Add/Remove button
@@ -729,6 +1017,46 @@ function MapView({ go }) {
           if (goRef.current) goRef.current("a:" + slug);
         });
       });
+      // Per-pin share links copy /map?stop=<id> to the clipboard instead of
+      // navigating (the pin is already selected; reloading would be noise).
+      const shares = document.querySelectorAll("[data-stop-share]");
+      shares.forEach((link) => {
+        const fresh = link.cloneNode(true);
+        link.parentNode.replaceChild(fresh, link);
+        fresh.addEventListener("click", (e) => {
+          e.preventDefault();
+          const id = fresh.getAttribute("data-stop-id");
+          if (!id) return;
+          const url = `${window.location.origin}/map?stop=${id}`;
+          const done = () => {
+            if (window.track) window.track("stop_share", { stop_id: id });
+            fresh.textContent = "Link copied";
+          };
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(url).then(done).catch(() => {
+              window.prompt("Copy this link:", url);
+              done();
+            });
+          } else {
+            window.prompt("Copy this link:", url);
+            done();
+          }
+        });
+      });
+      // Directions links open natively (no preventDefault); the listener
+      // only records the click.
+      const dirs = document.querySelectorAll("[data-directions-link]");
+      dirs.forEach((link) => {
+        const fresh = link.cloneNode(true);
+        link.parentNode.replaceChild(fresh, link);
+        fresh.addEventListener("click", () => {
+          if (window.track) {
+            window.track("map_directions_click", {
+              stop_id: fresh.getAttribute("data-stop-id") || "",
+            });
+          }
+        });
+      });
     });
     return () => {
       maps.event.removeListener(listener);
@@ -754,6 +1082,10 @@ function MapView({ go }) {
         buildInfoHtml(feature.properties, feature.geometry.coordinates, tripStopIdsRef.current)
       );
       infoRef.current.open({ anchor: marker, map });
+      // Mobile: the InfoWindow opens upward from a centered pin and can
+      // clip the top edge; shift the center up so the pin sits lower while
+      // staying clear of the bottom sheet's peek bar. Desktop unchanged.
+      if (window.innerWidth <= 720) map.panBy(0, MOBILE_SELECT_PAN_Y);
     }
   }, [selectedStopId, mapReady, features]);
 
@@ -766,11 +1098,14 @@ function MapView({ go }) {
   }
 
   return (
-    <div className={`map-page${unlocked ? "" : " map-page--locked"}`}>
+    <div className={`map-page${gateOpen ? " map-page--locked" : ""}`}>
       <TripPlannerSidebar
         features={features}
         tripStopIds={tripStopIds}
         selectedStopId={selectedStopId}
+        activeCats={activeCats}
+        onToggleCategory={toggleCategory}
+        onUndo={undoTripChange}
         expandedRegions={expandedRegions}
         sheetState={sheetState}
         onSetSheetState={setSheetState}
@@ -784,6 +1119,8 @@ function MapView({ go }) {
         onToggleRegion={handleToggleRegion}
         onShareTrip={shareTrip}
         onOpenRoute={openTripRoute}
+        onEmailSubscribed={handleGateSubscribed}
+        go={go}
         announcerRef={announcerRef}
         toast={toast}
       />
@@ -795,7 +1132,179 @@ function MapView({ go }) {
         )}
         <div ref={containerRef} id="map" className="map-page__map" />
       </div>
-      {!unlocked && <MapAccessGate onSubscribed={handleGateSubscribed} />}
+      {gateOpen && <MapAccessGate onSubscribed={handleGateSubscribed} onClose={() => setGateOpen(false)} />}
+    </div>
+  );
+}
+
+// ---------------------------------------------------------------------------
+// "Email this trip to yourself." The natural capture moment: a built trip is
+// worth keeping, and the reader's inbox is where it survives a closed tab.
+// The form POSTs natively into the hidden Buttondown iframe (same optimistic
+// pattern as every other unit, tag map-trip) while the actual send rides
+// alongside as a fetch to the Worker (/api/trip/email), which builds the
+// share URL server-side from the id list. The Worker deploy is manual, so a
+// failed send falls back to copying the share link instead of dead-ending.
+// A reader who already subscribed skips the Buttondown POST; the send still
+// goes out.
+// ---------------------------------------------------------------------------
+function TripEmailBox({ tripStopIds, onFallbackCopy, onSubscribed }) {
+  const [state, setState] = useState("idle"); // idle | sending | sent | failed
+  const emailRef = useRef(null);
+  const hpRef = useRef(null);
+
+  // One impression per mount, matching the other newsletter units.
+  useEffect(() => {
+    if (window.trackNewsletterImpression) {
+      window.trackNewsletterImpression("map_trip_email", "map-trip");
+    }
+  }, []);
+
+  // The share-link fallback fires once, from an effect, so the copy happens
+  // after the failed state has rendered its explanation.
+  useEffect(() => {
+    if (state === "failed" && onFallbackCopy) onFallbackCopy();
+  }, [state, onFallbackCopy]);
+
+  const onSubmit = (e) => {
+    const email = emailRef.current ? emailRef.current.value.trim() : "";
+    const website = hpRef.current ? hpRef.current.value : "";
+    const ids = tripStopIds.slice(0, TRIP_CAP);
+    if (!email || ids.length === 0) {
+      e.preventDefault();
+      return;
+    }
+    const wasSubscribed = window.isSubscribed && window.isSubscribed();
+    if (wasSubscribed) {
+      // Already on the list: skip the Buttondown POST, keep the send.
+      e.preventDefault();
+    } else if (window.trackNewsletterSubmit) {
+      window.trackNewsletterSubmit("map_trip_email", "map-trip");
+    }
+    if (window.track) window.track("trip_email_send", { trip_size: ids.length });
+    // Unlock the trip builder like any other signup would; deferred a tick so
+    // the native POST into the iframe fires before any re-render.
+    if (!wasSubscribed && onSubscribed) setTimeout(onSubscribed, 0);
+    setTimeout(() => setState("sending"), 0);
+    fetch(`${MAP_API_BASE}/api/trip/email`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email, stops: ids, website }),
+    })
+      .then((r) => setState(r.ok ? "sent" : "failed"))
+      .catch(() => setState("failed"));
+  };
+
+  if (state === "sent") {
+    return (
+      <div className="map-sidebar__email">
+        <p className="map-sidebar__email-fine map-sidebar__email-fine--sent" role="status">
+          Sent. The trip is in your inbox.
+        </p>
+      </div>
+    );
+  }
+
+  return (
+    <div className="map-sidebar__email">
+      <h4 className="map-sidebar__email-label">Email this trip to yourself</h4>
+      <form
+        className="nlbox__form"
+        action="https://buttondown.com/api/emails/embed-subscribe/goehring"
+        method="post"
+        target="buttondown-target"
+        onSubmit={onSubmit}
+      >
+        <input
+          ref={emailRef}
+          type="email"
+          name="email"
+          placeholder="you@email.com"
+          required
+          aria-label="Email address"
+        />
+        <input type="hidden" name="tag" value="map-trip" />
+        <input type="hidden" name="embed" value="1" />
+        {/* Honeypot for the Worker payload; Buttondown ignores the field. */}
+        <div style={{ position: "absolute", left: "-10000px", width: 1, height: 1, overflow: "hidden" }} aria-hidden="true">
+          <label>
+            Website
+            <input ref={hpRef} type="text" name="website" tabIndex={-1} autoComplete="off" />
+          </label>
+        </div>
+        <button type="submit" disabled={state === "sending"}>
+          {state === "sending" ? "Sending…" : "Send the trip →"}
+        </button>
+      </form>
+      <p className="map-sidebar__email-fine">
+        {state === "failed"
+          ? "Could not send just now. The share link was copied instead."
+          : "The link opens your stops on this map. Sending also signs you up for Sunday Field Notes, one short letter a week. Free, leave anytime."}
+      </p>
+    </div>
+  );
+}
+
+// ---------------------------------------------------------------------------
+// Post-trip next steps. Once a trip has real shape (three stops or more) the
+// planner should not dead-end at "copy link": point at the journal piece the
+// trip's own pins cite most, and at the Field Guide waitlist. Text lines, not
+// a second form; the trip stays the hero.
+// ---------------------------------------------------------------------------
+function TripNextSteps({ tripFeatures, go }) {
+  // The article linked by the most stops in this trip wins; /planning is the
+  // fallback when no stop cites a piece.
+  const suggestion = useMemo(() => {
+    const counts = new Map();
+    tripFeatures.forEach((f) => {
+      ((f.properties && f.properties.articles) || []).forEach((slug) => {
+        counts.set(slug, (counts.get(slug) || 0) + 1);
+      });
+    });
+    let best = null;
+    counts.forEach((n, slug) => {
+      const article = (window.ARTICLES || []).find((a) => a.slug === slug);
+      if (!article) return;
+      if (!best || n > best.n) best = { n, article };
+    });
+    return best ? best.article : null;
+  }, [tripFeatures]);
+
+  return (
+    <div className="map-sidebar__next">
+      <h4 className="map-sidebar__next-label">Before you go</h4>
+      {suggestion ? (
+        <p className="map-sidebar__next-line">
+          Reading for this trip:{" "}
+          <a
+            href={`/articles/${suggestion.slug}`}
+            onClick={(e) => {
+              e.preventDefault();
+              if (window.track) window.track("map_article_click", { slug: suggestion.slug, source: "trip_next" });
+              go(`a:${suggestion.slug}`);
+            }}
+          >{suggestion.title}</a>.
+        </p>
+      ) : (
+        <p className="map-sidebar__next-line">
+          Reading for this trip:{" "}
+          <a
+            href="/planning"
+            onClick={(e) => { e.preventDefault(); go("planning"); }}
+          >the planning guide</a>.
+        </p>
+      )}
+      <p className="map-sidebar__next-line">
+        This trip, offline, at the trailhead. The Field Guide is coming;{" "}
+        <a
+          href="/guide"
+          onClick={(e) => {
+            e.preventDefault();
+            if (window.track) window.track("guide_teaser_click", { location: "map_sidebar" });
+            go("guide");
+          }}
+        >the waitlist is open</a>.
+      </p>
     </div>
   );
 }
@@ -807,6 +1316,9 @@ function TripPlannerSidebar({
   features,
   tripStopIds,
   selectedStopId,
+  activeCats,
+  onToggleCategory,
+  onUndo,
   expandedRegions,
   sheetState,
   onSetSheetState,
@@ -820,18 +1332,53 @@ function TripPlannerSidebar({
   onToggleRegion,
   onShareTrip,
   onOpenRoute,
+  onEmailSubscribed,
+  go,
   announcerRef,
   toast,
 }) {
+  // Sidebar search. Filters the region lists only, never the map markers:
+  // category chips control the map, search finds rows in the list.
+  const [searchQuery, setSearchQuery] = useState("");
+  const query = searchQuery.trim().toLowerCase();
+
   // Group stops by their sidebar region (one geojson key per stop maps to
-  // exactly one REGIONS entry).
+  // exactly one REGIONS entry). `stops` is what the list renders (category
+  // filter + search); `catStops` ignores search and drives the "Add all"
+  // button, which is a selection tool, not a find tool.
   const regionGroups = useMemo(() => {
     return REGIONS.map((r) => {
       const keys = new Set(r.keys);
-      const stops = features.filter((f) => keys.has(f.properties.region));
-      return { ...r, stops };
+      const catStops = features.filter(
+        (f) => keys.has(f.properties.region) && activeCats.has(f.properties.category)
+      );
+      const stops = query
+        ? catStops.filter((f) => f.properties.name.toLowerCase().includes(query))
+        : catStops;
+      return { ...r, stops, catStops };
     });
-  }, [features]);
+  }, [features, activeCats, query]);
+
+  const matchCount = useMemo(
+    () => regionGroups.reduce((n, r) => n + r.stops.length, 0),
+    [regionGroups]
+  );
+
+  // Debounced search analytics + SR announcement of the match count (reuses
+  // the shared announcer instead of adding a second live region).
+  useEffect(() => {
+    if (!query) return;
+    const t = setTimeout(() => {
+      if (window.track) window.track("map_search", { query: query.slice(0, 50), matches: matchCount });
+      if (announcerRef.current) {
+        announcerRef.current.textContent =
+          matchCount === 0
+            ? "No stops match."
+            : `${matchCount} ${matchCount === 1 ? "stop matches" : "stops match"}.`;
+      }
+    }, 800);
+    return () => clearTimeout(t);
+  }, [query, matchCount]);
 
   const tripFeatures = useMemo(() => {
     const byId = new Map(features.map((f) => [f.properties.id, f]));
@@ -1083,9 +1630,24 @@ function TripPlannerSidebar({
             )}
           </div>
         )}
+        {tripStopIds.length >= 2 && (
+          <TripEmailBox
+            tripStopIds={tripStopIds}
+            onFallbackCopy={onShareTrip}
+            onSubscribed={onEmailSubscribed}
+          />
+        )}
+        {tripFeatures.length >= 3 && <TripNextSteps tripFeatures={tripFeatures} go={go} />}
         {toast && (
           <div className="map-sidebar__toast" role="status" aria-live="off">
-            {toast}
+            <span>{toast.msg}</span>
+            {toast.undoable && (
+              <button
+                type="button"
+                className="map-sidebar__toast-undo"
+                onClick={onUndo}
+              >Undo</button>
+            )}
           </div>
         )}
         <div
@@ -1112,23 +1674,51 @@ function TripPlannerSidebar({
         </div>
       </div>
 
+      {/* Filter by type — chips control both the map pins and the list below. */}
+      <CategoryFilters
+        features={features}
+        activeCats={activeCats}
+        onToggleCategory={onToggleCategory}
+      />
+
       {/* Browse by area */}
       <div className="map-sidebar__section">
         <h3 className="map-sidebar__section-label">Browse by area</h3>
+        <input
+          type="search"
+          className="map-sidebar__search"
+          placeholder="Find a stop"
+          aria-label="Search stops by name"
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+        />
+        {query && (
+          <p className="map-sidebar__search-count">
+            {matchCount === 0
+              ? "No stops match."
+              : `${matchCount} ${matchCount === 1 ? "stop matches" : "stops match"}.`}
+          </p>
+        )}
         <div className="map-sidebar__regions">
           {regionGroups.map((r) => {
-            const isExpanded = expandedRegions.has(r.id);
+            // While searching, regions with matches render expanded and empty
+            // ones drop out; the manual accordion state resumes on clear.
+            if (query && r.stops.length === 0) return null;
+            const isExpanded = query ? true : expandedRegions.has(r.id);
             const stopCount = r.stops.length;
-            const inTripCount = r.stops.filter((f) => tripSet.has(f.properties.id)).length;
-            const allInTrip = stopCount > 0 && inTripCount === stopCount;
-            const addAllDisabled = stopCount === 0 || allInTrip || tripFull;
-            const addAllTitle = stopCount === 0
-              ? "No stops in this region yet"
+            // "Add all" ignores the search query: its counts come from the
+            // category-filtered set (catStops), not the searched list.
+            const addableCount = r.catStops.length;
+            const inTripCount = r.catStops.filter((f) => tripSet.has(f.properties.id)).length;
+            const allInTrip = addableCount > 0 && inTripCount === addableCount;
+            const addAllDisabled = addableCount === 0 || allInTrip || tripFull;
+            const addAllTitle = addableCount === 0
+              ? "No stops to add with the current filters"
               : allInTrip
               ? "All stops in this region are already in your trip"
               : tripFull
               ? `Trip is full at ${TRIP_CAP} stops`
-              : `Add all ${stopCount} stops from ${r.label}`;
+              : `Add all ${addableCount} stops from ${r.label}`;
             return (
               <section key={r.id} className="map-sidebar__region">
                 <div className="map-sidebar__region-head">
@@ -1152,7 +1742,7 @@ function TripPlannerSidebar({
                 </div>
                 {isExpanded && (
                   stopCount === 0 ? (
-                    <p className="map-sidebar__region-empty">(no stops yet)</p>
+                    <p className="map-sidebar__region-empty">(no stops with these filters)</p>
                   ) : (
                     <ul className="map-sidebar__region-stops">
                       {r.stops.map((f) => {
@@ -1194,42 +1784,54 @@ function TripPlannerSidebar({
         </div>
       </div>
 
-      <CategoryLegend features={features} />
     </aside>
   );
 }
 
-// Legend keyed off the categories that actually appear in the current
-// feature set, so it stays in sync with points.geojson without manual edits.
-function CategoryLegend({ features }) {
+// The old display-only legend, now clickable filter chips. Keyed off the
+// categories that actually appear in the current feature set (with counts),
+// so it stays in sync with points.geojson without manual edits.
+function CategoryFilters({ features, activeCats, onToggleCategory }) {
   const present = useMemo(() => {
-    const seen = new Set();
+    const counts = new Map();
     for (const f of features) {
-      if (f.properties && f.properties.category) seen.add(f.properties.category);
+      const c = f.properties && f.properties.category;
+      if (!c) continue;
+      counts.set(c, (counts.get(c) || 0) + 1);
     }
-    return Array.from(seen).sort();
+    return Array.from(counts.entries()).sort((a, b) => a[0].localeCompare(b[0]));
   }, [features]);
 
   if (present.length === 0) return null;
 
   return (
     <div className="map-sidebar__section">
-      <h3 className="map-sidebar__section-label">Legend</h3>
-      <ul className="map-sidebar__legend">
-        {present.map((cat) => {
+      <h3 className="map-sidebar__section-label">Filter by type</h3>
+      <p className="map-sidebar__hint">
+        Chips toggle pin types on the map and in the list below. Trip stops stay visible.
+      </p>
+      <div className="map-sidebar__filters">
+        {present.map(([cat, count]) => {
           const { color, label } = getCategoryStyle(cat);
+          const active = activeCats.has(cat);
           return (
-            <li key={cat} className="map-sidebar__legend-item">
+            <button
+              key={cat}
+              type="button"
+              className="map-sidebar__filter-chip"
+              aria-pressed={active}
+              onClick={() => onToggleCategory(cat)}
+            >
               <span
                 className="map-sidebar__legend-dot"
                 style={{ backgroundColor: color }}
                 aria-hidden="true"
               />
-              <span className="map-sidebar__legend-label">{label}</span>
-            </li>
+              <span>{label} ({count})</span>
+            </button>
           );
         })}
-      </ul>
+      </div>
     </div>
   );
 }
@@ -1273,18 +1875,38 @@ function buildInfoHtml(p, coords, tripStopIds) {
          ${escapeHtml(style.label)}
        </span>`
     : "";
+  // Coord verification status comes straight from points.geojson; 17 of the
+  // 31 pins are web-sourced but not ground-truthed.
+  const approx = p.verified === false
+    ? `<p style="margin:5px 0 0;font-size:11px;color:#8a8675;">Pin location is approximate.</p>`
+    : "";
   const blurb = p.blurb ? `<p style="margin:7px 0 0;font-size:12px;color:#444;line-height:1.5;">${escapeHtml(p.blurb)}</p>` : "";
   const inTrip = Array.isArray(tripStopIds) && tripStopIds.includes(p.id);
   const btnLabel = inTrip ? "Remove from trip" : "Add to trip";
   const btnBg = inTrip ? "#ffffff" : TRIP_PIN_COLOR;
   const btnColor = inTrip ? TRIP_PIN_COLOR : "#ffffff";
   const btn = `<button type="button" data-trip-toggle data-stop-id="${escapeHtml(p.id)}" style="margin-top:10px;display:inline-flex;align-items:center;gap:6px;padding:6px 12px;font:600 12px system-ui,sans-serif;background:${btnBg};color:${btnColor};border:1px solid ${TRIP_PIN_COLOR};border-radius:3px;cursor:pointer;">${escapeHtml(btnLabel)}</button>`;
+  // Coordinate-based DIRECTIONS links are safe on every pin (they route
+  // navigation), unlike coordinate-synthesized PLACE links (see gmapsUrl
+  // below). This gives stops without a verified place URL a way out the door.
+  let directions = "";
+  if (coords) {
+    const [lng, lat] = coords;
+    const dirUrl =
+      `https://www.google.com/maps/dir/?api=1` +
+      `&destination=${encodeURIComponent(`${lat},${lng}`)}` +
+      `&travelmode=driving`;
+    directions = `<p style="margin:8px 0 0;"><a href="${escapeHtml(dirUrl)}" data-directions-link data-stop-id="${escapeHtml(p.id)}" target="_blank" rel="noopener noreferrer" style="color:#1e6fb8;text-decoration:underline;font-weight:500;font-size:12px;">Directions →</a></p>`;
+  }
   // Only render a Google Maps link when the stop carries a verified URL —
   // synthesizing one from coordinates would point at a generic dropped pin
   // rather than the named place with its photos and reviews.
   const gmaps = p.gmapsUrl
     ? `<p style="margin:8px 0 0;"><a href="${escapeHtml(p.gmapsUrl)}" target="_blank" rel="noopener noreferrer" style="color:#1e6fb8;text-decoration:underline;font-weight:500;font-size:12px;">Open in Google Maps →</a></p>`
     : "";
+  // Per-pin deep link. /map?stop=<id> already selects a pin on load, so the
+  // share URL costs nothing; the copy handler lives in the domready wireup.
+  const stopShare = `<p style="margin:8px 0 0;"><a href="/map?stop=${escapeHtml(p.id)}" data-stop-share data-stop-id="${escapeHtml(p.id)}" style="color:#1e6fb8;text-decoration:underline;font-weight:500;font-size:12px;">Copy link to this stop</a></p>`;
   // Cross-links into the journal. Slugs come from points.geojson; anything
   // that no longer resolves against the live catalog is skipped silently.
   // The anchors get real hrefs for hover/long-press affordance, but clicks
@@ -1311,9 +1933,12 @@ function buildInfoHtml(p, coords, tripStopIds) {
       ${photo}
       <strong style="font-size:14px;display:block;margin:0 0 4px;line-height:1.3;">${escapeHtml(p.name || "")}</strong>
       ${cat}
+      ${approx}
       ${blurb}
       ${btn}
+      ${directions}
       ${gmaps}
+      ${stopShare}
       ${journal}
     </div>
   `;
@@ -1329,31 +1954,40 @@ function escapeHtml(s) {
 }
 
 // ---------------------------------------------------------------------------
-// Map access gate. A covering overlay scoped to .map-page (the map and sidebar
-// render behind it, blurred, as a teaser). The map is for subscribers: the
-// only way past is to submit the email or to have subscribed already anywhere
-// on the site. Deliberately non-dismissable (no close, no backdrop click, no
-// Escape) so a visitor must sign up to reach the map. The overlay does not lock
-// body scroll, leaving the global header and footer reachable so a reader is
-// never trapped. Reuses the exit-intent modal's .nlmodal card styling. The
-// signup also satisfies the shared "subscribed" flag (via trackNewsletterSubmit),
-// suppressing the exit-intent modal elsewhere on the site.
+// Trip-builder signup gate. The map itself (pins, filters, search, a shared
+// trip opened via ?trip=) is browsable by everyone with no gate at all; this
+// overlay appears only when a locked visitor attempts a write action — adding
+// a stop, "add all from region", or loading a suggested trip (see openGate in
+// MapView). Unlike the old full-view gate, this one is dismissable (close
+// button, backdrop click, Escape): browsing needs no signup, so trapping a
+// visitor who was just looking would be hostile. The overlay does not lock
+// body scroll, leaving the global header and footer reachable. Reuses the
+// exit-intent modal's .nlmodal card styling. The signup also satisfies the
+// shared "subscribed" flag (via trackNewsletterSubmit), suppressing the
+// exit-intent modal elsewhere on the site.
 // ---------------------------------------------------------------------------
-function MapAccessGate({ onSubscribed }) {
+function MapAccessGate({ onSubscribed, onClose }) {
+  useEffect(() => {
+    const onKey = (e) => { if (e.key === "Escape") onClose(); };
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
+  }, [onClose]);
+
   return (
-    <div className="map-page__gate" role="dialog" aria-modal="true" aria-label="Subscribe to open the map">
-      <div className="map-page__gate-backdrop" />
+    <div className="map-page__gate" role="dialog" aria-modal="true" aria-label="Subscribe to save this trip">
+      <div className="map-page__gate-backdrop" onClick={onClose} />
       <div className="nlmodal__card map-page__gate-card">
-        <div className="eyebrow eyebrow--moss" style={{ marginBottom: 12 }}>The Map · Subscribers</div>
-        <h3>See the map.</h3>
-        <p>The interactive Yosemite map is open to subscribers. Drop your email and it opens right here: browse the pins, build a trip, share the link. Free, and it stays unlocked on this device.</p>
+        <button type="button" className="nlmodal__close" aria-label="Close" onClick={onClose}>✕</button>
+        <div className="eyebrow eyebrow--moss" style={{ marginBottom: 12 }}>The Map · Trip Builder</div>
+        <h3>Save this trip.</h3>
+        <p>Browsing the map is free. Building and saving a trip: tapping pins to assemble a route, loading a suggested itinerary, is open to subscribers. Drop your email and it opens right here, and stays open on this device.</p>
         <form
           className="nlbox__form"
           action="https://buttondown.com/api/emails/embed-subscribe/goehring"
           method="post"
           target="buttondown-target"
           onSubmit={() => {
-            if (window.trackNewsletterSubmit) window.trackNewsletterSubmit("map_view_gate", "map-gate");
+            if (window.trackNewsletterSubmit) window.trackNewsletterSubmit("map_trip_gate", "map-gate");
             // Defer one tick so the form's native POST into the hidden iframe
             // fires before onSubscribed unmounts this form.
             setTimeout(onSubscribed, 0);
@@ -1362,7 +1996,7 @@ function MapAccessGate({ onSubscribed }) {
           <input type="email" name="email" placeholder="you@email.com" required />
           <input type="hidden" name="tag" value="map-gate" />
           <input type="hidden" name="embed" value="1" />
-          <button type="submit">Open the map →</button>
+          <button type="submit">Unlock the trip builder →</button>
         </form>
         <p className="map-gate__fine">No spam. One short letter on Sundays, when there is something to say.</p>
       </div>
@@ -1370,8 +2004,9 @@ function MapAccessGate({ onSubscribed }) {
   );
 }
 
-// The map page itself stays indexable, but the live map sits behind the
-// subscriber gate above (MapAccessGate, rendered by MapView when locked).
+// The map page itself stays indexable and fully browsable; only the trip
+// builder sits behind the subscriber gate above (MapAccessGate, rendered by
+// MapView on the first write action from a locked visitor).
 function MapPage(props) {
   return <MapView {...props} />;
 }

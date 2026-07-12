@@ -23,8 +23,8 @@ function LegalShell({ title, eyebrow, updated, children }) {
 
 function PrivacyPage() {
   return (
-    <LegalShell title="Privacy Policy" eyebrow="Legal" updated="April 1, 2026">
-      <p>This privacy policy explains what information The Talus Field collects when you visit this website or subscribe to the newsletter, how that information is used, and the choices you have about it. It is written to comply with the General Data Protection Regulation (GDPR) and the California Consumer Privacy Act (CCPA).</p>
+    <LegalShell title="Privacy Policy" eyebrow="Legal" updated="July 8, 2026">
+      <p>This privacy policy explains what information The Talus Field collects when you visit this website, subscribe to the newsletter, or use the Field Guide app, how that information is used, and the choices you have about it. It is written to comply with the General Data Protection Regulation (GDPR) and the California Consumer Privacy Act (CCPA).</p>
 
       <h2>1. Who we are</h2>
       <p>The Talus Field is an independent publication operated by Cory Goehring, based in El Portal, California. You can reach us at cory@thetalusfieldjournal.com.</p>
@@ -33,23 +33,32 @@ function PrivacyPage() {
       <p>When you visit the site, we collect anonymized analytics data: pages viewed, referrer, approximate location at the country level, browser and device type. We use this to understand which articles are useful and which are not. We do not collect IP addresses in identifiable form.</p>
       <p>When you subscribe to the newsletter, we collect your email address and the date you subscribed. We do not collect your name unless you provide it.</p>
       <p>When you contact us through the contact form, we collect the name, email, subject, and message you submit.</p>
+      <p>When you buy and sign in to the Field Guide app, we collect the email address or username tied to your purchase and a record of that purchase. Payment is processed by Stripe, and we never see or store your card number. Your trip plan itself, the stops and dates you choose, is stored on your own device, not on our servers.</p>
 
       <h2>3. How we use it</h2>
-      <p>Email addresses are used to send the newsletter and only the newsletter. We do not sell, rent, share, or otherwise transfer your email address to any third party. Analytics are used to make the site better. Contact form submissions are used to write you back.</p>
+      <p>Email addresses are used to send the newsletter and only the newsletter. We do not sell, rent, share, or otherwise transfer your email address to any third party. Analytics are used to make the site better. Contact form submissions are used to write you back. Field Guide purchase records are used to confirm your access when you sign in.</p>
 
-      <h2>4. Cookies</h2>
+      <h2>4. The Field Guide app and calendar sync</h2>
+      <p>The Field Guide app can add your trip plan to your personal calendar. Two options exist, and both are off until you turn them on from the app's Account page.</p>
+      <p>The Apple Calendar option publishes your trip as a private subscription link that Apple Calendar reads on its own schedule. That link contains only the events in your trip plan.</p>
+      <p>If you connect Google Calendar, you grant The Talus Field permission to manage events on your Google Calendar (the <code>calendar.events</code> scope) and to see the email address of the Google account you connect. We use this access for one purpose only: to create, update, and remove the trip events you build in the app, in your primary Google calendar. We do not read your existing calendar events, we do not access any other Google data, and we do not use this access for advertising or for any purpose beyond syncing your trip.</p>
+      <p>To keep your trip in sync after you close the app, Google issues a long-lived authorization token, which we store securely on our server and associate with your account. We show you which Google account is connected so you can confirm it is yours.</p>
+      <p>You can disconnect Google Calendar at any time from the Account page. Disconnecting removes the trip events we added to your Google calendar, revokes our authorization token, and deletes it from our server. You can also revoke our access directly from your Google account's security settings at <a href="https://myaccount.google.com/connections" target="_blank" rel="noopener noreferrer">myaccount.google.com/connections</a>.</p>
+      <p>The Talus Field's use and transfer of information received from Google APIs adheres to the <a href="https://developers.google.com/terms/api-services-user-data-policy" target="_blank" rel="noopener noreferrer">Google API Services User Data Policy</a>, including the Limited Use requirements.</p>
+
+      <h2>5. Cookies</h2>
       <p>This site uses a single first-party cookie to remember your reading preferences. It does not use advertising cookies, tracking cookies, or third-party cookies. We do not run advertisements.</p>
 
-      <h2>5. Your rights (GDPR / CCPA)</h2>
+      <h2>6. Your rights (GDPR / CCPA)</h2>
       <p>You have the right to access, correct, export, or delete any personal information we hold about you. To exercise any of these rights, email cory@thetalusfieldjournal.com with the subject line "Data request." We respond within 30 days.</p>
 
-      <h2>6. Children</h2>
+      <h2>7. Children</h2>
       <p>This site is not directed at children under 13. We do not knowingly collect information from children.</p>
 
-      <h2>7. Changes</h2>
+      <h2>8. Changes</h2>
       <p>If this policy changes in any meaningful way, the change will be announced in the newsletter and the "last updated" date above will change.</p>
 
-      <h2>8. Questions</h2>
+      <h2>9. Questions</h2>
       <p>Email cory@thetalusfieldjournal.com.</p>
     </LegalShell>
   );
@@ -90,8 +99,8 @@ function TermsPage() {
 
 function AffiliatePage() {
   return (
-    <LegalShell title="Affiliate Disclosure" eyebrow="Legal" updated="April 1, 2026">
-      <p>The Talus Field is a participant in several affiliate programs, including Amazon Associates, Bookshop.org, REI's affiliate program, Backcountry's affiliate program, Patagonia's affiliate program, and a small number of guidebook publishers' direct programs.</p>
+    <LegalShell title="Affiliate Disclosure" eyebrow="Legal" updated="July 12, 2026">
+      <p>The Talus Field currently participates in one affiliate program: Patagonia's, run through the Impact network. If that list grows, this page changes the same day.</p>
 
       <p>What that means in plain language: when an article on this site links to a product, a book, or a piece of lodging, that link may be an affiliate link. If you click through and make a purchase, I receive a small commission. The price you pay does not change. Whether or not you use the affiliate link, the recommendation in the article is the same.</p>
 

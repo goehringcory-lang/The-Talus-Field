@@ -12,7 +12,10 @@ function decodeClaims(jwt: string): JwtClaims | null {
   try {
     const [, payload] = jwt.split('.')
     if (!payload) return null
-    const json = atob(payload.replace(/-/g, '+').replace(/_/g, '/'))
+    // atob yields latin1; a sub with multibyte characters needs a real
+    // UTF-8 decode or JSON.parse gets mojibake (or throws).
+    const bin = atob(payload.replace(/-/g, '+').replace(/_/g, '/'))
+    const json = new TextDecoder().decode(Uint8Array.from(bin, (c) => c.charCodeAt(0)))
     return JSON.parse(json)
   } catch {
     return null
@@ -88,5 +91,15 @@ export function readSessionFromStorage(): { jwt: string; username: string } | nu
     clearStoredJwt()
     return null
   }
+  return { jwt, username: claims.sub }
+}
+
+// Session derived from the JWT itself, not from storage. Sign-in must not
+// depend on setStoredJwt having persisted: in storage-blocked contexts the
+// write silently fails, and re-reading storage would discard a JWT the server
+// just issued (burning a single-use magic-link token in the process).
+export function sessionFromJwt(jwt: string): { jwt: string; username: string } | null {
+  const claims = decodeClaims(jwt)
+  if (!claims || claims.exp * 1000 < Date.now()) return null
   return { jwt, username: claims.sub }
 }

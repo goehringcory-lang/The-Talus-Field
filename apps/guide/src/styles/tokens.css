@@ -84,12 +84,21 @@
 * { box-sizing: border-box; }
 html, body { margin: 0; padding: 0; }
 
+/* Kill the 300ms double-tap-zoom delay and the default grey/blue tap flash;
+   the global :active opacity rule below is the tap feedback instead. */
+a, button, input, select, textarea, summary {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
 html {
   background: var(--paper);
   color: var(--ink);
   font-family: var(--serif);
   font-size: 19px;
   line-height: 1.55;
+  /* Stop iOS Safari inflating text after orientation changes. */
+  -webkit-text-size-adjust: 100%;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
   font-feature-settings: "kern" 1, "liga" 1, "onum" 1;
@@ -100,7 +109,10 @@ body {
   background-image: radial-gradient(color-mix(in oklab, var(--ink) 5%, transparent) 1px, transparent 1px);
   background-size: 4px 4px;
   background-position: 0 0;
+  /* svh: the vh unit includes the iOS collapsed URL bar, causing a height
+     jump on scroll. Plain vh stays as the fallback for older engines. */
   min-height: 100vh;
+  min-height: 100svh;
 }
 
 a {
@@ -110,7 +122,9 @@ a {
   text-underline-offset: 3px;
   text-decoration-color: var(--rule-soft);
 }
-a:hover { text-decoration-color: var(--moss); color: var(--moss); }
+@media (hover: hover) {
+  a:hover { text-decoration-color: var(--moss); color: var(--moss); }
+}
 
 ::selection { background: var(--ink); color: var(--paper); }
 
@@ -177,6 +191,7 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
 /* App-specific shell */
 .app-shell {
   min-height: 100vh;
+  min-height: 100svh;
   display: flex;
   flex-direction: column;
 }
@@ -200,14 +215,18 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
   gap: 10px;
   min-height: 44px;
 }
-.btn:hover { background: var(--moss); border-color: var(--moss); color: var(--paper); }
+@media (hover: hover) {
+  .btn:hover { background: var(--moss); border-color: var(--moss); color: var(--paper); }
+}
 .btn[disabled] { opacity: 0.45; cursor: not-allowed; }
 
 .btn--ghost {
   background: transparent;
   color: var(--ink);
 }
-.btn--ghost:hover { background: var(--ink); color: var(--paper); }
+@media (hover: hover) {
+  .btn--ghost:hover { background: var(--ink); color: var(--paper); }
+}
 
 /* Text-link-as-button: for tertiary actions inside prose. */
 .btn--quiet {
@@ -224,7 +243,9 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
   text-decoration: underline;
   text-underline-offset: 3px;
 }
-.btn--quiet:hover { background: none; border: none; color: var(--moss-2); }
+@media (hover: hover) {
+  .btn--quiet:hover { background: none; border: none; color: var(--moss-2); }
+}
 
 /* Compact button for dense rows (review panel, banners). */
 .btn--sm {
@@ -306,7 +327,9 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
   text-decoration-color: var(--rule-soft);
   text-underline-offset: 3px;
 }
-.prose a:hover { color: var(--moss); text-decoration-color: var(--moss); }
+@media (hover: hover) {
+  .prose a:hover { color: var(--moss); text-decoration-color: var(--moss); }
+}
 .prose strong { font-weight: 600; }
 .prose em { font-style: italic; }
 
@@ -347,7 +370,9 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
   display: inline-block;
 }
 .daybar__dot--active { background: var(--ink); }
-.daybar__dot:hover { background: var(--moss); border-color: var(--moss); }
+@media (hover: hover) {
+  .daybar__dot:hover { background: var(--moss); border-color: var(--moss); }
+}
 
 /* Section index rows on the hub — the editorial site's ruled article-card
    anatomy: hairline rule, moss kicker, display title, italic serif dek,
@@ -359,12 +384,27 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
   text-decoration: none;
   color: var(--ink);
 }
-.region-picker-card:hover {
-  text-decoration: none;
-  color: var(--ink);
+.region-picker-card__media {
+  margin: 2px 0 14px;
+  aspect-ratio: 5 / 2;
+  overflow: hidden;
+  border: 1px solid var(--ink);
 }
-.region-picker-card:hover .region-picker-card__title {
-  color: var(--moss);
+.region-picker-card__media img,
+.region-picker-card__media picture {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+@media (hover: hover) {
+  .region-picker-card:hover {
+    text-decoration: none;
+    color: var(--ink);
+  }
+  .region-picker-card:hover .region-picker-card__title {
+    color: var(--moss);
+  }
 }
 .region-picker-card__title {
   font-family: var(--display);
@@ -382,6 +422,7 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
   margin: 0 0 14px;
   line-height: 1.5;
 }
+.region-picker-card__footer { margin-top: var(--s3); }
 
 /* Stop card and the rule between cards in the day view */
 .stop-card { padding: 0 0 8px; }
@@ -409,7 +450,9 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
   color: var(--ink-2);
   text-decoration: none;
 }
-.stop-card__more:hover { color: var(--moss); }
+@media (hover: hover) {
+  .stop-card__more:hover { color: var(--moss); }
+}
 
 .stop-divider {
   border: 0;
@@ -427,7 +470,9 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
   text-decoration: none;
   color: var(--ink);
 }
-.day-row:hover { color: var(--moss); }
+@media (hover: hover) {
+  .day-row:hover { color: var(--moss); }
+}
 .day-row__label {
   font-family: var(--display);
   font-size: 24px;
@@ -475,7 +520,9 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
   color: var(--ink-2);
   text-decoration: none;
 }
-.gated-chrome__link:hover { color: var(--moss); }
+@media (hover: hover) {
+  .gated-chrome__link:hover { color: var(--moss); }
+}
 .gated-chrome__link[aria-current='page'] { color: var(--ink); }
 
 /* Updated stamp on the hub footer */
@@ -561,9 +608,11 @@ a:active {
   color: var(--moss);
 }
 
-.bottom-nav__tab:hover {
-  color: var(--ink-2);
-  text-decoration: none;
+@media (hover: hover) {
+  .bottom-nav__tab:hover {
+    color: var(--ink-2);
+    text-decoration: none;
+  }
 }
 
 .bottom-nav__icon {
@@ -686,9 +735,11 @@ select:focus-visible {
   text-decoration: none;
   color: var(--ink);
 }
-.essential-row:hover {
-  text-decoration: none;
-  color: var(--ink);
+@media (hover: hover) {
+  .essential-row:hover {
+    text-decoration: none;
+    color: var(--ink);
+  }
 }
 .essential-row__title {
   font-family: var(--display);
@@ -697,8 +748,10 @@ select:focus-visible {
   line-height: 1.1;
   margin: 0 0 8px;
 }
-.essential-row:hover .essential-row__title {
-  color: var(--moss);
+@media (hover: hover) {
+  .essential-row:hover .essential-row__title {
+    color: var(--moss);
+  }
 }
 .essential-row__teaser {
   font-family: var(--serif);
@@ -820,17 +873,21 @@ select:focus-visible {
   cursor: pointer;
   min-height: 34px;
 }
-.download-row__btn:hover {
-  background: var(--moss);
-  color: var(--paper);
+@media (hover: hover) {
+  .download-row__btn:hover {
+    background: var(--moss);
+    color: var(--paper);
+  }
 }
 .download-row__btn--ghost {
   border-color: transparent;
   color: var(--ink-3);
 }
-.download-row__btn--ghost:hover {
-  background: none;
-  color: var(--ink);
+@media (hover: hover) {
+  .download-row__btn--ghost:hover {
+    background: none;
+    color: var(--ink);
+  }
 }
 .download-progress {
   grid-column: 1 / -1;
@@ -855,10 +912,12 @@ select:focus-visible {
   text-decoration: none;
   line-height: 1.5;
 }
-.offline-status-card:hover {
-  background: var(--paper-3);
-  text-decoration: none;
-  color: var(--ink);
+@media (hover: hover) {
+  .offline-status-card:hover {
+    background: var(--paper-3);
+    text-decoration: none;
+    color: var(--ink);
+  }
 }
 
 /* ===== Search ===== */
@@ -879,9 +938,11 @@ select:focus-visible {
   color: var(--ink);
   border-bottom: 1px solid var(--rule-soft);
 }
-.search-result:hover {
-  text-decoration: none;
-  color: var(--ink);
+@media (hover: hover) {
+  .search-result:hover {
+    text-decoration: none;
+    color: var(--ink);
+  }
 }
 .search-result__title {
   font-family: var(--display);
@@ -889,8 +950,10 @@ select:focus-visible {
   font-weight: 500;
   margin: 4px 0 6px;
 }
-.search-result:hover .search-result__title {
-  color: var(--moss);
+@media (hover: hover) {
+  .search-result:hover .search-result__title {
+    color: var(--moss);
+  }
 }
 .search-result__snippet {
   font-family: var(--serif);
@@ -928,8 +991,10 @@ select:focus-visible {
   cursor: pointer;
   color: var(--ink-3);
 }
-.fav-toggle:hover {
-  color: var(--moss);
+@media (hover: hover) {
+  .fav-toggle:hover {
+    color: var(--moss);
+  }
 }
 .fav-toggle[aria-pressed='true'] {
   color: var(--moss);

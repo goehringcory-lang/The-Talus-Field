@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import ReactMarkdown from 'react-markdown'
 import type { StopT } from '../content'
+import { PHOTO_CREDITS, formatCredit } from '../content/photoCredits'
 import { useFavorites } from '../lib/favorites'
 import AddToTripButton from './AddToTripButton'
 import MapsLink from './MapsLink'
@@ -10,10 +11,12 @@ import ResponsivePhoto from './ResponsivePhoto'
 import { Chip } from './ui/Chip'
 
 // Secret spots are stops minus `region`, which this card never reads —
-// widening the prop lets both render through the same component.
+// widening the prop lets both render through the same component. Pages that
+// mix regions (the Secret Guide) pass `regionLabel` for an extra meta chip.
 type Props = {
   stop: Omit<StopT, 'region'>
   compact?: boolean
+  regionLabel?: string
 }
 
 const KIND_LABEL: Record<StopT['kind'], string> = {
@@ -23,6 +26,7 @@ const KIND_LABEL: Record<StopT['kind'], string> = {
   lodging: 'Lodging',
   meal: 'Meal',
   drive: 'Drive',
+  camping: 'Camping', // map amenities and secret spots; no core Stop uses it
 }
 
 const DIFFICULTY_LABEL: Record<NonNullable<StopT['difficulty']>, string> = {
@@ -42,14 +46,19 @@ function formatTime(min: number): string {
   return m === 0 ? `${h} hr` : `${h} hr ${m} min`
 }
 
-export default function StopCard({ stop, compact = true }: Props) {
+export default function StopCard({ stop, compact = true, regionLabel }: Props) {
   const photo = stop.photos[0]
+  const credit = photo ? PHOTO_CREDITS[photo.src] : undefined
   const { toggle, isFavorite } = useFavorites()
   const saved = isFavorite(stop.id)
   const plateTag = `Plate · ${KIND_LABEL[stop.kind]}`
   return (
     <article className="stop-card">
-      <Plate tag={plateTag} caption={!compact ? photo?.caption : undefined}>
+      <Plate
+        tag={plateTag}
+        caption={!compact ? photo?.caption : undefined}
+        credit={!compact && credit ? formatCredit(credit) : undefined}
+      >
         {photo ? (
           <ResponsivePhoto
             className="stop-card__photo"
@@ -69,7 +78,7 @@ export default function StopCard({ stop, compact = true }: Props) {
         <div style={{ minWidth: 0 }}>
           <div className="eyebrow eyebrow--moss">
             {stop.collection === 'hidden'
-              ? `Hidden area · ${KIND_LABEL[stop.kind]}`
+              ? `Secret Guide · ${KIND_LABEL[stop.kind]}`
               : KIND_LABEL[stop.kind]}
           </div>
           <h2 className="stop-card__title">{stop.title}</h2>
@@ -91,9 +100,10 @@ export default function StopCard({ stop, compact = true }: Props) {
         </div>
       </div>
 
-      {(stop.coord || stop.elevationFt || stop.timeBudgetMin || stop.difficulty || stop.season) && (
+      {(stop.coord || stop.elevationFt || stop.timeBudgetMin || stop.difficulty || stop.season || regionLabel) && (
         <div className="meta-row">
           <MapsLink coord={stop.coord} label={stop.title} />
+          {regionLabel && <Chip variant="meta">{regionLabel}</Chip>}
           {stop.elevationFt !== undefined && (
             <Chip variant="meta">{formatElevation(stop.elevationFt)}</Chip>
           )}

@@ -11,14 +11,21 @@ export const StopKindEnum = z.enum([
   'lodging',
   'meal',
   'drive',
+  'camping', // used by map amenities and secret spots, never by a core Stop
 ])
 export type StopKind = z.infer<typeof StopKindEnum>
 
 // Two collections share the Stop shape. 'core' is the curated region
-// reading flow; 'hidden' is the lesser-known set surfaced on /hidden-areas
-// and kept out of region lists and itinerary presets by default.
+// reading flow; 'hidden' is the lesser-known set surfaced in The Secret
+// Guide (/secret-guide) and kept out of region lists and itinerary presets
+// by default.
 export const StopCollection = z.enum(['core', 'hidden'])
 export type StopCollectionT = z.infer<typeof StopCollection>
+
+// Categories for The Secret Guide (/secret-guide). Shared by hidden-collection
+// Stops and SecretSpots; the filter tabs and category headers key on these.
+export const SecretCategory = z.enum(['vistas', 'trails', 'parking', 'camping', 'after-dark'])
+export type SecretCategoryT = z.infer<typeof SecretCategory>
 
 export const Stop = z.object({
   id: z.string(),                         // "tunnel-view"
@@ -27,9 +34,12 @@ export const Stop = z.object({
   order: z.number(),                      // sort within region; hidden stops number from 101
   kind: StopKindEnum,
   collection: StopCollection.default('core'),
+  category: SecretCategory.optional(),    // required when collection is 'hidden' (enforced on Stops)
   difficulty: z.enum(['easy', 'moderate', 'strenuous']).optional(), // meta chip
   season: z.string().optional(),          // chip-length window, e.g. "April to June"
   hazard: z.string().optional(),          // 1-3 plain sentences; renders as a Caution callout
+  teaser: z.string().optional(),          // 1-2 plain sentences for the map popup;
+                                          // facts from body only, no markdown
   coord: z.tuple([z.number(), z.number()]).optional(),  // [lng, lat]
   elevationFt: z.number().optional(),
   timeBudgetMin: z.number().optional(),
@@ -47,11 +57,24 @@ export const Stop = z.object({
 
 export type StopT = z.infer<typeof Stop>
 
-export const Stops = z.array(Stop)
+export const Stops = z.array(Stop).superRefine((list, ctx) => {
+  list.forEach((s, i) => {
+    if (s.collection === 'hidden' && !s.category) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        path: [i, 'category'],
+        message: `hidden stop '${s.id}' needs a category`,
+      })
+    }
+  })
+})
 
-// Secret spots are stops without a region: they live in their own locked
-// section, not in the three-region geography. Same card shape otherwise.
-export const SecretSpot = Stop.omit({ region: true })
+// Secret spots are stops without a region: they live in The Secret Guide
+// (/secret-guide), not the four-region geography. Same card shape otherwise.
+// `category` is required; it drives the Secret Guide filter tabs.
+export const SecretSpot = Stop.omit({ region: true }).extend({
+  category: SecretCategory,
+})
 
 export type SecretSpotT = z.infer<typeof SecretSpot>
 
@@ -118,3 +141,23 @@ export const SeasonalEvent = z
 export type SeasonalEventT = z.infer<typeof SeasonalEvent>
 
 export const SeasonalEvents = z.array(SeasonalEvent)
+
+// Map-only amenity points: parking lots and campgrounds rendered as pins on
+// /map with a Directions deeplink. Deliberately NOT Stops — no pages, no
+// region lists, no search, no itinerary presets.
+export const AmenityKindEnum = z.enum(['parking', 'camping'])
+export type AmenityKind = z.infer<typeof AmenityKindEnum>
+
+export const Amenity = z.object({
+  id: z.string(),                         // "upper-pines-campground"
+  name: z.string(),
+  kind: AmenityKindEnum,                  // subset of StopKind, so pin styling is shared
+  region: RegionEnum,                     // itinerary-tab filtering only
+  coord: z.tuple([z.number(), z.number()]), // [lng, lat] — required, unlike Stop
+  note: z.string(),                       // 1-2 plain sentences for the popup
+  season: z.string().optional(),          // e.g. "Tioga Road season only"
+})
+
+export type AmenityT = z.infer<typeof Amenity>
+
+export const Amenities = z.array(Amenity)

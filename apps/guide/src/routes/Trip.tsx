@@ -90,9 +90,12 @@ export default function Trip() {
   // the plan in overflow warnings.
   const DAY_CAPACITY_MIN = 13 * 60
   function seedItinerary(key: ItineraryKey) {
-    const days = ITINERARIES[key].days
+    // Preset days beyond the picked window are not seeded. Collapsing them
+    // onto the last date used to grant each its own capacity budget and
+    // produce a single impossible day.
+    const days = ITINERARIES[key].days.slice(0, windowDays.length)
     days.forEach((day, i) => {
-      const date = windowDays[Math.min(i, windowDays.length - 1)]
+      const date = windowDays[i]
       let budget = 0
       for (const region of day.regions) {
         for (const stop of getStopsByRegion(region)) {
@@ -215,8 +218,13 @@ export default function Trip() {
                   const { item } = s
                   const isStop = item.type === 'stop'
                   const stop = isStop ? getStopById(item.stopId) : undefined
-                  const title = isStop ? stop?.title ?? item.stopId : item.snapshot.title
-                  const link = isStop ? `/stop/${item.stopId}` : undefined
+                  // A stop id that no longer resolves means a content edit
+                  // removed it; say so instead of linking to a 404.
+                  const missing = isStop && !stop
+                  const title = isStop
+                    ? stop?.title ?? 'No longer in this edition'
+                    : item.snapshot.title
+                  const link = isStop && stop ? `/stop/${item.stopId}` : undefined
                   return (
                     <Fragment key={item.itemId}>
                       {i > 0 && <TransitRow prev={items[i - 1]} cur={s} />}
@@ -251,7 +259,9 @@ export default function Trip() {
                                 ? `${Math.floor(s.durationMin / 60)}h${s.durationMin % 60 ? ` ${s.durationMin % 60}m` : ''}`
                                 : `${s.durationMin}m`}
                             </span>
-                            {isStop ? (
+                            {missing ? (
+                              <span>Removed from the guide</span>
+                            ) : isStop ? (
                               <select
                                 className="field-control field-control--sm"
                                 value={item.day}

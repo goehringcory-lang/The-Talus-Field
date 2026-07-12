@@ -1,12 +1,68 @@
 /* global React, ReactDOM, Placeholder, NewsletterInline, ArticleCard, MotifMountains, preloadResponsive, SIZES_HERO */
 
+// "Month D, YYYY" for an ISO date string, used to surface a genuine revision
+// date (isoModified) distinct from the publish date shown in the byline.
+function formatIsoDate(iso) {
+  const d = new Date(iso + "T00:00:00");
+  if (Number.isNaN(d.getTime())) return null;
+  return d.toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" });
+}
+
+// End-of-article newsletter offer, varied by section so the highest-intent
+// moment on the page (a reader who just finished the piece) matches the ask
+// to what they've shown they care about.
+const END_NEWSLETTER_OFFER = {
+  planning: {
+    heading: "Get the conditions before you go",
+    blurb: "One Yosemite email a week: what's open, what's booked out, and what changed since you started planning. Free.",
+  },
+  trails: {
+    heading: "Sunday Field Notes",
+    blurb: "One letter a week on trail conditions and what's worth the hike right now. Free, and you can leave anytime.",
+  },
+  wildlife: {
+    heading: "Sunday Field Notes",
+    blurb: "One letter a week from someone who's out there year-round: wildlife notes, trail conditions, the occasional longer piece.",
+  },
+  seasonal: {
+    heading: "Sunday Field Notes",
+    blurb: "One letter a week, timed to the season you're reading about: what's blooming, what's flowing, what's changed.",
+  },
+};
+
+// B arm of the article_end_copy test: same placement, concrete-utility
+// framing. The device's sticky bucket (abVariant) picks the arm; the variant
+// rides on the GA4 impression/signup events so each arm's rate is sliceable.
+const END_NEWSLETTER_OFFER_B = {
+  planning: {
+    heading: "What changed this week in Yosemite",
+    blurb: "Reservation windows open and close. Roads do too. One Sunday note carries the week's changes so your plan doesn't age out.",
+  },
+  trails: {
+    heading: "Trail status, Sundays",
+    blurb: "Trails close, creeks rise, the cables go up and come down. One letter a week with the status that matters before you drive in.",
+  },
+  wildlife: {
+    heading: "What's moving in the park",
+    blurb: "Bears wake, owls fledge, the meadows turn week to week. One Sunday letter on what's happening out there right now.",
+  },
+  seasonal: {
+    heading: "Hit the window, not the crowd",
+    blurb: "Waterfalls peak, colors turn, roads open late. One Sunday letter tracks the season so you time it right.",
+  },
+};
+
+// Buttondown's embed-subscribe form accepts one `tag` field per submission
+// (multiple hidden inputs behave like radio buttons, not an array), so a
+// placement tag and an interest tag are combined into one compound value
+// here. The Worker subscribe proxy sends a real tag array and can keep both
+// as independent tags once that ships.
+function newsletterTag(placement, cat) {
+  return cat ? `${placement}-${cat}` : placement;
+}
+
 function ArticlePage({ slug, go }) {
   const article = window.findArticle(slug);
-
-  // A/B buckets (sticky per device; abVariant is not a hook). Read up top so the
-  // hooks below can list them as dependencies safely.
-  const articleTocVariant = window.abVariant("article_toc");
-  const midVariant = window.abVariant("mid_copy");
 
   // Article bodies load on demand (data.js#loadArticleBody) rather than all 23
   // transpiling up front. Hold the resolved component and a status for the
@@ -22,12 +78,11 @@ function ArticlePage({ slug, go }) {
   const proseRef = React.useRef(null);
   const [midHost, setMidHost] = React.useState(null);
 
-  // C9 (article_toc): once the body is ready, scrape its H2 section headings,
-  // give each a stable id, and expose a jump list for long pieces (>= 5
-  // sections). Only computed for bucket "b"; control renders no TOC.
+  // Once the body is ready, scrape its H2 section headings, give each a
+  // stable id, and expose a jump list for long pieces (>= 5 sections).
   const [toc, setToc] = React.useState([]);
   React.useEffect(() => {
-    if (articleTocVariant !== "b" || bodyState !== "ready") { setToc([]); return; }
+    if (bodyState !== "ready") { setToc([]); return; }
     const raf = requestAnimationFrame(() => {
       const prose = proseRef.current;
       if (!prose) return;
@@ -41,7 +96,7 @@ function ArticlePage({ slug, go }) {
       setToc(items.length >= 5 ? items : []);
     });
     return () => cancelAnimationFrame(raf);
-  }, [articleTocVariant, bodyState, slug, Body]);
+  }, [bodyState, slug, Body]);
 
   React.useEffect(() => {
     let cancelled = false;
@@ -236,6 +291,9 @@ function ArticlePage({ slug, go }) {
             <div style={{ marginLeft: "auto", textAlign: "right" }}>
               <time dateTime={article.isoModified || article.isoDate}>{article.date}</time>
               <div>{article.read} read</div>
+              {article.isoModified && article.isoModified !== article.isoDate && formatIsoDate(article.isoModified) && (
+                <div>Updated {formatIsoDate(article.isoModified)}</div>
+              )}
             </div>
           </address>
         </header>
@@ -255,7 +313,7 @@ function ArticlePage({ slug, go }) {
 
         {/* Body */}
         <div className="wrap wrap--read">
-          {articleTocVariant === "b" && toc.length > 0 && (
+          {toc.length > 0 && (
             <details className="toc">
               <summary>In this guide</summary>
               <ul>
@@ -266,7 +324,7 @@ function ArticlePage({ slug, go }) {
                       onClick={(e) => {
                         e.preventDefault();
                         document.getElementById(it.id)?.scrollIntoView({ behavior: "smooth", block: "start" });
-                        if (window.track) window.track("toc_jump", { slug, variant: "b" });
+                        if (window.track) window.track("toc_jump", { slug });
                       }}
                     >{it.text}</a>
                   </li>
@@ -292,16 +350,37 @@ function ArticlePage({ slug, go }) {
             )}
           </div>
 
+          {/* Author box. Puts the naturalist credential at the point where
+              trust decisions actually happen: right after the reader has
+              finished the piece, before the conversion asks below. */}
+          <div style={{ display: "flex", gap: 18, alignItems: "flex-start", borderTop: "1px solid var(--rule)", padding: "24px 0", marginTop: 40 }}>
+            <div style={{ width: 44, height: 44, flexShrink: 0, borderRadius: "50%", background: "var(--paper-2)", border: "1px solid var(--rule)", display: "flex", alignItems: "center", justifyContent: "center", fontFamily: "var(--serif)", fontWeight: 600, color: "var(--ink-2)" }}>CG</div>
+            <div style={{ fontFamily: "var(--sans)", fontSize: 13, color: "var(--ink-2)", lineHeight: 1.6 }}>
+              <div style={{ color: "var(--ink)", fontWeight: 500, marginBottom: 4 }}>
+                <a
+                  href="/about"
+                  rel="author"
+                  onClick={(e) => { e.preventDefault(); go("about"); }}
+                  style={{ color: "inherit", textDecoration: "none", borderBottom: "1px solid var(--rule)" }}
+                >{window.SITE.authorName}</a>
+              </div>
+              <div>{window.SITE.authorBio}</div>
+              <div style={{ marginTop: 6 }}>
+                <a
+                  href="/about"
+                  onClick={(e) => { e.preventDefault(); go("about"); }}
+                  style={{ color: "var(--moss)", textDecoration: "none", borderBottom: "1px solid var(--rule)" }}
+                >Read how recommendations get made →</a>
+              </div>
+            </div>
+          </div>
+
           {midHost && ReactDOM.createPortal(
             <NewsletterInline
               location="article_mid"
-              tag="article-mid"
-              variant={midVariant}
-              {...(midVariant === "b"
-                /* b: drop the cadence-hedge heading/blurb so the unit falls
-                   through to the default map-first incentive copy. */
-                ? {}
-                : { heading: "Keep reading next week", blurb: "Sunday Field Notes: one short letter, only when there is something worth saying." })}
+              tag={newsletterTag("article-mid", article.cat)}
+              heading="Keep reading next week"
+              blurb="Sunday Field Notes: one short letter, only when there is something worth saying."
             />,
             midHost
           )}
@@ -326,13 +405,37 @@ function ArticlePage({ slug, go }) {
             <div className="mono" style={{ color: "var(--moss)", fontWeight: 700, fontSize: 11, textTransform: "uppercase", letterSpacing: "0.18em", marginTop: 12 }}>Open the map →</div>
           </a>
 
-          <NewsletterInline
-            location="article_end"
-            tag="article-end"
-            abTest="nl_valueprop"
-            heading="Sunday Field Notes"
-            blurb="One letter a week. If you found this useful, you'll probably like the rest."
-          />
+          {(() => {
+            // article_end copy test: arm a keeps the standing section offers,
+            // arm b leads with concrete utility. Copy is chosen here (the
+            // caller-controlled A/B path); NewsletterInline just tags the
+            // variant onto its GA4 events.
+            const endVariant = window.abVariant ? window.abVariant("article_end_copy") : "a";
+            const offers = endVariant === "b" ? END_NEWSLETTER_OFFER_B : END_NEWSLETTER_OFFER;
+            const offer = offers[article.cat] || {};
+            return (
+              <NewsletterInline
+                location="article_end"
+                tag={newsletterTag("article-end", article.cat)}
+                heading={offer.heading || "Sunday Field Notes"}
+                blurb={offer.blurb || "One letter a week. If you found this useful, you'll probably like the rest."}
+                variant={endVariant}
+              />
+            );
+          })()}
+
+          {/* Quiet Field Guide teaser: trails and planning readers only, one
+              text line, never a second form. */}
+          {(article.cat === "trails" || article.cat === "planning") && (
+            <p style={{ fontFamily: "var(--sans)", fontSize: 13, color: "var(--ink-3)", lineHeight: 1.6, margin: "16px 0 0" }}>
+              The Field Guide, this site's advice as an offline app with GPS at the trailhead, is coming.{" "}
+              <a
+                href="/guide"
+                onClick={(e) => { e.preventDefault(); if (window.track) window.track("guide_teaser_click", { location: "article_end" }); go("guide"); }}
+                style={{ color: "var(--ink-2)" }}
+              >The waitlist is open →</a>
+            </p>
+          )}
         </div>
       </article>
 

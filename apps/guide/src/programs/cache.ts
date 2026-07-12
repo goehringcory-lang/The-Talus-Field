@@ -19,8 +19,8 @@ const META_KEY = 'tfg.programs.meta'
 export type ProgramsMeta = {
   start: string
   end: string
-  syncedAt: string  // when the Worker last ingested source data
-  cachedAt: string  // when this device saved the window
+  syncedAt: string | null  // when the Worker last ingested source data; null = never
+  cachedAt: string         // when this device saved the window
 }
 
 function cachesAvailable(): boolean {
@@ -68,8 +68,19 @@ export async function writeCachedWindow(payload: ProgramsResponseT): Promise<voi
   } catch {
     /* non-fatal: cache contents still exist, only the stamp is lost */
   }
-  // Ask the browser not to evict the trip's data under storage pressure.
+  await requestPersistence()
+}
+
+// Ask the browser not to evict the trip's data under storage pressure — once
+// per session, and only when not already granted. Firefox surfaces persist()
+// as a permission prompt, so calling it on every sync would re-prompt a user
+// who dismissed it each time they change dates or press "Sync now".
+let persistenceRequested = false
+async function requestPersistence(): Promise<void> {
+  if (persistenceRequested) return
+  persistenceRequested = true
   try {
+    if (await navigator.storage?.persisted?.()) return
     await navigator.storage?.persist?.()
   } catch {
     /* persistence is a hint */

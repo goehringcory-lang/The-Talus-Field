@@ -41,7 +41,8 @@ function writeFeedInfo(info: TripFeedInfo): void {
   }
 }
 
-function clearFeedInfo(): void {
+/** Drop the local feed record (feedSync clears it when the token is dead). */
+export function clearFeedInfo(): void {
   try {
     window.localStorage.removeItem(FEED_KEY)
   } catch {
@@ -51,10 +52,12 @@ function clearFeedInfo(): void {
 
 /** Publish (or refresh) the hosted feed. The Worker reuses the account's token. */
 export async function publishFeed(ics: string): Promise<TripFeedInfo> {
-  const res = await apiFetch<{ token: string; feedUrl: string }>('/api/trip/feed', {
-    method: 'POST',
-    body: JSON.stringify({ ics }),
-  })
+  const res = await apiFetch<{ token: string; feedUrl: string }>(
+    '/api/trip/feed',
+    { method: 'POST', body: JSON.stringify({ ics }) },
+    // Full ICS upload over park cellular deserves more headroom than the default.
+    { timeoutMs: 30_000 },
+  )
   const info: TripFeedInfo = { ...res, updatedAt: new Date().toISOString() }
   writeFeedInfo(info)
   return info
@@ -71,8 +74,10 @@ export function webcalUrl(feedUrl: string): string {
   return feedUrl.replace(/^https?:\/\//, 'webcal://')
 }
 
-/** Google Calendar's add-by-URL entry point for the feed. Takes the plain
- * https feed URL — Google's `cid` parameter expects http(s), not webcal. */
+/** Google Calendar's add-by-URL entry point for the feed. The `cid` param
+ * only accepts an ICS feed as a webcal:// address; handing it a plain
+ * https URL makes Google answer "Could not add calendar". Google fetches
+ * the feed over https regardless of the webcal scheme. */
 export function googleCalendarSubscribeUrl(feedUrl: string): string {
-  return `https://calendar.google.com/calendar/render?cid=${encodeURIComponent(feedUrl)}`
+  return `https://calendar.google.com/calendar/render?cid=${encodeURIComponent(webcalUrl(feedUrl))}`
 }

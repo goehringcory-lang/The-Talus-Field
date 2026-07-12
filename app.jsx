@@ -1,11 +1,12 @@
 /* global React, ReactDOM, Header, Footer, ExitIntentNewsletter,
    HomePage, AboutPage, ArticlesIndex, CategoryPage, ArticlePage,
    KitPage, PlacesPage, AdvertisePage, GuidePage, MapPage, FilmsPage,
+   ItinerariesPage, ConditionsPage,
    PlanningGuide, ChecklistPage,
    NewsletterPage, ContactPage, PrivacyPage, TermsPage, AffiliatePage,
    TweaksPanel, useTweaks, TweakSection, TweakRadio, TweakToggle */
 
-const { useState, useEffect } = React;
+const { useState, useEffect, useRef } = React;
 
 // ============================================================
 // Routing. Real paths via History API so each entry is its own URL
@@ -351,13 +352,13 @@ function buildSeo(route) {
     planning: {
       title: `The Yosemite Planning Guide — ${SITE_NAME}`,
       description:
-        "Plan a Yosemite trip in 2026: gateway towns, reservations, Half Dome, smoke season, the seasonal calendar. A hub for The Talus Field's planning archive.",
+        "Plan a Yosemite trip in 2026: entrances and getting there, gateway towns, permits, Half Dome, accessibility, smoke season, the seasonal calendar. A hub for The Talus Field's planning archive.",
       ogType: "website",
       breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Planning Guide", null]],
       faq: [
         { q: "Do I need a reservation to enter Yosemite in 2026?", a: "No. The day-use vehicle reservation system is not in effect in 2026. A standard Yosemite entrance pass ($35 per vehicle, valid 7 days) is required." },
         { q: "What is the best time of year to visit Yosemite?", a: "Late May through early June for peak waterfalls and moderate crowds. September and October for warm days, smaller crowds, and golden light. July and August are the most crowded months." },
-        { q: "How much does it cost to enter Yosemite?", a: "$35 per vehicle (7-day pass), $20 per person on foot or bike. The America the Beautiful annual pass ($80) covers all national parks for one year." },
+        { q: "How much does it cost to enter Yosemite?", a: "$35 per vehicle (7-day pass), $20 per person on foot or bike. Since January 1, 2026, international visitors pay a $100 per-person surcharge (age 16 and older). The America the Beautiful annual pass ($80 for U.S. residents, $250 for nonresidents) covers all national parks for one year." },
         { q: "How long should I spend at Yosemite?", a: "Minimum two full days. Three to four days lets you cover the Valley, Glacier Point, and Tioga Road without rushing." },
         { q: "Is Yosemite open year-round?", a: "Yosemite Valley is open year-round. Tioga Road closes November through May. Glacier Point Road closes late November and reopens around Memorial Day." }
       ],
@@ -424,12 +425,68 @@ function buildSeo(route) {
       description:
         "An offline web app for Yosemite. Tappable GPS for the parking turnouts, quiet trailheads, and insider tactics locals use. Works when service dies.",
       ogType: "website",
+      breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["The Field Guide", null]],
+      // Indexable pre-launch: the page carries a waitlist (GUIDE_ON_SALE in
+      // page-guide.jsx) and accumulates search authority while it waits.
     },
     map: {
       title: `Yosemite Trip Planner Map — ${SITE_NAME}`,
       description:
         "An interactive Yosemite map of vistas, trailheads, parking turnouts, picnic spots, and places to eat, with a trip builder. Curated by a resident of the park. Free.",
       ogType: "website",
+      breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Map", null]],
+      // Mirrors the edge's static WebPage node (edge/seo.js) so JS and non-JS
+      // crawlers see the same entity. The pin list itself stays out of the
+      // structured data until the points pass a ground-truth check.
+      jsonLd: {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        name: `Yosemite Trip Planner Map — ${SITE_NAME}`,
+        url: `${SITE_ORIGIN}/map`,
+        description:
+          "An interactive Yosemite map of vistas, trailheads, parking turnouts, picnic spots, and places to eat, with a trip builder. Curated by a resident of the park. Free.",
+        isAccessibleForFree: true,
+        inLanguage: "en-US",
+        about: {
+          "@type": "Place",
+          name: "Yosemite National Park",
+          geo: { "@type": "GeoCoordinates", latitude: 37.8651, longitude: -119.5383 },
+        },
+      },
+    },
+    conditions: {
+      title: `Yosemite Conditions — webcams, waits, and weather — ${SITE_NAME}`,
+      description:
+        "Live Yosemite webcams, entrance wait times, and elevation-aware weather forecasts on one page. Check it the morning you drive in.",
+      ogType: "website",
+      breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Conditions", null]],
+    },
+    itineraries: {
+      title: `Yosemite Itineraries — day plans on the map — ${SITE_NAME}`,
+      description:
+        "Curated Yosemite itineraries for one, two, or three days, plus a half-day plan for late arrivals. Each opens as a ready-made trip on the interactive map.",
+      ogType: "website",
+      breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Itineraries", null]],
+      // ItemList of TouristTrip nodes built from the same data the page
+      // renders. Mirrors the hand-maintained literal in edge/seo.js.
+      jsonLd: {
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        name: "Yosemite itineraries",
+        url: `${SITE_ORIGIN}/itineraries`,
+        numberOfItems: (window.ITINERARIES || []).length,
+        itemListElement: (window.ITINERARIES || []).map((it, i) => ({
+          "@type": "ListItem",
+          position: i + 1,
+          item: {
+            "@type": "TouristTrip",
+            name: it.title,
+            description: it.dek,
+            url: `${SITE_ORIGIN}/itineraries#${it.id}`,
+            touristType: "National park visitors",
+          },
+        })),
+      },
     },
   };
   const meta = known[route] || known.home;
@@ -439,7 +496,7 @@ function buildSeo(route) {
     canonical: url,
     ogType: meta.ogType || "website",
     image: SITE_DEFAULT_IMAGE,
-    jsonLd: null,
+    jsonLd: meta.jsonLd || null,
     breadcrumb: meta.breadcrumb ? breadcrumbLd(meta.breadcrumb) : null,
     faq: meta.faq ? faqLd(meta.faq) : null,
     robots: meta.robots || null,
@@ -542,25 +599,48 @@ function App() {
     return pathToRoute(window.location.pathname);
   });
 
-  // Apply SEO whenever the route changes.
+  // Apply SEO whenever the route changes, then report the SPA navigation to
+  // GA4. The gtag config in index.html already sends the initial pageview, so
+  // the first render is skipped here to avoid a double count.
+  const initialPageView = useRef(true);
   useEffect(() => {
     applySeo(route);
+    if (initialPageView.current) {
+      initialPageView.current = false;
+      return;
+    }
+    window.track("page_view", {
+      page_location: window.location.href,
+      page_title: document.title,
+    });
   }, [route]);
 
-  // GA4 affiliate-click tracking. Delegated listener at the document root so it
-  // survives every SPA navigation without rebinding. Any anchor with a
-  // data-aff-network attribute fires an "affiliate_click" event.
+  // GA4 click tracking. Delegated listener at the document root so it
+  // survives every SPA navigation without rebinding. Anchors with a
+  // data-aff-network attribute fire "affiliate_click"; any other anchor
+  // leaving the site in a new tab (webcams, weather, NPS) fires
+  // "outbound_click" with no per-link markup required.
   useEffect(() => {
     const onClick = (e) => {
-      const a = e.target.closest && e.target.closest("a[data-aff-network]");
+      const a = e.target.closest && e.target.closest("a[href]");
       if (!a) return;
-      window.track("affiliate_click", {
-        aff_network: a.dataset.affNetwork || "unknown",
-        aff_list: a.dataset.affList || "",
-        aff_item_slug: a.dataset.affItemSlug || "",
-        aff_name: a.dataset.affName || "",
-        destination: a.href,
-      });
+      if (a.dataset.affNetwork) {
+        window.track("affiliate_click", {
+          aff_network: a.dataset.affNetwork || "unknown",
+          aff_list: a.dataset.affList || "",
+          aff_item_slug: a.dataset.affItemSlug || "",
+          aff_name: a.dataset.affName || "",
+          destination: a.href,
+        });
+        return;
+      }
+      if (a.target === "_blank" && a.host && a.host !== window.location.host) {
+        window.track("outbound_click", {
+          link_domain: a.host,
+          link_url: a.href,
+          location: window.location.pathname,
+        });
+      }
     };
     document.addEventListener("click", onClick, { capture: true });
     return () => document.removeEventListener("click", onClick, { capture: true });
@@ -641,6 +721,11 @@ function App() {
     page = <AffiliatePage />;
   } else if (route === "guide") {
     page = <GuidePage go={go} />;
+  } else if (route === "itineraries") {
+    page = <ItinerariesPage go={go} />;
+    // currentNav stays "home" so no nav link highlights, matching /map.
+  } else if (route === "conditions") {
+    page = <ConditionsPage go={go} />;
   } else if (route === "map") {
     page = <MapPage go={go} />;
     // currentNav stays "home" so no nav link highlights.
@@ -702,6 +787,7 @@ const REQUIRED_GLOBALS = [
   "Header", "Footer", "ExitIntentNewsletter",
   "HomePage", "AboutPage", "ArticlesIndex", "CategoryPage", "ArticlePage",
   "KitPage", "PlacesPage", "AdvertisePage", "GuidePage", "MapPage", "FilmsPage",
+  "ItinerariesPage", "ConditionsPage",
   "PlanningGuide", "ChecklistPage", "NewsletterPage", "ContactPage",
   "PrivacyPage", "TermsPage", "AffiliatePage",
   "TweaksPanel", "useTweaks", "TweakSection", "TweakRadio",

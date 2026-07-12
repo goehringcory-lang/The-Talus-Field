@@ -167,7 +167,9 @@ function ChecklistPage({
   }, React.createElement("input", {
     type: "checkbox",
     style: cb
-  }), "Wilderness permits for overnight trips: apply 24 weeks ahead via Recreation.gov.")), React.createElement("section", {
+  }), React.createElement(A, {
+    r: "a:yosemite-wilderness-permits-guide"
+  }, "Wilderness permits"), " for overnight trips: apply 24 weeks ahead via Recreation.gov.")), React.createElement("section", {
     className: "checklist-section",
     style: sectionStyle
   }, React.createElement("div", {
@@ -190,7 +192,7 @@ function ChecklistPage({
     style: cb
   }), "Don't pay third-party sites for \"Yosemite passes.\" ", React.createElement(A, {
     r: "a:yosemite-without-reservations-2026"
-  }, "Pay $35 at the gate"), " or use America the Beautiful."), React.createElement("label", {
+  }, "Pay $35 at the gate"), " or use America the Beautiful. (International visitors: a $100 per-person surcharge applies in 2026.)"), React.createElement("label", {
     style: item
   }, React.createElement("input", {
     type: "checkbox",
@@ -313,7 +315,7 @@ function ChecklistPage({
   }, React.createElement("input", {
     type: "checkbox",
     style: cb
-  }), "Cash for the gate or your ", React.createElement(A, {
+  }), "A credit or debit card for the gate (the entrance stations are cashless) or your ", React.createElement(A, {
     r: "a:yosemite-without-reservations-2026"
   }, "America the Beautiful pass"), "."), React.createElement("p", {
     style: note
@@ -472,6 +474,8 @@ function ChecklistPage({
   }, "The full Yosemite Planning Guide")))), React.createElement("div", {
     className: "checklist-section"
   }, React.createElement(NewsletterInline, {
+    location: "checklist",
+    tag: "checklist",
     heading: "Want updates through the season?",
     blurb: "One Yosemite email a week, when there is something to say. Free. Subscribers hear about updates to this checklist first."
   }))));

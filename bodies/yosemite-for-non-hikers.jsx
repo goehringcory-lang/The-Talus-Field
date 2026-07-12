@@ -62,7 +62,7 @@ window.ARTICLE_BODIES["yosemite-for-non-hikers"] = function YosemiteForNonHikers
       </p>
 
       <p>
-        <strong>El Capitan Meadow</strong> has a roadside pullout with a wide view of the wall. You can stand at the edge of the meadow and look up. With binoculars, you can sometimes see climbers as moving white specks. There's almost no walking required.
+        <strong><a href="/map?stop=el-capitan-meadow">El Capitan Meadow</a></strong> has a roadside pullout with a wide view of the wall. You can stand at the edge of the meadow and look up. With binoculars, you can sometimes see climbers as moving white specks. There's almost no walking required.
       </p>
 
       <p>

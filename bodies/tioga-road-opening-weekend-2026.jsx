@@ -102,7 +102,7 @@ window.ARTICLE_BODIES["tioga-road-opening-weekend-2026"] = function TiogaRoadOpe
       <p>If you want to stretch your legs, two short options are reliable on opening weekend:</p>
 
       <ul>
-        <li><strong>Pothole Dome</strong> at the west end of the meadow. A one-mile round-trip scramble up polished granite with a panoramic view of Tuolumne, Lembert Dome, and the Sierra crest. The approach across the meadow edge will be wet, sometimes flooded, so stick to the established path. The granite itself dries fast.</li>
+        <li><strong><a href="/map?stop=pothole-dome">Pothole Dome</a></strong> at the west end of the meadow. A one-mile round-trip scramble up polished granite with a panoramic view of Tuolumne, Lembert Dome, and the Sierra crest. The approach across the meadow edge will be wet, sometimes flooded, so stick to the established path. The granite itself dries fast.</li>
         <li><strong>Soda Springs and Parsons Lodge</strong> from the Lembert Dome parking area, about 1.5 miles round-trip on a flat dirt road. The historic lodge building is closed until summer staffing arrives, but the exterior, the naturally carbonated springs bubbling up through iron-orange sediment, and the Tuolumne River running hard with snowmelt are all yours. Kids love the springs.</li>
       </ul>
 
