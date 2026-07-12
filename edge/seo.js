@@ -240,12 +240,12 @@ function seoForPath(pathname) {
     "/planning": {
       title: `The Yosemite Planning Guide — ${SITE_NAME}`,
       description:
-        "Plan a Yosemite trip in 2026: gateway towns, reservations, Half Dome, smoke season, the seasonal calendar. A curated hub through The Talus Field's planning archive.",
+        "Plan a Yosemite trip in 2026: entrances and getting there, gateway towns, permits, Half Dome, accessibility, smoke season, the seasonal calendar. A curated hub through The Talus Field's planning archive.",
       breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Planning Guide", null]],
       faq: [
         { q: "Do I need a reservation to enter Yosemite in 2026?", a: "No. The day-use vehicle reservation system is not in effect in 2026. A standard Yosemite entrance pass ($35 per vehicle, valid 7 days) is required." },
         { q: "What is the best time of year to visit Yosemite?", a: "Late May through early June for peak waterfalls and moderate crowds. September and October for warm days, smaller crowds, and golden light. July and August are the most crowded months. April has spring waterfalls but Tioga Road and Glacier Point Road are usually still closed." },
-        { q: "How much does it cost to enter Yosemite?", a: "$35 per vehicle (7-day pass), $20 per person entering on foot, bike, or motorcycle. The America the Beautiful annual pass ($80) covers entry to all national parks for one year and is worthwhile for two or more Yosemite visits." },
+        { q: "How much does it cost to enter Yosemite?", a: "$35 per vehicle (7-day pass), $20 per person entering on foot or bike. Since January 1, 2026, international visitors pay a $100 per-person surcharge (age 16 and older). The America the Beautiful annual pass ($80 for U.S. residents, $250 for nonresidents) covers entry to all national parks for one year." },
         { q: "How long should I spend at Yosemite?", a: "Minimum two full days: one for the Valley floor, one for a second area like Glacier Point, Mariposa Grove, or Tioga Road. Three to four days lets you cover all of these without rushing. A single-day trip is doable but you'll be moving the entire time." },
         { q: "Is Yosemite open year-round?", a: "Yosemite Valley is open year-round. Tioga Road (Highway 120 through the park) is typically closed November through May. Glacier Point Road closes in late November and reopens around Memorial Day. Mariposa Grove is open year-round but the tram is seasonal. Some campgrounds have seasonal closures." }
       ],

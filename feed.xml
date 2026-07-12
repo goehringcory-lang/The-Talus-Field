@@ -9,13 +9,63 @@
     <copyright>© 2026 The Talus Field</copyright>
     <managingEditor>cory@thetalusfieldjournal.com (Cory Goehring)</managingEditor>
     <webMaster>cory@thetalusfieldjournal.com (Cory Goehring)</webMaster>
-    <lastBuildDate>Fri, 10 Jul 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 12 Jul 2026 00:00:00 +0000</lastBuildDate>
     <image>
       <url>https://thetalusfieldjournal.com/img/talus-field-mark.png</url>
       <title>The Talus Field</title>
       <link>https://thetalusfieldjournal.com/</link>
     </image>
 
+    <item>
+      <title>Getting to Yosemite: Five Entrances, and How to Pick the Right One</title>
+      <link>https://thetalusfieldjournal.com/articles/getting-to-yosemite</link>
+      <guid isPermaLink="true">https://thetalusfieldjournal.com/articles/getting-to-yosemite</guid>
+      <pubDate>Sun, 12 Jul 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Cory Goehring</dc:creator>
+      <category>Planning</category>
+      <description>Yosemite has five entrances and they are nothing alike. Which highway fits which trip, real drive times, why your phone's routing cannot be trusted, what winter chain control means, and the YARTS bus that solves parking entirely.</description>
+      <media:content url="https://thetalusfieldjournal.com/img/merced-canyon-road-cory-goehring.jpg" medium="image" />
+    </item>
+    <item>
+      <title>The Yosemite Wilderness Permit, Explained</title>
+      <link>https://thetalusfieldjournal.com/articles/yosemite-wilderness-permits-guide</link>
+      <guid isPermaLink="true">https://thetalusfieldjournal.com/articles/yosemite-wilderness-permits-guide</guid>
+      <pubDate>Sat, 11 Jul 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Cory Goehring</dc:creator>
+      <category>Planning</category>
+      <description>Ninety-five percent of Yosemite is wilderness, and sleeping in it takes a permit most visitors never figure out. The 24-week lottery, the seven-day release, the Half Dome add-on, and the strategy that actually gets you out there.</description>
+      <media:content url="https://thetalusfieldjournal.com/img/tuolumne-high-country-cory-goehring.jpg" medium="image" />
+    </item>
+    <item>
+      <title>An Accessible Yosemite: What Works, and How to Plan for It</title>
+      <link>https://thetalusfieldjournal.com/articles/yosemite-accessibility-guide</link>
+      <guid isPermaLink="true">https://thetalusfieldjournal.com/articles/yosemite-accessibility-guide</guid>
+      <pubDate>Fri, 10 Jul 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Cory Goehring</dc:creator>
+      <category>Planning</category>
+      <description>The best view in Yosemite Valley is from a flat, paved loop. Wheelchair-accessible trails, the accessible Valley shuttle, Deaf services, the free Access Pass, and the planning arithmetic the brochures soften.</description>
+      <media:content url="https://thetalusfieldjournal.com/img/lower-yosemite-fall.jpg" medium="image" />
+    </item>
+    <item>
+      <title>Bringing a Dog to Yosemite: The Rules, the Two Trails, and an Honest Answer</title>
+      <link>https://thetalusfieldjournal.com/articles/pets-in-yosemite</link>
+      <guid isPermaLink="true">https://thetalusfieldjournal.com/articles/pets-in-yosemite</guid>
+      <pubDate>Thu, 09 Jul 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Cory Goehring</dc:creator>
+      <category>Planning</category>
+      <description>Yosemite is one of the least dog-friendly parks in the country, by design, and nobody tells you before the drive. Where a leashed dog can actually go, the two legal trails, campground rules, and when to leave the dog home.</description>
+      <media:content url="https://thetalusfieldjournal.com/img/wildflowers.jpg" medium="image" />
+    </item>
+    <item>
+      <title>The Best Thing in Yosemite Is Free: Ranger Programs and the Junior Ranger Badge</title>
+      <link>https://thetalusfieldjournal.com/articles/yosemite-ranger-programs</link>
+      <guid isPermaLink="true">https://thetalusfieldjournal.com/articles/yosemite-ranger-programs</guid>
+      <pubDate>Wed, 08 Jul 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Cory Goehring</dc:creator>
+      <category>Planning</category>
+      <description>Guided walks, evening amphitheater programs, and a badge ceremony performed with complete seriousness for five-year-olds and forty-five-year-olds alike. How to find the schedule and which program to pick if you only attend one.</description>
+      <media:content url="https://thetalusfieldjournal.com/img/kid-yosemite-falls-boardwalk.jpg" medium="image" />
+    </item>
     <item>
       <title>The Dirt on Camping in Yosemite: All 13 Campgrounds</title>
       <link>https://thetalusfieldjournal.com/articles/yosemite-camping-complete-guide</link>
