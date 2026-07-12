@@ -146,9 +146,9 @@ function SheetBody({ onClose, slotted, eventCount, filenameDate }: Omit<Props, '
           <h3 className="sheet__title">Subscribe, stays updated</h3>
           {googleConnected && (
             <p className="sheet__note sheet__note--muted">
-              You're already syncing straight into your Google Calendar from the Account page.
-              Subscribing here too would show the trip twice in Google. Use this only for a
-              different calendar app.
+              Google Calendar is already handled: your trip syncs straight into it through the
+              Account page connection. The subscription below is for other calendar apps, like
+              Apple Calendar or Outlook.
             </p>
           )}
           {!feed && (
@@ -179,20 +179,28 @@ function SheetBody({ onClose, slotted, eventCount, filenameDate }: Omit<Props, '
               </p>
               <div className="sheet__buttons">
                 <Button href={webcalUrl(feed.feedUrl)}>Apple Calendar</Button>
-                <Button href={googleCalendarSubscribeUrl(feed.feedUrl)} external>
-                  Google Calendar
-                </Button>
+                {/* Hidden once the account is directly connected: adding the feed
+                    to Google too would duplicate the trip, and on a phone the
+                    add-by-URL page dead-ends in the Google Calendar app anyway. */}
+                {!googleConnected && (
+                  <Button href={googleCalendarSubscribeUrl(feed.feedUrl)} external>
+                    Google Calendar
+                  </Button>
+                )}
                 <Button variant="ghost" onClick={copyLink}>
                   {copied ? 'Copied' : 'Copy feed link'}
                 </Button>
               </div>
               <p className="sheet__note sheet__note--muted">
-                Google only accepts a new subscription from a computer browser, never its phone
-                app: on a phone, copy the feed link and add it later at calendar.google.com,
-                under Other calendars, From URL. Once added it syncs to the phone app on its
-                own. Feed updated {relativeStamp(feed.updatedAt)}. Calendars refresh
-                subscriptions on their own schedule, Google usually within a day, Apple per its
-                Fetch New Data setting. For same-day changes, use the file below.
+                {!googleConnected &&
+                  'Google only accepts a new subscription from a computer browser, never its ' +
+                    'phone app: on a phone, copy the feed link and add it later at ' +
+                    'calendar.google.com, under Other calendars, From URL. Once added it syncs ' +
+                    'to the phone app on its own. '}
+                Feed updated {relativeStamp(feed.updatedAt)}.{' '}
+                {googleConnected
+                  ? 'Apple refreshes subscriptions per its Fetch New Data setting, so same-day changes can lag. For those, use the file below.'
+                  : 'Calendars refresh subscriptions on their own schedule, Google usually within a day, Apple per its Fetch New Data setting. For same-day changes, use the file below.'}
               </p>
               <Button variant="quiet" onClick={stopSync} disabled={revoking || !online}>
                 {revoking ? 'Stopping…' : 'Stop updating this feed'}
