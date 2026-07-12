@@ -13,7 +13,7 @@ compatibility_flags = ["nodejs_compat"]
 # plus the hourly tripfeedWriteAttempts:* rate-limit counters.
 [[kv_namespaces]]
 binding = "GUIDE_BUYERS"
-id = "REPLACE_ME_AFTER_kv_namespace_create"
+id = "4d2bf553bdd249448407094e3d282825"
 preview_id = "REPLACE_ME_FOR_LOCAL_DEV"
 
 # Program/event cache for /api/programs (daily cron ingest of the NPS Events
@@ -22,7 +22,7 @@ preview_id = "REPLACE_ME_FOR_LOCAL_DEV"
 #   wrangler kv namespace create GUIDE_PROGRAMS --preview
 [[kv_namespaces]]
 binding = "GUIDE_PROGRAMS"
-id = "REPLACE_ME_AFTER_kv_namespace_create"
+id = "b705140335d148e29f7e61aac8147c33"
 preview_id = "REPLACE_ME_FOR_LOCAL_DEV"
 
 # Daily program ingest, ~2-3am Pacific. The route also self-heals: if KV is
