@@ -51,8 +51,10 @@ GUIDE_PRODUCT_TAG = "field_guide_2026"
 GUIDE_MONTHLY_CAP = "100"
 # Google OAuth client id for the calendar push (/api/calendar). Public
 # identifier, safe to commit. Paired with the GOOGLE_OAUTH_CLIENT_SECRET secret.
-# Leave the placeholder until the OAuth client exists; the connect endpoint
-# 503s (button inert) until both id and secret are set.
+# Leave the placeholder until the OAuth client exists: the Worker treats any
+# REPLACE_WITH-prefixed id as unconfigured, /google/start answers 503, and the
+# PWA's Account card falls back to the Google add-by-URL feed subscription
+# (which needs no Google Cloud setup) instead of a Connect button that fails.
 GOOGLE_OAUTH_CLIENT_ID = "REPLACE_WITH_GOOGLE_OAUTH_CLIENT_ID.apps.googleusercontent.com"
 
 # Routes the Worker to api.thetalusfieldjournal.com.

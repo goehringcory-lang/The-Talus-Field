@@ -211,3 +211,36 @@ The buy box, checkout route, webhook, KV buyer records, and email delivery are a
    ```
 
 No PWA change is needed: [apps/guide/src/routes/Login.tsx](apps/guide/src/routes/Login.tsx) already tries the buyer email + code path first and falls back to dev-login.
+
+## Google Calendar connect (PWA Account page)
+
+Two paths put the trip on a buyer's Google calendar, and only the first needs setup:
+
+1. **Feed subscription (works today, no setup).** The Account card and the trip
+   page's calendar sheet publish the plan as a hosted ICS feed
+   (`/api/trip/feed`) and hand Google an add-by-URL link. When the OAuth client
+   below is absent, the Account card automatically offers this path for Google,
+   so calendar linking is never dead.
+2. **Direct OAuth connect (events pushed into the primary calendar,
+   auto-synced on every edit).** Requires a Google Cloud OAuth client:
+
+   - In the Google Cloud console, enable the **Google Calendar API**, then
+     create an OAuth client of type **Web application** with authorized
+     redirect URIs:
+     - `https://api.thetalusfieldjournal.com/api/calendar/google/callback`
+     - `http://localhost:8787/api/calendar/google/callback` (wrangler dev)
+   - Consent screen scopes: `openid`, `userinfo.email`,
+     `.../auth/calendar.events`. `calendar.events` is a sensitive scope:
+     Testing mode works immediately for named test users; submit the app for
+     verification before public launch or buyers will hit the unverified-app
+     warning and Testing-mode refresh tokens will expire after 7 days.
+   - Put the client id in `[vars]` in [workers/wrangler.toml](workers/wrangler.toml)
+     (replacing the `REPLACE_WITH_…` placeholder; any id still carrying that
+     prefix is treated as unconfigured) and set the secret:
+     `wrangler secret put GOOGLE_OAUTH_CLIENT_SECRET`.
+   - `wrangler deploy` from `workers/` (the API Worker never auto-deploys).
+   - Verify: sign in to the PWA, Account → Calendar → **Connect Google
+     Calendar** should round-trip through the Google consent screen and land
+     back on `/account` with "Connected as …", then push the current plan
+     within a few seconds. `GET /api/calendar/google/status` (with a JWT)
+     reports `configured: true` once the Worker sees real credentials.

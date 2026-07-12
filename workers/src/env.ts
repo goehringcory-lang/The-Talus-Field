@@ -17,8 +17,10 @@ export type Env = {
 
   // Google OAuth client for the calendar push (/api/calendar). The client id
   // is a public identifier and lives in [vars]; the secret is set with
-  // `wrangler secret put`. Both optional: without them /api/calendar/google/start
-  // returns 503 and the Account page's connect button is inert.
+  // `wrangler secret put`. Both optional, and the committed REPLACE_WITH
+  // placeholder id counts as unset (lib/google.ts isGoogleOAuthConfigured):
+  // /api/calendar/google/start returns 503 and the Account page falls back to
+  // the Google add-by-URL feed subscription.
   GOOGLE_OAUTH_CLIENT_ID?: string
 
   // Secrets (wrangler secret put)
