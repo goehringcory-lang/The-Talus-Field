@@ -18,32 +18,33 @@ export default function Open() {
   // Derive the "missing token" case during render rather than setState in effect.
   const error = token ? apiError : 'Missing token in URL.'
   // The exchange token is single-use; one POST per token, ever. StrictMode
-  // double-invokes this effect in dev, and the cancelled flag only stops the
-  // second setState, not the second network call that would burn the token.
+  // double-invokes this effect in dev, and this ref (not effect cleanup) is
+  // what stops the second network call from burning the token.
   const attempted = useRef<string | null>(null)
 
   useEffect(() => {
     if (!token || attempted.current === token) return
     attempted.current = token
-    let cancelled = false
+    // No cancellation here, deliberately. The `attempted` ref means only the
+    // FIRST effect run ever fires the POST; under StrictMode's mount-unmount-
+    // mount the second run early-returns, so a cleanup flag from run one would
+    // permanently strand a successful exchange (token burnt server-side, page
+    // stuck on "Signing you in…"). Completing sign-in after an unmount is the
+    // desired outcome anyway: setState on an unmounted component is a no-op,
+    // and navigate stays valid because it belongs to the router.
     apiFetch<ExchangeResponse>('/api/auth/exchange', {
       method: 'POST',
       body: JSON.stringify({ token }),
     })
       .then((res) => {
-        if (cancelled) return
         signIn(res.jwt)
         // First sign-in on this device goes through the setup page. replace,
         // so Back never replays the burnt single-use token.
         navigate(isOnboarded() ? '/' : '/welcome', { replace: true })
       })
       .catch((err) => {
-        if (cancelled) return
         setApiError(err.message ?? 'Could not sign you in.')
       })
-    return () => {
-      cancelled = true
-    }
   }, [token, signIn, navigate])
 
   return (

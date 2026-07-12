@@ -93,3 +93,13 @@ export function readSessionFromStorage(): { jwt: string; username: string } | nu
   }
   return { jwt, username: claims.sub }
 }
+
+// Session derived from the JWT itself, not from storage. Sign-in must not
+// depend on setStoredJwt having persisted: in storage-blocked contexts the
+// write silently fails, and re-reading storage would discard a JWT the server
+// just issued (burning a single-use magic-link token in the process).
+export function sessionFromJwt(jwt: string): { jwt: string; username: string } | null {
+  const claims = decodeClaims(jwt)
+  if (!claims || claims.exp * 1000 < Date.now()) return null
+  return { jwt, username: claims.sub }
+}

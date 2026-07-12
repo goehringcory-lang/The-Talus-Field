@@ -55,7 +55,9 @@ function esc(text: string): string {
     .replace(/\\/g, '\\\\')
     .replace(/;/g, '\\;')
     .replace(/,/g, '\\,')
-    .replace(/\r?\n/g, '\\n')
+    // \r\n, bare \n, AND a bare \r: a raw CR mid-line is illegal in RFC 5545
+    // content lines and truncates the line for strict parsers.
+    .replace(/\r\n|\r|\n/g, '\\n')
 }
 
 // Fold lines to 75 octets (continuation lines start with a space).

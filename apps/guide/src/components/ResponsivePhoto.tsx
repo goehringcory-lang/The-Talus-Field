@@ -34,7 +34,11 @@ export default function ResponsivePhoto({
   // browser's broken-image icon; fall back to the same tile used for stops
   // with no photo at all. onError on the <img> fires only after the whole
   // <picture> candidate chain has failed, so this is the right trigger.
-  const [failed, setFailed] = useState(false)
+  // The failure is recorded per-src: StopDetail keeps this component instance
+  // alive across Prev/Next navigation, and a boolean would stick every
+  // subsequent stop's photo on the placeholder after one bad image.
+  const [failedSrc, setFailedSrc] = useState<string | null>(null)
+  const failed = failedSrc === src
   const isExternal = /^https?:/i.test(src)
 
   if (failed) {
@@ -43,7 +47,7 @@ export default function ResponsivePhoto({
 
   if (isExternal) {
     return (
-      <img className={className} src={src} alt={alt} loading={loading} decoding="async" width={width} height={height} style={style} onError={() => setFailed(true)} />
+      <img className={className} src={src} alt={alt} loading={loading} decoding="async" width={width} height={height} style={style} onError={() => setFailedSrc(src)} />
     )
   }
 
@@ -65,7 +69,7 @@ export default function ResponsivePhoto({
         width={width}
         height={height}
         style={style}
-        onError={() => setFailed(true)}
+        onError={() => setFailedSrc(src)}
       />
     </picture>
   )

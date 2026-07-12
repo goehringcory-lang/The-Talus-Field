@@ -138,15 +138,18 @@ async function loadWindow(start: string, end: string): Promise<LoadResult> {
 }
 
 export function usePrograms(start: string | null, end: string | null): ProgramsState {
-  const [state, setState] = useState<Omit<ProgramsState, 'sync'>>({
+  const [state, setState] = useState<Omit<ProgramsState, 'sync'>>(() => ({
     events: [],
     syncedAt: null,
-    loading: false,
+    // A valid window starts loading in the mount effect, but that state lands
+    // a paint late; seeding it here keeps the first frame on the skeleton
+    // instead of flashing the "Nothing listed for these dates" empty state.
+    loading: Boolean(start && end && end >= start),
     offline: false,
     coverage: 'none',
     failure: null,
     error: null,
-  })
+  }))
   const [reloadKey, setReloadKey] = useState(0)
 
   useEffect(() => {

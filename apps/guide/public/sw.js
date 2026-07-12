@@ -133,7 +133,10 @@ self.addEventListener('message', (event) => {
             cache.match(url).then((cached) => {
               if (cached) return
               return fetch(url).then((res) => {
-                if (res.ok) return cache.put(url, res)
+                // Same guard as the fetch handler: a missing photo variant
+                // comes back as the SPA HTML fallback with a 200, and caching
+                // it would poison the deploy-surviving runtime cache.
+                if (res.ok && !isHtml(res)) return cache.put(url, res)
               }).catch(() => { /* offline at precache time — will cache on next visit */ })
             }),
           ),
@@ -213,9 +216,12 @@ self.addEventListener('fetch', (event) => {
       (async () => {
         try {
           const fresh = await fetch(request)
-          // Only cache successful shells — caching a 5xx/maintenance page
-          // would poison every later offline launch with an error page.
-          if (fresh.ok) {
+          // Only cache successful HTML shells. A 5xx/maintenance page would
+          // poison every later offline launch, and a same-origin navigation
+          // can be a non-HTML document too ("open image in new tab" on a
+          // /photos/* URL is a navigate for a JPEG) — caching those bytes
+          // under the shell key bricks the app offline.
+          if (fresh.ok && isHtml(fresh)) {
             const cache = await caches.open(SHELL_CACHE)
             cache.put('/index.html', fresh.clone())
           }

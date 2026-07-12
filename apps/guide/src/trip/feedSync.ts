@@ -17,7 +17,23 @@ const DEBOUNCE_MS = 4000
 let timer: ReturnType<typeof setTimeout> | undefined
 let started = false
 
-export async function syncFeedNow(): Promise<void> {
+// Publishes are serialized through this chain: the debounce timer, the online
+// listener, and the boot catch-up can otherwise overlap, and the Worker is
+// last-write-wins — a slow POST carrying an older plan would land after (and
+// overwrite) a newer one. Each sync renders its ICS only after the previous
+// request settles, so the final publish always reflects the latest plan.
+let chain: Promise<void> = Promise.resolve()
+
+export function syncFeedNow(): Promise<void> {
+  const run = chain.then(() => doSyncFeed())
+  chain = run.then(
+    () => undefined,
+    () => undefined,
+  )
+  return run
+}
+
+async function doSyncFeed(): Promise<void> {
   if (!readFeedInfo()) return
   if (!navigator.onLine) return
   const ics = buildTripIcs(slotPlan(readTripPlan().items))
