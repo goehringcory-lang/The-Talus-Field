@@ -29,6 +29,19 @@ const TZID = 'America/Los_Angeles'
 const TFG_TAG_KEY = 'tfgTrip'
 const TFG_TAG_VALUE = '1'
 
+/** True when a usable OAuth client is bound. The committed wrangler.toml ships
+ * a REPLACE_WITH placeholder client id, which is truthy: a plain truthiness
+ * check would pass it and send buyers to a dead Google "invalid_client" page.
+ * Treat the placeholder as unconfigured so /start 503s and the PWA can offer
+ * the feed-subscription fallback instead. */
+export function isGoogleOAuthConfigured(env: Env): boolean {
+  return Boolean(
+    env.GOOGLE_OAUTH_CLIENT_ID &&
+      env.GOOGLE_OAUTH_CLIENT_SECRET &&
+      !env.GOOGLE_OAUTH_CLIENT_ID.startsWith('REPLACE_WITH'),
+  )
+}
+
 /** Google reports a refresh token is dead (user revoked access, or it aged out
  * of a Testing-mode consent screen). The account's connection should be purged. */
 export class GoogleAuthRevokedError extends Error {

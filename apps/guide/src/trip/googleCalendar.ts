@@ -76,8 +76,12 @@ export async function startGoogleConnect(): Promise<void> {
   window.location.assign(authUrl)
 }
 
-type StatusResponse = {
+export type StatusResponse = {
   connected: boolean
+  // False when the Worker has no usable OAuth client (unset or the committed
+  // placeholder), so the connect path is guaranteed to fail. Absent on Workers
+  // deployed before the field existed; treat absent as "assume available".
+  configured?: boolean
   email?: string | null
   lastSyncAt?: string | null
   eventCount?: number

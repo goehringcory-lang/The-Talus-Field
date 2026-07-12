@@ -40,6 +40,7 @@ import {
   googleAuthUrl,
   googleEventId,
   insertEvent,
+  isGoogleOAuthConfigured,
   listTfgEventIds,
   refreshAccessToken,
   revokeToken,
@@ -81,7 +82,9 @@ function callbackUri(reqUrl: string): string {
 // Begin the OAuth flow: mint a single-use state bound to this account, hand the
 // PWA the Google consent URL to navigate to.
 calendar.post('/google/start', requireAuth, async (c) => {
-  if (!c.env.GOOGLE_OAUTH_CLIENT_ID || !c.env.GOOGLE_OAUTH_CLIENT_SECRET) {
+  // Placeholder-aware: the committed client id is a truthy REPLACE_WITH string,
+  // and starting the flow with it strands the buyer on a Google error page.
+  if (!isGoogleOAuthConfigured(c.env)) {
     return c.json({ error: 'Google Calendar is not configured' }, 503)
   }
   const sub = c.get('authSub')
@@ -128,14 +131,19 @@ calendar.get('/google/callback', async (c) => {
   }
 })
 
-// Is this account connected, and to which Google address?
+// Is this account connected, and to which Google address? `configured` tells
+// the PWA whether the OAuth connect path exists at all on this deployment, so
+// it can render the feed-subscription fallback instead of a Connect button
+// that is guaranteed to fail.
 calendar.get('/google/status', requireAuth, async (c) => {
+  const configured = isGoogleOAuthConfigured(c.env)
   const sub = c.get('authSub')
   const conn = await getGcalConnection(c.env, sub)
-  if (!conn) return c.json({ connected: false })
+  if (!conn) return c.json({ connected: false, configured })
   const map = await getGcalEventMap(c.env, sub)
   return c.json({
     connected: true,
+    configured,
     email: conn.email ?? null,
     lastSyncAt: map?.lastSyncAt || null,
     eventCount: map ? Object.keys(map.events).length : 0,
