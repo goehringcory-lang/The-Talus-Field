@@ -55,7 +55,7 @@ GUIDE_MONTHLY_CAP = "100"
 # REPLACE_WITH-prefixed id as unconfigured, /google/start answers 503, and the
 # PWA's Account card falls back to the Google add-by-URL feed subscription
 # (which needs no Google Cloud setup) instead of a Connect button that fails.
-GOOGLE_OAUTH_CLIENT_ID = "REPLACE_WITH_GOOGLE_OAUTH_CLIENT_ID.apps.googleusercontent.com"
+GOOGLE_OAUTH_CLIENT_ID = "847841090945-2gj23v0pf01bv0hljnk4t0d00fcn1aq8.apps.googleusercontent.com"
 
 # Routes the Worker to api.thetalusfieldjournal.com.
 # DNS prerequisite: in Cloudflare DNS, add a CNAME `api` -> `<worker-name>.workers.dev`
