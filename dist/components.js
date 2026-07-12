@@ -484,6 +484,27 @@ function Footer({
       go("map");
     }
   }, "The Map")), React.createElement("li", null, React.createElement("a", {
+    href: "/itineraries",
+    onClick: e => {
+      e.preventDefault();
+      go("itineraries");
+    }
+  }, "Itineraries")), React.createElement("li", null, React.createElement("a", {
+    href: "/conditions",
+    onClick: e => {
+      e.preventDefault();
+      go("conditions");
+    }
+  }, "Conditions")), React.createElement("li", null, React.createElement("a", {
+    href: "/guide",
+    onClick: e => {
+      e.preventDefault();
+      window.track && window.track("guide_cta_click", {
+        location: "footer_guide_link"
+      });
+      go("guide");
+    }
+  }, "Field Guide")), React.createElement("li", null, React.createElement("a", {
     href: "/newsletter",
     onClick: e => {
       e.preventDefault();
@@ -1047,6 +1068,90 @@ function MapLightbox({
     "aria-label": "Close"
   }, "✕")))));
 }
+var WEBCAMS = [{
+  label: "Half Dome",
+  img: "ahwahnee2-t.jpg",
+  href: "https://yosemite.org/webcams/half-dome/",
+  alt: "Live view of Half Dome from Ahwahnee Meadow"
+}, {
+  label: "Yosemite Falls",
+  img: "yosfalls-t.jpg",
+  href: "https://yosemite.org/webcams/yosemite-falls/",
+  alt: "Live view of Upper Yosemite Falls"
+}, {
+  label: "El Capitan",
+  img: "turtleback-t.jpg",
+  href: "https://yosemite.org/webcams/el-capitan/",
+  alt: "Live view of El Capitan from Turtleback Dome"
+}, {
+  label: "Wawona",
+  img: "wawona-t.jpg",
+  href: "https://yosemite.org/webcams/wawona/",
+  alt: "Live view of Wawona"
+}];
+function WebcamStrip() {
+  var camCacheBust = useMemo(() => Date.now(), []);
+  return React.createElement(React.Fragment, null, React.createElement("div", {
+    className: "cam-grid",
+    style: {
+      display: "grid",
+      gridTemplateColumns: "repeat(4, 1fr)",
+      gap: 32
+    }
+  }, WEBCAMS.map(cam => React.createElement("a", {
+    key: cam.img,
+    className: "cam-tile",
+    href: cam.href,
+    target: "_blank",
+    rel: "noopener noreferrer",
+    style: {
+      textDecoration: "none",
+      color: "inherit",
+      display: "block"
+    }
+  }, React.createElement("img", {
+    src: `https://pixelcaster.com/yosemite/webcams/${cam.img}?t=${camCacheBust}`,
+    alt: cam.alt,
+    loading: "lazy",
+    decoding: "async",
+    referrerPolicy: "no-referrer",
+    onError: e => {
+      var t = e.currentTarget.closest('.cam-tile');
+      if (t) t.style.display = 'none';
+    },
+    style: {
+      width: "100%",
+      aspectRatio: "3 / 2",
+      objectFit: "cover",
+      display: "block"
+    }
+  }), React.createElement("div", {
+    className: "mono",
+    style: {
+      marginTop: 10,
+      fontSize: 11,
+      textTransform: "uppercase",
+      letterSpacing: "0.18em",
+      color: "var(--ink-2)",
+      fontWeight: 700
+    }
+  }, cam.label)))), React.createElement("div", {
+    className: "mono",
+    style: {
+      marginTop: 16,
+      fontSize: 11,
+      color: "var(--ink-3)",
+      textAlign: "right"
+    }
+  }, "Live image · ", React.createElement("a", {
+    href: "https://yosemite.org/webcams/",
+    target: "_blank",
+    rel: "noopener noreferrer",
+    style: {
+      color: "inherit"
+    }
+  }, "Yosemite Conservancy / Pixelcaster")));
+}
 Object.assign(window, {
   Placeholder,
   ResponsiveImage,
@@ -1062,5 +1167,7 @@ Object.assign(window, {
   ArticleCard,
   NewsletterInline,
   ExitIntentNewsletter,
-  MapLightbox
+  MapLightbox,
+  EntranceWaits,
+  WebcamStrip
 });

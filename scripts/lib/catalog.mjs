@@ -41,6 +41,8 @@ export const STATIC_ROUTES = [
   "/affiliate",
   "/guide",
   "/map",
+  "/itineraries",
+  "/conditions",
 ];
 
 function harvestWindow(file, preload = []) {

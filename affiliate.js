@@ -15,16 +15,42 @@
 // required once a destination carries its own query string (our search URLs do).
 window.PATAGONIA_AFFILIATE_BASE = "https://patagonia.pxf.io/c/7338432/1948563/23649";
 
-window.buildPatagoniaAffiliateLink = function buildPatagoniaAffiliateLink(targetUrl) {
-  if (!targetUrl) return window.PATAGONIA_AFFILIATE_BASE;
-  // Affiliate deep links should only ever point at patagonia.com. Warn (but do
-  // not block) on anything else so a typo'd destination is easy to spot.
-  try {
-    if (!/(^|\.)patagonia\.com$/i.test(new URL(targetUrl).hostname)) {
-      console.warn("buildPatagoniaAffiliateLink: target is not a patagonia.com URL:", targetUrl);
-    }
-  } catch (_e) {
-    // Not an absolute URL; pass it through untouched.
+// Network registry. One entry per approved affiliate program: `hostRe` guards
+// deep-link destinations (warn, not block, so a typo'd URL is easy to spot),
+// `build` turns a destination into a tracking link. Joining a new network
+// later (Amazon, Avantlink, a publisher's direct program) is one entry here
+// plus the /affiliate disclosure update; markup keeps using the same
+// data-aff-network attribute, and the delegated GA4 listener in app.jsx needs
+// no change.
+window.AFFILIATES = {
+  patagonia: {
+    hostRe: /(^|\.)patagonia\.com$/i,
+    build: (targetUrl) =>
+      targetUrl
+        ? window.PATAGONIA_AFFILIATE_BASE + "?u=" + encodeURIComponent(targetUrl)
+        : window.PATAGONIA_AFFILIATE_BASE,
+  },
+};
+
+window.buildAffiliateLink = function buildAffiliateLink(network, targetUrl) {
+  const entry = window.AFFILIATES[network];
+  if (!entry) {
+    console.warn("buildAffiliateLink: unknown network:", network);
+    return targetUrl || "#";
   }
-  return window.PATAGONIA_AFFILIATE_BASE + "?u=" + encodeURIComponent(targetUrl);
+  if (targetUrl) {
+    try {
+      if (!entry.hostRe.test(new URL(targetUrl).hostname)) {
+        console.warn(`buildAffiliateLink(${network}): unexpected destination host:`, targetUrl);
+      }
+    } catch (_e) {
+      // Not an absolute URL; pass it through untouched.
+    }
+  }
+  return entry.build(targetUrl);
+};
+
+// Back-compat alias: data.js and the existing article bodies call this.
+window.buildPatagoniaAffiliateLink = function buildPatagoniaAffiliateLink(targetUrl) {
+  return window.buildAffiliateLink("patagonia", targetUrl);
 };

@@ -20,7 +20,7 @@ window.ARTICLE_BODIES["where-to-eat-yosemite"] = function WhereToEatYosemiteBody
       </p>
 
       <p>
-        <strong>Degnan's Kitchen: Yosemite Valley.</strong> The only place inside the park to get a halfway decent lunch for under twenty dollars. Order a sandwich at the counter, take it outside, eat it on a bench. The bread is real, the meat is fine, the line moves. If you forgot to pack a cooler, Degnan's is the fallback that does not feel like a fallback. A coffee and a breakfast sandwich there at 7 AM is also one of the better moves in the Valley if you slept inside the park.
+        <strong>Degnan's Kitchen: Yosemite Valley.</strong> The only place inside the park to get a halfway decent lunch for under twenty dollars. Order a sandwich at the counter, take it outside, eat it on a bench. The bread is real, the meat is fine, the line moves. If you forgot to pack a cooler, <a href="/map?stop=degnans-deli">Degnan's</a> is the fallback that does not feel like a fallback. A coffee and a breakfast sandwich there at 7 AM is also one of the better moves in the Valley if you slept inside the park.
       </p>
 
       <p>

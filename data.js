@@ -56,29 +56,29 @@ window.BODY_VERSIONS = {
   "yosemite-in-june-2026": 1,
   "cathedral-lakes-day-hike": 1,
   "yosemite-needs-a-reservation-system": 80,
-  "memorial-day-skip-the-valley-go-high-2026": 78,
+  "memorial-day-skip-the-valley-go-high-2026": 80,
   "four-mile-up-panorama-down": 75,
-  "yosemite-with-kids-no-reservations-2026": 75,
-  "tioga-road-opening-weekend-2026": 75,
+  "yosemite-with-kids-no-reservations-2026": 76,
+  "tioga-road-opening-weekend-2026": 76,
   "so-you-want-to-hike-half-dome": 75,
   "half-dome-permit-lottery-2026": 80,
-  "glacier-point-road-open-2026": 76,
-  "mist-trail-the-real-guide": 81,
-  "first-time-yosemite-overwhelm": 81,
+  "glacier-point-road-open-2026": 77,
+  "mist-trail-the-real-guide": 82,
+  "first-time-yosemite-overwhelm": 82,
   "yosemite-without-reservations-2026": 81,
   "yosemite-during-smoke-season": 75,
   "yosemite-gateway-towns-compared": 82,
   "pack-your-car-for-yosemite": 81,
-  "yosemite-for-non-hikers": 75,
-  "yosemite-stargazing-where-to-look-up": 75,
-  "hetch-hetchy-the-other-yosemite-valley": 75,
+  "yosemite-for-non-hikers": 76,
+  "yosemite-stargazing-where-to-look-up": 76,
+  "hetch-hetchy-the-other-yosemite-valley": 76,
   "yosemite-glaciers-climate": 76,
   "giant-sequoias-fire-adaptation": 75,
   "bears-spring-emergence": 75,
   "water-ouzels-waterfalls": 75,
   "working-in-yosemite": 76,
-  "yosemite-in-one-or-two-days": 79,
-  "where-to-eat-yosemite": 80,
+  "yosemite-in-one-or-two-days": 80,
+  "where-to-eat-yosemite": 81,
 };
 
 // Fetch a single article body, Babel-transform it in the browser, and run it so
@@ -238,7 +238,7 @@ window.KIT = {
             { id: "day-pack:trowel", name: "Trowel, TP, and Ziploc", note: "For catholes on longer day hikes.", aff: "#" },
             { id: "day-pack:trekking-poles", name: "Trekking poles", note: "They reduce knee stress on steep descents.", aff: "#" },
             { id: "day-pack:sit-pad", name: "Packable foam sit pad", aff: "#" },
-            { id: "day-pack:dry-bag", name: "Small dry bag for phone and electronics", aff: "#" },
+            { id: "day-pack:dry-bag", name: "Small dry bag for phone and electronics", aff: window.buildPatagoniaAffiliateLink("https://www.patagonia.com/search/?q=black+hole+dry+bag") },
             { id: "day-pack:cash", name: "Cash in small bills", note: "Parking is cash-only at several trailheads.", aff: "#" },
             { id: "day-pack:footwear", name: "Hiking boots or trail runners", note: "Road sneakers do not grip wet granite.", aff: "#" }
           ]
@@ -264,7 +264,7 @@ window.KIT = {
             { id: "overnight-pack:sleeping-pad", name: "Inflatable pad, R-value 4 or higher", note: "Cold ground steals heat all night.", aff: "#" },
             { id: "overnight-pack:pillow", name: "Compressible camp pillow", aff: "#" },
             { id: "overnight-pack:bag-liner", name: "Sleeping bag liner", note: "It adds 5 to 15°F of warmth.", aff: "#" },
-            { id: "overnight-pack:stuff-sacks", name: "Dry bags and stuff sacks", aff: "#" }
+            { id: "overnight-pack:stuff-sacks", name: "Dry bags and stuff sacks", aff: window.buildPatagoniaAffiliateLink("https://www.patagonia.com/search/?q=black+hole+cube") }
           ]
         },
         {
@@ -507,7 +507,7 @@ window.KIT = {
             { id: "car-trip:broom", name: "Whisk broom and dustpan", aff: "#" },
             { id: "car-trip:backup-pillow", name: "Inflatable backup pillow", aff: "#" },
             { id: "car-trip:quilt", name: "Packable quilt or outdoor blanket", aff: "#" },
-            { id: "car-trip:tote-bags", name: "Tote bags for grocery and bear-locker runs", aff: "#" }
+            { id: "car-trip:tote-bags", name: "Tote bags for grocery and bear-locker runs", aff: window.buildPatagoniaAffiliateLink("https://www.patagonia.com/search/?q=tote") }
           ]
         },
         {

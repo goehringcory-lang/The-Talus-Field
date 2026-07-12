@@ -1,4 +1,4 @@
-/* global React */
+/* global React, AffiliateNote */
 
 window.ARTICLE_BODIES = window.ARTICLE_BODIES || {};
 
@@ -65,7 +65,7 @@ window.ARTICLE_BODIES["memorial-day-skip-the-valley-go-high-2026"] = function Me
       </p>
 
       <ul>
-        <li><strong>Sentinel Dome.</strong> About 2.2 miles round trip, roughly 400 feet of climbing, topping out at 8,122 feet on a bare granite summit with a true 360-degree panorama: Half Dome, El Capitan, the Cathedral Range, the Clark Range, the Sierra crest. Grandparents can do it. Six-year-olds can do it. Pick this one for the view and the photo.</li>
+        <li><strong><a href="/map?stop=sentinel-dome">Sentinel Dome</a>.</strong> About 2.2 miles round trip, roughly 400 feet of climbing, topping out at 8,122 feet on a bare granite summit with a true 360-degree panorama: Half Dome, El Capitan, the Cathedral Range, the Clark Range, the Sierra crest. Grandparents can do it. Six-year-olds can do it. Pick this one for the view and the photo.</li>
         <li><strong>Taft Point.</strong> Also about 2.2 miles round trip, mostly easy, ending at a mostly unfenced clifftop and the Taft Point Fissures, deep granite cracks that drop away as much as 2,000 feet beneath your boots, with the viewpoint itself perched some 3,000 feet above the Valley floor. It is thrilling and it is genuinely dangerous: every accident here comes from someone stepping too close for a photo. The view from six feet back is identical to the view from one foot back. Stand back.</li>
       </ul>
 
@@ -98,7 +98,7 @@ window.ARTICLE_BODIES["memorial-day-skip-the-valley-go-high-2026"] = function Me
       </p>
 
       <p>
-        The catch up here is self-sufficiency. The road is open, but Tuolumne Meadows itself is barely awake: the store, grill, and campground aren't open yet, there's <strong>no gas anywhere past Crane Flat</strong>, and no reliable drinking water along Tioga Road this early. Fill the tank, pack all your own food and water, and store it in a bear locker. Bring layers. Sunny afternoons hit the low 60s, but nights drop to near freezing at this elevation, and an afternoon thunderstorm is possible.
+        The catch up here is self-sufficiency. The road is open, but Tuolumne Meadows itself is barely awake: the store, grill, and campground aren't open yet, there's <strong>no gas anywhere past Crane Flat</strong>, and no reliable drinking water along Tioga Road this early. Fill the tank, pack all your own food and water, and store it in a bear locker. Bring layers, including <a className="aff-link" href={window.buildPatagoniaAffiliateLink("https://www.patagonia.com/search/?q=nano+puff")} target="_blank" rel="sponsored noopener noreferrer" data-aff-network="patagonia" data-aff-list="article" data-aff-item-slug="memorial-day-skip-the-valley-go-high-2026" data-aff-name="Packable insulated jacket">a packable insulated jacket</a>. Sunny afternoons hit the low 60s, but nights drop to near freezing at this elevation, and an afternoon thunderstorm is possible.
       </p>
 
       <p style={{ fontStyle: "italic", color: "var(--ink-3)" }}>
@@ -124,6 +124,8 @@ window.ARTICLE_BODIES["memorial-day-skip-the-valley-go-high-2026"] = function Me
       <p>
         Welcome to Yosemite. You made it harder than it had to be, but you can still get this right.
       </p>
+
+      <AffiliateNote />
     </>
   );
 };

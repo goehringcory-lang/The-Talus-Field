@@ -151,7 +151,10 @@
         "region": "valley",
         "blurb": "Sandy beach on the Merced behind Housekeeping Camp. Shallow, slow, and shaded by afternoon.",
         "image": null,
-        "articles": [],
+        "articles": [
+          "yosemite-heat-safety-guide",
+          "yosemite-with-kids-no-reservations-2026"
+        ],
         "gmapsUrl": "https://maps.app.goo.gl/45ehcWd3skLUubgt9",
         "verified": true
       }
@@ -172,7 +175,9 @@
         "region": "valley",
         "blurb": "Tables along Cascade Creek just inside the Arch Rock entrance. Easy stop on the way in or out.",
         "image": null,
-        "articles": [],
+        "articles": [
+          "yosemite-with-kids-no-reservations-2026"
+        ],
         "gmapsUrl": "https://maps.app.goo.gl/9gVNF6YTwykaLCts5",
         "verified": true
       }
@@ -193,7 +198,9 @@
         "region": "valley",
         "blurb": "The day-use lot at Curry Village. Closest paid parking for the Mist Trail and the Happy Isles trailhead.",
         "image": null,
-        "articles": [],
+        "articles": [
+          "yosemite-in-one-or-two-days"
+        ],
         "gmapsUrl": "https://maps.app.goo.gl/vV7r5knTwNA6y7pr8",
         "verified": true
       }
@@ -255,7 +262,9 @@
         "region": "valley",
         "blurb": "Build-your-own deli sandwiches in Yosemite Village. Decent and filling for $10 to $12. The everyday lunch option when you don't want to drive out of the Valley.",
         "image": null,
-        "articles": [],
+        "articles": [
+          "where-to-eat-yosemite"
+        ],
         "gmapsUrl": "https://maps.app.goo.gl/JUBTZTe6kyRh22mC7",
         "verified": true
       }
@@ -276,7 +285,9 @@
         "region": "valley",
         "blurb": "Outdoor pizza deck at Curry Village. Once decent, now genuinely good. The Half Dome is the standout.",
         "image": null,
-        "articles": [],
+        "articles": [
+          "where-to-eat-yosemite"
+        ],
         "verified": false
       }
     },
@@ -296,7 +307,10 @@
         "region": "glacier-point",
         "blurb": "A 3.7-mile round trip off Glacier Point Road. One of the best wildflower hikes in the park; the old sheepherder's cabin partway in belongs to John McGurk. Wildflowers peak June through August.",
         "image": null,
-        "articles": [],
+        "articles": [
+          "yosemite-with-kids-no-reservations-2026",
+          "where-to-propose-in-yosemite"
+        ],
         "gmapsUrl": "https://maps.app.goo.gl/fDhduBPHiZ2dnTiC8",
         "verified": true
       }
@@ -317,7 +331,10 @@
         "region": "tuolumne",
         "blurb": "An 8-mile trail through a broad subalpine canyon with only 200 feet of gain. Starts across from the Dog Lake parking area. The further you go, the fewer people you see. Tioga Road season only.",
         "image": null,
-        "articles": [],
+        "articles": [
+          "yosemite-without-reservations-2026",
+          "yosemite-camping-complete-guide"
+        ],
         "gmapsUrl": "https://maps.app.goo.gl/t2TTcTfM9XqGtL5o8",
         "verified": true
       }
@@ -654,7 +671,9 @@
         "region": "tuolumne",
         "blurb": "Two dozen giant sequoias without the Mariposa Grove logistics. A mile down an old road from the Crane Flat lot, including a dead tree you can walk through, then the climb back out. No reservations, no shuttle, just go early for parking.",
         "image": null,
-        "articles": [],
+        "articles": [
+          "yosemite-without-reservations-2026"
+        ],
         "gmapsUrl": "https://www.google.com/maps/search/?api=1&query=Tuolumne+Grove+Trailhead",
         "verified": false
       }
@@ -675,7 +694,10 @@
         "region": "tuolumne",
         "blurb": "The gentlest lake walk on Tioga Road. A mile and a half through fir forest to a quiet lake ringed by a wildflower meadow that peaks in July. Good first altitude leg stretch on the drive up, and a reliable corn lily show.",
         "image": null,
-        "articles": [],
+        "articles": [
+          "yosemite-with-kids-no-reservations-2026",
+          "tioga-road-opening-weekend-2026"
+        ],
         "gmapsUrl": "https://www.google.com/maps/search/?api=1&query=Lukens+Lake+Trailhead",
         "verified": false
       }

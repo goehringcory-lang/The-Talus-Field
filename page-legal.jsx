@@ -99,8 +99,8 @@ function TermsPage() {
 
 function AffiliatePage() {
   return (
-    <LegalShell title="Affiliate Disclosure" eyebrow="Legal" updated="April 1, 2026">
-      <p>The Talus Field is a participant in several affiliate programs, including Amazon Associates, Bookshop.org, REI's affiliate program, Backcountry's affiliate program, Patagonia's affiliate program, and a small number of guidebook publishers' direct programs.</p>
+    <LegalShell title="Affiliate Disclosure" eyebrow="Legal" updated="July 12, 2026">
+      <p>The Talus Field currently participates in one affiliate program: Patagonia's, run through the Impact network. If that list grows, this page changes the same day.</p>
 
       <p>What that means in plain language: when an article on this site links to a product, a book, or a piece of lodging, that link may be an affiliate link. If you click through and make a purchase, I receive a small commission. The price you pay does not change. Whether or not you use the affiliate link, the recommendation in the article is the same.</p>
 

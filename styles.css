@@ -2419,6 +2419,173 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
   font-style: italic;
 }
 
+/* "Email this trip to yourself" — reuses .nlbox__form for the field/button;
+   the wrapper keeps it quiet inside the trip section. position:relative anchors
+   the off-screen honeypot. */
+.map-sidebar__email {
+  position: relative;
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid var(--rule);
+}
+.map-sidebar__email-label {
+  margin: 0 0 4px;
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+}
+.map-sidebar__email .nlbox__form input { font-size: 15px; }
+.map-sidebar__email-fine {
+  margin: 8px 0 0;
+  font-family: var(--sans);
+  font-size: 11.5px;
+  line-height: 1.5;
+  color: var(--ink-3);
+}
+.map-sidebar__email-fine--sent { color: var(--moss); font-style: normal; }
+
+/* ===== Home utility row (Plan your trip) ===== */
+.home-utility {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 8px 12px;
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  padding: 12px 0;
+  font-family: var(--sans);
+  font-size: 13px;
+}
+.home-utility__label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  margin-right: 6px;
+}
+.home-utility a {
+  color: var(--ink);
+  font-weight: 600;
+  text-decoration: none;
+  border-bottom: 1px solid var(--rule);
+  padding-bottom: 1px;
+}
+.home-utility a:hover { color: var(--moss); border-bottom-color: var(--moss); }
+.home-utility__sep { color: var(--ink-3); }
+
+/* ===== Itineraries page (/itineraries) ===== */
+.itin {
+  max-width: 680px;
+  padding: 40px 0 48px;
+  border-top: 1px solid var(--rule);
+}
+.itin:first-of-type { border-top: 0; padding-top: 8px; }
+.itin__title {
+  font-family: var(--display);
+  font-size: 34px;
+  font-weight: 500;
+  line-height: 1.12;
+  letter-spacing: -0.01em;
+  margin: 0 0 12px;
+}
+.itin__dek {
+  font-family: var(--serif);
+  font-size: 18px;
+  line-height: 1.55;
+  color: var(--ink-1);
+  margin: 0 0 8px;
+}
+.itin__season {
+  font-family: var(--sans);
+  font-size: 13px;
+  color: var(--ink-3);
+  margin: 0 0 24px;
+}
+.itin__day { margin-bottom: 24px; }
+.itin__day-name {
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+  margin: 0 0 10px;
+}
+.itin__stops {
+  margin: 0 0 8px;
+  padding-left: 22px;
+}
+.itin__stop {
+  font-family: var(--serif);
+  font-size: 16px;
+  line-height: 1.55;
+  margin-bottom: 8px;
+}
+.itin__stop-name { font-weight: 600; }
+.itin__stop-blurb { color: var(--ink-2); }
+.itin__stop-blurb::before { content: " "; }
+.itin .btn { margin-top: 8px; }
+
+/* ===== Conditions page (/conditions) ===== */
+/* EntranceWaits reuses its masthead markup; scale it up for page context. */
+.conditions__waits .masthead__waits {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 6px 10px;
+  font-size: 15px;
+  min-width: 0;
+}
+.conditions__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.conditions__row {
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  gap: 16px;
+  padding: 14px 0;
+  border-top: 1px solid var(--rule);
+  font-family: var(--serif);
+  font-size: 16px;
+  line-height: 1.55;
+}
+.conditions__row:last-child { border-bottom: 1px solid var(--rule); }
+.conditions__row a { font-weight: 600; color: var(--ink); }
+.conditions__row a:hover { color: var(--moss); }
+.conditions__row span { color: var(--ink-2); }
+@media (max-width: 560px) {
+  .conditions__row { grid-template-columns: 1fr; gap: 4px; }
+}
+
+/* Post-trip next steps — text lines under the trip tools. */
+.map-sidebar__next {
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid var(--rule);
+}
+.map-sidebar__next-label {
+  margin: 0 0 4px;
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+}
+.map-sidebar__next-line {
+  margin: 0 0 6px;
+  font-size: 12.5px;
+  line-height: 1.55;
+  color: var(--ink-2);
+}
+.map-sidebar__next-line a { color: var(--ink); text-decoration-color: var(--moss); }
+.map-sidebar__next-line a:hover { color: var(--moss); }
+
 .map-sidebar__trip-list {
   list-style: none;
   margin: 0;

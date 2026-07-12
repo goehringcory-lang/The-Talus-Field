@@ -136,7 +136,7 @@ window.ARTICLE_BODIES["yosemite-with-kids-no-reservations-2026"] = function Yose
       </p>
 
       <p>
-        <strong>Picnic spots.</strong> Skip the Village Store bench. The Cascade Picnic Area is shaded, has tables, has a bathroom, and sits on the river. El Capitan Meadow has no tables but has the best views in the Valley. Bring a blanket and eat lunch with 3,000 feet of granite in front of you. Sentinel Bridge has a spot on the south bank of the Merced with river access and shade. All of these are better than any restaurant in the park, and your cooler food is better than anything you'd buy.
+        <strong>Picnic spots.</strong> Skip the Village Store bench. The <a href="/map?stop=cascade-picnic-area">Cascade Picnic Area</a> is shaded, has tables, has a bathroom, and sits on the river. El Capitan Meadow has no tables but has the best views in the Valley. Bring a blanket and eat lunch with 3,000 feet of granite in front of you. Sentinel Bridge has a spot on the south bank of the Merced with river access and shade. All of these are better than any restaurant in the park, and your cooler food is better than anything you'd buy.
       </p>
 
       <h2>The stuff that will ruin your day</h2>

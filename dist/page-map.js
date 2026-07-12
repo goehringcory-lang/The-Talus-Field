@@ -5,7 +5,9 @@ var {
   useState,
   useCallback
 } = React;
-var POINTS_URL = "/points.geojson?v=24";
+var POINTS_URL = "/points.geojson?v=25";
+window.POINTS_URL = POINTS_URL;
+var MAP_API_BASE = typeof window !== "undefined" && window.GUIDE_API_BASE || "https://api.thetalusfieldjournal.com";
 var STORAGE_KEY = "tfg.trip";
 var STORAGE_VERSION = 1;
 var TRIP_CAP = 30;
@@ -38,19 +40,10 @@ var REGIONS = [{
   label: "Tuolumne & Hetch Hetchy",
   keys: ["tuolumne", "hetch-hetchy"]
 }];
-var QUICK_PICKS = [{
-  id: "1day",
-  label: "1 day",
-  regionIds: ["valley"]
-}, {
-  id: "2day",
-  label: "2 days",
-  regionIds: ["valley", "glacier-point"]
-}, {
-  id: "3day",
-  label: "3 days",
-  regionIds: ["valley", "glacier-point", "tuolumne-area"]
-}];
+var QUICK_PICKS = (window.ITINERARIES || []).map(it => ({
+  id: it.id,
+  label: it.label
+}));
 var CATEGORY_STYLES = {
   hike: {
     color: "#2f8a3e",
@@ -486,15 +479,9 @@ function MapView({
     if (!features) return;
     var qp = QUICK_PICKS.find(q => q.id === quickPickId);
     if (!qp) return;
-    var keys = new Set();
-    var _loop = function (rid) {
-      var r = REGIONS.find(x => x.id === rid);
-      if (r) for (var k of r.keys) keys.add(k);
-    };
-    for (var rid of qp.regionIds) {
-      _loop(rid);
-    }
-    var stops = features.filter(f => keys.has(f.properties.region)).map(f => f.properties.id).slice(0, TRIP_CAP);
+    var validIds = new Set(features.map(f => f.properties.id));
+    var stops = (window.getItineraryStopIds ? window.getItineraryStopIds(qp.id) : []).filter(id => validIds.has(id)).slice(0, TRIP_CAP);
+    if (stops.length === 0) return;
     var prev = tripStopIdsRef.current;
     if (prev.length > 0) pendingUndoRef.current = {
       ids: prev
@@ -635,7 +622,7 @@ function MapView({
     if (!map || !markerLib) return;
     var maps = window.google.maps;
     var bounds = new maps.LatLngBounds();
-    var _loop2 = function (feature) {
+    var _loop = function (feature) {
       var [lng, lat] = feature.geometry.coordinates;
       var p = feature.properties;
       var position = {
@@ -668,7 +655,7 @@ function MapView({
       markersRef.current[p.id] = marker;
     };
     for (var feature of features) {
-      _loop2(feature);
+      _loop(feature);
     }
     map.fitBounds(bounds, 40);
     var listener = maps.event.addListenerOnce(map, "idle", () => {
@@ -767,6 +754,32 @@ function MapView({
           if (goRef.current) goRef.current("a:" + slug);
         });
       });
+      var shares = document.querySelectorAll("[data-stop-share]");
+      shares.forEach(link => {
+        var fresh = link.cloneNode(true);
+        link.parentNode.replaceChild(fresh, link);
+        fresh.addEventListener("click", e => {
+          e.preventDefault();
+          var id = fresh.getAttribute("data-stop-id");
+          if (!id) return;
+          var url = `${window.location.origin}/map?stop=${id}`;
+          var done = () => {
+            if (window.track) window.track("stop_share", {
+              stop_id: id
+            });
+            fresh.textContent = "Link copied";
+          };
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(url).then(done).catch(() => {
+              window.prompt("Copy this link:", url);
+              done();
+            });
+          } else {
+            window.prompt("Copy this link:", url);
+            done();
+          }
+        });
+      });
       var dirs = document.querySelectorAll("[data-directions-link]");
       dirs.forEach(link => {
         var fresh = link.cloneNode(true);
@@ -832,6 +845,8 @@ function MapView({
     onToggleRegion: handleToggleRegion,
     onShareTrip: shareTrip,
     onOpenRoute: openTripRoute,
+    onEmailSubscribed: handleGateSubscribed,
+    go: go,
     announcerRef: announcerRef,
     toast: toast
   }), React.createElement("div", {
@@ -847,6 +862,167 @@ function MapView({
     onSubscribed: handleGateSubscribed,
     onClose: () => setGateOpen(false)
   }));
+}
+function TripEmailBox({
+  tripStopIds,
+  onFallbackCopy,
+  onSubscribed
+}) {
+  var [state, setState] = useState("idle");
+  var emailRef = useRef(null);
+  var hpRef = useRef(null);
+  useEffect(() => {
+    if (window.trackNewsletterImpression) {
+      window.trackNewsletterImpression("map_trip_email", "map-trip");
+    }
+  }, []);
+  useEffect(() => {
+    if (state === "failed" && onFallbackCopy) onFallbackCopy();
+  }, [state, onFallbackCopy]);
+  var onSubmit = e => {
+    var email = emailRef.current ? emailRef.current.value.trim() : "";
+    var website = hpRef.current ? hpRef.current.value : "";
+    var ids = tripStopIds.slice(0, TRIP_CAP);
+    if (!email || ids.length === 0) {
+      e.preventDefault();
+      return;
+    }
+    var wasSubscribed = window.isSubscribed && window.isSubscribed();
+    if (wasSubscribed) {
+      e.preventDefault();
+    } else if (window.trackNewsletterSubmit) {
+      window.trackNewsletterSubmit("map_trip_email", "map-trip");
+    }
+    if (window.track) window.track("trip_email_send", {
+      trip_size: ids.length
+    });
+    if (!wasSubscribed && onSubscribed) setTimeout(onSubscribed, 0);
+    setTimeout(() => setState("sending"), 0);
+    fetch(`${MAP_API_BASE}/api/trip/email`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        email,
+        stops: ids,
+        website
+      })
+    }).then(r => setState(r.ok ? "sent" : "failed")).catch(() => setState("failed"));
+  };
+  if (state === "sent") {
+    return React.createElement("div", {
+      className: "map-sidebar__email"
+    }, React.createElement("p", {
+      className: "map-sidebar__email-fine map-sidebar__email-fine--sent",
+      role: "status"
+    }, "Sent. The trip is in your inbox."));
+  }
+  return React.createElement("div", {
+    className: "map-sidebar__email"
+  }, React.createElement("h4", {
+    className: "map-sidebar__email-label"
+  }, "Email this trip to yourself"), React.createElement("form", {
+    className: "nlbox__form",
+    action: "https://buttondown.com/api/emails/embed-subscribe/goehring",
+    method: "post",
+    target: "buttondown-target",
+    onSubmit: onSubmit
+  }, React.createElement("input", {
+    ref: emailRef,
+    type: "email",
+    name: "email",
+    placeholder: "you@email.com",
+    required: true,
+    "aria-label": "Email address"
+  }), React.createElement("input", {
+    type: "hidden",
+    name: "tag",
+    value: "map-trip"
+  }), React.createElement("input", {
+    type: "hidden",
+    name: "embed",
+    value: "1"
+  }), React.createElement("div", {
+    style: {
+      position: "absolute",
+      left: "-10000px",
+      width: 1,
+      height: 1,
+      overflow: "hidden"
+    },
+    "aria-hidden": "true"
+  }, React.createElement("label", null, "Website", React.createElement("input", {
+    ref: hpRef,
+    type: "text",
+    name: "website",
+    tabIndex: -1,
+    autoComplete: "off"
+  }))), React.createElement("button", {
+    type: "submit",
+    disabled: state === "sending"
+  }, state === "sending" ? "Sending…" : "Send the trip →")), React.createElement("p", {
+    className: "map-sidebar__email-fine"
+  }, state === "failed" ? "Could not send just now. The share link was copied instead." : "The link opens your stops on this map. Sending also signs you up for Sunday Field Notes, one short letter a week. Free, leave anytime."));
+}
+function TripNextSteps({
+  tripFeatures,
+  go
+}) {
+  var suggestion = useMemo(() => {
+    var counts = new Map();
+    tripFeatures.forEach(f => {
+      (f.properties && f.properties.articles || []).forEach(slug => {
+        counts.set(slug, (counts.get(slug) || 0) + 1);
+      });
+    });
+    var best = null;
+    counts.forEach((n, slug) => {
+      var article = (window.ARTICLES || []).find(a => a.slug === slug);
+      if (!article) return;
+      if (!best || n > best.n) best = {
+        n,
+        article
+      };
+    });
+    return best ? best.article : null;
+  }, [tripFeatures]);
+  return React.createElement("div", {
+    className: "map-sidebar__next"
+  }, React.createElement("h4", {
+    className: "map-sidebar__next-label"
+  }, "Before you go"), suggestion ? React.createElement("p", {
+    className: "map-sidebar__next-line"
+  }, "Reading for this trip:", " ", React.createElement("a", {
+    href: `/articles/${suggestion.slug}`,
+    onClick: e => {
+      e.preventDefault();
+      if (window.track) window.track("map_article_click", {
+        slug: suggestion.slug,
+        source: "trip_next"
+      });
+      go(`a:${suggestion.slug}`);
+    }
+  }, suggestion.title), ".") : React.createElement("p", {
+    className: "map-sidebar__next-line"
+  }, "Reading for this trip:", " ", React.createElement("a", {
+    href: "/planning",
+    onClick: e => {
+      e.preventDefault();
+      go("planning");
+    }
+  }, "the planning guide"), "."), React.createElement("p", {
+    className: "map-sidebar__next-line"
+  }, "This trip, offline, at the trailhead. The Field Guide is coming;", " ", React.createElement("a", {
+    href: "/guide",
+    onClick: e => {
+      e.preventDefault();
+      if (window.track) window.track("guide_teaser_click", {
+        location: "map_sidebar"
+      });
+      go("guide");
+    }
+  }, "the waitlist is open"), "."));
 }
 function TripPlannerSidebar({
   features,
@@ -868,6 +1044,8 @@ function TripPlannerSidebar({
   onToggleRegion,
   onShareTrip,
   onOpenRoute,
+  onEmailSubscribed,
+  go,
   announcerRef,
   toast
 }) {
@@ -1092,7 +1270,14 @@ function TripPlannerSidebar({
     type: "button",
     className: "map-sidebar__trip-tool",
     onClick: onOpenRoute
-  }, "Open route in Google Maps")), toast && React.createElement("div", {
+  }, "Open route in Google Maps")), tripStopIds.length >= 2 && React.createElement(TripEmailBox, {
+    tripStopIds: tripStopIds,
+    onFallbackCopy: onShareTrip,
+    onSubscribed: onEmailSubscribed
+  }), tripFeatures.length >= 3 && React.createElement(TripNextSteps, {
+    tripFeatures: tripFeatures,
+    go: go
+  }), toast && React.createElement("div", {
     className: "map-sidebar__toast",
     role: "status",
     "aria-live": "off"
@@ -1282,6 +1467,7 @@ function buildInfoHtml(p, coords, tripStopIds) {
     directions = `<p style="margin:8px 0 0;"><a href="${escapeHtml(dirUrl)}" data-directions-link data-stop-id="${escapeHtml(p.id)}" target="_blank" rel="noopener noreferrer" style="color:#1e6fb8;text-decoration:underline;font-weight:500;font-size:12px;">Directions →</a></p>`;
   }
   var gmaps = p.gmapsUrl ? `<p style="margin:8px 0 0;"><a href="${escapeHtml(p.gmapsUrl)}" target="_blank" rel="noopener noreferrer" style="color:#1e6fb8;text-decoration:underline;font-weight:500;font-size:12px;">Open in Google Maps →</a></p>` : "";
+  var stopShare = `<p style="margin:8px 0 0;"><a href="/map?stop=${escapeHtml(p.id)}" data-stop-share data-stop-id="${escapeHtml(p.id)}" style="color:#1e6fb8;text-decoration:underline;font-weight:500;font-size:12px;">Copy link to this stop</a></p>`;
   var journal = "";
   if (Array.isArray(p.articles) && p.articles.length > 0) {
     var links = p.articles.map(slug => {
@@ -1303,6 +1489,7 @@ function buildInfoHtml(p, coords, tripStopIds) {
       ${btn}
       ${directions}
       ${gmaps}
+      ${stopShare}
       ${journal}
     </div>
   `;

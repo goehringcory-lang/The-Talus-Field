@@ -8,7 +8,9 @@ window.ARTICLE_BODIES["first-time-yosemite-overwhelm"] = function FirstTimeYosem
     href: "/articles/yosemite-gateway-towns-compared"
   }, "Pick your gateway town"), " before you book lodging. Once you know roughly how long you have, ", React.createElement("a", {
     href: "/articles/yosemite-in-one-or-two-days"
-  }, "one or two days in Yosemite"), " turns the strategy into an itinerary. And ", React.createElement("a", {
+  }, "one or two days in Yosemite"), " turns the strategy into an itinerary. The site's ", React.createElement("a", {
+    href: "/map"
+  }, "map"), " lays out where everything sits while you decide. And ", React.createElement("a", {
     href: "/articles/pack-your-car-for-yosemite"
   }, "pack the car"), " like the trip depends on it, because it does."), React.createElement("p", null, "Let's plan a good one."));
 };

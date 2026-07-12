@@ -1,4 +1,5 @@
 /* global React, Header, Footer, ArticleCard, Placeholder, NewsletterInline,
+   WebcamStrip,
    MotifMountains, MotifSun, MotifTrees, useNewsletterImpression, isSubscribed */
 const { useMemo, useState } = React;
 
@@ -100,13 +101,6 @@ function ResumeReading({ go }) {
   );
 }
 
-const WEBCAMS = [
-  { label: "Half Dome",      img: "ahwahnee2-t.jpg",  href: "https://yosemite.org/webcams/half-dome/",      alt: "Live view of Half Dome from Ahwahnee Meadow" },
-  { label: "Yosemite Falls", img: "yosfalls-t.jpg",   href: "https://yosemite.org/webcams/yosemite-falls/", alt: "Live view of Upper Yosemite Falls" },
-  { label: "El Capitan",     img: "turtleback-t.jpg", href: "https://yosemite.org/webcams/el-capitan/",     alt: "Live view of El Capitan from Turtleback Dome" },
-  { label: "Wawona",         img: "wawona-t.jpg",     href: "https://yosemite.org/webcams/wawona/",         alt: "Live view of Wawona" },
-];
-
 // ============================================================
 // HOME
 // ============================================================
@@ -116,50 +110,23 @@ function HomePage({ go }) {
   const startHere = (window.START_HERE || [])
     .map(slug => window.findArticle(slug))
     .filter(Boolean);
-  const camCacheBust = useMemo(() => Date.now(), []);
 
   const scrollToStartHere = (e) => {
     e.preventDefault();
     document.getElementById("start-here")?.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
-  // Live webcam strip. Rendered below "Start Here" (see call site) so the
-  // four off-site links do not pull readers away before they reach the
-  // capture and onboarding row.
+  // Live webcam strip (shared WebcamStrip in components.jsx, also on
+  // /conditions). Rendered below "Start Here" (see call site) so the four
+  // off-site links do not pull readers away before they reach the capture
+  // and onboarding row.
   const webcamsSection = (
     <section className="wrap" style={{ paddingTop: 64 }}>
       <div className="section-head">
         <h2>From the park, right now</h2>
-        <a href="https://yosemite.org/webcams/" target="_blank" rel="noopener noreferrer">All cameras →</a>
+        <a href="/conditions" onClick={(e) => { e.preventDefault(); go("conditions"); }}>Conditions and webcams →</a>
       </div>
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 32 }}>
-        {WEBCAMS.map(cam => (
-          <a
-            key={cam.img}
-            className="cam-tile"
-            href={cam.href}
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{ textDecoration: "none", color: "inherit", display: "block" }}
-          >
-            <img
-              src={`https://pixelcaster.com/yosemite/webcams/${cam.img}?t=${camCacheBust}`}
-              alt={cam.alt}
-              loading="lazy"
-              decoding="async"
-              referrerPolicy="no-referrer"
-              onError={(e) => { const t = e.currentTarget.closest('.cam-tile'); if (t) t.style.display = 'none'; }}
-              style={{ width: "100%", aspectRatio: "3 / 2", objectFit: "cover", display: "block" }}
-            />
-            <div className="mono" style={{ marginTop: 10, fontSize: 11, textTransform: "uppercase", letterSpacing: "0.18em", color: "var(--ink-2)", fontWeight: 700 }}>
-              {cam.label}
-            </div>
-          </a>
-        ))}
-      </div>
-      <div className="mono" style={{ marginTop: 16, fontSize: 11, color: "var(--ink-3)", textAlign: "right" }}>
-        Live image · <a href="https://yosemite.org/webcams/" target="_blank" rel="noopener noreferrer" style={{ color: "inherit" }}>Yosemite Conservancy / Pixelcaster</a>
-      </div>
+      <WebcamStrip />
     </section>
   );
 
@@ -203,6 +170,33 @@ function HomePage({ go }) {
             motif={<MotifMountains />}
           />
         </div>
+      </section>
+
+      {/* Utility row: the four working tools, one line, directly under the
+          hero. Text links, not cards; the hero capture stays the main event. */}
+      <section className="wrap" style={{ paddingTop: 28 }}>
+        <nav className="home-utility" aria-label="Trip tools">
+          <span className="home-utility__label">Plan your trip</span>
+          {[
+            ["map", "/map", "The Map"],
+            ["itineraries", "/itineraries", "Itineraries"],
+            ["planning", "/planning", "Planning Guide"],
+            ["checklist", "/checklist", "Checklist"],
+            ["conditions", "/conditions", "Conditions"],
+          ].map(([key, href, label], i) => (
+            <React.Fragment key={key}>
+              {i > 0 && <span className="home-utility__sep" aria-hidden="true">·</span>}
+              <a
+                href={href}
+                onClick={(e) => {
+                  e.preventDefault();
+                  if (window.track) window.track("home_utility_click", { target: key });
+                  go(key);
+                }}
+              >{label}</a>
+            </React.Fragment>
+          ))}
+        </nav>
       </section>
 
       <ResumeReading go={go} />
@@ -380,6 +374,14 @@ function HomePage({ go }) {
             <a className="btn btn--ghost" href="/about" onClick={(e) => { e.preventDefault(); go("about"); }}>
               About the editor →
             </a>
+            <p style={{ fontFamily: "var(--sans)", fontSize: 13, color: "var(--ink-3)", lineHeight: 1.6, margin: "20px 0 0" }}>
+              A paid Field Guide app is in final testing.{" "}
+              <a
+                href="/guide"
+                onClick={(e) => { e.preventDefault(); if (window.track) window.track("guide_teaser_click", { location: "home_strip" }); go("guide"); }}
+                style={{ color: "var(--ink-2)" }}
+              >The waitlist is on the guide page →</a>
+            </p>
           </div>
           <NewsletterInline location="home_strip" tag="home" />
         </div>

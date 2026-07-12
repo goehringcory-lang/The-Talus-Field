@@ -90,7 +90,7 @@ window.ARTICLE_BODIES["hetch-hetchy-the-other-yosemite-valley"] = function Hetch
       </p>
 
       <p>
-        <strong>Wapama Falls trail.</strong> The standard out-and-back hike from the dam to the base of Wapama Falls and back is about 5 miles round trip, with roughly 700 feet of cumulative elevation gain (mostly from rolling terrain rather than a big climb). The trail is well-maintained, partly shaded, and crosses several footbridges. The terminal bridge at the base of Wapama can be wet and is sometimes closed in high-flow conditions; check the NPS conditions page before you go in May or June.
+        <strong>Wapama Falls trail.</strong> The standard out-and-back hike from the dam to the base of <a href="/map?stop=wapama-falls">Wapama Falls</a> and back is about 5 miles round trip, with roughly 700 feet of cumulative elevation gain (mostly from rolling terrain rather than a big climb). The trail is well-maintained, partly shaded, and crosses several footbridges. The terminal bridge at the base of Wapama can be wet and is sometimes closed in high-flow conditions; check the NPS conditions page before you go in May or June.
       </p>
 
       <p>
