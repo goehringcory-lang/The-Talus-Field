@@ -63,6 +63,7 @@ const PAGE_FILES = [
   "page-map.jsx",
   "page-itineraries.jsx",
   "page-conditions.jsx",
+  "page-now.jsx",
   "app.jsx",
 ];
 

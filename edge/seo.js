@@ -22,6 +22,7 @@ import articles from "../articles.json" with { type: "json" };
 import categories from "../categories.json" with { type: "json" };
 import videos from "../videos.json" with { type: "json" };
 import kit from "../kit.json" with { type: "json" };
+import now from "../now.json" with { type: "json" };
 
 const SITE_ORIGIN = "https://thetalusfieldjournal.com";
 const SITE_NAME = "The Talus Field";
@@ -100,6 +101,170 @@ function trailLd(a, url) {
   }
   return ld;
 }
+
+// ---------------------------------------------------------------------------
+// Crawler-visible prose for non-article routes. Articles get their committed
+// /prerender/<slug>.html fragment; hub/section pages get these fragments,
+// built from the same JSON mirrors this Worker already imports (so the lists
+// stay fresh with the catalog) plus short hand-written intros. Injected into
+// #root exactly like article prose so non-JS crawlers (Bing, AI answer
+// engines, social scrapers) see route-specific headings and body text instead
+// of the homepage-generic <noscript>. Each fragment carries its own <h1>; the
+// static #seo-static-h1 is removed whenever a fragment is injected and
+// rewritten to the route title otherwise.
+// ---------------------------------------------------------------------------
+function articleLinkList(list) {
+  return `<ul>${list
+    .map((a) => `<li><a href="/articles/${a.slug}">${escapeHtmlText(a.title)}</a>: ${escapeHtmlText(a.seoDek || a.dek)}</li>`)
+    .join("")}</ul>`;
+}
+
+function hubProse(h1, intro, extraHtml) {
+  return `<h1>${escapeHtmlText(h1)}</h1><p>${escapeHtmlText(intro)}</p>${extraHtml || ""}`;
+}
+
+// Hand-maintained mirror of itineraries-data.js: drives both the TouristTrip
+// ItemList and the /itineraries crawler prose. Update alongside that file.
+const ITINERARY_TRIPS = [
+  {
+    id: "1day",
+    name: "One day in the Valley",
+    description:
+      "The Valley floor, west to east, morning to dinner. Arrive early, park once if you can, and let the day move at walking pace between the famous walls.",
+  },
+  {
+    id: "2day",
+    name: "The Valley, then the rim",
+    description:
+      "Day one on the Valley floor. Day two up Glacier Point Road, stopping in trailhead order, for the views that look back down on everything you walked the day before.",
+  },
+  {
+    id: "3day",
+    name: "Valley, rim, and high country",
+    description:
+      "The two-day plan, then a third day on Tioga Road, west to east toward the pass. The high country is a different park: granite domes, subalpine lakes, and half the crowd.",
+  },
+  {
+    id: "halfday",
+    name: "Arriving at two",
+    description:
+      "The honest plan for a late arrival: skip the trailheads, take the meadows and the river, and end at the pizza deck while the light is still on the walls.",
+  },
+];
+
+// Crawler prose for the static hub routes, keyed by path. Values are thunks so
+// only the matched route's fragment is built per request. Short hand-written
+// intros in the house voice; lists are generated from the imported JSON
+// mirrors so they never go stale against the catalog.
+const HUB_PROSE = {
+  "/articles": () =>
+    hubProse(
+      "Articles",
+      "Every entry in the journal, newest first: Yosemite trip planning, trails and hikes, wildlife and nature, and seasonal guides, written from inside the park.",
+      articleLinkList(articles)
+    ),
+  "/planning": () =>
+    hubProse(
+      "The Yosemite Planning Guide",
+      "Planning advice from inside the park, checked on foot: entrances and getting here, gateway towns, permits, Half Dome, accessibility, smoke season, and the seasonal calendar. The planning archive, curated:",
+      articleLinkList(articles.filter((a) => a.cat === "planning"))
+    ),
+  "/checklist": () =>
+    hubProse(
+      "The Yosemite First-Week Checklist",
+      "A printable single-page checklist for the first week of planning a Yosemite trip: when to come, what to book and in what order, what to pack, which gateway to base in, and the non-negotiables. Free, no signup required."
+    ) +
+    `<p>The reasoning behind each line item lives in <a href="/planning">the Planning Guide</a>; the packing details live in <a href="/kit">the kit lists</a>.</p>`,
+  "/kit": () =>
+    hubProse(
+      "Kit: what I carry in Yosemite",
+      "Three packing lists with the reasoning behind every item: a day pack, what an overnight adds, and the full car load."
+    ) +
+    kit.lists
+      .map(
+        (list) =>
+          `<h2>${escapeHtmlText(list.title)}</h2><p>${escapeHtmlText(list.summary)}</p><ul>${list.items
+            .map((it) => `<li>${escapeHtmlText(it.name)}${it.note ? `: ${escapeHtmlText(it.note)}` : ""}</li>`)
+            .join("")}</ul>`
+      )
+      .join(""),
+  "/films": () =>
+    hubProse(
+      "Moving Pictures: the Yosemite Nature Notes film archive",
+      "The complete Yosemite Nature Notes series from the National Park Service, grouped by subject. Public domain, free to watch, most under ten minutes."
+    ) +
+    `<ul>${videos.map((ep) => `<li>${escapeHtmlText(ep.title)}: ${escapeHtmlText(ep.dek)}</li>`).join("")}</ul>`,
+  "/itineraries": () =>
+    hubProse(
+      "Yosemite itineraries: day plans on the map",
+      "Curated Yosemite itineraries for one, two, or three days, plus a half-day plan for late arrivals. Each opens as a ready-made trip on the interactive trip planner map."
+    ) +
+    ITINERARY_TRIPS.map((t) => `<h2>${escapeHtmlText(t.name)}</h2><p>${escapeHtmlText(t.description)}</p>`).join("") +
+    `<p>Open any plan on <a href="/map">the trip planner map</a>, or check <a href="/conditions">current conditions</a> before you drive in.</p>`,
+  "/map": () =>
+    hubProse(
+      "The Yosemite trip planner map",
+      "An interactive map of Yosemite National Park: vistas, trailheads, parking turnouts, picnic spots, and places to eat, each pin curated and written by a resident of the park. Filter pins by category, search by name, and assemble stops into a trip you can share by link, email to yourself, or open in Google Maps for driving directions. Free to browse."
+    ) +
+    `<p>Prefer a ready-made plan? Start from <a href="/itineraries">the curated itineraries</a>. Planning the drive in? Check <a href="/conditions">webcams, entrance waits, and weather</a>.</p>`,
+  "/conditions": () =>
+    hubProse(
+      "Yosemite conditions: webcams, waits, and weather",
+      "The morning-of page: live Yosemite webcams, current entrance wait times, and elevation-aware National Weather Service point forecasts for the Valley, the rim, and the high country, all on one page. Bookmark it and check it the morning you drive in."
+    ) +
+    `<p>For what the conditions mean for a plan, see <a href="/itineraries">the itineraries</a> and <a href="/planning">the Planning Guide</a>.</p>`,
+  "/now": () => {
+    // The latest dispatch ships to non-JS crawlers in full: this page's value
+    // to search is its freshness, and now.json is imported at deploy time so
+    // every weekly merge re-deploys the Worker with the new text.
+    const latest = (now.dispatches || [])[0];
+    let dispatchHtml = "";
+    if (latest) {
+      dispatchHtml =
+        `<h2>${escapeHtmlText(latest.title)} (${escapeHtmlText(latest.iso)})</h2>` +
+        latest.body.map((p) => `<p>${escapeHtmlText(p)}</p>`).join("");
+    }
+    return (
+      hubProse(
+        "This Week in the Park",
+        "One short note a week on what Yosemite is actually doing: what's open, what's flowing, what's blooming, and what changed. Written from inside the park, updated most weekends."
+      ) +
+      dispatchHtml +
+      `<p>Live sources on <a href="/conditions">the conditions page</a>; the Sunday letter carries this dispatch by email.</p>`
+    );
+  },
+  "/guide": () =>
+    hubProse(
+      "The Field Guide",
+      "An offline web app for Yosemite: tappable GPS for the parking turnouts, quiet trailheads, and insider tactics that locals use, built to work at the trailhead when cell service dies. Includes the full stop library across the Valley, Glacier Point and Mariposa Grove, Tuolumne, and Hetch Hetchy, plus a day-by-day trip planner with park programs and weather."
+    ) +
+    `<p>The guide opens for sale soon; the launch list hears first. Until then, the journal's free tools cover a lot: <a href="/map">the trip planner map</a>, <a href="/itineraries">itineraries</a>, and <a href="/checklist">the first-week checklist</a>.</p>`,
+  "/about": () =>
+    hubProse(
+      "About The Talus Field",
+      "The Talus Field is an independent field journal of Yosemite National Park, written by Cory Goehring, a naturalist who lives in El Portal and has worked in and around the park for twenty seasons. Articles are checked on foot; gear is recommended only after real miles; nothing here is sponsored content."
+    ),
+  "/places": () =>
+    hubProse(
+      "The Directory",
+      "A small, curated directory of Yosemite-area lodging, outfitters, guides, and tour operators, drawn from twenty seasons in and around the park. Listings are added slowly and on merit."
+    ),
+  "/newsletter": () =>
+    hubProse(
+      "Sunday Field Notes",
+      "A short note on Yosemite most Sundays, when there is something to say: conditions, openings, what the park is doing right now. Subscribing also unlocks the trip builder on the interactive map. Free."
+    ),
+  "/contact": () =>
+    hubProse(
+      "Contact",
+      "Send a note to the editor: trip questions, corrections, press, or anything else. Replies come from a real person in El Portal."
+    ),
+  "/advertise": () =>
+    hubProse(
+      "List your business",
+      "How to list a Yosemite-area lodge, inn, guide service, or outfitter in The Talus Field directory, and what the listing includes."
+    ),
+};
 
 function seoForPath(pathname) {
   const path = pathname.replace(/\/+$/, "") || "/";
@@ -200,6 +365,7 @@ function seoForPath(pathname) {
         ["Home", `${SITE_ORIGIN}/`],
         [cat.label, null],
       ]),
+      prose: hubProse(cat.label, `${cat.blurb} ${items.length} entries from The Talus Field's Yosemite field journal.`, articleLinkList(items)),
     };
   }
 
@@ -365,70 +531,38 @@ function seoForPath(pathname) {
         "Live Yosemite webcams, entrance wait times, and elevation-aware weather forecasts on one page. Check it the morning you drive in.",
       breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Conditions", null]],
     },
+    "/now": {
+      title: `This Week in the Park — the weekly Yosemite dispatch — ${SITE_NAME}`,
+      description:
+        "A short weekly note on what Yosemite is actually doing right now: what's open, what's flowing, what's blooming, and what changed. Written from inside the park.",
+      breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["This Week in the Park", null]],
+    },
     "/itineraries": {
       title: `Yosemite Itineraries — day plans on the map — ${SITE_NAME}`,
       description:
         "Curated Yosemite itineraries for one, two, or three days, plus a half-day plan for late arrivals. Each opens as a ready-made trip on the interactive map.",
       breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Itineraries", null]],
-      // Hand-maintained mirror of itineraries-data.js (this Worker imports
-      // JSON mirrors only). Matches the ItemList app.jsx builds client-side;
-      // update when a plan's title or dek changes there.
+      // Built from ITINERARY_TRIPS below (hand-maintained mirror of
+      // itineraries-data.js — this Worker imports JSON mirrors only). Matches
+      // the ItemList app.jsx builds client-side; update ITINERARY_TRIPS when a
+      // plan's title or dek changes there.
       jsonLd: {
         "@context": "https://schema.org",
         "@type": "ItemList",
         name: "Yosemite itineraries",
         url: `${SITE_ORIGIN}/itineraries`,
-        numberOfItems: 4,
-        itemListElement: [
-          {
-            "@type": "ListItem",
-            position: 1,
-            item: {
-              "@type": "TouristTrip",
-              name: "One day in the Valley",
-              description:
-                "The Valley floor, west to east, morning to dinner. Arrive early, park once if you can, and let the day move at walking pace between the famous walls.",
-              url: `${SITE_ORIGIN}/itineraries#1day`,
-              touristType: "National park visitors",
-            },
+        numberOfItems: ITINERARY_TRIPS.length,
+        itemListElement: ITINERARY_TRIPS.map((t, i) => ({
+          "@type": "ListItem",
+          position: i + 1,
+          item: {
+            "@type": "TouristTrip",
+            name: t.name,
+            description: t.description,
+            url: `${SITE_ORIGIN}/itineraries#${t.id}`,
+            touristType: "National park visitors",
           },
-          {
-            "@type": "ListItem",
-            position: 2,
-            item: {
-              "@type": "TouristTrip",
-              name: "The Valley, then the rim",
-              description:
-                "Day one on the Valley floor. Day two up Glacier Point Road, stopping in trailhead order, for the views that look back down on everything you walked the day before.",
-              url: `${SITE_ORIGIN}/itineraries#2day`,
-              touristType: "National park visitors",
-            },
-          },
-          {
-            "@type": "ListItem",
-            position: 3,
-            item: {
-              "@type": "TouristTrip",
-              name: "Valley, rim, and high country",
-              description:
-                "The two-day plan, then a third day on Tioga Road, west to east toward the pass. The high country is a different park: granite domes, subalpine lakes, and half the crowd.",
-              url: `${SITE_ORIGIN}/itineraries#3day`,
-              touristType: "National park visitors",
-            },
-          },
-          {
-            "@type": "ListItem",
-            position: 4,
-            item: {
-              "@type": "TouristTrip",
-              name: "Arriving at two",
-              description:
-                "The honest plan for a late arrival: skip the trailheads, take the meadows and the river, and end at the pizza deck while the light is still on the walls.",
-              url: `${SITE_ORIGIN}/itineraries#halfday`,
-              touristType: "National park visitors",
-            },
-          },
-        ],
+        })),
       },
     },
     "/map": {
@@ -468,6 +602,29 @@ function seoForPath(pathname) {
     breadcrumb: meta.breadcrumb ? breadcrumbLd(meta.breadcrumb) : null,
     faq: meta.faq ? faqLd(meta.faq) : null,
     robots: meta.robots || null,
+    prose: HUB_PROSE[path] ? HUB_PROSE[path]() : null,
+  };
+}
+
+// Unmatched SPA routes (typos, dead slugs, removed pages) used to fall through
+// to the 200 SPA fallback and index as thin homepage duplicates. Serve them as
+// real 404s with noindex instead; app.jsx renders the matching not-found view.
+function notFoundSeo(pathname) {
+  return {
+    title: `Page not found — ${SITE_NAME}`,
+    description:
+      "That page does not exist on The Talus Field. The articles index, planning guide, and trip planner map are good places to reorient.",
+    canonical: `${SITE_ORIGIN}${pathname}`,
+    ogType: "website",
+    image: SITE_DEFAULT_IMAGE,
+    jsonLd: null,
+    breadcrumb: null,
+    faq: null,
+    robots: "noindex, follow",
+    status: 404,
+    prose:
+      `<h1>Page not found</h1><p>There is nothing at this address. The link may be old, or the page may have moved.</p>` +
+      `<p>Good places to reorient: <a href="/articles">the articles index</a>, <a href="/planning">the planning guide</a>, or <a href="/map">the trip planner map</a>.</p>`,
   };
 }
 
@@ -507,26 +664,37 @@ export default {
 
 async function handleRequest({ request, next, env }) {
   const url = new URL(request.url);
-  const seo = seoForPath(url.pathname);
-  if (!seo) return next();
+  // Unknown SPA routes get a real 404 (with noindex + not-found prose) instead
+  // of a 200 homepage clone. Real files never reach the Worker (asset-first
+  // routing), so anything unmatched here is genuinely not a page.
+  const seo = seoForPath(url.pathname) || notFoundSeo(url.pathname);
 
   const response = await next();
   const ct = response.headers.get("content-type") || "";
   if (!ct.toLowerCase().includes("text/html")) return response;
 
-  // For article routes, fetch the committed prerendered prose fragment so the
-  // first byte of HTML carries real article text for non-JS crawlers. Fails
-  // open: any miss just leaves the SPA-only #root (current behavior).
+  // Crawler-visible body text. Article routes fetch the committed prerendered
+  // prose fragment (prefixed with the article <h1>); hub/section/not-found
+  // routes carry their own fragment in seo.prose, <h1> included. Fails open:
+  // any miss just leaves the SPA-only #root.
   let proseHtml = null;
   if (seo.prerenderSlug && env && env.ASSETS) {
     try {
       const pr = await env.ASSETS.fetch(new URL(`/prerender/${seo.prerenderSlug}.html`, url.origin));
-      if (pr.ok) proseHtml = await pr.text();
+      if (pr.ok) proseHtml = `<h1>${escapeHtmlText(seo.articleTitle || "")}</h1>` + (await pr.text());
     } catch (_e) { /* fail open: no injected prose */ }
+  } else if (seo.prose) {
+    proseHtml = seo.prose;
   }
   const heroPreload = seo.prerenderSlug ? heroPreloadTag(seo.heroImagePath) : null;
+  // Route-aware static H1: the sr-only #seo-static-h1 in index.html carries the
+  // homepage title for markup-only parsers. When a prose fragment is injected
+  // it brings its own on-topic <h1>, so the static one is removed to avoid a
+  // duplicate; otherwise it is rewritten to the route's title (site name
+  // suffix stripped) so no route ships a topic-mismatched heading.
+  const staticH1Text = proseHtml ? null : seo.title.replace(/\s+—\s+The Talus Field$/, "");
 
-  return new HTMLRewriter()
+  const rewritten = new HTMLRewriter()
     .on("title", {
       element(el) {
         el.setInnerContent(seo.title);
@@ -660,19 +828,34 @@ async function handleRequest({ request, next, env }) {
         }
       },
     })
+    .on("#seo-static-h1", {
+      element(el) {
+        if (proseHtml) el.remove();
+        else if (staticH1Text) el.setInnerContent(staticH1Text);
+      },
+    })
     .on("#root", {
       element(el) {
-        // Inject the prerendered prose as the first child of #root so non-JS
-        // crawlers see article text. The client boots with createRoot().render()
+        // Inject the prose fragment (article body or hub summary, <h1>
+        // included) as the first child of #root so non-JS crawlers see
+        // route-specific text. The client boots with createRoot().render()
         // which replaces #root's children, and app.jsx also removes
         // #prerender-prose on boot, so JS users only ever see React's copy.
         if (proseHtml) {
-          el.prepend(
-            `<div id="prerender-prose"><h1>${escapeHtmlText(seo.articleTitle || "")}</h1>${proseHtml}</div>`,
-            { html: true }
-          );
+          el.prepend(`<div id="prerender-prose">${proseHtml}</div>`, { html: true });
         }
       },
     })
     .transform(response);
+
+  // Not-found routes ship the SPA shell (so the client can render its own
+  // not-found view) but with a real 404 status for crawlers and link checkers.
+  if (seo.status === 404) {
+    return new Response(rewritten.body, {
+      status: 404,
+      statusText: "Not Found",
+      headers: rewritten.headers,
+    });
+  }
+  return rewritten;
 }

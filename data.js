@@ -40,6 +40,58 @@ window.CATEGORIES = [
 ];
 
 // ============================================================
+// The Planning Guide's curated structure, mirrored from the hand-built parts
+// in page-planning-guide.jsx (keep the two in sync when curation changes).
+// Powers the "Part of the Yosemite Planning Guide" series band on member
+// articles: a search lander on one cluster piece learns it is inside a
+// structured multi-part guide and gets prev/next pathways through the part.
+// ============================================================
+window.PLANNING_SERIES = [
+  { part: "Part One · Before you book", slugs: [
+    "first-time-yosemite-overwhelm",
+    "yosemite-without-reservations-2026",
+    "yosemite-gateway-towns-compared",
+    "yosemite-during-smoke-season",
+  ] },
+  { part: "Part Two · Getting there and getting in", slugs: [
+    "getting-to-yosemite",
+    "yosemite-wilderness-permits-guide",
+  ] },
+  { part: "Part Three · When you arrive", slugs: [
+    "pack-your-car-for-yosemite",
+    "yosemite-with-kids-no-reservations-2026",
+    "yosemite-for-non-hikers",
+    "yosemite-accessibility-guide",
+    "pets-in-yosemite",
+    "yosemite-ranger-programs",
+  ] },
+  { part: "Part Four · If you're hiking Half Dome", slugs: [
+    "half-dome-permit-lottery-2026",
+    "so-you-want-to-hike-half-dome",
+    "mist-trail-the-real-guide",
+  ] },
+  { part: "Part Five · The seasonal calendar", slugs: [
+    "tioga-road-opening-weekend-2026",
+    "glacier-point-road-open-2026",
+    "yosemite-stargazing-where-to-look-up",
+  ] },
+];
+
+// The series membership for one slug: { part, prev, next } or null.
+window.planningSeriesFor = function (slug) {
+  for (const section of window.PLANNING_SERIES) {
+    const i = section.slugs.indexOf(slug);
+    if (i === -1) continue;
+    return {
+      part: section.part,
+      prev: i > 0 ? section.slugs[i - 1] : null,
+      next: i < section.slugs.length - 1 ? section.slugs[i + 1] : null,
+    };
+  }
+  return null;
+};
+
+// ============================================================
 // Article bodies are loaded on demand (see window.loadArticleBody below) instead
 // of all 23 transpiling on every page. This map is the slug -> cache-buster
 // version, the equivalent of the old ?v=N on each <script> in index.html. Bump a
@@ -47,6 +99,13 @@ window.CATEGORIES = [
 // verifies this map stays in sync with the files in bodies/.
 // ============================================================
 window.BODY_VERSIONS = {
+  "yosemite-waterfalls-guide": 1,
+  "yosemite-photography-spots": 1,
+  "horsetail-fall-firefall": 1,
+  "yosemite-in-winter": 1,
+  "where-to-stay-in-yosemite": 1,
+  "yosemite-wildflowers-guide": 1,
+  "watching-climbers-el-capitan": 1,
   "getting-to-yosemite": 1,
   "yosemite-wilderness-permits-guide": 1,
   "yosemite-accessibility-guide": 1,
@@ -637,6 +696,98 @@ window.KIT.lists.forEach((l) => {
 });
 
 window.ARTICLES = [
+  {
+    slug: "yosemite-waterfalls-guide",
+    cat: "trails",
+    title: "The Waterfalls of Yosemite: What's Flowing, and When",
+    dek: "Yosemite's waterfalls are snowmelt events, not permanent features, and the internet's photos never say what month they were taken. Which falls run all year, which vanish by August, and the month-by-month schedule nobody puts on the poster.",
+    seoDek: "Yosemite waterfalls by season: when Yosemite Falls, Bridalveil, Vernal, Nevada, Ribbon, and Wapama actually flow, which dry up by August, and the best months.",
+    date: "July 12, 2026",
+    isoDate: "2026-07-12",
+    isoModified: "2026-07-12",
+    read: "8 min",
+    placeholder: "Upper Yosemite Fall at full spring flow, the 1,430-foot free leap of the tallest waterfall in North America",
+    image: "img/upper-yosemite-fall-jesse-callahan.jpg",
+  },
+  {
+    slug: "yosemite-photography-spots",
+    cat: "planning",
+    title: "Where to Photograph Yosemite: The Spots, the Light, and When to Be There",
+    dek: "The famous spots are famous because they work. Tunnel View to Olmsted Point, eight proven vantage points, the hour that makes each one, and why a clearing storm beats any blue sky in the park.",
+    seoDek: "Yosemite photography guide: Tunnel View, Valley View, Glacier Point, and five more proven spots, plus the best light, seasons, firefall, and moonbow timing.",
+    date: "July 12, 2026",
+    isoDate: "2026-07-12",
+    isoModified: "2026-07-12",
+    read: "8 min",
+    placeholder: "Tunnel View in autumn light, with El Capitan, Bridalveil Fall, and Half Dome in one frame",
+    image: "img/tunnel-view-autumn-aniket-deole.jpg",
+  },
+  {
+    slug: "horsetail-fall-firefall",
+    cat: "seasonal",
+    title: "Horsetail Fall: How the February Firefall Actually Works",
+    dek: "For two weeks in February, a thin seasonal waterfall on El Capitan glows like lava at sunset, when three conditions all cooperate. The physics, the odds, the Galen Rowell history, the crowd rules, and why a failed evening still isn't a wasted one.",
+    seoDek: "How the Yosemite firefall works: when Horsetail Fall glows in February, the three conditions required, viewing at El Capitan Picnic Area, and honest odds.",
+    date: "July 12, 2026",
+    isoDate: "2026-07-12",
+    isoModified: "2026-07-12",
+    read: "7 min",
+    placeholder: "Horsetail Fall glowing orange at sunset on the east shoulder of El Capitan",
+    image: "img/horsetail-fall-firefall-cedric-letsch.jpg",
+  },
+  {
+    slug: "yosemite-in-winter",
+    cat: "seasonal",
+    title: "Yosemite in Winter: The Season the Crowds Forget",
+    dek: "The Valley stays open all year, and almost nobody comes. What actually closes, the chain rules explained plainly, Badger Pass and the Dewey Point snowshoe, the rink under Half Dome, and why clearing storms are the photographs of the year.",
+    seoDek: "Yosemite in winter: what's open and closed, Highway 140 and chain control explained, Badger Pass, Dewey Point snowshoeing, the Curry Village rink, and firefall.",
+    date: "July 12, 2026",
+    isoDate: "2026-07-12",
+    isoModified: "2026-07-12",
+    read: "8 min",
+    placeholder: "El Capitan under fresh snow as a winter storm clears above the Valley floor",
+    image: "img/el-capitan-winter.jpg",
+  },
+  {
+    slug: "where-to-stay-in-yosemite",
+    cat: "planning",
+    title: "Where to Stay Inside Yosemite: Every In-Park Option, Honestly Ranked",
+    dek: "Seven in-park options, one concessioner, and almost nothing in common: the Ahwahnee's real value, the Lodge's unbeatable address, Curry Village's canvas tradeoffs, the Housekeeping Camp sleeper pick, and the 366-day booking game that decides all of it.",
+    seoDek: "Every place to stay inside Yosemite, ranked: the Ahwahnee, Valley Lodge, Curry Village, Housekeeping Camp, Wawona, plus the 366-day booking strategy.",
+    date: "July 12, 2026",
+    isoDate: "2026-07-12",
+    isoModified: "2026-07-12",
+    read: "8 min",
+    placeholder: "A historic view near the Wawona Hotel, the Victorian-era outlier among Yosemite's in-park lodging",
+    image: "img/wawona-tunnel-tree-historic.jpg",
+  },
+  {
+    slug: "yosemite-wildflowers-guide",
+    cat: "wildlife",
+    title: "Yosemite Wildflowers: A Bloom Calendar That Climbs the Mountain",
+    dek: "Spring in Yosemite climbs 8,000 feet in five months, from canyon poppies in March to Tuolumne paintbrush in August. Where to stand at every elevation as the bloom moves uphill, and why the meadows get all the flowers.",
+    seoDek: "Yosemite wildflowers by month and elevation: Merced canyon poppies, Valley dogwood and azalea, McGurk Meadow lupine, and Tuolumne's short alpine summer.",
+    date: "July 12, 2026",
+    isoDate: "2026-07-12",
+    isoModified: "2026-07-12",
+    read: "7 min",
+    placeholder: "Midsummer wildflowers crowding a Yosemite meadow as the bloom nears the top of its climb",
+    image: "img/wildflowers.jpg",
+  },
+  {
+    slug: "watching-climbers-el-capitan",
+    cat: "planning",
+    title: "Watching Climbers on El Capitan: A Spectator's Guide to the Biggest Wall in America",
+    dek: "Three thousand feet of granite, climbers who live on it for days, and headlamps that turn the wall into a constellation at dusk. Where to stand, what the binoculars reveal, the Ask a Climber scopes, and why the meadow is the best free show in the park.",
+    seoDek: "How to watch climbers on El Capitan: El Capitan Meadow and Bridge viewpoints, the Ask a Climber program, dusk headlamps, Nose history, and best seasons.",
+    date: "July 12, 2026",
+    isoDate: "2026-07-12",
+    isoModified: "2026-07-12",
+    read: "7 min",
+    placeholder: "El Capitan's 3,000-foot southwest face in afternoon light, seen from the Valley floor",
+    image: "img/yosemite-valley-granite-summer-cory-goehring.jpg",
+    credit: "Photo: Cory Goehring",
+  },
   {
     slug: "getting-to-yosemite",
     cat: "planning",

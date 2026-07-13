@@ -7,7 +7,7 @@
     <loc>https://thetalusfieldjournal.com/</loc>
     <lastmod>2026-07-12</lastmod>
     <image:image>
-      <image:loc>https://thetalusfieldjournal.com/img/Half%20Dome%20Main%20Photo.jpg</image:loc>
+      <image:loc>https://thetalusfieldjournal.com/img/responsive/half-dome-main-photo-1600.jpg</image:loc>
       <image:title>Half Dome at first light</image:title>
     </image:image>
   </url>
@@ -35,15 +35,15 @@
   </url>
   <url>
     <loc>https://thetalusfieldjournal.com/section/trails</loc>
-    <lastmod>2026-06-02</lastmod>
+    <lastmod>2026-07-12</lastmod>
   </url>
   <url>
     <loc>https://thetalusfieldjournal.com/section/wildlife</loc>
-    <lastmod>2026-06-16</lastmod>
+    <lastmod>2026-07-12</lastmod>
   </url>
   <url>
     <loc>https://thetalusfieldjournal.com/section/seasonal</loc>
-    <lastmod>2026-06-16</lastmod>
+    <lastmod>2026-07-12</lastmod>
   </url>
 
   <!-- Static pages -->
@@ -103,8 +103,68 @@
     <loc>https://thetalusfieldjournal.com/conditions</loc>
     <lastmod>2026-07-12</lastmod>
   </url>
+  <url>
+    <loc>https://thetalusfieldjournal.com/now</loc>
+    <lastmod>2026-07-12</lastmod>
+  </url>
 
   <!-- Articles -->
+  <url>
+    <loc>https://thetalusfieldjournal.com/articles/yosemite-waterfalls-guide</loc>
+    <lastmod>2026-07-12</lastmod>
+    <image:image>
+      <image:loc>https://thetalusfieldjournal.com/img/upper-yosemite-fall-jesse-callahan.jpg</image:loc>
+      <image:title>Upper Yosemite Fall at full spring flow, the 1,430-foot free leap of the tallest waterfall in North America</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://thetalusfieldjournal.com/articles/yosemite-photography-spots</loc>
+    <lastmod>2026-07-12</lastmod>
+    <image:image>
+      <image:loc>https://thetalusfieldjournal.com/img/tunnel-view-autumn-aniket-deole.jpg</image:loc>
+      <image:title>Tunnel View in autumn light, with El Capitan, Bridalveil Fall, and Half Dome in one frame</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://thetalusfieldjournal.com/articles/horsetail-fall-firefall</loc>
+    <lastmod>2026-07-12</lastmod>
+    <image:image>
+      <image:loc>https://thetalusfieldjournal.com/img/horsetail-fall-firefall-cedric-letsch.jpg</image:loc>
+      <image:title>Horsetail Fall glowing orange at sunset on the east shoulder of El Capitan</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://thetalusfieldjournal.com/articles/yosemite-in-winter</loc>
+    <lastmod>2026-07-12</lastmod>
+    <image:image>
+      <image:loc>https://thetalusfieldjournal.com/img/el-capitan-winter.jpg</image:loc>
+      <image:title>El Capitan under fresh snow as a winter storm clears above the Valley floor</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://thetalusfieldjournal.com/articles/where-to-stay-in-yosemite</loc>
+    <lastmod>2026-07-12</lastmod>
+    <image:image>
+      <image:loc>https://thetalusfieldjournal.com/img/wawona-tunnel-tree-historic.jpg</image:loc>
+      <image:title>A historic view near the Wawona Hotel, the Victorian-era outlier among Yosemite's in-park lodging</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://thetalusfieldjournal.com/articles/yosemite-wildflowers-guide</loc>
+    <lastmod>2026-07-12</lastmod>
+    <image:image>
+      <image:loc>https://thetalusfieldjournal.com/img/wildflowers.jpg</image:loc>
+      <image:title>Midsummer wildflowers crowding a Yosemite meadow as the bloom nears the top of its climb</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://thetalusfieldjournal.com/articles/watching-climbers-el-capitan</loc>
+    <lastmod>2026-07-12</lastmod>
+    <image:image>
+      <image:loc>https://thetalusfieldjournal.com/img/yosemite-valley-granite-summer-cory-goehring.jpg</image:loc>
+      <image:title>El Capitan's 3,000-foot southwest face in afternoon light, seen from the Valley floor</image:title>
+    </image:image>
+  </url>
   <url>
     <loc>https://thetalusfieldjournal.com/articles/getting-to-yosemite</loc>
     <lastmod>2026-07-12</lastmod>

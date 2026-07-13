@@ -1,0 +1,15 @@
+{
+  "__comment": "This Week in the Park (/now). Hand-edited weekly: add the new dispatch to the TOP of dispatches, keep the archive below, then (1) bump NOW_URL's ?v= in page-now.jsx, (2) run `npm --prefix scripts run compile` and `npm --prefix scripts run seo`, (3) commit. The newest iso drives the /now sitemap lastmod, and edge/seo.js imports this file to serve the latest dispatch to non-JS crawlers. Keep each dispatch 150-300 words, dated, honest. A stale conditions page is worse than none: if a week must be skipped, say so in the next dispatch.",
+  "dispatches": [
+    {
+      "iso": "2026-07-12",
+      "title": "Heat on the floor, room up high",
+      "body": [
+        "This is the first of these dispatches. The idea: one short note each week on what the park is actually doing, from someone who drives Highway 140 into the Valley most days. Not a forecast, not a press release, just the week.",
+        "Mid-July is behaving like mid-July. The Valley floor is hot by late morning and the afternoons are the kind of heat that ends hikes early; if you are coming this week, be walking by seven and plan to be near the river or up high by noon. The waterfalls are past their season: Yosemite Falls is thin and getting thinner, Bridalveil is still worth the stop, and the Mist Trail has gone from soaking to pleasant.",
+        "The move this week is elevation. Tioga Road is fully open, the Tuolumne Meadows domes are warm granite in the evening light, and it runs fifteen to twenty degrees cooler than the Valley at midday. Glacier Point Road is open end to end. Entrances are running normal summer waits: bad from mid-morning through early afternoon, fine before eight.",
+        "Smoke is the thing to watch from here through October. The sky was clear this week, but check the webcams below the morning you drive in, not the night before."
+      ]
+    }
+  ]
+}

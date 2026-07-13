@@ -1,0 +1,117 @@
+/* global React */
+
+window.ARTICLE_BODIES = window.ARTICLE_BODIES || {};
+
+window.ARTICLE_BODIES["yosemite-photography-spots"] = function YosemitePhotographySpotsBody() {
+  return (
+    <>
+      <p className="dropcap">
+        I have stood at <strong>Tunnel View</strong> a few hundred times over twenty seasons, and I have never once had it to myself. There is always somebody with a camera, at dawn in January, at midnight in August, in a whiteout in March. For years I treated this as a reason to go elsewhere, the way locals everywhere treat their postcard views. I was wrong. The famous photography spots in Yosemite are famous because they work: the geology, the light angles, and the sightlines converge in a handful of places, and generations of photographers have already run the experiment for you. Ansel Adams did not shoot from secret locations. He shot from turnouts.
+      </p>
+
+      <p>
+        So this is not a list of hidden vantage points. It is a list of the proven ones, plus the two things the location alone will not give you: the right hour and the right season. In Yosemite, where you stand matters less than when you stand there.
+      </p>
+
+      <h2>How light works in a valley</h2>
+
+      <p>
+        Yosemite Valley runs roughly east to west, walled by granite three thousand feet high. That geometry has consequences. Direct morning light arrives late, because the sun has to clear the east rim. Evening light lingers on the high faces, El Capitan, Half Dome, the Cathedral Rocks, long after the Valley floor has gone into shadow. That last light, warm and low, is why most of the classic photographs here are afternoon and evening photographs.
+      </p>
+
+      <p>
+        The other thing to internalize: the most valuable condition in Yosemite photography is not a clear day. It is a <strong>clearing storm</strong>. When a weather front breaks up over the Valley, fog tears off the walls, clouds snag on the summits, and shafts of light punch through in ways that no bluebird afternoon can match. Adams' <strong>"Clearing Winter Storm,"</strong> made from the Tunnel View area, is the reference point for the entire genre. If the forecast shows a storm ending in daylight hours, that is the day to be in the park, not the day to stay home. I wrote more about that calculus in <a href="/articles/yosemite-in-winter">the winter guide</a>.
+      </p>
+
+      <blockquote>The picture you drove here for happens in the hour the weather breaks, not the day after.</blockquote>
+
+      <h2>The spots</h2>
+
+      <p>
+        <strong>Tunnel View.</strong> The east end of the Wawona Tunnel on Highway 41, with parking lots on both sides of the road. One frame holds El Capitan on the left, Bridalveil Fall on the right, and Half Dome in the distance between them. It is the single most photographed view in the park and possibly in any park, and it earns it. Late afternoon is the standard play: the low sun rakes across El Capitan and warms the whole composition. Clearing storms are the jackpot, in any season. Autumn adds a band of gold and rust across the Valley floor from the oaks and dogwoods. The view faces east, so sunrise puts the sun in your face; it can work with haze or mist, but evening is the reliable hour.
+      </p>
+
+      <p>
+        <strong>Valley View, also called Gates of the Valley.</strong> A small riverside pullout on Northside Drive near the west end of the Valley, easy to miss because you reach it on the one-way road out of the park. El Capitan rises on the left, Bridalveil Fall spills on the right, and the Merced River runs through the foreground, often glassy enough for reflections in late summer and fall. This is the low-elevation counterpart to Tunnel View, river instead of overlook, and it is the better sunset spot: the last light on El Capitan's nose, doubled in the water, is one of the great five-minute windows in the park. The pullout holds maybe a dozen cars. On a promising evening it fills.
+      </p>
+
+      <p>
+        <strong>Glacier Point.</strong> The 7,200-foot overlook at the end of <a href="/articles/glacier-point-road-open-2026">Glacier Point Road</a>, staring straight across at Half Dome with Vernal and Nevada Falls stacked in the canyon below. Sunset is the event here. Half Dome's face catches the last direct light, then holds <strong>alpenglow</strong>, the pink afterlight on high rock, for several minutes after the sun is down. Most of the crowd leaves the moment the sun disappears, which is exactly wrong. Stay twenty minutes. Then, if you are willing to drive the road down in the dark, stay longer: Glacier Point is also one of the best night-sky locations you can reach by car, which is <a href="/articles/yosemite-stargazing-where-to-look-up">its own article</a>. The road closes from roughly mid-October to late May, so this is a summer and early-fall spot.
+      </p>
+
+      <p>
+        <strong>Sentinel Bridge.</strong> A footbridge-width road bridge over the Merced near Yosemite Village, and the classic <strong>Half Dome reflection</strong>. Look upstream and Half Dome sits above a bend in the river; on calm evenings the face and its reflection light up together. This is an evening shot, best in the last hour before sunset when the granite goes amber, and best in late summer and autumn when the river runs slow and flat. In spring the Merced is fast and the reflection shatters. The bridge is a two-minute walk from parking and a shuttle stop, which makes it the easiest serious photograph in the Valley.
+      </p>
+
+      <p>
+        <strong>Cook's Meadow.</strong> The open meadow in the center of the Valley, crossed by a flat boardwalk loop. It offers Yosemite Falls to the north, Half Dome to the east, and Sentinel Rock to the south, which means it works at both ends of the day. Its specialty is cold mornings: meadow frost, and <strong>ground fog</strong> that forms over the grass on clear nights after rain or snowmelt and burns off within an hour of sunlight reaching the floor. The lone elm in the meadow, bare in winter fog, has been photographed since the Adams era and still earns the attention. Stay on the boardwalk. The meadow is recovering ecosystem, not a foreground to trample.
+      </p>
+
+      <p>
+        <strong>El Capitan Meadow.</strong> On Northside Drive at the foot of the biggest granite face in the Valley. The honest problem here is scale: El Capitan is too large to photograph meaningfully from its own base, and most wide-angle attempts flatten it into a gray wall. What works instead: the black oaks in the meadow as foreground, especially in fall color; climbers on the wall at dusk, when their headlamps come on and the face becomes a constellation; and the meadow itself in low light. Bring the longest lens you own and pick out details, a single pine on a ledge, a rope team on the Nose, instead of trying to swallow the whole cliff.
+      </p>
+
+      <p>
+        <strong>Swinging Bridge.</strong> A footbridge over the Merced west of Sentinel Bridge, and the standard reflection shot of <strong>Yosemite Falls</strong>, the full upper and lower fall doubled in the river. Morning is the right call here, when light reaches the fall and the water is stillest, and spring is the right season, because by August the fall is often a stain on the rock rather than a waterfall. The seasonal arithmetic of which falls run when is covered in <a href="/articles/yosemite-waterfalls-guide">the waterfalls guide</a>.
+      </p>
+
+      <p>
+        <strong>Olmsted Point.</strong> On <a href="/articles/tioga-road-opening-weekend-2026">Tioga Road</a>, and only reachable while the road is open, roughly late May through October or the first big snow. This is Half Dome from behind, seen up the length of Tenaya Canyon, with glacial erratics scattered across bare granite slabs in the foreground. It is the view that reminds you Half Dome is a mountain and not a logo. Late afternoon light rakes the slabs and picks out every boulder; sunset can be excellent when clouds cooperate. Walk a few minutes off the parking lot onto the granite and the compositions multiply.
+      </p>
+
+      <p>
+        All eight of these are on the <a href="/map">trip-planner map</a>, and they chain together naturally: Tunnel View, Valley View, El Capitan Meadow, and Swinging Bridge sit on one driving loop.
+      </p>
+
+      <h2>The calendar</h2>
+
+      <p>
+        <strong>February: Horsetail Fall.</strong> For roughly two weeks in mid-to-late February, the setting sun aligns with Horsetail Fall on El Capitan's east edge and, when the sky is clear and water is flowing, lights the fall orange from behind. The "firefall" is now the most concentrated photography event in the park, with viewing corridors, restrictions, and crowds to match. It gets a <a href="/articles/horsetail-fall-firefall">full article of its own</a>; the short version is that the phenomenon is real, the window is narrow, and the conditions fail more evenings than they deliver.
+      </p>
+
+      <p>
+        <strong>Spring: water and dogwood.</strong> April through June is peak waterfall flow, when Yosemite Falls and Bridalveil are at full volume and every reflection shot has a louder, wetter subject. Late April into May adds the <strong>Pacific dogwood</strong> bloom, white blossoms floating in the forest understory along the Merced and the Valley loop roads, which photographs best in open shade rather than direct sun. Spring full moons bring the <strong>moonbow</strong> at Lower Yosemite Fall: on bright moonlit nights near full moon in April, May, and June, the mist at the base of the fall throws a lunar rainbow. To the eye it reads as a pale silver arc; a camera on a tripod with a long exposure records the colors your night vision cannot. The bridge below the fall fills with tripods on those nights, and you will get soaked by the spray.
+      </p>
+
+      <p>
+        <strong>Autumn: color and calm water.</strong> Late October into November turns the Valley's black oaks gold and the dogwoods red, with Tunnel View and El Capitan Meadow the obvious beneficiaries. The river is at its lowest and stillest, which makes fall the best reflection season, even as the waterfalls sit near their minimum.
+      </p>
+
+      <p>
+        <strong>Winter: the highest-value season.</strong> Fewer photographers, snow on the rims, and the clearing storms that produce the images everyone recognizes. Watch the forecast for a front that breaks during the day, be at Tunnel View or in Cook's Meadow when it does, and carry chains to get there legally.
+      </p>
+
+      <h2>The practical part</h2>
+
+      <p>
+        <strong>Arrive early for the marquee hours.</strong> For an ordinary summer sunset at Glacier Point or Valley View, 45 minutes early gets you parking and a spot at the rail. For firefall, sunset at Tunnel View on a fall weekend, or a moonbow night, earlier still. The photograph is free; the parking spot is the scarce resource.
+      </p>
+
+      <p>
+        <strong>Tripods are legal and sociable, mostly.</strong> No permit is required for personal photography in the park. The etiquette is unwritten but real: set up without blocking the rail or the boardwalk, and do not plant three legs in a restored meadow to save yourself two steps.
+      </p>
+
+      <p>
+        <strong>Your phone handles almost all of this.</strong> A current phone shoots Tunnel View, reflections, dogwoods, and even alpenglow perfectly well. The two places dedicated cameras still clearly win: long-lens detail work on the big walls, and the night, where the moonbow and the Milky Way want a fast lens, a tripod, and exposures a phone cannot honestly fake.
+      </p>
+
+      <p>
+        <strong>Take the famous frame, then turn around.</strong> My standing habit at every one of these spots is to make the photograph everyone makes, because it works, and then spend ten minutes facing the other direction. The known view is why you came. The unphotographed one behind you is occasionally why you come back.
+      </p>
+
+      <h2>The takeaway</h2>
+
+      <p>
+        Pick the spot by the hour: Tunnel View and Glacier Point in late afternoon, Valley View at sunset, Sentinel Bridge in the last light, Cook's Meadow and Swinging Bridge in the morning, Olmsted Point while Tioga Road allows it. Pick the trip by the season: storms in winter, water and moonbows in spring, color in fall, Horsetail in February if you can stomach the crowd. Then let the weather ruin your plan, because in this park the ruined plan is usually the better photograph.
+      </p>
+
+      <h3>Sources</h3>
+      <ul style={{ fontSize: 14 }}>
+        <li><a href="https://www.nps.gov/yose/planyourvisit/scenicdrive.htm" target="_blank" rel="noopener noreferrer">Scenic Vistas and Viewpoints, NPS Yosemite</a></li>
+        <li><a href="https://www.nps.gov/yose/planyourvisit/horsetailfall.htm" target="_blank" rel="noopener noreferrer">Horsetail Fall, NPS Yosemite</a></li>
+        <li><a href="https://www.nps.gov/yose/planyourvisit/yos_moonbow.htm" target="_blank" rel="noopener noreferrer">Moonbow Viewing, NPS Yosemite</a></li>
+        <li><a href="https://www.anseladams.com/" target="_blank" rel="noopener noreferrer">The Ansel Adams Gallery</a></li>
+      </ul>
+    </>
+  );
+};

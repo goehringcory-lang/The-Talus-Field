@@ -25,30 +25,57 @@ Crawl-delay: 1
 # ---------------------------------------------------------------
 User-agent: Googlebot
 Allow: /
+Disallow: /api/
+Disallow: /open
+Disallow: /login
 
 User-agent: Googlebot-Image
 Allow: /
+Disallow: /api/
+Disallow: /open
+Disallow: /login
 
 User-agent: Googlebot-News
 Allow: /
+Disallow: /api/
+Disallow: /open
+Disallow: /login
 
 User-agent: Bingbot
 Allow: /
+Disallow: /api/
+Disallow: /open
+Disallow: /login
 
 User-agent: DuckDuckBot
 Allow: /
+Disallow: /api/
+Disallow: /open
+Disallow: /login
 
 User-agent: Slurp
 Allow: /
+Disallow: /api/
+Disallow: /open
+Disallow: /login
 
 User-agent: Applebot
 Allow: /
+Disallow: /api/
+Disallow: /open
+Disallow: /login
 
 User-agent: YandexBot
 Allow: /
+Disallow: /api/
+Disallow: /open
+Disallow: /login
 
 User-agent: Baiduspider
 Allow: /
+Disallow: /api/
+Disallow: /open
+Disallow: /login
 
 # ---------------------------------------------------------------
 # AI search and answer engines — allowed.
@@ -60,75 +87,132 @@ Allow: /
 # OpenAI: search index that powers ChatGPT search results.
 User-agent: OAI-SearchBot
 Allow: /
+Disallow: /api/
+Disallow: /open
+Disallow: /login
 
 # OpenAI: on-demand fetch when a ChatGPT user asks about a URL.
 User-agent: ChatGPT-User
 Allow: /
+Disallow: /api/
+Disallow: /open
+Disallow: /login
 
 # OpenAI: training/evaluation crawler.
 User-agent: GPTBot
 Allow: /
+Disallow: /api/
+Disallow: /open
+Disallow: /login
 
 # Anthropic: Claude's web crawler (training and on-demand).
 User-agent: ClaudeBot
 Allow: /
+Disallow: /api/
+Disallow: /open
+Disallow: /login
 
 User-agent: Claude-Web
 Allow: /
+Disallow: /api/
+Disallow: /open
+Disallow: /login
 
 User-agent: anthropic-ai
 Allow: /
+Disallow: /api/
+Disallow: /open
+Disallow: /login
 
 # Google: signal that AI products (Gemini, Vertex AI) may use this
 # site. Without this, Google-Extended is blocked by default for AI
 # even if Googlebot is allowed for search.
 User-agent: Google-Extended
 Allow: /
+Disallow: /api/
+Disallow: /open
+Disallow: /login
 
 # Apple Intelligence training/answer signal.
 User-agent: Applebot-Extended
 Allow: /
+Disallow: /api/
+Disallow: /open
+Disallow: /login
 
 # Perplexity: answer engine crawler.
 User-agent: PerplexityBot
 Allow: /
+Disallow: /api/
+Disallow: /open
+Disallow: /login
 
 User-agent: Perplexity-User
 Allow: /
+Disallow: /api/
+Disallow: /open
+Disallow: /login
 
 # You.com search.
 User-agent: YouBot
 Allow: /
+Disallow: /api/
+Disallow: /open
+Disallow: /login
 
 # Common Crawl — open web corpus that many AI systems train on.
 User-agent: CCBot
 Allow: /
+Disallow: /api/
+Disallow: /open
+Disallow: /login
 
 # Mistral.
 User-agent: MistralAI-User
 Allow: /
+Disallow: /api/
+Disallow: /open
+Disallow: /login
 
 # Meta / Facebook AI crawlers.
 User-agent: FacebookBot
 Allow: /
+Disallow: /api/
+Disallow: /open
+Disallow: /login
 
 User-agent: Meta-ExternalAgent
 Allow: /
+Disallow: /api/
+Disallow: /open
+Disallow: /login
 
 User-agent: Meta-ExternalFetcher
 Allow: /
+Disallow: /api/
+Disallow: /open
+Disallow: /login
 
 # Bytespider (TikTok / ByteDance).
 User-agent: Bytespider
 Allow: /
+Disallow: /api/
+Disallow: /open
+Disallow: /login
 
 # Diffbot (used by many enterprise AI systems).
 User-agent: Diffbot
 Allow: /
+Disallow: /api/
+Disallow: /open
+Disallow: /login
 
 # Cohere.
 User-agent: cohere-ai
 Allow: /
+Disallow: /api/
+Disallow: /open
+Disallow: /login
 
 # ---------------------------------------------------------------
 # Misbehaving / abusive scrapers — blocked.

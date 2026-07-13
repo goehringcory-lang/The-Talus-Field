@@ -219,7 +219,18 @@ function ArticlePage({
       paddingTop: 64,
       paddingBottom: 32
     }
-  }, React.createElement("div", {
+  }, React.createElement(Breadcrumbs, {
+    go: go,
+    trail: [{
+      label: "Home",
+      route: "home"
+    }, {
+      label: cat.label,
+      route: `cat:${cat.slug}`
+    }, {
+      label: article.title
+    }]
+  }), React.createElement("div", {
     className: "eyebrow eyebrow--moss",
     style: {
       marginBottom: 18
@@ -297,7 +308,39 @@ function ArticlePage({
     }
   }, React.createElement("time", {
     dateTime: article.isoModified || article.isoDate
-  }, article.date), React.createElement("div", null, article.read, " read"), article.isoModified && article.isoModified !== article.isoDate && formatIsoDate(article.isoModified) && React.createElement("div", null, "Updated ", formatIsoDate(article.isoModified))))), React.createElement("div", {
+  }, article.date), React.createElement("div", null, article.read, " read"), article.isoModified && article.isoModified !== article.isoDate && formatIsoDate(article.isoModified) && React.createElement("div", null, "Updated ", formatIsoDate(article.isoModified)))), (() => {
+    var series = window.planningSeriesFor && window.planningSeriesFor(slug);
+    if (!series) return null;
+    var prev = series.prev ? window.findArticle(series.prev) : null;
+    var next = series.next ? window.findArticle(series.next) : null;
+    var seriesNav = (a, label) => React.createElement("a", {
+      href: `/articles/${a.slug}`,
+      title: a.title,
+      onClick: e => {
+        e.preventDefault();
+        if (window.track) window.track("series_band_click", {
+          from: slug,
+          to: a.slug
+        });
+        go(`a:${a.slug}`);
+      }
+    }, label);
+    return React.createElement("div", {
+      className: "series-band"
+    }, React.createElement("span", null, "Part of", " ", React.createElement("a", {
+      href: "/planning",
+      onClick: e => {
+        e.preventDefault();
+        if (window.track) window.track("series_band_click", {
+          from: slug,
+          to: "planning-hub"
+        });
+        go("planning");
+      }
+    }, "the Yosemite Planning Guide"), " · ", series.part), (prev || next) && React.createElement("span", {
+      className: "series-band__nav"
+    }, prev && seriesNav(prev, "← Previous"), next && seriesNav(next, "Next →")));
+  })()), React.createElement("div", {
     className: "wrap wrap--narrow",
     style: {
       paddingBottom: 32
@@ -432,7 +475,10 @@ function ArticlePage({
       textDecoration: "none",
       borderBottom: "1px solid var(--rule)"
     }
-  }, "Read how recommendations get made →")))), midHost && ReactDOM.createPortal(React.createElement(NewsletterInline, {
+  }, "Read how recommendations get made →")))), React.createElement(ShareRow, {
+    title: article.title,
+    slug: slug
+  }), midHost && ReactDOM.createPortal(React.createElement(NewsletterInline, {
     location: "article_mid",
     tag: newsletterTag("article-mid", article.cat),
     heading: "Keep reading next week",
