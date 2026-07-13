@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 // Photo acquisition pipeline for the Field Guide PWA. Run from this dir:
 //   cd scripts && npm install
-//   node fetch-guide-photos.mjs fetch [--only=<file.jpg>] [--force] [--auto] [--source=commons,pexels] [--licenses=pd,cc0,cc-by,cc-by-sa]
+//   node fetch-guide-photos.mjs fetch [--only=<file.jpg>[,<file2.jpg>...]] [--force] [--auto] [--source=commons,pexels] [--licenses=pd,cc0,cc-by,cc-by-sa]
 //   node fetch-guide-photos.mjs status
 //   node fetch-guide-photos.mjs select <file.jpg> <candidateNumber>
 //   node fetch-guide-photos.mjs emit-credits
@@ -274,7 +274,9 @@ function slotState(entry) {
 
 async function cmdFetch(args) {
   const manifest = await loadManifest()
-  const only = args.find((a) => a.startsWith('--only='))?.slice(7)
+  // --only=a.jpg,b.jpg limits the run to specific slots (comma-separated).
+  const onlyArg = args.find((a) => a.startsWith('--only='))?.slice(7)
+  const only = onlyArg ? new Set(onlyArg.split(',').map((s) => s.trim()).filter(Boolean)) : null
   const force = args.includes('--force')
   // --auto: don't stop for human review. Pick the top candidate per slot
   // (Commons first, then Pexels — the default source order), normalize it,
@@ -303,7 +305,7 @@ async function cmdFetch(args) {
 
   let fetched = 0
   for (const entry of manifest) {
-    if (only && entry.file !== only) continue
+    if (only && !only.has(entry.file)) continue
     const state = slotState(entry)
     if (state === 'reuse') continue
     if (state === 'filled' && !force) continue
