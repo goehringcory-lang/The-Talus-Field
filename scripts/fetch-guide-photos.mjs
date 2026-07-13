@@ -1,21 +1,36 @@
 #!/usr/bin/env node
 // Photo acquisition pipeline for the Field Guide PWA. Run from this dir:
 //   cd scripts && npm install
-//   node fetch-guide-photos.mjs fetch [--only=<file.jpg>] [--force] [--licenses=pd,cc0,cc-by,cc-by-sa]
+//   node fetch-guide-photos.mjs fetch [--only=<file.jpg>] [--force] [--source=commons,pexels] [--licenses=pd,cc0,cc-by,cc-by-sa]
 //   node fetch-guide-photos.mjs status
 //   node fetch-guide-photos.mjs select <file.jpg> <candidateNumber>
 //   node fetch-guide-photos.mjs emit-credits
 //
-// The flow: `fetch` queries the Wikimedia Commons API per entry in
-// data/guide-photo-manifest.json, filters candidates to commercial-use-safe
-// licenses, and downloads up to 3 per slot into data/photo-candidates/<file>/
-// (gitignored; candidates must never land in apps/guide/public/, which
-// deploys wholesale). A human (or a multimodal model) reviews the candidates,
-// then `select` normalizes the pick with sharp (max 1600px wide, q78 mozjpeg,
-// EXIF stripped by re-encode) into apps/guide/public/photos/<file> and
-// records author/license/source in data/photo-credits.json. `emit-credits`
-// regenerates the PHOTO_CREDITS literal in the PWA from that JSON. After
-// selecting, run `npm run images` so the new sources get responsive variants.
+// The flow: `fetch` queries each enabled photo source per entry in
+// data/guide-photo-manifest.json and downloads up to 3 candidates per source
+// into data/photo-candidates/<file>/ (gitignored; candidates must never land
+// in apps/guide/public/, which deploys wholesale). A human (or a multimodal
+// model) reviews the candidates, then `select` normalizes the pick with sharp
+// (max 1600px wide, q78 mozjpeg, EXIF stripped by re-encode) into
+// apps/guide/public/photos/<file> and records author/license/source in
+// data/photo-credits.json. `emit-credits` regenerates the PHOTO_CREDITS
+// literal in the PWA from that JSON. After selecting, run `npm run images`
+// so the new sources get responsive variants.
+//
+// Sources:
+//   commons — Wikimedia Commons, filtered to commercial-use-safe licenses
+//     (the --licenses flag applies here only). Encyclopedically identified:
+//     a "Taft Point" hit is almost certainly Taft Point.
+//   pexels  — Pexels stock API. Needs the PEXELS_API_KEY env var (free key
+//     from pexels.com/api; never commit it). All Pexels photos ship under
+//     the Pexels license: free commercial use, no attribution required, but
+//     we record photographer + photo-page URL in the credits anyway. CAUTION:
+//     stock tagging is loose — a landmark query can return a lookalike from
+//     another park, so review Pexels candidates against the real spot before
+//     selecting.
+// Default source order is commons then pexels (pexels only when the key is
+// set); override with --source=. Commons results rank first on purpose: for
+// a field guide the photo must show the actual spot.
 //
 // Manifest filenames must already be slug-form (lowercase-hyphen .jpg) so the
 // slugify() in apps/guide/src/utils/photo.ts and gen-responsive-images.mjs is
@@ -40,7 +55,9 @@ const USER_AGENT =
   'TalusFieldGuide-photos/1.0 (https://thetalusfieldjournal.com; goehring.cory@gmail.com)'
 
 const COMMONS_API = 'https://commons.wikimedia.org/w/api.php'
-const CANDIDATES_PER_SLOT = 3
+const PEXELS_API = 'https://api.pexels.com/v1/search'
+const PEXELS_KEY = process.env.PEXELS_API_KEY ?? ''
+const CANDIDATES_PER_SLOT = 3 // per source
 const MIN_WIDTH = 1200
 const THUMB_WIDTH = 1800 // never the original: Commons originals can be 100 MB TIFFs
 const FINAL_MAX_WIDTH = 1600
@@ -120,7 +137,8 @@ async function commonsSearch(query, enabled) {
     // unusable. Public domain tolerates an unknown author.
     if (cls.rank > 0 && !author) continue
     out.push({
-      commonsTitle: page.title,
+      provider: 'commons',
+      title: page.title,
       author: author || 'Unknown (public domain)',
       license: licenseShort,
       licenseRank: cls.rank,
@@ -135,6 +153,49 @@ async function commonsSearch(query, enabled) {
   }
   // Preference: PD/CC0 before CC BY before CC BY-SA; API relevance order within a class.
   return out.sort((a, b) => a.licenseRank - b.licenseRank || a.searchIndex - b.searchIndex)
+}
+
+async function pexelsSearch(query) {
+  const params = new URLSearchParams({
+    query,
+    orientation: 'landscape',
+    per_page: '10',
+  })
+  const res = await fetch(`${PEXELS_API}?${params}`, {
+    headers: { Authorization: PEXELS_KEY, 'User-Agent': USER_AGENT },
+  })
+  if (res.status === 401) throw new Error('Pexels rejected the key (401) — check PEXELS_API_KEY')
+  if (res.status === 429) throw new Error('Pexels rate limit hit (429) — wait an hour and rerun')
+  if (!res.ok) throw new Error(`Pexels API ${res.status} for "${query}"`)
+  const data = await res.json()
+  const out = []
+  for (const photo of data?.photos ?? []) {
+    if ((photo.width ?? 0) < MIN_WIDTH) continue
+    if ((photo.width ?? 0) <= (photo.height ?? 0)) continue // landscape only
+    if (!photo.src) continue
+    out.push({
+      provider: 'pexels',
+      title: (photo.alt ?? '').trim() || `Pexels photo ${photo.id}`,
+      author: photo.photographer || 'Unknown',
+      // Pexels license: free commercial use, no attribution required. We
+      // still credit photographer + photo page, same as every other source.
+      license: 'Pexels License',
+      source: photo.url ?? '',
+      width: photo.width,
+      height: photo.height,
+      // large2x is server-side scaled (~1880px wide); the original can be a
+      // 6000px+ file we'd only downscale anyway.
+      downloadUrl: photo.src.large2x ?? photo.src.original,
+    })
+  }
+  return out
+}
+
+// Uniform (query, enabledLicenses) signature; pexels ignores the license set
+// because everything there is Pexels-licensed.
+const SOURCES = {
+  commons: commonsSearch,
+  pexels: (query) => pexelsSearch(query),
 }
 
 async function download(url, dest) {
@@ -157,6 +218,21 @@ async function cmdFetch(args) {
   const licensesArg =
     args.find((a) => a.startsWith('--licenses='))?.slice(11) ?? DEFAULT_LICENSES
   const enabled = new Set(licensesArg.split(',').map((s) => s.trim()).filter(Boolean))
+  const sourcesArg = args.find((a) => a.startsWith('--source='))?.slice(9)
+  const sources = sourcesArg
+    ? sourcesArg.split(',').map((s) => s.trim()).filter(Boolean)
+    : ['commons', ...(PEXELS_KEY ? ['pexels'] : [])]
+  for (const source of sources) {
+    if (!SOURCES[source]) {
+      console.error(`Unknown source "${source}" (available: ${Object.keys(SOURCES).join(', ')})`)
+      process.exit(1)
+    }
+    if (source === 'pexels' && !PEXELS_KEY) {
+      console.error('The pexels source needs the PEXELS_API_KEY env var (free key at pexels.com/api).')
+      process.exit(1)
+    }
+  }
+  console.log(`Sources: ${sources.join(', ')}${PEXELS_KEY || sourcesArg ? '' : ' (set PEXELS_API_KEY to include pexels)'}`)
 
   let fetched = 0
   for (const entry of manifest) {
@@ -178,7 +254,8 @@ async function cmdFetch(args) {
       // Hand-picked escape hatch: license metadata must come from the manifest.
       picked = [
         {
-          commonsTitle: entry.file,
+          provider: 'manual',
+          title: entry.file,
           author: entry.author ?? 'Unknown',
           license: entry.license ?? 'Public domain',
           source: entry.source ?? entry.directUrl,
@@ -188,14 +265,20 @@ async function cmdFetch(args) {
         },
       ]
     } else {
-      for (const query of entry.queries ?? []) {
-        try {
-          picked = await commonsSearch(query, enabled)
-        } catch (err) {
-          console.error(`! ${entry.file}: ${err.message}`)
-          picked = []
+      // Per source: first query with results wins, capped per source, then
+      // sources concatenate (commons first by default — see header).
+      for (const source of sources) {
+        let found = []
+        for (const query of entry.queries ?? []) {
+          try {
+            found = await SOURCES[source](query, enabled)
+          } catch (err) {
+            console.error(`! ${entry.file} [${source}]: ${err.message}`)
+            found = []
+          }
+          if (found.length > 0) break
         }
-        if (picked.length > 0) break
+        picked.push(...found.slice(0, CANDIDATES_PER_SLOT))
       }
     }
 
@@ -206,12 +289,12 @@ async function cmdFetch(args) {
     }
 
     const kept = []
-    for (const [i, cand] of picked.slice(0, CANDIDATES_PER_SLOT).entries()) {
+    for (const [i, cand] of picked.entries()) {
       const n = i + 1
       try {
         await download(cand.downloadUrl, path.join(dir, `${n}.jpg`))
         kept.push({ n, ...cand })
-        console.log(`  ↓ ${entry.file} candidate ${n}: ${cand.commonsTitle} [${cand.license}]`)
+        console.log(`  ↓ ${entry.file} candidate ${n} (${cand.provider}): ${cand.title} [${cand.license}]`)
       } catch (err) {
         console.error(`  ! ${entry.file} candidate ${n}: ${err.message}`)
       }
