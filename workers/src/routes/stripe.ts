@@ -35,6 +35,7 @@ type ChargeRefundedEvent = {
       id: string
       billing_details?: { email?: string | null } | null
       receipt_email?: string | null
+      metadata?: Record<string, string> | null
     }
   }
 }
@@ -89,6 +90,27 @@ stripe.post('/webhook', async (c) => {
   // configured to send charge.refunded or this branch never runs.
   if (event.type === 'charge.refunded') {
     const charge = (event as ChargeRefundedEvent).data.object
+
+    // Mirror of the provisioning guard below: anything else sold through this
+    // Stripe account (a print, a donation, a payment link) also fires
+    // charge.refunded. Guide charges carry the tag because
+    // createCheckoutSession sets payment_intent_data metadata, which Stripe
+    // copies onto the charge. Without this check, refunding an unrelated
+    // purchase would revoke guide access whenever the billing email happens
+    // to match a buyer record.
+    const product = charge.metadata?.product
+    if (product !== c.env.GUIDE_PRODUCT_TAG) {
+      if (!product) {
+        // A guide refund should always carry the tag; a bare charge is most
+        // likely another product, but flag it so the operator can verify and
+        // revoke manually if the copy-from-PaymentIntent assumption breaks.
+        console.error('charge.refunded without product metadata — verify manually', {
+          chargeId: charge.id,
+        })
+      }
+      return c.json({ received: true, ignored: 'refund for other product' })
+    }
+
     const email =
       charge.billing_details?.email?.trim().toLowerCase() ??
       charge.receipt_email?.trim().toLowerCase() ??

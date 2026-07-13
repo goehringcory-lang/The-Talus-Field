@@ -56,7 +56,12 @@ auth.post('/login', async (c) => {
   }
 
   const buyer = await getBuyer(c.env, email)
-  if (!buyer) return c.json({ error: 'Email not recognized' }, 401)
+  // A record without a code (hand-seeded, or provisioned before codes
+  // existed) must read as a failed match, not throw inside
+  // constantTimeEquals and turn every sign-in attempt into a 500.
+  if (!buyer || typeof buyer.accessCode !== 'string') {
+    return c.json({ error: 'Email not recognized' }, 401)
+  }
   if (!constantTimeEquals(buyer.accessCode, code)) {
     return c.json({ error: 'Code does not match' }, 401)
   }
