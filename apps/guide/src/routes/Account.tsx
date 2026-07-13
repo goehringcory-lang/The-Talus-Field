@@ -94,8 +94,8 @@ function PhotoCreditsSection() {
     <section id="photo-credits" aria-label="Photo credits" style={{ marginTop: 28 }}>
       <span className="eyebrow" style={{ display: 'block', marginBottom: 8 }}>Photography</span>
       <p className="card__note" style={{ marginTop: 0 }}>
-        The photographs in this guide are public domain and Creative Commons works, credited
-        below, alongside our own field photography.
+        The photographs credited below are public domain and Creative Commons works. The rest
+        of the guide's photography comes from The Talus Field's editorial archive.
       </p>
       <ul className="link-list" style={{ fontSize: 13 }}>
         {entries.map(([src, credit]) => {

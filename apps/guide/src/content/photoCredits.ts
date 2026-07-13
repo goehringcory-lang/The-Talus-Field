@@ -14,7 +14,9 @@ export type PhotoCredit = {
 }
 
 // BEGIN GENERATED
-export const PHOTO_CREDITS: Record<string, PhotoCredit> = {}
+export const PHOTO_CREDITS: Record<string, PhotoCredit> = {
+  "/photos/milky-way-sentinel-dome.jpg": { author: "Jackhen1992", license: "CC BY-SA 4.0", source: "" },
+}
 // END GENERATED
 
 /** One-line courtesy credit for a plate caption. */

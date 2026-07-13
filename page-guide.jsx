@@ -17,11 +17,12 @@ const GUIDE_API_BASE =
 // GUIDE_PRICE_CENTS in workers/wrangler.toml.
 const GUIDE_PRICE_FALLBACK_CENTS = 1900;
 
-// GUIDE-LAUNCH: flip to true when the guide goes on sale. False renders the
-// waitlist aside (GuideWaitlistBox) in place of the Stripe buy box; true
-// restores GuideBuyBox unchanged. The robots/sitemap flips are separate (see
-// the GUIDE-LAUNCH markers in app.jsx, edge/seo.js, gen-seo-artifacts.mjs).
-const GUIDE_ON_SALE = false;
+// GUIDE-LAUNCH: flipped to true July 2026. True renders the Stripe buy box
+// (GuideBuyBox); false renders the waitlist aside (GuideWaitlistBox), kept
+// for any future sales pause. The robots/sitemap/footer flips landed earlier
+// with the public-waitlist pass. Merging a true flag to main puts the guide
+// on sale: the ops gate in LAUNCH-READINESS.md must be cleared first.
+const GUIDE_ON_SALE = true;
 
 function formatPrice(cents) {
   const dollars = cents / 100;
