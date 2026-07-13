@@ -157,7 +157,7 @@ function GuideBuyBox() {
           <li>· Download the whole guide for offline, about 45 MB</li>
           <li>· Time budgets and a swap for when the lot is full</li>
           <li>· Programs by your dates: ranger walks, Junior Ranger, tours, star parties. Synced online, readable offline</li>
-          <li>· A trip planner that exports your days to Google or Apple Calendar, GPS included</li>
+          <li>· A trip planner that syncs your days to Google Calendar, or any calendar app, and re-syncs when you change the plan</li>
           <li>· Know-before-you-go essentials, a night-before checklist, and a packing list you check off in-app</li>
           <li>· Search across everything</li>
           <li>· The Secret Guide: unsigned turnouts, hidden stops, and secret spots, included</li>
@@ -208,7 +208,7 @@ function GuideWaitlistBox() {
           <li>· Download the whole guide for offline, about 45 MB</li>
           <li>· Time budgets and a swap for when the lot is full</li>
           <li>· Programs by your dates: ranger walks, Junior Ranger, tours, star parties. Synced online, readable offline</li>
-          <li>· A trip planner that exports your days to Google or Apple Calendar, GPS included</li>
+          <li>· A trip planner that syncs your days to Google Calendar, or any calendar app, and re-syncs when you change the plan</li>
           <li>· Know-before-you-go essentials, a night-before checklist, and a packing list you check off in-app</li>
           <li>· Search across everything</li>
           <li>· The Secret Guide: unsigned turnouts, hidden stops, and secret spots, included</li>
@@ -234,7 +234,7 @@ function GuidePage({ go }) {
           <div className="eyebrow eyebrow--moss">The Field Guide · Offline app · 2026 Edition</div>
           <h1>The Yosemite guide for people who already know about Glacier Point.</h1>
           <p className="page-head__dek">
-            A web app you add to your home screen. Four regional guides with tappable GPS, time budgets, a swap for when the plan dies, an offline topo map of the whole park, the ranger and partner program schedule on your dates, and a trip planner that exports straight to your calendar. Works at the trailhead when service doesn't. Not a PDF. Not another tourist checklist.
+            A web app you add to your home screen. Four regional guides with tappable GPS, time budgets, a swap for when the plan dies, an offline topo map of the whole park, the ranger and partner program schedule on your dates, and a trip planner that syncs your days into Google or Apple Calendar and keeps them current when the plan changes. Works at the trailhead when service doesn't. Not a PDF. Not another tourist checklist.
           </p>
         </div>
       </section>
@@ -297,10 +297,24 @@ function GuidePage({ go }) {
               The park runs more than most visitors ever find out about: ranger walks, Junior Ranger tables, Conservancy naturalist programs and evening talks at Parsons Memorial Lodge, guided tours, and the summer nights when the astronomy clubs haul telescopes up to Glacier Point. The schedules live in a half-dozen places. The app pulls them into one list. Pick your trip dates, sync once while you have signal, and scroll your days: what's running, when, where, what's free, what needs a reservation. The list stays on your phone, so it still reads at a picnic table with no bars.
             </p>
 
-            <h2>The trip planner</h2>
+            <h2>The trip planner, on your calendar</h2>
 
             <p>
-              Add the stops you want and the programs you picked, and the app lays out each day: your stops in a sensible order with real time budgets, flowed around the programs' published times. Adjust anything. Then export the whole trip as a calendar file that drops into Google Calendar, Apple Calendar, or Outlook in one import. Every event carries the GPS coordinates and a directions link, so your calendar reminder at the trailhead is also the navigation.
+              Add the stops you want and the programs you picked, and the app lays out each day: your stops in a sensible order with real time budgets, flowed around the programs' published times, with travel and parking buffers figured from the distance between them. Adjust anything, and the plan stays yours on the phone.
+            </p>
+
+            <p>
+              When the plan is set, the app puts it on your calendar three ways. Pick whichever fits how you work.
+            </p>
+
+            <ul>
+              <li><strong>Connect Google Calendar once.</strong> Authorize it from the account page and your trip lands in your Google Calendar as real events. Change the plan later and it re-syncs on its own. The connection lives on the server, so the app never sees or stores your Google password.</li>
+              <li><strong>Subscribe from any calendar app.</strong> Publish the plan to a private link and add it to Apple Calendar, Outlook, or Google as a subscribed calendar named Yosemite trip. It sits beside your own calendar and follows every edit you make, on the calendar app's next refresh.</li>
+              <li><strong>Or just save the file.</strong> One tap writes a standard .ics that imports the whole trip at once. It needs no signal, for when you want the plan locked onto your phone before you leave the last of the reception behind.</li>
+            </ul>
+
+            <p>
+              Every event carries the stop's GPS coordinate and a directions link, and the timed ones carry a reminder, so the calendar alert at the trailhead is also the navigation.
             </p>
 
             <h2>Know before you go</h2>
