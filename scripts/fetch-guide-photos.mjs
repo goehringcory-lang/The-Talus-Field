@@ -107,6 +107,19 @@ function licenseClass(shortName, enabled) {
   return null
 }
 
+// Commons ranks maps, engineering drawings (HAER/HABS), and planning
+// documents highly for landmark queries — they're bitmaps that match the
+// place name but aren't photos of it. Reject them by title/category text.
+const NON_PHOTO_RE =
+  /\b(map|maps|HAER|HABS|sheet \d|title sheet|section[- ]?elevation|elevation|floor plan|master plan|survey|geologic(al)? survey|diagram|blueprint|schematic|chart|poster|logo|coat of arms|document|manuscript|newspaper|letter|stamp|banknote)\b/i
+
+function looksLikeNonPhoto(page, meta) {
+  const hay = [page.title, stripHtml(meta.Categories?.value ?? ''), stripHtml(meta.ObjectName?.value ?? '')]
+    .join(' ')
+    .replace(/_/g, ' ') // Commons titles use underscores for spaces; \b needs real spaces
+  return NON_PHOTO_RE.test(hay)
+}
+
 async function commonsSearch(query, enabled) {
   const params = new URLSearchParams({
     action: 'query',
@@ -118,6 +131,7 @@ async function commonsSearch(query, enabled) {
     prop: 'imageinfo',
     iiprop: 'url|extmetadata|size|mime',
     iiurlwidth: String(THUMB_WIDTH),
+    iiextmetadatafilter: 'LicenseShortName|Artist|Categories|ObjectName',
   })
   const res = await fetch(`${COMMONS_API}?${params}`, {
     headers: { 'User-Agent': USER_AGENT },
@@ -134,6 +148,7 @@ async function commonsSearch(query, enabled) {
     const cls = licenseClass(licenseShort, enabled)
     if (!cls) continue
     if (!/jpeg|png/i.test(info.mime ?? '')) continue
+    if (looksLikeNonPhoto(page, meta)) continue // maps, HAER drawings, plans
     if ((info.width ?? 0) < MIN_WIDTH) continue
     if ((info.width ?? 0) <= (info.height ?? 0)) continue // landscape only
     const author = stripHtml(meta.Artist?.value ?? '')
