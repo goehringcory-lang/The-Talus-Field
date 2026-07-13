@@ -18,11 +18,15 @@
   --rust: #7a2a10;
   --gold: #8a661a;
 
-  /* Type system. Alpine Journal-leaning */
-  --serif: 'EB Garamond', 'Source Serif 4', Georgia, 'Times New Roman', serif;
-  --display: 'EB Garamond', 'Source Serif 4', Georgia, serif;
+  /* Type system. Alpine Journal-leaning.
+     Font diet (LCP pass): EB Garamond + Inter are the only webfonts loaded
+     (see the fonts link in index.html). Source Serif 4 was never reached, as
+     EB Garamond precedes it, and the few --mono call sites read fine from the
+     system monospace stack. */
+  --serif: 'EB Garamond', Georgia, 'Times New Roman', serif;
+  --display: 'EB Garamond', Georgia, serif;
   --sans:  'Inter', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
-  --mono:  'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+  --mono:  ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
 
   --measure: 66ch;
   --gutter: clamp(20px, 4vw, 48px);
@@ -1148,6 +1152,57 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
   height: auto;
   object-fit: initial;
 }
+
+/* ===== Breadcrumbs (article + section pages) ===== */
+/* Visible counterpart of the BreadcrumbList JSON-LD. Quiet by design. */
+.crumbs {
+  font-family: var(--sans);
+  font-size: 12px;
+  color: var(--ink-3);
+  margin-bottom: 16px;
+}
+.crumbs ol {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+}
+.crumbs li + li::before {
+  content: "\203A"; /* › */
+  margin-right: 6px;
+  color: var(--rule-soft);
+}
+.crumbs a {
+  color: var(--ink-3);
+  text-decoration: none;
+  border-bottom: 1px solid var(--rule);
+}
+.crumbs a:hover { color: var(--ink); }
+.crumbs [aria-current="page"] {
+  color: var(--ink-2);
+}
+
+/* ===== Planning Guide series band (cluster articles) ===== */
+.series-band {
+  font-family: var(--sans);
+  font-size: 12.5px;
+  color: var(--ink-3);
+  border-bottom: 1px solid var(--rule);
+  padding: 10px 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 16px;
+  align-items: baseline;
+}
+.series-band a {
+  color: var(--moss);
+  text-decoration: none;
+  border-bottom: 1px solid var(--rule);
+}
+.series-band a:hover { color: var(--ink); }
+.series-band__nav { margin-left: auto; display: flex; gap: 14px; }
 
 /* ===== Article cards ===== */
 .card {

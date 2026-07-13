@@ -1,4 +1,4 @@
-/* global React, ReactDOM, Placeholder, NewsletterInline, ArticleCard, MotifMountains, preloadResponsive, SIZES_HERO */
+/* global React, ReactDOM, Placeholder, NewsletterInline, ArticleCard, MotifMountains, preloadResponsive, SIZES_HERO, Breadcrumbs, ShareRow */
 
 // "Month D, YYYY" for an ISO date string, used to surface a genuine revision
 // date (isoModified) distinct from the publish date shown in the byline.
@@ -265,6 +265,14 @@ function ArticlePage({ slug, go }) {
       <article>
         {/* Article hero */}
         <header className="wrap wrap--narrow" style={{ paddingTop: 64, paddingBottom: 32 }}>
+          <Breadcrumbs
+            go={go}
+            trail={[
+              { label: "Home", route: "home" },
+              { label: cat.label, route: `cat:${cat.slug}` },
+              { label: article.title },
+            ]}
+          />
           <div className="eyebrow eyebrow--moss" style={{ marginBottom: 18 }}>
             <a href={`/section/${cat.slug}`} onClick={(e) => { e.preventDefault(); go(`cat:${cat.slug}`); }}
               style={{ color: "var(--moss)", textDecoration: "none" }}>
@@ -296,6 +304,49 @@ function ArticlePage({ slug, go }) {
               )}
             </div>
           </address>
+
+          {/* Series band: cluster articles surface their Planning Guide
+              membership (window.PLANNING_SERIES in data.js) so a search
+              lander discovers the hub and the neighboring parts. */}
+          {(() => {
+            const series = window.planningSeriesFor && window.planningSeriesFor(slug);
+            if (!series) return null;
+            const prev = series.prev ? window.findArticle(series.prev) : null;
+            const next = series.next ? window.findArticle(series.next) : null;
+            const seriesNav = (a, label) => (
+              <a
+                href={`/articles/${a.slug}`}
+                title={a.title}
+                onClick={(e) => {
+                  e.preventDefault();
+                  if (window.track) window.track("series_band_click", { from: slug, to: a.slug });
+                  go(`a:${a.slug}`);
+                }}
+              >{label}</a>
+            );
+            return (
+              <div className="series-band">
+                <span>
+                  Part of{" "}
+                  <a
+                    href="/planning"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      if (window.track) window.track("series_band_click", { from: slug, to: "planning-hub" });
+                      go("planning");
+                    }}
+                  >the Yosemite Planning Guide</a>
+                  {" · "}{series.part}
+                </span>
+                {(prev || next) && (
+                  <span className="series-band__nav">
+                    {prev && seriesNav(prev, "← Previous")}
+                    {next && seriesNav(next, "Next →")}
+                  </span>
+                )}
+              </div>
+            );
+          })()}
         </header>
 
         <div className="wrap wrap--narrow" style={{ paddingBottom: 32 }}>
@@ -374,6 +425,11 @@ function ArticlePage({ slug, go }) {
               </div>
             </div>
           </div>
+
+          {/* Share affordance: the map's trip links have had a share loop for
+              months; this is the articles' equivalent, and article_share
+              finally makes editorial referrals measurable. */}
+          <ShareRow title={article.title} slug={slug} />
 
           {midHost && ReactDOM.createPortal(
             <NewsletterInline

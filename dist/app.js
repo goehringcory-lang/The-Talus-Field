@@ -11,6 +11,7 @@ function routeToPath(route) {
   if (route.startsWith("a:")) return `/articles/${route.slice(2)}`;
   return `/${route}`;
 }
+var STATIC_ROUTE_KEYS = new Set(["home", "articles", "planning", "checklist", "about", "kit", "places", "advertise", "newsletter", "contact", "privacy", "terms", "affiliate", "guide", "map", "films", "itineraries", "conditions", "now"]);
 function pathToRoute(pathname) {
   var path = (pathname || "/").replace(/\/+$/, "") || "/";
   if (path === "/") return "home";
@@ -20,8 +21,134 @@ function pathToRoute(pathname) {
   var section = path.match(/^\/section\/([a-z0-9-]+)$/i);
   if (section) return `cat:${section[1]}`;
   var simple = path.match(/^\/([a-z0-9-]+)$/i);
-  if (simple) return simple[1];
-  return "home";
+  if (simple && STATIC_ROUTE_KEYS.has(simple[1])) return simple[1];
+  return "notfound";
+}
+function routeExists(route) {
+  if (route === "notfound") return false;
+  if (route.startsWith("a:")) return !!(window.findArticle && window.findArticle(route.slice(2)));
+  if (route.startsWith("cat:")) return !!(window.findCategory && window.findCategory(route.slice(4)));
+  return STATIC_ROUTE_KEYS.has(route);
+}
+var ASSET_VERSION = (() => {
+  var tags = document.querySelectorAll("script[src]");
+  for (var t of tags) {
+    var m = (t.getAttribute("src") || "").match(/\/dist\/app\.js\?v=(\d+)/);
+    if (m) return m[1];
+  }
+  return "0";
+})();
+var PAGE_MODULES = {
+  home: {
+    scripts: ["/dist/page-home.js"],
+    globals: ["HomePage"]
+  },
+  about: {
+    scripts: ["/dist/page-about.js"],
+    globals: ["AboutPage"]
+  },
+  kit: {
+    scripts: ["/dist/page-kit.js"],
+    globals: ["KitPage"]
+  },
+  places: {
+    scripts: ["/dist/page-places.js"],
+    globals: ["PlacesPage"]
+  },
+  advertise: {
+    scripts: ["/dist/page-advertise.js"],
+    globals: ["AdvertisePage"]
+  },
+  articles: {
+    scripts: ["/dist/page-articles.js"],
+    globals: ["ArticlesIndex", "CategoryPage"]
+  },
+  planning: {
+    scripts: ["/dist/page-planning-guide.js"],
+    globals: ["PlanningGuide"]
+  },
+  checklist: {
+    scripts: ["/dist/page-checklist.js"],
+    globals: ["ChecklistPage"]
+  },
+  article: {
+    scripts: ["/dist/page-article.js"],
+    globals: ["ArticlePage"]
+  },
+  newsletter: {
+    scripts: ["/dist/page-newsletter-contact.js"],
+    globals: ["NewsletterPage", "ContactPage"]
+  },
+  contact: {
+    scripts: ["/dist/page-newsletter-contact.js"],
+    globals: ["NewsletterPage", "ContactPage"]
+  },
+  privacy: {
+    scripts: ["/dist/page-legal.js"],
+    globals: ["PrivacyPage", "TermsPage", "AffiliatePage"]
+  },
+  terms: {
+    scripts: ["/dist/page-legal.js"],
+    globals: ["PrivacyPage", "TermsPage", "AffiliatePage"]
+  },
+  affiliate: {
+    scripts: ["/dist/page-legal.js"],
+    globals: ["PrivacyPage", "TermsPage", "AffiliatePage"]
+  },
+  guide: {
+    scripts: ["/dist/page-guide.js"],
+    globals: ["GuidePage"]
+  },
+  films: {
+    scripts: ["/videos-data.js", "/dist/page-films.js"],
+    globals: ["FilmsPage"]
+  },
+  itineraries: {
+    scripts: ["/itineraries-data.js", "/dist/page-itineraries.js"],
+    globals: ["ItinerariesPage"]
+  },
+  map: {
+    scripts: ["/itineraries-data.js", "/dist/page-map.js"],
+    globals: ["MapPage"]
+  },
+  conditions: {
+    scripts: ["/dist/page-conditions.js"],
+    globals: ["ConditionsPage"]
+  },
+  now: {
+    scripts: ["/dist/page-now.js"],
+    globals: ["NowPage"]
+  }
+};
+function routeModule(route) {
+  if (route.startsWith("a:")) return PAGE_MODULES.article;
+  if (route.startsWith("cat:")) return PAGE_MODULES.articles;
+  return PAGE_MODULES[route] || null;
+}
+var loadedScripts = {};
+function loadScriptOnce(src) {
+  if (!loadedScripts[src]) {
+    loadedScripts[src] = new Promise((resolve, reject) => {
+      var el = document.createElement("script");
+      el.src = `${src}?v=${ASSET_VERSION}`;
+      el.onload = () => resolve();
+      el.onerror = () => reject(new Error(`failed to load ${src}`));
+      document.head.appendChild(el);
+    });
+  }
+  return loadedScripts[src];
+}
+async function ensureRoute(route) {
+  var mod = routeModule(route);
+  if (!mod) return;
+  for (var src of mod.scripts) await loadScriptOnce(src);
+  var missing = mod.globals.filter(n => typeof window[n] === "undefined");
+  if (missing.length) throw new Error(`route "${route}" loaded but did not register: ${missing.join(", ")}`);
+}
+function prefetchAllModules() {
+  Object.values(PAGE_MODULES).forEach(mod => {
+    mod.scripts.forEach(src => loadScriptOnce(src).catch(() => {}));
+  });
 }
 function legacyHashToRoute(hash) {
   if (!hash) return null;
@@ -108,6 +235,19 @@ function faqLd(pairs) {
 function buildSeo(route) {
   var path = routeToPath(route);
   var url = `${SITE_ORIGIN}${path}`;
+  if (!routeExists(route)) {
+    return {
+      title: `Page not found — ${SITE_NAME}`,
+      description: "That page does not exist on The Talus Field. The articles index, planning guide, and trip planner map are good places to reorient.",
+      canonical: url,
+      ogType: "website",
+      image: SITE_DEFAULT_IMAGE,
+      jsonLd: null,
+      breadcrumb: null,
+      faq: null,
+      robots: "noindex, follow"
+    };
+  }
   if (route.startsWith("a:")) {
     var slug = route.slice(2);
     var a = window.findArticle && window.findArticle(slug);
@@ -411,6 +551,12 @@ function buildSeo(route) {
       ogType: "website",
       breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Conditions", null]]
     },
+    now: {
+      title: `This Week in the Park — the weekly Yosemite dispatch — ${SITE_NAME}`,
+      description: "A short weekly note on what Yosemite is actually doing right now: what's open, what's flowing, what's blooming, and what changed. Written from inside the park.",
+      ogType: "website",
+      breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["This Week in the Park", null]]
+    },
     itineraries: {
       title: `Yosemite Itineraries — day plans on the map — ${SITE_NAME}`,
       description: "Curated Yosemite itineraries for one, two, or three days, plus a half-day plan for late arrivals. Each opens as a ready-made trip on the interactive map.",
@@ -487,6 +633,44 @@ function applySeo(route) {
   if (seo.faq) setJsonLd("ld-faq", seo.faq);else if (seoApplied) clearJsonLd("ld-faq");
   seoApplied = true;
 }
+function NotFoundPage({
+  go
+}) {
+  return React.createElement("div", {
+    className: "page"
+  }, React.createElement("div", {
+    className: "page-head"
+  }, React.createElement("div", {
+    className: "wrap wrap--narrow"
+  }, React.createElement("div", {
+    className: "eyebrow eyebrow--moss"
+  }, "Off the trail"), React.createElement("h1", null, "Page not found"), React.createElement("p", {
+    className: "lede"
+  }, "There is nothing at this address. The link may be old, or the page may have moved."))), React.createElement("div", {
+    className: "wrap wrap--narrow",
+    style: {
+      paddingBottom: 64
+    }
+  }, React.createElement("p", null, "Good places to reorient:", " ", React.createElement("a", {
+    href: "/articles",
+    onClick: e => {
+      e.preventDefault();
+      go("articles");
+    }
+  }, "the articles index"), ",", " ", React.createElement("a", {
+    href: "/planning",
+    onClick: e => {
+      e.preventDefault();
+      go("planning");
+    }
+  }, "the planning guide"), ", or", " ", React.createElement("a", {
+    href: "/map",
+    onClick: e => {
+      e.preventDefault();
+      go("map");
+    }
+  }, "the trip planner map"), ".")));
+}
 function App() {
   var [route, setRoute] = useState(() => {
     if (window.location.hash && window.location.pathname === "/") {
@@ -544,10 +728,13 @@ function App() {
   }, []);
   useEffect(() => {
     var onPop = () => {
-      setRoute(pathToRoute(window.location.pathname));
-      window.scrollTo({
-        top: 0
-      });
+      var r = pathToRoute(window.location.pathname);
+      ensureRoute(r).then(() => {
+        setRoute(r);
+        window.scrollTo({
+          top: 0
+        });
+      }).catch(() => window.location.reload());
     };
     window.addEventListener("popstate", onPop);
     return () => window.removeEventListener("popstate", onPop);
@@ -559,106 +746,129 @@ function App() {
         route: r
       }, "", path);
     }
-    setRoute(r);
-    window.scrollTo({
-      top: 0
-    });
+    ensureRoute(r).then(() => {
+      setRoute(r);
+      window.scrollTo({
+        top: 0
+      });
+    }).catch(() => window.location.assign(path));
   };
   var [tweaks, setTweak] = useTweaks(window.TWEAK_DEFAULTS);
   useEffect(() => {
     document.documentElement.setAttribute("data-palette", tweaks.palette);
     document.documentElement.setAttribute("data-density", tweaks.density);
   }, [tweaks.palette, tweaks.density]);
+  var mod = routeModule(route);
+  var routeReady = !mod || mod.globals.every(n => typeof window[n] !== "undefined");
   var page;
   var currentNav = "home";
-  if (route === "home") {
-    page = React.createElement(HomePage, {
+  if (!routeReady) {
+    page = React.createElement("div", {
+      className: "page"
+    }, React.createElement("div", {
+      className: "wrap wrap--narrow",
+      style: {
+        padding: "64px 0"
+      }
+    }, React.createElement("p", null, "This page failed to load.", " ", React.createElement("a", {
+      href: routeToPath(route)
+    }, "Try again"), ".")));
+  } else if (!routeExists(route)) {
+    page = React.createElement(NotFoundPage, {
+      go: go
+    });
+  } else if (route === "home") {
+    page = React.createElement(window.HomePage, {
       go: go
     });
     currentNav = "home";
   } else if (route === "about") {
-    page = React.createElement(AboutPage, {
+    page = React.createElement(window.AboutPage, {
       go: go
     });
     currentNav = "about";
   } else if (route === "kit") {
-    page = React.createElement(KitPage, {
+    page = React.createElement(window.KitPage, {
       go: go
     });
     currentNav = "kit";
   } else if (route === "places") {
-    page = React.createElement(PlacesPage, {
+    page = React.createElement(window.PlacesPage, {
       go: go
     });
     currentNav = "places";
   } else if (route === "films") {
-    page = React.createElement(FilmsPage, null);
+    page = React.createElement(window.FilmsPage, null);
     currentNav = "films";
   } else if (route === "advertise") {
-    page = React.createElement(AdvertisePage, {
+    page = React.createElement(window.AdvertisePage, {
       go: go
     });
   } else if (route === "articles") {
-    page = React.createElement(ArticlesIndex, {
+    page = React.createElement(window.ArticlesIndex, {
       go: go
     });
     currentNav = "articles";
   } else if (route === "planning") {
-    page = React.createElement(PlanningGuide, {
+    page = React.createElement(window.PlanningGuide, {
       go: go
     });
     currentNav = "articles";
   } else if (route === "checklist") {
-    page = React.createElement(ChecklistPage, {
+    page = React.createElement(window.ChecklistPage, {
       go: go
     });
     currentNav = "articles";
   } else if (route.startsWith("cat:")) {
-    page = React.createElement(CategoryPage, {
+    page = React.createElement(window.CategoryPage, {
       slug: route.slice(4),
       go: go
     });
     currentNav = "articles";
   } else if (route.startsWith("a:")) {
-    page = React.createElement(ArticlePage, {
+    page = React.createElement(window.ArticlePage, {
       slug: route.slice(2),
       go: go
     });
     currentNav = "articles";
   } else if (route === "newsletter") {
-    page = React.createElement(NewsletterPage, {
+    page = React.createElement(window.NewsletterPage, {
       go: go
     });
     currentNav = "newsletter";
   } else if (route === "contact") {
-    page = React.createElement(ContactPage, {
+    page = React.createElement(window.ContactPage, {
       go: go
     });
     currentNav = "contact";
   } else if (route === "privacy") {
-    page = React.createElement(PrivacyPage, null);
+    page = React.createElement(window.PrivacyPage, null);
   } else if (route === "terms") {
-    page = React.createElement(TermsPage, null);
+    page = React.createElement(window.TermsPage, null);
   } else if (route === "affiliate") {
-    page = React.createElement(AffiliatePage, null);
+    page = React.createElement(window.AffiliatePage, null);
   } else if (route === "guide") {
-    page = React.createElement(GuidePage, {
+    page = React.createElement(window.GuidePage, {
       go: go
     });
   } else if (route === "itineraries") {
-    page = React.createElement(ItinerariesPage, {
+    page = React.createElement(window.ItinerariesPage, {
       go: go
     });
   } else if (route === "conditions") {
-    page = React.createElement(ConditionsPage, {
+    page = React.createElement(window.ConditionsPage, {
+      go: go
+    });
+  } else if (route === "now") {
+    page = React.createElement(window.NowPage, {
       go: go
     });
   } else if (route === "map") {
-    page = React.createElement(MapPage, {
+    page = React.createElement(window.MapPage, {
       go: go
     });
   } else {
-    page = React.createElement(HomePage, {
+    page = React.createElement(NotFoundPage, {
       go: go
     });
   }
@@ -707,10 +917,10 @@ function App() {
 }
 window.routeToPath = routeToPath;
 window.SITE_ORIGIN = SITE_ORIGIN;
-var REQUIRED_GLOBALS = ["Header", "Footer", "ExitIntentNewsletter", "HomePage", "AboutPage", "ArticlesIndex", "CategoryPage", "ArticlePage", "KitPage", "PlacesPage", "AdvertisePage", "GuidePage", "MapPage", "FilmsPage", "ItinerariesPage", "ConditionsPage", "PlanningGuide", "ChecklistPage", "NewsletterPage", "ContactPage", "PrivacyPage", "TermsPage", "AffiliatePage", "TweaksPanel", "useTweaks", "TweakSection", "TweakRadio"];
+var REQUIRED_GLOBALS = ["Header", "Footer", "ExitIntentNewsletter", "TweaksPanel", "useTweaks", "TweakSection", "TweakRadio"];
 var missingGlobals = REQUIRED_GLOBALS.filter(n => typeof window[n] === "undefined");
 if (missingGlobals.length) {
-  console.error("app.jsx boot: missing page globals (a script failed to load or register):", missingGlobals.join(", "));
+  console.error("app.jsx boot: missing shell globals (a script failed to load or register):", missingGlobals.join(", "));
   if (window.location.hostname === "localhost") {
     var warn = document.createElement("div");
     warn.style.cssText = "position:fixed;top:0;left:0;right:0;z-index:9999;background:#b9453d;color:#fff;font:13px/1.4 monospace;padding:8px 14px;";
@@ -718,6 +928,20 @@ if (missingGlobals.length) {
     document.body.appendChild(warn);
   }
 }
-ReactDOM.createRoot(document.getElementById("root")).render(React.createElement(App, null));
-document.getElementById("seo-static-h1")?.remove();
-document.getElementById("prerender-prose")?.remove();
+var bootRoute = (() => {
+  if (window.location.hash && window.location.pathname === "/") {
+    var fromHash = legacyHashToRoute(window.location.hash);
+    if (fromHash) return fromHash;
+  }
+  return pathToRoute(window.location.pathname);
+})();
+ensureRoute(bootRoute).catch(e => console.error("app.jsx boot: initial route bundle failed:", e)).then(() => {
+  ReactDOM.createRoot(document.getElementById("root")).render(React.createElement(App, null));
+  document.getElementById("seo-static-h1")?.remove();
+  document.getElementById("prerender-prose")?.remove();
+  var warm = () => prefetchAllModules();
+  ["pointerdown", "keydown", "touchstart", "scroll"].forEach(ev => window.addEventListener(ev, warm, {
+    once: true,
+    passive: true
+  }));
+});

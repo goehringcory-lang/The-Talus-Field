@@ -1,4 +1,4 @@
-/* global React, ArticleCard */
+/* global React, ArticleCard, Breadcrumbs */
 const { useState } = React;
 
 function ArticlesIndex({ go, initialCat }) {
@@ -55,6 +55,10 @@ function CategoryPage({ slug, go }) {
     <div className="page">
       <div className="page-head">
         <div className="wrap">
+          <Breadcrumbs
+            go={go}
+            trail={[{ label: "Home", route: "home" }, { label: cat.label }]}
+          />
           <div className="eyebrow eyebrow--moss">Section</div>
           <h1>{cat.label}</h1>
           <p className="page-head__dek">{cat.blurb}</p>

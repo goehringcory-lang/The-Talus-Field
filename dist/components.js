@@ -339,7 +339,17 @@ function Header({
     className: "masthead__date masthead__date--short"
   }, todayShort)), React.createElement("div", {
     className: "masthead__utility"
-  }, React.createElement("div", {
+  }, React.createElement("a", {
+    className: "masthead__guide",
+    href: "/now",
+    onClick: e => {
+      e.preventDefault();
+      if (window.track) window.track("cta_click", {
+        location: "masthead_now"
+      });
+      go("now");
+    }
+  }, "This week"), React.createElement("div", {
     className: "masthead__weather"
   }, React.createElement("span", {
     className: "masthead__weather-label"
@@ -496,6 +506,12 @@ function Footer({
       go("conditions");
     }
   }, "Conditions")), React.createElement("li", null, React.createElement("a", {
+    href: "/now",
+    onClick: e => {
+      e.preventDefault();
+      go("now");
+    }
+  }, "This week in the park")), React.createElement("li", null, React.createElement("a", {
     href: "/guide",
     onClick: e => {
       e.preventDefault();
@@ -570,6 +586,82 @@ function Footer({
     }
   }, "Affiliate")))));
 }
+function Breadcrumbs({
+  trail,
+  go
+}) {
+  return React.createElement("nav", {
+    className: "crumbs",
+    "aria-label": "Breadcrumb"
+  }, React.createElement("ol", null, trail.map((c, i) => React.createElement("li", {
+    key: i
+  }, c.route != null ? React.createElement("a", {
+    href: window.routeToPath ? window.routeToPath(c.route) : "/",
+    onClick: e => {
+      e.preventDefault();
+      go(c.route);
+    }
+  }, c.label) : React.createElement("span", {
+    "aria-current": "page"
+  }, c.label)))));
+}
+window.Breadcrumbs = Breadcrumbs;
+function ShareRow({
+  title,
+  slug
+}) {
+  var [copied, setCopied] = React.useState(false);
+  var share = async () => {
+    var url = `${window.SITE_ORIGIN || ""}${window.location.pathname}`;
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          title,
+          url
+        });
+        if (window.track) window.track("article_share", {
+          slug,
+          method: "web-share"
+        });
+      } catch (_e) {}
+      return;
+    }
+    try {
+      await navigator.clipboard.writeText(url);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2500);
+      if (window.track) window.track("article_share", {
+        slug,
+        method: "copy"
+      });
+    } catch (_e) {
+      window.prompt("Copy this link:", url);
+    }
+  };
+  return React.createElement("div", {
+    style: {
+      display: "flex",
+      alignItems: "center",
+      gap: 12,
+      marginTop: 20,
+      fontFamily: "var(--sans)",
+      fontSize: 13,
+      color: "var(--ink-3)"
+    }
+  }, React.createElement("span", null, "Worth sending to your trip partner?"), React.createElement("button", {
+    type: "button",
+    onClick: share,
+    style: {
+      font: "inherit",
+      color: "var(--moss)",
+      background: "none",
+      border: "1px solid var(--rule)",
+      padding: "6px 14px",
+      cursor: "pointer"
+    }
+  }, copied ? "Link copied" : "Share this article"));
+}
+window.ShareRow = ShareRow;
 function AffiliateNote() {
   return React.createElement("p", {
     className: "article-aff-note"

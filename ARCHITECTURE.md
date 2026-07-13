@@ -62,6 +62,10 @@ All events fire through `window.track`. Names and where they fire:
 | `guide_teaser_click` | page-map.jsx (trip next-steps card), page-article.jsx (article-end line, trails/planning), page-home.jsx (About strip line) — with `location` |
 | `itinerary_open_map` | page-itineraries.jsx ("Open this trip on the map", with `itinerary`) |
 | `home_utility_click` | page-home.jsx ("Plan your trip" row, with `target`) |
+| `article_share` | components.jsx (ShareRow on article pages; `method` = web-share or copy) |
+| `series_band_click` | page-article.jsx (Planning Guide series band; `from`/`to` slugs, `to: planning-hub` for the hub link) |
+| `toc_jump` | page-article.jsx (in-guide table-of-contents jumps) |
+| `cta_click` | components.jsx (masthead links: `location: masthead_cta` for The Map, `masthead_now` for This week) |
 
 ## localStorage key inventory
 

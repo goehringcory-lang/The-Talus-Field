@@ -307,6 +307,13 @@ function Header({ current, go }) {
           <span className="masthead__date masthead__date--short">{todayShort}</span>
         </div>
         <div className="masthead__utility">
+          {/* The weekly dispatch: the one page on the site that changes every
+              week, so it earns the masthead slot. */}
+          <a
+            className="masthead__guide"
+            href="/now"
+            onClick={(e) => { e.preventDefault(); if (window.track) window.track("cta_click", { location: "masthead_now" }); go("now"); }}
+          >This week</a>
           <div className="masthead__weather">
             <span className="masthead__weather-label">Conditions</span>
             <a href="https://forecast.weather.gov/MapClick.php?lat=37.7456&lon=-119.5936" target="_blank" rel="noopener noreferrer">Valley</a>
@@ -409,6 +416,7 @@ function Footer({ go }) {
               <li><a href="/map" onClick={(e) => { e.preventDefault(); go("map"); }}>The Map</a></li>
               <li><a href="/itineraries" onClick={(e) => { e.preventDefault(); go("itineraries"); }}>Itineraries</a></li>
               <li><a href="/conditions" onClick={(e) => { e.preventDefault(); go("conditions"); }}>Conditions</a></li>
+              <li><a href="/now" onClick={(e) => { e.preventDefault(); go("now"); }}>This week in the park</a></li>
               <li><a href="/guide" onClick={(e) => { e.preventDefault(); window.track && window.track("guide_cta_click", { location: "footer_guide_link" }); go("guide"); }}>Field Guide</a></li>
               <li><a href="/newsletter" onClick={(e) => { e.preventDefault(); go("newsletter"); }}>Newsletter</a></li>
               <li><a href="/contact" onClick={(e) => { e.preventDefault(); go("contact"); }}>Contact</a></li>
@@ -439,6 +447,77 @@ function Footer({ go }) {
     </footer>
   );
 }
+
+// ============================================================
+// Breadcrumbs. The visible counterpart of the BreadcrumbList JSON-LD that
+// edge/seo.js and app.jsx emit: Google increasingly cross-checks breadcrumb
+// rich results against on-page navigation, and the links add crawl paths.
+// `trail` is an array of { label, route }; the last item (no route) is the
+// current page.
+// ============================================================
+function Breadcrumbs({ trail, go }) {
+  return (
+    <nav className="crumbs" aria-label="Breadcrumb">
+      <ol>
+        {trail.map((c, i) => (
+          <li key={i}>
+            {c.route != null ? (
+              <a
+                href={window.routeToPath ? window.routeToPath(c.route) : "/"}
+                onClick={(e) => { e.preventDefault(); go(c.route); }}
+              >{c.label}</a>
+            ) : (
+              <span aria-current="page">{c.label}</span>
+            )}
+          </li>
+        ))}
+      </ol>
+    </nav>
+  );
+}
+window.Breadcrumbs = Breadcrumbs;
+
+// ============================================================
+// Share row. The quiet article share affordance: native share sheet where
+// the platform has one, copy-link everywhere else. Fires article_share so
+// the referral loop is finally measurable (the map's trip links have had
+// this for months; articles had nothing).
+// ============================================================
+function ShareRow({ title, slug }) {
+  const [copied, setCopied] = React.useState(false);
+  const share = async () => {
+    const url = `${window.SITE_ORIGIN || ""}${window.location.pathname}`;
+    if (navigator.share) {
+      try {
+        await navigator.share({ title, url });
+        if (window.track) window.track("article_share", { slug, method: "web-share" });
+      } catch (_e) { /* reader dismissed the sheet; not a share */ }
+      return;
+    }
+    try {
+      await navigator.clipboard.writeText(url);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2500);
+      if (window.track) window.track("article_share", { slug, method: "copy" });
+    } catch (_e) {
+      window.prompt("Copy this link:", url);
+    }
+  };
+  return (
+    <div style={{ display: "flex", alignItems: "center", gap: 12, marginTop: 20, fontFamily: "var(--sans)", fontSize: 13, color: "var(--ink-3)" }}>
+      <span>Worth sending to your trip partner?</span>
+      <button
+        type="button"
+        onClick={share}
+        style={{
+          font: "inherit", color: "var(--moss)", background: "none",
+          border: "1px solid var(--rule)", padding: "6px 14px", cursor: "pointer",
+        }}
+      >{copied ? "Link copied" : "Share this article"}</button>
+    </div>
+  );
+}
+window.ShareRow = ShareRow;
 
 // ============================================================
 // Affiliate note

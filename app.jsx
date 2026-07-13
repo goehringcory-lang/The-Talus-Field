@@ -1,10 +1,8 @@
 /* global React, ReactDOM, Header, Footer, ExitIntentNewsletter,
-   HomePage, AboutPage, ArticlesIndex, CategoryPage, ArticlePage,
-   KitPage, PlacesPage, AdvertisePage, GuidePage, MapPage, FilmsPage,
-   ItinerariesPage, ConditionsPage,
-   PlanningGuide, ChecklistPage,
-   NewsletterPage, ContactPage, PrivacyPage, TermsPage, AffiliatePage,
    TweaksPanel, useTweaks, TweakSection, TweakRadio, TweakToggle */
+/* Page components (HomePage, ArticlePage, MapPage, ...) are NOT bare globals
+   here: their bundles lazy-load per route (see PAGE_MODULES) and the route
+   switch reads them from window.* after ensureRoute resolves. */
 
 const { useState, useEffect, useRef } = React;
 
@@ -23,6 +21,15 @@ function routeToPath(route) {
   return `/${route}`;
 }
 
+// Every static route key the App switch below can render. Unknown paths fall
+// to the "notfound" route (rendered noindex, mirrored by a 404 status at the
+// edge in edge/seo.js) instead of silently duplicating the homepage.
+const STATIC_ROUTE_KEYS = new Set([
+  "home", "articles", "planning", "checklist", "about", "kit", "places",
+  "advertise", "newsletter", "contact", "privacy", "terms", "affiliate",
+  "guide", "map", "films", "itineraries", "conditions", "now",
+]);
+
 function pathToRoute(pathname) {
   const path = (pathname || "/").replace(/\/+$/, "") || "/";
   if (path === "/") return "home";
@@ -32,8 +39,104 @@ function pathToRoute(pathname) {
   const section = path.match(/^\/section\/([a-z0-9-]+)$/i);
   if (section) return `cat:${section[1]}`;
   const simple = path.match(/^\/([a-z0-9-]+)$/i);
-  if (simple) return simple[1];
-  return "home";
+  if (simple && STATIC_ROUTE_KEYS.has(simple[1])) return simple[1];
+  return "notfound";
+}
+
+// True when a route key resolves to real content. Article and section routes
+// are checked against the catalog so /articles/typo-slug 404s instead of
+// rendering an empty reader over homepage SEO.
+function routeExists(route) {
+  if (route === "notfound") return false;
+  if (route.startsWith("a:")) return !!(window.findArticle && window.findArticle(route.slice(2)));
+  if (route.startsWith("cat:")) return !!(window.findCategory && window.findCategory(route.slice(4)));
+  return STATIC_ROUTE_KEYS.has(route);
+}
+
+// ============================================================
+// Route-level code loading (LCP pass). index.html eagerly loads only the
+// shared shell (React vendor files, storage, affiliate, data, tweaks-panel,
+// components, app); each route's page bundle — plus the films/itineraries
+// data files — loads on demand here. The active route's scripts are awaited
+// before boot render and before any SPA navigation commits, and the rest are
+// prefetched on the reader's first interaction, so navigation stays instant
+// without taxing first paint. Add new page scripts to PAGE_MODULES, not to
+// index.html.
+// ============================================================
+
+// Shared cache-buster: read from the app.js script tag so injected scripts
+// ride the same ?v=N as index.html (the bump discipline is unchanged).
+const ASSET_VERSION = (() => {
+  const tags = document.querySelectorAll("script[src]");
+  for (const t of tags) {
+    const m = (t.getAttribute("src") || "").match(/\/dist\/app\.js\?v=(\d+)/);
+    if (m) return m[1];
+  }
+  return "0";
+})();
+
+// Registry: route family -> the scripts it needs and the globals they
+// register. Section pages need nothing extra (CategoryPage lives in the eager
+// components bundle).
+const PAGE_MODULES = {
+  home: { scripts: ["/dist/page-home.js"], globals: ["HomePage"] },
+  about: { scripts: ["/dist/page-about.js"], globals: ["AboutPage"] },
+  kit: { scripts: ["/dist/page-kit.js"], globals: ["KitPage"] },
+  places: { scripts: ["/dist/page-places.js"], globals: ["PlacesPage"] },
+  advertise: { scripts: ["/dist/page-advertise.js"], globals: ["AdvertisePage"] },
+  articles: { scripts: ["/dist/page-articles.js"], globals: ["ArticlesIndex", "CategoryPage"] },
+  planning: { scripts: ["/dist/page-planning-guide.js"], globals: ["PlanningGuide"] },
+  checklist: { scripts: ["/dist/page-checklist.js"], globals: ["ChecklistPage"] },
+  article: { scripts: ["/dist/page-article.js"], globals: ["ArticlePage"] },
+  newsletter: { scripts: ["/dist/page-newsletter-contact.js"], globals: ["NewsletterPage", "ContactPage"] },
+  contact: { scripts: ["/dist/page-newsletter-contact.js"], globals: ["NewsletterPage", "ContactPage"] },
+  privacy: { scripts: ["/dist/page-legal.js"], globals: ["PrivacyPage", "TermsPage", "AffiliatePage"] },
+  terms: { scripts: ["/dist/page-legal.js"], globals: ["PrivacyPage", "TermsPage", "AffiliatePage"] },
+  affiliate: { scripts: ["/dist/page-legal.js"], globals: ["PrivacyPage", "TermsPage", "AffiliatePage"] },
+  guide: { scripts: ["/dist/page-guide.js"], globals: ["GuidePage"] },
+  films: { scripts: ["/videos-data.js", "/dist/page-films.js"], globals: ["FilmsPage"] },
+  itineraries: { scripts: ["/itineraries-data.js", "/dist/page-itineraries.js"], globals: ["ItinerariesPage"] },
+  map: { scripts: ["/itineraries-data.js", "/dist/page-map.js"], globals: ["MapPage"] },
+  conditions: { scripts: ["/dist/page-conditions.js"], globals: ["ConditionsPage"] },
+  now: { scripts: ["/dist/page-now.js"], globals: ["NowPage"] },
+};
+
+function routeModule(route) {
+  if (route.startsWith("a:")) return PAGE_MODULES.article;
+  if (route.startsWith("cat:")) return PAGE_MODULES.articles; // CategoryPage lives in page-articles.js
+  return PAGE_MODULES[route] || null;
+}
+
+// One injected <script> per file per session; repeated calls share the promise.
+const loadedScripts = {};
+function loadScriptOnce(src) {
+  if (!loadedScripts[src]) {
+    loadedScripts[src] = new Promise((resolve, reject) => {
+      const el = document.createElement("script");
+      el.src = `${src}?v=${ASSET_VERSION}`;
+      el.onload = () => resolve();
+      el.onerror = () => reject(new Error(`failed to load ${src}`));
+      document.head.appendChild(el);
+    });
+  }
+  return loadedScripts[src];
+}
+
+async function ensureRoute(route) {
+  const mod = routeModule(route);
+  if (!mod) return;
+  for (const src of mod.scripts) await loadScriptOnce(src);
+  const missing = mod.globals.filter((n) => typeof window[n] === "undefined");
+  if (missing.length) throw new Error(`route "${route}" loaded but did not register: ${missing.join(", ")}`);
+}
+
+// Warm every remaining bundle once the reader shows intent (first interaction).
+// Crawlers and Lighthouse never trigger this, so lab metrics reflect the lean
+// boot; real readers get instant SPA navigation from the second click on.
+function prefetchAllModules() {
+  Object.values(PAGE_MODULES).forEach((mod) => {
+    mod.scripts.forEach((src) => loadScriptOnce(src).catch(() => {}));
+  });
 }
 
 // Map old hash URLs (#a:slug, #cat:slug, #foo) to the new route keys.
@@ -135,6 +238,23 @@ function faqLd(pairs) {
 function buildSeo(route) {
   const path = routeToPath(route);
   const url = `${SITE_ORIGIN}${path}`;
+
+  // Not-found: noindex so soft-404s never become indexable homepage clones.
+  // The edge Worker (edge/seo.js) additionally serves these with a 404 status.
+  if (!routeExists(route)) {
+    return {
+      title: `Page not found — ${SITE_NAME}`,
+      description:
+        "That page does not exist on The Talus Field. The articles index, planning guide, and trip planner map are good places to reorient.",
+      canonical: url,
+      ogType: "website",
+      image: SITE_DEFAULT_IMAGE,
+      jsonLd: null,
+      breadcrumb: null,
+      faq: null,
+      robots: "noindex, follow",
+    };
+  }
 
   // Article
   if (route.startsWith("a:")) {
@@ -461,6 +581,13 @@ function buildSeo(route) {
       ogType: "website",
       breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Conditions", null]],
     },
+    now: {
+      title: `This Week in the Park — the weekly Yosemite dispatch — ${SITE_NAME}`,
+      description:
+        "A short weekly note on what Yosemite is actually doing right now: what's open, what's flowing, what's blooming, and what changed. Written from inside the park.",
+      ogType: "website",
+      breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["This Week in the Park", null]],
+    },
     itineraries: {
       title: `Yosemite Itineraries — day plans on the map — ${SITE_NAME}`,
       description:
@@ -534,7 +661,7 @@ function applySeo(route) {
   document.title = seo.title;
   setMeta("description", seo.description);
   setLink("canonical", seo.canonical);
-  // Per-route robots override (e.g. /map ships with noindex while hidden).
+  // Per-route robots override (the not-found route ships noindex).
   setMeta("robots", seo.robots || DEFAULT_ROBOTS);
 
   // Open Graph
@@ -577,6 +704,36 @@ function applySeo(route) {
   else if (seoApplied) clearJsonLd("ld-faq");
 
   seoApplied = true;
+}
+
+// ============================================================
+// Not found. Rendered for unknown paths, dead article slugs, and unknown
+// sections; buildSeo pairs it with a noindex robots tag, and edge/seo.js
+// serves the same routes with a real 404 status for crawlers.
+// ============================================================
+function NotFoundPage({ go }) {
+  return (
+    <div className="page">
+      <div className="page-head">
+        <div className="wrap wrap--narrow">
+          <div className="eyebrow eyebrow--moss">Off the trail</div>
+          <h1>Page not found</h1>
+          <p className="lede">
+            There is nothing at this address. The link may be old, or the page
+            may have moved.
+          </p>
+        </div>
+      </div>
+      <div className="wrap wrap--narrow" style={{ paddingBottom: 64 }}>
+        <p>
+          Good places to reorient:{" "}
+          <a href="/articles" onClick={(e) => { e.preventDefault(); go("articles"); }}>the articles index</a>,{" "}
+          <a href="/planning" onClick={(e) => { e.preventDefault(); go("planning"); }}>the planning guide</a>, or{" "}
+          <a href="/map" onClick={(e) => { e.preventDefault(); go("map"); }}>the trip planner map</a>.
+        </p>
+      </div>
+    </div>
+  );
 }
 
 // ============================================================
@@ -646,11 +803,18 @@ function App() {
     return () => document.removeEventListener("click", onClick, { capture: true });
   }, []);
 
-  // Browser back/forward.
+  // Browser back/forward. The target route's bundle is awaited before the
+  // route state commits (usually a no-op: bundles are prefetched on first
+  // interaction); if it can't be fetched, a full reload retries from scratch.
   useEffect(() => {
     const onPop = () => {
-      setRoute(pathToRoute(window.location.pathname));
-      window.scrollTo({ top: 0 });
+      const r = pathToRoute(window.location.pathname);
+      ensureRoute(r)
+        .then(() => {
+          setRoute(r);
+          window.scrollTo({ top: 0 });
+        })
+        .catch(() => window.location.reload());
     };
     window.addEventListener("popstate", onPop);
     return () => window.removeEventListener("popstate", onPop);
@@ -661,8 +825,15 @@ function App() {
     if (path !== window.location.pathname) {
       window.history.pushState({ route: r }, "", path);
     }
-    setRoute(r);
-    window.scrollTo({ top: 0 });
+    // The URL updates immediately; the previous page stays rendered for the
+    // (usually zero) beat the target bundle takes to arrive. A fetch failure
+    // falls back to a full navigation, which retries everything.
+    ensureRoute(r)
+      .then(() => {
+        setRoute(r);
+        window.scrollTo({ top: 0 });
+      })
+      .catch(() => window.location.assign(path));
   };
 
   // Tweaks
@@ -672,65 +843,85 @@ function App() {
     document.documentElement.setAttribute("data-density", tweaks.density);
   }, [tweaks.palette, tweaks.density]);
 
-  // Route resolution
+  // Route resolution. Page components are read from window (each lazy bundle
+  // registers its component there); ensureRoute guarantees they exist before
+  // the route state commits, and the readiness guard below catches the only
+  // remaining gap (a bundle that failed at boot).
+  const mod = routeModule(route);
+  const routeReady = !mod || mod.globals.every((n) => typeof window[n] !== "undefined");
   let page;
   let currentNav = "home";
-  if (route === "home") {
-    page = <HomePage go={go} />;
+  if (!routeReady) {
+    page = (
+      <div className="page">
+        <div className="wrap wrap--narrow" style={{ padding: "64px 0" }}>
+          <p>
+            This page failed to load.{" "}
+            <a href={routeToPath(route)}>Try again</a>.
+          </p>
+        </div>
+      </div>
+    );
+  } else if (!routeExists(route)) {
+    page = <NotFoundPage go={go} />;
+  } else if (route === "home") {
+    page = <window.HomePage go={go} />;
     currentNav = "home";
   } else if (route === "about") {
-    page = <AboutPage go={go} />;
+    page = <window.AboutPage go={go} />;
     currentNav = "about";
   } else if (route === "kit") {
-    page = <KitPage go={go} />;
+    page = <window.KitPage go={go} />;
     currentNav = "kit";
   } else if (route === "places") {
-    page = <PlacesPage go={go} />;
+    page = <window.PlacesPage go={go} />;
     currentNav = "places";
   } else if (route === "films") {
-    page = <FilmsPage />;
+    page = <window.FilmsPage />;
     currentNav = "films";
   } else if (route === "advertise") {
-    page = <AdvertisePage go={go} />;
+    page = <window.AdvertisePage go={go} />;
   } else if (route === "articles") {
-    page = <ArticlesIndex go={go} />;
+    page = <window.ArticlesIndex go={go} />;
     currentNav = "articles";
   } else if (route === "planning") {
-    page = <PlanningGuide go={go} />;
+    page = <window.PlanningGuide go={go} />;
     currentNav = "articles";
   } else if (route === "checklist") {
-    page = <ChecklistPage go={go} />;
+    page = <window.ChecklistPage go={go} />;
     currentNav = "articles";
   } else if (route.startsWith("cat:")) {
-    page = <CategoryPage slug={route.slice(4)} go={go} />;
+    page = <window.CategoryPage slug={route.slice(4)} go={go} />;
     currentNav = "articles";
   } else if (route.startsWith("a:")) {
-    page = <ArticlePage slug={route.slice(2)} go={go} />;
+    page = <window.ArticlePage slug={route.slice(2)} go={go} />;
     currentNav = "articles";
   } else if (route === "newsletter") {
-    page = <NewsletterPage go={go} />;
+    page = <window.NewsletterPage go={go} />;
     currentNav = "newsletter";
   } else if (route === "contact") {
-    page = <ContactPage go={go} />;
+    page = <window.ContactPage go={go} />;
     currentNav = "contact";
   } else if (route === "privacy") {
-    page = <PrivacyPage />;
+    page = <window.PrivacyPage />;
   } else if (route === "terms") {
-    page = <TermsPage />;
+    page = <window.TermsPage />;
   } else if (route === "affiliate") {
-    page = <AffiliatePage />;
+    page = <window.AffiliatePage />;
   } else if (route === "guide") {
-    page = <GuidePage go={go} />;
+    page = <window.GuidePage go={go} />;
   } else if (route === "itineraries") {
-    page = <ItinerariesPage go={go} />;
+    page = <window.ItinerariesPage go={go} />;
     // currentNav stays "home" so no nav link highlights, matching /map.
   } else if (route === "conditions") {
-    page = <ConditionsPage go={go} />;
+    page = <window.ConditionsPage go={go} />;
+  } else if (route === "now") {
+    page = <window.NowPage go={go} />;
   } else if (route === "map") {
-    page = <MapPage go={go} />;
+    page = <window.MapPage go={go} />;
     // currentNav stays "home" so no nav link highlights.
   } else {
-    page = <HomePage go={go} />;
+    page = <NotFoundPage go={go} />;
   }
 
   // Exit-intent newsletter modal, mounted site-wide (outside the keyed <main>
@@ -778,24 +969,17 @@ function App() {
 window.routeToPath = routeToPath;
 window.SITE_ORIGIN = SITE_ORIGIN;
 
-// Boot-time registration check. Every component the route chain above
-// references must already be on window because each page script registers
-// itself as a global. Without this, one script that 404s or fails its Babel
-// transform surfaces only as a bare ReferenceError when its route renders.
-// Render proceeds either way; the failure just stops being anonymous.
+// Boot-time registration check for the EAGER shell only (components.jsx and
+// tweaks-panel.jsx). Page components are lazy-loaded per route and verified by
+// ensureRoute after each load, so they are deliberately absent here.
 const REQUIRED_GLOBALS = [
   "Header", "Footer", "ExitIntentNewsletter",
-  "HomePage", "AboutPage", "ArticlesIndex", "CategoryPage", "ArticlePage",
-  "KitPage", "PlacesPage", "AdvertisePage", "GuidePage", "MapPage", "FilmsPage",
-  "ItinerariesPage", "ConditionsPage",
-  "PlanningGuide", "ChecklistPage", "NewsletterPage", "ContactPage",
-  "PrivacyPage", "TermsPage", "AffiliatePage",
   "TweaksPanel", "useTweaks", "TweakSection", "TweakRadio",
 ];
 const missingGlobals = REQUIRED_GLOBALS.filter((n) => typeof window[n] === "undefined");
 if (missingGlobals.length) {
   console.error(
-    "app.jsx boot: missing page globals (a script failed to load or register):",
+    "app.jsx boot: missing shell globals (a script failed to load or register):",
     missingGlobals.join(", ")
   );
   if (window.location.hostname === "localhost") {
@@ -806,14 +990,37 @@ if (missingGlobals.length) {
   }
 }
 
-ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+// Boot. Load the initial route's page bundle, then render. The route
+// computation mirrors App's useState initializer (including the legacy-hash
+// translation) so the awaited bundle is always the one App will render.
+const bootRoute = (() => {
+  if (window.location.hash && window.location.pathname === "/") {
+    const fromHash = legacyHashToRoute(window.location.hash);
+    if (fromHash) return fromHash;
+  }
+  return pathToRoute(window.location.pathname);
+})();
 
-// The static SEO <h1> in index.html exists for non-JS HTML parsers. Now that
-// React is mounting its own per-route <h1>, remove it so JS-rendering crawlers
-// (Google) and JS users see exactly one H1 per page.
-document.getElementById("seo-static-h1")?.remove();
+ensureRoute(bootRoute)
+  .catch((e) => console.error("app.jsx boot: initial route bundle failed:", e))
+  .then(() => {
+    ReactDOM.createRoot(document.getElementById("root")).render(<App />);
 
-// The edge middleware injects prerendered article prose into #root as
-// #prerender-prose for non-JS crawlers. createRoot().render() above already
-// replaces #root's children; remove it explicitly too so it never flashes.
-document.getElementById("prerender-prose")?.remove();
+    // The static SEO <h1> in index.html exists for non-JS HTML parsers. Now
+    // that React is mounting its own per-route <h1>, remove it so JS-rendering
+    // crawlers (Google) and JS users see exactly one H1 per page.
+    document.getElementById("seo-static-h1")?.remove();
+
+    // The edge middleware injects prerendered prose into #root as
+    // #prerender-prose for non-JS crawlers. createRoot().render() above
+    // already replaces #root's children; remove it explicitly too so it never
+    // flashes.
+    document.getElementById("prerender-prose")?.remove();
+
+    // Warm the remaining page bundles on the reader's first interaction so
+    // SPA navigation is instant, without taxing first paint or lab metrics.
+    const warm = () => prefetchAllModules();
+    ["pointerdown", "keydown", "touchstart", "scroll"].forEach((ev) =>
+      window.addEventListener(ev, warm, { once: true, passive: true })
+    );
+  });
