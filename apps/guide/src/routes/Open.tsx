@@ -17,9 +17,10 @@ export default function Open() {
   const token = params.get('token')
   // Derive the "missing token" case during render rather than setState in effect.
   const error = token ? apiError : 'Missing token in URL.'
-  // The exchange token is single-use; one POST per token, ever. StrictMode
-  // double-invokes this effect in dev, and this ref (not effect cleanup) is
-  // what stops the second network call from burning the token.
+  // One POST per token per mount. The Worker keeps the token valid until the
+  // buyer's access expires (so the emailed link keeps working across devices),
+  // but StrictMode double-invokes this effect in dev, and this ref (not effect
+  // cleanup) is what stops a redundant second exchange call.
   const attempted = useRef<string | null>(null)
 
   useEffect(() => {
@@ -28,10 +29,10 @@ export default function Open() {
     // No cancellation here, deliberately. The `attempted` ref means only the
     // FIRST effect run ever fires the POST; under StrictMode's mount-unmount-
     // mount the second run early-returns, so a cleanup flag from run one would
-    // permanently strand a successful exchange (token burnt server-side, page
-    // stuck on "Signing you in…"). Completing sign-in after an unmount is the
-    // desired outcome anyway: setState on an unmounted component is a no-op,
-    // and navigate stays valid because it belongs to the router.
+    // discard a successful exchange and leave the page stuck on "Signing you
+    // in…". Completing sign-in after an unmount is the desired outcome anyway:
+    // setState on an unmounted component is a no-op, and navigate stays valid
+    // because it belongs to the router.
     apiFetch<ExchangeResponse>('/api/auth/exchange', {
       method: 'POST',
       body: JSON.stringify({ token }),
@@ -39,7 +40,7 @@ export default function Open() {
       .then((res) => {
         signIn(res.jwt)
         // First sign-in on this device goes through the setup page. replace,
-        // so Back never replays the burnt single-use token.
+        // so Back never re-runs the exchange.
         navigate(isOnboarded() ? '/' : '/welcome', { replace: true })
       })
       .catch((err) => {

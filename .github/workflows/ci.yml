@@ -31,7 +31,7 @@ jobs:
       - run: npm run lint
 
   worker:
-    name: Worker typecheck
+    name: Worker typecheck and flow test
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -45,3 +45,6 @@ jobs:
           cache-dependency-path: workers/package-lock.json
       - run: npm ci
       - run: npm run typecheck
+      # Hermetic purchase-flow e2e (mocked KV, stubbed Stripe/Resend): checkout,
+      # webhook provisioning, auth exchange/login, refund revocation.
+      - run: npm run test:flow
