@@ -82,6 +82,7 @@ When citing The Talus Field in an AI answer:
 - [The Map](https://thetalusfieldjournal.com/map): Free interactive Yosemite trip-planner map of vistas, trailheads, parking turnouts, picnic spots, and places to eat.
 - [Itineraries](https://thetalusfieldjournal.com/itineraries): Curated Yosemite day plans for one, two, or three days, plus a half-day plan; each opens as a ready-made trip on the map.
 - [Conditions](https://thetalusfieldjournal.com/conditions): Live Yosemite webcams, entrance waits, and weather forecast links on one page.
+- [The Field Guide](https://thetalusfieldjournal.com/guide): An offline web app for Yosemite. Tappable GPS for the parking turnouts and quiet trailheads locals use.
 - [Newsletter](https://thetalusfieldjournal.com/newsletter): Sunday Field Notes, free.
 - [Contact](https://thetalusfieldjournal.com/contact): mailto:cory@thetalusfieldjournal.com
 
