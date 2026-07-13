@@ -9,8 +9,8 @@
 
 export type PhotoCredit = {
   author: string // "Diliff" or "NPS / Damon Joyce"
-  license: string // "Public domain" | "CC0" | "CC BY 4.0" | "CC BY-SA 4.0" | "All rights reserved"
-  source: string // Commons file page or nps.gov page; empty for house photography
+  license: string // "Public domain" | "CC0" | "CC BY 4.0" | "CC BY-SA 4.0" | "Pexels License" | "All rights reserved"
+  source: string // Commons file page, nps.gov page, or Pexels photo page; empty for house photography
 }
 
 // BEGIN GENERATED
@@ -21,6 +21,8 @@ export const PHOTO_CREDITS: Record<string, PhotoCredit> = {
 
 /** One-line courtesy credit for a plate caption. */
 export function formatCredit(c: PhotoCredit): string {
+  // Pexels asks for a photographer/source mention, not a license name.
+  if (c.license.toLowerCase() === 'pexels license') return `Photo: ${c.author} / Pexels`
   const license = c.license.toLowerCase() === 'public domain' ? 'public domain' : c.license
   return `Photo: ${c.author}, ${license}`
 }
