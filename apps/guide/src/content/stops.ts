@@ -63,7 +63,7 @@ const seed: StopInput[] = [
     order: 2,
     kind: 'drive',
     timeBudgetMin: 60,
-    photos: [{ src: '/photos/el-capitan-winter.jpg', caption: 'El Capitan from Northside Drive along the valley loop.' }],
+    photos: [{ src: '/photos/valley-loop-drive.jpg', caption: 'El Capitan from Northside Drive along the valley loop.' }],
     teaser:
       'A slow eastbound preview of the valley floor: Bridalveil parking, Cathedral Beach, the Swinging Bridge, Sentinel Beach. Don\'t commit to a hike yet.',
     body:
@@ -110,7 +110,7 @@ const seed: StopInput[] = [
     coord: [-119.6451, 37.7238], // TODO: verify on the ground — unsigned dirt pullout (V9), Northside Dr; trip reports match this spot but no source publishes the coord (2026-07 web pass; same pin as old-road-trailhead-pullout)
     elevationFt: 4000,
     timeBudgetMin: 240,
-    photos: [{ src: '/photos/cathedral-rocks.jpg', caption: 'Cathedral Rocks, visible across the valley from the old road.' }],
+    photos: [{ src: '/photos/old-big-oak-flat-road.jpg', caption: 'Cathedral Rocks, visible across the valley from the old road.' }],
     teaser:
       'Climb the abandoned 1874 wagon road from a dirt pullout on Northside Drive: hand-stacked walls, stagecoach switchbacks, and almost nobody on them. Half a day, easy.',
     body:
@@ -131,6 +131,7 @@ const seed: StopInput[] = [
       'The unsigned dirt pullout on Northside Drive where the old road climb starts. It holds four or five cars; this pin exists so you can drive straight to it.',
     body:
       'The dirt pullout on Northside Drive, between the Pohono Bridge and El Capitan, on the north side of the road. It holds four or five cars and has no sign worth the name; the tell is the old roadbed angling up into the trees behind it. This pin exists so you can navigate straight to it instead of hunting for it at 15 mph with traffic behind you.\n\nIf it\'s full, park at the Bridalveil Fall lot a quarter mile east and walk back along Northside Drive. Adds fifteen minutes each way. From the pullout, the climb starts immediately: see [Old Big Oak Flat Road and Ribbon Fall](/stop/old-big-oak-flat-road) for the day itself.',
+    photos: [{ src: '/photos/old-road-trailhead-pullout.jpg' }],
   },
   {
     id: 'rainbow-view-old-road',
@@ -145,6 +146,7 @@ const seed: StopInput[] = [
       'Partway up the old road grade the trees open on Bridalveil Fall from above its rim, the view the stagecoach drivers stopped for. Morning light is best.',
     body:
       'The viewpoint the stagecoach drivers used to stop at. Partway up the old Big Oak Flat Road grade, the trees open and you\'re looking across the valley at Bridalveil Fall from above its rim: the whole ribbon of it, the Cathedral Rocks stacked behind, the Merced threading the valley floor below. In the 1870s this was the first full look at the valley most visitors ever got, and the road was aligned to deliver it. Now nobody\'s here.\n\nThe light is best in the morning, when the south wall is lit and the fall carries its spray rainbow (that\'s the name). Reached only on foot via the old road from [the Northside Drive pullout](/stop/old-road-trailhead-pullout); budget the climb as part of the [Old Big Oak Flat Road half day](/stop/old-big-oak-flat-road).',
+    photos: [{ src: '/photos/rainbow-view-old-road.jpg' }],
   },
   {
     id: 'ribbon-fall-base',
@@ -161,6 +163,7 @@ const seed: StopInput[] = [
       'A 1,612-foot single drop, the tallest waterfall in North America, and it only exists for a few weeks a year. Ribbon Fall is fed entirely by snowmelt off the rim west of El Capitan: it wakes in March, peaks in April and early May, and is usually a stain on the wall by late May. There is no sign, no trail marker, and no crowd.\n\nThe approach leaves the [old Big Oak Flat Road](/stop/old-big-oak-flat-road) and traverses west through talus toward the sound of water. It\'s unmarked and rough, a route rather than a trail; wear real shoes and take your time on the blocks. The amphitheater at the base is loud, cold, and yours. Check the seasonal window before committing the day: in a dry year the show can be over by the first week of May.',
     swap:
       'If the traverse is more than the group wants, Bridalveil Fall runs year-round and its viewing platform is a five-minute paved walk. Same geology lesson, one tenth the effort.',
+    photos: [{ src: '/photos/ribbon-fall-base.jpg' }],
   },
   {
     id: 'foresta-cascades',
@@ -175,6 +178,7 @@ const seed: StopInput[] = [
       'Cascade Creek stairsteps off the north rim just inside the Arch Rock entrance, best in April and May, with the quietest picnic tables on the west end of the valley.',
     body:
       'Where the old Big Oak Flat Road corridor meets the modern one. Cascade Creek comes off the north rim in a long stairstep of whitewater, best in April and May, and the picnic tables along the creek just inside the Arch Rock entrance are the quietest lunch stop on the west end of the valley. If you\'re entering on Highway 140, this is the first place worth stopping; if you\'ve spent the morning on the [old road](/stop/old-big-oak-flat-road), it\'s the closing move.\n\nAbove the rim sits Foresta, the small private inholding the 1990 A-Rock fire burned through; the meadow there is a wildflower show in June and one of the park\'s better deer and bear sightlines at dusk. The Foresta road leaves Big Oak Flat Road (the modern highway) near Crane Flat.',
+    photos: [{ src: '/photos/foresta-cascades.jpg' }],
   },
   {
     id: 'el-capitan-meadow',
@@ -200,7 +204,7 @@ const seed: StopInput[] = [
     coord: [-119.5600, 37.7393], // verified 2026-07: Mirror Lake trailhead at shuttle stop 17 (NPS/Hikespeak); was mid-trail, ~830 m off
     elevationFt: 4094,
     timeBudgetMin: 90,
-    photos: [{ src: '/photos/half-dome.jpg', caption: 'Half Dome reflected in the still water of Mirror Lake.' }],
+    photos: [{ src: '/photos/mirror-lake.jpg', caption: 'Half Dome reflected in the still water of Mirror Lake.' }],
     teaser:
       'Two flat miles round trip to the closest spot in the valley to Half Dome. Go early, before the breeze erases the reflection.',
     body:
@@ -241,7 +245,7 @@ const seed: StopInput[] = [
     // Source: Yosemite Guide Vol 51 Issue 5 (June 10 - July 14, 2026).
     hazard:
       'Through mid-July 2026 the John Muir Trail is closed between Clark Point and the Panorama Trail junction, and short Panorama Trail closures are possible, which can break this route\'s Panorama descent to Happy Isles. Confirm trail status before committing to the loop.',
-    photos: [{ src: '/photos/vernal-fall.jpg', caption: 'Vernal Fall, one of the two falls the Panorama descent passes.' }],
+    photos: [{ src: '/photos/four-mile-trailhead.jpg', caption: 'Vernal Fall, one of the two falls the Panorama descent passes.' }],
     teaser:
       '3,200 feet and 58 switchbacks from the valley floor to Glacier Point. There is no water anywhere on the trail; start at dawn with three liters.',
     body:
@@ -262,6 +266,7 @@ const seed: StopInput[] = [
       'The 1927 lobby and Great Lounge are open to anyone. Walk through, sit by the 24-foot fireplace, order a drink at the bar. No reservation needed.',
     body:
       'You don\'t have to be a guest. The lobby and Great Lounge are open to the public. Walk through. The 1927 building is a national historic landmark — Native American motifs, exposed beams, a 24-foot fireplace. Sit by the fire if it\'s lit. Order a drink at the bar. The dining room requires reservations and dress code; the bar doesn\'t. This is the kind of place worth spending an hour in just to absorb.',
+    photos: [{ src: '/photos/ahwahnee-hotel.jpg' }],
   },
   {
     id: 'sentinel-bridge-sunset',
@@ -291,6 +296,7 @@ const seed: StopInput[] = [
       'Tent cabins or wood cabins, your call. The tent cabins have history (this is the original 1899 camp); the wood cabins have insulation. Either way, the location is what you\'re paying for: walking distance to the dining hall, the shuttle stop, and the trailhead for Mist Trail in the morning. For a multi-night trip, stay all your nights here — the time you save on packing each morning is worth more than the variety. Reservations open thirteen months out and the good months sell in minutes.',
     swap:
       'If Curry is full: Yosemite Valley Lodge or the Ahwahnee are the in-park alternates. Outside the park: El Portal (closest, 30 min), Mariposa (45 min, more options), or Groveland (north entrance side, 1 hr to valley).',
+    photos: [{ src: '/photos/curry-village.jpg' }],
   },
   {
     id: 'curry-village-pizza',
@@ -304,6 +310,7 @@ const seed: StopInput[] = [
       'The pizza patio is right where you land off the Mist Trail: fast, good after a hike, no reservation. The Loft has the better menu if you have patience.',
     body:
       'You\'ll be hungry off the Mist Trail. The Curry Village pizza patio is right there, fast, and good after a hike. Loft has a slightly better menu if you have patience. The Ahwahnee dining room is available for lunch but you\'ll need a reservation and you\'ll want to clean up first.',
+    photos: [{ src: '/photos/curry-village-pizza.jpg' }],
   },
 
   // ---------------------------------------------------------------------------
@@ -321,7 +328,7 @@ const seed: StopInput[] = [
     coord: [-119.6697, 37.7135], // TODO: verify on the ground — GNIS (37.7121, -119.6749) conflicts with trail-guide geometry (~-119.667); current pin sits between the candidates (2026-07 web pass)
     elevationFt: 4700,
     timeBudgetMin: 120,
-    photos: [],
+    photos: [{ src: '/photos/artist-point.jpg' }],
     teaser:
       'Two miles round trip on the abandoned stagecoach grade above Tunnel View to the spot where the first published drawing of the valley was made in 1855.',
     body:
@@ -339,7 +346,7 @@ const seed: StopInput[] = [
     coord: [-119.5929, 37.7565], // verified 2026-07: Yosemite Point rim, 6,936 ft (OSM + Yosemite SAR dataset); was ~220 m off
     elevationFt: 6936,
     timeBudgetMin: 480,
-    photos: [],
+    photos: [{ src: '/photos/yosemite-point.jpg' }],
     hazard:
       'Past the railed overlook the rim is bare, unrailed granite over a vertical drop. Keep a body length back from the edge; the view does not improve past that line.',
     teaser:
@@ -359,7 +366,7 @@ const seed: StopInput[] = [
     coord: [-119.6149, 37.7458], // verified 2026-07: Eagle Peak summit (GNIS/OSM); was ~890 m off, on the canyon slope
     elevationFt: 7779,
     timeBudgetMin: 510,
-    photos: [],
+    photos: [{ src: '/photos/eagle-peak.jpg' }],
     hazard:
       'The summit blocks end in open air with no railings anywhere past the falls overlook. No water on the upper mountain in summer; carry three liters.',
     teaser:
@@ -379,7 +386,7 @@ const seed: StopInput[] = [
     coord: [-119.5446, 37.7530], // TODO: verify on the ground — junction derived from the NPS route description; no published coord (2026-07 web pass)
     elevationFt: 4100,
     timeBudgetMin: 360,
-    photos: [],
+    photos: [{ src: '/photos/snow-creek-trail.jpg' }],
     hazard:
       'The switchbacks are shadeless by mid-morning and there is no water between Tenaya Creek and Snow Creek. Do not leave the trail toward Tenaya Canyon; the gorge below is technical terrain where hikers have died.',
     teaser:
@@ -400,7 +407,7 @@ const seed: StopInput[] = [
     coord: [-119.529914, 37.759413], // user-provided GPS — TODO: verify on the ground
     elevationFt: 4300,
     timeBudgetMin: 180,
-    photos: [],
+    photos: [{ src: '/photos/three-chutes-falls.jpg' }],
     hazard:
       'The crossings above Mirror Lake are fords, not bridges. In May and June the current is fast and cold enough to knock an adult down; if the water is over your knees, this is a viewpoint, not a swim. Do not continue past the falls into upper Tenaya Canyon.',
     teaser:
@@ -421,7 +428,7 @@ const seed: StopInput[] = [
     coord: [-119.5915, 37.7452], // verified 2026-07: Cook's Meadow floor viewing ground (lot-scale)
     elevationFt: 4000,
     timeBudgetMin: 90,
-    photos: [],
+    photos: [{ src: '/photos/valley-ephemeral-falls.jpg' }],
     teaser:
       'Sentinel Fall, Staircase Falls, Royal Arch Cascade, Lehamite: the valley\'s second set of waterfalls, running a few weeks each spring beside famous neighbors.',
     body:
@@ -440,7 +447,7 @@ const seed: StopInput[] = [
     coord: [-119.6773, 37.7156], // verified 2026-07: viewed from the Tunnel View overlook (same pin as tunnel-view)
     elevationFt: 4400,
     timeBudgetMin: 45,
-    photos: [],
+    photos: [{ src: '/photos/widows-tears-silver-strand.jpg' }],
     teaser:
       'Stand at Tunnel View and look right instead: Silver Strand drops 560 feet at the west end, and Widow\'s Tears runs nearly 1,200 for a few weeks of hard snowmelt.',
     body:
@@ -492,7 +499,7 @@ const seed: StopInput[] = [
     coord: [-119.5861, 37.7124], // verified 2026-07: Sentinel Dome / Taft Point shared lot, Glacier Point Rd mile 13.6 (NPS/Hikespeak)
     elevationFt: 7500,
     timeBudgetMin: 90,
-    photos: [],
+    photos: [{ src: '/photos/taft-point.jpg' }],
     teaser:
       'A gentle 2.2 miles to the Fissures and an unrailed 3,000-foot drop, with El Capitan in profile across the void. The view from twenty feet back is just as good.',
     body:
@@ -511,7 +518,7 @@ const seed: StopInput[] = [
     coord: [-119.5731, 37.7205], // verified 2026-07: Washburn Point pullout, Glacier Point Rd mile 15.5 (LOC HAER survey/Hikespeak); was ~80 m east
     elevationFt: 7850,
     timeBudgetMin: 30,
-    photos: [{ src: '/photos/half-dome.jpg', caption: 'Half Dome. Washburn Point shows it in full profile, falls stacked below.' }],
+    photos: [{ src: '/photos/washburn-point.jpg', caption: 'Half Dome. Washburn Point shows it in full profile, falls stacked below.' }],
     teaser:
       'The big pullout a mile before Glacier Point, with the better Half Dome: full profile, Vernal and Nevada Falls stacked below. Stop here first.',
     body:
@@ -532,7 +539,7 @@ const seed: StopInput[] = [
     body:
       'Half Dome at eye level. The valley floor 3,200 feet below. The waterfalls visible end-to-end. Avoid noon to four — the parking is brutal and the light is flat. Late afternoon (4:30 p.m. onward) the lot empties, the light turns warm, and you can sit on the wall and watch the shadow climb Half Dome. Stay through sunset if you can; the drive back to the valley in the dark is fine, just slow. If a ranger is giving an evening talk (most weekends June through August), stay for it — they\'re short and they\'re good.\n\n' +
       'One more note on timing across the calendar: Glacier Point Road is plowed open only after winter, typically sometime in May, and the first weeks of the season are the quiet ones. The lot is easy, the amenities are skeletal, water may not be running yet, and the high country you\'re looking at east of here still reads as full winter while the Valley below has gone green. Snow lines the trailheads and the shaded meadows into late spring. It\'s the rare stretch when this overlook feels like a place you found rather than a place everyone\'s been. Check the Park Service road-status page the night before, bring your own water, and go early.',
-    photos: [{ src: '/photos/half-dome.jpg', caption: 'Half Dome at eye level from the Glacier Point wall.' }],
+    photos: [{ src: '/photos/glacier-point.jpg', caption: 'Half Dome at eye level from the Glacier Point wall.' }],
     swap:
       'If parking is hopeless, the Four-Mile Trail goes from Glacier Point down to the valley floor (4.8 miles, 3,200 ft loss). Park one car at the bottom, drive the other up. Knees take the hit, not your patience.',
   },
@@ -552,6 +559,7 @@ const seed: StopInput[] = [
       'Those black fire scars on the big trunks aren\'t damage, they\'re a health record. A mature sequoia\'s bark runs up to two feet thick, fibrous and rich in tannin, so it barely conducts heat: a ground fire chars the surface, and the char itself insulates the living wood while the thinner-barked white fir and incense cedar nearby die. The tree needs those fires. Its seeds are no bigger than an oat seed and require the bare, ash-enriched mineral soil and sunlight a burn opens up. After a century and a half of suppression left the groves crowded and declining, the park now sets careful low-intensity burns in Mariposa to do what fire always did here.',
     swap:
       'If you have stamina, the Guardians Loop (6.5 miles, 1,200 ft) takes you up to the upper grove. Most visitors don\'t make it that far, which is the point.',
+    photos: [{ src: '/photos/mariposa-grove.jpg' }],
   },
 
   // ---------------------------------------------------------------------------
@@ -569,7 +577,7 @@ const seed: StopInput[] = [
     coord: [-119.6282, 37.6705], // verified 2026-07: Dewey Point access is the McGurk Meadow lot since the 2022 repave (same pin as mcgurk-meadow); was ~1 km off
     elevationFt: 7300,
     timeBudgetMin: 420,
-    photos: [],
+    photos: [{ src: '/photos/crocker-stanford-points.jpg' }],
     hazard:
       'The rim at all three points is bare, unrailed granite over a vertical drop. The safe seat is a body length back from the edge; the view is the same.',
     teaser:
@@ -590,7 +598,7 @@ const seed: StopInput[] = [
     coord: [-119.6282, 37.6705], // verified 2026-07: McGurk Meadow trailhead lot, Glacier Point Rd mile 7.5 (NPS/Trailforks); was ~1.1 km off
     elevationFt: 7000,
     timeBudgetMin: 100,
-    photos: [],
+    photos: [{ src: '/photos/mcgurk-meadow.jpg' }],
     teaser:
       'An easy 3.7 miles round trip to a pocket meadow with one of the park\'s best wildflower shows and an 1890s sheepherder\'s cabin at the door.',
     body:
@@ -608,7 +616,7 @@ const seed: StopInput[] = [
     coord: [-119.6202, 37.6600], // TODO: verify on the ground — pin on the campground access road matches the body; no source pins a specific pullout (2026-07 web pass)
     elevationFt: 7000,
     timeBudgetMin: 150,
-    photos: [],
+    photos: [{ src: '/photos/bridalveil-creek-trail.jpg' }],
     teaser:
       'A flat walk in lodgepole woods along the creek that later goes over the rim as Bridalveil Fall, and statistically nobody on any of it. The trail for the tired day.',
     body:
@@ -627,7 +635,7 @@ const seed: StopInput[] = [
     coord: [-119.6039, 37.6668], // verified 2026-07: Ostrander Lake trailhead, Glacier Point Rd mile 9 (Hiking Project/Modern Hiker); was ~1.7 km off
     elevationFt: 7000,
     timeBudgetMin: 420,
-    photos: [],
+    photos: [{ src: '/photos/ostrander-lake.jpg' }],
     teaser:
       'Twelve miles round trip to a granite-shored lake under Horse Ridge, past the 1941 ski hut. Gentle first half, 1,600 feet of climbing in the second. A full quiet day.',
     body:
@@ -645,7 +653,7 @@ const seed: StopInput[] = [
     coord: [-119.6567, 37.5359], // TODO: verify on the ground — loop start across Hwy 41 from the Wawona Hotel, derived ±75 m (2026-07 web pass; prior pin was at the hotel itself)
     elevationFt: 4000,
     timeBudgetMin: 120,
-    photos: [],
+    photos: [{ src: '/photos/wawona-meadow-loop.jpg' }],
     teaser:
       'A flat 3.5-mile loop across from the Wawona Hotel, one of the least-visited maintained trails in the park. It is not dramatic. That is the point.',
     body:
@@ -663,7 +671,7 @@ const seed: StopInput[] = [
     coord: [-119.6337, 37.5484], // verified 2026-07: Chilnualna Falls trailhead lot, end of Chilnualna Falls Rd (NPS/Hikespeak); was ~130 m off
     elevationFt: 4200,
     timeBudgetMin: 360,
-    photos: [],
+    photos: [{ src: '/photos/chilnualna-falls.jpg' }],
     hazard:
       'The granite beside the cascades is water-polished and slick, and the current above the drops is faster than it looks. People have died sliding here. Watch the falls from the trail, not from the rocks beside the water.',
     teaser:
@@ -690,7 +698,7 @@ const seed: StopInput[] = [
       '47 miles from Crane Flat to Tioga Pass at 9,945 feet, fir forest opening into granite domes and meadows. Gas up at Crane Flat; there is none on the road.',
     body:
       '47 miles from Crane Flat to Tioga Pass (9,945 ft). Gas up at Crane Flat — there is no gas on Tioga Road itself. The road climbs through fir forest, then lodgepole pine, then opens into granite domes and meadows. Tioga is closed November through May (sometimes longer). When it opens — late May or early June in 2026 — the first two weeks are extraordinary: snowmelt, no crowds, hardly anyone on the road yet.',
-    photos: [{ src: '/photos/tuolumne-meadows.jpg', caption: 'Tuolumne Meadows, the high-country payoff.' }],
+    photos: [{ src: '/photos/tioga-road-drive.jpg', caption: 'Tuolumne Meadows, the high-country payoff.' }],
   },
   {
     id: 'olmsted-point',
@@ -705,7 +713,7 @@ const seed: StopInput[] = [
       'A short walk from the lot to a granite slab strewn with glacial erratics, Clouds Rest dead ahead and Half Dome over its shoulder, from the back side.',
     body:
       'A short walk from the parking lot to a granite slab pocked with glacial erratics — boulders left here when the ice melted. Cloud\'s Rest dominates the view; Half Dome is visible over its left shoulder, from the back side. This is the geologically literate version of Tunnel View: same valley, viewed from where the glacier stood.',
-    photos: [{ src: '/photos/half-dome.jpg', caption: 'Half Dome from the high country side.' }],
+    photos: [{ src: '/photos/olmsted-point.jpg', caption: 'Half Dome from the high country side.' }],
   },
   {
     id: 'may-lake',
@@ -716,7 +724,7 @@ const seed: StopInput[] = [
     coord: [-119.4912341, 37.8324607], // verified 2026-07: May Lake TH lot, end of the Old Tioga Rd spur (Hikespeak)
     elevationFt: 9329,
     timeBudgetMin: 180,
-    photos: [{ src: '/photos/tuolumne-meadows.jpg', caption: 'The high-country granite and meadow landscape around May Lake.' }],
+    photos: [{ src: '/photos/may-lake.jpg', caption: 'The high-country granite and meadow landscape around May Lake.' }],
     teaser:
       '1.2 well-graded miles each way to a lake at 9,329 feet under Mount Hoffmann. Cold but swimmable on a warm afternoon; the best moderate hike in the high country.',
     body:
@@ -733,7 +741,7 @@ const seed: StopInput[] = [
     coord: [-119.4473, 37.8381], // TODO: verify on the ground — east-beach lot, NE end (NPS picnic-area page), derived ±100 m (2026-07 web pass; prior pin sat mid-lake)
     elevationFt: 8150,
     timeBudgetMin: 60,
-    photos: [{ src: '/photos/tuolumne-meadows.jpg', caption: 'Open granite and clear high-country water at Tenaya Lake.' }],
+    photos: [{ src: '/photos/tenaya-lake.jpg', caption: 'Open granite and clear high-country water at Tenaya Lake.' }],
     teaser:
       'Granite cliffs, lodgepole shore, and the east beach for lunch on the rocks. The water stays around 55 to 60 degrees even in August; short swims only.',
     body:
@@ -745,7 +753,7 @@ const seed: StopInput[] = [
     region: 'tuolumne',
     order: 5,
     kind: 'trailhead',
-    photos: [{ src: '/photos/tuolumne-meadows.jpg', caption: 'Tuolumne high country — the landscape Cathedral Lakes sits in.' }],
+    photos: [{ src: '/photos/cathedral-lakes.jpg', caption: 'Tuolumne high country — the landscape Cathedral Lakes sits in.' }],
     coord: [-119.3586, 37.8732], // verified 2026-07: Tuolumne Meadows Visitor Center lot (NPS Cathedral Lakes TH page; trailhead relocated here 2022, old roadside parking removed)
     elevationFt: 8560,
     timeBudgetMin: 360,
@@ -782,7 +790,7 @@ const seed: StopInput[] = [
     coord: [-119.258173, 37.9101685], // verified 2026-07: Gaylor Lakes TH lot at the Tioga Pass entrance (NPS/Wikiloc)
     elevationFt: 9945,
     timeBudgetMin: 150,
-    photos: [{ src: '/photos/tuolumne-meadows.jpg', caption: 'High-country terrain near Tioga Pass and the Gaylor Lakes basin.' }],
+    photos: [{ src: '/photos/gaylor-lake.jpg', caption: 'High-country terrain near Tioga Pass and the Gaylor Lakes basin.' }],
     teaser:
       'One steep mile from the Tioga Pass entrance station to a 10,500-foot ridge, then down into the Gaylor Lakes basin. The reward is out of proportion to the distance.',
     body:
@@ -807,7 +815,7 @@ const seed: StopInput[] = [
     coord: [-119.5477, 37.8106], // TODO: verify on the ground — prose sources put the Porcupine Creek TH lot here (south side of Tioga Rd) but no published lot coord (2026-07 web pass)
     elevationFt: 8100,
     timeBudgetMin: 360,
-    photos: [],
+    photos: [{ src: '/photos/north-dome-indian-rock.jpg' }],
     teaser:
       'Nine miles round trip to the only summit that hands you Half Dome\'s full face at eye level, with a twenty-minute detour to Yosemite\'s only natural granite arch.',
     body:
@@ -826,7 +834,7 @@ const seed: StopInput[] = [
     coord: [-119.4700, 37.8256], // verified 2026-07: Sunrise Lakes TH lot, SW end of Tenaya Lake (NPS; matches road-distance geometry from Olmsted Point)
     elevationFt: 8150,
     timeBudgetMin: 480,
-    photos: [],
+    photos: [{ src: '/photos/clouds-rest-tenaya.jpg' }],
     hazard:
       'The summit ridge is narrow with long drops on both sides and is no place in wind, storm, or lightning. Afternoon thunderheads build fast here in July and August; plan to be off the ridge by early afternoon.',
     teaser:
@@ -847,7 +855,7 @@ const seed: StopInput[] = [
     coord: [-119.3390, 37.8783], // verified 2026-07: Dog Lake lot, Tuolumne Meadows Lodge Rd (NPS Lyell Canyon TH page); was ~600 m off, in the meadow
     elevationFt: 8700,
     timeBudgetMin: 240,
-    photos: [],
+    photos: [{ src: '/photos/lyell-canyon.jpg' }],
     hazard:
       'Afternoon thunderstorms are routine in high summer and the canyon floor is open meadow. Check the sky at lunch and be walking back before the anvils build.',
     teaser:
@@ -868,7 +876,7 @@ const seed: StopInput[] = [
     coord: [-119.2627, 37.8909], // verified 2026-07: Mono Pass TH lot at Dana Meadows (yosemitehikes/Trailforks); was ~165 m off
     elevationFt: 9700,
     timeBudgetMin: 300,
-    photos: [],
+    photos: [{ src: '/photos/mono-pass-meadows.jpg' }],
     hazard:
       'The trailhead sits near 9,700 feet and the pass above 10,600. Flatlanders feel it. Pace the first mile, drink more than usual, and turn around if a headache builds.',
     teaser:
@@ -889,7 +897,7 @@ const seed: StopInput[] = [
     coord: [-119.7366, 37.7521], // verified 2026-07: Tamarack Flat Campground road-end (latitude.to/CampingRoadTrip); was ~1.2 km up the spur road
     elevationFt: 6300,
     timeBudgetMin: 600,
-    photos: [],
+    photos: [{ src: '/photos/el-capitan-summit-tamarack.jpg' }],
     hazard:
       'A very long day with no reliable water after early season; carry four liters. The summit rolls toward the face with no railing and no warning, and gusts on the rim are real. Stay well back from the edge.',
     teaser:
@@ -911,7 +919,7 @@ const seed: StopInput[] = [
     kind: 'drive',
     coord: [-119.8760, 37.8120], // TODO: verify on the ground — Evergreen Rd / Hwy 120 junction, triangulated ±150 m (2026-07 web pass; prior pin was SW of the entrance, wrong side)
     timeBudgetMin: 90,
-    photos: [],
+    photos: [{ src: '/photos/evergreen-road-drive.jpg' }],
     teaser:
       'Hetch Hetchy\'s own front door: 16 slow miles from Highway 120 to the dam, gated roughly sunrise to sunset, 25-foot vehicle limit. Budget the whole day out here.',
     body:
@@ -928,7 +936,7 @@ const seed: StopInput[] = [
     coord: [-119.8414, 37.8933], // verified 2026-07: trailhead at the Mather entrance station (GNIS + LOC HAER survey); was ~2 km SE
     elevationFt: 4200,
     timeBudgetMin: 90,
-    photos: [],
+    photos: [{ src: '/photos/lookout-point.jpg' }],
     teaser:
       'Two miles round trip to a bare granite knob above the entrance station: the reservoir, Kolana Rock, and both falls in one frame. April and May are the season.',
     body:
@@ -944,7 +952,7 @@ const seed: StopInput[] = [
     coord: [-119.7886, 37.9464], // verified 2026-07: dam road-end lot, SW abutment (bracketed by the Wikipedia dam-crest and NPS trailhead points)
     elevationFt: 3800,
     timeBudgetMin: 45,
-    photos: [],
+    photos: [{ src: '/photos/oshaughnessy-dam.jpg' }],
     teaser:
       'Walk a quarter mile across the 1923 dam to a tunnel hand-cut through the cliff, Kolana Rock and Wapama Falls up-canyon. Muir\'s valley floor is still down there.',
     body:
@@ -961,7 +969,7 @@ const seed: StopInput[] = [
     coord: [-119.7875, 37.9465], // verified 2026-07: Wapama/Rancheria trailhead at the dam road-end (NPS place page; same pin as rancheria-falls); was ~340 m off
     elevationFt: 3800,
     timeBudgetMin: 300,
-    photos: [],
+    photos: [{ src: '/photos/wapama-falls-trail.jpg' }],
     teaser:
       'Five rolling miles along the north shore to the footbridges under a 1,000-foot fall. Spring is the show; in peak snowmelt the bridges can close.',
     body:
@@ -987,7 +995,7 @@ const seed: StopInput[] = [
     coord: [-119.8461, 37.7566], // verified 2026-07: Merced Grove trailhead lot, Big Oak Flat Rd (OSM/OuterSpatial); was on the grove itself, 1.5 trail-miles past parking
     elevationFt: 5400,
     timeBudgetMin: 150,
-    photos: [],
+    photos: [{ src: '/photos/merced-grove.jpg' }],
     teaser:
       'The smallest and least-visited of Yosemite\'s three sequoia groves: three miles round trip to a couple dozen giants you stand alone with.',
     body:
@@ -1005,7 +1013,7 @@ const seed: StopInput[] = [
     coord: [-119.7875, 37.9465], // verified 2026-07: same trailhead as wapama-falls-trail (NPS place page)
     elevationFt: 3800,
     timeBudgetMin: 420,
-    photos: [],
+    photos: [{ src: '/photos/rancheria-falls.jpg' }],
     hazard:
       'Rattlesnake country the whole way, poison oak close to the trail, and long stretches of full sun. In peak snowmelt the Wapama bridges can close and end the trip early; check conditions before a May or June start.',
     teaser:
