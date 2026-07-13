@@ -229,6 +229,27 @@ async function writeSelection(file, srcJpgPath, cand) {
   await writeFile(CREDITS_PATH, JSON.stringify(sorted, null, 2) + '\n')
 }
 
+// Auto-fill helper: take the top of an already-downloaded candidate set
+// (`kept` = the meta.json array), normalize it, record the credit, and clean
+// up the candidate dir. Returns true if a slot was filled. Shared by the
+// fresh-fetch and resume-from-existing-candidates paths of `fetch --auto`.
+async function autoSelectTop(file, dir, kept) {
+  const top = Array.isArray(kept) ? kept[0] : null
+  if (!top || !existsSync(path.join(dir, `${top.n}.jpg`))) {
+    console.log(`~ ${file}: candidate dir unreadable — rerun with --force to re-fetch`)
+    return false
+  }
+  try {
+    await writeSelection(file, path.join(dir, `${top.n}.jpg`), top)
+    await rm(dir, { recursive: true, force: true })
+    console.log(`  ✓ auto-filled ${file} (${top.provider ?? '?'}, ${top.author}): ${top.source || top.title}`)
+    return true
+  } catch (err) {
+    console.error(`  ! ${file}: could not normalize top candidate: ${err.message}`)
+    return false
+  }
+}
+
 function slotState(entry) {
   if (entry.reuse) return 'reuse'
   if (existsSync(path.join(PHOTOS_DIR, entry.file))) return 'filled'
@@ -272,6 +293,14 @@ async function cmdFetch(args) {
     if (state === 'reuse') continue
     if (state === 'filled' && !force) continue
     if (state === 'candidates' && !force) {
+      if (auto) {
+        // Resume: candidates already on disk, so auto-select the top one
+        // without re-hitting the network. Makes `fetch --auto` idempotent.
+        const dir = path.join(CANDIDATES_DIR, entry.file)
+        const kept = await readJson(path.join(dir, 'meta.json'), null)
+        if (await autoSelectTop(entry.file, dir, kept)) fetched++
+        continue
+      }
       console.log(`~ ${entry.file}: candidates already downloaded (use --force to redo)`)
       continue
     }
@@ -337,16 +366,7 @@ async function cmdFetch(args) {
     }
 
     if (auto) {
-      const top = kept[0]
-      try {
-        await writeSelection(entry.file, path.join(dir, `${top.n}.jpg`), top)
-        await rm(dir, { recursive: true, force: true })
-        fetched++
-        console.log(`  ✓ auto-filled ${entry.file} (${top.provider}, ${top.author}): ${top.source || top.title}`)
-      } catch (err) {
-        console.error(`  ! ${entry.file}: could not normalize top candidate: ${err.message}`)
-        await rm(dir, { recursive: true, force: true })
-      }
+      if (await autoSelectTop(entry.file, dir, kept)) fetched++
       continue
     }
 
