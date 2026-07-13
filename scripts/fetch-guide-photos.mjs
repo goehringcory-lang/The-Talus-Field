@@ -1,10 +1,14 @@
 #!/usr/bin/env node
 // Photo acquisition pipeline for the Field Guide PWA. Run from this dir:
 //   cd scripts && npm install
-//   node fetch-guide-photos.mjs fetch [--only=<file.jpg>] [--force] [--source=commons,pexels] [--licenses=pd,cc0,cc-by,cc-by-sa]
+//   node fetch-guide-photos.mjs fetch [--only=<file.jpg>[,<file2.jpg>...]] [--force] [--auto] [--source=commons,pexels] [--licenses=pd,cc0,cc-by,cc-by-sa]
 //   node fetch-guide-photos.mjs status
 //   node fetch-guide-photos.mjs select <file.jpg> <candidateNumber>
 //   node fetch-guide-photos.mjs emit-credits
+//
+// To fill every empty slot in one pass (no human review, top candidate per
+// slot): node fetch-guide-photos.mjs fetch --auto  →  npm run images  →
+// node fetch-guide-photos.mjs emit-credits. Spot-check the sources it logs.
 //
 // The flow: `fetch` queries each enabled photo source per entry in
 // data/guide-photo-manifest.json and downloads up to 3 candidates per source
@@ -103,6 +107,19 @@ function licenseClass(shortName, enabled) {
   return null
 }
 
+// Commons ranks maps, engineering drawings (HAER/HABS), and planning
+// documents highly for landmark queries — they're bitmaps that match the
+// place name but aren't photos of it. Reject them by title/category text.
+const NON_PHOTO_RE =
+  /\b(map|maps|HAER|HABS|sheet \d|title sheet|section[- ]?elevation|elevation|floor plan|master plan|survey|geologic(al)? survey|diagram|blueprint|schematic|chart|poster|logo|coat of arms|document|manuscript|newspaper|letter|stamp|banknote)\b/i
+
+function looksLikeNonPhoto(page, meta) {
+  const hay = [page.title, stripHtml(meta.Categories?.value ?? ''), stripHtml(meta.ObjectName?.value ?? '')]
+    .join(' ')
+    .replace(/_/g, ' ') // Commons titles use underscores for spaces; \b needs real spaces
+  return NON_PHOTO_RE.test(hay)
+}
+
 async function commonsSearch(query, enabled) {
   const params = new URLSearchParams({
     action: 'query',
@@ -114,6 +131,7 @@ async function commonsSearch(query, enabled) {
     prop: 'imageinfo',
     iiprop: 'url|extmetadata|size|mime',
     iiurlwidth: String(THUMB_WIDTH),
+    iiextmetadatafilter: 'LicenseShortName|Artist|Categories|ObjectName',
   })
   const res = await fetch(`${COMMONS_API}?${params}`, {
     headers: { 'User-Agent': USER_AGENT },
@@ -130,6 +148,7 @@ async function commonsSearch(query, enabled) {
     const cls = licenseClass(licenseShort, enabled)
     if (!cls) continue
     if (!/jpeg|png/i.test(info.mime ?? '')) continue
+    if (looksLikeNonPhoto(page, meta)) continue // maps, HAER drawings, plans
     if ((info.width ?? 0) < MIN_WIDTH) continue
     if ((info.width ?? 0) <= (info.height ?? 0)) continue // landscape only
     const author = stripHtml(meta.Artist?.value ?? '')
@@ -204,6 +223,48 @@ async function download(url, dest) {
   await writeFile(dest, Buffer.from(await res.arrayBuffer()))
 }
 
+// Normalize a downloaded candidate into the deployed photos dir and record
+// its credit. Shared by `select` (human pick) and `fetch --auto` (top pick).
+async function writeSelection(file, srcJpgPath, cand) {
+  await mkdir(PHOTOS_DIR, { recursive: true })
+  // rotate() honors EXIF orientation before the metadata is dropped by re-encode.
+  await sharp(srcJpgPath)
+    .rotate()
+    .resize({ width: FINAL_MAX_WIDTH, withoutEnlargement: true })
+    .jpeg({ quality: 78, mozjpeg: true })
+    .toFile(path.join(PHOTOS_DIR, file))
+
+  const credits = await readJson(CREDITS_PATH, {})
+  credits[`/photos/${file}`] = {
+    author: cand.author,
+    license: cand.license,
+    source: cand.source,
+  }
+  const sorted = Object.fromEntries(Object.entries(credits).sort(([a], [b]) => a.localeCompare(b)))
+  await writeFile(CREDITS_PATH, JSON.stringify(sorted, null, 2) + '\n')
+}
+
+// Auto-fill helper: take the top of an already-downloaded candidate set
+// (`kept` = the meta.json array), normalize it, record the credit, and clean
+// up the candidate dir. Returns true if a slot was filled. Shared by the
+// fresh-fetch and resume-from-existing-candidates paths of `fetch --auto`.
+async function autoSelectTop(file, dir, kept) {
+  const top = Array.isArray(kept) ? kept[0] : null
+  if (!top || !existsSync(path.join(dir, `${top.n}.jpg`))) {
+    console.log(`~ ${file}: candidate dir unreadable — rerun with --force to re-fetch`)
+    return false
+  }
+  try {
+    await writeSelection(file, path.join(dir, `${top.n}.jpg`), top)
+    await rm(dir, { recursive: true, force: true })
+    console.log(`  ✓ auto-filled ${file} (${top.provider ?? '?'}, ${top.author}): ${top.source || top.title}`)
+    return true
+  } catch (err) {
+    console.error(`  ! ${file}: could not normalize top candidate: ${err.message}`)
+    return false
+  }
+}
+
 function slotState(entry) {
   if (entry.reuse) return 'reuse'
   if (existsSync(path.join(PHOTOS_DIR, entry.file))) return 'filled'
@@ -213,8 +274,16 @@ function slotState(entry) {
 
 async function cmdFetch(args) {
   const manifest = await loadManifest()
-  const only = args.find((a) => a.startsWith('--only='))?.slice(7)
+  // --only=a.jpg,b.jpg limits the run to specific slots (comma-separated).
+  const onlyArg = args.find((a) => a.startsWith('--only='))?.slice(7)
+  const only = onlyArg ? new Set(onlyArg.split(',').map((s) => s.trim()).filter(Boolean)) : null
   const force = args.includes('--force')
+  // --auto: don't stop for human review. Pick the top candidate per slot
+  // (Commons first, then Pexels — the default source order), normalize it,
+  // and record the credit in one pass. Fills every empty slot with one run;
+  // the tradeoff is no eyes-on-target check, so spot-check the sources it
+  // logs (a Pexels landmark query can return a lookalike from another park).
+  const auto = args.includes('--auto')
   const licensesArg =
     args.find((a) => a.startsWith('--licenses='))?.slice(11) ?? DEFAULT_LICENSES
   const enabled = new Set(licensesArg.split(',').map((s) => s.trim()).filter(Boolean))
@@ -236,11 +305,19 @@ async function cmdFetch(args) {
 
   let fetched = 0
   for (const entry of manifest) {
-    if (only && entry.file !== only) continue
+    if (only && !only.has(entry.file)) continue
     const state = slotState(entry)
     if (state === 'reuse') continue
     if (state === 'filled' && !force) continue
     if (state === 'candidates' && !force) {
+      if (auto) {
+        // Resume: candidates already on disk, so auto-select the top one
+        // without re-hitting the network. Makes `fetch --auto` idempotent.
+        const dir = path.join(CANDIDATES_DIR, entry.file)
+        const kept = await readJson(path.join(dir, 'meta.json'), null)
+        if (await autoSelectTop(entry.file, dir, kept)) fetched++
+        continue
+      }
       console.log(`~ ${entry.file}: candidates already downloaded (use --force to redo)`)
       continue
     }
@@ -304,11 +381,22 @@ async function cmdFetch(args) {
       await rm(dir, { recursive: true, force: true })
       continue
     }
+
+    if (auto) {
+      if (await autoSelectTop(entry.file, dir, kept)) fetched++
+      continue
+    }
+
     await writeFile(path.join(dir, 'meta.json'), JSON.stringify(kept, null, 2))
     fetched++
     console.log(`✓ ${entry.file}: ${kept.length} candidate(s) ready for review`)
   }
-  console.log(`\n${fetched} slot(s) fetched. Review candidates, then: node fetch-guide-photos.mjs select <file> <n>`)
+  if (auto) {
+    console.log(`\n${fetched} slot(s) auto-filled. Next: \`npm run images\` for responsive variants, then \`node fetch-guide-photos.mjs emit-credits\`.`)
+    console.log('Spot-check the sources logged above — auto-fill does no eyes-on-target check.')
+  } else {
+    console.log(`\n${fetched} slot(s) fetched. Review candidates, then: node fetch-guide-photos.mjs select <file> <n>`)
+  }
 }
 
 async function cmdStatus() {
@@ -341,22 +429,7 @@ async function cmdSelect(args) {
     process.exit(1)
   }
 
-  await mkdir(PHOTOS_DIR, { recursive: true })
-  // rotate() honors EXIF orientation before the metadata is dropped by re-encode.
-  await sharp(path.join(dir, `${n}.jpg`))
-    .rotate()
-    .resize({ width: FINAL_MAX_WIDTH, withoutEnlargement: true })
-    .jpeg({ quality: 78, mozjpeg: true })
-    .toFile(path.join(PHOTOS_DIR, file))
-
-  const credits = await readJson(CREDITS_PATH, {})
-  credits[`/photos/${file}`] = {
-    author: cand.author,
-    license: cand.license,
-    source: cand.source,
-  }
-  const sorted = Object.fromEntries(Object.entries(credits).sort(([a], [b]) => a.localeCompare(b)))
-  await writeFile(CREDITS_PATH, JSON.stringify(sorted, null, 2) + '\n')
+  await writeSelection(file, path.join(dir, `${n}.jpg`), cand)
   await rm(dir, { recursive: true, force: true })
   console.log(`✓ ${file} ← candidate ${n} (${cand.author}, ${cand.license})`)
   console.log('Run `npm run images` for responsive variants and `node fetch-guide-photos.mjs emit-credits` when done selecting.')
@@ -430,5 +503,7 @@ switch (cmd) {
     break
   default:
     console.log('usage: node fetch-guide-photos.mjs <fetch|status|select|emit-credits|verify> [args]')
+    console.log('  fetch --auto            fill every empty slot with its top candidate (no review)')
+    console.log('  fetch --source=pexels   restrict to one source (default: commons,pexels)')
     process.exit(cmd ? 1 : 0)
 }
