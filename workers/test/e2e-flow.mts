@@ -252,9 +252,23 @@ console.log('\n14. resend access email')
 
 console.log('\n15. refund revokes access')
 {
+  // A refund of some OTHER product sold through the same Stripe account must
+  // not revoke guide access, even when the billing email matches a buyer.
+  const otherProduct = {
+    id: 'evt_refund_other', type: 'charge.refunded',
+    data: { object: { id: 'ch_print_1', billing_details: { email: 'Hiker@Example.com' }, metadata: { product: 'print_sale' } } },
+  }
+  const opBody = JSON.stringify(otherProduct)
+  const op = await call('/api/stripe/webhook', { method: 'POST', body: opBody, headers: { 'stripe-signature': await signWebhook(opBody, env.STRIPE_WEBHOOK_SECRET as string) } })
+  check('other-product refund ignored', op.status === 200 && op.json.ignored === 'refund for other product', op)
+  const stillIn = await call('/api/auth/login', { method: 'POST', body: JSON.stringify({ email: 'hiker@example.com', code }) })
+  check('buyer keeps access after unrelated refund', stillIn.status === 200 && typeof stillIn.json.jwt === 'string', stillIn)
+
+  // Guide charges carry the product tag (createCheckoutSession sets it in
+  // payment_intent_data metadata, which Stripe copies onto the charge).
   const refund = {
     id: 'evt_refund_1', type: 'charge.refunded',
-    data: { object: { id: 'ch_test_123', billing_details: { email: 'Hiker@Example.com' } } },
+    data: { object: { id: 'ch_test_123', billing_details: { email: 'Hiker@Example.com' }, metadata: { product: 'field_guide_2026' } } },
   }
   const body = JSON.stringify(refund)
   const r = await call('/api/stripe/webhook', { method: 'POST', body, headers: { 'stripe-signature': await signWebhook(body, env.STRIPE_WEBHOOK_SECRET as string) } })
@@ -269,7 +283,7 @@ console.log('\n15. refund revokes access')
 
   const orphan = {
     id: 'evt_refund_2', type: 'charge.refunded',
-    data: { object: { id: 'ch_test_456', billing_details: { email: 'nobody@example.com' } } },
+    data: { object: { id: 'ch_test_456', billing_details: { email: 'nobody@example.com' }, metadata: { product: 'field_guide_2026' } } },
   }
   const ob = JSON.stringify(orphan)
   const r2 = await call('/api/stripe/webhook', { method: 'POST', body: ob, headers: { 'stripe-signature': await signWebhook(ob, env.STRIPE_WEBHOOK_SECRET as string) } })
