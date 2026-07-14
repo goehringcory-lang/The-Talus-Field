@@ -20,7 +20,7 @@ const seed: SecretSpotInput[] = [
     order: 1,
     category: 'vistas',
     kind: 'viewpoint',
-    coord: [-119.6657, 37.7167], // TODO: verify (Southside Drive just east of Pohono Bridge)
+    coord: [-119.66500, 37.71556], // verified 2026-07: spring location via findaspring.com + oceanlight.com (Phil Colla); 37°42′56.02″N 119°39′54.00″W; ~500 ft ESE of Pohono Bridge per Gary Hart
     elevationFt: 3900,
     timeBudgetMin: 10,
     body:
@@ -49,7 +49,7 @@ const seed: SecretSpotInput[] = [
     order: 3,
     category: 'after-dark',
     kind: 'viewpoint',
-    coord: [-119.6310, 37.7212], // TODO: verify (same pullout as the daytime El Capitan Meadow stop)
+    coord: [-119.6354, 37.7238], // verified 2026-07: same pullout as el-capitan-meadow stop on Northside Dr (evendo/Expedia, agent review); prior pin was ~480 m SE toward the Merced
     elevationFt: 4000,
     timeBudgetMin: 30,
     body:

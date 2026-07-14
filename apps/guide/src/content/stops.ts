@@ -274,7 +274,7 @@ const seed: StopInput[] = [
     region: 'valley',
     order: 15,
     kind: 'viewpoint',
-    coord: [-119.5898, 37.7425], // verified 2026-07: Sentinel Bridge and its small lot (NPS parking-area page); was ~280 m east
+    coord: [-119.5901, 37.7434], // verified 2026-07: Sentinel Bridge span and lot proper (LOC/HAER CA-94, Gary Hart, agent review); nudged ~105 m north
     elevationFt: 4000,
     timeBudgetMin: 60,
     teaser:
@@ -383,7 +383,7 @@ const seed: StopInput[] = [
     collection: 'hidden',
     category: 'trails',
     difficulty: 'strenuous',
-    coord: [-119.5446, 37.7530], // TODO: verify on the ground — junction derived from the NPS route description; no published coord (2026-07 web pass)
+    coord: [-119.5375, 37.7560], // verified 2026-07: junction ~1.0–1.1 mi past Mirror Lake at Snow Creek confluence/footbridge (GNIS Snow Creek Falls + NPS/yosemiteperegrinelodge route texts); prior pin was ~700 m too far west and short
     elevationFt: 4100,
     timeBudgetMin: 360,
     photos: [{ src: '/photos/snow-creek-trail.jpg' }],
@@ -917,7 +917,7 @@ const seed: StopInput[] = [
     region: 'hetch-hetchy',
     order: 1,
     kind: 'drive',
-    coord: [-119.8760, 37.8120], // TODO: verify on the ground — Evergreen Rd / Hwy 120 junction, triangulated ±150 m (2026-07 web pass; prior pin was SW of the entrance, wrong side)
+    coord: [-119.87518, 37.81508], // verified 2026-07: Evergreen Rd / Hwy 120 junction at road-topology node (OSM/Overture 2026-06, agent verification); moved ~350 m north from prior pin
     timeBudgetMin: 90,
     photos: [{ src: '/photos/evergreen-road-drive.jpg' }],
     teaser:
