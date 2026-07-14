@@ -10,9 +10,9 @@ window.ARTICLE_BODIES["yosemite-heat-safety-guide"] = function YosemiteHeatSafet
       <p>Yosemite Valley sits at roughly 4,000 feet in elevation, which sounds like it should be cool. It isn't. The Valley is a granite box, roughly seven miles long and a mile wide, with walls that rise 3,000 to 4,000 feet on either side. In July and August, daytime highs reach 90 degrees Fahrenheit regularly and occasionally crack 100. The granite absorbs heat all morning, radiates it all afternoon, and doesn't let go until well after dark. There is no sea breeze. There is no lake effect. There is no relief until the sun drops behind the south rim somewhere around 7 PM. Heat is the thing that catches more visitors off guard than anything else, with the possible exception of the altitude. People pack for postcard Yosemite. They should pack for a stone oven. If you're <a href="/articles/first-time-yosemite-overwhelm">planning your first trip</a>, this is the piece most planning guides leave out.</p>
 
       <Placeholder
-        caption="A granite outcrop above Yosemite Valley with El Capitan across the canyon on a hot, cloudless summer afternoon"
-        image="img/yosemite-valley-granite-summer-cory-goehring.jpg"
-        credit="Photo: Cory Goehring"
+        caption="Tenaya Lake in the high country, where the air runs cooler than the Valley floor"
+        image="img/tenaya-lake.jpg"
+        credit="Photo: Michael Hogarth / Wikimedia Commons (public domain)"
         tag="PLATE I"
         size="lg"
         eager
