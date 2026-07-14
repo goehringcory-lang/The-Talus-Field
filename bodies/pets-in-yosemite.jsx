@@ -29,8 +29,9 @@ window.ARTICLE_BODIES["pets-in-yosemite"] = function PetsInYosemiteBody() {
       </p>
 
       <Placeholder
-        caption="A Yosemite meadow in early summer. The Wawona Meadow Loop is one of only two trails where a leashed dog can join you"
-        image="img/wildflowers.jpg"
+        caption="The Wawona Meadow. The Wawona Meadow Loop is one of only two trails where a leashed dog can join you"
+        image="img/wawona-meadow-loop.jpg"
+        credit="Photo: C.C. Pierce / Wikimedia Commons (public domain)"
         tag="PLATE I"
         size="lg"
         style={{ aspectRatio: "16 / 10", margin: "32px 0" }}
