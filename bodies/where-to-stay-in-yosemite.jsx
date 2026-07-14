@@ -6,7 +6,7 @@ window.ARTICLE_BODIES["where-to-stay-in-yosemite"] = function WhereToStayInYosem
   return (
     <>
       <p className="dropcap">
-        The question I field more than any other, after twenty seasons of living and working in this park, is some version of "where should we stay?" And the honest first answer is that <strong>staying inside the park changes the trip</strong> in a way no other single decision does. The people sleeping in the Valley are standing under Yosemite Falls at seven in the morning with the mist still hanging and nobody around. The people sleeping in a gateway town are, at that same moment, sitting in the entrance line. Both groups paid to visit Yosemite. Only one of them is in it when the park is at its best, which is the first two hours and the last two hours of the day. So the case for in-park lodging is easy to make. What is harder, and what this article is for, is sorting out which in-park option actually fits your trip, because the seven of them have almost nothing in common except a reservation system.
+        The question I field more than any other, after twenty seasons of living and working in this park, is some version of "where should we stay?" And the honest first answer is that <strong>staying inside the park changes the trip</strong> in a way no other single decision does. The people sleeping in the Valley are standing under Yosemite Falls at seven in the morning with the mist still hanging and nobody around. The people sleeping in a gateway town are, at that same moment, sitting in the entrance line. Both groups paid to visit Yosemite. Only one of them is in it when the park is at its best, which is the first two hours and the last two hours of the day. So the case for in-park lodging is easy to make. What is harder, and what this article is for, is sorting out which in-park option actually fits your trip, because the six of them have almost nothing in common except a reservation system.
       </p>
 
       <p>
@@ -59,16 +59,6 @@ window.ARTICLE_BODIES["where-to-stay-in-yosemite"] = function WhereToStayInYosem
         It sounds austere and it is, but here is what it actually delivers: you can cook your own meals over a fire, which no other lodging option in the Valley allows, the river beach is steps away for the hot afternoons, and the whole place runs at a family summer-camp register that a hotel cannot replicate. For a family of four on a budget who would otherwise be choosing between a motel outside the park and <a href="/articles/yosemite-camping-complete-guide">a campsite they failed to win</a>, Housekeeping Camp is the answer that splits the difference: camping's economics and campfires with a real bed and no tent to pitch. It is summer-seasonal, it books out nearly as fast as everything else, and it remains the best-kept non-secret in the Valley.
       </p>
 
-      <h2>Wawona Hotel: the Victorian outlier</h2>
-
-      <p>
-        The <strong>Wawona Hotel</strong>, at the park's south end near the <strong>Mariposa Grove</strong> of giant sequoias, is the other National Historic Landmark on this list and the oldest of the lot, a white Victorian-era hotel with wide <strong>verandas</strong>, Adirondack chairs, a swimming tank, and a pianist in the parlor on many evenings. Many rooms share baths down the hall, there are <strong>no TVs</strong>, and the pace of the place is the point. It feels less like a national park lodge and more like the 1880s resort it was.
-      </p>
-
-      <p>
-        The honest tradeoff is geography: Wawona is <strong>about an hour's drive from Yosemite Valley</strong>, which means it is the wrong base for a Valley-focused trip. It is the right base for the Mariposa Grove, for Glacier Point Road, for golfers (yes, there is a golf course), and for people on a second or third visit who have done the Valley and want quiet. First-timers who book Wawona because it was the only thing available often spend their trip driving. Go in with your eyes open.
-      </p>
-
       <h2>The high country: White Wolf and Tuolumne Meadows</h2>
 
       <p>
@@ -100,7 +90,7 @@ window.ARTICLE_BODIES["where-to-stay-in-yosemite"] = function WhereToStayInYosem
       </p>
 
       <p>
-        But if you can get a bed inside the boundary, get it. Rank them like this: Valley Lodge for most first-timers, Housekeeping Camp for families who half-camp, Curry Village for hikers on a budget, the Ahwahnee when the occasion justifies it, Wawona for the south end and second visits, the high-country camps for people whose trip is the high country. Then set the reminder for 366 days out, and if you miss it, start checking daily. The park rewards the stubborn.
+        But if you can get a bed inside the boundary, get it. Rank them like this: Valley Lodge for most first-timers, Housekeeping Camp for families who half-camp, Curry Village for hikers on a budget, the Ahwahnee when the occasion justifies it, the high-country camps for people whose trip is the high country. Then set the reminder for 366 days out, and if you miss it, start checking daily. The park rewards the stubborn.
       </p>
 
       <h3>Sources</h3>
@@ -108,7 +98,6 @@ window.ARTICLE_BODIES["where-to-stay-in-yosemite"] = function WhereToStayInYosem
         <li><a href="https://www.travelyosemite.com/lodging/" target="_blank" rel="noopener noreferrer">Lodging, Travel Yosemite (Yosemite Hospitality)</a></li>
         <li><a href="https://www.nps.gov/yose/planyourvisit/lodging.htm" target="_blank" rel="noopener noreferrer">Lodging, NPS Yosemite</a></li>
         <li><a href="https://www.nps.gov/yose/learn/historyculture/ahwahnee.htm" target="_blank" rel="noopener noreferrer">The Ahwahnee, NPS Yosemite</a></li>
-        <li><a href="https://www.nps.gov/yose/planyourvisit/wawona.htm" target="_blank" rel="noopener noreferrer">Wawona, NPS Yosemite</a></li>
       </ul>
     </>
   );
