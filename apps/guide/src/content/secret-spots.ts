@@ -83,7 +83,7 @@ const seed: SecretSpotInput[] = [
     order: 6,
     category: 'trails',
     kind: 'trailhead',
-    coord: [-119.8058, 37.7566], // TODO: verify (Tuolumne Grove parking at Crane Flat)
+    coord: [-119.80561, 37.75826], // verified 2026-07: Tuolumne Grove Trailhead lot, 0.5–0.6 mi east of Crane Flat junction on Tioga Rd (Apple Maps + NPS/yosemitehikes road distance); prior pin was ~185 m south short of the lot
     elevationFt: 6200,
     timeBudgetMin: 120,
     body:
@@ -147,7 +147,7 @@ const seed: SecretSpotInput[] = [
     order: 10,
     category: 'parking',
     kind: 'parking',
-    coord: [-119.640974, 37.724523], // user-provided — TODO: verify on the ground
+    coord: [-119.6314, 37.7240], // verified 2026-07: El Capitan Bridge / crossover parking (OSM + Natural Atlas); prior user pin was ~840 m west at the meadow pullouts, not the bridge the body describes
     body:
       'The east valley is where parking goes to die by mid-morning. Skip the battle for spaces entirely: park at El Capitan, where the lot holds out far longer, and enjoy the views while you are at it. From El Capitan Bridge, ride a bike in or take the free shuttle to the east end. You trade half an hour of circling for a short ride with the biggest wall in the park behind you.',
     photos: [],

@@ -41,7 +41,7 @@ const seed: AmenityInput[] = [
     name: 'Lower Pines Campground',
     kind: 'camping',
     region: 'valley',
-    coord: [-119.5667, 37.7408], // verified 2026-07: Lower Pines loop between Stoneman Meadow and the Merced (gps-coordinates.org, lot-scale)
+    coord: [-119.566314, 37.739466], // verified 2026-07: Lower Pines entrance/loops (AAA/NPS + Campendium agree within 60 m); nudged ~150 m south off the prior pin toward North Pines
     note: 'Across Stoneman Meadow from Curry Village, on the Merced. Reservations only.',
     season: 'Roughly April through October',
   },
@@ -50,7 +50,7 @@ const seed: AmenityInput[] = [
     name: 'North Pines Campground',
     kind: 'camping',
     region: 'valley',
-    coord: [-119.5647, 37.7397], // verified 2026-07: North Pines at the Tenaya Creek / Merced confluence, by the stables (allstays, lot-scale)
+    coord: [-119.56556, 37.74194], // verified 2026-07: North Pines loops north of the Merced across Clark's Bridge (recreation.gov/RIDB mirror); prior pin sat ~260 m SW at Lower Pines' NE edge
     note: 'The quietest of the three Pines campgrounds, at the Tenaya Creek confluence next to the stables. Reservations only.',
     season: 'Roughly April through October',
   },

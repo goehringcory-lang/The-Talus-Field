@@ -692,7 +692,7 @@ const seed: StopInput[] = [
     region: 'tuolumne',
     order: 1,
     kind: 'drive',
-    coord: [-119.8022, 37.7556], // verified 2026-07: Crane Flat wye, Big Oak Flat Rd / Tioga Rd (NPS gas-station page); was ~435 m off
+    coord: [-119.7966, 37.7527], // verified 2026-07: Crane Flat gas station at the Big Oak Flat Rd / Tioga Rd junction (iOverlander + OuterSpatial agree within 60 m); prior pin was ~580 m NW at the meadow point
     timeBudgetMin: 120,
     teaser:
       '47 miles from Crane Flat to Tioga Pass at 9,945 feet, fir forest opening into granite domes and meadows. Gas up at Crane Flat; there is none on the road.',
