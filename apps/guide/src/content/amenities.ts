@@ -187,7 +187,7 @@ const seed: AmenityInput[] = [
     name: 'Tuolumne Meadows parking',
     kind: 'parking',
     region: 'tuolumne',
-    coord: [-119.3586, 37.8732], // verified 2026-07: Tuolumne Meadows Visitor Center lot (same pin as the cathedral-lakes stop; NPS TH page)
+    coord: [-119.374706, 37.872634], // verified 2026-07: Tuolumne Meadows Visitor Center lot (same pin as the cathedral-lakes stop; NPS Cathedral Lakes TH data, VC per Wikidata); prior pin sat ~1.4 km east at the store/campground
     note: 'The visitor center lot, the most reliable parking in the meadows since the trailhead reshuffle. Roadside pullouts along Tioga Road fill first.',
     season: 'Tioga Road season only',
   },

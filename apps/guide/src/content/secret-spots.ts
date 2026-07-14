@@ -64,7 +64,7 @@ const seed: SecretSpotInput[] = [
     order: 4,
     category: 'after-dark',
     kind: 'parking',
-    coord: [-119.4884, 37.8096], // TODO: verify (Olmsted Point parking, Tioga Road)
+    coord: [-119.4852, 37.8107], // verified 2026-07: same Olmsted Point pullout as the daytime stop (NPS/Wikipedia); prior pin was ~300 m WSW where there is no lot
     elevationFt: 8300,
     timeBudgetMin: 45,
     body:
@@ -100,7 +100,7 @@ const seed: SecretSpotInput[] = [
     order: 7,
     category: 'after-dark',
     kind: 'trailhead',
-    coord: [-119.3966, 37.8740], // TODO: verify (pullout at the west end of Tuolumne Meadows)
+    coord: [-119.394554, 37.876928], // verified 2026-07: NPS Pothole Dome Trailhead pullout at the west-end bend of Tioga Rd (NPS TH data + Anne's Travels GPS agree within 10 m); prior pin was ~370 m SW in the meadow
     elevationFt: 8760,
     timeBudgetMin: 45,
     body:

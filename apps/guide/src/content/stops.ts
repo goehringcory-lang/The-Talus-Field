@@ -738,7 +738,7 @@ const seed: StopInput[] = [
     region: 'tuolumne',
     order: 4,
     kind: 'viewpoint',
-    coord: [-119.4473, 37.8381], // TODO: verify on the ground — east-beach lot, NE end (NPS picnic-area page), derived ±100 m (2026-07 web pass; prior pin sat mid-lake)
+    coord: [-119.45188, 37.83795], // verified 2026-07: Tenaya Lake Picnic Area lot at the NE corner (NPS POI via OuterSpatial); prior pin sat ~400 m ENE past the end of the lake
     elevationFt: 8150,
     timeBudgetMin: 60,
     photos: [{ src: '/photos/tenaya-lake.jpg', caption: 'Open granite and clear high-country water at Tenaya Lake.' }],
@@ -754,7 +754,7 @@ const seed: StopInput[] = [
     order: 5,
     kind: 'trailhead',
     photos: [{ src: '/photos/cathedral-lakes.jpg', caption: 'Tuolumne high country — the landscape Cathedral Lakes sits in.' }],
-    coord: [-119.3586, 37.8732], // verified 2026-07: Tuolumne Meadows Visitor Center lot (NPS Cathedral Lakes TH page; trailhead relocated here 2022, old roadside parking removed)
+    coord: [-119.374706, 37.872634], // verified 2026-07: Cathedral Lakes Trailhead parking at the Tuolumne Meadows Visitor Center (NPS TH data; VC at 37.8716,-119.3742 per Wikidata); prior pin sat ~1.4 km east at the store/campground
     elevationFt: 8560,
     timeBudgetMin: 360,
     teaser:
