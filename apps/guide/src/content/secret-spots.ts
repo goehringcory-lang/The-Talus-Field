@@ -20,7 +20,7 @@ const seed: SecretSpotInput[] = [
     order: 1,
     category: 'vistas',
     kind: 'viewpoint',
-    coord: [-119.6657, 37.7167], // TODO: verify (Southside Drive just east of Pohono Bridge)
+    coord: [-119.66500, 37.71556], // verified 2026-07: spring location via findaspring.com + oceanlight.com (Phil Colla); 37°42′56.02″N 119°39′54.00″W; ~500 ft ESE of Pohono Bridge per Gary Hart
     elevationFt: 3900,
     timeBudgetMin: 10,
     body:
@@ -49,7 +49,7 @@ const seed: SecretSpotInput[] = [
     order: 3,
     category: 'after-dark',
     kind: 'viewpoint',
-    coord: [-119.6310, 37.7212], // TODO: verify (same pullout as the daytime El Capitan Meadow stop)
+    coord: [-119.6354, 37.7238], // verified 2026-07: same pullout as el-capitan-meadow stop on Northside Dr (evendo/Expedia, agent review); prior pin was ~480 m SE toward the Merced
     elevationFt: 4000,
     timeBudgetMin: 30,
     body:
@@ -64,7 +64,7 @@ const seed: SecretSpotInput[] = [
     order: 4,
     category: 'after-dark',
     kind: 'parking',
-    coord: [-119.4884, 37.8096], // TODO: verify (Olmsted Point parking, Tioga Road)
+    coord: [-119.4852, 37.8107], // verified 2026-07: same Olmsted Point pullout as the daytime stop (NPS/Wikipedia); prior pin was ~300 m WSW where there is no lot
     elevationFt: 8300,
     timeBudgetMin: 45,
     body:
@@ -83,7 +83,7 @@ const seed: SecretSpotInput[] = [
     order: 6,
     category: 'trails',
     kind: 'trailhead',
-    coord: [-119.8058, 37.7566], // TODO: verify (Tuolumne Grove parking at Crane Flat)
+    coord: [-119.80561, 37.75826], // verified 2026-07: Tuolumne Grove Trailhead lot, 0.5–0.6 mi east of Crane Flat junction on Tioga Rd (Apple Maps + NPS/yosemitehikes road distance); prior pin was ~185 m south short of the lot
     elevationFt: 6200,
     timeBudgetMin: 120,
     body:
@@ -100,7 +100,7 @@ const seed: SecretSpotInput[] = [
     order: 7,
     category: 'after-dark',
     kind: 'trailhead',
-    coord: [-119.3966, 37.8740], // TODO: verify (pullout at the west end of Tuolumne Meadows)
+    coord: [-119.394554, 37.876928], // verified 2026-07: NPS Pothole Dome Trailhead pullout at the west-end bend of Tioga Rd (NPS TH data + Anne's Travels GPS agree within 10 m); prior pin was ~370 m SW in the meadow
     elevationFt: 8760,
     timeBudgetMin: 45,
     body:
@@ -147,7 +147,7 @@ const seed: SecretSpotInput[] = [
     order: 10,
     category: 'parking',
     kind: 'parking',
-    coord: [-119.640974, 37.724523], // user-provided — TODO: verify on the ground
+    coord: [-119.6314, 37.7240], // verified 2026-07: El Capitan Bridge / crossover parking (OSM + Natural Atlas); prior user pin was ~840 m west at the meadow pullouts, not the bridge the body describes
     body:
       'The east valley is where parking goes to die by mid-morning. Skip the battle for spaces entirely: park at El Capitan, where the lot holds out far longer, and enjoy the views while you are at it. From El Capitan Bridge, ride a bike in or take the free shuttle to the east end. You trade half an hour of circling for a short ride with the biggest wall in the park behind you.',
     photos: [],

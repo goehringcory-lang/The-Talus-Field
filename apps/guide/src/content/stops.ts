@@ -274,7 +274,7 @@ const seed: StopInput[] = [
     region: 'valley',
     order: 15,
     kind: 'viewpoint',
-    coord: [-119.5898, 37.7425], // verified 2026-07: Sentinel Bridge and its small lot (NPS parking-area page); was ~280 m east
+    coord: [-119.5901, 37.7434], // verified 2026-07: Sentinel Bridge span and lot proper (LOC/HAER CA-94, Gary Hart, agent review); nudged ~105 m north
     elevationFt: 4000,
     timeBudgetMin: 60,
     teaser:
@@ -383,7 +383,7 @@ const seed: StopInput[] = [
     collection: 'hidden',
     category: 'trails',
     difficulty: 'strenuous',
-    coord: [-119.5446, 37.7530], // TODO: verify on the ground — junction derived from the NPS route description; no published coord (2026-07 web pass)
+    coord: [-119.5375, 37.7560], // verified 2026-07: junction ~1.0–1.1 mi past Mirror Lake at Snow Creek confluence/footbridge (GNIS Snow Creek Falls + NPS/yosemiteperegrinelodge route texts); prior pin was ~700 m too far west and short
     elevationFt: 4100,
     timeBudgetMin: 360,
     photos: [{ src: '/photos/snow-creek-trail.jpg' }],
@@ -692,7 +692,7 @@ const seed: StopInput[] = [
     region: 'tuolumne',
     order: 1,
     kind: 'drive',
-    coord: [-119.8022, 37.7556], // verified 2026-07: Crane Flat wye, Big Oak Flat Rd / Tioga Rd (NPS gas-station page); was ~435 m off
+    coord: [-119.7966, 37.7527], // verified 2026-07: Crane Flat gas station at the Big Oak Flat Rd / Tioga Rd junction (iOverlander + OuterSpatial agree within 60 m); prior pin was ~580 m NW at the meadow point
     timeBudgetMin: 120,
     teaser:
       '47 miles from Crane Flat to Tioga Pass at 9,945 feet, fir forest opening into granite domes and meadows. Gas up at Crane Flat; there is none on the road.',
@@ -738,7 +738,7 @@ const seed: StopInput[] = [
     region: 'tuolumne',
     order: 4,
     kind: 'viewpoint',
-    coord: [-119.4473, 37.8381], // TODO: verify on the ground — east-beach lot, NE end (NPS picnic-area page), derived ±100 m (2026-07 web pass; prior pin sat mid-lake)
+    coord: [-119.45188, 37.83795], // verified 2026-07: Tenaya Lake Picnic Area lot at the NE corner (NPS POI via OuterSpatial); prior pin sat ~400 m ENE past the end of the lake
     elevationFt: 8150,
     timeBudgetMin: 60,
     photos: [{ src: '/photos/tenaya-lake.jpg', caption: 'Open granite and clear high-country water at Tenaya Lake.' }],
@@ -754,7 +754,7 @@ const seed: StopInput[] = [
     order: 5,
     kind: 'trailhead',
     photos: [{ src: '/photos/cathedral-lakes.jpg', caption: 'Tuolumne high country — the landscape Cathedral Lakes sits in.' }],
-    coord: [-119.3586, 37.8732], // verified 2026-07: Tuolumne Meadows Visitor Center lot (NPS Cathedral Lakes TH page; trailhead relocated here 2022, old roadside parking removed)
+    coord: [-119.374706, 37.872634], // verified 2026-07: Cathedral Lakes Trailhead parking at the Tuolumne Meadows Visitor Center (NPS TH data; VC at 37.8716,-119.3742 per Wikidata); prior pin sat ~1.4 km east at the store/campground
     elevationFt: 8560,
     timeBudgetMin: 360,
     teaser:
@@ -917,7 +917,7 @@ const seed: StopInput[] = [
     region: 'hetch-hetchy',
     order: 1,
     kind: 'drive',
-    coord: [-119.8760, 37.8120], // TODO: verify on the ground — Evergreen Rd / Hwy 120 junction, triangulated ±150 m (2026-07 web pass; prior pin was SW of the entrance, wrong side)
+    coord: [-119.87518, 37.81508], // verified 2026-07: Evergreen Rd / Hwy 120 junction at road-topology node (OSM/Overture 2026-06, agent verification); moved ~350 m north from prior pin
     timeBudgetMin: 90,
     photos: [{ src: '/photos/evergreen-road-drive.jpg' }],
     teaser:
