@@ -9,7 +9,7 @@
 // =============================================================================
 
 import { REGIONS, getStopsByRegion, SECRET_SPOTS, type Region } from '../content'
-import { allPhotoUrls } from '../utils/photo'
+import { precachePhotoUrls, type PhotoFormat } from '../utils/photo'
 import { buildTileUrls } from './tiles'
 
 export const RUNTIME_CACHE = 'tfg-runtime'
@@ -28,14 +28,14 @@ export type Pack = {
   tolerateMissing: number
 }
 
-function regionPhotoUrls(region: (typeof REGIONS)[number]): string[] {
+function regionPhotoUrls(region: (typeof REGIONS)[number], format: PhotoFormat): string[] {
   const urls = new Set<string>()
   // The region's picker-card hero belongs offline with its stops.
-  for (const url of allPhotoUrls(region.photo.src)) urls.add(url)
+  for (const url of precachePhotoUrls(region.photo.src, format)) urls.add(url)
   // Hidden areas are paid content too; their photos belong in the pack.
   for (const stop of getStopsByRegion(region.id, { includeHidden: true })) {
     for (const photo of stop.photos) {
-      for (const url of allPhotoUrls(photo.src)) urls.add(url)
+      for (const url of precachePhotoUrls(photo.src, format)) urls.add(url)
     }
   }
   return Array.from(urls)
@@ -45,11 +45,11 @@ function regionPhotoUrls(region: (typeof REGIONS)[number]): string[] {
 // so their paid photos are in no region pack. They get their own pack — the
 // hidden-collection stops already ride along in their region's pack via
 // includeHidden above, so this covers only SECRET_SPOTS to avoid double-listing.
-function secretGuidePhotoUrls(): string[] {
+function secretGuidePhotoUrls(format: PhotoFormat): string[] {
   const urls = new Set<string>()
   for (const spot of SECRET_SPOTS) {
     for (const photo of spot.photos) {
-      for (const url of allPhotoUrls(photo.src)) urls.add(url)
+      for (const url of precachePhotoUrls(photo.src, format)) urls.add(url)
     }
   }
   return Array.from(urls)
@@ -62,15 +62,15 @@ const REGION_LABELS: Record<Region, string> = {
   'hetch-hetchy': 'Hetch Hetchy photos',
 }
 
-// Display estimates. Photos: every responsive variant of a base image sums
-// to roughly 2.5 MB, but the browser only requests one format per width, so
-// the cached set lands well under the worst case. Tiles: ~25 KB average.
-const PHOTO_BYTES_PER_URL = 180_000
+// Display estimates. Photos: packs now fetch only the one format this device
+// renders (avif/webp/jpg) across the width ladder, plus the small JPEG the map
+// popup needs, so a photo is ~5 URLs averaging ~120 KB. Tiles: ~25 KB average.
+const PHOTO_BYTES_PER_URL = 120_000
 const TILE_BYTES = 25_000
 
-export function buildPacks(): Pack[] {
+export function buildPacks(format: PhotoFormat): Pack[] {
   const regionPacks: Pack[] = REGIONS.map((region) => {
-    const urls = regionPhotoUrls(region)
+    const urls = regionPhotoUrls(region, format)
     return {
       id: `photos-${region.id}`,
       label: REGION_LABELS[region.id],
@@ -82,7 +82,7 @@ export function buildPacks(): Pack[] {
     }
   })
 
-  const secretUrls = secretGuidePhotoUrls()
+  const secretUrls = secretGuidePhotoUrls(format)
   const secretPack: Pack = {
     id: 'photos-secret-guide',
     label: 'Secret Guide photos',

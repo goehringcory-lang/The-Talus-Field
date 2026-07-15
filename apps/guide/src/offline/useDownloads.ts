@@ -17,6 +17,7 @@
 
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import { buildPacks, type Pack } from './manifest'
+import { detectPhotoFormat, type PhotoFormat } from '../utils/photo'
 
 const STORAGE_KEY = 'tfg.downloads'
 const CONCURRENCY = 6
@@ -107,7 +108,20 @@ function setModuleStatus(id: string, status: PackStatus) {
 }
 
 export function useDownloads() {
-  const packs = useMemo(() => buildPacks(), [])
+  // Packs fetch only the image format this device renders. Default to jpg (it
+  // decodes everywhere) until the async probe resolves — a hair after mount,
+  // well before a user reads the page and taps Download — then rebuild leaner.
+  const [photoFormat, setPhotoFormat] = useState<PhotoFormat>('jpg')
+  useEffect(() => {
+    let active = true
+    void detectPhotoFormat().then((f) => {
+      if (active) setPhotoFormat(f)
+    })
+    return () => {
+      active = false
+    }
+  }, [])
+  const packs = useMemo(() => buildPacks(photoFormat), [photoFormat])
   const [statuses, setStatuses] = useState<Record<string, PackStatus>>(() =>
     initModuleStatuses(packs),
   )
