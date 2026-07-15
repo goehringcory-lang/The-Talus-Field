@@ -63,7 +63,7 @@ const seed: StopInput[] = [
     order: 2,
     kind: 'drive',
     timeBudgetMin: 60,
-    photos: [{ src: '/photos/valley-loop-drive.jpg', caption: 'El Capitan from Northside Drive along the valley loop.' }],
+    photos: [], // TODO: photo removed — automated fetch grabbed wrong subject; needs a correct image
     teaser:
       'A slow eastbound preview of the valley floor: Bridalveil parking, Cathedral Beach, the Swinging Bridge, Sentinel Beach. Don\'t commit to a hike yet.',
     body:
@@ -204,7 +204,7 @@ const seed: StopInput[] = [
     coord: [-119.5600, 37.7393], // verified 2026-07: Mirror Lake trailhead at shuttle stop 17 (NPS/Hikespeak); was mid-trail, ~830 m off
     elevationFt: 4094,
     timeBudgetMin: 90,
-    photos: [{ src: '/photos/mirror-lake.jpg', caption: 'Half Dome reflected in the still water of Mirror Lake.' }],
+    photos: [], // TODO: photo removed — automated fetch grabbed wrong subject; needs a correct image
     teaser:
       'Two flat miles round trip to the closest spot in the valley to Half Dome. Go early, before the breeze erases the reflection.',
     body:
@@ -386,7 +386,7 @@ const seed: StopInput[] = [
     coord: [-119.5375, 37.7560], // verified 2026-07: junction ~1.0–1.1 mi past Mirror Lake at Snow Creek confluence/footbridge (GNIS Snow Creek Falls + NPS/yosemiteperegrinelodge route texts); prior pin was ~700 m too far west and short
     elevationFt: 4100,
     timeBudgetMin: 360,
-    photos: [{ src: '/photos/snow-creek-trail.jpg' }],
+    photos: [], // TODO: photo removed — automated fetch grabbed wrong subject; needs a correct image
     hazard:
       'The switchbacks are shadeless by mid-morning and there is no water between Tenaya Creek and Snow Creek. Do not leave the trail toward Tenaya Canyon; the gorge below is technical terrain where hikers have died.',
     teaser:
@@ -407,7 +407,7 @@ const seed: StopInput[] = [
     coord: [-119.529914, 37.759413], // user-provided GPS — TODO: verify on the ground
     elevationFt: 4300,
     timeBudgetMin: 180,
-    photos: [{ src: '/photos/three-chutes-falls.jpg' }],
+    photos: [], // TODO: photo removed — automated fetch grabbed wrong subject; needs a correct image
     hazard:
       'The crossings above Mirror Lake are fords, not bridges. In May and June the current is fast and cold enough to knock an adult down; if the water is over your knees, this is a viewpoint, not a swim. Do not continue past the falls into upper Tenaya Canyon.',
     teaser:
@@ -635,7 +635,7 @@ const seed: StopInput[] = [
     coord: [-119.6039, 37.6668], // verified 2026-07: Ostrander Lake trailhead, Glacier Point Rd mile 9 (Hiking Project/Modern Hiker); was ~1.7 km off
     elevationFt: 7000,
     timeBudgetMin: 420,
-    photos: [{ src: '/photos/ostrander-lake.jpg' }],
+    photos: [], // TODO: photo removed — automated fetch grabbed wrong subject; needs a correct image
     teaser:
       'Twelve miles round trip to a granite-shored lake under Horse Ridge, past the 1941 ski hut. Gentle first half, 1,600 feet of climbing in the second. A full quiet day.',
     body:
@@ -671,7 +671,7 @@ const seed: StopInput[] = [
     coord: [-119.6337, 37.5484], // verified 2026-07: Chilnualna Falls trailhead lot, end of Chilnualna Falls Rd (NPS/Hikespeak); was ~130 m off
     elevationFt: 4200,
     timeBudgetMin: 360,
-    photos: [{ src: '/photos/chilnualna-falls.jpg' }],
+    photos: [], // TODO: photo removed — automated fetch grabbed wrong subject; needs a correct image
     hazard:
       'The granite beside the cascades is water-polished and slick, and the current above the drops is faster than it looks. People have died sliding here. Watch the falls from the trail, not from the rocks beside the water.',
     teaser:
@@ -952,7 +952,7 @@ const seed: StopInput[] = [
     coord: [-119.7886, 37.9464], // verified 2026-07: dam road-end lot, SW abutment (bracketed by the Wikipedia dam-crest and NPS trailhead points)
     elevationFt: 3800,
     timeBudgetMin: 45,
-    photos: [{ src: '/photos/oshaughnessy-dam.jpg' }],
+    photos: [], // TODO: photo removed — automated fetch grabbed wrong subject; needs a correct image
     teaser:
       'Walk a quarter mile across the 1923 dam to a tunnel hand-cut through the cliff, Kolana Rock and Wapama Falls up-canyon. Muir\'s valley floor is still down there.',
     body:
@@ -1013,7 +1013,7 @@ const seed: StopInput[] = [
     coord: [-119.7875, 37.9465], // verified 2026-07: same trailhead as wapama-falls-trail (NPS place page)
     elevationFt: 3800,
     timeBudgetMin: 420,
-    photos: [{ src: '/photos/rancheria-falls.jpg' }],
+    photos: [], // TODO: photo removed — automated fetch grabbed wrong subject; needs a correct image
     hazard:
       'Rattlesnake country the whole way, poison oak close to the trail, and long stretches of full sun. In peak snowmelt the Wapama bridges can close and end the trip early; check conditions before a May or June start.',
     teaser:

@@ -8,7 +8,7 @@
 // figure depending on format negotiation (AVIF vs JPG) and tile content.
 // =============================================================================
 
-import { REGIONS, getStopsByRegion, type Region } from '../content'
+import { REGIONS, getStopsByRegion, SECRET_SPOTS, type Region } from '../content'
 import { allPhotoUrls } from '../utils/photo'
 import { buildTileUrls } from './tiles'
 
@@ -35,6 +35,20 @@ function regionPhotoUrls(region: (typeof REGIONS)[number]): string[] {
   // Hidden areas are paid content too; their photos belong in the pack.
   for (const stop of getStopsByRegion(region.id, { includeHidden: true })) {
     for (const photo of stop.photos) {
+      for (const url of allPhotoUrls(photo.src)) urls.add(url)
+    }
+  }
+  return Array.from(urls)
+}
+
+// The Secret Guide's region-less spots (secret-spots.ts) belong to no region,
+// so their paid photos are in no region pack. They get their own pack — the
+// hidden-collection stops already ride along in their region's pack via
+// includeHidden above, so this covers only SECRET_SPOTS to avoid double-listing.
+function secretGuidePhotoUrls(): string[] {
+  const urls = new Set<string>()
+  for (const spot of SECRET_SPOTS) {
+    for (const photo of spot.photos) {
       for (const url of allPhotoUrls(photo.src)) urls.add(url)
     }
   }
@@ -68,6 +82,17 @@ export function buildPacks(): Pack[] {
     }
   })
 
+  const secretUrls = secretGuidePhotoUrls()
+  const secretPack: Pack = {
+    id: 'photos-secret-guide',
+    label: 'Secret Guide photos',
+    detail: 'Every photo in the region-less secret spots, all sizes',
+    cacheName: RUNTIME_CACHE,
+    urls: secretUrls,
+    approxBytes: secretUrls.length * PHOTO_BYTES_PER_URL,
+    tolerateMissing: 0,
+  }
+
   const tileUrls = buildTileUrls()
   const mapPack: Pack = {
     id: 'park-map',
@@ -79,7 +104,7 @@ export function buildPacks(): Pack[] {
     tolerateMissing: 0.05,
   }
 
-  return [...regionPacks, mapPack]
+  return [...regionPacks, secretPack, mapPack]
 }
 
 export function formatBytes(bytes: number): string {
