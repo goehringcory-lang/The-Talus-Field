@@ -35,19 +35,6 @@ export function fallbackPhotoUrl(src: string): string {
   return `${responsiveBase(src)}-${RESPONSIVE_WIDTHS[2]}.jpg`
 }
 
-/** Returns every URL the browser may request for a photo (all responsive
- * variants; the original src is deliberately excluded — no rendering path
- * requests it, and offline packs shouldn't pay for it over park cellular). */
-export function allPhotoUrls(src: string): string[] {
-  if (/^https?:/i.test(src)) return [src]
-  const base = responsiveBase(src)
-  return RESPONSIVE_WIDTHS.flatMap((w) => [
-    `${base}-${w}.avif`,
-    `${base}-${w}.webp`,
-    `${base}-${w}.jpg`,
-  ])
-}
-
 export type PhotoFormat = 'avif' | 'webp' | 'jpg'
 
 // 1-pixel probe images. Decoding one tells us which <picture> source the
@@ -78,12 +65,11 @@ export function detectPhotoFormat(): Promise<PhotoFormat> {
   return formatPromise
 }
 
-/** The URLs worth pre-warming opportunistically: the width ladder of the one
- * format this device renders, plus the small JPEG the map popup requests.
- * The explicit download packs still use allPhotoUrls — a pack must work on
- * any device the cache later serves; this trim is only for the silent
- * on-navigation pre-warm, which would otherwise fetch 13 variants per photo
- * over park cellular. */
+/** The URLs an offline pack (or opportunistic pre-warm) needs for one photo:
+ * the width ladder of the one format this device renders, plus the small JPEG
+ * the map popup always requests. Fetching only the rendered format, not all
+ * three, keeps the offline download lean over park cellular. The Cache API is
+ * per-device, so the format probed at download time is the one served later. */
 export function precachePhotoUrls(src: string, format: PhotoFormat): string[] {
   if (/^https?:/i.test(src)) return [src]
   const base = responsiveBase(src)

@@ -154,7 +154,7 @@ function GuideBuyBox() {
           <li>· Four regional guides: the Valley, Glacier Point & Mariposa, Tuolumne, Hetch Hetchy</li>
           <li>· Tappable GPS for every stop</li>
           <li>· An offline topo map of the park, all stops pinned</li>
-          <li>· Download the whole guide for offline, about 45 MB</li>
+          <li>· Download the whole guide for offline, about 50 MB</li>
           <li>· Time budgets and a swap for when the lot is full</li>
           <li>· Programs by your dates: ranger walks, Junior Ranger, tours, star parties. Synced online, readable offline</li>
           <li>· A trip planner that syncs your days to Google Calendar, or any calendar app, and re-syncs when you change the plan</li>
@@ -205,7 +205,7 @@ function GuideWaitlistBox() {
           <li>· Four regional guides: the Valley, Glacier Point & Mariposa, Tuolumne, Hetch Hetchy</li>
           <li>· Tappable GPS for every stop</li>
           <li>· An offline topo map of the park, all stops pinned</li>
-          <li>· Download the whole guide for offline, about 45 MB</li>
+          <li>· Download the whole guide for offline, about 50 MB</li>
           <li>· Time budgets and a swap for when the lot is full</li>
           <li>· Programs by your dates: ranger walks, Junior Ranger, tours, star parties. Synced online, readable offline</li>
           <li>· A trip planner that syncs your days to Google Calendar, or any calendar app, and re-syncs when you change the plan</li>
@@ -288,7 +288,7 @@ function GuidePage({ go }) {
             <h2>The offline map</h2>
 
             <p>
-              Every stop is pinned on a topographic map of the park that downloads to your device. The map is about 20 MB of the roughly 45 MB full offline download. Lose service past the tunnel, on Glacier Point Road, or anywhere along Tioga, and the map still pans, still zooms, and still shows you where the next stop is. Turn-by-turn driving stays in your Maps app; the guide hands you off with one tap.
+              Every stop is pinned on a topographic map of the park that downloads to your device. The map is about 20 MB of the roughly 50 MB full offline download. Lose service past the tunnel, on Glacier Point Road, or anywhere along Tioga, and the map still pans, still zooms, and still shows you where the next stop is. Turn-by-turn driving stays in your Maps app; the guide hands you off with one tap.
             </p>
 
             <h2>The programs, on your dates</h2>
@@ -354,7 +354,7 @@ function GuidePage({ go }) {
 
             <ul>
               <li><strong>A web app you add to your home screen.</strong> Looks and feels like a native app. It is not a PDF and not a printed book. No App Store, no install wait, no version to keep updated.</li>
-              <li><strong>Works offline.</strong> One tap downloads the whole guide, every photo, and the park map to your device, about 45 MB. Lose service in the Valley or up at Tuolumne, the guide is still there.</li>
+              <li><strong>Works offline.</strong> One tap downloads the whole guide, every photo, and the park map to your device, about 50 MB. Lose service in the Valley or up at Tuolumne, the guide is still there.</li>
               <li><strong>Updates push silently through the 2026 season.</strong> New advice, route swaps, seasonal addenda, and Secret Guide additions all arrive without you re-downloading anything.</li>
               <li><strong>Pay once, sign in on every device you own.</strong> iPad in the car, iPhone at the trailhead, laptop the night before. Access lasts 18 months.</li>
             </ul>
