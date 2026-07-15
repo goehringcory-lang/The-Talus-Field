@@ -94,7 +94,9 @@ const TAAG_URL = 'https://www.anseladams.com/photography-education/'
 // campground Campfire Program (not printed this issue). The Parsons Memorial
 // Lodge Summer Series is promoted with real dates (weekends July 18 – August
 // 16), including the Joe Craven performance (July 24) and the two poetry
-// workshops (August 15–16). Titles are kept as printed so the route's
+// workshops (August 15–16), and the two Ansel Adams Gallery exhibitions plus
+// the August 8 artist reception from the gallery's "Current & Upcoming
+// Exhibitions" rail. Titles are kept as printed so the route's
 // date+title dedupe can drop a manual entry whenever the NPS feed carries the
 // same program (the two Mariposa Grove titles keep the house-style form without
 // the printed em-dash; a feed collision there would show as a duplicate and can
@@ -755,6 +757,59 @@ const entries: ManualEntryT[] = [
     coord: VILLAGE_MALL,
     isFree: true,
     url: NPS_GUIDE_URL,
+  },
+
+  // ── Yosemite Guide v51n6: gallery exhibitions (The Ansel Adams Gallery) ─────
+  // The "Current & Upcoming Exhibitions" rail. Open-run shows, so the daily
+  // expansion is bounded to the guide window rather than the full printed run;
+  // the description carries the true opening and closing dates.
+  {
+    key: 'taag-exhibit-america-the-beautiful',
+    source: 'manual',
+    category: 'arts',
+    title: 'America the Beautiful: Photographs from the National Parks',
+    description:
+      'A photography exhibition celebrating the country\'s 250th at The Ansel Adams Gallery, on ' +
+      'view June 21 through August 7. The gallery is open daily 9 a.m. to 5 p.m.',
+    dates: buildDailyDates(GUIDE_START, '2026-08-07'),
+    timeStart: '09:00',
+    timeEnd: '17:00',
+    location: 'The Ansel Adams Gallery, Yosemite Village',
+    coord: VILLAGE_MALL,
+    isFree: true,
+    url: TAAG_URL,
+  },
+  {
+    key: 'taag-exhibit-trails-and-trees',
+    source: 'manual',
+    category: 'arts',
+    title: 'Trails and Trees: Woodblocks and Prints by Tom Killion',
+    description:
+      'A woodblock and print exhibition by Tom Killion at The Ansel Adams Gallery, on view August 8 ' +
+      'through September 26. The gallery is open daily 9 a.m. to 5 p.m.',
+    dates: buildDailyDates('2026-08-08', GUIDE_END),
+    timeStart: '09:00',
+    timeEnd: '17:00',
+    location: 'The Ansel Adams Gallery, Yosemite Village',
+    coord: VILLAGE_MALL,
+    isFree: true,
+    url: TAAG_URL,
+  },
+  {
+    key: 'taag-trails-and-trees-reception',
+    source: 'manual',
+    category: 'arts',
+    title: 'Artist Reception: Trails and Trees by Tom Killion',
+    description:
+      'An artist reception for Trails and Trees: Woodblocks and Prints by Tom Killion, at The Ansel ' +
+      'Adams Gallery.',
+    dates: ['2026-08-08'],
+    timeStart: '13:00',
+    timeEnd: '15:00',
+    location: 'The Ansel Adams Gallery, Yosemite Village',
+    coord: VILLAGE_MALL,
+    isFree: true,
+    url: TAAG_URL,
   },
 
   // ── Yosemite Guide v51n6: stargazing at Glacier Point ──────────────────────
