@@ -258,18 +258,60 @@ function EntranceWaits() {
 // Masthead
 // ============================================================
 function Header({ current, go }) {
-  const primaryNavItems = [
-    ["articles", "Articles"],
-    ["kit", "Kit"],
-    ["films", "Films"],
-    ["places", "Directory"],
-    ["about", "About"],
+  // The whole site, grouped. Every reader-facing route lives in exactly one
+  // group (legal pages stay footer-only). A group with `items` renders as a
+  // hover dropdown at desktop and a labelled section inside the hamburger;
+  // a group without `items` is a plain top-level link. `route` is where the
+  // group label itself navigates.
+  const navGroups = [
+    {
+      key: "read", label: "Read", route: "articles",
+      items: [
+        ["articles", "All articles"],
+        ["cat:planning", "Planning"],
+        ["cat:trails", "Trails and hikes"],
+        ["cat:wildlife", "Wildlife and nature"],
+        ["cat:seasonal", "Seasonal guides"],
+        ["now", "This week in the park"],
+        ["films", "Films"],
+      ],
+    },
+    {
+      key: "plan", label: "Plan", route: "planning",
+      items: [
+        ["planning", "The Planning Guide"],
+        ["itineraries", "Itineraries"],
+        ["conditions", "Conditions"],
+        ["checklist", "First-week checklist"],
+        ["kit", "Kit"],
+        ["firefall", "Firefall"],
+        ["consult", "Trip consults"],
+      ],
+    },
+    { key: "guide", label: "Field Guide", route: "guide" },
+    {
+      // align: "right" keeps this last dropdown inside the viewport at
+      // narrow desktop widths (it sits hard against the right edge).
+      key: "about", label: "About", route: "about", align: "right",
+      items: [
+        ["about", "About the journal"],
+        ["newsletter", "Newsletter"],
+        ["contact", "Contact"],
+        ["places", "Directory"],
+        ["advertise", "Advertise"],
+        ["widget", "Conditions widget"],
+      ],
+    },
   ];
-  const overflowNavItems = [
-    ["newsletter", "Newsletter"],
-    ["contact", "Contact"],
-  ];
-  const navItems = [...primaryNavItems, ...overflowNavItems];
+
+  // A group lights up when the reader is on its landing route or any of its
+  // member pages; article and section routes belong to Read.
+  const isGroupActive = (g) => {
+    if (current === g.route) return true;
+    if (g.items && g.items.some(([key]) => key === current)) return true;
+    if (g.key === "read" && (current.startsWith("a:") || current.startsWith("cat:"))) return true;
+    return false;
+  };
 
   const [menuOpen, setMenuOpen] = React.useState(false);
   const menuRef = React.useRef(null);
@@ -288,7 +330,12 @@ function Header({ current, go }) {
       role={role}
       href={window.routeToPath ? window.routeToPath(key) : `/${key}`}
       className={[baseClass, current === key && "is-active"].filter(Boolean).join(" ")}
-      onClick={(e) => { e.preventDefault(); if (onNavigate) onNavigate(); go(key); }}
+      onClick={(e) => {
+        e.preventDefault();
+        if (onNavigate) onNavigate();
+        if (key === "guide" && window.track) window.track("guide_cta_click", { location: "masthead_nav" });
+        go(key);
+      }}
     >{label}</a>
   );
 
@@ -340,7 +387,35 @@ function Header({ current, go }) {
           </span>
         </a>
         <nav className="nav">
-          {primaryNavItems.map(([key, label]) => renderLink(key, label, { baseClass: "nav__link" }))}
+          {navGroups.map((g) => {
+            if (!g.items) {
+              return (
+                <div key={g.key} className="nav__group">
+                  {renderLink(g.route, g.label, { baseClass: "nav__link" })}
+                </div>
+              );
+            }
+            return (
+              <div key={g.key} className="nav__group">
+                <a
+                  href={window.routeToPath ? window.routeToPath(g.route) : `/${g.route}`}
+                  className={["nav__link", "nav__group-trigger", isGroupActive(g) && "is-active"].filter(Boolean).join(" ")}
+                  aria-haspopup="true"
+                  onClick={(e) => { e.preventDefault(); go(g.route); }}
+                >
+                  {g.label}
+                  <span className="nav__caret" aria-hidden="true">▾</span>
+                </a>
+                {/* Opened purely by CSS (:hover / :focus-within) so hover and
+                    keyboard tabbing both work with no state to desync. */}
+                <div className={["nav__dropdown", g.align === "right" && "nav__dropdown--right"].filter(Boolean).join(" ")}>
+                  <div className="nav__dropdown-inner">
+                    {g.items.map(([key, label]) => renderLink(key, label, { baseClass: "nav__dropdown-link" }))}
+                  </div>
+                </div>
+              </div>
+            );
+          })}
 
           {/* Persistent "The Map" CTA. On mobile the inline nav collapses to
               the hamburger, leaving no visible path to the funnel; this fills
@@ -372,7 +447,18 @@ function Header({ current, go }) {
             </button>
             {menuOpen && (
               <div className="nav__menu" role="menu">
-                {navItems.map(([key, label]) => renderLink(key, label, { role: "menuitem", onNavigate: () => setMenuOpen(false) }))}
+                {navGroups.map((g) => (
+                  <div key={g.key} className="nav__menu-group">
+                    {g.items ? (
+                      <React.Fragment>
+                        <div className="nav__menu-label">{g.label}</div>
+                        {g.items.map(([key, label]) => renderLink(key, label, { role: "menuitem", onNavigate: () => setMenuOpen(false) }))}
+                      </React.Fragment>
+                    ) : (
+                      renderLink(g.route, g.label, { role: "menuitem", onNavigate: () => setMenuOpen(false) })
+                    )}
+                  </div>
+                ))}
               </div>
             )}
           </div>
