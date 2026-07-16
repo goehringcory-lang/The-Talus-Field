@@ -9,6 +9,7 @@ import { PHOTO_CREDITS, formatCredit } from '../content/photoCredits'
 import Plate from '../components/Plate'
 import ResponsivePhoto from '../components/ResponsivePhoto'
 import Button from '../components/ui/Button'
+import { GUIDE_BUY_URL, useGuidePrice } from '../lib/storefront'
 
 type LoginResponse = { jwt: string }
 
@@ -100,6 +101,7 @@ export default function Login() {
   const navigate = useNavigate()
   const location = useLocation()
   const { signIn } = useAuth()
+  const price = useGuidePrice()
   const [email, setEmail] = useState('')
   const [code, setCode] = useState('')
   const [busy, setBusy] = useState(false)
@@ -212,11 +214,15 @@ export default function Login() {
               {readCachedMe()?.kind === 'buyer' ? (
                 <>
                   Your access period ended {formatEndedDate(accessEndedAt)}. Purchases
-                  include 18 months of access. Email{' '}
+                  include 18 months of access.{' '}
+                  <a href={GUIDE_BUY_URL} target="_blank" rel="noopener noreferrer">
+                    Buy the guide again
+                  </a>{' '}
+                  with the same email and access restarts for another 18 months, or email{' '}
                   <a href="mailto:cory@thetalusfieldjournal.com">
                     cory@thetalusfieldjournal.com
                   </a>{' '}
-                  about renewing.
+                  with questions.
                 </>
               ) : (
                 <>Your session ended {formatEndedDate(accessEndedAt)}. Sign in again to continue.</>
@@ -274,6 +280,23 @@ export default function Login() {
         </form>
 
         <ResendAccessEmail prefillEmail={email} />
+
+        <section className="login-storefront" aria-label="About the Field Guide">
+          <span className="eyebrow">New here</span>
+          <p className="login-intro" style={{ marginTop: 8 }}>
+            The Field Guide is {price}, one payment: four regional guides, the Secret
+            Guide, and an offline topo map of the park, on every device you own for 18
+            months.
+          </p>
+          <div className="action-row" style={{ marginTop: 16 }}>
+            <Button variant="ghost" to="/preview">
+              Read the free sample →
+            </Button>
+            <Button variant="quiet" href={GUIDE_BUY_URL} external>
+              Get the guide
+            </Button>
+          </div>
+        </section>
 
         <p className="page-footnote">
           Works offline once installed. Pay once, sign in on every device you own.

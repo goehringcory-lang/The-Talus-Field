@@ -10,6 +10,9 @@ type Props = {
   variant?: 'solid' | 'ghost' | 'quiet'
   size?: 'md' | 'sm'
   to?: string
+  // Router state forwarded with `to` (e.g. { from } so /login can return to
+  // the page that sent the visitor there).
+  state?: unknown
   href?: string
   external?: boolean
   type?: 'button' | 'submit'
@@ -24,6 +27,7 @@ export default function Button({
   variant = 'solid',
   size = 'md',
   to,
+  state,
   href,
   external = false,
   type = 'button',
@@ -44,7 +48,7 @@ export default function Button({
 
   if (to) {
     return (
-      <Link to={to} className={cls} onClick={onClick} aria-label={ariaLabel}>
+      <Link to={to} state={state} className={cls} onClick={onClick} aria-label={ariaLabel}>
         {children}
       </Link>
     )

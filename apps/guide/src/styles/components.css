@@ -95,6 +95,79 @@
   margin-top: var(--s5);
 }
 
+/* Sell block for signed-out visitors under the login form. */
+.login-storefront {
+  margin-top: var(--s6);
+  padding-top: var(--s5);
+  border-top: 1px solid var(--rule-soft);
+}
+
+/* ===== Public storefront (/preview, stop teasers) =====
+   Signed-out chrome: the gated masthead minus the app links, and a fixed buy
+   bar standing where the bottom tab bar stands for buyers. */
+
+/* Clear the fixed buy bar the way .bottom-nav-offset clears the tab bar. */
+.preview-offset {
+  padding-bottom: calc(76px + env(safe-area-inset-bottom));
+}
+.preview-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--s5);
+  padding: 10px var(--gutter) calc(10px + env(safe-area-inset-bottom));
+  background: color-mix(in oklab, var(--paper) 94%, transparent);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-top: 1px solid var(--rule);
+}
+.preview-bar__copy {
+  display: grid;
+  line-height: 1.25;
+  text-align: right;
+}
+.preview-bar__price {
+  font-family: var(--display);
+  font-size: 24px;
+  font-weight: 500;
+}
+.preview-bar__note {
+  font-family: var(--sans);
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--ink-3);
+}
+
+/* Locked-content rows closing each sample entry: how much more the full
+   guide holds. */
+.locked-note {
+  border-top: 1px solid var(--rule-soft);
+  margin: var(--s5) 0 0;
+  padding-top: 12px;
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+/* The sample's closing buy card. */
+.buy-card__price {
+  font-family: var(--display);
+  font-size: clamp(34px, 5vw, 44px);
+  line-height: 1.05;
+  font-weight: 500;
+  margin: 6px 0 10px;
+}
+
 /* ===== Plate photo treatment (Plate.tsx) =====
    The editorial site's "Alpine Journal plate": ink border, engraved offset
    shadow, uppercase label chip top-right. */
