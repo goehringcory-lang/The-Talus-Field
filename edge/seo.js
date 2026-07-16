@@ -265,6 +265,12 @@ const HUB_PROSE = {
       "List your business",
       "How to list a Yosemite-area lodge, inn, guide service, or outfitter in The Talus Field directory, and what the listing includes."
     ),
+  "/consult": () =>
+    hubProse(
+      "Field consult: thirty minutes on your Yosemite plan",
+      "A one-on-one planning session with a naturalist who lives in Yosemite: dates, group, and constraints turned into a plan that fits the park as it will actually be that week. Thirty minutes by call, or the same session asynchronously as a written plan. A few slots a month; when they are gone, they are gone."
+    ) +
+    `<p>Most planning questions are answered free in <a href="/planning">the Planning Guide</a>, <a href="/itineraries">the itineraries</a>, and <a href="/map">the trip planner map</a>; the consult is for plans with real constraints.</p>`,
   "/firefall": () =>
     hubProse(
       "The Yosemite Firefall",
@@ -569,6 +575,22 @@ function seoForPath(pathname, searchParams) {
       description:
         "A short weekly note on what Yosemite is actually doing right now: what's open, what's flowing, what's blooming, and what changed. Written from inside the park.",
       breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["This Week in the Park", null]],
+    },
+    "/consult": {
+      title: `Field Consult — thirty minutes on your Yosemite plan — ${SITE_NAME}`,
+      description:
+        "A one-on-one planning consult with a Yosemite naturalist: your dates, group, and constraints, turned into a plan that fits the park. $95, thirty minutes, a few slots a month.",
+      breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Field consult", null]],
+      jsonLd: {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        name: "Yosemite field consult",
+        description:
+          "A thirty-minute one-on-one Yosemite trip-planning consult with a resident naturalist, by call or as a written plan.",
+        provider: { "@id": AUTHOR_ID },
+        areaServed: { "@type": "Place", name: "Yosemite National Park" },
+        url: `${SITE_ORIGIN}/consult`,
+      },
     },
     "/firefall": {
       // Evergreen event page: no year in the URL or copy, so the same page
