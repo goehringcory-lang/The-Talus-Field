@@ -50,6 +50,7 @@ const TRIP_FEED_TOKEN_KEY = (sub: string) => `tripfeedToken:${sub.toLowerCase()}
 const TRIP_FEED_WRITE_ATTEMPTS_KEY = (sub: string) =>
   `tripfeedWriteAttempts:${sub.toLowerCase()}`
 const TRIP_EMAIL_ATTEMPTS_KEY = (ipHash: string) => `tripEmailAttempts:${ipHash}`
+const WAITLIST_ATTEMPTS_KEY = (ipHash: string) => `waitlistAttempts:${ipHash}`
 const RENEWAL_NOTICE_KEY = (email: string, stage: string) =>
   `renewalNotice:${email.toLowerCase()}:${stage}`
 const RENEW_LINK_ATTEMPTS_KEY = (ipHash: string) => `renewLinkAttempts:${ipHash}`
@@ -212,6 +213,17 @@ export async function deleteTripFeed(env: Env, sub: string): Promise<void> {
 // never needs to touch KV.
 export async function recordTripEmailAttempt(env: Env, ipHash: string): Promise<number> {
   const key = TRIP_EMAIL_ATTEMPTS_KEY(ipHash)
+  const raw = await env.GUIDE_BUYERS.get(key)
+  const next = (raw ? Number.parseInt(raw, 10) : 0) + 1
+  // 1-hour TTL gives a rolling window per IP.
+  await env.GUIDE_BUYERS.put(key, String(next), { expirationTtl: 60 * 60 })
+  return next
+}
+
+// The guide waitlist button mails the operator per call, so the window is
+// tight and keyed by hashed IP (the endpoint is unauthenticated).
+export async function recordWaitlistAttempt(env: Env, ipHash: string): Promise<number> {
+  const key = WAITLIST_ATTEMPTS_KEY(ipHash)
   const raw = await env.GUIDE_BUYERS.get(key)
   const next = (raw ? Number.parseInt(raw, 10) : 0) + 1
   // 1-hour TTL gives a rolling window per IP.

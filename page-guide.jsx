@@ -17,12 +17,13 @@ const GUIDE_API_BASE =
 // GUIDE_PRICE_CENTS in workers/wrangler.toml.
 const GUIDE_PRICE_FALLBACK_CENTS = 1900;
 
-// GUIDE-LAUNCH: flipped to true July 2026. True renders the Stripe buy box
-// (GuideBuyBox); false renders the waitlist aside (GuideWaitlistBox), kept
-// for any future sales pause. The robots/sitemap/footer flips landed earlier
-// with the public-waitlist pass. Merging a true flag to main puts the guide
-// on sale: the ops gate in LAUNCH-READINESS.md must be cleared first.
-const GUIDE_ON_SALE = true;
+// GUIDE-LAUNCH: flipped to true July 2026, back to false for a sales pause.
+// True renders the Stripe buy box (GuideBuyBox); false renders the waitlist
+// aside (GuideWaitlistBox), whose button emails the operator that a reader
+// wants in. The robots/sitemap/footer flips landed earlier with the
+// public-waitlist pass. Merging a true flag to main puts the guide on sale:
+// the ops gate in LAUNCH-READINESS.md must be cleared first.
+const GUIDE_ON_SALE = false;
 
 function formatPrice(cents) {
   const dollars = cents / 100;
@@ -252,10 +253,47 @@ function GuideBuyBox() {
 
 // Pre-launch waitlist aside. Same sticky slot as GuideBuyBox; honest copy,
 // price kept visible as plain text for anchoring, no scarcity counter while
-// nothing is on sale. The form is a standard NewsletterInline (Buttondown
-// tag guide-waitlist), so signups flow through the existing newsletter
-// events with location guide_waitlist.
+// nothing is on sale. The "Put me on the wait-list" button POSTs the reader's
+// email to the Worker's /api/waitlist, which mails the operator that they want
+// in (honeypot + per-IP rate limit on the server). A non-empty `website`
+// field is the honeypot: real browsers leave it blank.
 function GuideWaitlistBox() {
+  const [email, setEmail] = React.useState("");
+  const [website, setWebsite] = React.useState("");
+  const [busy, setBusy] = React.useState(false);
+  const [done, setDone] = React.useState(false);
+  const [error, setError] = React.useState(null);
+
+  async function joinWaitlist(e) {
+    e.preventDefault();
+    const addr = email.trim();
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(addr)) {
+      setError("Enter a valid email address.");
+      return;
+    }
+    setBusy(true);
+    setError(null);
+    if (window.track) window.track("guide_waitlist_join", { location: "guide_aside" });
+    try {
+      const res = await fetch(`${GUIDE_API_BASE}/api/waitlist`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: addr, website }),
+      });
+      const body = await res.json().catch(() => ({}));
+      if (!res.ok) {
+        throw new Error(body.error || `HTTP ${res.status}`);
+      }
+      setDone(true);
+    } catch (_e) {
+      setError(
+        "That didn't go through. Try again in a minute, or email cory@thetalusfieldjournal.com."
+      );
+    } finally {
+      setBusy(false);
+    }
+  }
+
   return (
     <aside style={{ position: "sticky", top: 100, alignSelf: "start", border: "1px solid var(--ink)", padding: 32, background: "var(--paper-2)" }}>
       <div className="eyebrow eyebrow--moss" style={{ marginBottom: 14 }}>The Field Guide</div>
@@ -268,12 +306,49 @@ function GuideWaitlistBox() {
         The guide is in final testing. It will be $19, one payment, 18 months of access on every device you own. Leave your email and you will hear the day it opens, before anyone else.
       </p>
 
-      <NewsletterInline
-        location="guide_waitlist"
-        tag="guide-waitlist"
-        heading="The waitlist"
-        blurb="One email when the guide opens. Sunday Field Notes in the meantime, one short letter a week. Free, leave anytime."
-      />
+      {done ? (
+        <p style={{ fontFamily: "var(--sans)", fontSize: 14, color: "var(--ink)", lineHeight: 1.55, margin: "0 0 18px", border: "1px solid var(--ink)", padding: "12px 14px", background: "var(--paper)" }}>
+          You're on the list. I'll email you the day the guide opens.
+        </p>
+      ) : (
+        <form onSubmit={joinWaitlist}>
+          <div className="field">
+            <label htmlFor="waitlist-email">Your email</label>
+            <input
+              id="waitlist-email"
+              type="email"
+              required
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="you@email.com"
+            />
+          </div>
+          {/* Honeypot: hidden from real users, catches bots. */}
+          <input
+            type="text"
+            name="website"
+            tabIndex={-1}
+            autoComplete="off"
+            aria-hidden="true"
+            value={website}
+            onChange={(e) => setWebsite(e.target.value)}
+            style={{ position: "absolute", left: "-9999px", width: 1, height: 1, opacity: 0 }}
+          />
+          <button
+            type="submit"
+            className="btn"
+            disabled={busy}
+            style={{ display: "block", width: "100%", textAlign: "center", border: 0, font: "inherit", cursor: busy ? "wait" : "pointer", marginTop: 14 }}
+          >
+            {busy ? "Sending…" : "Put me on the wait-list"}
+          </button>
+          {error && (
+            <p style={{ fontFamily: "var(--sans)", fontSize: 13, color: "var(--moss)", lineHeight: 1.55, margin: "14px 0 0" }}>
+              {error}
+            </p>
+          )}
+        </form>
+      )}
 
       <div style={{ borderTop: "1px solid var(--rule)", marginTop: 24, paddingTop: 20 }}>
         <div className="eyebrow" style={{ marginBottom: 10 }}>In the app</div>

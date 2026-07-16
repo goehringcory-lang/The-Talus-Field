@@ -516,6 +516,59 @@ function escapeHtml(s: string): string {
     .replace(/'/g, '&#39;')
 }
 
+// Guide waitlist request: a reader clicked "Put me on the wait-list" on the
+// editorial /guide page. Goes to the operator inbox (same recipient as the
+// contact form) with the reader's address as reply_to, so a one-tap reply
+// reaches them the day the guide opens.
+export async function sendWaitlistRequest(
+  env: Env,
+  args: { email: string },
+): Promise<void> {
+  if (!env.RESEND_API_KEY) {
+    throw new Error('RESEND_API_KEY not configured')
+  }
+
+  const { email } = args
+
+  const text = [
+    `New Field Guide waitlist request.`,
+    ``,
+    `${email} wants on the wait-list for the Field Guide.`,
+    `Reply to this email to reach them the day it opens.`,
+  ].join('\n')
+
+  const html = `
+    <div style="font-family: -apple-system, Segoe UI, sans-serif; line-height: 1.55; color: #14110c;">
+      <p style="margin: 0 0 14px;"><strong>New Field Guide waitlist request.</strong></p>
+      <p style="margin: 0 0 6px;"><strong>${escapeHtml(email)}</strong> wants on the wait-list for the Field Guide.</p>
+      <p style="margin: 0; color: #50402e;">Reply to this email to reach them the day it opens.</p>
+    </div>
+  `.trim()
+
+  const body: ResendBody = {
+    from: CONTACT_FROM,
+    to: [CONTACT_TO],
+    subject: '[Talus Field] New Field Guide waitlist request',
+    text,
+    html,
+    reply_to: email,
+  }
+
+  const res = await fetch('https://api.resend.com/emails', {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${env.RESEND_API_KEY}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(body),
+  })
+
+  if (!res.ok) {
+    const detail = await res.text()
+    throw new Error(`Resend send failed (${res.status}): ${detail}`)
+  }
+}
+
 export async function sendContactMessage(
   env: Env,
   args: { name: string; email: string; subject: string; message: string },
