@@ -12,6 +12,7 @@ export type Env = {
   APP_BASE_URL: string         // PWA origin; e.g. https://talus-field-guide.pages.dev
   EDITORIAL_BASE_URL: string   // e.g. https://thetalusfieldjournal.com
   GUIDE_PRICE_CENTS: string    // "1900"
+  GUIDE_RENEWAL_PRICE_CENTS: string // "1200"; discounted rebuy at/near expiry
   GUIDE_PRODUCT_TAG: string    // "field_guide_2026"
   GUIDE_MONTHLY_CAP: string    // "100"
 

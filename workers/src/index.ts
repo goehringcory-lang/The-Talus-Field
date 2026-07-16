@@ -11,7 +11,9 @@ import { stripe } from './routes/stripe'
 import { trip } from './routes/trip'
 import { tripEmail } from './routes/trip-email'
 import { weather } from './routes/weather'
+import { widget, widgetScript } from './routes/widget'
 import { refreshWeather } from './lib/weather'
+import { sweepRenewals } from './lib/renewals'
 import {
   currentMonthLabel,
   firstOfNextMonthIso,
@@ -96,6 +98,18 @@ app.get('/tiles/:z/:y/:x', async (c) => {
   })
 })
 
+// The embeddable conditions widget lives at the ROOT level (like /tiles), NOT
+// under /api/*: it runs on arbitrary third-party origins, so it needs a plain
+// CORS * that the /api/* origin-echo middleware would clobber.
+app.route('/widget', widget)
+app.get('/widget.js', (c) =>
+  c.text(widgetScript(), 200, {
+    'Content-Type': 'application/javascript; charset=utf-8',
+    'Cache-Control': 'public, max-age=3600',
+    'Access-Control-Allow-Origin': '*',
+  }),
+)
+
 app.get('/api/inventory', async (c) => {
   const monthLabel = currentMonthLabel()
   const sold = await getInventoryCount(c.env, monthLabel)
@@ -107,7 +121,11 @@ app.get('/api/inventory', async (c) => {
   // number is edited in exactly one place: [vars] in wrangler.toml.
   const parsedPrice = Number.parseInt(c.env.GUIDE_PRICE_CENTS, 10)
   const priceCents = Number.isNaN(parsedPrice) ? null : parsedPrice
-  return c.json({ sold, cap, monthLabel, priceCents, reopens: firstOfNextMonthIso() })
+  // The PWA's renew button reads this so the renewal price is also edited in
+  // exactly one place ([vars] in wrangler.toml).
+  const parsedRenewal = Number.parseInt(c.env.GUIDE_RENEWAL_PRICE_CENTS, 10)
+  const renewalPriceCents = Number.isNaN(parsedRenewal) ? null : parsedRenewal
+  return c.json({ sold, cap, monthLabel, priceCents, renewalPriceCents, reopens: firstOfNextMonthIso() })
 })
 
 app.route('/api/auth', auth)
@@ -141,6 +159,11 @@ async function scheduled(
   ctx.waitUntil(
     refreshWeather(env).catch((err) => {
       console.error('scheduled: weather refresh failed', err)
+    }),
+  )
+  ctx.waitUntil(
+    sweepRenewals(env).catch((err) => {
+      console.error('scheduled: renewal sweep failed', err)
     }),
   )
 }

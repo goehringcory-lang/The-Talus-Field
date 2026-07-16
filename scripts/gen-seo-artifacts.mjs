@@ -347,6 +347,19 @@ function buildLlms(existing, merged, categories) {
   return `${head}## Articles\n\n${body}\n\n${tail}`;
 }
 
+// Slim {id: name} mirror of points.geojson for edge/seo.js: shared-trip OG
+// overrides (/map?trip=...) validate stop ids and name the first stops in the
+// description without bundling the full GeoJSON into the Worker.
+function buildTripPoints() {
+  const geo = JSON.parse(readFileSync(path.join(ROOT, "points.geojson"), "utf8"));
+  const map = {};
+  for (const f of geo.features || []) {
+    const p = f.properties || {};
+    if (typeof p.id === "string" && typeof p.name === "string") map[p.id] = p.name;
+  }
+  return JSON.stringify(map, null, 2) + "\n";
+}
+
 // ----------------------------------------------------------------------------
 // Main
 // ----------------------------------------------------------------------------
@@ -381,6 +394,7 @@ async function main() {
     "feed.xml": buildFeed(merged, categories),
     "llms.txt": buildLlms(readFileSync(path.join(ROOT, "llms.txt"), "utf8"), merged, categories),
     "index.html": buildIndexHtml(readFileSync(path.join(ROOT, "index.html"), "utf8"), merged),
+    "trip-points.json": buildTripPoints(),
   };
 
   if (CHECK) {

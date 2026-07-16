@@ -213,16 +213,17 @@ export default function Login() {
                   fall back to neutral copy unless the last /me said buyer. */}
               {readCachedMe()?.kind === 'buyer' ? (
                 <>
-                  Your access period ended {formatEndedDate(accessEndedAt)}. Purchases
-                  include 18 months of access.{' '}
+                  Your access period ended {formatEndedDate(accessEndedAt)}. The cheapest way
+                  back is the one-click renewal link in the reminder emails we sent as the
+                  date approached (search your inbox for "Field Guide access"). You can also{' '}
                   <a href={GUIDE_BUY_URL} target="_blank" rel="noopener noreferrer">
-                    Buy the guide again
+                    buy the guide again
                   </a>{' '}
-                  with the same email and access restarts for another 18 months, or email{' '}
+                  with the same email to restart access, or email{' '}
                   <a href="mailto:cory@thetalusfieldjournal.com">
                     cory@thetalusfieldjournal.com
                   </a>{' '}
-                  with questions.
+                  and a fresh renewal link comes back.
                 </>
               ) : (
                 <>Your session ended {formatEndedDate(accessEndedAt)}. Sign in again to continue.</>

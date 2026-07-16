@@ -10,11 +10,12 @@ function readCheckoutOutcome() {
   try {
     var params = new URLSearchParams(window.location.search);
     var value = params.get("guide");
-    return value === "success" || value === "cancel" ? value : null;
+    return value === "success" || value === "gift-success" || value === "cancel" ? value : null;
   } catch (_e) {
     return null;
   }
 }
+var GIFT_NOTE_MAX = 280;
 function formatReopens(iso) {
   try {
     var d = new Date(iso);
@@ -33,6 +34,9 @@ function GuideBuyBox() {
   var [error, setError] = React.useState(null);
   var [outcome] = React.useState(readCheckoutOutcome);
   var [priceCents, setPriceCents] = React.useState(GUIDE_PRICE_FALLBACK_CENTS);
+  var [giftMode, setGiftMode] = React.useState(false);
+  var [giftEmail, setGiftEmail] = React.useState("");
+  var [giftNote, setGiftNote] = React.useState("");
   React.useEffect(() => {
     var cancelled = false;
     fetch(`${GUIDE_API_BASE}/api/inventory`).then(res => res.ok ? res.json() : null).then(body => {
@@ -45,17 +49,28 @@ function GuideBuyBox() {
     };
   }, []);
   async function startCheckout() {
+    var recipient = giftEmail.trim();
+    if (giftMode && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(recipient)) {
+      setError("Enter the recipient's email address first.");
+      return;
+    }
     setBusy(true);
     setError(null);
     if (window.track) window.track("guide_buy_click", {
-      location: "guide_aside"
+      location: "guide_aside",
+      gift: giftMode
     });
     try {
       var res = await fetch(`${GUIDE_API_BASE}/api/checkout/start`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
-        }
+        },
+        body: giftMode ? JSON.stringify({
+          gift: true,
+          recipientEmail: recipient,
+          giftNote: giftNote.trim()
+        }) : undefined
       });
       var body = await res.json().catch(() => ({}));
       if (res.status === 409 && body.soldOut) {
@@ -122,7 +137,18 @@ function GuideBuyBox() {
     style: {
       color: "var(--ink-2)"
     }
-  }, "open the app and sign in →")), outcome === "cancel" && React.createElement("p", {
+  }, "open the app and sign in →")), outcome === "gift-success" && React.createElement("p", {
+    style: {
+      fontFamily: "var(--sans)",
+      fontSize: 14,
+      color: "var(--ink)",
+      lineHeight: 1.55,
+      margin: "0 0 18px",
+      border: "1px solid var(--ink)",
+      padding: "12px 14px",
+      background: "var(--paper)"
+    }
+  }, "Payment received. Their access email is on its way to them, and your receipt is on its way to you. If you typed the wrong address, reply to the receipt and it gets moved."), outcome === "cancel" && React.createElement("p", {
     style: {
       fontFamily: "var(--sans)",
       fontSize: 14,
@@ -138,7 +164,60 @@ function GuideBuyBox() {
       lineHeight: 1.55,
       margin: "0 0 14px"
     }
-  }, "This month's copies are gone. Sales reopen ", formatReopens(soldOut.reopens), ". The sign-up form at the bottom of the page will tell you when.") : React.createElement("button", {
+  }, "This month's copies are gone. Sales reopen ", formatReopens(soldOut.reopens), ". The sign-up form at the bottom of the page will tell you when.") : React.createElement(React.Fragment, null, React.createElement("label", {
+    style: {
+      display: "flex",
+      alignItems: "center",
+      gap: 8,
+      fontFamily: "var(--sans)",
+      fontSize: 13,
+      color: "var(--ink-2)",
+      marginBottom: 14,
+      cursor: "pointer"
+    }
+  }, React.createElement("input", {
+    type: "checkbox",
+    checked: giftMode,
+    onChange: e => setGiftMode(e.target.checked),
+    style: {
+      accentColor: "var(--ink)"
+    }
+  }), "Buying it as a gift?"), giftMode && React.createElement("div", {
+    style: {
+      marginBottom: 14
+    }
+  }, React.createElement("div", {
+    className: "field"
+  }, React.createElement("label", {
+    htmlFor: "gift-email"
+  }, "Recipient's email"), React.createElement("input", {
+    id: "gift-email",
+    type: "email",
+    required: true,
+    value: giftEmail,
+    onChange: e => setGiftEmail(e.target.value),
+    placeholder: "them@email.com"
+  })), React.createElement("div", {
+    className: "field"
+  }, React.createElement("label", {
+    htmlFor: "gift-note"
+  }, "A short note to include, optional"), React.createElement("textarea", {
+    id: "gift-note",
+    maxLength: GIFT_NOTE_MAX,
+    value: giftNote,
+    onChange: e => setGiftNote(e.target.value),
+    style: {
+      minHeight: 70
+    }
+  })), React.createElement("p", {
+    style: {
+      fontFamily: "var(--sans)",
+      fontSize: 12,
+      color: "var(--ink-3)",
+      lineHeight: 1.55,
+      margin: "8px 0 0"
+    }
+  }, "Their access email goes straight to them when payment clears. Their 18 months start today, so time it to the trip.")), React.createElement("button", {
     type: "button",
     className: "btn",
     disabled: busy,
@@ -152,7 +231,7 @@ function GuideBuyBox() {
       cursor: busy ? "wait" : "pointer",
       marginBottom: 14
     }
-  }, busy ? "Opening checkout…" : `Buy the guide → ${formatPrice(priceCents)}`), error && React.createElement("p", {
+  }, busy ? "Opening checkout…" : `${giftMode ? "Gift the guide" : "Buy the guide"} → ${formatPrice(priceCents)}`)), error && React.createElement("p", {
     style: {
       fontFamily: "var(--sans)",
       fontSize: 13,

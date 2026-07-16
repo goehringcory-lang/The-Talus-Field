@@ -11,7 +11,17 @@ type StripeCheckoutSession = {
 
 export async function createCheckoutSession(
   env: Env,
-  args: { successUrl: string; cancelUrl: string },
+  args: {
+    successUrl: string
+    cancelUrl: string
+    // Overrides for non-default SKUs (gift, renewal). Every session keeps the
+    // GUIDE_PRODUCT_TAG metadata guard; `metadata` is merged onto BOTH the
+    // session and payment_intent_data so refunds carry it on the charge.
+    priceCents?: string
+    productName?: string
+    customerEmail?: string
+    metadata?: Record<string, string>
+  },
 ): Promise<StripeCheckoutSession> {
   if (!env.STRIPE_SECRET_KEY) {
     throw new Error('STRIPE_SECRET_KEY not configured')
@@ -22,13 +32,26 @@ export async function createCheckoutSession(
   params.set('success_url', args.successUrl)
   params.set('cancel_url', args.cancelUrl)
   params.set('line_items[0][price_data][currency]', 'usd')
-  params.set('line_items[0][price_data][product_data][name]', 'The Field Guide — 2026 Edition')
-  params.set('line_items[0][price_data][unit_amount]', env.GUIDE_PRICE_CENTS)
+  params.set(
+    'line_items[0][price_data][product_data][name]',
+    args.productName ?? 'The Field Guide — 2026 Edition',
+  )
+  params.set('line_items[0][price_data][unit_amount]', args.priceCents ?? env.GUIDE_PRICE_CENTS)
   params.set('line_items[0][quantity]', '1')
   params.set('metadata[product]', env.GUIDE_PRODUCT_TAG)
   params.set('billing_address_collection', 'auto')
   params.set('customer_creation', 'always')
   params.set('payment_intent_data[metadata][product]', env.GUIDE_PRODUCT_TAG)
+  if (args.customerEmail) {
+    params.set('customer_email', args.customerEmail)
+  }
+  for (const [key, value] of Object.entries(args.metadata ?? {})) {
+    // `product` stays authoritative; a caller must not be able to overwrite
+    // the tag the webhook guard keys on.
+    if (key === 'product') continue
+    params.set(`metadata[${key}]`, value)
+    params.set(`payment_intent_data[metadata][${key}]`, value)
+  }
 
   const res = await fetch('https://api.stripe.com/v1/checkout/sessions', {
     method: 'POST',

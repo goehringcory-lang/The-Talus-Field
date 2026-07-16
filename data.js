@@ -101,7 +101,7 @@ window.planningSeriesFor = function (slug) {
 window.BODY_VERSIONS = {
   "yosemite-waterfalls-guide": 1,
   "yosemite-photography-spots": 1,
-  "horsetail-fall-firefall": 1,
+  "horsetail-fall-firefall": 2,
   "yosemite-in-winter": 1,
   "where-to-stay-in-yosemite": 2,
   "yosemite-wildflowers-guide": 1,
@@ -730,7 +730,7 @@ window.ARTICLES = [
     seoDek: "How the Yosemite firefall works: when Horsetail Fall glows in February, the three conditions required, viewing at El Capitan Picnic Area, and honest odds.",
     date: "July 12, 2026",
     isoDate: "2026-07-12",
-    isoModified: "2026-07-12",
+    isoModified: "2026-07-16",
     read: "7 min",
     placeholder: "Horsetail Fall glowing orange at sunset on the east shoulder of El Capitan",
     image: "img/horsetail-fall-firefall-cedric-letsch.jpg",

@@ -44,6 +44,9 @@ export const STATIC_ROUTES = [
   "/itineraries",
   "/conditions",
   "/now",
+  "/firefall",
+  "/consult",
+  "/widget",
 ];
 
 function harvestWindow(file, preload = []) {

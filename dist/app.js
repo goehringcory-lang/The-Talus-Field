@@ -11,7 +11,7 @@ function routeToPath(route) {
   if (route.startsWith("a:")) return `/articles/${route.slice(2)}`;
   return `/${route}`;
 }
-var STATIC_ROUTE_KEYS = new Set(["home", "articles", "planning", "checklist", "about", "kit", "places", "advertise", "newsletter", "contact", "privacy", "terms", "affiliate", "guide", "map", "films", "itineraries", "conditions", "now"]);
+var STATIC_ROUTE_KEYS = new Set(["home", "articles", "planning", "checklist", "about", "kit", "places", "advertise", "newsletter", "contact", "privacy", "terms", "affiliate", "guide", "map", "films", "itineraries", "conditions", "now", "firefall", "consult", "widget"]);
 function pathToRoute(pathname) {
   var path = (pathname || "/").replace(/\/+$/, "") || "/";
   if (path === "/") return "home";
@@ -118,6 +118,18 @@ var PAGE_MODULES = {
   now: {
     scripts: ["/dist/page-now.js"],
     globals: ["NowPage"]
+  },
+  firefall: {
+    scripts: ["/dist/page-firefall.js"],
+    globals: ["FirefallPage"]
+  },
+  consult: {
+    scripts: ["/dist/page-consult.js"],
+    globals: ["ConsultPage"]
+  },
+  widget: {
+    scripts: ["/dist/page-widget.js"],
+    globals: ["WidgetPage"]
   }
 };
 function routeModule(route) {
@@ -861,6 +873,18 @@ function App() {
     });
   } else if (route === "now") {
     page = React.createElement(window.NowPage, {
+      go: go
+    });
+  } else if (route === "firefall") {
+    page = React.createElement(window.FirefallPage, {
+      go: go
+    });
+  } else if (route === "consult") {
+    page = React.createElement(window.ConsultPage, {
+      go: go
+    });
+  } else if (route === "widget") {
+    page = React.createElement(window.WidgetPage, {
       go: go
     });
   } else if (route === "map") {
