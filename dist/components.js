@@ -280,9 +280,33 @@ function Header({
   current,
   go
 }) {
-  var primaryNavItems = [["articles", "Articles"], ["kit", "Kit"], ["films", "Films"], ["places", "Directory"], ["about", "About"]];
-  var overflowNavItems = [["newsletter", "Newsletter"], ["contact", "Contact"]];
-  var navItems = [...primaryNavItems, ...overflowNavItems];
+  var navGroups = [{
+    key: "read",
+    label: "Read",
+    route: "articles",
+    items: [["articles", "All articles"], ["cat:planning", "Planning"], ["cat:trails", "Trails and hikes"], ["cat:wildlife", "Wildlife and nature"], ["cat:seasonal", "Seasonal guides"], ["now", "This week in the park"], ["films", "Films"]]
+  }, {
+    key: "plan",
+    label: "Plan",
+    route: "planning",
+    items: [["planning", "The Planning Guide"], ["itineraries", "Itineraries"], ["conditions", "Conditions"], ["checklist", "First-week checklist"], ["kit", "Kit"], ["firefall", "Firefall"], ["consult", "Trip consults"]]
+  }, {
+    key: "guide",
+    label: "Field Guide",
+    route: "guide"
+  }, {
+    key: "about",
+    label: "About",
+    route: "about",
+    align: "right",
+    items: [["about", "About the journal"], ["newsletter", "Newsletter"], ["contact", "Contact"], ["places", "Directory"], ["advertise", "Advertise"], ["widget", "Conditions widget"]]
+  }];
+  var isGroupActive = g => {
+    if (current === g.route) return true;
+    if (g.items && g.items.some(([key]) => key === current)) return true;
+    if (g.key === "read" && (current.startsWith("a:") || current.startsWith("cat:"))) return true;
+    return false;
+  };
   var [menuOpen, setMenuOpen] = React.useState(false);
   var menuRef = React.useRef(null);
   React.useEffect(() => {
@@ -312,6 +336,9 @@ function Header({
     onClick: e => {
       e.preventDefault();
       if (onNavigate) onNavigate();
+      if (key === "guide" && window.track) window.track("guide_cta_click", {
+        location: "masthead_nav"
+      });
       go(key);
     }
   }, label);
@@ -400,9 +427,37 @@ function Header({
     className: "brand__sub"
   }, "A field journal of Yosemite"))), React.createElement("nav", {
     className: "nav"
-  }, primaryNavItems.map(([key, label]) => renderLink(key, label, {
-    baseClass: "nav__link"
-  })), React.createElement("a", {
+  }, navGroups.map(g => {
+    if (!g.items) {
+      return React.createElement("div", {
+        key: g.key,
+        className: "nav__group"
+      }, renderLink(g.route, g.label, {
+        baseClass: "nav__link"
+      }));
+    }
+    return React.createElement("div", {
+      key: g.key,
+      className: "nav__group"
+    }, React.createElement("a", {
+      href: window.routeToPath ? window.routeToPath(g.route) : `/${g.route}`,
+      className: ["nav__link", "nav__group-trigger", isGroupActive(g) && "is-active"].filter(Boolean).join(" "),
+      "aria-haspopup": "true",
+      onClick: e => {
+        e.preventDefault();
+        go(g.route);
+      }
+    }, g.label, React.createElement("span", {
+      className: "nav__caret",
+      "aria-hidden": "true"
+    }, "▾")), React.createElement("div", {
+      className: ["nav__dropdown", g.align === "right" && "nav__dropdown--right"].filter(Boolean).join(" ")
+    }, React.createElement("div", {
+      className: "nav__dropdown-inner"
+    }, g.items.map(([key, label]) => renderLink(key, label, {
+      baseClass: "nav__dropdown-link"
+    })))));
+  }), React.createElement("a", {
     className: "nav__primary",
     href: window.routeToPath ? window.routeToPath("map") : "/map",
     onClick: e => {
@@ -429,10 +484,18 @@ function Header({
   }, React.createElement("span", null), React.createElement("span", null), React.createElement("span", null))), menuOpen && React.createElement("div", {
     className: "nav__menu",
     role: "menu"
-  }, navItems.map(([key, label]) => renderLink(key, label, {
+  }, navGroups.map(g => React.createElement("div", {
+    key: g.key,
+    className: "nav__menu-group"
+  }, g.items ? React.createElement(React.Fragment, null, React.createElement("div", {
+    className: "nav__menu-label"
+  }, g.label), g.items.map(([key, label]) => renderLink(key, label, {
     role: "menuitem",
     onNavigate: () => setMenuOpen(false)
-  })))))));
+  }))) : renderLink(g.route, g.label, {
+    role: "menuitem",
+    onNavigate: () => setMenuOpen(false)
+  }))))))));
 }
 function Footer({
   go

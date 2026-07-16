@@ -374,6 +374,56 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
 }
 .nav__cta:hover { background: var(--ink); color: var(--paper) !important; }
 
+/* Desktop dropdown groups. Opened by :hover / :focus-within only, so hover
+   and keyboard tabbing both work with zero JS state. */
+.nav__group { position: relative; display: flex; align-items: center; }
+.nav__group-trigger { display: inline-flex; align-items: center; gap: 5px; }
+.nav__caret {
+  font-size: 8px;
+  line-height: 1;
+  color: var(--ink-3, var(--ink-2));
+  transform: translateY(-1px);
+  transition: transform 0.15s;
+}
+.nav__group:hover .nav__caret,
+.nav__group:focus-within .nav__caret { transform: translateY(0); }
+.nav__dropdown {
+  position: absolute;
+  top: 100%;
+  left: -18px;
+  /* Transparent bridge so the pointer can cross the gap between the trigger
+     and the panel without the menu closing. */
+  padding-top: 16px;
+  display: none;
+  z-index: 60;
+}
+.nav__dropdown--right { left: auto; right: -18px; }
+.nav__group:hover .nav__dropdown,
+.nav__group:focus-within .nav__dropdown { display: block; }
+.nav__dropdown-inner {
+  min-width: 230px;
+  background: var(--paper);
+  border: 1px solid var(--ink);
+  padding: 8px 0;
+  box-shadow: 0 6px 24px rgba(20, 20, 20, 0.08);
+  display: flex;
+  flex-direction: column;
+}
+.nav__dropdown-link {
+  padding: 11px 18px;
+  border-bottom: 0 !important;
+}
+.nav__dropdown-link:hover { background: var(--paper-2); color: var(--ink); }
+.nav__dropdown-link.is-active { color: var(--ink); }
+.nav__dropdown-link.is-active::before {
+  content: "";
+  display: inline-block;
+  width: 6px; height: 6px;
+  background: var(--moss);
+  margin-right: 10px;
+  transform: translateY(-2px);
+}
+
 /* Mobile hamburger menu. Hidden at desktop, shown when inline links collapse. */
 .nav__menu-wrap { position: relative; display: none; }
 .nav__menu-toggle {
@@ -413,6 +463,23 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
   box-shadow: 0 6px 24px rgba(20, 20, 20, 0.08);
   display: flex;
   flex-direction: column;
+  /* The grouped menu is tall; keep it inside the viewport under the sticky
+     masthead and let it scroll. */
+  max-height: calc(100vh - 130px);
+  overflow-y: auto;
+}
+.nav__menu-group { display: flex; flex-direction: column; }
+.nav__menu-group + .nav__menu-group {
+  border-top: 1px solid var(--rule);
+  margin-top: 6px;
+  padding-top: 6px;
+}
+.nav__menu-label {
+  padding: 10px 18px 4px;
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  color: var(--ink-2);
+  font-weight: 700;
 }
 .nav__menu a {
   padding: 12px 18px;
@@ -1870,7 +1937,7 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
   .site-footer__grid { grid-template-columns: 1fr 1fr; }
   /* Inline links don't fit comfortably at this width — collapse into the hamburger menu. */
   .nav { gap: 0; }
-  .nav__link { display: none; }
+  .nav__group { display: none; }
   .nav__menu-wrap { display: block; }
   .statblock { grid-template-columns: 1fr 1fr; }
   .masthead__top { font-size: 11px; }
