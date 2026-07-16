@@ -1,7 +1,7 @@
 var GUIDE_APP_BASE = typeof window !== "undefined" && window.GUIDE_APP_BASE || "https://talus-field-guide.pages.dev";
 var GUIDE_API_BASE = typeof window !== "undefined" && window.GUIDE_API_BASE || "https://api.thetalusfieldjournal.com";
 var GUIDE_PRICE_FALLBACK_CENTS = 1900;
-var GUIDE_ON_SALE = true;
+var GUIDE_ON_SALE = false;
 function formatPrice(cents) {
   var dollars = cents / 100;
   return Number.isInteger(dollars) ? `$${dollars}` : `$${dollars.toFixed(2)}`;
@@ -326,6 +326,45 @@ function GuideBuyBox() {
   }, "cory@thetalusfieldjournal.com"), ".")));
 }
 function GuideWaitlistBox() {
+  var [email, setEmail] = React.useState("");
+  var [website, setWebsite] = React.useState("");
+  var [busy, setBusy] = React.useState(false);
+  var [done, setDone] = React.useState(false);
+  var [error, setError] = React.useState(null);
+  async function joinWaitlist(e) {
+    e.preventDefault();
+    var addr = email.trim();
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(addr)) {
+      setError("Enter a valid email address.");
+      return;
+    }
+    setBusy(true);
+    setError(null);
+    if (window.track) window.track("guide_waitlist_join", {
+      location: "guide_aside"
+    });
+    try {
+      var res = await fetch(`${GUIDE_API_BASE}/api/waitlist`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          email: addr,
+          website
+        })
+      });
+      var body = await res.json().catch(() => ({}));
+      if (!res.ok) {
+        throw new Error(body.error || `HTTP ${res.status}`);
+      }
+      setDone(true);
+    } catch (_e) {
+      setError("That didn't go through. Try again in a minute, or email cory@thetalusfieldjournal.com.");
+    } finally {
+      setBusy(false);
+    }
+  }
   return React.createElement("aside", {
     style: {
       position: "sticky",
@@ -366,12 +405,67 @@ function GuideWaitlistBox() {
       lineHeight: 1.55,
       margin: "0 0 18px"
     }
-  }, "The guide is in final testing. It will be $19, one payment, 18 months of access on every device you own. Leave your email and you will hear the day it opens, before anyone else."), React.createElement(NewsletterInline, {
-    location: "guide_waitlist",
-    tag: "guide-waitlist",
-    heading: "The waitlist",
-    blurb: "One email when the guide opens. Sunday Field Notes in the meantime, one short letter a week. Free, leave anytime."
-  }), React.createElement("div", {
+  }, "The guide is in final testing. It will be $19, one payment, 18 months of access on every device you own. Leave your email and you will hear the day it opens, before anyone else."), done ? React.createElement("p", {
+    style: {
+      fontFamily: "var(--sans)",
+      fontSize: 14,
+      color: "var(--ink)",
+      lineHeight: 1.55,
+      margin: "0 0 18px",
+      border: "1px solid var(--ink)",
+      padding: "12px 14px",
+      background: "var(--paper)"
+    }
+  }, "You're on the list. I'll email you the day the guide opens.") : React.createElement("form", {
+    onSubmit: joinWaitlist
+  }, React.createElement("div", {
+    className: "field"
+  }, React.createElement("label", {
+    htmlFor: "waitlist-email"
+  }, "Your email"), React.createElement("input", {
+    id: "waitlist-email",
+    type: "email",
+    required: true,
+    value: email,
+    onChange: e => setEmail(e.target.value),
+    placeholder: "you@email.com"
+  })), React.createElement("input", {
+    type: "text",
+    name: "website",
+    tabIndex: -1,
+    autoComplete: "off",
+    "aria-hidden": "true",
+    value: website,
+    onChange: e => setWebsite(e.target.value),
+    style: {
+      position: "absolute",
+      left: "-9999px",
+      width: 1,
+      height: 1,
+      opacity: 0
+    }
+  }), React.createElement("button", {
+    type: "submit",
+    className: "btn",
+    disabled: busy,
+    style: {
+      display: "block",
+      width: "100%",
+      textAlign: "center",
+      border: 0,
+      font: "inherit",
+      cursor: busy ? "wait" : "pointer",
+      marginTop: 14
+    }
+  }, busy ? "Sending…" : "Put me on the wait-list"), error && React.createElement("p", {
+    style: {
+      fontFamily: "var(--sans)",
+      fontSize: 13,
+      color: "var(--moss)",
+      lineHeight: 1.55,
+      margin: "14px 0 0"
+    }
+  }, error)), React.createElement("div", {
     style: {
       borderTop: "1px solid var(--rule)",
       marginTop: 24,
