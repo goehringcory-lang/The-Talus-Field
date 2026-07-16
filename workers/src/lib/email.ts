@@ -266,6 +266,167 @@ export async function sendGiftReceipt(
   }
 }
 
+function formatAccessDate(epochSeconds: number): string {
+  return new Date(epochSeconds * 1000).toLocaleDateString('en-US', {
+    month: 'long',
+    day: 'numeric',
+    year: 'numeric',
+  })
+}
+
+// One of the three staged renewal notices the daily sweep sends (T-60, T-14,
+// T-1). The CTA is the token-authenticated GET /api/checkout/renew link, so a
+// lapsed buyer whose JWT is dead can still renew in one click.
+export async function sendRenewalNotice(
+  env: Env,
+  args: { to: string; stage: 't60' | 't14' | 't1'; expiresAt: number; renewUrl: string },
+): Promise<void> {
+  if (!env.RESEND_API_KEY) {
+    throw new Error('RESEND_API_KEY not configured')
+  }
+
+  const { to, stage, expiresAt, renewUrl } = args
+  const endDate = formatAccessDate(expiresAt)
+  const parsedPrice = Number.parseInt(env.GUIDE_RENEWAL_PRICE_CENTS, 10)
+  const priceLabel = Number.isNaN(parsedPrice) ? 'a reduced price' : `$${(parsedPrice / 100).toFixed(parsedPrice % 100 === 0 ? 0 : 2)}`
+
+  const subject =
+    stage === 't1'
+      ? 'Your Field Guide access ends tomorrow'
+      : stage === 't14'
+        ? 'Your Field Guide access ends in two weeks'
+        : 'Your Field Guide access ends in two months'
+  const lead =
+    stage === 't1'
+      ? `Your access ends tomorrow, ${endDate}.`
+      : `Your access runs through ${endDate}.`
+
+  const text = [
+    lead,
+    ``,
+    `Renew for ${priceLabel} and keep everything: your trips, favorites, downloads, and sign-in, for 18 more months. Renewing early stacks on top of your current time; nothing is lost.`,
+    ``,
+    `Renew here:`,
+    renewUrl,
+    ``,
+    `If you're done with the park for a while, do nothing and the access simply ends. No subscription, nothing to cancel.`,
+    `— Cory`,
+  ].join('\n')
+
+  const serif = `Georgia, 'Times New Roman', serif`
+  const sans = `-apple-system, 'Segoe UI', Arial, sans-serif`
+  const html = `
+    <div style="background:#f1ead6;padding:36px 16px;">
+      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:520px;margin:0 auto;">
+        <tr>
+          <td style="padding:0 0 18px;">
+            <div style="font-family:${serif};font-size:24px;color:#14110c;">The Talus Field</div>
+            <div style="font-family:${sans};font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#50402e;padding-top:4px;">The Field Guide &middot; Renewal</div>
+          </td>
+        </tr>
+        <tr>
+          <td style="border-top:1px solid #2a2118;padding:24px 0 0;">
+            <p style="font-family:${serif};font-size:17px;line-height:1.55;color:#14110c;margin:0 0 18px;">${lead}</p>
+            <p style="font-family:${serif};font-size:15px;line-height:1.55;color:#14110c;margin:0 0 22px;">Renew for ${priceLabel} and keep everything: your trips, favorites, downloads, and sign-in, for 18 more months. Renewing early stacks on top of your current time; nothing is lost.</p>
+            <p style="margin:0 0 26px;">
+              <a href="${renewUrl}" style="display:inline-block;padding:14px 22px;background:#14110c;color:#f1ead6;text-decoration:none;font-family:${sans};font-weight:600;letter-spacing:2px;text-transform:uppercase;font-size:13px;">
+                Renew for ${priceLabel}
+              </a>
+            </p>
+            <p style="font-family:${sans};font-size:13px;color:#50402e;margin:0 0 6px;">If you're done with the park for a while, do nothing and the access simply ends. No subscription, nothing to cancel.</p>
+            <p style="font-family:${sans};font-size:13px;color:#50402e;margin:0;">&mdash; Cory</p>
+          </td>
+        </tr>
+      </table>
+    </div>
+  `.trim()
+
+  const body: ResendBody = { from: FROM, to: [to], subject, text, html }
+
+  const res = await fetch('https://api.resend.com/emails', {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${env.RESEND_API_KEY}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(body),
+  })
+
+  if (!res.ok) {
+    const detail = await res.text()
+    throw new Error(`Resend send failed (${res.status}): ${detail}`)
+  }
+}
+
+// Confirmation after a successful renewal payment: the new end date, and
+// reassurance that nothing else changed (same sign-in, same devices).
+export async function sendRenewalConfirmation(
+  env: Env,
+  args: { to: string; expiresAt: number },
+): Promise<void> {
+  if (!env.RESEND_API_KEY) {
+    throw new Error('RESEND_API_KEY not configured')
+  }
+
+  const { to, expiresAt } = args
+  const endDate = formatAccessDate(expiresAt)
+
+  const text = [
+    `You're renewed.`,
+    ``,
+    `Your Field Guide access now runs through ${endDate}.`,
+    `Nothing else changes: same sign-in, same devices, same trips and downloads.`,
+    ``,
+    `Stripe sends your payment receipt separately.`,
+    `— Cory`,
+  ].join('\n')
+
+  const serif = `Georgia, 'Times New Roman', serif`
+  const sans = `-apple-system, 'Segoe UI', Arial, sans-serif`
+  const html = `
+    <div style="background:#f1ead6;padding:36px 16px;">
+      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:520px;margin:0 auto;">
+        <tr>
+          <td style="padding:0 0 18px;">
+            <div style="font-family:${serif};font-size:24px;color:#14110c;">The Talus Field</div>
+            <div style="font-family:${sans};font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#50402e;padding-top:4px;">The Field Guide &middot; Renewed</div>
+          </td>
+        </tr>
+        <tr>
+          <td style="border-top:1px solid #2a2118;padding:24px 0 0;">
+            <p style="font-family:${serif};font-size:17px;line-height:1.55;color:#14110c;margin:0 0 18px;">You're renewed.</p>
+            <p style="font-family:${serif};font-size:15px;line-height:1.55;color:#14110c;margin:0 0 14px;">Your Field Guide access now runs through <strong>${endDate}</strong>. Nothing else changes: same sign-in, same devices, same trips and downloads.</p>
+            <p style="font-family:${sans};font-size:13px;color:#50402e;margin:0 0 6px;">Stripe sends your payment receipt separately.</p>
+            <p style="font-family:${sans};font-size:13px;color:#50402e;margin:0;">&mdash; Cory</p>
+          </td>
+        </tr>
+      </table>
+    </div>
+  `.trim()
+
+  const body: ResendBody = {
+    from: FROM,
+    to: [to],
+    subject: 'Your Field Guide access is renewed',
+    text,
+    html,
+  }
+
+  const res = await fetch('https://api.resend.com/emails', {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${env.RESEND_API_KEY}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(body),
+  })
+
+  if (!res.ok) {
+    const detail = await res.text()
+    throw new Error(`Resend send failed (${res.status}): ${detail}`)
+  }
+}
+
 export async function sendTripLink(
   env: Env,
   args: { to: string; tripUrl: string; stopCount: number },

@@ -211,12 +211,14 @@ export default function Login() {
                   fall back to neutral copy unless the last /me said buyer. */}
               {readCachedMe()?.kind === 'buyer' ? (
                 <>
-                  Your access period ended {formatEndedDate(accessEndedAt)}. Purchases
-                  include 18 months of access. Email{' '}
+                  Your access period ended {formatEndedDate(accessEndedAt)}. Renewing takes
+                  one click: the renewal link is in the reminder emails we sent as the date
+                  approached (search your inbox for "Field Guide access"). Can't find them?
+                  Email{' '}
                   <a href="mailto:cory@thetalusfieldjournal.com">
                     cory@thetalusfieldjournal.com
                   </a>{' '}
-                  about renewing.
+                  and a fresh link comes back.
                 </>
               ) : (
                 <>Your session ended {formatEndedDate(accessEndedAt)}. Sign in again to continue.</>

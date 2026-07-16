@@ -1,6 +1,7 @@
 // End-to-end smoke of the paid-guide flow, driving the real Worker app
 // in-process with mocked KV + stubbed Stripe/Resend network calls.
 import worker from '../src/index'
+import { sweepRenewals } from '../src/lib/renewals'
 
 // ---------- mocks ----------
 class MockKV {
@@ -8,6 +9,15 @@ class MockKV {
   async get(key: string) { return this.store.get(key) ?? null }
   async put(key: string, value: string, _opts?: unknown) { this.store.set(key, value) }
   async delete(key: string) { this.store.delete(key) }
+  // Single-page prefix listing: enough for the renewal sweep, which only uses
+  // { prefix } and follows cursors that never appear here.
+  async list(opts: { prefix?: string; cursor?: string } = {}) {
+    const keys = [...this.store.keys()]
+      .filter((k) => !opts.prefix || k.startsWith(opts.prefix))
+      .sort()
+      .map((name) => ({ name }))
+    return { keys, list_complete: true as const }
+  }
 }
 
 const buyers = new MockKV()
@@ -19,6 +29,7 @@ const env: Record<string, unknown> = {
   APP_BASE_URL: 'https://talus-field-guide.pages.dev',
   EDITORIAL_BASE_URL: 'https://thetalusfieldjournal.com',
   GUIDE_PRICE_CENTS: '1900',
+  GUIDE_RENEWAL_PRICE_CENTS: '1200',
   GUIDE_PRODUCT_TAG: 'field_guide_2026',
   GUIDE_MONTHLY_CAP: '100',
   STRIPE_SECRET_KEY: 'sk_test_dummy',
@@ -371,6 +382,122 @@ console.log('\n16. gift purchase flow')
   check('gift refund revokes the recipient', gr.status === 200 && gr.json.revoked === 'friend@example.com', gr)
   const friendRec3 = JSON.parse((await buyers.get('buyer:friend@example.com'))!)
   check('recipient record expired + refund-stamped', friendRec3.refundedAt > 0 && friendRec3.expiresAt <= Math.floor(Date.now() / 1000))
+}
+
+console.log('\n17. renewal arc')
+{
+  const now = Math.floor(Date.now() / 1000)
+  const seedBuyer = async (email: string, daysLeft: number, token: string, code: string) => {
+    const rec = {
+      email, purchasedAt: now - 100 * 86400, expiresAt: now + daysLeft * 86400,
+      accessToken: token, accessCode: code,
+    }
+    await buyers.put(`buyer:${email}`, JSON.stringify(rec))
+    await buyers.put(`token:${token}`, email)
+    return rec
+  }
+
+  // -- JWT-gated POST /renew bypasses the monthly cap --
+  const renewer = await seedBuyer('renewer@example.com', 200, 'b'.repeat(64), '222222')
+  const month = new Date().toISOString().slice(0, 7)
+  await buyers.put(`inventory:${month}`, '100') // sold out
+  const soldOut = await call('/api/checkout/start', { method: 'POST' })
+  check('sanity: /start is sold out', soldOut.status === 409, soldOut)
+  const login = await call('/api/auth/login', { method: 'POST', body: JSON.stringify({ email: 'renewer@example.com', code: '222222' }) })
+  const jwt = String(login.json.jwt)
+  const noAuth = await call('/api/checkout/renew', { method: 'POST' })
+  check('renew without jwt -> 401', noAuth.status === 401, noAuth)
+  const renew = await call('/api/checkout/renew', { method: 'POST', headers: { authorization: `Bearer ${jwt}` } })
+  check('renew bypasses the cap -> stripe url', renew.status === 200 && !!renew.json.url, renew)
+  const p = stripeCreateParams!
+  check('renewal kind + renewEmail in metadata', p.get('metadata[kind]') === 'renewal' && p.get('metadata[renewEmail]') === 'renewer@example.com')
+  check('renewal price 1200', p.get('line_items[0][price_data][unit_amount]') === '1200')
+  check('customer email prefilled', p.get('customer_email') === 'renewer@example.com')
+  check('renewal success url lands on /account', p.get('success_url') === 'https://talus-field-guide.pages.dev/account?renew=success')
+
+  // -- token GET path (email CTA): 302 into Stripe; bad tokens rejected --
+  const redirectReq = new Request(`https://api.thetalusfieldjournal.com/api/checkout/renew?token=${'b'.repeat(64)}`)
+  const redirectRes = await worker.fetch(redirectReq, env as never, ctx)
+  check('token renew link -> 302 to stripe', redirectRes.status === 302 && (redirectRes.headers.get('location') ?? '').startsWith('https://checkout.stripe.com/'), redirectRes.status)
+  check('token GET success url returns through /open with the token', stripeCreateParams!.get('success_url') === `https://talus-field-guide.pages.dev/open?token=${'b'.repeat(64)}&renew=success`)
+  const unknownTok = await call(`/api/checkout/renew?token=${'e'.repeat(64)}`)
+  check('unknown token -> 404', unknownTok.status === 404, unknownTok)
+  const badTok = await call('/api/checkout/renew?token=nope')
+  check('malformed token -> 400', badTok.status === 400, badTok)
+
+  // -- renewal webhook: extends, keeps token+code, skips inventory --
+  const invBefore = await buyers.get(`inventory:${month}`)
+  const renewalEvt = {
+    id: 'evt_renew_1', type: 'checkout.session.completed',
+    data: {
+      object: {
+        id: 'cs_renew_1',
+        customer_details: { email: 'renewer@example.com' },
+        metadata: { product: 'field_guide_2026', kind: 'renewal', renewEmail: 'renewer@example.com' },
+        created: now,
+      },
+    },
+  }
+  const rBody = JSON.stringify(renewalEvt)
+  const emailsBefore = sentEmails.length
+  const r = await call('/api/stripe/webhook', { method: 'POST', body: rBody, headers: { 'stripe-signature': await signWebhook(rBody, env.STRIPE_WEBHOOK_SECRET as string) } })
+  check('renewal webhook 200', r.status === 200 && r.json.received === true, r)
+  const renewedRec = JSON.parse((await buyers.get('buyer:renewer@example.com'))!)
+  check('expiry extended from current expiry (early renewal stacks)',
+    renewedRec.expiresAt === renewer.expiresAt + 60 * 60 * 24 * 548,
+    { before: renewer.expiresAt, after: renewedRec.expiresAt })
+  check('token and code survive renewal', renewedRec.accessToken === renewer.accessToken && renewedRec.accessCode === renewer.accessCode)
+  check('inventory untouched by renewal', (await buyers.get(`inventory:${month}`)) === invBefore)
+  check('renewal confirmation email sent', sentEmails.length === emailsBefore + 1 && sentEmails[emailsBefore].to === 'renewer@example.com')
+
+  // -- a refunded buyer who pays for a renewal gets access back --
+  const friendBefore = JSON.parse((await buyers.get('buyer:friend@example.com'))!)
+  check('sanity: friend is refunded', friendBefore.refundedAt > 0)
+  const rescueEvt = {
+    id: 'evt_renew_2', type: 'checkout.session.completed',
+    data: {
+      object: {
+        id: 'cs_renew_2',
+        customer_details: { email: 'friend@example.com' },
+        metadata: { product: 'field_guide_2026', kind: 'renewal', renewEmail: 'friend@example.com' },
+        created: now,
+      },
+    },
+  }
+  const resBody = JSON.stringify(rescueEvt)
+  const r2 = await call('/api/stripe/webhook', { method: 'POST', body: resBody, headers: { 'stripe-signature': await signWebhook(resBody, env.STRIPE_WEBHOOK_SECRET as string) } })
+  check('post-refund renewal webhook 200', r2.status === 200, r2)
+  const friendAfter = JSON.parse((await buyers.get('buyer:friend@example.com'))!)
+  check('refund stamp cleared, ~548d granted from now',
+    friendAfter.refundedAt === undefined &&
+    Math.abs(friendAfter.expiresAt - (now + 60 * 60 * 24 * 548)) < 60,
+    friendAfter)
+  const ex = await call('/api/auth/exchange', { method: 'POST', body: JSON.stringify({ token: friendAfter.accessToken }) })
+  check('rescued buyer can sign in again', ex.status === 200 && typeof ex.json.jwt === 'string', ex)
+}
+
+console.log('\n18. renewal sweep (cron)')
+{
+  const now = Math.floor(Date.now() / 1000)
+  const expiring = {
+    email: 'expiring@example.com', purchasedAt: now - 518 * 86400, expiresAt: now + 30 * 86400,
+    accessToken: 'c'.repeat(64), accessCode: '333333',
+  }
+  await buyers.put('buyer:expiring@example.com', JSON.stringify(expiring))
+  await buyers.put(`token:${expiring.accessToken}`, expiring.email)
+  await buyers.put('buyer:corrupt@example.com', 'not json {')
+
+  const before = sentEmails.length
+  const hikerEmailsBefore = sentEmails.filter((e) => e.to === 'hiker@example.com').length
+  await sweepRenewals(env as never)
+  const noticed = sentEmails.slice(before)
+  check('exactly one notice sent', noticed.length === 1 && noticed[0].to === 'expiring@example.com', noticed.map((e) => e.to))
+  check('notice carries the token renew link', noticed[0]?.text.includes(`/api/checkout/renew?token=${'c'.repeat(64)}`))
+  check('t60 sentinel written', (await buyers.get('renewalNotice:expiring@example.com:t60')) === '1')
+  check('refunded buyer got no notice', sentEmails.filter((e) => e.to === 'hiker@example.com').length === hikerEmailsBefore)
+
+  await sweepRenewals(env as never)
+  check('second sweep sends nothing (sentinel)', sentEmails.length === before + 1, sentEmails.length - before)
 }
 
 globalThis.fetch = realFetch

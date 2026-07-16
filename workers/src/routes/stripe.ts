@@ -7,7 +7,12 @@ import {
   putBuyer,
   type BuyerRecord,
 } from '../lib/kv'
-import { sendGiftAccess, sendGiftReceipt, sendMagicLink } from '../lib/email'
+import {
+  sendGiftAccess,
+  sendGiftReceipt,
+  sendMagicLink,
+  sendRenewalConfirmation,
+} from '../lib/email'
 import { verifyStripeSignature } from '../lib/stripe'
 import { generateAccessCode, generateAccessToken } from '../lib/tokens'
 
@@ -168,14 +173,16 @@ stripe.post('/webhook', async (c) => {
     session.customer_email?.trim().toLowerCase() ??
     null
 
-  // Sessions carry metadata.kind since the gift feature landed; older
-  // in-flight sessions have no kind and are plain purchases.
-  const kind = session.metadata?.kind === 'gift' ? 'gift' : 'purchase'
+  // Sessions carry metadata.kind since the gift/renewal features landed;
+  // older in-flight sessions have no kind and are plain purchases.
+  const metaKind = session.metadata?.kind
+  const kind = metaKind === 'gift' ? 'gift' : metaKind === 'renewal' ? 'renewal' : 'purchase'
 
   // For a purchase the payer is the buyer. For a gift the buyer record
   // belongs to the recipient named at checkout; a gift session that somehow
   // lost its recipient falls back to provisioning the payer, so paid access
-  // is never stranded (flagged for manual follow-up).
+  // is never stranded (flagged for manual follow-up). A renewal names its
+  // buyer in renewEmail (set server-side when the session was created).
   let email = payerEmail
   if (kind === 'gift') {
     const recipient = session.metadata?.recipientEmail?.trim().toLowerCase() || null
@@ -186,6 +193,8 @@ stripe.post('/webhook', async (c) => {
         sessionId: session.id,
       })
     }
+  } else if (kind === 'renewal') {
+    email = session.metadata?.renewEmail?.trim().toLowerCase() || payerEmail
   }
 
   if (!email) {
@@ -196,29 +205,46 @@ stripe.post('/webhook', async (c) => {
   const purchasedAt = session.created
   const nowSeconds = Math.floor(Date.now() / 1000)
 
-  // Gifting someone who already owns the guide must never clobber their
-  // record: extend the paid window and keep their token and code, so signed-in
-  // devices and old access emails stay valid. Expired or refunded records get
-  // a fresh provision like any new buyer.
-  const existing = kind === 'gift' ? await getBuyer(c.env, email) : null
+  // Extension rules. A renewal always extends: from the current expiry when
+  // renewed early (time stacks), from now when renewed after a lapse; the
+  // token and code stay so signed-in devices and old access emails survive,
+  // and any refund stamp clears — the renewal is a new payment. Gifting an
+  // ACTIVE buyer extends the same way (never clobber); an expired or refunded
+  // gift recipient gets a fresh provision like any new buyer.
+  const existing = kind === 'purchase' ? null : await getBuyer(c.env, email)
   const existingActive =
     existing != null && existing.refundedAt == null && existing.expiresAt > nowSeconds
 
-  const record: BuyerRecord = existingActive
-    ? {
-        ...existing,
-        expiresAt: Math.max(nowSeconds, existing.expiresAt) + EIGHTEEN_MONTHS_SECONDS,
-      }
-    : {
+  let record: BuyerRecord
+  if (existing && (kind === 'renewal' || existingActive)) {
+    const { refundedAt: _cleared, ...kept } = existing
+    record = {
+      ...kept,
+      expiresAt: Math.max(nowSeconds, existing.expiresAt) + EIGHTEEN_MONTHS_SECONDS,
+    }
+  } else {
+    if (kind === 'renewal') {
+      // Paid renewal with no record to extend (deleted/lost): grant fresh
+      // access rather than stranding a paying customer, and flag it.
+      console.error('renewal for unknown buyer — provisioned fresh, verify manually', {
+        sessionId: session.id,
         email,
-        purchasedAt,
-        expiresAt: purchasedAt + EIGHTEEN_MONTHS_SECONDS,
-        accessToken: generateAccessToken(),
-        accessCode: generateAccessCode(),
-      }
+      })
+    }
+    record = {
+      email,
+      purchasedAt,
+      expiresAt: purchasedAt + EIGHTEEN_MONTHS_SECONDS,
+      accessToken: generateAccessToken(),
+      accessCode: generateAccessCode(),
+    }
+  }
 
   await putBuyer(c.env, record)
-  await incrementInventory(c.env, currentMonthLabel(new Date(purchasedAt * 1000)))
+  // Renewals bypass inventory: the monthly cap models new-copy supply.
+  if (kind !== 'renewal') {
+    await incrementInventory(c.env, currentMonthLabel(new Date(purchasedAt * 1000)))
+  }
 
   const magicLink = `${c.env.APP_BASE_URL}/open?token=${record.accessToken}`
   try {
@@ -230,6 +256,8 @@ stripe.post('/webhook', async (c) => {
         code: record.accessCode,
         note: session.metadata?.giftNote,
       })
+    } else if (kind === 'renewal') {
+      await sendRenewalConfirmation(c.env, { to: email, expiresAt: record.expiresAt })
     } else {
       await sendMagicLink(c.env, { to: email, magicLink, code: record.accessCode })
     }

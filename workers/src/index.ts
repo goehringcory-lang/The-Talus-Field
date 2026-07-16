@@ -12,6 +12,7 @@ import { trip } from './routes/trip'
 import { tripEmail } from './routes/trip-email'
 import { weather } from './routes/weather'
 import { refreshWeather } from './lib/weather'
+import { sweepRenewals } from './lib/renewals'
 import {
   currentMonthLabel,
   firstOfNextMonthIso,
@@ -107,7 +108,11 @@ app.get('/api/inventory', async (c) => {
   // number is edited in exactly one place: [vars] in wrangler.toml.
   const parsedPrice = Number.parseInt(c.env.GUIDE_PRICE_CENTS, 10)
   const priceCents = Number.isNaN(parsedPrice) ? null : parsedPrice
-  return c.json({ sold, cap, monthLabel, priceCents, reopens: firstOfNextMonthIso() })
+  // The PWA's renew button reads this so the renewal price is also edited in
+  // exactly one place ([vars] in wrangler.toml).
+  const parsedRenewal = Number.parseInt(c.env.GUIDE_RENEWAL_PRICE_CENTS, 10)
+  const renewalPriceCents = Number.isNaN(parsedRenewal) ? null : parsedRenewal
+  return c.json({ sold, cap, monthLabel, priceCents, renewalPriceCents, reopens: firstOfNextMonthIso() })
 })
 
 app.route('/api/auth', auth)
@@ -141,6 +146,11 @@ async function scheduled(
   ctx.waitUntil(
     refreshWeather(env).catch((err) => {
       console.error('scheduled: weather refresh failed', err)
+    }),
+  )
+  ctx.waitUntil(
+    sweepRenewals(env).catch((err) => {
+      console.error('scheduled: renewal sweep failed', err)
     }),
   )
 }

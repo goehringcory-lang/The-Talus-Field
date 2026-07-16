@@ -47,6 +47,10 @@ crons = ["0 10 * * *"]
 APP_BASE_URL = "https://talus-field-guide.pages.dev"
 EDITORIAL_BASE_URL = "https://thetalusfieldjournal.com"
 GUIDE_PRICE_CENTS = "1900"
+# Discounted renewal price (MONETIZATION-IDEAS.md 2.1): buyers near or past
+# their 548-day expiry rebuy at this price via /api/checkout/renew. Renewals
+# bypass the monthly cap and never touch inventory.
+GUIDE_RENEWAL_PRICE_CENTS = "1200"
 GUIDE_PRODUCT_TAG = "field_guide_2026"
 GUIDE_MONTHLY_CAP = "100"
 # Google OAuth client id for the calendar push (/api/calendar). Public

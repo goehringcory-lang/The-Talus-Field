@@ -50,6 +50,9 @@ const TRIP_FEED_TOKEN_KEY = (sub: string) => `tripfeedToken:${sub.toLowerCase()}
 const TRIP_FEED_WRITE_ATTEMPTS_KEY = (sub: string) =>
   `tripfeedWriteAttempts:${sub.toLowerCase()}`
 const TRIP_EMAIL_ATTEMPTS_KEY = (ipHash: string) => `tripEmailAttempts:${ipHash}`
+const RENEWAL_NOTICE_KEY = (email: string, stage: string) =>
+  `renewalNotice:${email.toLowerCase()}:${stage}`
+const RENEW_LINK_ATTEMPTS_KEY = (ipHash: string) => `renewLinkAttempts:${ipHash}`
 
 // Google Calendar OAuth push (/api/calendar). Unlike the trip feed, the client
 // holds no capability token: the refresh token lives here, keyed by the JWT
@@ -221,6 +224,34 @@ export async function recordTripFeedWriteAttempt(env: Env, sub: string): Promise
   const raw = await env.GUIDE_BUYERS.get(key)
   const next = (raw ? Number.parseInt(raw, 10) : 0) + 1
   // 1-hour TTL gives a rolling window per sub.
+  await env.GUIDE_BUYERS.put(key, String(next), { expirationTtl: 60 * 60 })
+  return next
+}
+
+// --- Renewal arc (/api/checkout/renew + the daily sweep) --------------------
+
+// Per-stage sentinel so the cron sends each renewal notice exactly once.
+// 180 days comfortably outlives the whole notice window (60 days) and clears
+// itself before the buyer's NEXT renewal cycle could reuse the stage.
+const RENEWAL_NOTICE_TTL_SECONDS = 180 * 24 * 60 * 60
+
+export async function hasRenewalNotice(env: Env, email: string, stage: string): Promise<boolean> {
+  return (await env.GUIDE_BUYERS.get(RENEWAL_NOTICE_KEY(email, stage))) !== null
+}
+
+export async function markRenewalNotice(env: Env, email: string, stage: string): Promise<void> {
+  await env.GUIDE_BUYERS.put(RENEWAL_NOTICE_KEY(email, stage), '1', {
+    expirationTtl: RENEWAL_NOTICE_TTL_SECONDS,
+  })
+}
+
+// GET /api/checkout/renew?token= is unauthenticated (it comes from an email
+// link), so the token lookup is rate-limited by hashed IP against enumeration.
+export async function recordRenewLinkAttempt(env: Env, ipHash: string): Promise<number> {
+  const key = RENEW_LINK_ATTEMPTS_KEY(ipHash)
+  const raw = await env.GUIDE_BUYERS.get(key)
+  const next = (raw ? Number.parseInt(raw, 10) : 0) + 1
+  // 1-hour TTL gives a rolling window per IP.
   await env.GUIDE_BUYERS.put(key, String(next), { expirationTtl: 60 * 60 })
   return next
 }
