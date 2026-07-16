@@ -102,6 +102,67 @@ function ResumeReading({ go }) {
 }
 
 // ============================================================
+// This-week dispatch teaser. Pulls the newest /now entry onto the homepage so
+// the page opens like a field notebook: dated, current, written from inside
+// the park. The retention loop starts here (home → /now → the Sunday letter's
+// concrete promise). Fails quiet: any fetch or shape problem and the section
+// renders the webcams alone, exactly as before.
+// Keep the ?v= in sync with NOW_URL in page-now.jsx when now.json changes.
+// ============================================================
+const HOME_NOW_URL = "/now.json?v=1";
+const DISPATCH_EXCERPT_MAX = 240;
+
+function dispatchExcerpt(body) {
+  const first = Array.isArray(body) && body.length ? String(body[0]) : "";
+  if (first.length <= DISPATCH_EXCERPT_MAX) return first;
+  return first.slice(0, DISPATCH_EXCERPT_MAX).replace(/\s+\S*$/, "") + "…";
+}
+
+function formatDispatchDay(iso) {
+  const d = new Date(iso + "T00:00:00");
+  if (Number.isNaN(d.getTime())) return iso;
+  return d.toLocaleDateString("en-US", { month: "long", day: "numeric" });
+}
+
+function HomeDispatch({ go }) {
+  const [latest, setLatest] = React.useState(null);
+
+  React.useEffect(() => {
+    let cancelled = false;
+    fetch(HOME_NOW_URL)
+      .then((r) => (r.ok ? r.json() : Promise.reject(new Error(`now.json ${r.status}`))))
+      .then((data) => {
+        const list = Array.isArray(data.dispatches) ? data.dispatches : [];
+        const d = list[0];
+        if (!cancelled && d && d.iso && d.title && Array.isArray(d.body)) setLatest(d);
+      })
+      .catch(() => {});
+    return () => { cancelled = true; };
+  }, []);
+
+  if (!latest) return null;
+
+  return (
+    <a
+      className="home-dispatch"
+      href="/now"
+      onClick={(e) => {
+        e.preventDefault();
+        if (window.track) window.track("cta_click", { location: "home_dispatch" });
+        go("now");
+      }}
+    >
+      <span className="home-dispatch__date">
+        <time dateTime={latest.iso}>{formatDispatchDay(latest.iso)}</time> · The weekly dispatch
+      </span>
+      <span className="home-dispatch__title">{latest.title}</span>
+      <p className="home-dispatch__excerpt">{dispatchExcerpt(latest.body)}</p>
+      <span className="mono home-dispatch__cta">Read this week's dispatch →</span>
+    </a>
+  );
+}
+
+// ============================================================
 // HOME
 // ============================================================
 function HomePage({ go }) {
@@ -116,16 +177,19 @@ function HomePage({ go }) {
     document.getElementById("start-here")?.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
-  // Live webcam strip (shared WebcamStrip in components.jsx, also on
-  // /conditions). Rendered below "Start Here" (see call site) so the four
-  // off-site links do not pull readers away before they reach the capture
-  // and onboarding row.
-  const webcamsSection = (
+  // The living layer: this week's dispatch over the live webcam strip
+  // (shared WebcamStrip in components.jsx, also on /conditions). One section,
+  // one idea: the park as it is right now, dated like a notebook entry.
+  // Rendered below "Start Here" (see call site) so the four off-site webcam
+  // links do not pull readers away before they reach the capture and
+  // onboarding row.
+  const parkThisWeekSection = (
     <section className="wrap" style={{ paddingTop: 64 }}>
       <div className="section-head">
         <h2>From the park, right now</h2>
         <a href="/conditions" onClick={(e) => { e.preventDefault(); go("conditions"); }}>Conditions and webcams →</a>
       </div>
+      <HomeDispatch go={go} />
       <WebcamStrip />
     </section>
   );
@@ -220,16 +284,17 @@ function HomePage({ go }) {
         </section>
       )}
 
-      {/* Webcam strip sits below Start Here so the four off-site links do not
-          pull readers away before they reach the capture and onboarding row.
-          Was A/B tested (home_webcams); this position won and is now the
-          default. */}
-      {webcamsSection}
+      {/* The live layer sits below Start Here so the four off-site webcam
+          links do not pull readers away before they reach the capture and
+          onboarding row. Was A/B tested (home_webcams); this position won and
+          is now the default. */}
+      {parkThisWeekSection}
 
-      {/* This Week — recent articles feed */}
+      {/* Latest Entries — recent articles feed. Named to stay clear of the
+          weekly dispatch ("This Week in the Park") above. */}
       <section className="wrap" style={{ paddingTop: 80 }}>
         <div className="section-head">
-          <h2>This Week</h2>
+          <h2>Latest Entries</h2>
           <a href="/articles" onClick={(e) => { e.preventDefault(); go("articles"); }}>All entries →</a>
         </div>
         <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 36, rowGap: 48 }}>
@@ -270,16 +335,23 @@ function HomePage({ go }) {
         </div>
       </section>
 
-      {/* Map callout */}
+      {/* Go Deeper — the whole ways-to-take-it-further ladder in one labeled
+          section instead of three identical stacked bands. Ordered by
+          commitment: the free map first, the paid Field Guide app second, then
+          the three quieter paths (free hub, paid consult, disclosed gear
+          lists). Every offer is priced or labeled plainly; nothing is
+          disguised as editorial. */}
       <section className="wrap" style={{ paddingTop: 80 }}>
+        <div className="section-head">
+          <h2>Go Deeper</h2>
+        </div>
+
+        {/* The Map: free, the softest on-ramp, so it leads. The tinted ground
+            and moss spine treatment was A/B tested (callout_bands) and won. */}
         <a
           href="/map"
           onClick={(e) => { e.preventDefault(); go("map"); }}
           style={{
-            /* The Map band is the only one of the three with a direct
-               conversion path, so it breaks the identical-band pattern with a
-               tinted ground and a moss spine to stop the eye. Was A/B tested
-               (callout_bands); this treatment won and is now the default. */
             display: "block",
             textDecoration: "none",
             color: "inherit",
@@ -302,64 +374,83 @@ function HomePage({ go }) {
             </div>
           </div>
         </a>
-      </section>
 
-      {/* Planning Guide hub callout */}
-      <section className="wrap" style={{ paddingTop: 80 }}>
+        {/* The Field Guide: the paid product, on sale, in the inverted-ink
+            plate treatment so the one purchase ask on the page reads as a
+            deliberate object, not a third identical band. Price is stated
+            plainly per house style; the live number renders on /guide. */}
         <a
-          href="/planning"
-          onClick={(e) => { e.preventDefault(); go("planning"); }}
-          style={{
-            display: "block",
-            textDecoration: "none",
-            color: "inherit",
-            borderTop: "2px solid var(--ink)",
-            borderBottom: "2px solid var(--ink)",
-            padding: "40px 0",
+          className="band-guide"
+          href="/guide"
+          onClick={(e) => {
+            e.preventDefault();
+            if (window.track) window.track("guide_cta_click", { location: "home_band" });
+            go("guide");
           }}
         >
           <div style={{ display: "grid", gridTemplateColumns: "1fr 2fr", gap: 48, alignItems: "center" }}>
             <div>
-              <div className="eyebrow eyebrow--moss" style={{ marginBottom: 12 }}>The Planning Guide</div>
-              <div style={{ fontFamily: "var(--display)", fontSize: 36, fontWeight: 400, lineHeight: 1.1, letterSpacing: "-0.01em" }}>Yosemite, planned properly.</div>
+              <div className="band-guide__eyebrow">The Field Guide · $19</div>
+              <div className="band-guide__title">The park, in your pocket.</div>
             </div>
             <div>
-              <p style={{ fontFamily: "var(--serif)", fontSize: 19, lineHeight: 1.5, color: "var(--ink-2)", margin: 0, marginBottom: 16 }}>
-                The full archive, organized for a real trip. Gateway towns, reservations, Half Dome, smoke season, the seasonal calendar. Read in the order you'll actually need them.
+              <p className="band-guide__body">
+                The app version of this journal: 50-plus stops with parking and timing notes, offline maps, a trip planner, and the secret guide. Works with no signal, which is most of the park. One purchase, eighteen months of access.
               </p>
-              <div className="mono" style={{ color: "var(--moss)", fontWeight: 700, fontSize: 11, textTransform: "uppercase", letterSpacing: "0.18em" }}>Read the guide →</div>
+              <div className="mono band-guide__cta">See the Field Guide →</div>
             </div>
           </div>
         </a>
-      </section>
 
-      {/* Kit callout */}
-      <section className="wrap" style={{ paddingTop: 80 }}>
-        <a
-          href="/kit"
-          onClick={(e) => { e.preventDefault(); go("kit"); }}
-          style={{
-            display: "block",
-            textDecoration: "none",
-            color: "inherit",
-            borderTop: "2px solid var(--ink)",
-            borderBottom: "2px solid var(--ink)",
-            padding: "40px 0",
-          }}
-        >
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 2fr", gap: 48, alignItems: "center" }}>
-            <div>
-              <div className="eyebrow eyebrow--moss" style={{ marginBottom: 12 }}>The Kit</div>
-              <div style={{ fontFamily: "var(--display)", fontSize: 36, fontWeight: 400, lineHeight: 1.1, letterSpacing: "-0.01em" }}>What I carry.</div>
-            </div>
-            <div>
-              <p style={{ fontFamily: "var(--serif)", fontSize: 19, lineHeight: 1.5, color: "var(--ink-2)", margin: 0, marginBottom: 16 }}>
-                Three lists for three trips. A day pack for the trail, an overnight pack for backcountry nights, and the car kit for everything in between. The actual gear, with the actual reasons.
-              </p>
-              <div className="mono" style={{ color: "var(--moss)", fontWeight: 700, fontSize: 11, textTransform: "uppercase", letterSpacing: "0.18em" }}>See the kit →</div>
-            </div>
-          </div>
-        </a>
+        {/* The three quieter paths, one row: the free archive hub, the capped
+            consult, and the disclosed gear lists. Compact cards, plain labels. */}
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 24, marginTop: 24 }}>
+          {[
+            {
+              key: "planning",
+              eyebrow: "The Planning Guide · Free",
+              title: "Yosemite, planned properly.",
+              blurb: "The full archive organized for a real trip: gateway towns, reservations, Half Dome, smoke season, in the order you'll need them.",
+              cta: "Read the guide →",
+            },
+            {
+              key: "consult",
+              eyebrow: "Field Consult · $95",
+              title: "Your plan, thirty minutes.",
+              blurb: "One on one with a naturalist who lives in the park: your dates, your group, your plan taken apart and put back together. Six a month.",
+              cta: "Book a consult →",
+            },
+            {
+              key: "kit",
+              eyebrow: "The Kit",
+              title: "What I carry.",
+              blurb: "Three lists for three trips: day pack, overnight pack, car kit. The actual gear, with the actual reasons, and a plain disclosure.",
+              cta: "See the kit →",
+            },
+          ].map((p) => (
+            <a
+              key={p.key}
+              href={`/${p.key}`}
+              onClick={(e) => {
+                e.preventDefault();
+                if (window.track) window.track("cta_click", { location: "home_path", target: p.key });
+                go(p.key);
+              }}
+              style={{
+                display: "block",
+                textDecoration: "none",
+                color: "inherit",
+                border: "1px solid var(--ink)",
+                padding: 28,
+              }}
+            >
+              <div className="eyebrow eyebrow--moss" style={{ marginBottom: 12 }}>{p.eyebrow}</div>
+              <div style={{ fontFamily: "var(--display)", fontSize: 26, fontWeight: 500, lineHeight: 1.1, letterSpacing: "-0.005em", marginBottom: 10 }}>{p.title}</div>
+              <p style={{ fontFamily: "var(--serif)", fontStyle: "italic", fontSize: 15, color: "var(--ink-2)", lineHeight: 1.45, margin: "0 0 18px" }}>{p.blurb}</p>
+              <div className="mono" style={{ color: "var(--moss)", fontWeight: 700, fontSize: 11, textTransform: "uppercase", letterSpacing: "0.18em" }}>{p.cta}</div>
+            </a>
+          ))}
+        </div>
       </section>
 
       {/* About + Newsletter strip */}
@@ -375,12 +466,12 @@ function HomePage({ go }) {
               About the editor →
             </a>
             <p style={{ fontFamily: "var(--sans)", fontSize: 13, color: "var(--ink-3)", lineHeight: 1.6, margin: "20px 0 0" }}>
-              A paid Field Guide app is in final testing.{" "}
+              The looking happens weekly.{" "}
               <a
-                href="/guide"
-                onClick={(e) => { e.preventDefault(); if (window.track) window.track("guide_teaser_click", { location: "home_strip" }); go("guide"); }}
+                href="/now"
+                onClick={(e) => { e.preventDefault(); if (window.track) window.track("cta_click", { location: "home_strip_now" }); go("now"); }}
                 style={{ color: "var(--ink-2)" }}
-              >The waitlist is on the guide page →</a>
+              >This week's dispatch is up →</a>
             </p>
           </div>
           <NewsletterInline location="home_strip" tag="home" />

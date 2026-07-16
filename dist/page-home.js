@@ -97,6 +97,59 @@ function ResumeReading({
     className: "mono resume-band__cta"
   }, "Keep reading →")));
 }
+var HOME_NOW_URL = "/now.json?v=1";
+var DISPATCH_EXCERPT_MAX = 240;
+function dispatchExcerpt(body) {
+  var first = Array.isArray(body) && body.length ? String(body[0]) : "";
+  if (first.length <= DISPATCH_EXCERPT_MAX) return first;
+  return first.slice(0, DISPATCH_EXCERPT_MAX).replace(/\s+\S*$/, "") + "…";
+}
+function formatDispatchDay(iso) {
+  var d = new Date(iso + "T00:00:00");
+  if (Number.isNaN(d.getTime())) return iso;
+  return d.toLocaleDateString("en-US", {
+    month: "long",
+    day: "numeric"
+  });
+}
+function HomeDispatch({
+  go
+}) {
+  var [latest, setLatest] = React.useState(null);
+  React.useEffect(() => {
+    var cancelled = false;
+    fetch(HOME_NOW_URL).then(r => r.ok ? r.json() : Promise.reject(new Error(`now.json ${r.status}`))).then(data => {
+      var list = Array.isArray(data.dispatches) ? data.dispatches : [];
+      var d = list[0];
+      if (!cancelled && d && d.iso && d.title && Array.isArray(d.body)) setLatest(d);
+    }).catch(() => {});
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+  if (!latest) return null;
+  return React.createElement("a", {
+    className: "home-dispatch",
+    href: "/now",
+    onClick: e => {
+      e.preventDefault();
+      if (window.track) window.track("cta_click", {
+        location: "home_dispatch"
+      });
+      go("now");
+    }
+  }, React.createElement("span", {
+    className: "home-dispatch__date"
+  }, React.createElement("time", {
+    dateTime: latest.iso
+  }, formatDispatchDay(latest.iso)), " · The weekly dispatch"), React.createElement("span", {
+    className: "home-dispatch__title"
+  }, latest.title), React.createElement("p", {
+    className: "home-dispatch__excerpt"
+  }, dispatchExcerpt(latest.body)), React.createElement("span", {
+    className: "mono home-dispatch__cta"
+  }, "Read this week's dispatch →"));
+}
 function HomePage({
   go
 }) {
@@ -110,7 +163,7 @@ function HomePage({
       block: "start"
     });
   };
-  var webcamsSection = React.createElement("section", {
+  var parkThisWeekSection = React.createElement("section", {
     className: "wrap",
     style: {
       paddingTop: 64
@@ -123,7 +176,9 @@ function HomePage({
       e.preventDefault();
       go("conditions");
     }
-  }, "Conditions and webcams →")), React.createElement(WebcamStrip, null));
+  }, "Conditions and webcams →")), React.createElement(HomeDispatch, {
+    go: go
+  }), React.createElement(WebcamStrip, null));
   return React.createElement("div", {
     className: "page"
   }, React.createElement("section", {
@@ -237,14 +292,14 @@ function HomePage({
     key: a.slug,
     article: a,
     go: go
-  })))), webcamsSection, React.createElement("section", {
+  })))), parkThisWeekSection, React.createElement("section", {
     className: "wrap",
     style: {
       paddingTop: 80
     }
   }, React.createElement("div", {
     className: "section-head"
-  }, React.createElement("h2", null, "This Week"), React.createElement("a", {
+  }, React.createElement("h2", null, "Latest Entries"), React.createElement("a", {
     href: "/articles",
     onClick: e => {
       e.preventDefault();
@@ -338,7 +393,9 @@ function HomePage({
     style: {
       paddingTop: 80
     }
-  }, React.createElement("a", {
+  }, React.createElement("div", {
+    className: "section-head"
+  }, React.createElement("h2", null, "Go Deeper")), React.createElement("a", {
     href: "/map",
     onClick: e => {
       e.preventDefault();
@@ -391,24 +448,15 @@ function HomePage({
       textTransform: "uppercase",
       letterSpacing: "0.18em"
     }
-  }, "Open the map →"))))), React.createElement("section", {
-    className: "wrap",
-    style: {
-      paddingTop: 80
-    }
-  }, React.createElement("a", {
-    href: "/planning",
+  }, "Open the map →")))), React.createElement("a", {
+    className: "band-guide",
+    href: "/guide",
     onClick: e => {
       e.preventDefault();
-      go("planning");
-    },
-    style: {
-      display: "block",
-      textDecoration: "none",
-      color: "inherit",
-      borderTop: "2px solid var(--ink)",
-      borderBottom: "2px solid var(--ink)",
-      padding: "40px 0"
+      if (window.track) window.track("guide_cta_click", {
+        location: "home_band"
+      });
+      go("guide");
     }
   }, React.createElement("div", {
     style: {
@@ -418,85 +466,80 @@ function HomePage({
       alignItems: "center"
     }
   }, React.createElement("div", null, React.createElement("div", {
-    className: "eyebrow eyebrow--moss",
+    className: "band-guide__eyebrow"
+  }, "The Field Guide · $19"), React.createElement("div", {
+    className: "band-guide__title"
+  }, "The park, in your pocket.")), React.createElement("div", null, React.createElement("p", {
+    className: "band-guide__body"
+  }, "The app version of this journal: 50-plus stops with parking and timing notes, offline maps, a trip planner, and the secret guide. Works with no signal, which is most of the park. One purchase, eighteen months of access."), React.createElement("div", {
+    className: "mono band-guide__cta"
+  }, "See the Field Guide →")))), React.createElement("div", {
     style: {
-      marginBottom: 12
+      display: "grid",
+      gridTemplateColumns: "repeat(3, 1fr)",
+      gap: 24,
+      marginTop: 24
     }
-  }, "The Planning Guide"), React.createElement("div", {
-    style: {
-      fontFamily: "var(--display)",
-      fontSize: 36,
-      fontWeight: 400,
-      lineHeight: 1.1,
-      letterSpacing: "-0.01em"
-    }
-  }, "Yosemite, planned properly.")), React.createElement("div", null, React.createElement("p", {
-    style: {
-      fontFamily: "var(--serif)",
-      fontSize: 19,
-      lineHeight: 1.5,
-      color: "var(--ink-2)",
-      margin: 0,
-      marginBottom: 16
-    }
-  }, "The full archive, organized for a real trip. Gateway towns, reservations, Half Dome, smoke season, the seasonal calendar. Read in the order you'll actually need them."), React.createElement("div", {
-    className: "mono",
-    style: {
-      color: "var(--moss)",
-      fontWeight: 700,
-      fontSize: 11,
-      textTransform: "uppercase",
-      letterSpacing: "0.18em"
-    }
-  }, "Read the guide →"))))), React.createElement("section", {
-    className: "wrap",
-    style: {
-      paddingTop: 80
-    }
-  }, React.createElement("a", {
-    href: "/kit",
+  }, [{
+    key: "planning",
+    eyebrow: "The Planning Guide · Free",
+    title: "Yosemite, planned properly.",
+    blurb: "The full archive organized for a real trip: gateway towns, reservations, Half Dome, smoke season, in the order you'll need them.",
+    cta: "Read the guide →"
+  }, {
+    key: "consult",
+    eyebrow: "Field Consult · $95",
+    title: "Your plan, thirty minutes.",
+    blurb: "One on one with a naturalist who lives in the park: your dates, your group, your plan taken apart and put back together. Six a month.",
+    cta: "Book a consult →"
+  }, {
+    key: "kit",
+    eyebrow: "The Kit",
+    title: "What I carry.",
+    blurb: "Three lists for three trips: day pack, overnight pack, car kit. The actual gear, with the actual reasons, and a plain disclosure.",
+    cta: "See the kit →"
+  }].map(p => React.createElement("a", {
+    key: p.key,
+    href: `/${p.key}`,
     onClick: e => {
       e.preventDefault();
-      go("kit");
+      if (window.track) window.track("cta_click", {
+        location: "home_path",
+        target: p.key
+      });
+      go(p.key);
     },
     style: {
       display: "block",
       textDecoration: "none",
       color: "inherit",
-      borderTop: "2px solid var(--ink)",
-      borderBottom: "2px solid var(--ink)",
-      padding: "40px 0"
+      border: "1px solid var(--ink)",
+      padding: 28
     }
   }, React.createElement("div", {
-    style: {
-      display: "grid",
-      gridTemplateColumns: "1fr 2fr",
-      gap: 48,
-      alignItems: "center"
-    }
-  }, React.createElement("div", null, React.createElement("div", {
     className: "eyebrow eyebrow--moss",
     style: {
       marginBottom: 12
     }
-  }, "The Kit"), React.createElement("div", {
+  }, p.eyebrow), React.createElement("div", {
     style: {
       fontFamily: "var(--display)",
-      fontSize: 36,
-      fontWeight: 400,
+      fontSize: 26,
+      fontWeight: 500,
       lineHeight: 1.1,
-      letterSpacing: "-0.01em"
+      letterSpacing: "-0.005em",
+      marginBottom: 10
     }
-  }, "What I carry.")), React.createElement("div", null, React.createElement("p", {
+  }, p.title), React.createElement("p", {
     style: {
       fontFamily: "var(--serif)",
-      fontSize: 19,
-      lineHeight: 1.5,
+      fontStyle: "italic",
+      fontSize: 15,
       color: "var(--ink-2)",
-      margin: 0,
-      marginBottom: 16
+      lineHeight: 1.45,
+      margin: "0 0 18px"
     }
-  }, "Three lists for three trips. A day pack for the trail, an overnight pack for backcountry nights, and the car kit for everything in between. The actual gear, with the actual reasons."), React.createElement("div", {
+  }, p.blurb), React.createElement("div", {
     className: "mono",
     style: {
       color: "var(--moss)",
@@ -505,7 +548,7 @@ function HomePage({
       textTransform: "uppercase",
       letterSpacing: "0.18em"
     }
-  }, "See the kit →"))))), React.createElement("section", {
+  }, p.cta))))), React.createElement("section", {
     className: "wrap",
     style: {
       paddingTop: 96
@@ -559,19 +602,19 @@ function HomePage({
       lineHeight: 1.6,
       margin: "20px 0 0"
     }
-  }, "A paid Field Guide app is in final testing.", " ", React.createElement("a", {
-    href: "/guide",
+  }, "The looking happens weekly.", " ", React.createElement("a", {
+    href: "/now",
     onClick: e => {
       e.preventDefault();
-      if (window.track) window.track("guide_teaser_click", {
-        location: "home_strip"
+      if (window.track) window.track("cta_click", {
+        location: "home_strip_now"
       });
-      go("guide");
+      go("now");
     },
     style: {
       color: "var(--ink-2)"
     }
-  }, "The waitlist is on the guide page →"))), React.createElement(NewsletterInline, {
+  }, "This week's dispatch is up →"))), React.createElement(NewsletterInline, {
     location: "home_strip",
     tag: "home"
   }))));
