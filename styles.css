@@ -2083,6 +2083,14 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
   /* Eyebrow and mono labels: up from 10/11px for sunlight legibility. */
   .eyebrow { font-size: 12px; letter-spacing: 0.18em; }
   .mono { font-size: 13px; }
+
+  /* Home: dispatch teaser and Field Guide band tighten with the page. */
+  .home-dispatch { margin-bottom: 28px; }
+  .home-dispatch__title { font-size: 22px; }
+  .home-dispatch__excerpt { font-size: 16px; }
+  .band-guide { padding: 28px 20px; }
+  .band-guide__title { font-size: 28px; }
+  .band-guide__body { font-size: 16px; }
 }
 
 @media (max-width: 420px) {
@@ -2598,6 +2606,104 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
 }
 .home-utility a:hover { color: var(--moss); border-bottom-color: var(--moss); }
 .home-utility__sep { color: var(--ink-3); }
+
+/* ===== Home: this-week dispatch teaser =====
+   The newest /now entry rendered as a dated notebook line above the webcam
+   strip (HomeDispatch in page-home.jsx). Same quiet-band family as
+   .resume-band. */
+.home-dispatch {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  border-top: 1px solid var(--ink);
+  border-bottom: 1px solid var(--rule);
+  padding: 20px 0 22px;
+  margin-bottom: 36px;
+}
+.home-dispatch__date {
+  display: block;
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--moss);
+  margin-bottom: 10px;
+}
+.home-dispatch__title {
+  display: block;
+  font-family: var(--display);
+  font-size: 26px;
+  font-weight: 500;
+  line-height: 1.15;
+  letter-spacing: -0.005em;
+  margin-bottom: 10px;
+}
+.home-dispatch:hover .home-dispatch__title { color: var(--moss); }
+.home-dispatch__excerpt {
+  font-family: var(--serif);
+  font-size: 17px;
+  line-height: 1.55;
+  color: var(--ink-2);
+  max-width: 72ch;
+  margin: 0 0 14px;
+}
+.home-dispatch__cta {
+  color: var(--moss);
+  font-weight: 700;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+}
+
+/* ===== Home: Field Guide product band =====
+   The one purchase ask on the homepage, in the inverted-ink plate treatment
+   the sticky article guide-bar already established, so the paid object reads
+   as deliberately different from the editorial bands around it. */
+.band-guide {
+  display: block;
+  text-decoration: none;
+  color: var(--paper);
+  background: var(--ink);
+  border: 1px solid var(--ink);
+  padding: 40px 32px;
+  margin-top: 24px;
+}
+.band-guide__eyebrow {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  /* --paper-3 rather than --moss: every palette's accent is dark, tuned for
+     paper grounds, and disappears on the ink ground of this band. */
+  color: var(--paper-3);
+  margin-bottom: 12px;
+}
+.band-guide__title {
+  font-family: var(--display);
+  font-size: 36px;
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  color: var(--paper);
+}
+.band-guide__body {
+  font-family: var(--serif);
+  font-size: 19px;
+  line-height: 1.5;
+  color: var(--paper);
+  opacity: 0.85;
+  margin: 0 0 16px;
+}
+.band-guide__cta {
+  color: var(--paper-3);
+  font-weight: 700;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+}
+.band-guide:hover .band-guide__cta { color: var(--paper); }
 
 /* ===== Itineraries page (/itineraries) ===== */
 .itin {

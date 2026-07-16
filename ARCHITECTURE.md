@@ -45,7 +45,7 @@ All events fire through `window.track`. Names and where they fire:
 |---|---|
 | `newsletter_signup`, `newsletter_impression` | components.jsx helpers, called by every newsletter unit with a `location` param |
 | `newsletter_exit_intent_shown` | components.jsx (ExitIntentNewsletter) |
-| `guide_cta_click` | components.jsx (Footer "Field Guide" link) |
+| `guide_cta_click` | components.jsx (Footer "Field Guide" link, masthead nav), page-home.jsx (Go Deeper band, `location: home_band`) |
 | `guide_buy_click` | page-guide.jsx |
 | `guide_sample_click` | page-guide.jsx (buy-box link to the PWA's free sample at `/preview`, with `location`) |
 | `film_play` | page-films.jsx |
@@ -60,13 +60,13 @@ All events fire through `window.track`. Names and where they fire:
 | `trip_add`, `trip_add_all`, `trip_quick_pick`, `trip_undo`, `trip_share`, `trip_share_open`, `trip_route_open`, `map_pin_click`, `map_article_click`, `map_filter_category`, `map_search`, `map_cluster_click`, `map_directions_click` | page-map.jsx |
 | `trip_email_send` | page-map.jsx (TripEmailBox, "email this trip to yourself", with `trip_size`) |
 | `stop_share` | page-map.jsx (InfoWindow "Copy link to this stop") |
-| `guide_teaser_click` | page-map.jsx (trip next-steps card), page-article.jsx (article-end line, trails/planning), page-home.jsx (About strip line) — with `location` |
+| `guide_teaser_click` | page-map.jsx (trip next-steps card), page-article.jsx (article-end line, trails/planning) — with `location` |
 | `itinerary_open_map` | page-itineraries.jsx ("Open this trip on the map", with `itinerary`) |
 | `home_utility_click` | page-home.jsx ("Plan your trip" row, with `target`) |
 | `article_share` | components.jsx (ShareRow on article pages; `method` = web-share or copy) |
 | `series_band_click` | page-article.jsx (Planning Guide series band; `from`/`to` slugs, `to: planning-hub` for the hub link) |
 | `toc_jump` | page-article.jsx (in-guide table-of-contents jumps) |
-| `cta_click` | components.jsx (masthead links: `location: masthead_cta` for The Map, `masthead_now` for This week) |
+| `cta_click` | components.jsx (masthead links: `location: masthead_cta` for The Map, `masthead_now` for This week); page-home.jsx (`home_dispatch` for the dispatch teaser, `home_path` with `target` for the Go Deeper row, `home_strip_now` for the About-strip line) |
 
 ## localStorage key inventory
 
