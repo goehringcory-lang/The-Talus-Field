@@ -1,5 +1,31 @@
 {
   "__comment": "SEO enrichment for the editorial site, keyed by article slug. NOT loaded by the browser runtime (kept out of data.js so the per-page JS payload stays small). The build script scripts/gen-seo-artifacts.mjs merges this with window.ARTICLES from data.js to regenerate articles.json (consumed by functions/_middleware.js), sitemap.xml, feed.xml, and the article section of llms.txt. Fields: wordCount (number), keywords (string[]), faq ({q,a}[]), trail ({name,distance,elevationGain,difficulty} for hike guides). FAQ answers and trail numbers are drawn from each article's published body; do not invent facts. The one article whose faq lives inline in data.js (yosemite-in-one-or-two-days) is intentionally omitted here; data.js takes precedence for faq.",
+  "yosemite-connecting-to-traditions": {
+    "wordCount": 470,
+    "keywords": [
+      "Connecting to Traditions Yosemite",
+      "Yosemite cultural demonstrations",
+      "Yosemite Museum basket weaving",
+      "Yosemite Indigenous artists",
+      "Yosemite Native American programs",
+      "Yosemite traditionally associated tribes",
+      "Yosemite Museum Yosemite Village"
+    ],
+    "faq": [
+      {
+        "q": "What is the Connecting to Traditions program in Yosemite?",
+        "a": "Connecting to Traditions is a free cultural demonstration series at the Yosemite Museum where Indigenous artists demonstrate traditional and contemporary crafts, including basket weaving, beadwork, acorn preparation, and stone tool knapping. It is open to all."
+      },
+      {
+        "q": "Where and when do the Yosemite cultural demonstrations take place?",
+        "a": "At or just outside the Yosemite Museum in Yosemite Village, next to the visitor center at shuttle stop 5. Demonstrations run from July through October; times are posted at the Museum rather than fixed in advance, and the schedule is subject to change."
+      },
+      {
+        "q": "Are the Connecting to Traditions demonstrations free?",
+        "a": "Yes. The demonstrations are free and open to all. Standard Yosemite National Park entrance fees still apply to enter the park."
+      }
+    ]
+  },
   "yosemite-waterfalls-guide": {
     "wordCount": 1875,
     "keywords": [
