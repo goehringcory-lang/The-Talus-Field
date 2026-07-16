@@ -10,6 +10,7 @@ import {
 import NotFound from './NotFound'
 import GatedChrome from '../components/GatedChrome'
 import PrevNextNav from '../components/PrevNextNav'
+import ShareStopButton from '../components/ShareStopButton'
 import StopCard from '../components/StopCard'
 import Button from '../components/ui/Button'
 import BackLink from '../components/ui/BackLink'
@@ -75,6 +76,7 @@ export default function StopDetail() {
               Directions →
             </Button>
           )}
+          <ShareStopButton stopId={stop.id} title={stop.title} />
         </div>
 
         <PrevNextNav

@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import ReactMarkdown from 'react-markdown'
 import type { StopT } from '../content'
+import { KIND_LABEL, DIFFICULTY_LABEL, formatElevation, formatTime } from '../content/labels'
 import { PHOTO_CREDITS, formatCredit } from '../content/photoCredits'
 import { useFavorites } from '../lib/favorites'
 import AddToTripButton from './AddToTripButton'
@@ -17,36 +18,12 @@ type Props = {
   stop: Omit<StopT, 'region'>
   compact?: boolean
   regionLabel?: string
+  // The signed-out sample (/preview) renders real cards but not the app
+  // actions: add-to-trip and save belong to buyers.
+  actions?: boolean
 }
 
-const KIND_LABEL: Record<StopT['kind'], string> = {
-  viewpoint: 'Viewpoint',
-  trailhead: 'Trailhead',
-  parking: 'Parking',
-  lodging: 'Lodging',
-  meal: 'Meal',
-  drive: 'Drive',
-  camping: 'Camping', // map amenities and secret spots; no core Stop uses it
-}
-
-const DIFFICULTY_LABEL: Record<NonNullable<StopT['difficulty']>, string> = {
-  easy: 'Easy',
-  moderate: 'Moderate',
-  strenuous: 'Strenuous',
-}
-
-function formatElevation(ft: number): string {
-  return `${ft.toLocaleString('en-US')} ft`
-}
-
-function formatTime(min: number): string {
-  if (min < 60) return `${min} min`
-  const h = Math.floor(min / 60)
-  const m = min % 60
-  return m === 0 ? `${h} hr` : `${h} hr ${m} min`
-}
-
-export default function StopCard({ stop, compact = true, regionLabel }: Props) {
+export default function StopCard({ stop, compact = true, regionLabel, actions = true }: Props) {
   const photo = stop.photos[0]
   const credit = photo ? PHOTO_CREDITS[photo.src] : undefined
   const { toggle, isFavorite } = useFavorites()
@@ -83,21 +60,23 @@ export default function StopCard({ stop, compact = true, regionLabel }: Props) {
           </div>
           <h2 className="stop-card__title">{stop.title}</h2>
         </div>
-        <div className="stop-card__actions">
-          <AddToTripButton stopId={stop.id} title={stop.title} />
-          <button
-            type="button"
-            className="fav-toggle"
-            aria-pressed={saved}
-            aria-label={saved ? `Remove ${stop.title} from saved stops` : `Save ${stop.title}`}
-            title={saved ? 'Saved' : 'Save stop'}
-            onClick={() => toggle(stop.id)}
-          >
-            <svg className="fav-toggle__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-              <path d="M6 3h12a1 1 0 0 1 1 1v17l-7-4.5L5 21V4a1 1 0 0 1 1-1z" />
-            </svg>
-          </button>
-        </div>
+        {actions && (
+          <div className="stop-card__actions">
+            <AddToTripButton stopId={stop.id} title={stop.title} />
+            <button
+              type="button"
+              className="fav-toggle"
+              aria-pressed={saved}
+              aria-label={saved ? `Remove ${stop.title} from saved stops` : `Save ${stop.title}`}
+              title={saved ? 'Saved' : 'Save stop'}
+              onClick={() => toggle(stop.id)}
+            >
+              <svg className="fav-toggle__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <path d="M6 3h12a1 1 0 0 1 1 1v17l-7-4.5L5 21V4a1 1 0 0 1 1-1z" />
+              </svg>
+            </button>
+          </div>
+        )}
       </div>
 
       {(stop.coord || stop.elevationFt || stop.timeBudgetMin || stop.difficulty || stop.season || regionLabel) && (
