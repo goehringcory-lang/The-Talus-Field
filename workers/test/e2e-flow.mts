@@ -54,6 +54,19 @@ globalThis.fetch = (async (input: RequestInfo | URL, init?: RequestInit) => {
       status: 200, headers: { 'content-type': 'application/json' },
     })
   }
+  if (url.startsWith('https://npsvms-')) {
+    // NPS S3 waits.json: a Range request answered with the summary head.
+    return new Response(
+      JSON.stringify({
+        summary: [
+          { pair_name: 'South Entrance Wait Time', current_wait_minutes: 12.4 },
+          { pair_name: 'Arch Rock Wait Time', current_wait_minutes: 3, stale: true },
+        ],
+        history: [],
+      }),
+      { status: 206, headers: { 'content-type': 'application/json' } },
+    )
+  }
   if (url.startsWith('https://api.resend.com/emails')) {
     if (resendMode === 'fail') return new Response('boom', { status: 500 })
     const body = JSON.parse(String(init?.body))
@@ -498,6 +511,45 @@ console.log('\n18. renewal sweep (cron)')
 
   await sweepRenewals(env as never)
   check('second sweep sends nothing (sentinel)', sentEmails.length === before + 1, sentEmails.length - before)
+}
+
+console.log('\n19. conditions widget')
+{
+  await programsKv.put('weather:v1', JSON.stringify({
+    fetchedAt: new Date().toISOString(),
+    spots: [{
+      id: 'valley', label: 'Yosemite Valley', elevationFt: 3966,
+      updatedAt: new Date().toISOString(),
+      periods: [
+        { name: 'Today', startTime: '2026-07-16T06:00:00-07:00', isDaytime: true, tempF: 88, shortForecast: 'Sunny', precipChance: 0, windSpeed: '5 mph' },
+        { name: 'Tonight', startTime: '2026-07-16T18:00:00-07:00', isDaytime: false, tempF: 55, shortForecast: 'Clear', precipChance: 0, windSpeed: '5 mph' },
+        { name: 'Friday', startTime: '2026-07-17T06:00:00-07:00', isDaytime: true, tempF: 91, shortForecast: 'Mostly Sunny', precipChance: 10, windSpeed: '5 mph' },
+      ],
+    }],
+  }))
+
+  const req = new Request('https://api.thetalusfieldjournal.com/widget/conditions')
+  const res = await worker.fetch(req, env as never, ctx)
+  const body = JSON.parse(await res.text()) as { waits: Array<{ name: string; minutes: number | null }>; forecast: Array<{ day: string; hi: number; lo: number | null; short: string }> }
+  check('widget conditions 200 with CORS *', res.status === 200 && res.headers.get('access-control-allow-origin') === '*')
+  check('widget conditions edge-cacheable', (res.headers.get('cache-control') ?? '').includes('max-age=300'))
+  check('waits parsed from the S3 summary (short names, stale -> null)',
+    body.waits.length === 2 &&
+    body.waits[0].name === 'South' && body.waits[0].minutes === 12 &&
+    body.waits[1].name === 'Arch Rock' && body.waits[1].minutes === null,
+    body.waits)
+  check('forecast folded into calendar days',
+    body.forecast.length === 2 &&
+    body.forecast[0].hi === 88 && body.forecast[0].lo === 55 && body.forecast[0].short === 'Sunny' &&
+    body.forecast[1].hi === 91 && body.forecast[1].lo === null,
+    body.forecast)
+
+  const jsReq = new Request('https://api.thetalusfieldjournal.com/widget.js')
+  const jsRes = await worker.fetch(jsReq, env as never, ctx)
+  const js = await jsRes.text()
+  check('widget.js served as javascript', jsRes.status === 200 && (jsRes.headers.get('content-type') ?? '').includes('javascript'))
+  check('widget.js carries the mandatory backlink', js.includes('https://thetalusfieldjournal.com/conditions?utm_source=widget'))
+  check('widget.js fails silent (no error rendering)', js.includes('render nothing'))
 }
 
 globalThis.fetch = realFetch

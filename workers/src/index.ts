@@ -11,6 +11,7 @@ import { stripe } from './routes/stripe'
 import { trip } from './routes/trip'
 import { tripEmail } from './routes/trip-email'
 import { weather } from './routes/weather'
+import { widget, widgetScript } from './routes/widget'
 import { refreshWeather } from './lib/weather'
 import { sweepRenewals } from './lib/renewals'
 import {
@@ -96,6 +97,18 @@ app.get('/tiles/:z/:y/:x', async (c) => {
     },
   })
 })
+
+// The embeddable conditions widget lives at the ROOT level (like /tiles), NOT
+// under /api/*: it runs on arbitrary third-party origins, so it needs a plain
+// CORS * that the /api/* origin-echo middleware would clobber.
+app.route('/widget', widget)
+app.get('/widget.js', (c) =>
+  c.text(widgetScript(), 200, {
+    'Content-Type': 'application/javascript; charset=utf-8',
+    'Cache-Control': 'public, max-age=3600',
+    'Access-Control-Allow-Origin': '*',
+  }),
+)
 
 app.get('/api/inventory', async (c) => {
   const monthLabel = currentMonthLabel()

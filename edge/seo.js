@@ -265,6 +265,12 @@ const HUB_PROSE = {
       "List your business",
       "How to list a Yosemite-area lodge, inn, guide service, or outfitter in The Talus Field directory, and what the listing includes."
     ),
+  "/widget": () =>
+    hubProse(
+      "The Yosemite conditions widget",
+      "A free embeddable box for Yosemite-area websites: live entrance waits from the National Park Service feed and the three-day Valley forecast from the National Weather Service, rendered by a single script tag with a credit link back to The Talus Field's conditions page. Built for gateway hotels, rental hosts, and tour operators."
+    ) +
+    `<p>See it live and copy the snippet on this page. The full conditions layer is at <a href="/conditions">/conditions</a>.</p>`,
   "/consult": () =>
     hubProse(
       "Field consult: thirty minutes on your Yosemite plan",
@@ -575,6 +581,12 @@ function seoForPath(pathname, searchParams) {
       description:
         "A short weekly note on what Yosemite is actually doing right now: what's open, what's flowing, what's blooming, and what changed. Written from inside the park.",
       breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["This Week in the Park", null]],
+    },
+    "/widget": {
+      title: `Yosemite Conditions Widget — free embed for area businesses — ${SITE_NAME}`,
+      description:
+        "A free embeddable box with live Yosemite entrance waits and the three-day Valley forecast, for gateway hotels, rental hosts, and tour operators. One script tag.",
+      breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Widget", null]],
     },
     "/consult": {
       title: `Field Consult — thirty minutes on your Yosemite plan — ${SITE_NAME}`,
