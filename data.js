@@ -99,6 +99,7 @@ window.planningSeriesFor = function (slug) {
 // verifies this map stays in sync with the files in bodies/.
 // ============================================================
 window.BODY_VERSIONS = {
+  "yosemite-connecting-to-traditions": 1,
   "yosemite-waterfalls-guide": 1,
   "yosemite-photography-spots": 1,
   "horsetail-fall-firefall": 2,
@@ -696,6 +697,19 @@ window.KIT.lists.forEach((l) => {
 });
 
 window.ARTICLES = [
+  {
+    slug: "yosemite-connecting-to-traditions",
+    cat: "seasonal",
+    title: "Connecting to Traditions: Meet Yosemite's Indigenous Artists This Summer and Fall",
+    dek: "The Yosemite Museum's free Connecting to Traditions series runs July through October: basket weaving, beadwork, acorn, and stone tool knapping, demonstrated by members of the tribes who have tended this land for thousands of years. The full schedule, and why it is the best free hour in the park.",
+    seoDek: "Yosemite's free Connecting to Traditions demonstrations, July to October 2026: basket weaving, beadwork, acorn, and knapping at the Yosemite Museum.",
+    date: "July 16, 2026",
+    isoDate: "2026-07-16",
+    isoModified: "2026-07-16",
+    read: "3 min",
+    placeholder: "The Connecting to Traditions cultural demonstration program flyer, a partially woven Native basket above the summer and fall schedule",
+    image: "img/connecting-to-traditions-flyer.jpg",
+  },
   {
     slug: "yosemite-waterfalls-guide",
     cat: "trails",
