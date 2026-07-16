@@ -31,7 +31,7 @@ const ctx = { waitUntil(_p: Promise<unknown>) {}, passThroughOnException() {} } 
 
 // Capture outbound calls; fail on anything unexpected.
 let stripeCreateParams: URLSearchParams | null = null
-let sentEmails: { to: string; text: string }[] = []
+let sentEmails: { to: string; text: string; html: string }[] = []
 let resendMode: 'ok' | 'fail' = 'ok'
 
 const realFetch = globalThis.fetch
@@ -46,7 +46,7 @@ globalThis.fetch = (async (input: RequestInfo | URL, init?: RequestInit) => {
   if (url.startsWith('https://api.resend.com/emails')) {
     if (resendMode === 'fail') return new Response('boom', { status: 500 })
     const body = JSON.parse(String(init?.body))
-    sentEmails.push({ to: body.to[0], text: body.text })
+    sentEmails.push({ to: body.to[0], text: body.text, html: body.html })
     return new Response(JSON.stringify({ id: 'email_1' }), { status: 200, headers: { 'content-type': 'application/json' } })
   }
   throw new Error(`unexpected outbound fetch: ${url}`)
@@ -288,6 +288,89 @@ console.log('\n15. refund revokes access')
   const ob = JSON.stringify(orphan)
   const r2 = await call('/api/stripe/webhook', { method: 'POST', body: ob, headers: { 'stripe-signature': await signWebhook(ob, env.STRIPE_WEBHOOK_SECRET as string) } })
   check('refund for unknown buyer -> acknowledged, flagged', r2.status === 200 && r2.json.ignored === 'refund for unknown buyer', r2)
+}
+
+console.log('\n16. gift purchase flow')
+{
+  // Checkout start: the gift body flows into session metadata on both the
+  // session and the payment intent (so refunds carry it on the charge).
+  const start = await call('/api/checkout/start', {
+    method: 'POST',
+    body: JSON.stringify({ gift: true, recipientEmail: 'Friend@Example.com', giftNote: 'See you at Tunnel View' }),
+  })
+  check('gift checkout start -> stripe url', start.status === 200 && !!start.json.url, start)
+  const p = stripeCreateParams!
+  check('gift kind in metadata', p.get('metadata[kind]') === 'gift')
+  check('recipient in metadata (lowercased)', p.get('metadata[recipientEmail]') === 'friend@example.com')
+  check('gift metadata mirrored onto payment intent', p.get('payment_intent_data[metadata][recipientEmail]') === 'friend@example.com')
+  check('product tag not overridable', p.get('metadata[product]') === 'field_guide_2026')
+  check('gift success url', p.get('success_url') === 'https://thetalusfieldjournal.com/guide?guide=gift-success')
+
+  const bad = await call('/api/checkout/start', {
+    method: 'POST',
+    body: JSON.stringify({ gift: true, recipientEmail: 'not-an-email' }),
+  })
+  check('gift without valid recipient -> 400', bad.status === 400, bad)
+
+  const empty = await call('/api/checkout/start', { method: 'POST', body: '' })
+  check('empty body still works (plain purchase)', empty.status === 200 && !!empty.json.url, empty)
+
+  // Gift webhook: the RECIPIENT gets provisioned, the payer gets a receipt,
+  // and the user-supplied note is escaped in the HTML body.
+  const before = sentEmails.length
+  const gift = {
+    id: 'evt_gift_1', type: 'checkout.session.completed',
+    data: {
+      object: {
+        id: 'cs_gift_1',
+        customer_details: { email: 'Payer@Example.com' },
+        metadata: {
+          product: 'field_guide_2026',
+          kind: 'gift',
+          recipientEmail: 'friend@example.com',
+          giftNote: '<script>alert(1)</script> happy trails',
+        },
+        created: Math.floor(Date.now() / 1000),
+      },
+    },
+  }
+  const gBody = JSON.stringify(gift)
+  const g = await call('/api/stripe/webhook', { method: 'POST', body: gBody, headers: { 'stripe-signature': await signWebhook(gBody, env.STRIPE_WEBHOOK_SECRET as string) } })
+  check('gift webhook 200', g.status === 200 && g.json.received === true, g)
+  check('recipient provisioned', (await buyers.get('buyer:friend@example.com')) !== null)
+  check('payer NOT provisioned', (await buyers.get('buyer:payer@example.com')) === null)
+  check('two emails: access to recipient, receipt to payer',
+    sentEmails.length === before + 2 &&
+    sentEmails[before].to === 'friend@example.com' &&
+    sentEmails[before + 1].to === 'payer@example.com',
+    sentEmails.slice(before).map((e) => e.to))
+  check('gift note escaped in html', sentEmails[before].html.includes('&lt;script&gt;') && !sentEmails[before].html.includes('<script>'))
+  const friendRec1 = JSON.parse((await buyers.get('buyer:friend@example.com'))!)
+  const friendToken = /token=([0-9a-f]{64})/.exec(sentEmails[before].text)?.[1]
+  check('gift access email carries the recipient token', friendToken === friendRec1.accessToken)
+
+  // Gifting an active buyer extends the window and keeps token + code.
+  const gift2 = { ...gift, id: 'evt_gift_2', data: { object: { ...gift.data.object, id: 'cs_gift_2' } } }
+  const g2Body = JSON.stringify(gift2)
+  const g2 = await call('/api/stripe/webhook', { method: 'POST', body: g2Body, headers: { 'stripe-signature': await signWebhook(g2Body, env.STRIPE_WEBHOOK_SECRET as string) } })
+  check('second gift webhook 200', g2.status === 200 && g2.json.received === true, g2)
+  const friendRec2 = JSON.parse((await buyers.get('buyer:friend@example.com'))!)
+  check('active recipient extended, not clobbered',
+    friendRec2.expiresAt === friendRec1.expiresAt + 60 * 60 * 24 * 548 &&
+    friendRec2.accessToken === friendRec1.accessToken &&
+    friendRec2.accessCode === friendRec1.accessCode,
+    { first: friendRec1.expiresAt, second: friendRec2.expiresAt })
+
+  // A gift refund revokes the recipient (charge metadata names them), not the payer.
+  const giftRefund = {
+    id: 'evt_gift_refund', type: 'charge.refunded',
+    data: { object: { id: 'ch_gift_1', billing_details: { email: 'Payer@Example.com' }, metadata: { product: 'field_guide_2026', kind: 'gift', recipientEmail: 'friend@example.com' } } },
+  }
+  const grBody = JSON.stringify(giftRefund)
+  const gr = await call('/api/stripe/webhook', { method: 'POST', body: grBody, headers: { 'stripe-signature': await signWebhook(grBody, env.STRIPE_WEBHOOK_SECRET as string) } })
+  check('gift refund revokes the recipient', gr.status === 200 && gr.json.revoked === 'friend@example.com', gr)
+  const friendRec3 = JSON.parse((await buyers.get('buyer:friend@example.com'))!)
+  check('recipient record expired + refund-stamped', friendRec3.refundedAt > 0 && friendRec3.expiresAt <= Math.floor(Date.now() / 1000))
 }
 
 globalThis.fetch = realFetch

@@ -29,16 +29,21 @@ function formatPrice(cents) {
   return Number.isInteger(dollars) ? `$${dollars}` : `$${dollars.toFixed(2)}`;
 }
 
-// Reads ?guide=success|cancel left behind by the Stripe redirect.
+// Reads ?guide=success|gift-success|cancel left behind by the Stripe redirect.
 function readCheckoutOutcome() {
   try {
     const params = new URLSearchParams(window.location.search);
     const value = params.get("guide");
-    return value === "success" || value === "cancel" ? value : null;
+    return value === "success" || value === "gift-success" || value === "cancel"
+      ? value
+      : null;
   } catch (_e) {
     return null;
   }
 }
+
+// Mirrors GIFT_NOTE_MAX in workers/src/routes/checkout.ts.
+const GIFT_NOTE_MAX = 280;
 
 function formatReopens(iso) {
   try {
@@ -56,6 +61,9 @@ function GuideBuyBox() {
   const [error, setError] = React.useState(null);
   const [outcome] = React.useState(readCheckoutOutcome);
   const [priceCents, setPriceCents] = React.useState(GUIDE_PRICE_FALLBACK_CENTS);
+  const [giftMode, setGiftMode] = React.useState(false);
+  const [giftEmail, setGiftEmail] = React.useState("");
+  const [giftNote, setGiftNote] = React.useState("");
 
   React.useEffect(() => {
     let cancelled = false;
@@ -73,13 +81,22 @@ function GuideBuyBox() {
   }, []);
 
   async function startCheckout() {
+    const recipient = giftEmail.trim();
+    if (giftMode && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(recipient)) {
+      setError("Enter the recipient's email address first.");
+      return;
+    }
     setBusy(true);
     setError(null);
-    if (window.track) window.track("guide_buy_click", { location: "guide_aside" });
+    if (window.track)
+      window.track("guide_buy_click", { location: "guide_aside", gift: giftMode });
     try {
       const res = await fetch(`${GUIDE_API_BASE}/api/checkout/start`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
+        body: giftMode
+          ? JSON.stringify({ gift: true, recipientEmail: recipient, giftNote: giftNote.trim() })
+          : undefined,
       });
       const body = await res.json().catch(() => ({}));
       if (res.status === 409 && body.soldOut) {
@@ -112,6 +129,11 @@ function GuideBuyBox() {
           Payment received. Your access code and sign-in link are on their way to your email. Check spam if nothing arrives in a few minutes. Once you have the code, <a href={`${GUIDE_APP_BASE}/login`} style={{ color: "var(--ink-2)" }}>open the app and sign in →</a>
         </p>
       )}
+      {outcome === "gift-success" && (
+        <p style={{ fontFamily: "var(--sans)", fontSize: 14, color: "var(--ink)", lineHeight: 1.55, margin: "0 0 18px", border: "1px solid var(--ink)", padding: "12px 14px", background: "var(--paper)" }}>
+          Payment received. Their access email is on its way to them, and your receipt is on its way to you. If you typed the wrong address, reply to the receipt and it gets moved.
+        </p>
+      )}
       {outcome === "cancel" && (
         <p style={{ fontFamily: "var(--sans)", fontSize: 14, color: "var(--ink-2)", lineHeight: 1.55, margin: "0 0 18px" }}>
           Checkout was cancelled. Nothing was charged.
@@ -123,15 +145,56 @@ function GuideBuyBox() {
           This month's copies are gone. Sales reopen {formatReopens(soldOut.reopens)}. The sign-up form at the bottom of the page will tell you when.
         </p>
       ) : (
-        <button
-          type="button"
-          className="btn"
-          disabled={busy}
-          onClick={startCheckout}
-          style={{ display: "block", width: "100%", textAlign: "center", border: 0, font: "inherit", cursor: busy ? "wait" : "pointer", marginBottom: 14 }}
-        >
-          {busy ? "Opening checkout…" : `Buy the guide → ${formatPrice(priceCents)}`}
-        </button>
+        <React.Fragment>
+          <label style={{ display: "flex", alignItems: "center", gap: 8, fontFamily: "var(--sans)", fontSize: 13, color: "var(--ink-2)", marginBottom: 14, cursor: "pointer" }}>
+            <input
+              type="checkbox"
+              checked={giftMode}
+              onChange={(e) => setGiftMode(e.target.checked)}
+              style={{ accentColor: "var(--ink)" }}
+            />
+            Buying it as a gift?
+          </label>
+          {giftMode && (
+            <div style={{ marginBottom: 14 }}>
+              <div className="field">
+                <label htmlFor="gift-email">Recipient's email</label>
+                <input
+                  id="gift-email"
+                  type="email"
+                  required
+                  value={giftEmail}
+                  onChange={(e) => setGiftEmail(e.target.value)}
+                  placeholder="them@email.com"
+                />
+              </div>
+              <div className="field">
+                <label htmlFor="gift-note">A short note to include, optional</label>
+                <textarea
+                  id="gift-note"
+                  maxLength={GIFT_NOTE_MAX}
+                  value={giftNote}
+                  onChange={(e) => setGiftNote(e.target.value)}
+                  style={{ minHeight: 70 }}
+                />
+              </div>
+              <p style={{ fontFamily: "var(--sans)", fontSize: 12, color: "var(--ink-3)", lineHeight: 1.55, margin: "8px 0 0" }}>
+                Their access email goes straight to them when payment clears. Their 18 months start today, so time it to the trip.
+              </p>
+            </div>
+          )}
+          <button
+            type="button"
+            className="btn"
+            disabled={busy}
+            onClick={startCheckout}
+            style={{ display: "block", width: "100%", textAlign: "center", border: 0, font: "inherit", cursor: busy ? "wait" : "pointer", marginBottom: 14 }}
+          >
+            {busy
+              ? "Opening checkout…"
+              : `${giftMode ? "Gift the guide" : "Buy the guide"} → ${formatPrice(priceCents)}`}
+          </button>
+        </React.Fragment>
       )}
 
       {error && (

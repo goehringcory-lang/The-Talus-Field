@@ -97,6 +97,175 @@ export async function sendMagicLink(
   }
 }
 
+// Access email for a gifted guide: same open-link + code mechanics as
+// sendMagicLink, framed as a gift. `note` is user text from checkout and MUST
+// stay escaped in the HTML body.
+export async function sendGiftAccess(
+  env: Env,
+  args: {
+    to: string
+    payerEmail: string | null
+    magicLink: string
+    code: string
+    note?: string
+  },
+): Promise<void> {
+  if (!env.RESEND_API_KEY) {
+    throw new Error('RESEND_API_KEY not configured')
+  }
+
+  const { to, payerEmail, magicLink, code } = args
+  const note = args.note?.trim() ?? ''
+  const appOrigin = new URL(magicLink).origin
+  const fromLine = payerEmail
+    ? `${payerEmail} sent you The Field Guide, an offline Yosemite guide.`
+    : `Someone sent you The Field Guide, an offline Yosemite guide.`
+
+  const text = [
+    fromLine,
+    ...(note ? [``, `Their note:`, ``, `    ${note}`] : []),
+    ``,
+    `Tap to open the app on this device:`,
+    magicLink,
+    ``,
+    `Setting up a second device? Use this 6-digit code at`,
+    `${appOrigin}/login`,
+    ``,
+    `    ${code}`,
+    ``,
+    `Both keep working for 18 months. Nothing was charged to you.`,
+    `— Cory`,
+  ].join('\n')
+
+  // Same inlined brand palette as the magic-link email; mail clients strip
+  // <style>, so hex values ride along.
+  const serif = `Georgia, 'Times New Roman', serif`
+  const sans = `-apple-system, 'Segoe UI', Arial, sans-serif`
+  const noteHtml = note
+    ? `<blockquote style="font-family:${serif};font-size:15px;line-height:1.55;color:#14110c;background:#e6dcc1;border-left:3px solid #2a2118;margin:0 0 22px;padding:12px 16px;">${escapeHtml(note)}</blockquote>`
+    : ''
+  const html = `
+    <div style="background:#f1ead6;padding:36px 16px;">
+      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:520px;margin:0 auto;">
+        <tr>
+          <td style="padding:0 0 18px;">
+            <img src="${appOrigin}/brand/mark-192.png" width="60" height="47" alt="The Talus Field" style="display:block;border:0;" />
+            <div style="font-family:${serif};font-size:24px;color:#14110c;padding-top:12px;">The Talus Field</div>
+            <div style="font-family:${sans};font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#50402e;padding-top:4px;">The Field Guide &middot; A Gift</div>
+          </td>
+        </tr>
+        <tr>
+          <td style="border-top:1px solid #2a2118;padding:24px 0 0;">
+            <p style="font-family:${serif};font-size:17px;line-height:1.55;color:#14110c;margin:0 0 18px;">${escapeHtml(fromLine)}</p>
+            ${noteHtml}
+            <p style="font-family:${serif};font-size:15px;line-height:1.55;color:#14110c;margin:0 0 14px;">Tap to open the app on this device:</p>
+            <p style="margin:0 0 26px;">
+              <a href="${magicLink}" style="display:inline-block;padding:14px 22px;background:#14110c;color:#f1ead6;text-decoration:none;font-family:${sans};font-weight:600;letter-spacing:2px;text-transform:uppercase;font-size:13px;">
+                Open the guide
+              </a>
+            </p>
+            <p style="font-family:${serif};font-size:15px;line-height:1.55;color:#14110c;margin:0 0 10px;">Setting up a second device? Use this 6-digit code at <a href="${appOrigin}/login" style="color:#7a2a10;">${appOrigin}/login</a>:</p>
+            <p style="font-family:ui-monospace,Menlo,monospace;font-size:28px;letter-spacing:8px;color:#14110c;background:#e6dcc1;border:1px solid #2a2118;padding:12px 16px;margin:0 0 26px;display:inline-block;">${code}</p>
+            <p style="font-family:${sans};font-size:13px;color:#50402e;margin:0 0 6px;">Both keep working for 18 months, on every device you own. Nothing was charged to you.</p>
+            <p style="font-family:${sans};font-size:13px;color:#50402e;margin:0;">&mdash; Cory</p>
+          </td>
+        </tr>
+      </table>
+    </div>
+  `.trim()
+
+  const body: ResendBody = {
+    from: FROM,
+    to: [to],
+    subject: 'The Field Guide, a gift for you',
+    text,
+    html,
+  }
+
+  const res = await fetch('https://api.resend.com/emails', {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${env.RESEND_API_KEY}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(body),
+  })
+
+  if (!res.ok) {
+    const detail = await res.text()
+    throw new Error(`Resend send failed (${res.status}): ${detail}`)
+  }
+}
+
+// Payer's confirmation after a gift purchase. Plain and short: the access
+// email went to the recipient, and a wrong address is fixable by replying.
+export async function sendGiftReceipt(
+  env: Env,
+  args: { to: string; recipientEmail: string },
+): Promise<void> {
+  if (!env.RESEND_API_KEY) {
+    throw new Error('RESEND_API_KEY not configured')
+  }
+
+  const { to, recipientEmail } = args
+
+  const text = [
+    `Your gift is on its way.`,
+    ``,
+    `The Field Guide access email was sent to ${recipientEmail}.`,
+    `Their access runs 18 months from today.`,
+    ``,
+    `If that address is wrong, reply to this email and I will move the access.`,
+    `Stripe sends your payment receipt separately.`,
+    `— Cory`,
+  ].join('\n')
+
+  const sans = `-apple-system, 'Segoe UI', Arial, sans-serif`
+  const serif = `Georgia, 'Times New Roman', serif`
+  const html = `
+    <div style="background:#f1ead6;padding:36px 16px;">
+      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:520px;margin:0 auto;">
+        <tr>
+          <td style="padding:0 0 18px;">
+            <div style="font-family:${serif};font-size:24px;color:#14110c;">The Talus Field</div>
+            <div style="font-family:${sans};font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#50402e;padding-top:4px;">The Field Guide &middot; Gift Receipt</div>
+          </td>
+        </tr>
+        <tr>
+          <td style="border-top:1px solid #2a2118;padding:24px 0 0;">
+            <p style="font-family:${serif};font-size:17px;line-height:1.55;color:#14110c;margin:0 0 18px;">Your gift is on its way.</p>
+            <p style="font-family:${serif};font-size:15px;line-height:1.55;color:#14110c;margin:0 0 14px;">The Field Guide access email was sent to <strong>${escapeHtml(recipientEmail)}</strong>. Their access runs 18 months from today.</p>
+            <p style="font-family:${sans};font-size:13px;color:#50402e;margin:0 0 6px;">If that address is wrong, reply to this email and I will move the access. Stripe sends your payment receipt separately.</p>
+            <p style="font-family:${sans};font-size:13px;color:#50402e;margin:0;">&mdash; Cory</p>
+          </td>
+        </tr>
+      </table>
+    </div>
+  `.trim()
+
+  const body: ResendBody = {
+    from: FROM,
+    to: [to],
+    subject: 'Your Field Guide gift is on its way',
+    text,
+    html,
+  }
+
+  const res = await fetch('https://api.resend.com/emails', {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${env.RESEND_API_KEY}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(body),
+  })
+
+  if (!res.ok) {
+    const detail = await res.text()
+    throw new Error(`Resend send failed (${res.status}): ${detail}`)
+  }
+}
+
 export async function sendTripLink(
   env: Env,
   args: { to: string; tripUrl: string; stopCount: number },

@@ -7,7 +7,7 @@ import {
   putBuyer,
   type BuyerRecord,
 } from '../lib/kv'
-import { sendMagicLink } from '../lib/email'
+import { sendGiftAccess, sendGiftReceipt, sendMagicLink } from '../lib/email'
 import { verifyStripeSignature } from '../lib/stripe'
 import { generateAccessCode, generateAccessToken } from '../lib/tokens'
 
@@ -111,7 +111,11 @@ stripe.post('/webhook', async (c) => {
       return c.json({ received: true, ignored: 'refund for other product' })
     }
 
+    // Gift charges carry the recipient in metadata (copied from
+    // payment_intent_data): the refund must revoke the person who holds the
+    // access, not the payer whose card was charged.
     const email =
+      charge.metadata?.recipientEmail?.trim().toLowerCase() ??
       charge.billing_details?.email?.trim().toLowerCase() ??
       charge.receipt_email?.trim().toLowerCase() ??
       null
@@ -159,10 +163,30 @@ stripe.post('/webhook', async (c) => {
     return c.json({ received: true, ignored: 'wrong product' })
   }
 
-  const email =
+  const payerEmail =
     session.customer_details?.email?.trim().toLowerCase() ??
     session.customer_email?.trim().toLowerCase() ??
     null
+
+  // Sessions carry metadata.kind since the gift feature landed; older
+  // in-flight sessions have no kind and are plain purchases.
+  const kind = session.metadata?.kind === 'gift' ? 'gift' : 'purchase'
+
+  // For a purchase the payer is the buyer. For a gift the buyer record
+  // belongs to the recipient named at checkout; a gift session that somehow
+  // lost its recipient falls back to provisioning the payer, so paid access
+  // is never stranded (flagged for manual follow-up).
+  let email = payerEmail
+  if (kind === 'gift') {
+    const recipient = session.metadata?.recipientEmail?.trim().toLowerCase() || null
+    if (recipient) {
+      email = recipient
+    } else {
+      console.error('gift session missing recipientEmail — provisioning payer, verify manually', {
+        sessionId: session.id,
+      })
+    }
+  }
 
   if (!email) {
     console.error('checkout.session.completed missing email', session.id)
@@ -170,26 +194,47 @@ stripe.post('/webhook', async (c) => {
   }
 
   const purchasedAt = session.created
-  const expiresAt = purchasedAt + EIGHTEEN_MONTHS_SECONDS
-  const accessToken = generateAccessToken()
-  const accessCode = generateAccessCode()
+  const nowSeconds = Math.floor(Date.now() / 1000)
 
-  const record: BuyerRecord = {
-    email,
-    purchasedAt,
-    expiresAt,
-    accessToken,
-    accessCode,
-  }
+  // Gifting someone who already owns the guide must never clobber their
+  // record: extend the paid window and keep their token and code, so signed-in
+  // devices and old access emails stay valid. Expired or refunded records get
+  // a fresh provision like any new buyer.
+  const existing = kind === 'gift' ? await getBuyer(c.env, email) : null
+  const existingActive =
+    existing != null && existing.refundedAt == null && existing.expiresAt > nowSeconds
+
+  const record: BuyerRecord = existingActive
+    ? {
+        ...existing,
+        expiresAt: Math.max(nowSeconds, existing.expiresAt) + EIGHTEEN_MONTHS_SECONDS,
+      }
+    : {
+        email,
+        purchasedAt,
+        expiresAt: purchasedAt + EIGHTEEN_MONTHS_SECONDS,
+        accessToken: generateAccessToken(),
+        accessCode: generateAccessCode(),
+      }
 
   await putBuyer(c.env, record)
   await incrementInventory(c.env, currentMonthLabel(new Date(purchasedAt * 1000)))
 
-  const magicLink = `${c.env.APP_BASE_URL}/open?token=${accessToken}`
+  const magicLink = `${c.env.APP_BASE_URL}/open?token=${record.accessToken}`
   try {
-    await sendMagicLink(c.env, { to: email, magicLink, code: accessCode })
+    if (kind === 'gift') {
+      await sendGiftAccess(c.env, {
+        to: email,
+        payerEmail,
+        magicLink,
+        code: record.accessCode,
+        note: session.metadata?.giftNote,
+      })
+    } else {
+      await sendMagicLink(c.env, { to: email, magicLink, code: record.accessCode })
+    }
   } catch (err) {
-    console.error('sendMagicLink failed', { eventId: event.id, email, err })
+    console.error('access email failed', { eventId: event.id, email, kind, err })
     // Do NOT claim the dedupe slot here: returning 500 makes Stripe retry,
     // and the retry must be allowed to re-attempt delivery rather than being
     // short-circuited. putBuyer is idempotent on email, so re-provisioning is
@@ -197,6 +242,17 @@ stripe.post('/webhook', async (c) => {
     // be over-counted by a retry — acceptable at this volume, same trade-off
     // noted in kv.ts incrementInventory.)
     return c.json({ error: 'Email delivery failed' }, 500)
+  }
+
+  // The payer's receipt is best-effort: access is already delivered, so a
+  // failed receipt is logged rather than making Stripe re-run the whole event
+  // (which would re-send the recipient's access email).
+  if (kind === 'gift' && payerEmail && payerEmail !== email) {
+    try {
+      await sendGiftReceipt(c.env, { to: payerEmail, recipientEmail: email })
+    } catch (err) {
+      console.error('sendGiftReceipt failed', { eventId: event.id, payerEmail, err })
+    }
   }
 
   // Claim the dedupe slot only after the email is confirmed sent, so a failed
