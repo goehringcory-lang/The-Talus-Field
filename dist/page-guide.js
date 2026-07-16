@@ -255,6 +255,24 @@ function GuideBuyBox() {
       lineHeight: 1.55,
       margin: "12px 0 0"
     }
+  }, "Want to see it first?", " ", React.createElement("a", {
+    href: `${GUIDE_APP_BASE}/preview`,
+    onClick: () => {
+      if (window.track) window.track("guide_sample_click", {
+        location: "guide_aside"
+      });
+    },
+    style: {
+      color: "var(--ink-2)"
+    }
+  }, "Read a free sample of the app →")), React.createElement("p", {
+    style: {
+      fontFamily: "var(--sans)",
+      fontSize: 12,
+      color: "var(--ink-3)",
+      lineHeight: 1.55,
+      margin: "8px 0 0"
+    }
   }, "Already bought it? ", React.createElement("a", {
     href: `${GUIDE_APP_BASE}/login`,
     style: {

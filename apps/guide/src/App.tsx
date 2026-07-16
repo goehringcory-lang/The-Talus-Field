@@ -1,6 +1,7 @@
 import { lazy, Suspense } from 'react'
 import { Routes, Route, Navigate, useLocation } from 'react-router-dom'
 import { AuthProvider, RequireAuth } from './auth/AuthGate'
+import { useAuth } from './auth/useAuth'
 import Open from './routes/Open'
 import Login from './routes/Login'
 import Home from './routes/Home'
@@ -21,12 +22,22 @@ const Programs = lazy(() => import('./routes/Programs'))
 const Trip = lazy(() => import('./routes/Trip'))
 const Welcome = lazy(() => import('./routes/Welcome'))
 const NotFound = lazy(() => import('./routes/NotFound'))
+const Preview = lazy(() => import('./routes/Preview'))
+const StopTeaser = lazy(() => import('./routes/StopTeaser'))
 
 // Navigate drops location.hash, and old /secret-spots#<id> search bookmarks
 // rely on it, so the redirect forwards the hash explicitly.
 function LegacySecretRedirect() {
   const { hash } = useLocation()
   return <Navigate to={{ pathname: '/secret-guide', hash }} replace />
+}
+
+// /stop/:id is the shape buyers share. Signed in it is the normal gated stop
+// page; signed out it renders the public teaser (a landing page, not the
+// login wall), so a shared link sells instead of bouncing.
+function StopGate() {
+  const { session } = useAuth()
+  return session ? <StopDetail /> : <StopTeaser />
 }
 
 export default function App() {
@@ -58,6 +69,9 @@ export default function App() {
         <Routes>
           <Route path="/open" element={<Open />} />
           <Route path="/login" element={<Login />} />
+          {/* The free sample: public on purpose. Signed-in buyers are
+              redirected into the app by the route itself. */}
+          <Route path="/preview" element={<Preview />} />
           <Route
             path="/"
             element={
@@ -84,14 +98,7 @@ export default function App() {
               </RequireAuth>
             }
           />
-          <Route
-            path="/stop/:stopId"
-            element={
-              <RequireAuth>
-                <StopDetail />
-              </RequireAuth>
-            }
-          />
+          <Route path="/stop/:stopId" element={<StopGate />} />
           <Route
             path="/essentials"
             element={

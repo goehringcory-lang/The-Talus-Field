@@ -47,6 +47,7 @@ All events fire through `window.track`. Names and where they fire:
 | `newsletter_exit_intent_shown` | components.jsx (ExitIntentNewsletter) |
 | `guide_cta_click` | components.jsx (Footer "Field Guide" link) |
 | `guide_buy_click` | page-guide.jsx |
+| `guide_sample_click` | page-guide.jsx (buy-box link to the PWA's free sample at `/preview`, with `location`) |
 | `film_play` | page-films.jsx |
 | `affiliate_click` | app.jsx (delegated document listener on `a[data-aff-network]`) |
 | `outbound_click` | app.jsx (same delegated listener; external-host `target="_blank"` anchors without `data-aff-network`) |

@@ -9,6 +9,7 @@ import { PHOTO_CREDITS, formatCredit } from '../content/photoCredits'
 import Plate from '../components/Plate'
 import ResponsivePhoto from '../components/ResponsivePhoto'
 import Button from '../components/ui/Button'
+import { GUIDE_BUY_URL, useGuidePrice } from '../lib/storefront'
 
 type LoginResponse = { jwt: string }
 
@@ -100,6 +101,7 @@ export default function Login() {
   const navigate = useNavigate()
   const location = useLocation()
   const { signIn } = useAuth()
+  const price = useGuidePrice()
   const [email, setEmail] = useState('')
   const [code, setCode] = useState('')
   const [busy, setBusy] = useState(false)
@@ -211,14 +213,17 @@ export default function Login() {
                   fall back to neutral copy unless the last /me said buyer. */}
               {readCachedMe()?.kind === 'buyer' ? (
                 <>
-                  Your access period ended {formatEndedDate(accessEndedAt)}. Renewing takes
-                  one click: the renewal link is in the reminder emails we sent as the date
-                  approached (search your inbox for "Field Guide access"). Can't find them?
-                  Email{' '}
+                  Your access period ended {formatEndedDate(accessEndedAt)}. The cheapest way
+                  back is the one-click renewal link in the reminder emails we sent as the
+                  date approached (search your inbox for "Field Guide access"). You can also{' '}
+                  <a href={GUIDE_BUY_URL} target="_blank" rel="noopener noreferrer">
+                    buy the guide again
+                  </a>{' '}
+                  with the same email to restart access, or email{' '}
                   <a href="mailto:cory@thetalusfieldjournal.com">
                     cory@thetalusfieldjournal.com
                   </a>{' '}
-                  and a fresh link comes back.
+                  and a fresh renewal link comes back.
                 </>
               ) : (
                 <>Your session ended {formatEndedDate(accessEndedAt)}. Sign in again to continue.</>
@@ -276,6 +281,23 @@ export default function Login() {
         </form>
 
         <ResendAccessEmail prefillEmail={email} />
+
+        <section className="login-storefront" aria-label="About the Field Guide">
+          <span className="eyebrow">New here</span>
+          <p className="login-intro" style={{ marginTop: 8 }}>
+            The Field Guide is {price}, one payment: four regional guides, the Secret
+            Guide, and an offline topo map of the park, on every device you own for 18
+            months.
+          </p>
+          <div className="action-row" style={{ marginTop: 16 }}>
+            <Button variant="ghost" to="/preview">
+              Read the free sample →
+            </Button>
+            <Button variant="quiet" href={GUIDE_BUY_URL} external>
+              Get the guide
+            </Button>
+          </div>
+        </section>
 
         <p className="page-footnote">
           Works offline once installed. Pay once, sign in on every device you own.

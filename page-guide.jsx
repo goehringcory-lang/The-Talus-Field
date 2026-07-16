@@ -208,6 +208,19 @@ function GuideBuyBox() {
       </p>
 
       <p style={{ fontFamily: "var(--sans)", fontSize: 12, color: "var(--ink-3)", lineHeight: 1.55, margin: "12px 0 0" }}>
+        Want to see it first?{" "}
+        <a
+          href={`${GUIDE_APP_BASE}/preview`}
+          onClick={() => {
+            if (window.track) window.track("guide_sample_click", { location: "guide_aside" });
+          }}
+          style={{ color: "var(--ink-2)" }}
+        >
+          Read a free sample of the app →
+        </a>
+      </p>
+
+      <p style={{ fontFamily: "var(--sans)", fontSize: 12, color: "var(--ink-3)", lineHeight: 1.55, margin: "8px 0 0" }}>
         Already bought it? <a href={`${GUIDE_APP_BASE}/login`} style={{ color: "var(--ink-2)" }}>Sign in to the app →</a>
       </p>
 

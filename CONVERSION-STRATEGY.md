@@ -233,3 +233,14 @@ Nearly all instrumentation exists; this is mostly dashboarding discipline.
 5. **Traffic reality check:** Rough monthly sessions and current list size from GA4/Buttondown — needed to set expectations for A/B feasibility (R12) and to size the launch forecast.
 6. **Map gate conviction:** The full view-gate reads as a deliberate recent choice (the code comment is explicit). Any data or reasoning behind it that should override R1? If the gate is out-converting expectations, R1 can run as a 50/50 test via the existing `abVariant` harness instead of a straight swap.
 7. **Author photo:** Is there a usable portrait for the author box (R6b)?
+
+---
+
+## Addendum — Field Guide app funnel (July 2026, shipped)
+
+Post-launch follow-on to R10, on the product side of the fence this time: the PWA itself now sells. Before this pass every app URL except `/open` and `/login` bounced signed-out visitors to a bare sign-in form, so the $19 ask was sight-unseen and every link a buyer shared dead-ended.
+
+- **Free sample** at `/preview` (linked from the /guide buy box, `guide_sample_click`): five real entries rendered in full by the app's own components — one stop per region plus one Secret Guide spot — with locked-count dividers, the live price from `/api/inventory`, and buy links out to `/guide`.
+- **Shared stop links convert.** Signed-out `/stop/:id` renders a teaser landing page (name, photo, meta, teaser line, CTAs) instead of the login wall; the five sample stops read in full. A Share button on every stop page (Web Share/clipboard) feeds the loop, and the PWA's `index.html` now carries OG tags so shared links unfurl.
+- **/login sells too:** price + sample link for non-buyers; lapsed buyers get a "buy again with the same email" renewal path (the webhook overwrites the buyer record, so repurchase = renewal).
+- **Measurement gap, deliberate:** the PWA has no analytics by design, so sample-page traffic is only visible as `guide_sample_click` on the editorial side and, ultimately, checkout volume. If the sample needs its own funnel numbers later, that is a new decision, not an oversight.
