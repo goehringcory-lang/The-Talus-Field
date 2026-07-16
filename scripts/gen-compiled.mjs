@@ -64,6 +64,7 @@ const PAGE_FILES = [
   "page-itineraries.jsx",
   "page-conditions.jsx",
   "page-now.jsx",
+  "page-firefall.jsx",
   "app.jsx",
 ];
 

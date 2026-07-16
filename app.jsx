@@ -27,7 +27,7 @@ function routeToPath(route) {
 const STATIC_ROUTE_KEYS = new Set([
   "home", "articles", "planning", "checklist", "about", "kit", "places",
   "advertise", "newsletter", "contact", "privacy", "terms", "affiliate",
-  "guide", "map", "films", "itineraries", "conditions", "now",
+  "guide", "map", "films", "itineraries", "conditions", "now", "firefall",
 ]);
 
 function pathToRoute(pathname) {
@@ -99,6 +99,7 @@ const PAGE_MODULES = {
   map: { scripts: ["/itineraries-data.js", "/dist/page-map.js"], globals: ["MapPage"] },
   conditions: { scripts: ["/dist/page-conditions.js"], globals: ["ConditionsPage"] },
   now: { scripts: ["/dist/page-now.js"], globals: ["NowPage"] },
+  firefall: { scripts: ["/dist/page-firefall.js"], globals: ["FirefallPage"] },
 };
 
 function routeModule(route) {
@@ -917,6 +918,9 @@ function App() {
     page = <window.ConditionsPage go={go} />;
   } else if (route === "now") {
     page = <window.NowPage go={go} />;
+  } else if (route === "firefall") {
+    page = <window.FirefallPage go={go} />;
+    // currentNav stays "home"; the event page hangs off articles + /now links.
   } else if (route === "map") {
     page = <window.MapPage go={go} />;
     // currentNav stays "home" so no nav link highlights.

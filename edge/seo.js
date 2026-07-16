@@ -265,6 +265,13 @@ const HUB_PROSE = {
       "List your business",
       "How to list a Yosemite-area lodge, inn, guide service, or outfitter in The Talus Field directory, and what the listing includes."
     ),
+  "/firefall": () =>
+    hubProse(
+      "The Yosemite Firefall",
+      "For roughly two weeks in mid-to-late February, sunset light can turn Horsetail Fall into a glowing orange ribbon on El Capitan. Three conditions must hold at once: water in the fall from recent rain or snowmelt, a clear western horizon at sunset, and the February sun angle. The glow builds for a few minutes, peaks near sunset, and is finished about ten minutes later."
+    ) +
+    `<p>The classic viewing zone is Northside Drive near the El Capitan Picnic Area; parking rules and any reservation requirement change annually, so check the NPS Horsetail Fall page before committing.</p>` +
+    `<p>The full guide: <a href="/articles/horsetail-fall-firefall">the complete firefall article</a>. Live water and weather: <a href="/conditions">the conditions page</a>.</p>`,
 };
 
 // Shared-trip unfurls: /map?trip=id1,id2 links travel through texts and group
@@ -563,6 +570,34 @@ function seoForPath(pathname, searchParams) {
         "A short weekly note on what Yosemite is actually doing right now: what's open, what's flowing, what's blooming, and what changed. Written from inside the park.",
       breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["This Week in the Park", null]],
     },
+    "/firefall": {
+      // Evergreen event page: no year in the URL or copy, so the same page
+      // accrues rank every February instead of resetting on a dated slug.
+      // FAQ answers come from the published article body
+      // (bodies/horsetail-fall-firefall.jsx) per the no-invented-facts rule.
+      title: `The Yosemite Firefall — dates, conditions, and how to plan — ${SITE_NAME}`,
+      description:
+        "When the Horsetail Fall firefall happens, the three conditions that must line up, and how to plan a February evening around uncertain odds. By a park resident.",
+      breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Firefall", null]],
+      faq: [
+        {
+          q: "When is the Yosemite firefall?",
+          a: "The sun angle that lights Horsetail Fall runs roughly the second week of February through the last week, with the strongest color usually in the middle of that span. The glow builds for a few minutes, peaks near sunset, and is finished about ten minutes later.",
+        },
+        {
+          q: "What has to happen for the firefall to appear?",
+          a: "Three independent conditions must hold at once: water in Horsetail Fall from recent rain or snowmelt, a clear western horizon at sunset, and the mid-to-late-February sun angle. Any one failing cancels the show entirely.",
+        },
+        {
+          q: "Where do you watch the firefall from?",
+          a: "The classic viewing zone is Northside Drive near the El Capitan Picnic Area. Expect to park at a designated area, often Yosemite Falls parking, walk a mile or more each way, and be in place at least an hour before sunset.",
+        },
+        {
+          q: "Do you need a reservation to see the firefall?",
+          a: "In some years the park has required reservations for February weekends, along with parking restrictions and road closures. The rules change year to year; check the NPS Horsetail Fall page and current conditions in the week before your trip.",
+        },
+      ],
+    },
     "/itineraries": {
       title: `Yosemite Itineraries — day plans on the map — ${SITE_NAME}`,
       description:
@@ -694,8 +729,22 @@ export default {
 // route metadata logic without workerd's HTMLRewriter runtime.
 export { seoForPath };
 
+// Permanent redirects, checked before any SEO work. The site had no redirect
+// capability before the evergreen event pages landed (it is a Worker, not
+// Pages, so there is no _redirects file); this table is the mechanism. Add an
+// entry when a URL is retired or consolidated — e.g. if a year-stamped article
+// slug ever folds into its evergreen event page — and crawlers get a real 301
+// instead of a 404 or a duplicate.
+const REDIRECTS = {
+  // "/articles/some-retired-slug": "/firefall",
+};
+
 async function handleRequest({ request, next, env }) {
   const url = new URL(request.url);
+  const redirectTarget = REDIRECTS[url.pathname.replace(/\/+$/, "") || "/"];
+  if (redirectTarget) {
+    return Response.redirect(`${SITE_ORIGIN}${redirectTarget}`, 301);
+  }
   // Unknown SPA routes get a real 404 (with noindex + not-found prose) instead
   // of a 200 homepage clone. Real files never reach the Worker (asset-first
   // routing), so anything unmatched here is genuinely not a page.

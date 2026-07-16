@@ -10,7 +10,7 @@ window.ARTICLE_BODIES["horsetail-fall-firefall"] = function HorsetailFallFirefal
       </p>
 
       <p>
-        That is the <strong>firefall</strong>. It is a real thing, it is not enhanced or exaggerated in the photographs, and it is also one of the most oversold and misunderstood events in the park. After twenty seasons of watching people plan whole trips around it, I want to explain how it actually works, why most evenings fail, and how to think about it like a naturalist instead of a lottery player.
+        That is the <strong>firefall</strong>. It is a real thing, it is not enhanced or exaggerated in the photographs, and it is also one of the most oversold and misunderstood events in the park. After twenty seasons of watching people plan whole trips around it, I want to explain how it actually works, why most evenings fail, and how to think about it like a naturalist instead of a lottery player. If you just need the window, the conditions checklist, and the live water and weather, <a href="/firefall">the firefall page</a> is the short version, kept current each season.
       </p>
 
       <h2>What is actually happening</h2>
