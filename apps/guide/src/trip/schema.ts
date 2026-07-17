@@ -1,7 +1,8 @@
 // =============================================================================
-// TripPlan — the user's day-by-day plan: stops (by id, resolved against the
-// bundled content at render) and programs (denormalized snapshots, so a plan
-// survives the programs cache being refreshed or evicted).
+// TripPlan — the user's day-by-day plan: stops and hikes (by id, resolved
+// against the bundled content at render) and programs (denormalized
+// snapshots, so a plan survives the programs cache being refreshed or
+// evicted).
 // Persisted in localStorage under tfg.trip.plan; small structured data, so
 // localStorage is the right tool here (unlike the programs payload).
 // =============================================================================
@@ -26,6 +27,20 @@ export const TripStopItem = z.object({
 })
 export type TripStopItemT = z.infer<typeof TripStopItem>
 
+// Hikes mirror stops exactly: resolved by id against the bundled catalog,
+// day-scoped itemId, user-settable time. Kept as a distinct type so the
+// agenda and ICS can render trail stats without overloading Stop.
+export const TripHikeItem = z.object({
+  type: z.literal('hike'),
+  itemId: z.string(),                    // "hike:<hikeId>:<day>"
+  hikeId: z.string(),
+  day: z.string().regex(DATE_RE),
+  startTime: z.string().regex(TIME_RE).optional(), // set by the user; unset = auto-slotted
+  durationMin: z.number().optional(),    // default: hike.durationMin
+  eventUid: z.string().optional(),       // same day-move-proof identity as TripStopItem
+})
+export type TripHikeItemT = z.infer<typeof TripHikeItem>
+
 export const TripProgramItem = z.object({
   type: z.literal('program'),
   itemId: z.string(),                    // "program:<programId>"
@@ -34,7 +49,7 @@ export const TripProgramItem = z.object({
 })
 export type TripProgramItemT = z.infer<typeof TripProgramItem>
 
-export const TripItem = z.discriminatedUnion('type', [TripStopItem, TripProgramItem])
+export const TripItem = z.discriminatedUnion('type', [TripStopItem, TripHikeItem, TripProgramItem])
 export type TripItemT = z.infer<typeof TripItem>
 
 export const TripPlan = z.object({
@@ -47,6 +62,10 @@ export type TripPlanT = z.infer<typeof TripPlan>
 
 export function stopItemId(stopId: string, day: string): string {
   return `stop:${stopId}:${day}`
+}
+
+export function hikeItemId(hikeId: string, day: string): string {
+  return `hike:${hikeId}:${day}`
 }
 
 export function programItemId(programId: string): string {

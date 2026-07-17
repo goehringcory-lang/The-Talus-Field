@@ -16,7 +16,7 @@ import TripReview from '../components/TripReview'
 import Button from '../components/ui/Button'
 import { ChipButton } from '../components/ui/Chip'
 import PageHeader from '../components/ui/PageHeader'
-import { getStopById } from '../content'
+import { getHikeById, getStopById } from '../content'
 import { ITINERARIES, type ItineraryKey } from '../content/itineraries'
 import { getStopsByRegion } from '../content'
 import { MAX_SPAN_DAYS, readTripDates } from '../programs/usePrograms'
@@ -128,7 +128,7 @@ export default function Trip() {
         <PageHeader
           eyebrow="Plan your days"
           title="Your trip plan"
-          intro="Set your dates, then fill the days: programs from the list, stops from their pages or the map. When the plan is final, review it and put it on your calendar."
+          intro="Set your dates, then fill the days: hikes from the trail list, programs from the list, stops from their pages or the map. When the plan is final, review it and put it on your calendar."
         />
 
         <StepHeader n={1} title="Pick your dates" />
@@ -183,6 +183,10 @@ export default function Trip() {
             <ol>
               <li>Set your dates above.</li>
               <li>
+                Add a day hike from the <Link to="/hikes">Hikes list</Link>: the plan budgets the
+                hours it takes.
+              </li>
+              <li>
                 Add programs from the <Link to="/programs">Programs list</Link>: ranger walks,
                 tours, star parties.
               </li>
@@ -216,21 +220,22 @@ export default function Trip() {
                 </div>
                 {items.map((s, i) => {
                   const { item } = s
-                  const isStop = item.type === 'stop'
-                  const stop = isStop ? getStopById(item.stopId) : undefined
-                  // A stop id that no longer resolves means a content edit
-                  // removed it; say so instead of linking to a 404.
-                  const missing = isStop && !stop
-                  const title = isStop
-                    ? stop?.title ?? 'No longer in this edition'
-                    : item.snapshot.title
-                  const link = isStop && stop ? `/stop/${item.stopId}` : undefined
+                  const isProgram = item.type === 'program'
+                  const stop = item.type === 'stop' ? getStopById(item.stopId) : undefined
+                  const hike = item.type === 'hike' ? getHikeById(item.hikeId) : undefined
+                  // A stop or hike id that no longer resolves means a content
+                  // edit removed it; say so instead of linking to a 404.
+                  const missing = !isProgram && !stop && !hike
+                  const title = isProgram
+                    ? item.snapshot.title
+                    : stop?.title ?? hike?.title ?? 'No longer in this edition'
+                  const link = stop ? `/stop/${stop.id}` : undefined
                   return (
                     <Fragment key={item.itemId}>
                       {i > 0 && <TransitRow prev={items[i - 1]} cur={s} />}
                       <div className="trip-item">
                         <div className="trip-item__time">
-                          {isStop ? (
+                          {!isProgram ? (
                             <>
                               <input
                                 className="field-control field-control--sm"
@@ -259,9 +264,15 @@ export default function Trip() {
                                 ? `${Math.floor(s.durationMin / 60)}h${s.durationMin % 60 ? ` ${s.durationMin % 60}m` : ''}`
                                 : `${s.durationMin}m`}
                             </span>
+                            {hike && (
+                              <span>
+                                {hike.distanceMi} mi
+                                {hike.route === 'one-way' ? ' one-way' : ''}
+                              </span>
+                            )}
                             {missing ? (
                               <span>Removed from the guide</span>
-                            ) : isStop ? (
+                            ) : !isProgram ? (
                               <select
                                 className="field-control field-control--sm"
                                 value={item.day}

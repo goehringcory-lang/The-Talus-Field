@@ -2,11 +2,13 @@ import { stops } from './stops'
 import { ESSENTIALS } from './essentials'
 import { SECRET_SPOTS } from './secret-spots'
 import { SECRET_GUIDE_CATEGORIES } from './secret-guide'
-import type { EssentialSectionT, EssentialTopicT, Region, SecretCategoryT, SecretSpotT, StopT } from './schema'
+import { HIKES } from './hikes'
+import type { EssentialSectionT, EssentialTopicT, HikeT, Region, SecretCategoryT, SecretSpotT, StopT } from './schema'
 
-export { Stop, Stops, RegionEnum, StopKindEnum, StopCollection, SecretCategory, SecretSpot, SecretSpots, EssentialTopic, EssentialTopics, EssentialSection, SeasonalEvent, SeasonalEvents, SeasonalConfidence, Amenity, Amenities, AmenityKindEnum } from './schema'
-export type { StopT, Region, StopKind, StopCollectionT, SecretCategoryT, SecretSpotT, EssentialTopicT, EssentialSectionT, SeasonalEventT, SeasonalConfidenceT, AmenityT, AmenityKind } from './schema'
+export { Stop, Stops, RegionEnum, StopKindEnum, StopCollection, SecretCategory, SecretSpot, SecretSpots, EssentialTopic, EssentialTopics, EssentialSection, SeasonalEvent, SeasonalEvents, SeasonalConfidence, Amenity, Amenities, AmenityKindEnum, Hike, Hikes, HikeRoute } from './schema'
+export type { StopT, Region, StopKind, StopCollectionT, SecretCategoryT, SecretSpotT, EssentialTopicT, EssentialSectionT, SeasonalEventT, SeasonalConfidenceT, AmenityT, AmenityKind, HikeT, HikeRouteT } from './schema'
 export { stops } from './stops'
+export { HIKES } from './hikes'
 export { AMENITIES } from './amenities'
 export { ESSENTIALS, ESSENTIALS_META } from './essentials'
 export { SECRET_SPOTS } from './secret-spots'
@@ -114,6 +116,16 @@ export function getSecretGuideEntries(category?: SecretCategoryT): GuideStopT[] 
       for (let i = 0; i < 4; i++) if (ka[i] !== kb[i]) return ka[i] - kb[i]
       return 0
     })
+}
+
+// Day hikes for the Plan tab's Hikes section, sorted by curation order.
+export function getHikesByRegion(region: Region): HikeT[] {
+  return HIKES.filter((h) => h.region === region).sort((a, b) => a.order - b.order)
+}
+
+// Resolver for the trip planner and ICS export, same contract as getStopById.
+export function getHikeById(id: string): HikeT | undefined {
+  return HIKES.find((h) => h.id === id)
 }
 
 export function getRegionMeta(id: Region): { title: string; teaser: string } | undefined {

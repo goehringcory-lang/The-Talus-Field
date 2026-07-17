@@ -8,7 +8,8 @@
 // of duplicating them. Runs entirely client-side, so export works offline.
 // =============================================================================
 
-import { getStopById } from '../content'
+import { getHikeById, getStopById } from '../content'
+import { DIFFICULTY_LABEL } from '../content/labels'
 import { directionsUrl } from '../map/kinds'
 import type { SlottedItem } from './slotting'
 import { toHhmm } from './slotting'
@@ -118,8 +119,8 @@ export type EventFields = {
 }
 
 // The review panel renders from these same fields, so what the user confirms
-// is what the .ics contains. Returns null only when a stop id no longer
-// resolves against the bundled content.
+// is what the .ics contains. Returns null only when a stop or hike id no
+// longer resolves against the bundled content.
 export function slottedToEventFields(slotted: SlottedItem): EventFields | null {
   const { item } = slotted
   const allDay = slotted.startMin === null
@@ -146,6 +147,30 @@ export function slottedToEventFields(slotted: SlottedItem): EventFields | null {
       location: `${stop.title}, Yosemite National Park${stop.coord ? ` ${coordText(stop.coord)}` : ''}`,
       coord: stop.coord,
       url: stop.coord ? directionsUrl(stop.coord) : undefined,
+      day: slotted.day,
+      startMin: slotted.startMin,
+      durationMin: slotted.durationMin,
+      allDay,
+    }
+  }
+  if (item.type === 'hike') {
+    const hike = getHikeById(item.hikeId)
+    if (!hike) return null
+    const stats = `${hike.distanceMi} mi${hike.route === 'one-way' ? ' one-way' : ''} · ${hike.elevationGainFt.toLocaleString('en-US')} ft gain · ${DIFFICULTY_LABEL[hike.difficulty]}`
+    return {
+      uid: `tfg-trip-${item.eventUid ?? item.itemId}@${UID_DOMAIN}`,
+      summary: hike.title,
+      description:
+        `${hike.description}\n\n${stats}` +
+        (hike.permit ? `\n\n${hike.permit}` : '') +
+        `\n\nTrailhead: ${hike.trailhead}` +
+        (hike.coord ? `\nDirections: ${directionsUrl(hike.coord)}` : '') +
+        (allDay
+          ? "\n\nUnscheduled: this didn't fit the day's timeline. Pick a time in the Field Guide trip planner."
+          : ''),
+      location: `${hike.trailhead}, Yosemite National Park${hike.coord ? ` ${coordText(hike.coord)}` : ''}`,
+      coord: hike.coord,
+      url: hike.coord ? directionsUrl(hike.coord) : undefined,
       day: slotted.day,
       startMin: slotted.startMin,
       durationMin: slotted.durationMin,

@@ -9,7 +9,7 @@
 // the screen.
 // =============================================================================
 
-import { getStopById } from '../content'
+import { getHikeById, getStopById } from '../content'
 import { haversineMiles } from '../utils/geo'
 import type { TripItemT } from './schema'
 
@@ -35,9 +35,10 @@ const DEFAULT_PROGRAM_MIN = 60
 const PARK_MPH = 22
 const PARK_AND_WALK_MIN = 10
 
-/** Coordinate of a trip item, when its stop or program carries one. */
+/** Coordinate of a trip item, when its stop, hike, or program carries one. */
 export function itemCoord(item: TripItemT): [number, number] | undefined {
   if (item.type === 'stop') return getStopById(item.stopId)?.coord
+  if (item.type === 'hike') return getHikeById(item.hikeId)?.coord
   return item.snapshot.coord ?? undefined
 }
 
@@ -76,12 +77,24 @@ export function toHhmm(minutes: number): string {
 }
 
 function itemDay(item: TripItemT): string {
-  return item.type === 'stop' ? item.day : item.snapshot.date
+  return item.type === 'program' ? item.snapshot.date : item.day
 }
 
 function stopOrder(item: TripItemT): number {
-  if (item.type !== 'stop') return 0
-  return getStopById(item.stopId)?.order ?? 99
+  if (item.type === 'stop') return getStopById(item.stopId)?.order ?? 99
+  if (item.type === 'hike') return getHikeById(item.hikeId)?.order ?? 99
+  return 0
+}
+
+/** Planning duration for a stop or hike item (programs derive from times). */
+function floatingDuration(item: TripItemT): number {
+  if (item.type === 'stop') {
+    return item.durationMin ?? getStopById(item.stopId)?.timeBudgetMin ?? DEFAULT_STOP_MIN
+  }
+  if (item.type === 'hike') {
+    return item.durationMin ?? getHikeById(item.hikeId)?.durationMin ?? DEFAULT_STOP_MIN
+  }
+  return DEFAULT_STOP_MIN
 }
 
 /** Slot every item of a single day. */
@@ -112,7 +125,7 @@ export function slotDay(day: string, items: TripItemT[]): SlottedItem[] {
         item,
         day,
         startMin: toMinutes(item.startTime),
-        durationMin: item.durationMin ?? getStopById(item.stopId)?.timeBudgetMin ?? DEFAULT_STOP_MIN,
+        durationMin: floatingDuration(item),
         fixed: true,
       })
     } else {
@@ -135,10 +148,7 @@ export function slotDay(day: string, items: TripItemT[]): SlottedItem[] {
   let prevCoord: [number, number] | undefined
   let firstPlacement = true
   for (const item of floating) {
-    const duration =
-      (item.type === 'stop'
-        ? item.durationMin ?? getStopById(item.stopId)?.timeBudgetMin
-        : undefined) ?? DEFAULT_STOP_MIN
+    const duration = floatingDuration(item)
     const coord = itemCoord(item)
 
     let start = firstPlacement ? cursor : cursor + travelBufferMin(prevCoord, coord)
