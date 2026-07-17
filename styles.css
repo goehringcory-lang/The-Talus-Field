@@ -239,6 +239,11 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
   align-items: center;
   gap: 8px;
   white-space: nowrap;
+  /* Reset the global anchor underline; the per-wait border-bottom below is the
+     only underline this link should carry (it lights up on hover to match the
+     Conditions and Guide links). Without this the anchor's text-decoration and
+     the span border-bottom stack into a double line under each wait. */
+  text-decoration: none;
 }
 /* Placeholder reserves a modest slot so the sticky masthead does not shift
    when live waits populate, without forcing the real content to break. */
