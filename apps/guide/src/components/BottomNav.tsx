@@ -11,7 +11,7 @@ export default function BottomNav() {
     pathname.startsWith('/essentials') ||
     pathname.startsWith('/secret-guide')
   const isMap = pathname === '/map' || pathname.startsWith('/map/')
-  const isPlan = pathname === '/programs' || pathname.startsWith('/trip')
+  const isPlan = pathname === '/programs' || pathname === '/hikes' || pathname.startsWith('/trip')
   const isSearch = pathname === '/search'
   const isAccount = pathname === '/account'
 

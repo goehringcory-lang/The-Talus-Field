@@ -10,6 +10,7 @@ import { defaultTripDates, readTripDates, writeTripDates } from '../programs/use
 import type { ProgramEventT } from '../programs/schema'
 import {
   TripPlan,
+  hikeItemId,
   programItemId,
   stopItemId,
   type TripItemT,
@@ -125,6 +126,21 @@ export function useTripPlan() {
     })
   }, [])
 
+  const addHike = useCallback((hikeId: string, day?: string) => {
+    update((p) => {
+      const target = clampDay(day ?? p.dates.start, p.dates)
+      const itemId = hikeItemId(hikeId, target)
+      if (p.items.some((it) => it.itemId === itemId)) return p
+      return {
+        ...p,
+        items: [
+          ...p.items,
+          { type: 'hike', itemId, hikeId, day: target, eventUid: crypto.randomUUID() },
+        ],
+      }
+    })
+  }, [])
+
   const addProgram = useCallback((ev: ProgramEventT) => {
     update((p) => {
       const itemId = programItemId(ev.id)
@@ -140,22 +156,25 @@ export function useTripPlan() {
     update((p) => ({ ...p, items: p.items.filter((it) => it.itemId !== itemId) }))
   }, [])
 
+  // Stops and hikes share the day-scoped shape, so the time and day mutators
+  // handle both; programs keep their published date and time.
   const setStopTime = useCallback((itemId: string, startTime: string | undefined) => {
     update((p) => ({
       ...p,
       items: p.items.map((it) =>
-        it.itemId === itemId && it.type === 'stop' ? { ...it, startTime } : it,
+        it.itemId === itemId && it.type !== 'program' ? { ...it, startTime } : it,
       ),
     }))
   }, [])
 
   const moveStopToDay = useCallback((itemId: string, day: string) => {
     update((p) => {
-      const moving = p.items.find((it) => it.itemId === itemId && it.type === 'stop')
-      if (!moving || moving.type !== 'stop') return p
-      const newId = stopItemId(moving.stopId, day)
+      const moving = p.items.find((it) => it.itemId === itemId && it.type !== 'program')
+      if (!moving || moving.type === 'program') return p
+      const newId =
+        moving.type === 'hike' ? hikeItemId(moving.hikeId, day) : stopItemId(moving.stopId, day)
       if (newId === itemId) return p
-      // Target day already holds this stop: dedupe by dropping the moved copy
+      // Target day already holds this item: dedupe by dropping the moved copy
       // instead of minting a colliding itemId (duplicate React keys / UID).
       if (p.items.some((it) => it.itemId === newId)) {
         return { ...p, items: p.items.filter((it) => it.itemId !== itemId) }
@@ -163,7 +182,7 @@ export function useTripPlan() {
       return {
         ...p,
         items: p.items.map((it) =>
-          it.itemId === itemId && it.type === 'stop' ? { ...it, day, itemId: newId } : it,
+          it.itemId === itemId && it.type !== 'program' ? { ...it, day, itemId: newId } : it,
         ),
       }
     })
@@ -182,6 +201,7 @@ export function useTripPlan() {
     plan,
     setDates,
     addStop,
+    addHike,
     addProgram,
     removeItem,
     setStopTime,
@@ -223,4 +243,8 @@ export function addStopToPlan(stopId: string, day?: string) {
 
 export function isStopPlanned(stopId: string): boolean {
   return read().items.some((it) => it.type === 'stop' && it.stopId === stopId)
+}
+
+export function isHikePlanned(hikeId: string): boolean {
+  return read().items.some((it) => it.type === 'hike' && it.hikeId === hikeId)
 }

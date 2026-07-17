@@ -142,6 +142,39 @@ export type SeasonalEventT = z.infer<typeof SeasonalEvent>
 
 export const SeasonalEvents = z.array(SeasonalEvent)
 
+// Day hikes: the trail catalog behind the Plan tab's Hikes section. Distinct
+// from Stops on purpose — a hike is a route (distance, gain, hours), not a
+// place, and most trailheads already exist as Stops (`stopId` cross-links
+// them). Stats are factual trail numbers cross-checked against NPS pages and
+// yosemitehikes.com; descriptions are original house copy.
+export const HikeRoute = z.enum(['out-and-back', 'loop', 'lollipop', 'one-way'])
+export type HikeRouteT = z.infer<typeof HikeRoute>
+
+export const Hike = z.object({
+  id: z.string(),                         // "upper-yosemite-fall"
+  title: z.string(),
+  region: RegionEnum,
+  order: z.number(),                      // sort within region
+  distanceMi: z.number(),                 // shortest standard route, round trip
+                                          // unless `route` is 'one-way'
+  distanceNote: z.string().optional(),    // "one-way from Glacier Point", longer options
+  elevationGainFt: z.number(),
+  difficulty: z.enum(['easy', 'moderate', 'strenuous']), // same scale as Stop
+  route: HikeRoute,
+  durationMin: z.number(),                // planner slotting estimate, generous
+  trailhead: z.string(),                  // plain-language start, e.g. "Happy Isles, shuttle stop 16"
+  stopId: z.string().optional(),          // guide Stop at or near the trailhead
+  coord: z.tuple([z.number(), z.number()]).optional(), // [lng, lat] trailhead
+  season: z.string().optional(),          // chip-length window, e.g. "Tioga Road season"
+  permit: z.string().optional(),          // 1 sentence; renders as a badge + note
+  hazard: z.string().optional(),          // 1-2 plain sentences
+  description: z.string(),                // 1-3 plain sentences, house voice
+})
+
+export type HikeT = z.infer<typeof Hike>
+
+export const Hikes = z.array(Hike)
+
 // Map-only amenity points: parking lots and campgrounds rendered as pins on
 // /map with a Directions deeplink. Deliberately NOT Stops — no pages, no
 // region lists, no search, no itinerary presets.

@@ -6,7 +6,7 @@
 // add-to-calendar sheet (subscribe or one-time file).
 
 import { useState } from 'react'
-import { getStopById } from '../content'
+import { getHikeById, getStopById } from '../content'
 import { slottedToEventFields } from '../trip/ics'
 import type { SlottedItem } from '../trip/slotting'
 import { useTripPlan } from '../trip/useTripPlan'
@@ -95,11 +95,13 @@ export default function TripReview({ slotted, windowDays, filenameDate }: Props)
                   const title =
                     item.type === 'stop'
                       ? getStopById(item.stopId)?.title ?? item.stopId
-                      : item.snapshot.title
+                      : item.type === 'hike'
+                        ? getHikeById(item.hikeId)?.title ?? item.hikeId
+                        : item.snapshot.title
                   return (
                     <div className="trip-review__actions" key={item.itemId}>
                       <span className="trip-review__event-title">{title}</span>
-                      {item.type === 'stop' && (
+                      {item.type !== 'program' && (
                         <>
                           <input
                             className="field-control field-control--sm"
