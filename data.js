@@ -25,7 +25,7 @@ window.SITE = {
   brand: "The Talus Field",
   tagline: "Yosemite, written by someone who lives here",
   authorName: "Cory Goehring",
-  authorBio: "Yosemite naturalist and Conservancy interpreter, twenty seasons in the park. Writes from El Portal.",
+  authorBio: "Yosemite naturalist, twenty seasons in the park. Writes from El Portal.",
   email: "cory@thetalusfieldjournal.com",
   // Masthead issue label. One source of truth — Header and HomePage both read this.
   issue: "Vol. III · No. 19",
