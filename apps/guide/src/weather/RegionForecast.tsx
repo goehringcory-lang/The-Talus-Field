@@ -1,15 +1,14 @@
 // =============================================================================
-// RegionForecast — the compact five-day forecast inside a region picker card.
-// Hi/lo per calendar day, condition from the daytime half.
+// RegionForecast — the compact five-day forecast on each region page (inside
+// WeatherStrip). Hi/lo per calendar day, condition from the daytime half.
 //
 // The site line names the forecast point and its elevation: the elevation is
 // the editorial point, it explains the temperature spread across the park and
 // says which spot the numbers describe (Glacier Point, not the Mariposa
 // Grove). Weather is garnish, never a blocker: no days renders nothing.
 //
-// Staleness is decided by the caller (Home hides all forecasts past
-// HIDE_AFTER); this component stays dumb. Markup is non-interactive spans
-// only, because it renders inside SectionCard's <Link>.
+// Staleness is decided by the caller (WeatherStrip renders nothing past
+// HIDE_AFTER); this component stays dumb.
 // =============================================================================
 
 import { groupPeriodsIntoDays } from './forecastDays'
