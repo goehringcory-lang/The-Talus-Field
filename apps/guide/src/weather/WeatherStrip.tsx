@@ -1,6 +1,8 @@
 // =============================================================================
-// WeatherStrip — the region-page forecast surface: the next few periods for
-// that region's spot. (Home renders per-card RegionForecast blocks instead.)
+// WeatherStrip — the region-page forecast surface: the five-day week at a
+// glance (RegionForecast) plus the next few NWS periods in detail. (Home's
+// region index rows carry only a one-line current forecast; this page is
+// where the full picture lives.)
 //
 // Weather is garnish, never a blocker: no data renders nothing, not an error
 // card. Staleness is handled honestly: past WARN_AFTER the strip says the
@@ -9,6 +11,7 @@
 // =============================================================================
 
 import { relativeStamp } from '../utils/relativeStamp'
+import RegionForecast from './RegionForecast'
 import { useWeather } from './useWeather'
 import { HIDE_AFTER_MS, WARN_AFTER_MS } from './staleness'
 import type { WeatherSpotIdT } from './schema'
@@ -24,6 +27,10 @@ export default function WeatherStrip({ region }: { region: WeatherSpotIdT }) {
   return (
     <section aria-label="Weather" className="page-section">
       <span className="eyebrow">Weather</span>
+      <div className="weather-strip__week">
+        <RegionForecast spot={spot} />
+      </div>
+      <span className="weather-strip__sub">In detail</span>
       <ul className="weather-strip">
         {/* The next few periods for this spot, two days out. */}
         {spot.periods.slice(0, 4).map((period) => (

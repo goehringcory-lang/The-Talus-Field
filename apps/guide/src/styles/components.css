@@ -655,6 +655,166 @@
 }
 .season-strip__muted { color: var(--ink-3); }
 
+/* ===== Home front-page index ===== */
+
+/* Numbered "how this guide works" strip under the header. */
+.home-steps-section { margin: 0 0 var(--s5); }
+.home-steps-section > .eyebrow { display: block; margin-bottom: 12px; }
+.home-steps {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: var(--s3);
+}
+.home-steps li {
+  display: grid;
+  grid-template-columns: 24px 1fr;
+  gap: var(--s3);
+  align-items: baseline;
+}
+.home-steps__num {
+  font-family: var(--display);
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1;
+  color: var(--moss);
+  text-align: center;
+}
+.home-steps p {
+  margin: 0;
+  font-family: var(--serif);
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--ink-2);
+}
+.home-steps strong { color: var(--ink); }
+
+/* Compact region index rows: thumbnail, title, clamped teaser, live meta.
+   Rules, not boxes, like the section index cards they replaced. */
+.region-rows { border-bottom: 1px solid var(--rule); }
+.region-row {
+  display: grid;
+  grid-template-columns: 84px 1fr;
+  gap: var(--s4);
+  align-items: start;
+  padding: 16px 0 18px;
+  border-top: 1px solid var(--rule);
+  text-decoration: none;
+  color: var(--ink);
+}
+.region-row__media {
+  aspect-ratio: 1;
+  overflow: hidden;
+  border: 1px solid var(--ink);
+}
+.region-row__media img,
+.region-row__media picture {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.region-row__body { min-width: 0; }
+.region-row__title {
+  font-family: var(--display);
+  font-size: clamp(20px, 3vw, 26px);
+  font-weight: 500;
+  line-height: 1.12;
+  margin: 0 0 6px;
+  transition: color 0.12s ease;
+}
+@media (hover: hover) {
+  .region-row:hover {
+    text-decoration: none;
+    color: var(--ink);
+  }
+  .region-row:hover .region-row__title { color: var(--moss); }
+}
+.region-row__teaser {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 14px;
+  color: var(--ink-2);
+  line-height: 1.45;
+  margin: 0 0 8px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.region-row__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 14px;
+  align-items: baseline;
+}
+.region-row__today {
+  font-family: var(--sans);
+  font-size: 12px;
+  color: var(--ink-3);
+}
+
+/* Attribution under the region rows sits outside .card-stack now. */
+.weather-attribution--rows { padding: var(--s3) 0 0; }
+
+/* Cross links closing a section (map, search). */
+.home-crosslinks {
+  margin-top: var(--s3);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 20px;
+}
+
+/* Tool directory: the planner tools and the reference shelf. One column of
+   ruled entries; two columns once there is room. */
+.tool-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  border-bottom: 1px solid var(--rule);
+}
+@media (min-width: 620px) {
+  .tool-grid { grid-template-columns: 1fr 1fr; column-gap: var(--s6); }
+}
+.tool-card {
+  padding: 14px 0 20px;
+  border-top: 1px solid var(--rule);
+  min-width: 0;
+}
+.tool-card__title {
+  font-family: var(--display);
+  font-size: 21px;
+  font-weight: 500;
+  line-height: 1.15;
+  margin: 0 0 6px;
+}
+.tool-card__title a {
+  text-decoration: none;
+  color: var(--ink);
+}
+@media (hover: hover) {
+  .tool-card__title a:hover { color: var(--moss); }
+}
+.tool-card__teaser {
+  font-family: var(--serif);
+  font-size: 14px;
+  color: var(--ink-2);
+  line-height: 1.5;
+  margin: 0 0 10px;
+}
+.tool-card__sub {
+  margin-top: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 18px;
+  font-family: var(--sans);
+  font-size: 13px;
+}
+
+/* The offline card flush under its section eyebrow. */
+.offline-status-card--flush { margin-top: 0; }
+
 /* Weather strip (region pages), same visual language as in-season. */
 .weather-strip {
   list-style: none;
@@ -667,6 +827,18 @@
   line-height: 1.5;
 }
 .weather-strip__muted { color: var(--ink-3); }
+/* Five-day block above the period detail on region pages. */
+.weather-strip__week { margin: 0 0 var(--s4); }
+.weather-strip__sub {
+  display: block;
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ink-3);
+  margin-bottom: 4px;
+}
 .weather-strip__stamp {
   margin: var(--s2) 0 0;
   font-family: var(--sans);
@@ -719,7 +891,7 @@
 }
 .region-forecast__rain { color: var(--ink-3); }
 
-/* One-shot NWS attribution under the region cards, inside .card-stack. */
+/* One-shot NWS attribution under the Home region rows. */
 .weather-attribution {
   margin: 0;
   padding: 0 0 var(--s5);
