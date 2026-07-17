@@ -48,17 +48,18 @@ const CHECK = process.argv.includes("--check");
 // in page-guide.jsx) and accumulates search authority while it waits.
 const GUIDE_LISTED = true;
 
-// /now's sitemap lastmod = the newest dispatch date in now.json, so the weekly
-// dispatch update flows into the sitemap via the normal `run seo` step.
+// /now's sitemap lastmod = the current edition's `updated` stamp in
+// bulletin.json, so a per-edition rewrite flows into the sitemap via the
+// normal `run seo` step.
 function nowLastmod() {
   try {
-    const now = JSON.parse(readFileSync(path.join(ROOT, "now.json"), "utf8"));
-    const newest = (now.dispatches || []).map((d) => d.iso).sort().at(-1);
-    if (newest) return newest;
+    const bulletin = JSON.parse(readFileSync(path.join(ROOT, "bulletin.json"), "utf8"));
+    const updated = bulletin.edition && bulletin.edition.updated;
+    if (updated) return updated;
   } catch (e) {
-    console.warn("gen-seo-artifacts: could not read now.json for /now lastmod:", e.message);
+    console.warn("gen-seo-artifacts: could not read bulletin.json for /now lastmod:", e.message);
   }
-  return "2026-07-12";
+  return "2026-07-17";
 }
 
 // ----------------------------------------------------------------------------
@@ -225,8 +226,8 @@ function buildSitemap(merged, categories) {
     ["/map", "2026-06-10"],
     ["/itineraries", "2026-07-12"],
     ["/conditions", "2026-07-12"],
-    // /now's lastmod tracks the newest dispatch in now.json, so the weekly
-    // update flows into the sitemap with no extra step beyond `run seo`.
+    // /now's lastmod tracks the current edition stamp in bulletin.json, so a
+    // per-edition rewrite flows into the sitemap with no step beyond `run seo`.
     ["/now", nowLastmod()],
   ].map(([loc, lastmod]) => urlBlock({ loc, lastmod }));
 

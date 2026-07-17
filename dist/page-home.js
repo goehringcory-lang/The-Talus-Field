@@ -97,37 +97,22 @@ function ResumeReading({
     className: "mono resume-band__cta"
   }, "Keep reading →")));
 }
-var HOME_NOW_URL = "/now.json?v=1";
-var DISPATCH_EXCERPT_MAX = 240;
-function dispatchExcerpt(body) {
-  var first = Array.isArray(body) && body.length ? String(body[0]) : "";
-  if (first.length <= DISPATCH_EXCERPT_MAX) return first;
-  return first.slice(0, DISPATCH_EXCERPT_MAX).replace(/\s+\S*$/, "") + "…";
-}
-function formatDispatchDay(iso) {
-  var d = new Date(iso + "T00:00:00");
-  if (Number.isNaN(d.getTime())) return iso;
-  return d.toLocaleDateString("en-US", {
-    month: "long",
-    day: "numeric"
-  });
-}
-function HomeDispatch({
+var HOME_BULLETIN_URL = "/bulletin.json?v=2";
+function HomeBulletin({
   go
 }) {
-  var [latest, setLatest] = React.useState(null);
+  var [edition, setEdition] = React.useState(null);
   React.useEffect(() => {
     var cancelled = false;
-    fetch(HOME_NOW_URL).then(r => r.ok ? r.json() : Promise.reject(new Error(`now.json ${r.status}`))).then(data => {
-      var list = Array.isArray(data.dispatches) ? data.dispatches : [];
-      var d = list[0];
-      if (!cancelled && d && d.iso && d.title && Array.isArray(d.body)) setLatest(d);
+    fetch(HOME_BULLETIN_URL).then(r => r.ok ? r.json() : Promise.reject(new Error(`bulletin.json ${r.status}`))).then(data => {
+      var e = data && data.edition;
+      if (!cancelled && e && e.label && e.lede) setEdition(e);
     }).catch(() => {});
     return () => {
       cancelled = true;
     };
   }, []);
-  if (!latest) return null;
+  if (!edition) return null;
   return React.createElement("a", {
     className: "home-dispatch",
     href: "/now",
@@ -140,15 +125,13 @@ function HomeDispatch({
     }
   }, React.createElement("span", {
     className: "home-dispatch__date"
-  }, React.createElement("time", {
-    dateTime: latest.iso
-  }, formatDispatchDay(latest.iso)), " · The weekly dispatch"), React.createElement("span", {
+  }, "The Park Bulletin · covering ", edition.label), React.createElement("span", {
     className: "home-dispatch__title"
-  }, latest.title), React.createElement("p", {
+  }, "One page, the whole park, right now"), React.createElement("p", {
     className: "home-dispatch__excerpt"
-  }, dispatchExcerpt(latest.body)), React.createElement("span", {
+  }, edition.lede), React.createElement("span", {
     className: "mono home-dispatch__cta"
-  }, "Read this week's dispatch →"));
+  }, "Scan the bulletin →"));
 }
 function HomePage({
   go
@@ -176,7 +159,7 @@ function HomePage({
       e.preventDefault();
       go("conditions");
     }
-  }, "Conditions and webcams →")), React.createElement(HomeDispatch, {
+  }, "Conditions and webcams →")), React.createElement(HomeBulletin, {
     go: go
   }), React.createElement(WebcamStrip, null));
   return React.createElement("div", {
@@ -602,7 +585,7 @@ function HomePage({
       lineHeight: 1.6,
       margin: "20px 0 0"
     }
-  }, "The looking happens weekly.", " ", React.createElement("a", {
+  }, "The whole park fits on one page.", " ", React.createElement("a", {
     href: "/now",
     onClick: e => {
       e.preventDefault();
@@ -614,7 +597,7 @@ function HomePage({
     style: {
       color: "var(--ink-2)"
     }
-  }, "This week's dispatch is up →"))), React.createElement(NewsletterInline, {
+  }, "The Park Bulletin is current →"))), React.createElement(NewsletterInline, {
     location: "home_strip",
     tag: "home"
   }))));

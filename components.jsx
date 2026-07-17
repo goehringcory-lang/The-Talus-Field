@@ -272,7 +272,7 @@ function Header({ current, go }) {
         ["cat:trails", "Trails and hikes"],
         ["cat:wildlife", "Wildlife and nature"],
         ["cat:seasonal", "Seasonal guides"],
-        ["now", "This week in the park"],
+        ["now", "The Park Bulletin"],
         ["films", "Films"],
       ],
     },
@@ -354,13 +354,13 @@ function Header({ current, go }) {
           <span className="masthead__date masthead__date--short">{todayShort}</span>
         </div>
         <div className="masthead__utility">
-          {/* The weekly dispatch: the one page on the site that changes every
-              week, so it earns the masthead slot. */}
+          {/* The Park Bulletin: the one page that always answers "what's
+              happening right now," so it earns the masthead slot. */}
           <a
             className="masthead__guide"
             href="/now"
             onClick={(e) => { e.preventDefault(); if (window.track) window.track("cta_click", { location: "masthead_now" }); go("now"); }}
-          >This week</a>
+          >The Bulletin</a>
           <div className="masthead__weather">
             <span className="masthead__weather-label">Conditions</span>
             <a href="https://forecast.weather.gov/MapClick.php?lat=37.7456&lon=-119.5936" target="_blank" rel="noopener noreferrer">Valley</a>
@@ -502,7 +502,7 @@ function Footer({ go }) {
               <li><a href="/map" onClick={(e) => { e.preventDefault(); go("map"); }}>The Map</a></li>
               <li><a href="/itineraries" onClick={(e) => { e.preventDefault(); go("itineraries"); }}>Itineraries</a></li>
               <li><a href="/conditions" onClick={(e) => { e.preventDefault(); go("conditions"); }}>Conditions</a></li>
-              <li><a href="/now" onClick={(e) => { e.preventDefault(); go("now"); }}>This week in the park</a></li>
+              <li><a href="/now" onClick={(e) => { e.preventDefault(); go("now"); }}>The Park Bulletin</a></li>
               <li><a href="/guide" onClick={(e) => { e.preventDefault(); window.track && window.track("guide_cta_click", { location: "footer_guide_link" }); go("guide"); }}>Field Guide</a></li>
               <li><a href="/newsletter" onClick={(e) => { e.preventDefault(); go("newsletter"); }}>Newsletter</a></li>
               <li><a href="/contact" onClick={(e) => { e.preventDefault(); go("contact"); }}>Contact</a></li>

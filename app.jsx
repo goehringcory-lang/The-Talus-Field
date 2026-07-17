@@ -99,7 +99,7 @@ const PAGE_MODULES = {
   itineraries: { scripts: ["/itineraries-data.js", "/dist/page-itineraries.js"], globals: ["ItinerariesPage"] },
   map: { scripts: ["/itineraries-data.js", "/dist/page-map.js"], globals: ["MapPage"] },
   conditions: { scripts: ["/dist/page-conditions.js"], globals: ["ConditionsPage"] },
-  now: { scripts: ["/dist/page-now.js"], globals: ["NowPage"] },
+  now: { scripts: ["/dist/page-now.js"], globals: ["BulletinPage"] },
   firefall: { scripts: ["/dist/page-firefall.js"], globals: ["FirefallPage"] },
   consult: { scripts: ["/dist/page-consult.js"], globals: ["ConsultPage"] },
   widget: { scripts: ["/dist/page-widget.js"], globals: ["WidgetPage"] },
@@ -586,11 +586,11 @@ function buildSeo(route) {
       breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Conditions", null]],
     },
     now: {
-      title: `This Week in the Park — the weekly Yosemite dispatch — ${SITE_NAME}`,
+      title: `The Park Bulletin — what's happening in Yosemite right now — ${SITE_NAME}`,
       description:
-        "A short weekly note on what Yosemite is actually doing right now: what's open, what's flowing, what's blooming, and what changed. Written from inside the park.",
+        "Everything happening in Yosemite on one scannable page: closures, roads, free ranger programs, dated events, trail status, hours, and phone numbers, updated for each edition of the park's Yosemite Guide.",
       ogType: "website",
-      breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["This Week in the Park", null]],
+      breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["The Park Bulletin", null]],
     },
     itineraries: {
       title: `Yosemite Itineraries — day plans on the map — ${SITE_NAME}`,
@@ -920,7 +920,7 @@ function App() {
   } else if (route === "conditions") {
     page = <window.ConditionsPage go={go} />;
   } else if (route === "now") {
-    page = <window.NowPage go={go} />;
+    page = <window.BulletinPage go={go} />;
   } else if (route === "firefall") {
     page = <window.FirefallPage go={go} />;
     // currentNav stays "home"; the event page hangs off articles + /now links.

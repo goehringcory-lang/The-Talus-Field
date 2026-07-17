@@ -2607,10 +2607,10 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
 .home-utility a:hover { color: var(--moss); border-bottom-color: var(--moss); }
 .home-utility__sep { color: var(--ink-3); }
 
-/* ===== Home: this-week dispatch teaser =====
-   The newest /now entry rendered as a dated notebook line above the webcam
-   strip (HomeDispatch in page-home.jsx). Same quiet-band family as
-   .resume-band. */
+/* ===== Home: Park Bulletin teaser =====
+   The current /now edition rendered as a dated notebook line above the webcam
+   strip (HomeBulletin in page-home.jsx). Same quiet-band family as
+   .resume-band. Class names kept from the dispatch era to avoid churn. */
 .home-dispatch {
   display: block;
   text-decoration: none;
@@ -3646,4 +3646,258 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+}
+
+/* ============================================================
+   The Park Bulletin (/now) — the one-page edition board.
+   A grid of ruled cards over the journal chrome: status rows with
+   chips, a mono program clock, a dated event ledger that dims as
+   the edition ages. Everything data-driven from bulletin.json.
+   ============================================================ */
+.bulletin-edition {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  margin: 14px 0 0;
+}
+.bulletin-edition__label { color: var(--moss); }
+
+.bulletin-lede {
+  font-family: var(--display);
+  font-style: italic;
+  font-size: clamp(19px, 2.4vw, 23px);
+  line-height: 1.45;
+  color: var(--ink-2);
+  max-width: 62ch;
+  margin: 0 0 32px;
+}
+
+/* Read-this-first band. */
+.bulletin-alerts {
+  border-top: 2px solid var(--ink);
+  border-bottom: 1px solid var(--rule);
+  padding: 18px 0 20px;
+  margin-bottom: 32px;
+}
+.bulletin-alerts ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  columns: 2;
+  column-gap: 40px;
+}
+.bulletin-alerts li {
+  font-family: var(--serif);
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--ink-2);
+  padding: 6px 0 6px 16px;
+  border-left: 3px solid var(--moss);
+  margin-bottom: 10px;
+  break-inside: avoid;
+}
+
+/* Cards and grid. */
+.bulletin-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+  align-items: start;
+  margin-bottom: 28px;
+}
+.bulletin-stack { display: grid; gap: 28px; align-items: start; }
+.bulletin-card {
+  border-top: 2px solid var(--ink);
+  padding-top: 14px;
+  min-width: 0;
+}
+.bulletin-card--wide { margin-bottom: 28px; }
+.bulletin-card__head { margin: 0 0 14px; font-size: 12px; }
+
+/* Status rows (roads & areas, trails). */
+.bulletin-status__row {
+  border-bottom: 1px solid var(--rule-soft);
+  padding: 10px 0 12px;
+}
+.bulletin-status__row:last-child { border-bottom: none; }
+.bulletin-status__name {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.bulletin-status__name strong {
+  font-family: var(--sans);
+  font-size: 15px;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+}
+.bulletin-status__row p {
+  font-family: var(--serif);
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--ink-2);
+  margin: 4px 0 0;
+  max-width: 72ch;
+}
+
+.bulletin-chip {
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  padding: 2px 8px 3px;
+  border: 1px solid currentColor;
+  border-radius: 2px;
+  white-space: nowrap;
+}
+.bulletin-chip--open { color: var(--moss); }
+.bulletin-chip--warn { color: var(--gold); }
+.bulletin-chip--closed { color: var(--paper); background: var(--rust); border-color: var(--rust); }
+
+/* The program clock. */
+.bulletin-clock { width: 100%; border-collapse: collapse; }
+.bulletin-clock__row td {
+  border-bottom: 1px solid var(--rule-soft);
+  padding: 8px 0 9px;
+  vertical-align: baseline;
+}
+.bulletin-clock__row:last-child td { border-bottom: none; }
+.bulletin-clock__time {
+  width: 74px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--moss);
+  white-space: nowrap;
+  padding-right: 14px;
+}
+.bulletin-clock__row--fee .bulletin-clock__time { color: var(--gold); }
+.bulletin-clock__title {
+  display: block;
+  font-family: var(--sans);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: -0.005em;
+}
+.bulletin-clock__meta {
+  display: block;
+  font-family: var(--sans);
+  font-size: 12px;
+  color: var(--ink-3);
+  margin-top: 2px;
+}
+
+/* Plain lists (beyond-the-Valley cards). */
+.bulletin-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.bulletin-list li {
+  font-family: var(--serif);
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--ink-2);
+  border-bottom: 1px solid var(--rule-soft);
+  padding: 8px 0 10px;
+}
+.bulletin-list li:last-child { border-bottom: none; }
+
+/* The event ledger. */
+.bulletin-events {
+  columns: 2;
+  column-gap: 40px;
+}
+.bulletin-event {
+  display: flex;
+  gap: 14px;
+  align-items: baseline;
+  border-bottom: 1px solid var(--rule-soft);
+  padding: 9px 0 10px;
+  break-inside: avoid;
+}
+.bulletin-event__date {
+  flex: 0 0 108px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--moss);
+}
+.bulletin-event__title {
+  display: block;
+  font-family: var(--sans);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: -0.005em;
+}
+.bulletin-event__meta {
+  display: block;
+  font-family: var(--sans);
+  font-size: 12px;
+  color: var(--ink-3);
+  margin-top: 2px;
+}
+.bulletin-event.is-past { opacity: 0.45; }
+
+/* Hours tables and the numbers block. */
+.bulletin-hours { width: 100%; border-collapse: collapse; }
+.bulletin-hours td {
+  font-family: var(--sans);
+  font-size: 13px;
+  border-bottom: 1px solid var(--rule-soft);
+  padding: 6px 0 7px;
+  vertical-align: baseline;
+}
+.bulletin-hours tr:last-child td { border-bottom: none; }
+.bulletin-hours td.mono {
+  text-align: right;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--ink-2);
+  white-space: nowrap;
+  padding-left: 14px;
+}
+.bulletin-hours__note { color: var(--ink-3); }
+.bulletin-numbers { margin-top: 16px; border-top: 1px solid var(--rule); }
+
+/* Prose-ish definition paragraphs (transit, essentials). */
+.bulletin-defs p {
+  font-family: var(--serif);
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--ink-2);
+  margin: 0 0 12px;
+}
+.bulletin-defs p strong { font-family: var(--sans); font-size: 14px; }
+
+.bulletin-note {
+  font-family: var(--sans);
+  font-size: 12.5px;
+  line-height: 1.55;
+  color: var(--ink-3);
+  border-top: 1px solid var(--rule);
+  padding-top: 10px;
+  margin: 14px 0 0;
+  max-width: 80ch;
+}
+
+.bulletin-source {
+  font-family: var(--sans);
+  font-size: 13px;
+  color: var(--ink-3);
+  border-top: 2px solid var(--ink);
+  padding-top: 14px;
+  margin: 8px 0 0;
+  max-width: 80ch;
+}
+
+@media (max-width: 860px) {
+  .bulletin-grid { grid-template-columns: 1fr; }
+  .bulletin-alerts ul, .bulletin-events { columns: 1; }
+  .bulletin-event__date { flex-basis: 92px; }
 }
