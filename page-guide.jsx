@@ -17,13 +17,14 @@ const GUIDE_API_BASE =
 // GUIDE_PRICE_CENTS in workers/wrangler.toml.
 const GUIDE_PRICE_FALLBACK_CENTS = 1900;
 
-// GUIDE-LAUNCH: flipped to true July 2026, back to false for a sales pause.
-// True renders the Stripe buy box (GuideBuyBox); false renders the waitlist
-// aside (GuideWaitlistBox), whose button emails the operator that a reader
-// wants in. The robots/sitemap/footer flips landed earlier with the
-// public-waitlist pass. Merging a true flag to main puts the guide on sale:
-// the ops gate in LAUNCH-READINESS.md must be cleared first.
-const GUIDE_ON_SALE = false;
+// GUIDE-LAUNCH: on sale July 2026, briefly flipped to a waitlist pause, now
+// back on sale. True renders the Stripe buy box (GuideBuyBox); false renders
+// the waitlist aside (GuideWaitlistBox), whose button emails the operator that
+// a reader wants in, kept in the file for any future sales pause. The
+// robots/sitemap/footer flips landed earlier with the public-waitlist pass.
+// Merging a true flag to main puts the guide on sale: the ops gate in
+// LAUNCH-READINESS.md must be cleared first.
+const GUIDE_ON_SALE = true;
 
 function formatPrice(cents) {
   const dollars = cents / 100;

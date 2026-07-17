@@ -1,7 +1,7 @@
 var GUIDE_APP_BASE = typeof window !== "undefined" && window.GUIDE_APP_BASE || "https://talus-field-guide.pages.dev";
 var GUIDE_API_BASE = typeof window !== "undefined" && window.GUIDE_API_BASE || "https://api.thetalusfieldjournal.com";
 var GUIDE_PRICE_FALLBACK_CENTS = 1900;
-var GUIDE_ON_SALE = false;
+var GUIDE_ON_SALE = true;
 function formatPrice(cents) {
   var dollars = cents / 100;
   return Number.isInteger(dollars) ? `$${dollars}` : `$${dollars.toFixed(2)}`;
