@@ -340,6 +340,7 @@ function Header({
         location: "masthead_nav"
       });
       go(key);
+      e.currentTarget.blur();
     }
   }, label);
   var todayFull = new Date().toLocaleDateString("en-US", {
@@ -446,6 +447,7 @@ function Header({
       onClick: e => {
         e.preventDefault();
         go(g.route);
+        e.currentTarget.blur();
       }
     }, g.label, React.createElement("span", {
       className: "nav__caret",

@@ -335,6 +335,9 @@ function Header({ current, go }) {
         if (onNavigate) onNavigate();
         if (key === "guide" && window.track) window.track("guide_cta_click", { location: "masthead_nav" });
         go(key);
+        // Drop DOM focus so the CSS :focus-within dropdown collapses after a
+        // selection; otherwise the panel lingers open until the next click.
+        e.currentTarget.blur();
       }}
     >{label}</a>
   );
@@ -401,7 +404,7 @@ function Header({ current, go }) {
                   href={window.routeToPath ? window.routeToPath(g.route) : `/${g.route}`}
                   className={["nav__link", "nav__group-trigger", isGroupActive(g) && "is-active"].filter(Boolean).join(" ")}
                   aria-haspopup="true"
-                  onClick={(e) => { e.preventDefault(); go(g.route); }}
+                  onClick={(e) => { e.preventDefault(); go(g.route); e.currentTarget.blur(); }}
                 >
                   {g.label}
                   <span className="nav__caret" aria-hidden="true">▾</span>
