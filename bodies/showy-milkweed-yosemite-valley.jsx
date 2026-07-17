@@ -1,0 +1,93 @@
+/* global React */
+
+window.ARTICLE_BODIES = window.ARTICLE_BODIES || {};
+
+window.ARTICLE_BODIES["showy-milkweed-yosemite-valley"] = function ShowyMilkweedYosemiteValleyBody() {
+  return (
+    <>
+      <p className="dropcap">
+        On the dry, sunny margins of Yosemite Valley right now, in mid-July, a stout gray-green plant is bearing clusters of dusty pink flowers the size of a fist. This is showy milkweed, <em>Asclepias speciosa</em>, and it is having its best two weeks of the year. Walk the edge of <a href="/articles/watching-climbers-el-capitan">El Capitan Meadow</a> or any sun-baked roadside pullout on the Valley floor and you will find it standing two to five feet tall, its stems furred, its broad leaves felted like a rabbit's ear. The flower heads are busy with bees, wasps, and, if the summer is kind, monarch butterflies. It is one of the most quietly important plants in the park, and for the next few weeks it is impossible to miss.
+      </p>
+
+      <p>
+        Most Valley visitors walk past it. It does not have the reach of a dogwood or the drama of a lupine field. But few plants here carry as much ecological weight per stem, and none has a flower built quite like it.
+      </p>
+
+      <h2>How to identify showy milkweed</h2>
+
+      <p>
+        Showy milkweed is easy to identify once you know the four things to look for. It is a robust perennial, waist-high, with a single stout stem that feels fuzzy to the touch. The leaves are broad, oval, and arranged in opposite pairs up the stem, with a pale midrib and prominent veins; the underside feels like felt. Break a leaf or a stem, and it bleeds a thick white latex, the milk that gives the whole family its name. And at the top sit the flowers: rounded umbels of dozens of small star-shaped blooms in dusty pink to rose lavender, faintly fragrant in the afternoon heat.
+      </p>
+
+      <p>
+        That is enough to name it. But the flower rewards a closer look, because it is one of the strangest structures in the Sierra.
+      </p>
+
+      <h2>The most complicated flower in the meadow</h2>
+
+      <p>
+        A milkweed flower does not look like a normal flower because it is not built like one. Each individual bloom has five petals that curve sharply backward and down, out of the way. Above them sits a crown of five cupped, pointed hoods, and from inside each hood curves a small horn. In the center, where a normal flower would show stamens and a stigma, milkweed fuses everything into a single waxy column called the gynostegium. The nectar pools in the hoods. The reproductive machinery is hidden inside the column.
+      </p>
+
+      <p>
+        The consequence is that milkweed cannot be pollinated the ordinary way, by pollen dusting off on a passing insect. Instead its pollen comes packaged in tiny saddlebag-shaped sacs called pollinia, joined in pairs by a slot-and-clip mechanism. When an insect lands to drink and its leg slips into one of the narrow grooves between the hoods, the clip catches the leg like a snap fastener. As the insect pulls free, it walks off wearing a pair of pollinia, which it then jams into the next flower's groove. It is closer to a machine than a blossom.
+      </p>
+
+      <p>
+        This is efficient and occasionally lethal. Small or weak insects sometimes cannot pull their legs back out, and you will find bees and flies that died held fast by a flower. The system is also unreliable: a whole umbel of dozens of flowers may set only one or two seed pods. The plant makes up the difference in numbers.
+      </p>
+
+      <h2>Why monarchs depend on milkweed</h2>
+
+      <p>
+        The reason milkweed matters out of all proportion to its looks is the monarch butterfly. Monarchs are what biologists call an obligate specialist: the adult will drink nectar from many flowers, but the female lays her eggs only on milkweed, and the caterpillars eat only milkweed leaves. No milkweed, no monarchs. It is that direct.
+      </p>
+
+      <p>
+        The caterpillars do more than eat the plant. Milkweed latex is loaded with cardiac glycosides, a class of toxins that stop the hearts of most animals that swallow enough of them. Monarch caterpillars have evolved to eat the leaves anyway and to store the toxins in their own bodies, carrying them through the chrysalis and into the adult butterfly. That is what the monarch's orange-and-black coloring advertises: a bird that eats one learns not to eat the next. The whole gaudy warning is borrowed, molecule by molecule, from the milkweed.
+      </p>
+
+      <p>
+        The western monarch, the population that breeds across the Sierra in summer and clusters on the California coast to overwinter, has fallen hard. Overwintering numbers, estimated in the low millions in the 1980s, have dropped to a small fraction of that, and in some recent winters the coastal count has come in below ten thousand butterflies. The reasons are tangled: climate, pesticides, and the disappearance of the coastal groves among them, but the vanishing of breeding milkweed across the West is high on every biologist's list. Which is the plain case for the plant on the Valley roadside: a stand of blooming milkweed in July is breeding habitat for an animal that is running out of it.
+      </p>
+
+      <h2>Is milkweed poisonous? The milky sap</h2>
+
+      <p>
+        Snap any part of the plant and it weeps within seconds. This is the plant's defense, and it is a good one. The latex is sticky enough to gum up the mouthparts of a chewing insect, and it carries the same cardiac glycosides the monarch turns to its own use. Most animals that take a bite learn quickly to leave it alone. Deer avoid it. Cattle avoid it. The plant is, for practical purposes, left standing in landscapes where almost everything else gets grazed, which is part of why you find it thriving on hard, disturbed, sunny ground: roadsides, old pullouts, the dry lower edges of meadows.
+      </p>
+
+      <p>
+        A handful of specialists have cracked the code. Along with the monarch, milkweed hosts milkweed beetles, milkweed bugs, and tussock moth caterpillars, most of them wearing the same orange-and-black livery, all of them advertising the same stolen chemistry. A milkweed plant in full bloom is less a flower than a small, self-defending ecosystem.
+      </p>
+
+      <h2>Where and when to see milkweed in Yosemite Valley</h2>
+
+      <p>
+        Look on dry, open, sunny ground rather than in the shady forest or the wet heart of a meadow. The lower, drier margins of the Valley's big meadows are reliable, as are the sunnier roadside verges and old pullouts along Northside and Southside Drives. It wants heat and disturbed soil, so the edges people think of as scrubby are exactly where it does best.
+      </p>
+
+      <p>
+        Timing matters here. The bloom runs from roughly late June through July on the Valley floor, and mid-July is close to its peak. By August the flowers give way to the next act: fat, warty seed pods (the follicles) that split down one side to release hundreds of flat brown seeds, each trailing a tuft of silky white floss called a coma. On a breezy September afternoon the air along the road shoulders fills with it. If you would rather track the season as a whole, our <a href="/articles/yosemite-wildflowers-guide">Yosemite wildflower bloom calendar</a> follows the flowers uphill from the canyon floor to the Tuolumne high country as summer climbs the mountain.
+      </p>
+
+      <h2>Leave it standing</h2>
+
+      <p>
+        The one thing to do with a blooming milkweed is nothing. Do not pick it, and do not dig it up to plant at home; collecting plants is prohibited in the park, and a cut milkweed is a monarch nursery removed from the landscape. If you want milkweed in your own yard, and it is a strong pollinator plant for California gardens, buy nursery stock of a species native to your area rather than taking it from the wild. The latex is also a mild skin and eye irritant, so if you do handle a broken stem, keep it away from your face and wash your hands.
+      </p>
+
+      <p>
+        Milkweed asks nothing of the people who walk past it. It has its pollinators, its poisons, and its one devoted butterfly. For the next couple of weeks it is doing the most consequential work on the Valley floor in plain sight, at knee height, on the ground everyone else is walking over. Slow down at the next sunny roadside and look. The monarchs already have.
+      </p>
+
+      <h3>Further reading</h3>
+      <ul style={{ fontSize: 14 }}>
+        <li><a href="/articles/yosemite-wildflowers-guide">Yosemite Wildflowers: A Bloom Calendar That Climbs the Mountain</a>. The month-by-month, elevation-by-elevation guide to the park's bloom.</li>
+        <li><a href="/articles/water-ouzels-waterfalls">How water ouzels live inside a waterfall</a>. Another Yosemite specialist whose presence reads the health of its habitat.</li>
+        <li>Xerces Society for Invertebrate Conservation: Western Monarch Count and milkweed planting guidance for California.</li>
+        <li>National Park Service, Yosemite: plants and pollinators resources, and the park's leave-what-you-find regulations.</li>
+      </ul>
+    </>
+  );
+};

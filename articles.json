@@ -1,5 +1,29 @@
 [
   {
+    "slug": "showy-milkweed-yosemite-valley",
+    "cat": "wildlife",
+    "title": "Showy milkweed is blooming in Yosemite Valley, and the monarchs depend on it",
+    "dek": "On dry roadsides and meadow edges on the Valley floor right now, showy milkweed is holding up fist-sized clusters of dusty pink flowers. A naturalist on the strangest flower in the park, the monarch that cannot live without it, and why it should be left standing.",
+    "seoDek": "Showy milkweed (Asclepias speciosa) is blooming in Yosemite Valley in July. How to identify it, the monarchs that depend on it, and where to see it.",
+    "date": "July 17, 2026",
+    "isoDate": "2026-07-17",
+    "isoModified": "2026-07-17",
+    "read": "7 min",
+    "image": "img/showy-milkweed-nature-journal.jpg",
+    "ogImage": { "url": "img/responsive/showy-milkweed-nature-journal-1600.jpg", "width": 1408, "height": 768 },
+    "placeholder": "A nature-journal illustration of showy milkweed, Asclepias speciosa, with its pink flower umbels, felted leaves, seed pod, and a monarch butterfly and caterpillar",
+    "wordCount": 1190,
+    "keywords": ["showy milkweed Yosemite", "Asclepias speciosa", "Yosemite Valley wildflowers July", "milkweed monarch butterfly", "milkweed identification California", "monarch host plant Sierra Nevada", "milkweed bloom Yosemite", "how to identify showy milkweed", "when does milkweed bloom", "monarch caterpillar host plant", "is milkweed poisonous"],
+    "faq": [
+      { "q": "When does showy milkweed bloom in Yosemite Valley?", "a": "Roughly late June through July on the Valley floor, with mid-July near the peak. By August the flowers give way to warty seed pods that split open to release seeds carried on silky white floss. Showy milkweed favors dry, sunny, disturbed ground: roadside verges, old pullouts, and the lower margins of the big meadows." },
+      { "q": "How do you identify showy milkweed?", "a": "Look for a stout, waist-high perennial two to five feet tall with a fuzzy stem, broad opposite leaves that feel felted underneath, and rounded umbels of dusty pink to rose star-shaped flowers. Break a leaf or stem and it bleeds thick white latex. Each flower has five backward-curved petals below a crown of five pointed hoods, each hood holding a small curved horn." },
+      { "q": "How is milkweed pollinated?", "a": "Milkweed does not shed loose pollen. Its pollen is packaged in tiny saddlebag-shaped sacs called pollinia, joined in pairs by a clip. When a visiting bee, wasp, or butterfly slips a leg into a groove between the flower's hoods, the clip catches it and the insect carries the pollinia to the next flower. The mechanism is precise but inefficient: a whole umbel of dozens of flowers often sets only one or two seed pods." },
+      { "q": "Why is milkweed important for monarch butterflies?", "a": "Monarchs are an obligate specialist on milkweed: females lay eggs only on milkweed and the caterpillars eat only its leaves, so without milkweed there are no monarchs. The caterpillars also store the plant's cardiac glycoside toxins in their bodies, which makes both the caterpillar and the adult butterfly poisonous to predators. The western monarch has declined steeply, and the loss of breeding milkweed across the West is a leading cause." },
+      { "q": "Is milkweed poisonous, and can you touch it?", "a": "Milkweed's white latex contains cardiac glycosides that are toxic if eaten and that deter most grazing animals. The sap is a mild skin and eye irritant, so if you handle a broken stem, keep it away from your face and wash your hands afterward. Do not eat any part of it." },
+      { "q": "Can you pick or transplant milkweed in Yosemite?", "a": "No. Collecting or digging up plants is prohibited in Yosemite National Park, and a picked milkweed is a monarch nursery removed from the landscape. If you want milkweed at home, buy nursery stock of a species native to your own area rather than taking it from the wild." }
+    ]
+  },
+  {
     "slug": "yosemite-connecting-to-traditions",
     "cat": "seasonal",
     "title": "Connecting to Traditions: Meet Yosemite's Indigenous Artists This Summer and Fall",
