@@ -1,5 +1,39 @@
 {
   "__comment": "SEO enrichment for the editorial site, keyed by article slug. NOT loaded by the browser runtime (kept out of data.js so the per-page JS payload stays small). The build script scripts/gen-seo-artifacts.mjs merges this with window.ARTICLES from data.js to regenerate articles.json (consumed by functions/_middleware.js), sitemap.xml, feed.xml, and the article section of llms.txt. Fields: wordCount (number), keywords (string[]), faq ({q,a}[]), trail ({name,distance,elevationGain,difficulty} for hike guides). FAQ answers and trail numbers are drawn from each article's published body; do not invent facts. The one article whose faq lives inline in data.js (yosemite-in-one-or-two-days) is intentionally omitted here; data.js takes precedence for faq.",
+  "showy-milkweed-yosemite-valley": {
+    "wordCount": 1180,
+    "keywords": [
+      "showy milkweed Yosemite",
+      "Asclepias speciosa",
+      "Yosemite Valley wildflowers July",
+      "milkweed monarch butterfly",
+      "milkweed identification California",
+      "monarch host plant Sierra Nevada",
+      "milkweed bloom Yosemite"
+    ],
+    "faq": [
+      {
+        "q": "When does showy milkweed bloom in Yosemite Valley?",
+        "a": "Roughly late June through July on the Valley floor, with mid-July near the peak. By August the flowers give way to warty seed pods that split open to release seeds carried on silky white floss. Showy milkweed favors dry, sunny, disturbed ground: roadside verges, old pullouts, and the lower margins of the big meadows."
+      },
+      {
+        "q": "How do you identify showy milkweed?",
+        "a": "Look for a stout, waist-high perennial three to five feet tall with a fuzzy stem, broad opposite leaves that feel felted underneath, and rounded umbels of dusty pink to rose star-shaped flowers. Break a leaf or stem and it bleeds thick white latex. Each flower has five backward-curved petals below a crown of five pointed hoods, each hood holding a small curved horn."
+      },
+      {
+        "q": "Why is milkweed important for monarch butterflies?",
+        "a": "Monarchs are an obligate specialist on milkweed: females lay eggs only on milkweed and the caterpillars eat only its leaves, so without milkweed there are no monarchs. The caterpillars also store the plant's cardiac glycoside toxins in their bodies, which makes both the caterpillar and the adult butterfly poisonous to predators. The western monarch has declined steeply, and the loss of breeding milkweed across the West is a leading cause."
+      },
+      {
+        "q": "Is milkweed poisonous, and can you touch it?",
+        "a": "Milkweed's white latex contains cardiac glycosides that are toxic if eaten and that deter most grazing animals. The sap is a mild skin and eye irritant, so if you handle a broken stem, keep it away from your face and wash your hands afterward. Do not eat any part of it."
+      },
+      {
+        "q": "Can you pick or transplant milkweed in Yosemite?",
+        "a": "No. Collecting or digging up plants is prohibited in Yosemite National Park, and a picked milkweed is a monarch nursery removed from the landscape. If you want milkweed at home, buy nursery stock of a species native to your own area rather than taking it from the wild."
+      }
+    ]
+  },
   "yosemite-connecting-to-traditions": {
     "wordCount": 470,
     "keywords": [

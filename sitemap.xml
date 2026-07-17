@@ -5,7 +5,7 @@
   <!-- Hub pages -->
   <url>
     <loc>https://thetalusfieldjournal.com/</loc>
-    <lastmod>2026-07-16</lastmod>
+    <lastmod>2026-07-17</lastmod>
     <image:image>
       <image:loc>https://thetalusfieldjournal.com/img/responsive/half-dome-main-photo-1600.jpg</image:loc>
       <image:title>Half Dome at first light</image:title>
@@ -13,7 +13,7 @@
   </url>
   <url>
     <loc>https://thetalusfieldjournal.com/articles</loc>
-    <lastmod>2026-07-16</lastmod>
+    <lastmod>2026-07-17</lastmod>
   </url>
   <url>
     <loc>https://thetalusfieldjournal.com/planning</loc>
@@ -39,7 +39,7 @@
   </url>
   <url>
     <loc>https://thetalusfieldjournal.com/section/wildlife</loc>
-    <lastmod>2026-07-12</lastmod>
+    <lastmod>2026-07-17</lastmod>
   </url>
   <url>
     <loc>https://thetalusfieldjournal.com/section/seasonal</loc>
@@ -109,6 +109,14 @@
   </url>
 
   <!-- Articles -->
+  <url>
+    <loc>https://thetalusfieldjournal.com/articles/showy-milkweed-yosemite-valley</loc>
+    <lastmod>2026-07-17</lastmod>
+    <image:image>
+      <image:loc>https://thetalusfieldjournal.com/img/showy-milkweed-nature-journal.jpg</image:loc>
+      <image:title>A nature-journal illustration of showy milkweed, Asclepias speciosa, with its pink flower umbels, felted leaves, seed pod, and a monarch butterfly and caterpillar</image:title>
+    </image:image>
+  </url>
   <url>
     <loc>https://thetalusfieldjournal.com/articles/yosemite-connecting-to-traditions</loc>
     <lastmod>2026-07-16</lastmod>
