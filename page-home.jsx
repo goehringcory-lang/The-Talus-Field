@@ -102,45 +102,32 @@ function ResumeReading({ go }) {
 }
 
 // ============================================================
-// This-week dispatch teaser. Pulls the newest /now entry onto the homepage so
+// Park Bulletin teaser. Pulls the current /now edition onto the homepage so
 // the page opens like a field notebook: dated, current, written from inside
 // the park. The retention loop starts here (home → /now → the Sunday letter's
 // concrete promise). Fails quiet: any fetch or shape problem and the section
 // renders the webcams alone, exactly as before.
-// Keep the ?v= in sync with NOW_URL in page-now.jsx when now.json changes.
+// Keep the ?v= in sync with BULLETIN_URL in page-now.jsx when bulletin.json
+// changes. The .home-dispatch class names carry over from the dispatch era.
 // ============================================================
-const HOME_NOW_URL = "/now.json?v=1";
-const DISPATCH_EXCERPT_MAX = 240;
+const HOME_BULLETIN_URL = "/bulletin.json?v=2";
 
-function dispatchExcerpt(body) {
-  const first = Array.isArray(body) && body.length ? String(body[0]) : "";
-  if (first.length <= DISPATCH_EXCERPT_MAX) return first;
-  return first.slice(0, DISPATCH_EXCERPT_MAX).replace(/\s+\S*$/, "") + "…";
-}
-
-function formatDispatchDay(iso) {
-  const d = new Date(iso + "T00:00:00");
-  if (Number.isNaN(d.getTime())) return iso;
-  return d.toLocaleDateString("en-US", { month: "long", day: "numeric" });
-}
-
-function HomeDispatch({ go }) {
-  const [latest, setLatest] = React.useState(null);
+function HomeBulletin({ go }) {
+  const [edition, setEdition] = React.useState(null);
 
   React.useEffect(() => {
     let cancelled = false;
-    fetch(HOME_NOW_URL)
-      .then((r) => (r.ok ? r.json() : Promise.reject(new Error(`now.json ${r.status}`))))
+    fetch(HOME_BULLETIN_URL)
+      .then((r) => (r.ok ? r.json() : Promise.reject(new Error(`bulletin.json ${r.status}`))))
       .then((data) => {
-        const list = Array.isArray(data.dispatches) ? data.dispatches : [];
-        const d = list[0];
-        if (!cancelled && d && d.iso && d.title && Array.isArray(d.body)) setLatest(d);
+        const e = data && data.edition;
+        if (!cancelled && e && e.label && e.lede) setEdition(e);
       })
       .catch(() => {});
     return () => { cancelled = true; };
   }, []);
 
-  if (!latest) return null;
+  if (!edition) return null;
 
   return (
     <a
@@ -153,11 +140,11 @@ function HomeDispatch({ go }) {
       }}
     >
       <span className="home-dispatch__date">
-        <time dateTime={latest.iso}>{formatDispatchDay(latest.iso)}</time> · The weekly dispatch
+        The Park Bulletin · covering {edition.label}
       </span>
-      <span className="home-dispatch__title">{latest.title}</span>
-      <p className="home-dispatch__excerpt">{dispatchExcerpt(latest.body)}</p>
-      <span className="mono home-dispatch__cta">Read this week's dispatch →</span>
+      <span className="home-dispatch__title">One page, the whole park, right now</span>
+      <p className="home-dispatch__excerpt">{edition.lede}</p>
+      <span className="mono home-dispatch__cta">Scan the bulletin →</span>
     </a>
   );
 }
@@ -189,7 +176,7 @@ function HomePage({ go }) {
         <h2>From the park, right now</h2>
         <a href="/conditions" onClick={(e) => { e.preventDefault(); go("conditions"); }}>Conditions and webcams →</a>
       </div>
-      <HomeDispatch go={go} />
+      <HomeBulletin go={go} />
       <WebcamStrip />
     </section>
   );
@@ -291,7 +278,7 @@ function HomePage({ go }) {
       {parkThisWeekSection}
 
       {/* Latest Entries — recent articles feed. Named to stay clear of the
-          weekly dispatch ("This Week in the Park") above. */}
+          Park Bulletin teaser above. */}
       <section className="wrap" style={{ paddingTop: 80 }}>
         <div className="section-head">
           <h2>Latest Entries</h2>
@@ -466,12 +453,12 @@ function HomePage({ go }) {
               About the editor →
             </a>
             <p style={{ fontFamily: "var(--sans)", fontSize: 13, color: "var(--ink-3)", lineHeight: 1.6, margin: "20px 0 0" }}>
-              The looking happens weekly.{" "}
+              The whole park fits on one page.{" "}
               <a
                 href="/now"
                 onClick={(e) => { e.preventDefault(); if (window.track) window.track("cta_click", { location: "home_strip_now" }); go("now"); }}
                 style={{ color: "var(--ink-2)" }}
-              >This week's dispatch is up →</a>
+              >The Park Bulletin is current →</a>
             </p>
           </div>
           <NewsletterInline location="home_strip" tag="home" />

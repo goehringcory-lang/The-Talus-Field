@@ -22,7 +22,7 @@ import articles from "../articles.json" with { type: "json" };
 import categories from "../categories.json" with { type: "json" };
 import videos from "../videos.json" with { type: "json" };
 import kit from "../kit.json" with { type: "json" };
-import now from "../now.json" with { type: "json" };
+import bulletin from "../bulletin.json" with { type: "json" };
 import tripPoints from "../trip-points.json" with { type: "json" };
 
 const SITE_ORIGIN = "https://thetalusfieldjournal.com";
@@ -215,24 +215,54 @@ const HUB_PROSE = {
     ) +
     `<p>For what the conditions mean for a plan, see <a href="/itineraries">the itineraries</a> and <a href="/planning">the Planning Guide</a>.</p>`,
   "/now": () => {
-    // The latest dispatch ships to non-JS crawlers in full: this page's value
-    // to search is its freshness, and now.json is imported at deploy time so
-    // every weekly merge re-deploys the Worker with the new text.
-    const latest = (now.dispatches || [])[0];
-    let dispatchHtml = "";
-    if (latest) {
-      dispatchHtml =
-        `<h2>${escapeHtmlText(latest.title)} (${escapeHtmlText(latest.iso)})</h2>` +
-        latest.body.map((p) => `<p>${escapeHtmlText(p)}</p>`).join("");
-    }
-    return (
+    // The current edition ships to non-JS crawlers as prose: this page's value
+    // to search is its freshness, and bulletin.json is imported at deploy time
+    // so every per-edition merge re-deploys the Worker with the new board.
+    const ed = bulletin.edition || {};
+    const parts = [
       hubProse(
-        "This Week in the Park",
-        "One short note a week on what Yosemite is actually doing: what's open, what's flowing, what's blooming, and what changed. Written from inside the park, updated most weekends."
-      ) +
-      dispatchHtml +
-      `<p>Live sources on <a href="/conditions">the conditions page</a>; the Sunday letter carries this dispatch by email.</p>`
+        "The Park Bulletin",
+        `Everything happening in Yosemite right now on one scannable page, condensed from the park's Yosemite Guide for ${ed.label || "the current edition"}: closures, roads, free ranger programs, dated events, trail status, hours, and phone numbers.`
+      ),
+    ];
+    if (ed.lede) parts.push(`<p>${escapeHtmlText(ed.lede)}</p>`);
+    if (Array.isArray(bulletin.alerts) && bulletin.alerts.length) {
+      parts.push(
+        `<h2>Changed this edition</h2><ul>${bulletin.alerts.map((a) => `<li>${escapeHtmlText(a)}</li>`).join("")}</ul>`
+      );
+    }
+    if (Array.isArray(bulletin.areas) && bulletin.areas.length) {
+      parts.push(
+        `<h2>Roads and areas</h2><ul>${bulletin.areas
+          .map((a) => `<li>${escapeHtmlText(a.name)} (${escapeHtmlText(a.chip)}): ${escapeHtmlText(a.note)}</li>`)
+          .join("")}</ul>`
+      );
+    }
+    if (Array.isArray(bulletin.valleyDay) && bulletin.valleyDay.length) {
+      parts.push(
+        `<h2>The Valley, by the clock</h2><ul>${bulletin.valleyDay
+          .map((p) => `<li>${escapeHtmlText(p.time)}: ${escapeHtmlText(p.title)} (${escapeHtmlText(p.days)})</li>`)
+          .join("")}</ul>`
+      );
+    }
+    if (Array.isArray(bulletin.events) && bulletin.events.length) {
+      parts.push(
+        `<h2>On the calendar this edition</h2><ul>${bulletin.events
+          .map((ev) => `<li>${escapeHtmlText(ev.dates)}: ${escapeHtmlText(ev.title)}, ${escapeHtmlText(ev.where)}</li>`)
+          .join("")}</ul>`
+      );
+    }
+    if (Array.isArray(bulletin.trails) && bulletin.trails.length) {
+      parts.push(
+        `<h2>Trails right now</h2><ul>${bulletin.trails
+          .map((t) => `<li>${escapeHtmlText(t.name)} (${escapeHtmlText(t.chip)}): ${escapeHtmlText(t.note)}</li>`)
+          .join("")}</ul>`
+      );
+    }
+    parts.push(
+      `<p>Live sources on <a href="/conditions">the conditions page</a>; the Sunday letter carries what changed on this board by email.</p>`
     );
+    return parts.join("");
   },
   "/guide": () =>
     hubProse(
@@ -577,10 +607,10 @@ function seoForPath(pathname, searchParams) {
       breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Conditions", null]],
     },
     "/now": {
-      title: `This Week in the Park — the weekly Yosemite dispatch — ${SITE_NAME}`,
+      title: `The Park Bulletin — what's happening in Yosemite right now — ${SITE_NAME}`,
       description:
-        "A short weekly note on what Yosemite is actually doing right now: what's open, what's flowing, what's blooming, and what changed. Written from inside the park.",
-      breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["This Week in the Park", null]],
+        "Everything happening in Yosemite on one scannable page: closures, roads, free ranger programs, dated events, trail status, hours, and phone numbers, updated for each edition of the park's Yosemite Guide.",
+      breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["The Park Bulletin", null]],
     },
     "/widget": {
       title: `Yosemite Conditions Widget — free embed for area businesses — ${SITE_NAME}`,

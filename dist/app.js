@@ -117,7 +117,7 @@ var PAGE_MODULES = {
   },
   now: {
     scripts: ["/dist/page-now.js"],
-    globals: ["NowPage"]
+    globals: ["BulletinPage"]
   },
   firefall: {
     scripts: ["/dist/page-firefall.js"],
@@ -564,10 +564,10 @@ function buildSeo(route) {
       breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Conditions", null]]
     },
     now: {
-      title: `This Week in the Park — the weekly Yosemite dispatch — ${SITE_NAME}`,
-      description: "A short weekly note on what Yosemite is actually doing right now: what's open, what's flowing, what's blooming, and what changed. Written from inside the park.",
+      title: `The Park Bulletin — what's happening in Yosemite right now — ${SITE_NAME}`,
+      description: "Everything happening in Yosemite on one scannable page: closures, roads, free ranger programs, dated events, trail status, hours, and phone numbers, updated for each edition of the park's Yosemite Guide.",
       ogType: "website",
-      breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["This Week in the Park", null]]
+      breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["The Park Bulletin", null]]
     },
     itineraries: {
       title: `Yosemite Itineraries — day plans on the map — ${SITE_NAME}`,
@@ -872,7 +872,7 @@ function App() {
       go: go
     });
   } else if (route === "now") {
-    page = React.createElement(window.NowPage, {
+    page = React.createElement(window.BulletinPage, {
       go: go
     });
   } else if (route === "firefall") {

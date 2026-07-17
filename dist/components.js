@@ -284,7 +284,7 @@ function Header({
     key: "read",
     label: "Read",
     route: "articles",
-    items: [["articles", "All articles"], ["cat:planning", "Planning"], ["cat:trails", "Trails and hikes"], ["cat:wildlife", "Wildlife and nature"], ["cat:seasonal", "Seasonal guides"], ["now", "This week in the park"], ["films", "Films"]]
+    items: [["articles", "All articles"], ["cat:planning", "Planning"], ["cat:trails", "Trails and hikes"], ["cat:wildlife", "Wildlife and nature"], ["cat:seasonal", "Seasonal guides"], ["now", "The Park Bulletin"], ["films", "Films"]]
   }, {
     key: "plan",
     label: "Plan",
@@ -376,7 +376,7 @@ function Header({
       });
       go("now");
     }
-  }, "This week"), React.createElement("div", {
+  }, "The Bulletin"), React.createElement("div", {
     className: "masthead__weather"
   }, React.createElement("span", {
     className: "masthead__weather-label"
@@ -574,7 +574,7 @@ function Footer({
       e.preventDefault();
       go("now");
     }
-  }, "This week in the park")), React.createElement("li", null, React.createElement("a", {
+  }, "The Park Bulletin")), React.createElement("li", null, React.createElement("a", {
     href: "/guide",
     onClick: e => {
       e.preventDefault();
