@@ -46,12 +46,29 @@ self.addEventListener('install', (event) => {
   event.waitUntil(
     (async () => {
       const shell = await caches.open(SHELL_CACHE)
-      await shell.addAll(SHELL_CRITICAL.concat(BUILD_ASSETS))
+      // Not addAll: it accepts any 200, and the SPA _redirects rule answers a
+      // missing hashed asset with the HTML shell — which addAll would cache
+      // under the script URL, permanently (the asset handler is cache-first
+      // and activate never purges tfg-shell-*). Fetch each URL, demand the
+      // right content type, and fail the whole install on a miss so the old
+      // shell stays live instead.
+      await Promise.all(
+        SHELL_CRITICAL.concat(BUILD_ASSETS).map(async (url) => {
+          const res = await fetch(url)
+          const wantHtml = url === '/index.html'
+          if (!res.ok || isHtml(res) !== wantHtml) {
+            throw new Error(`shell precache: bad response for ${url}`)
+          }
+          await shell.put(url, res)
+        }),
+      )
       await Promise.all(
         SHELL_OPTIONAL.map(async (url) => {
           try {
             const res = await fetch(url)
-            if (res.ok) await shell.put(url, res)
+            // '/' is an alias for the HTML shell; anything else here (the
+            // manifest) must never be the HTML fallback.
+            if (res.ok && (url === '/' || !isHtml(res))) await shell.put(url, res)
           } catch { /* offline at install time — cached on next visit */ }
         }),
       )
@@ -62,7 +79,9 @@ self.addEventListener('install', (event) => {
           if (await runtime.match(url)) return
           try {
             const res = await fetch(url)
-            if (res.ok) await runtime.put(url, res)
+            // Same guard as the fetch handler: never the HTML fallback under
+            // an icon/font key in the deploy-surviving runtime cache.
+            if (res.ok && !isHtml(res)) await runtime.put(url, res)
           } catch { /* offline at install time — cached on next visit */ }
         }),
       )

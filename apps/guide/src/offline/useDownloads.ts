@@ -112,10 +112,17 @@ export function useDownloads() {
   // decodes everywhere) until the async probe resolves — a hair after mount,
   // well before a user reads the page and taps Download — then rebuild leaner.
   const [photoFormat, setPhotoFormat] = useState<PhotoFormat>('jpg')
+  // Verification must wait for the probe: verifying the jpg-default pack URLs
+  // on a device that downloaded AVIF/WebP packs misses the cache and would
+  // flag intact packs "stale".
+  const [formatReady, setFormatReady] = useState(false)
   useEffect(() => {
     let active = true
     void detectPhotoFormat().then((f) => {
-      if (active) setPhotoFormat(f)
+      if (active) {
+        setPhotoFormat(f)
+        setFormatReady(true)
+      }
     })
     return () => {
       active = false
@@ -143,8 +150,10 @@ export function useDownloads() {
     setModuleStatus(id, status)
   }, [])
 
-  // Re-verify completed packs against the Cache API on mount.
+  // Re-verify completed packs against the Cache API on mount, once the photo
+  // format is known (see formatReady above).
   useEffect(() => {
+    if (!formatReady) return
     let cancelled = false
     const completed = readCompleted()
     for (const pack of packs) {
@@ -154,15 +163,21 @@ export function useDownloads() {
       // verification of the previous (stale) contents.
       if (moduleStatuses?.[pack.id]?.state === 'downloading') continue
       verifyPack(pack, knownMissing(entry)).then((ok) => {
-        if (cancelled || ok) return
-        if (moduleStatuses?.[pack.id]?.state === 'downloading') return
-        setPackStatus(pack.id, { state: 'stale' })
+        if (cancelled) return
+        const current = moduleStatuses?.[pack.id]?.state
+        if (current === 'downloading') return
+        if (!ok) {
+          setPackStatus(pack.id, { state: 'stale' })
+        } else if (current === 'stale') {
+          // A pass after an earlier false alarm restores the pack.
+          setPackStatus(pack.id, { state: 'done' })
+        }
       })
     }
     return () => {
       cancelled = true
     }
-  }, [packs, setPackStatus])
+  }, [packs, formatReady, setPackStatus])
 
   const refreshEstimate = useCallback(() => {
     if (!('storage' in navigator) || !navigator.storage.estimate) return
