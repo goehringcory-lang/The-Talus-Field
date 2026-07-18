@@ -16,7 +16,7 @@ import TripReview from '../components/TripReview'
 import Button from '../components/ui/Button'
 import { ChipButton } from '../components/ui/Chip'
 import PageHeader from '../components/ui/PageHeader'
-import { getHikeById, getStopById } from '../content'
+import { getHikeById, getStopById, type StopT } from '../content'
 import { ITINERARIES, type ItineraryKey } from '../content/itineraries'
 import { getStopsByRegion } from '../content'
 import { MAX_SPAN_DAYS, readTripDates } from '../programs/usePrograms'
@@ -96,15 +96,20 @@ export default function Trip() {
     const days = ITINERARIES[key].days.slice(0, windowDays.length)
     days.forEach((day, i) => {
       const date = windowDays[i]
+      // A curated day is the recommended plan in drive order; a day without
+      // one falls back to the full region reading sequence.
+      const candidates = day.stops
+        ? day.stops.map((id) => getStopById(id)).filter((s): s is StopT => !!s && 'region' in s)
+        : day.regions.flatMap((region) => getStopsByRegion(region))
       let budget = 0
-      for (const region of day.regions) {
-        for (const stop of getStopsByRegion(region)) {
-          if (stop.kind === 'lodging') continue
-          const cost = (stop.timeBudgetMin ?? 60) + 30
-          if (budget + cost > DAY_CAPACITY_MIN) continue
-          budget += cost
-          addStop(stop.id, date)
-        }
+      for (const stop of candidates) {
+        // Lodging is not a day activity, and parking pins are navigation
+        // aids for another stop, not stops of their own.
+        if (stop.kind === 'lodging' || stop.kind === 'parking') continue
+        const cost = (stop.timeBudgetMin ?? 60) + 30
+        if (budget + cost > DAY_CAPACITY_MIN) continue
+        budget += cost
+        addStop(stop.id, date)
       }
     })
   }
