@@ -456,6 +456,26 @@ function MapView({ go }) {
     return () => window.removeEventListener("popstate", onPop);
   }, []);
 
+  // Undoable announcements keep their toast up longer and surface an Undo
+  // button (see the toast render in TripPlannerSidebar). The undo snapshot
+  // lives only as long as its toast: expiry or replacement clears it.
+  // Declared above its first consumer (toggleCategory) — referencing a const
+  // before its declaration in a deps array is a TDZ error in the source,
+  // masked only while gen-compiled.mjs downlevels const to var.
+  const announce = useCallback((msg, opts) => {
+    const undoable = !!(opts && opts.undoable);
+    if (!undoable) pendingUndoRef.current = null;
+    if (announcerRef.current) {
+      announcerRef.current.textContent = undoable ? `${msg} Undo available.` : msg;
+    }
+    setToast({ msg, undoable });
+    if (toastTimerRef.current) clearTimeout(toastTimerRef.current);
+    toastTimerRef.current = setTimeout(() => {
+      setToast(null);
+      pendingUndoRef.current = null;
+    }, undoable ? TOAST_UNDO_MS : TOAST_MS);
+  }, []);
+
   // ---- Category filter -----------------------------------------------------
   const toggleCategory = useCallback(
     (cat) => {
@@ -485,23 +505,6 @@ function MapView({ go }) {
   );
 
   // ---- Trip-mutation actions ----------------------------------------------
-  // Undoable announcements keep their toast up longer and surface an Undo
-  // button (see the toast render in TripPlannerSidebar). The undo snapshot
-  // lives only as long as its toast: expiry or replacement clears it.
-  const announce = useCallback((msg, opts) => {
-    const undoable = !!(opts && opts.undoable);
-    if (!undoable) pendingUndoRef.current = null;
-    if (announcerRef.current) {
-      announcerRef.current.textContent = undoable ? `${msg} Undo available.` : msg;
-    }
-    setToast({ msg, undoable });
-    if (toastTimerRef.current) clearTimeout(toastTimerRef.current);
-    toastTimerRef.current = setTimeout(() => {
-      setToast(null);
-      pendingUndoRef.current = null;
-    }, undoable ? TOAST_UNDO_MS : TOAST_MS);
-  }, []);
-
   const featureNameById = useCallback(
     (id) => {
       if (!features) return id;

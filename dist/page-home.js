@@ -44,11 +44,7 @@ function HomeHeroCapture({
   }), React.createElement("input", {
     type: "hidden",
     name: "tag",
-    value: "home"
-  }), tripMonth && React.createElement("input", {
-    type: "hidden",
-    name: "tag",
-    value: `trip-${tripMonth}`
+    value: tripMonth ? `trip-${tripMonth}` : "home"
   }), React.createElement("input", {
     type: "hidden",
     name: "embed",

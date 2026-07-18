@@ -550,8 +550,8 @@ function buildSeo(route) {
         "An offline web app for Yosemite. Tappable GPS for the parking turnouts, quiet trailheads, and insider tactics locals use. Works when service dies.",
       ogType: "website",
       breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["The Field Guide", null]],
-      // Indexable pre-launch: the page carries a waitlist (GUIDE_ON_SALE in
-      // page-guide.jsx) and accumulates search authority while it waits.
+      // On sale since the July 2026 flip (GUIDE_ON_SALE in page-guide.jsx):
+      // the page carries the live buy box.
     },
     map: {
       title: `Yosemite Trip Planner Map — ${SITE_NAME}`,

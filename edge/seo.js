@@ -269,7 +269,7 @@ const HUB_PROSE = {
       "The Field Guide",
       "An offline web app for Yosemite: tappable GPS for the parking turnouts, quiet trailheads, and insider tactics that locals use, built to work at the trailhead when cell service dies. Includes the full stop library across the Valley, Glacier Point and Mariposa Grove, Tuolumne, and Hetch Hetchy, plus a day-by-day trip planner with park programs and weather."
     ) +
-    `<p>The guide opens for sale soon; the launch list hears first. Until then, the journal's free tools cover a lot: <a href="/map">the trip planner map</a>, <a href="/itineraries">itineraries</a>, and <a href="/checklist">the first-week checklist</a>.</p>`,
+    `<p>The guide is on sale now: $19 once for 18 months of access, no subscription. The journal's free tools cover a lot on their own: <a href="/map">the trip planner map</a>, <a href="/itineraries">itineraries</a>, and <a href="/checklist">the first-week checklist</a>.</p>`,
   "/about": () =>
     hubProse(
       "About The Talus Field",
@@ -570,8 +570,8 @@ function seoForPath(pathname, searchParams) {
       description:
         "An offline web app for Yosemite. Tappable GPS for the parking turnouts, quiet trailheads, and insider tactics that locals use. Works at the trailhead when service dies.",
       breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["The Field Guide", null]],
-      // Indexable pre-launch: the page carries a waitlist (GUIDE_ON_SALE in
-      // page-guide.jsx) and accumulates search authority while it waits.
+      // On sale since the July 2026 flip (GUIDE_ON_SALE in page-guide.jsx):
+      // the page carries the live buy box.
     },
     "/films": {
       title: `Moving Pictures — the Yosemite Nature Notes film archive — ${SITE_NAME}`,

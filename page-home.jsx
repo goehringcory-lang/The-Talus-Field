@@ -9,9 +9,12 @@ const { useMemo, useState } = React;
 // same impression tracking and subscribed-suppression as NewsletterInline
 // (location "home_hero", tag "home"). The map view itself is free since the
 // gate rework; the builder is what a signup actually unlocks, so the copy
-// says that plainly. When the month planner has a selection, a second hidden
-// tag (trip-<month>) rides along: Buttondown accepts repeated tag inputs, and
-// if a plan tier ever ignores extras the placement tag still lands.
+// says that plainly. Buttondown's embed form takes ONE tag per submission
+// (multiple hidden inputs behave like radio buttons — see newsletterTag in
+// page-article.jsx), so when the month planner has a selection the
+// trip-<month> intent tag replaces the placement tag: the segmentation is
+// what the tag is for, and GA4 still carries the placement via
+// trackNewsletterSubmit.
 // ============================================================
 function HomeHeroCapture({ tripMonth }) {
   const [done, setDone] = useState(false);
@@ -47,8 +50,7 @@ function HomeHeroCapture({ tripMonth }) {
         }}
       >
         <input type="email" name="email" aria-label="Email address" placeholder="you@email.com" required />
-        <input type="hidden" name="tag" value="home" />
-        {tripMonth && <input type="hidden" name="tag" value={`trip-${tripMonth}`} />}
+        <input type="hidden" name="tag" value={tripMonth ? `trip-${tripMonth}` : "home"} />
         <input type="hidden" name="embed" value="1" />
         <button type="submit">Get the Sunday letter →</button>
       </form>
