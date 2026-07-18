@@ -22,18 +22,29 @@ function decodeClaims(jwt: string): JwtClaims | null {
   }
 }
 
+// In-memory copy of the JWT for storage-blocked contexts (Safari "Block all
+// cookies" and storage-denied embeds). Sign-in already keeps the session in
+// React state (sessionFromJwt below), but apiFetch reads the JWT through
+// getStoredJwt on every call — without this fallback, a storage-blocked
+// browser sends /api/auth/me with no Authorization header right after
+// sign-in, and AuthGate treats the 401 as a revocation and signs the buyer
+// straight back out. The memory copy lives only for the page's lifetime; the
+// session still doesn't survive a reload, which is the intended degradation.
+let memoryJwt: string | null = null
+
 // localStorage access can throw (Safari "Block all cookies", storage-denied
 // embedded contexts). Since readSessionFromStorage runs during AuthProvider's
 // initial render, an unguarded throw here would blank the whole app at boot.
 export function getStoredJwt(): string | null {
   try {
-    return localStorage.getItem(KEY)
+    return localStorage.getItem(KEY) ?? memoryJwt
   } catch {
-    return null
+    return memoryJwt
   }
 }
 
 export function setStoredJwt(jwt: string): void {
+  memoryJwt = jwt
   try {
     localStorage.setItem(KEY, jwt)
   } catch {
@@ -42,11 +53,19 @@ export function setStoredJwt(jwt: string): void {
 }
 
 export function clearStoredJwt(): void {
+  memoryJwt = null
   try {
     localStorage.removeItem(KEY)
   } catch {
     /* non-fatal */
   }
+}
+
+// A storage event proves localStorage is live in this tab, so the persisted
+// value is authoritative: drop the memory copy before re-reading, or a
+// sign-out in another tab would be masked by this tab's stale fallback.
+export function dropMemoryJwt(): void {
+  memoryJwt = null
 }
 
 export function setAccessEndedAt(epochSeconds: number): void {
