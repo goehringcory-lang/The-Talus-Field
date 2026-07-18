@@ -2675,6 +2675,36 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
 .home-utility a:hover { color: var(--moss); border-bottom-color: var(--moss); }
 .home-utility__sep { color: var(--ink-3); }
 
+/* "Plan your trip" bar beside a hand-drawn El Capitan vignette. The bar
+   keeps its own top/bottom rules and takes the remaining width; the sketch
+   is decorative line art on the page, vertically centered against the bar
+   and allowed to stand a touch taller. Stacks under the bar on phones. */
+.home-plan {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+.home-plan .home-utility {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+.home-plan__art {
+  flex: 0 0 auto;
+  width: 220px;
+  max-width: 34%;
+  margin: 0;
+  line-height: 0;
+}
+.home-plan__art img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+@media (max-width: 640px) {
+  .home-plan { flex-direction: column; align-items: stretch; gap: 14px; }
+  .home-plan__art { width: 180px; max-width: none; align-self: flex-start; }
+}
+
 /* ===== Home: month planner =====
    "When are you going?" chip row + typical-season panel (HomeMonthPlanner in
    page-home.jsx). Chips are real buttons; the selected chip inverts to ink. */

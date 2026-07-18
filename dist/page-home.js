@@ -381,6 +381,8 @@ function HomePage({
     style: {
       paddingTop: 28
     }
+  }, React.createElement("div", {
+    className: "home-plan"
   }, React.createElement("nav", {
     className: "home-utility",
     "aria-label": "Trip tools"
@@ -400,7 +402,21 @@ function HomePage({
       });
       go(key);
     }
-  }, label))))), React.createElement(HomeMonthPlanner, {
+  }, label)))), React.createElement("figure", {
+    className: "home-plan__art",
+    "aria-hidden": "true"
+  }, React.createElement("img", {
+    src: "img/el-capitan-line-sketch.jpg",
+    alt: "",
+    loading: "lazy",
+    decoding: "async",
+    width: "440",
+    height: "270",
+    onError: e => {
+      var fig = e.currentTarget.closest(".home-plan__art");
+      if (fig) fig.style.display = "none";
+    }
+  })))), React.createElement(HomeMonthPlanner, {
     month: tripMonth,
     onSelect: selectTripMonth,
     go: go

@@ -360,30 +360,49 @@ function HomePage({ go }) {
       </section>
 
       {/* Utility row: the four working tools, one line, directly under the
-          hero. Text links, not cards; the hero capture stays the main event. */}
+          hero. Text links, not cards; the hero capture stays the main event.
+          A hand-drawn El Capitan vignette sits beside the bar, decorative
+          line art in the house motif style. It fails soft: if the asset is
+          missing the figure hides itself and the bar keeps its full width. */}
       <section className="wrap" style={{ paddingTop: 28 }}>
-        <nav className="home-utility" aria-label="Trip tools">
-          <span className="home-utility__label">Plan your trip</span>
-          {[
-            ["map", "/map", "The Map"],
-            ["itineraries", "/itineraries", "Itineraries"],
-            ["planning", "/planning", "Planning Guide"],
-            ["checklist", "/checklist", "Checklist"],
-            ["conditions", "/conditions", "Conditions"],
-          ].map(([key, href, label], i) => (
-            <React.Fragment key={key}>
-              {i > 0 && <span className="home-utility__sep" aria-hidden="true">·</span>}
-              <a
-                href={href}
-                onClick={(e) => {
-                  e.preventDefault();
-                  if (window.track) window.track("home_utility_click", { target: key });
-                  go(key);
-                }}
-              >{label}</a>
-            </React.Fragment>
-          ))}
-        </nav>
+        <div className="home-plan">
+          <nav className="home-utility" aria-label="Trip tools">
+            <span className="home-utility__label">Plan your trip</span>
+            {[
+              ["map", "/map", "The Map"],
+              ["itineraries", "/itineraries", "Itineraries"],
+              ["planning", "/planning", "Planning Guide"],
+              ["checklist", "/checklist", "Checklist"],
+              ["conditions", "/conditions", "Conditions"],
+            ].map(([key, href, label], i) => (
+              <React.Fragment key={key}>
+                {i > 0 && <span className="home-utility__sep" aria-hidden="true">·</span>}
+                <a
+                  href={href}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    if (window.track) window.track("home_utility_click", { target: key });
+                    go(key);
+                  }}
+                >{label}</a>
+              </React.Fragment>
+            ))}
+          </nav>
+          <figure className="home-plan__art" aria-hidden="true">
+            <img
+              src="img/el-capitan-line-sketch.jpg"
+              alt=""
+              loading="lazy"
+              decoding="async"
+              width="440"
+              height="270"
+              onError={(e) => {
+                const fig = e.currentTarget.closest(".home-plan__art");
+                if (fig) fig.style.display = "none";
+              }}
+            />
+          </figure>
+        </div>
       </section>
 
       <HomeMonthPlanner month={tripMonth} onSelect={selectTripMonth} go={go} />
