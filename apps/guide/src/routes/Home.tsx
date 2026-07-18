@@ -75,8 +75,9 @@ function BeforeYouGoNudge() {
         </Button>
       }
     >
-      Going soon? Do the <Link to="/essentials/before-you-go">night-before downloads</Link>{' '}
-      while you still have wifi: the offline maps, this guide, and the current Yosemite Guide PDF.
+      Going soon? Download the guide while you still have wifi. The{' '}
+      <Link to="/essentials/before-you-go">night-before checklist</Link> walks you through it,
+      one step at a time.
     </Callout>
   )
 }
@@ -100,7 +101,7 @@ function InSeasonStrip() {
         ))}
       </ul>
       <Link to="/programs" className="more-link">
-        The full seasonal almanac, day by day →
+        See all seasonal events, day by day →
       </Link>
     </section>
   )
@@ -201,7 +202,7 @@ export default function Home() {
         <PageHeader
           eyebrow="Yosemite National Park"
           title="The whole guide, on one page."
-          intro="Four regions to read, a planner that turns your dates into a day-by-day schedule, and all of it built to work where the park has no signal. Everything the guide does is indexed below."
+          intro="Read about the park. Plan your days. Download it all before you go, so it works where there is no cell signal. Everything in the guide starts on this page."
         />
 
         <BeforeYouGoNudge />
@@ -212,24 +213,26 @@ export default function Home() {
             <li>
               <span className="home-steps__num" aria-hidden="true">1</span>
               <p>
-                <strong>Read.</strong> Four regions, {stopCount} stops in driving order, plus{' '}
-                <Link to="/secret-guide">the Secret Guide</Link> and the{' '}
-                <Link to="/essentials">know-before-you-go essentials</Link>.
+                <strong>Read.</strong> The park is split into four regions, with {stopCount} stops
+                listed in driving order. There is also <Link to="/secret-guide">the Secret Guide</Link>{' '}
+                and <Link to="/essentials">Know before you go</Link>.
               </p>
             </li>
             <li>
               <span className="home-steps__num" aria-hidden="true">2</span>
               <p>
-                <strong>Plan.</strong> Set your trip dates once: <Link to="/programs">park programs</Link>{' '}
-                and the <Link to="/trip">trip planner</Link> share them. Add stops and{' '}
-                <Link to="/hikes">day hikes</Link>, then export the plan to your calendar.
+                <strong>Plan.</strong> Pick your trip dates once. Then add stops,{' '}
+                <Link to="/hikes">day hikes</Link>, and <Link to="/programs">park programs</Link> to
+                your days in the <Link to="/trip">trip planner</Link>. When you are done, put the
+                plan on your calendar.
               </p>
             </li>
             <li>
               <span className="home-steps__num" aria-hidden="true">3</span>
               <p>
-                <strong>Go offline.</strong> <Link to="/account">Download the packs</Link> on wifi the
-                night before. After that, airplane mode changes nothing.
+                <strong>Download.</strong> Most of the park has no cell signal.{' '}
+                <Link to="/account">Download the guide</Link> on wifi the night before. After that,
+                it works anywhere.
               </p>
             </li>
           </ol>
@@ -297,32 +300,32 @@ export default function Home() {
             <ToolCard
               to="/trip"
               title="Trip planner"
-              teaser="Dates, programs, stops, and hikes assembled into a day-by-day schedule, then exported to your calendar with GPS coordinates and directions links."
+              teaser="Build a day-by-day plan from your stops, hikes, and programs. Then put it on your calendar, with directions built in."
               meta={
                 planCount > 0
                   ? `${planCount} ${planCount === 1 ? 'item' : 'items'} planned${datesLabel ? ` · ${datesLabel}` : ''}`
                   : datesLabel
                     ? `Dates set · ${datesLabel}`
-                    : 'Start with your dates'
+                    : 'Start by picking your dates'
               }
             />
             <ToolCard
               to="/programs"
               title="Park programs"
-              teaser="Ranger walks, Junior Ranger tables, tours, star parties, and the seasonal almanac, listed day by day for your dates. Syncs online, readable offline."
+              teaser="Ranger walks, tours, star parties, and seasonal events, listed day by day for your dates. Update it online; read it anywhere."
               meta={datesLabel ? `Showing ${datesLabel}` : 'Day-by-day for your dates'}
             />
             <ToolCard
               to="/hikes"
               title="Day hikes"
-              teaser="Every in-park day hike with distance, elevation gain, and difficulty. A hike drops into a trip day just like a stop."
+              teaser="Every day hike in the park, with how far, how much climbing, and how hard. Add a hike to your trip just like a stop."
               meta={`${HIKES.length} hikes · strolls to Half Dome`}
             />
             <ToolCard
               to="/map"
               title="Park map"
-              teaser="Every stop and secret spot pinned on a topo map, with filters, parking and campground pins, and a near-you list. Tiles download for offline."
-              meta="Topo map · works in airplane mode"
+              teaser="Every stop and secret spot pinned on one map, plus parking and campgrounds. Download it once and it works with no signal."
+              meta="Works offline once downloaded"
             />
           </div>
         </section>
@@ -333,7 +336,7 @@ export default function Home() {
             <ToolCard
               to="/essentials"
               title="Know before you go"
-              teaser="Entrances, reservations, crowds, bears, heat, smoke, budgets, and the packing checklists. The logistics layer under the whole trip."
+              teaser="Entrances, reservations, crowds, bears, heat, smoke, budgets, and the packing checklists. The practical side of the whole trip."
               meta={`${ESSENTIALS.length} topics`}
             >
               <div className="tool-card__sub">
@@ -350,7 +353,7 @@ export default function Home() {
             <ToolCard
               to="/search"
               title="Search the guide"
-              teaser="One box across every stop, hike, secret spot, and essentials topic. Works offline like the rest of the guide."
+              teaser="Type a word and find it anywhere: stops, hikes, secret spots, essentials. Works offline like the rest of the guide."
               meta="Stops · hikes · secret spots · essentials"
             />
           </div>
@@ -360,11 +363,11 @@ export default function Home() {
           <span className="eyebrow">Before you drive in</span>
           <Link to="/account" className="offline-status-card offline-status-card--flush">
             {downloadedCount === PACK_IDS.length ? (
-              <>Downloaded for offline. The whole guide works in airplane mode. Manage →</>
+              <>All downloads done. The whole guide works with no cell signal. Manage →</>
             ) : (
               <>
-                <strong>Offline:</strong> {downloadedCount} of {PACK_IDS.length} packs on this
-                device. Download the guide and the park map before you leave wifi →
+                <strong>Downloads:</strong> {downloadedCount} of {PACK_IDS.length} done. Download
+                the photos and the park map before you leave wifi →
               </>
             )}
           </Link>

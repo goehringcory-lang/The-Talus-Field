@@ -30,7 +30,7 @@ export default function UpdateBanner() {
           void triggerUpdate(registration)
         }}
       >
-        {updating ? 'Refreshing…' : 'Updated. Tap to refresh.'}
+        {updating ? 'Updating…' : 'A new version is ready. Tap to update.'}
       </button>
       <button
         type="button"

@@ -68,7 +68,7 @@ export default function Hikes() {
         <PageHeader
           eyebrow="Trails by region"
           title="Day hikes"
-          intro="Every established day hike inside the park, with the numbers that matter: distance, climbing, and how hard it really is. Add one to a day and the trip plan budgets the hours for it."
+          intro="Every day hike in the park, with the numbers that matter: how far, how much climbing, and how hard it really is. Add one to a day and the trip plan sets aside the hours for it."
         />
 
         <div className="hikes-chips" role="group" aria-label="Filter hikes">

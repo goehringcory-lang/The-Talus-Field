@@ -85,7 +85,7 @@ function SheetBody({ onClose, slotted, eventCount, filenameDate }: Omit<Props, '
       setPublishError(
         err instanceof ApiError && err.status === 401
           ? 'Your session needs a refresh. Sign in again, then retry.'
-          : 'Could not publish the feed. Try again when you have signal.',
+          : 'Could not turn on sync. Try again when you have signal.',
       )
     } finally {
       setPublishing(false)
@@ -98,7 +98,7 @@ function SheetBody({ onClose, slotted, eventCount, filenameDate }: Omit<Props, '
       await revokeFeed()
       setFeed(null)
     } catch {
-      setPublishError('Could not reach the server to stop the feed. Try again when you have signal.')
+      setPublishError('Could not reach the server to turn off sync. Try again when you have signal.')
     } finally {
       setRevoking(false)
     }
@@ -135,7 +135,7 @@ function SheetBody({ onClose, slotted, eventCount, filenameDate }: Omit<Props, '
       <div className="sheet" role="dialog" aria-modal="true" aria-label="Add trip to calendar">
         <div className="sheet__head">
           <span className="eyebrow eyebrow--moss">
-            {eventCount} {eventCount === 1 ? 'event' : 'events'} · your calendar becomes the itinerary
+            {eventCount} {eventCount === 1 ? 'event' : 'events'}, ready for your calendar
           </span>
           <button type="button" className="sheet__close" onClick={onClose} aria-label="Close">
             ×
@@ -143,29 +143,29 @@ function SheetBody({ onClose, slotted, eventCount, filenameDate }: Omit<Props, '
         </div>
 
         <section className="sheet__section">
-          <h3 className="sheet__title">Subscribe, stays updated</h3>
+          <h3 className="sheet__title">Sync to your calendar</h3>
           {googleConnected && (
             <p className="sheet__note sheet__note--muted">
-              Google Calendar is already handled: your trip syncs straight into it through the
-              Account page connection. The subscription below is for other calendar apps, like
-              Apple Calendar or Outlook.
+              Google Calendar is already connected on your Account page, so your trip syncs
+              there by itself. The sync below is for other calendar apps, like Apple Calendar
+              or Outlook.
             </p>
           )}
           {!feed && (
             <>
               <p className="sheet__note">
-                Two steps: publish your plan at a private link, then add that link to your
-                calendar app. Edit the plan here and the calendar picks it up on its next
-                refresh. Your account has one feed: publishing from this device replaces what
-                any other device published.
+                Two steps. First, turn on sync below. Then add the private link it makes to
+                your calendar app. After that, when you change the plan here, your calendar
+                updates by itself. Your account has one link; turning sync on here replaces
+                what another device set up.
               </p>
               {online ? (
                 <Button onClick={subscribe} disabled={publishing}>
-                  {publishing ? 'Publishing…' : 'Turn on calendar sync'}
+                  {publishing ? 'Turning on…' : 'Turn on calendar sync'}
                 </Button>
               ) : (
                 <p className="sheet__note sheet__note--muted">
-                  Subscribing needs a connection. The file below works offline.
+                  Turning on sync needs a connection. The file below works offline.
                 </p>
               )}
             </>
@@ -173,9 +173,9 @@ function SheetBody({ onClose, slotted, eventCount, filenameDate }: Omit<Props, '
           {feed && (
             <>
               <p className="sheet__note">
-                The feed is live, but it is not in your calendar yet. Add it once below. It
-                arrives as its own calendar named Yosemite trip, sitting alongside your main
-                calendar, and it follows every edit you make here.
+                Sync is on, but it is not in your calendar yet. Add it once below. Your trip
+                shows up as its own calendar, named Yosemite trip, and it follows every change
+                you make here.
               </p>
               <div className="sheet__buttons">
                 <Button href={webcalUrl(feed.feedUrl)}>Apple Calendar</Button>
@@ -188,22 +188,22 @@ function SheetBody({ onClose, slotted, eventCount, filenameDate }: Omit<Props, '
                   </Button>
                 )}
                 <Button variant="ghost" onClick={copyLink}>
-                  {copied ? 'Copied' : 'Copy feed link'}
+                  {copied ? 'Copied' : 'Copy the link'}
                 </Button>
               </div>
               <p className="sheet__note sheet__note--muted">
                 {!googleConnected &&
-                  'Google only accepts a new subscription from a computer browser, never its ' +
-                    'phone app: on a phone, copy the feed link and add it later at ' +
-                    'calendar.google.com, under Other calendars, From URL. Once added it syncs ' +
+                  'Google only lets you add a calendar link from a computer browser, not from ' +
+                    'its phone app. On a phone, copy the link and add it later at ' +
+                    'calendar.google.com, under Other calendars, From URL. After that it syncs ' +
                     'to the phone app on its own. '}
-                Feed updated {relativeStamp(feed.updatedAt)}.{' '}
+                Last update {relativeStamp(feed.updatedAt)}.{' '}
                 {googleConnected
-                  ? 'Apple refreshes subscriptions per its Fetch New Data setting, so same-day changes can lag. For those, use the file below.'
-                  : 'Calendars refresh subscriptions on their own schedule, Google usually within a day, Apple per its Fetch New Data setting. For same-day changes, use the file below.'}
+                  ? 'Apple checks for changes on its own schedule, so same-day changes can lag. For those, use the file below.'
+                  : 'Calendar apps check for changes on their own schedule: Google usually within a day, Apple per its settings. For same-day changes, use the file below.'}
               </p>
               <Button variant="quiet" onClick={stopSync} disabled={revoking || !online}>
-                {revoking ? 'Stopping…' : 'Stop updating this feed'}
+                {revoking ? 'Turning off…' : 'Turn off calendar sync'}
               </Button>
             </>
           )}
@@ -211,10 +211,10 @@ function SheetBody({ onClose, slotted, eventCount, filenameDate }: Omit<Props, '
         </section>
 
         <section className="sheet__section">
-          <h3 className="sheet__title">One-time file</h3>
+          <h3 className="sheet__title">Or save a file once</h3>
           <p className="sheet__note">
-            Saves a .ics file with every event. Works offline; Apple Calendar, Google Calendar,
-            and Outlook all read it.
+            Saves one calendar file with all your events. It works offline. Apple Calendar,
+            Google Calendar, and Outlook can all open it.
           </p>
           <Button variant={feed ? 'ghost' : 'solid'} onClick={exportFile} disabled={exporting}>
             {exporting ? 'Preparing…' : 'Save the calendar file'}
@@ -237,15 +237,15 @@ function SheetBody({ onClose, slotted, eventCount, filenameDate }: Omit<Props, '
           )}
           {exportResult === 'failed' && (
             <p className="sheet__note sheet__note--muted">
-              The export didn't start. Turn on calendar sync above, or save the file from a
-              desktop browser.
+              The save didn't start. Turn on calendar sync above, or save the file from a
+              computer browser.
             </p>
           )}
         </section>
 
         <p className="sheet__fine">
-          Events carry GPS coordinates and a Google Maps directions link wherever the exact spot
-          is known, plus a 30-minute reminder where your calendar honors imported alerts.
+          Each event carries the spot's GPS location and a directions link, plus a 30-minute
+          reminder where your calendar allows it.
         </p>
       </div>
     </>

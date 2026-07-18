@@ -146,11 +146,11 @@ export default function Login() {
       navigate(from ?? '/', { replace: true })
     } catch (err) {
       if (err instanceof ApiError && err.status === 401 && err.message === 'Access has expired') {
-        setError('Your 18-month access period has ended. Email cory@thetalusfieldjournal.com about renewing.')
+        setError('Your access has ended. Email cory@thetalusfieldjournal.com about renewing.')
       } else if (err instanceof ApiError && err.status === 401) {
         setError("That email and code don't match. The code is in your purchase email.")
       } else if (err instanceof ApiError && err.status === 429) {
-        setError('Too many attempts. Wait an hour and try again.')
+        setError('Too many tries. Wait an hour, then try again.')
       } else {
         setError(err instanceof Error ? err.message : 'Sign-in failed.')
       }
@@ -200,7 +200,7 @@ export default function Login() {
           <span className="eyebrow eyebrow--moss">The Field Guide · 2026 Edition</span>
           <h1 className="login-title">Sign in</h1>
           <p className="login-intro">
-            Enter the email you bought the guide with and the 6-digit access code from your
+            Use the email you bought the guide with. Your 6-digit access code is in your
             purchase email.
           </p>
         </div>
@@ -213,17 +213,17 @@ export default function Login() {
                   fall back to neutral copy unless the last /me said buyer. */}
               {readCachedMe()?.kind === 'buyer' ? (
                 <>
-                  Your access period ended {formatEndedDate(accessEndedAt)}. The cheapest way
-                  back is the one-click renewal link in the reminder emails we sent as the
-                  date approached (search your inbox for "Field Guide access"). You can also{' '}
+                  Your access ended {formatEndedDate(accessEndedAt)}. The cheapest way back
+                  is the renewal link in the emails we sent you. Search your inbox for
+                  "Field Guide access". You can also{' '}
                   <a href={GUIDE_BUY_URL} target="_blank" rel="noopener noreferrer">
                     buy the guide again
                   </a>{' '}
-                  with the same email to restart access, or email{' '}
+                  with the same email, or write to{' '}
                   <a href="mailto:cory@thetalusfieldjournal.com">
                     cory@thetalusfieldjournal.com
                   </a>{' '}
-                  and a fresh renewal link comes back.
+                  for a fresh renewal link.
                 </>
               ) : (
                 <>Your session ended {formatEndedDate(accessEndedAt)}. Sign in again to continue.</>
@@ -285,8 +285,8 @@ export default function Login() {
         <section className="login-storefront" aria-label="About the Field Guide">
           <span className="eyebrow">New here</span>
           <p className="login-intro" style={{ marginTop: 8 }}>
-            The Field Guide is {price}, one payment: four regional guides, the Secret
-            Guide, and an offline topo map of the park, on every device you own for 18
+            The Field Guide is {price}, one payment. You get four regional guides, the
+            Secret Guide, and an offline map of the park, on every device you own for 18
             months.
           </p>
           <div className="action-row" style={{ marginTop: 16 }}>

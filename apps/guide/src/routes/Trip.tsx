@@ -128,7 +128,7 @@ export default function Trip() {
         <PageHeader
           eyebrow="Plan your days"
           title="Your trip plan"
-          intro="Set your dates, then fill the days: hikes from the trail list, programs from the list, stops from their pages or the map. When the plan is final, review it and put it on your calendar."
+          intro="Pick your dates. Add stops, hikes, and programs to your days. Then put the finished plan on your calendar."
         />
 
         <StepHeader n={1} title="Pick your dates" />
@@ -162,7 +162,7 @@ export default function Trip() {
         <div className="trip-toolbar">
           {itemCount === 0 && (
             <>
-              <span className="trip-toolbar__label">Start from a preset:</span>
+              <span className="trip-toolbar__label">Start with a ready-made plan:</span>
               {(Object.keys(ITINERARIES) as ItineraryKey[]).map((key) => (
                 <ChipButton key={key} variant="action" onClick={() => seedItinerary(key)}>
                   {ITINERARIES[key].label}
@@ -179,27 +179,27 @@ export default function Trip() {
 
         {itemCount === 0 ? (
           <div className="trip-empty">
-            <p style={{ margin: '0 0 10px' }}>Nothing planned yet. How this works:</p>
+            <p style={{ margin: '0 0 10px' }}>Nothing planned yet. Here is how it works:</p>
             <ol>
-              <li>Set your dates above.</li>
+              <li>Pick your dates above.</li>
               <li>
-                Add a day hike from the <Link to="/hikes">Hikes list</Link>: the plan budgets the
-                hours it takes.
+                Add day hikes from the <Link to="/hikes">Hikes list</Link>. The plan sets aside
+                the hours each one takes.
               </li>
               <li>
-                Add programs from the <Link to="/programs">Programs list</Link>: ranger walks,
-                tours, star parties.
+                Add ranger walks, tours, and star parties from the{' '}
+                <Link to="/programs">Programs list</Link>.
               </li>
               <li>
-                Add stops from their pages or the <Link to="/map">map</Link>, or seed a day from
-                a preset above.
+                Add stops from their pages or the <Link to="/map">map</Link>. Or tap a ready-made
+                plan above to fill your days in one go.
               </li>
               <li>
-                Finalize the plan below to put it on your calendar. Events carry GPS coordinates
-                and a directions link, so tapping an event on the day launches navigation.
+                Then put the plan on your calendar, below. Each event carries a directions link,
+                so tapping it on the day starts navigation.
               </li>
             </ol>
-            <p style={{ margin: '10px 0 0' }}>The plan lives on this device and works offline.</p>
+            <p style={{ margin: '10px 0 0' }}>Your plan is saved on this device and works offline.</p>
           </div>
         ) : (
           [...slotted.entries()].map(([day, items]) => {
@@ -307,10 +307,10 @@ export default function Trip() {
                 })}
                 {overflow.length > 0 && (
                   <p className="trip-overflow">
-                    {overflow.length} {overflow.length === 1 ? 'item doesn’t' : 'items don’t'} fit
-                    in this day before 9 p.m. Move something to another day, set times by hand, or
-                    resolve it in Review &amp; finalize below. Unresolved items land on the calendar
-                    as all-day events.
+                    This day is too full. {overflow.length}{' '}
+                    {overflow.length === 1 ? 'item does not' : 'items do not'} fit before 9 p.m.
+                    Move something to another day, or set its time by hand. Items left without a
+                    time go on your calendar as all-day events.
                   </p>
                 )}
               </section>
@@ -319,14 +319,14 @@ export default function Trip() {
         )}
 
         <div ref={reviewRef} style={{ scrollMarginTop: 24 }}>
-          <StepHeader n={3} title="Review & finalize" />
+          <StepHeader n={3} title="Put it on your calendar" />
           <Button disabled={itemCount === 0} onClick={toggleReview}>
-            {reviewOpen ? 'Hide review' : 'Finalize trip'}
+            {reviewOpen ? 'Hide the review' : 'Review my plan'}
           </Button>
           {itemCount === 0 && (
             <p className="trip-step__hint">
-              Add at least one stop or program first. The calendar events are built from your
-              days above.
+              Add at least one stop, hike, or program first. The calendar events are built from
+              your days above.
             </p>
           )}
           {reviewOpen && itemCount > 0 && (
@@ -335,9 +335,8 @@ export default function Trip() {
         </div>
 
         <p className="page-footnote">
-          Times are suggestions built from each stop's time budget plus a travel buffer estimated
-          from the driving distance between stops; programs keep their published times. Everything
-          here works offline once added.
+          The times are suggestions. Each stop gets its usual visit time plus driving time to the
+          next stop. Programs keep their published times. Everything here works offline.
         </p>
       </main>
     </GatedChrome>
