@@ -539,7 +539,7 @@ function ArticlePage({
       blurb: offer.blurb || "One letter a week. If you found this useful, you'll probably like the rest.",
       variant: endVariant
     });
-  })(), (article.cat === "trails" || article.cat === "planning") && React.createElement("p", {
+  })(), (article.cat === "trails" || article.cat === "planning" || article.cat === "seasonal") && React.createElement("p", {
     style: {
       fontFamily: "var(--sans)",
       fontSize: 13,
@@ -547,7 +547,7 @@ function ArticlePage({
       lineHeight: 1.6,
       margin: "16px 0 0"
     }
-  }, "The Field Guide, this site's advice as an offline app with GPS at the trailhead, is coming.", " ", React.createElement("a", {
+  }, "The Field Guide puts this site's advice in your pocket: offline maps, GPS at the trailhead, every stop with parking notes. $19, eighteen months of access.", " ", React.createElement("a", {
     href: "/guide",
     onClick: e => {
       e.preventDefault();
@@ -559,7 +559,7 @@ function ArticlePage({
     style: {
       color: "var(--ink-2)"
     }
-  }, "The waitlist is open →")))), related.length > 0 && React.createElement("section", {
+  }, "See the guide →")))), related.length > 0 && React.createElement("section", {
     className: "wrap",
     style: {
       paddingTop: 48,

@@ -102,7 +102,16 @@ function ItinerariesPage({
       e.preventDefault();
       go("planning");
     }
-  }, "the planning guide"), "."), React.createElement("div", {
+  }, "the planning guide"), "."), React.createElement(GuidePromo, {
+    go: go,
+    location: "itineraries",
+    title: "These plans, offline, in the park.",
+    body: "The Field Guide app carries the same curated stops with parking and timing notes, offline maps that keep working in the dead zones between them, and a day-by-day planner. One purchase, eighteen months of access.",
+    style: {
+      maxWidth: 680,
+      marginBottom: 56
+    }
+  }), React.createElement("div", {
     style: {
       maxWidth: 680,
       marginBottom: 96

@@ -288,6 +288,15 @@ function PlanningGuide({
     tag: "planning",
     heading: "Get the conditions before you go",
     blurb: "Reservation windows, road openings, what's booked out: one Yosemite email a week while you plan. Free."
-  })))));
+  })), React.createElement(GuidePromo, {
+    go: go,
+    location: "planning_hub",
+    title: "Reading is planning. This is the trip.",
+    body: "The Field Guide app carries the same advice into the park: 50-plus stops with parking and timing notes, offline maps, a day-by-day planner, and the secret guide. Works with no signal, which is most of the park.",
+    style: {
+      maxWidth: 680,
+      marginTop: 56
+    }
+  }))));
 }
 window.PlanningGuide = PlanningGuide;

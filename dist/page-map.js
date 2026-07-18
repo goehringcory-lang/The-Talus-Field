@@ -1013,7 +1013,7 @@ function TripNextSteps({
     }
   }, "the planning guide"), "."), React.createElement("p", {
     className: "map-sidebar__next-line"
-  }, "This trip, offline, at the trailhead. The Field Guide is coming;", " ", React.createElement("a", {
+  }, "This trip, offline, at the trailhead: the Field Guide app is $19 for eighteen months.", " ", React.createElement("a", {
     href: "/guide",
     onClick: e => {
       e.preventDefault();
@@ -1022,7 +1022,7 @@ function TripNextSteps({
       });
       go("guide");
     }
-  }, "the waitlist is open"), "."));
+  }, "See the guide →")));
 }
 function TripPlannerSidebar({
   features,

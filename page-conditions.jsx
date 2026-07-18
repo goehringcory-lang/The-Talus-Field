@@ -1,4 +1,4 @@
-/* global React, WebcamStrip, EntranceWaits, NewsletterInline */
+/* global React, WebcamStrip, EntranceWaits, NewsletterInline, GuidePromo */
 
 // =============================================================================
 // CONDITIONS — `/conditions` route. The bookmarkable "is it worth driving in
@@ -103,6 +103,16 @@ function ConditionsPage({ go }) {
             adjust to what is open.
           </p>
         </section>
+
+        {/* The purchase ask: the honest angle here is that this page, like
+            most of the internet, stops working past the entrance station. */}
+        <GuidePromo
+          go={go}
+          location="conditions"
+          title="Past the entrance, this page stops loading."
+          body="Most of the park has no signal. The Field Guide app is built for exactly that: offline maps, 50-plus stops with parking and timing notes, and a trip planner that works from the trailhead."
+          style={{ maxWidth: 680, marginBottom: 56 }}
+        />
 
         <div style={{ maxWidth: 680, marginBottom: 96 }}>
           <NewsletterInline

@@ -1,4 +1,4 @@
-/* global React, NewsletterInline */
+/* global React, NewsletterInline, GuidePromo */
 const { useState: useStateK, useCallback: useCallbackK } = React;
 
 // Ticked items persist here so a reader can plan over several sessions.
@@ -223,6 +223,17 @@ function KitPage({ go }) {
             onClick={(e) => { e.preventDefault(); go("places"); }}
           >Open the directory →</a>
         </div>
+      </section>
+
+      {/* The purchase ask: kit readers are packing for confirmed dates. */}
+      <section className="wrap" style={{ paddingBottom: 24 }}>
+        <GuidePromo
+          go={go}
+          location="kit"
+          title="One more thing for the trunk."
+          body="The Field Guide app weighs nothing and works with no signal: offline maps, 50-plus stops with parking and timing notes, and a trip planner. The last item on the packing list."
+          style={{ maxWidth: 680 }}
+        />
       </section>
 
       <section className="wrap" style={{ paddingBottom: 80 }}>

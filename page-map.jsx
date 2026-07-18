@@ -1295,7 +1295,7 @@ function TripNextSteps({ tripFeatures, go }) {
         </p>
       )}
       <p className="map-sidebar__next-line">
-        This trip, offline, at the trailhead. The Field Guide is coming;{" "}
+        This trip, offline, at the trailhead: the Field Guide app is $19 for eighteen months.{" "}
         <a
           href="/guide"
           onClick={(e) => {
@@ -1303,7 +1303,7 @@ function TripNextSteps({ tripFeatures, go }) {
             if (window.track) window.track("guide_teaser_click", { location: "map_sidebar" });
             go("guide");
           }}
-        >the waitlist is open</a>.
+        >See the guide →</a>
       </p>
     </div>
   );

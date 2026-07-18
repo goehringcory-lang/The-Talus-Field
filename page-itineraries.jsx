@@ -1,4 +1,4 @@
-/* global React, NewsletterInline */
+/* global React, NewsletterInline, GuidePromo */
 
 // =============================================================================
 // ITINERARIES — `/itineraries` route. The curated day plans from
@@ -94,6 +94,16 @@ function ItinerariesPage({ go }) {
           has every pin, and the trip builder saves whatever you assemble on your own device. For the reasoning behind the stops, start with{" "}
           <a href="/planning" onClick={(e) => { e.preventDefault(); go("planning"); }}>the planning guide</a>.
         </p>
+
+        {/* The purchase ask: itinerary readers are packing dates into days,
+            the exact moment the offline app earns its price. */}
+        <GuidePromo
+          go={go}
+          location="itineraries"
+          title="These plans, offline, in the park."
+          body="The Field Guide app carries the same curated stops with parking and timing notes, offline maps that keep working in the dead zones between them, and a day-by-day planner. One purchase, eighteen months of access."
+          style={{ maxWidth: 680, marginBottom: 56 }}
+        />
 
         <div style={{ maxWidth: 680, marginBottom: 96 }}>
           <NewsletterInline

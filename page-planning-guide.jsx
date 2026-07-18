@@ -1,4 +1,4 @@
-/* global React, ArticleCard, NewsletterInline */
+/* global React, ArticleCard, NewsletterInline, GuidePromo */
 
 function PlanningGuide({ go }) {
   const find = (slug) => window.findArticle(slug);
@@ -156,6 +156,16 @@ function PlanningGuide({ go }) {
               blurb="Reservation windows, road openings, what's booked out: one Yosemite email a week while you plan. Free."
             />
           </div>
+
+          {/* The purchase ask: a reader who finished the hub has a trip.
+              The app is the in-park half of the same advice. */}
+          <GuidePromo
+            go={go}
+            location="planning_hub"
+            title="Reading is planning. This is the trip."
+            body="The Field Guide app carries the same advice into the park: 50-plus stops with parking and timing notes, offline maps, a day-by-day planner, and the secret guide. Works with no signal, which is most of the park."
+            style={{ maxWidth: 680, marginTop: 56 }}
+          />
         </section>
       </div>
     </div>
