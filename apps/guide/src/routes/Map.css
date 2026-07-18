@@ -556,7 +556,9 @@
 
 .map-itinerary {
   display: flex;
-  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
   width: 100%;
   text-align: left;
   padding: 10px 12px;
@@ -566,7 +568,33 @@
   border-radius: var(--radius);
   cursor: pointer;
   transition: border-color 120ms, background 120ms;
-  justify-content: center;
+}
+
+.map-itinerary__text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+/* Day thumbnails: one region photo per day, strip length = plan length. */
+.map-itinerary__photos {
+  display: flex;
+  gap: 3px;
+  flex-shrink: 0;
+}
+.map-itinerary__media {
+  display: block;
+  width: 34px;
+  aspect-ratio: 1;
+  overflow: hidden;
+  border: 1px solid var(--ink);
+}
+.map-itinerary__media img,
+.map-itinerary__media picture {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 @media (hover: hover) {

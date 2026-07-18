@@ -18,8 +18,9 @@ import { Link, useLocation, useNavigate } from 'react-router-dom'
 import maplibregl from 'maplibre-gl'
 import 'maplibre-gl/dist/maplibre-gl.css'
 import GatedChrome from '../components/GatedChrome'
+import ResponsivePhoto from '../components/ResponsivePhoto'
 import { ChipButton } from '../components/ui/Chip'
-import { AMENITIES, REGIONS, REGION_SHORT, SECRET_SPOTS, stops as allStops, getStopById, isSecretGuideEntry, type AmenityT, type GuideStopT, type Region, type StopKind } from '../content'
+import { AMENITIES, REGIONS, REGION_SHORT, SECRET_SPOTS, stops as allStops, getItineraryDayPhotos, getStopById, isSecretGuideEntry, type AmenityT, type GuideStopT, type Region, type StopKind } from '../content'
 import {
   ITINERARIES,
   ITINERARY_KEYS,
@@ -918,6 +919,7 @@ export default function Map() {
               <ul className="map-sidebar__itineraries">
                 <li>
                   <ItineraryButton
+                    photos={REGIONS.map((r) => r.photo)}
                     label="All locations"
                     subtitle="Every region"
                     count={counts.all}
@@ -928,6 +930,7 @@ export default function Map() {
                 {ITINERARY_KEYS.map((key) => (
                   <li key={key}>
                     <ItineraryButton
+                      photos={getItineraryDayPhotos(ITINERARIES[key])}
                       label={ITINERARIES[key].label}
                       subtitle={ITINERARIES[key].subtitle}
                       count={counts[key]}
@@ -993,7 +996,10 @@ export default function Map() {
   )
 }
 
+type ItineraryButtonPhoto = { src: string }
+
 type ItineraryButtonProps = {
+  photos: ItineraryButtonPhoto[]
   label: string
   subtitle: string
   count: number
@@ -1001,7 +1007,7 @@ type ItineraryButtonProps = {
   onClick: () => void
 }
 
-function ItineraryButton({ label, subtitle, count, selected, onClick }: ItineraryButtonProps) {
+function ItineraryButton({ photos, label, subtitle, count, selected, onClick }: ItineraryButtonProps) {
   return (
     <button
       type="button"
@@ -1009,9 +1015,19 @@ function ItineraryButton({ label, subtitle, count, selected, onClick }: Itinerar
       onClick={onClick}
       aria-pressed={selected}
     >
-      <span className="map-itinerary__label">{label}</span>
-      <span className="map-itinerary__sub">{subtitle}</span>
-      <span className="map-itinerary__count">{count} stops</span>
+      <span className="map-itinerary__text">
+        <span className="map-itinerary__label">{label}</span>
+        <span className="map-itinerary__sub">{subtitle}</span>
+        <span className="map-itinerary__count">{count} stops</span>
+      </span>
+      {/* One thumbnail per day (region photos), decorative. */}
+      <span className="map-itinerary__photos" aria-hidden="true">
+        {photos.map((photo, i) => (
+          <span className="map-itinerary__media" key={i}>
+            <ResponsivePhoto src={photo.src} alt="" width={400} height={400} sizes="36px" />
+          </span>
+        ))}
+      </span>
     </button>
   )
 }

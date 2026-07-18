@@ -12,12 +12,12 @@ import { Fragment, useEffect, useMemo, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import GatedChrome from '../components/GatedChrome'
 import PlanTabs from '../components/PlanTabs'
+import ResponsivePhoto from '../components/ResponsivePhoto'
 import TripReview from '../components/TripReview'
 import Button from '../components/ui/Button'
-import { ChipButton } from '../components/ui/Chip'
 import PageHeader from '../components/ui/PageHeader'
-import { getHikeById, getStopById, type StopT } from '../content'
-import { ITINERARIES, type ItineraryKey } from '../content/itineraries'
+import { getHikeById, getItineraryDayPhotos, getStopById, type StopT } from '../content'
+import { ITINERARIES, ITINERARY_KEYS, type ItineraryKey } from '../content/itineraries'
 import { getStopsByRegion } from '../content'
 import { MAX_SPAN_DAYS, readTripDates } from '../programs/usePrograms'
 import { addDaysIso, formatClock, formatDayHeader } from '../utils/date'
@@ -164,23 +164,40 @@ export default function Trip() {
         </div>
 
         <StepHeader n={2} title="Fill your days" />
-        <div className="trip-toolbar">
-          {itemCount === 0 && (
-            <>
-              <span className="trip-toolbar__label">Start from a preset:</span>
-              {(Object.keys(ITINERARIES) as ItineraryKey[]).map((key) => (
-                <ChipButton key={key} variant="action" onClick={() => seedItinerary(key)}>
-                  {ITINERARIES[key].label}
-                </ChipButton>
+        {itemCount === 0 && (
+          <div className="trip-presets" role="group" aria-label="Start from a preset">
+            <span className="trip-presets__label">Start from a preset:</span>
+            <div className="trip-presets__row">
+              {ITINERARY_KEYS.map((key) => (
+                <button
+                  type="button"
+                  key={key}
+                  className="trip-preset"
+                  onClick={() => seedItinerary(key)}
+                >
+                  {/* One thumbnail per day (the day's lead-region photo), so
+                      the strip's length reads as the plan's length. */}
+                  <span className="trip-preset__photos" aria-hidden="true">
+                    {getItineraryDayPhotos(ITINERARIES[key]).map((photo, i) => (
+                      <span className="trip-preset__media" key={i}>
+                        <ResponsivePhoto src={photo.src} alt="" width={400} height={400} sizes="64px" />
+                      </span>
+                    ))}
+                  </span>
+                  <span className="trip-preset__label">{ITINERARIES[key].label}</span>
+                  <span className="trip-preset__sub">{ITINERARIES[key].subtitle}</span>
+                </button>
               ))}
-            </>
-          )}
-          {itemCount > 0 && (
+            </div>
+          </div>
+        )}
+        {itemCount > 0 && (
+          <div className="trip-toolbar">
             <Button variant="ghost" size="sm" onClick={clear}>
               Clear plan
             </Button>
-          )}
-        </div>
+          </div>
+        )}
 
         {itemCount === 0 ? (
           <div className="trip-empty">
