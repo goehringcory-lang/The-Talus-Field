@@ -314,6 +314,19 @@ function KitPage({
   }, "Open the directory →"))), React.createElement("section", {
     className: "wrap",
     style: {
+      paddingBottom: 24
+    }
+  }, React.createElement(GuidePromo, {
+    go: go,
+    location: "kit",
+    title: "One more thing for the trunk.",
+    body: "The Field Guide app weighs nothing and works with no signal: offline maps, 50-plus stops with parking and timing notes, and a trip planner. The last item on the packing list.",
+    style: {
+      maxWidth: 680
+    }
+  })), React.createElement("section", {
+    className: "wrap",
+    style: {
       paddingBottom: 80
     }
   }, React.createElement(NewsletterInline, {

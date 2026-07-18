@@ -480,16 +480,17 @@ function ArticlePage({ slug, go }) {
             );
           })()}
 
-          {/* Quiet Field Guide teaser: trails and planning readers only, one
-              text line, never a second form. */}
-          {(article.cat === "trails" || article.cat === "planning") && (
+          {/* Quiet Field Guide teaser: trip-intent readers (trails, planning,
+              seasonal) only, one text line, never a second form. On sale since
+              July 2026; keep the price stated plainly per house style. */}
+          {(article.cat === "trails" || article.cat === "planning" || article.cat === "seasonal") && (
             <p style={{ fontFamily: "var(--sans)", fontSize: 13, color: "var(--ink-3)", lineHeight: 1.6, margin: "16px 0 0" }}>
-              The Field Guide, this site's advice as an offline app with GPS at the trailhead, is coming.{" "}
+              The Field Guide puts this site's advice in your pocket: offline maps, GPS at the trailhead, every stop with parking notes. $19, eighteen months of access.{" "}
               <a
                 href="/guide"
                 onClick={(e) => { e.preventDefault(); if (window.track) window.track("guide_teaser_click", { location: "article_end" }); go("guide"); }}
                 style={{ color: "var(--ink-2)" }}
-              >The waitlist is open →</a>
+              >See the guide →</a>
             </p>
           )}
         </div>

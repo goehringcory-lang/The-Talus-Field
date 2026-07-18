@@ -1138,11 +1138,59 @@ function WebcamStrip() {
   );
 }
 
+// ============================================================
+// Field Guide promo band. The one reusable purchase ask for
+// editorial pages: the homepage's inverted-ink plate (.band-guide
+// styles), stacked single-column for 680px article columns, with
+// copy tailored per page by the caller. Fires guide_cta_click with
+// a per-placement location so each surface measures separately;
+// the optional sample line points at the app's free preview and
+// fires guide_sample_click, same as the /guide page's sample links.
+// ============================================================
+const GUIDE_PROMO_APP_BASE =
+  (typeof window !== "undefined" && window.GUIDE_APP_BASE) ||
+  "https://talus-field-guide.pages.dev";
+
+function GuidePromo({ go, location, title, body, cta, sample = true, style }) {
+  return (
+    <div style={style}>
+      <a
+        className="band-guide"
+        href="/guide"
+        onClick={(e) => {
+          e.preventDefault();
+          if (window.track) window.track("guide_cta_click", { location: location || "unknown" });
+          if (go) go("guide"); else window.location.href = "/guide";
+        }}
+      >
+        <div className="band-guide__eyebrow">The Field Guide · $19 · Offline app</div>
+        <div className="band-guide__title" style={{ marginBottom: 10 }}>
+          {title || "The park, in your pocket."}
+        </div>
+        <p className="band-guide__body">
+          {body || "The app version of this journal: 50-plus stops with parking and timing notes, offline maps, a trip planner, and the secret guide. Works with no signal, which is most of the park. One purchase, eighteen months of access."}
+        </p>
+        <div className="mono band-guide__cta">{cta || "See the Field Guide →"}</div>
+      </a>
+      {sample && (
+        <p style={{ fontFamily: "var(--sans)", fontSize: 13, color: "var(--ink-3)", lineHeight: 1.6, margin: "10px 0 0" }}>
+          Not sure yet? Five entries are free to read, no email required:{" "}
+          <a
+            href={`${GUIDE_PROMO_APP_BASE}/preview`}
+            onClick={() => { if (window.track) window.track("guide_sample_click", { location: location || "unknown" }); }}
+            style={{ color: "var(--ink-2)" }}
+          >preview the guide →</a>
+        </p>
+      )}
+    </div>
+  );
+}
+
 // Expose
 Object.assign(window, {
   Placeholder, ResponsiveImage, preloadResponsive,
   SIZES_HERO, SIZES_BODY, SIZES_CARD,
   MotifMountains, MotifSun, MotifTrees,
   Header, Footer, ArticleCard, NewsletterInline, ExitIntentNewsletter, MapLightbox,
-  EntranceWaits, WebcamStrip,
+  EntranceWaits, WebcamStrip, GuidePromo,
 });

@@ -121,7 +121,16 @@ function ConditionsPage({
       e.preventDefault();
       go("itineraries");
     }
-  }, "itineraries"), " ", "adjust to what is open.")), React.createElement("div", {
+  }, "itineraries"), " ", "adjust to what is open.")), React.createElement(GuidePromo, {
+    go: go,
+    location: "conditions",
+    title: "Past the entrance, this page stops loading.",
+    body: "Most of the park has no signal. The Field Guide app is built for exactly that: offline maps, 50-plus stops with parking and timing notes, and a trip planner that works from the trailhead.",
+    style: {
+      maxWidth: 680,
+      marginBottom: 56
+    }
+  }), React.createElement("div", {
     style: {
       maxWidth: 680,
       marginBottom: 96

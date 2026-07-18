@@ -1307,6 +1307,59 @@ function WebcamStrip() {
     }
   }, "Yosemite Conservancy / Pixelcaster")));
 }
+var GUIDE_PROMO_APP_BASE = typeof window !== "undefined" && window.GUIDE_APP_BASE || "https://talus-field-guide.pages.dev";
+function GuidePromo({
+  go,
+  location,
+  title,
+  body,
+  cta,
+  sample = true,
+  style
+}) {
+  return React.createElement("div", {
+    style: style
+  }, React.createElement("a", {
+    className: "band-guide",
+    href: "/guide",
+    onClick: e => {
+      e.preventDefault();
+      if (window.track) window.track("guide_cta_click", {
+        location: location || "unknown"
+      });
+      if (go) go("guide");else window.location.href = "/guide";
+    }
+  }, React.createElement("div", {
+    className: "band-guide__eyebrow"
+  }, "The Field Guide · $19 · Offline app"), React.createElement("div", {
+    className: "band-guide__title",
+    style: {
+      marginBottom: 10
+    }
+  }, title || "The park, in your pocket."), React.createElement("p", {
+    className: "band-guide__body"
+  }, body || "The app version of this journal: 50-plus stops with parking and timing notes, offline maps, a trip planner, and the secret guide. Works with no signal, which is most of the park. One purchase, eighteen months of access."), React.createElement("div", {
+    className: "mono band-guide__cta"
+  }, cta || "See the Field Guide →")), sample && React.createElement("p", {
+    style: {
+      fontFamily: "var(--sans)",
+      fontSize: 13,
+      color: "var(--ink-3)",
+      lineHeight: 1.6,
+      margin: "10px 0 0"
+    }
+  }, "Not sure yet? Five entries are free to read, no email required:", " ", React.createElement("a", {
+    href: `${GUIDE_PROMO_APP_BASE}/preview`,
+    onClick: () => {
+      if (window.track) window.track("guide_sample_click", {
+        location: location || "unknown"
+      });
+    },
+    style: {
+      color: "var(--ink-2)"
+    }
+  }, "preview the guide →")));
+}
 Object.assign(window, {
   Placeholder,
   ResponsiveImage,
@@ -1324,5 +1377,6 @@ Object.assign(window, {
   ExitIntentNewsletter,
   MapLightbox,
   EntranceWaits,
-  WebcamStrip
+  WebcamStrip,
+  GuidePromo
 });

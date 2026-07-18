@@ -1,4 +1,4 @@
-/* global React, WebcamStrip, NewsletterInline, Breadcrumbs */
+/* global React, WebcamStrip, NewsletterInline, Breadcrumbs, GuidePromo */
 
 // =============================================================================
 // THE FIREFALL — `/firefall` route. The first evergreen event page
@@ -129,6 +129,16 @@ function FirefallPage({ go }) {
             </a>
           </p>
         </section>
+
+        {/* The purchase ask: a firefall reader is planning a February trip
+            around one shot in a cold, signal-less valley. */}
+        <GuidePromo
+          go={go}
+          location="firefall"
+          title="Planning the February trip around it?"
+          body="The Field Guide app carries the winter stops, parking notes for the viewing areas, offline maps for a park with no signal, and a day-by-day planner for the rest of the trip. One purchase, eighteen months of access."
+          style={{ marginTop: 56, marginBottom: 40 }}
+        />
 
         <NewsletterInline
           location="firefall"

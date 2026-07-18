@@ -256,7 +256,15 @@ function BulletinPage({
       e.preventDefault();
       go("conditions");
     }
-  }, "webcams, entrance waits, and forecasts →"))), React.createElement(NewsletterInline, {
+  }, "webcams, entrance waits, and forecasts →"))), React.createElement(GuidePromo, {
+    go: go,
+    location: "now",
+    title: "The Bulletin covers the week. This covers the trip.",
+    body: "The Field Guide app: 50-plus stops with parking and timing notes, offline maps, a trip planner, and the secret guide. Works with no signal, which is most of the park. One purchase, eighteen months of access.",
+    style: {
+      marginTop: 56
+    }
+  }), React.createElement(NewsletterInline, {
     location: "now",
     tag: "now",
     heading: "When the next edition drops, hear about it",

@@ -1,4 +1,4 @@
-/* global React, NewsletterInline */
+/* global React, NewsletterInline, GuidePromo */
 
 function ChecklistPage({ go }) {
   const sectionStyle = {
@@ -180,6 +180,16 @@ function ChecklistPage({ go }) {
             <li><a href="/planning" onClick={(e) => { e.preventDefault(); go("planning"); }}>The full Yosemite Planning Guide</a></li>
           </ul>
         </section>
+
+        {/* The purchase ask: checklist readers have dates and are packing,
+            the highest purchase intent on the site. */}
+        <GuidePromo
+          go={go}
+          location="checklist"
+          title="The checklist rides along."
+          body="The Field Guide app packs a night-before checklist next to 50-plus stops with parking and timing notes, offline maps, and a trip planner. Everything this page prepares you for, on your phone, with no signal required."
+          style={{ marginBottom: 56 }}
+        />
 
         {/* Newsletter capture */}
         <div className="checklist-section">
