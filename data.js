@@ -797,7 +797,7 @@ window.ARTICLES = [
     cat: "planning",
     title: "Where to Stay Inside Yosemite: Every In-Park Option, Honestly Ranked",
     dek: "Six in-park options, one concessioner, and almost nothing in common: the Ahwahnee's real value, the Lodge's unbeatable address, Curry Village's canvas tradeoffs, the Housekeeping Camp sleeper pick, and the 366-day booking game that decides all of it.",
-    seoDek: "Every place to stay inside Yosemite, ranked: the Ahwahnee, Valley Lodge, Curry Village, Housekeeping Camp, the high-country camps, plus the 366-day booking strategy.",
+    seoDek: "Every place to stay inside Yosemite, ranked: the Ahwahnee, Valley Lodge, Curry Village, Housekeeping Camp, high-country camps, and the 366-day booking game.",
     date: "July 12, 2026",
     isoDate: "2026-07-12",
     isoModified: "2026-07-14",
