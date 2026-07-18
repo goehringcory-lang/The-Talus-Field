@@ -86,9 +86,9 @@ export default function TripReview({ slotted, windowDays, filenameDate }: Props)
             {overflow.length > 0 && (
               <div className="trip-review__overflow">
                 <p className="trip-review__overflow-note">
-                  {overflow.length === 1 ? "This doesn't" : "These don't"} fit in the day's
-                  schedule before 9 p.m. Unresolved, each goes on the calendar as an all-day
-                  event: set a time, move it, or drop it.
+                  This day is too full. {overflow.length === 1 ? 'This item does not' : 'These items do not'}{' '}
+                  fit before 9 p.m. Give each one a time, move it to another day, or remove it.
+                  Items left without a time go on your calendar as all-day events.
                 </p>
                 {overflow.map((s) => {
                   const { item } = s
@@ -147,8 +147,8 @@ export default function TripReview({ slotted, windowDays, filenameDate }: Props)
         {missingCount > 0 && (
           <p className="trip-review__overflow-note">
             {missingCount} planned {missingCount === 1 ? 'stop is' : 'stops are'} no longer in
-            the guide and won't be exported. Remove {missingCount === 1 ? 'it' : 'them'} in the
-            agenda above.
+            the guide, so {missingCount === 1 ? 'it' : 'they'} can't go on the calendar. Remove{' '}
+            {missingCount === 1 ? 'it' : 'them'} in your days above.
           </p>
         )}
         <p className="trip-review__summary">

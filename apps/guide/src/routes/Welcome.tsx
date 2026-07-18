@@ -29,16 +29,15 @@ function InstallStep() {
     return (
       <p>
         Tap <span className="install-banner__key">&#x2B06;</span> Share in Safari, then{' '}
-        <strong>Add to Home Screen</strong>. The guide gets its own icon and opens
-        full-screen, and iOS gives installed apps more durable offline storage.
+        <strong>Add to Home Screen</strong>. The guide gets its own icon, opens like an
+        app, and keeps its downloads safe.
       </p>
     )
   }
   return (
     <>
       <p>
-        Installing gives the guide its own icon and a full-screen window, and makes the
-        offline storage more durable.
+        Installing gives the guide its own icon and keeps its downloads safe.
       </p>
       {event ? (
         <Button size="sm" onClick={() => void prompt()}>
@@ -46,8 +45,8 @@ function InstallStep() {
         </Button>
       ) : (
         <p>
-          If your browser offers <strong>Install app</strong> in its menu, use that. You can
-          also do this later; nothing below depends on it.
+          If your browser has <strong>Install app</strong> in its menu, use that. You can
+          also skip this; nothing below needs it.
         </p>
       )}
     </>
@@ -76,18 +75,16 @@ export default function Welcome() {
       <main className="wrap wrap--narrow page">
         <PageHeader
           eyebrow="The Field Guide · Setup"
-          title="Two minutes now saves you in the canyon."
-          intro="Most of Yosemite has no cell signal. The guide is built for that, but only after this page's downloads are on your phone."
+          title="Three steps before you go."
+          intro="Most of Yosemite has no cell signal. Do these steps while you have wifi, and the whole guide will work anywhere in the park."
         />
 
         <section className="page-section">
           <span className="eyebrow">1 · It works offline</span>
           <p>
-            Every stop write-up, checklist, and GPS coordinate is part of the app itself.
-            Once you finish this page, airplane mode changes nothing: the regions, the
-            Secret Guide, search, and your trip plan all keep working. Only the live
-            layers (program listings, weather) need a connection to refresh, and both
-            fall back to the last copy they synced.
+            The whole guide is stored on your phone: every stop, checklist, and GPS point.
+            Airplane mode changes nothing. Only the weather and the program listings need
+            signal to update, and even those keep showing their last saved copy.
           </p>
         </section>
 
@@ -99,21 +96,21 @@ export default function Welcome() {
         <section className="page-section">
           <span className="eyebrow">3 · Download the offline packs</span>
           <p>
-            The photos and the park map are the only parts that need a real download. Do
-            this on wifi, the night before you drive in.
+            The photos and the park map are big files. Download them on wifi, the night
+            before you drive in.
           </p>
           <DownloadManager />
         </section>
 
         <div className="page-section">
-          <Button onClick={finish}>Done, into the guide →</Button>
+          <Button onClick={finish}>Done. Open the guide →</Button>
         </div>
 
         <p className="page-footnote">
           <Button variant="quiet" size="sm" onClick={finish}>
             Skip for now
           </Button>
-          {' '}· Everything here is repeatable later from Account → Offline.
+          {' '}· You can come back to all of this later on the Account page.
         </p>
       </main>
     </div>

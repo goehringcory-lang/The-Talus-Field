@@ -130,9 +130,8 @@ function AccessStatusCard() {
         <>
           <div className="card__value">Ended {formatAccessDate(me.expiresAt)}</div>
           <p className="card__note">
-            Your 18-month access period has ended. The one-click renewal link is in
-            the reminder emails we sent as the date approached; if you can't find
-            them, email{' '}
+            Your access has ended. The renewal link is in the reminder emails we sent
+            you. Can't find them? Email{' '}
             <a href="mailto:cory@thetalusfieldjournal.com">cory@thetalusfieldjournal.com</a>{' '}
             and a fresh link comes back.
           </p>
@@ -147,7 +146,7 @@ function AccessStatusCard() {
             </p>
           ) : (
             <p className="card__note">
-              Everything you download keeps working offline for the full window.
+              Everything you download keeps working offline until this date.
             </p>
           )}
           {renewOutcome === 'cancel' && (
@@ -161,8 +160,8 @@ function AccessStatusCard() {
                 </Button>
               </div>
               <p className="card__note" style={{ marginTop: 8 }}>
-                Renewing early stacks on your current time. Trips, favorites,
-                downloads, and sign-in all carry over.
+                Renewing early adds time on top of what you have. You keep your trips,
+                saved stops, and downloads.
               </p>
               {renewError && <p className="card__note">{renewError}</p>}
             </>

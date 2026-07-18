@@ -99,8 +99,8 @@ export default function CalendarCard() {
     <section aria-label="Calendar">
       <div className="eyebrow" style={{ marginBottom: 6 }}>Calendar</div>
       <p style={noteStyle}>
-        Put your trip plan on your own calendar. Connect Google to have events dropped straight
-        in and kept in step with every edit, or subscribe from Apple Calendar.
+        Put your trip plan on your own calendar. Connect Google and events drop straight in
+        and stay up to date, or set up Apple Calendar below.
       </p>
       <GoogleCalendarSection feedCtl={feedCtl} />
       <AppleCalendarSection feedCtl={feedCtl} />
@@ -313,7 +313,7 @@ function GoogleFeedFallback({ feedCtl, online }: { feedCtl: FeedControls; online
     try {
       await feedCtl.publish()
     } catch {
-      setError('Could not publish the feed. Try again when you have signal.')
+      setError('Could not finish the setup. Try again when you have signal.')
     }
   }
 
@@ -333,9 +333,8 @@ function GoogleFeedFallback({ feedCtl, online }: { feedCtl: FeedControls; online
       {!feedCtl.feed ? (
         <>
           <p style={noteStyle}>
-            Direct connect isn't available yet, but a subscription does the same job: publish
-            your plan at a private link, add it to Google Calendar once, and it follows every
-            edit you make here.
+            Direct connect isn't available yet, but a private link does the same job. Set it
+            up once, add it to Google Calendar, and it follows every change you make here.
           </p>
           {online ? (
             <Button onClick={setUp} disabled={feedCtl.busy}>
@@ -348,23 +347,23 @@ function GoogleFeedFallback({ feedCtl, online }: { feedCtl: FeedControls; online
       ) : (
         <>
           <p style={noteStyle}>
-            Your subscription link is live. Add it to Google once below; it arrives as its own
-            calendar named Yosemite trip and follows every edit you make here.
+            Your link is ready. Add it to Google once below. Your trip shows up as its own
+            calendar, named Yosemite trip, and follows every change you make here.
           </p>
           <div style={{ display: 'grid', gap: 10, marginBottom: 4 }}>
             <Button href={googleCalendarSubscribeUrl(feedCtl.feed.feedUrl)} external>
               Add to Google Calendar
             </Button>
             <Button variant="ghost" onClick={copyLink}>
-              {copied ? 'Copied' : 'Copy feed link'}
+              {copied ? 'Copied' : 'Copy the link'}
             </Button>
           </div>
           <p style={mutedStyle}>
-            Google only accepts a new subscription from a computer browser, never its phone app:
-            on a phone, copy the feed link and add it later at calendar.google.com, under Other
-            calendars, From URL. Once added it syncs to the phone app on its own. Updated{' '}
-            {relativeStamp(feedCtl.feed.updatedAt)}. Google refreshes subscriptions on its own
-            schedule, usually within a day.
+            Google only lets you add a calendar link from a computer browser, not from its
+            phone app. On a phone, copy the link and add it later at calendar.google.com,
+            under Other calendars, From URL. After that it syncs to the phone app on its own.
+            Last update {relativeStamp(feedCtl.feed.updatedAt)}. Google checks for changes on
+            its own schedule, usually within a day.
           </p>
         </>
       )}
@@ -384,7 +383,7 @@ function AppleCalendarSection({ feedCtl }: { feedCtl: FeedControls }) {
     try {
       await feedCtl.publish()
     } catch {
-      setError('Could not publish the feed. Try again when you have signal.')
+      setError('Could not finish the setup. Try again when you have signal.')
     }
   }
 
@@ -393,7 +392,7 @@ function AppleCalendarSection({ feedCtl }: { feedCtl: FeedControls }) {
     try {
       await feedCtl.stop()
     } catch {
-      setError('Could not reach the server to stop the feed. Try again.')
+      setError('Could not reach the server to turn it off. Try again.')
     }
   }
 
@@ -404,7 +403,7 @@ function AppleCalendarSection({ feedCtl }: { feedCtl: FeedControls }) {
       {!feedCtl.feed ? (
         <>
           <p style={noteStyle}>
-            Apple has no direct connect, so this adds a subscription your iPhone or Mac refreshes
+            Apple has no direct connect, so this makes a private link your iPhone or Mac checks
             on its own. Set it up once.
           </p>
           {online ? (
@@ -418,17 +417,17 @@ function AppleCalendarSection({ feedCtl }: { feedCtl: FeedControls }) {
       ) : (
         <>
           <p style={noteStyle}>
-            Your subscription is live. Add it once below; after that Apple Calendar refreshes it on
-            its own schedule.
+            Your link is ready. Add it once below. After that, Apple Calendar keeps it up to
+            date on its own schedule.
           </p>
           <Button href={webcalUrl(feedCtl.feed.feedUrl)}>Open in Apple Calendar</Button>
           <p style={mutedStyle}>
-            Updated {relativeStamp(feedCtl.feed.updatedAt)}. Apple refreshes subscriptions per its Fetch
-            New Data setting, so same-day edits can lag; the trip page's one-time file is instant.
+            Last update {relativeStamp(feedCtl.feed.updatedAt)}. Apple checks for changes on its
+            own schedule, so same-day edits can lag. The trip page's one-time file is instant.
           </p>
           <div style={{ marginTop: 12 }}>
             <Button variant="quiet" onClick={stop} disabled={feedCtl.busy || !online}>
-              {feedCtl.busy ? 'Working…' : 'Stop the feed'}
+              {feedCtl.busy ? 'Working…' : 'Turn off calendar sync'}
             </Button>
           </div>
         </>

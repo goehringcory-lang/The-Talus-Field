@@ -11,7 +11,7 @@ function statusLabel(status: PackStatus): string {
     case 'done':
       return 'Downloaded'
     case 'stale':
-      return 'Needs re-download'
+      return 'Needs a fresh download'
     case 'error':
       return status.message
   }
@@ -56,7 +56,7 @@ function Row({
         )}
         {!downloading && status.state !== 'done' && (
           <button type="button" className="download-row__btn" onClick={onDownload}>
-            {status.state === 'stale' || status.state === 'error' ? 'Re-download' : 'Download'}
+            {status.state === 'stale' || status.state === 'error' ? 'Download again' : 'Download'}
           </button>
         )}
         {status.state === 'done' && (
@@ -94,15 +94,15 @@ export default function DownloadManager() {
     <section aria-label="Offline downloads">
       <div className="eyebrow" style={{ marginBottom: 6 }}>Offline</div>
       <p style={{ color: 'var(--ink-2)', fontSize: 14, lineHeight: 1.55, margin: '0 0 8px' }}>
-        Download the guide before you leave wifi. Everything below together is
-        about {formatBytes(totalBytes)}; once it's on the device, the whole app
-        works in airplane mode.
+        Download these while you have wifi. All of it together is about{' '}
+        {formatBytes(totalBytes)}. Once it finishes, the whole guide works with
+        no signal.
       </p>
       {isIOS() && !isStandalonePWA() && (
         <p style={{ color: 'var(--ink-3)', fontSize: 13, lineHeight: 1.55, margin: '0 0 8px' }}>
-          On iPhone or iPad, add the app to your home screen first (Share →
-          Add to Home Screen). Safari can clear storage for websites it thinks
-          are idle; installed apps keep their downloads.
+          On iPhone or iPad, add the guide to your home screen first: tap Share,
+          then Add to Home Screen. Safari can clear downloads for plain websites;
+          installed apps keep theirs.
         </p>
       )}
 

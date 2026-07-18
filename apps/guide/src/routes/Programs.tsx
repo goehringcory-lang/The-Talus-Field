@@ -248,7 +248,7 @@ export default function Programs() {
         <PageHeader
           eyebrow="What's on in the park"
           title="Programs during your trip"
-          intro="Ranger walks, Junior Ranger tables, Conservancy programs, tours, and star parties, day by day for the dates you pick. Sync while you have signal; the list stays readable in the park without it."
+          intro="Ranger walks, tours, star parties, and more, day by day for the dates you pick. Update the list while you have signal. You can still read it in the park with no signal."
         />
 
         <div className="programs-dates">
@@ -273,30 +273,30 @@ export default function Programs() {
             />
           </label>
           <Button onClick={sync} disabled={loading || !spanOk}>
-            {loading ? 'Syncing…' : 'Sync now'}
+            {loading ? 'Updating…' : 'Update list'}
           </Button>
         </div>
 
         <div className="programs-sync" aria-live="polite">
           {syncedAt ? (
             <span>
-              Listings synced {relativeTime(syncedAt)}
+              List updated {relativeTime(syncedAt)}
               {offline
                 ? failure === 'server'
-                  ? ' · sync failed, showing listings saved earlier'
+                  ? ' · update failed, showing the saved list'
                   : ' · showing the copy saved on this device'
                 : ''}
             </span>
           ) : (
-            <span>Not synced yet. Pick your dates and sync while you have signal.</span>
+            <span>Not updated yet. Pick your dates, then tap Update list while you have signal.</span>
           )}
         </div>
 
         {showStaleWarning && (
           <Callout tone="warn">
             {coverage === 'partial'
-              ? 'The saved listings only cover part of these dates. Sync again when you have signal.'
-              : 'Listings were saved earlier and programs do change. Cross-check the Yosemite Guide or a visitor center bulletin board for cancellations.'}
+              ? 'The saved list only covers part of these dates. Update again when you have signal.'
+              : 'This list was saved a while ago, and programs do change. Check the Yosemite Guide or a visitor center board for cancellations.'}
           </Callout>
         )}
         {error && allEvents.length === 0 && seasonalWindows.length === 0 && (
@@ -304,8 +304,8 @@ export default function Programs() {
         )}
         {error && (allEvents.length > 0 || seasonalWindows.length > 0) && (
           <Callout tone="warn">
-            Live listings did not load. The seasonal almanac below ships with the guide and works
-            without signal; sync again for ranger programs and operator events.
+            The live list did not load. The seasonal events below are built into the guide and
+            always work. Update again when you have signal to get ranger programs and tours.
           </Callout>
         )}
 
@@ -372,7 +372,7 @@ export default function Programs() {
         {loading && allEvents.length === 0 && <ProgramsSkeleton />}
 
         {byDay.length === 0 && !loading && allEvents.length === 0 && !error && (
-          <EmptyState note="Nothing listed for these dates yet. Programs post seasonally; sync again closer to your trip, and check the Yosemite Guide PDF for the printed schedule." />
+          <EmptyState note="Nothing is listed for these dates yet. Programs are posted closer to the season. Update again nearer your trip, and check the Yosemite Guide PDF for the printed schedule." />
         )}
         {byDay.length === 0 && allEvents.length > 0 && (
           <EmptyState note="Nothing matches the current filters." />
@@ -414,11 +414,11 @@ export default function Programs() {
         ))}
 
         <p className="page-footnote">
-          Program listings sourced from the National Park Service, with Yosemite Conservancy,
-          Yosemite Hospitality, and astronomy-club schedules added by hand. The seasonal almanac
-          (full moons, road opening patterns, waterfall windows) ships with the guide; entries
-          marked "typical window" describe a historical pattern, not a published date. Listings
-          change; the operators' own pages are authoritative.
+          Program listings come from the National Park Service, with Yosemite Conservancy,
+          Yosemite Hospitality, and astronomy-club schedules added by hand. The seasonal events
+          (full moons, road openings, waterfall windows) are built into the guide; entries
+          marked "typical window" describe most years, not a published date. Listings change;
+          the operators' own pages are the final word.
         </p>
       </main>
     </GatedChrome>
