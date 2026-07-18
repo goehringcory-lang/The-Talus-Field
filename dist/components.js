@@ -276,6 +276,62 @@ function EntranceWaits() {
     }, name, " ", min == null ? "n/a" : formatWaitMinutes(min)));
   }));
 }
+var rockfallReleased = false;
+var ROCKFALL_SHAPES = ['<svg viewBox="0 0 20 20"><polygon points="3,7 11,2 18,6 16,15 6,17" fill="#cfccbd" stroke="#262b23" stroke-width="2" stroke-linejoin="round"/><polyline points="3,7 10,9 16,15" fill="none" stroke="#262b23" stroke-width="1.4"/><line x1="10" y1="9" x2="11" y2="2" stroke="#262b23" stroke-width="1.4"/></svg>', '<svg viewBox="0 0 20 20"><polygon points="10,1 18,8 13,18 4,14 2,6" fill="#b3b1a3" stroke="#262b23" stroke-width="2" stroke-linejoin="round"/><polyline points="2,6 9,9 13,18" fill="none" stroke="#262b23" stroke-width="1.4"/></svg>', '<svg viewBox="0 0 20 20"><polygon points="2,9 9,4 18,7 17,13 7,16" fill="#8f8e81" stroke="#262b23" stroke-width="2" stroke-linejoin="round"/><line x1="9" y1="4" x2="10" y2="15" stroke="#262b23" stroke-width="1.4"/></svg>', '<svg viewBox="0 0 20 20"><polygon points="4,5 14,3 17,10 12,17 3,13" fill="#4a5540" stroke="#262b23" stroke-width="2" stroke-linejoin="round"/><polyline points="4,5 10,10 12,17" fill="none" stroke="#262b23" stroke-width="1.4"/></svg>'];
+function releaseRockfall(markEl) {
+  if (rockfallReleased || !markEl) return;
+  if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  if (typeof markEl.animate !== "function") return;
+  rockfallReleased = true;
+  var rect = markEl.getBoundingClientRect();
+  var layer = document.createElement("div");
+  layer.className = "rockfall";
+  layer.setAttribute("aria-hidden", "true");
+  document.body.appendChild(layer);
+  var count = 6 + Math.floor(Math.random() * 3);
+  var live = count;
+  var _loop = function () {
+    var size = 7 + Math.random() * 9;
+    var rock = document.createElement("div");
+    rock.className = "rockfall__rock";
+    rock.innerHTML = ROCKFALL_SHAPES[Math.floor(Math.random() * ROCKFALL_SHAPES.length)];
+    var startY = rect.top + rect.height * (0.55 + Math.random() * 0.35);
+    rock.style.left = `${rect.left + rect.width * (0.15 + Math.random() * 0.7)}px`;
+    rock.style.top = `${startY}px`;
+    rock.style.width = `${size}px`;
+    rock.style.height = `${size}px`;
+    layer.appendChild(rock);
+    var fall = window.innerHeight - startY + size * 2;
+    var drift = (Math.random() - 0.5) * 90;
+    var hop = -(4 + Math.random() * 10);
+    var spin = (Math.random() < 0.5 ? -1 : 1) * (140 + Math.random() * 420);
+    var done = () => {
+      rock.remove();
+      if (--live === 0) layer.remove();
+    };
+    var anim = rock.animate([{
+      transform: "translate(0, 0) rotate(0deg)"
+    }, {
+      transform: `translate(${drift * 0.2}px, ${hop}px) rotate(${spin * 0.12}deg)`,
+      offset: 0.12
+    }, {
+      transform: `translate(${drift}px, ${fall}px) rotate(${spin}deg)`
+    }], {
+      duration: 900 + Math.random() * 700 + fall * 0.25,
+      delay: Math.random() * 260,
+      easing: "cubic-bezier(0.45, 0.05, 0.85, 0.5)",
+      fill: "forwards"
+    });
+    anim.onfinish = done;
+    anim.oncancel = done;
+  };
+  for (var i = 0; i < count; i++) {
+    _loop();
+  }
+  setTimeout(() => {
+    if (layer.parentNode) layer.remove();
+  }, 5000);
+}
 function Header({
   current,
   go
@@ -408,6 +464,7 @@ function Header({
     href: "/",
     onClick: e => {
       e.preventDefault();
+      releaseRockfall(e.currentTarget.querySelector(".brand__mark"));
       go("home");
     },
     style: {

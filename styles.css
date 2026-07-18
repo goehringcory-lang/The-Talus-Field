@@ -349,6 +349,21 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
   width: auto;
   flex-shrink: 0;
 }
+/* Rockfall easter egg: a viewport-fixed overlay the masthead script fills
+   with tiny SVG rocks on the first logo click. It layers above everything,
+   catches no pointer events, and is removed once the rocks land. */
+.rockfall {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 1200;
+}
+.rockfall__rock {
+  position: absolute;
+  will-change: transform;
+}
+.rockfall__rock svg { display: block; width: 100%; height: 100%; }
 .nav {
   display: flex;
   align-items: center;
