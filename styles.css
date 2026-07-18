@@ -3906,3 +3906,81 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
   .bulletin-alerts ul, .bulletin-events { columns: 1; }
   .bulletin-event__date { flex-basis: 92px; }
 }
+
+/* ===== Field Guide sales page (July 2026 conversion pass) =====
+   Stat row under the hero dek, the phone-screenshot strip, and the
+   end-of-pitch closer box. All var-driven, so dark mode follows. */
+
+.guide-stats {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 24px;
+  border: 1px solid var(--ink);
+  background: var(--paper-2);
+  width: fit-content;
+}
+.guide-stats span {
+  font-family: var(--sans);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-weight: 600;
+  color: var(--ink-2);
+  padding: 10px 16px;
+  border-right: 1px solid var(--rule-soft);
+}
+.guide-stats span:last-child { border-right: 0; }
+
+/* The strip lives inside the guide page's inline two-column grid. Grid items
+   default to min-width:auto, so without this the strip's intrinsic width
+   blows the .prose column out to full page width and shoves the buy box
+   below the fold. */
+[style*="grid-template-columns"] > .prose { min-width: 0; }
+
+.app-shots {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  padding: 8px 2px 16px;
+  margin: 28px 0 12px;
+}
+.app-shot {
+  flex: 0 0 236px;
+  margin: 0;
+  scroll-snap-align: start;
+}
+.app-shot__frame {
+  border: 1px solid var(--ink);
+  border-radius: 24px;
+  padding: 8px;
+  background: var(--paper-2);
+  box-shadow: 5px 5px 0 var(--rule-soft);
+}
+.app-shot__frame img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 17px;
+}
+.app-shot__caption {
+  font-family: var(--sans);
+  font-size: 12px;
+  line-height: 1.55;
+  color: var(--ink-3);
+  margin: 12px 2px 0;
+}
+
+.guide-closer {
+  border: 1px solid var(--ink);
+  background: var(--paper-2);
+  padding: 28px;
+  margin-top: 44px;
+}
+
+@media (max-width: 720px) {
+  .guide-stats span { padding: 8px 12px; font-size: 10px; }
+  .app-shot { flex-basis: 208px; }
+  .guide-closer { padding: 22px 18px; }
+}

@@ -57,12 +57,25 @@ function formatReopens(iso) {
   }
 }
 
+// "2026-07" (the API's monthLabel) -> "July". Derived at runtime, never
+// hard-coded, same rule as the masthead issue label.
+function monthNameFromLabel(label) {
+  try {
+    const [y, m] = String(label).split("-").map(Number);
+    if (!y || !m) return null;
+    return new Date(Date.UTC(y, m - 1, 1)).toLocaleDateString("en-US", { month: "long", timeZone: "UTC" });
+  } catch (_e) {
+    return null;
+  }
+}
+
 function GuideBuyBox() {
   const [busy, setBusy] = React.useState(false);
   const [soldOut, setSoldOut] = React.useState(null); // { reopens } or null
   const [error, setError] = React.useState(null);
   const [outcome] = React.useState(readCheckoutOutcome);
   const [priceCents, setPriceCents] = React.useState(GUIDE_PRICE_FALLBACK_CENTS);
+  const [batch, setBatch] = React.useState(null); // { left, cap, month } or null
   const [giftMode, setGiftMode] = React.useState(false);
   const [giftEmail, setGiftEmail] = React.useState("");
   const [giftNote, setGiftNote] = React.useState("");
@@ -72,8 +85,25 @@ function GuideBuyBox() {
     fetch(`${GUIDE_API_BASE}/api/inventory`)
       .then((res) => (res.ok ? res.json() : null))
       .then((body) => {
-        if (!cancelled && body && Number.isFinite(body.priceCents) && body.priceCents > 0) {
+        if (cancelled || !body) return;
+        if (Number.isFinite(body.priceCents) && body.priceCents > 0) {
           setPriceCents(body.priceCents);
+        }
+        // The monthly cap is enforced server-side (checkout 409s at the cap),
+        // so the counter is real inventory, not decoration. Only render it
+        // when the numbers hold together.
+        if (
+          Number.isFinite(body.cap) &&
+          body.cap > 0 &&
+          Number.isFinite(body.sold) &&
+          body.sold >= 0 &&
+          body.cap - body.sold > 0
+        ) {
+          setBatch({
+            left: body.cap - body.sold,
+            cap: body.cap,
+            month: monthNameFromLabel(body.monthLabel),
+          });
         }
       })
       .catch(() => {});
@@ -119,12 +149,17 @@ function GuideBuyBox() {
   }
 
   return (
-    <aside style={{ position: "sticky", top: 100, alignSelf: "start", border: "1px solid var(--ink)", padding: 32, background: "var(--paper-2)" }}>
+    <aside id="guide-buy" style={{ position: "sticky", top: 100, alignSelf: "start", border: "1px solid var(--ink)", padding: 32, background: "var(--paper-2)" }}>
       <div className="eyebrow eyebrow--moss" style={{ marginBottom: 14 }}>The Field Guide</div>
       <div style={{ fontFamily: "var(--display)", fontSize: 44, lineHeight: 1.05, fontWeight: 500, marginBottom: 8 }}>{formatPrice(priceCents)}.</div>
-      <div style={{ fontFamily: "var(--sans)", fontSize: 12, textTransform: "uppercase", letterSpacing: "0.14em", color: "var(--ink-3)", fontWeight: 600, marginBottom: 24 }}>
+      <div style={{ fontFamily: "var(--sans)", fontSize: 12, textTransform: "uppercase", letterSpacing: "0.14em", color: "var(--ink-3)", fontWeight: 600, marginBottom: batch ? 10 : 24 }}>
         Offline app · 2026 Edition
       </div>
+      {batch && (
+        <div style={{ fontFamily: "var(--sans)", fontSize: 12.5, color: "var(--moss)", fontWeight: 600, lineHeight: 1.5, marginBottom: 24 }}>
+          Sold in monthly batches. {batch.left} of {batch.cap}{batch.month ? ` ${batch.month}` : ""} copies left.
+        </div>
+      )}
 
       {outcome === "success" && (
         <p style={{ fontFamily: "var(--sans)", fontSize: 14, color: "var(--ink)", lineHeight: 1.55, margin: "0 0 18px", border: "1px solid var(--ink)", padding: "12px 14px", background: "var(--paper)" }}>
@@ -190,12 +225,15 @@ function GuideBuyBox() {
             className="btn"
             disabled={busy}
             onClick={startCheckout}
-            style={{ display: "block", width: "100%", textAlign: "center", border: 0, font: "inherit", cursor: busy ? "wait" : "pointer", marginBottom: 14 }}
+            style={{ display: "block", width: "100%", textAlign: "center", border: 0, font: "inherit", cursor: busy ? "wait" : "pointer", marginBottom: 10 }}
           >
             {busy
               ? "Opening checkout…"
               : `${giftMode ? "Gift the guide" : "Buy the guide"} → ${formatPrice(priceCents)}`}
           </button>
+          <p style={{ fontFamily: "var(--sans)", fontSize: 12, color: "var(--ink-3)", lineHeight: 1.55, margin: "0 0 14px" }}>
+            Checkout by Stripe. Your access code arrives by email in about a minute.
+          </p>
         </React.Fragment>
       )}
 
@@ -206,21 +244,22 @@ function GuideBuyBox() {
       )}
 
       <p style={{ fontFamily: "var(--serif)", fontSize: 14, color: "var(--ink-2)", lineHeight: 1.55, margin: 0 }}>
-        One payment. The app, every photo, and the offline park map are yours for 18 months on every device you own. Updates push automatically through the 2026 season, including the Secret Guide as it grows.
+        One payment, about a dollar a month over the 18 months. The app, every photo, and the offline park map are yours on every device you own. Updates push automatically through the 2026 season, including the Secret Guide as it grows.
       </p>
 
-      <p style={{ fontFamily: "var(--sans)", fontSize: 12, color: "var(--ink-3)", lineHeight: 1.55, margin: "12px 0 0" }}>
-        Want to see it first?{" "}
-        <a
-          href={`${GUIDE_APP_BASE}/preview`}
-          onClick={() => {
-            if (window.track) window.track("guide_sample_click", { location: "guide_aside" });
-          }}
-          style={{ color: "var(--ink-2)" }}
-        >
-          Read a free sample of the app →
-        </a>
+      <p style={{ fontFamily: "var(--serif)", fontSize: 14, color: "var(--ink-2)", lineHeight: 1.55, margin: "12px 0 0" }}>
+        If it doesn't earn its place on your home screen, email me and I'll make it right.
       </p>
+
+      <a
+        href={`${GUIDE_APP_BASE}/preview`}
+        onClick={() => {
+          if (window.track) window.track("guide_sample_click", { location: "guide_aside" });
+        }}
+        style={{ display: "block", textAlign: "center", border: "1px solid var(--ink)", padding: "10px 14px", marginTop: 16, fontFamily: "var(--sans)", fontSize: 12, textTransform: "uppercase", letterSpacing: "0.12em", fontWeight: 600, color: "var(--ink)", textDecoration: "none", background: "var(--paper)" }}
+      >
+        Read a free sample first →
+      </a>
 
       <p style={{ fontFamily: "var(--sans)", fontSize: 12, color: "var(--ink-3)", lineHeight: 1.55, margin: "8px 0 0" }}>
         Already bought it? <a href={`${GUIDE_APP_BASE}/login`} style={{ color: "var(--ink-2)" }}>Sign in to the app →</a>
@@ -377,6 +416,107 @@ function GuideWaitlistBox() {
   );
 }
 
+// Unedited screens captured from the 2026 build. Dimensions are fixed so the
+// strip reserves its layout before the images arrive.
+const APP_SHOTS = [
+  {
+    src: "img/guide/app-home.webp",
+    alt: "The Field Guide app's front page: the whole guide indexed on one screen, with how-it-works steps and the seasonal almanac",
+    caption: "The front page. The whole guide indexed on one screen, with the season's closures and full moons already listed.",
+  },
+  {
+    src: "img/guide/app-stop.webp",
+    alt: "A stop page in the app for Tunnel View, showing a tappable GPS coordinate, elevation, and a time budget",
+    caption: "Every stop opens with the numbers that run your day: a tappable GPS coordinate, the elevation, the honest time budget.",
+  },
+  {
+    src: "img/guide/app-stop-swap.webp",
+    alt: "The same stop page scrolled to the 'If full' swap, telling you exactly where to go when the parking lot is full",
+    caption: "The swap, printed on the stop itself. The lot fills at ten, you already know the move.",
+  },
+  {
+    src: "img/guide/app-trip.webp",
+    alt: "The trip planner in the app, showing a day's agenda with start times and drive-time buffers between stops",
+    caption: "The planner lays out each day and inserts real drive-time buffers between stops. One tap puts it on your calendar.",
+  },
+  {
+    src: "img/guide/app-secret-guide.webp",
+    alt: "The Secret Guide section in the app: 35 entries of quiet vistas, hidden trails, and parking moves",
+    caption: "The Secret Guide. 35 entries of quiet vistas, hidden trails, parking moves, and the park after dark.",
+  },
+  {
+    src: "img/guide/app-hikes.webp",
+    alt: "The day-hike catalog in the app, listing every in-park day hike with distance, gain, and difficulty",
+    caption: "All 57 in-park day hikes with distance, gain, and difficulty. Add one and the planner budgets the hours for it.",
+  },
+];
+
+function AppShots() {
+  return (
+    <div className="app-shots" role="list">
+      {APP_SHOTS.map((shot) => (
+        <figure className="app-shot" role="listitem" key={shot.src}>
+          <div className="app-shot__frame">
+            <img src={shot.src} alt={shot.alt} width="640" height="1385" loading="lazy" decoding="async" />
+          </div>
+          <figcaption className="app-shot__caption">{shot.caption}</figcaption>
+        </figure>
+      ))}
+    </div>
+  );
+}
+
+// The end-of-page buy button: same checkout POST as the aside, no gift path.
+// A reader who made it through the whole pitch shouldn't have to scroll back
+// up to act on it.
+function BuyNowButton({ location }) {
+  const [busy, setBusy] = React.useState(false);
+  const [note, setNote] = React.useState(null);
+
+  async function buy() {
+    setBusy(true);
+    setNote(null);
+    if (window.track) window.track("guide_buy_click", { location });
+    try {
+      const res = await fetch(`${GUIDE_API_BASE}/api/checkout/start`, { method: "POST" });
+      const body = await res.json().catch(() => ({}));
+      if (res.status === 409 && body.soldOut) {
+        setNote(`This month's copies are gone. Sales reopen ${formatReopens(body.reopens)}.`);
+        return;
+      }
+      if (!res.ok || !body.url) {
+        throw new Error(body.error || `HTTP ${res.status}`);
+      }
+      window.location = body.url;
+    } catch (_e) {
+      setNote(
+        "Checkout didn't start. Try again in a minute, or email cory@thetalusfieldjournal.com."
+      );
+    } finally {
+      setBusy(false);
+    }
+  }
+
+  return (
+    <React.Fragment>
+      <button
+        type="button"
+        className="btn"
+        disabled={busy}
+        onClick={buy}
+        style={{ border: 0, font: "inherit", cursor: busy ? "wait" : "pointer" }}
+      >
+        {busy ? "Opening checkout…" : "Buy the guide →"}
+      </button>
+      {note && (
+        <p style={{ fontFamily: "var(--sans)", fontSize: 13, color: "var(--moss)", lineHeight: 1.55, margin: "12px 0 0" }}>
+          {note}
+        </p>
+      )}
+    </React.Fragment>
+  );
+}
+
 function GuidePage({ go }) {
   return (
     <div className="page">
@@ -388,6 +528,13 @@ function GuidePage({ go }) {
           <p className="page-head__dek">
             A web app you add to your home screen. Four regional guides with tappable GPS, time budgets, a swap for when the plan dies, an offline topo map of the whole park, the ranger and partner program schedule on your dates, and a trip planner that syncs your days into Google or Apple Calendar and keeps them current when the plan changes. Works at the trailhead when service doesn't. Not a PDF. Not another tourist checklist.
           </p>
+          <div className="guide-stats">
+            <span>4 regions</span>
+            <span>34 stops</span>
+            <span>57 day hikes</span>
+            <span>35 secret entries</span>
+            <span>Works offline</span>
+          </div>
         </div>
       </section>
 
@@ -414,6 +561,24 @@ function GuidePage({ go }) {
             <p>
               This guide assumes you've done that reading. It's the version of the conversation we'd have if you sat across from me at a picnic table in El Portal and said, "I have three days. Show me how to do this well." Which stops are worth your morning, which can wait, where to park, how long each one actually takes, and what to do instead when the lot is full.
             </p>
+
+            <h2>What a wrong morning costs</h2>
+
+            <p>
+              Yosemite charges its real fees in hours. The Glacier Point lot fills by mid-morning in July; arrive at ten and the hour of driving becomes three of circling. Miss the early window at the Mist Trail and the day reorganizes itself around a shuttle line. The $35 your car pays at the entrance covers seven days no matter what you do with them. What those days contain is decided by timing, and timing is exactly what a list of famous viewpoints doesn't give you.
+            </p>
+
+            <p>
+              That's the problem this guide is built against. Time budgets tell you what actually fits before lunch. Swaps tell you where to go the second a lot is full. And because all of it lives on your phone and works without signal, the answer is there at the moment the day wobbles, which is never a moment with bars.
+            </p>
+
+            <h2>Inside the app</h2>
+
+            <p>
+              These are unedited screens from the 2026 edition, the same build buyers open. What you see here is the product, not a mockup.
+            </p>
+
+            <AppShots />
 
             <h2>The regional guides</h2>
 
@@ -514,10 +679,28 @@ function GuidePage({ go }) {
             <h2>One small promise</h2>
 
             <p>
-              If the guide doesn't earn its place on your home screen, write to me and tell me why. I'd rather fix the trip that didn't work than pretend it did. The address is on the contact page.
+              If the guide doesn't earn its place on your home screen, write to me and tell me why, and I'll make it right. I'd rather fix the trip that didn't work than pretend it did. The address is on the contact page.
             </p>
 
-            <p>That's the offer. Nineteen dollars.</p>
+            <div className="guide-closer">
+              <div className="eyebrow eyebrow--moss" style={{ marginBottom: 12 }}>The offer, in one place</div>
+              <p style={{ fontFamily: "var(--serif)", fontSize: 17, lineHeight: 1.6, margin: "0 0 20px" }}>
+                Four regional guides. 34 stops in driving order, each with GPS, a time budget, and a swap. All 57 in-park day hikes. The 35-entry Secret Guide. The park's program schedule on your dates. A trip planner that syncs to your calendar and an offline map that holds it all together. Nineteen dollars, once, for 18 months on every device you own.
+              </p>
+              <BuyNowButton location="guide_closer" />
+              <p style={{ fontFamily: "var(--sans)", fontSize: 12, color: "var(--ink-3)", lineHeight: 1.55, margin: "14px 0 0" }}>
+                Checkout by Stripe. Your access code arrives by email in about a minute. Prefer to look first?{" "}
+                <a
+                  href={`${GUIDE_APP_BASE}/preview`}
+                  onClick={() => {
+                    if (window.track) window.track("guide_sample_click", { location: "guide_closer" });
+                  }}
+                  style={{ color: "var(--ink-2)" }}
+                >
+                  Read the free sample →
+                </a>
+              </p>
+            </div>
           </div>
 
           {/* Right column. Sticky buy box while on sale, waitlist before. */}
