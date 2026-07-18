@@ -63,10 +63,11 @@ All events fire through `window.track`. Names and where they fire:
 | `guide_teaser_click` | page-map.jsx (trip next-steps card), page-article.jsx (article-end line, trails/planning) — with `location` |
 | `itinerary_open_map` | page-itineraries.jsx ("Open this trip on the map", with `itinerary`) |
 | `home_utility_click` | page-home.jsx ("Plan your trip" row, with `target`) |
+| `trip_month_select` | page-home.jsx ("When are you going?" chip row, with `month`; `cleared` on deselect) |
 | `article_share` | components.jsx (ShareRow on article pages; `method` = web-share or copy) |
 | `series_band_click` | page-article.jsx (Planning Guide series band; `from`/`to` slugs, `to: planning-hub` for the hub link) |
 | `toc_jump` | page-article.jsx (in-guide table-of-contents jumps) |
-| `cta_click` | components.jsx (masthead links: `location: masthead_cta` for The Map, `masthead_now` for This week); page-home.jsx (`home_door` with `target` for the hero triage doors, `home_dispatch` for the dispatch teaser, `home_path` with `target` for the Go Deeper row, `home_strip_now` for the About-strip line) |
+| `cta_click` | components.jsx (masthead links: `location: masthead_cta` for The Map, `masthead_now` for This week); page-home.jsx (`home_door` with `target` for the hero triage doors, `home_month` with `target` for month-planner panel links, `home_dispatch` for the dispatch teaser, `home_path` with `target` for the Go Deeper row, `home_strip_now` for the About-strip line) |
 
 ## localStorage key inventory
 
@@ -75,6 +76,7 @@ All access goes through `window.safeStorage`.
 | Key | Written by | Meaning |
 |---|---|---|
 | `tfg.trip` | page-map.jsx | Saved trip stop ids (versioned envelope). |
+| `tfg.trip.month` | page-home.jsx | Selected trip month (`jan`–`dec`) from the home month planner. Read back on return visits and by the hero capture, which tags signups `trip-<month>`. |
 | `tfg.kit.checked` | page-kit.jsx | Ticked packing-list items (versioned envelope). |
 | `tfg.nl.subscribed` | components.jsx | Optimistic subscribed flag, set on any newsletter submit. |
 | `tfg.nl.exit.seen` | components.jsx | Exit-intent cooldown timestamp (14 days). |

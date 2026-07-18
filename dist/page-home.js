@@ -2,7 +2,9 @@ var {
   useMemo,
   useState
 } = React;
-function HomeHeroCapture() {
+function HomeHeroCapture({
+  tripMonth
+}) {
   var [done, setDone] = useState(false);
   var subscribed = isSubscribed();
   var ref = useNewsletterImpression("home_hero", "home", !subscribed && !done);
@@ -43,6 +45,10 @@ function HomeHeroCapture() {
     type: "hidden",
     name: "tag",
     value: "home"
+  }), tripMonth && React.createElement("input", {
+    type: "hidden",
+    name: "tag",
+    value: `trip-${tripMonth}`
   }), React.createElement("input", {
     type: "hidden",
     name: "embed",
@@ -138,6 +144,138 @@ function HomeBulletin({
     className: "mono home-dispatch__cta"
   }, "Scan the bulletin →")));
 }
+var MONTHS = [{
+  key: "jan",
+  label: "Jan",
+  name: "January",
+  note: "The quiet season. The Valley is open and mostly empty, the waterfalls run low, the high roads are closed, and chain rules come and go with the storms.",
+  reads: ["yosemite-in-winter", "when-to-visit-yosemite-2026-crowd-forecast"]
+}, {
+  key: "feb",
+  label: "Feb",
+  name: "February",
+  note: "Firefall month. For about two weeks Horsetail Fall can glow at sunset when sky, water, and angle all cooperate, and the rest of the park is still honest winter.",
+  reads: ["horsetail-fall-firefall", "yosemite-in-winter"]
+}, {
+  key: "mar",
+  label: "Mar",
+  name: "March",
+  note: "Late winter, first runoff. Storms still land, the falls start to wake, the crowds have not arrived, and the high roads stay closed.",
+  reads: ["yosemite-in-winter", "yosemite-waterfalls-guide"]
+}, {
+  key: "apr",
+  label: "Apr",
+  name: "April",
+  note: "The Valley greens up and the waterfalls build by the week. Dogwoods usually bloom late in the month. Tioga is still closed most years.",
+  reads: ["yosemite-waterfalls-guide", "yosemite-wildflowers-guide"]
+}, {
+  key: "may",
+  label: "May",
+  name: "May",
+  note: "Peak waterfall month and the last calmer weeks before summer. The high roads usually begin to open. Lodging books far ahead; day plans still work.",
+  reads: ["yosemite-waterfalls-guide", "when-to-visit-yosemite-2026-crowd-forecast"]
+}, {
+  key: "jun",
+  label: "Jun",
+  name: "June",
+  note: "Early summer. Strong falls at the start of the month, the high country opening, and school-break crowds building toward their peak.",
+  reads: ["yosemite-in-june-2026", "yosemite-waterfalls-guide"]
+}, {
+  key: "jul",
+  label: "Jul",
+  name: "July",
+  note: "Full summer. Every road is typically open, the Valley runs hot and busy, the big falls thin, and evenings in the high country are the move. Have a smoke plan.",
+  reads: ["yosemite-heat-safety-guide", "yosemite-during-smoke-season"]
+}, {
+  key: "aug",
+  label: "Aug",
+  name: "August",
+  note: "High summer. Hot in the Valley, settled weather up high, the falls at a trickle, and the darkest skies of the year for the Milky Way. Smoke is a real possibility.",
+  reads: ["yosemite-stargazing-where-to-look-up", "yosemite-heat-safety-guide"]
+}, {
+  key: "sep",
+  label: "Sep",
+  name: "September",
+  note: "The exhale. Crowds ease after Labor Day, the weather usually holds, the falls are at their lowest, and smoke can linger into fall.",
+  reads: ["when-to-visit-yosemite-2026-crowd-forecast", "yosemite-during-smoke-season"]
+}, {
+  key: "oct",
+  label: "Oct",
+  name: "October",
+  note: "Fall. Cooler days, color along the Merced, quieter trails, and the first real storms possible late in the month.",
+  reads: ["yosemite-photography-spots", "yosemite-during-smoke-season"]
+}, {
+  key: "nov",
+  label: "Nov",
+  name: "November",
+  note: "The shoulder. Short days, empty trails, the first lasting snow most years, and the high roads close for the season.",
+  reads: ["yosemite-in-winter", "when-to-visit-yosemite-2026-crowd-forecast"]
+}, {
+  key: "dec",
+  label: "Dec",
+  name: "December",
+  note: "Early winter. First snow when storms land, holiday crowds around the lodges midmonth onward, and chains in the car as a rule.",
+  reads: ["yosemite-in-winter", "yosemite-photography-spots"]
+}];
+function HomeMonthPlanner({
+  month,
+  onSelect,
+  go
+}) {
+  var sel = MONTHS.find(m => m.key === month) || null;
+  var reads = sel ? sel.reads.map(s => window.findArticle(s)).filter(Boolean) : [];
+  var isCurrentMonth = Boolean(sel) && sel.name === new Date().toLocaleDateString("en-US", {
+    month: "long"
+  });
+  var linkClick = (e, target, dest) => {
+    e.preventDefault();
+    if (window.track) window.track("cta_click", {
+      location: "home_month",
+      target
+    });
+    go(dest);
+  };
+  return React.createElement("section", {
+    className: "wrap",
+    style: {
+      paddingTop: 28
+    }
+  }, React.createElement("div", {
+    className: "month-planner"
+  }, React.createElement("div", {
+    className: "month-planner__head"
+  }, React.createElement("span", {
+    className: "month-planner__label"
+  }, "When are you going?"), React.createElement("div", {
+    className: "month-planner__chips",
+    role: "group",
+    "aria-label": "Pick your trip month"
+  }, MONTHS.map(m => React.createElement("button", {
+    key: m.key,
+    type: "button",
+    className: "month-chip" + (m.key === month ? " month-chip--on" : ""),
+    "aria-pressed": m.key === month,
+    onClick: () => onSelect(m.key === month ? null : m.key)
+  }, m.label)))), sel && React.createElement("div", {
+    className: "month-planner__panel"
+  }, React.createElement("p", {
+    className: "month-planner__note"
+  }, React.createElement("strong", null, sel.name, "."), " ", sel.note), React.createElement("div", {
+    className: "month-planner__links"
+  }, reads.map(a => React.createElement("a", {
+    key: a.slug,
+    href: `/articles/${a.slug}`,
+    onClick: e => linkClick(e, a.slug, `a:${a.slug}`)
+  }, a.title, " →")), React.createElement("a", {
+    href: "/itineraries",
+    onClick: e => linkClick(e, "itineraries", "itineraries")
+  }, "Build the days: Itineraries →"), isCurrentMonth && React.createElement("a", {
+    href: "/now",
+    onClick: e => linkClick(e, "now", "now")
+  }, "Going now: The Park Bulletin →")), React.createElement("p", {
+    className: "month-planner__hint"
+  }, "Typical season, not a forecast. The Bulletin and Conditions carry the current state."))));
+}
 var HERO_DOORS = [{
   key: "start-here",
   href: "#start-here",
@@ -164,8 +302,18 @@ function HomePage({
   go
 }) {
   var recent = window.ARTICLES.slice(0, 6);
-  var seasonal = window.byCategory("seasonal").slice(0, 2);
   var startHere = (window.START_HERE || []).map(slug => window.findArticle(slug)).filter(Boolean);
+  var [tripMonth, setTripMonth] = useState(() => {
+    var v = window.safeStorage.get("tfg.trip.month", null);
+    return MONTHS.some(m => m.key === v) ? v : null;
+  });
+  var selectTripMonth = key => {
+    setTripMonth(key);
+    if (key) window.safeStorage.set("tfg.trip.month", key);else window.safeStorage.remove("tfg.trip.month");
+    if (window.track) window.track("trip_month_select", {
+      month: key || "cleared"
+    });
+  };
   var scrollToStartHere = e => {
     e.preventDefault();
     document.getElementById("start-here")?.scrollIntoView({
@@ -221,7 +369,9 @@ function HomePage({
   }, d.a), React.createElement("span", {
     className: "hero-door__arrow",
     "aria-hidden": "true"
-  }, "→")))), React.createElement(HomeHeroCapture, null)), React.createElement(Placeholder, {
+  }, "→")))), React.createElement(HomeHeroCapture, {
+    tripMonth: tripMonth
+  })), React.createElement(Placeholder, {
     caption: "El Capitan and Bridalveil at sunset",
     credit: "Rodrigo Soares / Unsplash",
     image: "img/valley-view-sunset-rodrigo-soares.jpg",
@@ -254,7 +404,11 @@ function HomePage({
       });
       go(key);
     }
-  }, label))))), React.createElement(ResumeReading, {
+  }, label))))), React.createElement(HomeMonthPlanner, {
+    month: tripMonth,
+    onSelect: selectTripMonth,
+    go: go
+  }), React.createElement(ResumeReading, {
     go: go
   }), React.createElement(HomeBulletin, {
     go: go
