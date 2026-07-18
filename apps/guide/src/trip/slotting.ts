@@ -2,7 +2,8 @@
 // Greedy day slotting, v1 and deliberately dumb:
 //   - programs are fixed blocks at their published times
 //   - user-timed stops are fixed blocks at their chosen times
-//   - untimed stops fill the day from 08:00 in region `order`, taking
+//   - untimed stops fill the day from 08:00 in plan order (the order they
+//     were added; preset seeding adds them in drive order), taking
 //     timeBudgetMin (default 60) plus a travel buffer estimated from the
 //     driving distance to the previous stop, flowing around the fixed blocks
 // Used by both the /trip agenda and the ICS export so the calendar matches
@@ -80,12 +81,6 @@ function itemDay(item: TripItemT): string {
   return item.type === 'program' ? item.snapshot.date : item.day
 }
 
-function stopOrder(item: TripItemT): number {
-  if (item.type === 'stop') return getStopById(item.stopId)?.order ?? 99
-  if (item.type === 'hike') return getHikeById(item.hikeId)?.order ?? 99
-  return 0
-}
-
 /** Planning duration for a stop or hike item (programs derive from times). */
 function floatingDuration(item: TripItemT): number {
   if (item.type === 'stop') {
@@ -138,11 +133,13 @@ export function slotDay(day: string, items: TripItemT[]): SlottedItem[] {
     .filter((f) => f.startMin !== null)
     .sort((a, b) => (a.startMin ?? 0) - (b.startMin ?? 0))
 
-  // Greedy fill: suggested reading order within the region. The travel
-  // buffer between consecutive placements comes from the actual distance
-  // between their coordinates, so Valley-to-Tuolumne days stop pretending
-  // the drive is 30 minutes.
-  floating.sort((a, b) => stopOrder(a) - stopOrder(b))
+  // Greedy fill in plan order. Region `order` is a reading sequence, not a
+  // day timeline — sorting by it used to shove a midday lunch stop to the
+  // evening because meals number late in the region. The plan's own order is
+  // the drive order for seeded presets and the order the user added things
+  // otherwise. The travel buffer between consecutive placements comes from
+  // the actual distance between their coordinates, so Valley-to-Tuolumne
+  // days stop pretending the drive is 30 minutes.
   const placed: SlottedItem[] = []
   let cursor = DAY_START
   let prevCoord: [number, number] | undefined
