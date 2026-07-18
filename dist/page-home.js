@@ -12,7 +12,7 @@ function HomeHeroCapture() {
       ref: ref
     }, "You're on the list. ", React.createElement("a", {
       href: "/map"
-    }, "The interactive map is open to you →"));
+    }, "The map's trip builder is open to you →"));
   }
   if (done) {
     return React.createElement("p", {
@@ -20,7 +20,7 @@ function HomeHeroCapture() {
       ref: ref
     }, "You're in. ", React.createElement("a", {
       href: "/map"
-    }, "The map is open to you →"));
+    }, "The trip builder is open to you →"));
   }
   return React.createElement("div", {
     ref: ref
@@ -49,9 +49,9 @@ function HomeHeroCapture() {
     value: "1"
   }), React.createElement("button", {
     type: "submit"
-  }, "Unlock the map →")), React.createElement("p", {
+  }, "Get the Sunday letter →")), React.createElement("p", {
     className: "hero__capture-note"
-  }, "Free interactive Yosemite map with a trip builder, plus a short note on Sundays."));
+  }, "What is open, what is booking out, and what the week looked like from inside the park. The map's trip builder comes with it."));
 }
 var RESUME_MAX_AGE_DAYS = 30;
 function ResumeReading({
@@ -113,7 +113,12 @@ function HomeBulletin({
     };
   }, []);
   if (!edition) return null;
-  return React.createElement("a", {
+  return React.createElement("section", {
+    className: "wrap",
+    style: {
+      paddingTop: 44
+    }
+  }, React.createElement("a", {
     className: "home-dispatch",
     href: "/now",
     onClick: e => {
@@ -131,8 +136,30 @@ function HomeBulletin({
     className: "home-dispatch__excerpt"
   }, edition.lede), React.createElement("span", {
     className: "mono home-dispatch__cta"
-  }, "Scan the bulletin →"));
+  }, "Scan the bulletin →")));
 }
+var HERO_DOORS = [{
+  key: "start-here",
+  href: "#start-here",
+  q: "First trip?",
+  a: "Four answers before you book anything"
+}, {
+  key: "itineraries",
+  href: "/itineraries",
+  q: "Dates set?",
+  a: "Itineraries, the map, and the checklist"
+}, {
+  key: "now",
+  href: "/now",
+  q: "There now, or going soon?",
+  a: "One page, the whole park, right now"
+}];
+var START_HERE_QUESTIONS = {
+  "first-time-yosemite-overwhelm": "First time, and it feels like a lot?",
+  "yosemite-without-reservations-2026": "Do you need a reservation this year?",
+  "yosemite-gateway-towns-compared": "Where should you actually stay?",
+  "yosemite-in-one-or-two-days": "Only have a day or two?"
+};
 function HomePage({
   go
 }) {
@@ -159,9 +186,7 @@ function HomePage({
       e.preventDefault();
       go("conditions");
     }
-  }, "Conditions and webcams →")), React.createElement(HomeBulletin, {
-    go: go
-  }), React.createElement(WebcamStrip, null));
+  }, "Conditions and webcams →")), React.createElement(WebcamStrip, null));
   return React.createElement("div", {
     className: "page"
   }, React.createElement("section", {
@@ -172,28 +197,31 @@ function HomePage({
     className: "hero__kicker"
   }, React.createElement("span", {
     className: "dot"
-  }), React.createElement("span", null, window.SITE && window.SITE.issue || "Vol. III", window.SITE && window.SITE.issueDetail ? ` · ${window.SITE.issueDetail}` : "")), React.createElement("h1", null, "Notes from the Field."), React.createElement("p", {
+  }), React.createElement("span", null, window.SITE && window.SITE.issue || "Vol. III", window.SITE && window.SITE.issueDetail ? ` · ${window.SITE.issueDetail}` : "")), React.createElement("h1", null, "Yosemite, from the inside."), React.createElement("p", {
     className: "hero__dek"
-  }, "A field journal of one national park, written by someone who lives here. Trails, weather, what is open and what is not, and the occasional longer essay when something is worth sitting with."), React.createElement(HomeHeroCapture, null), React.createElement("div", {
-    className: "hero__cta",
-    style: {
-      marginTop: 18
+  }, "Live conditions, real itineraries, and a map of every turnout, kept by a naturalist who has lived here twenty seasons. Essays for when the logistics are done."), React.createElement("nav", {
+    className: "hero-doors",
+    "aria-label": "Start from where you are"
+  }, HERO_DOORS.map(d => React.createElement("a", {
+    key: d.key,
+    className: "hero-door",
+    href: d.href,
+    onClick: e => {
+      e.preventDefault();
+      if (window.track) window.track("cta_click", {
+        location: "home_door",
+        target: d.key
+      });
+      if (d.key === "start-here") scrollToStartHere(e);else go(d.key);
     }
-  }, React.createElement("a", {
-    href: "#start-here",
-    onClick: scrollToStartHere,
-    style: {
-      fontFamily: "var(--sans)",
-      fontSize: 12,
-      fontWeight: 600,
-      textTransform: "uppercase",
-      letterSpacing: "0.14em",
-      color: "var(--ink-2)",
-      textDecoration: "none",
-      borderBottom: "1px solid var(--rule)",
-      paddingBottom: 2
-    }
-  }, "First time in Yosemite? Start here →"))), React.createElement(Placeholder, {
+  }, React.createElement("span", {
+    className: "hero-door__q"
+  }, d.q), React.createElement("span", {
+    className: "hero-door__a"
+  }, d.a), React.createElement("span", {
+    className: "hero-door__arrow",
+    "aria-hidden": "true"
+  }, "→")))), React.createElement(HomeHeroCapture, null)), React.createElement(Placeholder, {
     caption: "El Capitan and Bridalveil at sunset",
     credit: "Rodrigo Soares / Unsplash",
     image: "img/valley-view-sunset-rodrigo-soares.jpg",
@@ -227,6 +255,8 @@ function HomePage({
       go(key);
     }
   }, label))))), React.createElement(ResumeReading, {
+    go: go
+  }), React.createElement(HomeBulletin, {
     go: go
   }), startHere.length > 0 && React.createElement("section", {
     id: "start-here",
@@ -263,7 +293,7 @@ function HomePage({
       lineHeight: 1.5,
       maxWidth: "60ch"
     }
-  }, "The four pieces to read before you book anything.")), React.createElement("div", {
+  }, "Four answers before you book anything.")), React.createElement("div", {
     className: "start-here-grid",
     style: {
       display: "grid",
@@ -271,11 +301,15 @@ function HomePage({
       gap: 32,
       rowGap: 40
     }
-  }, startHere.map(a => React.createElement(ArticleCard, {
+  }, startHere.map(a => React.createElement("div", {
     key: a.slug,
+    className: "start-q"
+  }, START_HERE_QUESTIONS[a.slug] && React.createElement("p", {
+    className: "start-q__label"
+  }, START_HERE_QUESTIONS[a.slug]), React.createElement(ArticleCard, {
     article: a,
     go: go
-  })))), parkThisWeekSection, React.createElement("section", {
+  }))))), parkThisWeekSection, React.createElement("section", {
     className: "wrap",
     style: {
       paddingTop: 80

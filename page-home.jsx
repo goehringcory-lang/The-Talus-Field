@@ -4,9 +4,12 @@
 const { useMemo, useState } = React;
 
 // ============================================================
-// Above-the-fold hero capture. A single-field subscribe form leading with the
-// free interactive map incentive, with the same impression tracking and
-// subscribed-suppression as NewsletterInline (location "home_hero", tag "home").
+// Above-the-fold hero capture. A single-field subscribe form promising the
+// Sunday letter, with the map's trip builder as the bundled unlock, and the
+// same impression tracking and subscribed-suppression as NewsletterInline
+// (location "home_hero", tag "home"). The map view itself is free since the
+// gate rework; the builder is what a signup actually unlocks, so the copy
+// says that plainly.
 // ============================================================
 function HomeHeroCapture() {
   const [done, setDone] = useState(false);
@@ -16,7 +19,7 @@ function HomeHeroCapture() {
   if (subscribed && !done) {
     return (
       <p className="hero__capture-note" ref={ref}>
-        You're on the list. <a href="/map">The interactive map is open to you →</a>
+        You're on the list. <a href="/map">The map's trip builder is open to you →</a>
       </p>
     );
   }
@@ -24,7 +27,7 @@ function HomeHeroCapture() {
   if (done) {
     return (
       <p className="hero__capture-note" ref={ref}>
-        You're in. <a href="/map">The map is open to you →</a>
+        You're in. <a href="/map">The trip builder is open to you →</a>
       </p>
     );
   }
@@ -44,9 +47,9 @@ function HomeHeroCapture() {
         <input type="email" name="email" aria-label="Email address" placeholder="you@email.com" required />
         <input type="hidden" name="tag" value="home" />
         <input type="hidden" name="embed" value="1" />
-        <button type="submit">Unlock the map →</button>
+        <button type="submit">Get the Sunday letter →</button>
       </form>
-      <p className="hero__capture-note">Free interactive Yosemite map with a trip builder, plus a short note on Sundays.</p>
+      <p className="hero__capture-note">What is open, what is booking out, and what the week looked like from inside the park. The map's trip builder comes with it.</p>
     </div>
   );
 }
@@ -104,9 +107,12 @@ function ResumeReading({ go }) {
 // ============================================================
 // Park Bulletin teaser. Pulls the current /now edition onto the homepage so
 // the page opens like a field notebook: dated, current, written from inside
-// the park. The retention loop starts here (home → /now → the Sunday letter's
-// concrete promise). Fails quiet: any fetch or shape problem and the section
-// renders the webcams alone, exactly as before.
+// the park. Since the July 2026 user-journey pass it renders as its own band
+// directly under the utility row: recency is the proof a cold planner trusts,
+// so it belongs in the first two viewports, while the webcam strip (four
+// off-site links) stays below Start Here. The retention loop starts here
+// (home → /now → the Sunday letter's concrete promise). Fails quiet: any
+// fetch or shape problem and the band renders nothing.
 // Keep the ?v= in sync with BULLETIN_URL in page-now.jsx when bulletin.json
 // changes. The .home-dispatch class names carry over from the dispatch era.
 // ============================================================
@@ -130,24 +136,49 @@ function HomeBulletin({ go }) {
   if (!edition) return null;
 
   return (
-    <a
-      className="home-dispatch"
-      href="/now"
-      onClick={(e) => {
-        e.preventDefault();
-        if (window.track) window.track("cta_click", { location: "home_dispatch" });
-        go("now");
-      }}
-    >
-      <span className="home-dispatch__date">
-        The Park Bulletin · covering {edition.label}
-      </span>
-      <span className="home-dispatch__title">One page, the whole park, right now</span>
-      <p className="home-dispatch__excerpt">{edition.lede}</p>
-      <span className="mono home-dispatch__cta">Scan the bulletin →</span>
-    </a>
+    <section className="wrap" style={{ paddingTop: 44 }}>
+      <a
+        className="home-dispatch"
+        href="/now"
+        onClick={(e) => {
+          e.preventDefault();
+          if (window.track) window.track("cta_click", { location: "home_dispatch" });
+          go("now");
+        }}
+      >
+        <span className="home-dispatch__date">
+          The Park Bulletin · covering {edition.label}
+        </span>
+        <span className="home-dispatch__title">One page, the whole park, right now</span>
+        <p className="home-dispatch__excerpt">{edition.lede}</p>
+        <span className="mono home-dispatch__cta">Scan the bulletin →</span>
+      </a>
+    </section>
   );
 }
+
+// ============================================================
+// Hero triage doors. One row per trip stage, above the capture: the visitor
+// self-selects and routes themselves before the page asks for anything. Keys
+// double as go() route keys, except "start-here", which scrolls to the
+// answers row below. Clicks fire cta_click{location: "home_door", target}.
+// ============================================================
+const HERO_DOORS = [
+  { key: "start-here", href: "#start-here", q: "First trip?", a: "Four answers before you book anything" },
+  { key: "itineraries", href: "/itineraries", q: "Dates set?", a: "Itineraries, the map, and the checklist" },
+  { key: "now", href: "/now", q: "There now, or going soon?", a: "One page, the whole park, right now" },
+];
+
+// Question labels for the Start Here row, keyed by START_HERE slug. Task-mode
+// visitors click questions, not essay titles, so each card leads with the
+// question its article answers, in the visitor's words. A slug with no entry
+// renders its card alone.
+const START_HERE_QUESTIONS = {
+  "first-time-yosemite-overwhelm": "First time, and it feels like a lot?",
+  "yosemite-without-reservations-2026": "Do you need a reservation this year?",
+  "yosemite-gateway-towns-compared": "Where should you actually stay?",
+  "yosemite-in-one-or-two-days": "Only have a day or two?",
+};
 
 // ============================================================
 // HOME
@@ -164,19 +195,17 @@ function HomePage({ go }) {
     document.getElementById("start-here")?.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
-  // The living layer: this week's dispatch over the live webcam strip
-  // (shared WebcamStrip in components.jsx, also on /conditions). One section,
-  // one idea: the park as it is right now, dated like a notebook entry.
-  // Rendered below "Start Here" (see call site) so the four off-site webcam
-  // links do not pull readers away before they reach the capture and
-  // onboarding row.
+  // The live webcam strip (shared WebcamStrip in components.jsx, also on
+  // /conditions). Stays below "Start Here" (see call site): its four links
+  // leave the site, so it must not pull readers away before the answers row
+  // and the capture. The Bulletin teaser that used to render here moved up
+  // under the utility row in the July 2026 user-journey pass.
   const parkThisWeekSection = (
     <section className="wrap" style={{ paddingTop: 64 }}>
       <div className="section-head">
         <h2>From the park, right now</h2>
         <a href="/conditions" onClick={(e) => { e.preventDefault(); go("conditions"); }}>Conditions and webcams →</a>
       </div>
-      <HomeBulletin go={go} />
       <WebcamStrip />
     </section>
   );
@@ -191,24 +220,37 @@ function HomePage({ go }) {
               <span className="dot"></span>
               <span>{(window.SITE && window.SITE.issue) || "Vol. III"}{window.SITE && window.SITE.issueDetail ? ` · ${window.SITE.issueDetail}` : ""}</span>
             </div>
-            <h1>Notes from the Field.</h1>
+            <h1>Yosemite, from the inside.</h1>
             <p className="hero__dek">
-              A field journal of one national park, written by someone who lives here. Trails, weather, what is open and what is not, and the occasional longer essay when something is worth sitting with.
+              Live conditions, real itineraries, and a map of every turnout, kept by a naturalist who has lived here twenty seasons. Essays for when the logistics are done.
             </p>
-            {/* Lead with the email/map capture (the real goal), and reduce the
-                competing actions to a single quiet text link. Was A/B tested
-                (hero_actions); this capture-forward layout won and is now the
-                default. */}
+            {/* July 2026 user-journey pass: the hero leads with triage, not
+                capture. Three self-selection doors, one per trip stage, so a
+                task-mode planner routes themselves before the page asks for
+                anything; the capture follows with the letter-forward promise.
+                This deliberately supersedes the hero_actions A/B result (the
+                capture-forward hero won on raw signups); the doors are judged
+                on second-surface reach via cta_click{location: home_door}. */}
+            <nav className="hero-doors" aria-label="Start from where you are">
+              {HERO_DOORS.map((d) => (
+                <a
+                  key={d.key}
+                  className="hero-door"
+                  href={d.href}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    if (window.track) window.track("cta_click", { location: "home_door", target: d.key });
+                    if (d.key === "start-here") scrollToStartHere(e);
+                    else go(d.key);
+                  }}
+                >
+                  <span className="hero-door__q">{d.q}</span>
+                  <span className="hero-door__a">{d.a}</span>
+                  <span className="hero-door__arrow" aria-hidden="true">→</span>
+                </a>
+              ))}
+            </nav>
             <HomeHeroCapture />
-            <div className="hero__cta" style={{ marginTop: 18 }}>
-              <a
-                href="#start-here"
-                onClick={scrollToStartHere}
-                style={{ fontFamily: "var(--sans)", fontSize: 12, fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.14em", color: "var(--ink-2)", textDecoration: "none", borderBottom: "1px solid var(--rule)", paddingBottom: 2 }}
-              >
-                First time in Yosemite? Start here →
-              </a>
-            </div>
           </div>
           <Placeholder
             caption={"El Capitan and Bridalveil at sunset"}
@@ -252,29 +294,40 @@ function HomePage({ go }) {
 
       <ResumeReading go={go} />
 
-      {/* Start Here — curated onboarding row for first-time visitors */}
+      <HomeBulletin go={go} />
+
+      {/* Start Here — the answers row. Curated onboarding for first-time
+          visitors, framed as the questions everyone asks: task mode clicks
+          questions, and the articles underneath do the depth conversion. */}
       {startHere.length > 0 && (
         <section id="start-here" className="wrap" style={{ paddingTop: 72, scrollMarginTop: 24 }}>
           <div style={{ marginBottom: 32 }}>
             <div className="eyebrow eyebrow--moss" style={{ marginBottom: 14 }}>For first-time visitors</div>
             <h2 style={{ fontFamily: "var(--display)", fontSize: 44, lineHeight: 1.05, marginBottom: 12, fontWeight: 500, letterSpacing: "-0.01em", textTransform: "none" }}>Start here.</h2>
             <p style={{ fontFamily: "var(--display)", fontStyle: "italic", fontSize: 19, color: "var(--ink-2)", lineHeight: 1.5, maxWidth: "60ch" }}>
-              The four pieces to read before you book anything.
+              Four answers before you book anything.
             </p>
           </div>
           <div
             className="start-here-grid"
             style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 32, rowGap: 40 }}
           >
-            {startHere.map(a => <ArticleCard key={a.slug} article={a} go={go} />)}
+            {startHere.map(a => (
+              <div key={a.slug} className="start-q">
+                {START_HERE_QUESTIONS[a.slug] && (
+                  <p className="start-q__label">{START_HERE_QUESTIONS[a.slug]}</p>
+                )}
+                <ArticleCard article={a} go={go} />
+              </div>
+            ))}
           </div>
         </section>
       )}
 
-      {/* The live layer sits below Start Here so the four off-site webcam
-          links do not pull readers away before they reach the capture and
-          onboarding row. Was A/B tested (home_webcams); this position won and
-          is now the default. */}
+      {/* The webcams sit below Start Here so the four off-site links do not
+          pull readers away before they reach the answers row and the capture.
+          Was A/B tested (home_webcams); this position won and is now the
+          default. */}
       {parkThisWeekSection}
 
       {/* Latest Entries — recent articles feed. Named to stay clear of the
