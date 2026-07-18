@@ -10,12 +10,17 @@
 # the gap surfaces exactly where the merge happened. A brand-new branch with
 # no PR yet stays quiet (the PR is usually opened right after the first
 # push), and once a fresh PR is open for the branch this check passes.
+#
+# Also runs on pull_request so that opening the fix-PR immediately records a
+# passing run; without it, the last run on the branch stays red from the
+# pre-PR push and reads as a problem with the new PR itself.
 
 name: Stranded commits guard
 
 on:
   push:
     branches-ignore: [main]
+  pull_request:
 
 permissions:
   contents: read
@@ -33,7 +38,9 @@ jobs:
       - name: Check branch against its pull requests
         env:
           GH_TOKEN: ${{ github.token }}
-          BRANCH: ${{ github.ref_name }}
+          # On pull_request events ref_name is the synthetic "N/merge" ref;
+          # head_ref carries the real branch name there.
+          BRANCH: ${{ github.head_ref || github.ref_name }}
         run: |
           set -euo pipefail
 
