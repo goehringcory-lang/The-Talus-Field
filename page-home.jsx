@@ -9,9 +9,11 @@ const { useMemo, useState } = React;
 // same impression tracking and subscribed-suppression as NewsletterInline
 // (location "home_hero", tag "home"). The map view itself is free since the
 // gate rework; the builder is what a signup actually unlocks, so the copy
-// says that plainly.
+// says that plainly. When the month planner has a selection, a second hidden
+// tag (trip-<month>) rides along: Buttondown accepts repeated tag inputs, and
+// if a plan tier ever ignores extras the placement tag still lands.
 // ============================================================
-function HomeHeroCapture() {
+function HomeHeroCapture({ tripMonth }) {
   const [done, setDone] = useState(false);
   const subscribed = isSubscribed();
   const ref = useNewsletterImpression("home_hero", "home", !subscribed && !done);
@@ -46,6 +48,7 @@ function HomeHeroCapture() {
       >
         <input type="email" name="email" aria-label="Email address" placeholder="you@email.com" required />
         <input type="hidden" name="tag" value="home" />
+        {tripMonth && <input type="hidden" name="tag" value={`trip-${tripMonth}`} />}
         <input type="hidden" name="embed" value="1" />
         <button type="submit">Get the Sunday letter →</button>
       </form>
@@ -158,6 +161,82 @@ function HomeBulletin({ go }) {
 }
 
 // ============================================================
+// Month planner. "When are you going?" chip row that persists tfg.trip.month
+// (owned by HomePage so the hero capture can tag signups trip-<month>), plus
+// a typical-season line and two matched reads per month. The copy is
+// deliberately typical-season and hedged, in the spirit of the PWA's
+// `typical` confidence label: the Bulletin and Conditions carry the current
+// state, this carries what a month is usually like. Reads resolve through
+// findArticle so a retired slug simply drops out; selecting the current
+// calendar month adds a Bulletin link. Chip taps fire
+// trip_month_select{month}; panel links fire cta_click{location: home_month}.
+// ============================================================
+const MONTHS = [
+  { key: "jan", label: "Jan", name: "January", note: "The quiet season. The Valley is open and mostly empty, the waterfalls run low, the high roads are closed, and chain rules come and go with the storms.", reads: ["yosemite-in-winter", "when-to-visit-yosemite-2026-crowd-forecast"] },
+  { key: "feb", label: "Feb", name: "February", note: "Firefall month. For about two weeks Horsetail Fall can glow at sunset when sky, water, and angle all cooperate, and the rest of the park is still honest winter.", reads: ["horsetail-fall-firefall", "yosemite-in-winter"] },
+  { key: "mar", label: "Mar", name: "March", note: "Late winter, first runoff. Storms still land, the falls start to wake, the crowds have not arrived, and the high roads stay closed.", reads: ["yosemite-in-winter", "yosemite-waterfalls-guide"] },
+  { key: "apr", label: "Apr", name: "April", note: "The Valley greens up and the waterfalls build by the week. Dogwoods usually bloom late in the month. Tioga is still closed most years.", reads: ["yosemite-waterfalls-guide", "yosemite-wildflowers-guide"] },
+  { key: "may", label: "May", name: "May", note: "Peak waterfall month and the last calmer weeks before summer. The high roads usually begin to open. Lodging books far ahead; day plans still work.", reads: ["yosemite-waterfalls-guide", "when-to-visit-yosemite-2026-crowd-forecast"] },
+  { key: "jun", label: "Jun", name: "June", note: "Early summer. Strong falls at the start of the month, the high country opening, and school-break crowds building toward their peak.", reads: ["yosemite-in-june-2026", "yosemite-waterfalls-guide"] },
+  { key: "jul", label: "Jul", name: "July", note: "Full summer. Every road is typically open, the Valley runs hot and busy, the big falls thin, and evenings in the high country are the move. Have a smoke plan.", reads: ["yosemite-heat-safety-guide", "yosemite-during-smoke-season"] },
+  { key: "aug", label: "Aug", name: "August", note: "High summer. Hot in the Valley, settled weather up high, the falls at a trickle, and the darkest skies of the year for the Milky Way. Smoke is a real possibility.", reads: ["yosemite-stargazing-where-to-look-up", "yosemite-heat-safety-guide"] },
+  { key: "sep", label: "Sep", name: "September", note: "The exhale. Crowds ease after Labor Day, the weather usually holds, the falls are at their lowest, and smoke can linger into fall.", reads: ["when-to-visit-yosemite-2026-crowd-forecast", "yosemite-during-smoke-season"] },
+  { key: "oct", label: "Oct", name: "October", note: "Fall. Cooler days, color along the Merced, quieter trails, and the first real storms possible late in the month.", reads: ["yosemite-photography-spots", "yosemite-during-smoke-season"] },
+  { key: "nov", label: "Nov", name: "November", note: "The shoulder. Short days, empty trails, the first lasting snow most years, and the high roads close for the season.", reads: ["yosemite-in-winter", "when-to-visit-yosemite-2026-crowd-forecast"] },
+  { key: "dec", label: "Dec", name: "December", note: "Early winter. First snow when storms land, holiday crowds around the lodges midmonth onward, and chains in the car as a rule.", reads: ["yosemite-in-winter", "yosemite-photography-spots"] },
+];
+
+function HomeMonthPlanner({ month, onSelect, go }) {
+  const sel = MONTHS.find((m) => m.key === month) || null;
+  const reads = sel ? sel.reads.map((s) => window.findArticle(s)).filter(Boolean) : [];
+  const isCurrentMonth = Boolean(sel) && sel.name === new Date().toLocaleDateString("en-US", { month: "long" });
+
+  const linkClick = (e, target, dest) => {
+    e.preventDefault();
+    if (window.track) window.track("cta_click", { location: "home_month", target });
+    go(dest);
+  };
+
+  return (
+    <section className="wrap" style={{ paddingTop: 28 }}>
+      <div className="month-planner">
+        <div className="month-planner__head">
+          <span className="month-planner__label">When are you going?</span>
+          <div className="month-planner__chips" role="group" aria-label="Pick your trip month">
+            {MONTHS.map((m) => (
+              <button
+                key={m.key}
+                type="button"
+                className={"month-chip" + (m.key === month ? " month-chip--on" : "")}
+                aria-pressed={m.key === month}
+                onClick={() => onSelect(m.key === month ? null : m.key)}
+              >{m.label}</button>
+            ))}
+          </div>
+        </div>
+        {sel && (
+          <div className="month-planner__panel">
+            <p className="month-planner__note"><strong>{sel.name}.</strong> {sel.note}</p>
+            <div className="month-planner__links">
+              {reads.map((a) => (
+                <a key={a.slug} href={`/articles/${a.slug}`} onClick={(e) => linkClick(e, a.slug, `a:${a.slug}`)}>
+                  {a.title} →
+                </a>
+              ))}
+              <a href="/itineraries" onClick={(e) => linkClick(e, "itineraries", "itineraries")}>Build the days: Itineraries →</a>
+              {isCurrentMonth && (
+                <a href="/now" onClick={(e) => linkClick(e, "now", "now")}>Going now: The Park Bulletin →</a>
+              )}
+            </div>
+            <p className="month-planner__hint">Typical season, not a forecast. The Bulletin and Conditions carry the current state.</p>
+          </div>
+        )}
+      </div>
+    </section>
+  );
+}
+
+// ============================================================
 // Hero triage doors. One row per trip stage, above the capture: the visitor
 // self-selects and routes themselves before the page asks for anything. Keys
 // double as go() route keys, except "start-here", which scrolls to the
@@ -185,10 +264,23 @@ const START_HERE_QUESTIONS = {
 // ============================================================
 function HomePage({ go }) {
   const recent = window.ARTICLES.slice(0, 6);
-  const seasonal = window.byCategory("seasonal").slice(0, 2);
   const startHere = (window.START_HERE || [])
     .map(slug => window.findArticle(slug))
     .filter(Boolean);
+
+  // Trip month, owned here so the planner (which writes it) and the hero
+  // capture (which tags signups trip-<month>) share one value. Persisted via
+  // safeStorage; an unknown stored value reads as unset.
+  const [tripMonth, setTripMonth] = useState(() => {
+    const v = window.safeStorage.get("tfg.trip.month", null);
+    return MONTHS.some((m) => m.key === v) ? v : null;
+  });
+  const selectTripMonth = (key) => {
+    setTripMonth(key);
+    if (key) window.safeStorage.set("tfg.trip.month", key);
+    else window.safeStorage.remove("tfg.trip.month");
+    if (window.track) window.track("trip_month_select", { month: key || "cleared" });
+  };
 
   const scrollToStartHere = (e) => {
     e.preventDefault();
@@ -250,7 +342,7 @@ function HomePage({ go }) {
                 </a>
               ))}
             </nav>
-            <HomeHeroCapture />
+            <HomeHeroCapture tripMonth={tripMonth} />
           </div>
           <Placeholder
             caption={"El Capitan and Bridalveil at sunset"}
@@ -291,6 +383,8 @@ function HomePage({ go }) {
           ))}
         </nav>
       </section>
+
+      <HomeMonthPlanner month={tripMonth} onSelect={selectTripMonth} go={go} />
 
       <ResumeReading go={go} />
 
