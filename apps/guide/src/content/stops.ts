@@ -79,9 +79,9 @@ const seed: StopInput[] = [
     elevationFt: 4035,
     timeBudgetMin: 60,
     teaser:
-      'A flat one-mile boardwalk loop through the meadow at the heart of the valley. Half Dome, El Capitan, and the black oaks in one easy hour.',
+      'A flat one-mile boardwalk loop through the meadow at the heart of the valley. Come back right at sunset: this is the valley\'s most reliable place to watch a black bear.',
     body:
-      'A flat one-mile boardwalk through the meadow at the heart of the valley. Most visitors walk to the Lower Yosemite Fall vista and turn around. Don\'t. Take the full counter-clockwise loop. You get Half Dome from Sentinel Bridge, El Capitan over the meadow, and the black oaks the Ahwahnechee tended for centuries. This is the walk that makes the valley feel like a place, not a viewpoint.',
+      'A flat one-mile boardwalk through the meadow at the heart of the valley. Most visitors walk to the Lower Yosemite Fall vista and turn around. Don\'t. Take the full counter-clockwise loop. You get Half Dome from Sentinel Bridge, El Capitan over the meadow, and the black oaks the Ahwahnechee tended for centuries. This is the walk that makes the valley feel like a place, not a viewpoint.\n\nThen come back right at sunset for the other show. Cook\'s Meadow is the valley\'s most reliable bear watch: black bears come out of the tree line in the last light to graze the meadow and work the black oaks, especially in fall when the acorns drop. Watch from the boardwalk, keep at least 150 feet, and let the bear keep its evening. The parkwide odds list is in [Where to actually see a bear](/essentials/bear-viewing).',
     photos: [{ src: '/photos/lower-yosemite-fall.jpg', caption: 'Lower Yosemite Fall, the standard turn-around point on the loop.' }],
     swap:
       'In late summer when the falls are dry, the meadow itself is the show — golden grass, low light through the oaks. Skip the fall vista, do the loop in reverse from Sentinel Bridge.',
@@ -701,10 +701,27 @@ const seed: StopInput[] = [
     photos: [{ src: '/photos/tioga-road-drive.jpg', caption: 'Tuolumne Meadows, the high-country payoff.' }],
   },
   {
+    id: 'crane-flat-meadow',
+    title: 'Crane Flat, the bear meadow at the junction',
+    region: 'tuolumne',
+    order: 2,
+    kind: 'viewpoint',
+    coord: [-119.8015, 37.7566], // web-derived: Crane Flat meadow point ~580 m NW of the gas-station wye (the point the old tioga-road-drive pin sat on; GNIS-scale accuracy); TODO: verify on the ground — confirm the signed shoulder pullout at the meadow edge on Big Oak Flat Rd
+    elevationFt: 6192,
+    timeBudgetMin: 30,
+    photos: [], // TODO: needs dedicated photography — no editorial image matches the Crane Flat meadow
+    teaser:
+      'The big meadow at the Tioga Road junction is one of the most consistent places in the park to see a black bear. Pull over, stay at the edge, and scan the far tree line at dawn or dusk.',
+    body:
+      'Everyone stops at Crane Flat for gas and almost nobody looks past the pumps, which is the mistake. Across the junction where Tioga Road leaves Big Oak Flat Road lies a broad subalpine meadow at 6,200 feet, ringed by fir forest, and it is one of the most consistent bear-viewing areas in Yosemite. Black bears come onto the open grass to graze in spring and early summer and work the forest edge for grubs and berries through the season, mostly in the first and last hours of light.\n\nThe viewing is easy and it should stay that way: park in a legal pullout, stand at the meadow edge or beside the car, and glass the far tree line. Keep at least 150 feet, never walk into the meadow toward a bear, and if the bear stops feeding to look at you, you are too close. Binoculars are the difference between a dark dot and a bear.\n\nEven without a bear, the stop earns its half hour. The meadow runs wildflowers into July, the [Tuolumne Grove sequoias](/stop/tuolumne-grove-old-road) start half a mile east, and this is the last gas before Tioga Pass. The full bear-watching playbook is in [Where to actually see a bear](/essentials/bear-viewing).',
+    swap:
+      'No bear on your pass through? Come back at dawn, when the meadow is frosted and empty of people, or fold it into the Tioga Road drive on the way out. Midday odds are poor; the bears are bedded in the forest.',
+  },
+  {
     id: 'olmsted-point',
     title: 'Olmsted Point',
     region: 'tuolumne',
-    order: 2,
+    order: 3,
     kind: 'viewpoint',
     coord: [-119.4852, 37.8107], // verified 2026-07: Olmsted Point pullout, south side of Tioga Rd (GNIS/Wikipedia); was ~300 m off
     elevationFt: 8300,
@@ -719,7 +736,7 @@ const seed: StopInput[] = [
     id: 'may-lake',
     title: 'May Lake, the moderate hike that earns the high country',
     region: 'tuolumne',
-    order: 3,
+    order: 4,
     kind: 'trailhead',
     coord: [-119.4912341, 37.8324607], // verified 2026-07: May Lake TH lot, end of the Old Tioga Rd spur (Hikespeak)
     elevationFt: 9329,
@@ -736,7 +753,7 @@ const seed: StopInput[] = [
     id: 'tenaya-lake',
     title: 'Tenaya Lake',
     region: 'tuolumne',
-    order: 4,
+    order: 5,
     kind: 'viewpoint',
     coord: [-119.45188, 37.83795], // verified 2026-07: Tenaya Lake Picnic Area lot at the NE corner (NPS POI via OuterSpatial); prior pin sat ~400 m ENE past the end of the lake
     elevationFt: 8150,
@@ -751,7 +768,7 @@ const seed: StopInput[] = [
     id: 'cathedral-lakes',
     title: 'Cathedral Lakes',
     region: 'tuolumne',
-    order: 5,
+    order: 6,
     kind: 'trailhead',
     photos: [{ src: '/photos/cathedral-lakes.jpg', caption: 'Tuolumne high country — the landscape Cathedral Lakes sits in.' }],
     coord: [-119.374706, 37.872634], // verified 2026-07: Cathedral Lakes Trailhead parking at the Tuolumne Meadows Visitor Center (NPS TH data; VC at 37.8716,-119.3742 per Wikidata); prior pin sat ~1.4 km east at the store/campground
@@ -770,7 +787,7 @@ const seed: StopInput[] = [
     id: 'soda-springs-parsons-lodge',
     title: 'Soda Springs and Parsons Lodge',
     region: 'tuolumne',
-    order: 6,
+    order: 7,
     kind: 'trailhead',
     coord: [-119.3512, 37.8776], // verified 2026-07: Lembert Dome lot, Tioga Rd (NPS TH page); was ~675 m off
     elevationFt: 8600,
@@ -785,7 +802,7 @@ const seed: StopInput[] = [
     id: 'gaylor-lake',
     title: 'Gaylor Lake, the short, steep payoff at Tioga Pass',
     region: 'tuolumne',
-    order: 7,
+    order: 8,
     kind: 'trailhead',
     coord: [-119.258173, 37.9101685], // verified 2026-07: Gaylor Lakes TH lot at the Tioga Pass entrance (NPS/Wikiloc)
     elevationFt: 9945,

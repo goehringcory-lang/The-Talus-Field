@@ -80,7 +80,8 @@ const seed: EssentialInput[] = [
       '- **By day, keep food within arm\'s reach.** A daypack on the ground while you wade in the river is a daypack a bear can take.\n' +
       '- **Never approach a bear, ever, for any photo.** If one approaches you, gather children, stand together, make noise, look large. Do not run and do not drop your food; that teaches the bear that approaching people works.\n' +
       '- **Keep your distance: at least 150 feet from bears and coyotes, 25 feet from everything else.** Approaching or feeding any wildlife, birds and squirrels included, is illegal, not just unwise.\n\n' +
-      'Drive the posted speed limits, especially at dawn and dusk. Speeding kills bears in this park every year, and the curve where it happens usually has a sign marking the last one. Drivers hit dozens of bears in this park in a typical year. If you see a bear, or see people crowding one, report it: the Save-a-Bear line is 209/372-0322.',
+      'Drive the posted speed limits, especially at dawn and dusk. Speeding kills bears in this park every year, and the curve where it happens usually has a sign marking the last one. Drivers hit dozens of bears in this park in a typical year. If you see a bear, or see people crowding one, report it: the Save-a-Bear line is 209/372-0322.\n\n' +
+      'None of this means you should hope not to see a bear. Watching one graze a meadow at a legal distance is one of the best moments the park offers, and the meadows with the best odds are in [Where to actually see a bear](/essentials/bear-viewing).',
   },
   {
     id: 'cell-coverage-offline',
@@ -276,6 +277,22 @@ const seed: EssentialInput[] = [
       'Timing: the Milky Way\'s galactic core, the bright section everyone means, is visible roughly April through October and peaks June through August. For the densest view, aim for mid-July through mid-August in a new-moon week, when the core arches nearly overhead between about 11 p.m. and 3 a.m. In winter the core is below the horizon; you get Orion and the fainter northern arm instead.\n\n' +
       'The two drive-to spots: **Glacier Point**, at 7,200 feet with open horizons and a paved walk of a few hundred feet from the lot, is one of the best drive-to dark-sky sites in any national park. It hosts free public **star parties** on scheduled summer nights, astronomy clubs with telescopes, plus a ticketed concessioner-run sky program some weeks. The dates are published per season; the programs list in this guide carries them for your trip window. **Olmsted Point**, at 8,000 feet on Tioga Road, has flat granite slabs to lie on and very little nearby light. Tenaya Lake and the Tuolumne Meadows pullouts work too.\n\n' +
       'Two practical notes. Use a red headlamp setting after dark; white light ruins night vision, yours and everyone\'s nearby, for 20 to 30 minutes. And layer for cold: at 8,000 feet on a clear summer night the temperature can be in the 40s by midnight, and sitting still chills you faster than hiking.',
+  },
+  {
+    id: 'bear-viewing',
+    title: 'Where to actually see a bear',
+    order: 26,
+    section: 'on-the-ground',
+    teaser: 'Cook\'s Meadow right at sunset, the Crane Flat meadow, and how to watch a black bear without changing its evening.',
+    body:
+      'Yosemite holds a few hundred black bears, and most visitors never see one, because most visitors are looking at waterfalls at noon. Bears keep a different schedule. They work the meadow edges at dawn and in the last hour of light: grass in spring, grubs out of downed logs in summer, acorns under the black oaks in fall. If you want to see one, go where the food is, at the hours the bears are on it.\n\n' +
+      'The short list, in rough order of odds:\n\n' +
+      '- **[Crane Flat](/stop/crane-flat-meadow)** is one of the most consistent bear areas in the park. The big meadow at the Tioga Road junction is ringed by forest, and bears come onto the open grass through spring and summer. Scan the far tree line from the meadow edge; binoculars turn a dark dot into the sighting.\n' +
+      '- **[Cook\'s Meadow](/stop/cooks-meadow-loop) right at sunset** is the valley\'s best odds. Walk the boardwalk loop in the last light and watch the meadow edge and the black oaks, especially in fall when the acorns drop. Half Dome going pink is the consolation prize if the bears stay home.\n' +
+      '- **[El Capitan Meadow](/stop/el-capitan-meadow)** and the valley\'s western meadows work the same sunset window, with fewer people standing next to you.\n' +
+      '- **The Tioga Road meadows**, Tuolumne Meadows included, produce steady sightings all summer; the road-shoulder pullouts are the viewing platform. [Wawona\'s meadow](/stop/wawona-meadow-loop) does the same for the south end of the park on summer evenings.\n\n' +
+      'How to watch one. Stay at least 150 feet away, which is about half a football field; if the bear changes what it is doing because of you, you are too close, whatever the distance. Watch from the boardwalk, the road shoulder, or beside your car, never from inside the meadow. Never approach, never feed, never walk closer for a photo, and keep children beside you. And drive the posted limits at dawn and dusk: cars kill more of these bears than anything else. If you see people crowding a bear, report it to the Save-a-Bear line, 209/372-0322.\n\n' +
+      'A sighting is luck stacked on habit: right meadow, right hour, quiet feet. The food-storage rules that keep these bears wild, and alive, are in [Bears, and the food rules](/essentials/bear-safety). They are the other half of this topic.',
   },
   {
     id: 'heat-safety',
