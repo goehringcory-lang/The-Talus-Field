@@ -3,6 +3,7 @@ import { ESSENTIALS } from './essentials'
 import { SECRET_SPOTS } from './secret-spots'
 import { SECRET_GUIDE_CATEGORIES } from './secret-guide'
 import { HIKES } from './hikes'
+import type { Itinerary } from './itineraries'
 import type { EssentialSectionT, EssentialTopicT, HikeT, Region, SecretCategoryT, SecretSpotT, StopT } from './schema'
 
 export { Stop, Stops, RegionEnum, StopKindEnum, StopCollection, SecretCategory, SecretSpot, SecretSpots, EssentialTopic, EssentialTopics, EssentialSection, SeasonalEvent, SeasonalEvents, SeasonalConfidence, Amenity, Amenities, AmenityKindEnum, Hike, Hikes, HikeRoute } from './schema'
@@ -126,6 +127,16 @@ export function getHikesByRegion(region: Region): HikeT[] {
 // Resolver for the trip planner and ICS export, same contract as getStopById.
 export function getHikeById(id: string): HikeT | undefined {
   return HIKES.find((h) => h.id === id)
+}
+
+// One photo per itinerary day, taken from the day's lead region, so the
+// preset pickers (/trip and the /map itineraries tab) can render a photo
+// strip whose length reads as the plan's length, with no new photography.
+export function getItineraryDayPhotos(itinerary: Itinerary): { src: string }[] {
+  return itinerary.days.map((day) => {
+    const region = REGIONS.find((r) => r.id === day.regions[0])
+    return { src: region?.photo.src ?? REGIONS[0].photo.src }
+  })
 }
 
 export function getRegionMeta(id: Region): { title: string; teaser: string } | undefined {

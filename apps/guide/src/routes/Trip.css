@@ -24,6 +24,71 @@
   color: var(--ink-3);
 }
 
+/* Preset cards: one thumbnail per day, so a longer plan reads as a longer
+ * photo strip. Thumbs reuse the region photos (getItineraryDayPhotos). */
+.trip-presets {
+  margin-bottom: 24px;
+}
+.trip-presets__label {
+  display: block;
+  font-family: var(--sans);
+  font-size: 12px;
+  color: var(--ink-3);
+  margin-bottom: 10px;
+}
+.trip-presets__row {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+  gap: 10px;
+}
+.trip-preset {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+  padding: 12px;
+  text-align: left;
+  background: var(--paper);
+  border: 1px solid var(--rule-soft);
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: border-color 120ms, background 120ms;
+}
+@media (hover: hover) {
+  .trip-preset:hover {
+    border-color: var(--ink-2);
+    background: var(--paper-2);
+  }
+}
+.trip-preset__photos {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 8px;
+}
+.trip-preset__media {
+  display: block;
+  width: 56px;
+  aspect-ratio: 1;
+  overflow: hidden;
+  border: 1px solid var(--ink);
+}
+.trip-preset__media img,
+.trip-preset__media picture {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.trip-preset__label {
+  font: 600 14px var(--sans);
+  color: var(--ink);
+}
+.trip-preset__sub {
+  font-family: var(--sans);
+  font-size: 12px;
+  color: var(--ink-2);
+}
+
 .trip-day {
   margin-bottom: 8px;
 }
