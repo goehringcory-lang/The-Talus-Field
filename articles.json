@@ -1,5 +1,29 @@
 [
   {
+    "slug": "yosemite-wildlife-viewing-guide",
+    "cat": "wildlife",
+    "title": "Where the Animals Actually Are: A Naturalist's Guide to Watching Wildlife in Yosemite",
+    "dek": "Yosemite's wildlife is not hiding, it is on a schedule most visitors never match. Twenty seasons of watching, condensed: the two principles that decide every sighting, the Valley's deer, coyotes, and bobcats, the high-country pika and marmots, and the rules that double as technique.",
+    "seoDek": "Where to see wildlife in Yosemite: bears, mule deer, coyotes, bobcats, marmots, pika, and great gray owls, plus the best times, places, and viewing rules.",
+    "date": "July 18, 2026",
+    "isoDate": "2026-07-18",
+    "isoModified": "2026-07-18",
+    "read": "10 min",
+    "image": "img/half-dome-meadow-deer-johannes-andersson.jpg",
+    "ogImage": { "url": "img/responsive/half-dome-meadow-deer-johannes-andersson-og.jpg", "width": 1200, "height": 630 },
+    "placeholder": "Mule deer grazing a Yosemite meadow at golden hour beneath Half Dome",
+    "wordCount": 1950,
+    "keywords": ["Yosemite wildlife viewing", "where to see animals in Yosemite", "Yosemite animals", "Yosemite mule deer", "Yosemite bobcat", "Yosemite coyote", "Yosemite black bears", "great gray owl Yosemite", "pika Yosemite", "yellow-bellied marmot Olmsted Point", "Sierra Nevada bighorn sheep", "best time to see wildlife Yosemite"],
+    "faq": [
+      { "q": "What animals can you see in Yosemite?", "a": "Mule deer, coyotes, and bobcats on the Valley floor, black bears throughout the park, and above 8,000 feet yellow-bellied marmots, pika, and Belding's ground squirrels. Notable birds include Steller's jays, acorn woodpeckers, peregrine falcons, water ouzels, and the great gray owl. Mountain lions live throughout the park but are almost never seen." },
+      { "q": "When is the best time to see wildlife in Yosemite?", "a": "Dawn and dusk. Most of Yosemite's mammals are crepuscular, active in the low light around sunrise and sunset. A meadow that holds twenty grazing deer at 6:30 am is usually empty by mid-morning. Watch the edges where meadow meets forest, since animals feed in the open and keep cover close." },
+      { "q": "Are there grizzly bears in Yosemite?", "a": "No. Every bear in Yosemite is a black bear, whatever its color, and most are brown, cinnamon, or blond. There has not been a grizzly in California for a century; the animal survives only on the state flag. The park's black bear population is estimated at 300 to 500." },
+      { "q": "How far away do you have to stay from wildlife in Yosemite?", "a": "At least 50 yards from bears and at least 25 yards from all other wildlife, including deer. If an animal changes its behavior because of you, you are too close regardless of distance. Feeding any wild animal is illegal, and food-storage violations carry fines up to $5,000." },
+      { "q": "What is the most dangerous animal in Yosemite?", "a": "By injury count, the mule deer. Deer injure more visitors in Yosemite than bears do, mostly because people approach them for photographs. They are wild 150-pound animals with antlers and hooves; photograph them from the trail at 25 yards or more." },
+      { "q": "Where can you see a great gray owl in Yosemite?", "a": "Yosemite holds the southernmost breeding population of the great gray owl, which hunts the edges of mid-elevation meadows such as those near Crane Flat and Glacier Point Road at dawn and dusk. If you find one, keep your distance and never play recorded calls: playback harasses a state-endangered bird and is prohibited." }
+    ]
+  },
+  {
     "slug": "showy-milkweed-yosemite-valley",
     "cat": "wildlife",
     "title": "Showy milkweed is blooming in Yosemite Valley, and the monarchs depend on it",

@@ -1,0 +1,127 @@
+/* global React */
+
+window.ARTICLE_BODIES = window.ARTICLE_BODIES || {};
+
+window.ARTICLE_BODIES["yosemite-wildlife-viewing-guide"] = function YosemiteWildlifeViewingGuideBody() {
+  return (
+    <>
+      <p className="dropcap">
+        The question I am asked most often, after twenty seasons in this park, is some version of "where can we see animals?" The honest answer disappoints people, because it is not a place. It is a time and a behavior. Yosemite's wildlife is not hiding. Roughly 400 vertebrate species live here, and a good number of them spend their days within a few hundred yards of a road. What keeps most visitors from seeing them is that most visitors are moving, and at the wrong hours. The animals are on a schedule. Match it, and the park fills up with them.
+      </p>
+
+      <p>
+        This is the guide I wish I could hand out at the entrance stations: what actually lives here, where each animal is likely to be, when to look, and the small set of rules that keep the watching honest. None of it requires luck. It requires standing still at a meadow edge at 7 pm, which turns out to be the hardest thing to convince people to do.
+      </p>
+
+      <h2>Dawn, dusk, and edges</h2>
+
+      <p>
+        Two principles decide almost every sighting in this park, and they are worth more than any list of locations.
+      </p>
+
+      <p>
+        The first is time. Most of Yosemite's mammals are crepuscular, active in the low light around sunrise and sunset. A meadow that holds twenty grazing mule deer at 6:30 am is empty gravel-bar-flat by 10, when the tour buses arrive to photograph it. The middle of the day, when the Valley is fullest of people, is when it is emptiest of animals. If you do one thing differently because of this article, let it be this: get to a meadow at first light, or stay at one through the last hour before dark.
+      </p>
+
+      <p>
+        The second is edges. Biologists call them ecotones, the seams where two habitats meet, and they concentrate life because animals use one side for food and the other for cover. A deer feeds in the open meadow and bolts to the trees. A coyote hunts the grass and dens in the forest. A great gray owl sits on a snag at the meadow margin and watches the voles below. Do not scan the middle of the meadow or the deep woods. Walk the boundary between them, slowly, and look along it.
+      </p>
+
+      <p>
+        Everything else in this guide is an application of those two ideas.
+      </p>
+
+      <h2>The Valley floor: deer, coyote, bobcat</h2>
+
+      <p>
+        Mule deer (<em>Odocoileus hemionus</em>) are the animal you are guaranteed to see, and the one most likely to hurt you. That is not a rhetorical flourish. Deer injure more visitors in Yosemite than bears do, because people treat a 150-pound wild ungulate with antlers like a petting-zoo resident. They browse Cook's Meadow, El Capitan Meadow, and the Wawona meadow loop morning and evening, and they barely react to people anymore, which is exactly the problem. Photograph them from the trail. Twenty-five yards. A deer that flattens its ears and stamps has already asked you once.
+      </p>
+
+      <p>
+        Coyotes work the same meadows, and winter is their season. When snow covers the Valley floor, coyotes hunt by ear, head cocked at the snowpack, then the vertical pounce that either ends a vole or produces the most dignified miss in nature. They are bolder here than coyotes elsewhere, trotting down the road shoulder in full daylight. Boldness means someone fed them. Do not close the distance, and never leave food where one can get it: a fed coyote works its way up to bites, and the bites end with the coyote destroyed.
+      </p>
+
+      <p>
+        The bobcat is the Valley's best-kept open secret. Visitors assume a wild cat sighting is a backcountry event, but Yosemite's bobcats hunt the meadow edges and the oak woodlands right around the developed areas, and in winter they do it at midday, when the sun is on the south-facing slopes. I have watched a bobcat work the margin of Cook's Meadow for forty minutes while a hundred people walked past behind me, none of them noticing the cat and none of the cat noticing them. Look for a house-cat silhouette that is wrong: taller, stub-tailed, moving in patient stop-start bursts.
+      </p>
+
+      <h2>Bears, briefly</h2>
+
+      <p>
+        Every bear in Yosemite is a black bear, whatever its color, and most of them are brown, cinnamon, or blond. There has not been a grizzly in California for a century; the animal survives only on the state flag. Somewhere between 300 and 500 black bears live in the park, and summer sightings are common: a bear turning over logs at a meadow edge, a sow with cubs moving through the oaks, a yearling treed by its own nerves near a campground.
+      </p>
+
+      <p>
+        I have written about bears at length elsewhere, including <a href="/articles/yosemite-bears-safety-guide">the myths that follow them around</a> and <a href="/articles/bears-spring-emergence">why a spring bear is a different animal than an August one</a>, so here is only the viewing protocol. Fifty yards, minimum; that is the park requirement, and it is measured from the bear, not from your comfort. If a bear changes its behavior because of you, you are too close, whatever the distance. And drive slowly at dawn and dusk. The red bear signs along the park roads each mark a spot where a car killed a bear. Speeding is the leading way visitors kill Yosemite wildlife, and it is the one that is entirely optional.
+      </p>
+
+      <h2>The birds worth learning first</h2>
+
+      <p>
+        Yosemite's bird list runs past 260 species, but four of them will teach you more than the other 256, because they are conspicuous, resident, and each one opens a door into how this place works.
+      </p>
+
+      <p>
+        The Steller's jay is the crested blue heckler of every picnic area, and it is worth a longer look than it usually gets: an intelligent corvid that mimics red-tailed hawk screams to scatter smaller birds from food. The acorn woodpecker runs the oak economy. Find a dead pine drilled with hundreds of neat holes, each fitted with an acorn, and you have found a granary tree, a communal food bank maintained by a family group for generations. The peregrine falcon nests on the Valley's cliffs, including El Capitan, and a bird that was nearly extinct in California in the 1970s now stoops past climbers at 200 miles an hour; the park closes a few climbing routes each spring to protect the eyries, which is why those closures exist. And the water ouzel, the drab gray songbird that walks into waterfalls, is the only bird John Muir thought worth a whole essay. I agree with him, and <a href="/articles/water-ouzels-waterfalls">wrote one too</a>.
+      </p>
+
+      <p>
+        Bring binoculars. Any binoculars. The difference between "a bird" and "a peregrine coming off the Nose ledges" is eight power of magnification and nothing else.
+      </p>
+
+      <h2>The high country, after Tioga opens</h2>
+
+      <p>
+        Above 8,000 feet, the cast changes completely, and the viewing gets easier, because subalpine animals concentrate around short summers and specific rock.
+      </p>
+
+      <p>
+        Olmsted Point is the most reliable mammal-watching pullout in the park. The yellow-bellied marmots there den under the glacial erratics and haul out on the warm granite all day, twenty feet from the parking lot. In Tuolumne Meadows, Belding's ground squirrels stand bolt upright in the grass like pickets, whistling alarm calls at every shadow. Overhead, the Clark's nutcracker harvests whitebark pine seeds and buries tens of thousands of them across the high country each fall, remembering most of the locations for months; the ones it forgets become the next generation of trees. The bird is planting the treeline it depends on.
+      </p>
+
+      <p>
+        The animal I most want you to meet up there is the pika, the small round-eared cousin of the rabbit that lives in talus, the aprons of broken rock under the high cliffs. A pika does not hibernate. It spends the whole short summer cutting wildflowers and grasses and curing them on the rocks into haypiles, its winter food, and it announces itself with a squeak-toy "eep" from somewhere inside the rubble. Sit down at the edge of a talus field near Tioga Pass, wait ten minutes, and the rocks come to life. There are worse ways to understand why this publication is named what it is.
+      </p>
+
+      <p>
+        The rarest good news in the park is also up here. Sierra Nevada bighorn sheep, a federally endangered subspecies that vanished from Yosemite for a century, were reintroduced to the Cathedral Range in 2015. A few dozen animals now hold the crest near the park's eastern edge. You are unlikely to see one, but hikers on the high passes occasionally do, and the fact that it is possible at all is one of the great restoration stories in the Sierra.
+      </p>
+
+      <h2>The ones you will probably never see</h2>
+
+      <p>
+        Mountain lions live throughout the park and prey on the deer herds you watched at sunset. Sightings are so rare that most rangers with full careers here have never had one. The lions see us constantly. The asymmetry is the point, and it should reassure rather than worry you: attacks in Yosemite are essentially unknown.
+      </p>
+
+      <p>
+        The great gray owl is the harder case, because people do try to see it. Yosemite holds the southernmost breeding population of the largest owl in North America, a relict group of perhaps a couple hundred birds isolated in these meadows since the ice ages. They hunt the edges of mid-elevation meadows, Crane Flat and the Glacier Point Road meadows among them, at dawn and dusk. If you are lucky enough to find one, stay back, keep quiet, and do not play recorded calls to draw it in. Call playback is harassment of a state-endangered bird, it is prohibited, and a bird that responds to a phone is burning hunting time it needs. The owl is not content. Let it work.
+      </p>
+
+      <h2>The rules are also the technique</h2>
+
+      <p>
+        The regulations here are short: stay 50 yards from bears, give everything else at least 25, never feed any animal, and store food properly, in lockers and canisters, never in a car overnight. The fines are real, up to $5,000 for food-storage violations, but the fines are not the reason. A fed animal stops being wild in every way that matters, and the park ends up hauling it away or killing it. "A fed bear is a dead bear" is not a slogan. It is a case file, repeated annually.
+      </p>
+
+      <p>
+        What the rulebook does not say is that the rules are also simply how you see more. Distance, quiet, and stillness are the entire craft of wildlife watching. The visitor who runs toward the bear gets thirty seconds of a bear leaving. The one who stops, backs against a tree, and waits gets twenty minutes of a bear being a bear. Every rule that protects the animal also lengthens the sighting.
+      </p>
+
+      <p>
+        So the kit is modest: binoculars, something warm, something to sit on, and a tolerance for standing still while nothing happens. Pick a meadow edge. Arrive at an hour that feels unreasonable. The first fifteen minutes after you stop moving are when the meadow decides you are scenery, and that is when it starts up again around you: the deer stepping out of the trees, the jay resuming its rounds, the coyote you did not notice was already there. The animals were never the missing part. The stillness was.
+      </p>
+
+      <p>
+        If your trip lines up with the bloom, the watching stacks: the meadows drawing the wildlife are the same ones covered in <a href="/articles/yosemite-wildflowers-guide">the wildflower calendar</a>, and the milkweed patches in <a href="/articles/showy-milkweed-yosemite-valley">Cook's Meadow</a> run their own insect spectacle all July.
+      </p>
+
+      <h3>Further reading</h3>
+      <ul style={{ fontSize: 14 }}>
+        <li>NPS Yosemite wildlife pages: current bear activity, food storage requirements, and the seasonal closure list for peregrine nesting cliffs.</li>
+        <li>John Muir, "The Water-Ouzel," from <em>The Mountains of California</em> (1894). Still the best single essay on a Yosemite animal.</li>
+        <li>Grinnell and Storer, <em>Animal Life in the Yosemite</em> (1924). The baseline transect survey that modern Sierra wildlife studies are still measured against.</li>
+        <li>Sierra Nevada Bighorn Sheep Recovery Program reports on the 2015 Cathedral Range reintroduction, California Department of Fish and Wildlife.</li>
+      </ul>
+    </>
+  );
+};
