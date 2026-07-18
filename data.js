@@ -99,7 +99,7 @@ window.planningSeriesFor = function (slug) {
 // verifies this map stays in sync with the files in bodies/.
 // ============================================================
 window.BODY_VERSIONS = {
-  "showy-milkweed-yosemite-valley": 2,
+  "showy-milkweed-yosemite-valley": 3,
   "yosemite-connecting-to-traditions": 1,
   "yosemite-waterfalls-guide": 1,
   "yosemite-photography-spots": 1,
@@ -702,7 +702,7 @@ window.ARTICLES = [
     slug: "showy-milkweed-yosemite-valley",
     cat: "wildlife",
     title: "Showy milkweed is blooming in Yosemite Valley, and the monarchs depend on it",
-    dek: "On dry roadsides and meadow edges on the Valley floor right now, showy milkweed is holding up fist-sized clusters of dusty pink flowers. A naturalist on the strangest flower in the park, the monarch that cannot live without it, and why it should be left standing.",
+    dek: "Out in the Valley meadows right now, Cook's Meadow among the best of them, showy milkweed is holding up fist-sized clusters of dusty pink flowers. A naturalist on the strangest flower in the park, the monarch that cannot live without it, and why it should be left standing.",
     seoDek: "Showy milkweed (Asclepias speciosa) is blooming in Yosemite Valley in July. How to identify it, the monarchs that depend on it, and where to see it.",
     date: "July 17, 2026",
     isoDate: "2026-07-17",

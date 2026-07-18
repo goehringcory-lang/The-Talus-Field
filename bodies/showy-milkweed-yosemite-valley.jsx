@@ -6,7 +6,7 @@ window.ARTICLE_BODIES["showy-milkweed-yosemite-valley"] = function ShowyMilkweed
   return (
     <>
       <p className="dropcap">
-        On the dry, sunny margins of Yosemite Valley right now, in mid-July, a stout gray-green plant is bearing clusters of dusty pink flowers the size of a fist. This is showy milkweed, <em>Asclepias speciosa</em>, and it is having its best two weeks of the year. Walk the edge of <a href="/articles/watching-climbers-el-capitan">El Capitan Meadow</a> or any sun-baked roadside pullout on the Valley floor and you will find it standing two to five feet tall, its stems furred, its broad leaves felted like a rabbit's ear. The flower heads are busy with bees, wasps, and, if the summer is kind, monarch butterflies. It is one of the most quietly important plants in the park, and for the next few weeks it is impossible to miss.
+        Across the meadows of Yosemite Valley right now, in mid-July, a stout gray-green plant is bearing clusters of dusty pink flowers the size of a fist. This is showy milkweed, <em>Asclepias speciosa</em>, and it is having its best two weeks of the year. Walk out into Cook's Meadow, one of the best places to find it, or <a href="/articles/watching-climbers-el-capitan">El Capitan Meadow</a>, and you will find it standing two to five feet tall, its stems furred, its broad leaves felted like a rabbit's ear. The flower heads are busy with bees, wasps, and, if the summer is kind, monarch butterflies. It is one of the most quietly important plants in the park, and for the next few weeks it is impossible to miss.
       </p>
 
       <p>
@@ -54,7 +54,7 @@ window.ARTICLE_BODIES["showy-milkweed-yosemite-valley"] = function ShowyMilkweed
       <h2>Is milkweed poisonous? The milky sap</h2>
 
       <p>
-        Snap any part of the plant and it weeps within seconds. This is the plant's defense, and it is a good one. The latex is sticky enough to gum up the mouthparts of a chewing insect, and it carries the same cardiac glycosides the monarch turns to its own use. Most animals that take a bite learn quickly to leave it alone. Deer avoid it. Cattle avoid it. The plant is, for practical purposes, left standing in landscapes where almost everything else gets grazed, which is part of why you find it thriving on hard, disturbed, sunny ground: roadsides, old pullouts, the dry lower edges of meadows.
+        Snap any part of the plant and it weeps within seconds. This is the plant's defense, and it is a good one. The latex is sticky enough to gum up the mouthparts of a chewing insect, and it carries the same cardiac glycosides the monarch turns to its own use. Most animals that take a bite learn quickly to leave it alone. Deer avoid it. Cattle avoid it. The plant is, for practical purposes, left standing in landscapes where almost everything else gets grazed, which is part of why it thrives out in the open, sunny meadows of the Valley floor as well as along roadsides and old pullouts.
       </p>
 
       <p>
@@ -64,7 +64,7 @@ window.ARTICLE_BODIES["showy-milkweed-yosemite-valley"] = function ShowyMilkweed
       <h2>Where and when to see milkweed in Yosemite Valley</h2>
 
       <p>
-        Look on dry, open, sunny ground rather than in the shady forest or the wet heart of a meadow. The lower, drier margins of the Valley's big meadows are reliable, as are the sunnier roadside verges and old pullouts along Northside and Southside Drives. It wants heat and disturbed soil, so the edges people think of as scrubby are exactly where it does best.
+        Look on open, sunny ground rather than in the shady forest. The Valley's big meadows are the reliable places to find it, Cook's Meadow among the best, and it grows out through the grass, not just around the edges. The sunnier roadside verges and old pullouts along Northside and Southside Drives hold it too. It wants heat and open ground, so the bright, unshaded stretches are exactly where it does best.
       </p>
 
       <p>
