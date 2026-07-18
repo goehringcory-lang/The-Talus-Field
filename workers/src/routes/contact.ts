@@ -1,8 +1,21 @@
 import { Hono } from 'hono'
 import type { Env } from '../env'
+import { recordContactAttempt } from '../lib/kv'
 import { sendContactMessage } from '../lib/email'
 
 export const contact = new Hono<{ Bindings: Env }>()
+
+// Every submission relays a real email to the operator inbox, so the window
+// is tight and keyed by hashed IP, same as /api/waitlist and /api/trip/email.
+const MAX_SENDS_PER_HOUR = 5
+
+async function hashIp(ip: string): Promise<string> {
+  const data = new TextEncoder().encode(`contact:${ip}`)
+  const digest = await crypto.subtle.digest('SHA-256', data)
+  return [...new Uint8Array(digest)]
+    .map((b) => b.toString(16).padStart(2, '0'))
+    .join('')
+}
 
 const SUBJECT_LABELS: Record<string, string> = {
   general: 'A general note',
@@ -52,6 +65,12 @@ contact.post('/', async (c) => {
     return c.json({ error: 'Invalid message' }, 400)
   }
   const subjectLabel = SUBJECT_LABELS[subjectKey] ?? SUBJECT_LABELS.general
+
+  const ip = c.req.header('CF-Connecting-IP') ?? 'unknown'
+  const attempts = await recordContactAttempt(c.env, await hashIp(ip))
+  if (attempts > MAX_SENDS_PER_HOUR) {
+    return c.json({ error: 'Too many messages. Try again later.' }, 429)
+  }
 
   try {
     await sendContactMessage(c.env, {

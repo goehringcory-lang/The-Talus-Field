@@ -320,6 +320,22 @@ function MapView({
     window.addEventListener("popstate", onPop);
     return () => window.removeEventListener("popstate", onPop);
   }, []);
+  var announce = useCallback((msg, opts) => {
+    var undoable = !!(opts && opts.undoable);
+    if (!undoable) pendingUndoRef.current = null;
+    if (announcerRef.current) {
+      announcerRef.current.textContent = undoable ? `${msg} Undo available.` : msg;
+    }
+    setToast({
+      msg,
+      undoable
+    });
+    if (toastTimerRef.current) clearTimeout(toastTimerRef.current);
+    toastTimerRef.current = setTimeout(() => {
+      setToast(null);
+      pendingUndoRef.current = null;
+    }, undoable ? TOAST_UNDO_MS : TOAST_MS);
+  }, []);
   var toggleCategory = useCallback(cat => {
     var next = new Set(activeCats);
     var nowActive = !next.has(cat);
@@ -338,22 +354,6 @@ function MapView({
       });
     }
   }, [activeCats, features, announce]);
-  var announce = useCallback((msg, opts) => {
-    var undoable = !!(opts && opts.undoable);
-    if (!undoable) pendingUndoRef.current = null;
-    if (announcerRef.current) {
-      announcerRef.current.textContent = undoable ? `${msg} Undo available.` : msg;
-    }
-    setToast({
-      msg,
-      undoable
-    });
-    if (toastTimerRef.current) clearTimeout(toastTimerRef.current);
-    toastTimerRef.current = setTimeout(() => {
-      setToast(null);
-      pendingUndoRef.current = null;
-    }, undoable ? TOAST_UNDO_MS : TOAST_MS);
-  }, []);
   var featureNameById = useCallback(id => {
     if (!features) return id;
     var f = features.find(x => x.properties.id === id);

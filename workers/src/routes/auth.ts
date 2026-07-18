@@ -19,6 +19,13 @@ const MAX_LOGIN_ATTEMPTS_PER_HOUR = 5
 // Each resend attempt fires a real email, so the caps sit below login's 5/hr.
 const MAX_RESEND_PER_EMAIL_PER_HOUR = 3
 const MAX_RESEND_PER_IP_PER_HOUR = 10
+// Emails and usernames become KV rate-limit keys, and KV rejects keys over
+// 512 bytes: unbounded input would throw inside record*Attempt and turn a
+// garbage POST into a 500. Cap before any KV touch. 254 is the SMTP maximum;
+// no real username approaches 128.
+const EMAIL_MAX = 254
+const USERNAME_MAX = 128
+const CODE_MAX = 64
 
 export const auth = new Hono<{ Bindings: Env; Variables: AuthVariables }>()
 
@@ -49,6 +56,9 @@ auth.post('/login', async (c) => {
   const email = body.email?.trim().toLowerCase()
   const code = body.code?.trim()
   if (!email || !code) return c.json({ error: 'Missing email or code' }, 400)
+  if (email.length > EMAIL_MAX || code.length > CODE_MAX) {
+    return c.json({ error: 'Missing email or code' }, 400)
+  }
 
   const attempts = await recordLoginAttempt(c.env, email)
   if (attempts > MAX_LOGIN_ATTEMPTS_PER_HOUR) {
@@ -104,7 +114,7 @@ auth.get('/me', requireAuth, async (c) => {
 auth.post('/resend', async (c) => {
   const body = await c.req.json<{ email?: string }>().catch(() => ({} as { email?: string }))
   const email = body.email?.trim().toLowerCase()
-  if (!email) return c.json({ error: 'Missing email' }, 400)
+  if (!email || email.length > EMAIL_MAX) return c.json({ error: 'Missing email' }, 400)
 
   const ip = c.req.header('cf-connecting-ip') ?? 'unknown'
   const emailAttempts = await recordResendAttempt(c.env, email)
@@ -138,6 +148,9 @@ auth.post('/dev-login', async (c) => {
   const username = body.username?.trim()
   const code = body.code?.trim()
   if (!username || !code) return c.json({ error: 'Missing username or code' }, 400)
+  if (username.length > USERNAME_MAX || code.length > CODE_MAX) {
+    return c.json({ error: 'Missing username or code' }, 400)
+  }
 
   // Cloudflare always sets cf-connecting-ip in production. Fall back to a
   // sentinel so the bucket key is still well-formed (e.g. for `wrangler dev`

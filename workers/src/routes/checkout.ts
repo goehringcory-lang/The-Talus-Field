@@ -63,7 +63,12 @@ checkout.post('/start', async (c) => {
     if (!recipient || recipient.length > EMAIL_MAX || !EMAIL_RE.test(recipient)) {
       return c.json({ error: 'A valid recipient email is required for a gift' }, 400)
     }
-    const note = typeof body.giftNote === 'string' ? body.giftNote.trim() : ''
+    // Collapse all whitespace (including CR/LF) to single spaces: the note is
+    // spliced verbatim into the plain-text part of the gift email, and raw
+    // newlines would let a paying attacker forge whole paragraphs of a
+    // DKIM-signed email to an address they choose.
+    const note =
+      typeof body.giftNote === 'string' ? body.giftNote.replace(/\s+/g, ' ').trim() : ''
     if (note.length > GIFT_NOTE_MAX) {
       return c.json({ error: `Gift note must be ${GIFT_NOTE_MAX} characters or fewer` }, 400)
     }

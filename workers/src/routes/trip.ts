@@ -36,6 +36,16 @@ trip.post('/feed', requireAuth, async (c) => {
   }
 
   const sub = c.get('authSub')
+
+  // Same convention as the feed GET and /api/calendar/google/sync: a buyer
+  // past expiresAt has lost access (a Stripe refund sets expiresAt = now, but
+  // the JWT it revokes can outlive it by months); a missing buyer record is an
+  // operator session — allow.
+  const buyer = await getBuyer(c.env, sub)
+  if (buyer && buyer.expiresAt * 1000 < Date.now()) {
+    return c.json({ error: 'Access has expired' }, 410)
+  }
+
   const attempts = await recordTripFeedWriteAttempt(c.env, sub)
   if (attempts > MAX_FEED_WRITES_PER_HOUR) {
     return c.json({ error: 'Too many updates. Try again later.' }, 429)

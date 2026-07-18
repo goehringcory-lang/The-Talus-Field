@@ -5,6 +5,7 @@
 
 import {
   ESSENTIALS,
+  HIKES,
   REGIONS,
   SEASONAL_EVENTS,
   SECRET_GUIDE_CATEGORY_TITLE,
@@ -16,7 +17,7 @@ export type SearchHit = {
   id: string
   url: string
   title: string
-  section: 'Stops' | 'Secret Guide' | 'Essentials' | 'Programs'
+  section: 'Stops' | 'Hikes' | 'Secret Guide' | 'Essentials' | 'Programs'
   eyebrow: string
   snippet: string
   score: number
@@ -65,6 +66,22 @@ function buildEntries(): Entry[] {
       titleText: t.title.toLowerCase(),
       swapText: t.teaser.toLowerCase(),
       bodyText: (t.body + ' ' + essentialChecklistText(t.checklist)).toLowerCase(),
+    })
+  }
+
+  // The day-hike catalog. No per-hike page exists, so every hit lands on
+  // /hikes; the trailhead line is indexed at swap weight so "mist trail
+  // shuttle" style queries surface the right hike.
+  for (const h of HIKES) {
+    entries.push({
+      id: h.id,
+      url: '/hikes',
+      title: h.title,
+      section: 'Hikes',
+      eyebrow: REGION_LABEL[h.region] ?? h.region,
+      titleText: h.title.toLowerCase(),
+      swapText: h.trailhead.toLowerCase(),
+      bodyText: h.description.toLowerCase(),
     })
   }
 
@@ -144,6 +161,8 @@ export function search(query: string, limit = 24): SearchHit[] {
       originalBody = topic ? topic.body + ' ' + essentialChecklistText(topic.checklist) : ''
     } else if (entry.section === 'Programs') {
       originalBody = SEASONAL_EVENTS.find((ev) => ev.id === entry.id)?.description ?? ''
+    } else if (entry.section === 'Hikes') {
+      originalBody = HIKES.find((h) => h.id === entry.id)?.description ?? ''
     } else {
       originalBody =
         (stops.find((s) => s.id === entry.id) ?? SECRET_SPOTS.find((s) => s.id === entry.id))?.body ?? ''
