@@ -51,6 +51,7 @@ const TRIP_FEED_WRITE_ATTEMPTS_KEY = (sub: string) =>
   `tripfeedWriteAttempts:${sub.toLowerCase()}`
 const TRIP_EMAIL_ATTEMPTS_KEY = (ipHash: string) => `tripEmailAttempts:${ipHash}`
 const WAITLIST_ATTEMPTS_KEY = (ipHash: string) => `waitlistAttempts:${ipHash}`
+const CONTACT_ATTEMPTS_KEY = (ipHash: string) => `contactAttempts:${ipHash}`
 const RENEWAL_NOTICE_KEY = (email: string, stage: string) =>
   `renewalNotice:${email.toLowerCase()}:${stage}`
 const RENEW_LINK_ATTEMPTS_KEY = (ipHash: string) => `renewLinkAttempts:${ipHash}`
@@ -110,13 +111,49 @@ export async function incrementInventory(env: Env, monthLabel: string): Promise<
   return next
 }
 
-export async function recordLoginAttempt(env: Env, email: string): Promise<number> {
-  const key = LOGIN_ATTEMPTS_KEY(email)
+// Shared fixed-window counter for every rate-limit bucket below. The window
+// anchors to the FIRST attempt: re-putting with a fresh expirationTtl on every
+// increment (the old scheme) let one request per ~55 minutes keep a bucket
+// alive forever, which for attacker-chosen keys (a victim's login email) was a
+// permanent-lockout DoS. The reset time is stored in the value and reused as
+// an absolute `expiration`, so trailing attempts can't extend the window.
+type RateWindow = { n: number; resetAt: number }
+
+async function incrementFixedWindow(env: Env, key: string): Promise<number> {
+  const nowSeconds = Math.floor(Date.now() / 1000)
+  const windowSeconds = 60 * 60
+  let count = 0
+  let resetAt = nowSeconds + windowSeconds
   const raw = await env.GUIDE_BUYERS.get(key)
-  const next = (raw ? Number.parseInt(raw, 10) : 0) + 1
-  // 1-hour TTL gives a rolling window per email.
-  await env.GUIDE_BUYERS.put(key, String(next), { expirationTtl: 60 * 60 })
+  if (raw) {
+    try {
+      const parsed = JSON.parse(raw) as RateWindow | number
+      if (typeof parsed === 'number') {
+        // Legacy plain-count value from the rolling-window era: adopt the
+        // count into a fresh window rather than resetting it to zero.
+        count = parsed
+      } else if (
+        typeof parsed?.n === 'number' &&
+        typeof parsed?.resetAt === 'number' &&
+        parsed.resetAt > nowSeconds
+      ) {
+        count = parsed.n
+        resetAt = parsed.resetAt
+      }
+    } catch {
+      // Corrupt value: start a fresh window.
+    }
+  }
+  // KV rejects expirations less than 60s out; a window that close to done may
+  // as well restart.
+  if (resetAt - nowSeconds < 60) resetAt = nowSeconds + windowSeconds
+  const next = count + 1
+  await env.GUIDE_BUYERS.put(key, JSON.stringify({ n: next, resetAt }), { expiration: resetAt })
   return next
+}
+
+export async function recordLoginAttempt(env: Env, email: string): Promise<number> {
+  return incrementFixedWindow(env, LOGIN_ATTEMPTS_KEY(email))
 }
 
 export async function clearLoginAttempts(env: Env, email: string): Promise<void> {
@@ -128,21 +165,11 @@ export async function clearLoginAttempts(env: Env, email: string): Promise<void>
 // bucket protects an individual buyer's inbox from being spammed, the per-IP
 // bucket stops one caller probing many addresses.
 export async function recordResendAttempt(env: Env, email: string): Promise<number> {
-  const key = RESEND_ATTEMPTS_KEY(email)
-  const raw = await env.GUIDE_BUYERS.get(key)
-  const next = (raw ? Number.parseInt(raw, 10) : 0) + 1
-  // 1-hour TTL gives a rolling window per email.
-  await env.GUIDE_BUYERS.put(key, String(next), { expirationTtl: 60 * 60 })
-  return next
+  return incrementFixedWindow(env, RESEND_ATTEMPTS_KEY(email))
 }
 
 export async function recordResendAttemptByIp(env: Env, ip: string): Promise<number> {
-  const key = RESEND_ATTEMPTS_IP_KEY(ip)
-  const raw = await env.GUIDE_BUYERS.get(key)
-  const next = (raw ? Number.parseInt(raw, 10) : 0) + 1
-  // 1-hour TTL gives a rolling window per IP.
-  await env.GUIDE_BUYERS.put(key, String(next), { expirationTtl: 60 * 60 })
-  return next
+  return incrementFixedWindow(env, RESEND_ATTEMPTS_IP_KEY(ip))
 }
 
 export async function recordDevLoginAttempt(
@@ -150,12 +177,7 @@ export async function recordDevLoginAttempt(
   ip: string,
   username: string,
 ): Promise<number> {
-  const key = DEV_LOGIN_ATTEMPTS_KEY(ip, username)
-  const raw = await env.GUIDE_BUYERS.get(key)
-  const next = (raw ? Number.parseInt(raw, 10) : 0) + 1
-  // 1-hour TTL gives a rolling window per (IP, username) pair.
-  await env.GUIDE_BUYERS.put(key, String(next), { expirationTtl: 60 * 60 })
-  return next
+  return incrementFixedWindow(env, DEV_LOGIN_ATTEMPTS_KEY(ip, username))
 }
 
 export async function clearDevLoginAttempts(
@@ -212,32 +234,23 @@ export async function deleteTripFeed(env: Env, sub: string): Promise<void> {
 // Keyed by hashed IP: the endpoint is unauthenticated and the raw address
 // never needs to touch KV.
 export async function recordTripEmailAttempt(env: Env, ipHash: string): Promise<number> {
-  const key = TRIP_EMAIL_ATTEMPTS_KEY(ipHash)
-  const raw = await env.GUIDE_BUYERS.get(key)
-  const next = (raw ? Number.parseInt(raw, 10) : 0) + 1
-  // 1-hour TTL gives a rolling window per IP.
-  await env.GUIDE_BUYERS.put(key, String(next), { expirationTtl: 60 * 60 })
-  return next
+  return incrementFixedWindow(env, TRIP_EMAIL_ATTEMPTS_KEY(ipHash))
 }
 
 // The guide waitlist button mails the operator per call, so the window is
 // tight and keyed by hashed IP (the endpoint is unauthenticated).
 export async function recordWaitlistAttempt(env: Env, ipHash: string): Promise<number> {
-  const key = WAITLIST_ATTEMPTS_KEY(ipHash)
-  const raw = await env.GUIDE_BUYERS.get(key)
-  const next = (raw ? Number.parseInt(raw, 10) : 0) + 1
-  // 1-hour TTL gives a rolling window per IP.
-  await env.GUIDE_BUYERS.put(key, String(next), { expirationTtl: 60 * 60 })
-  return next
+  return incrementFixedWindow(env, WAITLIST_ATTEMPTS_KEY(ipHash))
+}
+
+// The contact form mails the operator inbox per call; same hashed-IP window
+// as the waitlist button (the endpoint is unauthenticated).
+export async function recordContactAttempt(env: Env, ipHash: string): Promise<number> {
+  return incrementFixedWindow(env, CONTACT_ATTEMPTS_KEY(ipHash))
 }
 
 export async function recordTripFeedWriteAttempt(env: Env, sub: string): Promise<number> {
-  const key = TRIP_FEED_WRITE_ATTEMPTS_KEY(sub)
-  const raw = await env.GUIDE_BUYERS.get(key)
-  const next = (raw ? Number.parseInt(raw, 10) : 0) + 1
-  // 1-hour TTL gives a rolling window per sub.
-  await env.GUIDE_BUYERS.put(key, String(next), { expirationTtl: 60 * 60 })
-  return next
+  return incrementFixedWindow(env, TRIP_FEED_WRITE_ATTEMPTS_KEY(sub))
 }
 
 // --- Renewal arc (/api/checkout/renew + the daily sweep) --------------------

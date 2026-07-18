@@ -18,15 +18,16 @@ import { generateAccessCode, generateAccessToken } from '../lib/tokens'
 
 const EIGHTEEN_MONTHS_SECONDS = 60 * 60 * 24 * 548 // 18 calendar months is ~547.9 days; 30-day months undersold it by a week
 
-type CheckoutSessionCompletedEvent = {
+type CheckoutSessionEvent = {
   id: string
-  type: 'checkout.session.completed'
+  type: 'checkout.session.completed' | 'checkout.session.async_payment_succeeded'
   data: {
     object: {
       id: string
       customer_email?: string | null
       customer_details?: { email?: string | null } | null
       metadata?: Record<string, string> | null
+      payment_status?: string
       created: number
     }
   }
@@ -116,11 +117,13 @@ stripe.post('/webhook', async (c) => {
       return c.json({ received: true, ignored: 'refund for other product' })
     }
 
-    // Gift charges carry the recipient in metadata (copied from
-    // payment_intent_data): the refund must revoke the person who holds the
-    // access, not the payer whose card was charged.
+    // Gift charges carry the recipient in metadata, renewal charges the
+    // account being renewed (both copied from payment_intent_data): the refund
+    // must revoke the person who holds the access, not the payer whose card
+    // was charged — billing email can differ from the account email.
     const email =
       charge.metadata?.recipientEmail?.trim().toLowerCase() ??
+      charge.metadata?.renewEmail?.trim().toLowerCase() ??
       charge.billing_details?.email?.trim().toLowerCase() ??
       charge.receipt_email?.trim().toLowerCase() ??
       null
@@ -153,12 +156,26 @@ stripe.post('/webhook', async (c) => {
     return c.json({ received: true, revoked: email })
   }
 
-  if (event.type !== 'checkout.session.completed') {
+  if (
+    event.type !== 'checkout.session.completed' &&
+    event.type !== 'checkout.session.async_payment_succeeded'
+  ) {
     return c.json({ received: true, ignored: event.type })
   }
 
-  const completed = event as CheckoutSessionCompletedEvent
+  const completed = event as CheckoutSessionEvent
   const session = completed.data.object
+
+  // Asynchronous payment methods (bank debits and the like) fire
+  // checkout.session.completed with payment_status 'unpaid' and settle later:
+  // provisioning on the completed event would grant 18-month access for money
+  // that may never arrive, with no charge to refund. Wait for
+  // checkout.session.async_payment_succeeded instead (it must be enabled on
+  // the Stripe webhook endpoint alongside the other two events). Only an
+  // explicit 'unpaid' defers — a missing field must not strand a card buyer.
+  if (event.type === 'checkout.session.completed' && session.payment_status === 'unpaid') {
+    return c.json({ received: true, ignored: 'awaiting async payment' })
+  }
 
   // Only provision the field guide for OUR product. Any other item sold
   // through the same Stripe account (a payment link, a donation, a print)
