@@ -244,3 +244,13 @@ Post-launch follow-on to R10, on the product side of the fence this time: the PW
 - **Shared stop links convert.** Signed-out `/stop/:id` renders a teaser landing page (name, photo, meta, teaser line, CTAs) instead of the login wall; the five sample stops read in full. A Share button on every stop page (Web Share/clipboard) feeds the loop, and the PWA's `index.html` now carries OG tags so shared links unfurl.
 - **/login sells too:** price + sample link for non-buyers; lapsed buyers get a "buy again with the same email" renewal path (the webhook overwrites the buyer record, so repurchase = renewal).
 - **Measurement gap, deliberate:** the PWA has no analytics by design, so sample-page traffic is only visible as `guide_sample_click` on the editorial side and, ultimately, checkout volume. If the sample needs its own funnel numbers later, that is a new decision, not an oversight.
+
+## Addendum — Homepage user-journey pass (July 2026, shipped)
+
+Extends R7 beyond a value-prop line into a first-viewport rework, on the reasoning that a task-mode planner cannot process an identity-first hero. The page now leads with the favor and asks afterward.
+
+- **Hero triage doors.** The H1 states the differentiator as a service ("Yosemite, from the inside."), and three self-selection doors (first trip → the Start Here answers row; dates set → `/itineraries`; there now or going soon → `/now`) replace the single "Start here" text link as the hero's primary action. Instrumented as `cta_click{location: home_door, target}`.
+- **Capture demoted to second position, promise made honest.** The email form follows the doors. "Unlock the map" was stale (the map view has been free since the gate rework; only the trip builder is gated), so the offer is now the Sunday letter with the trip builder as the bundled unlock. `home_hero` location and `home` tag unchanged, so funnel numbers stay comparable.
+- **Bulletin teaser promoted** to its own band directly under the utility row: dated recency is the proof a cold planner trusts. The webcam strip and its four off-site links stay below Start Here, preserving the `home_webcams` A/B conclusion.
+- **Start Here recast from readings to answers:** dek is now "Four answers before you book anything," and each curated card leads with the question it answers (`START_HERE_QUESTIONS` in page-home.jsx).
+- **Measure:** share of home sessions reaching a second surface (`cta_click{home_door}` + `home_utility_click` + `home_dispatch` clicks), hero capture CR at `home_hero` (per-impression CR may drop while list quality rises), and home-referred entrances to `/itineraries` and `/now`. The `hero_actions` verdict is deliberately superseded; if insurance is wanted, rerun old-vs-new hero as the single live test per R12.
