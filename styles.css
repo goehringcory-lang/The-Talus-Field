@@ -3984,3 +3984,82 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
   .app-shot { flex-basis: 208px; }
   .guide-closer { padding: 22px 18px; }
 }
+
+/* ===== Field Guide mobile pass =====
+   Sticky bottom buy bar, phones only. Desktop keeps the sticky aside, so
+   the bar stays display:none above 720px. Slide-in after the hero; the
+   component removes .is-visible whenever the real buy box or the closer is
+   on screen. Visibility flips after the slide-out so the bar also leaves
+   the tab order when hidden. */
+.guide-buybar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 60;
+  display: none;
+  align-items: center;
+  gap: 14px;
+  padding: 12px var(--gutter);
+  padding-bottom: calc(12px + env(safe-area-inset-bottom));
+  background: var(--ink);
+  color: var(--paper);
+  border-top: 1px solid var(--rule);
+  transform: translateY(102%);
+  visibility: hidden;
+  transition: transform 0.28s ease, visibility 0s linear 0.28s;
+}
+.guide-buybar.is-visible {
+  transform: translateY(0);
+  visibility: visible;
+  transition: transform 0.28s ease;
+}
+.guide-buybar__meta {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.guide-buybar__price {
+  font-family: var(--display);
+  font-size: 22px;
+  font-weight: 500;
+  line-height: 1;
+}
+.guide-buybar__sub {
+  font-family: var(--sans);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-weight: 600;
+  opacity: 0.7;
+  white-space: nowrap;
+}
+.guide-buybar__cta {
+  font-family: var(--sans);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-weight: 600;
+  background: var(--paper);
+  color: var(--ink);
+  border: 0;
+  padding: 13px 18px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.guide-buybar__cta:disabled { cursor: wait; opacity: 0.7; }
+
+@media (max-width: 720px) {
+  .guide-buybar { display: flex; }
+  /* Room under the last content so the fixed bar never covers it. */
+  .page--guide { padding-bottom: 76px; }
+  /* Justify the hero stat row across the full width on phones. */
+  .guide-stats { width: 100%; }
+  .guide-stats span { flex: 1 1 auto; text-align: center; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .guide-buybar { transition: none; }
+  .guide-buybar.is-visible { transition: none; }
+}

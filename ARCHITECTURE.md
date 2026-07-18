@@ -46,7 +46,7 @@ All events fire through `window.track`. Names and where they fire:
 | `newsletter_signup`, `newsletter_impression` | components.jsx helpers, called by every newsletter unit with a `location` param |
 | `newsletter_exit_intent_shown` | components.jsx (ExitIntentNewsletter) |
 | `guide_cta_click` | components.jsx (Footer "Field Guide" link, masthead nav), page-home.jsx (Go Deeper band, `location: home_band`) |
-| `guide_buy_click` | page-guide.jsx (`location`: `guide_aside` buy box or `guide_closer` end-of-pitch button) |
+| `guide_buy_click` | page-guide.jsx (`location`: `guide_aside` buy box, `guide_closer` end-of-pitch button, or `guide_mobile_bar` sticky phone bar) |
 | `guide_sample_click` | page-guide.jsx (links to the PWA's free sample at `/preview`, with `location`: `guide_aside` or `guide_closer`) |
 | `film_play` | page-films.jsx |
 | `affiliate_click` | app.jsx (delegated document listener on `a[data-aff-network]`) |
