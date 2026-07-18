@@ -99,6 +99,7 @@ window.planningSeriesFor = function (slug) {
 // verifies this map stays in sync with the files in bodies/.
 // ============================================================
 window.BODY_VERSIONS = {
+  "yosemite-wildlife-viewing-guide": 1,
   "showy-milkweed-yosemite-valley": 3,
   "yosemite-connecting-to-traditions": 1,
   "yosemite-waterfalls-guide": 1,
@@ -698,6 +699,20 @@ window.KIT.lists.forEach((l) => {
 });
 
 window.ARTICLES = [
+  {
+    slug: "yosemite-wildlife-viewing-guide",
+    cat: "wildlife",
+    title: "Where the Animals Actually Are: A Naturalist's Guide to Watching Wildlife in Yosemite",
+    dek: "Yosemite's wildlife is not hiding, it is on a schedule most visitors never match. Twenty seasons of watching, condensed: the two principles that decide every sighting, the Valley's deer, coyotes, and bobcats, the high-country pika and marmots, and the rules that double as technique.",
+    seoDek: "Where to see wildlife in Yosemite: bears, mule deer, coyotes, bobcats, marmots, pika, and great gray owls, plus the best times, places, and viewing rules.",
+    date: "July 18, 2026",
+    isoDate: "2026-07-18",
+    isoModified: "2026-07-18",
+    read: "10 min",
+    placeholder: "Mule deer grazing a Yosemite meadow at golden hour beneath Half Dome",
+    image: "img/half-dome-meadow-deer-johannes-andersson.jpg",
+    credit: "Photo: Johannes Andersson / Unsplash",
+  },
   {
     slug: "showy-milkweed-yosemite-valley",
     cat: "wildlife",

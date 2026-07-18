@@ -9,13 +9,23 @@
     <copyright>© 2026 The Talus Field</copyright>
     <managingEditor>cory@thetalusfieldjournal.com (Cory Goehring)</managingEditor>
     <webMaster>cory@thetalusfieldjournal.com (Cory Goehring)</webMaster>
-    <lastBuildDate>Fri, 17 Jul 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 18 Jul 2026 00:00:00 +0000</lastBuildDate>
     <image>
       <url>https://thetalusfieldjournal.com/img/talus-field-mark.png</url>
       <title>The Talus Field</title>
       <link>https://thetalusfieldjournal.com/</link>
     </image>
 
+    <item>
+      <title>Where the Animals Actually Are: A Naturalist's Guide to Watching Wildlife in Yosemite</title>
+      <link>https://thetalusfieldjournal.com/articles/yosemite-wildlife-viewing-guide</link>
+      <guid isPermaLink="true">https://thetalusfieldjournal.com/articles/yosemite-wildlife-viewing-guide</guid>
+      <pubDate>Sat, 18 Jul 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Cory Goehring</dc:creator>
+      <category>Wildlife and Nature</category>
+      <description>Yosemite's wildlife is not hiding, it is on a schedule most visitors never match. Twenty seasons of watching, condensed: the two principles that decide every sighting, the Valley's deer, coyotes, and bobcats, the high-country pika and marmots, and the rules that double as technique.</description>
+      <media:content url="https://thetalusfieldjournal.com/img/half-dome-meadow-deer-johannes-andersson.jpg" medium="image" />
+    </item>
     <item>
       <title>Showy milkweed is blooming in Yosemite Valley, and the monarchs depend on it</title>
       <link>https://thetalusfieldjournal.com/articles/showy-milkweed-yosemite-valley</link>
