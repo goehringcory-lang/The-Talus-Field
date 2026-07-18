@@ -4,6 +4,7 @@ import { Navigate, useLocation } from 'react-router-dom'
 import {
   clearAccessEndedAt,
   clearStoredJwt,
+  dropMemoryJwt,
   readSessionFromStorage,
   sessionFromJwt,
   setAccessEndedAt,
@@ -19,7 +20,12 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   // If another tab signs in/out, keep this one in sync.
   useEffect(() => {
-    const onStorage = () => setSession(readSessionFromStorage())
+    const onStorage = () => {
+      // The event proves storage works in this tab, so the persisted value
+      // wins over the storage-blocked in-memory fallback.
+      dropMemoryJwt()
+      setSession(readSessionFromStorage())
+    }
     window.addEventListener('storage', onStorage)
     return () => window.removeEventListener('storage', onStorage)
   }, [])
