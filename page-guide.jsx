@@ -31,6 +31,18 @@ function formatPrice(cents) {
   return Number.isInteger(dollars) ? `$${dollars}` : `$${dollars.toFixed(2)}`;
 }
 
+// One /api/inventory fetch per page view, shared by the buy box and the
+// mobile buy bar. Resolves null on any failure; callers keep their fallbacks.
+let inventoryPromise = null;
+function fetchInventory() {
+  if (!inventoryPromise) {
+    inventoryPromise = fetch(`${GUIDE_API_BASE}/api/inventory`)
+      .then((res) => (res.ok ? res.json() : null))
+      .catch(() => null);
+  }
+  return inventoryPromise;
+}
+
 // Reads ?guide=success|gift-success|cancel left behind by the Stripe redirect.
 function readCheckoutOutcome() {
   try {
@@ -82,8 +94,7 @@ function GuideBuyBox() {
 
   React.useEffect(() => {
     let cancelled = false;
-    fetch(`${GUIDE_API_BASE}/api/inventory`)
-      .then((res) => (res.ok ? res.json() : null))
+    fetchInventory()
       .then((body) => {
         if (cancelled || !body) return;
         if (Number.isFinite(body.priceCents) && body.priceCents > 0) {
@@ -517,9 +528,100 @@ function BuyNowButton({ location }) {
   );
 }
 
+// Mobile-only sticky buy bar. On phones the single-column stack pushes the
+// buy box below the whole pitch, so the first visible price and CTA used to
+// sit fifteen screens down. This keeps checkout one tap away the whole way:
+// hidden on desktop by CSS (the sticky aside covers that case), slides in
+// once the reader is past the hero, and steps aside whenever the real buy
+// box or the closer is on screen so it never doubles a visible CTA.
+function GuideMobileBuyBar() {
+  const [priceCents, setPriceCents] = React.useState(GUIDE_PRICE_FALLBACK_CENTS);
+  const [busy, setBusy] = React.useState(false);
+  const [visible, setVisible] = React.useState(false);
+
+  React.useEffect(() => {
+    let cancelled = false;
+    fetchInventory().then((body) => {
+      if (!cancelled && body && Number.isFinite(body.priceCents) && body.priceCents > 0) {
+        setPriceCents(body.priceCents);
+      }
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  React.useEffect(() => {
+    // The footer counts too: it sits outside .page, so the padding-bottom
+    // reserve doesn't cover it, and anyone that deep has scrolled past both
+    // the buy box and the closer already.
+    const targets = [
+      document.getElementById("guide-buy"),
+      document.querySelector(".guide-closer"),
+      document.querySelector(".site-footer"),
+    ].filter(Boolean);
+    let scrolledPast = window.scrollY > 480;
+    const inView = new Set();
+    const update = () => setVisible(scrolledPast && inView.size === 0);
+    const onScroll = () => {
+      scrolledPast = window.scrollY > 480;
+      update();
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    let io = null;
+    if (typeof IntersectionObserver !== "undefined" && targets.length) {
+      io = new IntersectionObserver((entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) inView.add(e.target);
+          else inView.delete(e.target);
+        });
+        update();
+      });
+      targets.forEach((t) => io.observe(t));
+    }
+    update();
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      if (io) io.disconnect();
+    };
+  }, []);
+
+  async function buy() {
+    setBusy(true);
+    if (window.track) window.track("guide_buy_click", { location: "guide_mobile_bar" });
+    try {
+      const res = await fetch(`${GUIDE_API_BASE}/api/checkout/start`, { method: "POST" });
+      const body = await res.json().catch(() => ({}));
+      if (!res.ok || !body.url) {
+        throw new Error(body.error || `HTTP ${res.status}`);
+      }
+      window.location = body.url;
+    } catch (_e) {
+      // Sold out or a network hiccup: hand off to the full buy box, which
+      // explains itself in place.
+      const aside = document.getElementById("guide-buy");
+      if (aside) aside.scrollIntoView({ behavior: "smooth" });
+    } finally {
+      setBusy(false);
+    }
+  }
+
+  return (
+    <div className={"guide-buybar" + (visible ? " is-visible" : "")} aria-hidden={visible ? undefined : "true"}>
+      <div className="guide-buybar__meta">
+        <span className="guide-buybar__price">{formatPrice(priceCents)}</span>
+        <span className="guide-buybar__sub">Offline app · 18 months</span>
+      </div>
+      <button type="button" className="guide-buybar__cta" disabled={busy} onClick={buy}>
+        {busy ? "Opening…" : "Buy the guide →"}
+      </button>
+    </div>
+  );
+}
+
 function GuidePage({ go }) {
   return (
-    <div className="page">
+    <div className="page page--guide">
       {/* Hero */}
       <section className="page-head">
         <div className="wrap wrap--narrow">
@@ -717,6 +819,8 @@ function GuidePage({ go }) {
           blurb="A short note on Sundays. Subscribers hear about Field Guide updates, Secret Guide additions, and seasonal addenda first."
         />
       </div>
+
+      {GUIDE_ON_SALE && <GuideMobileBuyBar />}
     </div>
   );
 }

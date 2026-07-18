@@ -6,6 +6,13 @@ function formatPrice(cents) {
   var dollars = cents / 100;
   return Number.isInteger(dollars) ? `$${dollars}` : `$${dollars.toFixed(2)}`;
 }
+var inventoryPromise = null;
+function fetchInventory() {
+  if (!inventoryPromise) {
+    inventoryPromise = fetch(`${GUIDE_API_BASE}/api/inventory`).then(res => res.ok ? res.json() : null).catch(() => null);
+  }
+  return inventoryPromise;
+}
 function readCheckoutOutcome() {
   try {
     var params = new URLSearchParams(window.location.search);
@@ -52,7 +59,7 @@ function GuideBuyBox() {
   var [giftNote, setGiftNote] = React.useState("");
   React.useEffect(() => {
     var cancelled = false;
-    fetch(`${GUIDE_API_BASE}/api/inventory`).then(res => res.ok ? res.json() : null).then(body => {
+    fetchInventory().then(body => {
       if (cancelled || !body) return;
       if (Number.isFinite(body.priceCents) && body.priceCents > 0) {
         setPriceCents(body.priceCents);
@@ -659,11 +666,93 @@ function BuyNowButton({
     }
   }, note));
 }
+function GuideMobileBuyBar() {
+  var [priceCents, setPriceCents] = React.useState(GUIDE_PRICE_FALLBACK_CENTS);
+  var [busy, setBusy] = React.useState(false);
+  var [visible, setVisible] = React.useState(false);
+  React.useEffect(() => {
+    var cancelled = false;
+    fetchInventory().then(body => {
+      if (!cancelled && body && Number.isFinite(body.priceCents) && body.priceCents > 0) {
+        setPriceCents(body.priceCents);
+      }
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+  React.useEffect(() => {
+    var targets = [document.getElementById("guide-buy"), document.querySelector(".guide-closer"), document.querySelector(".site-footer")].filter(Boolean);
+    var scrolledPast = window.scrollY > 480;
+    var inView = new Set();
+    var update = () => setVisible(scrolledPast && inView.size === 0);
+    var onScroll = () => {
+      scrolledPast = window.scrollY > 480;
+      update();
+    };
+    window.addEventListener("scroll", onScroll, {
+      passive: true
+    });
+    var io = null;
+    if (typeof IntersectionObserver !== "undefined" && targets.length) {
+      io = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+          if (e.isIntersecting) inView.add(e.target);else inView.delete(e.target);
+        });
+        update();
+      });
+      targets.forEach(t => io.observe(t));
+    }
+    update();
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      if (io) io.disconnect();
+    };
+  }, []);
+  async function buy() {
+    setBusy(true);
+    if (window.track) window.track("guide_buy_click", {
+      location: "guide_mobile_bar"
+    });
+    try {
+      var res = await fetch(`${GUIDE_API_BASE}/api/checkout/start`, {
+        method: "POST"
+      });
+      var body = await res.json().catch(() => ({}));
+      if (!res.ok || !body.url) {
+        throw new Error(body.error || `HTTP ${res.status}`);
+      }
+      window.location = body.url;
+    } catch (_e) {
+      var aside = document.getElementById("guide-buy");
+      if (aside) aside.scrollIntoView({
+        behavior: "smooth"
+      });
+    } finally {
+      setBusy(false);
+    }
+  }
+  return React.createElement("div", {
+    className: "guide-buybar" + (visible ? " is-visible" : ""),
+    "aria-hidden": visible ? undefined : "true"
+  }, React.createElement("div", {
+    className: "guide-buybar__meta"
+  }, React.createElement("span", {
+    className: "guide-buybar__price"
+  }, formatPrice(priceCents)), React.createElement("span", {
+    className: "guide-buybar__sub"
+  }, "Offline app · 18 months")), React.createElement("button", {
+    type: "button",
+    className: "guide-buybar__cta",
+    disabled: busy,
+    onClick: buy
+  }, busy ? "Opening…" : "Buy the guide →"));
+}
 function GuidePage({
   go
 }) {
   return React.createElement("div", {
-    className: "page"
+    className: "page page--guide"
   }, React.createElement("section", {
     className: "page-head"
   }, React.createElement("div", {
@@ -743,6 +832,6 @@ function GuidePage({
     tag: "guide",
     heading: "Sunday Field Notes",
     blurb: "A short note on Sundays. Subscribers hear about Field Guide updates, Secret Guide additions, and seasonal addenda first."
-  })));
+  })), GUIDE_ON_SALE && React.createElement(GuideMobileBuyBar, null));
 }
 window.GuidePage = GuidePage;
