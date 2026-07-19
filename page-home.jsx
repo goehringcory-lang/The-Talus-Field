@@ -15,6 +15,12 @@ const { useMemo, useState } = React;
 // trip-<month> intent tag replaces the placement tag: the segmentation is
 // what the tag is for, and GA4 still carries the placement via
 // trackNewsletterSubmit.
+// July 2026 prominence pass: the capture renders as a framed, moss-spined
+// unit (.hero__capture-box) with the promise copy above the field and a
+// solid submit button, instead of the old borderless one-liner. On phones
+// the CSS reorders it above the triage doors (see the ≤720px hero rules in
+// styles.css): the signup is the page's one ask, so it stays in the first
+// viewport there.
 // ============================================================
 function HomeHeroCapture({ tripMonth }) {
   const [done, setDone] = useState(false);
@@ -38,7 +44,9 @@ function HomeHeroCapture({ tripMonth }) {
   }
 
   return (
-    <div ref={ref}>
+    <div className="hero__capture-box" ref={ref}>
+      <div className="eyebrow eyebrow--moss">The Sunday Letter · Free</div>
+      <p className="hero__capture-lede">What is open, what is booking out, and what the week looked like from inside the park. The map's trip builder comes with it.</p>
       <form
         className="hero__capture nlbox__form"
         action="https://buttondown.com/api/emails/embed-subscribe/goehring"
@@ -54,7 +62,6 @@ function HomeHeroCapture({ tripMonth }) {
         <input type="hidden" name="embed" value="1" />
         <button type="submit">Get the Sunday letter →</button>
       </form>
-      <p className="hero__capture-note">What is open, what is booking out, and what the week looked like from inside the park. The map's trip builder comes with it.</p>
     </div>
   );
 }

@@ -1733,15 +1733,38 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
 }
 .hero__cta { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
 
-/* Above-the-fold hero email capture. Reuses .nlbox__form for the field/button;
-   the wrapper keeps it light (no .nlbox chrome) so it does not echo the bottom
-   newsletter strip. */
-.hero__capture {
+/* Above-the-fold hero email capture (July 2026 prominence pass). A framed,
+   moss-spined unit in the same family as the Go Deeper map band: eyebrow,
+   promise line, then the field with a solid submit button. Reuses
+   .nlbox__form for the field/button row. */
+.hero__capture-box {
   margin-top: 20px;
-  max-width: 30rem;
-  border-top: 1px solid var(--ink);
+  max-width: 32rem;
+  border: 1px solid var(--ink);
+  border-left: 6px solid var(--moss);
+  background: var(--paper-2);
+  padding: 20px 22px 22px;
 }
-.hero__capture button { white-space: nowrap; }
+.hero__capture-lede {
+  font-family: var(--serif);
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--ink-2);
+  margin: 10px 0 14px;
+}
+.hero__capture {
+  border-bottom: 0;
+  align-items: center;
+  gap: 12px;
+}
+.hero__capture input { border-bottom: 1px solid var(--ink); }
+.hero__capture button {
+  white-space: nowrap;
+  background: var(--ink);
+  color: var(--paper);
+  padding: 12px 18px;
+}
+.hero__capture button:hover { background: var(--moss); color: var(--paper); }
 .hero__capture-note {
   font-family: var(--sans);
   font-size: 12px;
@@ -2080,6 +2103,22 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
   .nlbox__form { flex-wrap: wrap; gap: 4px; }
   .nlbox__form input { width: 100%; font-size: 16px; padding: 10px 0; }
   .nlbox__form button { width: 100%; text-align: left; padding: 10px 0; }
+
+  /* Hero Sunday letter capture. The signup is the page's one ask, so on
+     phones it goes full width with a solid full-width button at a real tap
+     height, and the hero column becomes a flex column so the capture renders
+     ABOVE the triage doors (first viewport) instead of below them. */
+  .hero__capture-box { max-width: none; margin-top: 4px; padding: 18px 16px 20px; }
+  .hero__capture { gap: 10px; }
+  .hero__capture input { font-size: 16px; }
+  .hero__capture button {
+    width: 100%;
+    text-align: center;
+    min-height: 48px;
+    padding: 12px 18px;
+  }
+  .hero__grid > div:first-child { display: flex; flex-direction: column; }
+  .hero-doors { order: 1; margin: 20px 0 4px; }
 
   /* Forms. Bump font to 16px to stop iOS zoom on focus. */
   .field input, .field textarea, .field select { font-size: 16px; }

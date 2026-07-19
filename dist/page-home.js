@@ -25,8 +25,13 @@ function HomeHeroCapture({
     }, "The trip builder is open to you →"));
   }
   return React.createElement("div", {
+    className: "hero__capture-box",
     ref: ref
-  }, React.createElement("form", {
+  }, React.createElement("div", {
+    className: "eyebrow eyebrow--moss"
+  }, "The Sunday Letter · Free"), React.createElement("p", {
+    className: "hero__capture-lede"
+  }, "What is open, what is booking out, and what the week looked like from inside the park. The map's trip builder comes with it."), React.createElement("form", {
     className: "hero__capture nlbox__form",
     action: "https://buttondown.com/api/emails/embed-subscribe/goehring",
     method: "post",
@@ -51,9 +56,7 @@ function HomeHeroCapture({
     value: "1"
   }), React.createElement("button", {
     type: "submit"
-  }, "Get the Sunday letter →")), React.createElement("p", {
-    className: "hero__capture-note"
-  }, "What is open, what is booking out, and what the week looked like from inside the park. The map's trip builder comes with it."));
+  }, "Get the Sunday letter →")));
 }
 var RESUME_MAX_AGE_DAYS = 30;
 function ResumeReading({
