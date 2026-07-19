@@ -145,73 +145,107 @@ var MONTHS = [{
   label: "Jan",
   name: "January",
   note: "The quiet season. The Valley is open and mostly empty, the waterfalls run low, the high roads are closed, and chain rules come and go with the storms.",
-  reads: ["yosemite-in-winter", "when-to-visit-yosemite-2026-crowd-forecast"]
+  reads: ["yosemite-in-winter", "when-to-visit-yosemite-2026-crowd-forecast"],
+  image: "img/el-capitan-winter.jpg",
+  alt: "El Capitan under fresh snow as a winter storm clears above the Valley floor"
 }, {
   key: "feb",
   label: "Feb",
   name: "February",
   note: "Firefall month. For about two weeks Horsetail Fall can glow at sunset when sky, water, and angle all cooperate, and the rest of the park is still honest winter.",
-  reads: ["horsetail-fall-firefall", "yosemite-in-winter"]
+  reads: ["horsetail-fall-firefall", "yosemite-in-winter"],
+  image: "img/horsetail-fall-firefall-cedric-letsch.jpg",
+  alt: "Horsetail Fall glowing orange at sunset on the east shoulder of El Capitan",
+  credit: "Cedric Letsch / Unsplash"
 }, {
   key: "mar",
   label: "Mar",
   name: "March",
   note: "Late winter, first runoff. Storms still land, the falls start to wake, the crowds have not arrived, and the high roads stay closed.",
-  reads: ["yosemite-in-winter", "yosemite-waterfalls-guide"]
+  reads: ["yosemite-in-winter", "yosemite-waterfalls-guide"],
+  image: "img/yosemite-valley-winter-wall.jpg",
+  alt: "A granite wall of Yosemite Valley dusted with late-winter snow",
+  credit: "Ahmed Radwan / Wikimedia Commons (CC0)"
 }, {
   key: "apr",
   label: "Apr",
   name: "April",
   note: "The Valley greens up and the waterfalls build by the week. Dogwoods usually bloom late in the month. Tioga is still closed most years.",
-  reads: ["yosemite-waterfalls-guide", "yosemite-wildflowers-guide"]
+  reads: ["yosemite-waterfalls-guide", "yosemite-wildflowers-guide"],
+  image: "img/yosemite-falls-spring-blossoms-cory-goehring.jpg",
+  alt: "Yosemite Falls behind spring blossoms on the Valley floor",
+  credit: "Cory Goehring"
 }, {
   key: "may",
   label: "May",
   name: "May",
   note: "Peak waterfall month and the last calmer weeks before summer. The high roads usually begin to open. Lodging books far ahead; day plans still work.",
-  reads: ["yosemite-waterfalls-guide", "when-to-visit-yosemite-2026-crowd-forecast"]
+  reads: ["yosemite-waterfalls-guide", "when-to-visit-yosemite-2026-crowd-forecast"],
+  image: "img/upper-yosemite-fall-jesse-callahan.jpg",
+  alt: "Upper Yosemite Fall at full spring flow",
+  credit: "Jesse Callahan / Unsplash"
 }, {
   key: "jun",
   label: "Jun",
   name: "June",
   note: "Early summer. Strong falls at the start of the month, the high country opening, and school-break crowds building toward their peak.",
-  reads: ["yosemite-in-june-2026", "yosemite-waterfalls-guide"]
+  reads: ["yosemite-in-june-2026", "yosemite-waterfalls-guide"],
+  image: "img/half-dome-meadow-deer-johannes-andersson.jpg",
+  alt: "A deer grazing a green meadow below Half Dome in early summer",
+  credit: "Johannes Andersson / Unsplash"
 }, {
   key: "jul",
   label: "Jul",
   name: "July",
   note: "Full summer. Every road is typically open, the Valley runs hot and busy, the big falls thin, and evenings in the high country are the move. Have a smoke plan.",
-  reads: ["yosemite-heat-safety-guide", "yosemite-during-smoke-season"]
+  reads: ["yosemite-heat-safety-guide", "yosemite-during-smoke-season"],
+  image: "img/tenaya-lake.jpg",
+  alt: "Tenaya Lake and granite domes along Tioga Road in summer",
+  credit: "Michael Hogarth / Wikimedia Commons (public domain)"
 }, {
   key: "aug",
   label: "Aug",
   name: "August",
   note: "High summer. Hot in the Valley, settled weather up high, the falls at a trickle, and the darkest skies of the year for the Milky Way. Smoke is a real possibility.",
-  reads: ["yosemite-stargazing-where-to-look-up", "yosemite-heat-safety-guide"]
+  reads: ["yosemite-stargazing-where-to-look-up", "yosemite-heat-safety-guide"],
+  image: "img/milky-way-sentinel-dome.jpg",
+  alt: "The Milky Way over Sentinel Dome on a dark August night",
+  credit: "Jackhen1992 / Wikimedia Commons (CC BY-SA 4.0)"
 }, {
   key: "sep",
   label: "Sep",
   name: "September",
   note: "The exhale. Crowds ease after Labor Day, the weather usually holds, the falls are at their lowest, and smoke can linger into fall.",
-  reads: ["when-to-visit-yosemite-2026-crowd-forecast", "yosemite-during-smoke-season"]
+  reads: ["when-to-visit-yosemite-2026-crowd-forecast", "yosemite-during-smoke-season"],
+  image: "img/tuolumne-meadows.jpg",
+  alt: "Tuolumne Meadows in golden late-season light"
 }, {
   key: "oct",
   label: "Oct",
   name: "October",
   note: "Fall. Cooler days, color along the Merced, quieter trails, and the first real storms possible late in the month.",
-  reads: ["yosemite-photography-spots", "yosemite-during-smoke-season"]
+  reads: ["yosemite-photography-spots", "yosemite-during-smoke-season"],
+  image: "img/tunnel-view-autumn-aniket-deole.jpg",
+  alt: "Tunnel View in autumn light, with El Capitan, Bridalveil Fall, and Half Dome in one frame",
+  credit: "Aniket Deole / Unsplash"
 }, {
   key: "nov",
   label: "Nov",
   name: "November",
   note: "The shoulder. Short days, empty trails, the first lasting snow most years, and the high roads close for the season.",
-  reads: ["yosemite-in-winter", "when-to-visit-yosemite-2026-crowd-forecast"]
+  reads: ["yosemite-in-winter", "when-to-visit-yosemite-2026-crowd-forecast"],
+  image: "img/half-dome-valley-vista.jpg",
+  alt: "Half Dome above a quiet Yosemite Valley in the November shoulder season",
+  credit: "Cam DiCecca / Wikimedia Commons (CC0)"
 }, {
   key: "dec",
   label: "Dec",
   name: "December",
   note: "Early winter. First snow when storms land, holiday crowds around the lodges midmonth onward, and chains in the car as a rule.",
-  reads: ["yosemite-in-winter", "yosemite-photography-spots"]
+  reads: ["yosemite-in-winter", "yosemite-photography-spots"],
+  image: "img/half-dome-alpenglow-madhu-shesharam.jpg",
+  alt: "Winter alpenglow on Half Dome at dusk",
+  credit: "Madhu Shesharam / Unsplash"
 }];
 function HomeMonthPlanner({
   month,
@@ -253,8 +287,14 @@ function HomeMonthPlanner({
     "aria-pressed": m.key === month,
     onClick: () => onSelect(m.key === month ? null : m.key)
   }, m.label)))), sel && React.createElement("div", {
-    className: "month-planner__panel"
-  }, React.createElement("p", {
+    className: "month-planner__panel",
+    style: {
+      display: "grid",
+      gridTemplateColumns: "1fr 320px",
+      gap: 36,
+      alignItems: "start"
+    }
+  }, React.createElement("div", null, React.createElement("p", {
     className: "month-planner__note"
   }, React.createElement("strong", null, sel.name, "."), " ", sel.note), React.createElement("div", {
     className: "month-planner__links"
@@ -270,7 +310,17 @@ function HomeMonthPlanner({
     onClick: e => linkClick(e, "now", "now")
   }, "Going now: The Park Bulletin →")), React.createElement("p", {
     className: "month-planner__hint"
-  }, "Typical season, not a forecast. The Bulletin and Conditions carry the current state."))));
+  }, "Typical season, not a forecast. The Bulletin and Conditions carry the current state.")), React.createElement(Placeholder, {
+    caption: sel.alt,
+    image: sel.image,
+    credit: sel.credit,
+    tag: sel.label.toUpperCase(),
+    size: "sm",
+    sizes: "(max-width: 720px) 100vw, 320px",
+    style: {
+      aspectRatio: "4/3"
+    }
+  }))));
 }
 var HERO_DOORS = [{
   key: "start-here",
@@ -288,6 +338,25 @@ var HERO_DOORS = [{
   q: "There now, or going soon?",
   a: "One page, the whole park, right now"
 }];
+var SECTION_IMAGES = {
+  planning: {
+    image: "img/tunnel-view.jpg",
+    alt: "Tunnel View, with El Capitan, Bridalveil Fall, and Half Dome in one frame"
+  },
+  trails: {
+    image: "img/taft-point.jpg",
+    alt: "The unfenced granite overhang at Taft Point above Yosemite Valley",
+    credit: "Cam Adams / Wikimedia Commons (CC0)"
+  },
+  wildlife: {
+    image: "img/black-bear.jpg",
+    alt: "A black bear moving through a Yosemite meadow"
+  },
+  seasonal: {
+    image: "img/wildflowers.jpg",
+    alt: "Midsummer wildflowers crowding a Yosemite meadow"
+  }
+};
 var START_HERE_QUESTIONS = {
   "first-time-yosemite-overwhelm": "First time, and it feels like a lot?",
   "yosemite-without-reservations-2026": "Do you need a reservation this year?",
@@ -506,6 +575,7 @@ function HomePage({
     }
   }, window.CATEGORIES.map((c, i) => {
     var count = window.byCategory(c.slug).length;
+    var plate = SECTION_IMAGES[c.slug];
     return React.createElement("a", {
       key: c.slug,
       href: `/section/${c.slug}`,
@@ -521,7 +591,18 @@ function HomePage({
         padding: 28,
         display: "block"
       }
-    }, React.createElement("div", {
+    }, plate && React.createElement(Placeholder, {
+      caption: plate.alt,
+      image: plate.image,
+      credit: plate.credit,
+      tag: c.label.split(" ")[0],
+      size: "sm",
+      sizes: "(max-width: 720px) 50vw, 280px",
+      style: {
+        aspectRatio: "3/2",
+        marginBottom: 20
+      }
+    }), React.createElement("div", {
       className: "mono",
       style: {
         color: "var(--moss)",
@@ -580,8 +661,8 @@ function HomePage({
   }, React.createElement("div", {
     style: {
       display: "grid",
-      gridTemplateColumns: "1fr 2fr",
-      gap: 48,
+      gridTemplateColumns: "1fr 1.6fr 0.9fr",
+      gap: 40,
       alignItems: "center"
     }
   }, React.createElement("div", null, React.createElement("div", {
@@ -615,7 +696,17 @@ function HomePage({
       textTransform: "uppercase",
       letterSpacing: "0.18em"
     }
-  }, "Open the map →")))), React.createElement("a", {
+  }, "Open the map →")), React.createElement(Placeholder, {
+    caption: "NPS map of Yosemite showing park roads and campgrounds",
+    image: "img/yosemite-park-map.jpg",
+    credit: "NPS",
+    tag: "MAP",
+    size: "sm",
+    sizes: "(max-width: 720px) 100vw, 300px",
+    style: {
+      aspectRatio: "4/3"
+    }
+  }))), React.createElement("a", {
     className: "band-guide",
     href: "/guide",
     onClick: e => {
@@ -628,8 +719,8 @@ function HomePage({
   }, React.createElement("div", {
     style: {
       display: "grid",
-      gridTemplateColumns: "1fr 2fr",
-      gap: 48,
+      gridTemplateColumns: "1fr 1.6fr 0.9fr",
+      gap: 40,
       alignItems: "center"
     }
   }, React.createElement("div", null, React.createElement("div", {
@@ -640,7 +731,17 @@ function HomePage({
     className: "band-guide__body"
   }, "The app version of this journal: 50-plus stops with parking and timing notes, offline maps, a trip planner, and the secret guide. Works with no signal, which is most of the park. One purchase, eighteen months of access."), React.createElement("div", {
     className: "mono band-guide__cta"
-  }, "See the Field Guide →")))), React.createElement("div", {
+  }, "See the Field Guide →")), React.createElement(Placeholder, {
+    caption: "The Milky Way over Half Dome on a moonless night, far from any signal",
+    image: "img/half-dome-starry-night-casey-horner.jpg",
+    credit: "Casey Horner / Unsplash",
+    tag: "PLATE II",
+    size: "sm",
+    sizes: "(max-width: 720px) 100vw, 300px",
+    style: {
+      aspectRatio: "4/3"
+    }
+  }))), React.createElement("div", {
     style: {
       display: "grid",
       gridTemplateColumns: "repeat(3, 1fr)",
@@ -723,14 +824,24 @@ function HomePage({
   }, React.createElement("div", {
     style: {
       display: "grid",
-      gridTemplateColumns: "1fr 1fr",
-      gap: 48,
+      gridTemplateColumns: "0.75fr 1.15fr 1.1fr",
+      gap: 44,
       alignItems: "center",
       borderTop: "2px solid var(--ink)",
       borderBottom: "2px solid var(--ink)",
       padding: "56px 0"
     }
-  }, React.createElement("div", null, React.createElement("div", {
+  }, React.createElement(Placeholder, {
+    caption: "The Tuolumne high country, photographed by the editor",
+    image: "img/tuolumne-high-country-cory-goehring.jpg",
+    credit: "Cory Goehring",
+    tag: "PLATE III",
+    size: "sm",
+    sizes: "(max-width: 720px) 100vw, 340px",
+    style: {
+      aspectRatio: "4/5"
+    }
+  }), React.createElement("div", null, React.createElement("div", {
     className: "eyebrow eyebrow--moss",
     style: {
       marginBottom: 14

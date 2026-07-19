@@ -172,20 +172,23 @@ function HomeBulletin({ go }) {
 // findArticle so a retired slug simply drops out; selecting the current
 // calendar month adds a Bulletin link. Chip taps fire
 // trip_month_select{month}; panel links fire cta_click{location: home_month}.
+// Each month carries a matching plate from the existing library (lazy-loaded,
+// so unselected months cost nothing); credits follow the data.js strings for
+// the same files, and images with no credit there render without one.
 // ============================================================
 const MONTHS = [
-  { key: "jan", label: "Jan", name: "January", note: "The quiet season. The Valley is open and mostly empty, the waterfalls run low, the high roads are closed, and chain rules come and go with the storms.", reads: ["yosemite-in-winter", "when-to-visit-yosemite-2026-crowd-forecast"] },
-  { key: "feb", label: "Feb", name: "February", note: "Firefall month. For about two weeks Horsetail Fall can glow at sunset when sky, water, and angle all cooperate, and the rest of the park is still honest winter.", reads: ["horsetail-fall-firefall", "yosemite-in-winter"] },
-  { key: "mar", label: "Mar", name: "March", note: "Late winter, first runoff. Storms still land, the falls start to wake, the crowds have not arrived, and the high roads stay closed.", reads: ["yosemite-in-winter", "yosemite-waterfalls-guide"] },
-  { key: "apr", label: "Apr", name: "April", note: "The Valley greens up and the waterfalls build by the week. Dogwoods usually bloom late in the month. Tioga is still closed most years.", reads: ["yosemite-waterfalls-guide", "yosemite-wildflowers-guide"] },
-  { key: "may", label: "May", name: "May", note: "Peak waterfall month and the last calmer weeks before summer. The high roads usually begin to open. Lodging books far ahead; day plans still work.", reads: ["yosemite-waterfalls-guide", "when-to-visit-yosemite-2026-crowd-forecast"] },
-  { key: "jun", label: "Jun", name: "June", note: "Early summer. Strong falls at the start of the month, the high country opening, and school-break crowds building toward their peak.", reads: ["yosemite-in-june-2026", "yosemite-waterfalls-guide"] },
-  { key: "jul", label: "Jul", name: "July", note: "Full summer. Every road is typically open, the Valley runs hot and busy, the big falls thin, and evenings in the high country are the move. Have a smoke plan.", reads: ["yosemite-heat-safety-guide", "yosemite-during-smoke-season"] },
-  { key: "aug", label: "Aug", name: "August", note: "High summer. Hot in the Valley, settled weather up high, the falls at a trickle, and the darkest skies of the year for the Milky Way. Smoke is a real possibility.", reads: ["yosemite-stargazing-where-to-look-up", "yosemite-heat-safety-guide"] },
-  { key: "sep", label: "Sep", name: "September", note: "The exhale. Crowds ease after Labor Day, the weather usually holds, the falls are at their lowest, and smoke can linger into fall.", reads: ["when-to-visit-yosemite-2026-crowd-forecast", "yosemite-during-smoke-season"] },
-  { key: "oct", label: "Oct", name: "October", note: "Fall. Cooler days, color along the Merced, quieter trails, and the first real storms possible late in the month.", reads: ["yosemite-photography-spots", "yosemite-during-smoke-season"] },
-  { key: "nov", label: "Nov", name: "November", note: "The shoulder. Short days, empty trails, the first lasting snow most years, and the high roads close for the season.", reads: ["yosemite-in-winter", "when-to-visit-yosemite-2026-crowd-forecast"] },
-  { key: "dec", label: "Dec", name: "December", note: "Early winter. First snow when storms land, holiday crowds around the lodges midmonth onward, and chains in the car as a rule.", reads: ["yosemite-in-winter", "yosemite-photography-spots"] },
+  { key: "jan", label: "Jan", name: "January", note: "The quiet season. The Valley is open and mostly empty, the waterfalls run low, the high roads are closed, and chain rules come and go with the storms.", reads: ["yosemite-in-winter", "when-to-visit-yosemite-2026-crowd-forecast"], image: "img/el-capitan-winter.jpg", alt: "El Capitan under fresh snow as a winter storm clears above the Valley floor" },
+  { key: "feb", label: "Feb", name: "February", note: "Firefall month. For about two weeks Horsetail Fall can glow at sunset when sky, water, and angle all cooperate, and the rest of the park is still honest winter.", reads: ["horsetail-fall-firefall", "yosemite-in-winter"], image: "img/horsetail-fall-firefall-cedric-letsch.jpg", alt: "Horsetail Fall glowing orange at sunset on the east shoulder of El Capitan", credit: "Cedric Letsch / Unsplash" },
+  { key: "mar", label: "Mar", name: "March", note: "Late winter, first runoff. Storms still land, the falls start to wake, the crowds have not arrived, and the high roads stay closed.", reads: ["yosemite-in-winter", "yosemite-waterfalls-guide"], image: "img/yosemite-valley-winter-wall.jpg", alt: "A granite wall of Yosemite Valley dusted with late-winter snow", credit: "Ahmed Radwan / Wikimedia Commons (CC0)" },
+  { key: "apr", label: "Apr", name: "April", note: "The Valley greens up and the waterfalls build by the week. Dogwoods usually bloom late in the month. Tioga is still closed most years.", reads: ["yosemite-waterfalls-guide", "yosemite-wildflowers-guide"], image: "img/yosemite-falls-spring-blossoms-cory-goehring.jpg", alt: "Yosemite Falls behind spring blossoms on the Valley floor", credit: "Cory Goehring" },
+  { key: "may", label: "May", name: "May", note: "Peak waterfall month and the last calmer weeks before summer. The high roads usually begin to open. Lodging books far ahead; day plans still work.", reads: ["yosemite-waterfalls-guide", "when-to-visit-yosemite-2026-crowd-forecast"], image: "img/upper-yosemite-fall-jesse-callahan.jpg", alt: "Upper Yosemite Fall at full spring flow", credit: "Jesse Callahan / Unsplash" },
+  { key: "jun", label: "Jun", name: "June", note: "Early summer. Strong falls at the start of the month, the high country opening, and school-break crowds building toward their peak.", reads: ["yosemite-in-june-2026", "yosemite-waterfalls-guide"], image: "img/half-dome-meadow-deer-johannes-andersson.jpg", alt: "A deer grazing a green meadow below Half Dome in early summer", credit: "Johannes Andersson / Unsplash" },
+  { key: "jul", label: "Jul", name: "July", note: "Full summer. Every road is typically open, the Valley runs hot and busy, the big falls thin, and evenings in the high country are the move. Have a smoke plan.", reads: ["yosemite-heat-safety-guide", "yosemite-during-smoke-season"], image: "img/tenaya-lake.jpg", alt: "Tenaya Lake and granite domes along Tioga Road in summer", credit: "Michael Hogarth / Wikimedia Commons (public domain)" },
+  { key: "aug", label: "Aug", name: "August", note: "High summer. Hot in the Valley, settled weather up high, the falls at a trickle, and the darkest skies of the year for the Milky Way. Smoke is a real possibility.", reads: ["yosemite-stargazing-where-to-look-up", "yosemite-heat-safety-guide"], image: "img/milky-way-sentinel-dome.jpg", alt: "The Milky Way over Sentinel Dome on a dark August night", credit: "Jackhen1992 / Wikimedia Commons (CC BY-SA 4.0)" },
+  { key: "sep", label: "Sep", name: "September", note: "The exhale. Crowds ease after Labor Day, the weather usually holds, the falls are at their lowest, and smoke can linger into fall.", reads: ["when-to-visit-yosemite-2026-crowd-forecast", "yosemite-during-smoke-season"], image: "img/tuolumne-meadows.jpg", alt: "Tuolumne Meadows in golden late-season light" },
+  { key: "oct", label: "Oct", name: "October", note: "Fall. Cooler days, color along the Merced, quieter trails, and the first real storms possible late in the month.", reads: ["yosemite-photography-spots", "yosemite-during-smoke-season"], image: "img/tunnel-view-autumn-aniket-deole.jpg", alt: "Tunnel View in autumn light, with El Capitan, Bridalveil Fall, and Half Dome in one frame", credit: "Aniket Deole / Unsplash" },
+  { key: "nov", label: "Nov", name: "November", note: "The shoulder. Short days, empty trails, the first lasting snow most years, and the high roads close for the season.", reads: ["yosemite-in-winter", "when-to-visit-yosemite-2026-crowd-forecast"], image: "img/half-dome-valley-vista.jpg", alt: "Half Dome above a quiet Yosemite Valley in the November shoulder season", credit: "Cam DiCecca / Wikimedia Commons (CC0)" },
+  { key: "dec", label: "Dec", name: "December", note: "Early winter. First snow when storms land, holiday crowds around the lodges midmonth onward, and chains in the car as a rule.", reads: ["yosemite-in-winter", "yosemite-photography-spots"], image: "img/half-dome-alpenglow-madhu-shesharam.jpg", alt: "Winter alpenglow on Half Dome at dusk", credit: "Madhu Shesharam / Unsplash" },
 ];
 
 function HomeMonthPlanner({ month, onSelect, go }) {
@@ -217,20 +220,31 @@ function HomeMonthPlanner({ month, onSelect, go }) {
           </div>
         </div>
         {sel && (
-          <div className="month-planner__panel">
-            <p className="month-planner__note"><strong>{sel.name}.</strong> {sel.note}</p>
-            <div className="month-planner__links">
-              {reads.map((a) => (
-                <a key={a.slug} href={`/articles/${a.slug}`} onClick={(e) => linkClick(e, a.slug, `a:${a.slug}`)}>
-                  {a.title} →
-                </a>
-              ))}
-              <a href="/itineraries" onClick={(e) => linkClick(e, "itineraries", "itineraries")}>Build the days: Itineraries →</a>
-              {isCurrentMonth && (
-                <a href="/now" onClick={(e) => linkClick(e, "now", "now")}>Going now: The Park Bulletin →</a>
-              )}
+          <div className="month-planner__panel" style={{ display: "grid", gridTemplateColumns: "1fr 320px", gap: 36, alignItems: "start" }}>
+            <div>
+              <p className="month-planner__note"><strong>{sel.name}.</strong> {sel.note}</p>
+              <div className="month-planner__links">
+                {reads.map((a) => (
+                  <a key={a.slug} href={`/articles/${a.slug}`} onClick={(e) => linkClick(e, a.slug, `a:${a.slug}`)}>
+                    {a.title} →
+                  </a>
+                ))}
+                <a href="/itineraries" onClick={(e) => linkClick(e, "itineraries", "itineraries")}>Build the days: Itineraries →</a>
+                {isCurrentMonth && (
+                  <a href="/now" onClick={(e) => linkClick(e, "now", "now")}>Going now: The Park Bulletin →</a>
+                )}
+              </div>
+              <p className="month-planner__hint">Typical season, not a forecast. The Bulletin and Conditions carry the current state.</p>
             </div>
-            <p className="month-planner__hint">Typical season, not a forecast. The Bulletin and Conditions carry the current state.</p>
+            <Placeholder
+              caption={sel.alt}
+              image={sel.image}
+              credit={sel.credit}
+              tag={sel.label.toUpperCase()}
+              size="sm"
+              sizes="(max-width: 720px) 100vw, 320px"
+              style={{ aspectRatio: "4/3" }}
+            />
           </div>
         )}
       </div>
@@ -249,6 +263,16 @@ const HERO_DOORS = [
   { key: "itineraries", href: "/itineraries", q: "Dates set?", a: "Itineraries, the map, and the checklist" },
   { key: "now", href: "/now", q: "There now, or going soon?", a: "One page, the whole park, right now" },
 ];
+
+// Section plates for the By Section grid, keyed by category slug. Reuses
+// images already in the library (and their data.js credits); a slug with no
+// entry renders its tile text-only, same as before.
+const SECTION_IMAGES = {
+  planning: { image: "img/tunnel-view.jpg", alt: "Tunnel View, with El Capitan, Bridalveil Fall, and Half Dome in one frame" },
+  trails: { image: "img/taft-point.jpg", alt: "The unfenced granite overhang at Taft Point above Yosemite Valley", credit: "Cam Adams / Wikimedia Commons (CC0)" },
+  wildlife: { image: "img/black-bear.jpg", alt: "A black bear moving through a Yosemite meadow" },
+  seasonal: { image: "img/wildflowers.jpg", alt: "Midsummer wildflowers crowding a Yosemite meadow" },
+};
 
 // Question labels for the Start Here row, keyed by START_HERE slug. Task-mode
 // visitors click questions, not essay titles, so each card leads with the
@@ -447,6 +471,7 @@ function HomePage({ go }) {
         <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 0, borderTop: "1px solid var(--ink)", borderLeft: "1px solid var(--ink)" }}>
           {window.CATEGORIES.map((c, i) => {
             const count = window.byCategory(c.slug).length;
+            const plate = SECTION_IMAGES[c.slug];
             return (
               <a
                 key={c.slug}
@@ -461,6 +486,17 @@ function HomePage({ go }) {
                   display: "block",
                 }}
               >
+                {plate && (
+                  <Placeholder
+                    caption={plate.alt}
+                    image={plate.image}
+                    credit={plate.credit}
+                    tag={c.label.split(" ")[0]}
+                    size="sm"
+                    sizes="(max-width: 720px) 50vw, 280px"
+                    style={{ aspectRatio: "3/2", marginBottom: 20 }}
+                  />
+                )}
                 <div className="mono" style={{ color: "var(--moss)", fontWeight: 700 }}>№ 0{i + 1}</div>
                 <div style={{ fontFamily: "var(--display)", fontSize: 26, fontWeight: 500, margin: "16px 0 10px", letterSpacing: "-0.005em", lineHeight: 1.1 }}>{c.label}</div>
                 <div style={{ fontFamily: "var(--serif)", fontStyle: "italic", fontSize: 15, color: "var(--ink-2)", lineHeight: 1.45, marginBottom: 20 }}>{c.blurb}</div>
@@ -497,7 +533,7 @@ function HomePage({ go }) {
             padding: "36px 32px",
           }}
         >
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 2fr", gap: 48, alignItems: "center" }}>
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1.6fr 0.9fr", gap: 40, alignItems: "center" }}>
             <div>
               <div className="eyebrow eyebrow--moss" style={{ marginBottom: 12 }}>The Map · Free</div>
               <div style={{ fontFamily: "var(--display)", fontSize: 36, fontWeight: 400, lineHeight: 1.1, letterSpacing: "-0.01em" }}>Yosemite, on a map.</div>
@@ -508,6 +544,15 @@ function HomePage({ go }) {
               </p>
               <div className="mono" style={{ color: "var(--moss)", fontWeight: 700, fontSize: 11, textTransform: "uppercase", letterSpacing: "0.18em" }}>Open the map →</div>
             </div>
+            <Placeholder
+              caption="NPS map of Yosemite showing park roads and campgrounds"
+              image="img/yosemite-park-map.jpg"
+              credit="NPS"
+              tag="MAP"
+              size="sm"
+              sizes="(max-width: 720px) 100vw, 300px"
+              style={{ aspectRatio: "4/3" }}
+            />
           </div>
         </a>
 
@@ -524,7 +569,7 @@ function HomePage({ go }) {
             go("guide");
           }}
         >
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 2fr", gap: 48, alignItems: "center" }}>
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1.6fr 0.9fr", gap: 40, alignItems: "center" }}>
             <div>
               <div className="band-guide__eyebrow">The Field Guide · $19</div>
               <div className="band-guide__title">The park, in your pocket.</div>
@@ -535,6 +580,15 @@ function HomePage({ go }) {
               </p>
               <div className="mono band-guide__cta">See the Field Guide →</div>
             </div>
+            <Placeholder
+              caption="The Milky Way over Half Dome on a moonless night, far from any signal"
+              image="img/half-dome-starry-night-casey-horner.jpg"
+              credit="Casey Horner / Unsplash"
+              tag="PLATE II"
+              size="sm"
+              sizes="(max-width: 720px) 100vw, 300px"
+              style={{ aspectRatio: "4/3" }}
+            />
           </div>
         </a>
 
@@ -589,9 +643,19 @@ function HomePage({ go }) {
         </div>
       </section>
 
-      {/* About + Newsletter strip */}
+      {/* About + Newsletter strip. The plate is the editor's own frame of the
+          Tuolumne high country, which is the claim the copy makes. */}
       <section className="wrap" style={{ paddingTop: 96 }}>
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 48, alignItems: "center", borderTop: "2px solid var(--ink)", borderBottom: "2px solid var(--ink)", padding: "56px 0" }}>
+        <div style={{ display: "grid", gridTemplateColumns: "0.75fr 1.15fr 1.1fr", gap: 44, alignItems: "center", borderTop: "2px solid var(--ink)", borderBottom: "2px solid var(--ink)", padding: "56px 0" }}>
+          <Placeholder
+            caption="The Tuolumne high country, photographed by the editor"
+            image="img/tuolumne-high-country-cory-goehring.jpg"
+            credit="Cory Goehring"
+            tag="PLATE III"
+            size="sm"
+            sizes="(max-width: 720px) 100vw, 340px"
+            style={{ aspectRatio: "4/5" }}
+          />
           <div>
             <div className="eyebrow eyebrow--moss" style={{ marginBottom: 14 }}>From the Editor</div>
             <h2 style={{ fontFamily: "var(--display)", fontSize: 38, marginBottom: 18, fontWeight: 400, lineHeight: 1.1, letterSpacing: "-0.01em", textTransform: "none" }}>The same waterfall, again, in a different year.</h2>
