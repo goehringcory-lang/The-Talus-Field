@@ -588,8 +588,8 @@ var APP_SHOTS = [{
   caption: "The planner lays out each day and inserts real drive-time buffers between stops. One tap puts it on your calendar."
 }, {
   src: "img/guide/app-secret-guide.webp",
-  alt: "The Secret Guide section in the app: 35 entries of quiet vistas, hidden trails, and parking moves",
-  caption: "The Secret Guide. 35 entries of quiet vistas, hidden trails, parking moves, and the park after dark."
+  alt: "The Secret Guide section in the app: 37 entries of quiet vistas, hidden trails, and parking moves",
+  caption: "The Secret Guide. 37 entries of quiet vistas, hidden trails, parking moves, and the park after dark."
 }, {
   src: "img/guide/app-hikes.webp",
   alt: "The day-hike catalog in the app, listing every in-park day hike with distance, gain, and difficulty",
@@ -763,7 +763,7 @@ function GuidePage({
     className: "page-head__dek"
   }, "A web app you add to your home screen. Four regional guides with tappable GPS, time budgets, a swap for when the plan dies, an offline topo map of the whole park, the ranger and partner program schedule on your dates, and a trip planner that syncs your days into Google or Apple Calendar and keeps them current when the plan changes. Works at the trailhead when service doesn't. Not a PDF. Not another tourist checklist."), React.createElement("div", {
     className: "guide-stats"
-  }, React.createElement("span", null, "4 regions"), React.createElement("span", null, "34 stops"), React.createElement("span", null, "57 day hikes"), React.createElement("span", null, "35 secret entries"), React.createElement("span", null, "Works offline")))), React.createElement("div", {
+  }, React.createElement("span", null, "4 regions"), React.createElement("span", null, "44 stops"), React.createElement("span", null, "57 day hikes"), React.createElement("span", null, "37 secret entries"), React.createElement("span", null, "Works offline")))), React.createElement("div", {
     className: "wrap",
     style: {
       paddingTop: 24,
@@ -802,7 +802,7 @@ function GuidePage({
       lineHeight: 1.6,
       margin: "0 0 20px"
     }
-  }, "Four regional guides. 34 stops in driving order, each with GPS, a time budget, and a swap. All 57 in-park day hikes. The 35-entry Secret Guide. The park's program schedule on your dates. A trip planner that syncs to your calendar and an offline map that holds it all together. Nineteen dollars, once, for 18 months on every device you own."), React.createElement(BuyNowButton, {
+  }, "Four regional guides. 44 stops in driving order, each with GPS, a time budget, and a swap. All 57 in-park day hikes. The 37-entry Secret Guide. The park's program schedule on your dates. A trip planner that syncs to your calendar and an offline map that holds it all together. Nineteen dollars, once, for 18 months on every device you own."), React.createElement(BuyNowButton, {
     location: "guide_closer"
   }), React.createElement("p", {
     style: {
