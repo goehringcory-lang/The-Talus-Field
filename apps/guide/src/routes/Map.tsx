@@ -20,19 +20,20 @@ import 'maplibre-gl/dist/maplibre-gl.css'
 import GatedChrome from '../components/GatedChrome'
 import ResponsivePhoto from '../components/ResponsivePhoto'
 import { ChipButton } from '../components/ui/Chip'
-import { AMENITIES, REGIONS, REGION_SHORT, SECRET_SPOTS, stops as allStops, getItineraryDayPhotos, getStopById, isSecretGuideEntry, type AmenityT, type GuideStopT, type Region, type StopKind } from '../content'
+import { AMENITIES, HIKES, REGIONS, REGION_SHORT, SECRET_SPOTS, stops as allStops, getItineraryDayPhotos, getStopById, isSecretGuideEntry, type AmenityT, type GuideStopT, type HikeT, type Region } from '../content'
+import { DIFFICULTY_LABEL, formatTime } from '../content/labels'
 import {
   ITINERARIES,
   ITINERARY_KEYS,
   isItineraryKey,
   type ItineraryKey,
 } from '../content/itineraries'
-import { HIDDEN_PIN_STROKE, KIND_STYLES, buildPinElement, directionsUrl, getKindStyle } from '../map/kinds'
+import { HIDDEN_PIN_STROKE, KIND_STYLES, buildPinElement, directionsUrl, getKindStyle, type MapPinKind } from '../map/kinds'
 import { getHikeById } from '../content'
 import { hasTrack } from '../trails/track'
 import { useTrack } from '../trails/useTrack'
 import { announceTripAdd } from '../trip/addFeedback'
-import { addStopToPlan, isStopPlanned, useTripPlan } from '../trip/useTripPlan'
+import { addHikeToPlan, addStopToPlan, isHikePlanned, isStopPlanned, useTripPlan } from '../trip/useTripPlan'
 import { buildMapStyle } from '../map/style'
 import { isPackCompleted } from '../offline/useDownloads'
 import { formatMiles, haversineMiles } from '../utils/geo'
@@ -49,14 +50,14 @@ type UrlState = {
   tab: Tab
   itinerary: ItineraryKey | null
   stop: string | null
-  kinds: StopKind[] | null // null = no kind narrowing (all kinds show)
+  kinds: MapPinKind[] | null // null = no kind narrowing (all kinds show)
   secret: boolean
   hike: string | null // hike id whose track overlays the map (?hike=)
 }
 
-const ALL_KINDS = Object.keys(KIND_STYLES) as StopKind[]
+const ALL_KINDS = Object.keys(KIND_STYLES) as MapPinKind[]
 
-function isStopKind(value: string): value is StopKind {
+function isPinKind(value: string): value is MapPinKind {
   // Own-property check: `in` walks the prototype chain, so a URL like
   // ?kinds=constructor would validate and hide every pin.
   return Object.hasOwn(KIND_STYLES, value)
@@ -70,7 +71,7 @@ function readUrlState(): UrlState {
   const kindsRaw = params.get('kinds')
   // Invalid tokens drop; an empty or complete list is the same as no
   // narrowing, so both normalize to null and the param round-trips away.
-  const kinds = kindsRaw ? [...new Set(kindsRaw.split(',').filter(isStopKind))] : null
+  const kinds = kindsRaw ? [...new Set(kindsRaw.split(',').filter(isPinKind))] : null
   const hike = params.get('hike')
   return {
     tab: isTab(tab) ? tab : 'points',
@@ -238,12 +239,187 @@ function buildAmenityPopupContent(amenity: AmenityT): HTMLElement {
   return root
 }
 
+// One pin per trailhead, not per hike: several routes start from the same
+// turnout (Happy Isles, Tunnel View, Camp 4), and stacking identical pins at
+// one coord would leave all but the top one untappable. The popup lists every
+// route starting at the pin.
+type TrailheadGroup = {
+  id: string // first hike's id, stable, keys the marker
+  coord: [number, number]
+  region: Region
+  hikes: HikeT[]
+}
+
+const TRAILHEAD_GROUPS: TrailheadGroup[] = (() => {
+  // Plain record, not a Map: this file's default export shadows the global
+  // Map constructor at module scope.
+  const byCoord: Record<string, TrailheadGroup> = {}
+  for (const hike of HIKES) {
+    if (!hike.coord) continue
+    const key = hike.coord.join(',')
+    const group = byCoord[key]
+    if (group) group.hikes.push(hike)
+    else byCoord[key] = { id: hike.id, coord: hike.coord, region: hike.region, hikes: [hike] }
+  }
+  const groups = Object.values(byCoord)
+  for (const g of groups) g.hikes.sort((a, b) => a.order - b.order)
+  return groups
+})()
+
+// Trailhead pins sitting exactly on a stop or amenity pin (most hike coords
+// reuse the trailhead stop's verified pin) get a small pixel nudge so both
+// teardrops stay individually tappable at every zoom.
+const OCCUPIED_COORD_KEYS = new Set([
+  ...[...allStops, ...SECRET_SPOTS].filter((s) => s.coord).map((s) => s.coord!.join(',')),
+  ...AMENITIES.map((a) => a.coord.join(',')),
+])
+
+function formatHikeStats(hike: HikeT): string {
+  const dist = `${hike.distanceMi} mi${hike.route === 'one-way' ? ' one-way' : ''}`
+  const gain =
+    hike.elevationGainFt === 0
+      ? 'flat'
+      : `${hike.elevationGainFt.toLocaleString('en-US')} ft gain`
+  return `${dist} · ${gain} · ${DIFFICULTY_LABEL[hike.difficulty]} · ~${formatTime(hike.durationMin)}`
+}
+
+type HikePopupHandlers = {
+  onOpenHike: (id: string) => void
+  onShowTrack: (id: string) => void
+}
+
+// Trailhead popup: the trail data card. One block per route starting at the
+// pin — published stats, first sentence of the write-up (single-route pins),
+// permit/season flags, and per-route actions. Same DOM-not-React deal as the
+// stop popup.
+function buildHikePopupContent(
+  group: TrailheadGroup,
+  handlers: HikePopupHandlers,
+  userPos?: [number, number] | null,
+): HTMLElement {
+  const style = getKindStyle('hike')
+  const root = document.createElement('div')
+  root.className = 'map-popup'
+
+  const single = group.hikes.length === 1
+
+  const title = document.createElement('strong')
+  title.className = 'map-popup__title'
+  title.textContent = single
+    ? group.hikes[0].title
+    : `${group.hikes.length} hikes from this trailhead`
+  root.appendChild(title)
+
+  const chip = document.createElement('span')
+  chip.className = 'map-popup__kind'
+  chip.style.color = style.color
+  chip.textContent = single ? style.label : 'Day hikes'
+  root.appendChild(chip)
+
+  const trailhead = document.createElement('p')
+  trailhead.className = 'map-popup__distance'
+  trailhead.textContent = `Trailhead: ${group.hikes[0].trailhead}`
+  root.appendChild(trailhead)
+
+  if (userPos) {
+    const dist = document.createElement('p')
+    dist.className = 'map-popup__distance'
+    dist.textContent = `${formatMiles(haversineMiles(userPos, group.coord))} from you, straight line`
+    root.appendChild(dist)
+  }
+
+  for (const hike of group.hikes) {
+    const block = document.createElement('div')
+    block.className = 'map-popup__hike'
+
+    if (!single) {
+      const name = document.createElement('strong')
+      name.className = 'map-popup__hike-name'
+      name.textContent = hike.title
+      block.appendChild(name)
+    }
+
+    const stats = document.createElement('p')
+    stats.className = 'map-popup__stats'
+    stats.textContent = formatHikeStats(hike)
+    block.appendChild(stats)
+
+    if (single) {
+      const excerpt = document.createElement('p')
+      excerpt.className = 'map-popup__excerpt'
+      excerpt.textContent = extractExcerpt(hike.description)
+      block.appendChild(excerpt)
+    }
+
+    if (hike.permit || hike.season) {
+      const note = document.createElement('p')
+      note.className = 'map-popup__stats map-popup__stats--note'
+      note.textContent = [
+        hike.permit ? 'Permit required' : null,
+        hike.season ? `Season: ${hike.season}` : null,
+      ]
+        .filter(Boolean)
+        .join(' · ')
+      block.appendChild(note)
+    }
+
+    const actions = document.createElement('p')
+    actions.className = 'map-popup__actions'
+
+    const details = document.createElement('button')
+    details.type = 'button'
+    details.className = 'map-popup__btn'
+    details.textContent = 'Trail details →'
+    details.addEventListener('click', () => handlers.onOpenHike(hike.id))
+    actions.appendChild(details)
+
+    const addTrip = document.createElement('button')
+    addTrip.type = 'button'
+    addTrip.className = 'map-popup__btn'
+    addTrip.textContent = isHikePlanned(hike.id) ? 'In trip ✓' : 'Add to trip'
+    addTrip.addEventListener('click', () => {
+      if (!isHikePlanned(hike.id)) {
+        addHikeToPlan(hike.id)
+        announceTripAdd(hike.title)
+      }
+      addTrip.textContent = 'In trip ✓'
+    })
+    actions.appendChild(addTrip)
+
+    if (hasTrack(hike.id)) {
+      const track = document.createElement('button')
+      track.type = 'button'
+      track.className = 'map-popup__btn map-popup__btn--dir'
+      track.textContent = 'Trail on map'
+      track.addEventListener('click', () => handlers.onShowTrack(hike.id))
+      actions.appendChild(track)
+    }
+
+    block.appendChild(actions)
+    root.appendChild(block)
+  }
+
+  const foot = document.createElement('p')
+  foot.className = 'map-popup__actions'
+  const dir = document.createElement('a')
+  dir.className = 'map-popup__btn map-popup__btn--dir'
+  dir.href = directionsUrl(group.coord)
+  dir.target = '_blank'
+  dir.rel = 'noopener'
+  dir.textContent = 'Directions to trailhead →'
+  foot.appendChild(dir)
+  root.appendChild(foot)
+
+  return root
+}
+
 export default function Map() {
   const navigate = useNavigate()
   const containerRef = useRef<HTMLDivElement | null>(null)
   const mapRef = useRef<maplibregl.Map | null>(null)
   const markersRef = useRef<Record<string, maplibregl.Marker>>({})
   const amenityMarkersRef = useRef<Record<string, maplibregl.Marker>>({})
+  const hikeMarkersRef = useRef<Record<string, maplibregl.Marker>>({})
   const popupRef = useRef<maplibregl.Popup | null>(null)
   // Camera refits only when the itinerary context changes, not on filter
   // chip toggles: refitting on every tap yanks the map around.
@@ -296,7 +472,7 @@ export default function Map() {
   // Pin-group filters. kindFilter null means no narrowing; the chip row
   // renders "All" pressed. showSecret hides the gold-outline Secret Guide
   // entries (hidden stops and secret spots) when off.
-  const [kindFilter, setKindFilter] = useState<Set<StopKind> | null>(() =>
+  const [kindFilter, setKindFilter] = useState<Set<MapPinKind> | null>(() =>
     initial.kinds ? new Set(initial.kinds) : null,
   )
   const [showSecret, setShowSecret] = useState<boolean>(initial.secret)
@@ -313,6 +489,10 @@ export default function Map() {
     () => new Set(plan.items.filter((it) => it.type === 'stop').map((it) => it.stopId)),
     [plan],
   )
+  const plannedHikeIds = useMemo(
+    () => new Set(plan.items.filter((it) => it.type === 'hike').map((it) => it.hikeId)),
+    [plan],
+  )
 
   // Only stops with a coord can be mapped. Secret spots (region-less Secret
   // Guide entries) join the pin set alongside core and hidden stops.
@@ -321,17 +501,18 @@ export default function Map() {
     [],
   )
 
-  // Kinds actually present in the stops and amenities, in KIND_STYLES
-  // declaration order. Drives the chip row and the InfoPane legend.
+  // Kinds actually present in the stops, amenities, and hike trailheads, in
+  // KIND_STYLES declaration order. Drives the chip row and the InfoPane legend.
   const presentKinds = useMemo(() => {
-    const seen = new Set<GuideStopT['kind']>()
+    const seen = new Set<MapPinKind>()
     for (const s of mappableStops) seen.add(s.kind)
     for (const a of AMENITIES) seen.add(a.kind)
+    if (TRAILHEAD_GROUPS.length > 0) seen.add('hike')
     return ALL_KINDS.filter((k) => seen.has(k))
   }, [mappableStops])
 
   const toggleKind = useCallback(
-    (kind: StopKind) => {
+    (kind: MapPinKind) => {
       setKindFilter((prev) => {
         const next = new Set(prev ?? [])
         if (next.has(kind)) next.delete(kind)
@@ -386,11 +567,23 @@ export default function Map() {
     [itineraryRegions, kindFilter],
   )
 
+  // Day-hike trailheads narrow the same way as amenities: by the hike kind
+  // chip and, under an itinerary, by that itinerary's regions. Like
+  // amenities, they stay out of the browse lists and fitBounds.
+  const visibleTrailheads = useMemo<TrailheadGroup[]>(
+    () =>
+      TRAILHEAD_GROUPS.filter((g) => {
+        if (kindFilter && !kindFilter.has('hike')) return false
+        return !itineraryRegions || itineraryRegions.has(g.region)
+      }),
+    [itineraryRegions, kindFilter],
+  )
+
   // Chip count badges: what enabling each kind yields under the OTHER active
   // filters (itinerary narrowing and the secret toggle), never the kind
   // filter itself, so a chip's number always states what tapping it shows.
   const kindCounts = useMemo(() => {
-    const out = Object.fromEntries(presentKinds.map((k) => [k, 0])) as Record<StopKind, number>
+    const out = Object.fromEntries(presentKinds.map((k) => [k, 0])) as Record<MapPinKind, number>
     for (const s of mappableStops) {
       if (!showSecret && isSecretGuideEntry(s)) continue
       if (
@@ -404,6 +597,12 @@ export default function Map() {
     for (const a of AMENITIES) {
       if (itineraryRegions && !itineraryRegions.has(a.region)) continue
       out[a.kind]++
+    }
+    // Pins, not routes: a multi-hike trailhead counts once, matching what
+    // tapping the chip puts on the map.
+    for (const g of TRAILHEAD_GROUPS) {
+      if (itineraryRegions && !itineraryRegions.has(g.region)) continue
+      out.hike++
     }
     return out
   }, [mappableStops, itineraryRegions, showSecret, presentKinds])
@@ -458,6 +657,20 @@ export default function Map() {
     },
     [navigate],
   )
+
+  const openHike = useCallback(
+    (id: string) => {
+      navigate(`/hike/${id}`)
+    },
+    [navigate],
+  )
+
+  // "Trail on map" in a trailhead popup: draw that hike's track overlay (the
+  // ?hike= pipeline) and close the popup so the fitted track is unobstructed.
+  const showTrack = useCallback((id: string) => {
+    setTrackHikeId(id)
+    popupRef.current?.remove()
+  }, [])
 
   // Map init — runs once per mount.
   useEffect(() => {
@@ -641,6 +854,62 @@ export default function Map() {
         .addTo(map)
     }
   }, [visibleAmenities, mapReady, selectStop])
+
+  // Trailhead marker reconciliation. Same shape as the amenity pipeline: no
+  // ?stop= selection state and no fitBounds contribution; the pins open the
+  // shared popup with the trail data card.
+  useEffect(() => {
+    if (!mapReady) return
+    const map = mapRef.current
+    if (!map) return
+
+    for (const id of Object.keys(hikeMarkersRef.current)) {
+      hikeMarkersRef.current[id].remove()
+    }
+    hikeMarkersRef.current = {}
+
+    for (const group of visibleTrailheads) {
+      const el = buildPinElement('hike')
+      el.addEventListener('click', (e) => {
+        // Same canvas-click race as the stop pins above.
+        e.stopPropagation()
+        // Clear any stop selection so ?stop= doesn't keep pointing at a stop
+        // whose popup this one just replaced.
+        selectStop(null)
+        popupRef.current
+          ?.setLngLat(group.coord)
+          .setDOMContent(
+            buildHikePopupContent(group, { onOpenHike: openHike, onShowTrack: showTrack }, userPosRef.current),
+          )
+          .addTo(map)
+      })
+      const marker = new maplibregl.Marker({
+        element: el,
+        anchor: 'bottom',
+        // Most trailhead coords reuse a stop's verified pin; nudge those a
+        // few pixels so both teardrops stay tappable. The tip lands a couple
+        // of meters off at street zoom, which is inside the coord tolerance.
+        offset: OCCUPIED_COORD_KEYS.has(group.coord.join(',')) ? [14, -4] : [0, 0],
+      })
+        .setLngLat(group.coord)
+        .addTo(map)
+      hikeMarkersRef.current[group.id] = marker
+    }
+  }, [visibleTrailheads, mapReady, selectStop, openHike, showTrack])
+
+  // Same badge-without-rebuild deal as the stop pins: a trailhead pin gets
+  // the checkmark when any hike starting there is in the plan.
+  useEffect(() => {
+    if (!mapReady) return
+    for (const group of visibleTrailheads) {
+      hikeMarkersRef.current[group.id]
+        ?.getElement()
+        .classList.toggle(
+          'map-pin--planned',
+          group.hikes.some((h) => plannedHikeIds.has(h.id)),
+        )
+    }
+  }, [plannedHikeIds, visibleTrailheads, mapReady])
 
   // Hike track overlay — draw the loaded track as a casing + line pair above
   // the topo, fit the camera to it once per hike, and mark the trailhead.
@@ -922,7 +1191,7 @@ export default function Map() {
         <div className="map-page__stage">
           <div ref={containerRef} className="map-page__map" />
 
-          {mapReady && visibleStops.length === 0 && visibleAmenities.length === 0 && (
+          {mapReady && visibleStops.length === 0 && visibleAmenities.length === 0 && visibleTrailheads.length === 0 && (
             <div className="map-page__empty" role="status">
               <p>No pins match these filters.</p>
               <button type="button" className="map-popup__btn" onClick={resetFilters}>
@@ -1143,7 +1412,7 @@ function InfoPane({
   presentKinds,
   mapDownloaded,
 }: {
-  presentKinds: GuideStopT['kind'][]
+  presentKinds: MapPinKind[]
   mapDownloaded: boolean
 }) {
   return (
@@ -1194,6 +1463,13 @@ function InfoPane({
         <li>
           Parking-lot and campground pins are navigation aids: a short note
           and a Directions button, no stop write-up.
+        </li>
+        <li>
+          Pins with a small peak glyph are day-hike trailheads. Tap one for
+          each trail's numbers (distance, climbing, difficulty, time), then
+          open the full trail page, add the hike to your trip, or draw its
+          GPS track over the topo. Trailheads shared by several routes list
+          them all in one popup.
         </li>
         <li>
           Directions deep-links into the native Google Maps app, which routes

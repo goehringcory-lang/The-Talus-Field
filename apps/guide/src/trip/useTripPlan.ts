@@ -245,6 +245,21 @@ export function isStopPlanned(stopId: string): boolean {
   return read().items.some((it) => it.type === 'stop' && it.stopId === stopId)
 }
 
+export function addHikeToPlan(hikeId: string, day?: string) {
+  const p = read()
+  const target = clampDay(day ?? p.dates.start, p.dates)
+  const itemId = hikeItemId(hikeId, target)
+  if (p.items.some((it: TripItemT) => it.itemId === itemId)) return
+  write({
+    ...p,
+    items: [
+      ...p.items,
+      { type: 'hike', itemId, hikeId, day: target, eventUid: crypto.randomUUID() },
+    ],
+    updatedAt: new Date().toISOString(),
+  })
+}
+
 export function isHikePlanned(hikeId: string): boolean {
   return read().items.some((it) => it.type === 'hike' && it.hikeId === hikeId)
 }
