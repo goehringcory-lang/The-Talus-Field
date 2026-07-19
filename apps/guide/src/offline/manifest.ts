@@ -9,6 +9,7 @@
 // =============================================================================
 
 import { REGIONS, getStopsByRegion, SECRET_SPOTS, type Region } from '../content'
+import { TRACKS, trackUrl } from '../trails/track'
 import { precachePhotoUrls, type PhotoFormat } from '../utils/photo'
 import { buildTileUrls } from './tiles'
 
@@ -93,6 +94,20 @@ export function buildPacks(format: PhotoFormat): Pack[] {
     tolerateMissing: 0,
   }
 
+  // Trail tracks: small JSONs (geometry + elevation profile per hike), so the
+  // whole set is one pack. Same cache the SW serves /tracks/ requests from;
+  // the ?v= content hash in each URL turns entries over on regeneration.
+  const trackUrls = Object.keys(TRACKS).map(trackUrl)
+  const tracksPack: Pack = {
+    id: 'trail-tracks',
+    label: 'Trail tracks & elevation',
+    detail: 'GPS tracks and elevation profiles for every verified day hike',
+    cacheName: RUNTIME_CACHE,
+    urls: trackUrls,
+    approxBytes: trackUrls.length * 7_000,
+    tolerateMissing: 0,
+  }
+
   const tileUrls = buildTileUrls()
   const mapPack: Pack = {
     id: 'park-map',
@@ -104,7 +119,7 @@ export function buildPacks(format: PhotoFormat): Pack[] {
     tolerateMissing: 0.05,
   }
 
-  return [...regionPacks, secretPack, mapPack]
+  return [...regionPacks, secretPack, tracksPack, mapPack]
 }
 
 export function formatBytes(bytes: number): string {

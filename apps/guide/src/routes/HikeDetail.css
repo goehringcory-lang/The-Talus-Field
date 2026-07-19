@@ -1,0 +1,179 @@
+/* /hike/:hikeId — granular trail page. Chart styles for ElevationProfile
+ * live here too (the chart only renders on this page). */
+
+.hike-detail__back {
+  margin: 0 0 var(--s4);
+  font-family: var(--sans);
+  font-size: 13px;
+}
+
+.hike-detail__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0 0 var(--s4);
+}
+
+.hike-detail__section {
+  margin: var(--s6) 0;
+}
+
+.hike-detail__heading {
+  font-family: var(--sans);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-weight: 700;
+  color: var(--ink);
+  border-top: 1px solid var(--ink);
+  padding-top: var(--s2);
+  margin: 0 0 var(--s3);
+}
+
+.hike-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: var(--s3) var(--s4);
+  margin: 0;
+}
+.hike-stats > div {
+  border-left: 2px solid var(--rule-soft);
+  padding-left: var(--s3);
+}
+.hike-stats dt {
+  font-family: var(--sans);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ink-3);
+  margin-bottom: 2px;
+}
+.hike-stats dd {
+  margin: 0;
+  font-family: var(--display);
+  font-size: 22px;
+  line-height: 1.2;
+  color: var(--ink);
+  display: grid;
+}
+.hike-stats__sub {
+  font-family: var(--sans);
+  font-size: 11px;
+  color: var(--ink-3);
+  margin-top: 2px;
+}
+
+.hike-detail__note {
+  font-family: var(--sans);
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--ink-2);
+  margin: var(--s2) 0;
+}
+.hike-detail__note a {
+  color: inherit;
+}
+
+.hike-detail__fineprint {
+  font-family: var(--sans);
+  font-size: 12px;
+  line-height: 1.55;
+  color: var(--ink-3);
+  margin: var(--s3) 0 0;
+}
+
+.hike-detail__callout {
+  font-family: var(--sans);
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--ink-2);
+  border-left: 3px solid var(--gold);
+  padding: var(--s2) var(--s3);
+  background: var(--paper-2);
+  margin: var(--s2) 0;
+}
+.hike-detail__callout--hazard {
+  border-left-color: var(--moss);
+}
+
+.hike-detail__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s2) var(--s3);
+  align-items: center;
+  margin: var(--s3) 0;
+}
+.hike-detail__actions--plan {
+  margin-top: var(--s6);
+}
+
+/* --- Elevation profile chart ---------------------------------------------- */
+
+.elev {
+  width: 100%;
+}
+.elev svg {
+  display: block;
+  width: 100%;
+  touch-action: pan-y; /* vertical page scroll still works over the chart */
+}
+
+.elev__readout {
+  display: flex;
+  gap: var(--s4);
+  align-items: baseline;
+  font-family: var(--sans);
+  font-size: 13px;
+  color: var(--ink-2);
+  min-height: 22px;
+  margin-bottom: var(--s1);
+}
+.elev__readout--hint {
+  color: var(--ink-3);
+  font-size: 12px;
+}
+.elev__readout-mi {
+  font-weight: 700;
+  color: var(--ink);
+}
+.elev__readout-grade {
+  color: var(--ink-3);
+}
+
+.elev__grid {
+  stroke: var(--rule-soft);
+  stroke-width: 1;
+  stroke-dasharray: 2 4;
+}
+.elev__tick {
+  font: 10px var(--sans);
+  fill: var(--ink-3);
+}
+.elev__area {
+  fill: var(--paper-3);
+  fill-opacity: 0.55;
+}
+.elev__line {
+  fill: none;
+  stroke: var(--ink-2);
+  stroke-width: 2;
+  stroke-linejoin: round;
+}
+.elev__high {
+  fill: var(--moss);
+  stroke: var(--paper);
+  stroke-width: 2;
+}
+.elev__high-label {
+  font: 600 10px var(--sans);
+  fill: var(--ink-2);
+}
+.elev__crosshair {
+  stroke: var(--ink-3);
+  stroke-width: 1;
+}
+.elev__dot {
+  fill: var(--moss);
+  stroke: var(--paper);
+  stroke-width: 2;
+}

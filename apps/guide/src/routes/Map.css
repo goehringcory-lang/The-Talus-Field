@@ -803,3 +803,52 @@
     grid-template-columns: repeat(3, 1fr);
   }
 }
+
+/* --- Hike track overlay (?hike=) ------------------------------------------- */
+
+.map-track-banner {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 12px;
+  background: var(--paper-2);
+  border-bottom: 1px solid var(--rule-soft);
+  font-family: var(--sans);
+  font-size: 13px;
+  color: var(--ink-2);
+}
+.map-track-banner__swatch {
+  width: 18px;
+  height: 4px;
+  background: #7a2a10;
+  border: 1px solid #f5efe0;
+  flex: none;
+}
+.map-track-banner__text {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.map-track-banner__link {
+  color: inherit;
+  font-weight: 600;
+}
+.map-track-banner__clear {
+  border: none;
+  background: none;
+  color: var(--ink-3);
+  font-size: 14px;
+  cursor: pointer;
+  padding: 2px 6px;
+}
+
+.map-track-start {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #3d5a3f;
+  border: 3px solid #f5efe0;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+}

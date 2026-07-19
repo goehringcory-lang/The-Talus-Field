@@ -34,3 +34,7 @@ _local_cdn/
 # Photo candidates awaiting selection (fetch-guide-photos.mjs); selected
 # photos land in apps/guide/public/photos/, candidates never ship.
 scripts/data/photo-candidates/
+
+# Cached USGS quad + terrain-tile downloads for scripts/gen-hike-tracks.mjs;
+# regenerated on demand, never committed.
+scripts/data/.trailcache/

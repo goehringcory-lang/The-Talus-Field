@@ -192,6 +192,7 @@ const OFFLINE_PAGE = `<!doctype html>
 
 const RUNTIME_PATTERNS = [
   /\/photos\//,
+  /\/tracks\//, // hike track JSONs; ?v= content hash busts on regeneration
   /\.woff2$/,
   /\.(svg|png|jpg|jpeg|webp|avif)$/,
 ]
