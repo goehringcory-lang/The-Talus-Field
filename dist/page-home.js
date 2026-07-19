@@ -14,7 +14,7 @@ function HomeHeroCapture({
       ref: ref
     }, "You're on the list. ", React.createElement("a", {
       href: "/map"
-    }, "The map's trip builder is open to you →"));
+    }, "The trip planner map is open to you →"));
   }
   if (done) {
     return React.createElement("p", {
@@ -22,7 +22,7 @@ function HomeHeroCapture({
       ref: ref
     }, "You're in. ", React.createElement("a", {
       href: "/map"
-    }, "The trip builder is open to you →"));
+    }, "The map is open to you →"));
   }
   return React.createElement("div", {
     className: "hero__capture-box",
@@ -31,7 +31,7 @@ function HomeHeroCapture({
     className: "eyebrow eyebrow--moss"
   }, "The Sunday Letter · Free"), React.createElement("p", {
     className: "hero__capture-lede"
-  }, "What is open, what is booking out, and what the week looked like from inside the park. The map's trip builder comes with it."), React.createElement("form", {
+  }, "What is open, what is booking out, and what the week looked like from inside the park. The interactive trip planner map comes with it."), React.createElement("form", {
     className: "hero__capture nlbox__form",
     action: "https://buttondown.com/api/emails/embed-subscribe/goehring",
     method: "post",
@@ -690,7 +690,7 @@ function HomePage({
       margin: 0,
       marginBottom: 16
     }
-  }, "Every vista, trailhead, parking turnout, and meal in one interactive map. Browse it free. A newsletter signup unlocks the trip builder: tap pins to assemble a route, or load a suggested one-, two-, or three-day trip."), React.createElement("div", {
+  }, "Every vista, trailhead, parking turnout, and meal in one interactive map. A free newsletter signup opens it: tap pins to assemble a route, or load a suggested one-, two-, or three-day trip."), React.createElement("div", {
     className: "mono",
     style: {
       color: "var(--moss)",

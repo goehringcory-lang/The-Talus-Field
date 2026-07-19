@@ -535,7 +535,7 @@ function buildSeo(route) {
     },
     map: {
       title: `Yosemite Trip Planner Map — ${SITE_NAME}`,
-      description: "An interactive Yosemite map of vistas, trailheads, parking turnouts, picnic spots, and places to eat, with a trip builder. Curated by a resident of the park. Free.",
+      description: "An interactive Yosemite map of vistas, trailheads, parking turnouts, picnic spots, and places to eat, with a trip builder. Curated by a resident of the park. Free with an email signup.",
       ogType: "website",
       breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Map", null]],
       jsonLd: {
@@ -543,7 +543,7 @@ function buildSeo(route) {
         "@type": "WebPage",
         name: `Yosemite Trip Planner Map — ${SITE_NAME}`,
         url: `${SITE_ORIGIN}/map`,
-        description: "An interactive Yosemite map of vistas, trailheads, parking turnouts, picnic spots, and places to eat, with a trip builder. Curated by a resident of the park. Free.",
+        description: "An interactive Yosemite map of vistas, trailheads, parking turnouts, picnic spots, and places to eat, with a trip builder. Curated by a resident of the park. Free with an email signup.",
         isAccessibleForFree: true,
         inLanguage: "en-US",
         about: {

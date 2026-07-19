@@ -490,8 +490,8 @@ function Header({ current, go }) {
 
           {/* Persistent "The Map" CTA. On mobile the inline nav collapses to
               the hamburger, leaving no visible path to the funnel; this fills
-              that gap. The map is browsable free and its trip builder is the
-              newsletter gate, so it is the softest on-ramp. Was A/B tested
+              that gap. The map is the newsletter gate (one signup opens it),
+              so it is the primary capture on-ramp. Was A/B tested
               (mobile_cta); bucket b won the tradeoff and is now the default. */}
           <a
             className="nav__primary"

@@ -556,7 +556,7 @@ function buildSeo(route) {
     map: {
       title: `Yosemite Trip Planner Map — ${SITE_NAME}`,
       description:
-        "An interactive Yosemite map of vistas, trailheads, parking turnouts, picnic spots, and places to eat, with a trip builder. Curated by a resident of the park. Free.",
+        "An interactive Yosemite map of vistas, trailheads, parking turnouts, picnic spots, and places to eat, with a trip builder. Curated by a resident of the park. Free with an email signup.",
       ogType: "website",
       breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Map", null]],
       // Mirrors the edge's static WebPage node (edge/seo.js) so JS and non-JS
@@ -568,7 +568,7 @@ function buildSeo(route) {
         name: `Yosemite Trip Planner Map — ${SITE_NAME}`,
         url: `${SITE_ORIGIN}/map`,
         description:
-          "An interactive Yosemite map of vistas, trailheads, parking turnouts, picnic spots, and places to eat, with a trip builder. Curated by a resident of the park. Free.",
+          "An interactive Yosemite map of vistas, trailheads, parking turnouts, picnic spots, and places to eat, with a trip builder. Curated by a resident of the park. Free with an email signup.",
         isAccessibleForFree: true,
         inLanguage: "en-US",
         about: {

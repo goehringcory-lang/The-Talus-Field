@@ -205,7 +205,7 @@ const HUB_PROSE = {
   "/map": () =>
     hubProse(
       "The Yosemite trip planner map",
-      "An interactive map of Yosemite National Park: vistas, trailheads, parking turnouts, picnic spots, and places to eat, each pin curated and written by a resident of the park. Filter pins by category, search by name, and assemble stops into a trip you can share by link, email to yourself, or open in Google Maps for driving directions. Free to browse."
+      "An interactive map of Yosemite National Park: vistas, trailheads, parking turnouts, picnic spots, and places to eat, each pin curated and written by a resident of the park. Filter pins by category, search by name, and assemble stops into a trip you can share by link, email to yourself, or open in Google Maps for driving directions. The full map opens with a free newsletter signup."
     ) +
     `<p>Prefer a ready-made plan? Start from <a href="/itineraries">the curated itineraries</a>. Planning the drive in? Check <a href="/conditions">webcams, entrance waits, and weather</a>.</p>`,
   "/conditions": () =>
@@ -283,7 +283,7 @@ const HUB_PROSE = {
   "/newsletter": () =>
     hubProse(
       "Sunday Field Notes",
-      "A short note on Yosemite most Sundays, when there is something to say: conditions, openings, what the park is doing right now. Subscribing also unlocks the trip builder on the interactive map. Free."
+      "A short note on Yosemite most Sundays, when there is something to say: conditions, openings, what the park is doing right now. Subscribing also unlocks the interactive trip planner map. Free."
     ),
   "/contact": () =>
     hubProse(
@@ -693,7 +693,7 @@ function seoForPath(pathname, searchParams) {
     "/map": {
       title: `Yosemite Trip Planner Map — ${SITE_NAME}`,
       description:
-        "An interactive Yosemite map of vistas, trailheads, parking turnouts, picnic spots, and places to eat, with a trip builder. Curated by a resident of the park. Free.",
+        "An interactive Yosemite map of vistas, trailheads, parking turnouts, picnic spots, and places to eat, with a trip builder. Curated by a resident of the park. Free with an email signup.",
       breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Map", null]],
       // Honest, static WebPage node. The pin list itself stays out of the
       // structured data until the new points pass a ground-truth check.
@@ -703,7 +703,7 @@ function seoForPath(pathname, searchParams) {
         name: `Yosemite Trip Planner Map — ${SITE_NAME}`,
         url: `${SITE_ORIGIN}/map`,
         description:
-          "An interactive Yosemite map of vistas, trailheads, parking turnouts, picnic spots, and places to eat, with a trip builder. Curated by a resident of the park. Free.",
+          "An interactive Yosemite map of vistas, trailheads, parking turnouts, picnic spots, and places to eat, with a trip builder. Curated by a resident of the park. Free with an email signup.",
         isAccessibleForFree: true,
         inLanguage: "en-US",
         about: {
