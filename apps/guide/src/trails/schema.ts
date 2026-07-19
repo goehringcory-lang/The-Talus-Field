@@ -2,7 +2,9 @@
 // Track file schema — mirrors the JSON emitted by scripts/gen-hike-tracks.mjs
 // into public/tracks/<hikeId>.json (kept in sync by hand, same policy as the
 // programs and weather schemas). Geometry is USGS National Map trail linework
-// (NPS source data); elevations are USGS 3DEP. `verified` records how the
+// (NPS source data), or OpenStreetMap linework via Overture Maps where the
+// USGS layers miss the signed route (each track carries its own source
+// string); elevations are USGS 3DEP. `verified` records how the
 // track compared to the published stats in content/hikes.ts at generation
 // time: 'match' landed inside the strict tolerance, 'approx' inside the wide
 // one (always labeled in the UI).

@@ -415,7 +415,7 @@ const seed: HikeT[] = [
     route: 'out-and-back',
     durationMin: 120,
     trailhead: 'Mono Meadow lot, Glacier Point Road mile 10',
-    coord: [-119.5946, 37.6764], // web-derived: Mono Meadow trailhead pullout; TODO verify on the ground
+    coord: [-119.5851, 37.6713], // OSM-derived: signed Mono Meadow trailhead pullout at Glacier Point Road mile 10 (the earlier web-derived pin sat 0.9 km west); TODO verify on the ground
     season: 'Glacier Point Road season',
     description:
       'Down through firs to a boggy meadow, then on to an opening with a clear shot of Mount Starr King and the Clark Range. Expect wet feet early in the season.',
@@ -463,8 +463,8 @@ const seed: HikeT[] = [
     difficulty: 'easy',
     route: 'out-and-back',
     durationMin: 150,
-    trailhead: 'Forest Drive road-end, Wawona',
-    coord: [-119.6428, 37.5443], // web-derived: Forest Dr road-end above the South Fork; TODO verify on the ground
+    trailhead: 'Wawona Store day-use parking',
+    coord: [-119.6565, 37.5385], // OSM-derived: Wawona Store lot; the walk follows Forest Drive to the river trail (no public parking at the road-end); TODO verify on the ground
     description:
       'An easy walk up the South Fork of the Merced to a bouncing footbridge over granite pools. The swimming holes below it are Wawona’s summer secret.',
   },

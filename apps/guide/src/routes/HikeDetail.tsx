@@ -189,10 +189,10 @@ export default function HikeDetail() {
           )}
           {trackState.status === 'none' && (
             <p className="hike-detail__note">
-              No verified track for this hike yet: the official USGS/NPS trail data doesn't carry
-              this route's linework accurately enough to publish. The distance and climbing numbers
-              above are cross-checked against NPS trail pages; navigation on the ground is the
-              signed trail.
+              No verified track for this hike yet: the available trail linework (USGS/NPS and
+              OpenStreetMap) doesn't carry this route accurately enough to publish. The distance
+              and climbing numbers above are cross-checked against NPS trail pages; navigation on
+              the ground is the signed trail.
             </p>
           )}
         </section>
