@@ -653,6 +653,10 @@ export default function Map() {
       trackFitRef.current = null
       return
     }
+    // A lost WebGL context (routine on iOS under memory pressure) nulls
+    // map.style until the browser restores it; every style call below would
+    // throw into the error boundary. Skip this pass — the restore re-renders.
+    if (!map.style) return
 
     const geojson = {
       type: 'Feature' as const,
@@ -694,7 +698,13 @@ export default function Map() {
 
     return () => {
       startMarker.remove()
-      // Guard each removal: a map torn down mid-cleanup has no style.
+      // On unmount React runs cleanups in declaration order, so the map-init
+      // effect's map.remove() (which deletes map.style) runs before this one;
+      // a lost WebGL context also nulls map.style. Either way getLayer itself
+      // would throw (this.style.getLayer), taking down the whole app through
+      // the error boundary — leaving the map with a trail up crashed on every
+      // navigation until this bailout.
+      if (!map.style) return
       if (map.getLayer('hike-track-line')) map.removeLayer('hike-track-line')
       if (map.getLayer('hike-track-casing')) map.removeLayer('hike-track-casing')
       if (map.getSource('hike-track')) map.removeSource('hike-track')
