@@ -518,7 +518,7 @@ function ArticlePage({
       lineHeight: 1.5,
       margin: 0
     }
-  }, "Every vista, trailhead, parking turnout, and meal worth the stop, on one map. Browse it free, then build a trip from the pins."), React.createElement("div", {
+  }, "Every vista, trailhead, parking turnout, and meal worth the stop, on one map. A free newsletter signup opens it; then build a trip from the pins."), React.createElement("div", {
     className: "mono",
     style: {
       color: "var(--moss)",

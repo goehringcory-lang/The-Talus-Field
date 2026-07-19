@@ -30,7 +30,7 @@ function HomeHeroCapture({ tripMonth }) {
   if (subscribed && !done) {
     return (
       <p className="hero__capture-note" ref={ref}>
-        You're on the list. <a href="/map">The map's trip builder is open to you →</a>
+        You're on the list. <a href="/map">The trip planner map is open to you →</a>
       </p>
     );
   }
@@ -38,7 +38,7 @@ function HomeHeroCapture({ tripMonth }) {
   if (done) {
     return (
       <p className="hero__capture-note" ref={ref}>
-        You're in. <a href="/map">The trip builder is open to you →</a>
+        You're in. <a href="/map">The map is open to you →</a>
       </p>
     );
   }
@@ -46,7 +46,7 @@ function HomeHeroCapture({ tripMonth }) {
   return (
     <div className="hero__capture-box" ref={ref}>
       <div className="eyebrow eyebrow--moss">The Sunday Letter · Free</div>
-      <p className="hero__capture-lede">What is open, what is booking out, and what the week looked like from inside the park. The map's trip builder comes with it.</p>
+      <p className="hero__capture-lede">What is open, what is booking out, and what the week looked like from inside the park. The interactive trip planner map comes with it.</p>
       <form
         className="hero__capture nlbox__form"
         action="https://buttondown.com/api/emails/embed-subscribe/goehring"
@@ -547,7 +547,7 @@ function HomePage({ go }) {
             </div>
             <div>
               <p style={{ fontFamily: "var(--serif)", fontSize: 19, lineHeight: 1.5, color: "var(--ink-2)", margin: 0, marginBottom: 16 }}>
-                Every vista, trailhead, parking turnout, and meal in one interactive map. Browse it free. A newsletter signup unlocks the trip builder: tap pins to assemble a route, or load a suggested one-, two-, or three-day trip.
+                Every vista, trailhead, parking turnout, and meal in one interactive map. A free newsletter signup opens it: tap pins to assemble a route, or load a suggested one-, two-, or three-day trip.
               </p>
               <div className="mono" style={{ color: "var(--moss)", fontWeight: 700, fontSize: 11, textTransform: "uppercase", letterSpacing: "0.18em" }}>Open the map →</div>
             </div>

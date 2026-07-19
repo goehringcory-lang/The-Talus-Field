@@ -3509,6 +3509,42 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
   background: #e8eae6;
 }
 
+/* Map overlay controls (Reset view / Find me), bottom-left inside
+   .map-page__main. Plain site-styled buttons rather than Google custom
+   controls; they disappear in the API's fullscreen mode (which only shows
+   the map container's own children), which is acceptable. */
+.map-page__controls {
+  position: absolute;
+  left: 10px;
+  bottom: 24px;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.map-page__ctrl {
+  font: 600 12px var(--sans);
+  padding: 7px 10px;
+  background: #fff;
+  color: var(--ink);
+  border: 1px solid var(--rule);
+  border-radius: 3px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+}
+.map-page__ctrl:hover { background: var(--paper-2); }
+.map-page__ctrl:disabled { opacity: 0.6; cursor: default; }
+
+/* "You are here" dot dropped by the Find-me control. */
+.map-user-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #1a73e8;
+  border: 2px solid #fff;
+  box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.3), 0 1px 4px rgba(0, 0, 0, 0.3);
+}
+
 /* Map access gate. A covering overlay over .map-page (map + sidebar) that
    blocks the map until the visitor subscribes. Scoped to .map-page, not fixed
    to the viewport, so the global header and footer stay reachable (a reader is
@@ -3536,7 +3572,7 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
   max-width: 440px;
 }
 /* Teaser: blur the live map behind the gate so it reads as locked content. */
-.map-page--locked .map-page__map { filter: blur(2px); }
+.map-page--locked .map-page__map { filter: blur(3px); }
 
 /* ------------------------------------------------------------
    Mobile: three-snap bottom sheet.
@@ -3557,6 +3593,10 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
   .map-page__map {
     min-height: 0;
     height: 100%;
+  }
+  /* Clear the bottom sheet's 60px peek bar (plus breathing room). */
+  .map-page__controls {
+    bottom: 76px;
   }
   .map-page__sidebar {
     position: fixed;

@@ -23,6 +23,18 @@ function isMapUnlocked() {
 function setMapUnlocked() {
   window.safeStorage.set(MAP_UNLOCK_KEY, "1");
 }
+var PARK_CENTER = {
+  lat: 37.85,
+  lng: -119.55
+};
+var LOCATE_PAN_MAX_KM = 100;
+function haversineKm(a, b) {
+  var toRad = d => d * Math.PI / 180;
+  var dLat = toRad(b.lat - a.lat);
+  var dLng = toRad(b.lng - a.lng);
+  var s = Math.sin(dLat / 2) ** 2 + Math.cos(toRad(a.lat)) * Math.cos(toRad(b.lat)) * Math.sin(dLng / 2) ** 2;
+  return 6371 * 2 * Math.atan2(Math.sqrt(s), Math.sqrt(1 - s));
+}
 var REGIONS = [{
   id: "valley",
   label: "Yosemite Valley",
@@ -253,12 +265,13 @@ function MapView({
   var clustererRef = useRef(null);
   var markerModesRef = useRef({});
   var pendingUndoRef = useRef(null);
+  var userMarkerRef = useRef(null);
   var [features, setFeatures] = useState(null);
   var [error, setError] = useState(null);
   var [mapReady, setMapReady] = useState(false);
   var [toast, setToast] = useState(null);
   var [unlocked, setUnlocked] = useState(() => isMapUnlocked() || window.isSubscribed && window.isSubscribed());
-  var [gateOpen, setGateOpen] = useState(false);
+  var [locating, setLocating] = useState(false);
   var initial = useMemo(() => readUrlState(), []);
   var [selectedStopId, setSelectedStopId] = useState(initial.stop);
   var [tripStopIds, setTripStopIds] = useState([]);
@@ -359,19 +372,15 @@ function MapView({
     var f = features.find(x => x.properties.id === id);
     return f ? f.properties.name : id;
   }, [features]);
-  var openGate = useCallback(() => {
-    setGateOpen(true);
-  }, []);
   var handleGateSubscribed = useCallback(() => {
     setMapUnlocked();
     setUnlocked(true);
-    setGateOpen(false);
   }, []);
   useEffect(() => {
-    if (gateOpen && window.trackNewsletterImpression) {
-      window.trackNewsletterImpression("map_trip_gate", "map-gate");
+    if (!unlocked && window.trackNewsletterImpression) {
+      window.trackNewsletterImpression("map_gate", "map-gate");
     }
-  }, [gateOpen]);
+  }, [unlocked]);
   var performToggleTripStop = useCallback(id => {
     setTripStopIds(prev => {
       if (prev.includes(id)) {
@@ -389,10 +398,6 @@ function MapView({
     });
   }, [announce, featureNameById]);
   var toggleTripStop = useCallback((id, source) => {
-    if (!unlocked) {
-      openGate();
-      return;
-    }
     var adding = !tripStopIdsRef.current.includes(id);
     if (adding && window.track && tripStopIdsRef.current.length < TRIP_CAP) {
       window.track("trip_add", {
@@ -402,7 +407,7 @@ function MapView({
       });
     }
     performToggleTripStop(id);
-  }, [performToggleTripStop, unlocked, openGate]);
+  }, [performToggleTripStop]);
   var removeTripStop = useCallback(id => {
     setTripStopIds(prev => {
       if (!prev.includes(id)) return prev;
@@ -466,15 +471,11 @@ function MapView({
     });
   }, [announce, features, activeCats]);
   var addAllFromRegion = useCallback(regionId => {
-    if (!unlocked) {
-      openGate();
-      return;
-    }
     if (window.track) window.track("trip_add_all", {
       region: regionId
     });
     performAddAllFromRegion(regionId);
-  }, [performAddAllFromRegion, unlocked, openGate]);
+  }, [performAddAllFromRegion]);
   var performApplyQuickPick = useCallback(quickPickId => {
     if (!features) return;
     var qp = QUICK_PICKS.find(q => q.id === quickPickId);
@@ -492,15 +493,11 @@ function MapView({
     });
   }, [announce, features]);
   var applyQuickPick = useCallback(quickPickId => {
-    if (!unlocked) {
-      openGate();
-      return;
-    }
     if (window.track) window.track("trip_quick_pick", {
       pick: quickPickId
     });
     performApplyQuickPick(quickPickId);
-  }, [performApplyQuickPick, unlocked, openGate]);
+  }, [performApplyQuickPick]);
   var shareTrip = useCallback(() => {
     var ids = tripStopIdsRef.current;
     if (ids.length === 0) return;
@@ -541,6 +538,80 @@ function MapView({
     });
     window.open(url, "_blank", "noopener");
   }, [features, announce]);
+  var resetView = useCallback(() => {
+    var map = mapRef.current;
+    if (!map || !features) return;
+    var maps = window.google && window.google.maps;
+    if (!maps) return;
+    var tripSet = new Set(tripStopIdsRef.current);
+    var bounds = new maps.LatLngBounds();
+    var visible = 0;
+    for (var f of features) {
+      var p = f.properties;
+      if (!activeCats.has(p.category) && !tripSet.has(p.id)) continue;
+      var [lng, lat] = f.geometry.coordinates;
+      bounds.extend({
+        lat,
+        lng
+      });
+      visible++;
+    }
+    if (visible === 0) return;
+    map.fitBounds(bounds, 40);
+    maps.event.addListenerOnce(map, "idle", () => {
+      if (map.getZoom() > 12) map.setZoom(12);
+    });
+    if (window.track) window.track("map_reset_view", {
+      visible
+    });
+  }, [features, activeCats]);
+  var locateMe = useCallback(() => {
+    if (!navigator.geolocation) {
+      announce("Location is not available in this browser.");
+      return;
+    }
+    var map = mapRef.current;
+    var markerLib = markerLibRef.current;
+    if (!map || !markerLib) return;
+    setLocating(true);
+    navigator.geolocation.getCurrentPosition(pos => {
+      setLocating(false);
+      var position = {
+        lat: pos.coords.latitude,
+        lng: pos.coords.longitude
+      };
+      if (!userMarkerRef.current) {
+        var dot = document.createElement("div");
+        dot.className = "map-user-dot";
+        userMarkerRef.current = new markerLib.AdvancedMarkerElement({
+          position,
+          content: dot,
+          title: "Your location",
+          zIndex: 2000
+        });
+      }
+      userMarkerRef.current.position = position;
+      userMarkerRef.current.map = map;
+      var km = haversineKm(position, PARK_CENTER);
+      if (km > LOCATE_PAN_MAX_KM) {
+        announce("You are well outside the park right now. The map stayed on Yosemite.");
+      } else {
+        map.panTo(position);
+        if (map.getZoom() < 13) map.setZoom(13);
+        announce("Centered on your location.");
+      }
+      if (window.track) window.track("map_locate", {
+        in_park: km <= LOCATE_PAN_MAX_KM
+      });
+    }, () => {
+      setLocating(false);
+      announce("Could not get your location. Check the browser's location permission.");
+    }, {
+      enableHighAccuracy: true,
+      timeout: 10000,
+      maximumAge: 60000
+    });
+  }, [announce]);
   useEffect(() => {
     tripActionRef.current = toggleTripStop;
   });
@@ -824,7 +895,7 @@ function MapView({
     }, React.createElement("p", null, "Loading map…"));
   }
   return React.createElement("div", {
-    className: `map-page${gateOpen ? " map-page--locked" : ""}`
+    className: `map-page${!unlocked ? " map-page--locked" : ""}`
   }, React.createElement(TripPlannerSidebar, {
     features: features,
     tripStopIds: tripStopIds,
@@ -858,9 +929,21 @@ function MapView({
     ref: containerRef,
     id: "map",
     className: "map-page__map"
-  })), gateOpen && React.createElement(MapAccessGate, {
-    onSubscribed: handleGateSubscribed,
-    onClose: () => setGateOpen(false)
+  }), mapReady && unlocked && React.createElement("div", {
+    className: "map-page__controls"
+  }, React.createElement("button", {
+    type: "button",
+    className: "map-page__ctrl",
+    onClick: resetView,
+    title: "Reframe the map to every visible pin"
+  }, "Reset view"), React.createElement("button", {
+    type: "button",
+    className: "map-page__ctrl",
+    onClick: locateMe,
+    disabled: locating,
+    title: "Show where you are on the map"
+  }, locating ? "Locating…" : "Find me"))), !unlocked && React.createElement(MapAccessGate, {
+    onSubscribed: handleGateSubscribed
   }));
 }
 function TripEmailBox({
@@ -1498,43 +1581,29 @@ function escapeHtml(s) {
   return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#39;");
 }
 function MapAccessGate({
-  onSubscribed,
-  onClose
+  onSubscribed
 }) {
-  useEffect(() => {
-    var onKey = e => {
-      if (e.key === "Escape") onClose();
-    };
-    document.addEventListener("keydown", onKey);
-    return () => document.removeEventListener("keydown", onKey);
-  }, [onClose]);
   return React.createElement("div", {
     className: "map-page__gate",
     role: "dialog",
     "aria-modal": "true",
-    "aria-label": "Subscribe to save this trip"
+    "aria-label": "Subscribe to open the map"
   }, React.createElement("div", {
-    className: "map-page__gate-backdrop",
-    onClick: onClose
+    className: "map-page__gate-backdrop"
   }), React.createElement("div", {
     className: "nlmodal__card map-page__gate-card"
-  }, React.createElement("button", {
-    type: "button",
-    className: "nlmodal__close",
-    "aria-label": "Close",
-    onClick: onClose
-  }, "✕"), React.createElement("div", {
+  }, React.createElement("div", {
     className: "eyebrow eyebrow--moss",
     style: {
       marginBottom: 12
     }
-  }, "The Map · Trip Builder"), React.createElement("h3", null, "Save this trip."), React.createElement("p", null, "Browsing the map is free. Building and saving a trip: tapping pins to assemble a route, loading a suggested itinerary, is open to subscribers. Drop your email and it opens right here, and stays open on this device."), React.createElement("form", {
+  }, "The Trip Planner Map"), React.createElement("h3", null, "The map opens with an email."), React.createElement("p", null, "Every pin here was placed and written by a resident of the park: quiet vistas, parking turnouts that actually have space, picnic tables worth the drive. Drop your email and the full map, filters, and trip builder open right here, and stay open on this device."), React.createElement("form", {
     className: "nlbox__form",
     action: "https://buttondown.com/api/emails/embed-subscribe/goehring",
     method: "post",
     target: "buttondown-target",
     onSubmit: () => {
-      if (window.trackNewsletterSubmit) window.trackNewsletterSubmit("map_trip_gate", "map-gate");
+      if (window.trackNewsletterSubmit) window.trackNewsletterSubmit("map_gate", "map-gate");
       setTimeout(onSubscribed, 0);
     }
   }, React.createElement("input", {
@@ -1552,9 +1621,9 @@ function MapAccessGate({
     value: "1"
   }), React.createElement("button", {
     type: "submit"
-  }, "Unlock the trip builder →")), React.createElement("p", {
+  }, "Unlock the map →")), React.createElement("p", {
     className: "map-gate__fine"
-  }, "No spam. One short letter on Sundays, when there is something to say.")));
+  }, "Signing up also gets you Sunday Field Notes, one short letter a week. No spam, leave anytime.")));
 }
 function MapPage(props) {
   return React.createElement(MapView, props);
