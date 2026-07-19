@@ -29,7 +29,7 @@ The API lives in `../../workers/` (Cloudflare Worker); run it locally with
 
 ## Where things live
 
-- **Content** — `src/content/`: `stops.ts` (the 34 stops, zod-validated at
+- **Content** — `src/content/`: `stops.ts` (the 66 region stops, core and hidden, zod-validated at
   module load), `essentials.ts`, `secret-spots.ts`, `seasonal.ts`,
   `itineraries.ts`. Editing these files is how the guide's content changes;
   a schema violation fails the build rather than shipping bad data.

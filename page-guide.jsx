@@ -452,8 +452,8 @@ const APP_SHOTS = [
   },
   {
     src: "img/guide/app-secret-guide.webp",
-    alt: "The Secret Guide section in the app: 35 entries of quiet vistas, hidden trails, and parking moves",
-    caption: "The Secret Guide. 35 entries of quiet vistas, hidden trails, parking moves, and the park after dark.",
+    alt: "The Secret Guide section in the app: 37 entries of quiet vistas, hidden trails, and parking moves",
+    caption: "The Secret Guide. 37 entries of quiet vistas, hidden trails, parking moves, and the park after dark.",
   },
   {
     src: "img/guide/app-hikes.webp",
@@ -632,9 +632,9 @@ function GuidePage({ go }) {
           </p>
           <div className="guide-stats">
             <span>4 regions</span>
-            <span>34 stops</span>
+            <span>44 stops</span>
             <span>57 day hikes</span>
-            <span>35 secret entries</span>
+            <span>37 secret entries</span>
             <span>Works offline</span>
           </div>
         </div>
@@ -787,7 +787,7 @@ function GuidePage({ go }) {
             <div className="guide-closer">
               <div className="eyebrow eyebrow--moss" style={{ marginBottom: 12 }}>The offer, in one place</div>
               <p style={{ fontFamily: "var(--serif)", fontSize: 17, lineHeight: 1.6, margin: "0 0 20px" }}>
-                Four regional guides. 34 stops in driving order, each with GPS, a time budget, and a swap. All 57 in-park day hikes. The 35-entry Secret Guide. The park's program schedule on your dates. A trip planner that syncs to your calendar and an offline map that holds it all together. Nineteen dollars, once, for 18 months on every device you own.
+                Four regional guides. 44 stops in driving order, each with GPS, a time budget, and a swap. All 57 in-park day hikes. The 37-entry Secret Guide. The park's program schedule on your dates. A trip planner that syncs to your calendar and an offline map that holds it all together. Nineteen dollars, once, for 18 months on every device you own.
               </p>
               <BuyNowButton location="guide_closer" />
               <p style={{ fontFamily: "var(--sans)", fontSize: 12, color: "var(--ink-3)", lineHeight: 1.55, margin: "14px 0 0" }}>
