@@ -15,14 +15,19 @@
     "compile:check": "node gen-compiled.mjs --check",
     "checks": "node system-checks.mjs",
     "checks:online": "node system-checks.mjs --online",
-    "check": "bash check-cache-busters.sh && bash check-seo-artifacts.sh && node gen-prerender.mjs --check && node gen-compiled.mjs --check"
+    "check": "bash check-cache-busters.sh && bash check-seo-artifacts.sh && node gen-prerender.mjs --check && node gen-compiled.mjs --check",
+    "tracks": "node gen-hike-tracks.mjs"
   },
   "devDependencies": {
     "@babel/core": "^8.0.0",
     "@babel/preset-env": "^8.0.0",
     "@babel/preset-react": "^8.0.0",
+    "adm-zip": "^0.6.0",
+    "pngjs": "^7.0.0",
     "react": "^19.2.7",
     "react-dom": "^19.2.7",
-    "sharp": "^0.34.5"
+    "shapefile": "^0.6.6",
+    "sharp": "^0.34.5",
+    "undici": "^8.7.0"
   }
 }

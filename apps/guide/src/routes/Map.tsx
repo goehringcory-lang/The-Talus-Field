@@ -28,6 +28,9 @@ import {
   type ItineraryKey,
 } from '../content/itineraries'
 import { HIDDEN_PIN_STROKE, KIND_STYLES, buildPinElement, directionsUrl, getKindStyle } from '../map/kinds'
+import { getHikeById } from '../content'
+import { hasTrack } from '../trails/track'
+import { useTrack } from '../trails/useTrack'
 import { announceTripAdd } from '../trip/addFeedback'
 import { addStopToPlan, isStopPlanned, useTripPlan } from '../trip/useTripPlan'
 import { buildMapStyle } from '../map/style'
@@ -48,6 +51,7 @@ type UrlState = {
   stop: string | null
   kinds: StopKind[] | null // null = no kind narrowing (all kinds show)
   secret: boolean
+  hike: string | null // hike id whose track overlays the map (?hike=)
 }
 
 const ALL_KINDS = Object.keys(KIND_STYLES) as StopKind[]
@@ -67,12 +71,15 @@ function readUrlState(): UrlState {
   // Invalid tokens drop; an empty or complete list is the same as no
   // narrowing, so both normalize to null and the param round-trips away.
   const kinds = kindsRaw ? [...new Set(kindsRaw.split(',').filter(isStopKind))] : null
+  const hike = params.get('hike')
   return {
     tab: isTab(tab) ? tab : 'points',
     itinerary: isItineraryKey(itin) ? itin : null,
     stop: stop || null,
     kinds: kinds && kinds.length > 0 && kinds.length < ALL_KINDS.length ? kinds : null,
     secret: params.get('secret') !== '0',
+    // Only hikes with a published track: an unknown id round-trips away.
+    hike: hike && hasTrack(hike) ? hike : null,
   }
 }
 
@@ -83,6 +90,7 @@ function writeUrlState(next: UrlState) {
   if (next.stop) params.set('stop', next.stop)
   if (next.kinds && next.kinds.length > 0) params.set('kinds', [...next.kinds].sort().join(','))
   if (!next.secret) params.set('secret', '0')
+  if (next.hike) params.set('hike', next.hike)
   const qs = params.toString()
   const newUrl = '/map' + (qs ? `?${qs}` : '')
   if (newUrl !== window.location.pathname + window.location.search) {
@@ -293,6 +301,12 @@ export default function Map() {
   )
   const [showSecret, setShowSecret] = useState<boolean>(initial.secret)
 
+  // Hike track overlay (?hike=<id>). The track loads from the runtime cache
+  // offline; the overlay draws above the topo with the trailhead marked.
+  const [trackHikeId, setTrackHikeId] = useState<string | null>(initial.hike)
+  const trackState = useTrack(trackHikeId ?? undefined)
+  const trackHike = trackHikeId ? getHikeById(trackHikeId) : undefined
+
   // Stops already in the trip plan get a checkmark badge on their pin.
   const { plan } = useTripPlan()
   const plannedStopIds = useMemo(
@@ -411,8 +425,9 @@ export default function Map() {
       stop: selectedStopId,
       kinds: kindFilter ? [...kindFilter] : null,
       secret: showSecret,
+      hike: trackHikeId,
     })
-  }, [tab, selectedItinerary, selectedStopId, kindFilter, showSecret])
+  }, [tab, selectedItinerary, selectedStopId, kindFilter, showSecret, trackHikeId])
 
   // Restore from URL on every router navigation: back/forward (the router
   // owns popstate) and bottom-nav "Map" re-taps that push a bare /map over a
@@ -429,6 +444,7 @@ export default function Map() {
       setSelectedItinerary(next.itinerary)
       setKindFilter(next.kinds ? new Set(next.kinds) : null)
       setShowSecret(next.secret)
+      setTrackHikeId(next.hike)
       selectStop(next.stop)
     })
     return () => {
@@ -626,6 +642,65 @@ export default function Map() {
     }
   }, [visibleAmenities, mapReady, selectStop])
 
+  // Hike track overlay — draw the loaded track as a casing + line pair above
+  // the topo, fit the camera to it once per hike, and mark the trailhead.
+  const trackFitRef = useRef<string | null>(null)
+  useEffect(() => {
+    if (!mapReady) return
+    const map = mapRef.current
+    if (!map) return
+    if (trackState.status !== 'ready' || !trackHikeId) {
+      trackFitRef.current = null
+      return
+    }
+
+    const geojson = {
+      type: 'Feature' as const,
+      properties: {},
+      geometry: { type: 'LineString' as const, coordinates: trackState.track.line },
+    }
+    map.addSource('hike-track', { type: 'geojson', data: geojson })
+    // Casing under the line keeps it legible over both forest greens and
+    // granite tans on the topo.
+    map.addLayer({
+      id: 'hike-track-casing',
+      type: 'line',
+      source: 'hike-track',
+      layout: { 'line-cap': 'round', 'line-join': 'round' },
+      paint: { 'line-color': '#f5efe0', 'line-width': 6, 'line-opacity': 0.9 },
+    })
+    map.addLayer({
+      id: 'hike-track-line',
+      type: 'line',
+      source: 'hike-track',
+      layout: { 'line-cap': 'round', 'line-join': 'round' },
+      paint: { 'line-color': '#7a2a10', 'line-width': 3 },
+    })
+
+    const start = trackState.track.line[0]
+    const startEl = document.createElement('div')
+    startEl.className = 'map-track-start'
+    startEl.setAttribute('aria-label', 'Trailhead')
+    const startMarker = new maplibregl.Marker({ element: startEl })
+      .setLngLat(start as [number, number])
+      .addTo(map)
+
+    if (trackFitRef.current !== trackHikeId) {
+      const bounds = new maplibregl.LngLatBounds()
+      for (const c of trackState.track.line) bounds.extend(c as [number, number])
+      map.fitBounds(bounds, { padding: 56, animate: false })
+      trackFitRef.current = trackHikeId
+    }
+
+    return () => {
+      startMarker.remove()
+      // Guard each removal: a map torn down mid-cleanup has no style.
+      if (map.getLayer('hike-track-line')) map.removeLayer('hike-track-line')
+      if (map.getLayer('hike-track-casing')) map.removeLayer('hike-track-casing')
+      if (map.getSource('hike-track')) map.removeSource('hike-track')
+    }
+  }, [trackState, trackHikeId, mapReady])
+
   // Selection effect — pan/zoom + open popup when the selection changes.
   useEffect(() => {
     if (!mapReady || !selection.id) return
@@ -811,6 +886,28 @@ export default function Map() {
             )}
           </div>
         </div>
+
+        {trackHikeId && trackHike && (
+          <div className="map-track-banner" role="status">
+            <span className="map-track-banner__swatch" aria-hidden />
+            <span className="map-track-banner__text">
+              {trackState.status === 'error'
+                ? `The ${trackHike.title} track isn't saved on this device yet.`
+                : `Trail: ${trackHike.title}`}
+            </span>
+            <Link className="map-track-banner__link" to={`/hike/${trackHikeId}`}>
+              Details
+            </Link>
+            <button
+              type="button"
+              className="map-track-banner__clear"
+              aria-label="Hide this trail"
+              onClick={() => setTrackHikeId(null)}
+            >
+              ✕
+            </button>
+          </div>
+        )}
 
         <div className="map-page__stage">
           <div ref={containerRef} className="map-page__map" />

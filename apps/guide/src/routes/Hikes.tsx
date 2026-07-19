@@ -9,6 +9,7 @@ import { useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import GatedChrome from '../components/GatedChrome'
 import PlanTabs from '../components/PlanTabs'
+import TrackSparkline from '../components/TrackSparkline'
 import Button from '../components/ui/Button'
 import { Chip, ChipButton } from '../components/ui/Chip'
 import EmptyState from '../components/ui/EmptyState'
@@ -18,6 +19,7 @@ import { DIFFICULTY_LABEL, formatTime } from '../content/labels'
 import type { HikeRouteT, HikeT, Region } from '../content'
 import { announceTripAdd } from '../trip/addFeedback'
 import { useTripPlan } from '../trip/useTripPlan'
+import { getTrackSummary } from '../trails/track'
 import './Hikes.css'
 
 const ROUTE_LABEL: Record<HikeRouteT, string> = {
@@ -102,6 +104,7 @@ export default function Hikes() {
             {hikes.map((hike) => {
               const inPlan = plannedHikeIds.has(hike.id)
               const trailheadStop = hike.stopId ? getStopById(hike.stopId) : undefined
+              const track = getTrackSummary(hike.id)
               const add = () => {
                 addHike(hike.id)
                 announceTripAdd(hike.title)
@@ -112,6 +115,7 @@ export default function Hikes() {
                     <span className="hike-row__distance">
                       {formatDistance(hike)}
                       <span className="hike-row__gain">{formatGain(hike.elevationGainFt)}</span>
+                      {track && <TrackSparkline spark={track.spark} />}
                     </span>
                     <span>
                       <h2 className="hike-row__title">{hike.title}</h2>
@@ -159,6 +163,9 @@ export default function Hikes() {
                     ) : (
                       <Button onClick={add}>Add to trip</Button>
                     )}
+                    <Link to={`/hike/${hike.id}`}>
+                      {track ? 'Elevation profile & GPS track →' : 'Trail details →'}
+                    </Link>
                     {trailheadStop && (
                       <Link to={`/stop/${trailheadStop.id}`}>Trailhead in the guide →</Link>
                     )}

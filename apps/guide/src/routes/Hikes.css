@@ -109,3 +109,14 @@
     margin-left: 0;
   }
 }
+
+/* Elevation silhouette in the distance column, from the bundled track index. */
+.hike-spark {
+  display: block;
+  margin-top: 2px;
+}
+.hike-spark polyline {
+  stroke: var(--ink-3);
+  stroke-width: 1.5;
+  stroke-linejoin: round;
+}
