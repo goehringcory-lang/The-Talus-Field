@@ -3,18 +3,23 @@
 // gen-hike-tracks.mjs — verified trail tracks + elevation profiles for the
 // Field Guide PWA's day-hike catalog (apps/guide/src/content/hikes.ts).
 //
-// Sources (both public domain, both fetched over the network):
+// Sources (all fetched over the network):
 //   Geometry   USGS National Map, TopoMapVector 7.5' quads, Trans_TrailSegment
 //              (+ Trans_RoadSegment for hikes that follow old road grades).
 //              The park's segments carry NPS as the source originator.
 //              https://prd-tnm.s3.amazonaws.com/StagedProducts/TopoMapVector/
+//              Public domain.
+//              For hikes whose route the USGS linework is missing or has
+//              wrong (spec field `source: 'osm'`), OpenStreetMap linework via
+//              the Overture Maps GeoParquet distribution on AWS Open Data
+//              (© OpenStreetMap contributors, ODbL) — see lib/overture-trails.mjs.
 //   Elevation  USGS 3DEP via the AWS Open Data terrain tiles ("terrarium"
 //              encoding), sampled bilinearly at zoom 14 (~9 m/px).
 //              https://s3.amazonaws.com/elevation-tiles-prod/
 //
 // For each hike, scripts/data/hike-track-specs.mjs supplies waypoints that
 // steer a shortest-path router across the stitched trail network; the emitted
-// geometry is entirely USGS/NPS linework, never hand-drawn. Every result is
+// geometry is entirely mapped linework, never hand-drawn. Every result is
 // validated against the published distance and elevation gain in hikes.ts —
 // a route that cannot be verified is NOT emitted (see the report).
 //
@@ -37,6 +42,7 @@ import AdmZip from 'adm-zip'
 import * as shapefile from 'shapefile'
 import { PNG } from 'pngjs'
 import { HIKE_TRACK_SPECS } from './data/hike-track-specs.mjs'
+import { ensureOvertureTrails } from './lib/overture-trails.mjs'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const ROOT = path.resolve(__dirname, '..')
@@ -708,6 +714,26 @@ async function main() {
   const net = buildNetwork(segs)
   console.log(`${net.segs.length} noded segments`)
 
+  // Second network from OSM linework (via Overture) for the hikes whose spec
+  // opts in with `source: 'osm'` — routes the USGS quads are missing or map
+  // on retired alignments. Built lazily; the debug tools use it with --osm.
+  const needsOsm =
+    process.argv.includes('--osm') ||
+    hikes.some((h) => {
+      if (only && !only.includes(h.id)) return false
+      const s = HIKE_TRACK_SPECS[h.id]
+      return s && !s.skip && s.source === 'osm'
+    })
+  let netOsm = null
+  if (needsOsm) {
+    console.log('Loading OSM linework (Overture)…')
+    const osmSegs = await ensureOvertureTrails(CACHE, fetchBuf)
+    console.log(`${osmSegs.length} raw OSM segments`)
+    netOsm = buildNetwork(osmSegs)
+    console.log(`${netOsm.segs.length} noded OSM segments`)
+  }
+  const debugNet = process.argv.includes('--osm') ? netOsm : net
+
   // Debug: --near lng,lat[,radiusM] lists nearby segments so a spec waypoint
   // can be placed on real linework.
   if (process.argv.includes('--near')) {
@@ -716,7 +742,7 @@ async function main() {
       const radius = r || 400
       console.log(`--- near [${lng}, ${lat}] (${radius} m)`)
       const seen = []
-      for (const s of net.segs) {
+      for (const s of debugNet.segs) {
         let best = Infinity
         for (let vi = 0; vi < s.pts.length - 1; vi++) {
           const { distM } = projectPoint([lng, lat], s.pts[vi], s.pts[vi + 1])
@@ -740,7 +766,7 @@ async function main() {
   // that coordinate (rank picks the Nth nearest), every ~200 m.
   if (process.argv.includes('--dumpat')) {
     const [lng, lat, rank] = process.argv[process.argv.indexOf('--dumpat') + 1].split(',').map(Number)
-    const scored = net.segs
+    const scored = debugNet.segs
       .map((s) => {
         let best = Infinity
         for (let vi = 0; vi < s.pts.length - 1; vi++) {
@@ -769,7 +795,7 @@ async function main() {
   // segments (rim points, turnarounds).
   if (process.argv.includes('--dump')) {
     const needle = process.argv[process.argv.indexOf('--dump') + 1].toLowerCase()
-    for (const s of net.segs) {
+    for (const s of debugNet.segs) {
       if (!s.name.toLowerCase().includes(needle)) continue
       const lenM = lineLenM(s.pts)
       if (lenM < 300) continue
@@ -815,12 +841,13 @@ async function main() {
     const endSpec = spec.end === 'start' ? start : spec.end
     const waypoints = [start, ...(spec.via ?? []), ...(endSpec ? [endSpec] : [])]
     const maxSnap = spec.maxSnapM ?? DEFAULT_SNAP_M
+    const hikeNet = spec.source === 'osm' ? netOsm : net
 
     // snap all waypoints
     const snaps = []
     let snapFail = null
     for (const wp of waypoints) {
-      const s = nearestOnNetwork(net, wp, maxSnap, !spec.allowRoadSnap)
+      const s = nearestOnNetwork(hikeNet, wp, maxSnap, !spec.allowRoadSnap)
       if (!s) {
         snapFail = wp
         break
@@ -838,7 +865,7 @@ async function main() {
     let line = null
     let legFail = null
     for (let i = 0; i < snaps.length - 1; i++) {
-      const leg = route(net, snaps[i], snaps[i + 1])
+      const leg = route(hikeNet, snaps[i], snaps[i + 1])
       if (!leg) {
         legFail = i
         break
@@ -876,12 +903,26 @@ async function main() {
     const gainFull = isOAB ? st.gainFt + st.lossFt : st.gainFt
     const lossFull = isOAB ? st.gainFt + st.lossFt : st.lossFt
     const pubGain = hike.elevationGainFt
-    const gErr = Math.abs(gainFull - pubGain)
+    // Published gain figures don't all count the same thing. Default is
+    // round-trip cumulative (matches monotonic climbs under any definition);
+    // spec.gainDef picks the definition the published number actually uses:
+    // 'net' = high point minus trailhead, 'oneWay' = cumulative climbing in
+    // the harder direction of an out-and-back (rolling routes).
+    let gainCompare = gainFull
+    if (spec.gainDef === 'net') gainCompare = st.maxFt - profile[0].ft
+    else if (spec.gainDef === 'oneWay' && isOAB) gainCompare = Math.max(st.gainFt, st.lossFt)
+    const gErr = Math.abs(gainCompare - pubGain)
     const gTolOk = Math.max(400, pubGain * 0.3)
     const gTolWarn = Math.max(700, pubGain * 0.5)
     let gainStatus = gErr <= gTolOk ? 'match' : gErr <= gTolWarn ? 'approx' : 'fail'
 
-    rec.detail = `${fullMi.toFixed(2)} mi (pub ${pubMi}), gain ${Math.round(gainFull)} ft (pub ${pubGain}), snap≤${Math.round(snapMax)} m`
+    const gainDesc =
+      spec.gainDef === 'net'
+        ? `net gain ${Math.round(gainCompare)} ft (pub ${pubGain}, total climb ${Math.round(gainFull)})`
+        : spec.gainDef === 'oneWay' && isOAB
+          ? `one-way gain ${Math.round(gainCompare)} ft (pub ${pubGain}, total climb ${Math.round(gainFull)})`
+          : `gain ${Math.round(gainFull)} ft (pub ${pubGain})`
+    rec.detail = `${fullMi.toFixed(2)} mi (pub ${pubMi}), ${gainDesc}, snap≤${Math.round(snapMax)} m${spec.source === 'osm' ? ', OSM linework' : ''}`
     if (distStatus === 'fail' || gainStatus === 'fail') {
       rec.status = 'failed-validation'
       continue
@@ -904,7 +945,10 @@ async function main() {
       id: hike.id,
       route: hike.route,
       source: {
-        geometry: 'USGS National Map transportation data (NPS source); public domain',
+        geometry:
+          spec.source === 'osm'
+            ? 'OpenStreetMap trail data via Overture Maps (© OpenStreetMap contributors, ODbL)'
+            : 'USGS National Map transportation data (NPS source); public domain',
         elevation: 'USGS 3DEP via AWS Open Data terrain tiles',
       },
       verified: { distance: distStatus, gain: gainStatus },
@@ -961,7 +1005,9 @@ async function main() {
       '// =============================================================================',
       '// AUTO-GENERATED by scripts/gen-hike-tracks.mjs — do not hand-edit.',
       '// Summary stats for the per-hike track files in public/tracks/. Geometry is',
-      '// USGS National Map trail data (NPS source); elevations are USGS 3DEP.',
+      '// USGS National Map trail data (NPS source), or OpenStreetMap linework via',
+      '// Overture Maps where the USGS layers miss the signed route (each track',
+      '// file carries its own source string); elevations are USGS 3DEP.',
       '// A hike absent from this map has no verified track (see',
       '// scripts/data/trail-tracks-report.md for why).',
       '// =============================================================================',
@@ -994,12 +1040,15 @@ async function main() {
     '# Trail track generation report',
     '',
     'Generated by `scripts/gen-hike-tracks.mjs`. Geometry: USGS National Map',
-    'transportation layers (NPS source data). Elevation: USGS 3DEP via AWS Open',
-    'Data terrain tiles. Every emitted track was routed over official linework',
-    'and validated against the published distance and elevation gain in',
-    '`apps/guide/src/content/hikes.ts`; `verified` means both matched within',
-    'tolerance, `approx` means one landed in the warn band (the track still',
-    'ships, labeled). Failed or skipped hikes ship without a track.',
+    'transportation layers (NPS source data); hikes marked "OSM linework" route',
+    'over OpenStreetMap data via Overture Maps instead (© OpenStreetMap',
+    'contributors, ODbL), used where the USGS layers are missing the signed',
+    'route or map a retired alignment. Elevation: USGS 3DEP via AWS Open',
+    'Data terrain tiles. Every emitted track was routed over mapped linework',
+    '(never hand-drawn) and validated against the published distance and',
+    'elevation gain in `apps/guide/src/content/hikes.ts`; `verified` means both',
+    'matched within tolerance, `approx` means one landed in the warn band (the',
+    'track still ships, labeled). Failed or skipped hikes ship without a track.',
     '',
     `Summary: ${Object.entries(counts).map(([k, v]) => `${v} ${k}`).join(', ')}.`,
     '',

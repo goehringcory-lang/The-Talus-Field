@@ -18,6 +18,19 @@
 //                  destination coords sit on summits/overlooks a bit off the
 //                  mapped trail end; the ceiling keeps a bad snap from
 //                  silently routing somewhere else.
+//   source         'osm' routes over OpenStreetMap linework (via the Overture
+//                  Maps distribution, © OSM contributors, ODbL) instead of the
+//                  USGS quads. Used only where the USGS layers are missing the
+//                  signed route or carry a retired alignment; the published
+//                  distance/gain validation applies identically.
+//   gainDef        which definition the PUBLISHED elevationGainFt uses, for
+//                  validation only (emitted stats always carry cumulative
+//                  climbing). 'net' = high point minus trailhead (e.g. Clouds
+//                  Rest signage); 'oneWay' = cumulative climbing in the harder
+//                  direction of an out-and-back (rolling routes, where no
+//                  guidebook counts the return-leg re-climbs). Default:
+//                  round-trip cumulative, which equals either definition on a
+//                  monotonic climb.
 //   skip           hike has no mappable track; value is the reason string,
 //                  shown in the report. No track file is emitted.
 //   note           provenance/context for the report.
@@ -67,7 +80,13 @@ export const HIKE_TRACK_SPECS = {
     maxSnapM: 300,
   },
   'artist-point': {
-    skip: 'The direct connector from the Tunnel View lot to the old stagecoach grade is not in the USGS linework; the mapped detour via the Pohono junction runs well over the published 2-mile route, so no track can be verified.',
+    // USGS lacks the Tunnel View connector to the old stagecoach grade; OSM
+    // carries the signed route.
+    source: 'osm',
+    start: [-119.6773, 37.7156], // Tunnel View lot (stop pin)
+    via: [[-119.6697, 37.7135]], // Artist Point ledge (stop pin)
+    maxSnapM: 250,
+    note: 'The mapped route, up the Pohono trailhead switchbacks to the old stagecoach grade, measures closer to 3 miles round trip than the often-quoted 2.',
   },
   'inspiration-point': {
     start: [-119.6773, 37.7156], // Tunnel View lot (stop pin)
@@ -140,7 +159,15 @@ export const HIKE_TRACK_SPECS = {
     maxSnapM: 300,
   },
   'dewey-point': {
-    skip: 'The USGS linework for the western Pohono Trail runs well south of the rim and never reaches Dewey Point, so no track can be verified against the published route.',
+    // The USGS western Pohono runs a retired alignment south of the rim; OSM
+    // carries the current rim route through McGurk Meadow.
+    source: 'osm',
+    via: [
+      [-119.6230, 37.6793], // McGurk Meadow cabin
+      [-119.6521, 37.7026], // Dewey Point rim
+    ],
+    gainDef: 'oneWay', // rolling route; published 800 ft is the outbound climb
+    maxSnapM: 300,
   },
   'taft-point': {
     via: [[-119.6055, 37.7127]], // Taft Point railing-free ledge
@@ -176,10 +203,27 @@ export const HIKE_TRACK_SPECS = {
     maxSnapM: 250,
   },
   'pohono-trail': {
-    skip: 'The USGS linework for the Pohono Trail west of Taft Point runs well south of the rim and misses Dewey, Crocker, and Stanford Points, so no track can be verified against the published route.',
+    // West of Taft Point the USGS linework leaves the rim on a retired
+    // alignment; OSM carries the signed rim route past Dewey, Crocker, and
+    // Stanford Points.
+    source: 'osm',
+    via: [
+      [-119.5842, 37.7233], // Sentinel Dome junction stretch
+      [-119.6055, 37.7127], // Taft Point
+      [-119.6521, 37.7026], // Dewey Point
+      [-119.6880, 37.7120], // old Inspiration Point
+    ],
+    end: [-119.6773, 37.7156], // Tunnel View lot (stop pin)
+    maxSnapM: 300,
   },
   'mono-meadow': {
-    skip: 'The USGS linework is missing the first half mile between the Glacier Point Road pullout and the meadow; a track that starts mid-trail would be a navigation hazard.',
+    // USGS is missing the first half mile from the Glacier Point Road
+    // pullout; OSM maps the full trail from the real trailhead (the hikes.ts
+    // coord was a web-derived approximation ~0.9 km west of it).
+    source: 'osm',
+    start: [-119.5851, 37.6713], // Mono Meadow trailhead pullout, Glacier Point Road
+    via: [[-119.5668, 37.6771]], // Clark Range viewpoint opening past the meadow
+    maxSnapM: 200,
   },
   'ostrander-lake': {
     via: [[-119.5514, 37.6337]], // Ostrander Lake outlet by the ski hut
@@ -194,7 +238,19 @@ export const HIKE_TRACK_SPECS = {
     maxSnapM: 250,
   },
   'wawona-swinging-bridge': {
-    skip: 'The USGS linework carries only the short bridge access path from Chilnualna Falls Road; the river-road walk from Forest Drive is absent, so no track can be verified.',
+    // The river walk is absent from USGS; OSM maps it. The published 4.8 mi
+    // round trip is measured from the Wawona Store day-use parking (Forest
+    // Drive is residential with no public parking), so the track starts
+    // there; hikes.ts carries the same trailhead.
+    source: 'osm',
+    allowRoadSnap: true, // the first stretch follows Forest Drive
+    start: [-119.6565, 37.5385], // Wawona Store day-use parking
+    via: [
+      [-119.6446, 37.5425], // Forest Drive road-end where the river trail starts
+      [-119.6267, 37.5435], // Swinging Bridge over the South Fork
+    ],
+    maxSnapM: 250,
+    note: 'Measured from the Wawona Store lot the walk runs closer to 6 miles round trip than the published 4.8; the turnaround is the bridge.',
   },
   'chilnualna-falls': {
     via: [[-119.6153, 37.5652]], // top of the falls where the trail meets the creek
@@ -213,7 +269,22 @@ export const HIKE_TRACK_SPECS = {
     maxSnapM: 250,
   },
   'mariposa-grove-guardians-loop': {
-    skip: 'The upper Mariposa Grove trails (Guardians loop, Wawona Point) are absent from the USGS linework north of the Grizzly Giant area, so no track can be verified.',
+    // The upper-grove trails are absent from USGS; OSM maps the Guardians
+    // loop, the Perimeter Trail, and the old grove road. Shuttle from the
+    // Welcome Plaza (the hike coord) to the arrival-area start.
+    source: 'osm',
+    start: [-119.6040, 37.5033],
+    via: [
+      [-119.6003, 37.5042], // Grizzly Giant / California Tunnel Tree leg
+      [-119.6009, 37.5126], // junction below the Guardians loop
+      [-119.5949, 37.5150], // Guardians loop east side
+      [-119.6000, 37.5184], // upper grove on the old road grade
+      [-119.6047, 37.5167], // upper west junction
+      [-119.6152, 37.5105], // Perimeter Trail west return
+    ],
+    end: 'start',
+    maxSnapM: 300,
+    note: 'The short spur to the Wawona Point overlook is unmapped in every available dataset; the track runs the signed loop below it.',
   },
 
   // --- Tuolumne Meadows & Tioga Road ----------------------------------------
@@ -257,16 +328,46 @@ export const HIKE_TRACK_SPECS = {
     maxSnapM: 250,
   },
   'tenaya-lake-loop': {
-    skip: 'The USGS shoreline linework has a quarter-mile gap at the southeast corner of the lake, so the loop cannot be closed and no track can be verified.',
+    // The USGS shoreline linework has a quarter-mile gap at the southeast
+    // corner; OSM closes the loop.
+    source: 'osm',
+    via: [
+      [-119.4580, 37.8290], // south-shore mid
+      [-119.4665, 37.8320], // west shore
+    ],
+    end: 'start',
+    maxSnapM: 200,
   },
   'sunrise-lakes': {
-    skip: 'The USGS linework climbs out of Tenaya Canyon on the longer Forsyth Trail dogleg, more than two miles over the signed route; the geometry cannot be verified against the published trail.',
+    // USGS climbs out of Tenaya Canyon on the retired Forsyth dogleg; OSM
+    // carries the signed switchback route.
+    source: 'osm',
+    via: [
+      [-119.4585, 37.8007], // Sunrise/Clouds Rest junction at the top of the climb
+      [-119.4406, 37.8005], // upper Sunrise Lake turnaround
+    ],
+    gainDef: 'oneWay', // the climb is all outbound; published 1400 ft counts it once
+    maxSnapM: 300,
   },
   'clouds-rest': {
-    skip: 'The USGS linework climbs out of Tenaya Canyon on the longer Forsyth Trail dogleg, several miles over the signed route; the geometry cannot be verified against the published trail.',
+    // Same retired Forsyth dogleg problem as sunrise-lakes; OSM carries the
+    // signed route to the summit ridge.
+    source: 'osm',
+    via: [
+      [-119.4585, 37.8007], // Sunrise/Clouds Rest junction
+      [-119.4894, 37.7677], // Clouds Rest summit
+    ],
+    gainDef: 'net', // published 1,775 ft = summit (9,926) minus trailhead (8,150)
+    maxSnapM: 300,
   },
   'north-dome': {
-    skip: 'The USGS linework runs a direct ridge alignment roughly three miles shorter than the signed Porcupine Creek route; the geometry cannot be verified against the published trail.',
+    // USGS runs a retired direct ridge alignment; OSM carries the signed
+    // Porcupine Creek route.
+    source: 'osm',
+    start: [-119.5462, 37.8068], // Porcupine Creek trailhead on Tioga Road
+    via: [[-119.5606, 37.7545]], // North Dome summit
+    gainDef: 'oneWay', // rolling rim walk; published 1200 ft is one direction's climb
+    maxSnapM: 300,
   },
   'pothole-dome': {
     via: [[-119.3945, 37.8769]], // dome's west shoulder at the meadow edge
@@ -328,7 +429,12 @@ export const HIKE_TRACK_SPECS = {
     maxSnapM: 300,
   },
   'mount-dana': {
-    skip: 'No constructed trail: the route above Dana Meadows is an unmaintained use path that NPS/USGS do not map. Publishing an approximate line for a 13,000 ft summit would be a navigation hazard.',
+    // NPS/USGS do not map the route (unmaintained use path), but OSM carries
+    // the established, GPS-trace-verified tread to the summit.
+    source: 'osm',
+    via: [[-119.2205, 37.8999]], // Mount Dana summit
+    maxSnapM: 300,
+    note: 'Unmaintained use route: the line follows the established use path (OpenStreetMap, GPS-trace-verified), not a constructed trail. Above the meadows there are no signs or blazes.',
   },
 
   // --- Hetch Hetchy & Evergreen Road ---------------------------------------
@@ -337,10 +443,25 @@ export const HIKE_TRACK_SPECS = {
     maxSnapM: 300,
   },
   'wapama-falls': {
-    skip: 'The reservoir-shore trail from the dam to the Wapama footbridges is absent from the USGS linework (only the higher Beehive bench route is mapped), so no track can be verified.',
+    // The reservoir-shore trail is absent from USGS (only the higher Beehive
+    // bench route); OSM maps the shore route.
+    source: 'osm',
+    allowRoadSnap: true, // the walk starts across the dam crest road
+    via: [[-119.7655, 37.9637]], // Wapama footbridges under Falls Creek
+    gainDef: 'net', // published 200 ft is the net change on an undulating shore trail
+    maxSnapM: 250,
   },
   'rancheria-falls': {
-    skip: 'The reservoir-shore trail past Wapama Falls is absent from the USGS linework (only the higher Beehive bench route is mapped), so no track can be verified.',
+    // Same missing shore trail as wapama-falls; OSM maps it through to the
+    // Rancheria cascades.
+    source: 'osm',
+    allowRoadSnap: true,
+    via: [
+      [-119.7655, 37.9637], // Wapama footbridges
+      [-119.7090, 37.9529], // Rancheria Falls camp above the cascades
+    ],
+    gainDef: 'net', // published 800 ft is camp elevation over the dam, not the shore trail's constant bobbing
+    maxSnapM: 300,
   },
   'poopenaut-valley': {
     // The mapped trail leaves Hetch Hetchy Road ~1.2 km west of the hikes.ts
