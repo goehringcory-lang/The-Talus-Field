@@ -933,7 +933,7 @@
   },
   "yosemite-in-one-or-two-days": {
     "comment": "faq intentionally omitted here; it lives inline in data.js (window.ARTICLES) and takes precedence in the generator.",
-    "wordCount": 3700,
+    "wordCount": 3965,
     "keywords": [
       "one day Yosemite itinerary",
       "two days in Yosemite",
@@ -1485,7 +1485,7 @@
     ]
   },
   "yosemite-gateway-towns-compared": {
-    "wordCount": 2280,
+    "wordCount": 2516,
     "keywords": [
       "Yosemite gateway towns",
       "Mariposa Yosemite",
@@ -1494,7 +1494,9 @@
       "Lee Vining Yosemite",
       "where to stay Yosemite",
       "closest town to Yosemite Valley",
-      "Groveland Yosemite"
+      "Groveland Yosemite",
+      "best town to stay in near Yosemite",
+      "where to stay outside Yosemite"
     ],
     "faq": [
       {
@@ -1556,13 +1558,16 @@
     ]
   },
   "yosemite-without-reservations-2026": {
-    "wordCount": 2020,
+    "wordCount": 2263,
     "keywords": [
       "Yosemite 2026 reservations",
       "Yosemite without reservation",
       "Yosemite parking strategy",
       "Yosemite no reservations 2026",
-      "Yosemite entrance station"
+      "Yosemite entrance station",
+      "Yosemite crowds 2026",
+      "how to avoid crowds in Yosemite",
+      "Yosemite entrance wait times"
     ],
     "faq": [
       {
@@ -1571,7 +1576,7 @@
       },
       {
         "q": "When does Yosemite Valley fill up?",
-        "a": "Day-use parking in the Valley typically fills by 8 a.m. on summer weekends, often closer to 7:30, and by late morning on weekdays. Tunnel View fills earlier still on peak days. Once lots are full, you're circling."
+        "a": "By midsummer 2026 the pattern is settled: Valley day-use parking fills by late morning on ordinary days, and by 8 a.m. or earlier on summer weekends. The park's standing advice is to arrive before 8 a.m. or after 4 p.m. Once lots are full, you're circling."
       },
       {
         "q": "What time should I enter Yosemite to beat the crowds?",
@@ -1584,11 +1589,15 @@
       {
         "q": "How do I find parking in Yosemite Valley?",
         "a": "Arrive before 8 a.m. for the central lots. Yosemite Village day-use parking is the most useful base. If those are full, the lot near Yosemite Valley Lodge usually has turnover by mid-morning. Don't waste time circling Curry Village."
+      },
+      {
+        "q": "Is the Mist Trail open in 2026?",
+        "a": "Mostly. Trail work closes sections of the Mist Trail Monday through Thursday, 7 a.m. to 3:30 p.m., into late October 2026, with a detour via the John Muir Trail. Hike the Vernal and Nevada corridor Friday through Sunday, or start after the crews finish for the day."
       }
     ]
   },
   "first-time-yosemite-overwhelm": {
-    "wordCount": 1129,
+    "wordCount": 1264,
     "keywords": [
       "first time Yosemite",
       "Yosemite first trip",
@@ -1596,7 +1605,9 @@
       "Yosemite for beginners",
       "Yosemite trip strategy",
       "first time Yosemite tips",
-      "how to plan a Yosemite trip"
+      "how to plan a Yosemite trip",
+      "planning a trip to Yosemite",
+      "Yosemite trip planning guide"
     ],
     "faq": [
       {
