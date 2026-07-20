@@ -37,6 +37,10 @@ window.ARTICLE_BODIES["first-time-yosemite-overwhelm"] = function FirstTimeYosem
         The first is <strong>research</strong>. And not the kind you get from the first three results on Google. The seasons in Yosemite behave differently than they do almost anywhere else in the United States. Tioga Road, the highway that takes you to Tuolumne, doesn't open until late May or early June, and in heavy snow years not until July. Waterfalls peak in May and are mostly dry by August. Wildflower bloom in the high country can run six weeks behind the Valley floor. Smoke from regional fires can shut down vistas for entire weeks. None of this is a secret. But the difference between a trip planned around it and a trip that isn't is enormous.
       </p>
 
+      <p>
+        The same principle holds at the scale of a single week. As I write this in midsummer 2026, the Mist Trail, the most hiked trail in the park, is closed for trail work on weekday middays. Yosemite Falls has thinned toward its late-summer trickle, Mirror Lake is a meadow, and Bridalveil is still worth the stop. None of that appears on the standard bucket list, and all of it decides what a good day looks like. The <a href="/now">Park Bulletin</a> tracks the current edition of the park, closures, hours, trail status, so you don't have to dig for it.
+      </p>
+
       <h2>Knowing what you actually want</h2>
 
       <p>

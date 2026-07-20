@@ -22,6 +22,9 @@ window.ARTICLE_BODIES["yosemite-without-reservations-2026"] = function YosemiteW
       <p>
         In 2023, the year before the reservation system was at full force, Yosemite had peak-day visitation that resulted in multi-hour entrance station waits and closed-out parking lots across the Valley by mid-morning. The reservation system, when it operated in 2024 and 2025, smoothed those peaks. With it gone in 2026, the question is not whether the peaks will return. It's whether they'll exceed 2023 levels, which is plausible because awareness of Yosemite has grown considerably since then, and demand is genuinely higher.
       </p>
+      <p>
+        Half the summer has now run, and the spring predictions have held. As of the July park bulletin, Valley day-use parking fills by late morning on ordinary days, earlier on weekends, and the park's standing advice is the same as this article's: arrive before 8 a.m. or after 4 p.m. The <a href="/now">Park Bulletin</a> carries the current closures, hours, and trail status in one place; check it the week you travel.
+      </p>
       <p>The places that will feel the crowd hardest:</p>
       <ul>
         <li><strong>Yosemite Valley parking</strong>. Specifically the day-use lots near Lower Yosemite Falls, the Visitor Center, and the trailheads at Happy Isles and Mirror Lake. Expect these to fill by 8 a.m. on summer weekends, possibly earlier.</li>
@@ -48,6 +51,7 @@ window.ARTICLE_BODIES["yosemite-without-reservations-2026"] = function YosemiteW
       <p>What this means for you:</p>
       <ul>
         <li><strong>Aim to be inside the park by 6:30 a.m. on any peak day.</strong> Earlier if you can. The drive in is faster, the entrance stations are quiet, and you'll be parked at your first stop while everyone else is still in line.</li>
+        <li><strong>Text <em>ynptraffic</em> to 333111 before you commit to the drive.</strong> The park's live traffic alerts tell you which lots are already gone, which beats finding out from the driver's seat.</li>
         <li><strong>Plan your major stops for before 9 a.m. or after 5 p.m.</strong> Tunnel View, Lower Yosemite Falls, Cook's Meadow, and Glacier Point all change character entirely outside the 9-to-5 window. The midday version of these places is not the version anyone wants.</li>
         <li><strong>Take a deliberate "bad hours" plan.</strong> Between 11 a.m. and 3 p.m., do something that doesn't depend on parking or solitude. Eat lunch at a sit-down restaurant. Visit the museum. Walk the river. Wait it out. The crowds will thin again.</li>
         <li><strong>If you can shift your trip to midweek, do it.</strong> A Tuesday-Wednesday-Thursday Yosemite trip in 2026 is a fundamentally different trip than Friday-Saturday-Sunday. The crowd difference is not 10%. It's closer to 50% on the worst days.</li>
@@ -130,6 +134,9 @@ window.ARTICLE_BODIES["yosemite-without-reservations-2026"] = function YosemiteW
       <p>
         These substitutions aren't compromises. Several of them (Sentinel Dome, Taft Point, Valley View) are arguably better than the headline alternatives. The visitors who have the best 2026 trips will treat them as first choices, not consolation prizes.
       </p>
+      <p>
+        Two rows of that table come with 2026 footnotes. Trail work closes sections of the Mist Trail on weekdays, Monday through Thursday from 7 a.m. to 3:30 p.m., into late October, with a detour via the John Muir Trail; on those days the substitution is not optional, so hike the Vernal and Nevada corridor Friday through Sunday or start after the crews knock off (the <a href="/articles/mist-trail-the-real-guide">Mist Trail guide</a> has the details). And White Wolf's lodge, store, and dining room are closed for the 2026 season; the meadows are still worth the stop, but bring everything you need.
+      </p>
 
       <h2>The takeaway</h2>
       <p>
@@ -146,6 +153,7 @@ window.ARTICLE_BODIES["yosemite-without-reservations-2026"] = function YosemiteW
         <li><a href="https://yosemite.org/yosemite-entrance-reservations-not-required-2026/" target="_blank" rel="noopener noreferrer">Yosemite Entrance Reservations NOT Required in 2026, Yosemite Conservancy</a></li>
         <li><a href="https://yosemite.org/know-before-you-go-yosemite-in-2026/" target="_blank" rel="noopener noreferrer">Know Before You Go: Yosemite in 2026, Yosemite Conservancy</a></li>
         <li><a href="https://www.nps.gov/yose/planyourvisit/traffic.htm" target="_blank" rel="noopener noreferrer">Traffic in Yosemite National Park, NPS</a></li>
+        <li><a href="https://www.nps.gov/yose/planyourvisit/conditions.htm" target="_blank" rel="noopener noreferrer">Current Conditions, NPS Yosemite</a></li>
       </ul>
     </>
   );

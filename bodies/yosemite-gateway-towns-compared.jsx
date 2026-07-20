@@ -34,6 +34,21 @@ window.ARTICLE_BODIES["yosemite-gateway-towns-compared"] = function YosemiteGate
         If your trip is mostly Yosemite Valley, the right answer is almost always Mariposa or El Portal. If your trip includes the Mariposa Grove of giant sequoias and Wawona, Oakhurst becomes more attractive. If you're combining Yosemite with Mono Lake or Death Valley, Lee Vining is a great east-side base.
       </p>
 
+      <p>The whole comparison, in one view:</p>
+
+      <table>
+        <thead>
+          <tr><th>Town</th><th>Drive to the Valley</th><th>Highway</th><th>Best for</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>El Portal</td><td>25 to 30 min</td><td>140, year-round</td><td>Sunrise starts, the shortest drive</td></tr>
+          <tr><td>Mariposa</td><td>45 to 60 min</td><td>140, year-round</td><td>Most first-timers, families, winter</td></tr>
+          <tr><td>Groveland</td><td>60 to 75 min</td><td>120, chains common in winter</td><td>Character, Hetch Hetchy, Bay Area route</td></tr>
+          <tr><td>Oakhurst</td><td>75 to 90 min</td><td>41, year-round</td><td>Wawona and the Mariposa Grove</td></tr>
+          <tr><td>Lee Vining</td><td>90+ min, summer only</td><td>120 East over Tioga Pass</td><td>The high country and Mono Lake</td></tr>
+        </tbody>
+      </table>
+
       <p>Now the towns themselves.</p>
 
       <h2>El Portal</h2>
@@ -130,6 +145,10 @@ window.ARTICLE_BODIES["yosemite-gateway-towns-compared"] = function YosemiteGate
         <strong>Who should pick Oakhurst:</strong> visitors whose itinerary is heavily focused on the Mariposa Grove and Wawona, and visitors who want predictable chain lodging at standard prices. Also a fine choice for people coming from Los Angeles or the southern Central Valley, since Oakhurst is on the natural drive path.
       </p>
 
+      <p>
+        One 2026 note for this side of the park: the Wawona Hotel, the historic in-park option just inside the South Entrance, has been closed since December 2024 and remains closed for renovation this season. That removes the in-park alternative on the Highway 41 corridor and puts more pressure on Oakhurst rooms in summer. Book earlier than you think you need to.
+      </p>
+
       <h2>Groveland</h2>
 
       <p>
@@ -165,7 +184,7 @@ window.ARTICLE_BODIES["yosemite-gateway-towns-compared"] = function YosemiteGate
       <h2>Lee Vining</h2>
 
       <p>
-        <strong>Distance to Yosemite Valley:</strong> about 75 miles via Tioga Pass, 90 minutes minimum, only when Tioga is open (typically late May or June through October or early November).<br />
+        <strong>Distance to Yosemite Valley:</strong> about 75 miles via Tioga Pass, 90 minutes minimum, only when Tioga is open (typically late May or June through October or early November; in 2026 it opened May 15, unusually early, and is open now).<br />
         <strong>Distance to Tuolumne Meadows:</strong> about 20 miles, 30 minutes.<br />
         <strong>Distance to Mono Lake:</strong> about 5 minutes to the visitor center, 15 to the South Tufa boardwalk.<br />
         <strong>Highway access:</strong> 395 north-south, 120 west into Yosemite (seasonal).<br />
@@ -228,6 +247,10 @@ window.ARTICLE_BODIES["yosemite-gateway-towns-compared"] = function YosemiteGate
 
       <p>
         <strong>Reservations book out fast.</strong> In summer and on holiday weekends, gateway lodging fills six to twelve months in advance. Plan early or be willing to flex on town.
+      </p>
+
+      <p>
+        <strong>Check current status the week you travel.</strong> Road, chain-control, and closure status changes faster than any lodging comparison. The <a href="/now">Park Bulletin</a> condenses the current edition of park status, roads, hours, and trail conditions onto one page.
       </p>
 
       <h2>The takeaway</h2>
