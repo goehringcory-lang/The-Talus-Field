@@ -1,6 +1,29 @@
-/* global React */
+/* global React, AffiliateNote */
 
 window.ARTICLE_BODIES = window.ARTICLE_BODIES || {};
+
+// Per-town availability links (MONETIZATION-IDEAS.md 3.1): plain Booking.com
+// searches today, tracking links the day the affiliate ID lands in
+// affiliate.js. The recommendations above each link do not depend on any
+// program's catalog; if the best option in a town has no program, it stays
+// the recommendation, linkless.
+function townAvailability(town, ss) {
+  return (
+    <p style={{ fontFamily: "var(--sans)", fontSize: 14, color: "var(--ink-3)" }}>
+      Current rates and availability:{" "}
+      <a
+        className="aff-link"
+        href={window.buildAffiliateLink("booking", "https://www.booking.com/searchresults.html?ss=" + ss)}
+        target="_blank"
+        rel="sponsored noopener noreferrer"
+        data-aff-network="booking"
+        data-aff-list="article"
+        data-aff-item-slug="yosemite-gateway-towns-compared"
+        data-aff-name={town + " lodging search"}
+      >{town} lodging →</a>
+    </p>
+  );
+}
 
 window.ARTICLE_BODIES["yosemite-gateway-towns-compared"] = function YosemiteGatewayTownsComparedBody() {
   return (
@@ -81,6 +104,8 @@ window.ARTICLE_BODIES["yosemite-gateway-towns-compared"] = function YosemiteGate
         <strong>Who should pick El Portal:</strong> anyone whose top priority is being inside the park as much as possible, especially for sunrise photography, peak-period crowd avoidance, or a short trip with lots of Valley-focused itinerary. Also a strong choice for any winter trip where road reliability matters.
       </p>
 
+      {townAvailability("El Portal", "El+Portal%2C+California")}
+
       <h2>Mariposa</h2>
 
       <p>
@@ -113,6 +138,8 @@ window.ARTICLE_BODIES["yosemite-gateway-towns-compared"] = function YosemiteGate
         <strong>Who should pick Mariposa:</strong> the largest share of first-time Yosemite visitors. Particularly families, anyone who values having a real town to come back to in the evening, anyone on a budget, and anyone visiting in shoulder seasons or winter when in-park or El Portal lodging is hard to find.
       </p>
 
+      {townAvailability("Mariposa", "Mariposa%2C+California")}
+
       <h2>Oakhurst</h2>
 
       <p>
@@ -144,6 +171,8 @@ window.ARTICLE_BODIES["yosemite-gateway-towns-compared"] = function YosemiteGate
       <p>
         <strong>Who should pick Oakhurst:</strong> visitors whose itinerary is heavily focused on the Mariposa Grove and Wawona, and visitors who want predictable chain lodging at standard prices. Also a fine choice for people coming from Los Angeles or the southern Central Valley, since Oakhurst is on the natural drive path.
       </p>
+
+      {townAvailability("Oakhurst", "Oakhurst%2C+California")}
 
       <p>
         One 2026 note for this side of the park: the Wawona Hotel, the historic in-park option just inside the South Entrance, has been closed since December 2024 and remains closed for renovation this season. That removes the in-park alternative on the Highway 41 corridor and puts more pressure on Oakhurst rooms in summer. Book earlier than you think you need to.
@@ -181,6 +210,8 @@ window.ARTICLE_BODIES["yosemite-gateway-towns-compared"] = function YosemiteGate
         <strong>Who should pick Groveland:</strong> visitors who want gateway-town character and don't mind a slightly more challenging drive, anyone heading for Hetch Hetchy or the northern part of the park, and visitors who want to base on the route from the Bay Area without going all the way down to Mariposa.
       </p>
 
+      {townAvailability("Groveland", "Groveland%2C+California")}
+
       <h2>Lee Vining</h2>
 
       <p>
@@ -214,6 +245,8 @@ window.ARTICLE_BODIES["yosemite-gateway-towns-compared"] = function YosemiteGate
       <p>
         <strong>Who should pick Lee Vining:</strong> visitors whose primary interest is the high country (Tuolumne, Cathedral Lakes, Mount Dana, the Tioga Road experience), and anyone combining Yosemite with Mono Lake, the eastern Sierra, or southern destinations like Death Valley.
       </p>
+
+      {townAvailability("Lee Vining", "Lee+Vining%2C+California")}
 
       <h2>The decision matrix in plain English</h2>
 
@@ -268,6 +301,8 @@ window.ARTICLE_BODIES["yosemite-gateway-towns-compared"] = function YosemiteGate
       <p>
         If you are still working out how to approach the park, start with the <a href="/articles/first-time-yosemite-overwhelm">first-timer's guide</a>, read <a href="/articles/yosemite-without-reservations-2026">what changed for 2026</a> before you book, and see <a href="/articles/yosemite-in-one-or-two-days">how to spend one or two days</a> once your base is set.
       </p>
+
+      <AffiliateNote />
 
       <h3>Sources</h3>
       <ul style={{ fontSize: 14 }}>

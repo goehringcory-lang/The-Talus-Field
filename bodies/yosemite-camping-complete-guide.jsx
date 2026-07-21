@@ -1,4 +1,4 @@
-/* global React */
+/* global React, AffiliateNote */
 
 window.ARTICLE_BODIES = window.ARTICLE_BODIES || {};
 
@@ -369,10 +369,16 @@ window.ARTICLE_BODIES["yosemite-camping-complete-guide"] = function YosemiteCamp
         <strong>BLM land along the Merced River</strong> west of El Portal. About $20 per night, scenic river corridor, short morning drive into the park.
       </p>
 
+      <h3>Private land</h3>
+
+      <p>
+        The private campgrounds, ranch sites, and canvas-tent operations outside the park cluster around Mariposa, Groveland, and Fish Camp, and that inventory never appears on Recreation.gov, which is exactly why it survives after the federal campgrounds sell out. <a className="aff-link" href={window.buildAffiliateLink("hipcamp", "https://www.hipcamp.com/")} target="_blank" rel="sponsored noopener noreferrer" data-aff-network="hipcamp" data-aff-list="article" data-aff-item-slug="yosemite-camping-complete-guide" data-aff-name="Hipcamp private camping">Hipcamp</a> is where most of it lives: search the gateway town closest to your entrance, read the access notes carefully (some sites are a rough dirt road away from the highway), and check the cancellation policy before you commit.
+      </p>
+
       <h3>Gateway towns</h3>
 
       <p>
-        The <a href="/articles/yosemite-gateway-towns-compared">gateway towns</a> each have their character. El Portal is closest to the Valley. Mariposa has more services. Groveland is quieter. Fish Camp puts you near the Mariposa Grove.
+        The <a href="/articles/yosemite-gateway-towns-compared">gateway towns</a> each have their character. El Portal is closest to the Valley. Mariposa has more services. Groveland is quieter. Fish Camp puts you near the Mariposa Grove. If the trip has collapsed into "we need a roof tonight," <a className="aff-link" href={window.buildAffiliateLink("booking", "https://www.booking.com/searchresults.html?ss=Mariposa%2C+California")} target="_blank" rel="sponsored noopener noreferrer" data-aff-network="booking" data-aff-list="article" data-aff-item-slug="yosemite-camping-complete-guide" data-aff-name="Mariposa lodging search">a live search of Mariposa motels</a> is the two-minute version of that decision.
       </p>
 
       <h3>Housekeeping Camp and lodges</h3>
@@ -446,6 +452,8 @@ window.ARTICLE_BODIES["yosemite-camping-complete-guide"] = function YosemiteCamp
       <p>
         The reservation is hard to get. The bear box is awkward to load. The shower situation is suboptimal. None of that matters at 10:01 PM, when the quiet hours begin and the campground finally sounds like the wilderness it was built inside. The ground is hard. The stars are close. You sleep well.
       </p>
+
+      <AffiliateNote />
     </>
   );
 };

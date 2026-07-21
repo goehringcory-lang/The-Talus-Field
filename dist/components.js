@@ -345,7 +345,7 @@ function Header({
     key: "plan",
     label: "Plan",
     route: "planning",
-    items: [["planning", "The Planning Guide"], ["itineraries", "Itineraries"], ["conditions", "Conditions"], ["checklist", "First-week checklist"], ["kit", "Kit"], ["firefall", "Firefall"], ["consult", "Trip consults"]]
+    items: [["planning", "The Planning Guide"], ["itineraries", "Itineraries"], ["conditions", "Conditions"], ["checklist", "First-week checklist"], ["kit", "Kit"], ["firefall", "Firefall"], ["tioga-opening", "Tioga opening"], ["half-dome-lottery", "Half Dome lottery"], ["consult", "Trip consults"]]
   }, {
     key: "guide",
     label: "Field Guide",
@@ -785,7 +785,7 @@ window.ShareRow = ShareRow;
 function AffiliateNote() {
   return React.createElement("p", {
     className: "article-aff-note"
-  }, "Some links in this piece are affiliate links to Patagonia. If you buy through one, The Talus Field may earn a small commission at no extra cost to you. ", React.createElement("a", {
+  }, "Some links in this piece are affiliate links. If you buy or book through one, The Talus Field may earn a small commission at no extra cost to you. The recommendations do not change for it. ", React.createElement("a", {
     href: "/affiliate"
   }, "Full disclosure."));
 }

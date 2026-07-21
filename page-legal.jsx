@@ -99,10 +99,13 @@ function TermsPage() {
 
 function AffiliatePage() {
   return (
-    <LegalShell title="Affiliate Disclosure" eyebrow="Legal" updated="July 12, 2026">
-      <p>The Talus Field currently participates in one affiliate program: Patagonia's, run through the Impact network. If that list grows, this page changes the same day.</p>
+    <LegalShell title="Affiliate Disclosure" eyebrow="Legal" updated="July 20, 2026">
+      <p>The Talus Field currently participates in one affiliate program: Patagonia's, run through the Impact network. Applications to lodging and camping programs (Booking.com and Hipcamp) are pending; until they are approved, the lodging and camping links in articles are plain outbound links that earn nothing. When that changes, this page changes the same day.</p>
 
-      <p>What that means in plain language: when an article on this site links to a product, a book, or a piece of lodging, that link may be an affiliate link. If you click through and make a purchase, I receive a small commission. The price you pay does not change. Whether or not you use the affiliate link, the recommendation in the article is the same.</p>
+      <p>What that means in plain language: when an article on this site links to a product, a book, or a piece of lodging, that link may be an affiliate link. If you click through and make a purchase or a booking, I receive a small commission. The price you pay does not change. Whether or not you use the affiliate link, the recommendation in the article is the same.</p>
+
+      <h2>The rule that governs all of it</h2>
+      <p>No program's catalog shapes a recommendation. If the best lodge in a town, the best campground on a road, or the best jacket for a season has no affiliate program, it stays the top recommendation, linkless. Availability links sit under recommendations that were already written; they never decide what gets recommended. If you ever catch this site steering you toward a worse option because it pays, write to me, and I will fix it and say so in the newsletter.</p>
 
       <h2>What I will and will not do</h2>
       <p>I will only recommend things I have actually used, read, eaten, or stayed in. I will not write a "best XYZ" roundup of products I have never touched. If a piece of gear is on this site, I have walked at least fifty miles in it. If a guidebook is on this site, I have read it cover to cover. If a hotel is on this site, I have either stayed there or know someone who has, and I will tell you which.</p>

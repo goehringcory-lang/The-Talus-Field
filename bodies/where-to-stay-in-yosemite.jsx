@@ -1,4 +1,4 @@
-/* global React */
+/* global React, AffiliateNote */
 
 window.ARTICLE_BODIES = window.ARTICLE_BODIES || {};
 
@@ -86,12 +86,14 @@ window.ARTICLE_BODIES["where-to-stay-in-yosemite"] = function WhereToStayInYosem
       <h2>The alternative, for honesty's sake</h2>
 
       <p>
-        None of this means in-park lodging is the only defensible choice. If the inventory is gone or the rates are indefensible for your budget, the <a href="/articles/yosemite-gateway-towns-compared">gateway towns</a> are a real option with real tradeoffs, mostly measured in windshield time, and camping remains the cheapest way to sleep in the park if you can win a site. For the full arithmetic of what each approach does to a trip budget, I've run the numbers <a href="/articles/yosemite-trip-cost-budget-2026">separately</a>.
+        None of this means in-park lodging is the only defensible choice. If the inventory is gone or the rates are indefensible for your budget, the <a href="/articles/yosemite-gateway-towns-compared">gateway towns</a> are a real option with real tradeoffs, mostly measured in windshield time, and camping remains the cheapest way to sleep in the park if you can win a site. For the full arithmetic of what each approach does to a trip budget, I've run the numbers <a href="/articles/yosemite-trip-cost-budget-2026">separately</a>. And when you want the raw view rather than the argument, <a className="aff-link" href={window.buildAffiliateLink("booking", "https://www.booking.com/searchresults.html?ss=Yosemite+National+Park")} target="_blank" rel="sponsored noopener noreferrer" data-aff-network="booking" data-aff-list="article" data-aff-item-slug="where-to-stay-in-yosemite" data-aff-name="Gateway availability search">one availability search around the park</a> shows what the gateway towns actually have left on your dates.
       </p>
 
       <p>
         But if you can get a bed inside the boundary, get it. Rank them like this: Valley Lodge for most first-timers, Housekeeping Camp for families who half-camp, Curry Village for hikers on a budget, the Ahwahnee when the occasion justifies it, the high-country camps for people whose trip is the high country. Then set the reminder for 366 days out, and if you miss it, start checking daily. The park rewards the stubborn.
       </p>
+
+      <AffiliateNote />
 
       <h3>Sources</h3>
       <ul style={{ fontSize: 14 }}>

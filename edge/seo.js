@@ -314,6 +314,18 @@ const HUB_PROSE = {
     ) +
     `<p>The classic viewing zone is Northside Drive near the El Capitan Picnic Area; parking rules and any reservation requirement change annually, so check the NPS Horsetail Fall page before committing.</p>` +
     `<p>The full guide: <a href="/articles/horsetail-fall-firefall">the complete firefall article</a>. Live water and weather: <a href="/conditions">the conditions page</a>.</p>`,
+  "/tioga-opening": () =>
+    hubProse(
+      "The Tioga Road Opening",
+      "Every spring, plow crews cut Highway 120 out of the snowpack and the highest road in Yosemite comes back. There is no fixed opening date: the long-term average is the end of May, light years have opened in mid-May, heavy years run into June or later, and the park announces the date only days ahead. In week one the road is open but the services are not: no potable water, nothing to buy, no gas between Crane Flat and Lee Vining, and the famous high trails still under snow. The early season rewards drivers, photographers, and modest walkers."
+    ) +
+    `<p>The reliable early stops are Olmsted Point, Tenaya Lake's east beach, the Tuolumne Meadows pullouts, Pothole Dome, and Soda Springs. The full day-by-day version: <a href="/articles/tioga-road-opening-weekend-2026">the opening-weekend field guide</a>. Current status: <a href="/now">the Park Bulletin</a> and the NPS Tioga Road page.</p>`,
+  "/half-dome-lottery": () =>
+    hubProse(
+      "The Half Dome Lottery",
+      "There are two Half Dome permit lotteries, not one. The preseason lottery takes applications on Recreation.gov through March with results in mid-April; the daily lottery runs every day the cables are up, taken two days before the hike date. In the most recent published season about one preseason application in five succeeded, weekdays drew meaningfully better odds than weekends, and late-season weekdays were the best draw of the year. Strategy: use all seven date choices, front-load unpopular dates, enter both lotteries, and plan the hike mid-trip so the daily lottery gets several independent draws."
+    ) +
+    `<p>The full mechanics: <a href="/articles/half-dome-permit-lottery-2026">the complete lottery guide</a>. Whether the hike itself is the right goal: <a href="/articles/so-you-want-to-hike-half-dome">So You Want to Hike Half Dome</a>.</p>`,
 };
 
 // Shared-trip unfurls: /map?trip=id1,id2 links travel through texts and group
@@ -659,6 +671,62 @@ function seoForPath(pathname, searchParams) {
         {
           q: "Do you need a reservation to see the firefall?",
           a: "In some years the park has required reservations for February weekends, along with parking restrictions and road closures. The rules change year to year; check the NPS Horsetail Fall page and current conditions in the week before your trip.",
+        },
+      ],
+    },
+    "/tioga-opening": {
+      // Evergreen event page: no year in the URL or copy. FAQ answers come
+      // from the published article body
+      // (bodies/tioga-road-opening-weekend-2026.jsx) per the
+      // no-invented-facts rule; anything annual points at NPS.
+      title: `The Tioga Road Opening — when it opens and how to plan — ${SITE_NAME}`,
+      description:
+        "How the Tioga Road opening actually works: why the date is announced only days ahead, what is really open in week one, and how to drive the early season well. By a park resident.",
+      breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Tioga opening", null]],
+      faq: [
+        {
+          q: "When does Tioga Road open?",
+          a: "There is no fixed date: the road opens when plow crews finish, and the park announces it only days ahead. The long-term average opening is the end of May; light snow years have opened in mid-May, and heavy years push the opening into June or later. It closes with the first lasting snow, typically in November.",
+        },
+        {
+          q: "Is there gas, food, or water on Tioga Road?",
+          a: "Crane Flat, at the road's west end, has pay-at-pump gas; the next fuel is Lee Vining on the east side of the pass. In the early season there is no potable water and nothing to buy along the road, and services at Tuolumne Meadows come online weeks after the road opens. Bring everything.",
+        },
+        {
+          q: "How long does it take to drive Tioga Road?",
+          a: "About 39 miles from Crane Flat to the Tioga Pass entrance station, roughly 90 minutes one way without stops. With Olmsted Point, Tenaya Lake, and Tuolumne Meadows it is a full day, and adding Lee Vining and Mono Lake makes it a long one.",
+        },
+        {
+          q: "Do I need a reservation to drive Tioga Road?",
+          a: "A standard park entrance pass is required. Whether a day-use reservation system also applies changes year to year; check the NPS Yosemite site for the current season's rules before you commit.",
+        },
+      ],
+    },
+    "/half-dome-lottery": {
+      // Evergreen event page: no year in the URL or copy. FAQ answers come
+      // from the published article body
+      // (bodies/half-dome-permit-lottery-2026.jsx); the odds are labeled as
+      // the most recent season the park has published.
+      title: `The Half Dome Lottery — calendar, odds, and strategy — ${SITE_NAME}`,
+      description:
+        "Both Half Dome permit lotteries explained: the March preseason draw, the daily lottery almost nobody uses, the honest odds, and the strategy that actually works. By a park resident.",
+      breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Half Dome lottery", null]],
+      faq: [
+        {
+          q: "When is the Half Dome permit lottery?",
+          a: "There are two. The preseason lottery accepts applications on Recreation.gov for the month of March, with results emailed in mid-April. The daily lottery runs every day the cables are up: apply two days before your hike date, between midnight and 4 p.m. Pacific, with results late that evening.",
+        },
+        {
+          q: "How hard is it to win a Half Dome permit?",
+          a: "In the most recent season the park has published, about one preseason application in five succeeded, and the daily lottery ran close behind. Weekdays draw meaningfully better odds than weekends, and late-season weekdays, late August through the October cable takedown, are the best draw of the year.",
+        },
+        {
+          q: "Can you hike Half Dome without a permit?",
+          a: "No. While the cables are up, rangers check permits and photo ID at the base of the subdome, and hiking past the checkpoint without one is a federal violation with fines running to thousands of dollars. The legal alternative is a wilderness permit with a Half Dome add-on, drawn from a separate backpacker allocation.",
+        },
+        {
+          q: "When are the Half Dome cables up?",
+          a: "Typically from the Friday before Memorial Day until the day after the second Monday in October, shifting with snow and weather. Outside that window the cables are down and the summit route is not maintained.",
         },
       ],
     },

@@ -28,7 +28,7 @@ const STATIC_ROUTE_KEYS = new Set([
   "home", "articles", "planning", "checklist", "about", "kit", "places",
   "advertise", "newsletter", "contact", "privacy", "terms", "affiliate",
   "guide", "map", "films", "itineraries", "conditions", "now", "firefall",
-  "consult", "widget",
+  "consult", "widget", "tioga-opening", "half-dome-lottery",
 ]);
 
 function pathToRoute(pathname) {
@@ -103,6 +103,8 @@ const PAGE_MODULES = {
   firefall: { scripts: ["/dist/page-firefall.js"], globals: ["FirefallPage"] },
   consult: { scripts: ["/dist/page-consult.js"], globals: ["ConsultPage"] },
   widget: { scripts: ["/dist/page-widget.js"], globals: ["WidgetPage"] },
+  "tioga-opening": { scripts: ["/dist/page-tioga-opening.js"], globals: ["TiogaOpeningPage"] },
+  "half-dome-lottery": { scripts: ["/dist/page-half-dome-lottery.js"], globals: ["HalfDomeLotteryPage"] },
 };
 
 function routeModule(route) {
@@ -619,6 +621,44 @@ function buildSeo(route) {
         })),
       },
     },
+    // Event, service, and embed pages. These mirror the edge copy in
+    // edge/seo.js so SPA navigation applies the same title/description a
+    // direct load gets (routes missing here silently fall back to home meta).
+    firefall: {
+      title: `The Yosemite Firefall — dates, conditions, and how to plan — ${SITE_NAME}`,
+      description:
+        "When the Horsetail Fall firefall happens, the three conditions that must line up, and how to plan a February evening around uncertain odds. By a park resident.",
+      ogType: "website",
+      breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Firefall", null]],
+    },
+    "tioga-opening": {
+      title: `The Tioga Road Opening — when it opens and how to plan — ${SITE_NAME}`,
+      description:
+        "How the Tioga Road opening actually works: why the date is announced only days ahead, what is really open in week one, and how to drive the early season well. By a park resident.",
+      ogType: "website",
+      breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Tioga opening", null]],
+    },
+    "half-dome-lottery": {
+      title: `The Half Dome Lottery — calendar, odds, and strategy — ${SITE_NAME}`,
+      description:
+        "Both Half Dome permit lotteries explained: the March preseason draw, the daily lottery almost nobody uses, the honest odds, and the strategy that actually works. By a park resident.",
+      ogType: "website",
+      breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Half Dome lottery", null]],
+    },
+    consult: {
+      title: `Field Consult — thirty minutes on your Yosemite plan — ${SITE_NAME}`,
+      description:
+        "A one-on-one planning consult with a Yosemite naturalist: your dates, group, and constraints, turned into a plan that fits the park. $95, thirty minutes, a few slots a month.",
+      ogType: "website",
+      breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Field consult", null]],
+    },
+    widget: {
+      title: `Yosemite Conditions Widget — free embed for area businesses — ${SITE_NAME}`,
+      description:
+        "A free embeddable box with live Yosemite entrance waits and the three-day Valley forecast, for gateway hotels, rental hosts, and tour operators. One script tag.",
+      ogType: "website",
+      breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Widget", null]],
+    },
   };
   const meta = known[route] || known.home;
   return {
@@ -924,6 +964,10 @@ function App() {
   } else if (route === "firefall") {
     page = <window.FirefallPage go={go} />;
     // currentNav stays "home"; the event page hangs off articles + /now links.
+  } else if (route === "tioga-opening") {
+    page = <window.TiogaOpeningPage go={go} />;
+  } else if (route === "half-dome-lottery") {
+    page = <window.HalfDomeLotteryPage go={go} />;
   } else if (route === "consult") {
     page = <window.ConsultPage go={go} />;
   } else if (route === "widget") {

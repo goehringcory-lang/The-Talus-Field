@@ -356,6 +356,8 @@ function Header({ current, go }) {
         ["checklist", "First-week checklist"],
         ["kit", "Kit"],
         ["firefall", "Firefall"],
+        ["tioga-opening", "Tioga opening"],
+        ["half-dome-lottery", "Half Dome lottery"],
         ["consult", "Trip consults"],
       ],
     },
@@ -686,7 +688,7 @@ window.ShareRow = ShareRow;
 function AffiliateNote() {
   return (
     <p className="article-aff-note">
-      Some links in this piece are affiliate links to Patagonia. If you buy through one, The Talus Field may earn a small commission at no extra cost to you. <a href="/affiliate">Full disclosure.</a>
+      Some links in this piece are affiliate links. If you buy or book through one, The Talus Field may earn a small commission at no extra cost to you. The recommendations do not change for it. <a href="/affiliate">Full disclosure.</a>
     </p>
   );
 }

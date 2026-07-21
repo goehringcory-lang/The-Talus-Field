@@ -79,19 +79,45 @@ function AffiliateNote() {
   return React.createElement(
     "p",
     { className: "article-aff-note" },
-    "Some links in this piece are affiliate links to Patagonia. If you buy through one, The Talus Field may earn a small commission at no extra cost to you. ",
+    "Some links in this piece are affiliate links. If you buy or book through one, The Talus Field may earn a small commission at no extra cost to you. The recommendations do not change for it. ",
     React.createElement("a", { href: "/affiliate" }, "Full disclosure.")
   );
 }
 
-// Bodies with inline affiliate links call window.buildPatagoniaAffiliateLink
-// at render time (affiliate.js in the browser). Mirror it here, minus the
-// console warning, so those hrefs prerender to the same tracking URLs the SPA
-// renders. Keep the base in sync with affiliate.js.
+// Bodies with inline affiliate links call window.buildPatagoniaAffiliateLink /
+// window.buildAffiliateLink at render time (affiliate.js in the browser).
+// Mirror both here, minus the console warning, so those hrefs prerender to the
+// same URLs the SPA renders. Keep the base and the network IDs in sync with
+// affiliate.js: the lodging/camping IDs are empty until those applications
+// are approved, and while empty, links prerender as the plain destination,
+// exactly as the SPA renders them.
 const PATAGONIA_AFFILIATE_BASE = "https://patagonia.pxf.io/c/7338432/1948563/23649";
 function buildPatagoniaAffiliateLink(targetUrl) {
   if (!targetUrl) return PATAGONIA_AFFILIATE_BASE;
   return PATAGONIA_AFFILIATE_BASE + "?u=" + encodeURIComponent(targetUrl);
+}
+
+const BOOKING_AFFILIATE_AID = "";
+const STAY22_AFFILIATE_ID = "";
+const HIPCAMP_AFFILIATE_BASE = "";
+function buildAffiliateLink(network, targetUrl) {
+  if (network === "patagonia") return buildPatagoniaAffiliateLink(targetUrl);
+  if (network === "booking") {
+    const url = targetUrl || "https://www.booking.com/";
+    if (!BOOKING_AFFILIATE_AID) return url;
+    return url + (url.indexOf("?") === -1 ? "?" : "&") + "aid=" + encodeURIComponent(BOOKING_AFFILIATE_AID);
+  }
+  if (network === "stay22") {
+    const url = targetUrl || "https://www.booking.com/";
+    if (!STAY22_AFFILIATE_ID) return url;
+    return "https://www.stay22.com/allez/roam?aid=" + encodeURIComponent(STAY22_AFFILIATE_ID) + "&link=" + encodeURIComponent(url);
+  }
+  if (network === "hipcamp") {
+    const url = targetUrl || "https://www.hipcamp.com/";
+    if (!HIPCAMP_AFFILIATE_BASE) return url;
+    return HIPCAMP_AFFILIATE_BASE + "?u=" + encodeURIComponent(url);
+  }
+  return targetUrl || "#";
 }
 
 function renderBody(slug, src) {
@@ -107,7 +133,7 @@ function renderBody(slug, src) {
 
   const sandbox = {
     React,
-    window: { ARTICLE_BODIES: {}, buildPatagoniaAffiliateLink },
+    window: { ARTICLE_BODIES: {}, buildPatagoniaAffiliateLink, buildAffiliateLink },
     console,
     ResponsiveImage,
     Placeholder,

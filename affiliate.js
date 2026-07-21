@@ -15,6 +15,29 @@
 // required once a destination carries its own query string (our search URLs do).
 window.PATAGONIA_AFFILIATE_BASE = "https://patagonia.pxf.io/c/7338432/1948563/23649";
 
+// Lodging and camping networks (MONETIZATION-IDEAS.md 3.1). Each const below
+// is pasted from the network's dashboard once that application is approved.
+// While a const is empty, buildAffiliateLink returns the destination
+// unchanged, so every link ships today as a plain outbound link and upgrades
+// to a tracking link the day the ID lands. Same fail-soft pattern as the
+// payment-link consts in page-consult.jsx: the markup, the disclosure, and
+// the GA4 affiliate_click events are all live from day one.
+//
+// Booking.com Partner Hub affiliate ID (the `aid` URL parameter appended to
+// any booking.com URL).
+window.BOOKING_AFFILIATE_AID = "";
+// Stay22 Allez ID. The build below wraps any lodging URL in an Allez redirect;
+// verify the exact link template against the Stay22 dashboard's link builder
+// before filling this in, then switch individual links from data-aff-network
+// "booking" to "stay22" where Stay22 pays better. Until then this entry is
+// registered but unused by article markup.
+window.STAY22_AFFILIATE_ID = "";
+// Hipcamp (private-land camping) tracking-link prefix from the affiliate
+// dashboard; the destination is appended as an encoded ?u= parameter,
+// Impact-style. Adjust build() below if the approved program uses a
+// different template.
+window.HIPCAMP_AFFILIATE_BASE = "";
+
 // Network registry. One entry per approved affiliate program: `hostRe` guards
 // deep-link destinations (warn, not block, so a typo'd URL is easy to spot),
 // `build` turns a destination into a tracking link. Joining a new network
@@ -29,6 +52,42 @@ window.AFFILIATES = {
       targetUrl
         ? window.PATAGONIA_AFFILIATE_BASE + "?u=" + encodeURIComponent(targetUrl)
         : window.PATAGONIA_AFFILIATE_BASE,
+  },
+  booking: {
+    hostRe: /(^|\.)booking\.com$/i,
+    build: (targetUrl) => {
+      const url = targetUrl || "https://www.booking.com/";
+      if (!window.BOOKING_AFFILIATE_AID) return url;
+      return (
+        url +
+        (url.indexOf("?") === -1 ? "?" : "&") +
+        "aid=" +
+        encodeURIComponent(window.BOOKING_AFFILIATE_AID)
+      );
+    },
+  },
+  stay22: {
+    // Destination may be any lodging site (Stay22 wraps arbitrary URLs), so
+    // no host guard here.
+    hostRe: /./,
+    build: (targetUrl) => {
+      const url = targetUrl || "https://www.booking.com/";
+      if (!window.STAY22_AFFILIATE_ID) return url;
+      return (
+        "https://www.stay22.com/allez/roam?aid=" +
+        encodeURIComponent(window.STAY22_AFFILIATE_ID) +
+        "&link=" +
+        encodeURIComponent(url)
+      );
+    },
+  },
+  hipcamp: {
+    hostRe: /(^|\.)hipcamp\.com$/i,
+    build: (targetUrl) => {
+      const url = targetUrl || "https://www.hipcamp.com/";
+      if (!window.HIPCAMP_AFFILIATE_BASE) return url;
+      return window.HIPCAMP_AFFILIATE_BASE + "?u=" + encodeURIComponent(url);
+    },
   },
 };
 

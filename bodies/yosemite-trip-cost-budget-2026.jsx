@@ -1,4 +1,4 @@
-/* global React */
+/* global React, AffiliateNote */
 
 window.ARTICLE_BODIES = window.ARTICLE_BODIES || {};
 
@@ -58,7 +58,7 @@ window.ARTICLE_BODIES["yosemite-trip-cost-budget-2026"] = function YosemiteTripC
       </p>
 
       <p>
-        <strong>Gateway towns:</strong> Motels and hotels in <a href="/articles/yosemite-gateway-towns-compared">Mariposa, Oakhurst, Groveland, and El Portal</a> range from $120 to $300 per night depending on the town and the season. Vacation rentals (Airbnb, VRBO) can be a deal for groups. A cabin that sleeps six for $250 per night is under $42 per person.
+        <strong>Gateway towns:</strong> Motels and hotels in <a href="/articles/yosemite-gateway-towns-compared">Mariposa, Oakhurst, Groveland, and El Portal</a> range from $120 to $300 per night depending on the town and the season. Vacation rentals (Airbnb, VRBO) can be a deal for groups. A cabin that sleeps six for $250 per night is under $42 per person. Rates move with the season and the day of the week, so for real numbers on your dates, <a className="aff-link" href={window.buildAffiliateLink("booking", "https://www.booking.com/searchresults.html?ss=Yosemite+National+Park")} target="_blank" rel="sponsored noopener noreferrer" data-aff-network="booking" data-aff-list="article" data-aff-item-slug="yosemite-trip-cost-budget-2026" data-aff-name="Gateway availability search">a live availability search around the park</a> beats any table of averages, including this one.
       </p>
 
       <p>
@@ -242,6 +242,8 @@ window.ARTICLE_BODIES["yosemite-trip-cost-budget-2026"] = function YosemiteTripC
       <p>
         Don't let the cost keep you from going. The people having the best time in this park are not always the ones spending the most money. They're the ones who showed up, planned well, and spent their time outside instead of in a hotel room. If you're starting from scratch, my <a href="/articles/first-time-yosemite-overwhelm">first-timer's guide to Yosemite</a> ties it all together.
       </p>
+
+      <AffiliateNote />
     </>
   );
 };

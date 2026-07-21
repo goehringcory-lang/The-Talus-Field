@@ -10,7 +10,7 @@ window.ARTICLE_BODIES["tioga-road-opening-weekend-2026"] = function TiogaRoadOpe
       </p>
 
       <p>
-        <strong>Tioga Pass status (May 13, 2026):</strong> plowed, gate scheduled to come up Friday morning. For live updates, text "ynptraffic" to 333111 or check <a href="https://www.nps.gov/yose/planyourvisit/tioga.htm" target="_blank" rel="noopener noreferrer">nps.gov/yose/planyourvisit/tioga.htm</a>.
+        <strong>Tioga Pass status (May 13, 2026):</strong> plowed, gate scheduled to come up Friday morning. For live updates, text "ynptraffic" to 333111 or check <a href="https://www.nps.gov/yose/planyourvisit/tioga.htm" target="_blank" rel="noopener noreferrer">nps.gov/yose/planyourvisit/tioga.htm</a>. If you just need the standing version, the window, what is actually open in week one, and what to bring, <a href="/tioga-opening">the Tioga opening page</a> is the short version, kept current each season.
       </p>
 
       <h2>What's open on Tioga Road opening weekend</h2>

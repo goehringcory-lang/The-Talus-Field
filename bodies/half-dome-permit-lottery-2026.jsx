@@ -14,7 +14,7 @@ window.ARTICLE_BODIES["half-dome-permit-lottery-2026"] = function HalfDomePermit
       </p>
 
       <p>
-        Here's how to think about both, in plain language, with the math. Every fact below comes from the National Park Service and Recreation.gov, the only two sources that matter.
+        Here's how to think about both, in plain language, with the math. Every fact below comes from the National Park Service and Recreation.gov, the only two sources that matter. If you just need the calendar, the odds, and the strategy in brief, <a href="/half-dome-lottery">the Half Dome lottery page</a> is the short version, kept current each season.
       </p>
 
       <h2>The basics</h2>
