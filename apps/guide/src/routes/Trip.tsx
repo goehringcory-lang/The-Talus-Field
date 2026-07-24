@@ -51,6 +51,61 @@ function daysInWindow(start: string, end: string): string[] {
   return out
 }
 
+// Free-form entry form: the parts of a trip the guide doesn't model (lodging
+// check-in, a dinner reservation, a permit pickup) so the exported calendar
+// can be the whole trip, not a fragment of it.
+function AddCustomRow({
+  windowDays,
+  onAdd,
+}: {
+  windowDays: string[]
+  onAdd: (title: string, day: string) => void
+}) {
+  const [title, setTitle] = useState('')
+  const [day, setDay] = useState('')
+  const effectiveDay = windowDays.includes(day) ? day : windowDays[0] ?? ''
+  return (
+    <form
+      className="trip-custom-add"
+      onSubmit={(e) => {
+        e.preventDefault()
+        if (!title.trim() || !effectiveDay) return
+        onAdd(title, effectiveDay)
+        setTitle('')
+      }}
+    >
+      <label className="trip-custom-add__label" htmlFor="trip-custom-title">
+        Add your own item: a dinner reservation, a rest stop, a permit pickup.
+      </label>
+      <div className="trip-custom-add__row">
+        <input
+          id="trip-custom-title"
+          className="field-control"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+          placeholder="Dinner at the Mountain Room"
+          maxLength={120}
+        />
+        <select
+          className="field-control field-control--sm"
+          value={effectiveDay}
+          onChange={(e) => setDay(e.target.value)}
+          aria-label="Day for your item"
+        >
+          {windowDays.map((d) => (
+            <option key={d} value={d}>
+              {formatDayHeader(d)}
+            </option>
+          ))}
+        </select>
+        <button type="submit" className="btn btn--sm" disabled={!title.trim()}>
+          Add
+        </button>
+      </div>
+    </form>
+  )
+}
+
 // Between two placed rows, the estimated drive. Rendered only when both
 // sides carry coordinates and the estimate is meaningful.
 function TransitRow({ prev, cur }: { prev: SlottedItem; cur: SlottedItem }) {
@@ -68,7 +123,8 @@ function TransitRow({ prev, cur }: { prev: SlottedItem; cur: SlottedItem }) {
 }
 
 export default function Trip() {
-  const { plan, addStop, removeItem, setStopTime, moveStopToDay, clear, setDates } = useTripPlan()
+  const { plan, addStop, addCustom, removeItem, setStopTime, moveStopToDay, clear, setDates } =
+    useTripPlan()
   const [reviewOpen, setReviewOpen] = useState(false)
   const reviewRef = useRef<HTMLDivElement>(null)
 
@@ -138,6 +194,23 @@ export default function Trip() {
   }
 
   const itemCount = plan.items.length
+  const [presetsOpen, setPresetsOpen] = useState(false)
+
+  // Seeding over a non-empty plan replaces it; that is a destructive tap and
+  // asks first. Empty plans seed straight away, as before.
+  function reseedItinerary(key: ItineraryKey) {
+    if (itemCount > 0) {
+      const ok = window.confirm(
+        `Replace the current plan? This clears your ${itemCount} planned ${
+          itemCount === 1 ? 'item' : 'items'
+        }.`,
+      )
+      if (!ok) return
+      clear()
+    }
+    seedItinerary(key)
+    setPresetsOpen(false)
+  }
 
   // Same clamp as /programs: end never before start, window capped at what
   // the programs API will answer. Both pages share tfg.trip.dates.
@@ -187,16 +260,18 @@ export default function Trip() {
         </div>
 
         <StepHeader n={2} title="Fill your days" />
-        {itemCount === 0 && (
+        {(itemCount === 0 || presetsOpen) && (
           <div className="trip-presets" role="group" aria-label="Start from a preset">
-            <span className="trip-presets__label">Start from a preset:</span>
+            <span className="trip-presets__label">
+              {itemCount === 0 ? 'Start from a preset:' : 'Start over from a preset:'}
+            </span>
             <div className="trip-presets__row">
               {ITINERARY_KEYS.map((key) => (
                 <button
                   type="button"
                   key={key}
                   className="trip-preset"
-                  onClick={() => seedItinerary(key)}
+                  onClick={() => reseedItinerary(key)}
                 >
                   {/* One thumbnail per day (the day's lead-region photo), so
                       the strip's length reads as the plan's length. */}
@@ -216,11 +291,16 @@ export default function Trip() {
         )}
         {itemCount > 0 && (
           <div className="trip-toolbar">
+            <Button variant="ghost" size="sm" onClick={() => setPresetsOpen((v) => !v)}>
+              {presetsOpen ? 'Hide presets' : 'Start over from a preset'}
+            </Button>
             <Button variant="ghost" size="sm" onClick={clear}>
               Clear plan
             </Button>
           </div>
         )}
+
+        <AddCustomRow windowDays={windowDays} onAdd={(title, day) => addCustom(title, { day })} />
 
         {itemCount === 0 ? (
           <div className="trip-empty">
@@ -268,14 +348,17 @@ export default function Trip() {
                 {items.map((s, i) => {
                   const { item } = s
                   const isProgram = item.type === 'program'
+                  const isCustom = item.type === 'custom'
                   const stop = item.type === 'stop' ? getStopById(item.stopId) : undefined
                   const hike = item.type === 'hike' ? getHikeById(item.hikeId) : undefined
                   // A stop or hike id that no longer resolves means a content
                   // edit removed it; say so instead of linking to a 404.
-                  const missing = !isProgram && !stop && !hike
+                  const missing = !isProgram && !isCustom && !stop && !hike
                   const title = isProgram
                     ? item.snapshot.title
-                    : stop?.title ?? hike?.title ?? 'No longer in this edition'
+                    : isCustom
+                      ? item.title
+                      : stop?.title ?? hike?.title ?? 'No longer in this edition'
                   const link = stop ? `/stop/${stop.id}` : undefined
                   return (
                     <Fragment key={item.itemId}>

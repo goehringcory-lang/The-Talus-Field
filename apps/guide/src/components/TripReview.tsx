@@ -6,6 +6,7 @@
 // add-to-calendar sheet (subscribe or one-time file).
 
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import { getHikeById, getStopById } from '../content'
 import { slottedToEventFields } from '../trip/ics'
 import type { SlottedItem } from '../trip/slotting'
@@ -105,7 +106,9 @@ export default function TripReview({ slotted, windowDays, filenameDate, dayForec
                       ? getStopById(item.stopId)?.title ?? item.stopId
                       : item.type === 'hike'
                         ? getHikeById(item.hikeId)?.title ?? item.hikeId
-                        : item.snapshot.title
+                        : item.type === 'custom'
+                          ? item.title
+                          : item.snapshot.title
                   return (
                     <div className="trip-review__actions" key={item.itemId}>
                       <span className="trip-review__event-title">{title}</span>
@@ -167,6 +170,12 @@ export default function TripReview({ slotted, windowDays, filenameDate, dayForec
         <Button disabled={eventCount === 0} onClick={() => setSheetOpen(true)}>
           Add to calendar
         </Button>
+        {eventCount > 0 && (
+          <p className="trip-review__print">
+            <Link to="/trip/print">Printable day sheet →</Link> Paper works where the park has
+            no signal.
+          </p>
+        )}
       </div>
 
       <TripCalendarSheet

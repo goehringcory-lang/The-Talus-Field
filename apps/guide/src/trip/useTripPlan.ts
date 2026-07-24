@@ -2,13 +2,16 @@
 // useTripPlan — localStorage-backed plan state with module-level subscribers,
 // the same pattern as lib/favorites.ts, so "Add to trip" buttons on stop
 // pages, the map popup, and program rows stay in sync with /trip without a
-// context provider. Corrupt storage drops to an empty plan.
+// context provider. A corrupt stored plan salvages item by item: entries that
+// fail their own schema are dropped, the rest of the plan survives. Only a
+// broken envelope drops to an empty plan.
 // =============================================================================
 
 import { useCallback, useEffect, useState } from 'react'
 import { defaultTripDates, readTripDates, writeTripDates } from '../programs/usePrograms'
 import type { ProgramEventT } from '../programs/schema'
 import {
+  TripItem,
   TripPlan,
   hikeItemId,
   programItemId,
@@ -51,10 +54,24 @@ function readStorage(): TripPlanT | null {
   try {
     const raw = window.localStorage.getItem(STORAGE_KEY)
     if (!raw) return null
-    const parsed = TripPlan.safeParse(JSON.parse(raw))
+    const data: unknown = JSON.parse(raw)
+    const parsed = TripPlan.safeParse(data)
     if (parsed.success) return parsed.data
+    // Salvage: a plan whose envelope is intact but where an item fails its
+    // schema (hand-edited storage, or written by a newer build with an item
+    // type this build doesn't know) keeps every item that parses instead of
+    // dropping the user's whole plan.
+    if (data && typeof data === 'object' && Array.isArray((data as { items?: unknown }).items)) {
+      const salvage = TripPlan.safeParse({
+        ...data,
+        items: (data as { items: unknown[] }).items.filter(
+          (it) => TripItem.safeParse(it).success,
+        ),
+      })
+      if (salvage.success) return salvage.data
+    }
   } catch {
-    /* corrupt storage drops to an empty plan */
+    /* unreadable storage drops to an empty plan */
   }
   return null
 }
@@ -152,6 +169,31 @@ export function useTripPlan() {
     })
   }, [])
 
+  const addCustom = useCallback(
+    (title: string, opts?: { note?: string; day?: string; startTime?: string }) => {
+      const trimmed = title.trim()
+      if (!trimmed) return
+      update((p) => ({
+        ...p,
+        items: [
+          ...p.items,
+          {
+            type: 'custom',
+            // Day-independent id: a custom item keeps its identity (and its
+            // calendar UID) when moved across days.
+            itemId: `custom:${crypto.randomUUID()}`,
+            title: trimmed,
+            note: opts?.note?.trim() || undefined,
+            day: clampDay(opts?.day ?? p.dates.start, p.dates),
+            startTime: opts?.startTime || undefined,
+            eventUid: crypto.randomUUID(),
+          },
+        ],
+      }))
+    },
+    [],
+  )
+
   const removeItem = useCallback((itemId: string) => {
     update((p) => ({ ...p, items: p.items.filter((it) => it.itemId !== itemId) }))
   }, [])
@@ -171,6 +213,13 @@ export function useTripPlan() {
     update((p) => {
       const moving = p.items.find((it) => it.itemId === itemId && it.type !== 'program')
       if (!moving || moving.type === 'program') return p
+      // Custom ids don't embed the day, so a move only rewrites `day`.
+      if (moving.type === 'custom') {
+        return {
+          ...p,
+          items: p.items.map((it) => (it.itemId === itemId ? { ...it, day } : it)),
+        }
+      }
       const newId =
         moving.type === 'hike' ? hikeItemId(moving.hikeId, day) : stopItemId(moving.stopId, day)
       if (newId === itemId) return p
@@ -203,6 +252,7 @@ export function useTripPlan() {
     addStop,
     addHike,
     addProgram,
+    addCustom,
     removeItem,
     setStopTime,
     moveStopToDay,

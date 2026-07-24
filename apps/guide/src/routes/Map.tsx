@@ -54,6 +54,9 @@ type UrlState = {
   kinds: MapPinKind[] | null // null = no kind narrowing (all kinds show)
   secret: boolean
   hike: string | null // hike id whose track overlays the map (?hike=)
+  // ?planned=1 narrows the map to the trip plan. Deliberately NOT ?trip=:
+  // that name carries stop lists on the editorial map's share links.
+  planned: boolean
 }
 
 const ALL_KINDS = Object.keys(KIND_STYLES) as MapPinKind[]
@@ -82,6 +85,7 @@ function readUrlState(): UrlState {
     secret: params.get('secret') !== '0',
     // Only hikes with a published track: an unknown id round-trips away.
     hike: hike && hasTrack(hike) ? hike : null,
+    planned: params.get('planned') === '1',
   }
 }
 
@@ -93,6 +97,7 @@ function writeUrlState(next: UrlState) {
   if (next.kinds && next.kinds.length > 0) params.set('kinds', [...next.kinds].sort().join(','))
   if (!next.secret) params.set('secret', '0')
   if (next.hike) params.set('hike', next.hike)
+  if (next.planned) params.set('planned', '1')
   const qs = params.toString()
   const newUrl = '/map' + (qs ? `?${qs}` : '')
   if (newUrl !== window.location.pathname + window.location.search) {
@@ -495,6 +500,7 @@ export default function Map() {
     initial.kinds ? new Set(initial.kinds) : null,
   )
   const [showSecret, setShowSecret] = useState<boolean>(initial.secret)
+  const [plannedOnly, setPlannedOnly] = useState<boolean>(initial.planned)
 
   // Hike track overlay (?hike=<id>). The track loads from the runtime cache
   // offline; the overlay draws above the topo with the trailhead marked.
@@ -547,6 +553,7 @@ export default function Map() {
   const resetFilters = useCallback(() => {
     setKindFilter(null)
     setShowSecret(true)
+    setPlannedOnly(false)
   }, [])
 
   // The itinerary's region set, or null when no itinerary narrows the map.
@@ -564,6 +571,7 @@ export default function Map() {
   const visibleStops = useMemo<GuideStopT[]>(
     () =>
       mappableStops.filter((s) => {
+        if (plannedOnly && !plannedStopIds.has(s.id)) return false
         if (kindFilter && !kindFilter.has(s.kind)) return false
         if (!showSecret && isSecretGuideEntry(s)) return false
         if (itineraryRegions) {
@@ -571,7 +579,7 @@ export default function Map() {
         }
         return true
       }),
-    [mappableStops, itineraryRegions, kindFilter, showSecret],
+    [mappableStops, itineraryRegions, kindFilter, showSecret, plannedOnly, plannedStopIds],
   )
 
   // Amenities follow the same kind and region narrowing but never join the
@@ -580,10 +588,12 @@ export default function Map() {
   const visibleAmenities = useMemo<AmenityT[]>(
     () =>
       AMENITIES.filter((a) => {
+        // Amenities are never planned; under the trip layer they are clutter.
+        if (plannedOnly) return false
         if (kindFilter && !kindFilter.has(a.kind)) return false
         return !itineraryRegions || itineraryRegions.has(a.region)
       }),
-    [itineraryRegions, kindFilter],
+    [itineraryRegions, kindFilter, plannedOnly],
   )
 
   // Day-hike trailheads narrow the same way as amenities: by the hike kind
@@ -592,10 +602,11 @@ export default function Map() {
   const visibleTrailheads = useMemo<TrailheadGroup[]>(
     () =>
       TRAILHEAD_GROUPS.filter((g) => {
+        if (plannedOnly && !g.hikes.some((h) => plannedHikeIds.has(h.id))) return false
         if (kindFilter && !kindFilter.has('hike')) return false
         return !itineraryRegions || itineraryRegions.has(g.region)
       }),
-    [itineraryRegions, kindFilter],
+    [itineraryRegions, kindFilter, plannedOnly, plannedHikeIds],
   )
 
   // Chip count badges: what enabling each kind yields under the OTHER active
@@ -634,6 +645,15 @@ export default function Map() {
     () => mappableStops.filter(isSecretGuideEntry).length,
     [mappableStops],
   )
+  // Pins the trip layer yields: planned stops with coords plus trailhead
+  // groups carrying a planned hike. States what tapping the chip shows, like
+  // the kind counts.
+  const plannedCount = useMemo(
+    () =>
+      mappableStops.filter((s) => plannedStopIds.has(s.id)).length +
+      TRAILHEAD_GROUPS.filter((g) => g.hikes.some((h) => plannedHikeIds.has(h.id))).length,
+    [mappableStops, plannedStopIds, plannedHikeIds],
+  )
 
   // Sync state to URL.
   useEffect(() => {
@@ -644,8 +664,9 @@ export default function Map() {
       kinds: kindFilter ? [...kindFilter] : null,
       secret: showSecret,
       hike: trackHikeId,
+      planned: plannedOnly,
     })
-  }, [tab, selectedItinerary, selectedStopId, kindFilter, showSecret, trackHikeId])
+  }, [tab, selectedItinerary, selectedStopId, kindFilter, showSecret, trackHikeId, plannedOnly])
 
   // Restore from URL on every router navigation: back/forward (the router
   // owns popstate) and bottom-nav "Map" re-taps that push a bare /map over a
@@ -662,6 +683,7 @@ export default function Map() {
       setSelectedItinerary(next.itinerary)
       setKindFilter(next.kinds ? new Set(next.kinds) : null)
       setShowSecret(next.secret)
+      setPlannedOnly(next.planned)
       setTrackHikeId(next.hike)
       selectStop(next.stop)
     })
@@ -1045,12 +1067,7 @@ export default function Map() {
 
   // Counts for the itinerary buttons, derived live.
   const counts = useMemo(() => {
-    const out: Record<'all' | ItineraryKey, number> = {
-      all: mappableStops.length,
-      '1day': 0,
-      '2day': 0,
-      '3day': 0,
-    }
+    const out = { all: mappableStops.length } as Record<'all' | ItineraryKey, number>
     for (const key of ITINERARY_KEYS) {
       const regions = new Set(ITINERARIES[key].days.flatMap((d) => d.regions))
       out[key] = mappableStops.filter(
@@ -1180,6 +1197,16 @@ export default function Map() {
               >
                 <span className="map-filterbar__dot map-filterbar__dot--secret" aria-hidden />
                 Secret Guide <span className="map-filterbar__count">{secretCount}</span>
+              </ChipButton>
+            )}
+            {plannedCount > 0 && (
+              <ChipButton
+                variant="filter"
+                pressed={plannedOnly}
+                aria-label={`My trip, ${plannedCount} pins`}
+                onClick={() => setPlannedOnly((v) => !v)}
+              >
+                My trip <span className="map-filterbar__count">{plannedCount}</span>
               </ChipButton>
             )}
           </div>

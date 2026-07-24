@@ -15,7 +15,7 @@
 import type { Region } from './schema'
 import { stops } from './stops'
 
-export type ItineraryKey = '1day' | '2day' | '3day'
+export type ItineraryKey = 'halfday' | '1day' | '2day' | '3day' | 'hetch-hetchy'
 
 export type ItineraryDay = {
   name: string
@@ -31,7 +31,7 @@ export type Itinerary = {
   days: ItineraryDay[]
 }
 
-export const ITINERARY_KEYS: ItineraryKey[] = ['1day', '2day', '3day']
+export const ITINERARY_KEYS: ItineraryKey[] = ['halfday', '1day', '2day', '3day', 'hetch-hetchy']
 
 // The recommended first day in the Valley: orientation at Tunnel View, the
 // eastbound floor preview, the meadow loop, lunch, the Ahwahnee, Mirror Lake
@@ -63,7 +63,21 @@ const GLACIER_MARIPOSA_DAY: ItineraryDay = {
   stops: ['mariposa-grove', 'sentinel-dome', 'washburn-point', 'glacier-point'],
 }
 
+// The Valley with an afternoon, not a day: the orientation view, the two
+// walks that pay off fastest, and the sunset bridge. All VALLEY_DAY ids, so
+// the module-load validation below covers it.
+const VALLEY_HALF_DAY: ItineraryDay = {
+  name: 'Half day — Yosemite Valley',
+  regions: ['valley'],
+  stops: ['tunnel-view', 'bridalveil-fall', 'cooks-meadow-loop', 'sentinel-bridge-sunset'],
+}
+
 export const ITINERARIES: Record<ItineraryKey, Itinerary> = {
+  halfday: {
+    label: 'Half day',
+    subtitle: 'Yosemite Valley, the short version',
+    days: [VALLEY_HALF_DAY],
+  },
   '1day': {
     label: '1 day',
     subtitle: 'Yosemite Valley',
@@ -83,6 +97,13 @@ export const ITINERARIES: Record<ItineraryKey, Itinerary> = {
       { name: 'Day 3 — Tuolumne Meadows', regions: ['tuolumne'] },
     ],
   },
+  // No curated list: the Hetch Hetchy region reads in drive order already,
+  // and the seeder's capacity and kind filters handle the rest.
+  'hetch-hetchy': {
+    label: 'Hetch Hetchy day',
+    subtitle: 'The other granite valley',
+    days: [{ name: 'Hetch Hetchy day', regions: ['hetch-hetchy'] }],
+  },
 }
 
 // Fail fast at module load, same contract as Stops.parse in stops.ts: a
@@ -100,5 +121,5 @@ for (const itinerary of Object.values(ITINERARIES)) {
 }
 
 export function isItineraryKey(value: string | null | undefined): value is ItineraryKey {
-  return value === '1day' || value === '2day' || value === '3day'
+  return !!value && (ITINERARY_KEYS as string[]).includes(value)
 }
