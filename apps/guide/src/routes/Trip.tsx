@@ -23,6 +23,10 @@ import { MAX_SPAN_DAYS, readTripDates } from '../programs/usePrograms'
 import { addDaysIso, formatClock, formatDayHeader } from '../utils/date'
 import { driveMinutesBetween, slotPlan, toHhmm, type SlottedItem } from '../trip/slotting'
 import { useTripPlan } from '../trip/useTripPlan'
+import { dayForecastRegion } from '../trip/dayRegion'
+import { useWeather } from '../weather/useWeather'
+import { HIDE_AFTER_MS, WARN_AFTER_MS } from '../weather/staleness'
+import { forecastLineForDay } from '../weather/todayLine'
 import './Trip.css'
 
 function StepHeader({ n, title }: { n: number; title: string }) {
@@ -47,6 +51,61 @@ function daysInWindow(start: string, end: string): string[] {
   return out
 }
 
+// Free-form entry form: the parts of a trip the guide doesn't model (lodging
+// check-in, a dinner reservation, a permit pickup) so the exported calendar
+// can be the whole trip, not a fragment of it.
+function AddCustomRow({
+  windowDays,
+  onAdd,
+}: {
+  windowDays: string[]
+  onAdd: (title: string, day: string) => void
+}) {
+  const [title, setTitle] = useState('')
+  const [day, setDay] = useState('')
+  const effectiveDay = windowDays.includes(day) ? day : windowDays[0] ?? ''
+  return (
+    <form
+      className="trip-custom-add"
+      onSubmit={(e) => {
+        e.preventDefault()
+        if (!title.trim() || !effectiveDay) return
+        onAdd(title, effectiveDay)
+        setTitle('')
+      }}
+    >
+      <label className="trip-custom-add__label" htmlFor="trip-custom-title">
+        Add your own item: a dinner reservation, a rest stop, a permit pickup.
+      </label>
+      <div className="trip-custom-add__row">
+        <input
+          id="trip-custom-title"
+          className="field-control"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+          placeholder="Dinner at the Mountain Room"
+          maxLength={120}
+        />
+        <select
+          className="field-control field-control--sm"
+          value={effectiveDay}
+          onChange={(e) => setDay(e.target.value)}
+          aria-label="Day for your item"
+        >
+          {windowDays.map((d) => (
+            <option key={d} value={d}>
+              {formatDayHeader(d)}
+            </option>
+          ))}
+        </select>
+        <button type="submit" className="btn btn--sm" disabled={!title.trim()}>
+          Add
+        </button>
+      </div>
+    </form>
+  )
+}
+
 // Between two placed rows, the estimated drive. Rendered only when both
 // sides carry coordinates and the estimate is meaningful.
 function TransitRow({ prev, cur }: { prev: SlottedItem; cur: SlottedItem }) {
@@ -64,7 +123,8 @@ function TransitRow({ prev, cur }: { prev: SlottedItem; cur: SlottedItem }) {
 }
 
 export default function Trip() {
-  const { plan, addStop, removeItem, setStopTime, moveStopToDay, clear, setDates } = useTripPlan()
+  const { plan, addStop, addCustom, removeItem, setStopTime, moveStopToDay, clear, setDates } =
+    useTripPlan()
   const [reviewOpen, setReviewOpen] = useState(false)
   const reviewRef = useRef<HTMLDivElement>(null)
 
@@ -78,6 +138,25 @@ export default function Trip() {
 
   const slotted = useMemo(() => slotPlan(plan.items), [plan])
   const windowDays = daysInWindow(plan.dates.start, plan.dates.end)
+
+  // One forecast for the whole page. Garnish, never an error: days beyond the
+  // NWS window or past the staleness ceiling simply render no line.
+  const weather = useWeather()
+  const showForecast = !weather.loading && weather.spots.length > 0 && weather.ageMs <= HIDE_AFTER_MS
+  const staleForecast = showForecast && weather.ageMs > WARN_AFTER_MS
+  const dayForecasts = useMemo(() => {
+    const lines = new Map<string, string>()
+    if (!showForecast) return lines
+    for (const [day, items] of slotted) {
+      const line = forecastLineForDay(
+        weather.spots,
+        dayForecastRegion(items.map((s) => s.item)),
+        day,
+      )
+      if (line) lines.set(day, line)
+    }
+    return lines
+  }, [slotted, weather.spots, showForecast])
 
   function toggleReview() {
     const opening = !reviewOpen
@@ -115,6 +194,23 @@ export default function Trip() {
   }
 
   const itemCount = plan.items.length
+  const [presetsOpen, setPresetsOpen] = useState(false)
+
+  // Seeding over a non-empty plan replaces it; that is a destructive tap and
+  // asks first. Empty plans seed straight away, as before.
+  function reseedItinerary(key: ItineraryKey) {
+    if (itemCount > 0) {
+      const ok = window.confirm(
+        `Replace the current plan? This clears your ${itemCount} planned ${
+          itemCount === 1 ? 'item' : 'items'
+        }.`,
+      )
+      if (!ok) return
+      clear()
+    }
+    seedItinerary(key)
+    setPresetsOpen(false)
+  }
 
   // Same clamp as /programs: end never before start, window capped at what
   // the programs API will answer. Both pages share tfg.trip.dates.
@@ -164,16 +260,18 @@ export default function Trip() {
         </div>
 
         <StepHeader n={2} title="Fill your days" />
-        {itemCount === 0 && (
+        {(itemCount === 0 || presetsOpen) && (
           <div className="trip-presets" role="group" aria-label="Start from a preset">
-            <span className="trip-presets__label">Start from a preset:</span>
+            <span className="trip-presets__label">
+              {itemCount === 0 ? 'Start from a preset:' : 'Start over from a preset:'}
+            </span>
             <div className="trip-presets__row">
               {ITINERARY_KEYS.map((key) => (
                 <button
                   type="button"
                   key={key}
                   className="trip-preset"
-                  onClick={() => seedItinerary(key)}
+                  onClick={() => reseedItinerary(key)}
                 >
                   {/* One thumbnail per day (the day's lead-region photo), so
                       the strip's length reads as the plan's length. */}
@@ -193,11 +291,16 @@ export default function Trip() {
         )}
         {itemCount > 0 && (
           <div className="trip-toolbar">
+            <Button variant="ghost" size="sm" onClick={() => setPresetsOpen((v) => !v)}>
+              {presetsOpen ? 'Hide presets' : 'Start over from a preset'}
+            </Button>
             <Button variant="ghost" size="sm" onClick={clear}>
               Clear plan
             </Button>
           </div>
         )}
+
+        <AddCustomRow windowDays={windowDays} onAdd={(title, day) => addCustom(title, { day })} />
 
         {itemCount === 0 ? (
           <div className="trip-empty">
@@ -229,6 +332,7 @@ export default function Trip() {
             // Fixed items without a slot are untimed programs: deliberately
             // all-day, not a scheduling failure.
             const overflow = items.filter((s) => s.startMin === null && !s.fixed)
+            const forecast = dayForecasts.get(day)
             return (
               <section className="trip-day" key={day} aria-label={formatDayHeader(day)}>
                 <div className="trip-day__header">
@@ -240,17 +344,21 @@ export default function Trip() {
                     ~{Math.floor(totalMin / 60)}h{totalMin % 60 ? ` ${totalMin % 60}m` : ''} planned
                   </span>
                 </div>
+                {forecast && <p className="trip-day__forecast dateline">{forecast}</p>}
                 {items.map((s, i) => {
                   const { item } = s
                   const isProgram = item.type === 'program'
+                  const isCustom = item.type === 'custom'
                   const stop = item.type === 'stop' ? getStopById(item.stopId) : undefined
                   const hike = item.type === 'hike' ? getHikeById(item.hikeId) : undefined
                   // A stop or hike id that no longer resolves means a content
                   // edit removed it; say so instead of linking to a 404.
-                  const missing = !isProgram && !stop && !hike
+                  const missing = !isProgram && !isCustom && !stop && !hike
                   const title = isProgram
                     ? item.snapshot.title
-                    : stop?.title ?? hike?.title ?? 'No longer in this edition'
+                    : isCustom
+                      ? item.title
+                      : stop?.title ?? hike?.title ?? 'No longer in this edition'
                   const link = stop ? `/stop/${stop.id}` : undefined
                   return (
                     <Fragment key={item.itemId}>
@@ -352,7 +460,12 @@ export default function Trip() {
             </p>
           )}
           {reviewOpen && itemCount > 0 && (
-            <TripReview slotted={slotted} windowDays={windowDays} filenameDate={plan.dates.start} />
+            <TripReview
+              slotted={slotted}
+              windowDays={windowDays}
+              filenameDate={plan.dates.start}
+              dayForecasts={dayForecasts}
+            />
           )}
         </div>
 
@@ -360,6 +473,8 @@ export default function Trip() {
           Times are suggestions built from each stop's time budget plus a travel buffer estimated
           from the driving distance between stops; programs keep their published times. Everything
           here works offline once added.
+          {staleForecast &&
+            ' The forecasts shown are old; they refresh the next time you open the app online.'}
         </p>
       </main>
     </GatedChrome>

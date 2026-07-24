@@ -13,6 +13,7 @@ import { useMemo, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import GatedChrome from '../components/GatedChrome'
 import ElevationProfile from '../components/ElevationProfile'
+import SeasonalNotices from '../components/SeasonalNotices'
 import Button from '../components/ui/Button'
 import { Chip } from '../components/ui/Chip'
 import PageHeader from '../components/ui/PageHeader'
@@ -228,6 +229,9 @@ export default function HikeDetail() {
             </p>
           </section>
         )}
+
+        {/* --- Seasonal notices for this trail --------------------------------- */}
+        <SeasonalNotices stopIds={hike.stopId ? [hike.stopId] : []} />
 
         {/* --- Know before you go ---------------------------------------------- */}
         {(hike.permit || hike.hazard || hike.season) && (

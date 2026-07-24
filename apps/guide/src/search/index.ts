@@ -69,13 +69,13 @@ function buildEntries(): Entry[] {
     })
   }
 
-  // The day-hike catalog. No per-hike page exists, so every hit lands on
-  // /hikes; the trailhead line is indexed at swap weight so "mist trail
-  // shuttle" style queries surface the right hike.
+  // The day-hike catalog. Each hit lands on the hike's detail page (stats,
+  // elevation profile, GPX); the trailhead line is indexed at swap weight so
+  // "mist trail shuttle" style queries surface the right hike.
   for (const h of HIKES) {
     entries.push({
       id: h.id,
-      url: '/hikes',
+      url: `/hike/${h.id}`,
       title: h.title,
       section: 'Hikes',
       eyebrow: REGION_LABEL[h.region] ?? h.region,

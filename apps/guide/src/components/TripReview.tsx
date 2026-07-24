@@ -6,6 +6,7 @@
 // add-to-calendar sheet (subscribe or one-time file).
 
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import { getHikeById, getStopById } from '../content'
 import { slottedToEventFields } from '../trip/ics'
 import type { SlottedItem } from '../trip/slotting'
@@ -18,6 +19,9 @@ type Props = {
   slotted: Map<string, SlottedItem[]>
   windowDays: string[]
   filenameDate: string
+  // Screen-only per-day forecast lines from /trip. Never exported: a forecast
+  // frozen into a calendar event would outlive its accuracy.
+  dayForecasts?: Map<string, string>
 }
 
 function formatDuration(minutes: number): string {
@@ -26,7 +30,7 @@ function formatDuration(minutes: number): string {
     : `${minutes}m`
 }
 
-export default function TripReview({ slotted, windowDays, filenameDate }: Props) {
+export default function TripReview({ slotted, windowDays, filenameDate, dayForecasts }: Props) {
   const { removeItem, setStopTime, moveStopToDay } = useTripPlan()
   const [sheetOpen, setSheetOpen] = useState(false)
 
@@ -62,6 +66,11 @@ export default function TripReview({ slotted, windowDays, filenameDate }: Props)
         return (
           <div key={day}>
             <h3 className="trip-review__day">{formatDayHeader(day)}</h3>
+            {dayForecasts?.get(day) && (
+              <p className="dateline" style={{ margin: '0 0 8px' }}>
+                {dayForecasts.get(day)}
+              </p>
+            )}
             {scheduled.map((s) => {
               const f = slottedToEventFields(s)
               if (!f) return null
@@ -97,7 +106,9 @@ export default function TripReview({ slotted, windowDays, filenameDate }: Props)
                       ? getStopById(item.stopId)?.title ?? item.stopId
                       : item.type === 'hike'
                         ? getHikeById(item.hikeId)?.title ?? item.hikeId
-                        : item.snapshot.title
+                        : item.type === 'custom'
+                          ? item.title
+                          : item.snapshot.title
                   return (
                     <div className="trip-review__actions" key={item.itemId}>
                       <span className="trip-review__event-title">{title}</span>
@@ -159,6 +170,12 @@ export default function TripReview({ slotted, windowDays, filenameDate }: Props)
         <Button disabled={eventCount === 0} onClick={() => setSheetOpen(true)}>
           Add to calendar
         </Button>
+        {eventCount > 0 && (
+          <p className="trip-review__print">
+            <Link to="/trip/print">Printable day sheet →</Link> Paper works where the park has
+            no signal.
+          </p>
+        )}
       </div>
 
       <TripCalendarSheet

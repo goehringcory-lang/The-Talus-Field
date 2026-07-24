@@ -1,9 +1,10 @@
 // Calendar-plus toggle in the stop-card title row, so every list surface
 // (region pages, the Secret Guide) can plan without opening the stop.
-// Toggling off removes the stop from every day it was planned on.
+// Toggling off removes the stop from every day it was planned on; the notice
+// bar offers an undo that restores those items with their days and times.
 
-import { announceTripAdd } from '../trip/addFeedback'
-import { useTripPlan } from '../trip/useTripPlan'
+import { announceTripAdd, announceTripRemove } from '../trip/addFeedback'
+import { restoreTripItems, useTripPlan } from '../trip/useTripPlan'
 
 type Props = {
   stopId: string
@@ -17,7 +18,9 @@ export default function AddToTripButton({ stopId, title }: Props) {
 
   function toggle() {
     if (isPlanned) {
-      for (const it of planned) removeItem(it.itemId)
+      const removed = planned
+      for (const it of removed) removeItem(it.itemId)
+      announceTripRemove(title, () => restoreTripItems(removed))
       return
     }
     addStop(stopId)

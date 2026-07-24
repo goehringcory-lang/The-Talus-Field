@@ -177,6 +177,23 @@ export function slottedToEventFields(slotted: SlottedItem): EventFields | null {
       allDay,
     }
   }
+  if (item.type === 'custom') {
+    // The user's own entry: title and note verbatim, no coord, no link.
+    return {
+      uid: `tfg-trip-${item.eventUid ?? item.itemId}@${UID_DOMAIN}`,
+      summary: item.title,
+      description:
+        (item.note ?? '') +
+        (allDay
+          ? `${item.note ? '\n\n' : ''}Unscheduled: this didn't fit the day's timeline. Pick a time in the Field Guide trip planner.`
+          : ''),
+      location: 'Yosemite National Park',
+      day: slotted.day,
+      startMin: slotted.startMin,
+      durationMin: slotted.durationMin,
+      allDay,
+    }
+  }
   const ev = item.snapshot
   return {
     uid: `tfg-trip-${item.itemId}@${UID_DOMAIN}`,

@@ -8,6 +8,7 @@
 // =============================================================================
 
 import { useMemo, useState } from 'react'
+import { Link } from 'react-router-dom'
 import GatedChrome from '../components/GatedChrome'
 import PlanTabs from '../components/PlanTabs'
 import Button from '../components/ui/Button'
@@ -35,12 +36,40 @@ import {
   type ProgramSourceT,
 } from '../programs/schema'
 import {
+  SECRET_SPOTS,
   seasonalDaysInRange,
   seasonalRangeLabel,
   seasonalToProgramEvent,
   seasonalWindowsInRange,
+  stops,
 } from '../content'
+import { directionsUrl } from '../map/kinds'
+import { haversineMiles } from '../utils/geo'
 import './Programs.css'
+
+// A program venue and a guide stop within this straight-line range are the
+// same place for navigation purposes (the range driveMinutesBetween treats as
+// one parking area). Conservative on purpose: a wrong "in this guide" link is
+// worse than none.
+const SAME_PLACE_MILES = 0.15
+const nearestStopCache = new Map<string, { id: string; title: string } | null>()
+function nearestStop(coord: [number, number]): { id: string; title: string } | null {
+  const key = coord.join(',')
+  const hit = nearestStopCache.get(key)
+  if (hit !== undefined) return hit
+  let best: { id: string; title: string } | null = null
+  let bestMiles = SAME_PLACE_MILES
+  for (const s of [...stops, ...SECRET_SPOTS]) {
+    if (!s.coord) continue
+    const mi = haversineMiles(coord, s.coord)
+    if (mi <= bestMiles) {
+      best = { id: s.id, title: s.title }
+      bestMiles = mi
+    }
+  }
+  nearestStopCache.set(key, best)
+  return best
+}
 
 function formatTime(hhmm?: string): string {
   if (!hhmm) return 'All day'
@@ -222,7 +251,8 @@ export default function Programs() {
     )
   }
 
-  function rowFooter(inPlan: boolean, onAdd: () => void, url?: string) {
+  function rowFooter(inPlan: boolean, onAdd: () => void, ev: ProgramEventT) {
+    const near = ev.coord ? nearestStop(ev.coord) : null
     return (
       <p className="program-row__body program-row__footer">
         {inPlan ? (
@@ -232,8 +262,15 @@ export default function Programs() {
         ) : (
           <Button onClick={onAdd}>Add to trip</Button>
         )}
-        {url && (
-          <a href={url} target="_blank" rel="noreferrer">
+        {ev.coord && (
+          <a href={directionsUrl(ev.coord)} target="_blank" rel="noreferrer">
+            Directions →
+          </a>
+        )}
+        {near && <Link to={`/map?stop=${near.id}`}>On the map →</Link>}
+        {near && <Link to={`/stop/${near.id}`}>In this guide: {near.title} →</Link>}
+        {ev.url && (
+          <a href={ev.url} target="_blank" rel="noreferrer">
             Details{offline ? ' (needs signal)' : ''} →
           </a>
         )}
@@ -336,7 +373,7 @@ export default function Programs() {
                     {rowAction(inPlan, ev.title, add)}
                   </summary>
                   <p className="program-row__body">{ev.description}</p>
-                  {rowFooter(inPlan, add, ev.url)}
+                  {rowFooter(inPlan, add, snapshot)}
                 </details>
               )
             })}
@@ -406,7 +443,7 @@ export default function Programs() {
                     {ev.description || 'No description published for this program.'}
                     {ev.timeEnd && `\nEnds around ${formatTime(ev.timeEnd)}.`}
                   </p>
-                  {rowFooter(inPlan, add, ev.url)}
+                  {rowFooter(inPlan, add, ev)}
                 </details>
               )
             })}

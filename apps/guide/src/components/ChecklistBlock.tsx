@@ -1,31 +1,12 @@
 import { useEffect, useState } from 'react'
 import type { EssentialTopicT } from '../content'
-
-const STORAGE_KEY = 'tfg.checklist'
-
-type CheckedMap = Record<string, true>
-
-function readChecked(): CheckedMap {
-  try {
-    const raw = window.localStorage.getItem(STORAGE_KEY)
-    if (!raw) return {}
-    const parsed: unknown = JSON.parse(raw)
-    if (parsed && typeof parsed === 'object' && !Array.isArray(parsed)) {
-      return parsed as CheckedMap
-    }
-  } catch {
-    /* corrupted or unavailable storage reads as empty */
-  }
-  return {}
-}
-
-function writeChecked(map: CheckedMap) {
-  try {
-    window.localStorage.setItem(STORAGE_KEY, JSON.stringify(map))
-  } catch {
-    /* storage full or denied — check-off just won't persist */
-  }
-}
+import {
+  CHECKLIST_STORAGE_KEY,
+  readChecked,
+  resetList,
+  writeChecked,
+  type CheckedMap,
+} from '../lib/checklist'
 
 type Props = {
   items: NonNullable<EssentialTopicT['checklist']>
@@ -37,7 +18,7 @@ export default function ChecklistBlock({ items }: Props) {
   // Stay in sync if another tab checks something off.
   useEffect(() => {
     function onStorage(e: StorageEvent) {
-      if (e.key === STORAGE_KEY) setChecked(readChecked())
+      if (e.key === CHECKLIST_STORAGE_KEY) setChecked(readChecked())
     }
     window.addEventListener('storage', onStorage)
     return () => window.removeEventListener('storage', onStorage)
@@ -59,6 +40,18 @@ export default function ChecklistBlock({ items }: Props) {
     <section className="checklist" aria-label="Packing checklist">
       <div className="checklist__count dateline">
         {done} of {items.length} packed
+        {done > 0 && (
+          <>
+            {' · '}
+            <button
+              type="button"
+              className="checklist__reset"
+              onClick={() => setChecked(resetList(items.map((i) => i.id)))}
+            >
+              Reset this list
+            </button>
+          </>
+        )}
       </div>
       <ul className="checklist__list">
         {items.map((item, i) => (
