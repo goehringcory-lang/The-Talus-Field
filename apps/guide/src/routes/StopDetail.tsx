@@ -22,6 +22,7 @@ import { directionsUrl } from '../map/kinds'
 import { announceTripAdd } from '../trip/addFeedback'
 import { useTripPlan } from '../trip/useTripPlan'
 import { formatMiles, haversineMiles } from '../utils/geo'
+import { useStopNote } from '../lib/stopNotes'
 import { useWeather } from '../weather/useWeather'
 import { HIDE_AFTER_MS, WARN_AFTER_MS } from '../weather/staleness'
 import { regionTodayLine } from '../weather/todayLine'
@@ -30,6 +31,26 @@ import { regionTodayLine } from '../weather/todayLine'
 // matter when the stop's own lot is full; beyond it the map is the tool.
 const NEARBY_AMENITY_MILES = 3
 const NEARBY_AMENITY_MAX = 3
+
+// Private per-stop notes, stored on the device only.
+function StopNotes({ stopId }: { stopId: string }) {
+  const [note, setNote] = useStopNote(stopId)
+  return (
+    <section aria-label="Your notes" className="page-section">
+      <span className="eyebrow">Your notes</span>
+      <textarea
+        className="field-control"
+        rows={3}
+        maxLength={2000}
+        value={note}
+        onChange={(e) => setNote(e.target.value)}
+        placeholder="Parking notes, timing, what you'd do differently. Stays on this device."
+        aria-label="Your notes for this stop"
+        style={{ width: '100%', resize: 'vertical' }}
+      />
+    </section>
+  )
+}
 
 // One-line forecast for the stop's region. Weather is garnish, never an
 // error: renders nothing while loading, past HIDE, or for region-less spots.
@@ -162,6 +183,8 @@ export default function StopDetail() {
             </ul>
           </section>
         )}
+
+        <StopNotes stopId={stop.id} />
 
         <PrevNextNav
           sticky
