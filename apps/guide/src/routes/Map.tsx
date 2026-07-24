@@ -36,6 +36,7 @@ import { announceTripAdd } from '../trip/addFeedback'
 import { addHikeToPlan, addStopToPlan, isHikePlanned, isStopPlanned, useTripPlan } from '../trip/useTripPlan'
 import { buildMapStyle } from '../map/style'
 import { isPackCompleted } from '../offline/useDownloads'
+import { OFFLINE_MAX_ZOOM } from '../offline/tiles'
 import { formatMiles, haversineMiles } from '../utils/geo'
 import { popupPhotoUrl } from '../utils/photo'
 import './Map.css'
@@ -450,6 +451,24 @@ export default function Map() {
     }
   }, [])
 
+  // The offline tile pack stops at z14; the online proxy serves to z16. Clamp
+  // interactive zoom while offline so airplane-mode users never pan into blank
+  // tiles. navigator.onLine is a heuristic (captive portals lie), but a wrong
+  // "online" only restores the online ceiling, it breaks nothing.
+  const [online, setOnline] = useState(() => navigator.onLine)
+  useEffect(() => {
+    const sync = () => setOnline(navigator.onLine)
+    window.addEventListener('online', sync)
+    window.addEventListener('offline', sync)
+    return () => {
+      window.removeEventListener('online', sync)
+      window.removeEventListener('offline', sync)
+    }
+  }, [])
+  useEffect(() => {
+    mapRef.current?.setMaxZoom(online ? 16 : OFFLINE_MAX_ZOOM)
+  }, [online, mapReady])
+
   const initial = useMemo(() => readUrlState(), [])
   const [tab, setTab] = useState<Tab>(initial.tab)
   // On phones the points pane docks to the bottom over the map, so it opens
@@ -681,7 +700,7 @@ export default function Map() {
       style: buildMapStyle(),
       center: [-119.55, 37.85],
       zoom: 9,
-      maxZoom: 16,
+      maxZoom: navigator.onLine ? 16 : OFFLINE_MAX_ZOOM,
       // Padded park bbox: keeps panning on the cached tile set.
       maxBounds: [
         [-120.8, 36.8],
@@ -1084,7 +1103,7 @@ export default function Map() {
               points are still on each stop's page.
             </>
           ) : mapDownloaded ? (
-            <>Map downloaded. Works offline, even in airplane mode.</>
+            <>Map downloaded. Works offline, even in airplane mode, down to trailhead scale.</>
           ) : (
             <>
               Viewing online.{' '}

@@ -241,6 +241,19 @@ export function addStopToPlan(stopId: string, day?: string) {
   })
 }
 
+/**
+ * Restore previously removed items exactly as they were (day, startTime,
+ * durationMin, eventUid all preserved, so calendar UIDs survive an undo).
+ * Items whose itemId meanwhile reappeared in the plan are skipped.
+ */
+export function restoreTripItems(items: TripItemT[]) {
+  if (items.length === 0) return
+  const p = read()
+  const fresh = items.filter((it) => !p.items.some((cur) => cur.itemId === it.itemId))
+  if (fresh.length === 0) return
+  write({ ...p, items: [...p.items, ...fresh], updatedAt: new Date().toISOString() })
+}
+
 export function isStopPlanned(stopId: string): boolean {
   return read().items.some((it) => it.type === 'stop' && it.stopId === stopId)
 }

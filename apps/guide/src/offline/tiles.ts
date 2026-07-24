@@ -30,6 +30,10 @@ const HETCH_HETCHY_BBOX: Bbox = [-119.98, 37.79, -119.75, 37.98]
 const PARK_ZOOMS = [8, 9, 10, 11, 12]
 const CORRIDOR_ZOOMS = [13, 14]
 
+// The deepest zoom the offline pack carries. The map clamps to this while the
+// device is offline so airplane-mode users never pan into blank tiles.
+export const OFFLINE_MAX_ZOOM = Math.max(...CORRIDOR_ZOOMS)
+
 export function lng2x(lng: number, z: number): number {
   return Math.floor(((lng + 180) / 360) * 2 ** z)
 }

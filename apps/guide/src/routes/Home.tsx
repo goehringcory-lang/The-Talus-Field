@@ -25,6 +25,7 @@ import {
 import { todayIso } from '../utils/date'
 import { useFavorites } from '../lib/favorites'
 import { isPackCompleted } from '../offline/useDownloads'
+import { PACK_IDS } from '../offline/manifest'
 import { useTripPlan } from '../trip/useTripPlan'
 import { readTripDates, type TripDates } from '../programs/usePrograms'
 import { relativeStamp } from '../utils/relativeStamp'
@@ -38,10 +39,6 @@ import { groupPeriodsIntoDays } from '../weather/forecastDays'
 import { useWeather } from '../weather/useWeather'
 import { HIDE_AFTER_MS, WARN_AFTER_MS } from '../weather/staleness'
 import type { WeatherSpotT } from '../weather/schema'
-
-// Pack ids mirrored from offline/manifest.ts: one photo pack per region plus
-// the map. Used only for the status line; the manager itself lives on Account.
-const PACK_IDS = [...REGIONS.map((r) => `photos-${r.id}`), 'photos-secret-guide', 'park-map']
 
 const BEFORE_YOU_GO_DISMISS_KEY = 'tfg.beforeYouGo.dismissed'
 
