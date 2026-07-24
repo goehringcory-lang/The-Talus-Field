@@ -1028,6 +1028,16 @@ ensureRoute(bootRoute)
     // flashes.
     document.getElementById("prerender-prose")?.remove();
 
+    // Same for the homepage's static above-the-fold shell (baked into
+    // index.html by scripts/gen-home-shell.mjs), which is what painted before
+    // this boot ran.
+    document.getElementById("home-shell")?.remove();
+
+    // Drop the pre-React marker so SPA navigations get the .page entry
+    // animation again. Deferred a frame so it cannot suppress the animation's
+    // own starting styles for the first render.
+    requestAnimationFrame(() => document.documentElement.removeAttribute("data-boot"));
+
     // Warm the remaining page bundles on the reader's first interaction so
     // SPA navigation is instant, without taxing first paint or lab metrics.
     const warm = () => prefetchAllModules();

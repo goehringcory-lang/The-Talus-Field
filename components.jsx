@@ -1174,7 +1174,12 @@ const WEBCAMS = [
 ];
 
 function WebcamStrip() {
-  const camCacheBust = useMemo(() => Date.now(), []);
+  // Bucket the cache-buster to five minutes instead of the exact millisecond.
+  // Per-render Date.now() made every one of these four third-party images a
+  // guaranteed cold fetch on every visit and every remount; the cameras
+  // themselves refresh on the order of minutes, so a five-minute bucket is as
+  // fresh in practice and lets the browser cache do its job in between.
+  const camCacheBust = useMemo(() => Math.floor(Date.now() / 300000), []);
   return (
     <>
       <div className="cam-grid" style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 32 }}>
