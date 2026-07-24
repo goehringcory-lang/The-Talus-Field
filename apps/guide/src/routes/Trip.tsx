@@ -23,6 +23,10 @@ import { MAX_SPAN_DAYS, readTripDates } from '../programs/usePrograms'
 import { addDaysIso, formatClock, formatDayHeader } from '../utils/date'
 import { driveMinutesBetween, slotPlan, toHhmm, type SlottedItem } from '../trip/slotting'
 import { useTripPlan } from '../trip/useTripPlan'
+import { dayForecastRegion } from '../trip/dayRegion'
+import { useWeather } from '../weather/useWeather'
+import { HIDE_AFTER_MS, WARN_AFTER_MS } from '../weather/staleness'
+import { forecastLineForDay } from '../weather/todayLine'
 import './Trip.css'
 
 function StepHeader({ n, title }: { n: number; title: string }) {
@@ -78,6 +82,25 @@ export default function Trip() {
 
   const slotted = useMemo(() => slotPlan(plan.items), [plan])
   const windowDays = daysInWindow(plan.dates.start, plan.dates.end)
+
+  // One forecast for the whole page. Garnish, never an error: days beyond the
+  // NWS window or past the staleness ceiling simply render no line.
+  const weather = useWeather()
+  const showForecast = !weather.loading && weather.spots.length > 0 && weather.ageMs <= HIDE_AFTER_MS
+  const staleForecast = showForecast && weather.ageMs > WARN_AFTER_MS
+  const dayForecasts = useMemo(() => {
+    const lines = new Map<string, string>()
+    if (!showForecast) return lines
+    for (const [day, items] of slotted) {
+      const line = forecastLineForDay(
+        weather.spots,
+        dayForecastRegion(items.map((s) => s.item)),
+        day,
+      )
+      if (line) lines.set(day, line)
+    }
+    return lines
+  }, [slotted, weather.spots, showForecast])
 
   function toggleReview() {
     const opening = !reviewOpen
@@ -229,6 +252,7 @@ export default function Trip() {
             // Fixed items without a slot are untimed programs: deliberately
             // all-day, not a scheduling failure.
             const overflow = items.filter((s) => s.startMin === null && !s.fixed)
+            const forecast = dayForecasts.get(day)
             return (
               <section className="trip-day" key={day} aria-label={formatDayHeader(day)}>
                 <div className="trip-day__header">
@@ -240,6 +264,7 @@ export default function Trip() {
                     ~{Math.floor(totalMin / 60)}h{totalMin % 60 ? ` ${totalMin % 60}m` : ''} planned
                   </span>
                 </div>
+                {forecast && <p className="trip-day__forecast dateline">{forecast}</p>}
                 {items.map((s, i) => {
                   const { item } = s
                   const isProgram = item.type === 'program'
@@ -352,7 +377,12 @@ export default function Trip() {
             </p>
           )}
           {reviewOpen && itemCount > 0 && (
-            <TripReview slotted={slotted} windowDays={windowDays} filenameDate={plan.dates.start} />
+            <TripReview
+              slotted={slotted}
+              windowDays={windowDays}
+              filenameDate={plan.dates.start}
+              dayForecasts={dayForecasts}
+            />
           )}
         </div>
 
@@ -360,6 +390,8 @@ export default function Trip() {
           Times are suggestions built from each stop's time budget plus a travel buffer estimated
           from the driving distance between stops; programs keep their published times. Everything
           here works offline once added.
+          {staleForecast &&
+            ' The forecasts shown are old; they refresh the next time you open the app online.'}
         </p>
       </main>
     </GatedChrome>

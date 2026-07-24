@@ -115,6 +115,10 @@
   color: var(--ink-3);
 }
 
+.trip-day__forecast {
+  margin: 6px 2px 0;
+}
+
 .trip-item {
   display: grid;
   grid-template-columns: 96px 1fr auto;

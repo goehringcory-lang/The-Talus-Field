@@ -18,6 +18,9 @@ type Props = {
   slotted: Map<string, SlottedItem[]>
   windowDays: string[]
   filenameDate: string
+  // Screen-only per-day forecast lines from /trip. Never exported: a forecast
+  // frozen into a calendar event would outlive its accuracy.
+  dayForecasts?: Map<string, string>
 }
 
 function formatDuration(minutes: number): string {
@@ -26,7 +29,7 @@ function formatDuration(minutes: number): string {
     : `${minutes}m`
 }
 
-export default function TripReview({ slotted, windowDays, filenameDate }: Props) {
+export default function TripReview({ slotted, windowDays, filenameDate, dayForecasts }: Props) {
   const { removeItem, setStopTime, moveStopToDay } = useTripPlan()
   const [sheetOpen, setSheetOpen] = useState(false)
 
@@ -62,6 +65,11 @@ export default function TripReview({ slotted, windowDays, filenameDate }: Props)
         return (
           <div key={day}>
             <h3 className="trip-review__day">{formatDayHeader(day)}</h3>
+            {dayForecasts?.get(day) && (
+              <p className="dateline" style={{ margin: '0 0 8px' }}>
+                {dayForecasts.get(day)}
+              </p>
+            )}
             {scheduled.map((s) => {
               const f = slottedToEventFields(s)
               if (!f) return null

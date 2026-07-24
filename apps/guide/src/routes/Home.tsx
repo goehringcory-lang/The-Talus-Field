@@ -35,10 +35,9 @@ import UpdatedStamp from '../components/UpdatedStamp'
 import Button from '../components/ui/Button'
 import Callout from '../components/ui/Callout'
 import PageHeader from '../components/ui/PageHeader'
-import { groupPeriodsIntoDays } from '../weather/forecastDays'
 import { useWeather } from '../weather/useWeather'
 import { HIDE_AFTER_MS, WARN_AFTER_MS } from '../weather/staleness'
-import type { WeatherSpotT } from '../weather/schema'
+import { regionTodayLine } from '../weather/todayLine'
 
 const BEFORE_YOU_GO_DISMISS_KEY = 'tfg.beforeYouGo.dismissed'
 
@@ -121,17 +120,6 @@ function tripDatesLabel(dates: TripDates): string {
     return `${fmt(dates.start)}–${endDay}`
   }
   return `${fmt(dates.start)} – ${fmt(dates.end)}`
-}
-
-// One-line current forecast for a region index row. Labeled with the weekday
-// rather than "Today": between WARN_AFTER and HIDE_AFTER the leading day can
-// legitimately be yesterday, and the label should not lie about it.
-function regionTodayLine(spot: WeatherSpotT | undefined): string | null {
-  if (!spot) return null
-  const day = groupPeriodsIntoDays(spot.periods, 1)[0]
-  if (!day) return null
-  const rain = day.precipChance && day.precipChance >= 20 ? ` · ${day.precipChance}% rain` : ''
-  return `${day.label} ${day.hiF ?? '–'}°/${day.loF ?? '–'}° ${day.shortForecast.toLowerCase()}${rain}`
 }
 
 // Directory entry for a tool or reference surface: linked title, one-line
