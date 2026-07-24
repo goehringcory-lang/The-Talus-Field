@@ -1,5 +1,4 @@
 /* global React, Header, Footer, ArticleCard, Placeholder, NewsletterInline,
-   WebcamStrip,
    MotifMountains, MotifSun, MotifTrees, useNewsletterImpression, isSubscribed */
 const { useMemo, useState } = React;
 
@@ -64,6 +63,143 @@ function HomeHeroCapture({ tripMonth }) {
       </form>
     </div>
   );
+}
+
+// ============================================================
+// Hero triage doors. One row per trip stage, above the capture: the visitor
+// self-selects and routes themselves before the page asks for anything. Keys
+// double as go() route keys, except "start-here", which scrolls to the
+// answers row below. Clicks fire cta_click{location: "home_door", target}.
+// ============================================================
+const HERO_DOORS = [
+  { key: "start-here", href: "#start-here", q: "First trip?", a: "Four answers before you book anything" },
+  { key: "itineraries", href: "/itineraries", q: "Dates set?", a: "Itineraries, the map, and the checklist" },
+  { key: "now", href: "/now", q: "There now, or going soon?", a: "One page, the whole park, right now" },
+];
+
+// ============================================================
+// The hero: everything above the fold. Split out of HomePage as its own
+// component because it is ALSO rendered offline into the static shell baked
+// into index.html (scripts/gen-home-shell.mjs), which is what paints before
+// any JavaScript runs. Two rules follow from that:
+//
+//   1. Its first render must not depend on anything the generator cannot
+//      supply: no fetches, no storage reads beyond isSubscribed() (which
+//      reads false in the generator, the correct first-visit state), no
+//      route state beyond the `go` handler, which the generator stubs.
+//   2. Nothing date-derived may be baked in. The generator blanks the two
+//      date-derived slots below (the issue detail here, the dateline in the
+//      masthead) to a stable-height placeholder and lets React fill them on
+//      boot; index.html is cached hard, so a baked month name would go stale.
+//      The `data-shell-blank` attribute marks them for the generator, which
+//      fails loudly if a marked slot disappears.
+//
+// Keeping the markup identical between the shell and this component is what
+// keeps CLS at zero when React replaces the shell.
+// ============================================================
+function HomeHero({ tripMonth, go, onStartHere }) {
+  return (
+    <section className="hero">
+      <div className="wrap hero__grid">
+        <div>
+          <div className="hero__kicker">
+            <span className="dot"></span>
+            <span data-shell-blank="issue">
+              {(window.SITE && window.SITE.issue) || "Vol. III"}
+              {window.SITE && window.SITE.issueDetail ? ` · ${window.SITE.issueDetail}` : ""}
+            </span>
+          </div>
+          <h1>Yosemite, from the inside.</h1>
+          <p className="hero__dek">
+            Live conditions, real itineraries, and a map of every turnout, kept by a naturalist who has lived here twenty seasons. Essays for when the logistics are done.
+          </p>
+          {/* July 2026 user-journey pass: the hero leads with triage, not
+              capture. Three self-selection doors, one per trip stage, so a
+              task-mode planner routes themselves before the page asks for
+              anything; the capture follows with the letter-forward promise.
+              This deliberately supersedes the hero_actions A/B result (the
+              capture-forward hero won on raw signups); the doors are judged
+              on second-surface reach via cta_click{location: home_door}. */}
+          <nav className="hero-doors" aria-label="Start from where you are">
+            {HERO_DOORS.map((d) => (
+              <a
+                key={d.key}
+                className="hero-door"
+                href={d.href}
+                onClick={(e) => {
+                  e.preventDefault();
+                  if (window.track) window.track("cta_click", { location: "home_door", target: d.key });
+                  if (d.key === "start-here") onStartHere();
+                  else go(d.key);
+                }}
+              >
+                <span className="hero-door__q">{d.q}</span>
+                <span className="hero-door__a">{d.a}</span>
+                <span className="hero-door__arrow" aria-hidden="true">→</span>
+              </a>
+            ))}
+          </nav>
+          <HomeHeroCapture tripMonth={tripMonth} />
+        </div>
+        <Placeholder
+          caption={"El Capitan and Bridalveil at sunset"}
+          credit={"Rodrigo Soares / Unsplash"}
+          image="img/valley-view-sunset-rodrigo-soares.jpg"
+          tag="PLATE I"
+          size="lg"
+          natural
+          eager
+          motif={<MotifMountains />}
+        />
+      </div>
+    </section>
+  );
+}
+
+// ============================================================
+// Below-the-fold mount gate. Everything under the Start Here row renders only
+// once it is within 600px of the viewport. The homepage's problem was never
+// bytes, it was main-thread time: the July 2026 measurement had the homepage
+// at ~1.7s TBT against ~150ms on an article page, from mounting six article
+// cards, four section tiles, five Go Deeper surfaces, and their images in one
+// synchronous pass. Gating the mount moves that work off the critical path.
+//
+// Fails open: no IntersectionObserver (or no ref) renders immediately, so a
+// browser without it sees the whole page as before. The placeholder reserves
+// `minHeight` and the 600px margin means the swap happens below the viewport,
+// so nothing visible shifts. `render` is a function, not children, so the
+// deferred subtree is not even constructed until it is needed.
+//
+// Deliberately NOT applied to the hero, the Bulletin band, the month planner,
+// or the Start Here row: those are above the fold or are the target of the
+// first hero door, which scrolls to #start-here.
+// ============================================================
+function DeferredSection({ minHeight, render }) {
+  const [shown, setShown] = React.useState(false);
+  const ref = React.useRef(null);
+
+  React.useEffect(() => {
+    if (shown) return undefined;
+    const el = ref.current;
+    if (!el || typeof IntersectionObserver === "undefined") {
+      setShown(true);
+      return undefined;
+    }
+    const io = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((e) => e.isIntersecting)) {
+          setShown(true);
+          io.disconnect();
+        }
+      },
+      { rootMargin: "600px 0px" }
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, [shown]);
+
+  if (shown) return render();
+  return <div ref={ref} aria-hidden="true" style={{ minHeight }} />;
 }
 
 // ============================================================
@@ -259,18 +395,6 @@ function HomeMonthPlanner({ month, onSelect, go }) {
   );
 }
 
-// ============================================================
-// Hero triage doors. One row per trip stage, above the capture: the visitor
-// self-selects and routes themselves before the page asks for anything. Keys
-// double as go() route keys, except "start-here", which scrolls to the
-// answers row below. Clicks fire cta_click{location: "home_door", target}.
-// ============================================================
-const HERO_DOORS = [
-  { key: "start-here", href: "#start-here", q: "First trip?", a: "Four answers before you book anything" },
-  { key: "itineraries", href: "/itineraries", q: "Dates set?", a: "Itineraries, the map, and the checklist" },
-  { key: "now", href: "/now", q: "There now, or going soon?", a: "One page, the whole park, right now" },
-];
-
 // Section plates for the By Section grid, keyed by category slug. Reuses
 // images already in the library (and their data.js credits); a slug with no
 // entry renders its tile text-only, same as before.
@@ -315,92 +439,27 @@ function HomePage({ go }) {
     if (window.track) window.track("trip_month_select", { month: key || "cleared" });
   };
 
-  const scrollToStartHere = (e) => {
-    e.preventDefault();
+  const scrollToStartHere = () => {
     document.getElementById("start-here")?.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
-  // The live webcam strip (shared WebcamStrip in components.jsx, also on
-  // /conditions). Stays below "Start Here" (see call site): its four links
-  // leave the site, so it must not pull readers away before the answers row
-  // and the capture. The Bulletin teaser that used to render here moved up
-  // under the utility row in the July 2026 user-journey pass.
-  const parkThisWeekSection = (
-    <section className="wrap" style={{ paddingTop: 64 }}>
-      <div className="section-head">
-        <h2>From the park, right now</h2>
-        <a href="/conditions" onClick={(e) => { e.preventDefault(); go("conditions"); }}>Conditions and webcams →</a>
-      </div>
-      <WebcamStrip />
-    </section>
-  );
-
   return (
     <div className="page">
-      {/* Hero */}
-      <section className="hero">
-        <div className="wrap hero__grid">
-          <div>
-            <div className="hero__kicker">
-              <span className="dot"></span>
-              <span>{(window.SITE && window.SITE.issue) || "Vol. III"}{window.SITE && window.SITE.issueDetail ? ` · ${window.SITE.issueDetail}` : ""}</span>
-            </div>
-            <h1>Yosemite, from the inside.</h1>
-            <p className="hero__dek">
-              Live conditions, real itineraries, and a map of every turnout, kept by a naturalist who has lived here twenty seasons. Essays for when the logistics are done.
-            </p>
-            {/* July 2026 user-journey pass: the hero leads with triage, not
-                capture. Three self-selection doors, one per trip stage, so a
-                task-mode planner routes themselves before the page asks for
-                anything; the capture follows with the letter-forward promise.
-                This deliberately supersedes the hero_actions A/B result (the
-                capture-forward hero won on raw signups); the doors are judged
-                on second-surface reach via cta_click{location: home_door}. */}
-            <nav className="hero-doors" aria-label="Start from where you are">
-              {HERO_DOORS.map((d) => (
-                <a
-                  key={d.key}
-                  className="hero-door"
-                  href={d.href}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    if (window.track) window.track("cta_click", { location: "home_door", target: d.key });
-                    if (d.key === "start-here") scrollToStartHere(e);
-                    else go(d.key);
-                  }}
-                >
-                  <span className="hero-door__q">{d.q}</span>
-                  <span className="hero-door__a">{d.a}</span>
-                  <span className="hero-door__arrow" aria-hidden="true">→</span>
-                </a>
-              ))}
-            </nav>
-            <HomeHeroCapture tripMonth={tripMonth} />
-          </div>
-          <Placeholder
-            caption={"El Capitan and Bridalveil at sunset"}
-            credit={"Rodrigo Soares / Unsplash"}
-            image="img/valley-view-sunset-rodrigo-soares.jpg"
-            tag="PLATE I"
-            size="lg"
-            natural
-            eager
-            motif={<MotifMountains />}
-          />
-        </div>
-      </section>
+      <HomeHero tripMonth={tripMonth} go={go} onStartHere={scrollToStartHere} />
 
-      {/* Utility row: the four working tools, one line, directly under the
-          hero. Text links, not cards; the hero capture stays the main event. */}
+      {/* Utility row: the working tools that have no other home on this page,
+          one line, directly under the hero. Text links, not cards; the hero
+          capture stays the main event. Trimmed in the July 2026 repetition
+          pass from five links to three: Itineraries lives in the second hero
+          door and the Map has both the masthead CTA and the Go Deeper band,
+          so listing them here was the third mention of each. */}
       <section className="wrap" style={{ paddingTop: 28 }}>
         <nav className="home-utility" aria-label="Trip tools">
           <span className="home-utility__label">Plan your trip</span>
           {[
-            ["map", "/map", "The Map"],
-            ["itineraries", "/itineraries", "Itineraries"],
             ["planning", "/planning", "Planning Guide"],
             ["checklist", "/checklist", "Checklist"],
-            ["conditions", "/conditions", "Conditions"],
+            ["conditions", "/conditions", "Conditions and webcams"],
           ].map(([key, href, label], i) => (
             <React.Fragment key={key}>
               {i > 0 && <span className="home-utility__sep" aria-hidden="true">·</span>}
@@ -417,28 +476,31 @@ function HomePage({ go }) {
         </nav>
       </section>
 
-      <HomeMonthPlanner month={tripMonth} onSelect={selectTripMonth} go={go} />
-
       <ResumeReading go={go} />
 
+      {/* The Bulletin band carries the page's recency proof, so it sits in the
+          first two viewports, ahead of the month planner. (Before the July 2026
+          repetition pass the code had it below the planner while the comment on
+          HomeBulletin claimed otherwise.) */}
       <HomeBulletin go={go} />
+
+      <HomeMonthPlanner month={tripMonth} onSelect={selectTripMonth} go={go} />
 
       {/* Start Here — the answers row. Curated onboarding for first-time
           visitors, framed as the questions everyone asks: task mode clicks
-          questions, and the articles underneath do the depth conversion. */}
+          questions, and the articles underneath do the depth conversion.
+          Mounts eagerly, unlike everything below it: the first hero door
+          scrolls to this section, so it has to exist before the click. */}
       {startHere.length > 0 && (
         <section id="start-here" className="wrap" style={{ paddingTop: 72, scrollMarginTop: 24 }}>
           <div style={{ marginBottom: 32 }}>
             <div className="eyebrow eyebrow--moss" style={{ marginBottom: 14 }}>For first-time visitors</div>
-            <h2 style={{ fontFamily: "var(--display)", fontSize: 44, lineHeight: 1.05, marginBottom: 12, fontWeight: 500, letterSpacing: "-0.01em", textTransform: "none" }}>Start here.</h2>
-            <p style={{ fontFamily: "var(--display)", fontStyle: "italic", fontSize: 19, color: "var(--ink-2)", lineHeight: 1.5, maxWidth: "60ch" }}>
+            <h2 className="home-section__title">Start here.</h2>
+            <p className="home-section__dek">
               Four answers before you book anything.
             </p>
           </div>
-          <div
-            className="start-here-grid"
-            style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 32, rowGap: 40 }}
-          >
+          <div className="start-here-grid">
             {startHere.map(a => (
               <div key={a.slug} className="start-q">
                 {START_HERE_QUESTIONS[a.slug] && (
@@ -451,68 +513,71 @@ function HomePage({ go }) {
         </section>
       )}
 
-      {/* The webcams sit below Start Here so the four off-site links do not
-          pull readers away before they reach the answers row and the capture.
-          Was A/B tested (home_webcams); this position won and is now the
-          default. */}
-      {parkThisWeekSection}
+      {/* The live webcam strip that used to sit here was removed in the July
+          2026 repetition pass: it was the third "what's happening now" surface
+          on the page (after the masthead conditions row and the Bulletin band)
+          and the only one whose four links leave the site. It still renders on
+          /conditions, which the utility row above links to. */}
 
       {/* Latest Entries — recent articles feed. Named to stay clear of the
           Park Bulletin teaser above. */}
-      <section className="wrap" style={{ paddingTop: 80 }}>
-        <div className="section-head">
-          <h2>Latest Entries</h2>
-          <a href="/articles" onClick={(e) => { e.preventDefault(); go("articles"); }}>All entries →</a>
-        </div>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 36, rowGap: 48 }}>
-          {recent.map(a => <ArticleCard key={a.slug} article={a} go={go} />)}
-        </div>
-      </section>
+      <DeferredSection
+        minHeight={880}
+        render={() => (
+          <section className="wrap" style={{ paddingTop: 80 }}>
+            <div className="section-head">
+              <h2>Latest Entries</h2>
+              <a href="/articles" onClick={(e) => { e.preventDefault(); go("articles"); }}>All entries →</a>
+            </div>
+            <div className="home-cards">
+              {recent.map(a => <ArticleCard key={a.slug} article={a} go={go} />)}
+            </div>
+          </section>
+        )}
+      />
 
       {/* Sections row */}
-      <section className="wrap" style={{ paddingTop: 80 }}>
-        <div className="section-head">
-          <h2>By Section</h2>
-          <a href="/articles" onClick={(e) => { e.preventDefault(); go("articles"); }}>Everything →</a>
-        </div>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 0, borderTop: "1px solid var(--ink)", borderLeft: "1px solid var(--ink)" }}>
-          {window.CATEGORIES.map((c, i) => {
-            const count = window.byCategory(c.slug).length;
-            const plate = SECTION_IMAGES[c.slug];
-            return (
-              <a
-                key={c.slug}
-                href={`/section/${c.slug}`}
-                onClick={(e) => { e.preventDefault(); go(`cat:${c.slug}`); }}
-                style={{
-                  textDecoration: "none",
-                  color: "inherit",
-                  borderRight: "1px solid var(--ink)",
-                  borderBottom: "1px solid var(--ink)",
-                  padding: 28,
-                  display: "block",
-                }}
-              >
-                {plate && (
-                  <Placeholder
-                    caption={plate.alt}
-                    image={plate.image}
-                    credit={plate.credit}
-                    tag={c.label.split(" ")[0]}
-                    size="sm"
-                    sizes="(max-width: 720px) 50vw, 280px"
-                    style={{ aspectRatio: "3/2", marginBottom: 20 }}
-                  />
-                )}
-                <div className="mono" style={{ color: "var(--moss)", fontWeight: 700 }}>№ 0{i + 1}</div>
-                <div style={{ fontFamily: "var(--display)", fontSize: 26, fontWeight: 500, margin: "16px 0 10px", letterSpacing: "-0.005em", lineHeight: 1.1 }}>{c.label}</div>
-                <div style={{ fontFamily: "var(--serif)", fontStyle: "italic", fontSize: 15, color: "var(--ink-2)", lineHeight: 1.45, marginBottom: 20 }}>{c.blurb}</div>
-                <div style={{ fontFamily: "var(--sans)", fontSize: 10, textTransform: "uppercase", letterSpacing: "0.18em", color: "var(--ink-3)", fontWeight: 700 }}>{count} {count === 1 ? "Entry" : "Entries"} →</div>
-              </a>
-            );
-          })}
-        </div>
-      </section>
+      <DeferredSection
+        minHeight={720}
+        render={() => (
+          <section className="wrap" style={{ paddingTop: 80 }}>
+            <div className="section-head">
+              <h2>By Section</h2>
+              <a href="/articles" onClick={(e) => { e.preventDefault(); go("articles"); }}>Everything →</a>
+            </div>
+            <div className="home-sections">
+              {window.CATEGORIES.map((c, i) => {
+                const count = window.byCategory(c.slug).length;
+                const plate = SECTION_IMAGES[c.slug];
+                return (
+                  <a
+                    key={c.slug}
+                    className="home-section-tile"
+                    href={`/section/${c.slug}`}
+                    onClick={(e) => { e.preventDefault(); go(`cat:${c.slug}`); }}
+                  >
+                    {plate && (
+                      <Placeholder
+                        caption={plate.alt}
+                        image={plate.image}
+                        credit={plate.credit}
+                        tag={c.label.split(" ")[0]}
+                        size="sm"
+                        sizes="(max-width: 720px) 50vw, 280px"
+                        style={{ aspectRatio: "3/2", marginBottom: 20 }}
+                      />
+                    )}
+                    <div className="mono home-section-tile__num">№ 0{i + 1}</div>
+                    <div className="home-section-tile__label">{c.label}</div>
+                    <div className="home-section-tile__blurb">{c.blurb}</div>
+                    <div className="home-section-tile__count">{count} {count === 1 ? "Entry" : "Entries"} →</div>
+                  </a>
+                );
+              })}
+            </div>
+          </section>
+        )}
+      />
 
       {/* Go Deeper — the whole ways-to-take-it-further ladder in one labeled
           section instead of three identical stacked bands. Ordered by
@@ -520,172 +585,170 @@ function HomePage({ go }) {
           the three quieter paths (free hub, paid consult, disclosed gear
           lists). Every offer is priced or labeled plainly; nothing is
           disguised as editorial. */}
-      <section className="wrap" style={{ paddingTop: 80 }}>
-        <div className="section-head">
-          <h2>Go Deeper</h2>
-        </div>
+      <DeferredSection
+        minHeight={1200}
+        render={() => (
+          <section className="wrap" style={{ paddingTop: 80 }}>
+            <div className="section-head">
+              <h2>Go Deeper</h2>
+            </div>
 
-        {/* The Map: free, the softest on-ramp, so it leads. The tinted ground
-            and moss spine treatment was A/B tested (callout_bands) and won. */}
-        <a
-          href="/map"
-          onClick={(e) => { e.preventDefault(); go("map"); }}
-          style={{
-            display: "block",
-            textDecoration: "none",
-            color: "inherit",
-            border: "1px solid var(--ink)",
-            borderLeft: "6px solid var(--moss)",
-            background: "var(--paper-2)",
-            padding: "36px 32px",
-          }}
-        >
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1.6fr 0.9fr", gap: 40, alignItems: "center" }}>
-            <div>
-              <div className="eyebrow eyebrow--moss" style={{ marginBottom: 12 }}>The Map · Free</div>
-              <div style={{ fontFamily: "var(--display)", fontSize: 36, fontWeight: 400, lineHeight: 1.1, letterSpacing: "-0.01em" }}>Yosemite, on a map.</div>
-            </div>
-            <div>
-              <p style={{ fontFamily: "var(--serif)", fontSize: 19, lineHeight: 1.5, color: "var(--ink-2)", margin: 0, marginBottom: 16 }}>
-                Every vista, trailhead, parking turnout, and meal in one interactive map. A free newsletter signup opens it: tap pins to assemble a route, or load a suggested one-, two-, or three-day trip.
-              </p>
-              <div className="mono" style={{ color: "var(--moss)", fontWeight: 700, fontSize: 11, textTransform: "uppercase", letterSpacing: "0.18em" }}>Open the map →</div>
-            </div>
-            <Placeholder
-              caption="NPS map of Yosemite showing park roads and campgrounds"
-              image="img/yosemite-park-map.jpg"
-              credit="NPS"
-              tag="MAP"
-              size="sm"
-              sizes="(max-width: 720px) 100vw, 300px"
-              style={{ aspectRatio: "4/3" }}
-            />
-          </div>
-        </a>
-
-        {/* The Field Guide: the paid product, on sale, in the inverted-ink
-            plate treatment so the one purchase ask on the page reads as a
-            deliberate object, not a third identical band. Price is stated
-            plainly per house style; the live number renders on /guide. */}
-        <a
-          className="band-guide"
-          href="/guide"
-          onClick={(e) => {
-            e.preventDefault();
-            if (window.track) window.track("guide_cta_click", { location: "home_band" });
-            go("guide");
-          }}
-        >
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1.6fr 0.9fr", gap: 40, alignItems: "center" }}>
-            <div>
-              <div className="band-guide__eyebrow">The Field Guide · $19</div>
-              <div className="band-guide__title">The park, in your pocket.</div>
-            </div>
-            <div>
-              <p className="band-guide__body">
-                The app version of this journal: 50-plus stops with parking and timing notes, offline maps, a trip planner, and the secret guide. Works with no signal, which is most of the park. One purchase, eighteen months of access.
-              </p>
-              <div className="mono band-guide__cta">See the Field Guide →</div>
-            </div>
-            <Placeholder
-              caption="The Milky Way over Half Dome on a moonless night, far from any signal"
-              image="img/half-dome-starry-night-casey-horner.jpg"
-              credit="Casey Horner / Unsplash"
-              tag="PLATE II"
-              size="sm"
-              sizes="(max-width: 720px) 100vw, 300px"
-              style={{ aspectRatio: "4/3" }}
-            />
-          </div>
-        </a>
-
-        {/* The three quieter paths, one row: the free archive hub, the capped
-            consult, and the disclosed gear lists. Compact cards, plain labels. */}
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 24, marginTop: 24 }}>
-          {[
-            {
-              key: "planning",
-              eyebrow: "The Planning Guide · Free",
-              title: "Yosemite, planned properly.",
-              blurb: "The full archive organized for a real trip: gateway towns, reservations, Half Dome, smoke season, in the order you'll need them.",
-              cta: "Read the guide →",
-            },
-            {
-              key: "consult",
-              eyebrow: "Field Consult · $95",
-              title: "Your plan, thirty minutes.",
-              blurb: "One on one with a naturalist who lives in the park: your dates, your group, your plan taken apart and put back together. Six a month.",
-              cta: "Book a consult →",
-            },
-            {
-              key: "kit",
-              eyebrow: "The Kit",
-              title: "What I carry.",
-              blurb: "Three lists for three trips: day pack, overnight pack, car kit. The actual gear, with the actual reasons, and a plain disclosure.",
-              cta: "See the kit →",
-            },
-          ].map((p) => (
+            {/* The Map: free, the softest on-ramp, so it leads. The tinted
+                ground and moss spine treatment was A/B tested (callout_bands)
+                and won. This is the homepage's one persuasive pitch for the
+                map; the masthead CTA is the navigational one. */}
             <a
-              key={p.key}
-              href={`/${p.key}`}
+              className="band-map"
+              href="/map"
               onClick={(e) => {
                 e.preventDefault();
-                if (window.track) window.track("cta_click", { location: "home_path", target: p.key });
-                go(p.key);
-              }}
-              style={{
-                display: "block",
-                textDecoration: "none",
-                color: "inherit",
-                border: "1px solid var(--ink)",
-                padding: 28,
+                if (window.track) window.track("cta_click", { location: "home_band", target: "map" });
+                go("map");
               }}
             >
-              <div className="eyebrow eyebrow--moss" style={{ marginBottom: 12 }}>{p.eyebrow}</div>
-              <div style={{ fontFamily: "var(--display)", fontSize: 26, fontWeight: 500, lineHeight: 1.1, letterSpacing: "-0.005em", marginBottom: 10 }}>{p.title}</div>
-              <p style={{ fontFamily: "var(--serif)", fontStyle: "italic", fontSize: 15, color: "var(--ink-2)", lineHeight: 1.45, margin: "0 0 18px" }}>{p.blurb}</p>
-              <div className="mono" style={{ color: "var(--moss)", fontWeight: 700, fontSize: 11, textTransform: "uppercase", letterSpacing: "0.18em" }}>{p.cta}</div>
+              <div className="home-band__grid">
+                <div>
+                  <div className="eyebrow eyebrow--moss" style={{ marginBottom: 12 }}>The Map · Free</div>
+                  <div className="band-map__title">Yosemite, on a map.</div>
+                </div>
+                <div>
+                  <p className="band-map__body">
+                    Every vista, trailhead, parking turnout, and meal in one interactive map. The same free signup as the Sunday letter opens it: tap pins to assemble a route, or load a suggested one-, two-, or three-day trip.
+                  </p>
+                  <div className="mono band-map__cta">Open the map →</div>
+                </div>
+                <Placeholder
+                  caption="NPS map of Yosemite showing park roads and campgrounds"
+                  image="img/yosemite-park-map.jpg"
+                  credit="NPS"
+                  tag="MAP"
+                  size="sm"
+                  sizes="(max-width: 720px) 100vw, 300px"
+                  style={{ aspectRatio: "4/3" }}
+                />
+              </div>
             </a>
-          ))}
-        </div>
-      </section>
+
+            {/* The Field Guide: the paid product, on sale, in the inverted-ink
+                plate treatment so the one purchase ask on the page reads as a
+                deliberate object, not a third identical band. Price is stated
+                plainly per house style; the live number renders on /guide. */}
+            <a
+              className="band-guide"
+              href="/guide"
+              onClick={(e) => {
+                e.preventDefault();
+                if (window.track) window.track("guide_cta_click", { location: "home_band" });
+                go("guide");
+              }}
+            >
+              <div className="home-band__grid">
+                <div>
+                  <div className="band-guide__eyebrow">The Field Guide · $19</div>
+                  <div className="band-guide__title">The park, in your pocket.</div>
+                </div>
+                <div>
+                  <p className="band-guide__body">
+                    The app version of this journal: 50-plus stops with parking and timing notes, offline maps, a trip planner, and the secret guide. Works with no signal, which is most of the park. One purchase, eighteen months of access.
+                  </p>
+                  <div className="mono band-guide__cta">See the Field Guide →</div>
+                </div>
+                <Placeholder
+                  caption="The Milky Way over Half Dome on a moonless night, far from any signal"
+                  image="img/half-dome-starry-night-casey-horner.jpg"
+                  credit="Casey Horner / Unsplash"
+                  tag="PLATE II"
+                  size="sm"
+                  sizes="(max-width: 720px) 100vw, 300px"
+                  style={{ aspectRatio: "4/3" }}
+                />
+              </div>
+            </a>
+
+            {/* The three quieter paths, one row: the free archive hub, the
+                capped consult, and the disclosed gear lists. Compact cards,
+                plain labels. */}
+            <div className="home-paths">
+              {[
+                {
+                  key: "planning",
+                  eyebrow: "The Planning Guide · Free",
+                  title: "Yosemite, planned properly.",
+                  blurb: "The full archive organized for a real trip: gateway towns, reservations, Half Dome, smoke season, in the order you'll need them.",
+                  cta: "Read the guide →",
+                },
+                {
+                  key: "consult",
+                  eyebrow: "Field Consult · $95",
+                  title: "Your plan, thirty minutes.",
+                  blurb: "One on one with a naturalist who lives in the park: your dates, your group, your plan taken apart and put back together. Six a month.",
+                  cta: "Book a consult →",
+                },
+                {
+                  key: "kit",
+                  eyebrow: "The Kit",
+                  title: "What I carry.",
+                  blurb: "Three lists for three trips: day pack, overnight pack, car kit. The actual gear, with the actual reasons, and a plain disclosure.",
+                  cta: "See the kit →",
+                },
+              ].map((p) => (
+                <a
+                  key={p.key}
+                  className="home-path"
+                  href={`/${p.key}`}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    if (window.track) window.track("cta_click", { location: "home_path", target: p.key });
+                    go(p.key);
+                  }}
+                >
+                  <div className="eyebrow eyebrow--moss" style={{ marginBottom: 12 }}>{p.eyebrow}</div>
+                  <div className="home-path__title">{p.title}</div>
+                  <p className="home-path__blurb">{p.blurb}</p>
+                  <div className="mono home-path__cta">{p.cta}</div>
+                </a>
+              ))}
+            </div>
+          </section>
+        )}
+      />
 
       {/* About + Newsletter strip. The plate is the editor's own frame of the
           Tuolumne high country, which is the claim the copy makes. */}
-      <section className="wrap" style={{ paddingTop: 96 }}>
-        <div style={{ display: "grid", gridTemplateColumns: "0.75fr 1.15fr 1.1fr", gap: 44, alignItems: "center", borderTop: "2px solid var(--ink)", borderBottom: "2px solid var(--ink)", padding: "56px 0" }}>
-          <Placeholder
-            caption="The Tuolumne high country, photographed by the editor"
-            image="img/tuolumne-high-country-cory-goehring.jpg"
-            credit="Cory Goehring"
-            tag="PLATE III"
-            size="sm"
-            sizes="(max-width: 720px) 100vw, 340px"
-            style={{ aspectRatio: "4/5" }}
-          />
-          <div>
-            <div className="eyebrow eyebrow--moss" style={{ marginBottom: 14 }}>From the Editor</div>
-            <h2 style={{ fontFamily: "var(--display)", fontSize: 38, marginBottom: 18, fontWeight: 400, lineHeight: 1.1, letterSpacing: "-0.01em", textTransform: "none" }}>The same waterfall, again, in a different year.</h2>
-            <p style={{ fontFamily: "var(--display)", fontStyle: "italic", fontSize: 19, color: "var(--ink-2)", lineHeight: 1.5, marginBottom: 24 }}>
-              The park looks like a single place from a postcard and like four different ones from a parking lot. This is a record of looking at it slowly.
-            </p>
-            <a className="btn btn--ghost" href="/about" onClick={(e) => { e.preventDefault(); go("about"); }}>
-              About the editor →
-            </a>
-            <p style={{ fontFamily: "var(--sans)", fontSize: 13, color: "var(--ink-3)", lineHeight: 1.6, margin: "20px 0 0" }}>
-              The whole park fits on one page.{" "}
-              <a
-                href="/now"
-                onClick={(e) => { e.preventDefault(); if (window.track) window.track("cta_click", { location: "home_strip_now" }); go("now"); }}
-                style={{ color: "var(--ink-2)" }}
-              >The Park Bulletin is current →</a>
-            </p>
-          </div>
-          <NewsletterInline location="home_strip" tag="home" />
-        </div>
-      </section>
+      <DeferredSection
+        minHeight={620}
+        render={() => (
+          <section className="wrap" style={{ paddingTop: 96 }}>
+            <div className="home-editor">
+              <Placeholder
+                caption="The Tuolumne high country, photographed by the editor"
+                image="img/tuolumne-high-country-cory-goehring.jpg"
+                credit="Cory Goehring"
+                tag="PLATE III"
+                size="sm"
+                sizes="(max-width: 720px) 100vw, 340px"
+                style={{ aspectRatio: "4/5" }}
+              />
+              <div>
+                <div className="eyebrow eyebrow--moss" style={{ marginBottom: 14 }}>From the Editor</div>
+                <h2 className="home-editor__title">The same waterfall, again, in a different year.</h2>
+                <p className="home-editor__dek">
+                  The park looks like a single place from a postcard and like four different ones from a parking lot. This is a record of looking at it slowly.
+                </p>
+                <a className="btn btn--ghost" href="/about" onClick={(e) => { e.preventDefault(); go("about"); }}>
+                  About the editor →
+                </a>
+              </div>
+              <NewsletterInline location="home_strip" tag="home" />
+            </div>
+          </section>
+        )}
+      />
     </div>
   );
 }
 
 window.HomePage = HomePage;
+// Exported for scripts/gen-home-shell.mjs, which renders this component (and
+// the masthead) into the static above-the-fold shell baked into index.html.
+window.HomeHero = HomeHero;

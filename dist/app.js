@@ -963,6 +963,8 @@ ensureRoute(bootRoute).catch(e => console.error("app.jsx boot: initial route bun
   ReactDOM.createRoot(document.getElementById("root")).render(React.createElement(App, null));
   document.getElementById("seo-static-h1")?.remove();
   document.getElementById("prerender-prose")?.remove();
+  document.getElementById("home-shell")?.remove();
+  requestAnimationFrame(() => document.documentElement.removeAttribute("data-boot"));
   var warm = () => prefetchAllModules();
   ["pointerdown", "keydown", "touchstart", "scroll"].forEach(ev => window.addEventListener(ev, warm, {
     once: true,

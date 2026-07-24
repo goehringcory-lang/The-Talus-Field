@@ -975,10 +975,15 @@ async function handleRequest({ request, next, env }) {
         }
       },
     })
-    .on("#seo-static-h1", {
+    .on("#home-shell", {
       element(el) {
-        if (proseHtml) el.remove();
-        else if (staticH1Text) el.setInnerContent(staticH1Text);
+        // index.html ships the homepage's above-the-fold markup statically so
+        // "/" paints on the first byte (see the comment there and
+        // scripts/gen-home-shell.mjs). "/" is served straight off the asset
+        // layer and never reaches this Worker, so every request that DOES
+        // reach here is another route: drop the block before the browser can
+        // paint a hero that belongs to a different page.
+        el.remove();
       },
     })
     .on("#root", {
@@ -990,6 +995,17 @@ async function handleRequest({ request, next, env }) {
         // #prerender-prose on boot, so JS users only ever see React's copy.
         if (proseHtml) {
           el.prepend(`<div id="prerender-prose">${proseHtml}</div>`, { html: true });
+        } else if (staticH1Text) {
+          // Routes with no prose fragment still need one heading for parsers
+          // that read the markup without running JavaScript (Bing's auditor is
+          // the notable one). This used to be a permanent sr-only element in
+          // index.html; it moved here when the homepage gained a real static
+          // <h1> in its shell, which would otherwise have made "/" ship two.
+          // app.jsx removes it on boot, so JS clients see exactly one <h1>.
+          el.prepend(
+            `<h1 id="seo-static-h1" style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0;">${escapeHtmlText(staticH1Text)}</h1>`,
+            { html: true }
+          );
         }
       },
     })

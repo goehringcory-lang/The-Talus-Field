@@ -1302,7 +1302,7 @@ var WEBCAMS = [{
   alt: "Live view of Wawona"
 }];
 function WebcamStrip() {
-  var camCacheBust = useMemo(() => Date.now(), []);
+  var camCacheBust = useMemo(() => Math.floor(Date.now() / 300000), []);
   return React.createElement(React.Fragment, null, React.createElement("div", {
     className: "cam-grid",
     style: {
