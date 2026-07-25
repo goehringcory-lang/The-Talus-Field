@@ -264,7 +264,7 @@ function ResumeReading({ go }) {
 // Keep the ?v= in sync with BULLETIN_URL in page-now.jsx when bulletin.json
 // changes. The .home-dispatch class names carry over from the dispatch era.
 // ============================================================
-const HOME_BULLETIN_URL = "/bulletin.json?v=2";
+const HOME_BULLETIN_URL = "/bulletin.json?v=3";
 
 function HomeBulletin({ go }) {
   const [edition, setEdition] = React.useState(null);
