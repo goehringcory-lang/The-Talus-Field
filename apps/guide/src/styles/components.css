@@ -851,6 +851,21 @@
 @media (hover: hover) {
   .tool-card__title a:hover { color: var(--moss); }
 }
+/* Small stroke glyph before a tool-card title (the planner cards). Sized off
+   the title's font metrics and kept moss even when the link ink changes, so
+   the icon reads as a marginal mark, not part of the link text. */
+.tool-card__icon {
+  display: inline-flex;
+  width: 18px;
+  height: 18px;
+  margin-right: 9px;
+  vertical-align: -2px;
+  color: var(--moss);
+}
+.tool-card__icon svg {
+  width: 100%;
+  height: 100%;
+}
 .tool-card__teaser {
   font-family: var(--serif);
   font-size: 14px;
