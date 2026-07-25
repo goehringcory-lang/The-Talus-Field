@@ -125,13 +125,14 @@ const windowEntries: SeasonalInput[] = [
     title: 'Mist Trail weekday closure for repairs',
     category: 'other',
     confidence: 'confirmed',
-    // Source: Yosemite Guide Vol 51 Issue 5 (June 10 - July 14, 2026).
-    dateStart: '2026-06-30',
+    // Source: Yosemite Guide Vol 51 Issue 6 (July 15 - August 18, 2026), which
+    // moves the closure's start from the June 30 printed in v51n5 to July 27.
+    dateStart: '2026-07-27',
     dateEnd: '2026-10-31',
     location: 'Mist Trail, Vernal and Nevada Fall corridor',
     url: 'https://www.nps.gov/yose/planyourvisit/conditions.htm',
     description:
-      'The Mist Trail is closed for trail repairs Monday through Thursday, 7 a.m. to 3:30 p.m., from June 30 through the end of October 2026. It is open Fridays, Saturdays, Sundays, and holidays, and on weekdays before 7 and after 3:30 when conditions allow. If Vernal and Nevada Fall are the point of a weekday, start very early or plan the John Muir Trail side, and check conditions before committing.',
+      'The Mist Trail is closed for trail repairs Monday through Thursday, 7 a.m. to 3:30 p.m., from July 27 through the end of October 2026. It is open Fridays, Saturdays, Sundays, and holidays, and on weekdays before 7 and after 3:30 when conditions allow. If Vernal and Nevada Fall are the point of a weekday, start very early or plan the John Muir Trail side, and check conditions before committing.',
     stopIds: ['mist-trail'],
   },
   {
@@ -154,11 +155,15 @@ const windowEntries: SeasonalInput[] = [
     id: 'star-party-season-2026',
     title: 'Glacier Point star party season',
     category: 'astronomy',
-    confidence: 'typical',
-    dateStart: '2026-07-01',
-    dateEnd: '2026-08-31',
-    location: 'Glacier Point',
-    description: STAR_PARTY_DESC,
+    // Confirmed for this stretch, unlike the later years' typical windows: the
+    // Yosemite Guide Vol 51 Issue 6 prints the club weekends, and the programs
+    // feed carries each night as its own dated event.
+    confidence: 'confirmed',
+    dateStart: '2026-07-17',
+    dateEnd: '2026-08-15',
+    location: 'Glacier Point Amphitheater',
+    description:
+      'Amateur astronomy clubs set up telescopes at the Glacier Point Amphitheater and point them at whatever the sky offers, in cooperation with the park. Free, drop in any time after 8:30 p.m.; programs run two to four hours and are canceled if it clouds over. The published 2026 weekends are July 17 and 18, July 31 and August 1, August 7 and 8, and August 14 and 15, and each night appears as its own event in this list. Transportation to Glacier Point is on you, and it is an hour from the valley in the dark.',
     stopIds: ['glacier-point'],
   },
   {

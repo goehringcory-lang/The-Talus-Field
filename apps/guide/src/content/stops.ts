@@ -277,9 +277,9 @@ const seed: StopInput[] = [
     coord: [-119.5580, 37.7322], // verified 2026-07: Happy Isles trailhead, shuttle stop 16 (Hikespeak/NPS); was ~215 m off
     elevationFt: 4035,
     timeBudgetMin: 360,
-    // Source: Yosemite Guide Vol 51 Issue 5 (June 10 - July 14, 2026).
+    // Source: Yosemite Guide Vol 51 Issue 6 (July 15 - August 18, 2026).
     hazard:
-      'Repair closures through 2026: the Mist Trail is closed Monday through Thursday, 7 a.m. to 3:30 p.m., June 30 through late October (open Fridays, weekends, and holidays, and outside those hours when conditions allow). The John Muir Trail between Clark Point and the Panorama Trail junction is closed until mid-July 2026, which blocks the usual descent. Check conditions at the Welcome Center before counting on the loop.',
+      'Repair closures through 2026: the Mist Trail is closed Monday through Thursday, 7 a.m. to 3:30 p.m., July 27 through late October (open Fridays, weekends, and holidays, and outside those hours when conditions allow). The John Muir Trail between Clark Point and the Panorama Trail junction was closed for repairs into mid-July 2026, which blocks the usual descent, and short Panorama Trail closures remain possible. Check conditions at the Welcome Center before counting on the loop.',
     teaser:
       'Six hundred granite steps in the spray to Vernal Fall, then Nevada if you have it. Start at Happy Isles by 6:30 a.m. and come down the John Muir Trail.',
     body:
@@ -647,12 +647,15 @@ const seed: StopInput[] = [
     coord: [-119.6560, 37.5366], // web-derived: Wawona Hotel front, Hwy 41 (Pioneer History Center is a 5-min walk north); TODO: verify on the ground
     elevationFt: 4000,
     timeBudgetMin: 90,
+    // Source: Yosemite Guide Vol 51 Issue 6 (July 15 - August 18, 2026).
+    hazard:
+      'The Wawona Hotel and its dining room are closed for renovation, with no reopening date published, so the lobby bar and the lunch walk-in below are off the table for now. The grounds, the golf course, the visitor center, and the history center are all still open. Confirm at travelyosemite.com before planning a meal here.',
     teaser:
       'The 1876 hotel\'s white verandas, the Wawona covered bridge, and the Pioneer Yosemite History Center\'s relocated cabins and coaches. The easy add to a Mariposa Grove day.',
     body:
-      'Wawona is what the park looked like when getting here was the achievement. The Wawona Hotel opened in 1876 as the stagecoach stop between the railhead and the valley, and it is still operating: white Victorian buildings around a lawn, wicker chairs on the wide verandas, a national historic landmark that never stopped being a hotel. The porch is open to anyone. Order a drink from the lobby bar, take a chair, and look across the road at the 1918 nine-hole golf course, one of the odder sentences in any national park. The small building beside the hotel was the studio of Thomas Hill, whose enormous paintings of this landscape helped argue it into protection; in season it serves as the Wawona visitor center.\n\n' +
+      'Wawona is what the park looked like when getting here was the achievement. The Wawona Hotel opened in 1876 as the stagecoach stop between the railhead and the valley, and it has never stopped being a hotel: white Victorian buildings around a lawn, wicker chairs on the wide verandas, a national historic landmark. When the hotel is open, the porch is open to anyone; order a drink from the lobby bar, take a chair, and look across the road at the 1918 nine-hole golf course, one of the odder sentences in any national park. The small building beside the hotel was the studio of Thomas Hill, whose enormous paintings of this landscape helped argue it into protection; in season it serves as the Wawona visitor center.\n\n' +
       'Five minutes north on foot, the Pioneer Yosemite History Center gathers buildings from the park\'s first decades, moved here when roads and time displaced them: a Wells Fargo office, homestead cabins, a jail, and a barn full of the actual stagecoaches that ran the road you drove in on. You enter across the Wawona covered bridge, built by Galen Clark in 1868 and roofed a decade later, which nearly every valley-bound visitor crossed for half a century. In summer there are costumed interpreters and short stage rides; the rest of the year the buildings are closed up but the walk among them is open, and the South Fork of the Merced runs quietly past it all.\n\n' +
-      'It pairs naturally with the [Mariposa Grove](/stop/mariposa-grove), ten minutes south, and with [Chilnualna Falls](/stop/chilnualna-falls) and the [meadow loop](/stop/wawona-meadow-loop) for a full Wawona day that never touches the valley. The hotel dining room takes lunch walk-ins far more easily than dinner.',
+      'It pairs naturally with the [Mariposa Grove](/stop/mariposa-grove), ten minutes south, and with [Chilnualna Falls](/stop/chilnualna-falls) and the [meadow loop](/stop/wawona-meadow-loop) for a full Wawona day that never touches the valley. When the hotel dining room is running, it takes lunch walk-ins far more easily than dinner.',
     photos: [], // TODO: needs dedicated photography — no editorial image matches the Wawona Hotel or the covered bridge
   },
 

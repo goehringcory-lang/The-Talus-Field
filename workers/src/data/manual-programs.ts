@@ -65,6 +65,7 @@ const GAYLOR_TH: [number, number] = [-119.2582, 37.9102]         // gaylor-lake 
 const VILLAGE_MALL: [number, number] = [-119.5855, 37.7485]      // Welcome Center / museum / theater / gallery cluster
 const POTHOLE_DOME: [number, number] = [-119.3860, 37.8770]
 const TM_LODGE: [number, number] = [-119.3417, 37.8757]
+const TM_CAMPGROUND: [number, number] = [-119.3489, 37.8730]   // campground entrance; the Conness circle is in C Loop
 
 const NPS_GUIDE_URL = 'https://www.nps.gov/yose/planyourvisit/guide.htm'
 const YH_TOURS_URL = 'https://www.travelyosemite.com/things-to-do/guided-bus-tours/'
@@ -100,6 +101,19 @@ const TAAG_URL = 'https://www.anseladams.com/photography-education/'
 // the printed em-dash; a feed collision there would show as a duplicate and can
 // be aligned on a later pass). Asterisked "no program" dates are honored via
 // per-entry skip lists.
+//
+// Reconciliation pass 2026-07-25: re-read the v51n6 PDF end to end against this
+// file. Every program printed in the issue's five schedule tables (Valley walks
+// and talks, photography walks, art classes, special events, Glacier Point
+// stargazing) plus the Tuolumne, Wawona, Crane Flat, and park-partner tables is
+// carried here with matching days, times, and asterisked skip dates; nothing was
+// missing. Only fix needed was the two Tuolumne campground programs, which were
+// pinned at the lodge (or nowhere) instead of the campground. Deliberately NOT
+// curated as programs, because the issue prints them as services rather than
+// scheduled programs: the Wawona stable and pony rides, golf, bike rentals, the
+// pools, and the chapel services. The Mist Trail repair-closure change in this
+// issue (weekday closure now starts July 27, not the June 30 printed in v51n5)
+// lives in the PWA's seasonal almanac and the /now bulletin, not here.
 const entries: ManualEntryT[] = [
   {
     key: 'aramark-valley-floor-tour',
@@ -1209,6 +1223,7 @@ const entries: ManualEntryT[] = [
     timeStart: '19:00',
     timeEnd: '19:45',
     location: 'Conness Campfire Circle, Tuolumne Meadows Campground, C Loop',
+    coord: TM_CAMPGROUND,
     isFree: true,
     url: NPS_GUIDE_URL,
   },
@@ -1227,7 +1242,7 @@ const entries: ManualEntryT[] = [
     timeStart: '20:00',
     timeEnd: '21:00',
     location: 'Tuolumne Meadows Campground',
-    coord: TM_LODGE,
+    coord: TM_CAMPGROUND,
     isFree: true,
     url: NPS_GUIDE_URL,
   },
@@ -1408,7 +1423,7 @@ z.array(ManualEntry).parse(PENDING_VERIFICATION) // keep the parked entries vali
 
 // Version label surfaced in the /api/programs `sources` block so the app can
 // show which curation pass the offline copy came from.
-export const MANUAL_PROGRAMS_VERSION = '2026-07-guide-v51n6-pass'
+export const MANUAL_PROGRAMS_VERSION = '2026-07-25-guide-v51n6-reconciled'
 
 export const MANUAL_PROGRAMS: ProgramEventT[] = sortEvents(parsed.flatMap(expand))
 
