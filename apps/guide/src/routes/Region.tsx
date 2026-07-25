@@ -1,12 +1,16 @@
 import { useEffect, useMemo } from 'react'
 import { Link, useParams } from 'react-router-dom'
-import { RegionEnum, getHiddenStops, getRegionMeta, getStopsByRegion } from '../content'
+import { REGION_SHORT, RegionEnum, getHiddenStops, getRegionMeta, getStopsByRegion } from '../content'
 import NotFound from './NotFound'
+import CardDeck, { type DeckPanel } from '../components/CardDeck'
 import GatedChrome from '../components/GatedChrome'
 import StopCard from '../components/StopCard'
+import StopDeckCard from '../components/StopDeckCard'
+import ViewToggle from '../components/ViewToggle'
 import BackLink from '../components/ui/BackLink'
 import EmptyState from '../components/ui/EmptyState'
 import PageHeader from '../components/ui/PageHeader'
+import { useViewMode } from '../lib/viewMode'
 import { detectPhotoFormat, precachePhotoUrls } from '../utils/photo'
 import { precacheUrls } from '../pwa/precache'
 import WeatherStrip from '../weather/WeatherStrip'
@@ -20,6 +24,7 @@ export default function Region() {
   // so the region page remains the geographic index. /secret-guide owns the
   // full cards and the photo prewarm for these.
   const hiddenStops = useMemo(() => (region ? getHiddenStops().filter((s) => s.region === region) : []), [region])
+  const { mode } = useViewMode()
 
   // Pre-warm SW cache with this region's photos so they're available offline.
   // Only the format this device renders; the download packs fetch everything.
@@ -42,9 +47,97 @@ export default function Region() {
 
   const meta = getRegionMeta(region)
 
+  // The Secret Guide links and the way back out of the region: a block in list
+  // mode, the deck's closing panel in card mode. Same content either way.
+  const tail = (
+    <>
+      {hiddenStops.length > 0 && (
+        <section aria-label="From the Secret Guide, in this region" className="page-section">
+          <span className="eyebrow">From the Secret Guide, in this region</span>
+          <ul className="link-list">
+            {hiddenStops.map((stop) => (
+              <li key={stop.id}>
+                <Link to={`/stop/${stop.id}`}>{stop.title} →</Link>
+              </li>
+            ))}
+          </ul>
+          <Link to="/secret-guide" className="more-link">
+            The Secret Guide →
+          </Link>
+        </section>
+      )}
+      <BackLink to="/" label="Back to regions" />
+    </>
+  )
+
+  // Card mode: the region as a deck. The opening panel carries what the page
+  // header and the forecast carry in list mode, so nothing is only reachable
+  // by switching views.
+  if (mode === 'cards' && stops.length > 0) {
+    const panels: DeckPanel[] = [
+      {
+        key: 'region-intro',
+        label: meta?.title ?? 'This region',
+        node: (
+          <div className="deck-panel-prose">
+            <PageHeader eyebrow="Regional guide" title={meta?.title} intro={meta?.teaser} />
+            <WeatherStrip region={region} />
+            <p className="dateline">
+              {stops.length} stops, in driving order. Swipe up to start.
+            </p>
+          </div>
+        ),
+      },
+      ...stops.map((stop, i) => ({
+        key: stop.id,
+        label: stop.title,
+        node: <StopDeckCard stop={stop} eager={i === 0} />,
+      })),
+      {
+        key: 'region-end',
+        label: 'End of the region',
+        node: (
+          <div className="deck-panel-prose">
+            <span className="eyebrow">That's the region</span>
+            <p className="deck-card__teaser">
+              {stops.length} stops in {meta?.title ?? 'this region'}. Swipe back for any you want
+              in the trip planner.
+            </p>
+            {tail}
+          </div>
+        ),
+      },
+    ]
+
+    return (
+      <GatedChrome>
+        <main className="deck-main">
+          <div className="deck-bar">
+            {/* The chip-length label, not meta.title: the full one truncates
+                to an ellipsis in a single bar line on a phone. */}
+            <h1 className="deck-bar__title">{REGION_SHORT[region]}</h1>
+            <div className="deck-bar__side">
+              <span className="deck-bar__count">{stops.length} stops</span>
+              <ViewToggle label="How to read this region" />
+            </div>
+          </div>
+          <CardDeck
+            panels={panels}
+            ariaLabel={`${meta?.title ?? 'Region'} stops`}
+            hint="Swipe up for the next stop"
+          />
+        </main>
+      </GatedChrome>
+    )
+  }
+
   return (
     <GatedChrome>
       <main className="wrap wrap--narrow page">
+        <div className="page-toolbar">
+          <ViewToggle label="How to read this region" />
+        </div>
+
         <PageHeader eyebrow="Regional guide" title={meta?.title} intro={meta?.teaser} />
 
         <WeatherStrip region={region} />
@@ -60,23 +153,7 @@ export default function Region() {
           ))
         )}
 
-        {hiddenStops.length > 0 && (
-          <section aria-label="From the Secret Guide, in this region" className="page-section">
-            <span className="eyebrow">From the Secret Guide, in this region</span>
-            <ul className="link-list">
-              {hiddenStops.map((stop) => (
-                <li key={stop.id}>
-                  <Link to={`/stop/${stop.id}`}>{stop.title} →</Link>
-                </li>
-              ))}
-            </ul>
-            <Link to="/secret-guide" className="more-link">
-              The Secret Guide →
-            </Link>
-          </section>
-        )}
-
-        <BackLink to="/" label="Back to regions" />
+        {tail}
       </main>
     </GatedChrome>
   )
