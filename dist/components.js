@@ -355,7 +355,7 @@ function Header({
     label: "About",
     route: "about",
     align: "right",
-    items: [["about", "About the journal"], ["newsletter", "Newsletter"], ["contact", "Contact"], ["places", "Directory"], ["advertise", "Advertise"], ["widget", "Conditions widget"]]
+    items: [["about", "About the journal"], ["newsletter", "Newsletter"], ["contact", "Contact"], ["places", "Directory"], ["advertise", "Advertise"], ["widget", "Conditions widget"], ["partners", "Group codes"]]
   }];
   var isGroupActive = g => {
     if (current === g.route) return true;

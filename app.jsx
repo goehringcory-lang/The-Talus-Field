@@ -28,7 +28,7 @@ const STATIC_ROUTE_KEYS = new Set([
   "home", "articles", "planning", "checklist", "about", "kit", "places",
   "advertise", "newsletter", "contact", "privacy", "terms", "affiliate",
   "guide", "map", "films", "itineraries", "conditions", "now", "firefall",
-  "consult", "widget",
+  "consult", "widget", "partners",
 ]);
 
 function pathToRoute(pathname) {
@@ -103,6 +103,7 @@ const PAGE_MODULES = {
   firefall: { scripts: ["/dist/page-firefall.js"], globals: ["FirefallPage"] },
   consult: { scripts: ["/dist/page-consult.js"], globals: ["ConsultPage"] },
   widget: { scripts: ["/dist/page-widget.js"], globals: ["WidgetPage"] },
+  partners: { scripts: ["/dist/page-partners.js"], globals: ["PartnersPage"] },
 };
 
 function routeModule(route) {
@@ -928,6 +929,8 @@ function App() {
     page = <window.ConsultPage go={go} />;
   } else if (route === "widget") {
     page = <window.WidgetPage go={go} />;
+  } else if (route === "partners") {
+    page = <window.PartnersPage go={go} />;
   } else if (route === "map") {
     page = <window.MapPage go={go} />;
     // currentNav stays "home" so no nav link highlights.

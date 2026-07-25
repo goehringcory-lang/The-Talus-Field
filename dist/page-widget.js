@@ -87,7 +87,18 @@ function WidgetPage({
     }
   }, React.createElement("h2", null, "The terms, plainly"), React.createElement("p", null, "Free, indefinitely. The box carries one small credit line linking to this site's conditions page; that line stays. The styling is self-contained and will not fight your stylesheet. If the widget ever misbehaves on your site, email", " ", React.createElement("a", {
     href: "mailto:cory@thetalusfieldjournal.com"
-  }, "cory@thetalusfieldjournal.com"), " ", "and it gets fixed or you delete one line and it is gone.")), React.createElement(NewsletterInline, {
+  }, "cory@thetalusfieldjournal.com"), " ", "and it gets fixed or you delete one line and it is gone.")), React.createElement("section", {
+    className: "prose",
+    style: {
+      marginTop: 40
+    }
+  }, React.createElement("h2", null, "The other half of this"), React.createElement("p", null, "The widget is what your visitors see before they arrive. The Field Guide is what they carry once they are past the entrance station, where service dies: 44 stops with GPS and time budgets, the day hikes, the trip planner, and an offline map of the park. Properties can buy it in packs and hand a code to every guest, which is the", " ", React.createElement("a", {
+    href: "/partners",
+    onClick: e => {
+      e.preventDefault();
+      go("partners");
+    }
+  }, "group codes"), " ", "page. Buying one has nothing to do with keeping the other; the widget stays free either way.")), React.createElement(NewsletterInline, {
     location: "widget",
     tag: "widget",
     heading: "Run a Yosemite-area business?",

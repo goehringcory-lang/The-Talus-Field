@@ -371,6 +371,7 @@ function Header({ current, go }) {
         ["places", "Directory"],
         ["advertise", "Advertise"],
         ["widget", "Conditions widget"],
+        ["partners", "Group codes"],
       ],
     },
   ];
