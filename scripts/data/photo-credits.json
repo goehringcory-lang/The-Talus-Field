@@ -89,6 +89,11 @@
     "license": "Public domain",
     "source": "https://commons.wikimedia.org/wiki/File:The_rapids_of_the_Merced_River_at_Happy_Isle_in_Yosemite_National_Park,_1900-1918_(CHS-1201).jpg"
   },
+  "/photos/inspiration-point.jpg": {
+    "author": "Aniket Deole",
+    "license": "Unsplash License",
+    "source": "https://unsplash.com/@anik3t"
+  },
   "/photos/lookout-point.jpg": {
     "author": "KatieRound",
     "license": "CC BY-SA 4.0",
@@ -193,6 +198,11 @@
     "author": "Matthes",
     "license": "Public domain",
     "source": "https://commons.wikimedia.org/wiki/File:RoyalArches.jpg"
+  },
+  "/photos/valley-view.jpg": {
+    "author": "Rodrigo Soares",
+    "license": "Unsplash License",
+    "source": "https://unsplash.com/@rodi01"
   },
   "/photos/wapama-falls-trail.jpg": {
     "author": "Craig Given",
