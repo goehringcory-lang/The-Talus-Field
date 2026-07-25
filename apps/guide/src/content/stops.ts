@@ -63,7 +63,7 @@ const seed: StopInput[] = [
     order: 2,
     kind: 'drive',
     timeBudgetMin: 60,
-    photos: [], // TODO: needs a correct image; the wrong-subject automated fetch was deleted from public/photos
+    photos: [{ src: '/photos/el-capitan-winter.jpg', caption: 'El Capitan over the Merced, the west end of the loop.' }],
     teaser:
       'A slow eastbound preview of the valley floor: Bridalveil parking, Cathedral Beach, the Swinging Bridge, Sentinel Beach. Don\'t commit to a hike yet.',
     body:
@@ -138,7 +138,7 @@ const seed: StopInput[] = [
     body:
       'Tunnel View shows you the valley from above. Valley View hands it to you at river level. The pullout sits on Northside Drive just east of the Pohono Bridge, marked V11, and because Northside runs one way west, you reach it on the way out of the valley, which is exactly the right time to see it. El Capitan stands on the left, Cathedral Rocks and a sliver of Bridalveil on the right, and the Merced slides over granite boulders in the foreground. Ansel Adams shot this frame as Gates of the Valley, and the composition has not moved since.\n\n' +
       'The pullout holds about a dozen cars and turns over fast, but there is no circling back on a one-way road: if it is full, your options are another lap of the valley or tomorrow. Late afternoon puts warm light on El Capitan, winter dusk turns the whole frame pink, and on calm mornings the river holds the reflection. Make it the last stop of the last day. Thirty seconds after you pull out, the valley is behind you, and this is the image that rides home in the car.',
-    photos: [], // TODO: needs dedicated photography — no editorial image matches the Valley View riverbank frame
+    photos: [{ src: '/photos/valley-view.jpg', caption: 'The Gates of the Valley frame from the riverbank: El Capitan left, Bridalveil right.' }],
     swap:
       'Full pullout and no patience for another lap? Cathedral Beach picnic area on Southside Drive gives you El Capitan across the river from the south bank, and almost nobody uses it.',
   },
@@ -656,7 +656,7 @@ const seed: StopInput[] = [
       'Wawona is what the park looked like when getting here was the achievement. The Wawona Hotel opened in 1876 as the stagecoach stop between the railhead and the valley, and it has never stopped being a hotel: white Victorian buildings around a lawn, wicker chairs on the wide verandas, a national historic landmark. When the hotel is open, the porch is open to anyone; order a drink from the lobby bar, take a chair, and look across the road at the 1918 nine-hole golf course, one of the odder sentences in any national park. The small building beside the hotel was the studio of Thomas Hill, whose enormous paintings of this landscape helped argue it into protection; in season it serves as the Wawona visitor center.\n\n' +
       'Five minutes north on foot, the Pioneer Yosemite History Center gathers buildings from the park\'s first decades, moved here when roads and time displaced them: a Wells Fargo office, homestead cabins, a jail, and a barn full of the actual stagecoaches that ran the road you drove in on. You enter across the Wawona covered bridge, built by Galen Clark in 1868 and roofed a decade later, which nearly every valley-bound visitor crossed for half a century. In summer there are costumed interpreters and short stage rides; the rest of the year the buildings are closed up but the walk among them is open, and the South Fork of the Merced runs quietly past it all.\n\n' +
       'It pairs naturally with the [Mariposa Grove](/stop/mariposa-grove), ten minutes south, and with [Chilnualna Falls](/stop/chilnualna-falls) and the [meadow loop](/stop/wawona-meadow-loop) for a full Wawona day that never touches the valley. When the hotel dining room is running, it takes lunch walk-ins far more easily than dinner.',
-    photos: [], // TODO: needs dedicated photography — no editorial image matches the Wawona Hotel or the covered bridge
+    photos: [{ src: '/photos/wawona-meadow-loop.jpg', caption: 'Wawona Meadow around 1900. The hotel grounds sit just across the road.' }],
   },
 
   // ---------------------------------------------------------------------------
@@ -934,7 +934,7 @@ const seed: StopInput[] = [
     body:
       'The menu is burgers, breakfast sandwiches, chili, and soft-serve cones, cooked on a griddle in a canvas-sided building beside the Tuolumne Meadows Store. Nobody drives to the high country for the food. You eat here for the room: the picnic tables collect Pacific Crest Trail and John Muir Trail hikers three weeks from anywhere, day hikers down off Cathedral, climbers, and rangers, and the conversation is the best in the park. A thru-hiker eating a double cheeseburger and a pint of ice cream at eleven in the morning is not a spectacle; it is arithmetic, and they will cheerfully walk you through it.\n\n' +
       'The store next door is a real outfitter in miniature: fuel canisters, actual groceries, the only supplies in the high country, plus a seasonal post office where thru-hikers collect resupply boxes addressed months earlier. The whole complex lives in tents and trailers that are struck every fall and rebuilt when Tioga Road opens, so hours are seasonal and the entire place simply does not exist in winter. If the line at the window is long, read it as the grill operating exactly as intended.',
-    photos: [], // TODO: needs dedicated photography — no editorial image matches the grill and store tents
+    photos: [{ src: '/photos/tuolumne-meadows.jpg', caption: 'Lembert Dome over the meadow, a short walk from the grill window.' }],
   },
   {
     id: 'gaylor-lake',
@@ -1127,7 +1127,7 @@ const seed: StopInput[] = [
     coord: [-119.7886, 37.9464], // verified 2026-07: dam road-end lot, SW abutment (bracketed by the Wikipedia dam-crest and NPS trailhead points)
     elevationFt: 3800,
     timeBudgetMin: 45,
-    photos: [], // TODO: needs a correct image; the wrong-subject automated fetch was deleted from public/photos
+    photos: [{ src: '/photos/region-hetch-hetchy.jpg', caption: 'The view from the dam walk: Hetch Hetchy Dome and Wapama Falls across the reservoir.' }],
     teaser:
       'Walk a quarter mile across the 1923 dam to a tunnel hand-cut through the cliff, Kolana Rock and Wapama Falls up-canyon. Muir\'s valley floor is still down there.',
     body:
@@ -1205,7 +1205,7 @@ const seed: StopInput[] = [
     coord: [-119.7875, 37.9465], // verified 2026-07: same trailhead as wapama-falls-trail (NPS place page)
     elevationFt: 3800,
     timeBudgetMin: 420,
-    photos: [], // TODO: needs a correct image; the wrong-subject automated fetch was deleted from public/photos
+    photos: [{ src: '/photos/wapama-falls-trail.jpg', caption: 'Wapama Falls at the footbridges, the crossing you clear on the way out to Rancheria.' }],
     hazard:
       'Rattlesnake country the whole way, poison oak close to the trail, and long stretches of full sun. In peak snowmelt the Wapama bridges can close and end the trip early; check conditions before a May or June start.',
     teaser:
