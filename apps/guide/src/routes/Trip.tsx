@@ -11,19 +11,26 @@
 // =============================================================================
 
 import { useEffect, useMemo, useRef, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useSearchParams } from 'react-router-dom'
 import GatedChrome from '../components/GatedChrome'
 import PlanTabs from '../components/PlanTabs'
 import ResponsivePhoto from '../components/ResponsivePhoto'
 import TripAgenda from '../components/TripAgenda'
 import TripReview from '../components/TripReview'
 import Button from '../components/ui/Button'
+import Callout from '../components/ui/Callout'
 import { getItineraryDayPhotos, getStopById, type StopT } from '../content'
 import { ITINERARIES, ITINERARY_KEYS, type ItineraryKey } from '../content/itineraries'
 import { getStopsByRegion } from '../content'
 import { MAX_SPAN_DAYS, readTripDates } from '../programs/usePrograms'
 import { addDaysIso, formatDayHeader, todayIso } from '../utils/date'
 import { slotPlan } from '../trip/slotting'
+import {
+  clearPendingImport,
+  importSummary,
+  parseImportParam,
+  resolveEditorialIds,
+} from '../trip/importTrip'
 import { useTripPlan } from '../trip/useTripPlan'
 import { dayForecastRegion } from '../trip/dayRegion'
 import { useWeather } from '../weather/useWeather'
@@ -166,9 +173,42 @@ function ClearPlanButton({ itemCount, onClear }: { itemCount: number; onClear: (
 }
 
 export default function Trip() {
-  const { plan, addStop, addCustom, clear, setDates } = useTripPlan()
+  const { plan, addStop, addHike, addCustom, clear, setDates } = useTripPlan()
   const [reviewOpen, setReviewOpen] = useState(false)
   const reviewRef = useRef<HTMLDivElement>(null)
+
+  // Trip hand-off from the editorial map (/map?trip=… → /trip?import=…). The
+  // URL is the only trigger: a stash left over from before the purchase is
+  // *offered* on Home and arrives here as a real ?import= once tapped, so a
+  // plan is never rewritten by something the user didn't just ask for.
+  //
+  // Resolving is pure and happens once, at mount, so the notice is ordinary
+  // initial state; the effect below only writes to the plan store and strips
+  // the param, which is the kind of work an effect is for. The ref guards
+  // StrictMode's double-invoke, and stripping the param means a refresh can't
+  // re-run the import. Items merge rather than replace: addStop/addHike dedupe
+  // by itemId, so importing the same trip twice is a no-op.
+  const [searchParams, setSearchParams] = useSearchParams()
+  const [importState, setImportState] = useState(() => {
+    const ids = parseImportParam(searchParams.get('import'))
+    const result = ids.length > 0 ? resolveEditorialIds(ids) : null
+    return { result, notice: result ? importSummary(result) : null }
+  })
+  const imported = useRef(false)
+
+  useEffect(() => {
+    const result = importState.result
+    if (!result || imported.current) return
+    imported.current = true
+    for (const id of result.stopIds) addStop(id)
+    for (const id of result.hikeIds) addHike(id)
+    // Whichever trip just landed supersedes the pending one, so Home stops
+    // offering a hand-off the user has now taken.
+    clearPendingImport()
+    const next = new URLSearchParams(searchParams)
+    next.delete('import')
+    setSearchParams(next, { replace: true })
+  }, [importState, searchParams, setSearchParams, addStop, addHike])
 
   // Keep the plan window in step with the dates picked on /programs.
   useEffect(() => {
@@ -295,6 +335,23 @@ export default function Trip() {
             </label>
           </div>
         </header>
+
+        {importState.notice && (
+          <Callout
+            action={
+              <Button
+                variant="quiet"
+                size="sm"
+                onClick={() => setImportState((s) => ({ ...s, notice: null }))}
+              >
+                Dismiss
+              </Button>
+            }
+          >
+            {importState.notice} Everything landed on your first day; drag blocks onto the days
+            you want them.
+          </Callout>
+        )}
 
         <details className="trip-add" open={itemCount === 0}>
           <summary className="trip-add__summary">

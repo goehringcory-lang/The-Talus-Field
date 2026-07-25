@@ -3,6 +3,7 @@
 // a context provider.
 
 import { useCallback, useEffect, useState } from 'react'
+import { markLocalChange } from './syncStamp'
 
 const STORAGE_KEY = 'tfg.favorites'
 const subscribers = new Set<() => void>()
@@ -37,6 +38,9 @@ function write(ids: string[]) {
   } catch {
     /* non-fatal: the toggle just won't persist past this session */
   }
+  // Favorites carry no timestamp of their own; this is what lets cross-device
+  // sync tell an ahead device from a behind one. No-op while a pull applies.
+  markLocalChange()
   for (const fn of subscribers) fn()
 }
 
@@ -69,4 +73,20 @@ export function useFavorites() {
   const isFavorite = useCallback((id: string) => ids.includes(id), [ids])
 
   return { ids, toggle, isFavorite }
+}
+
+// --- Non-React surface, for the cross-device sync layer ---------------------
+
+export function readFavoriteIds(): string[] {
+  return read()
+}
+
+/** Replace wholesale (a sync pull). Notifies every mounted surface. */
+export function replaceFavoriteIds(ids: string[]): void {
+  write(ids)
+}
+
+export function subscribeFavorites(fn: () => void): () => void {
+  subscribers.add(fn)
+  return () => subscribers.delete(fn)
 }

@@ -3,6 +3,7 @@
 // within the session so a failed setItem never reverts a visible toggle.
 
 import { useCallback, useEffect, useState } from 'react'
+import { markLocalChange } from './syncStamp'
 
 const STORAGE_KEY = 'tfg.visited'
 const subscribers = new Set<() => void>()
@@ -33,6 +34,8 @@ function write(ids: string[]) {
   } catch {
     /* non-fatal: the toggle just won't persist past this session */
   }
+  // See lib/favorites.ts: the stamp is how sync orders two devices.
+  markLocalChange()
   for (const fn of subscribers) fn()
 }
 
@@ -63,4 +66,20 @@ export function useVisited() {
   const isVisited = useCallback((id: string) => ids.includes(id), [ids])
 
   return { ids, toggle, isVisited }
+}
+
+// --- Non-React surface, for the cross-device sync layer ---------------------
+
+export function readVisitedIds(): string[] {
+  return read()
+}
+
+/** Replace wholesale (a sync pull). Notifies every mounted surface. */
+export function replaceVisitedIds(ids: string[]): void {
+  write(ids)
+}
+
+export function subscribeVisited(fn: () => void): () => void {
+  subscribers.add(fn)
+  return () => subscribers.delete(fn)
 }

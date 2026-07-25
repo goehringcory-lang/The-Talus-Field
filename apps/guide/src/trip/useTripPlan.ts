@@ -328,6 +328,20 @@ export function readTripPlan(): TripPlanT {
   return read()
 }
 
+/**
+ * Replace the plan wholesale, keeping the incoming `updatedAt` verbatim. Used
+ * by a cross-device sync pull, which must NOT go through update(): restamping
+ * a plan the server just handed over would make this device look newer than
+ * the copy it accepted and push it straight back.
+ */
+export function replaceTripPlan(plan: TripPlanT): void {
+  write(plan)
+  // /programs and /trip both read the window from tfg.trip.dates, so a synced
+  // plan whose dates stayed behind would show the right items on the wrong
+  // days. Keep the two in step.
+  writeTripDates(plan.dates)
+}
+
 /** Cheap add-from-anywhere entry points (map popup lives outside React state). */
 export function addStopToPlan(stopId: string, day?: string) {
   const p = read()

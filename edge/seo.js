@@ -208,6 +208,16 @@ const HUB_PROSE = {
       "An interactive map of Yosemite National Park: vistas, trailheads, parking turnouts, picnic spots, and places to eat, each pin curated and written by a resident of the park. Filter pins by category, search by name, and assemble stops into a trip you can share by link, email to yourself, or open in Google Maps for driving directions. The full map opens with a free newsletter signup."
     ) +
     `<p>Prefer a ready-made plan? Start from <a href="/itineraries">the curated itineraries</a>. Planning the drive in? Check <a href="/conditions">webcams, entrance waits, and weather</a>.</p>`,
+  // /search is noindex (see the `known` entry below): a results page is thin,
+  // duplicative content and Google says as much. The prose is here for the
+  // "follow" half — it is a plain table of contents, so a crawler that lands
+  // on the page still finds its way into the sections.
+  "/search": () =>
+    hubProse(
+      "Search The Talus Field",
+      "Search every article, section, and page in The Talus Field: Yosemite planning notes, trail reports, wildlife and natural history, and seasonal guides."
+    ) +
+    `<p>Browse instead: <a href="/articles">all articles</a>, <a href="/section/planning">planning</a>, <a href="/section/trails">trails and hikes</a>, <a href="/section/wildlife">wildlife and nature</a>, <a href="/section/seasonal">seasonal guides</a>, or <a href="/now">The Park Bulletin</a>.</p>`,
   "/conditions": () =>
     hubProse(
       "Yosemite conditions: webcams, waits, and weather",
@@ -607,6 +617,16 @@ function seoForPath(pathname, searchParams) {
           isAccessibleForFree: true,
         })),
       },
+    },
+    "/search": {
+      title: `Search — ${SITE_NAME}`,
+      description:
+        "Search every article, section, and page in The Talus Field: Yosemite planning notes, trail reports, wildlife and natural history, and seasonal guides.",
+      breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Search", null]],
+      // Search-results pages are thin and duplicative by nature, and every
+      // ?q= is another near-identical URL. Kept out of the index, but crawled
+      // for its links, which is why the HUB_PROSE entry is a contents list.
+      robots: "noindex, follow",
     },
     "/conditions": {
       title: `Yosemite Conditions — webcams, waits, and weather — ${SITE_NAME}`,

@@ -1,9 +1,15 @@
 // Private per-stop notes. A Record<stopId, string> under tfg.stopNotes,
 // same storage discipline as lib/favorites.ts: in-memory copy authoritative,
-// persistence best-effort, module subscribers for cross-surface sync. Notes
-// never leave the device.
+// persistence best-effort, module subscribers for cross-surface sync.
+//
+// Private means private to the buyer, not to the device: with cross-device
+// sync on (sync/planSync.ts, off by default) notes ride along to the buyer's
+// own account so the phone in the park has what the laptop wrote. They are
+// never shared, never rendered on a public surface, and never leave the
+// account. The sync opt-in on /account says so in as many words.
 
 import { useCallback, useEffect, useState } from 'react'
+import { markLocalChange } from './syncStamp'
 
 const STORAGE_KEY = 'tfg.stopNotes'
 const subscribers = new Set<() => void>()
@@ -42,6 +48,8 @@ function write(notes: NotesMap) {
   } catch {
     /* non-fatal: the note just won't persist past this session */
   }
+  // See lib/favorites.ts: the stamp is how sync orders two devices.
+  markLocalChange()
   for (const fn of subscribers) fn()
 }
 
@@ -77,4 +85,20 @@ export function useStopNote(stopId: string): [string, (note: string) => void] {
   )
 
   return [note, setNote]
+}
+
+// --- Non-React surface, for the cross-device sync layer ---------------------
+
+export function readStopNotes(): NotesMap {
+  return read()
+}
+
+/** Replace wholesale (a sync pull). Notifies every mounted surface. */
+export function replaceStopNotes(notes: NotesMap): void {
+  write(notes)
+}
+
+export function subscribeStopNotes(fn: () => void): () => void {
+  subscribers.add(fn)
+  return () => subscribers.delete(fn)
 }

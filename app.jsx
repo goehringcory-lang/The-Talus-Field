@@ -28,7 +28,7 @@ const STATIC_ROUTE_KEYS = new Set([
   "home", "articles", "planning", "checklist", "about", "kit", "places",
   "advertise", "newsletter", "contact", "privacy", "terms", "affiliate",
   "guide", "map", "films", "itineraries", "conditions", "now", "firefall",
-  "consult", "widget", "partners",
+  "consult", "widget", "partners", "search",
 ]);
 
 function pathToRoute(pathname) {
@@ -104,6 +104,7 @@ const PAGE_MODULES = {
   consult: { scripts: ["/dist/page-consult.js"], globals: ["ConsultPage"] },
   widget: { scripts: ["/dist/page-widget.js"], globals: ["WidgetPage"] },
   partners: { scripts: ["/dist/page-partners.js"], globals: ["PartnersPage"] },
+  search: { scripts: ["/dist/page-search.js"], globals: ["SearchPage"] },
 };
 
 function routeModule(route) {
@@ -918,6 +919,9 @@ function App() {
   } else if (route === "itineraries") {
     page = <window.ItinerariesPage go={go} />;
     // currentNav stays "home" so no nav link highlights, matching /map.
+  } else if (route === "search") {
+    page = <window.SearchPage go={go} />;
+    // currentNav stays "home": search is a utility, not a section.
   } else if (route === "conditions") {
     page = <window.ConditionsPage go={go} />;
   } else if (route === "now") {

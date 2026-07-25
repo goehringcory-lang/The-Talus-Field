@@ -11,7 +11,7 @@ function routeToPath(route) {
   if (route.startsWith("a:")) return `/articles/${route.slice(2)}`;
   return `/${route}`;
 }
-var STATIC_ROUTE_KEYS = new Set(["home", "articles", "planning", "checklist", "about", "kit", "places", "advertise", "newsletter", "contact", "privacy", "terms", "affiliate", "guide", "map", "films", "itineraries", "conditions", "now", "firefall", "consult", "widget", "partners"]);
+var STATIC_ROUTE_KEYS = new Set(["home", "articles", "planning", "checklist", "about", "kit", "places", "advertise", "newsletter", "contact", "privacy", "terms", "affiliate", "guide", "map", "films", "itineraries", "conditions", "now", "firefall", "consult", "widget", "partners", "search"]);
 function pathToRoute(pathname) {
   var path = (pathname || "/").replace(/\/+$/, "") || "/";
   if (path === "/") return "home";
@@ -134,6 +134,10 @@ var PAGE_MODULES = {
   partners: {
     scripts: ["/dist/page-partners.js"],
     globals: ["PartnersPage"]
+  },
+  search: {
+    scripts: ["/dist/page-search.js"],
+    globals: ["SearchPage"]
   }
 };
 function routeModule(route) {
@@ -869,6 +873,10 @@ function App() {
     });
   } else if (route === "itineraries") {
     page = React.createElement(window.ItinerariesPage, {
+      go: go
+    });
+  } else if (route === "search") {
+    page = React.createElement(window.SearchPage, {
       go: go
     });
   } else if (route === "conditions") {
