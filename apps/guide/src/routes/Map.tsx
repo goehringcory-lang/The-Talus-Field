@@ -20,7 +20,7 @@ import 'maplibre-gl/dist/maplibre-gl.css'
 import GatedChrome from '../components/GatedChrome'
 import ResponsivePhoto from '../components/ResponsivePhoto'
 import { ChipButton } from '../components/ui/Chip'
-import { AMENITIES, HIKES, REGIONS, REGION_SHORT, SECRET_SPOTS, stops as allStops, getItineraryDayPhotos, getStopById, isSecretGuideEntry, type AmenityT, type GuideStopT, type HikeT, type Region } from '../content'
+import { AMENITIES, HIKES, REGIONS, SECRET_SPOTS, stops as allStops, getItineraryDayPhotos, getStopById, isSecretGuideEntry, type AmenityT, type GuideStopT, type HikeT, type Region } from '../content'
 import { DIFFICULTY_LABEL, formatTime } from '../content/labels'
 import {
   ITINERARIES,
@@ -1090,25 +1090,10 @@ export default function Map() {
       .slice(0, 5)
   }, [visibleStops, userPos])
 
-  // "Browse by area" groups for the points pane: the four regions in REGIONS
-  // order plus a region-less "Secret spots" group. Derived from visibleStops
-  // so a row can never point at a filtered-out marker; empty groups drop.
-  const browseGroups = useMemo(() => {
-    const groups: { id: string; label: string; stops: GuideStopT[] }[] = REGIONS.map((r) => ({
-      id: r.id as string,
-      label: REGION_SHORT[r.id],
-      stops: visibleStops
-        .filter((s) => 'region' in s && s.region === r.id)
-        .sort((a, b) => a.order - b.order),
-    }))
-    const secretSpots = visibleStops
-      .filter((s) => !('region' in s))
-      .sort((a, b) => a.order - b.order)
-    if (secretSpots.length > 0) {
-      groups.push({ id: 'secret', label: 'Secret spots', stops: secretSpots })
-    }
-    return groups.filter((g) => g.stops.length > 0)
-  }, [visibleStops])
+  // The points pane exists only for "Near you", so it renders only when there
+  // is something to say: a location fix, or the note explaining there isn't
+  // one. Otherwise the map keeps the whole stage.
+  const showPointsPane = nearbyStops.length > 0 || (geoDenied && !userPos)
 
   return (
     <GatedChrome>
@@ -1246,91 +1231,62 @@ export default function Map() {
             </div>
           )}
 
-          <aside
-            className={`map-pane map-pane--points${pointsExpanded ? ' map-pane--points-open' : ''}`}
-            aria-hidden={tab !== 'points'}
-          >
-            <button
-              type="button"
-              className="map-pane__handle"
-              aria-expanded={pointsExpanded}
-              onClick={() => setPointsExpanded((v) => !v)}
+          {showPointsPane && (
+            <aside
+              className={`map-pane map-pane--points${pointsExpanded ? ' map-pane--points-open' : ''}`}
+              aria-hidden={tab !== 'points'}
             >
-              <span>Browse by area</span>
-              <span className="map-pane__handle-caret" aria-hidden>
-                {pointsExpanded ? '▾' : '▴'}
-              </span>
-            </button>
-            <div className="map-pane__scroll">
-            {geoDenied && !userPos && (
-              <p className="map-nearby__note">
-                Location is off for this app. Enable it in your phone's
-                settings to see distances to stops.
-              </p>
-            )}
-            {nearbyStops.length > 0 && (
-              <div className="map-nearby">
-                <h3 className="map-pane__title">Near you</h3>
-                {outOfPark && (
+              <button
+                type="button"
+                className="map-pane__handle"
+                aria-expanded={pointsExpanded}
+                onClick={() => setPointsExpanded((v) => !v)}
+              >
+                <span>Near you</span>
+                <span className="map-pane__handle-caret" aria-hidden>
+                  {pointsExpanded ? '▾' : '▴'}
+                </span>
+              </button>
+              <div className="map-pane__scroll">
+                {geoDenied && !userPos && (
                   <p className="map-nearby__note">
-                    You're outside the park map area; distances are from your
-                    current location.
+                    Location is off for this app. Enable it in your phone's
+                    settings to see distances to stops.
                   </p>
                 )}
-                <ul className="map-nearby__list">
-                  {nearbyStops.map(({ stop, miles }) => {
-                    const { color, label } = getKindStyle(stop.kind)
-                    return (
-                      <li key={stop.id}>
-                        <button
-                          type="button"
-                          className={`map-stop${stop.id === selectedStopId ? ' map-stop--selected' : ''}`}
-                          onClick={() => handleSelectStop(stop.id)}
-                        >
-                          <span className="map-stop__name">{stop.title}</span>
-                          <span className="map-stop__kind" style={{ color }}>
-                            {label} · {formatMiles(miles)}
-                          </span>
-                        </button>
-                      </li>
-                    )
-                  })}
-                </ul>
+                {nearbyStops.length > 0 && (
+                  <div className="map-nearby">
+                    <h3 className="map-pane__title map-pane__title--near">Near you</h3>
+                    {outOfPark && (
+                      <p className="map-nearby__note">
+                        You're outside the park map area; distances are from your
+                        current location.
+                      </p>
+                    )}
+                    <ul className="map-nearby__list">
+                      {nearbyStops.map(({ stop, miles }) => {
+                        const { color, label } = getKindStyle(stop.kind)
+                        return (
+                          <li key={stop.id}>
+                            <button
+                              type="button"
+                              className={`map-stop${stop.id === selectedStopId ? ' map-stop--selected' : ''}`}
+                              onClick={() => handleSelectStop(stop.id)}
+                            >
+                              <span className="map-stop__name">{stop.title}</span>
+                              <span className="map-stop__kind" style={{ color }}>
+                                {label} · {formatMiles(miles)}
+                              </span>
+                            </button>
+                          </li>
+                        )
+                      })}
+                    </ul>
+                  </div>
+                )}
               </div>
-            )}
-            <h3 className="map-pane__title map-pane__title--browse">Browse by area</h3>
-            <div className="map-browse">
-              {browseGroups.map((group) => (
-                <details key={group.id} className="map-browse__region">
-                  <summary className="map-browse__summary">
-                    <span>{group.label}</span>
-                    <span className="map-browse__count">{group.stops.length}</span>
-                  </summary>
-                  <ul className="map-browse__list">
-                    {group.stops.map((s) => {
-                      const { color, label } = getKindStyle(s.kind)
-                      return (
-                        <li key={s.id}>
-                          <button
-                            type="button"
-                            className={`map-stop${s.id === selectedStopId ? ' map-stop--selected' : ''}`}
-                            onClick={() => handleSelectStop(s.id)}
-                          >
-                            <span className="map-stop__name">{s.title}</span>
-                            <span className="map-stop__kind" style={{ color }}>
-                              {label}
-                            </span>
-                          </button>
-                        </li>
-                      )
-                    })}
-                  </ul>
-                </details>
-              ))}
-            </div>
-            <p className="map-browse__footnote">Gold outline: Secret Guide entry.</p>
-            </div>
-          </aside>
+            </aside>
+          )}
 
           <aside
             className="map-pane map-pane--itineraries"
