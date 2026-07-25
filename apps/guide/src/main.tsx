@@ -11,10 +11,19 @@ import { captureInstallPrompt } from './pwa/installPrompt'
 import { registerServiceWorker } from './pwa/registerSW'
 import { startFeedSync } from './trip/feedSync'
 import { startCalendarSync } from './trip/calendarSync'
+import { stashPendingImportFromUrl } from './trip/importTrip'
+import { startPlanSync } from './sync/planSync'
+import { startPushSync } from './push/push'
 
 // Before render: Chrome can fire beforeinstallprompt at any moment after
 // load, and the install surfaces (welcome page, banner) mount later.
 captureInstallPrompt()
+
+// Also before render: a trip handed over from the editorial map arrives as
+// /trip?import=…, and a visitor who doesn't own the guide yet is redirected
+// away before /trip ever mounts. Capturing here means the trip survives the
+// whole buy detour, not just a sign-in.
+stashPendingImportFromUrl()
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
@@ -40,3 +49,12 @@ startFeedSync()
 // Keep the connected Google calendar current with local plan edits (no-op
 // until the user connects Google from the Account page).
 startCalendarSync()
+
+// Keep the trip, saved stops, visited stops, and notes in step across the
+// buyer's devices (no-op until they turn sync on from the Account page).
+startPlanSync()
+
+// Keep this device's push registration and its copy of the trip dates fresh
+// (no-op until notifications are turned on from the Account page; never
+// prompts on its own).
+startPushSync()

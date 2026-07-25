@@ -340,7 +340,7 @@ function Header({
     key: "read",
     label: "Read",
     route: "articles",
-    items: [["articles", "All articles"], ["cat:planning", "Planning"], ["cat:trails", "Trails and hikes"], ["cat:wildlife", "Wildlife and nature"], ["cat:seasonal", "Seasonal guides"], ["now", "The Park Bulletin"], ["films", "Films"]]
+    items: [["articles", "All articles"], ["cat:planning", "Planning"], ["cat:trails", "Trails and hikes"], ["cat:wildlife", "Wildlife and nature"], ["cat:seasonal", "Seasonal guides"], ["now", "The Park Bulletin"], ["films", "Films"], ["search", "Search"]]
   }, {
     key: "plan",
     label: "Plan",

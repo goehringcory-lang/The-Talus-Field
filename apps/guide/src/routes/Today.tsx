@@ -2,14 +2,15 @@
 // /today — the field-day view: one read-only screen for the current trip day.
 // The trip board (/trip) is where a plan gets built; this is what you open at
 // the trailhead. Top to bottom: today's conditions (forecast, sun schedule,
-// live entrance waits), the current or next block with a directions link, and
-// the whole day in time order. No drag machinery on purpose; the footer link
-// goes to the board for rearranging.
+// live entrance waits), the live park webcams, the current or next block with
+// a directions link, and the whole day in time order. No drag machinery on
+// purpose; the footer link goes to the board for rearranging.
 //
 // Works fully offline by construction: the plan and dates are localStorage,
 // stops and hikes are bundled, program items carry snapshots, slotting and
 // sun times are pure math, weather falls back to its cache under the normal
-// staleness rules, and the waits line simply vanishes without a connection.
+// staleness rules, and the waits line and webcam strip simply vanish without
+// a connection.
 // =============================================================================
 
 import { useEffect, useMemo, useState, type ReactElement } from 'react'
@@ -17,6 +18,7 @@ import { Link } from 'react-router-dom'
 import GatedChrome from '../components/GatedChrome'
 import EmptyState from '../components/ui/EmptyState'
 import PageHeader from '../components/ui/PageHeader'
+import WebcamStrip from '../components/WebcamStrip'
 import { readTripDates } from '../programs/usePrograms'
 import SunLine from '../sun/SunLine'
 import { coordLabel, directionsUrl, itemInfo } from '../trip/agendaItem'
@@ -162,6 +164,9 @@ export default function Today() {
         />
 
         <ConditionsBlock today={today} blocks={inWindow ? todayBlocks : []} />
+
+        {/* Renders nothing offline, which on this page is the common case. */}
+        <WebcamStrip />
 
         {noDates && (
           <EmptyState

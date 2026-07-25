@@ -345,6 +345,7 @@ function Header({ current, go }) {
         ["cat:seasonal", "Seasonal guides"],
         ["now", "The Park Bulletin"],
         ["films", "Films"],
+        ["search", "Search"],
       ],
     },
     {

@@ -29,6 +29,7 @@ import { useFavorites } from '../lib/favorites'
 import { isPackCompleted } from '../offline/useDownloads'
 import { PACK_IDS } from '../offline/manifest'
 import { useTripPlan } from '../trip/useTripPlan'
+import { clearPendingImport, peekPendingImport, resolveEditorialIds } from '../trip/importTrip'
 import { slotPlan } from '../trip/slotting'
 import { itemInfo } from '../trip/agendaItem'
 import type { TripItemT } from '../trip/schema'
@@ -79,6 +80,42 @@ function BeforeYouGoNudge() {
     >
       Going soon? Do the <Link to="/essentials/before-you-go">night-before downloads</Link>{' '}
       while you still have wifi: the offline maps, this guide, and the current Yosemite Guide PDF.
+    </Callout>
+  )
+}
+
+// A trip built on the editorial map before the buyer owned the guide. The ids
+// were stashed at boot the first time /trip?import= was opened (importTrip.ts);
+// the buy detour and the magic-link sign-in both lose the URL, so the offer is
+// made here instead. Taking it re-enters /trip with a real ?import=, which is
+// the one path that writes to the plan — nothing is imported behind the user.
+function PendingImportCard() {
+  const [ids, setIds] = useState<string[]>(() => peekPendingImport())
+  if (ids.length === 0) return null
+  const resolved = resolveEditorialIds(ids)
+  const count = resolved.stopIds.length + resolved.hikeIds.length
+  if (count === 0) {
+    // Nothing in the trip exists in the guide; offering it would be a dead end.
+    clearPendingImport()
+    return null
+  }
+  return (
+    <Callout
+      action={
+        <Button
+          variant="ghost"
+          size="sm"
+          onClick={() => {
+            clearPendingImport()
+            setIds([])
+          }}
+        >
+          No thanks
+        </Button>
+      }
+    >
+      The trip you built on the map is waiting: {count} {count === 1 ? 'stop' : 'stops'}.{' '}
+      <Link to={`/trip?import=${ids.join(',')}`}>Add it to your plan →</Link>
     </Callout>
   )
 }
@@ -298,6 +335,8 @@ export default function Home() {
           title="The whole guide, on one page."
           intro="Four regions to read, a planner that turns your dates into a day-by-day schedule, and all of it built to work where the park has no signal. Everything the guide does is indexed below."
         />
+
+        <PendingImportCard />
 
         <BeforeYouGoNudge />
 

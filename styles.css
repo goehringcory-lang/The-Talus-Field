@@ -4519,3 +4519,153 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
   .guide-buybar { transition: none; }
   .guide-buybar.is-visible { transition: none; }
 }
+
+/* ===== Search (/search) =====
+   The field is the page: a single large input, results narrowing under it as
+   the reader types. Matched runs are marked rather than color-only, so the
+   reason a result came back survives a monochrome screen. */
+.search-form { max-width: 680px; }
+.search-form__label {
+  display: block;
+  font-family: var(--sans);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-weight: 700;
+  color: var(--ink-3);
+  margin-bottom: 10px;
+}
+.search-form__row {
+  display: flex;
+  align-items: stretch;
+  gap: 10px;
+  border-bottom: 2px solid var(--ink);
+}
+.search-form__input {
+  flex: 1 1 auto;
+  min-width: 0;
+  font-family: var(--display);
+  font-size: 28px;
+  line-height: 1.3;
+  color: var(--ink);
+  background: transparent;
+  border: 0;
+  padding: 6px 0 12px;
+  -webkit-appearance: none;
+  appearance: none;
+}
+.search-form__input:focus { outline: none; }
+.search-form__input::placeholder { color: var(--ink-3); opacity: 0.7; }
+/* The type="search" clear affordance is inconsistent across browsers and
+   collides with the explicit Clear button; hide the native one. */
+.search-form__input::-webkit-search-cancel-button { display: none; }
+.search-form__clear {
+  flex: 0 0 auto;
+  align-self: center;
+  font-family: var(--sans);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-weight: 700;
+  color: var(--ink-2);
+  background: transparent;
+  border: 0;
+  padding: 6px 2px;
+  cursor: pointer;
+}
+.search-form__clear:hover { color: var(--moss); }
+
+.search-status {
+  font-family: var(--sans);
+  font-size: 13px;
+  color: var(--ink-3);
+  margin-top: 14px;
+  /* Reserve the line's height so results don't jump as the count changes. */
+  min-height: 1.4em;
+}
+
+.search-browse { margin-top: 16px; }
+.search-browse__head {
+  font-family: var(--sans);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-weight: 700;
+  color: var(--ink-3);
+  margin-bottom: 14px;
+}
+.search-browse__chips { display: flex; flex-wrap: wrap; }
+
+.search-empty {
+  font-family: var(--serif);
+  font-size: 17px;
+  line-height: 1.6;
+  color: var(--ink-1);
+  max-width: 60ch;
+}
+
+.search-results { display: grid; gap: 0; }
+.search-result {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  border-top: 1px solid var(--rule);
+  padding: 16px 0;
+}
+.search-result:hover .search-result__title { color: var(--moss); }
+.search-result__kind {
+  font-family: var(--sans);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  margin-bottom: 6px;
+}
+.search-result__title {
+  font-family: var(--display);
+  font-size: 21px;
+  line-height: 1.25;
+  color: var(--ink);
+}
+.search-result__dek {
+  font-family: var(--serif);
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--ink-2);
+  margin-top: 6px;
+  max-width: 68ch;
+}
+/* Page and section results highlight their matched runs. Article results
+   deliberately do not: they reuse ArticleCard, so they look the same here as
+   on every other index, and a photo card carries its own visual weight. */
+.search-result mark {
+  background: transparent;
+  color: inherit;
+  font-weight: 700;
+  box-shadow: inset 0 -0.4em 0 var(--moss-pale, rgba(122, 138, 106, 0.28));
+}
+
+.search-articles {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 36px;
+  row-gap: 56px;
+}
+
+.search-scope-note {
+  font-family: var(--sans);
+  font-size: 12px;
+  color: var(--ink-3);
+  margin-top: 48px;
+  border-top: 1px solid var(--rule);
+  padding-top: 16px;
+}
+
+@media (max-width: 900px) {
+  .search-articles { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 620px) {
+  .search-articles { grid-template-columns: 1fr; }
+  .search-form__input { font-size: 22px; }
+}

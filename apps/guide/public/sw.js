@@ -165,6 +165,98 @@ self.addEventListener('message', (event) => {
   }
 })
 
+// --- Web push ---------------------------------------------------------------
+//
+// Pushes from the Worker carry NO payload (workers/src/lib/push.ts explains
+// why: RFC 8291 payload encryption is the riskiest code we could hand-roll,
+// and it fails as "notifications silently stop"). So a wake-up asks the Worker
+// what it was about, presenting its own endpoint as the capability.
+//
+// The browser requires a visible notification for every push it delivers, or
+// it shows its own "site updated in the background" message and, after a few
+// of those, revokes the permission. Every path below therefore ends in a
+// showNotification — including the offline and error paths, where a generic
+// line is the honest answer.
+
+const API_BASE = '__API_BASE__'
+
+const GENERIC_NOTIFICATION = {
+  title: 'The Talus Field',
+  body: 'Open the guide for what changed.',
+  url: '/',
+  tag: 'tfg-generic',
+}
+
+async function noticeForThisPush() {
+  try {
+    const subscription = await self.registration.pushManager.getSubscription()
+    if (!subscription) return GENERIC_NOTIFICATION
+    const res = await fetch(`${API_BASE}/api/push/pending`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ endpoint: subscription.endpoint }),
+    })
+    if (!res.ok) return GENERIC_NOTIFICATION
+    const data = await res.json()
+    const notice = data && data.notice
+    if (!notice || typeof notice.title !== 'string' || typeof notice.body !== 'string') {
+      return GENERIC_NOTIFICATION
+    }
+    return {
+      title: notice.title,
+      body: notice.body,
+      // Only ever an in-app path: a server-supplied absolute URL here would
+      // turn a push into an open redirect out of the app.
+      url: typeof notice.url === 'string' && notice.url.startsWith('/') ? notice.url : '/',
+      tag: typeof notice.tag === 'string' ? notice.tag : GENERIC_NOTIFICATION.tag,
+    }
+  } catch {
+    // The device woke for a push but can't reach the Worker. Still has to
+    // show something.
+    return GENERIC_NOTIFICATION
+  }
+}
+
+self.addEventListener('push', (event) => {
+  event.waitUntil(
+    noticeForThisPush().then((notice) =>
+      self.registration.showNotification(notice.title, {
+        body: notice.body,
+        icon: '/icon-192.v2.png',
+        badge: '/brand/favicon-64.png',
+        // Same tag collapses a repeat rather than stacking two of the same
+        // notice in the tray.
+        tag: notice.tag,
+        data: { url: notice.url },
+      }),
+    ),
+  )
+})
+
+self.addEventListener('notificationclick', (event) => {
+  event.notification.close()
+  const target = (event.notification.data && event.notification.data.url) || '/'
+  event.waitUntil(
+    (async () => {
+      const clients = await self.clients.matchAll({
+        type: 'window',
+        includeUncontrolled: true,
+      })
+      // Reuse an open window when there is one: launching a second copy of an
+      // installed PWA is disorienting, and the running one already holds the
+      // trip plan in memory.
+      for (const client of clients) {
+        if (new URL(client.url).origin === self.location.origin) {
+          await client.focus()
+          if ('navigate' in client) await client.navigate(target)
+          return
+        }
+      }
+      await self.clients.openWindow(target)
+    })(),
+  )
+})
+
 const OFFLINE_PAGE = `<!doctype html>
 <html lang="en">
 <head>

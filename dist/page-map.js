@@ -8,6 +8,7 @@ var {
 var POINTS_URL = "/points.geojson?v=25";
 window.POINTS_URL = POINTS_URL;
 var MAP_API_BASE = typeof window !== "undefined" && window.GUIDE_API_BASE || "https://api.thetalusfieldjournal.com";
+var GUIDE_APP_BASE = typeof window !== "undefined" && window.GUIDE_APP_BASE || "https://talus-field-guide.pages.dev";
 var STORAGE_KEY = "tfg.trip";
 var STORAGE_VERSION = 1;
 var TRIP_CAP = 30;
@@ -518,6 +519,15 @@ function MapView({
       done();
     }
   }, [announce]);
+  var openInGuide = useCallback(() => {
+    var ids = tripStopIdsRef.current;
+    if (ids.length === 0) return;
+    var url = `${GUIDE_APP_BASE}/trip?import=${ids.join(",")}`;
+    if (window.track) window.track("trip_open_in_guide", {
+      trip_size: ids.length
+    });
+    window.open(url, "_blank", "noopener");
+  }, []);
   var openTripRoute = useCallback(() => {
     if (!features) return;
     var byId = new Map(features.map(f => [f.properties.id, f]));
@@ -916,6 +926,7 @@ function MapView({
     onToggleRegion: handleToggleRegion,
     onShareTrip: shareTrip,
     onOpenRoute: openTripRoute,
+    onOpenInGuide: openInGuide,
     onEmailSubscribed: handleGateSubscribed,
     go: go,
     announcerRef: announcerRef,
@@ -1127,6 +1138,7 @@ function TripPlannerSidebar({
   onToggleRegion,
   onShareTrip,
   onOpenRoute,
+  onOpenInGuide,
   onEmailSubscribed,
   go,
   announcerRef,
@@ -1353,7 +1365,11 @@ function TripPlannerSidebar({
     type: "button",
     className: "map-sidebar__trip-tool",
     onClick: onOpenRoute
-  }, "Open route in Google Maps")), tripStopIds.length >= 2 && React.createElement(TripEmailBox, {
+  }, "Open route in Google Maps"), React.createElement("button", {
+    type: "button",
+    className: "map-sidebar__trip-tool",
+    onClick: onOpenInGuide
+  }, "Open this trip in the Field Guide")), tripStopIds.length >= 2 && React.createElement(TripEmailBox, {
     tripStopIds: tripStopIds,
     onFallbackCopy: onShareTrip,
     onSubscribed: onEmailSubscribed

@@ -28,6 +28,11 @@ window.POINTS_URL = POINTS_URL;
 const MAP_API_BASE =
   (typeof window !== "undefined" && window.GUIDE_API_BASE) ||
   "https://api.thetalusfieldjournal.com";
+// Field Guide app base for "open this trip in the guide". Same runtime
+// override convention as above (window.GUIDE_APP_BASE, see page-guide.jsx).
+const GUIDE_APP_BASE =
+  (typeof window !== "undefined" && window.GUIDE_APP_BASE) ||
+  "https://talus-field-guide.pages.dev";
 const STORAGE_KEY = "tfg.trip";
 const STORAGE_VERSION = 1;
 const TRIP_CAP = 30;
@@ -742,6 +747,19 @@ function MapView({ go }) {
     }
   }, [announce]);
 
+  // Hand the trip to the Field Guide app. The two catalogs share most of their
+  // ids (points.geojson was seeded from the guide's stops), and the app maps
+  // the rest itself, so the link carries plain ids and the app reports whatever
+  // it could not bring across. Buyers land straight on the planner; everyone
+  // else hits the app's sign-in, which stashes the trip until they own it.
+  const openInGuide = useCallback(() => {
+    const ids = tripStopIdsRef.current;
+    if (ids.length === 0) return;
+    const url = `${GUIDE_APP_BASE}/trip?import=${ids.join(",")}`;
+    if (window.track) window.track("trip_open_in_guide", { trip_size: ids.length });
+    window.open(url, "_blank", "noopener");
+  }, []);
+
   // Coordinate-based DIRECTIONS links are fine here: they route navigation,
   // unlike coordinate-synthesized PLACE links (forbidden above, see gmapsUrl),
   // which would land on a generic dropped pin instead of the named place.
@@ -1202,6 +1220,7 @@ function MapView({ go }) {
         onToggleRegion={handleToggleRegion}
         onShareTrip={shareTrip}
         onOpenRoute={openTripRoute}
+        onOpenInGuide={openInGuide}
         onEmailSubscribed={handleGateSubscribed}
         go={go}
         announcerRef={announcerRef}
@@ -1432,6 +1451,7 @@ function TripPlannerSidebar({
   onToggleRegion,
   onShareTrip,
   onOpenRoute,
+  onOpenInGuide,
   onEmailSubscribed,
   go,
   announcerRef,
@@ -1728,6 +1748,11 @@ function TripPlannerSidebar({
                 onClick={onOpenRoute}
               >Open route in Google Maps</button>
             )}
+            <button
+              type="button"
+              className="map-sidebar__trip-tool"
+              onClick={onOpenInGuide}
+            >Open this trip in the Field Guide</button>
           </div>
         )}
         {tripStopIds.length >= 2 && (

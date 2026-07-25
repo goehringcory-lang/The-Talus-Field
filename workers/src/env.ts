@@ -46,6 +46,14 @@ export type Env = {
   ADMIN_USERNAME?: string
   ADMIN_CODE?: string
 
+  // Web Push (VAPID) keypair for the PWA's notifications, both base64url.
+  // Generate with `node scripts/gen-vapid-keys.mjs`. The public key is public
+  // by design (GET /api/push/key serves it; it goes into every subscription);
+  // it lives in secrets only to keep the pair together. Both optional: without
+  // them every /api/push route 503s and the app hides the opt-in.
+  VAPID_PUBLIC_KEY?: string
+  VAPID_PRIVATE_KEY?: string
+
   // IndexNow push-indexing for Bing / Yandex / Seznam / Naver / Yep.
   // INDEXNOW_KEY is the 32-char hex string published at
   //   https://thetalusfieldjournal.com/<INDEXNOW_KEY>.txt

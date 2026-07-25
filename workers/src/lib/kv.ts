@@ -18,6 +18,48 @@ export type TripFeedRecord = {
   updatedAt: string            // ISO timestamp of the last publish
 }
 
+// One account's synced app state (/api/trip/plan): the trip plan, saved stops,
+// visited stops, and private notes, so a trip planned on a laptop is there on
+// the phone in the park. The Worker is a dumb box here on purpose — `doc` is
+// stored and served verbatim, never interpreted. The PWA owns the shape (see
+// apps/guide/src/sync/schema.ts) and re-validates on read, which is what lets
+// the plan schema evolve without a Worker deploy in lockstep.
+export type TripSyncRecord = {
+  sub: string                  // JWT sub that owns the state
+  doc: string                  // client JSON, opaque to the Worker
+  updatedAt: string            // ISO stamp the client sent; the merge key
+}
+
+// One device's push subscription. Keyed by a hash of the endpoint, not by
+// account: a buyer may have the guide installed on a phone and a tablet, and
+// each install has its own endpoint. `sub` is the reverse pointer used by the
+// sweeps, and `endpoint` is the capability URL the push service issued.
+//
+// `tripStart`/`tripEnd` are the ONE piece of planner state that reaches the
+// server outside the opaque sync document, and only because a morning-of nudge
+// cannot be scheduled without knowing which mornings matter. The app refreshes
+// them whenever the dates change. Nothing about WHAT is planned is sent.
+export type PushSubscriptionRecord = {
+  sub: string                  // JWT sub that owns this device
+  endpoint: string             // push service capability URL
+  p256dh?: string              // kept for a future encrypted-payload path
+  auth?: string
+  createdAt: string            // ISO
+  tripStart?: string           // YYYY-MM-DD
+  tripEnd?: string             // YYYY-MM-DD
+}
+
+// The message a woken service worker comes back to collect (see lib/push.ts on
+// why pushes carry no payload). Written immediately before the push is sent,
+// short-lived: if the device does not collect it within the hour, the moment
+// has passed and a generic notification is the honest fallback.
+export type PushPendingRecord = {
+  title: string
+  body: string
+  url: string                  // app path to open on tap
+  tag: string                  // collapses repeats of the same notice
+}
+
 // Google Calendar connection for one account. The refresh token is the
 // long-lived secret; it never leaves the Worker. `email` is the connected
 // Google account, shown in the app so the buyer can tell which calendar
@@ -49,6 +91,13 @@ const TRIP_FEED_KEY = (token: string) => `tripfeed:${token}`
 const TRIP_FEED_TOKEN_KEY = (sub: string) => `tripfeedToken:${sub.toLowerCase()}`
 const TRIP_FEED_WRITE_ATTEMPTS_KEY = (sub: string) =>
   `tripfeedWriteAttempts:${sub.toLowerCase()}`
+const PUSH_SUB_KEY = (endpointHash: string) => `push:${endpointHash}`
+const PUSH_PENDING_KEY = (endpointHash: string) => `pushPending:${endpointHash}`
+const PUSH_NOTICE_KEY = (endpointHash: string, stage: string) =>
+  `pushNotice:${endpointHash}:${stage}`
+const TRIP_SYNC_KEY = (sub: string) => `tripsync:${sub.toLowerCase()}`
+const TRIP_SYNC_WRITE_ATTEMPTS_KEY = (sub: string) =>
+  `tripsyncWriteAttempts:${sub.toLowerCase()}`
 const TRIP_EMAIL_ATTEMPTS_KEY = (ipHash: string) => `tripEmailAttempts:${ipHash}`
 const WAITLIST_ATTEMPTS_KEY = (ipHash: string) => `waitlistAttempts:${ipHash}`
 const CONTACT_ATTEMPTS_KEY = (ipHash: string) => `contactAttempts:${ipHash}`
@@ -251,6 +300,135 @@ export async function recordContactAttempt(env: Env, ipHash: string): Promise<nu
 
 export async function recordTripFeedWriteAttempt(env: Env, sub: string): Promise<number> {
   return incrementFixedWindow(env, TRIP_FEED_WRITE_ATTEMPTS_KEY(sub))
+}
+
+// --- Web push subscriptions (/api/push) -------------------------------------
+
+// Endpoints are long capability URLs and are not safe as raw KV key material
+// (length limits, and they end up in logs). A SHA-256 of the endpoint is a
+// stable, fixed-width id that both the app and the sweeps can derive.
+export async function hashEndpoint(endpoint: string): Promise<string> {
+  const digest = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(endpoint))
+  return [...new Uint8Array(digest)].map((b) => b.toString(16).padStart(2, '0')).join('')
+}
+
+// Browsers rotate push endpoints on their own schedule and installs go stale
+// silently. A year of TTL, refreshed on every re-subscribe (the app
+// re-registers at boot), keeps the keyspace from filling with dead devices.
+const PUSH_SUB_TTL_SECONDS = 365 * 24 * 60 * 60
+
+export async function getPushSubscription(
+  env: Env,
+  endpointHash: string,
+): Promise<PushSubscriptionRecord | null> {
+  const raw = await env.GUIDE_BUYERS.get(PUSH_SUB_KEY(endpointHash))
+  if (!raw) return null
+  try {
+    return JSON.parse(raw) as PushSubscriptionRecord
+  } catch (err) {
+    console.error('getPushSubscription: corrupt KV record', { endpointHash, err })
+    return null
+  }
+}
+
+export async function putPushSubscription(
+  env: Env,
+  endpointHash: string,
+  record: PushSubscriptionRecord,
+): Promise<void> {
+  await env.GUIDE_BUYERS.put(PUSH_SUB_KEY(endpointHash), JSON.stringify(record), {
+    expirationTtl: PUSH_SUB_TTL_SECONDS,
+  })
+}
+
+export async function deletePushSubscription(env: Env, endpointHash: string): Promise<void> {
+  await env.GUIDE_BUYERS.delete(PUSH_SUB_KEY(endpointHash))
+  await env.GUIDE_BUYERS.delete(PUSH_PENDING_KEY(endpointHash))
+}
+
+// The pending notice a woken service worker collects. One hour: a device that
+// has not come back by then has missed the moment, and the SW's generic
+// fallback is more honest than a stale "leaving today!".
+const PUSH_PENDING_TTL_SECONDS = 60 * 60
+
+export async function putPushPending(
+  env: Env,
+  endpointHash: string,
+  record: PushPendingRecord,
+): Promise<void> {
+  await env.GUIDE_BUYERS.put(PUSH_PENDING_KEY(endpointHash), JSON.stringify(record), {
+    expirationTtl: PUSH_PENDING_TTL_SECONDS,
+  })
+}
+
+/** Read and consume the pending notice (single use). */
+export async function takePushPending(
+  env: Env,
+  endpointHash: string,
+): Promise<PushPendingRecord | null> {
+  const raw = await env.GUIDE_BUYERS.get(PUSH_PENDING_KEY(endpointHash))
+  if (!raw) return null
+  await env.GUIDE_BUYERS.delete(PUSH_PENDING_KEY(endpointHash))
+  try {
+    return JSON.parse(raw) as PushPendingRecord
+  } catch {
+    return null
+  }
+}
+
+// Per-(device, stage) sentinel so each push notice fires exactly once. Same
+// shape as the renewal email sentinels; the trip-day stages embed the date, so
+// a 30-day TTL clears them well before the same date could come round again.
+const PUSH_NOTICE_TTL_SECONDS = 30 * 24 * 60 * 60
+
+export async function hasPushNotice(
+  env: Env,
+  endpointHash: string,
+  stage: string,
+): Promise<boolean> {
+  return (await env.GUIDE_BUYERS.get(PUSH_NOTICE_KEY(endpointHash, stage))) !== null
+}
+
+export async function markPushNotice(
+  env: Env,
+  endpointHash: string,
+  stage: string,
+): Promise<void> {
+  await env.GUIDE_BUYERS.put(PUSH_NOTICE_KEY(endpointHash, stage), '1', {
+    expirationTtl: PUSH_NOTICE_TTL_SECONDS,
+  })
+}
+
+// --- Synced app state (/api/trip/plan) --------------------------------------
+
+// Same 400-day horizon as the calendar feed, refreshed on every write: a buyer
+// who stops planning for a season still finds their trip, and an abandoned
+// record ages out of KV on its own.
+const TRIP_SYNC_TTL_SECONDS = 400 * 24 * 60 * 60
+
+export async function getTripSync(env: Env, sub: string): Promise<TripSyncRecord | null> {
+  const raw = await env.GUIDE_BUYERS.get(TRIP_SYNC_KEY(sub))
+  if (!raw) return null
+  try {
+    return JSON.parse(raw) as TripSyncRecord
+  } catch (err) {
+    console.error('getTripSync: corrupt KV record', { sub, err })
+    return null
+  }
+}
+
+export async function putTripSync(env: Env, record: TripSyncRecord): Promise<void> {
+  await env.GUIDE_BUYERS.put(TRIP_SYNC_KEY(record.sub), JSON.stringify(record), {
+    expirationTtl: TRIP_SYNC_TTL_SECONDS,
+  })
+}
+
+export async function deleteTripSync(env: Env, sub: string): Promise<void> {
+  await env.GUIDE_BUYERS.delete(TRIP_SYNC_KEY(sub))
+}
+
+export async function recordTripSyncWriteAttempt(env: Env, sub: string): Promise<number> {
+  return incrementFixedWindow(env, TRIP_SYNC_WRITE_ATTEMPTS_KEY(sub))
 }
 
 // --- Renewal arc (/api/checkout/renew + the daily sweep) --------------------
