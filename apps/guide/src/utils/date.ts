@@ -10,6 +10,20 @@ export function todayIso(): string {
   return new Intl.DateTimeFormat('en-CA', { timeZone: PACIFIC }).format(new Date())
 }
 
+/** Minutes from park-local midnight, for the agenda's "now" rule. */
+export function parkNowMinutes(): number {
+  const parts = new Intl.DateTimeFormat('en-US', {
+    timeZone: PACIFIC,
+    hour: '2-digit',
+    minute: '2-digit',
+    hour12: false,
+  }).formatToParts(new Date())
+  const hour = Number(parts.find((p) => p.type === 'hour')?.value ?? '0')
+  const minute = Number(parts.find((p) => p.type === 'minute')?.value ?? '0')
+  // en-US hour12:false renders midnight as 24 in some engines.
+  return (hour % 24) * 60 + minute
+}
+
 /** Add `days` (may be negative) to a YYYY-MM-DD date, returning YYYY-MM-DD. */
 export function addDaysIso(date: string, days: number): string {
   const d = new Date(`${date}T00:00:00Z`)

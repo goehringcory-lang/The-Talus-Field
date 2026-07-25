@@ -1,44 +1,35 @@
 // =============================================================================
-// /trip — the day-by-day plan built from stops and programs, finalized into
-// a calendar as one .ics file. The page reads as a guided sequence: pick
-// dates, fill the days, then review the exact events and create them.
-// Times: programs keep their published times, stops the user timed keep
-// those, everything else is auto-slotted greedily (see trip/slotting.ts).
-// Works fully offline: content is bundled, program items carry snapshots,
-// and ICS generation is client-side.
+// /trip — the trip plan, drawn as a calendar board (components/TripAgenda).
+// The board is the page: full-width day timelines, blocks scaled by how long
+// a thing takes and colored by what it is, dragged around by hand. The date
+// pickers and the "add to your days" tools sit above it as a thin strip, and
+// the calendar export sits below it as the last step rather than the point.
+// Times: programs keep their published times, anything the user placed keeps
+// that placement, everything else is auto-slotted greedily (trip/slotting.ts).
+// Works fully offline: content is bundled, program items carry snapshots, the
+// plan is localStorage, and ICS generation is client-side.
 // =============================================================================
 
-import { Fragment, useEffect, useMemo, useRef, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import GatedChrome from '../components/GatedChrome'
 import PlanTabs from '../components/PlanTabs'
 import ResponsivePhoto from '../components/ResponsivePhoto'
+import TripAgenda from '../components/TripAgenda'
 import TripReview from '../components/TripReview'
 import Button from '../components/ui/Button'
-import PageHeader from '../components/ui/PageHeader'
-import { getHikeById, getItineraryDayPhotos, getStopById, type StopT } from '../content'
+import { getItineraryDayPhotos, getStopById, type StopT } from '../content'
 import { ITINERARIES, ITINERARY_KEYS, type ItineraryKey } from '../content/itineraries'
 import { getStopsByRegion } from '../content'
 import { MAX_SPAN_DAYS, readTripDates } from '../programs/usePrograms'
-import { addDaysIso, formatClock, formatDayHeader } from '../utils/date'
-import { driveMinutesBetween, slotPlan, toHhmm, type SlottedItem } from '../trip/slotting'
+import { addDaysIso, formatDayHeader } from '../utils/date'
+import { slotPlan } from '../trip/slotting'
 import { useTripPlan } from '../trip/useTripPlan'
 import { dayForecastRegion } from '../trip/dayRegion'
 import { useWeather } from '../weather/useWeather'
 import { HIDE_AFTER_MS, WARN_AFTER_MS } from '../weather/staleness'
 import { forecastLineForDay } from '../weather/todayLine'
 import './Trip.css'
-
-function StepHeader({ n, title }: { n: number; title: string }) {
-  return (
-    <div className="trip-step">
-      <span className="trip-step__num" aria-hidden="true">
-        {n}
-      </span>
-      <h2 className="trip-step__title">{title}</h2>
-    </div>
-  )
-}
 
 function daysInWindow(start: string, end: string): string[] {
   const out: string[] = []
@@ -52,8 +43,8 @@ function daysInWindow(start: string, end: string): string[] {
 }
 
 // Free-form entry form: the parts of a trip the guide doesn't model (lodging
-// check-in, a dinner reservation, a permit pickup) so the exported calendar
-// can be the whole trip, not a fragment of it.
+// check-in, a dinner reservation, a permit pickup) so the board, and the
+// exported calendar, can be the whole trip rather than a fragment of it.
 function AddCustomRow({
   windowDays,
   onAdd,
@@ -106,25 +97,8 @@ function AddCustomRow({
   )
 }
 
-// Between two placed rows, the estimated drive. Rendered only when both
-// sides carry coordinates and the estimate is meaningful.
-function TransitRow({ prev, cur }: { prev: SlottedItem; cur: SlottedItem }) {
-  if (prev.startMin === null || cur.startMin === null) return null
-  const min = driveMinutesBetween(prev.item, cur.item)
-  if (min === null) return null
-  return (
-    <div className="trip-transit">
-      <span className="trip-transit__line" aria-hidden="true" />
-      <span className="trip-transit__label">
-        {min === 0 ? 'Same parking area' : `~${min} min drive`}
-      </span>
-    </div>
-  )
-}
-
 export default function Trip() {
-  const { plan, addStop, addCustom, removeItem, setStopTime, moveStopToDay, clear, setDates } =
-    useTripPlan()
+  const { plan, addStop, addCustom, clear, setDates } = useTripPlan()
   const [reviewOpen, setReviewOpen] = useState(false)
   const reviewRef = useRef<HTMLDivElement>(null)
 
@@ -194,7 +168,6 @@ export default function Trip() {
   }
 
   const itemCount = plan.items.length
-  const [presetsOpen, setPresetsOpen] = useState(false)
 
   // Seeding over a non-empty plan replaces it; that is a destructive tap and
   // asks first. Empty plans seed straight away, as before.
@@ -209,7 +182,6 @@ export default function Trip() {
       clear()
     }
     seedItinerary(key)
-    setPresetsOpen(false)
   }
 
   // Same clamp as /programs: end never before start, window capped at what
@@ -224,239 +196,109 @@ export default function Trip() {
 
   return (
     <GatedChrome>
-      <main className="wrap wrap--narrow page">
+      <main className="wrap page trip-page">
         <PlanTabs active="trip" />
-        <PageHeader
-          eyebrow="Plan your days"
-          title="Your trip plan"
-          intro="Set your dates, then fill the days: hikes from the trail list, programs from the list, stops from their pages or the map. When the plan is final, review it and put it on your calendar."
-        />
 
-        <StepHeader n={1} title="Pick your dates" />
-        <div className="trip-dates">
-          <label className="field">
-            Arriving
-            <input
-              className="field-control"
-              type="date"
-              value={plan.dates.start}
-              onChange={(e) => updateDates(e.target.value, plan.dates.end)}
-            />
-          </label>
-          <label className="field">
-            Leaving
-            <input
-              className="field-control"
-              type="date"
-              value={plan.dates.end}
-              min={plan.dates.start}
-              max={addDaysIso(plan.dates.start, MAX_SPAN_DAYS)}
-              onChange={(e) => updateDates(plan.dates.start, e.target.value)}
-            />
-          </label>
-          <Button variant="ghost" to="/programs">
-            Browse programs running these dates →
-          </Button>
-        </div>
+        <header className="trip-head">
+          <div>
+            <p className="eyebrow">Plan your days</p>
+            <h1 className="trip-head__title">Your trip plan</h1>
+          </div>
+          <div className="trip-dates">
+            <label className="field">
+              Arriving
+              <input
+                className="field-control"
+                type="date"
+                value={plan.dates.start}
+                onChange={(e) => updateDates(e.target.value, plan.dates.end)}
+              />
+            </label>
+            <label className="field">
+              Leaving
+              <input
+                className="field-control"
+                type="date"
+                value={plan.dates.end}
+                min={plan.dates.start}
+                max={addDaysIso(plan.dates.start, MAX_SPAN_DAYS)}
+                onChange={(e) => updateDates(plan.dates.start, e.target.value)}
+              />
+            </label>
+          </div>
+        </header>
 
-        <StepHeader n={2} title="Fill your days" />
-        {(itemCount === 0 || presetsOpen) && (
-          <div className="trip-presets" role="group" aria-label="Start from a preset">
-            <span className="trip-presets__label">
-              {itemCount === 0 ? 'Start from a preset:' : 'Start over from a preset:'}
-            </span>
-            <div className="trip-presets__row">
-              {ITINERARY_KEYS.map((key) => (
-                <button
-                  type="button"
-                  key={key}
-                  className="trip-preset"
-                  onClick={() => reseedItinerary(key)}
-                >
-                  {/* One thumbnail per day (the day's lead-region photo), so
-                      the strip's length reads as the plan's length. */}
-                  <span className="trip-preset__photos" aria-hidden="true">
-                    {getItineraryDayPhotos(ITINERARIES[key]).map((photo, i) => (
-                      <span className="trip-preset__media" key={i}>
-                        <ResponsivePhoto src={photo.src} alt="" width={400} height={400} sizes="64px" />
-                      </span>
-                    ))}
-                  </span>
-                  <span className="trip-preset__label">{ITINERARIES[key].label}</span>
-                  <span className="trip-preset__sub">{ITINERARIES[key].subtitle}</span>
-                </button>
-              ))}
+        <details className="trip-add" open={itemCount === 0}>
+          <summary className="trip-add__summary">
+            {itemCount === 0 ? 'Fill your days' : 'Add to your days'}
+          </summary>
+          <div className="trip-add__body">
+            <p className="trip-add__links">
+              Add a day hike from the <Link to="/hikes">trail list</Link>, a ranger walk or star
+              party from the <Link to="/programs">program list</Link>, or a stop from its own page
+              or the <Link to="/map">map</Link>. Everything you add lands on the board below, where
+              you can drag it into place.
+            </p>
+
+            <div className="trip-presets" role="group" aria-label="Start from a preset">
+              <span className="trip-presets__label">
+                {itemCount === 0 ? 'Start from a preset:' : 'Start over from a preset:'}
+              </span>
+              <div className="trip-presets__row">
+                {ITINERARY_KEYS.map((key) => (
+                  <button
+                    type="button"
+                    key={key}
+                    className="trip-preset"
+                    onClick={() => reseedItinerary(key)}
+                  >
+                    {/* One thumbnail per day (the day's lead-region photo), so
+                        the strip's length reads as the plan's length. */}
+                    <span className="trip-preset__photos" aria-hidden="true">
+                      {getItineraryDayPhotos(ITINERARIES[key]).map((photo, i) => (
+                        <span className="trip-preset__media" key={i}>
+                          <ResponsivePhoto src={photo.src} alt="" width={400} height={400} sizes="64px" />
+                        </span>
+                      ))}
+                    </span>
+                    <span className="trip-preset__label">{ITINERARIES[key].label}</span>
+                    <span className="trip-preset__sub">{ITINERARIES[key].subtitle}</span>
+                  </button>
+                ))}
+              </div>
             </div>
-          </div>
-        )}
-        {itemCount > 0 && (
-          <div className="trip-toolbar">
-            <Button variant="ghost" size="sm" onClick={() => setPresetsOpen((v) => !v)}>
-              {presetsOpen ? 'Hide presets' : 'Start over from a preset'}
-            </Button>
-            <Button variant="ghost" size="sm" onClick={clear}>
-              Clear plan
-            </Button>
-          </div>
-        )}
 
-        <AddCustomRow windowDays={windowDays} onAdd={(title, day) => addCustom(title, { day })} />
+            <AddCustomRow windowDays={windowDays} onAdd={(title, day) => addCustom(title, { day })} />
 
-        {itemCount === 0 ? (
-          <div className="trip-empty">
-            <p style={{ margin: '0 0 10px' }}>Nothing planned yet. How this works:</p>
-            <ol>
-              <li>Set your dates above.</li>
-              <li>
-                Add a day hike from the <Link to="/hikes">Hikes list</Link>: the plan budgets the
-                hours it takes.
-              </li>
-              <li>
-                Add programs from the <Link to="/programs">Programs list</Link>: ranger walks,
-                tours, star parties.
-              </li>
-              <li>
-                Add stops from their pages or the <Link to="/map">map</Link>, or seed a day from
-                a preset above.
-              </li>
-              <li>
-                Finalize the plan below to put it on your calendar. Events carry GPS coordinates
-                and a directions link, so tapping an event on the day launches navigation.
-              </li>
-            </ol>
-            <p style={{ margin: '10px 0 0' }}>The plan lives on this device and works offline.</p>
+            {itemCount > 0 && (
+              <div className="trip-toolbar">
+                <Button variant="ghost" size="sm" onClick={clear}>
+                  Clear plan
+                </Button>
+                <Button variant="ghost" size="sm" to="/programs">
+                  Programs running your dates →
+                </Button>
+              </div>
+            )}
           </div>
-        ) : (
-          [...slotted.entries()].map(([day, items]) => {
-            const totalMin = items.reduce((sum, s) => sum + (s.startMin !== null ? s.durationMin : 0), 0)
-            // Fixed items without a slot are untimed programs: deliberately
-            // all-day, not a scheduling failure.
-            const overflow = items.filter((s) => s.startMin === null && !s.fixed)
-            const forecast = dayForecasts.get(day)
-            return (
-              <section className="trip-day" key={day} aria-label={formatDayHeader(day)}>
-                <div className="trip-day__header">
-                  <h2 className="trip-day__title">
-                    {formatDayHeader(day)}
-                    {(day < plan.dates.start || day > plan.dates.end) && ' · outside your dates'}
-                  </h2>
-                  <span className="trip-day__total">
-                    ~{Math.floor(totalMin / 60)}h{totalMin % 60 ? ` ${totalMin % 60}m` : ''} planned
-                  </span>
-                </div>
-                {forecast && <p className="trip-day__forecast dateline">{forecast}</p>}
-                {items.map((s, i) => {
-                  const { item } = s
-                  const isProgram = item.type === 'program'
-                  const isCustom = item.type === 'custom'
-                  const stop = item.type === 'stop' ? getStopById(item.stopId) : undefined
-                  const hike = item.type === 'hike' ? getHikeById(item.hikeId) : undefined
-                  // A stop or hike id that no longer resolves means a content
-                  // edit removed it; say so instead of linking to a 404.
-                  const missing = !isProgram && !isCustom && !stop && !hike
-                  const title = isProgram
-                    ? item.snapshot.title
-                    : isCustom
-                      ? item.title
-                      : stop?.title ?? hike?.title ?? 'No longer in this edition'
-                  const link = stop ? `/stop/${stop.id}` : undefined
-                  return (
-                    <Fragment key={item.itemId}>
-                      {i > 0 && <TransitRow prev={items[i - 1]} cur={s} />}
-                      <div className="trip-item">
-                        <div className="trip-item__time">
-                          {!isProgram ? (
-                            <>
-                              <input
-                                className="field-control field-control--sm"
-                                type="time"
-                                value={item.startTime ?? (s.startMin !== null ? toHhmm(s.startMin) : '')}
-                                onChange={(e) => setStopTime(item.itemId, e.target.value || undefined)}
-                                aria-label={`Start time for ${title}`}
-                              />
-                              {!item.startTime && s.startMin !== null && (
-                                <span className="trip-item__auto">auto</span>
-                              )}
-                            </>
-                          ) : (
-                            <span className="trip-item__fixed-time">
-                              {s.startMin !== null ? formatClock(s.startMin) : 'All day'}
-                            </span>
-                          )}
-                        </div>
-                        <div>
-                          <h3 className="trip-item__title">
-                            {link ? <Link to={link}>{title}</Link> : title}
-                          </h3>
-                          <span className="trip-item__meta">
-                            <span>
-                              {s.durationMin >= 60
-                                ? `${Math.floor(s.durationMin / 60)}h${s.durationMin % 60 ? ` ${s.durationMin % 60}m` : ''}`
-                                : `${s.durationMin}m`}
-                            </span>
-                            {hike && (
-                              <span>
-                                {hike.distanceMi} mi
-                                {hike.route === 'one-way' ? ' one-way' : ''}
-                              </span>
-                            )}
-                            {missing ? (
-                              <span>Removed from the guide</span>
-                            ) : !isProgram ? (
-                              <select
-                                className="field-control field-control--sm"
-                                value={item.day}
-                                onChange={(e) => moveStopToDay(item.itemId, e.target.value)}
-                                aria-label={`Day for ${title}`}
-                              >
-                                {windowDays.map((d) => (
-                                  <option key={d} value={d}>
-                                    {formatDayHeader(d)}
-                                  </option>
-                                ))}
-                                {!windowDays.includes(item.day) && (
-                                  <option value={item.day}>{formatDayHeader(item.day)}</option>
-                                )}
-                              </select>
-                            ) : (
-                              <span>{item.snapshot.location ?? 'Program'}</span>
-                            )}
-                          </span>
-                        </div>
-                        <button
-                          type="button"
-                          className="trip-item__remove"
-                          aria-label={`Remove ${title} from trip`}
-                          onClick={() => removeItem(item.itemId)}
-                        >
-                          ×
-                        </button>
-                      </div>
-                    </Fragment>
-                  )
-                })}
-                {overflow.length > 0 && (
-                  <p className="trip-overflow">
-                    {overflow.length} {overflow.length === 1 ? 'item doesn’t' : 'items don’t'} fit
-                    in this day before 9 p.m. Move something to another day, set times by hand, or
-                    resolve it in Review &amp; finalize below. Unresolved items land on the calendar
-                    as all-day events.
-                  </p>
-                )}
-              </section>
-            )
-          })
-        )}
+        </details>
 
-        <div ref={reviewRef} style={{ scrollMarginTop: 24 }}>
-          <StepHeader n={3} title="Review & finalize" />
+        <TripAgenda slotted={slotted} windowDays={windowDays} dayForecasts={dayForecasts} />
+
+        <div ref={reviewRef} className="trip-export" style={{ scrollMarginTop: 24 }}>
+          <h2 className="trip-export__title">Put it on your calendar</h2>
+          <p className="trip-export__intro">
+            The board above is the plan and it works offline on its own. This step copies it into
+            the calendar app you already carry: events carry GPS coordinates and a directions link,
+            so tapping one on the day launches navigation.
+          </p>
           <Button disabled={itemCount === 0} onClick={toggleReview}>
-            {reviewOpen ? 'Hide review' : 'Finalize trip'}
+            {reviewOpen ? 'Hide review' : 'Review & add to calendar'}
           </Button>
           {itemCount === 0 && (
             <p className="trip-step__hint">
-              Add at least one stop or program first. The calendar events are built from your
-              days above.
+              Add at least one stop, hike, or program first. The calendar events are built from
+              the board above.
             </p>
           )}
           {reviewOpen && itemCount > 0 && (
@@ -470,9 +312,10 @@ export default function Trip() {
         </div>
 
         <p className="page-footnote">
-          Times are suggestions built from each stop's time budget plus a travel buffer estimated
-          from the driving distance between stops; programs keep their published times. Everything
-          here works offline once added.
+          Times you haven't set yourself are suggestions built from each stop's time budget plus a
+          travel buffer estimated from the driving distance between stops; programs keep their
+          published times. Drag a block and it stays where you put it. Everything here is stored on
+          this device and works offline.
           {staleForecast &&
             ' The forecasts shown are old; they refresh the next time you open the app online.'}
         </p>
