@@ -237,6 +237,57 @@ export function useTripPlan() {
     })
   }, [])
 
+  // Drag on the agenda board moves a thing to a day and a time at once. Two
+  // separate mutations would write the plan twice, and the intermediate write
+  // (new day, old time) can fail slotting for a frame and make the block jump.
+  const placeItem = useCallback((itemId: string, day: string, startTime: string | undefined) => {
+    update((p) => {
+      const moving = p.items.find((it) => it.itemId === itemId)
+      if (!moving || moving.type === 'program') return p
+      if (moving.day === day) {
+        return {
+          ...p,
+          items: p.items.map((it) =>
+            it.itemId === itemId && it.type !== 'program' ? { ...it, startTime } : it,
+          ),
+        }
+      }
+      // Custom ids don't embed the day, so a move only rewrites `day`.
+      if (moving.type === 'custom') {
+        return {
+          ...p,
+          items: p.items.map((it) => (it.itemId === itemId ? { ...it, day, startTime } : it)),
+        }
+      }
+      const newId =
+        moving.type === 'hike' ? hikeItemId(moving.hikeId, day) : stopItemId(moving.stopId, day)
+      // Target day already holds this item: drop the dragged copy rather than
+      // mint a colliding itemId, same as moveStopToDay.
+      if (p.items.some((it) => it.itemId === newId)) {
+        return { ...p, items: p.items.filter((it) => it.itemId !== itemId) }
+      }
+      return {
+        ...p,
+        items: p.items.map((it) =>
+          it.itemId === itemId && it.type !== 'program'
+            ? { ...it, day, itemId: newId, startTime }
+            : it,
+        ),
+      }
+    })
+  }, [])
+
+  // Resizing a block overrides the content's own time budget. undefined puts
+  // the item back on the bundled estimate.
+  const setItemDuration = useCallback((itemId: string, durationMin: number | undefined) => {
+    update((p) => ({
+      ...p,
+      items: p.items.map((it) =>
+        it.itemId === itemId && it.type !== 'program' ? { ...it, durationMin } : it,
+      ),
+    }))
+  }, [])
+
   const clear = useCallback(() => {
     update((p) => ({ ...p, items: [] }))
   }, [])
@@ -256,6 +307,8 @@ export function useTripPlan() {
     removeItem,
     setStopTime,
     moveStopToDay,
+    placeItem,
+    setItemDuration,
     clear,
     hasItem,
   }

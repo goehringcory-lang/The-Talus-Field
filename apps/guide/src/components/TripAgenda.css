@@ -1,0 +1,497 @@
+/* The trip board: one full-width timeline per day, blocks scaled by how long
+ * a thing takes and tinted by what it is. Tones arrive per block as the
+ * --tone custom property (trip/agendaItem.ts); nothing here hard-codes a
+ * category color. Blocks tint rather than fill so the same tone reads in the
+ * light and the dark palette without a second set of values. */
+
+.ag {
+  margin: 0 0 var(--s6);
+}
+
+.ag-toolbar {
+  display: flex;
+  gap: var(--s3) var(--s5);
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 0 var(--s3);
+}
+
+.ag-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 14px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-family: var(--sans);
+  font-size: 11px;
+  color: var(--ink-2);
+}
+.ag-legend__item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.ag-legend__swatch {
+  width: 11px;
+  height: 11px;
+  flex-shrink: 0;
+  background: var(--tone);
+  border: 1px solid color-mix(in oklab, var(--tone) 60%, var(--ink));
+}
+
+.ag-zoom {
+  display: inline-flex;
+  border: 1px solid var(--rule-soft);
+}
+.ag-zoom__btn {
+  font: 600 11px var(--sans);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  background: none;
+  border: none;
+  border-right: 1px solid var(--rule-soft);
+  color: var(--ink-3);
+  padding: 8px 12px;
+  min-height: 36px;
+  cursor: pointer;
+}
+.ag-zoom__btn:last-child { border-right: none; }
+.ag-zoom__btn[aria-pressed='true'] {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.ag-hint {
+  font-family: var(--sans);
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--ink-3);
+  margin: 0 0 var(--s4);
+  max-width: 68ch;
+}
+
+/* ===== One day ===== */
+
+.ag-day {
+  margin: 0 0 var(--s5);
+}
+.ag-day--outside .ag-day__bar { opacity: 0.75; }
+.ag-day--target .ag-track {
+  background: color-mix(in oklab, var(--moss) 5%, transparent);
+}
+
+.ag-day__bar {
+  position: sticky;
+  /* Below the gated masthead, which is its own sticky layer. */
+  top: calc(env(safe-area-inset-top) + var(--chrome-top-h));
+  z-index: 12;
+  display: flex;
+  align-items: center;
+  gap: var(--s4);
+  padding: 8px 2px;
+  background: color-mix(in oklab, var(--paper) 94%, transparent);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border-top: 1px solid var(--ink);
+  border-bottom: 1px solid var(--rule-soft);
+}
+
+.ag-day__date {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  font-family: var(--sans);
+  flex-shrink: 0;
+}
+.ag-day__weekday {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+.ag-day__num {
+  font-family: var(--display);
+  font-size: 26px;
+  font-weight: 500;
+  line-height: 1;
+  color: var(--ink);
+}
+.ag-day__month {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+}
+
+.ag-day__facts {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+  font-family: var(--sans);
+  font-size: 11px;
+  color: var(--ink-3);
+}
+.ag-day__forecast {
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--ink-2);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ===== The timeline ===== */
+
+.ag-grid {
+  position: relative;
+  display: grid;
+  grid-template-columns: 54px 1fr;
+  margin-top: 6px;
+}
+
+.ag-gutter {
+  position: relative;
+  border-right: 1px solid var(--rule-soft);
+}
+.ag-gutter__label {
+  position: absolute;
+  right: 8px;
+  transform: translateY(-50%);
+  font-family: var(--sans);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: var(--ink-3);
+  white-space: nowrap;
+}
+
+.ag-track {
+  position: relative;
+  min-width: 0;
+  /* Empty timeline scrolls natively; the blocks on it do not (see below). */
+  touch-action: pan-y;
+}
+
+.ag-rule {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 0;
+  border-top: 1px solid var(--rule-soft);
+  opacity: 0.65;
+}
+
+.ag-now {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 0;
+  border-top: 2px solid var(--moss);
+  z-index: 6;
+}
+.ag-now::before {
+  content: '';
+  position: absolute;
+  left: -4px;
+  top: -4px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--moss);
+}
+
+.ag-empty {
+  position: absolute;
+  top: 12px;
+  left: 10px;
+  right: 10px;
+  margin: 0;
+  font-family: var(--sans);
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--ink-3);
+}
+
+/* Drive estimate in the gap between two consecutive blocks. */
+.ag-gap {
+  position: absolute;
+  left: 10px;
+  display: flex;
+  align-items: center;
+  font-family: var(--sans);
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ink-3);
+  pointer-events: none;
+}
+
+/* ===== A block ===== */
+
+.ag-block {
+  position: absolute;
+  z-index: 2;
+  border: 1px solid color-mix(in oklab, var(--tone) 55%, var(--rule));
+  border-left: 4px solid var(--tone);
+  background: color-mix(in oklab, var(--tone) 16%, var(--paper));
+}
+.ag-block:has(.ag-panel) { z-index: 25; }
+
+.ag-block__body {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  padding: 6px 8px;
+  text-align: left;
+  cursor: grab;
+  /* Not pan-y: a block that lets the browser scroll will have the gesture
+   * taken away mid-drag (pointercancel) the instant the finger moves. The
+   * board scrolls these touches itself, fling included. */
+  touch-action: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+.ag-block--fixed .ag-block__body { cursor: default; }
+
+.ag-block__time {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 6px;
+  font-family: var(--sans);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: color-mix(in oklab, var(--tone) 45%, var(--ink));
+}
+.ag-block__dur,
+.ag-block__flag {
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+.ag-block__title {
+  font-family: var(--display);
+  font-size: 16px;
+  line-height: 1.2;
+  color: var(--ink);
+}
+.ag-block__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 10px;
+  font-family: var(--sans);
+  font-size: 11px;
+  color: var(--ink-2);
+}
+.ag-block__coord {
+  font-size: 10px;
+  color: var(--ink-3);
+  text-transform: none;
+}
+
+/* Short blocks lose the extras and put the time beside the title. */
+.ag-block--xs .ag-block__body {
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  padding: 3px 8px;
+}
+.ag-block--xs .ag-block__title {
+  font-size: 13px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.ag-block--xs .ag-block__dur,
+.ag-block--xs .ag-block__flag { display: none; }
+.ag-block--sm .ag-block__title { font-size: 14px; }
+
+.ag-block__nav {
+  position: absolute;
+  right: 6px;
+  bottom: 5px;
+  font-family: var(--sans);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+  text-decoration: none;
+  background: color-mix(in oklab, var(--paper) 82%, transparent);
+  padding: 3px 6px;
+}
+@media (hover: hover) {
+  .ag-block__nav:hover { color: var(--moss); }
+}
+
+/* Bottom-edge grab bar: the only target that takes a drag on contact, so it
+ * owns touch-action none. */
+.ag-block__resize {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -3px;
+  height: 14px;
+  cursor: ns-resize;
+  touch-action: none;
+}
+.ag-block__resize::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: 4px;
+  transform: translateX(-50%);
+  width: 34px;
+  height: 3px;
+  background: color-mix(in oklab, var(--tone) 70%, var(--paper));
+  opacity: 0.9;
+}
+
+.ag-block--dragging {
+  z-index: 40;
+  pointer-events: none;
+  border-style: solid;
+  box-shadow: 0 6px 20px color-mix(in oklab, var(--ink) 28%, transparent);
+  background: color-mix(in oklab, var(--tone) 26%, var(--paper));
+}
+
+/* ===== The block's own controls ===== */
+
+.ag-panel {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: -1px;
+  z-index: 30;
+  width: min(340px, 86vw);
+  background: var(--paper);
+  border: 1px solid var(--ink);
+  padding: var(--s3);
+  box-shadow: 0 8px 24px color-mix(in oklab, var(--ink) 22%, transparent);
+  font-family: var(--sans);
+  font-size: 12px;
+  cursor: auto;
+}
+.ag-panel__head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--s2);
+  margin-bottom: 6px;
+}
+.ag-panel__title {
+  font-family: var(--display);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.2;
+}
+.ag-panel__close {
+  background: none;
+  border: none;
+  font: 18px var(--sans);
+  line-height: 1;
+  color: var(--ink-3);
+  cursor: pointer;
+  padding: 2px 6px;
+  min-height: 32px;
+}
+.ag-panel__note {
+  margin: 0 0 8px;
+  color: var(--moss);
+  line-height: 1.45;
+}
+.ag-panel__link {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--ink);
+  font-weight: 600;
+}
+.ag-panel__controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s2);
+  margin: var(--s3) 0;
+}
+.ag-panel__field {
+  display: grid;
+  gap: 3px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+.ag-panel__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s2);
+  padding-top: var(--s2);
+  border-top: 1px solid var(--rule-soft);
+}
+
+/* ===== Items with nowhere to sit ===== */
+
+.ag-tray {
+  border: 1px solid color-mix(in oklab, var(--moss) 40%, var(--rule));
+  background: color-mix(in oklab, var(--moss) 7%, var(--paper));
+  padding: 10px 12px;
+  margin-top: 8px;
+}
+.ag-tray__note {
+  font-family: var(--sans);
+  font-size: 12px;
+  line-height: 1.45;
+  color: var(--moss);
+  margin: 0 0 8px;
+}
+.ag-tray__row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.ag-chip {
+  position: relative;
+  border: 1px solid color-mix(in oklab, var(--tone) 55%, var(--rule));
+  border-left: 4px solid var(--tone);
+  background: color-mix(in oklab, var(--tone) 16%, var(--paper));
+}
+.ag-chip__body {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  padding: 7px 10px;
+  cursor: grab;
+  touch-action: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+.ag-chip__title {
+  font-family: var(--display);
+  font-size: 14px;
+  color: var(--ink);
+}
+.ag-chip__meta {
+  font-family: var(--sans);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+@media (max-width: 560px) {
+  .ag-grid { grid-template-columns: 44px 1fr; }
+  .ag-day__num { font-size: 22px; }
+  .ag-day__bar { gap: var(--s3); }
+  .ag-panel { left: auto; right: 0; }
+}
