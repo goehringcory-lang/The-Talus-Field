@@ -12,7 +12,9 @@ import { Link, Navigate } from 'react-router-dom'
 import { useAuth } from '../auth/useAuth'
 import { isOnboarded } from '../lib/onboarding'
 import {
+  DINING,
   ESSENTIALS,
+  GATEWAY_TOWNS,
   HIKES,
   REGIONS,
   SEASONAL_EVENTS,
@@ -209,6 +211,18 @@ const PLAN_ICONS = {
     <ToolGlyph>
       <path d="M9 3L3 6v15l6-3 6 3 6-3V3l-6 3-6-3z" />
       <path d="M9 3v15M15 6v15" />
+    </ToolGlyph>
+  ),
+  dining: (
+    <ToolGlyph>
+      <path d="M7 3v18M4 3v5a3 3 0 0 0 6 0V3" />
+      <path d="M17 3c-2 3-2 6 0 8v10M17 11h2V3" />
+    </ToolGlyph>
+  ),
+  gateway: (
+    <ToolGlyph>
+      <path d="M3 21h18M5 21V9l7-6 7 6v12" />
+      <path d="M10 21v-6h4v6M9 12h2M13 12h2" />
     </ToolGlyph>
   ),
 }
@@ -417,6 +431,31 @@ export default function Home() {
           </div>
         </section>
 
+        <section aria-label="Where to eat" className="page-section">
+          <span className="eyebrow">Where to eat</span>
+          <div className="tool-grid">
+            <ToolCard
+              to="/dining"
+              title="Eating in the park"
+              icon={PLAN_ICONS.dining}
+              teaser="Every counter, dining room, bar, and grocery inside the park, from the Curry pizza deck to the Ahwahnee, with the hours the park publishes and what each place is actually for."
+              meta={`${DINING.filter((v) => v.area !== 'gateway').length} places · hours from the current Yosemite Guide`}
+            />
+            <ToolCard
+              to="/dining"
+              title="The gateway towns"
+              icon={PLAN_ICONS.gateway}
+              teaser="Where dinner improves outside the gates: Mariposa, Groveland, Oakhurst, Fish Camp, El Portal, and Lee Vining, one corridor per entrance."
+              meta={`${DINING.filter((v) => v.area === 'gateway').length} places · ${GATEWAY_TOWNS.length} corridors`}
+            >
+              <div className="tool-card__sub">
+                <Link to="/essentials/eating-in-the-park">The realistic tiers →</Link>
+                <Link to="/essentials/bear-safety">The food rules →</Link>
+              </div>
+            </ToolCard>
+          </div>
+        </section>
+
         <section aria-label="The reference shelf" className="page-section">
           <span className="eyebrow">The reference shelf</span>
           <div className="tool-grid">
@@ -440,8 +479,8 @@ export default function Home() {
             <ToolCard
               to="/search"
               title="Search the guide"
-              teaser="One box across every stop, hike, secret spot, and essentials topic. Works offline like the rest of the guide."
-              meta="Stops · hikes · secret spots · essentials"
+              teaser="One box across every stop, hike, secret spot, dining option, and essentials topic. Works offline like the rest of the guide."
+              meta="Stops · hikes · dining · secret spots · essentials"
             />
           </div>
         </section>
