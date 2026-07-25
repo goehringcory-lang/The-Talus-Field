@@ -370,7 +370,8 @@
   pointer-events: none;
 }
 
-/* Points pane: floating "Near you" + browse-by-area card, top-right corner. */
+/* Points pane: floating "Near you" card, top-right corner. Rendered only
+   once there is a location fix (or a denial to explain). */
 .map-pane--points {
   top: 12px;
   right: 12px;
@@ -415,9 +416,9 @@
   color: var(--ink-3);
 }
 
-/* "Near you" block above the legend, populated after a locate-me fix. */
+/* "Near you" block, populated after a locate-me fix. */
 .map-nearby {
-  margin: 0 0 12px;
+  margin: 0;
 }
 
 .map-nearby__note {
@@ -448,69 +449,6 @@
   text-transform: uppercase;
   color: var(--ink-2);
   margin: 0 0 8px;
-}
-
-/* Browse-by-area: one native <details> per region in the points pane. */
-.map-browse {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-
-.map-browse__region {
-  border-bottom: 1px solid var(--rule-soft);
-}
-
-.map-browse__summary {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 8px;
-  min-height: 40px;
-  padding: 6px 2px;
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--ink);
-  cursor: pointer;
-  list-style: none;
-}
-
-.map-browse__summary::-webkit-details-marker {
-  display: none;
-}
-
-.map-browse__summary::after {
-  content: '+';
-  color: var(--ink-3);
-}
-
-.map-browse__region[open] > .map-browse__summary::after {
-  content: '–';
-}
-
-.map-browse__count {
-  margin-left: auto;
-  font-size: 11px;
-  font-weight: 500;
-  color: var(--ink-3);
-  font-variant-numeric: tabular-nums;
-}
-
-.map-browse__list {
-  list-style: none;
-  margin: 0 0 6px;
-  padding: 0;
-}
-
-.map-browse__list .map-stop {
-  padding: 6px 4px;
-  min-height: 36px;
-}
-
-.map-browse__footnote {
-  margin: 10px 0 0;
-  font-size: 11px;
-  color: var(--ink-2);
 }
 
 /* InfoPane reference legend. */
@@ -825,7 +763,7 @@
   }
 
   /* The handle already labels the pane; the inner heading would repeat it. */
-  .map-pane--points .map-pane__title--browse {
+  .map-pane--points .map-pane__title--nearby {
     display: none;
   }
 
