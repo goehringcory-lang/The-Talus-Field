@@ -70,9 +70,10 @@ export default function Region() {
     </>
   )
 
-  // Card mode: the region as a deck. The opening panel carries what the page
-  // header and the forecast carry in list mode, so nothing is only reachable
-  // by switching views.
+  // Card mode: the region as a deck. Everything the list carries outside the
+  // cards becomes its own panel, and every prose panel must fit one screen —
+  // a panel is never a scroll container (see CardDeck.css), so the weather
+  // block gets a panel of its own instead of sharing the intro.
   if (mode === 'cards' && stops.length > 0) {
     const panels: DeckPanel[] = [
       {
@@ -80,11 +81,23 @@ export default function Region() {
         label: meta?.title ?? 'This region',
         node: (
           <div className="deck-panel-prose">
-            <PageHeader eyebrow="Regional guide" title={meta?.title} intro={meta?.teaser} />
-            <WeatherStrip region={region} />
-            <p className="dateline">
-              {stops.length} stops, in driving order. Swipe up to start.
-            </p>
+            <div className="deck-panel-prose__inner">
+              <PageHeader eyebrow="Regional guide" title={meta?.title} intro={meta?.teaser} />
+              <p className="dateline">
+                {stops.length} stops, in driving order. Swipe up to start.
+              </p>
+            </div>
+          </div>
+        ),
+      },
+      {
+        key: 'region-weather',
+        label: 'Weather and light',
+        node: (
+          <div className="deck-panel-prose">
+            <div className="deck-panel-prose__inner">
+              <WeatherStrip region={region} />
+            </div>
           </div>
         ),
       },
@@ -93,17 +106,44 @@ export default function Region() {
         label: stop.title,
         node: <StopDeckCard stop={stop} eager={i === 0} />,
       })),
+      ...(hiddenStops.length > 0
+        ? [
+            {
+              key: 'region-secret',
+              label: 'From the Secret Guide, in this region',
+              node: (
+                <div className="deck-panel-prose">
+                  <div className="deck-panel-prose__inner">
+                    <span className="eyebrow">From the Secret Guide, in this region</span>
+                    <ul className="link-list">
+                      {hiddenStops.map((stop) => (
+                        <li key={stop.id}>
+                          <Link to={`/stop/${stop.id}`}>{stop.title} →</Link>
+                        </li>
+                      ))}
+                    </ul>
+                    <Link to="/secret-guide" className="more-link">
+                      The Secret Guide →
+                    </Link>
+                  </div>
+                </div>
+              ),
+            },
+          ]
+        : []),
       {
         key: 'region-end',
         label: 'End of the region',
         node: (
           <div className="deck-panel-prose">
-            <span className="eyebrow">That's the region</span>
-            <p className="deck-card__teaser">
-              {stops.length} stops in {meta?.title ?? 'this region'}. Swipe back for any you want
-              in the trip planner.
-            </p>
-            {tail}
+            <div className="deck-panel-prose__inner">
+              <span className="eyebrow">That's the region</span>
+              <p className="deck-card__teaser">
+                {stops.length} stops in {meta?.title ?? 'this region'}. Swipe back for any you
+                want in the trip planner.
+              </p>
+              <BackLink to="/" label="Back to regions" />
+            </div>
           </div>
         ),
       },
@@ -121,7 +161,10 @@ export default function Region() {
               <ViewToggle label="How to read this region" />
             </div>
           </div>
+          {/* Keyed by region: react-router keeps this component mounted across
+              region changes, and a reused deck would keep the old scrollTop. */}
           <CardDeck
+            key={region}
             panels={panels}
             ariaLabel={`${meta?.title ?? 'Region'} stops`}
             hint="Swipe up for the next stop"

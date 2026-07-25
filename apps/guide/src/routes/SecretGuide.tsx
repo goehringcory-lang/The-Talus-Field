@@ -122,13 +122,15 @@ export default function SecretGuide() {
         label: 'End of the Secret Guide',
         node: (
           <div className="deck-panel-prose">
-            <span className="eyebrow">That's the set</span>
-            <p className="deck-card__teaser">
-              {entries.length} {entries.length === 1 ? 'entry' : 'entries'}
-              {cat ? ` in ${SECRET_GUIDE_CATEGORY_TITLE[cat]}` : ''}. The rest of the guide is
-              organized by region.
-            </p>
-            <BackLink to="/" label="Back to the guide" />
+            <div className="deck-panel-prose__inner">
+              <span className="eyebrow">That's the set</span>
+              <p className="deck-card__teaser">
+                {entries.length} {entries.length === 1 ? 'entry' : 'entries'}
+                {cat ? ` in ${SECRET_GUIDE_CATEGORY_TITLE[cat]}` : ''}. The rest of the guide is
+                organized by region.
+              </p>
+              <BackLink to="/" label="Back to the guide" />
+            </div>
           </div>
         ),
       },
@@ -145,7 +147,11 @@ export default function SecretGuide() {
             </div>
           </div>
           <div className="deck-tabs">{tabs}</div>
+          {/* Keyed by the active filter: switching a tab rebuilds the panel
+              set, and a reused deck would keep the old scrollTop and land the
+              reader mid-deck (or past the end) of the new, shorter set. */}
           <CardDeck
+            key={cat ?? 'all'}
             panels={panels}
             ariaLabel="Secret Guide entries"
             startKey={hashId}
