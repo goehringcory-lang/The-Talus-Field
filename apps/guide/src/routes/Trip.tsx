@@ -22,7 +22,7 @@ import { getItineraryDayPhotos, getStopById, type StopT } from '../content'
 import { ITINERARIES, ITINERARY_KEYS, type ItineraryKey } from '../content/itineraries'
 import { getStopsByRegion } from '../content'
 import { MAX_SPAN_DAYS, readTripDates } from '../programs/usePrograms'
-import { addDaysIso, formatDayHeader } from '../utils/date'
+import { addDaysIso, formatDayHeader, todayIso } from '../utils/date'
 import { slotPlan } from '../trip/slotting'
 import { useTripPlan } from '../trip/useTripPlan'
 import { dayForecastRegion } from '../trip/dayRegion'
@@ -358,6 +358,12 @@ export default function Trip() {
             </p>
             <ClearPlanButton itemCount={itemCount} onClear={clear} />
           </div>
+        )}
+
+        {windowDays.includes(todayIso()) && (
+          <Link to="/today" className="more-link trip-today-link">
+            Today's schedule, at a glance →
+          </Link>
         )}
 
         <TripAgenda slotted={slotted} windowDays={windowDays} dayForecasts={dayForecasts} />
