@@ -36,11 +36,9 @@ createRoot(document.getElementById('root')!).render(
   </StrictMode>,
 )
 
-registerServiceWorker((registration) => {
-  window.dispatchEvent(
-    new CustomEvent('tfg:update-ready', { detail: registration }),
-  )
-})
+// UpdateBanner subscribes through registerSW's own latch (onUpdateReady), so
+// an update found during boot is still there whenever the banner mounts.
+registerServiceWorker()
 
 // Keep the hosted calendar feed current with local plan edits (no-op until
 // the user subscribes from the trip page's calendar sheet).

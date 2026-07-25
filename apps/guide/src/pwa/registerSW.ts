@@ -5,40 +5,102 @@ type UpdateHandler = (registration: ServiceWorkerRegistration) => void
 // or returns after a few days, so the UpdateBanner actually fires.
 const UPDATE_POLL_MS = 60 * 60 * 1000
 
-export function registerServiceWorker(onUpdate: UpdateHandler): void {
+// The "an update is ready" fact is latched in module state rather than
+// delivered as a one-shot notification. Two things used to lose it: the
+// notification firing before UpdateBanner had subscribed (an update found
+// during boot), and the banner component remounting. Both read to the user as
+// "the update bar disappeared", and nothing brought it back.
+let pendingRegistration: ServiceWorkerRegistration | null = null
+const subscribers = new Set<UpdateHandler>()
+
+/** The waiting-update registration, if one was already found. */
+export function getPendingUpdate(): ServiceWorkerRegistration | null {
+  return pendingRegistration
+}
+
+/** Subscribe to update-ready. Fires immediately if one is already pending. */
+export function onUpdateReady(handler: UpdateHandler): () => void {
+  subscribers.add(handler)
+  if (pendingRegistration) handler(pendingRegistration)
+  return () => {
+    subscribers.delete(handler)
+  }
+}
+
+function announce(registration: ServiceWorkerRegistration): void {
+  pendingRegistration = registration
+  for (const handler of subscribers) handler(registration)
+}
+
+export function registerServiceWorker(onUpdate?: UpdateHandler): void {
   if (!import.meta.env.PROD) return
   if (!('serviceWorker' in navigator)) return
 
+  if (onUpdate) subscribers.add(onUpdate)
+
   window.addEventListener('load', () => {
     navigator.serviceWorker.register('/sw.js').then((registration) => {
-      // A worker may already be waiting from a prior visit where the user
-      // never tapped the banner; updatefound won't fire again, so surface it.
-      if (registration.waiting && navigator.serviceWorker.controller) {
-        onUpdate(registration)
+      // "This install replaces something" — true whenever the app was already
+      // installed on this device. Deliberately NOT `navigator.serviceWorker
+      // .controller`: a hard reload (Ctrl+Shift+R, and some PWA pull-to-refresh
+      // paths) loads the page uncontrolled, and keying off the controller meant
+      // a genuine pending update went unannounced on exactly the reload the
+      // user did to pick it up.
+      const isUpdate = () =>
+        !!registration.active || !!navigator.serviceWorker.controller
+
+      // Snapshot: by the time a controllerchange lands, `registration.active`
+      // is set even on a first-ever install, so the live check can't tell the
+      // two apart there.
+      const hadWorkerAtLoad = isUpdate()
+
+      const watch = (worker: ServiceWorker | null) => {
+        if (!worker) return
+        const check = () => {
+          if (worker.state === 'installed' && isUpdate()) announce(registration)
+        }
+        // The worker can already be past 'installing' by the time we look.
+        check()
+        worker.addEventListener('statechange', check)
       }
 
+      // A worker may already be waiting from a prior visit where the user
+      // never tapped the banner; updatefound won't fire again, so surface it.
+      if (registration.waiting && isUpdate()) announce(registration)
+
+      // register() resolves *after* the spec fires updatefound for a worker it
+      // discovered itself, so an `updatefound` listener attached here misses
+      // that first one. Pick it up from `installing` directly.
+      watch(registration.installing)
+
       registration.addEventListener('updatefound', () => {
-        const installing = registration.installing
-        if (!installing) return
-        installing.addEventListener('statechange', () => {
-          if (
-            installing.state === 'installed' &&
-            navigator.serviceWorker.controller
-          ) {
-            onUpdate(registration)
-          }
-        })
+        watch(registration.installing)
       })
 
+      // Re-check on every poll: `update()` does not re-fire updatefound for a
+      // worker that is already waiting, so this is what brings the bar back if
+      // its state was ever lost.
+      const recheck = () => {
+        registration
+          .update()
+          .catch(() => {})
+          .finally(() => {
+            if (registration.waiting && isUpdate()) announce(registration)
+          })
+      }
+
       // Periodic + focus-based update checks.
-      setInterval(() => {
-        registration.update().catch(() => {})
-      }, UPDATE_POLL_MS)
+      setInterval(recheck, UPDATE_POLL_MS)
 
       document.addEventListener('visibilitychange', () => {
-        if (document.visibilityState === 'visible') {
-          registration.update().catch(() => {})
-        }
+        if (document.visibilityState === 'visible') recheck()
+      })
+
+      // A second tab tapping the banner activates the new worker for everyone.
+      // This tab is then running stale code under a fresh SW with nothing
+      // waiting, so it has to be told too — tapping here just reloads.
+      navigator.serviceWorker.addEventListener('controllerchange', () => {
+        if (hadWorkerAtLoad) announce(registration)
       })
     })
   })
