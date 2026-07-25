@@ -167,6 +167,52 @@ function tripDatesLabel(dates: TripDates): string {
   return `${fmt(dates.start)} – ${fmt(dates.end)}`
 }
 
+// Small stroke glyphs for the planner tool cards, drawn in the same style as
+// the BottomNav icons (24 viewBox, currentColor stroke, 1.75 weight).
+function ToolGlyph({ children }: { children: ReactNode }) {
+  return (
+    <span className="tool-card__icon" aria-hidden="true">
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.75"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        {children}
+      </svg>
+    </span>
+  )
+}
+
+const PLAN_ICONS = {
+  trip: (
+    <ToolGlyph>
+      <rect x="3" y="5" width="18" height="16" rx="2" />
+      <path d="M8 3v4M16 3v4M3 10h18M8 15h3M13 15h3" />
+    </ToolGlyph>
+  ),
+  programs: (
+    <ToolGlyph>
+      <path d="M12 3c2.2 2.6 4 4.6 4 7.2a4 4 0 0 1-8 0C8 7.6 9.8 5.6 12 3z" />
+      <path d="M5 21l14-4M19 21L5 17" />
+    </ToolGlyph>
+  ),
+  hikes: (
+    <ToolGlyph>
+      <path d="M2 20L9 7l4 7 2.5-4L21 20H2z" />
+      <path d="M11 11l-1.5 2.5" />
+    </ToolGlyph>
+  ),
+  map: (
+    <ToolGlyph>
+      <path d="M9 3L3 6v15l6-3 6 3 6-3V3l-6 3-6-3z" />
+      <path d="M9 3v15M15 6v15" />
+    </ToolGlyph>
+  ),
+}
+
 // Directory entry for a tool or reference surface: linked title, one-line
 // teaser, live meta. A div rather than a whole-card Link so entries can carry
 // their own sub-links (the essentials quick links).
@@ -175,18 +221,23 @@ function ToolCard({
   title,
   teaser,
   meta,
+  icon,
   children,
 }: {
   to: string
   title: string
   teaser: string
   meta: string
+  icon?: ReactNode
   children?: ReactNode
 }) {
   return (
     <div className="tool-card">
       <h3 className="tool-card__title">
-        <Link to={to}>{title} →</Link>
+        <Link to={to}>
+          {icon}
+          {title} →
+        </Link>
       </h3>
       <p className="tool-card__teaser">{teaser}</p>
       <div className="dateline">{meta}</div>
@@ -332,6 +383,7 @@ export default function Home() {
             <ToolCard
               to="/trip"
               title="Trip planner"
+              icon={PLAN_ICONS.trip}
               teaser="Dates, programs, stops, and hikes assembled into a day-by-day schedule, then exported to your calendar with GPS coordinates and directions links."
               meta={
                 planCount > 0
@@ -344,18 +396,21 @@ export default function Home() {
             <ToolCard
               to="/programs"
               title="Park programs"
+              icon={PLAN_ICONS.programs}
               teaser="Ranger walks, Junior Ranger tables, tours, star parties, and the seasonal almanac, listed day by day for your dates. Syncs online, readable offline."
               meta={datesLabel ? `Showing ${datesLabel}` : 'Day-by-day for your dates'}
             />
             <ToolCard
               to="/hikes"
               title="Day hikes"
+              icon={PLAN_ICONS.hikes}
               teaser="Every in-park day hike with distance, elevation gain, and difficulty. A hike drops into a trip day just like a stop."
               meta={`${HIKES.length} hikes · strolls to Half Dome`}
             />
             <ToolCard
               to="/map"
               title="Park map"
+              icon={PLAN_ICONS.map}
               teaser="Every stop and secret spot pinned on a topo map, with filters, parking and campground pins, and a near-you list. Tiles download for offline."
               meta="Topo map · works in airplane mode"
             />
