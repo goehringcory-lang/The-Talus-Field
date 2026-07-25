@@ -228,6 +228,22 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
   .btn--ghost:hover { background: var(--ink); color: var(--paper); }
 }
 
+/* Destructive actions: rust outline, filling in on hover so the weight of the
+   action reads before the tap. Solid is reserved for the armed confirm state. */
+.btn--danger {
+  background: transparent;
+  color: var(--rust);
+  border-color: var(--rust);
+}
+@media (hover: hover) {
+  .btn--danger:hover { background: var(--rust); border-color: var(--rust); color: var(--paper); }
+}
+.btn--danger.is-armed {
+  background: var(--rust);
+  border-color: var(--rust);
+  color: var(--paper);
+}
+
 /* Text-link-as-button: for tertiary actions inside prose. */
 .btn--quiet {
   background: none;

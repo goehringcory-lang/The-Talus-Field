@@ -97,6 +97,74 @@ function AddCustomRow({
   )
 }
 
+// Clearing the board throws away work that took real planning, and the button
+// sits a thumb's width from the board itself, so it arms before it fires: the
+// first tap turns it into an explicit "yes, clear all N" and a way out. The
+// same element carries both states, so a keyboard user keeps focus through the
+// change; a short guard after arming swallows the second half of a double-tap,
+// which is the accident this is here to prevent. It disarms on Escape, on a
+// tap anywhere else, and on its own after a few seconds of nothing.
+const ARM_GUARD_MS = 400
+const DISARM_AFTER_MS = 6000
+
+function ClearPlanButton({ itemCount, onClear }: { itemCount: number; onClear: () => void }) {
+  const [armed, setArmed] = useState(false)
+  const armedAt = useRef(0)
+
+  useEffect(() => {
+    if (!armed) return
+    const timer = window.setTimeout(() => setArmed(false), DISARM_AFTER_MS)
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setArmed(false)
+    }
+    const onPointerDown = (e: PointerEvent) => {
+      const target = e.target as HTMLElement | null
+      if (!target?.closest('.trip-clear')) setArmed(false)
+    }
+    window.addEventListener('keydown', onKey)
+    window.addEventListener('pointerdown', onPointerDown)
+    return () => {
+      window.clearTimeout(timer)
+      window.removeEventListener('keydown', onKey)
+      window.removeEventListener('pointerdown', onPointerDown)
+    }
+  }, [armed])
+
+  const noun = itemCount === 1 ? 'item' : 'items'
+
+  return (
+    <div className="trip-clear">
+      <Button
+        variant="danger"
+        size="sm"
+        className={armed ? 'trip-clear__btn is-armed' : 'trip-clear__btn'}
+        onClick={() => {
+          if (!armed) {
+            armedAt.current = Date.now()
+            setArmed(true)
+            return
+          }
+          if (Date.now() - armedAt.current < ARM_GUARD_MS) return
+          setArmed(false)
+          onClear()
+        }}
+      >
+        {armed ? `Yes, clear all ${itemCount} ${noun}` : 'Clear plan'}
+      </Button>
+      {armed && (
+        <>
+          <Button variant="quiet" size="sm" onClick={() => setArmed(false)}>
+            Keep it
+          </Button>
+          <span className="trip-clear__warn" role="status">
+            This cannot be undone.
+          </span>
+        </>
+      )}
+    </div>
+  )
+}
+
 export default function Trip() {
   const { plan, addStop, addCustom, clear, setDates } = useTripPlan()
   const [reviewOpen, setReviewOpen] = useState(false)
@@ -272,9 +340,6 @@ export default function Trip() {
 
             {itemCount > 0 && (
               <div className="trip-toolbar">
-                <Button variant="ghost" size="sm" onClick={clear}>
-                  Clear plan
-                </Button>
                 <Button variant="ghost" size="sm" to="/programs">
                   Programs running your dates →
                 </Button>
@@ -282,6 +347,18 @@ export default function Trip() {
             )}
           </div>
         </details>
+
+        {/* Board strip: what is on the plan, and the one action that empties
+            it. It lives out here rather than inside the add panel, which is
+            collapsed once a plan exists, so the way out is always in view. */}
+        {itemCount > 0 && (
+          <div className="trip-boardbar">
+            <p className="trip-boardbar__count">
+              <strong>{itemCount}</strong> {itemCount === 1 ? 'item' : 'items'} on your board
+            </p>
+            <ClearPlanButton itemCount={itemCount} onClear={clear} />
+          </div>
+        )}
 
         <TripAgenda slotted={slotted} windowDays={windowDays} dayForecasts={dayForecasts} />
 
