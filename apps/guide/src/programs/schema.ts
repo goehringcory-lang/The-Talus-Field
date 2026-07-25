@@ -63,7 +63,7 @@ export const SOURCE_LABELS: Record<ProgramSourceT, string> = {
   conservancy: 'Yosemite Conservancy',
   aramark: 'Yosemite Hospitality',
   astronomy: 'Astronomy clubs',
-  manual: 'Curated',
+  manual: 'Photography',
   seasonal: 'Seasonal almanac',
 }
 
