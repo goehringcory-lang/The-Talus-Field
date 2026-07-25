@@ -4,6 +4,8 @@
 // swap-callout hits outrank body hits.
 
 import {
+  DINING,
+  DINING_AREAS,
   ESSENTIALS,
   HIKES,
   REGIONS,
@@ -17,7 +19,7 @@ export type SearchHit = {
   id: string
   url: string
   title: string
-  section: 'Stops' | 'Hikes' | 'Secret Guide' | 'Essentials' | 'Programs'
+  section: 'Stops' | 'Hikes' | 'Secret Guide' | 'Essentials' | 'Programs' | 'Dining'
   eyebrow: string
   snippet: string
   score: number
@@ -101,6 +103,23 @@ function buildEntries(): Entry[] {
     })
   }
 
+  // The dining directory. Every hit lands on /dining; the place line is
+  // indexed at swap weight so "coffee curry village" style queries surface
+  // the right venue.
+  const DINING_AREA_TITLE = Object.fromEntries(DINING_AREAS.map((a) => [a.id, a.title]))
+  for (const v of DINING) {
+    entries.push({
+      id: v.id,
+      url: '/dining',
+      title: v.name,
+      section: 'Dining',
+      eyebrow: v.area === 'gateway' ? v.town ?? 'Gateway towns' : DINING_AREA_TITLE[v.area] ?? v.area,
+      titleText: v.name.toLowerCase(),
+      swapText: v.place.toLowerCase(),
+      bodyText: v.description.toLowerCase(),
+    })
+  }
+
   for (const s of SECRET_SPOTS) {
     entries.push({
       id: s.id,
@@ -163,6 +182,8 @@ export function search(query: string, limit = 24): SearchHit[] {
       originalBody = SEASONAL_EVENTS.find((ev) => ev.id === entry.id)?.description ?? ''
     } else if (entry.section === 'Hikes') {
       originalBody = HIKES.find((h) => h.id === entry.id)?.description ?? ''
+    } else if (entry.section === 'Dining') {
+      originalBody = DINING.find((v) => v.id === entry.id)?.description ?? ''
     } else {
       originalBody =
         (stops.find((s) => s.id === entry.id) ?? SECRET_SPOTS.find((s) => s.id === entry.id))?.body ?? ''

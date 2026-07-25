@@ -20,6 +20,7 @@ const SecretGuide = lazy(() => import('./routes/SecretGuide'))
 const Search = lazy(() => import('./routes/Search'))
 const Programs = lazy(() => import('./routes/Programs'))
 const Hikes = lazy(() => import('./routes/Hikes'))
+const Dining = lazy(() => import('./routes/Dining'))
 const HikeDetail = lazy(() => import('./routes/HikeDetail'))
 const Trip = lazy(() => import('./routes/Trip'))
 const Today = lazy(() => import('./routes/Today'))
@@ -151,6 +152,14 @@ export default function App() {
             element={
               <RequireAuth>
                 <Hikes />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="/dining"
+            element={
+              <RequireAuth>
+                <Dining />
               </RequireAuth>
             }
           />

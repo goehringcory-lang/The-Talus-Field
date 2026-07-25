@@ -234,7 +234,8 @@ const seed: EssentialInput[] = [
       '**Tier two is the counter.** Degnan\'s Kitchen in Yosemite Village is the one place inside the park to get a decent sandwich for under twenty dollars, and a 7 a.m. coffee and breakfast sandwich there is a solid Valley move. The Village Store is for the emergency afternoon popsicle, not for provisioning; everything in it costs more than it should.\n\n' +
       '**Tier three is the pizza deck.** The Curry Village pizza stop in the Valley region is the one restaurant in the park worth going out of your way for: pizza and beer on a wooden deck under the Glacier Point Apron at the end of a long day. There is almost always a line, and the line is part of it. Not the best pizza in California; the best meal in the Valley on the right summer evening.\n\n' +
       '**Tier four is the Ahwahnee dining room,** covered at the Ahwahnee stop in this guide. It has moved to a prix fixe dinner format at special-occasion prices, reservations required, so it is a planned event rather than a spontaneous stop. Book ahead or skip it without guilt.\n\n' +
-      'What to skip: the gateway-town chains, and the idea that food is the trip. If a night out matters, Mariposa and Oakhurst each have a brewery-restaurant worth the drive. Otherwise, one pizza-deck night, one cooler lunch by the river, done.',
+      'What to skip: the gateway-town chains, and the idea that food is the trip. If a night out matters, Mariposa and Oakhurst each have a brewery-restaurant worth the drive. Otherwise, one pizza-deck night, one cooler lunch by the river, done.\n\n' +
+      'When you need the specifics, every counter, dining room, bar, and grocery in the park, plus the gateway-town tables, is listed venue by venue with published hours in [Where to eat](/dining).',
   },
   {
     id: 'with-kids',
