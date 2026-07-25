@@ -363,21 +363,10 @@ const seed: DiningInput[] = [
     description:
       'Grab-and-go sandwiches, snacks, ice cream, and drinks at the gift shop behind the most famous view in the park. Enough for lunch on the terrace, nothing more. Closes with Glacier Point Road.',
   },
-  {
-    id: 'wawona-dining-room',
-    name: 'Wawona Hotel Dining Room',
-    area: 'glacier-mariposa',
-    place: 'Wawona Hotel',
-    kind: 'sit-down',
-    price: '$$$',
-    order: 2,
-    closed:
-      'Closed along with the hotel since December 2024 for a structural condition assessment, with no reopening date published. When it runs, the white-tablecloth Victorian room and the summer lawn barbecues are worth planning a Wawona day around; the golf-shop snack stand is dark with it. Confirm status at travelyosemite.com.',
-    coord: [-119.6560, 37.5366], // shared Wawona Hotel pin (stops.ts)
-    stopId: 'wawona-hotel-history-center',
-    description:
-      'The 1879 hotel\'s dining room, sequoia-sized windows and a pianist in the lobby, ordinarily serving breakfast, lunch, and dinner in season.',
-  },
+  // The Wawona Hotel Dining Room is deliberately not listed: it has been
+  // closed with the hotel since December 2024 (structural condition
+  // assessment, no reopening date), and the golf-shop snack stand is dark
+  // with it. If the hotel reopens, restore it here from travelyosemite.com.
   {
     id: 'wawona-store',
     name: 'Wawona Store & Pioneer Gift Shop',
@@ -385,7 +374,7 @@ const seed: DiningInput[] = [
     place: 'Wawona, Highway 41 at Forest Drive',
     kind: 'grocery',
     price: '$$',
-    order: 3,
+    order: 2,
     hours: '8 – 8',
     coord: [-119.6556, 37.5384],
     description:
@@ -398,7 +387,7 @@ const seed: DiningInput[] = [
     place: 'Chilnualna Falls Road, Wawona',
     kind: 'grocery',
     price: '$$',
-    order: 4,
+    order: 3,
     hours: '8 – 6',
     hoursNote: 'independent store; hours are the market\'s own, not the park\'s',
     coord: [-119.6428, 37.5417],
