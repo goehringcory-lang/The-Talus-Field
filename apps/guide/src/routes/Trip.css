@@ -315,3 +315,9 @@
   color: var(--ink-2);
   margin: 0;
 }
+
+/* Door to /today above the board, only while the window includes today. */
+.trip-today-link {
+  display: inline-block;
+  margin: 0 0 var(--s3);
+}

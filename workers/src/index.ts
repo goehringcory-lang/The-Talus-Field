@@ -11,6 +11,7 @@ import { stripe } from './routes/stripe'
 import { trip } from './routes/trip'
 import { tripEmail } from './routes/trip-email'
 import { waitlist } from './routes/waitlist'
+import { waits } from './routes/waits'
 import { weather } from './routes/weather'
 import { widget, widgetScript } from './routes/widget'
 import { refreshWeather } from './lib/weather'
@@ -142,6 +143,7 @@ app.route('/api/stripe', stripe)
 app.route('/api/trip/email', tripEmail)
 app.route('/api/trip', trip)
 app.route('/api/waitlist', waitlist)
+app.route('/api/waits', waits)
 app.route('/api/weather', weather)
 
 // Daily cron ([triggers] in wrangler.toml): refresh the KV program cache from

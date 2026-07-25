@@ -1,6 +1,6 @@
 import { Hono } from 'hono'
 import type { Env } from '../env'
-import { getWaits } from '../lib/waits'
+import { getWaits, waitsDisplay } from '../lib/waits'
 import { readWeatherRecord } from '../lib/weather'
 
 // The embeddable conditions widget (MONETIZATION-IDEAS.md 4.2): a free
@@ -18,14 +18,6 @@ import { readWeatherRecord } from '../lib/weather'
 // purpose: the /api/* CORS middleware echoes a specific allow-listed origin,
 // which would break embeds on every other site. Keep it out of /api/*.
 
-// Same display names the editorial masthead uses; unknown pairs fall back to
-// the pair_name with its " Wait Time" suffix stripped.
-const WAITS_SHORT_NAMES: Record<string, string> = {
-  'South Entrance Wait Time': 'South',
-  'Arch Rock Wait Time': 'Arch Rock',
-  'Big Oak Flat Wait Time': 'Big Oak Flat',
-}
-
 const CORS_ANY = {
   'Access-Control-Allow-Origin': '*',
   'Cache-Control': 'public, max-age=300',
@@ -39,15 +31,7 @@ widget.get('/conditions', async (c) => {
     readWeatherRecord(c.env).catch(() => null),
   ])
 
-  const waitsOut = (waits?.summary ?? []).map((pair) => {
-    const rawName = String(pair.pair_name ?? '')
-    const name = WAITS_SHORT_NAMES[rawName] || rawName.replace(/\s*Wait Time$/i, '') || 'Entrance'
-    const minutes =
-      pair.stale || typeof pair.current_wait_minutes !== 'number'
-        ? null
-        : Math.round(pair.current_wait_minutes)
-    return { name, minutes }
-  })
+  const waitsOut = waitsDisplay(waits)
 
   // Fold the Valley spot's NWS day/night half-periods into up to three
   // calendar days (startTime carries the park-local offset, so the date

@@ -759,6 +759,46 @@
 /* Attribution under the region rows sits outside .card-stack now. */
 .weather-attribution--rows { padding: var(--s3) 0 0; }
 
+/* Live entrance-waits line (Home, /today). Absent entirely when the feed is
+   stale or unreachable, so it must never be a layout anchor. */
+.waits-line {
+  font-family: var(--sans);
+  font-size: 12px;
+  color: var(--ink-2);
+  margin: var(--s2) 0 0;
+}
+.waits-line__entry { white-space: nowrap; }
+.waits-line__muted { color: var(--ink-3); }
+
+/* Home door to /today, shown only while the trip window includes today. */
+.today-card {
+  display: block;
+  padding: var(--s3) var(--s4);
+  margin: 0 0 var(--s5);
+  border: 1px solid var(--ink);
+  text-decoration: none;
+  color: var(--ink);
+}
+.today-card__label {
+  display: block;
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--moss);
+  margin: 0 0 4px;
+}
+.today-card__line {
+  font-family: var(--serif);
+  font-size: 15px;
+  line-height: 1.4;
+}
+@media (hover: hover) {
+  .today-card:hover { text-decoration: none; }
+  .today-card:hover .today-card__line { color: var(--moss); }
+}
+
 /* Cross links closing a section (map, search). */
 .home-crosslinks {
   margin-top: var(--s3);
@@ -845,6 +885,17 @@
   font-size: 12px;
   color: var(--ink-3);
 }
+
+/* Computed sun schedule line (WeatherStrip, /today). Never stale, never
+   absent offline, so it can close the section on its own. */
+.sun-line {
+  font-family: var(--serif);
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--ink-2);
+  margin: var(--s2) 0 0;
+}
+.sun-line__muted { color: var(--ink-3); }
 
 /* Per-card five-day forecast inside the region picker cards (Home). Rows, not
    columns: at phone widths five columns cannot hold condition text like

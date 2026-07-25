@@ -6,7 +6,7 @@
 // only behind the tab bar.
 // =============================================================================
 
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 import type { ReactNode } from 'react'
 import { Link, Navigate } from 'react-router-dom'
 import { useAuth } from '../auth/useAuth'
@@ -22,11 +22,14 @@ import {
   getStopsByRegion,
   seasonalRangeLabel,
 } from '../content'
-import { todayIso } from '../utils/date'
+import { formatClock, parkNowMinutes, todayIso } from '../utils/date'
 import { useFavorites } from '../lib/favorites'
 import { isPackCompleted } from '../offline/useDownloads'
 import { PACK_IDS } from '../offline/manifest'
 import { useTripPlan } from '../trip/useTripPlan'
+import { slotPlan } from '../trip/slotting'
+import { itemInfo } from '../trip/agendaItem'
+import type { TripItemT } from '../trip/schema'
 import { readTripDates, type TripDates } from '../programs/usePrograms'
 import { relativeStamp } from '../utils/relativeStamp'
 import GatedChrome from '../components/GatedChrome'
@@ -35,6 +38,7 @@ import UpdatedStamp from '../components/UpdatedStamp'
 import Button from '../components/ui/Button'
 import Callout from '../components/ui/Callout'
 import PageHeader from '../components/ui/PageHeader'
+import WaitsLine from '../waits/WaitsLine'
 import { useWeather } from '../weather/useWeather'
 import { HIDE_AFTER_MS, WARN_AFTER_MS } from '../weather/staleness'
 import { regionTodayLine } from '../weather/todayLine'
@@ -74,6 +78,47 @@ function BeforeYouGoNudge() {
       Going soon? Do the <Link to="/essentials/before-you-go">night-before downloads</Link>{' '}
       while you still have wifi: the offline maps, this guide, and the current Yosemite Guide PDF.
     </Callout>
+  )
+}
+
+// Shown only while the trip window includes today: the door to /today, with
+// the next planned thing as the one-line pitch. Disappears outside the
+// window, so the front page stays stable the rest of the year.
+function TodayCard({
+  today,
+  dates,
+  items,
+}: {
+  today: string
+  dates: TripDates
+  items: TripItemT[]
+}) {
+  const blocks = useMemo(() => slotPlan(items).get(today) ?? [], [items, today])
+  const nowMin = parkNowMinutes()
+  const next = blocks.find(
+    (b) => b.startMin !== null && b.startMin + b.durationMin > nowMin,
+  )
+  const dayNumber =
+    Math.round(
+      (Date.parse(`${today}T00:00:00Z`) - Date.parse(`${dates.start}T00:00:00Z`)) / 86_400_000,
+    ) + 1
+  const dayTotal =
+    Math.round(
+      (Date.parse(`${dates.end}T00:00:00Z`) - Date.parse(`${dates.start}T00:00:00Z`)) / 86_400_000,
+    ) + 1
+  return (
+    <Link to="/today" className="today-card">
+      <span className="today-card__label">
+        Today · Day {dayNumber} of {dayTotal}
+      </span>
+      <span className="today-card__line">
+        {next && next.startMin !== null
+          ? `${next.startMin <= nowMin ? 'Now' : `At ${formatClock(next.startMin)}`}: ${itemInfo(next.item).title} →`
+          : blocks.length > 0
+            ? 'The day in order, with conditions and sun times →'
+            : 'Conditions, sun times, and entrance waits →'}
+      </span>
+    </Link>
   )
 }
 
@@ -191,6 +236,10 @@ export default function Home() {
 
         <BeforeYouGoNudge />
 
+        {tripDates && tripDates.start <= todayIso() && todayIso() <= tripDates.end && (
+          <TodayCard today={todayIso()} dates={tripDates} items={plan.items} />
+        )}
+
         <section aria-label="How this guide works" className="home-steps-section">
           <span className="eyebrow">How this guide works</span>
           <ol className="home-steps">
@@ -266,6 +315,7 @@ export default function Home() {
               {' '}· Five-day forecasts on each region page · National Weather Service
             </p>
           )}
+          <WaitsLine />
           <div className="home-crosslinks">
             <Link to="/map" className="more-link">
               Every stop pinned on the park map →
