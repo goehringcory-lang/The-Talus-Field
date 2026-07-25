@@ -1345,6 +1345,155 @@ const entries: ManualEntryT[] = [
     reservationRequired: true,
     url: YC_URL,
   },
+
+  // ── Yosemite Conservancy Outdoor Adventures (yosemite.org, 2026-07-25 pass) ─
+  // Curated from the yosemite.org/event pages for the paid Outdoor Adventures
+  // catalog (backpacks, Yosemite Field School, overnight astronomy trips).
+  // Direct fetching of yosemite.org was blocked from the curation environment,
+  // so every entry below was cross-checked through the search index instead and
+  // only kept when the indexed page printed an explicit 2026 date (or a
+  // weekday-plus-date pair that exists only in 2026). The index also serves
+  // stale prior-year copies of many /event/ pages; everything that could not be
+  // pinned to 2026 is listed in the pending block below, not served.
+  // Multi-day trips list every calendar day of the trip, matching how this file
+  // handles other multi-day events; no meeting-point coords are carried because
+  // exact meeting points are given at registration.
+  {
+    key: 'yc-backpack-yosemite-creek',
+    source: 'conservancy',
+    category: 'walk',
+    title: 'Yosemite Backpack: Yosemite Creek',
+    description:
+      'A three-day guided backpacking trip along Yosemite Creek through quiet forest to the rim of ' +
+      'Yosemite Falls, led by a Conservancy naturalist. Intermediate, 4 to 5 miles per day at ' +
+      'around 7,500 feet. Paid; register in advance at yosemite.org.',
+    dates: ['2026-07-23', '2026-07-24', '2026-07-25', '2026-07-26'],
+    location: 'Yosemite Creek, off Tioga Road',
+    isFree: false,
+    reservationRequired: true,
+    url: 'https://yosemite.org/event/yosemite-backpack-yosemite-creek/',
+  },
+  {
+    key: 'yc-field-school-treecology',
+    source: 'conservancy',
+    category: 'walk',
+    title: 'Yosemite Field School: Treecology',
+    description:
+      'A Yosemite Field School weekend on the park\'s trees with expert naturalist Dan Webster: a ' +
+      'close look at Yosemite\'s conifers and broadleaves on a tree-focused day hike. Paid; ' +
+      'register in advance at yosemite.org.',
+    dates: ['2026-07-25', '2026-07-26'],
+    isFree: false,
+    reservationRequired: true,
+    url: 'https://yosemite.org/event/yosemite-field-school-treecology/',
+  },
+  {
+    key: 'yc-backpack-paint-frumkin',
+    source: 'conservancy',
+    category: 'arts',
+    title: 'Backpack & Paint with Nikki Frumkin',
+    description:
+      'A three-day, two-night watercolor painting and backpacking retreat with artist Nikki ' +
+      'Frumkin in the alpine landscape around Cathedral Lakes. Advanced, 4 to 5 miles per day ' +
+      'between 8,600 and 9,600 feet. Paid; register in advance at yosemite.org.',
+    dates: ['2026-08-07', '2026-08-08', '2026-08-09'],
+    location: 'Cathedral Lakes, Tuolumne Meadows',
+    isFree: false,
+    reservationRequired: true,
+    url: 'https://yosemite.org/event/backpack-paint-with-nikki-frumkin/',
+  },
+  {
+    key: 'yc-perseids-may-lake-1',
+    source: 'conservancy',
+    category: 'astronomy',
+    title: 'Overnight Under the Perseids Meteor Shower #1',
+    description:
+      'A one-night guided backpack from the May Lake Trailhead to a campsite with open sky for the ' +
+      'peak of the Perseid meteor shower: star science, constellations, and meteor watching from ' +
+      'your sleeping bag with a Conservancy naturalist. About 1 to 3 miles at 9,000 feet. Paid; ' +
+      'register in advance at yosemite.org.',
+    dates: ['2026-08-12', '2026-08-13'],
+    location: 'May Lake Trailhead, off Tioga Road',
+    isFree: false,
+    reservationRequired: true,
+    url: 'https://yosemite.org/event/overnight-under-the-milky-way-perseids-meteor-shower-1/',
+  },
+  {
+    key: 'yc-perseids-may-lake-2',
+    source: 'conservancy',
+    category: 'astronomy',
+    title: 'Overnight Under the Perseids Meteor Shower #2',
+    description:
+      'A one-night guided backpack from the May Lake Trailhead to a campsite with open sky the ' +
+      'night after the Perseid peak: star science, constellations, and meteor watching from your ' +
+      'sleeping bag with a Conservancy naturalist. About 1 to 3 miles at 9,000 feet. Paid; ' +
+      'register in advance at yosemite.org.',
+    dates: ['2026-08-13', '2026-08-14'],
+    location: 'May Lake Trailhead, off Tioga Road',
+    isFree: false,
+    reservationRequired: true,
+    url: 'https://yosemite.org/event/overnight-under-the-milky-way-perseids-meteor-shower-2/',
+  },
+  {
+    key: 'yc-field-school-bighorn-sheep',
+    source: 'conservancy',
+    category: 'walk',
+    title: 'Yosemite Field School: Bighorn Sheep Backpack',
+    description:
+      'An advanced Yosemite Field School backpack into rugged alpine terrain near Mount Lewis, ' +
+      'Mount Gibbs, Mono Pass, and Parker Pass, focused on Sierra Nevada bighorn sheep. Camp opens ' +
+      'Thursday afternoon with an evening orientation; the trek runs Friday through Sunday, 4 to 5 ' +
+      'miles per day at around 10,500 feet. Paid; register in advance at yosemite.org.',
+    dates: ['2026-08-20', '2026-08-21', '2026-08-22', '2026-08-23'],
+    location: 'Mono Pass and Parker Pass area, eastern Yosemite',
+    isFree: false,
+    reservationRequired: true,
+    url: 'https://yosemite.org/event/yosemite-field-school-bighorn-sheep-backpack/',
+  },
+  {
+    key: 'yc-backpack-ten-lakes-grant-lake',
+    source: 'conservancy',
+    category: 'walk',
+    title: 'Backpack: Ten Lakes and Grant Lake',
+    description:
+      'A guided backpacking trip from the Ten Lakes Trailhead on Tioga Road into the Ten Lakes ' +
+      'Basin and on to Grant Lake, with a Conservancy naturalist guide. Paid; register in advance ' +
+      'at yosemite.org.',
+    dates: ['2026-08-20', '2026-08-21', '2026-08-22', '2026-08-23'],
+    location: 'Ten Lakes Trailhead, Tioga Road',
+    isFree: false,
+    reservationRequired: true,
+    url: 'https://yosemite.org/event/backpack-ten-lakes-and-grant-lake/',
+  },
+  {
+    key: 'yc-mule-supported-backpack',
+    source: 'conservancy',
+    category: 'walk',
+    title: 'Yosemite Mule-Supported Backpack',
+    description:
+      'A guided high-country backpack, Thursday through Sunday, with pack mules carrying the heavy ' +
+      'gear, opening Yosemite\'s wilderness to hikers who would rather not haul a full pack. Paid; ' +
+      'register in advance at yosemite.org.',
+    dates: ['2026-09-03', '2026-09-04', '2026-09-05', '2026-09-06'],
+    isFree: false,
+    reservationRequired: true,
+    url: 'https://yosemite.org/event/yosemite-mule-supported-backpack/',
+  },
+  {
+    key: 'yc-backpack-eagle-peak',
+    source: 'conservancy',
+    category: 'walk',
+    title: 'Backpack: Yosemite Creek to Eagle Peak',
+    description:
+      'A three-day guided backpack from Yosemite Creek to Eagle Peak, the highest of the Three ' +
+      'Brothers, with sweeping views over Yosemite Valley. Paid; register in advance at ' +
+      'yosemite.org.',
+    dates: ['2026-09-25', '2026-09-26', '2026-09-27'],
+    location: 'Yosemite Creek to Eagle Peak',
+    isFree: false,
+    reservationRequired: true,
+    url: 'https://yosemite.org/event/backpack-yosemite-creek-to-eagle-peak-2/',
+  },
 ]
 
 // ── Pending verification: NOT served ─────────────────────────────────────────
@@ -1366,11 +1515,48 @@ const entries: ManualEntryT[] = [
 // - chefs-holidays: the January-to-early-February 2027 session calendar is
 //   unannounced as of the 2026-07 passes.
 //
+// 2026-07-25 Outdoor Adventures pass (yosemite.org): the following /event/
+// pages exist in the catalog but their 2026 dates could not be confirmed from
+// the curation environment (the search index served stale prior-year copies;
+// direct fetch was blocked). Draft each from its live page when readable:
+// - overnight-under-the-stars-perseids-trip-1 and -trip-2 (Ostrander Lake
+//   Trailhead one-nighters; trip 2 appears to end Aug 14 but not confirmed)
+// - overnight-under-the-milky-way series: may-lake / may-lake-2 / -4 / -5,
+//   murphy-creek (Lost Bear ran Jun 13-14, 2026, already past)
+// - backpack-clouds-rest-one-night (Labor Day weekend; indexed copy shows the
+//   2021 dates), backpack-clouds-rest-through-hike-2, backpack-to-clouds-rest-
+//   trip-2, womens-backpack-clouds-rest-two-nights, womens-backpack-clouds-
+//   rest-sunrise-lakes
+// - backpack-to-half-dome-through-hike-via-clouds-rest and -two-nights-via-
+//   clouds-rest-trip-2 (indexed copies show 2023/2024 dates)
+// - relaxed-backpack-ten-lakes, introduction-to-backpacking-cathedral-lakes,
+//   yosemite-mule-supported-backpack has only its Sep 3-6 trip confirmed
+// - Yosemite Field School: alpine-immersion, backpack-lyell-glacier /
+//   lyell-glacier-backpack, geology-backpack-to-lyell-basin, tuolumne-meadows-
+//   geology; a "High Country Wildlife Program" showed Jul 25-26, 2026 in the
+//   index but with no stable event URL to carry
+// - 2026 art retreats (season confirmed via the Conservancy's announcements,
+//   dates unreadable): art-retreat-watercolor-with-zach-polic, art-retreat-
+//   fieldsketching-with-watercolor (Dingeldein), art-retreat-oil-painting-
+//   with-casey-cheuvront (now titled Watercolor), art-retreat-historic-
+//   architecture-of-yosemite (Takahashi), backpack-paint-with-cheyenne-
+//   sukalski, workshop-autumn-light-photography
+// - day hikes: day-hike-north-dome, day-hike-waterfalls, relaxed-day-hikes-
+//   white-wolf-birds-and-blooms (indexed copy shows 2024 dates), day-hike-
+//   winter-wonder-in-mariposa-grove
+// Confirmed-but-past 2026 trips deliberately not imported: Glen Aulin backpack
+// (Jul 2-5), Women's Backpack Glen Aulin (Jul 14-15), Field School High Sierra
+// Survivors (Jul 18-19), California Naturalist course (May 26-28 + Jul 21-24),
+// Milky Way Lost Bear (Jun 13-14).
+//
 // Stale-date traps seen during the checks, do not reuse: "Poetry Festival
 // August 17-18" is the 2024 festival. The NPS event-details star-party listing
 // offering "July 26 & 27, Aug 2 & 3, Aug 9 & 10" matches the 2024/2025
 // calendars, not the 2026 Glacier Point weekends (Jul 17 & 18, Jul 31 & Aug 1,
-// Aug 7 & 8, Aug 14 & 15, per Yosemite Guide Vol 51 Issue 6).
+// Aug 7 & 8, Aug 14 & 15, per Yosemite Guide Vol 51 Issue 6). Many yosemite.org
+// /event/ pages are indexed as prior-year copies; a weekday-plus-date pair that
+// does not exist in the target year is the tell (e.g. "Friday, September 3" is
+// 2021, not 2026).
 export const PENDING_VERIFICATION: ManualEntryT[] = []
 
 // Expand every entry to per-date ProgramEvents and validate the lot at module
@@ -1423,7 +1609,7 @@ z.array(ManualEntry).parse(PENDING_VERIFICATION) // keep the parked entries vali
 
 // Version label surfaced in the /api/programs `sources` block so the app can
 // show which curation pass the offline copy came from.
-export const MANUAL_PROGRAMS_VERSION = '2026-07-25-guide-v51n6-reconciled'
+export const MANUAL_PROGRAMS_VERSION = '2026-07-25-yc-outdoor-adventures'
 
 export const MANUAL_PROGRAMS: ProgramEventT[] = sortEvents(parsed.flatMap(expand))
 
