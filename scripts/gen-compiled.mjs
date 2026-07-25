@@ -67,6 +67,7 @@ const PAGE_FILES = [
   "page-firefall.jsx",
   "page-consult.jsx",
   "page-widget.jsx",
+  "page-partners.jsx",
   "app.jsx",
 ];
 

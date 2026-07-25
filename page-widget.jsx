@@ -96,6 +96,20 @@ function WidgetPage({ go }) {
           </p>
         </section>
 
+        <section className="prose" style={{ marginTop: 40 }}>
+          <h2>The other half of this</h2>
+          <p>
+            The widget is what your visitors see before they arrive. The Field
+            Guide is what they carry once they are past the entrance station,
+            where service dies: 44 stops with GPS and time budgets, the day
+            hikes, the trip planner, and an offline map of the park. Properties
+            can buy it in packs and hand a code to every guest, which is the{" "}
+            <a href="/partners" onClick={(e) => { e.preventDefault(); go("partners"); }}>group codes</a>{" "}
+            page. Buying one has nothing to do with keeping the other; the
+            widget stays free either way.
+          </p>
+        </section>
+
         <NewsletterInline
           location="widget"
           tag="widget"

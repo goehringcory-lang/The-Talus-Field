@@ -300,7 +300,15 @@ const HUB_PROSE = {
       "The Yosemite conditions widget",
       "A free embeddable box for Yosemite-area websites: live entrance waits from the National Park Service feed and the three-day Valley forecast from the National Weather Service, rendered by a single script tag with a credit link back to The Talus Field's conditions page. Built for gateway hotels, rental hosts, and tour operators."
     ) +
-    `<p>See it live and copy the snippet on this page. The full conditions layer is at <a href="/conditions">/conditions</a>.</p>`,
+    `<p>See it live and copy the snippet on this page. The full conditions layer is at <a href="/conditions">/conditions</a>.</p>` +
+    `<p>Lodging operators who want the guide itself for their guests: <a href="/partners">group codes</a>.</p>`,
+  "/partners": () =>
+    hubProse(
+      "Group codes: the Field Guide for your guests",
+      "Yosemite-area hotels, inns, vacation rental hosts, and property managers can buy The Talus Field Guide in packs and give a code to every booking. One code is one guest's full access for 18 months on every device they own: 44 stops with GPS and time budgets, all 57 in-park day hikes, the 37-entry Secret Guide, a day-by-day trip planner, park programs on their dates, and an offline topographic map of the park. Nothing to install, host, or support on the property's side."
+    ) +
+    `<p>Packs start at 25 codes; per-code rates fall as the pack grows. Billed by invoice, no subscription, no revenue share, no exclusivity. The first properties are onboarded by hand.</p>` +
+    `<p>The public product page is <a href="/guide">the Field Guide</a>. The free conditions embed for your own site is at <a href="/widget">/widget</a>, and directory listings are at <a href="/advertise">/advertise</a>.</p>`,
   "/consult": () =>
     hubProse(
       "Field consult: thirty minutes on your Yosemite plan",
@@ -617,6 +625,43 @@ function seoForPath(pathname, searchParams) {
       description:
         "A free embeddable box with live Yosemite entrance waits and the three-day Valley forecast, for gateway hotels, rental hosts, and tour operators. One script tag.",
       breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Widget", null]],
+    },
+    "/partners": {
+      // B2B pitch page (MONETIZATION-IDEAS.md 2.4). FAQ answers mirror the
+      // published copy in page-partners.jsx; keep the two in sync.
+      title: `Group Codes — the Yosemite Field Guide for your guests — ${SITE_NAME}`,
+      description:
+        "Yosemite-area hotels, inns, rental hosts, and property managers: buy The Talus Field Guide in packs and give every guest a code. Offline app, 18 months of access, nothing to install on your side.",
+      breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Group codes", null]],
+      faq: [
+        {
+          q: "What is a group code?",
+          a: "One code is one guest's full access to The Talus Field Guide: the entire stop library across the Valley, Glacier Point and Mariposa Grove, Tuolumne, and Hetch Hetchy, the 37-entry Secret Guide, the trip planner with calendar export, park programs and weather on their dates, and the roughly 50 MB offline download. Access runs 18 months from the day the guest redeems, on every device they own.",
+        },
+        {
+          q: "What do group codes cost?",
+          a: "Partner rates are per code, billed by invoice, with the pack as the unit of sale: 25 codes at $12 a code, 50 codes at $10 a code, and 100 codes or more at $8 a code. The guide sells to the public at $19 a copy.",
+        },
+        {
+          q: "Do guests need to install an app?",
+          a: "No. The guide is a web app. It opens in the browser and can be added to a home screen in one step, which is what makes the offline download work. There is nothing for the property to install, host, or maintain.",
+        },
+        {
+          q: "What happens to codes guests never redeem?",
+          a: "Unredeemed codes stay yours. They do not expire on the shelf inside the season they were bought for, and a code that goes unused on one booking can go to the next guest instead.",
+        },
+      ],
+      jsonLd: {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        name: "Talus Field Guide group codes for lodging",
+        description:
+          "Bulk access codes to The Talus Field Guide, an offline Yosemite field guide app, for gateway hotels, inns, vacation rental hosts, and property managers to give to their guests.",
+        provider: { "@id": AUTHOR_ID },
+        areaServed: { "@type": "Place", name: "Yosemite National Park" },
+        audience: { "@type": "BusinessAudience", name: "Lodging and hospitality operators" },
+        url: `${SITE_ORIGIN}/partners`,
+      },
     },
     "/consult": {
       title: `Field Consult — thirty minutes on your Yosemite plan — ${SITE_NAME}`,
