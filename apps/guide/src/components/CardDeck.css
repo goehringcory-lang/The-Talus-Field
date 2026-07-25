@@ -11,9 +11,17 @@
    * (--chrome-top-h plus the top safe-area inset it absorbs) and the fixed
    * bottom nav (56px + safe area). */
   height: calc(
+    100vh - var(--chrome-top-h) - env(safe-area-inset-top) - 56px - env(safe-area-inset-bottom)
+  );
+  height: calc(
     100dvh - var(--chrome-top-h) - env(safe-area-inset-top) - 56px - env(safe-area-inset-bottom)
   );
   min-height: 420px;
+}
+/* Landscape phones: forcing 420px would overflow the page and put a second
+ * (body) scroller under the deck, which breaks the gesture. Let it be short. */
+@media (max-height: 520px) {
+  .deck-main { min-height: 0; }
 }
 
 /* Compact header for card mode: the page's identity plus the view toggle,
@@ -106,6 +114,9 @@
   display: flex;
   flex-direction: column;
   padding: 14px var(--gutter) 16px;
+  /* Clip, don't bleed: an over-tall card must not paint into the next
+   * panel. NOT overflow:auto — a panel must never become a scroller. */
+  overflow: hidden;
 }
 
 /* Right-edge progress ticks. Outside the scroller, so they hold still. */
@@ -309,24 +320,34 @@
   .deck-card__teaser { -webkit-line-clamp: 3; line-clamp: 3; }
 }
 
-/* ===== Prose panels (a deck's opening and closing cards) ===== */
-
+/* ===== Prose panels (a deck's opening and closing cards) =====
+ * HARD RULE: a prose panel is NEVER a scroll container. A nested vertical
+ * scroller inside a snap deck consumes the swipe (the inner element scrolls,
+ * or on iOS rubber-bands, and the deck never advances) — this is exactly the
+ * bug that shipped when the intro panel was overflow-y:auto and live weather
+ * made it overflow. Content must fit one screen; if it can't, it top-aligns
+ * and clips, and the panel's content should be slimmed instead. */
 .deck-panel-prose {
   width: 100%;
   max-width: 700px;
   margin: 0 auto;
   height: 100%;
-  overflow-y: auto;
-  overscroll-behavior-y: contain;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+}
+/* Centered while it fits; the auto margins collapse to 0 on overflow, so the
+ * top of the content (the part that names the panel) always stays visible. */
+.deck-panel-prose__inner {
+  margin: auto 0;
+  display: flex;
+  flex-direction: column;
   gap: 12px;
+  min-height: 0;
   padding: 4px 0 8px;
 }
-.deck-panel-prose > .page-header,
-.deck-panel-prose > .page-section:first-child { margin-top: 0; }
-.deck-panel-prose .page-header { margin-bottom: 0; }
+.deck-panel-prose .page-header { margin: 0; }
+.deck-panel-prose .page-section { margin-top: 0; }
 
 /* ===== Cards / List toggle ===== */
 
