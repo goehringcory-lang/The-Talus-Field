@@ -107,7 +107,19 @@ function FilmsPage() {
       maxWidth: "62ch",
       textWrap: "pretty"
     }
-  }, "The National Park Service spent the better part of two decades producing a film series about this park, released it to the public, and barely told anyone. The complete run of Yosemite Nature Notes is archived below, ", count, " films grouped by subject. Most run under ten minutes. One of them is about the rock piles this journal is named for.")), React.createElement("section", {
+  }, "The National Park Service spent the better part of two decades producing a film series about this park, released it to the public, and barely told anyone. The complete run of Yosemite Nature Notes is archived below, ", count, " films grouped by subject. Most run under ten minutes. One of them is about the rock piles this journal is named for."), React.createElement("p", {
+    style: {
+      fontFamily: "var(--serif)",
+      fontSize: 19,
+      lineHeight: 1.5,
+      color: "var(--ink-3)",
+      maxWidth: "62ch",
+      marginTop: 16,
+      textWrap: "pretty"
+    }
+  }, "The films borrowed their name from something older. From 1922 into the 1980s the park's naturalists mailed out a bulletin called Yosemite Nature Notes, and all 512 issues of it are transcribed in", " ", React.createElement("a", {
+    href: "/archive/"
+  }, "the print archive"), ".")), React.createElement("section", {
     className: "wrap",
     style: {
       paddingBottom: 24

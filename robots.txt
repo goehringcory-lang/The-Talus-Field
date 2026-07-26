@@ -4,6 +4,11 @@
 
 Sitemap: https://thetalusfieldjournal.com/sitemap.xml
 
+# The Yosemite Nature Notes archive (1922 onward) is generated separately by
+# scripts/gen-archive.mjs and carries its own sitemap: 512 issue pages plus
+# year indexes would swamp the editorial sitemap above.
+Sitemap: https://thetalusfieldjournal.com/archive/sitemap.xml
+
 # IndexNow ownership key (Bing / Yandex / Seznam / Naver / Yep).
 # Key file:
 #   https://thetalusfieldjournal.com/a1c4a884dc3d1469bbe8aaa26caa7a87.txt

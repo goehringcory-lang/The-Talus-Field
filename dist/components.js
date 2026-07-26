@@ -602,6 +602,8 @@ function Footer({
       go("films");
     }
   }, "Films")), React.createElement("li", null, React.createElement("a", {
+    href: "/archive/"
+  }, "Nature Notes archive")), React.createElement("li", null, React.createElement("a", {
     href: "/places",
     onClick: e => {
       e.preventDefault();
