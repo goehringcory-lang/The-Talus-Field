@@ -21,6 +21,12 @@
 // literal in the PWA from that JSON. After selecting, run `npm run images`
 // so the new sources get responsive variants.
 //
+// A manifest entry may carry `categories` (Commons category names) alongside
+// `queries`. Categories are pulled first and ranked ahead of search results,
+// because a category is a human assertion about the subject and a query
+// string is not — see commonsCategory() for why that distinction is what the
+// remaining slots needed. Everything after the ranking is unchanged.
+//
 // Sources:
 //   commons — Wikimedia Commons, filtered to commercial-use-safe licenses
 //     (the --licenses flag applies here only). Encyclopedically identified:
@@ -120,25 +126,29 @@ function looksLikeNonPhoto(page, meta) {
   return NON_PHOTO_RE.test(hay)
 }
 
-async function commonsSearch(query, enabled) {
-  const params = new URLSearchParams({
-    action: 'query',
-    format: 'json',
-    generator: 'search',
-    gsrsearch: `${query} filetype:bitmap`,
-    gsrnamespace: '6',
-    gsrlimit: '10',
-    prop: 'imageinfo',
-    iiprop: 'url|extmetadata|size|mime',
-    iiurlwidth: String(THUMB_WIDTH),
-    iiextmetadatafilter: 'LicenseShortName|Artist|Categories|ObjectName',
-  })
-  const res = await fetch(`${COMMONS_API}?${params}`, {
+// The imageinfo props every Commons generator below needs. Shared so a
+// search-sourced and a category-sourced candidate carry identical metadata
+// and can be ranked against each other.
+const COMMONS_IMAGEINFO = {
+  prop: 'imageinfo',
+  iiprop: 'url|extmetadata|size|mime',
+  iiurlwidth: String(THUMB_WIDTH),
+  iiextmetadatafilter: 'LicenseShortName|Artist|Categories|ObjectName',
+}
+
+async function commonsQuery(params, label) {
+  const res = await fetch(`${COMMONS_API}?${new URLSearchParams(params)}`, {
     headers: { 'User-Agent': USER_AGENT },
   })
-  if (!res.ok) throw new Error(`Commons API ${res.status} for "${query}"`)
+  if (!res.ok) throw new Error(`Commons API ${res.status} for ${label}`)
   const data = await res.json()
-  const pages = Object.values(data?.query?.pages ?? {})
+  return Object.values(data?.query?.pages ?? {})
+}
+
+// Shared page → candidate mapping: license gate, photo-vs-document gate, size
+// and orientation gates. Both Commons entry points run every result through
+// this, so a category-sourced file is held to the same bar as a searched one.
+function commonsCandidates(pages, enabled) {
   const out = []
   for (const page of pages) {
     const info = page?.imageinfo?.[0]
@@ -172,6 +182,59 @@ async function commonsSearch(query, enabled) {
   }
   // Preference: PD/CC0 before CC BY before CC BY-SA; API relevance order within a class.
   return out.sort((a, b) => a.licenseRank - b.licenseRank || a.searchIndex - b.searchIndex)
+}
+
+async function commonsSearch(query, enabled) {
+  const pages = await commonsQuery(
+    {
+      action: 'query',
+      format: 'json',
+      generator: 'search',
+      gsrsearch: `${query} filetype:bitmap`,
+      gsrnamespace: '6',
+      gsrlimit: '10',
+      ...COMMONS_IMAGEINFO,
+    },
+    `"${query}"`,
+  )
+  return commonsCandidates(pages, enabled)
+}
+
+// Candidates from a named Commons category (`Category:Ostrander Lake Ski Hut`).
+//
+// Text search is the wrong instrument for most of what's left in the manifest.
+// Commons ranks on title and description text, so an obscure subject — Camp 4,
+// White Wolf, Crane Flat — returns the famous landmark that shares a word with
+// it, which is how the wrong-subject set deleted in #235 got picked in the
+// first place. A category is curated by the people who uploaded the files: if
+// a photo is in `Category:Crane Flat`, a human asserted it shows Crane Flat.
+// That is a far stronger subject guarantee than any query string, so category
+// results are ranked ahead of search results for the same slot.
+//
+// Categories are not a substitute for review. They confirm the subject, not
+// that the photo is any good, and a category can hold signage, interiors, and
+// snapshots alongside the one usable landscape.
+async function commonsCategory(category, enabled) {
+  const title = /^category:/i.test(category) ? category : `Category:${category}`
+  const pages = await commonsQuery(
+    {
+      action: 'query',
+      format: 'json',
+      generator: 'categorymembers',
+      gcmtitle: title,
+      gcmtype: 'file',
+      // Category members come back in page order, not relevance order, so a
+      // big category (El Capitan, Tuolumne River) silently truncates to
+      // whatever sorts first — which is how a category with an obvious right
+      // answer in it can return nothing usable. 500 is the API's ceiling for
+      // an unauthenticated caller; the license, orientation, and size gates
+      // do the narrowing from there.
+      gcmlimit: '500',
+      ...COMMONS_IMAGEINFO,
+    },
+    title,
+  )
+  return commonsCandidates(pages, enabled)
 }
 
 async function pexelsSearch(query) {
@@ -342,22 +405,66 @@ async function cmdFetch(args) {
         },
       ]
     } else {
-      // Per source: first query with results wins, capped per source, then
-      // sources concatenate (commons first by default — see header).
-      for (const source of sources) {
-        let found = []
-        for (const query of entry.queries ?? []) {
+      // Commons categories first, when the manifest names any: a curated
+      // category is a subject guarantee a query string can't make. Every
+      // listed category contributes (unlike queries, where the first hit
+      // wins) — these slots are obscure enough that one category often
+      // yields a single usable landscape.
+      if (sources.includes('commons') && (entry.categories ?? []).length > 0) {
+        for (const category of entry.categories) {
           try {
-            found = await SOURCES[source](query, enabled)
+            const found = await commonsCategory(category, enabled)
+            picked.push(...found.slice(0, CANDIDATES_PER_SLOT).map((c) => ({ ...c, via: `category:${category}` })))
           } catch (err) {
-            console.error(`! ${entry.file} [${source}]: ${err.message}`)
-            found = []
+            console.error(`! ${entry.file} [category ${category}]: ${err.message}`)
           }
-          if (found.length > 0) break
         }
-        picked.push(...found.slice(0, CANDIDATES_PER_SLOT))
+      }
+
+      // When a category answered, stop. Do NOT top up the shortfall with text
+      // search: for exactly the slots that need categories, search is not
+      // merely weaker, it is actively wrong. A "Hidden Lake" query returns a
+      // lake in Michigan and a peak in the North Cascades; "Ostrander"
+      // returns a man with that surname and a bridge in Windsor, Ontario.
+      // Offering those as candidates 2 and 3 next to a real category hit
+      // invites the exact mistake this whole path exists to prevent, and
+      // `--auto` would eventually take one. One true candidate beats three
+      // where two are from the wrong continent.
+      if (picked.length === 0) {
+        // Per source: first query with results wins, capped per source, then
+        // sources concatenate (commons first by default — see header).
+        for (const source of sources) {
+          let found = []
+          let usedQuery = ''
+          for (const query of entry.queries ?? []) {
+            try {
+              found = await SOURCES[source](query, enabled)
+              usedQuery = query
+            } catch (err) {
+              console.error(`! ${entry.file} [${source}]: ${err.message}`)
+              found = []
+            }
+            if (found.length > 0) break
+          }
+          picked.push(
+            ...found.slice(0, CANDIDATES_PER_SLOT).map((c) => ({ ...c, via: `search:${usedQuery}` })),
+          )
+        }
+        if (picked.length > 0 && (entry.categories ?? []).length > 0) {
+          console.log(
+            `  ⚠ ${entry.file}: categories returned nothing usable — falling back to text search. ` +
+              `Subject is UNVERIFIED; check the place, not just the filename.`,
+          )
+        }
       }
     }
+
+    // A file can sit in a named category and also rank for one of the
+    // queries; downloading it twice would burn two of the three review slots
+    // on the same photo. First occurrence wins, which keeps category hits
+    // ahead of search hits.
+    const seenTitles = new Set()
+    picked = picked.filter((c) => !seenTitles.has(c.title) && seenTitles.add(c.title))
 
     if (picked.length === 0) {
       console.log(`✗ ${entry.file}: no acceptable candidate (queries: ${(entry.queries ?? []).join(' | ')})`)
@@ -371,7 +478,9 @@ async function cmdFetch(args) {
       try {
         await download(cand.downloadUrl, path.join(dir, `${n}.jpg`))
         kept.push({ n, ...cand })
-        console.log(`  ↓ ${entry.file} candidate ${n} (${cand.provider}): ${cand.title} [${cand.license}]`)
+        console.log(
+          `  ↓ ${entry.file} candidate ${n} (${cand.via ?? cand.provider}): ${cand.title} [${cand.license}]`,
+        )
       } catch (err) {
         console.error(`  ! ${entry.file} candidate ${n}: ${err.message}`)
       }
