@@ -1,0 +1,41 @@
+[
+  {
+    "n": 1,
+    "provider": "commons",
+    "title": "File:G.L. Ostrander in the notch.jpg",
+    "author": "GuavaTrain",
+    "license": "CC0",
+    "licenseRank": 0,
+    "source": "https://commons.wikimedia.org/wiki/File:G.L._Ostrander_in_the_notch.jpg",
+    "width": 4000,
+    "height": 3000,
+    "downloadUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/28/G.L._Ostrander_in_the_notch.jpg/1920px-G.L._Ostrander_in_the_notch.jpg",
+    "searchIndex": 3
+  },
+  {
+    "n": 2,
+    "provider": "commons",
+    "title": "File:Windsor Ontario and Ambassador Bridge.jpg",
+    "author": "No machine-readable author provided. Matt314 assumed (based on copyright claims).",
+    "license": "CC BY-SA 3.0",
+    "licenseRank": 2,
+    "source": "https://commons.wikimedia.org/wiki/File:Windsor_Ontario_and_Ambassador_Bridge.jpg",
+    "width": 2048,
+    "height": 1536,
+    "downloadUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/db/Windsor_Ontario_and_Ambassador_Bridge.jpg/1920px-Windsor_Ontario_and_Ambassador_Bridge.jpg",
+    "searchIndex": 0
+  },
+  {
+    "n": 3,
+    "provider": "commons",
+    "title": "File:Ostrander side.jpg",
+    "author": "Tim Bergeron ( talk · contribs )",
+    "license": "CC BY-SA 3.0",
+    "licenseRank": 2,
+    "source": "https://commons.wikimedia.org/wiki/File:Ostrander_side.jpg",
+    "width": 1280,
+    "height": 960,
+    "downloadUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d9/Ostrander_side.jpg",
+    "searchIndex": 1
+  }
+]

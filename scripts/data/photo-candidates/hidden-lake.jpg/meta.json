@@ -1,0 +1,41 @@
+[
+  {
+    "n": 1,
+    "provider": "commons",
+    "title": "File:Hidden Lake in Hidden Lake Gardens Michigan.JPG",
+    "author": "Dwight Burdette",
+    "license": "CC BY 3.0",
+    "licenseRank": 1,
+    "source": "https://commons.wikimedia.org/wiki/File:Hidden_Lake_in_Hidden_Lake_Gardens_Michigan.JPG",
+    "width": 4752,
+    "height": 3168,
+    "downloadUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Hidden_Lake_in_Hidden_Lake_Gardens_Michigan.JPG/1920px-Hidden_Lake_in_Hidden_Lake_Gardens_Michigan.JPG",
+    "searchIndex": 1
+  },
+  {
+    "n": 2,
+    "provider": "commons",
+    "title": "File:Hidden Lake Peak.jpg",
+    "author": "Trailspotter",
+    "license": "CC BY 2.0",
+    "licenseRank": 1,
+    "source": "https://commons.wikimedia.org/wiki/File:Hidden_Lake_Peak.jpg",
+    "width": 2479,
+    "height": 2455,
+    "downloadUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Hidden_Lake_Peak.jpg/1920px-Hidden_Lake_Peak.jpg",
+    "searchIndex": 4
+  },
+  {
+    "n": 3,
+    "provider": "commons",
+    "title": "File:Hidden Lake Peaks north.jpg",
+    "author": "Trailspotter",
+    "license": "CC BY 2.0",
+    "licenseRank": 1,
+    "source": "https://commons.wikimedia.org/wiki/File:Hidden_Lake_Peaks_north.jpg",
+    "width": 4616,
+    "height": 2551,
+    "downloadUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Hidden_Lake_Peaks_north.jpg/1920px-Hidden_Lake_Peaks_north.jpg",
+    "searchIndex": 5
+  }
+]

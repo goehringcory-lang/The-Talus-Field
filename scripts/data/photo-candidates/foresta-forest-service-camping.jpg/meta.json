@@ -1,0 +1,41 @@
+[
+  {
+    "n": 1,
+    "provider": "commons",
+    "title": "File:Stanislaus National Forest - overlook.jpg",
+    "author": "Jarek Tuszynski",
+    "license": "CC BY 4.0",
+    "licenseRank": 1,
+    "source": "https://commons.wikimedia.org/wiki/File:Stanislaus_National_Forest_-_overlook.jpg",
+    "width": 8152,
+    "height": 3164,
+    "downloadUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Stanislaus_National_Forest_-_overlook.jpg/1920px-Stanislaus_National_Forest_-_overlook.jpg",
+    "searchIndex": 0
+  },
+  {
+    "n": 2,
+    "provider": "commons",
+    "title": "File:Yosemite National Park - 51669271550.jpg",
+    "author": "RuggyBearLA",
+    "license": "CC BY 2.0",
+    "licenseRank": 1,
+    "source": "https://commons.wikimedia.org/wiki/File:Yosemite_National_Park_-_51669271550.jpg",
+    "width": 3000,
+    "height": 2038,
+    "downloadUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ae/Yosemite_National_Park_-_51669271550.jpg/1920px-Yosemite_National_Park_-_51669271550.jpg",
+    "searchIndex": 1
+  },
+  {
+    "n": 3,
+    "provider": "commons",
+    "title": "File:Yosemite National Park - 51670630053.jpg",
+    "author": "RuggyBearLA",
+    "license": "CC BY 2.0",
+    "licenseRank": 1,
+    "source": "https://commons.wikimedia.org/wiki/File:Yosemite_National_Park_-_51670630053.jpg",
+    "width": 3000,
+    "height": 2259,
+    "downloadUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Yosemite_National_Park_-_51670630053.jpg/1920px-Yosemite_National_Park_-_51670630053.jpg",
+    "searchIndex": 2
+  }
+]

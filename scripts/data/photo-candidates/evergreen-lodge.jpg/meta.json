@@ -1,0 +1,28 @@
+[
+  {
+    "n": 1,
+    "provider": "commons",
+    "title": "File:Middle Fork Tuolumne River near Evergreen Lodge.jpg",
+    "author": "Ryanx7",
+    "license": "CC BY-SA 4.0",
+    "licenseRank": 2,
+    "source": "https://commons.wikimedia.org/wiki/File:Middle_Fork_Tuolumne_River_near_Evergreen_Lodge.jpg",
+    "width": 5333,
+    "height": 4000,
+    "downloadUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/da/Middle_Fork_Tuolumne_River_near_Evergreen_Lodge.jpg/1920px-Middle_Fork_Tuolumne_River_near_Evergreen_Lodge.jpg",
+    "searchIndex": 0
+  },
+  {
+    "n": 2,
+    "provider": "commons",
+    "title": "File:Vintage Cabin, Evergreen Lodge - panoramio.jpg",
+    "author": "jontyms",
+    "license": "CC BY-SA 3.0",
+    "licenseRank": 2,
+    "source": "https://commons.wikimedia.org/wiki/File:Vintage_Cabin,_Evergreen_Lodge_-_panoramio.jpg",
+    "width": 2000,
+    "height": 1330,
+    "downloadUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/Vintage_Cabin%2C_Evergreen_Lodge_-_panoramio.jpg/1920px-Vintage_Cabin%2C_Evergreen_Lodge_-_panoramio.jpg",
+    "searchIndex": 1
+  }
+]

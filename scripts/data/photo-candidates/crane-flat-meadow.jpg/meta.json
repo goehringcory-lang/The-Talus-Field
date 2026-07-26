@@ -1,0 +1,41 @@
+[
+  {
+    "n": 1,
+    "provider": "commons",
+    "title": "File:Snow in the Sierra Nevadas (MODIS).jpg",
+    "author": "MODIS Land Rapid Response Team, NASA GSFC",
+    "license": "Public domain",
+    "licenseRank": 0,
+    "source": "https://commons.wikimedia.org/wiki/File:Snow_in_the_Sierra_Nevadas_(MODIS).jpg",
+    "width": 2434,
+    "height": 1892,
+    "downloadUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Snow_in_the_Sierra_Nevadas_%28MODIS%29.jpg/1920px-Snow_in_the_Sierra_Nevadas_%28MODIS%29.jpg",
+    "searchIndex": 2
+  },
+  {
+    "n": 2,
+    "provider": "commons",
+    "title": "File:Ceanothus integerrimus 04.jpg",
+    "author": "Dawn Endico , Menlo Park, California",
+    "license": "CC BY-SA 2.0",
+    "licenseRank": 2,
+    "source": "https://commons.wikimedia.org/wiki/File:Ceanothus_integerrimus_04.jpg",
+    "width": 1600,
+    "height": 1200,
+    "downloadUrl": "https://upload.wikimedia.org/wikipedia/commons/b/b7/Ceanothus_integerrimus_04.jpg",
+    "searchIndex": 0
+  },
+  {
+    "n": 3,
+    "provider": "commons",
+    "title": "File:Clearing near Crane Flat (91176992).jpg",
+    "author": "Ken Lund from Reno, Nevada, USA",
+    "license": "CC BY-SA 2.0",
+    "licenseRank": 2,
+    "source": "https://commons.wikimedia.org/wiki/File:Clearing_near_Crane_Flat_(91176992).jpg",
+    "width": 1280,
+    "height": 960,
+    "downloadUrl": "https://upload.wikimedia.org/wikipedia/commons/b/bb/Clearing_near_Crane_Flat_%2891176992%29.jpg",
+    "searchIndex": 1
+  }
+]

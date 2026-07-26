@@ -1,0 +1,41 @@
+[
+  {
+    "n": 1,
+    "provider": "commons",
+    "title": "File:Yosemite - Tenaya Creek butterflies - panoramio.jpg",
+    "author": "Andrew Burnham",
+    "license": "CC BY-SA 3.0",
+    "licenseRank": 2,
+    "source": "https://commons.wikimedia.org/wiki/File:Yosemite_-_Tenaya_Creek_butterflies_-_panoramio.jpg",
+    "width": 2304,
+    "height": 1296,
+    "downloadUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Yosemite_-_Tenaya_Creek_butterflies_-_panoramio.jpg/1920px-Yosemite_-_Tenaya_Creek_butterflies_-_panoramio.jpg",
+    "searchIndex": 0
+  },
+  {
+    "n": 2,
+    "provider": "commons",
+    "title": "File:Yosemite - Tenaya Creek - panoramio.jpg",
+    "author": "Andrew Burnham",
+    "license": "CC BY-SA 3.0",
+    "licenseRank": 2,
+    "source": "https://commons.wikimedia.org/wiki/File:Yosemite_-_Tenaya_Creek_-_panoramio.jpg",
+    "width": 2304,
+    "height": 1296,
+    "downloadUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Yosemite_-_Tenaya_Creek_-_panoramio.jpg/1920px-Yosemite_-_Tenaya_Creek_-_panoramio.jpg",
+    "searchIndex": 1
+  },
+  {
+    "n": 3,
+    "provider": "commons",
+    "title": "File:Yosemite - Tenaya Creek - panoramio - Andrew Burnham.jpg",
+    "author": "Andrew Burnham",
+    "license": "CC BY-SA 3.0",
+    "licenseRank": 2,
+    "source": "https://commons.wikimedia.org/wiki/File:Yosemite_-_Tenaya_Creek_-_panoramio_-_Andrew_Burnham.jpg",
+    "width": 2304,
+    "height": 1296,
+    "downloadUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Yosemite_-_Tenaya_Creek_-_panoramio_-_Andrew_Burnham.jpg/1920px-Yosemite_-_Tenaya_Creek_-_panoramio_-_Andrew_Burnham.jpg",
+    "searchIndex": 2
+  }
+]

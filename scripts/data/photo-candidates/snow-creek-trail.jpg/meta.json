@@ -1,0 +1,41 @@
+[
+  {
+    "n": 1,
+    "provider": "commons",
+    "title": "File:Arctostaphylos patula 08398.JPG",
+    "author": "Walter Siegmund",
+    "license": "CC BY 2.5",
+    "licenseRank": 1,
+    "source": "https://commons.wikimedia.org/wiki/File:Arctostaphylos_patula_08398.JPG",
+    "width": 2560,
+    "height": 1920,
+    "downloadUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/Arctostaphylos_patula_08398.JPG/1920px-Arctostaphylos_patula_08398.JPG",
+    "searchIndex": 0
+  },
+  {
+    "n": 2,
+    "provider": "commons",
+    "title": "File:Arctostaphylos patula 08399.JPG",
+    "author": "Walter Siegmund",
+    "license": "CC BY 2.5",
+    "licenseRank": 1,
+    "source": "https://commons.wikimedia.org/wiki/File:Arctostaphylos_patula_08399.JPG",
+    "width": 2560,
+    "height": 1920,
+    "downloadUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/Arctostaphylos_patula_08399.JPG/1920px-Arctostaphylos_patula_08399.JPG",
+    "searchIndex": 1
+  },
+  {
+    "n": 3,
+    "provider": "commons",
+    "title": "File:Arctostaphylos viscida 08225.JPG",
+    "author": "Walter Siegmund",
+    "license": "CC BY 2.5",
+    "licenseRank": 1,
+    "source": "https://commons.wikimedia.org/wiki/File:Arctostaphylos_viscida_08225.JPG",
+    "width": 2560,
+    "height": 1920,
+    "downloadUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Arctostaphylos_viscida_08225.JPG/1920px-Arctostaphylos_viscida_08225.JPG",
+    "searchIndex": 2
+  }
+]
