@@ -408,26 +408,48 @@ async function cmdFetch(args) {
         for (const category of entry.categories) {
           try {
             const found = await commonsCategory(category, enabled)
-            picked.push(...found.slice(0, CANDIDATES_PER_SLOT))
+            picked.push(...found.slice(0, CANDIDATES_PER_SLOT).map((c) => ({ ...c, via: `category:${category}` })))
           } catch (err) {
             console.error(`! ${entry.file} [category ${category}]: ${err.message}`)
           }
         }
       }
-      // Per source: first query with results wins, capped per source, then
-      // sources concatenate (commons first by default — see header).
-      for (const source of sources) {
-        let found = []
-        for (const query of entry.queries ?? []) {
-          try {
-            found = await SOURCES[source](query, enabled)
-          } catch (err) {
-            console.error(`! ${entry.file} [${source}]: ${err.message}`)
-            found = []
+
+      // When a category answered, stop. Do NOT top up the shortfall with text
+      // search: for exactly the slots that need categories, search is not
+      // merely weaker, it is actively wrong. A "Hidden Lake" query returns a
+      // lake in Michigan and a peak in the North Cascades; "Ostrander"
+      // returns a man with that surname and a bridge in Windsor, Ontario.
+      // Offering those as candidates 2 and 3 next to a real category hit
+      // invites the exact mistake this whole path exists to prevent, and
+      // `--auto` would eventually take one. One true candidate beats three
+      // where two are from the wrong continent.
+      if (picked.length === 0) {
+        // Per source: first query with results wins, capped per source, then
+        // sources concatenate (commons first by default — see header).
+        for (const source of sources) {
+          let found = []
+          let usedQuery = ''
+          for (const query of entry.queries ?? []) {
+            try {
+              found = await SOURCES[source](query, enabled)
+              usedQuery = query
+            } catch (err) {
+              console.error(`! ${entry.file} [${source}]: ${err.message}`)
+              found = []
+            }
+            if (found.length > 0) break
           }
-          if (found.length > 0) break
+          picked.push(
+            ...found.slice(0, CANDIDATES_PER_SLOT).map((c) => ({ ...c, via: `search:${usedQuery}` })),
+          )
         }
-        picked.push(...found.slice(0, CANDIDATES_PER_SLOT))
+        if (picked.length > 0 && (entry.categories ?? []).length > 0) {
+          console.log(
+            `  ⚠ ${entry.file}: categories returned nothing usable — falling back to text search. ` +
+              `Subject is UNVERIFIED; check the place, not just the filename.`,
+          )
+        }
       }
     }
 
@@ -450,7 +472,9 @@ async function cmdFetch(args) {
       try {
         await download(cand.downloadUrl, path.join(dir, `${n}.jpg`))
         kept.push({ n, ...cand })
-        console.log(`  ↓ ${entry.file} candidate ${n} (${cand.provider}): ${cand.title} [${cand.license}]`)
+        console.log(
+          `  ↓ ${entry.file} candidate ${n} (${cand.via ?? cand.provider}): ${cand.title} [${cand.license}]`,
+        )
       } catch (err) {
         console.error(`  ! ${entry.file} candidate ${n}: ${err.message}`)
       }
