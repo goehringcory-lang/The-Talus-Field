@@ -10,7 +10,7 @@
 // one harvester. Keep these loaders behaviour-neutral: gen-seo-artifacts.mjs
 // depends on them producing the same shapes it always has.
 
-import { readFileSync, existsSync } from "node:fs";
+import { readFileSync, readdirSync, existsSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import path from "node:path";
 import vm from "node:vm";
@@ -152,11 +152,33 @@ export async function ogImageFor(art) {
   return fallback;
 }
 
+// Every page under /archive that actually exists on disk, as a route path.
+// These are NOT SPA routes: gen-archive.mjs writes real index.html files that
+// the asset layer serves directly, so the only honest source of truth for
+// "does this archive URL 404" is the filesystem. Editorial articles cite
+// individual issues by deep link (/archive/<year>/vol-<v>-no-<n>/), which the
+// static STATIC_ROUTES list cannot cover.
+function archiveRoutes() {
+  const routes = [];
+  const dir = path.join(ROOT, "archive");
+  if (!existsSync(dir)) return routes;
+  const walk = (abs, rel) => {
+    if (existsSync(path.join(abs, "index.html"))) routes.push(rel);
+    for (const entry of readdirSync(abs, { withFileTypes: true })) {
+      if (entry.isDirectory()) walk(path.join(abs, entry.name), `${rel}/${entry.name}`);
+    }
+  };
+  walk(dir, "/archive");
+  return routes;
+}
+
 // The canonical set of internal paths the site is expected to serve: static
-// routes + one /section/<cat> per category + one /articles/<slug> per article.
+// routes + one /section/<cat> per category + one /articles/<slug> per article
+// + the generated archive pages that exist on disk.
 export function knownRoutes({ articles, categories }) {
   const set = new Set(STATIC_ROUTES);
   for (const c of categories) set.add(`/section/${c.slug}`);
   for (const a of articles) set.add(`/articles/${a.slug}`);
+  for (const r of archiveRoutes()) set.add(r);
   return set;
 }

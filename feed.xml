@@ -9,13 +9,23 @@
     <copyright>© 2026 The Talus Field</copyright>
     <managingEditor>cory@thetalusfieldjournal.com (Cory Goehring)</managingEditor>
     <webMaster>cory@thetalusfieldjournal.com (Cory Goehring)</webMaster>
-    <lastBuildDate>Sat, 18 Jul 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 26 Jul 2026 00:00:00 +0000</lastBuildDate>
     <image>
       <url>https://thetalusfieldjournal.com/img/talus-field-mark.png</url>
       <title>The Talus Field</title>
       <link>https://thetalusfieldjournal.com/</link>
     </image>
 
+    <item>
+      <title>From the Archive: the year Yosemite measured a hole in a sequoia to the half inch</title>
+      <link>https://thetalusfieldjournal.com/articles/yosemite-tunnel-trees</link>
+      <guid isPermaLink="true">https://thetalusfieldjournal.com/articles/yosemite-tunnel-trees</guid>
+      <pubDate>Sun, 26 Jul 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Cory Goehring</dc:creator>
+      <category>Wildlife and Nature</category>
+      <description>In April 1929 the park's own bulletin ran a proud accounting of its three tunnel trees: who cut them, what they were paid, and how well the photographs were selling. The first in an occasional series reading the Nature Notes archive.</description>
+      <media:content url="https://thetalusfieldjournal.com/img/wawona-tunnel-tree-historic.jpg" medium="image" />
+    </item>
     <item>
       <title>Where the Animals Actually Are: A Naturalist's Guide to Watching Wildlife in Yosemite</title>
       <link>https://thetalusfieldjournal.com/articles/yosemite-wildlife-viewing-guide</link>
