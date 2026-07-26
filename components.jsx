@@ -571,6 +571,11 @@ function Footer({ go }) {
               <li><a href="/articles" onClick={(e) => { e.preventDefault(); go("articles"); }}>All articles</a></li>
               <li><a href="/kit" onClick={(e) => { e.preventDefault(); go("kit"); }}>Kit</a></li>
               <li><a href="/films" onClick={(e) => { e.preventDefault(); go("films"); }}>Films</a></li>
+              {/*
+                /archive is generated static HTML (scripts/gen-archive.mjs), not an
+                SPA route, so this link must be a real navigation — no go() handler.
+              */}
+              <li><a href="/archive/">Nature Notes archive</a></li>
               <li><a href="/places" onClick={(e) => { e.preventDefault(); go("places"); }}>Directory</a></li>
               <li><a href="/map" onClick={(e) => { e.preventDefault(); go("map"); }}>The Map</a></li>
               <li><a href="/itineraries" onClick={(e) => { e.preventDefault(); go("itineraries"); }}>Itineraries</a></li>

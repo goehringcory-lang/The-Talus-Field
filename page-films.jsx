@@ -99,6 +99,13 @@ function FilmsPage() {
           by subject. Most run under ten minutes. One of them is about the rock piles this
           journal is named for.
         </p>
+        <p style={{ fontFamily: "var(--serif)", fontSize: 19, lineHeight: 1.5, color: "var(--ink-3)", maxWidth: "62ch", marginTop: 16, textWrap: "pretty" }}>
+          The films borrowed their name from something older. From 1922 into the 1980s the
+          park's naturalists mailed out a bulletin called Yosemite Nature Notes, and all 512
+          issues of it are transcribed in{" "}
+          {/* Static pages under /archive, outside the SPA: a plain link, no go(). */}
+          <a href="/archive/">the print archive</a>.
+        </p>
       </section>
 
       {/* Provenance. The films are public-domain government work; the deks are ours. */}

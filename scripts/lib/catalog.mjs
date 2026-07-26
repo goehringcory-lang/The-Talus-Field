@@ -49,6 +49,11 @@ export const STATIC_ROUTES = [
   "/consult",
   "/widget",
   "/partners",
+  // Not an SPA route: /archive is generated static HTML (scripts/gen-archive.mjs)
+  // served straight off the asset layer. It is listed here so the link checker
+  // knows the editorial pages that link into it are not dead ends. The archive's
+  // own 512 issue pages carry their own sitemap and are not enumerated here.
+  "/archive",
 ];
 
 function harvestWindow(file, preload = []) {
