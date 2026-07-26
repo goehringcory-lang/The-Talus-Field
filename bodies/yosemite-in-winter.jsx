@@ -1,4 +1,4 @@
-/* global React */
+/* global React, AffiliateNote, LodgingCta */
 
 window.ARTICLE_BODIES = window.ARTICLE_BODIES || {};
 
@@ -100,6 +100,17 @@ window.ARTICLE_BODIES["yosemite-in-winter"] = function YosemiteInWinterBody() {
       </p>
 
       <p>Twenty seasons in, winter is still the version of this park I would defend first. That's the trip.</p>
+
+      <LodgingCta
+        destination="Yosemite National Park"
+        heading="Winter is when the rooms exist"
+        note="This is the one season where the advice is not 'book a year out'. The seasonal operations close, rates drop, and midweek availability in January is a different universe from July. A search on your dates is the fastest way to see that for yourself."
+        list="article"
+        slug="yosemite-in-winter"
+        cta="Search winter lodging around Yosemite →"
+      />
+
+      <AffiliateNote />
 
       <h3>Sources</h3>
       <ul style={{ fontSize: 14 }}>

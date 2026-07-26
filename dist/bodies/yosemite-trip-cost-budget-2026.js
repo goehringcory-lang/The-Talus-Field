@@ -25,5 +25,12 @@ window.ARTICLE_BODIES["yosemite-trip-cost-budget-2026"] = function YosemiteTripC
     href: "/articles/yosemite-gateway-towns-compared"
   }, "camp or stay in a gateway town"), "."), React.createElement("p", null, "Don't let the cost keep you from going. The people having the best time in this park are not always the ones spending the most money. They're the ones who showed up, planned well, and spent their time outside instead of in a hotel room. If you're starting from scratch, my ", React.createElement("a", {
     href: "/articles/first-time-yosemite-overwhelm"
-  }, "first-timer's guide to Yosemite"), " ties it all together."), React.createElement(AffiliateNote, null));
+  }, "first-timer's guide to Yosemite"), " ties it all together."), React.createElement(LodgingCta, {
+    destination: "Mariposa, California",
+    heading: "The one number this article cannot give you",
+    note: "Every figure above is a range, and lodging is the line item that moves the most: the same room is a different price in October than in July, and midweek is not weekend. Pricing your actual dates takes about as long as reading this paragraph.",
+    list: "article",
+    slug: "yosemite-trip-cost-budget-2026",
+    cta: "Price Mariposa lodging on your dates →"
+  }), React.createElement(AffiliateNote, null));
 };

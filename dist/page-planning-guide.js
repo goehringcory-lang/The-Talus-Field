@@ -105,6 +105,17 @@ function PlanningGuide({
   }), React.createElement(ArticleCard, {
     article: smoke,
     go: go
+  })), React.createElement("div", {
+    style: {
+      maxWidth: 760
+    }
+  }, React.createElement(LodgingCta, {
+    destination: "Yosemite National Park",
+    heading: "The booking with the earliest deadline",
+    note: "In-park beds open 366 days ahead and gateway rooms fill six to twelve months out for summer dates. Everything else in this guide flexes; this one does not, which is why it belongs in Part One.",
+    list: "page_planning",
+    slug: "planning",
+    cta: "See what is available on your dates →"
   }))), React.createElement("section", {
     style: {
       paddingTop: 32,

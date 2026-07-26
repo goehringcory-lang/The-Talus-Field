@@ -1,4 +1,4 @@
-/* global React, AffiliateNote */
+/* global React, AffiliateNote, LodgingCta */
 
 window.ARTICLE_BODIES = window.ARTICLE_BODIES || {};
 
@@ -452,6 +452,15 @@ window.ARTICLE_BODIES["yosemite-camping-complete-guide"] = function YosemiteCamp
       <p>
         The reservation is hard to get. The bear box is awkward to load. The shower situation is suboptimal. None of that matters at 10:01 PM, when the quiet hours begin and the campground finally sounds like the wilderness it was built inside. The ground is hard. The stars are close. You sleep well.
       </p>
+
+      <LodgingCta
+        destination="Groveland, California"
+        heading="For the night the campground plan fails"
+        note="A storm, a closure, or a reservation that never materialized. Every camper eventually has this night, and the fastest version of solving it is a live search of the nearest gateway rather than driving the highway looking for vacancy signs. Groveland here; the other towns are one page over."
+        list="article"
+        slug="yosemite-camping-complete-guide"
+        cta="Search Groveland lodging →"
+      />
 
       <AffiliateNote />
     </>

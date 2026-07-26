@@ -102,7 +102,14 @@ function ItinerariesPage({
       e.preventDefault();
       go("planning");
     }
-  }, "the planning guide"), "."), React.createElement(GuidePromo, {
+  }, "the planning guide"), "."), React.createElement(LodgingCta, {
+    destination: "Yosemite National Park",
+    heading: "Every plan above needs a night between the days",
+    note: "These are built on early starts, which is a lodging decision before it is an itinerary decision: a bed in the Valley or in El Portal buys the first two hours of the day, and Oakhurst costs you them. The full comparison of every in-park and gateway option is one page over.",
+    list: "page_itineraries",
+    slug: "itineraries",
+    cta: "See what is available on your dates →"
+  }), React.createElement(GuidePromo, {
     go: go,
     location: "itineraries",
     title: "These plans, offline, in the park.",

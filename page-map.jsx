@@ -1413,6 +1413,23 @@ function TripNextSteps({ tripFeatures, go }) {
           >the planning guide</a>.
         </p>
       )}
+      {/* A built trip implies nights. This is the one lodging placement on the
+          map, and it goes through the shared AvailabilityLink so the
+          disclosure and the GA4 payload match every other one on the site. */}
+      <p className="map-sidebar__next-line">
+        Somewhere to sleep between the days:{" "}
+        <a
+          href="/stay"
+          onClick={(e) => { e.preventDefault(); go("stay"); }}
+        >the lodging board</a>, or{" "}
+        <window.AvailabilityLink
+          destination="Yosemite National Park"
+          list="map_sidebar"
+          slug="map"
+          name="Map sidebar lodging search"
+        >check your dates →</window.AvailabilityLink>
+        <span className="map-sidebar__next-disclosure"> Affiliate link. <a href="/affiliate" onClick={(e) => { e.preventDefault(); go("affiliate"); }}>Disclosure.</a></span>
+      </p>
       <p className="map-sidebar__next-line">
         This trip, offline, at the trailhead: the Field Guide app is $19 for eighteen months.{" "}
         <a

@@ -103,7 +103,7 @@ function ChecklistPage({ go }) {
         <section className="checklist-section" style={sectionStyle}>
           <div style={sectionLabel}>II · What to book in advance</div>
           <h2 style={sectionTitle}>The non-flexible reservations</h2>
-          <label style={item}><input type="checkbox" style={cb} />In-park lodging: 6 to 12 months ahead (Ahwahnee, Valley Lodge, Curry Village).</label>
+          <label style={item}><input type="checkbox" style={cb} />In-park lodging: 6 to 12 months ahead (Ahwahnee, Valley Lodge, Curry Village). <A r="stay">Every option compared</A>.</label>
           <label style={item}><input type="checkbox" style={cb} /><A r="a:yosemite-gateway-towns-compared">Gateway-town lodging</A>: 1 to 3 months ahead for summer dates.</label>
           <label style={item}><input type="checkbox" style={cb} /><A r="a:half-dome-permit-lottery-2026">Half Dome preseason lottery</A>: apply March 1 to 31 on Recreation.gov.</label>
           <label style={item}><input type="checkbox" style={cb} /><A r="a:tioga-road-opening-weekend-2026">Tuolumne Meadows</A> campground: opens on Recreation.gov in advance; books fast.</label>
@@ -127,6 +127,7 @@ function ChecklistPage({ go }) {
           <label style={item}><input type="checkbox" style={cb} /><strong><A r="a:yosemite-gateway-towns-compared">Oakhurst</A></strong>: closest to Mariposa Grove. Long drive to the Valley.</label>
           <label style={item}><input type="checkbox" style={cb} /><strong><A r="a:yosemite-gateway-towns-compared">Groveland</A></strong>: Bay Area approach, near <A r="a:hetch-hetchy-the-other-yosemite-valley">Hetch Hetchy</A>.</label>
           <label style={item}><input type="checkbox" style={cb} /><strong><A r="a:yosemite-gateway-towns-compared">Lee Vining</A></strong>: east side; <A r="a:tioga-road-opening-weekend-2026">Tuolumne and Mono Lake</A>. Summer only.</label>
+          <label style={item}><input type="checkbox" style={cb} />Checked availability on your actual dates: <A r="stay">the lodging board</A> has a live search per town.</label>
         </section>
 
         <section className="checklist-section" style={sectionStyle}>

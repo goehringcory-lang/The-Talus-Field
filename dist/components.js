@@ -345,7 +345,7 @@ function Header({
     key: "plan",
     label: "Plan",
     route: "planning",
-    items: [["planning", "The Planning Guide"], ["itineraries", "Itineraries"], ["conditions", "Conditions"], ["checklist", "First-week checklist"], ["kit", "Kit"], ["firefall", "Firefall"], ["tioga-opening", "Tioga opening"], ["half-dome-lottery", "Half Dome lottery"], ["consult", "Trip consults"]]
+    items: [["planning", "The Planning Guide"], ["stay", "Where to stay"], ["itineraries", "Itineraries"], ["conditions", "Conditions"], ["checklist", "First-week checklist"], ["kit", "Kit"], ["firefall", "Firefall"], ["tioga-opening", "Tioga opening"], ["half-dome-lottery", "Half Dome lottery"], ["consult", "Trip consults"]]
   }, {
     key: "guide",
     label: "Field Guide",
@@ -616,6 +616,12 @@ function Footer({
       go("map");
     }
   }, "The Map")), React.createElement("li", null, React.createElement("a", {
+    href: "/stay",
+    onClick: e => {
+      e.preventDefault();
+      go("stay");
+    }
+  }, "Where to stay")), React.createElement("li", null, React.createElement("a", {
     href: "/itineraries",
     onClick: e => {
       e.preventDefault();
@@ -792,6 +798,68 @@ function AffiliateNote() {
   }, "Full disclosure."));
 }
 window.AffiliateNote = AffiliateNote;
+var EXPEDIA_SEARCH_BASE = "https://www.expedia.com/Hotel-Search?destination=";
+function expediaSearchUrl(destination) {
+  return EXPEDIA_SEARCH_BASE + encodeURIComponent(destination);
+}
+function AvailabilityLink({
+  destination,
+  children,
+  list,
+  slug,
+  name,
+  className,
+  style
+}) {
+  var href = window.buildAffiliateLink ? window.buildAffiliateLink("expedia", expediaSearchUrl(destination)) : expediaSearchUrl(destination);
+  return React.createElement("a", {
+    className: ["aff-link", className].filter(Boolean).join(" "),
+    href: href,
+    target: "_blank",
+    rel: "sponsored noopener noreferrer",
+    "data-aff-network": "expedia",
+    "data-aff-list": list || "page",
+    "data-aff-item-slug": slug || "",
+    "data-aff-name": name || destination + " lodging search",
+    style: style
+  }, children || `Check ${destination} availability →`);
+}
+function LodgingCta({
+  destination,
+  heading,
+  note,
+  list,
+  slug,
+  cta,
+  stayLink
+}) {
+  return React.createElement("aside", {
+    className: "lodging-cta"
+  }, React.createElement("div", {
+    className: "lodging-cta__head"
+  }, heading || "Check what is actually available"), note && React.createElement("p", {
+    className: "lodging-cta__note"
+  }, note), React.createElement("p", {
+    className: "lodging-cta__actions"
+  }, React.createElement(AvailabilityLink, {
+    destination: destination,
+    list: list,
+    slug: slug,
+    className: "lodging-cta__link"
+  }, cta || `Search ${destination} lodging →`), stayLink !== false && React.createElement("a", {
+    className: "lodging-cta__secondary",
+    href: "/stay"
+  }, "Where to stay: every option compared")), React.createElement("p", {
+    className: "lodging-cta__disclosure"
+  }, "Availability links are affiliate links. The recommendations do not change for them. ", React.createElement("a", {
+    href: "/affiliate"
+  }, "Disclosure.")));
+}
+Object.assign(window, {
+  expediaSearchUrl,
+  AvailabilityLink,
+  LodgingCta
+});
 var READ_LAST_KEY = "tfg.read.last";
 var READ_DONE_KEY = "tfg.read.done";
 var READ_DONE_CAP = 100;

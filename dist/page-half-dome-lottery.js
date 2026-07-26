@@ -77,7 +77,14 @@ function HalfDomeLotteryPage({
       e.preventDefault();
       go("kit");
     }
-  }, "the day pack list"), ": the short version is a gallon of water, grippy gloves you pack back out, a headlamp, and a hard turnaround time.")), React.createElement(GuidePromo, {
+  }, "the day pack list"), ": the short version is a gallon of water, grippy gloves you pack back out, a headlamp, and a hard turnaround time.")), React.createElement(LodgingCta, {
+    destination: "Yosemite National Park",
+    heading: "The night before, and the night after",
+    note: "The hike wants a pre-dawn start and gives back a fourteen-to-sixteen-hour day. Driving in from Oakhurst at 3 a.m. and back out at 10 p.m. is how a permit gets wasted. A bed in the Valley or in El Portal is the difference, and the permit date is known far enough ahead to book one.",
+    list: "page_half_dome",
+    slug: "half-dome-lottery",
+    cta: "Search lodging near the trailhead →"
+  }), React.createElement(GuidePromo, {
     go: go,
     location: "half-dome-lottery",
     title: "Planning the trip around a permit day?",

@@ -1,4 +1,4 @@
-/* global React, NewsletterInline, Breadcrumbs, GuidePromo */
+/* global React, NewsletterInline, Breadcrumbs, GuidePromo, LodgingCta */
 
 // =============================================================================
 // TIOGA OPENING — `/tioga-opening` route. The second evergreen event page
@@ -137,6 +137,18 @@ function TiogaOpeningPage({ go }) {
 
         {/* The purchase ask: a Tioga reader is planning a high-country day in
             a park with no signal past Crane Flat. */}
+        {/* Early-season Tioga is an east-side trip as often as a Valley one,
+            and the in-park high-country camps open late and unpredictably.
+            Lee Vining is the bed that exists in week one. */}
+        <LodgingCta
+          destination="Lee Vining, California"
+          heading="Where you sleep in week one"
+          note="Tuolumne Meadows Lodge and White Wolf open on the snowpack's schedule, often well after the road does, so the high country's own beds may not exist yet when the pass opens. Lee Vining is 30 minutes from Tuolumne Meadows on the east side; Groveland is the western equivalent."
+          list="page_tioga"
+          slug="tioga-opening"
+          cta="Search Lee Vining lodging →"
+        />
+
         <GuidePromo
           go={go}
           location="tioga-opening"

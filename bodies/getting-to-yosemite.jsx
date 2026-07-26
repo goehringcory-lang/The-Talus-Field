@@ -1,4 +1,4 @@
-/* global React, Placeholder, MotifMountains */
+/* global React, Placeholder, MotifMountains, AffiliateNote, LodgingCta */
 
 window.ARTICLE_BODIES = window.ARTICLE_BODIES || {};
 
@@ -86,6 +86,17 @@ window.ARTICLE_BODIES["getting-to-yosemite"] = function GettingToYosemiteBody() 
       <p>
         Pick the entrance to match the trip, not the hotel deal. The road you choose is the first decision of the visit, and it is one of the few you get to make entirely from your kitchen table.
       </p>
+
+      <LodgingCta
+        destination="Mariposa, California"
+        heading="Then find the bed on that road"
+        note="That order matters and it is the order most people get backwards. Once the entrance is settled, its gateway town is the one to search: Mariposa and El Portal on 140, Groveland on 120, Oakhurst on 41, Lee Vining over Tioga."
+        list="article"
+        slug="getting-to-yosemite"
+        cta="Search Mariposa lodging →"
+      />
+
+      <AffiliateNote />
     </>
   );
 };

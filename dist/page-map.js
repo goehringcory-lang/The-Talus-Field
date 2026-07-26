@@ -1107,6 +1107,27 @@ function TripNextSteps({
     }
   }, "the planning guide"), "."), React.createElement("p", {
     className: "map-sidebar__next-line"
+  }, "Somewhere to sleep between the days:", " ", React.createElement("a", {
+    href: "/stay",
+    onClick: e => {
+      e.preventDefault();
+      go("stay");
+    }
+  }, "the lodging board"), ", or", " ", React.createElement(window.AvailabilityLink, {
+    destination: "Yosemite National Park",
+    list: "map_sidebar",
+    slug: "map",
+    name: "Map sidebar lodging search"
+  }, "check your dates →"), React.createElement("span", {
+    className: "map-sidebar__next-disclosure"
+  }, " Affiliate link. ", React.createElement("a", {
+    href: "/affiliate",
+    onClick: e => {
+      e.preventDefault();
+      go("affiliate");
+    }
+  }, "Disclosure."))), React.createElement("p", {
+    className: "map-sidebar__next-line"
   }, "This trip, offline, at the trailhead: the Field Guide app is $19 for eighteen months.", " ", React.createElement("a", {
     href: "/guide",
     onClick: e => {

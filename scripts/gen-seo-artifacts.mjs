@@ -226,6 +226,7 @@ function buildSitemap(merged, categories) {
     ["/map", "2026-06-10"],
     ["/itineraries", "2026-07-12"],
     ["/conditions", "2026-07-12"],
+    ["/stay", "2026-07-26"],
     ["/firefall", "2026-07-17"],
     ["/tioga-opening", "2026-07-21"],
     ["/half-dome-lottery", "2026-07-21"],

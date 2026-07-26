@@ -489,7 +489,7 @@ function HomePage({
     "aria-label": "Trip tools"
   }, React.createElement("span", {
     className: "home-utility__label"
-  }, "Plan your trip"), [["planning", "/planning", "Planning Guide"], ["checklist", "/checklist", "Checklist"], ["conditions", "/conditions", "Conditions and webcams"]].map(([key, href, label], i) => React.createElement(React.Fragment, {
+  }, "Plan your trip"), [["planning", "/planning", "Planning Guide"], ["stay", "/stay", "Where to stay"], ["checklist", "/checklist", "Checklist"], ["conditions", "/conditions", "Conditions and webcams"]].map(([key, href, label], i) => React.createElement(React.Fragment, {
     key: key
   }, i > 0 && React.createElement("span", {
     className: "home-utility__sep",
@@ -542,6 +542,29 @@ function HomePage({
     article: a,
     go: go
   }))))), React.createElement(DeferredSection, {
+    minHeight: 320,
+    render: () => React.createElement("section", {
+      className: "wrap wrap--narrow",
+      style: {
+        paddingTop: 72
+      }
+    }, React.createElement("div", {
+      className: "section-head"
+    }, React.createElement("h2", null, "Where to stay"), React.createElement("a", {
+      href: "/stay",
+      onClick: e => {
+        e.preventDefault();
+        go("stay");
+      }
+    }, "The whole board →")), React.createElement(LodgingCta, {
+      destination: "Yosemite National Park",
+      heading: "The decision with a deadline",
+      note: "Inside the park there is one operator and one inventory, opening 366 days ahead. Outside it there are five gateway towns whose drive times to the Valley differ by more than an hour. Both are covered, honestly, on one page.",
+      list: "page_home",
+      slug: "home",
+      cta: "See what is available on your dates →"
+    }))
+  }), React.createElement(DeferredSection, {
     minHeight: 880,
     render: () => React.createElement("section", {
       className: "wrap",

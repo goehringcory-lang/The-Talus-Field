@@ -1,4 +1,4 @@
-/* global React, Placeholder, MotifMountains, MotifSun */
+/* global React, Placeholder, MotifMountains, MotifSun, AffiliateNote, LodgingCta */
 
 window.ARTICLE_BODIES = window.ARTICLE_BODIES || {};
 
@@ -132,6 +132,17 @@ window.ARTICLE_BODIES["yosemite-in-one-or-two-days"] = function YosemiteInOneOrT
       <h2>The honest pitch</h2>
       <p>The thesis has not changed across all these words. One day in Yosemite, started early and spent deliberately, beats three days of arriving at noon and circling the lots for parking. If you can manage two days, make the second one above the Valley floor, on Glacier Point Road or up Tioga to the high country, and you will have seen the park most first-time visitors miss. That is the plan we would hand almost anyone coming for the first time.</p>
       <p>Show up early. Do less than the lists tell you to. Sit by the Merced for an hour and watch the light move on the granite. You will remember that longer than you will remember the bucket list, and it costs you nothing but the willingness to stop.</p>
+
+      <LodgingCta
+        destination="El Portal, California"
+        heading="Showing up early starts the night before"
+        note="Every plan on this page depends on being at the trailhead before the day visitors, which means the drive in cannot be ninety minutes. El Portal is 25 to 30 minutes from the Valley and the closest bed outside the boundary. The full comparison of every option is one page over."
+        list="article"
+        slug="yosemite-in-one-or-two-days"
+        cta="Search El Portal lodging →"
+      />
+
+      <AffiliateNote />
     </>
   );
 };

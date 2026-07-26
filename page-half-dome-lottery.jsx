@@ -1,4 +1,4 @@
-/* global React, NewsletterInline, Breadcrumbs, GuidePromo */
+/* global React, NewsletterInline, Breadcrumbs, GuidePromo, LodgingCta */
 
 // =============================================================================
 // HALF DOME LOTTERY — `/half-dome-lottery` route. The third evergreen event
@@ -151,6 +151,18 @@ function HalfDomeLotteryPage({ go }) {
             out, a headlamp, and a hard turnaround time.
           </p>
         </section>
+
+        {/* A permit day is a pre-dawn start after a 14-to-16-hour day, which
+            makes the night before and the night after a real planning
+            problem, not an afterthought. */}
+        <LodgingCta
+          destination="Yosemite National Park"
+          heading="The night before, and the night after"
+          note="The hike wants a pre-dawn start and gives back a fourteen-to-sixteen-hour day. Driving in from Oakhurst at 3 a.m. and back out at 10 p.m. is how a permit gets wasted. A bed in the Valley or in El Portal is the difference, and the permit date is known far enough ahead to book one."
+          list="page_half_dome"
+          slug="half-dome-lottery"
+          cta="Search lodging near the trailhead →"
+        />
 
         {/* The purchase ask: a lottery reader is planning the whole trip
             around one permit day, usually months out. */}

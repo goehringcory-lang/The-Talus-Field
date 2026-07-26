@@ -27,7 +27,7 @@ function routeToPath(route) {
 const STATIC_ROUTE_KEYS = new Set([
   "home", "articles", "planning", "checklist", "about", "kit", "places",
   "advertise", "newsletter", "contact", "privacy", "terms", "affiliate",
-  "guide", "map", "films", "itineraries", "conditions", "now", "firefall",
+  "guide", "map", "films", "itineraries", "conditions", "now", "firefall", "stay",
   "consult", "widget", "partners", "search", "tioga-opening", "half-dome-lottery",
 ]);
 
@@ -99,6 +99,7 @@ const PAGE_MODULES = {
   itineraries: { scripts: ["/itineraries-data.js", "/dist/page-itineraries.js"], globals: ["ItinerariesPage"] },
   map: { scripts: ["/itineraries-data.js", "/dist/page-map.js"], globals: ["MapPage"] },
   conditions: { scripts: ["/dist/page-conditions.js"], globals: ["ConditionsPage"] },
+  stay: { scripts: ["/dist/page-stay.js"], globals: ["StayPage"] },
   now: { scripts: ["/dist/page-now.js"], globals: ["BulletinPage"] },
   firefall: { scripts: ["/dist/page-firefall.js"], globals: ["FirefallPage"] },
   consult: { scripts: ["/dist/page-consult.js"], globals: ["ConsultPage"] },
@@ -962,6 +963,8 @@ function App() {
   } else if (route === "search") {
     page = <window.SearchPage go={go} />;
     // currentNav stays "home": search is a utility, not a section.
+  } else if (route === "stay") {
+    page = <window.StayPage go={go} />;
   } else if (route === "conditions") {
     page = <window.ConditionsPage go={go} />;
   } else if (route === "now") {

@@ -84,6 +84,63 @@ function AffiliateNote() {
   );
 }
 
+// Lodging availability links. Keep in sync with AvailabilityLink / LodgingCta
+// in components.jsx: same destination search, same rel and data-aff-* markup,
+// same disclosure copy. Crawlers see the real tracking href here, which is the
+// whole point of prerendering these fragments.
+function AvailabilityLink(props) {
+  const dest = props.destination || "";
+  const href = buildAffiliateLink(
+    "expedia",
+    "https://www.expedia.com/Hotel-Search?destination=" + encodeURIComponent(dest)
+  );
+  return React.createElement(
+    "a",
+    {
+      className: ["aff-link", props.className].filter(Boolean).join(" "),
+      href,
+      target: "_blank",
+      rel: "sponsored noopener noreferrer",
+      "data-aff-network": "expedia",
+      "data-aff-list": props.list || "page",
+      "data-aff-item-slug": props.slug || "",
+      "data-aff-name": props.name || dest + " lodging search",
+    },
+    props.children || `Check ${dest} availability →`
+  );
+}
+function LodgingCta(props) {
+  const kids = [
+    React.createElement("div", { key: "h", className: "lodging-cta__head" },
+      props.heading || "Check what is actually available"),
+  ];
+  if (props.note) {
+    kids.push(React.createElement("p", { key: "n", className: "lodging-cta__note" }, props.note));
+  }
+  const actions = [
+    React.createElement(AvailabilityLink, {
+      key: "a",
+      destination: props.destination,
+      list: props.list,
+      slug: props.slug,
+      className: "lodging-cta__link",
+    }, props.cta || `Search ${props.destination} lodging →`),
+  ];
+  if (props.stayLink !== false) {
+    actions.push(
+      React.createElement("a", { key: "s", className: "lodging-cta__secondary", href: "/stay" },
+        "Where to stay: every option compared")
+    );
+  }
+  kids.push(React.createElement("p", { key: "p", className: "lodging-cta__actions" }, actions));
+  kids.push(
+    React.createElement("p", { key: "d", className: "lodging-cta__disclosure" },
+      "Availability links are affiliate links. The recommendations do not change for them. ",
+      React.createElement("a", { href: "/affiliate" }, "Disclosure."))
+  );
+  return React.createElement("aside", { className: "lodging-cta" }, kids);
+}
+
 // Bodies with inline affiliate links call window.buildPatagoniaAffiliateLink /
 // window.buildAffiliateLink at render time (affiliate.js in the browser).
 // Mirror both here, minus the console warning, so those hrefs prerender to the
@@ -147,6 +204,8 @@ function renderBody(slug, src) {
     MotifSun,
     MotifTrees,
     AffiliateNote,
+    AvailabilityLink,
+    LodgingCta,
   };
   vm.createContext(sandbox);
   vm.runInContext(code, sandbox, { filename: `${slug}.jsx` });

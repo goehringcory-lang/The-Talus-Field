@@ -325,6 +325,14 @@ const HUB_PROSE = {
       "A one-on-one planning session with a naturalist who lives in Yosemite: dates, group, and constraints turned into a plan that fits the park as it will actually be that week. Thirty minutes by call, or the same session asynchronously as a written plan. A few slots a month; when they are gone, they are gone."
     ) +
     `<p>Most planning questions are answered free in <a href="/planning">the Planning Guide</a>, <a href="/itineraries">the itineraries</a>, and <a href="/map">the trip planner map</a>; the consult is for plans with real constraints.</p>`,
+  "/stay": () =>
+    hubProse(
+      "Where to Stay in Yosemite",
+      "Every place to sleep in and around the park, sorted by what it is and who it fits. Inside the boundary there is one operator: every hotel, lodge, and tent cabin is run by a single park concessioner and books through travelyosemite.com, with reservations opening 366 days ahead and peak Valley dates gone in minutes. Outside the boundary there is a real market across five gateway towns whose drive times differ by more than an hour."
+    ) +
+    `<p>Inside the park: <strong>Yosemite Valley Lodge</strong>, the correct answer for most first-time visitors, across the road from Lower Yosemite Fall. <strong>The Ahwahnee</strong>, a 1927 National Historic Landmark, for the occasion that justifies it. <strong>Curry Village</strong>, canvas tent cabins at the base of Glacier Point since 1899 and the cheapest roofed beds in the Valley. <strong>Housekeeping Camp</strong>, three-walled river units where you can cook over a fire. <strong>White Wolf Lodge</strong> at 8,000 feet and <strong>Tuolumne Meadows Lodge</strong> at 8,700, both summer-only tent cabins for high-country trips. The historic <strong>Wawona Hotel</strong> has been closed for renovation since December 2024.</p>` +
+    `<p>The gateway towns, by drive time to Yosemite Valley: <strong>El Portal</strong> (25 to 30 minutes, Highway 140), <strong>Mariposa</strong> (45 to 60 minutes, the most full-service and the safest first-timer's pick), <strong>Groveland</strong> (60 to 75 minutes on Highway 120, the character pick), <strong>Oakhurst</strong> (75 to 90 minutes on Highway 41, best for Wawona and the Mariposa Grove), and <strong>Lee Vining</strong> (90 minutes and only while Tioga Pass is open, the east-side base for the high country and Mono Lake).</p>` +
+    `<p>The longer versions: <a href="/articles/where-to-stay-in-yosemite">the in-park lodging guide</a>, <a href="/articles/yosemite-gateway-towns-compared">the gateway towns compared</a>, <a href="/articles/yosemite-camping-complete-guide">the complete camping guide</a>, and <a href="/articles/yosemite-trip-cost-budget-2026">what a Yosemite trip costs</a>.</p>`,
   "/firefall": () =>
     hubProse(
       "The Yosemite Firefall",
@@ -710,6 +718,35 @@ function seoForPath(pathname, searchParams) {
         areaServed: { "@type": "Place", name: "Yosemite National Park" },
         url: `${SITE_ORIGIN}/consult`,
       },
+    },
+    "/stay": {
+      // The standing lodging board. Evergreen by the same rule as the event
+      // pages: no year and no rate anywhere in the copy, so the page does not
+      // reset each season. FAQ answers come from the published bodies
+      // (where-to-stay-in-yosemite, yosemite-gateway-towns-compared) per the
+      // no-invented-facts rule.
+      title: `Where to Stay in Yosemite — in-park lodging and gateway towns — ${SITE_NAME}`,
+      description:
+        "Every place to sleep in and around Yosemite, compared honestly: the six in-park lodges and camps, the five gateway towns with real drive times, and how the 366-day booking window actually works.",
+      breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Where to stay", null]],
+      faq: [
+        {
+          q: "Where should you stay in Yosemite?",
+          a: "Inside the park if you can get a bed, because the park is at its best in the first two hours and last two hours of the day, when day visitors are still on the road. Yosemite Valley Lodge is the correct answer for most first-time visitors with a hotel budget; Housekeeping Camp suits families who want to half-camp; Curry Village suits hikers on a budget; the Ahwahnee is for the occasion that justifies it.",
+        },
+        {
+          q: "How do you book lodging inside Yosemite?",
+          a: "Every hotel, lodge, and tent cabin inside the park is run by a single concessioner and books through travelyosemite.com. Reservations open 366 days in advance on a rolling basis, and for peak summer dates at the Valley properties, availability at the moment of release is measured in minutes.",
+        },
+        {
+          q: "What do you do if Yosemite lodging is sold out?",
+          a: "Rooms come back. Cancellation policies mean people drop reservations continuously, with a distinct wave in the final four to six weeks before any date, so checking the site daily at varied times genuinely works. Otherwise the gateway towns are the real alternative, and winter is dramatically easier and cheaper than summer.",
+        },
+        {
+          q: "Which gateway town is best for Yosemite?",
+          a: "El Portal is 25 to 30 minutes from Yosemite Valley and the strongest choice if you can get a room. Mariposa, 45 minutes to an hour out on Highway 140, is the safest first-timer's pick and the most full-service. Groveland is the character pick on Highway 120, Oakhurst suits trips centered on Wawona and the Mariposa Grove, and Lee Vining is the east-side base while Tioga Pass is open.",
+        },
+      ],
     },
     "/firefall": {
       // Evergreen event page: no year in the URL or copy, so the same page

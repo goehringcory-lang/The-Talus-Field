@@ -1,4 +1,4 @@
-/* global React, ArticleCard, NewsletterInline, GuidePromo */
+/* global React, ArticleCard, NewsletterInline, GuidePromo, LodgingCta */
 
 function PlanningGuide({ go }) {
   const find = (slug) => window.findArticle(slug);
@@ -75,6 +75,20 @@ function PlanningGuide({ go }) {
             <ArticleCard article={withoutReservations} go={go} />
             <ArticleCard article={gateway} go={go} />
             <ArticleCard article={smoke} go={go} />
+          </div>
+
+          {/* "Before you book" is the one part of this guide with an actual
+              deadline attached, so the lodging board and a live availability
+              search belong here rather than at the end. */}
+          <div style={{ maxWidth: 760 }}>
+            <LodgingCta
+              destination="Yosemite National Park"
+              heading="The booking with the earliest deadline"
+              note="In-park beds open 366 days ahead and gateway rooms fill six to twelve months out for summer dates. Everything else in this guide flexes; this one does not, which is why it belongs in Part One."
+              list="page_planning"
+              slug="planning"
+              cta="See what is available on your dates →"
+            />
           </div>
         </section>
 

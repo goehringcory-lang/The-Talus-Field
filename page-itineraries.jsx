@@ -1,4 +1,4 @@
-/* global React, NewsletterInline, GuidePromo */
+/* global React, NewsletterInline, GuidePromo, LodgingCta */
 
 // =============================================================================
 // ITINERARIES — `/itineraries` route. The curated day plans from
@@ -97,6 +97,18 @@ function ItinerariesPage({ go }) {
 
         {/* The purchase ask: itinerary readers are packing dates into days,
             the exact moment the offline app earns its price. */}
+        {/* Every multi-day plan above implies a night between the days, and
+            where that night is spent decides whether day two starts at the
+            trailhead or in the entrance line. */}
+        <LodgingCta
+          destination="Yosemite National Park"
+          heading="Every plan above needs a night between the days"
+          note="These are built on early starts, which is a lodging decision before it is an itinerary decision: a bed in the Valley or in El Portal buys the first two hours of the day, and Oakhurst costs you them. The full comparison of every in-park and gateway option is one page over."
+          list="page_itineraries"
+          slug="itineraries"
+          cta="See what is available on your dates →"
+        />
+
         <GuidePromo
           go={go}
           location="itineraries"

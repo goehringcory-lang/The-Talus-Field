@@ -1,4 +1,4 @@
-/* global React, WebcamStrip, NewsletterInline, Breadcrumbs, GuidePromo */
+/* global React, WebcamStrip, NewsletterInline, Breadcrumbs, GuidePromo, LodgingCta */
 
 // =============================================================================
 // THE FIREFALL — `/firefall` route. The first evergreen event page
@@ -129,6 +129,19 @@ function FirefallPage({ go }) {
             </a>
           </p>
         </section>
+
+        {/* A firefall reader is planning a February trip around a ten-minute
+            window at sunset, which is an argument for sleeping close: the
+            viewing zone empties into the entrance road in the dark. February
+            is also the month in-park rooms actually exist. */}
+        <LodgingCta
+          destination="Yosemite National Park"
+          heading="Sleeping close, in the one month you can"
+          note="The glow finishes about ten minutes after it peaks, in the dark, with a mile-plus walk back to the car and every other watcher heading for the same road. A bed inside the park or in El Portal turns that from an ordeal into a short drive. February is also the easiest month of the year to get one."
+          list="page_firefall"
+          slug="firefall"
+          cta="Search February lodging around Yosemite →"
+        />
 
         {/* The purchase ask: a firefall reader is planning a February trip
             around one shot in a cold, signal-less valley. */}

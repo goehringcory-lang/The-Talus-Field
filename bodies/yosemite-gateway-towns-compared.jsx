@@ -1,4 +1,4 @@
-/* global React, AffiliateNote */
+/* global React, AffiliateNote, LodgingCta */
 
 window.ARTICLE_BODIES = window.ARTICLE_BODIES || {};
 
@@ -300,6 +300,21 @@ window.ARTICLE_BODIES["yosemite-gateway-towns-compared"] = function YosemiteGate
 
       <p>
         If you are still working out how to approach the park, start with the <a href="/articles/first-time-yosemite-overwhelm">first-timer's guide</a>, read <a href="/articles/yosemite-without-reservations-2026">what changed for 2026</a> before you book, and see <a href="/articles/yosemite-in-one-or-two-days">how to spend one or two days</a> once your base is set.
+      </p>
+
+      <LodgingCta
+        destination="Mariposa, California"
+        heading="Made the call?"
+        note="Mariposa is the safest first-timer's pick, so it is the default here, but the town-by-town links above go straight to whichever one you picked. Whatever the town, the inventory is what it is on your dates and no comparison table can tell you that part."
+        list="article"
+        slug="yosemite-gateway-towns-compared"
+        cta="Search Mariposa lodging →"
+      />
+
+      <p>
+        The in-park options, the five towns above, and Fish Camp all sit on one
+        page at <a href="/stay">where to stay</a>, if you would rather scan
+        than read.
       </p>
 
       <AffiliateNote />

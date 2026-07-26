@@ -1,4 +1,4 @@
-/* global React */
+/* global React, AffiliateNote, LodgingCta */
 
 window.ARTICLE_BODIES = window.ARTICLE_BODIES || {};
 
@@ -84,10 +84,21 @@ window.ARTICLE_BODIES["first-time-yosemite-overwhelm"] = function FirstTimeYosem
       <p>That's what this whole site is for.</p>
 
       <p>
-        If you want a place to start: <a href="/articles/yosemite-without-reservations-2026">what changed in 2026</a> is the most important context for any first trip this year. <a href="/articles/yosemite-gateway-towns-compared">Pick your gateway town</a> before you book lodging. Once you know roughly how long you have, <a href="/articles/yosemite-in-one-or-two-days">one or two days in Yosemite</a> turns the strategy into an itinerary. The site's <a href="/map">map</a> lays out where everything sits while you decide. And <a href="/articles/pack-your-car-for-yosemite">pack the car</a> like the trip depends on it, because it does.
+        If you want a place to start: <a href="/articles/yosemite-without-reservations-2026">what changed in 2026</a> is the most important context for any first trip this year. <a href="/stay">Decide where you are sleeping</a> before anything else, because that decision constrains every day of the trip and the good options go first. Once you know roughly how long you have, <a href="/articles/yosemite-in-one-or-two-days">one or two days in Yosemite</a> turns the strategy into an itinerary. The site's <a href="/map">map</a> lays out where everything sits while you decide. And <a href="/articles/pack-your-car-for-yosemite">pack the car</a> like the trip depends on it, because it does.
       </p>
 
+      <LodgingCta
+        destination="Yosemite National Park"
+        heading="The decision to make first"
+        note="Of everything on this page, lodging is the only piece with a deadline attached: in-park beds open 366 days ahead and gateway rooms fill six to twelve months out for summer. Knowing what is actually left on your dates is what turns the rest of this from theory into a plan."
+        list="article"
+        slug="first-time-yosemite-overwhelm"
+        cta="See what is available on your dates →"
+      />
+
       <p>Let's plan a good one.</p>
+
+      <AffiliateNote />
     </>
   );
 };

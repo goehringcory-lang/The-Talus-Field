@@ -1,5 +1,6 @@
 /* global React, Header, Footer, ArticleCard, Placeholder, NewsletterInline,
-   MotifMountains, MotifSun, MotifTrees, useNewsletterImpression, isSubscribed */
+   MotifMountains, MotifSun, MotifTrees, useNewsletterImpression, isSubscribed,
+   LodgingCta */
 const { useMemo, useState } = React;
 
 // ============================================================
@@ -458,6 +459,7 @@ function HomePage({ go }) {
           <span className="home-utility__label">Plan your trip</span>
           {[
             ["planning", "/planning", "Planning Guide"],
+            ["stay", "/stay", "Where to stay"],
             ["checklist", "/checklist", "Checklist"],
             ["conditions", "/conditions", "Conditions and webcams"],
           ].map(([key, href, label], i) => (
@@ -512,6 +514,31 @@ function HomePage({ go }) {
           </div>
         </section>
       )}
+
+      {/* Lodging band. Sits under Start Here because "where do we sleep" is
+          the question a first-time planner asks immediately after the four
+          answers above, and it is the only trip decision with a hard deadline
+          attached. Deferred like everything below the Start Here boundary, so
+          it costs nothing at first paint. */}
+      <DeferredSection
+        minHeight={320}
+        render={() => (
+          <section className="wrap wrap--narrow" style={{ paddingTop: 72 }}>
+            <div className="section-head">
+              <h2>Where to stay</h2>
+              <a href="/stay" onClick={(e) => { e.preventDefault(); go("stay"); }}>The whole board →</a>
+            </div>
+            <LodgingCta
+              destination="Yosemite National Park"
+              heading="The decision with a deadline"
+              note="Inside the park there is one operator and one inventory, opening 366 days ahead. Outside it there are five gateway towns whose drive times to the Valley differ by more than an hour. Both are covered, honestly, on one page."
+              list="page_home"
+              slug="home"
+              cta="See what is available on your dates →"
+            />
+          </section>
+        )}
+      />
 
       {/* The live webcam strip that used to sit here was removed in the July
           2026 repetition pass: it was the third "what's happening now" surface
