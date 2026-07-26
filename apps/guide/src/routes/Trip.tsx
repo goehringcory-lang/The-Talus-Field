@@ -19,11 +19,12 @@ import TripAgenda from '../components/TripAgenda'
 import TripReview from '../components/TripReview'
 import Button from '../components/ui/Button'
 import Callout from '../components/ui/Callout'
-import { getItineraryDayPhotos, getStopById, type StopT } from '../content'
+import { getHikeById, getItineraryDayPhotos, getStopById, type StopT } from '../content'
 import { ITINERARIES, ITINERARY_KEYS, type ItineraryKey } from '../content/itineraries'
 import { getStopsByRegion } from '../content'
-import { MAX_SPAN_DAYS, readTripDates } from '../programs/usePrograms'
+import { MAX_SPAN_DAYS, readTripDates, usePrograms } from '../programs/usePrograms'
 import { addDaysIso, formatDayHeader, todayIso } from '../utils/date'
+import { pickProgramsForDay } from '../trip/seedPrograms'
 import { slotPlan } from '../trip/slotting'
 import {
   clearPendingImport,
@@ -173,7 +174,7 @@ function ClearPlanButton({ itemCount, onClear }: { itemCount: number; onClear: (
 }
 
 export default function Trip() {
-  const { plan, addStop, addHike, addCustom, clear, setDates } = useTripPlan()
+  const { plan, addStop, addHike, addProgram, addCustom, clear, setDates } = useTripPlan()
   const [reviewOpen, setReviewOpen] = useState(false)
   const reviewRef = useRef<HTMLDivElement>(null)
 
@@ -246,6 +247,12 @@ export default function Trip() {
     if (opening) reviewRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
   }
 
+  // The program listings for the trip window, so a preset day that names
+  // program categories can seed the real events running that date. Programs
+  // are garnish here the way weather is above: still loading, offline with
+  // no cache, or nothing running simply seeds the stops alone.
+  const programs = usePrograms(plan.dates.start, plan.dates.end)
+
   // Seed a preset day only up to what a day can actually hold (08:00-21:00
   // with travel buffers); dumping a whole region onto one date used to bury
   // the plan in overflow warnings.
@@ -271,6 +278,26 @@ export default function Trip() {
         if (budget + cost > DAY_CAPACITY_MIN) continue
         budget += cost
         addStop(stop.id, date)
+      }
+      // Curated day hikes seed like stops, on the same capacity budget.
+      for (const hikeId of day.hikes ?? []) {
+        const hike = getHikeById(hikeId)
+        if (!hike) continue
+        const cost = hike.durationMin + 30
+        if (budget + cost > DAY_CAPACITY_MIN) continue
+        budget += cost
+        addHike(hikeId, date)
+      }
+      // Program picks keep their published times and slot around the stops,
+      // so they sit outside the capacity budget. addProgram snapshots the
+      // event into the plan, same as adding it from /programs by hand.
+      for (const ev of pickProgramsForDay(
+        programs.events,
+        date,
+        day.programCategories ?? [],
+        day.regions,
+      )) {
+        addProgram(ev)
       }
     })
   }
