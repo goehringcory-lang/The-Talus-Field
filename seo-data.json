@@ -1,5 +1,37 @@
 {
   "__comment": "SEO enrichment for the editorial site, keyed by article slug. NOT loaded by the browser runtime (kept out of data.js so the per-page JS payload stays small). The build script scripts/gen-seo-artifacts.mjs merges this with window.ARTICLES from data.js to regenerate articles.json (consumed by functions/_middleware.js), sitemap.xml, feed.xml, and the article section of llms.txt. Fields: wordCount (number), keywords (string[]), faq ({q,a}[]), trail ({name,distance,elevationGain,difficulty} for hike guides). FAQ answers and trail numbers are drawn from each article's published body; do not invent facts. The one article whose faq lives inline in data.js (yosemite-in-one-or-two-days) is intentionally omitted here; data.js takes precedence for faq.",
+  "yosemite-tunnel-trees": {
+    "wordCount": 1550,
+    "keywords": [
+      "Yosemite tunnel tree",
+      "Wawona Tunnel Tree",
+      "Dead Giant Tuolumne Grove",
+      "California Tree Mariposa Grove",
+      "Yosemite Nature Notes archive"
+    ],
+    "faq": [
+      {
+        "q": "What happened to the Wawona Tunnel Tree?",
+        "a": "The Wawona Tunnel Tree fell in the winter of 1968 to 1969 under snow. It was roughly two thousand years old and had carried a twenty-six-foot tunnel through its base for close to ninety years. The Park Service left it where it fell and never cut a replacement. The log is still in the upper Mariposa Grove."
+      },
+      {
+        "q": "How many tunnel trees did Yosemite have?",
+        "a": "Three. Yosemite Nature Notes for April 1929 counted four tunnel trees in the whole range of the giant sequoia, three of them inside the park: the Dead Giant in the Tuolumne Grove, and the California Tree and the Wawona Tunnel Tree in the Mariposa Grove. The fourth, the Pioneer, stood in the Calaveras grove outside the park."
+      },
+      {
+        "q": "Can you still walk through a tunnel tree in Yosemite?",
+        "a": "Yes, two of them. The Dead Giant in the Tuolumne Grove is a stump whose tunnel still carries the old Big Oak Flat Road grade, about a mile down from the Tioga Road trailhead near Crane Flat and roughly five hundred feet of climb on the way back. The California Tree, a short distance past the Grizzly Giant in the Mariposa Grove, is still standing and still open. Neither is open to vehicles."
+      },
+      {
+        "q": "Who cut the tunnel through the Wawona Tree, and when?",
+        "a": "Two brothers named Scribner, paid seventy-five dollars by the Yosemite Stage and Turnpike Company shortly after the first road into the Mariposa Grove was finished. The date is not settled in the park's own record: the April 1929 Nature Notes prints a letter claiming the tunnel was cut by August 1880, while a 1984 issue dates the cutting to 1881."
+      },
+      {
+        "q": "When was the first Yosemite tunnel tree cut?",
+        "a": "The Dead Giant in the Tuolumne Grove, in June 1878. The English traveler W. G. Marshall passed through it on June 23, 1878 and recorded that the first stagecoach had gone through on the afternoon of Tuesday, June 18, a week earlier. The tree was already dead, its trunk severed about ninety feet up."
+      }
+    ]
+  },
   "yosemite-wildlife-viewing-guide": {
     "wordCount": 1950,
     "keywords": [
