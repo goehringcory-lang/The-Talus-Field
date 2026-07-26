@@ -455,12 +455,12 @@ export default function Trip() {
         <div ref={reviewRef} className="trip-export" style={{ scrollMarginTop: 24 }}>
           <h2 className="trip-export__title">Put it on your calendar</h2>
           <p className="trip-export__intro">
-            The board above is the plan and it works offline on its own. This step copies it into
-            the calendar app you already carry: events carry GPS coordinates and a directions link,
-            so tapping one on the day launches navigation.
+            The board above is the plan and it works offline on its own. This step saves it as a
+            calendar file you import once: events carry GPS coordinates and a directions link, so
+            tapping one on the day launches navigation.
           </p>
           <Button disabled={itemCount === 0} onClick={toggleReview}>
-            {reviewOpen ? 'Hide review' : 'Review & add to calendar'}
+            {reviewOpen ? 'Hide review' : 'Review & save the calendar file'}
           </Button>
           {itemCount === 0 && (
             <p className="trip-step__hint">

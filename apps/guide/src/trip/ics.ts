@@ -230,13 +230,12 @@ export function buildTripIcs(slottedByDay: Map<string, SlottedItem[]>): string {
     `PRODID:${PRODID}`,
     'CALSCALE:GREGORIAN',
     'METHOD:PUBLISH',
-    // Calendar-level metadata for the subscription feed: a name for the
-    // calendar list, and a suggested poll cadence for clients that honor it
-    // (Apple does; Google polls on its own schedule regardless).
+    // Calendar-level metadata: a name for the calendar list, and the zone the
+    // floating-time fallbacks should be read in. No REFRESH-INTERVAL or
+    // X-PUBLISHED-TTL — this file is imported once, never polled, and a poll
+    // cadence in it would only promise a refresh that can't happen.
     'X-WR-CALNAME:Yosemite trip · The Talus Field',
     `X-WR-TIMEZONE:${TZID}`,
-    'REFRESH-INTERVAL;VALUE=DURATION:PT12H',
-    'X-PUBLISHED-TTL:PT12H',
     ...VTIMEZONE,
   ]
 

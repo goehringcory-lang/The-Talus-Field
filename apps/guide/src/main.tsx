@@ -9,8 +9,6 @@ import App from './App'
 import ErrorBoundary from './components/ErrorBoundary'
 import { captureInstallPrompt } from './pwa/installPrompt'
 import { registerServiceWorker } from './pwa/registerSW'
-import { startFeedSync } from './trip/feedSync'
-import { startCalendarSync } from './trip/calendarSync'
 import { stashPendingImportFromUrl } from './trip/importTrip'
 import { startPlanSync } from './sync/planSync'
 import { startPushSync } from './push/push'
@@ -39,14 +37,6 @@ createRoot(document.getElementById('root')!).render(
 // UpdateBanner subscribes through registerSW's own latch (onUpdateReady), so
 // an update found during boot is still there whenever the banner mounts.
 registerServiceWorker()
-
-// Keep the hosted calendar feed current with local plan edits (no-op until
-// the user subscribes from the trip page's calendar sheet).
-startFeedSync()
-
-// Keep the connected Google calendar current with local plan edits (no-op
-// until the user connects Google from the Account page).
-startCalendarSync()
 
 // Keep the trip, saved stops, visited stops, and notes in step across the
 // buyer's devices (no-op until they turn sync on from the Account page).

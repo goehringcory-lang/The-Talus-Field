@@ -3,7 +3,6 @@ import { useAuth } from '../auth/useAuth'
 import { fetchMe, readCachedMe, type MeT } from '../auth/me'
 import { apiFetch, API_BASE } from '../lib/api'
 import GatedChrome from '../components/GatedChrome'
-import CalendarCard from '../components/CalendarCard'
 import DownloadManager from '../components/DownloadManager'
 import NotificationsCard from '../components/NotificationsCard'
 import SyncCard from '../components/SyncCard'
@@ -232,10 +231,6 @@ export default function Account() {
 
           <div className="card">
             <NotificationsCard />
-          </div>
-
-          <div className="card">
-            <CalendarCard />
           </div>
 
           <div className="card">
