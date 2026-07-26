@@ -1,11 +1,11 @@
 # Field Guide photo shot list
 
-The eleven entries that still render `PhotoPlaceholder` ("Photo coming") in the
+The ten entries that still render `PhotoPlaceholder` ("Photo coming") in the
 PWA. Every one of them has been through the Commons acquisition pipeline
 (`fetch-guide-photos.mjs`, category-sourced since July 2026) and come back with
 either nothing or the wrong subject, so they need original photography.
 
-Why these eleven and not others: Commons is encyclopedic, and it covers
+Why these ten and not others: Commons is encyclopedic, and it covers
 landmarks. It does not cover an unsigned turnout on Evergreen Road, a swimming
 hole on the 120, or a barn loop in Foresta. Two of them are worse than
 uncovered, they are actively mis-covered, because the name collides with
@@ -42,14 +42,13 @@ Four rules the ingest enforces, each for a reason that has already bitten:
 Aim for at least 1600 px on the long edge. The generator writes a 400/800/1200/
 1600 ladder and never enlarges.
 
-## The eleven
+## The ten
 
 | Entry | File | Coordinate |
 |---|---|---|
 | Snow Creek Trail | `snow-creek-trail.jpg` | -119.5375, 37.7560 |
 | Three Chutes Falls | `three-chutes-falls.jpg` | -119.5299, 37.7594 |
 | Ostrander Lake | `ostrander-lake.jpg` | -119.6039, 37.6668 |
-| Chilnualna Falls | `chilnualna-falls.jpg` | -119.6337, 37.5484 |
 | Carlon Falls | `carlon-falls.jpg` | -119.8590, 37.8125 |
 | Poopenaut Valley | `poopenaut-valley.jpg` | -119.8037, 37.9182 |
 | Rainbow Pool | `rainbow-pool.jpg` | -119.8780, 37.8137 |
@@ -93,14 +92,6 @@ across the basin.
 **Name collision, worth knowing:** searching "Ostrander" on Commons returns a
 tugboat named *G.L. Ostrander* and the Ambassador Bridge in Windsor, Ontario.
 This slot cannot be filled by search, only by going.
-
-### Chilnualna Falls
-*Strenuous, ~6 h.*
-
-Peak flow is spring. The falls are a staircase of cascades rather than one
-plunge, so a single frame rarely tells it; the lower cascade close to the trail
-is the most legible. Wawona sits lower and warmer than the valley, so this is
-often shootable weeks before the high country opens.
 
 ### Carlon Falls
 *Easy, ~2.5 h.*
@@ -179,5 +170,6 @@ buyer can notice:
 - `cathedral-beach-quiet-picnic.jpg` serves both
   `cathedral-beach-quiet-picnic` and `sentinel-beach-parking`.
 
-`rancheria-falls` and `wawona-hotel-history-center` now have Commons categories
-in the manifest and may fill from a re-fetch without a camera.
+`wawona-hotel-history-center` has since been filled from `Category:Wawona Hotel`
+and no longer borrows the meadow photo. `rancheria-falls` was re-fetched and
+returned only Hetch Hetchy Reservoir, so it keeps the Wapama photo for now.

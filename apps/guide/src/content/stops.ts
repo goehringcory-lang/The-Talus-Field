@@ -884,7 +884,7 @@ const seed: StopInput[] = [
       'Wawona is what the park looked like when getting here was the achievement. The Wawona Hotel opened in 1876 as the stagecoach stop between the railhead and the valley, and it has never stopped being a hotel: white Victorian buildings around a lawn, wicker chairs on the wide verandas, a national historic landmark. When the hotel is open, the porch is open to anyone; order a drink from the lobby bar, take a chair, and look across the road at the 1918 nine-hole golf course, one of the odder sentences in any national park. The small building beside the hotel was the studio of Thomas Hill, whose enormous paintings of this landscape helped argue it into protection; in season it serves as the Wawona visitor center.\n\n' +
       'Five minutes north on foot, the Pioneer Yosemite History Center gathers buildings from the park\'s first decades, moved here when roads and time displaced them: a Wells Fargo office, homestead cabins, a jail, and a barn full of the actual stagecoaches that ran the road you drove in on. You enter across the Wawona covered bridge, built by Galen Clark in 1868 and roofed a decade later, which nearly every valley-bound visitor crossed for half a century. In summer there are costumed interpreters and short stage rides; the rest of the year the buildings are closed up but the walk among them is open, and the South Fork of the Merced runs quietly past it all.\n\n' +
       'It pairs naturally with the [Mariposa Grove](/stop/mariposa-grove), ten minutes south, and with [Chilnualna Falls](/stop/chilnualna-falls) and the [meadow loop](/stop/wawona-meadow-loop) for a full Wawona day that never touches the valley. When the hotel dining room is running, it takes lunch walk-ins far more easily than dinner.',
-    photos: [{ src: '/photos/wawona-meadow-loop.jpg', caption: 'Wawona Meadow around 1900. The hotel grounds sit just across the road.' }],
+    photos: [{ src: '/photos/wawona-hotel-history-center.jpg', caption: 'The hotel across its fountain and lily pond.' }],
   },
 
   // ---------------------------------------------------------------------------
@@ -1019,7 +1019,7 @@ const seed: StopInput[] = [
     coord: [-119.6337, 37.5484], // verified 2026-07: Chilnualna Falls trailhead lot, end of Chilnualna Falls Rd (NPS/Hikespeak); was ~130 m off
     elevationFt: 4200,
     timeBudgetMin: 360,
-    photos: [], // TODO: needs a correct image; the wrong-subject automated fetch was deleted from public/photos
+    photos: [{ src: '/photos/chilnualna-falls.jpg', caption: 'The cascades stepping down the granite into the pool below.' }],
     hazard:
       'The granite beside the cascades is water-polished and slick, and the current above the drops is faster than it looks. People have died sliding here. Watch the falls from the trail, not from the rocks beside the water.',
     teaser:
