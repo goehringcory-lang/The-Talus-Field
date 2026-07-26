@@ -27,6 +27,23 @@ export type StopCollectionT = z.infer<typeof StopCollection>
 export const SecretCategory = z.enum(['vistas', 'trails', 'parking', 'camping', 'after-dark'])
 export type SecretCategoryT = z.infer<typeof SecretCategory>
 
+// A note from the Yosemite Nature Notes archive: the National Park Service's
+// own bulletin, 1922 onward, transcribed and published on the editorial site
+// at /archive. `note` is house-voice prose, but every fact in it must come
+// from the cited issue and nowhere else — the citation is the whole point, and
+// a reader who follows the link has to find what the note claims. Volume and
+// number address the issue; `issueDate` is the date the archive prints for it,
+// and its trailing year is what builds the URL (see content/archive.ts), so a
+// note cannot drift out of sync with the page it points at.
+export const ArchiveNote = z.object({
+  note: z.string(),
+  volume: z.number().int().positive(),
+  number: z.number().int().positive(),
+  issueDate: z.string().regex(/(18|19|20)\d{2}$/, 'issueDate must end in a four-digit year'),
+})
+
+export type ArchiveNoteT = z.infer<typeof ArchiveNote>
+
 export const Stop = z.object({
   id: z.string(),                         // "tunnel-view"
   title: z.string(),
@@ -53,6 +70,7 @@ export const Stop = z.object({
     )
     .default([]),
   swap: z.string().optional(),            // "If full, drive to Valley View"
+  history: ArchiveNote.optional(),        // one sourced note from the Nature Notes archive
 })
 
 export type StopT = z.infer<typeof Stop>

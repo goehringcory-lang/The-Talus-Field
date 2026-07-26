@@ -3,6 +3,7 @@ import ReactMarkdown from 'react-markdown'
 import type { StopT } from '../content'
 import { KIND_LABEL, DIFFICULTY_LABEL, formatElevation, formatTime } from '../content/labels'
 import { PHOTO_CREDITS, formatCredit } from '../content/photoCredits'
+import ArchiveNote from './ArchiveNote'
 import MapsLink from './MapsLink'
 import PhotoPlaceholder from './PhotoPlaceholder'
 import Plate from './Plate'
@@ -94,6 +95,11 @@ export default function StopCard({ stop, compact = true, regionLabel, actions = 
           {stop.swap}
         </aside>
       )}
+
+      {/* Full read only. On the region list and the Secret Guide these cards
+          already carry the whole body, and a citation block on every one of
+          them turns a scannable list into a bibliography. */}
+      {!compact && stop.history && <ArchiveNote note={stop.history} />}
 
       {compact && (
         <Link to={`/stop/${stop.id}`} className="stop-card__more">

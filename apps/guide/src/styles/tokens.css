@@ -326,6 +326,48 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
   color: var(--rust);
 }
 
+/* Archive note — a sourced aside from the Nature Notes archive. Reads as a
+   clipping set into the page rather than a callout demanding action, which is
+   why it takes a boxed rule instead of the swap-callout's left bar. */
+.archive-note {
+  border: 1px solid var(--rule-soft);
+  background: var(--paper-2);
+  padding: var(--s4);
+  margin: var(--s5) 0 0;
+}
+.archive-note__label {
+  font-family: var(--sans);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  display: block;
+  margin-bottom: var(--s2);
+}
+.archive-note__body {
+  font-family: var(--serif);
+  font-size: 16px;
+  line-height: 1.55;
+  color: var(--ink-2);
+  margin: 0;
+}
+.archive-note__cite {
+  font-family: var(--sans);
+  font-size: 12px;
+  line-height: 1.4;
+  color: var(--ink-3);
+  margin: var(--s3) 0 0;
+}
+.archive-note__cite a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.archive-note__cite a:hover {
+  color: var(--moss);
+}
+
 /* Markdown body */
 .prose {
   max-width: var(--measure);
