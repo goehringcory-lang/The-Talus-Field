@@ -2,7 +2,6 @@ import { Hono } from 'hono'
 import { cors } from 'hono/cors'
 import type { Env } from './env'
 import { auth } from './routes/auth'
-import { calendar } from './routes/calendar'
 import { checkout } from './routes/checkout'
 import { contact } from './routes/contact'
 import { indexnow } from './routes/indexnow'
@@ -133,7 +132,6 @@ app.get('/api/inventory', async (c) => {
 })
 
 app.route('/api/auth', auth)
-app.route('/api/calendar', calendar)
 app.route('/api/checkout', checkout)
 app.route('/api/contact', contact)
 app.route('/api/indexnow', indexnow)
@@ -142,7 +140,7 @@ app.route('/api/push', push)
 app.route('/api/stripe', stripe)
 // Mounted before /api/trip's router would see it: separate route so the
 // editorial map's unauthenticated sender never shares code with the PWA's
-// JWT-gated feed.
+// JWT-gated plan sync.
 app.route('/api/trip/email', tripEmail)
 app.route('/api/trip', trip)
 app.route('/api/waitlist', waitlist)

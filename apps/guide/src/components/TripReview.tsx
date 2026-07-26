@@ -2,17 +2,21 @@
 // the export will create, from the same slottedToEventFields the .ics builder
 // uses, so what the user confirms is exactly what lands in their calendar.
 // Items the day couldn't fit are called out with resolution controls instead
-// of being silently exported (or, formerly, dropped). The footer opens the
-// add-to-calendar sheet (subscribe or one-time file).
+// of being silently exported (or, formerly, dropped). The footer IS the export:
+// one .ics file, built and handed to the OS from the tap handler.
+//
+// There is deliberately no hosted feed and no Google Calendar connection any
+// more — a file is the whole calendar story, which is why the copy below says
+// plainly that a later plan edit means saving the file again.
 
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { getHikeById, getStopById } from '../content'
-import { slottedToEventFields } from '../trip/ics'
+import { exportTripIcs, type ExportMethod } from '../trip/exportTrip'
+import { buildTripIcs, slottedToEventFields } from '../trip/ics'
 import type { SlottedItem } from '../trip/slotting'
 import { useTripPlan } from '../trip/useTripPlan'
 import { formatClock, formatDayHeader } from '../utils/date'
-import TripCalendarSheet from './TripCalendarSheet'
 import Button from './ui/Button'
 
 type Props = {
@@ -32,7 +36,20 @@ function formatDuration(minutes: number): string {
 
 export default function TripReview({ slotted, windowDays, filenameDate, dayForecasts }: Props) {
   const { removeItem, setStopTime, moveStopToDay } = useTripPlan()
-  const [sheetOpen, setSheetOpen] = useState(false)
+  const [exporting, setExporting] = useState(false)
+  const [exportResult, setExportResult] = useState<ExportMethod | null>(null)
+
+  async function exportFile() {
+    setExporting(true)
+    try {
+      // Built synchronously before the await: iOS only allows the share sheet
+      // inside the user-gesture task.
+      const ics = buildTripIcs(slotted)
+      setExportResult(await exportTripIcs(ics, `yosemite-trip-${filenameDate}.ics`))
+    } finally {
+      setExporting(false)
+    }
+  }
 
   const days = [...slotted.entries()]
   let eventCount = 0
@@ -167,8 +184,8 @@ export default function TripReview({ slotted, windowDays, filenameDate, dayForec
           {dayCount} {dayCount === 1 ? 'day' : 'days'}
           {allDayCount > 0 ? ` · ${allDayCount} all-day` : ''}.
         </p>
-        <Button disabled={eventCount === 0} onClick={() => setSheetOpen(true)}>
-          Add to calendar
+        <Button disabled={eventCount === 0 || exporting} onClick={exportFile}>
+          {exporting ? 'Preparing…' : 'Save the calendar file'}
         </Button>
         {eventCount > 0 && (
           <p className="trip-review__print">
@@ -178,13 +195,38 @@ export default function TripReview({ slotted, windowDays, filenameDate, dayForec
         )}
       </div>
 
-      <TripCalendarSheet
-        open={sheetOpen}
-        onClose={() => setSheetOpen(false)}
-        slotted={slotted}
-        eventCount={eventCount}
-        filenameDate={filenameDate}
-      />
+      {/* Outside the flex footer, not a wrapped item in it: at desktop widths a
+          full-basis paragraph still fits beside the button and crowds it. */}
+      <div className="trip-review__export-notes">
+        <p className="trip-review__note">
+          Saves a .ics file with every event. It works offline, and Apple Calendar, Google
+          Calendar, and Outlook all import it. Events carry GPS coordinates and a directions
+          link wherever the exact spot is known, plus a 30-minute reminder where your calendar
+          honors imported alerts. It is a one-time copy: change the plan here and save the file
+          again to bring the change across.
+        </p>
+        {exportResult === 'shared' && (
+          <p className="trip-review__note trip-review__note--result">
+            Shared. On iPhone: choose Save to Files, then open the saved file and tap Add All.
+            Or share it straight to Mail and open the attachment on any device.
+          </p>
+        )}
+        {exportResult === 'downloaded' && (
+          <p className="trip-review__note trip-review__note--result">
+            Downloaded. Open the .ics file and your calendar imports the whole trip.
+          </p>
+        )}
+        {exportResult === 'cancelled' && (
+          <p className="trip-review__note trip-review__note--result">
+            Share sheet closed, nothing was created. Tap again to retry.
+          </p>
+        )}
+        {exportResult === 'failed' && (
+          <p className="trip-review__note trip-review__note--result">
+            The export didn't start. Try again, or save the file from a desktop browser.
+          </p>
+        )}
+      </div>
     </section>
   )
 }

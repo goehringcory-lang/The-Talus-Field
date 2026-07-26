@@ -45,7 +45,7 @@ const DEBOUNCE_MS = 4000
 let timer: ReturnType<typeof setTimeout> | undefined
 let started = false
 
-// Serialized like feedSync's chain. The debounce timer, the online listener,
+// Writes are serialized through this chain. The debounce timer, the online listener,
 // and the boot pass can otherwise overlap, and the server is last-write-wins:
 // a slow POST carrying an older document would land after, and overwrite, a
 // newer one. Each run builds its payload only after the previous settles.

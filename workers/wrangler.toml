@@ -7,13 +7,9 @@ compatibility_flags = ["nodejs_compat"]
 #   wrangler kv namespace create GUIDE_BUYERS
 # Replace `preview_id` with the value from:
 #   wrangler kv namespace create GUIDE_BUYERS --preview
-# Besides buyer records, this namespace also holds the /api/trip calendar
-# feeds: tripfeed:<token> (the published ICS) and tripfeedToken:<sub> (the
-# owner's reuse pointer), both on a 400-day TTL refreshed by every publish,
-# plus the hourly tripfeedWriteAttempts:* rate-limit counters. It also holds
-# the /api/calendar Google push state: gcal:<sub> (refresh token, no TTL),
-# gcalAccess:<sub> (cached access token), gcalEvents:<sub> (uid→eventId map),
-# gcalstate:<state> (10-min OAuth handoff), and gcalSyncAttempts:* counters.
+# Besides buyer records, this namespace holds the /api/trip/plan cross-device
+# sync (tripsync:<sub> plus the hourly tripsyncWriteAttempts:* counters), the
+# /api/push device registrations, and the various hashed-IP rate-limit counters.
 [[kv_namespaces]]
 binding = "GUIDE_BUYERS"
 id = "4d2bf553bdd249448407094e3d282825"
@@ -53,13 +49,6 @@ GUIDE_PRICE_CENTS = "1900"
 GUIDE_RENEWAL_PRICE_CENTS = "1200"
 GUIDE_PRODUCT_TAG = "field_guide_2026"
 GUIDE_MONTHLY_CAP = "100"
-# Google OAuth client id for the calendar push (/api/calendar). Public
-# identifier, safe to commit. Paired with the GOOGLE_OAUTH_CLIENT_SECRET secret.
-# Leave the placeholder until the OAuth client exists: the Worker treats any
-# REPLACE_WITH-prefixed id as unconfigured, /google/start answers 503, and the
-# PWA's Account card falls back to the Google add-by-URL feed subscription
-# (which needs no Google Cloud setup) instead of a Connect button that fails.
-GOOGLE_OAUTH_CLIENT_ID = "847841090945-2gj23v0pf01bv0hljnk4t0d00fcn1aq8.apps.googleusercontent.com"
 
 # Routes the Worker to api.thetalusfieldjournal.com.
 # DNS prerequisite: in Cloudflare DNS, add a CNAME `api` -> `<worker-name>.workers.dev`
@@ -96,18 +85,11 @@ zone_name = "thetalusfieldjournal.com"
 # Without them the route returns 503. See scripts/indexnow-ping.sh.
 # ===========================================================================
 
-# === Google Calendar push ===================================================
-# /api/calendar/google/* runs an OAuth code flow and pushes the trip plan into
-# the buyer's primary Google calendar. Create a Web-application OAuth client in
-# the Google Cloud console (enable the Google Calendar API first), with these
-# authorized redirect URIs:
-#   https://api.thetalusfieldjournal.com/api/calendar/google/callback
-#   http://localhost:8787/api/calendar/google/callback   (wrangler dev)
-# Consent-screen scopes: openid, userinfo.email, .../auth/calendar.events.
-# Put the client id in [vars] above, and the secret here:
-#   wrangler secret put GOOGLE_OAUTH_CLIENT_SECRET
-# calendar.events is a sensitive scope: submit the app for verification before
-# public launch (Testing mode works immediately for added test users).
+# === Calendar ===============================================================
+# There is no server-side calendar integration. The PWA renders the trip as an
+# .ics file client-side and hands it to the OS (apps/guide/src/trip/ics.ts +
+# exportTrip.ts), so nothing about a buyer's calendar reaches the Worker: no
+# Google OAuth client, no hosted feed, no refresh tokens in KV.
 # ===========================================================================
 
 # === Local dev override ====================================================

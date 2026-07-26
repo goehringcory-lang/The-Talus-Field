@@ -315,6 +315,24 @@
   color: var(--ink-2);
   margin: 0;
 }
+/* Export copy and its result hints, below the footer row rather than in it. */
+.trip-review__export-notes {
+  margin-top: 10px;
+}
+.trip-review__note {
+  font-family: var(--sans);
+  font-size: 12px;
+  line-height: 1.55;
+  color: var(--ink-3);
+  margin: 0;
+  max-width: var(--measure);
+}
+/* What just happened to the export: same size, darker so it reads as a
+   response to the tap rather than more standing explanation. */
+.trip-review__note--result {
+  margin-top: 8px;
+  color: var(--ink-2);
+}
 
 /* Door to /today above the board, only while the window includes today. */
 .trip-today-link {

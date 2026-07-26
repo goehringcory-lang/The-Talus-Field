@@ -115,8 +115,7 @@ The app serves at `https://talus-field-guide.pages.dev`. The custom domain
 `guide.thetalusfieldjournal.com` is deliberately unattached until launch; when
 attaching it, also flip the `GUIDE_APP_BASE` default in `page-guide.jsx`, the
 `APP_BASE_URL` var in `workers/wrangler.toml` (then redeploy the Worker), and
-the docs. Exported calendar links self-correct (they derive from the serving
-origin).
+the docs.
 
 ## 7. Deploy the editorial site (Cloudflare Workers Build, auto)
 
@@ -225,35 +224,25 @@ The buy box, checkout route, webhook, KV buyer records, and email delivery are a
 
 No PWA change is needed: [apps/guide/src/routes/Login.tsx](apps/guide/src/routes/Login.tsx) already tries the buyer email + code path first and falls back to dev-login.
 
-## Google Calendar connect (PWA Account page)
+## Calendar export (PWA trip page)
 
-Two paths put the trip on a buyer's Google calendar, and only the first needs setup:
+**Nothing to deploy or configure.** Putting the trip on a calendar is a single
+client-side path: `/trip` → **Review & save the calendar file** renders the plan
+to an `.ics` with [apps/guide/src/trip/ics.ts](apps/guide/src/trip/ics.ts) and
+hands it to the OS via
+[exportTrip.ts](apps/guide/src/trip/exportTrip.ts) (Web Share with a File
+first, anchor download as the fallback — iOS standalone PWAs cannot reliably
+download blobs). It works fully offline and imports into Apple Calendar, Google
+Calendar, and Outlook alike.
 
-1. **Feed subscription (works today, no setup).** The Account card and the trip
-   page's calendar sheet publish the plan as a hosted ICS feed
-   (`/api/trip/feed`) and hand Google an add-by-URL link. When the OAuth client
-   below is absent, the Account card automatically offers this path for Google,
-   so calendar linking is never dead.
-2. **Direct OAuth connect (events pushed into the primary calendar,
-   auto-synced on every edit).** Requires a Google Cloud OAuth client:
+There is deliberately **no server-side calendar integration**: no Google OAuth
+client, no hosted subscription feed, no refresh tokens in KV. Nothing about a
+buyer's calendar reaches the Worker, so there is no consent screen to get
+verified and no sensitive scope to justify before launch. The tradeoff is that
+the file is a one-time copy — the trip page says so, and the fix is to save the
+file again after editing the plan.
 
-   - In the Google Cloud console, enable the **Google Calendar API**, then
-     create an OAuth client of type **Web application** with authorized
-     redirect URIs:
-     - `https://api.thetalusfieldjournal.com/api/calendar/google/callback`
-     - `http://localhost:8787/api/calendar/google/callback` (wrangler dev)
-   - Consent screen scopes: `openid`, `userinfo.email`,
-     `.../auth/calendar.events`. `calendar.events` is a sensitive scope:
-     Testing mode works immediately for named test users; submit the app for
-     verification before public launch or buyers will hit the unverified-app
-     warning and Testing-mode refresh tokens will expire after 7 days.
-   - Put the client id in `[vars]` in [workers/wrangler.toml](workers/wrangler.toml)
-     (replacing the `REPLACE_WITH_…` placeholder; any id still carrying that
-     prefix is treated as unconfigured) and set the secret:
-     `wrangler secret put GOOGLE_OAUTH_CLIENT_SECRET`.
-   - `wrangler deploy` from `workers/` (the API Worker never auto-deploys).
-   - Verify: sign in to the PWA, Account → Calendar → **Connect Google
-     Calendar** should round-trip through the Google consent screen and land
-     back on `/account` with "Connected as …", then push the current plan
-     within a few seconds. `GET /api/calendar/google/status` (with a JWT)
-     reports `configured: true` once the Worker sees real credentials.
+Verify: sign in, add a stop or two on `/trip`, open **Review & save the calendar
+file**, and confirm the download (or share sheet) produces
+`yosemite-trip-<start-date>.ics` that opens in a calendar app with the right
+days, times, and a directions link per event.
