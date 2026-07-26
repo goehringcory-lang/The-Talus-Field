@@ -327,7 +327,7 @@ const seed: StopInput[] = [
     body:
       'Camp 4 is a walk-in campground behind Yosemite Valley Lodge, and on the surface that is all it is: picnic tables, bear boxes, tents under the oaks. It is also the most consequential campsite in the history of climbing. Through the 1950s and 60s the climbers who lived here for months at a stretch, Royal Robbins, Warren Harding, Yvon Chouinard forging pitons on an anvil by the parking lot, worked out the techniques and the gear that made walls like El Capitan possible. When the Park Service later planned to redevelop the site, climbers fought it in court, and in 2003 Camp 4 went onto the National Register of Historic Places: a campground listed alongside battlefields, for what happened in it.\n\n' +
       'You can walk through respectfully; it is a public campground, not a museum. The granite blocks scattered through camp are world bouldering landmarks, and most afternoons someone is trying Midnight Lightning on the Columbia Boulder, a problem first climbed in 1978 and still a career moment for anyone who tops it. Watch from a polite distance and keep voices down among the tents. The Yosemite Falls Trail starts directly behind camp, and the search-and-rescue site next door is staffed largely by climbers, which is the arrangement this place has always run on. Pair the visit with [El Capitan Meadow](/stop/el-capitan-meadow): first the wall, then the campground that figured out how to climb it.',
-    photos: [{ src: '/photos/camp-4.jpg', caption: 'The walk-in sites under the pines behind Yosemite Valley Lodge.' }],
+    photos: [{ src: '/photos/camp-4.jpg', caption: 'The registration kiosk at the Camp 4 entrance, message board and all.' }],
     history: {
       note:
         'The archive caught the era just before this campground\'s. In 1946 Nature ' +
@@ -350,7 +350,7 @@ const seed: StopInput[] = [
     coord: [-119.5600, 37.7393], // verified 2026-07: Mirror Lake trailhead at shuttle stop 17 (NPS/Hikespeak); was mid-trail, ~830 m off
     elevationFt: 4094,
     timeBudgetMin: 90,
-    photos: [{ src: '/photos/mirror-lake.jpg', caption: 'Mount Watkins over the lake, before the wind puts a texture on it.' }],
+    photos: [{ src: '/photos/mirror-lake.jpg', caption: 'Granite standing in the shallows, the water low and clear.' }],
     teaser:
       'Two flat miles round trip to the closest spot in the valley to Half Dome. Go early, before the breeze erases the reflection.',
     body:
@@ -450,7 +450,7 @@ const seed: StopInput[] = [
       'Yosemite Village is the valley\'s working center: the Welcome Center, the Village Store, the post office, most of the rangers. Treat it as errands and you will miss the best indoor hour in the park. The Yosemite Museum, built in 1926 and the first purpose-built museum in the national park system, holds a basket collection that belongs in any serious conversation about American art: work by Ahwahnechee and Mono Lake Paiute weavers, some pieces years in the making. In summer, demonstrations of basketry and other traditional skills run near the entrance, and they are worth planning around.\n\n' +
       'Behind the museum, a self-guided loop walks through the reconstructed Indian Village of the Ahwahnee: bark umachas, an acorn granary, a roundhouse still used ceremonially by the park\'s associated tribes, and a pounding rock worn deep with mortar holes from centuries of acorn work. Fifteen minutes here reframes every meadow you look at afterward, because all of them were tended, none of them wild in the storybook sense. Next door, the Ansel Adams Gallery has operated on this spot since 1902, when it opened as Best\'s Studio; Adams married the owner\'s daughter, and the gallery still sells prints made from his negatives. Ten minutes in front of the real prints will quietly recalibrate your own photographs of this place.\n\n' +
       'Two practical notes. Park once in the Village day-use lot and do the whole cluster on foot; do not move the car between buildings. And give the Pioneer Cemetery across the road from the museum ten quiet minutes: Galen Clark, the valley\'s first guardian, lies under sequoias he planted for himself.',
-    photos: [{ src: '/photos/yosemite-village.jpg', caption: 'The Village museum cluster on the valley floor.' }],
+    photos: [{ src: '/photos/yosemite-village.jpg', caption: 'The Yosemite Museum, the first door in the Village.' }],
     history: {
       note:
         'The museum here is the reason this bulletin exists. The first issue of ' +
