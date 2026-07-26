@@ -21,7 +21,16 @@ window.ARTICLE_BODIES["where-to-stay-in-yosemite"] = function WhereToStayInYosem
     "data-aff-list": "article",
     "data-aff-item-slug": "where-to-stay-in-yosemite",
     "data-aff-name": "Gateway availability search"
-  }, "one availability search around the park"), " shows what the gateway towns actually have left on your dates."), React.createElement("p", null, "But if you can get a bed inside the boundary, get it. Rank them like this: Valley Lodge for most first-timers, Housekeeping Camp for families who half-camp, Curry Village for hikers on a budget, the Ahwahnee when the occasion justifies it, the high-country camps for people whose trip is the high country. Then set the reminder for 366 days out, and if you miss it, start checking daily. The park rewards the stubborn."), React.createElement(AffiliateNote, null), React.createElement("h3", null, "Sources"), React.createElement("ul", {
+  }, "one availability search around the park"), " shows what the gateway towns actually have left on your dates."), React.createElement("p", null, "But if you can get a bed inside the boundary, get it. Rank them like this: Valley Lodge for most first-timers, Housekeeping Camp for families who half-camp, Curry Village for hikers on a budget, the Ahwahnee when the occasion justifies it, the high-country camps for people whose trip is the high country. Then set the reminder for 366 days out, and if you miss it, start checking daily. The park rewards the stubborn."), React.createElement(LodgingCta, {
+    destination: "Yosemite National Park",
+    heading: "Before you rearrange the trip",
+    note: "The ranking above does not change with anyone's inventory. What it cannot tell you is what is left on your specific dates, which is a two-minute question and worth answering before you decide the park is full.",
+    list: "article",
+    slug: "where-to-stay-in-yosemite",
+    cta: "Search lodging around Yosemite →"
+  }), React.createElement("p", null, "Every option above, plus the gateway towns and Fish Camp on one scannable page, lives at ", React.createElement("a", {
+    href: "/stay"
+  }, "where to stay"), "."), React.createElement(AffiliateNote, null), React.createElement("h3", null, "Sources"), React.createElement("ul", {
     style: {
       fontSize: 14
     }

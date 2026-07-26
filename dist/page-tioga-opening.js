@@ -70,7 +70,14 @@ function TiogaOpeningPage({
   }, React.createElement("h2", null, "The bigger day"), React.createElement("p", null, "The move that turns the opening into a full trip is crossing the pass: down 3,000 feet into the Mono Basin, where granite gives way to sagebrush and Mono Lake spreads out below with its tufa towers. Lee Vining, Tioga Lake, Ellery Lake, and the South Tufa boardwalk make the east side a destination, not a turnaround. The hour-by-hour version of that day, every stop, where to eat in Lee Vining, and what the meadows look like under snowmelt, is in", " ", React.createElement("a", {
     href: "/articles/tioga-road-opening-weekend-2026",
     onClick: e => goArticle(e, "tioga-road-opening-weekend-2026")
-  }, React.createElement("strong", null, "the opening-weekend field guide →")))), React.createElement(GuidePromo, {
+  }, React.createElement("strong", null, "the opening-weekend field guide →")))), React.createElement(LodgingCta, {
+    destination: "Lee Vining, California",
+    heading: "Where you sleep in week one",
+    note: "Tuolumne Meadows Lodge and White Wolf open on the snowpack's schedule, often well after the road does, so the high country's own beds may not exist yet when the pass opens. Lee Vining is 30 minutes from Tuolumne Meadows on the east side; Groveland is the western equivalent.",
+    list: "page_tioga",
+    slug: "tioga-opening",
+    cta: "Search Lee Vining lodging →"
+  }), React.createElement(GuidePromo, {
     go: go,
     location: "tioga-opening",
     title: "Planning the high-country trip around it?",

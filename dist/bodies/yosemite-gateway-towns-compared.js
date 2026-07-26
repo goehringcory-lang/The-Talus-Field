@@ -32,7 +32,16 @@ window.ARTICLE_BODIES["yosemite-gateway-towns-compared"] = function YosemiteGate
     href: "/articles/yosemite-without-reservations-2026"
   }, "what changed for 2026"), " before you book, and see ", React.createElement("a", {
     href: "/articles/yosemite-in-one-or-two-days"
-  }, "how to spend one or two days"), " once your base is set."), React.createElement(AffiliateNote, null), React.createElement("h3", null, "Sources"), React.createElement("ul", {
+  }, "how to spend one or two days"), " once your base is set."), React.createElement(LodgingCta, {
+    destination: "Mariposa, California",
+    heading: "Made the call?",
+    note: "Mariposa is the safest first-timer's pick, so it is the default here, but the town-by-town links above go straight to whichever one you picked. Whatever the town, the inventory is what it is on your dates and no comparison table can tell you that part.",
+    list: "article",
+    slug: "yosemite-gateway-towns-compared",
+    cta: "Search Mariposa lodging →"
+  }), React.createElement("p", null, "The in-park options, the five towns above, and Fish Camp all sit on one page at ", React.createElement("a", {
+    href: "/stay"
+  }, "where to stay"), ", if you would rather scan than read."), React.createElement(AffiliateNote, null), React.createElement("h3", null, "Sources"), React.createElement("ul", {
     style: {
       fontSize: 14
     }

@@ -4669,3 +4669,231 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
   .search-articles { grid-template-columns: 1fr; }
   .search-form__input { font-size: 22px; }
 }
+
+/* ===========================================================================
+   WHERE TO STAY (/stay) + the shared lodging CTA
+   ===========================================================================
+   The lodging CTA (window.LodgingCta) renders inside article bodies as well as
+   on /stay, so it is sized against the prose measure rather than the page
+   grid: dropped mid-article it has to read as an aside the eye can skip, not
+   as a banner. The star affixed to .aff-link on hover comes from the affiliate
+   rules above and applies here too.
+   ------------------------------------------------------------------------ */
+
+.lodging-cta {
+  margin: 36px 0;
+  padding: 22px 24px 20px;
+  background: var(--paper-2);
+  border: 1px solid var(--rule-soft);
+  border-left: 3px solid var(--moss);
+}
+.lodging-cta__head {
+  font-family: var(--sans);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--moss);
+  margin-bottom: 8px;
+}
+.lodging-cta__note {
+  font-family: var(--sans);
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--ink-2);
+  margin: 0 0 14px;
+}
+.lodging-cta__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 8px 20px;
+  margin: 0;
+}
+.lodging-cta__link {
+  font-family: var(--sans);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--moss);
+  text-decoration: none;
+  border-bottom: 1px solid currentColor;
+}
+.lodging-cta__link:hover { color: var(--moss-2); }
+.lodging-cta__secondary {
+  font-family: var(--sans);
+  font-size: 14px;
+  color: var(--ink-3);
+}
+.lodging-cta__disclosure {
+  font-family: var(--sans);
+  font-size: 12px;
+  color: var(--ink-3);
+  line-height: 1.55;
+  margin: 14px 0 0;
+}
+.lodging-cta__disclosure a { color: var(--ink-3); text-decoration: underline; }
+
+/* --- the cards ---------------------------------------------------------- */
+
+.stay-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 32px;
+}
+
+.stay-card {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--rule-soft);
+  background: var(--paper);
+}
+/* A closed property stays on the page (its absence is the useful fact) but
+   must not read as an option. Muted, and it carries no booking link. */
+.stay-card--closed { opacity: 0.78; border-style: dashed; }
+
+.stay-card__figure { margin: 0; }
+.stay-card__img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+}
+.stay-card__caption {
+  font-family: var(--sans);
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--ink-3);
+  padding: 8px 20px 0;
+}
+.stay-card__credit {
+  display: block;
+  font-size: 11px;
+  opacity: 0.8;
+  margin-top: 2px;
+}
+
+/* Column, so the booking link can be pushed to the bottom (margin-top: auto
+   below). Cards in a row have wildly different body lengths and several have
+   no photo at all; without this the links land at a different height in every
+   card and the row reads as ragged. */
+.stay-card__body {
+  padding: 18px 20px 22px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+.stay-card__kind {
+  font-family: var(--sans);
+  font-size: 11px;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+.stay-card__name {
+  font-family: var(--display);
+  font-size: 26px;
+  line-height: 1.15;
+  margin: 4px 0 6px;
+}
+.stay-card__price {
+  font-family: var(--sans);
+  font-size: 13px;
+  color: var(--moss);
+  margin: 0 0 12px;
+}
+.stay-card__text,
+.stay-card__who,
+.stay-card__against {
+  font-family: var(--sans);
+  font-size: 14.5px;
+  line-height: 1.65;
+  color: var(--ink-2);
+  margin: 0 0 12px;
+}
+.stay-card__tip,
+.stay-card__warn {
+  font-family: var(--sans);
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: var(--ink-2);
+  background: var(--paper-2);
+  border-left: 2px solid var(--rule-soft);
+  padding: 10px 14px;
+  margin: 0 0 12px;
+}
+.stay-card__warn { border-left-color: var(--moss); }
+
+.stay-card__facts {
+  margin: 0 0 12px;
+  font-family: var(--sans);
+  font-size: 13px;
+}
+.stay-card__facts > div {
+  display: flex;
+  gap: 10px;
+  padding: 5px 0;
+  border-bottom: 1px solid var(--rule-soft);
+}
+.stay-card__facts dt {
+  flex: 0 0 52px;
+  color: var(--ink-3);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: 11px;
+  padding-top: 1px;
+}
+.stay-card__facts dd { margin: 0; color: var(--ink-2); }
+
+.stay-card__book,
+.stay-card__avail {
+  align-self: flex-start;
+  font-family: var(--sans);
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  border-bottom: 1px solid currentColor;
+  margin-top: auto;
+  padding-top: 8px;
+}
+.stay-card__book { color: var(--ink-2); }
+.stay-card__avail { color: var(--moss); }
+.stay-card__avail:hover { color: var(--moss-2); }
+
+.stay-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  border-top: 1px solid var(--rule-soft);
+}
+.stay-links li {
+  border-bottom: 1px solid var(--rule-soft);
+  padding: 14px 0;
+}
+.stay-links a {
+  font-family: var(--display);
+  font-size: 20px;
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid var(--rule-soft);
+}
+.stay-links a:hover { border-bottom-color: var(--moss); }
+.stay-links span {
+  display: block;
+  font-family: var(--sans);
+  font-size: 13.5px;
+  color: var(--ink-3);
+  margin-top: 4px;
+}
+
+@media (max-width: 720px) {
+  .stay-grid { grid-template-columns: 1fr; gap: 24px; }
+  .stay-card__name { font-size: 23px; }
+  .lodging-cta { padding: 18px 18px 16px; }
+}
+
+/* Map sidebar: the lodging line's inline disclosure. */
+.map-sidebar__next-disclosure {
+  display: block;
+  font-size: 11px;
+  color: var(--ink-3);
+  margin-top: 3px;
+}

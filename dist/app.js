@@ -11,7 +11,7 @@ function routeToPath(route) {
   if (route.startsWith("a:")) return `/articles/${route.slice(2)}`;
   return `/${route}`;
 }
-var STATIC_ROUTE_KEYS = new Set(["home", "articles", "planning", "checklist", "about", "kit", "places", "advertise", "newsletter", "contact", "privacy", "terms", "affiliate", "guide", "map", "films", "itineraries", "conditions", "now", "firefall", "consult", "widget", "partners", "search", "tioga-opening", "half-dome-lottery"]);
+var STATIC_ROUTE_KEYS = new Set(["home", "articles", "planning", "checklist", "about", "kit", "places", "advertise", "newsletter", "contact", "privacy", "terms", "affiliate", "guide", "map", "films", "itineraries", "conditions", "now", "firefall", "stay", "consult", "widget", "partners", "search", "tioga-opening", "half-dome-lottery"]);
 function pathToRoute(pathname) {
   var path = (pathname || "/").replace(/\/+$/, "") || "/";
   if (path === "/") return "home";
@@ -114,6 +114,10 @@ var PAGE_MODULES = {
   conditions: {
     scripts: ["/dist/page-conditions.js"],
     globals: ["ConditionsPage"]
+  },
+  stay: {
+    scripts: ["/dist/page-stay.js"],
+    globals: ["StayPage"]
   },
   now: {
     scripts: ["/dist/page-now.js"],
@@ -915,6 +919,10 @@ function App() {
     });
   } else if (route === "search") {
     page = React.createElement(window.SearchPage, {
+      go: go
+    });
+  } else if (route === "stay") {
+    page = React.createElement(window.StayPage, {
       go: go
     });
   } else if (route === "conditions") {

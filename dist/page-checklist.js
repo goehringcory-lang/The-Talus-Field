@@ -141,7 +141,9 @@ function ChecklistPage({
   }, React.createElement("input", {
     type: "checkbox",
     style: cb
-  }), "In-park lodging: 6 to 12 months ahead (Ahwahnee, Valley Lodge, Curry Village)."), React.createElement("label", {
+  }), "In-park lodging: 6 to 12 months ahead (Ahwahnee, Valley Lodge, Curry Village). ", React.createElement(A, {
+    r: "stay"
+  }, "Every option compared"), "."), React.createElement("label", {
     style: item
   }, React.createElement("input", {
     type: "checkbox",
@@ -250,7 +252,14 @@ function ChecklistPage({
     r: "a:yosemite-gateway-towns-compared"
   }, "Lee Vining")), ": east side; ", React.createElement(A, {
     r: "a:tioga-road-opening-weekend-2026"
-  }, "Tuolumne and Mono Lake"), ". Summer only.")), React.createElement("section", {
+  }, "Tuolumne and Mono Lake"), ". Summer only."), React.createElement("label", {
+    style: item
+  }, React.createElement("input", {
+    type: "checkbox",
+    style: cb
+  }), "Checked availability on your actual dates: ", React.createElement(A, {
+    r: "stay"
+  }, "the lodging board"), " has a live search per town.")), React.createElement("section", {
     className: "checklist-section",
     style: sectionStyle
   }, React.createElement("div", {

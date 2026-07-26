@@ -99,13 +99,15 @@ function TermsPage() {
 
 function AffiliatePage() {
   return (
-    <LegalShell title="Affiliate Disclosure" eyebrow="Legal" updated="July 21, 2026">
-      <p>The Talus Field currently participates in two affiliate programs: Patagonia's, run through the Impact network, and the Expedia Group Travel Creator Program, run through Partnerize, which powers the lodging availability links in articles. An application to a camping program (Hipcamp) is pending; until it is approved, camping links are plain outbound links that earn nothing. When the list changes, this page changes the same day.</p>
+    <LegalShell title="Affiliate Disclosure" eyebrow="Legal" updated="July 26, 2026">
+      <p>The Talus Field currently participates in two affiliate programs: Patagonia's, run through the Impact network, and the Expedia Group Travel Creator Program, run through Partnerize, which powers every lodging availability link on the site. Those links appear in the planning articles, on <a href="/stay">the lodging board</a>, and on the trip-planning pages that end in a decision about where to sleep. An application to a camping program (Hipcamp) is pending; until it is approved, camping links are plain outbound links that earn nothing. When the list changes, this page changes the same day.</p>
 
       <p>What that means in plain language: when an article on this site links to a product, a book, or a piece of lodging, that link may be an affiliate link. If you click through and make a purchase or a booking, I receive a small commission. The price you pay does not change. Whether or not you use the affiliate link, the recommendation in the article is the same.</p>
 
       <h2>The rule that governs all of it</h2>
       <p>No program's catalog shapes a recommendation. If the best lodge in a town, the best campground on a road, or the best jacket for a season has no affiliate program, it stays the top recommendation, linkless. Availability links sit under recommendations that were already written; they never decide what gets recommended. If you ever catch this site steering you toward a worse option because it pays, write to me, and I will fix it and say so in the newsletter.</p>
+
+      <p>Three consequences of that rule, visible on the site right now. Every lodge, tent cabin, and camp inside the park books through the concessioner at travelyosemite.com, so those entries on <a href="/stay">the lodging board</a> send you there and earn nothing. The Wawona Hotel is closed for renovation, so its entry carries no booking link at all rather than a link to something else. And the availability links search a town or an area rather than a named property, because their job is to tell you what is left on your dates, not to sell you a particular room.</p>
 
       <h2>What I will and will not do</h2>
       <p>I will only recommend things I have actually used, read, eaten, or stayed in. I will not write a "best XYZ" roundup of products I have never touched. If a piece of gear is on this site, I have walked at least fifty miles in it. If a guidebook is on this site, I have read it cover to cover. If a hotel is on this site, I have either stayed there or know someone who has, and I will tell you which.</p>

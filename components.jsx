@@ -352,6 +352,7 @@ function Header({ current, go }) {
       key: "plan", label: "Plan", route: "planning",
       items: [
         ["planning", "The Planning Guide"],
+        ["stay", "Where to stay"],
         ["itineraries", "Itineraries"],
         ["conditions", "Conditions"],
         ["checklist", "First-week checklist"],
@@ -580,6 +581,7 @@ function Footer({ go }) {
               <li><a href="/archive/">Nature Notes archive</a></li>
               <li><a href="/places" onClick={(e) => { e.preventDefault(); go("places"); }}>Directory</a></li>
               <li><a href="/map" onClick={(e) => { e.preventDefault(); go("map"); }}>The Map</a></li>
+              <li><a href="/stay" onClick={(e) => { e.preventDefault(); go("stay"); }}>Where to stay</a></li>
               <li><a href="/itineraries" onClick={(e) => { e.preventDefault(); go("itineraries"); }}>Itineraries</a></li>
               <li><a href="/conditions" onClick={(e) => { e.preventDefault(); go("conditions"); }}>Conditions</a></li>
               <li><a href="/now" onClick={(e) => { e.preventDefault(); go("now"); }}>The Park Bulletin</a></li>
@@ -700,6 +702,88 @@ function AffiliateNote() {
   );
 }
 window.AffiliateNote = AffiliateNote;
+
+// ============================================================
+// Lodging availability links (MONETIZATION-IDEAS.md 3.1)
+// ============================================================
+// One builder for every Expedia link on the site. Before this existed the
+// markup was copy-pasted per article body, so the network name, the rel
+// attributes, and the GA4 payload could drift link by link; now a body, a
+// standing page, and the map sidebar all mint the same thing.
+//
+// Two properties worth keeping:
+//
+//   1. It fails soft, like affiliate.js: with an empty EXPEDIA_CAMREF this
+//      renders a plain outbound Expedia search, so nothing here breaks if the
+//      program ever lapses.
+//   2. It searches a *destination*, never a specific property ID. A hotel ID
+//      is a fact that can go stale silently (a property renames, delists, or
+//      closes and the link starts selling something else); a destination
+//      search answers the only question the link is for, which is "what is
+//      actually left on my dates". The recommendation next to the link is
+//      editorial and comes from the article body.
+//
+// The guardrail published on /affiliate holds everywhere these render: the
+// best recommendation stays the recommendation, linkless, if it is not
+// bookable through a program. The Ahwahnee link does not make the Ahwahnee a
+// better hotel, and the Wawona Hotel, closed for renovation, carries no link
+// at all.
+const EXPEDIA_SEARCH_BASE = "https://www.expedia.com/Hotel-Search?destination=";
+
+function expediaSearchUrl(destination) {
+  return EXPEDIA_SEARCH_BASE + encodeURIComponent(destination);
+}
+
+// A single disclosed availability link. `destination` is what Expedia
+// searches ("Mariposa, California"); `name` is what GA4 records.
+function AvailabilityLink({ destination, children, list, slug, name, className, style }) {
+  const href = window.buildAffiliateLink
+    ? window.buildAffiliateLink("expedia", expediaSearchUrl(destination))
+    : expediaSearchUrl(destination);
+  return (
+    <a
+      className={["aff-link", className].filter(Boolean).join(" ")}
+      href={href}
+      target="_blank"
+      rel="sponsored noopener noreferrer"
+      data-aff-network="expedia"
+      data-aff-list={list || "page"}
+      data-aff-item-slug={slug || ""}
+      data-aff-name={name || destination + " lodging search"}
+      style={style}
+    >
+      {children || `Check ${destination} availability →`}
+    </a>
+  );
+}
+
+// The boxed version, for the end of a section that has just told the reader
+// where to sleep. Carries its own one-line disclosure so it stays honest
+// wherever it is dropped, including pages with no AffiliateNote at the end.
+function LodgingCta({ destination, heading, note, list, slug, cta, stayLink }) {
+  return (
+    <aside className="lodging-cta">
+      <div className="lodging-cta__head">{heading || "Check what is actually available"}</div>
+      {note && <p className="lodging-cta__note">{note}</p>}
+      <p className="lodging-cta__actions">
+        <AvailabilityLink
+          destination={destination}
+          list={list}
+          slug={slug}
+          className="lodging-cta__link"
+        >{cta || `Search ${destination} lodging →`}</AvailabilityLink>
+        {stayLink !== false && (
+          <a className="lodging-cta__secondary" href="/stay">Where to stay: every option compared</a>
+        )}
+      </p>
+      <p className="lodging-cta__disclosure">
+        Availability links are affiliate links. The recommendations do not change for them. <a href="/affiliate">Disclosure.</a>
+      </p>
+    </aside>
+  );
+}
+
+Object.assign(window, { expediaSearchUrl, AvailabilityLink, LodgingCta });
 
 // ============================================================
 // Read history. The article page's progress tracker (page-article.jsx) writes

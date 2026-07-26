@@ -43,6 +43,7 @@ export const STATIC_ROUTES = [
   "/map",
   "/itineraries",
   "/conditions",
+  "/stay",
   "/search",
   "/now",
   "/firefall",

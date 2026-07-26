@@ -69,7 +69,14 @@ function FirefallPage({
   }, React.createElement("h2", null, "The shape of the evening"), React.createElement("p", null, "Whatever the current rules are, assume this: you will park somewhere designated, probably at Yosemite Falls parking, and walk a mile or more each way on pavement toward the classic viewing zone on Northside Drive near the El Capitan Picnic Area. Photographers stake tripod positions by early afternoon on promising days; even a casual viewer should be in place at least an hour before sunset. Then you wait, standing still, through a February evening in a shaded valley at 4,000 feet. Bring real layers, something insulated to stand on, a headlamp for the walk out, and a thermos. The people who suffer at the firefall are underdressed for standing still, not for hiking."), React.createElement("p", null, "February driving matters too: chain control on the approach highways is routine after storms, which is exactly the weather that fills the fall."), React.createElement("p", null, "The full story, the history, the photography notes, and the naturalist's case for February with or without the show:", " ", React.createElement("a", {
     href: "/articles/horsetail-fall-firefall",
     onClick: e => goArticle(e, "horsetail-fall-firefall")
-  }, React.createElement("strong", null, "the complete firefall guide →")))), React.createElement(GuidePromo, {
+  }, React.createElement("strong", null, "the complete firefall guide →")))), React.createElement(LodgingCta, {
+    destination: "Yosemite National Park",
+    heading: "Sleeping close, in the one month you can",
+    note: "The glow finishes about ten minutes after it peaks, in the dark, with a mile-plus walk back to the car and every other watcher heading for the same road. A bed inside the park or in El Portal turns that from an ordeal into a short drive. February is also the easiest month of the year to get one.",
+    list: "page_firefall",
+    slug: "firefall",
+    cta: "Search February lodging around Yosemite →"
+  }), React.createElement(GuidePromo, {
     go: go,
     location: "firefall",
     title: "Planning the February trip around it?",
