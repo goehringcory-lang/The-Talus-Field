@@ -153,6 +153,10 @@
     "slot": "stop:oshaughnessy-dam",
     "tier": 1,
     "subject": "O'Shaughnessy Dam at Hetch Hetchy",
+    "categories": [
+      "O'Shaughnessy Dam (California)",
+      "Hetch Hetchy Reservoir"
+    ],
     "queries": [
       "O'Shaughnessy Dam Hetch Hetchy Yosemite",
       "Hetch Hetchy Reservoir dam"
@@ -173,6 +177,10 @@
     "slot": "stop:valley-loop-drive",
     "tier": 2,
     "subject": "Valley loop road scene, El Capitan or meadows from Northside Drive",
+    "categories": [
+      "El Capitan Meadow",
+      "Northside Drive"
+    ],
     "queries": [
       "Northside Drive Yosemite",
       "Yosemite Valley road El Capitan"
@@ -589,6 +597,9 @@
     "slot": "stop:tuolumne-meadows-grill",
     "tier": 3,
     "subject": "The Tuolumne Meadows store/grill tent buildings; the meadow's domes acceptable as a fallback",
+    "categories": [
+      "Tuolumne Meadows"
+    ],
     "queries": [
       "Tuolumne Meadows store Yosemite",
       "Tuolumne Meadows Lembert Dome"
@@ -599,6 +610,9 @@
     "slot": "stop:carlon-falls",
     "tier": 3,
     "subject": "Carlon Falls on the South Fork Tuolumne off Evergreen Road",
+    "categories": [
+      "South Fork Tuolumne River"
+    ],
     "queries": [
       "Carlon Falls",
       "South Fork Tuolumne River falls"
@@ -637,6 +651,9 @@
     "slot": "stop:rainbow-pool",
     "tier": 3,
     "subject": "Rainbow Pool swimming hole and its fall on the South Fork Tuolumne at Highway 120",
+    "categories": [
+      "South Fork Tuolumne River"
+    ],
     "queries": [
       "Rainbow Pool Tuolumne",
       "Rainbow Pools California waterfall"
@@ -729,6 +746,10 @@
     "slot": "secret:sentinel-beach-parking",
     "tier": 3,
     "subject": "A sandy Merced River beach in the valley near Sentinel Rock; a calm river-and-granite scene",
+    "categories": [
+      "Sentinel Rock",
+      "Beaches of California"
+    ],
     "queries": [
       "Sentinel Beach Yosemite",
       "Merced River beach Yosemite Sentinel Rock"
@@ -739,6 +760,10 @@
     "slot": "secret:el-cap-crossover-parking",
     "tier": 3,
     "subject": "El Capitan from the El Capitan Bridge / crossover area on the valley floor",
+    "categories": [
+      "El Capitan Meadow",
+      "El Capitan"
+    ],
     "queries": [
       "El Capitan Bridge Yosemite",
       "El Capitan from Yosemite Valley floor Merced"
@@ -749,6 +774,9 @@
     "slot": "secret:sentinel-dome-overflow",
     "tier": 3,
     "subject": "Sentinel Dome itself or the trail to it off Glacier Point Road",
+    "categories": [
+      "Sentinel Dome"
+    ],
     "queries": [
       "Sentinel Dome Yosemite",
       "Sentinel Dome trail Yosemite"
@@ -759,6 +787,9 @@
     "slot": "secret:foresta-barns-loop",
     "tier": 3,
     "subject": "The historic Foresta barn or the Foresta community meadows",
+    "categories": [
+      "Foresta, California"
+    ],
     "queries": [
       "Foresta Yosemite barn",
       "Foresta Yosemite"

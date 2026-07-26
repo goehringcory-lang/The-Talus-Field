@@ -39,9 +39,11 @@ Merging this branch is the go-live action. Verify each item first; DEPLOY.md sec
 
 ## The photo pass: prepared, not yet run
 
-The biggest perceived-value gap in a $19 product: 25 of 54 stops and all 15 secret spots render placeholders, and 9 images stretch across 34 stops (one meadow photo serves 6 of them). The repo has a complete pipeline to fix this from Wikimedia Commons with license-safe candidates and generated credits: `scripts/fetch-guide-photos.mjs` with a 57-slot manifest.
+The biggest perceived-value gap in a $19 product. The repo has a complete pipeline to fix it from Wikimedia Commons with license-safe candidates and generated credits: `scripts/fetch-guide-photos.mjs` with a 76-slot manifest (one slot, `secret:mcgurk-meadow`, is a reuse no-op). Do not copy the numbers below into a commit message or another doc — read them off disk with `npm --prefix scripts run photos:check`, which prints the same inventory from the files that actually exist.
 
-This session attempted the full pass. The sandbox's network policy denies `commons.wikimedia.org` (CONNECT 403 at the egress gateway), so the fetch cannot run here until `commons.wikimedia.org` and `upload.wikimedia.org` are added to the environment's allowed domains. Rerun in a session where those hosts resolve:
+As of 2026-07-26: **26 slots unfilled**, 18 entries render the "Photo coming" placeholder, and 10 entries show a neighbouring entry's photo. 58 photos ship; 46 of them carry a recorded author and license.
+
+Two sessions have now attempted the full pass. The sandbox's network policy denies every photo source at the egress gateway (CONNECT 403 for `commons.wikimedia.org`, `upload.wikimedia.org`, `api.pexels.com`, and `images.pexels.com`; only GitHub is reachable), so the fetch cannot run until those hosts are added to the environment's allowed domains. Every unfilled slot except `secret:little-nellie-falls` now names Commons **categories** as well as queries, which is the ranking the obscure slots need — a category is a human assertion about the subject, a query string is not. Rerun in a session where those hosts resolve:
 
 ```bash
 cd scripts
@@ -54,10 +56,12 @@ node fetch-guide-photos.mjs emit-credits
 node fetch-guide-photos.mjs verify
 ```
 
-Then wire the files: add `photos: [{ src, caption }]` to the 33 photoless stops, replace the recycled entry on 12 stops that have their own manifest slot (valley-loop-drive, old-big-oak-flat-road, mirror-lake, four-mile-trailhead, washburn-point, glacier-point, tioga-road-drive, olmsted-point, may-lake, tenaya-lake, cathedral-lakes, gaylor-lake), and fill the 7 secret spots with slots. Captions double as alt text. Afterwards: add a `photos-secret-guide` download pack in `offline/manifest.ts` (region-less secret-spot photos are in no pack today) and extend `PACK_IDS` in `Home.tsx` and `Welcome.tsx`; measure the real download size and update the four "about 45 MB" claims in `page-guide.jsx`; refresh the photo notes in CLAUDE.md and the `stops.ts` header.
+Then wire the files: add `photos: [{ src, caption }]` to the 18 photoless entries, and replace the recycled entry on the 7 that have a manifest slot of their own (`valley-loop-drive`, `rancheria-falls`, `tuolumne-meadows-grill`, `wawona-hotel-history-center`, `sentinel-beach-parking`, `sentinel-dome-overflow`, `el-cap-crossover-parking`). Captions double as alt text. `npm --prefix scripts run photos:check` names all of them, including the three recycling cases with no slot of their own (`cooks-meadow-loop`, `el-capitan-meadow`, `soda-springs-parsons-lodge`), so the list cannot go stale here. Afterwards: measure the real offline download size against the claims in `page-guide.jsx`, then refresh the photo notes in CLAUDE.md and the `stops.ts` header. The `photos-secret-guide` download pack already exists in `offline/manifest.ts`, so no pack work is outstanding.
+
+**Do not wire a src before its file exists.** Photo packs carry `tolerateMissing: 0`, so one dangling `/photos/` reference makes its whole region's offline download fail for good, and the error copy blames the buyer's connection. That shipped once: `camp-4.jpg` and `yosemite-village.jpg` were wired onto stops as slots that were never filled, and `mirror-lake.jpg` was deleted as wrong-subject in #235 without its stop being updated — three missing files, and the Yosemite Valley pack could never complete. `node check-guide-photos.mjs` (in `npm --prefix scripts run check`) now fails on a dangling src or an incomplete responsive ladder.
 
 Two owner questions from the attribution review:
-- 8 legacy photos have no recorded provenance (`tunnel-view`, `cooks-meadow`, `bridalveil-fall`, `el-capitan-*`, `mist-trail`, `vernal-fall`, `half-dome`, `tuolumne-meadows` families). If they are your own shots, say so and the credits copy can name house photography again; if any were pulled from the web, replace them via the pipeline.
+- 12 legacy photos copied from the editorial site have no recorded provenance (`cathedral-rocks`, `el-capitan-winter`, `half-dome`, `lower-yosemite-fall`, `tunnel-view`, `tuolumne-meadows`, `vernal-fall`, `wildflowers`, and all four `region-*` heroes). If they are your own shots, say so and the credits copy can name house photography again; if any were pulled from the web, replace them via the pipeline. The photo guard reports these as warnings, not errors, because the answer is yours to give.
 - The milky-way credit's `source` URL is empty; fill in the Commons file page when reachable (`scripts/data/photo-credits.json`, then `emit-credits`).
 
 ## Known gaps, accepted for this launch
