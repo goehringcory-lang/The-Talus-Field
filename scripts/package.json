@@ -7,6 +7,7 @@
     "images": "node gen-responsive-images.mjs",
     "og": "node gen-og-cards.mjs",
     "photos": "node fetch-guide-photos.mjs",
+    "photos:ingest": "node ingest-photos.mjs",
     "seo": "node gen-seo-artifacts.mjs",
     "seo:check": "node gen-seo-artifacts.mjs --check",
     "prerender": "node gen-prerender.mjs",
