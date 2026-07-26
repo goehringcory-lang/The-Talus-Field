@@ -46,10 +46,15 @@
     the content is the same code Yandex shows for its HTML-file method. Pinterest
     (pinterest.com/settings/claim) uses p:domain_verify. Bing is verified by
     import from Google Search Console, so it needs no msvalidate.01 tag.
+    impact.com issues one impact-site-verification token per property it
+    checks, and its crawler looks for a tag whose value matches the one it
+    issued, so a second token is added as its own tag rather than replacing
+    the first (removing an older token un-verifies whatever it verified).
   -->
   <meta name="yandex-verification" content="4b86906a5e0be825" />
   <meta name="p:domain_verify" content="3a6f348a121ce5a3023000cc901d203a" />
   <meta name="impact-site-verification" value="3874eb06-7e01-4daa-9b92-8f2abd045af8" />
+  <meta name="impact-site-verification" value="cf36ca0b-d87c-4864-9e20-ed295ed63b84" />
 
   <link rel="canonical" href="https://thetalusfieldjournal.com/" />
 
