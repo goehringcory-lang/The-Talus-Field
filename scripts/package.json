@@ -19,7 +19,8 @@
     "archive:check": "node gen-archive.mjs --check",
     "checks": "node system-checks.mjs",
     "checks:online": "node system-checks.mjs --online",
-    "check": "bash check-cache-busters.sh && bash check-seo-artifacts.sh && node gen-prerender.mjs --check && node gen-compiled.mjs --check && node gen-home-shell.mjs --check && node gen-archive.mjs --check",
+    "archive:citations": "node check-archive-citations.mjs",
+    "check": "bash check-cache-busters.sh && bash check-seo-artifacts.sh && node gen-prerender.mjs --check && node gen-compiled.mjs --check && node gen-home-shell.mjs --check && node gen-archive.mjs --check && node check-archive-citations.mjs",
     "tracks": "node gen-hike-tracks.mjs"
   },
   "devDependencies": {
