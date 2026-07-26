@@ -1,4 +1,4 @@
-/* global React, NewsletterInline, GuidePromo, LodgingCta */
+/* global React, NewsletterInline, GuidePromo, LodgingCta, Breadcrumbs */
 
 // =============================================================================
 // ITINERARIES — `/itineraries` route. The curated day plans from
@@ -43,6 +43,7 @@ function ItinerariesPage({ go }) {
     <div className="page">
       <div className="page-head">
         <div className="wrap">
+          <Breadcrumbs go={go} trail={[{ label: "Home", route: "home" }, { label: "Itineraries" }]} />
           <div className="eyebrow eyebrow--moss">Itineraries</div>
           <h1>Yosemite, in day-sized pieces.</h1>
           <p className="page-head__dek">

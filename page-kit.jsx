@@ -1,4 +1,4 @@
-/* global React, NewsletterInline, GuidePromo */
+/* global React, NewsletterInline, GuidePromo, Breadcrumbs */
 const { useState: useStateK, useCallback: useCallbackK } = React;
 
 // Ticked items persist here so a reader can plan over several sessions.
@@ -72,6 +72,7 @@ function KitPage({ go }) {
 
       {/* Page head */}
       <section className="wrap" style={{ paddingTop: 56, paddingBottom: 24 }}>
+        <Breadcrumbs go={go} trail={[{ label: "Home", route: "home" }, { label: "Kit" }]} />
         <div className="eyebrow eyebrow--moss" style={{ marginBottom: 18 }}>Kit</div>
         <h1 className="display" style={{ fontSize: "clamp(46px, 6vw, 84px)", lineHeight: 0.98, marginBottom: 24, fontWeight: 500, letterSpacing: "-0.01em" }}>
           What to pack

@@ -1,4 +1,4 @@
-/* global React */
+/* global React, Breadcrumbs */
 const { useState } = React;
 
 // API base for the Worker. Override at runtime via window.GUIDE_API_BASE
@@ -12,6 +12,7 @@ function NewsletterPage({ go }) {
   return (
     <div className="page">
       <div className="wrap wrap--narrow" style={{ paddingTop: 96, paddingBottom: 96 }}>
+        <Breadcrumbs go={go} trail={[{ label: "Home", route: "home" }, { label: "Newsletter" }]} />
         <div className="eyebrow eyebrow--moss">Newsletter</div>
         <h1 style={{ marginTop: 16, marginBottom: 24 }}>Sunday Field Notes.</h1>
         <p style={{ fontSize: 22, color: "var(--ink-2)", lineHeight: 1.5, marginBottom: 32, fontFamily: "var(--display)", fontStyle: "italic" }}>
@@ -77,7 +78,7 @@ function NewsletterPage({ go }) {
   );
 }
 
-function ContactPage() {
+function ContactPage({ go }) {
   const [form, setForm] = useState({ name: "", email: "", subject: "general", message: "", website: "" });
   const [done, setDone] = useState(false);
   const [sending, setSending] = useState(false);
@@ -113,6 +114,7 @@ function ContactPage() {
     <div className="page">
       <div className="page-head">
         <div className="wrap wrap--narrow">
+          <Breadcrumbs go={go} trail={[{ label: "Home", route: "home" }, { label: "Contact" }]} />
           <div className="eyebrow eyebrow--moss">Contact</div>
           <h1>Send me a note.</h1>
           <p className="page-head__dek">

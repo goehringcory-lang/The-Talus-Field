@@ -1,4 +1,4 @@
-/* global React, NewsletterInline */
+/* global React, NewsletterInline, Breadcrumbs */
 
 function AdvertisePage({ go }) {
   return (
@@ -6,6 +6,7 @@ function AdvertisePage({ go }) {
       {/* Page head */}
       <section className="page-head">
         <div className="wrap wrap--narrow">
+          <Breadcrumbs go={go} trail={[{ label: "Home", route: "home" }, { label: "Advertise" }]} />
           <div className="eyebrow eyebrow--moss">For Operators</div>
           <h1>List your business on The Talus Field.</h1>
           <p className="page-head__dek">

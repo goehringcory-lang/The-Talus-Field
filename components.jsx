@@ -328,68 +328,140 @@ function releaseRockfall(markEl) {
 // ============================================================
 // Masthead
 // ============================================================
+// The whole site, grouped, in one table shared by the masthead dropdowns, the
+// mobile menu, and the site index at /explore. Every reader-facing route lives
+// in exactly one group (legal pages stay footer-only; /explore lists those too).
+//
+// Shape: a group is { key, label, route, blurb, columns } where each column is
+// { heading, links } and a link is { key } for an SPA route or { href } for a
+// real navigation (the generated /archive pages are not SPA routes, so they
+// must never carry a go() handler). `route` is where the group label itself
+// navigates. A group with no `columns` renders as a plain top-level link.
+//
+// Two rules for `note` copy: keep it to one short line, and keep years out of
+// it. The masthead is baked into index.html's static home shell by
+// scripts/gen-home-shell.mjs, which rejects anything date-derived because that
+// file is cached hard. For the same reason nothing here may be computed from
+// the catalog (the generator renders with an empty window.ARTICLES, so a live
+// count would bake as zero and then shift on boot).
+const NAV_GROUPS = [
+  {
+    key: "read",
+    label: "Read",
+    route: "articles",
+    cta: "All articles →",
+    blurb: "The journal itself, and the park's own record going back a century.",
+    columns: [
+      {
+        heading: "The journal",
+        links: [
+          { key: "articles", label: "All articles", note: "Everything published, newest first" },
+          { key: "now", label: "The Park Bulletin", note: "What is happening in the park right now" },
+          { key: "films", label: "Films", note: "The NPS Nature Notes film series, annotated" },
+          { href: "/archive/", label: "Nature Notes archive", note: "512 issues of the park's own bulletin" },
+        ],
+      },
+      {
+        heading: "Sections",
+        links: [
+          { key: "cat:planning", label: "Planning", note: "Permits, timing, transit, lodging" },
+          { key: "cat:trails", label: "Trails and hikes", note: "Routes and conditions, kept current" },
+          { key: "cat:wildlife", label: "Wildlife and nature", note: "What is moving and what is blooming" },
+          { key: "cat:seasonal", label: "Seasonal guides", note: "The park, month by month" },
+        ],
+      },
+    ],
+  },
+  {
+    key: "plan",
+    label: "Plan",
+    route: "planning",
+    cta: "The Planning Guide →",
+    blurb: "The trip, in the order the decisions actually come at you.",
+    columns: [
+      {
+        heading: "Before you book",
+        links: [
+          { key: "planning", label: "The Planning Guide", note: "The whole archive, in trip order" },
+          { key: "stay", label: "Where to stay", note: "In-park lodging and the gateway towns" },
+          { key: "itineraries", label: "Itineraries", note: "Half-day to three-day plans, in drive order" },
+          { key: "consult", label: "Trip consults", note: "Thirty minutes, one on one. Paid" },
+        ],
+      },
+      {
+        heading: "Before you drive in",
+        links: [
+          { key: "map", label: "The trip map", note: "Every pin in the park, assembled into a route" },
+          { key: "conditions", label: "Conditions", note: "Webcams, entrance waits, forecasts" },
+          { key: "checklist", label: "First-week checklist", note: "What to do in the week before you go" },
+          { key: "kit", label: "Kit", note: "What earns its place in the pack" },
+        ],
+      },
+      {
+        heading: "Dated events",
+        links: [
+          { key: "firefall", label: "Firefall", note: "Whether to plan a trip around Horsetail Fall" },
+          { key: "tioga-opening", label: "Tioga Road opening", note: "When the high country actually opens" },
+          { key: "half-dome-lottery", label: "Half Dome lottery", note: "The permit odds, plainly" },
+        ],
+      },
+    ],
+  },
+  { key: "guide", label: "Field Guide", route: "guide" },
+  {
+    // align: "right" keeps this last dropdown inside the viewport at narrow
+    // desktop widths (it sits hard against the right edge).
+    key: "about",
+    label: "About",
+    route: "about",
+    align: "right",
+    cta: "About the journal →",
+    blurb: "Who keeps this journal, how to reach it, and everything it contains.",
+    columns: [
+      {
+        heading: "The masthead",
+        links: [
+          { key: "about", label: "About the journal", note: "Who writes this, and why" },
+          { key: "newsletter", label: "Newsletter", note: "One short letter a week. Free" },
+          { key: "contact", label: "Contact", note: "Trip questions, corrections, press" },
+          { key: "explore", label: "Site index", note: "Every page on the site, on one page" },
+        ],
+      },
+      {
+        heading: "For businesses",
+        links: [
+          { key: "places", label: "Directory", note: "The short list of operators worth knowing" },
+          { key: "advertise", label: "Advertise", note: "What a listing is, and what disqualifies one" },
+          { key: "widget", label: "Conditions widget", note: "A free embed for gateway businesses" },
+          { key: "partners", label: "Group codes", note: "The Field Guide in packs, for lodging" },
+        ],
+      },
+    ],
+  },
+];
+
+// Flattened once for /explore and for the active-group test.
+function navGroupLinks(group) {
+  return (group.columns || []).flatMap((col) => col.links);
+}
+
+window.NAV_GROUPS = NAV_GROUPS;
+window.navGroupLinks = navGroupLinks;
+
 function Header({ current, go }) {
-  // The whole site, grouped. Every reader-facing route lives in exactly one
-  // group (legal pages stay footer-only). A group with `items` renders as a
-  // hover dropdown at desktop and a labelled section inside the hamburger;
-  // a group without `items` is a plain top-level link. `route` is where the
-  // group label itself navigates.
-  const navGroups = [
-    {
-      key: "read", label: "Read", route: "articles",
-      items: [
-        ["articles", "All articles"],
-        ["cat:planning", "Planning"],
-        ["cat:trails", "Trails and hikes"],
-        ["cat:wildlife", "Wildlife and nature"],
-        ["cat:seasonal", "Seasonal guides"],
-        ["now", "The Park Bulletin"],
-        ["films", "Films"],
-        ["search", "Search"],
-      ],
-    },
-    {
-      key: "plan", label: "Plan", route: "planning",
-      items: [
-        ["planning", "The Planning Guide"],
-        ["stay", "Where to stay"],
-        ["itineraries", "Itineraries"],
-        ["conditions", "Conditions"],
-        ["checklist", "First-week checklist"],
-        ["kit", "Kit"],
-        ["firefall", "Firefall"],
-        ["tioga-opening", "Tioga opening"],
-        ["half-dome-lottery", "Half Dome lottery"],
-        ["consult", "Trip consults"],
-      ],
-    },
-    { key: "guide", label: "Field Guide", route: "guide" },
-    {
-      // align: "right" keeps this last dropdown inside the viewport at
-      // narrow desktop widths (it sits hard against the right edge).
-      key: "about", label: "About", route: "about", align: "right",
-      items: [
-        ["about", "About the journal"],
-        ["newsletter", "Newsletter"],
-        ["contact", "Contact"],
-        ["places", "Directory"],
-        ["advertise", "Advertise"],
-        ["widget", "Conditions widget"],
-        ["partners", "Group codes"],
-      ],
-    },
-  ];
+  const navGroups = NAV_GROUPS;
 
   // A group lights up when the reader is on its landing route or any of its
   // member pages; article and section routes belong to Read.
   const isGroupActive = (g) => {
     if (current === g.route) return true;
-    if (g.items && g.items.some(([key]) => key === current)) return true;
+    if (navGroupLinks(g).some((l) => l.key === current)) return true;
     if (g.key === "read" && (current.startsWith("a:") || current.startsWith("cat:"))) return true;
     return false;
   };
 
   const [menuOpen, setMenuOpen] = React.useState(false);
+  const [menuQuery, setMenuQuery] = React.useState("");
   const menuRef = React.useRef(null);
   React.useEffect(() => {
     if (!menuOpen) return;
@@ -400,20 +472,64 @@ function Header({ current, go }) {
     return () => { document.removeEventListener("mousedown", onDoc); document.removeEventListener("keydown", onKey); };
   }, [menuOpen]);
 
-  const renderLink = (key, label, { baseClass, role, onNavigate } = {}) => (
-    <a
-      key={key}
-      role={role}
-      href={window.routeToPath ? window.routeToPath(key) : `/${key}`}
-      className={[baseClass, current === key && "is-active"].filter(Boolean).join(" ")}
-      onClick={(e) => {
-        e.preventDefault();
-        if (onNavigate) onNavigate();
-        if (key === "guide" && window.track) window.track("guide_cta_click", { location: "masthead_nav" });
-        go(key);
-      }}
-    >{label}</a>
-  );
+  const closeMenu = () => { setMenuOpen(false); setMenuQuery(""); };
+
+  // Search from the hamburger. The menu is the only nav on phones, so the
+  // search box lives at the top of it rather than costing a tap through a
+  // dropdown. Submitting hands the query to /search via ?q=, which that page
+  // already reads on load.
+  const submitMenuSearch = (e) => {
+    e.preventDefault();
+    const q = menuQuery.trim();
+    closeMenu();
+    if (window.track) window.track("nav_search_submit", { location: "menu", has_query: q ? "1" : "0" });
+    if (!q) { go("search"); return; }
+    const url = `/search?q=${encodeURIComponent(q)}`;
+    // SearchPage reads ?q= once, at mount, so the query has to be on the URL
+    // before the route commits. go() only pushes when the pathname changes, so
+    // pushing here leaves the query string intact. Already on /search there is
+    // no remount to hang the new query on, so that one case takes a real
+    // navigation rather than silently doing nothing.
+    if (window.location.pathname.replace(/\/+$/, "") === "/search") {
+      window.location.assign(url);
+      return;
+    }
+    window.history.pushState({ route: "search" }, "", url);
+    go("search");
+  };
+
+  // One renderer for every nav link in the masthead. `href`-style entries are
+  // real navigations (the generated archive pages), so they keep the browser's
+  // default behaviour and never call go().
+  const renderLink = (link, { baseClass, noteClass, role, onNavigate } = {}) => {
+    const { key, href, label, note } = link;
+    const isExternalPath = !!href;
+    const body = note
+      ? (
+        <React.Fragment>
+          <span className="nav__link-label">{label}</span>
+          <span className={noteClass || "nav__link-note"}>{note}</span>
+        </React.Fragment>
+      )
+      : label;
+    return (
+      <a
+        key={key || href}
+        role={role}
+        href={isExternalPath ? href : (window.routeToPath ? window.routeToPath(key) : `/${key}`)}
+        className={[baseClass, !isExternalPath && current === key && "is-active"].filter(Boolean).join(" ")}
+        onClick={(e) => {
+          if (onNavigate) onNavigate();
+          if (isExternalPath) return; // real navigation; let the browser take it
+          e.preventDefault();
+          if (key === "guide" && window.track) window.track("guide_cta_click", { location: "masthead_nav" });
+          go(key);
+        }}
+      >{body}</a>
+    );
+  };
+
+  const renderPlainLink = (key, label, opts) => renderLink({ key, label }, opts);
 
   const todayFull = new Date().toLocaleDateString("en-US", {
     weekday: "long", year: "numeric", month: "long", day: "numeric"
@@ -464,15 +580,18 @@ function Header({ current, go }) {
         </a>
         <nav className="nav">
           {navGroups.map((g) => {
-            if (!g.items) {
+            if (!g.columns) {
               return (
                 <div key={g.key} className="nav__group">
-                  {renderLink(g.route, g.label, { baseClass: "nav__link" })}
+                  {renderPlainLink(g.route, g.label, { baseClass: "nav__link" })}
                 </div>
               );
             }
             return (
-              <div key={g.key} className="nav__group">
+              // position: static on a mega group hands the panel's containing
+              // block to .masthead__main, so it spans the full masthead width
+              // and cannot overflow the viewport at any desktop size.
+              <div key={g.key} className="nav__group nav__group--mega">
                 <a
                   href={window.routeToPath ? window.routeToPath(g.route) : `/${g.route}`}
                   className={["nav__link", "nav__group-trigger", isGroupActive(g) && "is-active"].filter(Boolean).join(" ")}
@@ -484,14 +603,47 @@ function Header({ current, go }) {
                 </a>
                 {/* Opened purely by CSS (:hover / :focus-within) so hover and
                     keyboard tabbing both work with no state to desync. */}
-                <div className={["nav__dropdown", g.align === "right" && "nav__dropdown--right"].filter(Boolean).join(" ")}>
+                <div className="nav__dropdown nav__dropdown--mega">
                   <div className="nav__dropdown-inner">
-                    {g.items.map(([key, label]) => renderLink(key, label, { baseClass: "nav__dropdown-link" }))}
+                    <div className="nav__dropdown-lede">
+                      <div className="nav__dropdown-title">{g.label}</div>
+                      {g.blurb && <p className="nav__dropdown-blurb">{g.blurb}</p>}
+                      {renderPlainLink(g.route, g.cta || "Open the section →", { baseClass: "nav__dropdown-all" })}
+                    </div>
+                    <div className="nav__dropdown-cols">
+                      {g.columns.map((col) => (
+                        <div key={col.heading} className="nav__dropdown-col">
+                          <div className="nav__dropdown-heading">{col.heading}</div>
+                          {col.links.map((link) => renderLink(link, { baseClass: "nav__dropdown-link" }))}
+                        </div>
+                      ))}
+                    </div>
                   </div>
                 </div>
               </div>
             );
           })}
+
+          {/* Search. Was the eighth item inside the Read dropdown, which put
+              the site's own index three interactions deep on a site whose
+              content no longer fits in a menu. It is a top-level destination
+              now, and the hamburger carries a real query box. */}
+          <a
+            className={["nav__search", current === "search" && "is-active"].filter(Boolean).join(" ")}
+            href={window.routeToPath ? window.routeToPath("search") : "/search"}
+            aria-label="Search the journal"
+            onClick={(e) => {
+              e.preventDefault();
+              if (window.track) window.track("cta_click", { location: "masthead_search", target: "search" });
+              go("search");
+            }}
+          >
+            <svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true" focusable="false">
+              <circle cx="11" cy="11" r="6.5" fill="none" stroke="currentColor" strokeWidth="2" />
+              <line x1="16" y1="16" x2="21" y2="21" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+            </svg>
+            <span className="nav__search-label">Search</span>
+          </a>
 
           {/* Persistent "The Map" CTA. On mobile the inline nav collapses to
               the hamburger, leaving no visible path to the funnel; this fills
@@ -523,18 +675,45 @@ function Header({ current, go }) {
             </button>
             {menuOpen && (
               <div className="nav__menu" role="menu">
+                <form className="nav__menu-search" role="search" onSubmit={submitMenuSearch}>
+                  <input
+                    type="search"
+                    name="q"
+                    value={menuQuery}
+                    onChange={(e) => setMenuQuery(e.target.value)}
+                    placeholder="Search the journal"
+                    aria-label="Search the journal"
+                    autoComplete="off"
+                  />
+                  <button type="submit" aria-label="Search">
+                    <svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true" focusable="false">
+                      <circle cx="11" cy="11" r="6.5" fill="none" stroke="currentColor" strokeWidth="2" />
+                      <line x1="16" y1="16" x2="21" y2="21" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                    </svg>
+                  </button>
+                </form>
                 {navGroups.map((g) => (
                   <div key={g.key} className="nav__menu-group">
-                    {g.items ? (
+                    {g.columns ? (
                       <React.Fragment>
-                        <div className="nav__menu-label">{g.label}</div>
-                        {g.items.map(([key, label]) => renderLink(key, label, { role: "menuitem", onNavigate: () => setMenuOpen(false) }))}
+                        <div className="nav__menu-label">
+                          {renderPlainLink(g.route, g.label, { baseClass: "nav__menu-label-link", role: "menuitem", onNavigate: closeMenu })}
+                        </div>
+                        {g.columns.map((col) => (
+                          <React.Fragment key={col.heading}>
+                            <div className="nav__menu-sublabel">{col.heading}</div>
+                            {col.links.map((link) => renderLink(link, { role: "menuitem", onNavigate: closeMenu, noteClass: "nav__menu-note" }))}
+                          </React.Fragment>
+                        ))}
                       </React.Fragment>
                     ) : (
-                      renderLink(g.route, g.label, { role: "menuitem", onNavigate: () => setMenuOpen(false) })
+                      renderPlainLink(g.route, g.label, { role: "menuitem", onNavigate: closeMenu })
                     )}
                   </div>
                 ))}
+                <div className="nav__menu-group">
+                  {renderPlainLink("explore", "Everything on this site →", { baseClass: "nav__menu-index", role: "menuitem", onNavigate: closeMenu })}
+                </div>
               </div>
             )}
           </div>
@@ -548,6 +727,22 @@ function Header({ current, go }) {
 // Site footer
 // ============================================================
 function Footer({ go }) {
+  // Grouped the same way the masthead is, so the footer reads as the same map
+  // of the site rather than a second, differently-ordered one. It used to
+  // carry one 14-item "Site" column, which is a list nobody scans. Everything
+  // still reachable from here plus /explore, which carries the rest.
+  const link = (route, label) => (
+    <li key={route}>
+      <a
+        href={window.routeToPath ? window.routeToPath(route) : `/${route}`}
+        onClick={(e) => {
+          e.preventDefault();
+          if (route === "guide" && window.track) window.track("guide_cta_click", { location: "footer_guide_link" });
+          go(route);
+        }}
+      >{label}</a>
+    </li>
+  );
   return (
     <footer className="site-footer">
       <div className="wrap">
@@ -556,47 +751,55 @@ function Footer({ go }) {
             <div className="site-footer__masthead">The Talus Field</div>
             <div className="site-footer__sub">A field journal of Yosemite</div>
             <p>Notes on a single park, kept slowly. Updated when something is worth saying.</p>
+            <a
+              className="site-footer__index"
+              href="/explore"
+              onClick={(e) => { e.preventDefault(); if (window.track) window.track("cta_click", { location: "footer_index", target: "explore" }); go("explore"); }}
+            >Everything on this site →</a>
           </div>
           <div>
-            <h4>Sections</h4>
+            <h4>Read</h4>
             <ul>
+              {link("articles", "All articles")}
               {window.CATEGORIES.map(c => (
                 <li key={c.slug}>
                   <a href={`/section/${c.slug}`} onClick={(e) => { e.preventDefault(); go(`cat:${c.slug}`); }}>{c.label}</a>
                 </li>
               ))}
-            </ul>
-          </div>
-          <div>
-            <h4>Site</h4>
-            <ul>
-              <li><a href="/about" onClick={(e) => { e.preventDefault(); go("about"); }}>About</a></li>
-              <li><a href="/articles" onClick={(e) => { e.preventDefault(); go("articles"); }}>All articles</a></li>
-              <li><a href="/kit" onClick={(e) => { e.preventDefault(); go("kit"); }}>Kit</a></li>
-              <li><a href="/films" onClick={(e) => { e.preventDefault(); go("films"); }}>Films</a></li>
+              {link("now", "The Park Bulletin")}
+              {link("films", "Films")}
               {/*
                 /archive is generated static HTML (scripts/gen-archive.mjs), not an
                 SPA route, so this link must be a real navigation — no go() handler.
               */}
               <li><a href="/archive/">Nature Notes archive</a></li>
-              <li><a href="/places" onClick={(e) => { e.preventDefault(); go("places"); }}>Directory</a></li>
-              <li><a href="/map" onClick={(e) => { e.preventDefault(); go("map"); }}>The Map</a></li>
-              <li><a href="/stay" onClick={(e) => { e.preventDefault(); go("stay"); }}>Where to stay</a></li>
-              <li><a href="/itineraries" onClick={(e) => { e.preventDefault(); go("itineraries"); }}>Itineraries</a></li>
-              <li><a href="/conditions" onClick={(e) => { e.preventDefault(); go("conditions"); }}>Conditions</a></li>
-              <li><a href="/now" onClick={(e) => { e.preventDefault(); go("now"); }}>The Park Bulletin</a></li>
-              <li><a href="/guide" onClick={(e) => { e.preventDefault(); window.track && window.track("guide_cta_click", { location: "footer_guide_link" }); go("guide"); }}>Field Guide</a></li>
-              <li><a href="/newsletter" onClick={(e) => { e.preventDefault(); go("newsletter"); }}>Newsletter</a></li>
-              <li><a href="/contact" onClick={(e) => { e.preventDefault(); go("contact"); }}>Contact</a></li>
             </ul>
           </div>
           <div>
-            <h4>Legal</h4>
+            <h4>Plan</h4>
             <ul>
-              <li><a href="/privacy" onClick={(e) => { e.preventDefault(); go("privacy"); }}>Privacy</a></li>
-              <li><a href="/terms" onClick={(e) => { e.preventDefault(); go("terms"); }}>Terms</a></li>
-              <li><a href="/affiliate" onClick={(e) => { e.preventDefault(); go("affiliate"); }}>Affiliate disclosure</a></li>
-              <li><a href="/contact" onClick={(e) => { e.preventDefault(); go("contact"); }}>Contact</a></li>
+              {link("planning", "The Planning Guide")}
+              {link("map", "The Map")}
+              {link("itineraries", "Itineraries")}
+              {link("stay", "Where to stay")}
+              {link("conditions", "Conditions")}
+              {link("checklist", "First-week checklist")}
+              {link("kit", "Kit")}
+              {link("guide", "The Field Guide")}
+            </ul>
+          </div>
+          <div>
+            <h4>The journal</h4>
+            <ul>
+              {link("about", "About")}
+              {link("newsletter", "Newsletter")}
+              {link("contact", "Contact")}
+              {link("search", "Search")}
+              {link("places", "Directory")}
+              {link("advertise", "Advertise")}
+              {link("privacy", "Privacy")}
+              {link("terms", "Terms")}
+              {link("affiliate", "Affiliate disclosure")}
             </ul>
           </div>
         </div>
@@ -644,6 +847,190 @@ function Breadcrumbs({ trail, go }) {
   );
 }
 window.Breadcrumbs = Breadcrumbs;
+
+// ============================================================
+// Keep going. The standing pages used to end in nothing: a reader who finished
+// /conditions or /firefall had the masthead and the footer and no sense of
+// what sat next to the page they were on. This is the curated answer — three
+// or four onward links per route, chosen for what a reader on that page
+// actually wants next, mounted once in app.jsx rather than pasted into
+// twenty page components.
+//
+// Rules: a route not listed here renders nothing (silence beats a generic
+// "related pages" strip), a link is { key } for an SPA route or { href } for a
+// real navigation, and no route lists itself.
+// ============================================================
+const KEEP_GOING = {
+  // --- Reading surfaces ---
+  articles: { links: [
+    { key: "planning", label: "The Planning Guide", note: "The same archive, ordered for a real trip" },
+    { key: "search", label: "Search", note: "By title, section, or dek" },
+    { href: "/archive/", label: "Nature Notes archive", note: "The park's own bulletin, 512 issues" },
+    { key: "films", label: "Films", note: "The NPS Nature Notes series" },
+  ] },
+  films: { links: [
+    { href: "/archive/", label: "Nature Notes archive", note: "The print run the films are named for" },
+    { key: "cat:wildlife", label: "Wildlife and nature", note: "The written version" },
+    { key: "articles", label: "All articles", note: "Everything published, newest first" },
+  ] },
+  now: { links: [
+    { key: "conditions", label: "Conditions", note: "Webcams, entrance waits, forecasts" },
+    { key: "itineraries", label: "Itineraries", note: "A plan for the days you have" },
+    { key: "map", label: "The Map", note: "Build the route yourself" },
+  ] },
+  search: { links: [
+    { key: "articles", label: "All articles", note: "Everything published, newest first" },
+    { key: "planning", label: "The Planning Guide", note: "The whole archive, in trip order" },
+    { key: "explore", label: "Site index", note: "Every page on the site" },
+  ] },
+
+  // --- Planning surfaces ---
+  planning: { links: [
+    { key: "checklist", label: "First-week checklist", note: "The week before you go, in order" },
+    { key: "stay", label: "Where to stay", note: "The decision with a deadline" },
+    { key: "itineraries", label: "Itineraries", note: "Plans in drive order" },
+    { key: "kit", label: "Kit", note: "What to actually pack" },
+  ] },
+  checklist: { links: [
+    { key: "kit", label: "Kit", note: "What goes in the pack" },
+    { key: "conditions", label: "Conditions", note: "Check it the morning you drive in" },
+    { key: "planning", label: "The Planning Guide", note: "The long version" },
+  ] },
+  kit: { links: [
+    { key: "checklist", label: "First-week checklist", note: "The week before you go, in order" },
+    { key: "planning", label: "The Planning Guide", note: "The whole archive, in trip order" },
+    { key: "cat:trails", label: "Trails and hikes", note: "Where the kit gets used" },
+  ] },
+  itineraries: { links: [
+    { key: "map", label: "The Map", note: "Change a plan, or build your own" },
+    { key: "stay", label: "Where to stay", note: "Book the nights the plan needs" },
+    { key: "conditions", label: "Conditions", note: "What is open on your dates" },
+  ] },
+  conditions: { links: [
+    { key: "now", label: "The Park Bulletin", note: "Closures, programs, hours, events" },
+    { key: "map", label: "The Map", note: "Turn conditions into a route" },
+    { key: "itineraries", label: "Itineraries", note: "Plans in drive order" },
+  ] },
+  stay: { links: [
+    { key: "planning", label: "The Planning Guide", note: "Everything else the trip needs" },
+    { key: "itineraries", label: "Itineraries", note: "What to do from where you booked" },
+    { key: "checklist", label: "First-week checklist", note: "The week before you go, in order" },
+  ] },
+  map: { links: [
+    { key: "itineraries", label: "Itineraries", note: "Start from a plan instead" },
+    { key: "conditions", label: "Conditions", note: "Before you drive in" },
+    { key: "guide", label: "The Field Guide", note: "The same stops, offline" },
+  ] },
+  consult: { links: [
+    { key: "planning", label: "The Planning Guide", note: "The free version" },
+    { key: "guide", label: "The Field Guide", note: "The same park, offline and in your pocket" },
+    { key: "itineraries", label: "Itineraries", note: "Plans in drive order" },
+  ] },
+
+  // --- The three dated-event pages, which are each other's best next link ---
+  firefall: { links: [
+    { key: "tioga-opening", label: "Tioga Road opening", note: "The other date people plan around" },
+    { key: "half-dome-lottery", label: "Half Dome lottery", note: "The permit odds, plainly" },
+    { key: "stay", label: "Where to stay", note: "February fills early" },
+    { key: "conditions", label: "Conditions", note: "Webcams, entrance waits, forecasts" },
+  ] },
+  "tioga-opening": { links: [
+    { key: "half-dome-lottery", label: "Half Dome lottery", note: "The permit odds, plainly" },
+    { key: "firefall", label: "Firefall", note: "Whether the light is worth the trip" },
+    { key: "itineraries", label: "Itineraries", note: "What the high country is worth" },
+    { key: "conditions", label: "Conditions", note: "Webcams, entrance waits, forecasts" },
+  ] },
+  "half-dome-lottery": { links: [
+    { key: "tioga-opening", label: "Tioga Road opening", note: "When the high country opens" },
+    { key: "firefall", label: "Firefall", note: "Whether the light is worth the trip" },
+    { key: "cat:trails", label: "Trails and hikes", note: "The rest of the park's big days" },
+    { key: "kit", label: "Kit", note: "What earns its place in the pack" },
+  ] },
+
+  // --- The journal ---
+  about: { links: [
+    { key: "newsletter", label: "Newsletter", note: "One letter a week" },
+    { key: "articles", label: "All articles", note: "Everything published, newest first" },
+    { key: "contact", label: "Contact", note: "Trip questions, corrections, press" },
+  ] },
+  places: { links: [
+    { key: "stay", label: "Where to stay", note: "Lodging, covered properly" },
+    { key: "advertise", label: "Advertise", note: "For operators" },
+    { key: "about", label: "About the journal", note: "Who writes this, and why" },
+  ] },
+  advertise: { links: [
+    { key: "places", label: "The Directory", note: "The short list of operators worth knowing" },
+    { key: "partners", label: "Group codes", note: "The Field Guide, in packs" },
+    { key: "widget", label: "Conditions widget", note: "Free embed" },
+  ] },
+  widget: { links: [
+    { key: "partners", label: "Group codes", note: "The Field Guide in packs, for lodging" },
+    { key: "advertise", label: "Advertise", note: "What a listing is, and what disqualifies one" },
+    { key: "conditions", label: "Conditions", note: "The full page the widget summarizes" },
+  ] },
+  partners: { links: [
+    { key: "guide", label: "The Field Guide", note: "What your guests get" },
+    { key: "widget", label: "Conditions widget", note: "A free conditions embed for businesses" },
+    { key: "advertise", label: "Advertise", note: "What a listing is, and what disqualifies one" },
+  ] },
+  guide: { links: [
+    { key: "map", label: "The Map", note: "The free version, in the browser" },
+    { key: "planning", label: "The Planning Guide", note: "The whole archive, in trip order" },
+    { key: "partners", label: "Group codes", note: "For lodging and rental hosts" },
+  ] },
+  newsletter: { links: [
+    { key: "now", label: "The Park Bulletin", note: "The same board, without the wait" },
+    { key: "articles", label: "All articles", note: "Everything published, newest first" },
+    { key: "about", label: "About the journal", note: "Who writes this, and why" },
+  ] },
+  contact: { links: [
+    { key: "about", label: "About the journal", note: "Who writes this, and why" },
+    { key: "consult", label: "Trip consults", note: "For real trip questions" },
+    { key: "advertise", label: "Advertise", note: "For operators" },
+  ] },
+  explore: { links: [
+    { key: "search", label: "Search", note: "If you know what you are looking for" },
+    { key: "articles", label: "All articles", note: "Everything published, newest first" },
+    { key: "planning", label: "The Planning Guide", note: "The whole archive, in trip order" },
+  ] },
+  notfound: { links: [
+    { key: "explore", label: "Site index", note: "Every page on the site" },
+    { key: "articles", label: "All articles", note: "Everything published, newest first" },
+    { key: "search", label: "Search", note: "Titles, deks, and sections, as you type" },
+  ] },
+};
+
+function KeepGoing({ route, go }) {
+  const entry = KEEP_GOING[route];
+  if (!entry) return null;
+  return (
+    <section className="keep-going" aria-labelledby="keep-going-heading">
+      <div className="wrap">
+        <h2 className="keep-going__heading" id="keep-going-heading">{entry.heading || "Keep going"}</h2>
+        <div className="keep-going__grid">
+          {entry.links.map((l) => (
+            <a
+              key={l.key || l.href}
+              className="keep-going__card"
+              href={l.href || (window.routeToPath ? window.routeToPath(l.key) : `/${l.key}`)}
+              onClick={(e) => {
+                if (l.href) return; // real navigation (the generated archive)
+                e.preventDefault();
+                if (window.track) window.track("keep_going_click", { from: route, target: l.key });
+                go(l.key);
+              }}
+            >
+              <span className="keep-going__label">{l.label}</span>
+              {l.note && <span className="keep-going__note">{l.note}</span>}
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+window.KeepGoing = KeepGoing;
+window.KEEP_GOING = KEEP_GOING;
 
 // ============================================================
 // Share row. The quiet article share affordance: native share sheet where

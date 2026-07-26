@@ -217,7 +217,25 @@ const HUB_PROSE = {
       "Search The Talus Field",
       "Search every article, section, and page in The Talus Field: Yosemite planning notes, trail reports, wildlife and natural history, and seasonal guides."
     ) +
-    `<p>Browse instead: <a href="/articles">all articles</a>, <a href="/section/planning">planning</a>, <a href="/section/trails">trails and hikes</a>, <a href="/section/wildlife">wildlife and nature</a>, <a href="/section/seasonal">seasonal guides</a>, or <a href="/now">The Park Bulletin</a>.</p>`,
+    `<p>Browse instead: <a href="/explore">the site index</a>, <a href="/articles">all articles</a>, <a href="/section/planning">planning</a>, <a href="/section/trails">trails and hikes</a>, <a href="/section/wildlife">wildlife and nature</a>, <a href="/section/seasonal">seasonal guides</a>, or <a href="/now">The Park Bulletin</a>.</p>`,
+  // /explore is the human table of contents. Its whole value is the link graph,
+  // so the crawler prose IS the link list — every reader-facing destination on
+  // the site, in one hop from one indexable page.
+  "/explore": () =>
+    hubProse(
+      "Everything on The Talus Field",
+      "The site index: every destination in this Yosemite field journal, with a line on what each one is for."
+    ) +
+    `<h2>Read</h2>` +
+    `<p><a href="/articles">All articles</a> · <a href="/section/planning">Planning</a> · <a href="/section/trails">Trails and hikes</a> · <a href="/section/wildlife">Wildlife and nature</a> · <a href="/section/seasonal">Seasonal guides</a> · <a href="/now">The Park Bulletin</a> · <a href="/films">Films</a> · <a href="/archive/">The Nature Notes archive</a> · <a href="/search">Search</a></p>` +
+    `<h2>Plan a trip</h2>` +
+    `<p><a href="/planning">The Yosemite Planning Guide</a> · <a href="/map">The Map</a> · <a href="/itineraries">Itineraries</a> · <a href="/stay">Where to stay</a> · <a href="/conditions">Conditions</a> · <a href="/checklist">The first-week checklist</a> · <a href="/kit">The Kit</a> · <a href="/consult">Trip consults</a></p>` +
+    `<h2>Dated events</h2>` +
+    `<p><a href="/firefall">Firefall</a> · <a href="/tioga-opening">The Tioga Road opening</a> · <a href="/half-dome-lottery">The Half Dome lottery</a></p>` +
+    `<h2>The Field Guide</h2>` +
+    `<p><a href="/guide">The Field Guide</a> · <a href="/partners">Group codes</a></p>` +
+    `<h2>The journal</h2>` +
+    `<p><a href="/about">About the journal</a> · <a href="/newsletter">Sunday Field Notes</a> · <a href="/contact">Contact</a> · <a href="/places">The Directory</a> · <a href="/advertise">Advertise</a> · <a href="/widget">The conditions widget</a> · <a href="/privacy">Privacy</a> · <a href="/terms">Terms</a> · <a href="/affiliate">Affiliate disclosure</a></p>`,
   "/conditions": () =>
     hubProse(
       "Yosemite conditions: webcams, waits, and weather",
@@ -647,6 +665,12 @@ function seoForPath(pathname, searchParams) {
       // ?q= is another near-identical URL. Kept out of the index, but crawled
       // for its links, which is why the HUB_PROSE entry is a contents list.
       robots: "noindex, follow",
+    },
+    "/explore": {
+      title: `Site index — everything on The Talus Field — ${SITE_NAME}`,
+      description:
+        "Every page in The Talus Field, grouped and described: the article sections, the Park Bulletin, the Nature Notes archive and film series, the trip map and itineraries, lodging, conditions, and the Field Guide app.",
+      breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Site index", null]],
     },
     "/conditions": {
       title: `Yosemite Conditions — webcams, waits, and weather — ${SITE_NAME}`,

@@ -1,4 +1,4 @@
-/* global React, NewsletterInline, GuidePromo */
+/* global React, NewsletterInline, GuidePromo, Breadcrumbs */
 
 function ChecklistPage({ go }) {
   const sectionStyle = {
@@ -77,6 +77,7 @@ function ChecklistPage({ go }) {
 
       <div className="page-head">
         <div className="wrap wrap--narrow">
+          <Breadcrumbs go={go} trail={[{ label: "Home", route: "home" }, { label: "First-week checklist" }]} />
           <div className="eyebrow eyebrow--moss">The First-Week Checklist</div>
           <h1>Yosemite, in one printable page.</h1>
           <p className="page-head__dek">

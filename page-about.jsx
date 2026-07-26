@@ -1,10 +1,11 @@
-/* global React, Placeholder, NewsletterInline, MotifMountains */
+/* global React, Placeholder, NewsletterInline, MotifMountains, Breadcrumbs */
 
 function AboutPage({ go }) {
   return (
     <div className="page">
       <div className="page-head">
         <div className="wrap wrap--narrow">
+          <Breadcrumbs go={go} trail={[{ label: "Home", route: "home" }, { label: "About" }]} />
           <div className="eyebrow eyebrow--moss">Colophon</div>
           <h1>About this journal.</h1>
           <p className="page-head__dek">

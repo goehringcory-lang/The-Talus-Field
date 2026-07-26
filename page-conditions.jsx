@@ -1,4 +1,4 @@
-/* global React, WebcamStrip, EntranceWaits, NewsletterInline, GuidePromo */
+/* global React, WebcamStrip, EntranceWaits, NewsletterInline, GuidePromo, Breadcrumbs */
 
 // =============================================================================
 // CONDITIONS — `/conditions` route. The bookmarkable "is it worth driving in
@@ -31,6 +31,7 @@ function ConditionsPage({ go }) {
     <div className="page">
       <div className="page-head">
         <div className="wrap">
+          <Breadcrumbs go={go} trail={[{ label: "Home", route: "home" }, { label: "Conditions" }]} />
           <div className="eyebrow eyebrow--moss">Conditions</div>
           <h1>The park, right now.</h1>
           <p className="page-head__dek">

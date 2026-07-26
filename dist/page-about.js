@@ -7,7 +7,15 @@ function AboutPage({
     className: "page-head"
   }, React.createElement("div", {
     className: "wrap wrap--narrow"
-  }, React.createElement("div", {
+  }, React.createElement(Breadcrumbs, {
+    go: go,
+    trail: [{
+      label: "Home",
+      route: "home"
+    }, {
+      label: "About"
+    }]
+  }), React.createElement("div", {
     className: "eyebrow eyebrow--moss"
   }, "Colophon"), React.createElement("h1", null, "About this journal."), React.createElement("p", {
     className: "page-head__dek"
