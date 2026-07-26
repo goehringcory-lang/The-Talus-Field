@@ -10,8 +10,16 @@
 // The flow: drop camera files into the gitignored inbox at the repo root,
 // sorted by destination, then run one command.
 //
-//   photo-inbox/editorial/tunnel-view-winter.heic  ->  img/tunnel-view-winter.jpg
-//   photo-inbox/guide/camp-4.jpg                   ->  apps/guide/public/photos/camp-4.jpg
+//   photo-inbox/editorial/tunnel-view-winter.jpg  ->  img/tunnel-view-winter.jpg
+//   photo-inbox/guide/camp-4.jpg                  ->  apps/guide/public/photos/camp-4.jpg
+//
+// SHOOT JPEG, NOT HEIC. Verified July 2026 against a real HEVC-encoded file:
+// sharp's prebuilt libvips omits the HEVC decoder ("Support for this
+// compression format has not been built in"), and its heif loader advertises
+// only '.avif'. sharp.format.heif.input.file reads true anyway, so that flag
+// is NOT a usable capability check. On iPhone: Settings > Camera > Formats >
+// "Most Compatible". The ingest detects HEVC and says so rather than failing
+// at the write.
 //
 // For each file it: reads EXIF (logging GPS to a gitignored sidecar before it
 // is destroyed), applies EXIF orientation, downscales, re-encodes as mozjpeg
@@ -305,6 +313,22 @@ async function main() {
       continue
     }
 
+    // sharp's prebuilt libvips ships libheif WITHOUT the HEVC decoder — its
+    // heif loader advertises fileSuffix ['.avif'] and nothing else. The trap
+    // is that metadata() still SUCCEEDS on an iPhone HEIC: it parses the
+    // container and reports compression 'hevc'. Only the pixel decode fails,
+    // with "Support for this compression format has not been built in". Catch
+    // it here, or a real iPhone photo dies at the write with a raw stack.
+    // AVIF (compression 'av1') goes through the same loader and does work.
+    if (meta.format === 'heif' && meta.compression && meta.compression !== 'av1') {
+      skipped.push(
+        `${rel}: HEIC/${meta.compression.toUpperCase()} cannot be decoded — this sharp build's libvips ` +
+          `omits the HEVC decoder. Set the iPhone to Settings > Camera > Formats > "Most Compatible" ` +
+          `to shoot JPEG from now on, and export any existing HEICs to JPEG before dropping them in.`,
+      )
+      continue
+    }
+
     // Orientation is applied by .rotate() below, so post-rotation width is what
     // the ladder actually sees.
     const swaps = (meta.orientation ?? 1) >= 5
@@ -340,14 +364,21 @@ async function main() {
     }
 
     await mkdir(job.target.dir, { recursive: true })
-    // .rotate() with no argument applies the EXIF orientation. No
-    // .keepMetadata()/.withMetadata() call anywhere: sharp strips metadata on
-    // re-encode by default, which is exactly what we want.
-    await sharp(job.src)
-      .rotate()
-      .resize({ width: job.target.maxWidth, withoutEnlargement: true })
-      .jpeg({ quality: job.target.quality, mozjpeg: true })
-      .toFile(outPath)
+    try {
+      // .rotate() with no argument applies the EXIF orientation. No
+      // .keepMetadata()/.withMetadata() call anywhere: sharp strips metadata on
+      // re-encode by default, which is exactly what we want.
+      await sharp(job.src)
+        .rotate()
+        .resize({ width: job.target.maxWidth, withoutEnlargement: true })
+        .jpeg({ quality: job.target.quality, mozjpeg: true })
+        .toFile(outPath)
+    } catch (err) {
+      // A codec this libvips lacks fails HERE, not at metadata() — one file
+      // must not take down a batch, and the operator needs the reason.
+      skipped.push(`${rel}: could not decode the image data (${err.message.split('\n')[0]})`)
+      continue
+    }
 
     const [srcStat, outStat] = await Promise.all([stat(job.src), stat(outPath)])
     done.push({
