@@ -187,7 +187,7 @@ const seed: SecretSpotInput[] = [
       'Just outside Yosemite Valley there is Forest Service land where you can camp with views of El Capitan and Half Dome. No toilets, no amenities, no reservations needed, and no fee machinery, which is exactly why so few people know it is here. Pack out everything you pack in, and keep the location to yourself. Keep it secret, keep it safe.',
     hazard:
       'Dispersed camping with no toilets, no water, and no services. Check current fire restrictions before lighting anything.',
-    photos: [],
+    photos: [{ src: '/photos/foresta-forest-service-camping.jpg', caption: 'Mixed conifer forest and meadow, the country these camps sit in.' }],
   },
   {
     id: 'little-nellie-falls',

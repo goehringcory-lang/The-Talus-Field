@@ -1070,7 +1070,7 @@ const seed: StopInput[] = [
     coord: [-119.8015, 37.7566], // web-derived: Crane Flat meadow point ~580 m NW of the gas-station wye (the point the old tioga-road-drive pin sat on; GNIS-scale accuracy); TODO: verify on the ground — confirm the signed shoulder pullout at the meadow edge on Big Oak Flat Rd
     elevationFt: 6192,
     timeBudgetMin: 30,
-    photos: [], // TODO: needs dedicated photography — no editorial image matches the Crane Flat meadow
+    photos: [{ src: '/photos/crane-flat-meadow.jpg', caption: 'The meadow at the Big Oak Flat and Tioga Road junction.' }],
     teaser:
       'The big meadow at the Tioga Road junction is one of the most consistent places in the park to see a black bear. Pull over, stay at the edge, and scan the far tree line at dawn or dusk.',
     body:
@@ -1107,7 +1107,7 @@ const seed: StopInput[] = [
       'Tioga Road runs a long forested half hour east of Crane Flat before the famous stops begin, and almost everyone drives it straight through. White Wolf is the reason not to. A short spur drops north off the highway to a meadow at 8,000 feet ringed by lodgepole pine, with a camp of white tent cabins that has served Tioga travelers since the 1920s, a small campground, and the kind of quiet the Tuolumne core has already lost by mid-morning. The lodge\'s operating seasons have been irregular in recent years, so treat any meal or cabin plan as a bonus to confirm, not a schedule; the meadow, the trailheads, and the stillness are the reliable draw.\n\n' +
       'Two easy walks start here or nearby, and they are the gentlest introduction the high country offers. Harden Lake is 5.6 miles round trip on nearly flat old roadbed from the White Wolf road-end: a warm, shallow lake that is genuinely pleasant swimming by August, which almost nothing else up here is. Lukens Lake, from a signed trailhead two miles east on Tioga Road, is a 1.6-mile round-trip hop over a forested rise to a shallow lake edged by one of the best July wildflower meadows in the park. Neither has a switchback worth the name.\n\n' +
       'Deer work the meadow edges at dusk. Time White Wolf as the leg stretch on the drive east, or spend a first high-country night at the campground and let your lungs meet the altitude before the bigger Tuolumne days.',
-    photos: [], // TODO: needs dedicated photography — no editorial image matches the White Wolf meadow
+    photos: [{ src: '/photos/white-wolf.jpg', caption: 'The lodge building off Tioga Road, shut for the season.' }],
     history: {
       note:
         'A 1939 Nature Notes survey asked valley campers which of the park\'s other ' +
@@ -1581,7 +1581,7 @@ const seed: StopInput[] = [
     body:
       'There is no food service at Hetch Hetchy. No snack bar at the dam, nothing at the entrance station, and the drive back to Highway 120 is slow. The Evergreen Lodge is therefore not a discovery; it is logistics, and good logistics at that. Built in 1921 alongside the dam works, it sits in the pines on Evergreen Road about a mile before Camp Mather: a tavern with a deck, a proper restaurant, cabins under the trees, and a general store good for sandwiches, coffee, ice, and forgotten sunscreen.\n\n' +
       'The move is timing. Coffee and a breakfast sandwich on the drive in, before the gate; then the burger and a beer on the deck after the [Wapama miles](/stop/wapama-falls-trail), before the hairpins back to the highway. Hours run seasonal and shorten outside summer, so check ahead before counting on dinner. As roadhouses at the end of a big day go, this one has a century of practice.',
-    photos: [], // TODO: needs dedicated photography — no editorial image matches the Evergreen Lodge
+    photos: [{ src: '/photos/evergreen-lodge.jpg', caption: 'One of the cabins under the pines on Evergreen Road.' }],
   },
 
   // ---------------------------------------------------------------------------

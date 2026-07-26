@@ -14,6 +14,11 @@
     "license": "CC BY 2.0",
     "source": "https://commons.wikimedia.org/wiki/File:Bridalveil_Creek_(Yosemite_Valley,_Sierra_Nevada_Mountains,_California,_USA)_1_(19848230760).jpg"
   },
+  "/photos/camp-4.jpg": {
+    "author": "Almonroth",
+    "license": "CC BY-SA 3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Yosemite_Camp_Four-3.jpg"
+  },
   "/photos/cathedral-beach-quiet-picnic.jpg": {
     "author": "Todd Petrie",
     "license": "CC BY 2.0",
@@ -28,6 +33,11 @@
     "author": "E. & H.T. Anthony (Firm)",
     "license": "Public domain",
     "source": "https://commons.wikimedia.org/wiki/File:Summit_of_South_Dome._View_from_Clouds%27_Rest_Mt._Little_Yosemite_Valley,_by_E._%26_H.T._Anthony_(Firm).png"
+  },
+  "/photos/crane-flat-meadow.jpg": {
+    "author": "Ken Lund from Reno, Nevada, USA",
+    "license": "CC BY-SA 2.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Clearing_near_Crane_Flat_(91176992).jpg"
   },
   "/photos/crocker-stanford-points.jpg": {
     "author": "Richard Wood",
@@ -54,6 +64,11 @@
     "license": "CC0",
     "source": "https://commons.wikimedia.org/wiki/File:At_the_foot_of_the_granite_giant_(Unsplash).jpg"
   },
+  "/photos/evergreen-lodge.jpg": {
+    "author": "jontyms",
+    "license": "CC BY-SA 3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Vintage_Cabin,_Evergreen_Lodge_-_panoramio.jpg"
+  },
   "/photos/evergreen-road-drive.jpg": {
     "author": "daveynin from United States",
     "license": "CC BY 2.0",
@@ -68,6 +83,11 @@
     "author": "Peter Rupp",
     "license": "Pexels License",
     "source": "https://www.pexels.com/photo/water-falls-surrounded-by-green-leaf-trees-87118/"
+  },
+  "/photos/foresta-forest-service-camping.jpg": {
+    "author": "RuggyBearLA",
+    "license": "CC BY 2.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Yosemite_National_Park_-_51669271550.jpg"
   },
   "/photos/four-mile-trailhead.jpg": {
     "author": "Cam DiCecca",
@@ -128,6 +148,11 @@
     "author": "Jackhen1992",
     "license": "CC BY-SA 4.0",
     "source": ""
+  },
+  "/photos/mirror-lake.jpg": {
+    "author": "Dietmar Rabich",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Yosemite_National_Park_(CA,_USA),_Yosemite_Valley,_Mirror_Lake_--_2022_--_2807.jpg"
   },
   "/photos/mono-pass-meadows.jpg": {
     "author": "Carleton Watkins",
@@ -219,6 +244,11 @@
     "license": "Public domain",
     "source": "https://commons.wikimedia.org/wiki/File:Wawona_Meadows,_Yosemite_National_Park,_1900-1930_(CHS-1178).jpg"
   },
+  "/photos/white-wolf.jpg": {
+    "author": "Eeekster",
+    "license": "CC BY 3.0 us",
+    "source": "https://commons.wikimedia.org/wiki/File:White-Wolf-Cafe.jpg"
+  },
   "/photos/widows-tears-silver-strand.jpg": {
     "author": "Thomas K",
     "license": "Pexels License",
@@ -228,5 +258,10 @@
     "author": "Diliff",
     "license": "CC BY-SA 3.0",
     "source": "https://commons.wikimedia.org/wiki/File:Glacier_Point_at_Sunset,_Yosemite_NP,_CA,_US_-_Diliff.jpg"
+  },
+  "/photos/yosemite-village.jpg": {
+    "author": "Almonroth",
+    "license": "CC BY-SA 3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Yosemite_Village_Historic_District-3.jpg"
   }
 }
