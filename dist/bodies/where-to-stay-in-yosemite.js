@@ -14,10 +14,10 @@ window.ARTICLE_BODIES["where-to-stay-in-yosemite"] = function WhereToStayInYosem
     href: "/articles/yosemite-trip-cost-budget-2026"
   }, "separately"), ". And when you want the raw view rather than the argument, ", React.createElement("a", {
     className: "aff-link",
-    href: window.buildAffiliateLink("booking", "https://www.booking.com/searchresults.html?ss=Yosemite+National+Park"),
+    href: window.buildAffiliateLink("expedia", "https://www.expedia.com/Hotel-Search?destination=Yosemite%20National%20Park"),
     target: "_blank",
     rel: "sponsored noopener noreferrer",
-    "data-aff-network": "booking",
+    "data-aff-network": "expedia",
     "data-aff-list": "article",
     "data-aff-item-slug": "where-to-stay-in-yosemite",
     "data-aff-name": "Gateway availability search"

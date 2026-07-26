@@ -6,10 +6,10 @@ window.ARTICLE_BODIES["yosemite-trip-cost-budget-2026"] = function YosemiteTripC
     href: "/articles/yosemite-gateway-towns-compared"
   }, "Mariposa, Oakhurst, Groveland, and El Portal"), " range from $120 to $300 per night depending on the town and the season. Vacation rentals (Airbnb, VRBO) can be a deal for groups. A cabin that sleeps six for $250 per night is under $42 per person. Rates move with the season and the day of the week, so for real numbers on your dates, ", React.createElement("a", {
     className: "aff-link",
-    href: window.buildAffiliateLink("booking", "https://www.booking.com/searchresults.html?ss=Yosemite+National+Park"),
+    href: window.buildAffiliateLink("expedia", "https://www.expedia.com/Hotel-Search?destination=Yosemite%20National%20Park"),
     target: "_blank",
     rel: "sponsored noopener noreferrer",
-    "data-aff-network": "booking",
+    "data-aff-network": "expedia",
     "data-aff-list": "article",
     "data-aff-item-slug": "yosemite-trip-cost-budget-2026",
     "data-aff-name": "Gateway availability search"

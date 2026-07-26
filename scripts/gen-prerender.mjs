@@ -97,11 +97,17 @@ function buildPatagoniaAffiliateLink(targetUrl) {
   return PATAGONIA_AFFILIATE_BASE + "?u=" + encodeURIComponent(targetUrl);
 }
 
+const EXPEDIA_CAMREF = "1110lKspj";
 const BOOKING_AFFILIATE_AID = "";
 const STAY22_AFFILIATE_ID = "";
 const HIPCAMP_AFFILIATE_BASE = "";
 function buildAffiliateLink(network, targetUrl) {
   if (network === "patagonia") return buildPatagoniaAffiliateLink(targetUrl);
+  if (network === "expedia") {
+    const url = targetUrl || "https://www.expedia.com/";
+    if (!EXPEDIA_CAMREF) return url;
+    return "https://prf.hn/click/camref:" + encodeURIComponent(EXPEDIA_CAMREF) + "/destination:" + encodeURIComponent(url);
+  }
   if (network === "booking") {
     const url = targetUrl || "https://www.booking.com/";
     if (!BOOKING_AFFILIATE_AID) return url;

@@ -99,8 +99,8 @@ function TermsPage() {
 
 function AffiliatePage() {
   return (
-    <LegalShell title="Affiliate Disclosure" eyebrow="Legal" updated="July 20, 2026">
-      <p>The Talus Field currently participates in one affiliate program: Patagonia's, run through the Impact network. Applications to lodging and camping programs (Booking.com and Hipcamp) are pending; until they are approved, the lodging and camping links in articles are plain outbound links that earn nothing. When that changes, this page changes the same day.</p>
+    <LegalShell title="Affiliate Disclosure" eyebrow="Legal" updated="July 21, 2026">
+      <p>The Talus Field currently participates in two affiliate programs: Patagonia's, run through the Impact network, and the Expedia Group Travel Creator Program, run through Partnerize, which powers the lodging availability links in articles. An application to a camping program (Hipcamp) is pending; until it is approved, camping links are plain outbound links that earn nothing. When the list changes, this page changes the same day.</p>
 
       <p>What that means in plain language: when an article on this site links to a product, a book, or a piece of lodging, that link may be an affiliate link. If you click through and make a purchase or a booking, I receive a small commission. The price you pay does not change. Whether or not you use the affiliate link, the recommendation in the article is the same.</p>
 

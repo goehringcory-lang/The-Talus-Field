@@ -23,14 +23,19 @@ window.PATAGONIA_AFFILIATE_BASE = "https://patagonia.pxf.io/c/7338432/1948563/23
 // payment-link consts in page-consult.jsx: the markup, the disclosure, and
 // the GA4 affiliate_click events are all live from day one.
 //
+// Expedia Group Travel Creator Program (runs on Partnerize). LIVE: this is
+// the approved camref from the creator dashboard, and it is the network the
+// lodging links in article markup use. Camrefs are public by design (they
+// ride in every outbound link), not a secret. Links wrap as
+// https://prf.hn/click/camref:<id>/destination:<encoded url>.
+window.EXPEDIA_CAMREF = "1110lKspj";
 // Booking.com Partner Hub affiliate ID (the `aid` URL parameter appended to
-// any booking.com URL).
+// any booking.com URL). Registered but unused by article markup while the
+// application is pending; the lodging links run on `expedia` above.
 window.BOOKING_AFFILIATE_AID = "";
 // Stay22 Allez ID. The build below wraps any lodging URL in an Allez redirect;
 // verify the exact link template against the Stay22 dashboard's link builder
-// before filling this in, then switch individual links from data-aff-network
-// "booking" to "stay22" where Stay22 pays better. Until then this entry is
-// registered but unused by article markup.
+// before filling this in. Registered but unused by article markup.
 window.STAY22_AFFILIATE_ID = "";
 // Hipcamp (private-land camping) tracking-link prefix from the affiliate
 // dashboard; the destination is appended as an encoded ?u= parameter,
@@ -52,6 +57,19 @@ window.AFFILIATES = {
       targetUrl
         ? window.PATAGONIA_AFFILIATE_BASE + "?u=" + encodeURIComponent(targetUrl)
         : window.PATAGONIA_AFFILIATE_BASE,
+  },
+  expedia: {
+    hostRe: /(^|\.)expedia\.com$/i,
+    build: (targetUrl) => {
+      const url = targetUrl || "https://www.expedia.com/";
+      if (!window.EXPEDIA_CAMREF) return url;
+      return (
+        "https://prf.hn/click/camref:" +
+        encodeURIComponent(window.EXPEDIA_CAMREF) +
+        "/destination:" +
+        encodeURIComponent(url)
+      );
+    },
   },
   booking: {
     hostRe: /(^|\.)booking\.com$/i,

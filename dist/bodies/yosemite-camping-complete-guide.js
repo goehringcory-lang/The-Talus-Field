@@ -35,10 +35,10 @@ window.ARTICLE_BODIES["yosemite-camping-complete-guide"] = function YosemiteCamp
     href: "/articles/yosemite-gateway-towns-compared"
   }, "gateway towns"), " each have their character. El Portal is closest to the Valley. Mariposa has more services. Groveland is quieter. Fish Camp puts you near the Mariposa Grove. If the trip has collapsed into \"we need a roof tonight,\" ", React.createElement("a", {
     className: "aff-link",
-    href: window.buildAffiliateLink("booking", "https://www.booking.com/searchresults.html?ss=Mariposa%2C+California"),
+    href: window.buildAffiliateLink("expedia", "https://www.expedia.com/Hotel-Search?destination=Mariposa%2C%20California"),
     target: "_blank",
     rel: "sponsored noopener noreferrer",
-    "data-aff-network": "booking",
+    "data-aff-network": "expedia",
     "data-aff-list": "article",
     "data-aff-item-slug": "yosemite-camping-complete-guide",
     "data-aff-name": "Mariposa lodging search"
