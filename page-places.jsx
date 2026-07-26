@@ -1,4 +1,4 @@
-/* global React */
+/* global React, Breadcrumbs */
 
 function PlacesPage({ go }) {
   const regions = [
@@ -50,6 +50,7 @@ function PlacesPage({ go }) {
       {/* Page head */}
       <section className="page-head">
         <div className="wrap wrap--narrow">
+          <Breadcrumbs go={go} trail={[{ label: "Home", route: "home" }, { label: "Directory" }]} />
           <div className="eyebrow eyebrow--moss">The Directory</div>
           <h1>A short list, mostly empty.</h1>
           <p className="page-head__dek">

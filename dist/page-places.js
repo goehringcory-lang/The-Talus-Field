@@ -39,7 +39,15 @@ function PlacesPage({
     className: "page-head"
   }, React.createElement("div", {
     className: "wrap wrap--narrow"
-  }, React.createElement("div", {
+  }, React.createElement(Breadcrumbs, {
+    go: go,
+    trail: [{
+      label: "Home",
+      route: "home"
+    }, {
+      label: "Directory"
+    }]
+  }), React.createElement("div", {
     className: "eyebrow eyebrow--moss"
   }, "The Directory"), React.createElement("h1", null, "A short list, mostly empty."), React.createElement("p", {
     className: "page-head__dek"

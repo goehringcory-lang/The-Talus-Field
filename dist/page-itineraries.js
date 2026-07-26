@@ -32,7 +32,15 @@ function ItinerariesPage({
     className: "page-head"
   }, React.createElement("div", {
     className: "wrap"
-  }, React.createElement("div", {
+  }, React.createElement(Breadcrumbs, {
+    go: go,
+    trail: [{
+      label: "Home",
+      route: "home"
+    }, {
+      label: "Itineraries"
+    }]
+  }), React.createElement("div", {
     className: "eyebrow eyebrow--moss"
   }, "Itineraries"), React.createElement("h1", null, "Yosemite, in day-sized pieces."), React.createElement("p", {
     className: "page-head__dek"

@@ -1,4 +1,4 @@
-/* global React, ArticleCard, GuidePromo, NewsletterInline */
+/* global React, ArticleCard, GuidePromo, NewsletterInline, Breadcrumbs */
 
 // =============================================================================
 // SEARCH — `/search` route. The journal's own search, over the catalog the
@@ -24,11 +24,24 @@ const { useCallback, useEffect, useMemo, useRef, useState } = React;
 // Standing pages worth finding by name. Hand-maintained on purpose — this is
 // the site's own table of contents, not a crawl, and a stale entry here is a
 // broken result. Keep in step with STATIC_ROUTE_KEYS in app.jsx.
+//
+// An entry carries either a `route` (an SPA route key, navigated with go) or a
+// `path` (a real URL, navigated by the browser). The Nature Notes archive is
+// the only `path` entry: it is generated static HTML, not an SPA route, so it
+// must never get a go() handler.
 const SEARCH_PAGES = [
+  { route: "explore", title: "Site index", dek: "Every destination on The Talus Field on one page, grouped and described: sections, the archive, the films, the trip tools, and the Field Guide.", kind: "Page" },
   { route: "now", title: "The Park Bulletin", dek: "Everything happening in the park right now: alerts, road and area status, free programs, dated events, trail status, hours, transit, phone numbers.", kind: "Page" },
   { route: "planning", title: "The Yosemite Planning Guide", dek: "The full planning sequence: reservations, permits, timing, transit, lodging, and what to do when the thing you wanted is booked.", kind: "Page" },
   { route: "itineraries", title: "Itineraries", dek: "Half-day, one-day, two-day, and three-day plans in drive order, each one openable in the trip map.", kind: "Page" },
   { route: "conditions", title: "Conditions", dek: "Live webcams, entrance waits, and the three forecasts that matter, on one page.", kind: "Page" },
+  { route: "stay", title: "Where to stay", dek: "In-park lodging and the gateway towns compared: drive times, booking windows, and what to do when the thing you wanted is full.", kind: "Page" },
+  { path: "/archive/", title: "The Nature Notes archive", dek: "The park's own bulletin, Yosemite Nature Notes: 512 issues transcribed from the scans, with year indexes.", kind: "Archive" },
+  { route: "tioga-opening", title: "The Tioga Road opening", dek: "When the high country actually opens, how the plowing works, and what is worth doing the first week it is passable.", kind: "Page" },
+  { route: "half-dome-lottery", title: "The Half Dome lottery", dek: "How the cable permit lottery works, the real odds, and what to climb instead.", kind: "Page" },
+  { route: "partners", title: "Group codes", dek: "The Field Guide in packs for hotels, inns, and rental hosts: one code per guest.", kind: "Page" },
+  { route: "widget", title: "The conditions widget", dek: "A free embeddable box with live entrance waits and the Valley forecast, for gateway businesses.", kind: "Page" },
+  { route: "advertise", title: "Advertise", dek: "What a directory listing is, what it costs, and what disqualifies an applicant.", kind: "Page" },
   { route: "map", title: "Trip planner map", dek: "Every pin in the park, filterable by category, assembled into a trip you can share or email to yourself.", kind: "Page" },
   { route: "checklist", title: "First-week checklist", dek: "What to do in the week before a Yosemite trip, in order.", kind: "Page" },
   { route: "kit", title: "Kit", dek: "The gear that actually earns its place in a Yosemite pack, and what to leave home.", kind: "Page" },
@@ -133,7 +146,8 @@ function buildIndex() {
   for (const page of SEARCH_PAGES) {
     entries.push({
       type: "page",
-      key: page.route,
+      key: page.route || page.path,
+      path: page.path || null,
       title: page.title,
       dek: page.dek,
       kind: page.kind,
@@ -143,7 +157,7 @@ function buildIndex() {
         section: "",
         dek: normalize(page.dek),
         seoDek: "",
-        slug: normalize(page.route),
+        slug: normalize(page.route || page.path),
       },
     });
   }
@@ -175,12 +189,14 @@ function Highlight({ text, tokens }) {
 }
 
 function PageResult({ entry, tokens, go }) {
-  const href = window.routeToPath ? window.routeToPath(entry.key) : `/${entry.key}`;
+  // entry.path is a real URL (the generated archive), so the browser navigates
+  // it; everything else is an SPA route key handed to go().
+  const href = entry.path || (window.routeToPath ? window.routeToPath(entry.key) : `/${entry.key}`);
   return (
     <a
       className="search-result"
       href={href}
-      onClick={(e) => { e.preventDefault(); go(entry.key); }}
+      onClick={(e) => { if (entry.path) return; e.preventDefault(); go(entry.key); }}
     >
       <div className="search-result__kind">{entry.kind}</div>
       <div className="search-result__title">
@@ -251,6 +267,7 @@ function SearchPage({ go }) {
     <div className="page">
       <div className="page-head">
         <div className="wrap">
+          <Breadcrumbs go={go} trail={[{ label: "Home", route: "home" }, { label: "Search" }]} />
           <div className="eyebrow eyebrow--moss">Search</div>
           <h1>Find it.</h1>
           <p className="page-head__dek">

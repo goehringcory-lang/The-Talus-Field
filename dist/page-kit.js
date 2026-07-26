@@ -69,7 +69,15 @@ function KitPage({
       paddingTop: 56,
       paddingBottom: 24
     }
-  }, React.createElement("div", {
+  }, React.createElement(Breadcrumbs, {
+    go: go,
+    trail: [{
+      label: "Home",
+      route: "home"
+    }, {
+      label: "Kit"
+    }]
+  }), React.createElement("div", {
     className: "eyebrow eyebrow--moss",
     style: {
       marginBottom: 18

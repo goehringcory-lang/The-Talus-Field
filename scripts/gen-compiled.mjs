@@ -65,6 +65,7 @@ const PAGE_FILES = [
   "page-conditions.jsx",
   "page-stay.jsx",
   "page-search.jsx",
+  "page-explore.jsx",
   "page-now.jsx",
   "page-firefall.jsx",
   "page-tioga-opening.jsx",

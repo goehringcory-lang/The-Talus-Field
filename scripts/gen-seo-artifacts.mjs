@@ -233,6 +233,7 @@ function buildSitemap(merged, categories) {
     ["/consult", "2026-07-15"],
     ["/widget", "2026-07-15"],
     ["/partners", "2026-07-25"],
+    ["/explore", "2026-07-26"],
     // /now's lastmod tracks the current edition stamp in bulletin.json, so a
     // per-edition rewrite flows into the sitemap with no step beyond `run seo`.
     ["/now", nowLastmod()],

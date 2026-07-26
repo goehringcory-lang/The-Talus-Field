@@ -6,6 +6,11 @@ var {
   useState
 } = React;
 var SEARCH_PAGES = [{
+  route: "explore",
+  title: "Site index",
+  dek: "Every destination on The Talus Field on one page, grouped and described: sections, the archive, the films, the trip tools, and the Field Guide.",
+  kind: "Page"
+}, {
   route: "now",
   title: "The Park Bulletin",
   dek: "Everything happening in the park right now: alerts, road and area status, free programs, dated events, trail status, hours, transit, phone numbers.",
@@ -24,6 +29,41 @@ var SEARCH_PAGES = [{
   route: "conditions",
   title: "Conditions",
   dek: "Live webcams, entrance waits, and the three forecasts that matter, on one page.",
+  kind: "Page"
+}, {
+  route: "stay",
+  title: "Where to stay",
+  dek: "In-park lodging and the gateway towns compared: drive times, booking windows, and what to do when the thing you wanted is full.",
+  kind: "Page"
+}, {
+  path: "/archive/",
+  title: "The Nature Notes archive",
+  dek: "The park's own bulletin, Yosemite Nature Notes: 512 issues transcribed from the scans, with year indexes.",
+  kind: "Archive"
+}, {
+  route: "tioga-opening",
+  title: "The Tioga Road opening",
+  dek: "When the high country actually opens, how the plowing works, and what is worth doing the first week it is passable.",
+  kind: "Page"
+}, {
+  route: "half-dome-lottery",
+  title: "The Half Dome lottery",
+  dek: "How the cable permit lottery works, the real odds, and what to climb instead.",
+  kind: "Page"
+}, {
+  route: "partners",
+  title: "Group codes",
+  dek: "The Field Guide in packs for hotels, inns, and rental hosts: one code per guest.",
+  kind: "Page"
+}, {
+  route: "widget",
+  title: "The conditions widget",
+  dek: "A free embeddable box with live entrance waits and the Valley forecast, for gateway businesses.",
+  kind: "Page"
+}, {
+  route: "advertise",
+  title: "Advertise",
+  dek: "What a directory listing is, what it costs, and what disqualifies an applicant.",
   kind: "Page"
 }, {
   route: "map",
@@ -159,7 +199,8 @@ function buildIndex() {
   for (var page of SEARCH_PAGES) {
     entries.push({
       type: "page",
-      key: page.route,
+      key: page.route || page.path,
+      path: page.path || null,
       title: page.title,
       dek: page.dek,
       kind: page.kind,
@@ -169,7 +210,7 @@ function buildIndex() {
         section: "",
         dek: normalize(page.dek),
         seoDek: "",
-        slug: normalize(page.route)
+        slug: normalize(page.route || page.path)
       }
     });
   }
@@ -197,11 +238,12 @@ function PageResult({
   tokens,
   go
 }) {
-  var href = window.routeToPath ? window.routeToPath(entry.key) : `/${entry.key}`;
+  var href = entry.path || (window.routeToPath ? window.routeToPath(entry.key) : `/${entry.key}`);
   return React.createElement("a", {
     className: "search-result",
     href: href,
     onClick: e => {
+      if (entry.path) return;
       e.preventDefault();
       go(entry.key);
     }
@@ -263,7 +305,15 @@ function SearchPage({
     className: "page-head"
   }, React.createElement("div", {
     className: "wrap"
-  }, React.createElement("div", {
+  }, React.createElement(Breadcrumbs, {
+    go: go,
+    trail: [{
+      label: "Home",
+      route: "home"
+    }, {
+      label: "Search"
+    }]
+  }), React.createElement("div", {
     className: "eyebrow eyebrow--moss"
   }, "Search"), React.createElement("h1", null, "Find it."), React.createElement("p", {
     className: "page-head__dek"

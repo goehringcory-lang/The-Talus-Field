@@ -14,7 +14,15 @@ function NewsletterPage({
       paddingTop: 96,
       paddingBottom: 96
     }
-  }, React.createElement("div", {
+  }, React.createElement(Breadcrumbs, {
+    go: go,
+    trail: [{
+      label: "Home",
+      route: "home"
+    }, {
+      label: "Newsletter"
+    }]
+  }), React.createElement("div", {
     className: "eyebrow eyebrow--moss"
   }, "Newsletter"), React.createElement("h1", {
     style: {
@@ -177,7 +185,9 @@ function NewsletterPage({
     }
   }, "Privacy →"))));
 }
-function ContactPage() {
+function ContactPage({
+  go
+}) {
   var [form, setForm] = useState({
     name: "",
     email: "",
@@ -227,7 +237,15 @@ function ContactPage() {
     className: "page-head"
   }, React.createElement("div", {
     className: "wrap wrap--narrow"
-  }, React.createElement("div", {
+  }, React.createElement(Breadcrumbs, {
+    go: go,
+    trail: [{
+      label: "Home",
+      route: "home"
+    }, {
+      label: "Contact"
+    }]
+  }), React.createElement("div", {
     className: "eyebrow eyebrow--moss"
   }, "Contact"), React.createElement("h1", null, "Send me a note."), React.createElement("p", {
     className: "page-head__dek"

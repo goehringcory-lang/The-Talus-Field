@@ -1,4 +1,4 @@
-/* global React, NewsletterInline */
+/* global React, NewsletterInline, Breadcrumbs */
 const { useState: useStateF, useEffect: useEffectF, useRef: useRefF } = React;
 
 // ============================================================
@@ -76,7 +76,7 @@ function FilmCard({ ep }) {
   );
 }
 
-function FilmsPage() {
+function FilmsPage({ go }) {
   const nn = window.NATURE_NOTES;
   const byTheme = (themeId) =>
     nn.episodes
@@ -88,6 +88,7 @@ function FilmsPage() {
     <div>
       {/* Page head */}
       <section className="wrap" style={{ paddingTop: 56, paddingBottom: 24 }}>
+        <Breadcrumbs go={go} trail={[{ label: "Home", route: "home" }, { label: "Films" }]} />
         <div className="eyebrow eyebrow--moss" style={{ marginBottom: 18 }}>The Film Archive</div>
         <h1 className="display" style={{ fontSize: "clamp(46px, 6vw, 84px)", lineHeight: 0.98, marginBottom: 24, fontWeight: 500, letterSpacing: "-0.01em" }}>
           Moving pictures

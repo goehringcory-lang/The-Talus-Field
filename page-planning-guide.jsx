@@ -1,4 +1,4 @@
-/* global React, ArticleCard, NewsletterInline, GuidePromo, LodgingCta */
+/* global React, ArticleCard, NewsletterInline, GuidePromo, LodgingCta, Breadcrumbs */
 
 function PlanningGuide({ go }) {
   const find = (slug) => window.findArticle(slug);
@@ -47,6 +47,7 @@ function PlanningGuide({ go }) {
     <div className="page">
       <div className="page-head">
         <div className="wrap">
+          <Breadcrumbs go={go} trail={[{ label: "Home", route: "home" }, { label: "The Planning Guide" }]} />
           <div className="eyebrow eyebrow--moss">The Planning Guide</div>
           <h1>Yosemite, planned properly.</h1>
           <p className="page-head__dek">

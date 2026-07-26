@@ -42,7 +42,15 @@ function PlanningGuide({
     className: "page-head"
   }, React.createElement("div", {
     className: "wrap"
-  }, React.createElement("div", {
+  }, React.createElement(Breadcrumbs, {
+    go: go,
+    trail: [{
+      label: "Home",
+      route: "home"
+    }, {
+      label: "The Planning Guide"
+    }]
+  }), React.createElement("div", {
     className: "eyebrow eyebrow--moss"
   }, "The Planning Guide"), React.createElement("h1", null, "Yosemite, planned properly."), React.createElement("p", {
     className: "page-head__dek"

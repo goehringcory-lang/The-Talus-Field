@@ -26,16 +26,18 @@ Inline in `<head>`: `window.gtag`/`dataLayer` (GA4 bootstrap), `window.track` (g
 | `byCategory`, `findArticle`, `findCategory` | data.js | Catalog lookups. |
 | `BODY_VERSIONS`, `loadArticleBody`, `ARTICLE_BODIES` | data.js | Lazy article-body system: per-slug cache busters, the on-demand loader, and the registry each body file writes itself into. |
 | `NATURE_NOTES` | videos-data.js | Film archive data for /films. |
-| `Header`, `Footer`, `ArticleCard`, `NewsletterInline`, `ExitIntentNewsletter`, `Placeholder`, `ResponsiveImage`, `MapLightbox`, `MotifMountains`, `MotifSun`, `MotifTrees` | components.jsx | Shared components (implicit globals). |
+| `Header`, `Footer`, `KeepGoing`, `ArticleCard`, `NewsletterInline`, `ExitIntentNewsletter`, `Placeholder`, `ResponsiveImage`, `MapLightbox`, `MotifMountains`, `MotifSun`, `MotifTrees` | components.jsx | Shared components (implicit globals). |
+| `NAV_GROUPS`, `navGroupLinks` | components.jsx | The site's navigation table — the grouped list of every reader-facing route, shared by the masthead dropdowns, the mobile menu, and (as a reference) the site index at `/explore`. Nothing in it may be date-derived or catalog-computed: the masthead is baked into index.html's static home shell. |
+| `KEEP_GOING` | components.jsx | Curated onward links keyed by route, rendered by `KeepGoing` (mounted once in app.jsx, under any route present in the table). A route that is absent renders nothing. |
 | `preloadResponsive`, `SIZES_HERO`, `SIZES_BODY`, `SIZES_CARD` | components.jsx | LCP image preloading and the shared `sizes` strings for ResponsiveImage. |
 | `trackNewsletterSubmit`, `trackNewsletterImpression`, `useNewsletterImpression`, `isSubscribed` | components.jsx | Newsletter funnel helpers. All delegate to `window.track`; submit also sets the subscribed flag. |
 | `readHistory` | components.jsx | Read-history store over safeStorage: `last`/`setLast`/`clearLast` (the unfinished article behind the home resume band) and `done`/`markDone` (finished slugs, used to rank the article related rail unread-first). |
 | `TweaksPanel`, `useTweaks`, `TweakSection`, `TweakRadio`, plus the other `Tweak*` controls | tweaks-panel.jsx | The site-wide tweaks drawer (implicit globals). |
 | `TWEAK_DEFAULTS` | index.html | Default palette and density consumed by `useTweaks` in app.jsx. |
-| `HomePage`, `ArticlesIndex`, `CategoryPage`, `ArticlePage`, `AboutPage`, `KitPage`, `PlacesPage`, `FilmsPage`, `MapPage`, `GuidePage`, `PlanningGuide`, `ChecklistPage`, `NewsletterPage`, `ContactPage`, `AdvertisePage`, `PrivacyPage`, `TermsPage`, `AffiliatePage`, `ItinerariesPage`, `ConditionsPage`, `BulletinPage`, `FirefallPage`, `ConsultPage`, `WidgetPage`, `PartnersPage`, `SearchPage` | the matching page-*.jsx (page-articles.jsx, page-legal.jsx, and page-newsletter-contact.jsx each export more than one) | Page components, mounted by the route chain in app.jsx. |
+| `HomePage`, `ArticlesIndex`, `CategoryPage`, `ArticlePage`, `AboutPage`, `KitPage`, `PlacesPage`, `FilmsPage`, `MapPage`, `GuidePage`, `PlanningGuide`, `ChecklistPage`, `NewsletterPage`, `ContactPage`, `AdvertisePage`, `PrivacyPage`, `TermsPage`, `AffiliatePage`, `ItinerariesPage`, `ConditionsPage`, `BulletinPage`, `FirefallPage`, `ConsultPage`, `WidgetPage`, `PartnersPage`, `SearchPage`, `ExplorePage` | the matching page-*.jsx (page-articles.jsx, page-legal.jsx, and page-newsletter-contact.jsx each export more than one) | Page components, mounted by the route chain in app.jsx. |
 | `routeToPath`, `SITE_ORIGIN` | app.jsx | Route-to-URL helper for real href attributes, and the canonical origin. |
 
-Adding a page means: create the page file, add its `<script>` tag to index.html, add it to the route chain and `REQUIRED_GLOBALS` in app.jsx, and mirror its SEO in functions/_middleware.js.
+Adding a page means: create the page file; register it in `PAGE_MODULES` and `STATIC_ROUTE_KEYS` and the route chain in app.jsx (NOT a `<script>` tag in index.html — page bundles lazy-load, and `REQUIRED_GLOBALS` is the eager shell only); add it to the compile list in `scripts/gen-compiled.mjs`, `STATIC_ROUTES` in `scripts/lib/catalog.mjs`, and the sitemap table in `scripts/gen-seo-artifacts.mjs`; mirror its `<head>` in both `edge/seo.js` (`known`, plus an optional `HUB_PROSE` thunk) and the client-side `known` table in app.jsx's `buildSeo` (a route missing from the latter silently falls back to homepage meta on SPA navigation); and list it in `SEARCH_PAGES` in page-search.jsx and on `/explore`.
 
 ## GA4 event inventory
 
@@ -71,7 +73,10 @@ All events fire through `window.track`. Names and where they fire:
 | `article_share` | components.jsx (ShareRow on article pages; `method` = web-share or copy) |
 | `series_band_click` | page-article.jsx (Planning Guide series band; `from`/`to` slugs, `to: planning-hub` for the hub link) |
 | `toc_jump` | page-article.jsx (in-guide table-of-contents jumps) |
-| `cta_click` | components.jsx (masthead links: `location: masthead_cta` for The Map, `masthead_now` for This week); page-home.jsx (`home_door` with `target` for the hero triage doors, `home_month` with `target` for month-planner panel links, `home_dispatch` for the dispatch teaser, `home_path` with `target` for the Go Deeper row, `home_strip_now` for the About-strip line) |
+| `nav_search_submit` | components.jsx (the search box at the top of the mobile menu; `location`, `has_query`) |
+| `keep_going_click` | components.jsx (the site-wide onward-links block; `from` route and `target` route) |
+| `index_click` | page-explore.jsx (destination clicks on the site index; `target`) |
+| `cta_click` | components.jsx (masthead links: `location: masthead_cta` for The Map, `masthead_search` for search, `masthead_now` for the Bulletin), Footer (`footer_index` for the site-index link); page-home.jsx (`home_door` with `target` for the hero triage doors, `home_month` with `target` for month-planner panel links, `home_dispatch` for the dispatch teaser, `home_path` with `target` for the Go Deeper row, `home_strip_now` for the About-strip line) |
 
 ## localStorage key inventory
 

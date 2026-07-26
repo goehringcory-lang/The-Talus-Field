@@ -45,6 +45,7 @@ export const STATIC_ROUTES = [
   "/conditions",
   "/stay",
   "/search",
+  "/explore",
   "/now",
   "/firefall",
   "/tioga-opening",

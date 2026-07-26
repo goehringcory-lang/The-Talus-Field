@@ -72,7 +72,15 @@ function ChecklistPage({
     className: "page-head"
   }, React.createElement("div", {
     className: "wrap wrap--narrow"
-  }, React.createElement("div", {
+  }, React.createElement(Breadcrumbs, {
+    go: go,
+    trail: [{
+      label: "Home",
+      route: "home"
+    }, {
+      label: "First-week checklist"
+    }]
+  }), React.createElement("div", {
     className: "eyebrow eyebrow--moss"
   }, "The First-Week Checklist"), React.createElement("h1", null, "Yosemite, in one printable page."), React.createElement("p", {
     className: "page-head__dek"

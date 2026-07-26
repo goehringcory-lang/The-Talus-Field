@@ -1,4 +1,4 @@
-/* global React, ReactDOM, Header, Footer, ExitIntentNewsletter,
+/* global React, ReactDOM, Header, Footer, KeepGoing, ExitIntentNewsletter,
    TweaksPanel, useTweaks, TweakSection, TweakRadio, TweakToggle */
 /* Page components (HomePage, ArticlePage, MapPage, ...) are NOT bare globals
    here: their bundles lazy-load per route (see PAGE_MODULES) and the route
@@ -29,6 +29,7 @@ const STATIC_ROUTE_KEYS = new Set([
   "advertise", "newsletter", "contact", "privacy", "terms", "affiliate",
   "guide", "map", "films", "itineraries", "conditions", "now", "firefall", "stay",
   "consult", "widget", "partners", "search", "tioga-opening", "half-dome-lottery",
+  "explore",
 ]);
 
 function pathToRoute(pathname) {
@@ -106,6 +107,9 @@ const PAGE_MODULES = {
   widget: { scripts: ["/dist/page-widget.js"], globals: ["WidgetPage"] },
   partners: { scripts: ["/dist/page-partners.js"], globals: ["PartnersPage"] },
   search: { scripts: ["/dist/page-search.js"], globals: ["SearchPage"] },
+  // videos-data.js rides along so the index can print a real film count rather
+  // than a number that would go stale the next time an episode is added.
+  explore: { scripts: ["/videos-data.js", "/dist/page-explore.js"], globals: ["ExplorePage"] },
   "tioga-opening": { scripts: ["/dist/page-tioga-opening.js"], globals: ["TiogaOpeningPage"] },
   "half-dome-lottery": { scripts: ["/dist/page-half-dome-lottery.js"], globals: ["HalfDomeLotteryPage"] },
 };
@@ -662,6 +666,41 @@ function buildSeo(route) {
       ogType: "website",
       breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Widget", null]],
     },
+    // Four routes the edge has always carried but this table did not, so an
+    // SPA navigation to them silently fell back to homepage meta (a direct
+    // load was correct, a click was not). Titles and descriptions mirror
+    // edge/seo.js.
+    stay: {
+      title: `Where to Stay in Yosemite — in-park lodging and gateway towns — ${SITE_NAME}`,
+      description:
+        "Every place to sleep in and around Yosemite, compared honestly: the six in-park lodges and camps, the five gateway towns with real drive times, and how the 366-day booking window actually works.",
+      ogType: "website",
+      breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Where to stay", null]],
+    },
+    partners: {
+      title: `Group Codes — the Yosemite Field Guide for your guests — ${SITE_NAME}`,
+      description:
+        "Yosemite-area hotels, inns, rental hosts, and property managers: buy The Talus Field Guide in packs and give every guest a code. Offline app, 18 months of access, nothing to install on your side.",
+      ogType: "website",
+      breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Group codes", null]],
+    },
+    search: {
+      title: `Search — ${SITE_NAME}`,
+      description:
+        "Search every article, section, and page in The Talus Field: Yosemite planning notes, trail reports, wildlife and natural history, and seasonal guides.",
+      ogType: "website",
+      breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Search", null]],
+      // Matches the edge: a results page is thin, duplicative content and
+      // every ?q= is another near-identical URL.
+      robots: "noindex, follow",
+    },
+    explore: {
+      title: `Site index — everything on The Talus Field — ${SITE_NAME}`,
+      description:
+        "Every page in The Talus Field, grouped and described: the article sections, the Park Bulletin, the Nature Notes archive and film series, the trip map and itineraries, lodging, conditions, and the Field Guide app.",
+      ogType: "website",
+      breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Site index", null]],
+    },
   };
   const meta = known[route] || known.home;
   return {
@@ -774,7 +813,8 @@ function NotFoundPage({ go }) {
       <div className="wrap wrap--narrow" style={{ paddingBottom: 64 }}>
         <p>
           Good places to reorient:{" "}
-          <a href="/articles" onClick={(e) => { e.preventDefault(); go("articles"); }}>the articles index</a>,{" "}
+          <a href="/explore" onClick={(e) => { e.preventDefault(); go("explore"); }}>the site index</a>,{" "}
+          <a href="/search" onClick={(e) => { e.preventDefault(); go("search"); }}>search</a>,{" "}
           <a href="/planning" onClick={(e) => { e.preventDefault(); go("planning"); }}>the planning guide</a>, or{" "}
           <a href="/map" onClick={(e) => { e.preventDefault(); go("map"); }}>the trip planner map</a>.
         </p>
@@ -924,7 +964,7 @@ function App() {
     page = <window.PlacesPage go={go} />;
     currentNav = "places";
   } else if (route === "films") {
-    page = <window.FilmsPage />;
+    page = <window.FilmsPage go={go} />;
     currentNav = "films";
   } else if (route === "advertise") {
     page = <window.AdvertisePage go={go} />;
@@ -962,7 +1002,10 @@ function App() {
     // currentNav stays "home" so no nav link highlights, matching /map.
   } else if (route === "search") {
     page = <window.SearchPage go={go} />;
-    // currentNav stays "home": search is a utility, not a section.
+    currentNav = "search";
+  } else if (route === "explore") {
+    page = <window.ExplorePage go={go} />;
+    currentNav = "explore";
   } else if (route === "stay") {
     page = <window.StayPage go={go} />;
   } else if (route === "conditions") {
@@ -998,7 +1041,15 @@ function App() {
   return (
     <>
       <Header current={currentNav} go={go} />
-      <main key={route}>{page}</main>
+      <main key={route}>
+        {page}
+        {/* Curated onward links, keyed by route (see KEEP_GOING in
+            components.jsx). Mounted here rather than pasted into twenty page
+            components, and skipped entirely on routes that are not in the
+            table — articles carry their own related-reading rails, and the
+            legal pages and the home page do not want one. */}
+        {routeReady && <KeepGoing route={routeExists(route) ? route : "notfound"} go={go} />}
+      </main>
       <Footer go={go} />
       <ExitIntentNewsletter disabled={exitDisabled} />
 
@@ -1038,7 +1089,7 @@ window.SITE_ORIGIN = SITE_ORIGIN;
 // tweaks-panel.jsx). Page components are lazy-loaded per route and verified by
 // ensureRoute after each load, so they are deliberately absent here.
 const REQUIRED_GLOBALS = [
-  "Header", "Footer", "ExitIntentNewsletter",
+  "Header", "Footer", "KeepGoing", "ExitIntentNewsletter",
   "TweaksPanel", "useTweaks", "TweakSection", "TweakRadio",
 ];
 const missingGlobals = REQUIRED_GLOBALS.filter((n) => typeof window[n] === "undefined");

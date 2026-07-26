@@ -11,7 +11,7 @@ function routeToPath(route) {
   if (route.startsWith("a:")) return `/articles/${route.slice(2)}`;
   return `/${route}`;
 }
-var STATIC_ROUTE_KEYS = new Set(["home", "articles", "planning", "checklist", "about", "kit", "places", "advertise", "newsletter", "contact", "privacy", "terms", "affiliate", "guide", "map", "films", "itineraries", "conditions", "now", "firefall", "stay", "consult", "widget", "partners", "search", "tioga-opening", "half-dome-lottery"]);
+var STATIC_ROUTE_KEYS = new Set(["home", "articles", "planning", "checklist", "about", "kit", "places", "advertise", "newsletter", "contact", "privacy", "terms", "affiliate", "guide", "map", "films", "itineraries", "conditions", "now", "firefall", "stay", "consult", "widget", "partners", "search", "tioga-opening", "half-dome-lottery", "explore"]);
 function pathToRoute(pathname) {
   var path = (pathname || "/").replace(/\/+$/, "") || "/";
   if (path === "/") return "home";
@@ -142,6 +142,10 @@ var PAGE_MODULES = {
   search: {
     scripts: ["/dist/page-search.js"],
     globals: ["SearchPage"]
+  },
+  explore: {
+    scripts: ["/videos-data.js", "/dist/page-explore.js"],
+    globals: ["ExplorePage"]
   },
   "tioga-opening": {
     scripts: ["/dist/page-tioga-opening.js"],
@@ -642,6 +646,31 @@ function buildSeo(route) {
       description: "A free embeddable box with live Yosemite entrance waits and the three-day Valley forecast, for gateway hotels, rental hosts, and tour operators. One script tag.",
       ogType: "website",
       breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Widget", null]]
+    },
+    stay: {
+      title: `Where to Stay in Yosemite — in-park lodging and gateway towns — ${SITE_NAME}`,
+      description: "Every place to sleep in and around Yosemite, compared honestly: the six in-park lodges and camps, the five gateway towns with real drive times, and how the 366-day booking window actually works.",
+      ogType: "website",
+      breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Where to stay", null]]
+    },
+    partners: {
+      title: `Group Codes — the Yosemite Field Guide for your guests — ${SITE_NAME}`,
+      description: "Yosemite-area hotels, inns, rental hosts, and property managers: buy The Talus Field Guide in packs and give every guest a code. Offline app, 18 months of access, nothing to install on your side.",
+      ogType: "website",
+      breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Group codes", null]]
+    },
+    search: {
+      title: `Search — ${SITE_NAME}`,
+      description: "Search every article, section, and page in The Talus Field: Yosemite planning notes, trail reports, wildlife and natural history, and seasonal guides.",
+      ogType: "website",
+      breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Search", null]],
+      robots: "noindex, follow"
+    },
+    explore: {
+      title: `Site index — everything on The Talus Field — ${SITE_NAME}`,
+      description: "Every page in The Talus Field, grouped and described: the article sections, the Park Bulletin, the Nature Notes archive and film series, the trip map and itineraries, lodging, conditions, and the Field Guide app.",
+      ogType: "website",
+      breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Site index", null]]
     }
   };
   var meta = known[route] || known.home;
@@ -714,12 +743,18 @@ function NotFoundPage({
       paddingBottom: 64
     }
   }, React.createElement("p", null, "Good places to reorient:", " ", React.createElement("a", {
-    href: "/articles",
+    href: "/explore",
     onClick: e => {
       e.preventDefault();
-      go("articles");
+      go("explore");
     }
-  }, "the articles index"), ",", " ", React.createElement("a", {
+  }, "the site index"), ",", " ", React.createElement("a", {
+    href: "/search",
+    onClick: e => {
+      e.preventDefault();
+      go("search");
+    }
+  }, "search"), ",", " ", React.createElement("a", {
     href: "/planning",
     onClick: e => {
       e.preventDefault();
@@ -860,7 +895,9 @@ function App() {
     });
     currentNav = "places";
   } else if (route === "films") {
-    page = React.createElement(window.FilmsPage, null);
+    page = React.createElement(window.FilmsPage, {
+      go: go
+    });
     currentNav = "films";
   } else if (route === "advertise") {
     page = React.createElement(window.AdvertisePage, {
@@ -921,6 +958,12 @@ function App() {
     page = React.createElement(window.SearchPage, {
       go: go
     });
+    currentNav = "search";
+  } else if (route === "explore") {
+    page = React.createElement(window.ExplorePage, {
+      go: go
+    });
+    currentNav = "explore";
   } else if (route === "stay") {
     page = React.createElement(window.StayPage, {
       go: go
@@ -972,7 +1015,10 @@ function App() {
     go: go
   }), React.createElement("main", {
     key: route
-  }, page), React.createElement(Footer, {
+  }, page, routeReady && React.createElement(KeepGoing, {
+    route: routeExists(route) ? route : "notfound",
+    go: go
+  })), React.createElement(Footer, {
     go: go
   }), React.createElement(ExitIntentNewsletter, {
     disabled: exitDisabled
@@ -1011,7 +1057,7 @@ function App() {
 }
 window.routeToPath = routeToPath;
 window.SITE_ORIGIN = SITE_ORIGIN;
-var REQUIRED_GLOBALS = ["Header", "Footer", "ExitIntentNewsletter", "TweaksPanel", "useTweaks", "TweakSection", "TweakRadio"];
+var REQUIRED_GLOBALS = ["Header", "Footer", "KeepGoing", "ExitIntentNewsletter", "TweaksPanel", "useTweaks", "TweakSection", "TweakRadio"];
 var missingGlobals = REQUIRED_GLOBALS.filter(n => typeof window[n] === "undefined");
 if (missingGlobals.length) {
   console.error("app.jsx boot: missing shell globals (a script failed to load or register):", missingGlobals.join(", "));

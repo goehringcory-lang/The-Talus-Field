@@ -74,7 +74,9 @@ function FilmCard({
     className: "film-card__dek"
   }, ep.dek));
 }
-function FilmsPage() {
+function FilmsPage({
+  go
+}) {
   var nn = window.NATURE_NOTES;
   var byTheme = themeId => nn.episodes.filter(ep => ep.theme === themeId).sort((a, b) => (a.episode == null ? 1 : 0) - (b.episode == null ? 1 : 0) || (a.episode || 0) - (b.episode || 0));
   var count = nn.episodes.length;
@@ -84,7 +86,15 @@ function FilmsPage() {
       paddingTop: 56,
       paddingBottom: 24
     }
-  }, React.createElement("div", {
+  }, React.createElement(Breadcrumbs, {
+    go: go,
+    trail: [{
+      label: "Home",
+      route: "home"
+    }, {
+      label: "Films"
+    }]
+  }), React.createElement("div", {
     className: "eyebrow eyebrow--moss",
     style: {
       marginBottom: 18
