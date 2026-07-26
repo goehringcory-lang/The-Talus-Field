@@ -36,11 +36,13 @@ const DEFAULT_PROGRAM_MIN = 60
 const PARK_MPH = 22
 const PARK_AND_WALK_MIN = 10
 
-/** Coordinate of a trip item, when its stop, hike, or program carries one. */
+/** Coordinate of a trip item, when its stop, hike, or program carries one.
+ *  Custom items have none by design: they take the flat travel buffer. */
 export function itemCoord(item: TripItemT): [number, number] | undefined {
   if (item.type === 'stop') return getStopById(item.stopId)?.coord
   if (item.type === 'hike') return getHikeById(item.hikeId)?.coord
-  return item.snapshot.coord ?? undefined
+  if (item.type === 'program') return item.snapshot.coord ?? undefined
+  return undefined
 }
 
 /** Slotting buffer between consecutive coordinates: drive + park-and-walk. */
@@ -88,6 +90,9 @@ function floatingDuration(item: TripItemT): number {
   }
   if (item.type === 'hike') {
     return item.durationMin ?? getHikeById(item.hikeId)?.durationMin ?? DEFAULT_STOP_MIN
+  }
+  if (item.type === 'custom') {
+    return item.durationMin ?? DEFAULT_STOP_MIN
   }
   return DEFAULT_STOP_MIN
 }

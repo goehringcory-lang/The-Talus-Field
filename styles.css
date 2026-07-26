@@ -2211,6 +2211,17 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
 
 /* ===== Page transitions ===== */
 .page { animation: pageIn 0.25s ease; }
+/* First render only (see data-boot in index.html): the homepage's hero is
+   already on screen from the static shell, so fading it in again is a
+   flicker, not a transition. app.jsx clears the attribute after the first
+   commit and SPA navigations animate normally. */
+[data-boot] .page { animation: none; }
+
+/* The static home shell renders the first-visit capture box. A reader who is
+   already subscribed gets React's one-line note instead, so the shell hides
+   the box for them before paint (inline script in the generated block) rather
+   than baking a box that would be swapped for something ~170px shorter. */
+.home-shell--subscribed .hero__capture-box { display: none; }
 @keyframes pageIn {
   from { opacity: 0; transform: translateY(4px); }
   to { opacity: 1; transform: none; }
@@ -2811,10 +2822,210 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
 }
 @media (max-width: 720px) {
   .start-q__label { min-height: 0; }
-  /* The generic repeat(4 override above turns this grid into a 0-gap 2x2
-     (right for the borders-touching By Section grid, wrong for cards with
-     labels): restore a single readable column with breathing room. */
-  .start-here-grid { grid-template-columns: 1fr !important; gap: 36px !important; }
+}
+
+/* ===== Home page grids =====
+   These were inline style props until the July 2026 pass, which meant their
+   phone behaviour came from the [style*="grid-template-columns"] attribute
+   matching further up this file — a hack that had already needed one
+   !important counter-rule to keep .start-here-grid from inheriting the By
+   Section 2x2. Real classes, so the breakpoints below are explicit. The
+   attribute-matching rules stay for the pages that still use inline grids
+   (the webcam strip among them). */
+.home-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 36px;
+  row-gap: 48px;
+}
+.start-here-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 32px;
+  row-gap: 40px;
+}
+.home-sections {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border-top: 1px solid var(--ink);
+  border-left: 1px solid var(--ink);
+}
+.home-section-tile {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  border-right: 1px solid var(--ink);
+  border-bottom: 1px solid var(--ink);
+  padding: 28px;
+}
+.home-section-tile__num { color: var(--moss); font-weight: 700; }
+.home-section-tile__label {
+  font-family: var(--display);
+  font-size: 26px;
+  font-weight: 500;
+  margin: 16px 0 10px;
+  letter-spacing: -0.005em;
+  line-height: 1.1;
+}
+.home-section-tile__blurb {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 15px;
+  color: var(--ink-2);
+  line-height: 1.45;
+  margin-bottom: 20px;
+}
+.home-section-tile__count {
+  font-family: var(--sans);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--ink-3);
+  font-weight: 700;
+}
+
+/* Section heading + dek shared by the Start Here row and the editor strip. */
+.home-section__title {
+  font-family: var(--display);
+  font-size: 44px;
+  line-height: 1.05;
+  margin-bottom: 12px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  text-transform: none;
+}
+.home-section__dek {
+  font-family: var(--display);
+  font-style: italic;
+  font-size: 19px;
+  color: var(--ink-2);
+  line-height: 1.5;
+  max-width: 60ch;
+}
+
+/* The three-column layout shared by the two Go Deeper bands. */
+.home-band__grid {
+  display: grid;
+  grid-template-columns: 1fr 1.6fr 0.9fr;
+  gap: 40px;
+  align-items: center;
+}
+
+/* Go Deeper: the free-map band. Tinted ground, moss spine (won callout_bands). */
+.band-map {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  border: 1px solid var(--ink);
+  border-left: 6px solid var(--moss);
+  background: var(--paper-2);
+  padding: 36px 32px;
+}
+.band-map__title {
+  font-family: var(--display);
+  font-size: 36px;
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+}
+.band-map__body {
+  font-family: var(--serif);
+  font-size: 19px;
+  line-height: 1.5;
+  color: var(--ink-2);
+  margin: 0 0 16px;
+}
+.band-map__cta {
+  color: var(--moss);
+  font-weight: 700;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+}
+
+/* Go Deeper: the three quieter paths. */
+.home-paths {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 24px;
+}
+.home-path {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  border: 1px solid var(--ink);
+  padding: 28px;
+}
+.home-path__title {
+  font-family: var(--display);
+  font-size: 26px;
+  font-weight: 500;
+  line-height: 1.1;
+  letter-spacing: -0.005em;
+  margin-bottom: 10px;
+}
+.home-path__blurb {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 15px;
+  color: var(--ink-2);
+  line-height: 1.45;
+  margin: 0 0 18px;
+}
+.home-path__cta {
+  color: var(--moss);
+  font-weight: 700;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+}
+
+/* From the Editor + newsletter strip. */
+.home-editor {
+  display: grid;
+  grid-template-columns: 0.75fr 1.15fr 1.1fr;
+  gap: 44px;
+  align-items: center;
+  border-top: 2px solid var(--ink);
+  border-bottom: 2px solid var(--ink);
+  padding: 56px 0;
+}
+.home-editor__title {
+  font-family: var(--display);
+  font-size: 38px;
+  margin-bottom: 18px;
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  text-transform: none;
+}
+.home-editor__dek {
+  font-family: var(--display);
+  font-style: italic;
+  font-size: 19px;
+  color: var(--ink-2);
+  line-height: 1.5;
+  margin-bottom: 24px;
+}
+
+@media (max-width: 720px) {
+  .home-cards,
+  .home-paths,
+  .home-band__grid,
+  .home-editor { grid-template-columns: 1fr; gap: 28px; }
+  .start-here-grid { grid-template-columns: 1fr; gap: 36px; }
+  /* By Section reads better as a 2x2 than as four stacked tiles. */
+  .home-sections { grid-template-columns: repeat(2, 1fr); }
+  .home-section-tile { padding: 18px; }
+  .home-section-tile__label { font-size: 20px; }
+  .home-section__title { font-size: 32px; }
+  .home-section__dek { font-size: 17px; }
+  .home-editor { padding: 40px 0; }
+  .home-editor__title { font-size: 28px; }
+  .band-map { padding: 28px 20px; }
+  .band-map__title { font-size: 28px; }
+  .band-map__body { font-size: 16px; }
 }
 
 /* ===== Home: Park Bulletin teaser =====
@@ -4307,4 +4518,154 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
 @media (prefers-reduced-motion: reduce) {
   .guide-buybar { transition: none; }
   .guide-buybar.is-visible { transition: none; }
+}
+
+/* ===== Search (/search) =====
+   The field is the page: a single large input, results narrowing under it as
+   the reader types. Matched runs are marked rather than color-only, so the
+   reason a result came back survives a monochrome screen. */
+.search-form { max-width: 680px; }
+.search-form__label {
+  display: block;
+  font-family: var(--sans);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-weight: 700;
+  color: var(--ink-3);
+  margin-bottom: 10px;
+}
+.search-form__row {
+  display: flex;
+  align-items: stretch;
+  gap: 10px;
+  border-bottom: 2px solid var(--ink);
+}
+.search-form__input {
+  flex: 1 1 auto;
+  min-width: 0;
+  font-family: var(--display);
+  font-size: 28px;
+  line-height: 1.3;
+  color: var(--ink);
+  background: transparent;
+  border: 0;
+  padding: 6px 0 12px;
+  -webkit-appearance: none;
+  appearance: none;
+}
+.search-form__input:focus { outline: none; }
+.search-form__input::placeholder { color: var(--ink-3); opacity: 0.7; }
+/* The type="search" clear affordance is inconsistent across browsers and
+   collides with the explicit Clear button; hide the native one. */
+.search-form__input::-webkit-search-cancel-button { display: none; }
+.search-form__clear {
+  flex: 0 0 auto;
+  align-self: center;
+  font-family: var(--sans);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-weight: 700;
+  color: var(--ink-2);
+  background: transparent;
+  border: 0;
+  padding: 6px 2px;
+  cursor: pointer;
+}
+.search-form__clear:hover { color: var(--moss); }
+
+.search-status {
+  font-family: var(--sans);
+  font-size: 13px;
+  color: var(--ink-3);
+  margin-top: 14px;
+  /* Reserve the line's height so results don't jump as the count changes. */
+  min-height: 1.4em;
+}
+
+.search-browse { margin-top: 16px; }
+.search-browse__head {
+  font-family: var(--sans);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-weight: 700;
+  color: var(--ink-3);
+  margin-bottom: 14px;
+}
+.search-browse__chips { display: flex; flex-wrap: wrap; }
+
+.search-empty {
+  font-family: var(--serif);
+  font-size: 17px;
+  line-height: 1.6;
+  color: var(--ink-1);
+  max-width: 60ch;
+}
+
+.search-results { display: grid; gap: 0; }
+.search-result {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  border-top: 1px solid var(--rule);
+  padding: 16px 0;
+}
+.search-result:hover .search-result__title { color: var(--moss); }
+.search-result__kind {
+  font-family: var(--sans);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  margin-bottom: 6px;
+}
+.search-result__title {
+  font-family: var(--display);
+  font-size: 21px;
+  line-height: 1.25;
+  color: var(--ink);
+}
+.search-result__dek {
+  font-family: var(--serif);
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--ink-2);
+  margin-top: 6px;
+  max-width: 68ch;
+}
+/* Page and section results highlight their matched runs. Article results
+   deliberately do not: they reuse ArticleCard, so they look the same here as
+   on every other index, and a photo card carries its own visual weight. */
+.search-result mark {
+  background: transparent;
+  color: inherit;
+  font-weight: 700;
+  box-shadow: inset 0 -0.4em 0 var(--moss-pale, rgba(122, 138, 106, 0.28));
+}
+
+.search-articles {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 36px;
+  row-gap: 56px;
+}
+
+.search-scope-note {
+  font-family: var(--sans);
+  font-size: 12px;
+  color: var(--ink-3);
+  margin-top: 48px;
+  border-top: 1px solid var(--rule);
+  padding-top: 16px;
+}
+
+@media (max-width: 900px) {
+  .search-articles { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 620px) {
+  .search-articles { grid-template-columns: 1fr; }
+  .search-form__input { font-size: 22px; }
 }

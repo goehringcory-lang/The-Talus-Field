@@ -228,6 +228,22 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
   .btn--ghost:hover { background: var(--ink); color: var(--paper); }
 }
 
+/* Destructive actions: rust outline, filling in on hover so the weight of the
+   action reads before the tap. Solid is reserved for the armed confirm state. */
+.btn--danger {
+  background: transparent;
+  color: var(--rust);
+  border-color: var(--rust);
+}
+@media (hover: hover) {
+  .btn--danger:hover { background: var(--rust); border-color: var(--rust); color: var(--paper); }
+}
+.btn--danger.is-armed {
+  background: var(--rust);
+  border-color: var(--rust);
+  color: var(--paper);
+}
+
 /* Text-link-as-button: for tertiary actions inside prose. */
 .btn--quiet {
   background: none;
@@ -308,6 +324,48 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
 }
 .swap-callout--hazard .swap-callout__label {
   color: var(--rust);
+}
+
+/* Archive note — a sourced aside from the Nature Notes archive. Reads as a
+   clipping set into the page rather than a callout demanding action, which is
+   why it takes a boxed rule instead of the swap-callout's left bar. */
+.archive-note {
+  border: 1px solid var(--rule-soft);
+  background: var(--paper-2);
+  padding: var(--s4);
+  margin: var(--s5) 0 0;
+}
+.archive-note__label {
+  font-family: var(--sans);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  display: block;
+  margin-bottom: var(--s2);
+}
+.archive-note__body {
+  font-family: var(--serif);
+  font-size: 16px;
+  line-height: 1.55;
+  color: var(--ink-2);
+  margin: 0;
+}
+.archive-note__cite {
+  font-family: var(--sans);
+  font-size: 12px;
+  line-height: 1.4;
+  color: var(--ink-3);
+  margin: var(--s3) 0 0;
+}
+.archive-note__cite a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.archive-note__cite a:hover {
+  color: var(--moss);
 }
 
 /* Markdown body */
@@ -617,13 +675,23 @@ a:active {
   border-radius: var(--radius);
   animation: trip-add-notice-in 160ms ease-out;
 }
-.trip-add-notice a {
+.trip-add-notice a,
+.trip-add-notice__undo {
   color: var(--paper);
   min-height: 44px;
   display: inline-flex;
   align-items: center;
   flex-shrink: 0;
   font-weight: 600;
+}
+.trip-add-notice__undo {
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  font-weight: 600;
+  text-decoration: underline;
+  cursor: pointer;
 }
 @keyframes trip-add-notice-in {
   from {
@@ -729,6 +797,15 @@ select:focus-visible {
 }
 .checklist__count {
   margin-bottom: 14px;
+}
+.checklist__reset {
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  color: inherit;
+  text-decoration: underline;
+  cursor: pointer;
 }
 .checklist__list {
   list-style: none;

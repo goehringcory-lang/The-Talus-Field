@@ -2,13 +2,16 @@
 // useTripPlan — localStorage-backed plan state with module-level subscribers,
 // the same pattern as lib/favorites.ts, so "Add to trip" buttons on stop
 // pages, the map popup, and program rows stay in sync with /trip without a
-// context provider. Corrupt storage drops to an empty plan.
+// context provider. A corrupt stored plan salvages item by item: entries that
+// fail their own schema are dropped, the rest of the plan survives. Only a
+// broken envelope drops to an empty plan.
 // =============================================================================
 
 import { useCallback, useEffect, useState } from 'react'
 import { defaultTripDates, readTripDates, writeTripDates } from '../programs/usePrograms'
 import type { ProgramEventT } from '../programs/schema'
 import {
+  TripItem,
   TripPlan,
   hikeItemId,
   programItemId,
@@ -51,10 +54,24 @@ function readStorage(): TripPlanT | null {
   try {
     const raw = window.localStorage.getItem(STORAGE_KEY)
     if (!raw) return null
-    const parsed = TripPlan.safeParse(JSON.parse(raw))
+    const data: unknown = JSON.parse(raw)
+    const parsed = TripPlan.safeParse(data)
     if (parsed.success) return parsed.data
+    // Salvage: a plan whose envelope is intact but where an item fails its
+    // schema (hand-edited storage, or written by a newer build with an item
+    // type this build doesn't know) keeps every item that parses instead of
+    // dropping the user's whole plan.
+    if (data && typeof data === 'object' && Array.isArray((data as { items?: unknown }).items)) {
+      const salvage = TripPlan.safeParse({
+        ...data,
+        items: (data as { items: unknown[] }).items.filter(
+          (it) => TripItem.safeParse(it).success,
+        ),
+      })
+      if (salvage.success) return salvage.data
+    }
   } catch {
-    /* corrupt storage drops to an empty plan */
+    /* unreadable storage drops to an empty plan */
   }
   return null
 }
@@ -152,6 +169,31 @@ export function useTripPlan() {
     })
   }, [])
 
+  const addCustom = useCallback(
+    (title: string, opts?: { note?: string; day?: string; startTime?: string }) => {
+      const trimmed = title.trim()
+      if (!trimmed) return
+      update((p) => ({
+        ...p,
+        items: [
+          ...p.items,
+          {
+            type: 'custom',
+            // Day-independent id: a custom item keeps its identity (and its
+            // calendar UID) when moved across days.
+            itemId: `custom:${crypto.randomUUID()}`,
+            title: trimmed,
+            note: opts?.note?.trim() || undefined,
+            day: clampDay(opts?.day ?? p.dates.start, p.dates),
+            startTime: opts?.startTime || undefined,
+            eventUid: crypto.randomUUID(),
+          },
+        ],
+      }))
+    },
+    [],
+  )
+
   const removeItem = useCallback((itemId: string) => {
     update((p) => ({ ...p, items: p.items.filter((it) => it.itemId !== itemId) }))
   }, [])
@@ -171,6 +213,13 @@ export function useTripPlan() {
     update((p) => {
       const moving = p.items.find((it) => it.itemId === itemId && it.type !== 'program')
       if (!moving || moving.type === 'program') return p
+      // Custom ids don't embed the day, so a move only rewrites `day`.
+      if (moving.type === 'custom') {
+        return {
+          ...p,
+          items: p.items.map((it) => (it.itemId === itemId ? { ...it, day } : it)),
+        }
+      }
       const newId =
         moving.type === 'hike' ? hikeItemId(moving.hikeId, day) : stopItemId(moving.stopId, day)
       if (newId === itemId) return p
@@ -188,6 +237,57 @@ export function useTripPlan() {
     })
   }, [])
 
+  // Drag on the agenda board moves a thing to a day and a time at once. Two
+  // separate mutations would write the plan twice, and the intermediate write
+  // (new day, old time) can fail slotting for a frame and make the block jump.
+  const placeItem = useCallback((itemId: string, day: string, startTime: string | undefined) => {
+    update((p) => {
+      const moving = p.items.find((it) => it.itemId === itemId)
+      if (!moving || moving.type === 'program') return p
+      if (moving.day === day) {
+        return {
+          ...p,
+          items: p.items.map((it) =>
+            it.itemId === itemId && it.type !== 'program' ? { ...it, startTime } : it,
+          ),
+        }
+      }
+      // Custom ids don't embed the day, so a move only rewrites `day`.
+      if (moving.type === 'custom') {
+        return {
+          ...p,
+          items: p.items.map((it) => (it.itemId === itemId ? { ...it, day, startTime } : it)),
+        }
+      }
+      const newId =
+        moving.type === 'hike' ? hikeItemId(moving.hikeId, day) : stopItemId(moving.stopId, day)
+      // Target day already holds this item: drop the dragged copy rather than
+      // mint a colliding itemId, same as moveStopToDay.
+      if (p.items.some((it) => it.itemId === newId)) {
+        return { ...p, items: p.items.filter((it) => it.itemId !== itemId) }
+      }
+      return {
+        ...p,
+        items: p.items.map((it) =>
+          it.itemId === itemId && it.type !== 'program'
+            ? { ...it, day, itemId: newId, startTime }
+            : it,
+        ),
+      }
+    })
+  }, [])
+
+  // Resizing a block overrides the content's own time budget. undefined puts
+  // the item back on the bundled estimate.
+  const setItemDuration = useCallback((itemId: string, durationMin: number | undefined) => {
+    update((p) => ({
+      ...p,
+      items: p.items.map((it) =>
+        it.itemId === itemId && it.type !== 'program' ? { ...it, durationMin } : it,
+      ),
+    }))
+  }, [])
+
   const clear = useCallback(() => {
     update((p) => ({ ...p, items: [] }))
   }, [])
@@ -203,9 +303,12 @@ export function useTripPlan() {
     addStop,
     addHike,
     addProgram,
+    addCustom,
     removeItem,
     setStopTime,
     moveStopToDay,
+    placeItem,
+    setItemDuration,
     clear,
     hasItem,
   }
@@ -225,6 +328,20 @@ export function readTripPlan(): TripPlanT {
   return read()
 }
 
+/**
+ * Replace the plan wholesale, keeping the incoming `updatedAt` verbatim. Used
+ * by a cross-device sync pull, which must NOT go through update(): restamping
+ * a plan the server just handed over would make this device look newer than
+ * the copy it accepted and push it straight back.
+ */
+export function replaceTripPlan(plan: TripPlanT): void {
+  write(plan)
+  // /programs and /trip both read the window from tfg.trip.dates, so a synced
+  // plan whose dates stayed behind would show the right items on the wrong
+  // days. Keep the two in step.
+  writeTripDates(plan.dates)
+}
+
 /** Cheap add-from-anywhere entry points (map popup lives outside React state). */
 export function addStopToPlan(stopId: string, day?: string) {
   const p = read()
@@ -239,6 +356,19 @@ export function addStopToPlan(stopId: string, day?: string) {
     ],
     updatedAt: new Date().toISOString(),
   })
+}
+
+/**
+ * Restore previously removed items exactly as they were (day, startTime,
+ * durationMin, eventUid all preserved, so calendar UIDs survive an undo).
+ * Items whose itemId meanwhile reappeared in the plan are skipped.
+ */
+export function restoreTripItems(items: TripItemT[]) {
+  if (items.length === 0) return
+  const p = read()
+  const fresh = items.filter((it) => !p.items.some((cur) => cur.itemId === it.itemId))
+  if (fresh.length === 0) return
+  write({ ...p, items: [...p.items, ...fresh], updatedAt: new Date().toISOString() })
 }
 
 export function isStopPlanned(stopId: string): boolean {

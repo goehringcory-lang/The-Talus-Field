@@ -340,7 +340,7 @@ function Header({
     key: "read",
     label: "Read",
     route: "articles",
-    items: [["articles", "All articles"], ["cat:planning", "Planning"], ["cat:trails", "Trails and hikes"], ["cat:wildlife", "Wildlife and nature"], ["cat:seasonal", "Seasonal guides"], ["now", "The Park Bulletin"], ["films", "Films"]]
+    items: [["articles", "All articles"], ["cat:planning", "Planning"], ["cat:trails", "Trails and hikes"], ["cat:wildlife", "Wildlife and nature"], ["cat:seasonal", "Seasonal guides"], ["now", "The Park Bulletin"], ["films", "Films"], ["search", "Search"]]
   }, {
     key: "plan",
     label: "Plan",
@@ -355,7 +355,7 @@ function Header({
     label: "About",
     route: "about",
     align: "right",
-    items: [["about", "About the journal"], ["newsletter", "Newsletter"], ["contact", "Contact"], ["places", "Directory"], ["advertise", "Advertise"], ["widget", "Conditions widget"]]
+    items: [["about", "About the journal"], ["newsletter", "Newsletter"], ["contact", "Contact"], ["places", "Directory"], ["advertise", "Advertise"], ["widget", "Conditions widget"], ["partners", "Group codes"]]
   }];
   var isGroupActive = g => {
     if (current === g.route) return true;
@@ -602,6 +602,8 @@ function Footer({
       go("films");
     }
   }, "Films")), React.createElement("li", null, React.createElement("a", {
+    href: "/archive/"
+  }, "Nature Notes archive")), React.createElement("li", null, React.createElement("a", {
     href: "/places",
     onClick: e => {
       e.preventDefault();
@@ -1302,7 +1304,7 @@ var WEBCAMS = [{
   alt: "Live view of Wawona"
 }];
 function WebcamStrip() {
-  var camCacheBust = useMemo(() => Date.now(), []);
+  var camCacheBust = useMemo(() => Math.floor(Date.now() / 300000), []);
   return React.createElement(React.Fragment, null, React.createElement("div", {
     className: "cam-grid",
     style: {

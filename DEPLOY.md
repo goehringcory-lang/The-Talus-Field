@@ -42,6 +42,20 @@ For `MAGIC_LINK_SIGNING_SECRET`, generate something like:
 node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
 ```
 
+Optional, for PWA push notifications (`/api/push/*`). Without them every push
+route returns 503 and the app hides the opt-in entirely, so this can wait:
+
+```bash
+node scripts/gen-vapid-keys.mjs        # prints both values, from the repo root
+cd workers
+wrangler secret put VAPID_PUBLIC_KEY
+wrangler secret put VAPID_PRIVATE_KEY
+```
+
+Generate the pair **once**. Browsers bind a push subscription to the
+`applicationServerKey` it was created with, so rotating silences every device
+already subscribed until it next opens the app and re-registers.
+
 ## 3. Resend setup (this is the gotcha)
 
 Resend won't deliver to arbitrary emails until your sending domain is verified.
@@ -196,7 +210,7 @@ The buy box, checkout route, webhook, KV buyer records, and email delivery are a
 
 1. **Price.** `GUIDE_PRICE_CENTS = "1900"` in [workers/wrangler.toml](workers/wrangler.toml) is the single source of truth. The editorial buy box reads it live from `GET /api/inventory` (`priceCents`) with a static $19 fallback in [page-guide.jsx](page-guide.jsx). Change the var, `wrangler deploy`, done.
 2. **KV.** The production namespace `id`s for `GUIDE_BUYERS` and `GUIDE_PROGRAMS` are already filled in `wrangler.toml`. Only the `preview_id`s remain `REPLACE_ME_FOR_LOCAL_DEV`; create preview namespaces (`wrangler kv namespace create ... --preview`) only if you need local `wrangler dev`.
-3. **Secrets.** `wrangler secret put` each of: `STRIPE_SECRET_KEY`, `STRIPE_WEBHOOK_SECRET`, `MAGIC_LINK_SIGNING_SECRET`, `RESEND_API_KEY`. Rotate or delete `DEV_USERNAME`/`DEV_CODE` before launch; keep `ADMIN_*` as the operator door.
+3. **Secrets.** `wrangler secret put` each of: `STRIPE_SECRET_KEY`, `STRIPE_WEBHOOK_SECRET`, `MAGIC_LINK_SIGNING_SECRET`, `RESEND_API_KEY`. Optionally `VAPID_PUBLIC_KEY`/`VAPID_PRIVATE_KEY` for push notifications (section 2); they are not launch-blocking, since the app hides the opt-in when they are unset. Rotate or delete `DEV_USERNAME`/`DEV_CODE` before launch; keep `ADMIN_*` as the operator door.
 4. **Webhook.** In the Stripe dashboard, add endpoint `https://api.thetalusfieldjournal.com/api/stripe/webhook` for events `checkout.session.completed`, `checkout.session.async_payment_succeeded`, **and** `charge.refunded`; the endpoint's signing secret is `STRIPE_WEBHOOK_SECRET`. Without `charge.refunded`, the refund-revocation branch in [workers/src/routes/stripe.ts](workers/src/routes/stripe.ts) never runs and refunded buyers keep access until the KV record is expired by hand.
 5. **Resend domain.** Verify the sending domain for `cory@thetalusfieldjournal.com` in the Resend dashboard **before** going live. With an unverified domain the webhook's email send fails after the buyer has already been charged, and no access code or magic link ever arrives.
 6. **Deploy + verify fail-closed traps.** `wrangler deploy`, then `curl https://api.thetalusfieldjournal.com/api/inventory` must show `sold: 0`, `cap: 100`, `priceCents: 1900`. The inventory check fails closed: a missing/garbled `GUIDE_MONTHLY_CAP` reads as sold out.

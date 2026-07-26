@@ -27,6 +27,23 @@ export type StopCollectionT = z.infer<typeof StopCollection>
 export const SecretCategory = z.enum(['vistas', 'trails', 'parking', 'camping', 'after-dark'])
 export type SecretCategoryT = z.infer<typeof SecretCategory>
 
+// A note from the Yosemite Nature Notes archive: the National Park Service's
+// own bulletin, 1922 onward, transcribed and published on the editorial site
+// at /archive. `note` is house-voice prose, but every fact in it must come
+// from the cited issue and nowhere else — the citation is the whole point, and
+// a reader who follows the link has to find what the note claims. Volume and
+// number address the issue; `issueDate` is the date the archive prints for it,
+// and its trailing year is what builds the URL (see content/archive.ts), so a
+// note cannot drift out of sync with the page it points at.
+export const ArchiveNote = z.object({
+  note: z.string(),
+  volume: z.number().int().positive(),
+  number: z.number().int().positive(),
+  issueDate: z.string().regex(/(18|19|20)\d{2}$/, 'issueDate must end in a four-digit year'),
+})
+
+export type ArchiveNoteT = z.infer<typeof ArchiveNote>
+
 export const Stop = z.object({
   id: z.string(),                         // "tunnel-view"
   title: z.string(),
@@ -53,6 +70,7 @@ export const Stop = z.object({
     )
     .default([]),
   swap: z.string().optional(),            // "If full, drive to Valley View"
+  history: ArchiveNote.optional(),        // one sourced note from the Nature Notes archive
 })
 
 export type StopT = z.infer<typeof Stop>
@@ -174,6 +192,69 @@ export const Hike = z.object({
 export type HikeT = z.infer<typeof Hike>
 
 export const Hikes = z.array(Hike)
+
+// Dining directory (/dining): every food and drink option inside the park
+// plus the gateway-town places worth knowing, grouped by area. Distinct from
+// Stops on purpose — a dining venue is a service (hours, price tier, season),
+// not a destination; the handful that ARE destinations (the Ahwahnee, the
+// pizza deck, Evergreen Lodge) cross-link to their Stop via `stopId`.
+// In-park hours are transcribed from the current NPS Yosemite Guide edition
+// (see DINING_HOURS_SOURCE in dining.ts) and re-checked each edition, same
+// workflow as the editorial bulletin.
+export const DiningAreaEnum = z.enum([
+  'valley',
+  'glacier-mariposa',
+  'tuolumne',
+  'hetch-hetchy',
+  'gateway', // outside the park; `town` says where
+])
+export type DiningArea = z.infer<typeof DiningAreaEnum>
+
+export const DiningKindEnum = z.enum([
+  'sit-down',  // table service
+  'counter',   // order at the counter, casual
+  'snack',     // grab-and-go, ice cream, sweet shop
+  'coffee',
+  'bar',
+  'grocery',   // stores that solve the cooler, not a meal
+])
+export type DiningKind = z.infer<typeof DiningKindEnum>
+
+export const DiningVenue = z.object({
+  id: z.string(),                         // "curry-pizza-deck"
+  name: z.string(),
+  area: DiningAreaEnum,
+  place: z.string(),                      // location line: "Yosemite Valley Lodge",
+                                          // "Highway 140, Mariposa"
+  town: z.string().optional(),            // gateway grouping header; required when
+                                          // area is 'gateway' (enforced on DiningVenues)
+  kind: DiningKindEnum,
+  price: z.enum(['$', '$$', '$$$', '$$$$']),
+  order: z.number(),                      // sort within area (gateway: within town)
+  description: z.string(),                // 1-3 plain sentences, house voice
+  hours: z.string().optional(),           // as published; in-park values come from the
+                                          // current Yosemite Guide edition
+  hoursNote: z.string().optional(),       // "last seating 9:30", "from noon Sa Su"
+  season: z.string().optional(),          // chip-length window, e.g. "Tioga Road season"
+  reservations: z.string().optional(),    // 1 sentence; renders as a note
+  closed: z.string().optional(),          // temporary-closure note; renders as a badge + note
+  coord: z.tuple([z.number(), z.number()]).optional(), // [lng, lat]
+  stopId: z.string().optional(),          // guide Stop when the venue is also a destination
+})
+
+export type DiningVenueT = z.infer<typeof DiningVenue>
+
+export const DiningVenues = z.array(DiningVenue).superRefine((list, ctx) => {
+  list.forEach((v, i) => {
+    if (v.area === 'gateway' && !v.town) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        path: [i, 'town'],
+        message: `gateway venue '${v.id}' needs a town`,
+      })
+    }
+  })
+})
 
 // Map-only amenity points: parking lots and campgrounds rendered as pins on
 // /map with a Directions deeplink. Deliberately NOT Stops — no pages, no

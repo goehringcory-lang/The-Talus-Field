@@ -3,12 +3,12 @@ import ReactMarkdown from 'react-markdown'
 import type { StopT } from '../content'
 import { KIND_LABEL, DIFFICULTY_LABEL, formatElevation, formatTime } from '../content/labels'
 import { PHOTO_CREDITS, formatCredit } from '../content/photoCredits'
-import { useFavorites } from '../lib/favorites'
-import AddToTripButton from './AddToTripButton'
+import ArchiveNote from './ArchiveNote'
 import MapsLink from './MapsLink'
 import PhotoPlaceholder from './PhotoPlaceholder'
 import Plate from './Plate'
 import ResponsivePhoto from './ResponsivePhoto'
+import StopActions from './StopActions'
 import { Chip } from './ui/Chip'
 
 // Secret spots are stops minus `region`, which this card never reads —
@@ -26,8 +26,6 @@ type Props = {
 export default function StopCard({ stop, compact = true, regionLabel, actions = true }: Props) {
   const photo = stop.photos[0]
   const credit = photo ? PHOTO_CREDITS[photo.src] : undefined
-  const { toggle, isFavorite } = useFavorites()
-  const saved = isFavorite(stop.id)
   const plateTag = `Plate · ${KIND_LABEL[stop.kind]}`
   return (
     <article className="stop-card">
@@ -60,23 +58,7 @@ export default function StopCard({ stop, compact = true, regionLabel, actions = 
           </div>
           <h2 className="stop-card__title">{stop.title}</h2>
         </div>
-        {actions && (
-          <div className="stop-card__actions">
-            <AddToTripButton stopId={stop.id} title={stop.title} />
-            <button
-              type="button"
-              className="fav-toggle"
-              aria-pressed={saved}
-              aria-label={saved ? `Remove ${stop.title} from saved stops` : `Save ${stop.title}`}
-              title={saved ? 'Saved' : 'Save stop'}
-              onClick={() => toggle(stop.id)}
-            >
-              <svg className="fav-toggle__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                <path d="M6 3h12a1 1 0 0 1 1 1v17l-7-4.5L5 21V4a1 1 0 0 1 1-1z" />
-              </svg>
-            </button>
-          </div>
-        )}
+        {actions && <StopActions stopId={stop.id} title={stop.title} />}
       </div>
 
       {(stop.coord || stop.elevationFt || stop.timeBudgetMin || stop.difficulty || stop.season || regionLabel) && (
@@ -113,6 +95,11 @@ export default function StopCard({ stop, compact = true, regionLabel, actions = 
           {stop.swap}
         </aside>
       )}
+
+      {/* Full read only. On the region list and the Secret Guide these cards
+          already carry the whole body, and a citation block on every one of
+          them turns a scannable list into a bibliography. */}
+      {!compact && stop.history && <ArchiveNote note={stop.history} />}
 
       {compact && (
         <Link to={`/stop/${stop.id}`} className="stop-card__more">

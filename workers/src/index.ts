@@ -7,14 +7,17 @@ import { checkout } from './routes/checkout'
 import { contact } from './routes/contact'
 import { indexnow } from './routes/indexnow'
 import { ingestNpsWindow, programs } from './routes/programs'
+import { push } from './routes/push'
 import { stripe } from './routes/stripe'
 import { trip } from './routes/trip'
 import { tripEmail } from './routes/trip-email'
 import { waitlist } from './routes/waitlist'
+import { waits } from './routes/waits'
 import { weather } from './routes/weather'
 import { widget, widgetScript } from './routes/widget'
 import { refreshWeather } from './lib/weather'
 import { sweepRenewals } from './lib/renewals'
+import { sweepPush } from './lib/pushSweep'
 import {
   currentMonthLabel,
   firstOfNextMonthIso,
@@ -135,6 +138,7 @@ app.route('/api/checkout', checkout)
 app.route('/api/contact', contact)
 app.route('/api/indexnow', indexnow)
 app.route('/api/programs', programs)
+app.route('/api/push', push)
 app.route('/api/stripe', stripe)
 // Mounted before /api/trip's router would see it: separate route so the
 // editorial map's unauthenticated sender never shares code with the PWA's
@@ -142,6 +146,7 @@ app.route('/api/stripe', stripe)
 app.route('/api/trip/email', tripEmail)
 app.route('/api/trip', trip)
 app.route('/api/waitlist', waitlist)
+app.route('/api/waits', waits)
 app.route('/api/weather', weather)
 
 // Daily cron ([triggers] in wrangler.toml): refresh the KV program cache from
@@ -166,6 +171,11 @@ async function scheduled(
   ctx.waitUntil(
     sweepRenewals(env).catch((err) => {
       console.error('scheduled: renewal sweep failed', err)
+    }),
+  )
+  ctx.waitUntil(
+    sweepPush(env).catch((err) => {
+      console.error('scheduled: push sweep failed', err)
     }),
   )
 }

@@ -32,7 +32,7 @@ Inline in `<head>`: `window.gtag`/`dataLayer` (GA4 bootstrap), `window.track` (g
 | `readHistory` | components.jsx | Read-history store over safeStorage: `last`/`setLast`/`clearLast` (the unfinished article behind the home resume band) and `done`/`markDone` (finished slugs, used to rank the article related rail unread-first). |
 | `TweaksPanel`, `useTweaks`, `TweakSection`, `TweakRadio`, plus the other `Tweak*` controls | tweaks-panel.jsx | The site-wide tweaks drawer (implicit globals). |
 | `TWEAK_DEFAULTS` | index.html | Default palette and density consumed by `useTweaks` in app.jsx. |
-| `HomePage`, `ArticlesIndex`, `CategoryPage`, `ArticlePage`, `AboutPage`, `KitPage`, `PlacesPage`, `FilmsPage`, `MapPage`, `GuidePage`, `PlanningGuide`, `ChecklistPage`, `NewsletterPage`, `ContactPage`, `AdvertisePage`, `PrivacyPage`, `TermsPage`, `AffiliatePage` | the matching page-*.jsx (page-articles.jsx, page-legal.jsx, and page-newsletter-contact.jsx each export more than one) | Page components, mounted by the route chain in app.jsx. |
+| `HomePage`, `ArticlesIndex`, `CategoryPage`, `ArticlePage`, `AboutPage`, `KitPage`, `PlacesPage`, `FilmsPage`, `MapPage`, `GuidePage`, `PlanningGuide`, `ChecklistPage`, `NewsletterPage`, `ContactPage`, `AdvertisePage`, `PrivacyPage`, `TermsPage`, `AffiliatePage`, `ItinerariesPage`, `ConditionsPage`, `BulletinPage`, `FirefallPage`, `ConsultPage`, `WidgetPage`, `PartnersPage`, `SearchPage` | the matching page-*.jsx (page-articles.jsx, page-legal.jsx, and page-newsletter-contact.jsx each export more than one) | Page components, mounted by the route chain in app.jsx. |
 | `routeToPath`, `SITE_ORIGIN` | app.jsx | Route-to-URL helper for real href attributes, and the canonical origin. |
 
 Adding a page means: create the page file, add its `<script>` tag to index.html, add it to the route chain and `REQUIRED_GLOBALS` in app.jsx, and mirror its SEO in functions/_middleware.js.
@@ -48,6 +48,9 @@ All events fire through `window.track`. Names and where they fire:
 | `guide_cta_click` | components.jsx (Footer "Field Guide" link, masthead nav), page-home.jsx (Go Deeper band, `location: home_band`) |
 | `guide_buy_click` | page-guide.jsx (`location`: `guide_aside` buy box, `guide_closer` end-of-pitch button, or `guide_mobile_bar` sticky phone bar) |
 | `guide_sample_click` | page-guide.jsx (links to the PWA's free sample at `/preview`, with `location`: `guide_aside` or `guide_closer`) |
+| `widget_copy_snippet` | page-widget.jsx (copying the embed snippet) |
+| `consult_book_click` | page-consult.jsx (`location`: `consult_pay`, `consult_schedule`, or `consult_mailto`, with `live`) |
+| `partners_contact_click` | page-partners.jsx (group-code inquiries; `location`: `partners_tiers`, `partners_footer`, or `partners_contact_form`) |
 | `film_play` | page-films.jsx |
 | `affiliate_click` | app.jsx (delegated document listener on `a[data-aff-network]`) |
 | `outbound_click` | app.jsx (same delegated listener; external-host `target="_blank"` anchors without `data-aff-network`) |
@@ -64,6 +67,7 @@ All events fire through `window.track`. Names and where they fire:
 | `itinerary_open_map` | page-itineraries.jsx ("Open this trip on the map", with `itinerary`) |
 | `home_utility_click` | page-home.jsx ("Plan your trip" row, with `target`) |
 | `trip_month_select` | page-home.jsx ("When are you going?" chip row, with `month`; `cleared` on deselect) |
+| `trip_open_in_guide` | page-map.jsx (the map sidebar's hand-off to the Field Guide app; `trip_size`). The link opens `<app>/trip?import=<ids>`, which the PWA resolves against its own catalog. |
 | `article_share` | components.jsx (ShareRow on article pages; `method` = web-share or copy) |
 | `series_band_click` | page-article.jsx (Planning Guide series band; `from`/`to` slugs, `to: planning-hub` for the hub link) |
 | `toc_jump` | page-article.jsx (in-guide table-of-contents jumps) |

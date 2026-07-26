@@ -28,7 +28,7 @@ const STATIC_ROUTE_KEYS = new Set([
   "home", "articles", "planning", "checklist", "about", "kit", "places",
   "advertise", "newsletter", "contact", "privacy", "terms", "affiliate",
   "guide", "map", "films", "itineraries", "conditions", "now", "firefall",
-  "consult", "widget", "tioga-opening", "half-dome-lottery",
+  "consult", "widget", "partners", "search", "tioga-opening", "half-dome-lottery",
 ]);
 
 function pathToRoute(pathname) {
@@ -103,6 +103,8 @@ const PAGE_MODULES = {
   firefall: { scripts: ["/dist/page-firefall.js"], globals: ["FirefallPage"] },
   consult: { scripts: ["/dist/page-consult.js"], globals: ["ConsultPage"] },
   widget: { scripts: ["/dist/page-widget.js"], globals: ["WidgetPage"] },
+  partners: { scripts: ["/dist/page-partners.js"], globals: ["PartnersPage"] },
+  search: { scripts: ["/dist/page-search.js"], globals: ["SearchPage"] },
   "tioga-opening": { scripts: ["/dist/page-tioga-opening.js"], globals: ["TiogaOpeningPage"] },
   "half-dome-lottery": { scripts: ["/dist/page-half-dome-lottery.js"], globals: ["HalfDomeLotteryPage"] },
 };
@@ -957,6 +959,9 @@ function App() {
   } else if (route === "itineraries") {
     page = <window.ItinerariesPage go={go} />;
     // currentNav stays "home" so no nav link highlights, matching /map.
+  } else if (route === "search") {
+    page = <window.SearchPage go={go} />;
+    // currentNav stays "home": search is a utility, not a section.
   } else if (route === "conditions") {
     page = <window.ConditionsPage go={go} />;
   } else if (route === "now") {
@@ -972,6 +977,8 @@ function App() {
     page = <window.ConsultPage go={go} />;
   } else if (route === "widget") {
     page = <window.WidgetPage go={go} />;
+  } else if (route === "partners") {
+    page = <window.PartnersPage go={go} />;
   } else if (route === "map") {
     page = <window.MapPage go={go} />;
     // currentNav stays "home" so no nav link highlights.
@@ -1071,6 +1078,16 @@ ensureRoute(bootRoute)
     // already replaces #root's children; remove it explicitly too so it never
     // flashes.
     document.getElementById("prerender-prose")?.remove();
+
+    // Same for the homepage's static above-the-fold shell (baked into
+    // index.html by scripts/gen-home-shell.mjs), which is what painted before
+    // this boot ran.
+    document.getElementById("home-shell")?.remove();
+
+    // Drop the pre-React marker so SPA navigations get the .page entry
+    // animation again. Deferred a frame so it cannot suppress the animation's
+    // own starting styles for the first render.
+    requestAnimationFrame(() => document.documentElement.removeAttribute("data-boot"));
 
     // Warm the remaining page bundles on the reader's first interaction so
     // SPA navigation is instant, without taxing first paint or lab metrics.

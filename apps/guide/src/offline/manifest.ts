@@ -16,6 +16,22 @@ import { buildTileUrls } from './tiles'
 export const RUNTIME_CACHE = 'tfg-runtime'
 export const TILES_CACHE = 'tfg-tiles'
 
+// Pack ids, named once so status surfaces (Home, Welcome) can't drift from
+// what buildPacks() actually returns. Kept as consts rather than derived from
+// buildPacks() because building packs does the full tile-URL math.
+export const SECRET_PACK_ID = 'photos-secret-guide'
+export const TRACKS_PACK_ID = 'trail-tracks'
+export const MAP_PACK_ID = 'park-map'
+export function regionPackId(region: Region): string {
+  return `photos-${region}`
+}
+export const PACK_IDS: string[] = [
+  ...REGIONS.map((r) => regionPackId(r.id)),
+  SECRET_PACK_ID,
+  TRACKS_PACK_ID,
+  MAP_PACK_ID,
+]
+
 export type Pack = {
   id: string
   label: string
@@ -73,7 +89,7 @@ export function buildPacks(format: PhotoFormat): Pack[] {
   const regionPacks: Pack[] = REGIONS.map((region) => {
     const urls = regionPhotoUrls(region, format)
     return {
-      id: `photos-${region.id}`,
+      id: regionPackId(region.id),
       label: REGION_LABELS[region.id],
       detail: 'Every photo in the region, all sizes',
       cacheName: RUNTIME_CACHE,
@@ -85,7 +101,7 @@ export function buildPacks(format: PhotoFormat): Pack[] {
 
   const secretUrls = secretGuidePhotoUrls(format)
   const secretPack: Pack = {
-    id: 'photos-secret-guide',
+    id: SECRET_PACK_ID,
     label: 'Secret Guide photos',
     detail: 'Every photo in the region-less secret spots, all sizes',
     cacheName: RUNTIME_CACHE,
@@ -99,7 +115,7 @@ export function buildPacks(format: PhotoFormat): Pack[] {
   // the ?v= content hash in each URL turns entries over on regeneration.
   const trackUrls = Object.keys(TRACKS).map(trackUrl)
   const tracksPack: Pack = {
-    id: 'trail-tracks',
+    id: TRACKS_PACK_ID,
     label: 'Trail tracks & elevation',
     detail: 'GPS tracks and elevation profiles for every verified day hike',
     cacheName: RUNTIME_CACHE,
@@ -110,7 +126,7 @@ export function buildPacks(format: PhotoFormat): Pack[] {
 
   const tileUrls = buildTileUrls()
   const mapPack: Pack = {
-    id: 'park-map',
+    id: MAP_PACK_ID,
     label: 'Offline park map',
     detail: 'Topo tiles for the whole park and the road corridors',
     cacheName: TILES_CACHE,

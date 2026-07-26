@@ -11,7 +11,7 @@ function routeToPath(route) {
   if (route.startsWith("a:")) return `/articles/${route.slice(2)}`;
   return `/${route}`;
 }
-var STATIC_ROUTE_KEYS = new Set(["home", "articles", "planning", "checklist", "about", "kit", "places", "advertise", "newsletter", "contact", "privacy", "terms", "affiliate", "guide", "map", "films", "itineraries", "conditions", "now", "firefall", "consult", "widget", "tioga-opening", "half-dome-lottery"]);
+var STATIC_ROUTE_KEYS = new Set(["home", "articles", "planning", "checklist", "about", "kit", "places", "advertise", "newsletter", "contact", "privacy", "terms", "affiliate", "guide", "map", "films", "itineraries", "conditions", "now", "firefall", "consult", "widget", "partners", "search", "tioga-opening", "half-dome-lottery"]);
 function pathToRoute(pathname) {
   var path = (pathname || "/").replace(/\/+$/, "") || "/";
   if (path === "/") return "home";
@@ -130,6 +130,14 @@ var PAGE_MODULES = {
   widget: {
     scripts: ["/dist/page-widget.js"],
     globals: ["WidgetPage"]
+  },
+  partners: {
+    scripts: ["/dist/page-partners.js"],
+    globals: ["PartnersPage"]
+  },
+  search: {
+    scripts: ["/dist/page-search.js"],
+    globals: ["SearchPage"]
   },
   "tioga-opening": {
     scripts: ["/dist/page-tioga-opening.js"],
@@ -905,6 +913,10 @@ function App() {
     page = React.createElement(window.ItinerariesPage, {
       go: go
     });
+  } else if (route === "search") {
+    page = React.createElement(window.SearchPage, {
+      go: go
+    });
   } else if (route === "conditions") {
     page = React.createElement(window.ConditionsPage, {
       go: go
@@ -931,6 +943,10 @@ function App() {
     });
   } else if (route === "widget") {
     page = React.createElement(window.WidgetPage, {
+      go: go
+    });
+  } else if (route === "partners") {
+    page = React.createElement(window.PartnersPage, {
       go: go
     });
   } else if (route === "map") {
@@ -1009,6 +1025,8 @@ ensureRoute(bootRoute).catch(e => console.error("app.jsx boot: initial route bun
   ReactDOM.createRoot(document.getElementById("root")).render(React.createElement(App, null));
   document.getElementById("seo-static-h1")?.remove();
   document.getElementById("prerender-prose")?.remove();
+  document.getElementById("home-shell")?.remove();
+  requestAnimationFrame(() => document.documentElement.removeAttribute("data-boot"));
   var warm = () => prefetchAllModules();
   ["pointerdown", "keydown", "touchstart", "scroll"].forEach(ev => window.addEventListener(ev, warm, {
     once: true,

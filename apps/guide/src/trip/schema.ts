@@ -49,7 +49,27 @@ export const TripProgramItem = z.object({
 })
 export type TripProgramItemT = z.infer<typeof TripProgramItem>
 
-export const TripItem = z.discriminatedUnion('type', [TripStopItem, TripHikeItem, TripProgramItem])
+// Free-form entries: the parts of a real trip the guide doesn't model — a
+// lodging check-in, a dinner reservation, a permit pickup. Title and note are
+// the user's own words; no coord, so slotting uses the flat travel buffer.
+export const TripCustomItem = z.object({
+  type: z.literal('custom'),
+  itemId: z.string(),                    // "custom:<uuid>" — day-independent, unlike stop/hike ids
+  title: z.string().min(1),
+  note: z.string().optional(),
+  day: z.string().regex(DATE_RE),
+  startTime: z.string().regex(TIME_RE).optional(), // set by the user; unset = auto-slotted
+  durationMin: z.number().optional(),    // default 60
+  eventUid: z.string().optional(),
+})
+export type TripCustomItemT = z.infer<typeof TripCustomItem>
+
+export const TripItem = z.discriminatedUnion('type', [
+  TripStopItem,
+  TripHikeItem,
+  TripProgramItem,
+  TripCustomItem,
+])
 export type TripItemT = z.infer<typeof TripItem>
 
 export const TripPlan = z.object({

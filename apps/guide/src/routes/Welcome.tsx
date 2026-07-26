@@ -10,14 +10,11 @@ import { useNavigate } from 'react-router-dom'
 import DownloadManager from '../components/DownloadManager'
 import Button from '../components/ui/Button'
 import PageHeader from '../components/ui/PageHeader'
-import { REGIONS } from '../content'
 import { markOnboarded } from '../lib/onboarding'
+import { PACK_IDS } from '../offline/manifest'
 import { isPackCompleted } from '../offline/useDownloads'
 import { useDeferredInstallPrompt } from '../pwa/installPrompt'
 import { isIOS, isStandalonePWA } from '../utils/platform'
-
-// Pack ids mirrored from offline/manifest.ts, same derivation as Home.
-const PACK_IDS = [...REGIONS.map((r) => `photos-${r.id}`), 'photos-secret-guide', 'park-map']
 
 function InstallStep() {
   const { event, prompt } = useDeferredInstallPrompt()

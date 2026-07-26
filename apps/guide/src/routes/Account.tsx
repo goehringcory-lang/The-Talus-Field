@@ -5,6 +5,8 @@ import { apiFetch, API_BASE } from '../lib/api'
 import GatedChrome from '../components/GatedChrome'
 import CalendarCard from '../components/CalendarCard'
 import DownloadManager from '../components/DownloadManager'
+import NotificationsCard from '../components/NotificationsCard'
+import SyncCard from '../components/SyncCard'
 import Button from '../components/ui/Button'
 import PageHeader from '../components/ui/PageHeader'
 import Skeleton from '../components/ui/Skeleton'
@@ -223,6 +225,14 @@ export default function Account() {
           </div>
 
           <AccessStatusCard />
+
+          <div className="card">
+            <SyncCard />
+          </div>
+
+          <div className="card">
+            <NotificationsCard />
+          </div>
 
           <div className="card">
             <CalendarCard />

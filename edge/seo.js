@@ -208,6 +208,16 @@ const HUB_PROSE = {
       "An interactive map of Yosemite National Park: vistas, trailheads, parking turnouts, picnic spots, and places to eat, each pin curated and written by a resident of the park. Filter pins by category, search by name, and assemble stops into a trip you can share by link, email to yourself, or open in Google Maps for driving directions. The full map opens with a free newsletter signup."
     ) +
     `<p>Prefer a ready-made plan? Start from <a href="/itineraries">the curated itineraries</a>. Planning the drive in? Check <a href="/conditions">webcams, entrance waits, and weather</a>.</p>`,
+  // /search is noindex (see the `known` entry below): a results page is thin,
+  // duplicative content and Google says as much. The prose is here for the
+  // "follow" half — it is a plain table of contents, so a crawler that lands
+  // on the page still finds its way into the sections.
+  "/search": () =>
+    hubProse(
+      "Search The Talus Field",
+      "Search every article, section, and page in The Talus Field: Yosemite planning notes, trail reports, wildlife and natural history, and seasonal guides."
+    ) +
+    `<p>Browse instead: <a href="/articles">all articles</a>, <a href="/section/planning">planning</a>, <a href="/section/trails">trails and hikes</a>, <a href="/section/wildlife">wildlife and nature</a>, <a href="/section/seasonal">seasonal guides</a>, or <a href="/now">The Park Bulletin</a>.</p>`,
   "/conditions": () =>
     hubProse(
       "Yosemite conditions: webcams, waits, and weather",
@@ -300,7 +310,15 @@ const HUB_PROSE = {
       "The Yosemite conditions widget",
       "A free embeddable box for Yosemite-area websites: live entrance waits from the National Park Service feed and the three-day Valley forecast from the National Weather Service, rendered by a single script tag with a credit link back to The Talus Field's conditions page. Built for gateway hotels, rental hosts, and tour operators."
     ) +
-    `<p>See it live and copy the snippet on this page. The full conditions layer is at <a href="/conditions">/conditions</a>.</p>`,
+    `<p>See it live and copy the snippet on this page. The full conditions layer is at <a href="/conditions">/conditions</a>.</p>` +
+    `<p>Lodging operators who want the guide itself for their guests: <a href="/partners">group codes</a>.</p>`,
+  "/partners": () =>
+    hubProse(
+      "Group codes: the Field Guide for your guests",
+      "Yosemite-area hotels, inns, vacation rental hosts, and property managers can buy The Talus Field Guide in packs and give a code to every booking. One code is one guest's full access for 18 months on every device they own: 44 stops with GPS and time budgets, all 57 in-park day hikes, the 37-entry Secret Guide, a day-by-day trip planner, park programs on their dates, and an offline topographic map of the park. Nothing to install, host, or support on the property's side."
+    ) +
+    `<p>Packs start at 25 codes; per-code rates fall as the pack grows. Billed by invoice, no subscription, no revenue share, no exclusivity. The first properties are onboarded by hand.</p>` +
+    `<p>The public product page is <a href="/guide">the Field Guide</a>. The free conditions embed for your own site is at <a href="/widget">/widget</a>, and directory listings are at <a href="/advertise">/advertise</a>.</p>`,
   "/consult": () =>
     hubProse(
       "Field consult: thirty minutes on your Yosemite plan",
@@ -612,6 +630,16 @@ function seoForPath(pathname, searchParams) {
         })),
       },
     },
+    "/search": {
+      title: `Search — ${SITE_NAME}`,
+      description:
+        "Search every article, section, and page in The Talus Field: Yosemite planning notes, trail reports, wildlife and natural history, and seasonal guides.",
+      breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Search", null]],
+      // Search-results pages are thin and duplicative by nature, and every
+      // ?q= is another near-identical URL. Kept out of the index, but crawled
+      // for its links, which is why the HUB_PROSE entry is a contents list.
+      robots: "noindex, follow",
+    },
     "/conditions": {
       title: `Yosemite Conditions — webcams, waits, and weather — ${SITE_NAME}`,
       description:
@@ -629,6 +657,43 @@ function seoForPath(pathname, searchParams) {
       description:
         "A free embeddable box with live Yosemite entrance waits and the three-day Valley forecast, for gateway hotels, rental hosts, and tour operators. One script tag.",
       breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Widget", null]],
+    },
+    "/partners": {
+      // B2B pitch page (MONETIZATION-IDEAS.md 2.4). FAQ answers mirror the
+      // published copy in page-partners.jsx; keep the two in sync.
+      title: `Group Codes — the Yosemite Field Guide for your guests — ${SITE_NAME}`,
+      description:
+        "Yosemite-area hotels, inns, rental hosts, and property managers: buy The Talus Field Guide in packs and give every guest a code. Offline app, 18 months of access, nothing to install on your side.",
+      breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Group codes", null]],
+      faq: [
+        {
+          q: "What is a group code?",
+          a: "One code is one guest's full access to The Talus Field Guide: the entire stop library across the Valley, Glacier Point and Mariposa Grove, Tuolumne, and Hetch Hetchy, the 37-entry Secret Guide, the trip planner with calendar export, park programs and weather on their dates, and the roughly 50 MB offline download. Access runs 18 months from the day the guest redeems, on every device they own.",
+        },
+        {
+          q: "What do group codes cost?",
+          a: "Partner rates are per code, billed by invoice, with the pack as the unit of sale: 25 codes at $12 a code, 50 codes at $10 a code, and 100 codes or more at $8 a code. The guide sells to the public at $19 a copy.",
+        },
+        {
+          q: "Do guests need to install an app?",
+          a: "No. The guide is a web app. It opens in the browser and can be added to a home screen in one step, which is what makes the offline download work. There is nothing for the property to install, host, or maintain.",
+        },
+        {
+          q: "What happens to codes guests never redeem?",
+          a: "Unredeemed codes stay yours. They do not expire on the shelf inside the season they were bought for, and a code that goes unused on one booking can go to the next guest instead.",
+        },
+      ],
+      jsonLd: {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        name: "Talus Field Guide group codes for lodging",
+        description:
+          "Bulk access codes to The Talus Field Guide, an offline Yosemite field guide app, for gateway hotels, inns, vacation rental hosts, and property managers to give to their guests.",
+        provider: { "@id": AUTHOR_ID },
+        areaServed: { "@type": "Place", name: "Yosemite National Park" },
+        audience: { "@type": "BusinessAudience", name: "Lodging and hospitality operators" },
+        url: `${SITE_ORIGIN}/partners`,
+      },
     },
     "/consult": {
       title: `Field Consult — thirty minutes on your Yosemite plan — ${SITE_NAME}`,
@@ -1043,10 +1108,15 @@ async function handleRequest({ request, next, env }) {
         }
       },
     })
-    .on("#seo-static-h1", {
+    .on("#home-shell", {
       element(el) {
-        if (proseHtml) el.remove();
-        else if (staticH1Text) el.setInnerContent(staticH1Text);
+        // index.html ships the homepage's above-the-fold markup statically so
+        // "/" paints on the first byte (see the comment there and
+        // scripts/gen-home-shell.mjs). "/" is served straight off the asset
+        // layer and never reaches this Worker, so every request that DOES
+        // reach here is another route: drop the block before the browser can
+        // paint a hero that belongs to a different page.
+        el.remove();
       },
     })
     .on("#root", {
@@ -1058,6 +1128,17 @@ async function handleRequest({ request, next, env }) {
         // #prerender-prose on boot, so JS users only ever see React's copy.
         if (proseHtml) {
           el.prepend(`<div id="prerender-prose">${proseHtml}</div>`, { html: true });
+        } else if (staticH1Text) {
+          // Routes with no prose fragment still need one heading for parsers
+          // that read the markup without running JavaScript (Bing's auditor is
+          // the notable one). This used to be a permanent sr-only element in
+          // index.html; it moved here when the homepage gained a real static
+          // <h1> in its shell, which would otherwise have made "/" ship two.
+          // app.jsx removes it on boot, so JS clients see exactly one <h1>.
+          el.prepend(
+            `<h1 id="seo-static-h1" style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0;">${escapeHtmlText(staticH1Text)}</h1>`,
+            { html: true }
+          );
         }
       },
     })

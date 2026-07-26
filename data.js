@@ -99,6 +99,7 @@ window.planningSeriesFor = function (slug) {
 // verifies this map stays in sync with the files in bodies/.
 // ============================================================
 window.BODY_VERSIONS = {
+  "yosemite-tunnel-trees": 1,
   "yosemite-wildlife-viewing-guide": 1,
   "showy-milkweed-yosemite-valley": 3,
   "yosemite-connecting-to-traditions": 1,
@@ -699,6 +700,19 @@ window.KIT.lists.forEach((l) => {
 });
 
 window.ARTICLES = [
+  {
+    slug: "yosemite-tunnel-trees",
+    cat: "wildlife",
+    title: "From the Archive: the year Yosemite measured a hole in a sequoia to the half inch",
+    dek: "In April 1929 the park's own bulletin ran a proud accounting of its three tunnel trees: who cut them, what they were paid, and how well the photographs were selling. The first in an occasional series reading the Nature Notes archive.",
+    seoDek: "Yosemite's three tunnel trees, from the park's own 1929 bulletin: the Dead Giant, the California Tree, the Wawona Tree, and what you can still walk through.",
+    date: "July 26, 2026",
+    isoDate: "2026-07-26",
+    isoModified: "2026-07-26",
+    read: "8 min",
+    placeholder: "A historic photograph of a stagecoach and horse team standing inside the tunnel cut through the base of the Wawona Tunnel Tree in the Mariposa Grove",
+    image: "img/wawona-tunnel-tree-historic.jpg",
+  },
   {
     slug: "yosemite-wildlife-viewing-guide",
     cat: "wildlife",

@@ -52,6 +52,14 @@
 /*.jsx
   Cache-Control: public, max-age=300, stale-while-revalidate=600
 
+# The Nature Notes archive is generated static HTML whose content is fixed in
+# 1922. It carries no ?v= (see the header comment in scripts/gen-archive.mjs),
+# so it revalidates on a one-hour TTL rather than the site-wide must-revalidate
+# — a rebuild reaches readers within the hour, and until then 512 archive pages
+# do not each cost a conditional request.
+/archive/*
+  Cache-Control: public, max-age=3600, stale-while-revalidate=86400
+
 # Precompiled page scripts under /dist load with the same explicit ?v=N
 # query strings as the jsx sources; same rationale as /*.jsx above. Without
 # this rule they fall through to /* and revalidate on every page load.

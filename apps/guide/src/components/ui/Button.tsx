@@ -1,13 +1,14 @@
 // The one button. Renders a <Link> when `to` is set, an <a> when `href` is,
 // otherwise a <button>. Solid is the primary ink-on-paper action, ghost the
-// secondary outline, quiet a text link that happens to be a button.
+// secondary outline, quiet a text link that happens to be a button, danger a
+// rust outline for the destructive ones.
 
 import type { MouseEventHandler, ReactNode } from 'react'
 import { Link } from 'react-router-dom'
 
 type Props = {
   children: ReactNode
-  variant?: 'solid' | 'ghost' | 'quiet'
+  variant?: 'solid' | 'ghost' | 'quiet' | 'danger'
   size?: 'md' | 'sm'
   to?: string
   // Router state forwarded with `to` (e.g. { from } so /login can return to
@@ -40,6 +41,7 @@ export default function Button({
     'btn',
     variant === 'ghost' && 'btn--ghost',
     variant === 'quiet' && 'btn--quiet',
+    variant === 'danger' && 'btn--danger',
     size === 'sm' && 'btn--sm',
     className,
   ]

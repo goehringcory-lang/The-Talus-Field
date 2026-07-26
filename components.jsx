@@ -345,6 +345,7 @@ function Header({ current, go }) {
         ["cat:seasonal", "Seasonal guides"],
         ["now", "The Park Bulletin"],
         ["films", "Films"],
+        ["search", "Search"],
       ],
     },
     {
@@ -373,6 +374,7 @@ function Header({ current, go }) {
         ["places", "Directory"],
         ["advertise", "Advertise"],
         ["widget", "Conditions widget"],
+        ["partners", "Group codes"],
       ],
     },
   ];
@@ -571,6 +573,11 @@ function Footer({ go }) {
               <li><a href="/articles" onClick={(e) => { e.preventDefault(); go("articles"); }}>All articles</a></li>
               <li><a href="/kit" onClick={(e) => { e.preventDefault(); go("kit"); }}>Kit</a></li>
               <li><a href="/films" onClick={(e) => { e.preventDefault(); go("films"); }}>Films</a></li>
+              {/*
+                /archive is generated static HTML (scripts/gen-archive.mjs), not an
+                SPA route, so this link must be a real navigation — no go() handler.
+              */}
+              <li><a href="/archive/">Nature Notes archive</a></li>
               <li><a href="/places" onClick={(e) => { e.preventDefault(); go("places"); }}>Directory</a></li>
               <li><a href="/map" onClick={(e) => { e.preventDefault(); go("map"); }}>The Map</a></li>
               <li><a href="/itineraries" onClick={(e) => { e.preventDefault(); go("itineraries"); }}>Itineraries</a></li>
@@ -1176,7 +1183,12 @@ const WEBCAMS = [
 ];
 
 function WebcamStrip() {
-  const camCacheBust = useMemo(() => Date.now(), []);
+  // Bucket the cache-buster to five minutes instead of the exact millisecond.
+  // Per-render Date.now() made every one of these four third-party images a
+  // guaranteed cold fetch on every visit and every remount; the cameras
+  // themselves refresh on the order of minutes, so a five-minute bucket is as
+  // fresh in practice and lets the browser cache do its job in between.
+  const camCacheBust = useMemo(() => Math.floor(Date.now() / 300000), []);
   return (
     <>
       <div className="cam-grid" style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 32 }}>

@@ -6,13 +6,15 @@
 // only behind the tab bar.
 // =============================================================================
 
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 import type { ReactNode } from 'react'
 import { Link, Navigate } from 'react-router-dom'
 import { useAuth } from '../auth/useAuth'
 import { isOnboarded } from '../lib/onboarding'
 import {
+  DINING,
   ESSENTIALS,
+  GATEWAY_TOWNS,
   HIKES,
   REGIONS,
   SEASONAL_EVENTS,
@@ -22,10 +24,15 @@ import {
   getStopsByRegion,
   seasonalRangeLabel,
 } from '../content'
-import { todayIso } from '../utils/date'
+import { formatClock, parkNowMinutes, todayIso } from '../utils/date'
 import { useFavorites } from '../lib/favorites'
 import { isPackCompleted } from '../offline/useDownloads'
+import { PACK_IDS } from '../offline/manifest'
 import { useTripPlan } from '../trip/useTripPlan'
+import { clearPendingImport, peekPendingImport, resolveEditorialIds } from '../trip/importTrip'
+import { slotPlan } from '../trip/slotting'
+import { itemInfo } from '../trip/agendaItem'
+import type { TripItemT } from '../trip/schema'
 import { readTripDates, type TripDates } from '../programs/usePrograms'
 import { relativeStamp } from '../utils/relativeStamp'
 import GatedChrome from '../components/GatedChrome'
@@ -34,14 +41,10 @@ import UpdatedStamp from '../components/UpdatedStamp'
 import Button from '../components/ui/Button'
 import Callout from '../components/ui/Callout'
 import PageHeader from '../components/ui/PageHeader'
-import { groupPeriodsIntoDays } from '../weather/forecastDays'
+import WaitsLine from '../waits/WaitsLine'
 import { useWeather } from '../weather/useWeather'
 import { HIDE_AFTER_MS, WARN_AFTER_MS } from '../weather/staleness'
-import type { WeatherSpotT } from '../weather/schema'
-
-// Pack ids mirrored from offline/manifest.ts: one photo pack per region plus
-// the map. Used only for the status line; the manager itself lives on Account.
-const PACK_IDS = [...REGIONS.map((r) => `photos-${r.id}`), 'photos-secret-guide', 'park-map']
+import { regionTodayLine } from '../weather/todayLine'
 
 const BEFORE_YOU_GO_DISMISS_KEY = 'tfg.beforeYouGo.dismissed'
 
@@ -78,6 +81,83 @@ function BeforeYouGoNudge() {
       Going soon? Do the <Link to="/essentials/before-you-go">night-before downloads</Link>{' '}
       while you still have wifi: the offline maps, this guide, and the current Yosemite Guide PDF.
     </Callout>
+  )
+}
+
+// A trip built on the editorial map before the buyer owned the guide. The ids
+// were stashed at boot the first time /trip?import= was opened (importTrip.ts);
+// the buy detour and the magic-link sign-in both lose the URL, so the offer is
+// made here instead. Taking it re-enters /trip with a real ?import=, which is
+// the one path that writes to the plan — nothing is imported behind the user.
+function PendingImportCard() {
+  const [ids, setIds] = useState<string[]>(() => peekPendingImport())
+  if (ids.length === 0) return null
+  const resolved = resolveEditorialIds(ids)
+  const count = resolved.stopIds.length + resolved.hikeIds.length
+  if (count === 0) {
+    // Nothing in the trip exists in the guide; offering it would be a dead end.
+    clearPendingImport()
+    return null
+  }
+  return (
+    <Callout
+      action={
+        <Button
+          variant="ghost"
+          size="sm"
+          onClick={() => {
+            clearPendingImport()
+            setIds([])
+          }}
+        >
+          No thanks
+        </Button>
+      }
+    >
+      The trip you built on the map is waiting: {count} {count === 1 ? 'stop' : 'stops'}.{' '}
+      <Link to={`/trip?import=${ids.join(',')}`}>Add it to your plan →</Link>
+    </Callout>
+  )
+}
+
+// Shown only while the trip window includes today: the door to /today, with
+// the next planned thing as the one-line pitch. Disappears outside the
+// window, so the front page stays stable the rest of the year.
+function TodayCard({
+  today,
+  dates,
+  items,
+}: {
+  today: string
+  dates: TripDates
+  items: TripItemT[]
+}) {
+  const blocks = useMemo(() => slotPlan(items).get(today) ?? [], [items, today])
+  const nowMin = parkNowMinutes()
+  const next = blocks.find(
+    (b) => b.startMin !== null && b.startMin + b.durationMin > nowMin,
+  )
+  const dayNumber =
+    Math.round(
+      (Date.parse(`${today}T00:00:00Z`) - Date.parse(`${dates.start}T00:00:00Z`)) / 86_400_000,
+    ) + 1
+  const dayTotal =
+    Math.round(
+      (Date.parse(`${dates.end}T00:00:00Z`) - Date.parse(`${dates.start}T00:00:00Z`)) / 86_400_000,
+    ) + 1
+  return (
+    <Link to="/today" className="today-card">
+      <span className="today-card__label">
+        Today · Day {dayNumber} of {dayTotal}
+      </span>
+      <span className="today-card__line">
+        {next && next.startMin !== null
+          ? `${next.startMin <= nowMin ? 'Now' : `At ${formatClock(next.startMin)}`}: ${itemInfo(next.item).title} →`
+          : blocks.length > 0
+            ? 'The day in order, with conditions and sun times →'
+            : 'Conditions, sun times, and entrance waits →'}
+      </span>
+    </Link>
   )
 }
 
@@ -126,15 +206,62 @@ function tripDatesLabel(dates: TripDates): string {
   return `${fmt(dates.start)} – ${fmt(dates.end)}`
 }
 
-// One-line current forecast for a region index row. Labeled with the weekday
-// rather than "Today": between WARN_AFTER and HIDE_AFTER the leading day can
-// legitimately be yesterday, and the label should not lie about it.
-function regionTodayLine(spot: WeatherSpotT | undefined): string | null {
-  if (!spot) return null
-  const day = groupPeriodsIntoDays(spot.periods, 1)[0]
-  if (!day) return null
-  const rain = day.precipChance && day.precipChance >= 20 ? ` · ${day.precipChance}% rain` : ''
-  return `${day.label} ${day.hiF ?? '–'}°/${day.loF ?? '–'}° ${day.shortForecast.toLowerCase()}${rain}`
+// Small stroke glyphs for the planner tool cards, drawn in the same style as
+// the BottomNav icons (24 viewBox, currentColor stroke, 1.75 weight).
+function ToolGlyph({ children }: { children: ReactNode }) {
+  return (
+    <span className="tool-card__icon" aria-hidden="true">
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.75"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      >
+        {children}
+      </svg>
+    </span>
+  )
+}
+
+const PLAN_ICONS = {
+  trip: (
+    <ToolGlyph>
+      <rect x="3" y="5" width="18" height="16" rx="2" />
+      <path d="M8 3v4M16 3v4M3 10h18M8 15h3M13 15h3" />
+    </ToolGlyph>
+  ),
+  programs: (
+    <ToolGlyph>
+      <path d="M12 3c2.2 2.6 4 4.6 4 7.2a4 4 0 0 1-8 0C8 7.6 9.8 5.6 12 3z" />
+      <path d="M5 21l14-4M19 21L5 17" />
+    </ToolGlyph>
+  ),
+  hikes: (
+    <ToolGlyph>
+      <path d="M2 20L9 7l4 7 2.5-4L21 20H2z" />
+      <path d="M11 11l-1.5 2.5" />
+    </ToolGlyph>
+  ),
+  map: (
+    <ToolGlyph>
+      <path d="M9 3L3 6v15l6-3 6 3 6-3V3l-6 3-6-3z" />
+      <path d="M9 3v15M15 6v15" />
+    </ToolGlyph>
+  ),
+  dining: (
+    <ToolGlyph>
+      <path d="M7 3v18M4 3v5a3 3 0 0 0 6 0V3" />
+      <path d="M17 3c-2 3-2 6 0 8v10M17 11h2V3" />
+    </ToolGlyph>
+  ),
+  gateway: (
+    <ToolGlyph>
+      <path d="M3 21h18M5 21V9l7-6 7 6v12" />
+      <path d="M10 21v-6h4v6M9 12h2M13 12h2" />
+    </ToolGlyph>
+  ),
 }
 
 // Directory entry for a tool or reference surface: linked title, one-line
@@ -145,18 +272,23 @@ function ToolCard({
   title,
   teaser,
   meta,
+  icon,
   children,
 }: {
   to: string
   title: string
   teaser: string
   meta: string
+  icon?: ReactNode
   children?: ReactNode
 }) {
   return (
     <div className="tool-card">
       <h3 className="tool-card__title">
-        <Link to={to}>{title} →</Link>
+        <Link to={to}>
+          {icon}
+          {title} →
+        </Link>
       </h3>
       <p className="tool-card__teaser">{teaser}</p>
       <div className="dateline">{meta}</div>
@@ -204,7 +336,13 @@ export default function Home() {
           intro="Four regions to read, a planner that turns your dates into a day-by-day schedule, and all of it built to work where the park has no signal. Everything the guide does is indexed below."
         />
 
+        <PendingImportCard />
+
         <BeforeYouGoNudge />
+
+        {tripDates && tripDates.start <= todayIso() && todayIso() <= tripDates.end && (
+          <TodayCard today={todayIso()} dates={tripDates} items={plan.items} />
+        )}
 
         <section aria-label="How this guide works" className="home-steps-section">
           <span className="eyebrow">How this guide works</span>
@@ -281,6 +419,7 @@ export default function Home() {
               {' '}· Five-day forecasts on each region page · National Weather Service
             </p>
           )}
+          <WaitsLine />
           <div className="home-crosslinks">
             <Link to="/map" className="more-link">
               Every stop pinned on the park map →
@@ -297,6 +436,7 @@ export default function Home() {
             <ToolCard
               to="/trip"
               title="Trip planner"
+              icon={PLAN_ICONS.trip}
               teaser="Dates, programs, stops, and hikes assembled into a day-by-day schedule, then exported to your calendar with GPS coordinates and directions links."
               meta={
                 planCount > 0
@@ -309,21 +449,49 @@ export default function Home() {
             <ToolCard
               to="/programs"
               title="Park programs"
+              icon={PLAN_ICONS.programs}
               teaser="Ranger walks, Junior Ranger tables, tours, star parties, and the seasonal almanac, listed day by day for your dates. Syncs online, readable offline."
               meta={datesLabel ? `Showing ${datesLabel}` : 'Day-by-day for your dates'}
             />
             <ToolCard
               to="/hikes"
               title="Day hikes"
+              icon={PLAN_ICONS.hikes}
               teaser="Every in-park day hike with distance, elevation gain, and difficulty. A hike drops into a trip day just like a stop."
               meta={`${HIKES.length} hikes · strolls to Half Dome`}
             />
             <ToolCard
               to="/map"
               title="Park map"
+              icon={PLAN_ICONS.map}
               teaser="Every stop and secret spot pinned on a topo map, with filters, parking and campground pins, and a near-you list. Tiles download for offline."
               meta="Topo map · works in airplane mode"
             />
+          </div>
+        </section>
+
+        <section aria-label="Where to eat" className="page-section">
+          <span className="eyebrow">Where to eat</span>
+          <div className="tool-grid">
+            <ToolCard
+              to="/dining"
+              title="Eating in the park"
+              icon={PLAN_ICONS.dining}
+              teaser="Every counter, dining room, bar, and grocery inside the park, from the Curry pizza deck to the Ahwahnee, with the hours the park publishes and what each place is actually for."
+              meta={`${DINING.filter((v) => v.area !== 'gateway').length} places · hours from the current Yosemite Guide`}
+            />
+            <ToolCard
+              to="/dining"
+              title="The gateway towns"
+              icon={PLAN_ICONS.gateway}
+              teaser="Where dinner improves outside the gates: Mariposa, Groveland, Oakhurst, Fish Camp, El Portal, and Lee Vining, one corridor per entrance."
+              meta={`${DINING.filter((v) => v.area === 'gateway').length} places · ${GATEWAY_TOWNS.length} corridors`}
+            >
+              <div className="tool-card__sub">
+                <Link to="/essentials/eating-in-the-park">The realistic tiers →</Link>
+                <Link to="/essentials/bear-safety">The food rules →</Link>
+              </div>
+            </ToolCard>
           </div>
         </section>
 
@@ -350,8 +518,8 @@ export default function Home() {
             <ToolCard
               to="/search"
               title="Search the guide"
-              teaser="One box across every stop, hike, secret spot, and essentials topic. Works offline like the rest of the guide."
-              meta="Stops · hikes · secret spots · essentials"
+              teaser="One box across every stop, hike, secret spot, dining option, and essentials topic. Works offline like the rest of the guide."
+              meta="Stops · hikes · dining · secret spots · essentials"
             />
           </div>
         </section>

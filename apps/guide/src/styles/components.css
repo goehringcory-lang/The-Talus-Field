@@ -598,6 +598,21 @@
   border-bottom: 0;
 }
 
+/* Screen-reader-only text: live announcements and labels that would be noise
+ * on screen (the swipe deck's position counter). */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
 /* Secondary page section with an eyebrow heading. */
 .page-section { margin-top: var(--s7); }
 .page-section > .eyebrow { display: block; margin-bottom: 10px; }
@@ -759,6 +774,46 @@
 /* Attribution under the region rows sits outside .card-stack now. */
 .weather-attribution--rows { padding: var(--s3) 0 0; }
 
+/* Live entrance-waits line (Home, /today). Absent entirely when the feed is
+   stale or unreachable, so it must never be a layout anchor. */
+.waits-line {
+  font-family: var(--sans);
+  font-size: 12px;
+  color: var(--ink-2);
+  margin: var(--s2) 0 0;
+}
+.waits-line__entry { white-space: nowrap; }
+.waits-line__muted { color: var(--ink-3); }
+
+/* Home door to /today, shown only while the trip window includes today. */
+.today-card {
+  display: block;
+  padding: var(--s3) var(--s4);
+  margin: 0 0 var(--s5);
+  border: 1px solid var(--ink);
+  text-decoration: none;
+  color: var(--ink);
+}
+.today-card__label {
+  display: block;
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--moss);
+  margin: 0 0 4px;
+}
+.today-card__line {
+  font-family: var(--serif);
+  font-size: 15px;
+  line-height: 1.4;
+}
+@media (hover: hover) {
+  .today-card:hover { text-decoration: none; }
+  .today-card:hover .today-card__line { color: var(--moss); }
+}
+
 /* Cross links closing a section (map, search). */
 .home-crosslinks {
   margin-top: var(--s3);
@@ -795,6 +850,21 @@
 }
 @media (hover: hover) {
   .tool-card__title a:hover { color: var(--moss); }
+}
+/* Small stroke glyph before a tool-card title (the planner cards). Sized off
+   the title's font metrics and kept moss even when the link ink changes, so
+   the icon reads as a marginal mark, not part of the link text. */
+.tool-card__icon {
+  display: inline-flex;
+  width: 18px;
+  height: 18px;
+  margin-right: 9px;
+  vertical-align: -2px;
+  color: var(--moss);
+}
+.tool-card__icon svg {
+  width: 100%;
+  height: 100%;
 }
 .tool-card__teaser {
   font-family: var(--serif);
@@ -845,6 +915,17 @@
   font-size: 12px;
   color: var(--ink-3);
 }
+
+/* Computed sun schedule line (WeatherStrip, /today). Never stale, never
+   absent offline, so it can close the section on its own. */
+.sun-line {
+  font-family: var(--serif);
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--ink-2);
+  margin: var(--s2) 0 0;
+}
+.sun-line__muted { color: var(--ink-3); }
 
 /* Per-card five-day forecast inside the region picker cards (Home). Rows, not
    columns: at phone widths five columns cannot hold condition text like

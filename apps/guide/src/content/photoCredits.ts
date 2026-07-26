@@ -33,6 +33,7 @@ export const PHOTO_CREDITS: Record<string, PhotoCredit> = {
   "/photos/gaylor-lake.jpg": { author: "Antandrus", license: "Public domain", source: "https://commons.wikimedia.org/wiki/File:Gaylor_lakes.jpg" },
   "/photos/glacier-point.jpg": { author: "H.C. White Co.", license: "Public domain", source: "https://commons.wikimedia.org/wiki/File:From_Eagle_Peak_over_the_Valley_to_Glacier_Point,_Mt._Clark,_Nevada_Falls_and_Half_Dome,_Yosemite,_Cal.,_U.S.A,_by_H.C._White_Co..png" },
   "/photos/happy-isles-ouzel-watch.jpg": { author: "George Fiske", license: "Public domain", source: "https://commons.wikimedia.org/wiki/File:The_rapids_of_the_Merced_River_at_Happy_Isle_in_Yosemite_National_Park,_1900-1918_(CHS-1201).jpg" },
+  "/photos/inspiration-point.jpg": { author: "Aniket Deole", license: "Unsplash License", source: "https://unsplash.com/@anik3t" },
   "/photos/lookout-point.jpg": { author: "KatieRound", license: "CC BY-SA 4.0", source: "https://commons.wikimedia.org/wiki/File:View-at-Hetch-Hetchy-California.jpg" },
   "/photos/lyell-canyon.jpg": { author: "mypubliclands", license: "Public domain", source: "https://commons.wikimedia.org/wiki/File:Merced_Wild_and_Scenic_River,_California_(36481509642).jpg" },
   "/photos/mariposa-grove.jpg": { author: "Dietmar Rabich", license: "CC BY-SA 4.0", source: "https://commons.wikimedia.org/wiki/File:Yosemite_National_Park_(CA,_USA),_Mariposa_Grove_of_Giant_Sequoias_--_2022_--_2724.jpg" },
@@ -54,6 +55,7 @@ export const PHOTO_CREDITS: Record<string, PhotoCredit> = {
   "/photos/tioga-road-drive.jpg": { author: "Unknown author", license: "Public domain", source: "https://commons.wikimedia.org/wiki/File:Tioga_Road-Big_Oak_Flat_Road_-_Tioga_Road_in_Yosemite_National_Park_-_NARA_-_7722409.jpg" },
   "/photos/tuolumne-grove-old-road.jpg": { author: "Unknown artist", license: "Public domain", source: "https://commons.wikimedia.org/wiki/File:Dead_Giant,_Tuolumne_Grove,_30_ft._8_in._diam.,_Big_Oak_Flat_route_to_Yosemite_Valley,_from_Robert_N._Dennis_collection_of_stereoscopic_views.png" },
   "/photos/valley-ephemeral-falls.jpg": { author: "Matthes", license: "Public domain", source: "https://commons.wikimedia.org/wiki/File:RoyalArches.jpg" },
+  "/photos/valley-view.jpg": { author: "Rodrigo Soares", license: "Unsplash License", source: "https://unsplash.com/@rodi01" },
   "/photos/wapama-falls-trail.jpg": { author: "Craig Given", license: "CC BY 2.0", source: "https://commons.wikimedia.org/wiki/File:Wapama_Falls_at_Hetch_Hetchy.jpg" },
   "/photos/washburn-point.jpg": { author: "Pavel Špindler", license: "CC BY 3.0", source: "https://commons.wikimedia.org/wiki/File:Washburn_Point_-_Half_Dome,_Yosemite_Valley,_Vernal_a_Nevada_Falls_-_panoramio.jpg" },
   "/photos/wawona-meadow-loop.jpg": { author: "Pierce, C.C. (Charles C.), 1861-1946", license: "Public domain", source: "https://commons.wikimedia.org/wiki/File:Wawona_Meadows,_Yosemite_National_Park,_1900-1930_(CHS-1178).jpg" },
@@ -64,8 +66,9 @@ export const PHOTO_CREDITS: Record<string, PhotoCredit> = {
 
 /** One-line courtesy credit for a plate caption. */
 export function formatCredit(c: PhotoCredit): string {
-  // Pexels asks for a photographer/source mention, not a license name.
+  // Pexels and Unsplash ask for a photographer/source mention, not a license name.
   if (c.license.toLowerCase() === 'pexels license') return `Photo: ${c.author} / Pexels`
+  if (c.license.toLowerCase() === 'unsplash license') return `Photo: ${c.author} / Unsplash`
   const license = c.license.toLowerCase() === 'public domain' ? 'public domain' : c.license
   return `Photo: ${c.author}, ${license}`
 }

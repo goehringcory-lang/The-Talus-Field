@@ -1,0 +1,129 @@
+/* /dining route — the where-to-eat directory.
+ * Same expandable-row anatomy as /hikes, with the distance column repurposed
+ * for the price tier and venue kind. Chip primitives (components.css) handle
+ * filters and badges. */
+
+.dining-chips {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.dining-area-header {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  background: var(--paper-2);
+  border-top: 1px solid var(--ink);
+  border-bottom: 1px solid var(--rule-soft);
+  padding: 8px 2px;
+  font-family: var(--sans);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.dining-area-note {
+  margin: 10px 0 4px;
+  font-family: var(--serif);
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--ink-2);
+}
+
+.dining-town-header {
+  margin: 18px 0 0;
+  padding: 0 2px;
+  font-family: var(--sans);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--ink-2);
+}
+.dining-town-header small {
+  display: block;
+  margin-top: 2px;
+  font-weight: 400;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--ink-3);
+}
+
+.dining-row {
+  padding: 14px 2px;
+  border-bottom: 1px solid var(--rule-soft);
+}
+.dining-row summary {
+  cursor: pointer;
+  list-style: none;
+  display: grid;
+  grid-template-columns: 72px 1fr;
+  gap: 12px;
+  align-items: baseline;
+}
+.dining-row summary::-webkit-details-marker {
+  display: none;
+}
+.dining-row__price {
+  font: 600 13px var(--sans);
+  color: var(--ink-2);
+  display: grid;
+  gap: 2px;
+}
+.dining-row__kind {
+  font-weight: 400;
+  font-size: 11px;
+  color: var(--ink-3);
+}
+.dining-row__title {
+  font-family: var(--display);
+  font-size: 17px;
+  line-height: 1.3;
+  margin: 0;
+}
+.dining-row__meta {
+  font-family: var(--sans);
+  font-size: 12px;
+  color: var(--ink-3);
+  margin-top: 3px;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.dining-row__body {
+  grid-column: 2;
+  margin: 10px 0 0;
+  font-family: var(--serif);
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--ink-2);
+}
+.dining-row__note {
+  margin: 8px 0 0;
+  font-family: var(--sans);
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--ink-3);
+}
+.dining-row__footer {
+  margin-top: 10px;
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.dining-row[open] .dining-row__body,
+.dining-row[open] .dining-row__note {
+  margin-left: 84px;
+}
+@media (max-width: 480px) {
+  .dining-row[open] .dining-row__body,
+  .dining-row[open] .dining-row__note {
+    margin-left: 0;
+  }
+}

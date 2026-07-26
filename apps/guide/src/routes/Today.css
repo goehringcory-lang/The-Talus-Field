@@ -1,0 +1,129 @@
+/* /today — the field-day view. Read-only glance styling: rules, not boxes,
+ * matching the front page. The tone dots reuse the board/map hues via inline
+ * background from itemInfo, so a viewpoint is the same color here, on /trip,
+ * and on /map. */
+
+/* Conditions: forecast, sun schedule, entrance waits, stacked as plain lines
+ * under a rule. Any line can be absent (stale forecast, dead waits feed), so
+ * nothing anchors on a sibling. */
+.today-conditions {
+  padding: var(--s3) 0 var(--s4);
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  margin: 0 0 var(--s5);
+}
+.today-conditions__weather {
+  font-family: var(--serif);
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--ink-2);
+  margin: 0;
+}
+.today-conditions__muted { color: var(--ink-3); }
+.today-conditions__note {
+  font-family: var(--sans);
+  font-size: 11px;
+  color: var(--ink-3);
+  margin: var(--s2) 0 0;
+}
+
+/* Now / next up. */
+.today-next { margin: 0 0 var(--s5); }
+.today-next__title {
+  font-family: var(--display);
+  font-size: clamp(22px, 3.4vw, 30px);
+  font-weight: 500;
+  line-height: 1.15;
+  margin: 6px 0 4px;
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+.today-next__time {
+  font-family: var(--sans);
+  font-size: 13px;
+  color: var(--ink-2);
+  margin: 0 0 6px;
+}
+.today-next__nav {
+  font-family: var(--sans);
+  font-size: 13px;
+}
+
+.today-done {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 15px;
+  color: var(--ink-2);
+  margin: 0 0 var(--s5);
+}
+
+/* The day in order. */
+.today-list-section > .eyebrow { display: block; margin-bottom: 10px; }
+.today-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 var(--s3);
+  border-bottom: 1px solid var(--rule);
+}
+.today-row {
+  display: grid;
+  grid-template-columns: 76px 10px 1fr;
+  gap: 10px;
+  align-items: baseline;
+  padding: 10px 0;
+  border-top: 1px solid var(--rule);
+}
+.today-row.is-past { opacity: 0.55; }
+.today-row__time {
+  font-family: var(--sans);
+  font-size: 12px;
+  color: var(--ink-2);
+  white-space: nowrap;
+}
+.today-row__dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+  flex: none;
+  align-self: center;
+}
+.today-row__body {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 12px;
+  min-width: 0;
+}
+.today-row__title {
+  font-family: var(--serif);
+  font-size: 15px;
+}
+.today-row__meta,
+.today-row__nav {
+  font-family: var(--sans);
+  font-size: 12px;
+}
+.today-row__meta { color: var(--ink-3); }
+
+/* Transit estimate between two placed rows: informational only. */
+.today-transit {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-style: italic;
+  color: var(--ink-3);
+  padding: 2px 0 2px 96px;
+  border-top: 1px dashed var(--rule);
+}
+
+.today-list__sub {
+  display: block;
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  margin: var(--s4) 0 6px;
+}

@@ -59,6 +59,31 @@ async function readCached(env: Env): Promise<WaitsRecord | null> {
   }
 }
 
+// Same display names the editorial masthead uses; unknown pairs fall back to
+// the pair_name with its " Wait Time" suffix stripped.
+const WAITS_SHORT_NAMES: Record<string, string> = {
+  'South Entrance Wait Time': 'South',
+  'Arch Rock Wait Time': 'Arch Rock',
+  'Big Oak Flat Wait Time': 'Big Oak Flat',
+}
+
+export type WaitDisplay = { name: string; minutes: number | null }
+
+// Display shape shared by /widget/conditions and /api/waits, so the free
+// embed and the paid PWA can never disagree about what an entrance is called
+// or when a wait counts as unknown (stale or missing -> null).
+export function waitsDisplay(record: WaitsRecord | null): WaitDisplay[] {
+  return (record?.summary ?? []).map((pair) => {
+    const rawName = String(pair.pair_name ?? '')
+    const name = WAITS_SHORT_NAMES[rawName] || rawName.replace(/\s*Wait Time$/i, '') || 'Entrance'
+    const minutes =
+      pair.stale || typeof pair.current_wait_minutes !== 'number'
+        ? null
+        : Math.round(pair.current_wait_minutes)
+    return { name, minutes }
+  })
+}
+
 export async function getWaits(env: Env): Promise<WaitsRecord | null> {
   const cached = await readCached(env)
   if (cached && Date.now() - Date.parse(cached.fetchedAt) < FRESH_MS) {

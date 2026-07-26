@@ -285,7 +285,7 @@ function GuideBuyBox() {
           <li>· Download the whole guide for offline, about 50 MB</li>
           <li>· Time budgets and a swap for when the lot is full</li>
           <li>· Programs by your dates: ranger walks, Junior Ranger, tours, star parties. Synced online, readable offline</li>
-          <li>· A trip planner that syncs your days to Google Calendar, or any calendar app, and re-syncs when you change the plan</li>
+          <li>· A planning calendar that lays out each day, then syncs to Google Calendar, or any calendar app, and re-syncs when you change the plan</li>
           <li>· Know-before-you-go essentials, a night-before checklist, and a packing list you check off in-app</li>
           <li>· Search across everything</li>
           <li>· The Secret Guide: unsigned turnouts, hidden stops, and secret spots, included</li>
@@ -410,7 +410,7 @@ function GuideWaitlistBox() {
           <li>· Download the whole guide for offline, about 50 MB</li>
           <li>· Time budgets and a swap for when the lot is full</li>
           <li>· Programs by your dates: ranger walks, Junior Ranger, tours, star parties. Synced online, readable offline</li>
-          <li>· A trip planner that syncs your days to Google Calendar, or any calendar app, and re-syncs when you change the plan</li>
+          <li>· A planning calendar that lays out each day, then syncs to Google Calendar, or any calendar app, and re-syncs when you change the plan</li>
           <li>· Know-before-you-go essentials, a night-before checklist, and a packing list you check off in-app</li>
           <li>· Search across everything</li>
           <li>· The Secret Guide: unsigned turnouts, hidden stops, and secret spots, included</li>
@@ -427,38 +427,64 @@ function GuideWaitlistBox() {
   );
 }
 
-// Unedited screens captured from the 2026 build. Dimensions are fixed so the
-// strip reserves its layout before the images arrive.
+// Unedited screens captured from the 2026 build (July 2026 refresh: the
+// planning calendar, the card deck, and the field-day view are all in the
+// app now, so the strip shows them). Dimensions are fixed so the strip
+// reserves its layout before the images arrive.
+//
+// Filenames are new rather than overwritten on purpose: /img/* ships with a
+// month-long immutable cache in _headers, so a replaced screenshot under an
+// old name would keep serving the old picture to returning readers.
 const APP_SHOTS = [
   {
-    src: "img/guide/app-home.webp",
-    alt: "The Field Guide app's front page: the whole guide indexed on one screen, with how-it-works steps and the seasonal almanac",
-    caption: "The front page. The whole guide indexed on one screen, with the season's closures and full moons already listed.",
+    src: "img/guide/screens/front-page.webp",
+    alt: "The Field Guide app's front page, listing the four regions with a stop count and the current forecast on each",
+    caption: "The front page. Four regions, every stop counted, and today's forecast on each one before you pick a direction.",
   },
   {
-    src: "img/guide/app-stop.webp",
-    alt: "A stop page in the app for Tunnel View, showing a tappable GPS coordinate, elevation, and a time budget",
+    src: "img/guide/screens/region-cards.webp",
+    alt: "A region in card view: one stop per screen with photo, coordinate, elevation, and time budget, swiped like a feed",
+    caption: "A region reads as a deck: one stop per screen, swipe up for the next. The long list is still a tap away.",
+  },
+  {
+    src: "img/guide/screens/stop.webp",
+    alt: "A stop page in the app for Tunnel View, showing a tappable GPS coordinate, elevation, and a 25-minute time budget",
     caption: "Every stop opens with the numbers that run your day: a tappable GPS coordinate, the elevation, the honest time budget.",
   },
   {
-    src: "img/guide/app-stop-swap.webp",
+    src: "img/guide/screens/swap.webp",
     alt: "The same stop page scrolled to the 'If full' swap, telling you exactly where to go when the parking lot is full",
     caption: "The swap, printed on the stop itself. The lot fills at ten, you already know the move.",
   },
   {
-    src: "img/guide/app-trip.webp",
-    alt: "The trip planner in the app, showing a day's agenda with start times and drive-time buffers between stops",
-    caption: "The planner lays out each day and inserts real drive-time buffers between stops. One tap puts it on your calendar.",
+    src: "img/guide/screens/hikes.webp",
+    alt: "The day-hike catalog in the app, each trail listed with distance, gain, difficulty, and its elevation profile",
+    caption: "All 57 in-park day hikes with distance, climbing, and the shape of the trail. Add one and the planner budgets the hours.",
   },
   {
-    src: "img/guide/app-secret-guide.webp",
+    src: "img/guide/screens/programs.webp",
+    alt: "The program list in the app, grouped by day: ranger walks, a Junior Ranger table, a Conservancy talk, a star party",
+    caption: "The park's programs on your dates, day by day, from the Park Service, the Conservancy, the concessioner, and the astronomy clubs.",
+  },
+  {
+    src: "img/guide/screens/trip-board.webp",
+    alt: "The planning calendar in the app: a day drawn as a timeline with stops, a ranger walk, and a hike as sized blocks",
+    caption: "The planning calendar, native to the app. Each day is a real timeline: blocks sized by how long a thing takes, drives figured between them, dragged where you want them.",
+  },
+  {
+    src: "img/guide/screens/calendar.webp",
+    alt: "The app's add-to-calendar sheet, offering a subscribed feed that stays updated or a one-time .ics file",
+    caption: "When the days are set, the board goes onto the calendar you already carry: a subscribed feed that follows your edits, or a one-time file.",
+  },
+  {
+    src: "img/guide/screens/today.webp",
+    alt: "The field-day view in the app: sunrise and sunset, entrance waits, what is happening now, and the day in time order",
+    caption: "In the park, the plan collapses to one screen: light and entrance waits up top, what's on now, then the day in order.",
+  },
+  {
+    src: "img/guide/screens/secret-guide.webp",
     alt: "The Secret Guide section in the app: 37 entries of quiet vistas, hidden trails, and parking moves",
     caption: "The Secret Guide. 37 entries of quiet vistas, hidden trails, parking moves, and the park after dark.",
-  },
-  {
-    src: "img/guide/app-hikes.webp",
-    alt: "The day-hike catalog in the app, listing every in-park day hike with distance, gain, and difficulty",
-    caption: "All 57 in-park day hikes with distance, gain, and difficulty. Add one and the planner budgets the hours for it.",
   },
 ];
 
@@ -628,7 +654,7 @@ function GuidePage({ go }) {
           <div className="eyebrow eyebrow--moss">The Field Guide · Offline app · 2026 Edition</div>
           <h1>The Yosemite guide for people who already know about Glacier Point.</h1>
           <p className="page-head__dek">
-            A web app you add to your home screen. Four regional guides with tappable GPS, time budgets, a swap for when the plan dies, an offline topo map of the whole park, the ranger and partner program schedule on your dates, and a trip planner that syncs your days into Google or Apple Calendar and keeps them current when the plan changes. Works at the trailhead when service doesn't. Not a PDF. Not another tourist checklist.
+            A web app you add to your home screen. Four regional guides with tappable GPS, time budgets, a swap for when the plan dies, an offline topo map of the whole park, the ranger and partner program schedule on your dates, and a planning calendar that lays your days out block by block, then syncs them into Google or Apple Calendar and keeps them current when the plan changes. Works at the trailhead when service doesn't. Not a PDF. Not another tourist checklist.
           </p>
           <div className="guide-stats">
             <span>4 regions</span>
@@ -677,7 +703,7 @@ function GuidePage({ go }) {
             <h2>Inside the app</h2>
 
             <p>
-              These are unedited screens from the 2026 edition, the same build buyers open. What you see here is the product, not a mockup.
+              These are unedited screens from the current 2026 build, the same one buyers open, captured on a phone. What you see here is the product, not a mockup. Ten screens, in the order you'd use them: read the park, plan the days on the calendar, then work the day itself.
             </p>
 
             <AppShots />
@@ -716,14 +742,18 @@ function GuidePage({ go }) {
               The park runs more than most visitors ever find out about: ranger walks, Junior Ranger tables, Conservancy naturalist programs and evening talks at Parsons Memorial Lodge, guided tours, and the summer nights when the astronomy clubs haul telescopes up to Glacier Point. The schedules live in a half-dozen places. The app pulls them into one list. Pick your trip dates, sync once while you have signal, and scroll your days: what's running, when, where, what's free, what needs a reservation. The list stays on your phone, so it still reads at a picnic table with no bars.
             </p>
 
-            <h2>The trip planner, on your calendar</h2>
+            <h2>The planning calendar, built into the app</h2>
 
             <p>
-              Add the stops you want and the programs you picked, and the app lays out each day: your stops in a sensible order with real time budgets, flowed around the programs' published times, with travel and parking buffers figured from the distance between them. Adjust anything, and the plan stays yours on the phone.
+              The planner is a calendar now, not a list. Add the stops you want, the hikes you're up for, and the programs you picked, and each day of your trip draws itself as a real timeline: blocks sized by how long a thing actually takes, the programs held at their published times, and the drive between two places figured from the distance and dropped in as a buffer. A three-hour hike is a tall block. A twenty-five minute viewpoint is a sliver. The shape of the day is readable before you've read a word of it.
             </p>
 
             <p>
-              When the plan is set, the app puts it on your calendar three ways. Pick whichever fits how you work.
+              It's yours to move. Press and hold a block and drag it later, earlier, or onto another day; drag its bottom edge to give it more time; type in your own entries for the parts of a trip the guide doesn't know about, the cabin check-in and the dinner reservation. Every edit saves to the phone the moment you make it, so the whole calendar works with the radio off, in the park, on the morning it matters.
+            </p>
+
+            <p>
+              When the plan is set, the app puts it on the calendar you already use, three ways. Pick whichever fits how you work.
             </p>
 
             <ul>
@@ -734,6 +764,12 @@ function GuidePage({ go }) {
 
             <p>
               Every event carries the stop's GPS coordinate and a directions link, and the timed ones carry a reminder, so the calendar alert at the trailhead is also the navigation.
+            </p>
+
+            <h2>The day, while you're in it</h2>
+
+            <p>
+              Once your dates arrive, the app opens on the day itself. One screen: sunrise, the golden hour at both ends, sunset, the wait at each entrance station right now, and then your day in time order with what's happening at this minute pulled to the top and the drive to the next thing already figured. It's the plan with the planning taken out, which is the only version worth reading with a car full of people waiting on you.
             </p>
 
             <h2>Know before you go</h2>
@@ -787,7 +823,7 @@ function GuidePage({ go }) {
             <div className="guide-closer">
               <div className="eyebrow eyebrow--moss" style={{ marginBottom: 12 }}>The offer, in one place</div>
               <p style={{ fontFamily: "var(--serif)", fontSize: 17, lineHeight: 1.6, margin: "0 0 20px" }}>
-                Four regional guides. 44 stops in driving order, each with GPS, a time budget, and a swap. All 57 in-park day hikes. The 37-entry Secret Guide. The park's program schedule on your dates. A trip planner that syncs to your calendar and an offline map that holds it all together. Nineteen dollars, once, for 18 months on every device you own.
+                Four regional guides. 44 stops in driving order, each with GPS, a time budget, and a swap. All 57 in-park day hikes. The 37-entry Secret Guide. The park's program schedule on your dates. A planning calendar you drag into shape, then send to your calendar app, and an offline map that holds it all together. Nineteen dollars, once, for 18 months on every device you own.
               </p>
               <BuyNowButton location="guide_closer" />
               <p style={{ fontFamily: "var(--sans)", fontSize: 12, color: "var(--ink-3)", lineHeight: 1.55, margin: "14px 0 0" }}>

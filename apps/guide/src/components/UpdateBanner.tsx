@@ -1,21 +1,18 @@
 import { useEffect, useState } from 'react'
-import { triggerUpdate } from '../pwa/registerSW'
+import { getPendingUpdate, onUpdateReady, triggerUpdate } from '../pwa/registerSW'
 
 export default function UpdateBanner() {
+  // Seeded from module state, not only from the event: registerSW can announce
+  // before this component's effect runs (a worker already waiting from a prior
+  // visit is found during boot), and a one-shot event fired into an empty room
+  // is a bar that never appears — or appears once and vanishes on remount.
   const [registration, setRegistration] =
-    useState<ServiceWorkerRegistration | null>(null)
+    useState<ServiceWorkerRegistration | null>(getPendingUpdate)
   const [updating, setUpdating] = useState(false)
   // Session-only: the banner comes back on the next launch by design.
   const [dismissed, setDismissed] = useState(false)
 
-  useEffect(() => {
-    function handler(e: Event) {
-      const detail = (e as CustomEvent<ServiceWorkerRegistration>).detail
-      if (detail) setRegistration(detail)
-    }
-    window.addEventListener('tfg:update-ready', handler)
-    return () => window.removeEventListener('tfg:update-ready', handler)
-  }, [])
+  useEffect(() => onUpdateReady(setRegistration), [])
 
   if (!registration || dismissed) return null
 

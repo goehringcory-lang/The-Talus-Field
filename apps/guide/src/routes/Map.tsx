@@ -20,7 +20,7 @@ import 'maplibre-gl/dist/maplibre-gl.css'
 import GatedChrome from '../components/GatedChrome'
 import ResponsivePhoto from '../components/ResponsivePhoto'
 import { ChipButton } from '../components/ui/Chip'
-import { AMENITIES, HIKES, REGIONS, REGION_SHORT, SECRET_SPOTS, stops as allStops, getItineraryDayPhotos, getStopById, isSecretGuideEntry, type AmenityT, type GuideStopT, type HikeT, type Region } from '../content'
+import { AMENITIES, HIKES, REGIONS, SECRET_SPOTS, stops as allStops, getItineraryDayPhotos, getStopById, isSecretGuideEntry, type AmenityT, type GuideStopT, type HikeT, type Region } from '../content'
 import { DIFFICULTY_LABEL, formatTime } from '../content/labels'
 import {
   ITINERARIES,
@@ -36,6 +36,7 @@ import { announceTripAdd } from '../trip/addFeedback'
 import { addHikeToPlan, addStopToPlan, isHikePlanned, isStopPlanned, useTripPlan } from '../trip/useTripPlan'
 import { buildMapStyle } from '../map/style'
 import { isPackCompleted } from '../offline/useDownloads'
+import { OFFLINE_MAX_ZOOM } from '../offline/tiles'
 import { formatMiles, haversineMiles } from '../utils/geo'
 import { popupPhotoUrl } from '../utils/photo'
 import './Map.css'
@@ -53,6 +54,9 @@ type UrlState = {
   kinds: MapPinKind[] | null // null = no kind narrowing (all kinds show)
   secret: boolean
   hike: string | null // hike id whose track overlays the map (?hike=)
+  // ?planned=1 narrows the map to the trip plan. Deliberately NOT ?trip=:
+  // that name carries stop lists on the editorial map's share links.
+  planned: boolean
 }
 
 const ALL_KINDS = Object.keys(KIND_STYLES) as MapPinKind[]
@@ -81,6 +85,7 @@ function readUrlState(): UrlState {
     secret: params.get('secret') !== '0',
     // Only hikes with a published track: an unknown id round-trips away.
     hike: hike && hasTrack(hike) ? hike : null,
+    planned: params.get('planned') === '1',
   }
 }
 
@@ -92,6 +97,7 @@ function writeUrlState(next: UrlState) {
   if (next.kinds && next.kinds.length > 0) params.set('kinds', [...next.kinds].sort().join(','))
   if (!next.secret) params.set('secret', '0')
   if (next.hike) params.set('hike', next.hike)
+  if (next.planned) params.set('planned', '1')
   const qs = params.toString()
   const newUrl = '/map' + (qs ? `?${qs}` : '')
   if (newUrl !== window.location.pathname + window.location.search) {
@@ -450,6 +456,24 @@ export default function Map() {
     }
   }, [])
 
+  // The offline tile pack stops at z14; the online proxy serves to z16. Clamp
+  // interactive zoom while offline so airplane-mode users never pan into blank
+  // tiles. navigator.onLine is a heuristic (captive portals lie), but a wrong
+  // "online" only restores the online ceiling, it breaks nothing.
+  const [online, setOnline] = useState(() => navigator.onLine)
+  useEffect(() => {
+    const sync = () => setOnline(navigator.onLine)
+    window.addEventListener('online', sync)
+    window.addEventListener('offline', sync)
+    return () => {
+      window.removeEventListener('online', sync)
+      window.removeEventListener('offline', sync)
+    }
+  }, [])
+  useEffect(() => {
+    mapRef.current?.setMaxZoom(online ? 16 : OFFLINE_MAX_ZOOM)
+  }, [online, mapReady])
+
   const initial = useMemo(() => readUrlState(), [])
   const [tab, setTab] = useState<Tab>(initial.tab)
   // On phones the points pane docks to the bottom over the map, so it opens
@@ -476,6 +500,7 @@ export default function Map() {
     initial.kinds ? new Set(initial.kinds) : null,
   )
   const [showSecret, setShowSecret] = useState<boolean>(initial.secret)
+  const [plannedOnly, setPlannedOnly] = useState<boolean>(initial.planned)
 
   // Hike track overlay (?hike=<id>). The track loads from the runtime cache
   // offline; the overlay draws above the topo with the trailhead marked.
@@ -528,6 +553,7 @@ export default function Map() {
   const resetFilters = useCallback(() => {
     setKindFilter(null)
     setShowSecret(true)
+    setPlannedOnly(false)
   }, [])
 
   // The itinerary's region set, or null when no itinerary narrows the map.
@@ -545,6 +571,7 @@ export default function Map() {
   const visibleStops = useMemo<GuideStopT[]>(
     () =>
       mappableStops.filter((s) => {
+        if (plannedOnly && !plannedStopIds.has(s.id)) return false
         if (kindFilter && !kindFilter.has(s.kind)) return false
         if (!showSecret && isSecretGuideEntry(s)) return false
         if (itineraryRegions) {
@@ -552,7 +579,7 @@ export default function Map() {
         }
         return true
       }),
-    [mappableStops, itineraryRegions, kindFilter, showSecret],
+    [mappableStops, itineraryRegions, kindFilter, showSecret, plannedOnly, plannedStopIds],
   )
 
   // Amenities follow the same kind and region narrowing but never join the
@@ -561,10 +588,12 @@ export default function Map() {
   const visibleAmenities = useMemo<AmenityT[]>(
     () =>
       AMENITIES.filter((a) => {
+        // Amenities are never planned; under the trip layer they are clutter.
+        if (plannedOnly) return false
         if (kindFilter && !kindFilter.has(a.kind)) return false
         return !itineraryRegions || itineraryRegions.has(a.region)
       }),
-    [itineraryRegions, kindFilter],
+    [itineraryRegions, kindFilter, plannedOnly],
   )
 
   // Day-hike trailheads narrow the same way as amenities: by the hike kind
@@ -573,10 +602,11 @@ export default function Map() {
   const visibleTrailheads = useMemo<TrailheadGroup[]>(
     () =>
       TRAILHEAD_GROUPS.filter((g) => {
+        if (plannedOnly && !g.hikes.some((h) => plannedHikeIds.has(h.id))) return false
         if (kindFilter && !kindFilter.has('hike')) return false
         return !itineraryRegions || itineraryRegions.has(g.region)
       }),
-    [itineraryRegions, kindFilter],
+    [itineraryRegions, kindFilter, plannedOnly, plannedHikeIds],
   )
 
   // Chip count badges: what enabling each kind yields under the OTHER active
@@ -615,6 +645,15 @@ export default function Map() {
     () => mappableStops.filter(isSecretGuideEntry).length,
     [mappableStops],
   )
+  // Pins the trip layer yields: planned stops with coords plus trailhead
+  // groups carrying a planned hike. States what tapping the chip shows, like
+  // the kind counts.
+  const plannedCount = useMemo(
+    () =>
+      mappableStops.filter((s) => plannedStopIds.has(s.id)).length +
+      TRAILHEAD_GROUPS.filter((g) => g.hikes.some((h) => plannedHikeIds.has(h.id))).length,
+    [mappableStops, plannedStopIds, plannedHikeIds],
+  )
 
   // Sync state to URL.
   useEffect(() => {
@@ -625,8 +664,9 @@ export default function Map() {
       kinds: kindFilter ? [...kindFilter] : null,
       secret: showSecret,
       hike: trackHikeId,
+      planned: plannedOnly,
     })
-  }, [tab, selectedItinerary, selectedStopId, kindFilter, showSecret, trackHikeId])
+  }, [tab, selectedItinerary, selectedStopId, kindFilter, showSecret, trackHikeId, plannedOnly])
 
   // Restore from URL on every router navigation: back/forward (the router
   // owns popstate) and bottom-nav "Map" re-taps that push a bare /map over a
@@ -643,6 +683,7 @@ export default function Map() {
       setSelectedItinerary(next.itinerary)
       setKindFilter(next.kinds ? new Set(next.kinds) : null)
       setShowSecret(next.secret)
+      setPlannedOnly(next.planned)
       setTrackHikeId(next.hike)
       selectStop(next.stop)
     })
@@ -681,7 +722,7 @@ export default function Map() {
       style: buildMapStyle(),
       center: [-119.55, 37.85],
       zoom: 9,
-      maxZoom: 16,
+      maxZoom: navigator.onLine ? 16 : OFFLINE_MAX_ZOOM,
       // Padded park bbox: keeps panning on the cached tile set.
       maxBounds: [
         [-120.8, 36.8],
@@ -1026,12 +1067,7 @@ export default function Map() {
 
   // Counts for the itinerary buttons, derived live.
   const counts = useMemo(() => {
-    const out: Record<'all' | ItineraryKey, number> = {
-      all: mappableStops.length,
-      '1day': 0,
-      '2day': 0,
-      '3day': 0,
-    }
+    const out = { all: mappableStops.length } as Record<'all' | ItineraryKey, number>
     for (const key of ITINERARY_KEYS) {
       const regions = new Set(ITINERARIES[key].days.flatMap((d) => d.regions))
       out[key] = mappableStops.filter(
@@ -1054,25 +1090,10 @@ export default function Map() {
       .slice(0, 5)
   }, [visibleStops, userPos])
 
-  // "Browse by area" groups for the points pane: the four regions in REGIONS
-  // order plus a region-less "Secret spots" group. Derived from visibleStops
-  // so a row can never point at a filtered-out marker; empty groups drop.
-  const browseGroups = useMemo(() => {
-    const groups: { id: string; label: string; stops: GuideStopT[] }[] = REGIONS.map((r) => ({
-      id: r.id as string,
-      label: REGION_SHORT[r.id],
-      stops: visibleStops
-        .filter((s) => 'region' in s && s.region === r.id)
-        .sort((a, b) => a.order - b.order),
-    }))
-    const secretSpots = visibleStops
-      .filter((s) => !('region' in s))
-      .sort((a, b) => a.order - b.order)
-    if (secretSpots.length > 0) {
-      groups.push({ id: 'secret', label: 'Secret spots', stops: secretSpots })
-    }
-    return groups.filter((g) => g.stops.length > 0)
-  }, [visibleStops])
+  // The points pane exists only for "Near you", so it renders only when there
+  // is something to say: a location fix, or the note explaining there isn't
+  // one. Otherwise the map keeps the whole stage.
+  const showPointsPane = nearbyStops.length > 0 || (geoDenied && !userPos)
 
   return (
     <GatedChrome>
@@ -1084,7 +1105,7 @@ export default function Map() {
               points are still on each stop's page.
             </>
           ) : mapDownloaded ? (
-            <>Map downloaded. Works offline, even in airplane mode.</>
+            <>Map downloaded. Works offline, even in airplane mode, down to trailhead scale.</>
           ) : (
             <>
               Viewing online.{' '}
@@ -1163,6 +1184,16 @@ export default function Map() {
                 Secret Guide <span className="map-filterbar__count">{secretCount}</span>
               </ChipButton>
             )}
+            {plannedCount > 0 && (
+              <ChipButton
+                variant="filter"
+                pressed={plannedOnly}
+                aria-label={`My trip, ${plannedCount} pins`}
+                onClick={() => setPlannedOnly((v) => !v)}
+              >
+                My trip <span className="map-filterbar__count">{plannedCount}</span>
+              </ChipButton>
+            )}
           </div>
         </div>
 
@@ -1200,91 +1231,62 @@ export default function Map() {
             </div>
           )}
 
-          <aside
-            className={`map-pane map-pane--points${pointsExpanded ? ' map-pane--points-open' : ''}`}
-            aria-hidden={tab !== 'points'}
-          >
-            <button
-              type="button"
-              className="map-pane__handle"
-              aria-expanded={pointsExpanded}
-              onClick={() => setPointsExpanded((v) => !v)}
+          {showPointsPane && (
+            <aside
+              className={`map-pane map-pane--points${pointsExpanded ? ' map-pane--points-open' : ''}`}
+              aria-hidden={tab !== 'points'}
             >
-              <span>Browse by area</span>
-              <span className="map-pane__handle-caret" aria-hidden>
-                {pointsExpanded ? '▾' : '▴'}
-              </span>
-            </button>
-            <div className="map-pane__scroll">
-            {geoDenied && !userPos && (
-              <p className="map-nearby__note">
-                Location is off for this app. Enable it in your phone's
-                settings to see distances to stops.
-              </p>
-            )}
-            {nearbyStops.length > 0 && (
-              <div className="map-nearby">
-                <h3 className="map-pane__title">Near you</h3>
-                {outOfPark && (
+              <button
+                type="button"
+                className="map-pane__handle"
+                aria-expanded={pointsExpanded}
+                onClick={() => setPointsExpanded((v) => !v)}
+              >
+                <span>Near you</span>
+                <span className="map-pane__handle-caret" aria-hidden>
+                  {pointsExpanded ? '▾' : '▴'}
+                </span>
+              </button>
+              <div className="map-pane__scroll">
+                {geoDenied && !userPos && (
                   <p className="map-nearby__note">
-                    You're outside the park map area; distances are from your
-                    current location.
+                    Location is off for this app. Enable it in your phone's
+                    settings to see distances to stops.
                   </p>
                 )}
-                <ul className="map-nearby__list">
-                  {nearbyStops.map(({ stop, miles }) => {
-                    const { color, label } = getKindStyle(stop.kind)
-                    return (
-                      <li key={stop.id}>
-                        <button
-                          type="button"
-                          className={`map-stop${stop.id === selectedStopId ? ' map-stop--selected' : ''}`}
-                          onClick={() => handleSelectStop(stop.id)}
-                        >
-                          <span className="map-stop__name">{stop.title}</span>
-                          <span className="map-stop__kind" style={{ color }}>
-                            {label} · {formatMiles(miles)}
-                          </span>
-                        </button>
-                      </li>
-                    )
-                  })}
-                </ul>
+                {nearbyStops.length > 0 && (
+                  <div className="map-nearby">
+                    <h3 className="map-pane__title map-pane__title--near">Near you</h3>
+                    {outOfPark && (
+                      <p className="map-nearby__note">
+                        You're outside the park map area; distances are from your
+                        current location.
+                      </p>
+                    )}
+                    <ul className="map-nearby__list">
+                      {nearbyStops.map(({ stop, miles }) => {
+                        const { color, label } = getKindStyle(stop.kind)
+                        return (
+                          <li key={stop.id}>
+                            <button
+                              type="button"
+                              className={`map-stop${stop.id === selectedStopId ? ' map-stop--selected' : ''}`}
+                              onClick={() => handleSelectStop(stop.id)}
+                            >
+                              <span className="map-stop__name">{stop.title}</span>
+                              <span className="map-stop__kind" style={{ color }}>
+                                {label} · {formatMiles(miles)}
+                              </span>
+                            </button>
+                          </li>
+                        )
+                      })}
+                    </ul>
+                  </div>
+                )}
               </div>
-            )}
-            <h3 className="map-pane__title map-pane__title--browse">Browse by area</h3>
-            <div className="map-browse">
-              {browseGroups.map((group) => (
-                <details key={group.id} className="map-browse__region">
-                  <summary className="map-browse__summary">
-                    <span>{group.label}</span>
-                    <span className="map-browse__count">{group.stops.length}</span>
-                  </summary>
-                  <ul className="map-browse__list">
-                    {group.stops.map((s) => {
-                      const { color, label } = getKindStyle(s.kind)
-                      return (
-                        <li key={s.id}>
-                          <button
-                            type="button"
-                            className={`map-stop${s.id === selectedStopId ? ' map-stop--selected' : ''}`}
-                            onClick={() => handleSelectStop(s.id)}
-                          >
-                            <span className="map-stop__name">{s.title}</span>
-                            <span className="map-stop__kind" style={{ color }}>
-                              {label}
-                            </span>
-                          </button>
-                        </li>
-                      )
-                    })}
-                  </ul>
-                </details>
-              ))}
-            </div>
-            <p className="map-browse__footnote">Gold outline: Secret Guide entry.</p>
-            </div>
-          </aside>
+            </aside>
+          )}
 
           <aside
             className="map-pane map-pane--itineraries"

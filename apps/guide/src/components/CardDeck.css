@@ -1,0 +1,376 @@
+/* CardDeck — full-screen swipe deck for the card surfaces.
+ * Layout contract: .deck-main is a fixed-height flex column (the same
+ * viewport arithmetic /map uses), .deck-bar takes its natural height, and the
+ * viewport takes the rest. Panels are exactly the scroller's height, which is
+ * what makes scrollTop / clientHeight a reliable index. */
+
+.deck-main {
+  display: flex;
+  flex-direction: column;
+  /* Subtract only the chrome OUTSIDE this element: the sticky masthead
+   * (--chrome-top-h plus the top safe-area inset it absorbs) and the fixed
+   * bottom nav (56px + safe area). */
+  height: calc(
+    100vh - var(--chrome-top-h) - env(safe-area-inset-top) - 56px - env(safe-area-inset-bottom)
+  );
+  height: calc(
+    100dvh - var(--chrome-top-h) - env(safe-area-inset-top) - 56px - env(safe-area-inset-bottom)
+  );
+  min-height: 420px;
+}
+/* Landscape phones: forcing 420px would overflow the page and put a second
+ * (body) scroller under the deck, which breaks the gesture. Let it be short. */
+@media (max-height: 520px) {
+  .deck-main { min-height: 0; }
+}
+
+/* Compact header for card mode: the page's identity plus the view toggle,
+ * in one line's worth of vertical budget. The full PageHeader is list mode's. */
+.deck-bar {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 10px var(--gutter);
+  border-bottom: 1px solid var(--rule-soft);
+}
+.deck-bar__title {
+  font-family: var(--display);
+  font-size: 21px;
+  font-weight: 500;
+  line-height: 1.15;
+  margin: 0;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.deck-bar__side {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+.deck-bar__count {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.02em;
+  color: var(--ink-3);
+  white-space: nowrap;
+}
+
+/* A filter row above the deck (the Secret Guide's categories). It is a flex
+ * child of the fixed-height column, so it must not also be sticky — sticky
+ * inside a non-scrolling parent just pins it in place with the gutter
+ * negative margins the .wrap layout gave it. */
+.deck-tabs {
+  flex: 0 0 auto;
+}
+.deck-tabs .secret-guide-tabs {
+  position: static;
+  margin: 0;
+  padding: 8px var(--gutter);
+  border-bottom: 1px solid var(--rule-soft);
+  background: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+/* List mode's toggle row, above the page header. */
+.page-toolbar {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 16px;
+}
+
+.deck-viewport {
+  position: relative;
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+}
+
+.deck {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scroll-snap-type: y mandatory;
+  /* A flick that runs off the end must not drag the page (or trigger
+   * pull-to-refresh) behind the deck. */
+  overscroll-behavior-y: contain;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.deck::-webkit-scrollbar { display: none; }
+.deck:focus-visible { outline: 2px solid var(--moss); outline-offset: -2px; }
+
+.deck__panel {
+  height: 100%;
+  scroll-snap-align: start;
+  /* Never let one fling skate past three stops. */
+  scroll-snap-stop: always;
+  display: flex;
+  flex-direction: column;
+  padding: 14px var(--gutter) 16px;
+  /* Clip, don't bleed: an over-tall card must not paint into the next
+   * panel. NOT overflow:auto — a panel must never become a scroller. */
+  overflow: hidden;
+}
+
+/* Right-edge progress ticks. Outside the scroller, so they hold still. */
+.deck__rail {
+  position: absolute;
+  right: 5px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  pointer-events: none;
+  z-index: 2;
+}
+.deck__tick {
+  width: 3px;
+  height: 12px;
+  background: var(--rule-soft);
+}
+.deck__tick--on { background: var(--ink); }
+
+/* Pointer devices have no swipe; give them buttons. Hidden from the a11y
+ * tree and the tab order: the deck itself is focusable and pages with arrow
+ * keys, so these would only add two dead stops. */
+.deck__nav {
+  position: absolute;
+  right: 14px;
+  bottom: 14px;
+  display: none;
+  flex-direction: column;
+  gap: 6px;
+  z-index: 2;
+}
+/* Wide enough that the buttons sit in the margin beside the card rather than
+ * on top of its copy — a narrow desktop window keeps the wheel and arrows. */
+@media (hover: hover) and (pointer: fine) and (min-width: 900px) {
+  .deck__nav { display: flex; }
+}
+.deck__navbtn {
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  font-family: var(--sans);
+  font-size: 15px;
+  line-height: 1;
+  color: var(--ink);
+  background: color-mix(in oklab, var(--paper) 88%, transparent);
+  border: 1px solid var(--rule);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  cursor: pointer;
+}
+.deck__navbtn:disabled { opacity: 0.32; cursor: default; }
+@media (hover: hover) {
+  .deck__navbtn:not(:disabled):hover { background: var(--ink); color: var(--paper); }
+}
+
+.deck__hint {
+  position: absolute;
+  left: 50%;
+  bottom: 10px;
+  transform: translateX(-50%);
+  margin: 0;
+  padding: 5px 12px;
+  z-index: 2;
+  pointer-events: none;
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--paper);
+  background: color-mix(in oklab, var(--ink) 82%, transparent);
+  white-space: nowrap;
+  animation: deck-hint-rise 2.4s ease-in-out infinite;
+}
+@keyframes deck-hint-rise {
+  0%, 100% { transform: translate(-50%, 0); }
+  50% { transform: translate(-50%, -5px); }
+}
+
+/* ===== The card inside a panel ===== */
+
+.deck-card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  max-width: 700px;
+  margin: 0 auto;
+  height: 100%;
+  min-height: 0;
+}
+
+/* The photo absorbs the leftover height, so a card is always exactly one
+ * screen regardless of how much copy sits under it. */
+.deck-card__media {
+  position: relative;
+  flex: 1 1 auto;
+  min-height: 96px;
+  border: 1px solid var(--rule);
+  background: var(--paper-3);
+  overflow: hidden;
+}
+.deck-card__media img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.deck-card__media .photo-placeholder {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+.deck-card__tag {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  padding: 4px 9px;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--paper);
+  background: color-mix(in oklab, var(--ink) 84%, transparent);
+}
+
+.deck-card__body {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-height: 0;
+}
+.deck-card__titlerow {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8px;
+}
+.deck-card__title {
+  font-family: var(--display);
+  font-size: clamp(23px, 5.2vw, 30px);
+  font-weight: 500;
+  line-height: 1.1;
+  margin: 2px 0 0;
+}
+.deck-card__teaser {
+  font-family: var(--serif);
+  font-size: 16px;
+  line-height: 1.45;
+  color: var(--ink-2);
+  margin: 0;
+  /* Cards are the index, not the article: the full read is /stop/:id. */
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.deck-card__foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding-top: 2px;
+}
+.deck-card__more {
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+  text-decoration: none;
+}
+@media (hover: hover) {
+  .deck-card__more:hover { color: var(--moss); }
+}
+/* The hazard callout doesn't fit a one-screen card; this flags that the full
+ * entry carries one. */
+.deck-card__caution {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--rust);
+  white-space: nowrap;
+}
+
+/* Short screens (landscape phones): the photo would be a letterbox strip, so
+ * drop it and let the copy have the panel. */
+@media (max-height: 460px) {
+  .deck-card__media { display: none; }
+  .deck-card__teaser { -webkit-line-clamp: 3; line-clamp: 3; }
+}
+
+/* ===== Prose panels (a deck's opening and closing cards) =====
+ * HARD RULE: a prose panel is NEVER a scroll container. A nested vertical
+ * scroller inside a snap deck consumes the swipe (the inner element scrolls,
+ * or on iOS rubber-bands, and the deck never advances) — this is exactly the
+ * bug that shipped when the intro panel was overflow-y:auto and live weather
+ * made it overflow. Content must fit one screen; if it can't, it top-aligns
+ * and clips, and the panel's content should be slimmed instead. */
+.deck-panel-prose {
+  width: 100%;
+  max-width: 700px;
+  margin: 0 auto;
+  height: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+/* Centered while it fits; the auto margins collapse to 0 on overflow, so the
+ * top of the content (the part that names the panel) always stays visible. */
+.deck-panel-prose__inner {
+  margin: auto 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-height: 0;
+  padding: 4px 0 8px;
+}
+.deck-panel-prose .page-header { margin: 0; }
+.deck-panel-prose .page-section { margin-top: 0; }
+
+/* ===== Cards / List toggle ===== */
+
+.view-toggle {
+  display: inline-flex;
+  border: 1px solid var(--rule);
+  flex-shrink: 0;
+}
+.view-toggle__btn {
+  font-family: var(--sans);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+  background: none;
+  border: none;
+  padding: 6px 10px;
+  min-height: 30px;
+  cursor: pointer;
+}
+.view-toggle__btn + .view-toggle__btn { border-left: 1px solid var(--rule); }
+.view-toggle__btn[aria-pressed='true'] { background: var(--ink); color: var(--paper); }
+@media (hover: hover) {
+  .view-toggle__btn:not([aria-pressed='true']):hover { color: var(--moss); }
+}

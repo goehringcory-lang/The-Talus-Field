@@ -63,12 +63,14 @@ const PAGE_FILES = [
   "page-map.jsx",
   "page-itineraries.jsx",
   "page-conditions.jsx",
+  "page-search.jsx",
   "page-now.jsx",
   "page-firefall.jsx",
   "page-tioga-opening.jsx",
   "page-half-dome-lottery.jsx",
   "page-consult.jsx",
   "page-widget.jsx",
+  "page-partners.jsx",
   "app.jsx",
 ];
 

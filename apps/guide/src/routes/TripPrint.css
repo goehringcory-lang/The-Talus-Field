@@ -1,0 +1,109 @@
+/* Paper-shaped day sheet. Text only: no photos, no map, one print pass. */
+
+.trip-print {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 20px 16px 40px;
+  font-family: var(--serif, Georgia, serif);
+  color: #111;
+  background: #fff;
+}
+
+.trip-print__controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  font-family: var(--sans, sans-serif);
+}
+
+.trip-print__header h1 {
+  font-size: 24px;
+  margin: 0 0 4px;
+}
+
+.trip-print__header p {
+  margin: 0 0 20px;
+  color: #444;
+}
+
+.trip-print__day {
+  margin-bottom: 24px;
+  break-inside: avoid;
+}
+
+.trip-print__day h2 {
+  font-size: 16px;
+  border-bottom: 2px solid #111;
+  padding-bottom: 4px;
+  margin: 0 0 8px;
+}
+
+.trip-print__day table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.trip-print__day th {
+  text-align: left;
+  font-family: var(--sans, sans-serif);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #555;
+  padding: 4px 8px 4px 0;
+  border-bottom: 1px solid #999;
+}
+
+.trip-print__day td {
+  vertical-align: top;
+  padding: 6px 8px 6px 0;
+  border-bottom: 1px solid #ddd;
+}
+
+.trip-print__time {
+  white-space: nowrap;
+  width: 84px;
+}
+
+.trip-print__duration {
+  display: block;
+  font-size: 11px;
+  color: #666;
+}
+
+.trip-print__drive {
+  font-size: 12px;
+  color: #444;
+}
+
+.trip-print__loc {
+  display: block;
+  font-size: 12px;
+  color: #555;
+}
+
+.trip-print__gps {
+  font-family: monospace;
+  font-size: 11px;
+  white-space: nowrap;
+  width: 140px;
+}
+
+.trip-print__footer {
+  margin-top: 28px;
+  padding-top: 8px;
+  border-top: 1px solid #999;
+  font-size: 12px;
+  color: #444;
+}
+
+@media print {
+  .trip-print__controls {
+    display: none;
+  }
+  .trip-print {
+    padding: 0;
+  }
+}

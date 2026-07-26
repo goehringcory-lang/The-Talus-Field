@@ -56,7 +56,7 @@ const seed: SecretSpotInput[] = [
       'You already know this meadow from the daytime stop, watching climbers through binoculars. Come back after full dark. The wall you watched all afternoon is now a black absence against the stars, and scattered across it, a thousand and two thousand feet up, are points of light: the headlamps of climbers settled onto their portaledges for the night. Standard routes take parties three to five days, which means on any summer night there are people cooking dinner and going to sleep on a vertical wall above you.\n\n' +
       'Park at the same Northside Drive pullout, walk a few steps into the meadow, turn your headlamp off, and give your eyes ten minutes. The lights resolve slowly. Some are steady, some move as a climber sorts gear. Twenty to thirty minutes is the right stay: long enough to pick out several camps and register what you are looking at, short enough that you are not standing in a dark meadow past the point of the idea.\n\n' +
       'Two courtesies. Sound carries at night and the people on the wall are trying to sleep, so keep voices down. And do not sweep the wall with a bright light; use a red lamp for your own footing and leave the beam out of the sky.',
-    photos: [], // TODO: photo removed — automated fetch grabbed wrong subject; needs a correct image
+    photos: [], // TODO: needs a correct image; the wrong-subject automated fetch was deleted from public/photos
   },
   {
     id: 'olmsted-point-at-night',
@@ -139,7 +139,7 @@ const seed: SecretSpotInput[] = [
       'Sentinel Beach is on the maps, so this is less a secret than a persistent gap in the parking wars: most of the time there are spaces here, and a nice sandy stretch of the Merced right off the lot to jump in for a swim. The pro move is to treat it as your base for the whole day. Park, swim, and bring a bike: from here you ride into the main section of the valley instead of joining the circling queue for a spot further east.',
     hazard:
       'In May and June the Merced is fast, cold snowmelt and the current is stronger than the surface suggests. Save the swim for mid and late summer, when the river has dropped and warmed.',
-    photos: [],
+    photos: [{ src: '/photos/cathedral-beach-quiet-picnic.jpg', caption: 'The Three Brothers across a calm stretch of the Merced.' }],
   },
   {
     id: 'el-cap-crossover-parking',
@@ -150,7 +150,7 @@ const seed: SecretSpotInput[] = [
     coord: [-119.6314, 37.7240], // verified 2026-07: El Capitan Bridge / crossover parking (OSM + Natural Atlas); prior user pin was ~840 m west at the meadow pullouts, not the bridge the body describes
     body:
       'The east valley is where parking goes to die by mid-morning. Skip the battle for spaces entirely: park at El Capitan, where the lot holds out far longer, and enjoy the views while you are at it. From El Capitan Bridge, ride a bike in or take the free shuttle to the east end. You trade half an hour of circling for a short ride with the biggest wall in the park behind you.',
-    photos: [],
+    photos: [{ src: '/photos/el-capitan-winter.jpg', caption: 'El Capitan from the Merced near the bridge.' }],
   },
   {
     id: 'sentinel-dome-overflow',
@@ -161,7 +161,7 @@ const seed: SecretSpotInput[] = [
     coord: [-119.580376, 37.719110], // user-provided — TODO: verify on the ground
     body:
       'The shared lot for Sentinel Dome and Taft Point is small and fills early on any good-weather day. A full lot is not a turnaround. Just along Glacier Point Road there is a service road with room to park; leave the car there and walk up to Sentinel Dome from the road. It adds a stretch of walking, not a change of plans.',
-    photos: [],
+    photos: [{ src: '/photos/taft-point.jpg', caption: 'Taft Point, the other walk from the shared lot.' }],
   },
   {
     id: 'foresta-barns-loop',
@@ -209,7 +209,7 @@ const seed: SecretSpotInput[] = [
     coord: [-119.682513, 37.714671], // user-provided — TODO: verify on the ground
     body:
       'The Tunnel View, with no people. Inspiration Point sits above the tunnel with the same framed valley composition, and almost everyone stays down at the parking lot. The quiet part is the paperwork: this is a backpacking zone with a permit you can actually register for, which means the view can be yours at sunrise, from a sleeping bag.',
-    photos: [],
+    photos: [{ src: '/photos/inspiration-point.jpg', caption: 'The framed valley composition. Inspiration Point sits on the old road above the tunnel.' }],
   },
   {
     id: 'hidden-lake',

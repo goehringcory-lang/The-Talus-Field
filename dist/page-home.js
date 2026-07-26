@@ -58,6 +58,107 @@ function HomeHeroCapture({
     type: "submit"
   }, "Get the Sunday letter →")));
 }
+var HERO_DOORS = [{
+  key: "start-here",
+  href: "#start-here",
+  q: "First trip?",
+  a: "Four answers before you book anything"
+}, {
+  key: "itineraries",
+  href: "/itineraries",
+  q: "Dates set?",
+  a: "Itineraries, the map, and the checklist"
+}, {
+  key: "now",
+  href: "/now",
+  q: "There now, or going soon?",
+  a: "One page, the whole park, right now"
+}];
+function HomeHero({
+  tripMonth,
+  go,
+  onStartHere
+}) {
+  return React.createElement("section", {
+    className: "hero"
+  }, React.createElement("div", {
+    className: "wrap hero__grid"
+  }, React.createElement("div", null, React.createElement("div", {
+    className: "hero__kicker"
+  }, React.createElement("span", {
+    className: "dot"
+  }), React.createElement("span", {
+    "data-shell-blank": "issue"
+  }, window.SITE && window.SITE.issue || "Vol. III", window.SITE && window.SITE.issueDetail ? ` · ${window.SITE.issueDetail}` : "")), React.createElement("h1", null, "Yosemite, from the inside."), React.createElement("p", {
+    className: "hero__dek"
+  }, "Live conditions, real itineraries, and a map of every turnout, kept by a naturalist who has lived here twenty seasons. Essays for when the logistics are done."), React.createElement("nav", {
+    className: "hero-doors",
+    "aria-label": "Start from where you are"
+  }, HERO_DOORS.map(d => React.createElement("a", {
+    key: d.key,
+    className: "hero-door",
+    href: d.href,
+    onClick: e => {
+      e.preventDefault();
+      if (window.track) window.track("cta_click", {
+        location: "home_door",
+        target: d.key
+      });
+      if (d.key === "start-here") onStartHere();else go(d.key);
+    }
+  }, React.createElement("span", {
+    className: "hero-door__q"
+  }, d.q), React.createElement("span", {
+    className: "hero-door__a"
+  }, d.a), React.createElement("span", {
+    className: "hero-door__arrow",
+    "aria-hidden": "true"
+  }, "→")))), React.createElement(HomeHeroCapture, {
+    tripMonth: tripMonth
+  })), React.createElement(Placeholder, {
+    caption: "El Capitan and Bridalveil at sunset",
+    credit: "Rodrigo Soares / Unsplash",
+    image: "img/valley-view-sunset-rodrigo-soares.jpg",
+    tag: "PLATE I",
+    size: "lg",
+    natural: true,
+    eager: true,
+    motif: React.createElement(MotifMountains, null)
+  })));
+}
+function DeferredSection({
+  minHeight,
+  render
+}) {
+  var [shown, setShown] = React.useState(false);
+  var ref = React.useRef(null);
+  React.useEffect(() => {
+    if (shown) return undefined;
+    var el = ref.current;
+    if (!el || typeof IntersectionObserver === "undefined") {
+      setShown(true);
+      return undefined;
+    }
+    var io = new IntersectionObserver(entries => {
+      if (entries.some(e => e.isIntersecting)) {
+        setShown(true);
+        io.disconnect();
+      }
+    }, {
+      rootMargin: "600px 0px"
+    });
+    io.observe(el);
+    return () => io.disconnect();
+  }, [shown]);
+  if (shown) return render();
+  return React.createElement("div", {
+    ref: ref,
+    "aria-hidden": "true",
+    style: {
+      minHeight
+    }
+  });
+}
 var RESUME_MAX_AGE_DAYS = 30;
 function ResumeReading({
   go
@@ -102,7 +203,7 @@ function ResumeReading({
     className: "mono resume-band__cta"
   }, "Keep reading →")));
 }
-var HOME_BULLETIN_URL = "/bulletin.json?v=2";
+var HOME_BULLETIN_URL = "/bulletin.json?v=3";
 function HomeBulletin({
   go
 }) {
@@ -325,22 +426,6 @@ function HomeMonthPlanner({
     }
   }))));
 }
-var HERO_DOORS = [{
-  key: "start-here",
-  href: "#start-here",
-  q: "First trip?",
-  a: "Four answers before you book anything"
-}, {
-  key: "itineraries",
-  href: "/itineraries",
-  q: "Dates set?",
-  a: "Itineraries, the map, and the checklist"
-}, {
-  key: "now",
-  href: "/now",
-  q: "There now, or going soon?",
-  a: "One page, the whole park, right now"
-}];
 var SECTION_IMAGES = {
   planning: {
     image: "img/tunnel-view.jpg",
@@ -382,73 +467,19 @@ function HomePage({
       month: key || "cleared"
     });
   };
-  var scrollToStartHere = e => {
-    e.preventDefault();
+  var scrollToStartHere = () => {
     document.getElementById("start-here")?.scrollIntoView({
       behavior: "smooth",
       block: "start"
     });
   };
-  var parkThisWeekSection = React.createElement("section", {
-    className: "wrap",
-    style: {
-      paddingTop: 64
-    }
-  }, React.createElement("div", {
-    className: "section-head"
-  }, React.createElement("h2", null, "From the park, right now"), React.createElement("a", {
-    href: "/conditions",
-    onClick: e => {
-      e.preventDefault();
-      go("conditions");
-    }
-  }, "Conditions and webcams →")), React.createElement(WebcamStrip, null));
   return React.createElement("div", {
     className: "page"
-  }, React.createElement("section", {
-    className: "hero"
-  }, React.createElement("div", {
-    className: "wrap hero__grid"
-  }, React.createElement("div", null, React.createElement("div", {
-    className: "hero__kicker"
-  }, React.createElement("span", {
-    className: "dot"
-  }), React.createElement("span", null, window.SITE && window.SITE.issue || "Vol. III", window.SITE && window.SITE.issueDetail ? ` · ${window.SITE.issueDetail}` : "")), React.createElement("h1", null, "Yosemite, from the inside."), React.createElement("p", {
-    className: "hero__dek"
-  }, "Live conditions, real itineraries, and a map of every turnout, kept by a naturalist who has lived here twenty seasons. Essays for when the logistics are done."), React.createElement("nav", {
-    className: "hero-doors",
-    "aria-label": "Start from where you are"
-  }, HERO_DOORS.map(d => React.createElement("a", {
-    key: d.key,
-    className: "hero-door",
-    href: d.href,
-    onClick: e => {
-      e.preventDefault();
-      if (window.track) window.track("cta_click", {
-        location: "home_door",
-        target: d.key
-      });
-      if (d.key === "start-here") scrollToStartHere(e);else go(d.key);
-    }
-  }, React.createElement("span", {
-    className: "hero-door__q"
-  }, d.q), React.createElement("span", {
-    className: "hero-door__a"
-  }, d.a), React.createElement("span", {
-    className: "hero-door__arrow",
-    "aria-hidden": "true"
-  }, "→")))), React.createElement(HomeHeroCapture, {
-    tripMonth: tripMonth
-  })), React.createElement(Placeholder, {
-    caption: "El Capitan and Bridalveil at sunset",
-    credit: "Rodrigo Soares / Unsplash",
-    image: "img/valley-view-sunset-rodrigo-soares.jpg",
-    tag: "PLATE I",
-    size: "lg",
-    natural: true,
-    eager: true,
-    motif: React.createElement(MotifMountains, null)
-  }))), React.createElement("section", {
+  }, React.createElement(HomeHero, {
+    tripMonth: tripMonth,
+    go: go,
+    onStartHere: scrollToStartHere
+  }), React.createElement("section", {
     className: "wrap",
     style: {
       paddingTop: 28
@@ -458,7 +489,7 @@ function HomePage({
     "aria-label": "Trip tools"
   }, React.createElement("span", {
     className: "home-utility__label"
-  }, "Plan your trip"), [["map", "/map", "The Map"], ["itineraries", "/itineraries", "Itineraries"], ["planning", "/planning", "Planning Guide"], ["checklist", "/checklist", "Checklist"], ["conditions", "/conditions", "Conditions"]].map(([key, href, label], i) => React.createElement(React.Fragment, {
+  }, "Plan your trip"), [["planning", "/planning", "Planning Guide"], ["checklist", "/checklist", "Checklist"], ["conditions", "/conditions", "Conditions and webcams"]].map(([key, href, label], i) => React.createElement(React.Fragment, {
     key: key
   }, i > 0 && React.createElement("span", {
     className: "home-utility__sep",
@@ -472,13 +503,13 @@ function HomePage({
       });
       go(key);
     }
-  }, label))))), React.createElement(HomeMonthPlanner, {
-    month: tripMonth,
-    onSelect: selectTripMonth,
-    go: go
-  }), React.createElement(ResumeReading, {
+  }, label))))), React.createElement(ResumeReading, {
     go: go
   }), React.createElement(HomeBulletin, {
+    go: go
+  }), React.createElement(HomeMonthPlanner, {
+    month: tripMonth,
+    onSelect: selectTripMonth,
     go: go
   }), startHere.length > 0 && React.createElement("section", {
     id: "start-here",
@@ -497,32 +528,11 @@ function HomePage({
       marginBottom: 14
     }
   }, "For first-time visitors"), React.createElement("h2", {
-    style: {
-      fontFamily: "var(--display)",
-      fontSize: 44,
-      lineHeight: 1.05,
-      marginBottom: 12,
-      fontWeight: 500,
-      letterSpacing: "-0.01em",
-      textTransform: "none"
-    }
+    className: "home-section__title"
   }, "Start here."), React.createElement("p", {
-    style: {
-      fontFamily: "var(--display)",
-      fontStyle: "italic",
-      fontSize: 19,
-      color: "var(--ink-2)",
-      lineHeight: 1.5,
-      maxWidth: "60ch"
-    }
+    className: "home-section__dek"
   }, "Four answers before you book anything.")), React.createElement("div", {
-    className: "start-here-grid",
-    style: {
-      display: "grid",
-      gridTemplateColumns: "repeat(4, 1fr)",
-      gap: 32,
-      rowGap: 40
-    }
+    className: "start-here-grid"
   }, startHere.map(a => React.createElement("div", {
     key: a.slug,
     className: "start-q"
@@ -531,373 +541,234 @@ function HomePage({
   }, START_HERE_QUESTIONS[a.slug]), React.createElement(ArticleCard, {
     article: a,
     go: go
-  }))))), parkThisWeekSection, React.createElement("section", {
-    className: "wrap",
-    style: {
-      paddingTop: 80
-    }
-  }, React.createElement("div", {
-    className: "section-head"
-  }, React.createElement("h2", null, "Latest Entries"), React.createElement("a", {
-    href: "/articles",
-    onClick: e => {
-      e.preventDefault();
-      go("articles");
-    }
-  }, "All entries →")), React.createElement("div", {
-    style: {
-      display: "grid",
-      gridTemplateColumns: "repeat(3, 1fr)",
-      gap: 36,
-      rowGap: 48
-    }
-  }, recent.map(a => React.createElement(ArticleCard, {
-    key: a.slug,
-    article: a,
-    go: go
-  })))), React.createElement("section", {
-    className: "wrap",
-    style: {
-      paddingTop: 80
-    }
-  }, React.createElement("div", {
-    className: "section-head"
-  }, React.createElement("h2", null, "By Section"), React.createElement("a", {
-    href: "/articles",
-    onClick: e => {
-      e.preventDefault();
-      go("articles");
-    }
-  }, "Everything →")), React.createElement("div", {
-    style: {
-      display: "grid",
-      gridTemplateColumns: "repeat(4, 1fr)",
-      gap: 0,
-      borderTop: "1px solid var(--ink)",
-      borderLeft: "1px solid var(--ink)"
-    }
-  }, window.CATEGORIES.map((c, i) => {
-    var count = window.byCategory(c.slug).length;
-    var plate = SECTION_IMAGES[c.slug];
-    return React.createElement("a", {
-      key: c.slug,
-      href: `/section/${c.slug}`,
+  }))))), React.createElement(DeferredSection, {
+    minHeight: 880,
+    render: () => React.createElement("section", {
+      className: "wrap",
+      style: {
+        paddingTop: 80
+      }
+    }, React.createElement("div", {
+      className: "section-head"
+    }, React.createElement("h2", null, "Latest Entries"), React.createElement("a", {
+      href: "/articles",
       onClick: e => {
         e.preventDefault();
-        go(`cat:${c.slug}`);
-      },
-      style: {
-        textDecoration: "none",
-        color: "inherit",
-        borderRight: "1px solid var(--ink)",
-        borderBottom: "1px solid var(--ink)",
-        padding: 28,
-        display: "block"
+        go("articles");
       }
-    }, plate && React.createElement(Placeholder, {
-      caption: plate.alt,
-      image: plate.image,
-      credit: plate.credit,
-      tag: c.label.split(" ")[0],
+    }, "All entries →")), React.createElement("div", {
+      className: "home-cards"
+    }, recent.map(a => React.createElement(ArticleCard, {
+      key: a.slug,
+      article: a,
+      go: go
+    }))))
+  }), React.createElement(DeferredSection, {
+    minHeight: 720,
+    render: () => React.createElement("section", {
+      className: "wrap",
+      style: {
+        paddingTop: 80
+      }
+    }, React.createElement("div", {
+      className: "section-head"
+    }, React.createElement("h2", null, "By Section"), React.createElement("a", {
+      href: "/articles",
+      onClick: e => {
+        e.preventDefault();
+        go("articles");
+      }
+    }, "Everything →")), React.createElement("div", {
+      className: "home-sections"
+    }, window.CATEGORIES.map((c, i) => {
+      var count = window.byCategory(c.slug).length;
+      var plate = SECTION_IMAGES[c.slug];
+      return React.createElement("a", {
+        key: c.slug,
+        className: "home-section-tile",
+        href: `/section/${c.slug}`,
+        onClick: e => {
+          e.preventDefault();
+          go(`cat:${c.slug}`);
+        }
+      }, plate && React.createElement(Placeholder, {
+        caption: plate.alt,
+        image: plate.image,
+        credit: plate.credit,
+        tag: c.label.split(" ")[0],
+        size: "sm",
+        sizes: "(max-width: 720px) 50vw, 280px",
+        style: {
+          aspectRatio: "3/2",
+          marginBottom: 20
+        }
+      }), React.createElement("div", {
+        className: "mono home-section-tile__num"
+      }, "№ 0", i + 1), React.createElement("div", {
+        className: "home-section-tile__label"
+      }, c.label), React.createElement("div", {
+        className: "home-section-tile__blurb"
+      }, c.blurb), React.createElement("div", {
+        className: "home-section-tile__count"
+      }, count, " ", count === 1 ? "Entry" : "Entries", " →"));
+    })))
+  }), React.createElement(DeferredSection, {
+    minHeight: 1200,
+    render: () => React.createElement("section", {
+      className: "wrap",
+      style: {
+        paddingTop: 80
+      }
+    }, React.createElement("div", {
+      className: "section-head"
+    }, React.createElement("h2", null, "Go Deeper")), React.createElement("a", {
+      className: "band-map",
+      href: "/map",
+      onClick: e => {
+        e.preventDefault();
+        if (window.track) window.track("cta_click", {
+          location: "home_band",
+          target: "map"
+        });
+        go("map");
+      }
+    }, React.createElement("div", {
+      className: "home-band__grid"
+    }, React.createElement("div", null, React.createElement("div", {
+      className: "eyebrow eyebrow--moss",
+      style: {
+        marginBottom: 12
+      }
+    }, "The Map · Free"), React.createElement("div", {
+      className: "band-map__title"
+    }, "Yosemite, on a map.")), React.createElement("div", null, React.createElement("p", {
+      className: "band-map__body"
+    }, "Every vista, trailhead, parking turnout, and meal in one interactive map. The same free signup as the Sunday letter opens it: tap pins to assemble a route, or load a suggested one-, two-, or three-day trip."), React.createElement("div", {
+      className: "mono band-map__cta"
+    }, "Open the map →")), React.createElement(Placeholder, {
+      caption: "NPS map of Yosemite showing park roads and campgrounds",
+      image: "img/yosemite-park-map.jpg",
+      credit: "NPS",
+      tag: "MAP",
       size: "sm",
-      sizes: "(max-width: 720px) 50vw, 280px",
+      sizes: "(max-width: 720px) 100vw, 300px",
       style: {
-        aspectRatio: "3/2",
-        marginBottom: 20
+        aspectRatio: "4/3"
       }
-    }), React.createElement("div", {
-      className: "mono",
+    }))), React.createElement("a", {
+      className: "band-guide",
+      href: "/guide",
+      onClick: e => {
+        e.preventDefault();
+        if (window.track) window.track("guide_cta_click", {
+          location: "home_band"
+        });
+        go("guide");
+      }
+    }, React.createElement("div", {
+      className: "home-band__grid"
+    }, React.createElement("div", null, React.createElement("div", {
+      className: "band-guide__eyebrow"
+    }, "The Field Guide · $19"), React.createElement("div", {
+      className: "band-guide__title"
+    }, "The park, in your pocket.")), React.createElement("div", null, React.createElement("p", {
+      className: "band-guide__body"
+    }, "The app version of this journal: 50-plus stops with parking and timing notes, offline maps, a trip planner, and the secret guide. Works with no signal, which is most of the park. One purchase, eighteen months of access."), React.createElement("div", {
+      className: "mono band-guide__cta"
+    }, "See the Field Guide →")), React.createElement(Placeholder, {
+      caption: "The Milky Way over Half Dome on a moonless night, far from any signal",
+      image: "img/half-dome-starry-night-casey-horner.jpg",
+      credit: "Casey Horner / Unsplash",
+      tag: "PLATE II",
+      size: "sm",
+      sizes: "(max-width: 720px) 100vw, 300px",
       style: {
-        color: "var(--moss)",
-        fontWeight: 700
+        aspectRatio: "4/3"
       }
-    }, "№ 0", i + 1), React.createElement("div", {
+    }))), React.createElement("div", {
+      className: "home-paths"
+    }, [{
+      key: "planning",
+      eyebrow: "The Planning Guide · Free",
+      title: "Yosemite, planned properly.",
+      blurb: "The full archive organized for a real trip: gateway towns, reservations, Half Dome, smoke season, in the order you'll need them.",
+      cta: "Read the guide →"
+    }, {
+      key: "consult",
+      eyebrow: "Field Consult · $95",
+      title: "Your plan, thirty minutes.",
+      blurb: "One on one with a naturalist who lives in the park: your dates, your group, your plan taken apart and put back together. Six a month.",
+      cta: "Book a consult →"
+    }, {
+      key: "kit",
+      eyebrow: "The Kit",
+      title: "What I carry.",
+      blurb: "Three lists for three trips: day pack, overnight pack, car kit. The actual gear, with the actual reasons, and a plain disclosure.",
+      cta: "See the kit →"
+    }].map(p => React.createElement("a", {
+      key: p.key,
+      className: "home-path",
+      href: `/${p.key}`,
+      onClick: e => {
+        e.preventDefault();
+        if (window.track) window.track("cta_click", {
+          location: "home_path",
+          target: p.key
+        });
+        go(p.key);
+      }
+    }, React.createElement("div", {
+      className: "eyebrow eyebrow--moss",
       style: {
-        fontFamily: "var(--display)",
-        fontSize: 26,
-        fontWeight: 500,
-        margin: "16px 0 10px",
-        letterSpacing: "-0.005em",
-        lineHeight: 1.1
+        marginBottom: 12
       }
-    }, c.label), React.createElement("div", {
+    }, p.eyebrow), React.createElement("div", {
+      className: "home-path__title"
+    }, p.title), React.createElement("p", {
+      className: "home-path__blurb"
+    }, p.blurb), React.createElement("div", {
+      className: "mono home-path__cta"
+    }, p.cta)))))
+  }), React.createElement(DeferredSection, {
+    minHeight: 620,
+    render: () => React.createElement("section", {
+      className: "wrap",
       style: {
-        fontFamily: "var(--serif)",
-        fontStyle: "italic",
-        fontSize: 15,
-        color: "var(--ink-2)",
-        lineHeight: 1.45,
-        marginBottom: 20
+        paddingTop: 96
       }
-    }, c.blurb), React.createElement("div", {
+    }, React.createElement("div", {
+      className: "home-editor"
+    }, React.createElement(Placeholder, {
+      caption: "The Tuolumne high country, photographed by the editor",
+      image: "img/tuolumne-high-country-cory-goehring.jpg",
+      credit: "Cory Goehring",
+      tag: "PLATE III",
+      size: "sm",
+      sizes: "(max-width: 720px) 100vw, 340px",
       style: {
-        fontFamily: "var(--sans)",
-        fontSize: 10,
-        textTransform: "uppercase",
-        letterSpacing: "0.18em",
-        color: "var(--ink-3)",
-        fontWeight: 700
+        aspectRatio: "4/5"
       }
-    }, count, " ", count === 1 ? "Entry" : "Entries", " →"));
-  }))), React.createElement("section", {
-    className: "wrap",
-    style: {
-      paddingTop: 80
-    }
-  }, React.createElement("div", {
-    className: "section-head"
-  }, React.createElement("h2", null, "Go Deeper")), React.createElement("a", {
-    href: "/map",
-    onClick: e => {
-      e.preventDefault();
-      go("map");
-    },
-    style: {
-      display: "block",
-      textDecoration: "none",
-      color: "inherit",
-      border: "1px solid var(--ink)",
-      borderLeft: "6px solid var(--moss)",
-      background: "var(--paper-2)",
-      padding: "36px 32px"
-    }
-  }, React.createElement("div", {
-    style: {
-      display: "grid",
-      gridTemplateColumns: "1fr 1.6fr 0.9fr",
-      gap: 40,
-      alignItems: "center"
-    }
-  }, React.createElement("div", null, React.createElement("div", {
-    className: "eyebrow eyebrow--moss",
-    style: {
-      marginBottom: 12
-    }
-  }, "The Map · Free"), React.createElement("div", {
-    style: {
-      fontFamily: "var(--display)",
-      fontSize: 36,
-      fontWeight: 400,
-      lineHeight: 1.1,
-      letterSpacing: "-0.01em"
-    }
-  }, "Yosemite, on a map.")), React.createElement("div", null, React.createElement("p", {
-    style: {
-      fontFamily: "var(--serif)",
-      fontSize: 19,
-      lineHeight: 1.5,
-      color: "var(--ink-2)",
-      margin: 0,
-      marginBottom: 16
-    }
-  }, "Every vista, trailhead, parking turnout, and meal in one interactive map. A free newsletter signup opens it: tap pins to assemble a route, or load a suggested one-, two-, or three-day trip."), React.createElement("div", {
-    className: "mono",
-    style: {
-      color: "var(--moss)",
-      fontWeight: 700,
-      fontSize: 11,
-      textTransform: "uppercase",
-      letterSpacing: "0.18em"
-    }
-  }, "Open the map →")), React.createElement(Placeholder, {
-    caption: "NPS map of Yosemite showing park roads and campgrounds",
-    image: "img/yosemite-park-map.jpg",
-    credit: "NPS",
-    tag: "MAP",
-    size: "sm",
-    sizes: "(max-width: 720px) 100vw, 300px",
-    style: {
-      aspectRatio: "4/3"
-    }
-  }))), React.createElement("a", {
-    className: "band-guide",
-    href: "/guide",
-    onClick: e => {
-      e.preventDefault();
-      if (window.track) window.track("guide_cta_click", {
-        location: "home_band"
-      });
-      go("guide");
-    }
-  }, React.createElement("div", {
-    style: {
-      display: "grid",
-      gridTemplateColumns: "1fr 1.6fr 0.9fr",
-      gap: 40,
-      alignItems: "center"
-    }
-  }, React.createElement("div", null, React.createElement("div", {
-    className: "band-guide__eyebrow"
-  }, "The Field Guide · $19"), React.createElement("div", {
-    className: "band-guide__title"
-  }, "The park, in your pocket.")), React.createElement("div", null, React.createElement("p", {
-    className: "band-guide__body"
-  }, "The app version of this journal: 50-plus stops with parking and timing notes, offline maps, a trip planner, and the secret guide. Works with no signal, which is most of the park. One purchase, eighteen months of access."), React.createElement("div", {
-    className: "mono band-guide__cta"
-  }, "See the Field Guide →")), React.createElement(Placeholder, {
-    caption: "The Milky Way over Half Dome on a moonless night, far from any signal",
-    image: "img/half-dome-starry-night-casey-horner.jpg",
-    credit: "Casey Horner / Unsplash",
-    tag: "PLATE II",
-    size: "sm",
-    sizes: "(max-width: 720px) 100vw, 300px",
-    style: {
-      aspectRatio: "4/3"
-    }
-  }))), React.createElement("div", {
-    style: {
-      display: "grid",
-      gridTemplateColumns: "repeat(3, 1fr)",
-      gap: 24,
-      marginTop: 24
-    }
-  }, [{
-    key: "planning",
-    eyebrow: "The Planning Guide · Free",
-    title: "Yosemite, planned properly.",
-    blurb: "The full archive organized for a real trip: gateway towns, reservations, Half Dome, smoke season, in the order you'll need them.",
-    cta: "Read the guide →"
-  }, {
-    key: "consult",
-    eyebrow: "Field Consult · $95",
-    title: "Your plan, thirty minutes.",
-    blurb: "One on one with a naturalist who lives in the park: your dates, your group, your plan taken apart and put back together. Six a month.",
-    cta: "Book a consult →"
-  }, {
-    key: "kit",
-    eyebrow: "The Kit",
-    title: "What I carry.",
-    blurb: "Three lists for three trips: day pack, overnight pack, car kit. The actual gear, with the actual reasons, and a plain disclosure.",
-    cta: "See the kit →"
-  }].map(p => React.createElement("a", {
-    key: p.key,
-    href: `/${p.key}`,
-    onClick: e => {
-      e.preventDefault();
-      if (window.track) window.track("cta_click", {
-        location: "home_path",
-        target: p.key
-      });
-      go(p.key);
-    },
-    style: {
-      display: "block",
-      textDecoration: "none",
-      color: "inherit",
-      border: "1px solid var(--ink)",
-      padding: 28
-    }
-  }, React.createElement("div", {
-    className: "eyebrow eyebrow--moss",
-    style: {
-      marginBottom: 12
-    }
-  }, p.eyebrow), React.createElement("div", {
-    style: {
-      fontFamily: "var(--display)",
-      fontSize: 26,
-      fontWeight: 500,
-      lineHeight: 1.1,
-      letterSpacing: "-0.005em",
-      marginBottom: 10
-    }
-  }, p.title), React.createElement("p", {
-    style: {
-      fontFamily: "var(--serif)",
-      fontStyle: "italic",
-      fontSize: 15,
-      color: "var(--ink-2)",
-      lineHeight: 1.45,
-      margin: "0 0 18px"
-    }
-  }, p.blurb), React.createElement("div", {
-    className: "mono",
-    style: {
-      color: "var(--moss)",
-      fontWeight: 700,
-      fontSize: 11,
-      textTransform: "uppercase",
-      letterSpacing: "0.18em"
-    }
-  }, p.cta))))), React.createElement("section", {
-    className: "wrap",
-    style: {
-      paddingTop: 96
-    }
-  }, React.createElement("div", {
-    style: {
-      display: "grid",
-      gridTemplateColumns: "0.75fr 1.15fr 1.1fr",
-      gap: 44,
-      alignItems: "center",
-      borderTop: "2px solid var(--ink)",
-      borderBottom: "2px solid var(--ink)",
-      padding: "56px 0"
-    }
-  }, React.createElement(Placeholder, {
-    caption: "The Tuolumne high country, photographed by the editor",
-    image: "img/tuolumne-high-country-cory-goehring.jpg",
-    credit: "Cory Goehring",
-    tag: "PLATE III",
-    size: "sm",
-    sizes: "(max-width: 720px) 100vw, 340px",
-    style: {
-      aspectRatio: "4/5"
-    }
-  }), React.createElement("div", null, React.createElement("div", {
-    className: "eyebrow eyebrow--moss",
-    style: {
-      marginBottom: 14
-    }
-  }, "From the Editor"), React.createElement("h2", {
-    style: {
-      fontFamily: "var(--display)",
-      fontSize: 38,
-      marginBottom: 18,
-      fontWeight: 400,
-      lineHeight: 1.1,
-      letterSpacing: "-0.01em",
-      textTransform: "none"
-    }
-  }, "The same waterfall, again, in a different year."), React.createElement("p", {
-    style: {
-      fontFamily: "var(--display)",
-      fontStyle: "italic",
-      fontSize: 19,
-      color: "var(--ink-2)",
-      lineHeight: 1.5,
-      marginBottom: 24
-    }
-  }, "The park looks like a single place from a postcard and like four different ones from a parking lot. This is a record of looking at it slowly."), React.createElement("a", {
-    className: "btn btn--ghost",
-    href: "/about",
-    onClick: e => {
-      e.preventDefault();
-      go("about");
-    }
-  }, "About the editor →"), React.createElement("p", {
-    style: {
-      fontFamily: "var(--sans)",
-      fontSize: 13,
-      color: "var(--ink-3)",
-      lineHeight: 1.6,
-      margin: "20px 0 0"
-    }
-  }, "The whole park fits on one page.", " ", React.createElement("a", {
-    href: "/now",
-    onClick: e => {
-      e.preventDefault();
-      if (window.track) window.track("cta_click", {
-        location: "home_strip_now"
-      });
-      go("now");
-    },
-    style: {
-      color: "var(--ink-2)"
-    }
-  }, "The Park Bulletin is current →"))), React.createElement(NewsletterInline, {
-    location: "home_strip",
-    tag: "home"
-  }))));
+    }), React.createElement("div", null, React.createElement("div", {
+      className: "eyebrow eyebrow--moss",
+      style: {
+        marginBottom: 14
+      }
+    }, "From the Editor"), React.createElement("h2", {
+      className: "home-editor__title"
+    }, "The same waterfall, again, in a different year."), React.createElement("p", {
+      className: "home-editor__dek"
+    }, "The park looks like a single place from a postcard and like four different ones from a parking lot. This is a record of looking at it slowly."), React.createElement("a", {
+      className: "btn btn--ghost",
+      href: "/about",
+      onClick: e => {
+        e.preventDefault();
+        go("about");
+      }
+    }, "About the editor →")), React.createElement(NewsletterInline, {
+      location: "home_strip",
+      tag: "home"
+    })))
+  }));
 }
 window.HomePage = HomePage;
+window.HomeHero = HomeHero;

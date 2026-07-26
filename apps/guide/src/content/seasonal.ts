@@ -29,12 +29,18 @@ import { SeasonalEvents, type SeasonalEventT } from './schema'
 
 type SeasonalInput = z.input<typeof SeasonalEvents>[number]
 
-// ── Full moons, July 2026 through December 2027 ──────────────────────────────
+// ── Full moons, July 2026 through December 2028 ──────────────────────────────
 // Dates and Pacific times computed with the standard Meeus lunar-phase
 // algorithm (Astronomical Algorithms ch. 49) and cross-checked 2026-07-03
 // against published almanac calendars (Royal Museums Greenwich, Astronomy
 // Magazine, Farmers' Almanac); every checked instant matched to the minute.
-// Dates are the park-local (Pacific) calendar date of the full-moon instant.
+// The 2028 set was computed 2026-07-24 with the same implementation (which
+// reproduces every previously verified 2026-2027 instant to the minute) and
+// spot-checked against published 2028 calendars (Jan 11 and Dec 31 matched to
+// the minute; 2028 has 13 full moons, two in December, the second a calendar
+// blue moon). Dates are the park-local (Pacific) calendar date of the
+// full-moon instant — early-morning UTC instants (e.g. June 2028) land a
+// calendar day earlier here than in UTC-based lists, by design.
 const MOON_BASE =
   'A full moon washes out the Milky Way, so save the dark-sky ambitions for another week. The valley gets something in trade: granite holds moonlight, and Tunnel View or Sentinel Bridge stays readable all night without a headlamp.'
 const MOON_MOONBOW =
@@ -59,6 +65,22 @@ const FULL_MOONS: { date: string; name: string; time: string; moonbow?: boolean 
   { date: '2027-10-15', name: "Hunter's Moon", time: '6:47 a.m.' },
   { date: '2027-11-13', name: 'Beaver Moon', time: '7:25 p.m.' },
   { date: '2027-12-13', name: 'Cold Moon', time: '8:08 a.m.' },
+  { date: '2028-01-11', name: 'Wolf Moon', time: '8:03 p.m.' },
+  { date: '2028-02-10', name: 'Snow Moon', time: '7:03 a.m.' },
+  { date: '2028-03-10', name: 'Worm Moon', time: '5:06 p.m.' },
+  { date: '2028-04-09', name: 'Pink Moon', time: '3:26 a.m.', moonbow: true },
+  { date: '2028-05-08', name: 'Flower Moon', time: '12:48 p.m.', moonbow: true },
+  { date: '2028-06-06', name: 'Strawberry Moon', time: '11:08 p.m.', moonbow: true },
+  { date: '2028-07-06', name: 'Buck Moon', time: '11:10 a.m.' },
+  { date: '2028-08-05', name: 'Sturgeon Moon', time: '1:09 a.m.' },
+  // The Harvest Moon shifts to October in 2028 (nearer the equinox), so
+  // September takes the Corn Moon name and November the Beaver Moon.
+  { date: '2028-09-03', name: 'Corn Moon', time: '4:47 p.m.' },
+  { date: '2028-10-03', name: 'Harvest Moon', time: '9:25 a.m.' },
+  { date: '2028-11-02', name: 'Beaver Moon', time: '2:17 a.m.' },
+  { date: '2028-12-01', name: 'Cold Moon', time: '5:40 p.m.' },
+  // Second December full moon: a calendar blue moon closes the year.
+  { date: '2028-12-31', name: 'Blue Moon', time: '8:48 a.m.' },
 ]
 
 const fullMoonEntries: SeasonalInput[] = FULL_MOONS.map((m) => ({
@@ -103,13 +125,14 @@ const windowEntries: SeasonalInput[] = [
     title: 'Mist Trail weekday closure for repairs',
     category: 'other',
     confidence: 'confirmed',
-    // Source: Yosemite Guide Vol 51 Issue 5 (June 10 - July 14, 2026).
-    dateStart: '2026-06-30',
+    // Source: Yosemite Guide Vol 51 Issue 6 (July 15 - August 18, 2026), which
+    // moves the closure's start from the June 30 printed in v51n5 to July 27.
+    dateStart: '2026-07-27',
     dateEnd: '2026-10-31',
     location: 'Mist Trail, Vernal and Nevada Fall corridor',
     url: 'https://www.nps.gov/yose/planyourvisit/conditions.htm',
     description:
-      'The Mist Trail is closed for trail repairs Monday through Thursday, 7 a.m. to 3:30 p.m., from June 30 through the end of October 2026. It is open Fridays, Saturdays, Sundays, and holidays, and on weekdays before 7 and after 3:30 when conditions allow. If Vernal and Nevada Fall are the point of a weekday, start very early or plan the John Muir Trail side, and check conditions before committing.',
+      'The Mist Trail is closed for trail repairs Monday through Thursday, 7 a.m. to 3:30 p.m., from July 27 through the end of October 2026. It is open Fridays, Saturdays, Sundays, and holidays, and on weekdays before 7 and after 3:30 when conditions allow. If Vernal and Nevada Fall are the point of a weekday, start very early or plan the John Muir Trail side, and check conditions before committing.',
     stopIds: ['mist-trail'],
   },
   {
@@ -132,11 +155,15 @@ const windowEntries: SeasonalInput[] = [
     id: 'star-party-season-2026',
     title: 'Glacier Point star party season',
     category: 'astronomy',
-    confidence: 'typical',
-    dateStart: '2026-07-01',
-    dateEnd: '2026-08-31',
-    location: 'Glacier Point',
-    description: STAR_PARTY_DESC,
+    // Confirmed for this stretch, unlike the later years' typical windows: the
+    // Yosemite Guide Vol 51 Issue 6 prints the club weekends, and the programs
+    // feed carries each night as its own dated event.
+    confidence: 'confirmed',
+    dateStart: '2026-07-17',
+    dateEnd: '2026-08-15',
+    location: 'Glacier Point Amphitheater',
+    description:
+      'Amateur astronomy clubs set up telescopes at the Glacier Point Amphitheater and point them at whatever the sky offers, in cooperation with the park. Free, drop in any time after 8:30 p.m.; programs run two to four hours and are canceled if it clouds over. The published 2026 weekends are July 17 and 18, July 31 and August 1, August 7 and 8, and August 14 and 15, and each night appears as its own event in this list. Transportation to Glacier Point is on you, and it is an hour from the valley in the dark.',
     stopIds: ['glacier-point'],
   },
   {
@@ -296,6 +323,129 @@ const windowEntries: SeasonalInput[] = [
     url: 'https://www.nps.gov/yose/planyourvisit/seasonal.htm',
     description: GLACIER_CLOSE_DESC,
   },
+  // 2028: the same typical patterns as 2027, so an 18-month access window
+  // bought in mid-2026 (or renewed) never runs into an empty almanac. All
+  // typical-confidence; the calendar arithmetic for the Half Dome cables
+  // (Friday before Memorial Day 2028 = May 26; Tuesday after the second
+  // Monday of October = Oct 10) follows the published pattern.
+  {
+    id: 'firefall-window-2028',
+    title: 'Horsetail Fall firefall window',
+    category: 'other',
+    confidence: 'typical',
+    dateStart: '2028-02-10',
+    dateEnd: '2028-02-28',
+    location: 'El Capitan picnic area, Northside Drive',
+    url: 'https://www.nps.gov/yose/planyourvisit/horsetailfall.htm',
+    description:
+      'For about two weeks in late February, if Horsetail Fall is running and the sunset sky is clear, the last light hits the fall head-on and it glows like a ribbon of fire on El Capitan\'s east face. Three things have to line up: water in the fall, a clear western horizon, and you in position an hour early. The park has managed the crowd differently each year, sometimes with reservations and road closures, so check the park\'s Horsetail Fall page once February details post.',
+    stopIds: ['el-capitan-meadow'],
+  },
+  {
+    id: 'half-dome-lottery-window-2028',
+    title: 'Half Dome preseason permit lottery',
+    category: 'other',
+    confidence: 'typical',
+    dateStart: '2028-03-01',
+    dateEnd: '2028-03-31',
+    url: 'https://www.recreation.gov/permits/234652',
+    description:
+      'The preseason lottery for Half Dome permits has run through March on recreation.gov in recent years, with results in mid-April. One application, up to six ranked dates. Miss it and the daily lottery runs two days ahead all season. Confirm the 2028 dates on recreation.gov before counting on the pattern.',
+  },
+  {
+    id: 'glacier-point-open-2028',
+    title: 'Glacier Point Road reopening window',
+    category: 'other',
+    confidence: 'typical',
+    dateStart: '2028-05-01',
+    dateEnd: '2028-06-15',
+    url: 'https://www.nps.gov/yose/planyourvisit/tiogaopen.htm',
+    description:
+      'Glacier Point Road typically reopens in May, stretching into June after a heavy winter. It usually beats Tioga Road open by a few weeks. Until then the only way to that view is a long ski or a longer walk.',
+  },
+  {
+    id: 'waterfall-peak-2028',
+    title: 'Waterfall peak flow',
+    category: 'other',
+    confidence: 'typical',
+    dateStart: '2028-05-01',
+    dateEnd: '2028-06-15',
+    description:
+      'The falls run on snowmelt and this is the crescendo: Yosemite Falls at full throat, Bridalveil throwing spray across the road, the Mist Trail earning its name. If waterfalls are the reason for the trip, these are the weeks. Peak moves with the snowpack, earlier in dry years, later in big ones.',
+    stopIds: ['bridalveil-fall', 'mist-trail'],
+  },
+  {
+    id: 'tioga-open-2028',
+    title: 'Tioga Road reopening window',
+    category: 'other',
+    confidence: 'typical',
+    dateStart: '2028-05-20',
+    dateEnd: '2028-06-30',
+    url: 'https://www.nps.gov/yose/planyourvisit/tiogaopen.htm',
+    description:
+      'Plowing starts in mid-April and Tioga Road typically reopens somewhere between late May and late June, depending entirely on the snowpack. Big winters push it toward July. Opening weekend in the high country is its own event, with snowbanks over your head at the pass.',
+  },
+  {
+    id: 'half-dome-cables-2028',
+    title: 'Half Dome cables typically up',
+    category: 'other',
+    confidence: 'typical',
+    dateStart: '2028-05-26',
+    dateEnd: '2028-10-10',
+    url: 'https://www.recreation.gov/permits/234652',
+    description:
+      'The cables that make the summit walkable typically go up the Friday before Memorial Day and come down after the second Monday in October; in 2028 that pattern lands on roughly these dates. The park confirms each season, and a late snowpack can delay the start. A permit is required every day the cables are up.',
+  },
+  {
+    id: 'star-party-season-2028',
+    title: 'Glacier Point star party season',
+    category: 'astronomy',
+    confidence: 'typical',
+    dateStart: '2028-07-01',
+    dateEnd: '2028-08-31',
+    location: 'Glacier Point',
+    description: STAR_PARTY_DESC,
+    stopIds: ['glacier-point'],
+  },
+  {
+    id: 'yosemite-falls-dry-2028',
+    title: 'Yosemite Falls typically runs dry',
+    category: 'other',
+    confidence: 'typical',
+    dateStart: '2028-08-15',
+    dateEnd: '2028-10-31',
+    description: FALLS_DRY_DESC,
+  },
+  {
+    id: 'fall-color-2028',
+    title: 'Fall color in the valley',
+    category: 'other',
+    confidence: 'typical',
+    dateStart: '2028-10-15',
+    dateEnd: '2028-11-07',
+    description: FALL_COLOR_DESC,
+    stopIds: ['cooks-meadow-loop'],
+  },
+  {
+    id: 'tioga-close-2028',
+    title: 'Tioga Road closing window',
+    category: 'other',
+    confidence: 'typical',
+    dateStart: '2028-11-01',
+    dateEnd: '2028-11-30',
+    url: 'https://www.nps.gov/yose/planyourvisit/seasonal.htm',
+    description: TIOGA_CLOSE_DESC,
+  },
+  {
+    id: 'glacier-point-close-2028',
+    title: 'Glacier Point Road closing window',
+    category: 'other',
+    confidence: 'typical',
+    dateStart: '2028-11-01',
+    dateEnd: '2028-11-30',
+    url: 'https://www.nps.gov/yose/planyourvisit/seasonal.htm',
+    description: GLACIER_CLOSE_DESC,
+  },
 ]
 
 // ── Single-day markers derived from the typical patterns ─────────────────────
@@ -319,6 +469,28 @@ const dayEntries: SeasonalInput[] = [
     confidence: 'typical',
     dateStart: '2027-03-31',
     dateEnd: '2027-03-31',
+    url: 'https://www.recreation.gov/permits/234652',
+    description:
+      'Last day of the typical preseason lottery window for Half Dome permits on recreation.gov. Results have historically arrived in mid-April. After this, the daily lottery, two days ahead, is the remaining door.',
+  },
+  {
+    id: 'half-dome-lottery-opens-2028',
+    title: 'Half Dome preseason lottery typically opens',
+    category: 'other',
+    confidence: 'typical',
+    dateStart: '2028-03-01',
+    dateEnd: '2028-03-01',
+    url: 'https://www.recreation.gov/permits/234652',
+    description:
+      'If the recent pattern holds, the month-long preseason lottery for Half Dome permits opens today on recreation.gov. It stays open all month; there is no advantage to applying on day one, only a penalty for forgetting.',
+  },
+  {
+    id: 'half-dome-lottery-closes-2028',
+    title: 'Half Dome preseason lottery typically closes',
+    category: 'other',
+    confidence: 'typical',
+    dateStart: '2028-03-31',
+    dateEnd: '2028-03-31',
     url: 'https://www.recreation.gov/permits/234652',
     description:
       'Last day of the typical preseason lottery window for Half Dome permits on recreation.gov. Results have historically arrived in mid-April. After this, the daily lottery, two days ahead, is the remaining door.',
