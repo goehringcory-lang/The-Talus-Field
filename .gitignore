@@ -35,6 +35,16 @@ _local_cdn/
 # photos land in apps/guide/public/photos/, candidates never ship.
 scripts/data/photo-candidates/
 
+# Camera originals staged for ingest-photos.mjs. Never committed: the ingest
+# writes a stripped, downscaled JPEG into img/ or apps/guide/public/photos/,
+# and the multi-MB original has no reason to enter git history.
+photo-inbox/
+
+# Capture GPS and timestamps harvested by ingest-photos.mjs before the
+# re-encode strips them. Local-only by design — it is the metadata we
+# deliberately keep out of the deployed originals.
+scripts/data/photo-exif-log.json
+
 # Cached USGS quad + terrain-tile downloads for scripts/gen-hike-tracks.mjs;
 # regenerated on demand, never committed.
 scripts/data/.trailcache/
