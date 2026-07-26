@@ -223,7 +223,13 @@ async function commonsCategory(category, enabled) {
       generator: 'categorymembers',
       gcmtitle: title,
       gcmtype: 'file',
-      gcmlimit: '50',
+      // Category members come back in page order, not relevance order, so a
+      // big category (El Capitan, Tuolumne River) silently truncates to
+      // whatever sorts first — which is how a category with an obvious right
+      // answer in it can return nothing usable. 500 is the API's ceiling for
+      // an unauthenticated caller; the license, orientation, and size gates
+      // do the narrowing from there.
+      gcmlimit: '500',
       ...COMMONS_IMAGEINFO,
     },
     title,
