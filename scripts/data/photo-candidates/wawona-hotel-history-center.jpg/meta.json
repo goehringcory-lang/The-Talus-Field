@@ -1,0 +1,41 @@
+[
+  {
+    "n": 1,
+    "provider": "commons",
+    "title": "File:Wawona Hotel2.jpg",
+    "author": "Flickr user Joe Shlabotnik",
+    "license": "CC BY 2.0",
+    "licenseRank": 1,
+    "source": "https://commons.wikimedia.org/wiki/File:Wawona_Hotel2.jpg",
+    "width": 2592,
+    "height": 1952,
+    "downloadUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Wawona_Hotel2.jpg/1920px-Wawona_Hotel2.jpg",
+    "searchIndex": 0
+  },
+  {
+    "n": 2,
+    "provider": "commons",
+    "title": "File:Wawona Hotel (5830356038).jpg",
+    "author": "Rennett Stowe from USA",
+    "license": "CC BY 2.0",
+    "licenseRank": 1,
+    "source": "https://commons.wikimedia.org/wiki/File:Wawona_Hotel_(5830356038).jpg",
+    "width": 3806,
+    "height": 2234,
+    "downloadUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e6/Wawona_Hotel_%285830356038%29.jpg/1920px-Wawona_Hotel_%285830356038%29.jpg",
+    "searchIndex": 1
+  },
+  {
+    "n": 3,
+    "provider": "commons",
+    "title": "File:Wawona Hotel, Winter Moonlight.jpg",
+    "author": "Nv2ca04",
+    "license": "CC BY-SA 3.0",
+    "licenseRank": 2,
+    "source": "https://commons.wikimedia.org/wiki/File:Wawona_Hotel,_Winter_Moonlight.jpg",
+    "width": 3504,
+    "height": 2336,
+    "downloadUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/Wawona_Hotel%2C_Winter_Moonlight.jpg/1920px-Wawona_Hotel%2C_Winter_Moonlight.jpg",
+    "searchIndex": 2
+  }
+]

@@ -1,0 +1,41 @@
+[
+  {
+    "n": 1,
+    "provider": "commons",
+    "title": "File:Wawona Elementary School building Wawona CA 2023-07-14 17-10-44.jpg",
+    "author": "G. Edward Johnson",
+    "license": "CC BY 4.0",
+    "licenseRank": 1,
+    "source": "https://commons.wikimedia.org/wiki/File:Wawona_Elementary_School_building_Wawona_CA_2023-07-14_17-10-44.jpg",
+    "width": 3811,
+    "height": 2144,
+    "downloadUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Wawona_Elementary_School_building_Wawona_CA_2023-07-14_17-10-44.jpg/1920px-Wawona_Elementary_School_building_Wawona_CA_2023-07-14_17-10-44.jpg",
+    "searchIndex": 2
+  },
+  {
+    "n": 2,
+    "provider": "commons",
+    "title": "File:Bassett Memorial Library entrance Wawona CA 2023-07-14 17-08-54.jpg",
+    "author": "G. Edward Johnson",
+    "license": "CC BY 4.0",
+    "licenseRank": 1,
+    "source": "https://commons.wikimedia.org/wiki/File:Bassett_Memorial_Library_entrance_Wawona_CA_2023-07-14_17-08-54.jpg",
+    "width": 4080,
+    "height": 2295,
+    "downloadUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/Bassett_Memorial_Library_entrance_Wawona_CA_2023-07-14_17-08-54.jpg/1920px-Bassett_Memorial_Library_entrance_Wawona_CA_2023-07-14_17-08-54.jpg",
+    "searchIndex": 3
+  },
+  {
+    "n": 3,
+    "provider": "commons",
+    "title": "File:ChilnualnaFallsSwimmingHole.jpg",
+    "author": "Antandrus at English Wikipedia",
+    "license": "CC BY-SA 3.0",
+    "licenseRank": 2,
+    "source": "https://commons.wikimedia.org/wiki/File:ChilnualnaFallsSwimmingHole.jpg",
+    "width": 1600,
+    "height": 1200,
+    "downloadUrl": "https://upload.wikimedia.org/wikipedia/commons/c/c2/ChilnualnaFallsSwimmingHole.jpg",
+    "searchIndex": 0
+  }
+]

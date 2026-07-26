@@ -1,0 +1,41 @@
+[
+  {
+    "n": 1,
+    "provider": "commons",
+    "title": "File:Hetch Hetchy Reservoir, Yosemite National Park, California (21546718026).jpg",
+    "author": "Ken Lund from Reno, Nevada, USA",
+    "license": "CC BY-SA 2.0",
+    "licenseRank": 2,
+    "source": "https://commons.wikimedia.org/wiki/File:Hetch_Hetchy_Reservoir,_Yosemite_National_Park,_California_(21546718026).jpg",
+    "width": 4000,
+    "height": 3000,
+    "downloadUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/Hetch_Hetchy_Reservoir%2C_Yosemite_National_Park%2C_California_%2821546718026%29.jpg/1920px-Hetch_Hetchy_Reservoir%2C_Yosemite_National_Park%2C_California_%2821546718026%29.jpg",
+    "searchIndex": 0
+  },
+  {
+    "n": 2,
+    "provider": "commons",
+    "title": "File:Hetch Hetchy Reservoir, Yosemite National Park, California (21572917035).jpg",
+    "author": "Ken Lund from Reno, Nevada, USA",
+    "license": "CC BY-SA 2.0",
+    "licenseRank": 2,
+    "source": "https://commons.wikimedia.org/wiki/File:Hetch_Hetchy_Reservoir,_Yosemite_National_Park,_California_(21572917035).jpg",
+    "width": 4000,
+    "height": 3000,
+    "downloadUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/2e/Hetch_Hetchy_Reservoir%2C_Yosemite_National_Park%2C_California_%2821572917035%29.jpg/1920px-Hetch_Hetchy_Reservoir%2C_Yosemite_National_Park%2C_California_%2821572917035%29.jpg",
+    "searchIndex": 1
+  },
+  {
+    "n": 3,
+    "provider": "commons",
+    "title": "File:Hetch Hetchy Reservoir, Yosemite National Park, California (21385017938).jpg",
+    "author": "Ken Lund from Reno, Nevada, USA",
+    "license": "CC BY-SA 2.0",
+    "licenseRank": 2,
+    "source": "https://commons.wikimedia.org/wiki/File:Hetch_Hetchy_Reservoir,_Yosemite_National_Park,_California_(21385017938).jpg",
+    "width": 4000,
+    "height": 3000,
+    "downloadUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Hetch_Hetchy_Reservoir%2C_Yosemite_National_Park%2C_California_%2821385017938%29.jpg/1920px-Hetch_Hetchy_Reservoir%2C_Yosemite_National_Park%2C_California_%2821385017938%29.jpg",
+    "searchIndex": 2
+  }
+]
