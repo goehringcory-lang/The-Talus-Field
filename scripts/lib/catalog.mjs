@@ -46,6 +46,8 @@ export const STATIC_ROUTES = [
   "/search",
   "/now",
   "/firefall",
+  "/tioga-opening",
+  "/half-dome-lottery",
   "/consult",
   "/widget",
   "/partners",
