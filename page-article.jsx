@@ -485,7 +485,7 @@ function ArticlePage({ slug, go }) {
               July 2026; keep the price stated plainly per house style. */}
           {(article.cat === "trails" || article.cat === "planning" || article.cat === "seasonal") && (
             <p style={{ fontFamily: "var(--sans)", fontSize: 13, color: "var(--ink-3)", lineHeight: 1.6, margin: "16px 0 0" }}>
-              The Field Guide puts this site's advice in your pocket: offline maps, GPS at the trailhead, every stop with parking notes. $19, eighteen months of access.{" "}
+              The Field Guide puts this site's advice in your pocket: offline maps, GPS at the trailhead, every stop with parking notes. $3.99, eighteen months of access.{" "}
               <a
                 href="/guide"
                 onClick={(e) => { e.preventDefault(); if (window.track) window.track("guide_teaser_click", { location: "article_end" }); go("guide"); }}

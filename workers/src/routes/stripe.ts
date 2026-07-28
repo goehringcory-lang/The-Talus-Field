@@ -91,7 +91,7 @@ stripe.post('/webhook', async (c) => {
   }
 
   // Refunds revoke access. charge.refunded fires for full AND partial
-  // refunds; at $19 one-time the operator only ever issues full refunds, so
+  // refunds; at $3.99 one-time the operator only ever issues full refunds, so
   // any refund revokes. NOTE: the Stripe dashboard webhook endpoint must be
   // configured to send charge.refunded or this branch never runs.
   if (event.type === 'charge.refunded') {

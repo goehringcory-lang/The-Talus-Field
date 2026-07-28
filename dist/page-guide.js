@@ -1,6 +1,6 @@
 var GUIDE_APP_BASE = typeof window !== "undefined" && window.GUIDE_APP_BASE || "https://talus-field-guide.pages.dev";
 var GUIDE_API_BASE = typeof window !== "undefined" && window.GUIDE_API_BASE || "https://api.thetalusfieldjournal.com";
-var GUIDE_PRICE_FALLBACK_CENTS = 1900;
+var GUIDE_PRICE_FALLBACK_CENTS = 399;
 var GUIDE_ON_SALE = true;
 function formatPrice(cents) {
   var dollars = cents / 100;
@@ -463,7 +463,7 @@ function GuideWaitlistBox() {
       lineHeight: 1.55,
       margin: "0 0 18px"
     }
-  }, "The guide is in final testing. It will be $19, one payment, 18 months of access on every device you own. Leave your email and you will hear the day it opens, before anyone else."), done ? React.createElement("p", {
+  }, "The guide is in final testing. It will be $3.99, one payment, 18 months of access on every device you own. Leave your email and you will hear the day it opens, before anyone else."), done ? React.createElement("p", {
     style: {
       fontFamily: "var(--sans)",
       fontSize: 14,

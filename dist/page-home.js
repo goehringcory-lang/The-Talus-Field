@@ -692,7 +692,7 @@ function HomePage({
       className: "home-band__grid"
     }, React.createElement("div", null, React.createElement("div", {
       className: "band-guide__eyebrow"
-    }, "The Field Guide · $19"), React.createElement("div", {
+    }, "The Field Guide · $3.99"), React.createElement("div", {
       className: "band-guide__title"
     }, "The park, in your pocket.")), React.createElement("div", null, React.createElement("p", {
       className: "band-guide__body"

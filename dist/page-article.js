@@ -547,7 +547,7 @@ function ArticlePage({
       lineHeight: 1.6,
       margin: "16px 0 0"
     }
-  }, "The Field Guide puts this site's advice in your pocket: offline maps, GPS at the trailhead, every stop with parking notes. $19, eighteen months of access.", " ", React.createElement("a", {
+  }, "The Field Guide puts this site's advice in your pocket: offline maps, GPS at the trailhead, every stop with parking notes. $3.99, eighteen months of access.", " ", React.createElement("a", {
     href: "/guide",
     onClick: e => {
       e.preventDefault();

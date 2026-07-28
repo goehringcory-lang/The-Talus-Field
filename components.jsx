@@ -1719,7 +1719,7 @@ function GuidePromo({ go, location, title, body, cta, sample = true, style }) {
           if (go) go("guide"); else window.location.href = "/guide";
         }}
       >
-        <div className="band-guide__eyebrow">The Field Guide · $19 · Offline app</div>
+        <div className="band-guide__eyebrow">The Field Guide · $3.99 · Offline app</div>
         <div className="band-guide__title" style={{ marginBottom: 10 }}>
           {title || "The park, in your pocket."}
         </div>

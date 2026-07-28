@@ -297,7 +297,7 @@ const HUB_PROSE = {
       "The Field Guide",
       "An offline web app for Yosemite: tappable GPS for the parking turnouts, quiet trailheads, and insider tactics that locals use, built to work at the trailhead when cell service dies. Includes the full stop library across the Valley, Glacier Point and Mariposa Grove, Tuolumne, and Hetch Hetchy, plus a day-by-day trip planner with park programs and weather."
     ) +
-    `<p>The guide is on sale now: $19 once for 18 months of access, no subscription. The journal's free tools cover a lot on their own: <a href="/map">the trip planner map</a>, <a href="/itineraries">itineraries</a>, and <a href="/checklist">the first-week checklist</a>.</p>`,
+    `<p>The guide is on sale now: $3.99 once for 18 months of access, no subscription. The journal's free tools cover a lot on their own: <a href="/map">the trip planner map</a>, <a href="/itineraries">itineraries</a>, and <a href="/checklist">the first-week checklist</a>.</p>`,
   "/about": () =>
     hubProse(
       "About The Talus Field",
@@ -704,7 +704,7 @@ function seoForPath(pathname, searchParams) {
         },
         {
           q: "What do group codes cost?",
-          a: "Partner rates are per code, billed by invoice, with the pack as the unit of sale: 25 codes at $12 a code, 50 codes at $10 a code, and 100 codes or more at $8 a code. The guide sells to the public at $19 a copy.",
+          a: "Partner rates are per code, billed by invoice, with the pack as the unit of sale: 25 codes at $2.49 a code, 50 codes at $1.99 a code, and 100 codes or more at $1.69 a code. The guide sells to the public at $3.99 a copy.",
         },
         {
           q: "Do guests need to install an app?",

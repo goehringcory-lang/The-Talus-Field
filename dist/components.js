@@ -2100,7 +2100,7 @@ function GuidePromo({
     }
   }, React.createElement("div", {
     className: "band-guide__eyebrow"
-  }, "The Field Guide · $19 · Offline app"), React.createElement("div", {
+  }, "The Field Guide · $3.99 · Offline app"), React.createElement("div", {
     className: "band-guide__title",
     style: {
       marginBottom: 10

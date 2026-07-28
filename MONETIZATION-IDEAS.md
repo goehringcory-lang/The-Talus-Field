@@ -6,7 +6,7 @@ July 2026. Internal working document; strategy only, no code. Successor layer to
 
 Three revenue surfaces exist, one of them live:
 
-1. **The Field Guide PWA** — $19 one-time, 18-month access, monthly inventory cap, live Stripe checkout. On sale as of the July 2026 launch-prep pass (pending the LAUNCH-READINESS.md ops gate).
+1. **The Field Guide PWA** — $3.99 one-time, 18-month access, monthly inventory cap, live Stripe checkout. On sale as of the July 2026 launch-prep pass (pending the LAUNCH-READINESS.md ops gate).
 2. **Patagonia affiliate links** (`affiliate.js`, Impact network) — one program, gear articles only. The registry is deliberately built for multiple networks; only one entry exists.
 3. **The newsletter** — not monetized directly; it is the audience asset everything else launches to.
 
@@ -35,7 +35,7 @@ These aren't new ideas; they're the highest-ROI items on the board because the w
 
 ### 2.1 Renewal revenue: turn the 18-month expiry into a rebuy event
 
-**What:** An automated email arc at T−60/T−14/T−1 days before `expiresAt` ("your access ends March 12; renew for $12 and keep your trips, favorites, and downloads"), plus a renewal state on `/account` and a discounted renewal Checkout price. The Worker cron already runs daily and the buyer records carry everything needed to find expiring accounts.
+**What:** An automated email arc at T−60/T−14/T−1 days before `expiresAt` ("your access ends March 12; renew for $2.49 and keep your trips, favorites, and downloads"), plus a renewal state on `/account` and a discounted renewal Checkout price. The Worker cron already runs daily and the buyer records carry everything needed to find expiring accounts.
 **Why it works:** This converts a one-time product into quasi-recurring revenue with zero new product surface. Yosemite is a repeat-visit park; the 18-month window means most buyers plan a second trip inside a renewal cycle. Renewal at ~60% of list price is an easy yes for someone whose trip data lives in the app.
 **Build:** Worker cron sweep over buyer records + a second Stripe price + webhook path that extends rather than provisions. Medium effort.
 **Measure:** renewal rate at expiry; it becomes the single most important product metric after launch.

@@ -137,7 +137,7 @@ Custom domains `thetalusfieldjournal.com` + `www` are bound in
 
 ## 8. Smoke test
 
-1. Open the deployed editorial site → click `Field Guide` → the buy box renders "Buy the guide → $19" with the price read live from `/api/inventory` (there is no sold/cap counter; a sold-out month surfaces only as the reopen notice after checkout returns 409).
+1. Open the deployed editorial site → click `Field Guide` → the buy box renders "Buy the guide → $3.99" with the price read live from `/api/inventory` (there is no sold/cap counter; a sold-out month surfaces only as the reopen notice after checkout returns 409).
 2. Click buy → Stripe checkout opens. Use test card `4242 4242 4242 4242`, any future date, any CVC, any zip.
 3. Payment completes → redirected to `?guide=success` → email arrives within ~30s with a 6-digit code and a magic link.
 4. Click the magic link → opens `https://talus-field-guide.pages.dev/open?token=...` → "Signing you in…" → redirects to the setup page, then home with four region cards (`valley`, `glacier-mariposa`, `tuolumne`, `hetch-hetchy`).
@@ -203,16 +203,16 @@ Rules that matter:
 - Ground-truth the 28 coordinates still marked `TODO: verify on the ground` (15 in [apps/guide/src/content/stops.ts](apps/guide/src/content/stops.ts), 8 in `secret-spots.ts`, 5 in `amenities.ts`) and remove each marker only after standing at the spot. Stops are organized into four regions: `valley`, `glacier-mariposa`, `tuolumne`, `hetch-hetchy`.
 - Photos go through the pipeline in [scripts/fetch-guide-photos.mjs](scripts/fetch-guide-photos.mjs) (fetch → review → select → `npm run images` → emit-credits), which also maintains the license credits rendered on the Account page. Wire new files as `photos: [{ src, caption }]` entries on the matching stops.
 
-## 2026 relaunch: enabling the $19 paid model
+## 2026 relaunch: enabling the $3.99 paid model
 
 The buy box, checkout route, webhook, KV buyer records, and email delivery are all in the tree; the paid path is enabled purely by configuration. Checklist, in order:
 
-1. **Price.** `GUIDE_PRICE_CENTS = "1900"` in [workers/wrangler.toml](workers/wrangler.toml) is the single source of truth. The editorial buy box reads it live from `GET /api/inventory` (`priceCents`) with a static $19 fallback in [page-guide.jsx](page-guide.jsx). Change the var, `wrangler deploy`, done.
+1. **Price.** `GUIDE_PRICE_CENTS = "399"` in [workers/wrangler.toml](workers/wrangler.toml) is the single source of truth. The editorial buy box reads it live from `GET /api/inventory` (`priceCents`) with a static $3.99 fallback in [page-guide.jsx](page-guide.jsx). Change the var, `wrangler deploy`, done. Stripe needs no change alongside it: checkout builds an inline `price_data` line item, so there is no Price object in the dashboard to keep in sync.
 2. **KV.** The production namespace `id`s for `GUIDE_BUYERS` and `GUIDE_PROGRAMS` are already filled in `wrangler.toml`. Only the `preview_id`s remain `REPLACE_ME_FOR_LOCAL_DEV`; create preview namespaces (`wrangler kv namespace create ... --preview`) only if you need local `wrangler dev`.
 3. **Secrets.** `wrangler secret put` each of: `STRIPE_SECRET_KEY`, `STRIPE_WEBHOOK_SECRET`, `MAGIC_LINK_SIGNING_SECRET`, `RESEND_API_KEY`. Optionally `VAPID_PUBLIC_KEY`/`VAPID_PRIVATE_KEY` for push notifications (section 2); they are not launch-blocking, since the app hides the opt-in when they are unset. Rotate or delete `DEV_USERNAME`/`DEV_CODE` before launch; keep `ADMIN_*` as the operator door.
 4. **Webhook.** In the Stripe dashboard, add endpoint `https://api.thetalusfieldjournal.com/api/stripe/webhook` for events `checkout.session.completed`, `checkout.session.async_payment_succeeded`, **and** `charge.refunded`; the endpoint's signing secret is `STRIPE_WEBHOOK_SECRET`. Without `charge.refunded`, the refund-revocation branch in [workers/src/routes/stripe.ts](workers/src/routes/stripe.ts) never runs and refunded buyers keep access until the KV record is expired by hand.
 5. **Resend domain.** Verify the sending domain for `cory@thetalusfieldjournal.com` in the Resend dashboard **before** going live. With an unverified domain the webhook's email send fails after the buyer has already been charged, and no access code or magic link ever arrives.
-6. **Deploy + verify fail-closed traps.** `wrangler deploy`, then `curl https://api.thetalusfieldjournal.com/api/inventory` must show `sold: 0`, `cap: 100`, `priceCents: 1900`. The inventory check fails closed: a missing/garbled `GUIDE_MONTHLY_CAP` reads as sold out.
+6. **Deploy + verify fail-closed traps.** `wrangler deploy`, then `curl https://api.thetalusfieldjournal.com/api/inventory` must show `sold: 0`, `cap: 100`, `priceCents: 399`. The inventory check fails closed: a missing/garbled `GUIDE_MONTHLY_CAP` reads as sold out.
 7. **Test-mode pass.** Full smoke test in section 8 (test card 4242…) before swapping to live keys per "Going live". Include a refund: refund the test payment in the Stripe dashboard and confirm the buyer's login stops working.
 8. **Editorial re-integration: done.** Every code flip landed in the July 2026 launch-prep branch: `GUIDE_ON_SALE = true` in [page-guide.jsx](page-guide.jsx), the footer link in [components.jsx](components.jsx), the noscript nav link in [index.html](index.html), indexability in [app.jsx](app.jsx) and [edge/seo.js](edge/seo.js), `GUIDE_LISTED = true` in [scripts/gen-seo-artifacts.mjs](scripts/gen-seo-artifacts.mjs), and the Field Guide line in llms.txt. Remaining `GUIDE-LAUNCH` grep hits are historical breadcrumbs, not work. Merging that branch to `main` is the go-live action, so clear steps 1 through 7 first; the full state of play is in [LAUNCH-READINESS.md](LAUNCH-READINESS.md).
 
