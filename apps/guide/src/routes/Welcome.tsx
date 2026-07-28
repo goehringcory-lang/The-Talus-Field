@@ -6,10 +6,13 @@
 // Skippable at any point; both exits mark onboarding done.
 // =============================================================================
 
+import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import DownloadManager from '../components/DownloadManager'
+import InstallSheet from '../components/InstallSheet'
 import Button from '../components/ui/Button'
 import PageHeader from '../components/ui/PageHeader'
+import { claimFirstAutoPrompt } from '../lib/install'
 import { markOnboarded } from '../lib/onboarding'
 import { PACK_IDS } from '../offline/manifest'
 import { isPackCompleted } from '../offline/useDownloads'
@@ -18,17 +21,33 @@ import { isIOS, isStandalonePWA } from '../utils/platform'
 
 function InstallStep() {
   const { event, prompt } = useDeferredInstallPrompt()
+  const [sheet, setSheet] = useState(false)
 
   if (isStandalonePWA()) {
     return <p>Already installed on this device. You're reading the home-screen copy now.</p>
   }
   if (isIOS()) {
+    // iOS cannot show an OS install dialog, so the button opens the app's own
+    // step-by-step sheet. Opening it here also claims the one auto-prompt, so
+    // Home doesn't repeat the ask a tap later.
     return (
-      <p>
-        Tap <span className="install-banner__key">&#x2B06;</span> Share in Safari, then{' '}
-        <strong>Add to Home Screen</strong>. The guide gets its own icon and opens
-        full-screen, and iOS gives installed apps more durable offline storage.
-      </p>
+      <>
+        <p>
+          iPhones don't install this from a button: it goes on your home screen through
+          Safari's Share menu. It takes about ten seconds, and it is what makes the guide
+          hold on to its offline downloads.
+        </p>
+        <Button
+          size="sm"
+          onClick={() => {
+            claimFirstAutoPrompt()
+            setSheet(true)
+          }}
+        >
+          Show me how →
+        </Button>
+        {sheet && <InstallSheet onClose={() => setSheet(false)} />}
+      </>
     )
   }
   return (
