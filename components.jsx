@@ -460,6 +460,49 @@ function Header({ current, go }) {
     return false;
   };
 
+  // Which mega panel is being held open past the pointer leaving it. CSS
+  // :hover already opens and closes these on its own; this only delays the
+  // close, because the panel spans the whole masthead and the walk from a
+  // trigger down to a link in the far-left column exits the trigger's column
+  // well before it reaches the panel. Without the delay the panel disappears
+  // mid-reach. Nothing here can open a panel, so a JS failure degrades to
+  // plain hover rather than to a dead menu.
+  const [openGroup, setOpenGroup] = React.useState(null);
+  // The group whose panel has been closed by taking one of its links. CSS
+  // :hover alone would keep the panel up over the page the reader just asked
+  // for, since the pointer is still inside it at that moment, so this beats
+  // the hover rule until the pointer leaves and comes back.
+  const [dismissedGroup, setDismissedGroup] = React.useState(null);
+  const openTimer = React.useRef(null);
+  const holdGroup = (key) => {
+    clearTimeout(openTimer.current);
+    setDismissedGroup(null);
+    setOpenGroup(key);
+  };
+  const releaseGroup = () => {
+    clearTimeout(openTimer.current);
+    // Nothing to hold open if the panel was already dismissed; running the
+    // delay would flash it back for a beat on the way out.
+    if (dismissedGroup) { setDismissedGroup(null); setOpenGroup(null); return; }
+    openTimer.current = setTimeout(() => setOpenGroup(null), 280);
+  };
+  const dismissGroup = (key, e) => {
+    clearTimeout(openTimer.current);
+    setOpenGroup(null);
+    setDismissedGroup(key);
+    // A mouse click leaves focus on the link, and :focus-within would hold the
+    // panel open for good. Only pointer activations blur (detail is 0 for a
+    // keyboard Enter, where dropping focus would strand the reader).
+    if (e && e.detail > 0 && e.currentTarget && e.currentTarget.blur) e.currentTarget.blur();
+  };
+  React.useEffect(() => () => clearTimeout(openTimer.current), []);
+  React.useEffect(() => {
+    if (!openGroup) return;
+    const onKey = (e) => { if (e.key === "Escape") dismissGroup(openGroup); };
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
+  }, [openGroup]);
+
   const [menuOpen, setMenuOpen] = React.useState(false);
   const [menuQuery, setMenuQuery] = React.useState("");
   const menuRef = React.useRef(null);
@@ -519,7 +562,7 @@ function Header({ current, go }) {
         href={isExternalPath ? href : (window.routeToPath ? window.routeToPath(key) : `/${key}`)}
         className={[baseClass, !isExternalPath && current === key && "is-active"].filter(Boolean).join(" ")}
         onClick={(e) => {
-          if (onNavigate) onNavigate();
+          if (onNavigate) onNavigate(e);
           if (isExternalPath) return; // real navigation; let the browser take it
           e.preventDefault();
           if (key === "guide" && window.track) window.track("guide_cta_click", { location: "masthead_nav" });
@@ -591,30 +634,41 @@ function Header({ current, go }) {
               // position: static on a mega group hands the panel's containing
               // block to .masthead__main, so it spans the full masthead width
               // and cannot overflow the viewport at any desktop size.
-              <div key={g.key} className="nav__group nav__group--mega">
+              <div
+                key={g.key}
+                className={[
+                  "nav__group",
+                  "nav__group--mega",
+                  openGroup === g.key && "is-open",
+                  dismissedGroup === g.key && "is-dismissed",
+                ].filter(Boolean).join(" ")}
+                onMouseEnter={() => holdGroup(g.key)}
+                onMouseLeave={releaseGroup}
+              >
                 <a
                   href={window.routeToPath ? window.routeToPath(g.route) : `/${g.route}`}
                   className={["nav__link", "nav__group-trigger", isGroupActive(g) && "is-active"].filter(Boolean).join(" ")}
                   aria-haspopup="true"
-                  onClick={(e) => { e.preventDefault(); go(g.route); }}
+                  onClick={(e) => { e.preventDefault(); dismissGroup(g.key, e); go(g.route); }}
                 >
                   {g.label}
                   <span className="nav__caret" aria-hidden="true">▾</span>
                 </a>
-                {/* Opened purely by CSS (:hover / :focus-within) so hover and
-                    keyboard tabbing both work with no state to desync. */}
+                {/* Opened by CSS (:hover / :focus-within), so hover and
+                    keyboard tabbing both work with no state to desync; the
+                    is-open class above only holds it open a beat longer. */}
                 <div className="nav__dropdown nav__dropdown--mega">
                   <div className="nav__dropdown-inner">
                     <div className="nav__dropdown-lede">
                       <div className="nav__dropdown-title">{g.label}</div>
                       {g.blurb && <p className="nav__dropdown-blurb">{g.blurb}</p>}
-                      {renderPlainLink(g.route, g.cta || "Open the section →", { baseClass: "nav__dropdown-all" })}
+                      {renderPlainLink(g.route, g.cta || "Open the section →", { baseClass: "nav__dropdown-all", onNavigate: (e) => dismissGroup(g.key, e) })}
                     </div>
                     <div className="nav__dropdown-cols">
                       {g.columns.map((col) => (
                         <div key={col.heading} className="nav__dropdown-col">
                           <div className="nav__dropdown-heading">{col.heading}</div>
-                          {col.links.map((link) => renderLink(link, { baseClass: "nav__dropdown-link" }))}
+                          {col.links.map((link) => renderLink(link, { baseClass: "nav__dropdown-link", onNavigate: (e) => dismissGroup(g.key, e) }))}
                         </div>
                       ))}
                     </div>

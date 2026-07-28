@@ -409,10 +409,12 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
 }
 .nav__cta:hover { background: var(--ink); color: var(--paper) !important; }
 
-/* Desktop dropdown groups. Opened by :hover / :focus-within only, so hover
-   and keyboard tabbing both work with zero JS state. */
+/* Desktop dropdown groups. :hover / :focus-within open them with no JS, so
+   hover and keyboard tabbing both work on their own; the .is-open class the
+   masthead adds on top of that is only a close delay (see Header in
+   components.jsx), never the thing that opens a panel. */
 .nav__group { position: relative; display: flex; align-items: center; }
-.nav__group-trigger { display: inline-flex; align-items: center; gap: 5px; }
+.nav__group-trigger { position: relative; display: inline-flex; align-items: center; gap: 5px; }
 .nav__caret {
   font-size: 8px;
   line-height: 1;
@@ -421,7 +423,8 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
   transition: transform 0.15s;
 }
 .nav__group:hover .nav__caret,
-.nav__group:focus-within .nav__caret { transform: translateY(0); }
+.nav__group:focus-within .nav__caret,
+.nav__group.is-open .nav__caret { transform: translateY(0); }
 .nav__dropdown {
   position: absolute;
   top: 100%;
@@ -434,7 +437,8 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
 }
 .nav__dropdown--right { left: auto; right: -18px; }
 .nav__group:hover .nav__dropdown,
-.nav__group:focus-within .nav__dropdown { display: block; }
+.nav__group:focus-within .nav__dropdown,
+.nav__group.is-open .nav__dropdown { display: block; }
 .nav__dropdown-inner {
   min-width: 230px;
   background: var(--paper);
@@ -469,6 +473,32 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
   right: 0;
   padding-top: 18px;
 }
+/* Hover bridge for the mega panels. .nav__dropdown's own padding-top spans the
+   gap for the small dropdowns, where top: 100% means "below the trigger" — but
+   a mega group is position: static, so top: 100% is the bottom of
+   .masthead__main and that padding lands below the gap instead of across it.
+   Measured at 1440px, the trigger ends 35px above the panel: nothing occupied
+   that band, so moving the pointer down toward the panel left the group and the
+   panel vanished, with no way back (the panel is display: none by then, so it
+   cannot take the hover itself). This tongue hangs off the trigger to cover it.
+   It exists only while the group is open, so it intercepts nothing the rest of
+   the time, and any part of it that reaches past the masthead is under the
+   panel (z-index 60) anyway. */
+.nav__group--mega:hover .nav__group-trigger::after,
+.nav__group--mega:focus-within .nav__group-trigger::after,
+.nav__group--mega.is-open .nav__group-trigger::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: -22px;
+  right: -22px;
+  height: 46px;
+}
+/* Taking a link closes the panel even though the pointer is still inside it.
+   Both rules outrank the :hover/:focus-within pair on specificity, and the
+   class clears the moment the pointer leaves the group. */
+.nav__group--mega.is-dismissed .nav__dropdown { display: none; }
+.nav__group--mega.is-dismissed .nav__group-trigger::after { content: none; }
 .nav__dropdown--mega .nav__dropdown-inner {
   display: grid;
   grid-template-columns: minmax(190px, 240px) 1fr;
