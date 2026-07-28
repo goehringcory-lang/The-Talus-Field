@@ -504,6 +504,38 @@ function Header({
     if (g.key === "read" && (current.startsWith("a:") || current.startsWith("cat:"))) return true;
     return false;
   };
+  var [openGroup, setOpenGroup] = React.useState(null);
+  var [dismissedGroup, setDismissedGroup] = React.useState(null);
+  var openTimer = React.useRef(null);
+  var holdGroup = key => {
+    clearTimeout(openTimer.current);
+    setDismissedGroup(null);
+    setOpenGroup(key);
+  };
+  var releaseGroup = () => {
+    clearTimeout(openTimer.current);
+    if (dismissedGroup) {
+      setDismissedGroup(null);
+      setOpenGroup(null);
+      return;
+    }
+    openTimer.current = setTimeout(() => setOpenGroup(null), 280);
+  };
+  var dismissGroup = (key, e) => {
+    clearTimeout(openTimer.current);
+    setOpenGroup(null);
+    setDismissedGroup(key);
+    if (e && e.detail > 0 && e.currentTarget && e.currentTarget.blur) e.currentTarget.blur();
+  };
+  React.useEffect(() => () => clearTimeout(openTimer.current), []);
+  React.useEffect(() => {
+    if (!openGroup) return;
+    var onKey = e => {
+      if (e.key === "Escape") dismissGroup(openGroup);
+    };
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
+  }, [openGroup]);
   var [menuOpen, setMenuOpen] = React.useState(false);
   var [menuQuery, setMenuQuery] = React.useState("");
   var menuRef = React.useRef(null);
@@ -572,7 +604,7 @@ function Header({
       href: isExternalPath ? href : window.routeToPath ? window.routeToPath(key) : `/${key}`,
       className: [baseClass, !isExternalPath && current === key && "is-active"].filter(Boolean).join(" "),
       onClick: e => {
-        if (onNavigate) onNavigate();
+        if (onNavigate) onNavigate(e);
         if (isExternalPath) return;
         e.preventDefault();
         if (key === "guide" && window.track) window.track("guide_cta_click", {
@@ -683,13 +715,16 @@ function Header({
     }
     return (React.createElement("div", {
         key: g.key,
-        className: "nav__group nav__group--mega"
+        className: ["nav__group", "nav__group--mega", openGroup === g.key && "is-open", dismissedGroup === g.key && "is-dismissed"].filter(Boolean).join(" "),
+        onMouseEnter: () => holdGroup(g.key),
+        onMouseLeave: releaseGroup
       }, React.createElement("a", {
         href: window.routeToPath ? window.routeToPath(g.route) : `/${g.route}`,
         className: ["nav__link", "nav__group-trigger", isGroupActive(g) && "is-active"].filter(Boolean).join(" "),
         "aria-haspopup": "true",
         onClick: e => {
           e.preventDefault();
+          dismissGroup(g.key, e);
           go(g.route);
         }
       }, g.label, React.createElement("span", {
@@ -706,7 +741,8 @@ function Header({
       }, g.label), g.blurb && React.createElement("p", {
         className: "nav__dropdown-blurb"
       }, g.blurb), renderPlainLink(g.route, g.cta || "Open the section →", {
-        baseClass: "nav__dropdown-all"
+        baseClass: "nav__dropdown-all",
+        onNavigate: e => dismissGroup(g.key, e)
       })), React.createElement("div", {
         className: "nav__dropdown-cols"
       }, g.columns.map(col => React.createElement("div", {
@@ -715,7 +751,8 @@ function Header({
       }, React.createElement("div", {
         className: "nav__dropdown-heading"
       }, col.heading), col.links.map(link => renderLink(link, {
-        baseClass: "nav__dropdown-link"
+        baseClass: "nav__dropdown-link",
+        onNavigate: e => dismissGroup(g.key, e)
       }))))))))
     );
   }), React.createElement("a", {
