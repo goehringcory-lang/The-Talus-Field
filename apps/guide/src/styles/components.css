@@ -1070,3 +1070,85 @@
   border-radius: var(--radius);
   font-size: 13px;
 }
+
+/* Install sheet — the app's own "add to home screen" dialog. iOS has no
+   native install prompt to defer to, so this is the whole ask; it sits above
+   the bottom nav and the banner, and on a phone it docks to the bottom edge,
+   as close to Safari's Share button as the page can get. */
+.install-sheet__backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 400;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+.install-sheet {
+  width: 100%;
+  max-width: 460px;
+  background: var(--paper);
+  border: 1px solid var(--ink);
+  border-bottom: 0;
+  border-radius: var(--radius) var(--radius) 0 0;
+  padding: 20px 18px calc(18px + env(safe-area-inset-bottom));
+  max-height: 88vh;
+  overflow-y: auto;
+  outline: none;
+}
+.install-sheet__title {
+  font-family: var(--serif);
+  font-size: 22px;
+  line-height: 1.2;
+  margin: 6px 0 10px;
+}
+.install-sheet__lede {
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--ink-2);
+  margin-bottom: 14px;
+}
+.install-sheet__steps {
+  margin: 0 0 14px;
+  padding-left: 20px;
+  display: grid;
+  gap: 10px;
+  font-family: var(--serif);
+  font-size: 15px;
+  line-height: 1.45;
+}
+.install-sheet__glyph {
+  vertical-align: -3px;
+  margin: 0 1px;
+}
+.install-sheet__note {
+  font-family: var(--sans);
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: var(--ink-2);
+  border-top: 1px solid var(--rule-soft);
+  padding-top: 10px;
+  margin-bottom: 12px;
+}
+.install-sheet__url {
+  font-family: var(--mono);
+  font-size: 13px;
+  word-break: break-all;
+  margin: 10px 0 0;
+}
+.install-sheet__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--s3);
+  margin-top: 16px;
+}
+@media (min-width: 560px) {
+  .install-sheet__backdrop {
+    align-items: center;
+  }
+  .install-sheet {
+    border-bottom: 1px solid var(--ink);
+    border-radius: var(--radius);
+    box-shadow: 4px 4px 0 0 var(--ink);
+  }
+}

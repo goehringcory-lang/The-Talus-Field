@@ -4,6 +4,7 @@ import { fetchMe, readCachedMe, type MeT } from '../auth/me'
 import { apiFetch, API_BASE } from '../lib/api'
 import GatedChrome from '../components/GatedChrome'
 import DownloadManager from '../components/DownloadManager'
+import InstallSheet from '../components/InstallSheet'
 import NotificationsCard from '../components/NotificationsCard'
 import SyncCard from '../components/SyncCard'
 import Button from '../components/ui/Button'
@@ -11,6 +12,8 @@ import PageHeader from '../components/ui/PageHeader'
 import Skeleton from '../components/ui/Skeleton'
 import { PHOTO_CREDITS } from '../content/photoCredits'
 import { MAP_ATTRIBUTION } from '../map/style'
+import { resetInstallDismissal } from '../lib/install'
+import { isStandalonePWA } from '../utils/platform'
 
 function formatAccessDate(epochSeconds: number): string {
   return new Date(epochSeconds * 1000).toLocaleDateString(undefined, {
@@ -210,6 +213,49 @@ function PhotoCreditsSection() {
   )
 }
 
+// The way back to the install instructions after "Not now". Without it the
+// banner's dismissal is permanent and undoable only by clearing site data,
+// which is a poor trade for a buyer who changed their mind at the trailhead.
+// Hidden once the app is running from the home screen, where it is moot.
+function InstallCard() {
+  const [sheet, setSheet] = useState(false)
+  if (isStandalonePWA()) {
+    return (
+      <div className="card">
+        <span className="eyebrow" style={{ display: 'block', marginBottom: 8 }}>
+          Home screen
+        </span>
+        <p>Installed on this device. This is the home-screen copy.</p>
+      </div>
+    )
+  }
+  return (
+    <div className="card">
+      <span className="eyebrow" style={{ display: 'block', marginBottom: 8 }}>
+        Home screen
+      </span>
+      <p>
+        Not installed on this device. Adding the guide to your home screen gives it its
+        own icon, a full-screen window, and more durable offline storage.
+      </p>
+      <div className="action-row" style={{ marginTop: 12 }}>
+        <Button
+          size="sm"
+          onClick={() => {
+            // Undo any earlier "not now" so the banner is available again if
+            // they close the sheet without finishing.
+            resetInstallDismissal()
+            setSheet(true)
+          }}
+        >
+          Show me how
+        </Button>
+      </div>
+      {sheet && <InstallSheet onClose={() => setSheet(false)} />}
+    </div>
+  )
+}
+
 export default function Account() {
   const { session, signOut } = useAuth()
   return (
@@ -224,6 +270,8 @@ export default function Account() {
           </div>
 
           <AccessStatusCard />
+
+          <InstallCard />
 
           <div className="card">
             <SyncCard />
