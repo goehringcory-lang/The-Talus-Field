@@ -15,7 +15,7 @@
 //
 // The retail price renders live from the Worker's unauthenticated
 // /api/inventory, same as the buy box on /guide, so GUIDE_PRICE_CENTS in
-// workers/wrangler.toml stays the single source of truth for the $19 anchor.
+// workers/wrangler.toml stays the single source of truth for the retail anchor.
 // Per-code partner rates are set here, since they are quoted by hand.
 // =============================================================================
 
@@ -26,7 +26,7 @@ const PARTNERS_API_BASE =
 
 // Shown until /api/inventory answers; keep in sync with GUIDE_PRICE_CENTS in
 // workers/wrangler.toml.
-const PARTNERS_PRICE_FALLBACK_CENTS = 1900;
+const PARTNERS_PRICE_FALLBACK_CENTS = 399;
 
 // Quoted by hand, not enforced anywhere in code. Packs are the unit of sale;
 // the per-code rate is what an operator compares against the retail price.
@@ -35,7 +35,7 @@ const PARTNER_TIERS = [
     key: "starter",
     name: "Starter pack",
     codes: "25 codes",
-    rate: "$12 a code",
+    rate: "$2.49 a code",
     summary:
       "For a small inn, a single vacation rental, or a property testing the amenity for one season.",
   },
@@ -43,7 +43,7 @@ const PARTNER_TIERS = [
     key: "house",
     name: "House pack",
     codes: "50 codes",
-    rate: "$10 a code",
+    rate: "$1.99 a code",
     summary:
       "For a lodge or a host with a handful of units. The common size for one busy quarter.",
     featured: true,
@@ -52,7 +52,7 @@ const PARTNER_TIERS = [
     key: "property",
     name: "Property pack",
     codes: "100 codes and up",
-    rate: "$8 a code",
+    rate: "$1.69 a code",
     summary:
       "For hotels, management companies, and rental portfolios running the guide across every booking.",
   },
@@ -241,7 +241,7 @@ function PartnersPage({ go }) {
 
           <h2>Why it is worth more than it costs</h2>
           <p>
-            At a pack rate, this is a few dollars against a room night. It is
+            At a pack rate, this is a couple of dollars against a room night. It is
             cheaper than the bottled water in the room and it is the only amenity
             on the property that changes how the trip goes. It is also
             differentiation that a competing hotel down the highway cannot copy

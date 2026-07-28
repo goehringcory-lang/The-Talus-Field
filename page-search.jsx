@@ -389,7 +389,7 @@ function SearchPage({ go }) {
               go={go}
               location="search"
               title="Looking for something in the park, not the archive?"
-              body="The Field Guide app carries the stops, the hikes, and the maps offline, with a planner that turns your dates into a schedule. $19 for eighteen months."
+              body="The Field Guide app carries the stops, the hikes, and the maps offline, with a planner that turns your dates into a schedule. $3.99 for eighteen months."
               style={{ maxWidth: 680, marginTop: 72, marginBottom: 56 }}
             />
             <div style={{ maxWidth: 680 }}>

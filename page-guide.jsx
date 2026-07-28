@@ -15,7 +15,7 @@ const GUIDE_API_BASE =
 
 // Shown until /api/inventory answers with the live price; keep in sync with
 // GUIDE_PRICE_CENTS in workers/wrangler.toml.
-const GUIDE_PRICE_FALLBACK_CENTS = 1900;
+const GUIDE_PRICE_FALLBACK_CENTS = 399;
 
 // GUIDE-LAUNCH: on sale July 2026, briefly flipped to a waitlist pause, now
 // back on sale. True renders the Stripe buy box (GuideBuyBox); false renders
@@ -354,7 +354,7 @@ function GuideWaitlistBox() {
       </div>
 
       <p style={{ fontFamily: "var(--serif)", fontSize: 15, color: "var(--ink)", lineHeight: 1.55, margin: "0 0 18px" }}>
-        The guide is in final testing. It will be $19, one payment, 18 months of access on every device you own. Leave your email and you will hear the day it opens, before anyone else.
+        The guide is in final testing. It will be $3.99, one payment, 18 months of access on every device you own. Leave your email and you will hear the day it opens, before anyone else.
       </p>
 
       {done ? (

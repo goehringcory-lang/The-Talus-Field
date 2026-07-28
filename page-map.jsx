@@ -1431,7 +1431,7 @@ function TripNextSteps({ tripFeatures, go }) {
         <span className="map-sidebar__next-disclosure"> Affiliate link. <a href="/affiliate" onClick={(e) => { e.preventDefault(); go("affiliate"); }}>Disclosure.</a></span>
       </p>
       <p className="map-sidebar__next-line">
-        This trip, offline, at the trailhead: the Field Guide app is $19 for eighteen months.{" "}
+        This trip, offline, at the trailhead: the Field Guide app is $3.99 for eighteen months.{" "}
         <a
           href="/guide"
           onClick={(e) => {

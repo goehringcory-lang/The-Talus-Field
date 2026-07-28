@@ -28,8 +28,8 @@ const env: Record<string, unknown> = {
   GUIDE_PROGRAMS: programsKv,
   APP_BASE_URL: 'https://talus-field-guide.pages.dev',
   EDITORIAL_BASE_URL: 'https://thetalusfieldjournal.com',
-  GUIDE_PRICE_CENTS: '1900',
-  GUIDE_RENEWAL_PRICE_CENTS: '1200',
+  GUIDE_PRICE_CENTS: '399',
+  GUIDE_RENEWAL_PRICE_CENTS: '249',
   GUIDE_PRODUCT_TAG: 'field_guide_2026',
   GUIDE_MONTHLY_CAP: '100',
   STRIPE_SECRET_KEY: 'sk_test_dummy',
@@ -104,7 +104,7 @@ console.log('\n1. inventory + price')
 {
   const r = await call('/api/inventory')
   check('inventory 200', r.status === 200, r)
-  check('price is 1900', r.json.priceCents === 1900, r.json)
+  check('price is 399', r.json.priceCents === 399, r.json)
   check('sold 0 / cap 100', r.json.sold === 0 && r.json.cap === 100, r.json)
 }
 
@@ -114,7 +114,7 @@ console.log('\n2. checkout start')
   check('returns stripe url', r.status === 200 && r.json.url === 'https://checkout.stripe.com/c/pay/cs_test_123', r)
   const p = stripeCreateParams!
   check('mode=payment', p.get('mode') === 'payment')
-  check('amount 1900', p.get('line_items[0][price_data][unit_amount]') === '1900')
+  check('amount 399', p.get('line_items[0][price_data][unit_amount]') === '399')
   check('product tag in metadata', p.get('metadata[product]') === 'field_guide_2026')
   check('success url back to /guide', p.get('success_url') === 'https://thetalusfieldjournal.com/guide?guide=success')
 }
@@ -424,7 +424,7 @@ console.log('\n17. renewal arc')
   check('renew bypasses the cap -> stripe url', renew.status === 200 && !!renew.json.url, renew)
   const p = stripeCreateParams!
   check('renewal kind + renewEmail in metadata', p.get('metadata[kind]') === 'renewal' && p.get('metadata[renewEmail]') === 'renewer@example.com')
-  check('renewal price 1200', p.get('line_items[0][price_data][unit_amount]') === '1200')
+  check('renewal price 249', p.get('line_items[0][price_data][unit_amount]') === '249')
   check('customer email prefilled', p.get('customer_email') === 'renewer@example.com')
   check('renewal success url lands on /account', p.get('success_url') === 'https://talus-field-guide.pages.dev/account?renew=success')
 

@@ -671,7 +671,7 @@ function HomePage({ go }) {
             >
               <div className="home-band__grid">
                 <div>
-                  <div className="band-guide__eyebrow">The Field Guide · $19</div>
+                  <div className="band-guide__eyebrow">The Field Guide · $3.99</div>
                   <div className="band-guide__title">The park, in your pocket.</div>
                 </div>
                 <div>

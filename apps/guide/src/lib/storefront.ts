@@ -34,7 +34,7 @@ export function isPreviewStopId(id: string): boolean {
 }
 
 // Shown until /api/inventory answers; keep in sync with GUIDE_PRICE_CENTS.
-const FALLBACK_PRICE_CENTS = 1900
+const FALLBACK_PRICE_CENTS = 399
 
 export function formatPrice(cents: number): string {
   const dollars = cents / 100
