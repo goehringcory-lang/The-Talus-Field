@@ -1,7 +1,10 @@
 import { Hono } from 'hono'
 import { cors } from 'hono/cors'
 import type { Env } from './env'
+import { alerts } from './routes/alerts'
+import { air } from './routes/air'
 import { auth } from './routes/auth'
+import { flow } from './routes/flow'
 import { checkout } from './routes/checkout'
 import { contact } from './routes/contact'
 import { indexnow } from './routes/indexnow'
@@ -14,6 +17,9 @@ import { waitlist } from './routes/waitlist'
 import { waits } from './routes/waits'
 import { weather } from './routes/weather'
 import { widget, widgetScript } from './routes/widget'
+import { refreshAlerts } from './lib/alerts'
+import { refreshAir } from './lib/air'
+import { refreshFlow } from './lib/flow'
 import { refreshWeather } from './lib/weather'
 import { sweepRenewals } from './lib/renewals'
 import { sweepPush } from './lib/pushSweep'
@@ -131,6 +137,11 @@ app.get('/api/inventory', async (c) => {
   return c.json({ sold, cap, monthLabel, priceCents, renewalPriceCents, reopens: firstOfNextMonthIso() })
 })
 
+// Conditions feeds: same unauthenticated, never-error posture as weather.
+app.route('/api/alerts', alerts)
+app.route('/api/air', air)
+app.route('/api/flow', flow)
+
 app.route('/api/auth', auth)
 app.route('/api/checkout', checkout)
 app.route('/api/contact', contact)
@@ -164,6 +175,23 @@ async function scheduled(
   ctx.waitUntil(
     refreshWeather(env).catch((err) => {
       console.error('scheduled: weather refresh failed', err)
+    }),
+  )
+  // Conditions feeds get the same daily floor so a cold deploy has data;
+  // their real freshness is owned by the on-demand refresh in each route.
+  ctx.waitUntil(
+    refreshAlerts(env).catch((err) => {
+      console.error('scheduled: alerts refresh failed', err)
+    }),
+  )
+  ctx.waitUntil(
+    refreshAir(env).catch((err) => {
+      console.error('scheduled: air refresh failed', err)
+    }),
+  )
+  ctx.waitUntil(
+    refreshFlow(env).catch((err) => {
+      console.error('scheduled: flow refresh failed', err)
     }),
   )
   ctx.waitUntil(
