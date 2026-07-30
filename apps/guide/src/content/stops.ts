@@ -71,6 +71,11 @@ const seed: StopInput[] = [
       number: 11,
       issueDate: 'November 1933',
     },
+    photoTiming: {
+      best: 'sunset',
+      note:
+        'This overlook looks east into the valley, so the last light of the day comes from behind you and lights El Capitan and Half Dome instead of leaving them in shadow.',
+    },
   },
   {
     id: 'valley-loop-drive',
@@ -97,6 +102,11 @@ const seed: StopInput[] = [
       number: 1,
       issueDate: 'January 1942',
     },
+    photoTiming: {
+      best: 'golden-am',
+      note:
+        'Drive it early: before the crowds arrive the light comes down the north wall instead of flattening into the midday parking-lot glare.',
+    },
   },
   {
     id: 'cooks-meadow-loop',
@@ -114,6 +124,11 @@ const seed: StopInput[] = [
     photos: [{ src: '/photos/lower-yosemite-fall.jpg', caption: 'Lower Yosemite Fall, the standard turn-around point on the loop.' }],
     swap:
       'In late summer when the falls are dry, the meadow itself is the show — golden grass, low light through the oaks. Skip the fall vista, do the loop in reverse from Sentinel Bridge.',
+    photoTiming: {
+      best: 'sunset',
+      note:
+        'Come back in the last light, when bears are most likely to work the tree line and Half Dome and El Capitan bookend the meadow in gold.',
+    },
   },
   {
     id: 'lower-yosemite-fall',
@@ -143,6 +158,11 @@ const seed: StopInput[] = [
       volume: 11,
       number: 5,
       issueDate: 'May 1932',
+    },
+    photoTiming: {
+      best: 'night',
+      note:
+        'On clear spring nights near the full moon, the spray at the footbridge throws a pale lunar rainbow worth a walk back up after dark.',
     },
   },
   {
@@ -190,6 +210,11 @@ const seed: StopInput[] = [
     photos: [{ src: '/photos/valley-view.jpg', caption: 'The Gates of the Valley frame from the riverbank: El Capitan left, Bridalveil right.' }],
     swap:
       'Full pullout and no patience for another lap? Cathedral Beach picnic area on Southside Drive gives you El Capitan across the river from the south bank, and almost nobody uses it.',
+    photoTiming: {
+      best: 'sunset',
+      note:
+        'Late afternoon puts warm light on El Capitan, and winter dusk turns the whole Gates of the Valley frame pink.',
+    },
   },
   {
     id: 'old-big-oak-flat-road',
@@ -373,6 +398,11 @@ const seed: StopInput[] = [
       number: 2,
       issueDate: 'February 1933',
     },
+    photoTiming: {
+      best: 'sunrise',
+      note:
+        'Go at first light: the reflection is calm and clear before the morning breeze rises and erases it by mid-morning.',
+    },
   },
   {
     id: 'mist-trail',
@@ -511,6 +541,11 @@ const seed: StopInput[] = [
       'Half Dome catches the last light from here. The Merced is in the foreground. People crowd the rail; walk down to the small beach below the bridge instead — wider angle, fewer elbows. If you have one image to take home, it\'s this one. Stay until the wall goes from gold to pink to grey, and through twilight to first stars. Most visitors leave too early.\n\n' +
       'Two refinements for anyone carrying a camera. The mirror reflection needs slack water, which the Merced only offers once the spring runoff drops, so late summer through winter is reflection season; in May the river moves too fast to hold the image. And a few evenings each month the moon comes up near Half Dome\'s shoulder shortly after sunset. Check moonrise against sunset time, and if they land within an hour of each other, stay for it. This bridge has held tripods on those evenings for a century, Ansel Adams\'s among them.',
     photos: [{ src: '/photos/half-dome.jpg', caption: 'Half Dome at last light.' }],
+    photoTiming: {
+      best: 'sunset',
+      note:
+        'Half Dome catches the day\'s last light from this bridge, so stay past the first gold for the fuller show through pink and grey.',
+    },
   },
   {
     id: 'curry-village',
@@ -763,6 +798,11 @@ const seed: StopInput[] = [
       number: 5,
       issueDate: 'May 1940',
     },
+    photoTiming: {
+      best: 'sunset',
+      note:
+        'The loop shares Taft Point\'s sunset light, with El Capitan and the high country going gold from the open summit.',
+    },
   },
   {
     id: 'taft-point',
@@ -782,6 +822,11 @@ const seed: StopInput[] = [
       'Sunset is the famous hour, when the light comes up the valley and El Capitan goes gold. If you go for it, bring a headlamp per person, not per group: the walk back is in the dark, and a late-afternoon breeze up here turns cold fast, so carry a layer.',
     swap:
       'If a sheer edge at dusk is not your group\'s idea of a good time, Sentinel Dome leaves from the same lot: 2.2 miles round trip to a bare granite summit at 8,122 feet with a 360-degree panorama and no exposure. Same sunset, safer seat.',
+    photoTiming: {
+      best: 'sunset',
+      note:
+        'Sunset is the famous hour here: the light comes up the valley and lights El Capitan gold across the void.',
+    },
   },
   {
     id: 'washburn-point',
@@ -809,6 +854,11 @@ const seed: StopInput[] = [
       volume: 22,
       number: 10,
       issueDate: 'October 1943',
+    },
+    photoTiming: {
+      best: 'sunset',
+      note:
+        'This pullout shares Glacier Point\'s evening light on Half Dome a mile up the road, with a fraction of the crowd and none of the amenities.',
     },
   },
   {
@@ -838,6 +888,11 @@ const seed: StopInput[] = [
       volume: 13,
       number: 6,
       issueDate: 'June 1934',
+    },
+    photoTiming: {
+      best: 'sunset',
+      note:
+        'Come in the last hour before sunset to watch warm light climb Half Dome as the shadow rises up its face.',
     },
   },
   {
@@ -869,6 +924,11 @@ const seed: StopInput[] = [
       volume: 10,
       number: 6,
       issueDate: 'June 1931',
+    },
+    photoTiming: {
+      best: 'golden-pm',
+      note:
+        'Late afternoon turns the canopy gold and empties the grove of the day\'s crowd.',
     },
   },
 
@@ -945,6 +1005,11 @@ const seed: StopInput[] = [
       number: 9,
       issueDate: 'September 1956',
     },
+    photoTiming: {
+      best: 'golden-am',
+      note:
+        'Morning light softens the meadow and tends to bring deer out to its edges.',
+    },
   },
   {
     id: 'bridalveil-creek-trail',
@@ -1012,6 +1077,11 @@ const seed: StopInput[] = [
       'A flat 3.5-mile loop across from the Wawona Hotel, one of the least-visited maintained trails in the park. It is not dramatic. That is the point.',
     body:
       'A flat 3.5-mile loop around the meadow across from the Wawona Hotel, on an old road under ponderosa and incense cedar, and by the numbers one of the least-visited maintained trails in the park. Spring runs wildflowers along the fence lines. Summer evenings run soft light and deer. It is not dramatic. That is the point.\n\nThis is the walk for the Wawona morning before the Mariposa Grove shuttle, the recovery day after a big rim hike, or the last hour of light when the drive out is tomorrow. Because Wawona sits low, the loop works year-round, including the winter months when the high country is shut.\n\nStart across the road from the hotel, near the golf course, and walk the loop in either direction. Pair it with [Chilnualna Falls](/stop/chilnualna-falls) for a full Wawona day that never touches the valley.',
+    photoTiming: {
+      best: 'golden-pm',
+      note:
+        'Summer evenings bring soft light and deer to the meadow, the best hour for this easy walk.',
+    },
   },
   {
     id: 'chilnualna-falls',
@@ -1096,6 +1166,11 @@ const seed: StopInput[] = [
       number: 8,
       issueDate: 'August 1937',
     },
+    photoTiming: {
+      best: 'golden-pm',
+      note:
+        'Bears are most reliable working the meadow edge in the last hour of daylight, when the light across the grass is softest too.',
+    },
   },
   {
     id: 'white-wolf',
@@ -1125,6 +1200,11 @@ const seed: StopInput[] = [
       number: 6,
       issueDate: 'June 1939',
     },
+    photoTiming: {
+      best: 'golden-pm',
+      note:
+        'Deer work the meadow edges at dusk, the quietest and softest-lit hour to be here.',
+    },
   },
   {
     id: 'olmsted-point',
@@ -1152,6 +1232,11 @@ const seed: StopInput[] = [
       volume: 23,
       number: 6,
       issueDate: 'June 1944',
+    },
+    photoTiming: {
+      best: 'sunset',
+      note:
+        'Stop again on the drive back west at day\'s end: late sun rakes the granite slab and lights Half Dome gold in the distance.',
     },
   },
   {

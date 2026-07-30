@@ -44,6 +44,22 @@ export const ArchiveNote = z.object({
 
 export type ArchiveNoteT = z.infer<typeof ArchiveNote>
 
+// Light advice for a stop where the guide's own description already supports
+// a claim about the best time of day to see it: a sun-relative window, plus
+// a short reason why, one sentence, no invented facts. This is advice, not a
+// schedule — src/sun/SunLine.tsx and sun/solar.ts compute the actual
+// sunrise/sunset/golden-hour clock times for the day from the fixed park
+// coordinate, so `note` must never hardcode a time of its own.
+export const PhotoTimingBest = z.enum(['sunrise', 'golden-am', 'sunset', 'golden-pm', 'night'])
+export type PhotoTimingBestT = z.infer<typeof PhotoTimingBest>
+
+export const PhotoTiming = z.object({
+  best: PhotoTimingBest,
+  note: z.string(),
+})
+
+export type PhotoTimingT = z.infer<typeof PhotoTiming>
+
 export const Stop = z.object({
   id: z.string(),                         // "tunnel-view"
   title: z.string(),
@@ -71,6 +87,7 @@ export const Stop = z.object({
     .default([]),
   swap: z.string().optional(),            // "If full, drive to Valley View"
   history: ArchiveNote.optional(),        // one sourced note from the Nature Notes archive
+  photoTiming: PhotoTiming.optional(),    // light advice; see PhotoTiming above
 })
 
 export type StopT = z.infer<typeof Stop>
