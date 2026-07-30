@@ -182,9 +182,14 @@ function InSeasonStrip() {
           </li>
         ))}
       </ul>
-      <Link to="/programs" className="more-link">
-        The full seasonal almanac, day by day →
-      </Link>
+      <div className="home-crosslinks">
+        <Link to="/this-week" className="more-link">
+          This week in the park: alerts, seasons, tonight's sky →
+        </Link>
+        <Link to="/night" className="more-link">
+          The night sky page →
+        </Link>
+      </div>
     </section>
   )
 }
