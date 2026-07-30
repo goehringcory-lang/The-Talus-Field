@@ -494,6 +494,26 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
   right: -22px;
   height: 46px;
 }
+/* The tongue above is only as wide as its own trigger, which covers a reach
+   straight down and nothing else. A reader heading for a link in the panel's
+   left column moves sideways as well as down, leaves the tongue inside that
+   35px band, and the panel goes with it: the band belonged to no one, so the
+   group lost :hover, and once the close delay expired the panel was display:
+   none and could not take the hover back. Pausing anywhere in the band did
+   the same thing. This bar spans the panel's full width and hangs off its top
+   edge, so every path from a trigger to any link inside the panel stays within
+   the group the whole way down. It exists only while the panel is open, and
+   the band is a constant 35.2px at every desktop width (the masthead row is
+   sized by the brand block, not by the nav), so 34px stops short of the
+   trigger row and a sibling trigger keeps its own hover. */
+.nav__dropdown--mega::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 100%;
+  height: 34px;
+}
 /* Taking a link closes the panel even though the pointer is still inside it.
    Both rules outrank the :hover/:focus-within pair on specificity, and the
    class clears the moment the pointer leaves the group. */

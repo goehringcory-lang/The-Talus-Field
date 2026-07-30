@@ -461,12 +461,13 @@ function Header({ current, go }) {
   };
 
   // Which mega panel is being held open past the pointer leaving it. CSS
-  // :hover already opens and closes these on its own; this only delays the
-  // close, because the panel spans the whole masthead and the walk from a
-  // trigger down to a link in the far-left column exits the trigger's column
-  // well before it reaches the panel. Without the delay the panel disappears
-  // mid-reach. Nothing here can open a panel, so a JS failure degrades to
-  // plain hover rather than to a dead menu.
+  // :hover already opens and closes these on its own, and the hover bar under
+  // the panel (styles.css) now keeps the whole reach from a trigger down to
+  // any link inside the panel within the group, so this delay only has to
+  // cover the hairline seam between the trigger row and that bar, plus a
+  // pointer that clips the edge of the panel on its way to a link. Nothing
+  // here can open a panel, so a JS failure degrades to plain hover rather
+  // than to a dead menu.
   const [openGroup, setOpenGroup] = React.useState(null);
   // The group whose panel has been closed by taking one of its links. CSS
   // :hover alone would keep the panel up over the page the reader just asked
@@ -484,7 +485,7 @@ function Header({ current, go }) {
     // Nothing to hold open if the panel was already dismissed; running the
     // delay would flash it back for a beat on the way out.
     if (dismissedGroup) { setDismissedGroup(null); setOpenGroup(null); return; }
-    openTimer.current = setTimeout(() => setOpenGroup(null), 280);
+    openTimer.current = setTimeout(() => setOpenGroup(null), 420);
   };
   const dismissGroup = (key, e) => {
     clearTimeout(openTimer.current);

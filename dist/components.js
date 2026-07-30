@@ -519,7 +519,7 @@ function Header({
       setOpenGroup(null);
       return;
     }
-    openTimer.current = setTimeout(() => setOpenGroup(null), 280);
+    openTimer.current = setTimeout(() => setOpenGroup(null), 420);
   };
   var dismissGroup = (key, e) => {
     clearTimeout(openTimer.current);
