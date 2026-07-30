@@ -527,6 +527,12 @@ export default function Home() {
               meta={`${secretCount} entries · Vistas, trails, parking, camping, after dark`}
             />
             <ToolCard
+              to="/wildlife"
+              title="What did I see?"
+              teaser="Quick identification for the animals, birds, and trees you actually meet: the one or two field marks that settle it, plus the safety notes that matter."
+              meta="Mammals · birds · trees · reptiles"
+            />
+            <ToolCard
               to="/search"
               title="Search the guide"
               teaser="One box across every stop, hike, secret spot, dining option, and essentials topic. Works offline like the rest of the guide."

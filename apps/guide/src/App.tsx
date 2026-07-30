@@ -26,6 +26,7 @@ const Trip = lazy(() => import('./routes/Trip'))
 const Today = lazy(() => import('./routes/Today'))
 const ThisWeek = lazy(() => import('./routes/ThisWeek'))
 const Night = lazy(() => import('./routes/Night'))
+const Wildlife = lazy(() => import('./routes/Wildlife'))
 const TripPrint = lazy(() => import('./routes/TripPrint'))
 const Welcome = lazy(() => import('./routes/Welcome'))
 const NotFound = lazy(() => import('./routes/NotFound'))
@@ -218,6 +219,14 @@ export default function App() {
             element={
               <RequireAuth>
                 <Night />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="/wildlife"
+            element={
+              <RequireAuth>
+                <Wildlife />
               </RequireAuth>
             }
           />

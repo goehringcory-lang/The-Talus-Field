@@ -1,0 +1,35 @@
+/* /wildlife: quick-ID cards, text-first on purpose. */
+
+.wildlife-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 1rem;
+}
+
+.wildlife-entry__name {
+  margin: 0 0 0.25rem;
+  font-weight: 700;
+}
+
+.wildlife-entry__latin {
+  font-weight: 400;
+  font-style: italic;
+  color: var(--ink-3, #50402e);
+  font-size: 0.85em;
+}
+
+.wildlife-entry__line {
+  margin: 0 0 0.2rem;
+  font-size: 0.92rem;
+  color: var(--ink-2, #2a2118);
+}
+
+.wildlife-entry__safety {
+  margin: 0.3rem 0 0;
+  font-size: 0.92rem;
+  padding: 0.4rem 0.6rem;
+  border-left: 3px solid #8a2f1d;
+  background: rgba(138, 47, 29, 0.06);
+}
