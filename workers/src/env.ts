@@ -24,8 +24,13 @@ export type Env = {
 
   // NPS Events API key (free, developer.nps.gov/get-started). Server-side
   // only — the PWA never sees it. Optional: without it the programs cron
-  // skips ingest and /api/programs serves manual curation only.
+  // skips ingest and /api/programs serves manual curation only. The same key
+  // serves the alerts endpoint behind /api/alerts.
   NPS_API_KEY?: string
+
+  // AirNow API key (free, docs.airnowapi.org). Optional: without it
+  // /api/air serves nulls and the PWA renders no AQI line.
+  AIRNOW_API_KEY?: string
 
   // Pre-Stripe dev / admin sign-in. Used by /api/auth/dev-login.
   // All four are optional; if a pair is unset, that login path is disabled.

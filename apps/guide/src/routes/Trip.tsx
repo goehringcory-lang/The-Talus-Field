@@ -24,6 +24,7 @@ import { ITINERARIES, ITINERARY_KEYS, type ItineraryKey } from '../content/itine
 import { getStopsByRegion } from '../content'
 import { MAX_SPAN_DAYS, readTripDates, usePrograms } from '../programs/usePrograms'
 import { addDaysIso, formatDayHeader, todayIso } from '../utils/date'
+import BackupPlans from '../trip/BackupPlans'
 import { pickProgramsForDay } from '../trip/seedPrograms'
 import { slotPlan } from '../trip/slotting'
 import {
@@ -419,6 +420,8 @@ export default function Trip() {
                 ))}
               </div>
             </div>
+
+            <BackupPlans />
 
             <AddCustomRow windowDays={windowDays} onAdd={(title, day) => addCustom(title, { day })} />
 

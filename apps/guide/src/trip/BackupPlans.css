@@ -1,0 +1,44 @@
+/* "If the day turns" fallback cards under the trip presets. */
+
+.backup-plans {
+  margin-top: 0.75rem;
+  display: grid;
+  gap: 0.4rem;
+}
+
+.backup-plan {
+  border: 1px solid var(--rule, #d8cdb4);
+  border-radius: 6px;
+  padding: 0.5rem 0.7rem;
+}
+
+.backup-plan > summary {
+  cursor: pointer;
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  list-style: none;
+}
+
+.backup-plan__title {
+  font-weight: 600;
+}
+
+.backup-plan__live {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #8a2f1d;
+}
+
+.backup-plan__note {
+  margin: 0.5rem 0 0.35rem;
+  font-size: 0.92rem;
+  color: var(--ink-2, #2a2118);
+}
+
+.backup-plan__stops {
+  margin: 0;
+  font-size: 0.88rem;
+}

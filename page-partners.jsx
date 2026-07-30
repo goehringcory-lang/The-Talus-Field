@@ -16,7 +16,14 @@
 // The retail price renders live from the Worker's unauthenticated
 // /api/inventory, same as the buy box on /guide, so GUIDE_PRICE_CENTS in
 // workers/wrangler.toml stays the single source of truth for the retail anchor.
-// Per-code partner rates are set here, since they are quoted by hand.
+//
+// Partner pricing is NOT quoted on this page. The per-code tier table that
+// used to live here was priced against a code-pack model; the pricing model is
+// being reworked, and a page quoting rates that are no longer honored is worse
+// than one that asks for a conversation. If rates are ever published again,
+// note that edge/seo.js carries the /partners FAQ answer that becomes FAQPage
+// JSON-LD, so any number here has to be mirrored there or Google gets served a
+// price the page does not stand behind.
 // =============================================================================
 
 // Worker API base. Override at runtime via window.GUIDE_API_BASE.
@@ -27,36 +34,6 @@ const PARTNERS_API_BASE =
 // Shown until /api/inventory answers; keep in sync with GUIDE_PRICE_CENTS in
 // workers/wrangler.toml.
 const PARTNERS_PRICE_FALLBACK_CENTS = 399;
-
-// Quoted by hand, not enforced anywhere in code. Packs are the unit of sale;
-// the per-code rate is what an operator compares against the retail price.
-const PARTNER_TIERS = [
-  {
-    key: "starter",
-    name: "Starter pack",
-    codes: "25 codes",
-    rate: "$2.49 a code",
-    summary:
-      "For a small inn, a single vacation rental, or a property testing the amenity for one season.",
-  },
-  {
-    key: "house",
-    name: "House pack",
-    codes: "50 codes",
-    rate: "$1.99 a code",
-    summary:
-      "For a lodge or a host with a handful of units. The common size for one busy quarter.",
-    featured: true,
-  },
-  {
-    key: "property",
-    name: "Property pack",
-    codes: "100 codes and up",
-    rate: "$1.69 a code",
-    summary:
-      "For hotels, management companies, and rental portfolios running the guide across every booking.",
-  },
-];
 
 const PARTNERS_MAILTO =
   "mailto:cory@thetalusfieldjournal.com" +
@@ -163,39 +140,26 @@ function PartnersPage({ go }) {
 
       <section className="wrap" style={{ paddingTop: 40, paddingBottom: 8 }}>
         <div className="places-pitch">
-          <div className="places-pitch__eyebrow">Packs and rates</div>
+          <div className="places-pitch__eyebrow">Pricing</div>
           <h2 className="places-pitch__title">What it costs</h2>
           <p className="places-pitch__lede">
-            The guide sells to the public at {retail} a copy. Partner rates are
-            per code, billed by invoice, with the pack as the unit of sale.
-            Quotes hold for the season they are given in.
+            The guide sells to the public at {retail} a copy. Subscription
+            pricing for properties is quoted directly, because what a single
+            vacation rental needs and what a management company running every
+            booking needs are not the same number.
           </p>
-
-          <div className="places-pitch__tiers">
-            {PARTNER_TIERS.map((tier) => (
-              <div
-                key={tier.key}
-                className={["places-pitch__tier", tier.featured && "places-pitch__tier--featured"].filter(Boolean).join(" ")}
-              >
-                <div className="places-pitch__tier-eyebrow">{tier.name}</div>
-                <div className="places-pitch__tier-summary">{tier.summary}</div>
-                <div className="places-pitch__tier-meta">{tier.codes} · {tier.rate}</div>
-              </div>
-            ))}
-          </div>
 
           <a
             className="places-pitch__cta"
             href={PARTNERS_MAILTO}
             onClick={() => trackContact("partners_tiers")}
-          >Ask about group codes →</a>
+          >Contact for pricing →</a>
 
           <p className="places-pitch__fineprint">
-            Larger portfolios and multi-property management companies are quoted
-            directly; so is a property that wants the codes bundled into a
-            package rate rather than handed out one at a time. The first
-            properties are onboarded by hand, which is deliberate: it is how the
-            terms get to be sensible for both sides.
+            Tell me the property, the town, and roughly how many bookings a year
+            you would cover, and a quote comes back. The first properties are
+            onboarded by hand, which is deliberate: it is how the terms get to
+            be sensible for both sides.
           </p>
         </div>
       </section>
@@ -210,8 +174,8 @@ function PartnersPage({ go }) {
               not a sales team.
             </li>
             <li>
-              Agree on a pack size and a rate. You get an invoice, payable before
-              the codes are issued.
+              Agree on the pricing that fits the property. You get an invoice,
+              payable before the codes are issued.
             </li>
             <li>
               Codes are delivered as a spreadsheet plus a print-ready card for
@@ -241,8 +205,8 @@ function PartnersPage({ go }) {
 
           <h2>Why it is worth more than it costs</h2>
           <p>
-            At a pack rate, this is a couple of dollars against a room night. It is
-            cheaper than the bottled water in the room and it is the only amenity
+            Against a room night, this is a rounding error. It is cheaper than
+            the bottled water in the room and it is the only amenity
             on the property that changes how the trip goes. It is also
             differentiation that a competing hotel down the highway cannot copy
             by lowering a rate: the guide is written by one naturalist who lives
@@ -259,7 +223,7 @@ function PartnersPage({ go }) {
 
           <h2>The terms, plainly</h2>
           <ul>
-            <li>Paid by invoice, in advance. No subscription, no auto-renewal, no minimum term. You reorder when you run out, or you do not.</li>
+            <li>Paid by invoice, in advance. Terms are agreed in writing before anything is issued, and there is no minimum you have to commit to before we have talked.</li>
             <li>No revenue share, no commission, and no obligation to link to or recommend anything on this site.</li>
             <li>No exclusivity in either direction. Your neighbors can buy codes too, and you are free to stop at any time.</li>
             <li>Guest emails belong to your guests. Redemption is between the guest and the guide; their addresses are not sold, rented, or added to any marketing list because you bought the pack.</li>
@@ -295,7 +259,7 @@ function PartnersPage({ go }) {
         <div style={{ marginTop: 32, border: "1px solid var(--ink)", background: "var(--paper-2)", padding: 28 }}>
           <p style={{ fontFamily: "var(--serif)", fontSize: 15, color: "var(--ink)", lineHeight: 1.55, margin: "0 0 14px" }}>
             Tell me about the property and how you would hand the codes out. A
-            quote comes back with the pack sizes that fit, and a sample card, so
+            quote comes back with the pricing that fits, and a sample card, so
             you can see the thing before you commit to anything.
           </p>
           <a

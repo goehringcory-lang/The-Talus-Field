@@ -497,7 +497,309 @@ const dayEntries: SeasonalInput[] = [
   },
 ]
 
-const seed: SeasonalInput[] = [...fullMoonEntries, ...windowEntries, ...dayEntries]
+// ── Meteor showers, category 'astronomy' ─────────────────────────────────────
+// Peak nights are IMO shower calendar dates (imo.net/resources/calendar,
+// consulted 2026-07-30): Perseids ~Aug 12/13, Geminids ~Dec 13/14, Lyrids
+// ~Apr 22. `confidence` is 'confirmed' because the peak date is an
+// astronomical fact; the description still hedges viewing quality, since
+// clear weather is never guaranteed. Each entry's moon call is checked
+// against this file's own FULL_MOONS table: a peak within about 4 days of a
+// listed full moon is called out as a washed-out year, otherwise the year is
+// called good, and the arithmetic is shown in the comment above the entry.
+// High country (Glacier Point Road, Tioga Road) is only open for the August
+// showers; by December and still in April it is closed for the season, so
+// those years point to valley-floor meadows instead.
+// 2026 Lyrids (peak Apr 22, 2026) already fell before this file's 2026-07-30
+// bundling date and is omitted; 2026 Perseids and Geminids both still lie
+// ahead and are included.
+
+const PERSEIDS_LOCATION = 'Glacier Point, or the Olmsted Point and Tenaya Lake pullouts on Tioga Road'
+const GEMINIDS_LOCATION = "Cook's Meadow or El Capitan Meadow, valley floor"
+const LYRIDS_LOCATION = 'Valley floor meadows; the high country is still closed'
+const RIM_STOP_IDS = ['glacier-point', 'olmsted-point', 'tenaya-lake']
+const VALLEY_MEADOW_STOP_IDS = ['cooks-meadow-loop', 'el-capitan-meadow']
+
+const meteorEntries: SeasonalInput[] = [
+  // Perseids 2026: IMO peak Aug 12/13. Nearest full moons in FULL_MOONS are
+  // 2026-07-29 (Buck, 14 days before) and 2026-08-27 (Sturgeon, 15 days
+  // after), both outside the ~4-day interference band. New moon falls
+  // almost exactly on the peak (Jul 29 + a 14.77-day half cycle = Aug
+  // 12-13), so the sky is about as dark as it gets. Good year.
+  {
+    id: 'perseids-2026',
+    title: 'Perseid meteor shower peak',
+    category: 'astronomy',
+    confidence: 'confirmed',
+    dateStart: '2026-08-11',
+    dateEnd: '2026-08-13',
+    location: PERSEIDS_LOCATION,
+    url: 'https://www.imo.net/resources/calendar/',
+    description:
+      'The Perseids peak on the night of August 12 into the 13th, the most reliable meteor shower of the year, weather permitting. The moon works in your favor in 2026: a thin waning crescent that week, essentially out of the sky, so a clear night should run close to the shower\'s full rate. Glacier Point\'s open horizon, or the Olmsted Point and Tenaya Lake pullouts on Tioga Road, are considerably darker than the valley floor. Best after 11 p.m., once the radiant climbs higher in Perseus.',
+    stopIds: RIM_STOP_IDS,
+  },
+  // Geminids 2026: IMO peak Dec 13/14. Nearest full moons: 2026-11-24
+  // (Beaver, 19 days before) and 2026-12-23 (Cold, 10 days after), both
+  // outside the ~4-day band. New moon falls around Dec 9 (Nov 24 + a
+  // 14.77-day half cycle), so the peak sits in a young crescent that sets
+  // by early evening. Good year; the road closures are the real constraint.
+  {
+    id: 'geminids-2026',
+    title: 'Geminid meteor shower peak',
+    category: 'astronomy',
+    confidence: 'confirmed',
+    dateStart: '2026-12-12',
+    dateEnd: '2026-12-14',
+    location: GEMINIDS_LOCATION,
+    url: 'https://www.imo.net/resources/calendar/',
+    description:
+      'The Geminids peak on the night of December 13 into 14, reliably the strongest shower of the year, over 100 meteors an hour under a dark sky and clear weather. The moon cooperates in 2026 too, a thin crescent that sets by early evening, leaving the rest of the night moonless. The high country is not an option by mid-December: Tioga Road and Glacier Point Road are almost always closed for the season, so this is a valley-floor watch. Cook\'s Meadow or El Capitan Meadow, well back from the lodges\' lights, are the best the valley offers, a mediocre observatory next to the rim but good enough on a clear night.',
+    stopIds: VALLEY_MEADOW_STOP_IDS,
+  },
+  // Perseids 2027: IMO peak Aug 12/13. Nearest full moon: 2027-08-17
+  // (Sturgeon), 4-5 days after peak, roughly 80-85% illuminated waxing
+  // gibbous, inside the ~4-day interference band. Poor year.
+  {
+    id: 'perseids-2027',
+    title: 'Perseid meteor shower peak',
+    category: 'astronomy',
+    confidence: 'confirmed',
+    dateStart: '2027-08-11',
+    dateEnd: '2027-08-13',
+    location: PERSEIDS_LOCATION,
+    url: 'https://www.imo.net/resources/calendar/',
+    description:
+      'The Perseids peak on the night of August 12 into the 13th, but 2027 is a poor year to plan around, clouds aside. The moon turns full on August 17, close enough to peak that it rises bright and gibbous in mid-evening and does not set until near dawn, and only the shower\'s brightest fireballs will cut through the glow. Glacier Point and the Tioga Road pullouts are still the darkest sky within reach, moon or not, and a night closer to the new moon later in the month will show more meteors than the peak itself.',
+    stopIds: RIM_STOP_IDS,
+  },
+  // Geminids 2027: IMO peak Dec 13/14. FULL_MOONS lists 2027-12-13 as the
+  // Cold Moon: the peak night IS the full moon, a 0-day gap. Worst-case
+  // interference.
+  {
+    id: 'geminids-2027',
+    title: 'Geminid meteor shower peak',
+    category: 'astronomy',
+    confidence: 'confirmed',
+    dateStart: '2027-12-12',
+    dateEnd: '2027-12-14',
+    location: GEMINIDS_LOCATION,
+    url: 'https://www.imo.net/resources/calendar/',
+    description:
+      'The Geminids peak on the night of December 13 into 14, and in 2027 that night is also the full Cold Moon, about the worst pairing the calendar can produce. The sky stays bright from dusk to dawn and only the brightest fireballs will show, clear skies or not. Tioga Road and Glacier Point Road are closed for the season by then regardless, so the only option is the valley floor, and this is a year to expect a short list of meteors rather than skip the shower outright.',
+    stopIds: VALLEY_MEADOW_STOP_IDS,
+  },
+  // Lyrids 2027: IMO peak Apr 22. FULL_MOONS lists the Pink Moon at
+  // 2027-04-20, two days before peak, inside the ~4-day band and roughly
+  // 95%+ illuminated. Poor year.
+  {
+    id: 'lyrids-2027',
+    title: 'Lyrid meteor shower peak',
+    category: 'astronomy',
+    confidence: 'confirmed',
+    dateStart: '2027-04-21',
+    dateEnd: '2027-04-23',
+    location: LYRIDS_LOCATION,
+    url: 'https://www.imo.net/resources/calendar/',
+    description:
+      'The Lyrids peak on the night of April 22, a modest shower, usually 10 to 20 meteors an hour at best even on a clear night, but the only one on the spring calendar. The moon turns full on April 20, two days before peak, and will be up most of the night, bright enough to bury the fainter streaks. Glacier Point Road and Tioga Road are still closed for the season in April, so the valley floor is the only option regardless of the moon: an open meadow away from the lodges\' lights is the best this shower gets this year.',
+    stopIds: VALLEY_MEADOW_STOP_IDS,
+  },
+  // Perseids 2028: IMO peak Aug 12/13. Nearest full moon: 2028-08-05
+  // (Sturgeon), 7 days before peak, outside the ~4-day band. New moon falls
+  // around Aug 20 (Aug 5 + a 14.77-day half cycle), so the peak sits in a
+  // slim waning crescent that rises late. Good year for the evening hours.
+  {
+    id: 'perseids-2028',
+    title: 'Perseid meteor shower peak',
+    category: 'astronomy',
+    confidence: 'confirmed',
+    dateStart: '2028-08-11',
+    dateEnd: '2028-08-13',
+    location: PERSEIDS_LOCATION,
+    url: 'https://www.imo.net/resources/calendar/',
+    description:
+      'The Perseids peak on the night of August 12 into the 13th. The moon is a slim waning crescent in 2028 and does not rise until well after midnight, so the evening hours run dark, a good year for it if the sky stays clear. Glacier Point\'s open horizon, or the Olmsted Point and Tenaya Lake pullouts on Tioga Road, are the darkest sky within a drive. Best after 11 p.m., once the radiant is higher and before moonrise starts to compete.',
+    stopIds: RIM_STOP_IDS,
+  },
+  // Geminids 2028: IMO peak Dec 13/14. Nearest full moons: 2028-12-01
+  // (Cold, 12-13 days before) and 2028-12-31 (Blue Moon, 17-18 days after),
+  // both outside the ~4-day band despite December carrying two full moons
+  // that year. New moon falls around Dec 16 (Dec 1 + a 14.77-day half
+  // cycle), so the peak sits in a thin waning crescent 2-3 days before new.
+  // Good year.
+  {
+    id: 'geminids-2028',
+    title: 'Geminid meteor shower peak',
+    category: 'astronomy',
+    confidence: 'confirmed',
+    dateStart: '2028-12-12',
+    dateEnd: '2028-12-14',
+    location: GEMINIDS_LOCATION,
+    url: 'https://www.imo.net/resources/calendar/',
+    description:
+      'The Geminids peak on the night of December 13 into 14, and 2028 is a good year for it, clear skies permitting. December carries two full moons that year, but the peak falls in the dark stretch between them, a thin waning crescent with little to no interference. Tioga Road and Glacier Point Road are closed for the season by mid-December regardless, so this is a valley-floor watch. Cook\'s Meadow or El Capitan Meadow, back from the lodges\' lights, are the valley\'s best options.',
+    stopIds: VALLEY_MEADOW_STOP_IDS,
+  },
+  // Lyrids 2028: IMO peak Apr 22. Nearest full moon: 2028-04-09 (Pink), 13
+  // days before peak, outside the ~4-day band. New moon falls around Apr 24
+  // (Apr 9 + a 14.77-day half cycle), so the peak sits one to two days
+  // before new: about as dark as the sky gets. Good year.
+  {
+    id: 'lyrids-2028',
+    title: 'Lyrid meteor shower peak',
+    category: 'astronomy',
+    confidence: 'confirmed',
+    dateStart: '2028-04-21',
+    dateEnd: '2028-04-23',
+    location: LYRIDS_LOCATION,
+    url: 'https://www.imo.net/resources/calendar/',
+    description:
+      'The Lyrids peak on the night of April 22, a modest shower but a genuinely good year for it: the moon is a thin waning crescent that week, close to new, and barely a factor if the sky cooperates. Glacier Point Road and Tioga Road are still closed for the season in April, so the valley floor is the only option regardless, and an open meadow away from the lodges\' lights works well.',
+    stopIds: VALLEY_MEADOW_STOP_IDS,
+  },
+]
+
+// ── Wildflowers, category 'other' ─────────────────────────────────────────────
+// No ProgramCategory value fits a bloom better than 'other' (the enum in
+// src/programs/schema.ts is ranger/junior-ranger/walk/talk/astronomy/kids/
+// tour/arts/other; left as-is per the almanac's own rule against inventing
+// facts, this file does not extend it). Confidence is 'typical' throughout:
+// bloom timing is a recurring pattern, not a published date. Timing and
+// species are sourced to the NPS wildflower page and, for the mid-elevation
+// window, to this guide's own hike descriptions (hikes.ts calls McGurk
+// Meadow's bloom "the flower show" in July, so that entry does not claim
+// June for McGurk). 2026 windows for the valley, dogwood, and mid-elevation
+// blooms have already closed relative to this file's 2026-07-30 bundling
+// date; only the high-country window is still ahead and included for 2026.
+
+const WILDFLOWERS_VALLEY_DESC =
+  'The lowest-elevation bloom typically runs mid-April through May, and it starts outside the park entirely. The Merced River Canyon along Highway 140 is snow-free earliest of any approach road, and redbud and California poppies typically color the roadside for miles before the entrance station. Valley meadows follow a few weeks behind. Neither waits for the high country, which is still under snow this whole window.'
+const DOGWOOD_DESC =
+  'The valley\'s understory dogwoods typically flower in the first three weeks of May, white blossoms against dark conifer trunks along Southside Drive and near Pohono Bridge. It is the most photographed bloom in the park and a short window, usually gone within a couple of weeks of opening. Overcast light suits it better than midday sun, so a slow drive on a cloudy morning is worth planning around if the trip lands here.'
+const WILDFLOWERS_MEADOWS_DESC =
+  'Mid-elevation meadows typically peak from mid-June into mid-July, later at McGurk Meadow on Glacier Point Road, where July is the real flower show, than at lower, earlier-blooming Wawona Meadow. Both are easy, flat walks built for wandering rather than mileage. Glacier Point Road has to be open to reach McGurk; it usually is well before this window closes.'
+const WILDFLOWERS_HIGH_DESC =
+  'High-country meadows typically bloom from mid-July into mid-August, once the snowmelt clears and the ground warms at 8,600 feet. Lupine and paintbrush color the meadow edges around Tuolumne, later and shorter-lived than anything at valley elevation. Timing tracks the snowpack: a big winter pushes the bloom toward August, a light one brings it forward. The Soda Springs walk from the Lembert Dome lot is the easy way to see it up close.'
+const WILDFLOWERS_SOURCE_URL = 'https://www.nps.gov/yose/learn/nature/wildflowers.htm'
+
+const wildflowerEntries: SeasonalInput[] = [
+  {
+    id: 'wildflowers-high-2026',
+    title: 'Tuolumne Meadows wildflower bloom',
+    category: 'other',
+    confidence: 'typical',
+    dateStart: '2026-07-10',
+    dateEnd: '2026-08-15',
+    location: 'Tuolumne Meadows',
+    url: WILDFLOWERS_SOURCE_URL,
+    description: WILDFLOWERS_HIGH_DESC,
+    stopIds: ['soda-springs-parsons-lodge'],
+  },
+  {
+    id: 'wildflowers-valley-2027',
+    title: 'Valley and foothill wildflower bloom',
+    category: 'other',
+    confidence: 'typical',
+    dateStart: '2027-04-15',
+    dateEnd: '2027-05-31',
+    location: 'Merced River Canyon (Highway 140) and valley meadows',
+    url: WILDFLOWERS_SOURCE_URL,
+    description: WILDFLOWERS_VALLEY_DESC,
+    stopIds: ['cooks-meadow-loop'],
+  },
+  {
+    id: 'dogwood-bloom-2027',
+    title: 'Dogwood bloom',
+    category: 'other',
+    confidence: 'typical',
+    dateStart: '2027-05-01',
+    dateEnd: '2027-05-25',
+    location: 'Southside Drive and Pohono Bridge',
+    url: WILDFLOWERS_SOURCE_URL,
+    description: DOGWOOD_DESC,
+    stopIds: ['valley-view'],
+  },
+  {
+    id: 'wildflowers-meadows-2027',
+    title: 'Mid-elevation meadow wildflower bloom',
+    category: 'other',
+    confidence: 'typical',
+    dateStart: '2027-06-10',
+    dateEnd: '2027-07-15',
+    location: 'McGurk Meadow and Wawona Meadow',
+    url: WILDFLOWERS_SOURCE_URL,
+    description: WILDFLOWERS_MEADOWS_DESC,
+    stopIds: ['mcgurk-meadow', 'wawona-meadow-loop'],
+  },
+  {
+    id: 'wildflowers-high-2027',
+    title: 'Tuolumne Meadows wildflower bloom',
+    category: 'other',
+    confidence: 'typical',
+    dateStart: '2027-07-10',
+    dateEnd: '2027-08-15',
+    location: 'Tuolumne Meadows',
+    url: WILDFLOWERS_SOURCE_URL,
+    description: WILDFLOWERS_HIGH_DESC,
+    stopIds: ['soda-springs-parsons-lodge'],
+  },
+  {
+    id: 'wildflowers-valley-2028',
+    title: 'Valley and foothill wildflower bloom',
+    category: 'other',
+    confidence: 'typical',
+    dateStart: '2028-04-15',
+    dateEnd: '2028-05-31',
+    location: 'Merced River Canyon (Highway 140) and valley meadows',
+    url: WILDFLOWERS_SOURCE_URL,
+    description: WILDFLOWERS_VALLEY_DESC,
+    stopIds: ['cooks-meadow-loop'],
+  },
+  {
+    id: 'dogwood-bloom-2028',
+    title: 'Dogwood bloom',
+    category: 'other',
+    confidence: 'typical',
+    dateStart: '2028-05-01',
+    dateEnd: '2028-05-25',
+    location: 'Southside Drive and Pohono Bridge',
+    url: WILDFLOWERS_SOURCE_URL,
+    description: DOGWOOD_DESC,
+    stopIds: ['valley-view'],
+  },
+  {
+    id: 'wildflowers-meadows-2028',
+    title: 'Mid-elevation meadow wildflower bloom',
+    category: 'other',
+    confidence: 'typical',
+    dateStart: '2028-06-10',
+    dateEnd: '2028-07-15',
+    location: 'McGurk Meadow and Wawona Meadow',
+    url: WILDFLOWERS_SOURCE_URL,
+    description: WILDFLOWERS_MEADOWS_DESC,
+    stopIds: ['mcgurk-meadow', 'wawona-meadow-loop'],
+  },
+  {
+    id: 'wildflowers-high-2028',
+    title: 'Tuolumne Meadows wildflower bloom',
+    category: 'other',
+    confidence: 'typical',
+    dateStart: '2028-07-10',
+    dateEnd: '2028-08-15',
+    location: 'Tuolumne Meadows',
+    url: WILDFLOWERS_SOURCE_URL,
+    description: WILDFLOWERS_HIGH_DESC,
+    stopIds: ['soda-springs-parsons-lodge'],
+  },
+]
+
+const seed: SeasonalInput[] = [
+  ...fullMoonEntries,
+  ...windowEntries,
+  ...dayEntries,
+  ...meteorEntries,
+  ...wildflowerEntries,
+]
 
 export const SEASONAL_EVENTS: SeasonalEventT[] = SeasonalEvents.parse(seed).sort((a, b) =>
   a.dateStart === b.dateStart ? a.dateEnd.localeCompare(b.dateEnd) : a.dateStart.localeCompare(b.dateStart),

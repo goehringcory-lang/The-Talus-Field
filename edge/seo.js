@@ -335,7 +335,7 @@ const HUB_PROSE = {
       "Group codes: the Field Guide for your guests",
       "Yosemite-area hotels, inns, vacation rental hosts, and property managers can buy The Talus Field Guide in packs and give a code to every booking. One code is one guest's full access for 18 months on every device they own: 44 stops with GPS and time budgets, all 57 in-park day hikes, the 37-entry Secret Guide, a day-by-day trip planner, park programs on their dates, and an offline topographic map of the park. Nothing to install, host, or support on the property's side."
     ) +
-    `<p>Packs start at 25 codes; per-code rates fall as the pack grows. Billed by invoice, no subscription, no revenue share, no exclusivity. The first properties are onboarded by hand.</p>` +
+    `<p>Pricing is quoted per property rather than published. Billed by invoice, no revenue share, no exclusivity. The first properties are onboarded by hand.</p>` +
     `<p>The public product page is <a href="/guide">the Field Guide</a>. The free conditions embed for your own site is at <a href="/widget">/widget</a>, and directory listings are at <a href="/advertise">/advertise</a>.</p>`,
   "/consult": () =>
     hubProse(
@@ -704,7 +704,7 @@ function seoForPath(pathname, searchParams) {
         },
         {
           q: "What do group codes cost?",
-          a: "Partner rates are per code, billed by invoice, with the pack as the unit of sale: 25 codes at $2.49 a code, 50 codes at $1.99 a code, and 100 codes or more at $1.69 a code. The guide sells to the public at $3.99 a copy.",
+          a: "Partner pricing is quoted per property rather than published, because a single vacation rental and a management company covering every booking are not the same number. Write with the property, the town, and roughly how many bookings a year you would cover, and a quote comes back. The guide sells to the public at $3.99 a copy.",
         },
         {
           q: "Do guests need to install an app?",

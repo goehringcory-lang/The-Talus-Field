@@ -23,8 +23,14 @@ MAGIC_LINK_SIGNING_SECRET="local-dev-signing-secret"
 # --- Resend (transactional email for magic links / contact form) ------------
 # RESEND_API_KEY="re_..."
 
-# --- NPS Events API (optional; /api/programs falls back to manual curation) --
+# --- NPS API (optional) ------------------------------------------------------
+# Serves both /api/programs (falls back to manual curation without it) and
+# /api/alerts (serves empty without it, so no road-status line renders).
 # NPS_API_KEY="..."
+
+# --- AirNow AQI (optional; /api/air serves nulls and no AQI line renders) ----
+# Free key at docs.airnowapi.org. /api/flow is keyless and needs nothing.
+# AIRNOW_API_KEY="..."
 
 # --- IndexNow push-indexing (optional; endpoint 503s without both) ----------
 # INDEXNOW_KEY="..."

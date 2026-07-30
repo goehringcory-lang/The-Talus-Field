@@ -72,7 +72,18 @@ zone_name = "thetalusfieldjournal.com"
 # /api/programs and the daily cron read the National Park Service Events API.
 # Free key, self-serve signup at developer.nps.gov/get-started:
 #   wrangler secret put NPS_API_KEY
-# Optional; without it the feed serves manual curation only.
+# Optional; without it the feed serves manual curation only. The same key
+# serves the park-alerts endpoint behind /api/alerts (road status, closures,
+# chain controls); without it /api/alerts serves empty and the PWA renders
+# no conditions lines.
+# ===========================================================================
+
+# === AirNow AQI =============================================================
+# /api/air reads the AirNow current-observations API for the Valley AQI line
+# (smoke season). Free key, self-serve signup at docs.airnowapi.org:
+#   wrangler secret put AIRNOW_API_KEY
+# Optional; without it /api/air serves nulls and the PWA renders no AQI line.
+# /api/flow (Merced River at Happy Isles, USGS) is keyless and needs nothing.
 # ===========================================================================
 
 # === IndexNow push-indexing =================================================

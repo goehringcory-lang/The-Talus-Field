@@ -41,6 +41,9 @@ import UpdatedStamp from '../components/UpdatedStamp'
 import Button from '../components/ui/Button'
 import Callout from '../components/ui/Callout'
 import PageHeader from '../components/ui/PageHeader'
+import AirLine from '../air/AirLine'
+import RoadsLine from '../alerts/RoadsLine'
+import FlowLine from '../flow/FlowLine'
 import WaitsLine from '../waits/WaitsLine'
 import { useWeather } from '../weather/useWeather'
 import { HIDE_AFTER_MS, WARN_AFTER_MS } from '../weather/staleness'
@@ -179,9 +182,14 @@ function InSeasonStrip() {
           </li>
         ))}
       </ul>
-      <Link to="/programs" className="more-link">
-        The full seasonal almanac, day by day →
-      </Link>
+      <div className="home-crosslinks">
+        <Link to="/this-week" className="more-link">
+          This week in the park: alerts, seasons, tonight's sky →
+        </Link>
+        <Link to="/night" className="more-link">
+          The night sky page →
+        </Link>
+      </div>
     </section>
   )
 }
@@ -420,6 +428,9 @@ export default function Home() {
             </p>
           )}
           <WaitsLine />
+          <RoadsLine />
+          <AirLine />
+          <FlowLine />
           <div className="home-crosslinks">
             <Link to="/map" className="more-link">
               Every stop pinned on the park map →
@@ -515,6 +526,16 @@ export default function Home() {
               teaser="The quiet vistas, hidden trails, parking moves, camping you can actually get, and the park after dark. None of it makes the brochures."
               meta={`${secretCount} entries · Vistas, trails, parking, camping, after dark`}
             />
+            <ToolCard
+              to="/wildlife"
+              title="What did I see?"
+              teaser="Quick identification for the animals, birds, and trees you actually meet: the one or two field marks that settle it, plus the safety notes that matter."
+              meta="Mammals · birds · trees · reptiles"
+            >
+              <div className="tool-card__sub">
+                <Link to="/hunts">Find-it lists for kids →</Link>
+              </div>
+            </ToolCard>
             <ToolCard
               to="/search"
               title="Search the guide"

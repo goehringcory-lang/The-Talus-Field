@@ -67,6 +67,38 @@ globalThis.fetch = (async (input: RequestInfo | URL, init?: RequestInit) => {
       { status: 206, headers: { 'content-type': 'application/json' } },
     )
   }
+  if (url.startsWith('https://developer.nps.gov/api/v1/alerts')) {
+    return new Response(
+      JSON.stringify({
+        data: [
+          { id: 'A1', title: 'Tioga Road is closed for the season', description: 'The road over Tioga Pass is closed.', category: 'Park Closure', url: 'https://www.nps.gov/yose/alert1' },
+          { id: 'A2', title: 'Carry tire chains', description: 'Chains may be required on all park roads.', category: 'Information', url: '' },
+          { id: 'A3', title: 'Trail conditions update', description: 'Expect ice on shaded trails.', category: 'Caution' },
+        ],
+      }),
+      { status: 200, headers: { 'content-type': 'application/json' } },
+    )
+  }
+  if (url.startsWith('https://www.airnowapi.org/aq/observation/latLong/current/')) {
+    return new Response(
+      JSON.stringify([
+        { DateObserved: '2026-07-30', HourObserved: 8, ReportingArea: 'Mariposa', ParameterName: 'O3', AQI: 42, Category: { Number: 1, Name: 'Good' } },
+        { DateObserved: '2026-07-30', HourObserved: 8, ReportingArea: 'Mariposa', ParameterName: 'PM2.5', AQI: 158, Category: { Number: 4, Name: 'Unhealthy' } },
+      ]),
+      { status: 200, headers: { 'content-type': 'application/json' } },
+    )
+  }
+  if (url.startsWith('https://waterservices.usgs.gov/nwis/iv/')) {
+    return new Response(
+      JSON.stringify({
+        value: { timeSeries: [{ values: [{ value: [
+          { value: '520', dateTime: '2026-07-30T06:00:00.000-07:00' },
+          { value: '410', dateTime: '2026-07-30T07:00:00.000-07:00' },
+        ] }] }] },
+      }),
+      { status: 200, headers: { 'content-type': 'application/json' } },
+    )
+  }
   if (url.startsWith('https://api.resend.com/emails')) {
     if (resendMode === 'fail') return new Response('boom', { status: 500 })
     const body = JSON.parse(String(init?.body))
@@ -550,6 +582,35 @@ console.log('\n19. conditions widget')
   check('widget.js served as javascript', jsRes.status === 200 && (jsRes.headers.get('content-type') ?? '').includes('javascript'))
   check('widget.js carries the mandatory backlink', js.includes('https://thetalusfieldjournal.com/conditions?utm_source=widget'))
   check('widget.js fails silent (no error rendering)', js.includes('render nothing'))
+}
+
+console.log('\n20. conditions feeds (/api/alerts, /api/air, /api/flow)')
+{
+  const a = await call('/api/alerts')
+  check('alerts 200', a.status === 200 && a.json !== null)
+  const alertsBody = a.json as { alerts: Array<{ category: string }>; roads: Array<{ id: string; status: string }>; chains: string | null }
+  check('closure sorted first', alertsBody.alerts[0]?.category === 'closure', alertsBody.alerts)
+  const tioga = alertsBody.roads.find((r) => r.id === 'tioga')
+  check('tioga derived closed', tioga?.status === 'closed', alertsBody.roads)
+  check('other roads unknown, never open by silence',
+    alertsBody.roads.filter((r) => r.id !== 'tioga').every((r) => r.status === 'unknown'),
+    alertsBody.roads)
+  check('chains notice derived', alertsBody.chains === 'Carry tire chains', alertsBody.chains)
+
+  // env has no AIRNOW_API_KEY yet: the route must serve nulls, not an error.
+  const airUnkeyed = await call('/api/air')
+  check('air without key serves nulls', airUnkeyed.status === 200 && airUnkeyed.json.aqi === null, airUnkeyed.json)
+
+  env.AIRNOW_API_KEY = 'airnow_test_dummy'
+  const air = await call('/api/air')
+  check('air 200 with worst observation', air.status === 200 && air.json.aqi === 158, air.json)
+  check('air pollutant + category from the max-AQI row',
+    air.json.pollutant === 'PM2.5' && air.json.category === 'Unhealthy', air.json)
+  delete env.AIRNOW_API_KEY
+
+  const f = await call('/api/flow')
+  check('flow 200 with latest reading', f.status === 200 && f.json.cfs === 410, f.json)
+  check('cfs mapped to band', f.json.band === 'strong', f.json)
 }
 
 globalThis.fetch = realFetch

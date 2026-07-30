@@ -26,7 +26,7 @@ const seed: EssentialInput[] = [
       '**3. Grab the current Yosemite Guide.** The park publishes a seasonal newspaper, the *Yosemite Guide*, with the ranger program schedule, shuttle map, and visitor center hours for the exact weeks you\'re there. Download the current PDF from **nps.gov/yose/planyourvisit/guide.htm** and it lives on your phone for the trip.\n\n' +
       '**4. Check the reservation and road situation.** Timed-entry rules change year to year; verify at nps.gov/yose whether your dates and arrival time need a reservation. If your trip touches Glacier Point Road or Tioga Road, check the road status page too.\n\n' +
       '**5. Fuel and cash.** There is no gas in Yosemite Valley. Fill up in the gateway towns, and again at Crane Flat if you\'re heading up Tioga Road.\n\n' +
-      '**6. Save the numbers.** 911 works by call or text inside the park. General park information and recorded road conditions: 209/372-0200 (press 1, then 1 for roads). Roadside assistance: 209/372-1060. The Yosemite Medical Clinic in the valley (209/372-4637) takes urgent-care walk-ins on weekday early afternoons; it is not an emergency room.',
+      '**6. Save the numbers.** 911 is the emergency number. If a call will not go out, try texting it: SMS needs less signal than voice, though whether it reaches dispatch depends on the center answering. General park information and recorded road conditions: 209/372-0200 (press 1, then 1 for roads). Roadside assistance: 209/372-1060. The Yosemite Medical Clinic in the valley (209/372-4637) takes urgent-care walk-ins on weekday early afternoons; it is not an emergency room.',
     checklist: [
       { id: 'gmaps-offline', label: 'Google or Apple Maps offline area covering the park and your approach highway' },
       { id: 'app-offline', label: 'This guide, photos, and the park map downloaded (Account → Offline)' },
@@ -35,7 +35,7 @@ const seed: EssentialInput[] = [
       { id: 'road-status', label: 'Glacier Point and Tioga road status checked, if your plan needs them' },
       { id: 'fuel', label: 'Gas tank filled outside the park' },
       { id: 'batteries', label: 'Phone and battery pack charged' },
-      { id: 'key-numbers', label: 'Key numbers saved: 911 (call or text), park info 209/372-0200, roadside 209/372-1060, clinic 209/372-4637' },
+      { id: 'key-numbers', label: 'Key numbers saved: 911, park info 209/372-0200, roadside 209/372-1060, clinic 209/372-4637' },
     ],
   },
   {
@@ -333,6 +333,25 @@ const seed: EssentialInput[] = [
       'Creek fords are seasonal decisions, not fixed facts about a trail. A crossing that is a rock-hop in August can be a fast, thigh-deep problem in June, and snowmelt water is cold enough to take your footing and your judgment at the same time. The rule that keeps people alive is boring: if moving water is over your knees, turn around. The stop is still there next month.\n\n' +
       'Some stops carry a short Caution note. It is not boilerplate; it names the specific thing that hurts people at that specific place, a slick lip above a cascade, an unrailed rim, a ford. Read it as part of the stop, not as fine print.\n\n' +
       'Finally, the routes we left out. This guide names some famous ghosts, the Ledge Trail to Glacier Point, the Sierra Point overlook, Fern Ledge behind the upper fall, the descent of Tenaya Canyon, because they are part of the park\'s story and you will hear about them. It gives directions to none of them. The park closed or abandoned those routes for cause, the cause being rockfall, exposure, and a fatality list that is still growing, and no guidebook paragraph changes what the granite does. The history is yours to enjoy. The maintained trail next to it is the one to walk.',
+  },
+  {
+    id: 'safety-and-help',
+    title: 'Safety and help: signal, the clinic, and the plan for before you lose both',
+    order: 44,
+    section: 'safety',
+    teaser: 'Where the signal actually is, what 911 can and cannot reach, and the clinic that is not a hospital.',
+    body:
+      'Plan on having no cell signal for most of this trip. There is some coverage around Yosemite Village and parts of the valley floor, and travelers report occasional bars in Wawona and near the Tuolumne Meadows store, but none of it is reliable enough to build a plan around. Tioga Road, Hetch Hetchy Road, the Big Oak Flat and Highway 140 canyon stretches, and nearly every trail run long dead zones, often for the whole drive or the whole hike. Treat "assume none" as the working rule, not the pessimistic one.\n\n' +
+      'The emergency number is 911. A landline reaches dispatch where a cell carrier has nothing, so a lodge room phone or a phone at a visitor center or ranger station is worth more than a handset with no bars. On a cell phone in the canyons a call can drop or simply never connect: try it, but do not assume it went through just because you dialed. If the call will not go, try texting 911, because SMS needs less signal than voice, while knowing that whether a text reaches dispatch depends on the center answering it. If neither goes out and the situation allows it, get to the nearest visitor center or ranger station in person, or send someone who can, rather than keep retrying a dead phone.\n\n' +
+      'The Yosemite Medical Clinic, in Yosemite Village (209/372-4637), handles urgent care: sprains, cuts, altitude symptoms, the kind of thing that needs a professional but not an ambulance. It takes walk-ins on weekday early afternoons. It is a clinic, not a hospital, and it does not run its own emergency department. A serious injury or illness gets stabilized and sent out of the park to a hospital in one of the surrounding towns, which is a real drive, so build that possibility into how far you push a plan, especially a day far from the road.\n\n' +
+      'The habits that make all of this manageable cost nothing and take a minute. Tell someone outside the park, or at least back at the room, which trail you are doing and when you expect to be down; that is the detail search and rescue actually uses. Download or screenshot the map or directions you need before you leave signal, rather than count on a live map loading at the trailhead: a connected map with no connection is a blank screen. And carry water and a headlamp on any afternoon hike, even a short one, because the gap between a normal outing and a genuine problem is usually just how prepared you were for the day running long.',
+    checklist: [
+      { id: 'safety-signal-assumption', label: 'Assumed no cell signal past Yosemite Village and the valley floor' },
+      { id: 'safety-plan-shared', label: 'Told someone your plan: trail, start time, expected return' },
+      { id: 'safety-maps-saved', label: 'Maps and directions downloaded or screenshotted before losing signal' },
+      { id: 'safety-water-headlamp', label: 'Water and a headlamp packed, even for a short afternoon hike' },
+      { id: 'safety-landline-known', label: 'Know that a landline reaches 911 where a cell phone will not' },
+    ],
   },
 
   // ── Packing kits ported from the editorial KIT system (brand callouts and

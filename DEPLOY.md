@@ -56,6 +56,25 @@ Generate the pair **once**. Browsers bind a push subscription to the
 `applicationServerKey` it was created with, so rotating silences every device
 already subscribed until it next opens the app and re-registers.
 
+Optional, for the live conditions feeds. Both are free, and each one's absence
+costs exactly one line in the app rather than breaking anything:
+
+```bash
+wrangler secret put NPS_API_KEY        # free, developer.nps.gov/get-started
+wrangler secret put AIRNOW_API_KEY     # free, docs.airnowapi.org
+```
+
+- Without `NPS_API_KEY`: `/api/programs` serves hand-curated events only, and
+  `/api/alerts` serves empty, so the guide renders no road-status or
+  chain-control line.
+- Without `AIRNOW_API_KEY`: `/api/air` serves nulls and the guide renders no
+  AQI line. The smoke-season essentials topic still explains the thresholds.
+- `/api/flow` (Merced River at Happy Isles, USGS) is keyless and needs nothing.
+
+Secrets take effect immediately; no redeploy is needed after adding one. Check
+with `curl -s https://api.thetalusfieldjournal.com/api/air` and look for a real
+`aqi` number instead of `null`.
+
 ## 3. Resend setup (this is the gotcha)
 
 Resend won't deliver to arbitrary emails until your sending domain is verified.

@@ -1,0 +1,89 @@
+/* /hunts: the junior naturalist find-it lists. Screen first, then a print
+   sheet a family can carry instead of the phone. */
+
+.hunts__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.6rem;
+  margin-bottom: 0.5rem;
+}
+
+.hunt__intro {
+  margin: 0 0 0.35rem;
+  font-size: 0.95rem;
+  color: var(--ink-2, #2a2118);
+}
+
+.hunt__count {
+  margin: 0 0 0.5rem;
+}
+
+.hunt__reset {
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  color: inherit;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.hunt__items {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.5rem;
+}
+
+.hunt__item > label {
+  display: flex;
+  align-items: baseline;
+  gap: 0.55rem;
+  cursor: pointer;
+}
+
+.hunt__item input {
+  flex: none;
+  width: 1.1rem;
+  height: 1.1rem;
+  margin: 0;
+}
+
+.hunt__item.is-found .hunt__label {
+  text-decoration: line-through;
+  color: var(--ink-3, #50402e);
+}
+
+.hunt__note {
+  margin: 0.1rem 0 0 1.65rem;
+  font-size: 0.85rem;
+  color: var(--ink-3, #50402e);
+}
+
+@media print {
+  .no-print {
+    display: none;
+  }
+  /* Flatten the custom checkbox to a plain box a pencil can tick, same
+     approach the editorial checklist pages take. */
+  .hunt__item input {
+    appearance: none;
+    -webkit-appearance: none;
+    border: 1px solid #333;
+    border-radius: 2px;
+    background: none;
+  }
+  .hunt__item.is-found .hunt__label {
+    text-decoration: none;
+    color: inherit;
+  }
+  .hunt {
+    break-inside: avoid;
+  }
+  .hunt__note {
+    color: #444;
+  }
+}

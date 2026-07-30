@@ -1,25 +1,5 @@
 var PARTNERS_API_BASE = typeof window !== "undefined" && window.GUIDE_API_BASE || "https://api.thetalusfieldjournal.com";
 var PARTNERS_PRICE_FALLBACK_CENTS = 399;
-var PARTNER_TIERS = [{
-  key: "starter",
-  name: "Starter pack",
-  codes: "25 codes",
-  rate: "$2.49 a code",
-  summary: "For a small inn, a single vacation rental, or a property testing the amenity for one season."
-}, {
-  key: "house",
-  name: "House pack",
-  codes: "50 codes",
-  rate: "$1.99 a code",
-  summary: "For a lodge or a host with a handful of units. The common size for one busy quarter.",
-  featured: true
-}, {
-  key: "property",
-  name: "Property pack",
-  codes: "100 codes and up",
-  rate: "$1.69 a code",
-  summary: "For hotels, management companies, and rental portfolios running the guide across every booking."
-}];
 var PARTNERS_MAILTO = "mailto:cory@thetalusfieldjournal.com" + "?subject=" + encodeURIComponent("Group codes for the Field Guide") + "&body=" + encodeURIComponent(["Property:", "Town / area:", "Units or rooms:", "Roughly how many bookings a year:", "How you would hand out the codes (welcome email, in-room card, booking confirmation):", "", "Anything else worth knowing:"].join("\n"));
 function formatPartnerPrice(cents) {
   var dollars = cents / 100;
@@ -82,28 +62,17 @@ function PartnersPage({
     className: "places-pitch"
   }, React.createElement("div", {
     className: "places-pitch__eyebrow"
-  }, "Packs and rates"), React.createElement("h2", {
+  }, "Pricing"), React.createElement("h2", {
     className: "places-pitch__title"
   }, "What it costs"), React.createElement("p", {
     className: "places-pitch__lede"
-  }, "The guide sells to the public at ", retail, " a copy. Partner rates are per code, billed by invoice, with the pack as the unit of sale. Quotes hold for the season they are given in."), React.createElement("div", {
-    className: "places-pitch__tiers"
-  }, PARTNER_TIERS.map(tier => React.createElement("div", {
-    key: tier.key,
-    className: ["places-pitch__tier", tier.featured && "places-pitch__tier--featured"].filter(Boolean).join(" ")
-  }, React.createElement("div", {
-    className: "places-pitch__tier-eyebrow"
-  }, tier.name), React.createElement("div", {
-    className: "places-pitch__tier-summary"
-  }, tier.summary), React.createElement("div", {
-    className: "places-pitch__tier-meta"
-  }, tier.codes, " · ", tier.rate)))), React.createElement("a", {
+  }, "The guide sells to the public at ", retail, " a copy. Subscription pricing for properties is quoted directly, because what a single vacation rental needs and what a management company running every booking needs are not the same number."), React.createElement("a", {
     className: "places-pitch__cta",
     href: PARTNERS_MAILTO,
     onClick: () => trackContact("partners_tiers")
-  }, "Ask about group codes →"), React.createElement("p", {
+  }, "Contact for pricing →"), React.createElement("p", {
     className: "places-pitch__fineprint"
-  }, "Larger portfolios and multi-property management companies are quoted directly; so is a property that wants the codes bundled into a package rate rather than handed out one at a time. The first properties are onboarded by hand, which is deliberate: it is how the terms get to be sensible for both sides."))), React.createElement("div", {
+  }, "Tell me the property, the town, and roughly how many bookings a year you would cover, and a quote comes back. The first properties are onboarded by hand, which is deliberate: it is how the terms get to be sensible for both sides."))), React.createElement("div", {
     className: "wrap wrap--narrow",
     style: {
       paddingTop: 32,
@@ -111,7 +80,7 @@ function PartnersPage({
     }
   }, React.createElement("section", {
     className: "prose"
-  }, React.createElement("h2", null, "How it works"), React.createElement("ol", null, React.createElement("li", null, "Write, with your property, your area, and roughly how many bookings a year you would cover. A reply comes from a person in El Portal, not a sales team."), React.createElement("li", null, "Agree on a pack size and a rate. You get an invoice, payable before the codes are issued."), React.createElement("li", null, "Codes are delivered as a spreadsheet plus a print-ready card for the room or the welcome packet, with your property named on it."), React.createElement("li", null, "Hand a code to each guest however you already talk to them. They redeem it, the guide opens, and their 18 months start that day.")), React.createElement("p", null, "Unredeemed codes stay yours. They do not expire on the shelf inside the season you bought them for, and a code that goes unused on one booking can go to the next guest instead."), React.createElement("h2", null, "What your guests actually get"), React.createElement("ul", null, React.createElement("li", null, "44 stops in driving order, each with GPS, a time budget, and a swap for when the lot is full or the plan dies."), React.createElement("li", null, "All 57 in-park day hikes with verified distance, elevation gain, difficulty, an elevation profile, and a GPS track."), React.createElement("li", null, "An offline topographic map of the whole park with every stop pinned, downloadable in one tap."), React.createElement("li", null, "A trip planner that lays out each day with real drive-time and parking buffers, and syncs to Google or Apple Calendar."), React.createElement("li", null, "Ranger walks, Junior Ranger sessions, tours, and star parties on the guest's own dates."), React.createElement("li", null, "An essentials section: entrance reservations, getting around the Valley without moving the car, bears, where coverage dies, roads by season, and a packing checklist for the night before."), React.createElement("li", null, "The Secret Guide: 37 unsigned turnouts, hidden stops, and spots that belong to no region at all.")), React.createElement("h2", null, "Why it is worth more than it costs"), React.createElement("p", null, "At a pack rate, this is a couple of dollars against a room night. It is cheaper than the bottled water in the room and it is the only amenity on the property that changes how the trip goes. It is also differentiation that a competing hotel down the highway cannot copy by lowering a rate: the guide is written by one naturalist who lives in El Portal, and it is not for sale as a white-label product to everyone in town."), React.createElement("p", null, "The honest limit: this does not fill rooms by itself, and nobody books a hotel because of a guidebook. What it does is raise the quality of the stay you already sold, take repeat questions off your desk, and give your guests something to mention by name when they write about the trip."), React.createElement("h2", null, "The terms, plainly"), React.createElement("ul", null, React.createElement("li", null, "Paid by invoice, in advance. No subscription, no auto-renewal, no minimum term. You reorder when you run out, or you do not."), React.createElement("li", null, "No revenue share, no commission, and no obligation to link to or recommend anything on this site."), React.createElement("li", null, "No exclusivity in either direction. Your neighbors can buy codes too, and you are free to stop at any time."), React.createElement("li", null, "Guest emails belong to your guests. Redemption is between the guest and the guide; their addresses are not sold, rented, or added to any marketing list because you bought the pack."), React.createElement("li", null, "The guide keeps getting updates through the access window at no additional charge, to you or to the guest."), React.createElement("li", null, "If the guide is ever discontinued, outstanding codes are refunded. That is a promise worth putting in writing, so it is in writing here.")), React.createElement("h2", null, "Questions that come up"), React.createElement("p", null, React.createElement("strong", null, "Do guests need to install anything?"), " No. The guide is a web app. It opens in the browser and can be added to a home screen in one step, which is what makes the offline download work."), React.createElement("p", null, React.createElement("strong", null, "Does a code work for a whole family?"), " One code is one guest account, usable on every device that guest owns, which covers a family traveling together. A group booking that wants a code per household should count households, not people."), React.createElement("p", null, React.createElement("strong", null, "What if a guest never redeems?"), " The code stays valid and you can give it to someone else. You are buying access, not a printed voucher that dies on the counter."), React.createElement("p", null, React.createElement("strong", null, "Can we brand it?"), " The card that goes in the room carries your property's name. The guide itself stays The Talus Field's, editorially and visually. That independence is the reason the recommendations inside it are worth anything to your guest.")), React.createElement("div", {
+  }, React.createElement("h2", null, "How it works"), React.createElement("ol", null, React.createElement("li", null, "Write, with your property, your area, and roughly how many bookings a year you would cover. A reply comes from a person in El Portal, not a sales team."), React.createElement("li", null, "Agree on the pricing that fits the property. You get an invoice, payable before the codes are issued."), React.createElement("li", null, "Codes are delivered as a spreadsheet plus a print-ready card for the room or the welcome packet, with your property named on it."), React.createElement("li", null, "Hand a code to each guest however you already talk to them. They redeem it, the guide opens, and their 18 months start that day.")), React.createElement("p", null, "Unredeemed codes stay yours. They do not expire on the shelf inside the season you bought them for, and a code that goes unused on one booking can go to the next guest instead."), React.createElement("h2", null, "What your guests actually get"), React.createElement("ul", null, React.createElement("li", null, "44 stops in driving order, each with GPS, a time budget, and a swap for when the lot is full or the plan dies."), React.createElement("li", null, "All 57 in-park day hikes with verified distance, elevation gain, difficulty, an elevation profile, and a GPS track."), React.createElement("li", null, "An offline topographic map of the whole park with every stop pinned, downloadable in one tap."), React.createElement("li", null, "A trip planner that lays out each day with real drive-time and parking buffers, and syncs to Google or Apple Calendar."), React.createElement("li", null, "Ranger walks, Junior Ranger sessions, tours, and star parties on the guest's own dates."), React.createElement("li", null, "An essentials section: entrance reservations, getting around the Valley without moving the car, bears, where coverage dies, roads by season, and a packing checklist for the night before."), React.createElement("li", null, "The Secret Guide: 37 unsigned turnouts, hidden stops, and spots that belong to no region at all.")), React.createElement("h2", null, "Why it is worth more than it costs"), React.createElement("p", null, "Against a room night, this is a rounding error. It is cheaper than the bottled water in the room and it is the only amenity on the property that changes how the trip goes. It is also differentiation that a competing hotel down the highway cannot copy by lowering a rate: the guide is written by one naturalist who lives in El Portal, and it is not for sale as a white-label product to everyone in town."), React.createElement("p", null, "The honest limit: this does not fill rooms by itself, and nobody books a hotel because of a guidebook. What it does is raise the quality of the stay you already sold, take repeat questions off your desk, and give your guests something to mention by name when they write about the trip."), React.createElement("h2", null, "The terms, plainly"), React.createElement("ul", null, React.createElement("li", null, "Paid by invoice, in advance. Terms are agreed in writing before anything is issued, and there is no minimum you have to commit to before we have talked."), React.createElement("li", null, "No revenue share, no commission, and no obligation to link to or recommend anything on this site."), React.createElement("li", null, "No exclusivity in either direction. Your neighbors can buy codes too, and you are free to stop at any time."), React.createElement("li", null, "Guest emails belong to your guests. Redemption is between the guest and the guide; their addresses are not sold, rented, or added to any marketing list because you bought the pack."), React.createElement("li", null, "The guide keeps getting updates through the access window at no additional charge, to you or to the guest."), React.createElement("li", null, "If the guide is ever discontinued, outstanding codes are refunded. That is a promise worth putting in writing, so it is in writing here.")), React.createElement("h2", null, "Questions that come up"), React.createElement("p", null, React.createElement("strong", null, "Do guests need to install anything?"), " No. The guide is a web app. It opens in the browser and can be added to a home screen in one step, which is what makes the offline download work."), React.createElement("p", null, React.createElement("strong", null, "Does a code work for a whole family?"), " One code is one guest account, usable on every device that guest owns, which covers a family traveling together. A group booking that wants a code per household should count households, not people."), React.createElement("p", null, React.createElement("strong", null, "What if a guest never redeems?"), " The code stays valid and you can give it to someone else. You are buying access, not a printed voucher that dies on the counter."), React.createElement("p", null, React.createElement("strong", null, "Can we brand it?"), " The card that goes in the room carries your property's name. The guide itself stays The Talus Field's, editorially and visually. That independence is the reason the recommendations inside it are worth anything to your guest.")), React.createElement("div", {
     style: {
       marginTop: 32,
       border: "1px solid var(--ink)",
@@ -126,7 +95,7 @@ function PartnersPage({
       lineHeight: 1.55,
       margin: "0 0 14px"
     }
-  }, "Tell me about the property and how you would hand the codes out. A quote comes back with the pack sizes that fit, and a sample card, so you can see the thing before you commit to anything."), React.createElement("a", {
+  }, "Tell me about the property and how you would hand the codes out. A quote comes back with the pricing that fits, and a sample card, so you can see the thing before you commit to anything."), React.createElement("a", {
     className: "btn",
     href: PARTNERS_MAILTO,
     onClick: () => trackContact("partners_footer"),
