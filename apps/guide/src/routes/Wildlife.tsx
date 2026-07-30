@@ -83,6 +83,9 @@ export default function Wildlife() {
           <Link to="/essentials/bear-viewing" className="more-link">
             Where to actually see a bear →
           </Link>
+          <Link to="/essentials/safety-and-help" className="more-link">
+            Signal, the clinic, and the plan before you lose both →
+          </Link>
         </div>
       </main>
     </GatedChrome>

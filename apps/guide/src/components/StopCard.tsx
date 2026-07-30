@@ -11,6 +11,16 @@ import ResponsivePhoto from './ResponsivePhoto'
 import StopActions from './StopActions'
 import { Chip } from './ui/Chip'
 
+// Display labels for PhotoTiming.best. Kept local rather than in
+// content/labels.ts: this is presentation only, not a fact about the stop.
+const PHOTO_TIMING_LABEL: Record<string, string> = {
+  sunrise: 'sunrise',
+  'golden-am': 'morning',
+  sunset: 'sunset',
+  'golden-pm': 'evening',
+  night: 'after dark',
+}
+
 // Secret spots are stops minus `region`, which this card never reads —
 // widening the prop lets both render through the same component. Pages that
 // mix regions (the Secret Guide) pass `regionLabel` for an extra meta chip.
@@ -100,6 +110,19 @@ export default function StopCard({ stop, compact = true, regionLabel, actions = 
           already carry the whole body, and a citation block on every one of
           them turns a scannable list into a bibliography. */}
       {!compact && stop.history && <ArchiveNote note={stop.history} />}
+
+      {/* Full read only, same reasoning as the archive note above. Text only —
+          the actual sunrise/sunset/golden-hour clock times for today live in
+          SunLine (src/sun), not here; this is just the light advice. Reuses
+          the archive-note look rather than a new style for one more aside. */}
+      {!compact && stop.photoTiming && (
+        <aside className="archive-note">
+          <span className="archive-note__label">
+            Best light: {PHOTO_TIMING_LABEL[stop.photoTiming.best] ?? stop.photoTiming.best}
+          </span>
+          <p className="archive-note__body">{stop.photoTiming.note}</p>
+        </aside>
+      )}
 
       {compact && (
         <Link to={`/stop/${stop.id}`} className="stop-card__more">

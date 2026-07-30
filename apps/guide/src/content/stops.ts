@@ -608,6 +608,11 @@ const seed: StopInput[] = [
       'Two miles round trip on the abandoned stagecoach grade above Tunnel View to the spot where the first published drawing of the valley was made in 1855.',
     body:
       'In 1855 an artist named Thomas Ayres stood here and drew the first picture of Yosemite Valley ever published. For the next eight decades the stagecoach road into the valley ran right past the spot; when the Wawona Tunnel opened in 1933, the old grade was abandoned and the viewpoint went quiet. It has stayed quiet ever since, a few hundred yards of walking from one of the most crowded overlooks in America.\n\nStart on the Pohono Trail from the east end of the Tunnel View parking lot. At half a mile, where the trail crosses the old stagecoach road, turn left onto the abandoned grade; Artist Point is about a mile from the car, two miles round trip with a modest climb. The view is Tunnel View from higher and further east: same El Capitan, same Bridalveil, no idling buses, usually nobody at all. If you stay on the Pohono Trail another half mile before the turnoff, a stone marker notes the original Inspiration Point, though trees have mostly closed over that view.\n\nDo it as the first or last hour of a valley day. The parking is the [Tunnel View](/stop/tunnel-view) lot, so that pin is this pin too.',
+    photoTiming: {
+      best: 'sunset',
+      note:
+        'The view here is Tunnel View shifted higher and east, so the same last light on El Capitan and Bridalveil applies.',
+    },
   },
   {
     id: 'yosemite-point',
@@ -1294,6 +1299,11 @@ const seed: StopInput[] = [
       volume: 10,
       number: 5,
       issueDate: 'May 1931',
+    },
+    photoTiming: {
+      best: 'golden-am',
+      note:
+        'Morning is calmest here, with glass-flat water for paddling before the afternoon wind picks up and turns the lake to whitecaps.',
     },
   },
   {

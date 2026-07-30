@@ -334,6 +334,25 @@ const seed: EssentialInput[] = [
       'Some stops carry a short Caution note. It is not boilerplate; it names the specific thing that hurts people at that specific place, a slick lip above a cascade, an unrailed rim, a ford. Read it as part of the stop, not as fine print.\n\n' +
       'Finally, the routes we left out. This guide names some famous ghosts, the Ledge Trail to Glacier Point, the Sierra Point overlook, Fern Ledge behind the upper fall, the descent of Tenaya Canyon, because they are part of the park\'s story and you will hear about them. It gives directions to none of them. The park closed or abandoned those routes for cause, the cause being rockfall, exposure, and a fatality list that is still growing, and no guidebook paragraph changes what the granite does. The history is yours to enjoy. The maintained trail next to it is the one to walk.',
   },
+  {
+    id: 'safety-and-help',
+    title: 'Safety and help: signal, the clinic, and the plan for before you lose both',
+    order: 44,
+    section: 'safety',
+    teaser: 'Where the signal actually is, what 911 can and cannot reach, and the clinic that is not a hospital.',
+    body:
+      'Plan on having no cell signal for most of this trip. There is some coverage around Yosemite Village and parts of the valley floor, and travelers report occasional bars in Wawona and near the Tuolumne Meadows store, but none of it is reliable enough to build a plan around. Tioga Road, Hetch Hetchy Road, the Big Oak Flat and Highway 140 canyon stretches, and nearly every trail run long dead zones, often for the whole drive or the whole hike. Treat "assume none" as the working rule, not the pessimistic one.\n\n' +
+      'The emergency number is 911. A landline reaches dispatch where a cell carrier has nothing, so a lodge room phone or a phone at a visitor center or ranger station is worth more than a handset with no bars. On a cell phone in the canyons a call can drop or simply never connect: try it, but do not assume it went through just because you dialed. Do not plan on texting 911 either, because whether that works depends on the dispatch center and it needs signal regardless. If a call will not go out and the situation allows it, get to the nearest visitor center or ranger station in person, or send someone who can, rather than keep retrying a dead phone.\n\n' +
+      'The Yosemite Medical Clinic, in Yosemite Village, handles urgent care: sprains, cuts, altitude symptoms, the kind of thing that needs a professional but not an ambulance. It is a clinic, not a hospital, and it does not run its own emergency department. A serious injury or illness gets stabilized and sent out of the park to a hospital in one of the surrounding towns, which is a real drive, so build that possibility into how far you push a plan, especially a day far from the road.\n\n' +
+      'The habits that make all of this manageable cost nothing and take a minute. Tell someone outside the park, or at least back at the room, which trail you are doing and when you expect to be down; that is the detail search and rescue actually uses. Download or screenshot the map or directions you need before you leave signal, rather than count on a live map loading at the trailhead: a connected map with no connection is a blank screen. And carry water and a headlamp on any afternoon hike, even a short one, because the gap between a normal outing and a genuine problem is usually just how prepared you were for the day running long.',
+    checklist: [
+      { id: 'safety-signal-assumption', label: 'Assumed no cell signal past Yosemite Village and the valley floor' },
+      { id: 'safety-plan-shared', label: 'Told someone your plan: trail, start time, expected return' },
+      { id: 'safety-maps-saved', label: 'Maps and directions downloaded or screenshotted before losing signal' },
+      { id: 'safety-water-headlamp', label: 'Water and a headlamp packed, even for a short afternoon hike' },
+      { id: 'safety-landline-known', label: 'Know that a landline reaches 911 where a cell phone will not' },
+    ],
+  },
 
   // ── Packing kits ported from the editorial KIT system (brand callouts and
   // affiliate links stripped; ids prefixed so the global tfg.checklist map
