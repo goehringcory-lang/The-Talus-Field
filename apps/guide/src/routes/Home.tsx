@@ -531,7 +531,11 @@ export default function Home() {
               title="What did I see?"
               teaser="Quick identification for the animals, birds, and trees you actually meet: the one or two field marks that settle it, plus the safety notes that matter."
               meta="Mammals · birds · trees · reptiles"
-            />
+            >
+              <div className="tool-card__sub">
+                <Link to="/hunts">Find-it lists for kids →</Link>
+              </div>
+            </ToolCard>
             <ToolCard
               to="/search"
               title="Search the guide"
