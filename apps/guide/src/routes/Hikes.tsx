@@ -15,6 +15,7 @@ import { Chip, ChipButton } from '../components/ui/Chip'
 import EmptyState from '../components/ui/EmptyState'
 import PageHeader from '../components/ui/PageHeader'
 import { REGIONS, REGION_SHORT, getHikesByRegion, getStopById } from '../content'
+import { getHikeTraits } from '../content/hike-traits'
 import { DIFFICULTY_LABEL, formatTime } from '../content/labels'
 import type { HikeRouteT, HikeT, Region } from '../content'
 import { announceTripAdd } from '../trip/addFeedback'
@@ -32,6 +33,36 @@ const ROUTE_LABEL: Record<HikeRouteT, string> = {
 const DIFFICULTIES = ['easy', 'moderate', 'strenuous'] as const
 type Difficulty = (typeof DIFFICULTIES)[number]
 
+// The matcher's time bands answer "we have N hours", so they filter on the
+// planner's generous durationMin, not on distance.
+const TIME_BANDS = [
+  { id: 'under2', label: 'Under 2 hours', maxMin: 120 },
+  { id: 'half', label: 'Half a day', maxMin: 300 },
+] as const
+type TimeBand = (typeof TIME_BANDS)[number]['id']
+
+// Trait-driven fit filters, powered by content/hike-traits.ts. A hike with
+// no traits entry cannot happen (the module throws at load), so the getter's
+// undefined branch is only for type comfort.
+const FIT_FILTERS = [
+  { id: 'kids', label: 'Good with kids' },
+  { id: 'stroller', label: 'Stroller-smooth' },
+  { id: 'quiet', label: 'Quieter trail' },
+  { id: 'shade', label: 'Some shade' },
+] as const
+type FitFilter = (typeof FIT_FILTERS)[number]['id']
+
+function matchesFit(hike: HikeT, fit: Set<FitFilter>): boolean {
+  if (fit.size === 0) return true
+  const traits = getHikeTraits(hike.id)
+  if (!traits) return false
+  if (fit.has('kids') && !traits.kidFriendly) return false
+  if (fit.has('stroller') && !traits.stroller) return false
+  if (fit.has('quiet') && traits.crowd !== 'low') return false
+  if (fit.has('shade') && traits.shade === 'exposed') return false
+  return true
+}
+
 function formatDistance(hike: HikeT): string {
   return `${hike.distanceMi} mi${hike.route === 'one-way' ? ' one-way' : ''}`
 }
@@ -43,7 +74,18 @@ function formatGain(ft: number): string {
 export default function Hikes() {
   const [regionFilter, setRegionFilter] = useState<Region | null>(null)
   const [difficultyFilter, setDifficultyFilter] = useState<Difficulty | null>(null)
+  const [timeFilter, setTimeFilter] = useState<TimeBand | null>(null)
+  const [fitFilters, setFitFilters] = useState<Set<FitFilter>>(new Set())
   const { plan, addHike } = useTripPlan()
+
+  const toggleFit = (id: FitFilter) => {
+    setFitFilters((prev) => {
+      const next = new Set(prev)
+      if (next.has(id)) next.delete(id)
+      else next.add(id)
+      return next
+    })
+  }
 
   const plannedHikeIds = useMemo(
     () => new Set(plan.items.filter((it) => it.type === 'hike').map((it) => it.hikeId)),
@@ -56,11 +98,15 @@ export default function Hikes() {
         .map((r) => ({
           region: r,
           hikes: getHikesByRegion(r.id).filter(
-            (h) => !difficultyFilter || h.difficulty === difficultyFilter,
+            (h) =>
+              (!difficultyFilter || h.difficulty === difficultyFilter) &&
+              (!timeFilter ||
+                h.durationMin <= (TIME_BANDS.find((b) => b.id === timeFilter)?.maxMin ?? Infinity)) &&
+              matchesFit(h, fitFilters),
           ),
         }))
         .filter((s) => s.hikes.length > 0),
-    [regionFilter, difficultyFilter],
+    [regionFilter, difficultyFilter, timeFilter, fitFilters],
   )
 
   return (
@@ -96,6 +142,31 @@ export default function Hikes() {
           ))}
         </div>
 
+        {/* The matcher row: "we have three hours and a stroller". Time bands
+            are single-select; fit filters stack (kids AND quiet works). */}
+        <div className="hikes-chips" role="group" aria-label="Match hikes to your day">
+          {TIME_BANDS.map((band) => (
+            <ChipButton
+              key={band.id}
+              variant="filter"
+              pressed={timeFilter === band.id}
+              onClick={() => setTimeFilter(timeFilter === band.id ? null : band.id)}
+            >
+              {band.label}
+            </ChipButton>
+          ))}
+          {FIT_FILTERS.map((f) => (
+            <ChipButton
+              key={f.id}
+              variant="filter"
+              pressed={fitFilters.has(f.id)}
+              onClick={() => toggleFit(f.id)}
+            >
+              {f.label}
+            </ChipButton>
+          ))}
+        </div>
+
         {sections.length === 0 && <EmptyState note="Nothing matches the current filters." />}
 
         {sections.map(({ region, hikes }) => (
@@ -105,6 +176,7 @@ export default function Hikes() {
               const inPlan = plannedHikeIds.has(hike.id)
               const trailheadStop = hike.stopId ? getStopById(hike.stopId) : undefined
               const track = getTrackSummary(hike.id)
+              const traits = getHikeTraits(hike.id)
               const add = () => {
                 addHike(hike.id)
                 announceTripAdd(hike.title)
@@ -125,6 +197,9 @@ export default function Hikes() {
                         <span>{ROUTE_LABEL[hike.route]}</span>
                         {hike.permit && <Chip variant="badge">Permit</Chip>}
                         {hike.season && <Chip variant="badge">{hike.season}</Chip>}
+                        {traits?.kidFriendly && <Chip variant="badge">Kids OK</Chip>}
+                        {traits?.stroller && <Chip variant="badge">Stroller</Chip>}
+                        {traits?.crowd === 'low' && <Chip variant="badge">Quieter</Chip>}
                       </span>
                     </span>
                     {inPlan ? (
