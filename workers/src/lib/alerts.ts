@@ -107,7 +107,9 @@ function deriveRoads(alerts: AlertItemT[]): RoadStatusT[] {
         detail = alert.title
         break
       }
-      if (OPEN_RE.test(text) && status !== 'closed') {
+      // No break here: a later alert can still mark the road closed, and
+      // closed wins by breaking out above.
+      if (OPEN_RE.test(text)) {
         status = 'open'
         detail = alert.title
       }

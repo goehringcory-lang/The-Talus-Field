@@ -15,6 +15,9 @@
 
 import { useEffect, useMemo, useState, type ReactElement } from 'react'
 import { Link } from 'react-router-dom'
+import AirLine from '../air/AirLine'
+import RoadsLine from '../alerts/RoadsLine'
+import FlowLine from '../flow/FlowLine'
 import GatedChrome from '../components/GatedChrome'
 import EmptyState from '../components/ui/EmptyState'
 import PageHeader from '../components/ui/PageHeader'
@@ -68,6 +71,9 @@ function ConditionsBlock({
       )}
       <SunLine dateIso={today} />
       <WaitsLine />
+      <RoadsLine />
+      <AirLine />
+      <FlowLine />
       <p className="today-conditions__note">
         Sun times are horizon times; canyon walls hold the valley floor in shade longer.
       </p>

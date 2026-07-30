@@ -41,6 +41,9 @@ import UpdatedStamp from '../components/UpdatedStamp'
 import Button from '../components/ui/Button'
 import Callout from '../components/ui/Callout'
 import PageHeader from '../components/ui/PageHeader'
+import AirLine from '../air/AirLine'
+import RoadsLine from '../alerts/RoadsLine'
+import FlowLine from '../flow/FlowLine'
 import WaitsLine from '../waits/WaitsLine'
 import { useWeather } from '../weather/useWeather'
 import { HIDE_AFTER_MS, WARN_AFTER_MS } from '../weather/staleness'
@@ -420,6 +423,9 @@ export default function Home() {
             </p>
           )}
           <WaitsLine />
+          <RoadsLine />
+          <AirLine />
+          <FlowLine />
           <div className="home-crosslinks">
             <Link to="/map" className="more-link">
               Every stop pinned on the park map →
