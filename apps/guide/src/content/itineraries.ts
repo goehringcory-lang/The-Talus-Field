@@ -351,3 +351,55 @@ for (const itinerary of Object.values(ITINERARIES)) {
 export function isItineraryKey(value: string | null | undefined): value is ItineraryKey {
   return !!value && (ITINERARY_KEYS as string[]).includes(value)
 }
+
+// ── Backup plans: what to do when the day turns ──────────────────────────────
+// One curated fallback per trigger, shared across every preset rather than
+// duplicated per itinerary: a rained-out first-visit day and a rained-out
+// easy-pace day want the same answer (the valley, close to the car, where
+// rain feeds the falls and clearing storms make the famous light). These are
+// informational plans the reader swaps in by hand; nothing seeds itself,
+// per the pendingImport rule that only an explicit tap writes to the plan.
+// The stop lists validate at load like the itinerary days above.
+
+export type BackupPlan = {
+  trigger: 'rain' | 'smoke'
+  title: string
+  note: string
+  stops: string[]
+}
+
+export const BACKUP_PLANS: BackupPlan[] = [
+  {
+    trigger: 'rain',
+    title: 'The rain day',
+    note: 'Rain is the falls turned up. Work the valley close to the car: the paved falls walks take ten wet minutes each, the museum and the Ahwahnee great room are dry, and if the storm breaks, Tunnel View in clearing weather is the most famous light in the park.',
+    stops: [
+      'lower-yosemite-fall',
+      'bridalveil-fall',
+      'yosemite-village',
+      'ahwahnee-hotel',
+      'tunnel-view',
+      'curry-village-pizza',
+    ],
+  },
+  {
+    trigger: 'smoke',
+    title: 'The smoke day',
+    note: 'Smoke pools by elevation and drainage, so the move is to check the morning AQI and drive to the clear end of the park, most often up. Tuolumne at 8,600 feet frequently sits above what the valley is breathing. If the whole park reads unhealthy, make it a short day: the smoke-season essentials page covers the thresholds.',
+    stops: [
+      'olmsted-point',
+      'tenaya-lake',
+      'soda-springs-parsons-lodge',
+      'tuolumne-meadows-grill',
+    ],
+  },
+]
+
+for (const plan of BACKUP_PLANS) {
+  for (const id of plan.stops) {
+    const stop = stops.find((s) => s.id === id)
+    if (!stop || stop.collection === 'hidden') {
+      throw new Error(`Backup plan "${plan.title}" lists unknown or hidden stop "${id}"`)
+    }
+  }
+}
