@@ -81,6 +81,24 @@ function monthNameFromLabel(label) {
   }
 }
 
+// The live price as inline text, wherever prose needs it. Renders the
+// fallback until /api/inventory answers (one shared fetch per page view).
+function LivePrice() {
+  const [priceCents, setPriceCents] = React.useState(GUIDE_PRICE_FALLBACK_CENTS);
+  React.useEffect(() => {
+    let cancelled = false;
+    fetchInventory().then((body) => {
+      if (!cancelled && body && Number.isFinite(body.priceCents) && body.priceCents > 0) {
+        setPriceCents(body.priceCents);
+      }
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+  return <React.Fragment>{formatPrice(priceCents)}</React.Fragment>;
+}
+
 function GuideBuyBox() {
   const [busy, setBusy] = React.useState(false);
   const [soldOut, setSoldOut] = React.useState(null); // { reopens } or null
@@ -240,7 +258,7 @@ function GuideBuyBox() {
           >
             {busy
               ? "Opening checkout…"
-              : `${giftMode ? "Gift the guide" : "Buy the guide"} → ${formatPrice(priceCents)}`}
+              : `${giftMode ? "Gift the offline guide" : "Get the offline guide"} → ${formatPrice(priceCents)}`}
           </button>
           <p style={{ fontFamily: "var(--sans)", fontSize: 12, color: "var(--ink-3)", lineHeight: 1.55, margin: "0 0 14px" }}>
             Checkout by Stripe. Your access code arrives by email in about a minute.
@@ -269,7 +287,7 @@ function GuideBuyBox() {
         }}
         style={{ display: "block", textAlign: "center", border: "1px solid var(--ink)", padding: "10px 14px", marginTop: 16, fontFamily: "var(--sans)", fontSize: 12, textTransform: "uppercase", letterSpacing: "0.12em", fontWeight: 600, color: "var(--ink)", textDecoration: "none", background: "var(--paper)" }}
       >
-        Read a free sample first →
+        Open the free sample first →
       </a>
 
       <p style={{ fontFamily: "var(--sans)", fontSize: 12, color: "var(--ink-3)", lineHeight: 1.55, margin: "8px 0 0" }}>
@@ -285,7 +303,7 @@ function GuideBuyBox() {
           <li>· Download the whole guide for offline, about 50 MB</li>
           <li>· Time budgets and a swap for when the lot is full</li>
           <li>· Programs by your dates: ranger walks, Junior Ranger, tours, star parties. Synced online, readable offline</li>
-          <li>· A planning calendar that lays out each day, then syncs to Google Calendar, or any calendar app, and re-syncs when you change the plan</li>
+          <li>· A planning calendar that lays out each day, drive times included, and saves the trip to your calendar as a file, no signal needed</li>
           <li>· Know-before-you-go essentials, a night-before checklist, and a packing list you check off in-app</li>
           <li>· Search across everything</li>
           <li>· The Secret Guide: unsigned turnouts, hidden stops, and secret spots, included</li>
@@ -410,7 +428,7 @@ function GuideWaitlistBox() {
           <li>· Download the whole guide for offline, about 50 MB</li>
           <li>· Time budgets and a swap for when the lot is full</li>
           <li>· Programs by your dates: ranger walks, Junior Ranger, tours, star parties. Synced online, readable offline</li>
-          <li>· A planning calendar that lays out each day, then syncs to Google Calendar, or any calendar app, and re-syncs when you change the plan</li>
+          <li>· A planning calendar that lays out each day, drive times included, and saves the trip to your calendar as a file, no signal needed</li>
           <li>· Know-before-you-go essentials, a night-before checklist, and a packing list you check off in-app</li>
           <li>· Search across everything</li>
           <li>· The Secret Guide: unsigned turnouts, hidden stops, and secret spots, included</li>
@@ -473,8 +491,8 @@ const APP_SHOTS = [
   },
   {
     src: "img/guide/screens/calendar.webp",
-    alt: "The app's add-to-calendar sheet, offering a subscribed feed that stays updated or a one-time .ics file",
-    caption: "When the days are set, the board goes onto the calendar you already carry: a subscribed feed that follows your edits, or a one-time file.",
+    alt: "The app's add-to-calendar sheet, saving the whole trip as a calendar file your phone imports in one tap",
+    caption: "When the days are set, one tap saves the whole board as a calendar file your phone imports, reminders and directions links included. No signal needed.",
   },
   {
     src: "img/guide/screens/today.webp",
@@ -503,10 +521,527 @@ function AppShots() {
   );
 }
 
-// The end-of-page buy button: same checkout POST as the aside, no gift path.
-// A reader who made it through the whole pitch shouldn't have to scroll back
-// up to act on it.
-function BuyNowButton({ location }) {
+// The five-screen walkthrough: the app in the order a trip actually uses it.
+// Same screenshot files as the strip below; every image stays in the DOM
+// (real <img> + alt, so the sequence is crawlable), and the step list doubles
+// as the navigation. Auto-advance is triple-gated: only while the stage is on
+// screen (IntersectionObserver), never under prefers-reduced-motion, and any
+// manual step stops the timer for good.
+const WALKTHROUGH_STEPS = [
+  {
+    src: "img/guide/screens/front-page.webp",
+    alt: "The app's front page: four regions, each with a stop count and today's forecast",
+    title: "Pick a direction",
+    detail: "Four regions, every stop counted, today's forecast on each.",
+  },
+  {
+    src: "img/guide/screens/stop.webp",
+    alt: "A stop page with a tappable GPS coordinate, the elevation, and a 25-minute time budget",
+    title: "Read the numbers",
+    detail: "A tappable coordinate, the elevation, the honest time budget.",
+  },
+  {
+    src: "img/guide/screens/swap.webp",
+    alt: "The stop's 'If full' swap: exactly where to go when the lot is full",
+    title: "Know the move when the lot is full",
+    detail: "The swap is printed on the stop itself, not somewhere in your notes.",
+  },
+  {
+    src: "img/guide/screens/trip-board.webp",
+    alt: "A trip day drawn as a timeline: blocks sized by duration with drive buffers between",
+    title: "Build the day in driving order",
+    detail: "Blocks sized by how long things take, drives figured between them.",
+  },
+  {
+    src: "img/guide/screens/today.webp",
+    alt: "The field-day screen: light, entrance waits, and the day in time order",
+    title: "Work the day from one screen",
+    detail: "Light, entrance waits, what's on now. The plan with the planning taken out.",
+  },
+];
+
+const WALKTHROUGH_INTERVAL_MS = 4000;
+
+function GuideWalkthrough() {
+  const [active, setActive] = React.useState(0);
+  const [paused, setPaused] = React.useState(false);
+  const rootRef = React.useRef(null);
+  const inViewRef = React.useRef(true);
+  const reducedMotion = React.useMemo(() => {
+    try {
+      return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    } catch (_e) {
+      return false;
+    }
+  }, []);
+
+  React.useEffect(() => {
+    if (reducedMotion || paused) return undefined;
+    let io = null;
+    if (typeof IntersectionObserver !== "undefined" && rootRef.current) {
+      inViewRef.current = false;
+      io = new IntersectionObserver((entries) => {
+        inViewRef.current = entries.some((e) => e.isIntersecting);
+      });
+      io.observe(rootRef.current);
+    }
+    const timer = setInterval(() => {
+      if (inViewRef.current) {
+        setActive((a) => (a + 1) % WALKTHROUGH_STEPS.length);
+      }
+    }, WALKTHROUGH_INTERVAL_MS);
+    return () => {
+      clearInterval(timer);
+      if (io) io.disconnect();
+    };
+  }, [reducedMotion, paused]);
+
+  function goToStep(i) {
+    setPaused(true);
+    setActive(i);
+  }
+
+  return (
+    <div className="guide-walkthrough" ref={rootRef}>
+      <div className="guide-walkthrough__stage" aria-live="off">
+        {WALKTHROUGH_STEPS.map((step, i) => (
+          <img
+            key={step.src}
+            className={"guide-walkthrough__shot" + (i === active ? " is-active" : "")}
+            src={step.src}
+            alt={step.alt}
+            width="640"
+            height="1385"
+            loading="lazy"
+            decoding="async"
+          />
+        ))}
+      </div>
+      <ol className="guide-walkthrough__steps">
+        {WALKTHROUGH_STEPS.map((step, i) => (
+          <li key={step.src}>
+            <button
+              type="button"
+              className={"guide-walkthrough__step" + (i === active ? " is-active" : "")}
+              aria-current={i === active ? "step" : undefined}
+              onClick={() => goToStep(i)}
+            >
+              <span className="guide-walkthrough__step-num">{i + 1}</span>
+              <span className="guide-walkthrough__step-body">
+                <strong>{step.title}</strong>
+                <span>{step.detail}</span>
+              </span>
+            </button>
+          </li>
+        ))}
+      </ol>
+    </div>
+  );
+}
+
+// The outcome blocks: what the guide changes about the day, each claim backed
+// by a number that is true in the shipped content. Counts come from
+// apps/guide/src/content (stops.ts, hikes.ts, itineraries.ts); re-verify
+// there before editing a proof line.
+const OUTCOMES = [
+  {
+    kicker: "Find the correct parking turnout",
+    body:
+      "Every stop carries a coordinate that opens your Maps app with the line already drawn, and the parking is written into the stop itself: which lot, which pullout, which side of the road, and what the tell is when the sign is missing. The unsigned turnouts locals use have their own entries.",
+    proof: "A source-verified coordinate on 65 of the 66 stops",
+  },
+  {
+    kicker: "Know how long each stop actually takes",
+    body:
+      "Each stop states its time budget, drive included, so you know what fits before lunch while it still matters. Hikes carry verified distance, climbing, and an effort score computed from real terrain data, not the trailhead sign's optimism.",
+    proof: "Time budgets on 65 of 66 stops · 57 hikes with verified GPS tracks",
+  },
+  {
+    kicker: "Replace a hike when weather, crowds, or children change the plan",
+    body:
+      "The flagship stops print their swap right on the page: where to go the moment the lot is full or the trail is not happening today. Ready-made day plans cover the half day, the first visit, young kids, grandparents, and the whole multi-generation caravan.",
+    proof: "Swaps printed on the flagship stops · 9 ready-made day plans",
+  },
+  {
+    kicker: "Navigate when service disappears",
+    body:
+      "One tap downloads the whole guide: every entry, every photo, all 57 hike tracks, and a topographic map of the park with every stop pinned. Service dies past the tunnel and on most of Tioga Road. The guide is built for exactly that.",
+    proof: "About 50 MB all-in. The map is about 20 MB of it",
+  },
+  {
+    kicker: "Build each day in driving order",
+    body:
+      "The planner draws each day as a real timeline: blocks sized by their time budgets, drives between stops computed from the actual distances and dropped in as buffers. Drag a block and the day re-flows. One tap saves the finished plan to your calendar, no signal needed.",
+    proof: "Drive buffers figured from real distances, 10 to 75 minutes",
+  },
+];
+
+function GuideOutcomes() {
+  return (
+    <div className="guide-outcomes">
+      {OUTCOMES.map((o) => (
+        <div className="guide-outcome" key={o.kicker}>
+          <h3 className="guide-outcome__kicker">{o.kicker}</h3>
+          <p className="guide-outcome__body">{o.body}</p>
+          <div className="guide-outcome__proof">{o.proof}</div>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+// One real stop, quoted verbatim from the app's content (the tunnel-view
+// entry in apps/guide/src/content/stops.ts). If the app's entry changes,
+// re-quote it here; nothing in this block is written for the ad.
+function GuideStopExample() {
+  return (
+    <div className="guide-stop-ex">
+      <div className="eyebrow eyebrow--moss">From the guide · Yosemite Valley · Stop 1 of 21</div>
+      <h3 className="guide-stop-ex__title">Tunnel View, the moment the valley opens</h3>
+      <div className="guide-stop-ex__meta">
+        <a
+          className="guide-stop-ex__chip guide-stop-ex__chip--coord"
+          href="https://www.google.com/maps/dir/?api=1&destination=37.7156,-119.6773"
+          target="_blank"
+          rel="noopener"
+        >
+          37.7156, −119.6773 · directions
+        </a>
+        <span className="guide-stop-ex__chip">4,400 ft</span>
+        <span className="guide-stop-ex__chip">25 minutes</span>
+      </div>
+      <p className="guide-stop-ex__body">
+        You come out of the Wawona Tunnel and the whole valley is there at once. El Capitan on the left, Bridalveil Fall on the right, Half Dome anchoring the back wall. Most people raise a phone and lower it after thirty seconds. Don't. Stay fifteen minutes. Look at the U-shape of the valley floor — a glacier did that, two thousand feet of ice. The hanging valleys above the rim are why the waterfalls fall so far. You're not looking at scenery; you're looking at the geological event. Once you see it, you can't unsee it for the rest of the trip.
+      </p>
+      <div className="guide-stop-ex__swap">
+        <div className="guide-stop-ex__swap-label">If the lot is full</div>
+        <p>
+          If the parking lot is full (it usually is between 10 a.m. and 4 p.m.), continue down to Valley View / Gates of the Valley. Lower angle, same valley, no crowd.
+        </p>
+      </div>
+      <p className="guide-stop-ex__cite">
+        From the archive, printed on the stop: the tunnel behind you was new in 1933, and the naturalists spent that first year logging what walked into it. <em>Yosemite Nature Notes</em>, Vol. 12 No. 11, November 1933.
+      </p>
+      <p className="guide-stop-ex__links">
+        <a
+          href={`${GUIDE_APP_BASE}/stop/tunnel-view`}
+          onClick={() => {
+            if (window.track) window.track("guide_sample_click", { location: "guide_stop_example" });
+          }}
+        >
+          Open this stop in the real app →
+        </a>{" "}
+        It is one of five sample entries anyone can read in full, no account needed.
+      </p>
+    </div>
+  );
+}
+
+// The seeded one-day Valley plan, exactly as the in-app planner slots it:
+// stop order and time budgets from apps/guide/src/content (itineraries.ts
+// VALLEY_DAY + stops.ts timeBudgetMin), drive buffers from the planner's own
+// heuristic in apps/guide/src/trip/slotting.ts (haversine distance at 22 mph
+// plus 10 min park-and-walk, clamped 10-75; flat 30 when a coordinate is
+// missing). Recompute if the preset or the budgets change; do not eyeball.
+const ITIN_DEMO = [
+  { time: "8:00 a.m.", label: "Tunnel View", mins: 25 },
+  { drive: 14 },
+  { time: "8:39 a.m.", label: "Bridalveil Fall", mins: 30 },
+  { drive: 30 },
+  { time: "9:39 a.m.", label: "Valley loop drive, Tunnel View to Curry Village", mins: 60 },
+  { drive: 30 },
+  { time: "11:09 a.m.", label: "Cook's Meadow Loop", mins: 60 },
+  { drive: 13 },
+  { time: "12:22 p.m.", label: "Lunch at Curry Village", mins: 60 },
+  { drive: 12 },
+  { time: "1:34 p.m.", label: "The Ahwahnee, lobby visit", mins: 45 },
+  { drive: 12 },
+  { time: "2:31 p.m.", label: "Mirror Lake, before the crowd", mins: 90 },
+  { drive: 22 },
+  { time: "4:23 p.m.", label: "El Capitan Meadow, watching the wall", mins: 60 },
+  { drive: 18 },
+  { time: "5:41 p.m.", label: "Sentinel Bridge, the last hour", mins: 60 },
+];
+
+function GuideItineraryExample() {
+  return (
+    <div className="guide-itin-demo">
+      <div className="eyebrow eyebrow--moss">From the planner · Day 1 · Yosemite Valley</div>
+      <ol className="guide-itin-demo__list">
+        {ITIN_DEMO.map((row, i) =>
+          row.drive ? (
+            <li className="guide-itin-demo__drive" key={`d${i}`}>
+              drive · {row.drive} min
+            </li>
+          ) : (
+            <li className="guide-itin-demo__block" key={row.label}>
+              <span className="guide-itin-demo__time">{row.time}</span>
+              <span className="guide-itin-demo__label">{row.label}</span>
+              <span className="guide-itin-demo__dur">{row.mins} min</span>
+            </li>
+          )
+        )}
+      </ol>
+      <p className="guide-itin-demo__note">
+        This is the one-day Valley preset exactly as the planner lays it out: every duration is the stop's own time budget, every drive is computed from the real distance between the two coordinates. Drag any block and the day re-flows around it. The day ends on Sentinel Bridge because that is where the last light goes.
+      </p>
+    </div>
+  );
+}
+
+// The offline demonstration: same screenshot, a two-state toggle, and an
+// honest accounting of what needs signal. No animation, so nothing to gate
+// on prefers-reduced-motion.
+function GuideOfflineDemo() {
+  const [off, setOff] = React.useState(true);
+
+  return (
+    <div className="guide-offline">
+      <div className="guide-offline__demo">
+        <div className="guide-offline__toggle" role="group" aria-label="Simulate cell service">
+          <button
+            type="button"
+            className={off ? "" : "is-active"}
+            aria-pressed={!off}
+            onClick={() => setOff(false)}
+          >
+            With service
+          </button>
+          <button
+            type="button"
+            className={off ? "is-active" : ""}
+            aria-pressed={off}
+            onClick={() => setOff(true)}
+          >
+            No service
+          </button>
+        </div>
+        <div className={"guide-offline__frame" + (off ? " is-off" : "")}>
+          <div className="guide-offline__status" aria-hidden="true">No Service · Airplane mode</div>
+          <img
+            src="img/guide/screens/stop.webp"
+            alt="A stop page in the app, rendering identically with or without cell service"
+            width="640"
+            height="1385"
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+        <p className="guide-offline__caption">
+          {off
+            ? "Airplane mode. The stop, its coordinate, its swap, the map, and your whole plan render exactly the same."
+            : "With service you also get the live extras: webcams, entrance waits, fresh weather."}
+        </p>
+      </div>
+      <div className="guide-offline__cols">
+        <div>
+          <div className="eyebrow">Works with zero bars</div>
+          <ul>
+            <li>· All 81 entries, photos included</li>
+            <li>· All 57 hikes with tracks and elevation profiles</li>
+            <li>· The topographic park map, every stop pinned</li>
+            <li>· The trip board, the day view, and calendar export</li>
+            <li>· Checklists, essentials, search, the Secret Guide</li>
+          </ul>
+        </div>
+        <div>
+          <div className="eyebrow">Needs signal</div>
+          <ul>
+            <li>· The live park webcams</li>
+            <li>· Entrance waits right now</li>
+            <li>· Fresh weather and program updates (the last sync stays readable)</li>
+            <li>· The Nature Notes archive links back to this site</li>
+          </ul>
+        </div>
+      </div>
+      <p className="guide-offline__fineprint">
+        The full download is about 50 MB: the park map is roughly 20 MB of it, about 700 topographic tiles covering the whole park and the road corridors.
+      </p>
+    </div>
+  );
+}
+
+// Free tools vs. the guide. Every left-hand cell is a real page on this site
+// and stays free; the table says so out loud. Rendered as a real <table> so
+// crawlers and screen readers get the same comparison readers do.
+function GuideCompare({ go }) {
+  const freeLink = (href, key, label) => (
+    <a
+      href={href}
+      onClick={(e) => {
+        e.preventDefault();
+        go(key);
+      }}
+    >
+      {label}
+    </a>
+  );
+  return (
+    <div className="guide-compare-wrap">
+      <table className="guide-compare">
+        <caption>The free site stays free. The guide is the field version.</caption>
+        <thead>
+          <tr>
+            <th scope="col">Free on this site</th>
+            <th scope="col">In the Field Guide</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{freeLink("/articles", "articles", "Articles")} and {freeLink("/planning", "planning", "planning guides")}</td>
+            <td>The complete stop library: 81 entries across four regions</td>
+          </tr>
+          <tr>
+            <td>{freeLink("/now", "now", "Current conditions")}</td>
+            <td>The whole guide offline, about 50 MB, no bars needed</td>
+          </tr>
+          <tr>
+            <td>{freeLink("/itineraries", "itineraries", "Selected itineraries")}</td>
+            <td>All 57 day hikes and the 37-entry Secret Guide</td>
+          </tr>
+          <tr>
+            <td>The {freeLink("/map", "map", "basic trip map")}</td>
+            <td>The full trip builder: drag-and-drop days, drive buffers, calendar export</td>
+          </tr>
+          <tr>
+            <td>The {freeLink("/newsletter", "newsletter", "Sunday newsletter")}</td>
+            <td>18 months of silent updates as the season changes</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
+// Trust block. The bio facts mirror /about; keep them in sync with
+// page-about.jsx if the bio changes.
+function GuideTrust() {
+  return (
+    <div className="guide-trust">
+      <p className="guide-trust__intro">
+        The guide is written by Cory Goehring, a naturalist who lives in Yosemite National Park and has worked in and around it for twenty seasons, mostly on foot. Every stop was visited, timed, and written up the way the articles on this site are written: from the ground, not from a search-result roundup.
+      </p>
+      <div className="guide-trust__grid">
+        <div>
+          <strong>Works without cellular service.</strong> Built offline-first, because the park mostly is.
+        </div>
+        <div>
+          <strong>Every personal device.</strong> One purchase signs in your phone, tablet, and laptop.
+        </div>
+        <div>
+          <strong>No subscription.</strong> One payment, 18 months, nothing auto-renews.
+        </div>
+        <div>
+          <strong>No affiliate placements inside.</strong> The recommendations are picked, not paid for.
+        </div>
+        <div>
+          <strong>Updates included.</strong> Seasonal addenda and Secret Guide additions push silently.
+        </div>
+        <div>
+          <strong>30-day guarantee.</strong> If it does not work as described, it is refunded in full.
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// What happens after purchase, as the flow actually runs (Stripe checkout ->
+// Worker webhook -> access email with a reusable magic link + 6-digit code).
+// The refund promise quotes /terms section 1; keep the two in sync.
+function GuideAfterPurchase({ go }) {
+  return (
+    <div className="guide-after">
+      <ol className="guide-steps">
+        <li>
+          <strong>Checkout runs through Stripe.</strong> Card or wallet. This site never sees or stores your card number.
+        </li>
+        <li>
+          <strong>Within about a minute, an email arrives: "Your Field Guide is ready."</strong> It carries a sign-in link and a 6-digit code. Both keep working for the full 18 months, so keep the email.
+        </li>
+        <li>
+          <strong>Open the link, or enter the code, on each device you want signed in.</strong> Phone at the trailhead, tablet in the car, laptop the night before.
+        </li>
+        <li>
+          <strong>Add it to your home screen and tap the offline download.</strong> About 50 MB later the whole guide, map included, lives on the device.
+        </li>
+      </ol>
+      <p className="guide-after__policy">
+        If the guide does not work as described, email <a href="mailto:cory@thetalusfieldjournal.com">cory@thetalusfieldjournal.com</a> within 30 days and it is refunded in full, per the{" "}
+        <a
+          href="/terms"
+          onClick={(e) => {
+            e.preventDefault();
+            go("terms");
+          }}
+        >
+          terms
+        </a>
+        . The same address is the fix for a lost email or a sign-in that will not take. There is no ticket system and no bot: it is the author's inbox.
+      </p>
+    </div>
+  );
+}
+
+// The FAQ. Answers mirror known["/guide"].faq in edge/seo.js and the
+// known.guide entry in app.jsx's buildSeo: all three carry the same pairs,
+// kept in sync by hand (the /partners pattern). Answers are plain text so
+// the on-page copy and the FAQPage JSON-LD can never drift in substance.
+const GUIDE_FAQ = [
+  {
+    q: "Does it really work with no cell service?",
+    a: "Yes. One tap downloads the whole guide, about 50 MB: every entry, every photo, all 57 hike tracks, and a topographic map of the park. Only the live extras need signal: webcams, entrance waits, and fresh weather and program updates.",
+  },
+  {
+    q: "Is it an App Store app?",
+    a: "No. It is a web app you add to your home screen in one step, on iPhone or Android. No store account, no install wait, no version to manage. Once it is there it looks and behaves like a native app.",
+  },
+  {
+    q: "What happens right after I pay?",
+    a: "Stripe handles checkout. Within about a minute you get an email with a sign-in link and a 6-digit code. Both keep working for the full 18 months, so you can sign in on a new device whenever you like.",
+  },
+  {
+    q: "How many devices can I use it on?",
+    a: "Every device you personally own. Phone at the trailhead, tablet in the car, laptop the night before. The same code signs them all in.",
+  },
+  {
+    q: "Is it a subscription?",
+    a: "No. You pay $3.99 once and access runs 18 months. Nothing auto-renews. Near the end you are offered a discounted renewal, and if you do nothing, access simply ends.",
+  },
+  {
+    q: "What if I lose the email or can't sign in?",
+    a: "Email cory@thetalusfieldjournal.com and it gets sorted. The sign-in link and the code stay reusable for the whole 18 months, so finding the original email is usually the fix.",
+  },
+  {
+    q: "What is the refund policy?",
+    a: "If the guide does not work as described, email within 30 days of purchase and it is refunded in full. After a refund the access code is deactivated. The full policy is on the terms page.",
+  },
+  {
+    q: "What do I get that the free site doesn't already give me?",
+    a: "The complete library: 81 entries including the 37-entry Secret Guide, all 57 day hikes with verified GPS tracks, the drag-and-drop trip builder, and the offline download. The free site keeps the articles, the trip map, the itineraries, and the conditions board.",
+  },
+  {
+    q: "Does the guide change after I buy it?",
+    a: "Yes. Updates, seasonal addenda, and Secret Guide additions push silently through your access window. Nothing to re-download, nothing extra to pay.",
+  },
+];
+
+function GuideFaq() {
+  return (
+    <div className="guide-faq">
+      {GUIDE_FAQ.map((item) => (
+        <div className="guide-faq__item" key={item.q}>
+          <h3 className="guide-faq__q">{item.q}</h3>
+          <p className="guide-faq__a">{item.a}</p>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+// The end-of-section buy button: same checkout POST as the aside, no gift
+// path. A reader who made it through the pitch shouldn't have to scroll back
+// up to act on it. The label states the outcome, not the transaction.
+function BuyNowButton({ location, label }) {
   const [busy, setBusy] = React.useState(false);
   const [note, setNote] = React.useState(null);
 
@@ -543,7 +1078,7 @@ function BuyNowButton({ location }) {
         onClick={buy}
         style={{ border: 0, font: "inherit", cursor: busy ? "wait" : "pointer" }}
       >
-        {busy ? "Opening checkout…" : "Buy the guide →"}
+        {busy ? "Opening checkout…" : label || "Get the offline Yosemite guide →"}
       </button>
       {note && (
         <p style={{ fontFamily: "var(--sans)", fontSize: 13, color: "var(--moss)", lineHeight: 1.55, margin: "12px 0 0" }}>
@@ -639,7 +1174,7 @@ function GuideMobileBuyBar() {
         <span className="guide-buybar__sub">Offline app · 18 months</span>
       </div>
       <button type="button" className="guide-buybar__cta" disabled={busy} onClick={buy}>
-        {busy ? "Opening…" : "Buy the guide →"}
+        {busy ? "Opening…" : "Get the guide →"}
       </button>
     </div>
   );
@@ -654,14 +1189,28 @@ function GuidePage({ go }) {
           <div className="eyebrow eyebrow--moss">The Field Guide · Offline app · 2026 Edition</div>
           <h1>The Yosemite guide for people who already know about Glacier Point.</h1>
           <p className="page-head__dek">
-            A web app you add to your home screen. Four regional guides with tappable GPS, time budgets, a swap for when the plan dies, an offline topo map of the whole park, the ranger and partner program schedule on your dates, and a planning calendar that lays your days out block by block, then syncs them into Google or Apple Calendar and keeps them current when the plan changes. Works at the trailhead when service doesn't. Not a PDF. Not another tourist checklist.
+            A web app you add to your home screen. Four regional guides with tappable GPS, honest time budgets, and a swap for when the lot is full. All 57 in-park day hikes with verified tracks. The ranger and partner programs on your dates. A planner that builds each day in driving order, then saves the trip to your calendar. And the whole thing, topo map included, downloads to your phone and keeps working when service dies. Not a PDF. Not another tourist checklist.
           </p>
           <div className="guide-stats">
             <span>4 regions</span>
-            <span>44 stops</span>
+            <span>81 entries</span>
             <span>57 day hikes</span>
             <span>37 secret entries</span>
             <span>Works offline</span>
+          </div>
+          <div className="guide-hero-cta">
+            <BuyNowButton location="guide_hero" />
+            <p className="guide-hero-cta__sub">
+              <LivePrice />, once. 18 months, every device you own. Or{" "}
+              <a
+                href={`${GUIDE_APP_BASE}/preview`}
+                onClick={() => {
+                  if (window.track) window.track("guide_sample_click", { location: "guide_hero" });
+                }}
+              >
+                open the free sample first →
+              </a>
+            </p>
           </div>
         </div>
       </section>
@@ -700,82 +1249,60 @@ function GuidePage({ go }) {
               That's the problem this guide is built against. Time budgets tell you what actually fits before lunch. Swaps tell you where to go the second a lot is full. And because all of it lives on your phone and works without signal, the answer is there at the moment the day wobbles, which is never a moment with bars.
             </p>
 
-            <h2>Inside the app</h2>
+            <h2>Sixty seconds inside the app</h2>
 
             <p>
-              These are unedited screens from the current 2026 build, the same one buyers open, captured on a phone. What you see here is the product, not a mockup. Ten screens, in the order you'd use them: read the park, plan the days on the calendar, then work the day itself.
+              Five screens, in the order a trip actually uses them. These are unedited captures from the current 2026 build, the same one buyers open. Tap a step to hold it.
+            </p>
+
+            <GuideWalkthrough />
+
+            <h2>Every screen, unedited</h2>
+
+            <p>
+              The full set: ten screens from the current build, captured on a phone. What you see here is the product, not a mockup.
             </p>
 
             <AppShots />
 
-            <h2>The regional guides</h2>
+            <h2>What it does for the day</h2>
+
+            <GuideOutcomes />
+
+            <h2>Read one stop, in full</h2>
 
             <p>
-              The guide is organized by where you are in the park, not how long you're staying. Pick the region you're heading to, read the stops in suggested order, and do the ones that fit your day.
+              This is the guide's first stop, quoted word for word from the app. Every one of the 81 entries is built this way: the numbers up top, the read underneath, the fallback printed on the page, and, where the record allows it, a sourced note from a century of park naturalists' field bulletins.
             </p>
 
-            <ul>
-              <li><strong>Yosemite Valley & surrounding areas.</strong> The valley floor and the rim viewpoints that look down into it. Tunnel View, the meadows, the climbing wall on El Capitan, the Mist Trail to Vernal and Nevada Falls, and the valley lodgings.</li>
-              <li><strong>Glacier Point & the Mariposa Grove.</strong> The southern rim and the giant sequoias. Higher elevation, more driving, and the panoramas that put the whole valley below you. Closed in winter.</li>
-              <li><strong>Tuolumne Meadows & the Highway 120 corridor.</strong> The high country. Granite domes, alpine lakes, the meadow that turns the trip into something bigger than the valley. Tioga Road open roughly June through October.</li>
-              <li><strong>Hetch Hetchy & the Evergreen Road corridor.</strong> The other granite valley, half of it under a reservoir, with its own entrance and day-use gate hours. Open year-round and nearly empty.</li>
-            </ul>
+            <GuideStopExample />
 
-            <h2>What every stop gives you</h2>
-
-            <ul>
-              <li><strong>A tappable GPS coordinate.</strong> Tap it and your Maps app opens with the line drawn for you. No copying, no typing.</li>
-              <li><strong>A time budget.</strong> How long the stop actually takes, drive included. The kind of timing that prevents the late-afternoon scramble.</li>
-              <li><strong>A swap.</strong> What to do when the lot is full, the road is closed, or the crowd beat you there. Each major stop lists its alternate.</li>
-              <li><strong>The read.</strong> When to go, which direction to come from, and what most people get wrong. Written the way the articles on this site are written.</li>
-            </ul>
-
-            <h2>The offline map</h2>
+            <h2>A day, built in driving order</h2>
 
             <p>
-              Every stop is pinned on a topographic map of the park that downloads to your device. The map is about 20 MB of the roughly 50 MB full offline download. Lose service past the tunnel, on Glacier Point Road, or anywhere along Tioga, and the map still pans, still zooms, and still shows you where the next stop is. Turn-by-turn driving stays in your Maps app; the guide hands you off with one tap.
+              This is what the planner does with a day. Stops go in, and the day comes back as a timeline: each block sized by its real time budget, each gap computed from the actual driving distance between the two coordinates. No spreadsheet, no guessing whether four things fit before lunch.
             </p>
 
-            <h2>The programs, on your dates</h2>
+            <GuideItineraryExample />
+
+            <h2>Turn the service off</h2>
 
             <p>
-              The park runs more than most visitors ever find out about: ranger walks, Junior Ranger tables, Conservancy naturalist programs and evening talks at Parsons Memorial Lodge, guided tours, and the summer nights when the astronomy clubs haul telescopes up to Glacier Point. The schedules live in a half-dozen places. The app pulls them into one list. Pick your trip dates, sync once while you have signal, and scroll your days: what's running, when, where, what's free, what needs a reservation. The list stays on your phone, so it still reads at a picnic table with no bars.
+              Cell service dies at the Wawona Tunnel, on most of Glacier Point Road, and along nearly all of Tioga. The guide treats that as the normal case, not the failure case.
             </p>
 
-            <h2>The planning calendar, built into the app</h2>
+            <GuideOfflineDemo />
+
+            <h2>The free site, and the guide</h2>
 
             <p>
-              The planner is a calendar now, not a list. Add the stops you want, the hikes you're up for, and the programs you picked, and each day of your trip draws itself as a real timeline: blocks sized by how long a thing actually takes, the programs held at their published times, and the drive between two places figured from the distance and dropped in as a buffer. A three-hour hike is a tall block. A twenty-five minute viewpoint is a sliver. The shape of the day is readable before you've read a word of it.
+              Everything this site publishes stays free: the articles, the trip map, the itineraries, the conditions board. The guide is not those pages repackaged. It is the field version: the complete library, the planner, and the offline download that makes both of them work standing in a pullout with no bars.
             </p>
 
-            <p>
-              It's yours to move. Press and hold a block and drag it later, earlier, or onto another day; drag its bottom edge to give it more time; type in your own entries for the parts of a trip the guide doesn't know about, the cabin check-in and the dinner reservation. Every edit saves to the phone the moment you make it, so the whole calendar works with the radio off, in the park, on the morning it matters.
-            </p>
+            <GuideCompare go={go} />
 
-            <p>
-              When the plan is set, the app puts it on the calendar you already use, three ways. Pick whichever fits how you work.
-            </p>
-
-            <ul>
-              <li><strong>Connect Google Calendar once.</strong> Authorize it from the account page and your trip lands in your Google Calendar as real events. Change the plan later and it re-syncs on its own. The connection lives on the server, so the app never sees or stores your Google password.</li>
-              <li><strong>Subscribe from any calendar app.</strong> Publish the plan to a private link and add it to Apple Calendar, Outlook, or Google as a subscribed calendar named Yosemite trip. It sits beside your own calendar and follows every edit you make, on the calendar app's next refresh.</li>
-              <li><strong>Or just save the file.</strong> One tap writes a standard .ics that imports the whole trip at once. It needs no signal, for when you want the plan locked onto your phone before you leave the last of the reception behind.</li>
-            </ul>
-
-            <p>
-              Every event carries the stop's GPS coordinate and a directions link, and the timed ones carry a reminder, so the calendar alert at the trailhead is also the navigation.
-            </p>
-
-            <h2>The day, while you're in it</h2>
-
-            <p>
-              Once your dates arrive, the app opens on the day itself. One screen: sunrise, the golden hour at both ends, sunset, the wait at each entrance station right now, and then your day in time order with what's happening at this minute pulled to the top and the drive to the next thing already figured. It's the plan with the planning taken out, which is the only version worth reading with a car full of people waiting on you.
-            </p>
-
-            <h2>Know before you go</h2>
-
-            <p>
-              The app ships with an essentials section: how entrance reservations work, how to get around the Valley without moving your car, what the bears actually want, where cell coverage dies, what the roads do by season, and a packing checklist you check off in the app the night before. A night-before checklist walks you through the downloads that make the whole trip work offline, including the Google Maps offline area that keeps turn-by-turn directions alive past the entrance station.
+            <p style={{ marginTop: 24 }}>
+              <BuyNowButton location="guide_compare" />
             </p>
 
             <h2>The Secret Guide</h2>
@@ -783,6 +1310,14 @@ function GuidePage({ go }) {
             <p>
               There is a section of the guide that never makes it into articles: the parking turnouts locals use when the big lots fill, the trailheads with no signs from the road, and the spots that belong to no region at all. It's in the app now, browsable by category, every stop marked in gold on the offline map. It keeps growing through the season, and every addition arrives as a silent update, no re-download, no second charge.
             </p>
+
+            <h2>Who wrote it, and how</h2>
+
+            <GuideTrust />
+
+            <h2>What happens when you tap the button</h2>
+
+            <GuideAfterPurchase go={go} />
 
             <h2>What's NOT inside</h2>
 
@@ -805,14 +1340,9 @@ function GuidePage({ go }) {
               If you've already read every article on this site, taken thorough notes, built your own spreadsheet, called the park three times, and feel like you have a handle on it, you might not need the guide. The guide is for people who want the spreadsheet already built.
             </p>
 
-            <h2>Format and delivery</h2>
+            <h2>Questions, answered</h2>
 
-            <ul>
-              <li><strong>A web app you add to your home screen.</strong> Looks and feels like a native app. It is not a PDF and not a printed book. No App Store, no install wait, no version to keep updated.</li>
-              <li><strong>Works offline.</strong> One tap downloads the whole guide, every photo, and the park map to your device, about 50 MB. Lose service in the Valley or up at Tuolumne, the guide is still there.</li>
-              <li><strong>Updates push silently through the 2026 season.</strong> New advice, route swaps, seasonal addenda, and Secret Guide additions all arrive without you re-downloading anything.</li>
-              <li><strong>Pay once, sign in on every device you own.</strong> iPad in the car, iPhone at the trailhead, laptop the night before. Access lasts 18 months.</li>
-            </ul>
+            <GuideFaq />
 
             <h2>One small promise</h2>
 
@@ -823,7 +1353,7 @@ function GuidePage({ go }) {
             <div className="guide-closer">
               <div className="eyebrow eyebrow--moss" style={{ marginBottom: 12 }}>The offer, in one place</div>
               <p style={{ fontFamily: "var(--serif)", fontSize: 17, lineHeight: 1.6, margin: "0 0 20px" }}>
-                Four regional guides. 44 stops in driving order, each with GPS, a time budget, and a swap. All 57 in-park day hikes. The 37-entry Secret Guide. The park's program schedule on your dates. A planning calendar you drag into shape, then send to your calendar app, and an offline map that holds it all together. Nineteen dollars, once, for 18 months on every device you own.
+                Four regional guides. 44 stops in driving order, each with GPS and a time budget, the flagship ones with a swap. All 57 in-park day hikes with verified tracks. The 37-entry Secret Guide. The park's program schedule on your dates. A planning calendar you drag into shape, then save to the calendar you already use. And an offline topo map that holds it all together. <LivePrice />, once, for 18 months on every device you own.
               </p>
               <BuyNowButton location="guide_closer" />
               <p style={{ fontFamily: "var(--sans)", fontSize: 12, color: "var(--ink-3)", lineHeight: 1.55, margin: "14px 0 0" }}>

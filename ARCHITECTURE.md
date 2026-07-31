@@ -48,8 +48,8 @@ All events fire through `window.track`. Names and where they fire:
 | `newsletter_signup`, `newsletter_impression` | components.jsx helpers, called by every newsletter unit with a `location` param |
 | `newsletter_exit_intent_shown` | components.jsx (ExitIntentNewsletter) |
 | `guide_cta_click` | components.jsx (Footer "Field Guide" link, masthead nav), page-home.jsx (hero Field Guide card, `location: home_hero`; Go Deeper band, `location: home_band`) |
-| `guide_buy_click` | page-guide.jsx (`location`: `guide_aside` buy box, `guide_closer` end-of-pitch button, or `guide_mobile_bar` sticky phone bar) |
-| `guide_sample_click` | page-guide.jsx (links to the PWA's free sample at `/preview`, with `location`: `guide_aside` or `guide_closer`) |
+| `guide_buy_click` | page-guide.jsx (`location`: `guide_aside` buy box, `guide_hero` hero button, `guide_compare` under the comparison table, `guide_closer` end-of-pitch button, or `guide_mobile_bar` sticky phone bar) |
+| `guide_sample_click` | page-guide.jsx (links to the PWA's free sample surfaces, with `location`: `guide_aside`, `guide_hero`, `guide_stop_example`, or `guide_closer`) |
 | `widget_copy_snippet` | page-widget.jsx (copying the embed snippet) |
 | `consult_book_click` | page-consult.jsx (`location`: `consult_pay`, `consult_schedule`, or `consult_mailto`, with `live`) |
 | `partners_contact_click` | page-partners.jsx (group-code inquiries; `location`: `partners_tiers`, `partners_footer`, or `partners_contact_form`) |
