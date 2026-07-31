@@ -553,9 +553,37 @@ function buildSeo(route) {
     },
     guide: {
       title: `The Field Guide — ${SITE_NAME}`,
-      description: "An offline web app for Yosemite. Tappable GPS for the parking turnouts, quiet trailheads, and insider tactics locals use. Works when service dies.",
+      description: "The offline Yosemite guide: 81 entries with tappable GPS, time budgets, and crowd swaps, all 57 day hikes, a drive-order trip planner, and a topo map that works when service dies.",
       ogType: "website",
-      breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["The Field Guide", null]]
+      breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["The Field Guide", null]],
+      faq: [{
+        q: "Does it really work with no cell service?",
+        a: "Yes. One tap downloads the whole guide, about 50 MB: every entry, every photo, all 57 hike tracks, and a topographic map of the park. Only the live extras need signal: webcams, entrance waits, and fresh weather and program updates."
+      }, {
+        q: "Is it an App Store app?",
+        a: "No. It is a web app you add to your home screen in one step, on iPhone or Android. No store account, no install wait, no version to manage. Once it is there it looks and behaves like a native app."
+      }, {
+        q: "What happens right after I pay?",
+        a: "Stripe handles checkout. Within about a minute you get an email with a sign-in link and a 6-digit code. Both keep working for the full 18 months, so you can sign in on a new device whenever you like."
+      }, {
+        q: "How many devices can I use it on?",
+        a: "Every device you personally own. Phone at the trailhead, tablet in the car, laptop the night before. The same code signs them all in."
+      }, {
+        q: "Is it a subscription?",
+        a: "No. You pay $3.99 once and access runs 18 months. Nothing auto-renews. Near the end you are offered a discounted renewal, and if you do nothing, access simply ends."
+      }, {
+        q: "What if I lose the email or can't sign in?",
+        a: "Email cory@thetalusfieldjournal.com and it gets sorted. The sign-in link and the code stay reusable for the whole 18 months, so finding the original email is usually the fix."
+      }, {
+        q: "What is the refund policy?",
+        a: "If the guide does not work as described, email within 30 days of purchase and it is refunded in full. After a refund the access code is deactivated. The full policy is on the terms page."
+      }, {
+        q: "What do I get that the free site doesn't already give me?",
+        a: "The complete library: 81 entries including the 37-entry Secret Guide, all 57 day hikes with verified GPS tracks, the drag-and-drop trip builder, and the offline download. The free site keeps the articles, the trip map, the itineraries, and the conditions board."
+      }, {
+        q: "Does the guide change after I buy it?",
+        a: "Yes. Updates, seasonal addenda, and Secret Guide additions push silently through your access window. Nothing to re-download, nothing extra to pay."
+      }]
     },
     map: {
       title: `Yosemite Trip Planner Map — ${SITE_NAME}`,
