@@ -86,8 +86,12 @@ const PAGE_MODULES = {
   kit: { scripts: ["/dist/page-kit.js"], globals: ["KitPage"] },
   places: { scripts: ["/dist/page-places.js"], globals: ["PlacesPage"] },
   advertise: { scripts: ["/dist/page-advertise.js"], globals: ["AdvertisePage"] },
-  articles: { scripts: ["/dist/page-articles.js"], globals: ["ArticlesIndex", "CategoryPage"] },
-  planning: { scripts: ["/dist/page-planning-guide.js"], globals: ["PlanningGuide"] },
+  // The intent model (taxonomy + trip selector) rides along on the two routes
+  // that render it. /planning also pulls the itineraries data so the trip
+  // selector can hand back a real /map?trip= link rather than a generic pointer
+  // at /itineraries.
+  articles: { scripts: ["/intent-data.js", "/dist/intent.js", "/dist/page-articles.js"], globals: ["ArticlesIndex", "CategoryPage", "IntentFilters", "useIntentFilters"] },
+  planning: { scripts: ["/itineraries-data.js", "/intent-data.js", "/dist/intent.js", "/dist/page-planning-guide.js"], globals: ["PlanningGuide", "TripSelector", "IntentFilters", "useIntentFilters"] },
   checklist: { scripts: ["/dist/page-checklist.js"], globals: ["ChecklistPage"] },
   article: { scripts: ["/dist/page-article.js"], globals: ["ArticlePage"] },
   newsletter: { scripts: ["/dist/page-newsletter-contact.js"], globals: ["NewsletterPage", "ContactPage"] },

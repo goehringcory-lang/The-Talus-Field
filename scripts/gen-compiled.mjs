@@ -47,6 +47,8 @@ const SMOKE = process.argv.includes("--smoke");
 const PAGE_FILES = [
   "tweaks-panel.jsx",
   "components.jsx",
+  // Shared by the planning and articles routes (PAGE_MODULES), not a page.
+  "intent.jsx",
   "page-home.jsx",
   "page-planning-guide.jsx",
   "page-checklist.jsx",
