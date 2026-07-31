@@ -2517,6 +2517,27 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
 }
 .kit-reset:hover { color: var(--moss); }
 
+/* Per-list flat lay (see window.KIT lists[].photo). Portrait, so it is capped
+   rather than run full width, and hidden in the print stylesheet. */
+.kit__photo {
+  margin: 0 0 44px;
+  max-width: 560px;
+}
+.kit__photo img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--rule);
+}
+.kit__photo figcaption {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 14px;
+  color: var(--ink-2);
+  margin-top: 10px;
+  line-height: 1.4;
+}
+
 /* Checklist groups */
 .kit-group { margin-top: 44px; }
 .kit-group:first-of-type { margin-top: 8px; }

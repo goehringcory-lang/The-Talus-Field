@@ -1,4 +1,4 @@
-/* global React, NewsletterInline, GuidePromo, Breadcrumbs */
+/* global React, NewsletterInline, GuidePromo, Breadcrumbs, ResponsiveImage */
 const { useState: useStateK, useCallback: useCallbackK } = React;
 
 // Ticked items persist here so a reader can plan over several sessions.
@@ -63,7 +63,7 @@ function KitPage({ go }) {
     <div>
       <style>{`
         @media print {
-          header, footer, .tweaks-panel, .kit__tabs, .kit__count { display: none !important; }
+          header, footer, .tweaks-panel, .kit__tabs, .kit__count, .kit__photo { display: none !important; }
           body { background: #fff !important; color: #000 !important; }
           a { color: #000 !important; text-decoration: none !important; }
           .kit-group { page-break-inside: avoid; }
@@ -130,6 +130,17 @@ function KitPage({ go }) {
                 )}
               </div>
             </div>
+
+            {list.photo && (
+              <figure className="kit__photo">
+                <ResponsiveImage
+                  image={list.photo.image}
+                  alt={list.photo.alt}
+                  sizes="(max-width: 700px) 100vw, 560px"
+                />
+                {list.photo.caption && <figcaption>{list.photo.caption}</figcaption>}
+              </figure>
+            )}
 
             {(list.groups || []).filter((g) => (g.items || []).length > 0).map((group) => (
               <section key={group.id} className="kit-group">

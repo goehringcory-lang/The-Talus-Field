@@ -58,7 +58,7 @@ function KitPage({
   }
   return React.createElement("div", null, React.createElement("style", null, `
         @media print {
-          header, footer, .tweaks-panel, .kit__tabs, .kit__count { display: none !important; }
+          header, footer, .tweaks-panel, .kit__tabs, .kit__count, .kit__photo { display: none !important; }
           body { background: #fff !important; color: #000 !important; }
           a { color: #000 !important; text-decoration: none !important; }
           .kit-group { page-break-inside: avoid; }
@@ -184,7 +184,13 @@ function KitPage({
       type: "button",
       className: "kit-reset",
       onClick: resetList
-    }, "Uncheck all"))), (list.groups || []).filter(g => (g.items || []).length > 0).map(group => React.createElement("section", {
+    }, "Uncheck all"))), list.photo && React.createElement("figure", {
+      className: "kit__photo"
+    }, React.createElement(ResponsiveImage, {
+      image: list.photo.image,
+      alt: list.photo.alt,
+      sizes: "(max-width: 700px) 100vw, 560px"
+    }), list.photo.caption && React.createElement("figcaption", null, list.photo.caption)), (list.groups || []).filter(g => (g.items || []).length > 0).map(group => React.createElement("section", {
       key: group.id,
       className: "kit-group"
     }, React.createElement("h3", {
