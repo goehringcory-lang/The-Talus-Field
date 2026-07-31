@@ -209,6 +209,14 @@ window.KIT = {
       title: "Day pack",
       icon: "I",
       summary: "For a single day on the trail in the Valley or the high country. Spring through fall.",
+      // Optional per-list flat lay, rendered by KitPage under the list header
+      // and hidden in the print stylesheet. A list without a photo renders
+      // none. Variants come from scripts/gen-responsive-images.mjs.
+      photo: {
+        image: "img/day-pack-flat-lay.jpg",
+        alt: "The day pack list laid out in rows on a granite slab: an olive day pack, a folded Yosemite park map, a compass, a phone, a satellite messenger, a power bank, a wide-brim sun hat, a hydration reservoir and bottle, a squeeze filter, a sun shirt, sunscreen, sunglasses, an insulated vest, a rain shell, a beanie, gloves, wool socks, a neck gaiter, a headlamp, a first aid kit, tape, a multi-tool, paracord, bars and jerky and trail mix, an emergency bivy, a whistle, a head net, repellent, a trowel, trekking poles, a foam sit pad, a dry bag, cash, and hiking boots.",
+        caption: "The day pack list, laid out before it goes in the pack.",
+      },
       groups: [
         {
           id: "navigation",
