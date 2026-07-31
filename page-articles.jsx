@@ -1,11 +1,24 @@
 /* global React, ArticleCard, Breadcrumbs */
+
+// =============================================================================
+// ARTICLES — `/articles` (the full index) and `/section/:slug`.
+//
+// The index carries two independent narrowings that compose: the section chips
+// (which part of the journal a piece belongs to) and the intent filters from
+// intent.jsx (which reader, at which stage, asking which question). Section is
+// the editorial taxonomy; intent is the visitor's. A reader browsing "Planning"
+// and a reader who needs "camping, week before arrival" are different people,
+// and the page now serves both without either having to read 48 titles.
+// =============================================================================
+
 const { useState } = React;
 
 function ArticlesIndex({ go, initialCat }) {
   const [active, setActive] = useState(initialCat || "all");
-  const list = active === "all"
-    ? window.ARTICLES
-    : window.byCategory(active);
+  const filters = window.useIntentFilters();
+
+  const inSection = active === "all" ? window.ARTICLES : window.byCategory(active);
+  const list = window.filterArticlesByIntent(inSection, filters.value);
 
   return (
     <div className="page">
@@ -14,13 +27,13 @@ function ArticlesIndex({ go, initialCat }) {
           <div className="eyebrow eyebrow--moss">Articles</div>
           <h1>Entries.</h1>
           <p className="page-head__dek">
-            Every essay and trail report from The Talus Field, in reverse chronological order. Yosemite planning notes, trail conditions, wildlife and natural history, and seasonal guides. Filter by section, or read the whole thing.
+            Every essay and trail report from The Talus Field, in reverse chronological order. Yosemite planning notes, trail conditions, wildlife and natural history, and seasonal guides. Filter by section or by what you actually need, or read the whole thing.
           </p>
         </div>
       </div>
 
       <div className="wrap" style={{ paddingTop: 32, paddingBottom: 8 }}>
-        <div style={{ display: "flex", gap: 8, flexWrap: "wrap", borderBottom: "1px solid var(--rule)", paddingBottom: 24 }}>
+        <div style={{ display: "flex", gap: 8, flexWrap: "wrap", paddingBottom: 24 }}>
           <a href="/articles" className={`chip ${active === "all" ? "is-active" : ""}`}
             onClick={(e) => { e.preventDefault(); setActive("all"); }}>
             All ({window.ARTICLES.length})
@@ -36,12 +49,31 @@ function ArticlesIndex({ go, initialCat }) {
             );
           })}
         </div>
+
+        {/* Counts inside the intent bar are scoped to the chosen section, so a
+            chip never promises entries the section filter has already removed. */}
+        <window.IntentFilters
+          articles={inSection}
+          value={filters.value}
+          onToggle={filters.toggle}
+          onClear={filters.clear}
+          count={filters.count}
+          resultCount={list.length}
+          note={active === "all" ? "" : `Within ${window.findCategory(active).label}.`}
+        />
       </div>
 
       <div className="wrap" style={{ paddingTop: 40 }}>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 36, rowGap: 56 }}>
-          {list.map(a => <ArticleCard key={a.slug} article={a} go={go} />)}
-        </div>
+        {list.length > 0 ? (
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 36, rowGap: 56 }}>
+            {list.map(a => <ArticleCard key={a.slug} article={a} go={go} />)}
+          </div>
+        ) : (
+          <p style={{ fontFamily: "var(--serif)", fontSize: 19, lineHeight: 1.55, color: "var(--ink-2)", maxWidth: 640 }}>
+            Nothing here carries all of those at once. Drop a filter, or{" "}
+            <button type="button" className="linkish" onClick={filters.clear}>clear them all</button>.
+          </p>
+        )}
       </div>
     </div>
   );

@@ -40,9 +40,12 @@ window.CATEGORIES = [
 ];
 
 // ============================================================
-// The Planning Guide's curated structure, mirrored from the hand-built parts
-// in page-planning-guide.jsx (keep the two in sync when curation changes).
-// Powers the "Part of the Yosemite Planning Guide" series band on member
+// The Planning Guide's curated structure. THIS is the membership: /planning
+// renders its five parts from this table (PLANNING_PARTS in
+// page-planning-guide.jsx owns only the copy — eyebrow, title, lede, column
+// count — and looks its slugs up here by exact `part` label). Adding an article
+// to a part means editing it here and nowhere else.
+// It also powers the "Part of the Yosemite Planning Guide" series band on member
 // articles: a search lander on one cluster piece learns it is inside a
 // structured multi-part guide and gets prev/next pathways through the part.
 // ============================================================

@@ -26,6 +26,10 @@ Inline in `<head>`: `window.gtag`/`dataLayer` (GA4 bootstrap), `window.track` (g
 | `byCategory`, `findArticle`, `findCategory` | data.js | Catalog lookups. |
 | `BODY_VERSIONS`, `loadArticleBody`, `ARTICLE_BODIES` | data.js | Lazy article-body system: per-slug cache busters, the on-demand loader, and the registry each body file writes itself into. |
 | `NATURE_NOTES` | videos-data.js | Film archive data for /films. |
+| `INTENT_FACETS`, `ARTICLE_INTENT`, `ARTICLE_MONTHS` | intent-data.js | The reader-intent taxonomy (stage / traveler / topic), the per-article tags behind the filters on `/planning` and `/articles`, and the month windows for the handful of seasonal pieces. Hand-maintained against `ARTICLES`; `scripts/check-intent-tags.mjs` fails the build on drift. |
+| `intentFor`, `matchesIntent`, `filterArticlesByIntent`, `intentCounts`, `intentSelectionCount`, `intentSummary`, `relaxIntent`, `articleFitsMonth` | intent-data.js | Filter logic. Selections are OR within a facet and AND across facets; `intentCounts` scopes each option's count to the other facets so a chip dims honestly; `relaxIntent` loosens a selection until it returns a usefully sized set. |
+| `TRIP_MONTHS`, `TRIP_QUESTIONS`, `tripMonth`, `buildTripPlan`, `tripSummary`, `tripAnswersComplete`, `itineraryForTrip` | intent-data.js | The five-question trip selector's data and its deterministic plan builder (reads, itinerary capped to what the month's roads allow, and which paid product the answers actually call for). |
+| `TripSelector`, `IntentFilters`, `useIntentFilters` | intent.jsx | The React for the above. Loaded with intent-data.js on the `planning` and `articles` routes only (`PAGE_MODULES`), never in the eager shell. |
 | `Header`, `Footer`, `KeepGoing`, `ArticleCard`, `NewsletterInline`, `ExitIntentNewsletter`, `Placeholder`, `ResponsiveImage`, `MapLightbox`, `MotifMountains`, `MotifSun`, `MotifTrees` | components.jsx | Shared components (implicit globals). |
 | `NAV_GROUPS`, `navGroupLinks` | components.jsx | The site's navigation table — the grouped list of every reader-facing route, shared by the masthead dropdowns, the mobile menu, and (as a reference) the site index at `/explore`. Nothing in it may be date-derived or catalog-computed: the masthead is baked into index.html's static home shell. |
 | `KEEP_GOING` | components.jsx | Curated onward links keyed by route, rendered by `KeepGoing` (mounted once in app.jsx, under any route present in the table). A route that is absent renders nothing. |
@@ -69,6 +73,8 @@ All events fire through `window.track`. Names and where they fire:
 | `itinerary_open_map` | page-itineraries.jsx ("Open this trip on the map", with `itinerary`) |
 | `home_utility_click` | page-home.jsx ("Plan your trip" row, with `target`) |
 | `trip_month_select` | page-home.jsx ("When are you going?" chip row, with `month`; `cleared` on deselect) |
+| `trip_selector_answer`, `trip_selector_complete`, `trip_selector_apply_filters` | intent.jsx (the five-question trip selector at the top of `/planning`: one per answer with `question`/`answer`, one when the fifth lands, one when the plan's results are poured into the filters with `matches`) |
+| `intent_filter` | intent.jsx (the intent chip bar on `/planning` and `/articles`; `facet`, `option`, and `action` = `on`/`off`/`clear`) |
 | `trip_open_in_guide` | page-map.jsx (the map sidebar's hand-off to the Field Guide app; `trip_size`). The link opens `<app>/trip?import=<ids>`, which the PWA resolves against its own catalog. |
 | `article_share` | components.jsx (ShareRow on article pages; `method` = web-share or copy) |
 | `series_band_click` | page-article.jsx (Planning Guide series band; `from`/`to` slugs, `to: planning-hub` for the hub link) |
@@ -86,6 +92,7 @@ All access goes through `window.safeStorage`.
 |---|---|---|
 | `tfg.trip` | page-map.jsx | Saved trip stop ids (versioned envelope). |
 | `tfg.trip.month` | page-home.jsx | Selected trip month (`jan`–`dec`) from the home month planner. Read back on return visits and by the hero capture, which tags signups `trip-<month>`. |
+| `tfg.trip.selector` | intent.jsx | The five trip-selector answers as JSON. A `?when=&days=&stay=&party=&focus=` query string wins over it on mount, so a shared plan link always shows the sender's plan and not the reader's own. |
 | `tfg.kit.checked` | page-kit.jsx | Ticked packing-list items (versioned envelope). |
 | `tfg.nl.subscribed` | components.jsx | Optimistic subscribed flag, set on any newsletter submit. |
 | `tfg.nl.exit.seen` | components.jsx | Exit-intent cooldown timestamp (14 days). |

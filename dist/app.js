@@ -60,12 +60,12 @@ var PAGE_MODULES = {
     globals: ["AdvertisePage"]
   },
   articles: {
-    scripts: ["/dist/page-articles.js"],
-    globals: ["ArticlesIndex", "CategoryPage"]
+    scripts: ["/intent-data.js", "/dist/intent.js", "/dist/page-articles.js"],
+    globals: ["ArticlesIndex", "CategoryPage", "IntentFilters", "useIntentFilters"]
   },
   planning: {
-    scripts: ["/dist/page-planning-guide.js"],
-    globals: ["PlanningGuide"]
+    scripts: ["/itineraries-data.js", "/intent-data.js", "/dist/intent.js", "/dist/page-planning-guide.js"],
+    globals: ["PlanningGuide", "TripSelector", "IntentFilters", "useIntentFilters"]
   },
   checklist: {
     scripts: ["/dist/page-checklist.js"],

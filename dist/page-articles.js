@@ -6,7 +6,9 @@ function ArticlesIndex({
   initialCat
 }) {
   var [active, setActive] = useState(initialCat || "all");
-  var list = active === "all" ? window.ARTICLES : window.byCategory(active);
+  var filters = window.useIntentFilters();
+  var inSection = active === "all" ? window.ARTICLES : window.byCategory(active);
+  var list = window.filterArticlesByIntent(inSection, filters.value);
   return React.createElement("div", {
     className: "page"
   }, React.createElement("div", {
@@ -17,7 +19,7 @@ function ArticlesIndex({
     className: "eyebrow eyebrow--moss"
   }, "Articles"), React.createElement("h1", null, "Entries."), React.createElement("p", {
     className: "page-head__dek"
-  }, "Every essay and trail report from The Talus Field, in reverse chronological order. Yosemite planning notes, trail conditions, wildlife and natural history, and seasonal guides. Filter by section, or read the whole thing."))), React.createElement("div", {
+  }, "Every essay and trail report from The Talus Field, in reverse chronological order. Yosemite planning notes, trail conditions, wildlife and natural history, and seasonal guides. Filter by section or by what you actually need, or read the whole thing."))), React.createElement("div", {
     className: "wrap",
     style: {
       paddingTop: 32,
@@ -28,7 +30,6 @@ function ArticlesIndex({
       display: "flex",
       gap: 8,
       flexWrap: "wrap",
-      borderBottom: "1px solid var(--rule)",
       paddingBottom: 24
     }
   }, React.createElement("a", {
@@ -49,12 +50,20 @@ function ArticlesIndex({
         setActive(c.slug);
       }
     }, c.label, " (", n, ")");
-  }))), React.createElement("div", {
+  })), React.createElement(window.IntentFilters, {
+    articles: inSection,
+    value: filters.value,
+    onToggle: filters.toggle,
+    onClear: filters.clear,
+    count: filters.count,
+    resultCount: list.length,
+    note: active === "all" ? "" : `Within ${window.findCategory(active).label}.`
+  })), React.createElement("div", {
     className: "wrap",
     style: {
       paddingTop: 40
     }
-  }, React.createElement("div", {
+  }, list.length > 0 ? React.createElement("div", {
     style: {
       display: "grid",
       gridTemplateColumns: "repeat(3, 1fr)",
@@ -65,7 +74,19 @@ function ArticlesIndex({
     key: a.slug,
     article: a,
     go: go
-  })))));
+  }))) : React.createElement("p", {
+    style: {
+      fontFamily: "var(--serif)",
+      fontSize: 19,
+      lineHeight: 1.55,
+      color: "var(--ink-2)",
+      maxWidth: 640
+    }
+  }, "Nothing here carries all of those at once. Drop a filter, or", " ", React.createElement("button", {
+    type: "button",
+    className: "linkish",
+    onClick: filters.clear
+  }, "clear them all"), ".")));
 }
 function CategoryPage({
   slug,
