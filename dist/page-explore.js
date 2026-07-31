@@ -193,16 +193,16 @@ function ExplorePage({
     }
   }, "search"), " is faster."))), React.createElement(ExploreSection, {
     go: go,
-    eyebrow: "Read",
-    title: "The writing, and the record.",
-    dek: "The journal itself, plus the park's own bulletin and film series.",
-    entries: reading
-  }), React.createElement(ExploreSection, {
-    go: go,
-    eyebrow: "Plan",
+    eyebrow: "Plan a Trip",
     title: "The trip.",
     dek: "In roughly the order the decisions come at you.",
     entries: planning
+  }), React.createElement(ExploreSection, {
+    go: go,
+    eyebrow: "Explore Yosemite",
+    title: "The writing, and the record.",
+    dek: "The journal itself, plus the park's own bulletin and film series.",
+    entries: reading
   }), React.createElement(ExploreSection, {
     go: go,
     eyebrow: "Dated events",

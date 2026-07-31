@@ -173,82 +173,18 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
   backdrop-filter: blur(8px);
   background: color-mix(in oklab, var(--paper) 94%, transparent);
 }
-.masthead__top {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px 16px;
-  padding: 8px var(--gutter);
-  max-width: 1240px;
-  margin: 0 auto;
-  border-bottom: 1px solid var(--rule-soft);
-  font-family: var(--sans);
-  font-size: 10px;
-  text-transform: uppercase;
-  letter-spacing: 0.14em;
-  color: var(--ink-3);
-}
-.masthead__dateline {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  min-width: 0;
-  white-space: nowrap;
-  flex-shrink: 0;
-}
-.masthead__utility {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  min-width: 0;
-  /* The utility row is a single nowrap line (Bulletin / three forecasts /
-     entrance waits / Yosemite Guide) that needs about 1030px. Below that it
-     used to push the whole document sideways, because the scroll treatment
-     only started at the 880px breakpoint — leaving a ~150px band of desktop
-     widths where the masthead itself caused horizontal page scroll. Scrolling
-     the row rather than the page is the same fix, applied at every width. */
-  overflow-x: auto;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-}
-.masthead__utility::-webkit-scrollbar { display: none; }
-/* Thin vertical rule between the three utility groups (Conditions /
-   Entrance waits / Guide) so the long single line stays parseable. The
-   waits placeholder resets it so no stray rule shows before data loads. */
-.masthead__waits,
-.masthead__guide {
-  border-left: 1px solid var(--rule-soft);
-  padding-left: 10px;
-}
-.masthead__guide { white-space: nowrap; }
-.masthead__weather {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-.masthead__weather-label {
-  margin-right: 4px;
-  color: var(--ink-3);
-}
-.masthead__weather a,
-.masthead__guide {
-  color: var(--ink-2);
-  text-decoration: none;
-  border-bottom: 1px solid var(--rule);
-  padding-bottom: 1px;
-  transition: color 0.15s, border-color 0.15s;
-}
-.masthead__weather a:hover,
-.masthead__guide:hover {
-  color: var(--accent, var(--ink));
-  border-bottom-color: currentColor;
-}
+/* Entrance waits (EntranceWaits in components.jsx). The class names date
+   from the component's old slot in the masthead's utility bar, removed in
+   the nav simplification pass; its one surface now is /conditions, which
+   scales it up via .conditions__waits below. */
 .masthead__weather-sep { color: var(--ink-3); opacity: 0.85; }
 .masthead__waits {
   display: inline-flex;
   align-items: center;
   gap: 8px;
   white-space: nowrap;
+  border-left: 1px solid var(--rule-soft);
+  padding-left: 10px;
   /* Reset the global anchor underline; the per-wait border-bottom below is the
      only underline this link should carry (it lights up on hover to match the
      Conditions and Guide links). Without this the anchor's text-decoration and
@@ -274,46 +210,6 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
 .masthead__wait--long { color: var(--rust); font-weight: 700; }
 .masthead__wait--nodata { color: var(--ink-3); }
 
-.masthead__date--short { display: none; }
-@media (max-width: 720px) {
-  /* Stack the dateline above a full-width conditions strip. The strip keeps
-     every group inline (live color-coded waits included) and scrolls
-     horizontally rather than hiding behind a tap target, so the live data
-     stays visible on phones. */
-  .masthead__top {
-    flex-direction: column;
-    align-items: stretch;
-    padding: 6px var(--gutter) 0;
-    gap: 6px;
-  }
-  .masthead__dateline { gap: 10px; }
-  .masthead__date--full { display: none; }
-  .masthead__date--short { display: inline; }
-  .masthead__utility {
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    gap: 14px;
-    padding-bottom: 8px;
-    font-size: 11px;
-    /* Hide the scrollbar; the overflowing content signals scrollability. */
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-    /* Soft right-edge fade hints there is more to scroll to. */
-    -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 28px), transparent 100%);
-    mask-image: linear-gradient(to right, #000 calc(100% - 28px), transparent 100%);
-  }
-  .masthead__utility::-webkit-scrollbar { display: none; }
-  .masthead__weather { flex: 0 0 auto; }
-  .masthead__waits,
-  .masthead__guide {
-    flex: 0 0 auto;
-    white-space: nowrap;
-    padding-left: 14px;
-  }
-  /* Trailing pad so the last item clears the mask fade when fully scrolled. */
-  .masthead__guide { padding-right: 12px; }
-}
 .masthead__main {
   display: flex;
   align-items: center;
@@ -399,16 +295,6 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
 }
 .nav a:hover { color: var(--ink); border-bottom-color: var(--ink); }
 .nav a.is-active { color: var(--ink); border-bottom-color: var(--moss); }
-.nav__cta {
-  border: 1px solid var(--ink) !important;
-  padding: 7px 14px;
-  font-size: 11px;
-  min-height: 44px;
-  display: inline-flex;
-  align-items: center;
-}
-.nav__cta:hover { background: var(--ink); color: var(--paper) !important; }
-
 /* Desktop dropdown groups. :hover / :focus-within open them with no JS, so
    hover and keyboard tabbing both work on their own; the .is-open class the
    masthead adds on top of that is only a close delay (see Header in
@@ -435,7 +321,6 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
   display: none;
   z-index: 60;
 }
-.nav__dropdown--right { left: auto; right: -18px; }
 .nav__group:hover .nav__dropdown,
 .nav__group:focus-within .nav__dropdown,
 .nav__group.is-open .nav__dropdown { display: block; }
@@ -785,29 +670,6 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
   background: var(--moss);
   margin-right: 10px;
   transform: translateY(-2px);
-}
-
-/* Primary CTA. The paid product */
-.nav__primary {
-  background: var(--ink);
-  color: var(--paper) !important;
-  border: 1px solid var(--ink) !important;
-  padding: 8px 16px;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  min-height: 44px;
-  display: inline-flex;
-  align-items: center;
-}
-.nav__primary:hover {
-  background: var(--moss);
-  border-color: var(--moss) !important;
-  color: var(--paper) !important;
-}
-.nav__primary.is-active {
-  background: var(--moss);
-  border-color: var(--moss) !important;
 }
 
 /* ===== Directory. Quiet "for operators" strip ===== */
@@ -2057,53 +1919,67 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
   margin-top: 8px;
 }
 
-/* Hero triage doors (July 2026 user-journey pass). Three self-selection rows,
-   one per trip stage, rendered above the capture so the visitor routes
-   themselves before the page asks for anything. Same quiet-band family as
-   .resume-band and .home-dispatch. */
-.hero-doors {
-  margin: 4px 0 26px;
-  border-top: 1px solid var(--ink);
+/* Hero audience links (nav simplification pass). Three compact
+   self-selection links under the primary buttons, replacing the full-width
+   triage doors: the buttons carry the page's ask now, so these only need to
+   route a reader who already knows their trip stage. */
+.hero-audience {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 22px;
+  margin: 22px 0 24px;
 }
-.hero-door {
-  display: grid;
-  grid-template-columns: auto 1fr auto;
-  gap: 6px 16px;
-  align-items: baseline;
-  padding: 13px 0;
-  border-bottom: 1px solid var(--rule);
-  text-decoration: none;
-  color: inherit;
-}
-.hero-door__q {
+.hero-audience__link {
   font-family: var(--sans);
   font-size: 12px;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.14em;
-  white-space: nowrap;
-}
-.hero-door__a {
-  font-family: var(--serif);
-  font-style: italic;
-  font-size: 15px;
-  line-height: 1.35;
+  letter-spacing: 0.12em;
   color: var(--ink-2);
+  text-decoration: none;
+  border-bottom: 1px solid var(--rule);
+  padding-bottom: 2px;
+  transition: color 0.15s, border-color 0.15s;
 }
-.hero-door__arrow {
-  font-family: var(--mono);
-  font-weight: 700;
+.hero-audience__link:hover {
   color: var(--moss);
-  transition: transform 0.15s ease;
+  border-bottom-color: currentColor;
 }
-.hero-door:hover .hero-door__q { color: var(--moss); }
-.hero-door:hover .hero-door__arrow { transform: translateX(3px); }
-@media (max-width: 720px) {
-  /* Stack the question over the answer; the arrow spans both lines. */
-  .hero-door { grid-template-columns: 1fr auto; }
-  .hero-door__a { grid-column: 1; }
-  .hero-door__arrow { grid-column: 2; grid-row: 1 / span 2; align-self: center; }
+
+/* Hero Field Guide card. The paid product introduced where the free
+   planning starts: a bordered kin of .hero__capture-box with an ink spine
+   instead of the capture's moss one, so the two asks read as siblings
+   without blurring together. */
+.hero-guide {
+  display: block;
+  max-width: 32rem;
+  border: 1px solid var(--ink);
+  border-left: 6px solid var(--ink);
+  background: var(--paper-2);
+  padding: 16px 18px 18px;
+  text-decoration: none;
+  color: inherit;
 }
+.hero-guide__title {
+  display: block;
+  font-family: var(--display);
+  font-size: 20px;
+  line-height: 1.25;
+  margin: 8px 0 6px;
+}
+.hero-guide__body {
+  font-family: var(--serif);
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--ink-2);
+  margin: 0 0 10px;
+}
+.hero-guide__cta {
+  color: var(--moss);
+  font-weight: 700;
+  font-size: 13px;
+}
+.hero-guide:hover .hero-guide__title { color: var(--moss); }
 
 /* ===== Map trigger (Places page) ===== */
 .map-trigger {
@@ -2306,6 +2182,48 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
   .nlmodal__card h3 { font-size: 24px; }
 }
 
+/* ===== Bottom navigation (phones) ===== */
+/* Shown at exactly the breakpoint where the inline nav collapses into the
+   hamburger, so there is never a width with both a full bar and a tab row.
+   BottomNav (components.jsx) returns null on /map and /guide, whose bottom
+   edges belong to the map sheet and the buy bar; the body clearance below
+   keys off the nav actually being in the DOM, which also keeps the generated
+   /archive pages (same stylesheet, no React header) padding-free. */
+.bottomnav { display: none; }
+@media (max-width: 880px) {
+  .bottomnav {
+    display: flex;
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 55; /* over content and the map sheet; under readbar/buybar (60) and modals */
+    background: var(--paper);
+    border-top: 1px solid var(--rule);
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+  .bottomnav__item {
+    flex: 1;
+    text-align: center;
+    padding: 14px 0 12px;
+    min-height: 48px;
+    font-family: var(--sans);
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--ink-2);
+    text-decoration: none;
+    border-top: 2px solid transparent;
+    margin-top: -1px;
+  }
+  .bottomnav__item.is-active {
+    color: var(--moss);
+    border-top-color: var(--moss);
+  }
+  body:has(.bottomnav) { padding-bottom: calc(48px + env(safe-area-inset-bottom)); }
+}
+
 /* ===== Responsive ===== */
 @media (max-width: 880px) {
   .hero__grid { grid-template-columns: 1fr; gap: 32px; }
@@ -2319,7 +2237,6 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
   .nav__search { margin-right: 10px; padding: 6px 4px; min-height: 44px; min-width: 40px; justify-content: center; }
   .nav__search-label { display: none; }
   .statblock { grid-template-columns: 1fr 1fr; }
-  .masthead__top { font-size: 11px; }
 }
 
 /* ===== Mobile (≤720px) ===== */
@@ -2359,12 +2276,9 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
   .brand__sub { display: none; }
   .brand__mark { height: 40px; }
   .brand-block { gap: 10px; }
-  .nav__primary { padding: 7px 12px; font-size: 10px; letter-spacing: 0.08em; }
 
   .nav__menu { right: -8px; }
   .nav__menu a { padding: 13px 18px; font-size: 14px; }
-
-  .masthead__top { padding: 6px var(--gutter); }
 
   /* Hero. Less padding, no big gap. */
   .hero { padding: 32px 0 32px; }
@@ -2405,9 +2319,6 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
     min-height: 48px;
     padding: 12px 18px;
   }
-  .hero__grid > div:first-child { display: flex; flex-direction: column; }
-  .hero-doors { order: 1; margin: 20px 0 4px; }
-
   /* Forms. Bump font to 16px to stop iOS zoom on focus. */
   .field input, .field textarea, .field select { font-size: 16px; }
 
@@ -2490,7 +2401,6 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
 
 @media (max-width: 420px) {
   /* Smallest phones. Tighten brand block so the menu button stays comfortable. */
-  .nav__primary { padding: 6px 10px; font-size: 10px; }
   .brand { font-size: 20px; }
   .brand__mark { height: 34px; }
   .brand-block { gap: 8px; }
@@ -2807,7 +2717,10 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
 .map-page {
   display: flex;
   flex-direction: row;
-  height: calc(100dvh - 64px);
+  /* 93px = the sticky masthead's rendered height at desktop widths (measured
+     after the nav simplification removed the utility bar), so map + masthead
+     fill the first viewport exactly. Re-measure if the masthead changes. */
+  height: calc(100dvh - 93px);
   width: 100%;
   position: relative;
   background: var(--paper-2);
@@ -4082,7 +3995,8 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
    ------------------------------------------------------------ */
 @media (max-width: 720px) {
   .map-page {
-    height: calc(100dvh - 56px);
+    /* 69px = the masthead's rendered height at phone widths. */
+    height: calc(100dvh - 69px);
     overflow: hidden;
   }
   .map-page__main {

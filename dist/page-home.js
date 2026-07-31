@@ -61,18 +61,15 @@ function HomeHeroCapture({
 var HERO_DOORS = [{
   key: "start-here",
   href: "#start-here",
-  q: "First trip?",
-  a: "Four answers before you book anything"
+  label: "First visit"
 }, {
   key: "itineraries",
   href: "/itineraries",
-  q: "Dates set?",
-  a: "Itineraries, the map, and the checklist"
+  label: "Dates already set"
 }, {
   key: "now",
   href: "/now",
-  q: "There now, or going soon?",
-  a: "One page, the whole park, right now"
+  label: "In the park now"
 }];
 function HomeHero({
   tripMonth,
@@ -91,12 +88,38 @@ function HomeHero({
     "data-shell-blank": "issue"
   }, window.SITE && window.SITE.issue || "Vol. III", window.SITE && window.SITE.issueDetail ? ` · ${window.SITE.issueDetail}` : "")), React.createElement("h1", null, "Yosemite, from the inside."), React.createElement("p", {
     className: "hero__dek"
-  }, "Live conditions, real itineraries, and a map of every turnout, kept by a naturalist who has lived here twenty seasons. Essays for when the logistics are done."), React.createElement("nav", {
-    className: "hero-doors",
+  }, "Build a realistic Yosemite itinerary with current conditions, resident-tested stops and an offline field guide."), React.createElement("div", {
+    className: "hero__cta"
+  }, React.createElement("a", {
+    className: "btn",
+    href: "/planning",
+    onClick: e => {
+      e.preventDefault();
+      if (window.track) window.track("cta_click", {
+        location: "home_hero",
+        target: "planning"
+      });
+      go("planning");
+    }
+  }, "Plan my Yosemite trip ", React.createElement("span", {
+    className: "btn__arrow"
+  }, "→")), React.createElement("a", {
+    className: "btn btn--ghost",
+    href: "/conditions",
+    onClick: e => {
+      e.preventDefault();
+      if (window.track) window.track("cta_click", {
+        location: "home_hero",
+        target: "conditions"
+      });
+      go("conditions");
+    }
+  }, "Check today's conditions")), React.createElement("nav", {
+    className: "hero-audience",
     "aria-label": "Start from where you are"
   }, HERO_DOORS.map(d => React.createElement("a", {
     key: d.key,
-    className: "hero-door",
+    className: "hero-audience__link",
     href: d.href,
     onClick: e => {
       e.preventDefault();
@@ -106,14 +129,27 @@ function HomeHero({
       });
       if (d.key === "start-here") onStartHere();else go(d.key);
     }
-  }, React.createElement("span", {
-    className: "hero-door__q"
-  }, d.q), React.createElement("span", {
-    className: "hero-door__a"
-  }, d.a), React.createElement("span", {
-    className: "hero-door__arrow",
+  }, d.label, " ", React.createElement("span", {
     "aria-hidden": "true"
-  }, "→")))), React.createElement(HomeHeroCapture, {
+  }, "→")))), React.createElement("a", {
+    className: "hero-guide",
+    href: "/guide",
+    onClick: e => {
+      e.preventDefault();
+      if (window.track) window.track("guide_cta_click", {
+        location: "home_hero"
+      });
+      go("guide");
+    }
+  }, React.createElement("span", {
+    className: "eyebrow eyebrow--moss"
+  }, "The Field Guide · Offline app"), React.createElement("span", {
+    className: "hero-guide__title"
+  }, "Take the guide offline"), React.createElement("p", {
+    className: "hero-guide__body"
+  }, "Every major park region, 57 hikes, GPS locations, local tactics and an offline topo map."), React.createElement("span", {
+    className: "mono hero-guide__cta"
+  }, "See the Field Guide · $3.99 →")), React.createElement(HomeHeroCapture, {
     tripMonth: tripMonth
   })), React.createElement(Placeholder, {
     caption: "El Capitan and Bridalveil at sunset",

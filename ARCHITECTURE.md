@@ -47,7 +47,7 @@ All events fire through `window.track`. Names and where they fire:
 |---|---|
 | `newsletter_signup`, `newsletter_impression` | components.jsx helpers, called by every newsletter unit with a `location` param |
 | `newsletter_exit_intent_shown` | components.jsx (ExitIntentNewsletter) |
-| `guide_cta_click` | components.jsx (Footer "Field Guide" link, masthead nav), page-home.jsx (Go Deeper band, `location: home_band`) |
+| `guide_cta_click` | components.jsx (Footer "Field Guide" link, masthead nav), page-home.jsx (hero Field Guide card, `location: home_hero`; Go Deeper band, `location: home_band`) |
 | `guide_buy_click` | page-guide.jsx (`location`: `guide_aside` buy box, `guide_closer` end-of-pitch button, or `guide_mobile_bar` sticky phone bar) |
 | `guide_sample_click` | page-guide.jsx (links to the PWA's free sample at `/preview`, with `location`: `guide_aside` or `guide_closer`) |
 | `widget_copy_snippet` | page-widget.jsx (copying the embed snippet) |
@@ -76,7 +76,7 @@ All events fire through `window.track`. Names and where they fire:
 | `nav_search_submit` | components.jsx (the search box at the top of the mobile menu; `location`, `has_query`) |
 | `keep_going_click` | components.jsx (the site-wide onward-links block; `from` route and `target` route) |
 | `index_click` | page-explore.jsx (destination clicks on the site index; `target`) |
-| `cta_click` | components.jsx (masthead links: `location: masthead_cta` for The Map, `masthead_search` for search, `masthead_now` for the Bulletin), Footer (`footer_index` for the site-index link); page-home.jsx (`home_door` with `target` for the hero triage doors, `home_month` with `target` for month-planner panel links, `home_dispatch` for the dispatch teaser, `home_path` with `target` for the Go Deeper row, `home_strip_now` for the About-strip line) |
+| `cta_click` | components.jsx (masthead: `location: masthead_search` for search; `bottom_nav` with `target` for the mobile bottom tabs), Footer (`footer_index` for the site-index link); page-home.jsx (`home_hero` with `target` for the hero buttons, `home_door` with `target` for the hero audience links, `home_month` with `target` for month-planner panel links, `home_dispatch` for the dispatch teaser, `home_path` with `target` for the Go Deeper row, `home_strip_now` for the About-strip line). Retired locations (annotate in GA4, do not reuse): `masthead_cta`, `masthead_now` (nav simplification pass) |
 
 ## localStorage key inventory
 

@@ -17,10 +17,10 @@ const { useMemo, useState } = React;
 // trackNewsletterSubmit.
 // July 2026 prominence pass: the capture renders as a framed, moss-spined
 // unit (.hero__capture-box) with the promise copy above the field and a
-// solid submit button, instead of the old borderless one-liner. On phones
-// the CSS reorders it above the triage doors (see the ≤720px hero rules in
-// styles.css): the signup is the page's one ask, so it stays in the first
-// viewport there.
+// solid submit button, instead of the old borderless one-liner. The nav
+// simplification pass then made the plan/conditions buttons the hero's
+// primary ask, so the capture sits last in the column on every viewport
+// (the old ≤720px reorder above the doors is gone).
 // ============================================================
 function HomeHeroCapture({ tripMonth }) {
   const [done, setDone] = useState(false);
@@ -67,15 +67,17 @@ function HomeHeroCapture({ tripMonth }) {
 }
 
 // ============================================================
-// Hero triage doors. One row per trip stage, above the capture: the visitor
-// self-selects and routes themselves before the page asks for anything. Keys
-// double as go() route keys, except "start-here", which scrolls to the
-// answers row below. Clicks fire cta_click{location: "home_door", target}.
+// Hero audience links. One compact link per trip stage, under the primary
+// buttons: the visitor self-selects and routes themselves. Keys double as
+// go() route keys, except "start-here", which scrolls to the answers row
+// below. Clicks fire cta_click{location: "home_door", target} — the same
+// event the old full-width triage doors fired, so the trend line survives
+// the redesign.
 // ============================================================
 const HERO_DOORS = [
-  { key: "start-here", href: "#start-here", q: "First trip?", a: "Four answers before you book anything" },
-  { key: "itineraries", href: "/itineraries", q: "Dates set?", a: "Itineraries, the map, and the checklist" },
-  { key: "now", href: "/now", q: "There now, or going soon?", a: "One page, the whole park, right now" },
+  { key: "start-here", href: "#start-here", label: "First visit" },
+  { key: "itineraries", href: "/itineraries", label: "Dates already set" },
+  { key: "now", href: "/now", label: "In the park now" },
 ];
 
 // ============================================================
@@ -88,12 +90,12 @@ const HERO_DOORS = [
 //      supply: no fetches, no storage reads beyond isSubscribed() (which
 //      reads false in the generator, the correct first-visit state), no
 //      route state beyond the `go` handler, which the generator stubs.
-//   2. Nothing date-derived may be baked in. The generator blanks the two
-//      date-derived slots below (the issue detail here, the dateline in the
-//      masthead) to a stable-height placeholder and lets React fill them on
-//      boot; index.html is cached hard, so a baked month name would go stale.
-//      The `data-shell-blank` attribute marks them for the generator, which
-//      fails loudly if a marked slot disappears.
+//   2. Nothing date-derived may be baked in. The generator blanks the one
+//      date-derived slot below (the issue detail in the kicker) to a
+//      stable-height placeholder and lets React fill it on boot; index.html
+//      is cached hard, so a baked month name would go stale. The
+//      `data-shell-blank` attribute marks the slot for the generator, which
+//      fails loudly if it disappears.
 //
 // Keeping the markup identical between the shell and this component is what
 // keeps CLS at zero when React replaces the shell.
@@ -112,20 +114,40 @@ function HomeHero({ tripMonth, go, onStartHere }) {
           </div>
           <h1>Yosemite, from the inside.</h1>
           <p className="hero__dek">
-            Live conditions, real itineraries, and a map of every turnout, kept by a naturalist who has lived here twenty seasons. Essays for when the logistics are done.
+            Build a realistic Yosemite itinerary with current conditions, resident-tested stops and an offline field guide.
           </p>
-          {/* July 2026 user-journey pass: the hero leads with triage, not
-              capture. Three self-selection doors, one per trip stage, so a
-              task-mode planner routes themselves before the page asks for
-              anything; the capture follows with the letter-forward promise.
-              This deliberately supersedes the hero_actions A/B result (the
-              capture-forward hero won on raw signups); the doors are judged
-              on second-surface reach via cta_click{location: home_door}. */}
-          <nav className="hero-doors" aria-label="Start from where you are">
+          {/* Nav simplification pass: one unmistakable primary action. Two
+              buttons (plan, then conditions), three compact audience links
+              for readers who already know their stage, then the Field Guide
+              card so the paid product is introduced where the planning
+              starts, then the capture. This supersedes the triage-doors
+              layout (which itself superseded the hero_actions A/B result);
+              the buttons are judged on cta_click{location: home_hero}. */}
+          <div className="hero__cta">
+            <a
+              className="btn"
+              href="/planning"
+              onClick={(e) => {
+                e.preventDefault();
+                if (window.track) window.track("cta_click", { location: "home_hero", target: "planning" });
+                go("planning");
+              }}
+            >Plan my Yosemite trip <span className="btn__arrow">→</span></a>
+            <a
+              className="btn btn--ghost"
+              href="/conditions"
+              onClick={(e) => {
+                e.preventDefault();
+                if (window.track) window.track("cta_click", { location: "home_hero", target: "conditions" });
+                go("conditions");
+              }}
+            >Check today's conditions</a>
+          </div>
+          <nav className="hero-audience" aria-label="Start from where you are">
             {HERO_DOORS.map((d) => (
               <a
                 key={d.key}
-                className="hero-door"
+                className="hero-audience__link"
                 href={d.href}
                 onClick={(e) => {
                   e.preventDefault();
@@ -134,12 +156,27 @@ function HomeHero({ tripMonth, go, onStartHere }) {
                   else go(d.key);
                 }}
               >
-                <span className="hero-door__q">{d.q}</span>
-                <span className="hero-door__a">{d.a}</span>
-                <span className="hero-door__arrow" aria-hidden="true">→</span>
+                {d.label} <span aria-hidden="true">→</span>
               </a>
             ))}
           </nav>
+          {/* The paid product, introduced where the free planning starts.
+              Price stated plainly per house style; the live number renders
+              on /guide. */}
+          <a
+            className="hero-guide"
+            href="/guide"
+            onClick={(e) => {
+              e.preventDefault();
+              if (window.track) window.track("guide_cta_click", { location: "home_hero" });
+              go("guide");
+            }}
+          >
+            <span className="eyebrow eyebrow--moss">The Field Guide · Offline app</span>
+            <span className="hero-guide__title">Take the guide offline</span>
+            <p className="hero-guide__body">Every major park region, 57 hikes, GPS locations, local tactics and an offline topo map.</p>
+            <span className="mono hero-guide__cta">See the Field Guide · $3.99 →</span>
+          </a>
           <HomeHeroCapture tripMonth={tripMonth} />
         </div>
         <Placeholder
@@ -449,11 +486,10 @@ function HomePage({ go }) {
       <HomeHero tripMonth={tripMonth} go={go} onStartHere={scrollToStartHere} />
 
       {/* Utility row: the working tools that have no other home on this page,
-          one line, directly under the hero. Text links, not cards; the hero
-          capture stays the main event. Trimmed in the July 2026 repetition
-          pass from five links to three: Itineraries lives in the second hero
-          door and the Map has both the masthead CTA and the Go Deeper band,
-          so listing them here was the third mention of each. */}
+          one line, directly under the hero. Text links, not cards. Trimmed in
+          the July 2026 repetition pass: Itineraries lives in the hero's
+          audience links and the Map has the bottom nav tab and the Go Deeper
+          band, so listing them here was the third mention of each. */}
       <section className="wrap" style={{ paddingTop: 28 }}>
         <nav className="home-utility" aria-label="Trip tools">
           <span className="home-utility__label">Plan your trip</span>
@@ -541,10 +577,10 @@ function HomePage({ go }) {
       />
 
       {/* The live webcam strip that used to sit here was removed in the July
-          2026 repetition pass: it was the third "what's happening now" surface
-          on the page (after the masthead conditions row and the Bulletin band)
-          and the only one whose four links leave the site. It still renders on
-          /conditions, which the utility row above links to. */}
+          2026 repetition pass: it was one "what's happening now" surface too
+          many, and the only one whose four links leave the site. It still
+          renders on /conditions, which the hero button and the utility row
+          above both link to. */}
 
       {/* Latest Entries — recent articles feed. Named to stay clear of the
           Park Bulletin teaser above. */}
@@ -623,7 +659,8 @@ function HomePage({ go }) {
             {/* The Map: free, the softest on-ramp, so it leads. The tinted
                 ground and moss spine treatment was A/B tested (callout_bands)
                 and won. This is the homepage's one persuasive pitch for the
-                map; the masthead CTA is the navigational one. */}
+                map; the Plan a Trip dropdown and the bottom nav's Map tab are
+                the navigational ones. */}
             <a
               className="band-map"
               href="/map"
