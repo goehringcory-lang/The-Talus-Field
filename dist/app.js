@@ -903,6 +903,7 @@ function App() {
     page = React.createElement(window.AdvertisePage, {
       go: go
     });
+    currentNav = "advertise";
   } else if (route === "articles") {
     page = React.createElement(window.ArticlesIndex, {
       go: go
@@ -912,12 +913,12 @@ function App() {
     page = React.createElement(window.PlanningGuide, {
       go: go
     });
-    currentNav = "articles";
+    currentNav = "planning";
   } else if (route === "checklist") {
     page = React.createElement(window.ChecklistPage, {
       go: go
     });
-    currentNav = "articles";
+    currentNav = "checklist";
   } else if (route.startsWith("cat:")) {
     page = React.createElement(window.CategoryPage, {
       slug: route.slice(4),
@@ -950,10 +951,12 @@ function App() {
     page = React.createElement(window.GuidePage, {
       go: go
     });
+    currentNav = "guide";
   } else if (route === "itineraries") {
     page = React.createElement(window.ItinerariesPage, {
       go: go
     });
+    currentNav = "itineraries";
   } else if (route === "search") {
     page = React.createElement(window.SearchPage, {
       go: go
@@ -968,42 +971,52 @@ function App() {
     page = React.createElement(window.StayPage, {
       go: go
     });
+    currentNav = "stay";
   } else if (route === "conditions") {
     page = React.createElement(window.ConditionsPage, {
       go: go
     });
+    currentNav = "conditions";
   } else if (route === "now") {
     page = React.createElement(window.BulletinPage, {
       go: go
     });
+    currentNav = "now";
   } else if (route === "firefall") {
     page = React.createElement(window.FirefallPage, {
       go: go
     });
+    currentNav = "firefall";
   } else if (route === "tioga-opening") {
     page = React.createElement(window.TiogaOpeningPage, {
       go: go
     });
+    currentNav = "tioga-opening";
   } else if (route === "half-dome-lottery") {
     page = React.createElement(window.HalfDomeLotteryPage, {
       go: go
     });
+    currentNav = "half-dome-lottery";
   } else if (route === "consult") {
     page = React.createElement(window.ConsultPage, {
       go: go
     });
+    currentNav = "consult";
   } else if (route === "widget") {
     page = React.createElement(window.WidgetPage, {
       go: go
     });
+    currentNav = "widget";
   } else if (route === "partners") {
     page = React.createElement(window.PartnersPage, {
       go: go
     });
+    currentNav = "partners";
   } else if (route === "map") {
     page = React.createElement(window.MapPage, {
       go: go
     });
+    currentNav = "map";
   } else {
     page = React.createElement(NotFoundPage, {
       go: go

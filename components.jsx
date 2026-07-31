@@ -159,13 +159,17 @@ function MotifTrees() {
 // history follow the summary array, so we fetch only the first 8 KB
 // via a Range request (the bucket's CORS allows the Range header) and
 // bracket-match the summary out of the truncated JSON. Fails quiet:
-// any fetch or parse problem and the masthead renders without it.
+// any fetch or parse problem and the page renders without it.
+// Only consumer since the nav simplification pass: /conditions
+// (page-conditions.jsx). The .masthead__waits* class names date from
+// its old slot in the masthead's utility bar and are load-bearing
+// there via .conditions__waits — rename both together or neither.
 // ============================================================
 const WAITS_BASE = "https://npsvms-338365424831-us-west-1-an.s3.us-west-1.amazonaws.com/yose/transit-time/display/public/";
 const WAITS_URL = WAITS_BASE + "waits.json";
 const WAITS_PAGE_URL = WAITS_BASE + "index.html";
 const WAITS_REFRESH_MS = 5 * 60 * 1000;
-// Short labels for the masthead; unknown pairs fall back to the
+// Short labels for the waits line; unknown pairs fall back to the
 // pair_name with its " Wait Time" suffix stripped.
 const WAITS_SHORT_NAMES = {
   "South Entrance Wait Time": "South",
@@ -223,8 +227,8 @@ function EntranceWaits() {
   }, []);
 
   // Reserve the slot while the live NPS data is in flight (or never arrives) so
-  // the sticky masthead does not shift when the waits populate after first paint.
-  // The placeholder carries the same .masthead__waits min-width as the filled
+  // the page does not shift when the waits populate after first paint. The
+  // placeholder carries the same .masthead__waits min-width as the filled
   // state; it is empty and hidden from assistive tech.
   if (!waits) return <span className="masthead__waits masthead__waits--ph" aria-hidden="true" />;
   return (
@@ -328,9 +332,15 @@ function releaseRockfall(markEl) {
 // ============================================================
 // Masthead
 // ============================================================
-// The whole site, grouped, in one table shared by the masthead dropdowns, the
-// mobile menu, and the site index at /explore. Every reader-facing route lives
-// in exactly one group (legal pages stay footer-only; /explore lists those too).
+// The site's map, in two tables. NAV_GROUPS is the masthead bar: the few
+// things a first-time visitor needs, and nothing they have to learn first.
+// NAV_SECONDARY is everything else a returning reader might want: it renders
+// in the hamburger's More section and (with the footer and /explore) is the
+// only home those destinations get. Every reader-facing route lives in
+// exactly one of the two tables, with two exceptions: legal pages stay
+// footer-only, and /explore is the index itself, carried by the hamburger's
+// closing "Everything on this site" line and the footer rather than a table
+// entry (/explore lists the legal pages too).
 //
 // Shape: a group is { key, label, route, blurb, columns } where each column is
 // { heading, links } and a link is { key } for an SPA route or { href } for a
@@ -338,43 +348,16 @@ function releaseRockfall(markEl) {
 // must never carry a go() handler). `route` is where the group label itself
 // navigates. A group with no `columns` renders as a plain top-level link.
 //
-// Two rules for `note` copy: keep it to one short line, and keep years out of
-// it. The masthead is baked into index.html's static home shell by
-// scripts/gen-home-shell.mjs, which rejects anything date-derived because that
-// file is cached hard. For the same reason nothing here may be computed from
-// the catalog (the generator renders with an empty window.ARTICLES, so a live
-// count would bake as zero and then shift on boot).
+// Two rules for `note` copy, and they bind both tables: keep it to one short
+// line, and keep years out of it. The masthead is baked into index.html's
+// static home shell by scripts/gen-home-shell.mjs, which rejects anything
+// date-derived because that file is cached hard. For the same reason nothing
+// here may be computed from the catalog (the generator renders with an empty
+// window.ARTICLES, so a live count would bake as zero and then shift on boot).
 const NAV_GROUPS = [
   {
-    key: "read",
-    label: "Read",
-    route: "articles",
-    cta: "All articles →",
-    blurb: "The journal itself, and the park's own record going back a century.",
-    columns: [
-      {
-        heading: "The journal",
-        links: [
-          { key: "articles", label: "All articles", note: "Everything published, newest first" },
-          { key: "now", label: "The Park Bulletin", note: "What is happening in the park right now" },
-          { key: "films", label: "Films", note: "The NPS Nature Notes film series, annotated" },
-          { href: "/archive/", label: "Nature Notes archive", note: "512 issues of the park's own bulletin" },
-        ],
-      },
-      {
-        heading: "Sections",
-        links: [
-          { key: "cat:planning", label: "Planning", note: "Permits, timing, transit, lodging" },
-          { key: "cat:trails", label: "Trails and hikes", note: "Routes and conditions, kept current" },
-          { key: "cat:wildlife", label: "Wildlife and nature", note: "What is moving and what is blooming" },
-          { key: "cat:seasonal", label: "Seasonal guides", note: "The park, month by month" },
-        ],
-      },
-    ],
-  },
-  {
     key: "plan",
-    label: "Plan",
+    label: "Plan a Trip",
     route: "planning",
     cta: "The Planning Guide →",
     blurb: "The trip, in the order the decisions actually come at you.",
@@ -392,7 +375,6 @@ const NAV_GROUPS = [
         heading: "Before you drive in",
         links: [
           { key: "map", label: "The trip map", note: "Every pin in the park, assembled into a route" },
-          { key: "conditions", label: "Conditions", note: "Webcams, entrance waits, forecasts" },
           { key: "checklist", label: "First-week checklist", note: "What to do in the week before you go" },
           { key: "kit", label: "Kit", note: "What earns its place in the pack" },
         ],
@@ -407,45 +389,62 @@ const NAV_GROUPS = [
       },
     ],
   },
-  { key: "guide", label: "Field Guide", route: "guide" },
+  // Conditions left the Plan dropdown for the bar itself: "is the road open,
+  // what's the weather" is the question most visits start with, and it should
+  // not cost a hover to answer.
+  { key: "conditions", label: "Conditions", route: "conditions" },
   {
-    // align: "right" keeps this last dropdown inside the viewport at narrow
-    // desktop widths (it sits hard against the right edge).
-    key: "about",
-    label: "About",
-    route: "about",
-    align: "right",
-    cta: "About the journal →",
-    blurb: "Who keeps this journal, how to reach it, and everything it contains.",
+    // Keeps the key "read": isGroupActive's a:/cat: special case and the
+    // footer both lean on it.
+    key: "read",
+    label: "Explore Yosemite",
+    route: "articles",
+    cta: "All articles →",
+    blurb: "The journal itself: everything published, by section.",
     columns: [
       {
-        heading: "The masthead",
+        heading: "The journal",
         links: [
-          { key: "about", label: "About the journal", note: "Who writes this, and why" },
-          { key: "newsletter", label: "Newsletter", note: "One short letter a week. Free" },
-          { key: "contact", label: "Contact", note: "Trip questions, corrections, press" },
-          { key: "explore", label: "Site index", note: "Every page on the site, on one page" },
+          { key: "articles", label: "All articles", note: "Everything published, newest first" },
+          { key: "now", label: "The Park Bulletin", note: "What is happening in the park right now" },
         ],
       },
       {
-        heading: "For businesses",
+        heading: "Sections",
         links: [
-          { key: "places", label: "Directory", note: "The short list of operators worth knowing" },
-          { key: "advertise", label: "Advertise", note: "What a listing is, and what disqualifies one" },
-          { key: "widget", label: "Conditions widget", note: "A free embed for gateway businesses" },
-          { key: "partners", label: "Group codes", note: "The Field Guide in packs, for lodging" },
+          { key: "cat:planning", label: "Planning", note: "Permits, timing, transit, lodging" },
+          { key: "cat:trails", label: "Trails and hikes", note: "Routes and conditions, kept current" },
+          { key: "cat:wildlife", label: "Wildlife and nature", note: "What is moving and what is blooming" },
+          { key: "cat:seasonal", label: "Seasonal guides", note: "The park, month by month" },
         ],
       },
     ],
   },
+  { key: "guide", label: "Field Guide", route: "guide" },
 ];
 
-// Flattened once for /explore and for the active-group test.
+// Everything that left the masthead bar in the simplification pass. Same link
+// shape and the same copy rules as NAV_GROUPS; rendered by the hamburger's
+// More section, mirrored by the footer and /explore, never by the bar itself.
+const NAV_SECONDARY = [
+  { key: "about", label: "About the journal", note: "Who writes this, and why" },
+  { key: "newsletter", label: "Newsletter", note: "One short letter a week. Free" },
+  { key: "films", label: "Films", note: "The NPS Nature Notes film series, annotated" },
+  { href: "/archive/", label: "Nature Notes archive", note: "512 issues of the park's own bulletin" },
+  { key: "places", label: "Directory", note: "The short list of operators worth knowing" },
+  { key: "advertise", label: "Advertise", note: "What a listing is, and what disqualifies one" },
+  { key: "widget", label: "Conditions widget", note: "A free embed for gateway businesses" },
+  { key: "partners", label: "Group codes", note: "The Field Guide in packs, for lodging" },
+  { key: "contact", label: "Contact", note: "Trip questions, corrections, press" },
+];
+
+// Flattened once for the active-group test.
 function navGroupLinks(group) {
   return (group.columns || []).flatMap((col) => col.links);
 }
 
 window.NAV_GROUPS = NAV_GROUPS;
+window.NAV_SECONDARY = NAV_SECONDARY;
 window.navGroupLinks = navGroupLinks;
 
 function Header({ current, go }) {
@@ -575,40 +574,14 @@ function Header({ current, go }) {
 
   const renderPlainLink = (key, label, opts) => renderLink({ key, label }, opts);
 
-  const todayFull = new Date().toLocaleDateString("en-US", {
-    weekday: "long", year: "numeric", month: "long", day: "numeric"
-  });
-  const todayShort = new Date().toLocaleDateString("en-US", {
-    month: "short", day: "numeric"
-  });
+  // The masthead used to open with a utility bar: dateline, Bulletin link,
+  // three NWS forecasts, live entrance waits, the NPS Yosemite Guide. The
+  // simplification pass removed the whole strip; /conditions carries the
+  // forecasts and waits now, and the Bulletin lives in Explore Yosemite and
+  // the bottom nav's Now tab.
   return (
+    <React.Fragment>
     <header className="masthead">
-      <div className="masthead__top">
-        <div className="masthead__dateline">
-          <span className="masthead__vol">{(window.SITE && window.SITE.issue) || "Vol. III"}</span>
-          <span className="masthead__date masthead__date--full">{todayFull}</span>
-          <span className="masthead__date masthead__date--short">{todayShort}</span>
-        </div>
-        <div className="masthead__utility">
-          {/* The Park Bulletin: the one page that always answers "what's
-              happening right now," so it earns the masthead slot. */}
-          <a
-            className="masthead__guide"
-            href="/now"
-            onClick={(e) => { e.preventDefault(); if (window.track) window.track("cta_click", { location: "masthead_now" }); go("now"); }}
-          >The Bulletin</a>
-          <div className="masthead__weather">
-            <span className="masthead__weather-label">Conditions</span>
-            <a href="https://forecast.weather.gov/MapClick.php?lat=37.7456&lon=-119.5936" target="_blank" rel="noopener noreferrer">Valley</a>
-            <span className="masthead__weather-sep">·</span>
-            <a href="https://forecast.weather.gov/MapClick.php?lat=37.8731&lon=-119.3503" target="_blank" rel="noopener noreferrer">Tuolumne</a>
-            <span className="masthead__weather-sep">·</span>
-            <a href="https://forecast.weather.gov/MapClick.php?lat=37.5341&lon=-119.6315" target="_blank" rel="noopener noreferrer">Wawona</a>
-          </div>
-          <EntranceWaits />
-          <a className="masthead__guide" href="https://www.nps.gov/yose/planyourvisit/guide.htm" target="_blank" rel="noopener noreferrer">Yosemite Guide ↗</a>
-        </div>
-      </div>
       <div className="masthead__main">
         <a
           className="brand-block"
@@ -700,21 +673,10 @@ function Header({ current, go }) {
             <span className="nav__search-label">Search</span>
           </a>
 
-          {/* Persistent "The Map" CTA. On mobile the inline nav collapses to
-              the hamburger, leaving no visible path to the funnel; this fills
-              that gap. The map is the newsletter gate (one signup opens it),
-              so it is the primary capture on-ramp. Was A/B tested
-              (mobile_cta); bucket b won the tradeoff and is now the default. */}
-          <a
-            className="nav__primary"
-            href={window.routeToPath ? window.routeToPath("map") : "/map"}
-            onClick={(e) => {
-              e.preventDefault();
-              if (window.track) window.track("cta_click", { location: "masthead_cta", target: "map" });
-              go("map");
-            }}
-          >The Map</a>
-
+          {/* The standalone "The Map" CTA (the A/B-tested mobile_cta winner)
+              left the bar in the simplification pass: its job, a visible path
+              to the funnel when the inline nav collapses, moved to the bottom
+              nav's Map tab. */}
           <div className="nav__menu-wrap" ref={menuRef}>
             <button
               type="button"
@@ -767,6 +729,10 @@ function Header({ current, go }) {
                   </div>
                 ))}
                 <div className="nav__menu-group">
+                  <div className="nav__menu-sublabel">More</div>
+                  {NAV_SECONDARY.map((link) => renderLink(link, { role: "menuitem", onNavigate: closeMenu, noteClass: "nav__menu-note" }))}
+                </div>
+                <div className="nav__menu-group">
                   {renderPlainLink("explore", "Everything on this site →", { baseClass: "nav__menu-index", role: "menuitem", onNavigate: closeMenu })}
                 </div>
               </div>
@@ -775,6 +741,51 @@ function Header({ current, go }) {
         </nav>
       </div>
     </header>
+    <BottomNav current={current} go={go} />
+    </React.Fragment>
+  );
+}
+
+// ============================================================
+// Bottom navigation (phones). The inline nav collapses into the hamburger at
+// 880px, which left the hamburger as the only way anywhere; this keeps the
+// four highest-value destinations one thumb away on every page. Rendered by
+// Header so it ships in the static home shell and paints before React boots.
+// Shell-safe by construction: no browser APIs, no dates, nothing computed
+// from the catalog. Hidden by returning null (not CSS) on the two surfaces
+// that own their bottom edge, the map's bottom sheet and the guide page's
+// buy bar, so a direct load of either never flashes it.
+// ============================================================
+const BOTTOM_NAV = [
+  { key: "planning", label: "Plan" },
+  { key: "now", label: "Now" },
+  { key: "map", label: "Map" },
+  { key: "articles", label: "Read" },
+];
+
+function BottomNav({ current, go }) {
+  if (current === "map" || current === "guide") return null;
+  const isActive = (key) => {
+    if (key === "articles") return current === "articles" || current.startsWith("a:") || current.startsWith("cat:");
+    if (key === "planning") return ["planning", "itineraries", "stay", "checklist", "kit"].includes(current);
+    return current === key;
+  };
+  return (
+    <nav className="bottomnav" aria-label="Quick navigation">
+      {BOTTOM_NAV.map((t) => (
+        <a
+          key={t.key}
+          className={["bottomnav__item", isActive(t.key) && "is-active"].filter(Boolean).join(" ")}
+          aria-current={isActive(t.key) ? "page" : undefined}
+          href={window.routeToPath ? window.routeToPath(t.key) : `/${t.key}`}
+          onClick={(e) => {
+            e.preventDefault();
+            if (window.track) window.track("cta_click", { location: "bottom_nav", target: t.key });
+            go(t.key);
+          }}
+        >{t.label}</a>
+      ))}
+    </nav>
   );
 }
 
@@ -782,10 +793,10 @@ function Header({ current, go }) {
 // Site footer
 // ============================================================
 function Footer({ go }) {
-  // Grouped the same way the masthead is, so the footer reads as the same map
-  // of the site rather than a second, differently-ordered one. It used to
-  // carry one 14-item "Site" column, which is a list nobody scans. Everything
-  // still reachable from here plus /explore, which carries the rest.
+  // The full map of the site in three columns. Since the nav simplification
+  // pass the masthead bar carries only the primary destinations, so the
+  // footer (with the hamburger's More section and /explore) is where the
+  // secondary ones - films, the archive, the business pages - stay reachable.
   const link = (route, label) => (
     <li key={route}>
       <a
@@ -852,6 +863,8 @@ function Footer({ go }) {
               {link("search", "Search")}
               {link("places", "Directory")}
               {link("advertise", "Advertise")}
+              {link("widget", "Conditions widget")}
+              {link("partners", "Group codes")}
               {link("privacy", "Privacy")}
               {link("terms", "Terms")}
               {link("affiliate", "Affiliate disclosure")}

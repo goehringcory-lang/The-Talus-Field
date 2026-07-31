@@ -968,15 +968,16 @@ function App() {
     currentNav = "films";
   } else if (route === "advertise") {
     page = <window.AdvertisePage go={go} />;
+    currentNav = "advertise";
   } else if (route === "articles") {
     page = <window.ArticlesIndex go={go} />;
     currentNav = "articles";
   } else if (route === "planning") {
     page = <window.PlanningGuide go={go} />;
-    currentNav = "articles";
+    currentNav = "planning";
   } else if (route === "checklist") {
     page = <window.ChecklistPage go={go} />;
-    currentNav = "articles";
+    currentNav = "checklist";
   } else if (route.startsWith("cat:")) {
     page = <window.CategoryPage slug={route.slice(4)} go={go} />;
     currentNav = "articles";
@@ -997,9 +998,10 @@ function App() {
     page = <window.AffiliatePage />;
   } else if (route === "guide") {
     page = <window.GuidePage go={go} />;
+    currentNav = "guide";
   } else if (route === "itineraries") {
     page = <window.ItinerariesPage go={go} />;
-    // currentNav stays "home" so no nav link highlights, matching /map.
+    currentNav = "itineraries";
   } else if (route === "search") {
     page = <window.SearchPage go={go} />;
     currentNav = "search";
@@ -1008,26 +1010,36 @@ function App() {
     currentNav = "explore";
   } else if (route === "stay") {
     page = <window.StayPage go={go} />;
+    currentNav = "stay";
   } else if (route === "conditions") {
     page = <window.ConditionsPage go={go} />;
+    currentNav = "conditions";
   } else if (route === "now") {
     page = <window.BulletinPage go={go} />;
+    currentNav = "now";
   } else if (route === "firefall") {
     page = <window.FirefallPage go={go} />;
-    // currentNav stays "home"; the event page hangs off articles + /now links.
+    currentNav = "firefall";
   } else if (route === "tioga-opening") {
     page = <window.TiogaOpeningPage go={go} />;
+    currentNav = "tioga-opening";
   } else if (route === "half-dome-lottery") {
     page = <window.HalfDomeLotteryPage go={go} />;
+    currentNav = "half-dome-lottery";
   } else if (route === "consult") {
     page = <window.ConsultPage go={go} />;
+    currentNav = "consult";
   } else if (route === "widget") {
     page = <window.WidgetPage go={go} />;
+    currentNav = "widget";
   } else if (route === "partners") {
     page = <window.PartnersPage go={go} />;
+    currentNav = "partners";
   } else if (route === "map") {
     page = <window.MapPage go={go} />;
-    // currentNav stays "home" so no nav link highlights.
+    // Real key: BottomNav hides itself on the map (the bottom sheet owns
+    // that edge) and the Plan a Trip group highlights its member route.
+    currentNav = "map";
   } else {
     page = <NotFoundPage go={go} />;
   }

@@ -31,11 +31,11 @@
 //
 // NOTHING DATE-DERIVED MAY BE BAKED IN
 // index.html is cached hard at the edge and in browsers, so any date-derived
-// text would go stale. Two slots are date-derived: the hero's issue label
-// (window.SITE.issueDetail, whose month tracks the clock — see data.js) and the
-// masthead dateline. Both are emitted as a stable-height blank and filled by
-// React on boot. The script asserts each slot exists, so removing or renaming
-// one fails loudly here instead of silently shipping a frozen month name.
+// text would go stale. One slot is date-derived: the hero's issue label
+// (window.SITE.issueDetail, whose month tracks the clock — see data.js). It is
+// emitted as a stable-height blank and filled by React on boot. The script
+// asserts the slot exists, so removing or renaming it fails loudly here
+// instead of silently shipping a frozen month name.
 //
 // Usage:
 //   node scripts/gen-home-shell.mjs           # rewrite the block in index.html
@@ -184,19 +184,13 @@ function buildSandbox(site) {
 // keeps its height when React fills it in on boot.
 // ---------------------------------------------------------------------------
 const BLANK = "&nbsp;";
+// One slot since the nav simplification pass removed the masthead's dateline:
+// the hero kicker's issue label.
 const DATE_SLOTS = [
   {
     what: "hero issue label (window.SITE.issueDetail tracks the current month)",
     // <span data-shell-blank="issue">Vol. III · No. 19 · The July Issue</span>
     re: /(<span data-shell-blank="issue"[^>]*>)[\s\S]*?(<\/span>)/,
-  },
-  {
-    what: "masthead dateline, long form",
-    re: /(<span class="masthead__date masthead__date--full">)[\s\S]*?(<\/span>)/,
-  },
-  {
-    what: "masthead dateline, short form",
-    re: /(<span class="masthead__date masthead__date--short">)[\s\S]*?(<\/span>)/,
   },
 ];
 
@@ -294,8 +288,11 @@ rendered = blankDateSlots(rendered);
 const MUST_CONTAIN = [
   ['<h1>Yosemite, from the inside.', "the hero h1"],
   ['class="hero__dek"', "the hero dek (the measured LCP element)"],
-  ['class="hero-doors"', "the triage doors"],
+  ['Plan my Yosemite trip', "the primary CTA"],
+  ['class="hero-audience"', "the audience links"],
+  ['class="hero-guide"', "the hero Field Guide card"],
   ['class="masthead"', "the masthead"],
+  ['class="bottomnav"', "the mobile bottom nav"],
 ];
 for (const [needle, what] of MUST_CONTAIN) {
   if (!rendered.includes(needle)) {

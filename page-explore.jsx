@@ -2,15 +2,17 @@
 
 // =============================================================================
 // THE INDEX — `/explore`. One page that lists every reader-facing destination
-// on the site, grouped the way the masthead groups them, each with a line
-// saying what it is.
+// on the site, in the masthead's order (planning first, then the reading),
+// each with a line saying what it is.
 //
 // Why it exists: the site now carries four article sections, a 512-issue
 // transcribed archive, a film archive, a bulletin, a trip map, a planning
 // guide, three dated-event pages, a paid app, and a handful of business
-// pages. No masthead can hold that without becoming a directory, and the
-// footer had drifted into a fourteen-item column nobody scans. This is the
-// overflow: the one page a reader can land on and see the whole shape.
+// pages. The nav simplification pass cut the masthead to the primary
+// destinations precisely because no bar can hold all that without becoming
+// a directory. This page is the directory: the one page a reader can land
+// on and see the whole shape, and (with the footer and the hamburger's More
+// section) where the secondary destinations stay reachable.
 //
 // It is NOT a sitemap dump and NOT a search. /articles is the article catalog
 // and /search is the query box; this page indexes destinations and links out
@@ -200,18 +202,18 @@ function ExplorePage({ go }) {
 
       <ExploreSection
         go={go}
-        eyebrow="Read"
-        title="The writing, and the record."
-        dek="The journal itself, plus the park's own bulletin and film series."
-        entries={reading}
+        eyebrow="Plan a Trip"
+        title="The trip."
+        dek="In roughly the order the decisions come at you."
+        entries={planning}
       />
 
       <ExploreSection
         go={go}
-        eyebrow="Plan"
-        title="The trip."
-        dek="In roughly the order the decisions come at you."
-        entries={planning}
+        eyebrow="Explore Yosemite"
+        title="The writing, and the record."
+        dek="The journal itself, plus the park's own bulletin and film series."
+        entries={reading}
       />
 
       <ExploreSection

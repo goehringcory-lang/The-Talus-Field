@@ -12,7 +12,7 @@ python3 -m http.server 8765 &   # matches the Google Maps key's allowed referrer
 ```
 
 There are no route rewrites: `/map` 404s. Always load `http://localhost:8765/index.html`
-and navigate in-SPA (e.g. `page.click('.nav__primary')` reaches `/map`).
+and navigate in-SPA (e.g. clicking a masthead or bottom-nav link such as `.bottomnav__item` reaches its route).
 
 ## Launch (Claude Code remote env)
 

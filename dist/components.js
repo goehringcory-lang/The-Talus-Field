@@ -333,53 +333,8 @@ function releaseRockfall(markEl) {
   }, 5000);
 }
 var NAV_GROUPS = [{
-  key: "read",
-  label: "Read",
-  route: "articles",
-  cta: "All articles →",
-  blurb: "The journal itself, and the park's own record going back a century.",
-  columns: [{
-    heading: "The journal",
-    links: [{
-      key: "articles",
-      label: "All articles",
-      note: "Everything published, newest first"
-    }, {
-      key: "now",
-      label: "The Park Bulletin",
-      note: "What is happening in the park right now"
-    }, {
-      key: "films",
-      label: "Films",
-      note: "The NPS Nature Notes film series, annotated"
-    }, {
-      href: "/archive/",
-      label: "Nature Notes archive",
-      note: "512 issues of the park's own bulletin"
-    }]
-  }, {
-    heading: "Sections",
-    links: [{
-      key: "cat:planning",
-      label: "Planning",
-      note: "Permits, timing, transit, lodging"
-    }, {
-      key: "cat:trails",
-      label: "Trails and hikes",
-      note: "Routes and conditions, kept current"
-    }, {
-      key: "cat:wildlife",
-      label: "Wildlife and nature",
-      note: "What is moving and what is blooming"
-    }, {
-      key: "cat:seasonal",
-      label: "Seasonal guides",
-      note: "The park, month by month"
-    }]
-  }]
-}, {
   key: "plan",
-  label: "Plan",
+  label: "Plan a Trip",
   route: "planning",
   cta: "The Planning Guide →",
   blurb: "The trip, in the order the decisions actually come at you.",
@@ -409,10 +364,6 @@ var NAV_GROUPS = [{
       label: "The trip map",
       note: "Every pin in the park, assembled into a route"
     }, {
-      key: "conditions",
-      label: "Conditions",
-      note: "Webcams, entrance waits, forecasts"
-    }, {
       key: "checklist",
       label: "First-week checklist",
       note: "What to do in the week before you go"
@@ -438,60 +389,93 @@ var NAV_GROUPS = [{
     }]
   }]
 }, {
+  key: "conditions",
+  label: "Conditions",
+  route: "conditions"
+}, {
+  key: "read",
+  label: "Explore Yosemite",
+  route: "articles",
+  cta: "All articles →",
+  blurb: "The journal itself: everything published, by section.",
+  columns: [{
+    heading: "The journal",
+    links: [{
+      key: "articles",
+      label: "All articles",
+      note: "Everything published, newest first"
+    }, {
+      key: "now",
+      label: "The Park Bulletin",
+      note: "What is happening in the park right now"
+    }]
+  }, {
+    heading: "Sections",
+    links: [{
+      key: "cat:planning",
+      label: "Planning",
+      note: "Permits, timing, transit, lodging"
+    }, {
+      key: "cat:trails",
+      label: "Trails and hikes",
+      note: "Routes and conditions, kept current"
+    }, {
+      key: "cat:wildlife",
+      label: "Wildlife and nature",
+      note: "What is moving and what is blooming"
+    }, {
+      key: "cat:seasonal",
+      label: "Seasonal guides",
+      note: "The park, month by month"
+    }]
+  }]
+}, {
   key: "guide",
   label: "Field Guide",
   route: "guide"
-}, {
+}];
+var NAV_SECONDARY = [{
   key: "about",
-  label: "About",
-  route: "about",
-  align: "right",
-  cta: "About the journal →",
-  blurb: "Who keeps this journal, how to reach it, and everything it contains.",
-  columns: [{
-    heading: "The masthead",
-    links: [{
-      key: "about",
-      label: "About the journal",
-      note: "Who writes this, and why"
-    }, {
-      key: "newsletter",
-      label: "Newsletter",
-      note: "One short letter a week. Free"
-    }, {
-      key: "contact",
-      label: "Contact",
-      note: "Trip questions, corrections, press"
-    }, {
-      key: "explore",
-      label: "Site index",
-      note: "Every page on the site, on one page"
-    }]
-  }, {
-    heading: "For businesses",
-    links: [{
-      key: "places",
-      label: "Directory",
-      note: "The short list of operators worth knowing"
-    }, {
-      key: "advertise",
-      label: "Advertise",
-      note: "What a listing is, and what disqualifies one"
-    }, {
-      key: "widget",
-      label: "Conditions widget",
-      note: "A free embed for gateway businesses"
-    }, {
-      key: "partners",
-      label: "Group codes",
-      note: "The Field Guide in packs, for lodging"
-    }]
-  }]
+  label: "About the journal",
+  note: "Who writes this, and why"
+}, {
+  key: "newsletter",
+  label: "Newsletter",
+  note: "One short letter a week. Free"
+}, {
+  key: "films",
+  label: "Films",
+  note: "The NPS Nature Notes film series, annotated"
+}, {
+  href: "/archive/",
+  label: "Nature Notes archive",
+  note: "512 issues of the park's own bulletin"
+}, {
+  key: "places",
+  label: "Directory",
+  note: "The short list of operators worth knowing"
+}, {
+  key: "advertise",
+  label: "Advertise",
+  note: "What a listing is, and what disqualifies one"
+}, {
+  key: "widget",
+  label: "Conditions widget",
+  note: "A free embed for gateway businesses"
+}, {
+  key: "partners",
+  label: "Group codes",
+  note: "The Field Guide in packs, for lodging"
+}, {
+  key: "contact",
+  label: "Contact",
+  note: "Trip questions, corrections, press"
 }];
 function navGroupLinks(group) {
   return (group.columns || []).flatMap(col => col.links);
 }
 window.NAV_GROUPS = NAV_GROUPS;
+window.NAV_SECONDARY = NAV_SECONDARY;
 window.navGroupLinks = navGroupLinks;
 function Header({
   current,
@@ -618,66 +602,9 @@ function Header({
     key,
     label
   }, opts);
-  var todayFull = new Date().toLocaleDateString("en-US", {
-    weekday: "long",
-    year: "numeric",
-    month: "long",
-    day: "numeric"
-  });
-  var todayShort = new Date().toLocaleDateString("en-US", {
-    month: "short",
-    day: "numeric"
-  });
-  return React.createElement("header", {
+  return React.createElement(React.Fragment, null, React.createElement("header", {
     className: "masthead"
   }, React.createElement("div", {
-    className: "masthead__top"
-  }, React.createElement("div", {
-    className: "masthead__dateline"
-  }, React.createElement("span", {
-    className: "masthead__vol"
-  }, window.SITE && window.SITE.issue || "Vol. III"), React.createElement("span", {
-    className: "masthead__date masthead__date--full"
-  }, todayFull), React.createElement("span", {
-    className: "masthead__date masthead__date--short"
-  }, todayShort)), React.createElement("div", {
-    className: "masthead__utility"
-  }, React.createElement("a", {
-    className: "masthead__guide",
-    href: "/now",
-    onClick: e => {
-      e.preventDefault();
-      if (window.track) window.track("cta_click", {
-        location: "masthead_now"
-      });
-      go("now");
-    }
-  }, "The Bulletin"), React.createElement("div", {
-    className: "masthead__weather"
-  }, React.createElement("span", {
-    className: "masthead__weather-label"
-  }, "Conditions"), React.createElement("a", {
-    href: "https://forecast.weather.gov/MapClick.php?lat=37.7456&lon=-119.5936",
-    target: "_blank",
-    rel: "noopener noreferrer"
-  }, "Valley"), React.createElement("span", {
-    className: "masthead__weather-sep"
-  }, "·"), React.createElement("a", {
-    href: "https://forecast.weather.gov/MapClick.php?lat=37.8731&lon=-119.3503",
-    target: "_blank",
-    rel: "noopener noreferrer"
-  }, "Tuolumne"), React.createElement("span", {
-    className: "masthead__weather-sep"
-  }, "·"), React.createElement("a", {
-    href: "https://forecast.weather.gov/MapClick.php?lat=37.5341&lon=-119.6315",
-    target: "_blank",
-    rel: "noopener noreferrer"
-  }, "Wawona")), React.createElement(EntranceWaits, null), React.createElement("a", {
-    className: "masthead__guide",
-    href: "https://www.nps.gov/yose/planyourvisit/guide.htm",
-    target: "_blank",
-    rel: "noopener noreferrer"
-  }, "Yosemite Guide ↗"))), React.createElement("div", {
     className: "masthead__main"
   }, React.createElement("a", {
     className: "brand-block",
@@ -790,18 +717,7 @@ function Header({
     strokeLinecap: "round"
   })), React.createElement("span", {
     className: "nav__search-label"
-  }, "Search")), React.createElement("a", {
-    className: "nav__primary",
-    href: window.routeToPath ? window.routeToPath("map") : "/map",
-    onClick: e => {
-      e.preventDefault();
-      if (window.track) window.track("cta_click", {
-        location: "masthead_cta",
-        target: "map"
-      });
-      go("map");
-    }
-  }, "The Map"), React.createElement("div", {
+  }, "Search")), React.createElement("div", {
     className: "nav__menu-wrap",
     ref: menuRef
   }, React.createElement("button", {
@@ -875,11 +791,63 @@ function Header({
     onNavigate: closeMenu
   }))), React.createElement("div", {
     className: "nav__menu-group"
+  }, React.createElement("div", {
+    className: "nav__menu-sublabel"
+  }, "More"), NAV_SECONDARY.map(link => renderLink(link, {
+    role: "menuitem",
+    onNavigate: closeMenu,
+    noteClass: "nav__menu-note"
+  }))), React.createElement("div", {
+    className: "nav__menu-group"
   }, renderPlainLink("explore", "Everything on this site →", {
     baseClass: "nav__menu-index",
     role: "menuitem",
     onNavigate: closeMenu
-  })))))));
+  }))))))), React.createElement(BottomNav, {
+    current: current,
+    go: go
+  }));
+}
+var BOTTOM_NAV = [{
+  key: "planning",
+  label: "Plan"
+}, {
+  key: "now",
+  label: "Now"
+}, {
+  key: "map",
+  label: "Map"
+}, {
+  key: "articles",
+  label: "Read"
+}];
+function BottomNav({
+  current,
+  go
+}) {
+  if (current === "map" || current === "guide") return null;
+  var isActive = key => {
+    if (key === "articles") return current === "articles" || current.startsWith("a:") || current.startsWith("cat:");
+    if (key === "planning") return ["planning", "itineraries", "stay", "checklist", "kit"].includes(current);
+    return current === key;
+  };
+  return React.createElement("nav", {
+    className: "bottomnav",
+    "aria-label": "Quick navigation"
+  }, BOTTOM_NAV.map(t => React.createElement("a", {
+    key: t.key,
+    className: ["bottomnav__item", isActive(t.key) && "is-active"].filter(Boolean).join(" "),
+    "aria-current": isActive(t.key) ? "page" : undefined,
+    href: window.routeToPath ? window.routeToPath(t.key) : `/${t.key}`,
+    onClick: e => {
+      e.preventDefault();
+      if (window.track) window.track("cta_click", {
+        location: "bottom_nav",
+        target: t.key
+      });
+      go(t.key);
+    }
+  }, t.label)));
 }
 function Footer({
   go
@@ -929,7 +897,7 @@ function Footer({
     }
   }, c.label))), link("now", "The Park Bulletin"), link("films", "Films"), React.createElement("li", null, React.createElement("a", {
     href: "/archive/"
-  }, "Nature Notes archive")))), React.createElement("div", null, React.createElement("h4", null, "Plan"), React.createElement("ul", null, link("planning", "The Planning Guide"), link("map", "The Map"), link("itineraries", "Itineraries"), link("stay", "Where to stay"), link("conditions", "Conditions"), link("checklist", "First-week checklist"), link("kit", "Kit"), link("guide", "The Field Guide"))), React.createElement("div", null, React.createElement("h4", null, "The journal"), React.createElement("ul", null, link("about", "About"), link("newsletter", "Newsletter"), link("contact", "Contact"), link("search", "Search"), link("places", "Directory"), link("advertise", "Advertise"), link("privacy", "Privacy"), link("terms", "Terms"), link("affiliate", "Affiliate disclosure")))), React.createElement("div", {
+  }, "Nature Notes archive")))), React.createElement("div", null, React.createElement("h4", null, "Plan"), React.createElement("ul", null, link("planning", "The Planning Guide"), link("map", "The Map"), link("itineraries", "Itineraries"), link("stay", "Where to stay"), link("conditions", "Conditions"), link("checklist", "First-week checklist"), link("kit", "Kit"), link("guide", "The Field Guide"))), React.createElement("div", null, React.createElement("h4", null, "The journal"), React.createElement("ul", null, link("about", "About"), link("newsletter", "Newsletter"), link("contact", "Contact"), link("search", "Search"), link("places", "Directory"), link("advertise", "Advertise"), link("widget", "Conditions widget"), link("partners", "Group codes"), link("privacy", "Privacy"), link("terms", "Terms"), link("affiliate", "Affiliate disclosure")))), React.createElement("div", {
     className: "site-footer__disclosure"
   }, "Some links on this site are affiliate links. If you book or buy through one, The Talus Field may earn a small commission at no extra cost to you. ", React.createElement("a", {
     href: "/affiliate",
