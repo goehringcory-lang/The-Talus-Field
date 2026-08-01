@@ -110,10 +110,31 @@ function AvailabilityLink(props) {
   );
 }
 function LodgingCta(props) {
-  const kids = [
+  const kids = [];
+  if (props.image) {
+    const figKids = [
+      React.createElement(ResponsiveImage, {
+        key: "img",
+        className: "lodging-cta__img",
+        image: props.image,
+        alt: props.caption || "",
+      }),
+    ];
+    if (props.caption) {
+      figKids.push(
+        React.createElement("figcaption", { key: "cap", className: "lodging-cta__caption" },
+          props.caption,
+          props.credit
+            ? React.createElement("span", { key: "cr", className: "lodging-cta__credit" }, props.credit)
+            : null)
+      );
+    }
+    kids.push(React.createElement("figure", { key: "f", className: "lodging-cta__figure" }, figKids));
+  }
+  kids.push(
     React.createElement("div", { key: "h", className: "lodging-cta__head" },
-      props.heading || "Check what is actually available"),
-  ];
+      props.heading || "Check what is actually available")
+  );
   if (props.note) {
     kids.push(React.createElement("p", { key: "n", className: "lodging-cta__note" }, props.note));
   }

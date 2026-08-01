@@ -1478,11 +1478,25 @@ function LodgingCta({
   list,
   slug,
   cta,
-  stayLink
+  stayLink,
+  image,
+  caption,
+  credit
 }) {
   return React.createElement("aside", {
     className: "lodging-cta"
-  }, React.createElement("div", {
+  }, image && React.createElement("figure", {
+    className: "lodging-cta__figure"
+  }, React.createElement(ResponsiveImage, {
+    image: image,
+    alt: caption || "",
+    sizes: SIZES_CARD,
+    className: "lodging-cta__img"
+  }), caption && React.createElement("figcaption", {
+    className: "lodging-cta__caption"
+  }, caption, credit && React.createElement("span", {
+    className: "lodging-cta__credit"
+  }, credit))), React.createElement("div", {
     className: "lodging-cta__head"
   }, heading || "Check what is actually available"), note && React.createElement("p", {
     className: "lodging-cta__note"

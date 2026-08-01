@@ -5433,6 +5433,28 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
   border: 1px solid var(--rule-soft);
   border-left: 3px solid var(--moss);
 }
+.lodging-cta__figure {
+  margin: -22px -24px 16px;
+}
+.lodging-cta__img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+}
+.lodging-cta__caption {
+  font-family: var(--sans);
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--ink-3);
+  padding: 8px 24px 0;
+}
+.lodging-cta__credit {
+  display: block;
+  font-size: 11px;
+  opacity: 0.8;
+  margin-top: 2px;
+}
 .lodging-cta__head {
   font-family: var(--sans);
   font-size: 12px;
@@ -5634,6 +5656,8 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
   .stay-grid { grid-template-columns: 1fr; gap: 24px; }
   .stay-card__name { font-size: 23px; }
   .lodging-cta { padding: 18px 18px 16px; }
+  .lodging-cta__figure { margin: -18px -18px 14px; }
+  .lodging-cta__caption { padding: 8px 18px 0; }
 }
 
 /* Map sidebar: the lodging line's inline disclosure. */

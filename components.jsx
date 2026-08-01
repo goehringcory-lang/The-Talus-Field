@@ -1215,9 +1215,23 @@ function AvailabilityLink({ destination, children, list, slug, name, className, 
 // The boxed version, for the end of a section that has just told the reader
 // where to sleep. Carries its own one-line disclosure so it stays honest
 // wherever it is dropped, including pages with no AffiliateNote at the end.
-function LodgingCta({ destination, heading, note, list, slug, cta, stayLink }) {
+// The optional photo slot (image/caption/credit) follows the /stay card rule:
+// only a photo that shows the place the link searches, never stock mood. Any
+// markup change here must be hand-mirrored in scripts/gen-prerender.mjs.
+function LodgingCta({ destination, heading, note, list, slug, cta, stayLink, image, caption, credit }) {
   return (
     <aside className="lodging-cta">
+      {image && (
+        <figure className="lodging-cta__figure">
+          <ResponsiveImage image={image} alt={caption || ""} sizes={SIZES_CARD} className="lodging-cta__img" />
+          {caption && (
+            <figcaption className="lodging-cta__caption">
+              {caption}
+              {credit && <span className="lodging-cta__credit">{credit}</span>}
+            </figcaption>
+          )}
+        </figure>
+      )}
       <div className="lodging-cta__head">{heading || "Check what is actually available"}</div>
       {note && <p className="lodging-cta__note">{note}</p>}
       <p className="lodging-cta__actions">

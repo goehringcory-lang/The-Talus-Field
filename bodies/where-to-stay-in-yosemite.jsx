@@ -1,4 +1,4 @@
-/* global React, AffiliateNote, AvailabilityLink, LodgingCta */
+/* global React, Placeholder, MotifMountains, AffiliateNote, AvailabilityLink, LodgingCta */
 
 window.ARTICLE_BODIES = window.ARTICLE_BODIES || {};
 
@@ -18,6 +18,16 @@ window.ARTICLE_BODIES["where-to-stay-in-yosemite"] = function WhereToStayInYosem
       <p>
         <strong>The Ahwahnee</strong> opened in 1927 and is a <strong>National Historic Landmark</strong>, which is a category of building, not a marketing phrase. The Great Lounge with its floor-to-ceiling windows, the stenciled beams, the massive stone fireplaces, the dining room with its 34-foot ceiling: this is one of the great park lodges in the national system, in the same conversation as Old Faithful Inn and the Grand Canyon's El Tovar. Queens and presidents have stayed here. The building sits under the Royal Arches at the quiet east end of the Valley, and the walk out the front door at dusk, with Half Dome going pink above the meadow, is the whole argument.
       </p>
+
+      <Placeholder
+        caption="The Ahwahnee under snow, at the quiet east end of the Valley"
+        image="img/ahwahnee-hotel.jpg"
+        credit="Photo: Chris Dunstan / Wikimedia Commons (public domain)"
+        tag="PLATE I"
+        size="lg"
+        style={{ aspectRatio: "16 / 10", margin: "32px 0" }}
+        motif={<MotifMountains />}
+      />
 
       <p>
         Now the honest part. The rooms are nice hotel rooms, not extraordinary ones, and you are paying <strong>several times the rate of Yosemite Valley Lodge</strong> for them. What the money actually buys is the public spaces, the address, and the feeling of the place: afternoon light in the Great Lounge, a drink by the fire after a day on the trails, dinner in a dining room that requires you to look up. If you will use those things, if you are marking an anniversary or a retirement or a once-in-a-lifetime trip, the Ahwahnee is worth it. If you plan to leave at dawn and return at dark and use the room as a place to sleep, it is emphatically not, and the Lodge will make you just as happy for a fraction of the cost. One good compromise I recommend constantly: stay somewhere cheaper and come to the Ahwahnee for <a href="/articles/where-to-eat-yosemite">a meal or a drink</a>. The Great Lounge does not check room keys.
@@ -40,6 +50,16 @@ window.ARTICLE_BODIES["where-to-stay-in-yosemite"] = function WhereToStayInYosem
       <p>
         <strong>Curry Village</strong> has been putting visitors in tents at the base of Glacier Point since 1899, and the current version is a dense grid of <strong>canvas tent cabins</strong> (wood frame, canvas walls and roof, real beds, no plumbing) plus a smaller number of hard-sided cabins, some with private baths. The tent cabins are the cheapest roofed beds in Yosemite Valley, and the tradeoffs are exactly what the canvas implies. You will hear your neighbors, and they will hear you. Unheated tents are genuinely cold in spring and fall (heated ones exist and go first). Bathrooms and showers are in shared <strong>communal bathhouses</strong>, a walk away in the dark.
       </p>
+
+      <Placeholder
+        caption="Cabins at Curry Village, under the base of Glacier Point"
+        image="img/curry-village.jpg"
+        credit="Photo: US National Park Service / Wikimedia Commons (public domain)"
+        tag="PLATE II"
+        size="lg"
+        style={{ aspectRatio: "16 / 10", margin: "32px 0" }}
+        motif={<MotifMountains />}
+      />
 
       <p>
         And you must use the <strong>bear box</strong>. Every tent cabin has a steel food locker outside, and everything with a scent, food, toothpaste, sunscreen, the gum in your daypack, goes in it, every time, because canvas is not a barrier a bear respects. This is not theoretical; it is the single rule the staff will repeat to you at check-in, and they mean it.

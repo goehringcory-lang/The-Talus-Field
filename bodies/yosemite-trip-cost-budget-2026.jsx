@@ -1,4 +1,4 @@
-/* global React, AffiliateNote, AvailabilityLink, LodgingCta */
+/* global React, Placeholder, MotifMountains, AffiliateNote, AvailabilityLink, LodgingCta */
 
 window.ARTICLE_BODIES = window.ARTICLE_BODIES || {};
 
@@ -122,6 +122,16 @@ window.ARTICLE_BODIES["yosemite-trip-cost-budget-2026"] = function YosemiteTripC
       <p>
         The outdoor industry wants you to believe you need $2,000 of gear to visit a national park. You don't.
       </p>
+
+      <Placeholder
+        caption="The day pack list, laid out before it goes in the pack: most of it you already own"
+        image="img/day-pack-flat-lay.jpg"
+        credit="Photo: Cory Goehring"
+        tag="PLATE I"
+        size="lg"
+        style={{ aspectRatio: "16 / 10", margin: "32px 0" }}
+        motif={<MotifMountains />}
+      />
 
       <p>
         <strong>Shoes:</strong> Sturdy, broken-in shoes with good tread. If you own hiking boots, great. If you don't, a pair of trail runners ($80–$150) will handle every trail in Yosemite except Half Dome. Running shoes and fashion sneakers are genuinely not safe on the steep, wet granite of the <a href="/articles/mist-trail-the-real-guide">park's most popular hikes</a>. This is the one gear purchase I'd say is non-negotiable.

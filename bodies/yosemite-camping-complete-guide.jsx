@@ -1,4 +1,4 @@
-/* global React, AffiliateNote, AvailabilityLink, LodgingCta */
+/* global React, Placeholder, MotifMountains, AffiliateNote, AvailabilityLink, LodgingCta */
 
 window.ARTICLE_BODIES = window.ARTICLE_BODIES || {};
 
@@ -444,6 +444,16 @@ window.ARTICLE_BODIES["yosemite-camping-complete-guide"] = function YosemiteCamp
       <p>
         There is a moment on the second night of every camping trip when the campground stops being a logistics problem and starts being a place. The fire has burned down to coals. The generator-hour people are asleep. The river is the loudest thing for a mile. If you are in the Valley, the granite walls are a shade of gray that has no name, holding the last ambient light while the sky behind them goes black and fills with stars.
       </p>
+
+      <Placeholder
+        caption="The Milky Way over Sentinel Dome, the sky the campground lights go out for"
+        image="img/milky-way-sentinel-dome.jpg"
+        credit="Photo: Jackhen1992 / Wikimedia Commons (CC BY-SA 4.0)"
+        tag="PLATE I"
+        size="lg"
+        style={{ aspectRatio: "16 / 10", margin: "32px 0" }}
+        motif={<MotifMountains />}
+      />
 
       <p>
         You realize you are not visiting Yosemite. You are in it. The ground under your sleeping pad is the same granite that Ahwahneechee families managed with fire for centuries, that John Muir walked, that was here when the glaciers carved the Valley and will be here long after every reservation system has been replaced by something equally frustrating.

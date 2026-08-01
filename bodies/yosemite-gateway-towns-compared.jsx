@@ -1,4 +1,4 @@
-/* global React, AffiliateNote, AvailabilityLink, LodgingCta */
+/* global React, Placeholder, MotifMountains, AffiliateNote, AvailabilityLink, LodgingCta */
 
 window.ARTICLE_BODIES = window.ARTICLE_BODIES || {};
 
@@ -79,6 +79,16 @@ window.ARTICLE_BODIES["yosemite-gateway-towns-compared"] = function YosemiteGate
         <strong>Character:</strong> essentially a small park-adjacent settlement.
       </p>
 
+      <Placeholder
+        caption="Highway 140 following the Merced River canyon toward the Arch Rock entrance, the road every El Portal morning starts on"
+        image="img/merced-canyon-road-cory-goehring.jpg"
+        credit="Photo: Cory Goehring"
+        tag="PLATE I"
+        size="lg"
+        style={{ aspectRatio: "16 / 10", margin: "32px 0" }}
+        motif={<MotifMountains />}
+      />
+
       <p>
         El Portal is the closest gateway town to the Valley by a significant margin. It exists because of Yosemite. It has a handful of lodges (the Yosemite View Lodge, the Cedar Lodge, others) along Highway 140 right next to the Merced River, a 24-hour gas station, a small market, and not much else. The lodging tends to be priced like in-park lodging because the location is so good.
       </p>
@@ -145,6 +155,16 @@ window.ARTICLE_BODIES["yosemite-gateway-towns-compared"] = function YosemiteGate
         <strong>Highway access:</strong> 41, year-round.<br />
         <strong>Character:</strong> a regional commercial town with chain hotels and restaurants.
       </p>
+
+      <Placeholder
+        caption="Giant sequoias in the Mariposa Grove, the reason to base on the Highway 41 side"
+        image="img/mariposa-grove.jpg"
+        credit="Photo: Dietmar Rabich / Wikimedia Commons (CC BY-SA 4.0)"
+        tag="PLATE II"
+        size="lg"
+        style={{ aspectRatio: "16 / 10", margin: "32px 0" }}
+        motif={<MotifMountains />}
+      />
 
       <p>
         Oakhurst is the largest of the gateway communities by population and amenities. It has more chain lodging (Best Western, Comfort Inn, etc.) and chain dining than the other gateways combined. It feels like a regular Central California town that happens to be near a national park, rather than a town that exists because of one.
@@ -218,6 +238,16 @@ window.ARTICLE_BODIES["yosemite-gateway-towns-compared"] = function YosemiteGate
         <strong>Highway access:</strong> 395 north-south, 120 west into Yosemite (seasonal).<br />
         <strong>Character:</strong> a tiny eastern Sierra town built around tourism to Mono Lake and the high-elevation Yosemite.
       </p>
+
+      <Placeholder
+        caption="Tenaya Lake, on the Tioga Road between Lee Vining and the Valley"
+        image="img/tenaya-lake.jpg"
+        credit="Photo: Michael Hogarth / Wikimedia Commons (public domain)"
+        tag="PLATE III"
+        size="lg"
+        style={{ aspectRatio: "16 / 10", margin: "32px 0" }}
+        motif={<MotifMountains />}
+      />
 
       <p>
         Lee Vining is the only east-side gateway. It's not a substitute for the western towns. It's a different kind of trip. From Lee Vining, you can be in Tuolumne Meadows in 30 minutes, but the Valley is over an hour and a half each way. Lodging is limited (the <strong>Yosemite Gateway Motel</strong>, the <strong>El Mono Motel</strong>, a small inn or two), dining is limited but includes the famously-good Whoa Nellie Deli at the Mobil station (genuinely, this is not a joke, it's some of the best food in the eastern Sierra), and the town is tiny.
