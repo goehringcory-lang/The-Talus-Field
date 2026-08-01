@@ -8,6 +8,11 @@
 //   useIntentFilters  filter state, mirrored into the URL so a filtered view
 //                     is a shareable link
 //
+// TripPlan renders plan.lodging (buildTripPlan, intent-data.js) through the
+// shared window.LodgingCta from the eager components bundle, aff_list
+// "trip_selector". The field is set only when the stay answer leaves the bed
+// unbooked; every other stay answer renders no lodging placement.
+//
 // Compiled to /dist/intent.js and loaded, with intent-data.js, only on the
 // `planning` and `articles` routes (PAGE_MODULES in app.jsx). Nothing here is in
 // the eager shell, so the homepage pays nothing for it.
@@ -271,6 +276,17 @@ function TripPlan({ plan, go, onApplyIntent, matchCount }) {
           </div>
         </div>
       </div>
+
+      {plan.lodging && window.LodgingCta && (
+        <window.LodgingCta
+          destination={plan.lodging.destination}
+          heading={plan.lodging.heading}
+          note={plan.lodging.note}
+          cta={plan.lodging.cta}
+          list="trip_selector"
+          slug="trip-selector"
+        />
+      )}
     </div>
   );
 }
