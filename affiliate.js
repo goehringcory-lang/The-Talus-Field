@@ -43,20 +43,41 @@ window.STAY22_AFFILIATE_ID = "";
 // different template.
 window.HIPCAMP_AFFILIATE_BASE = "";
 
-// Expedia Travel Creator licensed banner creative. Paste `img` (the
-// Expedia-hosted banner image URL) and `href` (the camref click URL) from the
-// banner builder at creator.expediagroup.com/products/banners; pick an
-// evergreen creative with no printed rate or year (the /stay rules apply to
-// the pixels Expedia serves, and we cannot edit them). While either field is
-// empty, ExpediaBanner (components.jsx) renders nothing. Plain <img> + <a>
-// only: the CSP in _headers deliberately allows no third-party scripts or
-// iframes, and img-src already permits the hosted image. The component is not
-// in the gen-prerender.mjs sandbox; using it inside an article body would
-// mean mirroring it there first.
+// Expedia Travel Creator licensed banner creative, rendered by ExpediaBanner
+// (components.jsx) in one placement on /stay. Paste ONE value: `img`, the
+// Expedia-hosted image URL. `href` is optional and left empty on purpose, so
+// the click is built here by buildAffiliateLink against the Yosemite hotel
+// search: the same link shape as every other lodging link on the site, and a
+// better destination than the banner builder's generic stays page. Set `href`
+// only for a creative that must point somewhere else. While `img` is empty
+// nothing renders, which is the resting state.
+//
+// DO NOT paste the banner builder's default embed. It hands you a
+// <div class="eg-affiliate-banners"> plus a <script src="creator.expediagroup
+// .com/.../eg-affiliate-banners.js">, and that snippet cannot ship here for
+// three reasons: the CSP in _headers allows no third-party script origins (it
+// would work on localhost and be blocked in production, the usual trap); the
+// GA4 listener in app.jsx keys off data-aff-* attributes that script-injected
+// markup does not carry, so the click would go unmeasured; and it would let
+// Expedia change the pixels under us, including into a creative printing a
+// rate, which /stay's own rules forbid. Take the image URL out of the preview
+// instead: open the builder, right-click the rendered banner, Copy image
+// address. It must be a stable asset URL, not a signed or expiring one, or
+// the hotlink rots silently.
+//
+// The creative in use: program=us-expedia, network=pz, layout=leaderboard
+// (728x90), image=mountains, link=stays, with a stays message (the message
+// has to match where it sends people), camref as above. No printed rate and
+// no year: the /stay rules apply to pixels we cannot edit, so they have to be
+// chosen rather than enforced.
+//
+// img-src in _headers already permits the hosted image, so this needs no CSP
+// change. The component is not in the gen-prerender.mjs sandbox; using it
+// inside an article body would mean mirroring it there first.
 window.EXPEDIA_BANNER = {
   img: "",
   href: "",
-  alt: "Search Yosemite-area lodging on Expedia",
+  alt: "Expedia: search Yosemite-area lodging on your dates",
   width: 728,
   height: 90,
 };

@@ -1252,18 +1252,29 @@ function LodgingCta({ destination, heading, note, list, slug, cta, stayLink, ima
   );
 }
 
-// Expedia-supplied banner creative, labeled as what it is. Fail-soft: renders
-// nothing until both fields of window.EXPEDIA_BANNER (affiliate.js) are pasted
-// in from the creator portal. One placement on /stay; it is not a component to
-// scatter (MONETIZATION-IDEAS.md rules out display-ad walls, and one disclosed
+// Expedia-supplied banner creative, labeled as what it is. Fail-soft twice
+// over: nothing renders until EXPEDIA_BANNER.img (affiliate.js) is pasted in
+// from the creator portal, and nothing renders if that hotlinked image later
+// stops resolving. A plain <img> in our own tracked link, never the portal's
+// script embed: see the comment on EXPEDIA_BANNER for why that snippet cannot
+// ship. One placement on /stay; it is not a component to scatter
+// (MONETIZATION-IDEAS.md rules out display-ad walls, and one disclosed
 // affiliate unit on the lodging board is the whole exception).
 function ExpediaBanner({ list, slug }) {
   const b = window.EXPEDIA_BANNER;
-  if (!b || !b.img || !b.href) return null;
+  // A hotlinked creative can stop resolving without warning. Everything else
+  // on the site treats a missing asset as nothing rather than something
+  // broken; an ad unit on the lodging board deserves that most of all.
+  const [failed, setFailed] = React.useState(false);
+  if (!b || !b.img || failed) return null;
+  // The click is ours to build unless the creative names its own destination.
+  const href = b.href || (window.buildAffiliateLink
+    ? window.buildAffiliateLink("expedia", expediaSearchUrl("Yosemite National Park"))
+    : expediaSearchUrl("Yosemite National Park"));
   return (
     <aside className="expedia-banner">
       <a
-        href={b.href}
+        href={href}
         target="_blank"
         rel="sponsored noopener noreferrer"
         data-aff-network="expedia"
@@ -1271,7 +1282,15 @@ function ExpediaBanner({ list, slug }) {
         data-aff-item-slug={slug || ""}
         data-aff-name="Expedia banner"
       >
-        <img src={b.img} alt={b.alt || ""} loading="lazy" width={b.width} height={b.height} referrerPolicy="no-referrer" />
+        <img
+          src={b.img}
+          alt={b.alt || ""}
+          loading="lazy"
+          width={b.width}
+          height={b.height}
+          referrerPolicy="no-referrer"
+          onError={() => setFailed(true)}
+        />
       </a>
       <p className="expedia-banner__disclosure">
         Advertisement. Expedia is an affiliate partner of The Talus Field. <a href="/affiliate">Disclosure.</a>

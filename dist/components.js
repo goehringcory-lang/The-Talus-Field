@@ -1521,11 +1521,13 @@ function ExpediaBanner({
   slug
 }) {
   var b = window.EXPEDIA_BANNER;
-  if (!b || !b.img || !b.href) return null;
+  var [failed, setFailed] = React.useState(false);
+  if (!b || !b.img || failed) return null;
+  var href = b.href || (window.buildAffiliateLink ? window.buildAffiliateLink("expedia", expediaSearchUrl("Yosemite National Park")) : expediaSearchUrl("Yosemite National Park"));
   return React.createElement("aside", {
     className: "expedia-banner"
   }, React.createElement("a", {
-    href: b.href,
+    href: href,
     target: "_blank",
     rel: "sponsored noopener noreferrer",
     "data-aff-network": "expedia",
@@ -1538,7 +1540,8 @@ function ExpediaBanner({
     loading: "lazy",
     width: b.width,
     height: b.height,
-    referrerPolicy: "no-referrer"
+    referrerPolicy: "no-referrer",
+    onError: () => setFailed(true)
   })), React.createElement("p", {
     className: "expedia-banner__disclosure"
   }, "Advertisement. Expedia is an affiliate partner of The Talus Field. ", React.createElement("a", {
