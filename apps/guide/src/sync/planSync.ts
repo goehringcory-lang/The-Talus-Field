@@ -130,6 +130,17 @@ function applyRemote(doc: SyncDocT): void {
 
 type RemoteResponse = { doc: unknown; updatedAt?: string }
 
+async function push(doc: SyncDocT): Promise<void> {
+  await apiFetch('/api/trip/plan', {
+    method: 'POST',
+    body: JSON.stringify({ doc, updatedAt: doc.updatedAt }),
+  })
+}
+
+function hasPlanItems(doc: SyncDocT): boolean {
+  return (doc.plan?.items.length ?? 0) > 0
+}
+
 async function doSync(): Promise<void> {
   if (!isSyncEnabled()) return
   if (!navigator.onLine) return
@@ -142,21 +153,33 @@ async function doSync(): Promise<void> {
   const parsed = remote.doc ? parseSyncDoc(remote.doc) : null
   const mine = localDoc()
 
-  if (parsed && parsed.updatedAt > mine.updatedAt) {
-    applyRemote(parsed)
+  if (parsed && parsed.doc.updatedAt > mine.updatedAt) {
+    applyRemote(parsed.doc)
+    // A salvaged document reached us, so applyRemote kept this device's plan
+    // and then adopted the server's stamp: the two now read as identical, and
+    // nothing would ever push the good plan or heal the broken copy. Push the
+    // merged document instead. localDoc() is re-read so the push carries the
+    // favorites/visited/notes just accepted. The one case that must NOT heal
+    // is a plan that was present but unparseable: that is a newer build's
+    // plan, and pushing over it would destroy it and re-clobber every later
+    // edit. Staying quietly in step with it is the safe trade.
+    if (parsed.salvaged && !parsed.planUnparseable && hasPlanItems(mine)) await push(localDoc())
     markSynced()
     return
   }
-  if (parsed && parsed.updatedAt === mine.updatedAt) {
-    // Already in step; a push would only cost a KV write.
-    markSynced()
-    return
+  if (parsed && parsed.doc.updatedAt === mine.updatedAt) {
+    // Already in step; a push would only cost a KV write. Unless the stamps
+    // match because a salvage happened on an earlier pass and this device is
+    // wedged against a server copy that lost its plan, in which case the push
+    // below is the only thing that can heal it. Same guard as above: never
+    // heal over a plan a newer build wrote.
+    if (!(parsed.salvaged && !parsed.planUnparseable && hasPlanItems(mine))) {
+      markSynced()
+      return
+    }
   }
 
-  await apiFetch('/api/trip/plan', {
-    method: 'POST',
-    body: JSON.stringify({ doc: mine, updatedAt: mine.updatedAt }),
-  })
+  await push(mine)
   markSynced()
 }
 

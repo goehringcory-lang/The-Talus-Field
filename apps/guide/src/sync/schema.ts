@@ -25,23 +25,45 @@ export const SyncDoc = z.object({
 })
 export type SyncDocT = z.infer<typeof SyncDoc>
 
+export type ParsedSyncDoc = {
+  doc: SyncDocT
+  /**
+   * True when the strict parse failed and the document below is a repair.
+   * The sync layer has to know: a salvaged document is missing whatever went
+   * bad, so a device that adopts its stamp and stops there is in step with a
+   * broken server copy forever (see planSync's doSync).
+   */
+  salvaged: boolean
+  /**
+   * True when the document carried a real plan object that this build's
+   * schema rejected. That is almost always a plan written by a NEWER build,
+   * not bit-rot, so healing the server copy with this device's plan would
+   * destroy the newer plan and re-clobber it on every pass. The heal push in
+   * doSync must never fire in this case.
+   */
+  planUnparseable: boolean
+}
+
 /**
  * Parse a pulled document, salvaging what survives. Returns null only when the
  * envelope itself is unusable (no timestamp to merge on, so no way to know
  * whether it is newer than what this device holds).
  */
-export function parseSyncDoc(data: unknown): SyncDocT | null {
+export function parseSyncDoc(data: unknown): ParsedSyncDoc | null {
   const strict = SyncDoc.safeParse(data)
-  if (strict.success) return strict.data
+  if (strict.success) return { doc: strict.data, salvaged: false, planUnparseable: false }
 
   if (!data || typeof data !== 'object') return null
   const raw = data as Record<string, unknown>
   if (typeof raw.updatedAt !== 'string' || Number.isNaN(Date.parse(raw.updatedAt))) return null
 
-  const salvaged = SyncDoc.safeParse({
+  const planOk = TripPlan.safeParse(raw.plan).success
+  const planUnparseable = !planOk && typeof raw.plan === 'object' && raw.plan !== null
+
+  const repaired = SyncDoc.safeParse({
     version: 1,
     updatedAt: raw.updatedAt,
-    plan: TripPlan.safeParse(raw.plan).success ? raw.plan : null,
+    plan: planOk ? raw.plan : null,
     favorites: Array.isArray(raw.favorites)
       ? raw.favorites.filter((x): x is string => typeof x === 'string')
       : [],
@@ -55,5 +77,5 @@ export function parseSyncDoc(data: unknown): SyncDocT | null {
           )
         : {},
   })
-  return salvaged.success ? salvaged.data : null
+  return repaired.success ? { doc: repaired.data, salvaged: true, planUnparseable } : null
 }

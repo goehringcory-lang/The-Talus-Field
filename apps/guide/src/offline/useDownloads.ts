@@ -213,79 +213,97 @@ export function useDownloads() {
       let done = 0
       setPackStatus(pack.id, { state: 'downloading', done, total })
 
-      const cache = await caches.open(pack.cacheName)
-      const queue = [...pack.urls]
-      let failedUrls: string[] = []
+      // Everything past the controller registration runs guarded: caches.open
+      // itself rejects on iOS Safari under storage pressure, and an escape
+      // from here used to leave a live controller in module state plus a
+      // frozen 0% status, so the "already running" guard above blocked every
+      // retry until a full reload.
+      try {
+        const cache = await caches.open(pack.cacheName)
+        const queue = [...pack.urls]
+        let failedUrls: string[] = []
 
-      async function fetchIntoCache(url: string): Promise<boolean> {
-        const cached = await cache.match(url)
-        if (cached) return true
-        const res = await fetch(url, { signal: controller.signal })
-        // The SPA _redirects fallback answers a missing file with the HTML
-        // shell and a 200. Caching that under a photo/tile URL poisons a
-        // deploy-surviving cache (the SW's activate handler exists to clean
-        // exactly this up), so count it as a failed URL instead.
-        const type = res.headers.get('content-type')
-        if (!res.ok || (type && type.includes('text/html'))) return false
-        await cache.put(url, res)
-        return true
-      }
+        async function fetchIntoCache(url: string): Promise<boolean> {
+          const cached = await cache.match(url)
+          if (cached) return true
+          const res = await fetch(url, { signal: controller.signal })
+          // The SPA _redirects fallback answers a missing file with the HTML
+          // shell and a 200. Caching that under a photo/tile URL poisons a
+          // deploy-surviving cache (the SW's activate handler exists to clean
+          // exactly this up), so count it as a failed URL instead.
+          const type = res.headers.get('content-type')
+          if (!res.ok || (type && type.includes('text/html'))) return false
+          await cache.put(url, res)
+          return true
+        }
 
-      async function worker() {
-        while (queue.length > 0) {
-          if (controller.signal.aborted) return
-          const url = queue.shift()
-          if (!url) return
-          try {
-            if (!(await fetchIntoCache(url))) failedUrls.push(url)
-          } catch {
+        async function worker() {
+          while (queue.length > 0) {
             if (controller.signal.aborted) return
-            failedUrls.push(url)
+            const url = queue.shift()
+            if (!url) return
+            try {
+              if (!(await fetchIntoCache(url))) failedUrls.push(url)
+            } catch {
+              if (controller.signal.aborted) return
+              failedUrls.push(url)
+            }
+            done++
+            setPackStatus(pack.id, { state: 'downloading', done, total })
           }
-          done++
-          setPackStatus(pack.id, { state: 'downloading', done, total })
         }
-      }
 
-      await Promise.all(Array.from({ length: CONCURRENCY }, () => worker()))
+        await Promise.all(Array.from({ length: CONCURRENCY }, () => worker()))
 
-      // One sequential retry pass: a transient hiccup shouldn't surface as a
-      // failed pack, and a paid offline product must not record "done" over
-      // silently missing files.
-      if (!controller.signal.aborted && failedUrls.length > 0) {
-        const retry = failedUrls
-        failedUrls = []
-        for (const url of retry) {
-          if (controller.signal.aborted) break
-          try {
-            if (!(await fetchIntoCache(url))) failedUrls.push(url)
-          } catch {
+        // One sequential retry pass: a transient hiccup shouldn't surface as a
+        // failed pack, and a paid offline product must not record "done" over
+        // silently missing files.
+        if (!controller.signal.aborted && failedUrls.length > 0) {
+          const retry = failedUrls
+          failedUrls = []
+          for (const url of retry) {
             if (controller.signal.aborted) break
-            failedUrls.push(url)
+            try {
+              if (!(await fetchIntoCache(url))) failedUrls.push(url)
+            } catch {
+              if (controller.signal.aborted) break
+              failedUrls.push(url)
+            }
           }
         }
+
+        if (controller.signal.aborted) {
+          setPackStatus(pack.id, { state: 'idle' })
+          return
+        }
+
+        if (failedUrls.length > total * pack.tolerateMissing) {
+          setPackStatus(pack.id, {
+            state: 'error',
+            message: `${failedUrls.length} of ${total} files didn't download. Check your connection and try again.`,
+          })
+          return
+        }
+
+        const completed = readCompleted()
+        completed[pack.id] = failedUrls.length > 0 ? { failedUrls } : true
+        writeCompleted(completed)
+        setPackStatus(pack.id, { state: 'done' })
+        refreshEstimate()
+      } catch {
+        // A cancel is not a failure: it lands as idle exactly as it does above.
+        setPackStatus(
+          pack.id,
+          controller.signal.aborted
+            ? { state: 'idle' }
+            : {
+                state: 'error',
+                message: 'Offline storage is unavailable right now. Try again in a moment.',
+              },
+        )
+      } finally {
+        delete controllers[pack.id]
       }
-
-      delete controllers[pack.id]
-
-      if (controller.signal.aborted) {
-        setPackStatus(pack.id, { state: 'idle' })
-        return
-      }
-
-      if (failedUrls.length > total * pack.tolerateMissing) {
-        setPackStatus(pack.id, {
-          state: 'error',
-          message: `${failedUrls.length} of ${total} files didn't download. Check your connection and try again.`,
-        })
-        return
-      }
-
-      const completed = readCompleted()
-      completed[pack.id] = failedUrls.length > 0 ? { failedUrls } : true
-      writeCompleted(completed)
-      setPackStatus(pack.id, { state: 'done' })
-      refreshEstimate()
     },
     [refreshEstimate, setPackStatus],
   )
