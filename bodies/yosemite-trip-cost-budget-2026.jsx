@@ -1,4 +1,4 @@
-/* global React, AffiliateNote, LodgingCta */
+/* global React, AffiliateNote, AvailabilityLink, LodgingCta */
 
 window.ARTICLE_BODIES = window.ARTICLE_BODIES || {};
 
@@ -58,7 +58,7 @@ window.ARTICLE_BODIES["yosemite-trip-cost-budget-2026"] = function YosemiteTripC
       </p>
 
       <p>
-        <strong>Gateway towns:</strong> Motels and hotels in <a href="/articles/yosemite-gateway-towns-compared">Mariposa, Oakhurst, Groveland, and El Portal</a> range from $120 to $300 per night depending on the town and the season. Vacation rentals (Airbnb, VRBO) can be a deal for groups. A cabin that sleeps six for $250 per night is under $42 per person. Rates move with the season and the day of the week, so for real numbers on your dates, <a className="aff-link" href={window.buildAffiliateLink("expedia", "https://www.expedia.com/Hotel-Search?destination=Yosemite%20National%20Park")} target="_blank" rel="sponsored noopener noreferrer" data-aff-network="expedia" data-aff-list="article" data-aff-item-slug="yosemite-trip-cost-budget-2026" data-aff-name="Gateway availability search">a live availability search around the park</a> beats any table of averages, including this one.
+        <strong>Gateway towns:</strong> Motels and hotels in <a href="/articles/yosemite-gateway-towns-compared">Mariposa, Oakhurst, Groveland, and El Portal</a> range from $120 to $300 per night depending on the town and the season. Vacation rentals (Airbnb, VRBO) can be a deal for groups. A cabin that sleeps six for $250 per night is under $42 per person. Rates move with the season and the day of the week, so for real numbers on your dates, <AvailabilityLink destination="Yosemite National Park" list="article_inline" slug="yosemite-trip-cost-budget-2026" name="Gateway availability search">a live availability search around the park</AvailabilityLink> beats any table of averages, including this one.
       </p>
 
       <p>
@@ -247,7 +247,7 @@ window.ARTICLE_BODIES["yosemite-trip-cost-budget-2026"] = function YosemiteTripC
         destination="Mariposa, California"
         heading="The one number this article cannot give you"
         note="Every figure above is a range, and lodging is the line item that moves the most: the same room is a different price in October than in July, and midweek is not weekend. Pricing your actual dates takes about as long as reading this paragraph."
-        list="article"
+        list="article_cta"
         slug="yosemite-trip-cost-budget-2026"
         cta="Price Mariposa lodging on your dates →"
       />

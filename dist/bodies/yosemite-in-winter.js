@@ -20,7 +20,7 @@ window.ARTICLE_BODIES["yosemite-in-winter"] = function YosemiteInWinterBody() {
     destination: "Yosemite National Park",
     heading: "Winter is when the rooms exist",
     note: "This is the one season where the advice is not 'book a year out'. The seasonal operations close, rates drop, and midweek availability in January is a different universe from July. A search on your dates is the fastest way to see that for yourself.",
-    list: "article",
+    list: "article_cta",
     slug: "yosemite-in-winter",
     cta: "Search winter lodging around Yosemite →"
   }), React.createElement(AffiliateNote, null), React.createElement("h3", null, "Sources"), React.createElement("ul", {

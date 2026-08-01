@@ -12,20 +12,16 @@ window.ARTICLE_BODIES["where-to-stay-in-yosemite"] = function WhereToStayInYosem
     href: "/articles/yosemite-gateway-towns-compared"
   }, "gateway towns"), " are a real option with real tradeoffs, mostly measured in windshield time, and camping remains the cheapest way to sleep in the park if you can win a site. For the full arithmetic of what each approach does to a trip budget, I've run the numbers ", React.createElement("a", {
     href: "/articles/yosemite-trip-cost-budget-2026"
-  }, "separately"), ". And when you want the raw view rather than the argument, ", React.createElement("a", {
-    className: "aff-link",
-    href: window.buildAffiliateLink("expedia", "https://www.expedia.com/Hotel-Search?destination=Yosemite%20National%20Park"),
-    target: "_blank",
-    rel: "sponsored noopener noreferrer",
-    "data-aff-network": "expedia",
-    "data-aff-list": "article",
-    "data-aff-item-slug": "where-to-stay-in-yosemite",
-    "data-aff-name": "Gateway availability search"
+  }, "separately"), ". And when you want the raw view rather than the argument, ", React.createElement(AvailabilityLink, {
+    destination: "Yosemite National Park",
+    list: "article_inline",
+    slug: "where-to-stay-in-yosemite",
+    name: "Gateway availability search"
   }, "one availability search around the park"), " shows what the gateway towns actually have left on your dates."), React.createElement("p", null, "But if you can get a bed inside the boundary, get it. Rank them like this: Valley Lodge for most first-timers, Housekeeping Camp for families who half-camp, Curry Village for hikers on a budget, the Ahwahnee when the occasion justifies it, the high-country camps for people whose trip is the high country. Then set the reminder for 366 days out, and if you miss it, start checking daily. The park rewards the stubborn."), React.createElement(LodgingCta, {
     destination: "Yosemite National Park",
     heading: "Before you rearrange the trip",
     note: "The ranking above does not change with anyone's inventory. What it cannot tell you is what is left on your specific dates, which is a two-minute question and worth answering before you decide the park is full.",
-    list: "article",
+    list: "article_cta",
     slug: "where-to-stay-in-yosemite",
     cta: "Search lodging around Yosemite →"
   }), React.createElement("p", null, "Every option above, plus the gateway towns and Fish Camp on one scannable page, lives at ", React.createElement("a", {

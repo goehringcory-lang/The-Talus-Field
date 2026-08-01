@@ -19,7 +19,7 @@ window.ARTICLE_BODIES["memorial-day-skip-the-valley-go-high-2026"] = function Me
     target: "_blank",
     rel: "sponsored noopener noreferrer",
     "data-aff-network": "patagonia",
-    "data-aff-list": "article",
+    "data-aff-list": "article_inline",
     "data-aff-item-slug": "memorial-day-skip-the-valley-go-high-2026",
     "data-aff-name": "Packable insulated jacket"
   }, "a packable insulated jacket"), ". Sunny afternoons hit the low 60s, but nights drop to near freezing at this elevation, and an afternoon thunderstorm is possible."), React.createElement("p", {

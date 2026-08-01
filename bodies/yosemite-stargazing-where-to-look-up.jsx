@@ -168,7 +168,7 @@ window.ARTICLE_BODIES["yosemite-stargazing-where-to-look-up"] = function Yosemit
       </p>
 
       <p>
-        <strong>Layer for cold.</strong> The temperature at 8,000 feet on a clear summer night drops fast after sunset. By midnight, it can be in the 40s. Bring <a className="aff-link" href={window.buildPatagoniaAffiliateLink("https://www.patagonia.com/search/?q=down+jacket")} target="_blank" rel="sponsored noopener noreferrer" data-aff-network="patagonia" data-aff-list="article" data-aff-item-slug="yosemite-stargazing-where-to-look-up" data-aff-name="Warm jacket">a warm jacket</a>, a hat, and gloves. Sitting still under the stars chills you faster than hiking.
+        <strong>Layer for cold.</strong> The temperature at 8,000 feet on a clear summer night drops fast after sunset. By midnight, it can be in the 40s. Bring <a className="aff-link" href={window.buildPatagoniaAffiliateLink("https://www.patagonia.com/search/?q=down+jacket")} target="_blank" rel="sponsored noopener noreferrer" data-aff-network="patagonia" data-aff-list="article_inline" data-aff-item-slug="yosemite-stargazing-where-to-look-up" data-aff-name="Warm jacket">a warm jacket</a>, a hat, and gloves. Sitting still under the stars chills you faster than hiking.
       </p>
 
       <h2>What you'll see</h2>

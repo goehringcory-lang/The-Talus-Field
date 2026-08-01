@@ -26,7 +26,7 @@ window.ARTICLE_BODIES["yosemite-heat-safety-guide"] = function YosemiteHeatSafet
     target: "_blank",
     rel: "sponsored noopener noreferrer",
     "data-aff-network": "patagonia",
-    "data-aff-list": "article",
+    "data-aff-list": "article_inline",
     "data-aff-item-slug": "yosemite-heat-safety-guide",
     "data-aff-name": "Wide-brim sun hat"
   }, "wide-brim hat"), " is not optional. ", React.createElement("a", {
@@ -35,7 +35,7 @@ window.ARTICLE_BODIES["yosemite-heat-safety-guide"] = function YosemiteHeatSafet
     target: "_blank",
     rel: "sponsored noopener noreferrer",
     "data-aff-network": "patagonia",
-    "data-aff-list": "article",
+    "data-aff-list": "article_inline",
     "data-aff-item-slug": "yosemite-heat-safety-guide",
     "data-aff-name": "UPF sun hoody"
   }, "UPF-rated sun hoodies"), " have become standard gear for anyone who works outside in the Sierra, and there's a reason for that: they cover more skin than sunscreen and don't wear off. Speaking of sunscreen, reapply every two hours, and know that the UV at 4,000 feet is already stronger than at sea level, and at 8,000 feet it's meaningfully more intense. The granite reflects UV from below, the thin air filters less of it from above, and the combination will burn you faster than you expect. A bandana or cooling towel soaked in cold creek water and draped around your neck is the single cheapest piece of heat management gear you can carry."), React.createElement("h2", null, "The escape uphill"), React.createElement("p", null, "The single best heat strategy in Yosemite is also the simplest: go higher. Temperature drops roughly 3.5 degrees Fahrenheit per thousand feet of elevation gain. The math works in your favor quickly."), React.createElement("p", null, React.createElement("a", {

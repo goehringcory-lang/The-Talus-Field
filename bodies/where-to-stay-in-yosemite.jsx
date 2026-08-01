@@ -1,4 +1,4 @@
-/* global React, AffiliateNote, LodgingCta */
+/* global React, AffiliateNote, AvailabilityLink, LodgingCta */
 
 window.ARTICLE_BODIES = window.ARTICLE_BODIES || {};
 
@@ -86,7 +86,7 @@ window.ARTICLE_BODIES["where-to-stay-in-yosemite"] = function WhereToStayInYosem
       <h2>The alternative, for honesty's sake</h2>
 
       <p>
-        None of this means in-park lodging is the only defensible choice. If the inventory is gone or the rates are indefensible for your budget, the <a href="/articles/yosemite-gateway-towns-compared">gateway towns</a> are a real option with real tradeoffs, mostly measured in windshield time, and camping remains the cheapest way to sleep in the park if you can win a site. For the full arithmetic of what each approach does to a trip budget, I've run the numbers <a href="/articles/yosemite-trip-cost-budget-2026">separately</a>. And when you want the raw view rather than the argument, <a className="aff-link" href={window.buildAffiliateLink("expedia", "https://www.expedia.com/Hotel-Search?destination=Yosemite%20National%20Park")} target="_blank" rel="sponsored noopener noreferrer" data-aff-network="expedia" data-aff-list="article" data-aff-item-slug="where-to-stay-in-yosemite" data-aff-name="Gateway availability search">one availability search around the park</a> shows what the gateway towns actually have left on your dates.
+        None of this means in-park lodging is the only defensible choice. If the inventory is gone or the rates are indefensible for your budget, the <a href="/articles/yosemite-gateway-towns-compared">gateway towns</a> are a real option with real tradeoffs, mostly measured in windshield time, and camping remains the cheapest way to sleep in the park if you can win a site. For the full arithmetic of what each approach does to a trip budget, I've run the numbers <a href="/articles/yosemite-trip-cost-budget-2026">separately</a>. And when you want the raw view rather than the argument, <AvailabilityLink destination="Yosemite National Park" list="article_inline" slug="where-to-stay-in-yosemite" name="Gateway availability search">one availability search around the park</AvailabilityLink> shows what the gateway towns actually have left on your dates.
       </p>
 
       <p>
@@ -97,7 +97,7 @@ window.ARTICLE_BODIES["where-to-stay-in-yosemite"] = function WhereToStayInYosem
         destination="Yosemite National Park"
         heading="Before you rearrange the trip"
         note="The ranking above does not change with anyone's inventory. What it cannot tell you is what is left on your specific dates, which is a two-minute question and worth answering before you decide the park is full."
-        list="article"
+        list="article_cta"
         slug="where-to-stay-in-yosemite"
         cta="Search lodging around Yosemite →"
       />
