@@ -118,7 +118,7 @@ export default function SyncCard() {
       )}
 
       {error && (
-        <p style={{ ...mutedStyle, color: 'var(--danger, #a33)' }} role="alert">
+        <p style={{ ...mutedStyle, color: 'var(--danger)' }} role="alert">
           {error}
         </p>
       )}

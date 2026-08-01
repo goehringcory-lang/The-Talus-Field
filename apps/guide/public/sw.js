@@ -282,6 +282,21 @@ const OFFLINE_PAGE = `<!doctype html>
 </body>
 </html>`
 
+// Captive-portal wifi (hotel lobbies, the Valley's paid networks) accepts the
+// connection and then never answers, so a bare navigation fetch hangs forever
+// and the cached-shell fallback below never runs: a white screen on launch for
+// an app whose whole promise is working without signal.
+const NAVIGATE_TIMEOUT_MS = 5000
+
+function fetchNavigation(request) {
+  // Feature-guarded: an engine without AbortSignal.timeout keeps the old
+  // behaviour rather than throwing on every navigation.
+  if (typeof AbortSignal !== 'undefined' && typeof AbortSignal.timeout === 'function') {
+    return fetch(request, { signal: AbortSignal.timeout(NAVIGATE_TIMEOUT_MS) })
+  }
+  return fetch(request)
+}
+
 const RUNTIME_PATTERNS = [
   /\/photos\//,
   /\/tracks\//, // hike track JSONs; ?v= content hash busts on regeneration
@@ -327,7 +342,7 @@ self.addEventListener('fetch', (event) => {
     event.respondWith(
       (async () => {
         try {
-          const fresh = await fetch(request)
+          const fresh = await fetchNavigation(request)
           // Only cache successful HTML shells. A 5xx/maintenance page would
           // poison every later offline launch, and a same-origin navigation
           // can be a non-HTML document too ("open image in new tab" on a

@@ -109,6 +109,11 @@ export default function Hikes() {
     [regionFilter, difficultyFilter, timeFilter, fitFilters],
   )
 
+  const matchCount = useMemo(
+    () => sections.reduce((total, s) => total + s.hikes.length, 0),
+    [sections],
+  )
+
   return (
     <GatedChrome>
       <main className="wrap wrap--narrow page">
@@ -167,6 +172,12 @@ export default function Hikes() {
           ))}
         </div>
 
+        {/* The list below rewrites itself on every chip tap with nothing said
+            about it; this is that, spoken. */}
+        <p className="sr-only" aria-live="polite">
+          {matchCount} {matchCount === 1 ? 'hike' : 'hikes'} match
+        </p>
+
         {sections.length === 0 && <EmptyState note="Nothing matches the current filters." />}
 
         {sections.map(({ region, hikes }) => (
@@ -203,8 +214,11 @@ export default function Hikes() {
                       </span>
                     </span>
                     {inPlan ? (
-                      <span className="hike-row__inplan" aria-label="In your trip plan">
-                        ✓
+                      <span className="hike-row__inplan">
+                        {/* A label on the glyph span alone is dropped: the
+                            span is role=generic. */}
+                        <span aria-hidden="true">✓</span>
+                        <span className="sr-only">In your trip plan</span>
                       </span>
                     ) : (
                       <ChipButton

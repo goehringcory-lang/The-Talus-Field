@@ -6,13 +6,39 @@
 // dropped, so the line keeps a stable shape. Shared by Home and /today.
 // =============================================================================
 
-import { Fragment } from 'react'
+import { Fragment, useEffect, useState } from 'react'
 import { relativeStamp } from '../utils/relativeStamp'
 import { useWaits } from './useWaits'
 import { HIDE_AFTER_MS, STAMP_AFTER_MS } from './staleness'
 
+// Age is computed at render, so the line needs a heartbeat to re-run its own
+// gates: a phone left sitting on /today would otherwise still be presenting the
+// reading it loaded with, hours past HIDE_AFTER_MS. A minute is far finer than
+// the ten-minute stamp and the hour-long hide it drives.
+const TICK_MS = 60 * 1000
+
 export default function WaitsLine() {
-  const { waits, fetchedAt, ageMs } = useWaits()
+  const { waits, fetchedAt } = useWaits()
+  const [now, setNow] = useState(() => Date.now())
+
+  useEffect(() => {
+    if (!fetchedAt) return
+    const id = setInterval(() => setNow(Date.now()), TICK_MS)
+    // The interval is suspended in the background (iOS especially), so a
+    // return to the foreground would show the pre-suspend age for up to a
+    // tick; catching visibility restores the gates immediately.
+    const onVisible = () => {
+      if (document.visibilityState === 'visible') setNow(Date.now())
+    }
+    document.addEventListener('visibilitychange', onVisible)
+    return () => {
+      clearInterval(id)
+      document.removeEventListener('visibilitychange', onVisible)
+    }
+  }, [fetchedAt])
+
+  const fetchedMs = fetchedAt ? Date.parse(fetchedAt) : Number.NaN
+  const ageMs = Number.isNaN(fetchedMs) ? Number.POSITIVE_INFINITY : now - fetchedMs
 
   if (waits.length === 0) return null
   if (ageMs > HIDE_AFTER_MS) return null

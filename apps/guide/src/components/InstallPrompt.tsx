@@ -81,8 +81,11 @@ function IOSPrompt() {
 // ── Shared banner shell ───────────────────────────────────────────────────────
 
 function InstallBanner({ children }: { children: React.ReactNode }) {
+  // A region, not a dialog: this is a persistent banner that takes no focus
+  // and traps none, and a screen reader announcing it as a dialog promises a
+  // modal the reader then cannot find their way out of.
   return (
-    <div role="dialog" aria-label="Install The Field Guide" className="install-banner">
+    <div role="region" aria-label="Install The Field Guide" className="install-banner">
       {children}
     </div>
   )

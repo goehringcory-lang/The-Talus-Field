@@ -36,6 +36,13 @@ export default function Search() {
           onChange={(e) => setQuery(e.target.value)}
         />
 
+        {/* Results rewrite themselves as the query changes with nothing said
+            about it; this is that, spoken. Silent on an empty box, where
+            "0 results" is only noise. */}
+        <p className="sr-only" aria-live="polite">
+          {trimmed.length > 0 ? `${hits.length} ${hits.length === 1 ? 'result' : 'results'}` : ''}
+        </p>
+
         {trimmed.length === 0 && (
           <p className="search-note">
             Search every stop, the essentials, and the packing list. Works

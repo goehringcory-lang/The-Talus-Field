@@ -49,6 +49,7 @@ export default function HikeDetail() {
   const summary = hike ? getTrackSummary(hike.id) : undefined
   const { plan, addHike } = useTripPlan()
   const [gpxResult, setGpxResult] = useState<GpxExportResult | null>(null)
+  const [exportingGpx, setExportingGpx] = useState(false)
 
   const inPlan = useMemo(
     () => !!hike && plan.items.some((it) => it.type === 'hike' && it.hikeId === hike.id),
@@ -75,9 +76,17 @@ export default function HikeDetail() {
     announceTripAdd(hike.title)
   }
 
+  // The share sheet takes a beat to open on iOS. A second tap while it does
+  // starts a second share, which the platform refuses, and the refusal renders
+  // as "couldn't hand the file off" on an export that was working.
   const downloadGpx = async () => {
     if (trackState.status !== 'ready') return
-    setGpxResult(await exportGpx(hike, trackState.track))
+    setExportingGpx(true)
+    try {
+      setGpxResult(await exportGpx(hike, trackState.track))
+    } finally {
+      setExportingGpx(false)
+    }
   }
 
   return (
@@ -204,8 +213,8 @@ export default function HikeDetail() {
             <h2 className="hike-detail__heading">On the map</h2>
             <p className="hike-detail__actions">
               <Button to={`/map?hike=${hike.id}`}>See the track on the offline map →</Button>
-              <Button variant="ghost" onClick={downloadGpx}>
-                GPX for your GPS app
+              <Button variant="ghost" disabled={exportingGpx} onClick={downloadGpx}>
+                {exportingGpx ? 'Preparing…' : 'GPX for your GPS app'}
               </Button>
             </p>
             {gpxResult === 'shared' && (

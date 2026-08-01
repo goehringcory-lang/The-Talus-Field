@@ -156,7 +156,7 @@ export default function NotificationsCard() {
       )}
 
       {error && (
-        <p style={{ ...mutedStyle, color: 'var(--danger, #a33)' }} role="alert">
+        <p style={{ ...mutedStyle, color: 'var(--danger)' }} role="alert">
           {error}
         </p>
       )}

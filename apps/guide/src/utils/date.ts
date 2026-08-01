@@ -43,8 +43,11 @@ export function formatDayHeader(date: string): string {
 
 /** "9:30 a.m." for minutes from midnight, house style. */
 export function formatClock(minutes: number): string {
-  const h = Math.floor(minutes / 60)
-  const m = minutes % 60
+  // Callers add a duration to a start (a 23:30 program plus an hour), so the
+  // value can run past midnight; without the wrap that reads as p.m.
+  const wrapped = ((minutes % 1440) + 1440) % 1440
+  const h = Math.floor(wrapped / 60)
+  const m = wrapped % 60
   const ampm = h >= 12 ? 'p.m.' : 'a.m.'
   const hour12 = h % 12 === 0 ? 12 : h % 12
   return m === 0 ? `${hour12} ${ampm}` : `${hour12}:${String(m).padStart(2, '0')} ${ampm}`

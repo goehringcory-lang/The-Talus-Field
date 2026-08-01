@@ -33,6 +33,15 @@ function Row({
   const downloading = status.state === 'downloading'
   return (
     <div className="download-row">
+      {/* Always mounted, so the live region exists before its text changes;
+          a region inserted along with its content is not reliably announced.
+          Silent while downloading on purpose: the per-file count would be a
+          hundred interruptions, and the progressbar already carries it. */}
+      <p className="sr-only" role="status">
+        {status.state === 'done' || status.state === 'stale' || status.state === 'error'
+          ? `${pack.label}: ${statusLabel(status)}`
+          : ''}
+      </p>
       <div>
         <div className="download-row__label">{pack.label}</div>
         <div className="download-row__size">
@@ -69,6 +78,7 @@ function Row({
         <div
           className="download-progress"
           role="progressbar"
+          aria-label={`${pack.label} download`}
           aria-valuemin={0}
           aria-valuemax={status.total}
           aria-valuenow={status.done}

@@ -84,6 +84,17 @@ function fold(line: string): string[] {
   return out
 }
 
+// SEQUENCE has to rise whenever an event's details change, or a re-import
+// leaves Apple Calendar and Outlook showing the times they already have (or
+// duplicating the event) despite the stable UID. Counted from 2020 rather
+// than the Unix epoch because SEQUENCE is a 32-bit integer and raw epoch
+// seconds overflow it in 2038.
+const SEQUENCE_EPOCH_MS = Date.UTC(2020, 0, 1)
+
+function utcStamp(date: Date): string {
+  return date.toISOString().replace(/[-:]/g, '').replace(/\.\d{3}/, '')
+}
+
 function addDays(day: string, n: number): string {
   const d = new Date(`${day}T00:00:00Z`)
   d.setUTCDate(d.getUTCDate() + n)
@@ -219,11 +230,23 @@ export function slottedToEventFields(slotted: SlottedItem): EventFields | null {
   }
 }
 
-export function buildTripIcs(slottedByDay: Map<string, SlottedItem[]>): string {
-  const now = new Date()
-    .toISOString()
-    .replace(/[-:]/g, '')
-    .replace(/\.\d{3}/, '')
+/**
+ * `updatedAt` is the plan's own change clock (ISO), which is what SEQUENCE and
+ * LAST-MODIFIED are derived from. It is optional, and falls back to the moment
+ * of export: a caller that doesn't pass it still gets a sequence that rises on
+ * every save, which is what re-import needs, at the cost of bumping the number
+ * when nothing actually changed.
+ */
+export function buildTripIcs(
+  slottedByDay: Map<string, SlottedItem[]>,
+  updatedAt?: string,
+): string {
+  const exportedAt = new Date()
+  const now = utcStamp(exportedAt)
+  const changedMs = updatedAt ? Date.parse(updatedAt) : NaN
+  const changedAt = Number.isFinite(changedMs) ? new Date(changedMs) : exportedAt
+  const sequence = Math.max(0, Math.floor((changedAt.getTime() - SEQUENCE_EPOCH_MS) / 1000))
+  const lastModified = utcStamp(changedAt)
   const lines: string[] = [
     'BEGIN:VCALENDAR',
     'VERSION:2.0',
@@ -243,7 +266,13 @@ export function buildTripIcs(slottedByDay: Map<string, SlottedItem[]>): string {
     for (const slotted of slottedItems) {
       const f = slottedToEventFields(slotted)
       if (!f) continue
-      lines.push('BEGIN:VEVENT', `UID:${f.uid}`, `DTSTAMP:${now}`)
+      lines.push(
+        'BEGIN:VEVENT',
+        `UID:${f.uid}`,
+        `DTSTAMP:${now}`,
+        `SEQUENCE:${sequence}`,
+        `LAST-MODIFIED:${lastModified}`,
+      )
       if (f.startMin === null) {
         // No slot (untimed program, or a stop the day couldn't fit): an
         // all-day event keeps it on the calendar instead of dropping it.

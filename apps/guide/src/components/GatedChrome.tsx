@@ -17,6 +17,19 @@ export default function GatedChrome({ children }: Props) {
   const accountActive = pathname === '/account'
   return (
     <div className="app-shell">
+      <a
+        href="#main"
+        className="skip-link"
+        onClick={(e) => {
+          // Keep the href for assistive tech, but move focus by hand: letting
+          // the anchor navigate writes "#main" into the SPA's URL, where it
+          // lands in history and rides along in anything the reader shares.
+          e.preventDefault()
+          document.getElementById('main')?.focus()
+        }}
+      >
+        Skip to content
+      </a>
       <header className="gated-chrome">
         <Link to="/" className="masthead-brand" aria-label="The Field Guide, home">
           <img
@@ -56,7 +69,10 @@ export default function GatedChrome({ children }: Props) {
           </Link>
         </nav>
       </header>
-      <div className="bottom-nav-offset">
+      {/* The skip-link and route-change focus target. Every gated route
+          renders its own <main> inside here, so this wrapper is the one
+          content container they all share. */}
+      <div className="bottom-nav-offset" id="main" tabIndex={-1}>
         {children}
       </div>
       <TripAddNotice />

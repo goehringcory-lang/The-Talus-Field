@@ -49,6 +49,10 @@
   --moss-2: #9a3a1c;
   --rust: #7a2a10;
   --gold: #8a661a;
+  /* Error text (form errors, failed toggles). Rust's value in both modes,
+     declared as its own token because it has to clear 4.5:1 on --paper in
+     light and dark; a bare fallback in a var() call cannot flip. */
+  --danger: #7a2a10;
 
   --serif: 'EB Garamond', 'Source Serif 4', Georgia, 'Times New Roman', serif;
   --display: 'EB Garamond', 'Source Serif 4', Georgia, serif;
@@ -1052,6 +1056,7 @@ select:focus-visible {
     --moss-2:    #e07850;
     --rust:      #d87040;
     --gold:      #c09038;
+    --danger:    #d87040;
   }
 
 }

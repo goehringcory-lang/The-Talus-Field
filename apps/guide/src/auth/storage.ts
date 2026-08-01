@@ -16,7 +16,13 @@ function decodeClaims(jwt: string): JwtClaims | null {
     // UTF-8 decode or JSON.parse gets mojibake (or throws).
     const bin = atob(payload.replace(/-/g, '+').replace(/_/g, '/'))
     const json = new TextDecoder().decode(Uint8Array.from(bin, (c) => c.charCodeAt(0)))
-    return JSON.parse(json)
+    const claims = JSON.parse(json) as Partial<JwtClaims> | null
+    // Both fields are checked, not assumed: a payload with a missing or
+    // non-numeric exp makes every expiry comparison NaN (never true), so the
+    // session would never end, and setAccessEndedAt(NaN) writes garbage into
+    // the marker /login reads.
+    if (typeof claims?.exp !== 'number' || typeof claims.sub !== 'string') return null
+    return { sub: claims.sub, exp: claims.exp }
   } catch {
     return null
   }

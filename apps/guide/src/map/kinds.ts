@@ -46,13 +46,24 @@ export const HIDDEN_PIN_STROKE = '#e9c46a'
 
 /** Teardrop pin as a DOM element for maplibregl.Marker. Day-hike pins swap
  * the center dot for a small peak glyph so a trailhead pin and a hike pin
- * stay tellable apart even when they sit at the same turnout. */
-export function buildPinElement(kind: MapPinKind, hidden = false): HTMLElement {
+ * stay tellable apart even when they sit at the same turnout.
+ *
+ * `name` is the entry's own name and is required: a pin's popup carries the
+ * only route to Open stop, Add to trip, and Directions, so pins that all
+ * announce "Viewpoint" and take no focus put those actions out of reach for
+ * anyone not using a mouse. Callers pair this with a keydown listener
+ * matching their click listener. */
+export function buildPinElement(kind: MapPinKind, name: string, hidden = false): HTMLElement {
   const { color, label } = getKindStyle(kind)
   const stroke = hidden ? HIDDEN_PIN_STROKE : '#ffffff'
   const el = document.createElement('div')
   el.className = hidden ? 'map-pin map-pin--hidden' : 'map-pin'
-  el.setAttribute('aria-label', hidden ? `${label} (Secret Guide)` : label)
+  el.setAttribute('role', 'button')
+  el.tabIndex = 0
+  el.setAttribute(
+    'aria-label',
+    hidden ? `${name}, ${label}, Secret Guide` : `${name}, ${label}`,
+  )
   const glyph =
     kind === 'hike'
       ? `<path d="M6.5 16.5 L11 9 L13.5 13 L15.5 10.2 L19.5 16.5 Z" fill="${stroke}"/>`
