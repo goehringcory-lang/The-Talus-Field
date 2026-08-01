@@ -28,20 +28,16 @@ window.ARTICLE_BODIES["yosemite-camping-complete-guide"] = function YosemiteCamp
     target: "_blank",
     rel: "sponsored noopener noreferrer",
     "data-aff-network": "hipcamp",
-    "data-aff-list": "article",
+    "data-aff-list": "article_inline",
     "data-aff-item-slug": "yosemite-camping-complete-guide",
     "data-aff-name": "Hipcamp private camping"
   }, "Hipcamp"), " is where most of it lives: search the gateway town closest to your entrance, read the access notes carefully (some sites are a rough dirt road away from the highway), and check the cancellation policy before you commit."), React.createElement("h3", null, "Gateway towns"), React.createElement("p", null, "The ", React.createElement("a", {
     href: "/articles/yosemite-gateway-towns-compared"
-  }, "gateway towns"), " each have their character. El Portal is closest to the Valley. Mariposa has more services. Groveland is quieter. Fish Camp puts you near the Mariposa Grove. If the trip has collapsed into \"we need a roof tonight,\" ", React.createElement("a", {
-    className: "aff-link",
-    href: window.buildAffiliateLink("expedia", "https://www.expedia.com/Hotel-Search?destination=Mariposa%2C%20California"),
-    target: "_blank",
-    rel: "sponsored noopener noreferrer",
-    "data-aff-network": "expedia",
-    "data-aff-list": "article",
-    "data-aff-item-slug": "yosemite-camping-complete-guide",
-    "data-aff-name": "Mariposa lodging search"
+  }, "gateway towns"), " each have their character. El Portal is closest to the Valley. Mariposa has more services. Groveland is quieter. Fish Camp puts you near the Mariposa Grove. If the trip has collapsed into \"we need a roof tonight,\" ", React.createElement(AvailabilityLink, {
+    destination: "Mariposa, California",
+    list: "article_inline",
+    slug: "yosemite-camping-complete-guide",
+    name: "Mariposa lodging search"
   }, "a live search of Mariposa motels"), " is the two-minute version of that decision."), React.createElement("h3", null, "Housekeeping Camp and lodges"), React.createElement("p", null, "When tent camping is sold out, check Housekeeping Camp separately. It operates on a different inventory. And the park's lodges and hotels sometimes have last-minute availability, particularly midweek."), React.createElement("p", null, "Being shut out of Yosemite campgrounds does not mean being shut out of Yosemite. It means being creative about where you sleep."), React.createElement("h2", null, "Shoulder season and off-season camping"), React.createElement("p", null, "Yosemite in the shoulder season is a better experience than Yosemite in July. The crowds thin. The light softens. The ", React.createElement("a", {
     href: "/articles/water-ouzels-waterfalls"
   }, "waterfalls"), ", which can be a trickle by August, are thundering in May and again after October rains."), React.createElement("p", null, React.createElement("strong", null, "May and early June"), " are peak waterfall season. The Valley campgrounds are open and bookable, but midweek availability is often findable without the 7 AM scramble. Nights are cool, and the high country is still under snow. The Tioga Road is usually closed until late June. This means Tuolumne, White Wolf, and everything along that corridor is inaccessible."), React.createElement("p", null, React.createElement("strong", null, "September and early October"), " are golden. The black oaks turn yellow. The crowds drop. The Valley campgrounds are still running but easier to book. The high country campgrounds start closing, but the weather at elevation is often spectacular. Clear, cool, dry. The best camping weather Yosemite offers."), React.createElement("p", null, React.createElement("strong", null, "Late October through March"), " is the off-season. Upper Pines is open year-round. Wawona and Hodgdon Meadow run first-come, first-served, and Camp 4 also goes first-come, first-served from November through spring. You can often drive in and find a site without any advance planning."), React.createElement("p", null, "Winter camping in Yosemite is genuinely beautiful and genuinely cold. The Valley floor gets snow. Temperatures drop below freezing at night. The falls, if there has been rain, are spectacular. The silence in a snow-covered campground is unlike any other silence I know. If you have a four-season tent and a sleeping bag rated to 15 degrees, winter camping in Yosemite is an experience that will rearrange your understanding of the place."), React.createElement("p", null, "During ", React.createElement("a", {
@@ -52,11 +48,22 @@ window.ARTICLE_BODIES["yosemite-camping-complete-guide"] = function YosemiteCamp
     href: "/articles/yosemite-for-non-hikers"
   }, "Non-hikers"), " can have an exceptional campground-based trip without summiting anything."), React.createElement("p", null, "The ", React.createElement("a", {
     href: "/articles/half-dome-permit-lottery-2026"
-  }, "Half Dome permit lottery"), " is a separate system. Having a campsite does not give you a Half Dome permit."), React.createElement("p", null, "Raccoons are the other campground animal: less famous than bears, more persistent. They will unzip a tent pocket to get at a tube of toothpaste. Bear box rules apply to raccoon defense as well."), React.createElement("h2", null, "What the dirt teaches you"), React.createElement("p", null, "There is a moment on the second night of every camping trip when the campground stops being a logistics problem and starts being a place. The fire has burned down to coals. The generator-hour people are asleep. The river is the loudest thing for a mile. If you are in the Valley, the granite walls are a shade of gray that has no name, holding the last ambient light while the sky behind them goes black and fills with stars."), React.createElement("p", null, "You realize you are not visiting Yosemite. You are in it. The ground under your sleeping pad is the same granite that Ahwahneechee families managed with fire for centuries, that John Muir walked, that was here when the glaciers carved the Valley and will be here long after every reservation system has been replaced by something equally frustrating."), React.createElement("p", null, "The reservation is hard to get. The bear box is awkward to load. The shower situation is suboptimal. None of that matters at 10:01 PM, when the quiet hours begin and the campground finally sounds like the wilderness it was built inside. The ground is hard. The stars are close. You sleep well."), React.createElement(LodgingCta, {
+  }, "Half Dome permit lottery"), " is a separate system. Having a campsite does not give you a Half Dome permit."), React.createElement("p", null, "Raccoons are the other campground animal: less famous than bears, more persistent. They will unzip a tent pocket to get at a tube of toothpaste. Bear box rules apply to raccoon defense as well."), React.createElement("h2", null, "What the dirt teaches you"), React.createElement("p", null, "There is a moment on the second night of every camping trip when the campground stops being a logistics problem and starts being a place. The fire has burned down to coals. The generator-hour people are asleep. The river is the loudest thing for a mile. If you are in the Valley, the granite walls are a shade of gray that has no name, holding the last ambient light while the sky behind them goes black and fills with stars."), React.createElement(Placeholder, {
+    caption: "The Milky Way over Sentinel Dome, the sky the campground lights go out for",
+    image: "img/milky-way-sentinel-dome.jpg",
+    credit: "Photo: Jackhen1992 / Wikimedia Commons (CC BY-SA 4.0)",
+    tag: "PLATE I",
+    size: "lg",
+    style: {
+      aspectRatio: "16 / 10",
+      margin: "32px 0"
+    },
+    motif: React.createElement(MotifMountains, null)
+  }), React.createElement("p", null, "You realize you are not visiting Yosemite. You are in it. The ground under your sleeping pad is the same granite that Ahwahneechee families managed with fire for centuries, that John Muir walked, that was here when the glaciers carved the Valley and will be here long after every reservation system has been replaced by something equally frustrating."), React.createElement("p", null, "The reservation is hard to get. The bear box is awkward to load. The shower situation is suboptimal. None of that matters at 10:01 PM, when the quiet hours begin and the campground finally sounds like the wilderness it was built inside. The ground is hard. The stars are close. You sleep well."), React.createElement(LodgingCta, {
     destination: "Groveland, California",
     heading: "For the night the campground plan fails",
     note: "A storm, a closure, or a reservation that never materialized. Every camper eventually has this night, and the fastest version of solving it is a live search of the nearest gateway rather than driving the highway looking for vacancy signs. Groveland here; the other towns are one page over.",
-    list: "article",
+    list: "article_cta",
     slug: "yosemite-camping-complete-guide",
     cta: "Search Groveland lodging →"
   }), React.createElement(AffiliateNote, null));

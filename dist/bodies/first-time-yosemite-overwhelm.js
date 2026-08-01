@@ -18,7 +18,7 @@ window.ARTICLE_BODIES["first-time-yosemite-overwhelm"] = function FirstTimeYosem
     destination: "Yosemite National Park",
     heading: "The decision to make first",
     note: "Of everything on this page, lodging is the only piece with a deadline attached: in-park beds open 366 days ahead and gateway rooms fill six to twelve months out for summer. Knowing what is actually left on your dates is what turns the rest of this from theory into a plan.",
-    list: "article",
+    list: "article_cta",
     slug: "first-time-yosemite-overwhelm",
     cta: "See what is available on your dates →"
   }), React.createElement("p", null, "Let's plan a good one."), React.createElement(AffiliateNote, null));

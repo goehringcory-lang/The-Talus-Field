@@ -1,4 +1,4 @@
-/* global React, AffiliateNote, LodgingCta */
+/* global React, Placeholder, MotifMountains, AffiliateNote, AvailabilityLink, LodgingCta */
 
 window.ARTICLE_BODIES = window.ARTICLE_BODIES || {};
 
@@ -18,6 +18,16 @@ window.ARTICLE_BODIES["where-to-stay-in-yosemite"] = function WhereToStayInYosem
       <p>
         <strong>The Ahwahnee</strong> opened in 1927 and is a <strong>National Historic Landmark</strong>, which is a category of building, not a marketing phrase. The Great Lounge with its floor-to-ceiling windows, the stenciled beams, the massive stone fireplaces, the dining room with its 34-foot ceiling: this is one of the great park lodges in the national system, in the same conversation as Old Faithful Inn and the Grand Canyon's El Tovar. Queens and presidents have stayed here. The building sits under the Royal Arches at the quiet east end of the Valley, and the walk out the front door at dusk, with Half Dome going pink above the meadow, is the whole argument.
       </p>
+
+      <Placeholder
+        caption="The Ahwahnee under snow, at the quiet east end of the Valley"
+        image="img/ahwahnee-hotel.jpg"
+        credit="Photo: Chris Dunstan / Wikimedia Commons (public domain)"
+        tag="PLATE I"
+        size="lg"
+        style={{ aspectRatio: "16 / 10", margin: "32px 0" }}
+        motif={<MotifMountains />}
+      />
 
       <p>
         Now the honest part. The rooms are nice hotel rooms, not extraordinary ones, and you are paying <strong>several times the rate of Yosemite Valley Lodge</strong> for them. What the money actually buys is the public spaces, the address, and the feeling of the place: afternoon light in the Great Lounge, a drink by the fire after a day on the trails, dinner in a dining room that requires you to look up. If you will use those things, if you are marking an anniversary or a retirement or a once-in-a-lifetime trip, the Ahwahnee is worth it. If you plan to leave at dawn and return at dark and use the room as a place to sleep, it is emphatically not, and the Lodge will make you just as happy for a fraction of the cost. One good compromise I recommend constantly: stay somewhere cheaper and come to the Ahwahnee for <a href="/articles/where-to-eat-yosemite">a meal or a drink</a>. The Great Lounge does not check room keys.
@@ -40,6 +50,16 @@ window.ARTICLE_BODIES["where-to-stay-in-yosemite"] = function WhereToStayInYosem
       <p>
         <strong>Curry Village</strong> has been putting visitors in tents at the base of Glacier Point since 1899, and the current version is a dense grid of <strong>canvas tent cabins</strong> (wood frame, canvas walls and roof, real beds, no plumbing) plus a smaller number of hard-sided cabins, some with private baths. The tent cabins are the cheapest roofed beds in Yosemite Valley, and the tradeoffs are exactly what the canvas implies. You will hear your neighbors, and they will hear you. Unheated tents are genuinely cold in spring and fall (heated ones exist and go first). Bathrooms and showers are in shared <strong>communal bathhouses</strong>, a walk away in the dark.
       </p>
+
+      <Placeholder
+        caption="Cabins at Curry Village, under the base of Glacier Point"
+        image="img/curry-village.jpg"
+        credit="Photo: US National Park Service / Wikimedia Commons (public domain)"
+        tag="PLATE II"
+        size="lg"
+        style={{ aspectRatio: "16 / 10", margin: "32px 0" }}
+        motif={<MotifMountains />}
+      />
 
       <p>
         And you must use the <strong>bear box</strong>. Every tent cabin has a steel food locker outside, and everything with a scent, food, toothpaste, sunscreen, the gum in your daypack, goes in it, every time, because canvas is not a barrier a bear respects. This is not theoretical; it is the single rule the staff will repeat to you at check-in, and they mean it.
@@ -86,7 +106,7 @@ window.ARTICLE_BODIES["where-to-stay-in-yosemite"] = function WhereToStayInYosem
       <h2>The alternative, for honesty's sake</h2>
 
       <p>
-        None of this means in-park lodging is the only defensible choice. If the inventory is gone or the rates are indefensible for your budget, the <a href="/articles/yosemite-gateway-towns-compared">gateway towns</a> are a real option with real tradeoffs, mostly measured in windshield time, and camping remains the cheapest way to sleep in the park if you can win a site. For the full arithmetic of what each approach does to a trip budget, I've run the numbers <a href="/articles/yosemite-trip-cost-budget-2026">separately</a>. And when you want the raw view rather than the argument, <a className="aff-link" href={window.buildAffiliateLink("expedia", "https://www.expedia.com/Hotel-Search?destination=Yosemite%20National%20Park")} target="_blank" rel="sponsored noopener noreferrer" data-aff-network="expedia" data-aff-list="article" data-aff-item-slug="where-to-stay-in-yosemite" data-aff-name="Gateway availability search">one availability search around the park</a> shows what the gateway towns actually have left on your dates.
+        None of this means in-park lodging is the only defensible choice. If the inventory is gone or the rates are indefensible for your budget, the <a href="/articles/yosemite-gateway-towns-compared">gateway towns</a> are a real option with real tradeoffs, mostly measured in windshield time, and camping remains the cheapest way to sleep in the park if you can win a site. For the full arithmetic of what each approach does to a trip budget, I've run the numbers <a href="/articles/yosemite-trip-cost-budget-2026">separately</a>. And when you want the raw view rather than the argument, <AvailabilityLink destination="Yosemite National Park" list="article_inline" slug="where-to-stay-in-yosemite" name="Gateway availability search">one availability search around the park</AvailabilityLink> shows what the gateway towns actually have left on your dates.
       </p>
 
       <p>
@@ -97,7 +117,7 @@ window.ARTICLE_BODIES["where-to-stay-in-yosemite"] = function WhereToStayInYosem
         destination="Yosemite National Park"
         heading="Before you rearrange the trip"
         note="The ranking above does not change with anyone's inventory. What it cannot tell you is what is left on your specific dates, which is a two-minute question and worth answering before you decide the park is full."
-        list="article"
+        list="article_cta"
         slug="where-to-stay-in-yosemite"
         cta="Search lodging around Yosemite →"
       />

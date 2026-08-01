@@ -576,12 +576,37 @@ window.buildTripPlan = function (answers) {
     notes.push("July and August are the most crowded months in the park. Early starts are the whole strategy.");
   }
 
+  // Lodging hand-off: only when the answers say the bed is not settled. A
+  // reader who chose in-park lodging, camping, or a day trip has no use for a
+  // hotel search, and putting one in front of them anyway is the kind of
+  // placement the /affiliate guardrail exists to prevent. The destination is
+  // always the park-area search, never a property: the selector never asks
+  // which town, and /stay carries the town-by-town comparison. Rendered by
+  // intent.jsx through the shared LodgingCta, aff_list "trip_selector".
+  var lodging = null;
+  if (answers.stay === "undecided") {
+    lodging = {
+      destination: "Yosemite National Park",
+      heading: "The deadline in this plan",
+      note: "Before the reading list, the bed. One availability search around the park shows what your dates still hold, and the answer decides which of the articles above matter.",
+      cta: "Search lodging around Yosemite →",
+    };
+  } else if (answers.stay === "gateway") {
+    lodging = {
+      destination: "Yosemite National Park",
+      heading: "The room still to book",
+      note: "The gateway towns are not interchangeable: the wrong one costs an hour each way, every day. The comparison below the search covers all five.",
+      cta: "Search lodging around Yosemite →",
+    };
+  }
+
   return {
     summary: window.tripSummary(answers),
     notes: notes,
     intent: window.relaxIntent(acc.intent),
     reads: reads,
     itinerary: itinerary,
+    lodging: lodging,
     product: intentProductForTrip(answers),
   };
 };

@@ -1,4 +1,4 @@
-/* global React, AffiliateNote, LodgingCta */
+/* global React, Placeholder, MotifMountains, AffiliateNote, AvailabilityLink, LodgingCta */
 
 window.ARTICLE_BODIES = window.ARTICLE_BODIES || {};
 
@@ -372,13 +372,13 @@ window.ARTICLE_BODIES["yosemite-camping-complete-guide"] = function YosemiteCamp
       <h3>Private land</h3>
 
       <p>
-        The private campgrounds, ranch sites, and canvas-tent operations outside the park cluster around Mariposa, Groveland, and Fish Camp, and that inventory never appears on Recreation.gov, which is exactly why it survives after the federal campgrounds sell out. <a className="aff-link" href={window.buildAffiliateLink("hipcamp", "https://www.hipcamp.com/")} target="_blank" rel="sponsored noopener noreferrer" data-aff-network="hipcamp" data-aff-list="article" data-aff-item-slug="yosemite-camping-complete-guide" data-aff-name="Hipcamp private camping">Hipcamp</a> is where most of it lives: search the gateway town closest to your entrance, read the access notes carefully (some sites are a rough dirt road away from the highway), and check the cancellation policy before you commit.
+        The private campgrounds, ranch sites, and canvas-tent operations outside the park cluster around Mariposa, Groveland, and Fish Camp, and that inventory never appears on Recreation.gov, which is exactly why it survives after the federal campgrounds sell out. <a className="aff-link" href={window.buildAffiliateLink("hipcamp", "https://www.hipcamp.com/")} target="_blank" rel="sponsored noopener noreferrer" data-aff-network="hipcamp" data-aff-list="article_inline" data-aff-item-slug="yosemite-camping-complete-guide" data-aff-name="Hipcamp private camping">Hipcamp</a> is where most of it lives: search the gateway town closest to your entrance, read the access notes carefully (some sites are a rough dirt road away from the highway), and check the cancellation policy before you commit.
       </p>
 
       <h3>Gateway towns</h3>
 
       <p>
-        The <a href="/articles/yosemite-gateway-towns-compared">gateway towns</a> each have their character. El Portal is closest to the Valley. Mariposa has more services. Groveland is quieter. Fish Camp puts you near the Mariposa Grove. If the trip has collapsed into "we need a roof tonight," <a className="aff-link" href={window.buildAffiliateLink("expedia", "https://www.expedia.com/Hotel-Search?destination=Mariposa%2C%20California")} target="_blank" rel="sponsored noopener noreferrer" data-aff-network="expedia" data-aff-list="article" data-aff-item-slug="yosemite-camping-complete-guide" data-aff-name="Mariposa lodging search">a live search of Mariposa motels</a> is the two-minute version of that decision.
+        The <a href="/articles/yosemite-gateway-towns-compared">gateway towns</a> each have their character. El Portal is closest to the Valley. Mariposa has more services. Groveland is quieter. Fish Camp puts you near the Mariposa Grove. If the trip has collapsed into "we need a roof tonight," <AvailabilityLink destination="Mariposa, California" list="article_inline" slug="yosemite-camping-complete-guide" name="Mariposa lodging search">a live search of Mariposa motels</AvailabilityLink> is the two-minute version of that decision.
       </p>
 
       <h3>Housekeeping Camp and lodges</h3>
@@ -445,6 +445,16 @@ window.ARTICLE_BODIES["yosemite-camping-complete-guide"] = function YosemiteCamp
         There is a moment on the second night of every camping trip when the campground stops being a logistics problem and starts being a place. The fire has burned down to coals. The generator-hour people are asleep. The river is the loudest thing for a mile. If you are in the Valley, the granite walls are a shade of gray that has no name, holding the last ambient light while the sky behind them goes black and fills with stars.
       </p>
 
+      <Placeholder
+        caption="The Milky Way over Sentinel Dome, the sky the campground lights go out for"
+        image="img/milky-way-sentinel-dome.jpg"
+        credit="Photo: Jackhen1992 / Wikimedia Commons (CC BY-SA 4.0)"
+        tag="PLATE I"
+        size="lg"
+        style={{ aspectRatio: "16 / 10", margin: "32px 0" }}
+        motif={<MotifMountains />}
+      />
+
       <p>
         You realize you are not visiting Yosemite. You are in it. The ground under your sleeping pad is the same granite that Ahwahneechee families managed with fire for centuries, that John Muir walked, that was here when the glaciers carved the Valley and will be here long after every reservation system has been replaced by something equally frustrating.
       </p>
@@ -457,7 +467,7 @@ window.ARTICLE_BODIES["yosemite-camping-complete-guide"] = function YosemiteCamp
         destination="Groveland, California"
         heading="For the night the campground plan fails"
         note="A storm, a closure, or a reservation that never materialized. Every camper eventually has this night, and the fastest version of solving it is a live search of the nearest gateway rather than driving the highway looking for vacancy signs. Groveland here; the other towns are one page over."
-        list="article"
+        list="article_cta"
         slug="yosemite-camping-complete-guide"
         cta="Search Groveland lodging →"
       />

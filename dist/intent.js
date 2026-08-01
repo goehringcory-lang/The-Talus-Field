@@ -272,7 +272,14 @@ function TripPlan({
     route: product.secondary.route,
     go: go,
     target: product.secondary.route
-  }, product.secondary.label))))));
+  }, product.secondary.label))))), plan.lodging && window.LodgingCta && React.createElement(window.LodgingCta, {
+    destination: plan.lodging.destination,
+    heading: plan.lodging.heading,
+    note: plan.lodging.note,
+    cta: plan.lodging.cta,
+    list: "trip_selector",
+    slug: "trip-selector"
+  }));
 }
 function TripSelector({
   go,

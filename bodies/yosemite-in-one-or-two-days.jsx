@@ -137,7 +137,7 @@ window.ARTICLE_BODIES["yosemite-in-one-or-two-days"] = function YosemiteInOneOrT
         destination="El Portal, California"
         heading="Showing up early starts the night before"
         note="Every plan on this page depends on being at the trailhead before the day visitors, which means the drive in cannot be ninety minutes. El Portal is 25 to 30 minutes from the Valley and the closest bed outside the boundary. The full comparison of every option is one page over."
-        list="article"
+        list="article_cta"
         slug="yosemite-in-one-or-two-days"
         cta="Search El Portal lodging →"
       />

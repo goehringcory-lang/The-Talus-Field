@@ -15,7 +15,7 @@
 //   - a TRIP_MONTHS `read` slug that does not resolve
 //   - any complete set of trip-selector answers that produces an empty read
 //     list, an itinerary id the itineraries data does not define, or a product
-//     route that is not a real route (swept exhaustively, ~4,500 combinations)
+//     route that is not a real route (swept exhaustively, 18,200 combinations)
 //   - a part label in page-planning-guide.jsx's PLANNING_PARTS with no matching
 //     entry in window.PLANNING_SERIES, which would render that part with no
 //     articles under it
@@ -204,6 +204,15 @@ for (const when of q("when").options) {
           const matches = w.filterArticlesByIntent(articles, plan.intent);
           if (matches.length === 0) {
             badCombos.push(`${JSON.stringify(answers)}: derived intent matches nothing`);
+          }
+          // The lodging hand-off renders only when the bed is unbooked, and
+          // then always completely: a partial object renders a broken CTA.
+          const wantsLodging = stay.id === "undecided" || stay.id === "gateway";
+          if (wantsLodging !== Boolean(plan.lodging)) {
+            badCombos.push(`${JSON.stringify(answers)}: lodging ${plan.lodging ? "present" : "absent"} for stay "${stay.id}"`);
+          }
+          if (plan.lodging && !(plan.lodging.destination && plan.lodging.heading && plan.lodging.cta)) {
+            badCombos.push(`${JSON.stringify(answers)}: lodging hand-off is missing destination, heading, or cta`);
           }
         }
       }

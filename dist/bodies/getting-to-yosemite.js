@@ -27,7 +27,7 @@ window.ARTICLE_BODIES["getting-to-yosemite"] = function GettingToYosemiteBody() 
     destination: "Mariposa, California",
     heading: "Then find the bed on that road",
     note: "That order matters and it is the order most people get backwards. Once the entrance is settled, its gateway town is the one to search: Mariposa and El Portal on 140, Groveland on 120, Oakhurst on 41, Lee Vining over Tioga.",
-    list: "article",
+    list: "article_cta",
     slug: "getting-to-yosemite",
     cta: "Search Mariposa lodging →"
   }), React.createElement(AffiliateNote, null));

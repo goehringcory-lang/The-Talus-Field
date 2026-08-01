@@ -1,9 +1,10 @@
-/* global React, AffiliateNote, LodgingCta */
+/* global React, Placeholder, MotifMountains, AffiliateNote, AvailabilityLink, LodgingCta */
 
 window.ARTICLE_BODIES = window.ARTICLE_BODIES || {};
 
 // Per-town availability links (MONETIZATION-IDEAS.md 3.1): Expedia hotel
-// searches via the live Travel Creator camref in affiliate.js. The
+// searches through the shared AvailabilityLink, which owns the rel and
+// data-aff-* markup. `dest` is plain text; AvailabilityLink encodes it. The
 // recommendations above each link do not depend on any program's catalog; if
 // the best option in a town has no program, it stays the recommendation,
 // linkless.
@@ -11,16 +12,12 @@ function townAvailability(town, dest) {
   return (
     <p style={{ fontFamily: "var(--sans)", fontSize: 14, color: "var(--ink-3)" }}>
       Current rates and availability:{" "}
-      <a
-        className="aff-link"
-        href={window.buildAffiliateLink("expedia", "https://www.expedia.com/Hotel-Search?destination=" + dest)}
-        target="_blank"
-        rel="sponsored noopener noreferrer"
-        data-aff-network="expedia"
-        data-aff-list="article"
-        data-aff-item-slug="yosemite-gateway-towns-compared"
-        data-aff-name={town + " lodging search"}
-      >{town} lodging →</a>
+      <AvailabilityLink
+        destination={dest}
+        list="article_town"
+        slug="yosemite-gateway-towns-compared"
+        name={town + " lodging search"}
+      >{town} lodging →</AvailabilityLink>
     </p>
   );
 }
@@ -82,6 +79,16 @@ window.ARTICLE_BODIES["yosemite-gateway-towns-compared"] = function YosemiteGate
         <strong>Character:</strong> essentially a small park-adjacent settlement.
       </p>
 
+      <Placeholder
+        caption="Highway 140 following the Merced River canyon toward the Arch Rock entrance, the road every El Portal morning starts on"
+        image="img/merced-canyon-road-cory-goehring.jpg"
+        credit="Photo: Cory Goehring"
+        tag="PLATE I"
+        size="lg"
+        style={{ aspectRatio: "16 / 10", margin: "32px 0" }}
+        motif={<MotifMountains />}
+      />
+
       <p>
         El Portal is the closest gateway town to the Valley by a significant margin. It exists because of Yosemite. It has a handful of lodges (the Yosemite View Lodge, the Cedar Lodge, others) along Highway 140 right next to the Merced River, a 24-hour gas station, a small market, and not much else. The lodging tends to be priced like in-park lodging because the location is so good.
       </p>
@@ -104,7 +111,7 @@ window.ARTICLE_BODIES["yosemite-gateway-towns-compared"] = function YosemiteGate
         <strong>Who should pick El Portal:</strong> anyone whose top priority is being inside the park as much as possible, especially for sunrise photography, peak-period crowd avoidance, or a short trip with lots of Valley-focused itinerary. Also a strong choice for any winter trip where road reliability matters.
       </p>
 
-      {townAvailability("El Portal", "El%20Portal%2C%20California")}
+      {townAvailability("El Portal", "El Portal, California")}
 
       <h2>Mariposa</h2>
 
@@ -138,7 +145,7 @@ window.ARTICLE_BODIES["yosemite-gateway-towns-compared"] = function YosemiteGate
         <strong>Who should pick Mariposa:</strong> the largest share of first-time Yosemite visitors. Particularly families, anyone who values having a real town to come back to in the evening, anyone on a budget, and anyone visiting in shoulder seasons or winter when in-park or El Portal lodging is hard to find.
       </p>
 
-      {townAvailability("Mariposa", "Mariposa%2C%20California")}
+      {townAvailability("Mariposa", "Mariposa, California")}
 
       <h2>Oakhurst</h2>
 
@@ -148,6 +155,16 @@ window.ARTICLE_BODIES["yosemite-gateway-towns-compared"] = function YosemiteGate
         <strong>Highway access:</strong> 41, year-round.<br />
         <strong>Character:</strong> a regional commercial town with chain hotels and restaurants.
       </p>
+
+      <Placeholder
+        caption="Giant sequoias in the Mariposa Grove, the reason to base on the Highway 41 side"
+        image="img/mariposa-grove.jpg"
+        credit="Photo: Dietmar Rabich / Wikimedia Commons (CC BY-SA 4.0)"
+        tag="PLATE II"
+        size="lg"
+        style={{ aspectRatio: "16 / 10", margin: "32px 0" }}
+        motif={<MotifMountains />}
+      />
 
       <p>
         Oakhurst is the largest of the gateway communities by population and amenities. It has more chain lodging (Best Western, Comfort Inn, etc.) and chain dining than the other gateways combined. It feels like a regular Central California town that happens to be near a national park, rather than a town that exists because of one.
@@ -172,7 +189,7 @@ window.ARTICLE_BODIES["yosemite-gateway-towns-compared"] = function YosemiteGate
         <strong>Who should pick Oakhurst:</strong> visitors whose itinerary is heavily focused on the Mariposa Grove and Wawona, and visitors who want predictable chain lodging at standard prices. Also a fine choice for people coming from Los Angeles or the southern Central Valley, since Oakhurst is on the natural drive path.
       </p>
 
-      {townAvailability("Oakhurst", "Oakhurst%2C%20California")}
+      {townAvailability("Oakhurst", "Oakhurst, California")}
 
       <p>
         One 2026 note for this side of the park: the Wawona Hotel, the historic in-park option just inside the South Entrance, has been closed since December 2024 and remains closed for renovation this season. That removes the in-park alternative on the Highway 41 corridor and puts more pressure on Oakhurst rooms in summer. Book earlier than you think you need to.
@@ -210,7 +227,7 @@ window.ARTICLE_BODIES["yosemite-gateway-towns-compared"] = function YosemiteGate
         <strong>Who should pick Groveland:</strong> visitors who want gateway-town character and don't mind a slightly more challenging drive, anyone heading for Hetch Hetchy or the northern part of the park, and visitors who want to base on the route from the Bay Area without going all the way down to Mariposa.
       </p>
 
-      {townAvailability("Groveland", "Groveland%2C%20California")}
+      {townAvailability("Groveland", "Groveland, California")}
 
       <h2>Lee Vining</h2>
 
@@ -221,6 +238,16 @@ window.ARTICLE_BODIES["yosemite-gateway-towns-compared"] = function YosemiteGate
         <strong>Highway access:</strong> 395 north-south, 120 west into Yosemite (seasonal).<br />
         <strong>Character:</strong> a tiny eastern Sierra town built around tourism to Mono Lake and the high-elevation Yosemite.
       </p>
+
+      <Placeholder
+        caption="Tenaya Lake, on the Tioga Road between Lee Vining and the Valley"
+        image="img/tenaya-lake.jpg"
+        credit="Photo: Michael Hogarth / Wikimedia Commons (public domain)"
+        tag="PLATE III"
+        size="lg"
+        style={{ aspectRatio: "16 / 10", margin: "32px 0" }}
+        motif={<MotifMountains />}
+      />
 
       <p>
         Lee Vining is the only east-side gateway. It's not a substitute for the western towns. It's a different kind of trip. From Lee Vining, you can be in Tuolumne Meadows in 30 minutes, but the Valley is over an hour and a half each way. Lodging is limited (the <strong>Yosemite Gateway Motel</strong>, the <strong>El Mono Motel</strong>, a small inn or two), dining is limited but includes the famously-good Whoa Nellie Deli at the Mobil station (genuinely, this is not a joke, it's some of the best food in the eastern Sierra), and the town is tiny.
@@ -246,7 +273,7 @@ window.ARTICLE_BODIES["yosemite-gateway-towns-compared"] = function YosemiteGate
         <strong>Who should pick Lee Vining:</strong> visitors whose primary interest is the high country (Tuolumne, Cathedral Lakes, Mount Dana, the Tioga Road experience), and anyone combining Yosemite with Mono Lake, the eastern Sierra, or southern destinations like Death Valley.
       </p>
 
-      {townAvailability("Lee Vining", "Lee%20Vining%2C%20California")}
+      {townAvailability("Lee Vining", "Lee Vining, California")}
 
       <h2>The decision matrix in plain English</h2>
 
@@ -306,7 +333,7 @@ window.ARTICLE_BODIES["yosemite-gateway-towns-compared"] = function YosemiteGate
         destination="Mariposa, California"
         heading="Made the call?"
         note="Mariposa is the safest first-timer's pick, so it is the default here, but the town-by-town links above go straight to whichever one you picked. Whatever the town, the inventory is what it is on your dates and no comparison table can tell you that part."
-        list="article"
+        list="article_cta"
         slug="yosemite-gateway-towns-compared"
         cta="Search Mariposa lodging →"
       />

@@ -7,13 +7,13 @@ July 2026. Internal working document; strategy only, no code. Successor layer to
 Three revenue surfaces exist, one of them live:
 
 1. **The Field Guide PWA** — $3.99 one-time, 18-month access, monthly inventory cap, live Stripe checkout. On sale as of the July 2026 launch-prep pass (pending the LAUNCH-READINESS.md ops gate).
-2. **Patagonia affiliate links** (`affiliate.js`, Impact network) — one program, gear articles only. The registry is deliberately built for multiple networks; only one entry exists.
+2. **Affiliate links** (`affiliate.js`) — two live programs: Patagonia (Impact network, gear articles) and the Expedia Group Travel Creator Program (Partnerize `prf.hn` camref), which powers every lodging availability link on the site through the shared `AvailabilityLink` / `LodgingCta` components. Booking.com, Stay22, and Hipcamp are registered with empty IDs and fail soft to plain links. The August 2026 optimization pass added placement-level GA4 granularity (`aff_list`: `article_cta` / `article_inline` / `article_town` / `trip_selector` / `stay_banner` plus the page-level values; inventory in ARCHITECTURE.md), plates in the four money articles, a photo slot on `LodgingCta`, a lodging hand-off in the trip-selector plan, and a fail-soft slot for Expedia's licensed banner creative on `/stay`.
 3. **The newsletter** — not monetized directly; it is the audience asset everything else launches to.
 
 The structural observations that drive everything below:
 
 - **The guide is one-time revenue with a built-in expiry.** `expiresAt` = purchase + 548 days is already in every buyer record. That expiry is currently only an access cutoff; it should also be a renewal event.
-- **The site's highest-commercial-intent pages carry no monetization at all.** `where-to-stay-in-yosemite`, `yosemite-gateway-towns-compared`, `where-to-eat-yosemite`, `yosemite-camping-complete-guide`, `yosemite-trip-cost-budget-2026` — lodging-decision traffic is the most valuable traffic an outdoor site gets, and today it earns $0.
+- **The site's highest-commercial-intent pages are monetized as of the July–August 2026 passes** (this observation drove 3.1 and is kept for the record). Four of the five named money articles carry disclosed Expedia availability links and end CTAs; `where-to-eat-yosemite` remains unmonetized because no lodging program fits it (OpenTable/Tock is its own future application).
 - **The moat is the person, not the software.** Twenty seasons in the park is the one asset no competitor can replicate. Several ideas below sell *that* directly rather than another digital artifact.
 - **The referral loop is finally unblocked** (shared trips render ungated) but nothing makes a shared trip *look* good when it lands in a text thread.
 
@@ -76,6 +76,7 @@ Ordered by fit with the brand's "dry, declarative, no fluff" register — the co
 **Why it works:** Lodging is where outdoor-content money actually is: booking commissions run 3–6% on multi-hundred-dollar reservations, versus low single digits on gear. These articles already rank and already make specific recommendations by name; the links change nothing editorially. The house style *is* the trust asset that makes affiliate work here — recommendations stay exactly as opinionated and specific as they are today, disclosure stays plain.
 **Guardrail:** Never let a program's catalog shape a recommendation. If the best lodge has no program, it stays the top recommendation, linkless. Write that rule into `/affiliate` publicly.
 **Build:** Low (registry entry + link markup + disclosure update per network). The applications take longer than the code.
+**Status (August 2026): shipped, on Expedia rather than the Stay22/Booking pairing this section proposed.** The Travel Creator camref is live; four of the five articles carry links (where-to-eat waits on a dining program). The optimization pass on top of it: placement-level `aff_list` values so GA4 can rank a boxed CTA against an inline link, plates in all four money articles, an optional photo slot on `LodgingCta` (first use waits on real gateway-town photography), a lodging CTA in the trip-selector plan output (rendered only when the stay answer is unbooked), and one fail-soft slot on `/stay` for Expedia's licensed banner creative. On that last item and 3.6: the banner is a single disclosed affiliate unit on the lodging board, labeled "Advertisement", owner-chosen creative, no scripts; it is not the display/programmatic advertising 3.6 rules out, and it should not multiply into it. Property photos from Expedia are not licensed at this program tier (that is the separate Rapid API partnership) — the site's photo pipeline is the photo strategy.
 
 ### 3.2 Newsletter and /now sponsorship: one calm classified
 

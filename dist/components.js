@@ -1478,11 +1478,25 @@ function LodgingCta({
   list,
   slug,
   cta,
-  stayLink
+  stayLink,
+  image,
+  caption,
+  credit
 }) {
   return React.createElement("aside", {
     className: "lodging-cta"
-  }, React.createElement("div", {
+  }, image && React.createElement("figure", {
+    className: "lodging-cta__figure"
+  }, React.createElement(ResponsiveImage, {
+    image: image,
+    alt: caption || "",
+    sizes: SIZES_CARD,
+    className: "lodging-cta__img"
+  }), caption && React.createElement("figcaption", {
+    className: "lodging-cta__caption"
+  }, caption, credit && React.createElement("span", {
+    className: "lodging-cta__credit"
+  }, credit))), React.createElement("div", {
     className: "lodging-cta__head"
   }, heading || "Check what is actually available"), note && React.createElement("p", {
     className: "lodging-cta__note"
@@ -1502,10 +1516,40 @@ function LodgingCta({
     href: "/affiliate"
   }, "Disclosure.")));
 }
+function ExpediaBanner({
+  list,
+  slug
+}) {
+  var b = window.EXPEDIA_BANNER;
+  if (!b || !b.img || !b.href) return null;
+  return React.createElement("aside", {
+    className: "expedia-banner"
+  }, React.createElement("a", {
+    href: b.href,
+    target: "_blank",
+    rel: "sponsored noopener noreferrer",
+    "data-aff-network": "expedia",
+    "data-aff-list": list || "banner",
+    "data-aff-item-slug": slug || "",
+    "data-aff-name": "Expedia banner"
+  }, React.createElement("img", {
+    src: b.img,
+    alt: b.alt || "",
+    loading: "lazy",
+    width: b.width,
+    height: b.height,
+    referrerPolicy: "no-referrer"
+  })), React.createElement("p", {
+    className: "expedia-banner__disclosure"
+  }, "Advertisement. Expedia is an affiliate partner of The Talus Field. ", React.createElement("a", {
+    href: "/affiliate"
+  }, "Disclosure.")));
+}
 Object.assign(window, {
   expediaSearchUrl,
   AvailabilityLink,
-  LodgingCta
+  LodgingCta,
+  ExpediaBanner
 });
 var READ_LAST_KEY = "tfg.read.last";
 var READ_DONE_KEY = "tfg.read.done";
