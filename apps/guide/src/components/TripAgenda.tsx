@@ -39,7 +39,7 @@ import {
   type Placed,
 } from '../trip/agendaLayout'
 import { driveMinutesBetween, toHhmm, type SlottedItem } from '../trip/slotting'
-import type { TripItemT } from '../trip/schema'
+import { hikeItemId, stopItemId, type TripItemT } from '../trip/schema'
 import { useTripPlan } from '../trip/useTripPlan'
 import { addDaysIso, formatDayHeader, parkNowMinutes, todayIso } from '../utils/date'
 import './TripAgenda.css'
@@ -88,6 +88,14 @@ function writeDensity(density: Density) {
 function placement(day: string, startMin: number): { day: string; time: string } {
   const rollover = Math.floor(startMin / 1440)
   return { day: rollover > 0 ? addDaysIso(day, rollover) : day, time: toHhmm(startMin) }
+}
+
+/** The itemId a stop or hike carries after moving to another day: those ids
+ * embed the day, so placeItem mints a new one and the old DOM node unmounts. */
+function movedItemId(item: TripItemT, day: string): string {
+  if (item.type === 'hike') return hikeItemId(item.hikeId, day)
+  if (item.type === 'stop') return stopItemId(item.stopId, day)
+  return item.itemId
 }
 
 function dayParts(day: string): { weekday: string; dayNum: string; month: string } {
@@ -153,6 +161,11 @@ export default function TripAgenda({ slotted, windowDays, dayForecasts }: Props)
   const draggedRef = useRef(false) // suppresses the click that follows a drag
   const pxPerMinRef = useRef(pxPerMin)
   const windowsRef = useRef(new Map<string, DayWindow>())
+  // A keyboard move across days unmounts the focused block (its section, and
+  // for stops and hikes its itemId, both change), dropping focus to <body> so
+  // further arrow presses do nothing. This carries the id to focus after the
+  // re-render.
+  const refocusRef = useRef<string | null>(null)
 
   // Every day in the trip window gets a timeline, even an empty one: an empty
   // day you can't drop onto isn't a plan surface, it's a gap.
@@ -378,6 +391,14 @@ export default function TripAgenda({ slotted, windowDays, dayForecasts }: Props)
 
   useEffect(() => stopFling, [stopFling])
 
+  // Restore focus after a keyboard move re-rendered the block elsewhere.
+  useEffect(() => {
+    const id = refocusRef.current
+    if (!id) return
+    refocusRef.current = null
+    document.querySelector<HTMLElement>(`[data-item-id="${CSS.escape(id)}"]`)?.focus()
+  }, [plan])
+
   // Auto-scroll while a drag sits near the top or bottom of the viewport, so
   // a block can be carried from one day to a day two screens down.
   useEffect(() => {
@@ -461,12 +482,25 @@ export default function TripAgenda({ slotted, windowDays, dayForecasts }: Props)
         Math.max(win.from, win.to - s.durationMin),
       )
       const at = placement(day, next)
+      const title = itemInfo(s.item).title
+      const range = `${clockLabel(next)} to ${clockLabel(next + s.durationMin)}`
+      if (at.day !== day) {
+        const newId = movedItemId(s.item, at.day)
+        const duplicate = plan.items.some(
+          (it) => it.itemId === newId && it.itemId !== s.item.itemId,
+        )
+        refocusRef.current = newId
+        setAnnouncement(
+          duplicate
+            ? `${title} is already planned on ${formatDayHeader(at.day)}; this copy was removed`
+            : `${title}, ${formatDayHeader(at.day)}, ${range}`,
+        )
+      } else {
+        setAnnouncement(`${title}, ${range}`)
+      }
       placeItem(s.item.itemId, at.day, at.time)
-      setAnnouncement(
-        `${itemInfo(s.item).title}, ${clockLabel(next)} to ${clockLabel(next + s.durationMin)}`,
-      )
     },
-    [placeItem],
+    [placeItem, plan],
   )
 
   const resizeBy = useCallback(
@@ -491,10 +525,17 @@ export default function TripAgenda({ slotted, windowDays, dayForecasts }: Props)
       const index = days.indexOf(day)
       const target = days[clamp(index + step, 0, days.length - 1)]
       if (!target || target === day) return
+      const newId = movedItemId(s.item, target)
+      const duplicate = plan.items.some((it) => it.itemId === newId && it.itemId !== s.item.itemId)
+      refocusRef.current = newId
+      setAnnouncement(
+        duplicate
+          ? `${itemInfo(s.item).title} is already planned on ${formatDayHeader(target)}; this copy was removed`
+          : `${itemInfo(s.item).title}, ${formatDayHeader(target)}`,
+      )
       placeItem(s.item.itemId, target, s.startMin !== null ? toHhmm(s.startMin) : undefined)
-      setAnnouncement(`${itemInfo(s.item).title}, ${formatDayHeader(target)}`)
     },
-    [days, placeItem],
+    [days, placeItem, plan],
   )
 
   function onBlockKeyDown(e: React.KeyboardEvent, s: SlottedItem, day: string, win: DayWindow) {
@@ -789,6 +830,7 @@ function AgendaBlock({
         className="ag-block__body"
         role="button"
         tabIndex={0}
+        data-item-id={s.item.itemId}
         aria-expanded={expanded}
         aria-label={`${info.title}, ${timeRange}`}
         onPointerDown={(e) => onPointerDown(e, 'move')}
