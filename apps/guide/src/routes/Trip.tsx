@@ -24,6 +24,7 @@ import { ITINERARIES, ITINERARY_KEYS, type ItineraryKey } from '../content/itine
 import { getStopsByRegion } from '../content'
 import { MAX_SPAN_DAYS, readTripDates, usePrograms } from '../programs/usePrograms'
 import { addDaysIso, formatDayHeader, todayIso } from '../utils/date'
+import { prefersReducedMotion } from '../utils/motion'
 import BackupPlans from '../trip/BackupPlans'
 import { pickProgramsForDay } from '../trip/seedPrograms'
 import { slotPlan } from '../trip/slotting'
@@ -106,29 +107,31 @@ function AddCustomRow({
   )
 }
 
-// Clearing the board throws away work that took real planning, and the button
-// sits a thumb's width from the board itself, so it arms before it fires: the
-// first tap turns it into an explicit "yes, clear all N" and a way out. The
-// same element carries both states, so a keyboard user keeps focus through the
-// change; a short guard after arming swallows the second half of a double-tap,
-// which is the accident this is here to prevent. It disarms on Escape, on a
-// tap anywhere else, and on its own after a few seconds of nothing.
+// Throwing away a hand-arranged board is the one destructive tap on this page,
+// and both buttons that can do it (clear, and reseeding from a preset) arm
+// before they fire: the first tap turns the button into an explicit question,
+// the second answers it. The same element carries both states, so a keyboard
+// user keeps focus through the change; a short guard after arming swallows the
+// second half of a double-tap, which is the accident this is here to prevent.
+// It disarms on Escape, on a tap outside `scope`, and on its own after a few
+// seconds of nothing. Deliberately not window.confirm: in-app browsers
+// (Instagram, Facebook) suppress it, and a suppressed confirm reads as true.
 const ARM_GUARD_MS = 400
 const DISARM_AFTER_MS = 6000
 
-function ClearPlanButton({ itemCount, onClear }: { itemCount: number; onClear: () => void }) {
-  const [armed, setArmed] = useState(false)
+function useArmToConfirm<T>(scope: string) {
+  const [armed, setArmed] = useState<T | null>(null)
   const armedAt = useRef(0)
 
   useEffect(() => {
-    if (!armed) return
-    const timer = window.setTimeout(() => setArmed(false), DISARM_AFTER_MS)
+    if (armed === null) return
+    const timer = window.setTimeout(() => setArmed(null), DISARM_AFTER_MS)
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') setArmed(false)
+      if (e.key === 'Escape') setArmed(null)
     }
     const onPointerDown = (e: PointerEvent) => {
       const target = e.target as HTMLElement | null
-      if (!target?.closest('.trip-clear')) setArmed(false)
+      if (!target?.closest(scope)) setArmed(null)
     }
     window.addEventListener('keydown', onKey)
     window.addEventListener('pointerdown', onPointerDown)
@@ -137,8 +140,26 @@ function ClearPlanButton({ itemCount, onClear }: { itemCount: number; onClear: (
       window.removeEventListener('keydown', onKey)
       window.removeEventListener('pointerdown', onPointerDown)
     }
-  }, [armed])
+  }, [armed, scope])
 
+  /** True when this press is the confirming one; arming otherwise. */
+  function press(key: T): boolean {
+    if (armed !== key) {
+      armedAt.current = Date.now()
+      setArmed(key)
+      return false
+    }
+    if (Date.now() - armedAt.current < ARM_GUARD_MS) return false
+    setArmed(null)
+    return true
+  }
+
+  return { armed, press, disarm: () => setArmed(null) }
+}
+
+function ClearPlanButton({ itemCount, onClear }: { itemCount: number; onClear: () => void }) {
+  const confirm = useArmToConfirm<'clear'>('.trip-clear')
+  const armed = confirm.armed === 'clear'
   const noun = itemCount === 1 ? 'item' : 'items'
 
   return (
@@ -148,21 +169,14 @@ function ClearPlanButton({ itemCount, onClear }: { itemCount: number; onClear: (
         size="sm"
         className={armed ? 'trip-clear__btn is-armed' : 'trip-clear__btn'}
         onClick={() => {
-          if (!armed) {
-            armedAt.current = Date.now()
-            setArmed(true)
-            return
-          }
-          if (Date.now() - armedAt.current < ARM_GUARD_MS) return
-          setArmed(false)
-          onClear()
+          if (confirm.press('clear')) onClear()
         }}
       >
         {armed ? `Yes, clear all ${itemCount} ${noun}` : 'Clear plan'}
       </Button>
       {armed && (
         <>
-          <Button variant="quiet" size="sm" onClick={() => setArmed(false)}>
+          <Button variant="quiet" size="sm" onClick={confirm.disarm}>
             Keep it
           </Button>
           <span className="trip-clear__warn" role="status">
@@ -245,7 +259,14 @@ export default function Trip() {
   function toggleReview() {
     const opening = !reviewOpen
     setReviewOpen(opening)
-    if (opening) reviewRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    // A scripted smooth scroll animates whatever the CSS says, so the reduced
+    // motion preference has to be read here.
+    if (opening) {
+      reviewRef.current?.scrollIntoView({
+        behavior: prefersReducedMotion() ? 'auto' : 'smooth',
+        block: 'start',
+      })
+    }
   }
 
   // The program listings for the trip window, so a preset day that names
@@ -306,17 +327,15 @@ export default function Trip() {
   const itemCount = plan.items.length
 
   // Seeding over a non-empty plan replaces it; that is a destructive tap and
-  // asks first. Empty plans seed straight away, as before.
+  // arms before it fires, on the card itself. Empty plans seed straight away.
+  const replaceConfirm = useArmToConfirm<ItineraryKey>('.trip-presets')
   function reseedItinerary(key: ItineraryKey) {
-    if (itemCount > 0) {
-      const ok = window.confirm(
-        `Replace the current plan? This clears your ${itemCount} planned ${
-          itemCount === 1 ? 'item' : 'items'
-        }.`,
-      )
-      if (!ok) return
-      clear()
+    if (itemCount === 0) {
+      seedItinerary(key)
+      return
     }
+    if (!replaceConfirm.press(key)) return
+    clear()
     seedItinerary(key)
   }
 
@@ -398,26 +417,37 @@ export default function Trip() {
                 {itemCount === 0 ? 'Start from a preset:' : 'Start over from a preset:'}
               </span>
               <div className="trip-presets__row">
-                {ITINERARY_KEYS.map((key) => (
-                  <button
-                    type="button"
-                    key={key}
-                    className="trip-preset"
-                    onClick={() => reseedItinerary(key)}
-                  >
-                    {/* One thumbnail per day (the day's lead-region photo), so
-                        the strip's length reads as the plan's length. */}
-                    <span className="trip-preset__photos" aria-hidden="true">
-                      {getItineraryDayPhotos(ITINERARIES[key]).map((photo, i) => (
-                        <span className="trip-preset__media" key={i}>
-                          <ResponsivePhoto src={photo.src} alt="" width={400} height={400} sizes="64px" />
-                        </span>
-                      ))}
-                    </span>
-                    <span className="trip-preset__label">{ITINERARIES[key].label}</span>
-                    <span className="trip-preset__sub">{ITINERARIES[key].subtitle}</span>
-                  </button>
-                ))}
+                {ITINERARY_KEYS.map((key) => {
+                  const armed = replaceConfirm.armed === key
+                  return (
+                    <button
+                      type="button"
+                      key={key}
+                      className="trip-preset"
+                      onClick={() => reseedItinerary(key)}
+                    >
+                      {/* One thumbnail per day (the day's lead-region photo), so
+                          the strip's length reads as the plan's length. */}
+                      <span className="trip-preset__photos" aria-hidden="true">
+                        {getItineraryDayPhotos(ITINERARIES[key]).map((photo, i) => (
+                          <span className="trip-preset__media" key={i}>
+                            <ResponsivePhoto src={photo.src} alt="" width={400} height={400} sizes="64px" />
+                          </span>
+                        ))}
+                      </span>
+                      <span className="trip-preset__label">
+                        {armed
+                          ? `Replace your ${itemCount} planned ${itemCount === 1 ? 'item' : 'items'}?`
+                          : ITINERARIES[key].label}
+                      </span>
+                      <span className="trip-preset__sub">
+                        {armed
+                          ? `Tap again to start over from ${ITINERARIES[key].label}. Anything else cancels.`
+                          : ITINERARIES[key].subtitle}
+                      </span>
+                    </button>
+                  )
+                })}
               </div>
             </div>
 

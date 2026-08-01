@@ -35,7 +35,7 @@ function formatDuration(minutes: number): string {
 }
 
 export default function TripReview({ slotted, windowDays, filenameDate, dayForecasts }: Props) {
-  const { removeItem, setStopTime, moveStopToDay } = useTripPlan()
+  const { plan, removeItem, setStopTime, moveStopToDay } = useTripPlan()
   const [exporting, setExporting] = useState(false)
   const [exportResult, setExportResult] = useState<ExportMethod | null>(null)
 
@@ -44,7 +44,7 @@ export default function TripReview({ slotted, windowDays, filenameDate, dayForec
     try {
       // Built synchronously before the await: iOS only allows the share sheet
       // inside the user-gesture task.
-      const ics = buildTripIcs(slotted)
+      const ics = buildTripIcs(slotted, plan.updatedAt)
       setExportResult(await exportTripIcs(ics, `yosemite-trip-${filenameDate}.ics`))
     } finally {
       setExporting(false)

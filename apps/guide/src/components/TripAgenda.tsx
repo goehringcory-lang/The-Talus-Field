@@ -41,7 +41,7 @@ import {
 import { driveMinutesBetween, toHhmm, type SlottedItem } from '../trip/slotting'
 import type { TripItemT } from '../trip/schema'
 import { useTripPlan } from '../trip/useTripPlan'
-import { formatDayHeader, parkNowMinutes, todayIso } from '../utils/date'
+import { addDaysIso, formatDayHeader, parkNowMinutes, todayIso } from '../utils/date'
 import './TripAgenda.css'
 
 // Vertical scale. "Normal" puts an hour at ~87px, so a one-hour program is
@@ -76,6 +76,18 @@ function writeDensity(density: Density) {
   } catch {
     /* non-fatal: the zoom level just won't persist */
   }
+}
+
+/**
+ * Where a placement is really stored. A day's timeline runs past midnight (see
+ * agendaLayout's LATEST), so a block can be dropped at 00:30 of the following
+ * morning; toHhmm wraps the clock, and without moving the date with it the
+ * block is written back to 00:30 of the same day, 24 hours earlier than where
+ * it was dropped.
+ */
+function placement(day: string, startMin: number): { day: string; time: string } {
+  const rollover = Math.floor(startMin / 1440)
+  return { day: rollover > 0 ? addDaysIso(day, rollover) : day, time: toHhmm(startMin) }
 }
 
 function dayParts(day: string): { weekday: string; dayNum: string; month: string } {
@@ -123,6 +135,10 @@ export default function TripAgenda({ slotted, windowDays, dayForecasts }: Props)
   const [drag, setDrag] = useState<Drag | null>(null)
   const [expandedId, setExpandedId] = useState<string | null>(null)
   const [nowMin, setNowMin] = useState(parkNowMinutes)
+  // A keyboard edit moves a block silently: the block's own aria-label changes
+  // underneath the focus, which a screen reader will not re-read. This is what
+  // it says out loud instead.
+  const [announcement, setAnnouncement] = useState('')
 
   const pxPerMin = PX_PER_MIN[density]
   const today = todayIso()
@@ -323,7 +339,10 @@ export default function TripAgenda({ slotted, windowDays, dayForecasts }: Props)
       const d = dragRef.current
       if (d && e.pointerId === d.pointerId) {
         if (d.mode === 'resize') setItemDuration(d.itemId, d.durationMin)
-        else placeItem(d.itemId, d.day, toHhmm(d.startMin))
+        else {
+          const at = placement(d.day, d.startMin)
+          placeItem(d.itemId, at.day, at.time)
+        }
         updateDrag(null)
         // The click that follows the release is not a tap on the block.
         window.setTimeout(() => {
@@ -441,7 +460,11 @@ export default function TripAgenda({ slotted, windowDays, dayForecasts }: Props)
         win.from,
         Math.max(win.from, win.to - s.durationMin),
       )
-      placeItem(s.item.itemId, day, toHhmm(next))
+      const at = placement(day, next)
+      placeItem(s.item.itemId, at.day, at.time)
+      setAnnouncement(
+        `${itemInfo(s.item).title}, ${clockLabel(next)} to ${clockLabel(next + s.durationMin)}`,
+      )
     },
     [placeItem],
   )
@@ -449,7 +472,15 @@ export default function TripAgenda({ slotted, windowDays, dayForecasts }: Props)
   const resizeBy = useCallback(
     (s: SlottedItem, deltaMin: number) => {
       if (s.item.type === 'program') return
-      setItemDuration(s.item.itemId, Math.max(MIN_DURATION_MIN, s.durationMin + deltaMin))
+      const durationMin = Math.max(MIN_DURATION_MIN, s.durationMin + deltaMin)
+      setItemDuration(s.item.itemId, durationMin)
+      setAnnouncement(
+        s.startMin !== null
+          ? `${itemInfo(s.item).title}, ${clockLabel(s.startMin)} to ${clockLabel(
+              s.startMin + durationMin,
+            )}, ${durationLabel(durationMin)}`
+          : `${itemInfo(s.item).title}, ${durationLabel(durationMin)}`,
+      )
     },
     [setItemDuration],
   )
@@ -461,6 +492,7 @@ export default function TripAgenda({ slotted, windowDays, dayForecasts }: Props)
       const target = days[clamp(index + step, 0, days.length - 1)]
       if (!target || target === day) return
       placeItem(s.item.itemId, target, s.startMin !== null ? toHhmm(s.startMin) : undefined)
+      setAnnouncement(`${itemInfo(s.item).title}, ${formatDayHeader(target)}`)
     },
     [days, placeItem],
   )
@@ -521,6 +553,10 @@ export default function TripAgenda({ slotted, windowDays, dayForecasts }: Props)
         bar at its bottom edge to make it longer or shorter. With a keyboard: arrow keys move a
         selected block, Alt with the arrows resizes it, Page&nbsp;Up and Page&nbsp;Down move it a
         day. Every edit saves to this device straight away and works offline.
+      </p>
+
+      <p className="sr-only" role="status">
+        {announcement}
       </p>
 
       {days.map((day) => {

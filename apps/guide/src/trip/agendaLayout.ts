@@ -35,7 +35,6 @@ const DEFAULT_TO = 21 * 60
 // it the window ends exactly where the last block ends, and a drag has
 // nowhere later to go: the drop clamps the block straight back where it was.
 const HEADROOM = 60
-const EARLIEST = 4 * 60
 // Past midnight: a 10 p.m. star party runs into the next calendar day and the
 // block has to be drawable. The ICS layer already rolls its DTEND forward.
 const LATEST = 26 * 60
@@ -89,7 +88,10 @@ export function dayWindowFor(placed: Placed[]): DayWindow {
     from = Math.min(from, p.startMin)
     to = Math.max(to, p.endMin)
   }
-  from = Math.max(EARLIEST, Math.min(DEFAULT_FROM, Math.floor(from / 60) * 60 - HEADROOM))
+  // The floor follows the day's own earliest block rather than a fixed hour:
+  // a 3 a.m. alpine start set on the block's own time field has to be drawable
+  // inside the track, or it renders above it and any drag snaps it away.
+  from = Math.max(0, Math.min(DEFAULT_FROM, Math.floor(from / 60) * 60 - HEADROOM))
   to = Math.min(LATEST, Math.max(DEFAULT_TO, Math.ceil(to / 60) * 60 + HEADROOM))
   if (to - from < 6 * 60) to = from + 6 * 60
   return { from, to }
