@@ -419,6 +419,19 @@ function buildHikePopupContent(
   return root
 }
 
+// Keyboard equivalent of a pin tap, for the role="button" pins built by
+// buildPinElement. One closure per marker, same as the click listener, so the
+// cost stays flat across the several hundred pins on the map. Space is
+// prevented because a focused pin would otherwise scroll the page under it.
+function pinKeydownHandler(activate: () => void) {
+  return (e: KeyboardEvent) => {
+    if (e.key !== 'Enter' && e.key !== ' ') return
+    if (e.key === ' ') e.preventDefault()
+    e.stopPropagation()
+    activate()
+  }
+}
+
 export default function Map() {
   const navigate = useNavigate()
   const containerRef = useRef<HTMLDivElement | null>(null)
@@ -442,6 +455,10 @@ export default function Map() {
   const [userPos, setUserPos] = useState<[number, number] | null>(null)
   const userPosRef = useRef<[number, number] | null>(null)
   const [geoDenied, setGeoDenied] = useState(false)
+  // Set for the geolocation failures that are not a denial (position
+  // unavailable, timeout). Deep in the valley those are the common case, and
+  // without a line of copy the control just spins.
+  const [geoNote, setGeoNote] = useState<string | null>(null)
   const [outOfPark, setOutOfPark] = useState(false)
 
   // The pack can complete in another tab (or on /account in this one);
@@ -745,7 +762,11 @@ export default function Map() {
     // also what makes iOS raise its permission prompt at a sensible moment.
     if (window.isSecureContext && 'geolocation' in navigator) {
       const geolocate = new maplibregl.GeolocateControl({
-        positionOptions: { enableHighAccuracy: true },
+        // A timeout is not optional here: the default is Infinity, and a
+        // high-accuracy fix under granite walls can never arrive, leaving the
+        // control spinning with no error to report. maximumAge accepts a
+        // half-minute-old fix, which is plenty at driving and walking speed.
+        positionOptions: { enableHighAccuracy: true, timeout: 10000, maximumAge: 30000 },
         trackUserLocation: true,
         fitBoundsOptions: { maxZoom: 14 },
       })
@@ -756,13 +777,24 @@ export default function Map() {
         setUserPos(coord)
         setOutOfPark(outside)
         setGeoDenied(false)
+        setGeoNote(null)
       }
       geolocate.on('geolocate', (pos) => onFix(pos, false))
       // Fired instead of 'geolocate' when the fix falls outside maxBounds,
       // i.e. the reader is planning from home. Distances still render.
       geolocate.on('outofmaxbounds', (pos) => onFix(pos, true))
       geolocate.on('error', (err) => {
-        if (err.code === 1) setGeoDenied(true)
+        if (err.code === 1) {
+          setGeoDenied(true)
+          setGeoNote(null)
+          return
+        }
+        // Code 2 (position unavailable) and code 3 (timeout). Both are a
+        // failed fix, not a settings problem, so they get their own note
+        // rather than sending the reader off to check permissions.
+        setGeoNote(
+          'Could not get a GPS fix here. Try again with a clearer view of the sky.',
+        )
       })
     }
 
@@ -824,7 +856,8 @@ export default function Map() {
       const [lng, lat] = stop.coord
       bounds.extend([lng, lat])
 
-      const el = buildPinElement(stop.kind, isSecretGuideEntry(stop))
+      const el = buildPinElement(stop.kind, stop.title, isSecretGuideEntry(stop))
+      const activate = () => selectStop(stop.id)
       el.addEventListener('click', (e) => {
         // Don't let the click reach the map canvas: the shared popup is
         // closeOnClick, and MapLibre delivers the map's click after the
@@ -832,8 +865,9 @@ export default function Map() {
         // frame. Deep links and the sidebar never hit the canvas, which is
         // why only pin taps were affected.
         e.stopPropagation()
-        selectStop(stop.id)
+        activate()
       })
+      el.addEventListener('keydown', pinKeydownHandler(activate))
       const marker = new maplibregl.Marker({ element: el, anchor: 'bottom' })
         .setLngLat([lng, lat])
         .addTo(map)
@@ -875,10 +909,8 @@ export default function Map() {
     amenityMarkersRef.current = {}
 
     for (const amenity of visibleAmenities) {
-      const el = buildPinElement(amenity.kind)
-      el.addEventListener('click', (e) => {
-        // Same canvas-click race as the stop pins above.
-        e.stopPropagation()
+      const el = buildPinElement(amenity.kind, amenity.name)
+      const activate = () => {
         // Clear any stop selection so ?stop= doesn't keep pointing at a stop
         // whose popup this one just replaced.
         selectStop(null)
@@ -886,7 +918,13 @@ export default function Map() {
           ?.setLngLat(amenity.coord)
           .setDOMContent(buildAmenityPopupContent(amenity))
           .addTo(map)
+      }
+      el.addEventListener('click', (e) => {
+        // Same canvas-click race as the stop pins above.
+        e.stopPropagation()
+        activate()
       })
+      el.addEventListener('keydown', pinKeydownHandler(activate))
       amenityMarkersRef.current[amenity.id] = new maplibregl.Marker({
         element: el,
         anchor: 'bottom',
@@ -910,10 +948,15 @@ export default function Map() {
     hikeMarkersRef.current = {}
 
     for (const group of visibleTrailheads) {
-      const el = buildPinElement('hike')
-      el.addEventListener('click', (e) => {
-        // Same canvas-click race as the stop pins above.
-        e.stopPropagation()
+      // One pin can serve several routes, so it is named for the trailhead
+      // and how many start there, matching what the popup says.
+      const el = buildPinElement(
+        'hike',
+        group.hikes.length === 1
+          ? group.hikes[0].title
+          : `${group.hikes[0].trailhead}, ${group.hikes.length} hikes`,
+      )
+      const activate = () => {
         // Clear any stop selection so ?stop= doesn't keep pointing at a stop
         // whose popup this one just replaced.
         selectStop(null)
@@ -923,7 +966,13 @@ export default function Map() {
             buildHikePopupContent(group, { onOpenHike: openHike, onShowTrack: showTrack }, userPosRef.current),
           )
           .addTo(map)
+      }
+      el.addEventListener('click', (e) => {
+        // Same canvas-click race as the stop pins above.
+        e.stopPropagation()
+        activate()
       })
+      el.addEventListener('keydown', pinKeydownHandler(activate))
       const marker = new maplibregl.Marker({
         element: el,
         anchor: 'bottom',
@@ -1093,7 +1142,7 @@ export default function Map() {
   // The points pane exists only for "Near you", so it renders only when there
   // is something to say: a location fix, or the note explaining there isn't
   // one. Otherwise the map keeps the whole stage.
-  const showPointsPane = nearbyStops.length > 0 || (geoDenied && !userPos)
+  const showPointsPane = nearbyStops.length > 0 || (!userPos && (geoDenied || !!geoNote))
 
   return (
     <GatedChrome>
@@ -1253,6 +1302,9 @@ export default function Map() {
                     Location is off for this app. Enable it in your phone's
                     settings to see distances to stops.
                   </p>
+                )}
+                {!geoDenied && geoNote && !userPos && (
+                  <p className="map-nearby__note">{geoNote}</p>
                 )}
                 {nearbyStops.length > 0 && (
                   <div className="map-nearby">
