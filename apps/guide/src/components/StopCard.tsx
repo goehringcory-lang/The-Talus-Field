@@ -31,9 +31,20 @@ type Props = {
   // The signed-out sample (/preview) renders real cards but not the app
   // actions: add-to-trip and save belong to buyers.
   actions?: boolean
+  // The heading level for the stop title. h2 everywhere a page carries several
+  // of these (region lists, the Secret Guide, /preview); only the stop page,
+  // where the card is the page, passes h1. Gated on this prop rather than on
+  // `compact` because /preview renders full cards and must not grow five h1s.
+  titleAs?: 'h1' | 'h2'
 }
 
-export default function StopCard({ stop, compact = true, regionLabel, actions = true }: Props) {
+export default function StopCard({
+  stop,
+  compact = true,
+  regionLabel,
+  actions = true,
+  titleAs: Title = 'h2',
+}: Props) {
   const photo = stop.photos[0]
   const credit = photo ? PHOTO_CREDITS[photo.src] : undefined
   const plateTag = `Plate · ${KIND_LABEL[stop.kind]}`
@@ -66,7 +77,7 @@ export default function StopCard({ stop, compact = true, regionLabel, actions = 
               ? `Secret Guide · ${KIND_LABEL[stop.kind]}`
               : KIND_LABEL[stop.kind]}
           </div>
-          <h2 className="stop-card__title">{stop.title}</h2>
+          <Title className="stop-card__title">{stop.title}</Title>
         </div>
         {actions && <StopActions stopId={stop.id} title={stop.title} />}
       </div>

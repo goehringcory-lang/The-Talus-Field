@@ -19,6 +19,14 @@ export default function ScrollToTop() {
     prevPathname.current = pathname
     if (pathChanged && navigationType !== 'POP' && !hash) {
       window.scrollTo(0, 0)
+      // Screen reader and keyboard focus stays on the link that was tapped,
+      // which is now gone: move it to the new page's content container. Skip
+      // when the new route has already claimed focus (Search autofocuses its
+      // input, and that happens during commit, before this effect).
+      const main = document.getElementById('main')
+      if (main && !main.contains(document.activeElement)) {
+        main.focus({ preventScroll: true })
+      }
     }
   }, [pathname, hash, navigationType])
 

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useAuth } from '../auth/useAuth'
 import { fetchMe, readCachedMe, type MeT } from '../auth/me'
 import { apiFetch, API_BASE } from '../lib/api'
@@ -168,7 +168,11 @@ function AccessStatusCard() {
                 Renewing early stacks on your current time. Trips, favorites,
                 downloads, and sign-in all carry over.
               </p>
-              {renewError && <p className="card__note">{renewError}</p>}
+              {renewError && (
+                <p className="card__note" style={{ color: 'var(--danger)' }} role="alert">
+                  {renewError}
+                </p>
+              )}
             </>
           )}
         </>
@@ -256,6 +260,75 @@ function InstallCard() {
   )
 }
 
+// Sign out arms before it fires, the same shape as the trip board's clear
+// button. Signing out drops the JWT, and getting back in needs a connection
+// and the access code: in the park a mis-tap costs the buyer the paid content
+// on the device they are standing on.
+const ARM_GUARD_MS = 400
+const DISARM_AFTER_MS = 6000
+
+function SignOutButton({ onSignOut }: { onSignOut: () => void }) {
+  const [armed, setArmed] = useState(false)
+  const armedAt = useRef(0)
+  const rootRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    if (!armed) return
+    const timer = window.setTimeout(() => setArmed(false), DISARM_AFTER_MS)
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setArmed(false)
+    }
+    const onPointerDown = (e: PointerEvent) => {
+      if (!rootRef.current?.contains(e.target as Node)) setArmed(false)
+    }
+    window.addEventListener('keydown', onKey)
+    window.addEventListener('pointerdown', onPointerDown)
+    return () => {
+      window.clearTimeout(timer)
+      window.removeEventListener('keydown', onKey)
+      window.removeEventListener('pointerdown', onPointerDown)
+    }
+  }, [armed])
+
+  return (
+    <div
+      ref={rootRef}
+      style={{ marginTop: 28, paddingTop: 24, borderTop: '1px solid var(--rule-soft)' }}
+    >
+      <div className="action-row">
+        <Button
+          variant={armed ? 'danger' : 'ghost'}
+          className={armed ? 'is-armed' : undefined}
+          onClick={() => {
+            if (!armed) {
+              armedAt.current = Date.now()
+              setArmed(true)
+              return
+            }
+            // Guards the double-tap that would arm and fire in one gesture.
+            if (Date.now() - armedAt.current < ARM_GUARD_MS) return
+            setArmed(false)
+            onSignOut()
+          }}
+        >
+          {armed ? 'Tap again to sign out' : 'Sign out'}
+        </Button>
+        {armed && (
+          <Button variant="quiet" size="sm" onClick={() => setArmed(false)}>
+            Stay signed in
+          </Button>
+        )}
+      </div>
+      {armed && (
+        <p className="card__note" role="status">
+          Signing back in needs a connection and your access code. Downloads stay on this
+          device.
+        </p>
+      )}
+    </div>
+  )
+}
+
 export default function Account() {
   const { session, signOut } = useAuth()
   return (
@@ -295,8 +368,9 @@ export default function Account() {
 
         <div className="action-row" style={{ marginTop: 36 }}>
           <Button variant="ghost" to="/">← Back to guide</Button>
-          <Button variant="ghost" onClick={signOut}>Sign out</Button>
         </div>
+
+        <SignOutButton onSignOut={signOut} />
 
         <p className="page-footnote">
           2026 Edition · Build {import.meta.env.VITE_BUILD_DATE}

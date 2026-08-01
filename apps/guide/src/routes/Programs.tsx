@@ -228,8 +228,11 @@ export default function Programs() {
   function rowAction(inPlan: boolean, title: string, onAdd: () => void) {
     if (inPlan) {
       return (
-        <span className="program-row__inplan" aria-label="In your trip plan">
-          ✓
+        <span className="program-row__inplan">
+          {/* A label on the glyph span alone is dropped: the span is
+              role=generic. */}
+          <span aria-hidden="true">✓</span>
+          <span className="sr-only">In your trip plan</span>
         </span>
       )
     }
@@ -405,6 +408,16 @@ export default function Programs() {
               ))}
           </div>
         )}
+
+        {/* The day list rewrites itself on every chip tap with nothing said
+            about it; this is that, spoken. Always mounted: a live region
+            inserted together with its content is not reliably announced, and
+            an empty string on load keeps it from speaking spuriously. */}
+        <p className="sr-only" aria-live="polite">
+          {allEvents.length > 0
+            ? `${filtered.length} ${filtered.length === 1 ? 'program' : 'programs'} match`
+            : ''}
+        </p>
 
         {loading && allEvents.length === 0 && <ProgramsSkeleton />}
 

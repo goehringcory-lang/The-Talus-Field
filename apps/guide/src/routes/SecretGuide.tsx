@@ -67,6 +67,8 @@ export default function SecretGuide() {
     .map((c) => ({ ...c, entries: all.filter((s) => s.category === c.id) }))
     .filter((c) => c.entries.length > 0)
 
+  const shownCount = sections.reduce((total, s) => total + s.entries.length, 0)
+
   function select(next: SecretCategoryT | null) {
     // Default setSearchParams pushes history, so Back returns to the prior
     // filter and filtered URLs are shareable. All = bare /secret-guide.
@@ -96,6 +98,11 @@ export default function SecretGuide() {
           </ChipButton>
         ))}
       </div>
+      {/* The entry list rewrites itself on every tab tap with nothing said
+          about it; this is that, spoken. */}
+      <p className="sr-only" aria-live="polite">
+        {shownCount} {shownCount === 1 ? 'entry' : 'entries'} shown
+      </p>
     </nav>
   )
 

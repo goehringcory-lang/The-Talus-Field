@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import {
   AMENITIES,
@@ -32,9 +33,28 @@ import { regionTodayLine } from '../weather/todayLine'
 const NEARBY_AMENITY_MILES = 3
 const NEARBY_AMENITY_MAX = 3
 
+// A note writes on every keystroke, so the confirmation waits for the typing
+// to settle rather than flickering per character.
+const NOTE_SAVED_AFTER_MS = 700
+
 // Private per-stop notes, stored on the device only.
 function StopNotes({ stopId }: { stopId: string }) {
   const [note, setNote] = useStopNote(stopId)
+  const [saved, setSaved] = useState(false)
+  const timer = useRef(0)
+
+  useEffect(() => () => window.clearTimeout(timer.current), [])
+
+  // Driven from the edit rather than from the note value: an effect would also
+  // fire for a note arriving from cross-device sync, which is not this
+  // device's write to confirm.
+  function edit(value: string) {
+    setNote(value)
+    setSaved(false)
+    window.clearTimeout(timer.current)
+    timer.current = window.setTimeout(() => setSaved(true), NOTE_SAVED_AFTER_MS)
+  }
+
   return (
     <section aria-label="Your notes" className="page-section">
       <span className="eyebrow">Your notes</span>
@@ -43,11 +63,16 @@ function StopNotes({ stopId }: { stopId: string }) {
         rows={3}
         maxLength={2000}
         value={note}
-        onChange={(e) => setNote(e.target.value)}
+        onChange={(e) => edit(e.target.value)}
         placeholder="Parking notes, timing, what you'd do differently. Stays on this device."
         aria-label="Your notes for this stop"
         style={{ width: '100%', resize: 'vertical' }}
       />
+      {/* Reserved height: the line appears mid-typing, and letting it push the
+          page down under the reader's thumb is worse than an empty row. */}
+      <p className="card__note" role="status" style={{ minHeight: '1.2em' }}>
+        {saved ? 'Saved on this device.' : ''}
+      </p>
     </section>
   )
 }
@@ -114,7 +139,8 @@ export default function StopDetail() {
       <main className="wrap wrap--narrow page">
         <BackLink to={backTo} label={backLabel} placement="top" />
 
-        <StopCard stop={stop} compact={false} />
+        {/* The card is the page here, so its title is the page's h1. */}
+        <StopCard stop={stop} compact={false} titleAs="h1" />
 
         <div className="action-row" style={{ marginTop: 20 }}>
           {planned ? (
@@ -184,7 +210,9 @@ export default function StopDetail() {
           </section>
         )}
 
-        <StopNotes stopId={stop.id} />
+        {/* Keyed: paging prev/next keeps this route mounted, and the saved
+            line belongs to the note it confirmed. */}
+        <StopNotes key={stop.id} stopId={stop.id} />
 
         <PrevNextNav
           sticky

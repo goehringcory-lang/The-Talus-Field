@@ -151,12 +151,38 @@ export default function InstallSheet({ onClose }: { onClose: () => void }) {
   const browser = isIOS() ? iosBrowser() : null
 
   useEffect(() => {
+    // Whatever opened the sheet gets focus back when it closes, so a buyer who
+    // reads the steps and taps "Got it" lands on the button they came from
+    // rather than at the top of the page.
+    const opener = document.activeElement as HTMLElement | null
     // Focus the dialog itself rather than a control inside it: the shared
     // Button takes no ref, and moving focus to the heading is what a screen
     // reader wants anyway.
     dialogRef.current?.focus()
     function onKey(e: KeyboardEvent) {
-      if (e.key === 'Escape') onClose()
+      if (e.key === 'Escape') {
+        onClose()
+        return
+      }
+      // aria-modal hides the page from a screen reader but does nothing to
+      // Tab: without this the next tab leaves the sheet for the page behind it.
+      if (e.key !== 'Tab') return
+      const root = dialogRef.current
+      if (!root) return
+      const focusable = root.querySelectorAll<HTMLElement>(
+        'button, a[href], [tabindex]:not([tabindex="-1"])',
+      )
+      if (focusable.length === 0) return
+      const first = focusable[0]
+      const last = focusable[focusable.length - 1]
+      const active = document.activeElement
+      if (e.shiftKey && (active === first || active === root)) {
+        e.preventDefault()
+        last.focus()
+      } else if (!e.shiftKey && active === last) {
+        e.preventDefault()
+        first.focus()
+      }
     }
     window.addEventListener('keydown', onKey)
     // The sheet covers the page; letting the page scroll underneath it reads
@@ -166,6 +192,7 @@ export default function InstallSheet({ onClose }: { onClose: () => void }) {
     return () => {
       window.removeEventListener('keydown', onKey)
       document.body.style.overflow = previous
+      if (opener && document.contains(opener)) opener.focus()
     }
   }, [onClose])
 

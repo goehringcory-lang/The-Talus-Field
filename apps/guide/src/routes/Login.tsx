@@ -245,6 +245,7 @@ export default function Login() {
               spellCheck={false}
               inputMode="email"
               enterKeyHint="next"
+              aria-describedby={error ? 'login-error' : undefined}
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
@@ -261,12 +262,19 @@ export default function Login() {
               spellCheck={false}
               inputMode="text"
               enterKeyHint="go"
+              aria-describedby={error ? 'login-error' : undefined}
               value={code}
               onChange={(e) => setCode(e.target.value)}
             />
           </label>
 
-          {error && <div className="form-error">{error}</div>}
+          {/* role="alert": the failure appears below the fold of a phone
+              keyboard, so a silent render reads as the button doing nothing. */}
+          {error && (
+            <div className="form-error" id="login-error" role="alert">
+              {error}
+            </div>
+          )}
 
           <Button type="submit" disabled={busy}>
             {busy ? (

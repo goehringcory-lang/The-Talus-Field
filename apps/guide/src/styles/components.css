@@ -613,6 +613,34 @@
   border: 0;
 }
 
+/* Skip link: the first tab stop on every gated page, off-screen until it
+   takes focus. Keyboard and switch users would otherwise tab the masthead and
+   the bottom tabs on every route before reaching the content. */
+.skip-link {
+  /* Fixed, not absolute: .app-shell is not a positioned ancestor, so an
+     absolute link would sit at the top of the document rather than the
+     viewport when focus lands on it mid-page. */
+  position: fixed;
+  left: -9999px;
+  top: 0;
+  z-index: 200;
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  background: var(--ink);
+  color: var(--paper);
+  padding: 10px 16px;
+  text-decoration: none;
+}
+.skip-link:focus {
+  left: var(--s3);
+  top: var(--s3);
+}
+@media (hover: hover) {
+  .skip-link:hover { color: var(--paper); }
+}
+
 /* Secondary page section with an eyebrow heading. */
 .page-section { margin-top: var(--s7); }
 .page-section > .eyebrow { display: block; margin-bottom: 10px; }
@@ -634,9 +662,10 @@
   line-height: 1.6;
 }
 
-/* Inline form error, moss like the editorial site's. */
+/* Inline form error. --danger rather than the accent, so an error never reads
+   as an ordinary link colour. */
 .form-error {
-  color: var(--moss);
+  color: var(--danger);
   font-size: 14px;
 }
 
@@ -1012,7 +1041,13 @@
   opacity: 0.7;
   cursor: default;
 }
+/* The glyph is small; the target is not. Grid centring keeps the × the same
+   size while the button holds a 44px tap area. */
 .update-banner__dismiss {
+  display: grid;
+  place-items: center;
+  min-width: 44px;
+  min-height: 44px;
   border: 0;
   background: none;
   color: inherit;
