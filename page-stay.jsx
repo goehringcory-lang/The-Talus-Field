@@ -1,4 +1,4 @@
-/* global React, Breadcrumbs, AvailabilityLink, LodgingCta, ResponsiveImage, SIZES_CARD, NewsletterInline, GuidePromo */
+/* global React, Breadcrumbs, AvailabilityLink, LodgingCta, ExpediaBanner, ResponsiveImage, SIZES_CARD, NewsletterInline, GuidePromo */
 
 // =============================================================================
 // WHERE TO STAY — `/stay` route. The standing lodging section (the deep
@@ -355,6 +355,7 @@ function StayPage({ go }) {
         <div className="stay-grid">
           {GATEWAYS.map((t) => <GatewayCard key={t.id} item={t} />)}
         </div>
+        <ExpediaBanner list="stay_banner" slug="stay" />
       </section>
 
       {/* Camping */}

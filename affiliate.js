@@ -43,6 +43,24 @@ window.STAY22_AFFILIATE_ID = "";
 // different template.
 window.HIPCAMP_AFFILIATE_BASE = "";
 
+// Expedia Travel Creator licensed banner creative. Paste `img` (the
+// Expedia-hosted banner image URL) and `href` (the camref click URL) from the
+// banner builder at creator.expediagroup.com/products/banners; pick an
+// evergreen creative with no printed rate or year (the /stay rules apply to
+// the pixels Expedia serves, and we cannot edit them). While either field is
+// empty, ExpediaBanner (components.jsx) renders nothing. Plain <img> + <a>
+// only: the CSP in _headers deliberately allows no third-party scripts or
+// iframes, and img-src already permits the hosted image. The component is not
+// in the gen-prerender.mjs sandbox; using it inside an article body would
+// mean mirroring it there first.
+window.EXPEDIA_BANNER = {
+  img: "",
+  href: "",
+  alt: "Search Yosemite-area lodging on Expedia",
+  width: 728,
+  height: 90,
+};
+
 // Network registry. One entry per approved affiliate program: `hostRe` guards
 // deep-link destinations (warn, not block, so a typo'd URL is easy to spot),
 // `build` turns a destination into a tracking link. Joining a new network

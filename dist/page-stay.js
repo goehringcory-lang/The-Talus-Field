@@ -296,7 +296,10 @@ function StayPage({
   }, GATEWAYS.map(t => React.createElement(GatewayCard, {
     key: t.id,
     item: t
-  })))), React.createElement("section", {
+  }))), React.createElement(ExpediaBanner, {
+    list: "stay_banner",
+    slug: "stay"
+  })), React.createElement("section", {
     className: "wrap wrap--narrow",
     style: {
       paddingTop: 72

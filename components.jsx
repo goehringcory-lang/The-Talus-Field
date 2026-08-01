@@ -1252,7 +1252,35 @@ function LodgingCta({ destination, heading, note, list, slug, cta, stayLink, ima
   );
 }
 
-Object.assign(window, { expediaSearchUrl, AvailabilityLink, LodgingCta });
+// Expedia-supplied banner creative, labeled as what it is. Fail-soft: renders
+// nothing until both fields of window.EXPEDIA_BANNER (affiliate.js) are pasted
+// in from the creator portal. One placement on /stay; it is not a component to
+// scatter (MONETIZATION-IDEAS.md rules out display-ad walls, and one disclosed
+// affiliate unit on the lodging board is the whole exception).
+function ExpediaBanner({ list, slug }) {
+  const b = window.EXPEDIA_BANNER;
+  if (!b || !b.img || !b.href) return null;
+  return (
+    <aside className="expedia-banner">
+      <a
+        href={b.href}
+        target="_blank"
+        rel="sponsored noopener noreferrer"
+        data-aff-network="expedia"
+        data-aff-list={list || "banner"}
+        data-aff-item-slug={slug || ""}
+        data-aff-name="Expedia banner"
+      >
+        <img src={b.img} alt={b.alt || ""} loading="lazy" width={b.width} height={b.height} referrerPolicy="no-referrer" />
+      </a>
+      <p className="expedia-banner__disclosure">
+        Advertisement. Expedia is an affiliate partner of The Talus Field. <a href="/affiliate">Disclosure.</a>
+      </p>
+    </aside>
+  );
+}
+
+Object.assign(window, { expediaSearchUrl, AvailabilityLink, LodgingCta, ExpediaBanner });
 
 // ============================================================
 // Read history. The article page's progress tracker (page-article.jsx) writes

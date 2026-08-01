@@ -99,8 +99,8 @@ function TermsPage() {
 
 function AffiliatePage() {
   return (
-    <LegalShell title="Affiliate Disclosure" eyebrow="Legal" updated="July 26, 2026">
-      <p>The Talus Field currently participates in two affiliate programs: Patagonia's, run through the Impact network, and the Expedia Group Travel Creator Program, run through Partnerize, which powers every lodging availability link on the site. Those links appear in the planning articles, on <a href="/stay">the lodging board</a>, and on the trip-planning pages that end in a decision about where to sleep. An application to a camping program (Hipcamp) is pending; until it is approved, camping links are plain outbound links that earn nothing. When the list changes, this page changes the same day.</p>
+    <LegalShell title="Affiliate Disclosure" eyebrow="Legal" updated="August 1, 2026">
+      <p>The Talus Field currently participates in two affiliate programs: Patagonia's, run through the Impact network, and the Expedia Group Travel Creator Program, run through Partnerize, which powers every lodging availability link on the site. Those links appear in the planning articles, on <a href="/stay">the lodging board</a>, and on the trip-planning pages that end in a decision about where to sleep. The lodging board may also carry one Expedia-supplied banner image, labeled "Advertisement" where it appears; it works on the same commission terms as the text links and has no influence on what this site recommends. An application to a camping program (Hipcamp) is pending; until it is approved, camping links are plain outbound links that earn nothing. When the list changes, this page changes the same day.</p>
 
       <p>What that means in plain language: when an article on this site links to a product, a book, or a piece of lodging, that link may be an affiliate link. If you click through and make a purchase or a booking, I receive a small commission. The price you pay does not change. Whether or not you use the affiliate link, the recommendation in the article is the same.</p>
 

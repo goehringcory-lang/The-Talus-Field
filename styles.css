@@ -5500,6 +5500,26 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
 }
 .lodging-cta__disclosure a { color: var(--ink-3); text-decoration: underline; }
 
+/* Expedia-supplied banner creative (window.ExpediaBanner): renders nothing
+   until affiliate.js's EXPEDIA_BANNER fields are filled. Centered and capped
+   to its own intrinsic width so it reads as a labeled unit, not a layout. */
+.expedia-banner {
+  margin: 48px auto 0;
+  text-align: center;
+}
+.expedia-banner img {
+  max-width: 100%;
+  height: auto;
+  border: 1px solid var(--rule-soft);
+}
+.expedia-banner__disclosure {
+  font-family: var(--sans);
+  font-size: 12px;
+  color: var(--ink-3);
+  margin: 8px 0 0;
+}
+.expedia-banner__disclosure a { color: var(--ink-3); text-decoration: underline; }
+
 /* --- the cards ---------------------------------------------------------- */
 
 .stay-grid {
