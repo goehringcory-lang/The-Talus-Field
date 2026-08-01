@@ -7,7 +7,7 @@
   attribute once the first render has committed, and every SPA navigation
   after that animates as before.
 -->
-<html lang="en" data-palette="golden" data-density="airy" data-boot="1">
+<html lang="en" data-palette="sierra" data-density="dense" data-boot="1">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -193,6 +193,17 @@
       "palette": "sierra",
       "density": "dense"
     }/*EDITMODE-END*/;
+    // Apply the defaults to <html> before the body parses. The attributes
+    // hard-coded on the <html> tag can drift from this block (the edit-mode
+    // host rewrites the JSON, not the tag), and app.jsx re-applying them
+    // after React mounts repainted the whole page — the palette flash on
+    // every load. This runs pre-paint, so first paint already matches.
+    (function () {
+      var t = window.TWEAK_DEFAULTS || {};
+      var d = document.documentElement;
+      if (t.palette) d.setAttribute("data-palette", t.palette);
+      if (t.density) d.setAttribute("data-density", t.density);
+    })();
   </script>
 
   <!--
