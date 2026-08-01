@@ -1,4 +1,4 @@
-/* global React, Placeholder, MotifMountains */
+/* global React, Placeholder, MotifMountains, AffiliateNote, LodgingCta */
 
 window.ARTICLE_BODIES = window.ARTICLE_BODIES || {};
 
@@ -61,6 +61,17 @@ window.ARTICLE_BODIES["pets-in-yosemite"] = function PetsInYosemiteBody() {
       <p>
         Should you bring the dog to Yosemite? If your trip is a campground-based, meadow-strolling, scenery-and-picnics sort of visit: yes, cheerfully. The dog gets pavement miles with world-class views, and you get a warm alarm clock. If your trip is built around trails, then no, and the kindest version of no. Summer boarding options exist in the gateway towns (Oakhurst and Mariposa both have kennels; book ahead in peak season), and a dog waiting comfortably in air conditioning beats a dog waiting illegally in a hot car by every measure, including the up-to-$5,000 citation. Plan the trip first, then decide honestly which trip it is. The dog, to its credit, will forgive either answer.
       </p>
+
+      <LodgingCta
+        destination="Mariposa, California"
+        heading="A bed that takes the dog"
+        note="Pet policies are set property by property, not town by town, so the search's pet-friendly filter is the useful tool here. Confirm the policy and the fee with the front desk before you book; both change without notice."
+        list="article_cta"
+        slug="pets-in-yosemite"
+        cta="Search pet-friendly Mariposa lodging →"
+      />
+
+      <AffiliateNote />
     </>
   );
 };

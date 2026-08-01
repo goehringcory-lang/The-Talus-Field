@@ -30,5 +30,12 @@ window.ARTICLE_BODIES["yosemite-with-kids-no-reservations-2026"] = function Yose
     href: "/articles/first-time-yosemite-overwhelm"
   }, "the first-timer's guide"), ". For grandparents traveling with you (or anyone who can't hike), see ", React.createElement("a", {
     href: "/articles/yosemite-for-non-hikers"
-  }, "Yosemite for non-hikers"), "."));
+  }, "Yosemite for non-hikers"), "."), React.createElement(LodgingCta, {
+    destination: "Mariposa, California",
+    heading: "The family base decides the trip",
+    note: "A family day in the park starts and ends with where you slept. Mariposa has the rooms, the groceries, and the year-round road in; the search shows what your dates actually hold before you promise anyone a waterfall.",
+    list: "article_cta",
+    slug: "yosemite-with-kids-no-reservations-2026",
+    cta: "Search Mariposa lodging →"
+  }), React.createElement(AffiliateNote, null));
 };

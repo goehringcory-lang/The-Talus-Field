@@ -1,4 +1,4 @@
-/* global React */
+/* global React, AffiliateNote, LodgingCta */
 
 window.ARTICLE_BODIES = window.ARTICLE_BODIES || {};
 
@@ -245,6 +245,17 @@ window.ARTICLE_BODIES["yosemite-with-kids-no-reservations-2026"] = function Yose
       <p style={{ marginTop: 32, fontStyle: "italic", color: "var(--ink-3)" }}>
         For more on the 2026 season, see <a href="/articles/yosemite-without-reservations-2026">Yosemite without reservations in 2026</a>. For the gateway town comparison, see <a href="/articles/yosemite-gateway-towns-compared">Yosemite gateway towns compared</a>. For broader first-trip strategy, see <a href="/articles/first-time-yosemite-overwhelm">the first-timer's guide</a>. For grandparents traveling with you (or anyone who can't hike), see <a href="/articles/yosemite-for-non-hikers">Yosemite for non-hikers</a>.
       </p>
+
+      <LodgingCta
+        destination="Mariposa, California"
+        heading="The family base decides the trip"
+        note="A family day in the park starts and ends with where you slept. Mariposa has the rooms, the groceries, and the year-round road in; the search shows what your dates actually hold before you promise anyone a waterfall."
+        list="article_cta"
+        slug="yosemite-with-kids-no-reservations-2026"
+        cta="Search Mariposa lodging →"
+      />
+
+      <AffiliateNote />
     </>
   );
 };
