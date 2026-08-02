@@ -19,8 +19,8 @@ import TripAgenda from '../components/TripAgenda'
 import TripReview from '../components/TripReview'
 import Button from '../components/ui/Button'
 import Callout from '../components/ui/Callout'
-import { getHikeById, getItineraryDayPhotos, getStopById, type StopT } from '../content'
-import { ITINERARIES, ITINERARY_KEYS, type ItineraryKey } from '../content/itineraries'
+import { getItineraryDayPhotos } from '../content'
+import { ITINERARIES, ITINERARY_KEYS, resolvePlanEntry, type ItineraryKey } from '../content/itineraries'
 import { getStopsByRegion } from '../content'
 import { MAX_SPAN_DAYS, readTripDates, usePrograms } from '../programs/usePrograms'
 import { addDaysIso, formatDayHeader, todayIso } from '../utils/date'
@@ -286,29 +286,31 @@ export default function Trip() {
     const days = ITINERARIES[key].days.slice(0, windowDays.length)
     days.forEach((day, i) => {
       const date = windowDays[i]
-      // A curated day is the recommended plan in drive order; a day without
-      // one falls back to the full region reading sequence.
-      const candidates = day.stops
-        ? day.stops.map((id) => getStopById(id)).filter((s): s is StopT => !!s && 'region' in s)
-        : day.regions.flatMap((region) => getStopsByRegion(region))
+      // A curated day is the recommended sequence in drive order, stops and
+      // hikes interleaved; a day without one falls back to the full region
+      // reading sequence, which makes a poor plan (see itineraries.ts).
+      const candidates: string[] = day.plan
+        ? day.plan
+        : day.regions.flatMap((region) => getStopsByRegion(region).map((s) => s.id))
       let budget = 0
-      for (const stop of candidates) {
+      for (const id of candidates) {
+        const entry = resolvePlanEntry(id)
+        if (!entry) continue
+        if (entry.kind === 'hike') {
+          const cost = entry.hike.durationMin + 30
+          if (budget + cost > DAY_CAPACITY_MIN) continue
+          budget += cost
+          addHike(entry.hike.id, date)
+          continue
+        }
         // Lodging is not a day activity, and parking pins are navigation
         // aids for another stop, not stops of their own.
+        const { stop } = entry
         if (stop.kind === 'lodging' || stop.kind === 'parking') continue
         const cost = (stop.timeBudgetMin ?? 60) + 30
         if (budget + cost > DAY_CAPACITY_MIN) continue
         budget += cost
         addStop(stop.id, date)
-      }
-      // Curated day hikes seed like stops, on the same capacity budget.
-      for (const hikeId of day.hikes ?? []) {
-        const hike = getHikeById(hikeId)
-        if (!hike) continue
-        const cost = hike.durationMin + 30
-        if (budget + cost > DAY_CAPACITY_MIN) continue
-        budget += cost
-        addHike(hikeId, date)
       }
       // Program picks keep their published times and slot around the stops,
       // so they sit outside the capacity budget. addProgram snapshots the

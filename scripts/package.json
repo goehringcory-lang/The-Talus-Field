@@ -23,8 +23,9 @@
     "archive:citations": "node check-archive-citations.mjs",
     "photos:check": "node check-guide-photos.mjs --verbose",
     "intent:check": "node check-intent-tags.mjs --verbose",
-    "check": "bash check-cache-busters.sh && bash check-seo-artifacts.sh && node gen-prerender.mjs --check && node gen-compiled.mjs --check && node gen-home-shell.mjs --check && node gen-archive.mjs --check && node check-archive-citations.mjs && node check-guide-photos.mjs && node check-intent-tags.mjs",
-    "tracks": "node gen-hike-tracks.mjs"
+    "check": "bash check-cache-busters.sh && bash check-seo-artifacts.sh && node gen-prerender.mjs --check && node gen-compiled.mjs --check && node gen-home-shell.mjs --check && node gen-archive.mjs --check && node check-archive-citations.mjs && node check-guide-photos.mjs && node check-intent-tags.mjs && npm --prefix ../apps/guide run --silent check:itineraries",
+    "tracks": "node gen-hike-tracks.mjs",
+    "itineraries:check": "npm --prefix ../apps/guide run --silent check:itineraries"
   },
   "devDependencies": {
     "@babel/core": "^8.0.0",

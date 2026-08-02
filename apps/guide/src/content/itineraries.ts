@@ -1,16 +1,19 @@
 // Itinerary presets for the /map route and the /trip seeding. Each itinerary
-// is a list of "days", each pinned to one or more regions. A day may also
-// carry a curated `stops` list: the recommended plan for that day, in drive
-// order, sized to fit a real 8 a.m.–9 p.m. day. Days without one derive
-// their stop list live from the region via getStopsByRegion(), so adding
-// stops to a region flows through automatically.
+// is a list of "days", each pinned to one or more regions. A day carries a
+// curated `plan`: the recommended sequence for that day, in drive order,
+// sized to fit a real 8 a.m.–9 p.m. day. Entries are stop ids or day-hike
+// ids (content/hikes.ts) in one list, so a trail can sit in the middle of a
+// day instead of after everything else — McGurk Meadow is on the way down
+// from Glacier Point to Wawona, and the old two-array shape could only seed
+// it after Wawona, an hour of backtracking up the road it had just left.
 //
-// The curated lists exist because the region reading sequence is not a day
-// plan: seeding "all of the Valley until the day fills" front-loads the
-// niche half-day entries (the Old Big Oak Flat Road climb and its parking
-// pin) and squeezes out the marquee stops, and the Glacier day fills before
-// it ever reaches the Mariposa Grove. Keep the lists in drive order; the
-// planner slots them in sequence with travel buffers.
+// Every day should have a `plan`. A day without one derives its list live
+// from getStopsByRegion(), which is a reading sequence, not a day timeline:
+// it front-loads the niche half-day entries (the Old Big Oak Flat Road climb
+// and its parking pin), and on the days that used to rely on it the capacity
+// filter in routes/Trip.tsx then dropped the reason to go — Soda Springs and
+// Cathedral Lakes off the Tuolumne day, Wapama Falls off Hetch Hetchy. The
+// fallback stays for safety, not as a way to skip curation.
 //
 // Two kinds of preset live here. The duration presets (half day through
 // 3 days plus the Hetch Hetchy day) answer "how long do we have"; the
@@ -18,12 +21,20 @@
 // answer "who is going" and tune the same regions to a pace: shorter
 // walks and Junior Ranger time for kids, viewpoints close to parking for
 // the easy-pace plan, a split-the-difference mix for multigenerational
-// groups. A day may also carry `hikes` (day-hike catalog ids seeded like
-// stops) and `programCategories`: the kinds of ranger-led programs worth
-// building the day around. Program listings are dated, so the categories
-// resolve to real events at seed time (trip/seedPrograms.ts picks free
-// drop-in programs running that date near that day's region); the preset
+// groups. A day may also carry `programCategories`: the kinds of ranger-led
+// programs worth building the day around. Program listings are dated, so the
+// categories resolve to real events at seed time (trip/seedPrograms.ts picks
+// free drop-in programs running that date near that day's region); the preset
 // itself stays evergreen.
+//
+// Drive order sets the sequence, but not every time on the board: a stop
+// whose content/schema.ts `dayPart` says the clock is a fact (a meal, a
+// sunset viewpoint) is anchored by trip/slotting.ts and the rest of the day
+// flows around it. Put those entries where they belong in the drive anyway —
+// the anchor is a floor under the plan, not a license to order the day badly.
+// scripts/check-itineraries.mjs slots every preset here and fails the build
+// on a lunch outside midday, a sunset stop before late afternoon, or an entry
+// the day has no room for.
 
 import type { ProgramCategoryT } from '../programs/schema'
 import type { Region } from './schema'
@@ -44,13 +55,11 @@ export type ItineraryKey =
 export type ItineraryDay = {
   name: string
   regions: Region[]
-  // Curated stop ids in drive order. Optional: days without it seed from the
-  // full region sequence instead. Validated at module load below.
-  stops?: string[]
-  // Day-hike catalog ids (content/hikes.ts) seeded alongside the stops, for
-  // days where the trail itself is the plan and no stop covers it. Validated
-  // at module load below.
-  hikes?: string[]
+  // The curated day, in drive order: stop ids and day-hike ids interleaved in
+  // one list. Optional only as a fallback — a day without it seeds from the
+  // full region sequence, which is a reading order and makes a poor plan.
+  // Validated at module load below.
+  plan?: string[]
   // Ranger-led program categories worth building this day around, in priority
   // order. Seeding resolves them against the live /api/programs window
   // (trip/seedPrograms.ts): free drop-in events on that date, near this
@@ -76,22 +85,33 @@ export const ITINERARY_KEYS: ItineraryKey[] = [
   'hetch-hetchy',
 ]
 
-// The recommended first day in the Valley: orientation at Tunnel View, the
-// eastbound floor preview, the meadow loop, lunch, the Ahwahnee, Mirror Lake
-// before the afternoon breeze is long gone, climbers on El Capitan, and the
-// last light on Half Dome from Sentinel Bridge.
+// The recommended first day in the Valley, run west to east and back again on
+// the one-way loop: orientation at Tunnel View, Bridalveil, then straight to
+// the east end for Mirror Lake while the reflection is still there (its own
+// body says the breeze takes it by mid-morning), lunch, the Ahwahnee, then
+// west on Northside for the climbers on El Capitan. It closes at the Sentinel
+// Bridge lot, where Cook's Meadow and the bridge share a parking space: the
+// meadow loop in the last light, when the bears work the tree line, and Half
+// Dome off the bridge as the wall goes gold to pink to grey.
+//
+// The Valley loop drive is deliberately not on this list, though it is a good
+// stop and stays in the catalog. It is a 60-minute preview of the road this
+// day already drives between its own stops, it carries no coordinate (so the
+// planner spends another flat half hour reaching a place it cannot locate),
+// and those ninety minutes were the difference between Mirror Lake in the
+// morning and Mirror Lake at 1 p.m. — and, on a day that also draws two
+// ranger programs, between ending at sunset and not ending at all.
 const VALLEY_DAY: ItineraryDay = {
   name: 'Day 1 — Yosemite Valley',
   regions: ['valley'],
-  stops: [
+  plan: [
     'tunnel-view',
     'bridalveil-fall',
-    'valley-loop-drive',
-    'cooks-meadow-loop',
+    'mirror-lake',
     'curry-village-pizza',
     'ahwahnee-hotel',
-    'mirror-lake',
     'el-capitan-meadow',
+    'cooks-meadow-loop',
     'sentinel-bridge-sunset',
   ],
   // The 9 a.m. Ranger Walk from the Welcome Center and the late-afternoon
@@ -106,10 +126,34 @@ const VALLEY_DAY: ItineraryDay = {
 const GLACIER_MARIPOSA_DAY: ItineraryDay = {
   name: 'Day 2 — Glacier Point & Mariposa Grove',
   regions: ['glacier-mariposa'],
-  stops: ['mariposa-grove', 'sentinel-dome', 'washburn-point', 'glacier-point'],
+  plan: ['mariposa-grove', 'sentinel-dome', 'washburn-point', 'glacier-point'],
   // The morning ranger walk in the grove, and, on star-party dates, the free
   // telescopes at the Glacier Point Amphitheater after the sunset.
   programCategories: ['walk', 'astronomy'],
+}
+
+// The high country, west to east along Tioga Road: the drive itself, the
+// Half Dome view from Olmsted Point, Tenaya Lake, lunch at the grill, and
+// the meadow walk to Soda Springs and Parsons Lodge.
+//
+// This day used to have no curated list and derive from the region reading
+// order instead, which produced the worst plan in the file: it spent the
+// morning on Crane Flat and White Wolf, and the capacity filter then dropped
+// Soda Springs, Cathedral Lakes, and Gaylor Lake — the reasons to drive up
+// here — while pushing "lunch at 8,600 feet" to almost 7 p.m.
+const TUOLUMNE_DAY: ItineraryDay = {
+  name: 'Day 3 — Tuolumne Meadows',
+  regions: ['tuolumne'],
+  plan: [
+    'tioga-road-drive',
+    'olmsted-point',
+    'tenaya-lake',
+    'tuolumne-meadows-grill',
+    'soda-springs-parsons-lodge',
+  ],
+  // The noon orientation talk at the visitor center lot, plus whichever
+  // ranger walk the date carries.
+  programCategories: ['walk', 'talk'],
 }
 
 // The Valley with an afternoon, not a day: the orientation view, the two
@@ -118,7 +162,7 @@ const GLACIER_MARIPOSA_DAY: ItineraryDay = {
 const VALLEY_HALF_DAY: ItineraryDay = {
   name: 'Half day — Yosemite Valley',
   regions: ['valley'],
-  stops: ['tunnel-view', 'bridalveil-fall', 'cooks-meadow-loop', 'sentinel-bridge-sunset'],
+  plan: ['tunnel-view', 'bridalveil-fall', 'cooks-meadow-loop', 'sentinel-bridge-sunset'],
   // An afternoon arrival still catches the Yosemite Theater program.
   programCategories: ['talk'],
 }
@@ -136,13 +180,13 @@ const VALLEY_HALF_DAY: ItineraryDay = {
 const FIRST_VISIT_VALLEY: ItineraryDay = {
   name: 'Day 1 — Yosemite Valley',
   regions: ['valley'],
-  stops: [
+  plan: [
     'tunnel-view',
     'yosemite-village',
     'lower-yosemite-fall',
-    'cooks-meadow-loop',
     'curry-village-pizza',
     'el-capitan-meadow',
+    'cooks-meadow-loop',
     'sentinel-bridge-sunset',
   ],
   // The 9 a.m. Ranger Walk is the single best first-morning orientation the
@@ -156,7 +200,7 @@ const FIRST_VISIT_VALLEY: ItineraryDay = {
 const FIRST_VISIT_RIM: ItineraryDay = {
   name: 'Day 2 — Mariposa Grove & Glacier Point',
   regions: ['glacier-mariposa'],
-  stops: ['mariposa-grove', 'washburn-point', 'glacier-point'],
+  plan: ['mariposa-grove', 'washburn-point', 'glacier-point'],
   programCategories: ['walk', 'astronomy'],
 }
 
@@ -167,12 +211,12 @@ const FIRST_VISIT_RIM: ItineraryDay = {
 const FAMILY_KIDS_VALLEY: ItineraryDay = {
   name: 'Day 1 — Yosemite Valley with kids',
   regions: ['valley'],
-  stops: [
+  plan: [
     'lower-yosemite-fall',
-    'cooks-meadow-loop',
     'yosemite-village',
-    'curry-village-pizza',
     'mirror-lake',
+    'curry-village-pizza',
+    'cooks-meadow-loop',
     'sentinel-bridge-sunset',
   ],
   // The 10 a.m. Jr. Ranger Walk and an afternoon family program; both meet
@@ -185,23 +229,32 @@ const FAMILY_KIDS_VALLEY: ItineraryDay = {
 const FAMILY_KIDS_GROVE: ItineraryDay = {
   name: 'Day 2 — Big trees & the rim',
   regions: ['glacier-mariposa'],
-  stops: ['mariposa-grove', 'washburn-point', 'glacier-point'],
+  plan: ['mariposa-grove', 'washburn-point', 'glacier-point'],
   // The grove runs its own Jr. Ranger talk at the big trees.
   programCategories: ['junior-ranger', 'kids'],
 }
 
 // Easy pace, day 1: every stop is at or a few flat minutes from parking.
 // Cook's Meadow is the one loop, a mile of boardwalk and pavement; the
-// Ahwahnee is a sit-down destination with its own free history tour.
+// Ahwahnee is a sit-down destination with its own free history tour, and the
+// pizza deck is a flat walk from its own lot.
+//
+// Valley View is deliberately not here, though it used to sit second. It is
+// reached on Northside Drive, which runs one way west, so on a one-way loop
+// second place meant a full lap of the valley to get to it; and its own body
+// says to make it the last stop of the last day, which this day is not — the
+// day ends at Sentinel Bridge for the sunset, and the pullout is three miles
+// the wrong way from there. A preset that cannot honor a stop's own
+// instruction should not list the stop.
 const EASY_PACE_VALLEY: ItineraryDay = {
   name: 'Day 1 — The Valley, close to the car',
   regions: ['valley'],
-  stops: [
+  plan: [
     'tunnel-view',
-    'valley-view',
     'bridalveil-fall',
-    'cooks-meadow-loop',
+    'curry-village-pizza',
     'ahwahnee-hotel',
+    'cooks-meadow-loop',
     'sentinel-bridge-sunset',
   ],
   // The free Ahwahnee history tour and the Yosemite Theater program: two
@@ -210,14 +263,15 @@ const EASY_PACE_VALLEY: ItineraryDay = {
 }
 
 // Easy pace, day 2: the two rim overlooks (both a short paved walk from
-// the lot), then down to Wawona for the hotel porch and the history
-// center. McGurk Meadow is the optional leg stretcher: 1.6 flat miles to a
-// wildflower meadow, right off the road to Glacier Point.
+// the lot), then McGurk Meadow, then down to Wawona for the hotel porch and
+// the history center. McGurk is the optional leg stretcher, 1.6 flat miles to
+// a wildflower meadow, and its trailhead is on Glacier Point Road, so it
+// belongs between the rim and Wawona: seeding it after Wawona sent the day
+// back up an hour of road it had already come down.
 const EASY_PACE_RIM: ItineraryDay = {
   name: 'Day 2 — Glacier Point & Wawona',
   regions: ['glacier-mariposa'],
-  stops: ['washburn-point', 'glacier-point', 'wawona-hotel-history-center'],
-  hikes: ['mcgurk-meadow'],
+  plan: ['washburn-point', 'glacier-point', 'mcgurk-meadow', 'wawona-hotel-history-center'],
   // Wawona's coffee-with-a-ranger mornings, when the date lines up.
   programCategories: ['ranger', 'talk'],
 }
@@ -227,42 +281,48 @@ const EASY_PACE_RIM: ItineraryDay = {
 const MULTIGEN_VALLEY: ItineraryDay = {
   name: 'Day 1 — Yosemite Valley, all paces',
   regions: ['valley'],
-  stops: [
+  plan: [
     'tunnel-view',
     'bridalveil-fall',
     'lower-yosemite-fall',
     'curry-village-pizza',
     'mirror-lake',
+    'cooks-meadow-loop',
     'sentinel-bridge-sunset',
   ],
   // An evening amphitheater program seats every generation at once.
   programCategories: ['kids', 'talk'],
 }
 
-// Whole family, day 2: Sentinel Dome is the split — the walkers take the
-// 2.2-mile dome while the rest drive ahead to Washburn Point, and everyone
-// regroups at Glacier Point before the grove.
+// Whole family, day 2: the grove first, on the morning shuttles, the way
+// every other rim preset runs it — the shuttle from the Welcome Plaza is
+// mandatory in peak season and thins out late, so an afternoon grove is a
+// gamble the rest of the day does not need. Then up the road, where Sentinel
+// Dome is the split: the walkers take the 2.2-mile dome while the rest drive
+// ahead to Washburn Point, and everyone regroups at Glacier Point, which is
+// the right place to end anyway once the lot empties and the light turns.
 const MULTIGEN_RIM: ItineraryDay = {
   name: 'Day 2 — The rim, split and regroup',
   regions: ['glacier-mariposa'],
-  stops: ['sentinel-dome', 'washburn-point', 'glacier-point', 'mariposa-grove'],
+  plan: ['mariposa-grove', 'sentinel-dome', 'washburn-point', 'glacier-point'],
   programCategories: ['junior-ranger', 'astronomy'],
 }
 
 // Whole family, day 3: the high country as a drive with short payoffs.
 // Pothole Dome is the family scramble: a mile round trip, granite the
-// whole way up, the meadow view from the top.
+// whole way up, the meadow view from the top. It sits at the west end of
+// Tuolumne Meadows, so it comes before Soda Springs, not after the day.
 const MULTIGEN_TUOLUMNE: ItineraryDay = {
   name: 'Day 3 — Tuolumne Meadows',
   regions: ['tuolumne'],
-  stops: [
+  plan: [
     'tioga-road-drive',
     'olmsted-point',
     'tenaya-lake',
     'tuolumne-meadows-grill',
+    'pothole-dome',
     'soda-springs-parsons-lodge',
   ],
-  hikes: ['pothole-dome'],
   programCategories: ['walk', 'kids'],
 }
 
@@ -288,13 +348,7 @@ export const ITINERARIES: Record<ItineraryKey, Itinerary> = {
     days: [
       VALLEY_DAY,
       GLACIER_MARIPOSA_DAY,
-      {
-        name: 'Day 3 — Tuolumne Meadows',
-        regions: ['tuolumne'],
-        // The noon orientation talk at the visitor center lot, plus
-        // whichever ranger walk the date carries.
-        programCategories: ['walk', 'talk'],
-      },
+      TUOLUMNE_DAY,
     ],
   },
   'first-visit': {
@@ -317,32 +371,75 @@ export const ITINERARIES: Record<ItineraryKey, Itinerary> = {
     subtitle: 'The views a few steps from parking',
     days: [EASY_PACE_VALLEY, EASY_PACE_RIM],
   },
-  // No curated list: the Hetch Hetchy region reads in drive order already,
-  // and the seeder's capacity and kind filters handle the rest. No program
-  // categories either: the park schedules nothing out there.
+  // The Hetch Hetchy region reads close to drive order, but relying on that
+  // cost the day its whole point: the capacity filter dropped Wapama Falls,
+  // the five-mile walk to the spray that is the reason anyone makes this
+  // drive. Curated, and deliberately front-loaded — Hetch Hetchy sits at
+  // 3,800 feet with almost no shade on the Wapama trail, so the hike goes
+  // first, while it is cool, and the dam and the overlook fill the afternoon.
+  // The trail starts by crossing the dam, so the dam reads either way; taking
+  // it on the return buys the hike most of an hour of cooler morning.
+  // The Evergreen Lodge is the dinner on the way out, and anchors itself
+  // there (its `dayPart` is 'evening'). No program categories: the park
+  // schedules nothing out here.
   'hetch-hetchy': {
     label: 'Hetch Hetchy day',
     subtitle: 'The other granite valley',
-    days: [{ name: 'Hetch Hetchy day', regions: ['hetch-hetchy'] }],
+    days: [
+      {
+        name: 'Hetch Hetchy day',
+        regions: ['hetch-hetchy'],
+        plan: [
+          'evergreen-road-drive',
+          'wapama-falls-trail',
+          'oshaughnessy-dam',
+          'lookout-point',
+          'evergreen-lodge',
+        ],
+      },
+    ],
   },
 }
 
+/** Resolve one `plan` entry to the stop or hike it names.
+ *
+ *  Core stop first, then hike, then hidden stop — and the order matters,
+ *  because the two catalogs do collide. `mcgurk-meadow` is both a hidden
+ *  Secret Guide stop and an entry in the day-hike catalog; hidden stops are
+ *  deliberately kept out of the presets, so a preset naming that id means the
+ *  hike. Hidden stops still resolve last rather than not at all, so the
+ *  validation below can reject one by name instead of calling it unknown. */
+export function resolvePlanEntry(
+  id: string,
+): { kind: 'stop'; stop: (typeof stops)[number] } | { kind: 'hike'; hike: (typeof HIKES)[number] } | null {
+  const core = stops.find((s) => s.id === id && s.collection !== 'hidden')
+  if (core) return { kind: 'stop', stop: core }
+  const hike = HIKES.find((h) => h.id === id)
+  if (hike) return { kind: 'hike', hike }
+  const hidden = stops.find((s) => s.id === id)
+  if (hidden) return { kind: 'stop', stop: hidden }
+  return null
+}
+
 // Fail fast at module load, same contract as Stops.parse in stops.ts: a
-// curated id that doesn't resolve to a core stop (or a hike) in the day's
+// curated id that doesn't resolve to a core stop or a hike in the day's
 // regions is a content error, not something to discover in a buyer's
-// seeded plan.
+// seeded plan. What a day's entries add up to is checked separately, by
+// scripts/check-itineraries.mjs — nothing at module load can tell that a
+// day's lunch landed at 5 p.m.
 for (const itinerary of Object.values(ITINERARIES)) {
   for (const day of itinerary.days) {
-    for (const id of day.stops ?? []) {
-      const stop = stops.find((s) => s.id === id)
-      if (!stop || stop.collection === 'hidden' || !day.regions.includes(stop.region)) {
-        throw new Error(`Itinerary "${day.name}" lists unknown or out-of-region stop "${id}"`)
+    for (const id of day.plan ?? []) {
+      const entry = resolvePlanEntry(id)
+      if (!entry) {
+        throw new Error(`Itinerary "${day.name}" lists unknown entry "${id}"`)
       }
-    }
-    for (const id of day.hikes ?? []) {
-      const hike = HIKES.find((h) => h.id === id)
-      if (!hike || !day.regions.includes(hike.region)) {
-        throw new Error(`Itinerary "${day.name}" lists unknown or out-of-region hike "${id}"`)
+      if (entry.kind === 'stop') {
+        if (entry.stop.collection === 'hidden' || !day.regions.includes(entry.stop.region)) {
+          throw new Error(`Itinerary "${day.name}" lists hidden or out-of-region stop "${id}"`)
+        }
+      } else if (!day.regions.includes(entry.hike.region)) {
+        throw new Error(`Itinerary "${day.name}" lists out-of-region hike "${id}"`)
       }
     }
   }

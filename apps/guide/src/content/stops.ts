@@ -535,6 +535,7 @@ const seed: StopInput[] = [
     coord: [-119.5901, 37.7434], // verified 2026-07: Sentinel Bridge span and lot proper (LOC/HAER CA-94, Gary Hart, agent review); nudged ~105 m north
     elevationFt: 4000,
     timeBudgetMin: 60,
+    dayPart: 'sunset',
     teaser:
       'Half Dome catches the last light here with the Merced in the foreground. Skip the crowded rail for the small beach below the bridge, and stay past the gold.',
     body:
@@ -579,6 +580,7 @@ const seed: StopInput[] = [
     region: 'valley',
     order: 21,
     kind: 'meal',
+    dayPart: 'midday',
     coord: [-119.5726, 37.7377], // verified 2026-07: Curry Village core (same pin as curry-village)
     timeBudgetMin: 60,
     teaser:
@@ -1369,6 +1371,7 @@ const seed: StopInput[] = [
     region: 'tuolumne',
     order: 9,
     kind: 'meal',
+    dayPart: 'midday',
     season: 'Tioga Road season',
     coord: [-119.3590, 37.8741], // web-derived: Tuolumne Meadows Store / Grill complex, Tioga Rd east of the visitor center; TODO: verify on the ground
     elevationFt: 8600,
@@ -1674,6 +1677,7 @@ const seed: StopInput[] = [
     region: 'hetch-hetchy',
     order: 6,
     kind: 'meal',
+    dayPart: 'evening',
     coord: [-119.8530, 37.8680], // TODO: verify on the ground — web-derived, Evergreen Rd roughly a mile south of Camp Mather; pin is road-adjacent but unconfirmed
     elevationFt: 4600,
     timeBudgetMin: 75,

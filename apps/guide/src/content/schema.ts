@@ -50,6 +50,33 @@ export type ArchiveNoteT = z.infer<typeof ArchiveNote>
 // schedule — src/sun/SunLine.tsx and sun/solar.ts compute the actual
 // sunrise/sunset/golden-hour clock times for the day from the fixed park
 // coordinate, so `note` must never hardcode a time of its own.
+// When the stop's own body makes the time of day a fact rather than a taste,
+// this pins it on the trip board instead of letting drive order decide. Three
+// values, each earned, and the difference between the last two is load-bearing
+// (see trip/slotting.ts):
+//
+//   'midday'  a meal. Reserved at the lunch block before the day is filled,
+//             so the rest of the day moves around it and two ranger programs
+//             cannot walk lunch to 5 p.m.
+//   'sunset'  a stop whose entire value is the last light. Also reserved
+//             before the fill, at the day's computed sunset, because the day
+//             is built around it: anything that no longer fits should be what
+//             gives way, not the sunset.
+//   'evening' the meal on the way out. Only a floor, placed after everything
+//             else. Reserving it would let a December dinner, anchored to a
+//             4:42 p.m. sunset, sit down in front of the five-hour walk to
+//             Wapama Falls and push the hike off the day entirely.
+//
+// Opt-in only, and deliberately narrow. A stop that is merely *better* early —
+// Mirror Lake's reflection, Cook's Meadow's bear hour — carries no dayPart:
+// that is a job for the itinerary's drive order, and hard-anchoring a
+// preference would wreck the geography to serve a soft claim. Set this only
+// when slotting the stop outside the window makes the guide wrong, the way a
+// sunset viewpoint at 10 a.m. is wrong. apps/guide/scripts/check-itineraries.ts
+// enforces it across every preset.
+export const DayPart = z.enum(['midday', 'sunset', 'evening'])
+export type DayPartT = z.infer<typeof DayPart>
+
 export const PhotoTimingBest = z.enum(['sunrise', 'golden-am', 'sunset', 'golden-pm', 'night'])
 export type PhotoTimingBestT = z.infer<typeof PhotoTimingBest>
 
@@ -76,6 +103,7 @@ export const Stop = z.object({
   coord: z.tuple([z.number(), z.number()]).optional(),  // [lng, lat]
   elevationFt: z.number().optional(),
   timeBudgetMin: z.number().optional(),
+  dayPart: DayPart.optional(),            // clock anchor for the planner; see DayPart above
   body: z.string(),                       // markdown
   photos: z
     .array(
