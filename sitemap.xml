@@ -5,7 +5,7 @@
   <!-- Hub pages -->
   <url>
     <loc>https://thetalusfieldjournal.com/</loc>
-    <lastmod>2026-08-01</lastmod>
+    <lastmod>2026-08-02</lastmod>
     <image:image>
       <image:loc>https://thetalusfieldjournal.com/img/responsive/half-dome-main-photo-1600.jpg</image:loc>
       <image:title>Half Dome at first light</image:title>
@@ -13,7 +13,7 @@
   </url>
   <url>
     <loc>https://thetalusfieldjournal.com/articles</loc>
-    <lastmod>2026-08-01</lastmod>
+    <lastmod>2026-08-02</lastmod>
   </url>
   <url>
     <loc>https://thetalusfieldjournal.com/planning</loc>
@@ -43,7 +43,7 @@
   </url>
   <url>
     <loc>https://thetalusfieldjournal.com/section/seasonal</loc>
-    <lastmod>2026-07-16</lastmod>
+    <lastmod>2026-08-02</lastmod>
   </url>
 
   <!-- Static pages -->
@@ -141,6 +141,14 @@
   </url>
 
   <!-- Articles -->
+  <url>
+    <loc>https://thetalusfieldjournal.com/articles/yosemite-in-fall</loc>
+    <lastmod>2026-08-02</lastmod>
+    <image:image>
+      <image:loc>https://thetalusfieldjournal.com/img/tunnel-view-autumn-aniket-deole.jpg</image:loc>
+      <image:title>Tunnel View in autumn, with fresh snow on the high rims above fall color on the Valley floor</image:title>
+    </image:image>
+  </url>
   <url>
     <loc>https://thetalusfieldjournal.com/articles/yosemite-tunnel-trees</loc>
     <lastmod>2026-07-26</lastmod>

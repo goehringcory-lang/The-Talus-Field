@@ -74,6 +74,7 @@ window.PLANNING_SERIES = [
     "mist-trail-the-real-guide",
   ] },
   { part: "Part Five · The seasonal calendar", slugs: [
+    "yosemite-in-fall",
     "tioga-road-opening-weekend-2026",
     "glacier-point-road-open-2026",
     "yosemite-stargazing-where-to-look-up",
@@ -102,6 +103,7 @@ window.planningSeriesFor = function (slug) {
 // verifies this map stays in sync with the files in bodies/.
 // ============================================================
 window.BODY_VERSIONS = {
+  "yosemite-in-fall": 1,
   "yosemite-tunnel-trees": 1,
   "yosemite-wildlife-viewing-guide": 1,
   "showy-milkweed-yosemite-valley": 3,
@@ -711,6 +713,20 @@ window.KIT.lists.forEach((l) => {
 });
 
 window.ARTICLES = [
+  {
+    slug: "yosemite-in-fall",
+    cat: "seasonal",
+    title: "Yosemite in Fall: What Closes, When, and What You Get Instead",
+    dek: "September through November is the season I recommend most and people book least, because the waterfalls are gone. Here is the trade laid out honestly: the crowd numbers, the closures in the order they happen, when the black oaks actually turn, and the two animals that make autumn a different park.",
+    seoDek: "Yosemite in fall: how September, October and November compare, when fall color peaks, when the Half Dome cables and Tioga Road close, and which week to pick.",
+    date: "August 2, 2026",
+    isoDate: "2026-08-02",
+    isoModified: "2026-08-02",
+    read: "9 min",
+    placeholder: "Tunnel View in autumn, with fresh snow on the high rims above fall color on the Valley floor",
+    image: "img/tunnel-view-autumn-aniket-deole.jpg",
+    credit: "Photo: Aniket Deole / Unsplash",
+  },
   {
     slug: "yosemite-tunnel-trees",
     cat: "wildlife",

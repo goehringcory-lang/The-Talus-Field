@@ -1,0 +1,170 @@
+/* global React, AffiliateNote, LodgingCta */
+
+window.ARTICLE_BODIES = window.ARTICLE_BODIES || {};
+
+window.ARTICLE_BODIES["yosemite-in-fall"] = function YosemiteInFallBody() {
+  return (
+    <>
+      <p className="dropcap">
+        Every year around the second week of September, something happens in El Portal that I have come to use as a calendar. The traffic on Highway 140 thins out in the middle of the day. Not at 6 a.m., which is always quiet, and not at 8 p.m., but at 1 in the afternoon, the hour that in July is a slow-moving line of rental cars looking for parking two thousand feet above me. The park does not announce this. It just stops being crowded, the way a restaurant empties after the lunch rush, and for the next eight weeks Yosemite is a place you can walk around in.
+      </p>
+
+      <p>
+        Fall is the season I recommend most often and the season people book least. The reason for both is the same: the waterfalls are gone. If your mental image of Yosemite came from a photograph, that photograph was taken in May, and September will look wrong to you. What I want to do here is make the trade explicit, because it is a good trade and almost nobody lays it out honestly. You are giving up water. You are getting back everything else, and you are getting it on a schedule that closes down one door at a time until the park is in winter.
+      </p>
+
+      <h2>The trade, stated plainly</h2>
+
+      <p>
+        Start with the crowds, because the numbers are stark and they are the whole argument. Averaged across 2010 to 2024, July brings about 625,000 people through Yosemite and August about 607,000. September drops to roughly 511,000. October falls to about 389,000, which is a little over 60 percent of a July. November collapses to around 196,000, under a third of the summer peak.
+      </p>
+
+      <p>
+        That October figure is the one to sit with. It is not a marginal improvement. It is a different park operating under the same name, on the same roads, with the same granite, and with nearly four in ten of the summer visitors simply absent. Trailhead lots that require a pre-dawn arrival in July have midmorning parking in October. The Mist Trail, which in June is a queue, is a trail again. And with the day-use reservation system retired for 2026, the summer months are absorbing that demand without a throttle, which sharpens the contrast further. The <a href="/articles/when-to-visit-yosemite-2026-crowd-forecast">crowd forecast</a> has the week-by-week detail.
+      </p>
+
+      <p>
+        Against that, the honest cost. By September, Yosemite Falls is a stain on the cliff or nothing at all. Most of the water in it is snowmelt, and the snow is usually gone by the end of July, so the fall does what the snowpack does. It will not come back in any convincing way until the November storms arrive, and in a dry autumn not until December. If you are bringing someone to Yosemite for the first time and the falls are the reason, fall is the wrong season and no amount of good weather fixes it.
+      </p>
+
+      <blockquote>Fall is the best season in Yosemite for everything except the one thing most people come for.</blockquote>
+
+      <h2>The calendar is a sequence of closing doors</h2>
+
+      <p>
+        This is the part that generic fall guides get wrong by treating autumn as a single block of time. It is not. Yosemite in fall is a series of dated and semi-dated closures, and which week you pick determines which park you get. Here they are in order.
+      </p>
+
+      <p>
+        <strong>Labor Day.</strong> The crowd cliff. Nothing closes, but the family-vacation season ends and midweek visitation drops immediately. The first two weeks of September are, in my opinion, the single best stretch of the year in Yosemite: summer access, summer weather, and autumn emptiness at the same time. Everything is still open. Nothing has shut down yet.
+      </p>
+
+      <p>
+        <strong>Mid to late September.</strong> The high country begins closing its services while the road is still open. Tuolumne Meadows Campground typically shuts for the season in late September, and the seasonal store, grill, and visitor services wind down on roughly the same schedule. Tioga Road itself stays open, so you can still drive to Tenaya Lake and Olmsted Point, but you should plan on the high country having no food service and nowhere to resupply. Bring what you need up with you, water included. This catches people who visited in August and assume the same infrastructure is there.
+      </p>
+
+      <p>
+        <strong>The day after the second Monday in October.</strong> The Half Dome cables come down. In 2026 that is Tuesday, October 13. The park targets this date every year rather than fixing it to a calendar day, and conditions can move it, but the rule is reliable enough to plan around. After the cables come down, Half Dome is a technical climb, not a hike, and the permit season is over. If Half Dome is on the list, your fall window closes on a Tuesday in mid-October. The <a href="/articles/half-dome-permit-lottery-2026">permit lottery guide</a> covers how to get one before then, and <a href="/articles/so-you-want-to-hike-half-dome">the honest assessment of the hike</a> covers whether you want to.
+      </p>
+
+      <p>
+        <strong>Any storm from mid-October onward.</strong> Tioga Road closes when snow arrives, and this is the closure that ruins itineraries, because it has no date. The historical median is around November 3, and in most years the road survives October. But it is a judgment call made on a forecast, not a calendar, and it can happen early: Tioga closed on October 21 in 2021 and on October 29 in 2016. It can also run long, and in the 2011 season it did not close until the following January. Treat every high-country plan after roughly October 10 as conditional, and check the road before you commit a driving day to it. The rest of the park is unaffected, which is the saving grace: a Tioga closure costs you the high country, not the trip.
+      </p>
+
+      <p>
+        <strong>November.</strong> Glacier Point Road closes on roughly the same schedule as Tioga, and once both are shut you are in the winter park: Yosemite Valley, Wawona, Hetch Hetchy, and the plowed roads that reach them, all open, all year. That park has its own case, made in <a href="/articles/yosemite-in-winter">the winter guide</a>. November is the seam between the two seasons and the least predictable month in Yosemite. It can hand you golden black oaks under blue sky or four inches of wet snow, sometimes in the same week.
+      </p>
+
+      <h2>Fall color: the received wisdom is wrong</h2>
+
+      <p>
+        You will read, in more than one place, that Yosemite has no fall color because the trees are conifers. That is half a fact used badly. Most of the forest is evergreen, correct. But the Valley floor is not forest, it is meadow and oak woodland and riparian corridor, and those are exactly the places deciduous trees live.
+      </p>
+
+      <p>
+        Four species do the work. <strong>California black oak</strong> is the backbone, turning gold and then a deep bronze across the Valley meadows, and it is the tree that makes an October photograph of Cook's Meadow look nothing like a July one. <strong>Bigleaf maple</strong> goes clear yellow and stands out hard against the dark conifers behind it. <strong>Pacific dogwood</strong>, the same tree that produces the white flowers people drive up for in May, turns red and pink in October, and it is best where its branch structure frames something: El Capitan Meadow and the Cook's Meadow loop are the reliable spots. <strong>Black cottonwood</strong> lights up yellow along the Merced River, which is why the river corridor is the single best fall drive in the park.
+      </p>
+
+      <p>
+        Timing: the show generally starts in early October and runs until the first serious snowstorm ends it. On the Valley floor at 4,000 feet, peak is usually late October into mid-November. That is later than most visitors assume, and it is the source of a specific scheduling irony worth naming. <strong>The best fall color in Yosemite Valley arrives after the high country has already closed.</strong> Mid-October is the compromise date: decent color starting, Tioga usually still open. Late October and early November trade the high country away for the better color. There is no week that gives you both at their best, and anyone who tells you otherwise is selling something.
+      </p>
+
+      <p>
+        Wawona, at a slightly higher elevation with black oak, dogwood, and maple all mixed together, is the other place worth a deliberate stop, and it is close enough to the Mariposa Grove to make one trip out of two. For where to stand and when the light works, <a href="/articles/yosemite-photography-spots">the photography guide</a> has the specifics.
+      </p>
+
+      <h2>The two animals that make fall different</h2>
+
+      <p>
+        This is the part of the season I care most about as a naturalist, and it is missing from nearly every fall guide I have read.
+
+      </p>
+
+      <p>
+        <strong>The bears are in hyperphagia.</strong> Starting in September, black bears shift into a physiological state of near-continuous eating to build the fat they will overwinter on. The numbers are genuinely difficult to believe: a bear in hyperphagia can take in up to 20,000 calories a day, forage as much as 20 hours out of 24, and put on two to three pounds daily. The park's own bear team has described the daily target in acorn terms, roughly eleven pounds of acorns, which is a useful image for understanding what a bear is doing in a black oak grove in October.
+      </p>
+
+      <p>
+        Two consequences for a visitor. First, fall is the best bear-viewing season of the year, better than spring, because the animals are out longer and less cautious. Second, and more important, the Valley bear population goes up in autumn. Large transient males that spend the summer in the backcountry come down to Yosemite Valley, Wawona, and El Portal specifically for the acorn crop. There are more bears near people in October than in July, they are more motivated, and a car with food in it is a more attractive target than at any other time of year. Food storage discipline is not a summer rule that relaxes in the shoulder season, it is a rule that matters most in the shoulder season. The <a href="/articles/yosemite-bears-safety-guide">bear guide</a> has the full protocol, including why the bear spray you packed is illegal here.
+      </p>
+
+      <p>
+        <strong>The deer are in rut, and the deer are the dangerous ones.</strong> Mule deer injure more visitors in Yosemite than any other animal in the park, bears included. That fact surprises people every single time I say it out loud on a walk, and fall is when it becomes most relevant. Bucks enter the rut in late autumn, they carry hard antlers, they are running on hormones, and their tolerance for an approaching human collapses. A deer that stood still for a photograph in August will not in November.
+      </p>
+
+      <p>
+        The mechanism of nearly every injury is the same and entirely preventable: someone approaches, often someone who has seen other people feeding deer, and the animal defends itself with antlers or with front hooves. In November 2021 a girl approached a buck that visitors had been feeding, and the animal's antlers opened a deep cut on her arm and wounded her chest badly enough that she was moved from the park clinic to a hospital. Fifty yards is the rule, it is the same rule as for bears, and in fall it is the rule that actually gets broken because deer look harmless in a way bears do not. <a href="/articles/yosemite-wildlife-viewing-guide">The wildlife guide</a> covers where to watch from.
+      </p>
+
+      <h2>Smoke, but the other kind</h2>
+
+      <p>
+        Autumn is prescribed fire season in Yosemite, and this genuinely surprises visitors who arrive expecting clear skies after wildfire season has ended. Once fall brings cooler temperatures and enough moisture to make burning controllable, park fire crews run planned burns in Yosemite Valley, around Crane Flat, and in the Studhorse units near Wawona. Smoke from those projects is routinely visible in the Valley, in Foresta, and in El Portal.
+      </p>
+
+      <p>
+        Two things to hold at once. This is good work, and it is the reason a fire in these units later will not be catastrophic. It also means your October photographs may have haze in them and your throat may be scratchy for a day, and it is not something you can forecast months out, because the burns are scheduled against weather windows and get postponed constantly. The practical move is to check conditions when you arrive rather than planning around it. Note that this is a different phenomenon from summer wildfire smoke, which behaves differently and is worth understanding separately: <a href="/articles/yosemite-during-smoke-season">the smoke season guide</a> covers the geography of how smoke sits in these canyons and the real-time tools for reading it.
+      </p>
+
+      <h2>Weather, and the thing that catches people</h2>
+
+      <p>
+        Yosemite Valley in October averages a high near 71 and a low near 41. That is close to ideal hiking weather, warm enough for shirtsleeves in the afternoon and cold enough that you want a jacket at breakfast. November averages a high of 56 and a low of 33, which is a real change: freezing overnight, and dark early.
+      </p>
+
+      <p>
+        The thing that catches people is not the cold, it is the daylight. By late October, sunset in the Valley is early and the walls make it earlier still, because the sun drops behind a 3,000-foot cliff well before it reaches the horizon. A hike that was comfortable in September, started at the same hour, finishes in the dark in November. Carry a headlamp from October onward and treat it as required equipment rather than an optional one. The <a href="/articles/pack-your-car-for-yosemite">car kit</a> covers the rest of the shoulder-season load, and the short version is: add layers, add the headlamp, and from late October keep chains in the trunk even if the forecast is clear, because the storm that closes Tioga is the same storm that puts chain control on your drive home.
+      </p>
+
+      <h2>How I would actually build the trip</h2>
+
+      <p>
+        <strong>If you want the high country:</strong> go in September, ideally the two weeks after Labor Day. Tioga and Glacier Point Roads are open, the weather is stable, Tuolumne is empty in a way it never is in July, and the crowd drop has already happened. Accept that there is no fall color yet and no waterfall to speak of. This is the best week of the year in Yosemite and I will argue about it.
+      </p>
+
+      <p>
+        <strong>If you want fall color:</strong> go the third or fourth week of October. You get color coming on, a real chance the high roads are still open, and Valley crowds at roughly 60 percent of summer. This is the compromise pick and it is the one I recommend to most people. Book flexible lodging, because if a storm shuts Tioga mid-trip you want to be able to restructure rather than cancel.
+      </p>
+
+      <p>
+        <strong>If you want the park nearly to yourself:</strong> go the first two weeks of November. Peak color on the Valley floor, under 200,000 people for the whole month, and a genuine chance of the best photographic conditions of the year, which is fresh snow on the rims above autumn color on the floor. You are giving up the high country entirely and accepting that weather may reroute your days. Go anyway.
+      </p>
+
+      <p>
+        Two or three nights is the right length in any of those windows. The <a href="/articles/yosemite-in-one-or-two-days">short-trip itinerary</a> works in fall with one substitution: swap the waterfall stops for the Valley loop and the river corridor, which is where the season actually is.
+      </p>
+
+      <h2>The takeaway</h2>
+
+      <p>
+        Fall in Yosemite is a season of subtraction. The water goes first, then the high-country services, then the cables, then the roads. What is left after all that subtracting is a park with granite, light, color, deer in rut, bears eating around the clock, and a fraction of the people. That is a fair trade and I would make it every year.
+      </p>
+
+      <p>
+        Pick your week by which door matters most to you. If it is Half Dome, you are hiking before October 13. If it is Tioga Road, you are gambling after mid-October. If it is the black oaks going gold in Cook's Meadow with the first snow on the rim behind them, you are coming in November and you are going to have the place almost to yourself. That's the trip.
+      </p>
+
+      <LodgingCta
+        destination="Yosemite National Park"
+        heading="Fall is when the rooms come back"
+        note="September through November is the availability window that summer does not have. Rates ease after Labor Day and midweek October is a different market from midweek July. If the plan is flexible enough to move around a storm, search your dates both inside the park and in the gateway towns before committing to either."
+        list="article_cta"
+        slug="yosemite-in-fall"
+        cta="Search fall lodging around Yosemite →"
+      />
+
+      <AffiliateNote />
+
+      <h3>Sources</h3>
+      <ul style={{ fontSize: 14 }}>
+        <li><a href="https://www.nps.gov/yose/planyourvisit/fall.htm" target="_blank" rel="noopener noreferrer">Visiting in Fall, NPS Yosemite</a></li>
+        <li><a href="https://www.nps.gov/yose/planyourvisit/visitation.htm" target="_blank" rel="noopener noreferrer">Visitation Statistics, NPS Yosemite</a></li>
+        <li><a href="https://www.nps.gov/yose/planyourvisit/tiogaopen.htm" target="_blank" rel="noopener noreferrer">Tioga and Glacier Point Roads Opening and Closing Dates, NPS Yosemite</a></li>
+        <li><a href="https://www.nps.gov/yose/planyourvisit/hdpermits.htm" target="_blank" rel="noopener noreferrer">Half Dome Permits, NPS Yosemite</a></li>
+        <li><a href="https://www.nps.gov/yose/blogs/eleven-pounds-of-acorns-a-daily-feast-for-a-bear.htm" target="_blank" rel="noopener noreferrer">Eleven Pounds of Acorns, Yosemite Bear Team</a></li>
+        <li><a href="https://www.nps.gov/yose/planyourvisit/weather.htm" target="_blank" rel="noopener noreferrer">Weather and Climate, NPS Yosemite</a></li>
+        <li><a href="https://www.nps.gov/yose/learn/news/yosemite-national-park-will-not-require-vehicle-reservations-in-2026.htm" target="_blank" rel="noopener noreferrer">Yosemite Will Not Require Vehicle Reservations in 2026, NPS Yosemite</a></li>
+      </ul>
+    </>
+  );
+};
