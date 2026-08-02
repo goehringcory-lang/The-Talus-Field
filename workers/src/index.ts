@@ -9,6 +9,7 @@ import { checkout } from './routes/checkout'
 import { contact } from './routes/contact'
 import { indexnow } from './routes/indexnow'
 import { ingestNpsWindow, programs } from './routes/programs'
+import { photos, photosPage } from './routes/photos'
 import { push } from './routes/push'
 import { stripe } from './routes/stripe'
 import { trip } from './routes/trip'
@@ -110,6 +111,12 @@ app.get('/tiles/:z/:y/:x', async (c) => {
 // The embeddable conditions widget lives at the ROOT level (like /tiles), NOT
 // under /api/*: it runs on arbitrary third-party origins, so it needs a plain
 // CORS * that the /api/* origin-echo middleware would clobber.
+// The phone photo-upload page: root level like /widget, because it serves
+// HTML on this origin and the /api/* CORS middleware has no business on it.
+// The API half lives under /api/photos below; the page itself is public but
+// inert without the PHOTO_UPLOAD_TOKEN the owner pastes in.
+app.get('/photos', photosPage)
+
 app.route('/widget', widget)
 app.get('/widget.js', (c) =>
   c.text(widgetScript(), 200, {
@@ -146,6 +153,7 @@ app.route('/api/auth', auth)
 app.route('/api/checkout', checkout)
 app.route('/api/contact', contact)
 app.route('/api/indexnow', indexnow)
+app.route('/api/photos', photos)
 app.route('/api/programs', programs)
 app.route('/api/push', push)
 app.route('/api/stripe', stripe)

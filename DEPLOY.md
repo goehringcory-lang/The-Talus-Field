@@ -265,3 +265,57 @@ Verify: sign in, add a stop or two on `/trip`, open **Review & save the calendar
 file**, and confirm the download (or share sheet) produces
 `yosemite-trip-<start-date>.ics` that opens in a calendar app with the right
 days, times, and a directions link per event.
+
+## Remote photo upload (phone → PR)
+
+The photo pipeline stays git-based (photos deploy as committed static assets
+with sharp-generated responsive variants), so the "API" for importing photos
+never writes into the site directly. It has two halves:
+
+- **Staging**, on the API Worker: `https://api.thetalusfieldjournal.com/photos`
+  is a phone-friendly upload page. Files land untouched in the `talus-photo-inbox`
+  R2 bucket behind `/api/photos/*` ([workers/src/routes/photos.ts](workers/src/routes/photos.ts)),
+  gated by the `PHOTO_UPLOAD_TOKEN` bearer secret. Uploads are named for their
+  subject at upload time (camera-default names and HEIC are rejected with the
+  fix in the error message).
+- **Ingest**, in CI: [.github/workflows/photo-import.yml](.github/workflows/photo-import.yml)
+  downloads everything staged into the gitignored `photo-inbox/` and runs the
+  same [scripts/ingest-photos.mjs](scripts/ingest-photos.mjs) used locally
+  (EXIF orientation + strip, downscale, mozjpeg, responsive variants, guide
+  credits), then opens a PR with the ingest log and the `data.js` / `stops.ts`
+  reference snippets. Ingested files are cleared from the inbox; skipped files
+  stay staged with the reason in the log.
+
+One-time setup, in order:
+
+1. `cd workers && wrangler r2 bucket create talus-photo-inbox` — the binding is
+   already declared in `wrangler.toml`, and a declared-but-missing bucket fails
+   the next `wrangler deploy`, so create it first. (R2 must be enabled on the
+   Cloudflare account; the free tier is far more than an inbox needs.)
+2. `wrangler secret put PHOTO_UPLOAD_TOKEN` — a long random string
+   (`openssl rand -hex 24`).
+3. Add the **same value** as the GitHub repo secret `PHOTO_UPLOAD_TOKEN`
+   (Settings > Secrets and variables > Actions): the workflow presents it to
+   pull staged files, so it needs no Cloudflare credentials of its own.
+4. Repo Settings > Actions > General: enable **"Allow GitHub Actions to create
+   and approve pull requests"**, or the workflow's `gh pr create` is refused.
+5. Optional, for the upload page's one-tap **Run import** button: create a
+   fine-grained GitHub PAT scoped to this repo with **Contents: read & write**
+   (that is the permission `repository_dispatch` requires) and
+   `wrangler secret put GITHUB_DISPATCH_TOKEN`. Without it, staged photos wait
+   for a manual run of the "Photo import" workflow from the Actions tab.
+6. `wrangler deploy`.
+
+Day-to-day use: open `/photos` on the phone, paste the token once (it persists
+on the device), pick photos, give each a subject name, upload, tap **Run
+import**, then merge the PR it opens and wire the new files where they belong
+(the PR body carries the snippets). iPhone HEIC is a non-issue through the
+upload page: Safari transcodes library picks to JPEG for web forms, and
+anything that arrives as raw HEIC is rejected at upload with instructions,
+because the ingest's sharp build has no HEVC decoder.
+
+Verify after setup: `curl -s https://api.thetalusfieldjournal.com/api/photos/pending -H "Authorization: Bearer $TOKEN"`
+returns `{"items":[]}`, an upload from the page appears in the staged list, and
+a run of the workflow (manual or via the button) opens a PR containing the
+processed photo plus its `responsive/` ladder and, for guide photos, the
+credits entries.

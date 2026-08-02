@@ -24,6 +24,23 @@ binding = "GUIDE_PROGRAMS"
 id = "b705140335d148e29f7e61aac8147c33"
 preview_id = "REPLACE_ME_FOR_LOCAL_DEV"
 
+# Staging inbox for remote photo uploads (/api/photos/* and the /photos
+# upload page). Camera originals wait here until the photo-import GitHub
+# workflow pulls them through scripts/ingest-photos.mjs and opens a PR;
+# nothing is ever served from this bucket. Create it BEFORE the next deploy
+# (a declared-but-missing bucket fails `wrangler deploy`):
+#   wrangler r2 bucket create talus-photo-inbox
+# Then set the gate secret (e.g. `openssl rand -hex 24`):
+#   wrangler secret put PHOTO_UPLOAD_TOKEN
+# and add the SAME value as the GitHub repo secret PHOTO_UPLOAD_TOKEN so the
+# workflow can download staged files. Optional, for the upload page's
+# "Run import" button (otherwise start the workflow from the Actions tab):
+#   wrangler secret put GITHUB_DISPATCH_TOKEN   # fine-grained PAT, this repo,
+#                                               # Contents: read & write
+[[r2_buckets]]
+binding = "PHOTO_INBOX"
+bucket_name = "talus-photo-inbox"
+
 # Daily program ingest, ~2-3am Pacific. The route also self-heals: if KV is
 # missing or >48h old it fetches NPS live and backfills.
 [triggers]
