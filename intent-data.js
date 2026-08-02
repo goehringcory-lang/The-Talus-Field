@@ -72,6 +72,7 @@ window.INTENT_FACETS = [
 
 // Per-article tags. Keyed by the slug in window.ARTICLES.
 window.ARTICLE_INTENT = {
+  "yosemite-in-fall":                          { stage: ["before-booking", "dates-set"], who: ["first-trip", "photography"], topic: ["conditions", "transportation"] },
   "yosemite-tunnel-trees":                     { stage: ["in-park"], who: [], topic: [] },
   "yosemite-wildlife-viewing-guide":           { stage: ["dates-set", "in-park"], who: ["families", "non-hikers", "photography"], topic: [] },
   "showy-milkweed-yosemite-valley":            { stage: ["in-park"], who: ["non-hikers"], topic: [] },
@@ -132,6 +133,7 @@ window.ARTICLE_INTENT = {
 // this table is protecting would be dropped by it — check-intent-tags.mjs
 // enforces exactly that.
 window.ARTICLE_MONTHS = {
+  "yosemite-in-fall": ["sep", "oct", "nov"],
   "yosemite-in-june-2026": ["jun"],
   "horsetail-fall-firefall": ["feb"],
   "memorial-day-skip-the-valley-go-high-2026": ["may"],
@@ -295,7 +297,7 @@ window.TRIP_MONTHS = [
     note: "High summer. Hot in the Valley, the falls at a trickle, and the darkest skies of the year." },
   { key: "sep", label: "Sep", name: "September", tioga: "open",      glacier: "open",      read: "when-to-visit-yosemite-2026-crowd-forecast",
     note: "The exhale. Crowds ease after Labor Day, the weather usually holds, and the falls are at their lowest." },
-  { key: "oct", label: "Oct", name: "October",   tioga: "open",      glacier: "open",      read: "yosemite-photography-spots",
+  { key: "oct", label: "Oct", name: "October",   tioga: "open",      glacier: "open",      read: "yosemite-in-fall",
     note: "Fall. Cooler days, color along the Merced, quieter trails, and the first real storms possible late." },
   { key: "nov", label: "Nov", name: "November",  tioga: "closed",    glacier: "unsettled", read: "yosemite-in-winter",
     note: "The shoulder. Short days, empty trails, the first lasting snow most years, and the high roads closing." },

@@ -1,5 +1,32 @@
 [
   {
+    "slug": "yosemite-in-fall",
+    "cat": "seasonal",
+    "title": "Yosemite in Fall: What Closes, When, and What You Get Instead",
+    "dek": "September through November is the season I recommend most and people book least, because the waterfalls are gone. Here is the trade laid out honestly: the crowd numbers, the closures in the order they happen, when the black oaks actually turn, and the two animals that make autumn a different park.",
+    "seoDek": "Yosemite in fall: how September, October and November compare, when fall color peaks, when the Half Dome cables and Tioga Road close, and which week to pick.",
+    "date": "August 2, 2026",
+    "isoDate": "2026-08-02",
+    "isoModified": "2026-08-02",
+    "read": "9 min",
+    "image": "img/tunnel-view-autumn-aniket-deole.jpg",
+    "ogImage": { "url": "img/responsive/tunnel-view-autumn-aniket-deole-1600.jpg", "width": 1600, "height": 1067 },
+    "placeholder": "Tunnel View in autumn, with fresh snow on the high rims above fall color on the Valley floor",
+    "wordCount": 2560,
+    "keywords": ["yosemite in fall", "yosemite in september", "yosemite in october", "yosemite in november", "yosemite fall colors peak", "when do the half dome cables come down", "when does tioga road close", "are yosemite waterfalls flowing in fall", "best time to visit yosemite in autumn"],
+    "faq": [
+      { "q": "Is Yosemite worth visiting in the fall?", "a": "Yes, with one honest caveat. Averaged across 2010 to 2024, October brings about 389,000 visitors against roughly 625,000 in July, so the trails, the shuttle, and the trailhead parking are a fraction of what they are in summer, and November drops under 200,000 for the whole month. The cost is water: Yosemite Falls is usually dry or close to it from August onward and does not come back convincingly until the November storms. If the waterfalls are the reason for the trip, fall is the wrong season." },
+      { "q": "Are the waterfalls flowing in Yosemite in September and October?", "a": "Mostly no. Most of the water in Yosemite Falls is snowmelt, and the snowpack is typically gone by the end of July, so by September the fall is a stain on the cliff or nothing at all. It returns with the November rains, and in a dry autumn not until December." },
+      { "q": "When do fall colors peak in Yosemite?", "a": "On the Yosemite Valley floor at about 4,000 feet, peak is usually late October into mid-November, later than most visitors assume. The show generally starts in early October and runs until the first serious snowstorm ends it. Four species do the work: California black oak turning gold and bronze, bigleaf maple in clear yellow, Pacific dogwood in red and pink, and black cottonwood lighting up yellow along the Merced River." },
+      { "q": "When do the Half Dome cables come down?", "a": "The park targets the day after the second Monday in October, which in 2026 is Tuesday, October 13. It is a target rather than a fixed calendar date and conditions can move it, but it is reliable enough to plan around. Once the cables are down, Half Dome is a technical climb rather than a hike and the permit season is over." },
+      { "q": "When does Tioga Road close for the season?", "a": "There is no set date. Tioga Road closes when snow arrives, on a judgment call made against a forecast. The historical median is around November 3 and the road survives October in most years, but it closed on October 21 in 2021 and on October 29 in 2016, and in the 2011 season it did not close until the following January. Treat any high-country plan after roughly October 10 as conditional and check the road before committing a driving day to it." },
+      { "q": "Is September or October better for visiting Yosemite?", "a": "It depends which door matters. September, especially the two weeks after Labor Day, keeps Tioga Road and Glacier Point Road open with stable weather and the post-summer crowd drop already in effect, but there is no fall color yet. Late October trades some high-country certainty for color coming on and Valley crowds at roughly 60 percent of summer. The best Valley color arrives after the high country has usually closed, so no single week gives you both at their best." },
+      { "q": "Do I need a reservation to enter Yosemite in fall 2026?", "a": "No. The day-use reservation system was retired for 2026, so no timed-entry permit is required to drive into the park, in fall or any other season." },
+      { "q": "Is there smoke in Yosemite in the fall?", "a": "Sometimes, and it is often planned rather than wild. Autumn is prescribed fire season in Yosemite: once cooler temperatures and moisture make burning controllable, crews run projects in Yosemite Valley, around Crane Flat, and in the Studhorse units near Wawona, and smoke from those burns is routinely visible in the Valley, in Foresta, and in El Portal. Burns are scheduled against weather windows and postponed often, so check conditions on arrival rather than planning around it months out." },
+      { "q": "Are bears more active in Yosemite in the fall?", "a": "Yes. From September, black bears enter hyperphagia, a state of near-continuous eating before winter, taking in up to 20,000 calories a day, foraging as much as 20 hours out of 24, and gaining two to three pounds daily, roughly eleven pounds of acorns' worth. Large transient males that spend the summer in the backcountry come down to Yosemite Valley, Wawona, and El Portal for the acorn crop, so there are more bears near people in October than in July and food storage discipline matters most in this season." }
+    ]
+  },
+  {
     "slug": "yosemite-tunnel-trees",
     "cat": "wildlife",
     "title": "From the Archive: the year Yosemite measured a hole in a sequoia to the half inch",
