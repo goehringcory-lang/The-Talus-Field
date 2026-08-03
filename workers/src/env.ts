@@ -8,6 +8,12 @@ export type Env = {
   // lose, and a bad ingest can never touch purchase data.
   GUIDE_PROGRAMS: KVNamespace
 
+  // R2 staging inbox for remote photo uploads (/api/photos/* + the /photos
+  // upload page). Holds camera originals only until the photo-import GitHub
+  // workflow ingests them into the repo; nothing is ever served from it.
+  // Optional: without it every /api/photos route returns 503.
+  PHOTO_INBOX?: R2Bucket
+
   // Vars (wrangler.toml [vars])
   APP_BASE_URL: string         // PWA origin; e.g. https://talus-field-guide.pages.dev
   EDITORIAL_BASE_URL: string   // e.g. https://thetalusfieldjournal.com
@@ -54,4 +60,15 @@ export type Env = {
   // if either is unset the endpoint returns 503.
   INDEXNOW_KEY?: string
   INDEXNOW_ADMIN_TOKEN?: string
+
+  // Remote photo upload (see routes/photos.ts + .github/workflows/photo-import.yml).
+  // PHOTO_UPLOAD_TOKEN gates every /api/photos route; set the SAME value as the
+  // GitHub repo secret of the same name so the workflow can pull staged files.
+  // GITHUB_DISPATCH_TOKEN is a fine-grained PAT (contents: read & write on this
+  // repo) that lets POST /api/photos/import start the workflow instantly;
+  // optional — without it staged photos wait for a manual workflow run.
+  // GITHUB_REPO overrides the owner/repo the dispatch targets (defaults in code).
+  PHOTO_UPLOAD_TOKEN?: string
+  GITHUB_DISPATCH_TOKEN?: string
+  GITHUB_REPO?: string
 }

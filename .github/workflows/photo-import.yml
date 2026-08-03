@@ -1,0 +1,163 @@
+# Photo import: the automation half of the remote photo pipeline.
+#
+# Photos uploaded through the Worker's /photos page stage in the R2 inbox
+# behind /api/photos. This workflow downloads them into the gitignored
+# photo-inbox/ and runs the exact same scripts/ingest-photos.mjs the owner
+# runs locally (EXIF orientation + strip, downscale, mozjpeg re-encode,
+# responsive variants, guide credits), commits the results to a branch, and
+# opens a PR. Ingested files are removed from the inbox; skipped files stay
+# staged and the PR body's ingest log says why.
+#
+# Setup this workflow needs beyond the Worker's (see workers/wrangler.toml):
+#   - repo secret PHOTO_UPLOAD_TOKEN (same value as the Worker secret)
+#   - Settings > Actions > General > "Allow GitHub Actions to create and
+#     approve pull requests" must be enabled, or `gh pr create` is refused.
+#
+# Triggered by POST /api/photos/import (repository_dispatch, needs the
+# Worker's GITHUB_DISPATCH_TOKEN) or manually from the Actions tab.
+
+name: Photo import
+
+on:
+  repository_dispatch:
+    types: [photo-import]
+  workflow_dispatch:
+
+# Two uploads in quick succession mean two dispatches; queue them instead of
+# racing. The second run finds an empty inbox and exits cleanly.
+concurrency:
+  group: photo-import
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+  pull-requests: write
+
+env:
+  API_BASE: https://api.thetalusfieldjournal.com
+
+jobs:
+  import:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Download staged photos
+        id: download
+        env:
+          PHOTO_UPLOAD_TOKEN: ${{ secrets.PHOTO_UPLOAD_TOKEN }}
+        run: |
+          set -euo pipefail
+          if [ -z "${PHOTO_UPLOAD_TOKEN}" ]; then
+            echo "The PHOTO_UPLOAD_TOKEN repo secret is not set (same value as the Worker secret)." >&2
+            exit 1
+          fi
+          mkdir -p photo-inbox/editorial photo-inbox/guide
+          curl -sSf -H "Authorization: Bearer ${PHOTO_UPLOAD_TOKEN}" \
+            "${API_BASE}/api/photos/pending" > pending.json
+          count=$(jq '.items | length' pending.json)
+          echo "count=${count}" >> "$GITHUB_OUTPUT"
+          if [ "$count" -eq 0 ]; then
+            echo "Nothing staged in the photo inbox."
+            exit 0
+          fi
+          # Keys are validated server-side at upload (<surface>/<slug>.<ext>);
+          # the case guard here is belt and braces against a hand-placed key.
+          jq -r '.items[].key' pending.json | while IFS= read -r key; do
+            case "$key" in
+              editorial/*|guide/*) ;;
+              *) echo "skipping unexpected key: $key"; continue ;;
+            esac
+            echo "downloading $key"
+            curl -sSf -H "Authorization: Bearer ${PHOTO_UPLOAD_TOKEN}" \
+              --output "photo-inbox/$key" "${API_BASE}/api/photos/pending/$key"
+          done
+
+      - uses: actions/setup-node@v4
+        if: steps.download.outputs.count != '0'
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: scripts/package-lock.json
+
+      - name: Install ingest tooling
+        if: steps.download.outputs.count != '0'
+        run: npm ci --prefix scripts
+
+      - name: Ingest
+        if: steps.download.outputs.count != '0'
+        run: |
+          # ingest-photos.mjs exits 1 when anything was skipped, even if other
+          # photos ingested fine. Skips are an expected outcome here (they stay
+          # staged and the PR body reports them), so capture the log and let
+          # the commit step decide whether the run produced anything.
+          set +e
+          node scripts/ingest-photos.mjs 2>&1 | tee ingest.log
+          status=${PIPESTATUS[0]}
+          set -e
+          echo "ingest exited ${status}"
+
+      - name: Commit and open a PR
+        if: steps.download.outputs.count != '0'
+        id: commit
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          paths=(img apps/guide/public/photos scripts/data/photo-credits.json apps/guide/src/content/photoCredits.ts)
+          if [ -z "$(git status --porcelain -- "${paths[@]}")" ]; then
+            echo "No photos made it through the ingest. Log:"
+            cat ingest.log
+            # Everything skipped: staged files remain in the inbox for a fix.
+            exit 0
+          fi
+          branch="photo-import/run-${{ github.run_id }}"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout -b "$branch"
+          git add "${paths[@]}"
+          git diff --cached --name-only > committed-files.txt
+          n=$(grep -Ec '^(img|apps/guide/public/photos)/[^/]+\.jpg$' committed-files.txt || true)
+          git commit -m "Ingest ${n} uploaded photo(s) through the photo inbox"
+          git push -u origin "$branch"
+          {
+            echo "Automated ingest of photos uploaded through the photo inbox (\`/photos\` on the API Worker)."
+            echo
+            echo '```'
+            cat ingest.log
+            echo '```'
+            echo
+            echo "Next steps:"
+            echo "- Wire the new files where they belong, using the reference snippets in the log: editorial photos into \`data.js\`, guide photos onto their stops in \`apps/guide/src/content/stops.ts\`."
+            echo "- Any skipped files in the log are still staged in the inbox: fix the problem and re-run the workflow, or remove them from the upload page."
+          } > pr-body.md
+          gh pr create --title "Photo import: ${n} new photo(s)" \
+            --body-file pr-body.md --base main --head "$branch"
+          echo "committed=1" >> "$GITHUB_OUTPUT"
+
+      - name: Clear ingested photos from the inbox
+        if: steps.commit.outputs.committed == '1'
+        env:
+          PHOTO_UPLOAD_TOKEN: ${{ secrets.PHOTO_UPLOAD_TOKEN }}
+        run: |
+          set -euo pipefail
+          # Delete only what this run actually committed (skipped files keep
+          # their staging so the next run can retry them). Runs after the push,
+          # so the originals are never deleted before the results are safe.
+          jq -r '.items[].key' pending.json | while IFS= read -r key; do
+            surface=${key%%/*}
+            file=${key#*/}
+            slug=${file%.*}
+            case "$surface" in
+              editorial) target="img/${slug}.jpg" ;;
+              guide) target="apps/guide/public/photos/${slug}.jpg" ;;
+              *) continue ;;
+            esac
+            if grep -qx "$target" committed-files.txt; then
+              echo "clearing $key"
+              curl -sSf -X DELETE -H "Authorization: Bearer ${PHOTO_UPLOAD_TOKEN}" \
+                "${API_BASE}/api/photos/pending/$key" > /dev/null
+            else
+              echo "keeping $key staged (not ingested this run)"
+            fi
+          done
