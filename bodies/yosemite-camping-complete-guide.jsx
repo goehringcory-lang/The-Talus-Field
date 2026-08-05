@@ -24,11 +24,41 @@ window.ARTICLE_BODIES["yosemite-camping-complete-guide"] = function YosemiteCamp
       </p>
 
       <p>
-        <strong>The five-month window.</strong> On the 15th of each month at 7:00 AM Pacific time, reservations open for arrival dates five months out. January 15 releases May 15 through June 14 arrivals. This window covers the Valley campgrounds (Upper Pines, Lower Pines, North Pines), plus Wawona and Hodgdon Meadow. These sites sell out in minutes. Not figuratively. Literally within three to five minutes, the good dates are gone.
+        <strong>The five-month window.</strong> On the 15th of each month at 7:00 AM Pacific time, reservations open for arrival dates five months out, and each release covers exactly one calendar month. January 15 releases June 15 through July 14 arrivals. February 15 releases July 15 through August 14. If you want the second week of August, your date is March 15, and there is no earlier door. This window covers the Valley campgrounds (Upper Pines, Lower Pines, North Pines), plus Wawona and Hodgdon Meadow. These sites sell out in minutes. Not figuratively. Literally within three to five minutes, the good dates are gone.
       </p>
 
       <p>
-        Here is what the veterans do: create your recreation.gov account in advance, log in before 7 AM, have your dates and campground already decided. Do not browse. Add to cart and check out like your reservation depends on it, because it does. You get two reservations per session, but you can start over and book again.
+        One 2026 wrinkle worth knowing, because it is the kind of thing that quietly rearranges a plan: North Pines ran a one-time Early Access Lottery for the 2026 season. Applications were taken in late 2025, winners were drawn in December, and they could book anywhere in the 2026 season before anyone else. Whatever the lottery did not claim went back into the ordinary five-month releases starting with the February 15 on-sale. The lottery is over, so it does not change how you book North Pines now. It does explain why the campground looked thinner than usual on the first few on-sale mornings of the year, and it is a signal that the park is willing to experiment with the front end of this system. Check the campground's own page on recreation.gov before you plan a release morning around it.
+      </p>
+
+      <h3>Release day, step by step</h3>
+
+      <p>
+        The reservation is decided in the two minutes on either side of 7:00 AM Pacific, and almost all of the work that determines the outcome happens before then.
+      </p>
+
+      <p>
+        <strong>The week before.</strong> Create the recreation.gov account, confirm the email address, and save a payment method to it. An account created at 6:58 AM is an account that will ask you to verify an email at 7:01.
+      </p>
+
+      <p>
+        <strong>The night before.</strong> Decide the campground, the arrival date, the number of nights, and two fallback date ranges, in writing. Then open the campground's page on recreation.gov and read the Seasons and Fees tab. That tab carries the specific on-sale date and time for that campground, and it is the only authoritative version. Everything else, including this article, is a summary of it.
+      </p>
+
+      <p>
+        <strong>Five minutes out.</strong> Log in. Load the campground page with your dates already entered. Use one tab. A second tab racing the first does not double your odds, and the seconds you spend deciding which tab is further along are the seconds that cost you the site.
+      </p>
+
+      <p>
+        <strong>At 7:00.</strong> Refresh once. Take the first available site that fits your party and go straight to checkout. Do not open site photos. Do not compare loop numbers. A site you are holding is worth more than a better site you lost while reading about it, and you can move later if a cancellation opens something you like more.
+      </p>
+
+      <p>
+        <strong>If the page stalls.</strong> A high-demand on-sale can leave you looking at a spinner while the system works through the request. Wait it out rather than hammering reload. A reload throws away a request that may have been about to succeed.
+      </p>
+
+      <p>
+        <strong>If you miss.</strong> Stay on the page for another ten minutes. Sites that go into a cart and never get paid for return to the pool, so a campground that reads sold out at 7:03 is not always sold out at 7:12. After that, the cancellation game below is the whole strategy.
       </p>
 
       <p>
@@ -40,7 +70,11 @@ window.ARTICLE_BODIES["yosemite-camping-complete-guide"] = function YosemiteCamp
       </p>
 
       <p>
-        <strong>What it costs.</strong> Valley campgrounds run $36 per night, and so do most of the campgrounds outside the Valley (Wawona, Hodgdon Meadow, Crane Flat, Bridalveil Creek, White Wolf, Tuolumne Meadows). The primitive campgrounds (Tamarack Flat, Yosemite Creek, Porcupine Flat) are $24 per night. Camp 4 is $10 per person per night. If you are wondering what Yosemite camping costs in total, figure on the campsite fee plus the $35 park entrance fee per vehicle. Housekeeping Camp, which is more of a canvas-tent structure than a traditional campsite, is its own category and price. There are no hookups anywhere in the park. Not electric, not water, not sewer. A free dump station exists in the Valley for RVs, which can be up to 35 to 40 feet depending on the campground.
+        <strong>What it costs.</strong> Valley campgrounds run $36 per night, and so do most of the campgrounds outside the Valley (Wawona, Hodgdon Meadow, Crane Flat, Bridalveil Creek, White Wolf, Tuolumne Meadows). The primitive campgrounds (Tamarack Flat, Yosemite Creek, Porcupine Flat) are $24 per night. Camp 4 is $10 per person per night in season. Housekeeping Camp, which is more of a canvas-tent structure than a traditional campsite, is its own category and price. There are no hookups anywhere in the park. Not electric, not water, not sewer. A free dump station exists in the Valley for RVs, which can be up to 35 to 40 feet depending on the campground.
+      </p>
+
+      <p>
+        <strong>What it costs to get in.</strong> On top of the campsite, the park entrance fee is $35 per non-commercial vehicle and covers seven days. Motorcycles are $30. Arriving on foot or by bicycle is $20 per person. An America the Beautiful annual pass covers the entrance fee outright and pays for itself on the second park of the year. New as of January 1, 2026: visitors who are not U.S. residents, ages 16 and older, pay an additional $100 per person, valid for the same seven days. If your group is a mix, budget for it before you are at the gate, because the entrance station is a bad place to discover a fee.
       </p>
 
       <p>
@@ -54,7 +88,7 @@ window.ARTICLE_BODIES["yosemite-camping-complete-guide"] = function YosemiteCamp
       </p>
 
       <p>
-        Cancellations happen constantly. People's plans change. Recreation.gov's cancellation policy charges a $10 fee if you cancel more than 48 hours out; within 48 hours, you lose the first night plus the $10 fee. This means there are predictable windows when cancellations spike.
+        Cancellations happen constantly. People's plans change. Recreation.gov's standard camping policy charges a service fee to cancel, and cancelling close to the arrival date costs the first night's fee on top of it, so the penalty grows as the trip approaches. Confirm the exact terms on your own reservation before you rely on them, because they are set per facility and they change. What matters for a camper without a site is the behavior that policy produces: people cancel in waves, and the waves are predictable.
       </p>
 
       <p>
@@ -132,7 +166,7 @@ window.ARTICLE_BODIES["yosemite-camping-complete-guide"] = function YosemiteCamp
       </p>
 
       <p>
-        Reservations open one week in advance on a rolling daily basis. During peak season, it still sells out. In winter, it goes first-come, first-served and becomes one of the easier ways to camp in the Valley.
+        Reservations open one week in advance on a rolling daily basis, and they are required for most of the year. In 2026 the reservation season runs from April 15 through November 9. Outside those dates it goes first-come, first-served, which makes winter one of the easier ways to camp in the Valley. During peak season it still sells out at 7 AM like everything else.
       </p>
 
       <p>
@@ -196,17 +230,21 @@ window.ARTICLE_BODIES["yosemite-camping-complete-guide"] = function YosemiteCamp
       <h2>The high country</h2>
 
       <p>
-        When the Tioga Road opens, usually by late June or early July depending on snowpack, the high country campgrounds come online. These are a different experience entirely. The air is thinner. The nights are colder. The landscape shifts from the Valley's granite-and-forest drama to something more exposed, more alpine, more honest about what the Sierra Nevada actually is.
+        Plowing on the Tioga Road starts around the middle of April and takes a month or two, which usually puts the opening in late May or early June, though a heavy winter or a late storm can push it well past that. In 2026 the road opened on May 15, the earliest in sixteen years. The road opening is not the campground opening. The high country campgrounds come online in the weeks that follow, once water and sanitation are running, and July is the honest planning assumption for most of them. These are a different experience entirely. The air is thinner. The nights are colder. The landscape shifts from the Valley's granite-and-forest drama to something more exposed, more alpine, more honest about what the Sierra Nevada actually is.
       </p>
 
       <h3>Tuolumne Meadows</h3>
 
       <p>
-        Tuolumne Meadows Campground has two hundred and eighty-nine sites at 8,600 feet after a $26 million renovation that wrapped up in August 2025. It is the crown jewel of the high country. The meadows stretch wide and golden, the Tuolumne River winds through them, and the granite domes are smoother and rounder than the Valley's cliffs.
+        Tuolumne Meadows Campground reopened on August 1, 2025, after a three-year, $26 million rehabilitation that closed it from 2022 on. It is the largest campground in the park: 336 standard and hike-in sites at 8,600 feet, plus backpacker, group, and horse sites, with rebuilt restrooms and new water and sewer systems. Twenty-nine of the sites are new hike-in sites, which is the closest thing to backcountry camping you can do with a car in the parking lot. It is the crown jewel of the high country. The meadows stretch wide and golden, the Tuolumne River winds through them, and the granite domes are smoother and rounder than the Valley's cliffs.
       </p>
 
       <p>
         Half the sites book on the two-month window (released on the 15th), half on the two-week rolling window. The campground has flush toilets and drinking water. The Tuolumne Meadows store and grill are nearby.
+      </p>
+
+      <p>
+        Plan for more competition here than the site count suggests. This is one of the first full seasons the campground has been bookable since 2021, and several years of people who wanted Tuolumne and could not have it are all pointed at the same inventory. The two-month window is a smaller crowd than the Valley's five-month scramble, but it is not an empty one.
       </p>
 
       <p>
@@ -228,7 +266,7 @@ window.ARTICLE_BODIES["yosemite-camping-complete-guide"] = function YosemiteCamp
       </p>
 
       <p>
-        The campground books on the two-week rolling window. Open roughly July through early September.
+        The campground books on the two-week rolling window. The season is short and the dates move: a mid-July opening into mid-September is the working assumption, but the park treats those dates as tentative until the road is open and the facilities are ready. Do not book flights around them.
       </p>
 
       <h3>Bridalveil Creek</h3>
@@ -297,6 +335,10 @@ window.ARTICLE_BODIES["yosemite-camping-complete-guide"] = function YosemiteCamp
 
       <p>
         The protocol at camp is straightforward. Cook and eat at your picnic table. Clean up immediately. Wash dishes and dispose of gray water in the designated areas. Put everything back in the bear box before you walk away, every time, even if you are just going to the bathroom. Bears are opportunistic. They need minutes, not hours.
+      </p>
+
+      <p>
+        The bear box is the campground rule. The backcountry rule is a bear canister, required for overnight wilderness trips in Yosemite, and it is not optional or negotiable. Canisters can be rented in the park. If your camping trip has a night in the wilderness attached to it, sort the canister out before you are at the trailhead.
       </p>
 
       <p>
@@ -381,6 +423,16 @@ window.ARTICLE_BODIES["yosemite-camping-complete-guide"] = function YosemiteCamp
         The <a href="/articles/yosemite-gateway-towns-compared">gateway towns</a> each have their character. El Portal is closest to the Valley. Mariposa has more services. Groveland is quieter. Fish Camp puts you near the Mariposa Grove. If the trip has collapsed into "we need a roof tonight," <AvailabilityLink destination="Mariposa, California" list="article_inline" slug="yosemite-camping-complete-guide" name="Mariposa lodging search">a live search of Mariposa motels</AvailabilityLink> is the two-minute version of that decision.
       </p>
 
+      <h3>Walk in through the wilderness desk</h3>
+
+      <p>
+        The park's backpackers campgrounds are a separate inventory that almost nobody shopping for a campsite thinks to look at, because you cannot book them directly. They exist for wilderness permit holders, for the night before a trip starts and the night after it ends, and they are priced per person rather than per site. The permit is the key. If you were open to a night or two in the backcountry anyway, a wilderness permit solves the trailhead night at both ends, and permits move on their own release schedule with their own cancellations, entirely separate from the campground scramble that just defeated you.
+      </p>
+
+      <p>
+        This is not a loophole. It is a real trip with a pack on it, and the food storage rules in the backcountry are stricter than the campground ones: a bear canister, not a bear box, and you carry it. But for a party that can walk, it is often the shortest path from no reservation to sleeping inside the park.
+      </p>
+
       <h3>Housekeeping Camp and lodges</h3>
 
       <p>
@@ -398,7 +450,7 @@ window.ARTICLE_BODIES["yosemite-camping-complete-guide"] = function YosemiteCamp
       </p>
 
       <p>
-        <strong>May and early June</strong> are peak waterfall season. The Valley campgrounds are open and bookable, but midweek availability is often findable without the 7 AM scramble. Nights are cool, and the high country is still under snow. The Tioga Road is usually closed until late June. This means Tuolumne, White Wolf, and everything along that corridor is inaccessible.
+        <strong>May and early June</strong> are peak waterfall season. The Valley campgrounds are open and bookable, but midweek availability is often findable without the 7 AM scramble. Nights are cool, and the high country is still under snow. The Tioga Road typically opens in late May or early June, and the campgrounds along it lag the road by weeks. Plan a May or early June trip as if Tuolumne, White Wolf, and everything on that corridor is unavailable, and treat an early opening as a bonus rather than an itinerary.
       </p>
 
       <p>
