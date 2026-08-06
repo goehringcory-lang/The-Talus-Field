@@ -23,7 +23,10 @@
 // Untagged articles (no tag in any facet) are reported as a warning, not an
 // error: the natural-history essays answer no logistics question and giving one
 // a topic tag to fill the blank would put it in front of a reader who asked
-// about permits.
+// about permits. An article that is meant to carry no tag at all is declared in
+// window.INTENT_NO_TAGS with its reason and stops warning, so the warning keeps
+// meaning "somebody forgot" instead of being permanent background noise. A
+// declaration that no longer matches the tags (or the catalog) is an error.
 
 import { readFileSync } from "node:fs";
 import path from "node:path";
@@ -87,6 +90,8 @@ for (const slug of taggedSlugs) {
   }
 }
 
+const declaredBlank = new Set(Object.keys(w.INTENT_NO_TAGS || {}));
+
 let untagged = 0;
 for (const slug of taggedSlugs) {
   const entry = w.ARTICLE_INTENT[slug];
@@ -114,13 +119,33 @@ for (const slug of taggedSlugs) {
   for (const key of Object.keys(entry)) {
     if (!FACET_IDS.includes(key)) errors.push(`"${slug}" carries unknown facet "${key}"`);
   }
-  if (total === 0) {
+  // No tag anywhere means no filter can reach the article. That is a warning
+  // unless INTENT_NO_TAGS says it was meant, which is what keeps the warning
+  // worth reading: a permanent one hides the next article added without tags.
+  if (total === 0 && !declaredBlank.has(slug)) {
     untagged++;
     if (VERBOSE) warnings.push(`"${slug}" carries no tags in any facet: no filter can reach it`);
+  }
+  // A declaration that stopped being true is worse than none: it silences the
+  // warning for an article that now has tags, so the reason nobody can see is
+  // also the reason nobody rechecks.
+  if (total > 0 && declaredBlank.has(slug)) {
+    errors.push(`INTENT_NO_TAGS declares "${slug}" deliberately untagged, but it carries tags — drop the declaration`);
   }
 }
 if (untagged && !VERBOSE) {
   warnings.push(`${untagged} article${untagged === 1 ? " carries" : "s carry"} no tags in any facet (run with --verbose to list them)`);
+}
+for (const slug of declaredBlank) {
+  if (!catalogSlugs.has(slug)) {
+    errors.push(`INTENT_NO_TAGS declares "${slug}", which is not in window.ARTICLES`);
+  } else if (!taggedSlugs.includes(slug)) {
+    errors.push(`INTENT_NO_TAGS declares "${slug}", which has no ARTICLE_INTENT entry at all`);
+  }
+  const reason = w.INTENT_NO_TAGS[slug];
+  if (typeof reason !== "string" || reason.trim().length < 20) {
+    errors.push(`INTENT_NO_TAGS["${slug}"] needs a reason, not a placeholder`);
+  }
 }
 
 // Every facet option should reach at least one article, or the chip renders
