@@ -11,7 +11,7 @@ window.ARTICLE_BODIES["yosemite-without-reservations-2026"] = function YosemiteW
       <p>
         The reservation system, for all its faults, was a throttle. It capped the number of vehicles that could enter the park during peak hours. Without it, that cap is gone. The expected result, based on what park staff have been saying publicly and what the Yosemite Conservancy has flagged in its planning advisories, is the heaviest crowds Yosemite has seen since the last un-throttled summers. The 2024 and 2025 seasons, with reservations, set a baseline. 2026 is going to push past it.
       </p>
-      <p>This is not a reason not to visit. It is a reason to visit smart. (If it's your first trip, the <a href="/articles/first-time-yosemite-overwhelm">first-timer's guide</a> is the broader-strategy companion.)</p>
+      <p>This is not a reason not to visit. It is a reason to visit smart. (If it's your first trip, the <a href="/articles/first-time-yosemite-overwhelm">first-timer's guide</a> is the broader-strategy companion. If you are already in the park holding nothing, skip ahead to <a href="/articles/yosemite-walk-up-and-day-of-permits">what you can still get today</a>.)</p>
       <p>One thing did change at the gate, and it is not about crowds. As of January 1, 2026, international visitors pay a $100 surcharge per person age 16 and older, on top of the standard entrance fee. A $250 nonresident annual pass waives it. Domestic visitors are unaffected.</p>
       <p>
         Here is the actual strategy. Not the generic "go early" advice that's already on every tourism blog. The real version, with specific timing, alternatives, and contingencies for when your first plan doesn't work.

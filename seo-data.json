@@ -1,5 +1,128 @@
 {
   "__comment": "SEO enrichment for the editorial site, keyed by article slug. NOT loaded by the browser runtime (kept out of data.js so the per-page JS payload stays small). The build script scripts/gen-seo-artifacts.mjs merges this with window.ARTICLES from data.js to regenerate articles.json (consumed by functions/_middleware.js), sitemap.xml, feed.xml, and the article section of llms.txt. Fields: wordCount (number), keywords (string[]), faq ({q,a}[]), trail ({name,distance,elevationGain,difficulty} for hike guides). FAQ answers and trail numbers are drawn from each article's published body; do not invent facts. The one article whose faq lives inline in data.js (yosemite-in-one-or-two-days) is intentionally omitted here; data.js takes precedence for faq.",
+  "yosemite-valley-parking-guide": {
+    "wordCount": 2200,
+    "keywords": [
+      "Yosemite Valley parking",
+      "where to park in Yosemite",
+      "Yosemite Village parking",
+      "Yosemite Falls parking",
+      "Curry Village parking",
+      "Yosemite parking full",
+      "Yosemite Valley day use parking",
+      "Yosemite RV parking rules",
+      "Yosemite accessible parking placard",
+      "Yosemite Valley traffic"
+    ],
+    "faq": [
+      {
+        "q": "Where do you park in Yosemite Valley?",
+        "a": "Yosemite Valley has three day-use parking areas: Yosemite Village, Yosemite Falls on Northside Drive by Yosemite Valley Lodge, and Curry Village in the east Valley. The Park Service's own advice is to park at one of the three and then see the Valley by free shuttle, bike path, and trail. If you have no particular plan, aim at Yosemite Village, because it is the hub the shuttle radiates from."
+      },
+      {
+        "q": "What time does parking fill up in Yosemite Valley?",
+        "a": "The Park Service does not name an hour, only that during the busy summer season, especially on weekends, parking fills early. It names a window instead: most vehicle congestion happens between 10 a.m. and 6 p.m., with an official recommendation to be inside the park before 9 a.m. or to arrive after 5 p.m. Treat that as the outer bound. On a busy day the lots fill before the congestion window opens, so be through the gate by 8 a.m., and before 7 on a summer weekend. On a July or August Saturday the Valley lots are effectively gone by mid-morning; on a Tuesday in October you can often park at noon."
+      },
+      {
+        "q": "What do you do if Yosemite Valley parking is full?",
+        "a": "Stop circling and take the next legal space you see, even in the wrong lot, because a shuttle ride costs less time than another lap. If everything is full, leave and come back at five, when the day-trippers are going home. Or go somewhere that is not the Valley: promoting recreation outside Yosemite Valley is now part of the park's own congestion strategy."
+      },
+      {
+        "q": "Is there parking at the Mist Trail trailhead?",
+        "a": "No. Happy Isles, where the Mist Trail begins, is a shuttle stop rather than a parking area, and Mirror Lake is the same. Most of the Valley's famous trailheads have no lot at all. Park in one of the three day-use lots and ride to the trailhead."
+      },
+      {
+        "q": "Do you need a reservation to drive into Yosemite in 2026?",
+        "a": "No. There is no day-use or peak-hours vehicle reservation for 2026, including the February weekends for Horsetail Fall, which carried one for four straight years before this season. The park replaced it with operational measures: real-time traffic monitoring, active parking management in the Valley, more staff at key intersections at peak periods, road-condition alerts, and a push toward weekday visits and toward areas outside Yosemite Valley."
+      },
+      {
+        "q": "Can you park an RV in Yosemite Valley?",
+        "a": "Vehicles over 45 feet are not permitted on the roads into Yosemite Valley at all. Highway 140 through the Merced canyon is the forgiving approach, with no tunnels and roughly 60 feet of combined length allowed; the tunnels on Highways 41 and 120 drop to about 10 feet 2 inches of clearance at the curb. In the Valley, Curry Village has RV parking near its eastbound shuttle stop, but the better answer is to leave the rig at the campground and take the shuttle."
+      }
+    ]
+  },
+  "yosemite-shuttle-and-yarts": {
+    "wordCount": 1825,
+    "keywords": [
+      "Yosemite Valley shuttle",
+      "Yosemite shuttle hours",
+      "Valleywide Shuttle",
+      "East Valley Shuttle",
+      "YARTS bus Yosemite",
+      "YARTS schedule and fares",
+      "bus from Merced to Yosemite",
+      "Yosemite without a car",
+      "Mariposa Grove shuttle",
+      "Yosemite public transportation"
+    ],
+    "faq": [
+      {
+        "q": "Is the Yosemite Valley shuttle free?",
+        "a": "Yes. There is no ticket, pass, or reservation. You stand at a marked stop, board, and get off wherever you like. It runs daily from 7 a.m. to 10 p.m."
+      },
+      {
+        "q": "How often does the Yosemite Valley shuttle run?",
+        "a": "There are two routes, both starting from Yosemite Village. The Valleywide Shuttle covers roughly nineteen stops across the whole Valley and comes about every 22 to 32 minutes. The East Valley Shuttle is a shorter loop serving Yosemite Village, Curry Village, the Pines campgrounds, and the east-Valley trailheads, and comes about every 18 to 22 minutes."
+      },
+      {
+        "q": "Does the YARTS fare include the Yosemite entrance fee?",
+        "a": "The two official sources currently disagree. Park Service pages say riders arriving by YARTS do not pay the entrance fee, while the YARTS fares page says applicable Yosemite entrance and non-resident fees are not included and remain each passenger's responsibility. Budget as though you will pay it, and treat being waved through as a bonus. If you hold an America the Beautiful pass the question is moot."
+      },
+      {
+        "q": "How do you get to Yosemite without a car?",
+        "a": "YARTS runs year-round on Highway 140 from the Amtrak station in Merced, through Mariposa, Midpines, and El Portal, about two and a half hours to Yosemite Valley. Seasonal routes run from Fresno on Highway 41, Sonora on Highway 120, and Mammoth Lakes and Lee Vining over Tioga Pass. All of them set down in the Valley on the free shuttle line."
+      },
+      {
+        "q": "Do you have to take the shuttle to Mariposa Grove?",
+        "a": "In season, effectively yes. When the free grove shuttle is running, the road above the Welcome Plaza is closed to private cars, so you park at the plaza and ride about two miles up, with buses roughly every fifteen minutes. A vehicle displaying a disability placard may drive the grove road instead."
+      },
+      {
+        "q": "Is taking the bus cheaper than driving to Yosemite?",
+        "a": "For one or two people on a Valley-focused trip, yes: a Merced round trip runs in the mid-forties for an adult at current summer rates, against fuel, the entrance fee, and the parking problem. For a family of four it usually is not, because four per-person fares cost several times a single vehicle entrance fee. Driving also wins for dawn starts and for trips spread across Glacier Point, Tuolumne, and Hetch Hetchy."
+      }
+    ]
+  },
+  "yosemite-walk-up-and-day-of-permits": {
+    "wordCount": 2006,
+    "keywords": [
+      "Yosemite walk-up permits",
+      "same day Yosemite permit",
+      "day of Half Dome permit",
+      "Half Dome daily lottery",
+      "last minute Yosemite wilderness permit",
+      "Yosemite permits without a reservation",
+      "Camp 4 same day",
+      "Yosemite camping without a reservation",
+      "do you need a permit to hike in Yosemite",
+      "Yosemite wilderness center walk in"
+    ],
+    "faq": [
+      {
+        "q": "Can you get a Yosemite wilderness permit the same day?",
+        "a": "Not online. Forty percent of each trailhead's daily quota is released on Recreation.gov at 7 a.m. Pacific seven days before the entry date, and the park's published reservation window stops taking online bookings a few days out, three by its own reckoning, so there is no booking tonight for a walk that starts tomorrow. Past that cutoff, unclaimed quota can be issued in person at a wilderness center on the start date, but the Park Service's own warning is that few, if any, unused permits will be available. Ask the desk what exists rather than naming the trailhead you wanted."
+      },
+      {
+        "q": "Do you need a permit to day hike in Yosemite?",
+        "a": "No, with one exception. Every trail in the park is open without a permit today, including the Mist Trail, Yosemite Falls, the Four Mile, Cathedral Lakes, and Clouds Rest. The exception is Half Dome whenever the cables are up."
+      },
+      {
+        "q": "Can you hike Half Dome without a permit?",
+        "a": "No. Permits are required every day the cables are up, rangers check them at a checkpoint below the subdome, and hiking past it without one is a citation. You can hike to the base of the subdome without a permit, and the view from there is worth the walk."
+      },
+      {
+        "q": "How does the Half Dome daily lottery work?",
+        "a": "Alongside the March preseason lottery, Yosemite runs a daily lottery every day the cables are up. You apply on Recreation.gov two days before you want to hike, in a window running from midnight to 4 p.m. Pacific, and results arrive by email that evening. It costs $10 per application plus $10 per person if you win, and each day's application is an independent shot, so a week-long trip is several attempts."
+      },
+      {
+        "q": "Are Yosemite wilderness permits free in winter?",
+        "a": "Roughly November through April the quota season ends and wilderness permits become free, unlimited, and self-issued at trailhead registers. No lottery, no Recreation.gov, no counter. It is the largest gap between how hard the park looks to get into and how easy it actually is, though the weather that opens the door also makes the walking serious."
+      },
+      {
+        "q": "Can you camp in Yosemite without a reservation?",
+        "a": "It is the hardest same-day problem in the park. Camp 4 is the Valley's walk-in campground, but during the reservation season its sites release on Recreation.gov on a rolling seven-day window at 7 a.m. Pacific rather than by a queue, reverting to first come, first served outside it. That is the shortest booking horizon of any campground in the park. Cancellations released continuously on Recreation.gov are the real inventory, especially in the evening. National forest campgrounds along every approach highway are the reliable fallback, and several are first come, first served."
+      }
+    ]
+  },
   "yosemite-in-fall": {
     "wordCount": 2560,
     "keywords": [
@@ -493,7 +616,7 @@
       },
       {
         "q": "Can I get to Yosemite without a car?",
-        "a": "Yes. YARTS buses run into Yosemite Valley year-round on Highway 140, connecting from the Amtrak station in Merced through Mariposa and El Portal, and seasonally, roughly May through September, from Fresno on Highway 41, Sonora on Highway 120, and Mammoth Lakes and Lee Vining on Highway 395. The fare includes the park entrance fee, and the free Valley shuttle takes over once you arrive."
+        "a": "Yes. YARTS buses run into Yosemite Valley year-round on Highway 140, connecting from the Amtrak station in Merced through Mariposa and El Portal, and seasonally, roughly May through September, from Fresno on Highway 41, Sonora on Highway 120, and Mammoth Lakes and Lee Vining on Highway 395. The free Valley shuttle takes over once you arrive. Whether the fare covers the park entrance fee is currently unsettled: the Park Service says bus riders do not pay it, while the YARTS fares page says it is not included, so budget for it."
       }
     ]
   },

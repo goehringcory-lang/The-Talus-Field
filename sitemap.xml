@@ -5,7 +5,7 @@
   <!-- Hub pages -->
   <url>
     <loc>https://thetalusfieldjournal.com/</loc>
-    <lastmod>2026-08-02</lastmod>
+    <lastmod>2026-08-06</lastmod>
     <image:image>
       <image:loc>https://thetalusfieldjournal.com/img/responsive/half-dome-main-photo-1600.jpg</image:loc>
       <image:title>Half Dome at first light</image:title>
@@ -13,7 +13,7 @@
   </url>
   <url>
     <loc>https://thetalusfieldjournal.com/articles</loc>
-    <lastmod>2026-08-02</lastmod>
+    <lastmod>2026-08-06</lastmod>
   </url>
   <url>
     <loc>https://thetalusfieldjournal.com/planning</loc>
@@ -31,7 +31,7 @@
   <!-- Sections -->
   <url>
     <loc>https://thetalusfieldjournal.com/section/planning</loc>
-    <lastmod>2026-08-01</lastmod>
+    <lastmod>2026-08-06</lastmod>
   </url>
   <url>
     <loc>https://thetalusfieldjournal.com/section/trails</loc>
@@ -43,7 +43,7 @@
   </url>
   <url>
     <loc>https://thetalusfieldjournal.com/section/seasonal</loc>
-    <lastmod>2026-08-02</lastmod>
+    <lastmod>2026-08-06</lastmod>
   </url>
 
   <!-- Static pages -->
@@ -142,6 +142,30 @@
 
   <!-- Articles -->
   <url>
+    <loc>https://thetalusfieldjournal.com/articles/yosemite-valley-parking-guide</loc>
+    <lastmod>2026-08-06</lastmod>
+    <image:image>
+      <image:loc>https://thetalusfieldjournal.com/img/cars-on-meadow-edge-cory-goehring.jpg</image:loc>
+      <image:title>Cars parked along the edge of a Yosemite Valley meadow on a crowded weekend</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://thetalusfieldjournal.com/articles/yosemite-shuttle-and-yarts</loc>
+    <lastmod>2026-08-05</lastmod>
+    <image:image>
+      <image:loc>https://thetalusfieldjournal.com/img/merced-canyon-road-cory-goehring.jpg</image:loc>
+      <image:title>Highway 140 following the Merced River canyon, the year-round YARTS route into Yosemite Valley</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://thetalusfieldjournal.com/articles/yosemite-walk-up-and-day-of-permits</loc>
+    <lastmod>2026-08-04</lastmod>
+    <image:image>
+      <image:loc>https://thetalusfieldjournal.com/img/half-dome-valley-vista.jpg</image:loc>
+      <image:title>Half Dome above the Yosemite Valley floor, the one hike in the park with no walk-up permit option</image:title>
+    </image:image>
+  </url>
+  <url>
     <loc>https://thetalusfieldjournal.com/articles/yosemite-in-fall</loc>
     <lastmod>2026-08-02</lastmod>
     <image:image>
@@ -207,7 +231,7 @@
   </url>
   <url>
     <loc>https://thetalusfieldjournal.com/articles/yosemite-in-winter</loc>
-    <lastmod>2026-07-12</lastmod>
+    <lastmod>2026-08-06</lastmod>
     <image:image>
       <image:loc>https://thetalusfieldjournal.com/img/el-capitan-winter.jpg</image:loc>
       <image:title>El Capitan under fresh snow as a winter storm clears above the Valley floor</image:title>
@@ -239,7 +263,7 @@
   </url>
   <url>
     <loc>https://thetalusfieldjournal.com/articles/getting-to-yosemite</loc>
-    <lastmod>2026-07-12</lastmod>
+    <lastmod>2026-08-06</lastmod>
     <image:image>
       <image:loc>https://thetalusfieldjournal.com/img/merced-canyon-road-cory-goehring.jpg</image:loc>
       <image:title>Highway 140 following the Merced River canyon toward the Arch Rock entrance</image:title>
@@ -327,7 +351,7 @@
   </url>
   <url>
     <loc>https://thetalusfieldjournal.com/articles/yosemite-in-june-2026</loc>
-    <lastmod>2026-06-02</lastmod>
+    <lastmod>2026-08-06</lastmod>
     <image:image>
       <image:loc>https://thetalusfieldjournal.com/img/yosemite-falls-spring-blossoms-cory-goehring.jpg</image:loc>
       <image:title>Upper Yosemite Fall framed by spring blossoms from the Valley floor</image:title>
@@ -367,7 +391,7 @@
   </url>
   <url>
     <loc>https://thetalusfieldjournal.com/articles/yosemite-in-one-or-two-days</loc>
-    <lastmod>2026-07-20</lastmod>
+    <lastmod>2026-08-06</lastmod>
     <image:image>
       <image:loc>https://thetalusfieldjournal.com/img/taft-point.jpg</image:loc>
       <image:title>The cliff edge at Taft Point, El Capitan across the valley</image:title>
@@ -383,7 +407,7 @@
   </url>
   <url>
     <loc>https://thetalusfieldjournal.com/articles/yosemite-with-kids-no-reservations-2026</loc>
-    <lastmod>2026-08-01</lastmod>
+    <lastmod>2026-08-06</lastmod>
     <image:image>
       <image:loc>https://thetalusfieldjournal.com/img/mariposa-grove.jpg</image:loc>
       <image:title>Giant sequoias in the Mariposa Grove, a family favorite</image:title>
@@ -487,7 +511,7 @@
   </url>
   <url>
     <loc>https://thetalusfieldjournal.com/articles/yosemite-for-non-hikers</loc>
-    <lastmod>2026-04-26</lastmod>
+    <lastmod>2026-08-06</lastmod>
     <image:image>
       <image:loc>https://thetalusfieldjournal.com/img/tunnel-view.jpg</image:loc>
       <image:title>Tunnel View from the overlook parking</image:title>
@@ -519,7 +543,7 @@
   </url>
   <url>
     <loc>https://thetalusfieldjournal.com/articles/yosemite-without-reservations-2026</loc>
-    <lastmod>2026-07-20</lastmod>
+    <lastmod>2026-08-06</lastmod>
     <image:image>
       <image:loc>https://thetalusfieldjournal.com/img/cathedral-beach-quiet-picnic.jpg</image:loc>
       <image:title>Cathedral Rocks reflected in the Merced River at Cathedral Beach</image:title>

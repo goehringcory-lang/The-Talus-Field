@@ -64,7 +64,7 @@ window.ARTICLE_BODIES["yosemite-with-kids-no-reservations-2026"] = function Yose
       </p>
 
       <p>
-        <strong>The YARTS bus move.</strong> Here's the insider tip most guides skip. YARTS (the regional bus system) runs from Mariposa, El Portal, and other gateway towns directly into Yosemite Valley. Kids 12 and under ride free. You skip the parking fight entirely, arrive relaxed, and get dropped off right in the Village. Check the YARTS schedule the night before. Buses run several times a day in summer. This is the single best logistics hack for families, and almost nobody uses it.
+        <strong>The YARTS bus move.</strong> Here's the insider tip most guides skip. YARTS (the regional bus system) runs from Mariposa, El Portal, and other gateway towns directly into Yosemite Valley. Children under five ride free, and one child aged six to twelve rides free with each full-fare adult, so check the count against your group before assuming the whole back seat travels free. You skip the parking fight entirely, arrive relaxed, and get dropped off right in the Village. Check the YARTS schedule the night before. Buses run several times a day in summer. This is the single best logistics hack for families, and almost nobody uses it.
       </p>
 
       <h2>Your first two hours</h2>
@@ -187,7 +187,7 @@ window.ARTICLE_BODIES["yosemite-with-kids-no-reservations-2026"] = function Yose
       <ul>
         <li>Arrive before 9 AM (8 AM weekends)</li>
         <li>Leave gateway town by 7:15 AM from Mariposa, 7:00 from Oakhurst, 6:45 from Groveland</li>
-        <li>YARTS bus from Mariposa: kids 12 and under ride free</li>
+        <li>YARTS bus from Mariposa: free for children under five, plus one child aged six to twelve per full-fare adult</li>
       </ul>
 
       <h3>Pack tonight</h3>
