@@ -43,14 +43,14 @@ window.ARTICLE_BODIES["yosemite-walk-up-and-day-of-permits"] = function Yosemite
         <strong>Fishing.</strong> No park permit, but a California fishing license is required for anyone sixteen and older, and non-resident short-term licenses exist. Buy it in the park stores or in a gateway town.
       </p>
 
-      <h2>The wilderness permit, and the three-day wall</h2>
+      <h2>The wilderness permit, and where the internet stops helping</h2>
 
       <p>
         If you want to sleep out in the backcountry, you need a wilderness permit, and this is where the day-of picture gets specific. Yosemite splits every trailhead's daily quota in two. Sixty percent is awarded in advance through the lottery that opens twenty-four weeks out. The other forty percent is held back and released on Recreation.gov at 7 a.m. Pacific, seven days before the entry date, first come first served. <a href="/articles/yosemite-wilderness-permits-guide">The full permit guide</a> covers how to play that release properly.
       </p>
 
       <p>
-        Here is the part that matters if you are already here, and it is the detail that catches people. Those last-minute permits stay bookable until they sell out, but the online window closes about three days ahead of the entry date. That means there is no such thing as booking tonight for tomorrow morning. The internet stops helping you seventy-two hours out.
+        Here is the part that matters if you are already here, and it is the detail that catches people. Those last-minute permits stay bookable until they sell out, but not right up to the start date. The park's published reservation window stops taking online bookings a few days out, three by its own reckoning, and whatever the exact cutoff is on the day you look, the practical rule does not move: there is no booking tonight for a walk that starts tomorrow morning. Once you are inside that window, the counter at a wilderness center is the only door left.
       </p>
 
       <p>
@@ -108,7 +108,7 @@ window.ARTICLE_BODIES["yosemite-walk-up-and-day-of-permits"] = function Yosemite
       </p>
 
       <p>
-        <strong>Camp 4</strong> is the Valley's walk-in campground and the closest thing to a day-of option in the Valley, but it is no longer a queue at a kiosk in the main season. It is allocated through Recreation.gov on a short-notice basis, and the park has run more than one mechanism for it in recent years, including a next-day lottery that closes the afternoon before arrival. Outside the reservation season it reverts to first come, first served, which is one of the quiet arguments for a winter trip. Check the campground's own page the day you need it rather than trusting anything written in advance, including this.
+        <strong>Camp 4</strong> is the Valley's walk-in campground and the closest thing to a short-notice option here, but it is no longer a queue at a kiosk during the reservation season. Sites release on Recreation.gov on a rolling seven-day window, at 7 a.m. Pacific, and they go fast. That is the shortest booking horizon of any campground in the park, which makes it the one worth setting an alarm for if your trip is long enough to reach seven days out. Outside the reservation season it reverts to first come, first served, which is one of the quiet arguments for a winter trip. The park has changed how it allocates Camp 4 more than once, so check the campground's own page the day you need it rather than trusting anything written in advance, including this.
       </p>
 
       <p>
@@ -133,8 +133,8 @@ window.ARTICLE_BODIES["yosemite-walk-up-and-day-of-permits"] = function Yosemite
 
       <ol>
         <li>Entry, day hiking, ranger programs, Mariposa Grove, Glacier Point, and day climbing need no permit today.</li>
-        <li>Wilderness permits: forty percent releases 7 a.m. Pacific seven days out, and the online window closes about three days before entry.</li>
-        <li>Inside three days it is in-person unclaimed quota only, and the Park Service warns there will be few if any. Ask what exists, not what you wanted.</li>
+        <li>Wilderness permits: forty percent releases at 7 a.m. Pacific seven days out, and online booking closes a few days before your entry date, not on it.</li>
+        <li>Past that cutoff it is in-person unclaimed quota only, and the Park Service warns there will be few if any. Ask what exists, not what you wanted.</li>
         <li>November through April, wilderness permits are free and self-issued at the trailhead.</li>
         <li>Half Dome has a daily lottery: apply two days ahead, midnight to 4 p.m. Pacific. There is no walk-up and the checkpoint is staffed.</li>
         <li>Same-day camping means Recreation.gov cancellations, Camp 4's short-notice allocation, or a national forest campground outside the park.</li>
