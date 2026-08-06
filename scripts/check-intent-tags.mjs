@@ -163,6 +163,19 @@ for (const m of w.TRIP_MONTHS) {
     errors.push(`TRIP_MONTHS "${m.key}" reads "${m.read}", which ARTICLE_MONTHS excludes from ${m.key}`);
   }
 }
+// Over-tagging is the opposite failure from under-tagging and just as quiet: a
+// month whose in-season archive has collapsed hands its visitors a thin plan and
+// a filter bar of dead chips, with nothing at runtime to say why.
+const MIN_IN_SEASON = Math.ceil(articles.length * 0.6);
+for (const m of w.TRIP_MONTHS) {
+  const n = articles.filter((a) => w.articleFitsMonth(a.slug, m.key)).length;
+  if (n < MIN_IN_SEASON) {
+    errors.push(
+      `ARTICLE_MONTHS leaves only ${n} of ${articles.length} entries in season for ${m.key} ` +
+        `(floor ${MIN_IN_SEASON}): the month table has been over-applied`
+    );
+  }
+}
 
 const itineraryIds = new Set((w.ITINERARIES || []).map((i) => i.id));
 const PRODUCT_ROUTES = new Set(["guide", "consult", "checklist", "map", "itineraries"]);
@@ -200,10 +213,38 @@ for (const when of q("when").options) {
           if (plan.product.secondary && !PRODUCT_ROUTES.has(plan.product.secondary.route)) {
             badCombos.push(`${JSON.stringify(answers)}: secondary route "${plan.product.secondary.route}" is not a known route`);
           }
+          // The five reads are month-filtered inside buildTripPlan. Assert it
+          // rather than trust it: this is the list the reader judges the tool by.
+          for (const a of plan.reads) {
+            if (!w.articleFitsMonth(a.slug, when.id)) {
+              badCombos.push(`${JSON.stringify(answers)}: read "${a.slug}" does not apply in ${when.id}`);
+            }
+          }
           // The plan promises "show all N entries that fit"; N must not be a lie.
+          // The month has to survive the hand-off or the promise is false in the
+          // most visible way there is: a July trip offered "Yosemite in Winter".
           const matches = w.filterArticlesByIntent(articles, plan.intent);
           if (matches.length === 0) {
             badCombos.push(`${JSON.stringify(answers)}: derived intent matches nothing`);
+          }
+          if (w.intentMonthOf(plan.intent) !== (when.id === "unsure" ? "" : when.id)) {
+            badCombos.push(`${JSON.stringify(answers)}: derived intent lost the month (carries "${plan.intent.month}")`);
+          }
+          for (const a of matches) {
+            if (!w.articleFitsMonth(a.slug, when.id)) {
+              badCombos.push(`${JSON.stringify(answers)}: hand-off offers "${a.slug}", which does not apply in ${when.id}`);
+            }
+          }
+          // The chip counts are what the reader trusts before clicking. Every one
+          // has to be reachable in the results grid the click produces.
+          const counts = w.intentCounts(articles, plan.intent);
+          for (const facet of w.INTENT_FACETS) {
+            for (const opt of facet.options) {
+              const next = Object.assign({}, plan.intent, { [facet.id]: [opt.id] });
+              if (counts[facet.id][opt.id] !== w.filterArticlesByIntent(articles, next).length) {
+                badCombos.push(`${JSON.stringify(answers)}: chip count ${facet.id}/${opt.id} does not match its own result set`);
+              }
+            }
           }
           // The lodging hand-off renders only when the bed is unbooked, and
           // then always completely: a partial object renders a broken CTA.

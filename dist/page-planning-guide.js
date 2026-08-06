@@ -122,6 +122,7 @@ function PlanningGuide({
     value: filters.value,
     onToggle: filters.toggle,
     onClear: filters.clear,
+    onClearMonth: filters.clearMonth,
     count: filters.count,
     resultCount: matches.length,
     note: "Drawn from the whole archive, not only the five parts below."
@@ -150,7 +151,7 @@ function PlanningGuide({
       color: "var(--ink-2)",
       maxWidth: 640
     }
-  }, "Nothing in the archive carries all of those at once. Drop a filter and try again, or", " ", React.createElement("a", {
+  }, "Nothing in the archive carries all of those at once", window.intentMonthOf(filters.value) ? `, in ${window.intentMonthLabel(window.intentMonthOf(filters.value))}` : "", ". Drop a filter and try again, or", " ", React.createElement("a", {
     href: "/search",
     onClick: e => {
       e.preventDefault();

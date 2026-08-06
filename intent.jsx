@@ -29,7 +29,9 @@ const TRIP_ANSWERS_KEY = "tfg.trip.selector";
 
 // Read one facet's selection out of the query string, dropping anything that is
 // not a real option id so a hand-edited URL cannot put the UI into a state its
-// own chips cannot represent.
+// own chips cannot represent. `month` gets the same treatment against
+// TRIP_MONTHS; it is a constraint on the selection rather than a fourth facet,
+// so it has no chip row and is validated separately.
 function readIntentFromUrl() {
   const params = new URLSearchParams(window.location.search);
   const out = {};
@@ -37,6 +39,7 @@ function readIntentFromUrl() {
     const raw = (params.get(facet.id) || "").split(",").map((s) => s.trim()).filter(Boolean);
     out[facet.id] = raw.filter((id) => facet.options.some((o) => o.id === id));
   });
+  out.month = window.intentMonthOf({ month: (params.get("month") || "").trim() });
   return out;
 }
 
@@ -47,6 +50,8 @@ function writeIntentToUrl(value) {
     if (picked.length) params.set(facet.id, picked.join(","));
     else params.delete(facet.id);
   });
+  if (value.month) params.set("month", value.month);
+  else params.delete("month");
   const qs = params.toString();
   window.history.replaceState(window.history.state, "", window.location.pathname + (qs ? "?" + qs : ""));
 }
@@ -103,27 +108,39 @@ function useIntentFilters() {
   }, []);
 
   const clear = useCallbackIn(() => {
-    const empty = {};
+    const empty = { month: "" };
     window.INTENT_FACETS.forEach((f) => { empty[f.id] = []; });
     setValue(empty);
     if (window.track) window.track("intent_filter", { facet: "all", option: "", action: "clear" });
   }, []);
 
+  // The month came from the trip selector rather than from a chip, so it needs
+  // its own way off. Dropping it widens the list to the whole year without
+  // disturbing the facets the reader may have tuned by hand since the hand-off.
+  const clearMonth = useCallbackIn(() => {
+    setValue((prev) => Object.assign({}, prev, { month: "" }));
+    if (window.track) window.track("intent_filter", { facet: "month", option: "", action: "off" });
+  }, []);
+
   // Used by the trip selector's hand-off: replace the whole selection at once.
   const apply = useCallbackIn((intent) => {
-    const next = {};
+    const next = { month: window.intentMonthOf(intent) };
     window.INTENT_FACETS.forEach((f) => { next[f.id] = (intent && intent[f.id]) || []; });
     setValue(next);
   }, []);
 
-  return { value, toggle, clear, apply, count: window.intentSelectionCount(value) };
+  return { value, toggle, clear, clearMonth, apply, count: window.intentSelectionCount(value) };
 }
 
 // --- The filter bar ----------------------------------------------------------
 
-function IntentFilters({ articles, value, onToggle, onClear, count, resultCount, note }) {
+function IntentFilters({ articles, value, onToggle, onClear, onClearMonth, count, resultCount, note }) {
   const counts = window.intentCounts(articles || window.ARTICLES, value);
   const selected = count > 0;
+  const month = window.intentMonthOf(value);
+  const hidden = month
+    ? (articles || window.ARTICLES).filter((a) => !window.articleFitsMonth(a.slug, month)).length
+    : 0;
 
   return (
     <div className="intentf">
@@ -140,6 +157,33 @@ function IntentFilters({ articles, value, onToggle, onClear, count, resultCount,
           </button>
         )}
       </div>
+
+      {/* The month is a constraint, not a facet: it arrives from the trip
+          selector rather than from a chip, so it gets a stated row with its own
+          way off instead of hiding inside the counts. Saying how many entries it
+          is holding back is the point — a filter that silently shrinks the
+          archive is the failure this row exists to make visible. */}
+      {month && (
+        <div className="intentf__row intentf__row--month">
+          <span className="intentf__facet" id="intentf-month">Trip month</span>
+          <div className="intentf__chips" role="group" aria-labelledby="intentf-month">
+            <button
+              type="button"
+              className="ichip ichip--on"
+              aria-pressed="true"
+              title={`Seasonal entries outside ${window.intentMonthLabel(month)} are hidden`}
+              onClick={onClearMonth}
+            >
+              {window.intentMonthLabel(month)} ×
+            </button>
+            <span className="intentf__month-note">
+              {hidden > 0
+                ? `${hidden} seasonal ${hidden === 1 ? "entry does" : "entries do"} not apply in ${window.intentMonthLabel(month)}. Drop this to see the whole year.`
+                : `Nothing in the archive is ruled out by ${window.intentMonthLabel(month)}.`}
+            </span>
+          </div>
+        </div>
+      )}
 
       {window.INTENT_FACETS.map((facet) => (
         <div key={facet.id} className="intentf__row">
