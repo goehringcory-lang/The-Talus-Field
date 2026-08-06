@@ -36,14 +36,14 @@ const PLANNING_PARTS = [
     eyebrow: "Part Two",
     title: "Getting there and getting in",
     cols: 2,
-    lede: "Five entrances, four highways, one seasonal pass that does not exist half the year, and a permit system guarding the 95 percent of the park most visitors never see. The logistics of arrival, and the paperwork for going deeper.",
+    lede: "Five entrances, four highways, one seasonal pass that does not exist half the year, three parking lots that decide how the day goes, two bus systems that make the lots optional, and a permit system guarding the 95 percent of the park most visitors never see. The logistics of arrival, and the paperwork for going deeper.",
   },
   {
     part: "Part Three · When you arrive",
     eyebrow: "Part Three",
     title: "When you arrive",
     cols: 3,
-    lede: "What is in the car, who you are traveling with, whether everyone in your group can hike. The pragmatic decisions that make a Yosemite day flow or stall. The cooler, the camp chair, the Junior Ranger booklet, the bridge view from a wheelchair, the dog.",
+    lede: "What is in the car, who you are traveling with, whether everyone in your group can hike, and what you can still get today if you arrived with nothing booked. The pragmatic decisions that make a Yosemite day flow or stall. The cooler, the camp chair, the Junior Ranger booklet, the bridge view from a wheelchair, the dog.",
   },
   {
     part: "Part Four · If you're hiking Half Dome",

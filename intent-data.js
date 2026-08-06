@@ -80,6 +80,14 @@ window.INTENT_FACETS = [
 
 // Per-article tags. Keyed by the slug in window.ARTICLES.
 window.ARTICLE_INTENT = {
+  // The three arrival-logistics pieces carry an empty `who` on purpose. Parking,
+  // the buses, and what is still available today are questions every traveler
+  // type asks in the same words, so tagging them with a subset would both cost
+  // them a point per unpicked tag and, worse, trip the "written for somebody
+  // else" exclusion for the traveler types left off the list.
+  "yosemite-valley-parking-guide":             { stage: ["dates-set", "week-before", "in-park"], who: [], topic: ["transportation"] },
+  "yosemite-shuttle-and-yarts":                { stage: ["before-booking", "dates-set", "week-before", "in-park"], who: [], topic: ["transportation"] },
+  "yosemite-walk-up-and-day-of-permits":       { stage: ["dates-set", "week-before", "in-park"], who: [], topic: ["permits", "camping"] },
   "yosemite-in-fall":                          { stage: ["before-booking", "dates-set"], who: ["first-trip", "photography"], topic: ["conditions", "transportation"] },
   "yosemite-tunnel-trees":                     { stage: ["in-park"], who: [], topic: [] },
   "yosemite-wildlife-viewing-guide":           { stage: ["dates-set", "in-park"], who: ["families", "non-hikers", "photography"], topic: [] },
