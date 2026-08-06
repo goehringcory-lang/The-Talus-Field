@@ -23,7 +23,15 @@
 //     campground in passing is not a camping article.
 //   - An empty facet is a legitimate answer. The natural-history essays answer
 //     no logistics question, and giving them a topic tag to avoid a blank would
-//     put them in front of a reader who asked about permits.
+//     put them in front of a reader who asked about permits. A blank is not a
+//     hole in the catalog either: "Why giant sequoias thrive where other trees
+//     burn" tells you what to look at in the Mariposa Grove, not which trail to
+//     walk, where to park, or how long it takes, so its `topic` stays empty. The
+//     thing missing there is a grove logistics article, not a `trails` tag on an
+//     essay about bark. Fix the catalog, never the tag.
+//   - An article with no tag in ANY facet is unreachable by every filter, which
+//     is a different thing from an empty facet. If that is deliberate, declare
+//     it in window.INTENT_NO_TAGS below with the reason.
 //   - Nothing here may be date-derived or computed from the catalog: this table
 //     is curation and has to read the same in January as in July.
 // =============================================================================
@@ -121,6 +129,27 @@ window.ARTICLE_INTENT = {
   "yosemite-during-smoke-season":              { stage: ["before-booking", "dates-set", "week-before"], who: [], topic: ["conditions"] },
   "yosemite-without-reservations-2026":        { stage: ["before-booking"], who: ["first-trip"], topic: ["permits", "transportation", "conditions"] },
   "first-time-yosemite-overwhelm":             { stage: ["before-booking"], who: ["first-trip", "families"], topic: ["lodging", "transportation"] },
+};
+
+// The articles that carry NO tag in any facet on purpose, and why.
+//
+// An article with an empty table entry is invisible to every filter, which reads
+// to a visitor as "the site has nothing on that". That is why check-intent-tags
+// warns on one. But the warning only works if it means something: a standing
+// warning that is always there is a warning nobody reads, and the next article
+// added without tags disappears into it. So a deliberate blank is declared here
+// with its reason, the check treats a declared blank as intentional, and an
+// undeclared one still warns. A stale entry (an article here that later grew
+// tags, or that left the catalog) is an error, so this cannot rot quietly.
+//
+// This is only for an article with no tag ANYWHERE. An empty single facet needs
+// no declaration; it is the normal case for the natural-history essays.
+window.INTENT_NO_TAGS = {
+  "working-in-yosemite":
+    "Written for someone weighing a season of work here, not for someone planning a trip: " +
+    "the questions it answers are about the job, the tent cabin and the hour's drive to a " +
+    "grocery store. No trip stage, traveler or logistics question fits it, and inventing one " +
+    "would put it in front of a reader who asked about permits.",
 };
 
 // The articles that only apply to part of the year. Everything else is
@@ -510,7 +539,21 @@ var TRIP_RULES = {
     photos:     { intent: { who: ["photography"] }, anchors: ["yosemite-photography-spots"] },
     crowds:     { intent: { topic: ["conditions"] }, anchors: ["when-to-visit-yosemite-2026-crowd-forecast"] },
     budget:     { intent: { topic: ["lodging", "food"] }, anchors: ["yosemite-trip-cost-budget-2026"] },
-    wildlife:   { intent: {}, anchors: ["yosemite-wildlife-viewing-guide"] },
+    // The one focus answer whose articles carry no `topic` tag: the pieces that
+    // answer "wildlife and natural history" are the natural-history essays, and
+    // an empty topic facet is exactly what marks them (see the tagging rules at
+    // the top of this file). So no topic tag can reach them, and this rule used
+    // to contribute nothing at all: a wildlife trip's read list was built from
+    // the other four answers, and the reader's stated priority moved one anchor
+    // and nothing else. `stage: in-park` is the facet those essays DO carry, and
+    // it is the honest reading of the answer besides: wildlife and natural
+    // history are what the reader plans to do once the car is parked.
+    // Two anchors, like `hike`: bears are the wildlife question in Yosemite and
+    // the food-storage rules are the ones visitors break. Dropping it to one
+    // anchor was tried and the freed slot went to a tag-scored piece written for
+    // a different traveler (the accessibility guide, on a family trip with no
+    // access needs), which is the failure the `who` subtraction exists to stop.
+    wildlife:   { intent: { stage: ["in-park"] }, anchors: ["yosemite-wildlife-viewing-guide", "yosemite-bears-safety-guide"] },
   },
 };
 
