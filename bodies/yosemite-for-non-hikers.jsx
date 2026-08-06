@@ -84,7 +84,7 @@ window.ARTICLE_BODIES["yosemite-for-non-hikers"] = function YosemiteForNonHikers
       </p>
 
       <p>
-        <strong>Getting there without driving.</strong> YARTS, the regional bus system, runs into the Valley from the gateway towns, and the fare includes the park entrance fee. The Highway 120 East route over Tioga Pass, connecting Mammoth Lakes and Lee Vining to Tuolumne Meadows and the Valley, runs a short summer season only. The Highway 140 corridor from Merced and Mariposa runs the longest season of the YARTS routes.
+        <strong>Getting there without driving.</strong> YARTS, the regional bus system, runs into the Valley from the gateway towns. Whether the fare also covers the park entrance fee is currently unsettled, with the Park Service and the YARTS fares page saying opposite things, so <a href="/articles/yosemite-shuttle-and-yarts">budget for the gate</a>. The Highway 120 East route over Tioga Pass, connecting Mammoth Lakes and Lee Vining to Tuolumne Meadows and the Valley, runs a short summer season only. The Highway 140 corridor from Merced and Mariposa runs the longest season of the YARTS routes.
       </p>
 
       <h2>The Valley by car: what you actually stop at</h2>

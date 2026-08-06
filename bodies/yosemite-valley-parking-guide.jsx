@@ -54,15 +54,19 @@ window.ARTICLE_BODIES["yosemite-valley-parking-guide"] = function YosemiteValley
       <h2>When they fill</h2>
 
       <p>
-        The Park Service's language is careful and worth reading literally: during the busy summer season, especially on weekends, parking fills early and heavy traffic is common in Yosemite Valley. It does not name an hour, because the hour moves. What it does name is a window: most vehicle congestion happens between ten in the morning and six in the evening, and the standing recommendation is to be inside the park before nine, or to wait and come in after five.
+        The Park Service's language is careful and worth reading literally: during the busy summer season, especially on weekends, parking fills early and heavy traffic is common in Yosemite Valley. It does not name an hour, because the hour moves. What it does name is a window. Most vehicle congestion happens between ten in the morning and six in the evening, and the official recommendation is to be inside the park before nine, or to wait and come in after five.
       </p>
 
       <p>
-        In practice, from twenty seasons of watching it: on a July or August Saturday the Valley lots are effectively gone by mid-morning and the ones nearest the trailheads go first. On a Tuesday in October you can arrive at noon and park at Curry Village without drama. Between those two extremes is every other day of the year, and the variable that predicts it best is not the season, it is the day of the week. The Park Service says this too, in its own dry way, by recommending Monday through Thursday. <a href="/articles/when-to-visit-yosemite-2026-crowd-forecast">The crowd forecast</a> has the month-by-month version.
+        Treat that as the outer bound rather than the target. The advice on this site is an hour stricter in both directions, and it is stricter for a reason: on a busy day the lots fill before the congestion window opens, so nine o'clock is already a gamble. Be through the gate by eight, and before seven on a summer weekend. Coming in the other way, four in the afternoon works as well as five. <a href="/articles/when-to-visit-yosemite-2026-crowd-forecast">The crowd forecast</a> makes the same case from a decade of visitation data.
       </p>
 
       <p>
-        You do not have to guess on the day. Text YNPTRAFFIC to 333111 to get park traffic alerts on your phone, and check <a href="/conditions">the conditions page</a> before you leave your room, which is where the live entrance-station waits live. Spring through fall, plan on something like an hour or two at the South Entrance on Highway 41, and roughly half an hour at Arch Rock, Big Oak Flat, and Tioga Pass. Those are queue times before you have parked anything.
+        In practice, from twenty seasons of watching it: on a July or August Saturday the Valley lots are effectively gone by mid-morning and the ones nearest the trailheads go first. On a Tuesday in October you can arrive at noon and park at Curry Village without drama. Between those two extremes is every other day of the year, and the variable that predicts it best is not the season, it is the day of the week. The Park Service says this too, in its own dry way, by recommending Monday through Thursday.
+      </p>
+
+      <p>
+        You do not have to guess on the day. Text YNPTRAFFIC to 333111 to get park traffic alerts on your phone, and check <a href="/conditions">the conditions page</a> before you leave your room, which is where the live entrance-station waits live. Spring through fall, the park's own typical figures run to an hour or two at the South Entrance on Highway 41 and about half an hour at Arch Rock, Big Oak Flat, and Tioga Pass. Those are ordinary days, not the worst ones; a summer holiday weekend can put a queue miles back from the gate. And all of it is time spent before you have parked anything.
       </p>
 
       <h2>What to do at eleven o'clock</h2>
@@ -73,7 +77,7 @@ window.ARTICLE_BODIES["yosemite-valley-parking-guide"] = function YosemiteValley
 
       <ol>
         <li>
-          <strong>Stop circling and take the next legal space you see, even the wrong one.</strong> A space at Curry Village when you wanted Yosemite Falls costs you eleven minutes on a shuttle. A third lap costs you forty and may end in the same place. The lots do turn over; midday is when the dawn hikers come out.
+          <strong>Stop circling and take the next legal space you see, even the wrong one.</strong> A space at Curry Village when you wanted Yosemite Falls costs you one shuttle ride. A third lap costs you most of an hour and may end in the same place. The lots do turn over; midday is when the dawn hikers come out.
         </li>
         <li>
           <strong>Leave and come back at five.</strong> This sounds like a defeat and it is the best move on the list. Drive out to <a href="/articles/yosemite-gateway-towns-compared">a gateway town</a>, eat lunch somewhere with a table, and return in the late afternoon when the day-trippers are leaving and the light is doing the thing you came for. The Valley between five and sunset is a substantially better park than the Valley at noon.
@@ -100,7 +104,7 @@ window.ARTICLE_BODIES["yosemite-valley-parking-guide"] = function YosemiteValley
       <h2>Accessible parking</h2>
 
       <p>
-        Designated accessible spaces exist at each of the main lots and at several of the picnic areas. Two things are worth knowing beyond that. A disability placard is not just a parking credential in Yosemite: it also permits driving on a couple of roads otherwise closed to private vehicles, specifically the Happy Isles Loop Road and Mirror Lake Road, which converts two of the Valley's shuttle-dependent destinations into drive-up ones. And if you arrive without your placard, or your need is temporary, entrance stations and visitor centers issue temporary ones. The park's accessibility office answers the phone at 209/379-1035, and <a href="/articles/yosemite-accessibility-guide">our accessibility guide</a> goes through the rest of it.
+        Designated accessible spaces exist at each of the main lots and at several of the picnic areas. Two things are worth knowing beyond that. A disability placard is not just a parking credential in Yosemite: it also permits driving on a couple of roads otherwise closed to private vehicles, specifically the Happy Isles Loop Road and Mirror Lake Road, which converts two of the Valley's shuttle-dependent destinations into drive-up ones. And if you arrive without your placard, or your need is temporary, entrance stations and visitor centers issue temporary ones. <a href="/articles/yosemite-accessibility-guide">Our accessibility guide</a> goes through the rest of it, including who to call before you come.
       </p>
 
       <h2>RVs, trailers, and the vehicles that do not fit</h2>
@@ -122,7 +126,7 @@ window.ARTICLE_BODIES["yosemite-valley-parking-guide"] = function YosemiteValley
       <h2>2026: no reservation, and what replaced it</h2>
 
       <p>
-        There is no day-use or peak-hours vehicle reservation for Yosemite in 2026. The systems that ran from 2020 through 2025 are gone, including the February weekend reservations for <a href="/articles/horsetail-fall-firefall">Horsetail Fall</a>. The park's stated reasoning is that its own 2025 analysis found most weekdays held available parking, stable traffic flow, and visitation inside operational capacity, so a season-wide requirement was not the most effective tool.
+        There is no day-use or peak-hours vehicle reservation for Yosemite in 2026. The systems that ran in most years between 2020 and 2025 are gone, including the February weekend reservations for <a href="/articles/horsetail-fall-firefall">Horsetail Fall</a>. The park's stated reasoning is that its own 2025 analysis found most weekdays held available parking, stable traffic flow, and visitation inside operational capacity, so a season-wide requirement was not the most effective tool.
       </p>
 
       <p>
@@ -133,7 +137,7 @@ window.ARTICLE_BODIES["yosemite-valley-parking-guide"] = function YosemiteValley
 
       <ol>
         <li>Three day lots: Yosemite Village, Yosemite Falls, Curry Village. Aim at Yosemite Village if you have no plan.</li>
-        <li>Be inside the park before nine, or after five. Congestion runs ten to six.</li>
+        <li>Be through the gate by eight, and before seven on a summer weekend. The official line is nine; the lots do not wait that long.</li>
         <li>Monday through Thursday is a different park from Saturday.</li>
         <li>Do not drive to a trailhead. Park once, then shuttle, bike, or walk.</li>
         <li>Southside Drive is one-way in, Northside is one-way out. Choose the lot before you commit.</li>

@@ -1,7 +1,7 @@
 {
   "__comment": "SEO enrichment for the editorial site, keyed by article slug. NOT loaded by the browser runtime (kept out of data.js so the per-page JS payload stays small). The build script scripts/gen-seo-artifacts.mjs merges this with window.ARTICLES from data.js to regenerate articles.json (consumed by functions/_middleware.js), sitemap.xml, feed.xml, and the article section of llms.txt. Fields: wordCount (number), keywords (string[]), faq ({q,a}[]), trail ({name,distance,elevationGain,difficulty} for hike guides). FAQ answers and trail numbers are drawn from each article's published body; do not invent facts. The one article whose faq lives inline in data.js (yosemite-in-one-or-two-days) is intentionally omitted here; data.js takes precedence for faq.",
   "yosemite-valley-parking-guide": {
-    "wordCount": 2080,
+    "wordCount": 2200,
     "keywords": [
       "Yosemite Valley parking",
       "where to park in Yosemite",
@@ -21,7 +21,7 @@
       },
       {
         "q": "What time does parking fill up in Yosemite Valley?",
-        "a": "The Park Service does not name an hour, only that during the busy summer season, especially on weekends, parking fills early. It does name a window: most vehicle congestion happens between 10 a.m. and 6 p.m., and the standing recommendation is to be inside the park before 9 a.m. or to arrive after 5 p.m. On a July or August Saturday the Valley lots are effectively gone by mid-morning; on a Tuesday in October you can often park at noon."
+        "a": "The Park Service does not name an hour, only that during the busy summer season, especially on weekends, parking fills early. It names a window instead: most vehicle congestion happens between 10 a.m. and 6 p.m., with an official recommendation to be inside the park before 9 a.m. or to arrive after 5 p.m. Treat that as the outer bound. On a busy day the lots fill before the congestion window opens, so be through the gate by 8 a.m., and before 7 on a summer weekend. On a July or August Saturday the Valley lots are effectively gone by mid-morning; on a Tuesday in October you can often park at noon."
       },
       {
         "q": "What do you do if Yosemite Valley parking is full?",
@@ -33,7 +33,7 @@
       },
       {
         "q": "Do you need a reservation to drive into Yosemite in 2026?",
-        "a": "No. There is no day-use or peak-hours vehicle reservation for 2026, including the February weekends for Horsetail Fall. The park replaced it with operational measures: real-time traffic monitoring, active parking management in the Valley, more staff at key intersections at peak periods, road-condition alerts, and a push toward weekday visits and toward areas outside Yosemite Valley."
+        "a": "No. There is no day-use or peak-hours vehicle reservation for 2026, including the February weekends for Horsetail Fall, which carried one for four straight years before this season. The park replaced it with operational measures: real-time traffic monitoring, active parking management in the Valley, more staff at key intersections at peak periods, road-condition alerts, and a push toward weekday visits and toward areas outside Yosemite Valley."
       },
       {
         "q": "Can you park an RV in Yosemite Valley?",
@@ -42,7 +42,7 @@
     ]
   },
   "yosemite-shuttle-and-yarts": {
-    "wordCount": 1828,
+    "wordCount": 1825,
     "keywords": [
       "Yosemite Valley shuttle",
       "Yosemite shuttle hours",
@@ -83,7 +83,7 @@
     ]
   },
   "yosemite-walk-up-and-day-of-permits": {
-    "wordCount": 1933,
+    "wordCount": 2006,
     "keywords": [
       "Yosemite walk-up permits",
       "same day Yosemite permit",

@@ -60,7 +60,7 @@ window.ARTICLE_BODIES["yosemite-shuttle-and-yarts"] = function YosemiteShuttleAn
       </p>
 
       <p>
-        <strong>The Tuolumne Meadows buses</strong> are the ones to check rather than assume. The high-country area shuttle and the hikers' bus have both had interrupted service in recent seasons, and the schedules have not been reliably published in advance. Tioga Road opening is not the constraint; it opened on May 15 this year, the earliest in sixteen years. Do not build a Tuolumne day around a bus without confirming it is running that week.
+        <strong>The Tuolumne Meadows buses</strong> are the ones to check rather than assume. The high-country area shuttle and the hikers' bus have both had interrupted service in recent seasons, and the schedules have not been reliably published in advance. Tioga Road opening is not the constraint; it opened on May 15 this year, unusually early. Do not build a Tuolumne day around a bus without confirming it is running that week.
       </p>
 
       <h2>YARTS: the bus that gets you into the park</h2>

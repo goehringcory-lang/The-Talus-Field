@@ -76,7 +76,7 @@ window.ARTICLE_BODIES["yosemite-in-winter"] = function YosemiteInWinterBody() {
       </p>
 
       <p>
-        And February brings the park's strangest scheduled event. For about two weeks in the middle of the month, when the angle of sunset is right and the fall is running and the sky cooperates, <strong>Horsetail Fall</strong> on the east shoulder of El Capitan lights up orange at the last minute of the day and appears, briefly, to be on fire. The firefall now draws real crowds and a reservation system of its own, which makes it the exception to everything else in this article; the full logistics are in <a href="/articles/horsetail-fall-firefall">the Horsetail Fall guide</a>.
+        And February brings the park's strangest scheduled event. For about two weeks in the middle of the month, when the angle of sunset is right and the fall is running and the sky cooperates, <strong>Horsetail Fall</strong> on the east shoulder of El Capitan lights up orange at the last minute of the day and appears, briefly, to be on fire. The firefall draws real crowds, and drew a February weekend reservation requirement for four straight years before the park dropped it for 2026, which makes it the exception to everything else in this article; the full logistics are in <a href="/articles/horsetail-fall-firefall">the Horsetail Fall guide</a>.
       </p>
 
       <h2>The honest part</h2>
