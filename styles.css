@@ -5947,6 +5947,20 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
   flex-wrap: wrap;
   gap: 6px;
 }
+/* The trip month is a constraint the reader did not set from this bar, so it
+   sits above the facet rows with a note saying what it is holding back. */
+.intentf__row--month {
+  border-bottom: 1px solid var(--rule);
+  padding-bottom: 11px;
+  margin-bottom: 4px;
+}
+.intentf__row--month .intentf__chips { align-items: center; gap: 6px 12px; }
+.intentf__month-note {
+  font-family: var(--serif);
+  font-size: 15px;
+  line-height: 1.4;
+  color: var(--ink-2);
+}
 
 /* ----- Trip selector ----- */
 .tripsel {

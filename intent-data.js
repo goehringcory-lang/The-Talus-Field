@@ -123,8 +123,8 @@ window.ARTICLE_INTENT = {
   "first-time-yosemite-overwhelm":             { stage: ["before-booking"], who: ["first-trip", "families"], topic: ["lodging", "transportation"] },
 };
 
-// The handful of articles that only apply to part of the year. Everything else
-// is month-agnostic and is left out of this table.
+// The articles that only apply to part of the year. Everything else is
+// month-agnostic and is left out of this table.
 //
 // This is not a filter facet: a reader never asks for "articles about February".
 // It exists because the trip selector knows the month, and a February plan that
@@ -132,7 +132,26 @@ window.ARTICLE_INTENT = {
 // month's TRIP_MONTHS.read must appear in its own month's window, or the anchor
 // this table is protecting would be dropped by it — check-intent-tags.mjs
 // enforces exactly that.
+//
+// The month is the reader's VISIT month, never the month they are reading in.
+// The Half Dome lottery pieces are the clearest case: the preseason lottery runs
+// in March, but a March visitor cannot hike the cables, so those entries are
+// windowed to the cable season and not to the application season.
+//
+// Two kinds of entry, and both need a source:
+//
+//   Road-dependent — the article is about something you reach over Tioga Road or
+//   Glacier Point Road. The window is every month TRIP_MONTHS does not mark that
+//   road `closed`, so an `unsettled` month is still shown (the reader needs to
+//   know the thing exists and might be reachable; TRIP_MONTHS' own note says the
+//   date moves with the snowpack).
+//
+//   Season-dependent — a bloom, a run of programs, a cable season. The window
+//   comes from the article's own published body, the same rule seo-data.json
+//   follows. Do not widen or narrow one from memory: if the body does not state
+//   a window, the entry does not belong in this table.
 window.ARTICLE_MONTHS = {
+  // Seasonal essays and month guides.
   "yosemite-in-fall": ["sep", "oct", "nov"],
   "yosemite-in-june-2026": ["jun"],
   "horsetail-fall-firefall": ["feb"],
@@ -143,6 +162,35 @@ window.ARTICLE_MONTHS = {
   "yosemite-heat-safety-guide": ["jun", "jul", "aug", "sep"],
   "yosemite-during-smoke-season": ["jul", "aug", "sep", "oct"],
   "bears-spring-emergence": ["mar", "apr", "may", "jun"],
+
+  // Road-dependent. Tioga Road is `closed` Nov-Apr in TRIP_MONTHS; Glacier Point
+  // Road is `closed` Dec-Apr.
+  // "Tioga Road has to be open, which means you're working with a window that
+  // runs roughly late May or early June through October or early November."
+  "cathedral-lakes-day-hike": ["may", "jun", "jul", "aug", "sep", "oct"],
+  // The loop only closes when Glacier Point Road is open: "When the road is
+  // closed, you can still hike the Four Mile Trail to Glacier Point and back. It
+  // becomes an out-and-back instead of a loop."
+  "four-mile-up-panorama-down": ["may", "jun", "jul", "aug", "sep", "oct", "nov"],
+
+  // Season-dependent, each window quoted from the article's own body.
+  // "The cables typically go up the Friday before Memorial Day and come down the
+  // day after Columbus Day." Both Half Dome pieces are about the cable season.
+  "so-you-want-to-hike-half-dome": ["may", "jun", "jul", "aug", "sep", "oct"],
+  "half-dome-permit-lottery-2026": ["may", "jun", "jul", "aug", "sep", "oct"],
+  // "Between mid-April and late June, the granite staircase below Vernal Fall is
+  // a waterfall itself", through "Late season (August through October)".
+  "mist-trail-the-real-guide": ["apr", "may", "jun", "jul", "aug", "sep", "oct"],
+  // "There is a bloom happening somewhere in or near the park from March through
+  // August", plus the body's own "February to April: the foothills" section.
+  "yosemite-wildflowers-guide": ["feb", "mar", "apr", "may", "jun", "jul", "aug"],
+  // "The bloom runs from roughly late June through July on the Valley floor."
+  "showy-milkweed-yosemite-valley": ["jun", "jul"],
+  // The Connecting to Traditions schedule runs July 17 through October 15.
+  "yosemite-connecting-to-traditions": ["jul", "aug", "sep", "oct"],
+  // "The reliable spectating windows are roughly April through early June and
+  // September through October." Midsummer bakes and winter is hazardous.
+  "watching-climbers-el-capitan": ["apr", "may", "jun", "sep", "oct"],
 };
 
 // True when this article is worth putting in front of someone visiting in this
@@ -158,7 +206,29 @@ window.articleFitsMonth = function (slug, monthKey) {
 // Lookups and filtering
 // ---------------------------------------------------------------------------
 
-window.EMPTY_INTENT = { stage: [], who: [], topic: [] };
+window.EMPTY_INTENT = { stage: [], who: [], topic: [], month: "" };
+
+// A selection may carry a `month` alongside the three facets. It is NOT a facet
+// (there are no month chips, and a reader never asks for "articles about
+// February"); it is the trip selector's `when` answer riding along with the
+// selection it hands off, so the seasonal exclusion that already governs the
+// five reads governs the rest of the list too.
+//
+// Without this the hand-off leaked: buildTripPlan dropped out-of-season entries
+// from `reads`, but "Show all 18 entries that fit this trip" ran the derived
+// intent through the unfiltered catalog, so a July trip was offered "Yosemite in
+// Winter", "Yosemite in Fall" and the Glacier Point opening-weekend piece under
+// a heading promising entries that fit July.
+window.intentMonthOf = function (selection) {
+  var key = selection && selection.month;
+  if (!key || key === "unsure") return "";
+  return window.tripMonth(key) ? key : "";
+};
+
+window.intentMonthLabel = function (key) {
+  var m = window.tripMonth(key);
+  return m ? m.name : "";
+};
 
 // Tags for one slug. Always returns all three keys as arrays, so callers never
 // have to guard an untagged article.
@@ -173,9 +243,12 @@ window.intentFor = function (slug) {
 };
 
 // Selection semantics: OR within a facet, AND across facets. An empty facet in
-// the selection places no constraint.
+// the selection places no constraint. A `month` is ANDed on top of all three:
+// an entry the season rules out does not fit the trip, whatever its tags say.
 window.matchesIntent = function (article, selection) {
   if (!selection) return true;
+  var month = window.intentMonthOf(selection);
+  if (month && !window.articleFitsMonth(article.slug, month)) return false;
   var tags = window.intentFor(article.slug);
   for (var i = 0; i < window.INTENT_FACETS.length; i++) {
     var facet = window.INTENT_FACETS[i].id;
@@ -191,21 +264,28 @@ window.filterArticlesByIntent = function (articles, selection) {
   return (articles || []).filter(function (a) { return window.matchesIntent(a, selection); });
 };
 
+// How many constraints are live. The month counts as one, because it narrows the
+// list exactly as a chip does and the reader has to be able to see that it is on
+// before they can decide to take it off.
 window.intentSelectionCount = function (selection) {
   if (!selection) return 0;
   return window.INTENT_FACETS.reduce(function (n, f) {
     return n + ((selection[f.id] || []).length);
-  }, 0);
+  }, window.intentMonthOf(selection) ? 1 : 0);
 };
 
 // Faceted counts: for each option, how many articles would match if that option
 // were the only choice in its own facet, with every OTHER facet's selection
 // still applied. This is what lets a chip dim to zero honestly instead of
 // promising results it cannot deliver.
+//
+// The month stays applied in every pool. It is not one of the facets being held
+// out: a chip that counted out-of-season entries would promise a number the
+// results grid then refuses to show.
 window.intentCounts = function (articles, selection) {
   var out = {};
   window.INTENT_FACETS.forEach(function (facet) {
-    var others = {};
+    var others = { month: (selection && selection.month) || "" };
     window.INTENT_FACETS.forEach(function (f) {
       if (f.id !== facet.id) others[f.id] = (selection && selection[f.id]) || [];
     });
@@ -237,28 +317,40 @@ window.intentCounts = function (articles, selection) {
 // than presented as "the entries that fit your trip". Stage alone is not on the
 // ladder at all — dropping the traveler and keeping only "before booking" throws
 // away the reader's strongest signal to buy a bigger number.
-window.relaxIntent = function (intent) {
+//
+// The month is NOT on the ladder either, and for a stronger reason: every rung
+// carries it. It is the one answer the reader gave that the park itself enforces,
+// so relaxing it would trade a correct list for a bigger one. Both counts are
+// taken against the in-season pool, so TARGET and CEILING measure the archive the
+// reader can actually use in that month rather than the whole catalog.
+window.relaxIntent = function (intent, monthKey) {
+  var month = window.intentMonthOf({ month: monthKey });
+  var pool = (window.ARTICLES || []).filter(function (a) {
+    return !month || window.articleFitsMonth(a.slug, month);
+  });
   var TARGET = 6;
-  var CEILING = Math.max(TARGET, Math.floor((window.ARTICLES || []).length / 2));
+  var CEILING = Math.max(TARGET, Math.floor(pool.length / 2));
   var candidates = [
-    { stage: intent.stage, who: intent.who, topic: intent.topic },
-    { stage: intent.stage, who: intent.who, topic: [] },
-    { stage: [], who: intent.who, topic: intent.topic },
-    { stage: [], who: intent.who, topic: [] },
-    { stage: [], who: [], topic: intent.topic },
+    { stage: intent.stage, who: intent.who, topic: intent.topic, month: month },
+    { stage: intent.stage, who: intent.who, topic: [], month: month },
+    { stage: [], who: intent.who, topic: intent.topic, month: month },
+    { stage: [], who: intent.who, topic: [], month: month },
+    { stage: [], who: [], topic: intent.topic, month: month },
   ];
   var fallback = null;
   for (var i = 0; i < candidates.length; i++) {
-    var n = window.filterArticlesByIntent(window.ARTICLES, candidates[i]).length;
+    var n = window.filterArticlesByIntent(pool, candidates[i]).length;
     if (n >= TARGET && n <= CEILING) return candidates[i];
     if (n > 0 && !fallback) fallback = candidates[i];
   }
-  return fallback || { stage: [], who: [], topic: [] };
+  return fallback || { stage: [], who: [], topic: [], month: month };
 };
 
 // Human-readable list of what is currently selected, for the results line.
 window.intentSummary = function (selection) {
   var parts = [];
+  var month = window.intentMonthOf(selection);
+  if (month) parts.push(window.intentMonthLabel(month));
   window.INTENT_FACETS.forEach(function (facet) {
     (selection[facet.id] || []).forEach(function (id) {
       var opt = facet.options.find(function (o) { return o.id === id; });
@@ -559,7 +651,29 @@ window.buildTripPlan = function (answers) {
     }
     return { article: a, score: score, order: i };
   }).filter(function (s) {
-    return s.score > 0 && window.articleFitsMonth(s.article.slug, answers.when);
+    if (s.score <= 0) return false;
+    if (!window.articleFitsMonth(s.article.slug, answers.when)) return false;
+    // Written for somebody else. The subtraction above handles the article that
+    // matches one traveler type of three; this handles the one that matches none
+    // of them, which is a different thing entirely. "Bringing a Dog to Yosemite"
+    // carries lodging, camping and trails, three of the heaviest topic tags, so
+    // it could out-score a general piece by six and lose only one for the dog —
+    // and land in the plan of a backpacker who never mentioned a dog. A tag the
+    // reader did not pick is a preference; a `who` set that misses the reader
+    // entirely is the wrong article.
+    //
+    // An untagged `who` is not a miss: the natural-history essays are written for
+    // everyone, and reading a blank as "written for somebody else" would drop
+    // exactly the pieces that carry no assumption about the reader.
+    //
+    // Anchors are exempt, on the same principle that puts them above the tag
+    // range: the piece that directly answers a question the reader asked stays
+    // even when it was written with another traveler in mind.
+    if (acc.anchors.indexOf(s.article.slug) !== -1) return true;
+    if (!acc.intent.who.length) return true;
+    var who = window.intentFor(s.article.slug).who;
+    if (!who.length) return true;
+    return who.some(function (id) { return acc.intent.who.indexOf(id) !== -1; });
   });
 
   scored.sort(function (x, y) { return y.score - x.score || x.order - y.order; });
@@ -605,7 +719,10 @@ window.buildTripPlan = function (answers) {
   return {
     summary: window.tripSummary(answers),
     notes: notes,
-    intent: window.relaxIntent(acc.intent),
+    // The month rides along with the derived intent, so the "show all N entries
+    // that fit this trip" hand-off applies the same seasonal exclusion the five
+    // reads above it already got.
+    intent: window.relaxIntent(acc.intent, answers.when),
     reads: reads,
     itinerary: itinerary,
     lodging: lodging,

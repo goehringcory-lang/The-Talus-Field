@@ -57,6 +57,7 @@ function ArticlesIndex({ go, initialCat }) {
           value={filters.value}
           onToggle={filters.toggle}
           onClear={filters.clear}
+          onClearMonth={filters.clearMonth}
           count={filters.count}
           resultCount={list.length}
           note={active === "all" ? "" : `Within ${window.findCategory(active).label}.`}

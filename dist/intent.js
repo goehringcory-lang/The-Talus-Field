@@ -11,6 +11,9 @@ function readIntentFromUrl() {
     var raw = (params.get(facet.id) || "").split(",").map(s => s.trim()).filter(Boolean);
     out[facet.id] = raw.filter(id => facet.options.some(o => o.id === id));
   });
+  out.month = window.intentMonthOf({
+    month: (params.get("month") || "").trim()
+  });
   return out;
 }
 function writeIntentToUrl(value) {
@@ -19,6 +22,7 @@ function writeIntentToUrl(value) {
     var picked = value[facet.id] || [];
     if (picked.length) params.set(facet.id, picked.join(","));else params.delete(facet.id);
   });
+  if (value.month) params.set("month", value.month);else params.delete("month");
   var qs = params.toString();
   window.history.replaceState(window.history.state, "", window.location.pathname + (qs ? "?" + qs : ""));
 }
@@ -74,7 +78,9 @@ function useIntentFilters() {
     });
   }, []);
   var clear = useCallbackIn(() => {
-    var empty = {};
+    var empty = {
+      month: ""
+    };
     window.INTENT_FACETS.forEach(f => {
       empty[f.id] = [];
     });
@@ -85,8 +91,20 @@ function useIntentFilters() {
       action: "clear"
     });
   }, []);
+  var clearMonth = useCallbackIn(() => {
+    setValue(prev => Object.assign({}, prev, {
+      month: ""
+    }));
+    if (window.track) window.track("intent_filter", {
+      facet: "month",
+      option: "",
+      action: "off"
+    });
+  }, []);
   var apply = useCallbackIn(intent => {
-    var next = {};
+    var next = {
+      month: window.intentMonthOf(intent)
+    };
     window.INTENT_FACETS.forEach(f => {
       next[f.id] = intent && intent[f.id] || [];
     });
@@ -96,6 +114,7 @@ function useIntentFilters() {
     value,
     toggle,
     clear,
+    clearMonth,
     apply,
     count: window.intentSelectionCount(value)
   };
@@ -105,12 +124,15 @@ function IntentFilters({
   value,
   onToggle,
   onClear,
+  onClearMonth,
   count,
   resultCount,
   note
 }) {
   var counts = window.intentCounts(articles || window.ARTICLES, value);
   var selected = count > 0;
+  var month = window.intentMonthOf(value);
+  var hidden = month ? (articles || window.ARTICLES).filter(a => !window.articleFitsMonth(a.slug, month)).length : 0;
   return React.createElement("div", {
     className: "intentf"
   }, React.createElement("div", {
@@ -123,7 +145,24 @@ function IntentFilters({
     type: "button",
     className: "intentf__clear",
     onClick: onClear
-  }, "Clear ", count, " filter", count === 1 ? "" : "s")), window.INTENT_FACETS.map(facet => React.createElement("div", {
+  }, "Clear ", count, " filter", count === 1 ? "" : "s")), month && React.createElement("div", {
+    className: "intentf__row intentf__row--month"
+  }, React.createElement("span", {
+    className: "intentf__facet",
+    id: "intentf-month"
+  }, "Trip month"), React.createElement("div", {
+    className: "intentf__chips",
+    role: "group",
+    "aria-labelledby": "intentf-month"
+  }, React.createElement("button", {
+    type: "button",
+    className: "ichip ichip--on",
+    "aria-pressed": "true",
+    title: `Seasonal entries outside ${window.intentMonthLabel(month)} are hidden`,
+    onClick: onClearMonth
+  }, window.intentMonthLabel(month), " ×"), React.createElement("span", {
+    className: "intentf__month-note"
+  }, hidden > 0 ? `${hidden} seasonal ${hidden === 1 ? "entry does" : "entries do"} not apply in ${window.intentMonthLabel(month)}. Drop this to see the whole year.` : `Nothing in the archive is ruled out by ${window.intentMonthLabel(month)}.`))), window.INTENT_FACETS.map(facet => React.createElement("div", {
     key: facet.id,
     className: "intentf__row"
   }, React.createElement("span", {
