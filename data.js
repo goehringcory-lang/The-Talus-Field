@@ -743,9 +743,9 @@ window.ARTICLES = [
     isoDate: "2026-08-05",
     isoModified: "2026-08-05",
     read: "8 min",
-    placeholder: "Highway 140 following the Merced River canyon, the year-round YARTS route into Yosemite Valley",
-    image: "img/merced-canyon-road-cory-goehring.jpg",
-    credit: "Photo: Cory Goehring",
+    placeholder: "A YARTS coach stopped on Southside Drive below Bridalveil Fall, public transit running into Yosemite Valley in winter",
+    image: "img/yarts-bus-bridalveil.jpg",
+    credit: "Photo: YARTS",
   },
   {
     slug: "yosemite-walk-up-and-day-of-permits",
