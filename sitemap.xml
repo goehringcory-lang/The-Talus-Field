@@ -5,7 +5,7 @@
   <!-- Hub pages -->
   <url>
     <loc>https://thetalusfieldjournal.com/</loc>
-    <lastmod>2026-08-06</lastmod>
+    <lastmod>2026-08-07</lastmod>
     <image:image>
       <image:loc>https://thetalusfieldjournal.com/img/responsive/half-dome-main-photo-1600.jpg</image:loc>
       <image:title>Half Dome at first light</image:title>
@@ -13,7 +13,7 @@
   </url>
   <url>
     <loc>https://thetalusfieldjournal.com/articles</loc>
-    <lastmod>2026-08-06</lastmod>
+    <lastmod>2026-08-07</lastmod>
   </url>
   <url>
     <loc>https://thetalusfieldjournal.com/planning</loc>
@@ -31,7 +31,7 @@
   <!-- Sections -->
   <url>
     <loc>https://thetalusfieldjournal.com/section/planning</loc>
-    <lastmod>2026-08-06</lastmod>
+    <lastmod>2026-08-07</lastmod>
   </url>
   <url>
     <loc>https://thetalusfieldjournal.com/section/trails</loc>
@@ -43,7 +43,7 @@
   </url>
   <url>
     <loc>https://thetalusfieldjournal.com/section/seasonal</loc>
-    <lastmod>2026-08-06</lastmod>
+    <lastmod>2026-08-07</lastmod>
   </url>
 
   <!-- Static pages -->
@@ -141,6 +141,30 @@
   </url>
 
   <!-- Articles -->
+  <url>
+    <loc>https://thetalusfieldjournal.com/articles/swimming-in-the-merced</loc>
+    <lastmod>2026-08-07</lastmod>
+    <image:image>
+      <image:loc>https://thetalusfieldjournal.com/img/merced-river-swimming-hole-robert-schrader.jpg</image:loc>
+      <image:title>A low, clear stretch of the Merced River in Yosemite Valley in late summer</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://thetalusfieldjournal.com/articles/tuolumne-meadows-in-a-day</loc>
+    <lastmod>2026-08-07</lastmod>
+    <image:image>
+      <image:loc>https://thetalusfieldjournal.com/img/tuolumne-meadows-river-basiciggy.jpg</image:loc>
+      <image:title>The Tuolumne River winding through Tuolumne Meadows below the high country domes</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://thetalusfieldjournal.com/articles/mariposa-grove-how-to-visit</loc>
+    <lastmod>2026-08-07</lastmod>
+    <image:image>
+      <image:loc>https://thetalusfieldjournal.com/img/mariposa-grove-grizzly-giant-nieves.jpg</image:loc>
+      <image:title>The Grizzly Giant standing above the loop trail in the Mariposa Grove</image:title>
+    </image:image>
+  </url>
   <url>
     <loc>https://thetalusfieldjournal.com/articles/yosemite-valley-parking-guide</loc>
     <lastmod>2026-08-06</lastmod>

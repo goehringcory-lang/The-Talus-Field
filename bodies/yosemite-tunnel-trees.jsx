@@ -108,7 +108,7 @@ window.ARTICLE_BODIES["yosemite-tunnel-trees"] = function YosemiteTunnelTreesBod
       </p>
 
       <p>
-        <strong>The California Tree, Mariposa Grove.</strong> Continue past the Grizzly Giant on the main grove trail and it is a short distance further along. The Mariposa Grove has a seasonal shuttle from the welcome plaza near the South Entrance; check <a href="/now">the Park Bulletin</a> for whether it is running before you plan around it.
+        <strong>The California Tree, Mariposa Grove.</strong> Continue past the Grizzly Giant on the main grove trail and it is a short distance further along. The Mariposa Grove has a seasonal shuttle from the welcome plaza near the South Entrance; <a href="/articles/mariposa-grove-how-to-visit">the guide to visiting the grove</a> covers how that works, and <a href="/now">the Park Bulletin</a> has whether it is running this week.
       </p>
 
       <p>

@@ -85,6 +85,16 @@ window.ARTICLE_INTENT = {
   // type asks in the same words, so tagging them with a subset would both cost
   // them a point per unpicked tag and, worse, trip the "written for somebody
   // else" exclusion for the traveler types left off the list.
+  // The three destination-day guides. Unlike the arrival-logistics trio above,
+  // these do carry a `who`: each is written against a specific reader the
+  // catalog was not serving. The grove and the meadows are the two places in
+  // this park a non-hiker gets the full experience on a paved or flat walk, and
+  // the river afternoon is the one Valley day that is built for small children.
+  // Leaving `who` empty here would keep them out of exactly the filters they
+  // were commissioned to answer.
+  "mariposa-grove-how-to-visit":               { stage: ["dates-set", "week-before", "in-park"], who: ["families", "non-hikers", "accessible"], topic: ["transportation", "trails"] },
+  "tuolumne-meadows-in-a-day":                 { stage: ["before-booking", "dates-set", "week-before", "in-park"], who: ["families", "non-hikers", "photography"], topic: ["transportation", "trails", "conditions"] },
+  "swimming-in-the-merced":                    { stage: ["dates-set", "week-before", "in-park"], who: ["families", "non-hikers"], topic: ["conditions"] },
   "yosemite-valley-parking-guide":             { stage: ["dates-set", "week-before", "in-park"], who: [], topic: ["transportation"] },
   "yosemite-shuttle-and-yarts":                { stage: ["before-booking", "dates-set", "week-before", "in-park"], who: [], topic: ["transportation"] },
   "yosemite-walk-up-and-day-of-permits":       { stage: ["dates-set", "week-before", "in-park"], who: [], topic: ["permits", "camping"] },
@@ -200,8 +210,17 @@ window.ARTICLE_MONTHS = {
   "yosemite-during-smoke-season": ["jul", "aug", "sep", "oct"],
   "bears-spring-emergence": ["mar", "apr", "may", "jun"],
 
+  // "The swimming season runs from about mid-July into September, and in June
+  // the answer is almost always not yet." June is inside the window on purpose:
+  // a June visitor is exactly the reader this piece is written to stop, and the
+  // article's whole first section is addressed to them.
+  "swimming-in-the-merced": ["jun", "jul", "aug", "sep"],
+
   // Road-dependent. Tioga Road is `closed` Nov-Apr in TRIP_MONTHS; Glacier Point
   // Road is `closed` Dec-Apr.
+  // Tuolumne Meadows is reachable only over Tioga Road: "Tioga Road opened on
+  // May 15 this year, unusually early, and it is open now."
+  "tuolumne-meadows-in-a-day": ["may", "jun", "jul", "aug", "sep", "oct"],
   // "Tioga Road has to be open, which means you're working with a window that
   // runs roughly late May or early June through October or early November."
   "cathedral-lakes-day-hike": ["may", "jun", "jul", "aug", "sep", "oct"],
