@@ -9,13 +9,43 @@
     <copyright>© 2026 The Talus Field</copyright>
     <managingEditor>cory@thetalusfieldjournal.com (Cory Goehring)</managingEditor>
     <webMaster>cory@thetalusfieldjournal.com (Cory Goehring)</webMaster>
-    <lastBuildDate>Thu, 06 Aug 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 07 Aug 2026 00:00:00 +0000</lastBuildDate>
     <image>
       <url>https://thetalusfieldjournal.com/img/talus-field-mark.png</url>
       <title>The Talus Field</title>
       <link>https://thetalusfieldjournal.com/</link>
     </image>
 
+    <item>
+      <title>Swimming in the Merced</title>
+      <link>https://thetalusfieldjournal.com/articles/swimming-in-the-merced</link>
+      <guid isPermaLink="true">https://thetalusfieldjournal.com/articles/swimming-in-the-merced</guid>
+      <pubDate>Fri, 07 Aug 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Cory Goehring</dc:creator>
+      <category>Seasonal Guides</category>
+      <description>The river is the best thing about a hot Yosemite afternoon, and the Park Service pulls fifteen to twenty people out of it in a normal season. The difference is mostly the calendar. When it is safe, where to get in, where swimming is flatly prohibited, and how to read the flow before you go.</description>
+      <media:content url="https://thetalusfieldjournal.com/img/merced-river-swimming-hole-robert-schrader.jpg" medium="image" />
+    </item>
+    <item>
+      <title>Tuolumne Meadows in a day</title>
+      <link>https://thetalusfieldjournal.com/articles/tuolumne-meadows-in-a-day</link>
+      <guid isPermaLink="true">https://thetalusfieldjournal.com/articles/tuolumne-meadows-in-a-day</guid>
+      <pubDate>Fri, 07 Aug 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Cory Goehring</dc:creator>
+      <category>Planning</category>
+      <description>The high country is not a scenic detour on the way to Mono Lake. A day in Tuolumne for people who are not peak-baggers: the drive, what is actually open in 2026, the short walks that pay, the altitude, and the afternoon storm that ends the day early.</description>
+      <media:content url="https://thetalusfieldjournal.com/img/tuolumne-meadows-river-basiciggy.jpg" medium="image" />
+    </item>
+    <item>
+      <title>Mariposa Grove: how to visit</title>
+      <link>https://thetalusfieldjournal.com/articles/mariposa-grove-how-to-visit</link>
+      <guid isPermaLink="true">https://thetalusfieldjournal.com/articles/mariposa-grove-how-to-visit</guid>
+      <pubDate>Fri, 07 Aug 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Cory Goehring</dc:creator>
+      <category>Planning</category>
+      <description>You cannot drive to the trees, and have not been able to since 2018. The free shuttle, the parking two miles down the hill, the four walks in order of ambition, the dog rule that catches everyone out, and what the restoration actually changed.</description>
+      <media:content url="https://thetalusfieldjournal.com/img/mariposa-grove-grizzly-giant-nieves.jpg" medium="image" />
+    </item>
     <item>
       <title>Parking in Yosemite Valley: Where the Lots Are, When They Fill, and What to Do at Eleven</title>
       <link>https://thetalusfieldjournal.com/articles/yosemite-valley-parking-guide</link>

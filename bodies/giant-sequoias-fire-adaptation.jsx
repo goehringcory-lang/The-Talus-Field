@@ -90,7 +90,7 @@ window.ARTICLE_BODIES["giant-sequoias-fire-adaptation"] = function GiantSequoias
       <h2>The practical reading</h2>
 
       <p>
-        If you hike into a sequoia grove (or visit via the <a href="/articles/yosemite-for-non-hikers">accessible lower loop</a> in the Mariposa Grove), take time to find a heavily scarred tree and place your hand against the bark. That char is old. That blackness has been there for centuries, protecting the wood beneath it. The scar will probably be slightly depressed, outlined by rings of new bark that the tree grew after the fire passed. If the scar is deep, you can sometimes work your fingers into it. You're reading a specific moment in the tree's life when fire came and the tree lived.
+        If you hike into a sequoia grove (or visit via the <a href="/articles/yosemite-for-non-hikers">accessible lower loop</a> in the Mariposa Grove, whose shuttle, parking and trails are covered in <a href="/articles/mariposa-grove-how-to-visit">the guide to visiting the grove</a>), take time to find a heavily scarred tree and place your hand against the bark. That char is old. That blackness has been there for centuries, protecting the wood beneath it. The scar will probably be slightly depressed, outlined by rings of new bark that the tree grew after the fire passed. If the scar is deep, you can sometimes work your fingers into it. You're reading a specific moment in the tree's life when fire came and the tree lived.
       </p>
 
       <p>

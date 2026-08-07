@@ -72,7 +72,7 @@ window.ARTICLE_BODIES["yosemite-for-non-hikers"] = function YosemiteForNonHikers
       </p>
 
       <p>
-        <strong>Accessibility placards.</strong> Bring yours and hang it. In Yosemite, a placard is not just a parking privilege. It opens roads and pullouts that are otherwise closed to cars, including the drive to the Grizzly Giant parking area in Mariposa Grove and, during the February Horsetail Fall event, the closed stretch of Northside Drive and the El Capitan Picnic Area. A placard vehicle can drive to places everyone else is walking a mile and a half to reach.
+        <strong>Accessibility placards.</strong> Bring yours and hang it. In Yosemite, a placard is not just a parking privilege. It opens roads and pullouts that are otherwise closed to cars, including <a href="/articles/mariposa-grove-how-to-visit">the drive up Mariposa Grove Road to the Grizzly Giant parking area</a> and, during the February Horsetail Fall event, the closed stretch of Northside Drive and the El Capitan Picnic Area. A placard vehicle can drive to places everyone else is walking a mile and a half to reach.
       </p>
 
       <p>
@@ -156,7 +156,7 @@ window.ARTICLE_BODIES["yosemite-for-non-hikers"] = function YosemiteForNonHikers
       </p>
 
       <p>
-        <strong>Tioga Road</strong> is open from approximately late May or June through October or November, depending on snow. It climbs from Valley elevation to nearly 10,000 feet at Tioga Pass. The drive is the experience, and the elevation is worth flagging: if altitude is a medical issue for anyone in the car, Tuolumne Meadows at 8,600 feet will be felt. Stops worth making, all from the road shoulder or short paths:
+        <strong>Tioga Road</strong> is open from approximately late May or June through October or November, depending on snow. It climbs from Valley elevation to nearly 10,000 feet at Tioga Pass. The drive is the experience, and the elevation is worth flagging: if altitude is a medical issue for anyone in the car, Tuolumne Meadows at 8,600 feet will be felt. <a href="/articles/tuolumne-meadows-in-a-day">A full day in Tuolumne</a> is worth planning properly rather than driving through, and that guide is built around the short walks rather than the summits. Stops worth making, all from the road shoulder or short paths:
       </p>
 
       <ul>

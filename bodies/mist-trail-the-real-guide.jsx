@@ -128,7 +128,7 @@ window.ARTICLE_BODIES["mist-trail-the-real-guide"] = function MistTrailBody() {
       </p>
 
       <p>
-        Stay behind the railings. Don't wade. Don't swim in the pools above the falls. Don't walk on the wet granite near the edge "for a photo." This is the single most important safety rule on this trail, and it's the rule that, when broken, has killed people.
+        Stay behind the railings. Don't wade. Don't swim in the pools above the falls. Don't walk on the wet granite near the edge "for a photo." This is the single most important safety rule on this trail, and it's the rule that, when broken, has killed people. Swimming in the Emerald Pool and the Silver Apron is not merely a bad idea, it is prohibited; <a href="/articles/swimming-in-the-merced">the swimming guide</a> lays out where in this park you may and may not get in the water, and what the Park Service has documented happening here.
       </p>
 
       <p>

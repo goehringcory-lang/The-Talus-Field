@@ -106,6 +106,9 @@ window.planningSeriesFor = function (slug) {
 // verifies this map stays in sync with the files in bodies/.
 // ============================================================
 window.BODY_VERSIONS = {
+  "mariposa-grove-how-to-visit": 1,
+  "tuolumne-meadows-in-a-day": 1,
+  "swimming-in-the-merced": 1,
   "yosemite-valley-parking-guide": 1,
   "yosemite-shuttle-and-yarts": 1,
   "yosemite-walk-up-and-day-of-permits": 1,
@@ -719,6 +722,48 @@ window.KIT.lists.forEach((l) => {
 });
 
 window.ARTICLES = [
+  {
+    slug: "swimming-in-the-merced",
+    cat: "seasonal",
+    title: "Swimming in the Merced",
+    dek: "The river is the best thing about a hot Yosemite afternoon, and the Park Service pulls fifteen to twenty people out of it in a normal season. The difference is mostly the calendar. When it is safe, where to get in, where swimming is flatly prohibited, and how to read the flow before you go.",
+    seoDek: "When it is safe to swim in the Merced River in Yosemite, the best beaches, the places swimming is prohibited, cold water shock, and how to check the flow.",
+    date: "August 7, 2026",
+    isoDate: "2026-08-07",
+    isoModified: "2026-08-07",
+    read: "13 min",
+    placeholder: "A low, clear stretch of the Merced River in Yosemite Valley in late summer",
+    image: "img/merced-river-swimming-hole-robert-schrader.jpg",
+    credit: "Photo: Robert Schrader / Pexels",
+  },
+  {
+    slug: "tuolumne-meadows-in-a-day",
+    cat: "planning",
+    title: "Tuolumne Meadows in a day",
+    dek: "The high country is not a scenic detour on the way to Mono Lake. A day in Tuolumne for people who are not peak-baggers: the drive, what is actually open in 2026, the short walks that pay, the altitude, and the afternoon storm that ends the day early.",
+    seoDek: "How to spend a day in Tuolumne Meadows: the Tioga Road drive, what is open in 2026, easy walks for families and non-hikers, altitude, and thunderstorms.",
+    date: "August 7, 2026",
+    isoDate: "2026-08-07",
+    isoModified: "2026-08-07",
+    read: "14 min",
+    placeholder: "The Tuolumne River winding through Tuolumne Meadows below the high country domes",
+    image: "img/tuolumne-meadows-river-basiciggy.jpg",
+    credit: "Photo: basiciggy / Pexels",
+  },
+  {
+    slug: "mariposa-grove-how-to-visit",
+    cat: "planning",
+    title: "Mariposa Grove: how to visit",
+    dek: "You cannot drive to the trees, and have not been able to since 2018. The free shuttle, the parking two miles down the hill, the four walks in order of ambition, the dog rule that catches everyone out, and what the restoration actually changed.",
+    seoDek: "How to visit Yosemite's Mariposa Grove: the free shuttle, where to park, the four trails, accessible access, winter on foot, and the rules that surprise people.",
+    date: "August 7, 2026",
+    isoDate: "2026-08-07",
+    isoModified: "2026-08-07",
+    read: "12 min",
+    placeholder: "The Grizzly Giant standing above the loop trail in the Mariposa Grove",
+    image: "img/mariposa-grove-grizzly-giant-nieves.jpg",
+    credit: "Photo: Nieves / Pexels",
+  },
   {
     slug: "yosemite-valley-parking-guide",
     cat: "planning",

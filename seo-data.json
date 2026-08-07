@@ -1,5 +1,128 @@
 {
   "__comment": "SEO enrichment for the editorial site, keyed by article slug. NOT loaded by the browser runtime (kept out of data.js so the per-page JS payload stays small). The build script scripts/gen-seo-artifacts.mjs merges this with window.ARTICLES from data.js to regenerate articles.json (consumed by functions/_middleware.js), sitemap.xml, feed.xml, and the article section of llms.txt. Fields: wordCount (number), keywords (string[]), faq ({q,a}[]), trail ({name,distance,elevationGain,difficulty} for hike guides). FAQ answers and trail numbers are drawn from each article's published body; do not invent facts. The one article whose faq lives inline in data.js (yosemite-in-one-or-two-days) is intentionally omitted here; data.js takes precedence for faq.",
+  "swimming-in-the-merced": {
+    "wordCount": 2300,
+    "keywords": [
+      "swimming in the Merced River",
+      "swimming in Yosemite",
+      "Merced River swimming holes",
+      "Sentinel Beach Yosemite",
+      "Cathedral Beach Yosemite",
+      "is it safe to swim in Yosemite",
+      "Yosemite river safety",
+      "Emerald Pool Yosemite",
+      "Yosemite rafting Merced River",
+      "Yosemite swimming with kids"
+    ],
+    "faq": [
+      {
+        "q": "Can you swim in the Merced River in Yosemite?",
+        "a": "Yes. Swimming is permitted in the Merced through Yosemite Valley, but there are no lifeguards anywhere on the river, there is no designated swimming area, and the Park Service asks visitors to enter and leave the water only at sandy beaches. Swimming is prohibited outright in a specific list of other places, including Emerald Pool and the Silver Apron above Vernal Fall."
+      },
+      {
+        "q": "When is it safe to swim in the Merced River?",
+        "a": "Not during the spring melt. Through the runoff the current is stronger than it looks and the water is cold enough to disable a strong adult in under a minute. As a rough shape of the year the swimming season runs from about mid-July into September, and in June the answer is almost always not yet, but the changeover moves several weeks in either direction with the snowpack. In a heavy year the river can still be running spring volumes well into July, so check the flow on the day rather than trusting a date."
+      },
+      {
+        "q": "Where are the best swimming spots on the Merced in Yosemite Valley?",
+        "a": "Sentinel Beach is the default: a sandy bank on the south side with a picnic area attached, calm by late summer, and the one to take small children to. Cathedral Beach downstream is wider and deeper with El Capitan upstream in the view, better for adults who want to actually swim. Devil's Elbow on Northside Drive comes good once the river drops, and the Swinging Bridge shallows are the best wading water in the Valley for toddlers. Wawona on the South Fork has the warmest swimming in the park; Tenaya Lake on Tioga Road has the coldest."
+      },
+      {
+        "q": "Where is swimming prohibited in Yosemite?",
+        "a": "Emerald Pool and the Silver Apron above Vernal Fall, Hetch Hetchy Reservoir and the first mile up its tributaries, the Dana Fork of the Tuolumne River, Lake Eleanor where posted, and the Wawona domestic water intake and the hundred yards above it. These are rules rather than advice. Beyond the posted list, never swim above any waterfall at any flow: the current accelerates toward the lip in ways you cannot feel and the granite under it is polished."
+      },
+      {
+        "q": "Why is cold water dangerous even for strong swimmers?",
+        "a": "Because the dangerous part happens in the first minute, not the first hour. Going into cold water triggers an involuntary gasp followed by breathing you cannot control, and if your head is under at that moment you inhale water. Over the following minutes your hands and forearms stop doing what you ask of them, well before you feel dangerously cold. People do not drown in snowmelt because they are bad swimmers; they drown because the ability to swim is temporarily taken away from them. Get in gradually rather than jumping, and never enter cold water alone."
+      },
+      {
+        "q": "Do you need a life jacket to raft the Merced River in Yosemite?",
+        "a": "Children aged thirteen and under must wear one on the water at all times. Everyone must wear one when the Pohono Bridge gauge reads above four feet at eight in the morning. Boating is also restricted above Little Yosemite Valley and below El Capitan Bridge. That four-foot threshold is worth knowing even if you are only swimming: if the river is high enough that the Park Service has made flotation compulsory for rafters, it is not a swimming day."
+      }
+    ]
+  },
+  "tuolumne-meadows-in-a-day": {
+    "wordCount": 2200,
+    "keywords": [
+      "Tuolumne Meadows",
+      "Tuolumne Meadows in a day",
+      "Tioga Road",
+      "Tuolumne Meadows hikes",
+      "Yosemite high country",
+      "Tuolumne Meadows with kids",
+      "Olmsted Point",
+      "Pothole Dome",
+      "Tenaya Lake",
+      "gas at Tuolumne Meadows"
+    ],
+    "faq": [
+      {
+        "q": "How long does it take to drive from Yosemite Valley to Tuolumne Meadows?",
+        "a": "Roughly 55 to 60 miles on Tioga Road, which is about an hour and a half each way in no traffic and closer to two hours in July. That is three to four hours of driving bracketing your day, and it is the number that quietly ruins Tuolumne itineraries. Leave the Valley early rather than mid-morning."
+      },
+      {
+        "q": "Is there gas at Tuolumne Meadows?",
+        "a": "No. The old station has been out of operation for years and travel sites still list it. Inside the park on the west side, Crane Flat is the only fuel and is pay-at-pump around the clock. On the east side your next fuel is Lee Vining, about forty-five minutes past the meadows. Fill up at Crane Flat on the way in whether or not you think you need to."
+      },
+      {
+        "q": "What can you do at Tuolumne Meadows if you are not a hiker?",
+        "a": "A great deal, because at 8,600 feet you are already standing in the view. The Olmsted Point nature trail is half a mile round trip with a hundred feet of climb. Pothole Dome is a mile round trip and buys the entire sweep of the meadows for ten minutes of easy climbing on glacier-polished granite. Soda Springs and Parsons Memorial Lodge is a mile and a half, flat, on an old road. The Tenaya Lake loop is two and a half miles and level, with a real sand beach at the east end."
+      },
+      {
+        "q": "How high is Tuolumne Meadows and will the altitude affect you?",
+        "a": "Tuolumne Meadows sits at about 8,600 feet, more than 4,500 feet above the Yosemite Valley floor, and Tioga Pass is 9,945 feet. Altitude usually shows up not as dramatic mountain sickness but as an afternoon headache, a shorter temper, and a walk that felt much harder than a mile should. Drink more water than you want to, eat more than you planned, go slower on the first walk of the day, and if a headache will not shift, drive back down."
+      },
+      {
+        "q": "When is Tioga Road open?",
+        "a": "Tioga Road opened on May 15 in 2026, unusually early. In a typical year it opens in late May or early June and closes with the first serious snow in late October or November. The date moves with the snowpack every year, so check current conditions rather than planning around an average."
+      },
+      {
+        "q": "Are afternoon thunderstorms a problem in the Yosemite high country?",
+        "a": "In July and August the high country builds thunderstorms out of a clear morning with startling speed: clear at dawn, cumulus stacking by late morning, lightning possible from early afternoon. Plan the day around it by doing the exposed thing first. Domes, summits and open granite in the morning; meadow, forest, lakeshore and lunch in the afternoon. Carry a rain shell even when the morning makes it look ridiculous."
+      }
+    ]
+  },
+  "mariposa-grove-how-to-visit": {
+    "wordCount": 2400,
+    "keywords": [
+      "Mariposa Grove",
+      "Mariposa Grove shuttle",
+      "how to visit Mariposa Grove",
+      "Mariposa Grove parking",
+      "Grizzly Giant",
+      "Mariposa Grove trails",
+      "Mariposa Grove accessibility",
+      "dogs in Mariposa Grove",
+      "Mariposa Grove in winter",
+      "giant sequoias in Yosemite"
+    ],
+    "faq": [
+      {
+        "q": "Can you drive to the Mariposa Grove?",
+        "a": "Not in season, and not since 2018. Private vehicles park at the Mariposa Grove Welcome Plaza just inside the South Entrance, and a free shuttle covers the two miles up Mariposa Grove Road to the Arrival Area. The road beyond the plaza is closed to private cars while the shuttle is running. The one exception is a vehicle displaying a disability placard, which may drive the road."
+      },
+      {
+        "q": "How does the Mariposa Grove shuttle work?",
+        "a": "It is free, there is no ticket, and individual riders need no reservation. Buses run roughly every fifteen minutes between the Welcome Plaza and the Arrival Area, take about ten minutes, and are wheelchair accessible with lifts and tie-downs. The Park Service does not publish hard season dates, saying only that it begins no earlier than April 15 and ends on or before November 30. Check the posted hours at the plaza, and note the last downhill departure before you walk away from the stop."
+      },
+      {
+        "q": "Where do you park for the Mariposa Grove?",
+        "a": "At the Mariposa Grove Welcome Plaza, which is the first right at the roundabout just inside the South Entrance on Highway 41, less than a quarter mile in. It holds a few hundred vehicles and fills on busy days. There are restrooms and a Yosemite Conservancy bookstore there, and no food service anywhere in the grove."
+      },
+      {
+        "q": "Are dogs allowed in the Mariposa Grove?",
+        "a": "No. Dogs are not allowed on any trail in the Mariposa Grove, including the paved ones, and are not allowed on the shuttle. This is an explicit exception to Yosemite's general policy of permitting leashed dogs on paved trails, and it catches people out because the Tuolumne Grove on Highway 120 does permit them on its paved section. Leashed dogs are fine in the parking lot, which in practice means one adult stays with the car."
+      },
+      {
+        "q": "How long do you need at the Mariposa Grove?",
+        "a": "Two hours is an absolute floor, and that only buys the shuttle both ways and the Big Trees Loop, which is three tenths of a mile, paved and wheelchair accessible. Half a day is right for the Grizzly Giant Loop, about two miles, with time to stand around. A full day is the upper grove. Add about an hour and a quarter each way if you are driving from Yosemite Valley."
+      },
+      {
+        "q": "Can you visit the Mariposa Grove in winter?",
+        "a": "Yes, on foot. Mariposa Grove Road closes to vehicles at the end of November and reopens when the snow allows, which has meant anywhere from early April onward in recent years. The grove itself does not close: the road and trails stay open to foot travel, and walking, snowshoeing or skiing the two miles up from the South Entrance is one of the quietest good days available in Yosemite in February. Note that this is not a designated snow-play area; the park's sledding hill is at Crane Flat."
+      }
+    ]
+  },
   "yosemite-valley-parking-guide": {
     "wordCount": 2200,
     "keywords": [

@@ -20,7 +20,7 @@ window.ARTICLE_BODIES["cathedral-lakes-day-hike"] = function CathedralLakesDayHi
       <h2>Cathedral Lakes trail distance, elevation, and trailhead</h2>
 
       <p>
-        The Cathedral Lakes trail starts at the new <strong>Cathedral Lakes trailhead</strong> parking adjacent to the Tuolumne Meadows Visitor Center. The old trailhead at the side of Tioga Road was retired during the Tuolumne Meadows redevelopment, so the trail distances in older guidebooks read about three-quarters of a mile shorter than the current reality. For a broader look at the trailheads and routes in this area, see the Tuolumne Meadows hikes.
+        The Cathedral Lakes trail starts at the new <strong>Cathedral Lakes trailhead</strong> parking adjacent to the Tuolumne Meadows Visitor Center. The old trailhead at the side of Tioga Road was retired during the Tuolumne Meadows redevelopment, so the trail distances in older guidebooks read about three-quarters of a mile shorter than the current reality. For a broader look at the trailheads and routes in this area, and for the shorter walks that suit a day when this hike is too much, see <a href="/articles/tuolumne-meadows-in-a-day">Tuolumne Meadows in a day</a>.
       </p>
 
       <p>Current numbers, from the new trailhead:</p>
