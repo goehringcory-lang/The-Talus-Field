@@ -112,7 +112,7 @@ window.ARTICLE_BODIES["yosemite-shuttle-and-yarts"] = function YosemiteShuttleAn
       </p>
 
       <p>
-        <strong>YARTS wins outright if you are arriving by train or plane.</strong> Amtrak to Merced and YARTS into the Valley is a real, scheduled, year-round itinerary. There is no rental car, no chain requirement in winter, and no need to be the person who drives four hours and then hikes.
+        <strong>YARTS wins outright if you are arriving by train or plane.</strong> Amtrak to Merced and YARTS into the Valley is a real, scheduled, year-round itinerary, and for anyone coming from the Bay, <a href="/articles/yosemite-day-trip-from-bay-area">the day-trip piece weighs it against the drive</a>. There is no rental car, no chain requirement in winter, and no need to be the person who drives four hours and then hikes.
       </p>
 
       <p>

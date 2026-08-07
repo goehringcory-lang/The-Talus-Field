@@ -6,7 +6,7 @@ window.ARTICLE_BODIES["yosemite-day-trip-from-bay-area"] = function YosemiteDayT
   return (
     <>
       <p className="dropcap">
-        It is a bit under two hundred miles from San Francisco to Yosemite Valley. On a map that is nothing: a morning's drive, an easy out-and-back for a Saturday, the sort of distance people cover for a wedding without thinking about it. Every year several hundred thousand people look at that map and reach the obvious conclusion, and a large fraction of them arrive in the Valley at half past eleven, spend four hours in a place that deserves four days, and drive home in the dark wondering why the most famous landscape in California felt like a parking lot with a waterfall in it.
+        It is a bit under two hundred miles from San Francisco to Yosemite Valley. On a map that is nothing: a morning's drive, an easy out-and-back for a Saturday, the sort of distance people cover for a wedding without thinking about it. Every summer a great many people look at that map and reach the obvious conclusion, and a large fraction of them arrive in the Valley at half past eleven, spend four hours in a place that deserves four days, and drive home in the dark wondering why the most famous landscape in California felt like a parking lot with a waterfall in it.
       </p>
 
       <p>
