@@ -95,6 +95,33 @@ window.ARTICLE_INTENT = {
   "mariposa-grove-how-to-visit":               { stage: ["dates-set", "week-before", "in-park"], who: ["families", "non-hikers", "accessible"], topic: ["transportation", "trails"] },
   "tuolumne-meadows-in-a-day":                 { stage: ["before-booking", "dates-set", "week-before", "in-park"], who: ["families", "non-hikers", "photography"], topic: ["transportation", "trails", "conditions"] },
   "swimming-in-the-merced":                    { stage: ["dates-set", "week-before", "in-park"], who: ["families", "non-hikers"], topic: ["conditions"] },
+
+  // The August 2026 gap-filling trio. Each was commissioned against an
+  // intersection the catalog answered thinly or not at all, so the tags below
+  // are the point of the articles rather than an afterthought:
+  //
+  //   first-trip x camping had exactly one entry, the thirteen-campground
+  //   reference, which is the wrong shape for somebody who has never slept in a
+  //   campground and does not yet know what one is. The orientation piece is
+  //   tagged `first-trip` for that reason. It also carries `families` because
+  //   the content that is not about the reservation is about managing a group:
+  //   the six-person and two-vehicle caps, a headlamp per person, and the oak
+  //   limbs over the patch of dirt where a carrier would go.
+  //
+  //   backpacking x conditions had none at all. The permits guide answers the
+  //   system; nothing answered the snow, the ford, or the week the mosquitoes
+  //   reach the meadow. `conditions` is the tag the piece exists for.
+  //
+  //   The day-trip piece carries an EMPTY `who` deliberately, on the same
+  //   principle as the arrival-logistics trio above: how long the drive really
+  //   takes and when the Valley lots fill is a question every traveler type asks
+  //   in identical words, and naming a subset would trip the written-for-
+  //   somebody-else exclusion for everyone left off. It is also a second anchor
+  //   on TRIP_RULES.stay.daytrip, which until now pointed only at the entrances
+  //   piece.
+  "camping-in-yosemite-first-time":            { stage: ["before-booking", "dates-set", "week-before"], who: ["first-trip", "families"], topic: ["camping"] },
+  "first-yosemite-backpacking-trip":           { stage: ["dates-set", "week-before"], who: ["backpacking"], topic: ["conditions", "trails", "permits"] },
+  "yosemite-day-trip-from-bay-area":           { stage: ["before-booking", "dates-set", "week-before"], who: [], topic: ["transportation", "conditions"] },
   "yosemite-valley-parking-guide":             { stage: ["dates-set", "week-before", "in-park"], who: [], topic: ["transportation"] },
   "yosemite-shuttle-and-yarts":                { stage: ["before-booking", "dates-set", "week-before", "in-park"], who: [], topic: ["transportation"] },
   "yosemite-walk-up-and-day-of-permits":       { stage: ["dates-set", "week-before", "in-park"], who: [], topic: ["permits", "camping"] },
@@ -546,7 +573,11 @@ var TRIP_RULES = {
     lodge:     { intent: { stage: ["before-booking"], topic: ["lodging"] }, anchors: ["where-to-stay-in-yosemite"] },
     camp:      { intent: { stage: ["before-booking"], topic: ["camping"] }, anchors: ["yosemite-camping-complete-guide"] },
     gateway:   { intent: { stage: ["before-booking"], topic: ["lodging"] }, anchors: ["yosemite-gateway-towns-compared"] },
-    daytrip:   { intent: { topic: ["transportation"] }, anchors: ["getting-to-yosemite"] },
+    // Two anchors. The entrances piece stays first because it answers the day
+    // trip from any direction; the Bay Area piece is second because that is
+    // where most day-trippers start and it is the only one that does the
+    // daylight arithmetic against the drive.
+    daytrip:   { intent: { topic: ["transportation"] }, anchors: ["getting-to-yosemite", "yosemite-day-trip-from-bay-area"] },
     undecided: { intent: { stage: ["before-booking"], topic: ["lodging"] }, anchors: ["first-time-yosemite-overwhelm", "where-to-stay-in-yosemite"] },
   },
   party: {

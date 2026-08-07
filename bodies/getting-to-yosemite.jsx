@@ -20,7 +20,7 @@ window.ARTICLE_BODIES["getting-to-yosemite"] = function GettingToYosemiteBody() 
       </p>
 
       <p>
-        <strong>Big Oak Flat Entrance, Highway 120 from the west.</strong> The northern approach, through Groveland. From the Bay Area it runs about four hours, and it is the natural route if your trip includes the Tioga Road high country, Hetch Hetchy, or the Tuolumne Grove. The climb up Priest Grade out of the Central Valley is the steep part; trailers and nervous drivers take the old road at their own pace. From this entrance the Valley is still about forty-five minutes further in.
+        <strong>Big Oak Flat Entrance, Highway 120 from the west.</strong> The northern approach, through Groveland. From the Bay Area it runs about four hours, and it is the natural route if your trip includes the Tioga Road high country, Hetch Hetchy, or the Tuolumne Grove. The climb up Priest Grade out of the Central Valley is the steep part, and it comes in two versions: the old road, which is short, steep and narrow and is closed to trailers and heavy vehicles, and the new one, which is longer, gentler and full of curves. Anything towing takes the new road, and so should everybody else. From this entrance the Valley is still about forty-five minutes further in.
       </p>
 
       <p>
