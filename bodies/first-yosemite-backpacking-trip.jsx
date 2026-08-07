@@ -1,0 +1,273 @@
+/* global React, Placeholder, MotifMountains, MotifSun */
+
+window.ARTICLE_BODIES = window.ARTICLE_BODIES || {};
+
+window.ARTICLE_BODIES["first-yosemite-backpacking-trip"] = function FirstYosemiteBackpackingTripBody() {
+  return (
+    <>
+      <p className="dropcap">
+        The permit is the part everyone plans for. It has a date, a deadline, a fee, and a screen that tells you whether you got it, and because it is the only part of the trip with a scoreboard, it absorbs most of the anxiety. Then the permit prints, and it tells you a trailhead, a start date, a party size, and a set of regulations, and it tells you nothing whatsoever about the three things most likely to shape your trip: how much snow is still up there, how high the creek is running, and whether the meadow you were planning to camp in is currently a mosquito event.
+      </p>
+
+      <p>
+        Those are the conditions, and in the Sierra they move on a schedule of their own. <a href="/articles/yosemite-wilderness-permits-guide">The permit guide covers the system</a>: the lottery, the release dates, the fees. This piece is about what you walk into once the paperwork is behind you, written for the trip that is your first one.
+      </p>
+
+      <h2>What the permit reserves, and what it does not</h2>
+
+      <p>
+        Worth being precise about, because the misunderstanding here is common and it produces bad planning.
+      </p>
+
+      <p>
+        A Yosemite wilderness permit reserves a trailhead and a start date. It does not reserve a campsite, because with a few exceptions there are none to reserve. It does not certify that your route is passable, that a bridge is standing, that a ford is safe, or that the pass on day two is clear of snow. The park meters the first day and leaves the rest to your own judgment. This is a feature. It is also the thing that makes conditions research your job rather than the agency's.
+      </p>
+
+      <p>
+        Two riders come with it, both covered in the permit guide: a night in a backpackers' campground before your start and after your exit, and the option to add Half Dome to a wilderness permit instead of playing <a href="/articles/half-dome-permit-lottery-2026">the day-hiker lottery</a>.
+      </p>
+
+      <h2>The road opens before the country does</h2>
+
+      <p>
+        Here is the mistake that produces the most turned-around first trips. Tioga Road opening is a headline, and people read it as the high country being open. It is not the same statement.
+      </p>
+
+      <p>
+        Tioga Road tops out at 9,945 feet and gets plowed. The passes on your itinerary do not. Over the long historical record the road has opened in late May on average, with a spread that runs from the first week of May in a bare year to late July after a monster winter. In 2026 it opened on May 15. What clears weeks to a month later is everything the plows never touch: north-facing switchbacks, benches above 9,500 feet, the shaded side of any pass, and the snowfields that sit in exactly the bowls that trails like to traverse.
+      </p>
+
+      <p>
+        Aspect matters as much as elevation, and this is the part that catches people who have done the arithmetic on the map. Two slopes at the same altitude a mile apart can be bare granite and waist-deep rotten snow, depending on which way they face and how much afternoon sun they take. A trip that reads as an easy 3,000 feet of gain on the topo becomes a route-finding exercise across a snowfield with a runout, which is a different trip requiring different equipment and a different set of skills.
+      </p>
+
+      <p>
+        The honest early-season rule: in a normal year, if your route holds you above about 9,500 feet for any length of time, June is a gamble and early July is when it stops being one. In a heavy year, add weeks. In a lean year, subtract them. Snowpack in California swings wildly, from single digits as a percentage of average in the driest years to well over 200 percent in the wettest, so nothing about last year predicts this one. Read the current conditions report for your specific trailhead before you finalize, and be genuinely willing to move down a drainage.
+      </p>
+
+      <blockquote>The road opening tells you the plows finished. It tells you nothing about the pass on day two.</blockquote>
+
+      <Placeholder
+        caption="A backpacking tent on granite at first light, alpenglow on the spires above camp"
+        image="img/backcountry-camp-alpenglow-stephen-leonardi.jpg"
+        credit="Photo: Stephen Leonardi / Pexels"
+        tag="PLATE I"
+        size="lg"
+        style={{ aspectRatio: "3 / 2", margin: "32px 0" }}
+        motif={<MotifMountains />}
+      />
+
+      <h2>The creek is the most dangerous thing on your itinerary</h2>
+
+      <p>
+        Not the cliff. Not the bear. The water.
+      </p>
+
+      <p>
+        Water-related accidents are one of the leading causes of death in this park, and they are not concentrated in the dramatic places. They happen at crossings, on the days the crossing looked fine. In 2017, after one of the biggest winters on record, a thru-hiker drowned fording Rancheria Creek in Kerrick Canyon in the park's northern backcountry, in July, weeks after anyone would have called it spring. That is the shape of the hazard: a route that is trivial in September and lethal in June, at the same place, with no sign to mark the difference.
+      </p>
+
+      <p>
+        Peak runoff generally arrives from late May into June, but that window shifts earlier in a low-snow year and later in a big one, and it moves through the day as well as through the season. Snowmelt-fed creeks run lowest in the early morning, before the day's sun has worked on the snowfields upstream, and highest in the late afternoon and evening. A crossing you would not attempt at four in the afternoon is often unremarkable at seven the next morning. Building your day around that single fact is the cheapest safety measure in backpacking.
+      </p>
+
+      <p>
+        The rest of it is standard and worth committing to memory before you need it. Unbuckle your hip belt and sternum strap before you step in, so the pack can be shed if you go down; a pack full of air will hold you face-down. Face upstream, use trekking poles as a third and fourth point, and move sideways rather than forward. Never cross immediately above a log jam or a strainer, because that is where current pins a swimmer. Knee-deep and pushy is already serious; thigh-deep and pushy is a no. And a crossing you cannot do is not a failed trip. It is a changed one, and the alternative campsite on this side of the water is a perfectly good place to sleep.
+      </p>
+
+      <h2>The mosquitoes follow the snowline uphill</h2>
+
+      <p>
+        Nobody warns first-timers about this enough. It will govern their evenings.
+      </p>
+
+      <p>
+        The mechanism is simple and it makes the timing predictable. Mosquitoes emerge from the standing water that snowmelt leaves behind, roughly a couple of weeks after a given elevation band melts out. Which means the peak is not a date on the calendar. It is a wave that climbs the mountain through the summer, arriving in the mid-elevation meadows first and reaching the high basins last. By rough consensus the worst of it in Yosemite runs from about mid-June into early July across most elevations you can drive to, eases through late July, and is largely finished by September. In a low-snow year the whole sequence shifts earlier.
+      </p>
+
+      <p>
+        This is why the meadow campsite is a trap in the wrong week. Meadows are where the standing water is. Move a few hundred feet onto a dry granite bench with a breeze, and it is a different night.
+      </p>
+
+      <p>
+        For gear: a head net weighs almost nothing and is the single highest-return item in the pack during the peak weeks, and there is no dignified way to say that. Permethrin at 0.5 percent goes on clothing and gear only, never skin, and survives several washes. On skin, DEET in the 20 to 30 percent range or picaridin at 20 percent or higher does the work; higher DEET concentrations mostly buy duration rather than better protection. Treated clothing plus a repellent on the exposed skin is the combination that actually holds up, and long sleeves in July are not the sacrifice they sound like at 9,000 feet.
+      </p>
+
+      <h2>You are about to sleep higher than you ever have</h2>
+
+      <p>
+        Tioga Road makes something possible that is unusual in American mountains, and slightly dangerous. You can leave sea level in the morning, park at a trailhead near 8,500 feet in the afternoon, and be asleep at 9,300 by dark. That is a very fast ascent profile, and it is close to the exact pattern altitude guidance tells people to avoid.
+      </p>
+
+      <p>
+        The numbers to hold: acute mountain sickness becomes possible for some people somewhere around 8,000 feet, symptoms typically show up six to ten hours after arriving at altitude rather than immediately, and they usually resolve within a day or two provided you do not keep climbing. Standard guidance suggests spending a night or two around 8,000 to 9,000 feet before going higher, and above roughly 9,800 feet, not raising your sleeping elevation more than about 1,600 feet per night.
+      </p>
+
+      <p>
+        A first Yosemite trip is a good place to respect that cheaply, because the geography cooperates. Camp the night before at Tuolumne Meadows, about 8,600 feet, rather than driving up and starting the same afternoon. It costs you an evening and buys you a headache-free first day. If somebody in the party is feeling it, the treatment is not aspirin and pushing on; it is stopping the ascent, and if it is not improving, going down. Altitude is the one problem in the mountains that is reliably cured by walking downhill.
+      </p>
+
+      <p>
+        Here are the elevations of the usual first destinations, for the arithmetic: Little Yosemite Valley around 6,100 feet, the Cathedral Lakes around 9,300 to 9,600, Sunrise Lakes in the 9,200 to 9,400 range, Vogelsang above 10,000. That last one is a beautiful place and a poor choice for a first night out of a car from the coast.
+      </p>
+
+      <h2>The afternoon builds a storm</h2>
+
+      <p>
+        Sierra summer weather has a daily rhythm, and it holds. Mornings are clear. Clouds build over the crest through the middle of the day. By early afternoon, in the months when monsoon moisture reaches this far, you can have a real thunderstorm, gone again within the hour.
+      </p>
+
+      <p>
+        The whole safety protocol follows from the timing. Be over your pass and off exposed high ground by around midday. Not because a storm is guaranteed, but because a storm at one in the afternoon is a normal event in July and August, and the place you do not want to be when it arrives is the highest object on a granite ridge. There is no safe shelter above treeline. A tent is not shelter, a lone tree is worse than nothing, and the useful moves are getting lower, getting off ridgelines and out of shallow caves, and spreading the party out so a single strike cannot take everyone.
+      </p>
+
+      <p>
+        The corollary is that alpine starts in the Sierra are not machismo. They are the schedule.
+      </p>
+
+      <h2>The cold nobody packs for</h2>
+
+      <p>
+        High-country Yosemite in midsummer is not warm at night. At 8,600 feet in Tuolumne, overnight lows in July and August commonly sit somewhere in the thirties to low forties, on the same nights the Valley floor is comfortable in a t-shirt. Clear skies at altitude radiate heat away fast, and the coldest hour is the one before dawn.
+      </p>
+
+      <p>
+        Practically: a 20-degree bag is the honest choice for a Yosemite high-country summer trip, a 30-degree bag works if you sleep warm and layer, and a 40-degree bag is a bad night waiting to happen. Insulation under you matters as much as over you, and it is the thing beginners skimp on; a pad with a decent R-value fixes more cold nights than a heavier bag does. Sleep in a hat. Eat something before you get in the bag, because your body needs fuel to make heat all night.
+      </p>
+
+      <p>
+        And an early-season or late-season trip should assume snow is possible. The first dusting in the high country can arrive in September, and it usually melts within a day, and it is still a genuinely miserable night if your kit assumed August.
+      </p>
+
+      <h2>The canister, and Yosemite's stricter list</h2>
+
+      <p>
+        A bear canister is required for overnight wilderness travel in Yosemite. Parkwide, not zone by zone, not a suggestion, not satisfied by hanging your food from a branch. Counterbalance hanging has not been an accepted method here for many years, for the excellent reason that the bears in this park learned to defeat it.
+      </p>
+
+      <p>
+        The detail that trips up experienced backpackers arriving from elsewhere: Yosemite maintains its own approved-container list, and it is narrower than the general certifications other agencies accept. Soft-sided bag-style containers of the Ursack type are not on it. If you have been using one happily in another range, it does not carry over. Confirm your specific model against the park's current list before you drive out, because the check at the permit desk is real and being turned around at the trailhead over a food container is a bleak way to start.
+      </p>
+
+      <p>
+        Renting solves it. Canisters rent from the staffed wilderness centers for a few dollars a week plus a refundable deposit, and returns are easy. Everything scented goes inside: food, obviously, but also toothpaste, sunscreen, lip balm, soap, the wrappers you have been carrying, and the trash. Pack the canister at home once before the trip. Watching somebody discover on the trailhead pavement that six days of food does not fit into a BV450 is a rite of passage that is better skipped.
+      </p>
+
+      <h2>The water, and a panic you can partly put down</h2>
+
+      <p>
+        The standard advice is to treat everything, and that remains the right default for a first trip: a filter, chemical tablets, or UV, chosen for what you will actually use rather than what looks best.
+      </p>
+
+      <p>
+        But the received wisdom about Giardia in the Sierra is worth a more accurate framing, because it has been studied. A long series of surveys of high Sierra water led by researchers at UC Davis, sampling roughly a hundred sites across Yosemite and the parks to the south, found that a majority of them had no detectable water-quality problem at all, and that contamination correlated overwhelmingly with cattle and pack-stock use rather than with backpackers. Coliform bacteria showed up in nearly every grazed site sampled and were rare in the backpacker-only ones. Measured Giardia cyst concentrations in the alpine sites were extremely low, low enough that the authors described the risk to humans as minimal. A separate study of backcountry travelers in the Tahoe-area wilderness found actual cyst acquisition in a small single-digit percentage.
+      </p>
+
+      <p>
+        What to do with that. Not to stop treating water, and the point is genuinely contested among people who study it. Do use it to aim your caution correctly: the real signal in the Sierra is what is upstream of you, and the meaningful risk is downstream of grazing, stock camps, and heavily used trail corridors, not a spring-fed alpine outlet. Fill high, fill above the pack station and above the meadow with horse traffic, and treat it anyway. That is a cheaper insurance policy than the alternative and it costs you nothing to keep.
+      </p>
+
+      <h2>The regulations that ride along</h2>
+
+      <p>
+        Short list, all of them easy to comply with and all of them things people get cited for out of ignorance rather than intent.
+      </p>
+
+      <p>
+        <strong>Camp at least 100 feet from water and from the trail.</strong> Call it forty paces. This is the most-violated rule in the wilderness and the one with the most visible consequences, since lakeshore camping is what turns a shoreline into a network of bare social trails.
+      </p>
+
+      <p>
+        <strong>No campfires above 9,600 feet, ever.</strong> The trees up there grow slowly enough that a season of campfires undoes a century. Between 6,000 and 9,600 feet, existing rings only. And below that, seasonal fire restrictions come and go with conditions, so check the current status for your dates rather than assuming, particularly late in a dry summer.
+      </p>
+
+      <p>
+        <strong>Group size caps at 15 on trail, and 8 for cross-country travel.</strong>
+      </p>
+
+      <p>
+        <strong>Human waste: a cathole six inches deep, 100 feet from water, trail, and camp, and toilet paper comes out with you.</strong> Not buried. Out.
+      </p>
+
+      <p>
+        <strong>Little Yosemite Valley has its own rules</strong> because of its volume: parties starting at Happy Isles or Glacier Point on an LYV itinerary camp there the first night, in a designated area with lockers and a composting toilet.
+      </p>
+
+      <Placeholder
+        caption="The Tuolumne high country in late summer, the country a wilderness permit trades a parking lot for"
+        image="img/tuolumne-high-country-cory-goehring.jpg"
+        credit="Photo: Cory Goehring"
+        tag="PLATE II"
+        size="lg"
+        style={{ aspectRatio: "16 / 10", margin: "32px 0" }}
+        motif={<MotifSun />}
+      />
+
+      <h2>Four first trips that work</h2>
+
+      <p>
+        All four are short, well-signed, reliably watered, and free of any crossing that becomes a decision in a normal year past early July.
+      </p>
+
+      <p>
+        <strong>Cathedral Lakes,</strong> from Tioga Road at Tuolumne Meadows. Roughly four and a half miles in, and nine or so round trip, with somewhere between a thousand and 1,400 feet of cumulative gain depending on which lakes you visit, to a pair of them sitting under one of the most photographed spires in the range. It is the standard first Yosemite overnight for good reason, and consequently one of the harder permits to draw. <a href="/articles/cathedral-lakes-day-hike">The day-hike version</a> is the same trail if the permit does not come through, and it has the full breakdown of the walk.
+      </p>
+
+      <p>
+        <strong>Sunrise Lakes,</strong> from Tenaya Lake. About seven and a half miles round trip with roughly 1,400 feet of gain, most of it in one steep block of switchbacks after a flat opening, and three lakes at the top so you have options on where to put the tent.
+      </p>
+
+      <p>
+        <strong>Glen Aulin,</strong> down the Tuolumne from the meadows. Longer on paper at about eleven miles round trip, but only around 800 feet of elevation change, which makes it gentler than its mileage suggests and an unusually good pick for somebody who is fit but new to a loaded pack. Check bridge status before you go, since this route crosses the river.
+      </p>
+
+      <p>
+        <strong>Little Yosemite Valley,</strong> from Happy Isles. Under ten miles round trip with about 2,000 feet of gain, up past Vernal and Nevada Falls on <a href="/articles/mist-trail-the-real-guide">the Mist Trail</a>, which means your approach is one of the best day hikes in the park. Skip the Half Dome add-on the first time. With the cables it becomes a fundamentally harder trip.
+      </p>
+
+      <h2>What actually goes wrong</h2>
+
+      <p>
+        Yosemite runs on the order of a couple of hundred search-and-rescue operations a year, and the number has been climbing, partly because satellite messengers now let people call for help from places where previously they would have walked out. The distribution is instructive: the modal patient is not a lost mountaineer, it is somebody with a lower-body injury on a maintained trail. Extremity injuries dominate the backcountry medical calls. Falls are the mechanism most likely to be fatal.
+      </p>
+
+      <p>
+        Which is to say the failure modes on a first trip are boring, and that is good news, because boring failures are preventable ones. In rough order of how often I have watched them happen:
+      </p>
+
+      <p>
+        <strong>Feet.</strong> Untested boots, no blister kit, no attention paid until it is a wound. Tape the hot spot when you feel it, not at camp.
+      </p>
+
+      <p>
+        <strong>Too much pack.</strong> A first-timer's pack is routinely ten to fifteen pounds heavier than it needs to be, and the weight goes onto knees and ankles descending, which is where the injuries are.
+      </p>
+
+      <p>
+        <strong>Too much mileage.</strong> Day one with a full pack at altitude is not a day hike. Half the distance you would walk unloaded is a reasonable planning figure for a first trip.
+      </p>
+
+      <p>
+        <strong>Arriving at the trailhead in the afternoon.</strong> Late start, storm, and a headlamp descent into camp.
+      </p>
+
+      <p>
+        <strong>No plan for the crossing.</strong> Not because the party was reckless, but because nobody had decided in advance what "too high" looks like, so the decision got made while standing in it.
+      </p>
+
+      <h2>The part that makes it worth the paperwork</h2>
+
+      <p>
+        Ninety-five percent of Yosemite is designated wilderness, and on any given day almost none of it has anyone standing in it. The first mile past a trailhead clears out the crowd. By the second, the country is yours.
+      </p>
+
+      <p>
+        The first night out is mostly logistics, the same as a first night in a campground. You are cold, or the pad is odd, or you are listening to noises. Then the light comes up on granite you cannot see from any road, and there is nobody in it, and the arithmetic of permits and quotas and canister volumes resolves into the simplest transaction in the park: a considerable amount of paperwork, in exchange for a watershed.
+      </p>
+
+      <p>
+        Go somewhere small the first time. Then go back.
+      </p>
+    </>
+  );
+};

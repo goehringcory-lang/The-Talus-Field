@@ -64,7 +64,7 @@ window.ARTICLE_BODIES["yosemite-wilderness-permits-guide"] = function YosemiteWi
       <h2>Picking up the permit</h2>
 
       <p>
-        A reservation is not the permit itself. You collect the physical permit at a wilderness center (Yosemite Valley, Tuolumne Meadows, Big Oak Flat, Wawona, or Hetch Hetchy, seasonally) by 10 a.m. on your start date, or it can be released to the next person in line. The pickup conversation with the ranger is short and worth having: current water sources, snow lingering on passes, which bear has been working which drainage. It is the best trail beta in the park and it costs nothing.
+        A reservation is not the permit itself. You collect the physical permit at a wilderness center (Yosemite Valley, Tuolumne Meadows, Big Oak Flat, Wawona, or Hetch Hetchy, seasonally) by 10 a.m. on your start date, or it can be released to the next person in line. The pickup conversation with the ranger is short and worth having: current water sources, snow lingering on passes, which bear has been working which drainage, <a href="/articles/first-yosemite-backpacking-trip">the exact conditions a first trip needs to plan around</a>. It is the best trail beta in the park and it costs nothing.
       </p>
 
       <h2>An honest strategy, in order</h2>

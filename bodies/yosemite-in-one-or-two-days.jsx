@@ -119,7 +119,7 @@ window.ARTICLE_BODIES["yosemite-in-one-or-two-days"] = function YosemiteInOneOrT
       <p>For the long version, see our <a href="/kit">kit</a> page and the essay on <a href="/articles/pack-your-car-for-yosemite">how to pack your car for Yosemite</a>.</p>
 
       <h2>Common questions</h2>
-      <p><strong>How many days do you need in Yosemite?</strong> One full day, started early, covers the Valley highlights. A second day adds Glacier Point, Mariposa Grove, or Tioga Road above the Valley floor. Beyond two days you are into backcountry and repeat-visit territory.</p>
+      <p><strong>How many days do you need in Yosemite?</strong> One full day, started early, covers the Valley highlights. A second day adds Glacier Point, Mariposa Grove, or Tioga Road above the Valley floor. Beyond two days you are into <a href="/articles/first-yosemite-backpacking-trip">backpacking country</a> and repeat-visit territory.</p>
       <p><strong>Do I need a reservation to enter Yosemite in 2026?</strong> No. Yosemite has no day-use or peak-hours reservation in 2026. You still need a valid entrance pass ($35 per vehicle for seven days).</p>
       <p><strong>When do the waterfalls run?</strong> Spring snowmelt is the engine, and the peak is roughly April through June. By late summer the falls are low to dry, and a few stop entirely.</p>
       <p><strong>Is Glacier Point Road open?</strong> Yes. It reopened for the season on May 9, 2026. Note that there is no water at the overlook, so fill your bottles before you drive up.</p>

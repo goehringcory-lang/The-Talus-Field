@@ -64,7 +64,7 @@ window.ARTICLE_BODIES["first-time-yosemite-overwhelm"] = function FirstTimeYosem
       <h2>Three questions, before you book anything</h2>
 
       <p>
-        So before you book anything (before you reserve a hotel in Mariposa, a campsite in the Valley, a Glacier Point tour, a YARTS bus, anything at all), sit with three questions:
+        So before you book anything (before you reserve a hotel in Mariposa, <a href="/articles/camping-in-yosemite-first-time">a campsite in the Valley</a>, a Glacier Point tour, a YARTS bus, anything at all), sit with three questions:
       </p>
 
       <ol>

@@ -78,7 +78,7 @@ window.ARTICLE_BODIES["yosemite-camping-complete-guide"] = function YosemiteCamp
       </p>
 
       <p>
-        If you are visiting for the first time, the <a href="/articles/first-time-yosemite-overwhelm">first-timer's guide</a> covers the broader logistics. But camping adds its own layer of complexity, and the reservation system is the first gate.
+        If you are visiting for the first time, the <a href="/articles/first-time-yosemite-overwhelm">first-timer's guide</a> covers the broader logistics, and <a href="/articles/camping-in-yosemite-first-time">what your first night in one of these campgrounds is actually like</a> covers the rest. But camping adds its own layer of complexity, and the reservation system is the first gate.
       </p>
 
       <h2>The cancellation game</h2>
