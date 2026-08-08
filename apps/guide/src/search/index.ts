@@ -14,12 +14,14 @@ import {
   SECRET_SPOTS,
   stops,
 } from '../content'
+import { HUNTS, type HuntT } from '../content/hunts'
+import { KIND_LABELS, WILDLIFE, type WildlifeEntryT } from '../content/wildlife'
 
 export type SearchHit = {
   id: string
   url: string
   title: string
-  section: 'Stops' | 'Hikes' | 'Secret Guide' | 'Essentials' | 'Programs' | 'Dining'
+  section: 'Stops' | 'Hikes' | 'Secret Guide' | 'Essentials' | 'Programs' | 'Dining' | 'Wildlife' | 'For kids'
   eyebrow: string
   snippet: string
   score: number
@@ -44,6 +46,16 @@ function essentialChecklistText(
   checklist: (typeof ESSENTIALS)[number]['checklist'],
 ): string {
   return (checklist ?? []).map((c) => (c.note ? `${c.label} ${c.note}` : c.label)).join(' ')
+}
+
+// Shared by indexing and snippet reconstruction so the two stay index-aligned
+// (same rule as essentialChecklistText above).
+function wildlifeBodyText(w: WildlifeEntryT): string {
+  return `${w.lookFor} ${w.whereWhen} ${w.note}${w.safety ? ' ' + w.safety : ''}`
+}
+
+function huntBodyText(h: HuntT): string {
+  return h.intro + ' ' + h.items.map((i) => (i.note ? `${i.label} ${i.note}` : i.label)).join(' ')
 }
 
 function buildEntries(): Entry[] {
@@ -120,6 +132,36 @@ function buildEntries(): Entry[] {
     })
   }
 
+  // The wildlife quick-ID guide. Every hit lands on /wildlife; the Latin name
+  // is indexed at swap weight so "ursus" or "sequoiadendron" still resolves.
+  for (const w of WILDLIFE) {
+    entries.push({
+      id: w.id,
+      url: '/wildlife',
+      title: w.name,
+      section: 'Wildlife',
+      eyebrow: KIND_LABELS[w.kind],
+      titleText: w.name.toLowerCase(),
+      swapText: w.latin.toLowerCase(),
+      bodyText: wildlifeBodyText(w).toLowerCase(),
+    })
+  }
+
+  // The junior naturalist find-it lists, one entry per region's hunt, so
+  // "dipper" or "glacial polish" surfaces the list that promises it.
+  for (const h of HUNTS) {
+    entries.push({
+      id: `hunt-${h.region}`,
+      url: '/hunts',
+      title: `Find it: ${h.title}`,
+      section: 'For kids',
+      eyebrow: 'For young naturalists',
+      titleText: h.title.toLowerCase(),
+      swapText: '',
+      bodyText: huntBodyText(h).toLowerCase(),
+    })
+  }
+
   for (const s of SECRET_SPOTS) {
     entries.push({
       id: s.id,
@@ -184,6 +226,12 @@ export function search(query: string, limit = 24): SearchHit[] {
       originalBody = HIKES.find((h) => h.id === entry.id)?.description ?? ''
     } else if (entry.section === 'Dining') {
       originalBody = DINING.find((v) => v.id === entry.id)?.description ?? ''
+    } else if (entry.section === 'Wildlife') {
+      const w = WILDLIFE.find((x) => x.id === entry.id)
+      originalBody = w ? wildlifeBodyText(w) : ''
+    } else if (entry.section === 'For kids') {
+      const h = HUNTS.find((x) => `hunt-${x.region}` === entry.id)
+      originalBody = h ? huntBodyText(h) : ''
     } else {
       originalBody =
         (stops.find((s) => s.id === entry.id) ?? SECRET_SPOTS.find((s) => s.id === entry.id))?.body ?? ''

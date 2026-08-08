@@ -13,6 +13,12 @@
    * bottom nav (56px + safe area). The online notice and tab bar are flex
    * children of .map-page, so they take their space from the interior —
    * subtracting them here would leave a dead gap above the bottom nav. */
+  /* 100vh first as the fallback for browsers without dvh (same pattern as
+   * CardDeck.css) — without it the whole declaration drops and the map
+   * collapses to min-height. */
+  height: calc(
+    100vh - var(--chrome-top-h) - env(safe-area-inset-top) - 56px - env(safe-area-inset-bottom)
+  );
   height: calc(
     100dvh - var(--chrome-top-h) - env(safe-area-inset-top) - 56px - env(safe-area-inset-bottom)
   );
@@ -253,7 +259,7 @@
   }
 }
 
-.map-tabbar__tab[aria-current='page'] {
+.map-tabbar__tab[aria-pressed='true'] {
   color: var(--ink);
   border-bottom-color: var(--moss);
 }

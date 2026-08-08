@@ -260,7 +260,7 @@ export default function Login() {
               autoCapitalize="none"
               autoCorrect="off"
               spellCheck={false}
-              inputMode="text"
+              inputMode="numeric"
               enterKeyHint="go"
               aria-describedby={error ? 'login-error' : undefined}
               value={code}

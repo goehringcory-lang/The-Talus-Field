@@ -82,6 +82,9 @@
 .dining-row__title {
   font-family: var(--display);
   font-size: 17px;
+  /* Pinned: the title renders as h3 in park areas and h4 under towns, and
+   * the base heading rules would weight those differently. */
+  font-weight: 500;
   line-height: 1.3;
   margin: 0;
 }

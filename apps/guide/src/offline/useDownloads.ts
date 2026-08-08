@@ -190,15 +190,18 @@ export function useDownloads() {
     refreshEstimate()
   }, [refreshEstimate])
 
+  // Resolves with the outcome so a batch caller ("Download everything") can
+  // tell a cancel from a finish and stop instead of marching into the next
+  // pack the user just tried to escape.
   const download = useCallback(
-    async (pack: Pack) => {
+    async (pack: Pack): Promise<'done' | 'error' | 'cancelled' | 'skipped'> => {
       if (!cachesAvailable()) {
         setPackStatus(pack.id, { state: 'error', message: 'Offline storage is not available in this browser.' })
-        return
+        return 'error'
       }
 
       // Already running (possibly started by a since-unmounted instance).
-      if (controllers[pack.id]) return
+      if (controllers[pack.id]) return 'skipped'
 
       // Ask the browser not to evict our caches under storage pressure.
       try {
@@ -274,7 +277,7 @@ export function useDownloads() {
 
         if (controller.signal.aborted) {
           setPackStatus(pack.id, { state: 'idle' })
-          return
+          return 'cancelled'
         }
 
         if (failedUrls.length > total * pack.tolerateMissing) {
@@ -282,7 +285,7 @@ export function useDownloads() {
             state: 'error',
             message: `${failedUrls.length} of ${total} files didn't download. Check your connection and try again.`,
           })
-          return
+          return 'error'
         }
 
         const completed = readCompleted()
@@ -290,17 +293,18 @@ export function useDownloads() {
         writeCompleted(completed)
         setPackStatus(pack.id, { state: 'done' })
         refreshEstimate()
+        return 'done'
       } catch {
         // A cancel is not a failure: it lands as idle exactly as it does above.
-        setPackStatus(
-          pack.id,
-          controller.signal.aborted
-            ? { state: 'idle' }
-            : {
-                state: 'error',
-                message: 'Offline storage is unavailable right now. Try again in a moment.',
-              },
-        )
+        if (controller.signal.aborted) {
+          setPackStatus(pack.id, { state: 'idle' })
+          return 'cancelled'
+        }
+        setPackStatus(pack.id, {
+          state: 'error',
+          message: 'Offline storage is unavailable right now. Try again in a moment.',
+        })
+        return 'error'
       } finally {
         delete controllers[pack.id]
       }

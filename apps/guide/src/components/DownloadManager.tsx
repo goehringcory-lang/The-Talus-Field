@@ -124,8 +124,13 @@ export default function DownloadManager() {
             onClick={() => {
               // Packs run one at a time; each already fetches 6 URLs at once,
               // and fanning out every pack together swamps slow hotel wifi.
+              // Cancelling the pack in flight ends the whole batch — the only
+              // Cancel on screen has to mean "stop downloading", not "skip to
+              // the next 100 MB".
               void (async () => {
-                for (const pack of pending) await download(pack)
+                for (const pack of pending) {
+                  if ((await download(pack)) === 'cancelled') break
+                }
               })()
             }}
           >
