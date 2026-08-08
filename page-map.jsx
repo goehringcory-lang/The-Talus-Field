@@ -556,6 +556,25 @@ function MapView({ go }) {
     }
   }, [unlocked]);
 
+  // While the gate covers the page, the blurred planner and map behind it are
+  // only *visually* inaccessible: without this a keyboard user tabs straight
+  // into the trip planner they have not unlocked. `inert` (set as a DOM
+  // property, degrades to nothing where unsupported) takes the covered
+  // children out of the tab order and the accessibility tree; the gate
+  // itself stays live. `features` is a dependency because the first commit
+  // is the "Loading map…" placeholder (features === null), and the real
+  // .map-page--locked only exists once the pins arrive.
+  useEffect(() => {
+    if (unlocked) return;
+    const page = document.querySelector(".map-page--locked");
+    if (!page) return;
+    const covered = Array.from(page.children).filter(
+      (el) => !el.classList.contains("map-page__gate")
+    );
+    covered.forEach((el) => { el.inert = true; });
+    return () => covered.forEach((el) => { el.inert = false; });
+  }, [unlocked, features]);
+
   const performToggleTripStop = useCallback(
     (id) => {
       setTripStopIds((prev) => {
@@ -2110,7 +2129,11 @@ function escapeHtml(s) {
 // ---------------------------------------------------------------------------
 function MapAccessGate({ onSubscribed }) {
   return (
-    <div className="map-page__gate" role="dialog" aria-modal="true" aria-label="Subscribe to open the map">
+    // role="dialog" without aria-modal: the global header and footer stay
+    // reachable by design (see the comment above), so claiming modality to
+    // AT would be a lie. The locked planner behind the blur is made inert
+    // by MapView, which is what actually keeps Tab out of it.
+    <div className="map-page__gate" role="dialog" aria-label="Subscribe to open the map">
       <div className="map-page__gate-backdrop" />
       <div className="nlmodal__card map-page__gate-card">
         <div className="eyebrow eyebrow--moss" style={{ marginBottom: 12 }}>The Trip Planner Map</div>

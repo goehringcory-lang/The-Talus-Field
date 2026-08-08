@@ -1748,6 +1748,37 @@ function NewsletterInline({
   }, "Subscribe →")));
 }
 var EXIT_COOLDOWN_DAYS = 14;
+function useModalFocus(active, initialSelector) {
+  var dialogRef = useRef(null);
+  useEffect(() => {
+    if (!active || !dialogRef.current) return;
+    var dialog = dialogRef.current;
+    var opener = document.activeElement;
+    var focusables = () => Array.from(dialog.querySelectorAll('a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'));
+    var initial = initialSelector && dialog.querySelector(initialSelector) || focusables()[0];
+    if (initial) initial.focus();
+    var onKey = e => {
+      if (e.key !== "Tab") return;
+      var els = focusables();
+      if (!els.length) return;
+      var first = els[0];
+      var last = els[els.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    };
+    dialog.addEventListener("keydown", onKey);
+    return () => {
+      dialog.removeEventListener("keydown", onKey);
+      if (opener && typeof opener.focus === "function" && document.contains(opener)) opener.focus();
+    };
+  }, [active, initialSelector]);
+  return dialogRef;
+}
 function ExitIntentNewsletter({
   disabled
 }) {
@@ -1808,6 +1839,7 @@ function ExitIntentNewsletter({
       document.body.style.overflow = prev;
     };
   }, [open]);
+  var dialogRef = useModalFocus(open, ".nlmodal__close");
   if (!open) return null;
   return React.createElement("div", {
     className: "nlmodal",
@@ -1818,7 +1850,8 @@ function ExitIntentNewsletter({
     className: "nlmodal__backdrop",
     onClick: () => setOpen(false)
   }), React.createElement("div", {
-    className: "nlmodal__card"
+    className: "nlmodal__card",
+    ref: dialogRef
   }, React.createElement("button", {
     type: "button",
     className: "nlmodal__close",
@@ -1983,6 +2016,7 @@ function MapLightbox({
     if (scale === 1) zoomAt(e.clientX, e.clientY, 2);else reset();
   };
   var cursor = scale > 1 ? grabbing ? "grabbing" : "grab" : "zoom-in";
+  var dialogRef = useModalFocus(true, ".lightbox__close");
   return React.createElement("div", {
     className: "lightbox",
     role: "dialog",
@@ -1992,7 +2026,8 @@ function MapLightbox({
     className: "lightbox__backdrop",
     onClick: onClose
   }), React.createElement("div", {
-    className: "lightbox__panel"
+    className: "lightbox__panel",
+    ref: dialogRef
   }, React.createElement("div", {
     className: "lightbox__viewport",
     ref: viewportRef,

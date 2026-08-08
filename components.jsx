@@ -1513,6 +1513,43 @@ function NewsletterInline({ heading, blurb, location, tag, incentive, abTest, va
 // ============================================================
 const EXIT_COOLDOWN_DAYS = 14;
 
+// ============================================================
+// Modal focus management, shared by the exit-intent modal and the map
+// lightbox. role="dialog" promises AT a contained surface; this delivers the
+// keyboard half: focus moves into the dialog on open, Tab cycles inside it,
+// and focus returns to the opener on close. Returns a ref for the dialog's
+// card/panel element. `initialSelector` picks the control to land on first
+// (defaults to the dialog's first focusable).
+// ============================================================
+function useModalFocus(active, initialSelector) {
+  const dialogRef = useRef(null);
+  useEffect(() => {
+    if (!active || !dialogRef.current) return;
+    const dialog = dialogRef.current;
+    const opener = document.activeElement;
+    const focusables = () => Array.from(dialog.querySelectorAll(
+      'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'
+    ));
+    const initial = (initialSelector && dialog.querySelector(initialSelector)) || focusables()[0];
+    if (initial) initial.focus();
+    const onKey = (e) => {
+      if (e.key !== "Tab") return;
+      const els = focusables();
+      if (!els.length) return;
+      const first = els[0];
+      const last = els[els.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    };
+    dialog.addEventListener("keydown", onKey);
+    return () => {
+      dialog.removeEventListener("keydown", onKey);
+      if (opener && typeof opener.focus === "function" && document.contains(opener)) opener.focus();
+    };
+  }, [active, initialSelector]);
+  return dialogRef;
+}
+
 function ExitIntentNewsletter({ disabled }) {
   const [open, setOpen] = useState(false);
   const firedRef = useRef(false);
@@ -1569,12 +1606,16 @@ function ExitIntentNewsletter({ disabled }) {
     };
   }, [open]);
 
+  // Land on Close, not the email input: this modal interrupts, and focusing
+  // the input would raise the keyboard on the touch (scroll-triggered) path.
+  const dialogRef = useModalFocus(open, ".nlmodal__close");
+
   if (!open) return null;
 
   return (
     <div className="nlmodal" role="dialog" aria-modal="true" aria-label="Subscribe to Sunday Field Notes">
       <div className="nlmodal__backdrop" onClick={() => setOpen(false)} />
-      <div className="nlmodal__card">
+      <div className="nlmodal__card" ref={dialogRef}>
         <button type="button" className="nlmodal__close" aria-label="Close" onClick={() => setOpen(false)}>✕</button>
         <div className="eyebrow eyebrow--moss" style={{ marginBottom: 12 }}>Before you go</div>
         <h3>One letter a week. Sometimes none.</h3>
@@ -1715,10 +1756,13 @@ function MapLightbox({ src, alt, caption, onClose }) {
 
   const cursor = scale > 1 ? (grabbing ? "grabbing" : "grab") : "zoom-in";
 
+  // Mounted only while open, so the hook is unconditionally active.
+  const dialogRef = useModalFocus(true, ".lightbox__close");
+
   return (
     <div className="lightbox" role="dialog" aria-modal="true" aria-label={alt || caption || "Map"}>
       <div className="lightbox__backdrop" onClick={onClose} />
-      <div className="lightbox__panel">
+      <div className="lightbox__panel" ref={dialogRef}>
         <div
           className="lightbox__viewport"
           ref={viewportRef}
