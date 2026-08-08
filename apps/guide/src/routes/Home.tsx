@@ -6,7 +6,7 @@
 // only behind the tab bar.
 // =============================================================================
 
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import type { ReactNode } from 'react'
 import { Link, Navigate } from 'react-router-dom'
 import { useAuth } from '../auth/useAuth'
@@ -136,7 +136,13 @@ function TodayCard({
   items: TripItemT[]
 }) {
   const blocks = useMemo(() => slotPlan(items).get(today) ?? [], [items, today])
-  const nowMin = parkNowMinutes()
+  // Same one-minute pulse as /today, so a home screen left open doesn't keep
+  // pitching the thing that finished an hour ago.
+  const [nowMin, setNowMin] = useState(parkNowMinutes)
+  useEffect(() => {
+    const t = window.setInterval(() => setNowMin(parkNowMinutes()), 60_000)
+    return () => window.clearInterval(t)
+  }, [])
   const next = blocks.find(
     (b) => b.startMin !== null && b.startMin + b.durationMin > nowMin,
   )

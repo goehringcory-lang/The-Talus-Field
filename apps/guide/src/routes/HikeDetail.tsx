@@ -258,7 +258,7 @@ export default function HikeDetail() {
           <p className="hike-detail__note">{hike.trailhead}.</p>
           <p className="hike-detail__actions">
             {hike.coord && (
-              <a className="btn btn--ghost" href={directionsUrl(hike.coord)} target="_blank" rel="noopener">
+              <a className="btn btn--ghost" href={directionsUrl(hike.coord)} target="_blank" rel="noreferrer">
                 Directions to the trailhead →
               </a>
             )}

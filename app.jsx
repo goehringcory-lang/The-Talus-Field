@@ -939,11 +939,28 @@ function App() {
   // Browser back/forward. The target route's bundle is awaited before the
   // route state commits (usually a no-op: bundles are prefetched on first
   // interaction); if it can't be fetched, a full reload retries from scratch.
+  // After an SPA navigation, focus lands on <main> (React unmounted whatever
+  // held it, which drops focus to <body> and strands keyboard and
+  // screen-reader users at the top of the document with nothing announced).
+  // Flagged in go()/onPop but performed in an effect: the keyed <main> only
+  // exists after the route render commits, and focusing the old one would
+  // hand focus right back to <body> on the remount. Initial load is not a
+  // navigation, so the flag starts false. preventScroll: the scrollTo in
+  // go()/onPop already owns the viewport.
+  const navigatedRef = useRef(false);
+  useEffect(() => {
+    if (!navigatedRef.current) return;
+    navigatedRef.current = false;
+    const el = document.getElementById("main");
+    if (el) el.focus({ preventScroll: true });
+  }, [route]);
+
   useEffect(() => {
     const onPop = () => {
       const r = pathToRoute(window.location.pathname);
       ensureRoute(r)
         .then(() => {
+          navigatedRef.current = true;
           setRoute(r);
           window.scrollTo({ top: 0 });
         })
@@ -963,6 +980,7 @@ function App() {
     // falls back to a full navigation, which retries everything.
     ensureRoute(r)
       .then(() => {
+        navigatedRef.current = true;
         setRoute(r);
         window.scrollTo({ top: 0 });
       })
@@ -1099,7 +1117,9 @@ function App() {
   return (
     <>
       <Header current={currentNav} go={go} />
-      <main key={route}>
+      {/* id + tabIndex: the skip link's target, and where go() parks focus
+          after each SPA navigation. */}
+      <main key={route} id="main" tabIndex={-1}>
         {page}
         {/* Curated onward links, keyed by route (see KEEP_GOING in
             components.jsx). Mounted here rather than pasted into twenty page

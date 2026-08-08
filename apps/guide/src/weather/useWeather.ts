@@ -25,7 +25,21 @@ function ageOf(fetchedAt: string | null): number {
   return fetchedAt ? Date.now() - Date.parse(fetchedAt) : Number.POSITIVE_INFINITY
 }
 
-async function loadWeather(): Promise<LoadResult> {
+// Two surfaces can mount the hook at once (/trip renders its own forecast
+// plus BackupPlans'), and each used to issue its own GET. One in-flight load
+// is shared; it clears on settle so sync() still fetches fresh.
+let inflight: Promise<LoadResult> | null = null
+
+function loadWeather(): Promise<LoadResult> {
+  if (!inflight) {
+    inflight = doLoadWeather().finally(() => {
+      inflight = null
+    })
+  }
+  return inflight
+}
+
+async function doLoadWeather(): Promise<LoadResult> {
   try {
     const raw = await apiFetch<unknown>('/api/weather')
     const payload = WeatherResponse.parse(raw)

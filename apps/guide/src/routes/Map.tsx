@@ -1165,11 +1165,14 @@ export default function Map() {
           )}
         </div>
 
-        <nav className="map-tabbar" aria-label="Map view">
+        {/* Pane switchers, not navigation: buttons with a pressed state (the
+            pattern ViewToggle uses), so AT doesn't announce a page change
+            that never happens. */}
+        <div className="map-tabbar" role="group" aria-label="Map view">
           <button
             type="button"
             className="map-tabbar__tab"
-            aria-current={tab === 'points' ? 'page' : undefined}
+            aria-pressed={tab === 'points'}
             onClick={() => handleTab('points')}
           >
             GPS points
@@ -1177,7 +1180,7 @@ export default function Map() {
           <button
             type="button"
             className="map-tabbar__tab"
-            aria-current={tab === 'itineraries' ? 'page' : undefined}
+            aria-pressed={tab === 'itineraries'}
             onClick={() => handleTab('itineraries')}
           >
             Itineraries
@@ -1185,12 +1188,12 @@ export default function Map() {
           <button
             type="button"
             className="map-tabbar__tab"
-            aria-current={tab === 'info' ? 'page' : undefined}
+            aria-pressed={tab === 'info'}
             onClick={() => handleTab('info')}
           >
             Information
           </button>
-        </nav>
+        </div>
 
         <div
           className={`map-filterbar${tab === 'info' ? ' map-filterbar--hidden' : ''}`}

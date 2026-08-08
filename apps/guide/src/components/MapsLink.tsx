@@ -15,8 +15,16 @@ export default function MapsLink({ coord, label }: Props) {
   const url = preferAppleMaps
     ? `maps://?ll=${lat},${lng}&q=${encodeURIComponent(label)}`
     : `https://maps.google.com/?q=${lat},${lng}`
+  // target="_blank" only for the web URL: it would otherwise navigate the
+  // installed PWA window away to Google Maps. The maps:// scheme launches the
+  // app directly and a _blank there can strand an empty Safari tab.
   return (
-    <a className="chip chip--gps" href={url} rel="noopener">
+    <a
+      className="chip chip--gps"
+      href={url}
+      target={preferAppleMaps ? undefined : '_blank'}
+      rel="noreferrer"
+    >
       {lat.toFixed(5)}, {lng.toFixed(5)} →
     </a>
   )

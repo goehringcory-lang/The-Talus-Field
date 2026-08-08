@@ -19,3 +19,21 @@
 
 /assets/*
   Cache-Control: public, max-age=31536000, immutable
+
+# Fonts and brand marks never change without a rename; track JSONs carry a
+# content-hash ?v= (TRACKS_VERSION) that turns the URL over on change. Without
+# these, every cold launch revalidates four woff2 files and the logo over
+# park LTE before the SW's runtime cache can help.
+/fonts/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/brand/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/tracks/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Photos keep stable names (no hash), so they get the editorial site's 30-day
+# policy rather than immutable: a replaced photo is stale for at most a month.
+/photos/*
+  Cache-Control: public, max-age=2592000

@@ -9,12 +9,18 @@ export default function BottomNav() {
     pathname.startsWith('/region/') ||
     pathname.startsWith('/stop/') ||
     pathname.startsWith('/essentials') ||
-    pathname.startsWith('/secret-guide')
+    pathname.startsWith('/secret-guide') ||
+    pathname === '/dining' ||
+    pathname === '/night' ||
+    pathname === '/wildlife' ||
+    pathname === '/hunts'
   const isMap = pathname === '/map' || pathname.startsWith('/map/')
   const isPlan =
     pathname === '/programs' ||
     pathname === '/hikes' ||
+    pathname.startsWith('/hike/') ||
     pathname === '/today' ||
+    pathname === '/this-week' ||
     pathname.startsWith('/trip')
   const isSearch = pathname === '/search'
   const isAccount = pathname === '/account'

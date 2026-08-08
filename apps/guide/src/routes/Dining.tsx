@@ -27,8 +27,12 @@ import './Dining.css'
 
 const KINDS: DiningKind[] = ['sit-down', 'counter', 'snack', 'coffee', 'bar', 'grocery']
 
-function VenueRow({ venue }: { venue: DiningVenueT }) {
+// Venue names sit under an area h2 (and under a town h3 in the gateway
+// section), so the heading level steps down with the nesting — a flat run of
+// 40+ venue h2s left a screen reader's heading list with no area structure.
+function VenueRow({ venue, headingLevel = 'h3' }: { venue: DiningVenueT; headingLevel?: 'h3' | 'h4' }) {
   const stop = venue.stopId ? getStopById(venue.stopId) : undefined
+  const Heading = headingLevel
   return (
     <details className="dining-row">
       <summary>
@@ -37,7 +41,7 @@ function VenueRow({ venue }: { venue: DiningVenueT }) {
           <span className="dining-row__kind">{DINING_KIND_LABEL[venue.kind]}</span>
         </span>
         <span>
-          <h2 className="dining-row__title">{venue.name}</h2>
+          <Heading className="dining-row__title">{venue.name}</Heading>
           <span className="dining-row__meta">
             <span>{venue.place}</span>
             {venue.closed ? (
@@ -126,7 +130,7 @@ export default function Dining() {
 
         {parkSections.map(({ area, venues }) => (
           <section key={area.id} aria-label={area.title}>
-            <div className="dining-area-header">{area.title}</div>
+            <h2 className="dining-area-header">{area.title}</h2>
             {area.note && <p className="dining-area-note">{area.note}</p>}
             {venues.map((v) => (
               <VenueRow key={v.id} venue={v} />
@@ -136,7 +140,7 @@ export default function Dining() {
 
         {townSections.length > 0 && (
           <section aria-label="The gateway towns">
-            <div className="dining-area-header">The gateway towns</div>
+            <h2 className="dining-area-header">The gateway towns</h2>
             <p className="dining-area-note">
               Outside the gates the food gets better and cheaper at the same time. Each corridor
               below is listed with its entrance; drive times to the Valley floor run 45 minutes to
@@ -144,12 +148,12 @@ export default function Dining() {
             </p>
             {townSections.map(({ town, venues }) => (
               <div key={town.name}>
-                <h2 className="dining-town-header">
+                <h3 className="dining-town-header">
                   {town.name}
                   <small>{town.route}</small>
-                </h2>
+                </h3>
                 {venues.map((v) => (
-                  <VenueRow key={v.id} venue={v} />
+                  <VenueRow key={v.id} venue={v} headingLevel="h4" />
                 ))}
               </div>
             ))}

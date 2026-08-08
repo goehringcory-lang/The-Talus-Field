@@ -163,6 +163,28 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
 .wrap--narrow { max-width: 780px; }
 .wrap--read { max-width: 660px; }
 
+/* Skip link: the masthead is ~30 tab stops of dropdowns and search, so the
+   first focusable element on every page jumps a keyboard user straight to
+   <main id="main">. Visually parked offscreen until focused. */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  z-index: 100;
+  padding: 10px 16px;
+  background: var(--ink);
+  color: var(--paper);
+  font-family: var(--sans);
+  font-size: 14px;
+  text-decoration: none;
+}
+.skip-link:focus {
+  left: 8px;
+  top: 8px;
+}
+/* main receives programmatic focus after SPA navigation (and from the skip
+   link); it is not an interactive element, so no ring. */
+main:focus { outline: none; }
+
 /* ===== Masthead ===== */
 .masthead {
   border-bottom: 1px solid var(--rule);
@@ -640,6 +662,10 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
   appearance: none;
 }
 .nav__menu-search input:focus { outline: none; }
+/* The input has no border of its own, so without this the only nav on phones
+   has a search box with zero focus indication (same restore-on-focus-visible
+   pattern as .field inputs). */
+.nav__menu-search input:focus-visible { outline: 2px solid var(--moss); outline-offset: -2px; }
 .nav__menu-search input::placeholder { color: var(--ink-3); }
 .nav__menu-search button {
   flex: 0 0 auto;
@@ -4348,6 +4374,16 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
 }
 .bulletin-edition__label { color: var(--moss); }
 
+.bulletin-stale {
+  margin: 0 0 22px;
+  padding: 12px 16px;
+  border-left: 3px solid var(--gold);
+  background: color-mix(in oklab, var(--gold) 8%, var(--paper));
+  font-family: var(--sans);
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--ink-2);
+}
 .bulletin-lede {
   font-family: var(--display);
   font-style: italic;
@@ -5301,7 +5337,11 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
   appearance: none;
 }
 .search-form__input:focus { outline: none; }
-.search-form__input::placeholder { color: var(--ink-3); opacity: 0.7; }
+.search-form__input:focus-visible { outline: 2px solid var(--moss); outline-offset: 2px; }
+/* No opacity on the placeholder: --ink-3 was tuned to ~7:1 on --paper (see
+   the palette notes at the top) and dimming it threw a third of that away on
+   the page's only pre-query guidance. */
+.search-form__input::placeholder { color: var(--ink-3); }
 /* The type="search" clear affordance is inconsistent across browsers and
    collides with the explicit Clear button; hide the native one. */
 .search-form__input::-webkit-search-cancel-button { display: none; }

@@ -28,7 +28,21 @@ function ageOf(fetchedAt: string | null): number {
   return fetchedAt ? Date.now() - Date.parse(fetchedAt) : Number.POSITIVE_INFINITY
 }
 
-async function loadAlerts(): Promise<LoadResult> {
+// Two surfaces can mount the hook at once (/this-week renders its own alert
+// list plus RoadsLine's), and each used to issue its own GET. One in-flight
+// load is shared; it clears on settle so sync() still fetches fresh.
+let inflight: Promise<LoadResult> | null = null
+
+function loadAlerts(): Promise<LoadResult> {
+  if (!inflight) {
+    inflight = doLoadAlerts().finally(() => {
+      inflight = null
+    })
+  }
+  return inflight
+}
+
+async function doLoadAlerts(): Promise<LoadResult> {
   try {
     const raw = await apiFetch<unknown>('/api/alerts')
     const payload = AlertsResponse.parse(raw)

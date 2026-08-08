@@ -30,7 +30,20 @@ function ageOf(fetchedAt: string | null): number {
   return fetchedAt ? Date.now() - Date.parse(fetchedAt) : Number.POSITIVE_INFINITY
 }
 
-async function loadAir(): Promise<LoadResult> {
+// Same in-flight sharing as useWeather: two surfaces mounting the hook in
+// the same tick issue one GET. Clears on settle so sync() fetches fresh.
+let inflight: Promise<LoadResult> | null = null
+
+function loadAir(): Promise<LoadResult> {
+  if (!inflight) {
+    inflight = doLoadAir().finally(() => {
+      inflight = null
+    })
+  }
+  return inflight
+}
+
+async function doLoadAir(): Promise<LoadResult> {
   try {
     const raw = await apiFetch<unknown>('/api/air')
     const payload = AirResponse.parse(raw)

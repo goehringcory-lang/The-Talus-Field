@@ -321,6 +321,14 @@ function HomeBulletin({ go }) {
 
   if (!edition) return null;
 
+  // Same commitment as /now: an ended edition is never presented as current.
+  // The band stays (it is the door to the bulletin, which carries its own
+  // fuller note), but the dateline says so.
+  const endDate = new Date(edition.end + "T00:00:00");
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  const ended = !Number.isNaN(endDate.getTime()) && today > endDate;
+
   return (
     <section className="wrap" style={{ paddingTop: 44 }}>
       <a
@@ -334,6 +342,7 @@ function HomeBulletin({ go }) {
       >
         <span className="home-dispatch__date">
           The Park Bulletin · covering {edition.label}
+          {ended ? " · this edition has ended" : ""}
         </span>
         <span className="home-dispatch__title">One page, the whole park, right now</span>
         <p className="home-dispatch__excerpt">{edition.lede}</p>

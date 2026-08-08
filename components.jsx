@@ -544,7 +544,7 @@ function Header({ current, go }) {
   // One renderer for every nav link in the masthead. `href`-style entries are
   // real navigations (the generated archive pages), so they keep the browser's
   // default behaviour and never call go().
-  const renderLink = (link, { baseClass, noteClass, role, onNavigate } = {}) => {
+  const renderLink = (link, { baseClass, noteClass, onNavigate } = {}) => {
     const { key, href, label, note } = link;
     const isExternalPath = !!href;
     const body = note
@@ -558,9 +558,9 @@ function Header({ current, go }) {
     return (
       <a
         key={key || href}
-        role={role}
         href={isExternalPath ? href : (window.routeToPath ? window.routeToPath(key) : `/${key}`)}
         className={[baseClass, !isExternalPath && current === key && "is-active"].filter(Boolean).join(" ")}
+        aria-current={!isExternalPath && current === key ? "page" : undefined}
         onClick={(e) => {
           if (onNavigate) onNavigate(e);
           if (isExternalPath) return; // real navigation; let the browser take it
@@ -581,6 +581,10 @@ function Header({ current, go }) {
   // the bottom nav's Now tab.
   return (
     <React.Fragment>
+    {/* First focusable element on every page; #main carries tabIndex={-1} in
+        app.jsx so the fragment jump also moves focus. Bakes into the static
+        home shell like the rest of the Header. */}
+    <a className="skip-link" href="#main">Skip to content</a>
     <header className="masthead">
       <div className="masthead__main">
         <a
@@ -595,7 +599,7 @@ function Header({ current, go }) {
             <span className="brand__sub">A field journal of Yosemite</span>
           </span>
         </a>
-        <nav className="nav">
+        <nav className="nav" aria-label="Main">
           {navGroups.map((g) => {
             if (!g.columns) {
               return (
@@ -618,11 +622,13 @@ function Header({ current, go }) {
                 ].filter(Boolean).join(" ")}
                 onMouseEnter={() => holdGroup(g.key)}
                 onMouseLeave={releaseGroup}
+                onFocus={() => holdGroup(g.key)}
+                onBlur={releaseGroup}
               >
                 <a
                   href={window.routeToPath ? window.routeToPath(g.route) : `/${g.route}`}
                   className={["nav__link", "nav__group-trigger", isGroupActive(g) && "is-active"].filter(Boolean).join(" ")}
-                  aria-haspopup="true"
+                  aria-expanded={openGroup === g.key}
                   onClick={(e) => { e.preventDefault(); dismissGroup(g.key, e); go(g.route); }}
                 >
                   {g.label}
@@ -681,7 +687,6 @@ function Header({ current, go }) {
             <button
               type="button"
               className="nav__menu-toggle"
-              aria-haspopup="true"
               aria-expanded={menuOpen}
               aria-label="Menu"
               onClick={() => setMenuOpen(o => !o)}
@@ -691,7 +696,7 @@ function Header({ current, go }) {
               </span>
             </button>
             {menuOpen && (
-              <div className="nav__menu" role="menu">
+              <div className="nav__menu">
                 <form className="nav__menu-search" role="search" onSubmit={submitMenuSearch}>
                   <input
                     type="search"
@@ -714,26 +719,26 @@ function Header({ current, go }) {
                     {g.columns ? (
                       <React.Fragment>
                         <div className="nav__menu-label">
-                          {renderPlainLink(g.route, g.label, { baseClass: "nav__menu-label-link", role: "menuitem", onNavigate: closeMenu })}
+                          {renderPlainLink(g.route, g.label, { baseClass: "nav__menu-label-link", onNavigate: closeMenu })}
                         </div>
                         {g.columns.map((col) => (
                           <React.Fragment key={col.heading}>
                             <div className="nav__menu-sublabel">{col.heading}</div>
-                            {col.links.map((link) => renderLink(link, { role: "menuitem", onNavigate: closeMenu, noteClass: "nav__menu-note" }))}
+                            {col.links.map((link) => renderLink(link, { onNavigate: closeMenu, noteClass: "nav__menu-note" }))}
                           </React.Fragment>
                         ))}
                       </React.Fragment>
                     ) : (
-                      renderPlainLink(g.route, g.label, { role: "menuitem", onNavigate: closeMenu })
+                      renderPlainLink(g.route, g.label, { onNavigate: closeMenu })
                     )}
                   </div>
                 ))}
                 <div className="nav__menu-group">
                   <div className="nav__menu-sublabel">More</div>
-                  {NAV_SECONDARY.map((link) => renderLink(link, { role: "menuitem", onNavigate: closeMenu, noteClass: "nav__menu-note" }))}
+                  {NAV_SECONDARY.map((link) => renderLink(link, { onNavigate: closeMenu, noteClass: "nav__menu-note" }))}
                 </div>
                 <div className="nav__menu-group">
-                  {renderPlainLink("explore", "Everything on this site →", { baseClass: "nav__menu-index", role: "menuitem", onNavigate: closeMenu })}
+                  {renderPlainLink("explore", "Everything on this site →", { baseClass: "nav__menu-index", onNavigate: closeMenu })}
                 </div>
               </div>
             )}
@@ -1508,6 +1513,43 @@ function NewsletterInline({ heading, blurb, location, tag, incentive, abTest, va
 // ============================================================
 const EXIT_COOLDOWN_DAYS = 14;
 
+// ============================================================
+// Modal focus management, shared by the exit-intent modal and the map
+// lightbox. role="dialog" promises AT a contained surface; this delivers the
+// keyboard half: focus moves into the dialog on open, Tab cycles inside it,
+// and focus returns to the opener on close. Returns a ref for the dialog's
+// card/panel element. `initialSelector` picks the control to land on first
+// (defaults to the dialog's first focusable).
+// ============================================================
+function useModalFocus(active, initialSelector) {
+  const dialogRef = useRef(null);
+  useEffect(() => {
+    if (!active || !dialogRef.current) return;
+    const dialog = dialogRef.current;
+    const opener = document.activeElement;
+    const focusables = () => Array.from(dialog.querySelectorAll(
+      'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'
+    ));
+    const initial = (initialSelector && dialog.querySelector(initialSelector)) || focusables()[0];
+    if (initial) initial.focus();
+    const onKey = (e) => {
+      if (e.key !== "Tab") return;
+      const els = focusables();
+      if (!els.length) return;
+      const first = els[0];
+      const last = els[els.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    };
+    dialog.addEventListener("keydown", onKey);
+    return () => {
+      dialog.removeEventListener("keydown", onKey);
+      if (opener && typeof opener.focus === "function" && document.contains(opener)) opener.focus();
+    };
+  }, [active, initialSelector]);
+  return dialogRef;
+}
+
 function ExitIntentNewsletter({ disabled }) {
   const [open, setOpen] = useState(false);
   const firedRef = useRef(false);
@@ -1564,12 +1606,16 @@ function ExitIntentNewsletter({ disabled }) {
     };
   }, [open]);
 
+  // Land on Close, not the email input: this modal interrupts, and focusing
+  // the input would raise the keyboard on the touch (scroll-triggered) path.
+  const dialogRef = useModalFocus(open, ".nlmodal__close");
+
   if (!open) return null;
 
   return (
     <div className="nlmodal" role="dialog" aria-modal="true" aria-label="Subscribe to Sunday Field Notes">
       <div className="nlmodal__backdrop" onClick={() => setOpen(false)} />
-      <div className="nlmodal__card">
+      <div className="nlmodal__card" ref={dialogRef}>
         <button type="button" className="nlmodal__close" aria-label="Close" onClick={() => setOpen(false)}>✕</button>
         <div className="eyebrow eyebrow--moss" style={{ marginBottom: 12 }}>Before you go</div>
         <h3>One letter a week. Sometimes none.</h3>
@@ -1581,7 +1627,7 @@ function ExitIntentNewsletter({ disabled }) {
           target="buttondown-target"
           onSubmit={() => { trackNewsletterSubmit("article_exit_intent", "exit-intent"); setTimeout(() => setOpen(false), 0); }}
         >
-          <input type="email" name="email" placeholder="you@email.com" required />
+          <input type="email" name="email" aria-label="Email address" placeholder="you@email.com" required />
           <input type="hidden" name="tag" value="exit-intent" />
           <input type="hidden" name="embed" value="1" />
           <button type="submit">Subscribe →</button>
@@ -1710,10 +1756,13 @@ function MapLightbox({ src, alt, caption, onClose }) {
 
   const cursor = scale > 1 ? (grabbing ? "grabbing" : "grab") : "zoom-in";
 
+  // Mounted only while open, so the hook is unconditionally active.
+  const dialogRef = useModalFocus(true, ".lightbox__close");
+
   return (
     <div className="lightbox" role="dialog" aria-modal="true" aria-label={alt || caption || "Map"}>
       <div className="lightbox__backdrop" onClick={onClose} />
-      <div className="lightbox__panel">
+      <div className="lightbox__panel" ref={dialogRef}>
         <div
           className="lightbox__viewport"
           ref={viewportRef}

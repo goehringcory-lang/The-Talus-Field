@@ -33,6 +33,15 @@ function editionProgress(edition) {
   return { day, total };
 }
 
+// True once today is past the edition window. The standing commitment on
+// this page: a stale edition never renders as current without saying so.
+function editionEnded(edition) {
+  const end = new Date(edition.end + "T00:00:00");
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  return !Number.isNaN(end.getTime()) && today > end;
+}
+
 function isPastEvent(ev) {
   if (!ev.end) return false;
   const end = new Date(ev.end + "T23:59:59");
@@ -96,6 +105,7 @@ function BulletinPage({ go }) {
             <p className="bulletin-edition mono">
               <span className="bulletin-edition__label">Covering {edition.label}</span>
               {progress && <span> · day {progress.day} of {progress.total}</span>}
+              {!progress && editionEnded(edition) && <span> · this edition has ended</span>}
               <span> · updated <time dateTime={edition.updated}>{bulletinDate(edition.updated)}</time></span>
             </p>
           )}
@@ -115,6 +125,18 @@ function BulletinPage({ go }) {
 
         {state === "ready" && (
           <React.Fragment>
+            {/* The stale-edition note, ahead of everything else on the page:
+                carrying an ended edition without saying so is worse than
+                carrying none. */}
+            {editionEnded(edition) && (
+              <p className="bulletin-stale">
+                This edition of the Yosemite Guide ended {bulletinDate(edition.end)}, and the next
+                one is being condensed now. The dated events below are over. Hours and phone
+                numbers usually hold between editions; the{" "}
+                <a href="/conditions" onClick={(e) => { e.preventDefault(); go("conditions"); }}>live layer</a>{" "}
+                (webcams, entrance waits, forecasts) stays current.
+              </p>
+            )}
             {edition.lede && <p className="bulletin-lede">{edition.lede}</p>}
 
             {/* What changed: the read-this-first band. */}

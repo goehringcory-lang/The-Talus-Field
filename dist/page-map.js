@@ -382,6 +382,18 @@ function MapView({
       window.trackNewsletterImpression("map_gate", "map-gate");
     }
   }, [unlocked]);
+  useEffect(() => {
+    if (unlocked) return;
+    var page = document.querySelector(".map-page--locked");
+    if (!page) return;
+    var covered = Array.from(page.children).filter(el => !el.classList.contains("map-page__gate"));
+    covered.forEach(el => {
+      el.inert = true;
+    });
+    return () => covered.forEach(el => {
+      el.inert = false;
+    });
+  }, [unlocked, features]);
   var performToggleTripStop = useCallback(id => {
     setTripStopIds(prev => {
       if (prev.includes(id)) {
@@ -1620,47 +1632,48 @@ function escapeHtml(s) {
 function MapAccessGate({
   onSubscribed
 }) {
-  return React.createElement("div", {
-    className: "map-page__gate",
-    role: "dialog",
-    "aria-modal": "true",
-    "aria-label": "Subscribe to open the map"
-  }, React.createElement("div", {
-    className: "map-page__gate-backdrop"
-  }), React.createElement("div", {
-    className: "nlmodal__card map-page__gate-card"
-  }, React.createElement("div", {
-    className: "eyebrow eyebrow--moss",
-    style: {
-      marginBottom: 12
-    }
-  }, "The Trip Planner Map"), React.createElement("h3", null, "The map opens with an email."), React.createElement("p", null, "Every pin here was placed and written by a resident of the park: quiet vistas, parking turnouts that actually have space, picnic tables worth the drive. Drop your email and the full map, filters, and trip builder open right here, and stay open on this device."), React.createElement("form", {
-    className: "nlbox__form",
-    action: "https://buttondown.com/api/emails/embed-subscribe/goehring",
-    method: "post",
-    target: "buttondown-target",
-    onSubmit: () => {
-      if (window.trackNewsletterSubmit) window.trackNewsletterSubmit("map_gate", "map-gate");
-      setTimeout(onSubscribed, 0);
-    }
-  }, React.createElement("input", {
-    type: "email",
-    name: "email",
-    placeholder: "you@email.com",
-    required: true
-  }), React.createElement("input", {
-    type: "hidden",
-    name: "tag",
-    value: "map-gate"
-  }), React.createElement("input", {
-    type: "hidden",
-    name: "embed",
-    value: "1"
-  }), React.createElement("button", {
-    type: "submit"
-  }, "Unlock the map →")), React.createElement("p", {
-    className: "map-gate__fine"
-  }, "Signing up also gets you Sunday Field Notes, one short letter a week. No spam, leave anytime.")));
+  return (React.createElement("div", {
+      className: "map-page__gate",
+      role: "dialog",
+      "aria-label": "Subscribe to open the map"
+    }, React.createElement("div", {
+      className: "map-page__gate-backdrop"
+    }), React.createElement("div", {
+      className: "nlmodal__card map-page__gate-card"
+    }, React.createElement("div", {
+      className: "eyebrow eyebrow--moss",
+      style: {
+        marginBottom: 12
+      }
+    }, "The Trip Planner Map"), React.createElement("h3", null, "The map opens with an email."), React.createElement("p", null, "Every pin here was placed and written by a resident of the park: quiet vistas, parking turnouts that actually have space, picnic tables worth the drive. Drop your email and the full map, filters, and trip builder open right here, and stay open on this device."), React.createElement("form", {
+      className: "nlbox__form",
+      action: "https://buttondown.com/api/emails/embed-subscribe/goehring",
+      method: "post",
+      target: "buttondown-target",
+      onSubmit: () => {
+        if (window.trackNewsletterSubmit) window.trackNewsletterSubmit("map_gate", "map-gate");
+        setTimeout(onSubscribed, 0);
+      }
+    }, React.createElement("input", {
+      type: "email",
+      name: "email",
+      "aria-label": "Email address",
+      placeholder: "you@email.com",
+      required: true
+    }), React.createElement("input", {
+      type: "hidden",
+      name: "tag",
+      value: "map-gate"
+    }), React.createElement("input", {
+      type: "hidden",
+      name: "embed",
+      value: "1"
+    }), React.createElement("button", {
+      type: "submit"
+    }, "Unlock the map →")), React.createElement("p", {
+      className: "map-gate__fine"
+    }, "Signing up also gets you Sunday Field Notes, one short letter a week. No spam, leave anytime.")))
+  );
 }
 function MapPage(props) {
   return React.createElement(MapView, props);

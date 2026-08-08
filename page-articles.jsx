@@ -13,9 +13,30 @@
 
 const { useState } = React;
 
+// The section chip mirrors to ?section= with replaceState, same contract as
+// the intent filters (whose writer starts from the current query string, so
+// the two never clobber each other): a filtered view is a shareable link and
+// survives reload, without one history entry per chip tap.
+function readSectionFromUrl() {
+  const raw = (new URLSearchParams(window.location.search).get("section") || "").trim();
+  return window.CATEGORIES.some((c) => c.slug === raw) ? raw : "all";
+}
+
+function writeSectionToUrl(slug) {
+  const params = new URLSearchParams(window.location.search);
+  if (slug && slug !== "all") params.set("section", slug);
+  else params.delete("section");
+  const qs = params.toString();
+  window.history.replaceState(window.history.state, "", window.location.pathname + (qs ? "?" + qs : ""));
+}
+
 function ArticlesIndex({ go, initialCat }) {
-  const [active, setActive] = useState(initialCat || "all");
+  const [active, setActive] = useState(() => initialCat || readSectionFromUrl());
   const filters = window.useIntentFilters();
+  const pickSection = (slug) => {
+    setActive(slug);
+    writeSectionToUrl(slug);
+  };
 
   const inSection = active === "all" ? window.ARTICLES : window.byCategory(active);
   const list = window.filterArticlesByIntent(inSection, filters.value);
@@ -24,6 +45,10 @@ function ArticlesIndex({ go, initialCat }) {
     <div className="page">
       <div className="page-head">
         <div className="wrap">
+          <Breadcrumbs
+            go={go}
+            trail={[{ label: "Home", route: "home" }, { label: "Articles" }]}
+          />
           <div className="eyebrow eyebrow--moss">Articles</div>
           <h1>Entries.</h1>
           <p className="page-head__dek">
@@ -35,7 +60,8 @@ function ArticlesIndex({ go, initialCat }) {
       <div className="wrap" style={{ paddingTop: 32, paddingBottom: 8 }}>
         <div style={{ display: "flex", gap: 8, flexWrap: "wrap", paddingBottom: 24 }}>
           <a href="/articles" className={`chip ${active === "all" ? "is-active" : ""}`}
-            onClick={(e) => { e.preventDefault(); setActive("all"); }}>
+            aria-current={active === "all" ? "true" : undefined}
+            onClick={(e) => { e.preventDefault(); pickSection("all"); }}>
             All ({window.ARTICLES.length})
           </a>
           {window.CATEGORIES.map(c => {
@@ -43,7 +69,8 @@ function ArticlesIndex({ go, initialCat }) {
             return (
               <a key={c.slug} href={`/section/${c.slug}`}
                 className={`chip ${active === c.slug ? "is-active" : ""}`}
-                onClick={(e) => { e.preventDefault(); setActive(c.slug); }}>
+                aria-current={active === c.slug ? "true" : undefined}
+                onClick={(e) => { e.preventDefault(); pickSection(c.slug); }}>
                 {c.label} ({n})
               </a>
             );

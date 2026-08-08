@@ -22,6 +22,12 @@ function editionProgress(edition) {
     total
   };
 }
+function editionEnded(edition) {
+  var end = new Date(edition.end + "T00:00:00");
+  var today = new Date();
+  today.setHours(0, 0, 0, 0);
+  return !Number.isNaN(end.getTime()) && today > end;
+}
 function isPastEvent(ev) {
   if (!ev.end) return false;
   var end = new Date(ev.end + "T23:59:59");
@@ -93,7 +99,7 @@ function BulletinPage({
     className: "bulletin-edition mono"
   }, React.createElement("span", {
     className: "bulletin-edition__label"
-  }, "Covering ", edition.label), progress && React.createElement("span", null, " · day ", progress.day, " of ", progress.total), React.createElement("span", null, " · updated ", React.createElement("time", {
+  }, "Covering ", edition.label), progress && React.createElement("span", null, " · day ", progress.day, " of ", progress.total), !progress && editionEnded(edition) && React.createElement("span", null, " · this edition has ended"), React.createElement("span", null, " · updated ", React.createElement("time", {
     dateTime: edition.updated
   }, bulletinDate(edition.updated)))))), React.createElement("div", {
     className: "wrap",
@@ -116,7 +122,15 @@ function BulletinPage({
       e.preventDefault();
       go("conditions");
     }
-  }, "webcams, entrance waits, and forecasts"), "."), state === "ready" && React.createElement(React.Fragment, null, edition.lede && React.createElement("p", {
+  }, "webcams, entrance waits, and forecasts"), "."), state === "ready" && React.createElement(React.Fragment, null, editionEnded(edition) && React.createElement("p", {
+    className: "bulletin-stale"
+  }, "This edition of the Yosemite Guide ended ", bulletinDate(edition.end), ", and the next one is being condensed now. The dated events below are over. Hours and phone numbers usually hold between editions; the", " ", React.createElement("a", {
+    href: "/conditions",
+    onClick: e => {
+      e.preventDefault();
+      go("conditions");
+    }
+  }, "live layer"), " ", "(webcams, entrance waits, forecasts) stays current."), edition.lede && React.createElement("p", {
     className: "bulletin-lede"
   }, edition.lede), data.alerts && data.alerts.length > 0 && React.createElement("section", {
     className: "bulletin-alerts"
