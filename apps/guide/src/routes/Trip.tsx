@@ -212,6 +212,20 @@ export default function Trip() {
   })
   const imported = useRef(false)
 
+  // Keep the plan window in step with the dates picked on /programs. Declared
+  // before the import effect below on purpose: effects run in declaration
+  // order, setDates updates the module-state plan synchronously, and the
+  // import's addStop clamps to the plan's start date — so with the stored
+  // plan's stale window still in place, an imported trip would land on the
+  // old start day, get carried "outside your dates" when the window moved,
+  // and contradict the notice that everything landed on the first day.
+  useEffect(() => {
+    const picked = readTripDates()
+    if (picked && (picked.start !== plan.dates.start || picked.end !== plan.dates.end)) {
+      setDates(picked.start, picked.end)
+    }
+  }, [plan.dates.start, plan.dates.end, setDates])
+
   useEffect(() => {
     const result = importState.result
     if (!result || imported.current) return
@@ -225,14 +239,6 @@ export default function Trip() {
     next.delete('import')
     setSearchParams(next, { replace: true })
   }, [importState, searchParams, setSearchParams, addStop, addHike])
-
-  // Keep the plan window in step with the dates picked on /programs.
-  useEffect(() => {
-    const picked = readTripDates()
-    if (picked && (picked.start !== plan.dates.start || picked.end !== plan.dates.end)) {
-      setDates(picked.start, picked.end)
-    }
-  }, [plan.dates.start, plan.dates.end, setDates])
 
   const slotted = useMemo(() => slotPlan(plan.items), [plan])
   const windowDays = daysInWindow(plan.dates.start, plan.dates.end)
