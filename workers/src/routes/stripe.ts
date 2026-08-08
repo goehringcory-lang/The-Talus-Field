@@ -235,9 +235,17 @@ stripe.post('/webhook', async (c) => {
   let record: BuyerRecord
   if (existing && (kind === 'renewal' || existingActive)) {
     const { refundedAt: _cleared, ...kept } = existing
+    // The dedupe slot is only claimed after the email sends, so a failed send
+    // makes Stripe retry the whole event. The retry must re-attempt the email
+    // but must not stack another 18 months on a record this event already
+    // extended: the extension is applied once per Stripe event id.
+    const alreadyExtended = existing.lastExtensionEventId === event.id
     record = {
       ...kept,
-      expiresAt: Math.max(nowSeconds, existing.expiresAt) + EIGHTEEN_MONTHS_SECONDS,
+      expiresAt: alreadyExtended
+        ? existing.expiresAt
+        : Math.max(nowSeconds, existing.expiresAt) + EIGHTEEN_MONTHS_SECONDS,
+      lastExtensionEventId: event.id,
     }
   } else {
     if (kind === 'renewal') {

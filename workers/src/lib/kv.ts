@@ -7,6 +7,7 @@ export type BuyerRecord = {
   accessToken: string          // 64-char hex; one-time bootstrap from email
   accessCode: string           // 6-digit zero-padded; for new-device login
   refundedAt?: number          // epoch seconds; set when Stripe reports a refund
+  lastExtensionEventId?: string // Stripe event id that last extended expiresAt
 }
 
 // One account's synced app state (/api/trip/plan): the trip plan, saved stops,

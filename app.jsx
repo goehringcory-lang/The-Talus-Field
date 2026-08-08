@@ -156,13 +156,16 @@ function prefetchAllModules() {
   });
 }
 
-// Map old hash URLs (#a:slug, #cat:slug, #foo) to the new route keys.
+// Map old hash URLs (#a:slug, #cat:slug, #foo) to the new route keys. Only
+// hashes that name a real route are rewritten: the home shell ships real
+// in-page anchors on / (e.g. #start-here), and rewriting one of those turned
+// the homepage's own hero CTA into a 404 on reload.
 function legacyHashToRoute(hash) {
   if (!hash) return null;
   const h = hash.replace(/^#+/, "");
   if (!h) return "home";
   if (h.startsWith("a:") || h.startsWith("cat:")) return h;
-  return h;
+  return STATIC_ROUTE_KEYS.has(h) ? h : null;
 }
 
 // ============================================================

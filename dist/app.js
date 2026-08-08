@@ -191,7 +191,7 @@ function legacyHashToRoute(hash) {
   var h = hash.replace(/^#+/, "");
   if (!h) return "home";
   if (h.startsWith("a:") || h.startsWith("cat:")) return h;
-  return h;
+  return STATIC_ROUTE_KEYS.has(h) ? h : null;
 }
 var SITE_NAME = "The Talus Field";
 var PERSON_ID = `${SITE_ORIGIN}/#person-cory-goehring`;
