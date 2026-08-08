@@ -134,6 +134,12 @@ function loadScriptOnce(src) {
       el.onload = () => resolve();
       el.onerror = () => reject(new Error(`failed to load ${src}`));
       document.head.appendChild(el);
+    }).catch((err) => {
+      // Only successes stay cached. The prefetch warm-up loads every bundle
+      // at once, and caching one flaky failure would poison its route for the
+      // whole session: every later click falls back to a full page load.
+      delete loadedScripts[src];
+      throw err;
     });
   }
   return loadedScripts[src];

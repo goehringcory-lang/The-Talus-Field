@@ -170,6 +170,9 @@ function loadScriptOnce(src) {
       el.onload = () => resolve();
       el.onerror = () => reject(new Error(`failed to load ${src}`));
       document.head.appendChild(el);
+    }).catch(err => {
+      delete loadedScripts[src];
+      throw err;
     });
   }
   return loadedScripts[src];

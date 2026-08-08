@@ -424,7 +424,12 @@ window.relaxIntent = function (intent, monthKey) {
   for (var i = 0; i < candidates.length; i++) {
     var n = window.filterArticlesByIntent(pool, candidates[i]).length;
     if (n >= TARGET && n <= CEILING) return candidates[i];
-    if (n > 0 && !fallback) fallback = candidates[i];
+    // The fallback honors CEILING too: a rung matching more than half the
+    // in-season archive must not be presented as "the entries that fit your
+    // trip" just because no rung landed in the band. If nothing fits under
+    // the ceiling, the all-empty return below shows the whole in-season list
+    // as what it is, a browse, not a match.
+    if (n > 0 && n <= CEILING && !fallback) fallback = candidates[i];
   }
   return fallback || { stage: [], who: [], topic: [], month: month };
 };
