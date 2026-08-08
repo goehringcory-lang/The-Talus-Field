@@ -544,7 +544,7 @@ function Header({ current, go }) {
   // One renderer for every nav link in the masthead. `href`-style entries are
   // real navigations (the generated archive pages), so they keep the browser's
   // default behaviour and never call go().
-  const renderLink = (link, { baseClass, noteClass, role, onNavigate } = {}) => {
+  const renderLink = (link, { baseClass, noteClass, onNavigate } = {}) => {
     const { key, href, label, note } = link;
     const isExternalPath = !!href;
     const body = note
@@ -558,9 +558,9 @@ function Header({ current, go }) {
     return (
       <a
         key={key || href}
-        role={role}
         href={isExternalPath ? href : (window.routeToPath ? window.routeToPath(key) : `/${key}`)}
         className={[baseClass, !isExternalPath && current === key && "is-active"].filter(Boolean).join(" ")}
+        aria-current={!isExternalPath && current === key ? "page" : undefined}
         onClick={(e) => {
           if (onNavigate) onNavigate(e);
           if (isExternalPath) return; // real navigation; let the browser take it
@@ -581,6 +581,10 @@ function Header({ current, go }) {
   // the bottom nav's Now tab.
   return (
     <React.Fragment>
+    {/* First focusable element on every page; #main carries tabIndex={-1} in
+        app.jsx so the fragment jump also moves focus. Bakes into the static
+        home shell like the rest of the Header. */}
+    <a className="skip-link" href="#main">Skip to content</a>
     <header className="masthead">
       <div className="masthead__main">
         <a
@@ -595,7 +599,7 @@ function Header({ current, go }) {
             <span className="brand__sub">A field journal of Yosemite</span>
           </span>
         </a>
-        <nav className="nav">
+        <nav className="nav" aria-label="Main">
           {navGroups.map((g) => {
             if (!g.columns) {
               return (
@@ -618,11 +622,13 @@ function Header({ current, go }) {
                 ].filter(Boolean).join(" ")}
                 onMouseEnter={() => holdGroup(g.key)}
                 onMouseLeave={releaseGroup}
+                onFocus={() => holdGroup(g.key)}
+                onBlur={releaseGroup}
               >
                 <a
                   href={window.routeToPath ? window.routeToPath(g.route) : `/${g.route}`}
                   className={["nav__link", "nav__group-trigger", isGroupActive(g) && "is-active"].filter(Boolean).join(" ")}
-                  aria-haspopup="true"
+                  aria-expanded={openGroup === g.key}
                   onClick={(e) => { e.preventDefault(); dismissGroup(g.key, e); go(g.route); }}
                 >
                   {g.label}
@@ -681,7 +687,6 @@ function Header({ current, go }) {
             <button
               type="button"
               className="nav__menu-toggle"
-              aria-haspopup="true"
               aria-expanded={menuOpen}
               aria-label="Menu"
               onClick={() => setMenuOpen(o => !o)}
@@ -691,7 +696,7 @@ function Header({ current, go }) {
               </span>
             </button>
             {menuOpen && (
-              <div className="nav__menu" role="menu">
+              <div className="nav__menu">
                 <form className="nav__menu-search" role="search" onSubmit={submitMenuSearch}>
                   <input
                     type="search"
@@ -714,26 +719,26 @@ function Header({ current, go }) {
                     {g.columns ? (
                       <React.Fragment>
                         <div className="nav__menu-label">
-                          {renderPlainLink(g.route, g.label, { baseClass: "nav__menu-label-link", role: "menuitem", onNavigate: closeMenu })}
+                          {renderPlainLink(g.route, g.label, { baseClass: "nav__menu-label-link", onNavigate: closeMenu })}
                         </div>
                         {g.columns.map((col) => (
                           <React.Fragment key={col.heading}>
                             <div className="nav__menu-sublabel">{col.heading}</div>
-                            {col.links.map((link) => renderLink(link, { role: "menuitem", onNavigate: closeMenu, noteClass: "nav__menu-note" }))}
+                            {col.links.map((link) => renderLink(link, { onNavigate: closeMenu, noteClass: "nav__menu-note" }))}
                           </React.Fragment>
                         ))}
                       </React.Fragment>
                     ) : (
-                      renderPlainLink(g.route, g.label, { role: "menuitem", onNavigate: closeMenu })
+                      renderPlainLink(g.route, g.label, { onNavigate: closeMenu })
                     )}
                   </div>
                 ))}
                 <div className="nav__menu-group">
                   <div className="nav__menu-sublabel">More</div>
-                  {NAV_SECONDARY.map((link) => renderLink(link, { role: "menuitem", onNavigate: closeMenu, noteClass: "nav__menu-note" }))}
+                  {NAV_SECONDARY.map((link) => renderLink(link, { onNavigate: closeMenu, noteClass: "nav__menu-note" }))}
                 </div>
                 <div className="nav__menu-group">
-                  {renderPlainLink("explore", "Everything on this site →", { baseClass: "nav__menu-index", role: "menuitem", onNavigate: closeMenu })}
+                  {renderPlainLink("explore", "Everything on this site →", { baseClass: "nav__menu-index", onNavigate: closeMenu })}
                 </div>
               </div>
             )}
@@ -1581,7 +1586,7 @@ function ExitIntentNewsletter({ disabled }) {
           target="buttondown-target"
           onSubmit={() => { trackNewsletterSubmit("article_exit_intent", "exit-intent"); setTimeout(() => setOpen(false), 0); }}
         >
-          <input type="email" name="email" placeholder="you@email.com" required />
+          <input type="email" name="email" aria-label="Email address" placeholder="you@email.com" required />
           <input type="hidden" name="tag" value="exit-intent" />
           <input type="hidden" name="embed" value="1" />
           <button type="submit">Subscribe →</button>

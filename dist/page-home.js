@@ -255,6 +255,10 @@ function HomeBulletin({
     };
   }, []);
   if (!edition) return null;
+  var endDate = new Date(edition.end + "T00:00:00");
+  var today = new Date();
+  today.setHours(0, 0, 0, 0);
+  var ended = !Number.isNaN(endDate.getTime()) && today > endDate;
   return React.createElement("section", {
     className: "wrap",
     style: {
@@ -272,7 +276,7 @@ function HomeBulletin({
     }
   }, React.createElement("span", {
     className: "home-dispatch__date"
-  }, "The Park Bulletin · covering ", edition.label), React.createElement("span", {
+  }, "The Park Bulletin · covering ", edition.label, ended ? " · this edition has ended" : ""), React.createElement("span", {
     className: "home-dispatch__title"
   }, "One page, the whole park, right now"), React.createElement("p", {
     className: "home-dispatch__excerpt"

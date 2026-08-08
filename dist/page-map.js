@@ -1646,6 +1646,7 @@ function MapAccessGate({
   }, React.createElement("input", {
     type: "email",
     name: "email",
+    "aria-label": "Email address",
     placeholder: "you@email.com",
     required: true
   }), React.createElement("input", {

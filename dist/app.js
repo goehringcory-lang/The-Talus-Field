@@ -851,10 +851,20 @@ function App() {
       capture: true
     });
   }, []);
+  var navigatedRef = useRef(false);
+  useEffect(() => {
+    if (!navigatedRef.current) return;
+    navigatedRef.current = false;
+    var el = document.getElementById("main");
+    if (el) el.focus({
+      preventScroll: true
+    });
+  }, [route]);
   useEffect(() => {
     var onPop = () => {
       var r = pathToRoute(window.location.pathname);
       ensureRoute(r).then(() => {
+        navigatedRef.current = true;
         setRoute(r);
         window.scrollTo({
           top: 0
@@ -872,6 +882,7 @@ function App() {
       }, "", path);
     }
     ensureRoute(r).then(() => {
+      navigatedRef.current = true;
       setRoute(r);
       window.scrollTo({
         top: 0
@@ -1055,7 +1066,9 @@ function App() {
     current: currentNav,
     go: go
   }), React.createElement("main", {
-    key: route
+    key: route,
+    id: "main",
+    tabIndex: -1
   }, page, routeReady && React.createElement(KeepGoing, {
     route: routeExists(route) ? route : "notfound",
     go: go

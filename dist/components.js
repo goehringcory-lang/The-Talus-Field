@@ -567,7 +567,6 @@ function Header({
   var renderLink = (link, {
     baseClass,
     noteClass,
-    role,
     onNavigate
   } = {}) => {
     var {
@@ -584,9 +583,9 @@ function Header({
     }, note)) : label;
     return React.createElement("a", {
       key: key || href,
-      role: role,
       href: isExternalPath ? href : window.routeToPath ? window.routeToPath(key) : `/${key}`,
       className: [baseClass, !isExternalPath && current === key && "is-active"].filter(Boolean).join(" "),
+      "aria-current": !isExternalPath && current === key ? "page" : undefined,
       onClick: e => {
         if (onNavigate) onNavigate(e);
         if (isExternalPath) return;
@@ -602,7 +601,10 @@ function Header({
     key,
     label
   }, opts);
-  return React.createElement(React.Fragment, null, React.createElement("header", {
+  return React.createElement(React.Fragment, null, React.createElement("a", {
+    className: "skip-link",
+    href: "#main"
+  }, "Skip to content"), React.createElement("header", {
     className: "masthead"
   }, React.createElement("div", {
     className: "masthead__main"
@@ -630,7 +632,8 @@ function Header({
   }, "The Talus Field"), React.createElement("span", {
     className: "brand__sub"
   }, "A field journal of Yosemite"))), React.createElement("nav", {
-    className: "nav"
+    className: "nav",
+    "aria-label": "Main"
   }, navGroups.map(g => {
     if (!g.columns) {
       return React.createElement("div", {
@@ -644,11 +647,13 @@ function Header({
         key: g.key,
         className: ["nav__group", "nav__group--mega", openGroup === g.key && "is-open", dismissedGroup === g.key && "is-dismissed"].filter(Boolean).join(" "),
         onMouseEnter: () => holdGroup(g.key),
-        onMouseLeave: releaseGroup
+        onMouseLeave: releaseGroup,
+        onFocus: () => holdGroup(g.key),
+        onBlur: releaseGroup
       }, React.createElement("a", {
         href: window.routeToPath ? window.routeToPath(g.route) : `/${g.route}`,
         className: ["nav__link", "nav__group-trigger", isGroupActive(g) && "is-active"].filter(Boolean).join(" "),
-        "aria-haspopup": "true",
+        "aria-expanded": openGroup === g.key,
         onClick: e => {
           e.preventDefault();
           dismissGroup(g.key, e);
@@ -723,7 +728,6 @@ function Header({
   }, React.createElement("button", {
     type: "button",
     className: "nav__menu-toggle",
-    "aria-haspopup": "true",
     "aria-expanded": menuOpen,
     "aria-label": "Menu",
     onClick: () => setMenuOpen(o => !o)
@@ -731,8 +735,7 @@ function Header({
     className: "nav__menu-bars",
     "aria-hidden": "true"
   }, React.createElement("span", null), React.createElement("span", null), React.createElement("span", null))), menuOpen && React.createElement("div", {
-    className: "nav__menu",
-    role: "menu"
+    className: "nav__menu"
   }, React.createElement("form", {
     className: "nav__menu-search",
     role: "search",
@@ -776,32 +779,27 @@ function Header({
     className: "nav__menu-label"
   }, renderPlainLink(g.route, g.label, {
     baseClass: "nav__menu-label-link",
-    role: "menuitem",
     onNavigate: closeMenu
   })), g.columns.map(col => React.createElement(React.Fragment, {
     key: col.heading
   }, React.createElement("div", {
     className: "nav__menu-sublabel"
   }, col.heading), col.links.map(link => renderLink(link, {
-    role: "menuitem",
     onNavigate: closeMenu,
     noteClass: "nav__menu-note"
   }))))) : renderPlainLink(g.route, g.label, {
-    role: "menuitem",
     onNavigate: closeMenu
   }))), React.createElement("div", {
     className: "nav__menu-group"
   }, React.createElement("div", {
     className: "nav__menu-sublabel"
   }, "More"), NAV_SECONDARY.map(link => renderLink(link, {
-    role: "menuitem",
     onNavigate: closeMenu,
     noteClass: "nav__menu-note"
   }))), React.createElement("div", {
     className: "nav__menu-group"
   }, renderPlainLink("explore", "Everything on this site →", {
     baseClass: "nav__menu-index",
-    role: "menuitem",
     onNavigate: closeMenu
   }))))))), React.createElement(BottomNav, {
     current: current,
@@ -1843,6 +1841,7 @@ function ExitIntentNewsletter({
   }, React.createElement("input", {
     type: "email",
     name: "email",
+    "aria-label": "Email address",
     placeholder: "you@email.com",
     required: true
   }), React.createElement("input", {

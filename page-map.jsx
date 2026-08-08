@@ -2128,7 +2128,7 @@ function MapAccessGate({ onSubscribed }) {
             setTimeout(onSubscribed, 0);
           }}
         >
-          <input type="email" name="email" placeholder="you@email.com" required />
+          <input type="email" name="email" aria-label="Email address" placeholder="you@email.com" required />
           <input type="hidden" name="tag" value="map-gate" />
           <input type="hidden" name="embed" value="1" />
           <button type="submit">Unlock the map →</button>

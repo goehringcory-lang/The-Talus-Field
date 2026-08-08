@@ -1,12 +1,26 @@
 var {
   useState
 } = React;
+function readSectionFromUrl() {
+  var raw = (new URLSearchParams(window.location.search).get("section") || "").trim();
+  return window.CATEGORIES.some(c => c.slug === raw) ? raw : "all";
+}
+function writeSectionToUrl(slug) {
+  var params = new URLSearchParams(window.location.search);
+  if (slug && slug !== "all") params.set("section", slug);else params.delete("section");
+  var qs = params.toString();
+  window.history.replaceState(window.history.state, "", window.location.pathname + (qs ? "?" + qs : ""));
+}
 function ArticlesIndex({
   go,
   initialCat
 }) {
-  var [active, setActive] = useState(initialCat || "all");
+  var [active, setActive] = useState(() => initialCat || readSectionFromUrl());
   var filters = window.useIntentFilters();
+  var pickSection = slug => {
+    setActive(slug);
+    writeSectionToUrl(slug);
+  };
   var inSection = active === "all" ? window.ARTICLES : window.byCategory(active);
   var list = window.filterArticlesByIntent(inSection, filters.value);
   return React.createElement("div", {
@@ -15,7 +29,15 @@ function ArticlesIndex({
     className: "page-head"
   }, React.createElement("div", {
     className: "wrap"
-  }, React.createElement("div", {
+  }, React.createElement(Breadcrumbs, {
+    go: go,
+    trail: [{
+      label: "Home",
+      route: "home"
+    }, {
+      label: "Articles"
+    }]
+  }), React.createElement("div", {
     className: "eyebrow eyebrow--moss"
   }, "Articles"), React.createElement("h1", null, "Entries."), React.createElement("p", {
     className: "page-head__dek"
@@ -35,9 +57,10 @@ function ArticlesIndex({
   }, React.createElement("a", {
     href: "/articles",
     className: `chip ${active === "all" ? "is-active" : ""}`,
+    "aria-current": active === "all" ? "true" : undefined,
     onClick: e => {
       e.preventDefault();
-      setActive("all");
+      pickSection("all");
     }
   }, "All (", window.ARTICLES.length, ")"), window.CATEGORIES.map(c => {
     var n = window.byCategory(c.slug).length;
@@ -45,9 +68,10 @@ function ArticlesIndex({
       key: c.slug,
       href: `/section/${c.slug}`,
       className: `chip ${active === c.slug ? "is-active" : ""}`,
+      "aria-current": active === c.slug ? "true" : undefined,
       onClick: e => {
         e.preventDefault();
-        setActive(c.slug);
+        pickSection(c.slug);
       }
     }, c.label, " (", n, ")");
   })), React.createElement(window.IntentFilters, {
