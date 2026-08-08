@@ -6,6 +6,7 @@ import {
   getBuyer,
   getEmailByAccessToken,
   getInventoryCount,
+  recordCheckoutAttempt,
   recordRenewLinkAttempt,
 } from '../lib/kv'
 import { createCheckoutSession } from '../lib/stripe'
@@ -21,7 +22,26 @@ const EMAIL_MAX = 254
 // email, so keep it a short personal line, not a letter.
 const GIFT_NOTE_MAX = 280
 
+// Every /start call creates a live Stripe Checkout session, so it carries the
+// same hashed-IP hourly throttle as the other public POST routes: an
+// unthrottled loop burns the account's Stripe API budget and blocks buyers.
+const MAX_CHECKOUT_STARTS_PER_HOUR = 10
+
+async function hashIp(ip: string): Promise<string> {
+  const data = new TextEncoder().encode(`checkout:${ip}`)
+  const digest = await crypto.subtle.digest('SHA-256', data)
+  return [...new Uint8Array(digest)]
+    .map((b) => b.toString(16).padStart(2, '0'))
+    .join('')
+}
+
 checkout.post('/start', async (c) => {
+  const ip = c.req.header('CF-Connecting-IP') ?? 'unknown'
+  const attempts = await recordCheckoutAttempt(c.env, await hashIp(ip))
+  if (attempts > MAX_CHECKOUT_STARTS_PER_HOUR) {
+    return c.json({ error: 'Too many attempts. Try again later.' }, 429)
+  }
+
   const monthLabel = currentMonthLabel()
   const sold = await getInventoryCount(c.env, monthLabel)
   const cap = Number.parseInt(c.env.GUIDE_MONTHLY_CAP, 10)

@@ -170,6 +170,9 @@ function loadScriptOnce(src) {
       el.onload = () => resolve();
       el.onerror = () => reject(new Error(`failed to load ${src}`));
       document.head.appendChild(el);
+    }).catch(err => {
+      delete loadedScripts[src];
+      throw err;
     });
   }
   return loadedScripts[src];
@@ -191,7 +194,7 @@ function legacyHashToRoute(hash) {
   var h = hash.replace(/^#+/, "");
   if (!h) return "home";
   if (h.startsWith("a:") || h.startsWith("cat:")) return h;
-  return h;
+  return STATIC_ROUTE_KEYS.has(h) ? h : null;
 }
 var SITE_NAME = "The Talus Field";
 var PERSON_ID = `${SITE_ORIGIN}/#person-cory-goehring`;
@@ -860,16 +863,21 @@ function App() {
       preventScroll: true
     });
   }, [route]);
+  var navTokenRef = useRef(0);
   useEffect(() => {
     var onPop = () => {
       var r = pathToRoute(window.location.pathname);
+      var token = ++navTokenRef.current;
       ensureRoute(r).then(() => {
+        if (token !== navTokenRef.current) return;
         navigatedRef.current = true;
         setRoute(r);
         window.scrollTo({
           top: 0
         });
-      }).catch(() => window.location.reload());
+      }).catch(() => {
+        if (token === navTokenRef.current) window.location.reload();
+      });
     };
     window.addEventListener("popstate", onPop);
     return () => window.removeEventListener("popstate", onPop);
@@ -881,13 +889,17 @@ function App() {
         route: r
       }, "", path);
     }
+    var token = ++navTokenRef.current;
     ensureRoute(r).then(() => {
+      if (token !== navTokenRef.current) return;
       navigatedRef.current = true;
       setRoute(r);
       window.scrollTo({
         top: 0
       });
-    }).catch(() => window.location.assign(path));
+    }).catch(() => {
+      if (token === navTokenRef.current) window.location.assign(path);
+    });
   };
   var [tweaks, setTweak] = useTweaks(window.TWEAK_DEFAULTS);
   useEffect(() => {

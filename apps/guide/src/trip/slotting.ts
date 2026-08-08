@@ -251,6 +251,14 @@ export function slotDay(day: string, items: TripItemT[]): SlottedItem[] {
         }
       }
     }
+    // Same overflow rule as the floating and evening loops: an anchor pushed
+    // past the end of the day goes to the couldn't-place bucket, not to a
+    // 9:30 p.m. lunch. It must not join `blocks` either — a null startMin
+    // reads as 0 there and would wall off the morning.
+    if (start + slot.durationMin > DAY_END) {
+      slot.startMin = null
+      continue
+    }
     slot.startMin = start
     blocks.push(slot)
     blocks.sort((a, b) => (a.startMin ?? 0) - (b.startMin ?? 0))

@@ -26,6 +26,8 @@ const MAX_RESEND_PER_IP_PER_HOUR = 10
 const EMAIL_MAX = 254
 const USERNAME_MAX = 128
 const CODE_MAX = 64
+// Access tokens are 64 hex chars; double that is generous for any real value.
+const TOKEN_MAX = 128
 
 export const auth = new Hono<{ Bindings: Env; Variables: AuthVariables }>()
 
@@ -33,6 +35,9 @@ auth.post('/exchange', async (c) => {
   const body = await c.req.json<{ token?: string }>().catch(() => ({} as { token?: string }))
   const token = body.token?.trim()
   if (!token) return c.json({ error: 'Missing token' }, 400)
+  // Same KV key-cap concern as the consts above: the token becomes part of a
+  // KV key, so an oversized value would 500 in the lookup instead of 401 here.
+  if (token.length > TOKEN_MAX) return c.json({ error: 'Unknown or expired token' }, 401)
 
   const email = await getEmailByAccessToken(c.env, token)
   if (!email) return c.json({ error: 'Unknown or expired token' }, 401)
@@ -152,11 +157,7 @@ auth.post('/dev-login', async (c) => {
     return c.json({ error: 'Missing username or code' }, 400)
   }
 
-  // Cloudflare always sets cf-connecting-ip in production. Fall back to a
-  // sentinel so the bucket key is still well-formed (e.g. for `wrangler dev`
-  // local requests without the header).
-  const ip = c.req.header('cf-connecting-ip') ?? 'unknown'
-  const attempts = await recordDevLoginAttempt(c.env, ip, username)
+  const attempts = await recordDevLoginAttempt(c.env, username)
   if (attempts > MAX_LOGIN_ATTEMPTS_PER_HOUR) {
     return c.json({ error: 'Too many attempts. Try again later.' }, 429)
   }
@@ -181,7 +182,7 @@ auth.post('/dev-login', async (c) => {
     return c.json({ error: 'Username or code does not match' }, 401)
   }
 
-  await clearDevLoginAttempts(c.env, ip, username)
+  await clearDevLoginAttempts(c.env, username)
   const jwt = await signAccessJwt(username, c.env.MAGIC_LINK_SIGNING_SECRET)
   return c.json({ jwt })
 })

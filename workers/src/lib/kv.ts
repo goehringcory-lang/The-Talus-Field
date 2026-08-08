@@ -7,6 +7,7 @@ export type BuyerRecord = {
   accessToken: string          // 64-char hex; one-time bootstrap from email
   accessCode: string           // 6-digit zero-padded; for new-device login
   refundedAt?: number          // epoch seconds; set when Stripe reports a refund
+  lastExtensionEventId?: string // Stripe event id that last extended expiresAt
 }
 
 // One account's synced app state (/api/trip/plan): the trip plan, saved stops,
@@ -57,8 +58,12 @@ const INVENTORY_KEY = (yyyymm: string) => `inventory:${yyyymm}`
 const LOGIN_ATTEMPTS_KEY = (email: string) => `loginAttempts:${email.toLowerCase()}`
 const RESEND_ATTEMPTS_KEY = (email: string) => `resendAttempts:${email.toLowerCase()}`
 const RESEND_ATTEMPTS_IP_KEY = (ip: string) => `resendAttemptsIp:${ip}`
-const DEV_LOGIN_ATTEMPTS_KEY = (ip: string, username: string) =>
-  `devLoginAttempts:${ip}:${username.toLowerCase()}`
+// Keyed by username alone, like LOGIN_ATTEMPTS_KEY is by email: a per-IP key
+// let a distributed attacker dodge the cap while brute-forcing the code on
+// the one door that mints a paid JWT without a purchase.
+const DEV_LOGIN_ATTEMPTS_KEY = (username: string) =>
+  `devLoginAttempts:${username.toLowerCase()}`
+const CHECKOUT_ATTEMPTS_KEY = (ipHash: string) => `checkoutAttempts:${ipHash}`
 const PUSH_SUB_KEY = (endpointHash: string) => `push:${endpointHash}`
 const PUSH_PENDING_KEY = (endpointHash: string) => `pushPending:${endpointHash}`
 const PUSH_NOTICE_KEY = (endpointHash: string, stage: string) =>
@@ -180,20 +185,16 @@ export async function recordResendAttemptByIp(env: Env, ip: string): Promise<num
   return incrementFixedWindow(env, RESEND_ATTEMPTS_IP_KEY(ip))
 }
 
-export async function recordDevLoginAttempt(
-  env: Env,
-  ip: string,
-  username: string,
-): Promise<number> {
-  return incrementFixedWindow(env, DEV_LOGIN_ATTEMPTS_KEY(ip, username))
+export async function recordDevLoginAttempt(env: Env, username: string): Promise<number> {
+  return incrementFixedWindow(env, DEV_LOGIN_ATTEMPTS_KEY(username))
 }
 
-export async function clearDevLoginAttempts(
-  env: Env,
-  ip: string,
-  username: string,
-): Promise<void> {
-  await env.GUIDE_BUYERS.delete(DEV_LOGIN_ATTEMPTS_KEY(ip, username))
+export async function clearDevLoginAttempts(env: Env, username: string): Promise<void> {
+  await env.GUIDE_BUYERS.delete(DEV_LOGIN_ATTEMPTS_KEY(username))
+}
+
+export async function recordCheckoutAttempt(env: Env, ipHash: string): Promise<number> {
+  return incrementFixedWindow(env, CHECKOUT_ATTEMPTS_KEY(ipHash))
 }
 
 // "Email this trip" sends a real email per call, so the window is tight.
