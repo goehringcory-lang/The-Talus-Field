@@ -958,16 +958,28 @@ function App() {
     if (el) el.focus({ preventScroll: true });
   }, [route]);
 
+  // Navigations await the target bundle before the route commits, so two in
+  // quick succession can resolve out of order and the slower bundle would
+  // paint under the faster one's URL. Each navigation takes a ticket; a
+  // resolution (or failure) that is no longer the latest ticket is dropped —
+  // without the guard on .catch, a stale failed fetch would yank the reader
+  // back to a page they already left.
+  const navTokenRef = useRef(0);
+
   useEffect(() => {
     const onPop = () => {
       const r = pathToRoute(window.location.pathname);
+      const token = ++navTokenRef.current;
       ensureRoute(r)
         .then(() => {
+          if (token !== navTokenRef.current) return;
           navigatedRef.current = true;
           setRoute(r);
           window.scrollTo({ top: 0 });
         })
-        .catch(() => window.location.reload());
+        .catch(() => {
+          if (token === navTokenRef.current) window.location.reload();
+        });
     };
     window.addEventListener("popstate", onPop);
     return () => window.removeEventListener("popstate", onPop);
@@ -981,13 +993,17 @@ function App() {
     // The URL updates immediately; the previous page stays rendered for the
     // (usually zero) beat the target bundle takes to arrive. A fetch failure
     // falls back to a full navigation, which retries everything.
+    const token = ++navTokenRef.current;
     ensureRoute(r)
       .then(() => {
+        if (token !== navTokenRef.current) return;
         navigatedRef.current = true;
         setRoute(r);
         window.scrollTo({ top: 0 });
       })
-      .catch(() => window.location.assign(path));
+      .catch(() => {
+        if (token === navTokenRef.current) window.location.assign(path);
+      });
   };
 
   // Tweaks

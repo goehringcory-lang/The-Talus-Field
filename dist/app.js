@@ -860,16 +860,21 @@ function App() {
       preventScroll: true
     });
   }, [route]);
+  var navTokenRef = useRef(0);
   useEffect(() => {
     var onPop = () => {
       var r = pathToRoute(window.location.pathname);
+      var token = ++navTokenRef.current;
       ensureRoute(r).then(() => {
+        if (token !== navTokenRef.current) return;
         navigatedRef.current = true;
         setRoute(r);
         window.scrollTo({
           top: 0
         });
-      }).catch(() => window.location.reload());
+      }).catch(() => {
+        if (token === navTokenRef.current) window.location.reload();
+      });
     };
     window.addEventListener("popstate", onPop);
     return () => window.removeEventListener("popstate", onPop);
@@ -881,13 +886,17 @@ function App() {
         route: r
       }, "", path);
     }
+    var token = ++navTokenRef.current;
     ensureRoute(r).then(() => {
+      if (token !== navTokenRef.current) return;
       navigatedRef.current = true;
       setRoute(r);
       window.scrollTo({
         top: 0
       });
-    }).catch(() => window.location.assign(path));
+    }).catch(() => {
+      if (token === navTokenRef.current) window.location.assign(path);
+    });
   };
   var [tweaks, setTweak] = useTweaks(window.TWEAK_DEFAULTS);
   useEffect(() => {
