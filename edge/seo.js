@@ -17,6 +17,14 @@
 // (/dist/*, /styles.css, /img/*, /prerender/*, …) are served by the asset
 // layer and never reach this code; only SPA routes (no matching file) run it,
 // which reproduces the old context.next() flow via env.ASSETS.fetch.
+//
+// These imports are resolved at deploy time: the JSON catalogs are baked into
+// the Worker bundle, not fetched at runtime. If production is ever running an
+// older build than the repo (a dashboard rollback, a stale build retry), every
+// article published since that build 404s here even though the asset layer is
+// serving the current sitemap that lists them. That is what the nightly
+// system-checks failure of Aug 9, 2026 looked like; the fix is a redeploy of
+// current main, not a repo change.
 
 import articles from "../articles.json" with { type: "json" };
 import categories from "../categories.json" with { type: "json" };
