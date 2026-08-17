@@ -8,7 +8,8 @@
     "build": "tsc --noEmit && wrangler deploy --dry-run -c wrangler.toml",
     "deploy": "wrangler deploy -c wrangler.toml",
     "typecheck": "tsc --noEmit",
-    "test:flow": "tsx test/e2e-flow.mts"
+    "test:flow": "tsx test/e2e-flow.mts",
+    "report:usage": "node scripts/usage-report.mjs"
   },
   "dependencies": {
     "@tsndr/cloudflare-worker-jwt": "^3.2.0",

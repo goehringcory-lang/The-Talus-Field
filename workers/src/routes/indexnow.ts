@@ -65,11 +65,17 @@ indexnow.post('/submit', async (c) => {
     urlList: cleaned,
   }
 
-  const upstream = await fetch(INDEXNOW_ENDPOINT, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json; charset=utf-8' },
-    body: JSON.stringify(payload),
-  })
+  let upstream: Response
+  try {
+    upstream = await fetch(INDEXNOW_ENDPOINT, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json; charset=utf-8' },
+      body: JSON.stringify(payload),
+    })
+  } catch (err) {
+    console.error('indexnow: upstream fetch failed', err)
+    return c.json({ error: 'IndexNow unreachable' }, 502)
+  }
 
   return c.json(
     {

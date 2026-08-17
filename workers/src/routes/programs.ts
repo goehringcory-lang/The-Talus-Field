@@ -69,12 +69,17 @@ programs.get('/', async (c) => {
 
   let npsEvents: ProgramEventT[]
   let syncedAt: string | null
-  if (stale) {
+  if (stale && !ingestInflight) {
     // Cold start or cron gap: serve live and backfill KV in the background.
+    // Single-flighted per isolate: while a backfill is running, concurrent
+    // stale requests serve KV as-is instead of each firing their own 20-call
+    // NPS pagination — the un-coalesced version could burn the free NPS
+    // hourly quota in one thundering herd and turn the feed into a
+    // self-reinforcing outage (quota 429 -> stale meta -> more live calls).
     try {
       npsEvents = await fetchNpsEvents(c.env, start, end)
       syncedAt = new Date().toISOString()
-      c.executionCtx.waitUntil(ingestNpsWindow(c.env))
+      c.executionCtx.waitUntil(trackedIngest(c.env))
     } catch (err) {
       console.error('programs: live NPS fetch failed, serving KV as-is', err)
       npsEvents = await readRange(c.env, start, end)
@@ -84,7 +89,7 @@ programs.get('/', async (c) => {
     }
   } else {
     npsEvents = await readRange(c.env, start, end)
-    syncedAt = meta.fetchedAt
+    syncedAt = meta?.fetchedAt ?? null
   }
 
   const npsInRange = npsEvents.filter((ev) => ev.date >= start && ev.date <= end)
@@ -120,6 +125,22 @@ async function readRange(env: Env, start: string, end: string): Promise<ProgramE
   const months = monthsInRange(start, end)
   const buckets = await Promise.all(months.map((m) => readMonthEvents(env, m)))
   return buckets.flat()
+}
+
+// One background backfill at a time per isolate, and never an unhandled
+// rejection inside waitUntil (every other waitUntil in index.ts catches).
+let ingestInflight: Promise<void> | null = null
+function trackedIngest(env: Env): Promise<void> {
+  if (!ingestInflight) {
+    ingestInflight = ingestNpsWindow(env)
+      .catch((err) => {
+        console.error('programs: background NPS backfill failed', err)
+      })
+      .finally(() => {
+        ingestInflight = null
+      })
+  }
+  return ingestInflight
 }
 
 // Shared by the cron and the cold-start backfill: fetch a rolling window of

@@ -50,7 +50,10 @@ contact.post('/', async (c) => {
     return c.json({ ok: true }, 200)
   }
 
-  const name = typeof body.name === 'string' ? body.name.trim() : ''
+  // Collapse interior whitespace (CR/LF included): the name is spliced into
+  // the plain-text email body, where raw newlines would let a caller forge
+  // extra lines of the operator notification. Same rule as the gift note.
+  const name = typeof body.name === 'string' ? body.name.replace(/\s+/g, ' ').trim() : ''
   const email = typeof body.email === 'string' ? body.email.trim() : ''
   const subjectKey = typeof body.subject === 'string' ? body.subject : ''
   const message = typeof body.message === 'string' ? body.message.trim() : ''

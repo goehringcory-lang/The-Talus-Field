@@ -136,13 +136,18 @@ photos.post('/upload', async (c) => {
   }
 
   const key = `${surface}/${slug}.${ext}`
-  await c.env.PHOTO_INBOX!.put(key, await file.arrayBuffer(), {
-    httpMetadata: { contentType: file.type || `image/${ext === 'jpg' ? 'jpeg' : ext}` },
-    customMetadata: {
-      originalName: file.name,
-      uploadedAt: new Date().toISOString(),
-    },
-  })
+  try {
+    await c.env.PHOTO_INBOX!.put(key, await file.arrayBuffer(), {
+      httpMetadata: { contentType: file.type || `image/${ext === 'jpg' ? 'jpeg' : ext}` },
+      customMetadata: {
+        originalName: file.name,
+        uploadedAt: new Date().toISOString(),
+      },
+    })
+  } catch (err) {
+    console.error('photos: R2 put failed', { key, err })
+    return c.json({ error: 'Storage write failed. Try the upload again.' }, 503)
+  }
 
   return c.json({ key, size: file.size })
 })
@@ -212,17 +217,23 @@ photos.post('/import', async (c) => {
     )
   }
   const repo = c.env.GITHUB_REPO || DEFAULT_REPO
-  const resp = await fetch(`https://api.github.com/repos/${repo}/dispatches`, {
-    method: 'POST',
-    headers: {
-      Authorization: `Bearer ${token}`,
-      Accept: 'application/vnd.github+json',
-      'X-GitHub-Api-Version': '2022-11-28',
-      'User-Agent': 'talus-field-photo-import',
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({ event_type: 'photo-import' }),
-  })
+  let resp: Response
+  try {
+    resp = await fetch(`https://api.github.com/repos/${repo}/dispatches`, {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${token}`,
+        Accept: 'application/vnd.github+json',
+        'X-GitHub-Api-Version': '2022-11-28',
+        'User-Agent': 'talus-field-photo-import',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ event_type: 'photo-import' }),
+    })
+  } catch (err) {
+    console.error('photos: GitHub dispatch fetch failed', err)
+    return c.json({ error: 'GitHub unreachable; photos stay staged.' }, 502)
+  }
   if (resp.status === 204) return c.json({ dispatched: true })
   return c.json({ error: `GitHub dispatch failed (${resp.status})` }, 502)
 })
