@@ -593,7 +593,10 @@ function Header({ current, go }) {
           onClick={(e) => { e.preventDefault(); releaseRockfall(e.currentTarget.querySelector(".brand__mark")); go("home"); }}
           style={{ textDecoration: "none", color: "inherit" }}
         >
-          <img className="brand__mark" src="/img/talus-field-mark.png" alt="The Talus Field" loading="eager" />
+          {/* Own ?v= counter, like points.geojson: /img/* is served immutable
+              for 30 days (_headers), so a repeat visitor would keep the old
+              mark for a month without one. Bump when the mark is replaced. */}
+          <img className="brand__mark" src="/img/talus-field-mark.png?v=2" alt="The Talus Field" loading="eager" />
           <span className="brand-block__text">
             <span className="brand">The Talus Field</span>
             <span className="brand__sub">A field journal of Yosemite</span>

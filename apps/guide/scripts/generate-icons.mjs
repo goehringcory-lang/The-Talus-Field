@@ -7,6 +7,12 @@
 // Outputs use versioned (.v2) and /brand/ paths on purpose: the service
 // worker's runtime cache is unversioned and skips URLs it has already cached,
 // so replacing art at an existing URL would never reach installed clients.
+// If a rerun ever changes these bytes, rename to the next suffix and update
+// every reader — manifest.webmanifest, index.html, sw.js (RUNTIME_PRECACHE
+// plus the push icon/badge), and the components that render the lockup.
+// A rerun that produces identical bytes needs no rename: the August 2026 mark
+// swap was one of those, because it only recropped the source canvas and
+// everything below trims that away.
 
 import { fileURLToPath } from 'node:url'
 import { dirname, join } from 'node:path'
@@ -21,13 +27,16 @@ const sourcePath = join(root, '..', '..', 'img', 'talus-field-mark.png')
 
 const PAPER = '#f1ead6'
 
-// The source canvas carries a small sparkle glyph in the bottom-right corner;
-// crop to the rockfield illustration before trimming the transparent border.
-const CONTENT_CUT = { left: 0, top: 0, width: 960, height: 645 }
-
+// Trim the transparent border so every framing decision below measures the
+// illustration rather than the canvas it was exported on. This used to extract
+// a fixed 960x645 window first, because the source carried a small sparkle
+// glyph in the bottom-right corner that defeated the trim. The August 2026 mark
+// is delivered already cropped to the rockfield with the sparkle gone, and the
+// fixed window is now both pointless and wider than the source, which would
+// throw. If a future export reintroduces stray marks outside the illustration,
+// crop them at the source rather than re-adding a magic rectangle here.
 async function trimmedMark() {
-  const cut = await sharp(sourcePath).extract(CONTENT_CUT).png().toBuffer()
-  return sharp(cut).trim().png().toBuffer()
+  return sharp(sourcePath).trim().png().toBuffer()
 }
 
 // Center the mark on a paper square. App icons must be opaque: iOS renders

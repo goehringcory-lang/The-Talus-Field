@@ -622,7 +622,7 @@ function Header({
     }
   }, React.createElement("img", {
     className: "brand__mark",
-    src: "/img/talus-field-mark.png",
+    src: "/img/talus-field-mark.png?v=2",
     alt: "The Talus Field",
     loading: "eager"
   }), React.createElement("span", {
