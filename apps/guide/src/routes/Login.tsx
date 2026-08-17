@@ -146,7 +146,7 @@ export default function Login() {
       navigate(from ?? '/', { replace: true })
     } catch (err) {
       if (err instanceof ApiError && err.status === 401 && err.message === 'Access has expired') {
-        setError('Your 18-month access period has ended. Email cory@thetalusfieldjournal.com about renewing.')
+        setError('Your 18-month access period has ended. The one-click renewal link is in the reminder emails we sent (search your inbox for "Field Guide access"), or email cory@thetalusfieldjournal.com and a fresh link comes back.')
       } else if (err instanceof ApiError && err.status === 401) {
         setError("That email and code don't match. The code is in your purchase email.")
       } else if (err instanceof ApiError && err.status === 429) {

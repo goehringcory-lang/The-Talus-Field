@@ -90,6 +90,15 @@ export default function Region() {
           </div>
         ),
       },
+      ...stops.map((stop, i) => ({
+        key: stop.id,
+        label: stop.title,
+        node: <StopDeckCard stop={stop} eager={i === 0} />,
+      })),
+      // Weather rides behind the stops, not ahead of them: as card two it was
+      // a near-blank screen offline (the app's normal case) standing between
+      // the buyer and the first thing they paid for. List mode keeps it up
+      // top, where it reads as a header rather than a gate.
       {
         key: 'region-weather',
         label: 'Weather and light',
@@ -101,11 +110,6 @@ export default function Region() {
           </div>
         ),
       },
-      ...stops.map((stop, i) => ({
-        key: stop.id,
-        label: stop.title,
-        node: <StopDeckCard stop={stop} eager={i === 0} />,
-      })),
       ...(hiddenStops.length > 0
         ? [
             {
@@ -154,8 +158,9 @@ export default function Region() {
         <main className="deck-main">
           <div className="deck-bar">
             {/* The chip-length label, not meta.title: the full one truncates
-                to an ellipsis in a single bar line on a phone. */}
-            <h1 className="deck-bar__title">{REGION_SHORT[region]}</h1>
+                to an ellipsis in a single bar line on a phone. A div, not a
+                second h1 — the intro panel's PageHeader owns the page's h1. */}
+            <div className="deck-bar__title">{REGION_SHORT[region]}</div>
             <div className="deck-bar__side">
               <span className="deck-bar__count">{stops.length} stops</span>
               <ViewToggle label="How to read this region" />

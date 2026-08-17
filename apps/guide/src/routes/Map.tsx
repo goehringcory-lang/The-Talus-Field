@@ -36,7 +36,7 @@ import { announceTripAdd } from '../trip/addFeedback'
 import { addHikeToPlan, addStopToPlan, isHikePlanned, isStopPlanned, useTripPlan } from '../trip/useTripPlan'
 import { buildMapStyle } from '../map/style'
 import { isPackCompleted } from '../offline/useDownloads'
-import { OFFLINE_MAX_ZOOM } from '../offline/tiles'
+import { MAP_PACK_ID } from '../offline/manifest'
 import { formatMiles, haversineMiles } from '../utils/geo'
 import { popupPhotoUrl } from '../utils/photo'
 import './Map.css'
@@ -446,7 +446,7 @@ export default function Map() {
 
   const [mapReady, setMapReady] = useState(false)
   const [mapFailed, setMapFailed] = useState(false)
-  const [mapDownloaded, setMapDownloaded] = useState(() => isPackCompleted('park-map'))
+  const [mapDownloaded, setMapDownloaded] = useState(() => isPackCompleted(MAP_PACK_ID))
 
   // Device position from the locate control. The ref mirrors the state so the
   // selection effect can read the position at popup-open time without taking
@@ -464,7 +464,7 @@ export default function Map() {
   // The pack can complete in another tab (or on /account in this one);
   // re-check whenever this tab regains focus so the offline notice is live.
   useEffect(() => {
-    const recheck = () => setMapDownloaded(isPackCompleted('park-map'))
+    const recheck = () => setMapDownloaded(isPackCompleted(MAP_PACK_ID))
     window.addEventListener('focus', recheck)
     document.addEventListener('visibilitychange', recheck)
     return () => {
@@ -473,23 +473,11 @@ export default function Map() {
     }
   }, [])
 
-  // The offline tile pack stops at z14; the online proxy serves to z16. Clamp
-  // interactive zoom while offline so airplane-mode users never pan into blank
-  // tiles. navigator.onLine is a heuristic (captive portals lie), but a wrong
-  // "online" only restores the online ceiling, it breaks nothing.
-  const [online, setOnline] = useState(() => navigator.onLine)
-  useEffect(() => {
-    const sync = () => setOnline(navigator.onLine)
-    window.addEventListener('online', sync)
-    window.addEventListener('offline', sync)
-    return () => {
-      window.removeEventListener('online', sync)
-      window.removeEventListener('offline', sync)
-    }
-  }, [])
-  useEffect(() => {
-    mapRef.current?.setMaxZoom(online ? 16 : OFFLINE_MAX_ZOOM)
-  }, [online, mapReady])
+  // No offline zoom clamp: the raster source declares maxzoom 14 (see
+  // map/style.ts), so past z14 MapLibre overzooms the SAME z14 tiles the
+  // offline pack carries — z15-16 render offline from cache, just scaled.
+  // The old clamp held airplane-mode users at z14 and cost them trailhead-
+  // scale reading for no saved tiles.
 
   const initial = useMemo(() => readUrlState(), [])
   const [tab, setTab] = useState<Tab>(initial.tab)
@@ -739,7 +727,7 @@ export default function Map() {
       style: buildMapStyle(),
       center: [-119.55, 37.85],
       zoom: 9,
-      maxZoom: navigator.onLine ? 16 : OFFLINE_MAX_ZOOM,
+      maxZoom: 16,
       // Padded park bbox: keeps panning on the cached tile set.
       maxBounds: [
         [-120.8, 36.8],
@@ -1114,9 +1102,15 @@ export default function Map() {
     [selectStop],
   )
 
-  // Counts for the itinerary buttons, derived live.
+  // Counts for the itinerary buttons, derived live. "All" honors the Secret
+  // Guide toggle the same way kindCounts does — with it off, the number must
+  // match the pins actually on the map.
   const counts = useMemo(() => {
-    const out = { all: mappableStops.length } as Record<'all' | ItineraryKey, number>
+    const out = {
+      all: showSecret
+        ? mappableStops.length
+        : mappableStops.filter((s) => !isSecretGuideEntry(s)).length,
+    } as Record<'all' | ItineraryKey, number>
     for (const key of ITINERARY_KEYS) {
       const regions = new Set(ITINERARIES[key].days.flatMap((d) => d.regions))
       out[key] = mappableStops.filter(
@@ -1124,7 +1118,7 @@ export default function Map() {
       ).length
     }
     return out
-  }, [mappableStops])
+  }, [mappableStops, showSecret])
 
   // The five closest visible stops, for the "Near you" list. Straight-line
   // distance; a coord is guaranteed upstream. Derived from visibleStops (not
@@ -1537,10 +1531,10 @@ function InfoPane({
 
       <h2>Itineraries tab</h2>
       <p>
-        Filter the pin set by suggested trip length. 1 day stays in the
-        valley; 2 days adds the southern rim; 3 days adds Tuolumne. Use
-        the day-by-day list to walk through stops in order; the map pans
-        to each selection.
+        Filter the pin set to one ready-made plan: trip lengths, first
+        visit, young kids, easy pace, and the rest. Use the day-by-day
+        list to walk through its stops in order; the map pans to each
+        selection.
       </p>
 
       <h2>Legend</h2>

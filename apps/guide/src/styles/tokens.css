@@ -1074,3 +1074,19 @@ select:focus-visible {
     scroll-behavior: auto !important;
   }
 }
+
+/* ── Print ──────────────────────────────────────────────────────────────────
+   App chrome has no business on paper. /trip/print carries its own print
+   stylesheet; this covers every other page a reader prints (the Hunts
+   find-it lists especially, whose button says "Print these lists"). */
+@media print {
+  .gated-chrome,
+  .bottom-nav,
+  .update-banner,
+  .install-banner {
+    display: none !important;
+  }
+  .bottom-nav-offset {
+    padding-bottom: 0 !important;
+  }
+}

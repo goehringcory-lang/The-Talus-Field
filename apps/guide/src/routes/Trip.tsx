@@ -285,10 +285,20 @@ export default function Trip() {
   // with travel buffers); dumping a whole region onto one date used to bury
   // the plan in overflow warnings.
   const DAY_CAPACITY_MIN = 13 * 60
+  const [seedNote, setSeedNote] = useState<string | null>(null)
   function seedItinerary(key: ItineraryKey) {
     // Preset days beyond the picked window are not seeded. Collapsing them
     // onto the last date used to grant each its own capacity budget and
-    // produce a single impossible day.
+    // produce a single impossible day. Say so when it happens — a silent
+    // truncation reads as the plan being smaller than advertised.
+    const totalDays = ITINERARIES[key].days.length
+    setSeedNote(
+      totalDays > windowDays.length
+        ? `Your dates hold ${windowDays.length} ${windowDays.length === 1 ? 'day' : 'days'}, so the first ${
+            windowDays.length === 1 ? 'day' : `${windowDays.length} days`
+          } of this ${totalDays}-day plan went on the board. Extend the dates above for the rest.`
+        : null,
+    )
     const days = ITINERARIES[key].days.slice(0, windowDays.length)
     days.forEach((day, i) => {
       const date = windowDays[i]
@@ -458,6 +468,12 @@ export default function Trip() {
                 })}
               </div>
             </div>
+
+            {seedNote && (
+              <p className="trip-step__hint" role="status">
+                {seedNote}
+              </p>
+            )}
 
             <BackupPlans />
 

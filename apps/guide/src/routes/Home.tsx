@@ -94,14 +94,16 @@ function BeforeYouGoNudge() {
 // the one path that writes to the plan — nothing is imported behind the user.
 function PendingImportCard() {
   const [ids, setIds] = useState<string[]>(() => peekPendingImport())
-  if (ids.length === 0) return null
-  const resolved = resolveEditorialIds(ids)
+  const resolved = useMemo(() => resolveEditorialIds(ids), [ids])
   const count = resolved.stopIds.length + resolved.hikeIds.length
-  if (count === 0) {
-    // Nothing in the trip exists in the guide; offering it would be a dead end.
-    clearPendingImport()
-    return null
-  }
+  // Nothing in the trip exists in the guide; offering it would be a dead end.
+  // The cleanup is a storage write, so it lives in an effect — render stays
+  // pure (same rule as the mount-stamp reads below).
+  const dead = ids.length > 0 && count === 0
+  useEffect(() => {
+    if (dead) clearPendingImport()
+  }, [dead])
+  if (ids.length === 0 || count === 0) return null
   return (
     <Callout
       action={
@@ -117,7 +119,7 @@ function PendingImportCard() {
         </Button>
       }
     >
-      The trip you built on the map is waiting: {count} {count === 1 ? 'stop' : 'stops'}.{' '}
+      The trip you built on the map is waiting: {count} {count === 1 ? 'entry' : 'entries'}.{' '}
       <Link to={`/trip?import=${ids.join(',')}`}>Add it to your plan →</Link>
     </Callout>
   )
@@ -498,7 +500,7 @@ export default function Home() {
               meta={`${DINING.filter((v) => v.area !== 'gateway').length} places · hours from the current Yosemite Guide`}
             />
             <ToolCard
-              to="/dining"
+              to="/dining#gateway"
               title="The gateway towns"
               icon={PLAN_ICONS.gateway}
               teaser="Where dinner improves outside the gates: Mariposa, Groveland, Oakhurst, Fish Camp, El Portal, and Lee Vining, one corridor per entrance."

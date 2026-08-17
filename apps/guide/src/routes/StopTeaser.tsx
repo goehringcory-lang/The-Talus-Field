@@ -71,7 +71,9 @@ export default function StopTeaser() {
           <span className="eyebrow" style={{ display: 'block', marginBottom: 16 }}>
             The Field Guide · A free sample entry, reproduced in full
           </span>
-          <StopCard stop={stop} compact={false} actions={false} />
+          {/* titleAs h1: this is a standalone landing page and the card's
+              title is its only heading. */}
+          <StopCard stop={stop} compact={false} actions={false} titleAs="h1" />
           <p className="locked-note">
             One of {coreCount + secretCount} entries in the Field Guide
           </p>

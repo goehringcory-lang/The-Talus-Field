@@ -11,6 +11,15 @@ import ResponsivePhoto from './ResponsivePhoto'
 import StopActions from './StopActions'
 import { Chip } from './ui/Chip'
 
+// Swap and hazard text through markdown, unwrapped: the named alternative in
+// a swap ("continue to [Valley View](/stop/valley-view)") should be one tap,
+// not a re-search — the whole point of the callout is what to do NEXT. The
+// paragraph unwrap keeps the callout's inline flow (label then text) exactly
+// as it was when these rendered as plain strings.
+function CalloutMarkdown({ text }: { text: string }) {
+  return <ReactMarkdown components={{ p: ({ children }) => <>{children}</> }}>{text}</ReactMarkdown>
+}
+
 // Display labels for PhotoTiming.best. Kept local rather than in
 // content/labels.ts: this is presentation only, not a fact about the stop.
 const PHOTO_TIMING_LABEL: Record<string, string> = {
@@ -106,14 +115,14 @@ export default function StopCard({
       {stop.hazard && (
         <aside className="swap-callout swap-callout--hazard">
           <span className="swap-callout__label">Caution</span>
-          {stop.hazard}
+          <CalloutMarkdown text={stop.hazard} />
         </aside>
       )}
 
       {stop.swap && (
         <aside className="swap-callout">
           <span className="swap-callout__label">If full</span>
-          {stop.swap}
+          <CalloutMarkdown text={stop.swap} />
         </aside>
       )}
 

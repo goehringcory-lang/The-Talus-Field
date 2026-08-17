@@ -12,7 +12,8 @@
 
 .hikes-region-header {
   position: sticky;
-  top: 0;
+  /* Below the sticky masthead, not behind it (same offset as .secret-guide-tabs). */
+  top: calc(var(--chrome-top-h) + env(safe-area-inset-top, 0px));
   z-index: 5;
   background: var(--paper-2);
   border-top: 1px solid var(--ink);
