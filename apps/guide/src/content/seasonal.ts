@@ -127,13 +127,46 @@ const windowEntries: SeasonalInput[] = [
     confidence: 'confirmed',
     // Source: Yosemite Guide Vol 51 Issue 6 (July 15 - August 18, 2026), which
     // moves the closure's start from the June 30 printed in v51n5 to July 27.
+    // Reconfirmed unchanged in v51n7 (August 19 - September 22, 2026), whose
+    // Valley Trails map also prints the signed John Muir Trail detour.
     dateStart: '2026-07-27',
     dateEnd: '2026-10-31',
     location: 'Mist Trail, Vernal and Nevada Fall corridor',
     url: 'https://www.nps.gov/yose/planyourvisit/conditions.htm',
     description:
-      'The Mist Trail is closed for trail repairs Monday through Thursday, 7 a.m. to 3:30 p.m., from July 27 through the end of October 2026. It is open Fridays, Saturdays, Sundays, and holidays, and on weekdays before 7 and after 3:30 when conditions allow. If Vernal and Nevada Fall are the point of a weekday, start very early or plan the John Muir Trail side, and check conditions before committing.',
+      'The Mist Trail is closed for trail repairs Monday through Thursday, 7 a.m. to 3:30 p.m., from July 27 through the end of October 2026. It is open Fridays, Saturdays, Sundays, and holidays, and on weekdays before 7 and after 3:30 when conditions allow. During the closure a signed detour on the John Muir Trail is the way to Vernal Fall, Nevada Fall, and everything beyond. If the falls are the point of a weekday, start very early or take the detour, and check conditions before committing.',
     stopIds: ['mist-trail'],
+  },
+  {
+    id: 'high-country-season-end-2026',
+    title: 'Tuolumne services wind down for the season',
+    category: 'other',
+    confidence: 'confirmed',
+    // Source: Yosemite Guide Vol 51 Issue 7 (August 19 - September 22, 2026),
+    // services pages. Closing dates are printed per venue; the road itself
+    // stays open until the first storm that sticks (see the Tioga close entry).
+    dateStart: '2026-08-19',
+    dateEnd: '2026-09-20',
+    location: 'Tioga Road and Tuolumne Meadows',
+    url: 'https://www.nps.gov/yose/planyourvisit/guide.htm',
+    description:
+      'The high country closes down well before the road does. The free Tuolumne Meadows shuttle to Olmsted Point and the Tuolumne hikers bus both stop running after September 13. The Tuolumne Meadows store and grill close after September 20. The High Sierra Camps at Glen Aulin and Sunrise close September 6 and May Lake September 9; Vogelsang and Merced Lake are closed for the whole season, and White Wolf lodge, store, and dining room never opened. EV charging in Tuolumne is out. Plan a mid-September high-country day as a self-supported one: fuel, food, and water from the valley or Crane Flat.',
+    stopIds: ['soda-springs-parsons-lodge', 'tuolumne-meadows-grill', 'may-lake', 'olmsted-point'],
+  },
+  {
+    id: 'valley-season-end-2026',
+    title: 'Valley and Wawona services shorten after Labor Day',
+    category: 'other',
+    confidence: 'confirmed',
+    // Source: Yosemite Guide Vol 51 Issue 7 (August 19 - September 22, 2026),
+    // services pages, which print each venue's changeover date.
+    dateStart: '2026-08-19',
+    dateEnd: '2026-09-22',
+    location: 'Yosemite Valley and Wawona',
+    url: 'https://www.nps.gov/yose/planyourvisit/guide.htm',
+    description:
+      'Early September is when the summer schedule ends. Jennie\'s Ice Cream at Curry closes after September 6 and the Wawona stable finishes the same day. The Curry and Yosemite Valley Lodge pools close after September 7, when the Village, Curry, and Lodge stores also start closing at 9 instead of 10 and the Meadow Grill taqueria moves to a 5 p.m. close. Bike rentals drop to 9 to 6 from September 8. Raft rentals are already done for the year, and the Wawona Hotel and its dining room are closed for renovation. None of this closes the park, but it does mean a late dinner or a late errand needs checking first.',
+    stopIds: ['curry-village', 'wawona-hotel-history-center'],
   },
   {
     id: 'jmt-clark-point-closure-2026',
@@ -157,7 +190,10 @@ const windowEntries: SeasonalInput[] = [
     category: 'astronomy',
     // Confirmed for this stretch, unlike the later years' typical windows: the
     // Yosemite Guide Vol 51 Issue 6 prints the club weekends, and the programs
-    // feed carries each night as its own dated event.
+    // feed carries each night as its own dated event. The season ends here:
+    // v51n7 (August 19 - September 22, 2026) prints no club weekends at all,
+    // only the ticketed Glacier Point Starry Skies nights, so do NOT extend
+    // this window on the assumption that the club nights continue.
     confidence: 'confirmed',
     dateStart: '2026-07-17',
     dateEnd: '2026-08-15',

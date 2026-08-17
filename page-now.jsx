@@ -12,7 +12,7 @@
 // bump the ?v= when bulletin.json changes, or readers behind the CDN keep the
 // last edition. Keep HOME_BULLETIN_URL in page-home.jsx on the same number.
 // =============================================================================
-const BULLETIN_URL = "/bulletin.json?v=3";
+const BULLETIN_URL = "/bulletin.json?v=4";
 
 function bulletinDate(iso) {
   const d = new Date(iso + "T00:00:00");
