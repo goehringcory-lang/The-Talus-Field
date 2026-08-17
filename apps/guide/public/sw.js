@@ -1,8 +1,12 @@
 /* The Field Guide service worker. Hand-rolled — see plan Phase 5.
- * BUILD_DATE token below is replaced at build time by vite.config.ts so
- * each deploy gets a fresh shell-cache name and old caches drop on activate. */
+ * The BUILD_VERSION token below is replaced at build time by vite.config.ts
+ * with a hash of what shipped (this file, the API base, the asset names), so
+ * a deploy that changed something gets a fresh shell-cache name and drops the
+ * old caches on activate — and a rebuild of unchanged source emits this file
+ * byte-for-byte identical, which is what stops the browser announcing an
+ * update nobody made. It is deliberately not a timestamp; see vite.config.ts. */
 
-const VERSION = '__BUILD_DATE__'
+const VERSION = '__BUILD_VERSION__'
 const SHELL_CACHE = `tfg-shell-${VERSION}`
 const RUNTIME_CACHE = 'tfg-runtime'
 // Map tiles. Unversioned on purpose: a downloaded park map survives deploys.

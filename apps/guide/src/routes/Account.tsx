@@ -12,6 +12,7 @@ import PageHeader from '../components/ui/PageHeader'
 import Skeleton from '../components/ui/Skeleton'
 import { PHOTO_CREDITS } from '../content/photoCredits'
 import { MAP_ATTRIBUTION } from '../map/style'
+import { BUILD_DATE } from '../lib/buildInfo'
 import { resetInstallDismissal } from '../lib/install'
 import { isStandalonePWA } from '../utils/platform'
 
@@ -373,7 +374,7 @@ export default function Account() {
         <SignOutButton onSignOut={signOut} />
 
         <p className="page-footnote">
-          2026 Edition · Build {import.meta.env.VITE_BUILD_DATE}
+          2026 Edition · Build {BUILD_DATE}
           <br />
           Map tiles: {MAP_ATTRIBUTION}
         </p>

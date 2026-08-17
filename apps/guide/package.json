@@ -11,7 +11,8 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "check:itineraries": "jiti scripts/check-itineraries.ts"
+    "check:itineraries": "jiti scripts/check-itineraries.ts",
+    "check:build": "node scripts/check-build-determinism.mjs"
   },
   "dependencies": {
     "maplibre-gl": "^5.24.0",
