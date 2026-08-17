@@ -48,7 +48,7 @@ function Row({
           {pack.detail} · about {formatBytes(pack.approxBytes)}
         </div>
         {(status.state === 'stale' || status.state === 'error') && (
-          <div className="download-row__size" style={{ color: 'var(--moss)' }}>
+          <div className="download-row__size" style={{ color: 'var(--danger)' }}>
             {statusLabel(status)}
           </div>
         )}
@@ -126,10 +126,13 @@ export default function DownloadManager() {
               // and fanning out every pack together swamps slow hotel wifi.
               // Cancelling the pack in flight ends the whole batch — the only
               // Cancel on screen has to mean "stop downloading", not "skip to
-              // the next 100 MB".
+              // the next 100 MB". An error ends it too: the likely causes
+              // (full storage, dead wifi) apply to every remaining pack, and
+              // marching on would print the same failure seven times.
               void (async () => {
                 for (const pack of pending) {
-                  if ((await download(pack)) === 'cancelled') break
+                  const outcome = await download(pack)
+                  if (outcome === 'cancelled' || outcome === 'error') break
                 }
               })()
             }}

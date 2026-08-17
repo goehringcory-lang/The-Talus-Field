@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { useAuth } from '../auth/useAuth'
 import { fetchMe, readCachedMe, type MeT } from '../auth/me'
-import { apiFetch, API_BASE } from '../lib/api'
+import { apiFetch } from '../lib/api'
 import GatedChrome from '../components/GatedChrome'
 import DownloadManager from '../components/DownloadManager'
 import InstallSheet from '../components/InstallSheet'
@@ -28,10 +28,17 @@ function formatAccessDate(epochSeconds: number): string {
 // the T-60 email and this card should agree about when renewal season starts.
 const RENEW_WINDOW_DAYS = 60
 
-// Reads ?renew=success|cancel left behind by the renewal Stripe redirect.
+// Reads ?renew=success|cancel left behind by the renewal Stripe redirect,
+// then strips it from the URL: a bookmarked or reloaded ?renew=success used
+// to re-show the confirmation forever and hide the renew button behind it.
 function readRenewOutcome(): 'success' | 'cancel' | null {
   try {
-    const value = new URLSearchParams(window.location.search).get('renew')
+    const url = new URL(window.location.href)
+    const value = url.searchParams.get('renew')
+    if (value !== null) {
+      url.searchParams.delete('renew')
+      window.history.replaceState(window.history.state, '', url)
+    }
     return value === 'success' || value === 'cancel' ? value : null
   } catch {
     return null
@@ -83,9 +90,10 @@ function AccessStatusCard() {
   useEffect(() => {
     if (!inRenewWindow || !navigator.onLine) return
     let cancelled = false
-    fetch(`${API_BASE}/api/inventory`)
-      .then((res) => (res.ok ? res.json() : null))
-      .then((body: { renewalPriceCents?: unknown } | null) => {
+    // apiFetch, not bare fetch: it carries the 15-second timeout that exists
+    // for captive-portal wifi, which would otherwise hang this request.
+    apiFetch<{ renewalPriceCents?: unknown }>('/api/inventory')
+      .then((body) => {
         if (!cancelled && body && typeof body.renewalPriceCents === 'number') {
           setRenewalPriceCents(body.renewalPriceCents)
         }

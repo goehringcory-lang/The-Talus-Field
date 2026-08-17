@@ -92,11 +92,27 @@ app.get('/tiles/:z/:y/:x', async (c) => {
     return c.text('Bad tile coordinates', 400)
   }
   const upstream = `https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/${z}/${y}/${x}`
-  const resp = await fetch(upstream, {
-    cf: { cacheTtl: 2592000, cacheEverything: true },
-  })
+  let resp: Response
+  try {
+    resp = await fetch(upstream, {
+      cf: { cacheTtl: 2592000, cacheEverything: true },
+    })
+  } catch (err) {
+    // Upstream unreachable: a clean 502 instead of Hono's default 500.
+    console.error('tiles: upstream fetch failed', { z, y, x, err })
+    return new Response(null, {
+      status: 502,
+      headers: { 'Access-Control-Allow-Origin': '*' },
+    })
+  }
   if (!resp.ok) {
-    return new Response(null, { status: resp.status })
+    // ACAO on the error path too: the PWA fetches tiles cross-origin, and
+    // without it a 404 surfaces to MapLibre and the download verifier as an
+    // opaque CORS failure instead of an honest HTTP status.
+    return new Response(null, {
+      status: resp.status,
+      headers: { 'Access-Control-Allow-Origin': '*' },
+    })
   }
   return new Response(resp.body, {
     status: 200,
@@ -166,15 +182,28 @@ app.route('/api/waitlist', waitlist)
 app.route('/api/waits', waits)
 app.route('/api/weather', weather)
 
-// Daily cron ([triggers] in wrangler.toml): refresh the KV program cache from
-// the NPS Events API so /api/programs answers from KV, not a live fetch, and
-// give the weather record a daily floor (its real freshness is owned by the
-// 2h on-demand refresh in the route).
+// Two daily crons ([triggers] in wrangler.toml), branched by schedule:
+//   0 15 * * * — the push sweep alone, timed so notices land in the park's
+//     morning (7-8am Pacific; sweepPush's own 6-11am gate backstops it).
+//   0 10 * * * (and any manually triggered run) — refresh the KV program
+//     cache from the NPS Events API so /api/programs answers from KV, give
+//     the weather and conditions records a daily floor, and run the renewal
+//     EMAIL sweep (emails can send in quiet hours; buzzes cannot).
+const PUSH_SWEEP_CRON = '0 15 * * *'
+
 async function scheduled(
-  _controller: ScheduledController,
+  controller: ScheduledController,
   env: Env,
   ctx: ExecutionContext,
 ): Promise<void> {
+  if (controller.cron === PUSH_SWEEP_CRON) {
+    ctx.waitUntil(
+      sweepPush(env).catch((err) => {
+        console.error('scheduled: push sweep failed', err)
+      }),
+    )
+    return
+  }
   ctx.waitUntil(
     ingestNpsWindow(env).catch((err) => {
       console.error('scheduled: NPS ingest failed', err)
@@ -205,11 +234,6 @@ async function scheduled(
   ctx.waitUntil(
     sweepRenewals(env).catch((err) => {
       console.error('scheduled: renewal sweep failed', err)
-    }),
-  )
-  ctx.waitUntil(
-    sweepPush(env).catch((err) => {
-      console.error('scheduled: push sweep failed', err)
     }),
   )
 }

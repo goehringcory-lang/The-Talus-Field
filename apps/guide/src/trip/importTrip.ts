@@ -101,7 +101,8 @@ export function importSummary(result: ImportResolution): string | null {
   if (added === 0 && result.unmatched.length === 0) return null
   const parts: string[] = []
   if (added > 0) {
-    parts.push(`Added ${added} ${added === 1 ? 'stop' : 'stops'} from your map.`)
+    // "entries", not "stops": a handed-over trip can carry hikes too.
+    parts.push(`Added ${added} ${added === 1 ? 'entry' : 'entries'} from your map.`)
   }
   if (result.unmatched.length > 0) {
     // Truncated lists join with plain commas before the "and N more" tail:

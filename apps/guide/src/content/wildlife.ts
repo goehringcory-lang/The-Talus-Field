@@ -298,7 +298,7 @@ const seed: WildlifeEntryT[] = [
     lookFor:
       'The massive diameter (the largest trunks exceed 20 feet across at the base), reddish-brown fibrous bark, and small awl-shaped needles that spiral tightly around the branchlets identify the world\'s largest tree by volume.',
     whereWhen:
-      'Mariposa Grove, near the park\'s south entrance, 5,500 to 7,000 feet elevation.',
+      'All three of the park\'s groves, 5,500 to 7,000 feet: the Mariposa Grove near the south entrance is the biggest and busiest, the Tuolumne and Merced groves near Crane Flat the quiet ones.',
     note:
       'The largest tree species by volume on earth, with some individual specimens exceeding 50,000 cubic feet of wood.',
   },
@@ -387,12 +387,26 @@ const seed: WildlifeEntryT[] = [
       'Jeffrey pine replaces ponderosa on the drier east side of the Sierra crest, thriving where ponderosa would struggle.',
   },
   {
+    id: 'northern-pacific-rattlesnake',
+    name: 'Northern Pacific rattlesnake',
+    latin: 'Crotalus oreganus',
+    kind: 'other',
+    lookFor:
+      'Heavy-bodied snake with a broad triangular head, dark blotches down a gray-brown or olive back, and a segmented rattle at the tail tip. Young snakes carry a single small button and can rattle only faintly.',
+    whereWhen:
+      'Sunny, rocky slopes and talus below about 8,000 feet: the Hetch Hetchy trails, the canyon around Poopenaut Valley, and dry south-facing slopes park-wide. Most active in warm months, mornings and evenings in high summer.',
+    note:
+      'The park\'s only venomous snake, and a shy one: it rattles to avoid a confrontation, not to start it. The gopher snake, which is common here, mimics the look and even vibrates its tail in dry leaves, so a quiet snake is not automatically a safe one.',
+    safety:
+      'Give any rattlesnake at least a body length of room and walk around it; never handle one, living or dead. Watch where hands and feet land on rocky trails, keep children close in talus, and if a bite happens keep the limb still and get to medical care. Do not cut, suck, or ice a bite.',
+  },
+  {
     id: 'western-fence-lizard',
     name: 'Western fence lizard',
     latin: 'Sceloporus occidentalis',
     kind: 'other',
     lookFor:
-      'Gray or tan lizard smaller than your hand, with spiny, keeled scales down the back. Males show bright blue patches on the throat and belly, most visible when the lizard does a push-up display on a rock or log, or if it is picked up and turned over.',
+      'Gray or tan lizard smaller than your hand, with spiny, keeled scales down the back. Males show bright blue patches on the throat and belly, most visible when the lizard does a push-up display on a rock or log; the flash of blue during the display is the field mark.',
     whereWhen:
       'Sun-warmed rocks, logs, fence posts, and tree bark from the Valley floor up into mixed-conifer forest, less common at higher, colder elevations. Active on warm, sunny days; inactive in cold weather.',
     note:

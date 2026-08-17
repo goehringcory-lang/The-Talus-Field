@@ -89,6 +89,20 @@ trip.post('/plan', requireAuth, async (c) => {
     return c.json({ error: 'Too many updates. Try again later.' }, 429)
   }
 
+  // Enforce last-write-wins server-side, not just in the client's pull logic:
+  // between a device's GET and its POST another device can land a newer
+  // document, and a device with a skewed-back clock never even sees it as
+  // newer. Accepting the stale write would silently destroy the newer plan.
+  // 409 with the stored stamp lets the client's next exchange pull and
+  // converge (its sync loop already treats a failed push as retry-later).
+  // Equal stamps pass: re-pushing the same document must stay idempotent.
+  const existing = await getTripSync(c.env, sub)
+  if (existing && Date.parse(existing.updatedAt) > Date.parse(updatedAt)) {
+    return c.json({ error: 'A newer copy is already synced', updatedAt: existing.updatedAt }, 409, {
+      'Cache-Control': 'no-store',
+    })
+  }
+
   await putTripSync(c.env, { sub, doc: JSON.stringify(body.doc), updatedAt })
   return c.json({ updatedAt }, 200, { 'Cache-Control': 'no-store' })
 })

@@ -5,8 +5,8 @@
 // bundled content, so it works offline like the rest of the guide.
 // =============================================================================
 
-import { useMemo, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { useEffect, useMemo, useState } from 'react'
+import { Link, useLocation } from 'react-router-dom'
 import GatedChrome from '../components/GatedChrome'
 import MapsLink from '../components/MapsLink'
 import Callout from '../components/ui/Callout'
@@ -72,6 +72,15 @@ function VenueRow({ venue, headingLevel = 'h3' }: { venue: DiningVenueT; heading
 
 export default function Dining() {
   const [kindFilter, setKindFilter] = useState<DiningKind | null>(null)
+  const { hash } = useLocation()
+
+  // SPA navigations don't scroll to a #fragment on their own, and Home's
+  // gateway card links /dining#gateway — without this the card lands at the
+  // top of 40+ in-park venues, identical to the other dining card.
+  useEffect(() => {
+    if (!hash) return
+    document.getElementById(hash.slice(1))?.scrollIntoView()
+  }, [hash])
 
   const byKind = (list: DiningVenueT[]) =>
     list.filter((v) => !kindFilter || v.kind === kindFilter)
@@ -139,7 +148,7 @@ export default function Dining() {
         ))}
 
         {townSections.length > 0 && (
-          <section aria-label="The gateway towns">
+          <section aria-label="The gateway towns" id="gateway">
             <h2 className="dining-area-header">The gateway towns</h2>
             <p className="dining-area-note">
               Outside the gates the food gets better and cheaper at the same time. Each corridor

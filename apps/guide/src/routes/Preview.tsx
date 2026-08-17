@@ -53,7 +53,7 @@ export default function Preview() {
       <main className="wrap wrap--narrow page">
         <PageHeader
           eyebrow="Free sample · The Field Guide · 2026 Edition"
-          title={`Read ${sampleCount} stops from the guide.`}
+          title={`Read ${sampleCount} entries from the guide.`}
           intro={`These are real entries, reproduced in full: one stop from each of the four regions and one from the Secret Guide, exactly as they read in the app. The other ${coreCount + secretCount - sampleCount} entries, the offline park map, the program listings, and the trip planner are in the full guide.`}
         />
 
@@ -86,7 +86,7 @@ export default function Preview() {
             <li>One tap downloads the whole guide for offline, about 50 MB, photos and all.</li>
             <li>An offline topo map of the park with every stop pinned, the Secret Guide in gold.</li>
             <li>Ranger walks, tours, and star parties filtered to your trip dates.</li>
-            <li>A trip planner that lays out each day and syncs it to your calendar.</li>
+            <li>A trip planner that lays out each day, then saves the whole trip to your calendar as a file, no signal needed.</li>
             <li>A tappable GPS pin on every stop, like the ones above, all {coreCount + secretCount} of them.</li>
           </ul>
         </section>

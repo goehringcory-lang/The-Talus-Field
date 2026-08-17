@@ -35,7 +35,14 @@ export default function EssentialDetail() {
           <ReactMarkdown>{topic.body}</ReactMarkdown>
         </div>
 
-        {topic.checklist && <ChecklistBlock items={topic.checklist} />}
+        {topic.checklist && (
+          <ChecklistBlock
+            items={topic.checklist}
+            verb={
+              topic.id === 'before-you-go' || topic.id === 'safety-and-help' ? 'done' : 'packed'
+            }
+          />
+        )}
 
         <PrevNextNav
           ariaLabel="Essentials navigation"

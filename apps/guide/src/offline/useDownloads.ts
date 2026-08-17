@@ -167,6 +167,20 @@ export function useDownloads() {
         const current = moduleStatuses?.[pack.id]?.state
         if (current === 'downloading') return
         if (!ok) {
+          // The cache lost files behind our back (iOS eviction, cleared site
+          // data). Clear the stored completion too: isPackCompleted() feeds
+          // Home's "works in airplane mode" line and the map's Downloaded
+          // badge, and a flag the cache no longer backs would keep both
+          // claiming an offline capability the device does not have. Only
+          // when the Cache API is actually present — its absence proves
+          // nothing about what a normal window still holds.
+          if (cachesAvailable()) {
+            const latest = readCompleted()
+            if (latest[pack.id]) {
+              delete latest[pack.id]
+              writeCompleted(latest)
+            }
+          }
           setPackStatus(pack.id, { state: 'stale' })
         } else if (current === 'stale') {
           // A pass after an earlier false alarm restores the pack.
@@ -201,15 +215,11 @@ export function useDownloads() {
       }
 
       // Already running (possibly started by a since-unmounted instance).
+      // The controller must be registered synchronously with this guard: any
+      // await between them is a window where a double-tap starts a second
+      // download of the same pack, and the two then fight over the shared
+      // controllers slot (Cancel reaches only one of them).
       if (controllers[pack.id]) return 'skipped'
-
-      // Ask the browser not to evict our caches under storage pressure.
-      try {
-        await navigator.storage?.persist?.()
-      } catch {
-        /* persistence is a hint; downloads proceed without it */
-      }
-
       const controller = new AbortController()
       controllers[pack.id] = controller
       const total = pack.urls.length
@@ -222,9 +232,25 @@ export function useDownloads() {
       // frozen 0% status, so the "already running" guard above blocked every
       // retry until a full reload.
       try {
+        // Ask the browser not to evict our caches under storage pressure.
+        try {
+          await navigator.storage?.persist?.()
+        } catch {
+          /* persistence is a hint; downloads proceed without it */
+        }
+
         const cache = await caches.open(pack.cacheName)
         const queue = [...pack.urls]
         let failedUrls: string[] = []
+        // Storage-full failures get named: "check your connection" on a full
+        // device sends the buyer retrying something that can never succeed.
+        let quotaHit = false
+
+        function noteFailure(err: unknown) {
+          if (err instanceof DOMException && err.name === 'QuotaExceededError') {
+            quotaHit = true
+          }
+        }
 
         async function fetchIntoCache(url: string): Promise<boolean> {
           const cached = await cache.match(url)
@@ -247,8 +273,9 @@ export function useDownloads() {
             if (!url) return
             try {
               if (!(await fetchIntoCache(url))) failedUrls.push(url)
-            } catch {
+            } catch (err) {
               if (controller.signal.aborted) return
+              noteFailure(err)
               failedUrls.push(url)
             }
             done++
@@ -268,8 +295,9 @@ export function useDownloads() {
             if (controller.signal.aborted) break
             try {
               if (!(await fetchIntoCache(url))) failedUrls.push(url)
-            } catch {
+            } catch (err) {
               if (controller.signal.aborted) break
+              noteFailure(err)
               failedUrls.push(url)
             }
           }
@@ -283,7 +311,9 @@ export function useDownloads() {
         if (failedUrls.length > total * pack.tolerateMissing) {
           setPackStatus(pack.id, {
             state: 'error',
-            message: `${failedUrls.length} of ${total} files didn't download. Check your connection and try again.`,
+            message: quotaHit
+              ? 'This device is out of storage space. Free some up, then try again.'
+              : `${failedUrls.length} of ${total} files didn't download. Check your connection and try again.`,
           })
           return 'error'
         }

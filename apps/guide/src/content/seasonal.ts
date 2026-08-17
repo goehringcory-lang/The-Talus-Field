@@ -167,6 +167,21 @@ const windowEntries: SeasonalInput[] = [
     stopIds: ['glacier-point'],
   },
   {
+    id: 'half-dome-cables-2026',
+    title: 'Half Dome cables typically up',
+    category: 'other',
+    confidence: 'typical',
+    // Friday before Memorial Day 2026 (May 25) to the Tuesday after the
+    // second Monday of October (Oct 12) — the same arithmetic the 2027 and
+    // 2028 entries use. This season was missing entirely, so a buyer
+    // planning a late-summer 2026 trip saw no cables window at all.
+    dateStart: '2026-05-22',
+    dateEnd: '2026-10-13',
+    url: 'https://www.recreation.gov/permits/234652',
+    description:
+      'The cables that make the summit walkable typically go up the Friday before Memorial Day and come down after the second Monday in October; in 2026 that pattern lands on roughly these dates. The park confirms each season, and a late snowpack can delay the start. A permit is required every day the cables are up.',
+  },
+  {
     id: 'yosemite-falls-dry-2026',
     title: 'Yosemite Falls typically runs dry',
     category: 'other',
@@ -204,6 +219,45 @@ const windowEntries: SeasonalInput[] = [
     dateEnd: '2026-11-30',
     url: 'https://www.nps.gov/yose/planyourvisit/seasonal.htm',
     description: GLACIER_CLOSE_DESC,
+  },
+  // ── Winter 2026-27 ─────────────────────────────────────────────────────────
+  // The almanac used to go quiet between the road closings and the February
+  // firefall: a winter trip's agenda showed nothing but full moons and the
+  // Geminids. These carry the winter floor, all labeled typical.
+  {
+    id: 'curry-ice-rink-2026-27',
+    title: 'Curry Village ice rink season',
+    category: 'other',
+    confidence: 'typical',
+    dateStart: '2026-11-27',
+    dateEnd: '2027-03-01',
+    location: 'Curry Village',
+    description:
+      'The outdoor rink at Curry Village typically opens around Thanksgiving and runs into early March, weather permitting, with Half Dome standing over the ice. Skate rentals on site; sessions are ticketed at the rink. The concessioner posts each season\'s dates and hours once they are set.',
+    stopIds: ['curry-village'],
+  },
+  {
+    id: 'badger-pass-season-2026-27',
+    title: 'Badger Pass ski season',
+    category: 'other',
+    confidence: 'typical',
+    dateStart: '2026-12-15',
+    dateEnd: '2027-03-15',
+    location: 'Badger Pass, Glacier Point Road',
+    description:
+      'California\'s oldest ski area typically runs from mid-December into March, snow permitting. In winter Glacier Point Road is plowed exactly this far: downhill and tubing at the area, and the groomed track toward Glacier Point is the valley\'s cross-country door. Opening depends entirely on early-season snow, and the concessioner confirms each year.',
+  },
+  {
+    id: 'bracebridge-dinner-2026',
+    title: 'Bracebridge Dinner nights at The Ahwahnee',
+    category: 'other',
+    confidence: 'typical',
+    dateStart: '2026-12-12',
+    dateEnd: '2026-12-25',
+    location: 'The Ahwahnee dining room',
+    description:
+      'For several nights in the middle of December The Ahwahnee\'s dining room stages the Bracebridge Dinner, a seventeenth-century Christmas pageant with a seven-course meal, a tradition running since 1927. Tickets are sold months ahead and the specific nights are published in the fall; if a December trip could line up with one, check before the dates fill.',
+    stopIds: ['ahwahnee-hotel'],
   },
   {
     id: 'firefall-window-2027',

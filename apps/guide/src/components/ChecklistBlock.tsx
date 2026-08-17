@@ -10,9 +10,12 @@ import {
 
 type Props = {
   items: NonNullable<EssentialTopicT['checklist']>
+  /** Count verb: 'packed' for the packing lists, 'done' for everything else
+   *  (before-you-go and safety-and-help are checklists, not packing lists). */
+  verb?: 'packed' | 'done'
 }
 
-export default function ChecklistBlock({ items }: Props) {
+export default function ChecklistBlock({ items, verb = 'packed' }: Props) {
   const [checked, setChecked] = useState<CheckedMap>(readChecked)
 
   // Stay in sync if another tab checks something off.
@@ -37,9 +40,9 @@ export default function ChecklistBlock({ items }: Props) {
   const done = items.filter((i) => checked[i.id]).length
 
   return (
-    <section className="checklist" aria-label="Packing checklist">
+    <section className="checklist" aria-label="Checklist">
       <div className="checklist__count dateline">
-        {done} of {items.length} packed
+        {done} of {items.length} {verb}
         {done > 0 && (
           <>
             {' · '}

@@ -1,6 +1,7 @@
 // =============================================================================
-// Daily push sweep, run from the scheduled handler in index.ts alongside the
-// renewal-email sweep.
+// Daily push sweep, run from the scheduled handler in index.ts on its own
+// morning cron (0 15 * * * — 7-8am Pacific year round), separate from the
+// overnight data-refresh cron so a buzz can never land at 3am.
 //
 // Two notices, both things a buyer would want their phone to interrupt them
 // for, and nothing else. The bar is deliberately high: this app's audience
@@ -72,43 +73,41 @@ type Notice = {
   tag: string
 }
 
-/** What (if anything) this device should be told today. Highest urgency wins. */
-function noticeFor(
+/** What this device could be told today, most urgent first. The sweep sends
+ *  the FIRST candidate whose (device, stage) sentinel is unclaimed — returning
+ *  a list instead of a single winner matters on a trip that overlaps the
+ *  renewal window: once renew-t14 has been sent, its dedupe must fall through
+ *  to the morning nudge, not silence the device for the remaining 13 days. */
+function noticesFor(
   record: PushSubscriptionRecord,
   today: string,
-  isMorning: boolean,
   daysToExpiry: number | null,
-): Notice | null {
+): Notice[] {
+  const candidates: Notice[] = []
+
   // Renewal first: access ending is the only thing more urgent than the day.
   if (daysToExpiry !== null && daysToExpiry > 0) {
     if (daysToExpiry <= 1) {
-      return {
+      candidates.push({
         stage: 'renew-t1',
         title: 'Your guide access ends tomorrow',
         body: 'Renew to keep your trip plan, saved stops, and offline maps.',
         url: '/account',
         tag: 'renew',
-      }
-    }
-    if (daysToExpiry <= 14) {
-      return {
+      })
+    } else if (daysToExpiry <= 14) {
+      candidates.push({
         stage: 'renew-t14',
         title: 'Your guide access ends in two weeks',
         body: 'Renew any time from your account page.',
         url: '/account',
         tag: 'renew',
-      }
+      })
     }
   }
 
-  if (
-    isMorning &&
-    record.tripStart &&
-    record.tripEnd &&
-    record.tripStart <= today &&
-    today <= record.tripEnd
-  ) {
-    return {
+  if (record.tripStart && record.tripEnd && record.tripStart <= today && today <= record.tripEnd) {
+    candidates.push({
       // Date in the stage so each trip day fires once, and a repeat visit
       // next season is not deduped against this one.
       stage: `trip-${today}`,
@@ -116,10 +115,10 @@ function noticeFor(
       body: "Today's schedule, the forecast, and the drive to your first stop.",
       url: '/today',
       tag: 'trip-day',
-    }
+    })
   }
 
-  return null
+  return candidates
 }
 
 export async function sweepPush(env: Env): Promise<void> {
@@ -127,7 +126,16 @@ export async function sweepPush(env: Env): Promise<void> {
 
   const now = new Date()
   const { date: today, hour } = parkNow(now)
+  // The whole sweep is morning-gated, renewal notices included: every notice
+  // here is a phone buzz, and a 3 a.m. buzz is indefensible no matter how
+  // urgent the renewal. The cron schedule ([triggers] in wrangler.toml) aims
+  // a run into this window; the gate is what keeps a mis-set or extra cron
+  // from paging sleeping buyers.
   const isMorning = hour >= MORNING_START_HOUR && hour < MORNING_END_HOUR
+  if (!isMorning) {
+    console.log(`sweepPush: ${hour}:00 park time is outside the morning window; skipping`)
+    return
+  }
   const nowSeconds = Math.floor(now.getTime() / 1000)
 
   // Buyer lookups repeat across a person's devices; one cache per run keeps a
@@ -167,9 +175,16 @@ export async function sweepPush(env: Env): Promise<void> {
       }
 
       const endpointHash = key.name.slice('push:'.length)
-      const notice = noticeFor(record, today, isMorning, await daysToExpiry(record.sub))
+      const candidates = noticesFor(record, today, await daysToExpiry(record.sub))
+      // First candidate not yet sent wins; at most one buzz per device per day.
+      let notice: Notice | null = null
+      for (const candidate of candidates) {
+        if (!(await hasPushNotice(env, endpointHash, candidate.stage))) {
+          notice = candidate
+          break
+        }
+      }
       if (!notice) continue
-      if (await hasPushNotice(env, endpointHash, notice.stage)) continue
 
       // Queue the content BEFORE the push: the service worker wakes and asks
       // for it immediately, and a push that lands ahead of its own notice

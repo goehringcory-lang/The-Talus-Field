@@ -137,20 +137,20 @@ export default function Programs() {
   )
 
   function updateDates(nextStart: string, nextEnd: string) {
+    // Clearing a picker fires onChange with '' — ignore it entirely (the
+    // controlled input snaps back, same as /trip). Accepting the empty value
+    // used to strand the page: the previous window's listings stayed on
+    // screen under a blank date field, the events never cleared, and "Sync
+    // now" sat disabled with nothing saying why.
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(nextStart) || !/^\d{4}-\d{2}-\d{2}$/.test(nextEnd)) return
     setStart(nextStart)
-    // Clamp the window so it stays inside what the API will answer. Only when
-    // the start is a real date: clearing the picker fires onChange with '',
-    // and addDaysIso('') throws on Invalid Date.
+    // Clamp the window so it stays inside what the API will answer.
     let boundedEnd = nextEnd
-    if (/^\d{4}-\d{2}-\d{2}$/.test(nextStart)) {
-      if (nextEnd < nextStart) boundedEnd = nextStart
-      const maxEnd = addDaysIso(nextStart, MAX_SPAN_DAYS)
-      if (boundedEnd > maxEnd) boundedEnd = maxEnd
-    }
+    if (nextEnd < nextStart) boundedEnd = nextStart
+    const maxEnd = addDaysIso(nextStart, MAX_SPAN_DAYS)
+    if (boundedEnd > maxEnd) boundedEnd = maxEnd
     setEnd(boundedEnd)
-    if (/^\d{4}-\d{2}-\d{2}$/.test(nextStart) && /^\d{4}-\d{2}-\d{2}$/.test(boundedEnd)) {
-      writeTripDates({ start: nextStart, end: boundedEnd })
-    }
+    writeTripDates({ start: nextStart, end: boundedEnd })
   }
 
   // The bundled seasonal almanac merges in client-side: one-day entries (full

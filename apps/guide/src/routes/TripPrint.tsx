@@ -54,7 +54,7 @@ export default function TripPrint() {
       <header className="trip-print__header">
         <h1>Yosemite trip</h1>
         <p>
-          {datesLabel(plan.dates.start, plan.dates.end)} · The Talus Field Field Guide
+          {datesLabel(plan.dates.start, plan.dates.end)} · The Talus Field · Field Guide
         </p>
       </header>
 

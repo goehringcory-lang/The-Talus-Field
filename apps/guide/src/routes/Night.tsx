@@ -76,13 +76,56 @@ export default function Night() {
 
   const calendarEnd = addDays(today, CALENDAR_DAYS - 1)
   const fullMoons = useMemo(() => fullMoonsInRange(today, calendarEnd), [today, calendarEnd])
+  // The almanac also carries every full moon (as `full-moon-<date>` entries),
+  // so listing computed moons AND almanac astronomy events used to print each
+  // moon twice. The almanac copy is excluded here; its one contribution — the
+  // traditional name — is lifted onto the computed line instead.
+  const moonNames = useMemo(() => {
+    const names = new Map<string, string>()
+    for (const ev of SEASONAL_EVENTS) {
+      if (!ev.id.startsWith('full-moon-')) continue
+      const m = /^Full moon \((.+)\)$/.exec(ev.title)
+      if (m) names.set(ev.dateStart, m[1])
+    }
+    return names
+  }, [])
   const skyEvents = useMemo(
     () =>
       SEASONAL_EVENTS.filter(
-        (ev) => ev.category === 'astronomy' && ev.dateEnd >= today && ev.dateStart <= calendarEnd,
+        (ev) =>
+          ev.category === 'astronomy' &&
+          !ev.id.startsWith('full-moon-') &&
+          ev.dateEnd >= today &&
+          ev.dateStart <= calendarEnd,
       ),
     [today, calendarEnd],
   )
+  // One chronological list: a meteor shower belongs between the moons that
+  // bracket it, not in a separate run after them.
+  const calendar = useMemo(() => {
+    const rows = [
+      ...fullMoons.map((fm) => {
+        const name = moonNames.get(fm.dateIso)
+        return {
+          key: `moon-${fm.dateIso}`,
+          date: fm.dateIso,
+          dateLabel: monthDayLabel(fm.dateIso),
+          label: `Full moon${name ? ` (${name})` : ''}, ${fm.timeLabel}`,
+          typical: false,
+        }
+      }),
+      ...skyEvents.map((ev) => ({
+        key: ev.id,
+        date: ev.dateStart,
+        dateLabel:
+          monthDayLabel(ev.dateStart) +
+          (ev.dateEnd !== ev.dateStart ? `–${monthDayLabel(ev.dateEnd)}` : ''),
+        label: ev.title,
+        typical: ev.confidence === 'typical',
+      })),
+    ]
+    return rows.sort((a, b) => (a.date < b.date ? -1 : 1))
+  }, [fullMoons, moonNames, skyEvents])
 
   const pct = Math.round(moon.illumination * 100)
   const verdict =
@@ -151,28 +194,17 @@ export default function Night() {
         <section aria-label="Sky calendar" className="page-section">
           <span className="eyebrow">The next {CALENDAR_DAYS} days</span>
           <ul className="night-calendar">
-            {fullMoons.map((fm) => (
-              <li key={fm.dateIso} className="night-calendar__item">
-                <span className="night-calendar__date">{monthDayLabel(fm.dateIso)}</span>
-                <span>Full moon, {fm.timeLabel}</span>
-              </li>
-            ))}
-            {skyEvents.map((ev) => (
-              <li key={ev.id} className="night-calendar__item">
-                <span className="night-calendar__date">
-                  {monthDayLabel(ev.dateStart)}
-                  {ev.dateEnd !== ev.dateStart ? `–${monthDayLabel(ev.dateEnd)}` : ''}
-                </span>
+            {calendar.map((row) => (
+              <li key={row.key} className="night-calendar__item">
+                <span className="night-calendar__date">{row.dateLabel}</span>
                 <span>
-                  {ev.title}
-                  {ev.confidence === 'typical' && (
-                    <span className="night-calendar__typical"> · typical</span>
-                  )}
+                  {row.label}
+                  {row.typical && <span className="night-calendar__typical"> · typical</span>}
                 </span>
               </li>
             ))}
           </ul>
-          {skyEvents.length === 0 && fullMoons.length === 0 && (
+          {calendar.length === 0 && (
             <p className="night-note">Nothing dated in the window. The stars are still on.</p>
           )}
         </section>

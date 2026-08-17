@@ -36,6 +36,7 @@ const RUNTIME_PRECACHE = [
   '/icon-192.v2.png',
   '/icon-512.v2.png',
   '/icon-maskable.v2.png',
+  '/icon-maskable-192.v2.png',
   '/apple-touch-icon.v2.png',
   '/brand/favicon-64.png',
   '/brand/mark-96.png',
@@ -45,6 +46,18 @@ const RUNTIME_PRECACHE = [
   '/fonts/inter.woff2',
   '/fonts/jetbrains-mono.woff2',
 ]
+
+// One retry per URL: the install fails as a unit (see below), and over park
+// or hotel wifi a single dropped connection out of ~25 chunk fetches used to
+// scrap the entire update. The second attempt reuses the HTTP cache, so a
+// retry after a transient socket error is nearly free.
+async function fetchShellUrl(url) {
+  try {
+    return await fetch(url)
+  } catch {
+    return fetch(url)
+  }
+}
 
 self.addEventListener('install', (event) => {
   event.waitUntil(
@@ -56,16 +69,25 @@ self.addEventListener('install', (event) => {
       // and activate never purges tfg-shell-*). Fetch each URL, demand the
       // right content type, and fail the whole install on a miss so the old
       // shell stays live instead.
-      await Promise.all(
-        SHELL_CRITICAL.concat(BUILD_ASSETS).map(async (url) => {
-          const res = await fetch(url)
-          const wantHtml = url === '/index.html'
-          if (!res.ok || isHtml(res) !== wantHtml) {
-            throw new Error(`shell precache: bad response for ${url}`)
-          }
-          await shell.put(url, res)
-        }),
-      )
+      try {
+        await Promise.all(
+          SHELL_CRITICAL.concat(BUILD_ASSETS).map(async (url) => {
+            const res = await fetchShellUrl(url)
+            const wantHtml = url === '/index.html'
+            if (!res.ok || isHtml(res) !== wantHtml) {
+              throw new Error(`shell precache: bad response for ${url}`)
+            }
+            await shell.put(url, res)
+          }),
+        )
+      } catch (err) {
+        // A failed install must not leave a half-filled cache behind: the
+        // browser retries the install later with the same VERSION, and pruning
+        // the partial copy keeps the orphan from sitting in storage until the
+        // next successful activate.
+        await caches.delete(SHELL_CACHE)
+        throw err
+      }
       await Promise.all(
         SHELL_OPTIONAL.map(async (url) => {
           try {
@@ -135,6 +157,21 @@ async function purgeHtmlFromCache(cacheName) {
 function isHtml(res) {
   const type = res.headers.get('content-type')
   return !!type && type.includes('text/html')
+}
+
+// True when every hashed asset a shell HTML references is already cached (in
+// any cache — hashed URLs are content-addressed, so a hit anywhere is the
+// right bytes). Gates the navigation handler's shell overwrite: HTML whose
+// chunks are nowhere yet (the first visits after a deploy, served by the OLD
+// worker while the new one is still installing) must not replace a coherent
+// HTML+chunks pairing.
+async function shellAssetsCached(html) {
+  const refs = html.match(/\/assets\/[^"']+\.(?:js|css)/g)
+  if (!refs) return true
+  for (const url of new Set(refs)) {
+    if (!(await caches.match(url))) return false
+  }
+  return true
 }
 
 self.addEventListener('message', (event) => {
@@ -268,13 +305,19 @@ const OFFLINE_PAGE = `<!doctype html>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Offline. The Talus Field</title>
 <style>
+  /* Palette mirrors src/styles/tokens.css (light --paper/--ink/--ink-3 and
+     the dark overrides); this page has no stylesheet to read tokens from. */
   body { margin: 0; min-height: 100vh; display: grid; place-items: center;
-         background: #14130f; color: #e8e4da;
+         background: #f1ead6; color: #14110c;
          font: 16px/1.6 Georgia, 'Times New Roman', serif; }
   main { max-width: 26rem; padding: 2rem; text-align: center; }
   h1 { font-size: 1.05rem; letter-spacing: 0.14em; text-transform: uppercase;
        font-weight: 400; margin: 0 0 1rem; }
-  p { margin: 0; color: #b9b3a4; }
+  p { margin: 0; color: #50402e; }
+  @media (prefers-color-scheme: dark) {
+    body { background: #1c1812; color: #f0e8d8; }
+    p { color: #a09070; }
+  }
 </style>
 </head>
 <body>
@@ -330,7 +373,9 @@ self.addEventListener('fetch', (event) => {
         if (cached) return cached
         const fresh = await fetch(request)
         // Never cache the SPA HTML fallback under a tile URL (see activate).
-        if (fresh.ok && !isHtml(fresh)) cache.put(request, fresh.clone())
+        // The put is fire-and-forget; .catch so a full disk (QuotaExceeded)
+        // degrades to an uncached tile instead of an unhandled rejection.
+        if (fresh.ok && !isHtml(fresh)) cache.put(request, fresh.clone()).catch(() => {})
         return fresh
       })(),
     )
@@ -351,10 +396,27 @@ self.addEventListener('fetch', (event) => {
           // poison every later offline launch, and a same-origin navigation
           // can be a non-HTML document too ("open image in new tab" on a
           // /photos/* URL is a navigate for a JPEG) — caching those bytes
-          // under the shell key bricks the app offline.
+          // under the shell key bricks the app offline. And only cache HTML
+          // whose script/style URLs are actually present in some cache: right
+          // after a deploy this handler (the OLD worker) fetches the NEW
+          // build's HTML, and storing it against the old chunk set was a
+          // white screen on the next offline launch — the exact failure this
+          // file exists to prevent.
           if (fresh.ok && isHtml(fresh)) {
-            const cache = await caches.open(SHELL_CACHE)
-            cache.put('/index.html', fresh.clone())
+            // Two clones: one is consumed by the asset check, the other is
+            // what gets cached. (A consumed Response cannot be put().)
+            const forCheck = fresh.clone()
+            const forCache = fresh.clone()
+            event.waitUntil(
+              (async () => {
+                try {
+                  if (await shellAssetsCached(await forCheck.text())) {
+                    const cache = await caches.open(SHELL_CACHE)
+                    await cache.put('/index.html', forCache)
+                  }
+                } catch { /* keeping the previous coherent shell is the safe end state */ }
+              })(),
+            )
           }
           return fresh
         } catch {
@@ -385,24 +447,34 @@ self.addEventListener('fetch', (event) => {
         // Guard against the SPA _redirects fallback: a missing asset returns
         // index.html with a 200, and caching that HTML under an image/font URL
         // poisons the entry (renders as a broken image, and the runtime cache
-        // survives deploys). Only store real asset responses.
-        if (fresh.ok && !isHtml(fresh)) cache.put(request, fresh.clone())
+        // survives deploys). Only store real asset responses. The put is
+        // fire-and-forget; .catch so quota pressure can't surface as an
+        // unhandled rejection in the worker.
+        if (fresh.ok && !isHtml(fresh)) cache.put(request, fresh.clone()).catch(() => {})
         return fresh
       })(),
     )
     return
   }
 
-  // Hashed Vite assets (JS/CSS): cache-first into shell cache.
+  // Hashed Vite assets (JS/CSS): cache-first into shell cache. On a miss in
+  // this version's cache, search every cache before the network: around a
+  // deploy the controlling worker and the freshest HTML can be one version
+  // apart, and the chunk being asked for is sitting in the other version's
+  // shell cache. Hashed URLs are content-addressed, so any hit is correct —
+  // and offline, that cross-cache hit is the difference between the app and
+  // a white screen.
   event.respondWith(
     (async () => {
       const cache = await caches.open(SHELL_CACHE)
       const cached = await cache.match(request)
       if (cached) return cached
+      const elsewhere = await caches.match(request)
+      if (elsewhere) return elsewhere
       const fresh = await fetch(request)
       // A missing hashed asset also falls back to the HTML shell; caching that
       // as a script/style would brick the app, so store real responses only.
-      if (fresh.ok && !isHtml(fresh)) cache.put(request, fresh.clone())
+      if (fresh.ok && !isHtml(fresh)) cache.put(request, fresh.clone()).catch(() => {})
       return fresh
     })(),
   )

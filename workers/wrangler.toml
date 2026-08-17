@@ -41,10 +41,16 @@ preview_id = "REPLACE_ME_FOR_LOCAL_DEV"
 binding = "PHOTO_INBOX"
 bucket_name = "talus-photo-inbox"
 
-# Daily program ingest, ~2-3am Pacific. The route also self-heals: if KV is
-# missing or >48h old it fetches NPS live and backfills.
+# Two daily runs, branched on controller.cron in index.ts:
+#   0 10 * * * (~2-3am Pacific)  — data refresh (NPS programs, weather,
+#     conditions feeds) plus the renewal EMAIL sweep. Quiet-hours work only.
+#   0 15 * * * (7-8am Pacific year round) — the push sweep alone. Notices are
+#     phone buzzes, so they go out in the park's morning; sweepPush also gates
+#     itself on the 6-11am window as a backstop.
+# The programs route also self-heals: if KV is missing or >48h old it fetches
+# NPS live and backfills.
 [triggers]
-crons = ["0 10 * * *"]
+crons = ["0 10 * * *", "0 15 * * *"]
 
 # APP_BASE_URL is the PWA's public origin. It feeds every buyer-facing link
 # the Worker emits: the magic-link (`${APP_BASE_URL}/open?token=`), the access

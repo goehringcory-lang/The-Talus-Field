@@ -36,14 +36,21 @@ export default function ElevationProfile({ profile, highPointMi }: Props) {
   const [width, setWidth] = useState(640)
   const [scrub, setScrub] = useState<number | null>(null) // index into profile
 
+  const roRef = useRef<ResizeObserver | null>(null)
   const measure = useCallback((el: HTMLDivElement | null) => {
     wrapRef.current = el
+    // React calls a callback ref with null on unmount: disconnect there, or
+    // every visit to a hike page leaks a live observer holding the detached
+    // element and a setState closure for the rest of the session.
+    roRef.current?.disconnect()
+    roRef.current = null
     if (!el) return
     const ro = new ResizeObserver((entries) => {
       const w = entries[0]?.contentRect.width
       if (w) setWidth(Math.max(280, w))
     })
     ro.observe(el)
+    roRef.current = ro
   }, [])
 
   const totalMi = profile[profile.length - 1][0]
@@ -142,7 +149,9 @@ export default function ElevationProfile({ profile, highPointMi }: Props) {
           </span>
         </div>
       ) : (
-        <div className="elev__readout elev__readout--hint">Touch the profile for mile-by-mile numbers</div>
+        <div className="elev__readout elev__readout--hint">
+          Touch or arrow across the profile for mile-by-mile numbers
+        </div>
       )}
       <svg
         width={width}
@@ -153,6 +162,20 @@ export default function ElevationProfile({ profile, highPointMi }: Props) {
         }over ${totalMi.toFixed(1)} miles`}
         onPointerMove={onMove}
         onPointerLeave={() => setScrub(null)}
+        // Keyboard scrub: the readout was pointer-only, which left the
+        // mile-by-mile numbers unreachable without touch or a mouse.
+        tabIndex={0}
+        onKeyDown={(e) => {
+          if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return
+          e.preventDefault()
+          const stride = Math.max(1, Math.round(profile.length / 60))
+          setScrub((cur) => {
+            const base = cur ?? 0
+            const next = e.key === 'ArrowRight' ? base + stride : base - stride
+            return Math.max(0, Math.min(profile.length - 1, next))
+          })
+        }}
+        onBlur={() => setScrub(null)}
       >
         {/* gridlines + y labels */}
         {yTicks.map((v) => (

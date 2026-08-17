@@ -10,9 +10,15 @@
   margin-bottom: 20px;
 }
 
+#gateway {
+  /* Anchor target: land below the sticky masthead, not under it. */
+  scroll-margin-top: calc(var(--chrome-top-h) + env(safe-area-inset-top, 0px) + 8px);
+}
+
 .dining-area-header {
   position: sticky;
-  top: 0;
+  /* Below the sticky masthead, not behind it (same offset as .secret-guide-tabs). */
+  top: calc(var(--chrome-top-h) + env(safe-area-inset-top, 0px));
   z-index: 5;
   background: var(--paper-2);
   border-top: 1px solid var(--ink);
