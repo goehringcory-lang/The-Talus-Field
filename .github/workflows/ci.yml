@@ -28,6 +28,10 @@ jobs:
           cache-dependency-path: apps/guide/package-lock.json
       - run: npm ci
       - run: npm run build
+      # A rebuild of unchanged source must emit a byte-identical build. Without
+      # this, a clock read anywhere in the build makes every no-op redeploy a
+      # forced update for every installed copy of the guide.
+      - run: npm run check:build
       - run: npm run lint
 
   worker:

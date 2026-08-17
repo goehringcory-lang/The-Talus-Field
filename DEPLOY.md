@@ -121,6 +121,17 @@ automatically on every merge: root directory `apps/guide`, build command
 No dashboard env vars are required (`VITE_API_BASE` is committed in
 `apps/guide/.env.production`; a dashboard var of the same name overrides it).
 
+"Every merge" includes commits that touch nothing in the PWA — the nightly
+`chore: record nightly Lighthouse run [skip ci]` commit rebuilds this project
+too, because `[skip ci]` is a GitHub Actions convention and Cloudflare Pages
+does not honor it. That is harmless now: the build is byte-for-byte
+reproducible, so an unchanged rebuild produces the same `sw.js` and installed
+copies of the guide correctly see no update (see the "nothing in the build may
+read the clock" bullet in `apps/guide/CLAUDE.md`, and `npm run check:build`).
+If you want to stop spending build minutes on those redeploys anyway, set
+**Build watch paths** to `apps/guide/*` under the project's Settings →
+Builds & deployments; it is a dashboard setting with no equivalent in the repo.
+
 Manual fallback if a one-off deploy is ever needed:
 
 ```bash

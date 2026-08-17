@@ -25,7 +25,10 @@ npm run lint     # eslint
 The API lives in `../../workers/` (Cloudflare Worker); run it locally with
 `npm run dev` there (wrangler, :8787). `VITE_API_BASE` defaults to
 `http://localhost:8787` in dev and is set to the production API by
-`.env.production`. `VITE_BUILD_DATE` stamps the build (shown on /account).
+`.env.production`. The build stamp shown on Home and /account comes from a
+`tfg-build-date` meta tag that `vite.config.ts` injects into `index.html` (the
+date of the last commit touching this app) — deliberately not `define`d into
+the bundle; `npm run check:build` guards the reason why.
 
 ## Where things live
 
