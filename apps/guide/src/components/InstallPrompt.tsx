@@ -21,7 +21,7 @@ import Button from './ui/Button'
 import { dismissInstall, shouldAutoPrompt, useInstallDismissed } from '../lib/install'
 import { useIsOnboarded } from '../lib/onboarding'
 import { useDeferredInstallPrompt } from '../pwa/installPrompt'
-import { iosBrowser, isIOS } from '../utils/platform'
+import { iosBrowser, isIOS, isStandalonePWA } from '../utils/platform'
 
 // ── Android / desktop Chrome: uses the native beforeinstallprompt event ──────
 
@@ -30,8 +30,34 @@ function AndroidPrompt() {
   // Module-level capture (pwa/installPrompt.ts): Chrome fires the event once,
   // often before this banner mounts; a component-scoped listener missed it.
   const { event, prompt } = useDeferredInstallPrompt()
+  const [sheetOpen, setSheetOpen] = useState(false)
 
-  if (dismissed || !event) return null
+  if (dismissed || isStandalonePWA()) return null
+
+  // No captured event: Firefox on Android (and any browser that never fires
+  // beforeinstallprompt) still has a menu path to Add to Home Screen. Fall
+  // back to the sheet's menu instructions rather than showing nothing —
+  // before this, those buyers got no install affordance anywhere but the
+  // Account page.
+  if (!event) {
+    return (
+      <>
+        {sheetOpen && <InstallSheet onClose={() => setSheetOpen(false)} />}
+        <InstallBanner>
+          <div className="install-banner__body">
+            Keep the guide on your home screen.
+            <div className="install-banner__hint">Works offline once it is installed.</div>
+          </div>
+          <Button variant="ghost" size="sm" onClick={dismissInstall}>
+            Not now
+          </Button>
+          <Button size="sm" onClick={() => setSheetOpen(true)}>
+            Show me
+          </Button>
+        </InstallBanner>
+      </>
+    )
+  }
 
   return (
     <InstallBanner>

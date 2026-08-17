@@ -31,7 +31,13 @@ function build() {
   execFileSync(process.execPath, [viteBin, 'build'], { cwd: root, stdio: 'pipe' })
 }
 
-/** Every emitted file, keyed by dist-relative path, valued by content hash. */
+/** Every emitted file, keyed by dist-relative path, valued by content hash.
+ * index.html is excluded on purpose, mirroring the SW version hash in
+ * vite.config.ts: it carries the tfg-build-date meta, whose git-derived value
+ * falls back to the wall clock on a shallow CI clone — two builds straddling
+ * a UTC midnight would then fail this check over a stamp no installed client
+ * keys an update on (the navigation handler re-caches HTML on every online
+ * load regardless). */
 function snapshot() {
   const out = new Map()
   const walk = (dir) => {
@@ -42,6 +48,7 @@ function snapshot() {
     }
   }
   walk(dist)
+  out.delete('index.html')
   return out
 }
 
