@@ -177,6 +177,8 @@ const seed: HikeT[] = [
     trailhead: 'Happy Isles, shuttle stop 16',
     stopId: 'mist-trail',
     coord: [-119.558, 37.7322], // same pin as stop mist-trail
+    hazard:
+      'The granite stairs are soaked and slick through early summer. Never enter the Emerald Pool or the river above either fall; the current above the brinks is far stronger than it looks.',
     description:
       'Past Vernal Fall to the brink of its bigger sibling, then down the John Muir Trail for the Liberty Cap panorama. The best big-waterfall day the Valley offers.',
   },
@@ -315,10 +317,11 @@ const seed: HikeT[] = [
     route: 'out-and-back',
     durationMin: 90,
     trailhead: 'Sentinel Dome and Taft Point shared lot, Glacier Point Road mile 13.6',
+    season: 'Glacier Point Road season',
     stopId: 'taft-point',
     coord: [-119.5861, 37.7124], // same pin as stop taft-point
     hazard:
-      'The point and the fissures are unrailed drops of over 2,000 feet. Keep children in hand.',
+      'The point and the fissures are unrailed drops of some 3,000 feet to the Valley floor. Keep children in hand.',
     description:
       'An easy walk to deep slots in the rim and a railing-free ledge hanging over the Valley. Vertigo as a destination.',
   },
@@ -333,6 +336,7 @@ const seed: HikeT[] = [
     route: 'out-and-back',
     durationMin: 100,
     trailhead: 'Sentinel Dome and Taft Point shared lot, Glacier Point Road mile 13.6',
+    season: 'Glacier Point Road season',
     stopId: 'sentinel-dome',
     coord: [-119.5861, 37.7124], // shared lot; the linked stop pins the summit
     description:
@@ -349,6 +353,7 @@ const seed: HikeT[] = [
     route: 'loop',
     durationMin: 210,
     trailhead: 'Sentinel Dome and Taft Point shared lot, Glacier Point Road mile 13.6',
+    season: 'Glacier Point Road season',
     stopId: 'taft-point',
     coord: [-119.5861, 37.7124], // same pin as stop taft-point
     description:
@@ -365,6 +370,7 @@ const seed: HikeT[] = [
     route: 'out-and-back',
     durationMin: 210,
     trailhead: 'Glacier Point',
+    season: 'Glacier Point Road season',
     stopId: 'glacier-point',
     coord: [-119.5731, 37.7283], // same pin as stop glacier-point
     description:
@@ -382,6 +388,7 @@ const seed: HikeT[] = [
     route: 'one-way',
     durationMin: 360,
     trailhead: 'Glacier Point',
+    season: 'Glacier Point Road season',
     stopId: 'glacier-point',
     coord: [-119.5731, 37.7283], // same pin as stop glacier-point
     description:
@@ -399,6 +406,7 @@ const seed: HikeT[] = [
     route: 'one-way',
     durationMin: 480,
     trailhead: 'Glacier Point',
+    season: 'Glacier Point Road season',
     stopId: 'glacier-point',
     coord: [-119.5731, 37.7283], // same pin as stop glacier-point
     description:
@@ -481,6 +489,8 @@ const seed: HikeT[] = [
     trailhead: 'Chilnualna Falls lot, end of Chilnualna Falls Road',
     stopId: 'chilnualna-falls',
     coord: [-119.6337, 37.5484], // same pin as stop chilnualna-falls
+    hazard:
+      'The cascades run over smooth, water-polished granite with no railings. People have died sliding here; stay off wet rock at every tier.',
     description:
       'Wawona’s big climb, up alongside a chain of cascades to the top of the falls. Best in May and June while the creek still roars.',
   },
@@ -495,6 +505,7 @@ const seed: HikeT[] = [
     route: 'loop',
     durationMin: 100,
     trailhead: 'Mariposa Grove arrival area, via the Welcome Plaza shuttle',
+    season: 'Spring through fall (shuttle season)',
     stopId: 'mariposa-grove',
     coord: [-119.632, 37.5085], // same pin as stop mariposa-grove (Welcome Plaza)
     description:
@@ -511,6 +522,7 @@ const seed: HikeT[] = [
     route: 'loop',
     durationMin: 270,
     trailhead: 'Mariposa Grove arrival area, via the Welcome Plaza shuttle',
+    season: 'Spring through fall (shuttle season)',
     stopId: 'mariposa-grove',
     coord: [-119.632, 37.5085], // same pin as stop mariposa-grove (Welcome Plaza)
     description:
@@ -925,6 +937,8 @@ const seed: HikeT[] = [
     trailhead: 'O’Shaughnessy Dam road-end',
     stopId: 'rancheria-falls',
     coord: [-119.7875, 37.9465], // same pin as stop rancheria-falls
+    hazard:
+      'Rattlesnake country with poison oak along the trail, largely shadeless in summer heat, and the Wapama Falls bridges en route can close in high water.',
     description:
       'Past Wapama and on along the canyon wall to a run of slickrock cascades where the day-hikers thin to nobody. Hot by midsummer; spring is the season.',
   },
@@ -940,8 +954,10 @@ const seed: HikeT[] = [
     durationMin: 180,
     trailhead: 'Hetch Hetchy Road, signed pullout 3.9 mi past the entrance',
     coord: [-119.8037, 37.9182], // web-derived: signed pullout on Hetch Hetchy Rd; TODO verify on the ground
+    hazard:
+      'The climb out is relentless and largely shadeless and bakes by late morning; carry more water than three miles suggests. Rattlesnake country, and the river runs dam-released cold and fast. Stay out of the current.',
     description:
-      'The park’s steepest maintained mile, straight down to the Tuolumne River below the dam. Short, brutal on the way out, and utterly empty.',
+      'One of the park’s steepest maintained miles, straight down to the Tuolumne River below the dam. Short, brutal on the way out, and utterly empty.',
   },
   {
     id: 'carlon-falls',

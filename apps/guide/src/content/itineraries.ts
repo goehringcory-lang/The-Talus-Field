@@ -102,7 +102,7 @@ export const ITINERARY_KEYS: ItineraryKey[] = [
 // morning and Mirror Lake at 1 p.m. — and, on a day that also draws two
 // ranger programs, between ending at sunset and not ending at all.
 const VALLEY_DAY: ItineraryDay = {
-  name: 'Day 1 — Yosemite Valley',
+  name: 'Day 1: Yosemite Valley',
   regions: ['valley'],
   plan: [
     'tunnel-view',
@@ -124,7 +124,7 @@ const VALLEY_DAY: ItineraryDay = {
 // covers both points), Washburn Point, and Glacier Point after 4:30 when
 // the lot empties and the light turns.
 const GLACIER_MARIPOSA_DAY: ItineraryDay = {
-  name: 'Day 2 — Glacier Point & Mariposa Grove',
+  name: 'Day 2: Glacier Point & Mariposa Grove',
   regions: ['glacier-mariposa'],
   plan: ['mariposa-grove', 'sentinel-dome', 'washburn-point', 'glacier-point'],
   // The morning ranger walk in the grove, and, on star-party dates, the free
@@ -142,7 +142,7 @@ const GLACIER_MARIPOSA_DAY: ItineraryDay = {
 // Soda Springs, Cathedral Lakes, and Gaylor Lake — the reasons to drive up
 // here — while pushing "lunch at 8,600 feet" to almost 7 p.m.
 const TUOLUMNE_DAY: ItineraryDay = {
-  name: 'Day 3 — Tuolumne Meadows',
+  name: 'Day 3: Tuolumne Meadows',
   regions: ['tuolumne'],
   plan: [
     'tioga-road-drive',
@@ -160,7 +160,7 @@ const TUOLUMNE_DAY: ItineraryDay = {
 // walks that pay off fastest, and the sunset bridge. All VALLEY_DAY ids, so
 // the module-load validation below covers it.
 const VALLEY_HALF_DAY: ItineraryDay = {
-  name: 'Half day — Yosemite Valley',
+  name: 'Half day: Yosemite Valley',
   regions: ['valley'],
   plan: ['tunnel-view', 'bridalveil-fall', 'cooks-meadow-loop', 'sentinel-bridge-sunset'],
   // An afternoon arrival still catches the Yosemite Theater program.
@@ -178,7 +178,7 @@ const VALLEY_HALF_DAY: ItineraryDay = {
 // walks, pizza, the climbers, and the sunset bridge. Deliberately roomier
 // than VALLEY_DAY: first-timers underestimate valley traffic and parking.
 const FIRST_VISIT_VALLEY: ItineraryDay = {
-  name: 'Day 1 — Yosemite Valley',
+  name: 'Day 1: Yosemite Valley',
   regions: ['valley'],
   plan: [
     'tunnel-view',
@@ -198,7 +198,7 @@ const FIRST_VISIT_VALLEY: ItineraryDay = {
 // road for the two rim overlooks. Ends at Glacier Point on purpose: on
 // star-party dates the free amphitheater telescopes are the trip's keeper.
 const FIRST_VISIT_RIM: ItineraryDay = {
-  name: 'Day 2 — Mariposa Grove & Glacier Point',
+  name: 'Day 2: Mariposa Grove & Glacier Point',
   regions: ['glacier-mariposa'],
   plan: ['mariposa-grove', 'washburn-point', 'glacier-point'],
   programCategories: ['walk', 'astronomy'],
@@ -209,7 +209,7 @@ const FIRST_VISIT_RIM: ItineraryDay = {
 // headquarters), pizza, and the Mirror Lake wade. Sentinel Bridge is the
 // one late entry; it is a parking lot and a bridge, not a hike.
 const FAMILY_KIDS_VALLEY: ItineraryDay = {
-  name: 'Day 1 — Yosemite Valley with kids',
+  name: 'Day 1: Yosemite Valley with kids',
   regions: ['valley'],
   plan: [
     'lower-yosemite-fall',
@@ -227,7 +227,7 @@ const FAMILY_KIDS_VALLEY: ItineraryDay = {
 // Young kids, day 2: sequoias read at kid scale (the shuttle ride is half
 // the fun), then the rim overlooks, which ask nothing of short legs.
 const FAMILY_KIDS_GROVE: ItineraryDay = {
-  name: 'Day 2 — Big trees & the rim',
+  name: 'Day 2: Big trees & the rim',
   regions: ['glacier-mariposa'],
   plan: ['mariposa-grove', 'washburn-point', 'glacier-point'],
   // The grove runs its own Jr. Ranger talk at the big trees.
@@ -247,7 +247,7 @@ const FAMILY_KIDS_GROVE: ItineraryDay = {
 // the wrong way from there. A preset that cannot honor a stop's own
 // instruction should not list the stop.
 const EASY_PACE_VALLEY: ItineraryDay = {
-  name: 'Day 1 — The Valley, close to the car',
+  name: 'Day 1: The Valley, close to the car',
   regions: ['valley'],
   plan: [
     'tunnel-view',
@@ -269,7 +269,7 @@ const EASY_PACE_VALLEY: ItineraryDay = {
 // belongs between the rim and Wawona: seeding it after Wawona sent the day
 // back up an hour of road it had already come down.
 const EASY_PACE_RIM: ItineraryDay = {
-  name: 'Day 2 — Glacier Point & Wawona',
+  name: 'Day 2: Glacier Point & Wawona',
   regions: ['glacier-mariposa'],
   plan: ['washburn-point', 'glacier-point', 'mcgurk-meadow', 'wawona-hotel-history-center'],
   // Wawona's coffee-with-a-ranger mornings, when the date lines up.
@@ -279,7 +279,7 @@ const EASY_PACE_RIM: ItineraryDay = {
 // Whole family, day 1: the classic valley circuit with the two shortest
 // marquee walks, so nobody is left at the trailhead.
 const MULTIGEN_VALLEY: ItineraryDay = {
-  name: 'Day 1 — Yosemite Valley, all paces',
+  name: 'Day 1: Yosemite Valley, all paces',
   regions: ['valley'],
   plan: [
     'tunnel-view',
@@ -302,7 +302,7 @@ const MULTIGEN_VALLEY: ItineraryDay = {
 // ahead to Washburn Point, and everyone regroups at Glacier Point, which is
 // the right place to end anyway once the lot empties and the light turns.
 const MULTIGEN_RIM: ItineraryDay = {
-  name: 'Day 2 — The rim, split and regroup',
+  name: 'Day 2: The rim, split and regroup',
   regions: ['glacier-mariposa'],
   plan: ['mariposa-grove', 'sentinel-dome', 'washburn-point', 'glacier-point'],
   programCategories: ['junior-ranger', 'astronomy'],
@@ -313,7 +313,7 @@ const MULTIGEN_RIM: ItineraryDay = {
 // whole way up, the meadow view from the top. It sits at the west end of
 // Tuolumne Meadows, so it comes before Soda Springs, not after the day.
 const MULTIGEN_TUOLUMNE: ItineraryDay = {
-  name: 'Day 3 — Tuolumne Meadows',
+  name: 'Day 3: Tuolumne Meadows',
   regions: ['tuolumne'],
   plan: [
     'tioga-road-drive',

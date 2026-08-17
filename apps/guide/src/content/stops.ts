@@ -55,12 +55,12 @@ const seed: StopInput[] = [
     elevationFt: 4400,
     timeBudgetMin: 25,
     teaser:
-      'You come out of the Wawona Tunnel and the whole valley is there at once: El Capitan, Bridalveil, Half Dome on the back wall. Stay fifteen minutes, not thirty seconds.',
+      'The whole valley in one frame: El Capitan left, Bridalveil right, Half Dome on the back wall, and the glacier\'s work plain in the U of the floor. Stay fifteen minutes, not thirty seconds.',
     body:
-      'You come out of the Wawona Tunnel and the whole valley is there at once. El Capitan on the left, Bridalveil Fall on the right, Half Dome anchoring the back wall. Most people raise a phone and lower it after thirty seconds. Don\'t. Stay fifteen minutes. Look at the U-shape of the valley floor — a glacier did that, two thousand feet of ice. The hanging valleys above the rim are why the waterfalls fall so far. You\'re not looking at scenery; you\'re looking at the geological event. Once you see it, you can\'t unsee it for the rest of the trip.\n\nIf this is your arrival, the orientation matters: every later stop will sit somewhere on this view in your head. If it\'s your departure, stay five minutes. The view is different now because you\'ve been in it.',
+      'You come out of the Wawona Tunnel and the whole valley is there at once. El Capitan on the left, Bridalveil Fall on the right, Half Dome anchoring the back wall. Most people raise a phone and lower it after thirty seconds. Don\'t. Stay fifteen minutes. Look at the U-shape of the valley floor: a glacier did that, two thousand feet of ice. The hanging valleys above the rim are why the waterfalls fall so far. You\'re not looking at scenery; you\'re looking at the geological event. Once you see it, you can\'t unsee it for the rest of the trip.\n\nIf this is your arrival, the orientation matters: every later stop will sit somewhere on this view in your head. If it\'s your departure, stay five minutes. The view is different now because you\'ve been in it.',
     photos: [{ src: '/photos/tunnel-view.jpg', caption: 'The classic view from the Wawona Tunnel pullout.' }],
     swap:
-      'If the parking lot is full (it usually is between 10 a.m. and 4 p.m.), continue down to Valley View / Gates of the Valley. Lower angle, same valley, no crowd.',
+      'If the parking lot is full (it usually is between 10 a.m. and 4 p.m.), continue down to [Valley View](/stop/valley-view), Gates of the Valley. Lower angle, same valley, no crowd.',
     history: {
       note:
         'The tunnel behind you was new in 1933, and the naturalists spent that ' +
@@ -88,7 +88,7 @@ const seed: StopInput[] = [
     teaser:
       'A slow eastbound preview of the valley floor: Bridalveil parking, Cathedral Beach, the Swinging Bridge, Sentinel Beach. Don\'t commit to a hike yet.',
     body:
-      'Slow drive east on Southside Drive. Pullouts worth taking on the way: Bridalveil Fall parking, Cathedral Beach (El Capitan view across the river), the Swinging Bridge (kids and quiet water), Sentinel Beach (Half Dome reflection on calm mornings). Don\'t commit to a hike yet — you\'re previewing. Every stop here is a place worth coming back to with intention.\n\n' +
+      'Slow drive east on Southside Drive. Pullouts worth taking on the way: Bridalveil Fall parking, Cathedral Beach (El Capitan view across the river), the Swinging Bridge (kids and quiet water), Sentinel Beach (Half Dome reflection on calm mornings). Don\'t commit to a hike yet; you\'re previewing. Every stop here is a place worth coming back to with intention.\n\n' +
       'Understand the road system once and it stops fighting you: the valley floor is a one-way loop, Southside Drive running east and Northside Drive running west, and a missed turn costs a full lap, thirty to forty-five minutes in traffic. Use the shape instead. The eastbound leg is the preview; the westbound return past [El Capitan Meadow](/stop/el-capitan-meadow) and [Valley View](/stop/valley-view) is the second act, and the two roads show you different walls. The speed limit is low, enforced, and also simply correct: the difference between 25 and 35 is every pullout you failed to notice.\n\n' +
       'Timing is the other half. Before 9 a.m. the loop is a country road with the light coming down the north wall; between 11 and 4 in summer it is a parking lot punctuated by scenery. If you arrive midday, do the drive anyway, but do it as reconnaissance and spend the afternoon on foot.',
     history: {
@@ -123,7 +123,7 @@ const seed: StopInput[] = [
       'A flat one-mile boardwalk through the meadow at the heart of the valley. Most visitors walk to the Lower Yosemite Fall vista and turn around. Don\'t. Take the full counter-clockwise loop. You get Half Dome from Sentinel Bridge, El Capitan over the meadow, and the black oaks the Ahwahnechee tended for centuries. This is the walk that makes the valley feel like a place, not a viewpoint.\n\nThen come back right at sunset for the other show. Cook\'s Meadow is the valley\'s most reliable bear watch: black bears come out of the tree line in the last light to graze the meadow and work the black oaks, especially in fall when the acorns drop. Watch from the boardwalk, keep at least 150 feet, and let the bear keep its evening. The parkwide odds list is in [Where to actually see a bear](/essentials/bear-viewing).',
     photos: [{ src: '/photos/lower-yosemite-fall.jpg', caption: 'Lower Yosemite Fall, the standard turn-around point on the loop.' }],
     swap:
-      'In late summer when the falls are dry, the meadow itself is the show — golden grass, low light through the oaks. Skip the fall vista, do the loop in reverse from Sentinel Bridge.',
+      'In late summer when the falls are dry, the meadow itself is the show: golden grass, low light through the oaks. Skip the fall vista, do the loop in reverse from Sentinel Bridge.',
     photoTiming: {
       best: 'sunset',
       note:
@@ -147,7 +147,7 @@ const seed: StopInput[] = [
       'One window most guidebooks skip: on clear spring nights within a couple of days of the full moon, the spray at the footbridge throws a lunar rainbow, a pale arc your eye reads as silver and a long camera exposure reads in color. Photographers plan whole years around those dates. If your trip lines up in April, May, or June, walk back up after 10 p.m. and see it.',
     photos: [{ src: '/photos/lower-yosemite-fall.jpg', caption: 'Lower Yosemite Fall from the footbridge at the base of the loop.' }],
     swap:
-      'If the loop is a shoulder-to-shoulder parade, walk 200 yards west into Cook\'s Meadow instead: the full 2,425-foot drop in one frame, which the base of the fall itself cannot show you.',
+      'If the loop is a shoulder-to-shoulder parade, walk 200 yards west into [Cook\'s Meadow](/stop/cooks-meadow-loop) instead: the full 2,425-foot drop in one frame, which the base of the fall itself cannot show you.',
     history: {
       note:
         'Through the winters the fall builds an ice cone at its base out of frozen ' +
@@ -177,7 +177,7 @@ const seed: StopInput[] = [
     teaser:
       'A five-minute paved walk to the fall that flows year-round, long after Yosemite Falls goes dry. Misty in spring; bring a layer.',
     body:
-      'Five-minute walk on a paved path, rebuilt end to end in a restoration finished in 2023 that replaced the old cramped overlook with boardwalks and a proper viewing plaza. Bridalveil flows year-round, which makes it the reliable fall — Yosemite Falls dries up by August, this one doesn\'t. Spring is the drench, and the platform sits in the spray; bring a layer if the day is cool.\n\n' +
+      'Five-minute walk on a paved path, rebuilt end to end in a restoration finished in 2023 that replaced the old cramped overlook with boardwalks and a proper viewing plaza. Bridalveil flows year-round, which makes it the reliable fall: Yosemite Falls dries up by August, this one doesn\'t. Spring is the drench, and the platform sits in the spray; bring a layer if the day is cool.\n\n' +
       'The Ahwahnechee name is Pohono, usually translated as spirit of the puffing wind, and ten minutes here explains it: the fall drops 620 feet from a hanging valley, and the afternoon wind takes the bottom half sideways, sometimes lifting the whole ribbon off the wall. That hanging valley is the trip\'s geology lesson in miniature. The side glacier that carved Bridalveil Creek\'s canyon was small; the trunk glacier in the main valley was enormous and cut thousands of feet deeper; when the ice left, the creek\'s valley was stranded in the air, and the creek has been falling out of it ever since. Every waterfall on these walls is the same story at a different scale.\n\n' +
       'You don\'t need long here, but you do need to do it.',
     photos: [{ src: '/photos/cathedral-rocks.jpg', caption: 'Cathedral Rocks looming above the Bridalveil drainage.' }],
@@ -209,7 +209,7 @@ const seed: StopInput[] = [
       'The pullout holds about a dozen cars and turns over fast, but there is no circling back on a one-way road: if it is full, your options are another lap of the valley or tomorrow. Late afternoon puts warm light on El Capitan, winter dusk turns the whole frame pink, and on calm mornings the river holds the reflection. Make it the last stop of the last day. Thirty seconds after you pull out, the valley is behind you, and this is the image that rides home in the car.',
     photos: [{ src: '/photos/valley-view.jpg', caption: 'The Gates of the Valley frame from the riverbank: El Capitan left, Bridalveil right.' }],
     swap:
-      'Full pullout and no patience for another lap? Cathedral Beach picnic area on Southside Drive gives you El Capitan across the river from the south bank, and almost nobody uses it.',
+      'Full pullout and no patience for another lap? [Cathedral Beach picnic area](/stop/cathedral-beach-quiet-picnic) on Southside Drive gives you El Capitan across the river from the south bank, and almost nobody uses it.',
     photoTiming: {
       best: 'sunset',
       note:
@@ -229,7 +229,7 @@ const seed: StopInput[] = [
     teaser:
       'Climb the abandoned 1874 wagon road from a dirt pullout on Northside Drive: hand-stacked walls, stagecoach switchbacks, and almost nobody on them. Half a day, easy.',
     body:
-      'A small dirt pullout on Northside Drive, between the Pohono Bridge and El Capitan. Most people drive past it. From this turnout you can climb the original Big Oak Flat Road — the wagon grade completed in 1874, one of the three original roads built to reach the valley floor. It carried stagecoaches for seventy years. A massive rockslide in 1945 closed it permanently, and it\'s never reopened to vehicles. Most of the old roadbed is still there: hand-stacked retaining walls, cut blocks, switchbacks wide enough for a six-horse coach. Almost nobody walks it.\n\nThe climb is rock-hopping and a little scrambly in places — nothing technical, doable with kids. About a mile and 800 feet of gain gets you to the first big preserved section of road. Bring lunch. Sit in the shade of incense cedars and look across the valley at Cathedral Rocks. Half a day, easy. A full day if you keep going.\n\nIn early spring — March through early May, depending on snowmelt — extend west from the old road to the base of Ribbon Fall. The traverse is unmarked and rough; you\'re following the sound of water through talus. The payoff is standing under a 1,612-foot single drop — the tallest waterfall in North America, taller than the Empire State Building. It only flows for a few weeks a year, fed entirely by snowmelt off the rim above. By late May it\'s usually dry. Most visitors never see it run.\n\nSummer or not, the road itself is the year-round draw. You\'re walking the grade that carried the first generation of Yosemite tourists down into the valley, and you\'ll have it to yourself.',
+      'A small dirt pullout on Northside Drive, between the Pohono Bridge and El Capitan. Most people drive past it. From this turnout you can climb the original Big Oak Flat Road, the wagon grade completed in 1874, one of the three original roads built to reach the valley floor. It carried stagecoaches for seventy years. A massive rockslide in 1945 closed it permanently, and it\'s never reopened to vehicles. Most of the old roadbed is still there: hand-stacked retaining walls, cut blocks, switchbacks wide enough for a six-horse coach. Almost nobody walks it.\n\nThe climb is rock-hopping and a little scrambly in places: nothing technical, doable with kids. About a mile and 800 feet of gain gets you to the first big preserved section of road. Bring lunch. Sit in the shade of incense cedars and look across the valley at Cathedral Rocks. Half a day, easy. A full day if you keep going.\n\nIn early spring, March through early May depending on snowmelt, extend west from the old road to the base of Ribbon Fall. The traverse is unmarked and rough; you\'re following the sound of water through talus. The payoff is standing under a 1,612-foot single drop, the tallest single-drop waterfall in North America, taller than the Empire State Building. It only flows for a few weeks a year, fed entirely by snowmelt off the rim above. By late May it\'s usually dry. Most visitors never see it run.\n\nSummer or not, the road itself is the year-round draw. You\'re walking the grade that carried the first generation of Yosemite tourists down into the valley, and you\'ll have it to yourself.',
     swap:
       'The dirt pullout holds maybe four or five cars. If it\'s full, park at the Bridalveil Fall lot a quarter mile east and walk back along Northside Drive. Adds fifteen minutes each way and a touch of road noise, but you don\'t lose the day.',
     history: {
@@ -286,9 +286,9 @@ const seed: StopInput[] = [
     teaser:
       'A rough, unmarked talus traverse to the base of North America\'s tallest single-drop waterfall, 1,612 feet, flowing only a few weeks each spring.',
     body:
-      'A 1,612-foot single drop, the tallest waterfall in North America, and it only exists for a few weeks a year. Ribbon Fall is fed entirely by snowmelt off the rim west of El Capitan: it wakes in March, peaks in April and early May, and is usually a stain on the wall by late May. There is no sign, no trail marker, and no crowd.\n\nThe approach leaves the [old Big Oak Flat Road](/stop/old-big-oak-flat-road) and traverses west through talus toward the sound of water. It\'s unmarked and rough, a route rather than a trail; wear real shoes and take your time on the blocks. The amphitheater at the base is loud, cold, and yours. Check the seasonal window before committing the day: in a dry year the show can be over by the first week of May.',
+      'A 1,612-foot single drop, the tallest single-drop waterfall in North America, and it only exists for a few weeks a year. Ribbon Fall is fed entirely by snowmelt off the rim west of El Capitan: it wakes in March, peaks in April and early May, and is usually a stain on the wall by late May. There is no sign, no trail marker, and no crowd.\n\nThe approach leaves the [old Big Oak Flat Road](/stop/old-big-oak-flat-road) and traverses west through talus toward the sound of water. It\'s unmarked and rough, a route rather than a trail; wear real shoes and take your time on the blocks. The amphitheater at the base is loud, cold, and yours. Check the seasonal window before committing the day: in a dry year the show can be over by the first week of May.',
     swap:
-      'If the traverse is more than the group wants, Bridalveil Fall runs year-round and its viewing platform is a five-minute paved walk. Same geology lesson, one tenth the effort.',
+      'If the traverse is more than the group wants, [Bridalveil Fall](/stop/bridalveil-fall) runs year-round and its viewing platform is a five-minute paved walk. Same geology lesson, one tenth the effort.',
     photos: [{ src: '/photos/ribbon-fall-base.jpg' }],
     history: {
       note:
@@ -329,7 +329,7 @@ const seed: StopInput[] = [
     teaser:
       'Pull off at the meadow and look up: there are climbers on the 3,000-foot wall right now. Bring binoculars. The best free show in the park.',
     body:
-      'Pull off Northside Drive at the meadow and look up. There are climbers somewhere on the wall right now. Find the photographer with the longest lens, ask politely, and they\'ll point them out — climbers love showing them off. Most parties take 3–5 days on the standard routes; you\'re looking at people in tents glued to a 3,000-foot vertical wall, who have been on it for two days and will be there for two more. Bring binoculars if you have them. This is the best free show in the park.',
+      'Pull off Northside Drive at the meadow and look up. There are climbers somewhere on the wall right now. Find the photographer with the longest lens, ask politely, and they\'ll point them out; climbers love showing them off. Most parties take 3–5 days on the standard routes; you\'re looking at people in tents glued to a 3,000-foot vertical wall, who have been on it for two days and will be there for two more. Bring binoculars if you have them. This is the best free show in the park.',
     photos: [{ src: '/photos/el-capitan-winter.jpg', caption: 'El Capitan from Northside Drive, winter light.' }],
     history: {
       note:
@@ -385,7 +385,7 @@ const seed: StopInput[] = [
     teaser:
       'Two flat miles round trip to the closest spot in the valley to Half Dome. Go early, before the breeze erases the reflection.',
     body:
-      'Two miles round trip from the shuttle stop, mostly flat. The "lake" is really a pool in the Tenaya Creek drainage; it\'s a real lake in spring, mostly meadow by August. Either way it\'s the closest spot in the valley to Half Dome, looking up the back side of it. Go early — the trail is in shade until 10 a.m. and the reflection is gone by mid-morning when the breeze picks up.\n\n' +
+      'Two miles round trip from the shuttle stop, mostly flat. The "lake" is really a pool in the Tenaya Creek drainage; it\'s a real lake in spring, mostly meadow by August. Either way it\'s the closest spot in the valley to Half Dome, looking up the back side of it. Go early: the trail is in shade until 10 a.m. and the reflection is gone by mid-morning when the breeze picks up.\n\n' +
       'Watch Tenaya Creek where it feeds and drains the lake and you may spot a water ouzel, the American dipper: a dark, robin-sized bird that walks straight into fast current instead of avoiding it. It grips the streambed with oversized feet, dives in, and forages for insect larvae underwater, seeing well enough below the surface to hunt in the flow. Ouzels only work cold, fast, well-oxygenated water, so seeing one is a sign the creek is healthy. Come at the same quiet early hours you\'d come for the reflection, before the crowds and the wind. The guide\'s Secret Spots section has a dedicated ouzel-watching spot on the Merced at Happy Isles. And if the lake leaves you wanting more of Tenaya Creek, the canyon above holds a waterfall almost nobody visits: see [Three Chutes Falls](/stop/three-chutes-falls).',
     history: {
       note:
@@ -419,12 +419,12 @@ const seed: StopInput[] = [
     teaser:
       'Six hundred granite steps in the spray to Vernal Fall, then Nevada if you have it. Start at Happy Isles by 6:30 a.m. and come down the John Muir Trail.',
     body:
-      'The hike that earns the trip. Start at Happy Isles by 6:30 a.m. — earlier is better. The first 0.8 miles is paved and gets you to the Vernal Fall footbridge — most casual hikers turn around here. Past the bridge, the granite stairs start. You climb 600 stone steps in spray (May–June) or sun-baked rock (August). Vernal Fall is at the top of the stairs, 1.6 miles in. If you\'re still strong, push another 1.5 miles to Nevada Fall.\n\nDescend on the John Muir Trail — longer, gentler, easier on the knees, and you\'ll have it largely to yourself because most people return the way they came up. Loop total: about 7 miles, 2,000 ft of gain, 5–6 hours with breaks. The Mist Trail is wet and slippery; trekking poles help. Bring more water than you think.\n\n' +
+      'The hike that earns the trip. Start at Happy Isles by 6:30 a.m.; earlier is better. The first 0.8 miles is paved and gets you to the Vernal Fall footbridge, where most casual hikers turn around. Past the bridge, the granite stairs start. You climb 600 stone steps in spray (May–June) or sun-baked rock (August). Vernal Fall is at the top of the stairs, 1.6 miles in. If you\'re still strong, push another 1.5 miles to Nevada Fall.\n\nDescend on the John Muir Trail: longer, gentler, easier on the knees, and you\'ll have it largely to yourself because most people return the way they came up. Loop total: about 7 miles, 2,000 ft of gain, 5–6 hours with breaks. The Mist Trail is wet and slippery; trekking poles help. Bring more water than you think.\n\n' +
       'About those 600 steps: the CCC carved and set them into the rock in the 1930s, and no two are alike. Some rise a foot, some closer to two, some tilt just enough to slide a wet boot. This staircase, not the exposure, is where most Mist Trail injuries happen, almost always someone in worn soles or sandals going down hard on soaked granite. Real tread is the difference between a great day and the clinic. The crowd stacks up here too: the footbridge is a parade and the staircase moves at a shuffle, but the trail thins fast above Vernal Fall, and the stretch on to Nevada can feel nearly empty on a weekday.\n\n' +
       'How wet you get depends entirely on the month. In May and June, at full snowmelt, the spray zone below Vernal Fall is like standing in a rainstorm for twenty minutes: clothes soaked through, phone and camera wet, no exceptions. Bag your phone, wear synthetic not cotton, and stash a dry shirt to change into up top. By August the falls drop and you get misted rather than drenched, more canyon hike than waterfall hike. If the soaked stairs feel like too much on a wet day, the John Muir Trail bypass between the two falls is the drier, gentler way around them.',
     photos: [{ src: '/photos/vernal-fall.jpg', caption: 'Vernal Fall at the top of the granite stairs.' }],
     swap:
-      'If the legs say no, just do Vernal Fall and back via the same trail (3 miles RT, 1,000 ft). Still a real hike. The first lower mile is closed November–April when the stairs ice over. If you have the legs and the cables are open (mid-May to mid-October) and the lottery gods love you, this is the day for Half Dome — 14–16 miles, 4,800 ft, 10–12 hours, separate permit.',
+      'If the legs say no, just do Vernal Fall and back via the same trail (3 miles RT, 1,000 ft). Still a real hike. In winter, roughly November through April, the granite stairs above the footbridge close when they ice over; the paved stretch to the footbridge stays open. If you have the legs and the cables are up (late May to mid-October) and the lottery gods love you, this is the day for [Half Dome](/hike/half-dome): 14–16 miles, 4,800 ft, 10–12 hours, separate permit.',
     history: {
       note:
         'This has been the paying route up the canyon since 1870. A Nature Notes ' +
@@ -450,14 +450,14 @@ const seed: StopInput[] = [
     timeBudgetMin: 480,
     // Source: Yosemite Guide Vol 51 Issue 5 (June 10 - July 14, 2026).
     hazard:
-      'Through mid-July 2026 the John Muir Trail is closed between Clark Point and the Panorama Trail junction, and short Panorama Trail closures are possible, which can break this route\'s Panorama descent to Happy Isles. Confirm trail status before committing to the loop.',
+      'The John Muir Trail between Clark Point and the Panorama Trail junction was closed for repairs into mid-July 2026, and short Panorama Trail closures remain possible while work continues in the corridor, which can break this route\'s Panorama descent to Happy Isles. Confirm trail status before committing to the loop.',
     photos: [{ src: '/photos/four-mile-trailhead.jpg', caption: 'Vernal Fall, one of the two falls the Panorama descent passes.' }],
     teaser:
       '3,200 feet and 58 switchbacks from the valley floor to Glacier Point. There is no water anywhere on the trail; start at dawn with three liters.',
     body:
-      'The trailhead is a small lot on Southside Drive, about a mile west of Sentinel Beach near the Swinging Bridge, and it fills by 7 a.m. on busy days. If it\'s full, park at the day-use lot and ride the shuttle to the El Capitan stop (E6). Start at 5:30 or 6 in the morning, not because it\'s virtuous but because the first mile is the steepest and most exposed on the route and it bakes once the sun clears the rim. There is no water anywhere on this trail. Carry three liters minimum.\n\n' +
+      'The trailhead is a small lot on Southside Drive, about a mile west of Sentinel Beach near the Swinging Bridge, and it fills by 7 a.m. on busy days. If it\'s full, park at the day-use lot and ride the shuttle to the El Capitan stop (E6); that is the seasonal El Capitan route, which has not run every season, so confirm it is running before counting on it (otherwise it is a flat walk west along the river paths). Start at 5:30 or 6 in the morning, not because it\'s virtuous but because the first mile is the steepest and most exposed on the route and it bakes once the sun clears the rim. There is no water anywhere on this trail. Carry three liters minimum.\n\n' +
       'The trail was built in 1872 as a toll route and was exactly four miles then; the Park Service rebuilt it in the late 1920s with gentler switchbacks, the mileage grew to about 4.8, and the name stuck. You climb roughly 3,200 feet across something like 58 switchbacks. Union Point, near mile three, is the rest stop with the view that makes people quit early: Yosemite Falls straight across, El Capitan west, Half Dome appearing east. Keep going. Popping out at the Glacier Point railing after three hours on the wall beats driving there by more than the effort costs.\n\n' +
-      'The strong move is the loop: up the Four Mile, then down the Panorama Trail past Illilouette Fall and Nevada Fall to Happy Isles. 13 to 14 miles, around 4,000 feet of total climbing (there\'s an 800-foot surprise back out of the Illilouette drainage), 8 to 10 hours. The one-way logistics are workable rather than elegant: finish at Happy Isles (shuttle stop 16) and ride the Valley shuttle back toward E6, the closest stop to your car. Two cars simplifies everything. Hitching a ride down from Glacier Point happens, but don\'t build a day around a stranger\'s empty seat.\n\n' +
+      'The strong move is the loop: up the Four Mile, then down the Panorama Trail past Illilouette Fall and Nevada Fall to Happy Isles. 13 to 14 miles, around 4,000 feet of total climbing (there\'s an 800-foot surprise back out of the Illilouette drainage), 8 to 10 hours. The one-way logistics are workable rather than elegant: finish at Happy Isles (shuttle stop 16) and ride the Valley shuttle west, transferring to the seasonal El Capitan route for the E6 stop nearest your car when it is running. Two cars simplifies everything. Hitching a ride down from Glacier Point happens, but don\'t build a day around a stranger\'s empty seat.\n\n' +
       'Season matters twice. Glacier Point Road has to be open for the loop to work (it typically opens in May), and the upper Four Mile Trail itself closes in winter when ice makes the ledges unsafe, typically until well into spring. In summer the climb is very exposed in heat: morning start, hat, sunscreen, and the three liters. Check the NPS conditions page the night before.',
     history: {
       note:
@@ -511,7 +511,7 @@ const seed: StopInput[] = [
     teaser:
       'The 1927 lobby and Great Lounge are open to anyone. Walk through, sit by the 24-foot fireplace, order a drink at the bar. No reservation needed.',
     body:
-      'You don\'t have to be a guest. The lobby and Great Lounge are open to the public. Walk through. The 1927 building is a national historic landmark — Native American motifs, exposed beams, a 24-foot fireplace. Sit by the fire if it\'s lit. Order a drink at the bar. The dining room requires reservations and dress code; the bar doesn\'t. This is the kind of place worth spending an hour in just to absorb.\n\n' +
+      'You don\'t have to be a guest. The lobby and Great Lounge are open to the public. Walk through. The 1927 building is a national historic landmark: Native American motifs, exposed beams, a 24-foot fireplace. Sit by the fire if it\'s lit. Order a drink at the bar. The dining room requires reservations and dress code; the bar doesn\'t. This is the kind of place worth spending an hour in just to absorb.\n\n' +
       'The building rewards a slower look than most guests give it. Gilbert Stanley Underwood designed it, and what reads as timber and stone is largely poured concrete, formed and stained to imitate redwood so this hotel could not burn down the way its wooden predecessors did; the deception still works from ten feet away. Circle the Great Lounge for the stained-glass panels along the tops of the windows, then find the smaller rooms off it, which most visitors walk past. Every December the dining room stages the Bracebridge Dinner, a costumed banquet the hotel has produced since 1927. Queen Elizabeth II, President Kennedy, and Steve Jobs all have history under this roof, and the lobby mentions none of it, which is very much the house style.',
     photos: [{ src: '/photos/ahwahnee-hotel.jpg' }],
     history: {
@@ -539,7 +539,7 @@ const seed: StopInput[] = [
     teaser:
       'Half Dome catches the last light here with the Merced in the foreground. Skip the crowded rail for the small beach below the bridge, and stay past the gold.',
     body:
-      'Half Dome catches the last light from here. The Merced is in the foreground. People crowd the rail; walk down to the small beach below the bridge instead — wider angle, fewer elbows. If you have one image to take home, it\'s this one. Stay until the wall goes from gold to pink to grey, and through twilight to first stars. Most visitors leave too early.\n\n' +
+      'Half Dome catches the last light from here. The Merced is in the foreground. People crowd the rail; walk down to the small beach below the bridge instead: wider angle, fewer elbows. If you have one image to take home, it\'s this one. Stay until the wall goes from gold to pink to grey, and through twilight to first stars. Most visitors leave too early.\n\n' +
       'Two refinements for anyone carrying a camera. The mirror reflection needs slack water, which the Merced only offers once the spring runoff drops, so late summer through winter is reflection season; in May the river moves too fast to hold the image. And a few evenings each month the moon comes up near Half Dome\'s shoulder shortly after sunset. Check moonrise against sunset time, and if they land within an hour of each other, stay for it. This bridge has held tripods on those evenings for a century, Ansel Adams\'s among them.',
     photos: [{ src: '/photos/half-dome.jpg', caption: 'Half Dome at last light.' }],
     photoTiming: {
@@ -558,9 +558,9 @@ const seed: StopInput[] = [
     teaser:
       'Tent or wood cabins at the original 1899 camp, walking distance to the dining hall, the shuttle, and the Mist Trail. Reservations open thirteen months out.',
     body:
-      'Tent cabins or wood cabins, your call. The tent cabins have history (this is the original 1899 camp); the wood cabins have insulation. Either way, the location is what you\'re paying for: walking distance to the dining hall, the shuttle stop, and the trailhead for Mist Trail in the morning. For a multi-night trip, stay all your nights here — the time you save on packing each morning is worth more than the variety. Reservations open thirteen months out and the good months sell in minutes.',
+      'Tent cabins or wood cabins, your call. The tent cabins have history (this is the original 1899 camp); the wood cabins have insulation. Either way, the location is what you\'re paying for: walking distance to the dining hall, the shuttle stop, and the trailhead for Mist Trail in the morning. For a multi-night trip, stay all your nights here; the time you save on packing each morning is worth more than the variety. Reservations open thirteen months out and the good months sell in minutes.',
     swap:
-      'If Curry is full: Yosemite Valley Lodge or the Ahwahnee are the in-park alternates. Outside the park: El Portal (closest, 30 min), Mariposa (45 min, more options), or Groveland (north entrance side, 1 hr to valley).',
+      'If Curry is full: Yosemite Valley Lodge or [the Ahwahnee](/stop/ahwahnee-hotel) are the in-park alternates. Outside the park: El Portal (closest, 30 min), Mariposa (45 min, more options), or Groveland (north entrance side, 1 hr to valley).',
     photos: [{ src: '/photos/curry-village.jpg' }],
     history: {
       note:
@@ -652,9 +652,9 @@ const seed: StopInput[] = [
     hazard:
       'The summit blocks end in open air with no railings anywhere past the falls overlook. No water on the upper mountain in summer; carry three liters.',
     teaser:
-      'A maintained trail to the highest of the Three Brothers, six miles one way, with El Capitan straight across at eye level for once. Carry three liters.',
+      'A maintained trail to the highest of the Three Brothers, nearly seven miles one way, with El Capitan straight across at eye level for once. Carry three liters.',
     body:
-      'Eagle Peak is the highest of the Three Brothers, the stacked formation west of Yosemite Falls, and a maintained trail runs all the way to the top. From the Yosemite Falls Trailhead behind Camp 4 it is six miles one way with about 3,500 feet of gain: up the falls trail, past the top of the upper fall where the crowd evaporates, then through Eagle Peak Meadows to the summit spur. Budget eight to nine hours round trip and start early.\n\nThe view is the reason to do it. You look down the full length of the valley with the Merced threading the floor, Half Dome and Clouds Rest stacked at the far end, and El Capitan directly across, level with you for once. From here you watch the Captain\'s summit slabs roll over into the 3,000-foot face, a perspective the valley floor cannot supply and very few visitors ever collect.\n\nThere is no reliable water past Yosemite Creek and the upper switchbacks bake in the afternoon. Hat, three liters, and the discipline to turn around if the day gets away from you.',
+      'Eagle Peak is the highest of the Three Brothers, the stacked formation west of Yosemite Falls, and a maintained trail runs all the way to the top. From the Yosemite Falls Trailhead behind Camp 4 it is nearly seven miles one way, 13.5 round trip, with about 3,800 feet of gain: up the falls trail, past the top of the upper fall where the crowd evaporates, then through Eagle Peak Meadows to the summit spur. Budget eight to nine hours round trip and start early.\n\nThe view is the reason to do it. You look down the full length of the valley with the Merced threading the floor, Half Dome and Clouds Rest stacked at the far end, and El Capitan directly across, level with you for once. From here you watch the Captain\'s summit slabs roll over into the 3,000-foot face, a perspective the valley floor cannot supply and very few visitors ever collect.\n\nThere is no reliable water past Yosemite Creek and the upper switchbacks bake in the afternoon. Hat, three liters, and the discipline to turn around if the day gets away from you.',
     history: {
       note:
         'The naturalists ran this as a guided day in the 1930s. A 1935 Nature Notes ' +
@@ -789,10 +789,10 @@ const seed: StopInput[] = [
     teaser:
       'The five-mile loop takes both viewpoints in one walk: Sentinel\'s 360-degree panorama and Taft\'s 3,000-foot edge, joined by the quietest stretch of rim trail.',
     body:
-      'The Sentinel-Dome-to-Taft-Point loop is the right move: 5 miles, ~700 ft of gain, both viewpoints in one walk. Sentinel is the 360-degree panorama — Half Dome, El Capitan, the Clark Range, the high country to the north. Taft is the cliff edge with the 3,000-foot drop. Do them in either order. Bring lunch and stay on top of Sentinel for thirty minutes — you won\'t see the high country laid out like this from many other places.\n\nThe quiet part of the loop is the connector itself. The stretch of the Pohono Trail linking the two points sees a fraction of the foot traffic of either endpoint: rolling rim forest with Yosemite Falls appearing and reappearing across the valley. Most visitors do the two points as separate out-and-backs from the shared lot and never walk it, which is exactly why you should.',
+      'The Sentinel-Dome-to-Taft-Point loop is the right move: 5 miles, about 1,000 ft of gain, both viewpoints in one walk. Sentinel is the 360-degree panorama: Half Dome, El Capitan, the Clark Range, the high country to the north. Taft is the cliff edge with the 3,000-foot drop. Do them in either order. Bring lunch and stay on top of Sentinel for thirty minutes; you won\'t see the high country laid out like this from many other places.\n\nThe quiet part of the loop is the connector itself. The stretch of the Pohono Trail linking the two points sees a fraction of the foot traffic of either endpoint: rolling rim forest with Yosemite Falls appearing and reappearing across the valley. Most visitors do the two points as separate out-and-backs from the shared lot and never walk it, which is exactly why you should.',
     photos: [{ src: '/photos/milky-way-sentinel-dome.jpg', caption: 'Sentinel Dome at night, Milky Way over the panorama.' }],
     swap:
-      'If you only have time for one, Sentinel Dome alone is 2.2 miles round trip with about 400 feet of gain, easier than it looks, and the better introduction. Taft Point alone is even shorter (2.2 mi RT, ~250 ft) but the cliff edge is the whole point — go if heights don\'t bother you.',
+      'If you only have time for one, Sentinel Dome alone is 2.2 miles round trip with about 450 feet of gain, easier than it looks, and the better introduction. [Taft Point](/stop/taft-point) alone is the same 2.2 miles with even less climbing (~250 ft), but the cliff edge is the whole point: go if heights don\'t bother you.',
     history: {
       note:
         'The Jeffrey pine on the summit was already the point of the walk when ' +
@@ -828,7 +828,7 @@ const seed: StopInput[] = [
       'People have died here taking photographs. The view from twenty feet back is not meaningfully worse than the view from the edge, and it is enormously safer. Keep children in hand, keep the group honest, and treat the whole rim as the edge, because in places the fissures mean it is.\n\n' +
       'Sunset is the famous hour, when the light comes up the valley and El Capitan goes gold. If you go for it, bring a headlamp per person, not per group: the walk back is in the dark, and a late-afternoon breeze up here turns cold fast, so carry a layer.',
     swap:
-      'If a sheer edge at dusk is not your group\'s idea of a good time, Sentinel Dome leaves from the same lot: 2.2 miles round trip to a bare granite summit at 8,122 feet with a 360-degree panorama and no exposure. Same sunset, safer seat.',
+      'If a sheer edge at dusk is not your group\'s idea of a good time, [Sentinel Dome](/stop/sentinel-dome) leaves from the same lot: 2.2 miles round trip to a bare granite summit at 8,122 feet with a 360-degree panorama and no exposure. Same sunset, safer seat.',
     photoTiming: {
       best: 'sunset',
       note:
@@ -880,11 +880,11 @@ const seed: StopInput[] = [
     teaser:
       'Half Dome at eye level and the valley floor 3,200 feet down. Come after 4:30 when the lot empties, and stay to watch the shadow climb the dome.',
     body:
-      'Half Dome at eye level. The valley floor 3,200 feet below. The waterfalls visible end-to-end. Avoid noon to four — the parking is brutal and the light is flat. Late afternoon (4:30 p.m. onward) the lot empties, the light turns warm, and you can sit on the wall and watch the shadow climb Half Dome. Stay through sunset if you can; the drive back to the valley in the dark is fine, just slow. If a ranger is giving an evening talk (most weekends June through August), stay for it — they\'re short and they\'re good.\n\n' +
+      'Half Dome at eye level. The valley floor 3,200 feet below. The waterfalls visible end-to-end. Avoid noon to four: the parking is brutal and the light is flat. Late afternoon (4:30 p.m. onward) the lot empties, the light turns warm, and you can sit on the wall and watch the shadow climb Half Dome. Stay through sunset if you can; the drive back to the valley in the dark is fine, just slow. If a ranger is giving an evening talk (most weekends June through August), stay for it; they\'re short and they\'re good.\n\n' +
       'One more note on timing across the calendar: Glacier Point Road is plowed open only after winter, typically sometime in May, and the first weeks of the season are the quiet ones. The lot is easy, the amenities are skeletal, water may not be running yet, and the high country you\'re looking at east of here still reads as full winter while the Valley below has gone green. Snow lines the trailheads and the shaded meadows into late spring. It\'s the rare stretch when this overlook feels like a place you found rather than a place everyone\'s been. Check the Park Service road-status page the night before, bring your own water, and go early.',
     photos: [{ src: '/photos/glacier-point.jpg', caption: 'Half Dome at eye level from the Glacier Point wall.' }],
     swap:
-      'If parking is hopeless, the Four-Mile Trail goes from Glacier Point down to the valley floor (4.8 miles, 3,200 ft loss). Park one car at the bottom, drive the other up. Knees take the hit, not your patience.',
+      'If parking is hopeless, the [Four-Mile Trail](/stop/four-mile-trailhead) goes from Glacier Point down to the valley floor (4.8 miles, 3,200 ft loss). Park one car at the bottom, drive the other up. Knees take the hit, not your patience.',
     history: {
       note:
         'The firefall began as one man\'s after-dinner trick. Nature Notes ran its ' +
@@ -914,10 +914,10 @@ const seed: StopInput[] = [
     teaser:
       'Park at the Welcome Plaza, ride the free shuttle up, and walk the two-mile Grizzly Giant Loop among the largest trees on earth. Late afternoon empties the grove.',
     body:
-      'You park at the Welcome Plaza and ride the free shuttle two miles up to the grove. Walk the Grizzly Giant Loop (2 miles, 300 ft of gain) — past the Fallen Monarch, the Bachelor and Three Graces, the Grizzly Giant itself (around 2,700 years old). Don\'t skip the California Tunnel Tree just past Grizzly Giant. The shuttle runs every 15 minutes from April through November; first run at 8 a.m., and in summer the last ride up is around 7 p.m., with a final bus down at 8. Late afternoon turns the canopy gold and the grove empties out. These trees are not redwoods. They\'re the largest trees on earth by volume, and they only grow in this strip of the Sierra.\n\n' +
+      'You park at the Welcome Plaza and ride the free shuttle two miles up to the grove. Walk the Grizzly Giant Loop (2 miles, 300 ft of gain): past the Fallen Monarch, the Bachelor and Three Graces, the Grizzly Giant itself (around 3,000 years old). Don\'t skip the California Tunnel Tree just past Grizzly Giant. The shuttle runs every 15 minutes from April through November; first run at 8 a.m., and in summer the last ride up is around 7 p.m., with a final bus down at 8. Late afternoon turns the canopy gold and the grove empties out. These trees are not redwoods. They\'re the largest trees on earth by volume, and they only grow in this strip of the Sierra.\n\n' +
       'Those black fire scars on the big trunks aren\'t damage, they\'re a health record. A mature sequoia\'s bark runs up to two feet thick, fibrous and rich in tannin, so it barely conducts heat: a ground fire chars the surface, and the char itself insulates the living wood while the thinner-barked white fir and incense cedar nearby die. The tree needs those fires. Its seeds are no bigger than an oat seed and require the bare, ash-enriched mineral soil and sunlight a burn opens up. After a century and a half of suppression left the groves crowded and declining, the park now sets careful low-intensity burns in Mariposa to do what fire always did here.',
     swap:
-      'If you have stamina, the Guardians Loop (6.5 miles, 1,200 ft) takes you up to the upper grove. Most visitors don\'t make it that far, which is the point.',
+      'If you have stamina, the [Guardians Loop](/hike/mariposa-grove-guardians-loop) (6.5 miles, 1,200 ft) takes you up to the upper grove. Most visitors don\'t make it that far, which is the point.',
     photos: [{ src: '/photos/mariposa-grove.jpg' }],
     history: {
       note:
@@ -1128,7 +1128,7 @@ const seed: StopInput[] = [
     teaser:
       '47 miles from Crane Flat to Tioga Pass at 9,945 feet, fir forest opening into granite domes and meadows. Gas up at Crane Flat; there is none on the road.',
     body:
-      '47 miles from Crane Flat to Tioga Pass (9,945 ft). Gas up at Crane Flat — there is no gas on Tioga Road itself. The road climbs through fir forest, then lodgepole pine, then opens into granite domes and meadows. Tioga is closed November through May (sometimes longer). When it opens — late May or early June in 2026 — the first two weeks are extraordinary: snowmelt, no crowds, hardly anyone on the road yet.\n\n' +
+      '47 miles from Crane Flat to Tioga Pass (9,945 ft). Gas up at Crane Flat; there is no gas on Tioga Road itself. The road climbs through fir forest, then lodgepole pine, then opens into granite domes and meadows. Tioga is closed November through May (sometimes longer). When it opens for the season, typically late May or early June, the first two weeks are extraordinary: snowmelt, no crowds, hardly anyone on the road yet.\n\n' +
       'The road itself is the artifact. This is the line of the Great Sierra Wagon Road, scraped over the crest in 1883 to serve a silver mine that failed almost immediately, then bought for the public and finally rebuilt into the modern highway in 1961. A few original stretches survive as spur roads, including the one to [May Lake](/stop/may-lake). Driving east you climb through every forest belt in the Sierra in ninety minutes, and the trees thin out just as the granite takes over, which is the high country announcing itself.\n\n' +
       'The rhythm of the day, west to east: [Crane Flat](/stop/crane-flat-meadow) for gas and the bear meadow, [White Wolf](/stop/white-wolf) for the leg stretch, [Olmsted Point](/stop/olmsted-point) for the reveal, [Tenaya Lake](/stop/tenaya-lake) for lunch, the meadows for the afternoon, and [Tioga Pass](/stop/gaylor-lake) only if the day still has legs. Driven straight through it is under two hours. Driven properly it is the whole day, and the best road day in California.',
     photos: [{ src: '/photos/tioga-road-drive.jpg', caption: 'Tuolumne Meadows, the high-country payoff.' }],
@@ -1192,7 +1192,7 @@ const seed: StopInput[] = [
     teaser:
       'A lodgepole meadow at 8,000 feet, a 1920s camp, and two of the gentlest lake walks in the high country. The stop everyone drives past between Crane Flat and Olmsted Point.',
     body:
-      'Tioga Road runs a long forested half hour east of Crane Flat before the famous stops begin, and almost everyone drives it straight through. White Wolf is the reason not to. A short spur drops north off the highway to a meadow at 8,000 feet ringed by lodgepole pine, with a camp of white tent cabins that has served Tioga travelers since the 1920s, a small campground, and the kind of quiet the Tuolumne core has already lost by mid-morning. The lodge\'s operating seasons have been irregular in recent years, so treat any meal or cabin plan as a bonus to confirm, not a schedule; the meadow, the trailheads, and the stillness are the reliable draw.\n\n' +
+      'Tioga Road runs a long forested half hour east of Crane Flat before the famous stops begin, and almost everyone drives it straight through. White Wolf is the reason not to. A short spur drops north off the highway to a meadow at 8,000 feet ringed by lodgepole pine, with a camp of white tent cabins that has served Tioga travelers since the 1920s, a small campground, and the kind of quiet the Tuolumne core has already lost by mid-morning. The lodge and its cabins are closed for the 2026 season for sewer-line repairs (the dining directory tracks the details), and its operating seasons have been irregular in recent years anyway, so treat any meal or cabin plan as something to confirm, never a schedule; the meadow, the trailheads, and the stillness are the reliable draw.\n\n' +
       'Two easy walks start here or nearby, and they are the gentlest introduction the high country offers. Harden Lake is 5.6 miles round trip on nearly flat old roadbed from the White Wolf road-end: a warm, shallow lake that is genuinely pleasant swimming by August, which almost nothing else up here is. Lukens Lake, from a signed trailhead two miles east on Tioga Road, is a 1.6-mile round-trip hop over a forested rise to a shallow lake edged by one of the best July wildflower meadows in the park. Neither has a switchback worth the name.\n\n' +
       'Deer work the meadow edges at dusk. Time White Wolf as the leg stretch on the drive east, or spend a first high-country night at the campground and let your lungs meet the altitude before the bigger Tuolumne days.',
     photos: [], // TODO: needs dedicated photography — no editorial image matches the White Wolf meadow
@@ -1225,7 +1225,7 @@ const seed: StopInput[] = [
     teaser:
       'A short walk from the lot to a granite slab strewn with glacial erratics, Clouds Rest dead ahead and Half Dome over its shoulder, from the back side.',
     body:
-      'A short walk from the parking lot to a granite slab pocked with glacial erratics — boulders left here when the ice melted. Cloud\'s Rest dominates the view; Half Dome is visible over its left shoulder, from the back side. This is the geologically literate version of Tunnel View: same valley, viewed from where the glacier stood.\n\n' +
+      'A short walk from the parking lot to a granite slab pocked with glacial erratics, boulders left here when the ice melted. Clouds Rest dominates the view; Half Dome is visible over its left shoulder, from the back side. This is the geologically literate version of Tunnel View: same valley, viewed from where the glacier stood.\n\n' +
       'Look at Clouds Rest properly before you leave the rail: 4,500 feet of bare granite that reads at this distance as a single breaking wave, the largest continuous rock face in the park, and most people photograph Half Dome past it without ever seeing it. Then take the quarter-mile trail from the lot down to the point itself. Almost nobody does. The angle improves, the crowd disappears entirely, and the erratics out on the open slab, some the size of cars, sit exactly where the ice set them down and left.\n\n' +
       'If you are driving back west at the end of a Tuolumne day, stop again. Late sun rakes across the granite, every boulder throws a shadow, and Half Dome goes gold at a distance that makes the valley versions of the view feel crowded.',
     photos: [{ src: '/photos/olmsted-point.jpg', caption: 'Half Dome from the high country side.' }],
@@ -1261,14 +1261,15 @@ const seed: StopInput[] = [
     body:
       'The best moderate hike in the high country. Turn north off Tioga Road onto the Old Tioga Road spur (between Olmsted Point and Tenaya Lake) and follow it 1.7 miles to the trailhead parking. The hike itself is 1.2 miles each way with about 500 feet of gain on a well-graded trail through lodgepole pine and over open granite. The grade is steady but not steep, which makes it the right pick for pushing kids past the point where a flat walk would have ended. Most families do it.\n\nMay Lake sits at 9,329 ft with Mount Hoffmann (the geographic center of the park) rising directly above the north shore. The water is cold but swimmable on a warm afternoon, and the granite slabs on the east side are the place to do it. Bring a towel and lunch. Stronger hikers can push another 2 miles and 1,500 ft to the summit of Hoffmann (10,850 ft) for a 360-degree view of the park.',
     swap:
-      'The trailhead spur road is rough dirt, passable in any car taken slowly, but it rattles. If the parking lot is full (it holds maybe twenty cars), there is no overflow; come back early next morning or skip to Tenaya Lake. The lake holds snow into late June some years; check conditions before late-spring trips.',
+      'The trailhead spur road is rough dirt, passable in any car taken slowly, but it rattles. If the parking lot is full (it holds maybe twenty cars), there is no overflow; come back early next morning or skip to [Tenaya Lake](/stop/tenaya-lake). The lake holds snow into late June some years; check conditions before late-spring trips.',
     history: {
       note:
-        'Mount Hoffmann, the peak standing over the lake at 10,921 feet, is the ' +
-        'geographical center of Yosemite National Park. Ranger-Naturalist Arthur ' +
-        'Carthew opened his 1940 Nature Notes account of climbing its summit block ' +
-        'with that fact, adding that the mountain is readily accessible from the ' +
-        'May Lake camp snuggled at its base.',
+        'Mount Hoffmann, the peak standing over the lake (10,921 feet by the ' +
+        'survey of the day; modern maps say 10,850), is the geographical center ' +
+        'of Yosemite National Park. Ranger-Naturalist Arthur Carthew opened his ' +
+        '1940 Nature Notes account of climbing its summit block with that fact, ' +
+        'adding that the mountain is readily accessible from the May Lake camp ' +
+        'snuggled at its base.',
       volume: 19,
       number: 3,
       issueDate: 'March 1940',
@@ -1287,7 +1288,7 @@ const seed: StopInput[] = [
     teaser:
       'Granite cliffs, lodgepole shore, and the east beach for lunch on the rocks. The water stays around 55 to 60 degrees even in August; short swims only.',
     body:
-      'The east beach is the spot. Granite cliffs on the south side, lodgepole forest on the north, Polly Dome rising at the west end. The water is 55–60°F even in August — short swims only. In late May the lake is often still partly iced over; by July it\'s sun-warmed at the edges. Stop here for lunch on the rocks.\n\n' +
+      'The east beach is the spot. Granite cliffs on the south side, lodgepole forest on the north, Polly Dome rising at the west end. The water is 55–60°F even in August: short swims only. In late May the lake is often still partly iced over; by July it\'s sun-warmed at the edges. Stop here for lunch on the rocks.\n\n' +
       'The name carries the park\'s hardest history, and it belongs in the lunch conversation. The lake is named for Tenaya, the Ahwahnechee chief whose people were driven from the valley by the Mariposa Battalion in 1851 and pursued into this high country. His people already had a name for it: Pywiack, lake of the shining rocks, for the glacier-polished granite that still flashes along the south shore. Both names are true. Knowing the second changes how the first one sounds.\n\n' +
       'If the lunch hour turns into an afternoon, a mostly flat loop circles the lake in about 2.5 miles, sand and slabs and boardwalk, with the south shore walking directly beneath the polished cliffs. Paddlers carry in boards and kayaks for the morning glass; by early afternoon the wind is up and the lake belongs to whitecaps, which is your cue to drive on to the meadows.',
     history: {
@@ -1314,18 +1315,18 @@ const seed: StopInput[] = [
     region: 'tuolumne',
     order: 7,
     kind: 'trailhead',
-    photos: [{ src: '/photos/cathedral-lakes.jpg', caption: 'Tuolumne high country — the landscape Cathedral Lakes sits in.' }],
+    photos: [{ src: '/photos/cathedral-lakes.jpg', caption: 'Tuolumne high country, the landscape Cathedral Lakes sits in.' }],
     coord: [-119.374706, 37.872634], // verified 2026-07: Cathedral Lakes Trailhead parking at the Tuolumne Meadows Visitor Center (NPS TH data; VC at 37.8716,-119.3742 per Wikidata); prior pin sat ~1.4 km east at the store/campground
     elevationFt: 8560,
     timeBudgetMin: 360,
     teaser:
       'Nine miles round trip from the relocated Tuolumne Meadows trailhead to a lake at 9,288 feet with Cathedral Peak rising straight out of the water.',
     body:
-      'The high-country day hike. The new trailhead is at the Tuolumne Meadows Visitor Center. 9 miles round trip to Lower Cathedral Lake (1,000 ft of gain), or 10.5 miles for both lakes. Lower Cathedral sits at 9,288 ft with Cathedral Peak rising directly behind it — the granodiorite peak John Muir camped on in 1869. Best mid-July through mid-September; trail can hold snow into late June. Plan 5–7 hours with lake time. Bring layers.\n\n' +
+      'The high-country day hike. The new trailhead is at the Tuolumne Meadows Visitor Center. 9 miles round trip to Lower Cathedral Lake (1,000 ft of gain), or 10.5 miles for both lakes. Lower Cathedral sits at 9,288 ft with Cathedral Peak rising directly behind it, the granodiorite peak John Muir camped on in 1869. Best mid-July through mid-September; trail can hold snow into late June. Plan 5–7 hours with lake time. Bring layers.\n\n' +
       'Respect the altitude. You start around 8,500 feet and climb from there, so the first forested miles feel harder than the modest gain suggests. Give yourself the full five to seven hours and don\'t rush the ascent. At the junction, decide between the lakes. Lower Cathedral is the one from the photographs: a granite ramp to the south shore with Cathedral Peak rising straight out of the water. Upper Cathedral sits a few hundred yards past the junction in a tighter granite bowl, smaller, colder, and quieter. Most hikers see only the Lower. Doing both adds distance and a real descent and re-ascent, so take the Lower first while your legs are fresh.\n\n' +
       'Watch the sky. At 9,500 feet the basin is fully exposed, and afternoon thunderstorms build fast in July and August. A rain shell is not optional in those months, and the discipline that keeps you safe is simple: plan to be off the open granite and heading down by early afternoon if storms are in the forecast, no matter how good the lake looks. UV is intense at this altitude even when the weather holds, so cover up. Carry three liters; there\'s no reliable water between the trailhead and the basin.',
     swap:
-      'If a 9-mile hike is too much, do the Pothole Dome short scramble at the west end of Tuolumne Meadows instead (0.5 mi, ~200 ft, 360-degree view). Soda Springs / Parsons Lodge from there is another easy 1.5 miles round trip.',
+      'If a 9-mile hike is too much, do the [Pothole Dome](/stop/pothole-dome-sunset) short scramble at the west end of Tuolumne Meadows instead (0.5 mi, ~200 ft, 360-degree view). [Soda Springs / Parsons Lodge](/stop/soda-springs-parsons-lodge) from there is another easy 1.5 miles round trip.',
     history: {
       note:
         'The naturalists\' 1931 list of day trips out of Tuolumne Meadows has this ' +
@@ -1350,7 +1351,7 @@ const seed: StopInput[] = [
     teaser:
       'An easy 1.5 miles from the Lembert Dome lot to a naturally carbonated spring and the 1915 Parsons Lodge. End the high-country day here.',
     body:
-      'A 1.5-mile round trip from the Lembert Dome parking lot. Soda Springs is a naturally carbonated spring bubbling up out of the meadow — taste it if you want, it\'s safe (a little metallic). Parsons Lodge is a 1915 stone Sierra Club building, staffed daily in high summer with an open reading room, typically 10 to 4 once Tioga Road opens; the current Yosemite Guide has the season dates. End the high-country day here. Drive back to the valley in twilight; the Tioga Road in low light is a memory you keep.',
+      'A 1.5-mile round trip from the Lembert Dome parking lot. Soda Springs is a naturally carbonated spring bubbling up out of the meadow; taste it if you want, it\'s safe (a little metallic). Parsons Lodge is a 1915 stone Sierra Club building, staffed daily in high summer with an open reading room, typically 10 to 4 once Tioga Road opens; the current Yosemite Guide has the season dates. End the high-country day here. Drive back to the valley in twilight; the Tioga Road in low light is a memory you keep.',
     photos: [{ src: '/photos/tuolumne-meadows.jpg', caption: 'Tuolumne Meadows from the Soda Springs walk.' }],
     history: {
       note:
@@ -1621,7 +1622,7 @@ const seed: StopInput[] = [
     teaser:
       'Two miles round trip to a bare granite knob above the entrance station: the reservoir, Kolana Rock, and both falls in one frame. April and May are the season.',
     body:
-      'The short hike almost everyone drives past. The trail leaves from near the Hetch Hetchy entrance station at Mather and climbs gently through pine and recovering burn to a bare granite knob, about 2 miles round trip. From the top you get the overview the dam walk can\'t give you: the reservoir laid out below, Kolana Rock on the south wall, and in spring both Wapama and Tueeulala Falls streaking the north wall, the whole valley in a single frame.\n\n' +
+      'The short hike almost everyone drives past. The trail leaves from near the Hetch Hetchy entrance station at Mather and climbs gently through pine and recovering burn to a bare granite knob, just under 3 miles round trip. From the top you get the overview the dam walk can\'t give you: the reservoir laid out below, Kolana Rock on the south wall, and in spring both Wapama and Tueeulala Falls streaking the north wall, the whole valley in a single frame.\n\n' +
       'April and May are the season. The falls are at full volume and the slopes around the knob put on one of the better wildflower shows at this elevation in the park. Do it as the opener to a Hetch Hetchy day, before the dam and the Wapama walk, and everything you see for the rest of the day sits somewhere on this view. An hour to ninety minutes, done.',
   },
   {
@@ -1668,7 +1669,7 @@ const seed: StopInput[] = [
       'That spray is the honest caveat. In peak snowmelt the terminal bridges are sometimes closed for safety, and they have been swept out by debris in flood years. Check the NPS conditions page before a May or June visit. Two more honest notes: this is rattlesnake country, so watch your feet in the rocks, and poison oak grows close to the trail in places, so know what it looks like and wear long pants if you\'re unsure.\n\n' +
       'The trail is open year-round because the elevation is low, which cuts both ways: this is one of the few real hikes in the park you can do in February, and it\'s an exposed, 90-degree grind on an August afternoon. Spring is the show. Plan four to five hours including lunch at the base of the falls, carry more water than feels necessary, and bring sun protection; long sections have no shade.',
     swap:
-      'If the Wapama bridges are closed in high water, don\'t force it. Walk the dam and tunnel for the up-close granite, then drive back to the entrance station and hike Lookout Point instead: 2 miles round trip to a knob that gives you both falls from a safe distance.',
+      'If the Wapama bridges are closed in high water, don\'t force it. Walk the dam and tunnel for the up-close granite, then drive back to the entrance station and hike [Lookout Point](/stop/lookout-point) instead: just under 3 miles round trip to a knob that gives you both falls from a safe distance.',
   },
 
   {
@@ -1768,9 +1769,9 @@ const seed: StopInput[] = [
     hazard:
       'The climb out is relentless and largely shadeless, and it bakes by late morning; carry more water than three miles suggests. Rattlesnake country, and the river runs dam-released cold and fast. Stay out of the current.',
     teaser:
-      'The park\'s steepest maintained trail: 1,300 feet down in 1.3 miles to the Tuolumne River below the dam, and the same 1,300 back up. Almost nobody goes. That is the offer.',
+      'One of the park\'s steepest maintained trails: 1,300 feet down in 1.3 miles to the Tuolumne River below the dam, and the same 1,300 back up. Almost nobody goes. That is the offer.',
     body:
-      'Below O\'Shaughnessy Dam the Tuolumne runs wild again through a small green valley, and exactly one trail reaches it: a 1.3-mile plunge off Hetch Hetchy Road that loses 1,300 feet, the steepest maintained grade in the park. The signed pullout sits 3.9 miles past the entrance station. There are no switchback niceties. The trail simply goes down, through oak and bear clover, until the river noise rises to meet you.\n\n' +
+      'Below O\'Shaughnessy Dam the Tuolumne runs wild again through a small green valley, and exactly one trail reaches it: a 1.3-mile plunge off Hetch Hetchy Road that loses 1,300 feet, one of the steepest maintained grades in the park. The signed pullout sits 3.9 miles past the entrance station. There are no switchback niceties. The trail simply goes down, through oak and bear clover, until the river noise rises to meet you.\n\n' +
       'The floor is the reward: meanders and sand bars, spring wildflowers on the benches, and a stretch of river with the dam out of sight upstream and essentially no one, ever, sharing it. A few fishermen know it. Lunch on a rock, feet in the shallows if the flow is gentle, and a granite valley to yourself within a mile and a half of a parked car, which may be the best ratio in the park.\n\n' +
       'Do the arithmetic before you commit, because the way out is the whole bill: 1,300 feet regained in 1.3 miles, most of it in the open. Walk down in the morning cool and climb out before the heat, or aim the whole outing at spring or fall. A July afternoon here is a mistake you only make once.',
     photos: [], // TODO: needs dedicated photography — no editorial image matches Poopenaut Valley
