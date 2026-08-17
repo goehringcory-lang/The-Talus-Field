@@ -22,12 +22,13 @@ const TZID = 'America/Los_Angeles'
 const UID_DOMAIN = 'thetalusfieldjournal.com'
 // Buyer-facing link base for event descriptions. Derived from the serving
 // origin so calendar links keep working across any future domain cutover
-// (pages.dev today, a custom domain later). ICS generation is client-only;
-// the window guard is belt and braces for tests.
+// (guide.thetalusfieldjournal.com today, with the pages.dev host still
+// resolving alongside it). ICS generation is client-only; the window guard
+// is belt and braces for tests.
 const APP_BASE =
   typeof window !== 'undefined' && window.location?.origin
     ? window.location.origin
-    : 'https://talus-field-guide.pages.dev'
+    : 'https://guide.thetalusfieldjournal.com'
 
 // Standard US Pacific rules (in effect since 2007).
 const VTIMEZONE = [

@@ -1,16 +1,18 @@
 # Android testing at an unlisted URL
 
-How to get the Field Guide PWA live at a URL you can type into a phone, without
-publishing or linking it anywhere on the editorial site. The app deploys to the
-Cloudflare Pages project's auto-generated `pages.dev` URL; the custom domain
-(`guide.thetalusfieldjournal.com`) is deliberately **not** attached until launch.
+How to get the Field Guide PWA live at a URL you can type into a phone. This
+runbook was written for pre-launch testing, when the custom domain was
+deliberately left unattached; `guide.thetalusfieldjournal.com` has been
+attached and serving since the launch cutover, and the Pages project's
+auto-generated `pages.dev` URL keeps resolving alongside it, so the flow below
+still works for phone testing.
 See [DEPLOY.md](DEPLOY.md) for the full production runbook (Stripe, email, DNS).
 
-Why this stays private: the URL is linked from nowhere, appears in no sitemap,
-and the app ships both a `noindex, nofollow` meta tag ([apps/guide/index.html](apps/guide/index.html))
+Why this stayed private pre-launch: the `pages.dev` URL was linked from
+nowhere and appears in no sitemap, and the app ships both a `noindex, nofollow`
+meta tag ([apps/guide/index.html](apps/guide/index.html))
 and an `X-Robots-Tag: noindex` header ([apps/guide/public/_headers](apps/guide/public/_headers)).
-Only someone you give the URL to will find it, and everything past `/login` is
-auth-gated anyway.
+Everything past `/login` is auth-gated anyway.
 
 All commands assume `wrangler login` has been run.
 
@@ -58,17 +60,20 @@ npm run build                                   # tsc -b && vite build → dist/
 wrangler pages deploy dist --project-name talus-field-guide
 ```
 
-The first run creates the Pages project; the stable URL is
-`https://talus-field-guide.pages.dev`. If that project name is globally taken,
-pick another; the URL follows the name, and the CORS allowlist in
+The first run creates the Pages project; the stable auto-generated URL is
+`https://talus-field-guide.pages.dev`, which keeps resolving alongside the
+custom domain. If that project name is globally taken, pick another; the URL
+follows the name, and the CORS allowlist in
 [workers/src/index.ts](workers/src/index.ts) must then be updated to match.
 
-**Do not attach the custom domain.** Adding `guide.thetalusfieldjournal.com`
-to the Pages project is the launch step, deliberately skipped here.
+The custom domain `guide.thetalusfieldjournal.com` was attached to the Pages
+project at the launch cutover and is the app's public URL; attaching it was
+the launch step this runbook used to skip.
 
 ## 3. Test on the phone
 
-1. Open Chrome and type `https://talus-field-guide.pages.dev`.
+1. Open Chrome and type `https://guide.thetalusfieldjournal.com` (or the
+   unlisted `https://talus-field-guide.pages.dev`; both serve the app).
 2. You land on `/login`. Enter the dev username + code; the form falls back to
    `/api/auth/dev-login` automatically.
 3. Install: the in-app install prompt should appear, or use Chrome menu →
@@ -81,5 +86,7 @@ to the Pages project is the launch step, deliberately skipped here.
    The update banner should offer the new build.
 
 If login fails with a CORS error (check via `chrome://inspect` remote
-debugging), the request origin is not in the Worker allowlist; see the
-`pages.dev` block in [workers/src/index.ts](workers/src/index.ts).
+debugging), the request origin is not in the Worker allowlist; see the origin
+allowlist in [workers/src/index.ts](workers/src/index.ts) (`APP_BASE_URL`
+covers the custom domain, and the `pages.dev` block covers the auto-generated
+hosts).

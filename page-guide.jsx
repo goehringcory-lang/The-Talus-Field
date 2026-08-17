@@ -1,12 +1,9 @@
 /* global React, Placeholder, MotifMountains, NewsletterInline */
 
 // Public URL of the PWA. Override at runtime via window.GUIDE_APP_BASE.
-// The app serves from the Cloudflare Pages URL; switch this back to
-// https://guide.thetalusfieldjournal.com once that custom domain is attached
-// to the Pages project.
 const GUIDE_APP_BASE =
   (typeof window !== "undefined" && window.GUIDE_APP_BASE) ||
-  "https://talus-field-guide.pages.dev";
+  "https://guide.thetalusfieldjournal.com";
 
 // Worker API base. Override at runtime via window.GUIDE_API_BASE.
 const GUIDE_API_BASE =

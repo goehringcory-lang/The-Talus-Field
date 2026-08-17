@@ -35,7 +35,7 @@ Merging this branch is the go-live action. Verify each item first; DEPLOY.md sec
 ## After merge
 
 - Watch the first live purchase end to end (Stripe dashboard, Worker logs, your own inbox test).
-- Optional, any time later: attach `guide.thetalusfieldjournal.com` to the Pages project **first**, then flip `GUIDE_APP_BASE` in `page-guide.jsx` and `APP_BASE_URL` in `workers/wrangler.toml` and redeploy the Worker. Never flip the vars before the domain resolves, or purchase emails link to a dead host. CORS already allows both origins.
+- Done (August 2026): `guide.thetalusfieldjournal.com` is attached to the Pages project and serving. Order actually used: domain attached first, then a stale `guide.thetalusfieldjournal.com/*` route on the editorial Worker that was shadowing it removed, then `GUIDE_APP_BASE` in `page-guide.jsx` and `APP_BASE_URL` in `workers/wrangler.toml` flipped. CORS still allows both origins, so magic links already sent against the pages.dev host keep working.
 
 ## The photo pass: prepared, not yet run
 

@@ -2159,7 +2159,7 @@ function WebcamStrip() {
     }
   }, "Yosemite Conservancy / Pixelcaster")));
 }
-var GUIDE_PROMO_APP_BASE = typeof window !== "undefined" && window.GUIDE_APP_BASE || "https://talus-field-guide.pages.dev";
+var GUIDE_PROMO_APP_BASE = typeof window !== "undefined" && window.GUIDE_APP_BASE || "https://guide.thetalusfieldjournal.com";
 function GuidePromo({
   go,
   location,
