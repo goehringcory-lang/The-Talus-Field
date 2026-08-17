@@ -308,7 +308,7 @@ function GuideBuyBox() {
       lineHeight: 1.55,
       margin: 0
     }
-  }, "One payment, about a dollar a month over the 18 months. The app, every photo, and the offline park map are yours on every device you own. Updates push automatically through the 2026 season, including the Secret Guide as it grows."), React.createElement("p", {
+  }, "One payment of $3.99 for 18 months of access. The app, every photo, and the offline park map are yours on every device you own. Updates push automatically through the 2026 season, including the Secret Guide as it grows."), React.createElement("p", {
     style: {
       fontFamily: "var(--serif)",
       fontSize: 14,
