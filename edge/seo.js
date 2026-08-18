@@ -277,7 +277,14 @@ const HUB_PROSE = {
     if (Array.isArray(bulletin.valleyDay) && bulletin.valleyDay.length) {
       parts.push(
         `<h2>The Valley, by the clock</h2><ul>${bulletin.valleyDay
-          .map((p) => `<li>${escapeHtmlText(p.time)}: ${escapeHtmlText(p.title)} (${escapeHtmlText(p.days)})</li>`)
+          .map((p) => {
+            // The Guide's per-program symbols, carried into the crawler prose
+            // for the same reason they are on the page: they decide whether a
+            // reader can attend. True-only, so nothing renders when unmarked.
+            const marks = [p.allAges ? "all ages" : null, p.access ? "wheelchair accessible" : null].filter(Boolean);
+            const suffix = marks.length ? `, ${marks.join(", ")}` : "";
+            return `<li>${escapeHtmlText(p.time)}: ${escapeHtmlText(p.title)} (${escapeHtmlText(p.days)}${escapeHtmlText(suffix)})</li>`;
+          })
           .join("")}</ul>`
       );
     }

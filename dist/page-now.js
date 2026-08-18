@@ -1,4 +1,4 @@
-var BULLETIN_URL = "/bulletin.json?v=4";
+var BULLETIN_URL = "/bulletin.json?v=5";
 function bulletinDate(iso) {
   var d = new Date(iso + "T00:00:00");
   if (Number.isNaN(d.getTime())) return iso;
@@ -167,7 +167,7 @@ function BulletinPage({
     className: "bulletin-clock__title"
   }, p.title, p.fee ? " ($)" : ""), React.createElement("span", {
     className: "bulletin-clock__meta"
-  }, p.days, p.where ? ` · ${p.where}` : "", p.note ? ` · ${p.note}` : "")))))), data.valleyDayNote && React.createElement("p", {
+  }, p.days, p.where ? ` · ${p.where}` : "", p.note ? ` · ${p.note}` : "", p.allAges ? " · all ages" : "", p.access ? " · wheelchair accessible" : "")))))), data.valleyDayNote && React.createElement("p", {
     className: "bulletin-note"
   }, data.valleyDayNote)), React.createElement("div", {
     className: "bulletin-stack"

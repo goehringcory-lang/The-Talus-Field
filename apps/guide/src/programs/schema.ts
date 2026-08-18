@@ -38,6 +38,11 @@ export const ProgramEvent = z.object({
   isFree: z.boolean().optional(),
   reservationRequired: z.boolean().optional(),
   url: z.string().optional(),
+  // The printed Yosemite Guide's per-program symbols, carried through the
+  // feed. True-only: an unmarked program leaves these undefined, because the
+  // Guide not marking a program is not a claim that it is inaccessible.
+  accessible: z.boolean().optional(),
+  familyFriendly: z.boolean().optional(),
 })
 export type ProgramEventT = z.infer<typeof ProgramEvent>
 
