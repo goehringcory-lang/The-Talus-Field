@@ -54,6 +54,17 @@
      light and dark; a bare fallback in a var() call cannot flip. */
   --danger: #7a2a10;
 
+  /* Instrument surfaces: the panel fill and the hairline that divides it.
+     One pair per scheme, so every panel, spec strip and readout grid on the
+     app draws the same rule without restating a colour. */
+  --panel: #e6dcc1;
+  --panel-edge: #c1ad84;
+
+  /* Ground texture, swapped per scheme and consumed once, by body: halftone
+     dots on paper, contour rings on granite. */
+  --field-texture: radial-gradient(color-mix(in oklab, var(--ink) 5%, transparent) 1px, transparent 1px);
+  --field-texture-size: 4px 4px;
+
   --serif: 'EB Garamond', 'Source Serif 4', Georgia, 'Times New Roman', serif;
   --display: 'EB Garamond', 'Source Serif 4', Georgia, serif;
   --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
@@ -110,8 +121,8 @@ html {
 
 body {
   background: var(--paper);
-  background-image: radial-gradient(color-mix(in oklab, var(--ink) 5%, transparent) 1px, transparent 1px);
-  background-size: 4px 4px;
+  background-image: var(--field-texture);
+  background-size: var(--field-texture-size);
   background-position: 0 0;
   /* svh: the vh unit includes the iOS collapsed URL bar, causing a height
      jump on scroll. Plain vh stays as the fallback for older engines. */
@@ -152,23 +163,27 @@ h3 { font-size: clamp(20px, 2vw, 24px); font-weight: 600; line-height: 1.25; }
 
 p { margin: 0 0 1.1em; text-wrap: pretty; }
 
+/* Section and meta labels. Both are set in the mono face: they label
+   measured things (counts, stops, dates, conditions) and the instrument
+   surfaces below read as one family because of it. Prose keeps the serif. */
 .eyebrow {
-  font-family: var(--sans);
+  font-family: var(--mono);
   font-size: 10px;
-  font-weight: 700;
+  font-weight: 500;
   text-transform: uppercase;
-  letter-spacing: 0.22em;
+  letter-spacing: 0.2em;
   color: var(--ink-2);
 }
 .eyebrow--moss { color: var(--moss); }
 
 .dateline {
-  font-family: var(--sans);
+  font-family: var(--mono);
   font-size: 11px;
-  font-weight: 600;
+  font-weight: 400;
   text-transform: uppercase;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.12em;
   color: var(--ink-3);
+  font-variant-numeric: tabular-nums;
 }
 
 .mono {
@@ -517,6 +532,12 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
   -webkit-backdrop-filter: blur(6px);
   border-bottom: 1px solid var(--rule);
 }
+.gated-chrome__right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-shrink: 0;
+}
 .gated-chrome__links {
   display: flex;
   align-items: center;
@@ -598,6 +619,7 @@ a:active {
 }
 
 .bottom-nav__tab {
+  position: relative;
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -606,10 +628,10 @@ a:active {
   gap: 4px;
   min-height: 56px;
   padding: 8px 4px;
-  font-family: var(--sans);
-  font-size: 10px;
-  font-weight: 600;
-  letter-spacing: 0.1em;
+  font-family: var(--mono);
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--ink-3);
   text-decoration: none;
@@ -618,6 +640,18 @@ a:active {
 
 .bottom-nav__tab[aria-current='page'] {
   color: var(--moss);
+}
+
+/* The active tab is marked on the bar's own edge, the way a selected
+   channel is marked on an instrument, rather than by colour alone. */
+.bottom-nav__tab[aria-current='page']::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 25%;
+  right: 25%;
+  height: 2px;
+  background: var(--moss);
 }
 
 @media (hover: hover) {
@@ -1039,11 +1073,24 @@ select:focus-visible {
 }
 
 /* ============================================================
-   Dark mode — default light is best in direct sun; dark honors
-   system preference for low-light / OLED battery savings.
+   Granite — the dark scheme.
+
+   Two ways in, and both are needed. The media query is the Auto
+   setting: a device in dark mode gets granite unless the reader
+   has pinned Daylight. The attribute selector is the reader's own
+   choice from Account (lib/theme.ts writes data-theme on <html>).
+
+   Daylight stays the default in Auto on purpose: a cream ground
+   outreads a dark one in direct sun, and this guide is used
+   outdoors. Granite is the low-light and OLED-battery scheme, and
+   the one a reader can pin if they prefer the instrument look.
+
+   The two blocks below are the same palette. Keep them in sync;
+   CSS has no way to share one declaration list across a media
+   query and a plain selector.
    ============================================================ */
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-theme='daylight']) {
     --paper:     #1c1812;
     --paper-2:   #252019;
     --paper-3:   #302a1e;
@@ -1057,8 +1104,35 @@ select:focus-visible {
     --rust:      #d87040;
     --gold:      #c09038;
     --danger:    #d87040;
+    --panel:     #252019;
+    --panel-edge: #3a3022;
+    --field-texture:
+      repeating-radial-gradient(circle at 115% -8%, color-mix(in oklab, var(--ink) 5%, transparent) 0 1px, transparent 1px 30px),
+      repeating-radial-gradient(circle at -20% 108%, color-mix(in oklab, var(--ink) 4%, transparent) 0 1px, transparent 1px 44px);
+    --field-texture-size: auto;
   }
+}
 
+:root[data-theme='granite'] {
+  --paper:     #1c1812;
+  --paper-2:   #252019;
+  --paper-3:   #302a1e;
+  --ink:       #f0e8d8;
+  --ink-2:     #c8b898;
+  --ink-3:     #a09070;
+  --rule:      #c0a87e;
+  --rule-soft: #3a3022;
+  --moss:      #d87040;
+  --moss-2:    #e07850;
+  --rust:      #d87040;
+  --gold:      #c09038;
+  --danger:    #d87040;
+  --panel:     #252019;
+  --panel-edge: #3a3022;
+  --field-texture:
+    repeating-radial-gradient(circle at 115% -8%, color-mix(in oklab, var(--ink) 5%, transparent) 0 1px, transparent 1px 30px),
+    repeating-radial-gradient(circle at -20% 108%, color-mix(in oklab, var(--ink) 4%, transparent) 0 1px, transparent 1px 44px);
+  --field-texture-size: auto;
 }
 
 /* ============================================================

@@ -28,11 +28,15 @@
   line-height: 1.12;
   white-space: nowrap;
 }
+/* Instrument wordmark: the masthead is part of the chrome, so it speaks the
+   chrome's language (caps, tracked); the serif brand voice stays on the
+   front-door lockup (.brand-lockup) and in the content. */
 .masthead-brand__title {
-  font-family: var(--display);
-  font-size: 17px;
-  font-weight: 500;
-  letter-spacing: -0.005em;
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
 }
 .masthead-brand__sub {
   font-family: var(--sans);
@@ -739,10 +743,13 @@
 .region-rows { border-bottom: 1px solid var(--rule); }
 .region-row {
   display: grid;
-  grid-template-columns: 84px 1fr;
-  gap: var(--s4);
-  align-items: start;
-  padding: 16px 0 18px;
+  /* index · thumbnail · body · chevron — the Surveyor index row: name and one
+     mono data line, no teaser. The teasers' seasonal facts live on the region
+     pages and, live, in the conditions panel above. */
+  grid-template-columns: 22px 52px 1fr 16px;
+  gap: var(--s3);
+  align-items: center;
+  padding: 14px 0;
   border-top: 1px solid var(--rule);
   text-decoration: none;
   color: var(--ink);
@@ -750,7 +757,7 @@
 .region-row__media {
   aspect-ratio: 1;
   overflow: hidden;
-  border: 1px solid var(--ink);
+  border: 1px solid var(--panel-edge);
 }
 .region-row__media img,
 .region-row__media picture {
@@ -759,13 +766,28 @@
   height: 100%;
   object-fit: cover;
 }
-.region-row__body { min-width: 0; }
+/* The Secret Guide's slot in the index: an icon tile where the regions carry
+   a photograph, because its entries deliberately have no single face. */
+.region-row__media--icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--panel);
+  color: var(--moss);
+}
+.region-row__media--icon svg { width: 22px; height: 22px; }
+.region-row__body {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
 .region-row__title {
   font-family: var(--display);
-  font-size: clamp(20px, 3vw, 26px);
+  font-size: clamp(19px, 3vw, 24px);
   font-weight: 500;
   line-height: 1.12;
-  margin: 0 0 6px;
+  margin: 0;
   transition: color 0.12s ease;
 }
 @media (hover: hover) {
@@ -775,29 +797,11 @@
   }
   .region-row:hover .region-row__title { color: var(--moss); }
 }
-.region-row__teaser {
-  font-family: var(--serif);
-  font-style: italic;
-  font-size: 14px;
-  color: var(--ink-2);
-  line-height: 1.45;
-  margin: 0 0 8px;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
 .region-row__meta {
   display: flex;
   flex-wrap: wrap;
   gap: 4px 14px;
   align-items: baseline;
-}
-.region-row__today {
-  font-family: var(--sans);
-  font-size: 12px;
-  color: var(--ink-3);
 }
 
 /* Attribution under the region rows sits outside .card-stack now. */
@@ -1186,4 +1190,453 @@
     border-radius: var(--radius);
     box-shadow: 4px 4px 0 0 var(--ink);
   }
+}
+
+/* ============================================================
+   Instrument surfaces (the Surveyor pass)
+
+   The guide reads like a field instrument where it carries live
+   or measured data, and like a journal where it carries prose.
+   These primitives are the instrument half: panels of readouts,
+   spec strips, segment meters, HUD-framed photography. Prose
+   keeps the serif and the measure it always had.
+
+   Everything here draws from --panel / --panel-edge, so the whole
+   family follows the scheme without restating a colour.
+   ============================================================ */
+
+/* ---- Panel: a bordered block of readouts -------------------- */
+
+.panel {
+  border: 1px solid var(--panel-edge);
+  background: var(--panel);
+  margin: 0 0 var(--s5);
+}
+
+.panel__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--s3);
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--panel-edge);
+}
+
+.panel__title {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+}
+
+/* The "as of" stamp. Quiet by default; --warn when the reading is
+   old enough that the reader should know before trusting it. */
+.panel__stamp {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  color: var(--ink-3);
+  white-space: nowrap;
+}
+.panel__stamp--warn { color: var(--gold); }
+
+/* Hairline grid: the gap IS the rule, so cells divide cleanly at
+   any count without per-cell border bookkeeping. */
+.panel__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1px;
+  background: var(--panel-edge);
+}
+
+/* ---- Readout: one measured value ---------------------------- */
+
+.readout {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 13px 14px;
+  background: var(--panel);
+  min-width: 0;
+}
+/* An odd last cell spans the row; without it the empty half shows
+   the grid's edge colour and reads as a broken cell. */
+.readout--wide { grid-column: 1 / -1; }
+
+.readout__label {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+.readout__value {
+  font-family: var(--mono);
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.1;
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+.readout__value--signal { color: var(--gold); }
+.readout__value--alert { color: var(--rust); }
+
+.readout__note {
+  font-family: var(--mono);
+  font-size: 9.5px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+  line-height: 1.45;
+}
+
+/* ---- Spec strip: the measured facts about one stop ----------- */
+
+/* Flex, not grid: a stop can carry anywhere from two to seven readings, and a
+   grid's trailing empty cells paint as an edge-coloured hole that reads like a
+   reading that failed to load. Flex lets the last row's cells grow to fill the
+   strip, so it closes cleanly at every count. Rules come from the cells' own
+   right/bottom borders for the same reason. */
+.spec-strip {
+  display: flex;
+  flex-wrap: wrap;
+  border: 1px solid var(--panel-edge);
+  border-width: 1px 0 0 1px;
+  background: var(--panel);
+  margin: 14px 0 22px;
+}
+
+/* Two to a row at phone width, the same rhythm as the Home panel's readouts.
+   Four to a row fits the labels but not the values: a coordinate or "4,400 ft"
+   breaks mid-token in an 87px cell, and a reading split across two lines stops
+   being scannable. An odd last cell grows to fill its row. */
+.spec {
+  flex: 1 1 150px;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 11px 12px;
+  border-right: 1px solid var(--panel-edge);
+  border-bottom: 1px solid var(--panel-edge);
+}
+/* Labels never wrap: a two-line label makes its cell's value start lower than
+   the rest of the row, and a spec strip whose numbers do not sit on one line
+   stops reading as a set of readings. Keep every label short enough to fit. */
+.spec__label {
+  font-family: var(--mono);
+  font-size: 8.5px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  white-space: nowrap;
+}
+.spec__value {
+  font-family: var(--mono);
+  font-size: 13px;
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+.spec__value--signal { color: var(--gold); }
+/* The coordinate spec is a link out to native Maps. */
+a.spec {
+  text-decoration: none;
+  color: var(--ink);
+  min-height: 44px;
+}
+@media (hover: hover) {
+  a.spec:hover { background: var(--paper-3); }
+  a.spec:hover .spec__value { color: var(--moss); }
+}
+
+/* ---- Segment meter: offline packs on this device ------------- */
+
+.meter {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr;
+  gap: 4px;
+  margin: 10px 0 0;
+}
+.meter__seg {
+  height: 6px;
+  background: var(--panel-edge);
+}
+.meter__seg--on { background: var(--gold); }
+
+/* ---- HUD photography ----------------------------------------
+   The plate, stripped of its engraved offset and read as an
+   instrument view instead: hairline frame, corner brackets, a
+   scrim that guarantees contrast for anything laid over it. */
+
+.plate--hud .plate__frame {
+  border-color: var(--panel-edge);
+  box-shadow: none;
+}
+.plate--hud .plate__frame::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    to top,
+    rgb(18 14 8 / 62%) 0%,
+    rgb(18 14 8 / 6%) 42%,
+    rgb(18 14 8 / 0%) 70%
+  );
+}
+
+/* Four corner brackets as eight hairlines on one element: the
+   frame's two pseudo-elements are already spent on the scrim and
+   the plate tag. Fixed near-white, not a token: these sit on a
+   photograph over the scrim, never on the page ground. */
+.plate__ticks {
+  position: absolute;
+  inset: 8px;
+  pointer-events: none;
+  --hud-ink: rgb(255 255 255 / 78%);
+  background:
+    linear-gradient(var(--hud-ink), var(--hud-ink)) left top / 14px 1.5px no-repeat,
+    linear-gradient(var(--hud-ink), var(--hud-ink)) left top / 1.5px 14px no-repeat,
+    linear-gradient(var(--hud-ink), var(--hud-ink)) right top / 14px 1.5px no-repeat,
+    linear-gradient(var(--hud-ink), var(--hud-ink)) right top / 1.5px 14px no-repeat,
+    linear-gradient(var(--hud-ink), var(--hud-ink)) left bottom / 14px 1.5px no-repeat,
+    linear-gradient(var(--hud-ink), var(--hud-ink)) left bottom / 1.5px 14px no-repeat,
+    linear-gradient(var(--hud-ink), var(--hud-ink)) right bottom / 14px 1.5px no-repeat,
+    linear-gradient(var(--hud-ink), var(--hud-ink)) right bottom / 1.5px 14px no-repeat;
+}
+
+/* Readings laid along the bottom of a HUD frame. */
+.plate__foot {
+  position: absolute;
+  left: 22px;
+  right: 22px;
+  bottom: 18px;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--s3);
+  pointer-events: none;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  color: rgb(255 255 255 / 88%);
+  font-variant-numeric: tabular-nums;
+}
+.plate__foot span:first-child { color: rgb(240 232 216 / 78%); }
+
+/* ---- Region index rows as instrument rows -------------------- */
+
+.region-row__index {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  color: var(--gold);
+  padding-top: 2px;
+}
+.region-row__go {
+  width: 16px;
+  height: 16px;
+  color: var(--ink-3);
+  align-self: center;
+  flex-shrink: 0;
+}
+@media (hover: hover) {
+  .region-row:hover .region-row__go { color: var(--moss); }
+}
+
+/* ---- Scheme picker (Account) --------------------------------- */
+
+.theme-picker {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s2);
+  margin: 12px 0 10px;
+}
+.theme-picker .chip--filter { flex: 1 1 0; justify-content: center; }
+
+/* ---- Home hero (the Surveyor front page) --------------------- */
+
+.home-hero {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  margin: 0 0 var(--s5);
+}
+.home-hero__title {
+  font-family: var(--sans);
+  font-size: clamp(27px, 7.5vw, 34px);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  line-height: 1.05;
+  margin: 0;
+}
+.home-hero__sig {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 19px;
+  color: var(--ink-2);
+  margin: 0;
+}
+
+/* ---- Trip readout strip -------------------------------------- */
+
+.trip-strip {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s3);
+  border: 1px solid var(--panel-edge);
+  background: var(--panel);
+  padding: 12px 14px;
+  margin: 0 0 var(--s5);
+  /* The strip is one link; the global underline reads as three. */
+  text-decoration: none;
+}
+@media (hover: hover) {
+  .trip-strip:hover { border-color: var(--moss); }
+}
+.trip-strip__meta {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+}
+.trip-strip__label {
+  font-family: var(--mono);
+  font-size: 8.5px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+.trip-strip__value {
+  font-family: var(--mono);
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+.trip-strip__cta {
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--moss);
+  border: 1px solid var(--moss);
+  padding: 9px 14px;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+@media (hover: hover) {
+  .trip-strip__cta:hover { background: var(--moss); color: var(--paper); }
+}
+
+/* ---- Instrument tiles (map / hikes / programs / night sky) ---- */
+
+.instrument-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+.instrument-tile {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 14px;
+  border: 1px solid var(--panel-edge);
+  background: var(--panel);
+  text-decoration: none;
+  color: var(--ink);
+}
+@media (hover: hover) {
+  .instrument-tile:hover { border-color: var(--moss); color: var(--ink); }
+}
+.instrument-tile__icon {
+  width: 20px;
+  height: 20px;
+  color: var(--moss);
+}
+.instrument-tile__label {
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.instrument-tile__note {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  line-height: 1.5;
+}
+
+/* ---- Offline packs panel ------------------------------------- */
+
+.packs-panel {
+  display: block;
+  padding: 14px;
+  text-decoration: none;
+  color: var(--ink);
+}
+@media (hover: hover) {
+  .packs-panel:hover { border-color: var(--moss); }
+}
+.packs-panel__row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--s3);
+}
+.packs-panel__label {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+.packs-panel__value {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+.packs-panel__note {
+  margin: 10px 0 0;
+  font-family: var(--mono);
+  font-size: 9.5px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+  line-height: 1.6;
+}
+
+/* ---- Masthead offline chip ----------------------------------- */
+
+.masthead-offline {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  white-space: nowrap;
+}
+.masthead-offline__dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--gold);
 }

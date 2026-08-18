@@ -12,6 +12,12 @@ import { registerServiceWorker } from './pwa/registerSW'
 import { stashPendingImportFromUrl } from './trip/importTrip'
 import { startPlanSync } from './sync/planSync'
 import { startPushSync } from './push/push'
+import { applyTheme, readTheme } from './lib/theme'
+
+// First, before anything paints: a pinned colour scheme has to be on <html>
+// ahead of the first frame, or the app flashes the device's scheme and then
+// swaps under the reader.
+applyTheme(readTheme())
 
 // Before render: Chrome can fire beforeinstallprompt at any moment after
 // load, and the install surfaces (welcome page, banner) mount later.

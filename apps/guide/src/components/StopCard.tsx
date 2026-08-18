@@ -63,6 +63,21 @@ export default function StopCard({
         tag={plateTag}
         caption={!compact ? photo?.caption : undefined}
         credit={!compact && credit ? formatCredit(credit) : undefined}
+        // The full read gets the instrument frame; list cards keep the plate,
+        // where a scrim over four stacked photos would only muddy the scan.
+        hud={!compact}
+        footer={
+          !compact && (stop.coord || stop.elevationFt !== undefined) ? (
+            <>
+              <span>
+                {stop.coord
+                  ? `${stop.coord[1].toFixed(4)} N · ${Math.abs(stop.coord[0]).toFixed(4)} W`
+                  : ''}
+              </span>
+              <span>{stop.elevationFt !== undefined ? formatElevation(stop.elevationFt) : ''}</span>
+            </>
+          ) : undefined
+        }
       >
         {photo ? (
           <ResponsivePhoto
@@ -91,7 +106,61 @@ export default function StopCard({
         {actions && <StopActions stopId={stop.id} title={stop.title} />}
       </div>
 
-      {(stop.coord || stop.elevationFt || stop.timeBudgetMin || stop.difficulty || stop.season || regionLabel) && (
+      {/* The full read states the measured facts as a spec strip: these are
+          readings, and a row of pills reads as a set of filters instead. List
+          cards keep the pills, which wrap better under a stack of headlines. */}
+      {!compact &&
+        (stop.coord ||
+          stop.elevationFt !== undefined ||
+          stop.timeBudgetMin !== undefined ||
+          stop.difficulty ||
+          stop.season ||
+          regionLabel) && (
+          <div className="spec-strip">
+            <MapsLink coord={stop.coord} label={stop.title} variant="spec" />
+            {stop.elevationFt !== undefined && (
+              <div className="spec">
+                <span className="spec__label">Elev</span>
+                <span className="spec__value">{formatElevation(stop.elevationFt)}</span>
+              </div>
+            )}
+            {stop.timeBudgetMin !== undefined && (
+              <div className="spec">
+                <span className="spec__label">Time</span>
+                <span className="spec__value">{formatTime(stop.timeBudgetMin)}</span>
+              </div>
+            )}
+            {stop.difficulty && (
+              <div className="spec">
+                <span className="spec__label">Effort</span>
+                <span className="spec__value">{DIFFICULTY_LABEL[stop.difficulty]}</span>
+              </div>
+            )}
+            {stop.season && (
+              <div className="spec">
+                <span className="spec__label">Season</span>
+                <span className="spec__value spec__value--signal">{stop.season}</span>
+              </div>
+            )}
+            {regionLabel && (
+              <div className="spec">
+                <span className="spec__label">Region</span>
+                <span className="spec__value">{regionLabel}</span>
+              </div>
+            )}
+            {stop.photoTiming && (
+              <div className="spec">
+                <span className="spec__label">Light</span>
+                <span className="spec__value spec__value--signal">
+                  {PHOTO_TIMING_LABEL[stop.photoTiming.best] ?? stop.photoTiming.best}
+                </span>
+              </div>
+            )}
+          </div>
+        )}
+
+      {compact &&
+        (stop.coord || stop.elevationFt || stop.timeBudgetMin || stop.difficulty || stop.season || regionLabel) && (
         <div className="meta-row">
           <MapsLink coord={stop.coord} label={stop.title} />
           {regionLabel && <Chip variant="meta">{regionLabel}</Chip>}
