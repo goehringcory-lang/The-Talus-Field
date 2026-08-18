@@ -200,7 +200,7 @@ export default function Hikes() {
                       <span className="hike-row__gain">{formatGain(hike.elevationGainFt)}</span>
                       {track && <TrackSparkline spark={track.spark} />}
                     </span>
-                    <span>
+                    <span className="hike-row__main">
                       <h2 className="hike-row__title">{hike.title}</h2>
                       <span className="hike-row__meta">
                         <span>{DIFFICULTY_LABEL[hike.difficulty]}</span>
