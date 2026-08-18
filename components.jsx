@@ -1867,7 +1867,7 @@ function WebcamStrip() {
 // ============================================================
 const GUIDE_PROMO_APP_BASE =
   (typeof window !== "undefined" && window.GUIDE_APP_BASE) ||
-  "https://talus-field-guide.pages.dev";
+  "https://guide.thetalusfieldjournal.com";
 
 function GuidePromo({ go, location, title, body, cta, sample = true, style }) {
   return (

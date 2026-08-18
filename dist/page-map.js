@@ -8,7 +8,7 @@ var {
 var POINTS_URL = "/points.geojson?v=25";
 window.POINTS_URL = POINTS_URL;
 var MAP_API_BASE = typeof window !== "undefined" && window.GUIDE_API_BASE || "https://api.thetalusfieldjournal.com";
-var GUIDE_APP_BASE = typeof window !== "undefined" && window.GUIDE_APP_BASE || "https://talus-field-guide.pages.dev";
+var GUIDE_APP_BASE = typeof window !== "undefined" && window.GUIDE_APP_BASE || "https://guide.thetalusfieldjournal.com";
 var STORAGE_KEY = "tfg.trip";
 var STORAGE_VERSION = 1;
 var TRIP_CAP = 30;

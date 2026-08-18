@@ -340,6 +340,11 @@ should stay blocked; marketing surfaces should not. **M.**
 on a hostname that looks nothing like the brand, at the highest-anxiety moment in the funnel.
 LAUNCH-READINESS documents the safe order: attach `guide.thetalusfieldjournal.com` first, then
 flip both vars. Also unblocks item 8. **M.**
+*Resolved (August 2026), in the documented order: domain attached to the Pages project, a stale
+`guide.thetalusfieldjournal.com/*` route on the editorial Worker that was shadowing it removed,
+then both vars flipped to `https://guide.thetalusfieldjournal.com`. The `wrangler.toml` line
+cited above has since drifted to `:66`. The pages.dev origin stays in the CORS allowlist so
+magic links already in inboxes keep working.*
 
 **10. Group codes is a B2B pitch page with no price.** `page-partners.jsx:20-26` removed the
 tier table, and there's no promo/redeem route in the Worker. A lodging manager can't get a

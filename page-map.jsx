@@ -32,7 +32,7 @@ const MAP_API_BASE =
 // override convention as above (window.GUIDE_APP_BASE, see page-guide.jsx).
 const GUIDE_APP_BASE =
   (typeof window !== "undefined" && window.GUIDE_APP_BASE) ||
-  "https://talus-field-guide.pages.dev";
+  "https://guide.thetalusfieldjournal.com";
 const STORAGE_KEY = "tfg.trip";
 const STORAGE_VERSION = 1;
 const TRIP_CAP = 30;

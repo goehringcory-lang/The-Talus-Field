@@ -15,7 +15,7 @@ export type Env = {
   PHOTO_INBOX?: R2Bucket
 
   // Vars (wrangler.toml [vars])
-  APP_BASE_URL: string         // PWA origin; e.g. https://talus-field-guide.pages.dev
+  APP_BASE_URL: string         // PWA origin; e.g. https://guide.thetalusfieldjournal.com
   EDITORIAL_BASE_URL: string   // e.g. https://thetalusfieldjournal.com
   GUIDE_PRICE_CENTS: string    // "399"
   GUIDE_RENEWAL_PRICE_CENTS: string // "249"; discounted rebuy at/near expiry

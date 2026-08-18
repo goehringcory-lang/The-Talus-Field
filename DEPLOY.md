@@ -141,11 +141,13 @@ npm run build
 wrangler pages deploy dist --project-name talus-field-guide
 ```
 
-The app serves at `https://talus-field-guide.pages.dev`. The custom domain
-`guide.thetalusfieldjournal.com` is deliberately unattached until launch; when
-attaching it, also flip the `GUIDE_APP_BASE` default in `page-guide.jsx`, the
-`APP_BASE_URL` var in `workers/wrangler.toml` (then redeploy the Worker), and
-the docs.
+The app serves at `https://guide.thetalusfieldjournal.com` (custom domain
+attached to the Pages project at launch; the auto-generated
+`talus-field-guide.pages.dev` host keeps resolving alongside it). The
+`GUIDE_APP_BASE` default in `page-guide.jsx` and the `APP_BASE_URL` var in
+`workers/wrangler.toml` both point at the custom domain; the pages.dev origin
+stays in the Worker's CORS allowlist (`workers/src/index.ts`) so magic links
+already sent against it keep working.
 
 ## 7. Deploy the editorial site (Cloudflare Workers Build, auto)
 
@@ -170,7 +172,7 @@ Custom domains `thetalusfieldjournal.com` + `www` are bound in
 1. Open the deployed editorial site → click `Field Guide` → the buy box renders "Buy the guide → $3.99" with the price read live from `/api/inventory` (there is no sold/cap counter; a sold-out month surfaces only as the reopen notice after checkout returns 409).
 2. Click buy → Stripe checkout opens. Use test card `4242 4242 4242 4242`, any future date, any CVC, any zip.
 3. Payment completes → redirected to `?guide=success` → email arrives within ~30s with a 6-digit code and a magic link.
-4. Click the magic link → opens `https://talus-field-guide.pages.dev/open?token=...` → "Signing you in…" → redirects to the setup page, then home with four region cards (`valley`, `glacier-mariposa`, `tuolumne`, `hetch-hetchy`).
+4. Click the magic link → opens `https://guide.thetalusfieldjournal.com/open?token=...` → "Signing you in…" → redirects to the setup page, then home with four region cards (`valley`, `glacier-mariposa`, `tuolumne`, `hetch-hetchy`).
 5. Pick a region → pick a stop. Read the body. Click "Open in Maps" → native maps app opens at the coordinate (note: 28 coords across stops, secret spots, and amenities are still flagged `TODO: verify on the ground` and may land you near, not on, the actual spot).
 6. **PWA install:** in mobile Chrome/Safari, the install prompt appears; install to home screen.
 7. **Offline:** turn on airplane mode, reopen the installed app → home and stop pages still render from cache.
@@ -186,7 +188,7 @@ NOW=$(date +%s)
 EXPIRES=$((NOW + 60*60*24*30*18))
 wrangler kv key put --binding=GUIDE_BUYERS "buyer:$EMAIL" "{\"email\":\"$EMAIL\",\"purchasedAt\":$NOW,\"expiresAt\":$EXPIRES,\"accessToken\":\"$TOKEN\",\"accessCode\":\"123456\"}" --remote
 wrangler kv key put --binding=GUIDE_BUYERS "token:$TOKEN" "$EMAIL" --remote
-echo "Magic link: https://talus-field-guide.pages.dev/open?token=$TOKEN"
+echo "Magic link: https://guide.thetalusfieldjournal.com/open?token=$TOKEN"
 ```
 
 Open the printed URL → JWT is issued, you're in.
@@ -208,7 +210,7 @@ wrangler kv key put --binding=GUIDE_BUYERS "buyer:goehring.cory@gmail.com" \
   "{\"email\":\"goehring.cory@gmail.com\",\"purchasedAt\":$NOW,\"expiresAt\":4102444800,\"accessToken\":\"$TOKEN\",\"accessCode\":\"$CODE\"}" --remote
 wrangler kv key put --binding=GUIDE_BUYERS "token:$TOKEN" "goehring.cory@gmail.com" --remote
 echo "Access code (store in a password manager): $CODE"
-echo "Magic link: https://talus-field-guide.pages.dev/open?token=$TOKEN"
+echo "Magic link: https://guide.thetalusfieldjournal.com/open?token=$TOKEN"
 ```
 
 Rules that matter:
@@ -222,7 +224,7 @@ Rules that matter:
 - Keep `ADMIN_USERNAME`/`ADMIN_CODE` secrets set as the break-glass operator
   door; operator sessions carry a shorter 90-day JWT, so the buyer record
   above is the primary login.
-- Sign in at `https://talus-field-guide.pages.dev/login` with the email and
+- Sign in at `https://guide.thetalusfieldjournal.com/login` with the email and
   code, or use the magic link once.
 
 ## Going live (after testing)
