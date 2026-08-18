@@ -1,10 +1,25 @@
 import type { ReactNode } from 'react'
 import { Link, useLocation } from 'react-router-dom'
+import { PACK_IDS } from '../offline/manifest'
+import { isPackCompleted } from '../offline/useDownloads'
 import BottomNav from './BottomNav'
 import TripAddNotice from './TripAddNotice'
 
 type Props = {
   children: ReactNode
+}
+
+// Offline status as a masthead reading: pack count while downloads are
+// incomplete, "Offline ready" once the device holds everything. Read at
+// render like the Home offline card; the chip is a status, not a live wire.
+function OfflineChip() {
+  const done = PACK_IDS.filter((id) => isPackCompleted(id)).length
+  return (
+    <span className="masthead-offline" aria-label={`Offline packs: ${done} of ${PACK_IDS.length}`}>
+      <span className="masthead-offline__dot" aria-hidden="true" />
+      {done === PACK_IDS.length ? 'Offline ready' : `Offline ${done}/${PACK_IDS.length}`}
+    </span>
+  )
 }
 
 // App shell for every gated route: a one-line masthead up top (brand lockup
@@ -42,10 +57,11 @@ export default function GatedChrome({ children }: Props) {
           />
           <span className="masthead-brand__text">
             <span className="masthead-brand__title">The Talus Field</span>
-            <span className="masthead-brand__sub">Field Guide · 2026 Edition</span>
           </span>
         </Link>
-        <nav className="gated-chrome__links" aria-label="Quick links">
+        <div className="gated-chrome__right">
+          <OfflineChip />
+          <nav className="gated-chrome__links" aria-label="Quick links">
           <Link
             to="/map"
             className="gated-chrome__link"
@@ -67,7 +83,8 @@ export default function GatedChrome({ children }: Props) {
           >
             Account →
           </Link>
-        </nav>
+          </nav>
+        </div>
       </header>
       {/* The skip-link and route-change focus target. Every gated route
           renders its own <main> inside here, so this wrapper is the one

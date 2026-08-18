@@ -18,7 +18,6 @@ import {
   HIKES,
   REGIONS,
   SEASONAL_EVENTS,
-  SECRET_GUIDE_META,
   getSecretGuideEntries,
   getStopById,
   getStopsByRegion,
@@ -41,7 +40,6 @@ import ResponsivePhoto from '../components/ResponsivePhoto'
 import UpdatedStamp from '../components/UpdatedStamp'
 import Button from '../components/ui/Button'
 import Callout from '../components/ui/Callout'
-import PageHeader from '../components/ui/PageHeader'
 import AirLine from '../air/AirLine'
 import FlowLine from '../flow/FlowLine'
 import { useWeather } from '../weather/useWeather'
@@ -189,12 +187,10 @@ function InSeasonStrip() {
           </li>
         ))}
       </ul>
+      {/* The night sky page graduated to an instrument tile; one crosslink. */}
       <div className="home-crosslinks">
         <Link to="/this-week" className="more-link">
           This week in the park: alerts, seasons, tonight's sky →
-        </Link>
-        <Link to="/night" className="more-link">
-          The night sky page →
         </Link>
       </div>
     </section>
@@ -241,30 +237,6 @@ function ToolGlyph({ children }: { children: ReactNode }) {
 }
 
 const PLAN_ICONS = {
-  trip: (
-    <ToolGlyph>
-      <rect x="3" y="5" width="18" height="16" rx="2" />
-      <path d="M8 3v4M16 3v4M3 10h18M8 15h3M13 15h3" />
-    </ToolGlyph>
-  ),
-  programs: (
-    <ToolGlyph>
-      <path d="M12 3c2.2 2.6 4 4.6 4 7.2a4 4 0 0 1-8 0C8 7.6 9.8 5.6 12 3z" />
-      <path d="M5 21l14-4M19 21L5 17" />
-    </ToolGlyph>
-  ),
-  hikes: (
-    <ToolGlyph>
-      <path d="M2 20L9 7l4 7 2.5-4L21 20H2z" />
-      <path d="M11 11l-1.5 2.5" />
-    </ToolGlyph>
-  ),
-  map: (
-    <ToolGlyph>
-      <path d="M9 3L3 6v15l6-3 6 3 6-3V3l-6 3-6-3z" />
-      <path d="M9 3v15M15 6v15" />
-    </ToolGlyph>
-  ),
   dining: (
     <ToolGlyph>
       <path d="M7 3v18M4 3v5a3 3 0 0 0 6 0V3" />
@@ -345,13 +317,35 @@ export default function Home() {
   return (
     <GatedChrome>
       <main className="wrap wrap--narrow page">
-        <PageHeader
-          eyebrow="Yosemite National Park"
-          title="The whole guide, on one page."
-          intro="Four regions to read, a planner that turns your dates into a day-by-day schedule, and all of it built to work where the park has no signal. Everything the guide does is indexed below."
-        />
+        {/* The Surveyor front page: identity in three lines, then readings.
+            The orientation copy lives in "How this guide works" further down;
+            a returning buyer gets the park's state before any prose. */}
+        <header className="home-hero">
+          <span className="eyebrow">Yosemite National Park · 2026</span>
+          <h1 className="home-hero__title">Field Guide</h1>
+          <p className="home-hero__sig">The whole guide, on one page.</p>
+        </header>
 
         <ParkNowPanel />
+
+        {/* The trip readout: always present, because this is the trip
+            planner's front door on the index page (the tab bar is the other).
+            The value line states whatever is known so far. */}
+        <Link to="/trip" className="trip-strip">
+          <span className="trip-strip__meta">
+            <span className="trip-strip__label">Your trip</span>
+            <span className="trip-strip__value">
+              {datesLabel && planCount > 0
+                ? `${datesLabel} · ${planCount} ${planCount === 1 ? 'item' : 'items'}`
+                : datesLabel
+                  ? `${datesLabel} · add stops and hikes`
+                  : planCount > 0
+                    ? `${planCount} ${planCount === 1 ? 'item' : 'items'} · set your dates`
+                    : 'Start with your dates'}
+            </span>
+          </span>
+          <span className="trip-strip__cta">Open board →</span>
+        </Link>
 
         <PendingImportCard />
 
@@ -361,39 +355,8 @@ export default function Home() {
           <TodayCard today={todayIso()} dates={tripDates} items={plan.items} />
         )}
 
-        <section aria-label="How this guide works" className="home-steps-section">
-          <span className="eyebrow">How this guide works</span>
-          <ol className="home-steps">
-            <li>
-              <span className="home-steps__num" aria-hidden="true">1</span>
-              <p>
-                <strong>Read.</strong> Four regions, {stopCount} stops in driving order, plus{' '}
-                <Link to="/secret-guide">the Secret Guide</Link> and the{' '}
-                <Link to="/essentials">know-before-you-go essentials</Link>.
-              </p>
-            </li>
-            <li>
-              <span className="home-steps__num" aria-hidden="true">2</span>
-              <p>
-                <strong>Plan.</strong> Set your trip dates once: <Link to="/programs">park programs</Link>{' '}
-                and the <Link to="/trip">trip planner</Link> share them. Add stops and{' '}
-                <Link to="/hikes">day hikes</Link>, then export the plan to your calendar.
-              </p>
-            </li>
-            <li>
-              <span className="home-steps__num" aria-hidden="true">3</span>
-              <p>
-                <strong>Go offline.</strong> <Link to="/account">Download the packs</Link> on wifi the
-                night before. After that, airplane mode changes nothing.
-              </p>
-            </li>
-          </ol>
-        </section>
-
-        <InSeasonStrip />
-
-        <section aria-label="The four regions" className="page-section">
-          <span className="eyebrow">Read the guide · {stopCount} stops in four regions</span>
+        <section aria-label="The guide" className="page-section">
+          <span className="eyebrow">The guide · {stopCount} stops · 4 regions</span>
           <div className="region-rows">
             {REGIONS.map((region, i) => {
               const today = showForecast
@@ -411,18 +374,15 @@ export default function Home() {
                       loading="lazy"
                       width={400}
                       height={400}
-                      sizes="84px"
+                      sizes="52px"
                     />
                   </div>
                   <div className="region-row__body">
                     <h2 className="region-row__title">{region.title}</h2>
-                    <p className="region-row__teaser">{region.teaser}</p>
-                    <div className="region-row__meta">
-                      <span className="dateline">
-                        {getStopsByRegion(region.id).length} stops
-                      </span>
-                      {today && <span className="region-row__today">{today}</span>}
-                    </div>
+                    <span className="dateline">
+                      {getStopsByRegion(region.id).length} stops
+                      {today ? ` · ${today}` : ''}
+                    </span>
                   </div>
                   <svg
                     className="region-row__go"
@@ -439,6 +399,42 @@ export default function Home() {
                 </Link>
               )
             })}
+            {/* The Secret Guide is the index's fifth reading section: same row
+                anatomy, an icon tile where the regions carry a photo, because
+                its entries deliberately have no single face. */}
+            <Link to="/secret-guide" className="region-row">
+              <span className="region-row__index" aria-hidden="true">SG</span>
+              <div className="region-row__media region-row__media--icon" aria-hidden="true">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="M12 3l2.1 5.4 5.9.4-4.5 3.7 1.5 5.7L12 15l-5 3.2 1.5-5.7L4 8.8l5.9-.4L12 3z" />
+                </svg>
+              </div>
+              <div className="region-row__body">
+                <h2 className="region-row__title">The Secret Guide</h2>
+                <span className="dateline">
+                  {secretCount} entries · none of it makes the brochures
+                </span>
+              </div>
+              <svg
+                className="region-row__go"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                aria-hidden="true"
+              >
+                <path d="M9 18l6-6-6-6" />
+              </svg>
+            </Link>
           </div>
           {/* One attribution for all four lines; repeating it per row is noise. */}
           {showForecast && weather.fetchedAt && (
@@ -456,53 +452,44 @@ export default function Home() {
               than something a trip pivots on. */}
           <AirLine />
           <FlowLine />
-          <div className="home-crosslinks">
-            <Link to="/map" className="more-link">
-              Every stop pinned on the park map →
-            </Link>
-            <Link to="/search" className="more-link">
-              Search the whole guide →
-            </Link>
-          </div>
         </section>
 
-        <section aria-label="Plan your days" className="page-section">
-          <span className="eyebrow">Plan your days</span>
-          <div className="tool-grid">
-            <ToolCard
-              to="/trip"
-              title="Trip planner"
-              icon={PLAN_ICONS.trip}
-              teaser="Dates, programs, stops, and hikes assembled into a day-by-day schedule, then exported to your calendar with GPS coordinates and directions links."
-              meta={
-                planCount > 0
-                  ? `${planCount} ${planCount === 1 ? 'item' : 'items'} planned${datesLabel ? ` · ${datesLabel}` : ''}`
-                  : datesLabel
-                    ? `Dates set · ${datesLabel}`
-                    : 'Start with your dates'
-              }
-            />
-            <ToolCard
-              to="/programs"
-              title="Park programs"
-              icon={PLAN_ICONS.programs}
-              teaser="Ranger walks, Junior Ranger tables, tours, star parties, and the seasonal almanac, listed day by day for your dates. Syncs online, readable offline."
-              meta={datesLabel ? `Showing ${datesLabel}` : 'Day-by-day for your dates'}
-            />
-            <ToolCard
-              to="/hikes"
-              title="Day hikes"
-              icon={PLAN_ICONS.hikes}
-              teaser="Every in-park day hike with distance, elevation gain, and difficulty. A hike drops into a trip day just like a stop."
-              meta={`${HIKES.length} hikes · strolls to Half Dome`}
-            />
-            <ToolCard
-              to="/map"
-              title="Park map"
-              icon={PLAN_ICONS.map}
-              teaser="Every stop and secret spot pinned on a topo map, with filters, parking and campground pins, and a near-you list. Tiles download for offline."
-              meta="Topo map · works in airplane mode"
-            />
+        <section aria-label="Instruments" className="page-section">
+          <span className="eyebrow">Instruments</span>
+          <div className="instrument-grid">
+            <Link to="/map" className="instrument-tile">
+              <svg className="instrument-tile__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <path d="M9 3L3 6v15l6-3 6 3 6-3V3l-6 3-6-3z" />
+                <path d="M9 3v15M15 6v15" />
+              </svg>
+              <span className="instrument-tile__label">Topo map</span>
+              <span className="instrument-tile__note">Every stop pinned · works in airplane mode</span>
+            </Link>
+            <Link to="/hikes" className="instrument-tile">
+              <svg className="instrument-tile__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <path d="M2 20L9 7l4 7 2.5-4L21 20H2z" />
+                <path d="M11 11l-1.5 2.5" />
+              </svg>
+              <span className="instrument-tile__label">Day hikes</span>
+              <span className="instrument-tile__note">{HIKES.length} trails · profiles · GPX</span>
+            </Link>
+            <Link to="/programs" className="instrument-tile">
+              <svg className="instrument-tile__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <path d="M12 3c2.2 2.6 4 4.6 4 7.2a4 4 0 0 1-8 0C8 7.6 9.8 5.6 12 3z" />
+                <path d="M5 21l14-4M19 21L5 17" />
+              </svg>
+              <span className="instrument-tile__label">Programs</span>
+              <span className="instrument-tile__note">
+                {datesLabel ? `Showing ${datesLabel}` : 'Day by day for your dates'}
+              </span>
+            </Link>
+            <Link to="/night" className="instrument-tile">
+              <svg className="instrument-tile__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <path d="M20.5 14.1A8.5 8.5 0 1 1 9.9 3.5a7 7 0 0 0 10.6 10.6z" />
+              </svg>
+              <span className="instrument-tile__label">Night sky</span>
+              <span className="instrument-tile__note">Moon · stars · computed on-device</span>
+            </Link>
           </div>
         </section>
 
@@ -546,12 +533,6 @@ export default function Home() {
               </div>
             </ToolCard>
             <ToolCard
-              to="/secret-guide"
-              title={SECRET_GUIDE_META.title}
-              teaser="The quiet vistas, hidden trails, parking moves, camping you can actually get, and the park after dark. None of it makes the brochures."
-              meta={`${secretCount} entries · Vistas, trails, parking, camping, after dark`}
-            />
-            <ToolCard
               to="/wildlife"
               title="What did I see?"
               teaser="Quick identification for the animals, birds, and trees you actually meet: the one or two field marks that settle it, plus the safety notes that matter."
@@ -572,15 +553,13 @@ export default function Home() {
 
         <section aria-label="Offline status" className="page-section">
           <span className="eyebrow">Before you drive in</span>
-          <Link to="/account" className="offline-status-card offline-status-card--flush">
-            {downloadedCount === PACK_IDS.length ? (
-              <>Downloaded for offline. The whole guide works in airplane mode. Manage →</>
-            ) : (
-              <>
-                <strong>Offline:</strong> {downloadedCount} of {PACK_IDS.length} packs on this
-                device. Download the guide and the park map before you leave wifi →
-              </>
-            )}
+          <Link to="/account" className="panel packs-panel">
+            <span className="packs-panel__row">
+              <span className="packs-panel__label">Offline packs</span>
+              <span className="packs-panel__value">
+                {downloadedCount} / {PACK_IDS.length}
+              </span>
+            </span>
             <span className="meter" aria-hidden="true">
               {PACK_IDS.map((id, i) => (
                 <span
@@ -589,8 +568,44 @@ export default function Home() {
                 />
               ))}
             </span>
+            <span className="packs-panel__note">
+              {downloadedCount === PACK_IDS.length
+                ? 'The whole guide works in airplane mode · Manage →'
+                : 'Download the guide and map before you leave wifi →'}
+            </span>
           </Link>
         </section>
+
+        <section aria-label="How this guide works" className="page-section">
+          <span className="eyebrow">How this guide works</span>
+          <ol className="home-steps">
+            <li>
+              <span className="home-steps__num" aria-hidden="true">1</span>
+              <p>
+                <strong>Read.</strong> Four regions, {stopCount} stops in driving order, plus{' '}
+                <Link to="/secret-guide">the Secret Guide</Link> and the{' '}
+                <Link to="/essentials">know-before-you-go essentials</Link>.
+              </p>
+            </li>
+            <li>
+              <span className="home-steps__num" aria-hidden="true">2</span>
+              <p>
+                <strong>Plan.</strong> Set your trip dates once: <Link to="/programs">park programs</Link>{' '}
+                and the <Link to="/trip">trip planner</Link> share them. Add stops and{' '}
+                <Link to="/hikes">day hikes</Link>, then export the plan to your calendar.
+              </p>
+            </li>
+            <li>
+              <span className="home-steps__num" aria-hidden="true">3</span>
+              <p>
+                <strong>Go offline.</strong> <Link to="/account">Download the packs</Link> on wifi the
+                night before. After that, airplane mode changes nothing.
+              </p>
+            </li>
+          </ol>
+        </section>
+
+        <InSeasonStrip />
 
         {savedStops.length > 0 && (
           <section aria-label="Saved stops" className="page-section">

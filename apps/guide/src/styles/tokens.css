@@ -532,6 +532,12 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
   -webkit-backdrop-filter: blur(6px);
   border-bottom: 1px solid var(--rule);
 }
+.gated-chrome__right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-shrink: 0;
+}
 .gated-chrome__links {
   display: flex;
   align-items: center;
