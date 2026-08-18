@@ -14,6 +14,7 @@ import { PHOTO_CREDITS } from '../content/photoCredits'
 import { MAP_ATTRIBUTION } from '../map/style'
 import { BUILD_DATE } from '../lib/buildInfo'
 import { resetInstallDismissal } from '../lib/install'
+import { THEME_LABEL, THEME_NOTE, THEME_OPTIONS, useTheme } from '../lib/theme'
 import { isStandalonePWA } from '../utils/platform'
 
 function formatAccessDate(epochSeconds: number): string {
@@ -276,6 +277,35 @@ function InstallCard() {
 const ARM_GUARD_MS = 400
 const DISARM_AFTER_MS = 6000
 
+// Colour scheme. Auto follows the device and is right for most trips; the two
+// pins exist because the device is often wrong about a day in the park — a
+// phone in dark mode is hard to read at Tunnel View at noon, and a bright
+// screen at a star party costs everyone nearby their night vision.
+function SchemeCard() {
+  const [theme, setThemePref] = useTheme()
+  return (
+    <div className="card">
+      <span className="eyebrow" style={{ display: 'block', marginBottom: 8 }}>
+        Colour scheme
+      </span>
+      <div className="theme-picker" role="group" aria-label="Colour scheme">
+        {THEME_OPTIONS.map((option) => (
+          <button
+            key={option}
+            type="button"
+            className="chip chip--filter"
+            aria-pressed={theme === option}
+            onClick={() => setThemePref(option)}
+          >
+            {THEME_LABEL[option]}
+          </button>
+        ))}
+      </div>
+      <p className="card__note">{THEME_NOTE[theme]}</p>
+    </div>
+  )
+}
+
 function SignOutButton({ onSignOut }: { onSignOut: () => void }) {
   const [armed, setArmed] = useState(false)
   const armedAt = useRef(0)
@@ -352,6 +382,8 @@ export default function Account() {
           </div>
 
           <AccessStatusCard />
+
+          <SchemeCard />
 
           <InstallCard />
 

@@ -36,15 +36,14 @@ import type { TripItemT } from '../trip/schema'
 import { readTripDates, type TripDates } from '../programs/usePrograms'
 import { relativeStamp } from '../utils/relativeStamp'
 import GatedChrome from '../components/GatedChrome'
+import ParkNowPanel from '../components/ParkNowPanel'
 import ResponsivePhoto from '../components/ResponsivePhoto'
 import UpdatedStamp from '../components/UpdatedStamp'
 import Button from '../components/ui/Button'
 import Callout from '../components/ui/Callout'
 import PageHeader from '../components/ui/PageHeader'
 import AirLine from '../air/AirLine'
-import RoadsLine from '../alerts/RoadsLine'
 import FlowLine from '../flow/FlowLine'
-import WaitsLine from '../waits/WaitsLine'
 import { useWeather } from '../weather/useWeather'
 import { HIDE_AFTER_MS, WARN_AFTER_MS } from '../weather/staleness'
 import { regionTodayLine } from '../weather/todayLine'
@@ -352,6 +351,8 @@ export default function Home() {
           intro="Four regions to read, a planner that turns your dates into a day-by-day schedule, and all of it built to work where the park has no signal. Everything the guide does is indexed below."
         />
 
+        <ParkNowPanel />
+
         <PendingImportCard />
 
         <BeforeYouGoNudge />
@@ -394,12 +395,15 @@ export default function Home() {
         <section aria-label="The four regions" className="page-section">
           <span className="eyebrow">Read the guide · {stopCount} stops in four regions</span>
           <div className="region-rows">
-            {REGIONS.map((region) => {
+            {REGIONS.map((region, i) => {
               const today = showForecast
                 ? regionTodayLine(weatherByRegion.get(region.id))
                 : null
               return (
                 <Link key={region.id} to={`/region/${region.id}`} className="region-row">
+                  <span className="region-row__index" aria-hidden="true">
+                    {String(i + 1).padStart(2, '0')}
+                  </span>
                   <div className="region-row__media">
                     <ResponsivePhoto
                       src={region.photo.src}
@@ -420,6 +424,18 @@ export default function Home() {
                       {today && <span className="region-row__today">{today}</span>}
                     </div>
                   </div>
+                  <svg
+                    className="region-row__go"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    aria-hidden="true"
+                  >
+                    <path d="M9 18l6-6-6-6" />
+                  </svg>
                 </Link>
               )
             })}
@@ -435,8 +451,9 @@ export default function Home() {
               {' '}· Five-day forecasts on each region page · National Weather Service
             </p>
           )}
-          <WaitsLine />
-          <RoadsLine />
+          {/* Roads and entrance waits moved up into ParkNowPanel; air and river
+              flow stay here, where they are a footnote to the regions rather
+              than something a trip pivots on. */}
           <AirLine />
           <FlowLine />
           <div className="home-crosslinks">
@@ -564,6 +581,14 @@ export default function Home() {
                 device. Download the guide and the park map before you leave wifi →
               </>
             )}
+            <span className="meter" aria-hidden="true">
+              {PACK_IDS.map((id, i) => (
+                <span
+                  key={id}
+                  className={i < downloadedCount ? 'meter__seg meter__seg--on' : 'meter__seg'}
+                />
+              ))}
+            </span>
           </Link>
         </section>
 
