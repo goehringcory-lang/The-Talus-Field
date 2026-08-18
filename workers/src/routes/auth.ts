@@ -162,10 +162,17 @@ auth.post('/dev-login', async (c) => {
     return c.json({ error: 'Too many attempts. Try again later.' }, 429)
   }
 
-  const adminU = c.env.ADMIN_USERNAME
-  const adminC = c.env.ADMIN_CODE
-  const devU = c.env.DEV_USERNAME
-  const devC = c.env.DEV_CODE
+  // Trim the stored secrets before comparing. constantTimeEquals is exact and
+  // length-sensitive, and the client already sends username.trim()/code.trim():
+  // a secret set by piping (`echo "code" | wrangler secret put DEV_CODE`) keeps
+  // its trailing newline, so the lengths differ by one and the pair can NEVER
+  // match. Nothing is logged and the answer is the ordinary 401, so a correct
+  // code reads as "username or code does not match" forever with no diagnostic
+  // trail: worth guarding against even though it is cheap to get right.
+  const adminU = c.env.ADMIN_USERNAME?.trim()
+  const adminC = c.env.ADMIN_CODE?.trim()
+  const devU = c.env.DEV_USERNAME?.trim()
+  const devC = c.env.DEV_CODE?.trim()
 
   // Evaluate every comparison unconditionally against a fallback so the path
   // doesn't short-circuit on a wrong username (or on creds being unset), which
