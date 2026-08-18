@@ -586,44 +586,44 @@ function GuideWaitlistBox() {
   }, "cory@thetalusfieldjournal.com"), ".")));
 }
 var APP_SHOTS = [{
-  src: "img/guide/screens/front-page.webp",
-  alt: "The Field Guide app's front page, listing the four regions with a stop count and the current forecast on each",
-  caption: "The front page. Four regions, every stop counted, and today's forecast on each one before you pick a direction."
+  src: "img/guide/screens/front-page.v2.webp",
+  alt: "The Field Guide app's front page: a panel of live park readings, the valley forecast, sunset, road status and entrance waits, above the trip board and the four regional guides",
+  caption: "The front page opens on the park as it is right now: the valley's high and low, when the light goes, which roads are open, what the gate is running. Then your trip, then the four regions."
 }, {
-  src: "img/guide/screens/region-cards.webp",
-  alt: "A region in card view: one stop per screen with photo, coordinate, elevation, and time budget, swiped like a feed",
+  src: "img/guide/screens/region-cards.v2.webp",
+  alt: "A region in card view: one stop per screen with photo, kind, time budget and teaser, swiped like a feed",
   caption: "A region reads as a deck: one stop per screen, swipe up for the next. The long list is still a tap away."
 }, {
-  src: "img/guide/screens/stop.webp",
-  alt: "A stop page in the app for Tunnel View, showing a tappable GPS coordinate, elevation, and a 25-minute time budget",
-  caption: "Every stop opens with the numbers that run your day: a tappable GPS coordinate, the elevation, the honest time budget."
+  src: "img/guide/screens/stop.v2.webp",
+  alt: "A stop page for Tunnel View: the photo framed as an instrument view with the coordinate and elevation printed on it, then a readout of GPS, elevation, time budget and best light",
+  caption: "Every stop opens on the numbers that run your day: a tappable coordinate, the elevation, the honest time budget, and the hour the light works."
 }, {
-  src: "img/guide/screens/swap.webp",
-  alt: "The same stop page scrolled to the 'If full' swap, telling you exactly where to go when the parking lot is full",
-  caption: "The swap, printed on the stop itself. The lot fills at ten, you already know the move."
+  src: "img/guide/screens/swap.v2.webp",
+  alt: "The 'If full' swap on a stop page, saying where to go instead when the lot is full, above a sourced note from the November 1933 Yosemite Nature Notes",
+  caption: "The swap, printed on the stop itself. The lot fills at ten, you already know the move. Under it, where the record allows, a sourced note from a century of park naturalists."
 }, {
-  src: "img/guide/screens/hikes.webp",
-  alt: "The day-hike catalog in the app, each trail listed with distance, gain, difficulty, and its elevation profile",
+  src: "img/guide/screens/hikes.v2.webp",
+  alt: "The day-hike catalog in the app, each trail listed with distance, gain, difficulty, duration, its elevation profile, and a button that adds it to the trip",
   caption: "All 57 in-park day hikes with distance, climbing, and the shape of the trail. Add one and the planner budgets the hours."
 }, {
-  src: "img/guide/screens/programs.webp",
-  alt: "The program list in the app, grouped by day: ranger walks, a Junior Ranger table, a Conservancy talk, a star party",
+  src: "img/guide/screens/programs.v2.webp",
+  alt: "The program list in the app, grouped by day: a ranger bird walk, a concessioner bus tour, a Conservancy art class, each with its time, meeting place and operator",
   caption: "The park's programs on your dates, day by day, from the Park Service, the Conservancy, the concessioner, and the astronomy clubs."
 }, {
-  src: "img/guide/screens/trip-board.webp",
-  alt: "The planning calendar in the app: a day drawn as a timeline with stops, a ranger walk, and a hike as sized blocks",
+  src: "img/guide/screens/trip-board.v2.webp",
+  alt: "The planning calendar in the app: a day drawn as a timeline with stops and a ranger walk as blocks sized by duration, the drive between each one figured in, and a line marking the current hour",
   caption: "The planning calendar, native to the app. Each day is a real timeline: blocks sized by how long a thing takes, drives figured between them, dragged where you want them."
 }, {
-  src: "img/guide/screens/calendar.webp",
-  alt: "The app's add-to-calendar sheet, saving the whole trip as a calendar file your phone imports in one tap",
-  caption: "When the days are set, one tap saves the whole board as a calendar file your phone imports, reminders and directions links included. No signal needed."
+  src: "img/guide/screens/calendar.v2.webp",
+  alt: "The trip review before export, listing every event of a day with its time and length, above the button that saves the whole trip as a calendar file",
+  caption: "When the days are set, the board is reviewed event by event, then saved as one calendar file your phone imports: coordinates, directions links and reminders included. No signal needed."
 }, {
-  src: "img/guide/screens/today.webp",
-  alt: "The field-day view in the app: sunrise and sunset, entrance waits, what is happening now, and the day in time order",
-  caption: "In the park, the plan collapses to one screen: light and entrance waits up top, what's on now, then the day in order."
+  src: "img/guide/screens/today.v2.webp",
+  alt: "The field-day view in the app: the day's forecast, sun times, entrance waits, road status, air quality and river flow, then what is next and the day in time order",
+  caption: "In the park, the plan collapses to one screen: light, gate waits, roads and river up top, what's next, then the day in order."
 }, {
-  src: "img/guide/screens/secret-guide.webp",
-  alt: "The Secret Guide section in the app: 37 entries of quiet vistas, hidden trails, and parking moves",
+  src: "img/guide/screens/secret-guide.v2.webp",
+  alt: "The Secret Guide in the app: 37 entries filed under quiet vistas and hidden trails, opening on a card with its photo, coordinate and time budget",
   caption: "The Secret Guide. 37 entries of quiet vistas, hidden trails, parking moves, and the park after dark."
 }];
 function AppShots() {
@@ -648,30 +648,30 @@ function AppShots() {
   }, shot.caption))));
 }
 var WALKTHROUGH_STEPS = [{
-  src: "img/guide/screens/front-page.webp",
-  alt: "The app's front page: four regions, each with a stop count and today's forecast",
+  src: "img/guide/screens/front-page.v2.webp",
+  alt: "The app's front page: live park readings above the four regions, each with its stop count",
   title: "Pick a direction",
-  detail: "Four regions, every stop counted, today's forecast on each."
+  detail: "The park's readings first: forecast, sunset, roads, gate waits. Then the four regions."
 }, {
-  src: "img/guide/screens/stop.webp",
-  alt: "A stop page with a tappable GPS coordinate, the elevation, and a 25-minute time budget",
+  src: "img/guide/screens/stop.v2.webp",
+  alt: "A stop page with a tappable GPS coordinate, the elevation, a 25-minute time budget and the best light",
   title: "Read the numbers",
-  detail: "A tappable coordinate, the elevation, the honest time budget."
+  detail: "A tappable coordinate, the elevation, the honest time budget, the hour the light works."
 }, {
-  src: "img/guide/screens/swap.webp",
+  src: "img/guide/screens/swap.v2.webp",
   alt: "The stop's 'If full' swap: exactly where to go when the lot is full",
   title: "Know the move when the lot is full",
   detail: "The swap is printed on the stop itself, not somewhere in your notes."
 }, {
-  src: "img/guide/screens/trip-board.webp",
+  src: "img/guide/screens/trip-board.v2.webp",
   alt: "A trip day drawn as a timeline: blocks sized by duration with drive buffers between",
   title: "Build the day in driving order",
   detail: "Blocks sized by how long things take, drives figured between them."
 }, {
-  src: "img/guide/screens/today.webp",
-  alt: "The field-day screen: light, entrance waits, and the day in time order",
+  src: "img/guide/screens/today.v2.webp",
+  alt: "The field-day screen: forecast, sun times, gate waits, road status, and the day in time order",
   title: "Work the day from one screen",
-  detail: "Light, entrance waits, what's on now. The plan with the planning taken out."
+  detail: "Light, entrance waits, roads, what's next. The plan with the planning taken out."
 }];
 var WALKTHROUGH_INTERVAL_MS = 4000;
 function GuideWalkthrough() {
@@ -914,7 +914,7 @@ function GuideOfflineDemo() {
     className: "guide-offline__status",
     "aria-hidden": "true"
   }, "No Service · Airplane mode"), React.createElement("img", {
-    src: "img/guide/screens/stop.webp",
+    src: "img/guide/screens/stop.v2.webp",
     alt: "A stop page in the app, rendering identically with or without cell service",
     width: "640",
     height: "1385",

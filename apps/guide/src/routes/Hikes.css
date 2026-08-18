@@ -53,6 +53,19 @@
   font-size: 11px;
   color: var(--ink-3);
 }
+/* The middle column carries the badges, and a long season one ("Cables up late
+   May to mid-October") is wider than a phone. A grid item defaults to
+   min-width: auto, so without this the column could not shrink below that
+   badge: the row pushed "+ Add" past the right edge and Chromium widened the
+   layout viewport to 461px to fit it, which took the fixed tab bar off screen
+   for the whole page. The badge wraps here instead; .chip keeps its nowrap
+   everywhere else, where the labels are short. */
+.hike-row__main {
+  min-width: 0;
+}
+.hike-row__meta .chip {
+  white-space: normal;
+}
 .hike-row__title {
   font-family: var(--display);
   font-size: 17px;
