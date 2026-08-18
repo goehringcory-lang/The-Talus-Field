@@ -74,11 +74,24 @@ GUIDE_PRODUCT_TAG = "field_guide_2026"
 GUIDE_MONTHLY_CAP = "100"
 
 # Routes the Worker to api.thetalusfieldjournal.com.
-# DNS prerequisite: in Cloudflare DNS, add a CNAME `api` -> `<worker-name>.workers.dev`
-# (or use the AAAA shortcut Cloudflare offers when you assign a custom route).
+#
+# This is a Custom Domain, not a zone route pattern, and the distinction is
+# load-bearing rather than stylistic. A Custom Domain owns the hostname and
+# creates its own proxied DNS record, so there is no CNAME to add by hand; a
+# `/*` route pattern only matches traffic on a hostname whose DNS already
+# exists. The domain was attached in the dashboard, which left this file
+# describing a mechanism the deployed Worker was not using.
+#
+# Declaring it here is what keeps `wrangler deploy` safe. Wrangler reconciles
+# the deployed Worker's routes against this file and prompts to "override the
+# remote configuration with your local one", so a config that omits the Custom
+# Domain offers to DETACH it on every deploy — which would take the DNS record
+# with it and leave api.thetalusfieldjournal.com unresolvable, breaking auth,
+# Stripe checkout and its webhook, the programs feed, and the editorial
+# /widget preview at once. Do not "fix" this back to a `/*` pattern.
 [[routes]]
-pattern = "api.thetalusfieldjournal.com/*"
-zone_name = "thetalusfieldjournal.com"
+pattern = "api.thetalusfieldjournal.com"
+custom_domain = true
 
 # === Pre-Stripe dev / admin sign-in =========================================
 # /api/auth/dev-login accepts a username + code pair and issues the same JWT

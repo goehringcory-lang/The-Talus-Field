@@ -90,10 +90,14 @@ cd workers
 wrangler deploy
 ```
 
-The first deploy will fail with a DNS error if the `api` subdomain doesn't exist yet. Two options:
+The `api` subdomain is already attached to this Worker as a **Custom Domain**, which is declared as such in `wrangler.toml` (`pattern = "api.thetalusfieldjournal.com"`, `custom_domain = true`). A Custom Domain creates its own proxied DNS record, so there is no CNAME to add by hand and nothing to do here on a normal deploy.
+
+If you are standing the Worker up in a fresh account instead, two options:
 
 - **Easy:** comment out the `[[routes]]` block in `wrangler.toml`, deploy, and use the auto-generated `talus-field-guide-api.<your-subdomain>.workers.dev` URL for testing. Update `GUIDE_API_BASE` in [page-guide.jsx:10](page-guide.jsx) and `VITE_API_BASE` in [apps/guide/.env.production](apps/guide/.env.production) to point at it.
-- **Production-shaped:** in Cloudflare DNS, add a CNAME `api` → `<your-account>.workers.dev` (proxied). Then `wrangler deploy` will route correctly.
+- **Production-shaped:** attach `api.<your-domain>` to the Worker as a Custom Domain (Cloudflare dashboard → the Worker → Settings → Domains & Routes → Add → Custom Domain), and declare it in `wrangler.toml` in the `custom_domain = true` form.
+
+**Read the config-drift prompt.** Recent wrangler versions compare this file against the deployed Worker and print a diff before asking to continue, warning that deploying "will override the remote configuration with your local one". A `-` entry under `routes` means the deploy would **detach** something that is currently serving: answer `n` and reconcile `wrangler.toml` first. `+` entries under `triggers.crons` or `vars` are the normal case for shipping a config change. A `preview_id` diff on the KV namespaces is noise — `preview_id` is only read by `wrangler dev`, never by the deployed Worker, and the placeholder value in this file is deliberate.
 
 Verify: `curl https://<worker-url>/` should return "Talus Field Guide API. See /api/inventory."
 
