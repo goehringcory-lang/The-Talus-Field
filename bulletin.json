@@ -1,10 +1,10 @@
 {
-  "__comment": "The Park Bulletin (/now). One page per NPS Yosemite Guide edition: when the park publishes a new Guide (roughly every five weeks), rewrite this file from it, then (1) bump BULLETIN_URL's ?v= in page-now.jsx and HOME_BULLETIN_URL in page-home.jsx, (2) run `npm --prefix scripts run compile` and `npm --prefix scripts run seo`, (3) commit. edition.updated drives the /now sitemap lastmod, and edge/seo.js imports this file to serve the bulletin to non-JS crawlers. Facts come from the printed Guide plus the journal's own observation; do not carry a stale edition past its end date without a note. Event entries carry an `end` ISO date so the page can dim what has passed mid-edition.",
+  "__comment": "The Park Bulletin (/now). One page per NPS Yosemite Guide edition: when the park publishes a new Guide (roughly every five weeks), rewrite this file from it, then (1) bump BULLETIN_URL's ?v= in page-now.jsx and HOME_BULLETIN_URL in page-home.jsx, (2) run `npm --prefix scripts run compile` and `npm --prefix scripts run seo`, (3) commit. edition.updated drives the /now sitemap lastmod, and edge/seo.js imports this file to serve the bulletin to non-JS crawlers. Facts come from the printed Guide plus the journal's own observation; do not carry a stale edition past its end date without a note. Event entries carry an `end` ISO date so the page can dim what has passed mid-edition. valleyDay rows carry optional `access` and `allAges` booleans: these are the printed Guide's own per-program symbols (wheelchair accessible / recommended for families), read off the Programs page row by row and never inferred, and they are true-only, because an unmarked program is one the Guide did not mark rather than one it ruled out. The same two marks ride on the PWA's program feed as `accessible` / `familyFriendly` (workers/src/data/manual-programs.ts); re-read both from the new Programs page each edition.",
   "edition": {
     "label": "August 19 – September 22, 2026",
     "start": "2026-08-19",
     "end": "2026-09-22",
-    "updated": "2026-08-17",
+    "updated": "2026-08-18",
     "lede": "The edition where summer ends. Every road is still open and the high country is at its best, but the waterfalls are down to their bones and the park starts shutting for the season in the first two weeks of September: the High Sierra Camps, the pools, the Tuolumne store and grill, the hikers bus. Go high while you can.",
     "source": "Condensed from the National Park Service Yosemite Guide for August 19 – September 22, 2026, with the journal's own notes.",
     "sourceUrl": "https://www.nps.gov/yose/planyourvisit/guide.htm"
@@ -32,25 +32,25 @@
   "valleyDay": [
     { "time": "8:30 am", "title": "Guided hikes with the Mountaineering School, from Sep 4", "days": "Days vary", "where": "Curry Village, register at TravelYosemite.com", "fee": true, "note": "also 1:30 pm; ages 12 and up" },
     { "time": "9:00 am", "title": "Ranger Walk", "days": "Daily", "where": "Welcome Center, shuttle stop 2" },
-    { "time": "9:00 am", "title": "Climber Coffee, from Sep 13", "days": "Su", "where": "Camp 4, by the Midnight Lightning boulder" },
+    { "time": "9:00 am", "title": "Climber Coffee, from Sep 13", "days": "Su", "where": "Camp 4, by the Midnight Lightning boulder", "access": true },
     { "time": "9:30 am", "title": "The Spirit of Yosemite, 23-minute park film, on the hour and half hour to 4 pm", "days": "Daily", "where": "Exploration Center theater" },
-    { "time": "10:00 am", "title": "Junior Ranger Walk", "days": "Daily", "where": "Welcome Center, shuttle stop 2" },
-    { "time": "10:30 am", "title": "Discovery Walk", "days": "Tu W Th Sa", "where": "Yosemite Museum, shuttle stop 5" },
-    { "time": "12:30 pm", "title": "Ask-a-Climber, spotting scopes on El Cap, to 4:30 pm, from Sep 6", "days": "Daily", "where": "El Capitan bridge, shuttle stop 9" },
+    { "time": "10:00 am", "title": "Junior Ranger Walk", "days": "Daily", "where": "Welcome Center, shuttle stop 2", "access": true },
+    { "time": "10:30 am", "title": "Discovery Walk", "days": "Tu W Th Sa", "where": "Yosemite Museum, shuttle stop 5", "access": true },
+    { "time": "12:30 pm", "title": "Ask-a-Climber, spotting scopes on El Cap, to 4:30 pm, from Sep 6", "days": "Daily", "where": "El Capitan bridge, shuttle stop 9", "allAges": true },
     { "time": "1:00 pm", "title": "Wild About Bears", "days": "Daily", "where": "Welcome Center" },
-    { "time": "2:00 pm", "title": "Family Ranger Talk, 15 minutes", "days": "Daily", "where": "Welcome Center" },
-    { "time": "2:00 pm", "title": "Historic Ahwahnee Hotel Tour", "days": "Daily", "where": "Ahwahnee back lawn, shuttle stop 3" },
-    { "time": "2:00 pm", "title": "Paint & Sip watercolor, 2 hours, through Aug 28", "days": "F", "where": "Mountain Room Lounge, register at Yosemite.org/art", "fee": true },
-    { "time": "3:00 pm", "title": "Junior Ranger Discovery Table, to 4 pm", "days": "Su W F", "where": "Welcome Center" },
+    { "time": "2:00 pm", "title": "Family Ranger Talk, 15 minutes", "days": "Daily", "where": "Welcome Center", "access": true, "allAges": true },
+    { "time": "2:00 pm", "title": "Historic Ahwahnee Hotel Tour", "days": "Daily", "where": "Ahwahnee back lawn, shuttle stop 3", "access": true },
+    { "time": "2:00 pm", "title": "Paint & Sip watercolor, 2 hours, through Aug 28", "days": "F", "where": "Mountain Room Lounge, register at Yosemite.org/art", "fee": true, "access": true },
+    { "time": "3:00 pm", "title": "Junior Ranger Discovery Table, to 4 pm", "days": "Su W F", "where": "Welcome Center", "access": true },
     { "time": "3:30 pm", "title": "Guided Nature Walk", "days": "Daily", "where": "Ahwahnee back lawn" },
-    { "time": "5:30 pm", "title": "Yosemite Valley Sunset Walk, 1.5 hours", "days": "Daily", "where": "register at Yosemite.org/adventures", "fee": true },
+    { "time": "5:30 pm", "title": "Yosemite Valley Sunset Walk, 1.5 hours", "days": "Daily", "where": "register at Yosemite.org/adventures", "fee": true, "allAges": true },
     { "time": "6:00 pm", "title": "Wee Wild Ones, kids 10 and under, through Sep 13", "days": "Nightly", "where": "Curry Village amphitheater" },
-    { "time": "8:00 pm", "title": "Evening Program", "days": "Su M Tu W Th", "where": "Curry Village amphitheater" },
-    { "time": "8:00 pm", "title": "Movie Night", "days": "F Sa", "where": "Curry Village amphitheater", "note": "F: change in Yosemite. Sa: the Firefall" },
-    { "time": "8:30 pm", "title": "Yosemite After Dark night walk", "days": "Nightly", "where": "ticketed, TravelYosemite.com", "fee": true },
+    { "time": "8:00 pm", "title": "Evening Program", "days": "Su M Tu W Th", "where": "Curry Village amphitheater", "access": true },
+    { "time": "8:00 pm", "title": "Movie Night", "days": "F Sa", "where": "Curry Village amphitheater", "note": "F: change in Yosemite. Sa: the Firefall", "access": true },
+    { "time": "8:30 pm", "title": "Yosemite After Dark night walk", "days": "Nightly", "where": "ticketed, TravelYosemite.com", "fee": true, "access": true, "allAges": true },
     { "time": "9:00 pm", "title": "Explore Yosemite's Night Sky stargazing", "days": "Nightly", "where": "register at Yosemite.org", "fee": true }
   ],
-  "valleyDayNote": "Everything unmarked is free and drop-in. Also running: the Valley Floor Tour by tram (10 am, 11 am, 1 pm, 2 pm, and sunset, ticketed), free photography walks from The Ansel Adams Gallery (Tu and Th 9 am, registration required) plus its paid field classes (smartphone photography W 9 am and Sa 1 pm, In the Footsteps of Ansel Adams M and Th 1 pm, digital-camera class Tu 1 pm), Conservancy art classes weekday mornings at 9 am, and the kids' open art studio at Happy Isles (10 am – 3 pm daily). The Mountaineering School's guided hikes start Sep 4: half-day walks to the Vernal Fall footbridge and around Mirror Lake on M, W, and Sa, full days to Nevada Fall on Tu and F and around El Capitan on Su and Th.",
+  "valleyDayNote": "Everything unmarked is free and drop-in. Also running: the Valley Floor Tour by tram (10 am, 11 am, 1 pm, 2 pm, and sunset, ticketed), free photography walks from The Ansel Adams Gallery (Tu and Th 9 am, registration required) plus its paid field classes (smartphone photography W 9 am and Sa 1 pm, In the Footsteps of Ansel Adams M and Th 1 pm, digital-camera class Tu 1 pm), Conservancy art classes weekday mornings at 9 am, and the kids' open art studio at Happy Isles (10 am – 3 pm daily). The Mountaineering School's guided hikes start Sep 4: half-day walks to the Vernal Fall footbridge and around Mirror Lake on M, W, and Sa, full days to Nevada Fall on Tu and F and around El Capitan on Su and Th. Rows tagged wheelchair accessible or all ages carry the Yosemite Guide's own symbols for that program: accessible means it is held in a wheelchair-accessible facility or uses wheelchair-accessible paths, and the park asks you to raise any other accommodation with the program host. Of the extras above, the Valley Floor Tour is marked both and the kids' open art studio is marked accessible. An untagged program is one the Guide did not mark, not one it ruled out.",
   "elsewhere": [
     {
       "area": "Tuolumne Meadows",
@@ -60,7 +60,8 @@
         "Parsons Memorial Lodge open daily 10 am – 4 pm at the Soda Springs, with an open reading room. Thirty-minute walk in from parking.",
         "Welcome to Tuolumne!, a 15-minute orientation talk in the visitor center lot, noon and 3 pm daily.",
         "Afternoon walks: the river W 1 pm from Dog Lake parking, forest M 2 pm, wildlife Th 2 pm from the visitor center, and the history walk on Aug 21 and 28 only.",
-        "Campfire program nightly 7:30 pm at the campground and a campfireside chat M W Sa 7:30 pm at the lodge, the latter only on nights the lodge is open. Stars Over Tuolumne M W Sa 9 pm from Lembert Dome parking; bring a pad and warm layers."
+        "Campfire program nightly 7:30 pm at the campground and a campfireside chat M W Sa 7:30 pm at the lodge, the latter only on nights the lodge is open. Stars Over Tuolumne M W Sa 9 pm from Lembert Dome parking; bring a pad and warm layers.",
+        "Marked wheelchair accessible in the Guide: climber coffee, both Welcome to Tuolumne! talks, the campground campfire, and the campfireside chat. Marked for all ages: those four, plus Parsons Lodge, the river, forest, and wildlife walks, and Stars Over Tuolumne."
       ]
     },
     {
@@ -71,7 +72,8 @@
         "Nature walk daily 9:30 am from the Mariposa Grove arrival area; junior ranger talk daily 1:30 pm in the grove, for kids 4 and up. Allow time to park and ride the shuttle up first.",
         "Campfire program nightly 7 pm at the Wawona campground amphitheater, back on the schedule after an edition off.",
         "Mariposa Grove Depot 9 am – 5 pm. The Yosemite History Center's outdoor exhibits are open daily.",
-        "Stable rides F – W at 8 am, 11 am, and 3 pm, all-day ride Th at 8 am, pony rides 10:30 am – 3 pm, all finishing Sep 6. The 1918 golf course is open 8 am – 6 pm; book at the Wawona Store."
+        "Stable rides F – W at 8 am, 11 am, and 3 pm, all-day ride Th at 8 am, pony rides 10:30 am – 3 pm, all finishing Sep 6. The 1918 golf course is open 8 am – 6 pm; book at the Wawona Store.",
+        "Marked wheelchair accessible in the Guide: coffee with a ranger and the bear talk, the bear talk for all ages as well. The Mariposa Grove walks and the campfire carry no mark either way."
       ]
     },
     {
@@ -79,21 +81,22 @@
       "items": [
         "Giant sequoia hike M W Th 11 am in the Tuolumne Grove, a mile down from the trailhead, 2.5 miles and 500 feet round trip. Junior ranger table daily 2 – 3:30 pm at the trailhead.",
         "Evening program Su W Th F Sa 6:30 pm at the Crane Flat campground amphitheater, none on Aug 22 or 23. Stars Over Crane Flat 8 pm on Sep 3, 5, 7, 9, 10, and 12: free, but register at the Big Oak Flat Information Station. No pets, RVs, or trailers.",
-        "Glacier Point Starry Skies 9 pm, ticketed, on Aug 19 and 20, Sep 6 through 10, and Sep 13 through 17 only. Transportation up is on you, and it is an hour from the Valley in the dark. The free astronomy-club star parties that ran through mid-August are not on this edition's schedule."
+        "Glacier Point Starry Skies 9 pm, ticketed, on Aug 19 and 20, Sep 6 through 10, and Sep 13 through 17 only. Transportation up is on you, and it is an hour from the Valley in the dark. The free astronomy-club star parties that ran through mid-August are not on this edition's schedule.",
+        "Marked wheelchair accessible in the Guide: the junior ranger table, the Crane Flat evening program, and Glacier Point Starry Skies. Marked for all ages: the sequoia hike, the evening program, Stars Over Crane Flat, and Starry Skies."
       ]
     }
   ],
   "events": [
     { "dates": "Aug 21", "end": "2026-08-21", "title": "Stewardship Series: Tuolumne Meadows Overview", "where": "Tuolumne Meadows, 2 – 4 pm", "note": "Conservancy stewardship series. Register at Yosemite.org; free for donors." },
     { "dates": "Aug 22", "end": "2026-08-22", "title": "Junior Ranger Day", "where": "Parkwide", "note": "Special drop-in programs all over the park. Ask at any information center. In the Mariposa Grove the 1:30 pm talk meets in the parking area today." },
-    { "dates": "Aug 23 – 27", "end": "2026-08-27", "title": "Moonlight Tour", "where": "Yosemite Valley Lodge, 9 pm", "note": "Two-hour tram tour of the Valley under a nearly full moon. Ticketed at TravelYosemite.com. Runs again Sep 22." },
+    { "dates": "Aug 23 – 27", "end": "2026-08-27", "title": "Moonlight Tour", "where": "Yosemite Valley Lodge, 9 pm", "note": "Two-hour tram tour of the Valley under a nearly full moon. Ticketed at TravelYosemite.com. Wheelchair accessible and marked for all ages. Runs again Sep 22." },
     { "dates": "Aug 24 – 30", "end": "2026-08-30", "title": "Yosemite Art Trail", "where": "Parkwide", "note": "A week of art-themed drop-in programs and hands-on activities. Ask at an information center for the day's locations." },
     { "dates": "Through Sep 26", "end": "2026-09-26", "title": "Tom Killion: Trails and Trees", "where": "The Ansel Adams Gallery, 9 am – 5 pm", "note": "Sierra woodblocks and prints. Free to walk through." },
-    { "dates": "Sep 11", "end": "2026-09-11", "title": "Poetry from Tahoe to Yosemite", "where": "Conservation Heritage Center, 7:30 pm", "note": "Chris Olander, poet laureate and ecology bio-educator. Free. Very limited parking: ride the shuttle to stop 12." },
-    { "dates": "Sep 12", "end": "2026-09-12", "title": "Legacy of the Old Yosemite Village", "where": "Conservation Heritage Center, 7:30 pm", "note": "Alice van Ommeren, author of Yosemite's Historic Hotels and Camps. Free." },
-    { "dates": "Sep 18", "end": "2026-09-18", "title": "Mystery Cat: Yosemite's Elusive Mountain Lion", "where": "Conservation Heritage Center, 7:30 pm", "note": "Don Endicott, Anza-Borrego Desert State Park. Free." },
-    { "dates": "Sep 19", "end": "2026-09-19", "title": "Amazing World of Bats", "where": "Conservation Heritage Center, 7:30 pm", "note": "Don Endicott again, on the park's tiny fighter jets. Free." },
-    { "dates": "Sep 22", "end": "2026-09-22", "title": "Moonlight Tour", "where": "Yosemite Valley Lodge, 9 pm", "note": "The season's last one. Ticketed at TravelYosemite.com." }
+    { "dates": "Sep 11", "end": "2026-09-11", "title": "Poetry from Tahoe to Yosemite", "where": "Conservation Heritage Center, 7:30 pm", "note": "Chris Olander, poet laureate and ecology bio-educator. Free, all ages. Very limited parking: ride the shuttle to stop 12." },
+    { "dates": "Sep 12", "end": "2026-09-12", "title": "Legacy of the Old Yosemite Village", "where": "Conservation Heritage Center, 7:30 pm", "note": "Alice van Ommeren, author of Yosemite's Historic Hotels and Camps. Free, all ages." },
+    { "dates": "Sep 18", "end": "2026-09-18", "title": "Mystery Cat: Yosemite's Elusive Mountain Lion", "where": "Conservation Heritage Center, 7:30 pm", "note": "Don Endicott, Anza-Borrego Desert State Park. Free, all ages." },
+    { "dates": "Sep 19", "end": "2026-09-19", "title": "Amazing World of Bats", "where": "Conservation Heritage Center, 7:30 pm", "note": "Don Endicott again, on the park's tiny fighter jets. Free, all ages." },
+    { "dates": "Sep 22", "end": "2026-09-22", "title": "Moonlight Tour", "where": "Yosemite Valley Lodge, 9 pm", "note": "The season's last one. Ticketed at TravelYosemite.com. Wheelchair accessible and marked for all ages." }
   ],
   "eventsNote": "Conservancy art classes run weekday mornings at 9 am at Happy Isles (register at Yosemite.org/art): watercolor nature journaling with Sylvia Eneriz through Aug 21, watercolor with Jessica de Jesus Aug 24 – 28, pastels with Miranda Craft Aug 31 – Sep 4, printmaking with Leah Petersen Sep 7 – 11, watercolor with Steve Curl Sep 14 – 18. Looking just past this edition: the Yosemite Facelift, the park's biggest volunteer cleanup, runs Sep 23 – 27 out of the Valley, free with registration at yosemiteclimbing.org.",
   "trails": [

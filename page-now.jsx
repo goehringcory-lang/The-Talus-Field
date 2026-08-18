@@ -12,7 +12,7 @@
 // bump the ?v= when bulletin.json changes, or readers behind the CDN keep the
 // last edition. Keep HOME_BULLETIN_URL in page-home.jsx on the same number.
 // =============================================================================
-const BULLETIN_URL = "/bulletin.json?v=4";
+const BULLETIN_URL = "/bulletin.json?v=5";
 
 function bulletinDate(iso) {
   const d = new Date(iso + "T00:00:00");
@@ -176,6 +176,11 @@ function BulletinPage({ go }) {
                           <span className="bulletin-clock__title">{p.title}{p.fee ? " ($)" : ""}</span>
                           <span className="bulletin-clock__meta">
                             {p.days}{p.where ? ` · ${p.where}` : ""}{p.note ? ` · ${p.note}` : ""}
+                            {/* The Guide's own per-program symbols. True-only:
+                                an unmarked program is one the Guide did not
+                                mark, not one it ruled out, so there is nothing
+                                to render in the false case. */}
+                            {p.allAges ? " · all ages" : ""}{p.access ? " · wheelchair accessible" : ""}
                           </span>
                         </td>
                       </tr>

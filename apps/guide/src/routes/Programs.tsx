@@ -128,6 +128,7 @@ export default function Programs() {
   const [end, setEnd] = useState(stored?.end ?? defaults.end)
   const [categoryFilter, setCategoryFilter] = useState<ProgramCategoryT | null>(null)
   const [sourceFilter, setSourceFilter] = useState<ProgramSourceT | null>(null)
+  const [accessibleOnly, setAccessibleOnly] = useState(false)
   const { addProgram, hasItem } = useTripPlan()
 
   const spanOk = /^\d{4}-\d{2}-\d{2}$/.test(start) && /^\d{4}-\d{2}-\d{2}$/.test(end) && end >= start
@@ -186,6 +187,11 @@ export default function Programs() {
     [allEvents],
   )
   const presentSources = useMemo(() => [...new Set(allEvents.map((ev) => ev.source))], [allEvents])
+  // The wheelchair mark is carried only where the Yosemite Guide prints it, so
+  // the chip appears only when the window actually holds marked programs —
+  // otherwise it would read as "nothing here is accessible" when the truth is
+  // that nothing here is marked.
+  const anyAccessible = useMemo(() => allEvents.some((ev) => ev.accessible === true), [allEvents])
 
   // A stored filter whose value vanished from the window (dates changed)
   // would hide its own chip while still filtering everything out — a dead-end
@@ -196,14 +202,17 @@ export default function Programs() {
   const effectiveSource =
     sourceFilter && presentSources.includes(sourceFilter) ? sourceFilter : null
 
+  const effectiveAccessible = accessibleOnly && anyAccessible
+
   const filtered = useMemo(
     () =>
       allEvents.filter(
         (ev) =>
           (!effectiveCategory || ev.category === effectiveCategory) &&
-          (!effectiveSource || ev.source === effectiveSource),
+          (!effectiveSource || ev.source === effectiveSource) &&
+          (!effectiveAccessible || ev.accessible === true),
       ),
-    [allEvents, effectiveCategory, effectiveSource],
+    [allEvents, effectiveCategory, effectiveSource, effectiveAccessible],
   )
 
   const byDay = useMemo(() => {
@@ -406,6 +415,15 @@ export default function Programs() {
                   {SOURCE_LABELS[src]}
                 </ChipButton>
               ))}
+            {anyAccessible && (
+              <ChipButton
+                variant="filter"
+                pressed={effectiveAccessible}
+                onClick={() => setAccessibleOnly(!effectiveAccessible)}
+              >
+                Wheelchair accessible
+              </ChipButton>
+            )}
           </div>
         )}
 
@@ -448,6 +466,8 @@ export default function Programs() {
                         <span>{SOURCE_LABELS[ev.source]}</span>
                         {ev.isFree === true && <Chip variant="badge">Free</Chip>}
                         {ev.reservationRequired === true && <Chip variant="badge">Reservation</Chip>}
+                        {ev.familyFriendly === true && <Chip variant="badge">All ages</Chip>}
+                        {ev.accessible === true && <Chip variant="badge">Wheelchair accessible</Chip>}
                       </span>
                     </span>
                     {rowAction(inPlan, ev.title, add)}
@@ -463,6 +483,13 @@ export default function Programs() {
           </section>
         ))}
 
+        <p className="page-footnote">
+          "Wheelchair accessible" and "All ages" are the symbols the printed Yosemite Guide puts on
+          a program: accessible means the program is held in a wheelchair-accessible facility or
+          uses wheelchair-accessible paths, and the park asks that you check other accommodations
+          with the program host. A program without either badge is one the Guide did not mark, which
+          is not the same as a program it ruled out.
+        </p>
         <p className="page-footnote">
           Program listings sourced from the National Park Service, with Yosemite Conservancy,
           Yosemite Hospitality, and astronomy-club schedules added by hand. The seasonal almanac

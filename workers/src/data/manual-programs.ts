@@ -137,6 +137,24 @@ const SIERRA_CLUB_URL = 'https://www.sierraclub.org/yosemite-conservation-herita
 // campfireside chat runs "only when the Lodge is open") is carried in the
 // description instead of guessed at.
 //
+// Symbol pass 2026-08-18, same v51n7 issue. Page 8's legend attaches four
+// symbols to individual programs, and two of them were data this file had no
+// home for: the wheelchair-accessible mark and "Recommended for Families."
+// Both now ride on the entries as `accessible` / `familyFriendly` (see the
+// schema note in lib/programs.ts: true-only, because the guide declining to
+// mark a program is not a claim that it is inaccessible or wrong for kids).
+// The other two symbols were already carried: the Junior Ranger mark is the
+// `junior-ranger` / `kids` categories, and the Evening Program mark is the
+// start time. 23 programs are marked accessible this issue and 24 as
+// family-recommended; the marks are read off page 8 per row, never inferred
+// from the kind of program, which is why the daily 9 am Ranger Walk carries
+// neither while the 10 am Jr. Ranger Walk from the same doorway carries the
+// accessible one.
+//
+// The same pass location-qualified both Jr. Ranger Discovery Table titles and
+// added the date+title collision guard at the bottom of the file; see the
+// comment there for what a shared title costs at read time.
+//
 // Deliberately NOT curated as programs, because the issue prints them as
 // services rather than scheduled programs: the Wawona stable and pony rides,
 // golf, bike rentals, the pools, and the chapel services. The seasonal service
@@ -164,6 +182,8 @@ const entries: ManualEntryT[] = [
     coord: VALLEY_LODGE,
     isFree: false,
     reservationRequired: true,
+    accessible: true,
+    familyFriendly: true,
     url: YH_TOURS_URL,
   },
   {
@@ -299,6 +319,7 @@ const entries: ManualEntryT[] = [
     location: 'Camp 4, near the Midnight Lightning boulder',
     coord: CAMP_4,
     isFree: true,
+    accessible: true,
     url: NPS_GUIDE_URL,
   },
   {
@@ -331,6 +352,7 @@ const entries: ManualEntryT[] = [
     location: 'Yosemite Valley Welcome Center (shuttle stop 2)',
     coord: VILLAGE_MALL,
     isFree: true,
+    accessible: true,
     url: NPS_GUIDE_URL,
   },
   {
@@ -347,6 +369,7 @@ const entries: ManualEntryT[] = [
     location: 'Yosemite Museum, Yosemite Village (shuttle stop 5)',
     coord: VILLAGE_MALL,
     isFree: true,
+    accessible: true,
     url: NPS_GUIDE_URL,
   },
   {
@@ -364,6 +387,7 @@ const entries: ManualEntryT[] = [
     location: 'El Capitan bridge, west side (shuttle stop 9)',
     coord: EL_CAP_BRIDGE,
     isFree: true,
+    familyFriendly: true,
     url: NPS_GUIDE_URL,
   },
   {
@@ -397,6 +421,8 @@ const entries: ManualEntryT[] = [
     location: 'Yosemite Valley Welcome Center (shuttle stop 2)',
     coord: VILLAGE_MALL,
     isFree: true,
+    accessible: true,
+    familyFriendly: true,
     url: NPS_GUIDE_URL,
   },
   {
@@ -413,13 +439,19 @@ const entries: ManualEntryT[] = [
     location: 'The Ahwahnee, back lawn (shuttle stop 3)',
     coord: AHWAHNEE,
     isFree: true,
+    accessible: true,
     url: YH_URL,
   },
   {
     key: 'valley-jr-ranger-discovery-table',
     source: 'nps',
     category: 'junior-ranger',
-    title: 'Jr. Ranger Discovery Table',
+    // Location-qualified for the same reason the two Campfire Programs are:
+    // the guide prints this table twice, in the valley and at the Tuolumne
+    // Grove, under one title, and the route's dedupe key is date plus title.
+    // Left as printed, an NPS feed entry for either one would have dropped
+    // BOTH manual entries on that date and taken a real program off the board.
+    title: 'Jr. Ranger Discovery Table in Yosemite Valley',
     description:
       'Drop in any time to talk with a ranger and start or finish earning a Junior Ranger badge. At ' +
       'the Yosemite Valley Welcome Center (shuttle stop 2).',
@@ -430,6 +462,7 @@ const entries: ManualEntryT[] = [
     location: 'Yosemite Valley Welcome Center (shuttle stop 2)',
     coord: VILLAGE_MALL,
     isFree: true,
+    accessible: true,
     url: NPS_GUIDE_URL,
   },
   {
@@ -463,6 +496,7 @@ const entries: ManualEntryT[] = [
     location: 'Yosemite Valley (meeting point given at registration)',
     isFree: false,
     reservationRequired: true,
+    familyFriendly: true,
     url: YC_ADVENTURES_URL,
   },
   {
@@ -497,6 +531,7 @@ const entries: ManualEntryT[] = [
     location: 'Curry Village Amphitheater (shuttle stops 14 and 19)',
     coord: CURRY_VILLAGE,
     isFree: true,
+    accessible: true,
     url: YH_URL,
   },
   {
@@ -514,6 +549,7 @@ const entries: ManualEntryT[] = [
     location: 'Curry Village Amphitheater (shuttle stops 14 and 19)',
     coord: CURRY_VILLAGE,
     isFree: true,
+    accessible: true,
     url: YH_URL,
   },
   {
@@ -531,6 +567,8 @@ const entries: ManualEntryT[] = [
     coord: VALLEY_LODGE,
     isFree: false,
     reservationRequired: true,
+    accessible: true,
+    familyFriendly: true,
     url: YH_URL,
   },
   {
@@ -606,6 +644,8 @@ const entries: ManualEntryT[] = [
     coord: VALLEY_LODGE,
     isFree: false,
     reservationRequired: true,
+    accessible: true,
+    familyFriendly: true,
     url: YH_TOURS_URL,
   },
 
@@ -824,6 +864,7 @@ const entries: ManualEntryT[] = [
     location: 'Happy Isles Art and Nature Center (shuttle stop 16)',
     coord: HAPPY_ISLES,
     isFree: true,
+    accessible: true,
     url: YC_ART_URL,
   },
   {
@@ -843,6 +884,7 @@ const entries: ManualEntryT[] = [
     coord: VALLEY_LODGE,
     isFree: false,
     reservationRequired: true,
+    accessible: true,
     url: YC_ART_URL,
   },
 
@@ -894,6 +936,7 @@ const entries: ManualEntryT[] = [
     location: 'Yosemite Conservation Heritage Center (shuttle stop 12)',
     coord: YCHC,
     isFree: true,
+    familyFriendly: true,
     url: SIERRA_CLUB_URL,
   },
   {
@@ -911,6 +954,7 @@ const entries: ManualEntryT[] = [
     location: 'Yosemite Conservation Heritage Center (shuttle stop 12)',
     coord: YCHC,
     isFree: true,
+    familyFriendly: true,
     url: SIERRA_CLUB_URL,
   },
   {
@@ -928,6 +972,7 @@ const entries: ManualEntryT[] = [
     location: 'Yosemite Conservation Heritage Center (shuttle stop 12)',
     coord: YCHC,
     isFree: true,
+    familyFriendly: true,
     url: SIERRA_CLUB_URL,
   },
   {
@@ -945,6 +990,7 @@ const entries: ManualEntryT[] = [
     location: 'Yosemite Conservation Heritage Center (shuttle stop 12)',
     coord: YCHC,
     isFree: true,
+    familyFriendly: true,
     url: SIERRA_CLUB_URL,
   },
 
@@ -973,6 +1019,8 @@ const entries: ManualEntryT[] = [
     coord: GLACIER_POINT,
     isFree: false,
     reservationRequired: true,
+    accessible: true,
+    familyFriendly: true,
     url: YH_URL,
   },
 
@@ -993,6 +1041,7 @@ const entries: ManualEntryT[] = [
     location: 'Pine Tree Market, Wawona',
     coord: WAWONA,
     isFree: true,
+    accessible: true,
     url: NPS_GUIDE_URL,
   },
   {
@@ -1043,6 +1092,8 @@ const entries: ManualEntryT[] = [
     location: 'The Redwoods fireside deck, Wawona',
     coord: WAWONA,
     isFree: true,
+    accessible: true,
+    familyFriendly: true,
     url: NPS_GUIDE_URL,
   },
   {
@@ -1080,13 +1131,15 @@ const entries: ManualEntryT[] = [
     location: 'Tuolumne Grove',
     coord: CRANE_FLAT,
     isFree: true,
+    familyFriendly: true,
     url: NPS_GUIDE_URL,
   },
   {
     key: 'tuolumne-grove-jr-ranger-table',
     source: 'nps',
     category: 'junior-ranger',
-    title: 'Jr. Ranger Discovery Table',
+    // Qualified alongside the valley table above; see the note there.
+    title: 'Jr. Ranger Discovery Table at the Tuolumne Grove',
     description:
       'Drop in any time to talk with a ranger and start or finish earning a Junior Ranger badge. At ' +
       'the Tuolumne Grove Trailhead.',
@@ -1096,6 +1149,7 @@ const entries: ManualEntryT[] = [
     location: 'Tuolumne Grove Trailhead',
     coord: CRANE_FLAT,
     isFree: true,
+    accessible: true,
     url: NPS_GUIDE_URL,
   },
   {
@@ -1115,6 +1169,8 @@ const entries: ManualEntryT[] = [
     location: 'Crane Flat Campground Amphitheater',
     coord: CRANE_FLAT,
     isFree: true,
+    accessible: true,
+    familyFriendly: true,
     url: NPS_GUIDE_URL,
   },
   {
@@ -1138,6 +1194,7 @@ const entries: ManualEntryT[] = [
     coord: CRANE_FLAT,
     isFree: true,
     reservationRequired: true,
+    familyFriendly: true,
     url: NPS_GUIDE_URL,
   },
 
@@ -1194,6 +1251,7 @@ const entries: ManualEntryT[] = [
     location: 'Tuolumne Meadows Store',
     coord: LEMBERT_DOME,
     isFree: true,
+    accessible: true,
     url: NPS_GUIDE_URL,
   },
   {
@@ -1210,6 +1268,7 @@ const entries: ManualEntryT[] = [
     location: 'Parsons Memorial Lodge, Tuolumne Meadows',
     coord: LEMBERT_DOME,
     isFree: true,
+    familyFriendly: true,
     url: NPS_GUIDE_URL,
   },
   {
@@ -1306,6 +1365,8 @@ const entries: ManualEntryT[] = [
     location: 'Tuolumne Meadows Visitor Center parking lot',
     coord: TM_VISITOR_CENTER,
     isFree: true,
+    accessible: true,
+    familyFriendly: true,
     url: NPS_GUIDE_URL,
   },
   {
@@ -1320,6 +1381,7 @@ const entries: ManualEntryT[] = [
     location: 'Dog Lake parking lot, Tuolumne Meadows',
     coord: DOG_LAKE_LOT,
     isFree: true,
+    familyFriendly: true,
     url: NPS_GUIDE_URL,
   },
   {
@@ -1334,6 +1396,7 @@ const entries: ManualEntryT[] = [
     location: 'Dog Lake parking lot, Tuolumne Meadows',
     coord: DOG_LAKE_LOT,
     isFree: true,
+    familyFriendly: true,
     url: NPS_GUIDE_URL,
   },
   {
@@ -1367,6 +1430,7 @@ const entries: ManualEntryT[] = [
     location: 'Tuolumne Meadows Visitor Center',
     coord: TM_VISITOR_CENTER,
     isFree: true,
+    familyFriendly: true,
     url: NPS_GUIDE_URL,
   },
   {
@@ -1387,6 +1451,8 @@ const entries: ManualEntryT[] = [
     location: 'Tuolumne Meadows Visitor Center parking lot',
     coord: TM_VISITOR_CENTER,
     isFree: true,
+    accessible: true,
+    familyFriendly: true,
     url: NPS_GUIDE_URL,
   },
   {
@@ -1406,6 +1472,8 @@ const entries: ManualEntryT[] = [
     location: 'Dana Campfire Circle, Tuolumne Meadows Campground',
     coord: TM_CAMPGROUND,
     isFree: true,
+    accessible: true,
+    familyFriendly: true,
     url: NPS_GUIDE_URL,
   },
   {
@@ -1425,6 +1493,8 @@ const entries: ManualEntryT[] = [
     location: 'Tuolumne Meadows Lodge',
     coord: TM_LODGE,
     isFree: true,
+    accessible: true,
+    familyFriendly: true,
     url: NPS_GUIDE_URL,
   },
   {
@@ -1443,6 +1513,7 @@ const entries: ManualEntryT[] = [
     location: 'Lembert Dome parking, Tuolumne Meadows',
     coord: LEMBERT_DOME,
     isFree: true,
+    familyFriendly: true,
     url: NPS_GUIDE_URL,
   },
   {
@@ -1653,9 +1724,35 @@ for (const e of [...entries, ...PENDING_VERIFICATION]) {
 const parsed = z.array(ManualEntry).parse(entries)
 z.array(ManualEntry).parse(PENDING_VERIFICATION) // keep the parked entries valid too
 
+// Two DIFFERENT programs may never share a date and a title, because the
+// route's dedupe key (routes/programs.ts) is exactly date + normalized title:
+// one NPS feed entry matching that key drops every manual entry behind it, so
+// a shared title silently deletes the other program from the board. Two
+// showings of the SAME program at one place — the noon and 3 pm "Welcome to
+// Tuolumne!" talks — are allowed and are why the guard compares locations
+// rather than banning the collision outright. The guide prints several
+// programs under one name (Campfire Program, Jr. Ranger Discovery Table,
+// Coffee with a Ranger, Climber Coffee); location-qualify the title, as those
+// entries do, rather than relaxing this.
+const normalizeTitle = (title: string) => title.toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim()
+const byDateTitle = new Map<string, { key: string; location?: string }>()
+for (const entry of parsed) {
+  for (const date of entry.dates) {
+    const dedupeKey = `${date}|${normalizeTitle(entry.title)}`
+    const prior = byDateTitle.get(dedupeKey)
+    if (prior && prior.location !== entry.location) {
+      throw new Error(
+        `manual-programs: ${prior.key} and ${entry.key} share a title on ${date} ` +
+          `("${entry.title}") but run in different places — location-qualify one of the titles`,
+      )
+    }
+    if (!prior) byDateTitle.set(dedupeKey, { key: entry.key, location: entry.location })
+  }
+}
+
 // Version label surfaced in the /api/programs `sources` block so the app can
 // show which curation pass the offline copy came from.
-export const MANUAL_PROGRAMS_VERSION = '2026-08-17-guide-v51n7'
+export const MANUAL_PROGRAMS_VERSION = '2026-08-18-guide-v51n7'
 
 export const MANUAL_PROGRAMS: ProgramEventT[] = sortEvents(parsed.flatMap(expand))
 

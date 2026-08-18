@@ -54,6 +54,13 @@ export const ProgramEvent = z.object({
   isFree: z.boolean().optional(),
   reservationRequired: z.boolean().optional(),
   url: z.string().optional(),               // official detail page
+  // The two symbols the printed Yosemite Guide attaches to individual
+  // programs. Both are TRUE-ONLY claims: the Guide marking a program is a
+  // fact worth carrying, but the absence of a symbol is not a statement that
+  // a program is inaccessible or unsuitable for kids, so an unmarked program
+  // leaves these undefined rather than setting false.
+  accessible: z.boolean().optional(),       // "held in a wheelchair-accessible facility or uses wheelchair-accessible paths"
+  familyFriendly: z.boolean().optional(),   // "Recommended for Families: programs for all ages"
 })
 export type ProgramEventT = z.infer<typeof ProgramEvent>
 
