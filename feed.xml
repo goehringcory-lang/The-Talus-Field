@@ -9,13 +9,23 @@
     <copyright>© 2026 The Talus Field</copyright>
     <managingEditor>cory@thetalusfieldjournal.com (Cory Goehring)</managingEditor>
     <webMaster>cory@thetalusfieldjournal.com (Cory Goehring)</webMaster>
-    <lastBuildDate>Fri, 07 Aug 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 20 Aug 2026 00:00:00 +0000</lastBuildDate>
     <image>
       <url>https://thetalusfieldjournal.com/img/talus-field-mark.png</url>
       <title>The Talus Field</title>
       <link>https://thetalusfieldjournal.com/</link>
     </image>
 
+    <item>
+      <title>Yosemite in March: A Tale of Two Seasons</title>
+      <link>https://thetalusfieldjournal.com/articles/yosemite-in-march</link>
+      <guid isPermaLink="true">https://thetalusfieldjournal.com/articles/yosemite-in-march</guid>
+      <pubDate>Thu, 20 Aug 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Cory Goehring</dc:creator>
+      <category>Seasonal Guides</category>
+      <description>One March is spring: 70 degrees in the Valley, waterfalls waking up, poppies in the canyon. The other is the biggest winter month of the year, the one the Sierra named. You cannot pick which one you get, but you can plan a trip that works in either. Here is how.</description>
+      <media:content url="https://thetalusfieldjournal.com/img/yosemite-valley-winter-wall.jpg" medium="image" />
+    </item>
     <item>
       <title>Camping in Yosemite for the First Time</title>
       <link>https://thetalusfieldjournal.com/articles/camping-in-yosemite-first-time</link>

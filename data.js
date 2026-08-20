@@ -164,6 +164,7 @@ window.BODY_VERSIONS = {
   "working-in-yosemite": 76,
   "yosemite-in-one-or-two-days": 85,
   "where-to-eat-yosemite": 81,
+  "yosemite-in-march": 1,
 };
 
 // Fetch a single article body, Babel-transform it in the browser, and run it so
@@ -725,6 +726,20 @@ window.KIT.lists.forEach((l) => {
 });
 
 window.ARTICLES = [
+  {
+    slug: "yosemite-in-march",
+    cat: "seasonal",
+    title: "Yosemite in March: A Tale of Two Seasons",
+    dek: "One March is spring: 70 degrees in the Valley, waterfalls waking up, poppies in the canyon. The other is the biggest winter month of the year, the one the Sierra named. You cannot pick which one you get, but you can plan a trip that works in either. Here is how.",
+    seoDek: "Yosemite in March: weather, what is open and closed, chain rules, waterfalls and frazil ice, the foothill bloom, spring break crowds, and planning for both.",
+    date: "August 20, 2026",
+    isoDate: "2026-08-20",
+    isoModified: "2026-08-20",
+    read: "12 min",
+    placeholder: "A granite wall of Yosemite Valley dusted with late-winter snow",
+    image: "img/yosemite-valley-winter-wall.jpg",
+    credit: "Photo: Ahmed Radwan / Wikimedia Commons (CC0)",
+  },
   {
     slug: "camping-in-yosemite-first-time",
     cat: "planning",
