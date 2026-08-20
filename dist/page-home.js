@@ -306,7 +306,7 @@ var MONTHS = [{
   label: "Mar",
   name: "March",
   note: "Late winter, first runoff. Storms still land, the falls start to wake, the crowds have not arrived, and the high roads stay closed.",
-  reads: ["yosemite-in-winter", "yosemite-waterfalls-guide"],
+  reads: ["yosemite-in-march", "yosemite-waterfalls-guide"],
   image: "img/yosemite-valley-winter-wall.jpg",
   alt: "A granite wall of Yosemite Valley dusted with late-winter snow",
   credit: "Ahmed Radwan / Wikimedia Commons (CC0)"

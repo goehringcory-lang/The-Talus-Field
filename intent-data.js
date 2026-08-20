@@ -149,6 +149,11 @@ window.ARTICLE_INTENT = {
   "when-to-visit-yosemite-2026-crowd-forecast":{ stage: ["before-booking"], who: ["first-trip"], topic: ["conditions"] },
   "yosemite-trip-cost-budget-2026":            { stage: ["before-booking"], who: ["first-trip", "families"], topic: ["lodging", "camping", "food", "transportation"] },
   "yosemite-in-june-2026":                     { stage: ["before-booking", "dates-set"], who: [], topic: ["conditions"] },
+  // Month guide like the June piece: an empty `who` on purpose, because "what is
+  // March like" is a question every traveler type asks in the same words.
+  // `transportation` is earned, not decorative: chains, the 140 approach, and
+  // the closed-road inventory are half the article.
+  "yosemite-in-march":                         { stage: ["before-booking", "dates-set"], who: [], topic: ["conditions", "transportation"] },
   "cathedral-lakes-day-hike":                  { stage: ["dates-set", "in-park"], who: [], topic: ["trails"] },
   "yosemite-needs-a-reservation-system":       { stage: ["before-booking"], who: [], topic: ["conditions"] },
   "memorial-day-skip-the-valley-go-high-2026": { stage: ["dates-set", "week-before"], who: [], topic: ["conditions", "trails"] },
@@ -228,6 +233,7 @@ window.ARTICLE_MONTHS = {
   // Seasonal essays and month guides.
   "yosemite-in-fall": ["sep", "oct", "nov"],
   "yosemite-in-june-2026": ["jun"],
+  "yosemite-in-march": ["mar"],
   "horsetail-fall-firefall": ["feb"],
   "memorial-day-skip-the-valley-go-high-2026": ["may"],
   "tioga-road-opening-weekend-2026": ["may", "jun"],
@@ -463,7 +469,7 @@ window.TRIP_MONTHS = [
     note: "Deep winter. The Valley is open and mostly empty, the waterfalls run low, and chains ride in the car." },
   { key: "feb", label: "Feb", name: "February",  tioga: "closed",    glacier: "closed",    read: "horsetail-fall-firefall",
     note: "Firefall month. For about two weeks Horsetail Fall can glow at sunset; the rest of the park is honest winter." },
-  { key: "mar", label: "Mar", name: "March",     tioga: "closed",    glacier: "closed",    read: "yosemite-in-winter",
+  { key: "mar", label: "Mar", name: "March",     tioga: "closed",    glacier: "closed",    read: "yosemite-in-march",
     note: "Late winter, first runoff. Storms still land, the falls start to wake, and the crowds have not arrived." },
   { key: "apr", label: "Apr", name: "April",     tioga: "closed",    glacier: "closed",    read: "yosemite-waterfalls-guide",
     note: "The Valley greens up and the waterfalls build by the week. Tioga Road is still closed most years." },
