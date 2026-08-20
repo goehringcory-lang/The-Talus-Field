@@ -1,4 +1,4 @@
-/* global React, Placeholder, MotifMountains, NewsletterInline */
+/* global React, NewsletterInline */
 
 // Public URL of the PWA. Override at runtime via window.GUIDE_APP_BASE.
 const GUIDE_APP_BASE =
@@ -1186,9 +1186,9 @@ function GuidePage({ go }) {
       <section className="page-head">
         <div className="wrap wrap--narrow">
           <div className="eyebrow eyebrow--moss">The Field Guide · Offline app · 2026 Edition</div>
-          <h1>The Yosemite guide for people who already know about Glacier Point.</h1>
+          <h1>Three days in Yosemite. This is how you keep all three.</h1>
           <p className="page-head__dek">
-            A web app you add to your home screen. Four regional guides with tappable GPS, honest time budgets, and a swap for when the lot is full. All 57 in-park day hikes with verified tracks. The ranger and partner programs on your dates. A planner that builds each day in driving order, then saves the trip to your calendar. And the whole thing, topo map included, downloads to your phone and keeps working when service dies. Not a PDF. Not another tourist checklist.
+            Written by a naturalist who lives in the park: which stops are worth your morning, where to park, how long each one honestly takes, and where to go the moment the lot fills. It builds each day in driving order, then downloads whole to your phone, topo map included, and keeps working where cell service doesn't, which is most of the park.
           </p>
           <div className="guide-stats">
             <span>4 regions</span>
@@ -1200,15 +1200,19 @@ function GuidePage({ go }) {
           <div className="guide-hero-cta">
             <BuyNowButton location="guide_hero" />
             <p className="guide-hero-cta__sub">
-              <LivePrice />, once. 18 months, every device you own. Or{" "}
+              <LivePrice />, once. No subscription, 18 months on every device you own, refunded in full within 30 days if it does not work as described.
+            </p>
+            <p className="guide-hero-cta__sub">
+              Or{" "}
               <a
                 href={`${GUIDE_APP_BASE}/preview`}
                 onClick={() => {
                   if (window.track) window.track("guide_sample_click", { location: "guide_hero" });
                 }}
               >
-                open the free sample first →
-              </a>
+                read the free sample first →
+              </a>{" "}
+              Five complete entries from the real app, no account needed.
             </p>
           </div>
         </div>
@@ -1219,25 +1223,6 @@ function GuidePage({ go }) {
 
           {/* Left column. Body */}
           <div className="prose">
-            <Placeholder
-              image="img/talus-flows-yosemite.jpg"
-              caption="Talus along the valley walls."
-              credit="USGS / Alex Demas"
-              tag="PLATE I"
-              size="lg"
-              style={{ aspectRatio: "16 / 10", marginBottom: 32 }}
-            />
-
-            <h2>What this is, and what it isn't</h2>
-
-            <p>
-              The internet has a thousand free articles telling you to drive to Glacier Point, walk through the Mariposa Grove, stop at Tunnel View, and look up at El Capitan from the Yosemite Valley floor. You already know those exist. You don't need another website telling you the same thing in a different font.
-            </p>
-
-            <p>
-              This guide assumes you've done that reading. It's the version of the conversation we'd have if you sat across from me at a picnic table in El Portal and said, "I have three days. Show me how to do this well." Which stops are worth your morning, which can wait, where to park, how long each one actually takes, and what to do instead when the lot is full.
-            </p>
-
             <h2>What a wrong morning costs</h2>
 
             <p>
@@ -1246,6 +1231,20 @@ function GuidePage({ go }) {
 
             <p>
               That's the problem this guide is built against. Time budgets tell you what actually fits before lunch. Swaps tell you where to go the second a lot is full. And because all of it lives on your phone and works without signal, the answer is there at the moment the day wobbles, which is never a moment with bars.
+            </p>
+
+            <p>
+              The guide is <LivePrice />. Everything else about your trip costs more and decides less.
+            </p>
+
+            <h2>The picnic table in El Portal</h2>
+
+            <p>
+              This guide is the conversation you'd get if you sat across from me at a picnic table in El Portal and said, "I have three days. Show me how to do this well." Which stops are worth your morning, which can wait, where to park, how long each one actually takes, and what to do instead when the lot is full.
+            </p>
+
+            <p>
+              The internet has a thousand free articles telling you to drive to Glacier Point, walk through the Mariposa Grove, and look up at El Capitan from the Yosemite Valley floor. You don't need those repeated in a different font. This guide assumes you've done that reading and starts where the lists stop: the parking, the timing, the order, and the fallback.
             </p>
 
             <h2>Sixty seconds inside the app</h2>
