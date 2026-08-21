@@ -1,94 +1,28 @@
 var {
-  useMemo,
   useState
 } = React;
-function HomeHeroCapture({
-  tripMonth
-}) {
-  var [done, setDone] = useState(false);
-  var subscribed = isSubscribed();
-  var ref = useNewsletterImpression("home_hero", "home", !subscribed && !done);
-  if (subscribed && !done) {
-    return React.createElement("p", {
-      className: "hero__capture-note",
-      ref: ref
-    }, "You're on the list. ", React.createElement("a", {
-      href: "/map"
-    }, "The trip planner map is open to you →"));
-  }
-  if (done) {
-    return React.createElement("p", {
-      className: "hero__capture-note",
-      ref: ref
-    }, "You're in. ", React.createElement("a", {
-      href: "/map"
-    }, "The map is open to you →"));
-  }
-  return React.createElement("div", {
-    className: "hero__capture-box",
-    ref: ref
-  }, React.createElement("div", {
-    className: "eyebrow eyebrow--moss"
-  }, "The Sunday Letter · Free"), React.createElement("p", {
-    className: "hero__capture-lede"
-  }, "What is open, what is booking out, and what the week looked like from inside the park. The interactive trip planner map comes with it."), React.createElement("form", {
-    className: "hero__capture nlbox__form",
-    action: "https://buttondown.com/api/emails/embed-subscribe/goehring",
-    method: "post",
-    target: "buttondown-target",
-    onSubmit: () => {
-      if (window.trackNewsletterSubmit) window.trackNewsletterSubmit("home_hero", "home");
-      setTimeout(() => setDone(true), 0);
-    }
-  }, React.createElement("input", {
-    type: "email",
-    name: "email",
-    "aria-label": "Email address",
-    placeholder: "you@email.com",
-    required: true
-  }), React.createElement("input", {
-    type: "hidden",
-    name: "tag",
-    value: tripMonth ? `trip-${tripMonth}` : "home"
-  }), React.createElement("input", {
-    type: "hidden",
-    name: "embed",
-    value: "1"
-  }), React.createElement("button", {
-    type: "submit"
-  }, "Get the Sunday letter →")));
-}
-var HERO_DOORS = [{
-  key: "start-here",
-  href: "#start-here",
-  label: "First visit"
-}, {
-  key: "itineraries",
-  href: "/itineraries",
-  label: "Dates already set"
-}, {
-  key: "now",
-  href: "/now",
-  label: "In the park now"
-}];
 function HomeHero({
-  tripMonth,
-  go,
-  onStartHere
+  go
 }) {
-  return React.createElement("section", {
-    className: "hero"
+  return React.createElement(React.Fragment, null, React.createElement("div", {
+    className: "home-edition"
   }, React.createElement("div", {
-    className: "wrap hero__grid"
-  }, React.createElement("div", null, React.createElement("div", {
-    className: "hero__kicker"
+    className: "wrap home-edition__inner"
+  }, React.createElement("span", {
+    className: "home-edition__issue"
   }, React.createElement("span", {
     className: "dot"
   }), React.createElement("span", {
     "data-shell-blank": "issue"
-  }, window.SITE && window.SITE.issue || "Vol. III", window.SITE && window.SITE.issueDetail ? ` · ${window.SITE.issueDetail}` : "")), React.createElement("h1", null, "Yosemite, from the inside."), React.createElement("p", {
+  }, window.SITE && window.SITE.issue || "Vol. III", window.SITE && window.SITE.issueDetail ? ` · ${window.SITE.issueDetail}` : "")), React.createElement("span", {
+    className: "home-edition__where"
+  }, "Published from El Portal, inside the park"))), React.createElement("section", {
+    className: "hero"
+  }, React.createElement("div", {
+    className: "wrap hero__grid"
+  }, React.createElement("div", null, React.createElement("h1", null, "Yosemite, from the inside."), React.createElement("p", {
     className: "hero__dek"
-  }, "Build a realistic Yosemite itinerary with current conditions, resident-tested stops and an offline field guide."), React.createElement("div", {
+  }, "A working journal of one national park: current conditions, resident-tested planning, and twenty seasons of looking closely."), React.createElement("div", {
     className: "hero__cta"
   }, React.createElement("a", {
     className: "btn",
@@ -114,44 +48,7 @@ function HomeHero({
       });
       go("conditions");
     }
-  }, "Check today's conditions")), React.createElement("nav", {
-    className: "hero-audience",
-    "aria-label": "Start from where you are"
-  }, HERO_DOORS.map(d => React.createElement("a", {
-    key: d.key,
-    className: "hero-audience__link",
-    href: d.href,
-    onClick: e => {
-      e.preventDefault();
-      if (window.track) window.track("cta_click", {
-        location: "home_door",
-        target: d.key
-      });
-      if (d.key === "start-here") onStartHere();else go(d.key);
-    }
-  }, d.label, " ", React.createElement("span", {
-    "aria-hidden": "true"
-  }, "→")))), React.createElement("a", {
-    className: "hero-guide",
-    href: "/guide",
-    onClick: e => {
-      e.preventDefault();
-      if (window.track) window.track("guide_cta_click", {
-        location: "home_hero"
-      });
-      go("guide");
-    }
-  }, React.createElement("span", {
-    className: "eyebrow eyebrow--moss"
-  }, "The Field Guide · Offline app"), React.createElement("span", {
-    className: "hero-guide__title"
-  }, "Take the guide offline"), React.createElement("p", {
-    className: "hero-guide__body"
-  }, "Every major park region, 57 hikes, GPS locations, local tactics and an offline topo map."), React.createElement("span", {
-    className: "mono hero-guide__cta"
-  }, "See the Field Guide · $3.99 →")), React.createElement(HomeHeroCapture, {
-    tripMonth: tripMonth
-  })), React.createElement(Placeholder, {
+  }, "Check today's conditions"))), React.createElement(Placeholder, {
     caption: "El Capitan and Bridalveil at sunset",
     credit: "Rodrigo Soares / Unsplash",
     image: "img/valley-view-sunset-rodrigo-soares.jpg",
@@ -160,7 +57,7 @@ function HomeHero({
     natural: true,
     eager: true,
     motif: React.createElement(MotifMountains, null)
-  })));
+  }))));
 }
 function DeferredSection({
   minHeight,
@@ -195,6 +92,74 @@ function DeferredSection({
     }
   });
 }
+function HomeIndex({
+  go
+}) {
+  var entries = window.ARTICLES.length;
+  var sections = window.CATEGORIES.length;
+  var items = [{
+    key: "articles",
+    num: "01",
+    title: "The Journal",
+    blurb: `${entries} entries across ${sections} sections, newest first.`,
+    cta: "All entries →"
+  }, {
+    key: "map",
+    num: "02",
+    title: "The Trip Map",
+    blurb: "Every vista, trailhead, parking turnout, and meal, assembled into a route.",
+    cta: "Open the map →"
+  }, {
+    key: "now",
+    num: "03",
+    title: "The Park Bulletin",
+    blurb: "Alerts, road status, free programs, and what is open, in the current edition.",
+    cta: "Scan the bulletin →"
+  }, {
+    href: "/archive/",
+    num: "04",
+    title: "The Archive",
+    blurb: "512 issues of Yosemite Nature Notes, 1922 onward, transcribed.",
+    cta: "Browse the archive →"
+  }];
+  return React.createElement("section", {
+    className: "wrap home-index-wrap"
+  }, React.createElement("nav", {
+    className: "home-index",
+    "aria-label": "What is on this site"
+  }, items.map(it => {
+    var track = () => {
+      if (window.track) window.track("cta_click", {
+        location: "home_index",
+        target: it.key || "archive"
+      });
+    };
+    var inner = React.createElement(React.Fragment, null, React.createElement("span", {
+      className: "mono home-index__num"
+    }, "№ ", it.num), React.createElement("span", {
+      className: "home-index__title"
+    }, it.title), React.createElement("span", {
+      className: "home-index__blurb"
+    }, it.blurb), React.createElement("span", {
+      className: "mono home-index__cta"
+    }, it.cta));
+    return it.href ? React.createElement("a", {
+      key: it.num,
+      className: "home-index__item",
+      href: it.href,
+      onClick: track
+    }, inner) : React.createElement("a", {
+      key: it.num,
+      className: "home-index__item",
+      href: `/${it.key}`,
+      onClick: e => {
+        e.preventDefault();
+        track();
+        go(it.key);
+      }
+    }, inner);
+  })));
+}
 var RESUME_MAX_AGE_DAYS = 30;
 function ResumeReading({
   go
@@ -212,12 +177,7 @@ function ResumeReading({
   if (!show) return null;
   var totalMin = parseInt(article.read, 10);
   var remaining = Number.isFinite(totalMin) ? `About ${Math.max(1, Math.round(totalMin * (100 - last.pct) / 100))} min left` : `${last.pct}% read`;
-  return React.createElement("section", {
-    className: "wrap",
-    style: {
-      paddingTop: 40
-    }
-  }, React.createElement("a", {
+  return React.createElement("a", {
     className: "resume-band",
     href: `/articles/${article.slug}`,
     onClick: e => {
@@ -237,7 +197,7 @@ function ResumeReading({
     className: "resume-band__meta"
   }, remaining), React.createElement("span", {
     className: "mono resume-band__cta"
-  }, "Keep reading →")));
+  }, "Keep reading →"));
 }
 var HOME_BULLETIN_URL = "/bulletin.json?v=5";
 function HomeBulletin({
@@ -259,12 +219,7 @@ function HomeBulletin({
   var today = new Date();
   today.setHours(0, 0, 0, 0);
   var ended = !Number.isNaN(endDate.getTime()) && today > endDate;
-  return React.createElement("section", {
-    className: "wrap",
-    style: {
-      paddingTop: 44
-    }
-  }, React.createElement("a", {
+  return React.createElement("a", {
     className: "home-dispatch",
     href: "/now",
     onClick: e => {
@@ -282,286 +237,80 @@ function HomeBulletin({
     className: "home-dispatch__excerpt"
   }, edition.lede), React.createElement("span", {
     className: "mono home-dispatch__cta"
-  }, "Scan the bulletin →")));
+  }, "Scan the bulletin →"));
 }
-var MONTHS = [{
-  key: "jan",
-  label: "Jan",
-  name: "January",
-  note: "The quiet season. The Valley is open and mostly empty, the waterfalls run low, the high roads are closed, and chain rules come and go with the storms.",
-  reads: ["yosemite-in-winter", "when-to-visit-yosemite-2026-crowd-forecast"],
-  image: "img/el-capitan-winter.jpg",
-  alt: "El Capitan under fresh snow as a winter storm clears above the Valley floor"
-}, {
-  key: "feb",
-  label: "Feb",
-  name: "February",
-  note: "Firefall month. For about two weeks Horsetail Fall can glow at sunset when sky, water, and angle all cooperate, and the rest of the park is still honest winter.",
-  reads: ["horsetail-fall-firefall", "yosemite-in-winter"],
-  image: "img/horsetail-fall-firefall-cedric-letsch.jpg",
-  alt: "Horsetail Fall glowing orange at sunset on the east shoulder of El Capitan",
-  credit: "Cedric Letsch / Unsplash"
-}, {
-  key: "mar",
-  label: "Mar",
-  name: "March",
-  note: "Late winter, first runoff. Storms still land, the falls start to wake, the crowds have not arrived, and the high roads stay closed.",
-  reads: ["yosemite-in-march", "yosemite-waterfalls-guide"],
-  image: "img/yosemite-valley-winter-wall.jpg",
-  alt: "A granite wall of Yosemite Valley dusted with late-winter snow",
-  credit: "Ahmed Radwan / Wikimedia Commons (CC0)"
-}, {
-  key: "apr",
-  label: "Apr",
-  name: "April",
-  note: "The Valley greens up and the waterfalls build by the week. Dogwoods usually bloom late in the month. Tioga is still closed most years.",
-  reads: ["yosemite-waterfalls-guide", "yosemite-wildflowers-guide"],
-  image: "img/yosemite-falls-spring-blossoms-cory-goehring.jpg",
-  alt: "Yosemite Falls behind spring blossoms on the Valley floor",
-  credit: "Cory Goehring"
-}, {
-  key: "may",
-  label: "May",
-  name: "May",
-  note: "Peak waterfall month and the last calmer weeks before summer. The high roads usually begin to open. Lodging books far ahead; day plans still work.",
-  reads: ["yosemite-waterfalls-guide", "when-to-visit-yosemite-2026-crowd-forecast"],
-  image: "img/upper-yosemite-fall-jesse-callahan.jpg",
-  alt: "Upper Yosemite Fall at full spring flow",
-  credit: "Jesse Callahan / Unsplash"
-}, {
-  key: "jun",
-  label: "Jun",
-  name: "June",
-  note: "Early summer. Strong falls at the start of the month, the high country opening, and school-break crowds building toward their peak.",
-  reads: ["yosemite-in-june-2026", "yosemite-waterfalls-guide"],
-  image: "img/half-dome-meadow-deer-johannes-andersson.jpg",
-  alt: "A deer grazing a green meadow below Half Dome in early summer",
-  credit: "Johannes Andersson / Unsplash"
-}, {
-  key: "jul",
-  label: "Jul",
-  name: "July",
-  note: "Full summer. Every road is typically open, the Valley runs hot and busy, the big falls thin, and evenings in the high country are the move. Have a smoke plan.",
-  reads: ["yosemite-heat-safety-guide", "yosemite-during-smoke-season"],
-  image: "img/tenaya-lake.jpg",
-  alt: "Tenaya Lake and granite domes along Tioga Road in summer",
-  credit: "Michael Hogarth / Wikimedia Commons (public domain)"
-}, {
-  key: "aug",
-  label: "Aug",
-  name: "August",
-  note: "High summer. Hot in the Valley, settled weather up high, the falls at a trickle, and the darkest skies of the year for the Milky Way. Smoke is a real possibility.",
-  reads: ["yosemite-stargazing-where-to-look-up", "yosemite-heat-safety-guide"],
-  image: "img/milky-way-sentinel-dome.jpg",
-  alt: "The Milky Way over Sentinel Dome on a dark August night",
-  credit: "Jackhen1992 / Wikimedia Commons (CC BY-SA 4.0)"
-}, {
-  key: "sep",
-  label: "Sep",
-  name: "September",
-  note: "The exhale. Crowds ease after Labor Day, the weather usually holds, the falls are at their lowest, and smoke can linger into fall.",
-  reads: ["when-to-visit-yosemite-2026-crowd-forecast", "yosemite-during-smoke-season"],
-  image: "img/tuolumne-meadows.jpg",
-  alt: "Tuolumne Meadows in golden late-season light"
-}, {
-  key: "oct",
-  label: "Oct",
-  name: "October",
-  note: "Fall. Cooler days, color along the Merced, quieter trails, and the first real storms possible late in the month.",
-  reads: ["yosemite-photography-spots", "yosemite-during-smoke-season"],
-  image: "img/tunnel-view-autumn-aniket-deole.jpg",
-  alt: "Tunnel View in autumn light, with El Capitan, Bridalveil Fall, and Half Dome in one frame",
-  credit: "Aniket Deole / Unsplash"
-}, {
-  key: "nov",
-  label: "Nov",
-  name: "November",
-  note: "The shoulder. Short days, empty trails, the first lasting snow most years, and the high roads close for the season.",
-  reads: ["yosemite-in-winter", "when-to-visit-yosemite-2026-crowd-forecast"],
-  image: "img/half-dome-valley-vista.jpg",
-  alt: "Half Dome above a quiet Yosemite Valley in the November shoulder season",
-  credit: "Cam DiCecca / Wikimedia Commons (CC0)"
-}, {
-  key: "dec",
-  label: "Dec",
-  name: "December",
-  note: "Early winter. First snow when storms land, holiday crowds around the lodges midmonth onward, and chains in the car as a rule.",
-  reads: ["yosemite-in-winter", "yosemite-photography-spots"],
-  image: "img/half-dome-alpenglow-madhu-shesharam.jpg",
-  alt: "Winter alpenglow on Half Dome at dusk",
-  credit: "Madhu Shesharam / Unsplash"
-}];
-function HomeMonthPlanner({
-  month,
-  onSelect,
-  go
-}) {
-  var sel = MONTHS.find(m => m.key === month) || null;
-  var reads = sel ? sel.reads.map(s => window.findArticle(s)).filter(Boolean) : [];
-  var isCurrentMonth = Boolean(sel) && sel.name === new Date().toLocaleDateString("en-US", {
-    month: "long"
-  });
-  var linkClick = (e, target, dest) => {
-    e.preventDefault();
-    if (window.track) window.track("cta_click", {
-      location: "home_month",
-      target
-    });
-    go(dest);
-  };
-  return React.createElement("section", {
-    className: "wrap",
-    style: {
-      paddingTop: 28
-    }
-  }, React.createElement("div", {
-    className: "month-planner"
-  }, React.createElement("div", {
-    className: "month-planner__head"
-  }, React.createElement("span", {
-    className: "month-planner__label"
-  }, "When are you going?"), React.createElement("div", {
-    className: "month-planner__chips",
-    role: "group",
-    "aria-label": "Pick your trip month"
-  }, MONTHS.map(m => React.createElement("button", {
-    key: m.key,
-    type: "button",
-    className: "month-chip" + (m.key === month ? " month-chip--on" : ""),
-    "aria-pressed": m.key === month,
-    onClick: () => onSelect(m.key === month ? null : m.key)
-  }, m.label)))), sel && React.createElement("div", {
-    className: "month-planner__panel",
-    style: {
-      display: "grid",
-      gridTemplateColumns: "1fr 320px",
-      gap: 36,
-      alignItems: "start"
-    }
-  }, React.createElement("div", null, React.createElement("p", {
-    className: "month-planner__note"
-  }, React.createElement("strong", null, sel.name, "."), " ", sel.note), React.createElement("div", {
-    className: "month-planner__links"
-  }, reads.map(a => React.createElement("a", {
-    key: a.slug,
-    href: `/articles/${a.slug}`,
-    onClick: e => linkClick(e, a.slug, `a:${a.slug}`)
-  }, a.title, " →")), React.createElement("a", {
-    href: "/itineraries",
-    onClick: e => linkClick(e, "itineraries", "itineraries")
-  }, "Build the days: Itineraries →"), isCurrentMonth && React.createElement("a", {
-    href: "/now",
-    onClick: e => linkClick(e, "now", "now")
-  }, "Going now: The Park Bulletin →")), React.createElement("p", {
-    className: "month-planner__hint"
-  }, "Typical season, not a forecast. The Bulletin and Conditions carry the current state.")), React.createElement(Placeholder, {
-    caption: sel.alt,
-    image: sel.image,
-    credit: sel.credit,
-    tag: sel.label.toUpperCase(),
-    size: "sm",
-    sizes: "(max-width: 720px) 100vw, 320px",
-    style: {
-      aspectRatio: "4/3"
-    }
-  }))));
-}
-var SECTION_IMAGES = {
-  planning: {
-    image: "img/tunnel-view.jpg",
-    alt: "Tunnel View, with El Capitan, Bridalveil Fall, and Half Dome in one frame"
-  },
-  trails: {
-    image: "img/taft-point.jpg",
-    alt: "The unfenced granite overhang at Taft Point above Yosemite Valley",
-    credit: "Cam Adams / Wikimedia Commons (CC0)"
-  },
-  wildlife: {
-    image: "img/black-bear.jpg",
-    alt: "A black bear moving through a Yosemite meadow"
-  },
-  seasonal: {
-    image: "img/wildflowers.jpg",
-    alt: "Midsummer wildflowers crowding a Yosemite meadow"
-  }
-};
 var START_HERE_QUESTIONS = {
   "first-time-yosemite-overwhelm": "First time, and it feels like a lot?",
   "yosemite-without-reservations-2026": "Do you need a reservation this year?",
   "yosemite-gateway-towns-compared": "Where should you actually stay?",
   "yosemite-in-one-or-two-days": "Only have a day or two?"
 };
+function HomeRail({
+  go
+}) {
+  return React.createElement("aside", {
+    className: "home-rail",
+    "aria-label": "From The Talus Field"
+  }, React.createElement("a", {
+    className: "rail-guide",
+    href: "/guide",
+    onClick: e => {
+      e.preventDefault();
+      if (window.track) window.track("guide_cta_click", {
+        location: "home_rail"
+      });
+      go("guide");
+    }
+  }, React.createElement("span", {
+    className: "rail-guide__eyebrow"
+  }, "The Field Guide · Offline app"), React.createElement("span", {
+    className: "rail-guide__title"
+  }, "The park, in your pocket."), React.createElement("p", {
+    className: "rail-guide__body"
+  }, "57 hikes with parking and timing notes, offline maps, and the local tactics for every major region. Works with no signal, which is most of the park. One purchase, eighteen months of access."), React.createElement("span", {
+    className: "mono rail-guide__cta"
+  }, "See the Field Guide · $3.99 →")), React.createElement(NewsletterInline, {
+    location: "home_rail",
+    tag: "home",
+    heading: "The Sunday Letter",
+    blurb: "What is open, what is booking out, and what the week looked like from inside the park. The interactive trip planner map comes with it. Free.",
+    cta: "Get the Sunday letter →",
+    modifier: "nlbox--rail"
+  }), React.createElement(LodgingCta, {
+    destination: "Yosemite National Park",
+    heading: "The decision with a deadline",
+    note: "Inside the park there is one operator and one inventory, opening 366 days ahead. Outside it there are five gateway towns whose drive times to the Valley differ by more than an hour. Both are covered, honestly, on one page.",
+    list: "page_home",
+    slug: "home",
+    cta: "See what is available on your dates →"
+  }));
+}
 function HomePage({
   go
 }) {
-  var recent = window.ARTICLES.slice(0, 6);
+  var recent = window.ARTICLES.slice(0, 3);
   var startHere = (window.START_HERE || []).map(slug => window.findArticle(slug)).filter(Boolean);
-  var [tripMonth, setTripMonth] = useState(() => {
-    var v = window.safeStorage.get("tfg.trip.month", null);
-    return MONTHS.some(m => m.key === v) ? v : null;
-  });
-  var selectTripMonth = key => {
-    setTripMonth(key);
-    if (key) window.safeStorage.set("tfg.trip.month", key);else window.safeStorage.remove("tfg.trip.month");
-    if (window.track) window.track("trip_month_select", {
-      month: key || "cleared"
-    });
-  };
-  var scrollToStartHere = () => {
-    document.getElementById("start-here")?.scrollIntoView({
-      behavior: "smooth",
-      block: "start"
-    });
-  };
   return React.createElement("div", {
     className: "page"
   }, React.createElement(HomeHero, {
-    tripMonth: tripMonth,
-    go: go,
-    onStartHere: scrollToStartHere
+    go: go
+  }), React.createElement(HomeIndex, {
+    go: go
   }), React.createElement("section", {
-    className: "wrap",
-    style: {
-      paddingTop: 28
-    }
-  }, React.createElement("nav", {
-    className: "home-utility",
-    "aria-label": "Trip tools"
-  }, React.createElement("span", {
-    className: "home-utility__label"
-  }, "Plan your trip"), [["planning", "/planning", "Planning Guide"], ["stay", "/stay", "Where to stay"], ["checklist", "/checklist", "Checklist"], ["conditions", "/conditions", "Conditions and webcams"]].map(([key, href, label], i) => React.createElement(React.Fragment, {
-    key: key
-  }, i > 0 && React.createElement("span", {
-    className: "home-utility__sep",
-    "aria-hidden": "true"
-  }, "·"), React.createElement("a", {
-    href: href,
-    onClick: e => {
-      e.preventDefault();
-      if (window.track) window.track("home_utility_click", {
-        target: key
-      });
-      go(key);
-    }
-  }, label))))), React.createElement(ResumeReading, {
+    className: "wrap home-body"
+  }, React.createElement("div", {
+    className: "home-spine"
+  }, React.createElement(ResumeReading, {
     go: go
   }), React.createElement(HomeBulletin, {
     go: go
-  }), React.createElement(HomeMonthPlanner, {
-    month: tripMonth,
-    onSelect: selectTripMonth,
-    go: go
-  }), startHere.length > 0 && React.createElement("section", {
+  }), startHere.length > 0 && React.createElement("div", {
     id: "start-here",
-    className: "wrap",
     style: {
-      paddingTop: 72,
       scrollMarginTop: 24
     }
   }, React.createElement("div", {
-    style: {
-      marginBottom: 32
-    }
+    className: "home-section__head"
   }, React.createElement("div", {
     className: "eyebrow eyebrow--moss",
     style: {
@@ -572,266 +321,59 @@ function HomePage({
   }, "Start here."), React.createElement("p", {
     className: "home-section__dek"
   }, "Four answers before you book anything.")), React.createElement("div", {
-    className: "start-here-grid"
-  }, startHere.map(a => React.createElement("div", {
+    className: "home-answers"
+  }, startHere.map(a => React.createElement("a", {
     key: a.slug,
-    className: "start-q"
-  }, START_HERE_QUESTIONS[a.slug] && React.createElement("p", {
-    className: "start-q__label"
-  }, START_HERE_QUESTIONS[a.slug]), React.createElement(ArticleCard, {
-    article: a,
-    go: go
-  }))))), React.createElement(DeferredSection, {
-    minHeight: 320,
-    render: () => React.createElement("section", {
-      className: "wrap wrap--narrow",
-      style: {
-        paddingTop: 72
-      }
-    }, React.createElement("div", {
-      className: "section-head"
-    }, React.createElement("h2", null, "Where to stay"), React.createElement("a", {
-      href: "/stay",
-      onClick: e => {
-        e.preventDefault();
-        go("stay");
-      }
-    }, "The whole board →")), React.createElement(LodgingCta, {
-      destination: "Yosemite National Park",
-      heading: "The decision with a deadline",
-      note: "Inside the park there is one operator and one inventory, opening 366 days ahead. Outside it there are five gateway towns whose drive times to the Valley differ by more than an hour. Both are covered, honestly, on one page.",
-      list: "page_home",
-      slug: "home",
-      cta: "See what is available on your dates →"
-    }))
-  }), React.createElement(DeferredSection, {
-    minHeight: 880,
-    render: () => React.createElement("section", {
-      className: "wrap",
-      style: {
-        paddingTop: 80
-      }
-    }, React.createElement("div", {
-      className: "section-head"
-    }, React.createElement("h2", null, "Latest Entries"), React.createElement("a", {
+    className: "home-answer",
+    href: `/articles/${a.slug}`,
+    onClick: e => {
+      e.preventDefault();
+      go(`a:${a.slug}`);
+    }
+  }, START_HERE_QUESTIONS[a.slug] && React.createElement("span", {
+    className: "home-answer__q"
+  }, START_HERE_QUESTIONS[a.slug]), React.createElement("span", {
+    className: "home-answer__title"
+  }, a.title))))), React.createElement("div", {
+    className: "home-latest"
+  }, React.createElement(DeferredSection, {
+    minHeight: 560,
+    render: () => React.createElement("div", null, React.createElement("div", {
+      className: "home-section__head home-section__head--row"
+    }, React.createElement("h2", {
+      className: "home-section__title"
+    }, "Latest Entries"), React.createElement("a", {
+      className: "mono home-section__more",
       href: "/articles",
       onClick: e => {
         e.preventDefault();
         go("articles");
       }
-    }, "All entries →")), React.createElement("div", {
-      className: "home-cards"
-    }, recent.map(a => React.createElement(ArticleCard, {
-      key: a.slug,
-      article: a,
-      go: go
-    }))))
-  }), React.createElement(DeferredSection, {
-    minHeight: 720,
-    render: () => React.createElement("section", {
-      className: "wrap",
-      style: {
-        paddingTop: 80
-      }
-    }, React.createElement("div", {
-      className: "section-head"
-    }, React.createElement("h2", null, "By Section"), React.createElement("a", {
-      href: "/articles",
-      onClick: e => {
-        e.preventDefault();
-        go("articles");
-      }
-    }, "Everything →")), React.createElement("div", {
-      className: "home-sections"
-    }, window.CATEGORIES.map((c, i) => {
-      var count = window.byCategory(c.slug).length;
-      var plate = SECTION_IMAGES[c.slug];
+    }, "All ", window.ARTICLES.length, " entries →")), React.createElement("div", {
+      className: "home-entries"
+    }, recent.map(a => {
+      var cat = window.findCategory(a.cat);
       return React.createElement("a", {
-        key: c.slug,
-        className: "home-section-tile",
-        href: `/section/${c.slug}`,
+        key: a.slug,
+        className: "home-entry",
+        href: `/articles/${a.slug}`,
         onClick: e => {
           e.preventDefault();
-          go(`cat:${c.slug}`);
+          go(`a:${a.slug}`);
         }
-      }, plate && React.createElement(Placeholder, {
-        caption: plate.alt,
-        image: plate.image,
-        credit: plate.credit,
-        tag: c.label.split(" ")[0],
-        size: "sm",
-        sizes: "(max-width: 720px) 50vw, 280px",
-        style: {
-          aspectRatio: "3/2",
-          marginBottom: 20
-        }
-      }), React.createElement("div", {
-        className: "mono home-section-tile__num"
-      }, "№ 0", i + 1), React.createElement("div", {
-        className: "home-section-tile__label"
-      }, c.label), React.createElement("div", {
-        className: "home-section-tile__blurb"
-      }, c.blurb), React.createElement("div", {
-        className: "home-section-tile__count"
-      }, count, " ", count === 1 ? "Entry" : "Entries", " →"));
+      }, React.createElement("span", {
+        className: "eyebrow eyebrow--moss"
+      }, cat.label), React.createElement("span", {
+        className: "home-entry__title"
+      }, a.title), React.createElement("span", {
+        className: "home-entry__dek"
+      }, a.dek), React.createElement("span", {
+        className: "mono home-entry__meta"
+      }, React.createElement("span", null, a.date), React.createElement("span", null, a.read)));
     })))
-  }), React.createElement(DeferredSection, {
-    minHeight: 1200,
-    render: () => React.createElement("section", {
-      className: "wrap",
-      style: {
-        paddingTop: 80
-      }
-    }, React.createElement("div", {
-      className: "section-head"
-    }, React.createElement("h2", null, "Go Deeper")), React.createElement("a", {
-      className: "band-map",
-      href: "/map",
-      onClick: e => {
-        e.preventDefault();
-        if (window.track) window.track("cta_click", {
-          location: "home_band",
-          target: "map"
-        });
-        go("map");
-      }
-    }, React.createElement("div", {
-      className: "home-band__grid"
-    }, React.createElement("div", null, React.createElement("div", {
-      className: "eyebrow eyebrow--moss",
-      style: {
-        marginBottom: 12
-      }
-    }, "The Map · Free"), React.createElement("div", {
-      className: "band-map__title"
-    }, "Yosemite, on a map.")), React.createElement("div", null, React.createElement("p", {
-      className: "band-map__body"
-    }, "Every vista, trailhead, parking turnout, and meal in one interactive map. The same free signup as the Sunday letter opens it: tap pins to assemble a route, or load a suggested one-, two-, or three-day trip."), React.createElement("div", {
-      className: "mono band-map__cta"
-    }, "Open the map →")), React.createElement(Placeholder, {
-      caption: "NPS map of Yosemite showing park roads and campgrounds",
-      image: "img/yosemite-park-map.jpg",
-      credit: "NPS",
-      tag: "MAP",
-      size: "sm",
-      sizes: "(max-width: 720px) 100vw, 300px",
-      style: {
-        aspectRatio: "4/3"
-      }
-    }))), React.createElement("a", {
-      className: "band-guide",
-      href: "/guide",
-      onClick: e => {
-        e.preventDefault();
-        if (window.track) window.track("guide_cta_click", {
-          location: "home_band"
-        });
-        go("guide");
-      }
-    }, React.createElement("div", {
-      className: "home-band__grid"
-    }, React.createElement("div", null, React.createElement("div", {
-      className: "band-guide__eyebrow"
-    }, "The Field Guide · $3.99"), React.createElement("div", {
-      className: "band-guide__title"
-    }, "The park, in your pocket.")), React.createElement("div", null, React.createElement("p", {
-      className: "band-guide__body"
-    }, "The app version of this journal: 50-plus stops with parking and timing notes, offline maps, a trip planner, and the secret guide. Works with no signal, which is most of the park. One purchase, eighteen months of access."), React.createElement("div", {
-      className: "mono band-guide__cta"
-    }, "See the Field Guide →")), React.createElement(Placeholder, {
-      caption: "The Milky Way over Half Dome on a moonless night, far from any signal",
-      image: "img/half-dome-starry-night-casey-horner.jpg",
-      credit: "Casey Horner / Unsplash",
-      tag: "PLATE II",
-      size: "sm",
-      sizes: "(max-width: 720px) 100vw, 300px",
-      style: {
-        aspectRatio: "4/3"
-      }
-    }))), React.createElement("div", {
-      className: "home-paths"
-    }, [{
-      key: "planning",
-      eyebrow: "The Planning Guide · Free",
-      title: "Yosemite, planned properly.",
-      blurb: "The full archive organized for a real trip: gateway towns, reservations, Half Dome, smoke season, in the order you'll need them.",
-      cta: "Read the guide →"
-    }, {
-      key: "consult",
-      eyebrow: "Field Consult · $95",
-      title: "Your plan, thirty minutes.",
-      blurb: "One on one with a naturalist who lives in the park: your dates, your group, your plan taken apart and put back together. Six a month.",
-      cta: "Book a consult →"
-    }, {
-      key: "kit",
-      eyebrow: "The Kit",
-      title: "What I carry.",
-      blurb: "Three lists for three trips: day pack, overnight pack, car kit. The actual gear, with the actual reasons, and a plain disclosure.",
-      cta: "See the kit →"
-    }].map(p => React.createElement("a", {
-      key: p.key,
-      className: "home-path",
-      href: `/${p.key}`,
-      onClick: e => {
-        e.preventDefault();
-        if (window.track) window.track("cta_click", {
-          location: "home_path",
-          target: p.key
-        });
-        go(p.key);
-      }
-    }, React.createElement("div", {
-      className: "eyebrow eyebrow--moss",
-      style: {
-        marginBottom: 12
-      }
-    }, p.eyebrow), React.createElement("div", {
-      className: "home-path__title"
-    }, p.title), React.createElement("p", {
-      className: "home-path__blurb"
-    }, p.blurb), React.createElement("div", {
-      className: "mono home-path__cta"
-    }, p.cta)))))
-  }), React.createElement(DeferredSection, {
-    minHeight: 620,
-    render: () => React.createElement("section", {
-      className: "wrap",
-      style: {
-        paddingTop: 96
-      }
-    }, React.createElement("div", {
-      className: "home-editor"
-    }, React.createElement(Placeholder, {
-      caption: "The Tuolumne high country, photographed by the editor",
-      image: "img/tuolumne-high-country-cory-goehring.jpg",
-      credit: "Cory Goehring",
-      tag: "PLATE III",
-      size: "sm",
-      sizes: "(max-width: 720px) 100vw, 340px",
-      style: {
-        aspectRatio: "4/5"
-      }
-    }), React.createElement("div", null, React.createElement("div", {
-      className: "eyebrow eyebrow--moss",
-      style: {
-        marginBottom: 14
-      }
-    }, "From the Editor"), React.createElement("h2", {
-      className: "home-editor__title"
-    }, "The same waterfall, again, in a different year."), React.createElement("p", {
-      className: "home-editor__dek"
-    }, "The park looks like a single place from a postcard and like four different ones from a parking lot. This is a record of looking at it slowly."), React.createElement("a", {
-      className: "btn btn--ghost",
-      href: "/about",
-      onClick: e => {
-        e.preventDefault();
-        go("about");
-      }
-    }, "About the editor →")), React.createElement(NewsletterInline, {
-      location: "home_strip",
-      tag: "home"
-    })))
-  }));
+  }))), React.createElement(HomeRail, {
+    go: go
+  })));
 }
 window.HomePage = HomePage;
 window.HomeHero = HomeHero;

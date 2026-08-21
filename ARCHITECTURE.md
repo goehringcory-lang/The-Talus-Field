@@ -51,7 +51,7 @@ All events fire through `window.track`. Names and where they fire:
 |---|---|
 | `newsletter_signup`, `newsletter_impression` | components.jsx helpers, called by every newsletter unit with a `location` param |
 | `newsletter_exit_intent_shown` | components.jsx (ExitIntentNewsletter) |
-| `guide_cta_click` | components.jsx (Footer "Field Guide" link, masthead nav), page-home.jsx (hero Field Guide card, `location: home_hero`; Go Deeper band, `location: home_band`) |
+| `guide_cta_click` | components.jsx (Footer "Field Guide" link, masthead nav), page-home.jsx (the rail's Field Guide plate, `location: home_rail`). Retired locations (annotate in GA4, do not reuse): `home_hero`, `home_band` (August 2026 homepage redesign, which made the guide one ask instead of two) |
 | `guide_buy_click` | page-guide.jsx (`location`: `guide_aside` buy box, `guide_hero` hero button, `guide_compare` under the comparison table, `guide_closer` end-of-pitch button, or `guide_mobile_bar` sticky phone bar) |
 | `guide_sample_click` | page-guide.jsx (links to the PWA's free sample surfaces, with `location`: `guide_aside`, `guide_hero`, `guide_stop_example`, or `guide_closer`) |
 | `widget_copy_snippet` | page-widget.jsx (copying the embed snippet) |
@@ -71,8 +71,6 @@ All events fire through `window.track`. Names and where they fire:
 | `stop_share` | page-map.jsx (InfoWindow "Copy link to this stop") |
 | `guide_teaser_click` | page-map.jsx (trip next-steps card), page-article.jsx (article-end line, trails/planning) — with `location` |
 | `itinerary_open_map` | page-itineraries.jsx ("Open this trip on the map", with `itinerary`) |
-| `home_utility_click` | page-home.jsx ("Plan your trip" row, with `target`) |
-| `trip_month_select` | page-home.jsx ("When are you going?" chip row, with `month`; `cleared` on deselect) |
 | `trip_selector_answer`, `trip_selector_complete`, `trip_selector_apply_filters` | intent.jsx (the five-question trip selector at the top of `/planning`: one per answer with `question`/`answer`, one when the fifth lands, one when the plan's results are poured into the filters with `matches`) |
 | `intent_filter` | intent.jsx (the intent chip bar on `/planning` and `/articles`; `facet`, `option`, and `action` = `on`/`off`/`clear`) |
 | `trip_open_in_guide` | page-map.jsx (the map sidebar's hand-off to the Field Guide app; `trip_size`). The link opens `<app>/trip?import=<ids>`, which the PWA resolves against its own catalog. |
@@ -82,7 +80,7 @@ All events fire through `window.track`. Names and where they fire:
 | `nav_search_submit` | components.jsx (the search box at the top of the mobile menu; `location`, `has_query`) |
 | `keep_going_click` | components.jsx (the site-wide onward-links block; `from` route and `target` route) |
 | `index_click` | page-explore.jsx (destination clicks on the site index; `target`) |
-| `cta_click` | components.jsx (masthead: `location: masthead_search` for search; `bottom_nav` with `target` for the mobile bottom tabs), Footer (`footer_index` for the site-index link); page-home.jsx (`home_hero` with `target` for the hero buttons, `home_door` with `target` for the hero audience links, `home_month` with `target` for month-planner panel links, `home_dispatch` for the dispatch teaser, `home_path` with `target` for the Go Deeper row, `home_strip_now` for the About-strip line). Retired locations (annotate in GA4, do not reuse): `masthead_cta`, `masthead_now` (nav simplification pass) |
+| `cta_click` | components.jsx (masthead: `location: masthead_search` for search; `bottom_nav` with `target` for the mobile bottom tabs), Footer (`footer_index` for the site-index link); page-home.jsx (`home_hero` with `target` for the two hero buttons, `home_index` with `target` for the four index entries, `home_dispatch` for the Bulletin band). Retired locations (annotate in GA4, do not reuse): `masthead_cta`, `masthead_now` (nav simplification pass); `home_door`, `home_month`, `home_path`, `home_strip_now` (August 2026 homepage redesign, which retired the audience links, the month planner, the Go Deeper row and the About strip) |
 
 ## localStorage key inventory
 
@@ -91,7 +89,6 @@ All access goes through `window.safeStorage`.
 | Key | Written by | Meaning |
 |---|---|---|
 | `tfg.trip` | page-map.jsx | Saved trip stop ids (versioned envelope). |
-| `tfg.trip.month` | page-home.jsx | Selected trip month (`jan`–`dec`) from the home month planner. Read back on return visits and by the hero capture, which tags signups `trip-<month>`. |
 | `tfg.trip.selector` | intent.jsx | The five trip-selector answers as JSON. A `?when=&days=&stay=&party=&focus=` query string wins over it on mount, so a shared plan link always shows the sender's plan and not the reader's own. |
 | `tfg.kit.checked` | page-kit.jsx | Ticked packing-list items (versioned envelope). |
 | `tfg.nl.subscribed` | components.jsx | Optimistic subscribed flag, set on any newsletter submit. |

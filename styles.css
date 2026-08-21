@@ -1875,24 +1875,6 @@ main:focus { outline: none; }
   gap: 56px;
   align-items: start;
 }
-.hero__kicker {
-  display: flex;
-  gap: 14px;
-  align-items: center;
-  margin-bottom: 22px;
-  font-family: var(--sans);
-  font-size: 10px;
-  color: var(--ink-2);
-  text-transform: uppercase;
-  letter-spacing: 0.22em;
-  font-weight: 700;
-  padding-bottom: 16px;
-  border-bottom: 1px solid var(--rule);
-}
-.hero__kicker .dot {
-  width: 6px; height: 6px; background: var(--moss);
-  display: inline-block;
-}
 .hero h1 { margin-bottom: 28px; max-width: 14ch; }
 .hero__dek {
   font-family: var(--display);
@@ -1904,108 +1886,6 @@ main:focus { outline: none; }
   margin-bottom: 32px;
 }
 .hero__cta { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
-
-/* Above-the-fold hero email capture (July 2026 prominence pass). A framed,
-   moss-spined unit in the same family as the Go Deeper map band: eyebrow,
-   promise line, then the field with a solid submit button. Reuses
-   .nlbox__form for the field/button row. */
-.hero__capture-box {
-  margin-top: 20px;
-  max-width: 32rem;
-  border: 1px solid var(--ink);
-  border-left: 6px solid var(--moss);
-  background: var(--paper-2);
-  padding: 20px 22px 22px;
-}
-.hero__capture-lede {
-  font-family: var(--serif);
-  font-size: 15px;
-  line-height: 1.5;
-  color: var(--ink-2);
-  margin: 10px 0 14px;
-}
-.hero__capture {
-  border-bottom: 0;
-  align-items: center;
-  gap: 12px;
-}
-.hero__capture input { border-bottom: 1px solid var(--ink); }
-.hero__capture button {
-  white-space: nowrap;
-  background: var(--ink);
-  color: var(--paper);
-  padding: 12px 18px;
-}
-.hero__capture button:hover { background: var(--moss); color: var(--paper); }
-.hero__capture-note {
-  font-family: var(--sans);
-  font-size: 12px;
-  letter-spacing: 0.04em;
-  color: var(--ink-3);
-  margin-top: 8px;
-}
-
-/* Hero audience links (nav simplification pass). Three compact
-   self-selection links under the primary buttons, replacing the full-width
-   triage doors: the buttons carry the page's ask now, so these only need to
-   route a reader who already knows their trip stage. */
-.hero-audience {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px 22px;
-  margin: 22px 0 24px;
-}
-.hero-audience__link {
-  font-family: var(--sans);
-  font-size: 12px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  color: var(--ink-2);
-  text-decoration: none;
-  border-bottom: 1px solid var(--rule);
-  padding-bottom: 2px;
-  transition: color 0.15s, border-color 0.15s;
-}
-.hero-audience__link:hover {
-  color: var(--moss);
-  border-bottom-color: currentColor;
-}
-
-/* Hero Field Guide card. The paid product introduced where the free
-   planning starts: a bordered kin of .hero__capture-box with an ink spine
-   instead of the capture's moss one, so the two asks read as siblings
-   without blurring together. */
-.hero-guide {
-  display: block;
-  max-width: 32rem;
-  border: 1px solid var(--ink);
-  border-left: 6px solid var(--ink);
-  background: var(--paper-2);
-  padding: 16px 18px 18px;
-  text-decoration: none;
-  color: inherit;
-}
-.hero-guide__title {
-  display: block;
-  font-family: var(--display);
-  font-size: 20px;
-  line-height: 1.25;
-  margin: 8px 0 6px;
-}
-.hero-guide__body {
-  font-family: var(--serif);
-  font-size: 14px;
-  line-height: 1.5;
-  color: var(--ink-2);
-  margin: 0 0 10px;
-}
-.hero-guide__cta {
-  color: var(--moss);
-  font-weight: 700;
-  font-size: 13px;
-}
-.hero-guide:hover .hero-guide__title { color: var(--moss); }
 
 /* ===== Map trigger (Places page) ===== */
 .map-trigger {
@@ -2308,7 +2188,6 @@ main:focus { outline: none; }
 
   /* Hero. Less padding, no big gap. */
   .hero { padding: 32px 0 32px; }
-  .hero__kicker { font-size: 9px; gap: 10px; padding-bottom: 12px; margin-bottom: 16px; }
   .hero__cta { gap: 10px; }
   .hero__cta .btn { padding: 12px 18px; font-size: 11px; }
 
@@ -2332,19 +2211,6 @@ main:focus { outline: none; }
   .nlbox__form input { width: 100%; font-size: 16px; padding: 10px 0; }
   .nlbox__form button { width: 100%; text-align: left; padding: 10px 0; }
 
-  /* Hero Sunday letter capture. The signup is the page's one ask, so on
-     phones it goes full width with a solid full-width button at a real tap
-     height, and the hero column becomes a flex column so the capture renders
-     ABOVE the triage doors (first viewport) instead of below them. */
-  .hero__capture-box { max-width: none; margin-top: 4px; padding: 18px 16px 20px; }
-  .hero__capture { gap: 10px; }
-  .hero__capture input { font-size: 16px; }
-  .hero__capture button {
-    width: 100%;
-    text-align: center;
-    min-height: 48px;
-    padding: 12px 18px;
-  }
   /* Forms. Bump font to 16px to stop iOS zoom on focus. */
   .field input, .field textarea, .field select { font-size: 16px; }
 
@@ -2441,11 +2307,6 @@ main:focus { outline: none; }
    commit and SPA navigations animate normally. */
 [data-boot] .page { animation: none; }
 
-/* The static home shell renders the first-visit capture box. A reader who is
-   already subscribed gets React's one-line note instead, so the shell hides
-   the box for them before paint (inline script in the generated block) rather
-   than baking a box that would be swapped for something ~170px shorter. */
-.home-shell--subscribed .hero__capture-box { display: none; }
 @keyframes pageIn {
   from { opacity: 0; transform: translateY(4px); }
   to { opacity: 1; transform: none; }
@@ -2943,199 +2804,133 @@ main:focus { outline: none; }
 }
 .map-sidebar__email-fine--sent { color: var(--moss); font-style: normal; }
 
-/* ===== Home utility row (Plan your trip) ===== */
-.home-utility {
+/* ===== Home: the edition rule =====
+   The masthead states the brand; this states the issue. Full width, directly
+   under the masthead and above the lede, so the page opens like a dated
+   publication. Rendered inside HomeHero, which means it is baked into
+   index.html's static shell — the issue label is the one date-derived slot in
+   that shell and is filled by React on boot (see gen-home-shell.mjs). */
+.home-edition {
+  border-bottom: 1px solid var(--rule-soft);
+}
+.home-edition__inner {
   display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: 8px 12px;
-  border-top: 1px solid var(--rule);
-  border-bottom: 1px solid var(--rule);
-  padding: 12px 0;
-  font-family: var(--sans);
-  font-size: 13px;
-}
-.home-utility__label {
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--ink-3);
-  margin-right: 6px;
-}
-.home-utility a {
-  color: var(--ink);
-  font-weight: 600;
-  text-decoration: none;
-  border-bottom: 1px solid var(--rule);
-  padding-bottom: 1px;
-}
-.home-utility a:hover { color: var(--moss); border-bottom-color: var(--moss); }
-.home-utility__sep { color: var(--ink-3); }
-
-/* ===== Home: month planner =====
-   "When are you going?" chip row + typical-season panel (HomeMonthPlanner in
-   page-home.jsx). Chips are real buttons; the selected chip inverts to ink. */
-.month-planner {
-  border-top: 1px solid var(--ink);
-  border-bottom: 1px solid var(--rule);
-  padding: 16px 0 18px;
-}
-.month-planner__head {
-  display: flex;
-  flex-wrap: wrap;
   align-items: center;
-  gap: 10px 18px;
-}
-.month-planner__label {
-  font-family: var(--sans);
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--ink-3);
-}
-.month-planner__chips {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-}
-.month-chip {
-  font-family: var(--mono);
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--ink-2);
-  background: transparent;
-  border: 1px solid var(--rule);
-  padding: 6px 10px;
-  cursor: pointer;
-}
-.month-chip:hover { color: var(--moss); border-color: var(--moss); }
-.month-chip--on {
-  color: var(--paper);
-  background: var(--ink);
-  border-color: var(--ink);
-}
-.month-chip--on:hover { color: var(--paper); border-color: var(--ink); }
-.month-planner__panel { margin-top: 16px; }
-.month-planner__note {
-  font-family: var(--serif);
-  font-size: 17px;
-  line-height: 1.55;
-  color: var(--ink-2);
-  max-width: 72ch;
-  margin: 0 0 14px;
-}
-.month-planner__note strong { color: var(--ink); font-weight: 600; }
-.month-planner__links {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 9px;
-  margin: 0 0 12px;
-}
-.month-planner__links a {
-  font-family: var(--serif);
-  font-size: 16px;
-  color: var(--ink);
-  text-decoration: none;
-  border-bottom: 1px solid var(--rule);
-  padding-bottom: 1px;
-}
-.month-planner__links a:hover { color: var(--moss); border-bottom-color: var(--moss); }
-.month-planner__hint {
-  font-family: var(--sans);
-  font-size: 12px;
-  color: var(--ink-3);
-  margin: 0;
-}
-
-/* ===== Home: Start Here answers row =====
-   Question label above each curated card (START_HERE_QUESTIONS in
-   page-home.jsx): the label is the question the article answers, in the
-   visitor's words. min-height reserves two lines so the four card images
-   stay aligned on desktop. */
-.start-q__label {
-  font-family: var(--display);
-  font-style: italic;
-  font-size: 18px;
-  line-height: 1.3;
-  color: var(--ink);
-  border-top: 1px solid var(--ink);
+  justify-content: space-between;
+  gap: 20px;
   padding-top: 10px;
-  margin: 0 0 14px;
-  min-height: calc(2.6em + 11px);
-}
-@media (max-width: 720px) {
-  .start-q__label { min-height: 0; }
-}
-
-/* ===== Home page grids =====
-   These were inline style props until the July 2026 pass, which meant their
-   phone behaviour came from the [style*="grid-template-columns"] attribute
-   matching further up this file — a hack that had already needed one
-   !important counter-rule to keep .start-here-grid from inheriting the By
-   Section 2x2. Real classes, so the breakpoints below are explicit. The
-   attribute-matching rules stay for the pages that still use inline grids
-   (the webcam strip among them). */
-.home-cards {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 36px;
-  row-gap: 48px;
-}
-.start-here-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 32px;
-  row-gap: 40px;
-}
-.home-sections {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  border-top: 1px solid var(--ink);
-  border-left: 1px solid var(--ink);
-}
-.home-section-tile {
-  display: block;
-  text-decoration: none;
-  color: inherit;
-  border-right: 1px solid var(--ink);
-  border-bottom: 1px solid var(--ink);
-  padding: 28px;
-}
-.home-section-tile__num { color: var(--moss); font-weight: 700; }
-.home-section-tile__label {
-  font-family: var(--display);
-  font-size: 26px;
-  font-weight: 500;
-  margin: 16px 0 10px;
-  letter-spacing: -0.005em;
-  line-height: 1.1;
-}
-.home-section-tile__blurb {
-  font-family: var(--serif);
-  font-style: italic;
-  font-size: 15px;
-  color: var(--ink-2);
-  line-height: 1.45;
-  margin-bottom: 20px;
-}
-.home-section-tile__count {
+  padding-bottom: 10px;
   font-family: var(--sans);
   font-size: 10px;
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.18em;
-  color: var(--ink-3);
+  letter-spacing: 0.22em;
+  color: var(--ink-2);
+}
+.home-edition__issue {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+}
+.home-edition__issue .dot {
+  width: 6px;
+  height: 6px;
+  background: var(--moss);
+  display: inline-block;
+  flex-shrink: 0;
+}
+.home-edition__where { color: var(--ink-3); }
+
+/* ===== Home: the index =====
+   Four lines under the lede naming what this site is: the journal, the map,
+   the bulletin, the archive. Counts come from the catalog (HomeIndex in
+   page-home.jsx), which is why this sits below the hero and not inside it —
+   the static shell renders with an empty catalog. */
+.home-index-wrap {
+  padding-top: 30px;
+  padding-bottom: 34px;
+}
+.home-index {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 40px;
+}
+.home-index__item {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  text-decoration: none;
+  color: inherit;
+}
+.home-index__num { color: var(--moss); font-weight: 700; }
+.home-index__title {
+  font-family: var(--display);
+  font-size: 21px;
+  font-weight: 500;
+  line-height: 1.2;
+}
+.home-index__item:hover .home-index__title { color: var(--moss); }
+.home-index__blurb {
+  font-family: var(--serif);
+  font-size: 15px;
+  line-height: 1.45;
+  color: var(--ink-2);
+}
+.home-index__cta {
+  color: var(--moss);
   font-weight: 700;
 }
 
-/* Section heading + dek shared by the Start Here row and the editor strip. */
+/* ===== Home: the body =====
+   Editorial spine on the left, the offers rail on the right. The rail is
+   sticky so it travels with the reader down the column; `align-self: start`
+   is what makes sticky work inside a grid item. */
+.home-body {
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: 64px;
+  align-items: start;
+  padding-top: 10px;
+  padding-bottom: 64px;
+}
+.home-spine {
+  display: flex;
+  flex-direction: column;
+  gap: 52px;
+  min-width: 0;
+}
+.home-rail {
+  position: sticky;
+  top: 104px;
+  align-self: start;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  min-width: 0;
+}
+
+/* Section headings inside the spine. */
+.home-section__head { margin-bottom: 28px; }
+.home-section__head--row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+.home-section__head--row .home-section__title { margin-bottom: 0; }
+.home-section__more {
+  color: var(--ink);
+  text-decoration: none;
+  font-weight: 700;
+  white-space: nowrap;
+}
+.home-section__more:hover { color: var(--moss); }
+
+/* Section heading + dek, shared by the blocks in the spine. */
 .home-section__title {
   font-family: var(--display);
-  font-size: 44px;
+  font-size: 34px;
   line-height: 1.05;
   margin-bottom: 12px;
   font-weight: 500;
@@ -3149,132 +2944,207 @@ main:focus { outline: none; }
   color: var(--ink-2);
   line-height: 1.5;
   max-width: 60ch;
+  margin: 0;
 }
 
-/* The three-column layout shared by the two Go Deeper bands. */
-.home-band__grid {
+/* ===== Home: Start Here answers =====
+   Question first, article title second (START_HERE_QUESTIONS in
+   page-home.jsx): the label is the question the article answers, in the
+   visitor's words. No card images here — the four answers are a list of
+   questions, and the images were pure weight on the page's critical path. */
+.home-answers {
   display: grid;
-  grid-template-columns: 1fr 1.6fr 0.9fr;
-  gap: 40px;
-  align-items: center;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 28px 32px;
 }
-
-/* Go Deeper: the free-map band. Tinted ground, moss spine (won callout_bands). */
-.band-map {
-  display: block;
+.home-answer {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  border-top: 1px solid var(--rule);
+  padding-top: 14px;
   text-decoration: none;
   color: inherit;
-  border: 1px solid var(--ink);
-  border-left: 6px solid var(--moss);
-  background: var(--paper-2);
-  padding: 36px 32px;
 }
-.band-map__title {
+.home-answer__q {
   font-family: var(--display);
-  font-size: 36px;
+  font-style: italic;
+  font-size: 16px;
+  line-height: 1.3;
+  color: var(--moss);
+}
+.home-answer__title {
+  font-family: var(--display);
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.2;
+  text-wrap: balance;
+}
+.home-answer:hover .home-answer__title { color: var(--moss); }
+
+/* ===== Home: latest entries =====
+   Text rows, not cards. The old six-card grid (with a photo each) was the
+   most expensive thing on the page; a homepage feed is a list of what is new. */
+.home-entries {
+  display: flex;
+  flex-direction: column;
+}
+.home-entry {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  border-top: 1px solid var(--rule);
+  padding: 18px 0;
+  text-decoration: none;
+  color: inherit;
+}
+.home-entry__title {
+  font-family: var(--display);
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 1.15;
+  letter-spacing: -0.005em;
+  text-wrap: balance;
+}
+.home-entry:hover .home-entry__title { color: var(--moss); }
+.home-entry__dek {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 16px;
+  line-height: 1.45;
+  color: var(--ink-2);
+}
+.home-entry__meta {
+  display: flex;
+  gap: 18px;
+  color: var(--ink-3);
+  text-transform: uppercase;
+}
+
+/* ===== Home: the rail =====
+   Every offer on the page, in one column, ordered by commitment. The Field
+   Guide takes the inverted-ink plate treatment the article guide-bar and the
+   old product band already established, so the one purchase ask reads as a
+   deliberate object rather than a third identical box. */
+.rail-guide {
+  display: block;
+  text-decoration: none;
+  color: var(--paper);
+  background: var(--ink);
+  border: 1px solid var(--ink);
+  padding: 26px 24px;
+}
+.rail-guide__eyebrow {
+  display: block;
+  font-family: var(--sans);
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  /* --paper-3 rather than --moss: every palette's accent is dark, tuned for
+     paper grounds, and disappears on this ink ground. */
+  color: var(--paper-3);
+  margin-bottom: 12px;
+}
+.rail-guide__title {
+  display: block;
+  font-family: var(--display);
+  font-size: 30px;
   font-weight: 400;
   line-height: 1.1;
   letter-spacing: -0.01em;
-}
-.band-map__body {
-  font-family: var(--serif);
-  font-size: 19px;
-  line-height: 1.5;
-  color: var(--ink-2);
-  margin: 0 0 16px;
-}
-.band-map__cta {
-  color: var(--moss);
-  font-weight: 700;
-  font-size: 11px;
-  text-transform: uppercase;
-  letter-spacing: 0.18em;
-}
-
-/* Go Deeper: the three quieter paths. */
-.home-paths {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
-  margin-top: 24px;
-}
-.home-path {
-  display: block;
-  text-decoration: none;
-  color: inherit;
-  border: 1px solid var(--ink);
-  padding: 28px;
-}
-.home-path__title {
-  font-family: var(--display);
-  font-size: 26px;
-  font-weight: 500;
-  line-height: 1.1;
-  letter-spacing: -0.005em;
+  color: var(--paper);
   margin-bottom: 10px;
 }
-.home-path__blurb {
+.rail-guide__body {
   font-family: var(--serif);
-  font-style: italic;
   font-size: 15px;
-  color: var(--ink-2);
-  line-height: 1.45;
-  margin: 0 0 18px;
-}
-.home-path__cta {
-  color: var(--moss);
-  font-weight: 700;
-  font-size: 11px;
-  text-transform: uppercase;
-  letter-spacing: 0.18em;
-}
-
-/* From the Editor + newsletter strip. */
-.home-editor {
-  display: grid;
-  grid-template-columns: 0.75fr 1.15fr 1.1fr;
-  gap: 44px;
-  align-items: center;
-  border-top: 2px solid var(--ink);
-  border-bottom: 2px solid var(--ink);
-  padding: 56px 0;
-}
-.home-editor__title {
-  font-family: var(--display);
-  font-size: 38px;
-  margin-bottom: 18px;
-  font-weight: 400;
-  line-height: 1.1;
-  letter-spacing: -0.01em;
-  text-transform: none;
-}
-.home-editor__dek {
-  font-family: var(--display);
-  font-style: italic;
-  font-size: 19px;
-  color: var(--ink-2);
   line-height: 1.5;
-  margin-bottom: 24px;
+  color: var(--paper);
+  opacity: 0.85;
+  margin: 0 0 14px;
+}
+.rail-guide__cta {
+  color: var(--paper-3);
+  font-weight: 700;
+}
+.rail-guide:hover .rail-guide__cta { color: var(--paper); }
+
+/* The letter, as a rail unit: tighter than the article-page box, with the
+   solid submit button the hero capture used to carry (NewsletterInline takes
+   the `modifier` and `cta` props). */
+.nlbox--rail {
+  margin: 0;
+  padding: 26px 22px 24px;
+}
+.nlbox--rail.nlbox--subscribed { padding: 20px 22px; }
+.nlbox--rail h3 { font-size: 24px; }
+.nlbox--rail p { font-size: 15px; margin-bottom: 16px; }
+.nlbox--rail .nlbox__form {
+  border-bottom: 0;
+  align-items: center;
+  gap: 12px;
+}
+.nlbox--rail .nlbox__form input {
+  border-bottom: 1px solid var(--ink);
+  font-size: 16px;
+}
+.nlbox--rail .nlbox__form button {
+  white-space: nowrap;
+  background: var(--ink);
+  color: var(--paper);
+  padding: 12px 16px;
+}
+.nlbox--rail .nlbox__form button:hover { background: var(--moss); color: var(--paper); }
+
+/* The lodging unit is the shared LodgingCta component; it only needs its
+   page-level margins dropped inside the rail. */
+.home-rail .lodging-cta { margin: 0; }
+
+@media (max-width: 1100px) {
+  .home-body { grid-template-columns: 1fr 320px; gap: 44px; }
+  .home-index { gap: 28px; }
 }
 
-@media (max-width: 720px) {
-  .home-cards,
-  .home-paths,
-  .home-band__grid,
-  .home-editor { grid-template-columns: 1fr; gap: 28px; }
-  .start-here-grid { grid-template-columns: 1fr; gap: 36px; }
-  /* By Section reads better as a 2x2 than as four stacked tiles. */
-  .home-sections { grid-template-columns: repeat(2, 1fr); }
-  .home-section-tile { padding: 18px; }
-  .home-section-tile__label { font-size: 20px; }
-  .home-section__title { font-size: 32px; }
+@media (max-width: 880px) {
+  /* One column, and the rail's units interleave with the editorial rather than
+     stacking above or below it as a block. Ordering the whole rail would put
+     three asks (including the purchase) ahead of every word of writing, which
+     is the storefront failure this redesign exists to undo; ordering it last
+     would bury all three under a full page of editorial.
+     `display: contents` on the two columns promotes their children to direct
+     children of .home-body, which is what makes a single `order` sequence
+     across both possible: Bulletin, guide, letter, answers, lodging, entries.
+     Every child is ordered explicitly, because an unset order is 0 and would
+     jump the queue. */
+  .home-body {
+    display: flex;
+    flex-direction: column;
+    gap: 36px;
+    padding-bottom: 48px;
+  }
+  .home-spine,
+  .home-rail { display: contents; }
+  .resume-band { order: 1; }
+  .home-dispatch { order: 2; }
+  .rail-guide { order: 3; }
+  .home-rail .nlbox { order: 4; }
+  #start-here { order: 5; }
+  .home-rail .lodging-cta { order: 6; }
+  .home-latest { order: 7; }
+  .home-index { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 26px 22px; }
+  .home-edition__where { display: none; }
+  .home-section__title { font-size: 30px; }
   .home-section__dek { font-size: 17px; }
-  .home-editor { padding: 40px 0; }
-  .home-editor__title { font-size: 28px; }
-  .band-map { padding: 28px 20px; }
-  .band-map__title { font-size: 28px; }
-  .band-map__body { font-size: 16px; }
+  .home-answers { grid-template-columns: 1fr; gap: 22px; }
+  .rail-guide__title { font-size: 27px; }
+  .home-entry__title { font-size: 21px; }
 }
+
+@media (max-width: 560px) {
+  .home-index { grid-template-columns: 1fr; gap: 22px; }
+}
+
 
 /* ===== Home: Park Bulletin teaser =====
    The current /now edition rendered as a dated notebook line above the webcam

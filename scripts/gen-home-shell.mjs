@@ -242,7 +242,7 @@ try {
       "div",
       { id: "home-shell" },
       React.createElement(sandbox.window.Header, { current: "home", go: noop }),
-      React.createElement(sandbox.window.HomeHero, { tripMonth: null, go: noop, onStartHere: noop })
+      React.createElement(sandbox.window.HomeHero, { go: noop })
     )
   );
 } catch (e) {
@@ -289,8 +289,8 @@ const MUST_CONTAIN = [
   ['<h1>Yosemite, from the inside.', "the hero h1"],
   ['class="hero__dek"', "the hero dek (the measured LCP element)"],
   ['Plan my Yosemite trip', "the primary CTA"],
-  ['class="hero-audience"', "the audience links"],
-  ['class="hero-guide"', "the hero Field Guide card"],
+  ['href="/conditions"', "the secondary CTA"],
+  ['class="home-edition"', "the edition rule"],
   ['class="masthead"', "the masthead"],
   ['class="bottomnav"', "the mobile bottom nav"],
 ];
@@ -316,15 +316,7 @@ if (dateLeak) {
   process.exit(2);
 }
 
-// The subscribed-reader swap. A reader who already signed up gets the one-line
-// note instead of the capture box; if the shell always baked the box, React
-// would swap ~170px of box for ~20px of note on boot and shift the page under
-// them. Both states ship, the box hidden by a class the inline script sets
-// before paint. Keep the storage key in sync with isSubscribed() in
-// components.jsx.
-const SUBSCRIBED_SWAP = `<script>(function(){try{if(localStorage.getItem("tfg.nl.subscribed")==="1"){document.getElementById("home-shell").className="home-shell--subscribed";}}catch(e){}})();</script>`;
-
-const block = [START, rendered, SUBSCRIBED_SWAP, END].join("\n");
+const block = [START, rendered, END].join("\n");
 
 const html = fs.readFileSync(INDEX, "utf8");
 const startAt = html.indexOf(START);

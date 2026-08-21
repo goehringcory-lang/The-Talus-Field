@@ -1454,7 +1454,11 @@ window.useNewsletterImpression = useNewsletterImpression;
 // Inline newsletter box. `location` is the unique GA4 identifier for the
 // placement; `tag` is the Buttondown segmentation tag for that source.
 // ============================================================
-function NewsletterInline({ heading, blurb, location, tag, incentive, abTest, variant: variantProp }) {
+// `cta` overrides the button label and `modifier` appends a class to the box,
+// both optional and both defaulting to the shipped look, so every existing call
+// site is unchanged. The homepage rail uses them to render the letter as a
+// framed unit with a solid button.
+function NewsletterInline({ heading, blurb, location, tag, incentive, abTest, variant: variantProp, cta, modifier }) {
   const [done, setDone] = useState(false);
   const subscribed = isSubscribed();
   // Optional A/B. Either the component self-buckets (abTest = test key) and
@@ -1473,14 +1477,14 @@ function NewsletterInline({ heading, blurb, location, tag, incentive, abTest, va
 
   if (subscribed && !done) {
     return (
-      <div className="nlbox nlbox--subscribed" ref={ref}>
+      <div className={["nlbox", "nlbox--subscribed", modifier].filter(Boolean).join(" ")} ref={ref}>
         <p className="nlbox__already">You're on the list. <a href="/map">The interactive map is open to you →</a></p>
       </div>
     );
   }
 
   return (
-    <div className="nlbox" ref={ref}>
+    <div className={["nlbox", modifier].filter(Boolean).join(" ")} ref={ref}>
       <h3>{heading || "Sunday Field Notes"}</h3>
       <p>{showIncentive
           ? "Subscribe and unlock the interactive Yosemite map: vistas, trailheads, parking turnouts, places to eat, and a trip builder that saves on your device. A short note follows on Sundays."
@@ -1500,7 +1504,7 @@ function NewsletterInline({ heading, blurb, location, tag, incentive, abTest, va
           <input type="email" name="email" aria-label="Email address" placeholder="you@email.com" required />
           {tag && <input type="hidden" name="tag" value={tag} />}
           <input type="hidden" name="embed" value="1" />
-          <button type="submit">Subscribe →</button>
+          <button type="submit">{cta || "Subscribe →"}</button>
         </form>
       )}
     </div>
