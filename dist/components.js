@@ -1689,7 +1689,9 @@ function NewsletterInline({
   tag,
   incentive,
   abTest,
-  variant: variantProp
+  variant: variantProp,
+  cta,
+  modifier
 }) {
   var [done, setDone] = useState(false);
   var subscribed = isSubscribed();
@@ -1699,7 +1701,7 @@ function NewsletterInline({
   var ref = useNewsletterImpression(location, tag, !subscribed && !done, variant);
   if (subscribed && !done) {
     return React.createElement("div", {
-      className: "nlbox nlbox--subscribed",
+      className: ["nlbox", "nlbox--subscribed", modifier].filter(Boolean).join(" "),
       ref: ref
     }, React.createElement("p", {
       className: "nlbox__already"
@@ -1708,7 +1710,7 @@ function NewsletterInline({
     }, "The interactive map is open to you →")));
   }
   return React.createElement("div", {
-    className: "nlbox",
+    className: ["nlbox", modifier].filter(Boolean).join(" "),
     ref: ref
   }, React.createElement("h3", null, heading || "Sunday Field Notes"), React.createElement("p", null, showIncentive ? "Subscribe and unlock the interactive Yosemite map: vistas, trailheads, parking turnouts, places to eat, and a trip builder that saves on your device. A short note follows on Sundays." : blurb || "A short note on Sundays, when there is something to say."), done ? React.createElement("p", {
     style: {
@@ -1745,7 +1747,7 @@ function NewsletterInline({
     value: "1"
   }), React.createElement("button", {
     type: "submit"
-  }, "Subscribe →")));
+  }, cta || "Subscribe →")));
 }
 var EXIT_COOLDOWN_DAYS = 14;
 function useModalFocus(active, initialSelector) {
