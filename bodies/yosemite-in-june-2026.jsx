@@ -70,7 +70,7 @@ window.ARTICLE_BODIES["yosemite-in-june-2026"] = function YosemiteInJune2026Body
       <h2>Crowds in June 2026</h2>
 
       <p>
-        There is no way to sugarcoat this. June 2026 is shaping up to be the most crowded month in the park in years. The reservation system is gone, and the numbers reflect it. More than 836,000 visits were recorded through late May, roughly 100,000 more than the same period last year. On Memorial Day weekend, Valley parking lots were full by mid-morning and entrance waits exceeded ninety minutes.
+        There is no way to sugarcoat this. June 2026 is shaping up to be the most crowded month in the park in years. The reservation system is gone, and the numbers reflect it. More than 836,000 visits were recorded through late May, roughly 100,000 more than the same period last year. On <a href="/articles/memorial-day-skip-the-valley-go-high-2026">Memorial Day weekend</a>, Valley parking lots were full by mid-morning and entrance waits exceeded ninety minutes.
       </p>
 
       <p>

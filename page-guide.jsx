@@ -56,6 +56,17 @@ function readCheckoutOutcome() {
 // Mirrors GIFT_NOTE_MAX in workers/src/routes/checkout.ts.
 const GIFT_NOTE_MAX = 280;
 
+// The buy funnel's missing half. guide_buy_click fires per placement, but the
+// Stripe redirect returns to ?guide=success with no memory of which placement
+// sold it — so conversion per placement was uncomputable. The clicked
+// placement is stashed at click time and read back exactly once by the
+// success handler below, so guide_purchase carries the same `location`
+// values as guide_buy_click (inventory in ARCHITECTURE.md).
+const BUY_STASH_KEY = "tfg.guide.buyLocation";
+function stashBuyLocation(location, gift) {
+  window.safeStorage.setJSON(BUY_STASH_KEY, { location, gift: !!gift });
+}
+
 function formatReopens(iso) {
   try {
     const d = new Date(iso);
@@ -101,6 +112,26 @@ function GuideBuyBox() {
   const [soldOut, setSoldOut] = React.useState(null); // { reopens } or null
   const [error, setError] = React.useState(null);
   const [outcome] = React.useState(readCheckoutOutcome);
+
+  // Report the completed purchase to GA4 exactly once. The stash is written
+  // at buy-click time and removed on read, so a refresh (or a bookmark) of
+  // the success URL finds nothing and counts nothing. A cancel clears it too:
+  // that click did not convert, and a later purchase re-stashes at its own
+  // click.
+  React.useEffect(() => {
+    if (outcome === "cancel") {
+      window.safeStorage.remove(BUY_STASH_KEY);
+      return;
+    }
+    if (outcome !== "success" && outcome !== "gift-success") return;
+    const stash = window.safeStorage.getJSON(BUY_STASH_KEY);
+    if (!stash) return;
+    window.safeStorage.remove(BUY_STASH_KEY);
+    window.track("guide_purchase", {
+      location: stash.location || "unknown",
+      gift: outcome === "gift-success" || !!stash.gift,
+    });
+  }, [outcome]);
   const [priceCents, setPriceCents] = React.useState(GUIDE_PRICE_FALLBACK_CENTS);
   const [batch, setBatch] = React.useState(null); // { left, cap, month } or null
   const [giftMode, setGiftMode] = React.useState(false);
@@ -148,6 +179,7 @@ function GuideBuyBox() {
     setError(null);
     if (window.track)
       window.track("guide_buy_click", { location: "guide_aside", gift: giftMode });
+    stashBuyLocation("guide_aside", giftMode);
     try {
       const res = await fetch(`${GUIDE_API_BASE}/api/checkout/start`, {
         method: "POST",
@@ -1048,6 +1080,7 @@ function BuyNowButton({ location, label }) {
     setBusy(true);
     setNote(null);
     if (window.track) window.track("guide_buy_click", { location });
+    stashBuyLocation(location, false);
     try {
       const res = await fetch(`${GUIDE_API_BASE}/api/checkout/start`, { method: "POST" });
       const body = await res.json().catch(() => ({}));
@@ -1149,6 +1182,7 @@ function GuideMobileBuyBar() {
   async function buy() {
     setBusy(true);
     if (window.track) window.track("guide_buy_click", { location: "guide_mobile_bar" });
+    stashBuyLocation("guide_mobile_bar", false);
     try {
       const res = await fetch(`${GUIDE_API_BASE}/api/checkout/start`, { method: "POST" });
       const body = await res.json().catch(() => ({}));

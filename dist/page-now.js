@@ -14,8 +14,8 @@ function editionProgress(edition) {
   var today = new Date();
   today.setHours(0, 0, 0, 0);
   if (Number.isNaN(start.getTime()) || Number.isNaN(end.getTime())) return null;
-  var day = Math.floor((today - start) / 86400000) + 1;
-  var total = Math.floor((end - start) / 86400000) + 1;
+  var day = Math.round((today - start) / 86400000) + 1;
+  var total = Math.round((end - start) / 86400000) + 1;
   if (day < 1 || day > total) return null;
   return {
     day,
@@ -504,7 +504,14 @@ function BulletinPage({
     fetch(BULLETIN_URL).then(r => r.ok ? r.json() : Promise.reject(new Error(`bulletin.json ${r.status}`))).then(json => {
       if (cancelled) return;
       if (json && json.edition) {
-        setData(json);
+        var arrays = ["alerts", "areas", "valleyDay", "elsewhere", "events", "trails", "hours", "transit", "essentials", "numbers"];
+        var safe = {
+          ...json
+        };
+        for (var k of arrays) {
+          if (!Array.isArray(safe[k])) safe[k] = [];
+        }
+        setData(safe);
         setState("ready");
       } else {
         setState("error");

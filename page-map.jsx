@@ -385,16 +385,26 @@ function MapView({ go }) {
   const [error, setError] = useState(null);
   const [mapReady, setMapReady] = useState(false);
   const [toast, setToast] = useState(null);
-  // Map gate: the whole map (pins, filters, search, the trip builder, shared
-  // trips) sits behind the newsletter signup. While locked, MapAccessGate
-  // covers the page and the live map renders blurred behind it as a teaser.
-  // Seeded once from the persisted unlock flag (or a prior signup anywhere on
-  // the site), so a returning subscriber never sees the gate at all. Fails
-  // OPEN via isMapUnlocked when storage throws (private mode), matching the
-  // rest of the site.
-  const [unlocked, setUnlocked] = useState(
-    () => isMapUnlocked() || (window.isSubscribed && window.isSubscribed())
-  );
+  // Map gate: the whole map (pins, filters, search, the trip builder) sits
+  // behind the newsletter signup. While locked, MapAccessGate covers the page
+  // and the live map renders blurred behind it as a teaser. Seeded once from
+  // the persisted unlock flag (or a prior signup anywhere on the site), so a
+  // returning subscriber never sees the gate at all. Fails OPEN via
+  // isMapUnlocked when storage throws (private mode), matching the rest of
+  // the site. A shared ?trip= link also opens ungated for the visit: the
+  // per-trip OG cards and edge/seo.js title overrides exist to make those
+  // links worth tapping in a text thread, and landing the recipient on a
+  // blurred email wall voided all of it. Presence is enough (ids are
+  // whitelisted in parseTripParam); the unlock flag is deliberately NOT
+  // written, so a later plain /map visit still meets the gate.
+  const [unlocked, setUnlocked] = useState(() => {
+    if (isMapUnlocked() || (window.isSubscribed && window.isSubscribed())) return true;
+    try {
+      return new URLSearchParams(window.location.search).has("trip");
+    } catch (_e) {
+      return false;
+    }
+  });
   // "Locating…" state for the Find-me map control below.
   const [locating, setLocating] = useState(false);
 

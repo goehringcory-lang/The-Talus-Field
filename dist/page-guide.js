@@ -23,6 +23,13 @@ function readCheckoutOutcome() {
   }
 }
 var GIFT_NOTE_MAX = 280;
+var BUY_STASH_KEY = "tfg.guide.buyLocation";
+function stashBuyLocation(location, gift) {
+  window.safeStorage.setJSON(BUY_STASH_KEY, {
+    location,
+    gift: !!gift
+  });
+}
 function formatReopens(iso) {
   try {
     var d = new Date(iso);
@@ -67,6 +74,20 @@ function GuideBuyBox() {
   var [soldOut, setSoldOut] = React.useState(null);
   var [error, setError] = React.useState(null);
   var [outcome] = React.useState(readCheckoutOutcome);
+  React.useEffect(() => {
+    if (outcome === "cancel") {
+      window.safeStorage.remove(BUY_STASH_KEY);
+      return;
+    }
+    if (outcome !== "success" && outcome !== "gift-success") return;
+    var stash = window.safeStorage.getJSON(BUY_STASH_KEY);
+    if (!stash) return;
+    window.safeStorage.remove(BUY_STASH_KEY);
+    window.track("guide_purchase", {
+      location: stash.location || "unknown",
+      gift: outcome === "gift-success" || !!stash.gift
+    });
+  }, [outcome]);
   var [priceCents, setPriceCents] = React.useState(GUIDE_PRICE_FALLBACK_CENTS);
   var [batch, setBatch] = React.useState(null);
   var [giftMode, setGiftMode] = React.useState(false);
@@ -103,6 +124,7 @@ function GuideBuyBox() {
       location: "guide_aside",
       gift: giftMode
     });
+    stashBuyLocation("guide_aside", giftMode);
     try {
       var res = await fetch(`${GUIDE_API_BASE}/api/checkout/start`, {
         method: "POST",
@@ -1032,6 +1054,7 @@ function BuyNowButton({
     if (window.track) window.track("guide_buy_click", {
       location
     });
+    stashBuyLocation(location, false);
     try {
       var res = await fetch(`${GUIDE_API_BASE}/api/checkout/start`, {
         method: "POST"
@@ -1119,6 +1142,7 @@ function GuideMobileBuyBar() {
     if (window.track) window.track("guide_buy_click", {
       location: "guide_mobile_bar"
     });
+    stashBuyLocation("guide_mobile_bar", false);
     try {
       var res = await fetch(`${GUIDE_API_BASE}/api/checkout/start`, {
         method: "POST"

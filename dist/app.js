@@ -367,7 +367,7 @@ function buildSeo(route) {
           hasPart: items.map(a => ({
             "@type": "Article",
             headline: a.title,
-            description: a.dek,
+            description: a.seoDek || a.dek,
             url: `${SITE_ORIGIN}/articles/${a.slug}`,
             datePublished: a.isoDate || a.date
           }))
@@ -421,17 +421,20 @@ function buildSeo(route) {
         url,
         numberOfItems: episodes.length,
         itemListElement: episodes.map((ep, i) => ({
-          "@type": "VideoObject",
+          "@type": "ListItem",
           position: i + 1,
-          name: ep.title,
-          description: ep.dek,
-          thumbnailUrl: `https://i.ytimg.com/vi/${ep.youtubeId}/hqdefault.jpg`,
-          embedUrl: `https://www.youtube-nocookie.com/embed/${ep.youtubeId}`,
-          publisher: {
-            "@type": "Organization",
-            name: "National Park Service"
-          },
-          isAccessibleForFree: true
+          item: {
+            "@type": "VideoObject",
+            name: ep.title,
+            description: ep.dek,
+            thumbnailUrl: `https://i.ytimg.com/vi/${ep.youtubeId}/hqdefault.jpg`,
+            embedUrl: `https://www.youtube-nocookie.com/embed/${ep.youtubeId}`,
+            publisher: {
+              "@type": "Organization",
+              name: "National Park Service"
+            },
+            isAccessibleForFree: true
+          }
         }))
       },
       breadcrumb: breadcrumbLd([["Home", `${SITE_ORIGIN}/`], ["Films", null]])
@@ -469,7 +472,7 @@ function buildSeo(route) {
           }))
         }
       },
-      breadcrumb: null,
+      breadcrumb: breadcrumbLd([["Home", `${SITE_ORIGIN}/`], ["Articles", null]]),
       faq: null
     };
   }
@@ -479,14 +482,9 @@ function buildSeo(route) {
       description: SITE_DEFAULT_DESC,
       ogType: "website"
     },
-    articles: {
-      title: `Articles — ${SITE_NAME}`,
-      description: "Every entry, in reverse chronological order. Yosemite trip planning, trails, wildlife, and seasonal guides.",
-      ogType: "website"
-    },
     planning: {
       title: `The Yosemite Planning Guide — ${SITE_NAME}`,
-      description: "Plan a Yosemite trip in 2026: entrances and getting there, gateway towns, permits, Half Dome, accessibility, smoke season, the seasonal calendar. A hub for The Talus Field's planning archive.",
+      description: "Plan a Yosemite trip in 2026: entrances, gateway towns, permits, Half Dome, accessibility, smoke season, month by month. A curated hub through the planning archive.",
       ogType: "website",
       breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Planning Guide", null]],
       faq: [{
@@ -494,16 +492,16 @@ function buildSeo(route) {
         a: "No. The day-use vehicle reservation system is not in effect in 2026. A standard Yosemite entrance pass ($35 per vehicle, valid 7 days) is required."
       }, {
         q: "What is the best time of year to visit Yosemite?",
-        a: "Late May through early June for peak waterfalls and moderate crowds. September and October for warm days, smaller crowds, and golden light. July and August are the most crowded months."
+        a: "Late May through early June for peak waterfalls and moderate crowds. September and October for warm days, smaller crowds, and golden light. July and August are the most crowded months. April has spring waterfalls but Tioga Road and Glacier Point Road are usually still closed."
       }, {
         q: "How much does it cost to enter Yosemite?",
-        a: "$35 per vehicle (7-day pass), $20 per person on foot or bike. Since January 1, 2026, international visitors pay a $100 per-person surcharge (age 16 and older). The America the Beautiful annual pass ($80 for U.S. residents, $250 for nonresidents) covers all national parks for one year."
+        a: "$35 per vehicle (7-day pass), $20 per person entering on foot or bike. Since January 1, 2026, international visitors pay a $100 per-person surcharge (age 16 and older). The America the Beautiful annual pass ($80 for U.S. residents, $250 for nonresidents) covers entry to all national parks for one year."
       }, {
         q: "How long should I spend at Yosemite?",
-        a: "Minimum two full days. Three to four days lets you cover the Valley, Glacier Point, and Tioga Road without rushing."
+        a: "Minimum two full days: one for the Valley floor, one for a second area like Glacier Point, Mariposa Grove, or Tioga Road. Three to four days lets you cover all of these without rushing. A single-day trip is doable but you'll be moving the entire time."
       }, {
         q: "Is Yosemite open year-round?",
-        a: "Yosemite Valley is open year-round. Tioga Road closes November through May. Glacier Point Road closes late November and reopens around Memorial Day."
+        a: "Yosemite Valley is open year-round. Tioga Road (Highway 120 through the park) is typically closed November through May. Glacier Point Road closes in late November and reopens around Memorial Day. Mariposa Grove is open year-round but the tram is seasonal. Some campgrounds have seasonal closures."
       }]
     },
     checklist: {
@@ -527,17 +525,20 @@ function buildSeo(route) {
     advertise: {
       title: `List your business — ${SITE_NAME}`,
       description: "How to list a Yosemite-area lodge, inn, guide service, or outfitter on The Talus Field directory.",
-      ogType: "website"
+      ogType: "website",
+      breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["List your business", null]]
     },
     newsletter: {
       title: `Sunday Field Notes — ${SITE_NAME}`,
       description: "A short weekly note on Yosemite when there is something to say. Free.",
-      ogType: "website"
+      ogType: "website",
+      breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Newsletter", null]]
     },
     contact: {
       title: `Contact — ${SITE_NAME}`,
       description: "Send a note to the editor. Trip questions, corrections, press, or anything else.",
-      ogType: "website"
+      ogType: "website",
+      breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Contact", null]]
     },
     privacy: {
       title: `Privacy Policy — ${SITE_NAME}`,
@@ -620,7 +621,7 @@ function buildSeo(route) {
     },
     now: {
       title: `The Park Bulletin — what's happening in Yosemite right now — ${SITE_NAME}`,
-      description: "Everything happening in Yosemite on one scannable page: closures, roads, free ranger programs, dated events, trail status, hours, and phone numbers, updated for each edition of the park's Yosemite Guide.",
+      description: "Everything happening in Yosemite on one page: closures, roads, free ranger programs, dated events, trail status, hours, and phone numbers, updated each Guide edition.",
       ogType: "website",
       breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["The Park Bulletin", null]]
     },
@@ -698,8 +699,8 @@ function buildSeo(route) {
       robots: "noindex, follow"
     },
     explore: {
-      title: `Site index — everything on The Talus Field — ${SITE_NAME}`,
-      description: "Every page in The Talus Field, grouped and described: the article sections, the Park Bulletin, the Nature Notes archive and film series, the trip map and itineraries, lodging, conditions, and the Field Guide app.",
+      title: `Site index — every page on the site — ${SITE_NAME}`,
+      description: "Every page in The Talus Field, grouped and described: the sections, the Park Bulletin, the Nature Notes archive and films, the map, lodging, and the Field Guide app.",
       ogType: "website",
       breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Site index", null]]
     }

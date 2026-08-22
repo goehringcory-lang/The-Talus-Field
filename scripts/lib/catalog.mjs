@@ -21,7 +21,7 @@ export const SITE_ORIGIN = "https://thetalusfieldjournal.com";
 export const AUTHOR_NAME = "Cory Goehring";
 
 // Static (non-article, non-section) routes the site serves. Mirrors the keys of
-// the `known` map in functions/_middleware.js plus the hub pages. Used to build
+// the `known` map in edge/seo.js plus the hub pages. Used to build
 // the canonical internal-URL set for link checking, sitemap validation, and the
 // smoke test.
 export const STATIC_ROUTES = [
@@ -97,7 +97,15 @@ export function loadDataJs() {
     console.error("data.js did not populate window.ARTICLES / window.CATEGORIES");
     process.exit(2);
   }
-  return { articles: w.ARTICLES, categories: w.CATEGORIES, kit: w.KIT };
+  return {
+    articles: w.ARTICLES,
+    categories: w.CATEGORIES,
+    kit: w.KIT,
+    // The Planning Guide's five-part series (window.PLANNING_SERIES): the
+    // /planning page renders these members, not just cat === "planning", so
+    // the mirrors need the membership to describe the same curation.
+    planningSeries: Array.isArray(w.PLANNING_SERIES) ? w.PLANNING_SERIES : [],
+  };
 }
 
 export function loadVideosJs() {

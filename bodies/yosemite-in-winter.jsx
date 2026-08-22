@@ -90,7 +90,7 @@ window.ARTICLE_BODIES["yosemite-in-winter"] = function YosemiteInWinterBody() {
       </p>
 
       <p>
-        The waterfalls, mostly asleep since August, begin to come back in late winter as early melt and rain reach the Merced. By March, Yosemite Falls is a waterfall again rather than a stain, and the whole hydrological year described in <a href="/articles/yosemite-waterfalls-guide">the waterfalls guide</a> starts over. Late winter also brings one of the park's oddest small phenomena: on the coldest early-spring mornings, Yosemite Creek can run with <strong>frazil ice</strong>, a slush of ice crystals that moves down the channel like slow lava and piles into banks of white. It is a niche thing to chase and a story for another article. Consider it the park's way of saying the quiet season is ending.
+        The waterfalls, mostly asleep since August, begin to come back in late winter as early melt and rain reach the Merced. By <a href="/articles/yosemite-in-march">March</a>, Yosemite Falls is a waterfall again rather than a stain, and the whole hydrological year described in <a href="/articles/yosemite-waterfalls-guide">the waterfalls guide</a> starts over. Late winter also brings one of the park's oddest small phenomena: on the coldest early-spring mornings, Yosemite Creek can run with <strong>frazil ice</strong>, a slush of ice crystals that moves down the channel like slow lava and piles into banks of white. It is a niche thing to chase and a story for another article. Consider it the park's way of saying the quiet season is ending.
       </p>
 
       <h2>The takeaway</h2>

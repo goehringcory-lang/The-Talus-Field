@@ -176,7 +176,10 @@ const HUB_PROSE = {
     hubProse(
       "The Yosemite Planning Guide",
       "Planning advice from inside the park, checked on foot: entrances and getting here, gateway towns, permits, Half Dome, accessibility, smoke season, and the seasonal calendar. The planning archive, curated:",
-      articleLinkList(articles.filter((a) => a.cat === "planning"))
+      // The page renders PLANNING_SERIES members from every section, so the
+      // crawler prose lists the same curation (planningSeries rides in from
+      // articles.json).
+      articleLinkList(articles.filter((a) => a.cat === "planning" || a.planningSeries))
     ),
   "/checklist": () =>
     hubProse(
@@ -186,8 +189,8 @@ const HUB_PROSE = {
     `<p>The reasoning behind each line item lives in <a href="/planning">the Planning Guide</a>; the packing details live in <a href="/kit">the kit lists</a>.</p>`,
   "/kit": () =>
     hubProse(
-      "Kit: what I carry in Yosemite",
-      "Three packing lists with the reasoning behind every item: a day pack, what an overnight adds, and the full car load."
+      "What to pack",
+      "Three packing checklists for a Yosemite trip: a day pack, what an overnight adds to it, and the full car load."
     ) +
     kit.lists
       .map(
@@ -390,6 +393,25 @@ const HUB_PROSE = {
       "There are two Half Dome permit lotteries, not one. The preseason lottery takes applications on Recreation.gov through March with results in mid-April; the daily lottery runs every day the cables are up, taken two days before the hike date. In the most recent published season about one preseason application in five succeeded, weekdays drew meaningfully better odds than weekends, and late-season weekdays were the best draw of the year. Strategy: use all seven date choices, front-load unpopular dates, enter both lotteries, and plan the hike mid-trip so the daily lottery gets several independent draws."
     ) +
     `<p>The full mechanics: <a href="/articles/half-dome-permit-lottery-2026">the complete lottery guide</a>. Whether the hike itself is the right goal: <a href="/articles/so-you-want-to-hike-half-dome">So You Want to Hike Half Dome</a>.</p>`,
+  // The three legal pages are indexable but render nothing for non-JS
+  // crawlers without a prose entry — a one-paragraph summary each keeps them
+  // from reading as empty (thin) pages. Facts follow the published page copy
+  // in page-legal.jsx; when that copy changes materially, change these.
+  "/privacy": () =>
+    hubProse(
+      "Privacy Policy",
+      "What The Talus Field collects when you visit the site, subscribe to the newsletter, or use the Field Guide app, how it is used, and the choices you have, written to comply with the GDPR and the CCPA. The Talus Field is an independent publication operated by Cory Goehring, reachable at cory@thetalusfieldjournal.com."
+    ),
+  "/terms": () =>
+    hubProse(
+      "Terms of Service",
+      "The terms that govern thetalusfieldjournal.com and the Field Guide app. The articles and the trip-planner map are free to browse. The Field Guide is a one-time purchase, not a subscription: 18 months of access on any device you sign in to, payment processed by Stripe, and a full refund within 30 days if it does not work as described."
+    ),
+  "/affiliate": () =>
+    hubProse(
+      "Affiliate Disclosure",
+      "Some links on this site are affiliate links: The Talus Field participates in Patagonia's program through Impact and the Expedia Group Travel Creator Program through Partnerize, which powers the lodging availability links. A booking through one earns a small commission at no extra cost. The governing rule: no program's catalog shapes a recommendation, and the best option stays the top recommendation, linkless, if it has no program."
+    ),
 };
 
 // Shared-trip unfurls: /map?trip=id1,id2 links travel through texts and group
@@ -458,7 +480,12 @@ function seoForPath(pathname, searchParams) {
         "@type": "Article",
         headline: a.title,
         description: desc,
-        image: [image],
+        // ImageObject with real pixel dimensions when the og variant
+        // resolved (the same numbers og:image:width/height carry); a bare
+        // URL otherwise.
+        image: a.ogImage
+          ? [{ "@type": "ImageObject", url: image, width: a.ogImage.width, height: a.ogImage.height }]
+          : [image],
         datePublished: a.isoDate || a.date,
         dateModified: a.isoModified || a.isoDate || a.date,
         articleSection: cat ? cat.label : undefined,
@@ -529,6 +556,7 @@ function seoForPath(pathname, searchParams) {
       title: `Articles — ${SITE_NAME}`,
       description:
         "Every entry, in reverse chronological order. Yosemite trip planning, trails, wildlife, and seasonal guides.",
+      breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Articles", null]],
       // CollectionPage whose mainEntity is the full catalog as an ItemList.
       // Mirrored client-side in app.jsx buildSeo so hydration replaces like
       // with like. Slim ListItems (url + name) avoid duplicating the Article
@@ -557,7 +585,7 @@ function seoForPath(pathname, searchParams) {
     "/planning": {
       title: `The Yosemite Planning Guide — ${SITE_NAME}`,
       description:
-        "Plan a Yosemite trip in 2026: entrances and getting there, gateway towns, permits, Half Dome, accessibility, smoke season, the seasonal calendar. A curated hub through The Talus Field's planning archive.",
+        "Plan a Yosemite trip in 2026: entrances, gateway towns, permits, Half Dome, accessibility, smoke season, month by month. A curated hub through the planning archive.",
       breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Planning Guide", null]],
       faq: [
         { q: "Do I need a reservation to enter Yosemite in 2026?", a: "No. The day-use vehicle reservation system is not in effect in 2026. A standard Yosemite entrance pass ($35 per vehicle, valid 7 days) is required." },
@@ -580,9 +608,12 @@ function seoForPath(pathname, searchParams) {
       breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["About", null]],
     },
     "/kit": {
-      title: `Kit — What I carry in Yosemite — ${SITE_NAME}`,
+      // Kept in sync with the client entry in app.jsx buildSeo (the kit
+      // branch) and the page's own h1/dek in page-kit.jsx — this side went
+      // stale once and served a title the page never showed.
+      title: `Packing checklists for Yosemite — ${SITE_NAME}`,
       description:
-        "Gear lists for Yosemite: a day pack, an overnight pack, and a car kit. Each item with the reasoning behind it.",
+        "Three Yosemite packing checklists to tick off as you plan: a day pack, what an overnight adds, and the full car load. The small, easily forgotten things included.",
       breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Kit", null]],
       // One ItemList per packing list. Matches the @graph app.jsx builds
       // client-side from window.KIT, so JS and non-JS crawlers see the same
@@ -615,16 +646,19 @@ function seoForPath(pathname, searchParams) {
       title: `List your business — ${SITE_NAME}`,
       description:
         "How to list a Yosemite-area lodge, inn, guide service, or outfitter on The Talus Field directory.",
+      breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["List your business", null]],
     },
     "/newsletter": {
       title: `Sunday Field Notes — ${SITE_NAME}`,
       description:
         "A short weekly note on Yosemite when there is something to say. Free.",
+      breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Newsletter", null]],
     },
     "/contact": {
       title: `Contact — ${SITE_NAME}`,
       description:
         "Send a note to the editor. Trip questions, corrections, press, or anything else.",
+      breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Contact", null]],
     },
     "/privacy": {
       title: `Privacy Policy — ${SITE_NAME}`,
@@ -706,15 +740,21 @@ function seoForPath(pathname, searchParams) {
         name: "Yosemite Nature Notes — the film archive",
         url: `${SITE_ORIGIN}/films`,
         numberOfItems: videos.length,
+        // ListItem wrappers, not bare VideoObjects with a position property:
+        // schema.org puts position on the ListItem, and validators reject the
+        // flattened form for video rich results.
         itemListElement: videos.map((ep, i) => ({
-          "@type": "VideoObject",
+          "@type": "ListItem",
           position: i + 1,
-          name: ep.title,
-          description: ep.dek,
-          thumbnailUrl: `https://i.ytimg.com/vi/${ep.youtubeId}/hqdefault.jpg`,
-          embedUrl: `https://www.youtube-nocookie.com/embed/${ep.youtubeId}`,
-          publisher: { "@type": "Organization", name: "National Park Service" },
-          isAccessibleForFree: true,
+          item: {
+            "@type": "VideoObject",
+            name: ep.title,
+            description: ep.dek,
+            thumbnailUrl: `https://i.ytimg.com/vi/${ep.youtubeId}/hqdefault.jpg`,
+            embedUrl: `https://www.youtube-nocookie.com/embed/${ep.youtubeId}`,
+            publisher: { "@type": "Organization", name: "National Park Service" },
+            isAccessibleForFree: true,
+          },
         })),
       },
     },
@@ -729,9 +769,9 @@ function seoForPath(pathname, searchParams) {
       robots: "noindex, follow",
     },
     "/explore": {
-      title: `Site index — everything on The Talus Field — ${SITE_NAME}`,
+      title: `Site index — every page on the site — ${SITE_NAME}`,
       description:
-        "Every page in The Talus Field, grouped and described: the article sections, the Park Bulletin, the Nature Notes archive and film series, the trip map and itineraries, lodging, conditions, and the Field Guide app.",
+        "Every page in The Talus Field, grouped and described: the sections, the Park Bulletin, the Nature Notes archive and films, the map, lodging, and the Field Guide app.",
       breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Site index", null]],
     },
     "/conditions": {
@@ -743,7 +783,7 @@ function seoForPath(pathname, searchParams) {
     "/now": {
       title: `The Park Bulletin — what's happening in Yosemite right now — ${SITE_NAME}`,
       description:
-        "Everything happening in Yosemite on one scannable page: closures, roads, free ranger programs, dated events, trail status, hours, and phone numbers, updated for each edition of the park's Yosemite Guide.",
+        "Everything happening in Yosemite on one page: closures, roads, free ranger programs, dated events, trail status, hours, and phone numbers, updated each Guide edition.",
       breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["The Park Bulletin", null]],
     },
     "/widget": {
@@ -759,6 +799,10 @@ function seoForPath(pathname, searchParams) {
       description:
         "Yosemite-area hotels, inns, rental hosts, and property managers: buy The Talus Field Guide in packs and give every guest a code. Offline app, 18 months of access, nothing to install on your side.",
       breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Group codes", null]],
+      // Edge-only FAQ: the client entry in app.jsx carries none, so this
+      // copy survives hydration on direct loads. A client-side faq added
+      // later REPLACES it on first paint (the /planning drift) — change
+      // both sides together or neither.
       faq: [
         {
           q: "What is a group code?",
@@ -815,6 +859,10 @@ function seoForPath(pathname, searchParams) {
       description:
         "Every place to sleep in and around Yosemite, compared honestly: the six in-park lodges and camps, the five gateway towns with real drive times, and how the 366-day booking window actually works.",
       breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Where to stay", null]],
+      // Edge-only FAQ: the client entry in app.jsx carries none, so this
+      // copy survives hydration on direct loads. A client-side faq added
+      // later REPLACES it on first paint (the /planning drift) — change
+      // both sides together or neither.
       faq: [
         {
           q: "Where should you stay in Yosemite?",
@@ -843,6 +891,10 @@ function seoForPath(pathname, searchParams) {
       description:
         "When the Horsetail Fall firefall happens, the three conditions that must line up, and how to plan a February evening around uncertain odds. By a park resident.",
       breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Firefall", null]],
+      // Edge-only FAQ: the client entry in app.jsx carries none, so this
+      // copy survives hydration on direct loads. A client-side faq added
+      // later REPLACES it on first paint (the /planning drift) — change
+      // both sides together or neither.
       faq: [
         {
           q: "When is the Yosemite firefall?",
@@ -871,6 +923,10 @@ function seoForPath(pathname, searchParams) {
       description:
         "How the Tioga Road opening actually works: why the date is announced only days ahead, what is really open in week one, and how to drive the early season well. By a park resident.",
       breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Tioga opening", null]],
+      // Edge-only FAQ: the client entry in app.jsx carries none, so this
+      // copy survives hydration on direct loads. A client-side faq added
+      // later REPLACES it on first paint (the /planning drift) — change
+      // both sides together or neither.
       faq: [
         {
           q: "When does Tioga Road open?",
@@ -899,6 +955,10 @@ function seoForPath(pathname, searchParams) {
       description:
         "Both Half Dome permit lotteries explained: the March preseason draw, the daily lottery almost nobody uses, the honest odds, and the strategy that actually works. By a park resident.",
       breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Half Dome lottery", null]],
+      // Edge-only FAQ: the client entry in app.jsx carries none, so this
+      // copy survives hydration on direct loads. A client-side faq added
+      // later REPLACES it on first paint (the /planning drift) — change
+      // both sides together or neither.
       faq: [
         {
           q: "When is the Half Dome permit lottery?",
@@ -1063,7 +1123,9 @@ async function handleRequest({ request, next, env }) {
   const url = new URL(request.url);
   const redirectTarget = REDIRECTS[url.pathname.replace(/\/+$/, "") || "/"];
   if (redirectTarget) {
-    return Response.redirect(`${SITE_ORIGIN}${redirectTarget}`, 301);
+    // Carry the query string across: a retired slug arriving as
+    // ?utm_source=newsletter must keep its attribution on the other side.
+    return Response.redirect(`${SITE_ORIGIN}${redirectTarget}${url.search}`, 301);
   }
   // Unknown SPA routes get a real 404 (with noindex + not-found prose) instead
   // of a 200 homepage clone. Real files never reach the Worker (asset-first

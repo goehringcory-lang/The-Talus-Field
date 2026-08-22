@@ -226,7 +226,7 @@ window.ARTICLE_BODIES["yosemite-for-non-hikers"] = function YosemiteForNonHikers
       </p>
 
       <p>
-        <strong>The Yosemite Museum</strong> has exhibits on the human and natural history of the park, including a reconstructed Ahwahneechee bark house and demonstrations of traditional crafts when staff are available. Free admission.
+        <strong>The Yosemite Museum</strong> has exhibits on the human and natural history of the park, including a reconstructed Ahwahneechee bark house and <a href="/articles/yosemite-connecting-to-traditions">demonstrations of traditional crafts</a> when staff are available. Free admission.
       </p>
 
       <p>

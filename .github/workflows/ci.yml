@@ -1,9 +1,11 @@
-# CI for the PWA and the Worker.
+# CI for the editorial guards, the PWA, and the Worker.
 #
 # The editorial site at the repo root is static by design (hand-written CSS,
-# jsx sources precompiled into /dist by scripts/gen-compiled.mjs). Its guards
-# run locally via `npm --prefix scripts run check`; the nightly
-# system-checks.yml covers the live site. It is intentionally not built here.
+# jsx sources precompiled into /dist by scripts/gen-compiled.mjs), and it
+# auto-deploys from main via the Cloudflare Workers Build — so the guard
+# suite that used to be local-only runs here too. Without it, stale dist/,
+# stale SEO mirrors, or an untagged article could merge and deploy with
+# nothing failing. The nightly system-checks.yml still covers the live site.
 
 name: CI
 
@@ -13,6 +15,31 @@ on:
     branches: [main]
 
 jobs:
+  editorial:
+    name: Editorial guards
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: |
+            scripts/package-lock.json
+            apps/guide/package-lock.json
+      - run: npm ci
+        working-directory: scripts
+      # The guard suite's last step (check:itineraries) runs from apps/guide.
+      - run: npm ci
+        working-directory: apps/guide
+      # Cache-busters, SEO mirrors, prerender + compiled-dist + home-shell +
+      # archive freshness, archive citations, guide photos, intent tags,
+      # itinerary placements.
+      - run: npm --prefix scripts run check
+      # The offline health battery: links, per-page SEO/JSON-LD, sitemap,
+      # feed, image hygiene. Errors fail; length warnings do not.
+      - run: npm --prefix scripts run checks
+
   pwa:
     name: PWA build and lint
     runs-on: ubuntu-latest
