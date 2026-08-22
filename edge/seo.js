@@ -264,7 +264,12 @@ const HUB_PROSE = {
     if (ed.lede) parts.push(`<p>${escapeHtmlText(ed.lede)}</p>`);
     if (Array.isArray(bulletin.alerts) && bulletin.alerts.length) {
       parts.push(
-        `<h2>Changed this edition</h2><ul>${bulletin.alerts.map((a) => `<li>${escapeHtmlText(a)}</li>`).join("")}</ul>`
+        // An alert is a plain string or { icon, text }; the icon is a
+        // wayfinding mark on the rendered page and carries nothing a crawler
+        // needs, so only the text crosses over.
+        `<h2>Changed this edition</h2><ul>${bulletin.alerts
+          .map((a) => `<li>${escapeHtmlText(typeof a === "string" ? a : (a && a.text) || "")}</li>`)
+          .join("")}</ul>`
       );
     }
     if (Array.isArray(bulletin.areas) && bulletin.areas.length) {

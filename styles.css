@@ -4233,7 +4233,27 @@ main:focus { outline: none; }
    A grid of ruled cards over the journal chrome: status rows with
    chips, a mono program clock, a dated event ledger that dims as
    the edition ages. Everything data-driven from bulletin.json.
+
+   The icon layer (August 2026): a whole Guide edition on one screen was
+   eleven stacked blocks of grey text, and a reader had to read it in order
+   to find the one line they came for. Every mark is a second channel on
+   something the JSON already says. Geometry ships in page-now.jsx; fill,
+   stroke and weight come from here, so a mark takes the colour of the row
+   it sits in and all four palettes follow with no per-theme rule. Sizes
+   are set per context, never on .bicon itself.
    ============================================================ */
+.bicon {
+  display: block;
+  flex: 0 0 auto;
+  width: 17px;
+  height: 17px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
 .bulletin-edition {
   font-size: 12px;
   font-weight: 700;
@@ -4245,6 +4265,9 @@ main:focus { outline: none; }
 .bulletin-edition__label { color: var(--moss); }
 
 .bulletin-stale {
+  display: flex;
+  align-items: flex-start;
+  gap: 11px;
   margin: 0 0 22px;
   padding: 12px 16px;
   border-left: 3px solid var(--gold);
@@ -4253,6 +4276,12 @@ main:focus { outline: none; }
   font-size: 14px;
   line-height: 1.55;
   color: var(--ink-2);
+}
+.bulletin-stale__icon {
+  width: 18px;
+  height: 18px;
+  margin-top: 2px;
+  color: var(--gold);
 }
 .bulletin-lede {
   font-family: var(--display);
@@ -4279,14 +4308,24 @@ main:focus { outline: none; }
   column-gap: 40px;
 }
 .bulletin-alerts li {
+  display: grid;
+  grid-template-columns: 18px 1fr;
+  gap: 11px;
+  align-items: start;
   font-family: var(--serif);
   font-size: 16px;
   line-height: 1.5;
   color: var(--ink-2);
-  padding: 6px 0 6px 16px;
+  padding: 6px 0 6px 14px;
   border-left: 3px solid var(--moss);
   margin-bottom: 10px;
   break-inside: avoid;
+}
+.bulletin-alerts__icon {
+  width: 18px;
+  height: 18px;
+  margin-top: 3px;
+  color: var(--moss);
 }
 
 /* Cards and grid. */
@@ -4304,7 +4343,14 @@ main:focus { outline: none; }
   min-width: 0;
 }
 .bulletin-card--wide { margin-bottom: 28px; }
-.bulletin-card__head { margin: 0 0 14px; font-size: 12px; }
+.bulletin-card__head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 14px;
+  font-size: 12px;
+}
+.bulletin-card__icon { width: 16px; height: 16px; }
 
 /* Status rows (roads & areas, trails). */
 .bulletin-status__row {
@@ -4312,12 +4358,26 @@ main:focus { outline: none; }
   padding: 10px 0 12px;
 }
 .bulletin-status__row:last-child { border-bottom: none; }
+/* Only the marked list (roads & areas) gets the icon gutter under its notes;
+   the trails list has no per-row mark to align to. */
+.bulletin-status--marked .bulletin-status__row p { padding-left: 25px; }
 .bulletin-status__name {
   display: flex;
-  align-items: baseline;
+  align-items: center;
   justify-content: space-between;
   gap: 12px;
   flex-wrap: wrap;
+}
+.bulletin-status__label {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  min-width: 0;
+}
+.bulletin-status__icon {
+  width: 16px;
+  height: 16px;
+  color: var(--moss);
 }
 .bulletin-status__name strong {
   font-family: var(--sans);
@@ -4335,6 +4395,9 @@ main:focus { outline: none; }
 }
 
 .bulletin-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
   font-family: var(--mono);
   font-size: 10px;
   font-weight: 700;
@@ -4348,6 +4411,8 @@ main:focus { outline: none; }
 .bulletin-chip--open { color: var(--moss); }
 .bulletin-chip--warn { color: var(--gold); }
 .bulletin-chip--closed { color: var(--paper); background: var(--rust); border-color: var(--rust); }
+/* Heavier at 11px: a 1.7 stroke off a 24-unit viewBox all but disappears. */
+.bulletin-chip__icon { width: 11px; height: 11px; stroke-width: 2.6; }
 
 /* The program clock. */
 .bulletin-clock { width: 100%; border-collapse: collapse; }
@@ -4380,6 +4445,30 @@ main:focus { outline: none; }
   color: var(--ink-3);
   margin-top: 2px;
 }
+.bulletin-clock__marks {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  margin-left: 9px;
+  vertical-align: -0.25em;
+  color: var(--moss);
+}
+.bulletin-mark { width: 15px; height: 15px; }
+.bulletin-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 18px;
+  font-family: var(--sans);
+  font-size: 11.5px;
+  color: var(--ink-3);
+  margin: 12px 0 0;
+}
+.bulletin-legend span {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
+.bulletin-legend .bicon { color: var(--moss); }
 
 /* Plain lists (beyond-the-Valley cards). */
 .bulletin-list {
@@ -4453,17 +4542,48 @@ main:focus { outline: none; }
   padding-left: 14px;
 }
 .bulletin-hours__note { color: var(--ink-3); }
-.bulletin-numbers { margin-top: 16px; border-top: 1px solid var(--rule); }
+.bulletin-numbers { margin-top: 10px; border-top: 1px solid var(--rule); }
 
-/* Prose-ish definition paragraphs (transit, essentials). */
+/* Definition rows (transit, essentials). Each is an icon gutter and a
+   paragraph, ruled like the status rows above it: eleven run-on paragraphs
+   was the densest grey block on the page. */
+.bulletin-def {
+  display: grid;
+  grid-template-columns: 19px 1fr;
+  gap: 12px;
+  align-items: start;
+  padding: 8px 0 9px;
+  border-bottom: 1px solid var(--rule-soft);
+}
+.bulletin-def:last-child { border-bottom: none; }
+.bulletin-def__icon {
+  width: 19px;
+  height: 19px;
+  margin-top: 2px;
+  color: var(--moss);
+}
 .bulletin-defs p {
   font-family: var(--serif);
   font-size: 15px;
   line-height: 1.55;
   color: var(--ink-2);
-  margin: 0 0 12px;
+  margin: 0;
 }
 .bulletin-defs p strong { font-family: var(--sans); font-size: 14px; }
+
+.bulletin-subhead {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  margin: 22px 0 0;
+}
+.bulletin-subhead__icon { width: 15px; height: 15px; color: var(--moss); }
 
 .bulletin-note {
   font-family: var(--sans);
