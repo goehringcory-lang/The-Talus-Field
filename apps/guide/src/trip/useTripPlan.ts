@@ -261,10 +261,22 @@ export function useTripPlan() {
       }
       const newId =
         moving.type === 'hike' ? hikeItemId(moving.hikeId, day) : stopItemId(moving.stopId, day)
-      // Target day already holds this item: drop the dragged copy rather than
-      // mint a colliding itemId, same as moveStopToDay.
+      // Target day already holds this item: minting newId would collide, so
+      // the existing copy adopts the dropped time and the dragged copy goes.
+      // Silently deleting the dragged block (the old behaviour, mirroring
+      // moveStopToDay's day-level dedupe) read as "the drag ate my stop" —
+      // the drop has a position, and the surviving block should land on it.
       if (p.items.some((it) => it.itemId === newId)) {
-        return { ...p, items: p.items.filter((it) => it.itemId !== itemId) }
+        return {
+          ...p,
+          items: p.items
+            .filter((it) => it.itemId !== itemId)
+            .map((it) =>
+              it.itemId === newId && it.type !== 'program' && startTime !== undefined
+                ? { ...it, startTime }
+                : it,
+            ),
+        }
       }
       return {
         ...p,

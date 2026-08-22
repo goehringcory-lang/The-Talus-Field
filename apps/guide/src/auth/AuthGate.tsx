@@ -5,6 +5,7 @@ import {
   clearAccessEndedAt,
   clearStoredJwt,
   dropMemoryJwt,
+  isAuthStorageKey,
   readSessionFromStorage,
   sessionFromJwt,
   setAccessEndedAt,
@@ -18,9 +19,14 @@ import type { Session } from './useAuth'
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [session, setSession] = useState<Session>(() => readSessionFromStorage())
 
-  // If another tab signs in/out, keep this one in sync.
+  // If another tab signs in/out, keep this one in sync. Filtered to the auth
+  // keys: unrelated tfg.* writes (trip plan, favorites) also fire this event,
+  // and dropping the in-memory JWT on those would sign out a storage-blocked
+  // session whose JWT never persisted — plus re-render the whole provider on
+  // every foreign-key write.
   useEffect(() => {
-    const onStorage = () => {
+    const onStorage = (e: StorageEvent) => {
+      if (!isAuthStorageKey(e.key)) return
       // The event proves storage works in this tab, so the persisted value
       // wins over the storage-blocked in-memory fallback.
       dropMemoryJwt()

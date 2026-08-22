@@ -3,6 +3,13 @@ const KEY = 'tfg.jwt'
 // revocation), so /login can explain instead of silently bouncing the buyer.
 const ACCESS_ENDED_KEY = 'tfg.accessEndedAt'
 
+// Cross-tab StorageEvents fire for every tfg.* key (trip plan, favorites,
+// notes...). Only these two keys mean the session itself changed; a null key
+// is localStorage.clear(), which wipes them too.
+export function isAuthStorageKey(key: string | null): boolean {
+  return key === null || key === KEY || key === ACCESS_ENDED_KEY
+}
+
 type JwtClaims = {
   sub: string
   exp: number
