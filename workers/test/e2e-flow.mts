@@ -36,6 +36,7 @@ const env: Record<string, unknown> = {
   STRIPE_WEBHOOK_SECRET: 'whsec_test_dummy_secret',
   MAGIC_LINK_SIGNING_SECRET: 'test-signing-secret',
   RESEND_API_KEY: 're_test_dummy',
+  PROMO_CODES: 'TALUS30:30',
 }
 
 const ctx = { waitUntil(_p: Promise<unknown>) {}, passThroughOnException() {} } as ExecutionContext
@@ -611,6 +612,100 @@ console.log('\n20. conditions feeds (/api/alerts, /api/air, /api/flow)')
   const f = await call('/api/flow')
   check('flow 200 with latest reading', f.status === 200 && f.json.cfs === 410, f.json)
   check('cfs mapped to band', f.json.band === 'strong', f.json)
+}
+
+console.log('\n21. promo-code redemption (/api/redeem)')
+{
+  const now = Math.floor(Date.now() / 1000)
+  const month = new Date().toISOString().slice(0, 7)
+  // Distinct per-arc IPs: the test's default 'unknown' IP would pool every
+  // POST below into one 10/hour bucket and trip the cap mid-section.
+  const redeemCall = (ip: string, body: Record<string, unknown>) =>
+    call('/api/redeem', {
+      method: 'POST',
+      body: JSON.stringify(body),
+      headers: { 'cf-connecting-ip': ip },
+    })
+
+  // -- refusals send nothing and write nothing --
+  const unknown = await redeemCall('9.9.9.1', { email: 'stranger2@example.com', code: 'NOPE30' })
+  check('unknown code -> 404', unknown.status === 404, unknown)
+  check('unknown code leaves no record', (await buyers.get('buyer:stranger2@example.com')) === null)
+  const potBefore = sentEmails.length
+  const pot = await redeemCall('9.9.9.1', { email: 'bot@example.com', code: 'TALUS30', website: 'http://spam' })
+  check('honeypot -> fake 200, nothing sent or written',
+    pot.status === 200 && pot.json.ok === true && sentEmails.length === potBefore &&
+    (await buyers.get('buyer:bot@example.com')) === null, pot)
+  const badEmail = await redeemCall('9.9.9.1', { email: 'not-an-email', code: 'TALUS30' })
+  check('bad email -> 400', badEmail.status === 400, badEmail)
+
+  // -- happy path: lowercased code, 30-day record, email carries the keys --
+  const invBefore = await buyers.get(`inventory:${month}`)
+  const emailsBefore = sentEmails.length
+  const r1 = await redeemCall('9.9.9.2', { email: 'Reader@Example.com', code: ' talus30 ' })
+  check('redeem -> 200 (code case/space-insensitive)', r1.status === 200 && r1.json.ok === true, r1)
+  const rec1 = JSON.parse((await buyers.get('buyer:reader@example.com'))!)
+  check('record carries promoCode + ~30-day expiry',
+    rec1.promoCode === 'TALUS30' && Math.abs(rec1.expiresAt - (now + 30 * 86400)) < 60, rec1)
+  check('redemption sentinel written', (await buyers.get('promoRedeemed:TALUS30:reader@example.com')) === '1')
+  check('inventory untouched by redemption', (await buyers.get(`inventory:${month}`)) === invBefore)
+  const trialEmail = sentEmails[sentEmails.length - 1]
+  check('trial email sent with token, code, and end date',
+    sentEmails.length === emailsBefore + 1 && trialEmail.to === 'reader@example.com' &&
+    trialEmail.text.includes(rec1.accessToken) && trialEmail.text.includes(rec1.accessCode) &&
+    trialEmail.text.includes('through'), trialEmail?.text)
+  const ex = await call('/api/auth/exchange', { method: 'POST', body: JSON.stringify({ token: rec1.accessToken }) })
+  check('trial magic link exchanges into a jwt', ex.status === 200 && typeof ex.json.jwt === 'string', ex)
+
+  // -- re-redeeming while active re-sends, never clobbers --
+  const r2 = await redeemCall('9.9.9.2', { email: 'reader@example.com', code: 'TALUS30' })
+  const resent = sentEmails[sentEmails.length - 1]
+  check('active re-redeem -> 200, same token re-sent',
+    r2.status === 200 && resent.to === 'reader@example.com' && resent.text.includes(rec1.accessToken), r2)
+  const rec2 = JSON.parse((await buyers.get('buyer:reader@example.com'))!)
+  check('record not extended or regenerated',
+    rec2.expiresAt === rec1.expiresAt && rec2.accessCode === rec1.accessCode, rec2)
+
+  // -- renewal sweep: no "ends in two months" on day one, t14/t1 still fire --
+  const sweepBefore = sentEmails.length
+  await sweepRenewals(env as never)
+  check('sweep skips t60 for the 30-day promo record',
+    sentEmails.slice(sweepBefore).every((e) => e.to !== 'reader@example.com'),
+    sentEmails.slice(sweepBefore).map((e) => e.to))
+  await buyers.put('buyer:reader@example.com', JSON.stringify({ ...rec2, expiresAt: now + 14 * 86400 - 60 }))
+  await sweepRenewals(env as never)
+  const t14 = sentEmails[sentEmails.length - 1]
+  check('sweep sends t14 to the trial as its conversion notice',
+    t14.to === 'reader@example.com' && t14.text.includes(`/api/checkout/renew?token=${rec1.accessToken}`), t14?.text)
+
+  // -- a real purchase converts the trial: extends, keeps keys, clears promoCode --
+  const buyEvt = {
+    id: 'evt_trial_convert', type: 'checkout.session.completed',
+    data: { object: { id: 'cs_trial_1', customer_details: { email: 'reader@example.com' }, metadata: { product: 'field_guide_2026' }, created: now } },
+  }
+  const buyBody = JSON.stringify(buyEvt)
+  const buy = await call('/api/stripe/webhook', { method: 'POST', body: buyBody, headers: { 'stripe-signature': await signWebhook(buyBody, env.STRIPE_WEBHOOK_SECRET as string) } })
+  check('trial buyer purchase webhook 200', buy.status === 200 && buy.json.received === true, buy)
+  const rec3 = JSON.parse((await buyers.get('buyer:reader@example.com'))!)
+  check('purchase stacks 548d on the trial time and keeps token + code',
+    Math.abs(rec3.expiresAt - (now + 14 * 86400 - 60 + 548 * 86400)) < 60 &&
+    rec3.accessToken === rec1.accessToken && rec3.accessCode === rec1.accessCode, rec3)
+  check('promoCode cleared by the payment', rec3.promoCode === undefined, rec3)
+
+  // -- attempt caps (3/email/hour; the two redeems above already count) --
+  const r3 = await redeemCall('9.9.9.2', { email: 'reader@example.com', code: 'TALUS30' })
+  check('paid-buyer redeem -> 200, purchase email re-sent',
+    r3.status === 200 && sentEmails[sentEmails.length - 1].text.includes('18 months'), r3)
+  const r4 = await redeemCall('9.9.9.2', { email: 'reader@example.com', code: 'TALUS30' })
+  check('4th attempt for one email -> 429', r4.status === 429, r4)
+
+  // -- one grant per (code, email), ever --
+  const l1 = await redeemCall('9.9.9.3', { email: 'lapsed@example.com', code: 'TALUS30' })
+  check('lapsed arc: first redeem -> 200', l1.status === 200, l1)
+  const lapsedRec = JSON.parse((await buyers.get('buyer:lapsed@example.com'))!)
+  await buyers.put('buyer:lapsed@example.com', JSON.stringify({ ...lapsedRec, expiresAt: now - 60 }))
+  const l2 = await redeemCall('9.9.9.3', { email: 'lapsed@example.com', code: 'TALUS30' })
+  check('expired trial re-redeem -> 409 (sentinel)', l2.status === 409, l2)
 }
 
 globalThis.fetch = realFetch
