@@ -364,11 +364,10 @@ export async function markRenewalNotice(env: Env, email: string, stage: string):
 
 // GET /api/checkout/renew?token= is unauthenticated (it comes from an email
 // link), so the token lookup is rate-limited by hashed IP against enumeration.
+// Fixed window like every other counter: the old re-put-with-fresh-TTL scheme
+// let one request per ~55 minutes (a mail scanner prefetching the link behind
+// a hotel/CGNAT IP) keep the bucket alive forever, locking every buyer on
+// that address out of their renewal link indefinitely.
 export async function recordRenewLinkAttempt(env: Env, ipHash: string): Promise<number> {
-  const key = RENEW_LINK_ATTEMPTS_KEY(ipHash)
-  const raw = await env.GUIDE_BUYERS.get(key)
-  const next = (raw ? Number.parseInt(raw, 10) : 0) + 1
-  // 1-hour TTL gives a rolling window per IP.
-  await env.GUIDE_BUYERS.put(key, String(next), { expirationTtl: 60 * 60 })
-  return next
+  return incrementFixedWindow(env, RENEW_LINK_ATTEMPTS_KEY(ipHash))
 }

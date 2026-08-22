@@ -95,8 +95,12 @@ export async function writeWeatherRecord(env: Env, record: WeatherRecordT): Prom
 }
 
 async function nwsFetch(url: string): Promise<Response> {
+  // Bounded: every caller falls back to the stale KV copy on failure, and a
+  // HUNG upstream (rather than a failing one) used to block the reader on
+  // the runtime's own multi-tens-of-seconds fetch ceiling first.
   return fetch(url, {
     headers: { 'User-Agent': NWS_USER_AGENT, Accept: 'application/geo+json' },
+    signal: AbortSignal.timeout(10_000),
   })
 }
 

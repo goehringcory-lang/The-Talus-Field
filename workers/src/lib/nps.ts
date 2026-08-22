@@ -70,6 +70,10 @@ export async function fetchNpsEvents(
     })
     const res = await fetch(`${NPS_EVENTS_URL}?${params}`, {
       headers: { 'X-Api-Key': env.NPS_API_KEY ?? '', accept: 'application/json' },
+      // Bounded so a hung NPS API fails into the stale-KV path instead of
+      // holding the request (and the single-flight slot) for the runtime's
+      // own fetch ceiling.
+      signal: AbortSignal.timeout(10_000),
     })
     if (!res.ok) {
       throw new Error(`NPS events API ${res.status}`)

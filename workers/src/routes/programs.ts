@@ -69,13 +69,18 @@ programs.get('/', async (c) => {
 
   let npsEvents: ProgramEventT[]
   let syncedAt: string | null
-  if (stale && !ingestInflight) {
+  if (stale && !ingestInflight && !liveFetchInflight) {
     // Cold start or cron gap: serve live and backfill KV in the background.
-    // Single-flighted per isolate: while a backfill is running, concurrent
-    // stale requests serve KV as-is instead of each firing their own 20-call
-    // NPS pagination — the un-coalesced version could burn the free NPS
-    // hourly quota in one thundering herd and turn the feed into a
-    // self-reinforcing outage (quota 429 -> stale meta -> more live calls).
+    // Single-flighted per isolate: while a backfill OR an inline live fetch
+    // is running, concurrent stale requests serve KV as-is instead of each
+    // firing their own 20-call NPS pagination — the un-coalesced version
+    // could burn the free NPS hourly quota in one thundering herd and turn
+    // the feed into a self-reinforcing outage (quota 429 -> stale meta ->
+    // more live calls). The liveFetchInflight flag exists because
+    // ingestInflight is only set once this request's own await finishes: for
+    // the seconds the inline fetch takes, every stale arrival used to pass
+    // the !ingestInflight check too.
+    liveFetchInflight = true
     try {
       npsEvents = await fetchNpsEvents(c.env, start, end)
       syncedAt = new Date().toISOString()
@@ -86,6 +91,8 @@ programs.get('/', async (c) => {
       // No KV meta means the sync moment is simply unknown; an epoch-0
       // stamp used to render as "synced 56 years ago" in the PWA.
       syncedAt = meta?.fetchedAt ?? null
+    } finally {
+      liveFetchInflight = false
     }
   } else {
     npsEvents = await readRange(c.env, start, end)
@@ -130,6 +137,8 @@ async function readRange(env: Env, start: string, end: string): Promise<ProgramE
 // One background backfill at a time per isolate, and never an unhandled
 // rejection inside waitUntil (every other waitUntil in index.ts catches).
 let ingestInflight: Promise<void> | null = null
+// One inline live fetch at a time per isolate (see the stale branch above).
+let liveFetchInflight = false
 function trackedIngest(env: Env): Promise<void> {
   if (!ingestInflight) {
     ingestInflight = ingestNpsWindow(env)
