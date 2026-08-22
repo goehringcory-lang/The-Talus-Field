@@ -1,0 +1,540 @@
+<title>Talus Field Atlas</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap">
+<style>
+  :root {
+    --paper: #f1ead6;
+    --panel: #f8f3e4;
+    --ink: #14110c;
+    --ink-soft: #6d6350;
+    --line: #d9cdad;
+    --line-strong: #2a2118;
+    --ed: #3f6136;      --ed-tint: #e9ecda;
+    --api: #77502a;     --api-tint: #f0e6d0;
+    --pwa: #2f5d7c;     --pwa-tint: #e2e8ea;
+    --hot: #bf4a12;
+    --serif: 'EB Garamond', Georgia, 'Times New Roman', serif;
+    --sans: 'Inter', system-ui, -apple-system, sans-serif;
+    --mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper: #1c1812;
+      --panel: #241f17;
+      --ink: #f0e8d8;
+      --ink-soft: #a89c82;
+      --line: #3a3224;
+      --line-strong: #c9b689;
+      --ed: #a7c48d;      --ed-tint: #232a1c;
+      --api: #d4a75e;     --api-tint: #2b2415;
+      --pwa: #8db4d0;     --pwa-tint: #1e262d;
+      --hot: #ec8a4e;
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper: #1c1812;
+    --panel: #241f17;
+    --ink: #f0e8d8;
+    --ink-soft: #a89c82;
+    --line: #3a3224;
+    --line-strong: #c9b689;
+    --ed: #a7c48d;      --ed-tint: #232a1c;
+    --api: #d4a75e;     --api-tint: #2b2415;
+    --pwa: #8db4d0;     --pwa-tint: #1e262d;
+    --hot: #ec8a4e;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 15px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+  .sheet { max-width: 1320px; margin: 0 auto; padding: 28px clamp(16px, 3vw, 44px) 56px; }
+
+  /* ---- masthead ---- */
+  header { margin-bottom: 30px; }
+  .rules { border-top: 3px solid var(--line-strong); border-bottom: 1px solid var(--line-strong); height: 5px; margin-bottom: 14px; }
+  .edition {
+    display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap;
+    font-family: var(--mono); font-size: 10.5px; letter-spacing: .18em;
+    text-transform: uppercase; color: var(--ink-soft);
+  }
+  h1 {
+    font-family: var(--serif); font-weight: 600; font-size: clamp(2.3rem, 5vw, 3.4rem);
+    letter-spacing: .01em; margin: 14px 0 6px; text-wrap: balance;
+  }
+  .dek { font-family: var(--serif); font-style: italic; font-size: 1.15rem; color: var(--ink-soft); margin: 0 0 20px; max-width: 62ch; }
+  .legend {
+    display: flex; flex-wrap: wrap; gap: 10px 22px; align-items: center;
+    font-family: var(--mono); font-size: 10.5px; letter-spacing: .06em; color: var(--ink-soft);
+    border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 10px 2px;
+  }
+  .legend .k { display: inline-flex; align-items: center; gap: 7px; white-space: nowrap; }
+  .sw { width: 13px; height: 13px; border-radius: 3px; display: inline-block; }
+  .sw-ed  { background: var(--ed-tint);  border: 1.5px solid var(--ed); }
+  .sw-api { background: var(--api-tint); border: 1.5px solid var(--api); }
+  .sw-pwa { background: var(--pwa-tint); border: 1.5px solid var(--pwa); }
+  .sw-ext { background: transparent; border: 1.5px dashed var(--ink-soft); border-radius: 8px; }
+  .sw-hot { width: 22px; height: 0; border-top: 3px solid var(--hot); border-radius: 0; }
+
+  /* ---- figure panels ---- */
+  figure.panel {
+    margin: 26px 0 0; padding: 18px 22px 14px;
+    background: var(--panel); border: 1px solid var(--line); border-radius: 10px;
+  }
+  .fig-head {
+    display: flex; align-items: baseline; gap: 14px; margin-bottom: 4px;
+    font-family: var(--mono); letter-spacing: .14em;
+  }
+  .fig-no { font-size: 10.5px; font-weight: 700; color: var(--hot); }
+  .fig-name { font-size: 12px; font-weight: 700; color: var(--ink); }
+  .fig-head::after { content: ""; flex: 1; border-top: 1px solid var(--line); transform: translateY(-3px); }
+  .scroller { overflow-x: auto; }
+  .scroller svg { display: block; width: 100%; min-width: 1080px; height: auto; }
+  figcaption {
+    font-size: 13px; color: var(--ink-soft); margin-top: 8px;
+    border-top: 1px solid var(--line); padding-top: 9px; max-width: 90ch;
+  }
+
+  footer {
+    margin-top: 34px; padding-top: 12px; border-top: 3px double var(--line-strong);
+    display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap;
+    font-family: var(--mono); font-size: 10px; letter-spacing: .14em;
+    text-transform: uppercase; color: var(--ink-soft);
+  }
+
+  /* ---- shared SVG vocabulary (styled from the page, not inside the svg) ---- */
+  svg text { font-family: var(--mono); fill: var(--ink); }
+  .box   { fill: var(--panel); stroke-width: 1.5; }
+  .b-ed  { stroke: var(--ed);  fill: var(--ed-tint); }
+  .b-api { stroke: var(--api); fill: var(--api-tint); }
+  .b-pwa { stroke: var(--pwa); fill: var(--pwa-tint); }
+  .btitle { font-size: 13px; font-weight: 700; letter-spacing: .12em; }
+  .t-ed  { fill: var(--ed); }  .t-api { fill: var(--api); }  .t-pwa { fill: var(--pwa); }
+  .bdom  { font-size: 10px; fill: var(--ink-soft); letter-spacing: .03em; }
+  .glabel { font-size: 9px; letter-spacing: .22em; fill: var(--ink-soft); font-weight: 500; }
+  .gline  { font-size: 11.5px; letter-spacing: .01em; }
+  .gmut   { fill: var(--ink-soft); }
+  .hl     { fill: var(--hot); font-weight: 700; }
+  .hairline { stroke: var(--line); stroke-width: 1; }
+  .edge   { stroke: var(--ink-soft); stroke-width: 1.4; fill: none; }
+  .edge-hot { stroke: var(--hot); stroke-width: 2.1; fill: none; }
+  .dash   { stroke-dasharray: 6 5; }
+  .elabel { font-size: 9.5px; fill: var(--ink-soft); }
+  .elabel-b { font-size: 10px; fill: var(--ink); font-weight: 700; letter-spacing: .04em; }
+  .ehot   { fill: var(--hot); font-weight: 700; font-size: 9.5px; }
+  .mk     { fill: var(--ink-soft); }
+  .mk-hot { fill: var(--hot); }
+  .node  { fill: var(--panel); stroke-width: 1.4; }
+  .n-ed  { stroke: var(--ed);  fill: var(--ed-tint); }
+  .n-api { stroke: var(--api); fill: var(--api-tint); }
+  .n-pwa { stroke: var(--pwa); fill: var(--pwa-tint); }
+  .n-ext { stroke: var(--ink-soft); fill: var(--panel); stroke-dasharray: 4 3; }
+  .n-main { stroke: var(--line-strong); fill: var(--panel); stroke-width: 1.7; }
+  .ntitle { font-size: 10.5px; font-weight: 700; letter-spacing: .06em; }
+  .nsub   { font-size: 8.8px; fill: var(--ink-soft); }
+  .tab   { fill: var(--panel); stroke: var(--ink-soft); stroke-width: 1; stroke-dasharray: 4 3; }
+  .tabtx { font-size: 9px; fill: var(--ink-soft); letter-spacing: .06em; }
+  .lane-ed  { fill: var(--ed-tint);  opacity: .55; }
+  .lane-pwa { fill: var(--pwa-tint); opacity: .55; }
+  .person { stroke: var(--ink); stroke-width: 2; fill: none; }
+  .strip { fill: none; stroke: var(--ink-soft); stroke-width: 1.1; stroke-dasharray: 5 4; }
+
+  :focus-visible { outline: 2px solid var(--hot); outline-offset: 2px; }
+  @media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+  @media print {
+    body { background: #fff; }
+    figure.panel { break-inside: avoid; }
+  }
+</style>
+
+<div class="sheet">
+<header>
+  <div class="rules"></div>
+  <div class="edition"><span>The Talus Field · System Survey</span><span>Aug 2026 · drawn from main</span></div>
+  <h1>Talus Field Atlas</h1>
+  <p class="dek">One repo, three deployables. Four figures: the territory, the sale, the trip, the ship.</p>
+  <div class="legend">
+    <span class="k"><span class="sw sw-ed"></span>EDITORIAL · thetalusfieldjournal.com</span>
+    <span class="k"><span class="sw sw-api"></span>API WORKER · api.</span>
+    <span class="k"><span class="sw sw-pwa"></span>FIELD GUIDE PWA · guide.</span>
+    <span class="k"><span class="sw sw-ext"></span>EXTERNAL</span>
+    <span class="k"><span class="sw sw-hot"></span>THE SALE</span>
+  </div>
+</header>
+
+<!-- ============ FIG 1 ============ -->
+<figure class="panel">
+  <div class="fig-head"><span class="fig-no">FIG. 1</span><span class="fig-name">THE TERRITORY</span></div>
+  <div class="scroller">
+  <svg viewBox="0 0 1240 866" role="img" aria-label="System map: the editorial site and the Field Guide PWA both sit on the API Worker; Stripe, Resend, NPS and NWS sit under the Worker; Buttondown and Google Maps attach to the editorial site; a magic-link email path runs from Resend to the PWA.">
+    <defs>
+      <marker id="f1a" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto-start-reverse"><path class="mk" d="M0,0 L8,4 L0,8 z"/></marker>
+      <marker id="f1h" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto-start-reverse"><path class="mk-hot" d="M0,0 L8,4 L0,8 z"/></marker>
+    </defs>
+
+    <!-- reader -->
+    <circle class="person" cx="620" cy="24" r="8"/>
+    <path class="person" d="M604,50 a16,16 0 0 1 32,0"/>
+    <text x="620" y="66" text-anchor="middle" class="elabel-b">READER</text>
+    <line class="edge" x1="592" y1="46" x2="424" y2="104" marker-end="url(#f1a)"/>
+    <text x="484" y="62" text-anchor="middle" class="elabel">reads · plans</text>
+    <line class="edge" x1="648" y1="46" x2="816" y2="104" marker-end="url(#f1a)"/>
+    <text x="758" y="62" text-anchor="middle" class="elabel">in the park</text>
+
+    <!-- tabs -->
+    <rect class="tab" x="190" y="86" width="112" height="24" rx="6"/>
+    <text x="246" y="102" text-anchor="middle" class="tabtx">edge/seo.js</text>
+    <rect class="tab" x="710" y="86" width="146" height="24" rx="6"/>
+    <text x="783" y="102" text-anchor="middle" class="tabtx">sw.js · offline cache</text>
+
+    <!-- editorial box -->
+    <rect class="box b-ed" x="170" y="110" width="400" height="400" rx="10"/>
+    <text x="192" y="142" class="btitle t-ed">EDITORIAL SITE</text>
+    <text x="548" y="142" text-anchor="end" class="bdom">static React</text>
+    <text x="192" y="160" class="bdom">thetalusfieldjournal.com</text>
+    <line class="hairline" x1="192" y1="176" x2="548" y2="176"/>
+    <text x="192" y="202" class="glabel">READ</text>
+    <text x="192" y="220" class="gline">/articles · /archive · /films · /now</text>
+    <text x="192" y="258" class="glabel">PLAN</text>
+    <text x="192" y="276" class="gline">/planning · <tspan class="hl">/map</tspan> · /itineraries · /conditions</text>
+    <text x="192" y="314" class="glabel">SELL</text>
+    <text x="192" y="332" class="gline"><tspan class="hl">/guide</tspan> · /consult · /kit · /stay</text>
+    <text x="192" y="370" class="glabel">FIND</text>
+    <text x="192" y="388" class="gline">/search · /explore</text>
+    <text x="192" y="426" class="glabel">DATA</text>
+    <text x="192" y="444" class="gline gmut">data.js · points.geojson · bulletin.json</text>
+
+    <!-- pwa box -->
+    <rect class="box b-pwa" x="690" y="110" width="400" height="400" rx="10"/>
+    <text x="712" y="142" class="btitle t-pwa">FIELD GUIDE PWA</text>
+    <text x="1068" y="142" text-anchor="end" class="ehot" style="font-size:10px">$3.99 · 18 mo</text>
+    <text x="712" y="160" class="bdom">guide.thetalusfieldjournal.com</text>
+    <line class="hairline" x1="712" y1="176" x2="1068" y2="176"/>
+    <text x="712" y="202" class="glabel">ENTER</text>
+    <text x="712" y="220" class="gline"><tspan class="hl">/open</tspan> · /login · /preview</text>
+    <text x="712" y="258" class="glabel">EXPLORE</text>
+    <text x="712" y="276" class="gline">4 regions · 66 stops · 57 hikes · secret</text>
+    <text x="712" y="314" class="glabel">LIVE</text>
+    <text x="712" y="332" class="gline">/today · /this-week · /programs</text>
+    <text x="712" y="370" class="glabel">TRIP</text>
+    <text x="712" y="388" class="gline">/trip board · /map topo · ICS</text>
+    <text x="712" y="426" class="glabel">LOCAL</text>
+    <text x="712" y="444" class="gline gmut">tfg.* localStorage · offline packs</text>
+
+    <!-- bridges between the two -->
+    <line class="edge" x1="574" y1="244" x2="684" y2="244" marker-end="url(#f1a)"/>
+    <text x="630" y="232" text-anchor="middle" class="elabel-b">trip hand-off</text>
+    <text x="630" y="260" text-anchor="middle" class="elabel">/trip?import=</text>
+    <line class="edge" x1="686" y1="322" x2="576" y2="322" marker-end="url(#f1a)"/>
+    <text x="630" y="310" text-anchor="middle" class="elabel">citations → /archive</text>
+
+    <!-- left externals -->
+    <rect class="node n-ext" x="24" y="250" width="122" height="44" rx="8"/>
+    <text x="85" y="268" text-anchor="middle" class="ntitle">GOOGLE MAPS</text>
+    <text x="85" y="283" text-anchor="middle" class="nsub">the /map canvas</text>
+    <line class="edge" x1="146" y1="272" x2="166" y2="272" marker-end="url(#f1a)"/>
+    <rect class="node n-ext" x="24" y="330" width="122" height="44" rx="8"/>
+    <text x="85" y="348" text-anchor="middle" class="ntitle">BUTTONDOWN</text>
+    <text x="85" y="363" text-anchor="middle" class="nsub">letter · map gate</text>
+    <line class="edge" x1="146" y1="352" x2="166" y2="352" marker-end="url(#f1a)"/>
+
+    <!-- worker box -->
+    <rect class="box b-api" x="240" y="600" width="760" height="140" rx="10"/>
+    <text x="262" y="630" class="btitle t-api">API WORKER</text>
+    <text x="978" y="630" text-anchor="end" class="bdom">crons · data · push · renewals</text>
+    <text x="262" y="648" class="bdom">api.thetalusfieldjournal.com</text>
+    <line class="hairline" x1="262" y1="660" x2="978" y2="660"/>
+    <text x="262" y="684" class="gline">auth · <tspan class="hl">checkout</tspan> · <tspan class="hl">stripe webhook</tspan> · inventory · contact</text>
+    <text x="262" y="706" class="gline">programs · weather · waits · alerts · air · flow · tiles · widget</text>
+    <text x="262" y="728" class="gline">trip sync · trip email · push · photos · indexnow</text>
+
+    <!-- vertical edges into worker -->
+    <line class="edge" x1="370" y1="510" x2="370" y2="596" marker-end="url(#f1a)"/>
+    <text x="358" y="548" text-anchor="end" class="elabel"><tspan class="ehot">checkout</tspan> · inventory</text>
+    <text x="358" y="564" text-anchor="end" class="elabel">contact · trip email</text>
+    <line class="edge" x1="880" y1="510" x2="880" y2="596" marker-end="url(#f1a)"/>
+    <text x="892" y="548" class="elabel">auth · sync · push</text>
+    <text x="892" y="564" class="elabel">feeds · tiles</text>
+
+    <!-- storage right -->
+    <rect class="node n-api" x="1044" y="608" width="140" height="44" rx="8"/>
+    <text x="1114" y="626" text-anchor="middle" class="ntitle">KV</text>
+    <text x="1114" y="641" text-anchor="middle" class="nsub">buyers · caches</text>
+    <line class="edge" x1="1000" y1="630" x2="1040" y2="630" marker-end="url(#f1a)"/>
+    <rect class="node n-api" x="1044" y="666" width="140" height="44" rx="8"/>
+    <text x="1114" y="684" text-anchor="middle" class="ntitle">R2</text>
+    <text x="1114" y="699" text-anchor="middle" class="nsub">photo inbox</text>
+    <line class="edge" x1="1000" y1="688" x2="1040" y2="688" marker-end="url(#f1a)"/>
+
+    <!-- gateway sites left -->
+    <rect class="node n-ext" x="40" y="646" width="150" height="44" rx="8"/>
+    <text x="115" y="664" text-anchor="middle" class="ntitle">GATEWAY SITES</text>
+    <text x="115" y="679" text-anchor="middle" class="nsub">embed widget.js</text>
+    <line class="edge" x1="190" y1="668" x2="236" y2="668" marker-end="url(#f1a)"/>
+
+    <!-- bottom externals -->
+    <rect class="node n-ext" x="315" y="794" width="130" height="46" rx="8"/>
+    <text x="380" y="813" text-anchor="middle" class="ntitle">STRIPE</text>
+    <text x="380" y="828" text-anchor="middle" class="nsub">payments</text>
+    <line class="edge-hot" x1="380" y1="744" x2="380" y2="790" marker-start="url(#f1h)" marker-end="url(#f1h)"/>
+    <text x="392" y="770" class="ehot">checkout ⇄ webhook</text>
+
+    <rect class="node n-ext" x="495" y="794" width="130" height="46" rx="8"/>
+    <text x="560" y="813" text-anchor="middle" class="ntitle">RESEND</text>
+    <text x="560" y="828" text-anchor="middle" class="nsub">the emails</text>
+    <line class="edge" x1="560" y1="744" x2="560" y2="790" marker-end="url(#f1a)"/>
+
+    <rect class="node n-ext" x="675" y="794" width="130" height="46" rx="8"/>
+    <text x="740" y="813" text-anchor="middle" class="ntitle">NPS</text>
+    <text x="740" y="828" text-anchor="middle" class="nsub">events · waits</text>
+    <line class="edge" x1="740" y1="790" x2="740" y2="746" marker-end="url(#f1a)"/>
+
+    <rect class="node n-ext" x="855" y="794" width="130" height="46" rx="8"/>
+    <text x="920" y="813" text-anchor="middle" class="ntitle">NWS</text>
+    <text x="920" y="828" text-anchor="middle" class="nsub">forecast</text>
+    <line class="edge" x1="920" y1="790" x2="920" y2="746" marker-end="url(#f1a)"/>
+
+    <!-- magic link: resend up to the pwa -->
+    <path class="edge-hot dash" d="M 560 840 L 560 854 L 1208 854 L 1208 440 L 1098 440" marker-end="url(#f1h)"/>
+    <text x="1198" y="520" text-anchor="end" class="ehot">magic link</text>
+    <text x="1198" y="535" text-anchor="end" class="elabel">/open?token=</text>
+  </svg>
+  </div>
+  <figcaption>Two front doors, one API. The journal sells the guide; the Worker holds the buyer list and every live feed.</figcaption>
+</figure>
+
+<!-- ============ FIG 2 ============ -->
+<figure class="panel">
+  <div class="fig-head"><span class="fig-no">FIG. 2</span><span class="fig-name">THE SALE</span></div>
+  <div class="scroller">
+  <svg viewBox="0 0 1240 300" role="img" aria-label="Purchase sequence: guide buy box, checkout start, Stripe, webhook, KV buyer record, Resend access email, open with token, JWT. If the magic link is lost, email plus a six-digit code signs in against the same buyer record. A renewal loop returns to Stripe after 18 months.">
+    <defs>
+      <marker id="f2a" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto-start-reverse"><path class="mk" d="M0,0 L8,4 L0,8 z"/></marker>
+    </defs>
+
+    <rect class="node n-ed" x="16" y="82" width="130" height="56" rx="8"/>
+    <text x="81" y="106" text-anchor="middle" class="ntitle">/guide</text>
+    <text x="81" y="122" text-anchor="middle" class="nsub">buy box</text>
+
+    <rect class="node n-api" x="170" y="82" width="130" height="56" rx="8"/>
+    <text x="235" y="106" text-anchor="middle" class="ntitle">/api/checkout</text>
+    <text x="235" y="122" text-anchor="middle" class="nsub">/start</text>
+
+    <rect class="node n-ext" x="324" y="82" width="130" height="56" rx="8"/>
+    <text x="389" y="106" text-anchor="middle" class="ntitle">STRIPE</text>
+    <text x="389" y="122" text-anchor="middle" class="nsub">checkout page</text>
+
+    <rect class="node n-api" x="478" y="82" width="130" height="56" rx="8"/>
+    <text x="543" y="106" text-anchor="middle" class="ntitle">WEBHOOK</text>
+    <text x="543" y="122" text-anchor="middle" class="nsub">session completed</text>
+
+    <rect class="node n-api" x="632" y="82" width="130" height="56" rx="8"/>
+    <text x="697" y="106" text-anchor="middle" class="ntitle">KV BUYER</text>
+    <text x="697" y="122" text-anchor="middle" class="nsub">548 days</text>
+
+    <rect class="node n-ext" x="786" y="82" width="130" height="56" rx="8"/>
+    <text x="851" y="106" text-anchor="middle" class="ntitle">RESEND</text>
+    <text x="851" y="122" text-anchor="middle" class="nsub">code + magic link</text>
+
+    <rect class="node n-pwa" x="940" y="82" width="130" height="56" rx="8"/>
+    <text x="1005" y="106" text-anchor="middle" class="ntitle">/open?token=</text>
+    <text x="1005" y="122" text-anchor="middle" class="nsub">auth/exchange</text>
+
+    <rect class="node n-pwa" x="1094" y="82" width="130" height="56" rx="8"/>
+    <text x="1159" y="106" text-anchor="middle" class="ntitle">JWT · 90 d</text>
+    <text x="1159" y="122" text-anchor="middle" class="nsub">guide unlocked</text>
+
+    <line class="edge" x1="146" y1="110" x2="166" y2="110" marker-end="url(#f2a)"/>
+    <line class="edge" x1="300" y1="110" x2="320" y2="110" marker-end="url(#f2a)"/>
+    <line class="edge" x1="454" y1="110" x2="474" y2="110" marker-end="url(#f2a)"/>
+    <line class="edge" x1="608" y1="110" x2="628" y2="110" marker-end="url(#f2a)"/>
+    <line class="edge" x1="762" y1="110" x2="782" y2="110" marker-end="url(#f2a)"/>
+    <line class="edge" x1="916" y1="110" x2="936" y2="110" marker-end="url(#f2a)"/>
+    <line class="edge" x1="1070" y1="110" x2="1090" y2="110" marker-end="url(#f2a)"/>
+
+    <text x="158" y="72" text-anchor="middle" class="elabel">POST</text>
+    <text x="312" y="72" text-anchor="middle" class="elabel">pay</text>
+    <text x="466" y="72" text-anchor="middle" class="elabel">event</text>
+    <text x="620" y="72" text-anchor="middle" class="elabel">provision</text>
+    <text x="774" y="72" text-anchor="middle" class="elabel">mail</text>
+    <text x="928" y="72" text-anchor="middle" class="elabel">tap</text>
+    <text x="1082" y="72" text-anchor="middle" class="elabel">sign in</text>
+
+    <line class="edge dash" x1="543" y1="138" x2="543" y2="172" />
+    <text x="543" y="192" text-anchor="middle" class="elabel">gift → recipient gets it</text>
+    <text x="543" y="208" text-anchor="middle" class="elabel">refund → access revoked</text>
+
+    <!-- The recovery door: the same email carries a code, so a dead or lost
+         magic link is not a lost purchase. Same buyer record, same JWT. -->
+    <text x="893" y="186" text-anchor="middle" class="elabel">link lost</text>
+    <path class="edge dash" d="M 851 138 L 851 193 L 936 193" marker-end="url(#f2a)"/>
+    <rect class="node n-pwa" x="940" y="170" width="130" height="46" rx="8"/>
+    <text x="1005" y="189" text-anchor="middle" class="ntitle">/login</text>
+    <text x="1005" y="204" text-anchor="middle" class="nsub">email + code</text>
+    <path class="edge dash" d="M 1070 193 L 1120 193 L 1120 144" marker-end="url(#f2a)"/>
+
+    <line class="edge dash" x1="697" y1="138" x2="697" y2="228" marker-end="url(#f2a)"/>
+    <text x="709" y="190" class="elabel">expiry nears</text>
+    <rect class="strip" x="632" y="232" width="592" height="40" rx="10"/>
+    <text x="650" y="257" class="elabel" style="font-size:10.5px"><tspan class="elabel-b">18 MONTHS LATER</tspan>   cron notices T-60 · 14 · 1 → email → /renew → <tspan class="ehot">Stripe ↻</tspan></text>
+  </svg>
+  </div>
+  <figcaption>No account is ever created. The email is the receipt, the key, and the renewal path — and its code is the way back in when the link dies.</figcaption>
+</figure>
+
+<!-- ============ FIG 3 ============ -->
+<figure class="panel">
+  <div class="fig-head"><span class="fig-no">FIG. 3</span><span class="fig-name">THE TRIP</span></div>
+  <div class="scroller">
+  <svg viewBox="0 0 1240 384" role="img" aria-label="Trip hand-off: stops picked on the editorial map are saved, shared or emailed, then opened in the Field Guide via an id list. The importer resolves ids or reports misses; the trip becomes a slotted board, a field day view, and an ICS file. Without access, the import waits thirty days.">
+    <defs>
+      <marker id="f3a" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto-start-reverse"><path class="mk" d="M0,0 L8,4 L0,8 z"/></marker>
+      <marker id="f3h" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto-start-reverse"><path class="mk-hot" d="M0,0 L8,4 L0,8 z"/></marker>
+    </defs>
+
+    <rect class="lane-ed" x="16" y="30" width="1208" height="118" rx="12"/>
+    <text x="34" y="52" class="glabel t-ed" style="font-weight:700">ON THE JOURNAL</text>
+    <rect class="lane-pwa" x="16" y="192" width="1208" height="118" rx="12"/>
+    <text x="34" y="214" class="glabel t-pwa" style="font-weight:700">IN THE GUIDE</text>
+
+    <rect class="node n-ed" x="40" y="68" width="130" height="58" rx="8"/>
+    <text x="105" y="92" text-anchor="middle" class="ntitle">/map</text>
+    <text x="105" y="108" text-anchor="middle" class="nsub">pick stops</text>
+
+    <rect class="node n-ed" x="212" y="68" width="130" height="58" rx="8"/>
+    <text x="277" y="92" text-anchor="middle" class="ntitle">tfg.trip</text>
+    <text x="277" y="108" text-anchor="middle" class="nsub">saved locally</text>
+
+    <rect class="node n-ed" x="384" y="68" width="150" height="58" rx="8"/>
+    <text x="459" y="92" text-anchor="middle" class="ntitle">SHARE</text>
+    <text x="459" y="108" text-anchor="middle" class="nsub">/map?trip= · OG card</text>
+
+    <rect class="node n-ed" x="576" y="68" width="150" height="58" rx="8"/>
+    <text x="651" y="92" text-anchor="middle" class="ntitle">EMAIL IT</text>
+    <text x="651" y="108" text-anchor="middle" class="nsub">API → Resend</text>
+
+    <rect class="node n-ed" x="790" y="68" width="220" height="58" rx="8"/>
+    <text x="900" y="92" text-anchor="middle" class="ntitle">OPEN IN THE FIELD GUIDE</text>
+    <text x="900" y="108" text-anchor="middle" class="nsub">the sidebar button</text>
+
+    <line class="edge" x1="170" y1="97" x2="208" y2="97" marker-end="url(#f3a)"/>
+    <line class="edge" x1="342" y1="97" x2="380" y2="97" marker-end="url(#f3a)"/>
+    <line class="edge" x1="534" y1="97" x2="572" y2="97" marker-end="url(#f3a)"/>
+    <line class="edge" x1="726" y1="97" x2="786" y2="97" marker-end="url(#f3a)"/>
+
+    <path class="edge-hot" d="M 900 126 L 900 168 L 96 168 L 96 188" marker-end="url(#f3h)"/>
+    <text x="498" y="161" text-anchor="middle" class="ehot">/trip?import=id,id,…</text>
+
+    <rect class="node n-pwa" x="40" y="230" width="150" height="58" rx="8"/>
+    <text x="115" y="254" text-anchor="middle" class="ntitle">importTrip</text>
+    <text x="115" y="270" text-anchor="middle" class="nsub">alias → stop → hike</text>
+
+    <rect class="node n-pwa" x="232" y="230" width="160" height="58" rx="8"/>
+    <text x="312" y="254" text-anchor="middle" class="ntitle">MISSES REPORTED</text>
+    <text x="312" y="270" text-anchor="middle" class="nsub">never guessed</text>
+
+    <rect class="node n-pwa" x="434" y="230" width="170" height="58" rx="8"/>
+    <text x="519" y="254" text-anchor="middle" class="ntitle">TRIP BOARD</text>
+    <text x="519" y="270" text-anchor="middle" class="nsub">slotting · sunset held</text>
+
+    <rect class="node n-pwa" x="646" y="230" width="130" height="58" rx="8"/>
+    <text x="711" y="254" text-anchor="middle" class="ntitle">/today</text>
+    <text x="711" y="270" text-anchor="middle" class="nsub">field day view</text>
+
+    <rect class="node n-pwa" x="818" y="230" width="130" height="58" rx="8"/>
+    <text x="883" y="254" text-anchor="middle" class="ntitle">ICS</text>
+    <text x="883" y="270" text-anchor="middle" class="nsub">offline file</text>
+
+    <line class="edge" x1="190" y1="259" x2="228" y2="259" marker-end="url(#f3a)"/>
+    <line class="edge" x1="392" y1="259" x2="430" y2="259" marker-end="url(#f3a)"/>
+    <line class="edge" x1="604" y1="259" x2="642" y2="259" marker-end="url(#f3a)"/>
+    <line class="edge" x1="776" y1="259" x2="814" y2="259" marker-end="url(#f3a)"/>
+
+    <line class="edge dash" x1="115" y1="288" x2="115" y2="330" marker-end="url(#f3a)"/>
+    <rect class="strip" x="40" y="334" width="640" height="36" rx="10"/>
+    <text x="58" y="357" class="elabel" style="font-size:10px">no access yet → pendingImport · 30 d → <tspan class="ehot">buy</tspan> → Home offers the trip</text>
+  </svg>
+  </div>
+  <figcaption>The free map hands a trip to the paid guide as an id list. The importer resolves or admits a miss, never guesses a turnout.</figcaption>
+</figure>
+
+<!-- ============ FIG 4 ============ -->
+<figure class="panel">
+  <div class="fig-head"><span class="fig-no">FIG. 4</span><span class="fig-name">THE SHIP</span></div>
+  <div class="scroller">
+  <svg viewBox="0 0 1240 330" role="img" aria-label="Deploys: merging to main auto-builds the editorial site and the PWA; the API deploys only by hand. Photo pipeline: a phone uploads to the Worker, files stage in R2, a GitHub Action ingests them and opens a pull request that merges back to main.">
+    <defs>
+      <marker id="f4a" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto-start-reverse"><path class="mk" d="M0,0 L8,4 L0,8 z"/></marker>
+    </defs>
+
+    <text x="32" y="24" class="glabel">DEPLOYS</text>
+    <text x="724" y="24" class="glabel">PHOTO PIPELINE</text>
+    <line class="hairline" x1="696" y1="14" x2="696" y2="316"/>
+
+    <rect class="node n-main" x="110" y="70" width="160" height="52" rx="8"/>
+    <text x="190" y="91" text-anchor="middle" class="ntitle">MERGE TO MAIN</text>
+    <text x="190" y="107" text-anchor="middle" class="nsub">one repo · three ships</text>
+
+    <rect class="node n-ed" x="430" y="36" width="210" height="52" rx="8"/>
+    <text x="535" y="57" text-anchor="middle" class="ntitle">WORKERS BUILD</text>
+    <text x="535" y="73" text-anchor="middle" class="nsub">site + edge/seo.js</text>
+
+    <rect class="node n-pwa" x="430" y="124" width="210" height="52" rx="8"/>
+    <text x="535" y="145" text-anchor="middle" class="ntitle">PAGES BUILD</text>
+    <text x="535" y="161" text-anchor="middle" class="nsub">guide PWA</text>
+
+    <rect class="node n-api" x="430" y="212" width="210" height="52" rx="8" stroke-dasharray="5 4"/>
+    <text x="535" y="233" text-anchor="middle" class="ntitle">WRANGLER DEPLOY</text>
+    <text x="535" y="249" text-anchor="middle" class="nsub">API · never automatic</text>
+
+    <line class="edge" x1="270" y1="86" x2="426" y2="62" marker-end="url(#f4a)"/>
+    <text x="348" y="60" text-anchor="middle" class="elabel">auto</text>
+    <line class="edge" x1="270" y1="106" x2="426" y2="150" marker-end="url(#f4a)"/>
+    <text x="348" y="142" text-anchor="middle" class="elabel">auto</text>
+
+    <rect class="node n-ext" x="110" y="212" width="160" height="52" rx="8"/>
+    <text x="190" y="233" text-anchor="middle" class="ntitle">OPERATOR</text>
+    <text x="190" y="249" text-anchor="middle" class="nsub">cd workers/</text>
+    <line class="edge dash" x1="270" y1="238" x2="426" y2="238" marker-end="url(#f4a)"/>
+    <text x="348" y="230" text-anchor="middle" class="ehot">by hand</text>
+
+    <text x="110" y="305" class="elabel">NIGHTLY CI — system checks · Lighthouse trend</text>
+
+    <rect class="node n-ext" x="724" y="44" width="150" height="52" rx="8"/>
+    <text x="799" y="65" text-anchor="middle" class="ntitle">PHONE</text>
+    <text x="799" y="81" text-anchor="middle" class="nsub">/photos · token</text>
+
+    <rect class="node n-api" x="920" y="44" width="140" height="52" rx="8"/>
+    <text x="990" y="65" text-anchor="middle" class="ntitle">R2 INBOX</text>
+    <text x="990" y="81" text-anchor="middle" class="nsub">raw · staged</text>
+
+    <rect class="node n-ext" x="1096" y="44" width="128" height="52" rx="8"/>
+    <text x="1160" y="65" text-anchor="middle" class="ntitle">GH ACTION</text>
+    <text x="1160" y="81" text-anchor="middle" class="nsub">ingest · strip EXIF</text>
+
+    <line class="edge" x1="874" y1="70" x2="916" y2="70" marker-end="url(#f4a)"/>
+    <line class="edge" x1="1060" y1="70" x2="1092" y2="70" marker-end="url(#f4a)"/>
+
+    <rect class="node n-ext" x="920" y="160" width="140" height="52" rx="8"/>
+    <text x="990" y="181" text-anchor="middle" class="ntitle">PR OPENED</text>
+    <text x="990" y="197" text-anchor="middle" class="nsub">snippets inside</text>
+    <path class="edge" d="M 1160 96 L 1160 136 L 990 136 L 990 156" marker-end="url(#f4a)"/>
+
+    <path class="edge dash" d="M 920 186 L 190 186 L 190 126" marker-end="url(#f4a)"/>
+    <text x="806" y="178" text-anchor="middle" class="elabel">review · merge ↺</text>
+  </svg>
+  </div>
+  <figcaption>Merges ship the two sites. The API ships only by hand, and phone photos come home as pull requests.</figcaption>
+</figure>
+
+<footer>
+  <span>The Talus Field</span>
+  <span>Surveyed from the repository · routes as deployed</span>
+</footer>
+</div>
