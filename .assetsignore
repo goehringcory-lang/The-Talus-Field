@@ -4,8 +4,23 @@
 # Version control and build internals
 .git
 .gitignore
+.gitattributes
+.githooks
+.github
 .wrangler
 .claude
+
+# Dev tooling, audits, and staged photos — never site content. Without these
+# entries the whole scripts/ tree (generators, data, lockfiles) was fetchable
+# on the production domain.
+scripts
+analysis
+docs
+photo-inbox
+
+# Nature Notes markdown sources (the *.md rule below already catches them;
+# named here so the directory can never leak a non-md file).
+nature-notes
 
 # Sub-projects with their own deployments
 apps

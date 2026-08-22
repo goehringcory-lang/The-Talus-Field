@@ -53,6 +53,7 @@ All events fire through `window.track`. Names and where they fire:
 | `newsletter_exit_intent_shown` | components.jsx (ExitIntentNewsletter) |
 | `guide_cta_click` | components.jsx (Footer "Field Guide" link, masthead nav), page-home.jsx (the rail's Field Guide plate, `location: home_rail`). Retired locations (annotate in GA4, do not reuse): `home_hero`, `home_band` (August 2026 homepage redesign, which made the guide one ask instead of two) |
 | `guide_buy_click` | page-guide.jsx (`location`: `guide_aside` buy box, `guide_hero` hero button, `guide_compare` under the comparison table, `guide_closer` end-of-pitch button, or `guide_mobile_bar` sticky phone bar) |
+| `guide_purchase` | page-guide.jsx, on the `?guide=success` / `?guide=gift-success` Stripe return. Carries the same `location` values as `guide_buy_click` (stashed in `tfg.guide.buyLocation` at click time, consumed once) plus `gift`. Fires only when the stash exists, so a refreshed or bookmarked success URL counts nothing. |
 | `guide_sample_click` | page-guide.jsx (links to the PWA's free sample surfaces, with `location`: `guide_aside`, `guide_hero`, `guide_stop_example`, or `guide_closer`) |
 | `widget_copy_snippet` | page-widget.jsx (copying the embed snippet) |
 | `consult_book_click` | page-consult.jsx (`location`: `consult_pay`, `consult_schedule`, or `consult_mailto`, with `live`) |
@@ -93,7 +94,8 @@ All access goes through `window.safeStorage`.
 | `tfg.kit.checked` | page-kit.jsx | Ticked packing-list items (versioned envelope). |
 | `tfg.nl.subscribed` | components.jsx | Optimistic subscribed flag, set on any newsletter submit. |
 | `tfg.nl.exit.seen` | components.jsx | Exit-intent cooldown timestamp (14 days). |
-| `tfg.map.unlocked` | page-map.jsx | Map gate (the whole `/map` page sits behind the newsletter signup). Fails OPEN: when storage is unavailable the gate reads as unlocked. |
+| `tfg.map.unlocked` | page-map.jsx | Map gate (the whole `/map` page sits behind the newsletter signup; a shared `/map?trip=` link bypasses it for the visit without writing this flag). Fails OPEN: when storage is unavailable the gate reads as unlocked. |
+| `tfg.guide.buyLocation` | page-guide.jsx | Which buy placement started the in-flight Stripe checkout (`{ location, gift }`). Written at `guide_buy_click`, consumed exactly once by the success return to fire `guide_purchase`, cleared on cancel. |
 | `tfg.read.last` | page-article.jsx (via `readHistory`) | Most recent article left 10–90% read: `{ slug, pct, at }`. Feeds the home resume band; cleared when the piece is finished. |
 | `tfg.read.done` | page-article.jsx (via `readHistory`) | Slugs read past ~90%, capped at 100. Deprioritizes finished pieces in the related rail. |
 | `tfg.read.resume` | page-home.jsx | One-shot handoff flag set by a resume-band click; the article page consumes it and jumps back to the saved depth. |

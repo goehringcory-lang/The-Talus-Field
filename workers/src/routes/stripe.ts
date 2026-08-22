@@ -226,9 +226,13 @@ stripe.post('/webhook', async (c) => {
   // renewed early (time stacks), from now when renewed after a lapse; the
   // token and code stay so signed-in devices and old access emails survive,
   // and any refund stamp clears — the renewal is a new payment. Gifting an
-  // ACTIVE buyer extends the same way (never clobber); an expired or refunded
-  // gift recipient gets a fresh provision like any new buyer.
-  const existing = kind === 'purchase' ? null : await getBuyer(c.env, email)
+  // ACTIVE buyer extends the same way (never clobber), and so does a repeat
+  // PURCHASE by an active buyer: the public buy box is unauthenticated, so an
+  // active buyer can pay full price again, and re-provisioning would throw
+  // away their remaining months and regenerate accessCode — silently breaking
+  // the 6-digit code in their original access email. An expired or refunded
+  // buyer (any kind but renewal) gets a fresh provision like any new buyer.
+  const existing = await getBuyer(c.env, email)
   const existingActive =
     existing != null && existing.refundedAt == null && existing.expiresAt > nowSeconds
 

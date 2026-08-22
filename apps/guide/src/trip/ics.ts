@@ -105,9 +105,11 @@ function addDays(day: string, n: number): string {
 function dtLocal(day: string, minutes: number): string {
   // An event that runs past midnight (e.g. a 23:30 program + 60 min) must roll
   // the calendar date forward, otherwise DTEND lands before DTSTART and
-  // Google/Apple Calendar reject the VEVENT.
+  // Google/Apple Calendar reject the VEVENT. A negative offset rolls the date
+  // back for the same reason: timeOfDay wraps to the previous evening's clock,
+  // and keeping the start day would put DTSTART 24 hours after where it belongs.
   const dayOffset = Math.floor(minutes / 1440)
-  const dayStr = dayOffset > 0 ? addDays(day, dayOffset) : day
+  const dayStr = dayOffset !== 0 ? addDays(day, dayOffset) : day
   const timeOfDay = ((minutes % 1440) + 1440) % 1440
   return `${dayStr.replace(/-/g, '')}T${toHhmm(timeOfDay).replace(':', '')}00`
 }

@@ -43,7 +43,7 @@ function ExplorePage({
   go
 }) {
   var articles = window.ARTICLES || [];
-  var films = window.NATURE_NOTES || [];
+  var films = window.NATURE_NOTES && window.NATURE_NOTES.episodes || [];
   var plural = (n, one, many) => `${n} ${n === 1 ? one : many}`;
   var sectionEntries = (window.CATEGORIES || []).map(c => ({
     route: `cat:${c.slug}`,

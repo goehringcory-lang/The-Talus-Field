@@ -65,6 +65,14 @@ function parkNow(at: Date): { date: string; hour: number } {
   }
 }
 
+// A device's owner, as the sweep needs to see them: an operator session (no
+// buyer record), a refunded buyer (never nudged), or a buyer with a signed
+// number of days until expiry (negative = lapsed).
+type BuyerStatus =
+  | { kind: 'operator' }
+  | { kind: 'refunded' }
+  | { kind: 'buyer'; daysToExpiry: number }
+
 type Notice = {
   stage: string
   title: string
@@ -81,9 +89,10 @@ type Notice = {
 function noticesFor(
   record: PushSubscriptionRecord,
   today: string,
-  daysToExpiry: number | null,
+  status: BuyerStatus,
 ): Notice[] {
   const candidates: Notice[] = []
+  const daysToExpiry = status.kind === 'buyer' ? status.daysToExpiry : null
 
   // Renewal first: access ending is the only thing more urgent than the day.
   if (daysToExpiry !== null && daysToExpiry > 0) {
@@ -106,7 +115,19 @@ function noticesFor(
     }
   }
 
-  if (record.tripStart && record.tripEnd && record.tripStart <= today && today <= record.tripEnd) {
+  // The trip-day nudge goes to operators (no buyer record: the owner testing
+  // the app) and active buyers only. A refunded or lapsed buyer's push record
+  // outlives their access by up to a year (its KV TTL), and buzzing them each
+  // trip morning opens an app whose every API call now rejects them.
+  const tripEligible =
+    status.kind === 'operator' || (status.kind === 'buyer' && status.daysToExpiry > 0)
+  if (
+    tripEligible &&
+    record.tripStart &&
+    record.tripEnd &&
+    record.tripStart <= today &&
+    today <= record.tripEnd
+  ) {
     candidates.push({
       // Date in the stage so each trip day fires once, and a repeat visit
       // next season is not deduped against this one.
@@ -140,15 +161,19 @@ export async function sweepPush(env: Env): Promise<void> {
 
   // Buyer lookups repeat across a person's devices; one cache per run keeps a
   // two-device household from doubling the KV reads.
-  const expiryCache = new Map<string, number | null>()
-  async function daysToExpiry(sub: string): Promise<number | null> {
-    if (expiryCache.has(sub)) return expiryCache.get(sub) ?? null
+  const statusCache = new Map<string, BuyerStatus>()
+  async function buyerStatus(sub: string): Promise<BuyerStatus> {
+    const cached = statusCache.get(sub)
+    if (cached) return cached
     const buyer = await getBuyer(env, sub)
-    // No buyer record is an operator session, and a refunded buyer is not
-    // invited back: neither gets a renewal nudge.
-    const value =
-      buyer && buyer.refundedAt == null ? (buyer.expiresAt - nowSeconds) / 86400 : null
-    expiryCache.set(sub, value)
+    // No buyer record is an operator session; a refunded buyer is not
+    // invited back. noticesFor decides per notice what each kind may get.
+    const value: BuyerStatus = !buyer
+      ? { kind: 'operator' }
+      : buyer.refundedAt != null
+        ? { kind: 'refunded' }
+        : { kind: 'buyer', daysToExpiry: (buyer.expiresAt - nowSeconds) / 86400 }
+    statusCache.set(sub, value)
     return value
   }
 
@@ -175,7 +200,7 @@ export async function sweepPush(env: Env): Promise<void> {
       }
 
       const endpointHash = key.name.slice('push:'.length)
-      const candidates = noticesFor(record, today, await daysToExpiry(record.sub))
+      const candidates = noticesFor(record, today, await buyerStatus(record.sub))
       // First candidate not yet sent wins; at most one buzz per device per day.
       let notice: Notice | null = null
       for (const candidate of candidates) {

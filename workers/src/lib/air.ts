@@ -94,7 +94,7 @@ async function fetchAirNow(env: Env): Promise<AirRecordT | null> {
     distance: String(AIRNOW_DISTANCE_MILES),
     API_KEY: env.AIRNOW_API_KEY ?? '',
   })
-  const res = await fetch(`${AIRNOW_URL}?${params}`)
+  const res = await fetch(`${AIRNOW_URL}?${params}`, { signal: AbortSignal.timeout(10_000) })
   if (!res.ok) throw new Error(`AirNow API ${res.status}`)
   const body = (await res.json()) as unknown
   const worst = pickWorstObservation(body)

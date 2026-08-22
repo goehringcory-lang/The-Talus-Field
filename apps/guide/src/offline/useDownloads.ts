@@ -361,8 +361,12 @@ export function useDownloads() {
       }
       const cache = await caches.open(pack.cacheName)
       await Promise.all(pack.urls.filter((url) => !keep.has(url)).map((url) => cache.delete(url)))
-      delete completed[pack.id]
-      writeCompleted(completed)
+      // Re-read before writing back: another pack can complete during those
+      // awaits, and writing the map read above would clobber its fresh
+      // completed flag (shows Downloaded this session, reverts on relaunch).
+      const current = readCompleted()
+      delete current[pack.id]
+      writeCompleted(current)
       setPackStatus(pack.id, { state: 'idle' })
       refreshEstimate()
     },

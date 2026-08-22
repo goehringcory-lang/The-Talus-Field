@@ -91,7 +91,10 @@ export async function getWaits(env: Env): Promise<WaitsRecord | null> {
   }
 
   try {
-    const res = await fetch(WAITS_URL, { headers: { Range: 'bytes=0-8191' } })
+    const res = await fetch(WAITS_URL, {
+      headers: { Range: 'bytes=0-8191' },
+      signal: AbortSignal.timeout(10_000),
+    })
     if (!res.ok) throw new Error(`waits.json HTTP ${res.status}`)
     const summary = parseWaitsSummary(await res.text())
     if (!summary || summary.length === 0) throw new Error('waits.json summary not found')

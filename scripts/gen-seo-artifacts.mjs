@@ -14,7 +14,7 @@
 //     small.
 //
 // Generates (deterministically, idempotently):
-//   - articles.json   merged core + enrichment; consumed by functions/_middleware.js
+//   - articles.json   merged core + enrichment; consumed by edge/seo.js
 //   - videos.json     slim film mirror; feeds the /films VideoObject ItemList
 //   - kit.json        slim packing-list mirror; feeds the /kit ItemList @graph
 //   - sitemap.xml     hub/section/static routes + one <url> per article (image + lastmod)
@@ -44,8 +44,9 @@ import {
 
 const CHECK = process.argv.includes("--check");
 
-// /guide is listed pre-launch: the page carries the waitlist (GUIDE_ON_SALE
-// in page-guide.jsx) and accumulates search authority while it waits.
+// /guide has been on sale since the July 2026 launch (GUIDE_ON_SALE in
+// page-guide.jsx). The flag stays so a future sales pause can pull the page
+// from the sitemap alongside flipping the buy box back to the waitlist.
 const GUIDE_LISTED = true;
 
 // /now's sitemap lastmod = the current edition's `updated` stamp in
@@ -111,7 +112,7 @@ function jsonCompact(value, indent = 0) {
 // Merge
 // ----------------------------------------------------------------------------
 
-function mergeArticles(articles, seoData, ogImages) {
+function mergeArticles(articles, seoData, ogImages, planningSlugs) {
   return articles.map((art) => {
     const seo = seoData[art.slug] || {};
     const o = {
@@ -128,6 +129,10 @@ function mergeArticles(articles, seoData, ogImages) {
     o.image = art.image;
     if (ogImages[art.slug]) o.ogImage = ogImages[art.slug];
     if (art.placeholder) o.placeholder = art.placeholder;
+    // Membership in the Planning Guide's five parts (PLANNING_SERIES in
+    // data.js). The /planning page renders series members from every section,
+    // so edge/seo.js needs this to serve crawlers the same curation readers see.
+    if (planningSlugs.has(art.slug)) o.planningSeries = true;
     if (typeof seo.wordCount === "number") o.wordCount = seo.wordCount;
     if (Array.isArray(seo.keywords) && seo.keywords.length) o.keywords = seo.keywords;
     if (seo.trail) o.trail = seo.trail;
@@ -146,7 +151,7 @@ function buildArticlesJson(merged) {
   return jsonCompact(merged, 0) + "\n";
 }
 
-// Slim film mirror for functions/_middleware.js. Only the fields the /films
+// Slim film mirror for edge/seo.js. Only the fields the /films
 // VideoObject ItemList needs; theme/episode/year are dropped (the JSON-LD does
 // not use them, and uploadDate is deliberately omitted, see app.jsx).
 function buildVideosJson(episodes) {
@@ -159,7 +164,7 @@ function buildVideosJson(episodes) {
   return jsonCompact(slim, 0) + "\n";
 }
 
-// Slim packing-list mirror for functions/_middleware.js. Only name + note per
+// Slim packing-list mirror for edge/seo.js. Only name + note per
 // item; aff/icon/groups/articleSlug are dropped (the /kit ItemList @graph does
 // not use them).
 function buildKitJson(kit) {
@@ -181,6 +186,9 @@ function buildSitemap(merged, categories) {
   const newest = (arr) => arr.map(mod).sort().at(-1);
   const allNewest = newest(merged);
   const catNewest = (slug) => newest(merged.filter((a) => a.cat === slug));
+  // /planning renders the planning section plus the PLANNING_SERIES members
+  // from other sections; its lastmod moves when any of them does.
+  const planningNewest = newest(merged.filter((a) => a.cat === "planning" || a.planningSeries));
 
   const urlBlock = ({ loc, lastmod, changefreq, priority, image }) => {
     const lines = [`  <url>`, `    <loc>${SITE_ORIGIN}${loc}</loc>`, `    <lastmod>${lastmod}</lastmod>`];
@@ -205,7 +213,7 @@ function buildSitemap(merged, categories) {
       image: { loc: `${SITE_ORIGIN}/img/responsive/half-dome-main-photo-1600.jpg`, title: "Half Dome at first light" },
     }),
     urlBlock({ loc: "/articles", lastmod: allNewest }),
-    urlBlock({ loc: "/planning", lastmod: "2026-05-16", changefreq: "weekly", priority: "0.9" }),
+    urlBlock({ loc: "/planning", lastmod: planningNewest, changefreq: "weekly", priority: "0.9" }),
     urlBlock({ loc: "/checklist", lastmod: "2026-05-16", changefreq: "monthly", priority: "0.8" }),
   ];
 
@@ -243,7 +251,9 @@ function buildSitemap(merged, categories) {
     urlBlock({
       loc: `/articles/${a.slug}`,
       lastmod: mod(a),
-      image: { loc: imageUrl(a.image), title: a.placeholder },
+      // The responsive og variant when one resolved, not the multi-MB source:
+      // same principle as the homepage image entry above.
+      image: { loc: imageUrl(a.ogImage ? a.ogImage.url : a.image), title: a.placeholder },
     })
   );
 
@@ -275,7 +285,7 @@ function buildFeed(merged, categories) {
         `      <dc:creator>${AUTHOR_NAME}</dc:creator>\n` +
         `      <category>${xml(label[a.cat] || a.cat)}</category>\n` +
         `      <description>${xml(a.dek)}</description>\n` +
-        `      <media:content url="${imageUrl(a.image)}" medium="image" />\n` +
+        `      <media:content url="${imageUrl(a.ogImage ? a.ogImage.url : a.image)}" medium="image" />\n` +
         `    </item>`
       );
     })
@@ -374,7 +384,7 @@ function buildTripPoints() {
 // ----------------------------------------------------------------------------
 
 async function main() {
-  const { articles, categories, kit } = loadDataJs();
+  const { articles, categories, kit, planningSeries } = loadDataJs();
   const episodes = loadVideosJs();
   const seoData = loadSeoData();
 
@@ -393,7 +403,8 @@ async function main() {
     if (og) ogImages[art.slug] = og;
   }
 
-  const merged = mergeArticles(articles, seoData, ogImages);
+  const planningSlugs = new Set(planningSeries.flatMap((part) => part.slugs || []));
+  const merged = mergeArticles(articles, seoData, ogImages, planningSlugs);
 
   const targets = {
     "articles.json": buildArticlesJson(merged),

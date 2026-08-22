@@ -32,7 +32,7 @@ window.ARTICLE_BODIES["yosemite-wildflowers-guide"] = function YosemiteWildflowe
       </p>
 
       <p>
-        The practical point: if you are visiting in March or early April, when the Valley's waterfalls are just warming up and the high country is closed, the flowers are below the park. Slow down on the drive in. Use the turnouts.
+        The practical point: if you are <a href="/articles/yosemite-in-march">visiting in March</a> or early April, when the Valley's waterfalls are just warming up and the high country is closed, the flowers are below the park. Slow down on the drive in. Use the turnouts.
       </p>
 
       <h2>April to June: the Valley floor, 4,000 feet</h2>

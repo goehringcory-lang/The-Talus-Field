@@ -271,7 +271,14 @@ function MapView({
   var [error, setError] = useState(null);
   var [mapReady, setMapReady] = useState(false);
   var [toast, setToast] = useState(null);
-  var [unlocked, setUnlocked] = useState(() => isMapUnlocked() || window.isSubscribed && window.isSubscribed());
+  var [unlocked, setUnlocked] = useState(() => {
+    if (isMapUnlocked() || window.isSubscribed && window.isSubscribed()) return true;
+    try {
+      return new URLSearchParams(window.location.search).has("trip");
+    } catch (_e) {
+      return false;
+    }
+  });
   var [locating, setLocating] = useState(false);
   var initial = useMemo(() => readUrlState(), []);
   var [selectedStopId, setSelectedStopId] = useState(initial.stop);

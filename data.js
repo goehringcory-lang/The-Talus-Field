@@ -7,7 +7,7 @@
 // slug, to keep this runtime file small.
 //
 // The mirror files consumed by crawlers — /articles.json (read by the Pages
-// Function in /functions/_middleware.js), /sitemap.xml, /feed.xml, and the
+// Worker in /edge/seo.js), /sitemap.xml, /feed.xml, and the
 // article list in /llms.txt — are GENERATED from data.js + seo-data.json. Do
 // not hand-edit them. When you add or edit an article:
 //   1. edit window.ARTICLES here (and its bodies/<slug>.jsx),
@@ -123,9 +123,9 @@ window.BODY_VERSIONS = {
   "yosemite-waterfalls-guide": 1,
   "yosemite-photography-spots": 1,
   "horsetail-fall-firefall": 2,
-  "yosemite-in-winter": 4,
-  "where-to-stay-in-yosemite": 7,
-  "yosemite-wildflowers-guide": 1,
+  "yosemite-in-winter": 5,
+  "where-to-stay-in-yosemite": 8,
+  "yosemite-wildflowers-guide": 2,
   "watching-climbers-el-capitan": 1,
   "getting-to-yosemite": 6,
   "yosemite-wilderness-permits-guide": 2,
@@ -136,9 +136,9 @@ window.BODY_VERSIONS = {
   "where-to-propose-in-yosemite": 1,
   "yosemite-bears-safety-guide": 117,
   "yosemite-heat-safety-guide": 4,
-  "when-to-visit-yosemite-2026-crowd-forecast": 2,
+  "when-to-visit-yosemite-2026-crowd-forecast": 3,
   "yosemite-trip-cost-budget-2026": 7,
-  "yosemite-in-june-2026": 2,
+  "yosemite-in-june-2026": 3,
   "cathedral-lakes-day-hike": 1,
   "yosemite-needs-a-reservation-system": 80,
   "memorial-day-skip-the-valley-go-high-2026": 81,
@@ -154,7 +154,7 @@ window.BODY_VERSIONS = {
   "yosemite-during-smoke-season": 75,
   "yosemite-gateway-towns-compared": 89,
   "pack-your-car-for-yosemite": 82,
-  "yosemite-for-non-hikers": 78,
+  "yosemite-for-non-hikers": 79,
   "yosemite-stargazing-where-to-look-up": 77,
   "hetch-hetchy-the-other-yosemite-valley": 76,
   "yosemite-glaciers-climate": 76,

@@ -34,8 +34,11 @@ function editionProgress(edition) {
   const today = new Date();
   today.setHours(0, 0, 0, 0);
   if (Number.isNaN(start.getTime()) || Number.isNaN(end.getTime())) return null;
-  const day = Math.floor((today - start) / 86400000) + 1;
-  const total = Math.floor((end - start) / 86400000) + 1;
+  // Round, not floor: local-midnight intervals lose an hour across the
+  // spring DST transition, and floor would read both numbers one low for
+  // the rest of a window that crosses it.
+  const day = Math.round((today - start) / 86400000) + 1;
+  const total = Math.round((end - start) / 86400000) + 1;
   if (day < 1 || day > total) return null;
   return { day, total };
 }
@@ -495,7 +498,21 @@ function BulletinPage({ go }) {
       .then((json) => {
         if (cancelled) return;
         if (json && json.edition) {
-          setData(json);
+          // Normalize once at the door: bulletin.json is rewritten by hand
+          // every ~5 weeks, and the render below maps nine of these arrays
+          // unguarded. An edition whose editor dropped a section key (instead
+          // of leaving []) used to TypeError mid-render and white-screen the
+          // whole page — the opposite of this page's honest-degradation
+          // commitment. A missing section now renders as empty, which is true.
+          const arrays = [
+            "alerts", "areas", "valleyDay", "elsewhere", "events",
+            "trails", "hours", "transit", "essentials", "numbers",
+          ];
+          const safe = { ...json };
+          for (const k of arrays) {
+            if (!Array.isArray(safe[k])) safe[k] = [];
+          }
+          setData(safe);
           setState("ready");
         } else {
           setState("error");

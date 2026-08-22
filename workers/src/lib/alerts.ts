@@ -151,6 +151,7 @@ async function fetchNpsAlerts(env: Env): Promise<AlertItemT[]> {
   })
   const res = await fetch(`${NPS_ALERTS_URL}?${params}`, {
     headers: { 'X-Api-Key': env.NPS_API_KEY ?? '', accept: 'application/json' },
+    signal: AbortSignal.timeout(10_000),
   })
   if (!res.ok) throw new Error(`NPS alerts API ${res.status}`)
   const body = (await res.json()) as { data?: NpsAlert[] }

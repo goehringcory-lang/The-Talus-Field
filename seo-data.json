@@ -1,5 +1,5 @@
 {
-  "__comment": "SEO enrichment for the editorial site, keyed by article slug. NOT loaded by the browser runtime (kept out of data.js so the per-page JS payload stays small). The build script scripts/gen-seo-artifacts.mjs merges this with window.ARTICLES from data.js to regenerate articles.json (consumed by functions/_middleware.js), sitemap.xml, feed.xml, and the article section of llms.txt. Fields: wordCount (number), keywords (string[]), faq ({q,a}[]), trail ({name,distance,elevationGain,difficulty} for hike guides). FAQ answers and trail numbers are drawn from each article's published body; do not invent facts. The one article whose faq lives inline in data.js (yosemite-in-one-or-two-days) is intentionally omitted here; data.js takes precedence for faq.",
+  "__comment": "SEO enrichment for the editorial site, keyed by article slug. NOT loaded by the browser runtime (kept out of data.js so the per-page JS payload stays small). The build script scripts/gen-seo-artifacts.mjs merges this with window.ARTICLES from data.js to regenerate articles.json (consumed by edge/seo.js), sitemap.xml, feed.xml, and the article section of llms.txt. Fields: wordCount (number), keywords (string[]), faq ({q,a}[]), trail ({name,distance,elevationGain,difficulty} for hike guides). FAQ answers and trail numbers are drawn from each article's published body; do not invent facts. The one article whose faq lives inline in data.js (yosemite-in-one-or-two-days) is intentionally omitted here; data.js takes precedence for faq.",
   "camping-in-yosemite-first-time": {
     "wordCount": 3112,
     "keywords": [
@@ -1010,7 +1010,7 @@
     ]
   },
   "yosemite-camping-complete-guide": {
-    "wordCount": 4657,
+    "wordCount": 6028,
     "keywords": [
       "Yosemite camping",
       "Yosemite campgrounds",
@@ -1917,7 +1917,7 @@
     ]
   },
   "yosemite-for-non-hikers": {
-    "wordCount": 2032,
+    "wordCount": 4709,
     "keywords": [
       "Yosemite without hiking",
       "Yosemite accessible",
@@ -1981,7 +1981,7 @@
     ]
   },
   "yosemite-gateway-towns-compared": {
-    "wordCount": 2516,
+    "wordCount": 4480,
     "keywords": [
       "Yosemite gateway towns",
       "Mariposa Yosemite",

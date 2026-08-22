@@ -59,7 +59,11 @@ function ExploreSection({ eyebrow, title, dek, entries, go }) {
 
 function ExplorePage({ go }) {
   const articles = window.ARTICLES || [];
-  const films = window.NATURE_NOTES || [];
+  // NATURE_NOTES is an object ({ series, themes, episodes }), not an array —
+  // the episode list is what the Films count below counts. Reading .length
+  // off the object left the count permanently null, which was the whole
+  // reason videos-data.js loads on this route.
+  const films = (window.NATURE_NOTES && window.NATURE_NOTES.episodes) || [];
   const plural = (n, one, many) => `${n} ${n === 1 ? one : many}`;
 
   const sectionEntries = (window.CATEGORIES || []).map((c) => ({

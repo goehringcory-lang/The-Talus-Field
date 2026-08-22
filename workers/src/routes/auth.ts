@@ -19,15 +19,18 @@ const MAX_LOGIN_ATTEMPTS_PER_HOUR = 5
 // Each resend attempt fires a real email, so the caps sit below login's 5/hr.
 const MAX_RESEND_PER_EMAIL_PER_HOUR = 3
 const MAX_RESEND_PER_IP_PER_HOUR = 10
-// Emails and usernames become KV rate-limit keys, and KV rejects keys over
-// 512 bytes: unbounded input would throw inside record*Attempt and turn a
-// garbage POST into a 500. Cap before any KV touch. 254 is the SMTP maximum;
-// no real username approaches 128.
+// Emails, usernames, and tokens become KV keys, and KV rejects keys over 512
+// BYTES: unbounded input would throw inside record*Attempt and turn a garbage
+// POST into a 500. Cap before any KV touch — measured in UTF-8 bytes, not
+// string length: a 200-char CJK "email" passes a .length check at 254 yet
+// yields a 600+ byte key and still 500s. 254 is the SMTP maximum; no real
+// username approaches 128.
 const EMAIL_MAX = 254
 const USERNAME_MAX = 128
 const CODE_MAX = 64
 // Access tokens are 64 hex chars; double that is generous for any real value.
 const TOKEN_MAX = 128
+const utf8Bytes = (value: string): number => new TextEncoder().encode(value).length
 
 export const auth = new Hono<{ Bindings: Env; Variables: AuthVariables }>()
 
@@ -37,7 +40,7 @@ auth.post('/exchange', async (c) => {
   if (!token) return c.json({ error: 'Missing token' }, 400)
   // Same KV key-cap concern as the consts above: the token becomes part of a
   // KV key, so an oversized value would 500 in the lookup instead of 401 here.
-  if (token.length > TOKEN_MAX) return c.json({ error: 'Unknown or expired token' }, 401)
+  if (utf8Bytes(token) > TOKEN_MAX) return c.json({ error: 'Unknown or expired token' }, 401)
 
   const email = await getEmailByAccessToken(c.env, token)
   if (!email) return c.json({ error: 'Unknown or expired token' }, 401)
@@ -61,7 +64,7 @@ auth.post('/login', async (c) => {
   const email = body.email?.trim().toLowerCase()
   const code = body.code?.trim()
   if (!email || !code) return c.json({ error: 'Missing email or code' }, 400)
-  if (email.length > EMAIL_MAX || code.length > CODE_MAX) {
+  if (utf8Bytes(email) > EMAIL_MAX || utf8Bytes(code) > CODE_MAX) {
     return c.json({ error: 'Missing email or code' }, 400)
   }
 
@@ -71,14 +74,18 @@ auth.post('/login', async (c) => {
   }
 
   const buyer = await getBuyer(c.env, email)
-  // A record without a code (hand-seeded, or provisioned before codes
-  // existed) must read as a failed match, not throw inside
-  // constantTimeEquals and turn every sign-in attempt into a 500.
-  if (!buyer || typeof buyer.accessCode !== 'string') {
-    return c.json({ error: 'Email not recognized' }, 401)
-  }
-  if (!constantTimeEquals(buyer.accessCode, code)) {
-    return c.json({ error: 'Code does not match' }, 401)
+  // One message for "no such buyer" and "wrong code": distinguishable 401s
+  // made this endpoint a buyer-list oracle (one probe per address confirms
+  // who bought the guide), defeating the enumeration defense /resend was
+  // built with. The comparison runs unconditionally against a fallback (same
+  // pattern as dev-login) so a missing record doesn't answer measurably
+  // faster than a wrong code. A record without a code (hand-seeded, or
+  // provisioned before codes existed) reads as a failed match rather than
+  // throwing inside constantTimeEquals and turning sign-in into a 500.
+  const storedCode = buyer && typeof buyer.accessCode === 'string' ? buyer.accessCode : ''
+  const codeOk = constantTimeEquals(storedCode, code)
+  if (!buyer || !storedCode || !codeOk) {
+    return c.json({ error: 'Email or code does not match' }, 401)
   }
   if (buyer.expiresAt * 1000 < Date.now()) {
     return c.json({ error: 'Access has expired' }, 401)
@@ -119,7 +126,7 @@ auth.get('/me', requireAuth, async (c) => {
 auth.post('/resend', async (c) => {
   const body = await c.req.json<{ email?: string }>().catch(() => ({} as { email?: string }))
   const email = body.email?.trim().toLowerCase()
-  if (!email || email.length > EMAIL_MAX) return c.json({ error: 'Missing email' }, 400)
+  if (!email || utf8Bytes(email) > EMAIL_MAX) return c.json({ error: 'Missing email' }, 400)
 
   const ip = c.req.header('cf-connecting-ip') ?? 'unknown'
   const emailAttempts = await recordResendAttempt(c.env, email)
@@ -153,7 +160,7 @@ auth.post('/dev-login', async (c) => {
   const username = body.username?.trim()
   const code = body.code?.trim()
   if (!username || !code) return c.json({ error: 'Missing username or code' }, 400)
-  if (username.length > USERNAME_MAX || code.length > CODE_MAX) {
+  if (utf8Bytes(username) > USERNAME_MAX || utf8Bytes(code) > CODE_MAX) {
     return c.json({ error: 'Missing username or code' }, 400)
   }
 

@@ -369,7 +369,7 @@ window.ARTICLE_BODIES["when-to-visit-yosemite-2026-crowd-forecast"] = function W
 
       <ul>
         <li><strong>Tuesday through Thursday, September 8 to 30.</strong> The best all-around window left this year. Summer conditions, the full park open, crowd pressure down a third from July, and the falls do not matter because you came for granite and high country.</li>
-        <li><strong>Midweek in October.</strong> Nearly as good, cooler, quieter, with fall color in the Valley by the back half of the month. Watch for the first Tioga-closing storm, usually November but occasionally late October.</li>
+        <li><strong>Midweek in October.</strong> Nearly as good, cooler, quieter, with <a href="/articles/yosemite-in-fall">fall color in the Valley</a> by the back half of the month. Watch for the first Tioga-closing storm, usually November but occasionally late October.</li>
         <li><strong>Midweek in early November, before Thanksgiving.</strong> The Valley to yourself at the price of short days.</li>
         <li><strong>Summer, if summer is what you have:</strong> any Tuesday or Wednesday, through the gate before 7:30 a.m. A well-executed July weekday beats a badly executed September Saturday. My <a href="/articles/yosemite-without-reservations-2026">no-reservations strategy piece</a> covers the full playbook, and if it is your first visit, <a href="/articles/first-time-yosemite-overwhelm">start here instead</a>.</li>
         <li><strong>The days to avoid entirely:</strong> July 3 to 5, every summer Saturday arriving after 8:30 a.m., Labor Day weekend, and the holiday week in December if you are not staying in the park.</li>

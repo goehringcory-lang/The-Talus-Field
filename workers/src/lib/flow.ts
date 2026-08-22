@@ -87,7 +87,7 @@ async function fetchUsgsFlow(): Promise<FlowRecordT> {
     sites: USGS_SITE,
     parameterCd: USGS_PARAM,
   })
-  const res = await fetch(`${USGS_URL}?${params}`)
+  const res = await fetch(`${USGS_URL}?${params}`, { signal: AbortSignal.timeout(10_000) })
   if (!res.ok) throw new Error(`USGS instantaneous values API ${res.status}`)
   const body = (await res.json()) as UsgsResponse
 

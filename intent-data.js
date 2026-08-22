@@ -458,8 +458,9 @@ window.intentSummary = function (selection) {
 // The five-question trip selector
 // ---------------------------------------------------------------------------
 
-// What each month DECIDES, which is a different job from the homepage's month
-// planner (page-home.jsx MONTHS), which describes what each month is like. The
+// What each month DECIDES. (The homepage's month planner, whose MONTHS table
+// described what each month is *like*, was retired in the August 2026
+// redesign — this is now the editorial site's only month table.) The
 // road states below drive which itinerary the selector is allowed to hand back:
 // recommending the three-day plan in January would send a reader up two roads
 // that are closed. Sources are the same published pieces the notes link to;
