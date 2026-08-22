@@ -3,16 +3,23 @@
 // =============================================================================
 // THE PARK BULLETIN — `/now` route. One page, the whole park, right now: the
 // site's condensation of the current NPS Yosemite Guide edition (published on
-// a rotating ~5-week schedule) into a single scannable board. What changed,
-// what's open, the free-program clock, the dated events, trails, hours,
-// transit, and the numbers that matter. Content lives in /bulletin.json,
-// rewritten once per Guide edition; see its __comment for the workflow.
+// a rotating ~5-week schedule) into a single scannable board. Content lives in
+// /bulletin.json, rewritten once per Guide edition; see its __comment.
+//
+// The page is in two halves, and the split is the point (see THE FOLD below).
+// Above: what is different this edition, open and in full — the lede, what
+// changed, roads and areas, the free-program clock, what is happening
+// elsewhere, the dated events, the trails. Below: the standing reference that
+// barely moves between editions — hours, transit, know-before-you-go, phone
+// numbers — folded shut. Adding a section means deciding which half it is in,
+// and edition-specific is the higher bar: the page earns its length by being
+// the answer to "what changed", not by being complete.
 //
 // BULLETIN_URL carries its own cache-buster, like POINTS_URL on the map page:
 // bump the ?v= when bulletin.json changes, or readers behind the CDN keep the
 // last edition. Keep HOME_BULLETIN_URL in page-home.jsx on the same number.
 // =============================================================================
-const BULLETIN_URL = "/bulletin.json?v=6";
+const BULLETIN_URL = "/bulletin.json?v=7";
 
 function bulletinDate(iso) {
   const d = new Date(iso + "T00:00:00");
@@ -85,6 +92,7 @@ const BULLETIN_ICONS = {
     </React.Fragment>
   ),
   check: <path d="m4.6 12.4 5 5.2L19.6 6.6" />,
+  chevron: <path d="m5.6 9.4 6.4 6.2 6.4-6.2" />,
   x: (
     <React.Fragment>
       <path d="m6.4 6.4 11.2 11.2" />
@@ -428,6 +436,46 @@ function BulletinCard({ title, icon, wide, children }) {
   );
 }
 
+// =============================================================================
+// THE FOLD (August 2026 simplification). The bulletin answers two different
+// questions with one page. "What is different this edition?" is the reason a
+// reader opens it, and it is the top of the page: the lede, what changed, the
+// roads, the clock, the calendar, the trails. "What are the hours / how do I
+// get there / what do I need to know?" is standing reference, near-identical
+// from edition to edition, and it was costing the first question two thirds of
+// the page. It now lives under `.bulletin-ref` in four folds, closed by
+// default, so the edition-specific board is the page and the reference is one
+// tap under it. Nothing was cut: `<details>` keeps every row in the DOM, which
+// is also why the crawler prose in edge/seo.js is unaffected.
+//
+// The summary hint follows the icon rule: it may only restate what the JSON
+// already carries, so it is built from the row names themselves, never written
+// by hand.
+// =============================================================================
+function hintFrom(names, max) {
+  const list = (names || []).filter(Boolean);
+  if (list.length === 0) return "";
+  const cap = max || 4;
+  // Middot, not a comma: several row labels carry their own commas
+  // ("Emergency, call or text"), and a comma-joined list reads as more rows.
+  const shown = list.slice(0, cap).join(" · ");
+  return list.length > cap ? `${shown} · and more` : shown;
+}
+
+function BulletinFold({ title, icon, hint, children }) {
+  return (
+    <details className="bulletin-fold">
+      <summary className="bulletin-fold__head">
+        <BulletinIcon name={icon || "dot"} className="bulletin-card__icon" />
+        <span className="bulletin-fold__title">{title}</span>
+        {hint ? <span className="bulletin-fold__hint">{hint}</span> : null}
+        <BulletinIcon name="chevron" className="bulletin-fold__chev" />
+      </summary>
+      <div className="bulletin-fold__body">{children}</div>
+    </details>
+  );
+}
+
 // An alert is either a plain string or { text, icon }. The icon is the
 // editor's own reading of what the alert already says, and it is optional:
 // an untagged alert takes the neutral mark rather than a guess.
@@ -474,10 +522,10 @@ function BulletinPage({ go }) {
           <div className="eyebrow eyebrow--moss">One page, the whole park</div>
           <h1>The Park Bulletin</h1>
           <p className="page-head__dek">
-            Everything happening in Yosemite right now, on one scannable page:
-            what changed, what's open, the daily programs, the dated events, and
-            the hours and numbers that matter. Rebuilt for each edition of the
-            park's printed Yosemite Guide.
+            What is different in Yosemite right now, on one page: what changed,
+            what's open, the daily programs, the dated events, and the trails.
+            Hours, transit and phone numbers sit folded at the bottom. Rebuilt
+            for each edition of the park's printed Yosemite Guide.
           </p>
           {edition && (
             <p className="bulletin-edition mono">
@@ -633,28 +681,48 @@ function BulletinPage({ go }) {
               {data.eventsNote && <p className="bulletin-note">{data.eventsNote}</p>}
             </BulletinCard>
 
-            <div className="bulletin-grid">
-              {/* Trails as a status list, not a guidebook. */}
-              <BulletinCard title="Trails right now" icon="route">
-                <div className="bulletin-status">
-                  {data.trails.map((t) => (
-                    <div className="bulletin-status__row" key={t.name}>
-                      <div className="bulletin-status__name">
-                        <span className="bulletin-status__label">
-                          <strong>{t.name}</strong>
-                        </span>
-                        <BulletinChip tone={t.tone}>{t.chip}</BulletinChip>
-                      </div>
-                      <p>{t.note}</p>
+            {/* Trails as a status list, not a guidebook. Full width since the
+                standing reference moved out from beside it. */}
+            <BulletinCard title="Trails right now" icon="route" wide>
+              <div className="bulletin-status">
+                {data.trails.map((t) => (
+                  <div className="bulletin-status__row" key={t.name}>
+                    <div className="bulletin-status__name">
+                      <span className="bulletin-status__label">
+                        <strong>{t.name}</strong>
+                      </span>
+                      <BulletinChip tone={t.tone}>{t.chip}</BulletinChip>
                     </div>
-                  ))}
-                </div>
-                {data.trailsNote && <p className="bulletin-note">{data.trailsNote}</p>}
-              </BulletinCard>
+                    <p>{t.note}</p>
+                  </div>
+                ))}
+              </div>
+              {data.trailsNote && <p className="bulletin-note">{data.trailsNote}</p>}
+            </BulletinCard>
 
-              <div className="bulletin-stack">
+            {/* The standing reference: what barely moves between editions.
+                Folded, hinted from its own row names. See THE FOLD above. */}
+            <section className="bulletin-ref">
+              <h2 className="eyebrow eyebrow--moss bulletin-ref__head">
+                <BulletinIcon name="info" className="bulletin-card__icon" />
+                The standing details
+              </h2>
+              <p className="bulletin-ref__dek">
+                Hours, transit, safety, and phone numbers. These change little
+                between editions, so they sit folded: open the one you need.
+              </p>
+
+              <BulletinFold
+                title="Hours"
+                icon="clock"
+                hint={hintFrom(data.hours.map((g) => g.group), 4)}
+              >
                 {data.hours.map((g) => (
-                  <BulletinCard title={g.group} icon={iconFor(HOURS_ICONS, g.group, "clock")} key={g.group}>
+                  <div className="bulletin-ref__group" key={g.group}>
+                    <div className="bulletin-subhead">
+                      <BulletinIcon name={iconFor(HOURS_ICONS, g.group, "clock")} className="bulletin-subhead__icon" />
+                      {g.group}
+                    </div>
                     <table className="bulletin-hours">
                       <tbody>
                         {g.items.map((it) => (
@@ -665,13 +733,15 @@ function BulletinPage({ go }) {
                         ))}
                       </tbody>
                     </table>
-                  </BulletinCard>
+                  </div>
                 ))}
-              </div>
-            </div>
+              </BulletinFold>
 
-            <div className="bulletin-grid">
-              <BulletinCard title="Getting around" icon="bus">
+              <BulletinFold
+                title="Getting around"
+                icon="bus"
+                hint={hintFrom(data.transit.map((t) => t.name), 4)}
+              >
                 <div className="bulletin-defs">
                   {data.transit.map((t) => (
                     <div className="bulletin-def" key={t.name}>
@@ -680,9 +750,13 @@ function BulletinPage({ go }) {
                     </div>
                   ))}
                 </div>
-              </BulletinCard>
+              </BulletinFold>
 
-              <BulletinCard title="Know before you go" icon="alert">
+              <BulletinFold
+                title="Know before you go"
+                icon="alert"
+                hint={hintFrom(data.essentials.map((e) => e.title), 5)}
+              >
                 <div className="bulletin-defs">
                   {data.essentials.map((e) => (
                     <div className="bulletin-def" key={e.title}>
@@ -691,10 +765,13 @@ function BulletinPage({ go }) {
                     </div>
                   ))}
                 </div>
-                <div className="bulletin-subhead">
-                  <BulletinIcon name="phone" className="bulletin-subhead__icon" />
-                  By phone
-                </div>
+              </BulletinFold>
+
+              <BulletinFold
+                title="By phone"
+                icon="phone"
+                hint={hintFrom(data.numbers.map((n) => n.label), 3)}
+              >
                 <table className="bulletin-hours bulletin-numbers">
                   <tbody>
                     {data.numbers.map((n) => (
@@ -705,8 +782,8 @@ function BulletinPage({ go }) {
                     ))}
                   </tbody>
                 </table>
-              </BulletinCard>
-            </div>
+              </BulletinFold>
+            </section>
 
             <p className="bulletin-source">
               {edition.source}{" "}

@@ -10,15 +10,15 @@
     "sourceUrl": "https://www.nps.gov/yose/planyourvisit/guide.htm"
   },
   "alerts": [
-    { "icon": "route", "text": "The Mist Trail is closed for repairs Monday through Thursday, 7 am to 3:30 pm, through the end of October. It stays open Fridays, weekends, and holidays, and on weekdays before 7 am or after 3:30 pm when conditions allow. During the closure a signed detour on the John Muir Trail is the way to Vernal Fall, Nevada Fall, and everything beyond." },
-    { "icon": "calendar", "text": "September is when the park closes down. Jennie's Ice Cream and the Wawona stable finish Sep 6; the Curry and Lodge pools Sep 7; the Tuolumne Meadows store and grill Sep 20. The High Sierra Camps at Glen Aulin and Sunrise close Sep 6 and May Lake Sep 9; Vogelsang and Merced Lake are closed all season." },
-    { "icon": "bus", "text": "The Tuolumne Meadows shuttle and the Tuolumne hikers bus both run only through Sep 13. After that the high country is drive-yourself." },
-    { "icon": "water", "text": "Yosemite Falls is dry for the season and Mirror Lake is a meadow. Bridalveil, Vernal, and Nevada still run, thin. Go for the walls, not the water." },
+    { "icon": "route", "text": "The Mist Trail is closed for repairs Monday through Thursday, 7 am to 3:30 pm, through the end of October. The John Muir Trail detour is signed. Full hours under Trails." },
+    { "icon": "calendar", "text": "September is when the park closes down: Jennie's Ice Cream and the Wawona stable Sep 6, the Curry and Lodge pools Sep 7, the Tuolumne store and grill Sep 20. High Sierra Camps: Glen Aulin and Sunrise Sep 6, May Lake Sep 9, Vogelsang and Merced Lake closed all season." },
+    { "icon": "bus", "text": "The Tuolumne shuttle and the hikers bus both stop Sep 13. After that the high country is drive-yourself." },
+    { "icon": "water", "text": "Yosemite Falls is dry and Mirror Lake is a meadow. Bridalveil, Vernal, and Nevada still run, thin. Go for the walls, not the water." },
     { "icon": "bed", "text": "Wawona Hotel and its dining room are closed for renovation. White Wolf lodge, store, and dining room are closed this season." },
     { "icon": "calendar", "text": "Raft rentals on the Merced are done for the year." },
-    { "icon": "plug", "text": "EV charging in Tuolumne Meadows is temporarily unavailable. Charge in the Valley, El Portal, or Wawona." },
+    { "icon": "plug", "text": "EV charging in Tuolumne Meadows is down. Charge in the Valley, El Portal, or Wawona." },
     { "icon": "parking", "text": "Valley parking fills by late morning. Arrive before 8 am or after 4 pm, and text ynptraffic to 333111 for traffic alerts." },
-    { "icon": "clock", "text": "Climbing programs move back down to the Valley this edition: Ask-a-Climber restarts at El Capitan bridge Sep 6, and Climber Coffee returns to Camp 4 on Sep 13 after its last Tuolumne Sunday on Aug 30." }
+    { "icon": "clock", "text": "Climbing programs move back down to the Valley: Ask-a-Climber at El Capitan bridge from Sep 6, Climber Coffee at Camp 4 from Sep 13." }
   ],
   "areas": [
     { "name": "Yosemite Valley", "chip": "Open", "tone": "open", "note": "Busy by mid-morning, worse on weekends, and quieter after Labor Day. Parking in three hubs: Curry Village, Yosemite Village, Yosemite Falls. Once parked, stay parked and ride the free shuttles." },

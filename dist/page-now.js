@@ -1,4 +1,4 @@
-var BULLETIN_URL = "/bulletin.json?v=6";
+var BULLETIN_URL = "/bulletin.json?v=7";
 function bulletinDate(iso) {
   var d = new Date(iso + "T00:00:00");
   if (Number.isNaN(d.getTime())) return iso;
@@ -54,6 +54,9 @@ var BULLETIN_ICONS = {
   })),
   check: React.createElement("path", {
     d: "m4.6 12.4 5 5.2L19.6 6.6"
+  }),
+  chevron: React.createElement("path", {
+    d: "m5.6 9.4 6.4 6.2 6.4-6.2"
   }),
   x: React.createElement(React.Fragment, null, React.createElement("path", {
     d: "m6.4 6.4 11.2 11.2"
@@ -450,6 +453,37 @@ function BulletinCard({
     className: "bulletin-card__icon"
   }), title), children);
 }
+function hintFrom(names, max) {
+  var list = (names || []).filter(Boolean);
+  if (list.length === 0) return "";
+  var cap = max || 4;
+  var shown = list.slice(0, cap).join(" · ");
+  return list.length > cap ? `${shown} · and more` : shown;
+}
+function BulletinFold({
+  title,
+  icon,
+  hint,
+  children
+}) {
+  return React.createElement("details", {
+    className: "bulletin-fold"
+  }, React.createElement("summary", {
+    className: "bulletin-fold__head"
+  }, React.createElement(BulletinIcon, {
+    name: icon || "dot",
+    className: "bulletin-card__icon"
+  }), React.createElement("span", {
+    className: "bulletin-fold__title"
+  }, title), hint ? React.createElement("span", {
+    className: "bulletin-fold__hint"
+  }, hint) : null, React.createElement(BulletinIcon, {
+    name: "chevron",
+    className: "bulletin-fold__chev"
+  })), React.createElement("div", {
+    className: "bulletin-fold__body"
+  }, children));
+}
 function alertParts(a) {
   if (typeof a === "string") return {
     text: a,
@@ -510,7 +544,7 @@ function BulletinPage({
     className: "eyebrow eyebrow--moss"
   }, "One page, the whole park"), React.createElement("h1", null, "The Park Bulletin"), React.createElement("p", {
     className: "page-head__dek"
-  }, "Everything happening in Yosemite right now, on one scannable page: what changed, what's open, the daily programs, the dated events, and the hours and numbers that matter. Rebuilt for each edition of the park's printed Yosemite Guide."), edition && React.createElement("p", {
+  }, "What is different in Yosemite right now, on one page: what changed, what's open, the daily programs, the dated events, and the trails. Hours, transit and phone numbers sit folded at the bottom. Rebuilt for each edition of the park's printed Yosemite Guide."), edition && React.createElement("p", {
     className: "bulletin-edition mono"
   }, React.createElement("span", {
     className: "bulletin-edition__label"
@@ -648,11 +682,10 @@ function BulletinPage({
     className: "bulletin-event__meta"
   }, ev.where, ev.note ? ` · ${ev.note}` : ""))))), data.eventsNote && React.createElement("p", {
     className: "bulletin-note"
-  }, data.eventsNote)), React.createElement("div", {
-    className: "bulletin-grid"
-  }, React.createElement(BulletinCard, {
+  }, data.eventsNote)), React.createElement(BulletinCard, {
     title: "Trails right now",
-    icon: "route"
+    icon: "route",
+    wide: true
   }, React.createElement("div", {
     className: "bulletin-status"
   }, data.trails.map(t => React.createElement("div", {
@@ -666,13 +699,28 @@ function BulletinPage({
     tone: t.tone
   }, t.chip)), React.createElement("p", null, t.note)))), data.trailsNote && React.createElement("p", {
     className: "bulletin-note"
-  }, data.trailsNote)), React.createElement("div", {
-    className: "bulletin-stack"
-  }, data.hours.map(g => React.createElement(BulletinCard, {
-    title: g.group,
-    icon: iconFor(HOURS_ICONS, g.group, "clock"),
+  }, data.trailsNote)), React.createElement("section", {
+    className: "bulletin-ref"
+  }, React.createElement("h2", {
+    className: "eyebrow eyebrow--moss bulletin-ref__head"
+  }, React.createElement(BulletinIcon, {
+    name: "info",
+    className: "bulletin-card__icon"
+  }), "The standing details"), React.createElement("p", {
+    className: "bulletin-ref__dek"
+  }, "Hours, transit, safety, and phone numbers. These change little between editions, so they sit folded: open the one you need."), React.createElement(BulletinFold, {
+    title: "Hours",
+    icon: "clock",
+    hint: hintFrom(data.hours.map(g => g.group), 4)
+  }, data.hours.map(g => React.createElement("div", {
+    className: "bulletin-ref__group",
     key: g.group
-  }, React.createElement("table", {
+  }, React.createElement("div", {
+    className: "bulletin-subhead"
+  }, React.createElement(BulletinIcon, {
+    name: iconFor(HOURS_ICONS, g.group, "clock"),
+    className: "bulletin-subhead__icon"
+  }), g.group), React.createElement("table", {
     className: "bulletin-hours"
   }, React.createElement("tbody", null, g.items.map(it => React.createElement("tr", {
     key: it.name
@@ -680,11 +728,10 @@ function BulletinPage({
     className: "bulletin-hours__note"
   }, " · ", it.note) : null), React.createElement("td", {
     className: "mono"
-  }, it.hours))))))))), React.createElement("div", {
-    className: "bulletin-grid"
-  }, React.createElement(BulletinCard, {
+  }, it.hours)))))))), React.createElement(BulletinFold, {
     title: "Getting around",
-    icon: "bus"
+    icon: "bus",
+    hint: hintFrom(data.transit.map(t => t.name), 4)
   }, React.createElement("div", {
     className: "bulletin-defs"
   }, data.transit.map(t => React.createElement("div", {
@@ -693,9 +740,10 @@ function BulletinPage({
   }, React.createElement(BulletinIcon, {
     name: iconFor(TRANSIT_ICONS, t.name, "route"),
     className: "bulletin-def__icon"
-  }), React.createElement("p", null, React.createElement("strong", null, t.name, "."), " ", t.note))))), React.createElement(BulletinCard, {
+  }), React.createElement("p", null, React.createElement("strong", null, t.name, "."), " ", t.note))))), React.createElement(BulletinFold, {
     title: "Know before you go",
-    icon: "alert"
+    icon: "alert",
+    hint: hintFrom(data.essentials.map(e => e.title), 5)
   }, React.createElement("div", {
     className: "bulletin-defs"
   }, data.essentials.map(e => React.createElement("div", {
@@ -704,12 +752,11 @@ function BulletinPage({
   }, React.createElement(BulletinIcon, {
     name: iconFor(ESSENTIAL_ICONS, e.title, "info"),
     className: "bulletin-def__icon"
-  }), React.createElement("p", null, React.createElement("strong", null, e.title, "."), " ", e.text)))), React.createElement("div", {
-    className: "bulletin-subhead"
-  }, React.createElement(BulletinIcon, {
-    name: "phone",
-    className: "bulletin-subhead__icon"
-  }), "By phone"), React.createElement("table", {
+  }), React.createElement("p", null, React.createElement("strong", null, e.title, "."), " ", e.text))))), React.createElement(BulletinFold, {
+    title: "By phone",
+    icon: "phone",
+    hint: hintFrom(data.numbers.map(n => n.label), 3)
+  }, React.createElement("table", {
     className: "bulletin-hours bulletin-numbers"
   }, React.createElement("tbody", null, data.numbers.map(n => React.createElement("tr", {
     key: n.label
