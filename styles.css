@@ -4596,6 +4596,78 @@ main:focus { outline: none; }
   max-width: 80ch;
 }
 
+/* The standing reference, folded (August 2026 simplification). Hours,
+   transit, safety and phone numbers are near-identical edition to edition and
+   were taking two thirds of the page away from what actually changed. They now
+   sit under closed <details>, hinted by their own row names, so the board on
+   top is the page. Every row stays in the DOM: the fold hides, it does not
+   drop. */
+.bulletin-ref {
+  margin-top: 44px;
+  border-top: 2px solid var(--ink);
+  padding-top: 18px;
+}
+.bulletin-ref__head {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin: 0 0 6px;
+}
+.bulletin-ref__dek {
+  font-family: var(--sans);
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--ink-3);
+  margin: 0 0 6px;
+  max-width: 70ch;
+}
+.bulletin-ref__group + .bulletin-ref__group { margin-top: 20px; }
+
+.bulletin-fold { border-bottom: 1px solid var(--rule); }
+.bulletin-fold__head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 15px 0;
+  cursor: pointer;
+  list-style: none;
+  font-family: var(--sans);
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--ink);
+}
+.bulletin-fold__head::-webkit-details-marker { display: none; }
+.bulletin-fold__head:hover .bulletin-fold__title { color: var(--moss); }
+.bulletin-fold__head:focus-visible {
+  outline: 2px solid var(--moss);
+  outline-offset: 3px;
+}
+.bulletin-fold__title { flex: 0 0 auto; }
+.bulletin-fold__hint {
+  flex: 1 1 auto;
+  min-width: 0;
+  font-weight: 400;
+  font-size: 12.5px;
+  color: var(--ink-3);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.bulletin-fold__chev {
+  flex: 0 0 auto;
+  margin-left: auto;
+  width: 16px;
+  height: 16px;
+  color: var(--ink-3);
+  transition: transform 0.18s ease;
+}
+.bulletin-fold[open] .bulletin-fold__chev { transform: rotate(180deg); }
+.bulletin-fold__body { padding: 2px 0 24px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .bulletin-fold__chev { transition: none; }
+}
+
 .bulletin-source {
   font-family: var(--sans);
   font-size: 13px;
@@ -4610,6 +4682,8 @@ main:focus { outline: none; }
   .bulletin-grid { grid-template-columns: 1fr; }
   .bulletin-alerts ul, .bulletin-events { columns: 1; }
   .bulletin-event__date { flex-basis: 92px; }
+  /* The hint is a scent, not content: at phone width the title needs the row. */
+  .bulletin-fold__hint { display: none; }
 }
 
 /* ===== Field Guide sales page (July 2026 conversion pass) =====
