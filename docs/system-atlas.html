@@ -313,7 +313,7 @@
 <figure class="panel">
   <div class="fig-head"><span class="fig-no">FIG. 2</span><span class="fig-name">THE SALE</span></div>
   <div class="scroller">
-  <svg viewBox="0 0 1240 300" role="img" aria-label="Purchase sequence: guide buy box, checkout start, Stripe, webhook, KV buyer record, Resend access email, open with token, JWT. A renewal loop returns to Stripe after 18 months.">
+  <svg viewBox="0 0 1240 300" role="img" aria-label="Purchase sequence: guide buy box, checkout start, Stripe, webhook, KV buyer record, Resend access email, open with token, JWT. If the magic link is lost, email plus a six-digit code signs in against the same buyer record. A renewal loop returns to Stripe after 18 months.">
     <defs>
       <marker id="f2a" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto-start-reverse"><path class="mk" d="M0,0 L8,4 L0,8 z"/></marker>
     </defs>
@@ -370,13 +370,22 @@
     <text x="543" y="192" text-anchor="middle" class="elabel">gift → recipient gets it</text>
     <text x="543" y="208" text-anchor="middle" class="elabel">refund → access revoked</text>
 
+    <!-- The recovery door: the same email carries a code, so a dead or lost
+         magic link is not a lost purchase. Same buyer record, same JWT. -->
+    <text x="893" y="186" text-anchor="middle" class="elabel">link lost</text>
+    <path class="edge dash" d="M 851 138 L 851 193 L 936 193" marker-end="url(#f2a)"/>
+    <rect class="node n-pwa" x="940" y="170" width="130" height="46" rx="8"/>
+    <text x="1005" y="189" text-anchor="middle" class="ntitle">/login</text>
+    <text x="1005" y="204" text-anchor="middle" class="nsub">email + code</text>
+    <path class="edge dash" d="M 1070 193 L 1120 193 L 1120 144" marker-end="url(#f2a)"/>
+
     <line class="edge dash" x1="697" y1="138" x2="697" y2="228" marker-end="url(#f2a)"/>
     <text x="709" y="190" class="elabel">expiry nears</text>
     <rect class="strip" x="632" y="232" width="592" height="40" rx="10"/>
     <text x="650" y="257" class="elabel" style="font-size:10.5px"><tspan class="elabel-b">18 MONTHS LATER</tspan>   cron notices T-60 · 14 · 1 → email → /renew → <tspan class="ehot">Stripe ↻</tspan></text>
   </svg>
   </div>
-  <figcaption>No account is ever created. The email is the receipt, the key, and the renewal path.</figcaption>
+  <figcaption>No account is ever created. The email is the receipt, the key, and the renewal path — and its code is the way back in when the link dies.</figcaption>
 </figure>
 
 <!-- ============ FIG 3 ============ -->

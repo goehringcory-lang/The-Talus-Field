@@ -1,10 +1,15 @@
-# Nightly system-checks suite for the editorial site: SEO/render/distribution
-# health (links, sitemap, feed, per-page SEO, og:image, JSON-LD, image hygiene,
-# email-auth) plus a Lighthouse Core Web Vitals trend.
+# Nightly system-checks suite: SEO/render/distribution health for the editorial
+# site (links, sitemap, feed, per-page SEO, og:image, JSON-LD, image hygiene,
+# email-auth), API Worker health, plus a Lighthouse Core Web Vitals trend.
 #
 # The site auto-deploys from main to Cloudflare Pages, so the live origin is the
 # right target for the online checks. Search-engine notification of new URLs is
 # already handled by indexnow.yml on push; this workflow does not duplicate it.
+#
+# The API check (checks/api.mjs) is the reason this run is not editorial-only.
+# api.thetalusfieldjournal.com ships ONLY by a manual `wrangler deploy`, so it
+# never gets the free "a merge redeployed it" recovery the site gets, and it is
+# where the money lives. This is the thing that notices before a buyer does.
 #
 # Runs nightly and on manual dispatch. The checks job fails on error-severity
 # findings; Lighthouse is warn-only (drift is recorded, not gated) to avoid flaky

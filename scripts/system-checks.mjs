@@ -9,6 +9,8 @@
 //   node scripts/system-checks.mjs                 # offline checks only
 //   node scripts/system-checks.mjs --online        # + link liveness, smoke, DNS, sitemap 200s
 //   node scripts/system-checks.mjs --base-url=URL  # target a dev server instead of production
+//   node scripts/system-checks.mjs --api-base=URL  # target a dev API Worker (default: api.thetalusfieldjournal.com)
+//   node scripts/system-checks.mjs --only=api      # run one check (comma-separated slugs)
 //   node scripts/system-checks.mjs --json          # machine-readable output
 //   node scripts/system-checks.mjs --report=FILE   # also write a Markdown report
 //
@@ -27,6 +29,7 @@ import checkFeed from "./checks/feed.mjs";
 import checkImages from "./checks/images.mjs";
 import checkSmoke from "./checks/smoke.mjs";
 import checkEmailAuth from "./checks/email-auth.mjs";
+import checkApi from "./checks/api.mjs";
 
 const CHECKS = [
   checkMirrors,
@@ -37,17 +40,28 @@ const CHECKS = [
   checkImages,
   checkSmoke,
   checkEmailAuth,
+  checkApi,
 ];
 
 function parseArgs(argv) {
-  const opts = { online: false, json: false, baseUrl: null, report: null };
+  const opts = { online: false, json: false, baseUrl: null, apiBase: null, report: null, only: null };
   for (const a of argv) {
     if (a === "--online") opts.online = true;
     else if (a === "--json") opts.json = true;
     else if (a.startsWith("--base-url=")) opts.baseUrl = a.slice("--base-url=".length);
+    else if (a.startsWith("--api-base=")) opts.apiBase = a.slice("--api-base=".length);
     else if (a.startsWith("--report=")) opts.report = a.slice("--report=".length);
+    else if (a.startsWith("--only=")) opts.only = a.slice("--only=".length).split(",").map((s) => s.trim()).filter(Boolean);
   }
   return opts;
+}
+
+// `checkEmailAuth` -> `email-auth`, so --only= takes a readable slug.
+function slugOf(fn) {
+  return (fn.name || "unknown")
+    .replace(/^check/, "")
+    .replace(/([a-z0-9])([A-Z])/g, "$1-$2")
+    .toLowerCase();
 }
 
 const ICON = { error: "✗", warn: "⚠", info: "·" };
@@ -101,10 +115,20 @@ async function main() {
     seoData: loadSeoData(),
     online: opts.online,
     baseUrl: opts.baseUrl,
+    apiBase: opts.apiBase,
   };
 
+  let selected = CHECKS;
+  if (opts.only) {
+    selected = CHECKS.filter((fn) => opts.only.includes(slugOf(fn)));
+    if (!selected.length) {
+      console.error(`--only=${opts.only.join(",")} matched nothing. Available: ${CHECKS.map(slugOf).join(", ")}`);
+      process.exit(2);
+    }
+  }
+
   const results = [];
-  for (const fn of CHECKS) {
+  for (const fn of selected) {
     try {
       results.push(await fn(ctx));
     } catch (e) {
