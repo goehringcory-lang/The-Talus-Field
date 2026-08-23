@@ -252,6 +252,9 @@ export default function Login() {
           </label>
           <label className="field">
             Access code
+            {/* inputMode="text", not "numeric": buyer codes are 6 digits, but
+                this same field takes the operator's env-backed dev-login code,
+                which isn't — the digit-only phone keypad locked those out. */}
             <input
               className="input"
               type="password"
@@ -260,7 +263,7 @@ export default function Login() {
               autoCapitalize="none"
               autoCorrect="off"
               spellCheck={false}
-              inputMode="numeric"
+              inputMode="text"
               enterKeyHint="go"
               aria-describedby={error ? 'login-error' : undefined}
               value={code}
