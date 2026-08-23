@@ -33,7 +33,7 @@ import { readStopNotes, replaceStopNotes, subscribeStopNotes } from '../lib/stop
 import { readLocalStamp, setLocalStamp, withRemoteApply } from '../lib/syncStamp'
 import { readVisitedIds, replaceVisitedIds, subscribeVisited } from '../lib/visited'
 import { readTripPlan, replaceTripPlan, subscribeTripPlan } from '../trip/useTripPlan'
-import { parseSyncDoc, type SyncDocT } from './schema'
+import { anyUnparseable, parseSyncDoc, type ParsedSyncDoc, type SyncDocT } from './schema'
 
 const ENABLED_KEY = 'tfg.sync.enabled'
 const LAST_SYNC_KEY = 'tfg.sync.lastAt'
@@ -112,14 +112,22 @@ export function localDoc(): SyncDocT {
   }
 }
 
-function applyRemote(doc: SyncDocT): void {
+function applyRemote(parsed: ParsedSyncDoc): void {
+  const { doc, unparseable } = parsed
   // One suppressed block: these writes are the server's data arriving, not the
   // user's edits, and stamping them would push this device straight back.
+  //
+  // A field the parse could not read is SKIPPED, not written: the repaired
+  // document carries an empty placeholder for it, and writing that placeholder
+  // over real data is how a single bad field on the server used to take out
+  // every saved stop, visited mark, and note on this device (and then, via the
+  // heal push, on all the others). The plan has always been protected this
+  // way; the other three are protected the same way now.
   withRemoteApply(() => {
     if (doc.plan) replaceTripPlan(doc.plan)
-    replaceFavoriteIds(doc.favorites)
-    replaceVisitedIds(doc.visited)
-    replaceStopNotes(doc.notes)
+    if (!unparseable.favorites) replaceFavoriteIds(doc.favorites)
+    if (!unparseable.visited) replaceVisitedIds(doc.visited)
+    if (!unparseable.notes) replaceStopNotes(doc.notes)
   })
   // Adopt the document's own stamp so this device now reads as exactly as
   // fresh as what it accepted — no newer, or it would push a needless echo.
@@ -153,17 +161,20 @@ async function doSync(): Promise<void> {
   const parsed = remote.doc ? parseSyncDoc(remote.doc) : null
   const mine = localDoc()
 
+  // A salvaged document that lost nothing readable can be healed from here; one
+  // that lost a field cannot. The loss is almost always a NEWER build's shape,
+  // and pushing our version of a field we could not read destroys it and
+  // re-clobbers it on every pass. This used to guard the plan alone, which left
+  // the other three fields to be overwritten by whatever the salvage produced.
+  const canHeal = parsed != null && parsed.salvaged && !anyUnparseable(parsed.unparseable)
+
   if (parsed && parsed.doc.updatedAt > mine.updatedAt) {
-    applyRemote(parsed.doc)
-    // A salvaged document reached us, so applyRemote kept this device's plan
-    // and then adopted the server's stamp: the two now read as identical, and
+    applyRemote(parsed)
+    // Adopting the server's stamp leaves the two reading as identical, so
     // nothing would ever push the good plan or heal the broken copy. Push the
     // merged document instead. localDoc() is re-read so the push carries the
-    // favorites/visited/notes just accepted. The one case that must NOT heal
-    // is a plan that was present but unparseable: that is a newer build's
-    // plan, and pushing over it would destroy it and re-clobber every later
-    // edit. Staying quietly in step with it is the safe trade.
-    if (parsed.salvaged && !parsed.planUnparseable && hasPlanItems(mine)) await push(localDoc())
+    // favorites/visited/notes just accepted.
+    if (canHeal && hasPlanItems(mine)) await push(localDoc())
     markSynced()
     return
   }
@@ -171,9 +182,8 @@ async function doSync(): Promise<void> {
     // Already in step; a push would only cost a KV write. Unless the stamps
     // match because a salvage happened on an earlier pass and this device is
     // wedged against a server copy that lost its plan, in which case the push
-    // below is the only thing that can heal it. Same guard as above: never
-    // heal over a plan a newer build wrote.
-    if (!(parsed.salvaged && !parsed.planUnparseable && hasPlanItems(mine))) {
+    // below is the only thing that can heal it.
+    if (!(canHeal && hasPlanItems(mine))) {
       markSynced()
       return
     }

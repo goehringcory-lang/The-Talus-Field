@@ -1,4 +1,4 @@
-/* global React */
+/* global React, AffiliateNote, AvailabilityLink, LodgingCta */
 
 window.ARTICLE_BODIES = window.ARTICLE_BODIES || {};
 
@@ -194,8 +194,17 @@ window.ARTICLE_BODIES["where-to-propose-in-yosemite"] = function WhereToProposeI
       </p>
 
       <p>
-        <strong>If you need a place to stay</strong> after, the options range from <a href="/articles/yosemite-gateway-towns-compared">gateway town hotels</a> at various distances to the historic lodges inside the park itself. <a href="/articles/pack-your-car-for-yosemite">Packing the car right</a> matters more than most people expect, especially if you are planning a hike-to proposal and need to manage ring security, camera gear, and celebratory supplies alongside the usual ten essentials.
+        <strong>If you need a place to stay</strong> after, the options range from <a href="/articles/yosemite-gateway-towns-compared">gateway town hotels</a> at various distances to the historic lodges inside the park itself. The in-park lodges all book through the concessioner at travelyosemite.com, and for a date you have chosen for a reason, that is the first place to look. When it comes back empty, which for a February or an October weekend it usually does, <AvailabilityLink destination="Yosemite National Park" list="article_inline" slug="where-to-propose-in-yosemite" name="Proposal-night lodging search">one availability search around the park</AvailabilityLink> is the fastest way to see what is left within driving distance. <a href="/articles/pack-your-car-for-yosemite">Packing the car right</a> matters more than most people expect, especially if you are planning a hike-to proposal and need to manage ring security, camera gear, and celebratory supplies alongside the usual ten essentials.
       </p>
+
+      <LodgingCta
+        destination="Yosemite National Park"
+        heading="The night itself is worth booking early"
+        note="The Ahwahnee is the room that matches the occasion and it is the hardest one to get, so it stays the recommendation whether or not anyone lists it. What a search can tell you, in about two minutes, is what is actually open on the date you have picked, which is the part no article can answer."
+        list="article_cta"
+        slug="where-to-propose-in-yosemite"
+        cta="Search lodging around Yosemite →"
+      />
 
       <h2>After Twenty Years</h2>
 
@@ -214,6 +223,8 @@ window.ARTICLE_BODIES["where-to-propose-in-yosemite"] = function WhereToProposeI
       <p>
         After twenty years of watching, the pattern is this: the proposals that work are the ones where both people are present. Not performing. Not documenting. Not worrying about the angle or the light or the crowd behind them. Just there, in the park, looking at each other. Everything else is scenery. And Yosemite has plenty of that to spare.
       </p>
+
+      <AffiliateNote />
     </>
   );
 };

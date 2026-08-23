@@ -25,6 +25,13 @@ something no existing guard catches.
 | 9 | HIGH (ROI) | `page-guide.jsx:106,193` | No purchase event — the buy funnel is unmeasurable |
 | 10 | HIGH (ROI) | `page-map.jsx:53-61,388-395` | Shared `?trip=` links land on the email wall |
 
+**Status, re-verified against the tree 2026-08-23.** Rows 1, 4, 5, 6, 7, 9 and 10 read as fixed
+in current `main` (the renewal extension is now keyed on `lastExtensionEventId`; the anchored
+loop has the day-overflow check; `legacyHashToRoute` leaves real in-page anchors alone;
+navigation takes a request token; CI runs the editorial guard suite; `guide_purchase` fires on
+the Stripe return; a `?trip=` link opens ungated for the visit). Row 3 was **half** fixed and
+row 8 was open; both are closed below. Row 2 is the one still open.
+
 ---
 
 ## 1. Worker API (`workers/`)
@@ -38,7 +45,7 @@ one $2.49 payment. The `:285` comment ("putBuyer is idempotent on email") holds 
 fresh-purchase branch. **Fix: claim the dedupe key before any side effect, or make the
 extension absolute rather than relative.**
 
-**[HIGH] `lib/kv.ts:130-161` — `incrementFixedWindow` is a non-atomic read-modify-write**,
+**[HIGH — STILL OPEN as of 2026-08-23] `lib/kv.ts:130-161` — `incrementFixedWindow` is a non-atomic read-modify-write**,
 and it is the only protection on the 6-digit access code (`routes/auth.ts:63`). 500 concurrent
 `POST /api/auth/login` for a known buyer email all read the same counter, all pass the
 `attempts <= 5` check, none get 429. KV reads are also up to 60s stale across colos, so
@@ -101,12 +108,19 @@ p.m.** A buyer sees "Lunch" at 9:30 p.m. on `/trip` and in the exported `.ics`. 
 exact failure the anchoring comment says it exists to prevent; `check-itineraries.ts` only
 exercises presets, so it never sees it.
 
-**[HIGH] `src/sync/schema.ts:67-78` + `src/sync/planSync.ts:118-126,166` — salvage silently
+**[HIGH — FIXED 2026-08-23] `src/sync/schema.ts:67-78` + `src/sync/planSync.ts:118-126,166` — salvage silently
 zeroes `favorites`/`visited`/`notes` when their shape doesn't match**, with no equivalent of
 the `planUnparseable` guard that protects `plan`. A server doc from a newer build (or with one
 corrupted field) arriving with a newer stamp wipes every saved stop, visited mark, and private
 note on this device — then `:166` pushes the now-empty doc back, propagating the loss to every
 other device. Asymmetric with the plan, which is explicitly protected from exactly this.
+*Fixed: `parseSyncDoc` now returns a per-field `unparseable` map instead of the plan-only flag,
+`applyRemote` skips any field it names rather than writing the placeholder over real data, and
+the heal push fires only when nothing was lost. A list survives only intact (filtering the bad
+entries out of a newer build's `[{id, addedAt}]` was the same wipe in slow motion) and an absent
+field counts as a loss, since every build that writes this document writes all four. Note the
+audit's own framing was slightly off: `planSync` HAD been reworked around `planUnparseable`, so
+the plan half was covered and only the other three fields were exposed.*
 
 **[MEDIUM] `src/trip/useTripPlan.ts:46-51` — the cross-tab `storage` listener assigns
 `memPlan = readStorage()`, which returns `null` on a version mismatch** (`TripPlan` requires
@@ -233,12 +247,19 @@ dangling guide-photo `src` can merge and deploy. Every editorial guard is local-
 voluntary. **Highest-leverage single fix in this section: add `npm --prefix scripts run check`
 to the PR job.**
 
-**[HIGH] `scripts/check-cache-busters.sh` — verifies `?v=` presence, never freshness.** Probe:
+**[HIGH — FIXED 2026-08-23] `scripts/check-cache-busters.sh` — verifies `?v=` presence, never freshness.** Probe:
 appended a comment to `styles.css` with no version bump; the guard passed. Combined with the
 above, edited CSS/JSX ships behind a 30-day-immutable CDN cache with nothing failing. **Fix:
 hash the file contents and compare against a committed manifest.**
+*Fixed as specified: `scripts/check-asset-freshness.mjs` + `scripts/data/asset-versions.json`,
+wired into `run check` (so CI gates it, per the item above). 105 assets covered, which closes
+the MEDIUM below in the same pass: every `PAGE_MODULES` bundle (served under a shared number no
+file mentions — the largest blind spot), every `dist/bodies/*.js` against its `BODY_VERSIONS`
+entry, `points.geojson`, `bulletin.json` including that the two constants agree, and the `/img/`
+counter. `--stamp` refuses to record new bytes under an unchanged version; the original probe
+and four others now fail the guard.*
 
-**[MEDIUM] Three hand-coupled data cache-busters have no guard at all** — `POINTS_URL`
+**[MEDIUM — FIXED 2026-08-23, by the item above]** Three hand-coupled data cache-busters have no guard at all — `POINTS_URL`
 (`page-map.jsx:22`) and the `BULLETIN_URL`/`HOME_BULLETIN_URL` pair (`page-now.jsx:15`,
 `page-home.jsx:305`). Editing `points.geojson` or `bulletin.json` without bumping passes
 everything, and the two bulletin constants agreeing is itself unchecked.
@@ -300,7 +321,12 @@ gift}` on success. **S — and it gates honest measurement of items 12–13.**
 links clickable in a text thread — every one of those clicks currently lands on a blurred email
 wall. At minimum, skip the gate when `?trip=` is present. **S–M.**
 
-**3. 512 archive pages carry zero capture and zero product CTA.** `scripts/gen-archive.mjs:137-138`
+**3. 512 archive pages carry zero capture and zero product CTA.** *Shipped 2026-08-23: `askBlock`
+in the generator puts one unit at the end of every issue page and the landing page — the Sunday
+letter (Buttondown tags `archive` / `archive-index`, the only attribution a surface with no GA4
+can have) plus one line on the Field Guide whose citation count is read from the guide's own
+content rather than typed. Rules at the block; summary in CLAUDE.md's archive bullet.*
+`scripts/gen-archive.mjs:137-138`
 — the issue footer links only `/films`, `/about`, `/`, and `/map`. That's the largest indexed
 surface on the site (~1.87M words, its own sitemap) monetized at $0. One template edit +
 regenerate = 512 pages of funnel. **S.**
@@ -311,7 +337,12 @@ mailto — while `intent-data.js:475,493` routes every constrained trip plan (4+
 needs, unbooked peak dates) there. ~$570/mo of stated capacity blocked on pasting two dashboard
 URLs. **S.**
 
-**5. Four high-lodging-intent article bodies have no affiliate link at all.** 16 of 49 bodies
+**5. Four high-lodging-intent article bodies have no affiliate link at all.** *Shipped 2026-08-23:
+all four now carry one inline `AvailabilityLink` at the point the prose already sends the reader
+to find a bed, plus a boxed `LodgingCta` and an `AffiliateNote`. The guardrail is applied in each:
+the unaffiliated best answer (the concessioner's in-park rooms, the Ahwahnee, the accessible rooms
+you have to phone for) stays the recommendation, linkless, and the search answers only the question
+it can — what is left on your dates.* 16 of 49 bodies
 use `AvailabilityLink`/`LodgingCta`. Uncovered, by lodging-keyword density:
 `yosemite-for-non-hikers.jsx` (20 mentions), `yosemite-without-reservations-2026.jsx` (7),
 `where-to-propose-in-yosemite.jsx` (6 — highest ADR intent on the site),
