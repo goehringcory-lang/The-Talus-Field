@@ -1,0 +1,119 @@
+/* global React, Placeholder, MotifMountains, MotifTrees, AffiliateNote, LodgingCta */
+
+window.ARTICLE_BODIES = window.ARTICLE_BODIES || {};
+
+window.ARTICLE_BODIES["yosemite-in-three-to-five-days"] = function YosemiteInThreeToFiveDaysBody() {
+  return (
+    <>
+      <p className="dropcap">The third day is where a Yosemite trip changes species. A one-day visit is triage, and <a href="/articles/yosemite-in-one-or-two-days">we have argued at length that triage done early and done well is a great trip</a>. A two-day visit is triage plus one earned view from above the Valley floor. The third day is the first one you do not have to defend. Nothing on it is the only chance you will get. You can wait out a morning of weather, take the wrong turn, stay an extra hour at the place that turned out to be the point, and the trip absorbs it. Most of the bad advice about Yosemite itineraries comes from people planning day three the way you have to plan day one, as a checklist against a clock. This is the other way.</p>
+
+      <p>The organizing idea is simple, and it comes from the shape of the park rather than from any theory of travel. Yosemite is four parks wearing one name. <strong>The Valley</strong> is a canyon: you stand at the bottom of it and look up. <strong>The rim</strong>, the Glacier Point country, is the same canyon from the top edge, looking down. <strong>The high country</strong> along Tioga Road is a third landscape entirely, open granite and meadow at 8,600 feet where you are on top of everything and under nothing. And <strong>the far corners</strong>, Wawona with its sequoias in the south and Hetch Hetchy in the northwest, are each most of a day by themselves because of where the roads go. These four are separated by an hour or two of mountain driving in directions that point away from each other. A trip of three to five days works when you give each one its own day and stop trying to splice them. One park per day. That is the whole system.</p>
+
+      <h2>The roads decide the menu</h2>
+      <p>Before the days, the constraint that outranks them. Two of the four parks hang off seasonal roads. <strong>Glacier Point Road</strong> typically opens in mid-to-late May; in 2026 it opened on May 9, and it closes again on September 8 for another season of construction, so this year the rim is a spring-and-summer proposition even by its own standards. <strong>Tioga Road</strong> opened May 15 in 2026, unusually early, and closes with the first serious snow, typically in November. From roughly November into May, in a normal year, the menu is shorter: the Valley, Wawona, and Hetch Hetchy, which are exactly the plowed roads. The winter version of this itinerary is at the bottom of the piece, and it is a real trip, not a consolation.</p>
+      <p>So the first act of planning a three-to-five-day visit is not choosing hikes. It is checking which of the four parks your dates can reach. The <a href="/planning">trip selector</a> does this arithmetic for you month by month, the <a href="/now">Park Bulletin</a> carries the current road status, and the Park Service's road line is the last word in the shoulder weeks. Every plan below assumes you have done that check.</p>
+
+      <h2>Day one: the Valley, exactly as if it were your only day</h2>
+      <p>Day one does not change because you have more days behind it. Arrive before 8 a.m., park once, and work the floor: Tunnel View at first light, Bridalveil, the Lower Yosemite Fall loop, Cook's Meadow, then a slow hour on a rock by the Merced. That sequence, the reasoning behind it, and the things to refuse are the whole subject of <a href="/articles/yosemite-in-one-or-two-days">the one-and-two-day guide</a>, and I am not going to shorten it here into something worse. Do that day as written.</p>
+      <p>The reason the Valley goes first is not that it is the best day. It is that it is the best <em>orientation</em>. The Valley teaches you the park's scale, its shuttle, its parking, and its light in one pass, at the bottom of the elevation ladder, on the day your legs are freshest and your alarm discipline is still intact. Every later day gets easier because this one went first. It is also the day most protected from weather: the floor is walkable in rain that would waste the rim. If your <a href="/articles/yosemite-valley-parking-guide">parking</a> goes wrong or the day runs long, nothing downstream breaks, which is not true in the other direction.</p>
+      <p>One addition earns its place on a multi-day trip: end the day at Valley View or back at Tunnel View for last light. On a one-day visit that is a luxury against the drive home. On day one of four it is fifteen minutes, and it is the first time you will have seen the same stone in two different lights, which is quietly the thing this trip is for.</p>
+
+      <Placeholder
+        caption="Half Dome from Glacier Point at the end of the rim day, the Valley floor three thousand feet below"
+        image="img/half-dome-sunset-glacier-point-joshua-earle.jpg"
+        credit="Photo: Joshua Earle / Unsplash"
+        tag="PLATE I"
+        size="lg"
+        style={{ aspectRatio: "16 / 10", margin: "32px 0" }}
+        motif={<MotifMountains />}
+      />
+
+      <h2>Day two: the rim</h2>
+      <p>Day two climbs to the top of the wall you spent yesterday underneath. Glacier Point Road leaves Wawona Road at Chinquapin and runs about seventeen miles to a paved overlook at 7,200 feet that puts you at eye level with Half Dome, with yesterday's entire itinerary laid out three thousand feet below you like a map of itself. This is the single most efficient day-two in American parks, and the order of operations matters less than the two rules: bring water, because there is no drinking water at Glacier Point this season, and get up the road in the morning, because the point and its parking are a zoo by midday in summer.</p>
+      <p>The shape of the day: stop at <strong>Washburn Point</strong> first, the overlook a bend before Glacier Point that most cars skip, which trades the Valley view for the best roadside look at Vernal and Nevada Falls stacked in their granite staircase. Then <strong>Glacier Point</strong> itself, a 0.3-mile paved walk from the lot. Then back down the road a mile and a half to the shared trailhead for <strong>Sentinel Dome and Taft Point</strong>: about 2.2 miles round trip each, around five miles if you do both, one an open granite cap with a 360-degree horizon and the other a fissured ledge hanging straight over the Valley. Do both if the legs agree. Eat lunch on the rim. The long version of this day, including the sunrise variant, is in <a href="/articles/glacier-point-road-open-2026">the Glacier Point Road guide</a>.</p>
+      <p>Strong hikers have a second way to spend this day, and it is the best hard day in the park: up the Four Mile Trail from the Valley floor to Glacier Point and down the Panorama Trail past Illilouette and Nevada Falls, about thirteen miles and 3,200 feet of climbing, no car shuffle required. That is <a href="/articles/four-mile-up-panorama-down">its own article</a>, and on a five-day trip it arguably belongs on day four instead, with the driving version of the rim on day two. Either order works. Doing both versions is the kind of thing this trip finally has room for.</p>
+
+      <h2>Day three: the high country</h2>
+      <p>Day three goes up, properly up. Tuolumne Meadows sits on Tioga Road roughly 55 to 60 miles from the Valley, call it an hour and a half each way without traffic and closer to two in July, and the drive itself is half the day's content: out of the forest, past Olmsted Point's straight look down Tenaya Canyon at the back of Half Dome, along the shore of Tenaya Lake, and out into a meadow system at 8,600 feet with granite domes standing around it like furniture. If the Valley is the park's cathedral, this is the roof.</p>
+      <p>The high country rewards modesty. The marquee walks are short and flat because at this elevation you are already standing in the view: <strong>Pothole Dome</strong> at the meadow's west end, a mile round trip; <strong>Olmsted Point</strong>'s half-mile nature trail; <strong>Soda Springs and Parsons Memorial Lodge</strong>, a flat mile and a half to naturally carbonated springs that children refuse to believe. <strong>Lembert Dome</strong>, 2.8 miles and 850 feet, is the earned view if you want one. The altitude is real and it is the thing that ruins high-country days: drink water, expect to move slower than the mileage suggests, and be off the open granite when the afternoon thunderheads build. The full day, including what is actually open up there this year, is in <a href="/articles/tuolumne-meadows-in-a-day">the Tuolumne guide</a>, with <a href="/articles/cathedral-lakes-day-hike">Cathedral Lakes</a> as the serious-hike upgrade.</p>
+      <p>When Tioga Road is closed, day three points south instead: the <a href="/articles/mariposa-grove-how-to-visit">Mariposa Grove</a>, an hour-plus from the Valley, where the parking sits two miles below the trees at the Welcome Plaza and a free shuttle covers the gap in season. The Grizzly Giant Loop, about two miles among trees that predate the Roman Empire, plus the Wawona Meadow Loop's flat 3.5 miles and a look at the covered bridge, is a full and unhurried day. In winter you walk the closed grove road itself, two quiet miles up, and usually have the Grizzly Giant to yourself.</p>
+
+      <Placeholder
+        caption="Tenaya Lake from the Tioga Road shoulder, the high country's roadside centerpiece on day three"
+        image="img/tenaya-lake.jpg"
+        credit="Photo: Michael Hogarth / Wikimedia Commons (public domain)"
+        tag="PLATE II"
+        size="lg"
+        style={{ aspectRatio: "16 / 10", margin: "32px 0" }}
+        motif={<MotifTrees />}
+      />
+
+      <h2>Day four: one far corner, or one serious hike</h2>
+      <p>By day four the famous list is done, which is precisely what the day is for. Spend it on one thing. Two candidates, and the right answer is whichever one you have been glancing at sideways all trip.</p>
+      <p><strong>The far corner: Hetch Hetchy.</strong> The park's second glacial valley, an hour and three quarters from Yosemite Valley in the northwest corner, dammed in 1923 and still one of the best days in the park: across O'Shaughnessy Dam, through the tunnel, and along the north wall to the base of Wapama Falls, about five miles round trip of rolling trail with almost nobody on it. In spring the waterfalls are the equal of anything in the Valley; in July the crowds you will not see are the entire point. Two logistics rule the day: the access road runs on posted gate hours, roughly sunrise to sunset, and there is no food or fuel out there, so the day travels on what is in the car. <a href="/articles/hetch-hetchy-the-other-yosemite-valley">The Hetch Hetchy piece</a> carries the history and the trail detail.</p>
+      <p><strong>The serious hike.</strong> If day two stayed on pavement, day four is the day to spend your legs: the <a href="/articles/four-mile-up-panorama-down">Four Mile and Panorama loop</a> above, or the <a href="/articles/mist-trail-the-real-guide">Mist Trail</a> corridor to the top of Vernal or Nevada Fall, three to seven miles of granite stairs and spray. <a href="/articles/so-you-want-to-hike-half-dome">Half Dome</a> belongs to this day too, but only on its own terms: it is permit-only whenever the cables are up, the permits run through <a href="/articles/half-dome-permit-lottery-2026">a preseason lottery in March and a daily lottery two days out</a>, and a multi-day trip in cable season should play the daily lottery for its middle days rather than promise anyone the summit. Plan day four so that winning the lottery upgrades it and losing it costs nothing. In winter, the serious-hike slot has its own answer, and it is <a href="/articles/yosemite-winter-hikes">a shorter list worth reading before you commit</a>.</p>
+
+      <h2>Day five: the day you stop collecting</h2>
+      <p>Day five has no new territory in it, on purpose. Four parks, four days; the fifth is the first day you are in Yosemite with nothing left to get. Spend it at the pace the place actually runs at. Rent bikes and ride the Valley's twelve miles of paved path, which is the best transportation in the park pretending to be recreation, rentals running roughly April through October. Walk into a <a href="/articles/yosemite-ranger-programs">ranger program</a>, which is the cheapest expertise you will ever stand next to. Go back to whichever hour of the trip was the best one and have it again: the same rock on the Merced, the same meadow at last light. Fish, sketch, read in a camp chair, watch <a href="/articles/watching-climbers-el-capitan">the climbers on El Capitan</a> from a meadow with your coffee.</p>
+      <p>I am aware of how this sounds. It sounds like the writer telling you to spend a vacation day doing nothing, in a place you paid a great deal to reach. What I can report, from twenty seasons of watching visitors from the inside, is that the people who come back every year are not the ones who saw the most things. They are the ones who, at some point, stopped. Day five is where that happens on schedule. If you genuinely cannot sit still, the honest alternative is to make day five the second far corner, Hetch Hetchy if day four was a hike, and demote the slack to the afternoons. But try the empty day once.</p>
+
+      <Placeholder
+        caption="Looking down the Hetch Hetchy canyon from Lookout Point, the far corner that fills day four"
+        image="img/lookout-point.jpg"
+        credit="Photo: KatieRound / Wikimedia Commons (CC BY-SA 4.0)"
+        tag="PLATE III"
+        size="lg"
+        style={{ aspectRatio: "16 / 10", margin: "32px 0" }}
+        motif={<MotifMountains />}
+      />
+
+      <h2>Three days, four days, five: what each length buys</h2>
+      <p>The frame above is five days. Compressing it is subtraction, not redesign.</p>
+      <ul>
+        <li><strong>Three days</strong> is the Valley, the rim, and the high country, the three road-connected parks, one per day. This is the shortest trip that sees Yosemite's actual range, canyon floor to alpine meadow, and it is the length I recommend to first-time visitors who ask what enough means. When a seasonal road is closed, its slot goes to Wawona and the grove, or to Hetch Hetchy.</li>
+        <li><strong>Four days</strong> adds the choice you were forced to skip: the far corner or the serious hike. This is the length where the trip stops being a survey and starts having a center of gravity.</li>
+        <li><strong>Five days</strong> adds the empty day, which is to say it adds the margin that makes the other four calm. Five is also the first length where basing in two places can beat one, on which more below.</li>
+      </ul>
+      <p>Past five days you are into a different kind of trip: <a href="/articles/first-yosemite-backpacking-trip">a night in the wilderness</a>, a second lap of the high country, the repeat-visit rhythm where you stop needing articles like this one. A three-day version of this plan is also wired into <a href="/itineraries">the itineraries page</a>, where you can open it on the map, reorder it, and carry it with you.</p>
+
+      <h2>The winter version</h2>
+      <p>From roughly November into May the rim and the high country are under snow and their roads are closed, and the four-parks frame compresses honestly into this: day one is the Valley as above, colder, emptier, and better-looking under fresh snow. Day two goes up to Badger Pass, where the closed stretch of Glacier Point Road becomes a groomed track and the winter rim is reached on snowshoes, most famously at Dewey Point, about seven miles round trip to the Valley's edge. Day three is the Mariposa Grove on foot up the closed road, or Hetch Hetchy, which sits below four thousand feet and is the corner of the park most likely to be snow-free all winter, gate hours and storm closures permitting. Days four and five, if you have them, are the ice rink, the clearing storms, and the deep quiet that is the season's actual product. Chains ride in the car all winter, no exceptions worth planning around. <a href="/articles/yosemite-in-winter">The winter guide</a> is the season's logistics; <a href="/articles/yosemite-winter-hikes">the winter hiking guide</a> is the trail inventory that survives the snow.</p>
+
+      <h2>Where to sleep, and whether to move</h2>
+      <p>The base question changes with length. For three or four nights, pick one bed and keep it: the hour you save on a clever mid-trip move is paid back double in packing, checkout, and the parking you gave up. Base as close to the Valley as the budget allows, because every day but one starts there: in-park if you can land it, which means booking when <a href="/articles/where-to-stay-in-yosemite">the 366-day window</a> opens or camping via <a href="/articles/yosemite-camping-complete-guide">the five-month release</a>, otherwise El Portal for proximity or Mariposa for a real town, with the full comparison in <a href="/articles/yosemite-gateway-towns-compared">the gateway towns piece</a>.</p>
+      <p>Five days in summer is the one case where splitting the base earns its friction: three nights Valley-side for days one, two, and the far corner, then two nights east at Lee Vining, at the eastern foot of Tioga Pass, so the high-country day ends near the high country instead of two hours from it. That order also points your departure east toward Mono Lake and 395 if that is the way home. If it is not, keep the single base and eat the Tioga drive twice; it is a good drive.</p>
+
+      <h2>Common questions</h2>
+      <p><strong>Is three days enough for Yosemite?</strong> Yes, and it is the shortest visit that is. Three days covers the Valley, the Glacier Point rim, and the Tioga high country, one per day, without hurry. One or two days is a good trip too, but it is a different kind of trip, covered in <a href="/articles/yosemite-in-one-or-two-days">its own guide</a>.</p>
+      <p><strong>How many days is ideal?</strong> Four or five. Four adds Hetch Hetchy or one serious hike to the three-day core. Five adds a day with nothing scheduled, which sounds like padding and is actually the best day of the trip.</p>
+      <p><strong>Can you do Glacier Point and Tioga Road on the same day?</strong> You can drive it; you should not. They point in opposite directions from the Valley, each is two to four hours of driving round trip, and combining them turns both into windshield scenery. One park per day.</p>
+      <p><strong>What order should the days go in?</strong> Valley first, rim second, high country third, the far corner or the big hike fourth. The Valley teaches you the park; the rim reuses that knowledge from above; the high country needs the earliest start and the most settled weather, so it benefits from a day of acclimation before it.</p>
+      <p><strong>Does this work in winter?</strong> The compressed version does: the Valley, Badger Pass and the snowshoe rim, the grove on foot or Hetch Hetchy. Tioga Road and Glacier Point Road are closed in winter, typically November into May, so the summer version of days two and three does not exist then.</p>
+      <p><strong>Do I need a reservation to enter Yosemite in 2026?</strong> No. There is no day-use or peak-hours reservation in 2026. You need the $35 seven-day vehicle pass, and international visitors age 16 and up pay the $100 per-person surcharge in effect since January 1.</p>
+      <p><strong>Should I plan Half Dome into a three-to-five-day trip?</strong> Only as an upgrade, never as the spine. Permits are a lottery, preseason in March or daily two days ahead, so build day four to be good without the summit and let a winning application improve it.</p>
+
+      <h2>The honest pitch</h2>
+      <p>Three to five days is the first Yosemite trip where the constraint is not the clock, and the discipline is different: not doing less, but refusing to blend. The Valley, the rim, the high country, the far corners. Each is a full day, each is a different park, and the trip that treats them that way comes home feeling twice as long as it was. Give each one its day, hold the fifth one empty, and somewhere in the middle of it, probably on a rock by the river, you will stop planning and notice where you are. That is the product. The rest of this site is just the packaging.</p>
+
+      <LodgingCta
+        destination="Yosemite National Park"
+        heading="One bed, four days of alarms"
+        note="Every day of this plan but one starts near the Valley, which makes the base the biggest single decision in it. A search on your dates shows what is still holding rooms, in the park and in the gateways, before you commit the itinerary to a bed that is an hour further from day one than it needs to be."
+        list="article_cta"
+        slug="yosemite-in-three-to-five-days"
+        cta="Search lodging around Yosemite →"
+      />
+
+      <AffiliateNote />
+
+      <h3>Sources</h3>
+      <ul style={{ fontSize: 14 }}>
+        <li><a href="https://www.nps.gov/yose/planyourvisit/seasonal.htm" target="_blank" rel="noopener noreferrer">Seasonal Road Closures, NPS Yosemite</a></li>
+        <li><a href="https://www.nps.gov/yose/planyourvisit/glacierpointroad.htm" target="_blank" rel="noopener noreferrer">Glacier Point Road, NPS Yosemite</a></li>
+        <li><a href="https://www.nps.gov/yose/planyourvisit/hetchhetchy.htm" target="_blank" rel="noopener noreferrer">Day Hikes in Hetch Hetchy, NPS Yosemite</a></li>
+        <li><a href="https://www.nps.gov/yose/planyourvisit/halfdome.htm" target="_blank" rel="noopener noreferrer">Half Dome Permits for Day Hikers, NPS Yosemite</a></li>
+        <li><a href="https://www.travelyosemite.com/things-to-do/biking/" target="_blank" rel="noopener noreferrer">Biking in Yosemite Valley, Travel Yosemite</a></li>
+      </ul>
+    </>
+  );
+};

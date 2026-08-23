@@ -9,13 +9,33 @@
     <copyright>© 2026 The Talus Field</copyright>
     <managingEditor>cory@thetalusfieldjournal.com (Cory Goehring)</managingEditor>
     <webMaster>cory@thetalusfieldjournal.com (Cory Goehring)</webMaster>
-    <lastBuildDate>Thu, 20 Aug 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 23 Aug 2026 00:00:00 +0000</lastBuildDate>
     <image>
       <url>https://thetalusfieldjournal.com/img/talus-field-mark.png</url>
       <title>The Talus Field</title>
       <link>https://thetalusfieldjournal.com/</link>
     </image>
 
+    <item>
+      <title>Yosemite in three to five days: one park per day</title>
+      <link>https://thetalusfieldjournal.com/articles/yosemite-in-three-to-five-days</link>
+      <guid isPermaLink="true">https://thetalusfieldjournal.com/articles/yosemite-in-three-to-five-days</guid>
+      <pubDate>Sun, 23 Aug 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Cory Goehring</dc:creator>
+      <category>Planning</category>
+      <description>The third day is the first one that is not triage. Yosemite is four parks wearing one name, the Valley, the rim, the high country, and the far corners, and a three-to-five-day trip works by giving each one its own day. The order that survives the roads, the winter version, and the day with nothing on it.</description>
+      <media:content url="https://thetalusfieldjournal.com/img/responsive/washburn-point-1600.jpg" medium="image" />
+    </item>
+    <item>
+      <title>Winter hiking in Yosemite: the trails that stay open</title>
+      <link>https://thetalusfieldjournal.com/articles/yosemite-winter-hikes</link>
+      <guid isPermaLink="true">https://thetalusfieldjournal.com/articles/yosemite-winter-hikes</guid>
+      <pubDate>Sun, 23 Aug 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Cory Goehring</dc:creator>
+      <category>Trails and Hikes</category>
+      <description>Two thirds of the trail map closes when the snow settles in, and nothing at the gate tells you which trails are in the surviving third. The winter inventory: the Valley floor loops, Columbia Rock, the Mist Trail's winter route, Hetch Hetchy, the sequoias on foot, and the cleats that make it all walkable.</description>
+      <media:content url="https://thetalusfieldjournal.com/img/responsive/el-capitan-winter-og.jpg" medium="image" />
+    </item>
     <item>
       <title>Yosemite in March: A Tale of Two Seasons</title>
       <link>https://thetalusfieldjournal.com/articles/yosemite-in-march</link>
