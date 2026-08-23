@@ -33,6 +33,7 @@ const Welcome = lazy(() => import('./routes/Welcome'))
 const NotFound = lazy(() => import('./routes/NotFound'))
 const Preview = lazy(() => import('./routes/Preview'))
 const StopTeaser = lazy(() => import('./routes/StopTeaser'))
+const Redeem = lazy(() => import('./routes/Redeem'))
 
 // Navigate drops location.hash, and old /secret-spots#<id> search bookmarks
 // rely on it, so the redirect forwards the hash explicitly.
@@ -81,6 +82,9 @@ export default function App() {
           {/* The free sample: public on purpose. Signed-in buyers are
               redirected into the app by the route itself. */}
           <Route path="/preview" element={<Preview />} />
+          {/* Newsletter promo-code redemption: public on purpose, the code is
+              the gate. The newsletter links here as /redeem?code=… */}
+          <Route path="/redeem" element={<Redeem />} />
           <Route
             path="/"
             element={

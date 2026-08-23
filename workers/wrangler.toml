@@ -72,6 +72,15 @@ GUIDE_PRICE_CENTS = "399"
 GUIDE_RENEWAL_PRICE_CENTS = "249"
 GUIDE_PRODUCT_TAG = "field_guide_2026"
 GUIDE_MONTHLY_CAP = "100"
+# Shared promo codes for POST /api/redeem (the newsletter's free-access door):
+# "CODE:DAYS", comma-separated for several at once. Each code grants a normal
+# buyer record for DAYS days, one redemption per (code, email) ever. Codes are
+# matched case-insensitively. This is deliberately a [vars] entry, not a
+# secret: the code ships in a newsletter to the whole list, so the repo hides
+# nothing, and editing it here + `wrangler deploy` is the whole rotation story.
+# To retire a code, delete it from this list; already-granted access keeps its
+# own expiry. TALUS30 is the standing 30-day newsletter-subscriber code.
+PROMO_CODES = "TALUS30:30"
 
 # Routes the Worker to api.thetalusfieldjournal.com.
 #

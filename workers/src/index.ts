@@ -11,6 +11,7 @@ import { indexnow } from './routes/indexnow'
 import { ingestNpsWindow, programs } from './routes/programs'
 import { photos, photosPage } from './routes/photos'
 import { push } from './routes/push'
+import { redeem } from './routes/redeem'
 import { stripe } from './routes/stripe'
 import { trip } from './routes/trip'
 import { tripEmail } from './routes/trip-email'
@@ -172,6 +173,7 @@ app.route('/api/indexnow', indexnow)
 app.route('/api/photos', photos)
 app.route('/api/programs', programs)
 app.route('/api/push', push)
+app.route('/api/redeem', redeem)
 app.route('/api/stripe', stripe)
 // Mounted before /api/trip's router would see it: separate route so the
 // editorial map's unauthenticated sender never shares code with the PWA's

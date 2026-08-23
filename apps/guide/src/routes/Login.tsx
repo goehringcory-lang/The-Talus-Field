@@ -290,6 +290,14 @@ export default function Login() {
 
         <ResendAccessEmail prefillEmail={email} />
 
+        <p className="login-aside">
+          Have a code from the newsletter?{' '}
+          <Button variant="quiet" to="/redeem">
+            Redeem it here
+          </Button>
+          .
+        </p>
+
         <section className="login-storefront" aria-label="About the Field Guide">
           <span className="eyebrow">New here</span>
           <p className="login-intro" style={{ marginTop: 8 }}>
