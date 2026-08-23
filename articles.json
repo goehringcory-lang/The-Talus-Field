@@ -1,5 +1,54 @@
 [
   {
+    "slug": "yosemite-in-three-to-five-days",
+    "cat": "planning",
+    "title": "Yosemite in three to five days: one park per day",
+    "dek": "The third day is the first one that is not triage. Yosemite is four parks wearing one name, the Valley, the rim, the high country, and the far corners, and a three-to-five-day trip works by giving each one its own day. The order that survives the roads, the winter version, and the day with nothing on it.",
+    "seoDek": "A Yosemite itinerary for 3, 4, or 5 days: the Valley, Glacier Point, the Tioga high country, and Hetch Hetchy, one park per day, plus the winter version.",
+    "date": "August 23, 2026",
+    "isoDate": "2026-08-23",
+    "isoModified": "2026-08-23",
+    "read": "13 min",
+    "image": "img/washburn-point.jpg",
+    "ogImage": { "url": "img/responsive/washburn-point-1600.jpg", "width": 1600, "height": 1071 },
+    "placeholder": "Half Dome and the Merced canyon staircase from Washburn Point on the rim day",
+    "wordCount": 3165,
+    "keywords": ["Yosemite 3 day itinerary", "three days in Yosemite", "Yosemite itinerary 4 days", "5 days in Yosemite", "how many days do you need in Yosemite", "Yosemite multi-day itinerary", "Yosemite trip planner", "Glacier Point day trip", "Yosemite to Hetch Hetchy"],
+    "faq": [
+      { "q": "Is three days enough for Yosemite?", "a": "Yes, and it is the shortest visit that is. Three days covers Yosemite Valley, the Glacier Point rim, and the Tioga Road high country, one per day, without hurry. When a seasonal road is closed, that day's slot goes to Wawona and the Mariposa Grove or to Hetch Hetchy." },
+      { "q": "How many days is ideal for a Yosemite trip?", "a": "Four or five. Four adds Hetch Hetchy or one serious hike to the three-day core; five adds an unscheduled day, which sounds like padding and is usually the best day of the trip." },
+      { "q": "Can you do Glacier Point and Tioga Road on the same day?", "a": "You can drive it, but you should not: they point in opposite directions from the Valley and each is two to four hours of driving round trip. Combining them turns both into windshield scenery. One park per day." },
+      { "q": "What order should the days go in?", "a": "Valley first, the Glacier Point rim second, the Tioga high country third, then the far corner or the big hike. The Valley teaches you the park, the rim reuses that knowledge from above, and the high country needs the earliest start and the most settled weather." },
+      { "q": "Does a multi-day Yosemite itinerary work in winter?", "a": "A compressed version does: the Valley under snow, Badger Pass and the snowshoe rim at Dewey Point, then the Mariposa Grove on foot or Hetch Hetchy, which sits below four thousand feet and is often snow-free. Tioga Road and Glacier Point Road are closed in winter, typically November into May." },
+      { "q": "Do I need a reservation to enter Yosemite in 2026?", "a": "No. There is no day-use or peak-hours reservation in 2026. You need the $35 seven-day vehicle pass, and international visitors age 16 and up pay a $100 per-person surcharge in effect since January 1, 2026." },
+      { "q": "Should I plan Half Dome into a three-to-five-day trip?", "a": "Only as an upgrade, never as the spine. Permits are a lottery, preseason in March or daily two days ahead, so build day four to be good without the summit and let a winning application improve it." }
+    ]
+  },
+  {
+    "slug": "yosemite-winter-hikes",
+    "cat": "trails",
+    "title": "Winter hiking in Yosemite: the trails that stay open",
+    "dek": "Two thirds of the trail map closes when the snow settles in, and nothing at the gate tells you which trails are in the surviving third. The winter inventory: the Valley floor loops, Columbia Rock, the Mist Trail's winter route, Hetch Hetchy, the sequoias on foot, and the cleats that make it all walkable.",
+    "seoDek": "What you can actually hike in Yosemite in winter: the Valley floor trails, Columbia Rock, the Vernal Fall winter route, Hetch Hetchy, Wawona, and what is closed.",
+    "date": "August 23, 2026",
+    "isoDate": "2026-08-23",
+    "isoModified": "2026-08-23",
+    "read": "10 min",
+    "image": "img/el-capitan-winter.jpg",
+    "ogImage": { "url": "img/responsive/el-capitan-winter-og.jpg", "width": 1200, "height": 630 },
+    "placeholder": "El Capitan holding fresh snow above the open trails of the Valley floor",
+    "wordCount": 2541,
+    "keywords": ["Yosemite winter hikes", "winter hiking in Yosemite", "Yosemite trails open in winter", "Columbia Rock trail winter", "Vernal Fall winter route", "Mirror Lake winter", "Hetch Hetchy winter hike", "Yosemite in winter what to do", "Yosemite microspikes"],
+    "faq": [
+      { "q": "Can you hike in Yosemite in winter?", "a": "Yes. The Valley floor trails stay open all season, Columbia Rock is a real 1,000-foot climb that melts out between storms, the Vernal Fall footbridge stays reachable by its winter route, and Hetch Hetchy and Wawona hike nearly all winter at their lower elevations." },
+      { "q": "Is the Mist Trail open in winter?", "a": "The granite stair beside Vernal Fall closes in winter, along with the John Muir Trail between Clark Point and the top of Nevada Fall, because of falling ice. The winter route runs to the Vernal Fall footbridge and, conditions allowing, to the top of Vernal via Clark Point. Nevada Fall has no winter walking route." },
+      { "q": "Is the Four Mile Trail open in winter?", "a": "No. It closes with the first lasting snow, typically into May, occasionally reopening its lowest miles to a gate below Union Point in lean spells." },
+      { "q": "Do you need snowshoes to hike Yosemite in winter?", "a": "Not on the Valley floor, at Hetch Hetchy, or in Wawona: boots with traction cleats for ice are the right tool there. Snowshoes earn their weight above the rim out of Badger Pass, and in the Mariposa Grove after fresh snow." },
+      { "q": "What is the best winter hike in Yosemite?", "a": "For effort against reward, Columbia Rock: about two miles round trip and 1,000 feet up the sunny south-facing wall. For solitude, the Wapama Falls trail at Hetch Hetchy, about five miles round trip. For the sight nobody expects, the two-mile walk up the closed road to the snowbound sequoias of the Mariposa Grove." },
+      { "q": "Is Hetch Hetchy open for hiking in winter?", "a": "Usually. It sits below four thousand feet and is the corner of the park most likely to be snow-free all winter. The access road runs on posted gate hours, roughly sunrise to sunset, and snow can close it for days after a storm, so check conditions before the drive." }
+    ]
+  },
+  {
     "slug": "yosemite-in-march",
     "cat": "seasonal",
     "title": "Yosemite in March: A Tale of Two Seasons",

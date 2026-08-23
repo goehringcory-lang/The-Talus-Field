@@ -106,6 +106,8 @@ window.planningSeriesFor = function (slug) {
 // verifies this map stays in sync with the files in bodies/.
 // ============================================================
 window.BODY_VERSIONS = {
+  "yosemite-in-three-to-five-days": 1,
+  "yosemite-winter-hikes": 1,
   "camping-in-yosemite-first-time": 1,
   "first-yosemite-backpacking-trip": 1,
   "yosemite-day-trip-from-bay-area": 1,
@@ -726,6 +728,33 @@ window.KIT.lists.forEach((l) => {
 });
 
 window.ARTICLES = [
+  {
+    slug: "yosemite-in-three-to-five-days",
+    cat: "planning",
+    title: "Yosemite in three to five days: one park per day",
+    dek: "The third day is the first one that is not triage. Yosemite is four parks wearing one name, the Valley, the rim, the high country, and the far corners, and a three-to-five-day trip works by giving each one its own day. The order that survives the roads, the winter version, and the day with nothing on it.",
+    seoDek: "A Yosemite itinerary for 3, 4, or 5 days: the Valley, Glacier Point, the Tioga high country, and Hetch Hetchy, one park per day, plus the winter version.",
+    date: "August 23, 2026",
+    isoDate: "2026-08-23",
+    isoModified: "2026-08-23",
+    read: "13 min",
+    placeholder: "Half Dome and the Merced canyon staircase from Washburn Point on the rim day",
+    image: "img/washburn-point.jpg",
+    credit: "Photo: Pavel Špindler / Wikimedia Commons (CC BY 3.0)",
+  },
+  {
+    slug: "yosemite-winter-hikes",
+    cat: "trails",
+    title: "Winter hiking in Yosemite: the trails that stay open",
+    dek: "Two thirds of the trail map closes when the snow settles in, and nothing at the gate tells you which trails are in the surviving third. The winter inventory: the Valley floor loops, Columbia Rock, the Mist Trail's winter route, Hetch Hetchy, the sequoias on foot, and the cleats that make it all walkable.",
+    seoDek: "What you can actually hike in Yosemite in winter: the Valley floor trails, Columbia Rock, the Vernal Fall winter route, Hetch Hetchy, Wawona, and what is closed.",
+    date: "August 23, 2026",
+    isoDate: "2026-08-23",
+    isoModified: "2026-08-23",
+    read: "10 min",
+    placeholder: "El Capitan holding fresh snow above the open trails of the Valley floor",
+    image: "img/el-capitan-winter.jpg",
+  },
   {
     slug: "yosemite-in-march",
     cat: "seasonal",
