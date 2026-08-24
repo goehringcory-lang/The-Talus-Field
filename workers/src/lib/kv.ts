@@ -8,6 +8,11 @@ export type BuyerRecord = {
   accessCode: string           // 6-digit zero-padded; for new-device login
   refundedAt?: number          // epoch seconds; set when Stripe reports a refund
   lastExtensionEventId?: string // Stripe event id that last extended expiresAt
+  // Set when the record was granted by a shared promo code (/api/redeem)
+  // rather than a purchase. The renewal sweep reads it (a 30-day grant must
+  // not get the "ends in two months" notice on day one); the Stripe webhook
+  // clears it the moment any real payment extends the record.
+  promoCode?: string
 }
 
 // One account's synced app state (/api/trip/plan): the trip plan, saved stops,
@@ -77,6 +82,10 @@ const CONTACT_ATTEMPTS_KEY = (ipHash: string) => `contactAttempts:${ipHash}`
 const RENEWAL_NOTICE_KEY = (email: string, stage: string) =>
   `renewalNotice:${email.toLowerCase()}:${stage}`
 const RENEW_LINK_ATTEMPTS_KEY = (ipHash: string) => `renewLinkAttempts:${ipHash}`
+const PROMO_REDEEMED_KEY = (code: string, email: string) =>
+  `promoRedeemed:${code.toUpperCase()}:${email.toLowerCase()}`
+const REDEEM_ATTEMPTS_KEY = (email: string) => `redeemAttempts:${email.toLowerCase()}`
+const REDEEM_ATTEMPTS_IP_KEY = (ipHash: string) => `redeemAttemptsIp:${ipHash}`
 
 export function currentMonthLabel(at = new Date()): string {
   const y = at.getUTCFullYear()
@@ -370,4 +379,37 @@ export async function markRenewalNotice(env: Env, email: string, stage: string):
 // that address out of their renewal link indefinitely.
 export async function recordRenewLinkAttempt(env: Env, ipHash: string): Promise<number> {
   return incrementFixedWindow(env, RENEW_LINK_ATTEMPTS_KEY(ipHash))
+}
+
+// --- Promo redemption (/api/redeem) -----------------------------------------
+
+// One grant per (code, email) pair, EVER — no TTL, or an expired trial could
+// be re-redeemed every 30 days forever. A new season's offer is a new code
+// string in PROMO_CODES, which is a fresh sentinel keyspace by construction.
+export async function hasPromoRedemption(
+  env: Env,
+  code: string,
+  email: string,
+): Promise<boolean> {
+  return (await env.GUIDE_BUYERS.get(PROMO_REDEEMED_KEY(code, email))) !== null
+}
+
+export async function markPromoRedemption(
+  env: Env,
+  code: string,
+  email: string,
+): Promise<void> {
+  await env.GUIDE_BUYERS.put(PROMO_REDEEMED_KEY(code, email), '1')
+}
+
+// Redemption sends a real email per call, so it takes the same two-bucket
+// shape as /resend: per email (protects one inbox from being spammed with
+// someone else's redemptions) and per hashed IP (stops one caller probing
+// many addresses, and bounds code guessing — the endpoint is unauthenticated).
+export async function recordRedeemAttempt(env: Env, email: string): Promise<number> {
+  return incrementFixedWindow(env, REDEEM_ATTEMPTS_KEY(email))
+}
+
+export async function recordRedeemAttemptByIp(env: Env, ipHash: string): Promise<number> {
+  return incrementFixedWindow(env, REDEEM_ATTEMPTS_IP_KEY(ipHash))
 }

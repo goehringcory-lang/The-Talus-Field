@@ -238,7 +238,9 @@ stripe.post('/webhook', async (c) => {
 
   let record: BuyerRecord
   if (existing && (kind === 'renewal' || existingActive)) {
-    const { refundedAt: _cleared, ...kept } = existing
+    // promoCode also clears: any real payment converts a newsletter-code
+    // trial into a paid record, restoring the full renewal-notice ladder.
+    const { refundedAt: _cleared, promoCode: _promo, ...kept } = existing
     // The dedupe slot is only claimed after the email sends, so a failed send
     // makes Stripe retry the whole event. The retry must re-attempt the email
     // but must not stack another 18 months on a record this event already

@@ -122,6 +122,29 @@ window.ARTICLE_INTENT = {
   "camping-in-yosemite-first-time":            { stage: ["before-booking", "dates-set", "week-before"], who: ["first-trip", "families"], topic: ["camping"] },
   "first-yosemite-backpacking-trip":           { stage: ["dates-set", "week-before"], who: ["backpacking"], topic: ["conditions", "trails", "permits"] },
   "yosemite-day-trip-from-bay-area":           { stage: ["before-booking", "dates-set", "week-before"], who: [], topic: ["transportation", "conditions"] },
+
+  // The August 2026 selector-gap pair. A sweep of all 18,200 trip-selector
+  // combinations found the two largest structural holes, and each of these was
+  // commissioned against one of them:
+  //
+  //   days=3 and days=4plus carried NO anchor at all (the days ladder stopped at
+  //   "yosemite-in-one-or-two-days"), so 40% of every plan built had no piece
+  //   answering "how do I structure this trip". The three-to-five-days piece is
+  //   that anchor now. Its `who` is EMPTY deliberately, on the arrival-logistics
+  //   principle above: how to order three days is a question every traveler type
+  //   asks in identical words, and naming a subset would trip the written-for-
+  //   somebody-else exclusion for everyone left off.
+  //
+  //   focus=hike anchors on Four Mile/Panorama (windowed May-Nov) and Half Dome
+  //   (May-Oct), so from December through April BOTH anchors were dropped by the
+  //   seasonal filter and a winter "one serious hike" plan was padded with
+  //   whatever tag overlap remained (a March hike-focused plan was reading
+  //   "Bringing a Dog to Yosemite"). The winter-hikes piece is windowed Nov-Apr
+  //   in ARTICLE_MONTHS and rides third in that anchor list, so it surfaces
+  //   exactly when the other two leave. Empty `who` like the other trail
+  //   pieces; `conditions` is earned, ice and closures being half the article.
+  "yosemite-in-three-to-five-days":            { stage: ["before-booking", "dates-set"], who: [], topic: ["trails", "transportation"] },
+  "yosemite-winter-hikes":                     { stage: ["dates-set", "in-park"], who: [], topic: ["trails", "conditions"] },
   "yosemite-valley-parking-guide":             { stage: ["dates-set", "week-before", "in-park"], who: [], topic: ["transportation"] },
   "yosemite-shuttle-and-yarts":                { stage: ["before-booking", "dates-set", "week-before", "in-park"], who: [], topic: ["transportation"] },
   "yosemite-walk-up-and-day-of-permits":       { stage: ["dates-set", "week-before", "in-park"], who: [], topic: ["permits", "camping"] },
@@ -280,6 +303,13 @@ window.ARTICLE_MONTHS = {
   // "The reliable spectating windows are roughly April through early June and
   // September through October." Midsummer bakes and winter is hazardous.
   "watching-climbers-el-capitan": ["apr", "may", "jun", "sep", "oct"],
+  // "The season this article describes runs from the first lasting snow,
+  // usually late November, into April". April is inside the window on purpose:
+  // the body's own closing section says the floor turns spring from below while
+  // the Mist Trail stair and the high trails shed their closures, and an April
+  // visitor still needs the closed list. The Four Mile Trail's "gated into May"
+  // is the outlier the body names, not the window.
+  "yosemite-winter-hikes": ["nov", "dec", "jan", "feb", "mar", "apr"],
 };
 
 // True when this article is worth putting in front of someone visiting in this
@@ -574,12 +604,18 @@ window.TRIP_QUESTIONS = [
 // what widen the list past them and what the "see everything that matches"
 // hand-off pours into the filters.
 var TRIP_RULES = {
+  // Every days answer now has an anchor. The short lengths anchor the one-or-
+  // two-day piece; three and four-plus anchored NOTHING until August 2026, which
+  // meant 40% of all selector combinations produced a plan with no piece that
+  // answered the length the reader chose. The three-to-five-days piece is
+  // month-agnostic on purpose (its winter section compresses the plan honestly),
+  // so this anchor survives the seasonal filter in every month.
   days: {
     half:  { intent: { stage: ["dates-set"] }, anchors: ["yosemite-in-one-or-two-days"] },
     "1":   { intent: { stage: ["dates-set"] }, anchors: ["yosemite-in-one-or-two-days"] },
     "2":   { intent: { stage: ["dates-set"] }, anchors: ["yosemite-in-one-or-two-days"] },
-    "3":   { intent: { stage: ["dates-set"], topic: ["trails"] }, anchors: [] },
-    "4plus": { intent: { stage: ["dates-set"], topic: ["trails"] }, anchors: [] },
+    "3":   { intent: { stage: ["dates-set"], topic: ["trails"] }, anchors: ["yosemite-in-three-to-five-days"] },
+    "4plus": { intent: { stage: ["dates-set"], topic: ["trails"] }, anchors: ["yosemite-in-three-to-five-days"] },
   },
   stay: {
     lodge:     { intent: { stage: ["before-booking"], topic: ["lodging"] }, anchors: ["where-to-stay-in-yosemite"] },
@@ -605,7 +641,13 @@ var TRIP_RULES = {
   focus: {
     waterfalls: { intent: { topic: ["trails", "conditions"] }, anchors: ["yosemite-waterfalls-guide"] },
     views:      { intent: { who: ["non-hikers"] }, anchors: ["yosemite-for-non-hikers"] },
-    hike:       { intent: { topic: ["trails"] }, anchors: ["four-mile-up-panorama-down", "so-you-want-to-hike-half-dome"] },
+    // Three anchors, and the third is seasonal relief rather than a ranking
+    // change: Four Mile/Panorama is windowed May-Nov and Half Dome May-Oct, so
+    // from December through April the month filter dropped both and a winter
+    // "one serious hike" plan had no anchor at all. The winter-hikes piece is
+    // windowed Nov-Apr, so in the summer months the same filter removes it and
+    // the original pair rides exactly as before; in winter it is the answer.
+    hike:       { intent: { topic: ["trails"] }, anchors: ["four-mile-up-panorama-down", "so-you-want-to-hike-half-dome", "yosemite-winter-hikes"] },
     photos:     { intent: { who: ["photography"] }, anchors: ["yosemite-photography-spots"] },
     crowds:     { intent: { topic: ["conditions"] }, anchors: ["when-to-visit-yosemite-2026-crowd-forecast"] },
     budget:     { intent: { topic: ["lodging", "food"] }, anchors: ["yosemite-trip-cost-budget-2026"] },

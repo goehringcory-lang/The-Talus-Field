@@ -68,6 +68,11 @@ export async function sweepRenewals(env: Env): Promise<void> {
       const daysLeft = secondsLeft / 86400
       const stage = STAGES.find((s) => daysLeft <= s.maxDays)?.name
       if (!stage) continue
+      // Promo grants (/api/redeem) are 30-day windows, so t60 would fire the
+      // day they redeem with a subject claiming two months. They still get
+      // t14/t1, which are accurate and are the trial's conversion notices; a
+      // payment clears promoCode (stripe.ts) and restores the full ladder.
+      if (stage === 't60' && buyer.promoCode) continue
       if (await hasRenewalNotice(env, buyer.email, stage)) continue
 
       const renewUrl = `${API_ORIGIN}/api/checkout/renew?token=${buyer.accessToken}`
