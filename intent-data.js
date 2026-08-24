@@ -200,6 +200,10 @@ window.ARTICLE_INTENT = {
   "pack-your-car-for-yosemite":                { stage: ["week-before"], who: ["families", "dogs"], topic: ["food", "camping"] },
   "yosemite-gateway-towns-compared":           { stage: ["before-booking"], who: ["first-trip", "families"], topic: ["lodging", "transportation", "food"] },
   "yosemite-during-smoke-season":              { stage: ["before-booking", "dates-set", "week-before"], who: [], topic: ["conditions"] },
+  // Whether you can build a fire, not whether the air is smoky: a different
+  // question from the smoke-season piece above, answered for every traveler
+  // type the same way, so `who` stays empty on the same principle.
+  "yosemite-fire-restrictions-explained":      { stage: ["week-before", "in-park"], who: [], topic: ["camping", "conditions"] },
   "yosemite-without-reservations-2026":        { stage: ["before-booking"], who: ["first-trip"], topic: ["permits", "transportation", "conditions"] },
   "first-time-yosemite-overwhelm":             { stage: ["before-booking"], who: ["first-trip", "families"], topic: ["lodging", "transportation"] },
 };
@@ -264,6 +268,7 @@ window.ARTICLE_MONTHS = {
   "yosemite-in-winter": ["nov", "dec", "jan", "feb", "mar"],
   "yosemite-heat-safety-guide": ["jun", "jul", "aug", "sep"],
   "yosemite-during-smoke-season": ["jul", "aug", "sep", "oct"],
+  "yosemite-fire-restrictions-explained": ["jul", "aug", "sep", "oct"],
   "bears-spring-emergence": ["mar", "apr", "may", "jun"],
 
   // "The swimming season runs from about mid-July into September, and in June

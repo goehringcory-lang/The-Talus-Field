@@ -106,6 +106,7 @@ window.planningSeriesFor = function (slug) {
 // verifies this map stays in sync with the files in bodies/.
 // ============================================================
 window.BODY_VERSIONS = {
+  "yosemite-fire-restrictions-explained": 1,
   "yosemite-in-three-to-five-days": 1,
   "yosemite-winter-hikes": 1,
   "camping-in-yosemite-first-time": 1,
@@ -728,6 +729,20 @@ window.KIT.lists.forEach((l) => {
 });
 
 window.ARTICLES = [
+  {
+    slug: "yosemite-fire-restrictions-explained",
+    cat: "planning",
+    title: "Yosemite fire restrictions, explained: what's banned, what still works, and how to check before you go",
+    dek: "Stage 1 fire restrictions are in effect below 8,000 feet, and the notice on the fire ring doesn't explain the rest of it. What's actually banned, what still works, why the elevation line moves, and when restrictions like this one usually lift.",
+    seoDek: "Yosemite's Stage 1 fire restrictions, explained: what's banned below 8,000 feet, what still works, and how to check before your trip.",
+    date: "August 24, 2026",
+    isoDate: "2026-08-24",
+    isoModified: "2026-08-24",
+    read: "8 min",
+    placeholder: "A dog standing beside an orange tent at a forested Yosemite Valley campsite",
+    image: "img/campground-tent-dog-andrei-serikov.jpg",
+    credit: "Photo: Andrei Serikov / Pexels",
+  },
   {
     slug: "yosemite-in-three-to-five-days",
     cat: "planning",
