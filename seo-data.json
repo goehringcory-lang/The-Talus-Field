@@ -1,5 +1,48 @@
 {
   "__comment": "SEO enrichment for the editorial site, keyed by article slug. NOT loaded by the browser runtime (kept out of data.js so the per-page JS payload stays small). The build script scripts/gen-seo-artifacts.mjs merges this with window.ARTICLES from data.js to regenerate articles.json (consumed by edge/seo.js), sitemap.xml, feed.xml, and the article section of llms.txt. Fields: wordCount (number), keywords (string[]), faq ({q,a}[]), trail ({name,distance,elevationGain,difficulty} for hike guides). FAQ answers and trail numbers are drawn from each article's published body; do not invent facts. The one article whose faq lives inline in data.js (yosemite-in-one-or-two-days) is intentionally omitted here; data.js takes precedence for faq.",
+  "yosemite-fire-restrictions-explained": {
+    "wordCount": 2069,
+    "keywords": [
+      "Yosemite fire restrictions",
+      "Yosemite campfire ban",
+      "can I have a campfire in Yosemite",
+      "Yosemite Stage 1 fire restrictions",
+      "Yosemite camp stove rules",
+      "Yosemite wood fire ban",
+      "Yosemite fire danger elevation",
+      "Yosemite smoking ban"
+    ],
+    "faq": [
+      {
+        "q": "Are campfires banned in Yosemite right now?",
+        "a": "Yosemite implemented Stage 1 fire restrictions at 12:01 a.m. on Friday, August 7, 2026, banning wood and charcoal fires, including twig stoves, parkwide below 8,000 feet. The restrictions remain in effect until further notice."
+      },
+      {
+        "q": "What is the elevation line for Yosemite's fire restrictions?",
+        "a": "8,000 feet in 2026. Below that elevation, wood and charcoal fires are banned outside a few exemptions. The line is set by the park's fire managers based on that year's conditions and has sat lower, closer to 6,000 feet, in some past seasons."
+      },
+      {
+        "q": "Can I use a camp stove during Yosemite's fire restrictions?",
+        "a": "Yes. Portable stoves burning pressurized gas, liquid fuel, or propane are permitted, as are alcohol stoves, including small tablet or cube stoves. The restrictions ban wood and charcoal fires, not stoves."
+      },
+      {
+        "q": "Can I have a campfire in a Yosemite campground during fire restrictions?",
+        "a": "Designated frontcountry campgrounds and picnic areas below 8,000 feet are exempt from the wood and charcoal ban, so an established fire ring at a campground like Upper Pines or Wawona can still hold a fire. In El Portal and Foresta, only charcoal fires are allowed, not wood."
+      },
+      {
+        "q": "Is smoking banned in Yosemite during fire restrictions?",
+        "a": "Below 8,000 feet, smoking is prohibited except inside an enclosed vehicle, inside a campground or picnic area where fires are still permitted, or in a posted designated smoking area."
+      },
+      {
+        "q": "Can I have a campfire while backpacking in Yosemite right now?",
+        "a": "Only in an existing fire ring between 8,000 and 9,600 feet. Above 9,600 feet, campfires are prohibited year-round because wood is scarce at that elevation. Most trailheads out of Tuolumne Meadows, Glacier Point Road, and the Valley rim start below 8,000 feet, so a stove is the reliable option for at least the first stretch of most routes."
+      },
+      {
+        "q": "When do Yosemite's fire restrictions usually end?",
+        "a": "When temperatures drop and real rain falls, not on a fixed date. Yosemite has historically had close to a 90 percent chance of a season-ending precipitation event, two or more inches of rain, by October 31. Restrictions were lifted in September 2022 and in late October 2021 after rain, snow, and cooler temperatures reduced the fire danger."
+      }
+    ]
+  },
   "yosemite-in-three-to-five-days": {
     "wordCount": 3165,
     "keywords": [
