@@ -5,6 +5,11 @@
 # stale bytes after deploy until the TTL expires.
 #
 # Exit 0 if every reference has a version; exit 1 otherwise.
+#
+# This guard checks PRESENCE, not freshness: it cannot tell whether a ?v= that
+# is there is still true for the bytes behind it. That question belongs to
+# check-asset-freshness.mjs, which hashes every versioned asset against
+# scripts/data/asset-versions.json. Both run in `npm run check`.
 
 set -euo pipefail
 

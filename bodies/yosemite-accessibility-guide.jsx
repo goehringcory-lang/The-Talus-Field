@@ -1,4 +1,4 @@
-/* global React, Placeholder, MotifMountains */
+/* global React, Placeholder, MotifMountains, AffiliateNote, AvailabilityLink, LodgingCta */
 
 window.ARTICLE_BODIES = window.ARTICLE_BODIES || {};
 
@@ -75,8 +75,23 @@ window.ARTICLE_BODIES["yosemite-accessibility-guide"] = function YosemiteAccessi
       </p>
 
       <p>
+        <strong>Where you sleep does more work than any other decision.</strong> An accessible room inside the Valley removes the entrance line, the parking hunt, and the drive at both ends of every day, which is the arithmetic that decides how much of the park you actually get to. Those rooms are run by the park concessioner and book through travelyosemite.com, roughly a year ahead for summer; call rather than book online, because the accessible-room details (roll-in shower, bed height, door widths) are not reliably described in any booking form. When the in-park rooms are gone, the closest ground outside the boundary is El Portal at about a half hour of flat highway, and <AvailabilityLink destination="El Portal, California" list="article_inline" slug="yosemite-accessibility-guide" name="El Portal lodging search">what is open there on a given date</AvailabilityLink> is worth checking before you widen the search to Mariposa or Oakhurst, both of which add mountain road to every morning. Confirm the specifics with the property by phone whatever a listing claims.
+      </p>
+
+      <p>
         The park's own accessibility guide, downloadable from the NPS Yosemite site, is the authoritative document for current details, and unlike most government PDFs it is genuinely useful. Pair it with <a href="/articles/yosemite-for-non-hikers">our guide to Yosemite without hiking</a>, which shares most of its geography with this one, and with the <a href="/map">map</a> for laying out shuttle-stop distances before you commit to a day. The wheelchair view from the Sentinel Bridge area, Half Dome upstream and the Merced sliding underneath you, gives up nothing to any overlook in the park.
       </p>
+
+      <LodgingCta
+        destination="El Portal, California"
+        heading="The in-park room first, then the closest thing to it"
+        note="That order does not change for anyone's inventory: the concessioner's accessible rooms are the best version of this trip and they are not bookable through a search. The search answers the second question, which is what is left within a half hour of the Valley on your dates."
+        list="article_cta"
+        slug="yosemite-accessibility-guide"
+        cta="Search lodging near the Valley →"
+      />
+
+      <AffiliateNote />
     </>
   );
 };

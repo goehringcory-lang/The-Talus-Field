@@ -1,4 +1,4 @@
-/* global React */
+/* global React, AffiliateNote, AvailabilityLink, LodgingCta */
 
 window.ARTICLE_BODIES = window.ARTICLE_BODIES || {};
 
@@ -91,7 +91,7 @@ window.ARTICLE_BODIES["yosemite-without-reservations-2026"] = function YosemiteW
       <h3>A single weekend day</h3>
       <p>This is the hardest mode. You have one day, the park is at peak, and you need everything to line up. For the full single-day sequence, see <a href="/articles/yosemite-in-one-or-two-days">one or two days in Yosemite</a>. The strategy:</p>
       <ul>
-        <li>Sleep in or near the park the night before. <a href="/articles/yosemite-gateway-towns-compared">El Portal or Mariposa</a> is the strongest base for an early-Saturday start. Driving in from the Bay Area on the morning of a peak Saturday is a recipe for arriving at 11 a.m. with no parking.</li>
+        <li>Sleep in or near the park the night before. <a href="/articles/yosemite-gateway-towns-compared">El Portal or Mariposa</a> is the strongest base for an early-Saturday start, and El Portal is the better of the two if you can get it. Driving in from the Bay Area on the morning of a peak Saturday is a recipe for arriving at 11 a.m. with no parking. <AvailabilityLink destination="El Portal, California" list="article_inline" slug="yosemite-without-reservations-2026" name="El Portal lodging search">Check what El Portal has on your dates →</AvailabilityLink></li>
         <li>Be inside the gate by 6 a.m. Do Tunnel View, the Cook's Meadow loop, and Lower Yosemite Falls before 9 a.m.</li>
         <li>Eat an early lunch (10:30 to 11 a.m.) at Degnan's or pack from outside.</li>
         <li>Use the midday hours for something low-friction. The Valley museum, a slow walk on the south-side path along the Merced, the Ansel Adams Gallery.</li>
@@ -146,6 +146,17 @@ window.ARTICLE_BODIES["yosemite-without-reservations-2026"] = function YosemiteW
         Be in the park by 6:30 a.m. on any peak day. Have a swap ready for every major sight. Spend at least one full day deliberately outside the Valley. And accept, before you arrive, that the trip you planned is not the trip you'll have. The trip you have can still be a great one. It just won't be the one in the brochure.
       </p>
       <p>That's been true in every year since the park was created. It's just more true in 2026.</p>
+
+      <LodgingCta
+        destination="El Portal, California"
+        heading="The 6:30 a.m. plan is a lodging decision"
+        note="Everything above depends on being inside the gate before the crowd, and that is decided the night before, by how far from the entrance you are sleeping. El Portal is the closest base on the Highway 140 side, Mariposa is the fallback with more inventory, and in-park beds book through travelyosemite.com a year out. The gap between those two facts is what a search on your own dates is for."
+        list="article_cta"
+        slug="yosemite-without-reservations-2026"
+        cta="Search lodging near the park →"
+      />
+
+      <AffiliateNote />
 
       <h3>Sources</h3>
       <ul style={{ fontSize: 14 }}>

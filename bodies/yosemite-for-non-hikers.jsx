@@ -1,4 +1,4 @@
-/* global React */
+/* global React, AffiliateNote, AvailabilityLink, LodgingCta */
 
 window.ARTICLE_BODIES = window.ARTICLE_BODIES || {};
 
@@ -302,7 +302,7 @@ window.ARTICLE_BODIES["yosemite-for-non-hikers"] = function YosemiteForNonHikers
       <p>The most common version of the non-hiker trip is the family trip with a mix of abilities. Here's the framework that I've watched work over and over.</p>
 
       <p>
-        <strong>Stay in or near the Valley.</strong> Don't try to base in Wawona or Oakhurst if any of your group has limited mobility. The drive in and out adds friction, and the friction compounds across a week.
+        <strong>Stay in or near the Valley.</strong> Don't try to base in Wawona or Oakhurst if any of your group has limited mobility. The drive in and out adds friction, and the friction compounds across a week. Yosemite Valley Lodge is the best of the in-park options for this trip, flat ground between the rooms, the shuttle stop, and the food, and it books through the concessioner at travelyosemite.com rather than through anybody's search. When the in-park inventory is gone, <AvailabilityLink destination="El Portal, California" list="article_inline" slug="yosemite-for-non-hikers" name="El Portal lodging search">El Portal is the closest place outside the boundary</AvailabilityLink>, about a half hour of flat highway from the Valley floor.
       </p>
 
       <p>
@@ -332,6 +332,17 @@ window.ARTICLE_BODIES["yosemite-for-non-hikers"] = function YosemiteForNonHikers
       </p>
 
       <p>That's a real visit. That's the park.</p>
+
+      <LodgingCta
+        destination="El Portal, California"
+        heading="Distance from the Valley is the whole trip"
+        note="For a group with limited mobility, the base is the single decision that decides how the week goes, and the ranking here does not move for anyone's inventory: in-park first, then El Portal, then Mariposa. What no article can tell you is which of those has a room on your dates, which is a two-minute question."
+        list="article_cta"
+        slug="yosemite-for-non-hikers"
+        cta="Search lodging near the Valley →"
+      />
+
+      <AffiliateNote />
 
       <h3>Sources</h3>
       <ul style={{ fontSize: 14 }}>
