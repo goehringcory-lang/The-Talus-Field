@@ -248,10 +248,16 @@ the compile step corrected.
    - **Fact-check table** — the surviving source log from Phase 5.
    - **Pipeline checklist** — each Phase 6 step confirmed, both gates green.
    - Any flags for the owner (canon discrepancies, pre-existing check errors).
-4. Subscribe to PR activity and drive CI to green: fix and push on failures,
-   answer review comments. **Do not merge.** The PR sitting green and
-   mergeable is this routine's finish line; merging it is the owner's
-   publish button.
+
+   If the session has no GitHub PR tool, the pushed branch is still the
+   deliverable: put the ready-to-click PR URL
+   (`https://github.com/goehringcory-lang/The-Talus-Field/pull/new/<branch>`)
+   and the full would-be PR body in the completion summary instead. That is a
+   degraded finish, not a failure.
+4. Subscribe to PR activity (if the tooling allows) and drive CI to green:
+   fix and push on failures, answer review comments. **Do not merge.** The PR
+   sitting green and mergeable is this routine's finish line; merging it is
+   the owner's publish button.
 5. End with a short completion summary: the article shipped (title, PR link,
    word count, tags) or the reason the week was skipped.
 
