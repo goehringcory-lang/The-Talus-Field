@@ -747,7 +747,7 @@ window.ARTICLES = [
     cat: "trails",
     title: "Winter hiking in Yosemite: the trails that stay open",
     dek: "Two thirds of the trail map closes when the snow settles in, and nothing at the gate tells you which trails are in the surviving third. The winter inventory: the Valley floor loops, Columbia Rock, the Mist Trail's winter route, Hetch Hetchy, the sequoias on foot, and the cleats that make it all walkable.",
-    seoDek: "What you can actually hike in Yosemite in winter: the Valley floor trails, Columbia Rock, the Vernal Fall winter route, Hetch Hetchy, Wawona, and what is closed.",
+    seoDek: "What you can actually hike in Yosemite in winter: Valley floor trails, Columbia Rock, the Vernal Fall winter route, Hetch Hetchy, Wawona, and what is closed.",
     date: "August 23, 2026",
     isoDate: "2026-08-23",
     isoModified: "2026-08-23",
