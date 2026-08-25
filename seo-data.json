@@ -1523,18 +1523,36 @@
     ]
   },
   "where-to-eat-yosemite": {
-    "wordCount": 1450,
+    "wordCount": 2198,
     "keywords": [
       "where to eat Yosemite",
-      "Yosemite restaurants 2026",
-      "Half Dome Village pizza",
-      "Mariposa restaurants",
-      "best food near Yosemite"
+      "Yosemite restaurants",
+      "restaurants near Yosemite",
+      "places to eat in Yosemite Valley",
+      "Yosemite West restaurants",
+      "food in Yosemite",
+      "Yosemite dining"
     ],
     "faq": [
       {
+        "q": "Is there food in Yosemite National Park?",
+        "a": "Yes, but almost all of it is in Yosemite Valley: a pizza deck, a delicatessen, a taqueria, the Mountain Room at the Lodge, and the Ahwahnee Dining Room. Outside the Valley the park thins out fast. Wawona has a hotel dining room and a store, Tuolumne Meadows has a seasonal store and grill, Crane Flat and El Portal have small markets, and Yosemite West has nothing at all."
+      },
+      {
         "q": "Where is the best place to eat in Yosemite Valley?",
-        "a": "The Half Dome Village Pizza Deck. The Half Dome pie, eaten on the deck under the Glacier Point Apron, is the one in-park meal worth going out of your way for. Degnan's Kitchen is the best option for a lunch under twenty dollars, and the Ahwahnee Dining Room is the special-occasion meal."
+        "a": "The Half Dome Village Pizza Deck. The Half Dome pie, eaten on the deck under the Glacier Point Apron, is the one in-park meal worth going out of your way for. Degnan's Kitchen is the best option for a lunch under twenty dollars, the Mountain Room at the Lodge is the sit-down dinner with a view of Yosemite Falls, and the Ahwahnee Dining Room is the special-occasion meal."
+      },
+      {
+        "q": "Are there restaurants in Yosemite West?",
+        "a": "No. Yosemite West is a residential subdivision of vacation rentals inside the park boundary off Wawona Road, with no restaurant, no store, no gas station and no shuttle. The nearest food is Yosemite Valley, about forty minutes away, or Wawona, about half an hour south. Shop before you arrive."
+      },
+      {
+        "q": "Can you bring your own food into Yosemite?",
+        "a": "Yes. There is no restriction on bringing food in, no inspection at the gate, and no rule against a cooler. The rule that does exist is about storage and it is federal law: food stays within arm's reach by day and goes into a bear locker at night, never left in a car overnight or in a truck bed. To a bear, food means anything with a scent, including trash and toiletries."
+      },
+      {
+        "q": "Is there food at Tuolumne Meadows?",
+        "a": "A seasonal store and grill, and that is the entire food supply along the thirty-nine miles of Tioga Road. It opens with the summer and closes in September, weeks before the road itself closes for winter: in the 2026 season it closed on September 20. There is no gas at Tuolumne either. Treat the high country as a cooler day."
       },
       {
         "q": "Where should I eat in Mariposa near Yosemite?",
@@ -1547,10 +1565,6 @@
       {
         "q": "Where can I get coffee on the east side of Yosemite?",
         "a": "Latte Da Cafe in Lee Vining. Coming over Tioga Pass from Mammoth, Bishop, or Lake Tahoe, it is the first real coffee on the route, with in-house pastries and honest drip."
-      },
-      {
-        "q": "Are there good restaurants inside Yosemite National Park?",
-        "a": "A few. The Half Dome Village Pizza Deck, Degnan's Kitchen, and the Ahwahnee Dining Room are the ones worth knowing in Yosemite Valley. Beyond those, the better food is in the gateway towns, and a packed cooler beats most of it."
       }
     ]
   },

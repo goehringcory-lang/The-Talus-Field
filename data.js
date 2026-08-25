@@ -169,7 +169,7 @@ window.BODY_VERSIONS = {
   "water-ouzels-waterfalls": 75,
   "working-in-yosemite": 76,
   "yosemite-in-one-or-two-days": 85,
-  "where-to-eat-yosemite": 81,
+  "where-to-eat-yosemite": 82,
   "yosemite-in-march": 2,
 };
 
@@ -1295,13 +1295,13 @@ window.ARTICLES = [
   {
     slug: "where-to-eat-yosemite",
     cat: "planning",
-    title: "Where to eat in and around Yosemite",
-    dek: "Eight or nine restaurants worth knowing in and around Yosemite. The Half Dome pizza, the Mariposa brisket, the east-side coffee. Nothing else, and nothing chain.",
-    seoDek: "Eight or nine restaurants worth knowing in and around Yosemite: the Half Dome pizza, the Mariposa brisket, the east-side coffee. No chains, no filler.",
+    title: "Where to Eat in Yosemite: Every Area, and What Closes When",
+    dek: "Where the food actually is, area by area: the Valley's five kitchens, the seasonal grill on Tioga Road, the gateway towns worth the drive, and the places that have no restaurant at all.",
+    seoDek: "Restaurants in Yosemite Valley, Wawona, Tuolumne and the gateway towns, with prices, seasons and reservations. From a resident who eats in them.",
     date: "May 19, 2026",
     isoDate: "2026-05-19",
-    isoModified: "2026-05-19",
-    read: "6 min",
+    isoModified: "2026-08-25",
+    read: "9 min",
     placeholder: "The Merced River at Cathedral Beach, one of the Valley's picnic areas",
     image: "img/cathedral-beach-quiet-picnic.jpg",
     credit: "Photo: Todd Petrie / Wikimedia Commons (CC BY 2.0)",
