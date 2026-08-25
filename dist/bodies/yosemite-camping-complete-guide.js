@@ -49,7 +49,7 @@ window.ARTICLE_BODIES["yosemite-camping-complete-guide"] = function YosemiteCamp
   }, "Mist Trail"), " from your campsite, the shuttle is how. ", React.createElement("a", {
     href: "/articles/yosemite-for-non-hikers"
   }, "Non-hikers"), " can have an exceptional campground-based trip without summiting anything."), React.createElement("p", null, "The ", React.createElement("a", {
-    href: "/articles/half-dome-permit-lottery-2026"
+    href: "/half-dome-lottery"
   }, "Half Dome permit lottery"), " is a separate system. Having a campsite does not give you a Half Dome permit."), React.createElement("p", null, "Raccoons are the other campground animal: less famous than bears, more persistent. They will unzip a tent pocket to get at a tube of toothpaste. Bear box rules apply to raccoon defense as well."), React.createElement("h2", null, "What the dirt teaches you"), React.createElement("p", null, "There is a moment on the second night of every camping trip when the campground stops being a logistics problem and starts being a place. The fire has burned down to coals. The generator-hour people are asleep. The river is the loudest thing for a mile. If you are in the Valley, the granite walls are a shade of gray that has no name, holding the last ambient light while the sky behind them goes black and fills with stars."), React.createElement(Placeholder, {
     caption: "The Milky Way over Sentinel Dome, the sky the campground lights go out for",
     image: "img/milky-way-sentinel-dome.jpg",

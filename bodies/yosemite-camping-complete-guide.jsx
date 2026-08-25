@@ -484,7 +484,7 @@ window.ARTICLE_BODIES["yosemite-camping-complete-guide"] = function YosemiteCamp
       </p>
 
       <p>
-        The <a href="/articles/half-dome-permit-lottery-2026">Half Dome permit lottery</a> is a separate system. Having a campsite does not give you a Half Dome permit.
+        The <a href="/half-dome-lottery">Half Dome permit lottery</a> is a separate system. Having a campsite does not give you a Half Dome permit.
       </p>
 
       <p>

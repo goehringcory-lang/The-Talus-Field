@@ -12,7 +12,7 @@ window.ARTICLE_BODIES["yosemite-wilderness-permits-guide"] = function YosemiteWi
       <h2>First, what the permit is and is not</h2>
 
       <p>
-        A wilderness permit is required year-round for any overnight stay in the Yosemite Wilderness. Day hikes do not need one, with the single famous exception of <a href="/articles/half-dome-permit-lottery-2026">Half Dome, which runs its own permit lottery</a>. The permit is not a campsite reservation; there are no assigned sites out there. What you are reserving is a trailhead and a start date. The park caps how many overnight hikers can begin at each trailhead each day (the quota), and once you are through the gate you camp where regulations allow and walk where your legs take you. Everything in the system exists to meter that first day, because the first day is what concentrates people.
+        A wilderness permit is required year-round for any overnight stay in the Yosemite Wilderness. Day hikes do not need one, with the single famous exception of <a href="/half-dome-lottery">Half Dome, which runs its own permit lottery</a>. The permit is not a campsite reservation; there are no assigned sites out there. What you are reserving is a trailhead and a start date. The park caps how many overnight hikers can begin at each trailhead each day (the quota), and once you are through the gate you camp where regulations allow and walk where your legs take you. Everything in the system exists to meter that first day, because the first day is what concentrates people.
       </p>
 
       <h2>The two ways to get one</h2>

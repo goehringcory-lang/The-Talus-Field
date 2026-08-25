@@ -164,7 +164,7 @@ function ChecklistPage({
     type: "checkbox",
     style: cb
   }), React.createElement(A, {
-    r: "a:half-dome-permit-lottery-2026"
+    r: "half-dome-lottery"
   }, "Half Dome preseason lottery"), ": apply March 1 to 31 on Recreation.gov."), React.createElement("label", {
     style: item
   }, React.createElement("input", {
@@ -405,7 +405,7 @@ function ChecklistPage({
     type: "checkbox",
     style: cb
   }), "Print the ", React.createElement(A, {
-    r: "a:half-dome-permit-lottery-2026"
+    r: "half-dome-lottery"
   }, "Half Dome permit"), " if you have one. No cell service at the subdome."), React.createElement("label", {
     style: item
   }, React.createElement("input", {
@@ -471,12 +471,12 @@ function ChecklistPage({
       go("a:pack-your-car-for-yosemite");
     }
   }, "How to pack your car for a Yosemite trip")), React.createElement("li", null, React.createElement("a", {
-    href: "/articles/half-dome-permit-lottery-2026",
+    href: "/half-dome-lottery",
     onClick: e => {
       e.preventDefault();
-      go("a:half-dome-permit-lottery-2026");
+      go("half-dome-lottery");
     }
-  }, "How the Half Dome permit lottery actually works")), React.createElement("li", null, React.createElement("a", {
+  }, "The Half Dome lottery: calendar, odds, and strategy")), React.createElement("li", null, React.createElement("a", {
     href: "/articles/yosemite-during-smoke-season",
     onClick: e => {
       e.preventDefault();

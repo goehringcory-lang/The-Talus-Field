@@ -15,7 +15,8 @@ indexing. The levers that work:
    - `/articles/where-to-eat-yosemite` (dining/restaurants queries)
    - `/articles/tioga-road-opening-weekend-2026` (Tioga Pass opening queries)
    - `/articles/mist-trail-the-real-guide`
-   - `/articles/half-dome-permit-lottery-2026`
+   - `/half-dome-lottery` (the dated article was retired into this page in
+     August 2026 and 301s here; do not request indexing on the old slug)
    - `/articles/four-mile-up-panorama-down`
    - plus the hubs: `/`, `/planning`, `/articles`
 2. **Earn backlinks.** r/Yosemite, r/nationalparks, hiking forums, blogger

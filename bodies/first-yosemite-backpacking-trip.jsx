@@ -24,7 +24,7 @@ window.ARTICLE_BODIES["first-yosemite-backpacking-trip"] = function FirstYosemit
       </p>
 
       <p>
-        Two riders come with it, both covered in the permit guide: a night in a backpackers' campground before your start and after your exit, and the option to add Half Dome to a wilderness permit instead of playing <a href="/articles/half-dome-permit-lottery-2026">the day-hiker lottery</a>.
+        Two riders come with it, both covered in the permit guide: a night in a backpackers' campground before your start and after your exit, and the option to add Half Dome to a wilderness permit instead of playing <a href="/half-dome-lottery">the day-hiker lottery</a>.
       </p>
 
       <h2>The road opens before the country does</h2>

@@ -403,9 +403,10 @@ const HUB_PROSE = {
   "/half-dome-lottery": () =>
     hubProse(
       "The Half Dome Lottery",
-      "There are two Half Dome permit lotteries, not one. The preseason lottery takes applications on Recreation.gov through March with results in mid-April; the daily lottery runs every day the cables are up, taken two days before the hike date. In the most recent published season about one preseason application in five succeeded, weekdays drew meaningfully better odds than weekends, and late-season weekdays were the best draw of the year. Strategy: use all seven date choices, front-load unpopular dates, enter both lotteries, and plan the hike mid-trip so the daily lottery gets several independent draws."
+      "There are two Half Dome permit lotteries, not one. The preseason lottery takes applications on Recreation.gov through March with results in mid-April; the daily lottery runs every day the cables are up, taken two days before the hike date. In the 2024 season the National Park Service recorded 35,289 preseason applications at a 22% success rate and 35,561 daily-lottery applications at 19%, with weekday odds in the daily lottery running 22% against 14% on weekends. Late-season weekdays are the best draw of the year. Strategy: use all seven date choices, front-load unpopular dates, avoid Saturday, enter both lotteries, and plan the hike mid-trip so the daily lottery gets several independent draws."
     ) +
-    `<p>The full mechanics: <a href="/articles/half-dome-permit-lottery-2026">the complete lottery guide</a>. Whether the hike itself is the right goal: <a href="/articles/so-you-want-to-hike-half-dome">So You Want to Hike Half Dome</a>.</p>`,
+    `<p>The cables are up from about the Friday before Memorial Day to the day after the second Monday in October. A permit is required past the base of the subdome, checked against photo ID, with 300 hikers a day allowed through: roughly 225 day hikers from these lotteries and 75 backpackers on wilderness permits. Going without one violates 36 CFR 1.6 and carries a fine of up to $5,000.</p>` +
+    `<p>Whether the hike itself is the right goal: <a href="/articles/so-you-want-to-hike-half-dome">So You Want to Hike Half Dome</a>, which makes the case for Clouds Rest. Every other permit the park runs: <a href="/articles/yosemite-wilderness-permits-guide">the wilderness permits guide</a> and <a href="/articles/yosemite-walk-up-and-day-of-permits">walk-up and day-of permits</a>.</p>`,
   // The three legal pages are indexable but render nothing for non-JS
   // crawlers without a prose entry — a one-paragraph summary each keeps them
   // from reading as empty (thin) pages. Facts follow the published page copy
@@ -967,13 +968,15 @@ function seoForPath(pathname, searchParams) {
       ],
     },
     "/half-dome-lottery": {
-      // Evergreen event page: no year in the URL or copy. FAQ answers come
-      // from the published article body
-      // (bodies/half-dome-permit-lottery-2026.jsx); the odds are labeled as
-      // the most recent season the park has published.
+      // Evergreen event page: no current year in the URL or copy, and no
+      // promise about a season that has not happened. Published statistics for
+      // seasons already past are the deliberate exception, labeled by season.
+      // FAQ answers come from the page's own published body
+      // (page-half-dome-lottery.jsx), which absorbed the retired article
+      // /articles/half-dome-permit-lottery-2026 in August 2026.
       title: `The Half Dome Lottery — calendar, odds, and strategy — ${SITE_NAME}`,
       description:
-        "Both Half Dome permit lotteries explained: the March preseason draw, the daily lottery almost nobody uses, the honest odds, and the strategy that actually works. By a park resident.",
+        "Both Half Dome permit lotteries explained: the March preseason draw, the daily lottery almost nobody uses, the published NPS odds, and the strategy that actually works. By a park resident.",
       breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Half Dome lottery", null]],
       // Edge-only FAQ: the client entry in app.jsx carries none, so this
       // copy survives hydration on direct loads. A client-side faq added
@@ -986,7 +989,19 @@ function seoForPath(pathname, searchParams) {
         },
         {
           q: "How hard is it to win a Half Dome permit?",
-          a: "In the most recent season the park has published, about one preseason application in five succeeded, and the daily lottery ran close behind. Weekdays draw meaningfully better odds than weekends, and late-season weekdays, late August through the October cable takedown, are the best draw of the year.",
+          a: "In the 2024 season the National Park Service recorded 35,289 preseason applications with a 22% success rate, and 35,561 daily-lottery applications with a 19% success rate. Weekdays draw meaningfully better odds than weekends in the daily lottery, 22% against 14%, and late-season weekdays, late August through the October cable takedown, are the best draw of the year.",
+        },
+        {
+          q: "What are the odds of winning the Half Dome daily lottery?",
+          a: "About 19% of daily-lottery applications succeeded in the 2024 season, split 22% on weekdays and 14% on weekends. Because each day's draw is independent, applying on five eligible weekday mornings works out to roughly a two in three chance of winning at least once, which is why the hike is best planned for the middle of a trip rather than its first day.",
+        },
+        {
+          q: "How much does a Half Dome permit cost?",
+          a: "There is a non-refundable application fee charged per application rather than per person, plus a per-person recreation fee if you win. Both were $10 in the 2024 season, so a group of four that applied once and won paid $50 in total. The recreation fee is refundable if you cancel by 11:59 p.m. Pacific the day before your hike date, or if the cables are not up on your date. Check the NPS permit page for the current season's amounts.",
+        },
+        {
+          q: "How many people can be on one Half Dome permit application?",
+          a: "Up to six, in both lotteries, and the group hikes together. Larger parties split across two applications under two different permit holders, which are entered independently. Each person may appear as permit holder or alternate on only one preseason application; appearing on two cancels all of them without a refund.",
         },
         {
           q: "Can you hike Half Dome without a permit?",
@@ -1136,7 +1151,12 @@ export { seoForPath };
 // slug ever folds into its evergreen event page — and crawlers get a real 301
 // instead of a 404 or a duplicate.
 const REDIRECTS = {
-  // "/articles/some-retired-slug": "/firefall",
+  // Retired August 2026. The dated article and the evergreen hub targeted the
+  // identical intent and split it: 1,925 impressions and 9 clicks between them
+  // over 90 days, both parked just below the fold with Google confidently
+  // ranking neither. The article's content moved into the hub, which is the
+  // URL that does not need re-slugging every March.
+  "/articles/half-dome-permit-lottery-2026": "/half-dome-lottery",
 };
 
 // The apex is the canonical host, and www is bound as a second custom domain

@@ -72,7 +72,7 @@ window.ARTICLE_BODIES["so-you-want-to-hike-half-dome"] = function SoYouWantToHik
       </p>
 
       <p>
-        For the full breakdown on how both lotteries work, including strategy tips, see the <a href="/articles/half-dome-permit-lottery-2026">permit lottery guide</a>.
+        For the full breakdown on how both lotteries work, including strategy tips, see the <a href="/half-dome-lottery">permit lottery guide</a>.
       </p>
 
       <p>
@@ -250,7 +250,7 @@ window.ARTICLE_BODIES["so-you-want-to-hike-half-dome"] = function SoYouWantToHik
       <h2>If you still want Half Dome</h2>
 
       <p>
-        Do it. Seriously, if you have the permit, you're in shape, and the weather is good, go hike Half Dome. It's one of the great experiences in the American outdoors. Read the <a href="/articles/half-dome-permit-lottery-2026">permit lottery guide</a> for strategy on both lotteries, pack the <a href="/kit">right day pack</a>, start before dawn, bring 4 liters of water and gloves for the cables, and check the weather forecast the night before. If there's any chance of rain, don't go. The cables are not worth your life when the rock is wet.
+        Do it. Seriously, if you have the permit, you're in shape, and the weather is good, go hike Half Dome. It's one of the great experiences in the American outdoors. Read the <a href="/half-dome-lottery">permit lottery guide</a> for strategy on both lotteries, pack the <a href="/kit">right day pack</a>, start before dawn, bring 4 liters of water and gloves for the cables, and check the weather forecast the night before. If there's any chance of rain, don't go. The cables are not worth your life when the rock is wet.
       </p>
 
       <p>

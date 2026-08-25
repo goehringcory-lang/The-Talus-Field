@@ -94,7 +94,7 @@ window.ARTICLE_BODIES["yosemite-walk-up-and-day-of-permits"] = function Yosemite
       </p>
 
       <p>
-        The strategic point, for someone already in the park: each day's application is an independent shot, so a week-long trip is several attempts rather than one. Midweek dates in the late season carry the best odds of the entire year. <a href="/articles/half-dome-permit-lottery-2026">Our Half Dome lottery guide</a> has the success rates broken down by weekday and weekend, which is the number that should decide which day you apply for.
+        The strategic point, for someone already in the park: each day's application is an independent shot, so a week-long trip is several attempts rather than one. Midweek dates in the late season carry the best odds of the entire year. <a href="/half-dome-lottery">Our Half Dome lottery guide</a> has the success rates broken down by weekday and weekend, which is the number that should decide which day you apply for.
       </p>
 
       <p>

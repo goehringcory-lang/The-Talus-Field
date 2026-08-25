@@ -71,8 +71,12 @@ window.PLANNING_SERIES = [
     "pets-in-yosemite",
     "yosemite-ranger-programs",
   ] },
+  // The lottery mechanics used to be the first slug here. They live on the
+  // evergreen /half-dome-lottery page now (the dated article was retired into
+  // it in August 2026 and 301s there), and a standing page cannot be a series
+  // member: PLANNING_SERIES membership drives the prev/next band on article
+  // pages. Both pieces below link to it.
   { part: "Part Four · If you're hiking Half Dome", slugs: [
-    "half-dome-permit-lottery-2026",
     "so-you-want-to-hike-half-dome",
     "mist-trail-the-real-guide",
   ] },
@@ -107,18 +111,18 @@ window.planningSeriesFor = function (slug) {
 // ============================================================
 window.BODY_VERSIONS = {
   "yosemite-fire-restrictions-explained": 2,
-  "yosemite-in-three-to-five-days": 1,
+  "yosemite-in-three-to-five-days": 2,
   "yosemite-winter-hikes": 1,
   "camping-in-yosemite-first-time": 1,
-  "first-yosemite-backpacking-trip": 1,
+  "first-yosemite-backpacking-trip": 2,
   "yosemite-day-trip-from-bay-area": 1,
   "mariposa-grove-how-to-visit": 1,
   "tuolumne-meadows-in-a-day": 1,
   "swimming-in-the-merced": 1,
   "yosemite-valley-parking-guide": 1,
   "yosemite-shuttle-and-yarts": 2,
-  "yosemite-walk-up-and-day-of-permits": 1,
-  "yosemite-in-fall": 1,
+  "yosemite-walk-up-and-day-of-permits": 2,
+  "yosemite-in-fall": 2,
   "yosemite-tunnel-trees": 1,
   "yosemite-wildlife-viewing-guide": 1,
   "showy-milkweed-yosemite-valley": 3,
@@ -131,11 +135,11 @@ window.BODY_VERSIONS = {
   "yosemite-wildflowers-guide": 2,
   "watching-climbers-el-capitan": 1,
   "getting-to-yosemite": 6,
-  "yosemite-wilderness-permits-guide": 2,
+  "yosemite-wilderness-permits-guide": 3,
   "yosemite-accessibility-guide": 2,
   "pets-in-yosemite": 3,
   "yosemite-ranger-programs": 1,
-  "yosemite-camping-complete-guide": 8,
+  "yosemite-camping-complete-guide": 9,
   "where-to-propose-in-yosemite": 2,
   "yosemite-bears-safety-guide": 117,
   "yosemite-heat-safety-guide": 4,
@@ -148,10 +152,9 @@ window.BODY_VERSIONS = {
   "four-mile-up-panorama-down": 75,
   "yosemite-with-kids-no-reservations-2026": 79,
   "tioga-road-opening-weekend-2026": 77,
-  "so-you-want-to-hike-half-dome": 75,
-  "half-dome-permit-lottery-2026": 81,
+  "so-you-want-to-hike-half-dome": 76,
   "glacier-point-road-open-2026": 77,
-  "mist-trail-the-real-guide": 83,
+  "mist-trail-the-real-guide": 84,
   "first-time-yosemite-overwhelm": 86,
   "yosemite-without-reservations-2026": 84,
   "yosemite-during-smoke-season": 75,
@@ -167,7 +170,7 @@ window.BODY_VERSIONS = {
   "working-in-yosemite": 76,
   "yosemite-in-one-or-two-days": 85,
   "where-to-eat-yosemite": 81,
-  "yosemite-in-march": 1,
+  "yosemite-in-march": 2,
 };
 
 // Fetch a single article body, Babel-transform it in the browser, and run it so
@@ -384,7 +387,7 @@ window.KIT = {
           id: "bear-permits",
           title: "Bear canister & permits",
           items: [
-            { id: "overnight-pack:bear-canister", name: "Bear canister, required", note: "Yosemite rents Garcia jugs at the wilderness center cheaply but they are heavy. Upgrading to a BearVault 500, or a 450 for shorter trips, is worth it. All food, trash, and scented items go inside, and store it 50 feet or more from your tent.", aff: "#", articleSlug: "half-dome-permit-lottery-2026" },
+            { id: "overnight-pack:bear-canister", name: "Bear canister, required", note: "Yosemite rents Garcia jugs at the wilderness center cheaply but they are heavy. Upgrading to a BearVault 500, or a 450 for shorter trips, is worth it. All food, trash, and scented items go inside, and store it 50 feet or more from your tent.", aff: "#", articleSlug: "so-you-want-to-hike-half-dome" },
             { id: "overnight-pack:wilderness-permit", name: "Wilderness permit, required year-round", note: "Carry a physical or digital copy. It specifies your trailhead and entry date, and it covers the use of a backpacking stove in the park.", aff: "#" }
           ]
         },
@@ -1408,20 +1411,6 @@ window.ARTICLES = [
     read: "17 min",
     placeholder: "Half Dome rising 4,800 feet from the Yosemite Valley floor",
     image: "img/half-dome.jpg",
-  },
-  {
-    slug: "half-dome-permit-lottery-2026",
-    cat: "planning",
-    title: "How the Half Dome permit lottery actually works",
-    dek: "There are two lotteries, not one. The preseason in March and the daily lottery every day the cables are up. The real odds, the strategy that works, and what to do if you don't win.",
-    seoDek: "Two Half Dome lotteries, not one: preseason in March and the daily during cables season. Real odds, the strategy that works, what to do if you lose.",
-    date: "May 12, 2026",
-    isoDate: "2026-05-12",
-    isoModified: "2026-05-12",
-    read: "13 min",
-    placeholder: "Half Dome at alpenglow from Glacier Point",
-    image: "img/half-dome-alpenglow-madhu-shesharam.jpg",
-    credit: "Photo: Madhu Shesharam / Unsplash",
   },
   {
     slug: "glacier-point-road-open-2026",

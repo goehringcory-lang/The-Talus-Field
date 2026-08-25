@@ -44,7 +44,7 @@ window.ARTICLE_BODIES["yosemite-in-fall"] = function YosemiteInFallBody() {
       </p>
 
       <p>
-        <strong>The day after the second Monday in October.</strong> The Half Dome cables come down. In 2026 that is Tuesday, October 13. The park targets this date every year rather than fixing it to a calendar day, and conditions can move it, but the rule is reliable enough to plan around. After the cables come down, Half Dome is a technical climb, not a hike, and the permit season is over. If Half Dome is on the list, your fall window closes on a Tuesday in mid-October. The <a href="/articles/half-dome-permit-lottery-2026">permit lottery guide</a> covers how to get one before then, and <a href="/articles/so-you-want-to-hike-half-dome">the honest assessment of the hike</a> covers whether you want to.
+        <strong>The day after the second Monday in October.</strong> The Half Dome cables come down. In 2026 that is Tuesday, October 13. The park targets this date every year rather than fixing it to a calendar day, and conditions can move it, but the rule is reliable enough to plan around. After the cables come down, Half Dome is a technical climb, not a hike, and the permit season is over. If Half Dome is on the list, your fall window closes on a Tuesday in mid-October. The <a href="/half-dome-lottery">permit lottery guide</a> covers how to get one before then, and <a href="/articles/so-you-want-to-hike-half-dome">the honest assessment of the hike</a> covers whether you want to.
       </p>
 
       <p>

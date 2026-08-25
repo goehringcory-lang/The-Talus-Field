@@ -186,7 +186,6 @@ window.ARTICLE_INTENT = {
   "yosemite-with-kids-no-reservations-2026":   { stage: ["before-booking", "dates-set"], who: ["families", "first-trip"], topic: ["lodging", "trails", "food"] },
   "tioga-road-opening-weekend-2026":           { stage: ["dates-set", "week-before"], who: [], topic: ["conditions", "transportation", "trails"] },
   "so-you-want-to-hike-half-dome":             { stage: ["before-booking", "dates-set"], who: ["backpacking"], topic: ["permits", "trails"] },
-  "half-dome-permit-lottery-2026":             { stage: ["before-booking"], who: ["backpacking"], topic: ["permits", "trails"] },
   "glacier-point-road-open-2026":              { stage: ["dates-set", "week-before"], who: ["non-hikers", "accessible"], topic: ["conditions", "transportation", "trails"] },
   "mist-trail-the-real-guide":                 { stage: ["dates-set", "in-park"], who: ["first-trip", "families"], topic: ["trails"] },
   "working-in-yosemite":                       { stage: [], who: [], topic: [] },
@@ -294,7 +293,6 @@ window.ARTICLE_MONTHS = {
   // "The cables typically go up the Friday before Memorial Day and come down the
   // day after Columbus Day." Both Half Dome pieces are about the cable season.
   "so-you-want-to-hike-half-dome": ["may", "jun", "jul", "aug", "sep", "oct"],
-  "half-dome-permit-lottery-2026": ["may", "jun", "jul", "aug", "sep", "oct"],
   // "Between mid-April and late June, the granite staircase below Vernal Fall is
   // a waterfall itself", through "Late season (August through October)".
   "mist-trail-the-real-guide": ["apr", "may", "jun", "jul", "aug", "sep", "oct"],

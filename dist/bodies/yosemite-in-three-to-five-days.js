@@ -53,7 +53,7 @@ window.ARTICLE_BODIES["yosemite-in-three-to-five-days"] = function YosemiteInThr
   }, "Mist Trail"), " corridor to the top of Vernal or Nevada Fall, three to seven miles of granite stairs and spray. ", React.createElement("a", {
     href: "/articles/so-you-want-to-hike-half-dome"
   }, "Half Dome"), " belongs to this day too, but only on its own terms: it is permit-only whenever the cables are up, the permits run through ", React.createElement("a", {
-    href: "/articles/half-dome-permit-lottery-2026"
+    href: "/half-dome-lottery"
   }, "a preseason lottery in March and a daily lottery two days out"), ", and a multi-day trip in cable season should play the daily lottery for its middle days rather than promise anyone the summit. Plan day four so that winning the lottery upgrades it and losing it costs nothing. In winter, the serious-hike slot has its own answer, and it is ", React.createElement("a", {
     href: "/articles/yosemite-winter-hikes"
   }, "a shorter list worth reading before you commit"), "."), React.createElement("h2", null, "Day five: the day you stop collecting"), React.createElement("p", null, "Day five has no new territory in it, on purpose. Four parks, four days; the fifth is the first day you are in Yosemite with nothing left to get. Spend it at the pace the place actually runs at. Rent bikes and ride the Valley's twelve miles of paved path, which is the best transportation in the park pretending to be recreation, rentals running roughly April through October. Walk into a ", React.createElement("a", {
