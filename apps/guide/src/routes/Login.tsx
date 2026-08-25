@@ -180,14 +180,14 @@ export default function Login() {
         <Plate
           tag="Plate · Tunnel View"
           credit={
-            PHOTO_CREDITS['/photos/tunnel-view.jpg']
-              ? formatCredit(PHOTO_CREDITS['/photos/tunnel-view.jpg'])
+            PHOTO_CREDITS['/photos/tunnel-view-panorama.jpg']
+              ? formatCredit(PHOTO_CREDITS['/photos/tunnel-view-panorama.jpg'])
               : undefined
           }
         >
           <ResponsivePhoto
-            src="/photos/tunnel-view.jpg"
-            alt="Tunnel View at first light: El Capitan, Bridalveil Fall, and Half Dome"
+            src="/photos/tunnel-view-panorama.jpg"
+            alt="Tunnel View: El Capitan, Bridalveil Fall, and Half Dome"
             loading="eager"
             width={1200}
             height={900}

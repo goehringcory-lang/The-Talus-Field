@@ -58,7 +58,7 @@ const seed: StopInput[] = [
       'The whole valley in one frame: El Capitan left, Bridalveil right, Half Dome on the back wall, and the glacier\'s work plain in the U of the floor. Stay fifteen minutes, not thirty seconds.',
     body:
       'You come out of the Wawona Tunnel and the whole valley is there at once. El Capitan on the left, Bridalveil Fall on the right, Half Dome anchoring the back wall. Most people raise a phone and lower it after thirty seconds. Don\'t. Stay fifteen minutes. Look at the U-shape of the valley floor: a glacier did that, two thousand feet of ice. The hanging valleys above the rim are why the waterfalls fall so far. You\'re not looking at scenery; you\'re looking at the geological event. Once you see it, you can\'t unsee it for the rest of the trip.\n\nIf this is your arrival, the orientation matters: every later stop will sit somewhere on this view in your head. If it\'s your departure, stay five minutes. The view is different now because you\'ve been in it.',
-    photos: [{ src: '/photos/tunnel-view.jpg', caption: 'The classic view from the Wawona Tunnel pullout.' }],
+    photos: [{ src: '/photos/tunnel-view-panorama.jpg', caption: 'The classic view from the Wawona Tunnel pullout.' }],
     swap:
       'If the parking lot is full (it usually is between 10 a.m. and 4 p.m.), continue down to [Valley View](/stop/valley-view), Gates of the Valley. Lower angle, same valley, no crowd.',
     history: {
@@ -84,7 +84,7 @@ const seed: StopInput[] = [
     order: 2,
     kind: 'drive',
     timeBudgetMin: 60,
-    photos: [{ src: '/photos/el-capitan-winter.jpg', caption: 'El Capitan over the Merced, the west end of the loop.' }],
+    photos: [{ src: '/photos/valley-loop-drive.jpg', caption: 'Cathedral Rocks and the Cathedral Spires across the meadow, the south wall of the loop.' }],
     teaser:
       'A slow eastbound preview of the valley floor: Bridalveil parking, Cathedral Beach, the Swinging Bridge, Sentinel Beach. Don\'t commit to a hike yet.',
     body:
@@ -422,7 +422,7 @@ const seed: StopInput[] = [
       'The hike that earns the trip. Start at Happy Isles by 6:30 a.m.; earlier is better. The first 0.8 miles is paved and gets you to the Vernal Fall footbridge, where most casual hikers turn around. Past the bridge, the granite stairs start. You climb 600 stone steps in spray (May–June) or sun-baked rock (August). Vernal Fall is at the top of the stairs, 1.6 miles in. If you\'re still strong, push another 1.5 miles to Nevada Fall.\n\nDescend on the John Muir Trail: longer, gentler, easier on the knees, and you\'ll have it largely to yourself because most people return the way they came up. Loop total: about 7 miles, 2,000 ft of gain, 5–6 hours with breaks. The Mist Trail is wet and slippery; trekking poles help. Bring more water than you think.\n\n' +
       'About those 600 steps: the CCC carved and set them into the rock in the 1930s, and no two are alike. Some rise a foot, some closer to two, some tilt just enough to slide a wet boot. This staircase, not the exposure, is where most Mist Trail injuries happen, almost always someone in worn soles or sandals going down hard on soaked granite. Real tread is the difference between a great day and the clinic. The crowd stacks up here too: the footbridge is a parade and the staircase moves at a shuffle, but the trail thins fast above Vernal Fall, and the stretch on to Nevada can feel nearly empty on a weekday.\n\n' +
       'How wet you get depends entirely on the month. In May and June, at full snowmelt, the spray zone below Vernal Fall is like standing in a rainstorm for twenty minutes: clothes soaked through, phone and camera wet, no exceptions. Bag your phone, wear synthetic not cotton, and stash a dry shirt to change into up top. By August the falls drop and you get misted rather than drenched, more canyon hike than waterfall hike. If the soaked stairs feel like too much on a wet day, the John Muir Trail bypass between the two falls is the drier, gentler way around them.',
-    photos: [{ src: '/photos/vernal-fall.jpg', caption: 'Vernal Fall at the top of the granite stairs.' }],
+    photos: [{ src: '/photos/vernal-fall-mist-trail.jpg', caption: 'Vernal Fall in full spring flow, the first payoff on the Mist Trail.' }],
     swap:
       'If the legs say no, just do Vernal Fall and back via the same trail (3 miles RT, 1,000 ft). Still a real hike. In winter, roughly November through April, the granite stairs above the footbridge close when they ice over; the paved stretch to the footbridge stays open. If you have the legs and the cables are up (late May to mid-October) and the lottery gods love you, this is the day for [Half Dome](/hike/half-dome): 14–16 miles, 4,800 ft, 10–12 hours, separate permit.',
     history: {
@@ -882,7 +882,7 @@ const seed: StopInput[] = [
     body:
       'Half Dome at eye level. The valley floor 3,200 feet below. The waterfalls visible end-to-end. Avoid noon to four: the parking is brutal and the light is flat. Late afternoon (4:30 p.m. onward) the lot empties, the light turns warm, and you can sit on the wall and watch the shadow climb Half Dome. Stay through sunset if you can; the drive back to the valley in the dark is fine, just slow. If a ranger is giving an evening talk (most weekends June through August), stay for it; they\'re short and they\'re good.\n\n' +
       'One more note on timing across the calendar: Glacier Point Road is plowed open only after winter, typically sometime in May, and the first weeks of the season are the quiet ones. The lot is easy, the amenities are skeletal, water may not be running yet, and the high country you\'re looking at east of here still reads as full winter while the Valley below has gone green. Snow lines the trailheads and the shaded meadows into late spring. It\'s the rare stretch when this overlook feels like a place you found rather than a place everyone\'s been. Check the Park Service road-status page the night before, bring your own water, and go early.',
-    photos: [{ src: '/photos/glacier-point.jpg', caption: 'Half Dome at eye level from the Glacier Point wall.' }],
+    photos: [{ src: '/photos/half-dome-eye-level.jpg', caption: 'Half Dome at eye level, with the high country stacked behind it.' }],
     swap:
       'If parking is hopeless, the [Four-Mile Trail](/stop/four-mile-trailhead) goes from Glacier Point down to the valley floor (4.8 miles, 3,200 ft loss). Park one car at the bottom, drive the other up. Knees take the hit, not your patience.',
     history: {

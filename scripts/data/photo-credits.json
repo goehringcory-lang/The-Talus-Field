@@ -84,6 +84,11 @@
     "license": "Public domain",
     "source": "https://commons.wikimedia.org/wiki/File:From_Eagle_Peak_over_the_Valley_to_Glacier_Point,_Mt._Clark,_Nevada_Falls_and_Half_Dome,_Yosemite,_Cal.,_U.S.A,_by_H.C._White_Co..png"
   },
+  "/photos/half-dome-eye-level.jpg": {
+    "author": "Katie Mukhina",
+    "license": "Pexels License",
+    "source": "https://www.pexels.com/photo/33492451/"
+  },
   "/photos/happy-isles-ouzel-watch.jpg": {
     "author": "George Fiske",
     "license": "Public domain",
@@ -189,20 +194,40 @@
     "license": "Public domain",
     "source": "https://commons.wikimedia.org/wiki/File:Tioga_Road-Big_Oak_Flat_Road_-_Tioga_Road_in_Yosemite_National_Park_-_NARA_-_7722409.jpg"
   },
+  "/photos/tunnel-view-panorama.jpg": {
+    "author": "ludwigjs",
+    "license": "Pexels License",
+    "source": "https://www.pexels.com/photo/5164440/"
+  },
   "/photos/tuolumne-grove-old-road.jpg": {
     "author": "Unknown artist",
     "license": "Public domain",
     "source": "https://commons.wikimedia.org/wiki/File:Dead_Giant,_Tuolumne_Grove,_30_ft._8_in._diam.,_Big_Oak_Flat_route_to_Yosemite_Valley,_from_Robert_N._Dennis_collection_of_stereoscopic_views.png"
+  },
+  "/photos/valley-el-capitan-half-dome.jpg": {
+    "author": "elijahjcobb",
+    "license": "Pexels License",
+    "source": "https://www.pexels.com/photo/37777297/"
   },
   "/photos/valley-ephemeral-falls.jpg": {
     "author": "Matthes",
     "license": "Public domain",
     "source": "https://commons.wikimedia.org/wiki/File:RoyalArches.jpg"
   },
+  "/photos/valley-loop-drive.jpg": {
+    "author": "Q W",
+    "license": "Pexels License",
+    "source": "https://www.pexels.com/photo/33724884/"
+  },
   "/photos/valley-view.jpg": {
     "author": "Rodrigo Soares",
     "license": "Unsplash License",
     "source": "https://unsplash.com/@rodi01"
+  },
+  "/photos/vernal-fall-mist-trail.jpg": {
+    "author": "Brandon Raines",
+    "license": "Pexels License",
+    "source": "https://www.pexels.com/photo/8686803/"
   },
   "/photos/wapama-falls-trail.jpg": {
     "author": "Craig Given",
