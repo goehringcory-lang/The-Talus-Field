@@ -2097,7 +2097,11 @@
       "closest town to Yosemite Valley",
       "Groveland Yosemite",
       "best town to stay in near Yosemite",
-      "where to stay outside Yosemite"
+      "where to stay outside Yosemite",
+      "Mariposa or Oakhurst for Yosemite",
+      "is Oakhurst a good place to stay for Yosemite",
+      "gateway to Yosemite",
+      "how far is Groveland from Yosemite"
     ],
     "faq": [
       {
@@ -2123,6 +2127,26 @@
       {
         "q": "Do Yosemite gateway towns have reliable cell service?",
         "a": "Patchy in all five gateways and essentially nonexistent inside the park past Crane Flat. Don't rely on real-time Google Maps once you're past the entrance station. Download offline maps before you leave the gateway."
+      },
+      {
+        "q": "Is Oakhurst or Mariposa closer to Yosemite Valley?",
+        "a": "Mariposa, and by a real margin: about 45 miles and 45 to 60 minutes on Highway 140, against Oakhurst's roughly 50 miles and 75 to 90 minutes on Highway 41. The gap is time rather than distance, because the Highway 41 route climbs and descends more and enters the park via Wawona. Oakhurst wins the other direction: it is about 14 miles and 20 to 25 minutes from the South Entrance and the Mariposa Grove."
+      },
+      {
+        "q": "Is Oakhurst a good place to stay for Yosemite?",
+        "a": "It is the right base if your itinerary is mostly Wawona and the Mariposa Grove, which are 20 to 25 minutes away, and if you want the most lodging and services of any gateway. It is the wrong base if Yosemite Valley is the trip: at 75 to 90 minutes each way on Highway 41, it is the longest daily commute of the four year-round towns."
+      },
+      {
+        "q": "Is Mariposa a good place to stay for Yosemite?",
+        "a": "For most first-time visitors, yes. It is the most full-service of the western gateways, with a real downtown, and it sits on Highway 140, the lowest and most reliable year-round route into the park at 45 to 60 minutes from the Valley. It is also the pick for winter trips and the only corridor with year-round YARTS service if you would rather not drive."
+      },
+      {
+        "q": "Is Groveland a good place to stay for Yosemite?",
+        "a": "Yes if you want gateway-town character without the Mariposa price, if Hetch Hetchy and the north end of the park are on your list, or if you are driving from the Bay Area, since Groveland is on the way. The trade-offs are a longer Valley drive, about 41 miles and 65 to 80 minutes on Highway 120, and an elevation of about 3,100 feet that brings winter chain controls the Highway 140 towns do not get."
+      },
+      {
+        "q": "What is the best town to stay in outside Yosemite?",
+        "a": "It depends on which park you came for. El Portal for sunrise in the Valley and the shortest drive. Mariposa for a balanced trip with comfort and value, and for winter. Oakhurst for the sequoias and Wawona. Groveland for character and the Bay Area approach. Lee Vining for the high country and Mono Lake, while Tioga Pass is open."
       }
     ]
   },

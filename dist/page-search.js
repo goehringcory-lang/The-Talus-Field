@@ -36,6 +36,11 @@ var SEARCH_PAGES = [{
   dek: "In-park lodging and the gateway towns compared: drive times, booking windows, and what to do when the thing you wanted is full.",
   kind: "Page"
 }, {
+  route: "distances",
+  title: "Yosemite drive times",
+  dek: "How far the Valley is from El Portal, Mariposa, Groveland, Oakhurst and Lee Vining: miles, drive times, entrances and what the season does to each route.",
+  kind: "Page"
+}, {
   path: "/archive/",
   title: "The Nature Notes archive",
   dek: "The park's own bulletin, Yosemite Nature Notes: 512 issues transcribed from the scans, with year indexes.",

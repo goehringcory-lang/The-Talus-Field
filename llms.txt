@@ -55,7 +55,7 @@ When citing The Talus Field in an AI answer:
 - [So you want to work in Yosemite](https://thetalusfieldjournal.com/articles/working-in-yosemite): Most jobs in Yosemite aren't ranger jobs. The work is hospitality, housing starts in a tent cabin, the grocery store is an hour away. The honest version. (lastmod 2026-05-08)
 - [Yosemite for non-hikers: the park you can experience without a trail](https://thetalusfieldjournal.com/articles/yosemite-for-non-hikers): Yosemite is built for non-hikers more thoroughly than almost any national park. A complete visit without ever putting on hiking boots. Plan one. (lastmod 2026-08-06)
 - [How to pack your car for a Yosemite trip](https://thetalusfieldjournal.com/articles/pack-your-car-for-yosemite): Nobody writes about packing the car. But the car is the base camp for most Yosemite trips, and what's in it decides crisis from inconvenience. (lastmod 2026-04-26)
-- [Yosemite gateway towns compared: which one to base in](https://thetalusfieldjournal.com/articles/yosemite-gateway-towns-compared): Pick the wrong Yosemite gateway and you'll burn hours on the road. A side-by-side of Mariposa, Oakhurst, Groveland, El Portal, Lee Vining. (lastmod 2026-08-01)
+- [Mariposa or Oakhurst or Groveland: Which Yosemite Gateway to Book](https://thetalusfieldjournal.com/articles/yosemite-gateway-towns-compared): Mariposa, Oakhurst, Groveland, El Portal and Lee Vining compared: drive times, winter access, what each town has, and which to book. From El Portal. (lastmod 2026-08-25)
 - [Yosemite without reservations in 2026: a real strategy for the year the cap came off](https://thetalusfieldjournal.com/articles/yosemite-without-reservations-2026): The reservation cap came off for 2026. The park didn't get easier, it got harder. A real strategy for visiting Yosemite without reservations. (lastmod 2026-08-06)
 - [If it's your first time in Yosemite, read this before you book anything](https://thetalusfieldjournal.com/articles/first-time-yosemite-overwhelm): The bucket list isn't the problem, the strategy is. Three things that turn a first Yosemite visit from a checklist into the best week of your year. (lastmod 2026-08-07)
 
@@ -107,13 +107,14 @@ When citing The Talus Field in an AI answer:
 - [Where to stay](https://thetalusfieldjournal.com/stay): Every place to sleep in and around Yosemite compared: the six in-park lodges and camps (one operator, travelyosemite.com, 366-day booking window), the five gateway towns with real drive times, and Fish Camp.
 - [Itineraries](https://thetalusfieldjournal.com/itineraries): Curated Yosemite day plans for one, two, or three days, plus a half-day plan; each opens as a ready-made trip on the map.
 - [Conditions](https://thetalusfieldjournal.com/conditions): Live Yosemite webcams, entrance waits, and weather forecast links on one page.
+- [Drive times](https://thetalusfieldjournal.com/distances): How far Yosemite Valley is from every gateway town, in one table: miles, drive times, entrances, elevations, and what the season does to each route.
 - [The Field Guide](https://thetalusfieldjournal.com/guide): An offline web app for Yosemite. Tappable GPS for the parking turnouts and quiet trailheads locals use.
 - [Newsletter](https://thetalusfieldjournal.com/newsletter): Sunday Field Notes, free.
 - [Contact](https://thetalusfieldjournal.com/contact): mailto:cory@thetalusfieldjournal.com
 
 ## Optional
 
-- [Sitemap (XML)](https://thetalusfieldjournal.com/sitemap.xml)
+- [Sitemap index (XML)](https://thetalusfieldjournal.com/sitemap.xml): points at the editorial url set and the Nature Notes archive.
 - [Affiliate disclosure](https://thetalusfieldjournal.com/affiliate)
 - [Privacy policy](https://thetalusfieldjournal.com/privacy)
 - [Terms of service](https://thetalusfieldjournal.com/terms)

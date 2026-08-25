@@ -92,6 +92,10 @@ function ExplorePage({
     name: "Where to stay",
     note: "In-park lodging and the five gateway towns compared honestly, with drive times and the booking windows that actually matter."
   }, {
+    route: "distances",
+    name: "Drive times",
+    note: "How far Yosemite Valley is from every gateway town, in one table: miles, drive times, which entrance each route uses, and what the season does to it."
+  }, {
     route: "conditions",
     name: "Conditions",
     note: "Live park webcams, entrance wait times, and the three forecasts worth checking, on one bookmarkable page."

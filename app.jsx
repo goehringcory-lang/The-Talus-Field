@@ -29,7 +29,7 @@ const STATIC_ROUTE_KEYS = new Set([
   "advertise", "newsletter", "contact", "privacy", "terms", "affiliate",
   "guide", "map", "films", "itineraries", "conditions", "now", "firefall", "stay",
   "consult", "widget", "partners", "search", "tioga-opening", "half-dome-lottery",
-  "explore",
+  "explore", "distances",
 ]);
 
 function pathToRoute(pathname) {
@@ -117,6 +117,7 @@ const PAGE_MODULES = {
   explore: { scripts: ["/videos-data.js", "/dist/page-explore.js"], globals: ["ExplorePage"] },
   "tioga-opening": { scripts: ["/dist/page-tioga-opening.js"], globals: ["TiogaOpeningPage"] },
   "half-dome-lottery": { scripts: ["/dist/page-half-dome-lottery.js"], globals: ["HalfDomeLotteryPage"] },
+  distances: { scripts: ["/dist/page-distances.js"], globals: ["DistancesPage"] },
 };
 
 function routeModule(route) {
@@ -759,6 +760,13 @@ function buildSeo(route) {
       ogType: "website",
       breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Half Dome lottery", null]],
     },
+    distances: {
+      title: `Yosemite Drive Times — every gateway town, in one table — ${SITE_NAME}`,
+      description:
+        "How far Yosemite Valley is from El Portal, Mariposa, Groveland, Oakhurst and Lee Vining: miles, drive times, entrances, elevations and what the season does to each route.",
+      ogType: "website",
+      breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Distances", null]],
+    },
     consult: {
       title: `Field Consult — thirty minutes on your Yosemite plan — ${SITE_NAME}`,
       description:
@@ -1158,6 +1166,9 @@ function App() {
   } else if (route === "now") {
     page = <window.BulletinPage go={go} />;
     currentNav = "now";
+  } else if (route === "distances") {
+    page = <window.DistancesPage go={go} />;
+    currentNav = "distances";
   } else if (route === "firefall") {
     page = <window.FirefallPage go={go} />;
     currentNav = "firefall";

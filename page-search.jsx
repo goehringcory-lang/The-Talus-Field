@@ -36,6 +36,7 @@ const SEARCH_PAGES = [
   { route: "itineraries", title: "Itineraries", dek: "Half-day, one-day, two-day, and three-day plans in drive order, each one openable in the trip map.", kind: "Page" },
   { route: "conditions", title: "Conditions", dek: "Live webcams, entrance waits, and the three forecasts that matter, on one page.", kind: "Page" },
   { route: "stay", title: "Where to stay", dek: "In-park lodging and the gateway towns compared: drive times, booking windows, and what to do when the thing you wanted is full.", kind: "Page" },
+  { route: "distances", title: "Yosemite drive times", dek: "How far the Valley is from El Portal, Mariposa, Groveland, Oakhurst and Lee Vining: miles, drive times, entrances and what the season does to each route.", kind: "Page" },
   { path: "/archive/", title: "The Nature Notes archive", dek: "The park's own bulletin, Yosemite Nature Notes: 512 issues transcribed from the scans, with year indexes.", kind: "Archive" },
   { route: "tioga-opening", title: "The Tioga Road opening", dek: "When the high country actually opens, how the plowing works, and what is worth doing the first week it is passable.", kind: "Page" },
   { route: "half-dome-lottery", title: "The Half Dome lottery", dek: "How the cable permit lottery works, the real odds, and what to climb instead.", kind: "Page" },

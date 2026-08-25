@@ -375,6 +375,7 @@ const NAV_GROUPS = [
         heading: "Before you drive in",
         links: [
           { key: "map", label: "The trip map", note: "Every pin in the park, assembled into a route" },
+          { key: "distances", label: "Drive times", note: "How far the Valley is from every gateway town" },
           { key: "checklist", label: "First-week checklist", note: "What to do in the week before you go" },
           { key: "kit", label: "Kit", note: "What earns its place in the pack" },
         ],
@@ -855,6 +856,7 @@ function Footer({ go }) {
               {link("planning", "The Planning Guide")}
               {link("map", "The Map")}
               {link("itineraries", "Itineraries")}
+              {link("distances", "Drive times")}
               {link("stay", "Where to stay")}
               {link("conditions", "Conditions")}
               {link("checklist", "First-week checklist")}
@@ -993,9 +995,16 @@ const KEEP_GOING = {
     { key: "itineraries", label: "Itineraries", note: "Plans in drive order" },
   ] },
   stay: { links: [
+    { key: "distances", label: "Drive times", note: "How far each town is from the Valley" },
     { key: "planning", label: "The Planning Guide", note: "Everything else the trip needs" },
     { key: "itineraries", label: "Itineraries", note: "What to do from where you booked" },
     { key: "checklist", label: "First-week checklist", note: "The week before you go, in order" },
+  ] },
+  distances: { links: [
+    { key: "stay", label: "Where to stay", note: "The beds at the end of each drive" },
+    { key: "conditions", label: "Conditions", note: "Entrance waits and road status now" },
+    { key: "tioga-opening", label: "Tioga Road opening", note: "When the east-side route comes back" },
+    { key: "planning", label: "The Planning Guide", note: "The rest of the trip, in order" },
   ] },
   map: { links: [
     { key: "itineraries", label: "Itineraries", note: "Start from a plan instead" },

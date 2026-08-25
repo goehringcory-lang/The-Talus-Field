@@ -308,6 +308,7 @@ function buildSitemap(merged, categories) {
     ["/firefall", "2026-07-17"],
     ["/tioga-opening", "2026-07-21"],
     ["/half-dome-lottery", "2026-07-21"],
+    ["/distances", "2026-08-25"],
     ["/consult", "2026-07-15"],
     ["/widget", "2026-07-15"],
     ["/partners", "2026-07-30"],

@@ -11,7 +11,7 @@ function routeToPath(route) {
   if (route.startsWith("a:")) return `/articles/${route.slice(2)}`;
   return `/${route}`;
 }
-var STATIC_ROUTE_KEYS = new Set(["home", "articles", "planning", "checklist", "about", "kit", "places", "advertise", "newsletter", "contact", "privacy", "terms", "affiliate", "guide", "map", "films", "itineraries", "conditions", "now", "firefall", "stay", "consult", "widget", "partners", "search", "tioga-opening", "half-dome-lottery", "explore"]);
+var STATIC_ROUTE_KEYS = new Set(["home", "articles", "planning", "checklist", "about", "kit", "places", "advertise", "newsletter", "contact", "privacy", "terms", "affiliate", "guide", "map", "films", "itineraries", "conditions", "now", "firefall", "stay", "consult", "widget", "partners", "search", "tioga-opening", "half-dome-lottery", "explore", "distances"]);
 function pathToRoute(pathname) {
   var path = (pathname || "/").replace(/\/+$/, "") || "/";
   if (path === "/") return "home";
@@ -154,6 +154,10 @@ var PAGE_MODULES = {
   "half-dome-lottery": {
     scripts: ["/dist/page-half-dome-lottery.js"],
     globals: ["HalfDomeLotteryPage"]
+  },
+  distances: {
+    scripts: ["/dist/page-distances.js"],
+    globals: ["DistancesPage"]
   }
 };
 function routeModule(route) {
@@ -675,6 +679,12 @@ function buildSeo(route) {
       ogType: "website",
       breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Half Dome lottery", null]]
     },
+    distances: {
+      title: `Yosemite Drive Times — every gateway town, in one table — ${SITE_NAME}`,
+      description: "How far Yosemite Valley is from El Portal, Mariposa, Groveland, Oakhurst and Lee Vining: miles, drive times, entrances, elevations and what the season does to each route.",
+      ogType: "website",
+      breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Distances", null]]
+    },
     consult: {
       title: `Field Consult — thirty minutes on your Yosemite plan — ${SITE_NAME}`,
       description: "A one-on-one planning consult with a Yosemite naturalist: your dates, group, and constraints, turned into a plan that fits the park. $95, thirty minutes, a few slots a month.",
@@ -1042,6 +1052,11 @@ function App() {
       go: go
     });
     currentNav = "now";
+  } else if (route === "distances") {
+    page = React.createElement(window.DistancesPage, {
+      go: go
+    });
+    currentNav = "distances";
   } else if (route === "firefall") {
     page = React.createElement(window.FirefallPage, {
       go: go

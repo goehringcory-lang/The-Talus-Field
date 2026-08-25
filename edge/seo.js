@@ -409,7 +409,7 @@ const HUB_PROSE = {
       "Every place to sleep in and around the park, sorted by what it is and who it fits. Inside the boundary there is one operator: every hotel, lodge, and tent cabin is run by a single park concessioner and books through travelyosemite.com, with reservations opening 366 days ahead and peak Valley dates gone in minutes. Outside the boundary there is a real market across five gateway towns whose drive times differ by more than an hour."
     ) +
     `<p>Inside the park: <strong>Yosemite Valley Lodge</strong>, the correct answer for most first-time visitors, across the road from Lower Yosemite Fall. <strong>The Ahwahnee</strong>, a 1927 National Historic Landmark, for the occasion that justifies it. <strong>Curry Village</strong>, canvas tent cabins at the base of Glacier Point since 1899 and the cheapest roofed beds in the Valley. <strong>Housekeeping Camp</strong>, three-walled river units where you can cook over a fire. <strong>White Wolf Lodge</strong> at 8,000 feet and <strong>Tuolumne Meadows Lodge</strong> at 8,700, both summer-only tent cabins for high-country trips. The historic <strong>Wawona Hotel</strong> has been closed for renovation since December 2024.</p>` +
-    `<p>The gateway towns, by drive time to Yosemite Valley: <strong>El Portal</strong> (25 to 30 minutes, Highway 140), <strong>Mariposa</strong> (45 to 60 minutes, the most full-service and the safest first-timer's pick), <strong>Groveland</strong> (60 to 75 minutes on Highway 120, the character pick), <strong>Oakhurst</strong> (75 to 90 minutes on Highway 41, best for Wawona and the Mariposa Grove), and <strong>Lee Vining</strong> (90 minutes and only while Tioga Pass is open, the east-side base for the high country and Mono Lake).</p>` +
+    `<p>The gateway towns, by drive time to Yosemite Valley: <strong>El Portal</strong> (25 to 35 minutes, Highway 140), <strong>Mariposa</strong> (45 to 60 minutes, the most full-service and the safest first-timer's pick), <strong>Groveland</strong> (65 to 80 minutes on Highway 120, the character pick), <strong>Oakhurst</strong> (75 to 90 minutes on Highway 41, best for Wawona and the Mariposa Grove), and <strong>Lee Vining</strong> (90 minutes and only while Tioga Pass is open, the east-side base for the high country and Mono Lake).</p>` +
     `<p>The longer versions: <a href="/articles/where-to-stay-in-yosemite">the in-park lodging guide</a>, <a href="/articles/yosemite-gateway-towns-compared">the gateway towns compared</a>, <a href="/articles/yosemite-camping-complete-guide">the complete camping guide</a>, and <a href="/articles/yosemite-trip-cost-budget-2026">what a Yosemite trip costs</a>.</p>`,
   "/firefall": () =>
     hubProse(
@@ -424,6 +424,13 @@ const HUB_PROSE = {
       "Every spring, plow crews cut Highway 120 out of the snowpack and the highest road in Yosemite comes back. There is no fixed opening date: the long-term average is the end of May, light years have opened in mid-May, heavy years run into June or later, and the park announces the date only days ahead. In week one the road is open but the services are not: no potable water, nothing to buy, no gas between Crane Flat and Lee Vining, and the famous high trails still under snow. The early season rewards drivers, photographers, and modest walkers."
     ) +
     `<p>The reliable early stops are Olmsted Point, Tenaya Lake's east beach, the Tuolumne Meadows pullouts, Pothole Dome, and Soda Springs. The full day-by-day version: <a href="/articles/tioga-road-opening-weekend-2026">the opening-weekend field guide</a>. Current status: <a href="/now">the Park Bulletin</a> and the NPS Tioga Road page.</p>`,
+  "/distances": () =>
+    hubProse(
+      "Yosemite Drive Times",
+      "How far Yosemite Valley is from each gateway town, in one table. El Portal is about 14 miles and 25 to 35 minutes on Highway 140; Mariposa about 45 miles and 45 to 60 minutes on the same road; Groveland about 41 miles and 65 to 80 minutes on Highway 120, where chain controls are common in winter; Oakhurst about 50 miles and 75 to 90 minutes on Highway 41; and Lee Vining about 75 miles and 90 minutes minimum over Tioga Pass, only while the pass is open.",
+      "<p>Other legs the Valley table does not answer: Oakhurst to the South Entrance is about 14 miles and 20 to 25 minutes, with the Mariposa Grove welcome plaza immediately inside the gate and Wawona six miles further on; Groveland to the Big Oak Flat Entrance is about 24 miles and 30 to 40 minutes on a winding road; Lee Vining to Tuolumne Meadows is about 20 miles and 30 minutes while Tioga Pass is open. Oakhurst is the longest drive to the Valley of the four year-round towns and the shortest to the sequoias by a wide margin.</p>" +
+        "<p>Times are to the west end of Yosemite Valley in ordinary conditions; add 15 to 20 minutes for Curry Village at the east end, and more for summer afternoons. Season changes the answer more than distance does, and entrance queues on a peak morning can add half an hour no mileage predicts. Full comparison: <a href=\"/articles/yosemite-gateway-towns-compared\">the gateway towns guide</a>. Live waits: <a href=\"/conditions\">the conditions page</a>.</p>"
+    ),
   "/half-dome-lottery": () =>
     hubProse(
       "The Half Dome Lottery",
@@ -923,7 +930,7 @@ function seoForPath(pathname, searchParams) {
         },
         {
           q: "Which gateway town is best for Yosemite?",
-          a: "El Portal is 25 to 30 minutes from Yosemite Valley and the strongest choice if you can get a room. Mariposa, 45 minutes to an hour out on Highway 140, is the safest first-timer's pick and the most full-service. Groveland is the character pick on Highway 120, Oakhurst suits trips centered on Wawona and the Mariposa Grove, and Lee Vining is the east-side base while Tioga Pass is open.",
+          a: "El Portal is 25 to 35 minutes from Yosemite Valley and the strongest choice if you can get a room. Mariposa, 45 minutes to an hour out on Highway 140, is the safest first-timer's pick and the most full-service. Groveland is the character pick on Highway 120, Oakhurst suits trips centered on Wawona and the Mariposa Grove, and Lee Vining is the east-side base while Tioga Pass is open.",
         },
       ],
     },
@@ -988,6 +995,33 @@ function seoForPath(pathname, searchParams) {
         {
           q: "Do I need a reservation to drive Tioga Road?",
           a: "A standard park entrance pass is required. Whether a day-use reservation system also applies changes year to year; check the NPS Yosemite site for the current season's rules before you commit.",
+        },
+      ],
+    },
+    "/distances": {
+      title: `Yosemite Drive Times — every gateway town, in one table — ${SITE_NAME}`,
+      description:
+        "How far Yosemite Valley is from El Portal, Mariposa, Groveland, Oakhurst and Lee Vining: miles, drive times, entrances, elevations and what the season does to each route.",
+      breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Distances", null]],
+      // Edge-only FAQ, answering the distance queries the gateway article ranks
+      // top-three for and earns no clicks on. Every figure is quoted from that
+      // article's published body, which is the canonical source for drive times.
+      faq: [
+        {
+          q: "How far is Groveland from Yosemite Valley?",
+          a: "About 41 miles and 65 to 80 minutes on Highway 120, entering the park at the Big Oak Flat Entrance, which is about 24 miles and 30 to 40 minutes from town on a winding road. Groveland sits at about 3,100 feet, the highest of the western gateways, and gets chain controls in winter that the Highway 140 towns do not.",
+        },
+        {
+          q: "How far is Oakhurst from Yosemite Valley?",
+          a: "About 50 miles and 75 to 90 minutes on Highway 41, which is the longest drive to the Valley of the four year-round gateway towns. Oakhurst is much closer to the park's south end: about 14 miles and 20 to 25 minutes to the South Entrance, with the Mariposa Grove welcome plaza immediately inside the gate.",
+        },
+        {
+          q: "What is the closest town to Yosemite Valley?",
+          a: "El Portal, at about 14 miles and 25 to 35 minutes on Highway 140. It sits at about 1,900 feet, the lowest of the gateway towns, on the most reliable year-round route into the park.",
+        },
+        {
+          q: "How long does it take to drive across Yosemite?",
+          a: "Longer than the map suggests. Yosemite Valley to Glacier Point is roughly an hour when that road is open, the Valley to Tuolumne Meadows is about an hour and a half, and Hetch Hetchy is a dead end serving no through route. A day that crosses the park is a driving day.",
         },
       ],
     },
