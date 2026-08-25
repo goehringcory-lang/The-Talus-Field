@@ -66,7 +66,7 @@ window.ARTICLE_BODIES["yosemite-photography-spots"] = function YosemitePhotograp
       <h2>The calendar</h2>
 
       <p>
-        <strong>February: Horsetail Fall.</strong> For roughly two weeks in mid-to-late February, the setting sun aligns with Horsetail Fall on El Capitan's east edge and, when the sky is clear and water is flowing, lights the fall orange from behind. The "firefall" is now the most concentrated photography event in the park, with viewing corridors, restrictions, and crowds to match. It gets a <a href="/articles/horsetail-fall-firefall">full article of its own</a>; the short version is that the phenomenon is real, the window is narrow, and the conditions fail more evenings than they deliver.
+        <strong>February: Horsetail Fall.</strong> For roughly two weeks in mid-to-late February, the setting sun aligns with Horsetail Fall on El Capitan's east edge and, when the sky is clear and water is flowing, lights the fall orange from behind. The "firefall" is now the most concentrated photography event in the park, with viewing corridors, restrictions, and crowds to match. It gets a <a href="/articles/horsetail-fall-firefall">full article of its own</a>, and <a href="/firefall">the firefall page</a> carries the current season's viewing rules; the short version is that the phenomenon is real, the window is narrow, and the conditions fail more evenings than they deliver.
       </p>
 
       <p>

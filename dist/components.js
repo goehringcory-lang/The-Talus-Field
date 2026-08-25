@@ -895,7 +895,7 @@ function Footer({
     }
   }, c.label))), link("now", "The Park Bulletin"), link("films", "Films"), React.createElement("li", null, React.createElement("a", {
     href: "/archive/"
-  }, "Nature Notes archive")))), React.createElement("div", null, React.createElement("h4", null, "Plan"), React.createElement("ul", null, link("planning", "The Planning Guide"), link("map", "The Map"), link("itineraries", "Itineraries"), link("stay", "Where to stay"), link("conditions", "Conditions"), link("checklist", "First-week checklist"), link("kit", "Kit"), link("guide", "The Field Guide"))), React.createElement("div", null, React.createElement("h4", null, "The journal"), React.createElement("ul", null, link("about", "About"), link("newsletter", "Newsletter"), link("contact", "Contact"), link("search", "Search"), link("places", "Directory"), link("advertise", "Advertise"), link("widget", "Conditions widget"), link("partners", "Group codes"), link("privacy", "Privacy"), link("terms", "Terms"), link("affiliate", "Affiliate disclosure")))), React.createElement("div", {
+  }, "Nature Notes archive")))), React.createElement("div", null, React.createElement("h4", null, "Plan"), React.createElement("ul", null, link("planning", "The Planning Guide"), link("map", "The Map"), link("itineraries", "Itineraries"), link("stay", "Where to stay"), link("conditions", "Conditions"), link("checklist", "First-week checklist"), link("kit", "Kit"), link("guide", "The Field Guide"))), React.createElement("div", null, React.createElement("h4", null, "The journal"), React.createElement("ul", null, link("about", "About"), link("newsletter", "Newsletter"), link("contact", "Contact"), link("search", "Search"), link("places", "Directory")))), React.createElement("div", {
     className: "site-footer__disclosure"
   }, "Some links on this site are affiliate links. If you book or buy through one, The Talus Field may earn a small commission at no extra cost to you. ", React.createElement("a", {
     href: "/affiliate",
@@ -906,6 +906,24 @@ function Footer({
   }, "Full disclosure here.")), React.createElement("div", {
     className: "site-footer__legal"
   }, React.createElement("div", null, "© 2026 The Talus Field. Independent. Not affiliated with the National Park Service."), React.createElement("div", null, React.createElement("a", {
+    href: "/advertise",
+    onClick: e => {
+      e.preventDefault();
+      go("advertise");
+    }
+  }, "Advertise"), React.createElement("a", {
+    href: "/widget",
+    onClick: e => {
+      e.preventDefault();
+      go("widget");
+    }
+  }, "Conditions widget"), React.createElement("a", {
+    href: "/partners",
+    onClick: e => {
+      e.preventDefault();
+      go("partners");
+    }
+  }, "Group codes"), React.createElement("a", {
     href: "/privacy",
     onClick: e => {
       e.preventDefault();

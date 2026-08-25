@@ -20,7 +20,7 @@ window.ARTICLE_BODIES["tuolumne-meadows-in-a-day"] = function TuolumneMeadowsInA
       </p>
 
       <p>
-        Tioga Road opened on May 15 this year, unusually early, and it is open now. <a href="/articles/tioga-road-opening-weekend-2026">The opening-weekend piece</a> covers the early-season version of this day, which is a different animal. One current caution: there is water distribution system construction near the visitor center, with one-way traffic control and short holds. Budget a few extra minutes and do not treat a queue as a closure. There is no vehicle reservation required to enter Yosemite in 2026.
+        Tioga Road opened on May 15 this year, unusually early, and it is open now. <a href="/articles/tioga-road-opening-weekend-2026">The opening-weekend piece</a> covers the early-season version of this day, which is a different animal, and <a href="/tioga-opening">the Tioga Road opening page</a> tracks when the road comes back each spring. One current caution: there is water distribution system construction near the visitor center, with one-way traffic control and short holds. Budget a few extra minutes and do not treat a queue as a closure. There is no vehicle reservation required to enter Yosemite in 2026.
       </p>
 
       <h2>What is actually open, which changes every year</h2>
@@ -62,7 +62,7 @@ window.ARTICLE_BODIES["tuolumne-meadows-in-a-day"] = function TuolumneMeadowsInA
       </p>
 
       <p>
-        <strong>Pothole Dome. One mile, two hundred feet, an hour.</strong> At the west end of the meadow. You walk the meadow edge and then up glacier-polished granite that is gentle enough to stroll. Ten minutes of climbing buys the entire sweep of Tuolumne Meadows. If you do one thing in this article, do this one.
+        <strong>Pothole Dome. One mile, two hundred feet, an hour.</strong> At the west end of the meadow. You walk the meadow edge and then up <a href="/articles/yosemite-glaciers-climate">glacier-polished granite</a> that is gentle enough to stroll. Ten minutes of climbing buys the entire sweep of Tuolumne Meadows. If you do one thing in this article, do this one.
       </p>
 
       <p>

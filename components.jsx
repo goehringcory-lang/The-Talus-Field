@@ -862,6 +862,14 @@ function Footer({ go }) {
               {link("guide", "The Field Guide")}
             </ul>
           </div>
+          {/* Reader destinations only. The business and legal pages moved to
+              the legal bar below: sitewide footer links are the site's most
+              plentiful internal links, and /advertise, /widget, /partners,
+              /privacy and /terms were each collecting 31 to 65 of them, more
+              than any article except the gateway hub. They stay reachable
+              (nothing is dropped, and NAV_SECONDARY still carries them) but
+              they no longer outrank the writing for the site's own link
+              equity. */}
           <div>
             <h4>The journal</h4>
             <ul>
@@ -870,12 +878,6 @@ function Footer({ go }) {
               {link("contact", "Contact")}
               {link("search", "Search")}
               {link("places", "Directory")}
-              {link("advertise", "Advertise")}
-              {link("widget", "Conditions widget")}
-              {link("partners", "Group codes")}
-              {link("privacy", "Privacy")}
-              {link("terms", "Terms")}
-              {link("affiliate", "Affiliate disclosure")}
             </ul>
           </div>
         </div>
@@ -885,6 +887,9 @@ function Footer({ go }) {
         <div className="site-footer__legal">
           <div>© 2026 The Talus Field. Independent. Not affiliated with the National Park Service.</div>
           <div>
+            <a href="/advertise" onClick={(e) => { e.preventDefault(); go("advertise"); }}>Advertise</a>
+            <a href="/widget" onClick={(e) => { e.preventDefault(); go("widget"); }}>Conditions widget</a>
+            <a href="/partners" onClick={(e) => { e.preventDefault(); go("partners"); }}>Group codes</a>
             <a href="/privacy" onClick={(e) => { e.preventDefault(); go("privacy"); }}>Privacy</a>
             <a href="/terms" onClick={(e) => { e.preventDefault(); go("terms"); }}>Terms</a>
             <a href="/affiliate" onClick={(e) => { e.preventDefault(); go("affiliate"); }}>Affiliate</a>

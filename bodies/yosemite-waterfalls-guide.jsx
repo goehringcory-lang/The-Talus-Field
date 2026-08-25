@@ -18,7 +18,7 @@ window.ARTICLE_BODIES["yosemite-waterfalls-guide"] = function YosemiteWaterfalls
       <h2>Why the falls behave this way</h2>
 
       <p>
-        Nearly every famous waterfall in Yosemite is fed by <strong>snowmelt</strong>, not by springs, glaciers, or reliable year-round rivers. The creeks that pour over the Valley rim (Yosemite Creek, Ribbon Creek, Sentinel Creek, Horsetail's seep) drain small, shallow granite basins above the walls. Those basins hold no meaningful groundwater. They hold snow. When the Sierra snowpack melts, roughly April through June, the creeks surge and the falls detonate. When the snow above the rim is gone, usually sometime in July, the creeks drop with it, and by late summer several of the most photographed waterfalls on Earth are dry streaks on rock.
+        Nearly every famous waterfall in Yosemite is fed by <strong>snowmelt</strong>, not by springs, <a href="/articles/yosemite-glaciers-climate">the park's two remaining glaciers</a>, or reliable year-round rivers. The creeks that pour over the Valley rim (Yosemite Creek, Ribbon Creek, Sentinel Creek, Horsetail's seep) drain small, shallow granite basins above the walls. Those basins hold no meaningful groundwater. They hold snow. When the Sierra snowpack melts, roughly April through June, the creeks surge and the falls detonate. When the snow above the rim is gone, usually sometime in July, the creeks drop with it, and by late summer several of the most photographed waterfalls on Earth are dry streaks on rock.
       </p>
 
       <p>

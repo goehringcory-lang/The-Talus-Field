@@ -48,7 +48,7 @@ window.ARTICLE_BODIES["cathedral-lakes-day-hike"] = function CathedralLakesDayHi
       </p>
 
       <p>
-        The Cathedral Lakes trail itself is not fully accessible the moment Tioga opens. The upper portions of the trail and the lake basins hold snow into late June or early July in normal years and into mid-July in heavy-snow years. If you're hiking before the second week of July, expect significant snow on parts of the trail and at the lakes. Bring a map. Be willing to turn around.
+        The Cathedral Lakes trail itself is not fully accessible the moment <a href="/tioga-opening">Tioga Road opens</a>. The upper portions of the trail and the lake basins hold snow into late June or early July in normal years and into mid-July in heavy-snow years. If you're hiking before the second week of July, expect significant snow on parts of the trail and at the lakes. Bring a map. Be willing to turn around.
       </p>
 
       <p>
