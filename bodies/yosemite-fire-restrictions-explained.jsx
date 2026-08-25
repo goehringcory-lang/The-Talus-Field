@@ -48,9 +48,9 @@ window.ARTICLE_BODIES["yosemite-fire-restrictions-explained"] = function Yosemit
       </p>
 
       <Placeholder
-        caption="A tent and a dog at a Yosemite Valley campground, the kind of site where a fire ring sits empty under the current restrictions"
-        image="img/campground-tent-dog-andrei-serikov.jpg"
-        credit="Photo: Andrei Serikov / Pexels"
+        caption="The high country above Tuolumne Meadows. The band between 8,000 and 9,600 feet is the only ground in the park where a wood fire, built in a ring that already exists, is still legal"
+        image="img/tuolumne-high-country-cory-goehring.jpg"
+        credit="Photo: Cory Goehring"
         tag="PLATE I"
         size="lg"
         style={{ aspectRatio: "3 / 2", margin: "32px 0" }}
