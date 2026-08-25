@@ -50,6 +50,8 @@ export const STATIC_ROUTES = [
   "/firefall",
   "/tioga-opening",
   "/half-dome-lottery",
+  "/distances",
+  "/webcams",
   "/consult",
   "/widget",
   "/partners",
@@ -105,6 +107,13 @@ export function loadDataJs() {
     // /planning page renders these members, not just cat === "planning", so
     // the mirrors need the membership to describe the same curation.
     planningSeries: Array.isArray(w.PLANNING_SERIES) ? w.PLANNING_SERIES : [],
+    // Related reading. The curated table AND the live function are both handed
+    // back so the generator can call the same implementation the browser runs,
+    // rather than reimplementing the rotation fallback and drifting from it.
+    // The function closes over the sandbox's own window, so it resolves slugs
+    // against the catalog that was just harvested.
+    related: w.RELATED && typeof w.RELATED === "object" ? w.RELATED : {},
+    relatedFor: typeof w.relatedFor === "function" ? w.relatedFor : null,
   };
 }
 

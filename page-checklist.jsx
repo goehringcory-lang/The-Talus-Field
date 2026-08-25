@@ -106,7 +106,7 @@ function ChecklistPage({ go }) {
           <h2 style={sectionTitle}>The non-flexible reservations</h2>
           <label style={item}><input type="checkbox" style={cb} />In-park lodging: 6 to 12 months ahead (Ahwahnee, Valley Lodge, Curry Village). <A r="stay">Every option compared</A>.</label>
           <label style={item}><input type="checkbox" style={cb} /><A r="a:yosemite-gateway-towns-compared">Gateway-town lodging</A>: 1 to 3 months ahead for summer dates.</label>
-          <label style={item}><input type="checkbox" style={cb} /><A r="a:half-dome-permit-lottery-2026">Half Dome preseason lottery</A>: apply March 1 to 31 on Recreation.gov.</label>
+          <label style={item}><input type="checkbox" style={cb} /><A r="half-dome-lottery">Half Dome preseason lottery</A>: apply March 1 to 31 on Recreation.gov.</label>
           <label style={item}><input type="checkbox" style={cb} /><A r="a:tioga-road-opening-weekend-2026">Tuolumne Meadows</A> campground: opens on Recreation.gov in advance; books fast.</label>
           <label style={item}><input type="checkbox" style={cb} /><A r="a:yosemite-wilderness-permits-guide">Wilderness permits</A> for overnight trips: apply 24 weeks ahead via Recreation.gov.</label>
         </section>
@@ -161,7 +161,7 @@ function ChecklistPage({ go }) {
           <h2 style={sectionTitle}>If you remember nothing else</h2>
           <label style={item}><input type="checkbox" style={cb} /><A r="a:yosemite-without-reservations-2026">Be in the park by 6:30 AM</A> on any peak day. The day's quality is decided before 9.</label>
           <label style={item}><input type="checkbox" style={cb} />Every scented item in the <A r="a:bears-spring-emergence">bear box</A> when you leave the car. Trunk is not bear-proof.</label>
-          <label style={item}><input type="checkbox" style={cb} />Print the <A r="a:half-dome-permit-lottery-2026">Half Dome permit</A> if you have one. No cell service at the subdome.</label>
+          <label style={item}><input type="checkbox" style={cb} />Print the <A r="half-dome-lottery">Half Dome permit</A> if you have one. No cell service at the subdome.</label>
           <label style={item}><input type="checkbox" style={cb} />Have a Plan B for every major stop. Parking, weather, and <A r="a:yosemite-during-smoke-season">smoke</A> will kill at least one Plan A.</label>
           <label style={item}><input type="checkbox" style={cb} />Pack out everything you bring in. <A r="a:yosemite-needs-a-reservation-system">Yosemite is loved enough already</A>.</label>
         </section>
@@ -177,7 +177,7 @@ function ChecklistPage({ go }) {
             <li><a href="/articles/yosemite-without-reservations-2026" onClick={(e) => { e.preventDefault(); go("a:yosemite-without-reservations-2026"); }}>Yosemite without reservations in 2026</a></li>
             <li><a href="/articles/yosemite-gateway-towns-compared" onClick={(e) => { e.preventDefault(); go("a:yosemite-gateway-towns-compared"); }}>Yosemite gateway towns compared</a></li>
             <li><a href="/articles/pack-your-car-for-yosemite" onClick={(e) => { e.preventDefault(); go("a:pack-your-car-for-yosemite"); }}>How to pack your car for a Yosemite trip</a></li>
-            <li><a href="/articles/half-dome-permit-lottery-2026" onClick={(e) => { e.preventDefault(); go("a:half-dome-permit-lottery-2026"); }}>How the Half Dome permit lottery actually works</a></li>
+            <li><a href="/half-dome-lottery" onClick={(e) => { e.preventDefault(); go("half-dome-lottery"); }}>The Half Dome lottery: calendar, odds, and strategy</a></li>
             <li><a href="/articles/yosemite-during-smoke-season" onClick={(e) => { e.preventDefault(); go("a:yosemite-during-smoke-season"); }}>Yosemite during smoke season</a></li>
             <li><a href="/planning" onClick={(e) => { e.preventDefault(); go("planning"); }}>The full Yosemite Planning Guide</a></li>
           </ul>

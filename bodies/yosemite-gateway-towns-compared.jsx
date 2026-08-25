@@ -33,7 +33,7 @@ window.ARTICLE_BODIES["yosemite-gateway-towns-compared"] = function YosemiteGate
         I've stayed in all of them. I've watched first-time visitors make this decision well, and I've watched them make it badly. Here's what I'd tell you if you asked me which to pick.
       </p>
 
-      <h2>The geography you actually need to know</h2>
+      <h2 id="sec-0-the-geography-you-actually-need-to-know">The geography you actually need to know</h2>
 
       <p>
         Yosemite has four entrance stations on the through-road system. They sit at the cardinal points of the park, more or less, and each gateway town is associated with one of them. A fifth, the Hetch Hetchy entrance, is a dead end into one valley and serves no through route.
@@ -73,6 +73,13 @@ window.ARTICLE_BODIES["yosemite-gateway-towns-compared"] = function YosemiteGate
         The elevation column is not trivia. It is the best single predictor of whether you will be putting chains on in February. El Portal and Mariposa sit low enough that winter storms usually arrive as rain. Groveland is a thousand feet higher and gets chain controls that the Highway 140 towns do not. Lee Vining is at 6,800 feet and its road into the park is shut for roughly half the year.
       </p>
 
+      <p>
+        Every drive time on this page, plus the legs the table does not cover
+        (Oakhurst to the South Entrance, Groveland to Big Oak Flat, Lee Vining
+        to Tuolumne Meadows), is collected on <a href="/distances">the drive
+        times page</a> if you want to compare two towns at a glance.
+      </p>
+
       <p>If you want the answer before the detail, it is one of these five:</p>
 
       <ul>
@@ -85,7 +92,7 @@ window.ARTICLE_BODIES["yosemite-gateway-towns-compared"] = function YosemiteGate
 
       <p>Now the towns themselves.</p>
 
-      <h2>El Portal</h2>
+      <h2 id="sec-1-el-portal">El Portal</h2>
 
       <p>
         <strong>Distance to Yosemite Valley:</strong> about 14 miles, 25 to 35 minutes.<br />
@@ -141,7 +148,7 @@ window.ARTICLE_BODIES["yosemite-gateway-towns-compared"] = function YosemiteGate
 
       {townAvailability("El Portal", "El Portal, California")}
 
-      <h2>Mariposa</h2>
+      <h2 id="sec-2-mariposa">Mariposa</h2>
 
       <p>
         <strong>Distance to Yosemite Valley:</strong> about 45 miles, 45 minutes to an hour.<br />
@@ -181,7 +188,7 @@ window.ARTICLE_BODIES["yosemite-gateway-towns-compared"] = function YosemiteGate
 
       {townAvailability("Mariposa", "Mariposa, California")}
 
-      <h2>Oakhurst</h2>
+      <h2 id="sec-3-oakhurst">Oakhurst</h2>
 
       <p>
         <strong>Distance to Yosemite Valley:</strong> about 50 miles, 75 to 90 minutes.<br />
@@ -238,7 +245,7 @@ window.ARTICLE_BODIES["yosemite-gateway-towns-compared"] = function YosemiteGate
         One current note for this side of the park: the Wawona Hotel, the historic in-park option just inside the South Entrance, has been closed since December 2024, and the Park Service has said it stays closed for this visitor season to complete electrical repairs and upgrades. No reopening date has been announced. That removes the in-park alternative on the Highway 41 corridor and puts more pressure on Oakhurst and Fish Camp rooms in summer. Book earlier than you think you need to.
       </p>
 
-      <h2>Groveland</h2>
+      <h2 id="sec-4-groveland">Groveland</h2>
 
       <p>
         <strong>Distance to Yosemite Valley:</strong> about 41 miles, 65 to 80 minutes.<br />
@@ -285,7 +292,7 @@ window.ARTICLE_BODIES["yosemite-gateway-towns-compared"] = function YosemiteGate
 
       {townAvailability("Groveland", "Groveland, California")}
 
-      <h2>Lee Vining</h2>
+      <h2 id="sec-5-lee-vining">Lee Vining</h2>
 
       <p>
         <strong>Distance to Yosemite Valley:</strong> about 75 miles via Tioga Pass, 90 minutes minimum, only when Tioga is open (typically late May or June through October or early November; the Park Service opened it on May 15 in 2026, the earliest in sixteen years, and it is open now).<br />
@@ -340,7 +347,7 @@ window.ARTICLE_BODIES["yosemite-gateway-towns-compared"] = function YosemiteGate
 
       {townAvailability("Lee Vining", "Lee Vining, California")}
 
-      <h2>The decision matrix in plain English</h2>
+      <h2 id="sec-6-the-decision-matrix-in-plain-english">The decision matrix in plain English</h2>
 
       <p>Here's how I'd actually advise:</p>
 
@@ -357,7 +364,7 @@ window.ARTICLE_BODIES["yosemite-gateway-towns-compared"] = function YosemiteGate
       <p><strong>You're flying into Fresno.</strong> Oakhurst or Mariposa is on the way.</p>
       <p><strong>You're flying into Reno or driving from Las Vegas.</strong> Lee Vining is the natural east-side base.</p>
 
-      <h2>What each town looks like in winter</h2>
+      <h2 id="sec-7-what-each-town-looks-like-in-winter">What each town looks like in winter</h2>
 
       <p>
         Most gateway comparisons are written for July and quietly stop being true in December. The honest winter version:
@@ -370,7 +377,7 @@ window.ARTICLE_BODIES["yosemite-gateway-towns-compared"] = function YosemiteGate
         <li><strong>Lee Vining.</strong> Tioga Road is closed and there is no way into the park from here. The town largely shuts down, the Whoa Nellie Deli with it. Come for a frozen Mono Lake if you want, but do not come for Yosemite.</li>
       </ul>
 
-      <h2>Practical notes</h2>
+      <h2 id="sec-8-practical-notes">Practical notes</h2>
 
       <p>A few things that aren't obvious until you've done the trip.</p>
 
@@ -402,7 +409,7 @@ window.ARTICLE_BODIES["yosemite-gateway-towns-compared"] = function YosemiteGate
         <strong>Check current status the week you travel.</strong> Road, chain-control, and closure status changes faster than any lodging comparison. The <a href="/now">Park Bulletin</a> condenses the current edition of park status, roads, hours, and trail conditions onto one page.
       </p>
 
-      <h2>The takeaway</h2>
+      <h2 id="sec-9-the-takeaway">The takeaway</h2>
 
       <p>
         The right gateway town depends on your trip, not on which town has the best reviews. Mariposa is the safest first-timer's choice. El Portal is the strongest if you can get a room. Groveland is the underrated pick for character without the crowd. Oakhurst is for the southern-entrance trip. Lee Vining is the east-side experience that most western visitors never see.

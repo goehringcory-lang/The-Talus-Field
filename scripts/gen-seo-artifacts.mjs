@@ -112,7 +112,39 @@ function jsonCompact(value, indent = 0) {
 // Merge
 // ----------------------------------------------------------------------------
 
-function mergeArticles(articles, seoData, ogImages, planningSlugs) {
+// Validate window.RELATED before anything consumes it. A bad entry here is a
+// dead link on a published page and, once the Worker started injecting the
+// block for crawlers, a dead link in the crawler-visible HTML too. Nothing else
+// on the site would notice: the link checker only sees hrefs that are already
+// written into a file.
+function validateRelated(related, articles) {
+  const slugs = new Set(articles.map((a) => a.slug));
+  const problems = [];
+  for (const [from, list] of Object.entries(related)) {
+    if (!slugs.has(from)) {
+      problems.push(`RELATED has an entry for "${from}", which is not in the catalog`);
+      continue;
+    }
+    if (!Array.isArray(list) || list.length < 4 || list.length > 6) {
+      problems.push(`RELATED["${from}"] should list 4 to 6 slugs, found ${Array.isArray(list) ? list.length : typeof list}`);
+      continue;
+    }
+    const seen = new Set();
+    for (const to of list) {
+      if (to === from) problems.push(`RELATED["${from}"] links to itself`);
+      else if (!slugs.has(to)) problems.push(`RELATED["${from}"] links to "${to}", which is not in the catalog`);
+      if (seen.has(to)) problems.push(`RELATED["${from}"] lists "${to}" twice`);
+      seen.add(to);
+    }
+  }
+  if (problems.length) {
+    for (const p of problems) console.error(`✗ ${p}`);
+    console.error(`Fix window.RELATED in data.js. ${problems.length} problem(s).`);
+    process.exit(1);
+  }
+}
+
+function mergeArticles(articles, seoData, ogImages, planningSlugs, relatedFor) {
   return articles.map((art) => {
     const seo = seoData[art.slug] || {};
     const o = {
@@ -139,6 +171,13 @@ function mergeArticles(articles, seoData, ogImages, planningSlugs) {
     // data.js inline faq wins over the sidecar (only one article uses inline faq).
     const faq = art.faq || seo.faq;
     if (Array.isArray(faq) && faq.length) o.faq = faq;
+    // Related reading, resolved by data.js's own relatedFor so the crawler
+    // block, the reader's rail and this mirror can never disagree about what an
+    // article links to.
+    if (relatedFor) {
+      const rel = relatedFor(art.slug);
+      if (Array.isArray(rel) && rel.length) o.related = rel;
+    }
     return o;
   });
 }
@@ -151,15 +190,24 @@ function buildArticlesJson(merged) {
   return jsonCompact(merged, 0) + "\n";
 }
 
-// Slim film mirror for edge/seo.js. Only the fields the /films
-// VideoObject ItemList needs; theme/episode/year are dropped (the JSON-LD does
-// not use them, and uploadDate is deliberately omitted, see app.jsx).
+// Slim film mirror for edge/seo.js. Only the fields the /films VideoObject
+// ItemList needs; theme, episode and the bare publication `year` are dropped
+// (the JSON-LD does not use them).
+//
+// `uploaded` is the sourced upload date and rides along when an episode has
+// one: it becomes VideoObject.uploadDate, which Google requires and whose
+// absence made all 40 items invalid. It is carried only when present. A bare
+// `year` is NOT a substitute, and nothing here derives one from it: a
+// fabricated month and day would be a false fact in structured data, which is
+// worse than an incomplete one. Populate the field with
+// scripts/fetch-video-dates.mjs, which reads the real date off each watch page.
 function buildVideosJson(episodes) {
   const slim = episodes.map((ep) => ({
     id: ep.id,
     title: ep.title,
     dek: ep.dek,
     youtubeId: ep.youtubeId,
+    ...(ep.uploaded ? { uploaded: ep.uploaded } : {}),
   }));
   return jsonCompact(slim, 0) + "\n";
 }
@@ -179,6 +227,28 @@ function buildKitJson(kit) {
     }),
   }));
   return jsonCompact({ lists }, 0) + "\n";
+}
+
+// /sitemap.xml is an index, not a urlset. The site publishes two url sets, and
+// only the editorial one was ever submitted to Search Console: the archive's
+// 569 URLs were discoverable through robots.txt but got no per-sitemap
+// indexing report, which is exactly why the archive's indexation problem was
+// invisible in the Sitemaps view while 139 of its pages went unindexed. One
+// submitted index gives per-child reporting for free.
+//
+// No <lastmod> on the children on purpose. The archive child's real stamp
+// lives in gen-archive.mjs (ARCHIVE_CONTENT_UPDATED), and reaching across
+// generators to read it would couple two builds that are deliberately
+// independent, in a file whose --check byte-compares the result.
+function buildSitemapIndex() {
+  const child = (loc) => `  <sitemap>\n    <loc>${SITE_ORIGIN}${loc}</loc>\n  </sitemap>`;
+  return (
+    `<?xml version="1.0" encoding="UTF-8"?>\n` +
+    `<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n` +
+    `${child("/sitemap-articles.xml")}\n` +
+    `${child("/archive/sitemap.xml")}\n` +
+    `</sitemapindex>\n`
+  );
 }
 
 function buildSitemap(merged, categories) {
@@ -236,8 +306,13 @@ function buildSitemap(merged, categories) {
     ["/conditions", "2026-07-12"],
     ["/stay", "2026-07-26"],
     ["/firefall", "2026-07-17"],
-    ["/tioga-opening", "2026-07-21"],
+    // /tioga-opening reads the current bulletin edition for its live status
+    // band, so its lastmod tracks the edition stamp like /now does rather than
+    // sitting at the date the page was written.
+    ["/tioga-opening", nowLastmod()],
     ["/half-dome-lottery", "2026-07-21"],
+    ["/distances", "2026-08-25"],
+    ["/webcams", "2026-08-25"],
     ["/consult", "2026-07-15"],
     ["/widget", "2026-07-15"],
     ["/partners", "2026-07-30"],
@@ -260,7 +335,11 @@ function buildSitemap(merged, categories) {
   return (
     `<?xml version="1.0" encoding="UTF-8"?>\n` +
     `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"\n` +
-    `        xmlns:image="http://www.google.com/schemas/sitemaps-image/1.1">\n\n` +
+    // Google's image extension namespace is sitemap-image, singular. It shipped
+    // for months as "sitemaps-image", which Search Console reported as
+    // "Incorrect namespace" and which silently voided every <image:image>
+    // block in the file. Do not pluralize it.
+    `        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">\n\n` +
     `  <!-- Hub pages -->\n${hub.join("\n")}\n\n` +
     `  <!-- Sections -->\n${sections.join("\n")}\n\n` +
     `  <!-- Static pages -->\n${staticPages.join("\n")}\n\n` +
@@ -384,7 +463,7 @@ function buildTripPoints() {
 // ----------------------------------------------------------------------------
 
 async function main() {
-  const { articles, categories, kit, planningSeries } = loadDataJs();
+  const { articles, categories, kit, planningSeries, related, relatedFor } = loadDataJs();
   const episodes = loadVideosJs();
   const seoData = loadSeoData();
 
@@ -403,14 +482,17 @@ async function main() {
     if (og) ogImages[art.slug] = og;
   }
 
+  validateRelated(related, articles);
+
   const planningSlugs = new Set(planningSeries.flatMap((part) => part.slugs || []));
-  const merged = mergeArticles(articles, seoData, ogImages, planningSlugs);
+  const merged = mergeArticles(articles, seoData, ogImages, planningSlugs, relatedFor);
 
   const targets = {
     "articles.json": buildArticlesJson(merged),
     "videos.json": buildVideosJson(episodes),
     "kit.json": buildKitJson(kit),
-    "sitemap.xml": buildSitemap(merged, categories),
+    "sitemap.xml": buildSitemapIndex(),
+    "sitemap-articles.xml": buildSitemap(merged, categories),
     "feed.xml": buildFeed(merged, categories),
     "llms.txt": buildLlms(readFileSync(path.join(ROOT, "llms.txt"), "utf8"), merged, categories),
     "index.html": buildIndexHtml(readFileSync(path.join(ROOT, "index.html"), "utf8"), merged),

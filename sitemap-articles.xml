@@ -1,0 +1,664 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+
+  <!-- Hub pages -->
+  <url>
+    <loc>https://thetalusfieldjournal.com/</loc>
+    <lastmod>2026-08-25</lastmod>
+    <image:image>
+      <image:loc>https://thetalusfieldjournal.com/img/responsive/half-dome-winter-storm-1600.jpg</image:loc>
+      <image:title>Half Dome in a clearing winter storm</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://thetalusfieldjournal.com/articles</loc>
+    <lastmod>2026-08-25</lastmod>
+  </url>
+  <url>
+    <loc>https://thetalusfieldjournal.com/planning</loc>
+    <lastmod>2026-08-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://thetalusfieldjournal.com/checklist</loc>
+    <lastmod>2026-05-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Sections -->
+  <url>
+    <loc>https://thetalusfieldjournal.com/section/planning</loc>
+    <lastmod>2026-08-25</lastmod>
+  </url>
+  <url>
+    <loc>https://thetalusfieldjournal.com/section/trails</loc>
+    <lastmod>2026-08-25</lastmod>
+  </url>
+  <url>
+    <loc>https://thetalusfieldjournal.com/section/wildlife</loc>
+    <lastmod>2026-08-25</lastmod>
+  </url>
+  <url>
+    <loc>https://thetalusfieldjournal.com/section/seasonal</loc>
+    <lastmod>2026-08-25</lastmod>
+  </url>
+
+  <!-- Static pages -->
+  <url>
+    <loc>https://thetalusfieldjournal.com/about</loc>
+    <lastmod>2026-04-01</lastmod>
+  </url>
+  <url>
+    <loc>https://thetalusfieldjournal.com/kit</loc>
+    <lastmod>2026-04-26</lastmod>
+  </url>
+  <url>
+    <loc>https://thetalusfieldjournal.com/films</loc>
+    <lastmod>2026-06-10</lastmod>
+  </url>
+  <url>
+    <loc>https://thetalusfieldjournal.com/places</loc>
+    <lastmod>2026-04-26</lastmod>
+  </url>
+  <url>
+    <loc>https://thetalusfieldjournal.com/advertise</loc>
+    <lastmod>2026-04-01</lastmod>
+  </url>
+  <url>
+    <loc>https://thetalusfieldjournal.com/newsletter</loc>
+    <lastmod>2026-04-01</lastmod>
+  </url>
+  <url>
+    <loc>https://thetalusfieldjournal.com/contact</loc>
+    <lastmod>2026-04-01</lastmod>
+  </url>
+  <url>
+    <loc>https://thetalusfieldjournal.com/privacy</loc>
+    <lastmod>2026-07-08</lastmod>
+  </url>
+  <url>
+    <loc>https://thetalusfieldjournal.com/terms</loc>
+    <lastmod>2026-04-01</lastmod>
+  </url>
+  <url>
+    <loc>https://thetalusfieldjournal.com/affiliate</loc>
+    <lastmod>2026-04-01</lastmod>
+  </url>
+  <url>
+    <loc>https://thetalusfieldjournal.com/guide</loc>
+    <lastmod>2026-07-31</lastmod>
+  </url>
+  <url>
+    <loc>https://thetalusfieldjournal.com/map</loc>
+    <lastmod>2026-06-10</lastmod>
+  </url>
+  <url>
+    <loc>https://thetalusfieldjournal.com/itineraries</loc>
+    <lastmod>2026-07-12</lastmod>
+  </url>
+  <url>
+    <loc>https://thetalusfieldjournal.com/conditions</loc>
+    <lastmod>2026-07-12</lastmod>
+  </url>
+  <url>
+    <loc>https://thetalusfieldjournal.com/stay</loc>
+    <lastmod>2026-07-26</lastmod>
+  </url>
+  <url>
+    <loc>https://thetalusfieldjournal.com/firefall</loc>
+    <lastmod>2026-07-17</lastmod>
+  </url>
+  <url>
+    <loc>https://thetalusfieldjournal.com/tioga-opening</loc>
+    <lastmod>2026-08-18</lastmod>
+  </url>
+  <url>
+    <loc>https://thetalusfieldjournal.com/half-dome-lottery</loc>
+    <lastmod>2026-07-21</lastmod>
+  </url>
+  <url>
+    <loc>https://thetalusfieldjournal.com/distances</loc>
+    <lastmod>2026-08-25</lastmod>
+  </url>
+  <url>
+    <loc>https://thetalusfieldjournal.com/webcams</loc>
+    <lastmod>2026-08-25</lastmod>
+  </url>
+  <url>
+    <loc>https://thetalusfieldjournal.com/consult</loc>
+    <lastmod>2026-07-15</lastmod>
+  </url>
+  <url>
+    <loc>https://thetalusfieldjournal.com/widget</loc>
+    <lastmod>2026-07-15</lastmod>
+  </url>
+  <url>
+    <loc>https://thetalusfieldjournal.com/partners</loc>
+    <lastmod>2026-07-30</lastmod>
+  </url>
+  <url>
+    <loc>https://thetalusfieldjournal.com/explore</loc>
+    <lastmod>2026-07-26</lastmod>
+  </url>
+  <url>
+    <loc>https://thetalusfieldjournal.com/now</loc>
+    <lastmod>2026-08-18</lastmod>
+  </url>
+
+  <!-- Articles -->
+  <url>
+    <loc>https://thetalusfieldjournal.com/articles/yosemite-fire-restrictions-explained</loc>
+    <lastmod>2026-08-24</lastmod>
+    <image:image>
+      <image:loc>https://thetalusfieldjournal.com/img/responsive/campfire-half-dome-night-og.jpg</image:loc>
+      <image:title>A campfire burning at night below Half Dome</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://thetalusfieldjournal.com/articles/yosemite-in-three-to-five-days</loc>
+    <lastmod>2026-08-23</lastmod>
+    <image:image>
+      <image:loc>https://thetalusfieldjournal.com/img/responsive/washburn-point-1600.jpg</image:loc>
+      <image:title>Half Dome and the Merced canyon staircase from Washburn Point on the rim day</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://thetalusfieldjournal.com/articles/yosemite-winter-hikes</loc>
+    <lastmod>2026-08-23</lastmod>
+    <image:image>
+      <image:loc>https://thetalusfieldjournal.com/img/responsive/yosemite-valley-winter-wall-1600.jpg</image:loc>
+      <image:title>A walker crossing a snow-patched Yosemite Valley meadow below Cathedral Rocks</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://thetalusfieldjournal.com/articles/yosemite-in-march</loc>
+    <lastmod>2026-08-20</lastmod>
+    <image:image>
+      <image:loc>https://thetalusfieldjournal.com/img/responsive/el-capitan-winter-og.jpg</image:loc>
+      <image:title>El Capitan above the Merced River as the Valley floor leafs out in spring</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://thetalusfieldjournal.com/articles/camping-in-yosemite-first-time</loc>
+    <lastmod>2026-08-07</lastmod>
+    <image:image>
+      <image:loc>https://thetalusfieldjournal.com/img/responsive/campground-tent-dog-andrei-serikov-1600.jpg</image:loc>
+      <image:title>A dog standing beside an orange tent at a forested campsite on the Yosemite Valley floor</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://thetalusfieldjournal.com/articles/first-yosemite-backpacking-trip</loc>
+    <lastmod>2026-08-07</lastmod>
+    <image:image>
+      <image:loc>https://thetalusfieldjournal.com/img/responsive/backcountry-camp-alpenglow-stephen-leonardi-1600.jpg</image:loc>
+      <image:title>A backpacking tent pitched on granite at first light, alpenglow on the spires above camp</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://thetalusfieldjournal.com/articles/yosemite-day-trip-from-bay-area</loc>
+    <lastmod>2026-08-07</lastmod>
+    <image:image>
+      <image:loc>https://thetalusfieldjournal.com/img/responsive/half-dome-overlook-day-visitor-stephen-leonardi-og.jpg</image:loc>
+      <image:title>A visitor at a paved Yosemite overlook, the northwest face of Half Dome across the canyon behind</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://thetalusfieldjournal.com/articles/swimming-in-the-merced</loc>
+    <lastmod>2026-08-07</lastmod>
+    <image:image>
+      <image:loc>https://thetalusfieldjournal.com/img/responsive/merced-river-swimming-hole-robert-schrader-1600.jpg</image:loc>
+      <image:title>A low, clear stretch of the Merced River in Yosemite Valley in late summer</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://thetalusfieldjournal.com/articles/tuolumne-meadows-in-a-day</loc>
+    <lastmod>2026-08-07</lastmod>
+    <image:image>
+      <image:loc>https://thetalusfieldjournal.com/img/responsive/tuolumne-meadows-river-basiciggy-1600.jpg</image:loc>
+      <image:title>The Tuolumne River winding through Tuolumne Meadows below the high country domes</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://thetalusfieldjournal.com/articles/mariposa-grove-how-to-visit</loc>
+    <lastmod>2026-08-07</lastmod>
+    <image:image>
+      <image:loc>https://thetalusfieldjournal.com/img/responsive/mariposa-grove-grizzly-giant-nieves-og.jpg</image:loc>
+      <image:title>The Grizzly Giant standing above the loop trail in the Mariposa Grove</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://thetalusfieldjournal.com/articles/yosemite-valley-parking-guide</loc>
+    <lastmod>2026-08-06</lastmod>
+    <image:image>
+      <image:loc>https://thetalusfieldjournal.com/img/responsive/cars-on-meadow-edge-cory-goehring-og.jpg</image:loc>
+      <image:title>Cars parked along the edge of a Yosemite Valley meadow on a crowded weekend</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://thetalusfieldjournal.com/articles/yosemite-shuttle-and-yarts</loc>
+    <lastmod>2026-08-07</lastmod>
+    <image:image>
+      <image:loc>https://thetalusfieldjournal.com/img/responsive/yarts-bus-bridalveil-1600.jpg</image:loc>
+      <image:title>A YARTS coach stopped on Southside Drive below Bridalveil Fall, public transit running into Yosemite Valley in winter</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://thetalusfieldjournal.com/articles/yosemite-walk-up-and-day-of-permits</loc>
+    <lastmod>2026-08-04</lastmod>
+    <image:image>
+      <image:loc>https://thetalusfieldjournal.com/img/responsive/half-dome-valley-vista-1600.jpg</image:loc>
+      <image:title>Half Dome above the Yosemite Valley floor, the one hike in the park with no walk-up permit option</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://thetalusfieldjournal.com/articles/yosemite-in-fall</loc>
+    <lastmod>2026-08-02</lastmod>
+    <image:image>
+      <image:loc>https://thetalusfieldjournal.com/img/responsive/tunnel-view-autumn-aniket-deole-1600.jpg</image:loc>
+      <image:title>Tunnel View in autumn, with fresh snow on the high rims above fall color on the Valley floor</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://thetalusfieldjournal.com/articles/yosemite-tunnel-trees</loc>
+    <lastmod>2026-07-26</lastmod>
+    <image:image>
+      <image:loc>https://thetalusfieldjournal.com/img/responsive/wawona-tunnel-tree-historic-og.jpg</image:loc>
+      <image:title>A historic photograph of a stagecoach and horse team standing inside the tunnel cut through the base of the Wawona Tunnel Tree in the Mariposa Grove</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://thetalusfieldjournal.com/articles/yosemite-wildlife-viewing-guide</loc>
+    <lastmod>2026-08-25</lastmod>
+    <image:image>
+      <image:loc>https://thetalusfieldjournal.com/img/responsive/half-dome-meadow-deer-johannes-andersson-og.jpg</image:loc>
+      <image:title>Mule deer grazing a Yosemite meadow at golden hour beneath Half Dome</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://thetalusfieldjournal.com/articles/showy-milkweed-yosemite-valley</loc>
+    <lastmod>2026-07-17</lastmod>
+    <image:image>
+      <image:loc>https://thetalusfieldjournal.com/img/responsive/showy-milkweed-nature-journal-1600.jpg</image:loc>
+      <image:title>A nature-journal illustration of showy milkweed, Asclepias speciosa, with its pink flower umbels, felted leaves, seed pod, and a monarch butterfly and caterpillar</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://thetalusfieldjournal.com/articles/yosemite-connecting-to-traditions</loc>
+    <lastmod>2026-07-16</lastmod>
+    <image:image>
+      <image:loc>https://thetalusfieldjournal.com/img/responsive/connecting-to-traditions-flyer-og.jpg</image:loc>
+      <image:title>The Connecting to Traditions cultural demonstration program flyer, a partially woven Native basket above the summer and fall schedule</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://thetalusfieldjournal.com/articles/yosemite-waterfalls-guide</loc>
+    <lastmod>2026-08-25</lastmod>
+    <image:image>
+      <image:loc>https://thetalusfieldjournal.com/img/responsive/upper-yosemite-fall-jesse-callahan-og.jpg</image:loc>
+      <image:title>Upper Yosemite Fall at full spring flow, the 1,430-foot free leap of the tallest waterfall in North America</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://thetalusfieldjournal.com/articles/yosemite-photography-spots</loc>
+    <lastmod>2026-07-12</lastmod>
+    <image:image>
+      <image:loc>https://thetalusfieldjournal.com/img/responsive/half-dome-golden-hour-clouds-og.jpg</image:loc>
+      <image:title>Half Dome at eye level from the Valley rim in late golden-hour light</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://thetalusfieldjournal.com/articles/horsetail-fall-firefall</loc>
+    <lastmod>2026-07-16</lastmod>
+    <image:image>
+      <image:loc>https://thetalusfieldjournal.com/img/responsive/horsetail-fall-firefall-cedric-letsch-og.jpg</image:loc>
+      <image:title>Horsetail Fall glowing orange at sunset on the east shoulder of El Capitan</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://thetalusfieldjournal.com/articles/yosemite-in-winter</loc>
+    <lastmod>2026-08-06</lastmod>
+    <image:image>
+      <image:loc>https://thetalusfieldjournal.com/img/responsive/half-dome-winter-storm-og.jpg</image:loc>
+      <image:title>Half Dome in fresh snow as a winter storm tears apart above it</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://thetalusfieldjournal.com/articles/where-to-stay-in-yosemite</loc>
+    <lastmod>2026-08-01</lastmod>
+    <image:image>
+      <image:loc>https://thetalusfieldjournal.com/img/responsive/valley-view-sunset-rodrigo-soares-1600.jpg</image:loc>
+      <image:title>Yosemite Valley at sunset, home to the Ahwahnee, Valley Lodge, Curry Village, and Housekeeping Camp</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://thetalusfieldjournal.com/articles/yosemite-wildflowers-guide</loc>
+    <lastmod>2026-07-12</lastmod>
+    <image:image>
+      <image:loc>https://thetalusfieldjournal.com/img/responsive/wildflowers-1600.jpg</image:loc>
+      <image:title>Midsummer wildflowers crowding a Yosemite meadow as the bloom nears the top of its climb</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://thetalusfieldjournal.com/articles/watching-climbers-el-capitan</loc>
+    <lastmod>2026-07-12</lastmod>
+    <image:image>
+      <image:loc>https://thetalusfieldjournal.com/img/responsive/yosemite-valley-granite-summer-cory-goehring-1600.jpg</image:loc>
+      <image:title>El Capitan's 3,000-foot southwest face in afternoon light, seen from the Valley floor</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://thetalusfieldjournal.com/articles/getting-to-yosemite</loc>
+    <lastmod>2026-08-07</lastmod>
+    <image:image>
+      <image:loc>https://thetalusfieldjournal.com/img/responsive/merced-canyon-road-cory-goehring-1600.jpg</image:loc>
+      <image:title>Highway 140 following the Merced River canyon toward the Arch Rock entrance</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://thetalusfieldjournal.com/articles/yosemite-wilderness-permits-guide</loc>
+    <lastmod>2026-08-07</lastmod>
+    <image:image>
+      <image:loc>https://thetalusfieldjournal.com/img/responsive/tuolumne-high-country-cory-goehring-og.jpg</image:loc>
+      <image:title>The Tuolumne high country under afternoon light, most of it a day's walk from any road</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://thetalusfieldjournal.com/articles/yosemite-accessibility-guide</loc>
+    <lastmod>2026-07-10</lastmod>
+    <image:image>
+      <image:loc>https://thetalusfieldjournal.com/img/responsive/lower-yosemite-fall-og.jpg</image:loc>
+      <image:title>Lower Yosemite Fall at peak flow above the paved, accessible loop trail</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://thetalusfieldjournal.com/articles/pets-in-yosemite</loc>
+    <lastmod>2026-08-01</lastmod>
+    <image:image>
+      <image:loc>https://thetalusfieldjournal.com/img/responsive/wawona-meadow-loop-1600.jpg</image:loc>
+      <image:title>The Wawona Meadow, home to one of the park's two dog-legal trails</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://thetalusfieldjournal.com/articles/yosemite-ranger-programs</loc>
+    <lastmod>2026-07-08</lastmod>
+    <image:image>
+      <image:loc>https://thetalusfieldjournal.com/img/responsive/kid-yosemite-falls-boardwalk-og.jpg</image:loc>
+      <image:title>A child on the Lower Yosemite Fall boardwalk, Upper Yosemite Fall behind</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://thetalusfieldjournal.com/articles/yosemite-camping-complete-guide</loc>
+    <lastmod>2026-08-07</lastmod>
+    <image:image>
+      <image:loc>https://thetalusfieldjournal.com/img/responsive/half-dome-starry-night-casey-horner-1600.jpg</image:loc>
+      <image:title>Half Dome under a star-filled night sky above Yosemite Valley</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://thetalusfieldjournal.com/articles/where-to-propose-in-yosemite</loc>
+    <lastmod>2026-06-24</lastmod>
+    <image:image>
+      <image:loc>https://thetalusfieldjournal.com/img/responsive/lavender-wreath-proposal-cory-goehring-og.jpg</image:loc>
+      <image:title>A lavender wreath hanging from a wooden post above a blooming lavender field</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://thetalusfieldjournal.com/articles/is-bear-spray-allowed-in-yosemite</loc>
+    <lastmod>2026-08-25</lastmod>
+    <image:image>
+      <image:loc>https://thetalusfieldjournal.com/img/responsive/black-bear-og.jpg</image:loc>
+      <image:title>A black bear foraging at a meadow margin in Yosemite</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://thetalusfieldjournal.com/articles/yosemite-bears-safety-guide</loc>
+    <lastmod>2026-06-16</lastmod>
+    <image:image>
+      <image:loc>https://thetalusfieldjournal.com/img/responsive/black-bear-roadside-og.jpg</image:loc>
+      <image:title>A brown-phase black bear foraging at the edge of a Yosemite roadside</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://thetalusfieldjournal.com/articles/yosemite-heat-safety-guide</loc>
+    <lastmod>2026-06-16</lastmod>
+    <image:image>
+      <image:loc>https://thetalusfieldjournal.com/img/responsive/tenaya-lake-1600.jpg</image:loc>
+      <image:title>Tenaya Lake, high-country water on a hot afternoon</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://thetalusfieldjournal.com/articles/when-to-visit-yosemite-2026-crowd-forecast</loc>
+    <lastmod>2026-06-11</lastmod>
+    <image:image>
+      <image:loc>https://thetalusfieldjournal.com/img/responsive/vernal-fall-high-water-og.jpg</image:loc>
+      <image:title>Vernal Fall at high water in late spring, the start of the park's heaviest months</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://thetalusfieldjournal.com/articles/yosemite-trip-cost-budget-2026</loc>
+    <lastmod>2026-08-01</lastmod>
+    <image:image>
+      <image:loc>https://thetalusfieldjournal.com/img/responsive/ahwahnee-hotel-1600.jpg</image:loc>
+      <image:title>The Ahwahnee under snow, the park's most expensive lodging</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://thetalusfieldjournal.com/articles/yosemite-in-september-2026</loc>
+    <lastmod>2026-08-25</lastmod>
+    <image:image>
+      <image:loc>https://thetalusfieldjournal.com/img/responsive/tuolumne-high-country-cory-goehring-og.jpg</image:loc>
+      <image:title>The Tuolumne high country under afternoon light, at its best in September</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://thetalusfieldjournal.com/articles/yosemite-in-june-2026</loc>
+    <lastmod>2026-08-06</lastmod>
+    <image:image>
+      <image:loc>https://thetalusfieldjournal.com/img/responsive/yosemite-falls-spring-blossoms-cory-goehring-og.jpg</image:loc>
+      <image:title>Upper Yosemite Fall framed by spring blossoms from the Valley floor</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://thetalusfieldjournal.com/articles/cathedral-lakes-day-hike</loc>
+    <lastmod>2026-06-02</lastmod>
+    <image:image>
+      <image:loc>https://thetalusfieldjournal.com/img/responsive/cathedral-lakes-1600.jpg</image:loc>
+      <image:title>Cathedral Peak reflected in Lower Cathedral Lake</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://thetalusfieldjournal.com/articles/yosemite-needs-a-reservation-system</loc>
+    <lastmod>2026-05-26</lastmod>
+    <image:image>
+      <image:loc>https://thetalusfieldjournal.com/img/responsive/cathedral-rocks-meadow-fence-1600.jpg</image:loc>
+      <image:title>A split-rail fence along a Yosemite Valley meadow below Cathedral Rocks at dusk</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://thetalusfieldjournal.com/articles/memorial-day-skip-the-valley-go-high-2026</loc>
+    <lastmod>2026-05-20</lastmod>
+    <image:image>
+      <image:loc>https://thetalusfieldjournal.com/img/responsive/half-dome-glacier-point-road-josh-carter-og.jpg</image:loc>
+      <image:title>Half Dome from a Glacier Point Road overlook</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://thetalusfieldjournal.com/articles/where-to-eat-yosemite</loc>
+    <lastmod>2026-08-25</lastmod>
+    <image:image>
+      <image:loc>https://thetalusfieldjournal.com/img/responsive/cathedral-beach-quiet-picnic-1600.jpg</image:loc>
+      <image:title>The Merced River at Cathedral Beach, one of the Valley's picnic areas</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://thetalusfieldjournal.com/articles/yosemite-in-one-or-two-days</loc>
+    <lastmod>2026-08-07</lastmod>
+    <image:image>
+      <image:loc>https://thetalusfieldjournal.com/img/responsive/taft-point-1600.jpg</image:loc>
+      <image:title>The cliff edge at Taft Point, El Capitan across the valley</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://thetalusfieldjournal.com/articles/four-mile-up-panorama-down</loc>
+    <lastmod>2026-05-17</lastmod>
+    <image:image>
+      <image:loc>https://thetalusfieldjournal.com/img/responsive/960px-four-mile-trailhead-with-constrast-mask-og.jpg</image:loc>
+      <image:title>Looking up the Four Mile Trail toward Glacier Point</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://thetalusfieldjournal.com/articles/yosemite-with-kids-no-reservations-2026</loc>
+    <lastmod>2026-08-06</lastmod>
+    <image:image>
+      <image:loc>https://thetalusfieldjournal.com/img/responsive/mariposa-grove-1600.jpg</image:loc>
+      <image:title>Giant sequoias in the Mariposa Grove, a family favorite</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://thetalusfieldjournal.com/articles/tioga-road-opening-weekend-2026</loc>
+    <lastmod>2026-05-13</lastmod>
+    <image:image>
+      <image:loc>https://thetalusfieldjournal.com/img/responsive/tuolumne-meadows-1600.jpg</image:loc>
+      <image:title>Tuolumne Meadows in early season, Tioga Road</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://thetalusfieldjournal.com/articles/so-you-want-to-hike-half-dome</loc>
+    <lastmod>2026-05-12</lastmod>
+    <image:image>
+      <image:loc>https://thetalusfieldjournal.com/img/responsive/half-dome-1600.jpg</image:loc>
+      <image:title>Half Dome rising 4,800 feet from the Yosemite Valley floor</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://thetalusfieldjournal.com/articles/glacier-point-road-open-2026</loc>
+    <lastmod>2026-05-11</lastmod>
+    <image:image>
+      <image:loc>https://thetalusfieldjournal.com/img/responsive/half-dome-sunset-glacier-point-joshua-earle-og.jpg</image:loc>
+      <image:title>Half Dome at sunset, from Glacier Point</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://thetalusfieldjournal.com/articles/mist-trail-the-real-guide</loc>
+    <lastmod>2026-05-11</lastmod>
+    <image:image>
+      <image:loc>https://thetalusfieldjournal.com/img/responsive/nevada-fall-liberty-cap-ryan-oconnor-og.jpg</image:loc>
+      <image:title>Nevada Fall and Liberty Cap from the John Muir Trail</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://thetalusfieldjournal.com/articles/working-in-yosemite</loc>
+    <lastmod>2026-05-08</lastmod>
+    <image:image>
+      <image:loc>https://thetalusfieldjournal.com/img/responsive/curry-village-1600.jpg</image:loc>
+      <image:title>Employee cabins at Curry Village, where much of the park's seasonal staff lives</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://thetalusfieldjournal.com/articles/water-ouzels-waterfalls</loc>
+    <lastmod>2026-05-08</lastmod>
+    <image:image>
+      <image:loc>https://thetalusfieldjournal.com/img/responsive/happy-isles-ouzel-watch-1600.jpg</image:loc>
+      <image:title>The rapids of the Merced River at Happy Isles, prime water-ouzel habitat</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://thetalusfieldjournal.com/articles/bears-spring-emergence</loc>
+    <lastmod>2026-05-08</lastmod>
+    <image:image>
+      <image:loc>https://thetalusfieldjournal.com/img/responsive/black-bear-og.jpg</image:loc>
+      <image:title>Black bear foraging at meadow margin</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://thetalusfieldjournal.com/articles/what-is-a-talus-field</loc>
+    <lastmod>2026-08-25</lastmod>
+    <image:image>
+      <image:loc>https://thetalusfieldjournal.com/img/responsive/half-dome-alpenglow-madhu-shesharam-1600.jpg</image:loc>
+      <image:title>Half Dome at alpenglow, its face shaped by the granite's habit of shedding in curved sheets</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://thetalusfieldjournal.com/articles/yosemite-glaciers-climate</loc>
+    <lastmod>2026-05-08</lastmod>
+    <image:image>
+      <image:loc>https://thetalusfieldjournal.com/img/responsive/lyell-canyon-1600.jpg</image:loc>
+      <image:title>A high-country river cascade in the Merced watershed</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://thetalusfieldjournal.com/articles/giant-sequoias-fire-adaptation</loc>
+    <lastmod>2026-05-08</lastmod>
+    <image:image>
+      <image:loc>https://thetalusfieldjournal.com/img/responsive/merced-grove-sequoias-1600.jpg</image:loc>
+      <image:title>Giant sequoias along the trail into the Merced Grove</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://thetalusfieldjournal.com/articles/hetch-hetchy-the-other-yosemite-valley</loc>
+    <lastmod>2026-04-27</lastmod>
+    <image:image>
+      <image:loc>https://thetalusfieldjournal.com/img/responsive/vernal-fall-og.jpg</image:loc>
+      <image:title>Wapama Falls in spring snowmelt</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://thetalusfieldjournal.com/articles/yosemite-stargazing-where-to-look-up</loc>
+    <lastmod>2026-04-27</lastmod>
+    <image:image>
+      <image:loc>https://thetalusfieldjournal.com/img/responsive/milky-way-sentinel-dome-og.jpg</image:loc>
+      <image:title>Milky Way over Sentinel Dome, July</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://thetalusfieldjournal.com/articles/yosemite-for-non-hikers</loc>
+    <lastmod>2026-08-06</lastmod>
+    <image:image>
+      <image:loc>https://thetalusfieldjournal.com/img/responsive/tunnel-view-1600.jpg</image:loc>
+      <image:title>Tunnel View from the overlook parking</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://thetalusfieldjournal.com/articles/pack-your-car-for-yosemite</loc>
+    <lastmod>2026-04-26</lastmod>
+    <image:image>
+      <image:loc>https://thetalusfieldjournal.com/img/responsive/cathedral-rocks-1600.jpg</image:loc>
+      <image:title>Cathedral Rocks across the Yosemite Valley, from a roadside pullout</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://thetalusfieldjournal.com/articles/yosemite-gateway-towns-compared</loc>
+    <lastmod>2026-08-25</lastmod>
+    <image:image>
+      <image:loc>https://thetalusfieldjournal.com/img/responsive/lookout-point-1600.jpg</image:loc>
+      <image:title>Looking down the Hetch Hetchy canyon from Lookout Point</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://thetalusfieldjournal.com/articles/yosemite-during-smoke-season</loc>
+    <lastmod>2026-04-26</lastmod>
+    <image:image>
+      <image:loc>https://thetalusfieldjournal.com/img/responsive/nevada-fall-canyon-haze-og.jpg</image:loc>
+      <image:title>Nevada Fall and the Merced canyon under haze at last light</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://thetalusfieldjournal.com/articles/yosemite-without-reservations-2026</loc>
+    <lastmod>2026-08-06</lastmod>
+    <image:image>
+      <image:loc>https://thetalusfieldjournal.com/img/responsive/talus-flows-yosemite-1600.jpg</image:loc>
+      <image:title>Mist on a Yosemite Valley wall above a talus slope on a quiet morning</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://thetalusfieldjournal.com/articles/first-time-yosemite-overwhelm</loc>
+    <lastmod>2026-08-07</lastmod>
+    <image:image>
+      <image:loc>https://thetalusfieldjournal.com/img/responsive/half-dome-valley-cumulus-og.jpg</image:loc>
+      <image:title>Half Dome down the length of Yosemite Valley under summer cumulus</image:title>
+    </image:image>
+  </url>
+</urlset>

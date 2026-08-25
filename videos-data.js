@@ -6,6 +6,23 @@
 // uploads. Every dek below is original Talus Field copy, not NPS
 // copy. youtubeId values were verified against the published
 // uploads; do not edit one without checking the video it points to.
+//
+// Per-episode fields: id, episode, title, youtubeId, theme, year,
+// dek, and the optional `uploaded`.
+//
+// `uploaded` is an ISO date read off the episode's own watch page,
+// and it becomes VideoObject.uploadDate in the /films JSON-LD.
+// Google requires that field: without it Search Console marked all
+// 40 items invalid, which is why the site has no video rich
+// results. Write one ONLY from a source that states the real date.
+// `year` is not a source for it. Deriving 2009-01-01 from year:
+// 2009 would satisfy the validator by publishing a date the film
+// does not have, and a false fact in structured data is worse than
+// a missing one; the emitters in edge/seo.js and app.jsx therefore
+// treat the field as optional and simply skip an episode without
+// it. Run `node scripts/fetch-video-dates.mjs` to populate it (it
+// needs egress to youtube.com), then `npm --prefix scripts run seo`
+// to carry the dates into the videos.json mirror.
 // ============================================================
 
 window.NATURE_NOTES = {

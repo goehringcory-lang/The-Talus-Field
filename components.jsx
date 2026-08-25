@@ -375,6 +375,8 @@ const NAV_GROUPS = [
         heading: "Before you drive in",
         links: [
           { key: "map", label: "The trip map", note: "Every pin in the park, assembled into a route" },
+          { key: "distances", label: "Drive times", note: "How far the Valley is from every gateway town" },
+          { key: "webcams", label: "Webcams", note: "The live views, and how to read them" },
           { key: "checklist", label: "First-week checklist", note: "What to do in the week before you go" },
           { key: "kit", label: "Kit", note: "What earns its place in the pack" },
         ],
@@ -855,6 +857,8 @@ function Footer({ go }) {
               {link("planning", "The Planning Guide")}
               {link("map", "The Map")}
               {link("itineraries", "Itineraries")}
+              {link("distances", "Drive times")}
+              {link("webcams", "Webcams")}
               {link("stay", "Where to stay")}
               {link("conditions", "Conditions")}
               {link("checklist", "First-week checklist")}
@@ -862,6 +866,14 @@ function Footer({ go }) {
               {link("guide", "The Field Guide")}
             </ul>
           </div>
+          {/* Reader destinations only. The business and legal pages moved to
+              the legal bar below: sitewide footer links are the site's most
+              plentiful internal links, and /advertise, /widget, /partners,
+              /privacy and /terms were each collecting 31 to 65 of them, more
+              than any article except the gateway hub. They stay reachable
+              (nothing is dropped, and NAV_SECONDARY still carries them) but
+              they no longer outrank the writing for the site's own link
+              equity. */}
           <div>
             <h4>The journal</h4>
             <ul>
@@ -870,12 +882,6 @@ function Footer({ go }) {
               {link("contact", "Contact")}
               {link("search", "Search")}
               {link("places", "Directory")}
-              {link("advertise", "Advertise")}
-              {link("widget", "Conditions widget")}
-              {link("partners", "Group codes")}
-              {link("privacy", "Privacy")}
-              {link("terms", "Terms")}
-              {link("affiliate", "Affiliate disclosure")}
             </ul>
           </div>
         </div>
@@ -885,6 +891,9 @@ function Footer({ go }) {
         <div className="site-footer__legal">
           <div>© 2026 The Talus Field. Independent. Not affiliated with the National Park Service.</div>
           <div>
+            <a href="/advertise" onClick={(e) => { e.preventDefault(); go("advertise"); }}>Advertise</a>
+            <a href="/widget" onClick={(e) => { e.preventDefault(); go("widget"); }}>Conditions widget</a>
+            <a href="/partners" onClick={(e) => { e.preventDefault(); go("partners"); }}>Group codes</a>
             <a href="/privacy" onClick={(e) => { e.preventDefault(); go("privacy"); }}>Privacy</a>
             <a href="/terms" onClick={(e) => { e.preventDefault(); go("terms"); }}>Terms</a>
             <a href="/affiliate" onClick={(e) => { e.preventDefault(); go("affiliate"); }}>Affiliate</a>
@@ -988,9 +997,22 @@ const KEEP_GOING = {
     { key: "itineraries", label: "Itineraries", note: "Plans in drive order" },
   ] },
   stay: { links: [
+    { key: "distances", label: "Drive times", note: "How far each town is from the Valley" },
     { key: "planning", label: "The Planning Guide", note: "Everything else the trip needs" },
     { key: "itineraries", label: "Itineraries", note: "What to do from where you booked" },
     { key: "checklist", label: "First-week checklist", note: "The week before you go, in order" },
+  ] },
+  webcams: { links: [
+    { key: "conditions", label: "Conditions", note: "Forecasts and live entrance waits" },
+    { key: "now", label: "The Park Bulletin", note: "What the park says about this week" },
+    { key: "tioga-opening", label: "Tioga Road opening", note: "The view the cameras do not cover" },
+    { key: "map", label: "The trip map", note: "Where the views actually are" },
+  ] },
+  distances: { links: [
+    { key: "stay", label: "Where to stay", note: "The beds at the end of each drive" },
+    { key: "conditions", label: "Conditions", note: "Entrance waits and road status now" },
+    { key: "tioga-opening", label: "Tioga Road opening", note: "When the east-side route comes back" },
+    { key: "planning", label: "The Planning Guide", note: "The rest of the trip, in order" },
   ] },
   map: { links: [
     { key: "itineraries", label: "Itineraries", note: "Start from a plan instead" },

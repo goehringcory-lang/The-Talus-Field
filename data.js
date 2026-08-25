@@ -71,8 +71,12 @@ window.PLANNING_SERIES = [
     "pets-in-yosemite",
     "yosemite-ranger-programs",
   ] },
+  // The lottery mechanics used to be the first slug here. They live on the
+  // evergreen /half-dome-lottery page now (the dated article was retired into
+  // it in August 2026 and 301s there), and a standing page cannot be a series
+  // member: PLANNING_SERIES membership drives the prev/next band on article
+  // pages. Both pieces below link to it.
   { part: "Part Four · If you're hiking Half Dome", slugs: [
-    "half-dome-permit-lottery-2026",
     "so-you-want-to-hike-half-dome",
     "mist-trail-the-real-guide",
   ] },
@@ -107,67 +111,69 @@ window.planningSeriesFor = function (slug) {
 // ============================================================
 window.BODY_VERSIONS = {
   "yosemite-fire-restrictions-explained": 2,
-  "yosemite-in-three-to-five-days": 1,
+  "yosemite-in-three-to-five-days": 2,
   "yosemite-winter-hikes": 1,
   "camping-in-yosemite-first-time": 1,
-  "first-yosemite-backpacking-trip": 1,
+  "first-yosemite-backpacking-trip": 2,
   "yosemite-day-trip-from-bay-area": 1,
   "mariposa-grove-how-to-visit": 1,
-  "tuolumne-meadows-in-a-day": 1,
+  "tuolumne-meadows-in-a-day": 2,
   "swimming-in-the-merced": 1,
   "yosemite-valley-parking-guide": 1,
   "yosemite-shuttle-and-yarts": 2,
-  "yosemite-walk-up-and-day-of-permits": 1,
-  "yosemite-in-fall": 1,
+  "yosemite-walk-up-and-day-of-permits": 2,
+  "yosemite-in-fall": 2,
   "yosemite-tunnel-trees": 1,
-  "yosemite-wildlife-viewing-guide": 1,
+  "yosemite-wildlife-viewing-guide": 2,
   "showy-milkweed-yosemite-valley": 3,
   "yosemite-connecting-to-traditions": 1,
-  "yosemite-waterfalls-guide": 1,
-  "yosemite-photography-spots": 1,
+  "yosemite-waterfalls-guide": 3,
+  "yosemite-photography-spots": 2,
   "horsetail-fall-firefall": 2,
-  "yosemite-in-winter": 5,
+  "yosemite-in-winter": 6,
   "where-to-stay-in-yosemite": 8,
   "yosemite-wildflowers-guide": 2,
   "watching-climbers-el-capitan": 1,
   "getting-to-yosemite": 6,
-  "yosemite-wilderness-permits-guide": 2,
+  "yosemite-wilderness-permits-guide": 3,
   "yosemite-accessibility-guide": 2,
   "pets-in-yosemite": 3,
-  "yosemite-ranger-programs": 1,
-  "yosemite-camping-complete-guide": 8,
+  "yosemite-ranger-programs": 2,
+  "yosemite-camping-complete-guide": 9,
   "where-to-propose-in-yosemite": 2,
-  "yosemite-bears-safety-guide": 117,
+  "is-bear-spray-allowed-in-yosemite": 1,
+  "yosemite-bears-safety-guide": 118,
   "yosemite-heat-safety-guide": 4,
   "when-to-visit-yosemite-2026-crowd-forecast": 3,
   "yosemite-trip-cost-budget-2026": 7,
+  "yosemite-in-september-2026": 1,
   "yosemite-in-june-2026": 3,
-  "cathedral-lakes-day-hike": 1,
+  "cathedral-lakes-day-hike": 2,
   "yosemite-needs-a-reservation-system": 80,
   "memorial-day-skip-the-valley-go-high-2026": 81,
   "four-mile-up-panorama-down": 75,
   "yosemite-with-kids-no-reservations-2026": 79,
   "tioga-road-opening-weekend-2026": 77,
-  "so-you-want-to-hike-half-dome": 75,
-  "half-dome-permit-lottery-2026": 81,
+  "so-you-want-to-hike-half-dome": 76,
   "glacier-point-road-open-2026": 77,
-  "mist-trail-the-real-guide": 83,
+  "mist-trail-the-real-guide": 84,
   "first-time-yosemite-overwhelm": 86,
   "yosemite-without-reservations-2026": 84,
   "yosemite-during-smoke-season": 75,
-  "yosemite-gateway-towns-compared": 89,
+  "yosemite-gateway-towns-compared": 91,
   "pack-your-car-for-yosemite": 82,
   "yosemite-for-non-hikers": 80,
   "yosemite-stargazing-where-to-look-up": 77,
   "hetch-hetchy-the-other-yosemite-valley": 76,
+  "what-is-a-talus-field": 1,
   "yosemite-glaciers-climate": 76,
   "giant-sequoias-fire-adaptation": 75,
   "bears-spring-emergence": 75,
   "water-ouzels-waterfalls": 75,
   "working-in-yosemite": 76,
   "yosemite-in-one-or-two-days": 85,
-  "where-to-eat-yosemite": 81,
-  "yosemite-in-march": 1,
+  "where-to-eat-yosemite": 82,
+  "yosemite-in-march": 2,
 };
 
 // Fetch a single article body, Babel-transform it in the browser, and run it so
@@ -384,7 +390,7 @@ window.KIT = {
           id: "bear-permits",
           title: "Bear canister & permits",
           items: [
-            { id: "overnight-pack:bear-canister", name: "Bear canister, required", note: "Yosemite rents Garcia jugs at the wilderness center cheaply but they are heavy. Upgrading to a BearVault 500, or a 450 for shorter trips, is worth it. All food, trash, and scented items go inside, and store it 50 feet or more from your tent.", aff: "#", articleSlug: "half-dome-permit-lottery-2026" },
+            { id: "overnight-pack:bear-canister", name: "Bear canister, required", note: "Yosemite rents Garcia jugs at the wilderness center cheaply but they are heavy. Upgrading to a BearVault 500, or a 450 for shorter trips, is worth it. All food, trash, and scented items go inside, and store it 50 feet or more from your tent.", aff: "#", articleSlug: "so-you-want-to-hike-half-dome" },
             { id: "overnight-pack:wilderness-permit", name: "Wilderness permit, required year-round", note: "Carry a physical or digital copy. It specifies your trailhead and entry date, and it covers the use of a backpacking stove in the park.", aff: "#" }
           ]
         },
@@ -940,12 +946,12 @@ window.ARTICLES = [
   {
     slug: "yosemite-wildlife-viewing-guide",
     cat: "wildlife",
-    title: "Where the Animals Actually Are: A Naturalist's Guide to Watching Wildlife in Yosemite",
+    title: "Animals of Yosemite: What Lives Here, and Where to See It",
     dek: "Yosemite's wildlife is not hiding, it is on a schedule most visitors never match. Twenty seasons of watching, condensed: the two principles that decide every sighting, the Valley's deer, coyotes, and bobcats, the high-country pika and marmots, and the rules that double as technique.",
-    seoDek: "Where to see wildlife in Yosemite: bears, mule deer, coyotes, bobcats, marmots, pika, and great gray owls, plus the best times, places, and viewing rules.",
+    seoDek: "The animals of Yosemite by elevation: deer, coyote and black bear in the Valley, marmots and pika in the high country, and why there are no grizzlies.",
     date: "July 18, 2026",
     isoDate: "2026-07-18",
-    isoModified: "2026-07-18",
+    isoModified: "2026-08-25",
     read: "10 min",
     placeholder: "Mule deer grazing a Yosemite meadow at golden hour beneath Half Dome",
     image: "img/half-dome-meadow-deer-johannes-andersson.jpg",
@@ -981,12 +987,12 @@ window.ARTICLES = [
   {
     slug: "yosemite-waterfalls-guide",
     cat: "trails",
-    title: "The Waterfalls of Yosemite: What's Flowing, and When",
+    title: "Yosemite Waterfalls by Month: What Is Actually Running",
     dek: "Yosemite's waterfalls are snowmelt events, not permanent features, and the internet's photos never say what month they were taken. Which falls run all year, which vanish by August, and the month-by-month schedule nobody puts on the poster.",
-    seoDek: "Yosemite waterfalls by season: when Yosemite Falls, Bridalveil, Vernal, Nevada, Ribbon, and Wapama actually flow, which dry up by August, and the best months.",
+    seoDek: "A month-by-month flow table for every major Yosemite waterfall: what is at peak, what is thin, and what is a dry stain on the rock when you arrive.",
     date: "July 12, 2026",
     isoDate: "2026-07-12",
-    isoModified: "2026-07-12",
+    isoModified: "2026-08-25",
     read: "8 min",
     placeholder: "Upper Yosemite Fall at full spring flow, the 1,430-foot free leap of the tallest waterfall in North America",
     image: "img/upper-yosemite-fall-jesse-callahan.jpg",
@@ -1178,6 +1184,19 @@ window.ARTICLES = [
     credit: "Photo: Cory Goehring",
   },
   {
+    slug: "is-bear-spray-allowed-in-yosemite",
+    cat: "wildlife",
+    title: "Is Bear Spray Allowed in Yosemite? No, and Here Is Why",
+    dek: "It is classified as a weapon in the Superintendent's Compendium. There are no grizzlies here, black bears behave differently, and capsaicin residue attracts bears rather than deterring them.",
+    seoDek: "Bear spray is prohibited in Yosemite: the regulation, why a tool that works on grizzlies is banned in black bear country, and what to carry instead.",
+    date: "August 25, 2026",
+    isoDate: "2026-08-25",
+    isoModified: "2026-08-25",
+    read: "5 min",
+    placeholder: "A black bear foraging at a meadow margin in Yosemite",
+    image: "img/black-bear.jpg",
+  },
+  {
     slug: "yosemite-bears-safety-guide",
     cat: "wildlife",
     title: "The Bear Spray You Packed for Yosemite Is Illegal",
@@ -1232,6 +1251,20 @@ window.ARTICLES = [
     placeholder: "The Ahwahnee under snow, the park's most expensive lodging",
     image: "img/ahwahnee-hotel.jpg",
     credit: "Photo: Chris Dunstan / Wikimedia Commons (public domain)",
+  },
+  {
+    slug: "yosemite-in-september-2026",
+    cat: "seasonal",
+    title: "Yosemite in September 2026: What Closes, and What Gets Better",
+    dek: "The waterfalls are gone, the concessions shut in the first three weeks, and the Mist Trail is closed four days a week. The high country is also the best it gets all year. Both are true.",
+    seoDek: "Yosemite in September 2026: dry waterfalls, closure dates for the pools, stores and shuttles, Mist Trail weekday closures, and the year's best Half Dome odds.",
+    date: "August 25, 2026",
+    isoDate: "2026-08-25",
+    isoModified: "2026-08-25",
+    read: "8 min",
+    placeholder: "The Tuolumne high country under afternoon light, at its best in September",
+    image: "img/tuolumne-high-country-cory-goehring.jpg",
+    credit: "Photo: Cory Goehring",
   },
   {
     slug: "yosemite-in-june-2026",
@@ -1292,13 +1325,13 @@ window.ARTICLES = [
   {
     slug: "where-to-eat-yosemite",
     cat: "planning",
-    title: "Where to eat in and around Yosemite",
-    dek: "Eight or nine restaurants worth knowing in and around Yosemite. The Half Dome pizza, the Mariposa brisket, the east-side coffee. Nothing else, and nothing chain.",
-    seoDek: "Eight or nine restaurants worth knowing in and around Yosemite: the Half Dome pizza, the Mariposa brisket, the east-side coffee. No chains, no filler.",
+    title: "Where to Eat in Yosemite: Every Area, and What Closes When",
+    dek: "Where the food actually is, area by area: the Valley's five kitchens, the seasonal grill on Tioga Road, the gateway towns worth the drive, and the places that have no restaurant at all.",
+    seoDek: "Restaurants in Yosemite Valley, Wawona, Tuolumne and the gateway towns, with prices, seasons and reservations. From a resident who eats in them.",
     date: "May 19, 2026",
     isoDate: "2026-05-19",
-    isoModified: "2026-05-19",
-    read: "6 min",
+    isoModified: "2026-08-25",
+    read: "9 min",
     placeholder: "The Merced River at Cathedral Beach, one of the Valley's picnic areas",
     image: "img/cathedral-beach-quiet-picnic.jpg",
     credit: "Photo: Todd Petrie / Wikimedia Commons (CC BY 2.0)",
@@ -1410,20 +1443,6 @@ window.ARTICLES = [
     image: "img/half-dome.jpg",
   },
   {
-    slug: "half-dome-permit-lottery-2026",
-    cat: "planning",
-    title: "How the Half Dome permit lottery actually works",
-    dek: "There are two lotteries, not one. The preseason in March and the daily lottery every day the cables are up. The real odds, the strategy that works, and what to do if you don't win.",
-    seoDek: "Two Half Dome lotteries, not one: preseason in March and the daily during cables season. Real odds, the strategy that works, what to do if you lose.",
-    date: "May 12, 2026",
-    isoDate: "2026-05-12",
-    isoModified: "2026-05-12",
-    read: "13 min",
-    placeholder: "Half Dome at alpenglow from Glacier Point",
-    image: "img/half-dome-alpenglow-madhu-shesharam.jpg",
-    credit: "Photo: Madhu Shesharam / Unsplash",
-  },
-  {
     slug: "glacier-point-road-open-2026",
     cat: "seasonal",
     title: "Glacier Point Road is open: a plan for the early season",
@@ -1491,6 +1510,20 @@ window.ARTICLES = [
     read: "8 min",
     placeholder: "Black bear foraging at meadow margin",
     image: "img/black-bear.jpg",
+  },
+  {
+    slug: "what-is-a-talus-field",
+    cat: "wildlife",
+    title: "What Is a Talus Field? The Landform Yosemite Is Built On",
+    dek: "The slope of broken rock at the base of every cliff in the Valley has a name, an angle it always sits at, and a reason it keeps growing. It is also what this journal is named after.",
+    seoDek: "A talus field is the apron of broken rock below a cliff, resting at its angle of repose. What builds them in Yosemite, where to see one, and how to walk on one.",
+    date: "August 25, 2026",
+    isoDate: "2026-08-25",
+    isoModified: "2026-08-25",
+    read: "6 min",
+    placeholder: "Half Dome at alpenglow, its face shaped by the granite's habit of shedding in curved sheets",
+    image: "img/half-dome-alpenglow-madhu-shesharam.jpg",
+    credit: "Photo: Madhu Shesharam / Unsplash",
   },
   {
     slug: "yosemite-glaciers-climate",
@@ -1576,12 +1609,12 @@ window.ARTICLES = [
   {
     slug: "yosemite-gateway-towns-compared",
     cat: "planning",
-    title: "Yosemite gateway towns compared: which one to base in",
+    title: "Mariposa or Oakhurst or Groveland: Which Yosemite Gateway to Book",
     dek: "Pick the wrong gateway town and you'll burn hours of every day on the road. Pick the right one and the rest of the trip gets easier. A side-by-side from someone who's stayed in all five.",
-    seoDek: "Pick the wrong Yosemite gateway and you'll burn hours on the road. A side-by-side of Mariposa, Oakhurst, Groveland, El Portal, Lee Vining.",
+    seoDek: "Mariposa, Oakhurst, Groveland, El Portal and Lee Vining compared: drive times, winter access, what each town has, and which to book. From El Portal.",
     date: "April 26, 2026",
     isoDate: "2026-04-26",
-    isoModified: "2026-08-01",
+    isoModified: "2026-08-25",
     read: "9 min",
     placeholder: "Looking down the Hetch Hetchy canyon from Lookout Point",
     image: "img/lookout-point.jpg",
@@ -1637,6 +1670,156 @@ window.START_HERE = [
   "yosemite-gateway-towns-compared",
   "yosemite-in-one-or-two-days",
 ];
+
+// Related reading, hand-curated per article.
+//
+// The related rail used to pick same-section pieces in catalog order, filtered
+// by what the reader had already finished. A crawler has no read history, so
+// every article in a section produced the same three links, and the site's
+// whole internal link graph funnelled onto a handful of early-catalog pieces:
+// Search Console counted 1,557 internal links reaching 33 pages, of which only
+// five were articles. Sixty-six articles received no contextual link at all.
+//
+// Curation here is by topic, not recency, and it feeds three places at once:
+// the rail readers see, the "Related reading" block the Worker injects for
+// crawlers, and the `related` field in articles.json. Rules: 4 to 6 entries,
+// every slug real, no self-reference. gen-seo-artifacts.mjs enforces all three
+// and fails the build otherwise, because a dead entry here is a dead link on a
+// published page.
+//
+// An article with no entry falls back to relatedFor's rotation below, which is
+// a legitimate outcome rather than an omission: the natural-history essays sit
+// in a small section where "the rest of the section" is the honest answer.
+// Curate a piece when it earns real search impressions, when it anchors a
+// cluster, or when it is the destination that needs the equity.
+window.RELATED = {
+  // Lodging and gateway towns
+  "yosemite-gateway-towns-compared": ["where-to-stay-in-yosemite", "yosemite-camping-complete-guide", "where-to-eat-yosemite", "yosemite-trip-cost-budget-2026", "getting-to-yosemite"],
+  "where-to-stay-in-yosemite": ["yosemite-gateway-towns-compared", "yosemite-camping-complete-guide", "yosemite-trip-cost-budget-2026", "yosemite-without-reservations-2026", "where-to-eat-yosemite"],
+  "yosemite-camping-complete-guide": ["camping-in-yosemite-first-time", "where-to-stay-in-yosemite", "yosemite-gateway-towns-compared", "first-yosemite-backpacking-trip", "yosemite-trip-cost-budget-2026"],
+  "camping-in-yosemite-first-time": ["yosemite-camping-complete-guide", "yosemite-bears-safety-guide", "is-bear-spray-allowed-in-yosemite", "where-to-stay-in-yosemite", "pets-in-yosemite"],
+  "yosemite-trip-cost-budget-2026": ["where-to-stay-in-yosemite", "yosemite-gateway-towns-compared", "yosemite-camping-complete-guide", "where-to-eat-yosemite", "getting-to-yosemite"],
+
+  // Food
+  "where-to-eat-yosemite": ["yosemite-gateway-towns-compared", "where-to-stay-in-yosemite", "yosemite-camping-complete-guide", "yosemite-trip-cost-budget-2026", "yosemite-in-one-or-two-days", "pack-your-car-for-yosemite"],
+
+  // Getting there and getting around
+  "getting-to-yosemite": ["yosemite-shuttle-and-yarts", "yosemite-valley-parking-guide", "yosemite-gateway-towns-compared", "yosemite-day-trip-from-bay-area", "pack-your-car-for-yosemite"],
+  "yosemite-shuttle-and-yarts": ["getting-to-yosemite", "yosemite-valley-parking-guide", "yosemite-for-non-hikers", "yosemite-accessibility-guide", "yosemite-day-trip-from-bay-area"],
+  "yosemite-valley-parking-guide": ["getting-to-yosemite", "yosemite-shuttle-and-yarts", "yosemite-without-reservations-2026", "yosemite-in-one-or-two-days", "mist-trail-the-real-guide"],
+  "yosemite-day-trip-from-bay-area": ["yosemite-in-one-or-two-days", "getting-to-yosemite", "yosemite-valley-parking-guide", "yosemite-for-non-hikers", "when-to-visit-yosemite-2026-crowd-forecast"],
+  "pack-your-car-for-yosemite": ["yosemite-bears-safety-guide", "camping-in-yosemite-first-time", "getting-to-yosemite", "yosemite-valley-parking-guide", "first-time-yosemite-overwhelm"],
+
+  // Permits
+  "yosemite-wilderness-permits-guide": ["first-yosemite-backpacking-trip", "yosemite-walk-up-and-day-of-permits", "so-you-want-to-hike-half-dome", "yosemite-camping-complete-guide", "mist-trail-the-real-guide"],
+  "yosemite-walk-up-and-day-of-permits": ["yosemite-wilderness-permits-guide", "so-you-want-to-hike-half-dome", "first-yosemite-backpacking-trip", "yosemite-without-reservations-2026", "mist-trail-the-real-guide"],
+  "so-you-want-to-hike-half-dome": ["mist-trail-the-real-guide", "yosemite-wilderness-permits-guide", "cathedral-lakes-day-hike", "four-mile-up-panorama-down", "yosemite-heat-safety-guide"],
+  "first-yosemite-backpacking-trip": ["yosemite-wilderness-permits-guide", "yosemite-bears-safety-guide", "cathedral-lakes-day-hike", "yosemite-camping-complete-guide", "yosemite-walk-up-and-day-of-permits"],
+
+  // Trails
+  "mist-trail-the-real-guide": ["yosemite-waterfalls-guide", "so-you-want-to-hike-half-dome", "four-mile-up-panorama-down", "yosemite-heat-safety-guide", "yosemite-valley-parking-guide"],
+  "four-mile-up-panorama-down": ["mist-trail-the-real-guide", "yosemite-photography-spots", "so-you-want-to-hike-half-dome", "yosemite-waterfalls-guide", "glacier-point-road-open-2026"],
+  "cathedral-lakes-day-hike": ["tuolumne-meadows-in-a-day", "tioga-road-opening-weekend-2026", "so-you-want-to-hike-half-dome", "first-yosemite-backpacking-trip", "yosemite-wildflowers-guide"],
+  "tuolumne-meadows-in-a-day": ["cathedral-lakes-day-hike", "tioga-road-opening-weekend-2026", "yosemite-wildflowers-guide", "yosemite-stargazing-where-to-look-up", "memorial-day-skip-the-valley-go-high-2026"],
+  "hetch-hetchy-the-other-yosemite-valley": ["yosemite-waterfalls-guide", "yosemite-without-reservations-2026", "yosemite-in-march", "yosemite-wildflowers-guide", "yosemite-glaciers-climate"],
+  "yosemite-winter-hikes": ["yosemite-in-winter", "horsetail-fall-firefall", "yosemite-waterfalls-guide", "yosemite-for-non-hikers", "yosemite-photography-spots"],
+  "yosemite-waterfalls-guide": ["mist-trail-the-real-guide", "when-to-visit-yosemite-2026-crowd-forecast", "hetch-hetchy-the-other-yosemite-valley", "yosemite-photography-spots", "water-ouzels-waterfalls", "yosemite-in-march"],
+
+  // Who the trip is for
+  "yosemite-for-non-hikers": ["yosemite-accessibility-guide", "yosemite-shuttle-and-yarts", "yosemite-photography-spots", "yosemite-in-one-or-two-days", "watching-climbers-el-capitan", "pets-in-yosemite"],
+  "yosemite-accessibility-guide": ["yosemite-for-non-hikers", "yosemite-shuttle-and-yarts", "mariposa-grove-how-to-visit", "yosemite-valley-parking-guide", "yosemite-ranger-programs"],
+  "yosemite-with-kids-no-reservations-2026": ["yosemite-ranger-programs", "yosemite-for-non-hikers", "swimming-in-the-merced", "yosemite-bears-safety-guide", "camping-in-yosemite-first-time"],
+  "pets-in-yosemite": ["yosemite-for-non-hikers", "yosemite-accessibility-guide", "yosemite-camping-complete-guide", "yosemite-gateway-towns-compared", "yosemite-valley-parking-guide"],
+
+  // First trips and timing
+  "first-time-yosemite-overwhelm": ["yosemite-in-one-or-two-days", "when-to-visit-yosemite-2026-crowd-forecast", "yosemite-gateway-towns-compared", "yosemite-without-reservations-2026", "pack-your-car-for-yosemite"],
+  "yosemite-in-one-or-two-days": ["yosemite-in-three-to-five-days", "first-time-yosemite-overwhelm", "yosemite-valley-parking-guide", "where-to-eat-yosemite", "yosemite-day-trip-from-bay-area", "where-to-propose-in-yosemite"],
+  "yosemite-in-three-to-five-days": ["yosemite-in-one-or-two-days", "tuolumne-meadows-in-a-day", "mist-trail-the-real-guide", "yosemite-gateway-towns-compared", "when-to-visit-yosemite-2026-crowd-forecast"],
+  "when-to-visit-yosemite-2026-crowd-forecast": ["yosemite-without-reservations-2026", "yosemite-in-september-2026", "yosemite-in-fall", "yosemite-in-june-2026", "yosemite-gateway-towns-compared", "yosemite-in-march"],
+  "yosemite-without-reservations-2026": ["when-to-visit-yosemite-2026-crowd-forecast", "yosemite-valley-parking-guide", "yosemite-walk-up-and-day-of-permits", "hetch-hetchy-the-other-yosemite-valley", "first-time-yosemite-overwhelm"],
+
+  // Seasonal
+  "yosemite-in-june-2026": ["when-to-visit-yosemite-2026-crowd-forecast", "yosemite-waterfalls-guide", "tioga-road-opening-weekend-2026", "yosemite-heat-safety-guide", "bears-spring-emergence"],
+  "yosemite-in-september-2026": ["when-to-visit-yosemite-2026-crowd-forecast", "yosemite-in-fall", "tuolumne-meadows-in-a-day", "yosemite-during-smoke-season", "cathedral-lakes-day-hike", "mist-trail-the-real-guide"],
+  "yosemite-in-fall": ["yosemite-in-september-2026", "when-to-visit-yosemite-2026-crowd-forecast", "yosemite-in-winter", "yosemite-photography-spots", "yosemite-during-smoke-season"],
+  "yosemite-in-winter": ["yosemite-winter-hikes", "horsetail-fall-firefall", "when-to-visit-yosemite-2026-crowd-forecast", "yosemite-in-march", "yosemite-photography-spots"],
+  "yosemite-in-march": ["yosemite-in-winter", "yosemite-waterfalls-guide", "bears-spring-emergence", "horsetail-fall-firefall", "when-to-visit-yosemite-2026-crowd-forecast"],
+  "tioga-road-opening-weekend-2026": ["cathedral-lakes-day-hike", "tuolumne-meadows-in-a-day", "memorial-day-skip-the-valley-go-high-2026", "yosemite-stargazing-where-to-look-up", "when-to-visit-yosemite-2026-crowd-forecast"],
+  "glacier-point-road-open-2026": ["four-mile-up-panorama-down", "yosemite-photography-spots", "yosemite-stargazing-where-to-look-up", "when-to-visit-yosemite-2026-crowd-forecast", "yosemite-for-non-hikers"],
+  "yosemite-heat-safety-guide": ["swimming-in-the-merced", "mist-trail-the-real-guide", "when-to-visit-yosemite-2026-crowd-forecast", "yosemite-during-smoke-season", "yosemite-waterfalls-guide"],
+  "yosemite-during-smoke-season": ["yosemite-heat-safety-guide", "yosemite-fire-restrictions-explained", "when-to-visit-yosemite-2026-crowd-forecast", "yosemite-in-fall", "giant-sequoias-fire-adaptation"],
+  "yosemite-fire-restrictions-explained": ["yosemite-during-smoke-season", "yosemite-camping-complete-guide", "giant-sequoias-fire-adaptation", "camping-in-yosemite-first-time", "yosemite-heat-safety-guide"],
+  "memorial-day-skip-the-valley-go-high-2026": ["tioga-road-opening-weekend-2026", "tuolumne-meadows-in-a-day", "when-to-visit-yosemite-2026-crowd-forecast", "hetch-hetchy-the-other-yosemite-valley", "cathedral-lakes-day-hike"],
+  "swimming-in-the-merced": ["yosemite-heat-safety-guide", "yosemite-with-kids-no-reservations-2026", "mist-trail-the-real-guide", "yosemite-waterfalls-guide", "yosemite-in-june-2026"],
+  "horsetail-fall-firefall": ["yosemite-in-winter", "yosemite-photography-spots", "yosemite-winter-hikes", "when-to-visit-yosemite-2026-crowd-forecast", "yosemite-in-march"],
+  "yosemite-stargazing-where-to-look-up": ["tuolumne-meadows-in-a-day", "glacier-point-road-open-2026", "yosemite-photography-spots", "tioga-road-opening-weekend-2026", "yosemite-in-fall"],
+
+  // Doing and seeing
+  "yosemite-photography-spots": ["yosemite-stargazing-where-to-look-up", "horsetail-fall-firefall", "four-mile-up-panorama-down", "yosemite-waterfalls-guide", "yosemite-in-fall", "watching-climbers-el-capitan"],
+  "watching-climbers-el-capitan": ["yosemite-for-non-hikers", "yosemite-photography-spots", "yosemite-valley-parking-guide", "where-to-propose-in-yosemite", "yosemite-ranger-programs"],
+  "mariposa-grove-how-to-visit": ["giant-sequoias-fire-adaptation", "yosemite-accessibility-guide", "yosemite-gateway-towns-compared", "yosemite-for-non-hikers", "yosemite-tunnel-trees"],
+  "yosemite-ranger-programs": ["yosemite-with-kids-no-reservations-2026", "yosemite-wildlife-viewing-guide", "yosemite-for-non-hikers", "yosemite-stargazing-where-to-look-up", "yosemite-accessibility-guide"],
+  "where-to-propose-in-yosemite": ["yosemite-photography-spots", "yosemite-for-non-hikers", "where-to-eat-yosemite", "where-to-stay-in-yosemite", "yosemite-in-one-or-two-days"],
+  "working-in-yosemite": ["yosemite-ranger-programs", "yosemite-gateway-towns-compared", "yosemite-connecting-to-traditions", "yosemite-needs-a-reservation-system", "yosemite-in-winter"],
+  "yosemite-needs-a-reservation-system": ["when-to-visit-yosemite-2026-crowd-forecast", "yosemite-without-reservations-2026", "yosemite-valley-parking-guide", "working-in-yosemite", "yosemite-glaciers-climate"],
+
+  // Natural history
+  "is-bear-spray-allowed-in-yosemite": ["yosemite-bears-safety-guide", "bears-spring-emergence", "yosemite-wildlife-viewing-guide", "camping-in-yosemite-first-time", "pack-your-car-for-yosemite"],
+  "yosemite-bears-safety-guide": ["is-bear-spray-allowed-in-yosemite", "bears-spring-emergence", "yosemite-wildlife-viewing-guide", "camping-in-yosemite-first-time", "yosemite-camping-complete-guide"],
+  "bears-spring-emergence": ["yosemite-bears-safety-guide", "yosemite-wildlife-viewing-guide", "yosemite-in-march", "camping-in-yosemite-first-time", "yosemite-wildflowers-guide"],
+  "yosemite-wildlife-viewing-guide": ["yosemite-bears-safety-guide", "bears-spring-emergence", "water-ouzels-waterfalls", "yosemite-ranger-programs", "yosemite-stargazing-where-to-look-up"],
+  "yosemite-wildflowers-guide": ["showy-milkweed-yosemite-valley", "yosemite-wildlife-viewing-guide", "tuolumne-meadows-in-a-day", "yosemite-in-june-2026", "giant-sequoias-fire-adaptation"],
+  "giant-sequoias-fire-adaptation": ["mariposa-grove-how-to-visit", "yosemite-tunnel-trees", "yosemite-during-smoke-season", "yosemite-fire-restrictions-explained", "yosemite-glaciers-climate"],
+  "what-is-a-talus-field": ["yosemite-glaciers-climate", "giant-sequoias-fire-adaptation", "yosemite-wildlife-viewing-guide", "mist-trail-the-real-guide", "tuolumne-meadows-in-a-day"],
+  "yosemite-glaciers-climate": ["what-is-a-talus-field", "yosemite-waterfalls-guide", "giant-sequoias-fire-adaptation", "cathedral-lakes-day-hike", "tuolumne-meadows-in-a-day"],
+  "water-ouzels-waterfalls": ["yosemite-waterfalls-guide", "yosemite-wildlife-viewing-guide", "mist-trail-the-real-guide", "swimming-in-the-merced", "showy-milkweed-yosemite-valley"],
+  "yosemite-tunnel-trees": ["giant-sequoias-fire-adaptation", "mariposa-grove-how-to-visit", "yosemite-connecting-to-traditions", "what-is-a-talus-field", "yosemite-needs-a-reservation-system"],
+  "showy-milkweed-yosemite-valley": ["yosemite-wildflowers-guide", "yosemite-wildlife-viewing-guide", "water-ouzels-waterfalls", "swimming-in-the-merced", "giant-sequoias-fire-adaptation"],
+  "yosemite-connecting-to-traditions": ["yosemite-tunnel-trees", "yosemite-ranger-programs", "working-in-yosemite", "mariposa-grove-how-to-visit", "yosemite-wildlife-viewing-guide"],
+};
+
+// How many links a related block carries. Five is the working number: enough
+// to spread equity past the two or three obvious neighbours, few enough that
+// the block stays a deliberate list rather than a dump of the section.
+window.RELATED_COUNT = 5;
+
+// The related set for an article: its curated list when it has one, otherwise a
+// deterministic rotation.
+//
+// The rotation starts at the article's OWN position in its section and walks
+// forward, wrapping. That is the whole point: a plain "first N of the section"
+// fallback is what funnelled every uncurated article onto the same handful of
+// early-catalog pieces. Starting from self means each article points at a
+// different window, so the links spread across the catalog instead of piling
+// up. Short sections top up from the rest of the catalog, in category order, so
+// the block is never half empty.
+//
+// Deterministic by construction: no dates, no randomness, no read history. The
+// same slug in gives the same list out, in the browser and in the generator
+// that mirrors it into articles.json, which is what lets one implementation
+// serve both.
+window.relatedFor = function relatedFor(slug, count) {
+  const n = count || window.RELATED_COUNT;
+  const curated = (window.RELATED && window.RELATED[slug]) || null;
+  if (curated && curated.length) return curated.slice(0, n);
+
+  const self = window.findArticle(slug);
+  if (!self) return [];
+  const section = window.ARTICLES.filter((a) => a.cat === self.cat);
+  const start = section.findIndex((a) => a.slug === slug);
+  const out = [];
+  for (let i = 1; i < section.length && out.length < n; i++) {
+    out.push(section[(start + i) % section.length].slug);
+  }
+  if (out.length < n) {
+    const seen = new Set([slug, ...out]);
+    for (const a of window.ARTICLES) {
+      if (out.length >= n) break;
+      if (!seen.has(a.slug)) { out.push(a.slug); seen.add(a.slug); }
+    }
+  }
+  return out;
+};
 
 // Helpers
 window.byCategory = function(slug) {

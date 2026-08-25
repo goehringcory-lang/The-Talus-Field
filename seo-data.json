@@ -584,7 +584,7 @@
     ]
   },
   "yosemite-wildlife-viewing-guide": {
-    "wordCount": 1950,
+    "wordCount": 2545,
     "keywords": [
       "Yosemite wildlife viewing",
       "where to see animals in Yosemite",
@@ -597,7 +597,13 @@
       "pika Yosemite",
       "yellow-bellied marmot Olmsted Point",
       "Sierra Nevada bighorn sheep",
-      "best time to see wildlife Yosemite"
+      "best time to see wildlife Yosemite",
+      "animals in Yosemite",
+      "animals of Yosemite",
+      "Yosemite wildlife",
+      "Yosemite national park animals",
+      "are there grizzly bears in Yosemite",
+      "wildlife in Yosemite national park"
     ],
     "faq": [
       {
@@ -623,6 +629,18 @@
       {
         "q": "Where can you see a great gray owl in Yosemite?",
         "a": "Yosemite holds the southernmost breeding population of the great gray owl, which hunts the edges of mid-elevation meadows such as those near Crane Flat and Glacier Point Road at dawn and dusk. If you find one, keep your distance and never play recorded calls: playback harasses a state-endangered bird and is prohibited."
+      },
+      {
+        "q": "What animals live in Yosemite?",
+        "a": "About 400 vertebrate species: roughly 90 mammals, over 260 birds, and the rest reptiles, amphibians and fish, across an elevation range from 2,000 feet in the foothills to over 13,000 on the Sierra crest. The ones a visitor realistically sees are a shorter list: mule deer, coyote, black bear, Steller's jay, acorn woodpecker and Douglas squirrel low down, and yellow-bellied marmot and pika at altitude."
+      },
+      {
+        "q": "Where is the best place to see wildlife in Yosemite?",
+        "a": "A meadow edge at dawn or dusk, at the elevation where your animal lives. The Valley floor gives deer, coyote, bobcat and bear; Wawona, Crane Flat and the Glacier Point Road meadows add the great gray owl; Tuolumne Meadows and Tioga Road give marmots and pika, which you will not see below 8,000 feet. A trip that never leaves the Valley has seen one of the park's four animal communities."
+      },
+      {
+        "q": "What time of day is best for seeing animals in Yosemite?",
+        "a": "Dawn and dusk for almost everything, because the animals are on a schedule and most visitors are not. The exception is the high country, where marmots and ground squirrels sun themselves through mid-morning. The first fifteen minutes after you stop moving are when a meadow decides you are scenery and resumes around you."
       }
     ]
   },
@@ -695,7 +713,7 @@
     ]
   },
   "yosemite-waterfalls-guide": {
-    "wordCount": 1875,
+    "wordCount": 2145,
     "keywords": [
       "yosemite waterfalls",
       "when do yosemite waterfalls dry up",
@@ -703,7 +721,13 @@
       "yosemite waterfalls by month",
       "bridalveil fall yosemite",
       "ribbon fall yosemite",
-      "yosemite moonbow lower yosemite fall"
+      "yosemite moonbow lower yosemite fall",
+      "Yosemite waterfalls",
+      "Yosemite falls",
+      "how many waterfalls are in Yosemite",
+      "best time to see Yosemite waterfalls",
+      "Yosemite waterfall hikes",
+      "waterfalls in Yosemite Valley"
     ],
     "faq": [
       {
@@ -729,6 +753,22 @@
       {
         "q": "Is there an easy, accessible walk to a Yosemite waterfall?",
         "a": "Yes. The Lower Yosemite Fall loop is a one-mile paved trail, flat and wheelchair accessible, with one of the best waterfall views in the park. The short paved walk to the base of Bridalveil Fall is another easy option."
+      },
+      {
+        "q": "How many waterfalls are in Yosemite?",
+        "a": "There is no official count, and any number quoted is a definition rather than a measurement. Yosemite Valley has about ten named falls: Yosemite (Upper, Middle and Lower), Bridalveil, Vernal, Nevada, Illilouette, Ribbon, Sentinel, Horsetail and Staircase. Across the whole park the named total is in the low twenties, adding Wapama, Tueeulala, Rancheria, Chilnualna, Waterwheel and the Tuolumne cascades. Count unnamed seasonal falls and the number becomes meaningless: in a wet May water comes off the Valley rim in dozens of places that have no name and are gone by July."
+      },
+      {
+        "q": "When is the best time to see Yosemite waterfalls?",
+        "a": "May, at peak snowmelt, with April and June close behind. Every named fall is running, Yosemite Falls is at maximum, the Mist Trail is a drenching, and the moonbows appear around the full moon. The whole schedule shifts a few weeks earlier in a low-snowpack year and later in a heavy one."
+      },
+      {
+        "q": "Is Yosemite Falls dry in summer?",
+        "a": "Usually by late August, and it stays dry until the first storms of November. It is creek-fed from a shallow basin above the rim that holds snow rather than groundwater, so when the snow is gone the fall is gone. In a big snow year it may limp into September; in a lean one it can quit in early August."
+      },
+      {
+        "q": "Which Yosemite waterfalls run year-round?",
+        "a": "Bridalveil, which drains a forested basin that releases water slowly, and Vernal and Nevada Falls, which sit on the main stem of the Merced River and are fed by hundreds of square miles of high country. They thin in autumn but never stop. The creek-fed rim falls, Yosemite, Ribbon, Sentinel and Horsetail, are the ones that disappear."
       }
     ]
   },
@@ -1187,13 +1227,14 @@
     "keywords": [
       "Yosemite bears",
       "bear safety Yosemite",
-      "is bear spray legal in Yosemite",
       "black bears Yosemite",
       "what to do if you see a bear in Yosemite",
       "Yosemite food storage rules",
       "bear canister Yosemite",
       "are black bears dangerous",
-      "Yosemite bear myths"
+      "Yosemite bear myths",
+      "Yosemite black bears",
+      "Yosemite bear safety"
     ],
     "faq": [
       {
@@ -1523,18 +1564,36 @@
     ]
   },
   "where-to-eat-yosemite": {
-    "wordCount": 1450,
+    "wordCount": 2198,
     "keywords": [
       "where to eat Yosemite",
-      "Yosemite restaurants 2026",
-      "Half Dome Village pizza",
-      "Mariposa restaurants",
-      "best food near Yosemite"
+      "Yosemite restaurants",
+      "restaurants near Yosemite",
+      "places to eat in Yosemite Valley",
+      "Yosemite West restaurants",
+      "food in Yosemite",
+      "Yosemite dining"
     ],
     "faq": [
       {
+        "q": "Is there food in Yosemite National Park?",
+        "a": "Yes, but almost all of it is in Yosemite Valley: a pizza deck, a delicatessen, a taqueria, the Mountain Room at the Lodge, and the Ahwahnee Dining Room. Outside the Valley the park thins out fast. Wawona has a hotel dining room and a store, Tuolumne Meadows has a seasonal store and grill, Crane Flat and El Portal have small markets, and Yosemite West has nothing at all."
+      },
+      {
         "q": "Where is the best place to eat in Yosemite Valley?",
-        "a": "The Half Dome Village Pizza Deck. The Half Dome pie, eaten on the deck under the Glacier Point Apron, is the one in-park meal worth going out of your way for. Degnan's Kitchen is the best option for a lunch under twenty dollars, and the Ahwahnee Dining Room is the special-occasion meal."
+        "a": "The Half Dome Village Pizza Deck. The Half Dome pie, eaten on the deck under the Glacier Point Apron, is the one in-park meal worth going out of your way for. Degnan's Kitchen is the best option for a lunch under twenty dollars, the Mountain Room at the Lodge is the sit-down dinner with a view of Yosemite Falls, and the Ahwahnee Dining Room is the special-occasion meal."
+      },
+      {
+        "q": "Are there restaurants in Yosemite West?",
+        "a": "No. Yosemite West is a residential subdivision of vacation rentals inside the park boundary off Wawona Road, with no restaurant, no store, no gas station and no shuttle. The nearest food is Yosemite Valley, about forty minutes away, or Wawona, about half an hour south. Shop before you arrive."
+      },
+      {
+        "q": "Can you bring your own food into Yosemite?",
+        "a": "Yes. There is no restriction on bringing food in, no inspection at the gate, and no rule against a cooler. The rule that does exist is about storage and it is federal law: food stays within arm's reach by day and goes into a bear locker at night, never left in a car overnight or in a truck bed. To a bear, food means anything with a scent, including trash and toiletries."
+      },
+      {
+        "q": "Is there food at Tuolumne Meadows?",
+        "a": "A seasonal store and grill, and that is the entire food supply along the thirty-nine miles of Tioga Road. It opens with the summer and closes in September, weeks before the road itself closes for winter: in the 2026 season it closed on September 20. There is no gas at Tuolumne either. Treat the high country as a cooler day."
       },
       {
         "q": "Where should I eat in Mariposa near Yosemite?",
@@ -1547,10 +1606,6 @@
       {
         "q": "Where can I get coffee on the east side of Yosemite?",
         "a": "Latte Da Cafe in Lee Vining. Coming over Tioga Pass from Mammoth, Bishop, or Lake Tahoe, it is the first real coffee on the route, with in-house pastries and honest drip."
-      },
-      {
-        "q": "Are there good restaurants inside Yosemite National Park?",
-        "a": "A few. The Half Dome Village Pizza Deck, Degnan's Kitchen, and the Ahwahnee Dining Room are the ones worth knowing in Yosemite Valley. Beyond those, the better food is in the gateway towns, and a packed cooler beats most of it."
       }
     ]
   },
@@ -1712,42 +1767,6 @@
       {
         "q": "What should I bring to hike Half Dome?",
         "a": "At least 3-4 liters of water, trail shoes with real traction (not sandals), sun protection, food for 12+ hours, a headlamp in case you run late, and gloves for the cables. Starting before sunrise is standard practice on this route."
-      }
-    ]
-  },
-  "half-dome-permit-lottery-2026": {
-    "wordCount": 2319,
-    "keywords": [
-      "Half Dome permit lottery 2026",
-      "Recreation.gov Half Dome",
-      "preseason lottery",
-      "daily lottery",
-      "Half Dome odds"
-    ],
-    "faq": [
-      {
-        "q": "When are the Half Dome permit lotteries?",
-        "a": "There are two. The preseason lottery runs March 1-31 (Eastern time) with results in mid-April. The daily lottery runs every day the cables are up, with applications due by 4 PM Pacific two days before your planned hike."
-      },
-      {
-        "q": "What are the real odds of getting a Half Dome permit?",
-        "a": "In 2024 the preseason lottery had a 22% application success rate. The daily lottery ran 19% overall, about 22% on weekdays and 14% on weekends. Late-season weekdays in September and October have the best odds of any window."
-      },
-      {
-        "q": "What happens if I don't win the Half Dome lottery?",
-        "a": "Run the daily lottery every day of your trip. Five tries at roughly 20% odds is about a 67% chance of winning at least once. If you still don't get a permit, hike Clouds Rest instead, which is a thousand feet higher than Half Dome and requires no permit."
-      },
-      {
-        "q": "Can I hike Half Dome without a permit?",
-        "a": "Not legally. The permit checkpoint at the base of the subdome is staffed by rangers. Hiking past it without a permit is a federal violation (36 CFR 1.6), punishable by a fine of up to $5,000 or six months in jail."
-      },
-      {
-        "q": "When are the cables up on Half Dome?",
-        "a": "Typically the Friday before Memorial Day through the day after the second Monday in October. The Park Service announces actual dates each year based on snow, weather, and crew availability."
-      },
-      {
-        "q": "How much does the Half Dome permit cost?",
-        "a": "$10 per application (non-refundable) plus $10 per person if awarded. Each application can cover up to six people. The per-person fee is refundable if you cancel by 11:59 PM Pacific the day before your hike date."
       }
     ]
   },
@@ -2119,7 +2138,11 @@
       "closest town to Yosemite Valley",
       "Groveland Yosemite",
       "best town to stay in near Yosemite",
-      "where to stay outside Yosemite"
+      "where to stay outside Yosemite",
+      "Mariposa or Oakhurst for Yosemite",
+      "is Oakhurst a good place to stay for Yosemite",
+      "gateway to Yosemite",
+      "how far is Groveland from Yosemite"
     ],
     "faq": [
       {
@@ -2145,6 +2168,26 @@
       {
         "q": "Do Yosemite gateway towns have reliable cell service?",
         "a": "Patchy in all five gateways and essentially nonexistent inside the park past Crane Flat. Don't rely on real-time Google Maps once you're past the entrance station. Download offline maps before you leave the gateway."
+      },
+      {
+        "q": "Is Oakhurst or Mariposa closer to Yosemite Valley?",
+        "a": "Mariposa, and by a real margin: about 45 miles and 45 to 60 minutes on Highway 140, against Oakhurst's roughly 50 miles and 75 to 90 minutes on Highway 41. The gap is time rather than distance, because the Highway 41 route climbs and descends more and enters the park via Wawona. Oakhurst wins the other direction: it is about 14 miles and 20 to 25 minutes from the South Entrance and the Mariposa Grove."
+      },
+      {
+        "q": "Is Oakhurst a good place to stay for Yosemite?",
+        "a": "It is the right base if your itinerary is mostly Wawona and the Mariposa Grove, which are 20 to 25 minutes away, and if you want the most lodging and services of any gateway. It is the wrong base if Yosemite Valley is the trip: at 75 to 90 minutes each way on Highway 41, it is the longest daily commute of the four year-round towns."
+      },
+      {
+        "q": "Is Mariposa a good place to stay for Yosemite?",
+        "a": "For most first-time visitors, yes. It is the most full-service of the western gateways, with a real downtown, and it sits on Highway 140, the lowest and most reliable year-round route into the park at 45 to 60 minutes from the Valley. It is also the pick for winter trips and the only corridor with year-round YARTS service if you would rather not drive."
+      },
+      {
+        "q": "Is Groveland a good place to stay for Yosemite?",
+        "a": "Yes if you want gateway-town character without the Mariposa price, if Hetch Hetchy and the north end of the park are on your list, or if you are driving from the Bay Area, since Groveland is on the way. The trade-offs are a longer Valley drive, about 41 miles and 65 to 80 minutes on Highway 120, and an elevation of about 3,100 feet that brings winter chain controls the Highway 140 towns do not get."
+      },
+      {
+        "q": "What is the best town to stay in outside Yosemite?",
+        "a": "It depends on which park you came for. El Portal for sunrise in the Valley and the shortest drive. Mariposa for a balanced trip with comfort and value, and for winter. Oakhurst for the sequoias and Wawona. Groveland for character and the Bay Area approach. Lee Vining for the high country and Mono Lake, while Tioga Pass is open."
       }
     ]
   },
@@ -2300,6 +2343,110 @@
       {
         "q": "When is the best time to propose in Yosemite?",
         "a": "Early morning and late afternoon beat midday at every popular viewpoint for light and crowds. Spring (late April through early June) brings peak waterfalls, October offers golden oaks and thin crowds, and mid-to-late February can deliver the Horsetail Fall Firefall near Valentine's Day. For night proposals, aim for a new moon in the high country from late May through September."
+      }
+    ]
+  },
+  "what-is-a-talus-field": {
+    "wordCount": 1048,
+    "keywords": [
+      "what is a talus field",
+      "talus field",
+      "talus slope",
+      "scree slope",
+      "angle of repose",
+      "Yosemite rockfall",
+      "talus vs scree"
+    ],
+    "faq": [
+      {
+        "q": "What is a talus field?",
+        "a": "A talus field is an accumulation of broken rock at the base of a cliff, built by repeated rockfall over a long time. The individual fragments are talus and the slope they form is the talus field, also called a talus slope. The blocks are angular rather than rounded because they have not travelled far or been worked by water."
+      },
+      {
+        "q": "What is the difference between talus and scree?",
+        "a": "Geologists use talus for coarse, angular, block-sized fragments and scree for finer, gravel-sized material. In ordinary speech the two words are used interchangeably and nobody minds."
+      },
+      {
+        "q": "Why are talus slopes all the same angle?",
+        "a": "Because loose angular rock piles up until it reaches the steepest slope it can hold without sliding, then stops. That limit is the angle of repose, and for Sierra granite blocks it falls between about 30 and 35 degrees. The mountain is not choosing that shape; friction is."
+      },
+      {
+        "q": "What causes talus fields in Yosemite?",
+        "a": "Mostly water and cold. Rain and snowmelt work into the joints in the granite, freeze, and act as a slow wedge until a block that was part of the cliff is only resting against it. The granite also sheds in curved sheets, the exfoliation that shaped Half Dome and Royal Arches. Rockfall in Yosemite is current, not historical: the talus below El Capitan and the Glacier Point Apron is still being added to."
+      },
+      {
+        "q": "Is it safe to walk on talus?",
+        "a": "Talus is stable until it is not, and the failure mode is a block rolling under your weight with a tonne of rock above it. Step on the tops of blocks rather than the gaps, move one at a time or spread out sideways so nothing dislodged is heading for someone below, and treat fresh pale unlichened rock as the least trustworthy surface on the slope. Nothing in Yosemite Valley requires crossing untracked talus."
+      }
+    ]
+  },
+  "yosemite-in-september-2026": {
+    "wordCount": 1347,
+    "keywords": [
+      "Yosemite in September",
+      "Yosemite September 2026",
+      "Yosemite September closures",
+      "Yosemite waterfalls September",
+      "Tioga Road September",
+      "Yosemite fall crowds"
+    ],
+    "faq": [
+      {
+        "q": "Are the waterfalls running in Yosemite in September?",
+        "a": "Barely. Yosemite Falls is dry by September, not thin but dry, because it runs on snowmelt from a shallow basin above the rim and there is no snow left. Mirror Lake is a meadow. Bridalveil, Vernal and Nevada still run because their creeks drain bigger and higher ground, but they run thin. September is the month to come for the granite rather than the water."
+      },
+      {
+        "q": "What closes in Yosemite in September?",
+        "a": "The park contracts in the first three weeks. Jennie's Ice Cream and the Wawona stable finish September 6, the Curry Village and Yosemite Valley Lodge pools September 7, and the Tuolumne store and grill September 20. The Tuolumne shuttle and hikers bus stop September 13. Of the High Sierra Camps, Glen Aulin and Sunrise close September 6 and May Lake September 9. Separately, the Wawona Hotel and dining room are closed for renovation and White Wolf is closed for the season."
+      },
+      {
+        "q": "Is Tioga Road open in September?",
+        "a": "Yes, and the high country is at its best: no mosquitoes, fewer thunderstorms, turned meadows and thin crowds. The catch is services rather than access. The Tuolumne store and grill close September 20, the shuttle and hikers bus stop September 13, and there has never been gas at Tuolumne. Fill up at Crane Flat and carry lunch."
+      },
+      {
+        "q": "Is the Mist Trail open in September?",
+        "a": "Only part of the week. It is closed Monday through Thursday, 7 a.m. to 3:30 p.m., for repairs running through the end of October, with the John Muir Trail detour signed. Plan Vernal and Nevada Falls for a Friday, Saturday or Sunday, or start before seven."
+      },
+      {
+        "q": "Is September a good time to hike Half Dome?",
+        "a": "It is the best month to apply. The cables stay up until the day after the second Monday in October, and late-season weekdays carry the strongest daily-lottery odds of the year: fewer applicants, cooler air, the same cables. If the permit does not come through, Clouds Rest is higher, needs no permit, and is reachable from Tioga Road while the road is open."
+      },
+      {
+        "q": "How crowded is Yosemite in September?",
+        "a": "The month splits at Labor Day. Before it, the Valley behaves like August: busy by mid-morning, worse at weekends, parking gone in the three hubs by nine. After it, the park thins noticeably, and by the last week a weekday morning in the Valley is genuinely quiet. If the dates are flexible, take the second half."
+      }
+    ]
+  },
+  "is-bear-spray-allowed-in-yosemite": {
+    "wordCount": 997,
+    "keywords": [
+      "is bear spray allowed in Yosemite",
+      "is bear spray legal in Yosemite",
+      "why is bear spray illegal in Yosemite",
+      "bear spray Yosemite",
+      "can you carry bear spray in Yosemite",
+      "is bear spray legal in California"
+    ],
+    "faq": [
+      {
+        "q": "Is bear spray allowed in Yosemite?",
+        "a": "No. Bear spray is prohibited in Yosemite National Park in any form. The Superintendent's Compendium classifies it as a weapon, alongside pellet guns, bows and crossbows, and both possession and use are prohibited."
+      },
+      {
+        "q": "Why is bear spray illegal in Yosemite?",
+        "a": "Two reasons. There are no grizzly bears in Yosemite and have not been since about 1895, and the American black bears the park does have are food-motivated and avoidant rather than territorial and defensive, so the encounter bear spray exists to solve does not happen here. And a USGS study found that capsaicin residue left on surfaces attracts bears rather than deterring them, so spraying an object in a park where bears already investigate scented objects makes the problem worse."
+      },
+      {
+        "q": "What should I carry instead of bear spray in Yosemite?",
+        "a": "Your voice, which the park's Bear Team calls the most effective tool you have. Shout, clap, stand tall and make yourself obviously present; a black bear that has clearly noticed a human usually leaves. Do not run and do not play dead, which is grizzly advice and wrong here. The rest is food storage rather than deterrence: everything scented into the bear locker, never left in a car overnight."
+      },
+      {
+        "q": "Is bear spray legal in California?",
+        "a": "It is not banned across California as a matter of state law. The bans are set per land unit rather than per state: a national park's superintendent's compendium governs that park, and national forests, BLM land and state parks each set their own rules. Check the specific unit you are entering. For Yosemite the answer is settled and it is no."
+      },
+      {
+        "q": "What happens if I bring bear spray into Yosemite?",
+        "a": "It is prohibited possession under the park's compendium, which is a regulation rather than a guideline. Leave it at home, or if your trip continues to grizzly country, buy it when you get there."
       }
     ]
   }

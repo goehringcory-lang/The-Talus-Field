@@ -25,6 +25,10 @@ window.ARTICLE_BODIES["yosemite-ranger-programs"] = function YosemiteRangerProgr
         This is the part that genuinely confuses people, because there is no single poster. The authoritative sources are the <em>Yosemite Guide</em>, the park's free seasonal newspaper (handed out at entrance stations, stacked at every visitor center, and downloadable as a PDF from the park website before your trip), and the events calendar in the free NPS app, which is worth installing while you still have cell service, along with the offline Yosemite content. Program listings also hang on bulletin boards at visitor centers and campgrounds. My advice is the analog version: get the paper at the gate, and while you wait out the entrance line, have your least car-sick passenger circle everything with a time that fits your days. That circled newspaper becomes the trip's spine.
       </p>
 
+      <p>
+        If you would rather read the current edition before you drive in, <a href="/now">the Park Bulletin</a> condenses each new <em>Yosemite Guide</em> as it comes out, including the Valley program clock with times and meeting points, the programs running elsewhere in the park, and which of them the Guide marks as wheelchair accessible or recommended for families.
+      </p>
+
       <Placeholder
         caption="The Lower Yosemite Fall boardwalk, where half the Junior Ranger badges in the park get earned"
         image="img/kid-yosemite-falls-boardwalk.jpg"

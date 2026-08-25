@@ -1,0 +1,90 @@
+/* global React, Placeholder, MotifMountains */
+
+window.ARTICLE_BODIES = window.ARTICLE_BODIES || {};
+
+window.ARTICLE_BODIES["what-is-a-talus-field"] = function WhatIsATalusFieldBody() {
+  return (
+    <>
+      <p className="dropcap">
+        Walk to the base of almost any cliff in Yosemite Valley and the ground changes under you. The flat meadow soil gives way to a slope of broken rock: blocks the size of dinner plates, blocks the size of cars, piled at an angle that feels deliberate and is not. That slope is a talus field. It is the most common landform in the Valley that visitors never learn the name of, and it is the thing this journal is named after.
+      </p>
+
+      <h2>What a talus field is</h2>
+
+      <p>
+        A <strong>talus field</strong> is an accumulation of rock fragments at the base of a cliff, built by repeated rockfall over a long time. The individual pieces are talus; the slope they form is a talus field, sometimes called a talus slope or a scree slope. Geologists distinguish talus (coarse, angular, block-sized) from scree (finer, gravel-sized), though in ordinary speech the words are used interchangeably and nobody minds.
+      </p>
+
+      <p>
+        The defining feature is the angle. Loose angular rock piles up until it reaches the steepest slope it can hold without sliding, and then it stops. That limit is the <strong>angle of repose</strong>, and for Sierra granite blocks it lands somewhere between about 30 and 35 degrees. Every talus field you have ever seen is sitting at roughly the same angle, which is why they all look related from across a valley. The mountain is not choosing that shape. Friction is.
+      </p>
+
+      <p>
+        The blocks are angular rather than rounded because they have not travelled far or been worked by water. A river cobble is smooth because it has been tumbled for miles. A talus block fell, hit, and stopped. The sharp edges are the tell that this rock is close to home.
+      </p>
+
+      <h2>How Yosemite builds them</h2>
+
+      <p>
+        Yosemite makes talus faster than most landscapes, because it has more cliff than most landscapes. The Valley's walls were steepened by glaciers that have since gone, and steep granite unsupported by ice is a wall waiting to shed.
+      </p>
+
+      <p>
+        The mechanism is mostly water and cold. Rain and snowmelt work into the joints, the natural fracture planes that run through granite in sheets and blocks. Water expands when it freezes, so a wet joint in a freezing night is a slow wedge. Do that a few thousand times and a block that was part of the cliff becomes a block resting against it. Then some ordinary morning, it is not resting against anything.
+      </p>
+
+      <p>
+        The other mechanism is the granite's own habit of shedding in curved sheets, exfoliation, which is why Half Dome and Royal Arches look the way they do. A sheet lets go, and what lands below is a fresh apron of pale rock that has not weathered yet. You can date a rockfall roughly by colour: bright white scars and light blocks are recent, and the grey-green of lichen takes decades to arrive.
+      </p>
+
+      <p>
+        Rockfall is not a historical event in this park. It is a current one. The Park Service records rockfalls every year, and the talus below El Capitan and the Rhombus Wall and the Glacier Point Apron is still being added to. <a href="/articles/yosemite-glaciers-climate">The glaciers</a> did the carving; the rockfall does the ongoing demolition.
+      </p>
+
+      <h2>Where to see one</h2>
+
+      <p>
+        You will not have to look. From the Valley floor the talus is the skirt at the bottom of every wall, most obviously below the Rhombus Wall east of Camp 4, below the Glacier Point Apron behind Half Dome Village, and along the base of the north wall between the Three Brothers and Yosemite Falls. The road and the bike paths run across old talus in several places without announcing it.
+      </p>
+
+      <p>
+        The one to walk is the approach to <a href="/articles/mist-trail-the-real-guide">the Mist Trail</a> and the lower Yosemite Falls trail, both of which cross talus that has been improved into a staircase. If you want the untouched version, look up at the base of Middle Cathedral from the meadow across the road: acres of angular blocks at the same tidy angle, with pines growing out of the gaps.
+      </p>
+
+      <p>
+        Higher up, talus becomes habitat. The blocky slopes above 8,000 feet along <a href="/tioga-opening">Tioga Road</a> are where pikas live, in the cold air spaces between rocks, and where marmots sun themselves on the flat tops. A talus field in the high country is not empty ground. It is an address.
+      </p>
+
+      <h2>Walking on talus</h2>
+
+      <p>
+        Talus is stable until it is not, and the failure mode is a block rolling under your weight with a tonne of rock stacked above it. Three rules from people who spend time on it. Step on the tops of blocks rather than the gaps, because a foot wedged between two rocks is how ankles break. Move one at a time in a group, or spread out sideways rather than climbing in a line, so nothing anyone dislodges is heading for a friend. And treat fresh, pale, unlichened rock as the least trustworthy surface on the slope: it is there because that part of the mountain moved recently.
+      </p>
+
+      <p>
+        Nothing in the Valley requires you to cross untracked talus, which is worth knowing before someone suggests a shortcut. The maintained trails that cross it have already done the hard part.
+      </p>
+
+      <h2>Why the journal is called The Talus Field</h2>
+
+      <p>
+        Because a talus field is what accumulates. No single rockfall builds one. Each block arrives on its own schedule, from a cliff that looks permanent and is not, and the pile at the bottom is the record of every one of them. Stand on it and you are standing on a few hundred thousand years of small events that nobody was there to see.
+      </p>
+
+      <p>
+        That is what a field journal is for. One entry is a note about a road opening or a bear in a parking lot or the week the dogwoods came out. None of them is the park. Enough of them, kept honestly over enough seasons, start to describe a place that is changing faster than it looks like it is.
+      </p>
+
+      <p>
+        It also happens to be the landform I can see from the house. That is the other half of the answer, and the more truthful one.
+      </p>
+
+      <h3>Sources</h3>
+      <ul style={{ fontSize: 14 }}>
+        <li>National Park Service, Yosemite: rockfall monitoring and geology programs.</li>
+        <li>Huber, N. King, <em>The Geologic Story of Yosemite National Park</em>, U.S. Geological Survey Bulletin 1595.</li>
+        <li>Field observation, El Portal and Yosemite Valley.</li>
+      </ul>
+    </>
+  );
+};

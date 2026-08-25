@@ -139,15 +139,29 @@ function counter(file, constName) {
 const points = counter("page-map.jsx", "POINTS_URL");
 if (points) add(points.url, points.version, points.url.replace(/^\//, ""), "page-map.jsx POINTS_URL");
 
-const bulletin = counter("page-now.jsx", "BULLETIN_URL");
-const homeBulletin = counter("page-home.jsx", "HOME_BULLETIN_URL");
-if (bulletin) add(bulletin.url, bulletin.version, bulletin.url.replace(/^\//, ""), "page-now.jsx BULLETIN_URL");
-if (bulletin && homeBulletin && homeBulletin.version !== bulletin.version) {
-  fail(
-    `bulletin.json is fetched twice under different versions: BULLETIN_URL is v${bulletin.version} ` +
-      `(page-now.jsx) and HOME_BULLETIN_URL is v${homeBulletin.version} (page-home.jsx). ` +
-      `The homepage teaser and the bulletin page would disagree about what is current.`
-  );
+// bulletin.json is fetched from three pages now, each with its own const. They
+// must all carry the same ?v=: the file is served with a long TTL, so a page
+// reading it under a stale number renders the previous edition beside two pages
+// rendering the current one.
+const BULLETIN_READERS = [
+  ["page-now.jsx", "BULLETIN_URL"],
+  ["page-home.jsx", "HOME_BULLETIN_URL"],
+  ["page-tioga-opening.jsx", "TIOGA_BULLETIN_URL"],
+];
+const bulletinReaders = BULLETIN_READERS.map(([file, name]) => ({ file, name, hit: counter(file, name) })).filter(
+  (r) => r.hit
+);
+if (bulletinReaders.length) {
+  const first = bulletinReaders[0];
+  add(first.hit.url, first.hit.version, first.hit.url.replace(/^\//, ""), `${first.file} ${first.name}`);
+  const odd = bulletinReaders.filter((r) => r.hit.version !== first.hit.version);
+  if (odd.length) {
+    fail(
+      `bulletin.json is fetched under different versions: ` +
+        bulletinReaders.map((r) => `${r.name} is v${r.hit.version} (${r.file})`).join(", ") +
+        `. Those pages would disagree about what edition is current.`
+    );
+  }
 }
 
 // 4. The image counter: mark plus the favicon ladder, immutable for 30 days.

@@ -11,7 +11,7 @@ function routeToPath(route) {
   if (route.startsWith("a:")) return `/articles/${route.slice(2)}`;
   return `/${route}`;
 }
-var STATIC_ROUTE_KEYS = new Set(["home", "articles", "planning", "checklist", "about", "kit", "places", "advertise", "newsletter", "contact", "privacy", "terms", "affiliate", "guide", "map", "films", "itineraries", "conditions", "now", "firefall", "stay", "consult", "widget", "partners", "search", "tioga-opening", "half-dome-lottery", "explore"]);
+var STATIC_ROUTE_KEYS = new Set(["home", "articles", "planning", "checklist", "about", "kit", "places", "advertise", "newsletter", "contact", "privacy", "terms", "affiliate", "guide", "map", "films", "itineraries", "conditions", "now", "firefall", "stay", "consult", "widget", "partners", "search", "tioga-opening", "half-dome-lottery", "explore", "distances", "webcams"]);
 function pathToRoute(pathname) {
   var path = (pathname || "/").replace(/\/+$/, "") || "/";
   if (path === "/") return "home";
@@ -154,6 +154,14 @@ var PAGE_MODULES = {
   "half-dome-lottery": {
     scripts: ["/dist/page-half-dome-lottery.js"],
     globals: ["HalfDomeLotteryPage"]
+  },
+  distances: {
+    scripts: ["/dist/page-distances.js"],
+    globals: ["DistancesPage"]
+  },
+  webcams: {
+    scripts: ["/dist/page-webcams.js"],
+    globals: ["WebcamsPage"]
   }
 };
 function routeModule(route) {
@@ -180,7 +188,12 @@ function loadScriptOnce(src) {
 async function ensureRoute(route) {
   var mod = routeModule(route);
   if (!mod) return;
-  for (var src of mod.scripts) await loadScriptOnce(src);
+  var slug = route.startsWith("a:") ? route.slice(2) : null;
+  var body = slug && window.findArticle && window.findArticle(slug) && window.loadArticleBody ? window.loadArticleBody(slug).catch(() => {}) : null;
+  var scripts = (async () => {
+    for (var src of mod.scripts) await loadScriptOnce(src);
+  })();
+  await Promise.all([scripts, body]);
   var missing = mod.globals.filter(n => typeof window[n] === "undefined");
   if (missing.length) throw new Error(`route "${route}" loaded but did not register: ${missing.join(", ")}`);
 }
@@ -198,7 +211,7 @@ function legacyHashToRoute(hash) {
 }
 var SITE_NAME = "The Talus Field";
 var PERSON_ID = `${SITE_ORIGIN}/#person-cory-goehring`;
-var SITE_TAGLINE = "Yosemite, written from inside it";
+var HOME_TITLE = "The Talus Field Journal — Yosemite field notes, conditions, and guides";
 var SITE_DEFAULT_IMAGE = `${SITE_ORIGIN}/img/og-default.jpg`;
 var SITE_DEFAULT_DESC = "A field journal of Yosemite National Park, kept by a resident. Trails, planning notes, wildlife, and essays on the park's seasons and life.";
 function setMeta(name, content, attr = "name") {
@@ -429,6 +442,9 @@ function buildSeo(route) {
             description: ep.dek,
             thumbnailUrl: `https://i.ytimg.com/vi/${ep.youtubeId}/hqdefault.jpg`,
             embedUrl: `https://www.youtube-nocookie.com/embed/${ep.youtubeId}`,
+            ...(ep.uploaded ? {
+              uploadDate: ep.uploaded
+            } : {}),
             publisher: {
               "@type": "Organization",
               name: "National Park Service"
@@ -478,7 +494,7 @@ function buildSeo(route) {
   }
   var known = {
     home: {
-      title: `${SITE_NAME} — ${SITE_TAGLINE}`,
+      title: HOME_TITLE,
       description: SITE_DEFAULT_DESC,
       ogType: "website"
     },
@@ -666,6 +682,18 @@ function buildSeo(route) {
       description: "Both Half Dome permit lotteries explained: the March preseason draw, the daily lottery almost nobody uses, the honest odds, and the strategy that actually works. By a park resident.",
       ogType: "website",
       breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Half Dome lottery", null]]
+    },
+    webcams: {
+      title: `Yosemite Webcams — the live views worth checking — ${SITE_NAME}`,
+      description: "Live Yosemite webcams: Half Dome, Yosemite Falls, El Capitan and Wawona, what each camera shows, how often it refreshes, and how to read them before you drive in.",
+      ogType: "website",
+      breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Webcams", null]]
+    },
+    distances: {
+      title: `Yosemite Drive Times — every gateway town, in one table — ${SITE_NAME}`,
+      description: "How far Yosemite Valley is from El Portal, Mariposa, Groveland, Oakhurst and Lee Vining: miles, drive times, entrances, elevations and what the season does to each route.",
+      ogType: "website",
+      breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Distances", null]]
     },
     consult: {
       title: `Field Consult — thirty minutes on your Yosemite plan — ${SITE_NAME}`,
@@ -1034,6 +1062,16 @@ function App() {
       go: go
     });
     currentNav = "now";
+  } else if (route === "webcams") {
+    page = React.createElement(window.WebcamsPage, {
+      go: go
+    });
+    currentNav = "webcams";
+  } else if (route === "distances") {
+    page = React.createElement(window.DistancesPage, {
+      go: go
+    });
+    currentNav = "distances";
   } else if (route === "firefall") {
     page = React.createElement(window.FirefallPage, {
       go: go

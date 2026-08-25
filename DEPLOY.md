@@ -171,6 +171,71 @@ npx wrangler deploy   # from the repo root
 Custom domains `thetalusfieldjournal.com` + `www` are bound in
 `wrangler.jsonc`.
 
+## 7a. Cloudflare dashboard settings the repo cannot set
+
+Three settings live only in the Cloudflare dashboard. All three were found
+wrong or missing by the August 2026 Search Console audit, and none of them can
+be fixed by a commit. Re-check them after any zone-level change.
+
+### www must 301 to the apex
+
+Both hosts are bound as custom domains and both serve 200s, so Search Console
+was reporting `https://`, `http://www.` and `https://www.` rows for the same
+article, splitting signals three ways.
+
+Routing is asset-first, so the Worker never runs for `/`, for any real file, or
+for either sitemap on the www host. A Worker-side guard therefore cannot cover
+the whole domain (one exists in `edge/seo.js` as a backstop for SPA routes).
+The fix is a zone-level rule, which runs before Workers and assets:
+
+1. Cloudflare dashboard → the zone → **Rules → Redirect Rules → Create rule**.
+2. If: `Hostname` `equals` `www.thetalusfieldjournal.com`.
+3. Then: **Dynamic** redirect, status **301**, preserve query string, expression:
+   `concat("https://thetalusfieldjournal.com", http.request.uri.path)`
+4. Confirm **SSL/TLS → Edge Certificates → Always Use HTTPS** is on, so the
+   `http://` variants are covered too.
+
+Verify: `curl -sI https://www.thetalusfieldjournal.com/articles/yosemite-in-fall`
+returns `301` with a `location:` on the apex, and the apex itself still 200s.
+
+### Managed robots.txt must stay OFF
+
+Cloudflare injects a managed block at the top of the served `robots.txt` that
+sets `Content-Signal: search=yes,ai-train=no,use=reference` and `Disallow: /`
+for ClaudeBot, GPTBot, Google-Extended, CCBot, Bytespider, Applebot-Extended
+and meta-externalagent. The repo's own `robots.txt` explicitly **allows** those
+same agents, because AI citation is the point. The served file therefore
+contradicted itself: same user-agent, `Disallow` in one group and `Allow` in
+another, leaving the site's AI-citation policy resting on undefined parser
+behavior.
+
+Turn it off: dashboard → the zone → **Security → Settings** → filter by
+**Bot traffic** → turn off **"Set your preference to block training in
+robots.txt"**. If the Content Signals Policy still appears, uncheck **Display
+Content Signals Policy** under Control AI Crawlers on the zone Overview.
+
+Verify: `curl -s https://thetalusfieldjournal.com/robots.txt | head -40` shows
+the repo's file with no `Content-Signal` line and no `# BEGIN Cloudflare
+Managed Content` block.
+
+### AI Crawl Control must not block what robots.txt allows
+
+robots.txt states a preference; AI Crawl Control enforces. They are separate
+layers and can disagree silently. Dashboard → the zone → **AI Crawl Control →
+Security** tab → confirm the crawlers the repo allows are set to **Allow**.
+
+### Search Console, after this deploys
+
+1. **Sitemaps** → submit `https://thetalusfieldjournal.com/sitemap.xml`. It is
+   now an index; both children should appear with their own row and their own
+   discovered/indexed counts. Remove any older standalone submission.
+2. Confirm the "Incorrect namespace" error clears on the next read.
+3. **Pages → Soft 404** → if any URLs remain, paste them into an issue: the
+   repo-side fix needs to know which ones.
+4. `sameAs` on the homepage `Organization` is empty because no public profile
+   URLs exist anywhere in the codebase. Supply them (social, newsletter archive)
+   and they can be added to the entity block.
+
 ## 8. Smoke test
 
 1. Open the deployed editorial site → click `Field Guide` → the buy box renders "Buy the guide → $3.99" with the price read live from `/api/inventory` (there is no sold/cap counter; a sold-out month surfaces only as the reopen notice after checkout returns 409).

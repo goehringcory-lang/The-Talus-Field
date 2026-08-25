@@ -42,7 +42,7 @@ window.ARTICLE_BODIES["mist-trail-the-real-guide"] = function MistTrailBody() {
       </p>
 
       <p>
-        Past the top of Nevada Fall, this trail is also the standard approach to Half Dome. If that's your goal, read the <a href="/articles/half-dome-permit-lottery-2026">permit lottery guide</a> first, and <a href="/articles/so-you-want-to-hike-half-dome">the honest case for the cables</a> before you commit.
+        Past the top of Nevada Fall, this trail is also the standard approach to Half Dome. If that's your goal, read the <a href="/half-dome-lottery">permit lottery guide</a> first, and <a href="/articles/so-you-want-to-hike-half-dome">the honest case for the cables</a> before you commit.
       </p>
 
       <h2>The wet granite reality</h2>

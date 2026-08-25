@@ -364,6 +364,14 @@ var NAV_GROUPS = [{
       label: "The trip map",
       note: "Every pin in the park, assembled into a route"
     }, {
+      key: "distances",
+      label: "Drive times",
+      note: "How far the Valley is from every gateway town"
+    }, {
+      key: "webcams",
+      label: "Webcams",
+      note: "The live views, and how to read them"
+    }, {
       key: "checklist",
       label: "First-week checklist",
       note: "What to do in the week before you go"
@@ -895,7 +903,7 @@ function Footer({
     }
   }, c.label))), link("now", "The Park Bulletin"), link("films", "Films"), React.createElement("li", null, React.createElement("a", {
     href: "/archive/"
-  }, "Nature Notes archive")))), React.createElement("div", null, React.createElement("h4", null, "Plan"), React.createElement("ul", null, link("planning", "The Planning Guide"), link("map", "The Map"), link("itineraries", "Itineraries"), link("stay", "Where to stay"), link("conditions", "Conditions"), link("checklist", "First-week checklist"), link("kit", "Kit"), link("guide", "The Field Guide"))), React.createElement("div", null, React.createElement("h4", null, "The journal"), React.createElement("ul", null, link("about", "About"), link("newsletter", "Newsletter"), link("contact", "Contact"), link("search", "Search"), link("places", "Directory"), link("advertise", "Advertise"), link("widget", "Conditions widget"), link("partners", "Group codes"), link("privacy", "Privacy"), link("terms", "Terms"), link("affiliate", "Affiliate disclosure")))), React.createElement("div", {
+  }, "Nature Notes archive")))), React.createElement("div", null, React.createElement("h4", null, "Plan"), React.createElement("ul", null, link("planning", "The Planning Guide"), link("map", "The Map"), link("itineraries", "Itineraries"), link("distances", "Drive times"), link("webcams", "Webcams"), link("stay", "Where to stay"), link("conditions", "Conditions"), link("checklist", "First-week checklist"), link("kit", "Kit"), link("guide", "The Field Guide"))), React.createElement("div", null, React.createElement("h4", null, "The journal"), React.createElement("ul", null, link("about", "About"), link("newsletter", "Newsletter"), link("contact", "Contact"), link("search", "Search"), link("places", "Directory")))), React.createElement("div", {
     className: "site-footer__disclosure"
   }, "Some links on this site are affiliate links. If you book or buy through one, The Talus Field may earn a small commission at no extra cost to you. ", React.createElement("a", {
     href: "/affiliate",
@@ -906,6 +914,24 @@ function Footer({
   }, "Full disclosure here.")), React.createElement("div", {
     className: "site-footer__legal"
   }, React.createElement("div", null, "© 2026 The Talus Field. Independent. Not affiliated with the National Park Service."), React.createElement("div", null, React.createElement("a", {
+    href: "/advertise",
+    onClick: e => {
+      e.preventDefault();
+      go("advertise");
+    }
+  }, "Advertise"), React.createElement("a", {
+    href: "/widget",
+    onClick: e => {
+      e.preventDefault();
+      go("widget");
+    }
+  }, "Conditions widget"), React.createElement("a", {
+    href: "/partners",
+    onClick: e => {
+      e.preventDefault();
+      go("partners");
+    }
+  }, "Group codes"), React.createElement("a", {
     href: "/privacy",
     onClick: e => {
       e.preventDefault();
@@ -1091,6 +1117,10 @@ var KEEP_GOING = {
   },
   stay: {
     links: [{
+      key: "distances",
+      label: "Drive times",
+      note: "How far each town is from the Valley"
+    }, {
       key: "planning",
       label: "The Planning Guide",
       note: "Everything else the trip needs"
@@ -1102,6 +1132,44 @@ var KEEP_GOING = {
       key: "checklist",
       label: "First-week checklist",
       note: "The week before you go, in order"
+    }]
+  },
+  webcams: {
+    links: [{
+      key: "conditions",
+      label: "Conditions",
+      note: "Forecasts and live entrance waits"
+    }, {
+      key: "now",
+      label: "The Park Bulletin",
+      note: "What the park says about this week"
+    }, {
+      key: "tioga-opening",
+      label: "Tioga Road opening",
+      note: "The view the cameras do not cover"
+    }, {
+      key: "map",
+      label: "The trip map",
+      note: "Where the views actually are"
+    }]
+  },
+  distances: {
+    links: [{
+      key: "stay",
+      label: "Where to stay",
+      note: "The beds at the end of each drive"
+    }, {
+      key: "conditions",
+      label: "Conditions",
+      note: "Entrance waits and road status now"
+    }, {
+      key: "tioga-opening",
+      label: "Tioga Road opening",
+      note: "When the east-side route comes back"
+    }, {
+      key: "planning",
+      label: "The Planning Guide",
+      note: "The rest of the trip, in order"
     }]
   },
   map: {

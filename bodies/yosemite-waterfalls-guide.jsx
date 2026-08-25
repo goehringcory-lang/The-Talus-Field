@@ -18,7 +18,7 @@ window.ARTICLE_BODIES["yosemite-waterfalls-guide"] = function YosemiteWaterfalls
       <h2>Why the falls behave this way</h2>
 
       <p>
-        Nearly every famous waterfall in Yosemite is fed by <strong>snowmelt</strong>, not by springs, glaciers, or reliable year-round rivers. The creeks that pour over the Valley rim (Yosemite Creek, Ribbon Creek, Sentinel Creek, Horsetail's seep) drain small, shallow granite basins above the walls. Those basins hold no meaningful groundwater. They hold snow. When the Sierra snowpack melts, roughly April through June, the creeks surge and the falls detonate. When the snow above the rim is gone, usually sometime in July, the creeks drop with it, and by late summer several of the most photographed waterfalls on Earth are dry streaks on rock.
+        Nearly every famous waterfall in Yosemite is fed by <strong>snowmelt</strong>, not by springs, <a href="/articles/yosemite-glaciers-climate">the park's two remaining glaciers</a>, or reliable year-round rivers. The creeks that pour over the Valley rim (Yosemite Creek, Ribbon Creek, Sentinel Creek, Horsetail's seep) drain small, shallow granite basins above the walls. Those basins hold no meaningful groundwater. They hold snow. When the Sierra snowpack melts, roughly April through June, the creeks surge and the falls detonate. When the snow above the rim is gone, usually sometime in July, the creeks drop with it, and by late summer several of the most photographed waterfalls on Earth are dry streaks on rock.
       </p>
 
       <p>
@@ -85,46 +85,76 @@ window.ARTICLE_BODIES["yosemite-waterfalls-guide"] = function YosemiteWaterfalls
         Hetch Hetchy sits low, around 3,900 feet, so it melts out early. April and May are the window; by July the trail is hot and Tueeulala is a memory.
       </p>
 
-      <h2>Month by month: what you'll actually see</h2>
+      <h2>Waterfall flow by month</h2>
 
       <p>
-        <strong>January.</strong> Low but alive. Falls run thin between storms and swell for a day or two after rain. The frazil ice cone builds at the base of Upper Yosemite Fall.
+        This is the table the postcards do not come with. "Peak" means the fall is
+        at or near maximum; "thin" means it is running but unimpressive; "dry"
+        means there is nothing there but a stain on the rock. The creek-fed rim
+        falls swing hardest, the river-fed ones hold on, and the whole schedule
+        shifts a few weeks earlier in a low-snowpack year and later in a heavy
+        one.
+      </p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Month</th>
+            <th>Yosemite Falls</th>
+            <th>Bridalveil</th>
+            <th>Vernal &amp; Nevada</th>
+            <th>Ribbon &amp; Sentinel</th>
+            <th>Worth the trip?</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>January</strong></td><td>Thin, storm-fed</td><td>Thin</td><td>Flowing</td><td>Dry</td><td>For frazil ice and empty trails</td></tr>
+          <tr><td><strong>February</strong></td><td>Thin, storm-fed</td><td>Thin</td><td>Flowing</td><td>Dry</td><td>For the Horsetail Fall window</td></tr>
+          <tr><td><strong>March</strong></td><td>Rising</td><td>Rising</td><td>Rising</td><td>Waking up</td><td>The turn; flows climb weekly</td></tr>
+          <tr><td><strong>April</strong></td><td>Strong</td><td>Strong</td><td>Strong</td><td>Running</td><td>Yes. Everything is on</td></tr>
+          <tr><td><strong>May</strong></td><td>Peak</td><td>Peak</td><td>Peak</td><td>Running</td><td>The best month of the year</td></tr>
+          <tr><td><strong>June</strong></td><td>Strong, tapering</td><td>Strong</td><td>Peak to strong</td><td>Fading</td><td>Yes, and the moonbows hold</td></tr>
+          <tr><td><strong>July</strong></td><td>Thinning fast</td><td>Moderate</td><td>Strong</td><td>Gone</td><td>Go to the Mist Trail, not the rim</td></tr>
+          <tr><td><strong>August</strong></td><td>Often dry by late month</td><td>Thin</td><td>Moderate</td><td>Gone</td><td>Come for other reasons</td></tr>
+          <tr><td><strong>September</strong></td><td>Dry</td><td>Thin</td><td>Thin</td><td>Gone</td><td>No. Come for the high country</td></tr>
+          <tr><td><strong>October</strong></td><td>Dry</td><td>Thin</td><td>Thin</td><td>Gone</td><td>No. Come for the colour</td></tr>
+          <tr><td><strong>November</strong></td><td>Storm resurrections</td><td>Thin, rising</td><td>Flowing</td><td>Storm only</td><td>Watch the forecast, not the calendar</td></tr>
+          <tr><td><strong>December</strong></td><td>Storm resurrections</td><td>Thin, rising</td><td>Flowing</td><td>Storm only</td><td>Watch the forecast, not the calendar</td></tr>
+        </tbody>
+      </table>
+
+      <p>
+        Two things the table cannot show. A dry Yosemite Falls can roar back for a
+        day or two after a big autumn rain and then subside, so a November trip is
+        a weather bet rather than a calendar one. And Hetch Hetchy runs on its own
+        schedule, a few weeks ahead of the Valley: Wapama peaks April into May and
+        is worth the drive precisely when the Valley is at its most crowded.
       </p>
 
       <p>
-        <strong>February.</strong> Still winter-thin, with one exception: the Horsetail Fall firefall window in the middle of the month, weather permitting.
+        For what the snowpack is doing in the current year, which is what moves
+        every row above, <a href="/conditions">the conditions page</a> carries the
+        forecast links and <a href="/now">the Park Bulletin</a> carries the
+        park's own current word on which falls are running.
+      </p>
+
+      <h2>How many waterfalls are in Yosemite?</h2>
+
+      <p>
+        There is no official count, and any number you see quoted is a definition
+        rather than a measurement. Yosemite Valley has about ten named falls, the
+        ones on every map: Yosemite (Upper, Middle and Lower), Bridalveil, Vernal,
+        Nevada, Illilouette, Ribbon, Sentinel, Horsetail and Staircase. Across the
+        whole park, counting the high country and Hetch Hetchy, the named total is
+        in the low twenties, with Wapama, Tueeulala, Rancheria, Chilnualna,
+        Waterwheel and the Tuolumne cascades among them.
       </p>
 
       <p>
-        <strong>March.</strong> The turn. Warm spells send the first real melt pulses over the rim. Flows rise week by week.
-      </p>
-
-      <p>
-        <strong>April.</strong> The show opens. Every named fall is running, including Ribbon and Sentinel. Hetch Hetchy peaks now through May.
-      </p>
-
-      <p>
-        <strong>May.</strong> Peak. This is the month the postcards were taken. Yosemite Falls at maximum, the Mist Trail a drenching, moonbows on the full moon. If you can pick any month, pick this one.
-      </p>
-
-      <p>
-        <strong>June.</strong> Still excellent, beginning to taper in lean snow years. The ephemerals start to fade late in the month.
-      </p>
-
-      <p>
-        <strong>July.</strong> The decline is visible week to week. Ribbon and Sentinel are gone; Yosemite Falls thins to a stream.
-      </p>
-
-      <p>
-        <strong>August.</strong> Yosemite Falls is often dry by late month. Bridalveil, Vernal, Nevada, and Illilouette carry the season.
-      </p>
-
-      <p>
-        <strong>September and October.</strong> The low ebb. River falls still perform; the rim falls are stains. Come for other reasons.
-      </p>
-
-      <p>
-        <strong>November and December.</strong> First storms bring brief resurrections: a dry Yosemite Falls can roar back for a day after a big rain, then subside. Watch the forecast, not the calendar.
+        Count unnamed seasonal falls and the number becomes meaningless: in a wet
+        May, water comes off the Valley rim in dozens of places that have no name
+        and will be gone by July. The useful question is not how many there are
+        but how many are running on your dates, and that is the table above.
       </p>
 
       <h2>Moonbows, briefly</h2>
