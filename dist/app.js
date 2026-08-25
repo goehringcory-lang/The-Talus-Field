@@ -180,7 +180,12 @@ function loadScriptOnce(src) {
 async function ensureRoute(route) {
   var mod = routeModule(route);
   if (!mod) return;
-  for (var src of mod.scripts) await loadScriptOnce(src);
+  var slug = route.startsWith("a:") ? route.slice(2) : null;
+  var body = slug && window.findArticle && window.findArticle(slug) && window.loadArticleBody ? window.loadArticleBody(slug).catch(() => {}) : null;
+  var scripts = (async () => {
+    for (var src of mod.scripts) await loadScriptOnce(src);
+  })();
+  await Promise.all([scripts, body]);
   var missing = mod.globals.filter(n => typeof window[n] === "undefined");
   if (missing.length) throw new Error(`route "${route}" loaded but did not register: ${missing.join(", ")}`);
 }

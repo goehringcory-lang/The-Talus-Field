@@ -149,7 +149,40 @@ function loadScriptOnce(src) {
 async function ensureRoute(route) {
   const mod = routeModule(route);
   if (!mod) return;
-  for (const src of mod.scripts) await loadScriptOnce(src);
+
+  // Article bodies load alongside the page bundle, not after it. They used to
+  // arrive on a second hop: page-article.js rendered, its effect fired, and
+  // only then was /dist/bodies/<slug>.js injected. That cost a visible
+  // "Loading…" flash, and it appears to have cost the site its internal link
+  // graph. Search Console counts internal links from the RENDERED page, and
+  // the whole site had 33 link targets, which is exactly the number of
+  // distinct links in the masthead and footer combined: the in-body links,
+  // 59 distinct article targets across the catalog, were not being counted at
+  // all. A body that is already registered before the first commit renders
+  // inside it, because ArticlePage's useState initializer reads
+  // window.ARTICLE_BODIES[slug] synchronously.
+  //
+  // Three guards. The findArticle gate keeps an unknown slug on the normal
+  // not-found path instead of rejecting here (a rejection makes go() fall back
+  // to a full page load). The catch means a flaky body fetch degrades to the
+  // component's own async load rather than blocking the route. And this lives
+  // in ensureRoute rather than in loadScriptOnce or prefetchAllModules, so the
+  // interaction warm-up does not pull all 61 bodies down at once.
+  const slug = route.startsWith("a:") ? route.slice(2) : null;
+  const body =
+    slug && window.findArticle && window.findArticle(slug) && window.loadArticleBody
+      ? window.loadArticleBody(slug).catch(() => {})
+      : null;
+
+  // The script chain stays sequential. Several routes list a data file ahead of
+  // the bundle that consumes it (intent-data.js before dist/intent.js, and so
+  // on), and loading those in parallel would be a race. Only the body, which
+  // depends on nothing here, overlaps it.
+  const scripts = (async () => {
+    for (const src of mod.scripts) await loadScriptOnce(src);
+  })();
+
+  await Promise.all([scripts, body]);
   const missing = mod.globals.filter((n) => typeof window[n] === "undefined");
   if (missing.length) throw new Error(`route "${route}" loaded but did not register: ${missing.join(", ")}`);
 }
