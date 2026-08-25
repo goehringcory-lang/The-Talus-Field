@@ -16,7 +16,7 @@ export default async function checkMirrors() {
   const gen = path.resolve(fileURLToPath(import.meta.url), "../../gen-seo-artifacts.mjs");
   try {
     execFileSync(process.execPath, [gen, "--check"], { stdio: "pipe" });
-    check.info("articles.json / sitemap.xml / feed.xml / llms.txt all current");
+    check.info("articles.json / sitemap.xml + sitemap-articles.xml / feed.xml / llms.txt all current");
   } catch (e) {
     const out = `${e.stdout || ""}${e.stderr || ""}`.trim();
     const stale = out.split("\n").filter((l) => l.includes("stale"));

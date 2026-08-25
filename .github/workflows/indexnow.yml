@@ -16,6 +16,7 @@ on:
       - "data.js"
       - "articles.json"
       - "sitemap.xml"
+      - "sitemap-articles.xml"
       - "bodies/**"
       - "index.html"
 
@@ -44,11 +45,20 @@ jobs:
           INDEXNOW_ADMIN_TOKEN: ${{ secrets.INDEXNOW_ADMIN_TOKEN }}
         run: |
           python3 <<'PY' > urls.txt
-          # Ping every indexable URL, not just articles: sitemap.xml is the
-          # canonical list (hubs, sections, /map, /guide, ... included), so
+          # Ping every indexable URL, not just articles: sitemap-articles.xml is
+          # the canonical list (hubs, sections, /map, /guide, ... included), so
           # parsing it keeps this workflow from drifting when routes change.
+          #
+          # Read the child, NOT /sitemap.xml. That file is a sitemap index whose
+          # only two <loc>s are the child sitemaps themselves, so the same regex
+          # over it would ping IndexNow with two sitemap URLs instead of every
+          # page and report success while doing nothing.
+          #
+          # The archive's 569 URLs are deliberately excluded: they are a static
+          # historical run that changes only on a transcription pass, and
+          # IndexNow is for telling search engines what just changed.
           import re
-          with open("sitemap.xml") as f:
+          with open("sitemap-articles.xml") as f:
               for loc in re.findall(r"<loc>([^<]+)</loc>", f.read()):
                   print(loc)
           PY

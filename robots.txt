@@ -2,11 +2,17 @@
 # Permissions for traditional search engines and AI assistant crawlers.
 # Sitemap and AI content map:
 
+# /sitemap.xml is a sitemap INDEX. It points at the editorial url set
+# (sitemap-articles.xml) and at the Yosemite Nature Notes archive, which is
+# generated separately by scripts/gen-archive.mjs and kept in its own file
+# because 512 issue pages plus year indexes would swamp the editorial one.
+# Submitting the index in Search Console gives per-child indexing reports;
+# submitting only the editorial sitemap, as was the case until August 2026, is
+# why the archive's indexation problem was invisible there.
 Sitemap: https://thetalusfieldjournal.com/sitemap.xml
 
-# The Yosemite Nature Notes archive (1922 onward) is generated separately by
-# scripts/gen-archive.mjs and carries its own sitemap: 512 issue pages plus
-# year indexes would swamp the editorial sitemap above.
+# Listed individually as well, for crawlers that do not expand a sitemap index.
+Sitemap: https://thetalusfieldjournal.com/sitemap-articles.xml
 Sitemap: https://thetalusfieldjournal.com/archive/sitemap.xml
 
 # IndexNow ownership key (Bing / Yandex / Seznam / Naver / Yep).

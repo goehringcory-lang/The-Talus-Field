@@ -181,6 +181,28 @@ function buildKitJson(kit) {
   return jsonCompact({ lists }, 0) + "\n";
 }
 
+// /sitemap.xml is an index, not a urlset. The site publishes two url sets, and
+// only the editorial one was ever submitted to Search Console: the archive's
+// 569 URLs were discoverable through robots.txt but got no per-sitemap
+// indexing report, which is exactly why the archive's indexation problem was
+// invisible in the Sitemaps view while 139 of its pages went unindexed. One
+// submitted index gives per-child reporting for free.
+//
+// No <lastmod> on the children on purpose. The archive child's real stamp
+// lives in gen-archive.mjs (ARCHIVE_CONTENT_UPDATED), and reaching across
+// generators to read it would couple two builds that are deliberately
+// independent, in a file whose --check byte-compares the result.
+function buildSitemapIndex() {
+  const child = (loc) => `  <sitemap>\n    <loc>${SITE_ORIGIN}${loc}</loc>\n  </sitemap>`;
+  return (
+    `<?xml version="1.0" encoding="UTF-8"?>\n` +
+    `<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n` +
+    `${child("/sitemap-articles.xml")}\n` +
+    `${child("/archive/sitemap.xml")}\n` +
+    `</sitemapindex>\n`
+  );
+}
+
 function buildSitemap(merged, categories) {
   const mod = (a) => a.isoModified || a.isoDate;
   const newest = (arr) => arr.map(mod).sort().at(-1);
@@ -414,7 +436,8 @@ async function main() {
     "articles.json": buildArticlesJson(merged),
     "videos.json": buildVideosJson(episodes),
     "kit.json": buildKitJson(kit),
-    "sitemap.xml": buildSitemap(merged, categories),
+    "sitemap.xml": buildSitemapIndex(),
+    "sitemap-articles.xml": buildSitemap(merged, categories),
     "feed.xml": buildFeed(merged, categories),
     "llms.txt": buildLlms(readFileSync(path.join(ROOT, "llms.txt"), "utf8"), merged, categories),
     "index.html": buildIndexHtml(readFileSync(path.join(ROOT, "index.html"), "utf8"), merged),
