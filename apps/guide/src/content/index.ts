@@ -33,7 +33,7 @@ export const REGIONS: { id: Region; title: string; teaser: string; photo: { src:
     title: 'Yosemite Valley & surrounding areas',
     teaser:
       'The valley floor and the rim viewpoints that look down into it. Tunnel View, the meadows, the climbing wall, the Mist Trail, the lodgings.',
-    photo: { src: '/photos/region-valley.jpg' },
+    photo: { src: '/photos/valley-el-capitan-half-dome.jpg' },
   },
   {
     id: 'glacier-mariposa',
