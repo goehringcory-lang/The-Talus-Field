@@ -127,6 +127,11 @@ function ExplorePage({ go }) {
       note: "In-park lodging and the five gateway towns compared honestly, with drive times and the booking windows that actually matter.",
     },
     {
+      route: "webcams",
+      name: "Webcams",
+      note: "The live Yosemite cameras worth checking before you drive in, with what each one shows, how often it refreshes, and how to read two of them together.",
+    },
+    {
       route: "distances",
       name: "Drive times",
       note: "How far Yosemite Valley is from every gateway town, in one table: miles, drive times, which entrance each route uses, and what the season does to it.",

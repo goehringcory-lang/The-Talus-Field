@@ -376,6 +376,7 @@ const NAV_GROUPS = [
         links: [
           { key: "map", label: "The trip map", note: "Every pin in the park, assembled into a route" },
           { key: "distances", label: "Drive times", note: "How far the Valley is from every gateway town" },
+          { key: "webcams", label: "Webcams", note: "The live views, and how to read them" },
           { key: "checklist", label: "First-week checklist", note: "What to do in the week before you go" },
           { key: "kit", label: "Kit", note: "What earns its place in the pack" },
         ],
@@ -857,6 +858,7 @@ function Footer({ go }) {
               {link("map", "The Map")}
               {link("itineraries", "Itineraries")}
               {link("distances", "Drive times")}
+              {link("webcams", "Webcams")}
               {link("stay", "Where to stay")}
               {link("conditions", "Conditions")}
               {link("checklist", "First-week checklist")}
@@ -999,6 +1001,12 @@ const KEEP_GOING = {
     { key: "planning", label: "The Planning Guide", note: "Everything else the trip needs" },
     { key: "itineraries", label: "Itineraries", note: "What to do from where you booked" },
     { key: "checklist", label: "First-week checklist", note: "The week before you go, in order" },
+  ] },
+  webcams: { links: [
+    { key: "conditions", label: "Conditions", note: "Forecasts and live entrance waits" },
+    { key: "now", label: "The Park Bulletin", note: "What the park says about this week" },
+    { key: "tioga-opening", label: "Tioga Road opening", note: "The view the cameras do not cover" },
+    { key: "map", label: "The trip map", note: "Where the views actually are" },
   ] },
   distances: { links: [
     { key: "stay", label: "Where to stay", note: "The beds at the end of each drive" },

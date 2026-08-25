@@ -51,6 +51,7 @@ export const STATIC_ROUTES = [
   "/tioga-opening",
   "/half-dome-lottery",
   "/distances",
+  "/webcams",
   "/consult",
   "/widget",
   "/partners",

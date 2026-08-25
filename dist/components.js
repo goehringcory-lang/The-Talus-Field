@@ -368,6 +368,10 @@ var NAV_GROUPS = [{
       label: "Drive times",
       note: "How far the Valley is from every gateway town"
     }, {
+      key: "webcams",
+      label: "Webcams",
+      note: "The live views, and how to read them"
+    }, {
       key: "checklist",
       label: "First-week checklist",
       note: "What to do in the week before you go"
@@ -899,7 +903,7 @@ function Footer({
     }
   }, c.label))), link("now", "The Park Bulletin"), link("films", "Films"), React.createElement("li", null, React.createElement("a", {
     href: "/archive/"
-  }, "Nature Notes archive")))), React.createElement("div", null, React.createElement("h4", null, "Plan"), React.createElement("ul", null, link("planning", "The Planning Guide"), link("map", "The Map"), link("itineraries", "Itineraries"), link("distances", "Drive times"), link("stay", "Where to stay"), link("conditions", "Conditions"), link("checklist", "First-week checklist"), link("kit", "Kit"), link("guide", "The Field Guide"))), React.createElement("div", null, React.createElement("h4", null, "The journal"), React.createElement("ul", null, link("about", "About"), link("newsletter", "Newsletter"), link("contact", "Contact"), link("search", "Search"), link("places", "Directory")))), React.createElement("div", {
+  }, "Nature Notes archive")))), React.createElement("div", null, React.createElement("h4", null, "Plan"), React.createElement("ul", null, link("planning", "The Planning Guide"), link("map", "The Map"), link("itineraries", "Itineraries"), link("distances", "Drive times"), link("webcams", "Webcams"), link("stay", "Where to stay"), link("conditions", "Conditions"), link("checklist", "First-week checklist"), link("kit", "Kit"), link("guide", "The Field Guide"))), React.createElement("div", null, React.createElement("h4", null, "The journal"), React.createElement("ul", null, link("about", "About"), link("newsletter", "Newsletter"), link("contact", "Contact"), link("search", "Search"), link("places", "Directory")))), React.createElement("div", {
     className: "site-footer__disclosure"
   }, "Some links on this site are affiliate links. If you book or buy through one, The Talus Field may earn a small commission at no extra cost to you. ", React.createElement("a", {
     href: "/affiliate",
@@ -1128,6 +1132,25 @@ var KEEP_GOING = {
       key: "checklist",
       label: "First-week checklist",
       note: "The week before you go, in order"
+    }]
+  },
+  webcams: {
+    links: [{
+      key: "conditions",
+      label: "Conditions",
+      note: "Forecasts and live entrance waits"
+    }, {
+      key: "now",
+      label: "The Park Bulletin",
+      note: "What the park says about this week"
+    }, {
+      key: "tioga-opening",
+      label: "Tioga Road opening",
+      note: "The view the cameras do not cover"
+    }, {
+      key: "map",
+      label: "The trip map",
+      note: "Where the views actually are"
     }]
   },
   distances: {

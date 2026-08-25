@@ -13,6 +13,88 @@
 // specific year.
 // =============================================================================
 
+// Same versioned bulletin URL as page-now.jsx's BULLETIN_URL and page-home.jsx's
+// HOME_BULLETIN_URL. All three must carry the same number: /bulletin.json is
+// served with a long TTL, so a page reading it under a stale ?v= shows the
+// previous edition. check-asset-freshness.mjs parses this literal and fails the
+// build if the three disagree, which is why it is written out in full rather
+// than imported or composed.
+const TIOGA_BULLETIN_URL = "/bulletin.json?v=7";
+
+// Published opening dates, most recent first.
+//
+// SOURCING RULE, and the reason this table is short: every row must come from a
+// published source, and the only Tioga opening dates this site has actually
+// published are below. The National Park Service maintains the full year-by-year
+// list at nps.gov/yose/planyourvisit/tiogaroad.htm; add rows from there, oldest
+// first, and do not fill gaps from memory or from a search snippet. A wrong
+// opening date on this page is worse than a short table, because the whole point
+// of the page is that the date is the thing people get wrong.
+const OPENING_HISTORY = [
+  { year: "2026", date: "May 15", note: "The earliest opening in sixteen years." },
+];
+const LONG_TERM_AVERAGE = "May 28";
+
+// The status band: the park's own current word on Tioga Road, lifted from the
+// edition condensed in bulletin.json. Renders nothing at all until the fetch
+// lands and nothing ever if it fails, because a road-status box that guesses is
+// worse than no box: this page exists to stop people driving at a closed gate.
+function TiogaStatus() {
+  const [row, setRow] = React.useState(null);
+  const [edition, setEdition] = React.useState(null);
+
+  React.useEffect(() => {
+    let cancelled = false;
+    fetch(TIOGA_BULLETIN_URL)
+      .then((r) => (r.ok ? r.json() : Promise.reject(new Error(`bulletin.json ${r.status}`))))
+      .then((data) => {
+        if (cancelled || !data) return;
+        const areas = Array.isArray(data.areas) ? data.areas : [];
+        const tioga = areas.find((a) => /tioga/i.test(a.name || ""));
+        if (tioga && tioga.chip) setRow(tioga);
+        if (data.edition) setEdition(data.edition);
+      })
+      .catch(() => {});
+    return () => { cancelled = true; };
+  }, []);
+
+  if (!row) return null;
+
+  // An edition past its end date is never presented as current: the chip stays
+  // (it is still the last thing the park said) but the dateline says so.
+  const ended =
+    edition && edition.end
+      ? (() => {
+          const end = new Date(edition.end + "T00:00:00");
+          const today = new Date();
+          today.setHours(0, 0, 0, 0);
+          return !Number.isNaN(end.getTime()) && today > end;
+        })()
+      : false;
+
+  return (
+    <section style={{ marginTop: 48, border: "1px solid var(--ink)", padding: "24px 28px" }}>
+      <div className="eyebrow eyebrow--moss" style={{ marginBottom: 10 }}>
+        Tioga Road right now
+      </div>
+      <div style={{ fontFamily: "var(--display)", fontSize: 28, fontWeight: 500, lineHeight: 1.15, marginBottom: 10 }}>
+        {row.chip}
+      </div>
+      {row.note && (
+        <p style={{ fontFamily: "var(--serif)", fontSize: 16, color: "var(--ink-2)", lineHeight: 1.5, margin: "0 0 12px" }}>
+          {row.note}
+        </p>
+      )}
+      {edition && edition.updated && (
+        <p className="mono" style={{ fontSize: 11, textTransform: "uppercase", letterSpacing: "0.14em", color: "var(--ink-3)", margin: 0 }}>
+          {ended ? "Last edition, ended " : "Last checked "}
+          {ended ? edition.label : edition.updated}
+        </p>
+      )}
+    </section>
+  );
+}
+
 function TiogaOpeningPage({ go }) {
   const goArticle = (e, slug) => {
     e.preventDefault();
@@ -62,6 +144,38 @@ function TiogaOpeningPage({ go }) {
             and a spectacular thing to be unprepared for.
           </p>
 
+          <h2>When it has actually opened</h2>
+          <p>
+            The long-term average is {LONG_TERM_AVERAGE}, and the average is the
+            least useful number here: the spread between a light year and a heavy
+            one is measured in weeks, not days. These are the openings this
+            journal has recorded.
+          </p>
+          <table>
+            <thead>
+              <tr><th>Year</th><th>Tioga Road opened</th><th>Note</th></tr>
+            </thead>
+            <tbody>
+              {OPENING_HISTORY.map((r) => (
+                <tr key={r.year}>
+                  <td><strong>{r.year}</strong></td>
+                  <td>{r.date}</td>
+                  <td>{r.note}</td>
+                </tr>
+              ))}
+              <tr>
+                <td><strong>Average</strong></td>
+                <td>{LONG_TERM_AVERAGE}</td>
+                <td>The long-term mean, which almost no individual year matches.</td>
+              </tr>
+            </tbody>
+          </table>
+          <p>
+            The National Park Service publishes the full year-by-year list on its
+            own Tioga Road page, which is the source to check if you want the
+            whole run rather than the recent years.
+          </p>
+
           <h2>The self-sufficiency rules</h2>
           <ol>
             <li>
@@ -103,9 +217,13 @@ function TiogaOpeningPage({ go }) {
           </p>
         </section>
 
-        {/* The live layer: opening status and current conditions are checkable
-            this week even though the date itself changes annually. */}
-        <div style={{ marginTop: 48 }}>
+        {/* The live layer. The status chip is read from bulletin.json's own
+            Tioga row rather than written here, so it moves with each Guide
+            edition instead of going stale between them, and it fails soft to
+            the outbound links below if the fetch does not land. */}
+        <TiogaStatus />
+
+        <div style={{ marginTop: 32 }}>
           <div className="eyebrow eyebrow--moss" style={{ marginBottom: 12 }}>Check the current status</div>
           <p style={{ fontFamily: "var(--sans)", fontSize: 13, color: "var(--ink-3)" }}>
             The current plowing and opening status lives on{" "}

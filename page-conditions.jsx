@@ -45,7 +45,7 @@ function ConditionsPage({ go }) {
         <section style={{ marginBottom: 64 }}>
           <div className="section-head">
             <h2>Webcams</h2>
-            <a href="https://yosemite.org/webcams/" target="_blank" rel="noopener noreferrer">All cameras →</a>
+            <a href="/webcams" onClick={(e) => { e.preventDefault(); go("webcams"); }}>All cameras, and how to read them →</a>
           </div>
           <WebcamStrip />
         </section>

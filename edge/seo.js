@@ -438,6 +438,13 @@ const HUB_PROSE = {
       "Every spring, plow crews cut Highway 120 out of the snowpack and the highest road in Yosemite comes back. There is no fixed opening date: the long-term average is the end of May, light years have opened in mid-May, heavy years run into June or later, and the park announces the date only days ahead. In week one the road is open but the services are not: no potable water, nothing to buy, no gas between Crane Flat and Lee Vining, and the famous high trails still under snow. The early season rewards drivers, photographers, and modest walkers."
     ) +
     `<p>The reliable early stops are Olmsted Point, Tenaya Lake's east beach, the Tuolumne Meadows pullouts, Pothole Dome, and Soda Springs. The full day-by-day version: <a href="/articles/tioga-road-opening-weekend-2026">the opening-weekend field guide</a>. Current status: <a href="/now">the Park Bulletin</a> and the NPS Tioga Road page.</p>`,
+  "/webcams": () =>
+    hubProse(
+      "Yosemite Webcams",
+      "The live cameras worth checking before you drive in. Four Yosemite Conservancy cameras run on this page: Half Dome from Ahwahnee Meadow looking east, Upper Yosemite Fall from the Valley floor, El Capitan and the western Valley from Turtleback Dome, and Wawona at the park's south end. All four are still-image cameras that refresh on the order of minutes rather than video streams.",
+      "<p>How to read them: check two rather than one, because a single camera describes one wall while Half Dome plus El Capitan tells you whether the whole Valley is clear, socked in or hazy. Elevation matters more than the pictures suggest, since the Valley floor is at 4,000 feet and Tuolumne Meadows at 8,600, so a clear Valley camera says nothing about whether it is snowing on Tioga Road. And a dry waterfall on the Yosemite Falls camera in August is the season, not a broken camera.</p>" +
+        "<p>There is no Conservancy camera at Tuolumne Meadows or Tioga Pass, which is the most requested view the park does not have. Full camera list: <a href=\"https://yosemite.org/webcams/\">Yosemite Conservancy</a>. Road status and closures: <a href=\"/now\">the Park Bulletin</a>. Forecasts and live entrance waits: <a href=\"/conditions\">the conditions page</a>. Which waterfalls are running on your dates: <a href=\"/articles/yosemite-waterfalls-guide\">the flow-by-month table</a>.</p>"
+    ),
   "/distances": () =>
     hubProse(
       "Yosemite Drive Times",
@@ -1009,6 +1016,26 @@ function seoForPath(pathname, searchParams) {
         {
           q: "Do I need a reservation to drive Tioga Road?",
           a: "A standard park entrance pass is required. Whether a day-use reservation system also applies changes year to year; check the NPS Yosemite site for the current season's rules before you commit.",
+        },
+      ],
+    },
+    "/webcams": {
+      title: `Yosemite Webcams — the live views worth checking — ${SITE_NAME}`,
+      description:
+        "Live Yosemite webcams: Half Dome, Yosemite Falls, El Capitan and Wawona, what each camera shows, how often it refreshes, and how to read them before you drive in.",
+      breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Webcams", null]],
+      faq: [
+        {
+          q: "Are there live webcams in Yosemite?",
+          a: "Yes. The Yosemite Conservancy runs the public cameras, four of which are embedded here: Half Dome from Ahwahnee Meadow, Upper Yosemite Fall, El Capitan from Turtleback Dome, and Wawona. They are still-image cameras that refresh on the order of minutes rather than video streams, so a reload will not always change the picture.",
+        },
+        {
+          q: "Is there a webcam at Tuolumne Meadows or Tioga Pass?",
+          a: "Not among the public Yosemite Conservancy cameras, and it is the most requested view the park does not have. For the high country the substitutes are the NPS Tioga Road page for plowing and opening status in spring, and the park's current conditions page once the road is open.",
+        },
+        {
+          q: "Why does the Yosemite Falls webcam show no waterfall?",
+          a: "Because there is no waterfall. Yosemite Falls is fed by snowmelt from a shallow basin above the rim and is usually dry by late August, staying dry until the first storms of November. The camera is working; the fall is seasonal.",
         },
       ],
     },

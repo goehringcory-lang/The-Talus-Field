@@ -44,10 +44,12 @@ function ConditionsPage({
   }, React.createElement("div", {
     className: "section-head"
   }, React.createElement("h2", null, "Webcams"), React.createElement("a", {
-    href: "https://yosemite.org/webcams/",
-    target: "_blank",
-    rel: "noopener noreferrer"
-  }, "All cameras →")), React.createElement(WebcamStrip, null)), React.createElement("section", {
+    href: "/webcams",
+    onClick: e => {
+      e.preventDefault();
+      go("webcams");
+    }
+  }, "All cameras, and how to read them →")), React.createElement(WebcamStrip, null)), React.createElement("section", {
     style: {
       marginBottom: 64,
       maxWidth: 680

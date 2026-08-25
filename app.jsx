@@ -29,7 +29,7 @@ const STATIC_ROUTE_KEYS = new Set([
   "advertise", "newsletter", "contact", "privacy", "terms", "affiliate",
   "guide", "map", "films", "itineraries", "conditions", "now", "firefall", "stay",
   "consult", "widget", "partners", "search", "tioga-opening", "half-dome-lottery",
-  "explore", "distances",
+  "explore", "distances", "webcams",
 ]);
 
 function pathToRoute(pathname) {
@@ -118,6 +118,7 @@ const PAGE_MODULES = {
   "tioga-opening": { scripts: ["/dist/page-tioga-opening.js"], globals: ["TiogaOpeningPage"] },
   "half-dome-lottery": { scripts: ["/dist/page-half-dome-lottery.js"], globals: ["HalfDomeLotteryPage"] },
   distances: { scripts: ["/dist/page-distances.js"], globals: ["DistancesPage"] },
+  webcams: { scripts: ["/dist/page-webcams.js"], globals: ["WebcamsPage"] },
 };
 
 function routeModule(route) {
@@ -774,6 +775,13 @@ function buildSeo(route) {
       ogType: "website",
       breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Half Dome lottery", null]],
     },
+    webcams: {
+      title: `Yosemite Webcams — the live views worth checking — ${SITE_NAME}`,
+      description:
+        "Live Yosemite webcams: Half Dome, Yosemite Falls, El Capitan and Wawona, what each camera shows, how often it refreshes, and how to read them before you drive in.",
+      ogType: "website",
+      breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Webcams", null]],
+    },
     distances: {
       title: `Yosemite Drive Times — every gateway town, in one table — ${SITE_NAME}`,
       description:
@@ -1180,6 +1188,9 @@ function App() {
   } else if (route === "now") {
     page = <window.BulletinPage go={go} />;
     currentNav = "now";
+  } else if (route === "webcams") {
+    page = <window.WebcamsPage go={go} />;
+    currentNav = "webcams";
   } else if (route === "distances") {
     page = <window.DistancesPage go={go} />;
     currentNav = "distances";

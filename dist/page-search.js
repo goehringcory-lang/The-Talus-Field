@@ -36,6 +36,11 @@ var SEARCH_PAGES = [{
   dek: "In-park lodging and the gateway towns compared: drive times, booking windows, and what to do when the thing you wanted is full.",
   kind: "Page"
 }, {
+  route: "webcams",
+  title: "Yosemite webcams",
+  dek: "The live cameras worth checking before you drive in: Half Dome, Yosemite Falls, El Capitan and Wawona, what each shows, and how to read them.",
+  kind: "Page"
+}, {
   route: "distances",
   title: "Yosemite drive times",
   dek: "How far the Valley is from El Portal, Mariposa, Groveland, Oakhurst and Lee Vining: miles, drive times, entrances and what the season does to each route.",

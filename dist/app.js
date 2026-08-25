@@ -11,7 +11,7 @@ function routeToPath(route) {
   if (route.startsWith("a:")) return `/articles/${route.slice(2)}`;
   return `/${route}`;
 }
-var STATIC_ROUTE_KEYS = new Set(["home", "articles", "planning", "checklist", "about", "kit", "places", "advertise", "newsletter", "contact", "privacy", "terms", "affiliate", "guide", "map", "films", "itineraries", "conditions", "now", "firefall", "stay", "consult", "widget", "partners", "search", "tioga-opening", "half-dome-lottery", "explore", "distances"]);
+var STATIC_ROUTE_KEYS = new Set(["home", "articles", "planning", "checklist", "about", "kit", "places", "advertise", "newsletter", "contact", "privacy", "terms", "affiliate", "guide", "map", "films", "itineraries", "conditions", "now", "firefall", "stay", "consult", "widget", "partners", "search", "tioga-opening", "half-dome-lottery", "explore", "distances", "webcams"]);
 function pathToRoute(pathname) {
   var path = (pathname || "/").replace(/\/+$/, "") || "/";
   if (path === "/") return "home";
@@ -158,6 +158,10 @@ var PAGE_MODULES = {
   distances: {
     scripts: ["/dist/page-distances.js"],
     globals: ["DistancesPage"]
+  },
+  webcams: {
+    scripts: ["/dist/page-webcams.js"],
+    globals: ["WebcamsPage"]
   }
 };
 function routeModule(route) {
@@ -679,6 +683,12 @@ function buildSeo(route) {
       ogType: "website",
       breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Half Dome lottery", null]]
     },
+    webcams: {
+      title: `Yosemite Webcams — the live views worth checking — ${SITE_NAME}`,
+      description: "Live Yosemite webcams: Half Dome, Yosemite Falls, El Capitan and Wawona, what each camera shows, how often it refreshes, and how to read them before you drive in.",
+      ogType: "website",
+      breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Webcams", null]]
+    },
     distances: {
       title: `Yosemite Drive Times — every gateway town, in one table — ${SITE_NAME}`,
       description: "How far Yosemite Valley is from El Portal, Mariposa, Groveland, Oakhurst and Lee Vining: miles, drive times, entrances, elevations and what the season does to each route.",
@@ -1052,6 +1062,11 @@ function App() {
       go: go
     });
     currentNav = "now";
+  } else if (route === "webcams") {
+    page = React.createElement(window.WebcamsPage, {
+      go: go
+    });
+    currentNav = "webcams";
   } else if (route === "distances") {
     page = React.createElement(window.DistancesPage, {
       go: go
