@@ -260,7 +260,11 @@ function buildSitemap(merged, categories) {
   return (
     `<?xml version="1.0" encoding="UTF-8"?>\n` +
     `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"\n` +
-    `        xmlns:image="http://www.google.com/schemas/sitemaps-image/1.1">\n\n` +
+    // Google's image extension namespace is sitemap-image, singular. It shipped
+    // for months as "sitemaps-image", which Search Console reported as
+    // "Incorrect namespace" and which silently voided every <image:image>
+    // block in the file. Do not pluralize it.
+    `        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">\n\n` +
     `  <!-- Hub pages -->\n${hub.join("\n")}\n\n` +
     `  <!-- Sections -->\n${sections.join("\n")}\n\n` +
     `  <!-- Static pages -->\n${staticPages.join("\n")}\n\n` +
