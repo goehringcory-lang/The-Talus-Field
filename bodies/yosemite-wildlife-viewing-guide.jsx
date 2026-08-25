@@ -10,6 +10,10 @@ window.ARTICLE_BODIES["yosemite-wildlife-viewing-guide"] = function YosemiteWild
       </p>
 
       <p>
+        <strong>What animals live in Yosemite?</strong> About 400 vertebrate species: roughly 90 mammals, over 260 birds, and the rest reptiles, amphibians and fish, spread across an elevation range that runs from 2,000 feet in the foothills to over 13,000 on the Sierra crest. The ones a visitor realistically sees are a much shorter list, and it is mostly mule deer, coyote, black bear, Steller's jay, acorn woodpecker, Douglas squirrel, and at altitude the yellow-bellied marmot and the pika. The famous absentee is the grizzly, which has been gone from California for more than a century.
+      </p>
+
+      <p>
         This is the guide I wish I could hand out at the entrance stations: what actually lives here, where each animal is likely to be, when to look, and the small set of rules that keep the watching honest. None of it requires luck. It requires standing still at a meadow edge at 7 pm, which turns out to be the hardest thing to convince people to do.
       </p>
 
@@ -113,6 +117,52 @@ window.ARTICLE_BODIES["yosemite-wildlife-viewing-guide"] = function YosemiteWild
 
       <p>
         If your trip lines up with the bloom, the watching stacks: the meadows drawing the wildlife are the same ones covered in <a href="/articles/yosemite-wildflowers-guide">the wildflower calendar</a>, and the milkweed patches in <a href="/articles/showy-milkweed-yosemite-valley">Cook's Meadow</a> run their own insect spectacle all July.
+      </p>
+
+      <h2>Where to look, by elevation</h2>
+
+      <p>
+        Yosemite stacks several different worlds on top of each other, and the animal you are hoping for lives in exactly one of them. The single most common reason a visitor does not see a marmot is that they spent the week at 4,000 feet.
+      </p>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Elevation</th>
+            <th>Where</th>
+            <th>What you will actually see</th>
+            <th>Best hours</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>2,000 to 4,000 ft</td><td>Highway 140 corridor, El Portal, the Merced canyon</td><td>Mule deer, coyote, acorn woodpecker, grey squirrel, rattlesnake on warm rock</td><td>Dawn and dusk</td></tr>
+          <tr><td>4,000 ft</td><td>Yosemite Valley floor and its meadows</td><td>Mule deer, coyote, bobcat, black bear, Steller's jay, water ouzel on the river</td><td>First and last light</td></tr>
+          <tr><td>5,000 to 7,000 ft</td><td>Wawona, Crane Flat, the Glacier Point Road meadows</td><td>Black bear, great gray owl at meadow edges, Douglas squirrel, black oak woodland birds</td><td>Dawn and dusk</td></tr>
+          <tr><td>8,000 to 10,000 ft</td><td>Tuolumne Meadows and Tioga Road, summer only</td><td>Yellow-bellied marmot, pika in the talus, Clark's nutcracker, Belding's ground squirrel</td><td>Mid-morning, when they sun themselves</td></tr>
+          <tr><td>Above 10,000 ft</td><td>The Cathedral Range and the Sierra crest</td><td>Sierra Nevada bighorn sheep, rosy-finch, very little else</td><td>Any, with binoculars and patience</td></tr>
+        </tbody>
+      </table>
+
+      <p>
+        The practical version: the Valley gives you deer, coyote and bear; the high country gives you marmots and pikas and nothing you saw below. A trip that never leaves 4,000 feet has seen one of Yosemite's animal communities out of four. <a href="/tioga-opening">Tioga Road</a> is what opens the rest, and it is only open for part of the year.
+      </p>
+
+      <h2>There are no grizzly bears in Yosemite</h2>
+
+      <p>
+        This one comes up constantly, and it matters more than a trivia correction, because the wrong answer changes what people do in an encounter.
+      </p>
+
+      <p>
+        Yosemite has American black bears, <em>Ursus americanus</em>, and only those: somewhere between 300 and 500 of them. There have been no grizzlies in the park since about 1895, when the last one was shot near Crescent Lake, and the California grizzly has been extinct for over a century. The bear on the state flag is a memorial.
+      </p>
+
+      <p>
+        The confusion is understandable, because a good number of Yosemite's black bears are not black. Brown, cinnamon and blonde colour phases are common here, and a large brown-phase black bear at a roadside looks exactly like what a visitor expects a grizzly to look like. The tells are shape rather than colour: a grizzly has a pronounced shoulder hump, a dished face and long front claws; a black bear has a straight facial profile, no hump, and shorter curved claws.
+      </p>
+
+      <p>
+        Why it matters in practice: playing dead is grizzly advice and it is wrong here, as is carrying bear spray, which is <a href="/articles/is-bear-spray-allowed-in-yosemite">prohibited in this park</a> and attracts bears rather than deterring them. In black bear country you make noise, stand tall and back away. <a href="/articles/yosemite-bears-safety-guide">The bear safety guide</a> has the rest.
       </p>
 
       <h3>Further reading</h3>

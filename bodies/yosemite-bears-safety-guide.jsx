@@ -13,13 +13,13 @@ window.ARTICLE_BODIES["yosemite-bears-safety-guide"] = function YosemiteBearsSaf
         I've worked in this park for close to two decades. I see bears regularly. What I see even more regularly is visitors who have absorbed a set of bear facts from the internet that are confidently wrong, internally contradictory, and occasionally dangerous. People show up with a canister of capsaicin on their hip and a head full of grizzly bear survival tips for a park that has not had a grizzly bear in it since 1895. They've read the wrong guide for the wrong park and prepared for the wrong animal.
       </p>
 
-      <h2>Myth 1: Bear spray works in Yosemite</h2>
+      <h2 id="sec-0-myth-1-bear-spray-works-in-yosemite">Myth 1: Bear spray works in Yosemite</h2>
 
       <p>
         Bear spray is remarkably effective against grizzly bears. A landmark 2008 study by Tom Smith and Stephen Herrero, published in the <em>Journal of Wildlife Management</em>, analyzed 83 bear spray incidents in Alaska involving 175 people and found it stopped aggressive behavior 92% of the time. That's a better track record than firearms. It's also completely irrelevant here, because there are no grizzly bears in Yosemite. There have not been since around 1895, when the last one was shot near Crescent Lake. The California grizzly has been extinct for over a century.
       </p>
 
-      <p>Is bear spray legal in Yosemite? No. Not in any form, not under any circumstances.</p>
+      <p>Is bear spray legal in Yosemite? No. Not in any form, not under any circumstances. <a href="/articles/is-bear-spray-allowed-in-yosemite">The full answer, including the California-wide question</a>, is its own piece.</p>
 
       <p>
         Yosemite has only American black bears, <em>Ursus americanus</em>, somewhere between 300 and 500 of them. They are a fundamentally different animal in temperament, size, and behavior. An adult male black bear in Yosemite weighs between 250 and 350 pounds. An adult male grizzly can top 700. More importantly, the behavioral profile is different. Grizzlies are territorial and defensive. Black bears are opportunistic and, overwhelmingly, avoidant. The tools you need for each species are not the same.

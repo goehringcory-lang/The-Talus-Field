@@ -35,7 +35,7 @@
   </url>
   <url>
     <loc>https://thetalusfieldjournal.com/section/trails</loc>
-    <lastmod>2026-08-23</lastmod>
+    <lastmod>2026-08-25</lastmod>
   </url>
   <url>
     <loc>https://thetalusfieldjournal.com/section/wildlife</loc>
@@ -43,7 +43,7 @@
   </url>
   <url>
     <loc>https://thetalusfieldjournal.com/section/seasonal</loc>
-    <lastmod>2026-08-20</lastmod>
+    <lastmod>2026-08-25</lastmod>
   </url>
 
   <!-- Static pages -->
@@ -267,7 +267,7 @@
   </url>
   <url>
     <loc>https://thetalusfieldjournal.com/articles/yosemite-wildlife-viewing-guide</loc>
-    <lastmod>2026-07-18</lastmod>
+    <lastmod>2026-08-25</lastmod>
     <image:image>
       <image:loc>https://thetalusfieldjournal.com/img/responsive/half-dome-meadow-deer-johannes-andersson-og.jpg</image:loc>
       <image:title>Mule deer grazing a Yosemite meadow at golden hour beneath Half Dome</image:title>
@@ -291,7 +291,7 @@
   </url>
   <url>
     <loc>https://thetalusfieldjournal.com/articles/yosemite-waterfalls-guide</loc>
-    <lastmod>2026-07-12</lastmod>
+    <lastmod>2026-08-25</lastmod>
     <image:image>
       <image:loc>https://thetalusfieldjournal.com/img/responsive/upper-yosemite-fall-jesse-callahan-og.jpg</image:loc>
       <image:title>Upper Yosemite Fall at full spring flow, the 1,430-foot free leap of the tallest waterfall in North America</image:title>
@@ -402,6 +402,14 @@
     </image:image>
   </url>
   <url>
+    <loc>https://thetalusfieldjournal.com/articles/is-bear-spray-allowed-in-yosemite</loc>
+    <lastmod>2026-08-25</lastmod>
+    <image:image>
+      <image:loc>https://thetalusfieldjournal.com/img/responsive/black-bear-og.jpg</image:loc>
+      <image:title>A black bear foraging at a meadow margin in Yosemite</image:title>
+    </image:image>
+  </url>
+  <url>
     <loc>https://thetalusfieldjournal.com/articles/yosemite-bears-safety-guide</loc>
     <lastmod>2026-06-16</lastmod>
     <image:image>
@@ -431,6 +439,14 @@
     <image:image>
       <image:loc>https://thetalusfieldjournal.com/img/responsive/ahwahnee-hotel-1600.jpg</image:loc>
       <image:title>The Ahwahnee under snow, the park's most expensive lodging</image:title>
+    </image:image>
+  </url>
+  <url>
+    <loc>https://thetalusfieldjournal.com/articles/yosemite-in-september-2026</loc>
+    <lastmod>2026-08-25</lastmod>
+    <image:image>
+      <image:loc>https://thetalusfieldjournal.com/img/responsive/tuolumne-high-country-cory-goehring-og.jpg</image:loc>
+      <image:title>The Tuolumne high country under afternoon light, at its best in September</image:title>
     </image:image>
   </url>
   <url>

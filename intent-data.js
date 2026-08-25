@@ -167,10 +167,12 @@ window.ARTICLE_INTENT = {
   "yosemite-ranger-programs":                  { stage: ["dates-set", "in-park"], who: ["families", "first-trip", "non-hikers"], topic: [] },
   "yosemite-camping-complete-guide":           { stage: ["before-booking"], who: ["families", "dogs"], topic: ["camping", "lodging"] },
   "where-to-propose-in-yosemite":              { stage: ["dates-set", "in-park"], who: ["photography"], topic: [] },
+  "is-bear-spray-allowed-in-yosemite":          { stage: ["dates-set", "in-park"], who: [], topic: ["conditions"] },
   "yosemite-bears-safety-guide":               { stage: ["week-before", "in-park"], who: ["families", "backpacking"], topic: ["camping", "food"] },
   "yosemite-heat-safety-guide":                { stage: ["week-before", "in-park"], who: ["families", "first-trip"], topic: ["conditions", "trails"] },
   "when-to-visit-yosemite-2026-crowd-forecast":{ stage: ["before-booking"], who: ["first-trip"], topic: ["conditions"] },
   "yosemite-trip-cost-budget-2026":            { stage: ["before-booking"], who: ["first-trip", "families"], topic: ["lodging", "camping", "food", "transportation"] },
+  "yosemite-in-september-2026":                 { stage: ["before-booking", "dates-set"], who: [], topic: ["conditions"] },
   "yosemite-in-june-2026":                     { stage: ["before-booking", "dates-set"], who: [], topic: ["conditions"] },
   // Month guide like the June piece: an empty `who` on purpose, because "what is
   // March like" is a question every traveler type asks in the same words.
@@ -259,6 +261,7 @@ window.INTENT_NO_TAGS = {
 window.ARTICLE_MONTHS = {
   // Seasonal essays and month guides.
   "yosemite-in-fall": ["sep", "oct", "nov"],
+  "yosemite-in-september-2026": ["sep"],
   "yosemite-in-june-2026": ["jun"],
   "yosemite-in-march": ["mar"],
   "horsetail-fall-firefall": ["feb"],
@@ -516,7 +519,7 @@ window.TRIP_MONTHS = [
     note: "Full summer. Every road is typically open, the Valley runs hot and busy, and the big falls thin." },
   { key: "aug", label: "Aug", name: "August",    tioga: "open",      glacier: "open",      read: "yosemite-during-smoke-season",
     note: "High summer. Hot in the Valley, the falls at a trickle, and the darkest skies of the year." },
-  { key: "sep", label: "Sep", name: "September", tioga: "open",      glacier: "open",      read: "when-to-visit-yosemite-2026-crowd-forecast",
+  { key: "sep", label: "Sep", name: "September", tioga: "open",      glacier: "open",      read: "yosemite-in-september-2026",
     note: "The exhale. Crowds ease after Labor Day, the weather usually holds, and the falls are at their lowest." },
   { key: "oct", label: "Oct", name: "October",   tioga: "open",      glacier: "open",      read: "yosemite-in-fall",
     note: "Fall. Cooler days, color along the Merced, quieter trails, and the first real storms possible late." },

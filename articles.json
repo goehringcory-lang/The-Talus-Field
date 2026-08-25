@@ -124,7 +124,7 @@
       { "q": "What are the quiet hours and generator hours in Yosemite campgrounds?", "a": "Quiet hours run from 10 PM to 6 AM. Generators are permitted only from 7 to 9 in the morning, noon to 2, and 5 to 7 in the evening. Check-in and check-out are both around noon, which means your site may still be occupied if you arrive at eleven. In the summer months, wood fires in Yosemite Valley are restricted to evening hours for air quality." },
       { "q": "Do I still pay the park entrance fee if I have a camping reservation?", "a": "Yes. A campground reservation is not park entry. The entrance fee is $35 per vehicle, good for seven days, and the entrance stations are cashless. Budget for it separately." }
     ],
-    "related": ["yosemite-camping-complete-guide", "yosemite-bears-safety-guide", "pack-your-car-for-yosemite", "where-to-stay-in-yosemite", "pets-in-yosemite"]
+    "related": ["yosemite-camping-complete-guide", "yosemite-bears-safety-guide", "is-bear-spray-allowed-in-yosemite", "where-to-stay-in-yosemite", "pets-in-yosemite"]
   },
   {
     "slug": "first-yosemite-backpacking-trip",
@@ -356,7 +356,7 @@
       { "q": "Is there smoke in Yosemite in the fall?", "a": "Sometimes, and it is often planned rather than wild. Autumn is prescribed fire season in Yosemite: once cooler temperatures and moisture make burning controllable, crews run projects in Yosemite Valley, around Crane Flat, and in the Studhorse units near Wawona, and smoke from those burns is routinely visible in the Valley, in Foresta, and in El Portal. Burns are scheduled against weather windows and postponed often, so check conditions on arrival rather than planning around it months out." },
       { "q": "Are bears more active in Yosemite in the fall?", "a": "Yes. From September, black bears enter hyperphagia, a state of near-continuous eating before winter, taking in up to 20,000 calories a day, foraging as much as 20 hours out of 24, and gaining two to three pounds daily, roughly eleven pounds of acorns' worth. Large transient males that spend the summer in the backcountry come down to Yosemite Valley, Wawona, and El Portal for the acorn crop, so there are more bears near people in October than in July and food storage discipline matters most in this season." }
     ],
-    "related": ["when-to-visit-yosemite-2026-crowd-forecast", "yosemite-in-winter", "yosemite-photography-spots", "yosemite-during-smoke-season", "so-you-want-to-hike-half-dome"]
+    "related": ["yosemite-in-september-2026", "when-to-visit-yosemite-2026-crowd-forecast", "yosemite-in-winter", "yosemite-photography-spots", "yosemite-during-smoke-season"]
   },
   {
     "slug": "yosemite-tunnel-trees",
@@ -385,25 +385,28 @@
   {
     "slug": "yosemite-wildlife-viewing-guide",
     "cat": "wildlife",
-    "title": "Where the Animals Actually Are: A Naturalist's Guide to Watching Wildlife in Yosemite",
+    "title": "Animals of Yosemite: What Lives Here, and Where to See It",
     "dek": "Yosemite's wildlife is not hiding, it is on a schedule most visitors never match. Twenty seasons of watching, condensed: the two principles that decide every sighting, the Valley's deer, coyotes, and bobcats, the high-country pika and marmots, and the rules that double as technique.",
-    "seoDek": "Where to see wildlife in Yosemite: bears, mule deer, coyotes, bobcats, marmots, pika, and great gray owls, plus the best times, places, and viewing rules.",
+    "seoDek": "The animals of Yosemite by elevation: deer, coyote and black bear in the Valley, marmots and pika in the high country, and why there are no grizzlies.",
     "date": "July 18, 2026",
     "isoDate": "2026-07-18",
-    "isoModified": "2026-07-18",
+    "isoModified": "2026-08-25",
     "read": "10 min",
     "image": "img/half-dome-meadow-deer-johannes-andersson.jpg",
     "ogImage": { "url": "img/responsive/half-dome-meadow-deer-johannes-andersson-og.jpg", "width": 1200, "height": 630 },
     "placeholder": "Mule deer grazing a Yosemite meadow at golden hour beneath Half Dome",
-    "wordCount": 1950,
-    "keywords": ["Yosemite wildlife viewing", "where to see animals in Yosemite", "Yosemite animals", "Yosemite mule deer", "Yosemite bobcat", "Yosemite coyote", "Yosemite black bears", "great gray owl Yosemite", "pika Yosemite", "yellow-bellied marmot Olmsted Point", "Sierra Nevada bighorn sheep", "best time to see wildlife Yosemite"],
+    "wordCount": 2545,
+    "keywords": ["Yosemite wildlife viewing", "where to see animals in Yosemite", "Yosemite animals", "Yosemite mule deer", "Yosemite bobcat", "Yosemite coyote", "Yosemite black bears", "great gray owl Yosemite", "pika Yosemite", "yellow-bellied marmot Olmsted Point", "Sierra Nevada bighorn sheep", "best time to see wildlife Yosemite", "animals in Yosemite", "animals of Yosemite", "Yosemite wildlife", "Yosemite national park animals", "are there grizzly bears in Yosemite", "wildlife in Yosemite national park"],
     "faq": [
       { "q": "What animals can you see in Yosemite?", "a": "Mule deer, coyotes, and bobcats on the Valley floor, black bears throughout the park, and above 8,000 feet yellow-bellied marmots, pika, and Belding's ground squirrels. Notable birds include Steller's jays, acorn woodpeckers, peregrine falcons, water ouzels, and the great gray owl. Mountain lions live throughout the park but are almost never seen." },
       { "q": "When is the best time to see wildlife in Yosemite?", "a": "Dawn and dusk. Most of Yosemite's mammals are crepuscular, active in the low light around sunrise and sunset. A meadow that holds twenty grazing deer at 6:30 am is usually empty by mid-morning. Watch the edges where meadow meets forest, since animals feed in the open and keep cover close." },
       { "q": "Are there grizzly bears in Yosemite?", "a": "No. Every bear in Yosemite is a black bear, whatever its color, and most are brown, cinnamon, or blond. There has not been a grizzly in California for a century; the animal survives only on the state flag. The park's black bear population is estimated at 300 to 500." },
       { "q": "How far away do you have to stay from wildlife in Yosemite?", "a": "At least 50 yards from bears and at least 25 yards from all other wildlife, including deer. If an animal changes its behavior because of you, you are too close regardless of distance. Feeding any wild animal is illegal, and food-storage violations carry fines up to $5,000." },
       { "q": "What is the most dangerous animal in Yosemite?", "a": "By injury count, the mule deer. Deer injure more visitors in Yosemite than bears do, mostly because people approach them for photographs. They are wild 150-pound animals with antlers and hooves; photograph them from the trail at 25 yards or more." },
-      { "q": "Where can you see a great gray owl in Yosemite?", "a": "Yosemite holds the southernmost breeding population of the great gray owl, which hunts the edges of mid-elevation meadows such as those near Crane Flat and Glacier Point Road at dawn and dusk. If you find one, keep your distance and never play recorded calls: playback harasses a state-endangered bird and is prohibited." }
+      { "q": "Where can you see a great gray owl in Yosemite?", "a": "Yosemite holds the southernmost breeding population of the great gray owl, which hunts the edges of mid-elevation meadows such as those near Crane Flat and Glacier Point Road at dawn and dusk. If you find one, keep your distance and never play recorded calls: playback harasses a state-endangered bird and is prohibited." },
+      { "q": "What animals live in Yosemite?", "a": "About 400 vertebrate species: roughly 90 mammals, over 260 birds, and the rest reptiles, amphibians and fish, across an elevation range from 2,000 feet in the foothills to over 13,000 on the Sierra crest. The ones a visitor realistically sees are a shorter list: mule deer, coyote, black bear, Steller's jay, acorn woodpecker and Douglas squirrel low down, and yellow-bellied marmot and pika at altitude." },
+      { "q": "Where is the best place to see wildlife in Yosemite?", "a": "A meadow edge at dawn or dusk, at the elevation where your animal lives. The Valley floor gives deer, coyote, bobcat and bear; Wawona, Crane Flat and the Glacier Point Road meadows add the great gray owl; Tuolumne Meadows and Tioga Road give marmots and pika, which you will not see below 8,000 feet. A trip that never leaves the Valley has seen one of the park's four animal communities." },
+      { "q": "What time of day is best for seeing animals in Yosemite?", "a": "Dawn and dusk for almost everything, because the animals are on a schedule and most visitors are not. The exception is the high country, where marmots and ground squirrels sun themselves through mid-morning. The first fifteen minutes after you stop moving are when a meadow decides you are scenery and resumes around you." }
     ],
     "related": ["yosemite-bears-safety-guide", "bears-spring-emergence", "water-ouzels-waterfalls", "yosemite-ranger-programs", "yosemite-stargazing-where-to-look-up"]
   },
@@ -457,25 +460,29 @@
   {
     "slug": "yosemite-waterfalls-guide",
     "cat": "trails",
-    "title": "The Waterfalls of Yosemite: What's Flowing, and When",
+    "title": "Yosemite Waterfalls by Month: What Is Actually Running",
     "dek": "Yosemite's waterfalls are snowmelt events, not permanent features, and the internet's photos never say what month they were taken. Which falls run all year, which vanish by August, and the month-by-month schedule nobody puts on the poster.",
-    "seoDek": "Yosemite waterfalls by season: when Yosemite Falls, Bridalveil, Vernal, Nevada, Ribbon, and Wapama actually flow, which dry up by August, and the best months.",
+    "seoDek": "A month-by-month flow table for every major Yosemite waterfall: what is at peak, what is thin, and what is a dry stain on the rock when you arrive.",
     "date": "July 12, 2026",
     "isoDate": "2026-07-12",
-    "isoModified": "2026-07-12",
+    "isoModified": "2026-08-25",
     "read": "8 min",
     "image": "img/upper-yosemite-fall-jesse-callahan.jpg",
     "ogImage": { "url": "img/responsive/upper-yosemite-fall-jesse-callahan-og.jpg", "width": 1200, "height": 630 },
     "placeholder": "Upper Yosemite Fall at full spring flow, the 1,430-foot free leap of the tallest waterfall in North America",
-    "wordCount": 1875,
-    "keywords": ["yosemite waterfalls", "when do yosemite waterfalls dry up", "best time to see yosemite falls", "yosemite waterfalls by month", "bridalveil fall yosemite", "ribbon fall yosemite", "yosemite moonbow lower yosemite fall"],
+    "wordCount": 2145,
+    "keywords": ["yosemite waterfalls", "when do yosemite waterfalls dry up", "best time to see yosemite falls", "yosemite waterfalls by month", "bridalveil fall yosemite", "ribbon fall yosemite", "yosemite moonbow lower yosemite fall", "Yosemite waterfalls", "Yosemite falls", "how many waterfalls are in Yosemite", "best time to see Yosemite waterfalls", "Yosemite waterfall hikes", "waterfalls in Yosemite Valley"],
     "faq": [
       { "q": "When is the best time to see Yosemite's waterfalls?", "a": "April through June, with May as the peak. Yosemite's falls are fed by snowmelt, so flows surge during spring melt and decline fast through July. Several famous falls, including Yosemite Falls, are often dry by late August." },
       { "q": "Does Yosemite Falls dry up?", "a": "Yes. Yosemite Falls, 2,425 feet in three tiers, peaks in May and in a typical year is often dry by late August, leaving a dark stain on the cliff until the first storms of November wet it again." },
       { "q": "Which Yosemite waterfalls flow year-round?", "a": "Bridalveil Fall (620 feet) flows all year, thinning to a veil by autumn. Vernal Fall (317 feet) and Nevada Fall (594 feet) sit on the main stem of the Merced River and flow impressively in every month, and Illilouette Fall holds water well into fall most years." },
       { "q": "What is the tallest waterfall in Yosemite?", "a": "Yosemite Falls, at 2,425 feet total, is the tallest waterfall in North America: a 1,430-foot upper fall, 675 feet of middle cascades, and a 320-foot lower fall. Ribbon Fall, at 1,612 feet, is the tallest single uninterrupted drop in North America but flows only from roughly April through June." },
       { "q": "What is a Yosemite moonbow and when can you see one?", "a": "A moonbow is a lunar rainbow that forms in the spray at the base of Lower Yosemite Fall on clear nights around the full moons of April, May, and June. To the naked eye it appears as a pale silver band; a camera on a tripod brings out the colors." },
-      { "q": "Is there an easy, accessible walk to a Yosemite waterfall?", "a": "Yes. The Lower Yosemite Fall loop is a one-mile paved trail, flat and wheelchair accessible, with one of the best waterfall views in the park. The short paved walk to the base of Bridalveil Fall is another easy option." }
+      { "q": "Is there an easy, accessible walk to a Yosemite waterfall?", "a": "Yes. The Lower Yosemite Fall loop is a one-mile paved trail, flat and wheelchair accessible, with one of the best waterfall views in the park. The short paved walk to the base of Bridalveil Fall is another easy option." },
+      { "q": "How many waterfalls are in Yosemite?", "a": "There is no official count, and any number quoted is a definition rather than a measurement. Yosemite Valley has about ten named falls: Yosemite (Upper, Middle and Lower), Bridalveil, Vernal, Nevada, Illilouette, Ribbon, Sentinel, Horsetail and Staircase. Across the whole park the named total is in the low twenties, adding Wapama, Tueeulala, Rancheria, Chilnualna, Waterwheel and the Tuolumne cascades. Count unnamed seasonal falls and the number becomes meaningless: in a wet May water comes off the Valley rim in dozens of places that have no name and are gone by July." },
+      { "q": "When is the best time to see Yosemite waterfalls?", "a": "May, at peak snowmelt, with April and June close behind. Every named fall is running, Yosemite Falls is at maximum, the Mist Trail is a drenching, and the moonbows appear around the full moon. The whole schedule shifts a few weeks earlier in a low-snowpack year and later in a heavy one." },
+      { "q": "Is Yosemite Falls dry in summer?", "a": "Usually by late August, and it stays dry until the first storms of November. It is creek-fed from a shallow basin above the rim that holds snow rather than groundwater, so when the snow is gone the fall is gone. In a big snow year it may limp into September; in a lean one it can quit in early August." },
+      { "q": "Which Yosemite waterfalls run year-round?", "a": "Bridalveil, which drains a forested basin that releases water slowly, and Vernal and Nevada Falls, which sit on the main stem of the Merced River and are fed by hundreds of square miles of high country. They thin in autumn but never stop. The creek-fed rim falls, Yosemite, Ribbon, Sentinel and Horsetail, are the ones that disappear." }
     ],
     "related": ["mist-trail-the-real-guide", "when-to-visit-yosemite-2026-crowd-forecast", "hetch-hetchy-the-other-yosemite-valley", "yosemite-photography-spots", "water-ouzels-waterfalls"]
   },
@@ -805,6 +812,30 @@
     "related": ["yosemite-photography-spots", "yosemite-for-non-hikers", "where-to-eat-yosemite", "where-to-stay-in-yosemite", "yosemite-in-one-or-two-days"]
   },
   {
+    "slug": "is-bear-spray-allowed-in-yosemite",
+    "cat": "wildlife",
+    "title": "Is Bear Spray Allowed in Yosemite? No, and Here Is Why",
+    "dek": "It is classified as a weapon in the Superintendent's Compendium. There are no grizzlies here, black bears behave differently, and capsaicin residue attracts bears rather than deterring them.",
+    "seoDek": "Bear spray is prohibited in Yosemite: the regulation, why a tool that works on grizzlies is banned in black bear country, and what to carry instead.",
+    "date": "August 25, 2026",
+    "isoDate": "2026-08-25",
+    "isoModified": "2026-08-25",
+    "read": "5 min",
+    "image": "img/black-bear.jpg",
+    "ogImage": { "url": "img/responsive/black-bear-og.jpg", "width": 1200, "height": 630 },
+    "placeholder": "A black bear foraging at a meadow margin in Yosemite",
+    "wordCount": 997,
+    "keywords": ["is bear spray allowed in Yosemite", "is bear spray legal in Yosemite", "why is bear spray illegal in Yosemite", "bear spray Yosemite", "can you carry bear spray in Yosemite", "is bear spray legal in California"],
+    "faq": [
+      { "q": "Is bear spray allowed in Yosemite?", "a": "No. Bear spray is prohibited in Yosemite National Park in any form. The Superintendent's Compendium classifies it as a weapon, alongside pellet guns, bows and crossbows, and both possession and use are prohibited." },
+      { "q": "Why is bear spray illegal in Yosemite?", "a": "Two reasons. There are no grizzly bears in Yosemite and have not been since about 1895, and the American black bears the park does have are food-motivated and avoidant rather than territorial and defensive, so the encounter bear spray exists to solve does not happen here. And a USGS study found that capsaicin residue left on surfaces attracts bears rather than deterring them, so spraying an object in a park where bears already investigate scented objects makes the problem worse." },
+      { "q": "What should I carry instead of bear spray in Yosemite?", "a": "Your voice, which the park's Bear Team calls the most effective tool you have. Shout, clap, stand tall and make yourself obviously present; a black bear that has clearly noticed a human usually leaves. Do not run and do not play dead, which is grizzly advice and wrong here. The rest is food storage rather than deterrence: everything scented into the bear locker, never left in a car overnight." },
+      { "q": "Is bear spray legal in California?", "a": "It is not banned across California as a matter of state law. The bans are set per land unit rather than per state: a national park's superintendent's compendium governs that park, and national forests, BLM land and state parks each set their own rules. Check the specific unit you are entering. For Yosemite the answer is settled and it is no." },
+      { "q": "What happens if I bring bear spray into Yosemite?", "a": "It is prohibited possession under the park's compendium, which is a regulation rather than a guideline. Leave it at home, or if your trip continues to grizzly country, buy it when you get there." }
+    ],
+    "related": ["yosemite-bears-safety-guide", "bears-spring-emergence", "yosemite-wildlife-viewing-guide", "camping-in-yosemite-first-time", "pack-your-car-for-yosemite"]
+  },
+  {
     "slug": "yosemite-bears-safety-guide",
     "cat": "wildlife",
     "title": "The Bear Spray You Packed for Yosemite Is Illegal",
@@ -818,7 +849,7 @@
     "ogImage": { "url": "img/responsive/black-bear-roadside-og.jpg", "width": 1200, "height": 630 },
     "placeholder": "A brown-phase black bear foraging at the edge of a Yosemite roadside",
     "wordCount": 3625,
-    "keywords": ["Yosemite bears", "bear safety Yosemite", "is bear spray legal in Yosemite", "black bears Yosemite", "what to do if you see a bear in Yosemite", "Yosemite food storage rules", "bear canister Yosemite", "are black bears dangerous", "Yosemite bear myths"],
+    "keywords": ["Yosemite bears", "bear safety Yosemite", "black bears Yosemite", "what to do if you see a bear in Yosemite", "Yosemite food storage rules", "bear canister Yosemite", "are black bears dangerous", "Yosemite bear myths", "Yosemite black bears", "Yosemite bear safety"],
     "faq": [
       { "q": "Is bear spray legal in Yosemite?", "a": "No. Possession and use are both prohibited. The Superintendent's Compendium classifies bear spray as a weapon, alongside pellet guns and crossbows, and rangers confiscate it at the entrance stations. Yosemite has only black bears, not grizzlies, and the NPS Bear Team's guidance is that your voice is your most effective tool." },
       { "q": "Are there grizzly bears in Yosemite?", "a": "No. The last grizzly in the park was shot near Crescent Lake around 1895, and the last one in California was killed in 1922. A brown-colored bear in Yosemite is a black bear: in the western United States, over half of all black bears are some shade of brown, cinnamon, or blonde." },
@@ -827,7 +858,7 @@
       { "q": "What should I do if I see a bear in Yosemite?", "a": "Stand up, face the bear, raise your arms to look larger, and yell aggressively until it leaves. Never run (black bears can hit 35 mph) and never climb a tree (they climb better than you). Then report the encounter to the park at 209-372-0322, even if nothing happened." },
       { "q": "What counts as food under Yosemite's storage rules?", "a": "All food, all coolers (including empty ones), trash, toiletries, sunscreen, lip balm, insect repellent, deodorant, and medications. Anything with a scent goes in the bear box, and nothing scented stays in a car overnight. Violations carry fines up to $5,000. Bear canisters are required for all overnight wilderness trips and rent for $5 per week at wilderness centers." }
     ],
-    "related": ["bears-spring-emergence", "yosemite-wildlife-viewing-guide", "camping-in-yosemite-first-time", "pack-your-car-for-yosemite", "yosemite-camping-complete-guide"]
+    "related": ["is-bear-spray-allowed-in-yosemite", "bears-spring-emergence", "yosemite-wildlife-viewing-guide", "camping-in-yosemite-first-time", "yosemite-camping-complete-guide"]
   },
   {
     "slug": "yosemite-heat-safety-guide",
@@ -879,7 +910,7 @@
       { "q": "What are the worst days to visit Yosemite in 2026?", "a": "July 3 to 5 (July 4 falls on a Saturday), any summer Saturday arriving after 8:30 a.m., Labor Day weekend, and the holiday week in late December. Memorial Day weekend 2026 produced 90-minute entrance lines and full Valley parking lots by mid-morning." },
       { "q": "What was Yosemite's busiest year ever?", "a": "2016, with just over 5 million visits. 2025 was the fourth-busiest at about 4.28 million, and 2026 is pacing to land second at roughly 4.6 to 4.7 million." }
     ],
-    "related": ["yosemite-without-reservations-2026", "yosemite-in-fall", "yosemite-in-june-2026", "yosemite-gateway-towns-compared", "yosemite-in-march"]
+    "related": ["yosemite-without-reservations-2026", "yosemite-in-september-2026", "yosemite-in-fall", "yosemite-in-june-2026", "yosemite-gateway-towns-compared"]
   },
   {
     "slug": "yosemite-trip-cost-budget-2026",
@@ -904,6 +935,31 @@
       { "q": "How much should I budget for food in Yosemite?", "a": "A deli sandwich and a drink runs $18 to $25, a pizza at Half Dome Village $27 to $35, and a sit-down dinner $35 to $55 per person. The Ahwahnee dinner is prix fixe from $95. Bringing a cooler is the single biggest money-saver." }
     ],
     "related": ["where-to-stay-in-yosemite", "yosemite-gateway-towns-compared", "yosemite-camping-complete-guide", "where-to-eat-yosemite", "getting-to-yosemite"]
+  },
+  {
+    "slug": "yosemite-in-september-2026",
+    "cat": "seasonal",
+    "title": "Yosemite in September 2026: What Closes, and What Gets Better",
+    "dek": "The waterfalls are gone, the concessions shut in the first three weeks, and the Mist Trail is closed four days a week. The high country is also the best it gets all year. Both are true.",
+    "seoDek": "Yosemite in September 2026: dry waterfalls, closure dates for the pools, stores and shuttles, Mist Trail weekday closures, and the year's best Half Dome odds.",
+    "date": "August 25, 2026",
+    "isoDate": "2026-08-25",
+    "isoModified": "2026-08-25",
+    "read": "8 min",
+    "image": "img/tuolumne-high-country-cory-goehring.jpg",
+    "ogImage": { "url": "img/responsive/tuolumne-high-country-cory-goehring-og.jpg", "width": 1200, "height": 900 },
+    "placeholder": "The Tuolumne high country under afternoon light, at its best in September",
+    "wordCount": 1347,
+    "keywords": ["Yosemite in September", "Yosemite September 2026", "Yosemite September closures", "Yosemite waterfalls September", "Tioga Road September", "Yosemite fall crowds"],
+    "faq": [
+      { "q": "Are the waterfalls running in Yosemite in September?", "a": "Barely. Yosemite Falls is dry by September, not thin but dry, because it runs on snowmelt from a shallow basin above the rim and there is no snow left. Mirror Lake is a meadow. Bridalveil, Vernal and Nevada still run because their creeks drain bigger and higher ground, but they run thin. September is the month to come for the granite rather than the water." },
+      { "q": "What closes in Yosemite in September?", "a": "The park contracts in the first three weeks. Jennie's Ice Cream and the Wawona stable finish September 6, the Curry Village and Yosemite Valley Lodge pools September 7, and the Tuolumne store and grill September 20. The Tuolumne shuttle and hikers bus stop September 13. Of the High Sierra Camps, Glen Aulin and Sunrise close September 6 and May Lake September 9. Separately, the Wawona Hotel and dining room are closed for renovation and White Wolf is closed for the season." },
+      { "q": "Is Tioga Road open in September?", "a": "Yes, and the high country is at its best: no mosquitoes, fewer thunderstorms, turned meadows and thin crowds. The catch is services rather than access. The Tuolumne store and grill close September 20, the shuttle and hikers bus stop September 13, and there has never been gas at Tuolumne. Fill up at Crane Flat and carry lunch." },
+      { "q": "Is the Mist Trail open in September?", "a": "Only part of the week. It is closed Monday through Thursday, 7 a.m. to 3:30 p.m., for repairs running through the end of October, with the John Muir Trail detour signed. Plan Vernal and Nevada Falls for a Friday, Saturday or Sunday, or start before seven." },
+      { "q": "Is September a good time to hike Half Dome?", "a": "It is the best month to apply. The cables stay up until the day after the second Monday in October, and late-season weekdays carry the strongest daily-lottery odds of the year: fewer applicants, cooler air, the same cables. If the permit does not come through, Clouds Rest is higher, needs no permit, and is reachable from Tioga Road while the road is open." },
+      { "q": "How crowded is Yosemite in September?", "a": "The month splits at Labor Day. Before it, the Valley behaves like August: busy by mid-morning, worse at weekends, parking gone in the three hubs by nine. After it, the park thins noticeably, and by the last week a weekday morning in the Valley is genuinely quiet. If the dates are flexible, take the second half." }
+    ],
+    "related": ["when-to-visit-yosemite-2026-crowd-forecast", "yosemite-in-fall", "tuolumne-meadows-in-a-day", "yosemite-during-smoke-season", "cathedral-lakes-day-hike"]
   },
   {
     "slug": "yosemite-in-june-2026",
