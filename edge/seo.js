@@ -1119,8 +1119,27 @@ const REDIRECTS = {
   // "/articles/some-retired-slug": "/firefall",
 };
 
+// The apex is the canonical host, and www is bound as a second custom domain
+// in wrangler.jsonc, so both served 200s for months: Search Console's Pages
+// report carried separate rows for http://www, https://www and the apex of the
+// same article, splitting signals across three URLs and producing duplicate
+// rows in every report.
+//
+// Match the www host EXACTLY rather than testing "hostname !== apex". A
+// not-equal guard would also fire on localhost under `wrangler dev` and on
+// *.workers.dev preview deploys, redirecting every local request to production.
+//
+// This is the backstop, not the fix. Routing here is asset-first, so `/`, every
+// real file and both sitemaps are served off the asset layer on www without the
+// Worker ever running; only SPA routes reach this code. The zone-level Redirect
+// Rule documented in DEPLOY.md is what covers the whole host.
+const WWW_HOST = "www.thetalusfieldjournal.com";
+
 async function handleRequest({ request, next, env }) {
   const url = new URL(request.url);
+  if (url.hostname === WWW_HOST) {
+    return Response.redirect(`${SITE_ORIGIN}${url.pathname}${url.search}`, 301);
+  }
   const redirectTarget = REDIRECTS[url.pathname.replace(/\/+$/, "") || "/"];
   if (redirectTarget) {
     // Carry the query string across: a retired slug arriving as
