@@ -380,7 +380,7 @@
       { "q": "Who cut the tunnel through the Wawona Tree, and when?", "a": "Two brothers named Scribner, paid seventy-five dollars by the Yosemite Stage and Turnpike Company shortly after the first road into the Mariposa Grove was finished. The date is not settled in the park's own record: the April 1929 Nature Notes prints a letter claiming the tunnel was cut by August 1880, while a 1984 issue dates the cutting to 1881." },
       { "q": "When was the first Yosemite tunnel tree cut?", "a": "The Dead Giant in the Tuolumne Grove, in June 1878. The English traveler W. G. Marshall passed through it on June 23, 1878 and recorded that the first stagecoach had gone through on the afternoon of Tuesday, June 18, a week earlier. The tree was already dead, its trunk severed about ninety feet up." }
     ],
-    "related": ["giant-sequoias-fire-adaptation", "mariposa-grove-how-to-visit", "yosemite-connecting-to-traditions", "yosemite-glaciers-climate", "yosemite-needs-a-reservation-system"]
+    "related": ["giant-sequoias-fire-adaptation", "mariposa-grove-how-to-visit", "yosemite-connecting-to-traditions", "what-is-a-talus-field", "yosemite-needs-a-reservation-system"]
   },
   {
     "slug": "yosemite-wildlife-viewing-guide",
@@ -1281,6 +1281,30 @@
     "related": ["yosemite-bears-safety-guide", "yosemite-wildlife-viewing-guide", "yosemite-in-march", "camping-in-yosemite-first-time", "yosemite-wildflowers-guide"]
   },
   {
+    "slug": "what-is-a-talus-field",
+    "cat": "wildlife",
+    "title": "What Is a Talus Field? The Landform Yosemite Is Built On",
+    "dek": "The slope of broken rock at the base of every cliff in the Valley has a name, an angle it always sits at, and a reason it keeps growing. It is also what this journal is named after.",
+    "seoDek": "A talus field is the apron of broken rock below a cliff, resting at its angle of repose. What builds them in Yosemite, where to see one, and how to walk on one.",
+    "date": "August 25, 2026",
+    "isoDate": "2026-08-25",
+    "isoModified": "2026-08-25",
+    "read": "6 min",
+    "image": "img/half-dome-alpenglow-madhu-shesharam.jpg",
+    "ogImage": { "url": "img/responsive/half-dome-alpenglow-madhu-shesharam-1600.jpg", "width": 1600, "height": 1066 },
+    "placeholder": "Half Dome at alpenglow, its face shaped by the granite's habit of shedding in curved sheets",
+    "wordCount": 1048,
+    "keywords": ["what is a talus field", "talus field", "talus slope", "scree slope", "angle of repose", "Yosemite rockfall", "talus vs scree"],
+    "faq": [
+      { "q": "What is a talus field?", "a": "A talus field is an accumulation of broken rock at the base of a cliff, built by repeated rockfall over a long time. The individual fragments are talus and the slope they form is the talus field, also called a talus slope. The blocks are angular rather than rounded because they have not travelled far or been worked by water." },
+      { "q": "What is the difference between talus and scree?", "a": "Geologists use talus for coarse, angular, block-sized fragments and scree for finer, gravel-sized material. In ordinary speech the two words are used interchangeably and nobody minds." },
+      { "q": "Why are talus slopes all the same angle?", "a": "Because loose angular rock piles up until it reaches the steepest slope it can hold without sliding, then stops. That limit is the angle of repose, and for Sierra granite blocks it falls between about 30 and 35 degrees. The mountain is not choosing that shape; friction is." },
+      { "q": "What causes talus fields in Yosemite?", "a": "Mostly water and cold. Rain and snowmelt work into the joints in the granite, freeze, and act as a slow wedge until a block that was part of the cliff is only resting against it. The granite also sheds in curved sheets, the exfoliation that shaped Half Dome and Royal Arches. Rockfall in Yosemite is current, not historical: the talus below El Capitan and the Glacier Point Apron is still being added to." },
+      { "q": "Is it safe to walk on talus?", "a": "Talus is stable until it is not, and the failure mode is a block rolling under your weight with a tonne of rock above it. Step on the tops of blocks rather than the gaps, move one at a time or spread out sideways so nothing dislodged is heading for someone below, and treat fresh pale unlichened rock as the least trustworthy surface on the slope. Nothing in Yosemite Valley requires crossing untracked talus." }
+    ],
+    "related": ["yosemite-glaciers-climate", "giant-sequoias-fire-adaptation", "yosemite-wildlife-viewing-guide", "mist-trail-the-real-guide", "tuolumne-meadows-in-a-day"]
+  },
+  {
     "slug": "yosemite-glaciers-climate",
     "cat": "wildlife",
     "title": "Yosemite's disappearing glaciers, and what they record",
@@ -1301,7 +1325,7 @@
       { "q": "Why are the glaciers shrinking?", "a": "The High Sierra has warmed by roughly 1.5 degrees Celsius since 1900, with most of that concentrated in recent decades and summer temperatures warming more than winter. An upslope retreat of a glacier's terminus signals either less snow accumulation or more summer melt; either way it points to a warmed climate, consistent with what climate models project." },
       { "q": "Why do the glaciers matter for California's water?", "a": "About half of California's fresh water comes from the Sierra Nevada, much of it from snowmelt and glacier melt. Glaciers act as high-elevation reservoirs, storing winter snow as ice and releasing it gradually through summer melt to sustain streams like the Tenaya, Merced, and Tuolumne. As glaciers shrink, July and August streamflow will gradually decline and cold-water aquatic ecosystems will be stressed." }
     ],
-    "related": ["yosemite-waterfalls-guide", "giant-sequoias-fire-adaptation", "cathedral-lakes-day-hike", "yosemite-wildlife-viewing-guide", "tuolumne-meadows-in-a-day"]
+    "related": ["what-is-a-talus-field", "yosemite-waterfalls-guide", "giant-sequoias-fire-adaptation", "cathedral-lakes-day-hike", "tuolumne-meadows-in-a-day"]
   },
   {
     "slug": "giant-sequoias-fire-adaptation",

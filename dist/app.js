@@ -207,7 +207,7 @@ function legacyHashToRoute(hash) {
 }
 var SITE_NAME = "The Talus Field";
 var PERSON_ID = `${SITE_ORIGIN}/#person-cory-goehring`;
-var SITE_TAGLINE = "Yosemite, written from inside it";
+var HOME_TITLE = "The Talus Field Journal — Yosemite field notes, conditions, and guides";
 var SITE_DEFAULT_IMAGE = `${SITE_ORIGIN}/img/og-default.jpg`;
 var SITE_DEFAULT_DESC = "A field journal of Yosemite National Park, kept by a resident. Trails, planning notes, wildlife, and essays on the park's seasons and life.";
 function setMeta(name, content, attr = "name") {
@@ -490,7 +490,7 @@ function buildSeo(route) {
   }
   var known = {
     home: {
-      title: `${SITE_NAME} — ${SITE_TAGLINE}`,
+      title: HOME_TITLE,
       description: SITE_DEFAULT_DESC,
       ogType: "website"
     },

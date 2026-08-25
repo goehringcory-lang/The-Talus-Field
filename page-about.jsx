@@ -27,6 +27,7 @@ function AboutPage({ go }) {
         <div className="prose">
           <p className="dropcap">
             The Talus Field began as a pile of paper. Trip notes, weather entries, copies of permits, lists of what was blooming on which week. The kind of paper that piles up when you live near a place long enough that you stop seeing the postcard and start seeing the year.
+           The name is a landform: <a href="/articles/what-is-a-talus-field">a talus field</a> is the apron of broken rock at the base of a cliff, built one rockfall at a time, and it is what accumulates rather than what happens.
           </p>
 
           <p>

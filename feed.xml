@@ -9,7 +9,7 @@
     <copyright>© 2026 The Talus Field</copyright>
     <managingEditor>cory@thetalusfieldjournal.com (Cory Goehring)</managingEditor>
     <webMaster>cory@thetalusfieldjournal.com (Cory Goehring)</webMaster>
-    <lastBuildDate>Mon, 24 Aug 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 25 Aug 2026 00:00:00 +0000</lastBuildDate>
     <image>
       <url>https://thetalusfieldjournal.com/img/talus-field-mark.png</url>
       <title>The Talus Field</title>
@@ -525,6 +525,16 @@
       <category>Wildlife and Nature</category>
       <description>A bear emerging from a winter den has lost a third of its body weight, has a digestive system that's barely awake, and is metabolically desperate. That's why spring, not summer, is the dangerous season.</description>
       <media:content url="https://thetalusfieldjournal.com/img/responsive/black-bear-og.jpg" medium="image" />
+    </item>
+    <item>
+      <title>What Is a Talus Field? The Landform Yosemite Is Built On</title>
+      <link>https://thetalusfieldjournal.com/articles/what-is-a-talus-field</link>
+      <guid isPermaLink="true">https://thetalusfieldjournal.com/articles/what-is-a-talus-field</guid>
+      <pubDate>Tue, 25 Aug 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Cory Goehring</dc:creator>
+      <category>Wildlife and Nature</category>
+      <description>The slope of broken rock at the base of every cliff in the Valley has a name, an angle it always sits at, and a reason it keeps growing. It is also what this journal is named after.</description>
+      <media:content url="https://thetalusfieldjournal.com/img/responsive/half-dome-alpenglow-madhu-shesharam-1600.jpg" medium="image" />
     </item>
     <item>
       <title>Yosemite's disappearing glaciers, and what they record</title>

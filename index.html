@@ -33,7 +33,7 @@
     };
   </script>
 
-  <title>The Talus Field — Yosemite, written from inside it</title>
+  <title>The Talus Field Journal — Yosemite field notes, conditions, and guides</title>
   <meta name="description" content="A field journal of Yosemite National Park, kept by a resident. Trails, planning notes, wildlife, and essays on the park's seasons and life." />
   <meta name="author" content="Cory Goehring" />
 
@@ -78,7 +78,7 @@
 
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="The Talus Field" />
-  <meta property="og:title" content="The Talus Field — Yosemite, written from inside it" />
+  <meta property="og:title" content="The Talus Field Journal — Yosemite field notes, conditions, and guides" />
   <meta property="og:description" content="A field journal of Yosemite National Park, kept by a resident. Trails, planning notes, wildlife, and essays on the park's seasons and life." />
   <meta property="og:url" content="https://thetalusfieldjournal.com/" />
   <meta property="og:image" content="https://thetalusfieldjournal.com/img/og-default.jpg" />
@@ -88,7 +88,7 @@
   <meta property="og:locale" content="en_US" />
 
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="The Talus Field — Yosemite, written from inside it" />
+  <meta name="twitter:title" content="The Talus Field Journal — Yosemite field notes, conditions, and guides" />
   <meta name="twitter:description" content="A field journal of Yosemite National Park, kept by a resident." />
   <meta name="twitter:image" content="https://thetalusfieldjournal.com/img/og-default.jpg" />
 
@@ -108,7 +108,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter:wght@400;500;600;700&display=swap">
 
-  <link rel="stylesheet" href="/styles.css?v=224" />
+  <link rel="stylesheet" href="/styles.css?v=225" />
 
   <!--
     The home hero's AVIF used to be preloaded here. It no longer is: the static
@@ -136,6 +136,7 @@
     "@context": "https://schema.org",
     "@type": "WebSite",
     "name": "The Talus Field",
+    "alternateName": ["The Talus Field Journal", "Talus Field", "thetalusfieldjournal.com"],
     "url": "https://thetalusfieldjournal.com/",
     "description": "A field journal of Yosemite National Park, kept by a resident.",
     "inLanguage": "en-US",
@@ -154,10 +155,12 @@
   <script type="application/ld+json" id="ld-publisher">
   {
     "@context": "https://schema.org",
-    "@type": "Organization",
+    "@type": "NewsMediaOrganization",
     "@id": "https://thetalusfieldjournal.com/#publisher",
     "name": "The Talus Field",
+    "alternateName": ["The Talus Field Journal", "Talus Field"],
     "url": "https://thetalusfieldjournal.com/",
+    "description": "An independent field journal of Yosemite National Park, written from El Portal by a resident naturalist.",
     "logo": {
       "@type": "ImageObject",
       "url": "https://thetalusfieldjournal.com/img/talus-field-mark-square.png",
@@ -177,9 +180,17 @@
     Author entity. One Person node for the whole site, referenced by @id from the
     Organization "founder" above and from every Article's "author" (both the
     client-rendered schema in app.jsx and the edge-injected schema in
-    functions/_middleware.js). This is the E-E-A-T authorship signal search and
-    AI answer engines use to attribute the journal to a named, expert author.
-    No sameAs: no public social/author profiles are linked yet.
+    edge/seo.js). This is the E-E-A-T authorship signal search and AI answer
+    engines use to attribute the journal to a named, expert author.
+
+    No sameAs, on either this node or the Organization above: the repo contains
+    no public social or author profile URLs to point at. That gap is why the
+    site ranks around position 16 for its own name against the geology term it
+    is named after. Search Console shows "talus field" drawing 107 impressions
+    and zero clicks, plus misspellings ("tallus field", "talisfield") that mean
+    people are hearing the name somewhere and not landing on it. sameAs is the
+    strongest remaining entity signal available; add the profiles when they
+    exist. DEPLOY.md carries this as an owner task.
   -->
   <script type="application/ld+json" id="ld-person">
   {
@@ -358,6 +369,7 @@
           <li><a href="/articles/working-in-yosemite">So you want to work in Yosemite</a>: Most jobs in Yosemite aren't ranger jobs. The work is hospitality, the housing starts in a tent cabin, and the closest grocery store is an hour away. The honest version of what it's like to live here, before you sign anything.</li>
           <li><a href="/articles/water-ouzels-waterfalls">How water ouzels live inside a waterfall</a>: A robin-sized bird walks directly into Yosemite Falls and stays there. The water ouzel is the most specialized animal in the high country, and its presence tells you the stream is healthy.</li>
           <li><a href="/articles/bears-spring-emergence">Why a Yosemite bear in April is more dangerous than one in August</a>: A bear emerging from a winter den has lost a third of its body weight, has a digestive system that's barely awake, and is metabolically desperate. That's why spring, not summer, is the dangerous season.</li>
+          <li><a href="/articles/what-is-a-talus-field">What Is a Talus Field? The Landform Yosemite Is Built On</a>: The slope of broken rock at the base of every cliff in the Valley has a name, an angle it always sits at, and a reason it keeps growing. It is also what this journal is named after.</li>
           <li><a href="/articles/yosemite-glaciers-climate">Yosemite's disappearing glaciers, and what they record</a>: A ranger built a cairn at the toe of Mount Lyell Glacier in 1933. That cairn is now four hundred feet from the ice. The retreat is also a record of climate, written into the High Sierra in something like real time.</li>
           <li><a href="/articles/giant-sequoias-fire-adaptation">Why giant sequoias thrive where other trees burn</a>: The same fires that kill every other tree in the Sierra are the ones the giant sequoia depends on. Two-foot bark, embedded tannins, and a seedling ecology that fails without burning.</li>
           <li><a href="/articles/hetch-hetchy-the-other-yosemite-valley">Hetch Hetchy: the Yosemite Valley you didn't know you skipped</a>: Same elevation. Same length. Same kind of granite. Carved by the same kind of glacier as the famous one, and still mostly empty of visitors. Why almost no one goes, and why you should.</li>
@@ -401,13 +413,13 @@
     here. Dynamically injected scripts reuse the shared ?v= below (read from
     the app.js tag at boot), so the cache-buster discipline is unchanged.
   -->
-  <script src="/vendor/react-18.3.1.production.min.js?v=224"></script>
-  <script src="/vendor/react-dom-18.3.1.production.min.js?v=224"></script>
-  <script src="/storage.js?v=224"></script>
-  <script src="/affiliate.js?v=224"></script>
-  <script src="/data.js?v=224"></script>
-  <script src="/dist/tweaks-panel.js?v=224"></script>
-  <script src="/dist/components.js?v=224"></script>
-  <script src="/dist/app.js?v=224"></script>
+  <script src="/vendor/react-18.3.1.production.min.js?v=225"></script>
+  <script src="/vendor/react-dom-18.3.1.production.min.js?v=225"></script>
+  <script src="/storage.js?v=225"></script>
+  <script src="/affiliate.js?v=225"></script>
+  <script src="/data.js?v=225"></script>
+  <script src="/dist/tweaks-panel.js?v=225"></script>
+  <script src="/dist/components.js?v=225"></script>
+  <script src="/dist/app.js?v=225"></script>
 </body>
 </html>

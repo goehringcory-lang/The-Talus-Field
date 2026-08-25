@@ -191,6 +191,7 @@ window.ARTICLE_INTENT = {
   "working-in-yosemite":                       { stage: [], who: [], topic: [] },
   "water-ouzels-waterfalls":                   { stage: ["in-park"], who: [], topic: [] },
   "bears-spring-emergence":                    { stage: ["week-before", "in-park"], who: ["families"], topic: ["camping"] },
+  "what-is-a-talus-field":                      { stage: ["in-park"], who: [], topic: [] },
   "yosemite-glaciers-climate":                 { stage: ["in-park"], who: [], topic: [] },
   "giant-sequoias-fire-adaptation":            { stage: ["in-park"], who: ["families", "non-hikers"], topic: [] },
   "hetch-hetchy-the-other-yosemite-valley":    { stage: ["dates-set", "in-park"], who: ["non-hikers"], topic: ["trails"] },

@@ -28,8 +28,9 @@
     "intent:check": "node check-intent-tags.mjs --verbose",
     "bridge:check": "node check-trip-bridge.mjs --verbose",
     "redirects:check": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON check-edge-redirects.mjs",
+    "hometitle:check": "node check-home-title.mjs",
     "api:check": "node system-checks.mjs --online --only=api",
-    "check": "bash check-cache-busters.sh && node check-asset-freshness.mjs && bash check-seo-artifacts.sh && node gen-prerender.mjs --check && node gen-compiled.mjs --check && node gen-home-shell.mjs --check && node gen-archive.mjs --check && node check-archive-citations.mjs && node check-guide-photos.mjs && node check-intent-tags.mjs && node check-trip-bridge.mjs && node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON check-edge-redirects.mjs && npm --prefix ../apps/guide run --silent check:itineraries",
+    "check": "bash check-cache-busters.sh && node check-asset-freshness.mjs && bash check-seo-artifacts.sh && node gen-prerender.mjs --check && node gen-compiled.mjs --check && node gen-home-shell.mjs --check && node gen-archive.mjs --check && node check-archive-citations.mjs && node check-guide-photos.mjs && node check-intent-tags.mjs && node check-trip-bridge.mjs && node check-home-title.mjs && node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON check-edge-redirects.mjs && npm --prefix ../apps/guide run --silent check:itineraries",
     "tracks": "node gen-hike-tracks.mjs",
     "itineraries:check": "npm --prefix ../apps/guide run --silent check:itineraries"
   },
