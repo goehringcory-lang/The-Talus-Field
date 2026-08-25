@@ -113,10 +113,21 @@ to load the register, then write to these rules:
   actual situation; `<h2>` sections in the order the decisions come at the
   reader; `<strong>` on load-bearing facts; a practical close, not a call to
   action.
-- **Internal links**: two to four `<a href="/articles/<slug>">` links to the
+- **Internal links**: three to five `<a href="/articles/<slug>">` links to the
   related pieces, plus `/now`, `/planning`, `/map`, or `/conditions` where they
   genuinely help. Every target must exist (a slug in `data.js` or a real route).
-  Links into `/archive/` are plain `<a href>` — never a `go()` handler.
+  Links into `/archive/` are plain `<a href>` — never a `go()` handler. Weave
+  each one into a sentence that already made the point, with descriptive anchor
+  text; never append a "see also" list. This is the count the August 2026 SEO
+  pass settled on: Search Console had the whole site down to 33 internally
+  linked pages, and in-body links are the only article-to-article links a
+  non-JS crawler sees.
+- **A `RELATED` entry** in `data.js`: four to six topically related slugs for
+  the new piece, and add it to the lists of the two or three pieces a reader
+  would arrive from. `window.RELATED` feeds the reader's related rail, the
+  crawler-visible block the Worker injects, and `articles.json` at once.
+  `npm --prefix scripts run seo` fails the build on a slug that does not
+  resolve, on a self-link, or on a list outside four to six.
 - **Figures**: one to three `<Placeholder>` blocks reusing existing `img/`
   photos. Copy the exact `credit` line the image carries elsewhere in the repo
   (grep for the filename); never invent or alter a credit.
