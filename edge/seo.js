@@ -326,25 +326,38 @@ const HUB_PROSE = {
       "About The Talus Field",
       "The Talus Field is an independent field journal of Yosemite National Park, written by Cory Goehring, a naturalist who lives in El Portal and has worked in and around the park for twenty seasons. Articles are checked on foot; gear is recommended only after real miles; nothing here is sponsored content."
     ),
+  // The five entries below were one sentence each until August 2026. A crawler
+  // running no JavaScript saw an <h1> and a single line, which is the shape of
+  // an error page, and Search Console was reporting three soft 404s: URLs that
+  // return 200 carrying what Google reads as "not found". Each now states what
+  // the page actually holds, drawn from the page's own copy so the two cannot
+  // drift into saying different things.
   "/places": () =>
     hubProse(
       "The Directory",
-      "A small, curated directory of Yosemite-area lodging, outfitters, guides, and tour operators, drawn from twenty seasons in and around the park. Listings are added slowly and on merit."
+      "A small, curated directory of Yosemite-area lodging, outfitters, guides, and tour operators, drawn from twenty seasons in and around the park. Listings are added slowly and on merit: the standard is whether the operator would be recommended to a friend, not whether they paid.",
+      "<p>Five categories are open. <strong>Lodging</strong>: lodges, inns and small hotels inside the park or within an hour of a gate, family-run preferred. <strong>Guides and instruction</strong>: climbing schools, hiking guides and naturalist programs that are permitted, insured, and not running on charisma alone. <strong>Outfitters</strong>: gear rental and resupply for travelers who flew in or forgot the one important thing. <strong>Tours and transportation</strong>: drivers, shuttles and scheduled tours moving readers between the Valley, the high country and the gateway towns. <strong>Vacation rentals</strong>: independently operated houses and cabins in the gateway towns, owners who answer their own phone.</p>" +
+        "<p>The directory covers three areas of the park: Yosemite Valley, Glacier Point and Mariposa Grove on the south rim, and Tuolumne Meadows above 8,000 feet, which is summer only. Operators can read the terms on the listing page; every paid placement is labeled as one.</p>"
     ),
   "/newsletter": () =>
     hubProse(
       "Sunday Field Notes",
-      "A short note on Yosemite most Sundays, when there is something to say: conditions, openings, what the park is doing right now. Subscribing also unlocks the interactive trip planner map. Free."
+      "A short note on Yosemite most Sundays, when there is something to say: conditions, openings, what the park is doing right now. Subscribing also unlocks the interactive trip planner map. Free.",
+      "<p>The letter goes out when there is news worth sending rather than on a fixed schedule, so a quiet fortnight in the park means a quiet inbox. Typical subjects: which roads have opened or closed, what the waterfalls are doing, when a permit window falls, and the seasonal things that are easy to miss by a week, from the February light on Horsetail Fall to the first snow on Tioga Road.</p>" +
+        "<p>One signup also opens the trip planner map, which carries every vista, trailhead, parking turnout and meal worth stopping for, and lets a reader build a trip from the pins and share it as a link. No cost, and the archive of past letters is open.</p>"
     ),
   "/contact": () =>
     hubProse(
       "Contact",
-      "Send a note to the editor: trip questions, corrections, press, or anything else. Replies come from a real person in El Portal."
+      "Send a note to the editor: trip questions, corrections, press, or anything else. Replies come from a real person in El Portal.",
+      "<p>Corrections are welcome and get published. Everything here is written by one naturalist who lives at the park's western edge, and readers on the ground regularly know something the article does not: a closed trail, a changed shuttle stop, a restaurant that stopped serving lunch. Press and partnership enquiries reach the same inbox, as do questions about listing a business in the directory.</p>"
     ),
   "/advertise": () =>
     hubProse(
       "List your business",
-      "How to list a Yosemite-area lodge, inn, guide service, or outfitter in The Talus Field directory, and what the listing includes."
+      "How to list a Yosemite-area lodge, inn, guide service, or outfitter in The Talus Field directory, and what the listing includes.",
+      "<p>The Talus Field is read by people actively planning a Yosemite trip, the audience that is about to book lodging, hire a guide or buy a tour. A standard listing carries the business name, its area, a short editorial blurb, a direct outbound link to the booking page, and inclusion in the relevant category, for twelve months and renewable. A featured listing adds a photo, an extended description and priority position within its category.</p>" +
+        "<p>What the directory will not do is listed as plainly: no businesses the editor would talk a friend out of using, no unlabeled sponsorship (every paid placement is marked), no payment overriding the editorial tone of a blurb, and no placements from operators with active permit or safety violations. Rates are quoted on enquiry.</p>"
     ),
   "/widget": () =>
     hubProse(
