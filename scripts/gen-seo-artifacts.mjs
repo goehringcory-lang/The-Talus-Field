@@ -112,7 +112,39 @@ function jsonCompact(value, indent = 0) {
 // Merge
 // ----------------------------------------------------------------------------
 
-function mergeArticles(articles, seoData, ogImages, planningSlugs) {
+// Validate window.RELATED before anything consumes it. A bad entry here is a
+// dead link on a published page and, once the Worker started injecting the
+// block for crawlers, a dead link in the crawler-visible HTML too. Nothing else
+// on the site would notice: the link checker only sees hrefs that are already
+// written into a file.
+function validateRelated(related, articles) {
+  const slugs = new Set(articles.map((a) => a.slug));
+  const problems = [];
+  for (const [from, list] of Object.entries(related)) {
+    if (!slugs.has(from)) {
+      problems.push(`RELATED has an entry for "${from}", which is not in the catalog`);
+      continue;
+    }
+    if (!Array.isArray(list) || list.length < 4 || list.length > 6) {
+      problems.push(`RELATED["${from}"] should list 4 to 6 slugs, found ${Array.isArray(list) ? list.length : typeof list}`);
+      continue;
+    }
+    const seen = new Set();
+    for (const to of list) {
+      if (to === from) problems.push(`RELATED["${from}"] links to itself`);
+      else if (!slugs.has(to)) problems.push(`RELATED["${from}"] links to "${to}", which is not in the catalog`);
+      if (seen.has(to)) problems.push(`RELATED["${from}"] lists "${to}" twice`);
+      seen.add(to);
+    }
+  }
+  if (problems.length) {
+    for (const p of problems) console.error(`✗ ${p}`);
+    console.error(`Fix window.RELATED in data.js. ${problems.length} problem(s).`);
+    process.exit(1);
+  }
+}
+
+function mergeArticles(articles, seoData, ogImages, planningSlugs, relatedFor) {
   return articles.map((art) => {
     const seo = seoData[art.slug] || {};
     const o = {
@@ -139,6 +171,13 @@ function mergeArticles(articles, seoData, ogImages, planningSlugs) {
     // data.js inline faq wins over the sidecar (only one article uses inline faq).
     const faq = art.faq || seo.faq;
     if (Array.isArray(faq) && faq.length) o.faq = faq;
+    // Related reading, resolved by data.js's own relatedFor so the crawler
+    // block, the reader's rail and this mirror can never disagree about what an
+    // article links to.
+    if (relatedFor) {
+      const rel = relatedFor(art.slug);
+      if (Array.isArray(rel) && rel.length) o.related = rel;
+    }
     return o;
   });
 }
@@ -419,7 +458,7 @@ function buildTripPoints() {
 // ----------------------------------------------------------------------------
 
 async function main() {
-  const { articles, categories, kit, planningSeries } = loadDataJs();
+  const { articles, categories, kit, planningSeries, related, relatedFor } = loadDataJs();
   const episodes = loadVideosJs();
   const seoData = loadSeoData();
 
@@ -438,8 +477,10 @@ async function main() {
     if (og) ogImages[art.slug] = og;
   }
 
+  validateRelated(related, articles);
+
   const planningSlugs = new Set(planningSeries.flatMap((part) => part.slugs || []));
-  const merged = mergeArticles(articles, seoData, ogImages, planningSlugs);
+  const merged = mergeArticles(articles, seoData, ogImages, planningSlugs, relatedFor);
 
   const targets = {
     "articles.json": buildArticlesJson(merged),

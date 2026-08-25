@@ -1,4 +1,4 @@
-/* global React, ReactDOM, Placeholder, NewsletterInline, ArticleCard, MotifMountains, preloadResponsive, SIZES_HERO, Breadcrumbs, ShareRow */
+/* global React, ReactDOM, Placeholder, NewsletterInline, MotifMountains, preloadResponsive, SIZES_HERO, Breadcrumbs, ShareRow */
 
 // "Month D, YYYY" for an ISO date string, used to surface a genuine revision
 // date (isoModified) distinct from the publish date shown in the byline.
@@ -249,15 +249,29 @@ function ArticlePage({ slug, go }) {
   // then finished same-section pieces, then other sections (unread-first), so
   // the rail always fills its three slots and repeat visitors are not shown
   // the same three pieces they already read.
+  // Related rail: the article's own curated set (window.RELATED in data.js,
+  // falling back to relatedFor's rotation), reordered so pieces the reader has
+  // not finished come first.
+  //
+  // It used to be computed here instead: same-section articles in catalog
+  // order, unread first. A crawler has no read history, so every article in a
+  // section resolved to the same three links and the site's internal link
+  // graph collapsed onto a handful of early-catalog pieces. Curation moved to
+  // data.js because three surfaces need the same answer now: this rail, the
+  // Related reading block edge/seo.js injects for crawlers, and the `related`
+  // field in articles.json. Read history stays a client-side nicety layered on
+  // top; it reorders the set, it does not choose it.
   const doneSlugs = window.readHistory.done();
   const unreadFirst = (list) => [
     ...list.filter(a => !doneSlugs.has(a.slug)),
     ...list.filter(a => doneSlugs.has(a.slug)),
   ];
-  const sameCat = window.ARTICLES.filter(a => a.slug !== slug && a.cat === article.cat);
-  const otherCat = window.ARTICLES.filter(a => a.slug !== slug && a.cat !== article.cat);
-  const related = [...unreadFirst(sameCat), ...unreadFirst(otherCat)].slice(0, 3);
-  const relatedSameCat = related.every(a => a.cat === article.cat);
+  const related = unreadFirst(
+    (window.relatedFor ? window.relatedFor(slug) : [])
+      .map(s => window.findArticle(s))
+      .filter(a => a && a.slug !== slug)
+  );
+  const relatedSameCat = related.length > 0 && related.every(a => a.cat === article.cat);
 
   return (
     <div className="page">
@@ -507,16 +521,25 @@ function ArticlePage({ slug, go }) {
               <a href="/articles" onClick={(e) => { e.preventDefault(); go("articles"); }}>All entries →</a>
             )}
           </div>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 36 }}>
+          {/* Text rows, not a card grid. Five or six curated links carry more
+              of the internal link graph than three did, and doing it as cards
+              would have put five more images below the fold on every article.
+              The dek is the whole reason a reader picks one. */}
+          <ul className="relrail">
             {related.map(a => (
-              <ArticleCard
-                key={a.slug}
-                article={a}
-                go={go}
-                onNav={() => { if (window.track) window.track("related_click", { slug: a.slug, from: slug }); }}
-              />
+              <li key={a.slug}>
+                <a
+                  href={`/articles/${a.slug}`}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    if (window.track) window.track("related_click", { slug: a.slug, from: slug });
+                    go(`a:${a.slug}`);
+                  }}
+                >{a.title}</a>
+                <span className="relrail__dek">{a.seoDek || a.dek}</span>
+              </li>
             ))}
-          </div>
+          </ul>
         </section>
       )}
     </div>

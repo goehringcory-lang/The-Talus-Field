@@ -1,5 +1,6 @@
 #!/usr/bin/env node
-// Edge redirect and host-canonicalization guard.
+// Edge behaviour guard: redirects, host canonicalization, and the
+// crawler-visible related-reading block.
 //
 // The Worker owns two things no other check could see: the www -> apex 301
 // (both hosts are bound as custom domains in wrangler.jsonc, and Search
@@ -99,10 +100,51 @@ for (const [from, to] of entries) {
   if (entries.some(([f]) => f === to)) fail(`REDIRECTS ${from} points at ${to}, which is itself redirected`);
 }
 
+// --- crawler-visible related reading ----------------------------------------
+// The Worker appends this block to every article's injected prose, and it is
+// the only place those curated links exist for a crawler that runs no
+// JavaScript. A slug that stops resolving here is a dead link in the
+// crawler-visible HTML, which nothing else would notice: the link checker reads
+// files, and this markup is generated at request time.
+const { relatedBlock } = await import(path.join(ROOT, "edge/seo.js"));
+const articles = JSON.parse(readFileSync(path.join(ROOT, "articles.json"), "utf8"));
+const known = new Set(articles.map((a) => a.slug));
+
+let blocksWithLinks = 0;
+let totalLinks = 0;
+for (const a of articles) {
+  const html = relatedBlock(a.slug);
+  if (!html) {
+    fail(`no related block rendered for "${a.slug}"`);
+    continue;
+  }
+  const hrefs = [...html.matchAll(/href="\/articles\/([^"]+)"/g)].map((m) => m[1]);
+  if (hrefs.length < 4) fail(`related block for "${a.slug}" carries only ${hrefs.length} link(s)`);
+  for (const h of hrefs) {
+    if (!known.has(h)) fail(`related block for "${a.slug}" links to "${h}", which is not in articles.json`);
+    if (h === a.slug) fail(`related block for "${a.slug}" links to itself`);
+  }
+  blocksWithLinks++;
+  totalLinks += hrefs.length;
+}
+
+// The point of the whole exercise: the internal link graph should reach the
+// catalog, not funnel onto a handful of pieces.
+const reached = new Set();
+for (const a of articles) {
+  for (const m of relatedBlock(a.slug).matchAll(/href="\/articles\/([^"]+)"/g)) reached.add(m[1]);
+}
+if (reached.size < articles.length) {
+  const orphans = articles.map((a) => a.slug).filter((s) => !reached.has(s));
+  fail(`${orphans.length} article(s) receive no related link at all: ${orphans.join(", ")}`);
+}
+
 if (failures.length) {
   for (const f of failures) console.error(`✗ ${f}`);
   process.exit(1);
 }
 console.log(
-  `check-edge-redirects: www canonicalization holds, 3 non-www host(s) untouched, ${entries.length} REDIRECTS entr${entries.length === 1 ? "y" : "ies"} resolve.`
+  `check-edge-redirects: www canonicalization holds, 3 non-www host(s) untouched, ` +
+    `${entries.length} REDIRECTS entr${entries.length === 1 ? "y" : "ies"} resolve, ` +
+    `${totalLinks} related links across ${blocksWithLinks} article(s) reaching all ${reached.size} of them.`
 );

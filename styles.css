@@ -6322,3 +6322,44 @@ main:focus { outline: none; }
   .intentf__facet { padding-top: 0; }
   .intentf__clear { margin-left: 0; }
 }
+
+/* ===== The article related rail =====
+   Curated onward links (window.RELATED in data.js). Text rows, not the old
+   three-card image grid: the rail carries five or six links now instead of
+   three, and rendering those as cards would have put five more images below
+   the fold on every article page. Same row idiom as the homepage entries. */
+.relrail {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+.relrail li {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  border-top: 1px solid var(--rule);
+  padding: 16px 0;
+}
+.relrail a {
+  font-family: var(--display);
+  font-size: 22px;
+  font-weight: 500;
+  line-height: 1.15;
+  letter-spacing: -0.005em;
+  text-wrap: balance;
+  color: inherit;
+  text-decoration: none;
+}
+.relrail a:hover { color: var(--moss); }
+.relrail__dek {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 16px;
+  line-height: 1.45;
+  color: var(--ink-2);
+}
+@media (max-width: 880px) {
+  .relrail a { font-size: 20px; }
+}

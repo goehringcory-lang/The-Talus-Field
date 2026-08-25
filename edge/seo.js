@@ -33,6 +33,11 @@ import kit from "../kit.json" with { type: "json" };
 import bulletin from "../bulletin.json" with { type: "json" };
 import tripPoints from "../trip-points.json" with { type: "json" };
 
+// Slug index over the catalog. The related-reading block resolves five or six
+// slugs per article request, and a linear find() per lookup would walk the
+// whole catalog each time.
+const articleBySlug = Object.fromEntries(articles.map((a) => [a.slug, a]));
+
 const SITE_ORIGIN = "https://thetalusfieldjournal.com";
 const SITE_NAME = "The Talus Field";
 const SITE_TAGLINE = "Yosemite, written from inside it";
@@ -130,6 +135,25 @@ function articleLinkList(list) {
 
 function hubProse(h1, intro, extraHtml) {
   return `<h1>${escapeHtmlText(h1)}</h1><p>${escapeHtmlText(intro)}</p>${extraHtml || ""}`;
+}
+
+// Curated onward links for an article, appended to its injected prose.
+//
+// The prerendered fragments carry an article's in-body links, but nothing
+// carried the related rail: that was React-only, so the crawler-visible HTML
+// ended at the last paragraph. Reading the `related` field out of articles.json
+// (resolved by data.js's own relatedFor, so this cannot disagree with the rail
+// a reader sees) puts five or six more real links on every article page.
+//
+// This is appended INSIDE the #prerender-prose block on purpose. app.jsx
+// removes exactly that node at boot; a sibling would survive the removal and
+// flash beneath the React-rendered page until something else cleaned it up.
+function relatedBlock(slug) {
+  const a = articleBySlug[slug];
+  const list = (a && a.related) || [];
+  const items = list.map((s) => articleBySlug[s]).filter(Boolean);
+  if (!items.length) return "";
+  return `<nav aria-label="Related reading"><h2>Related reading</h2>${articleLinkList(items)}</nav>`;
 }
 
 // Hand-maintained mirror of itineraries-data.js: drives both the TouristTrip
@@ -1140,9 +1164,10 @@ export default {
   },
 };
 
-// Named export for offline checks (scripts/, plain node): lets a test call the
-// route metadata logic without workerd's HTMLRewriter runtime.
-export { seoForPath };
+// Named exports for offline checks (scripts/, plain node): let a test call the
+// route metadata logic and the crawler-visible related block without workerd's
+// HTMLRewriter runtime.
+export { seoForPath, relatedBlock };
 
 // Permanent redirects, checked before any SEO work. The site had no redirect
 // capability before the evergreen event pages landed (it is a Worker, not
@@ -1203,7 +1228,12 @@ async function handleRequest({ request, next, env }) {
   if (seo.prerenderSlug && env && env.ASSETS) {
     try {
       const pr = await env.ASSETS.fetch(new URL(`/prerender/${seo.prerenderSlug}.html`, url.origin));
-      if (pr.ok) proseHtml = `<h1>${escapeHtmlText(seo.articleTitle || "")}</h1>` + (await pr.text());
+      if (pr.ok) {
+        proseHtml =
+          `<h1>${escapeHtmlText(seo.articleTitle || "")}</h1>` +
+          (await pr.text()) +
+          relatedBlock(seo.prerenderSlug);
+      }
     } catch (_e) { /* fail open: no injected prose */ }
   } else if (seo.prose) {
     proseHtml = seo.prose;

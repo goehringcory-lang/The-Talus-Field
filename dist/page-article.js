@@ -201,10 +201,8 @@ function ArticlePage({
   var cat = window.findCategory(article.cat);
   var doneSlugs = window.readHistory.done();
   var unreadFirst = list => [...list.filter(a => !doneSlugs.has(a.slug)), ...list.filter(a => doneSlugs.has(a.slug))];
-  var sameCat = window.ARTICLES.filter(a => a.slug !== slug && a.cat === article.cat);
-  var otherCat = window.ARTICLES.filter(a => a.slug !== slug && a.cat !== article.cat);
-  var related = [...unreadFirst(sameCat), ...unreadFirst(otherCat)].slice(0, 3);
-  var relatedSameCat = related.every(a => a.cat === article.cat);
+  var related = unreadFirst((window.relatedFor ? window.relatedFor(slug) : []).map(s => window.findArticle(s)).filter(a => a && a.slug !== slug));
+  var relatedSameCat = related.length > 0 && related.every(a => a.cat === article.cat);
   return React.createElement("div", {
     className: "page"
   }, React.createElement("div", {
@@ -579,22 +577,22 @@ function ArticlePage({
       e.preventDefault();
       go("articles");
     }
-  }, "All entries →")), React.createElement("div", {
-    style: {
-      display: "grid",
-      gridTemplateColumns: "repeat(3, 1fr)",
-      gap: 36
-    }
-  }, related.map(a => React.createElement(ArticleCard, {
-    key: a.slug,
-    article: a,
-    go: go,
-    onNav: () => {
+  }, "All entries →")), React.createElement("ul", {
+    className: "relrail"
+  }, related.map(a => React.createElement("li", {
+    key: a.slug
+  }, React.createElement("a", {
+    href: `/articles/${a.slug}`,
+    onClick: e => {
+      e.preventDefault();
       if (window.track) window.track("related_click", {
         slug: a.slug,
         from: slug
       });
+      go(`a:${a.slug}`);
     }
-  })))));
+  }, a.title), React.createElement("span", {
+    className: "relrail__dek"
+  }, a.seoDek || a.dek))))));
 }
 window.ArticlePage = ArticlePage;
