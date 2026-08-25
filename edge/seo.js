@@ -733,7 +733,13 @@ function seoForPath(pathname, searchParams) {
       // ItemList of VideoObject nodes, one per episode, built from the
       // videos.json mirror. Matches the shape app.jsx builds client-side from
       // videos-data.js so JS and non-JS crawlers see the same entity.
-      // uploadDate is deliberately omitted: only publication years are sourced.
+      //
+      // uploadDate is emitted only for episodes that carry a sourced `uploaded`
+      // date. Google requires the field, and its absence made all 40 items
+      // invalid in Search Console, but a date is never derived from the bare
+      // publication `year`: inventing a month and day to satisfy a validator
+      // would publish a false fact. Fill the gaps with
+      // scripts/fetch-video-dates.mjs, which reads each watch page.
       jsonLd: {
         "@context": "https://schema.org",
         "@type": "ItemList",
@@ -752,6 +758,7 @@ function seoForPath(pathname, searchParams) {
             description: ep.dek,
             thumbnailUrl: `https://i.ytimg.com/vi/${ep.youtubeId}/hqdefault.jpg`,
             embedUrl: `https://www.youtube-nocookie.com/embed/${ep.youtubeId}`,
+            ...(ep.uploaded ? { uploadDate: ep.uploaded } : {}),
             publisher: { "@type": "Organization", name: "National Park Service" },
             isAccessibleForFree: true,
           },

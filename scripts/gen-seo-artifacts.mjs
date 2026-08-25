@@ -151,15 +151,24 @@ function buildArticlesJson(merged) {
   return jsonCompact(merged, 0) + "\n";
 }
 
-// Slim film mirror for edge/seo.js. Only the fields the /films
-// VideoObject ItemList needs; theme/episode/year are dropped (the JSON-LD does
-// not use them, and uploadDate is deliberately omitted, see app.jsx).
+// Slim film mirror for edge/seo.js. Only the fields the /films VideoObject
+// ItemList needs; theme, episode and the bare publication `year` are dropped
+// (the JSON-LD does not use them).
+//
+// `uploaded` is the sourced upload date and rides along when an episode has
+// one: it becomes VideoObject.uploadDate, which Google requires and whose
+// absence made all 40 items invalid. It is carried only when present. A bare
+// `year` is NOT a substitute, and nothing here derives one from it: a
+// fabricated month and day would be a false fact in structured data, which is
+// worse than an incomplete one. Populate the field with
+// scripts/fetch-video-dates.mjs, which reads the real date off each watch page.
 function buildVideosJson(episodes) {
   const slim = episodes.map((ep) => ({
     id: ep.id,
     title: ep.title,
     dek: ep.dek,
     youtubeId: ep.youtubeId,
+    ...(ep.uploaded ? { uploaded: ep.uploaded } : {}),
   }));
   return jsonCompact(slim, 0) + "\n";
 }

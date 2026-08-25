@@ -429,6 +429,9 @@ function buildSeo(route) {
             description: ep.dek,
             thumbnailUrl: `https://i.ytimg.com/vi/${ep.youtubeId}/hqdefault.jpg`,
             embedUrl: `https://www.youtube-nocookie.com/embed/${ep.youtubeId}`,
+            ...(ep.uploaded ? {
+              uploadDate: ep.uploaded
+            } : {}),
             publisher: {
               "@type": "Organization",
               name: "National Park Service"

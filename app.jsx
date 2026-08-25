@@ -411,8 +411,11 @@ function buildSeo(route) {
   }
 
   // Films. ItemList of VideoObject nodes built from the archive catalog.
-  // uploadDate is deliberately omitted: only publication years are sourced,
-  // and a fabricated full date is worse than none.
+  // uploadDate rides on an episode's sourced `uploaded` date and is omitted
+  // when there is none: Google requires the field, but a full date derived from
+  // the bare publication `year` would be a fabrication, and a false fact in
+  // structured data is worse than a missing one. Mirrors edge/seo.js; populate
+  // with scripts/fetch-video-dates.mjs.
   if (route === "films") {
     const nn = window.NATURE_NOTES;
     const episodes = (nn && nn.episodes) || [];
@@ -440,6 +443,7 @@ function buildSeo(route) {
             description: ep.dek,
             thumbnailUrl: `https://i.ytimg.com/vi/${ep.youtubeId}/hqdefault.jpg`,
             embedUrl: `https://www.youtube-nocookie.com/embed/${ep.youtubeId}`,
+            ...(ep.uploaded ? { uploadDate: ep.uploaded } : {}),
             publisher: { "@type": "Organization", name: "National Park Service" },
             isAccessibleForFree: true,
           },
