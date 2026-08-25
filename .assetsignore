@@ -18,6 +18,11 @@ analysis
 docs
 photo-inbox
 
+# Raw uploads staged under img/. The site serves the ingested, downscaled,
+# metadata-stripped copies at img/<slug>.jpg; the originals here are camera and
+# stock files that still carry their EXIF and cost ~36 MB of asset upload.
+img/Photos
+
 # Nature Notes markdown sources (the *.md rule below already catches them;
 # named here so the directory can never leak a non-md file).
 nature-notes

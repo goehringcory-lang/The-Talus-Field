@@ -45,6 +45,13 @@ const OG_MIN_WIDTH = 1200;
 // output visually after changing).
 const OG_CROP_POSITION = {
   "lower-yosemite-fall": "top",
+  // The fall sits in the lower half of a tall frame; a centre crop returns
+  // forested slope with no water in it at all.
+  "nevada-fall-canyon-haze": "bottom",
+  // Half Dome fills the middle and the campfire burns in the bottom corner.
+  // Centre loses the fire, bottom loses the dome; entropy keeps both, which
+  // is what the fire-restrictions article is about.
+  "campfire-half-dome-night": sharp.strategy.entropy,
 };
 
 // The sitewide default social card: a 1200x630 (the canonical 1.91:1 og ratio)
