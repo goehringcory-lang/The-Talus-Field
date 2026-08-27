@@ -106,7 +106,7 @@ window.ARTICLE_BODIES["mist-trail-the-real-guide"] = function MistTrailBody() {
       </p>
 
       <p>
-        <strong>2026 weekday restrictions.</strong> Starting June 30, 2026, the Mist Trail between Vernal Fall and Nevada Fall is open only after 3:30 p.m. Monday through Thursday. This is a crowd management measure. On weekdays, you'll either need to time your hike to reach that section after 3:30, or take the JMT bypass between the two falls. Weekends are unaffected.
+        <strong>2026 weekday restrictions.</strong> Starting June 30, 2026, the Mist Trail between Vernal Fall and Nevada Fall is closed Monday through Thursday, 7 a.m. to 3:30 p.m., for trail repairs, through the end of October. On weekdays, you'll either need to time your hike to reach that section after 3:30, or take the JMT bypass between the two falls. Weekends are unaffected. The bypass got more scenic this summer: the JMT's "Ice Cut" segment, between Clark Point and the Panorama Trail junction, reopened in late July 2026 after nearly three years closed for storm and ice damage, so the full Mist Trail-JMT loop is open again.
       </p>
 
       <h2>The safety talk</h2>
