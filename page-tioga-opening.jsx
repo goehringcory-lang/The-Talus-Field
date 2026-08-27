@@ -19,7 +19,7 @@
 // previous edition. check-asset-freshness.mjs parses this literal and fails the
 // build if the three disagree, which is why it is written out in full rather
 // than imported or composed.
-const TIOGA_BULLETIN_URL = "/bulletin.json?v=7";
+const TIOGA_BULLETIN_URL = "/bulletin.json?v=8";
 
 // Published opening dates, most recent first.
 //
