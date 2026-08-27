@@ -110,6 +110,7 @@ window.planningSeriesFor = function (slug) {
 // verifies this map stays in sync with the files in bodies/.
 // ============================================================
 window.BODY_VERSIONS = {
+  "bracebridge-dinner-and-vintners-holidays": 1,
   "yosemite-fire-restrictions-explained": 2,
   "yosemite-in-three-to-five-days": 2,
   "yosemite-winter-hikes": 1,
@@ -735,6 +736,20 @@ window.KIT.lists.forEach((l) => {
 });
 
 window.ARTICLES = [
+  {
+    slug: "bracebridge-dinner-and-vintners-holidays",
+    cat: "seasonal",
+    title: "Bracebridge Dinner and Vintners' Holidays: Yosemite's Christmas Season, Honestly",
+    dek: "Two names, two different events, one confusing set of web copy. What the Bracebridge Dinner and Vintners' Holidays actually cost, what each ticket buys, when they sell out, and an honest read on whether either is worth a trip built around a single very expensive evening.",
+    seoDek: "Bracebridge Dinner and Vintners' Holidays, explained: what they cost, what's included, when tickets sell out, and whether they're worth it.",
+    date: "August 27, 2026",
+    isoDate: "2026-08-27",
+    isoModified: "2026-08-27",
+    read: "8 min",
+    placeholder: "The Ahwahnee, where both Vintners' Holidays and the Bracebridge Dinner are staged",
+    image: "img/ahwahnee-hotel.jpg",
+    credit: "Photo: Chris Dunstan / Wikimedia Commons (public domain)",
+  },
   {
     slug: "yosemite-fire-restrictions-explained",
     cat: "planning",
@@ -1694,11 +1709,12 @@ window.START_HERE = [
 // cluster, or when it is the destination that needs the equity.
 window.RELATED = {
   // Lodging and gateway towns
+  "bracebridge-dinner-and-vintners-holidays": ["where-to-stay-in-yosemite", "yosemite-in-winter", "yosemite-trip-cost-budget-2026", "yosemite-gateway-towns-compared", "where-to-eat-yosemite"],
   "yosemite-gateway-towns-compared": ["where-to-stay-in-yosemite", "yosemite-camping-complete-guide", "where-to-eat-yosemite", "yosemite-trip-cost-budget-2026", "getting-to-yosemite"],
-  "where-to-stay-in-yosemite": ["yosemite-gateway-towns-compared", "yosemite-camping-complete-guide", "yosemite-trip-cost-budget-2026", "yosemite-without-reservations-2026", "where-to-eat-yosemite"],
+  "where-to-stay-in-yosemite": ["yosemite-gateway-towns-compared", "yosemite-camping-complete-guide", "yosemite-trip-cost-budget-2026", "bracebridge-dinner-and-vintners-holidays", "where-to-eat-yosemite"],
   "yosemite-camping-complete-guide": ["camping-in-yosemite-first-time", "where-to-stay-in-yosemite", "yosemite-gateway-towns-compared", "first-yosemite-backpacking-trip", "yosemite-trip-cost-budget-2026"],
   "camping-in-yosemite-first-time": ["yosemite-camping-complete-guide", "yosemite-bears-safety-guide", "is-bear-spray-allowed-in-yosemite", "where-to-stay-in-yosemite", "pets-in-yosemite"],
-  "yosemite-trip-cost-budget-2026": ["where-to-stay-in-yosemite", "yosemite-gateway-towns-compared", "yosemite-camping-complete-guide", "where-to-eat-yosemite", "getting-to-yosemite"],
+  "yosemite-trip-cost-budget-2026": ["where-to-stay-in-yosemite", "yosemite-gateway-towns-compared", "yosemite-camping-complete-guide", "where-to-eat-yosemite", "bracebridge-dinner-and-vintners-holidays"],
 
   // Food
   "where-to-eat-yosemite": ["yosemite-gateway-towns-compared", "where-to-stay-in-yosemite", "yosemite-camping-complete-guide", "yosemite-trip-cost-budget-2026", "yosemite-in-one-or-two-days", "pack-your-car-for-yosemite"],
@@ -1742,7 +1758,7 @@ window.RELATED = {
   "yosemite-in-june-2026": ["when-to-visit-yosemite-2026-crowd-forecast", "yosemite-waterfalls-guide", "tioga-road-opening-weekend-2026", "yosemite-heat-safety-guide", "bears-spring-emergence"],
   "yosemite-in-september-2026": ["when-to-visit-yosemite-2026-crowd-forecast", "yosemite-in-fall", "tuolumne-meadows-in-a-day", "yosemite-during-smoke-season", "cathedral-lakes-day-hike", "mist-trail-the-real-guide"],
   "yosemite-in-fall": ["yosemite-in-september-2026", "when-to-visit-yosemite-2026-crowd-forecast", "yosemite-in-winter", "yosemite-photography-spots", "yosemite-during-smoke-season"],
-  "yosemite-in-winter": ["yosemite-winter-hikes", "horsetail-fall-firefall", "when-to-visit-yosemite-2026-crowd-forecast", "yosemite-in-march", "yosemite-photography-spots"],
+  "yosemite-in-winter": ["yosemite-winter-hikes", "horsetail-fall-firefall", "when-to-visit-yosemite-2026-crowd-forecast", "yosemite-in-march", "bracebridge-dinner-and-vintners-holidays"],
   "yosemite-in-march": ["yosemite-in-winter", "yosemite-waterfalls-guide", "bears-spring-emergence", "horsetail-fall-firefall", "when-to-visit-yosemite-2026-crowd-forecast"],
   "tioga-road-opening-weekend-2026": ["cathedral-lakes-day-hike", "tuolumne-meadows-in-a-day", "memorial-day-skip-the-valley-go-high-2026", "yosemite-stargazing-where-to-look-up", "when-to-visit-yosemite-2026-crowd-forecast"],
   "glacier-point-road-open-2026": ["four-mile-up-panorama-down", "yosemite-photography-spots", "yosemite-stargazing-where-to-look-up", "when-to-visit-yosemite-2026-crowd-forecast", "yosemite-for-non-hikers"],
