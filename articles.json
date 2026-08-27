@@ -1,5 +1,31 @@
 [
   {
+    "slug": "bracebridge-dinner-and-vintners-holidays",
+    "cat": "seasonal",
+    "title": "Bracebridge Dinner and Vintners' Holidays: Yosemite's Christmas Season, Honestly",
+    "dek": "Two names, two different events, one confusing set of web copy. What the Bracebridge Dinner and Vintners' Holidays actually cost, what each ticket buys, when they sell out, and an honest read on whether either is worth a trip built around a single very expensive evening.",
+    "seoDek": "Bracebridge Dinner and Vintners' Holidays, explained: what they cost, what's included, when tickets sell out, and whether they're worth it.",
+    "date": "August 27, 2026",
+    "isoDate": "2026-08-27",
+    "isoModified": "2026-08-27",
+    "read": "8 min",
+    "image": "img/ahwahnee-hotel.jpg",
+    "ogImage": { "url": "img/responsive/ahwahnee-hotel-1600.jpg", "width": 1600, "height": 1200 },
+    "placeholder": "The Ahwahnee, where both Vintners' Holidays and the Bracebridge Dinner are staged",
+    "wordCount": 1907,
+    "keywords": ["Bracebridge Dinner", "Vintners Holidays Yosemite", "Ahwahnee Christmas dinner", "Yosemite holiday season", "Yosemite Christmas tradition", "Bracebridge Dinner tickets", "Ahwahnee Vintners Holidays price", "Yosemite December events", "Yosemite November wine event"],
+    "faq": [
+      { "q": "What is the Bracebridge Dinner?", "a": "A several-hours-long dinner theater pageant staged at the Ahwahnee in December, running since 1927. It's Tudor-costumed and built around a seven-course feast, with a cast and crew of over 100, a Lord of Misrule character, a boar's head and baron of beef procession, and a chorale singing carols between courses. The ticket buys the performance and the meal only, not a hotel room." },
+      { "q": "What is Vintners' Holidays?", "a": "Four multi-day sessions at the Ahwahnee each November, running since 1982, built around visiting California winemakers. A session is sold as a package that includes a room (at the Ahwahnee, Yosemite Valley Lodge, or Curry Village), a 'Meet the Vintners' reception, four tasting seminars, and a closing five-course paired gala dinner." },
+      { "q": "How much does the Bracebridge Dinner cost?", "a": "Tickets have run into the several hundreds of dollars per adult for years, with lower-priced passes for children. Reporting on the dinner's December 2024 return after a five-year pause put prices over $500 a person. The ticket covers the performance and meal only; a hotel room is a separate booking." },
+      { "q": "Does the Bracebridge Dinner ticket include a hotel room?", "a": "No. The ticket buys the performance and the meal only. Plenty of guests drive in for the evening and drive home after; a room at the Ahwahnee has to be booked separately." },
+      { "q": "How much do Vintners' Holidays packages cost?", "a": "Packages, room included, have started somewhere north of $450 per person based on double occupancy in recent years, rising from there for better room categories." },
+      { "q": "When do Bracebridge Dinner tickets go on sale, and do they sell out?", "a": "Typically eight to nine months before the December performances, which lands around March or April. They have sold out every year since the dinner's 2024 return, so tickets bought in late summer for that same December are usually working the cancellation list rather than the original sale." },
+      { "q": "When should I book Vintners' Holidays?", "a": "The lodging that Vintners' Holidays packages are built around books on the same 366-day advance window as any other Ahwahnee, Lodge, or Curry Village reservation. If you miss that window, check back regularly: cancellations happen continuously, with a real wave in the final weeks before any date." }
+    ],
+    "related": ["where-to-stay-in-yosemite", "yosemite-in-winter", "yosemite-trip-cost-budget-2026", "yosemite-gateway-towns-compared", "where-to-eat-yosemite"]
+  },
+  {
     "slug": "yosemite-fire-restrictions-explained",
     "cat": "planning",
     "title": "Yosemite fire restrictions, explained: what's banned, what still works, and how to check before you go",
@@ -559,7 +585,7 @@
       { "q": "What is there to do in Yosemite in winter?", "a": "Ski or take lessons at Badger Pass, one of California's oldest ski areas; snowshoe the roughly seven-mile round trip to Dewey Point on the Valley rim; join a ranger-led snowshoe walk from Badger Pass; skate the outdoor Curry Village ice rink under Half Dome; and photograph clearing storms, the best photographic conditions the park offers all year." },
       { "q": "When does Horsetail Fall glow in Yosemite?", "a": "For about two weeks in mid-February, when the sunset angle is right, the fall is running, and the sky cooperates, Horsetail Fall on the east shoulder of El Capitan lights up orange in the last minutes of the day. The firefall now draws large crowds and has a reservation system of its own." }
     ],
-    "related": ["yosemite-winter-hikes", "horsetail-fall-firefall", "when-to-visit-yosemite-2026-crowd-forecast", "yosemite-in-march", "yosemite-photography-spots"]
+    "related": ["yosemite-winter-hikes", "horsetail-fall-firefall", "when-to-visit-yosemite-2026-crowd-forecast", "yosemite-in-march", "bracebridge-dinner-and-vintners-holidays"]
   },
   {
     "slug": "where-to-stay-in-yosemite",
@@ -584,7 +610,7 @@
       { "q": "What if Yosemite lodging is sold out for my dates?", "a": "Rooms come back. Cancellations happen continuously, with a wave in the final weeks before any date, so check travelyosemite.com daily in the four to six weeks before your trip. Multi-night stays can often be assembled out of single-night cancellations." },
       { "q": "When is it easiest to get a room inside Yosemite?", "a": "Winter. The seasonal operations close, but the Ahwahnee, Yosemite Valley Lodge, and a reduced Curry Village run all year, rates drop, and midweek availability in January is a different universe from July." }
     ],
-    "related": ["yosemite-gateway-towns-compared", "yosemite-camping-complete-guide", "yosemite-trip-cost-budget-2026", "yosemite-without-reservations-2026", "where-to-eat-yosemite"]
+    "related": ["yosemite-gateway-towns-compared", "yosemite-camping-complete-guide", "yosemite-trip-cost-budget-2026", "bracebridge-dinner-and-vintners-holidays", "where-to-eat-yosemite"]
   },
   {
     "slug": "yosemite-wildflowers-guide",
@@ -934,7 +960,7 @@
       { "q": "What is the cheapest way to visit Yosemite?", "a": "Camp and bring your own food. A campsite plus a cooler stocked at a gateway-town grocery store before you enter keeps food to about $15 to $25 per person per day. The park itself is cheap: $35 to enter, free shuttles, free trails, and free ranger programs." },
       { "q": "How much should I budget for food in Yosemite?", "a": "A deli sandwich and a drink runs $18 to $25, a pizza at Half Dome Village $27 to $35, and a sit-down dinner $35 to $55 per person. The Ahwahnee dinner is prix fixe from $95. Bringing a cooler is the single biggest money-saver." }
     ],
-    "related": ["where-to-stay-in-yosemite", "yosemite-gateway-towns-compared", "yosemite-camping-complete-guide", "where-to-eat-yosemite", "getting-to-yosemite"]
+    "related": ["where-to-stay-in-yosemite", "yosemite-gateway-towns-compared", "yosemite-camping-complete-guide", "where-to-eat-yosemite", "bracebridge-dinner-and-vintners-holidays"]
   },
   {
     "slug": "yosemite-in-september-2026",
