@@ -5,7 +5,7 @@
   <!-- Hub pages -->
   <url>
     <loc>https://thetalusfieldjournal.com/</loc>
-    <lastmod>2026-08-25</lastmod>
+    <lastmod>2026-08-27</lastmod>
     <image:image>
       <image:loc>https://thetalusfieldjournal.com/img/responsive/half-dome-winter-storm-1600.jpg</image:loc>
       <image:title>Half Dome in a clearing winter storm</image:title>
@@ -13,7 +13,7 @@
   </url>
   <url>
     <loc>https://thetalusfieldjournal.com/articles</loc>
-    <lastmod>2026-08-25</lastmod>
+    <lastmod>2026-08-27</lastmod>
   </url>
   <url>
     <loc>https://thetalusfieldjournal.com/planning</loc>
@@ -43,7 +43,7 @@
   </url>
   <url>
     <loc>https://thetalusfieldjournal.com/section/seasonal</loc>
-    <lastmod>2026-08-25</lastmod>
+    <lastmod>2026-08-27</lastmod>
   </url>
 
   <!-- Static pages -->
@@ -149,6 +149,14 @@
   </url>
 
   <!-- Articles -->
+  <url>
+    <loc>https://thetalusfieldjournal.com/articles/bracebridge-dinner-and-vintners-holidays</loc>
+    <lastmod>2026-08-27</lastmod>
+    <image:image>
+      <image:loc>https://thetalusfieldjournal.com/img/responsive/ahwahnee-hotel-1600.jpg</image:loc>
+      <image:title>The Ahwahnee, where both Vintners' Holidays and the Bracebridge Dinner are staged</image:title>
+    </image:image>
+  </url>
   <url>
     <loc>https://thetalusfieldjournal.com/articles/yosemite-fire-restrictions-explained</loc>
     <lastmod>2026-08-24</lastmod>

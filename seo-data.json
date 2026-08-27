@@ -1,5 +1,49 @@
 {
   "__comment": "SEO enrichment for the editorial site, keyed by article slug. NOT loaded by the browser runtime (kept out of data.js so the per-page JS payload stays small). The build script scripts/gen-seo-artifacts.mjs merges this with window.ARTICLES from data.js to regenerate articles.json (consumed by edge/seo.js), sitemap.xml, feed.xml, and the article section of llms.txt. Fields: wordCount (number), keywords (string[]), faq ({q,a}[]), trail ({name,distance,elevationGain,difficulty} for hike guides). FAQ answers and trail numbers are drawn from each article's published body; do not invent facts. The one article whose faq lives inline in data.js (yosemite-in-one-or-two-days) is intentionally omitted here; data.js takes precedence for faq.",
+  "bracebridge-dinner-and-vintners-holidays": {
+    "wordCount": 1907,
+    "keywords": [
+      "Bracebridge Dinner",
+      "Vintners Holidays Yosemite",
+      "Ahwahnee Christmas dinner",
+      "Yosemite holiday season",
+      "Yosemite Christmas tradition",
+      "Bracebridge Dinner tickets",
+      "Ahwahnee Vintners Holidays price",
+      "Yosemite December events",
+      "Yosemite November wine event"
+    ],
+    "faq": [
+      {
+        "q": "What is the Bracebridge Dinner?",
+        "a": "A several-hours-long dinner theater pageant staged at the Ahwahnee in December, running since 1927. It's Tudor-costumed and built around a seven-course feast, with a cast and crew of over 100, a Lord of Misrule character, a boar's head and baron of beef procession, and a chorale singing carols between courses. The ticket buys the performance and the meal only, not a hotel room."
+      },
+      {
+        "q": "What is Vintners' Holidays?",
+        "a": "Four multi-day sessions at the Ahwahnee each November, running since 1982, built around visiting California winemakers. A session is sold as a package that includes a room (at the Ahwahnee, Yosemite Valley Lodge, or Curry Village), a 'Meet the Vintners' reception, four tasting seminars, and a closing five-course paired gala dinner."
+      },
+      {
+        "q": "How much does the Bracebridge Dinner cost?",
+        "a": "Tickets have run into the several hundreds of dollars per adult for years, with lower-priced passes for children. Reporting on the dinner's December 2024 return after a five-year pause put prices over $500 a person. The ticket covers the performance and meal only; a hotel room is a separate booking."
+      },
+      {
+        "q": "Does the Bracebridge Dinner ticket include a hotel room?",
+        "a": "No. The ticket buys the performance and the meal only. Plenty of guests drive in for the evening and drive home after; a room at the Ahwahnee has to be booked separately."
+      },
+      {
+        "q": "How much do Vintners' Holidays packages cost?",
+        "a": "Packages, room included, have started somewhere north of $450 per person based on double occupancy in recent years, rising from there for better room categories."
+      },
+      {
+        "q": "When do Bracebridge Dinner tickets go on sale, and do they sell out?",
+        "a": "Typically eight to nine months before the December performances, which lands around March or April. They have sold out every year since the dinner's 2024 return, so tickets bought in late summer for that same December are usually working the cancellation list rather than the original sale."
+      },
+      {
+        "q": "When should I book Vintners' Holidays?",
+        "a": "The lodging that Vintners' Holidays packages are built around books on the same 366-day advance window as any other Ahwahnee, Lodge, or Curry Village reservation. If you miss that window, check back regularly: cancellations happen continuously, with a real wave in the final weeks before any date."
+      }
+    ]
+  },
   "yosemite-fire-restrictions-explained": {
     "wordCount": 2069,
     "keywords": [
