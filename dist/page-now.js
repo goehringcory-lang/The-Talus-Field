@@ -1,4 +1,4 @@
-var BULLETIN_URL = "/bulletin.json?v=7";
+var BULLETIN_URL = "/bulletin.json?v=8";
 function bulletinDate(iso) {
   var d = new Date(iso + "T00:00:00");
   if (Number.isNaN(d.getTime())) return iso;

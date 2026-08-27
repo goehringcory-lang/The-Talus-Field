@@ -4,7 +4,7 @@
     "label": "August 19 – September 22, 2026",
     "start": "2026-08-19",
     "end": "2026-09-22",
-    "updated": "2026-08-18",
+    "updated": "2026-08-27",
     "lede": "The edition where summer ends. Every road is still open and the high country is at its best, but the waterfalls are down to their bones and the park starts shutting for the season in the first two weeks of September: the High Sierra Camps, the pools, the Tuolumne store and grill, the hikers bus. Go high while you can.",
     "source": "Condensed from the National Park Service Yosemite Guide for August 19 – September 22, 2026, with the journal's own notes.",
     "sourceUrl": "https://www.nps.gov/yose/planyourvisit/guide.htm"
@@ -18,7 +18,8 @@
     { "icon": "calendar", "text": "Raft rentals on the Merced are done for the year." },
     { "icon": "plug", "text": "EV charging in Tuolumne Meadows is down. Charge in the Valley, El Portal, or Wawona." },
     { "icon": "parking", "text": "Valley parking fills by late morning. Arrive before 8 am or after 4 pm, and text ynptraffic to 333111 for traffic alerts." },
-    { "icon": "clock", "text": "Climbing programs move back down to the Valley: Ask-a-Climber at El Capitan bridge from Sep 6, Climber Coffee at Camp 4 from Sep 13." }
+    { "icon": "clock", "text": "Climbing programs move back down to the Valley: Ask-a-Climber at El Capitan bridge from Sep 6, Climber Coffee at Camp 4 from Sep 13." },
+    { "icon": "road", "text": "Pavement repairs on El Portal Road continue through the end of August: up to 15-minute daytime delays (8 am – 8 pm) and up to 30-minute delays overnight Sunday through Thursday (9 pm – 7 am). Also affects Valley Loop Road, the El Capitan Crossover, and Sentinel Drive." }
   ],
   "areas": [
     { "name": "Yosemite Valley", "chip": "Open", "tone": "open", "note": "Busy by mid-morning, worse on weekends, and quieter after Labor Day. Parking in three hubs: Curry Village, Yosemite Village, Yosemite Falls. Once parked, stay parked and ride the free shuttles." },
@@ -189,7 +190,7 @@
     { "name": "Mariposa Grove shuttle", "note": "Free, every 15 minutes, 8 am – 7 pm; last bus leaves the grove at 8 pm. No ticket needed." },
     { "name": "Tuolumne Meadows shuttle", "note": "Free, between the Meadows and Olmsted Point, 8 am – 4 pm, but only through Sep 13." },
     { "name": "Hiker buses", "note": "Tuolumne hikers bus once daily through Sep 13; the Glacier Point tour bus twice daily, a four-hour trip. Both paid, both bookable at TravelYosemite.com or the Lodge front desk. Glacier Point drops hikers one-way; no pickup at the point." },
-    { "name": "YARTS", "note": "Public transit into the park: Merced year-round with multiple departures; Sonora two or three times daily, Fresno and Mammoth Lakes twice daily, all summer only. YARTS.com or 877/989-2787." },
+    { "name": "YARTS", "note": "Public transit into the park: Merced year-round with multiple departures; Sonora two or three times daily, Fresno and Mammoth Lakes twice daily, all summer only. Some of the Sonora and Mammoth Lakes runs end Aug 31; the rest continue through Sep 30. YARTS.com or 877/989-2787." },
     { "name": "Bikes", "note": "Over 11 miles of paved path on the Valley floor, 15 mph limit, helmets required under 18, and no bikes on hiking trails. Rentals 8 am – 7 pm at the Lodge, Curry Village, and Yosemite Village, 9 am – 6 pm from Sep 8; free bike share for one- to two-hour rides from the Village and Camp 4 lots, goyose.org/bikeshare." },
     { "name": "EV charging", "note": "Level 2 only: Curry Village (20), Wawona Store (24), Yosemite Falls parking (10), the Lodge (8), The Ahwahnee (6), Welcome Center (4), El Portal (2). Tuolumne chargers are down." }
   ],
