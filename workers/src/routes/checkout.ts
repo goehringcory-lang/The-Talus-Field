@@ -6,10 +6,14 @@ import {
   getBuyer,
   getEmailByAccessToken,
   getInventoryCount,
+  putBuyer,
   recordCheckoutAttempt,
+  recordClaimAttempt,
   recordRenewLinkAttempt,
 } from '../lib/kv'
-import { createCheckoutSession } from '../lib/stripe'
+import { createCheckoutSession, retrieveCheckoutSession } from '../lib/stripe'
+import { buyerRecordForSession } from '../lib/provision'
+import { signAccessJwt } from '../lib/jwt'
 import { requireAuth, type AuthVariables } from '../middleware/require-auth'
 
 export const checkout = new Hono<{ Bindings: Env; Variables: AuthVariables }>()
@@ -96,10 +100,19 @@ checkout.post('/start', async (c) => {
     if (note) giftMetadata.giftNote = note
   }
 
+  // A plain purchase returns with the session id so /guide can hand the buyer
+  // straight into the app signed in (the PWA's /claim page + /claim endpoint
+  // below). Stripe substitutes {CHECKOUT_SESSION_ID} only on a completed
+  // checkout. Gifts keep the plain URL: the payer is not the account holder,
+  // so there is nobody on this browser to sign in.
+  const successUrl = isGift
+    ? `${c.env.EDITORIAL_BASE_URL}/guide?guide=gift-success`
+    : `${c.env.EDITORIAL_BASE_URL}/guide?guide=success&session_id={CHECKOUT_SESSION_ID}`
+
   let session
   try {
     session = await createCheckoutSession(c.env, {
-      successUrl: `${c.env.EDITORIAL_BASE_URL}/guide?guide=${isGift ? 'gift-success' : 'success'}`,
+      successUrl,
       cancelUrl: `${c.env.EDITORIAL_BASE_URL}/guide?guide=cancel`,
       metadata: giftMetadata ?? { kind: 'purchase' },
     })
@@ -109,6 +122,107 @@ checkout.post('/start', async (c) => {
   }
 
   return c.json({ url: session.url })
+})
+
+// --- Instant access (August 2026) -------------------------------------------
+// The purchase success redirect lands on /guide with the checkout session id,
+// which forwards to the PWA's /claim page, which POSTs here. Verifying the
+// session against Stripe directly (rather than waiting for our webhook) is
+// what makes access instant: the redirect usually beats the webhook, and the
+// buyer must not meet "no purchase found" seconds after paying. The webhook
+// stays the source of truth for the email, inventory, refunds, and repeat-
+// purchase extensions; provisioning here is race-safe because the record is a
+// pure function of the session (see lib/provision.ts).
+//
+// The session id is the credential: high-entropy, issued by Stripe, and shown
+// only to the browser that completed checkout — the same trust model as the
+// emailed magic-link token that /open already accepts.
+
+// Shape check only (prefix, charset, a KV-safe length cap): Stripe is the
+// authority on whether the id is real, via the retrieve below.
+const SESSION_ID_RE = /^cs_[A-Za-z0-9_]{4,250}$/
+const MAX_CLAIM_ATTEMPTS_PER_HOUR = 20
+
+async function hashClaimIp(ip: string): Promise<string> {
+  const data = new TextEncoder().encode(`claim:${ip}`)
+  const digest = await crypto.subtle.digest('SHA-256', data)
+  return [...new Uint8Array(digest)].map((b) => b.toString(16).padStart(2, '0')).join('')
+}
+
+checkout.post('/claim', async (c) => {
+  const ip = c.req.header('CF-Connecting-IP') ?? 'unknown'
+  const attempts = await recordClaimAttempt(c.env, await hashClaimIp(ip))
+  if (attempts > MAX_CLAIM_ATTEMPTS_PER_HOUR) {
+    return c.json({ error: 'Too many attempts. Try again later.' }, 429)
+  }
+
+  const body = await c.req
+    .json<{ sessionId?: string }>()
+    .catch(() => ({}) as { sessionId?: string })
+  const sessionId = body.sessionId?.trim() ?? ''
+  if (!SESSION_ID_RE.test(sessionId)) {
+    return c.json({ error: 'Invalid checkout session' }, 400)
+  }
+
+  let session
+  try {
+    session = await retrieveCheckoutSession(c.env, sessionId)
+  } catch (err) {
+    console.error('claim: retrieveCheckoutSession failed', err)
+    return c.json({ error: 'Could not verify the purchase. Try again in a minute.' }, 503)
+  }
+
+  // Unknown id and wrong product answer identically: this endpoint must not
+  // be a probe for what else the Stripe account sells.
+  if (!session || session.metadata?.product !== c.env.GUIDE_PRODUCT_TAG) {
+    return c.json({ error: 'Invalid checkout session' }, 404)
+  }
+
+  // Only plain purchases claim. A gift provisions the recipient (who is not
+  // at this browser), and both renewal flows already land their buyer signed
+  // in (the JWT-gated app path, and the /open?token= email path).
+  const kind = session.metadata?.kind
+  if (kind && kind !== 'purchase') {
+    return c.json({ error: 'This purchase delivers access by email' }, 409)
+  }
+
+  if (session.payment_status === 'unpaid') {
+    // Async payment method still settling; the webhook provisions on
+    // async_payment_succeeded and the access email follows.
+    return c.json(
+      { error: 'Payment is still processing. Your access email arrives when it clears.' },
+      409,
+    )
+  }
+  if (session.payment_status !== 'paid' && session.payment_status !== 'no_payment_required') {
+    return c.json({ error: 'Payment has not completed' }, 402)
+  }
+
+  const email =
+    session.customer_details?.email?.trim().toLowerCase() ??
+    session.customer_email?.trim().toLowerCase() ??
+    null
+  if (!email) {
+    console.error('claim: paid session missing email', session.id)
+    return c.json({ error: 'This purchase delivers access by email' }, 409)
+  }
+
+  const nowSeconds = Math.floor(Date.now() / 1000)
+  const existing = await getBuyer(c.env, email)
+  let record
+  if (existing && existing.refundedAt == null && existing.expiresAt > nowSeconds) {
+    // Active buyer (including one this session already provisioned, and a
+    // repeat purchase): sign them in against what stands. Any extension a
+    // repeat purchase earns belongs to the webhook, keyed by event id, so it
+    // is applied exactly once.
+    record = existing
+  } else {
+    record = await buyerRecordForSession(c.env, email, session)
+    await putBuyer(c.env, record)
+  }
+
+  const jwt = await signAccessJwt(email, c.env.MAGIC_LINK_SIGNING_SECRET, record.expiresAt)
+  return c.json({ jwt })
 })
 
 // --- Renewals ---------------------------------------------------------------

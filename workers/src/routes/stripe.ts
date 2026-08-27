@@ -14,9 +14,7 @@ import {
   sendRenewalConfirmation,
 } from '../lib/email'
 import { verifyStripeSignature } from '../lib/stripe'
-import { generateAccessCode, generateAccessToken } from '../lib/tokens'
-
-const EIGHTEEN_MONTHS_SECONDS = 60 * 60 * 24 * 548 // 18 calendar months is ~547.9 days; 30-day months undersold it by a week
+import { buyerRecordForSession, EIGHTEEN_MONTHS_SECONDS } from '../lib/provision'
 
 type CheckoutSessionEvent = {
   id: string
@@ -237,7 +235,14 @@ stripe.post('/webhook', async (c) => {
     existing != null && existing.refundedAt == null && existing.expiresAt > nowSeconds
 
   let record: BuyerRecord
-  if (existing && (kind === 'renewal' || existingActive)) {
+  if (existing && existing.provisionedSessionId === session.id) {
+    // The instant-access claim (/api/checkout/claim) already provisioned this
+    // exact checkout — the success redirect usually beats the webhook.
+    // Extending here would grant the same payment twice, so keep the record
+    // as-is; the access email and the inventory increment below still run,
+    // because only this webhook owns them.
+    record = existing
+  } else if (existing && (kind === 'renewal' || existingActive)) {
     // promoCode also clears: any real payment converts a newsletter-code
     // trial into a paid record, restoring the full renewal-notice ladder.
     const { refundedAt: _cleared, promoCode: _promo, ...kept } = existing
@@ -262,13 +267,7 @@ stripe.post('/webhook', async (c) => {
         email,
       })
     }
-    record = {
-      email,
-      purchasedAt,
-      expiresAt: purchasedAt + EIGHTEEN_MONTHS_SECONDS,
-      accessToken: generateAccessToken(),
-      accessCode: generateAccessCode(),
-    }
+    record = await buyerRecordForSession(c.env, email, session)
   }
 
   await putBuyer(c.env, record)

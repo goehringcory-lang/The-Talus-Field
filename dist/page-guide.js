@@ -22,6 +22,15 @@ function readCheckoutOutcome() {
     return null;
   }
 }
+function readCheckoutSessionId() {
+  try {
+    var params = new URLSearchParams(window.location.search);
+    var value = params.get("session_id");
+    return value && /^cs_[A-Za-z0-9_]{4,250}$/.test(value) ? value : null;
+  } catch (_e) {
+    return null;
+  }
+}
 var GIFT_NOTE_MAX = 280;
 var BUY_STASH_KEY = "tfg.guide.buyLocation";
 function stashBuyLocation(location, gift) {
@@ -74,6 +83,7 @@ function GuideBuyBox() {
   var [soldOut, setSoldOut] = React.useState(null);
   var [error, setError] = React.useState(null);
   var [outcome] = React.useState(readCheckoutOutcome);
+  var [claimSessionId] = React.useState(readCheckoutSessionId);
   React.useEffect(() => {
     if (outcome === "cancel") {
       window.safeStorage.remove(BUY_STASH_KEY);
@@ -88,6 +98,13 @@ function GuideBuyBox() {
       gift: outcome === "gift-success" || !!stash.gift
     });
   }, [outcome]);
+  React.useEffect(() => {
+    if (outcome !== "success" || !claimSessionId) return;
+    var timer = setTimeout(() => {
+      window.location.replace(`${GUIDE_APP_BASE}/claim?session_id=${encodeURIComponent(claimSessionId)}`);
+    }, 1200);
+    return () => clearTimeout(timer);
+  }, [outcome, claimSessionId]);
   var [priceCents, setPriceCents] = React.useState(GUIDE_PRICE_FALLBACK_CENTS);
   var [batch, setBatch] = React.useState(null);
   var [giftMode, setGiftMode] = React.useState(false);
@@ -196,7 +213,23 @@ function GuideBuyBox() {
       lineHeight: 1.5,
       marginBottom: 24
     }
-  }, "Sold in monthly batches. ", batch.left, " of ", batch.cap, batch.month ? ` ${batch.month}` : "", " copies left."), outcome === "success" && React.createElement("p", {
+  }, "Sold in monthly batches. ", batch.left, " of ", batch.cap, batch.month ? ` ${batch.month}` : "", " copies left."), outcome === "success" && claimSessionId && React.createElement("p", {
+    style: {
+      fontFamily: "var(--sans)",
+      fontSize: 14,
+      color: "var(--ink)",
+      lineHeight: 1.55,
+      margin: "0 0 18px",
+      border: "1px solid var(--ink)",
+      padding: "12px 14px",
+      background: "var(--paper)"
+    }
+  }, "Payment received. Opening your Field Guide, already signed in. If nothing happens, ", React.createElement("a", {
+    href: `${GUIDE_APP_BASE}/claim?session_id=${encodeURIComponent(claimSessionId)}`,
+    style: {
+      color: "var(--ink-2)"
+    }
+  }, "open it here →"), " Your access email follows for your other devices."), outcome === "success" && !claimSessionId && React.createElement("p", {
     style: {
       fontFamily: "var(--sans)",
       fontSize: 14,
@@ -314,7 +347,7 @@ function GuideBuyBox() {
       lineHeight: 1.55,
       margin: "0 0 14px"
     }
-  }, "Checkout by Stripe. Your access code arrives by email in about a minute.")), error && React.createElement("p", {
+  }, "Checkout by Stripe. The guide opens signed in the moment payment clears; your access code also arrives by email for your other devices.")), error && React.createElement("p", {
     style: {
       fontFamily: "var(--sans)",
       fontSize: 13,
@@ -990,7 +1023,7 @@ function GuideAfterPurchase({
     className: "guide-after"
   }, React.createElement("ol", {
     className: "guide-steps"
-  }, React.createElement("li", null, React.createElement("strong", null, "Checkout runs through Stripe."), " Card or wallet. This site never sees or stores your card number."), React.createElement("li", null, React.createElement("strong", null, "Within about a minute, an email arrives: \"Your Field Guide is ready.\""), " It carries a sign-in link and a 6-digit code. Both keep working for the full 18 months, so keep the email."), React.createElement("li", null, React.createElement("strong", null, "Open the link, or enter the code, on each device you want signed in."), " Phone at the trailhead, tablet in the car, laptop the night before."), React.createElement("li", null, React.createElement("strong", null, "Add it to your home screen and tap the offline download."), " About 50 MB later the whole guide, map included, lives on the device.")), React.createElement("p", {
+  }, React.createElement("li", null, React.createElement("strong", null, "Checkout runs through Stripe."), " Card or wallet. This site never sees or stores your card number."), React.createElement("li", null, React.createElement("strong", null, "The guide opens on this device, already signed in."), " Payment clears, the app opens, no code to type and no inbox to check."), React.createElement("li", null, React.createElement("strong", null, "An email follows: \"Your Field Guide is ready.\""), " It carries a sign-in link and a 6-digit code for your other devices. Phone at the trailhead, tablet in the car, laptop the night before. Both keep working for the full 18 months, so keep the email."), React.createElement("li", null, React.createElement("strong", null, "Add it to your home screen and tap the offline download."), " About 50 MB later the whole guide, map included, lives on the device.")), React.createElement("p", {
     className: "guide-after__policy"
   }, "If the guide does not work as described, email ", React.createElement("a", {
     href: "mailto:cory@thetalusfieldjournal.com"
@@ -1256,7 +1289,7 @@ function GuidePage({
       lineHeight: 1.55,
       margin: "14px 0 0"
     }
-  }, "Checkout by Stripe. Your access code arrives by email in about a minute. Prefer to look first?", " ", React.createElement("a", {
+  }, "Checkout by Stripe. The guide opens signed in the moment payment clears. Prefer to look first?", " ", React.createElement("a", {
     href: `${GUIDE_APP_BASE}/preview`,
     onClick: () => {
       if (window.track) window.track("guide_sample_click", {

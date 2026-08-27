@@ -69,6 +69,42 @@ export async function createCheckoutSession(
   return (await res.json()) as StripeCheckoutSession
 }
 
+// The subset of a retrieved Checkout Session the claim endpoint reads. Shape
+// mirrors the webhook's CheckoutSessionEvent object on purpose: both must
+// resolve the buyer email and the product tag the same way.
+export type RetrievedCheckoutSession = {
+  id: string
+  payment_status?: string
+  created: number
+  metadata?: Record<string, string> | null
+  customer_email?: string | null
+  customer_details?: { email?: string | null } | null
+}
+
+// Retrieve a Checkout Session by id (secret-key authenticated), for the
+// instant-access claim: the redirect usually beats the webhook, so payment is
+// verified against Stripe directly instead of waiting for the event. Returns
+// null for an id Stripe does not know; throws on any other failure so the
+// caller can answer 503 rather than "invalid session".
+export async function retrieveCheckoutSession(
+  env: Env,
+  sessionId: string,
+): Promise<RetrievedCheckoutSession | null> {
+  if (!env.STRIPE_SECRET_KEY) {
+    throw new Error('STRIPE_SECRET_KEY not configured')
+  }
+  const res = await fetch(
+    `https://api.stripe.com/v1/checkout/sessions/${encodeURIComponent(sessionId)}`,
+    { headers: { Authorization: `Bearer ${env.STRIPE_SECRET_KEY}` } },
+  )
+  if (res.status === 404) return null
+  if (!res.ok) {
+    const detail = await res.text()
+    throw new Error(`Stripe checkout.sessions.retrieve failed (${res.status}): ${detail}`)
+  }
+  return (await res.json()) as RetrievedCheckoutSession
+}
+
 // Verify Stripe webhook signature: HMAC-SHA256 of `${timestamp}.${rawBody}` with the webhook secret.
 // Docs: https://docs.stripe.com/webhooks#verify-manually
 export async function verifyStripeSignature(args: {
