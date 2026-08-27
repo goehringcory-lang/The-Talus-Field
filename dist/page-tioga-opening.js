@@ -1,4 +1,4 @@
-var TIOGA_BULLETIN_URL = "/bulletin.json?v=7";
+var TIOGA_BULLETIN_URL = "/bulletin.json?v=8";
 var OPENING_HISTORY = [{
   year: "2026",
   date: "May 15",

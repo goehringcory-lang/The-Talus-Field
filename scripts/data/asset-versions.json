@@ -6,12 +6,12 @@
       "sha256": "faa06a5ab0e6e7e7"
     },
     "/bulletin.json": {
-      "v": 7,
-      "sha256": "97b6817913e07846"
+      "v": 8,
+      "sha256": "892822233fb71d81"
     },
     "/data.js": {
       "v": 233,
-      "sha256": "47b7954ebd8f78b6"
+      "sha256": "7186a3b98ff4f13d"
     },
     "/dist/app.js": {
       "v": 233,
@@ -78,8 +78,8 @@
       "sha256": "7d3e63ca39cee4ca"
     },
     "/dist/bodies/mist-trail-the-real-guide.js": {
-      "v": 85,
-      "sha256": "2a197fbfa251e13e"
+      "v": 84,
+      "sha256": "385e72faf2f0c333"
     },
     "/dist/bodies/pack-your-car-for-yosemite.js": {
       "v": 82,
@@ -339,7 +339,7 @@
     },
     "/dist/page-home.js": {
       "v": 233,
-      "sha256": "7ffb123720436e2d"
+      "sha256": "26e040738e47d5d7"
     },
     "/dist/page-itineraries.js": {
       "v": 233,
@@ -363,7 +363,7 @@
     },
     "/dist/page-now.js": {
       "v": 233,
-      "sha256": "59e540e7e2e72785"
+      "sha256": "f0ceddb3db80db23"
     },
     "/dist/page-partners.js": {
       "v": 233,
@@ -387,7 +387,7 @@
     },
     "/dist/page-tioga-opening.js": {
       "v": 233,
-      "sha256": "872944f93084c2c0"
+      "sha256": "61ed3ec1b7f41b46"
     },
     "/dist/page-webcams.js": {
       "v": 233,
