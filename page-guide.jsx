@@ -53,6 +53,20 @@ function readCheckoutOutcome() {
   }
 }
 
+// The purchase success URL also carries ?session_id= (Stripe substitutes
+// {CHECKOUT_SESSION_ID} on completion): the PWA's /claim page exchanges it
+// for a signed-in session, so the buyer lands in the app without opening
+// their email. Shape mirrors SESSION_ID_RE in workers/src/routes/checkout.ts.
+function readCheckoutSessionId() {
+  try {
+    const params = new URLSearchParams(window.location.search);
+    const value = params.get("session_id");
+    return value && /^cs_[A-Za-z0-9_]{4,250}$/.test(value) ? value : null;
+  } catch (_e) {
+    return null;
+  }
+}
+
 // Mirrors GIFT_NOTE_MAX in workers/src/routes/checkout.ts.
 const GIFT_NOTE_MAX = 280;
 
@@ -112,6 +126,7 @@ function GuideBuyBox() {
   const [soldOut, setSoldOut] = React.useState(null); // { reopens } or null
   const [error, setError] = React.useState(null);
   const [outcome] = React.useState(readCheckoutOutcome);
+  const [claimSessionId] = React.useState(readCheckoutSessionId);
 
   // Report the completed purchase to GA4 exactly once. The stash is written
   // at buy-click time and removed on read, so a refresh (or a bookmark) of
@@ -132,6 +147,23 @@ function GuideBuyBox() {
       gift: outcome === "gift-success" || !!stash.gift,
     });
   }, [outcome]);
+
+  // Instant access: forward the buyer into the app's /claim page, which signs
+  // them in against the session id, no email required. The success return
+  // lands HERE first (not straight in the app) so the guide_purchase event
+  // above keeps its placement attribution; the pause lets gtag flush and lets
+  // the buyer read "payment received" before the hand-off. Gift success stays
+  // put: the recipient, not the payer, gets access, by email. A refresh
+  // re-runs the redirect and the claim endpoint answers it idempotently.
+  React.useEffect(() => {
+    if (outcome !== "success" || !claimSessionId) return;
+    const timer = setTimeout(() => {
+      window.location.replace(
+        `${GUIDE_APP_BASE}/claim?session_id=${encodeURIComponent(claimSessionId)}`
+      );
+    }, 1200);
+    return () => clearTimeout(timer);
+  }, [outcome, claimSessionId]);
   const [priceCents, setPriceCents] = React.useState(GUIDE_PRICE_FALLBACK_CENTS);
   const [batch, setBatch] = React.useState(null); // { left, cap, month } or null
   const [giftMode, setGiftMode] = React.useState(false);
@@ -219,7 +251,12 @@ function GuideBuyBox() {
         </div>
       )}
 
-      {outcome === "success" && (
+      {outcome === "success" && claimSessionId && (
+        <p style={{ fontFamily: "var(--sans)", fontSize: 14, color: "var(--ink)", lineHeight: 1.55, margin: "0 0 18px", border: "1px solid var(--ink)", padding: "12px 14px", background: "var(--paper)" }}>
+          Payment received. Opening your Field Guide, already signed in. If nothing happens, <a href={`${GUIDE_APP_BASE}/claim?session_id=${encodeURIComponent(claimSessionId)}`} style={{ color: "var(--ink-2)" }}>open it here →</a> Your access email follows for your other devices.
+        </p>
+      )}
+      {outcome === "success" && !claimSessionId && (
         <p style={{ fontFamily: "var(--sans)", fontSize: 14, color: "var(--ink)", lineHeight: 1.55, margin: "0 0 18px", border: "1px solid var(--ink)", padding: "12px 14px", background: "var(--paper)" }}>
           Payment received. Your access code and sign-in link are on their way to your email. Check spam if nothing arrives in a few minutes. Once you have the code, <a href={`${GUIDE_APP_BASE}/login`} style={{ color: "var(--ink-2)" }}>open the app and sign in →</a>
         </p>
@@ -290,7 +327,7 @@ function GuideBuyBox() {
               : `${giftMode ? "Gift the offline guide" : "Get the offline guide"} → ${formatPrice(priceCents)}`}
           </button>
           <p style={{ fontFamily: "var(--sans)", fontSize: 12, color: "var(--ink-3)", lineHeight: 1.55, margin: "0 0 14px" }}>
-            Checkout by Stripe. Your access code arrives by email in about a minute.
+            Checkout by Stripe. The guide opens signed in the moment payment clears; your access code also arrives by email for your other devices.
           </p>
         </React.Fragment>
       )}
@@ -977,7 +1014,8 @@ function GuideTrust() {
 }
 
 // What happens after purchase, as the flow actually runs (Stripe checkout ->
-// Worker webhook -> access email with a reusable magic link + 6-digit code).
+// instant signed-in hand-off to the app via /claim; the access email follows
+// from the webhook as the key to every other device).
 // The refund promise quotes /terms section 1; keep the two in sync.
 function GuideAfterPurchase({ go }) {
   return (
@@ -987,10 +1025,10 @@ function GuideAfterPurchase({ go }) {
           <strong>Checkout runs through Stripe.</strong> Card or wallet. This site never sees or stores your card number.
         </li>
         <li>
-          <strong>Within about a minute, an email arrives: "Your Field Guide is ready."</strong> It carries a sign-in link and a 6-digit code. Both keep working for the full 18 months, so keep the email.
+          <strong>The guide opens on this device, already signed in.</strong> Payment clears, the app opens, no code to type and no inbox to check.
         </li>
         <li>
-          <strong>Open the link, or enter the code, on each device you want signed in.</strong> Phone at the trailhead, tablet in the car, laptop the night before.
+          <strong>An email follows: "Your Field Guide is ready."</strong> It carries a sign-in link and a 6-digit code for your other devices. Phone at the trailhead, tablet in the car, laptop the night before. Both keep working for the full 18 months, so keep the email.
         </li>
         <li>
           <strong>Add it to your home screen and tap the offline download.</strong> About 50 MB later the whole guide, map included, lives on the device.
@@ -1389,7 +1427,7 @@ function GuidePage({ go }) {
               </p>
               <BuyNowButton location="guide_closer" />
               <p style={{ fontFamily: "var(--sans)", fontSize: 12, color: "var(--ink-3)", lineHeight: 1.55, margin: "14px 0 0" }}>
-                Checkout by Stripe. Your access code arrives by email in about a minute. Prefer to look first?{" "}
+                Checkout by Stripe. The guide opens signed in the moment payment clears. Prefer to look first?{" "}
                 <a
                   href={`${GUIDE_APP_BASE}/preview`}
                   onClick={() => {

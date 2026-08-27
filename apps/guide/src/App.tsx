@@ -3,6 +3,7 @@ import { Routes, Route, Navigate, useLocation } from 'react-router-dom'
 import { AuthProvider, RequireAuth } from './auth/AuthGate'
 import { useAuth } from './auth/useAuth'
 import Open from './routes/Open'
+import Claim from './routes/Claim'
 import Login from './routes/Login'
 import Home from './routes/Home'
 import InstallPrompt from './components/InstallPrompt'
@@ -78,6 +79,8 @@ export default function App() {
       >
         <Routes>
           <Route path="/open" element={<Open />} />
+          {/* Instant access straight off the Stripe success redirect. */}
+          <Route path="/claim" element={<Claim />} />
           <Route path="/login" element={<Login />} />
           {/* The free sample: public on purpose. Signed-in buyers are
               redirected into the app by the route itself. */}

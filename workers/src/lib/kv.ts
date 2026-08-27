@@ -13,6 +13,11 @@ export type BuyerRecord = {
   // not get the "ends in two months" notice on day one); the Stripe webhook
   // clears it the moment any real payment extends the record.
   promoCode?: string
+  // The Stripe Checkout session that provisioned this record (set by both the
+  // instant-access claim and the webhook's fresh-provision path). The webhook
+  // reads it to tell "the claim already provisioned this exact checkout"
+  // apart from "an active buyer paid again", which must extend.
+  provisionedSessionId?: string
 }
 
 // One account's synced app state (/api/trip/plan): the trip plan, saved stops,
@@ -69,6 +74,7 @@ const RESEND_ATTEMPTS_IP_KEY = (ip: string) => `resendAttemptsIp:${ip}`
 const DEV_LOGIN_ATTEMPTS_KEY = (username: string) =>
   `devLoginAttempts:${username.toLowerCase()}`
 const CHECKOUT_ATTEMPTS_KEY = (ipHash: string) => `checkoutAttempts:${ipHash}`
+const CLAIM_ATTEMPTS_KEY = (ipHash: string) => `claimAttempts:${ipHash}`
 const PUSH_SUB_KEY = (endpointHash: string) => `push:${endpointHash}`
 const PUSH_PENDING_KEY = (endpointHash: string) => `pushPending:${endpointHash}`
 const PUSH_NOTICE_KEY = (endpointHash: string, stage: string) =>
@@ -204,6 +210,13 @@ export async function clearDevLoginAttempts(env: Env, username: string): Promise
 
 export async function recordCheckoutAttempt(env: Env, ipHash: string): Promise<number> {
   return incrementFixedWindow(env, CHECKOUT_ATTEMPTS_KEY(ipHash))
+}
+
+// Every /api/checkout/claim call is a Stripe API retrieve, so it takes the
+// same hashed-IP window as /start (the endpoint is unauthenticated; the
+// session id itself is the credential being checked).
+export async function recordClaimAttempt(env: Env, ipHash: string): Promise<number> {
+  return incrementFixedWindow(env, CLAIM_ATTEMPTS_KEY(ipHash))
 }
 
 // "Email this trip" sends a real email per call, so the window is tight.

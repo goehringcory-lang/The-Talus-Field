@@ -45,10 +45,23 @@ const ctx = { waitUntil(_p: Promise<unknown>) {}, passThroughOnException() {} } 
 let stripeCreateParams: URLSearchParams | null = null
 let sentEmails: { to: string; text: string; html: string }[] = []
 let resendMode: 'ok' | 'fail' = 'ok'
+// Retrieve responses for /api/checkout/claim's GET, keyed by session id.
+const stripeSessions = new Map<string, Record<string, unknown>>()
 
 const realFetch = globalThis.fetch
 globalThis.fetch = (async (input: RequestInfo | URL, init?: RequestInit) => {
   const url = String(input instanceof Request ? input.url : input)
+  // Order matters: the retrieve URL shares the create URL's prefix.
+  if (url.startsWith('https://api.stripe.com/v1/checkout/sessions/')) {
+    const id = decodeURIComponent(url.slice('https://api.stripe.com/v1/checkout/sessions/'.length))
+    const session = stripeSessions.get(id)
+    if (!session) {
+      return new Response(JSON.stringify({ error: { type: 'invalid_request_error' } }), {
+        status: 404, headers: { 'content-type': 'application/json' },
+      })
+    }
+    return new Response(JSON.stringify(session), { status: 200, headers: { 'content-type': 'application/json' } })
+  }
   if (url.startsWith('https://api.stripe.com/v1/checkout/sessions')) {
     stripeCreateParams = new URLSearchParams(String(init?.body))
     return new Response(JSON.stringify({ id: 'cs_test_123', url: 'https://checkout.stripe.com/c/pay/cs_test_123' }), {
@@ -149,7 +162,8 @@ console.log('\n2. checkout start')
   check('mode=payment', p.get('mode') === 'payment')
   check('amount 399', p.get('line_items[0][price_data][unit_amount]') === '399')
   check('product tag in metadata', p.get('metadata[product]') === 'field_guide_2026')
-  check('success url back to /guide', p.get('success_url') === 'https://thetalusfieldjournal.com/guide?guide=success')
+  check('success url back to /guide with the session id for instant access',
+    p.get('success_url') === 'https://thetalusfieldjournal.com/guide?guide=success&session_id={CHECKOUT_SESSION_ID}')
 }
 
 console.log('\n3. webhook rejects bad/missing signatures')
@@ -706,6 +720,116 @@ console.log('\n21. promo-code redemption (/api/redeem)')
   await buyers.put('buyer:lapsed@example.com', JSON.stringify({ ...lapsedRec, expiresAt: now - 60 }))
   const l2 = await redeemCall('9.9.9.3', { email: 'lapsed@example.com', code: 'TALUS30' })
   check('expired trial re-redeem -> 409 (sentinel)', l2.status === 409, l2)
+}
+
+console.log('\n22. instant-access claim (/api/checkout/claim)')
+{
+  const now = Math.floor(Date.now() / 1000)
+  const claimCall = (ip: string, sessionId: string) =>
+    call('/api/checkout/claim', {
+      method: 'POST',
+      body: JSON.stringify({ sessionId }),
+      headers: { 'cf-connecting-ip': ip },
+    })
+
+  // -- refusals --
+  const malformed = await claimCall('8.8.8.1', 'not-a-session')
+  check('malformed session id -> 400', malformed.status === 400, malformed)
+  const unknown = await claimCall('8.8.8.1', 'cs_test_unknown_999')
+  check('unknown session -> 404', unknown.status === 404, unknown)
+
+  stripeSessions.set('cs_claim_other', {
+    id: 'cs_claim_other', payment_status: 'paid', created: now,
+    metadata: { product: 'print_sale' }, customer_details: { email: 'donor2@example.com' },
+  })
+  const wrongProduct = await claimCall('8.8.8.1', 'cs_claim_other')
+  check('wrong product answers like unknown -> 404 (no product probe)', wrongProduct.status === 404, wrongProduct)
+  check('wrong product not provisioned', (await buyers.get('buyer:donor2@example.com')) === null)
+
+  stripeSessions.set('cs_claim_unpaid', {
+    id: 'cs_claim_unpaid', payment_status: 'unpaid', created: now,
+    metadata: { product: 'field_guide_2026', kind: 'purchase' }, customer_details: { email: 'slowbank@example.com' },
+  })
+  const unpaid = await claimCall('8.8.8.1', 'cs_claim_unpaid')
+  check('async payment still settling -> 409, not provisioned',
+    unpaid.status === 409 && (await buyers.get('buyer:slowbank@example.com')) === null, unpaid)
+
+  stripeSessions.set('cs_claim_gift', {
+    id: 'cs_claim_gift', payment_status: 'paid', created: now,
+    metadata: { product: 'field_guide_2026', kind: 'gift', recipientEmail: 'friend2@example.com' },
+    customer_details: { email: 'payer2@example.com' },
+  })
+  const gift = await claimCall('8.8.8.1', 'cs_claim_gift')
+  check('gift session -> 409, payer gets no access', gift.status === 409 && (await buyers.get('buyer:payer2@example.com')) === null, gift)
+
+  // -- claim beats the webhook: provisions the buyer and signs them in --
+  stripeSessions.set('cs_claim_1', {
+    id: 'cs_claim_1', payment_status: 'paid', created: now,
+    metadata: { product: 'field_guide_2026', kind: 'purchase' }, customer_details: { email: 'Instant@Example.com' },
+  })
+  const emailsBefore = sentEmails.length
+  const r1 = await claimCall('8.8.8.2', 'cs_claim_1')
+  check('claim -> jwt', r1.status === 200 && typeof r1.json.jwt === 'string', r1)
+  const claims = JSON.parse(Buffer.from(String(r1.json.jwt).split('.')[1], 'base64url').toString())
+  const recAfterClaim = JSON.parse((await buyers.get('buyer:instant@example.com'))!)
+  check('jwt sub = buyer email (lowercased), exp = full access window',
+    claims.sub === 'instant@example.com' && claims.exp === recAfterClaim.expiresAt, claims)
+  check('record stamped with the provisioning session', recAfterClaim.provisionedSessionId === 'cs_claim_1', recAfterClaim)
+  check('~548d granted from session creation', recAfterClaim.expiresAt === now + 548 * 86400, recAfterClaim)
+  check('claim sends no email (the webhook owns delivery)', sentEmails.length === emailsBefore)
+  const exchange = await call('/api/auth/exchange', { method: 'POST', body: JSON.stringify({ token: recAfterClaim.accessToken }) })
+  check('derived token works in /exchange like an emailed one', exchange.status === 200 && typeof exchange.json.jwt === 'string', exchange)
+
+  // -- the webhook then lands for the SAME session: no double grant --
+  const evt = {
+    id: 'evt_claimed_purchase', type: 'checkout.session.completed',
+    data: { object: { id: 'cs_claim_1', customer_details: { email: 'Instant@Example.com' }, metadata: { product: 'field_guide_2026', kind: 'purchase' }, created: now } },
+  }
+  const body = JSON.stringify(evt)
+  const wh = await call('/api/stripe/webhook', { method: 'POST', body, headers: { 'stripe-signature': await signWebhook(body, env.STRIPE_WEBHOOK_SECRET as string) } })
+  check('webhook after claim 200', wh.status === 200 && wh.json.received === true, wh)
+  const recAfterWebhook = JSON.parse((await buyers.get('buyer:instant@example.com'))!)
+  check('webhook kept the claimed record (no 36-month double grant)',
+    recAfterWebhook.expiresAt === recAfterClaim.expiresAt &&
+    recAfterWebhook.accessToken === recAfterClaim.accessToken &&
+    recAfterWebhook.accessCode === recAfterClaim.accessCode,
+    { claim: recAfterClaim.expiresAt, webhook: recAfterWebhook.expiresAt })
+  const accessEmail = sentEmails[sentEmails.length - 1]
+  check('webhook still sent the access email, code matches the stored record',
+    sentEmails.length === emailsBefore + 1 && accessEmail.to === 'instant@example.com' &&
+    accessEmail.text.includes(recAfterClaim.accessCode) && accessEmail.text.includes(recAfterClaim.accessToken),
+    accessEmail?.text)
+
+  // -- re-claim (success page refreshed): fresh jwt, record untouched --
+  const r2 = await claimCall('8.8.8.2', 'cs_claim_1')
+  check('re-claim -> jwt against the standing record', r2.status === 200 && typeof r2.json.jwt === 'string', r2)
+  const recAfterReclaim = JSON.parse((await buyers.get('buyer:instant@example.com'))!)
+  check('re-claim rewrites nothing', JSON.stringify(recAfterReclaim) === JSON.stringify(recAfterWebhook))
+
+  // -- webhook-first order (tab closed at checkout, success link opened later) --
+  const evt2 = {
+    id: 'evt_claimed_purchase_2', type: 'checkout.session.completed',
+    data: { object: { id: 'cs_claim_2', customer_details: { email: 'patient@example.com' }, metadata: { product: 'field_guide_2026', kind: 'purchase' }, created: now } },
+  }
+  const body2 = JSON.stringify(evt2)
+  await call('/api/stripe/webhook', { method: 'POST', body: body2, headers: { 'stripe-signature': await signWebhook(body2, env.STRIPE_WEBHOOK_SECRET as string) } })
+  const recFromWebhook = JSON.parse((await buyers.get('buyer:patient@example.com'))!)
+  stripeSessions.set('cs_claim_2', {
+    id: 'cs_claim_2', payment_status: 'paid', created: now,
+    metadata: { product: 'field_guide_2026', kind: 'purchase' }, customer_details: { email: 'patient@example.com' },
+  })
+  const r3 = await claimCall('8.8.8.3', 'cs_claim_2')
+  check('claim after webhook -> jwt, record untouched',
+    r3.status === 200 && typeof r3.json.jwt === 'string' &&
+    JSON.stringify(JSON.parse((await buyers.get('buyer:patient@example.com'))!)) === JSON.stringify(recFromWebhook),
+    r3)
+
+  // -- rate limit (20/hour per hashed IP) --
+  let last: Awaited<ReturnType<typeof call>> | null = null
+  for (let i = 0; i < 21; i++) {
+    last = await claimCall('8.8.8.9', 'cs_claim_1')
+  }
+  check('21st claim from one IP -> 429', last!.status === 429, last)
 }
 
 globalThis.fetch = realFetch
