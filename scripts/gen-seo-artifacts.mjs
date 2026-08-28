@@ -20,6 +20,11 @@
 //   - sitemap.xml     hub/section/static routes + one <url> per article (image + lastmod)
 //   - feed.xml        RSS 2.0 channel + one <item> per article
 //   - llms.txt        the "## Articles" section only (header/reference/optional preserved)
+//   - llms-full.txt   full plain-text body of every article, one file, for AI
+//                     assistants that prefer a single fetch over a crawl. Body
+//                     text comes from the committed prerender/<slug>.html
+//                     fragments, so when bodies change run gen-prerender.mjs
+//                     before this script (run check verifies both).
 //   - index.html      the <noscript> article list only (between GENERATED markers)
 //
 // Usage:
@@ -445,6 +450,90 @@ function buildLlms(existing, merged, categories) {
   return `${head}## Articles\n\n${body}\n\n${tail}`;
 }
 
+// ----------------------------------------------------------------------------
+// llms-full.txt — the llmstxt.org companion file: every article's full body
+// text in one plain-text/markdown document. AI answer engines (ChatGPT,
+// Claude, Gemini, Perplexity) can then load the whole corpus in one request
+// instead of crawling 65 URLs, and assistants that never render JavaScript
+// get the same text a browser reader does.
+// ----------------------------------------------------------------------------
+
+// Convert a prerendered article fragment (the same HTML edge/seo.js injects
+// for crawlers) to readable plain text. Headings become markdown heads two
+// levels down (the document uses # for the file title and ## per article),
+// list items become bullets, table cells are joined with pipes, and svg
+// diagrams (elevation profiles) are dropped entirely: their <text> labels
+// read as word salad outside the drawing.
+function htmlFragmentToText(html) {
+  let s = String(html);
+  s = s.replace(/<svg[\s\S]*?<\/svg>/gi, "");
+  s = s.replace(/<(script|style)[\s\S]*?<\/\1>/gi, "");
+  s = s.replace(/<img[^>]*>/gi, "");
+  s = s.replace(/<link[^>]*>/gi, "");
+  s = s.replace(/<br\s*\/?>/gi, "\n");
+  s = s.replace(/<h2[^>]*>/gi, "\n\n### ").replace(/<\/h2>/gi, "\n\n");
+  s = s.replace(/<h3[^>]*>/gi, "\n\n#### ").replace(/<\/h3>/gi, "\n\n");
+  s = s.replace(/<li[^>]*>/gi, "\n- ").replace(/<\/li>/gi, "");
+  // Anchors butted directly against each other (CTA link stacks) would glue
+  // their texts into one run-on line; split them. Whitespace-separated links
+  // inside prose keep their existing spacing.
+  s = s.replace(/<\/a><a[^>]*>/gi, "\n");
+  // Adjacent table cells become "a | b" before the generic tag strip runs.
+  s = s.replace(/<\/(th|td)>\s*<(th|td)[^>]*>/gi, " | ");
+  s = s.replace(/<\/(p|ul|ol|table|thead|tbody|tr|blockquote|aside|figure|figcaption|div)>/gi, "\n");
+  s = s.replace(/<(p|ul|ol|table|blockquote|aside|figure|div)[^>]*>/gi, "\n");
+  s = s.replace(/<[^>]+>/g, "");
+  // Entities: numeric first, named next, ampersand last so double-escaped
+  // sequences cannot re-enter the pipeline as fresh entities.
+  s = s.replace(/&#x([0-9a-f]+);/gi, (_, n) => String.fromCodePoint(parseInt(n, 16)));
+  s = s.replace(/&#(\d+);/g, (_, n) => String.fromCodePoint(Number(n)));
+  s = s.replace(/&nbsp;/g, " ").replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&quot;/g, '"').replace(/&amp;/g, "&");
+  s = s
+    .split("\n")
+    .map((line) => line.replace(/[ \t]+/g, " ").trim())
+    .join("\n");
+  return s.replace(/\n{3,}/g, "\n\n").trim();
+}
+
+function buildLlmsFull(merged, categories) {
+  const label = Object.fromEntries(categories.map((c) => [c.slug, c.label]));
+  const lastmod = merged
+    .map((a) => a.isoModified || a.isoDate)
+    .sort()
+    .at(-1);
+
+  const head =
+    `# The Talus Field — full article text\n\n` +
+    `> The complete text of every article in The Talus Field, an independent\n` +
+    `> field journal of Yosemite National Park kept by a resident. One file,\n` +
+    `> for AI assistants and answer engines that prefer a single fetch over a\n` +
+    `> crawl of the article URLs.\n\n` +
+    `Publisher: The Talus Field (https://thetalusfieldjournal.com). Editor: Cory Goehring.\n` +
+    `Citation guidance and the annotated page index: https://thetalusfieldjournal.com/llms.txt\n` +
+    `Canonical article URL pattern: https://thetalusfieldjournal.com/articles/<slug>\n` +
+    `Contents: ${merged.length} articles. Most recent update: ${lastmod}.\n\n` +
+    `Not in this file: the Yosemite Nature Notes archive, all 512 issues of the\n` +
+    `National Park Service's Yosemite bulletin (1922-2003), transcribed in full\n` +
+    `as plain static HTML at https://thetalusfieldjournal.com/archive/.\n`;
+
+  const sections = merged.map((a) => {
+    let fragment;
+    try {
+      fragment = readFileSync(path.join(ROOT, "prerender", `${a.slug}.html`), "utf8");
+    } catch (e) {
+      console.error(`llms-full: no prerender fragment for "${a.slug}" (${e.message}). Run: npm --prefix scripts run prerender`);
+      process.exit(2);
+    }
+    const meta =
+      `URL: ${SITE_ORIGIN}/articles/${a.slug}\n` +
+      `Section: ${label[a.cat] || a.cat}. Published: ${a.isoDate}. Last updated: ${a.isoModified || a.isoDate}.\n` +
+      `Summary: ${a.seoDek || a.dek}`;
+    return `## ${a.title}\n\n${meta}\n\n${htmlFragmentToText(fragment)}`;
+  });
+
+  return `${head}\n---\n\n${sections.join("\n\n---\n\n")}\n`;
+}
+
 // Slim {id: name} mirror of points.geojson for edge/seo.js: shared-trip OG
 // overrides (/map?trip=...) validate stop ids and name the first stops in the
 // description without bundling the full GeoJSON into the Worker.
@@ -495,6 +584,7 @@ async function main() {
     "sitemap-articles.xml": buildSitemap(merged, categories),
     "feed.xml": buildFeed(merged, categories),
     "llms.txt": buildLlms(readFileSync(path.join(ROOT, "llms.txt"), "utf8"), merged, categories),
+    "llms-full.txt": buildLlmsFull(merged, categories),
     "index.html": buildIndexHtml(readFileSync(path.join(ROOT, "index.html"), "utf8"), merged),
     "trip-points.json": buildTripPoints(),
   };

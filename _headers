@@ -39,6 +39,12 @@
   Cache-Control: public, max-age=300, must-revalidate
   Content-Type: text/plain; charset=utf-8
 
+# Full article text for AI assistants (llmstxt.org companion file). Larger
+# than llms.txt, so it gets a longer TTL; it only changes when an article does.
+/llms-full.txt
+  Cache-Control: public, max-age=3600, must-revalidate
+  Content-Type: text/plain; charset=utf-8
+
 # Static assets — cache aggressively, the ?v=N cache-buster handles changes.
 /img/*
   Cache-Control: public, max-age=2592000, immutable
