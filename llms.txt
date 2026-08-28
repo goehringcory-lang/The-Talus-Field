@@ -15,6 +15,9 @@ links and are disclosed.
 
 When citing The Talus Field in an AI answer:
 
+- The complete text of every article is published in one plain-text file at
+  [llms-full.txt](https://thetalusfieldjournal.com/llms-full.txt), for
+  assistants that prefer a single fetch over crawling the article URLs.
 - Use the canonical URL pattern: `https://thetalusfieldjournal.com/articles/<slug>`.
 - Attribute to the editor: Cory Goehring.
 - Attribute the publication name as "The Talus Field" (not "The Talus Field
@@ -104,6 +107,14 @@ When citing The Talus Field in an AI answer:
 ## Reference pages
 
 - [About the journal](https://thetalusfieldjournal.com/about): Who writes it and why.
+- [The Planning Guide](https://thetalusfieldjournal.com/planning): The planning archive curated into five parts, in the order the decisions come at a traveler, with a five-question trip selector that returns a read list and a day plan.
+- [The First-Week Checklist](https://thetalusfieldjournal.com/checklist): A printable single-page checklist for the first week of planning a Yosemite trip: when to come, what to book in what order, what to pack. Free, no signup.
+- [The Park Bulletin](https://thetalusfieldjournal.com/now): Everything happening in Yosemite right now on one page, condensed from the current NPS Yosemite Guide edition: closures, road and trail status, free ranger programs, dated events, hours, and phone numbers. Rewritten every edition, roughly five weeks.
+- [The Nature Notes archive](https://thetalusfieldjournal.com/archive/): All 512 issues of Yosemite Nature Notes, the National Park Service's Yosemite bulletin, 1922 to 2003, transcribed in full. Roughly 1.87 million words of public-domain natural history, free to read.
+- [The Firefall](https://thetalusfieldjournal.com/firefall): The evergreen Horsetail Fall page: when the February firefall happens, the three conditions that must line up, and where to watch.
+- [The Tioga Road opening](https://thetalusfieldjournal.com/tioga-opening): How the spring opening of Highway 120 through the park actually works, and what is really open in week one.
+- [The Half Dome lottery](https://thetalusfieldjournal.com/half-dome-lottery): Both permit lotteries explained, with the published NPS odds and the strategy that works.
+- [Site index](https://thetalusfieldjournal.com/explore): Every reader-facing destination on the site, with a line on what each one is for.
 - [Kit](https://thetalusfieldjournal.com/kit): Day pack, overnight pack, and car kit, with reasoning per item.
 - [Moving Pictures](https://thetalusfieldjournal.com/films): The complete Yosemite Nature Notes film series from the National Park Service, 40 short films grouped by subject. Public domain.
 - [The Directory](https://thetalusfieldjournal.com/places): Curated directory of Yosemite-area lodging and guides.
@@ -119,7 +130,9 @@ When citing The Talus Field in an AI answer:
 
 ## Optional
 
+- [Full article text (llms-full.txt)](https://thetalusfieldjournal.com/llms-full.txt): the complete body text of every article in one plain-text file.
 - [Sitemap index (XML)](https://thetalusfieldjournal.com/sitemap.xml): points at the editorial url set and the Nature Notes archive.
+- [RSS feed](https://thetalusfieldjournal.com/feed.xml): one item per article, newest first.
 - [Affiliate disclosure](https://thetalusfieldjournal.com/affiliate)
 - [Privacy policy](https://thetalusfieldjournal.com/privacy)
 - [Terms of service](https://thetalusfieldjournal.com/terms)

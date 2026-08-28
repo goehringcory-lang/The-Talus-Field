@@ -1,6 +1,11 @@
 # The Talus Field — robots.txt
 # Permissions for traditional search engines and AI assistant crawlers.
-# Sitemap and AI content map:
+#
+# AI content maps (llmstxt.org convention):
+#   https://thetalusfieldjournal.com/llms.txt       — annotated index of every page
+#   https://thetalusfieldjournal.com/llms-full.txt  — full text of every article, one file
+#
+# Sitemap:
 
 # /sitemap.xml is a sitemap INDEX. It points at the editorial url set
 # (sitemap-articles.xml) and at the Yosemite Nature Notes archive, which is
@@ -123,6 +128,21 @@ Disallow: /api/
 Disallow: /open
 Disallow: /login
 
+# Anthropic: on-demand fetch when a Claude user asks about a URL.
+User-agent: Claude-User
+Allow: /
+Disallow: /api/
+Disallow: /open
+Disallow: /login
+
+# Anthropic: search index that powers Claude's web search results.
+User-agent: Claude-SearchBot
+Allow: /
+Disallow: /api/
+Disallow: /open
+Disallow: /login
+
+# Anthropic: legacy token, kept for older fetchers that still send it.
 User-agent: Claude-Web
 Allow: /
 Disallow: /api/
@@ -144,6 +164,13 @@ Disallow: /api/
 Disallow: /open
 Disallow: /login
 
+# Google: Vertex AI site-search / grounding fetcher.
+User-agent: Google-CloudVertexBot
+Allow: /
+Disallow: /api/
+Disallow: /open
+Disallow: /login
+
 # Apple Intelligence training/answer signal.
 User-agent: Applebot-Extended
 Allow: /
@@ -159,6 +186,20 @@ Disallow: /open
 Disallow: /login
 
 User-agent: Perplexity-User
+Allow: /
+Disallow: /api/
+Disallow: /open
+Disallow: /login
+
+# DuckDuckGo: AI answers (DuckAssist).
+User-agent: DuckAssistBot
+Allow: /
+Disallow: /api/
+Disallow: /open
+Disallow: /login
+
+# Amazon: powers Alexa and Rufus answers.
+User-agent: Amazonbot
 Allow: /
 Disallow: /api/
 Disallow: /open
