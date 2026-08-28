@@ -48,7 +48,13 @@ updates that new information forces on existing articles.
    Anything already briefed or already turned into an article is dead on
    arrival this cycle unless it has materially changed since.
 4. Note the window: everything since the previous brief's date (or 7 days on
-   a first run or after a gap).
+   a first run or after a gap). **A window under 2 days** (a scheduled run
+   landing right after a manual one) makes quiet the expected result: run
+   **one** consolidated scout covering all six beats in a single sweep
+   instead of the full fan-out, tell it the window length, and say in the
+   completion summary that the window was short. The 2026-08-28 cycle spent
+   six scouts on a one-day window to learn six times that nothing had
+   happened overnight.
 
 ## Phase 1 — Sensing (fan-out, cheap models)
 
@@ -60,15 +66,33 @@ finds nothing new in the window says "nothing new" and stops. A scout whose
 sources will not load says which ones failed. Scouts never launch their own
 subagents and never exceed ~10 fetches.
 
+Each scout's prompt carries two things beyond its beat: the **window dates**
+(so it can judge "new"), and the **dedupe context for its beat** — the prior
+brief's options and watch items that touch its sources, plus anything the
+site already carries on them (e.g. the bulletin's current road and transit
+lines for the transport scout). A scout that doesn't know AutoCamp's promo
+was already briefed will dutifully report it again.
+
+**Known egress-blocked domains (verified two consecutive cycles, Aug 2026):**
+`nps.gov`, `www.travelyosemite.com`, `yosemite.org`, `yosemite.com`,
+`yosemitethisyear.com`, `old.reddit.com`, `sierranewsonline.com`,
+`yosemiteclimbing.org`, and the local papers' sites. Tell scouts to work
+these beats **search-first** (WebSearch queries like `site:nps.gov/yose` or
+the topic in plain words) and to spend at most one fetch re-verifying a
+listed domain — if one loads, say so in the digest and strike it from this
+list next edit. Burning the fetch budget walking down a list of known-dead
+doors was half of what the Aug 28 scouts did.
+
 The beat list is the source registry; edit it here when the owner adds or
 drops a source.
 
 1. **NPS Yosemite** — news releases
    (`nps.gov/yose/learn/news/newsreleases.htm`), current conditions,
    reservation/permit policy changes, planning-page changes.
-2. **Yosemite Hospitality** — `travel.yosemite.com`: lodging offers, dining,
-   events and seasonal programming (Bracebridge, Vintners'/Chefs' Holidays),
-   anything new on packages or tours.
+2. **Yosemite Hospitality** — `www.travelyosemite.com` (the bare
+   `travel.yosemite.com` does not resolve; don't waste a fetch on it):
+   lodging offers, dining, events and seasonal programming (Bracebridge,
+   Vintners'/Chefs' Holidays), anything new on packages or tours.
 3. **Independent lodges** — Tenaya Lodge, AutoCamp Yosemite, Evergreen Lodge,
    Rush Creek Lodge, Firefall Ranch, Under Canvas Yosemite: packages, promos,
    openings/renovations, and group, retreat, or conference offerings.
@@ -163,4 +187,6 @@ something `intel-execute` (or the owner) can actually do.
   full markdown in the completion summary and say it needs manual posting.
   Degraded finish, not a failure.
 - **A beat's sources unreachable through the proxy** → note it in the brief's
-  summary line; never pad with invented items.
+  summary line; never pad with invented items. A domain blocked two cycles
+  running belongs on the known-blocked list in Phase 1 (that edit is the
+  executor's or the owner's to make, not this read-only cycle's).
