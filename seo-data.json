@@ -1608,12 +1608,14 @@
     ]
   },
   "where-to-eat-yosemite": {
-    "wordCount": 2198,
+    "wordCount": 3401,
     "keywords": [
       "where to eat Yosemite",
       "Yosemite restaurants",
       "restaurants near Yosemite",
       "places to eat in Yosemite Valley",
+      "Base Camp Eatery Yosemite",
+      "Mariposa restaurants",
       "Yosemite West restaurants",
       "food in Yosemite",
       "Yosemite dining"
@@ -1621,11 +1623,11 @@
     "faq": [
       {
         "q": "Is there food in Yosemite National Park?",
-        "a": "Yes, but almost all of it is in Yosemite Valley: a pizza deck, a delicatessen, a taqueria, the Mountain Room at the Lodge, and the Ahwahnee Dining Room. Outside the Valley the park thins out fast. Wawona has a hotel dining room and a store, Tuolumne Meadows has a seasonal store and grill, Crane Flat and El Portal have small markets, and Yosemite West has nothing at all."
+        "a": "Yes, but almost all of it is in Yosemite Valley, which has eleven counters, decks and dining rooms clustered in Yosemite Village, at Yosemite Valley Lodge, and around Half Dome Village. Outside the Valley the park thins out fast. Wawona has a general store, Tuolumne Meadows has a seasonal store and grill plus the dining tent at Tuolumne Meadows Lodge, Crane Flat and El Portal have small markets, and Yosemite West has nothing at all."
       },
       {
         "q": "Where is the best place to eat in Yosemite Valley?",
-        "a": "The Half Dome Village Pizza Deck. The Half Dome pie, eaten on the deck under the Glacier Point Apron, is the one in-park meal worth going out of your way for. Degnan's Kitchen is the best option for a lunch under twenty dollars, the Mountain Room at the Lodge is the sit-down dinner with a view of Yosemite Falls, and the Ahwahnee Dining Room is the special-occasion meal."
+        "a": "The Half Dome Village Pizza Deck. The Half Dome pie, eaten on the deck under the Glacier Point Apron, is the one in-park meal worth going out of your way for. Base Camp Eatery at Yosemite Valley Lodge is the food court most visitors actually eat in and often the last kitchen taking orders at night, Degnan's Kitchen is the best lunch under twenty dollars, the Mountain Room is the sit-down dinner with a view of Yosemite Falls, and the Ahwahnee Dining Room is the special-occasion meal."
       },
       {
         "q": "Are there restaurants in Yosemite West?",
@@ -1637,11 +1639,23 @@
       },
       {
         "q": "Is there food at Tuolumne Meadows?",
-        "a": "A seasonal store and grill, and that is the entire food supply along the thirty-nine miles of Tioga Road. It opens with the summer and closes in September, weeks before the road itself closes for winter: in the 2026 season it closed on September 20. There is no gas at Tuolumne either. Treat the high country as a cooler day."
+        "a": "A seasonal store and grill and the dining tent at Tuolumne Meadows Lodge, which serves breakfast and a fixed dinner with reservations. That is the entire food supply along the thirty-nine miles of Tioga Road. All of it opens with the summer and closes in September, weeks before the road itself closes for winter: in the 2026 season it closed on September 20. There is no gas at Tuolumne either."
       },
       {
         "q": "Where should I eat in Mariposa near Yosemite?",
-        "a": "1850 Restaurant and Brewing Co. for a sit-down dinner, Smokin Oak BBQ for brisket at lunch, and Tacos Sonora, a taco truck on Coakley Circle, for fast and cheap. 1850 and Smokin Oak are both closed Monday and Tuesday."
+        "a": "1850 Restaurant and Brewing Co. for a sit-down dinner, Smokin Oak BBQ for brisket at lunch, and Tacos Sonora, a taco truck on Coakley Circle, for fast and cheap. 1850 and Smokin Oak are both closed Monday and Tuesday. Beyond those three, the August 2026 Mariposa eating-out list counts thirty-one places in town, among them Happy Burger, Charles Street, Miners Roadhouse 140, the Little Shop of Ramen, Sticks Coffee House and the Pioneer Market Deli."
+      },
+      {
+        "q": "Where can I eat near the Mariposa Grove and Wawona?",
+        "a": "The Wawona General Store covers groceries and sandwiches, and the Wawona Hotel dining room has kept an intermittent schedule in recent seasons, so do not build an evening around it without checking. Two miles south of the gate in Fish Camp, Embers at Tenaya Lodge is the nearest real restaurant to the Mariposa Grove, with Jackalopes bar in the same building for walk-ins, plus the Pine Tree Market and the Fish Camp General Store. Past that it is another fifteen minutes to Oakhurst."
+      },
+      {
+        "q": "What is Base Camp Eatery at Yosemite Valley Lodge?",
+        "a": "A food court: order at touchscreen kiosks, collect at a counter, sit at a long communal table. Grill, pizza, a hot line and breakfast from early. It is the busiest room in the park and the one most visitors actually eat in. The value is throughput and hours rather than cooking, and the useful fact is that it is often the last Valley kitchen still taking orders in the evening."
+      },
+      {
+        "q": "Are there food trucks near Yosemite?",
+        "a": "Ten work Mariposa County as of August 2026: All About the Wurst, Birrieria El Campeon, Dixon's Fixin's, Fishworks, L & J Mexican Food, the Lemon Drop Trailer, Mariposa Sips & Sweets, Sal's Taco Truck, the Tacos Sonora truck and Yosemite Pizza. Only Tacos Sonora has a fixed address. For the rest, check the county fairgrounds, the Saturday farmers market and the brewery patios."
       },
       {
         "q": "Where should I eat in Oakhurst near Yosemite?",

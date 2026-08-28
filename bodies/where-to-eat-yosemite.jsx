@@ -10,13 +10,13 @@ window.ARTICLE_BODIES["where-to-eat-yosemite"] = function WhereToEatYosemiteBody
       </p>
 
       <p>
-        I live in El Portal. I eat in these places. The recommendations are not affiliate links and they are not sponsored. If a restaurant is not on this list, it does not mean it is bad; it means I have nothing useful to say about it. Chains exist. Chipotle exists in Oakhurst. If you need a Chipotle, you will find one. That is not what this list is for.
+        I live in El Portal. I eat in these places. The recommendations are not affiliate links and they are not sponsored. If a restaurant is not recommended here, it does not mean it is bad; it means I have nothing useful to say about it. Chains exist. Chipotle exists in Oakhurst. If you need a Chipotle, you will find one. That is not what the recommendations are for. Separately, further down, there is a complete roster of what exists in the Mariposa area, which is a different thing and worth having.
       </p>
 
       <h2>Is there food in Yosemite National Park?</h2>
 
       <p>
-        Yes, but almost all of it is in one square mile. <strong>Yosemite Valley</strong> has the park's only real concentration of restaurants: a pizza deck, a delicatessen, a taqueria, a sit-down dining room at the Lodge, and the formal dining room at The Ahwahnee. Outside the Valley the park thins out fast. <strong>Wawona</strong> has a hotel dining room and a general store. <strong>Tuolumne Meadows</strong>, up on Tioga Road, has a seasonal store and grill that close in September. <strong>Crane Flat</strong> and <strong>El Portal</strong> have small markets. <strong>Yosemite West</strong>, despite the name and the vacation rentals, has no restaurant, no store, and no gas.
+        Yes, but almost all of it is in one square mile. <strong>Yosemite Valley</strong> has the park's only real concentration of food service: eleven counters, decks and dining rooms clustered in Yosemite Village, at Yosemite Valley Lodge, and around Half Dome Village. Outside the Valley the park thins out fast. <strong>Wawona</strong> has a general store. <strong>Tuolumne Meadows</strong>, up on Tioga Road, has a seasonal store and grill and the dining tent at Tuolumne Meadows Lodge, all of which close in September. <strong>Crane Flat</strong> and <strong>El Portal</strong> have small markets. <strong>Yosemite West</strong>, despite the name and the vacation rentals, has no restaurant, no store, and no gas.
       </p>
 
       <p>
@@ -30,11 +30,15 @@ window.ARTICLE_BODIES["where-to-eat-yosemite"] = function WhereToEatYosemiteBody
       </p>
 
       <p>
-        <strong>Degnan's Kitchen, Yosemite Village.</strong> The only place inside the park to get a halfway decent lunch for under twenty dollars. Order a sandwich at the counter, take it outside, eat it on a bench. The bread is real, the meat is fine, the line moves. If you forgot to pack a cooler, <a href="/map?stop=degnans-deli">Degnan's</a> is the fallback that does not feel like a fallback. A coffee and a breakfast sandwich there at 7 a.m. is also one of the better moves in the Valley if you slept inside the park.
+        <strong>Base Camp Eatery, Yosemite Valley Lodge.</strong> The busiest room in the park and the one most visitors actually eat in, which is why leaving it off a list is a disservice even when nobody drives to it. It is a food court: order at touchscreen kiosks, collect at a counter, sit at a long communal table. Grill, pizza, a hot line, breakfast from early. The value in it is throughput and hours, not cooking. At 7 a.m. on a July morning it is the fastest hot breakfast on the Valley floor, and at 8 p.m. it is often the last kitchen still taking orders. Plan meals around that second fact more than the first.
       </p>
 
       <p>
-        <strong>Meadow Grill Taqueria, Half Dome Village.</strong> Counter-service tacos and burritos beside the pizza deck, outdoor seating, and the shortest path from a trailhead to a hot meal on the Valley floor. Seasonal, and the first Valley kitchen to close when the summer ends.
+        <strong>Degnan's Kitchen, Yosemite Village.</strong> The only place inside the park to get a halfway decent lunch for under twenty dollars. Order a sandwich at the counter, take it outside, eat it on a bench. The bread is real, the meat is fine, the line moves. If you forgot to pack a cooler, <a href="/map?stop=degnans-deli">Degnan's</a> is the fallback that does not feel like a fallback. A coffee and a breakfast sandwich there at 7 a.m. is also one of the better moves in the Valley if you slept inside the park. Upstairs in the same building, <strong>the Loft at Degnan's</strong> is a seasonal sit-down room with a bar, a wood-fired oven and an actual roof, and it is the answer to the question people ask on the third rainy afternoon: where can we sit indoors, inside the park, that is not a hotel dining room.
+      </p>
+
+      <p>
+        <strong>The Half Dome Village cluster.</strong> Four separate operations share one compound and get treated as one place, which is why visitors think Curry Village has a pizza deck and nothing else. <strong>Meadow Grill Taqueria</strong>, at the Village Store, is counter-service tacos and burritos beside the deck, outdoor seating, and the shortest path from a trailhead to a hot meal on the Valley floor. <strong>Coffee Corner</strong> opens early and is the reason you do not have to drive to Yosemite Village for a coffee before a Mist Trail start. <strong>Bar 1899</strong> is the small indoor bar. <strong>Seven Tents Pavilion</strong> is the big buffet hall, mostly serving the tent-cabin guests. All four are seasonal to some degree, and the taqueria is usually the first Valley kitchen to close when the summer ends.
       </p>
 
       <p>
@@ -45,16 +49,24 @@ window.ARTICLE_BODIES["where-to-eat-yosemite"] = function WhereToEatYosemiteBody
         <strong>The Ahwahnee Dining Room.</strong> The special-occasion meal that does not require driving to Oakhurst. As of April 2026 the Ahwahnee moved to prix fixe only, five courses at $95 a person or seven at $125, dinner service, reservations required. This is not a spontaneous stop. If the night calls for it, book ahead. The room itself, thirty-four-foot ceilings and granite piers, is most of what you are paying for, and it is worth it once.
       </p>
 
-      <h2>Wawona and the south end of the park</h2>
+      <p>
+        There is also a <strong>Starbucks</strong> in Yosemite Village, attached to the Village Store, which arrived in 2018 and generated more correspondence than any other food decision the park has made. It is a Starbucks. It has the shortest line in the Valley when the Degnan's counter is twenty deep, and that is the entire case for it.
+      </p>
+
+      <h2>Wawona, Fish Camp and the south end of the park</h2>
 
       <p>
-        The Wawona Hotel dining room is the sit-down option at the south end, an hour from the Valley and twenty minutes from the Mariposa Grove. The <strong>Wawona Store</strong> covers the rest: groceries, sandwiches, the sort of resupply that turns a day trip into a picnic. If you are basing at the south end and want anything more than that, you are driving to Oakhurst or Fish Camp.
+        The south end is thin and getting thinner. The <strong>Wawona General Store</strong> is the reliable one: groceries, sandwiches, the sort of resupply that turns a day trip into a picnic, twenty minutes from the Mariposa Grove. The Wawona Hotel dining room has kept an intermittent schedule in recent seasons, so do not build an evening around it without checking that week.
+      </p>
+
+      <p>
+        Two miles south of the gate, <strong>Fish Camp</strong> covers what Wawona does not, and it is closer than most people staying at the south end realise. <strong>Embers</strong> at Tenaya Lodge is the sit-down dinner, the nearest real restaurant to the Mariposa Grove, and <strong>Jackalopes</strong>, the bar in the same building, takes the walk-ins when Embers is booked. The <strong>Pine Tree Market</strong> and the <strong>Fish Camp General Store</strong> handle groceries and a sandwich. Past that you are driving to Oakhurst, another fifteen minutes down Highway 41.
       </p>
 
       <h2>Tuolumne Meadows and the high country</h2>
 
       <p>
-        This is the section that strands people. Tuolumne Meadows has a seasonal store and grill, and that is the entire food supply along thirty-nine miles of Tioga Road. It opens with the summer and <strong>closes in September</strong>, in the 2026 season on September 20, several weeks before the road itself closes for the winter. There is no gas at Tuolumne either: <a href="/articles/tuolumne-meadows-in-a-day">the Tuolumne day</a> covers that trap in full.
+        This is the section that strands people. Tuolumne Meadows has a seasonal store and grill and the dining tent at <strong>Tuolumne Meadows Lodge</strong>, a canvas room serving breakfast and a fixed dinner with reservations, and that is the entire food supply along thirty-nine miles of Tioga Road. All of it opens with the summer and <strong>closes in September</strong>, in the 2026 season on September 20, several weeks before the road itself closes for the winter. There is no gas at Tuolumne either: <a href="/articles/tuolumne-meadows-in-a-day">the Tuolumne day</a> covers that trap in full.
       </p>
 
       <p>
@@ -70,7 +82,7 @@ window.ARTICLE_BODIES["where-to-eat-yosemite"] = function WhereToEatYosemiteBody
       <h2>Restaurants near Yosemite: the gateway towns</h2>
 
       <p>
-        <strong>Mariposa</strong> is the western gateway with the most restaurants, the most parking, and a downtown you would walk after dinner.
+        <strong>Mariposa</strong> is the western gateway with the most restaurants, the most parking, and a downtown you would walk after dinner. Three of them are worth planning around.
       </p>
 
       <p>
@@ -83,6 +95,10 @@ window.ARTICLE_BODIES["where-to-eat-yosemite"] = function WhereToEatYosemiteBody
 
       <p>
         <strong>Tacos Sonora, Mariposa.</strong> A taco truck permanently parked at 5034 Coakley Circle. Fast, cheap, and exactly what it should be. Two carne asada tacos and a horchata, no frills, no table to sit at. The post-hike, pre-drive, no-decisions-required option. Open weekdays until 7 p.m., Saturday until 4 p.m., closed Sunday.
+      </p>
+
+      <p>
+        <strong>El Portal</strong> is the last stop on Highway 140 before the Arch Rock entrance, and it has more than its size suggests: the <strong>Cedar House Restaurant</strong> and the <strong>Canyon Bar</strong> at the Yosemite View Lodge, the <strong>River Restaurant</strong> at the Cedar Lodge, and <strong>Parkside Pizza</strong>. None of them is a reason to drive out of the park, which is the only reason none is on the list above, but all four are open to the public and not just to lodge guests, and on a night when the Valley kitchens have shut they are twenty-five minutes closer than Mariposa. The market here is the one I shop at and the last fuel and groceries before the gate.
       </p>
 
       <p>
@@ -102,7 +118,49 @@ window.ARTICLE_BODIES["where-to-eat-yosemite"] = function WhereToEatYosemiteBody
       </p>
 
       <p>
-        <strong>El Portal, Groveland and Fish Camp</strong> each have a market and a couple of places that work when you are already there. El Portal has the market I shop at, which is the resupply stop on Highway 140 and the last one before the Arch Rock entrance. None of the three is a reason to drive somewhere, which is the only reason they are not on the list above. Where to base yourself is a bigger question than where to eat, and <a href="/articles/yosemite-gateway-towns-compared">the gateway towns comparison</a> answers it properly.
+        <strong>Groveland</strong>, on Highway 120, has a historic main street with the Iron Door Saloon on it and enough places to eat for a two-night stay. It is off the Mariposa roster below because it is in Tuolumne County, not because there is nothing there. Where to base yourself is a bigger question than where to eat, and <a href="/articles/yosemite-gateway-towns-compared">the gateway towns comparison</a> answers it properly.
+      </p>
+
+      <h2>Everything that exists, by area</h2>
+
+      <p>
+        The recommendations above are opinions. This is not. The roster below is the August 2026 revision of the Mariposa eating-out list, a single sheet kept current locally and handed out at visitor desks and lodge counters. It records what exists and roughly where, nothing more: no hours, no prices, no judgment, and inclusion is not a recommendation from anybody, including me. It is useful for the thing a review list cannot do, which is tell you that a town of four hundred people has a cafe in it at all. Names are as the sheet prints them where a business's own styling is unclear.
+      </p>
+
+      <p>
+        One caveat before the list. It covers Mariposa County plus Fish Camp, which is why Oakhurst, Bass Lake, Groveland and Lee Vining are absent: those are Madera, Tuolumne and Mono counties. And it lists a few places that are not aimed at visitors, the Senior Center being the obvious one. Read it as a census, not a menu.
+      </p>
+
+      <p>
+        <strong>Mariposa.</strong> 1850, Alley, California Commissary, Castillo's, Charles Street, Cinnamon Roll Bakery, Don Rubens Mexican, Falaf-a-lot at Grove House, Fredrick's of Savourys, Gold Cup Creamery, Grove House, Happy Burger, Hideout, High Country Cafe, Jantz Bakery, Little Shop of Ramen, Local Grape, Miners Roadhouse 140, Nayos Mexican Food, Pizza Factory, Pony Expresso, the Senior Center, Smokin' Oak BBQ, Starbucks, Sticks Coffee House, Subway and Twisted Cedar, plus four that are mainly takeout: the Pioneer Market Deli, Short Stop Sandwich, the Stage Stop Deli and Take and Bake.
+      </p>
+
+      <p>
+        <strong>Highway 140, between Merced and the park.</strong> Catheys Valley has the Chevron and that is the whole list, which is worth knowing at 10 p.m. Midpines has the June Bug Cafe at the Yosemite Bug, the one stop on that stretch people drive to on purpose. Up Triangle Road in Bootjack: the Bootjack Market, Sierra Cider and Steve's Sportsman's Cafe.
+      </p>
+
+      <p>
+        <strong>Highway 132, the Coulterville route.</strong> Coulterville and Greeley Hill carry the Copperpot Cafe, the Coulter Cafe, the Main Street Deli, and Cerritos Goods for takeout. This is the road people take toward the Big Oak Flat entrance from the north, and four places across two villages is the entire supply on it.
+      </p>
+
+      <p>
+        <strong>El Portal.</strong> Canyon Bar, the Cedar House Restaurant, the River Restaurant and Parkside Pizza.
+      </p>
+
+      <p>
+        <strong>Yosemite Valley.</strong> Seven Tents Pavilion, Bar 1899, Coffee Corner, the pizza counter and the Taqueria at Meadow Grill, all at Half Dome Village; Degnan's Kitchen, the Loft at Degnan's and Starbucks in Yosemite Village; Base Camp Eatery and the Mountain Room at Yosemite Valley Lodge; and the Ahwahnee. Eleven, which is more than the Valley feels like it has when you are standing in a line at one of them.
+      </p>
+
+      <p>
+        <strong>Tuolumne Meadows and the south.</strong> Tuolumne Lodge on Tioga Road. Wawona General Store at the south end, and over the Madera County line in Fish Camp, Embers and Jackalopes at Tenaya Lodge, the Pine Tree Market and the Fish Camp General Store.
+      </p>
+
+      <p>
+        <strong>Trucks and pop-ups.</strong> Ten of them work the county, and they are the part of the food scene no visitor finds by searching: All About the Wurst, Birrieria El Campeon, Dixon's Fixin's, Fishworks, L &amp; J Mexican Food, the Lemon Drop Trailer, Mariposa Sips &amp; Sweets, Sal's Taco Truck, the Tacos Sonora truck and Yosemite Pizza. Trucks move, so a name is all this can give you. Check the county fairgrounds, the Saturday farmers market and the brewery patios, in that order.
+      </p>
+
+      <p>
+        The same sheet carries a catering column, fifteen operators working the county, which is the answer nobody has when a group trip turns into a dinner for twenty or a small wedding turns real. If that is the trip you are planning, <a href="/articles/where-to-propose-in-yosemite">the proposal guide</a> covers the venue half of the problem.
       </p>
 
       <h2>The short version, by area</h2>
@@ -120,15 +178,21 @@ window.ARTICLE_BODIES["where-to-eat-yosemite"] = function WhereToEatYosemiteBody
         </thead>
         <tbody>
           <tr><td>Half Dome Village Pizza Deck</td><td>Yosemite Valley</td><td>Lunch, dinner</td><td>$$</td><td>Most of the year</td><td>No</td></tr>
+          <tr><td>Base Camp Eatery</td><td>Yosemite Valley</td><td>All three</td><td>$$</td><td>Year-round</td><td>No</td></tr>
           <tr><td>Degnan's Kitchen</td><td>Yosemite Valley</td><td>Breakfast, lunch</td><td>$</td><td>Year-round</td><td>No</td></tr>
+          <tr><td>The Loft at Degnan's</td><td>Yosemite Valley</td><td>Lunch, dinner</td><td>$$</td><td>Seasonal</td><td>No</td></tr>
           <tr><td>Meadow Grill Taqueria</td><td>Yosemite Valley</td><td>Lunch, dinner</td><td>$</td><td>Summer</td><td>No</td></tr>
           <tr><td>The Mountain Room</td><td>Yosemite Valley</td><td>Dinner</td><td>$$$</td><td>Most of the year</td><td>Advised</td></tr>
           <tr><td>The Ahwahnee Dining Room</td><td>Yosemite Valley</td><td>Dinner, prix fixe</td><td>$$$$</td><td>Year-round</td><td>Required</td></tr>
-          <tr><td>Wawona Hotel dining room</td><td>Wawona</td><td>Dinner</td><td>$$$</td><td>Seasonal</td><td>Advised</td></tr>
+          <tr><td>Wawona General Store</td><td>Wawona</td><td>Groceries, sandwiches</td><td>$</td><td>Year-round</td><td>No</td></tr>
+          <tr><td>Embers at Tenaya Lodge</td><td>Fish Camp</td><td>Dinner</td><td>$$$</td><td>Year-round</td><td>Advised</td></tr>
           <tr><td>Tuolumne store and grill</td><td>Tioga Road</td><td>Counter</td><td>$</td><td>Summer, closes September</td><td>No</td></tr>
+          <tr><td>Tuolumne Meadows Lodge</td><td>Tioga Road</td><td>Breakfast, dinner</td><td>$$</td><td>Summer, closes September</td><td>Required for dinner</td></tr>
           <tr><td>1850 Restaurant &amp; Brewing</td><td>Mariposa</td><td>Dinner</td><td>$$</td><td>Year-round, closed Mon–Tue</td><td>No</td></tr>
           <tr><td>Smokin Oak BBQ</td><td>Mariposa</td><td>Lunch, dinner</td><td>$$</td><td>Year-round, closed Mon–Tue</td><td>No</td></tr>
           <tr><td>Tacos Sonora</td><td>Mariposa</td><td>Lunch</td><td>$</td><td>Year-round, closed Sun</td><td>No</td></tr>
+          <tr><td>Cedar House Restaurant</td><td>El Portal</td><td>Dinner</td><td>$$</td><td>Year-round</td><td>No</td></tr>
+          <tr><td>June Bug Cafe</td><td>Midpines</td><td>Breakfast, dinner</td><td>$$</td><td>Year-round</td><td>No</td></tr>
           <tr><td>South Gate Brewing Co.</td><td>Oakhurst</td><td>Dinner</td><td>$$</td><td>Year-round, closed Tue</td><td>No</td></tr>
           <tr><td>The Elderberry House</td><td>Oakhurst</td><td>Dinner, prix fixe</td><td>$$$$</td><td>Year-round</td><td>Required</td></tr>
           <tr><td>Latte Da Cafe</td><td>Lee Vining</td><td>Breakfast, coffee</td><td>$</td><td>Seasonal</td><td>No</td></tr>
@@ -152,11 +216,11 @@ window.ARTICLE_BODIES["where-to-eat-yosemite"] = function WhereToEatYosemiteBody
       <h2>What closes, and when</h2>
 
       <p>
-        This is the part almost no other list covers, and it is the part that ruins evenings. The park's food service contracts and shuts down through September, weeks before the roads do. In the 2026 season the Tuolumne store and grill closed on September 20 and Jennie's Ice Cream in Wawona on September 6. Valley service holds up longest and thins out anyway: fewer counters, shorter hours, and the seasonal outdoor kitchens shutting first.
+        This is the part almost no other list covers, and it is the part that ruins evenings. The park's food service contracts and shuts down through September, weeks before the roads do. In the 2026 season the Tuolumne store and grill closed on September 20 and Jennie's Ice Cream in Wawona on September 6. Valley service holds up longest and thins out anyway: the taqueria and the Loft go first, then the deck, then the hours shorten on everything left.
       </p>
 
       <p>
-        In winter the Valley keeps a genuine core open, Degnan's and the hotel dining rooms among them, but the high country has nothing at all, and Tioga Road is closed regardless. If you are visiting between October and May, check what is actually open before you plan a meal around it. <a href="/articles/yosemite-in-winter">The winter guide</a> has the rest of that picture.
+        In winter the Valley keeps a genuine core open, Degnan's, Base Camp and the hotel dining rooms among them, but the high country has nothing at all, and Tioga Road is closed regardless. If you are visiting between October and May, check what is actually open before you plan a meal around it. <a href="/articles/yosemite-in-winter">The winter guide</a> has the rest of that picture.
       </p>
 
       <h2>The takeaway</h2>
