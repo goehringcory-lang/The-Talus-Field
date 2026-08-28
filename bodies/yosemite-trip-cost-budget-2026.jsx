@@ -72,7 +72,7 @@ window.ARTICLE_BODIES["yosemite-trip-cost-budget-2026"] = function YosemiteTripC
       </p>
 
       <p>
-        <strong>Casual dining in the park:</strong> A deli sandwich and a drink at Degnan's or the Valley Lodge cafeteria runs $18–$25 per person. Pizza from the Pizza Deck at Half Dome Village is $27–$35 for a pie (medium to large). A decent sit-down dinner at the Mountain Room at Yosemite Valley Lodge is $35–$55 per person.
+        <strong>Casual dining in the park:</strong> A deli sandwich and a drink at Degnan's, or a hot plate at Base Camp Eatery in the Valley Lodge, runs $18–$25 per person. Pizza from the Pizza Deck at Half Dome Village is $27–$35 for a pie (medium to large). A decent sit-down dinner at the Mountain Room at Yosemite Valley Lodge is $35–$55 per person.
       </p>
 
       <p>

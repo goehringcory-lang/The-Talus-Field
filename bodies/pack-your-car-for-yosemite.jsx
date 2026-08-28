@@ -20,7 +20,7 @@ window.ARTICLE_BODIES["pack-your-car-for-yosemite"] = function PackYourCarForYos
       </p>
 
       <p>
-        Yosemite is not a place where you can easily grab food. The Valley has the Village Store, a few lodge restaurants, and a pizza deck. That's it. Prices are national-park high, selection is limited, and in peak season the lines are long. Tuolumne has a small grill and a tiny store. Glacier Point has nothing. Wawona has a small store. Once you leave the Valley floor, your options narrow fast and don't come back.
+        Yosemite is not a place where you can easily grab food. The Valley has the Village Store, a food court and a dining room at the Lodge, a deli in Yosemite Village, and a pizza deck and a taqueria at Half Dome Village. That's it. Prices are national-park high, selection is limited, and in peak season the lines are long. Tuolumne has a small grill and a tiny store. Glacier Point has nothing. Wawona has a small store. Once you leave the Valley floor, your options narrow fast and don't come back.
       </p>
 
       <p>
