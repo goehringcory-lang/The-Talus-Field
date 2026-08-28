@@ -323,12 +323,26 @@ main:focus { outline: none; }
    components.jsx), never the thing that opens a panel. */
 .nav__group { position: relative; display: flex; align-items: center; }
 .nav__group-trigger { position: relative; display: inline-flex; align-items: center; gap: 5px; }
+/* The caret is a real <button> (a disclosure toggle for keyboard and screen
+   readers — Enter/Space collapses or reopens the panel without navigating,
+   which the trigger link cannot do since Enter on it navigates), so it needs
+   the button chrome reset. It sits beside the trigger link, not inside it. */
 .nav__caret {
   font-size: 8px;
   line-height: 1;
   color: var(--ink-3, var(--ink-2));
   transform: translateY(-1px);
   transition: transform 0.15s;
+  background: none;
+  border: 0;
+  /* Padding gives the button its 24px-plus hit area (WCAG 2.5.8); the
+     negative margins hand back the same space so the glyph sits where the
+     old caret span did and the masthead row does not grow. Hit rects count
+     padding but not margins, so the target stays full size. */
+  padding: 10px 11px;
+  margin: -10px -9px -10px -6px;
+  cursor: pointer;
+  font-family: inherit;
 }
 .nav__group:hover .nav__caret,
 .nav__group:focus-within .nav__caret,
@@ -1070,7 +1084,11 @@ main:focus { outline: none; }
   line-height: 1.6;
   max-width: 760px;
 }
-.site-footer__disclosure a { color: var(--ink-2); text-decoration: underline; }
+/* Doubled class so this outranks the `.site-footer a { text-decoration: none }`
+   reset below (same 0-1-1 specificity, later in the file, so it was winning and
+   the underline never applied — the link was distinguishable from its sentence
+   only by a 1.6:1 color shift, a WCAG 1.4.1 failure). */
+.site-footer__disclosure.site-footer__disclosure a { color: var(--ink-2); text-decoration: underline; }
 
 /* ===== Sticky Field Guide promo bar (article pages) ===== */
 .guide-bar {
@@ -1260,7 +1278,17 @@ main:focus { outline: none; }
   flex-wrap: wrap;
   gap: 12px;
 }
-.site-footer__legal a { color: var(--ink-3); margin-right: 16px; }
+/* inline-block + padding lift the hit area to ~30px tall: at 12px type these
+   were 12px-tall touch targets with as little as 4px of clear space between
+   neighbors on phones, under the 24px WCAG 2.5.8 minimum. Visual size is
+   unchanged; the padding participates in the line box, so wrapped rows space
+   out instead of overlapping hit areas. */
+.site-footer__legal a {
+  color: var(--ink-3);
+  margin-right: 16px;
+  display: inline-block;
+  padding: 8px 0;
+}
 
 /* ===== Buttons ===== */
 .btn {
@@ -5559,9 +5587,13 @@ main:focus { outline: none; }
   opacity: 0.8;
   margin-top: 2px;
 }
+/* An h3 since the accessibility pass (heading navigation has to reach the
+   offer); weight and line-height pin the div-era look against the h3 base. */
 .lodging-cta__head {
   font-family: var(--sans);
   font-size: 12px;
+  font-weight: 400;
+  line-height: 1.55;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--moss);

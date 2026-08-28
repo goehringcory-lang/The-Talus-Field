@@ -1,7 +1,9 @@
 # Homepage Accessibility Audit — The Talus Field
 
-An AI-run accessibility audit of `/` (the homepage), August 28, 2026. Findings only; no
-fixes are applied by this audit. Each finding names the file and line to change.
+An AI-run accessibility audit of `/` (the homepage), August 28, 2026. Each finding
+names the file and line changed. **All seven findings were fixed the same day** (see
+"The fix pass" at the bottom for what shipped and the clean re-test); the finding
+write-ups below are kept as the record of what was wrong and why.
 
 ## Method
 
@@ -33,15 +35,15 @@ reader from using the page.
 Four things are worth fixing (two of them one-line CSS), and three more are worth a
 decision. In severity order:
 
-| # | Finding | WCAG | Severity |
-|---|---|---|---|
-| 1 | Footer disclosure link is indistinguishable from its sentence | 1.4.1 (A) | Serious |
-| 2 | Footer legal links fail the 24px touch-target minimum on phones | 2.5.8 (2.2 AA) | Serious |
-| 3 | Pre-boot shell has no `main` landmark and a dangling skip-link target | 1.3.1, 2.4.1 | Moderate |
-| 4 | Brand mark alt duplicates the adjacent brand text | best practice | Minor |
-| 5 | Mega dropdown costs up to 14 tab stops per group; trigger semantics are unusual | 2.1.1 advisory | Moderate (usability) |
-| 6 | Unlabeled `aside` nested inside the labeled rail `aside` | 1.3.1 advisory | Minor |
-| 7 | Two of the three rail offers have no real heading | 1.3.1 advisory | Minor |
+| # | Finding | WCAG | Severity | Status |
+|---|---|---|---|---|
+| 1 | Footer disclosure link is indistinguishable from its sentence | 1.4.1 (A) | Serious | Fixed |
+| 2 | Footer legal links fail the 24px touch-target minimum on phones | 2.5.8 (2.2 AA) | Serious | Fixed |
+| 3 | Pre-boot shell has no `main` landmark and a dangling skip-link target | 1.3.1, 2.4.1 | Moderate | Fixed |
+| 4 | Brand mark alt duplicates the adjacent brand text | best practice | Minor | Fixed |
+| 5 | Mega dropdown costs up to 14 tab stops per group; trigger semantics are unusual | 2.1.1 advisory | Moderate (usability) | Fixed |
+| 6 | Unlabeled `aside` nested inside the labeled rail `aside` | 1.3.1 advisory | Minor | Fixed |
+| 7 | Two of the three rail offers have no real heading | 1.3.1 advisory | Minor | Fixed |
 
 ---
 
@@ -192,12 +194,51 @@ and `llms.txt` states citation and attribution rules for answer engines directly
 The one structural gap a markup-only parser does see is finding 3 (no `main` landmark
 in the shell), which the same fix covers.
 
-## Re-test
+## The fix pass (August 28, 2026)
 
-Re-run after fixes: serve the root (`python3 -m http.server 8765`), load `/` in
-headless Chromium at 1280px and 390px, inject axe-core 4.x, run with tags `wcag2a`,
-`wcag2aa`, `wcag21aa`, `wcag22aa`, `best-practice`, and repeat once with
-`/dist/app.js` blocked for the shell state. Expected end state: zero violations in all
-three states except the two advisory notes (5, and 6/7 if declined). Findings 1, 3,
-and 4 touch generated or CSS-versioned files, so the usual discipline applies: shared
-`?v=` bump, `run home-shell`, `run assets:stamp`, `run check`.
+What shipped, per finding:
+
+1. `styles.css`: the disclosure rule is now `.site-footer__disclosure.site-footer__disclosure a`
+   (doubled class), so it outranks the later `.site-footer a { text-decoration: none }`
+   reset that had been killing the underline. The link is underlined again.
+2. `styles.css`: `.site-footer__legal a` gained `display: inline-block; padding: 8px 0`,
+   lifting each legal link's hit area to ~30px tall with the visual size unchanged;
+   the padding participates in the line box, so wrapped rows space apart too.
+3. `scripts/gen-home-shell.mjs`: the shell's hero now renders inside
+   `<main id="main" tabindex="-1"><div class="page">`, mirroring what app.jsx renders,
+   so the skip link has a target and the page has a `main` landmark from the first
+   byte. A `MUST_CONTAIN` assertion pins it. The duplicate id lasts only the swap
+   frame, since React replaces `#root`'s children and app.jsx removes any leftover
+   `#home-shell`.
+4. `components.jsx`: the brand mark is `alt=""`; the link's visible text already
+   names the site.
+5. `components.jsx` + `styles.css`: the caret is now a real `<button>` disclosure
+   toggle sitting beside the trigger link, carrying `aria-expanded` and an
+   `aria-label` ("Plan a Trip menu"). Enter/Space collapses and reopens the panel
+   without navigating (collapse goes through the same dismiss path as taking a link,
+   so it holds against `:hover`/`:focus-within`); the trigger link is now purely a
+   navigation. The button's hit area is 26×28px via padding, with negative margins
+   handing the space back so the glyph and the masthead row are pixel-unchanged.
+   Hover, focus-open, Escape, and the close-delay behavior all verified intact.
+6. `components.jsx` (+ the hand-mirrored stub in `scripts/gen-prerender.mjs`):
+   `LodgingCta`'s `aside` carries `aria-label="Lodging availability"`.
+7. `page-home.jsx` + `components.jsx` + prerender stub: the Field Guide unit's title
+   and `LodgingCta`'s head are real `h3`s, restyled to the pixel (`.lodging-cta__head`
+   pins `font-weight`/`line-height` against the h3 base). Heading nav now reaches all
+   three rail offers.
+
+Regenerated: `dist/` (compile), the home shell, the prerender fragments; shared `?v=`
+bumped 234 → 237 (the freshness guard correctly refused restamps under an unchanged
+number twice during iteration); `assets:stamp` and the full `npm --prefix scripts run
+check` pass.
+
+**Re-test result:** same harness as the audit (axe-core 4.x, three states, tags
+`wcag2a/wcag2aa/wcag21a/wcag21aa/wcag22aa/best-practice`): **zero violations in all
+three states** — booted desktop, booted mobile, pre-boot shell. The only remaining
+"incomplete" is the known paper-grain gradient defeating axe's background detection,
+resolved by the hand math above. Functional checks: the caret button toggles
+(collapse, then re-expand, `aria-expanded` tracking both), the collapsed panel's
+links leave the tab order so the next Tab reaches the next nav group, the shell now
+reports landmarks `header / nav "Main" / nav "Quick navigation" / main`, and the
+desktop heading outline is h1 → h2 ×2 → h3 ×3 (all three rail offers) → h4 ×3.
+Masthead, footer, and rail verified pixel-equivalent by screenshot.

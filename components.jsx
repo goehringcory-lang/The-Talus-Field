@@ -598,7 +598,10 @@ function Header({ current, go }) {
           {/* Own ?v= counter, like points.geojson: /img/* is served immutable
               for 30 days (_headers), so a repeat visitor would keep the old
               mark for a month without one. Bump when the mark is replaced. */}
-          <img className="brand__mark" src="/img/talus-field-mark.png?v=2" alt="The Talus Field" loading="eager" />
+          {/* alt="": the link's visible .brand text already names the site, so
+              alt text here would announce "The Talus Field" twice on the first
+              link of every page. */}
+          <img className="brand__mark" src="/img/talus-field-mark.png?v=2" alt="" loading="eager" />
           <span className="brand-block__text">
             <span className="brand">The Talus Field</span>
             <span className="brand__sub">A field journal of Yosemite</span>
@@ -633,12 +636,27 @@ function Header({ current, go }) {
                 <a
                   href={window.routeToPath ? window.routeToPath(g.route) : `/${g.route}`}
                   className={["nav__link", "nav__group-trigger", isGroupActive(g) && "is-active"].filter(Boolean).join(" ")}
-                  aria-expanded={openGroup === g.key}
                   onClick={(e) => { e.preventDefault(); dismissGroup(g.key, e); go(g.route); }}
                 >
                   {g.label}
-                  <span className="nav__caret" aria-hidden="true">▾</span>
                 </a>
+                {/* The caret is a real disclosure button, not decoration inside
+                    the link: Enter on the link navigates, so the link cannot
+                    also be the thing that expands and collapses the panel.
+                    aria-expanded lives here. Collapsing goes through the same
+                    dismissGroup path as taking a link, so the panel stays down
+                    against :hover/:focus-within until the pointer or focus
+                    leaves the group and comes back. */}
+                <button
+                  type="button"
+                  className="nav__caret"
+                  aria-expanded={openGroup === g.key}
+                  aria-label={`${g.label} menu`}
+                  onClick={(e) => {
+                    if (openGroup === g.key) dismissGroup(g.key, e);
+                    else holdGroup(g.key);
+                  }}
+                >▾</button>
                 {/* Opened by CSS (:hover / :focus-within), so hover and
                     keyboard tabbing both work with no state to desync; the
                     is-open class above only holds it open a beat longer. */}
@@ -1250,7 +1268,10 @@ function AvailabilityLink({ destination, children, list, slug, name, className, 
 // markup change here must be hand-mirrored in scripts/gen-prerender.mjs.
 function LodgingCta({ destination, heading, note, list, slug, cta, stayLink, image, caption, credit }) {
   return (
-    <aside className="lodging-cta">
+    // aria-label: this aside also mounts inside the homepage rail's labeled
+    // aside, and an unnamed complementary landmark inside a named one reads
+    // as noise in a screen reader's landmark list.
+    <aside className="lodging-cta" aria-label="Lodging availability">
       {image && (
         <figure className="lodging-cta__figure">
           <ResponsiveImage image={image} alt={caption || ""} sizes={SIZES_CARD} className="lodging-cta__img" />
@@ -1262,7 +1283,8 @@ function LodgingCta({ destination, heading, note, list, slug, cta, stayLink, ima
           )}
         </figure>
       )}
-      <div className="lodging-cta__head">{heading || "Check what is actually available"}</div>
+      {/* h3, not a div: heading navigation has to reach the offer. */}
+      <h3 className="lodging-cta__head">{heading || "Check what is actually available"}</h3>
       {note && <p className="lodging-cta__note">{note}</p>}
       <p className="lodging-cta__actions">
         <AvailabilityLink

@@ -378,7 +378,9 @@ function HomeRail({ go }) {
         }}
       >
         <span className="rail-guide__eyebrow">The Field Guide · Offline app</span>
-        <span className="rail-guide__title">The park, in your pocket.</span>
+        {/* h3, matching the newsletter unit below: a screen reader skimming by
+            headings has to find all three rail offers, not one of three. */}
+        <h3 className="rail-guide__title">The park, in your pocket.</h3>
         <p className="rail-guide__body">
           57 hikes with parking and timing notes, offline maps, and the local tactics for every major region. Works with no signal, which is most of the park. One purchase, eighteen months of access.
         </p>
