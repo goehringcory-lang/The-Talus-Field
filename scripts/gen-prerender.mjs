@@ -132,7 +132,7 @@ function LodgingCta(props) {
     kids.push(React.createElement("figure", { key: "f", className: "lodging-cta__figure" }, figKids));
   }
   kids.push(
-    React.createElement("div", { key: "h", className: "lodging-cta__head" },
+    React.createElement("h3", { key: "h", className: "lodging-cta__head" },
       props.heading || "Check what is actually available")
   );
   if (props.note) {
@@ -159,7 +159,7 @@ function LodgingCta(props) {
       "Availability links are affiliate links. The recommendations do not change for them. ",
       React.createElement("a", { href: "/affiliate" }, "Disclosure."))
   );
-  return React.createElement("aside", { className: "lodging-cta" }, kids);
+  return React.createElement("aside", { className: "lodging-cta", "aria-label": "Lodging availability" }, kids);
 }
 
 // Bodies with inline affiliate links call window.buildPatagoniaAffiliateLink /

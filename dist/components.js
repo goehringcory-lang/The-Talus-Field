@@ -631,7 +631,7 @@ function Header({
   }, React.createElement("img", {
     className: "brand__mark",
     src: "/img/talus-field-mark.png?v=2",
-    alt: "The Talus Field",
+    alt: "",
     loading: "eager"
   }), React.createElement("span", {
     className: "brand-block__text"
@@ -661,16 +661,20 @@ function Header({
       }, React.createElement("a", {
         href: window.routeToPath ? window.routeToPath(g.route) : `/${g.route}`,
         className: ["nav__link", "nav__group-trigger", isGroupActive(g) && "is-active"].filter(Boolean).join(" "),
-        "aria-expanded": openGroup === g.key,
         onClick: e => {
           e.preventDefault();
           dismissGroup(g.key, e);
           go(g.route);
         }
-      }, g.label, React.createElement("span", {
+      }, g.label), React.createElement("button", {
+        type: "button",
         className: "nav__caret",
-        "aria-hidden": "true"
-      }, "▾")), React.createElement("div", {
+        "aria-expanded": openGroup === g.key,
+        "aria-label": `${g.label} menu`,
+        onClick: e => {
+          if (openGroup === g.key) dismissGroup(g.key, e);else holdGroup(g.key);
+        }
+      }, "▾"), React.createElement("div", {
         className: "nav__dropdown nav__dropdown--mega"
       }, React.createElement("div", {
         className: "nav__dropdown-inner"
@@ -1549,38 +1553,40 @@ function LodgingCta({
   caption,
   credit
 }) {
-  return React.createElement("aside", {
-    className: "lodging-cta"
-  }, image && React.createElement("figure", {
-    className: "lodging-cta__figure"
-  }, React.createElement(ResponsiveImage, {
-    image: image,
-    alt: caption || "",
-    sizes: SIZES_CARD,
-    className: "lodging-cta__img"
-  }), caption && React.createElement("figcaption", {
-    className: "lodging-cta__caption"
-  }, caption, credit && React.createElement("span", {
-    className: "lodging-cta__credit"
-  }, credit))), React.createElement("div", {
-    className: "lodging-cta__head"
-  }, heading || "Check what is actually available"), note && React.createElement("p", {
-    className: "lodging-cta__note"
-  }, note), React.createElement("p", {
-    className: "lodging-cta__actions"
-  }, React.createElement(AvailabilityLink, {
-    destination: destination,
-    list: list,
-    slug: slug,
-    className: "lodging-cta__link"
-  }, cta || `Search ${destination} lodging →`), stayLink !== false && React.createElement("a", {
-    className: "lodging-cta__secondary",
-    href: "/stay"
-  }, "Where to stay: every option compared")), React.createElement("p", {
-    className: "lodging-cta__disclosure"
-  }, "Availability links are affiliate links. The recommendations do not change for them. ", React.createElement("a", {
-    href: "/affiliate"
-  }, "Disclosure.")));
+  return (React.createElement("aside", {
+      className: "lodging-cta",
+      "aria-label": "Lodging availability"
+    }, image && React.createElement("figure", {
+      className: "lodging-cta__figure"
+    }, React.createElement(ResponsiveImage, {
+      image: image,
+      alt: caption || "",
+      sizes: SIZES_CARD,
+      className: "lodging-cta__img"
+    }), caption && React.createElement("figcaption", {
+      className: "lodging-cta__caption"
+    }, caption, credit && React.createElement("span", {
+      className: "lodging-cta__credit"
+    }, credit))), React.createElement("h3", {
+      className: "lodging-cta__head"
+    }, heading || "Check what is actually available"), note && React.createElement("p", {
+      className: "lodging-cta__note"
+    }, note), React.createElement("p", {
+      className: "lodging-cta__actions"
+    }, React.createElement(AvailabilityLink, {
+      destination: destination,
+      list: list,
+      slug: slug,
+      className: "lodging-cta__link"
+    }, cta || `Search ${destination} lodging →`), stayLink !== false && React.createElement("a", {
+      className: "lodging-cta__secondary",
+      href: "/stay"
+    }, "Where to stay: every option compared")), React.createElement("p", {
+      className: "lodging-cta__disclosure"
+    }, "Availability links are affiliate links. The recommendations do not change for them. ", React.createElement("a", {
+      href: "/affiliate"
+    }, "Disclosure.")))
+  );
 }
 function ExpediaBanner({
   list,

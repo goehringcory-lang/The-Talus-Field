@@ -263,7 +263,7 @@ function HomeRail({
     }
   }, React.createElement("span", {
     className: "rail-guide__eyebrow"
-  }, "The Field Guide · Offline app"), React.createElement("span", {
+  }, "The Field Guide · Offline app"), React.createElement("h3", {
     className: "rail-guide__title"
   }, "The park, in your pocket."), React.createElement("p", {
     className: "rail-guide__body"

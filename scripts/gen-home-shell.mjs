@@ -237,12 +237,28 @@ for (const name of ["Header", "HomeHero"]) {
 const noop = () => {};
 let rendered;
 try {
+  // The hero is wrapped in <main id="main" tabindex="-1"><div class="page">,
+  // mirroring the structure app.jsx renders around HomePage. Two reasons: the
+  // Header's skip link targets #main, which otherwise does not exist until
+  // React mounts (a dangling skip link and a landmark-free page for the whole
+  // pre-boot window the shell exists to serve), and landmark parity keeps the
+  // shell markup-identical to the first React commit. The duplicate id lasts
+  // only the swap frame: createRoot().render() replaces #root's children and
+  // app.jsx removes any leftover #home-shell.
   rendered = renderToStaticMarkup(
     React.createElement(
       "div",
       { id: "home-shell" },
       React.createElement(sandbox.window.Header, { current: "home", go: noop }),
-      React.createElement(sandbox.window.HomeHero, { go: noop })
+      React.createElement(
+        "main",
+        { id: "main", tabIndex: -1 },
+        React.createElement(
+          "div",
+          { className: "page" },
+          React.createElement(sandbox.window.HomeHero, { go: noop })
+        )
+      )
     )
   );
 } catch (e) {
@@ -293,6 +309,7 @@ const MUST_CONTAIN = [
   ['class="home-edition"', "the edition rule"],
   ['class="masthead"', "the masthead"],
   ['class="bottomnav"', "the mobile bottom nav"],
+  ['<main id="main" tabindex="-1">', "the main landmark (the skip link's pre-boot target)"],
 ];
 for (const [needle, what] of MUST_CONTAIN) {
   if (!rendered.includes(needle)) {
