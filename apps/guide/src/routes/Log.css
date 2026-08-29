@@ -1,0 +1,105 @@
+/* /log: the field log. Screen first, then a print sheet worth keeping;
+   the app chrome is already stripped from print globally (tokens.css). */
+
+.log-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin: 14px 0 0;
+}
+
+.log-empty p {
+  margin: 0;
+  font-size: 0.95rem;
+  color: var(--ink-2);
+}
+
+.log-group {
+  margin: 0 0 18px;
+}
+
+.log-group__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--s3);
+}
+
+.log-group__title {
+  font-family: var(--display);
+  font-size: 17px;
+}
+
+.log-group__count {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--ink-3);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.log-group .link-list {
+  margin-top: 10px;
+}
+
+.log-species {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 0.35rem 1rem;
+}
+
+.log-species__latin {
+  font-style: italic;
+  color: var(--ink-3);
+  font-size: 0.85em;
+}
+
+.log-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.35rem;
+  font-size: 0.95rem;
+}
+
+.log-note {
+  margin: 0 0 14px;
+  padding: 0 0 12px;
+  border-bottom: 1px solid var(--rule-soft);
+}
+
+.log-note:last-child {
+  border-bottom: none;
+}
+
+.log-note__title {
+  font-family: var(--display);
+  font-size: 17px;
+}
+
+/* Notes were typed into a textarea; keep the buyer's own line breaks. */
+.log-note__body {
+  margin: 0.3rem 0 0;
+  font-size: 0.95rem;
+  color: var(--ink-2);
+  white-space: pre-wrap;
+}
+
+@media print {
+  .no-print {
+    display: none;
+  }
+  .log-section {
+    break-inside: avoid;
+  }
+  .log-note__body,
+  .log-empty p {
+    color: #222;
+  }
+}

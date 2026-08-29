@@ -13,7 +13,8 @@ export default function BottomNav() {
     pathname === '/dining' ||
     pathname === '/night' ||
     pathname === '/wildlife' ||
-    pathname === '/hunts'
+    pathname === '/hunts' ||
+    pathname === '/log'
   const isMap = pathname === '/map' || pathname.startsWith('/map/')
   const isPlan =
     pathname === '/programs' ||

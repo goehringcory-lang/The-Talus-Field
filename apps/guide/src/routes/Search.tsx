@@ -1,12 +1,37 @@
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import GatedChrome from '../components/GatedChrome'
 import PageHeader from '../components/ui/PageHeader'
 import { search, type SearchHit } from '../search'
 
+// The query rides the URL as ?q=, read once on mount and mirrored with
+// replaceState (not pushState: one history entry per keystroke would bury
+// the previous page). Coming back from a result restores the search instead
+// of a blank box, and a search is a shareable link. Same idiom as the
+// editorial site's /search and this app's Account ?renew= read.
+function readInitialQuery(): string {
+  try {
+    return new URL(window.location.href).searchParams.get('q') ?? ''
+  } catch {
+    return ''
+  }
+}
+
 export default function Search() {
-  const [query, setQuery] = useState('')
+  const [query, setQuery] = useState(readInitialQuery)
   const hits = useMemo(() => search(query), [query])
+
+  useEffect(() => {
+    try {
+      const url = new URL(window.location.href)
+      const trimmedQuery = query.trim()
+      if (trimmedQuery) url.searchParams.set('q', trimmedQuery)
+      else url.searchParams.delete('q')
+      window.history.replaceState(window.history.state, '', url)
+    } catch {
+      /* mirroring is a convenience; the search itself never depends on it */
+    }
+  }, [query])
 
   const grouped = useMemo(() => {
     const out = new Map<SearchHit['section'], SearchHit[]>()

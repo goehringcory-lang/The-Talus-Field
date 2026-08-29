@@ -8,9 +8,48 @@
   gap: 1rem;
 }
 
+.wildlife-entry__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.6rem;
+}
+
 .wildlife-entry__name {
   margin: 0 0 0.25rem;
   font-weight: 700;
+  min-width: 0;
+}
+
+/* The life-list toggle: an instrument label with a real checkbox, so it
+   reads as a reading ("logged") rather than a button, and assistive tech
+   gets native checkbox semantics for free. */
+.sighting-toggle {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  cursor: pointer;
+  font-family: var(--mono);
+  font-size: 9.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  /* Match the row's baseline flow but keep a finger-sized hit area. */
+  padding: 6px 0;
+  margin: -6px 0;
+}
+
+.sighting-toggle input {
+  flex: none;
+  width: 1rem;
+  height: 1rem;
+  margin: 0;
+  accent-color: var(--moss);
+}
+
+.sighting-toggle.is-logged {
+  color: var(--moss);
 }
 
 .wildlife-entry__latin {

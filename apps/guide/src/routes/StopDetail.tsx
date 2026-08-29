@@ -73,6 +73,9 @@ function StopNotes({ stopId }: { stopId: string }) {
       <p className="card__note" role="status" style={{ minHeight: '1.2em' }}>
         {saved ? 'Saved on this device.' : ''}
       </p>
+      <p className="card__note" style={{ marginTop: 0 }}>
+        Notes from every stop gather in <Link to="/log">your field log</Link>.
+      </p>
     </section>
   )
 }

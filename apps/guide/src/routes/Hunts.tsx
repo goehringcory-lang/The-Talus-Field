@@ -152,6 +152,9 @@ export default function Hunts() {
           <Link to="/essentials/with-kids" className="more-link">
             Yosemite with kids: pace, water, and the badge →
           </Link>
+          <Link to="/log" className="more-link">
+            Your field log: everything found and visited, on one page →
+          </Link>
         </div>
       </main>
     </GatedChrome>
