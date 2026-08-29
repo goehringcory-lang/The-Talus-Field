@@ -9,6 +9,16 @@
     "license": "Public domain",
     "source": "https://commons.wikimedia.org/wiki/File:Yosemite_Valley,_from_Inspiration_Point,_from_Robert_N._Dennis_collection_of_stereoscopic_views.jpg"
   },
+  "/photos/backcountry-camp-alpenglow.jpg": {
+    "author": "Stephen Leonardi",
+    "license": "Pexels License",
+    "source": "https://www.pexels.com/"
+  },
+  "/photos/black-bear-roadside.jpg": {
+    "author": "Cory Goehring",
+    "license": "All rights reserved",
+    "source": ""
+  },
   "/photos/bridalveil-creek-trail.jpg": {
     "author": "James St. John",
     "license": "CC BY 2.0",
@@ -89,6 +99,11 @@
     "license": "Pexels License",
     "source": "https://www.pexels.com/photo/33492451/"
   },
+  "/photos/half-dome-meadow-deer.jpg": {
+    "author": "Johannes Andersson",
+    "license": "Unsplash License",
+    "source": "https://unsplash.com/"
+  },
   "/photos/happy-isles-ouzel-watch.jpg": {
     "author": "George Fiske",
     "license": "Public domain",
@@ -124,10 +139,20 @@
     "license": "Public domain",
     "source": "https://commons.wikimedia.org/wiki/File:LowerMcGurkMeadow.jpg"
   },
+  "/photos/merced-canyon-from-the-road.jpg": {
+    "author": "Cory Goehring",
+    "license": "All rights reserved",
+    "source": ""
+  },
   "/photos/merced-grove.jpg": {
     "author": "Darold Massaro",
     "license": "CC0",
     "source": "https://commons.wikimedia.org/wiki/File:Merced_Grove_Redwood_Grove_Hike.jpg"
+  },
+  "/photos/merced-river-pool.jpg": {
+    "author": "Robert Schrader",
+    "license": "Pexels License",
+    "source": "https://www.pexels.com/"
   },
   "/photos/milky-way-sentinel-dome.jpg": {
     "author": "Jackhen1992",
@@ -204,6 +229,16 @@
     "license": "Public domain",
     "source": "https://commons.wikimedia.org/wiki/File:Dead_Giant,_Tuolumne_Grove,_30_ft._8_in._diam.,_Big_Oak_Flat_route_to_Yosemite_Valley,_from_Robert_N._Dennis_collection_of_stereoscopic_views.png"
   },
+  "/photos/tuolumne-river-meadow.jpg": {
+    "author": "basiciggy",
+    "license": "Pexels License",
+    "source": "https://www.pexels.com/"
+  },
+  "/photos/valley-campground-tent.jpg": {
+    "author": "Andrei Serikov",
+    "license": "Pexels License",
+    "source": "https://www.pexels.com/"
+  },
   "/photos/valley-el-capitan-half-dome.jpg": {
     "author": "elijahjcobb",
     "license": "Pexels License",
@@ -219,10 +254,20 @@
     "license": "Pexels License",
     "source": "https://www.pexels.com/photo/33724884/"
   },
+  "/photos/valley-view-winter-night.jpg": {
+    "author": "Stephen Leonardi",
+    "license": "Pexels License",
+    "source": "https://www.pexels.com/photo/35120613/"
+  },
   "/photos/valley-view.jpg": {
     "author": "Rodrigo Soares",
     "license": "Unsplash License",
     "source": "https://unsplash.com/@rodi01"
+  },
+  "/photos/vernal-fall-high-water.jpg": {
+    "author": "Brandon Raines",
+    "license": "Pexels License",
+    "source": "https://www.pexels.com/"
   },
   "/photos/vernal-fall-mist-trail.jpg": {
     "author": "Brandon Raines",
@@ -235,7 +280,7 @@
     "source": "https://commons.wikimedia.org/wiki/File:Wapama_Falls_at_Hetch_Hetchy.jpg"
   },
   "/photos/washburn-point.jpg": {
-    "author": "Pavel Špindler",
+    "author": "Pavel \u0160pindler",
     "license": "CC BY 3.0",
     "source": "https://commons.wikimedia.org/wiki/File:Washburn_Point_-_Half_Dome,_Yosemite_Valley,_Vernal_a_Nevada_Falls_-_panoramio.jpg"
   },
@@ -248,6 +293,11 @@
     "author": "Thomas K",
     "license": "Pexels License",
     "source": "https://www.pexels.com/photo/view-of-a-large-waterfall-in-the-yosemite-valley-24460927/"
+  },
+  "/photos/yosemite-falls-spring-blossoms.jpg": {
+    "author": "Cory Goehring",
+    "license": "All rights reserved",
+    "source": ""
   },
   "/photos/yosemite-point.jpg": {
     "author": "Diliff",

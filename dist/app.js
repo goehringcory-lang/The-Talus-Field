@@ -578,7 +578,7 @@ function buildSeo(route) {
       breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["The Field Guide", null]],
       faq: [{
         q: "Does it really work with no cell service?",
-        a: "Yes. One tap downloads the whole guide, about 50 MB: every entry, the photos on file, all 57 hike tracks, and a topographic map of the park. A few stops still show a coming-soon tile. Only the live extras need signal: webcams, entrance waits, and fresh weather and program updates."
+        a: "Yes. One tap downloads the whole guide, about 70 MB: every entry, the photos on file, all 57 hike tracks, and a topographic map of the park. A few entries still show a stand-in photo rather than the place itself. Only the live extras need signal: webcams, entrance waits, and fresh weather and program updates."
       }, {
         q: "Is it an App Store app?",
         a: "No. It is a web app you add to your home screen in one step, on iPhone or Android. No store account, no install wait, no version to manage. Once it is there it looks and behaves like a native app."

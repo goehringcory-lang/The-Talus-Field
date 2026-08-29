@@ -62,7 +62,7 @@ const seed: SecretSpotInput[] = [
       'You already know this meadow from the daytime stop, watching climbers through binoculars. Come back after full dark. The wall you watched all afternoon is now a black absence against the stars, and scattered across it, a thousand and two thousand feet up, are points of light: the headlamps of climbers settled onto their portaledges for the night. Standard routes take parties three to five days, which means on any summer night there are people cooking dinner and going to sleep on a vertical wall above you.\n\n' +
       'Park at the same Northside Drive pullout, walk a few steps into the meadow, turn your headlamp off, and give your eyes ten minutes. The lights resolve slowly. Some are steady, some move as a climber sorts gear. Twenty to thirty minutes is the right stay: long enough to pick out several camps and register what you are looking at, short enough that you are not standing in a dark meadow past the point of the idea.\n\n' +
       'Two courtesies. Sound carries at night and the people on the wall are trying to sleep, so keep voices down. And do not sweep the wall with a bright light; use a red lamp for your own footing and leave the beam out of the sky.',
-    photos: [], // TODO: needs a correct image; the wrong-subject automated fetch was deleted from public/photos
+    photos: [{ src: '/photos/valley-view-winter-night.jpg', caption: 'El Capitan under stars from Valley View. From the meadow you stand directly beneath that wall, watching headlamps on it.' }], // stand-in: not this entry, see guide-photo-manifest.json
   },
   {
     id: 'olmsted-point-at-night',
@@ -196,7 +196,7 @@ const seed: SecretSpotInput[] = [
       'A neighborhood walk past old barns and an old bridge, with El Capitan and Half Dome from angles almost nobody collects.',
     body:
       'Foresta is a small community off Big Oak Flat Road that visitors drive past without registering. Park next to the old barns and walk the loop: over the old bridge behind the green house, then around First Street and Dana Way. The views of El Capitan and Half Dome from out here are beautiful, and almost no one other than the locals and the short-term renters knows the walk exists. It is a neighborhood, so walk it like one: quietly, on the roads.',
-    photos: [],
+    photos: [{ src: '/photos/old-big-oak-flat-road.jpg', caption: 'The old Big Oak Flat Road. Foresta\'s loop runs on the same quiet, half-forgotten grade below it.' }], // stand-in: not this entry, see guide-photo-manifest.json
   },
 
   // --- Quiet camping -------------------------------------------------------
@@ -213,7 +213,7 @@ const seed: SecretSpotInput[] = [
       'Just outside Yosemite Valley there is Forest Service land where you can camp with views of El Capitan and Half Dome. No toilets, no amenities, no reservations needed, and no fee machinery, which is exactly why so few people know it is here. Pack out everything you pack in, and don\'t publish the pin. The place stays good exactly as long as it stays quiet.',
     hazard:
       'Dispersed camping with no toilets, no water, and no services. Check current fire restrictions before lighting anything.',
-    photos: [],
+    photos: [{ src: '/photos/valley-campground-tent.jpg', caption: 'A tent under the pines. The Forest Service ground outside the park is this without the fee, the reservation, or the water spigot.' }], // stand-in: not this entry, see guide-photo-manifest.json
   },
   {
     id: 'little-nellie-falls',
@@ -226,7 +226,7 @@ const seed: SecretSpotInput[] = [
       'A backcountry campsite at the falls with a picnic table, which is more furniture than most wilderness sites offer. The falls are the destination; the quiet is the point.',
     body:
       'A great location for a hike, and even better as an overnight: there is a backcountry campsite at the falls with a picnic table, which is more furniture than most wilderness sites offer. The falls are the destination; the quiet is the point.',
-    photos: [],
+    photos: [{ src: '/photos/foresta-cascades.jpg', caption: 'A fall in the trees off the old road. Little Nellie is smaller, with a picnic table at the bottom of it.' }], // stand-in: not this entry, see guide-photo-manifest.json
   },
   {
     id: 'inspiration-point',
@@ -252,7 +252,7 @@ const seed: SecretSpotInput[] = [
       'Short approach, real lake, obtainable paperwork. That combination is rare enough in this park to earn the name.',
     body:
       'A great spot just off the road, with a backpacking permit that is actually attainable. Short approach, real lake, obtainable paperwork. That combination is rare enough in this park to earn the name.',
-    photos: [],
+    photos: [{ src: '/photos/backcountry-camp-alpenglow.jpg', caption: 'A backcountry camp at first light, everything carried in. Hidden Lake asks for a short walk and a permit you can actually get.' }], // stand-in: not this entry, see guide-photo-manifest.json
   },
 ]
 

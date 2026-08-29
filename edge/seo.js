@@ -356,7 +356,7 @@ const HUB_PROSE = {
   "/guide": () =>
     hubProse(
       "The Field Guide",
-      "An offline web app for Yosemite, written and field-checked by a naturalist who lives in the park. 81 entries across the Valley, Glacier Point and Mariposa Grove, Tuolumne, and Hetch Hetchy, each with a tappable GPS coordinate and an honest time budget, the flagship stops with a swap for when the lot is full. All 57 in-park day hikes with GPS tracks and elevation profiles. The ranger and partner program schedule on your dates. A trip planner that builds each day in driving order with real drive-time buffers, then saves the plan to your calendar as a file. One download of about 50 MB carries the whole guide, the photos on file and a topographic park map, so everything keeps working when cell service dies."
+      "An offline web app for Yosemite, written and field-checked by a naturalist who lives in the park. 81 entries across the Valley, Glacier Point and Mariposa Grove, Tuolumne, and Hetch Hetchy, each with a tappable GPS coordinate and an honest time budget, the flagship stops with a swap for when the lot is full. All 57 in-park day hikes with GPS tracks and elevation profiles. The ranger and partner program schedule on your dates. A trip planner that builds each day in driving order with real drive-time buffers, then saves the plan to your calendar as a file. One download of about 70 MB carries the whole guide, the photos on file and a topographic park map, so everything keeps working when cell service dies."
     ) +
     `<p>The guide is on sale now: $3.99 once for 18 months of access on every personal device, no subscription, refunded in full within 30 days if it does not work as described. The journal's free tools cover a lot on their own: <a href="/map">the trip planner map</a>, <a href="/itineraries">itineraries</a>, and <a href="/checklist">the first-week checklist</a>.</p>`,
   "/about": () =>
@@ -755,7 +755,7 @@ function seoForPath(pathname, searchParams) {
       faq: [
         {
           q: "Does it really work with no cell service?",
-          a: "Yes. One tap downloads the whole guide, about 50 MB: every entry, the photos on file, all 57 hike tracks, and a topographic map of the park. A few stops still show a coming-soon tile. Only the live extras need signal: webcams, entrance waits, and fresh weather and program updates.",
+          a: "Yes. One tap downloads the whole guide, about 70 MB: every entry, the photos on file, all 57 hike tracks, and a topographic map of the park. A few entries still show a stand-in photo rather than the place itself. Only the live extras need signal: webcams, entrance waits, and fresh weather and program updates.",
         },
         {
           q: "Is it an App Store app?",

@@ -339,7 +339,7 @@ function GuideBuyBox() {
       )}
 
       <p style={{ fontFamily: "var(--serif)", fontSize: 14, color: "var(--ink-2)", lineHeight: 1.55, margin: 0 }}>
-        One payment of {formatPrice(priceCents)} for 18 months of access. The app, the photos on file, and the offline park map are yours on every device you own. A few stops still show a coming-soon tile. Updates push automatically through the 2026 season, including the Secret Guide as it grows.
+        One payment of {formatPrice(priceCents)} for 18 months of access. The app, the photos on file, and the offline park map are yours on every device you own. A few entries still show a stand-in photo rather than the place itself. Updates push automatically through the 2026 season, including the Secret Guide as it grows.
       </p>
 
       <p style={{ fontFamily: "var(--serif)", fontSize: 14, color: "var(--ink-2)", lineHeight: 1.55, margin: "12px 0 0" }}>
@@ -366,7 +366,7 @@ function GuideBuyBox() {
           <li>· Four regional guides: the Valley, Glacier Point & Mariposa, Tuolumne, Hetch Hetchy</li>
           <li>· Tappable GPS for every stop</li>
           <li>· An offline topo map of the park, all stops pinned</li>
-          <li>· Download the whole guide for offline, about 50 MB</li>
+          <li>· Download the whole guide for offline, about 70 MB</li>
           <li>· Time budgets and a swap for when the lot is full</li>
           <li>· Programs by your dates: ranger walks, Junior Ranger, tours, star parties. Synced online, readable offline</li>
           <li>· A planning calendar that lays out each day, drive times included, and saves the trip to your calendar as a file, no signal needed</li>
@@ -491,7 +491,7 @@ function GuideWaitlistBox() {
           <li>· Four regional guides: the Valley, Glacier Point & Mariposa, Tuolumne, Hetch Hetchy</li>
           <li>· Tappable GPS for every stop</li>
           <li>· An offline topo map of the park, all stops pinned</li>
-          <li>· Download the whole guide for offline, about 50 MB</li>
+          <li>· Download the whole guide for offline, about 70 MB</li>
           <li>· Time budgets and a swap for when the lot is full</li>
           <li>· Programs by your dates: ranger walks, Junior Ranger, tours, star parties. Synced online, readable offline</li>
           <li>· A planning calendar that lays out each day, drive times included, and saves the trip to your calendar as a file, no signal needed</li>
@@ -733,7 +733,7 @@ const OUTCOMES = [
   {
     kicker: "Navigate when service disappears",
     body:
-      "One tap downloads the whole guide: every entry, the photos on file, all 57 hike tracks, and a topographic map of the park with every stop pinned. A few stops still show a coming-soon tile. Service dies past the tunnel and on most of Tioga Road. The guide is built for exactly that.",
+      "One tap downloads the whole guide: every entry, the photos on file, all 57 hike tracks, and a topographic map of the park with every stop pinned. A few entries still show a stand-in photo rather than the place itself. Service dies past the tunnel and on most of Tioga Road. The guide is built for exactly that.",
     proof: "About 50 MB all-in. The map is about 20 MB of it",
   },
   {
@@ -905,7 +905,7 @@ function GuideOfflineDemo() {
         <div>
           <div className="eyebrow">Works with zero bars</div>
           <ul>
-            <li>· All 81 entries, with photos on file for most stops</li>
+            <li>· All 81 entries, each with a photo (some are stand-ins)</li>
             <li>· All 57 hikes with tracks and elevation profiles</li>
             <li>· The topographic park map, every stop pinned</li>
             <li>· The trip board, the day view, and calendar export</li>
@@ -923,7 +923,7 @@ function GuideOfflineDemo() {
         </div>
       </div>
       <p className="guide-offline__fineprint">
-        The full download is about 50 MB: the park map is roughly 20 MB of it, about 700 topographic tiles covering the whole park and the road corridors.
+        The full download is about 70 MB: the park map is roughly 20 MB of it, about 700 topographic tiles covering the whole park and the road corridors.
       </p>
     </div>
   );
@@ -961,7 +961,7 @@ function GuideCompare({ go }) {
           </tr>
           <tr>
             <td>{freeLink("/now", "now", "Current conditions")}</td>
-            <td>The whole guide offline, about 50 MB, no bars needed</td>
+            <td>The whole guide offline, about 70 MB, no bars needed</td>
           </tr>
           <tr>
             <td>{freeLink("/itineraries", "itineraries", "Selected itineraries")}</td>
@@ -1058,7 +1058,7 @@ function GuideAfterPurchase({ go }) {
 const GUIDE_FAQ = [
   {
     q: "Does it really work with no cell service?",
-    a: "Yes. One tap downloads the whole guide, about 50 MB: every entry, the photos on file, all 57 hike tracks, and a topographic map of the park. A few stops still show a coming-soon tile. Only the live extras need signal: webcams, entrance waits, and fresh weather and program updates.",
+    a: "Yes. One tap downloads the whole guide, about 70 MB: every entry, the photos on file, all 57 hike tracks, and a topographic map of the park. A few entries still show a stand-in photo rather than the place itself. Only the live extras need signal: webcams, entrance waits, and fresh weather and program updates.",
   },
   {
     q: "Is it an App Store app?",

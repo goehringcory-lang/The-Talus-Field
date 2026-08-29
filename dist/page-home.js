@@ -273,7 +273,7 @@ function HomeRail({
     location: "home_rail",
     tag: "home",
     heading: "The Sunday Letter",
-    blurb: "What is open, what is booking out, and what the week looked like from inside the park. The interactive trip planner map comes with it. Free.",
+    blurb: "What is open, what is booking out, and what the week looked like from inside the park. One letter a week. Free.",
     cta: "Get the Sunday letter →",
     modifier: "nlbox--rail"
   }), React.createElement(LodgingCta, {
