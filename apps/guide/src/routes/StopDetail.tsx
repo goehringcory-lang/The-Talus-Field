@@ -170,6 +170,11 @@ export default function StopDetail() {
               On the map →
             </Button>
           )}
+          {stop.coord && (
+            <Button variant="ghost" to={`/compass?to=${stop.id}`}>
+              Bearing →
+            </Button>
+          )}
           <ShareStopButton stopId={stop.id} title={stop.title} />
         </div>
 

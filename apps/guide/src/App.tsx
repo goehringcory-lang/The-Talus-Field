@@ -27,6 +27,7 @@ const Trip = lazy(() => import('./routes/Trip'))
 const Today = lazy(() => import('./routes/Today'))
 const ThisWeek = lazy(() => import('./routes/ThisWeek'))
 const Night = lazy(() => import('./routes/Night'))
+const Compass = lazy(() => import('./routes/Compass'))
 const Wildlife = lazy(() => import('./routes/Wildlife'))
 const Hunts = lazy(() => import('./routes/Hunts'))
 const Log = lazy(() => import('./routes/Log'))
@@ -228,6 +229,14 @@ export default function App() {
             element={
               <RequireAuth>
                 <Night />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="/compass"
+            element={
+              <RequireAuth>
+                <Compass />
               </RequireAuth>
             }
           />

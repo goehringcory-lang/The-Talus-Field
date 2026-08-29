@@ -41,6 +41,28 @@ export function formatDayHeader(date: string): string {
   })
 }
 
+/** "Jul 20–24" or "Jun 29 – Jul 2" for a {start, end} of YYYY-MM-DD dates.
+ * Timezone-safe: noon UTC, formatted as UTC, same idiom as forecastDays.
+ * Shared by Home's trip strip and the field card, so the two spell a trip
+ * the same way. */
+export function tripDatesLabel(dates: { start: string; end: string }): string {
+  const fmt = (iso: string) =>
+    new Date(`${iso}T12:00:00Z`).toLocaleDateString('en-US', {
+      month: 'short',
+      day: 'numeric',
+      timeZone: 'UTC',
+    })
+  const sameMonth = dates.start.slice(0, 7) === dates.end.slice(0, 7)
+  if (sameMonth) {
+    const endDay = new Date(`${dates.end}T12:00:00Z`).toLocaleDateString('en-US', {
+      day: 'numeric',
+      timeZone: 'UTC',
+    })
+    return `${fmt(dates.start)}–${endDay}`
+  }
+  return `${fmt(dates.start)} – ${fmt(dates.end)}`
+}
+
 /** "9:30 a.m." for minutes from midnight, house style. */
 export function formatClock(minutes: number): string {
   // Callers add a duration to a start (a 23:30 program plus an hour), so the

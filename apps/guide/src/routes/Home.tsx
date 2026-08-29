@@ -23,7 +23,7 @@ import {
   getStopsByRegion,
   seasonalRangeLabel,
 } from '../content'
-import { formatClock, parkNowMinutes, todayIso } from '../utils/date'
+import { formatClock, parkNowMinutes, todayIso, tripDatesLabel } from '../utils/date'
 import { useFavorites } from '../lib/favorites'
 import { logHasEntries, readLogSummary } from '../lib/logSummary'
 import { isPackCompleted } from '../offline/useDownloads'
@@ -196,26 +196,6 @@ function InSeasonStrip() {
       </div>
     </section>
   )
-}
-
-// "Jul 20–24" or "Jun 29 – Jul 2". Timezone-safe: noon UTC, formatted as UTC,
-// same idiom as forecastDays.
-function tripDatesLabel(dates: TripDates): string {
-  const fmt = (iso: string) =>
-    new Date(`${iso}T12:00:00Z`).toLocaleDateString('en-US', {
-      month: 'short',
-      day: 'numeric',
-      timeZone: 'UTC',
-    })
-  const sameMonth = dates.start.slice(0, 7) === dates.end.slice(0, 7)
-  if (sameMonth) {
-    const endDay = new Date(`${dates.end}T12:00:00Z`).toLocaleDateString('en-US', {
-      day: 'numeric',
-      timeZone: 'UTC',
-    })
-    return `${fmt(dates.start)}–${endDay}`
-  }
-  return `${fmt(dates.start)} – ${fmt(dates.end)}`
 }
 
 // Small stroke glyphs for the planner tool cards, drawn in the same style as
@@ -491,6 +471,16 @@ export default function Home() {
               </svg>
               <span className="instrument-tile__label">Night sky</span>
               <span className="instrument-tile__note">Moon · stars · computed on-device</span>
+            </Link>
+            {/* Odd fifth tile spans the row (same closure rule as
+                .readout--wide): a hanging half-empty cell reads as broken. */}
+            <Link to="/compass" className="instrument-tile instrument-tile--wide">
+              <svg className="instrument-tile__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <circle cx="12" cy="12" r="9" />
+                <path d="M15.5 8.5l-2 5-5 2 2-5 5-2z" />
+              </svg>
+              <span className="instrument-tile__label">Bearing compass</span>
+              <span className="instrument-tile__note">Points at any stop · sun on the rose · works in airplane mode</span>
             </Link>
           </div>
         </section>
