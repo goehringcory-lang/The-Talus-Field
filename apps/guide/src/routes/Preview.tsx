@@ -96,9 +96,10 @@ export default function Preview() {
             <span className="eyebrow eyebrow--moss">The Field Guide · 2026 Edition</span>
             <div className="buy-card__price">{price}.</div>
             <p className="card__note" style={{ margin: '0 0 18px' }}>
-              One payment. The app, every photo, and the offline park map are yours for 18
-              months on every device you own. Updates push automatically through the 2026
-              season, the Secret Guide included.
+              One payment. The app, the photos on file, and the offline park map are yours
+              for 18 months on every device you own. A few stops still show a coming-soon
+              tile. Updates push automatically through the 2026 season, the Secret Guide
+              included.
             </p>
             <div className="action-row">
               <Button href={GUIDE_BUY_URL} external>

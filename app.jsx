@@ -649,7 +649,7 @@ function buildSeo(route) {
       faq: [
         {
           q: "Does it really work with no cell service?",
-          a: "Yes. One tap downloads the whole guide, about 50 MB: every entry, every photo, all 57 hike tracks, and a topographic map of the park. Only the live extras need signal: webcams, entrance waits, and fresh weather and program updates.",
+          a: "Yes. One tap downloads the whole guide, about 50 MB: every entry, the photos on file, all 57 hike tracks, and a topographic map of the park. A few stops still show a coming-soon tile. Only the live extras need signal: webcams, entrance waits, and fresh weather and program updates.",
         },
         {
           q: "Is it an App Store app?",
@@ -677,7 +677,7 @@ function buildSeo(route) {
         },
         {
           q: "What do I get that the free site doesn't already give me?",
-          a: "The complete library: 81 entries including the 37-entry Secret Guide, all 57 day hikes with verified GPS tracks, the drag-and-drop trip builder, and the offline download. The free site keeps the articles, the trip map, the itineraries, and the conditions board.",
+          a: "The complete library: 81 entries including the 37-entry Secret Guide, all 57 day hikes with GPS tracks and elevation profiles, the drag-and-drop trip builder, and the offline download. The free site keeps the articles, the trip map, the itineraries, and the conditions board.",
         },
         {
           q: "Does the guide change after I buy it?",

@@ -363,7 +363,7 @@ function GuideBuyBox() {
       lineHeight: 1.55,
       margin: 0
     }
-  }, "One payment of ", formatPrice(priceCents), " for 18 months of access. The app, every photo, and the offline park map are yours on every device you own. Updates push automatically through the 2026 season, including the Secret Guide as it grows."), React.createElement("p", {
+  }, "One payment of ", formatPrice(priceCents), " for 18 months of access. The app, the photos on file, and the offline park map are yours on every device you own. A few stops still show a coming-soon tile. Updates push automatically through the 2026 season, including the Secret Guide as it grows."), React.createElement("p", {
     style: {
       fontFamily: "var(--serif)",
       fontSize: 14,
@@ -801,15 +801,15 @@ var OUTCOMES = [{
   proof: "A source-verified coordinate on 65 of the 66 stops"
 }, {
   kicker: "Know how long each stop actually takes",
-  body: "Each stop states its time budget, drive included, so you know what fits before lunch while it still matters. Hikes carry verified distance, climbing, and an effort score computed from real terrain data, not the trailhead sign's optimism.",
-  proof: "Time budgets on 65 of 66 stops · 57 hikes with verified GPS tracks"
+  body: "Each stop states its time budget, drive included, so you know what fits before lunch while it still matters. Hikes carry distance, climbing, and an effort score computed from terrain data, not the trailhead sign's optimism.",
+  proof: "Time budgets on 65 of 66 stops · 57 hikes with GPS tracks and elevation profiles"
 }, {
   kicker: "Replace a hike when weather, crowds, or children change the plan",
   body: "The flagship stops print their swap right on the page: where to go the moment the lot is full or the trail is not happening today. Ready-made day plans cover the half day, the first visit, young kids, grandparents, and the whole multi-generation caravan.",
   proof: "Swaps printed on the flagship stops · 9 ready-made day plans"
 }, {
   kicker: "Navigate when service disappears",
-  body: "One tap downloads the whole guide: every entry, every photo, all 57 hike tracks, and a topographic map of the park with every stop pinned. Service dies past the tunnel and on most of Tioga Road. The guide is built for exactly that.",
+  body: "One tap downloads the whole guide: every entry, the photos on file, all 57 hike tracks, and a topographic map of the park with every stop pinned. A few stops still show a coming-soon tile. Service dies past the tunnel and on most of Tioga Road. The guide is built for exactly that.",
   proof: "About 50 MB all-in. The map is about 20 MB of it"
 }, {
   kicker: "Build each day in driving order",
@@ -981,7 +981,7 @@ function GuideOfflineDemo() {
     className: "guide-offline__cols"
   }, React.createElement("div", null, React.createElement("div", {
     className: "eyebrow"
-  }, "Works with zero bars"), React.createElement("ul", null, React.createElement("li", null, "· All 81 entries, photos included"), React.createElement("li", null, "· All 57 hikes with tracks and elevation profiles"), React.createElement("li", null, "· The topographic park map, every stop pinned"), React.createElement("li", null, "· The trip board, the day view, and calendar export"), React.createElement("li", null, "· Checklists, essentials, search, the Secret Guide"))), React.createElement("div", null, React.createElement("div", {
+  }, "Works with zero bars"), React.createElement("ul", null, React.createElement("li", null, "· All 81 entries, with photos on file for most stops"), React.createElement("li", null, "· All 57 hikes with tracks and elevation profiles"), React.createElement("li", null, "· The topographic park map, every stop pinned"), React.createElement("li", null, "· The trip board, the day view, and calendar export"), React.createElement("li", null, "· Checklists, essentials, search, the Secret Guide"))), React.createElement("div", null, React.createElement("div", {
     className: "eyebrow"
   }, "Needs signal"), React.createElement("ul", null, React.createElement("li", null, "· The live park webcams"), React.createElement("li", null, "· Entrance waits right now"), React.createElement("li", null, "· Fresh weather and program updates (the last sync stays readable)"), React.createElement("li", null, "· The Nature Notes archive links back to this site")))), React.createElement("p", {
     className: "guide-offline__fineprint"
@@ -1037,7 +1037,7 @@ function GuideAfterPurchase({
 }
 var GUIDE_FAQ = [{
   q: "Does it really work with no cell service?",
-  a: "Yes. One tap downloads the whole guide, about 50 MB: every entry, every photo, all 57 hike tracks, and a topographic map of the park. Only the live extras need signal: webcams, entrance waits, and fresh weather and program updates."
+  a: "Yes. One tap downloads the whole guide, about 50 MB: every entry, the photos on file, all 57 hike tracks, and a topographic map of the park. A few stops still show a coming-soon tile. Only the live extras need signal: webcams, entrance waits, and fresh weather and program updates."
 }, {
   q: "Is it an App Store app?",
   a: "No. It is a web app you add to your home screen in one step, on iPhone or Android. No store account, no install wait, no version to manage. Once it is there it looks and behaves like a native app."
@@ -1058,7 +1058,7 @@ var GUIDE_FAQ = [{
   a: "If the guide does not work as described, email within 30 days of purchase and it is refunded in full. After a refund the access code is deactivated. The full policy is on the terms page."
 }, {
   q: "What do I get that the free site doesn't already give me?",
-  a: "The complete library: 81 entries including the 37-entry Secret Guide, all 57 day hikes with verified GPS tracks, the drag-and-drop trip builder, and the offline download. The free site keeps the articles, the trip map, the itineraries, and the conditions board."
+  a: "The complete library: 81 entries including the 37-entry Secret Guide, all 57 day hikes with GPS tracks and elevation profiles, the drag-and-drop trip builder, and the offline download. The free site keeps the articles, the trip map, the itineraries, and the conditions board."
 }, {
   q: "Does the guide change after I buy it?",
   a: "Yes. Updates, seasonal addenda, and Secret Guide additions push silently through your access window. Nothing to re-download, nothing extra to pay."
@@ -1279,7 +1279,7 @@ function GuidePage({
       lineHeight: 1.6,
       margin: "0 0 20px"
     }
-  }, "Four regional guides. 44 stops in driving order, each with GPS and a time budget, the flagship ones with a swap. All 57 in-park day hikes with verified tracks. The 37-entry Secret Guide. The park's program schedule on your dates. A planning calendar you drag into shape, then save to the calendar you already use. And an offline topo map that holds it all together. ", React.createElement(LivePrice, null), ", once, for 18 months on every device you own."), React.createElement(BuyNowButton, {
+  }, "Four regional guides. 44 stops in driving order, each with GPS and a time budget, the flagship ones with a swap. All 57 in-park day hikes with GPS tracks and elevation profiles. The 37-entry Secret Guide. The park's program schedule on your dates. A planning calendar you drag into shape, then save to the calendar you already use. And an offline topo map that holds it all together. ", React.createElement(LivePrice, null), ", once, for 18 months on every device you own."), React.createElement(BuyNowButton, {
     location: "guide_closer"
   }), React.createElement("p", {
     style: {
