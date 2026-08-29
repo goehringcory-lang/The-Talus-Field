@@ -13,18 +13,99 @@
 // inputs instead of apologizing.
 // =============================================================================
 
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import GatedChrome from '../components/GatedChrome'
 import PageHeader from '../components/ui/PageHeader'
 import { HUNTS } from '../content/hunts'
 import { WILDLIFE } from '../content/wildlife'
 import { CHECKLIST_STORAGE_KEY, readChecked, type CheckedMap } from '../lib/checklist'
+import { renderFieldCard, type FieldCardData } from '../lib/fieldCard'
 import { guideStopGroups } from '../lib/logSummary'
+import { shareOrDownloadFile } from '../lib/shareFile'
 import { useSightings } from '../lib/sightings'
 import { readStopNotes, subscribeStopNotes } from '../lib/stopNotes'
 import { useVisited } from '../lib/visited'
+import { readTripDates } from '../programs/usePrograms'
+import { tripDatesLabel } from '../utils/date'
 import './Log.css'
+
+// The shareable field card: the log's numbers drawn onto one PNG, previewed
+// before anything leaves the phone. Rendering and hand-off both work
+// offline; the note line reports exactly what happened.
+function FieldCardBlock({ data }: { data: FieldCardData }) {
+  const [preview, setPreview] = useState<{ url: string; blob: Blob } | null>(null)
+  const [busy, setBusy] = useState(false)
+  const [note, setNote] = useState('')
+  const urlRef = useRef<string | null>(null)
+
+  useEffect(
+    () => () => {
+      if (urlRef.current) URL.revokeObjectURL(urlRef.current)
+    },
+    [],
+  )
+
+  async function make() {
+    setBusy(true)
+    setNote('')
+    const blob = await renderFieldCard(data)
+    setBusy(false)
+    if (!blob) {
+      setNote(
+        'This browser declined to render the card; some privacy modes block canvas export. A screenshot of this page works too.',
+      )
+      return
+    }
+    if (urlRef.current) URL.revokeObjectURL(urlRef.current)
+    const url = URL.createObjectURL(blob)
+    urlRef.current = url
+    setPreview({ url, blob })
+  }
+
+  async function share() {
+    if (!preview) return
+    const file = new File([preview.blob], 'yosemite-field-log.png', { type: 'image/png' })
+    const method = await shareOrDownloadFile(file, 'My Yosemite field log')
+    if (method === 'shared') setNote('Handed to the share sheet.')
+    else if (method === 'downloaded') setNote('Saved as a PNG.')
+    else if (method === 'failed')
+      setNote("Couldn't hand the file off. Press and hold the preview to save it instead.")
+  }
+
+  return (
+    <div className="log-card no-print">
+      <div className="log-actions">
+        <button type="button" className="btn btn--sm" onClick={make} disabled={busy}>
+          {busy ? 'Drawing…' : preview ? 'Redraw the field card' : 'Make a field card'}
+        </button>
+        {preview && (
+          <button type="button" className="btn btn--sm" onClick={share}>
+            Share or save it
+          </button>
+        )}
+        {!preview && (
+          <span className="dateline">Your record as one image, drawn on this device.</span>
+        )}
+      </div>
+      {preview && (
+        <img
+          className="log-card__img"
+          src={preview.url}
+          alt="Your field log drawn as a shareable card"
+          width={1080}
+          height={1350}
+        />
+      )}
+      <p className="card__note" role="status" style={{ minHeight: '1.2em' }}>
+        {note ||
+          (preview
+            ? 'Drawn from the log below; nothing leaves this phone until you share it.'
+            : '')}
+      </p>
+    </div>
+  )
+}
 
 export default function Log() {
   const { ids: visitedIds } = useVisited()
@@ -81,6 +162,20 @@ export default function Log() {
   const hasAnything =
     visitedCount > 0 || species.length > 0 || huntsDone > 0 || noteCount > 0
 
+  // Snapshot for the shareable card, derived from the same numbers this page
+  // renders so the card can never disagree with the log it was made from.
+  const dates = readTripDates()
+  const cardData: FieldCardData = {
+    datesLabel: dates ? `${tripDatesLabel(dates)}, ${dates.end.slice(0, 4)}` : null,
+    stats: [
+      { label: 'Stops', value: `${visitedCount} / ${stopTotal}` },
+      { label: 'Species', value: `${species.length} / ${WILDLIFE.length}` },
+      { label: 'Find-it', value: `${huntsDone} / ${huntsTotal}` },
+      { label: 'Notes', value: `${noteCount}` },
+    ],
+    meters: groups.map((g) => ({ label: g.title, done: g.visited.length, total: g.all.length })),
+  }
+
   return (
     <GatedChrome>
       <main className="wrap wrap--narrow page log">
@@ -123,6 +218,8 @@ export default function Log() {
               </button>
               <span className="dateline">A paper copy makes a decent souvenir.</span>
             </div>
+
+            <FieldCardBlock data={cardData} />
           </>
         ) : (
           <div className="log-empty">

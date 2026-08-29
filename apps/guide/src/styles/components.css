@@ -1580,6 +1580,9 @@ a.spec {
   color: var(--ink-3);
   line-height: 1.5;
 }
+/* An odd last tile spans the row, same rule as .readout--wide: a hanging
+   half-empty grid cell reads as a tile that failed to load. */
+.instrument-tile--wide { grid-column: 1 / -1; }
 
 /* ---- Offline packs panel ------------------------------------- */
 

@@ -12,6 +12,7 @@ export default function BottomNav() {
     pathname.startsWith('/secret-guide') ||
     pathname === '/dining' ||
     pathname === '/night' ||
+    pathname === '/compass' ||
     pathname === '/wildlife' ||
     pathname === '/hunts' ||
     pathname === '/log'
