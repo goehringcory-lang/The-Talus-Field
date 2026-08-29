@@ -107,9 +107,19 @@ export default function StopTeaser() {
       <main className="wrap wrap--narrow page">
         <PageHeader eyebrow={eyebrow} title={stop.title} intro={intro} />
 
+        {/* The caption below is not decoration on this surface, it is the
+            disclosure. 18 entries carry a stand-in photo (marked
+            `// stand-in:` in stops.ts / secret-spots.ts) showing a nearby or
+            representative subject rather than the place itself, and the caption
+            is the only thing that says so. This page is the public landing page
+            for a link a buyer shared, so a signed-out stranger is exactly the
+            reader most likely to take the photograph for the entry. It used to
+            pass `credit` alone, which left Upper Yosemite Fall sitting
+            uncaptioned under a heading that says Camp 4. */}
         {photo && (
           <Plate
             tag={`Plate · ${KIND_LABEL[stop.kind]}`}
+            caption={photo.caption}
             credit={credit ? formatCredit(credit) : undefined}
           >
             <ResponsivePhoto
