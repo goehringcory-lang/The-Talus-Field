@@ -25,6 +25,7 @@ import {
 } from '../content'
 import { formatClock, parkNowMinutes, todayIso } from '../utils/date'
 import { useFavorites } from '../lib/favorites'
+import { logHasEntries, readLogSummary } from '../lib/logSummary'
 import { isPackCompleted } from '../offline/useDownloads'
 import { PACK_IDS } from '../offline/manifest'
 import { useTripPlan } from '../trip/useTripPlan'
@@ -294,6 +295,7 @@ export default function Home() {
   // (/stop/x, /map?...) are never intercepted, only the front page.
   const [onboarded] = useState(() => isOnboarded())
   const [tripDates] = useState(() => readTripDates())
+  const [logSummary] = useState(() => readLogSummary())
   // getStopById resolves regular stops and secret spots alike, so a saved
   // secret spot does not silently vanish from this list.
   const savedStops = favoriteIds
@@ -540,6 +542,7 @@ export default function Home() {
             >
               <div className="tool-card__sub">
                 <Link to="/hunts">Find-it lists for kids →</Link>
+                <Link to="/log">Your field log →</Link>
               </div>
             </ToolCard>
             <ToolCard
@@ -606,6 +609,36 @@ export default function Home() {
         </section>
 
         <InSeasonStrip />
+
+        {/* The record panel appears once the log holds anything: before the
+            trip an all-zero reading would only be noise, and the log stays
+            reachable through the reference shelf's field-log link above. */}
+        {logHasEntries(logSummary) && (
+          <section aria-label="Your record" className="page-section">
+            <span className="eyebrow">Your record</span>
+            <Link to="/log" className="panel packs-panel">
+              <span className="packs-panel__row">
+                <span className="packs-panel__label">Field log</span>
+                <span className="packs-panel__value">
+                  {[
+                    logSummary.visited > 0 &&
+                      `${logSummary.visited} ${logSummary.visited === 1 ? 'stop' : 'stops'}`,
+                    logSummary.species > 0 &&
+                      `${logSummary.species} species`,
+                    logSummary.huntFinds > 0 && `${logSummary.huntFinds} found`,
+                    logSummary.notes > 0 &&
+                      `${logSummary.notes} ${logSummary.notes === 1 ? 'note' : 'notes'}`,
+                  ]
+                    .filter(Boolean)
+                    .join(' · ')}
+                </span>
+              </span>
+              <span className="packs-panel__note">
+                The trip as you recorded it, on one page →
+              </span>
+            </Link>
+          </section>
+        )}
 
         {savedStops.length > 0 && (
           <section aria-label="Saved stops" className="page-section">

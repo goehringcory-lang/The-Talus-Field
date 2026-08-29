@@ -5,6 +5,10 @@
 // invite guessing). Kind chips filter; safety text renders inline on the
 // three species where behavior matters, and the full food-storage law lives
 // in the bear-safety essentials topic, linked, not duplicated.
+//
+// Each entry carries a "Seen it" check: the life list. State rides the shared
+// tfg.checklist map via lib/sightings.ts and rolls up on /log, which is where
+// the count line points once anything is marked.
 // =============================================================================
 
 import { useState } from 'react'
@@ -18,12 +22,14 @@ import {
   WildlifeKind,
   type WildlifeKindT,
 } from '../content/wildlife'
+import { useSightings } from '../lib/sightings'
 import './Wildlife.css'
 
 const KINDS = WildlifeKind.options
 
 export default function Wildlife() {
   const [kindFilter, setKindFilter] = useState<WildlifeKindT | null>(null)
+  const { ids: loggedIds, toggle, isLogged } = useSightings()
 
   const kinds = KINDS.filter((k) => !kindFilter || k === kindFilter)
 
@@ -33,7 +39,7 @@ export default function Wildlife() {
         <PageHeader
           eyebrow="Quick ID"
           title="What did I see?"
-          intro="The animals, birds, and trees a visitor actually crosses paths with, and the one or two marks that settle each identification. Works offline like the rest of the guide."
+          intro="The animals, birds, and trees a visitor actually crosses paths with, and the one or two marks that settle each identification. Check off what you see; the guide keeps your trip list. Works offline like the rest of the guide."
         />
 
         <div className="hikes-chips" role="group" aria-label="Filter by kind">
@@ -49,6 +55,15 @@ export default function Wildlife() {
           ))}
         </div>
 
+        {/* Silent at zero: an empty life list is the normal state on the
+            drive in, and advertising it would only read as a scold. */}
+        {loggedIds.length > 0 && (
+          <p className="dateline" style={{ marginTop: 4 }}>
+            {loggedIds.length} of {WILDLIFE.length} logged ·{' '}
+            <Link to="/log">your field log →</Link>
+          </p>
+        )}
+
         {kinds.map((kind) => {
           const entries = WILDLIFE.filter((w) => w.kind === kind)
           if (entries.length === 0) return null
@@ -56,21 +71,35 @@ export default function Wildlife() {
             <section key={kind} aria-label={KIND_LABELS[kind]} className="page-section">
               <span className="eyebrow">{KIND_LABELS[kind]}</span>
               <ul className="wildlife-list">
-                {entries.map((w) => (
-                  <li key={w.id} className="wildlife-entry">
-                    <p className="wildlife-entry__name">
-                      {w.name} <span className="wildlife-entry__latin">{w.latin}</span>
-                    </p>
-                    <p className="wildlife-entry__line">
-                      <strong>Look for:</strong> {w.lookFor}
-                    </p>
-                    <p className="wildlife-entry__line">
-                      <strong>Where:</strong> {w.whereWhen}
-                    </p>
-                    <p className="wildlife-entry__line">{w.note}</p>
-                    {w.safety && <p className="wildlife-entry__safety">{w.safety}</p>}
-                  </li>
-                ))}
+                {entries.map((w) => {
+                  const logged = isLogged(w.id)
+                  return (
+                    <li key={w.id} className="wildlife-entry">
+                      <div className="wildlife-entry__head">
+                        <p className="wildlife-entry__name">
+                          {w.name} <span className="wildlife-entry__latin">{w.latin}</span>
+                        </p>
+                        <label className={logged ? 'sighting-toggle is-logged' : 'sighting-toggle'}>
+                          <input
+                            type="checkbox"
+                            checked={logged}
+                            onChange={() => toggle(w.id)}
+                            aria-label={`Mark ${w.name} as seen`}
+                          />
+                          {logged ? 'Logged' : 'Seen it'}
+                        </label>
+                      </div>
+                      <p className="wildlife-entry__line">
+                        <strong>Look for:</strong> {w.lookFor}
+                      </p>
+                      <p className="wildlife-entry__line">
+                        <strong>Where:</strong> {w.whereWhen}
+                      </p>
+                      <p className="wildlife-entry__line">{w.note}</p>
+                      {w.safety && <p className="wildlife-entry__safety">{w.safety}</p>}
+                    </li>
+                  )
+                })}
               </ul>
             </section>
           )
