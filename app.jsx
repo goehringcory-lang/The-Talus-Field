@@ -649,7 +649,7 @@ function buildSeo(route) {
       faq: [
         {
           q: "Does it really work with no cell service?",
-          a: "Yes. One tap downloads the whole guide, about 50 MB: every entry, the photos on file, all 57 hike tracks, and a topographic map of the park. A few stops still show a coming-soon tile. Only the live extras need signal: webcams, entrance waits, and fresh weather and program updates.",
+          a: "Yes. One tap downloads the whole guide, about 70 MB: every entry, the photos on file, all 57 hike tracks, and a topographic map of the park. A few entries still show a stand-in photo rather than the place itself. Only the live extras need signal: webcams, entrance waits, and fresh weather and program updates.",
         },
         {
           q: "Is it an App Store app?",

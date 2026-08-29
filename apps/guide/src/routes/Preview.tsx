@@ -83,7 +83,7 @@ export default function Preview() {
         <section className="page-section" aria-label="What the sample can't show">
           <span className="eyebrow">What a sample can't show</span>
           <ul className="link-list" style={{ marginTop: 4 }}>
-            <li>One tap downloads the whole guide for offline, about 50 MB, photos and all.</li>
+            <li>One tap downloads the whole guide for offline, about 70 MB, photos and all.</li>
             <li>An offline topo map of the park with every stop pinned, the Secret Guide in gold.</li>
             <li>Ranger walks, tours, and star parties filtered to your trip dates.</li>
             <li>A trip planner that lays out each day, then saves the whole trip to your calendar as a file, no signal needed.</li>
@@ -97,8 +97,8 @@ export default function Preview() {
             <div className="buy-card__price">{price}.</div>
             <p className="card__note" style={{ margin: '0 0 18px' }}>
               One payment. The app, the photos on file, and the offline park map are yours
-              for 18 months on every device you own. A few stops still show a coming-soon
-              tile. Updates push automatically through the 2026 season, the Secret Guide
+              for 18 months on every device you own. A few entries still show a stand-in
+              photo rather than the place itself. Updates push automatically through the 2026 season, the Secret Guide
               included.
             </p>
             <div className="action-row">

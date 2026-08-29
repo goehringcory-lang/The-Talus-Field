@@ -387,11 +387,16 @@ function HomeRail({ go }) {
         <span className="mono rail-guide__cta">See the Field Guide · $3.99 →</span>
       </a>
 
+      {/* "Free" in the blurb is the letter, not the map. The trip planner at
+          /map is gated behind MapAccessGate, so the previous copy ("The
+          interactive trip planner map comes with it. Free.") described a gated
+          page as a free gift, and was false the moment the gate mounted.
+          Restore map language only if the gate actually goes away. */}
       <NewsletterInline
         location="home_rail"
         tag="home"
         heading="The Sunday Letter"
-        blurb="What is open, what is booking out, and what the week looked like from inside the park. The interactive trip planner map comes with it. Free."
+        blurb="What is open, what is booking out, and what the week looked like from inside the park. One letter a week. Free."
         cta="Get the Sunday letter →"
         modifier="nlbox--rail"
       />

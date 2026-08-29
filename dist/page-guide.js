@@ -363,7 +363,7 @@ function GuideBuyBox() {
       lineHeight: 1.55,
       margin: 0
     }
-  }, "One payment of ", formatPrice(priceCents), " for 18 months of access. The app, the photos on file, and the offline park map are yours on every device you own. A few stops still show a coming-soon tile. Updates push automatically through the 2026 season, including the Secret Guide as it grows."), React.createElement("p", {
+  }, "One payment of ", formatPrice(priceCents), " for 18 months of access. The app, the photos on file, and the offline park map are yours on every device you own. A few entries still show a stand-in photo rather than the place itself. Updates push automatically through the 2026 season, including the Secret Guide as it grows."), React.createElement("p", {
     style: {
       fontFamily: "var(--serif)",
       fontSize: 14,
@@ -427,7 +427,7 @@ function GuideBuyBox() {
       color: "var(--ink-2)",
       lineHeight: 1.7
     }
-  }, React.createElement("li", null, "· Four regional guides: the Valley, Glacier Point & Mariposa, Tuolumne, Hetch Hetchy"), React.createElement("li", null, "· Tappable GPS for every stop"), React.createElement("li", null, "· An offline topo map of the park, all stops pinned"), React.createElement("li", null, "· Download the whole guide for offline, about 50 MB"), React.createElement("li", null, "· Time budgets and a swap for when the lot is full"), React.createElement("li", null, "· Programs by your dates: ranger walks, Junior Ranger, tours, star parties. Synced online, readable offline"), React.createElement("li", null, "· A planning calendar that lays out each day, drive times included, and saves the trip to your calendar as a file, no signal needed"), React.createElement("li", null, "· Know-before-you-go essentials, a night-before checklist, and a packing list you check off in-app"), React.createElement("li", null, "· Search across everything"), React.createElement("li", null, "· The Secret Guide: unsigned turnouts, hidden stops, and secret spots, included"))), React.createElement("div", {
+  }, React.createElement("li", null, "· Four regional guides: the Valley, Glacier Point & Mariposa, Tuolumne, Hetch Hetchy"), React.createElement("li", null, "· Tappable GPS for every stop"), React.createElement("li", null, "· An offline topo map of the park, all stops pinned"), React.createElement("li", null, "· Download the whole guide for offline, about 70 MB"), React.createElement("li", null, "· Time budgets and a swap for when the lot is full"), React.createElement("li", null, "· Programs by your dates: ranger walks, Junior Ranger, tours, star parties. Synced online, readable offline"), React.createElement("li", null, "· A planning calendar that lays out each day, drive times included, and saves the trip to your calendar as a file, no signal needed"), React.createElement("li", null, "· Know-before-you-go essentials, a night-before checklist, and a packing list you check off in-app"), React.createElement("li", null, "· Search across everything"), React.createElement("li", null, "· The Secret Guide: unsigned turnouts, hidden stops, and secret spots, included"))), React.createElement("div", {
     style: {
       borderTop: "1px solid var(--rule)",
       marginTop: 24,
@@ -614,7 +614,7 @@ function GuideWaitlistBox() {
       color: "var(--ink-2)",
       lineHeight: 1.7
     }
-  }, React.createElement("li", null, "· Four regional guides: the Valley, Glacier Point & Mariposa, Tuolumne, Hetch Hetchy"), React.createElement("li", null, "· Tappable GPS for every stop"), React.createElement("li", null, "· An offline topo map of the park, all stops pinned"), React.createElement("li", null, "· Download the whole guide for offline, about 50 MB"), React.createElement("li", null, "· Time budgets and a swap for when the lot is full"), React.createElement("li", null, "· Programs by your dates: ranger walks, Junior Ranger, tours, star parties. Synced online, readable offline"), React.createElement("li", null, "· A planning calendar that lays out each day, drive times included, and saves the trip to your calendar as a file, no signal needed"), React.createElement("li", null, "· Know-before-you-go essentials, a night-before checklist, and a packing list you check off in-app"), React.createElement("li", null, "· Search across everything"), React.createElement("li", null, "· The Secret Guide: unsigned turnouts, hidden stops, and secret spots, included"))), React.createElement("div", {
+  }, React.createElement("li", null, "· Four regional guides: the Valley, Glacier Point & Mariposa, Tuolumne, Hetch Hetchy"), React.createElement("li", null, "· Tappable GPS for every stop"), React.createElement("li", null, "· An offline topo map of the park, all stops pinned"), React.createElement("li", null, "· Download the whole guide for offline, about 70 MB"), React.createElement("li", null, "· Time budgets and a swap for when the lot is full"), React.createElement("li", null, "· Programs by your dates: ranger walks, Junior Ranger, tours, star parties. Synced online, readable offline"), React.createElement("li", null, "· A planning calendar that lays out each day, drive times included, and saves the trip to your calendar as a file, no signal needed"), React.createElement("li", null, "· Know-before-you-go essentials, a night-before checklist, and a packing list you check off in-app"), React.createElement("li", null, "· Search across everything"), React.createElement("li", null, "· The Secret Guide: unsigned turnouts, hidden stops, and secret spots, included"))), React.createElement("div", {
     style: {
       borderTop: "1px solid var(--rule)",
       marginTop: 24,
@@ -809,7 +809,7 @@ var OUTCOMES = [{
   proof: "Swaps printed on the flagship stops · 9 ready-made day plans"
 }, {
   kicker: "Navigate when service disappears",
-  body: "One tap downloads the whole guide: every entry, the photos on file, all 57 hike tracks, and a topographic map of the park with every stop pinned. A few stops still show a coming-soon tile. Service dies past the tunnel and on most of Tioga Road. The guide is built for exactly that.",
+  body: "One tap downloads the whole guide: every entry, the photos on file, all 57 hike tracks, and a topographic map of the park with every stop pinned. A few entries still show a stand-in photo rather than the place itself. Service dies past the tunnel and on most of Tioga Road. The guide is built for exactly that.",
   proof: "About 50 MB all-in. The map is about 20 MB of it"
 }, {
   kicker: "Build each day in driving order",
@@ -981,11 +981,11 @@ function GuideOfflineDemo() {
     className: "guide-offline__cols"
   }, React.createElement("div", null, React.createElement("div", {
     className: "eyebrow"
-  }, "Works with zero bars"), React.createElement("ul", null, React.createElement("li", null, "· All 81 entries, with photos on file for most stops"), React.createElement("li", null, "· All 57 hikes with tracks and elevation profiles"), React.createElement("li", null, "· The topographic park map, every stop pinned"), React.createElement("li", null, "· The trip board, the day view, and calendar export"), React.createElement("li", null, "· Checklists, essentials, search, the Secret Guide"))), React.createElement("div", null, React.createElement("div", {
+  }, "Works with zero bars"), React.createElement("ul", null, React.createElement("li", null, "· All 81 entries, each with a photo (some are stand-ins)"), React.createElement("li", null, "· All 57 hikes with tracks and elevation profiles"), React.createElement("li", null, "· The topographic park map, every stop pinned"), React.createElement("li", null, "· The trip board, the day view, and calendar export"), React.createElement("li", null, "· Checklists, essentials, search, the Secret Guide"))), React.createElement("div", null, React.createElement("div", {
     className: "eyebrow"
   }, "Needs signal"), React.createElement("ul", null, React.createElement("li", null, "· The live park webcams"), React.createElement("li", null, "· Entrance waits right now"), React.createElement("li", null, "· Fresh weather and program updates (the last sync stays readable)"), React.createElement("li", null, "· The Nature Notes archive links back to this site")))), React.createElement("p", {
     className: "guide-offline__fineprint"
-  }, "The full download is about 50 MB: the park map is roughly 20 MB of it, about 700 topographic tiles covering the whole park and the road corridors."));
+  }, "The full download is about 70 MB: the park map is roughly 20 MB of it, about 700 topographic tiles covering the whole park and the road corridors."));
 }
 function GuideCompare({
   go
@@ -1005,7 +1005,7 @@ function GuideCompare({
     scope: "col"
   }, "Free on this site"), React.createElement("th", {
     scope: "col"
-  }, "In the Field Guide"))), React.createElement("tbody", null, React.createElement("tr", null, React.createElement("td", null, freeLink("/articles", "articles", "Articles"), " and ", freeLink("/planning", "planning", "planning guides")), React.createElement("td", null, "The complete stop library: 81 entries across four regions")), React.createElement("tr", null, React.createElement("td", null, freeLink("/now", "now", "Current conditions")), React.createElement("td", null, "The whole guide offline, about 50 MB, no bars needed")), React.createElement("tr", null, React.createElement("td", null, freeLink("/itineraries", "itineraries", "Selected itineraries")), React.createElement("td", null, "All 57 day hikes and the 37-entry Secret Guide")), React.createElement("tr", null, React.createElement("td", null, "The ", freeLink("/map", "map", "basic trip map")), React.createElement("td", null, "The full trip builder: drag-and-drop days, drive buffers, calendar export")), React.createElement("tr", null, React.createElement("td", null, "The ", freeLink("/newsletter", "newsletter", "Sunday newsletter")), React.createElement("td", null, "18 months of silent updates as the season changes")))));
+  }, "In the Field Guide"))), React.createElement("tbody", null, React.createElement("tr", null, React.createElement("td", null, freeLink("/articles", "articles", "Articles"), " and ", freeLink("/planning", "planning", "planning guides")), React.createElement("td", null, "The complete stop library: 81 entries across four regions")), React.createElement("tr", null, React.createElement("td", null, freeLink("/now", "now", "Current conditions")), React.createElement("td", null, "The whole guide offline, about 70 MB, no bars needed")), React.createElement("tr", null, React.createElement("td", null, freeLink("/itineraries", "itineraries", "Selected itineraries")), React.createElement("td", null, "All 57 day hikes and the 37-entry Secret Guide")), React.createElement("tr", null, React.createElement("td", null, "The ", freeLink("/map", "map", "basic trip map")), React.createElement("td", null, "The full trip builder: drag-and-drop days, drive buffers, calendar export")), React.createElement("tr", null, React.createElement("td", null, "The ", freeLink("/newsletter", "newsletter", "Sunday newsletter")), React.createElement("td", null, "18 months of silent updates as the season changes")))));
 }
 function GuideTrust() {
   return React.createElement("div", {
@@ -1037,7 +1037,7 @@ function GuideAfterPurchase({
 }
 var GUIDE_FAQ = [{
   q: "Does it really work with no cell service?",
-  a: "Yes. One tap downloads the whole guide, about 50 MB: every entry, the photos on file, all 57 hike tracks, and a topographic map of the park. A few stops still show a coming-soon tile. Only the live extras need signal: webcams, entrance waits, and fresh weather and program updates."
+  a: "Yes. One tap downloads the whole guide, about 70 MB: every entry, the photos on file, all 57 hike tracks, and a topographic map of the park. A few entries still show a stand-in photo rather than the place itself. Only the live extras need signal: webcams, entrance waits, and fresh weather and program updates."
 }, {
   q: "Is it an App Store app?",
   a: "No. It is a web app you add to your home screen in one step, on iPhone or Android. No store account, no install wait, no version to manage. Once it is there it looks and behaves like a native app."
