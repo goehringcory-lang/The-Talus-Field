@@ -21,6 +21,11 @@ var SEARCH_PAGES = [{
   dek: "The full planning sequence: reservations, permits, timing, transit, lodging, and what to do when the thing you wanted is booked.",
   kind: "Page"
 }, {
+  route: "start-here",
+  title: "Start here",
+  dek: "The first-trip questions answered plainly: reservations, when to go, how many days, where to stay, which entrance, and permits, each linking its full guide.",
+  kind: "Page"
+}, {
   route: "itineraries",
   title: "Itineraries",
   dek: "Half-day, one-day, two-day, and three-day plans in drive order, each one openable in the trip map.",

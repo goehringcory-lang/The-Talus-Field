@@ -334,7 +334,21 @@ function HomePage({
     className: "home-answer__q"
   }, START_HERE_QUESTIONS[a.slug]), React.createElement("span", {
     className: "home-answer__title"
-  }, a.title))))), React.createElement("div", {
+  }, a.title)))), React.createElement("a", {
+    className: "mono home-section__more",
+    href: "/start-here",
+    style: {
+      display: "inline-block",
+      marginTop: 14
+    },
+    onClick: e => {
+      e.preventDefault();
+      if (window.track) window.track("cta_click", {
+        location: "home_start_here"
+      });
+      go("start-here");
+    }
+  }, "Every first-trip question, answered →")), React.createElement("div", {
     className: "home-latest"
   }, React.createElement(DeferredSection, {
     minHeight: 560,

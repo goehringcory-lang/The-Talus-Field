@@ -29,7 +29,7 @@ const STATIC_ROUTE_KEYS = new Set([
   "advertise", "newsletter", "contact", "privacy", "terms", "affiliate",
   "guide", "map", "films", "itineraries", "conditions", "now", "firefall", "stay",
   "consult", "widget", "partners", "search", "tioga-opening", "half-dome-lottery",
-  "explore", "distances", "webcams",
+  "explore", "distances", "webcams", "start-here",
 ]);
 
 function pathToRoute(pathname) {
@@ -119,6 +119,7 @@ const PAGE_MODULES = {
   "half-dome-lottery": { scripts: ["/dist/page-half-dome-lottery.js"], globals: ["HalfDomeLotteryPage"] },
   distances: { scripts: ["/dist/page-distances.js"], globals: ["DistancesPage"] },
   webcams: { scripts: ["/dist/page-webcams.js"], globals: ["WebcamsPage"] },
+  "start-here": { scripts: ["/dist/page-start-here.js"], globals: ["StartHerePage"] },
 };
 
 function routeModule(route) {
@@ -199,9 +200,13 @@ function prefetchAllModules() {
 }
 
 // Map old hash URLs (#a:slug, #cat:slug, #foo) to the new route keys. Only
-// hashes that name a real route are rewritten: the home shell ships real
-// in-page anchors on / (e.g. #start-here), and rewriting one of those turned
-// the homepage's own hero CTA into a 404 on reload.
+// hashes that name a real route are rewritten: rewriting a real in-page
+// anchor on / once turned the homepage's own hero CTA into a 404 on reload.
+// Since August 2026 "start-here" IS a route key, so /#start-here (old shared
+// links to the homepage block) now lands on the /start-here hub page, which
+// answers the same question. The homepage block keeps id="start-here" for
+// in-page scrolling only; do not link that anchor from anywhere while the
+// route exists, because a Back through the hash entry re-routes.
 function legacyHashToRoute(hash) {
   if (!hash) return null;
   const h = hash.replace(/^#+/, "");
@@ -782,6 +787,13 @@ function buildSeo(route) {
       ogType: "website",
       breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Webcams", null]],
     },
+    "start-here": {
+      title: `Start Here — planning your first Yosemite trip — ${SITE_NAME}`,
+      description:
+        "The questions every first-time Yosemite visitor asks, answered plainly by a park naturalist: reservations, when to go, how many days, where to stay, which entrance, and permits.",
+      ogType: "website",
+      breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Start here", null]],
+    },
     distances: {
       title: `Yosemite Drive Times — every gateway town, in one table — ${SITE_NAME}`,
       description:
@@ -1194,6 +1206,9 @@ function App() {
   } else if (route === "distances") {
     page = <window.DistancesPage go={go} />;
     currentNav = "distances";
+  } else if (route === "start-here") {
+    page = <window.StartHerePage go={go} />;
+    currentNav = "start-here";
   } else if (route === "firefall") {
     page = <window.FirefallPage go={go} />;
     currentNav = "firefall";

@@ -318,6 +318,7 @@ function buildSitemap(merged, categories) {
     ["/half-dome-lottery", "2026-07-21"],
     ["/distances", "2026-08-25"],
     ["/webcams", "2026-08-25"],
+    ["/start-here", "2026-08-30"],
     ["/consult", "2026-07-15"],
     ["/widget", "2026-07-15"],
     ["/partners", "2026-07-30"],

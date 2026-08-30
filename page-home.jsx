@@ -459,6 +459,19 @@ function HomePage({ go }) {
                   </a>
                 ))}
               </div>
+              {/* The full question set lives at /start-here (August 2026 SEO
+                  pass): the block here stays the four-question funnel, the
+                  page holds the rest and is the indexable URL for it. */}
+              <a
+                className="mono home-section__more"
+                href="/start-here"
+                style={{ display: "inline-block", marginTop: 14 }}
+                onClick={(e) => {
+                  e.preventDefault();
+                  if (window.track) window.track("cta_click", { location: "home_start_here" });
+                  go("start-here");
+                }}
+              >Every first-trip question, answered →</a>
             </div>
           )}
 

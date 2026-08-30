@@ -52,6 +52,7 @@ export const STATIC_ROUTES = [
   "/half-dome-lottery",
   "/distances",
   "/webcams",
+  "/start-here",
   "/consult",
   "/widget",
   "/partners",

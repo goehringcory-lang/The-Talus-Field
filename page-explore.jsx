@@ -117,6 +117,11 @@ function ExplorePage({ go }) {
       note: "Every vista, trailhead, parking turnout, and meal in the park as a filterable pin. Tap to assemble a trip, share it as a link, or email it to yourself. Free; one newsletter signup opens it.",
     },
     {
+      route: "start-here",
+      name: "Start here",
+      note: "The first-trip questions answered plainly, reservations, timing, trip length, lodging, entrances, permits, each one linking the full guide behind it.",
+    },
+    {
       route: "itineraries",
       name: "Itineraries",
       note: "Half-day, one-day, two-day, and three-day plans in drive order, each one openable in the map as a working trip.",

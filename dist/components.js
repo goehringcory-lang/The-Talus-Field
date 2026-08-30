@@ -341,6 +341,10 @@ var NAV_GROUPS = [{
   columns: [{
     heading: "Before you book",
     links: [{
+      key: "start-here",
+      label: "Start here",
+      note: "Your first trip, the questions in order"
+    }, {
       key: "planning",
       label: "The Planning Guide",
       note: "The whole archive, in trip order"
@@ -907,7 +911,7 @@ function Footer({
     }
   }, c.label))), link("now", "The Park Bulletin"), link("films", "Films"), React.createElement("li", null, React.createElement("a", {
     href: "/archive/"
-  }, "Nature Notes archive")))), React.createElement("div", null, React.createElement("h4", null, "Plan"), React.createElement("ul", null, link("planning", "The Planning Guide"), link("map", "The Map"), link("itineraries", "Itineraries"), link("distances", "Drive times"), link("webcams", "Webcams"), link("stay", "Where to stay"), link("conditions", "Conditions"), link("checklist", "First-week checklist"), link("kit", "Kit"), link("guide", "The Field Guide"))), React.createElement("div", null, React.createElement("h4", null, "The journal"), React.createElement("ul", null, link("about", "About"), link("newsletter", "Newsletter"), link("contact", "Contact"), link("search", "Search"), link("places", "Directory")))), React.createElement("div", {
+  }, "Nature Notes archive")))), React.createElement("div", null, React.createElement("h4", null, "Plan"), React.createElement("ul", null, link("start-here", "Start here"), link("planning", "The Planning Guide"), link("map", "The Map"), link("itineraries", "Itineraries"), link("distances", "Drive times"), link("webcams", "Webcams"), link("stay", "Where to stay"), link("conditions", "Conditions"), link("checklist", "First-week checklist"), link("kit", "Kit"), link("guide", "The Field Guide"))), React.createElement("div", null, React.createElement("h4", null, "The journal"), React.createElement("ul", null, link("about", "About"), link("newsletter", "Newsletter"), link("contact", "Contact"), link("search", "Search"), link("places", "Directory")))), React.createElement("div", {
     className: "site-footer__disclosure"
   }, "Some links on this site are affiliate links. If you book or buy through one, The Talus Field may earn a small commission at no extra cost to you. ", React.createElement("a", {
     href: "/affiliate",
@@ -1155,6 +1159,25 @@ var KEEP_GOING = {
       key: "map",
       label: "The trip map",
       note: "Where the views actually are"
+    }]
+  },
+  "start-here": {
+    links: [{
+      key: "planning",
+      label: "The Planning Guide",
+      note: "Five answers in, a plan out"
+    }, {
+      key: "stay",
+      label: "Where to stay",
+      note: "The first decision with a deadline"
+    }, {
+      key: "itineraries",
+      label: "Itineraries",
+      note: "Half-day to three-day plans, in drive order"
+    }, {
+      key: "conditions",
+      label: "Conditions",
+      note: "What is open on your dates"
     }]
   },
   distances: {
