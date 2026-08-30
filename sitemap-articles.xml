@@ -5,7 +5,7 @@
   <!-- Hub pages -->
   <url>
     <loc>https://thetalusfieldjournal.com/</loc>
-    <lastmod>2026-08-28</lastmod>
+    <lastmod>2026-08-30</lastmod>
     <image:image>
       <image:loc>https://thetalusfieldjournal.com/img/responsive/half-dome-winter-storm-1600.jpg</image:loc>
       <image:title>Half Dome in a clearing winter storm</image:title>
@@ -13,11 +13,11 @@
   </url>
   <url>
     <loc>https://thetalusfieldjournal.com/articles</loc>
-    <lastmod>2026-08-28</lastmod>
+    <lastmod>2026-08-30</lastmod>
   </url>
   <url>
     <loc>https://thetalusfieldjournal.com/planning</loc>
-    <lastmod>2026-08-28</lastmod>
+    <lastmod>2026-08-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -31,7 +31,7 @@
   <!-- Sections -->
   <url>
     <loc>https://thetalusfieldjournal.com/section/planning</loc>
-    <lastmod>2026-08-28</lastmod>
+    <lastmod>2026-08-30</lastmod>
   </url>
   <url>
     <loc>https://thetalusfieldjournal.com/section/trails</loc>
@@ -639,7 +639,7 @@
   </url>
   <url>
     <loc>https://thetalusfieldjournal.com/articles/yosemite-gateway-towns-compared</loc>
-    <lastmod>2026-08-25</lastmod>
+    <lastmod>2026-08-30</lastmod>
     <image:image>
       <image:loc>https://thetalusfieldjournal.com/img/responsive/lookout-point-1600.jpg</image:loc>
       <image:title>Looking down the Hetch Hetchy canyon from Lookout Point</image:title>
