@@ -452,6 +452,13 @@ const HUB_PROSE = {
       "<p>Other legs the Valley table does not answer: Oakhurst to the South Entrance is about 14 miles and 20 to 25 minutes, with the Mariposa Grove welcome plaza immediately inside the gate and Wawona six miles further on; Groveland to the Big Oak Flat Entrance is about 24 miles and 30 to 40 minutes on a winding road; Lee Vining to Tuolumne Meadows is about 20 miles and 30 minutes while Tioga Pass is open. Oakhurst is the longest drive to the Valley of the four year-round towns and the shortest to the sequoias by a wide margin.</p>" +
         "<p>Times are to the west end of Yosemite Valley in ordinary conditions; add 15 to 20 minutes for Curry Village at the east end, and more for summer afternoons. Season changes the answer more than distance does, and entrance queues on a peak morning can add half an hour no mileage predicts. Full comparison: <a href=\"/articles/yosemite-gateway-towns-compared\">the gateway towns guide</a>. Live waits: <a href=\"/conditions\">the conditions page</a>.</p>"
     ),
+  "/start-here": () =>
+    hubProse(
+      "Planning Your First Trip to Yosemite? Start Here",
+      "The questions every first-time visitor asks, answered plainly. There is no entry reservation in 2026: you pay at the gate and drive in, and what rations a visit now is parking and entrance lines, solved by arriving early. International visitors pay a $100 per-person surcharge as of January 1, 2026. The best remaining window this year is midweek September 8 to 30, with midweek October nearly as good; in summer, come midweek and be through the gate before 7:30 a.m. One deliberate day is enough, two adds room to breathe, and the third day is the first one that does not need defending.",
+      `<p>Where to stay: inside the park if you can get a bed (one operator, one inventory, opening 366 days ahead), otherwise a gateway town. El Portal is closest at 25 to 35 minutes from the Valley; Mariposa, at 45 to 60 minutes, is the safest first-timer's pick. The full comparison: <a href="/articles/yosemite-gateway-towns-compared">the gateway towns guide</a>, <a href="/stay">the where-to-stay page</a>, and <a href="/distances">every drive time in one table</a>.</p>` +
+        `<p>Permits: day hiking needs none, with one exception covered by <a href="/half-dome-lottery">the Half Dome lottery</a>; what you can still get holding nothing is in <a href="/articles/yosemite-walk-up-and-day-of-permits">the walk-up permits guide</a>. The strategy for the trip itself: <a href="/articles/first-time-yosemite-overwhelm">the first-timer's guide</a>, <a href="/articles/yosemite-in-one-or-two-days">one or two days</a>, <a href="/articles/yosemite-in-three-to-five-days">three to five days</a>, <a href="/articles/when-to-visit-yosemite-2026-crowd-forecast">the 2026 crowd forecast</a>, and <a href="/articles/getting-to-yosemite">which of the five entrances to use</a>. When the dates are set, the trip selector on <a href="/planning">the Planning Guide</a> turns your answers into a plan.</p>`
+    ),
   "/half-dome-lottery": () =>
     hubProse(
       "The Half Dome Lottery",
@@ -1063,6 +1070,39 @@ function seoForPath(pathname, searchParams) {
         {
           q: "How long does it take to drive across Yosemite?",
           a: "Longer than the map suggests. Yosemite Valley to Glacier Point is roughly an hour when that road is open, the Valley to Tuolumne Meadows is about an hour and a half, and Hetch Hetchy is a dead end serving no through route. A day that crosses the park is a driving day.",
+        },
+      ],
+    },
+    "/start-here": {
+      title: `Start Here — planning your first Yosemite trip — ${SITE_NAME}`,
+      description:
+        "The questions every first-time Yosemite visitor asks, answered plainly by a park naturalist: reservations, when to go, how many days, where to stay, which entrance, and permits.",
+      breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Start here", null]],
+      // Edge-only FAQ for the first-trip question set. Every answer is quoted
+      // from the published body of the article the page's matching section
+      // links (the no-reservations guide, the crowd forecast, the trip-length
+      // pair, the gateway towns guide, the walk-up permits guide). Change the
+      // article first, then this copy and the page together.
+      faq: [
+        {
+          q: "Do you need a reservation to visit Yosemite in 2026?",
+          a: "No. There is no day-use or peak-hours entry reservation for 2026; the timed-entry systems that ran from 2020 through 2025 are gone. You pay at the gate and drive in. What rations a visit now is parking and entrance lines, solved by arriving early. As of January 1, 2026, international visitors pay a $100 surcharge per person age 16 and older on top of the standard entrance fee.",
+        },
+        {
+          q: "When is the best time for a first trip to Yosemite?",
+          a: "Tuesday through Thursday, September 8 to 30, is the best all-around window left in 2026: summer conditions, the full park open, and crowd pressure down a third from July. Midweek October is nearly as good, with fall color in the Valley by the back half of the month. If summer is what you have, come midweek and be through the gate before 7:30 a.m. Avoid July 3 to 5, summer Saturdays arriving after 8:30 a.m., and Labor Day weekend.",
+        },
+        {
+          q: "How many days do you need in Yosemite?",
+          a: "One day is enough if you arrive at sunrise and do three things well. Two days is the same trip with room to breathe and one earned view from above the Valley floor. The third day is the first one you do not have to defend: nothing on it is your only chance, so the trip can absorb weather and wrong turns.",
+        },
+        {
+          q: "Where should a first-time visitor stay?",
+          a: "Inside the park if you can get a bed, because the park is at its best in the first two hours and last two hours of the day; in-park lodging opens 366 days ahead. Outside it, El Portal is the closest gateway town at 25 to 35 minutes from the Valley, and Mariposa, at 45 to 60 minutes, is the safest first-timer's pick and the most full-service.",
+        },
+        {
+          q: "Do you need permits to hike in Yosemite?",
+          a: "Not for day hiking, with exactly one exception: Half Dome, which has its own lottery. Every other trail is open to a day hiker without a permit, ranger programs are free with no reservation, and none of the big set pieces, the Mariposa Grove, Glacier Point, Tunnel View, the waterfalls, is ticketed.",
         },
       ],
     },

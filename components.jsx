@@ -365,6 +365,7 @@ const NAV_GROUPS = [
       {
         heading: "Before you book",
         links: [
+          { key: "start-here", label: "Start here", note: "Your first trip, the questions in order" },
           { key: "planning", label: "The Planning Guide", note: "The whole archive, in trip order" },
           { key: "stay", label: "Where to stay", note: "In-park lodging and the gateway towns" },
           { key: "itineraries", label: "Itineraries", note: "Half-day to three-day plans, in drive order" },
@@ -872,6 +873,7 @@ function Footer({ go }) {
           <div>
             <h4>Plan</h4>
             <ul>
+              {link("start-here", "Start here")}
               {link("planning", "The Planning Guide")}
               {link("map", "The Map")}
               {link("itineraries", "Itineraries")}
@@ -1025,6 +1027,12 @@ const KEEP_GOING = {
     { key: "now", label: "The Park Bulletin", note: "What the park says about this week" },
     { key: "tioga-opening", label: "Tioga Road opening", note: "The view the cameras do not cover" },
     { key: "map", label: "The trip map", note: "Where the views actually are" },
+  ] },
+  "start-here": { links: [
+    { key: "planning", label: "The Planning Guide", note: "Five answers in, a plan out" },
+    { key: "stay", label: "Where to stay", note: "The first decision with a deadline" },
+    { key: "itineraries", label: "Itineraries", note: "Half-day to three-day plans, in drive order" },
+    { key: "conditions", label: "Conditions", note: "What is open on your dates" },
   ] },
   distances: { links: [
     { key: "stay", label: "Where to stay", note: "The beds at the end of each drive" },

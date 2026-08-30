@@ -33,6 +33,7 @@ const SEARCH_PAGES = [
   { route: "explore", title: "Site index", dek: "Every destination on The Talus Field on one page, grouped and described: sections, the archive, the films, the trip tools, and the Field Guide.", kind: "Page" },
   { route: "now", title: "The Park Bulletin", dek: "Everything happening in the park right now: alerts, road and area status, free programs, dated events, trail status, hours, transit, phone numbers.", kind: "Page" },
   { route: "planning", title: "The Yosemite Planning Guide", dek: "The full planning sequence: reservations, permits, timing, transit, lodging, and what to do when the thing you wanted is booked.", kind: "Page" },
+  { route: "start-here", title: "Start here", dek: "The first-trip questions answered plainly: reservations, when to go, how many days, where to stay, which entrance, and permits, each linking its full guide.", kind: "Page" },
   { route: "itineraries", title: "Itineraries", dek: "Half-day, one-day, two-day, and three-day plans in drive order, each one openable in the trip map.", kind: "Page" },
   { route: "conditions", title: "Conditions", dek: "Live webcams, entrance waits, and the three forecasts that matter, on one page.", kind: "Page" },
   { route: "stay", title: "Where to stay", dek: "In-park lodging and the gateway towns compared: drive times, booking windows, and what to do when the thing you wanted is full.", kind: "Page" },

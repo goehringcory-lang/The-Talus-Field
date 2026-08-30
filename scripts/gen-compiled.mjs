@@ -74,6 +74,7 @@ const PAGE_FILES = [
   "page-half-dome-lottery.jsx",
   "page-distances.jsx",
   "page-webcams.jsx",
+  "page-start-here.jsx",
   "page-consult.jsx",
   "page-widget.jsx",
   "page-partners.jsx",
