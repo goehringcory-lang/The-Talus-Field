@@ -28,9 +28,9 @@ where the system stops and persists.
 | Intel executor — run approved decisions | Wed + Sat, ~7am | `.claude/skills/intel-execute/SKILL.md` |
 
 The offset is deliberate: each brief lands with an evening for you to review
-before the next executor run. The days avoid the three existing Routines
-(Monday trend article, Sunday site sweep, monthly edition article on the
-25th).
+before the next executor run. The days avoid the other standing Routines
+(Monday trend article, Thursday bulletin edition turn, Sunday site sweep,
+monthly edition article on the 25th).
 
 ## How to approve
 

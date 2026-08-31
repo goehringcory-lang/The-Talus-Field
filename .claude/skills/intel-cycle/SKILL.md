@@ -19,7 +19,7 @@ empty cycle posts no issue at all, only a completion summary saying so.
 
 ## Territory (do not duplicate the other Routines)
 
-Three Routines already exist and own their lanes:
+Four Routines already exist and own their lanes:
 
 - **Weekly trend article** (Mondays) owns "one new article from the week's
   search trends". If this cycle surfaces a pure article topic driven by search
@@ -27,6 +27,10 @@ Three Routines already exist and own their lanes:
   if the topic is strong and untaken, it is still fine to brief it, but say in
   the option that the Monday routine may pick it up and let the owner decide.
 - **Monthly edition article** (25th) owns the "Yosemite in <Month>" pieces.
+- **Bulletin edition turn** (Thursdays) owns rewriting `bulletin.json` and
+  the programs feed when a new NPS Yosemite Guide edition publishes. A
+  bulletin-worthy change *mid-edition* (a sudden closure, a new alert) is
+  still this brief's lane; the ~5-weekly edition rollover is not.
 - **Weekly site sweep** (Sundays) owns site health. Broken links, stale
   mirrors, and check failures are its territory, not this brief's.
 

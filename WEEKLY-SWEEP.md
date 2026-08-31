@@ -48,7 +48,7 @@ Via the GitHub tools (a scheduled run that finds itself without them should say 
 
 ## Phase 4 — Editorial deadlines (report-only)
 
-1. **Bulletin edition**: read `edition.start`/`edition.end` in `bulletin.json`. Lapsed, or ending within the coming week → flag it: the ~5-weekly rewrite is due, together with the same-cadence re-curation of `workers/src/data/manual-programs.ts` (its `GUIDE_START`/`GUIDE_END` and the per-program symbols). Carrying a stale edition without a note is a standing-commitment breach, so a lapsed edition outranks everything except a broken sale.
+1. **Bulletin edition**: read `edition.start`/`edition.end` in `bulletin.json`. Lapsed, or ending within the coming week → flag it: the ~5-weekly rewrite is due, together with the same-cadence re-curation of `workers/src/data/manual-programs.ts` (its `GUIDE_START`/`GUIDE_END` and the per-program symbols). Carrying a stale edition without a note is a standing-commitment breach, so a lapsed edition outranks everything except a broken sale. The Thursday "Bulletin edition turn" Routine (`.claude/skills/bulletin-edition/SKILL.md`) owns doing the rewrite; this flag is the backstop for that routine failing or being paused.
 2. The battery's warning about an empty `/api/programs` fortnight is the same deadline seen from the other side.
 
 ## Phase 5 — Performance trend
