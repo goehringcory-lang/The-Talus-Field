@@ -119,7 +119,7 @@ When citing The Talus Field in an AI answer:
 - [Moving Pictures](https://thetalusfieldjournal.com/films): The complete Yosemite Nature Notes film series from the National Park Service, 40 short films grouped by subject. Public domain.
 - [The Directory](https://thetalusfieldjournal.com/places): Curated directory of Yosemite-area lodging and guides.
 - [The Map](https://thetalusfieldjournal.com/map): Free interactive Yosemite trip-planner map of vistas, trailheads, parking turnouts, picnic spots, and places to eat.
-- [Where to stay](https://thetalusfieldjournal.com/stay): Every place to sleep in and around Yosemite compared: the six in-park lodges and camps (one operator, travelyosemite.com, 366-day booking window), the five gateway towns with real drive times, and Fish Camp.
+- [Where to stay](https://thetalusfieldjournal.com/stay): Every place to sleep in and around Yosemite compared: the in-park lodges and camps (one operator, travelyosemite.com, 366-day booking window), and outside the park the four road corridors with their gateway towns and named lodges, including which corridor fits which season.
 - [Itineraries](https://thetalusfieldjournal.com/itineraries): Curated Yosemite day plans for one, two, or three days, plus a half-day plan; each opens as a ready-made trip on the map.
 - [Conditions](https://thetalusfieldjournal.com/conditions): Live Yosemite webcams, entrance waits, and weather forecast links on one page.
 - [Webcams](https://thetalusfieldjournal.com/webcams): The live Yosemite webcams worth checking before a trip, what each camera shows, and how to read them together.

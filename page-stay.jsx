@@ -4,7 +4,7 @@
 // WHERE TO STAY — `/stay` route. The standing lodging section (the deep
 // explainers stay in the articles; this page is the board you scan).
 //
-// Three rules this page is built on, all of them load-bearing:
+// Four rules this page is built on, all of them load-bearing:
 //
 // 1. NOTHING HERE NAMES A YEAR OR PRINTS A RATE. Same discipline as /firefall
 //    and /tioga-opening: a page that quotes "$X a night in 2026" is stale the
@@ -28,10 +28,28 @@
 //    from a room. Everything used is public domain, an open license, or house
 //    photography, credited on the card the way data.js credits article art.
 //
+// 4. THE NAMED PROPERTY ROWS SEARCH THE TOWN, NEVER THE PROPERTY. The
+//    published promise on /affiliate is that "availability links search a
+//    town or area, never a named property", because a property ID goes stale
+//    silently while a destination search answers the only question the reader
+//    has: what is actually left on these dates. So a row can name Rush Creek
+//    Lodge and still send you to the Groveland search, and the lead-in above
+//    each list says so out loud rather than letting the link imply otherwise.
+//    The rows are also descriptive, not endorsements: what the place is and
+//    where it sits, which is what the gateway article supports.
+//
 // Facts are mirrored from the published bodies (where-to-stay-in-yosemite,
 // yosemite-gateway-towns-compared, yosemite-camping-complete-guide) so this
 // page cannot drift from the articles it summarizes. That includes the Wawona
-// Hotel closure, which is why that card carries no booking link at all.
+// Hotel closure, which is why that card carries no booking link at all, and
+// the named properties in the corridor lists, which were added to the gateway
+// article first precisely so this page would have something to mirror.
+//
+// The page is organized by ROAD CORRIDOR rather than by town, because the
+// corridor is the decision: it sets the drive, and it is the thing the season
+// acts on. Highway 140 stays open and low when the others take snow; Highway
+// 120 is the only corridor with the Valley, Hetch Hetchy, and Tuolumne
+// Meadows all in reach, and only while Tioga Road is open.
 // =============================================================================
 
 const TRAVEL_YOSEMITE = "https://www.travelyosemite.com/lodging/";
@@ -41,6 +59,7 @@ const TRAVEL_YOSEMITE = "https://www.travelyosemite.com/lodging/";
 const IN_PARK = [
   {
     id: "ahwahnee",
+    more: "/articles/where-to-stay-in-yosemite#sec-0-the-ahwahnee-the-splurge-and-when-it-ear",
     name: "The Ahwahnee",
     kind: "Hotel · Yosemite Valley · year-round",
     price: "The most expensive bed in the park, several times the Lodge rate",
@@ -53,6 +72,7 @@ const IN_PARK = [
   },
   {
     id: "valley-lodge",
+    more: "/articles/where-to-stay-in-yosemite#sec-1-yosemite-valley-lodge-the-location-is-th",
     name: "Yosemite Valley Lodge",
     kind: "Hotel · Yosemite Valley · year-round",
     price: "Mid-range, and the best value-to-location ratio in the park",
@@ -63,6 +83,7 @@ const IN_PARK = [
   },
   {
     id: "curry-village",
+    more: "/articles/where-to-stay-in-yosemite#sec-2-curry-village-canvas-bear-boxes-and-prox",
     name: "Curry Village",
     kind: "Tent cabins and cabins · Yosemite Valley · reduced in winter",
     price: "The cheapest roofed beds in Yosemite Valley",
@@ -75,6 +96,7 @@ const IN_PARK = [
   },
   {
     id: "housekeeping-camp",
+    more: "/articles/where-to-stay-in-yosemite#sec-3-housekeeping-camp-the-sleeper-pick",
     name: "Housekeeping Camp",
     kind: "Open-air units · Yosemite Valley · summer season",
     price: "Camping economics with a real bed",
@@ -84,6 +106,7 @@ const IN_PARK = [
   },
   {
     id: "white-wolf",
+    more: "/articles/where-to-stay-in-yosemite#sec-4-the-high-country-white-wolf-and-tuolumne",
     name: "White Wolf Lodge",
     kind: "Tent cabins · Tioga Road, 8,000 ft · summer only",
     price: "Modest, and hard to book for reasons of scarcity rather than price",
@@ -92,6 +115,7 @@ const IN_PARK = [
   },
   {
     id: "tuolumne-lodge",
+    more: "/articles/where-to-stay-in-yosemite#sec-4-the-high-country-white-wolf-and-tuolumne",
     name: "Tuolumne Meadows Lodge",
     kind: "Tent cabins · Tuolumne Meadows, 8,700 ft · summer only",
     price: "Modest, when it operates at all",
@@ -103,6 +127,7 @@ const IN_PARK = [
   },
   {
     id: "wawona-hotel",
+    more: "/articles/yosemite-gateway-towns-compared#sec-3-oakhurst",
     name: "The Wawona Hotel",
     kind: "Historic hotel · Highway 41, near the South Entrance",
     price: "Not bookable",
@@ -120,6 +145,7 @@ const IN_PARK = [
 const GATEWAYS = [
   {
     id: "el-portal",
+    article: "/articles/yosemite-gateway-towns-compared#sec-1-el-portal",
     name: "El Portal",
     dest: "El Portal, California",
     drive: "25 to 35 minutes to the Valley",
@@ -133,6 +159,7 @@ const GATEWAYS = [
   },
   {
     id: "mariposa",
+    article: "/articles/yosemite-gateway-towns-compared#sec-2-mariposa",
     name: "Mariposa",
     dest: "Mariposa, California",
     drive: "45 minutes to an hour to the Valley",
@@ -143,6 +170,7 @@ const GATEWAYS = [
   },
   {
     id: "groveland",
+    article: "/articles/yosemite-gateway-towns-compared#sec-4-groveland",
     name: "Groveland",
     dest: "Groveland, California",
     drive: "65 to 80 minutes to the Valley",
@@ -153,6 +181,7 @@ const GATEWAYS = [
   },
   {
     id: "oakhurst",
+    article: "/articles/yosemite-gateway-towns-compared#sec-3-oakhurst",
     name: "Oakhurst",
     dest: "Oakhurst, California",
     drive: "75 to 90 minutes to the Valley, 20 minutes to the Mariposa Grove",
@@ -163,6 +192,7 @@ const GATEWAYS = [
   },
   {
     id: "fish-camp",
+    article: "/articles/yosemite-gateway-towns-compared#sec-3-oakhurst",
     name: "Fish Camp",
     dest: "Fish Camp, California",
     drive: "About 2 miles to the South Entrance",
@@ -176,6 +206,7 @@ const GATEWAYS = [
   },
   {
     id: "lee-vining",
+    article: "/articles/yosemite-gateway-towns-compared#sec-5-lee-vining",
     name: "Lee Vining",
     dest: "Lee Vining, California",
     drive: "90 minutes minimum to the Valley, 30 to Tuolumne Meadows",
@@ -186,6 +217,157 @@ const GATEWAYS = [
     body: "The only east-side gateway, and a different kind of trip rather than a substitute for the western towns. A tiny Highway 395 town next to Mono Lake, with limited lodging, limited dining, and the famously good deli at the Mobil station.",
     who: "The high country, Mono Lake, and anyone combining Yosemite with the eastern Sierra, Mammoth, or Death Valley.",
     against: "Reachable from the park only while Tioga Pass is open. In winter the detour around the south end of the Sierra is roughly six hours.",
+  },
+];
+
+// The four road corridors, in the order a reader meets them coming from the
+// west. `towns` are GATEWAYS ids; the intro is the corridor's seasonal verdict
+// and is the reason this page is grouped this way at all. Every claim in an
+// intro is published in yosemite-in-winter or the gateway article.
+const CORRIDORS = [
+  {
+    id: "corridor-140",
+    name: "Highway 140 · the Merced canyon",
+    kicker: "Arch Rock entrance · open year-round",
+    verdict: "The all-season corridor, and the winter answer",
+    towns: ["el-portal", "mariposa"],
+    props: ["yosemite-view-lodge", "cedar-lodge", "autocamp-yosemite", "yosemite-bug"],
+  },
+  {
+    id: "corridor-120",
+    name: "Highway 120 west · Big Oak Flat",
+    kicker: "Big Oak Flat entrance · open year-round, chains common in winter",
+    verdict: "The summer answer, and the only base that reaches all three parks",
+    towns: ["groveland"],
+    props: ["rush-creek-lodge", "evergreen-lodge", "firefall-ranch", "groveland-hotel"],
+  },
+  {
+    id: "corridor-41",
+    name: "Highway 41 · the south",
+    kicker: "South entrance · open year-round",
+    verdict: "The sequoia corridor, fast to Wawona and slow to the Valley",
+    towns: ["oakhurst", "fish-camp"],
+    props: ["tenaya-lodge"],
+  },
+  {
+    id: "corridor-395",
+    name: "Tioga Road east · US 395",
+    kicker: "Tioga Pass entrance · seasonal",
+    verdict: "High-country months only, and not a Valley base",
+    towns: ["lee-vining"],
+    props: ["yosemite-gateway-motel", "el-mono-motel"],
+  },
+];
+
+// Named stays, mirrored from the gateway article. `dest` is ALWAYS the town or
+// area, never the property: see rule 4 at the top of this file. `town` is the
+// human name that appears in the link text, so the reader is told what the
+// search actually does before they click it.
+const PROPERTIES = {
+  "yosemite-view-lodge": {
+    name: "Yosemite View Lodge",
+    where: "El Portal · on the Merced River",
+    dest: "El Portal, California", town: "El Portal",
+    body: "The big one on this corridor: a few hundred rooms strung along the river a couple of miles outside the Arch Rock entrance, about half of them with river views. Closest inventory of any size to the Valley, and priced accordingly.",
+  },
+  "cedar-lodge": {
+    name: "Cedar Lodge",
+    where: "El Portal · seven miles further west",
+    dest: "El Portal, California", town: "El Portal",
+    body: "The other large motel on Highway 140, a few miles down the canyon from Yosemite View. Further out, generally cheaper, and the fallback when the closer one is gone.",
+  },
+  "autocamp-yosemite": {
+    name: "AutoCamp Yosemite",
+    where: "Midpines · Highway 140",
+    dest: "Midpines, California", town: "Midpines",
+    body: "Airstream trailers, canvas tents, and cabins on a large property between Mariposa and El Portal. A design-led take on camping for people who do not want to pitch anything.",
+  },
+  "yosemite-bug": {
+    name: "Yosemite Bug Rustic Mountain Resort",
+    where: "Midpines · Highway 140",
+    dest: "Midpines, California", town: "Midpines",
+    body: "The range here is unusually wide, from dorm bunks to private cabins, and the June Bug Cafe is a genuine destination rather than a lodge dining room. The budget answer on this corridor.",
+  },
+  "rush-creek-lodge": {
+    name: "Rush Creek Lodge",
+    where: "Highway 120 · half a mile from the entrance",
+    dest: "Groveland, California", town: "Groveland",
+    body: "Twenty wooded acres essentially at the Big Oak Flat gate, which is as close as this corridor gets without being inside the park. A resort rather than a motel, with the prices that implies.",
+  },
+  "evergreen-lodge": {
+    name: "Evergreen Lodge",
+    where: "Evergreen Road · toward Hetch Hetchy",
+    dest: "Groveland, California", town: "Groveland",
+    body: "The historic sister property to Rush Creek, about seven miles on down the Hetch Hetchy road. If Hetch Hetchy is the reason for the trip, this is the closest bed to it.",
+  },
+  "firefall-ranch": {
+    name: "Firefall Ranch",
+    where: "Highway 120 · between Groveland and the gate",
+    dest: "Groveland, California", town: "Groveland",
+    body: "Cottages and villas spread across a large meadow property on the old stagecoach route, and the newest of the three lodges on this stretch of road.",
+  },
+  "groveland-hotel": {
+    name: "The Groveland Hotel",
+    where: "Groveland · main street",
+    dest: "Groveland, California", town: "Groveland",
+    body: "The in-town option, on the historic main street and a short walk from the Iron Door Saloon. Further from the gate than the highway lodges, and the one that puts you in a town in the evening.",
+  },
+  "tenaya-lodge": {
+    name: "Tenaya Lodge at Yosemite",
+    where: "Fish Camp · two miles from the South Entrance",
+    dest: "Fish Camp, California", town: "Fish Camp",
+    body: "A full resort on seventy-five acres just outside the park line, and effectively what Fish Camp is. The closest substantial lodging to the Mariposa Grove.",
+  },
+  "yosemite-gateway-motel": {
+    name: "Yosemite Gateway Motel",
+    where: "Lee Vining · US 395",
+    dest: "Lee Vining, California", town: "Lee Vining",
+    body: "One of the small motels that make up most of Lee Vining's inventory, on the highway above Mono Lake. Rooms here are few and go at a summer premium.",
+  },
+  "el-mono-motel": {
+    name: "El Mono Motel",
+    where: "Lee Vining · US 395",
+    dest: "Lee Vining, California", town: "Lee Vining",
+    body: "The other long-standing small motel in town, attached to a cafe. Same caveat as everything on this corridor: reachable from the park only while Tioga Pass is open.",
+  },
+};
+
+// The seasonal layer. Each block answers "which corridor, and why" for one
+// season, with a single availability link pointed at the corridor it argues
+// for. Facts come from yosemite-in-winter and the gateway article's winter
+// section; nothing here names a year.
+const SEASONS = [
+  {
+    id: "season-winter",
+    name: "Winter",
+    span: "December through March",
+    body: "Highway 140 is the base. It runs along the canyon bottom and takes rain on the days Highway 41 and Highway 120 take snow, and it is the only corridor with year-round bus service into the park. Inside the boundary this is the easy season: the seasonal operations close, but the Ahwahnee, the Lodge, and a reduced Curry Village run all year, and midweek availability in January is a different universe from July. Tioga Pass is closed, so the east side is out entirely.",
+    dest: "Mariposa, California",
+    cta: "Search Highway 140 lodging →",
+  },
+  {
+    id: "season-spring",
+    name: "Spring",
+    span: "April through May",
+    body: "Peak waterfall weeks, and the last calm booking window before summer. The high roads are still closed for most of it and open on the snowpack's schedule rather than the calendar's, so this is a Valley trip: stay on Highway 140, which keeps you closest to it, and treat any Tioga or Glacier Point plan as unsettled until the park says otherwise.",
+    dest: "El Portal, California",
+    cta: "Search El Portal lodging →",
+  },
+  {
+    id: "season-summer",
+    name: "Summer",
+    span: "June through August",
+    body: "Everything is open and everything is booked. In-park rooms went at the 366-day release and gateway rooms fill six to twelve months ahead, so the corridor choice is the real decision. Highway 120 is the strongest base of the four: with Tioga Road open it is the only corridor that puts Yosemite Valley, Hetch Hetchy, and Tuolumne Meadows all within reach of one morning's drive. If the high country is the whole trip, the east side is closer still.",
+    dest: "Groveland, California",
+    cta: "Search Highway 120 lodging →",
+  },
+  {
+    id: "season-fall",
+    name: "Fall",
+    span: "September through November",
+    body: "The season worth booking and the one people skip, because the waterfalls are down to a trickle. Crowds ease after Labor Day, Tioga Road typically holds into October, and the cancellation-watch strategy has its best odds of the year. Late in the season the high roads start closing again, so check what is open before committing to a base east of the Valley.",
+    dest: "Yosemite National Park",
+    cta: "Search park-area lodging →",
   },
 ];
 
@@ -214,6 +396,9 @@ function StayCard({ item }) {
         <p className="stay-card__who"><strong>Who it fits:</strong> {item.who}</p>
         {item.tip && <p className="stay-card__tip">{item.tip}</p>}
         {item.warn && <p className="stay-card__warn">{item.warn}</p>}
+        {item.more && (
+          <a className="stay-card__more" href={item.more}>The longer version →</a>
+        )}
         {!item.closed && (
           <a
             className="stay-card__book"
@@ -245,7 +430,7 @@ function GatewayCard({ item }) {
         </figure>
       )}
       <div className="stay-card__body">
-        <h3 className="stay-card__name">{item.name}</h3>
+        <h4 className="stay-card__name">{item.name}</h4>
         <dl className="stay-card__facts">
           <div><dt>Drive</dt><dd>{item.drive}</dd></div>
           <div><dt>Road</dt><dd>{item.road}</dd></div>
@@ -253,6 +438,11 @@ function GatewayCard({ item }) {
         <p className="stay-card__text">{item.body}</p>
         <p className="stay-card__who"><strong>Who it fits:</strong> {item.who}</p>
         <p className="stay-card__against"><strong>The cost:</strong> {item.against}</p>
+        {item.article && (
+          <a className="stay-card__more" href={item.article}>
+            The full chapter on {item.name} →
+          </a>
+        )}
         <AvailabilityLink
           destination={item.dest}
           list="stay_gateway"
@@ -262,6 +452,136 @@ function GatewayCard({ item }) {
         >See what {item.name} has on your dates →</AvailabilityLink>
       </div>
     </article>
+  );
+}
+
+// One named stay. The name is deliberately not a heading: the corridor owns
+// the h3 and the town cards own the h4s, and a third heading level here would
+// bury both in the outline for rows that are two sentences long.
+function PropertyRow({ item, id }) {
+  return (
+    <div className="stay-prop">
+      <div className="stay-prop__name">{item.name}</div>
+      <div className="stay-prop__where">{item.where}</div>
+      <p className="stay-prop__text">{item.body}</p>
+      <AvailabilityLink
+        destination={item.dest}
+        list="stay_property"
+        slug={id}
+        name={item.name + " · " + item.town + " lodging search"}
+        className="stay-prop__avail"
+      >What {item.town} has on your dates →</AvailabilityLink>
+    </div>
+  );
+}
+
+// Corridor intros live here rather than in CORRIDORS because they carry links,
+// and building JSX at module scope would run before the route's React is on
+// screen. Each is a thunk called at render.
+const GATEWAY_ARTICLE = "/articles/yosemite-gateway-towns-compared";
+const CORRIDOR_INTROS = {
+  "corridor-140": () => (
+    <p>
+      The lowest road into the park and the most reliable one. It follows the
+      Merced River canyon rather than climbing a ridge, which is why it takes
+      rain on the days the other two western corridors take snow, and why it is
+      the corridor to book if your dates are anywhere between December and
+      March. It is also the only one with year-round bus service into the
+      Valley. In summer it is simply the shortest drive, which is a different
+      argument for the same road.{" "}
+      <a href={GATEWAY_ARTICLE + "#sec-7-what-each-town-looks-like-in-winter"}>What each town looks like in winter</a>{" "}
+      goes through it town by town, and{" "}
+      <a href="/articles/yosemite-in-winter">the winter guide</a> covers the
+      chain rules that come with the season.
+    </p>
+  ),
+  "corridor-120": () => (
+    <p>
+      The summer base, and the one people underrate. With Tioga Road open this
+      is the only corridor that puts Yosemite Valley, Hetch Hetchy, and
+      Tuolumne Meadows all within reach of one morning's drive, which is the
+      argument for it in a sentence. The catch is elevation: the approach
+      starts a thousand feet above the Highway 140 towns, chain controls are
+      routine in winter, and the road in from the Bay Area is the natural one.{" "}
+      <a href={GATEWAY_ARTICLE + "#sec-4-groveland"}>The Groveland chapter</a>{" "}
+      has the full case, and{" "}
+      <a href="/tioga-opening">when Tioga Road opens</a> is the fact this whole
+      corridor's summer depends on.
+    </p>
+  ),
+  "corridor-41": () => (
+    <p>
+      The sequoia side. From here the Mariposa Grove and Wawona are close and
+      the Valley is not: seventy-five to ninety minutes each way, which is
+      three hours of driving on a Valley day and the single thing people
+      underestimate about this corridor. In winter it is the Badger Pass side
+      of the park, the road to the only downhill ski area in Yosemite. With the
+      Wawona Hotel closed there is no in-park alternative on this road, so
+      summer rooms carry more pressure than they used to.{" "}
+      <a href={GATEWAY_ARTICLE + "#sec-3-oakhurst"}>The Oakhurst chapter</a>{" "}
+      covers the tradeoff in full.
+    </p>
+  ),
+  "corridor-395": () => (
+    <p>
+      The east side is a different trip rather than a substitute for the
+      western towns. Tuolumne Meadows is half an hour away and the Valley is
+      ninety minutes over a pass just under 10,000 feet, so this is a base for
+      the high country, Mono Lake, and the eastern Sierra. It also exists
+      seasonally: when Tioga Pass closes there is no crossing at all, and the
+      detour around the south end of the range turns that ninety minutes into
+      most of a day.{" "}
+      <a href={GATEWAY_ARTICLE + "#sec-5-lee-vining"}>The Lee Vining chapter</a>{" "}
+      says who should pick it, and{" "}
+      <a href="/tioga-opening">the Tioga Road page</a> tracks the gate.
+    </p>
+  ),
+};
+
+function CorridorSection({ corridor, towns }) {
+  const props = (corridor.props || []).map((id) => [id, PROPERTIES[id]]).filter((p) => p[1]);
+  return (
+    <div className="stay-corridor" id={corridor.id}>
+      <div className="stay-corridor__head">
+        <h3>{corridor.name}</h3>
+        <div className="stay-corridor__kicker">{corridor.kicker}</div>
+      </div>
+      <p className="stay-corridor__verdict">{corridor.verdict}</p>
+      <div className="stay-corridor__intro">
+        {(CORRIDOR_INTROS[corridor.id] || (() => null))()}
+      </div>
+      <div className="stay-grid">
+        {towns.map((t) => <GatewayCard key={t.id} item={t} />)}
+      </div>
+      {props.length > 0 && (
+        <div className="stay-props-wrap">
+          <p className="stay-props__lead">
+            Named stays on this corridor. The links search the town, not the
+            property, because that is the search that answers what is left.
+          </p>
+          <div className="stay-props">
+            {props.map(([id, p]) => <PropertyRow key={id} id={id} item={p} />)}
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+function SeasonCard({ item }) {
+  return (
+    <div className="stay-season">
+      <h3 className="stay-season__name">{item.name}</h3>
+      <div className="stay-season__span">{item.span}</div>
+      <p className="stay-season__text">{item.body}</p>
+      <AvailabilityLink
+        destination={item.dest}
+        list="stay_season"
+        slug={item.id}
+        name={item.name + " lodging search"}
+        className="stay-season__avail"
+      >{item.cta}</AvailabilityLink>
+    </div>
   );
 }
 
@@ -281,10 +601,11 @@ function StayPage({ go }) {
           <p className="page-head__dek">
             Every bed in and around the park, sorted by what it actually is and
             who it actually fits. Staying inside the park changes a trip more
-            than any other single decision, so that section comes first. If the
-            park's inventory is gone, which for summer dates it usually is, the
-            gateway towns below are the real decision, and they are not
-            interchangeable.
+            than any other single decision, so that comes first. If the park's
+            inventory is gone, which for summer dates it usually is, the real
+            decision is not which town but which road: four corridors reach
+            Yosemite, they are not interchangeable, and which one fits depends
+            on the season you are going.
           </p>
         </div>
       </div>
@@ -311,10 +632,21 @@ function StayPage({ go }) {
             inside it there is one.
           </p>
         </section>
+
+        <nav className="stay-jump" aria-label="On this page">
+          <a href="#in-park">In the park</a>
+          <a href="#corridor-140">Highway 140</a>
+          <a href="#corridor-120">Highway 120</a>
+          <a href="#corridor-41">Highway 41</a>
+          <a href="#corridor-395">Tioga &amp; 395</a>
+          <a href="#seasons">When to stay where</a>
+          <a href="#camping">Camping</a>
+          <a href="#booking">Booking</a>
+        </nav>
       </div>
 
       {/* Inside the park */}
-      <section className="wrap" style={{ paddingTop: 56 }} id="in-park">
+      <section className="wrap stay-section" style={{ paddingTop: 56 }} id="in-park">
         <div className="section-head">
           <h2>Inside the park</h2>
           <div className="mono" style={{ color: "var(--ink-3)" }}>
@@ -338,28 +670,51 @@ function StayPage({ go }) {
         </div>
       </section>
 
-      {/* Gateway towns */}
-      <section className="wrap" style={{ paddingTop: 72 }} id="gateways">
+      {/* Gateway towns, by corridor */}
+      <section className="wrap stay-section" style={{ paddingTop: 72 }} id="gateways">
         <div className="section-head">
-          <h2>The gateway towns</h2>
-          <div className="mono" style={{ color: "var(--ink-3)" }}>{GATEWAYS.length} bases, four entrances</div>
+          <h2>Outside the park, by corridor</h2>
+          <div className="mono" style={{ color: "var(--ink-3)" }}>
+            {CORRIDORS.length} corridors · {GATEWAYS.length} towns
+          </div>
         </div>
         <p className="wrap--narrow" style={{ margin: "0 auto 28px", color: "var(--ink-2)" }}>
-          The four entrance stations sit at the cardinal points of the park and
-          each has its town. The routes are not equal in distance or in
-          character, and picking the wrong one costs you time and friction
-          every day of the trip. The full comparison, with the case for and
-          against each, is in{" "}
+          Four entrance stations sit at the corners of the park, each on its own
+          road, each with its towns. Choose the road first: it decides the drive
+          you make twice a day, it decides what else is reachable from the room,
+          and in winter it decides whether you are driving in rain or over a
+          pass. The town comes after that. The full comparison, with the case
+          for and against each, is in{" "}
           <a href="/articles/yosemite-gateway-towns-compared">the gateway towns article</a>.
         </p>
-        <div className="stay-grid">
-          {GATEWAYS.map((t) => <GatewayCard key={t.id} item={t} />)}
-        </div>
+        {CORRIDORS.map((c) => (
+          <CorridorSection
+            key={c.id}
+            corridor={c}
+            towns={c.towns.map((id) => GATEWAYS.find((t) => t.id === id)).filter(Boolean)}
+          />
+        ))}
         <ExpediaBanner list="stay_banner" slug="stay" />
       </section>
 
+      {/* When to stay where */}
+      <section className="wrap stay-section" style={{ paddingTop: 72 }} id="seasons">
+        <div className="section-head">
+          <h2>When to stay where</h2>
+          <div className="mono" style={{ color: "var(--ink-3)" }}>four seasons, four answers</div>
+        </div>
+        <p className="wrap--narrow" style={{ margin: "0 auto 28px", color: "var(--ink-2)" }}>
+          The corridor that is right in July is not the one that is right in
+          January, because the roads change and so does what is open at the end
+          of them. This is the same four corridors read against the calendar.
+        </p>
+        <div className="stay-seasons">
+          {SEASONS.map((s) => <SeasonCard key={s.id} item={s} />)}
+        </div>
+      </section>
+
       {/* Camping */}
-      <section className="wrap wrap--narrow" style={{ paddingTop: 72 }} id="camping">
+      <section className="wrap wrap--narrow stay-section" style={{ paddingTop: 72 }} id="camping">
         <div className="section-head">
           <h2>Camping</h2>
         </div>
@@ -392,7 +747,7 @@ function StayPage({ go }) {
       </section>
 
       {/* Booking mechanics */}
-      <section className="wrap wrap--narrow" style={{ paddingTop: 72 }} id="booking">
+      <section className="wrap wrap--narrow stay-section" style={{ paddingTop: 72 }} id="booking">
         <div className="section-head">
           <h2>How the booking actually works</h2>
         </div>
@@ -423,11 +778,9 @@ function StayPage({ go }) {
             July.
           </p>
           <p>
-            The other lever is the calendar.{" "}
-            <strong>Winter is dramatically easier and cheaper.</strong> The
-            seasonal operations close, but the Ahwahnee, the Lodge, and a
-            reduced Curry Village run all year, rates drop, and midweek
-            availability in January is a different universe from July.
+            The other lever is the calendar, and it is the strongest one on
+            this page. Which corridor and which season line up is covered in{" "}
+            <a href="#seasons">when to stay where</a>, above.
           </p>
         </section>
       </section>
@@ -455,6 +808,14 @@ function StayPage({ go }) {
             <span>The arithmetic of each lodging approach across a whole trip.</span>
           </li>
           <li>
+            <a href="/articles/getting-to-yosemite">Getting to Yosemite</a>
+            <span>The four entrances and the roads that reach them.</span>
+          </li>
+          <li>
+            <a href="/articles/where-to-eat-yosemite">Where to eat</a>
+            <span>Dinner in the park and town by town, and what closes when.</span>
+          </li>
+          <li>
             <a href="/itineraries" onClick={(e) => goRoute(e, "itineraries")}>Itineraries</a>
             <span>One, two, and three-day plans to hang the nights on.</span>
           </li>
@@ -465,7 +826,12 @@ function StayPage({ go }) {
           through one, The Talus Field may earn a small commission at no extra
           cost to you. Which property is recommended, and in what order, does
           not change for it: the Ahwahnee and the Wawona Hotel are here on
-          their merits and the closed one carries no link at all.{" "}
+          their merits and the closed one carries no link at all, the in-park
+          cards send you to the concessioner and earn nothing, and the named
+          lodges in the corridor lists are described because the gateway
+          reporting already covers them. Those links search the town rather
+          than the property, which is the search that answers what is left on
+          your dates.{" "}
           <a href="/affiliate">Full disclosure.</a>
         </p>
       </section>

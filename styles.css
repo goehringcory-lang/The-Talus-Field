@@ -6010,12 +6010,219 @@ main:focus { outline: none; }
   margin-top: 4px;
 }
 
+/* The card's quiet deep link into the article that covers it at length. Sits
+   above the booking link, which stays the terminal action on every card. */
+.stay-card__more {
+  align-self: flex-start;
+  font-family: var(--sans);
+  font-size: 13px;
+  color: var(--ink-3);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  padding-top: 10px;
+}
+.stay-card__more:hover { color: var(--moss); border-bottom-color: currentColor; }
+
+/* The masthead is fixed, so every anchor target on this page needs clearance
+   or the jump nav lands its heading underneath it. `.prose h2` already does
+   this for article bodies; these sections are not inside `.prose`. The 84px
+   that rule uses is measured to the masthead's height, which is not the same
+   as its bottom edge: a corridor head starts at the top of its own box, so at
+   84px it landed 9px under the bar. The section ids get away with less
+   because their padding-top pushes the heading down, but they take the same
+   value here so one number governs every anchor on the page. */
+.stay-section { scroll-margin-top: 108px; }
+.stay-corridor { scroll-margin-top: 108px; }
+
+.stay-jump {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 20px;
+  margin-top: 32px;
+  padding: 12px 0;
+  border-top: 1px solid var(--rule-soft);
+  border-bottom: 1px solid var(--rule-soft);
+}
+.stay-jump a {
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ink-2);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+}
+.stay-jump a:hover { color: var(--moss); border-bottom-color: currentColor; }
+
+/* A corridor is a road plus its towns plus its named stays. The head reads as
+   a unit heavier than a card and lighter than a section: a 2px rule, the same
+   device `.section-head` uses one level up. */
+.stay-corridor { margin-top: 52px; }
+.stay-corridor:first-of-type { margin-top: 0; }
+.stay-corridor__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 4px 16px;
+  border-bottom: 2px solid var(--ink);
+  padding-bottom: 8px;
+  margin-bottom: 14px;
+}
+.stay-corridor__head h3 {
+  font-family: var(--display);
+  font-size: 27px;
+  line-height: 1.15;
+  margin: 0;
+}
+.stay-corridor__kicker {
+  font-family: var(--sans);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--ink-3);
+}
+.stay-corridor__verdict {
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--moss);
+  margin: 0 0 10px;
+}
+.stay-corridor__intro {
+  max-width: 72ch;
+  margin-bottom: 26px;
+}
+.stay-corridor__intro p {
+  font-family: var(--sans);
+  font-size: 15.5px;
+  line-height: 1.7;
+  color: var(--ink-2);
+  margin: 0;
+}
+
+/* The named-stays tier. Deliberately rows rather than cards: these are two
+   sentences each and sit under the town cards in the hierarchy, so giving
+   them boxes would make eleven properties out-shout six towns. */
+.stay-props-wrap { margin-top: 28px; }
+.stay-props__lead {
+  font-family: var(--sans);
+  font-size: 12.5px;
+  color: var(--ink-3);
+  margin: 0 0 4px;
+  max-width: 68ch;
+}
+.stay-props {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 0 32px;
+  border-top: 1px solid var(--rule-soft);
+}
+.stay-prop {
+  display: flex;
+  flex-direction: column;
+  border-bottom: 1px solid var(--rule-soft);
+  padding: 14px 0 16px;
+}
+.stay-prop__name {
+  font-family: var(--display);
+  font-size: 19px;
+  color: var(--ink);
+}
+.stay-prop__where {
+  font-family: var(--sans);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--ink-3);
+  margin-top: 2px;
+}
+.stay-prop__text {
+  font-family: var(--sans);
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--ink-2);
+  margin: 8px 0 0;
+}
+.stay-prop__avail {
+  align-self: flex-start;
+  font-family: var(--sans);
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--moss);
+  text-decoration: none;
+  border-bottom: 1px solid currentColor;
+  margin-top: auto;
+  padding-top: 10px;
+}
+.stay-prop__avail:hover { color: var(--moss-2); }
+
+/* The seasonal read of the same four corridors. The column counts are fixed
+   rather than auto-filled because there are exactly four of these and they
+   are a sequence: an auto-fill that lands on three columns leaves Fall alone
+   on a second row, which reads as an afterthought rather than a calendar. */
+.stay-seasons {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+@media (min-width: 1000px) {
+  .stay-seasons { grid-template-columns: repeat(4, 1fr); }
+}
+.stay-season {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--rule-soft);
+  background: var(--paper);
+  padding: 18px 20px 20px;
+}
+.stay-season__name {
+  font-family: var(--display);
+  font-size: 24px;
+  margin: 0;
+}
+.stay-season__span {
+  font-family: var(--sans);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--ink-3);
+  margin-top: 2px;
+}
+.stay-season__text {
+  font-family: var(--sans);
+  font-size: 14.5px;
+  line-height: 1.65;
+  color: var(--ink-2);
+  margin: 10px 0 0;
+}
+.stay-season__avail {
+  align-self: flex-start;
+  font-family: var(--sans);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--moss);
+  text-decoration: none;
+  border-bottom: 1px solid currentColor;
+  margin-top: auto;
+  padding-top: 14px;
+}
+.stay-season__avail:hover { color: var(--moss-2); }
+
 @media (max-width: 720px) {
   .stay-grid { grid-template-columns: 1fr; gap: 24px; }
   .stay-card__name { font-size: 23px; }
   .lodging-cta { padding: 18px 18px 16px; }
   .lodging-cta__figure { margin: -18px -18px 14px; }
   .lodging-cta__caption { padding: 8px 18px 0; }
+  .stay-jump { gap: 8px 14px; }
+  .stay-corridor { margin-top: 40px; }
+  .stay-corridor__head h3 { font-size: 23px; }
+  .stay-props { grid-template-columns: 1fr; gap: 0; }
+  .stay-seasons { grid-template-columns: 1fr; }
 }
 
 /* Map sidebar: the lodging line's inline disclosure. */
