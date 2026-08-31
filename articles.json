@@ -1,5 +1,31 @@
 [
   {
+    "slug": "yosemite-facelift-volunteer-guide",
+    "cat": "planning",
+    "title": "The Yosemite Facelift: How to Volunteer for the Park's Biggest Cleanup",
+    "dek": "Every September, right after the crowds thin and right before the roads start closing for the season, thousands of people descend on Yosemite to pick up trash. Registration is free, no experience is required, and the week fits into a normal visit more easily than it sounds. What the Facelift actually involves, and how to join it.",
+    "seoDek": "How to volunteer for the Yosemite Facelift: 2026 dates, registration, camping, what volunteers do, and how to fit it into a normal trip.",
+    "date": "August 31, 2026",
+    "isoDate": "2026-08-31",
+    "isoModified": "2026-08-31",
+    "read": "8 min",
+    "image": "img/yosemite-valley-granite-summer-cory-goehring.jpg",
+    "ogImage": { "url": "img/responsive/yosemite-valley-granite-summer-cory-goehring-1600.jpg", "width": 1600, "height": 721 },
+    "placeholder": "El Capitan's southwest face on the Valley floor, the kind of terrain the Facelift's high-angle crews clean each September",
+    "wordCount": 1970,
+    "keywords": ["Yosemite Facelift", "Yosemite Facelift 2026", "Yosemite Facelift dates", "how to volunteer in Yosemite", "Yosemite volunteer cleanup", "Yosemite Facelift registration", "Yosemite Facelift camping", "Yosemite Climbing Association Facelift"],
+    "faq": [
+      { "q": "What is the Yosemite Facelift?", "a": "An annual volunteer cleanup event founded in 2004 by climber Ken Yager and the Yosemite Climbing Association, run every September since in partnership with the National Park Service. It has grown from a one-day event into a five-day parkwide cleanup, widely described as the largest volunteer stewardship event held in any national park, and since 2004 volunteers have removed more than 1.2 million pounds of trash and debris from the park." },
+      { "q": "When is the Yosemite Facelift in 2026?", "a": "September 23 through 27, 2026. Each day runs registration and cleanup projects from 8 am to 4 pm, a gear raffle from 5 to 6 pm, and evening programs, films, speakers, and sponsor booths, from 7 to 10 pm." },
+      { "q": "How do I register for the Yosemite Facelift?", "a": "Registration is free through the Yosemite Climbing Association's website, yosemiteclimbing.org: fill out YCA's sign-up form, then complete the National Park Service's Volunteer Agreement. There is no minimum commitment; volunteers can show up for an hour, a single day, or the full week." },
+      { "q": "What do Facelift volunteers actually do?", "a": "Most volunteers do litter pickup and roadside cleanup along trails, campgrounds, meadows, and waterways, using pickers, bags, and safety vests supplied by the National Park Service's volunteer office. A smaller number of experienced climbers work specialized high-angle cleanup projects with the park's Climbing Management team, rappelling into the base and lower faces of walls like El Capitan to remove abandoned ropes, portaledges, and gear." },
+      { "q": "Where do Yosemite Facelift volunteers camp?", "a": "In campgrounds set aside for the event: Camp 4, Upper Pines, and Crane Flat in the Valley area, plus overflow at Tamarack and in Tuolumne Meadows. Yellow Pines, normally closed to the public, is reserved as the dedicated volunteer campground. Standard per-night campground fees apply, and requests for the event's camping blocks typically open each spring, historically the first of May." },
+      { "q": "Can kids volunteer at the Yosemite Facelift?", "a": "Yes. The event is explicitly family-oriented, and the only formal requirement is a signed waiver for each participant under 18. Roadside and meadow cleanup projects are tasks a kid can meaningfully help with." },
+      { "q": "How much trash has the Yosemite Facelift removed?", "a": "In 2023, 1,501 volunteers logged 12,151 hours and removed 10,432 pounds of trash and debris. In 2024, 1,337 volunteers put in more than 7,000 hours and removed 13,112 pounds. Since the event's founding in 2004, the cumulative total passes 1.2 million pounds." }
+    ],
+    "related": ["yosemite-in-september-2026", "yosemite-camping-complete-guide", "yosemite-ranger-programs", "yosemite-fire-restrictions-explained", "yosemite-shuttle-and-yarts"]
+  },
+  {
     "slug": "bracebridge-dinner-and-vintners-holidays",
     "cat": "seasonal",
     "title": "Bracebridge Dinner and Vintners' Holidays: Yosemite's Christmas Season, Honestly",
@@ -49,7 +75,7 @@
       { "q": "Can I have a campfire while backpacking in Yosemite right now?", "a": "Only in an existing fire ring between 8,000 and 9,600 feet. Above 9,600 feet, campfires are prohibited year-round because wood is scarce at that elevation. Most trailheads out of Tuolumne Meadows, Glacier Point Road, and the Valley rim start below 8,000 feet, so a stove is the reliable option for at least the first stretch of most routes." },
       { "q": "When do Yosemite's fire restrictions usually end?", "a": "When temperatures drop and real rain falls, not on a fixed date. Yosemite has historically had close to a 90 percent chance of a season-ending precipitation event, two or more inches of rain, by October 31. Restrictions were lifted in September 2022 and in late October 2021 after rain, snow, and cooler temperatures reduced the fire danger." }
     ],
-    "related": ["yosemite-during-smoke-season", "yosemite-camping-complete-guide", "giant-sequoias-fire-adaptation", "camping-in-yosemite-first-time", "yosemite-heat-safety-guide"]
+    "related": ["yosemite-during-smoke-season", "yosemite-camping-complete-guide", "giant-sequoias-fire-adaptation", "yosemite-heat-safety-guide", "yosemite-facelift-volunteer-guide"]
   },
   {
     "slug": "yosemite-in-three-to-five-days",
@@ -785,7 +811,7 @@
       { "q": "Can adults do the Yosemite Junior Ranger program?", "a": "Yes. Rangers perform the badge ceremony with the same seriousness for adults as for children, and adults are encouraged to participate." },
       { "q": "Are there ranger programs in Yosemite in winter?", "a": "Yes, though the calendar thins. The ranger-to-visitor ratio is the best of the year, and the snowshoe walks, when offered, are some of the best programs the park runs." }
     ],
-    "related": ["yosemite-with-kids-no-reservations-2026", "yosemite-wildlife-viewing-guide", "yosemite-for-non-hikers", "yosemite-stargazing-where-to-look-up", "yosemite-accessibility-guide"]
+    "related": ["yosemite-with-kids-no-reservations-2026", "yosemite-wildlife-viewing-guide", "yosemite-for-non-hikers", "yosemite-accessibility-guide", "yosemite-facelift-volunteer-guide"]
   },
   {
     "slug": "yosemite-camping-complete-guide",
@@ -811,7 +837,7 @@
       { "q": "Which Yosemite campground is best?", "a": "It depends on what you value. Crane Flat is the versatile pick, cooler and quieter than the Valley, about 45 minutes to the Valley floor and an hour to Tuolumne Meadows. For the classic Valley experience, book a riverside site in Upper Pines (Loops E and F) or North Pines (the 500 series). For solitude, primitive campgrounds like Tamarack Flat and Yosemite Creek trade amenities for privacy." },
       { "q": "When can you camp in the Yosemite high country?", "a": "When the Tioga Road opens. Plowing starts around the middle of April and takes a month or two, which usually puts the opening in late May or early June, though a heavy winter can push it well past that. The road opening is not the campground opening: Tuolumne Meadows, White Wolf, Yosemite Creek, Tamarack Flat, and Porcupine Flat come online in the weeks that follow, once water and sanitation are running, so July is the honest planning assumption for most of them. Nights are cold: Tuolumne at 8,600 feet can drop into the 30s in July, so bring a sleeping bag rated to at least 20 degrees." }
     ],
-    "related": ["camping-in-yosemite-first-time", "where-to-stay-in-yosemite", "yosemite-gateway-towns-compared", "first-yosemite-backpacking-trip", "yosemite-trip-cost-budget-2026"]
+    "related": ["camping-in-yosemite-first-time", "where-to-stay-in-yosemite", "first-yosemite-backpacking-trip", "yosemite-trip-cost-budget-2026", "yosemite-facelift-volunteer-guide"]
   },
   {
     "slug": "where-to-propose-in-yosemite",
