@@ -719,7 +719,7 @@ function buildSeo(route) {
     },
     stay: {
       title: `Where to Stay in Yosemite — in-park lodging and gateway towns — ${SITE_NAME}`,
-      description: "Every place to sleep in and around Yosemite, compared honestly: the six in-park lodges and camps, the five gateway towns with real drive times, and how the 366-day booking window actually works.",
+      description: "Every place to sleep in and around Yosemite, compared honestly: the in-park lodges and camps, the four road corridors with their gateway towns and named lodges, which corridor fits which season, and how the 366-day booking window actually works.",
       ogType: "website",
       breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Where to stay", null]]
     },

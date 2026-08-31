@@ -309,7 +309,7 @@ function buildSitemap(merged, categories) {
     ["/map", "2026-06-10"],
     ["/itineraries", "2026-07-12"],
     ["/conditions", "2026-07-12"],
-    ["/stay", "2026-07-26"],
+    ["/stay", "2026-08-31"],
     ["/firefall", "2026-07-17"],
     // /tioga-opening reads the current bulletin edition for its live status
     // band, so its lastmod tracks the edition stamp like /now does rather than

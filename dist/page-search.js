@@ -38,7 +38,7 @@ var SEARCH_PAGES = [{
 }, {
   route: "stay",
   title: "Where to stay",
-  dek: "In-park lodging and the gateway towns compared: drive times, booking windows, and what to do when the thing you wanted is full.",
+  dek: "In-park lodging and the gateway towns by road corridor: named lodges, drive times, which corridor fits which season, and what to do when the thing you wanted is full.",
   kind: "Page"
 }, {
   route: "webcams",

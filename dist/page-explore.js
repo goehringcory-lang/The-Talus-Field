@@ -94,7 +94,7 @@ function ExplorePage({
   }, {
     route: "stay",
     name: "Where to stay",
-    note: "In-park lodging and the five gateway towns compared honestly, with drive times and the booking windows that actually matter."
+    note: "In-park lodging and the gateway towns by road corridor, with the named lodges, drive times, which corridor fits which season, and the booking windows that actually matter."
   }, {
     route: "webcams",
     name: "Webcams",

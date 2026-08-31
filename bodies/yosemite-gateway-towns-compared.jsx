@@ -483,7 +483,7 @@ window.ARTICLE_BODIES["yosemite-gateway-towns-compared"] = function YosemiteGate
       </ul>
 
       <p>
-        <strong>Services:</strong> the deepest of the five. Full-size supermarkets, a pharmacy, hardware, banks, and the last reliable place to fix a problem before you are an hour from anywhere. It is also the only gateway with year-round bus service into the park: YARTS runs the Highway 140 corridor from Merced and Mariposa all year, while the routes from the other towns run only in summer. If there is any chance you would rather not drive the canyon in the dark or in snow, no other town on this list can match that in January. Halfway to El Portal, the hamlet of Midpines splits the difference with a few camps and lodges (the Yosemite Bug among them) and no town attached.
+        <strong>Services:</strong> the deepest of the five. Full-size supermarkets, a pharmacy, hardware, banks, and the last reliable place to fix a problem before you are an hour from anywhere. It is also the only gateway with year-round bus service into the park: YARTS runs the Highway 140 corridor from Merced and Mariposa all year, while the routes from the other towns run only in summer. If there is any chance you would rather not drive the canyon in the dark or in snow, no other town on this list can match that in January. Halfway to El Portal, the hamlet of Midpines splits the difference with a few camps and lodges and no town attached: the <strong>Yosemite Bug Rustic Mountain Resort</strong>, which spans dorm bunks to private cabins and runs the June Bug Cafe, and <strong>AutoCamp Yosemite</strong>, a property of Airstream trailers, canvas tents, and cabins on Highway 140. Both trade Mariposa's dinner options for a shorter morning drive.
       </p>
 
       <p>
@@ -531,7 +531,7 @@ window.ARTICLE_BODIES["yosemite-gateway-towns-compared"] = function YosemiteGate
       </ul>
 
       <p>
-        <strong>The closer option on this corridor:</strong> Fish Camp, twelve miles up the road at the park line, puts you four minutes from the South Entrance. It is the Tenaya resort complex and a few small inns at resort prices, trading Oakhurst's services for the setting.
+        <strong>The closer option on this corridor:</strong> Fish Camp, twelve miles up the road at the park line, puts you four minutes from the South Entrance. It is <strong>Tenaya Lodge at Yosemite</strong>, a full resort on 75 acres two miles from the gate, plus a few small inns, all at resort prices, trading Oakhurst's services for the setting.
       </p>
 
       <p>
@@ -574,6 +574,10 @@ window.ARTICLE_BODIES["yosemite-gateway-towns-compared"] = function YosemiteGate
 
       <p>
         <strong>Services:</strong> a market rather than a supermarket, gas, and that is close to the list. Groveland is the last town of any size on Highway 120 before the entrance; the nearest in-park pumps are at Crane Flat. Fill the tank and the cooler here, or in Oakdale or Sonora on the way in from the Bay Area, before you start climbing.
+      </p>
+
+      <p>
+        <strong>The closer options on this corridor:</strong> the largest lodges on this side are not in Groveland itself but strung along Highway 120 east of it, which is a meaningful difference on a Valley morning. <strong>Rush Creek Lodge</strong> sits on twenty wooded acres roughly half a mile from the Big Oak Flat entrance. Its sister property, the historic <strong>Evergreen Lodge</strong>, is about seven miles on, down Evergreen Road toward Hetch Hetchy, which makes it the closest bed to that corner of the park. <strong>Firefall Ranch</strong>, cottages and villas on a former stagecoach stop between Groveland and the gate, is the newest of the three. All three are priced well above a Groveland motel and book like it.
       </p>
 
       <p>
