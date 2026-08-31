@@ -1,4 +1,4 @@
-/* global React, ReactDOM, Placeholder, NewsletterInline, MotifMountains, preloadResponsive, SIZES_HERO, Breadcrumbs, ShareRow */
+/* global React, ReactDOM, Placeholder, NewsletterInline, MotifMountains, preloadResponsive, SIZES_HERO, Breadcrumbs, ShareRow, GuidePromo */
 
 // "Month D, YYYY" for an ISO date string, used to surface a genuine revision
 // date (isoModified) distinct from the publish date shown in the byline.
@@ -494,18 +494,22 @@ function ArticlePage({ slug, go }) {
             );
           })()}
 
-          {/* Quiet Field Guide teaser: trip-intent readers (trails, planning,
-              seasonal) only, one text line, never a second form. On sale since
-              July 2026; keep the price stated plainly per house style. */}
+          {/* Field Guide promo: trip-intent readers (trails, planning,
+              seasonal) only, same one guide ask this slot always carried —
+              upgraded from a 13px grey line to the same band-guide card
+              every static route uses, since this is where the organic
+              traffic actually lands (CODE-AUDIT-2026-08 §5 item 13). Fires
+              the standard guide_cta_click/guide_sample_click pair instead of
+              the one-off guide_teaser_click, so article traffic is finally
+              comparable to every other placement in the funnel. */}
           {(article.cat === "trails" || article.cat === "planning" || article.cat === "seasonal") && (
-            <p style={{ fontFamily: "var(--sans)", fontSize: 13, color: "var(--ink-3)", lineHeight: 1.6, margin: "16px 0 0" }}>
-              The Field Guide puts this site's advice in your pocket: offline maps, GPS at the trailhead, every stop with parking notes. $3.99, eighteen months of access.{" "}
-              <a
-                href="/guide"
-                onClick={(e) => { e.preventDefault(); if (window.track) window.track("guide_teaser_click", { location: "article_end" }); go("guide"); }}
-                style={{ color: "var(--ink-2)" }}
-              >See the guide →</a>
-            </p>
+            <GuidePromo
+              go={go}
+              location="article_end"
+              title="The park, in your pocket."
+              body="The app version of this journal: offline maps, GPS at the trailhead, and every stop with parking and timing notes. Works with no signal, which is most of the park. $3.99, eighteen months of access."
+              style={{ marginTop: 24 }}
+            />
           )}
         </div>
       </article>

@@ -54,10 +54,10 @@ All events fire through `window.track`. Names and where they fire:
 |---|---|
 | `newsletter_signup`, `newsletter_impression` | components.jsx helpers, called by every newsletter unit with a `location` param |
 | `newsletter_exit_intent_shown` | components.jsx (ExitIntentNewsletter) |
-| `guide_cta_click` | components.jsx (Footer "Field Guide" link, masthead nav), page-home.jsx (the rail's Field Guide plate, `location: home_rail`). Retired locations (annotate in GA4, do not reuse): `home_hero`, `home_band` (August 2026 homepage redesign, which made the guide one ask instead of two) |
+| `guide_cta_click` | components.jsx (Footer "Field Guide" link, masthead nav), page-home.jsx (the rail's Field Guide plate, `location: home_rail`), the shared `GuidePromo` component (fires with the caller's `location`; ten static routes plus, since August 2026, page-article.jsx's end-of-article band on trails/planning/seasonal articles, `location: article_end`). Retired locations (annotate in GA4, do not reuse): `home_hero`, `home_band` (August 2026 homepage redesign, which made the guide one ask instead of two) |
 | `guide_buy_click` | page-guide.jsx (`location`: `guide_aside` buy box, `guide_hero` hero button, `guide_compare` under the comparison table, `guide_closer` end-of-pitch button, or `guide_mobile_bar` sticky phone bar) |
 | `guide_purchase` | page-guide.jsx, on the `?guide=success` / `?guide=gift-success` Stripe return. Carries the same `location` values as `guide_buy_click` (stashed in `tfg.guide.buyLocation` at click time, consumed once) plus `gift`. Fires only when the stash exists, so a refreshed or bookmarked success URL counts nothing. |
-| `guide_sample_click` | page-guide.jsx (links to the PWA's free sample surfaces, with `location`: `guide_aside`, `guide_hero`, `guide_stop_example`, or `guide_closer`) |
+| `guide_sample_click` | page-guide.jsx (links to the PWA's free sample surfaces, with `location`: `guide_aside`, `guide_hero`, `guide_stop_example`, or `guide_closer`), the shared `GuidePromo` component's "preview the guide" line (same `location` values as `guide_cta_click` above, incl. `article_end`) |
 | `widget_copy_snippet` | page-widget.jsx (copying the embed snippet) |
 | `consult_book_click` | page-consult.jsx (`location`: `consult_pay`, `consult_schedule`, or `consult_mailto`, with `live`) |
 | `partners_contact_click` | page-partners.jsx (group-code inquiries; `location`: `partners_tiers`, `partners_footer`, or `partners_contact_form`) |
@@ -73,7 +73,7 @@ All events fire through `window.track`. Names and where they fire:
 | `trip_add`, `trip_add_all`, `trip_quick_pick`, `trip_undo`, `trip_share`, `trip_share_open`, `trip_route_open`, `map_pin_click`, `map_article_click`, `map_filter_category`, `map_search`, `map_cluster_click`, `map_directions_click`, `map_reset_view`, `map_locate` | page-map.jsx |
 | `trip_email_send` | page-map.jsx (TripEmailBox, "email this trip to yourself", with `trip_size`) |
 | `stop_share` | page-map.jsx (InfoWindow "Copy link to this stop") |
-| `guide_teaser_click` | page-map.jsx (trip next-steps card), page-article.jsx (article-end line, trails/planning) — with `location` |
+| `guide_teaser_click` | page-map.jsx (trip next-steps card) — with `location`. Retired location (annotate in GA4, do not reuse): `article_end` (page-article.jsx's article-end line moved to the `GuidePromo` band in August 2026, so that placement now fires `guide_cta_click`/`guide_sample_click` like every other `GuidePromo` instance) |
 | `itinerary_open_map` | page-itineraries.jsx ("Open this trip on the map", with `itinerary`) |
 | `trip_selector_answer`, `trip_selector_complete`, `trip_selector_apply_filters` | intent.jsx (the five-question trip selector at the top of `/planning`: one per answer with `question`/`answer`, one when the fifth lands, one when the plan's results are poured into the filters with `matches`) |
 | `intent_filter` | intent.jsx (the intent chip bar on `/planning` and `/articles`; `facet`, `option`, and `action` = `on`/`off`/`clear`) |
