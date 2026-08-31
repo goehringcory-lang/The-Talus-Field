@@ -29,8 +29,9 @@ where the system stops and persists.
 
 The offset is deliberate: each brief lands with an evening for you to review
 before the next executor run. The days avoid the other standing Routines
-(Monday trend article, Thursday bulletin edition turn, Sunday site sweep,
-monthly edition article on the 25th).
+(Monday trend article and revenue pulse, Thursday bulletin edition turn,
+Sunday site sweep, monthly edition article on the 25th; the revenue pulse's
+runbook is `.claude/skills/revenue-pulse/SKILL.md`).
 
 ## How to approve
 
