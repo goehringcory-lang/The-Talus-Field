@@ -1,5 +1,48 @@
 {
   "__comment": "SEO enrichment for the editorial site, keyed by article slug. NOT loaded by the browser runtime (kept out of data.js so the per-page JS payload stays small). The build script scripts/gen-seo-artifacts.mjs merges this with window.ARTICLES from data.js to regenerate articles.json (consumed by edge/seo.js), sitemap.xml, feed.xml, and the article section of llms.txt. Fields: wordCount (number), keywords (string[]), faq ({q,a}[]), trail ({name,distance,elevationGain,difficulty} for hike guides). FAQ answers and trail numbers are drawn from each article's published body; do not invent facts. The one article whose faq lives inline in data.js (yosemite-in-one-or-two-days) is intentionally omitted here; data.js takes precedence for faq.",
+  "yosemite-facelift-volunteer-guide": {
+    "wordCount": 1970,
+    "keywords": [
+      "Yosemite Facelift",
+      "Yosemite Facelift 2026",
+      "Yosemite Facelift dates",
+      "how to volunteer in Yosemite",
+      "Yosemite volunteer cleanup",
+      "Yosemite Facelift registration",
+      "Yosemite Facelift camping",
+      "Yosemite Climbing Association Facelift"
+    ],
+    "faq": [
+      {
+        "q": "What is the Yosemite Facelift?",
+        "a": "An annual volunteer cleanup event founded in 2004 by climber Ken Yager and the Yosemite Climbing Association, run every September since in partnership with the National Park Service. It has grown from a one-day event into a five-day parkwide cleanup, widely described as the largest volunteer stewardship event held in any national park, and since 2004 volunteers have removed more than 1.2 million pounds of trash and debris from the park."
+      },
+      {
+        "q": "When is the Yosemite Facelift in 2026?",
+        "a": "September 23 through 27, 2026. Each day runs registration and cleanup projects from 8 am to 4 pm, a gear raffle from 5 to 6 pm, and evening programs, films, speakers, and sponsor booths, from 7 to 10 pm."
+      },
+      {
+        "q": "How do I register for the Yosemite Facelift?",
+        "a": "Registration is free through the Yosemite Climbing Association's website, yosemiteclimbing.org: fill out YCA's sign-up form, then complete the National Park Service's Volunteer Agreement. There is no minimum commitment; volunteers can show up for an hour, a single day, or the full week."
+      },
+      {
+        "q": "What do Facelift volunteers actually do?",
+        "a": "Most volunteers do litter pickup and roadside cleanup along trails, campgrounds, meadows, and waterways, using pickers, bags, and safety vests supplied by the National Park Service's volunteer office. A smaller number of experienced climbers work specialized high-angle cleanup projects with the park's Climbing Management team, rappelling into the base and lower faces of walls like El Capitan to remove abandoned ropes, portaledges, and gear."
+      },
+      {
+        "q": "Where do Yosemite Facelift volunteers camp?",
+        "a": "In campgrounds set aside for the event: Camp 4, Upper Pines, and Crane Flat in the Valley area, plus overflow at Tamarack and in Tuolumne Meadows. Yellow Pines, normally closed to the public, is reserved as the dedicated volunteer campground. Standard per-night campground fees apply, and requests for the event's camping blocks typically open each spring, historically the first of May."
+      },
+      {
+        "q": "Can kids volunteer at the Yosemite Facelift?",
+        "a": "Yes. The event is explicitly family-oriented, and the only formal requirement is a signed waiver for each participant under 18. Roadside and meadow cleanup projects are tasks a kid can meaningfully help with."
+      },
+      {
+        "q": "How much trash has the Yosemite Facelift removed?",
+        "a": "In 2023, 1,501 volunteers logged 12,151 hours and removed 10,432 pounds of trash and debris. In 2024, 1,337 volunteers put in more than 7,000 hours and removed 13,112 pounds. Since the event's founding in 2004, the cumulative total passes 1.2 million pounds."
+      }
+    ]
+  },
   "bracebridge-dinner-and-vintners-holidays": {
     "wordCount": 1907,
     "keywords": [

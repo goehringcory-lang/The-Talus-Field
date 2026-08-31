@@ -167,6 +167,11 @@ window.ARTICLE_INTENT = {
   "pets-in-yosemite":                          { stage: ["before-booking", "dates-set"], who: ["dogs"], topic: ["lodging", "camping", "trails"] },
   "yosemite-ranger-programs":                  { stage: ["dates-set", "in-park"], who: ["families", "first-trip", "non-hikers"], topic: [] },
   "yosemite-camping-complete-guide":           { stage: ["before-booking"], who: ["families", "dogs"], topic: ["camping", "lodging"] },
+  // September's volunteer week has no home in the fixed topic list (it is not
+  // lodging, camping, or a trail question), so `topic` stays empty on the same
+  // principle as the ranger-programs piece just above it: the article answers
+  // "how do I take part", not a logistics facet a reader would filter for.
+  "yosemite-facelift-volunteer-guide":         { stage: ["before-booking", "dates-set", "in-park"], who: ["families"], topic: [] },
   "where-to-propose-in-yosemite":              { stage: ["dates-set", "in-park"], who: ["photography"], topic: [] },
   "is-bear-spray-allowed-in-yosemite":          { stage: ["dates-set", "in-park"], who: [], topic: ["conditions"] },
   "yosemite-bears-safety-guide":               { stage: ["week-before", "in-park"], who: ["families", "backpacking"], topic: ["camping", "food"] },
@@ -263,6 +268,7 @@ window.ARTICLE_MONTHS = {
   // Seasonal essays and month guides.
   "yosemite-in-fall": ["sep", "oct", "nov"],
   "yosemite-in-september-2026": ["sep"],
+  "yosemite-facelift-volunteer-guide": ["sep"],
   "yosemite-in-june-2026": ["jun"],
   "yosemite-in-march": ["mar"],
   "horsetail-fall-firefall": ["feb"],
