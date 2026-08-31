@@ -537,27 +537,15 @@ function ArticlePage({
       blurb: offer.blurb || "One letter a week. If you found this useful, you'll probably like the rest.",
       variant: endVariant
     });
-  })(), (article.cat === "trails" || article.cat === "planning" || article.cat === "seasonal") && React.createElement("p", {
+  })(), (article.cat === "trails" || article.cat === "planning" || article.cat === "seasonal") && React.createElement(GuidePromo, {
+    go: go,
+    location: "article_end",
+    title: "The park, in your pocket.",
+    body: "The app version of this journal: offline maps, GPS at the trailhead, and every stop with parking and timing notes. Works with no signal, which is most of the park. $3.99, eighteen months of access.",
     style: {
-      fontFamily: "var(--sans)",
-      fontSize: 13,
-      color: "var(--ink-3)",
-      lineHeight: 1.6,
-      margin: "16px 0 0"
+      marginTop: 24
     }
-  }, "The Field Guide puts this site's advice in your pocket: offline maps, GPS at the trailhead, every stop with parking notes. $3.99, eighteen months of access.", " ", React.createElement("a", {
-    href: "/guide",
-    onClick: e => {
-      e.preventDefault();
-      if (window.track) window.track("guide_teaser_click", {
-        location: "article_end"
-      });
-      go("guide");
-    },
-    style: {
-      color: "var(--ink-2)"
-    }
-  }, "See the guide →")))), related.length > 0 && React.createElement("section", {
+  }))), related.length > 0 && React.createElement("section", {
     className: "wrap",
     style: {
       paddingTop: 48,
