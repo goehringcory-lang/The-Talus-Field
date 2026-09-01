@@ -201,19 +201,23 @@ export async function sendGiftAccess(
 // email went to the recipient, and a wrong address is fixable by replying.
 export async function sendGiftReceipt(
   env: Env,
-  args: { to: string; recipientEmail: string },
+  args: { to: string; recipientEmail: string; expiresAt: number },
 ): Promise<void> {
   if (!env.RESEND_API_KEY) {
     throw new Error('RESEND_API_KEY not configured')
   }
 
+  // The real end date, not "18 months from today": a gift to an active buyer
+  // stacks onto their standing expiry, and a fresh grant runs from the
+  // session's creation, so the receipt prints what the record says.
   const { to, recipientEmail } = args
+  const endDate = formatAccessDate(args.expiresAt)
 
   const text = [
     `Your gift is on its way.`,
     ``,
     `The Field Guide access email was sent to ${recipientEmail}.`,
-    `Their access runs 18 months from today.`,
+    `Their access runs through ${endDate}.`,
     ``,
     `If that address is wrong, reply to this email and I will move the access.`,
     `Stripe sends your payment receipt separately.`,
@@ -234,7 +238,7 @@ export async function sendGiftReceipt(
         <tr>
           <td style="border-top:1px solid #2a2118;padding:24px 0 0;">
             <p style="font-family:${serif};font-size:17px;line-height:1.55;color:#14110c;margin:0 0 18px;">Your gift is on its way.</p>
-            <p style="font-family:${serif};font-size:15px;line-height:1.55;color:#14110c;margin:0 0 14px;">The Field Guide access email was sent to <strong>${escapeHtml(recipientEmail)}</strong>. Their access runs 18 months from today.</p>
+            <p style="font-family:${serif};font-size:15px;line-height:1.55;color:#14110c;margin:0 0 14px;">The Field Guide access email was sent to <strong>${escapeHtml(recipientEmail)}</strong>. Their access runs through ${endDate}.</p>
             <p style="font-family:${sans};font-size:13px;color:#50402e;margin:0 0 6px;">If that address is wrong, reply to this email and I will move the access. Stripe sends your payment receipt separately.</p>
             <p style="font-family:${sans};font-size:13px;color:#50402e;margin:0;">&mdash; Cory</p>
           </td>
@@ -359,10 +363,14 @@ export async function sendTrialAccess(
 }
 
 function formatAccessDate(epochSeconds: number): string {
+  // Park time, not the Worker's UTC: a stamp between 00:00 and 08:00 UTC is
+  // still the previous calendar day in California, and "ends tomorrow" must
+  // name the day the reader will experience.
   return new Date(epochSeconds * 1000).toLocaleDateString('en-US', {
     month: 'long',
     day: 'numeric',
     year: 'numeric',
+    timeZone: 'America/Los_Angeles',
   })
 }
 

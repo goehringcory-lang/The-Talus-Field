@@ -209,6 +209,13 @@ checkout.post('/claim', async (c) => {
 
   const nowSeconds = Math.floor(Date.now() / 1000)
   const existing = await getBuyer(c.env, email)
+  if (existing?.refundedAt != null && existing.provisionedSessionId === session.id) {
+    // Stripe leaves a refunded Checkout Session at payment_status 'paid', so
+    // the session id in the buyer's own browser history would otherwise
+    // re-provision the record the refund webhook revoked (and drop
+    // refundedAt on the way). Refuse it; a new purchase is a new session.
+    return c.json({ error: 'This purchase was refunded' }, 409)
+  }
   let record
   if (existing && existing.refundedAt == null && existing.expiresAt > nowSeconds) {
     // Active buyer (including one this session already provisioned, and a

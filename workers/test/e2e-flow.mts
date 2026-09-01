@@ -47,6 +47,7 @@ let sentEmails: { to: string; text: string; html: string }[] = []
 let resendMode: 'ok' | 'fail' = 'ok'
 // Retrieve responses for /api/checkout/claim's GET, keyed by session id.
 const stripeSessions = new Map<string, Record<string, unknown>>()
+let npsAlertCalls = 0
 
 const realFetch = globalThis.fetch
 globalThis.fetch = (async (input: RequestInfo | URL, init?: RequestInit) => {
@@ -82,6 +83,7 @@ globalThis.fetch = (async (input: RequestInfo | URL, init?: RequestInit) => {
     )
   }
   if (url.startsWith('https://developer.nps.gov/api/v1/alerts')) {
+    npsAlertCalls++
     return new Response(
       JSON.stringify({
         data: [
@@ -601,6 +603,14 @@ console.log('\n19. conditions widget')
 
 console.log('\n20. conditions feeds (/api/alerts, /api/air, /api/flow)')
 {
+  // env has no NPS_API_KEY yet: the route must serve the empty shape, not an
+  // error, and must not fire a doomed upstream call on every request.
+  const npsCallsBefore = npsAlertCalls
+  const alertsUnkeyed = await call('/api/alerts')
+  check('alerts without key -> 200, no upstream call',
+    alertsUnkeyed.status === 200 && npsAlertCalls === npsCallsBefore, alertsUnkeyed.json)
+
+  env.NPS_API_KEY = 'nps_test_dummy'
   const a = await call('/api/alerts')
   check('alerts 200', a.status === 200 && a.json !== null)
   const alertsBody = a.json as { alerts: Array<{ category: string }>; roads: Array<{ id: string; status: string }>; chains: string | null }
@@ -823,6 +833,46 @@ console.log('\n22. instant-access claim (/api/checkout/claim)')
     r3.status === 200 && typeof r3.json.jwt === 'string' &&
     JSON.stringify(JSON.parse((await buyers.get('buyer:patient@example.com'))!)) === JSON.stringify(recFromWebhook),
     r3)
+
+  // -- a refunded session cannot be replayed into fresh access --
+  // Stripe leaves the Checkout Session at payment_status 'paid' after a
+  // refund, and the session id sits in the buyer's browser history.
+  stripeSessions.set('cs_claim_refunded', {
+    id: 'cs_claim_refunded', payment_status: 'paid', created: now,
+    customer_details: { email: 'refunded@example.com' }, metadata: { product: 'field_guide_2026', kind: 'purchase' },
+  })
+  const rf1 = await claimCall('8.8.8.4', 'cs_claim_refunded')
+  check('claim before refund -> jwt', rf1.status === 200 && typeof rf1.json.jwt === 'string', rf1)
+  const refundEvt = {
+    id: 'evt_refund_claimed', type: 'charge.refunded',
+    data: { object: { id: 'ch_claimed_1', billing_details: { email: 'refunded@example.com' }, metadata: { product: 'field_guide_2026' } } },
+  }
+  const refundBody = JSON.stringify(refundEvt)
+  const rfw = await call('/api/stripe/webhook', { method: 'POST', body: refundBody, headers: { 'stripe-signature': await signWebhook(refundBody, env.STRIPE_WEBHOOK_SECRET as string) } })
+  check('claimed purchase refunded', rfw.status === 200 && rfw.json.revoked === 'refunded@example.com', rfw)
+  const rf2 = await claimCall('8.8.8.4', 'cs_claim_refunded')
+  check('re-claim of the refunded session -> 409', rf2.status === 409, rf2)
+  const refundedRec = JSON.parse((await buyers.get('buyer:refunded@example.com'))!)
+  check('refunded record untouched by the replay', refundedRec.refundedAt > 0 && refundedRec.expiresAt <= Math.floor(Date.now() / 1000), refundedRec)
+
+  // -- a re-provision retires the superseded magic link --
+  // patient@example.com lapses, then buys again: the new session derives a
+  // new token, and the old token index must stop resolving.
+  const patientOld = JSON.parse((await buyers.get('buyer:patient@example.com'))!)
+  await buyers.put('buyer:patient@example.com', JSON.stringify({ ...patientOld, expiresAt: now - 60 }))
+  const rebuy = {
+    id: 'evt_patient_rebuy', type: 'checkout.session.completed',
+    data: { object: { id: 'cs_claim_3', customer_details: { email: 'patient@example.com' }, metadata: { product: 'field_guide_2026', kind: 'purchase' }, created: now } },
+  }
+  const rebuyBody = JSON.stringify(rebuy)
+  const rb = await call('/api/stripe/webhook', { method: 'POST', body: rebuyBody, headers: { 'stripe-signature': await signWebhook(rebuyBody, env.STRIPE_WEBHOOK_SECRET as string) } })
+  check('lapsed buyer re-purchase webhook 200', rb.status === 200, rb)
+  const patientNew = JSON.parse((await buyers.get('buyer:patient@example.com'))!)
+  check('re-purchase derived a new token', patientNew.accessToken !== patientOld.accessToken)
+  check('old token index retired', (await buyers.get(`token:${patientOld.accessToken}`)) === null)
+  check('new token index present', (await buyers.get(`token:${patientNew.accessToken}`)) === 'patient@example.com')
+  const staleEx = await call('/api/auth/exchange', { method: 'POST', body: JSON.stringify({ token: patientOld.accessToken }) })
+  check('superseded magic link -> 401', staleEx.status === 401, staleEx)
 
   // -- rate limit (20/hour per hashed IP) --
   let last: Awaited<ReturnType<typeof call>> | null = null

@@ -181,8 +181,19 @@ async function fetchNpsAlerts(env: Env): Promise<AlertItemT[]> {
  * API (or a missing NPS_API_KEY) keeps the previous record; null only when
  * nothing could be fetched AND nothing was cached.
  */
+let warnedMissingKey = false
+
 export async function refreshAlerts(env: Env): Promise<AlertsRecordT | null> {
   const previous = await readAlertsRecord(env)
+  if (!env.NPS_API_KEY) {
+    // Same posture as refreshAir: without a key every stale request would
+    // fire a doomed upstream call (NPS answers 403) and log an error.
+    if (!warnedMissingKey) {
+      console.error('refreshAlerts: NPS_API_KEY unset, skipping refresh')
+      warnedMissingKey = true
+    }
+    return previous
+  }
   try {
     const alerts = await fetchNpsAlerts(env)
     const record: AlertsRecordT = {

@@ -307,7 +307,7 @@ stripe.post('/webhook', async (c) => {
   // (which would re-send the recipient's access email).
   if (kind === 'gift' && payerEmail && payerEmail !== email) {
     try {
-      await sendGiftReceipt(c.env, { to: payerEmail, recipientEmail: email })
+      await sendGiftReceipt(c.env, { to: payerEmail, recipientEmail: email, expiresAt: record.expiresAt })
     } catch (err) {
       console.error('sendGiftReceipt failed', { eventId: event.id, payerEmail, err })
     }
