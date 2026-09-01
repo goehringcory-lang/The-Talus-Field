@@ -909,7 +909,7 @@ function Footer({ go }) {
           Some links on this site are affiliate links. If you book or buy through one, The Talus Field may earn a small commission at no extra cost to you. <a href="/affiliate" onClick={(e) => { e.preventDefault(); go("affiliate"); }}>Full disclosure here.</a>
         </div>
         <div className="site-footer__legal">
-          <div>© 2026 The Talus Field. Independent. Not affiliated with the National Park Service.</div>
+          <div>© {new Date().getFullYear()} The Talus Field. Independent. Not affiliated with the National Park Service.</div>
           <div>
             <a href="/advertise" onClick={(e) => { e.preventDefault(); go("advertise"); }}>Advertise</a>
             <a href="/widget" onClick={(e) => { e.preventDefault(); go("widget"); }}>Conditions widget</a>
@@ -1203,7 +1203,8 @@ window.ShareRow = ShareRow;
 // ============================================================
 // End-of-article disclosure for any body that carries inline affiliate
 // links, per the convention stated on the /affiliate page. The /affiliate
-// href is a plain link; the app.jsx SPA router intercepts it like the
+// href is a plain link: app.jsx's document-level click handler turns plain
+// same-origin links into SPA navigations, the same way it handles the
 // /articles/* links inside bodies. Rendered as the last element of a body.
 function AffiliateNote() {
   return (
@@ -1880,7 +1881,7 @@ function WebcamStrip() {
   const camCacheBust = useMemo(() => Math.floor(Date.now() / 300000), []);
   return (
     <>
-      <div className="cam-grid" style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 32 }}>
+      <div className="cam-grid">
         {WEBCAMS.map(cam => (
           <a
             key={cam.img}

@@ -9,6 +9,13 @@
 // edge/seo.js if a title or dek changed.
 // =============================================================================
 
+// points.geojson carries its own ?v= counter, separate from the shared script
+// version: bump it here when editing pins. Declared in this file rather than
+// page-map.jsx because /itineraries resolves stop names from the same data
+// and loads this script without the map bundle. check-asset-freshness.mjs
+// reads it from here.
+window.POINTS_URL = "/points.geojson?v=25";
+
 window.ITINERARIES = [
   {
     id: "1day",

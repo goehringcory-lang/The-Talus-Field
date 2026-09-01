@@ -362,10 +362,12 @@ function ArticlePage({
     href: "#" + it.id,
     onClick: e => {
       e.preventDefault();
+      var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
       document.getElementById(it.id)?.scrollIntoView({
-        behavior: "smooth",
+        behavior: reduce ? "auto" : "smooth",
         block: "start"
       });
+      if (window.history && window.history.replaceState) window.history.replaceState(null, "", "#" + it.id);
       if (window.track) window.track("toc_jump", {
         slug
       });

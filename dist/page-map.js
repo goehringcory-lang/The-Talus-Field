@@ -5,8 +5,7 @@ var {
   useState,
   useCallback
 } = React;
-var POINTS_URL = "/points.geojson?v=25";
-window.POINTS_URL = POINTS_URL;
+var POINTS_URL = window.POINTS_URL;
 var MAP_API_BASE = typeof window !== "undefined" && window.GUIDE_API_BASE || "https://api.thetalusfieldjournal.com";
 var GUIDE_APP_BASE = typeof window !== "undefined" && window.GUIDE_APP_BASE || "https://guide.thetalusfieldjournal.com";
 var STORAGE_KEY = "tfg.trip";
@@ -1310,7 +1309,7 @@ function TripPlannerSidebar({
     onPointerMove: onHandlePointerMove,
     onPointerUp: onHandlePointerEnd,
     onPointerCancel: onHandlePointerEnd,
-    "aria-label": `Trip planner panel — currently ${sheetState}. Tap or swipe up to expand.`
+    "aria-label": `Trip planner panel, currently ${sheetState}. Tap or swipe up to expand.`
   }, React.createElement("span", {
     className: "map-sidebar__sheet-bar",
     "aria-hidden": "true"

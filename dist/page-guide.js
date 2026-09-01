@@ -9,7 +9,10 @@ function formatPrice(cents) {
 var inventoryPromise = null;
 function fetchInventory() {
   if (!inventoryPromise) {
-    inventoryPromise = fetch(`${GUIDE_API_BASE}/api/inventory`).then(res => res.ok ? res.json() : null).catch(() => null);
+    inventoryPromise = fetch(`${GUIDE_API_BASE}/api/inventory`).then(res => res.ok ? res.json() : null).catch(() => {
+      inventoryPromise = null;
+      return null;
+    });
   }
   return inventoryPromise;
 }
@@ -850,7 +853,7 @@ function GuideStopExample() {
     className: "guide-stop-ex__chip"
   }, "25 minutes")), React.createElement("p", {
     className: "guide-stop-ex__body"
-  }, "You come out of the Wawona Tunnel and the whole valley is there at once. El Capitan on the left, Bridalveil Fall on the right, Half Dome anchoring the back wall. Most people raise a phone and lower it after thirty seconds. Don't. Stay fifteen minutes. Look at the U-shape of the valley floor — a glacier did that, two thousand feet of ice. The hanging valleys above the rim are why the waterfalls fall so far. You're not looking at scenery; you're looking at the geological event. Once you see it, you can't unsee it for the rest of the trip."), React.createElement("div", {
+  }, "You come out of the Wawona Tunnel and the whole valley is there at once. El Capitan on the left, Bridalveil Fall on the right, Half Dome anchoring the back wall. Most people raise a phone and lower it after thirty seconds. Don't. Stay fifteen minutes. Look at the U-shape of the valley floor: a glacier did that, two thousand feet of ice. The hanging valleys above the rim are why the waterfalls fall so far. You're not looking at scenery; you're looking at the geological event. Once you see it, you can't unsee it for the rest of the trip."), React.createElement("div", {
     className: "guide-stop-ex__swap"
   }, React.createElement("div", {
     className: "guide-stop-ex__swap-label"

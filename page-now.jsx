@@ -470,7 +470,7 @@ function BulletinFold({ title, icon, hint, children }) {
     <details className="bulletin-fold">
       <summary className="bulletin-fold__head">
         <BulletinIcon name={icon || "dot"} className="bulletin-card__icon" />
-        <span className="bulletin-fold__title">{title}</span>
+        <h3 className="bulletin-fold__title">{title}</h3>
         {hint ? <span className="bulletin-fold__hint">{hint}</span> : null}
         <BulletinIcon name="chevron" className="bulletin-fold__chev" />
       </summary>

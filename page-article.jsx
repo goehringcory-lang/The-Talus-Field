@@ -388,7 +388,12 @@ function ArticlePage({ slug, go }) {
                       href={"#" + it.id}
                       onClick={(e) => {
                         e.preventDefault();
-                        document.getElementById(it.id)?.scrollIntoView({ behavior: "smooth", block: "start" });
+                        const reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+                        document.getElementById(it.id)?.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" });
+                        // Keep the section anchor in the address bar so the
+                        // reader can copy the deep link Google already
+                        // surfaces; replace, so Back still leaves the article.
+                        if (window.history && window.history.replaceState) window.history.replaceState(null, "", "#" + it.id);
                         if (window.track) window.track("toc_jump", { slug });
                       }}
                     >{it.text}</a>

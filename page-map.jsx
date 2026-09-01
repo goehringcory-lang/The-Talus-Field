@@ -19,10 +19,10 @@
 
 const { useEffect, useMemo, useRef, useState, useCallback } = React;
 
-const POINTS_URL = "/points.geojson?v=25";
-// Shared with /itineraries (page-itineraries.jsx), which resolves stop names
-// from the same pin data, so the cache-buster is bumped in exactly one place.
-window.POINTS_URL = POINTS_URL;
+// The pin data's own cache-buster lives in itineraries-data.js
+// (window.POINTS_URL), which both /map and /itineraries load eagerly, so a
+// direct load of /itineraries sees the same versioned URL this page does.
+const POINTS_URL = window.POINTS_URL;
 // Worker API base for "email this trip". Override at runtime via
 // window.GUIDE_API_BASE (same convention as page-guide.jsx) for local dev.
 const MAP_API_BASE =
@@ -1677,7 +1677,7 @@ function TripPlannerSidebar({
         onPointerMove={onHandlePointerMove}
         onPointerUp={onHandlePointerEnd}
         onPointerCancel={onHandlePointerEnd}
-        aria-label={`Trip planner panel — currently ${sheetState}. Tap or swipe up to expand.`}
+        aria-label={`Trip planner panel, currently ${sheetState}. Tap or swipe up to expand.`}
       >
         <span className="map-sidebar__sheet-bar" aria-hidden="true" />
         <span className="map-sidebar__sheet-text">
