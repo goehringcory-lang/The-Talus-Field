@@ -52,10 +52,12 @@ function stampBuildDate(date: string): Plugin {
 }
 
 // Stamp dist/sw.js: __BUILD_VERSION__ becomes the cache-name version,
-// __API_BASE__ the Worker origin the push handler calls, and the
-// __BUILD_ASSETS__ placeholder array becomes the list of hashed JS/CSS
-// chunks so the SW precaches them (an update that first runs offline would
-// otherwise white-screen — index.html cached, its scripts not).
+// __API_BASE__ the Worker origin the push handler calls, __TRACKS_VERSION__
+// the ?v= hash on track URLs (so activate can purge superseded track files
+// from the unversioned runtime cache), and the __BUILD_ASSETS__ placeholder
+// array becomes the list of hashed JS/CSS chunks so the SW precaches them (an
+// update that first runs offline would otherwise white-screen — index.html
+// cached, its scripts not).
 // The SW lives in public/ (must be served at /sw.js for scope) so we can't
 // import constants — we string-replace the emitted file instead.
 //
@@ -77,11 +79,24 @@ function stampBuildDate(date: string): Plugin {
 // process.env here silently baked localhost into the production service
 // worker, and the failure was invisible — every push fell back to the generic
 // notification because the SW was asking a dev host what it was about.
+// The tracks hash is read off the generated module's source rather than
+// imported: the config runs under Node, and a regex over one line is a
+// smaller dependency than loading the TypeScript. Deterministic by
+// construction (file content, never the clock). Fails loudly if the line
+// moves, because an unstamped placeholder would silently disable the purge.
+async function tracksVersion(): Promise<string> {
+  const source = await readFile(resolve('src/content/trails.generated.ts'), 'utf8')
+  const match = source.match(/^export const TRACKS_VERSION = '([0-9a-f]+)'$/m)
+  if (!match) throw new Error('TRACKS_VERSION not found in src/content/trails.generated.ts')
+  return match[1]
+}
+
 function stampServiceWorker(apiBase: string): Plugin {
   return {
     name: 'tfg-stamp-sw',
     apply: 'build',
     async closeBundle() {
+      const tracks = await tracksVersion()
       // Sorted: readdir order is filesystem-dependent, and this list is both
       // baked into the SW and hashed into its version.
       const assets = (await readdir(resolve('dist/assets')))
@@ -95,6 +110,8 @@ function stampServiceWorker(apiBase: string): Plugin {
         .update(apiBase)
         .update('\0')
         .update(assets.join('\n'))
+        .update('\0')
+        .update(tracks)
         .digest('hex')
         .slice(0, 16)
       await writeFile(
@@ -102,6 +119,7 @@ function stampServiceWorker(apiBase: string): Plugin {
         source
           .replaceAll('__BUILD_VERSION__', version)
           .replaceAll('__API_BASE__', apiBase)
+          .replaceAll('__TRACKS_VERSION__', tracks)
           .replace('/* __BUILD_ASSETS__ */ []', JSON.stringify(assets)),
       )
     },

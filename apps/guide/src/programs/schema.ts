@@ -37,7 +37,12 @@ export const ProgramEvent = z.object({
   coord: z.tuple([z.number(), z.number()]).optional(), // [lng, lat]
   isFree: z.boolean().optional(),
   reservationRequired: z.boolean().optional(),
-  url: z.string().optional(),
+  // Rendered as an href on /programs and written into the ICS export, so only
+  // http(s) may pass. A bad link degrades to no link; it never drops the event.
+  url: z
+    .string()
+    .transform((u) => (/^https?:\/\//i.test(u) ? u : undefined))
+    .optional(),
   // The printed Yosemite Guide's per-program symbols, carried through the
   // feed. True-only: an unmarked program leaves these undefined, because the
   // Guide not marking a program is not a claim that it is inaccessible.

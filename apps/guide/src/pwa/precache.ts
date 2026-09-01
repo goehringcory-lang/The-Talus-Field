@@ -7,6 +7,8 @@
 // registration's active worker is enough.
 // =============================================================================
 
+import { serviceWorkerReady } from './swReady'
+
 export async function precacheUrls(urls: string[]): Promise<void> {
   if (urls.length === 0) return
   if (!('serviceWorker' in navigator)) return
@@ -23,9 +25,6 @@ export async function precacheUrls(urls: string[]): Promise<void> {
   // First visit: wait for the registration to activate, but never block a
   // session on it — if the SW isn't up within 10s, skip; the next visit
   // (or the fetch handler's cache-first path) picks the photos up.
-  const registration = await Promise.race([
-    navigator.serviceWorker.ready,
-    new Promise<null>((resolve) => window.setTimeout(() => resolve(null), 10_000)),
-  ])
+  const registration = await serviceWorkerReady()
   registration?.active?.postMessage(message)
 }

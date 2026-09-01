@@ -1,4 +1,4 @@
-import { lazy, Suspense } from 'react'
+import { lazy, Suspense, useState } from 'react'
 import { Routes, Route, Navigate, useLocation } from 'react-router-dom'
 import { AuthProvider, RequireAuth } from './auth/AuthGate'
 import { useAuth } from './auth/useAuth'
@@ -53,6 +53,39 @@ function StopGate() {
   return session ? <StopDetail /> : <StopTeaser />
 }
 
+// The Suspense fallback. It stands in for a page, so it carries the page's
+// focus target: ScrollToTop moves focus to #main after a navigation, and with
+// no #main in the fallback the first visit to a lazy route dropped focus on
+// body. Claimed only when nothing else owns the id. Router navigations run as
+// transitions and never show this over a mounted page, but a non-transition
+// re-suspend (StopGate flipping on the session) hides the outgoing page in
+// place, and its GatedChrome #main is still in the tree.
+function RouteLoading() {
+  const [ownsMain] = useState(() => !document.getElementById('main'))
+  return (
+    <div
+      className="app-shell route-loading"
+      id={ownsMain ? 'main' : undefined}
+      tabIndex={ownsMain ? -1 : undefined}
+    >
+      <img
+        className="route-loading__mark"
+        src="/brand/mark-96.png"
+        srcSet="/brand/mark-96.png 1x, /brand/mark-192.png 2x"
+        alt=""
+        width="61"
+        height="48"
+      />
+      <div className="route-loading__lines" role="status">
+        <span className="sr-only">Loading</span>
+        <div className="skeleton" style={{ width: '60%', height: 14 }} />
+        <div className="skeleton" style={{ width: '84%', height: 14 }} />
+        <div className="skeleton" style={{ width: '72%', height: 14 }} />
+      </div>
+    </div>
+  )
+}
+
 export default function App() {
   return (
     <AuthProvider>
@@ -60,25 +93,7 @@ export default function App() {
       <UpdateBanner />
       {/* Visible fallback: on a slow connection a lazy chunk can take seconds,
           and a blank screen reads as broken. */}
-      <Suspense
-        fallback={
-          <div className="app-shell route-loading" aria-label="Loading">
-            <img
-              className="route-loading__mark"
-              src="/brand/mark-96.png"
-              srcSet="/brand/mark-96.png 1x, /brand/mark-192.png 2x"
-              alt=""
-              width="61"
-              height="48"
-            />
-            <div className="route-loading__lines">
-              <div className="skeleton" style={{ width: '60%', height: 14 }} />
-              <div className="skeleton" style={{ width: '84%', height: 14 }} />
-              <div className="skeleton" style={{ width: '72%', height: 14 }} />
-            </div>
-          </div>
-        }
-      >
+      <Suspense fallback={<RouteLoading />}>
         <Routes>
           <Route path="/open" element={<Open />} />
           {/* Instant access straight off the Stripe success redirect. */}

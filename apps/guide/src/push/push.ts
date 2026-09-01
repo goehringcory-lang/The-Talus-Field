@@ -19,6 +19,7 @@
 
 import { apiFetch } from '../lib/api'
 import { readTripDates } from '../programs/usePrograms'
+import { serviceWorkerReady } from '../pwa/swReady'
 import { subscribeTripPlan } from '../trip/useTripPlan'
 
 const ENABLED_KEY = 'tfg.push.enabled'
@@ -98,6 +99,17 @@ function keyFromSubscription(sub: PushSubscription, name: 'p256dh' | 'auth'): st
   return btoa(binary).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '')
 }
 
+// `serviceWorker.ready` can hang forever (see pwa/swReady.ts), and the card's
+// busy state was waiting on it. The message is what NotificationsCard renders
+// for a thrown Error.
+async function swRegistration(): Promise<ServiceWorkerRegistration> {
+  const registration = await serviceWorkerReady()
+  if (!registration) {
+    throw new Error('The app is still starting up. Try again in a moment.')
+  }
+  return registration
+}
+
 /**
  * Register this device. Raises the browser permission prompt if it hasn't been
  * answered, so it MUST be called from a user gesture. Throws with copy the
@@ -121,7 +133,7 @@ export async function enablePush(): Promise<void> {
     )
   }
 
-  const registration = await navigator.serviceWorker.ready
+  const registration = await swRegistration()
   // Reuse an existing subscription rather than minting a second endpoint for
   // the same device; subscribing twice leaves an orphan the sweeps keep
   // pushing to until the push service reports it gone.
@@ -163,7 +175,7 @@ function subscriptionBody(subscription: PushSubscription) {
 export async function disablePush(): Promise<void> {
   setEnabledFlag(false)
   try {
-    const registration = await navigator.serviceWorker.ready
+    const registration = await swRegistration()
     const subscription = await registration.pushManager.getSubscription()
     if (!subscription) return
     // Tell the Worker before unsubscribing: once the local subscription is
@@ -193,7 +205,7 @@ export async function refreshPushSubscription(): Promise<void> {
   if (permissionState() !== 'granted') return
   if (!navigator.onLine) return
   try {
-    const registration = await navigator.serviceWorker.ready
+    const registration = await swRegistration()
     const subscription = await registration.pushManager.getSubscription()
     // No subscription despite the flag means the browser dropped it (data
     // cleared, endpoint rotated). Don't resubscribe behind the user's back —

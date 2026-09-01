@@ -53,7 +53,13 @@ export const ProgramEvent = z.object({
   coord: z.tuple([z.number(), z.number()]).optional(), // [lng, lat], same convention as Stop
   isFree: z.boolean().optional(),
   reservationRequired: z.boolean().optional(),
-  url: z.string().optional(),               // official detail page
+  // Official detail page. The PWA renders it as an href and writes it into
+  // its ICS export, so only http(s) may pass; a bad link degrades to no link
+  // rather than dropping the event (mirrored in apps/guide/src/programs/schema.ts).
+  url: z
+    .string()
+    .transform((u) => (/^https?:\/\//i.test(u) ? u : undefined))
+    .optional(),
   // The two symbols the printed Yosemite Guide attaches to individual
   // programs. Both are TRUE-ONLY claims: the Guide marking a program is a
   // fact worth carrying, but the absence of a symbol is not a statement that

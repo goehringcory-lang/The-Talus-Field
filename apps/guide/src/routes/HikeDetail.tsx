@@ -48,7 +48,10 @@ export default function HikeDetail() {
   const trackState = useTrack(hike?.id)
   const summary = hike ? getTrackSummary(hike.id) : undefined
   const { plan, addHike } = useTripPlan()
-  const [gpxResult, setGpxResult] = useState<GpxExportResult | null>(null)
+  // Keyed by hike: the route element is reused across /hike/a -> /hike/b, so
+  // a bare result would carry "Saved to your files" onto the next trail's page.
+  const [gpxExport, setGpxExport] = useState<{ hikeId: string; result: GpxExportResult } | null>(null)
+  const gpxResult = gpxExport && gpxExport.hikeId === hikeId ? gpxExport.result : null
   const [exportingGpx, setExportingGpx] = useState(false)
 
   const inPlan = useMemo(
@@ -83,7 +86,7 @@ export default function HikeDetail() {
     if (trackState.status !== 'ready') return
     setExportingGpx(true)
     try {
-      setGpxResult(await exportGpx(hike, trackState.track))
+      setGpxExport({ hikeId: hike.id, result: await exportGpx(hike, trackState.track) })
     } finally {
       setExportingGpx(false)
     }

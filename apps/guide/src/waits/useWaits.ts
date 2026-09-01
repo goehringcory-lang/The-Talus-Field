@@ -34,7 +34,21 @@ const EMPTY: LoadResult = {
   fetchedAt: null,
 }
 
-async function loadWaits(): Promise<LoadResult> {
+// Same shape as the other feed hooks: two surfaces mounting at once used to
+// issue two GETs. One in-flight load is shared; it clears on settle so sync()
+// still fetches fresh.
+let inflight: Promise<LoadResult> | null = null
+
+function loadWaits(): Promise<LoadResult> {
+  if (!inflight) {
+    inflight = doLoadWaits().finally(() => {
+      inflight = null
+    })
+  }
+  return inflight
+}
+
+async function doLoadWaits(): Promise<LoadResult> {
   try {
     const raw = await apiFetch<unknown>('/api/waits')
     const payload = WaitsResponse.parse(raw)

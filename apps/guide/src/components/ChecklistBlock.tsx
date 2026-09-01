@@ -27,14 +27,15 @@ export default function ChecklistBlock({ items, verb = 'packed' }: Props) {
     return () => window.removeEventListener('storage', onStorage)
   }, [])
 
+  // Read storage, not the mount-time snapshot: the map is shared by every
+  // list, so a copy of `prev` would write over what another list on the same
+  // page ticked since (the pattern lib/sightings.ts and resetList use).
   function toggle(id: string) {
-    setChecked((prev) => {
-      const next = { ...prev }
-      if (next[id]) delete next[id]
-      else next[id] = true
-      writeChecked(next)
-      return next
-    })
+    const next = { ...readChecked() }
+    if (next[id]) delete next[id]
+    else next[id] = true
+    writeChecked(next)
+    setChecked(next)
   }
 
   const done = items.filter((i) => checked[i.id]).length
