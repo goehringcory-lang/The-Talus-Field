@@ -8,8 +8,7 @@ function ItinerariesPage({
   var [stopsById, setStopsById] = useStateIt(null);
   useEffectIt(() => {
     var cancelled = false;
-    var url = window.POINTS_URL || "/points.geojson";
-    fetch(url).then(r => r.ok ? r.json() : null).then(data => {
+    fetch(window.POINTS_URL).then(r => r.ok ? r.json() : null).then(data => {
       if (cancelled || !data) return;
       var byId = {};
       (data.features || []).forEach(f => {

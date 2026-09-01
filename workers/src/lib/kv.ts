@@ -67,7 +67,8 @@ const TOKEN_INDEX_KEY = (token: string) => `token:${token}`
 const INVENTORY_KEY = (yyyymm: string) => `inventory:${yyyymm}`
 const LOGIN_ATTEMPTS_KEY = (email: string) => `loginAttempts:${email.toLowerCase()}`
 const RESEND_ATTEMPTS_KEY = (email: string) => `resendAttempts:${email.toLowerCase()}`
-const RESEND_ATTEMPTS_IP_KEY = (ip: string) => `resendAttemptsIp:${ip}`
+// Keyed by hashed IP like every other unauthenticated IP limiter here.
+const RESEND_ATTEMPTS_IP_KEY = (ipHash: string) => `resendAttemptsIp:${ipHash}`
 // Keyed by username alone, like LOGIN_ATTEMPTS_KEY is by email: a per-IP key
 // let a distributed attacker dodge the cap while brute-forcing the code on
 // the one door that mints a paid JWT without a purchase.
@@ -118,6 +119,14 @@ export async function getBuyer(env: Env, email: string): Promise<BuyerRecord | n
 }
 
 export async function putBuyer(env: Env, record: BuyerRecord): Promise<void> {
+  // A re-provision (lapsed buyer re-purchases, expired trial redeems a new
+  // code) derives a new token. The old index entry has no TTL, and
+  // /api/auth/exchange checks only the current record's expiry, so a
+  // superseded magic link would keep unlocking the new access window.
+  const prior = await getBuyer(env, record.email)
+  if (prior && prior.accessToken !== record.accessToken) {
+    await env.GUIDE_BUYERS.delete(TOKEN_INDEX_KEY(prior.accessToken))
+  }
   await env.GUIDE_BUYERS.put(BUYER_KEY(record.email), JSON.stringify(record))
   // Reverse index so /api/auth/exchange can resolve token → email without scanning.
   await env.GUIDE_BUYERS.put(TOKEN_INDEX_KEY(record.accessToken), record.email.toLowerCase())
@@ -197,7 +206,7 @@ export async function recordResendAttempt(env: Env, email: string): Promise<numb
 }
 
 export async function recordResendAttemptByIp(env: Env, ip: string): Promise<number> {
-  return incrementFixedWindow(env, RESEND_ATTEMPTS_IP_KEY(ip))
+  return incrementFixedWindow(env, RESEND_ATTEMPTS_IP_KEY(await hashIp('resend', ip)))
 }
 
 export async function recordDevLoginAttempt(env: Env, username: string): Promise<number> {
@@ -243,6 +252,13 @@ export async function recordContactAttempt(env: Env, ipHash: string): Promise<nu
 // Endpoints are long capability URLs and are not safe as raw KV key material
 // (length limits, and they end up in logs). A SHA-256 of the endpoint is a
 // stable, fixed-width id that both the app and the sweeps can derive.
+// Shared by the IP-keyed limiters: the raw address never needs to touch KV.
+export async function hashIp(scope: string, ip: string): Promise<string> {
+  const data = new TextEncoder().encode(`${scope}:${ip}`)
+  const digest = await crypto.subtle.digest('SHA-256', data)
+  return [...new Uint8Array(digest)].map((b) => b.toString(16).padStart(2, '0')).join('')
+}
+
 export async function hashEndpoint(endpoint: string): Promise<string> {
   const digest = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(endpoint))
   return [...new Uint8Array(digest)].map((b) => b.toString(16).padStart(2, '0')).join('')

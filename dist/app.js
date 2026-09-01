@@ -893,6 +893,23 @@ function App() {
       capture: true
     });
   }, []);
+  useEffect(() => {
+    var onClick = e => {
+      if (e.defaultPrevented || e.button !== 0) return;
+      if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+      var a = e.target.closest && e.target.closest("a[href]");
+      if (!a) return;
+      if (a.origin !== window.location.origin) return;
+      if (a.target && a.target !== "_self" || a.hasAttribute("download")) return;
+      if (a.search || a.hash) return;
+      var r = pathToRoute(a.pathname);
+      if (!routeExists(r)) return;
+      e.preventDefault();
+      go(r);
+    };
+    document.addEventListener("click", onClick);
+    return () => document.removeEventListener("click", onClick);
+  }, []);
   var navigatedRef = useRef(false);
   useEffect(() => {
     if (!navigatedRef.current) return;

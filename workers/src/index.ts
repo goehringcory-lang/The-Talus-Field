@@ -92,6 +92,13 @@ app.get('/tiles/:z/:y/:x', async (c) => {
   if (!/^\d+$/.test(z) || !/^\d+$/.test(y) || !/^\d+$/.test(x)) {
     return c.text('Bad tile coordinates', 400)
   }
+  // Bound to the real pyramid: every distinct triple is a distinct edge-cache
+  // entry and a distinct Esri fetch, so unbounded values let one loop mint
+  // unlimited upstream traffic attributed to this Worker.
+  const zi = Number(z)
+  if (zi > 19 || Number(x) >= 2 ** zi || Number(y) >= 2 ** zi) {
+    return c.text('Bad tile coordinates', 400)
+  }
   const upstream = `https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/${z}/${y}/${x}`
   let resp: Response
   try {
@@ -158,7 +165,14 @@ app.get('/api/inventory', async (c) => {
   // exactly one place ([vars] in wrangler.toml).
   const parsedRenewal = Number.parseInt(c.env.GUIDE_RENEWAL_PRICE_CENTS, 10)
   const renewalPriceCents = Number.isNaN(parsedRenewal) ? null : parsedRenewal
-  return c.json({ sold, cap, monthLabel, priceCents, renewalPriceCents, reopens: firstOfNextMonthIso() })
+  // Live scarcity counter and the displayed price: explicit short TTL rather
+  // than heuristic freshness, so a sale shows within a minute and the buy box
+  // does not fetch it on every render.
+  return c.json(
+    { sold, cap, monthLabel, priceCents, renewalPriceCents, reopens: firstOfNextMonthIso() },
+    200,
+    { 'Cache-Control': 'public, max-age=60' },
+  )
 })
 
 // Conditions feeds: same unauthenticated, never-error posture as weather.

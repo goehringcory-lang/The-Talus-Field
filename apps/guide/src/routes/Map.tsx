@@ -615,11 +615,15 @@ export default function Map() {
   )
 
   // Chip count badges: what enabling each kind yields under the OTHER active
-  // filters (itinerary narrowing and the secret toggle), never the kind
-  // filter itself, so a chip's number always states what tapping it shows.
+  // filters (itinerary narrowing, the secret toggle and the trip layer),
+  // never the kind filter itself, so a chip's number always states what
+  // tapping it shows. The planned clauses mirror the visible* filters above
+  // exactly; with "My trip" on, a park-wide number here promised pins the
+  // tap did not deliver.
   const kindCounts = useMemo(() => {
     const out = Object.fromEntries(presentKinds.map((k) => [k, 0])) as Record<MapPinKind, number>
     for (const s of mappableStops) {
+      if (plannedOnly && !plannedStopIds.has(s.id)) continue
       if (!showSecret && isSecretGuideEntry(s)) continue
       if (
         itineraryRegions &&
@@ -629,18 +633,22 @@ export default function Map() {
       }
       out[s.kind]++
     }
-    for (const a of AMENITIES) {
-      if (itineraryRegions && !itineraryRegions.has(a.region)) continue
-      out[a.kind]++
+    // Amenities are never planned (see visibleAmenities).
+    if (!plannedOnly) {
+      for (const a of AMENITIES) {
+        if (itineraryRegions && !itineraryRegions.has(a.region)) continue
+        out[a.kind]++
+      }
     }
     // Pins, not routes: a multi-hike trailhead counts once, matching what
     // tapping the chip puts on the map.
     for (const g of TRAILHEAD_GROUPS) {
+      if (plannedOnly && !g.hikes.some((h) => plannedHikeIds.has(h.id))) continue
       if (itineraryRegions && !itineraryRegions.has(g.region)) continue
       out.hike++
     }
     return out
-  }, [mappableStops, itineraryRegions, showSecret, presentKinds])
+  }, [mappableStops, itineraryRegions, showSecret, presentKinds, plannedOnly, plannedStopIds, plannedHikeIds])
 
   const allCount = useMemo(
     () => Object.values(kindCounts).reduce((a, b) => a + b, 0),

@@ -35,7 +35,13 @@ function fetchInventory() {
   if (!inventoryPromise) {
     inventoryPromise = fetch(`${GUIDE_API_BASE}/api/inventory`)
       .then((res) => (res.ok ? res.json() : null))
-      .catch(() => null);
+      .catch(() => {
+        // Do not memoize a failure: one flaky fetch would pin the fallback
+        // price and hide the counter for the whole session (same policy as
+        // the failed-bundle path in app.jsx).
+        inventoryPromise = null;
+        return null;
+      });
   }
   return inventoryPromise;
 }
@@ -779,7 +785,7 @@ function GuideStopExample() {
         <span className="guide-stop-ex__chip">25 minutes</span>
       </div>
       <p className="guide-stop-ex__body">
-        You come out of the Wawona Tunnel and the whole valley is there at once. El Capitan on the left, Bridalveil Fall on the right, Half Dome anchoring the back wall. Most people raise a phone and lower it after thirty seconds. Don't. Stay fifteen minutes. Look at the U-shape of the valley floor — a glacier did that, two thousand feet of ice. The hanging valleys above the rim are why the waterfalls fall so far. You're not looking at scenery; you're looking at the geological event. Once you see it, you can't unsee it for the rest of the trip.
+        You come out of the Wawona Tunnel and the whole valley is there at once. El Capitan on the left, Bridalveil Fall on the right, Half Dome anchoring the back wall. Most people raise a phone and lower it after thirty seconds. Don't. Stay fifteen minutes. Look at the U-shape of the valley floor: a glacier did that, two thousand feet of ice. The hanging valleys above the rim are why the waterfalls fall so far. You're not looking at scenery; you're looking at the geological event. Once you see it, you can't unsee it for the rest of the trip.
       </p>
       <div className="guide-stop-ex__swap">
         <div className="guide-stop-ex__swap-label">If the lot is full</div>

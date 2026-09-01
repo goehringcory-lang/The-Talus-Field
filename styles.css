@@ -3,6 +3,36 @@
    Serious editorial chrome. Ruled. Dense. Typographic.
    ============================================================ */
 
+/* Self-hosted webfonts (variable woff2, latin subset; the same files the
+   Field Guide ships under apps/guide/public/fonts). They used to arrive via a
+   render-blocking <link> to fonts.googleapis.com: a third-party CSS request on
+   the critical path of every page, plus a second connection to fonts.gstatic.com
+   before the first glyph. Declaring the faces here costs nothing until a face
+   is used, and the two first-screen files are preloaded from index.html.
+   /fonts/* is served immutable for a year (_headers), so replacing a file
+   means renaming it, the same rule the PWA's versioned icons follow. */
+@font-face {
+  font-family: 'EB Garamond';
+  font-style: normal;
+  font-weight: 400 800;
+  font-display: swap;
+  src: url('/fonts/eb-garamond.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'EB Garamond';
+  font-style: italic;
+  font-weight: 400 800;
+  font-display: swap;
+  src: url('/fonts/eb-garamond-italic.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('/fonts/inter.woff2') format('woff2');
+}
+
 :root {
   /* Golden hour. Warm cream paper, oxidized iron red */
   --paper: #f1ead6;
@@ -20,7 +50,7 @@
 
   /* Type system. Alpine Journal-leaning.
      Font diet (LCP pass): EB Garamond + Inter are the only webfonts loaded
-     (see the fonts link in index.html). Source Serif 4 was never reached, as
+     (the @font-face block above). Source Serif 4 was never reached, as
      EB Garamond precedes it, and the few --mono call sites read fine from the
      system monospace stack. */
   --serif: 'EB Garamond', Georgia, 'Times New Roman', serif;
@@ -1953,6 +1983,14 @@ main:focus { outline: none; }
 .map-trigger:focus-visible::after { opacity: 1; }
 
 /* ===== Homepage webcam tiles ===== */
+/* The webcam strip. It used to carry an inline repeat(4) grid, which a
+   phone-width rule written for the retired home "By Section" grid was
+   collapsing to gap 0, so the four thumbnails butted together on
+   /conditions, /webcams, /now and /firefall. */
+.cam-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; }
+@media (max-width: 720px) {
+  .cam-grid { grid-template-columns: repeat(2, 1fr); gap: 20px 16px; }
+}
 .cam-tile:focus-visible { outline: 2px solid var(--moss); outline-offset: 2px; border-radius: 2px; }
 
 /* ===== Lightbox (pan + zoom map viewer) ===== */
@@ -2192,11 +2230,6 @@ main:focus { outline: none; }
     grid-template-columns: 1fr !important;
     gap: 28px !important;
   }
-  /* The 4-up sections grid on the home page is more useful as a 2x2 than stacked. */
-  [style*="repeat(4"] {
-    grid-template-columns: repeat(2, 1fr) !important;
-    gap: 0 !important;
-  }
 
   /* Section padding overrides for inline-styled paddingTop. Halve generous spacing. */
   section.wrap[style*="padding-top: 96"],
@@ -2291,10 +2324,6 @@ main:focus { outline: none; }
   /* Places strip */
   .places-strip { padding: 16px var(--gutter); gap: 12px; }
   .places-strip__copy { font-size: 15px; }
-
-  /* Tiles inside the home "By Section" 2x2 grid keep their internal padding readable. */
-  [style*="repeat(4"] > a { padding: 18px !important; }
-  [style*="repeat(4"] > a > div[style*="font-size: 26px"] { font-size: 20px !important; }
 
   /* On mobile, hide the credit overlay so it never blocks the image. */
   .placeholder__credit { display: none; }
@@ -4872,7 +4901,10 @@ main:focus { outline: none; }
   outline: 2px solid var(--moss);
   outline-offset: 3px;
 }
-.bulletin-fold__title { flex: 0 0 auto; }
+/* An h3 so the four standing sections sit in the heading outline (they were
+   the only sections on the page a heading-navigating reader could not reach);
+   inherits the summary's type so nothing about the row changes. */
+.bulletin-fold__title { flex: 0 0 auto; margin: 0; font: inherit; color: inherit; }
 .bulletin-fold__hint {
   flex: 1 1 auto;
   min-width: 0;

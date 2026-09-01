@@ -25,7 +25,10 @@ async function loadTrack(hikeId: string): Promise<TrackT> {
   const url = trackUrl(hikeId)
   let raw: unknown
   try {
-    const res = await fetch(url)
+    // Same 15 s deadline as lib/api.ts: captive-portal wifi accepts the
+    // connection and never answers, and without one the profile skeleton
+    // would sit there forever instead of reaching the error state.
+    const res = await fetch(url, { signal: AbortSignal.timeout(15_000) })
     const type = res.headers.get('content-type')
     // The SPA _redirects fallback answers a missing file with HTML and a 200;
     // treat it as missing, never parse it.

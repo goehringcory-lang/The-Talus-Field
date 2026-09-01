@@ -102,21 +102,29 @@ auth.post('/login', async (c) => {
 // so a refund actually signs the buyer out. Returns 200 with expired: true
 // (rather than a 401) for a lapsed buyer — the client needs the date to
 // explain what happened.
+// Private state behind a bearer token: never store it at the edge or in a
+// shared browser cache (same posture as /api/trip/plan and /api/push/pending).
+const NO_STORE = { 'Cache-Control': 'no-store' }
+
 auth.get('/me', requireAuth, async (c) => {
   const sub = c.get('authSub')
   const buyer = await getBuyer(c.env, sub)
   if (!buyer) {
     // No buyer record: a dev/admin session. Report the JWT's own expiry so
     // the Account page has something sensible to show.
-    return c.json({ kind: 'operator', email: sub, expiresAt: c.get('authExp') })
+    return c.json({ kind: 'operator', email: sub, expiresAt: c.get('authExp') }, 200, NO_STORE)
   }
-  return c.json({
-    kind: 'buyer',
-    email: buyer.email,
-    purchasedAt: buyer.purchasedAt,
-    expiresAt: buyer.expiresAt,
-    expired: buyer.expiresAt * 1000 < Date.now(),
-  })
+  return c.json(
+    {
+      kind: 'buyer',
+      email: buyer.email,
+      purchasedAt: buyer.purchasedAt,
+      expiresAt: buyer.expiresAt,
+      expired: buyer.expiresAt * 1000 < Date.now(),
+    },
+    200,
+    NO_STORE,
+  )
 })
 
 // Self-serve "I lost my purchase email." Re-sends the existing magic link +

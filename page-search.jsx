@@ -30,6 +30,7 @@ const { useCallback, useEffect, useMemo, useRef, useState } = React;
 // the only `path` entry: it is generated static HTML, not an SPA route, so it
 // must never get a go() handler.
 const SEARCH_PAGES = [
+  { route: "articles", title: "All articles", dek: "Every article the journal has published, newest first, with section chips and the trip filters.", kind: "Page" },
   { route: "explore", title: "Site index", dek: "Every destination on The Talus Field on one page, grouped and described: sections, the archive, the films, the trip tools, and the Field Guide.", kind: "Page" },
   { route: "now", title: "The Park Bulletin", dek: "Everything happening in the park right now: alerts, road and area status, free programs, dated events, trail status, hours, transit, phone numbers.", kind: "Page" },
   { route: "planning", title: "The Yosemite Planning Guide", dek: "The full planning sequence: reservations, permits, timing, transit, lodging, and what to do when the thing you wanted is booked.", kind: "Page" },

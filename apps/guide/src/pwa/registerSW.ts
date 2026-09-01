@@ -102,6 +102,11 @@ export function registerServiceWorker(onUpdate?: UpdateHandler): void {
       navigator.serviceWorker.addEventListener('controllerchange', () => {
         if (hadWorkerAtLoad) announce(registration)
       })
+    }).catch(() => {
+      // A refused or unreachable /sw.js (private mode, a proxy that blocks
+      // it) leaves the app running online-only, which is the same state as
+      // the first visit. Nothing to surface, and an unhandled rejection in
+      // the console reads as a crash.
     })
   })
 }

@@ -136,8 +136,8 @@ function counter(file, constName) {
   return { url: parsed[1], version: Number(parsed[2]) };
 }
 
-const points = counter("page-map.jsx", "POINTS_URL");
-if (points) add(points.url, points.version, points.url.replace(/^\//, ""), "page-map.jsx POINTS_URL");
+const points = counter("itineraries-data.js", "POINTS_URL");
+if (points) add(points.url, points.version, points.url.replace(/^\//, ""), "itineraries-data.js POINTS_URL");
 
 // bulletin.json is fetched from three pages now, each with its own const. They
 // must all carry the same ?v=: the file is served with a long TTL, so a page

@@ -473,7 +473,7 @@ function BulletinFold({
   }, React.createElement(BulletinIcon, {
     name: icon || "dot",
     className: "bulletin-card__icon"
-  }), React.createElement("span", {
+  }), React.createElement("h3", {
     className: "bulletin-fold__title"
   }, title), hint ? React.createElement("span", {
     className: "bulletin-fold__hint"

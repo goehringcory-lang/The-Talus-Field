@@ -19,8 +19,7 @@ function ItinerariesPage({ go }) {
 
   useEffectIt(() => {
     let cancelled = false;
-    const url = window.POINTS_URL || "/points.geojson";
-    fetch(url)
+    fetch(window.POINTS_URL)
       .then((r) => (r.ok ? r.json() : null))
       .then((data) => {
         if (cancelled || !data) return;

@@ -36,6 +36,11 @@
 }
 
 :root {
+  /* Native controls (date and time pickers, selects, the calendar indicator)
+     follow color-scheme, not the tokens, so a pinned theme has to state it
+     or the OS scheme leaks through. Light here covers Daylight, pinned or
+     in Auto; the granite blocks below flip it. */
+  color-scheme: light;
   /* Golden hour. Warm cream paper, oxidized iron red */
   --paper: #f1ead6;
   --paper-2: #e6dcc1;
@@ -1091,6 +1096,7 @@ select:focus-visible {
    ============================================================ */
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme='daylight']) {
+    color-scheme: dark;
     --paper:     #1c1812;
     --paper-2:   #252019;
     --paper-3:   #302a1e;
@@ -1114,6 +1120,7 @@ select:focus-visible {
 }
 
 :root[data-theme='granite'] {
+  color-scheme: dark;
   --paper:     #1c1812;
   --paper-2:   #252019;
   --paper-3:   #302a1e;

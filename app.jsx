@@ -1039,6 +1039,34 @@ function App() {
     return () => document.removeEventListener("click", onClick, { capture: true });
   }, []);
 
+  // SPA interception of plain internal links. Article bodies and several
+  // standing pages link with bare anchors to /articles/<slug> (453 in-body links
+  // after the August 2026 internal-link pass), and until now every one of
+  // them was a full page load: React, the catalog, the shell and the route
+  // bundle re-parsed to follow a cross-link. Bubble phase, not capture, so a
+  // React handler that already called go() has marked the event
+  // defaultPrevented and this stays out of its way. Anything the router
+  // cannot own goes to the browser untouched: other origins, new tabs,
+  // downloads, modifier clicks, links carrying a query (/map?trip=) or a
+  // hash, the generated /archive pages, and any path that would 404.
+  useEffect(() => {
+    const onClick = (e) => {
+      if (e.defaultPrevented || e.button !== 0) return;
+      if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+      const a = e.target.closest && e.target.closest("a[href]");
+      if (!a) return;
+      if (a.origin !== window.location.origin) return;
+      if ((a.target && a.target !== "_self") || a.hasAttribute("download")) return;
+      if (a.search || a.hash) return;
+      const r = pathToRoute(a.pathname);
+      if (!routeExists(r)) return;
+      e.preventDefault();
+      go(r);
+    };
+    document.addEventListener("click", onClick);
+    return () => document.removeEventListener("click", onClick);
+  }, []);
+
   // Browser back/forward. The target route's bundle is awaited before the
   // route state commits (usually a no-op: bundles are prefetched on first
   // interaction); if it can't be fetched, a full reload retries from scratch.

@@ -6,6 +6,11 @@ var {
   useState
 } = React;
 var SEARCH_PAGES = [{
+  route: "articles",
+  title: "All articles",
+  dek: "Every article the journal has published, newest first, with section chips and the trip filters.",
+  kind: "Page"
+}, {
   route: "explore",
   title: "Site index",
   dek: "Every destination on The Talus Field on one page, grouped and described: sections, the archive, the films, the trip tools, and the Field Guide.",

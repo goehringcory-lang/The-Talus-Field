@@ -921,7 +921,7 @@ function Footer({
     }
   }, "Full disclosure here.")), React.createElement("div", {
     className: "site-footer__legal"
-  }, React.createElement("div", null, "© 2026 The Talus Field. Independent. Not affiliated with the National Park Service."), React.createElement("div", null, React.createElement("a", {
+  }, React.createElement("div", null, "© ", new Date().getFullYear(), " The Talus Field. Independent. Not affiliated with the National Park Service."), React.createElement("div", null, React.createElement("a", {
     href: "/advertise",
     onClick: e => {
       e.preventDefault();
@@ -2198,12 +2198,7 @@ var WEBCAMS = [{
 function WebcamStrip() {
   var camCacheBust = useMemo(() => Math.floor(Date.now() / 300000), []);
   return React.createElement(React.Fragment, null, React.createElement("div", {
-    className: "cam-grid",
-    style: {
-      display: "grid",
-      gridTemplateColumns: "repeat(4, 1fr)",
-      gap: 32
-    }
+    className: "cam-grid"
   }, WEBCAMS.map(cam => React.createElement("a", {
     key: cam.img,
     className: "cam-tile",

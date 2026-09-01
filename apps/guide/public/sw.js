@@ -7,6 +7,10 @@
  * update nobody made. It is deliberately not a timestamp; see vite.config.ts. */
 
 const VERSION = '__BUILD_VERSION__'
+// The ?v= hash on /tracks/ URLs (src/content/trails.generated.ts), stamped by
+// vite.config.ts alongside VERSION. Activate uses it to drop superseded track
+// files from the unversioned runtime cache.
+const TRACKS_VERSION = '__TRACKS_VERSION__'
 const SHELL_CACHE = `tfg-shell-${VERSION}`
 const RUNTIME_CACHE = 'tfg-runtime'
 // Map tiles. Unversioned on purpose: a downloaded park map survives deploys.
@@ -134,6 +138,7 @@ self.addEventListener('activate', (event) => {
       // refetches the real asset. Downloaded real photos (image/*) are kept.
       await purgeHtmlFromCache(RUNTIME_CACHE)
       await purgeHtmlFromCache(TILES_CACHE)
+      await purgeStaleTracks()
       await self.clients.claim()
     })(),
   )
@@ -157,6 +162,27 @@ async function purgeHtmlFromCache(cacheName) {
 function isHtml(res) {
   const type = res.headers.get('content-type')
   return !!type && type.includes('text/html')
+}
+
+// Track JSONs are cache-first under the unversioned runtime cache and keyed by
+// full URL, so when the tracks regenerate (?v= bumps) nothing ever asks for the
+// old URL again and every superseded file stays on the phone for good. Drop
+// the entries whose ?v= is not the one this build ships. Real HTML poisoning
+// is purgeHtmlFromCache's job; this only looks at the query.
+async function purgeStaleTracks() {
+  // Unstamped (the raw public/ file in dev): nothing to compare against.
+  if (TRACKS_VERSION.startsWith('__')) return
+  try {
+    const cache = await caches.open(RUNTIME_CACHE)
+    const requests = await cache.keys()
+    await Promise.all(
+      requests.map(async (req) => {
+        const url = new URL(req.url)
+        if (!url.pathname.startsWith('/tracks/')) return
+        if (url.searchParams.get('v') !== TRACKS_VERSION) await cache.delete(req)
+      }),
+    )
+  } catch { /* cache API unavailable — non-fatal */ }
 }
 
 // True when every hashed asset a shell HTML references is already cached (in
@@ -330,18 +356,28 @@ const OFFLINE_PAGE = `<!doctype html>
 </html>`
 
 // Captive-portal wifi (hotel lobbies, the Valley's paid networks) accepts the
-// connection and then never answers, so a bare navigation fetch hangs forever
-// and the cached-shell fallback below never runs: a white screen on launch for
-// an app whose whole promise is working without signal.
+// connection and then never answers, so a bare fetch hangs forever. For a
+// navigation that meant the cached-shell fallback below never ran: a white
+// screen on launch for an app whose whole promise is working without signal.
+// For a tile or a photo on a cache miss it meant a pending request the page
+// could neither render nor fall back from.
 const NAVIGATE_TIMEOUT_MS = 5000
+// Longer for assets: a photo can legitimately take a while to start on park
+// LTE, and a failed request here is a broken image or a missing tile, not a
+// blank app.
+const ASSET_TIMEOUT_MS = 20000
 
-function fetchNavigation(request) {
-  // Feature-guarded: an engine without AbortSignal.timeout keeps the old
-  // behaviour rather than throwing on every navigation.
-  if (typeof AbortSignal !== 'undefined' && typeof AbortSignal.timeout === 'function') {
-    return fetch(request, { signal: AbortSignal.timeout(NAVIGATE_TIMEOUT_MS) })
-  }
-  return fetch(request)
+// The deadline covers the wait for headers only. A hung connection is decided
+// there; once bytes are flowing the body is left to finish at whatever rate
+// the network gives (the region heroes are multi-megabyte originals, and a
+// deadline over the whole download would cut a slow, working transfer).
+function fetchWithDeadline(request, ms) {
+  // Feature-guarded: an engine without AbortController keeps the old
+  // behaviour rather than throwing on every request.
+  if (typeof AbortController === 'undefined') return fetch(request)
+  const controller = new AbortController()
+  const timer = setTimeout(() => controller.abort(), ms)
+  return fetch(request, { signal: controller.signal }).finally(() => clearTimeout(timer))
 }
 
 const RUNTIME_PATTERNS = [
@@ -371,7 +407,9 @@ self.addEventListener('fetch', (event) => {
         const cache = await caches.open(TILES_CACHE)
         const cached = await cache.match(request)
         if (cached) return cached
-        const fresh = await fetch(request)
+        // On the deadline this rejects, which the map treats as a missing
+        // tile, the same as offline; a hung tile stayed blank for good.
+        const fresh = await fetchWithDeadline(request, ASSET_TIMEOUT_MS)
         // Never cache the SPA HTML fallback under a tile URL (see activate).
         // The put is fire-and-forget; .catch so a full disk (QuotaExceeded)
         // degrades to an uncached tile instead of an unhandled rejection.
@@ -391,7 +429,7 @@ self.addEventListener('fetch', (event) => {
     event.respondWith(
       (async () => {
         try {
-          const fresh = await fetchNavigation(request)
+          const fresh = await fetchWithDeadline(request, NAVIGATE_TIMEOUT_MS)
           // Only cache successful HTML shells. A 5xx/maintenance page would
           // poison every later offline launch, and a same-origin navigation
           // can be a non-HTML document too ("open image in new tab" on a
@@ -443,7 +481,9 @@ self.addEventListener('fetch', (event) => {
         const cache = await caches.open(RUNTIME_CACHE)
         const cached = await cache.match(request)
         if (cached) return cached
-        const fresh = await fetch(request)
+        // On the deadline this rejects: a broken image, a fallback font, or
+        // useTrack's error state, each of which the page already handles.
+        const fresh = await fetchWithDeadline(request, ASSET_TIMEOUT_MS)
         // Guard against the SPA _redirects fallback: a missing asset returns
         // index.html with a 200, and caching that HTML under an image/font URL
         // poisons the entry (renders as a broken image, and the runtime cache

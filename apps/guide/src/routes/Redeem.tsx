@@ -166,14 +166,6 @@ export default function Redeem() {
               </label>
             </div>
 
-            {/* role="alert": the failure appears below the fold of a phone
-                keyboard, so a silent render reads as the button doing nothing. */}
-            {error && (
-              <div className="form-error" id="redeem-error" role="alert">
-                {error}
-              </div>
-            )}
-
             <Button type="submit" disabled={busy}>
               {busy ? (
                 <>
@@ -185,6 +177,16 @@ export default function Redeem() {
               )}
             </Button>
           </form>
+        )}
+
+        {/* Outside both branches: a failed "Send it again" from the done card
+            has to show up too, not only a failed first submit. role="alert":
+            the failure appears below the fold of a phone keyboard, so a
+            silent render reads as the button doing nothing. */}
+        {error && (
+          <div className="form-error" id="redeem-error" role="alert">
+            {error}
+          </div>
         )}
 
         <p className="login-aside">
