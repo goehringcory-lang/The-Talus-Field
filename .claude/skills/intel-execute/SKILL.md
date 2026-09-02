@@ -50,7 +50,10 @@ Dispatch by the option's action type:
   update `isoModified` in `data.js`, re-verify any fact the change touches
   against a primary source, then
   `npm --prefix scripts run compile && run seo && run prerender` and commit
-  the regenerated mirrors with the source files.
+  the regenerated mirrors with the source files. If an open
+  `claude/evergreen-refresh-<slug>` PR already covers the slug, do not race
+  it: comment on the brief that the refresh PR carries it (or ask the owner
+  which should land) and mark the option handed back.
 - **Bulletin item** → branch `claude/intel-bulletin-<topic>`. Edit
   `bulletin.json` per its own `__comment` workflow; remember all three
   readers share its `?v=` counter (`BULLETIN_URL` in page-now.jsx,

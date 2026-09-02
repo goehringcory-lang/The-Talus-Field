@@ -71,6 +71,18 @@ use, and the evidence lines behind it.
    - **Fallback ladder**: strongest trend topic → best seasonal gap (a coming
      visit month the catalog underserves; check `ARTICLE_MONTHS` coverage) →
      skip the week. Never invent a third option.
+   - **Tie-break toward the funnel.** Between two candidates that both clear
+     the bar, prefer the one with an honest money or product surface: a
+     lodging or camping question (the `LodgingCta` pattern applies), a gear
+     question (Patagonia links), or a topic whose stops the Field Guide
+     carries (the article-end guide card does the rest). This only orders
+     equals; it never picks a weaker topic.
+   - **Territory.** The Thursday cornerstone routine
+     (`.claude/skills/cornerstone-article/SKILL.md`) owns head-term and
+     evergreen-gap articles and the evergreen month guides; this routine
+     owns the week's demand. Before taking the seasonal-gap fallback, check
+     for an open `claude/cornerstone-*` PR on the same topic. The monthly
+     edition owns `yosemite-in-<month>-<year>`.
 3. One article per run. Fix the slug (lowercase-hyphenated), the category
    (`planning` | `trails` | `wildlife` | `seasonal` — must be one of the four in
    `window.CATEGORIES`), and rename the branch to `claude/trend-article-<slug>`.
@@ -82,6 +94,14 @@ Facts come from primary sources only: `nps.gov/yose`, `recreation.gov`,
 (weather climatology), YARTS, official gateway-town and county pages,
 Yosemite Conservancy. Blogs, forums, and Wikipedia are leads to chase into a
 primary source, never citations.
+
+**When a primary domain is egress-blocked** (the sandbox's network policy
+has been refusing `nps.gov`, `recreation.gov`, `travelyosemite.com`, Reddit
+and most others; `ROUTINES.md` carries the list and the fix), a WebSearch
+result that quotes the primary page counts, logged as
+`<primary URL> (via search)`. A claim that rests only on secondary coverage
+is hedged or cut. Say in the PR body which domains were blocked, so the
+fact-check table reads honestly.
 
 Keep a source log as you go — one row per fact:
 
@@ -122,6 +142,11 @@ to load the register, then write to these rules:
   pass settled on: Search Console had the whole site down to 33 internally
   linked pages, and in-body links are the only article-to-article links a
   non-JS crawler sees.
+- **Links in**: inbound links from older pieces are not this routine's to
+  add (it never edits existing bodies). Name the two or three older
+  articles that should link here, with the sentence each link belongs in,
+  under **Links in** in the PR body; the Wednesday evergreen-refresh
+  routine applies them.
 - **A `RELATED` entry** in `data.js`: four to six topically related slugs for
   the new piece, and add it to the lists of the two or three pieces a reader
   would arrive from. `window.RELATED` feeds the reader's related rail, the
@@ -222,10 +247,15 @@ history). Edit four by hand; the rest are generated.
    npm --prefix scripts run prerender   # prerender/<slug>.html
    ```
 
-7. **Cache-busters**: a pure article add needs **no** shared `?v=` bump —
-   both canonical article commits shipped without one (`data.js` and
-   `intent-data.js` ride a short TTL that self-heals, per `_headers`).
-   `BODY_VERSIONS` from step 2 is the only new counter.
+7. **Cache-busters**: `BODY_VERSIONS` from step 2 is the body's counter.
+   The shared `?v=` is decided by the guard, not by this note: run
+   `npm --prefix scripts run check`, and when `check-asset-freshness.mjs`
+   fails because `data.js` / `intent-data.js` changed under the unchanged
+   shared number, bump the shared `?v=` in `index.html`, run
+   `npm --prefix scripts run assets:stamp`, and commit the regenerated
+   manifest with everything else. (An earlier version of this note said a
+   pure add needs no bump; that predates the asset-freshness guard, and
+   PR #341 hit it.)
 
 ## Phase 7 — Verification gates
 
@@ -258,6 +288,11 @@ the compile step corrected.
    - **What it adds** — the catalog gap it fills, and the intent tags chosen.
    - **Fact-check table** — the surviving source log from Phase 5.
    - **Pipeline checklist** — each Phase 6 step confirmed, both gates green.
+   - **Links in** — the two or three older articles that should link here.
+   - **Distribution handoff** — a two-to-three sentence Sunday-letter blurb
+     in house voice and one Reddit-ready answer paragraph (helpful first,
+     one deep link, no promotion). The Saturday letter routine reads these;
+     nothing is posted by this routine.
    - Any flags for the owner (canon discrepancies, pre-existing check errors).
 
    If the session has no GitHub PR tool, the pushed branch is still the
