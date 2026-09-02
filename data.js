@@ -146,7 +146,7 @@ window.BODY_VERSIONS = {
   "is-bear-spray-allowed-in-yosemite": 1,
   "yosemite-bears-safety-guide": 118,
   "yosemite-heat-safety-guide": 4,
-  "when-to-visit-yosemite-2026-crowd-forecast": 3,
+  "when-to-visit-yosemite-2026-crowd-forecast": 4,
   "yosemite-trip-cost-budget-2026": 8,
   "yosemite-in-september-2026": 1,
   "yosemite-in-june-2026": 3,
@@ -1262,7 +1262,7 @@ window.ARTICLES = [
     seoDek: "Yosemite has no reservation system in 2026 and is pacing toward its second-busiest year ever. NPS data, a month-by-month forecast, and the best days to visit.",
     date: "June 11, 2026",
     isoDate: "2026-06-11",
-    isoModified: "2026-06-11",
+    isoModified: "2026-09-02",
     read: "11 min",
     placeholder: "Vernal Fall at high water in late spring, the start of the park's heaviest months",
     image: "img/vernal-fall-high-water.jpg",
@@ -1769,7 +1769,7 @@ window.RELATED = {
   "first-time-yosemite-overwhelm": ["yosemite-in-one-or-two-days", "when-to-visit-yosemite-2026-crowd-forecast", "yosemite-gateway-towns-compared", "yosemite-without-reservations-2026", "pack-your-car-for-yosemite"],
   "yosemite-in-one-or-two-days": ["yosemite-in-three-to-five-days", "first-time-yosemite-overwhelm", "yosemite-valley-parking-guide", "where-to-eat-yosemite", "yosemite-day-trip-from-bay-area", "where-to-propose-in-yosemite"],
   "yosemite-in-three-to-five-days": ["yosemite-in-one-or-two-days", "tuolumne-meadows-in-a-day", "mist-trail-the-real-guide", "yosemite-gateway-towns-compared", "when-to-visit-yosemite-2026-crowd-forecast"],
-  "when-to-visit-yosemite-2026-crowd-forecast": ["yosemite-without-reservations-2026", "yosemite-in-september-2026", "yosemite-in-fall", "yosemite-in-june-2026", "yosemite-gateway-towns-compared", "yosemite-in-march"],
+  "when-to-visit-yosemite-2026-crowd-forecast": ["yosemite-without-reservations-2026", "yosemite-in-september-2026", "yosemite-in-fall", "yosemite-valley-parking-guide", "yosemite-gateway-towns-compared", "yosemite-in-march"],
   "yosemite-without-reservations-2026": ["when-to-visit-yosemite-2026-crowd-forecast", "yosemite-valley-parking-guide", "yosemite-walk-up-and-day-of-permits", "hetch-hetchy-the-other-yosemite-valley", "first-time-yosemite-overwhelm"],
 
   // Seasonal
