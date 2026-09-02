@@ -105,29 +105,73 @@ proxy. The effects so far:
   cannot be automated until this is fixed (it will post the stale note when
   an edition lapses, and stop there).
 
-**The fix is yours and takes a few minutes.** Open
-[claude.ai/code/routines](https://claude.ai/code/routines), open any
-routine, click the pencil to edit it, click the cloud icon showing the
-environment name ("Default") below the Instructions box, hover the
-environment and click its settings icon, then set **Network access** to
-**Custom**, paste the hosts below into **Allowed domains**, and tick
-"Also include default list of common package managers". Save. The policy
-belongs to the environment, so fixing it once fixes every routine, and
-nothing in the runbooks needs to change:
+**The fix is yours and takes a few minutes.** The setting belongs to the
+environment, not to any routine, so fixing it once fixes the whole fleet.
+It has **no settings page and no direct URL**, which is why it is hard to
+find: on [claude.ai/code](https://claude.ai/code), click the cloud icon
+showing the environment's name in the row **above the message box**, hover
+"Default Cloud Environment" in the menu, and click the settings gear on
+its right. (The same dialog is reachable from a routine's edit form, via
+the cloud icon below the Instructions box.) In the dialog set **Network
+access** to **Custom**, put the hosts below in **Allowed domains**, one
+per line, and **tick "Also include default list of common package
+managers"** — without it the npm registry is blocked and every routine
+fails at `npm install`. Save; the policy applies from the next run.
+**Full** is the one-click alternative and a defensible choice here: no API
+credentials are stored in this environment, and GitHub traffic bypasses
+this allowlist through its own proxy either way. A leading `*.` matches
+subdomains but not the bare domain, so both forms are listed:
 
 ```
-www.nps.gov  nps.gov  www.recreation.gov  recreation.gov
-www.travelyosemite.com  travelyosemite.com  yarts.com  www.yarts.com
-dot.ca.gov  roads.dot.ca.gov  quickmap.dot.ca.gov
-forecast.weather.gov  api.weather.gov  www.weather.gov
-old.reddit.com  www.reddit.com
-yosemite.org  www.yosemite.org  yosemiteclimbing.org  www.yosemiteclimbing.org
-www.yosemitemariposa.com  www.visittuolumne.com  www.yosemitethisyear.com
-www.mariposagazette.com  www.sierrastar.com  www.uniondemocrat.com
-thetalusfieldjournal.com  api.thetalusfieldjournal.com  guide.thetalusfieldjournal.com
-commons.wikimedia.org  upload.wikimedia.org  api.pexels.com  images.pexels.com
+thetalusfieldjournal.com
+*.thetalusfieldjournal.com
+nps.gov
+*.nps.gov
+recreation.gov
+*.recreation.gov
+travelyosemite.com
+*.travelyosemite.com
+yarts.com
+*.yarts.com
+dot.ca.gov
+*.dot.ca.gov
+weather.gov
+*.weather.gov
+reddit.com
+*.reddit.com
+yosemite.org
+*.yosemite.org
+yosemiteclimbing.org
+*.yosemiteclimbing.org
+yosemitemariposa.com
+*.yosemitemariposa.com
+visittuolumne.com
+*.visittuolumne.com
+yosemitethisyear.com
+*.yosemitethisyear.com
+mariposagazette.com
+*.mariposagazette.com
+sierrastar.com
+*.sierrastar.com
+uniondemocrat.com
+*.uniondemocrat.com
+wikimedia.org
+*.wikimedia.org
+pexels.com
+*.pexels.com
 trends.google.com
-www.tenayalodge.com  autocamp.com  www.evergreenlodge.com  www.rushcreeklodge.com  firefallranch.com  www.undercanvas.com
+tenayalodge.com
+*.tenayalodge.com
+autocamp.com
+*.autocamp.com
+evergreenlodge.com
+*.evergreenlodge.com
+rushcreeklodge.com
+*.rushcreeklodge.com
+firefallranch.com
+*.firefallranch.com
+undercanvas.com
+*.undercanvas.com
 ```
 
 Until then, the runbooks say what each routine does instead (search-backed
