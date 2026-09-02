@@ -47,6 +47,8 @@ or deploys the API Worker.
 
 The 9am slots are deliberately two hours after the 7am ones on the same
 day, so the later routine sees the earlier one's PR and does not race it.
+**The four 9am Routines are disabled as of 2026-09-02 until they are
+recreated from the Routines page**; see "Creating a Routine" below.
 Every routine runs in a fresh session on the **Fable** model; the intel
 cycle's six scout subagents run on **Sonnet**. Orders of magnitude: an
 article run takes 15 to 40 minutes, a refresh, depth pass, or letter draft
@@ -126,6 +128,36 @@ www.tenayalodge.com  autocamp.com  www.evergreenlodge.com  www.rushcreeklodge.co
 Until then, the runbooks say what each routine does instead (search-backed
 sourcing, repo-side parity, the stale note), and the revenue ledger keeps
 this item at the top of "Your court".
+
+## Creating a Routine (and the September 2026 finding)
+
+The seven older Routines were created from Claude Code sessions in August
+2026 and carry the binding a fired session needs: a `sources` entry (the
+repo clone), an `outcomes` entry (push access to a branch), and the GitHub
+tools. **Four Routines created from a session on 2026-09-02 came back
+without any of that** (their stored config held only the model), and two
+test firings confirmed the effect: each session ran to completion and
+produced no branch, no PR, and no issue, because it had neither a push
+credential nor the GitHub tools. Those four (Field Guide depth pass,
+Evergreen refresh, Cornerstone article, Sunday letter draft) are
+**disabled** until recreated properly.
+
+Create each from the Routines page in claude.ai/code, with this repository
+attached and the environment's default connectors, on the Fable model.
+Because the runbooks are on `main`, the prompt is one line:
+
+| Name | Schedule (Pacific) | Prompt |
+|---|---|---|
+| Field Guide depth pass | Tuesdays 9am | Run the Field Guide depth pass for The Talus Field: read CLAUDE.md, then `.claude/skills/guide-depth/SKILL.md`, and follow it exactly. |
+| Evergreen refresh | Wednesdays 9am | Run the evergreen refresh for The Talus Field: read CLAUDE.md, then `.claude/skills/evergreen-refresh/SKILL.md`, and follow it exactly. |
+| Cornerstone article | Thursdays 9am | Write this week's cornerstone article for The Talus Field: read CLAUDE.md, then `.claude/skills/cornerstone-article/SKILL.md`, and follow it exactly. |
+| Sunday letter draft | Saturdays 9am | Draft the Sunday letter for The Talus Field: read CLAUDE.md, then `.claude/skills/sunday-letter/SKILL.md`, and follow it exactly. |
+
+Then delete the four disabled duplicates from the Routines list. A newly
+created Routine is worth one manual firing (the Routines page has a run
+button) to confirm it opens its PR or issue before trusting the schedule.
+Until they exist, all four jobs still run by hand from any session on this
+repo with the phrases at the end of this file.
 
 ## Changing the machine
 
