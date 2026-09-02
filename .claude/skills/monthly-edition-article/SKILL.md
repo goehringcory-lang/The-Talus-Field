@@ -32,7 +32,10 @@ open / closed / unsettled, and say which), concession and shuttle season
 dates (the current `bulletin.json` edition is a strong source if its dates
 cover the target month), permit and lottery windows, dated events, and the
 honest crowd and weather picture. Keep a source log: claim, URL, access
-date. The piece must answer "what is different about <Month> <Year>",
+date; when a primary domain is egress-blocked, the trend runbook's sourcing
+posture applies (a search result quoting the primary page counts, marked
+`(via search)`; secondary-only claims are hedged or cut). The piece must
+answer "what is different about <Month> <Year>",
 not restate the evergreen seasonal piece — link to that piece instead.
 
 ## Phase 3 — Write, check, integrate, ship

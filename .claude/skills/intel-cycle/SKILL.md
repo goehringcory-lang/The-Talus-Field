@@ -33,6 +33,17 @@ Four Routines already exist and own their lanes:
   still this brief's lane; the ~5-weekly edition rollover is not.
 - **Weekly site sweep** (Sundays) owns site health. Broken links, stale
   mirrors, and check failures are its territory, not this brief's.
+- **Evergreen refresh** (Wednesdays) owns scheduled re-verification of
+  existing articles; a *news*-forced correction is still this brief's lane
+  (an "update existing article" option), and the executor stands down on a
+  slug the refresh routine has an open PR on. **Cornerstone article**
+  (Thursdays) owns head-term gaps and the evergreen month guides: brief an
+  article topic only when the news makes it timely. **Field Guide depth
+  pass** (Tuesdays) owns archive notes and body-derived fields on stops; a
+  guide/PWA option here is something the news forces (a closed trail, a
+  moved trailhead, a new program), not general depth. The **Sunday letter
+  draft** (Saturdays) reads merged work and needs no options. `ROUTINES.md`
+  is the map of all of them.
 
 This cycle's lane is everything those three cannot see: business and
 tourism-industry signals, competitor and partner moves, monetization and promo
@@ -54,15 +65,20 @@ updates that new information forces on existing articles.
 4. Note the window: everything since the previous brief's date (or 7 days on
    a first run or after a gap).
 
-## Phase 1 — Sensing (fan-out, cheap models)
+## Phase 1 — Sensing (fan-out, Sonnet scouts)
 
-Launch the six scouts below **in parallel as subagents with `model: haiku`**,
+Launch the six scouts below **in parallel as subagents with `model: sonnet`**,
 each restricted to WebSearch/WebFetch. Each scout returns a compact digest:
 at most **5 items**, each as `headline | date | source URL | two-sentence
 summary`, nothing else — no prose, no analysis, no page dumps. A scout that
 finds nothing new in the window says "nothing new" and stops. A scout whose
 sources will not load says which ones failed. Scouts never launch their own
 subagents and never exceed ~10 fetches.
+
+Most primary domains are egress-blocked from the sandbox (`ROUTINES.md`
+carries the list and the fix), so WebSearch is the working sensor: a scout
+reports what search returned, marks each item `(via search)`, and never
+presents a blocked fetch as "nothing new".
 
 The beat list is the source registry; edit it here when the owner adds or
 drops a source.

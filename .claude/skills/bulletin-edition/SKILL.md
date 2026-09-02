@@ -35,6 +35,16 @@ until `end`.
     lapsed edition silently is the one failure this routine exists to
     prevent.
 
+**If `nps.gov` is unreachable** (the sandbox's egress policy has been
+refusing it; `ROUTINES.md` carries the list and the fix), try WebSearch for
+the new edition (`"Yosemite Guide" site:nps.gov` plus the expected date
+range) and any copy of the PDF the search returns. A turn needs the Guide's
+own pages, so without them there is no turn, whatever search says: not
+lapsed → stop with "watching: nps.gov unreachable from this environment";
+lapsed → Phase 4, the stale note, which needs no outside fact at all. Say
+in the summary that the environment blocked the turn, so the owner can fix
+the allow-list rather than wait.
+
 ## Phase 1 — The turn
 
 Rewrite `bulletin.json` from the new Guide, section by section, per its own
@@ -98,8 +108,9 @@ is open.
 - Touch only: `bulletin.json`, `workers/src/data/manual-programs.ts`, the
   three `?v=` readers, and regenerated mirrors. Nothing else.
 - Read-only weeks are the normal outcome; never manufacture work.
-- If the Guide page is unreachable or its dates are ambiguous, report that
-  in the summary and change nothing — a wrong edition is worse than a late
-  one.
+- If the Guide's dates are ambiguous, or the page is unreachable and the
+  edition has not lapsed, report that in the summary and change nothing —
+  a wrong edition is worse than a late one. Unreachable *and* lapsed is
+  the stale note (Phase 4), never silence.
 - End every run with a one-paragraph summary: no-op / watching / turned
   (PR link) / stale note (PR link).

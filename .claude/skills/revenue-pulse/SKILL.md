@@ -39,6 +39,14 @@ Three convictions govern every run:
   writes or edits an article body; a money-article gap becomes a ledger
   proposal.
 - **Bulletin edition turn** (Thursdays) owns `bulletin.json`.
+- **Evergreen refresh** (Wednesdays) owns scheduled corrections and inbound
+  links on existing articles; **cornerstone article** (Thursdays) owns the
+  second weekly article; **Field Guide depth pass** (Tuesdays) owns the
+  PWA's content depth (archive notes, body-derived fields); the **Sunday
+  letter draft** (Saturdays) owns the newsletter draft and the distribution
+  pack. A money surface inside any of those lanes (a missing `LodgingCta`,
+  a guide pitch, an ask) is still this routine's: proposed through the
+  ledger or shipped here, never added by them. `ROUTINES.md` is the map.
 
 This routine's lane: the money path and the funnel plumbing — buy box,
 checkout config parity, affiliate registry and placements, consult, renewal
@@ -78,6 +86,16 @@ tracks anywhere.
    (`cd workers && npx wrangler deploy`). A stale editorial Workers Build
    (newest articles 404) is the sweep's known failure mode: report, never
    "fix" the repo.
+4. **When the sandbox cannot reach the live hosts** (the egress policy has
+   been refusing `thetalusfieldjournal.com`, `api.thetalusfieldjournal.com`
+   and `guide.thetalusfieldjournal.com`; the first run hit exactly this),
+   fall back to repo-side parity: every reader of `GUIDE_PRICE_CENTS`,
+   `GUIDE_RENEWAL_PRICE_CENTS` and `GUIDE_MONTHLY_CAP` agrees with
+   `workers/wrangler.toml`. Say plainly in the ledger that the live Worker
+   was not verified, and keep the environment allow-list (the domain list
+   in `ROUTINES.md`) at the top of "Your court" until a run can reach the
+   API: it is the one owner action that unblocks this gate, the photo
+   pass, and every routine's primary sourcing at once.
 
 ## Phase 2 — Derive the revenue board (from the repo, never from memory)
 
@@ -143,6 +161,10 @@ The repo's discipline binds everything:
   mechanism expected, how it will be measured (the GA4 event or `aff_list`
   value that will show it, or the owner-court number to watch), and any
   numbered owner checklist for dashboard steps.
+- A status line in `MONETIZATION-IDEAS.md` or `CONVERSION-STRATEGY.md`
+  that the board found stale (the first run found renewals and gifts
+  shipped and undocumented) may ride in the same PR: it is bookkeeping,
+  not a second item.
 
 Subscribe to the PR's activity and drive CI green. Never merge, never
 approve, never push `main`, never force-push. Merging is what publishes and

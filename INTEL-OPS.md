@@ -8,7 +8,7 @@ only approval gate. Set up August 2026.
 
 | Layer | What it does | Where it runs |
 |---|---|---|
-| **Sensing** | Scans the environment: NPS Yosemite, Yosemite Hospitality, the independent lodges (Tenaya, AutoCamp, Evergreen, Rush Creek, Firefall Ranch, Under Canvas), tourism bureaus and gateway towns, YARTS/Caltrans, r/Yosemite and local press. | Six parallel Haiku scout subagents inside the intel-cycle session, twice a week. |
+| **Sensing** | Scans the environment: NPS Yosemite, Yosemite Hospitality, the independent lodges (Tenaya, AutoCamp, Evergreen, Rush Creek, Firefall Ranch, Under Canvas), tourism bureaus and gateway towns, YARTS/Caltrans, r/Yosemite and local press. | Six parallel Sonnet scout subagents inside the intel-cycle session, twice a week. |
 | **Interpretation** | Scores each finding against the product: covered by the catalog? bulletin-worthy? guide/PWA relevant? revenue angle? market signal? | Main context of the same intel-cycle session. |
 | **Decision** | Turns survivors into at most six numbered options, each with sources, the case for or against, a specific recommended action, and an effort tag. Posts one **Decision Brief** GitHub issue (label `intel-brief`). Recommending "ignore" is a first-class outcome; an empty cycle posts nothing. | End of the same intel-cycle session, then **waits for you**. |
 | **Execution** | Reads your approvals off the brief and carries out each approved option as its own branch and PR, using the site's existing pipelines. Never merges. | The intel-executor session, twice a week. |
@@ -31,7 +31,11 @@ The offset is deliberate: each brief lands with an evening for you to review
 before the next executor run. The days avoid the other standing Routines
 (Monday trend article and revenue pulse, Thursday bulletin edition turn,
 Sunday site sweep, monthly edition article on the 25th; the revenue pulse's
-runbook is `.claude/skills/revenue-pulse/SKILL.md`).
+runbook is `.claude/skills/revenue-pulse/SKILL.md`). The rest of the fleet
+(Tuesday guide depth pass, Wednesday evergreen refresh, Thursday cornerstone
+article, Saturday Sunday-letter draft) runs two hours after the intel
+session on shared days, so it can see the brief or the executor's PRs.
+`ROUTINES.md` is the manual for all of them.
 
 ## How to approve
 
@@ -79,6 +83,17 @@ Or fire the Routine itself from the Routines list (`fire_trigger`).
 - The **monthly edition article** owns "Yosemite in <Month>".
 - The **Sunday sweep** owns site health; broken links and stale mirrors
   never appear in a brief.
+- The **Wednesday evergreen refresh** owns scheduled re-verification of
+  existing articles; the brief still carries news-forced corrections, and
+  the executor stands down on a slug the refresh has an open PR on.
+- The **Thursday cornerstone article** owns head-term gaps and the
+  evergreen month guides; the brief carries an article topic only when the
+  news makes it timely.
+- The **Tuesday guide depth pass** owns archive notes and body-derived
+  fields on the Field Guide's stops; the brief carries guide changes the
+  news forces.
+- The **Saturday Sunday-letter draft** reads merged work; it needs no
+  options and never sends.
 
 The intel operation's lane is what none of those can see: industry and
 competitor moves, conference/retreat and event signals, monetization and

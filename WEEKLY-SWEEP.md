@@ -34,7 +34,7 @@ The Sunday-morning health check for The Talus Field. A scheduled Claude Code tas
 ## Phase 2 — The repo's own battery
 
 1. `npm --prefix scripts run check` — the offline guard gate. Green on `main`, or top-line.
-2. `npm --prefix scripts run checks:online` — the full battery (links, per-page SEO, og:image, JSON-LD, sitemap, feed, image hygiene, mirror freshness, template smoke, SPF/DKIM/DMARC, API probes). **Errors** are sale- or integrity-breaking by design: fix per policy or report top-line. **Warnings** are judgment calls: fix the cheap ones, report the rest. Read findings against `scripts/data/baseline-report.md`; new ones matter more than standing ones.
+2. `npm --prefix scripts run checks:online` — the full battery (links, per-page SEO, og:image, JSON-LD, sitemap, feed, image hygiene, mirror freshness, template smoke, SPF/DKIM/DMARC, API probes). **Errors** are sale- or integrity-breaking by design: fix per policy or report top-line. **Warnings** are judgment calls: fix the cheap ones, report the rest. Read findings against `scripts/data/baseline-report.md`; new ones matter more than standing ones. If the online probes all fail with a CONNECT 403 from the agent proxy (`curl -sS "$HTTPS_PROXY/__agentproxy/status"` lists `connect_rejected` for the live hosts), the sandbox's egress policy failed, not the site: run the offline battery instead, say in the report that deploy parity and the API gate were not verified this week, and point at the allow-list in `ROUTINES.md`. Never report a 403 artifact as an outage.
 
 ## Phase 3 — CI and automation health
 
@@ -45,6 +45,7 @@ Via the GitHub tools (a scheduled run that finds itself without them should say 
 3. `indexnow.yml` ran and succeeded for any content push this week.
 4. `photo-import.yml` / `stranded-commits.yml`: only worth a line if they ran and failed.
 5. Open PRs older than 7 days, including last week's sweep PR if it is still open — do not re-fix what it already fixes.
+6. **Routine fleet health**: for each Routine in `ROUTINES.md`, find the week's evidence (its PR branch prefix, its issue label, the ledger comment) and flag any routine with no evidence for two consecutive weeks, or whose last PR is still red. A routine that fails silently is the failure this line exists to catch.
 
 ## Phase 4 — Editorial deadlines (report-only)
 
@@ -67,8 +68,7 @@ If a render check needs a real browser, the repo's `verify` skill drives headles
 ## Phase 7 — Growth inputs (report-only)
 
 1. Web-search "The Talus Field" plus this week's article topics: new mentions, backlinks, or scrapers worth knowing about.
-2. For each article published this week, suggest 2–3 internal links from older relevant pieces. Suggestions only: adding a link edits a body, and bodies are the owner's.
-3. **Archive pick**: one *Yosemite Nature Notes* issue from `/archive` that is seasonally relevant to the coming week in the park (blooming, migrating, melting, arriving), with its real `/archive/<year>/vol-…` URL, as an adaptation candidate.
+2. Inbound links for the week's new articles are no longer suggested here: the Wednesday evergreen-refresh routine (`.claude/skills/evergreen-refresh/SKILL.md`) measures the inbound-link deficit from the repo and applies the links. The Saturday letter draft (`.claude/skills/sunday-letter/SKILL.md`) owns the archive pick. Report only what neither of them can see: mentions, backlinks, scrapers.
 
 ## The report
 
@@ -78,9 +78,9 @@ The final message of the sweep session, shortest first, under 40 lines total:
 2. **Fixed**: what is in the PR, with the link.
 3. **Needs your decision**: everything report-only that deserves an answer.
 4. **Health snapshot**: one line each — deploy parity, battery errors/warnings vs baseline, nightly CI, Lighthouse trend, bulletin days remaining.
-5. **Content**: the archive pick, plus any mentions or link suggestions.
+5. **Content**: mentions, backlinks, or scrapers worth knowing about.
 
-If everything is clean, the report is the verdict, the snapshot, and the archive pick. Nothing else.
+If everything is clean, the report is the verdict and the snapshot. Nothing else.
 
 ## Not in this sweep (yet)
 
