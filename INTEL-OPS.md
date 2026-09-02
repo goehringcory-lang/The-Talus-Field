@@ -8,7 +8,7 @@ only approval gate. Set up August 2026.
 
 | Layer | What it does | Where it runs |
 |---|---|---|
-| **Sensing** | Scans the environment: NPS Yosemite, Yosemite Hospitality, the independent lodges (Tenaya, AutoCamp, Evergreen, Rush Creek, Firefall Ranch, Under Canvas), tourism bureaus and gateway towns, YARTS/Caltrans, r/Yosemite and local press. | Six parallel Haiku scout subagents inside the intel-cycle session, twice a week. |
+| **Sensing** | Scans the environment: NPS Yosemite, Yosemite Hospitality, the independent lodges (Tenaya, AutoCamp, Evergreen, Rush Creek, Firefall Ranch, Under Canvas), tourism bureaus and gateway towns, YARTS/Caltrans, r/Yosemite and local press. | Six parallel Sonnet scout subagents inside the intel-cycle session, twice a week. |
 | **Interpretation** | Scores each finding against the product: covered by the catalog? bulletin-worthy? guide/PWA relevant? revenue angle? market signal? | Main context of the same intel-cycle session. |
 | **Decision** | Turns survivors into at most six numbered options, each with sources, the case for or against, a specific recommended action, and an effort tag. Posts one **Decision Brief** GitHub issue (label `intel-brief`). Recommending "ignore" is a first-class outcome; an empty cycle posts nothing. | End of the same intel-cycle session, then **waits for you**. |
 | **Execution** | Reads your approvals off the brief and carries out each approved option as its own branch and PR, using the site's existing pipelines. Never merges. | The intel-executor session, twice a week. |

@@ -55,8 +55,8 @@ updates that new information forces on existing articles.
    a first run or after a gap).
 
 ## Phase 1 — Sensing (fan-out, cheap models)
-
-Launch the six scouts below **in parallel as subagents with `model: haiku`**,
+## Phase 1 — Sensing (fan-out, Sonnet scouts)
+Launch the six scouts below **in parallel as subagents with `model: sonnet`**,
 each restricted to WebSearch/WebFetch. Each scout returns a compact digest:
 at most **5 items**, each as `headline | date | source URL | two-sentence
 summary`, nothing else — no prose, no analysis, no page dumps. A scout that
