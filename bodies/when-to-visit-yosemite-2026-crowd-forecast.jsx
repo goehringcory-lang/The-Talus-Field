@@ -6,14 +6,16 @@ window.ARTICLE_BODIES["when-to-visit-yosemite-2026-crowd-forecast"] = function W
   // ── Data ──────────────────────────────────────────────────────────────────
   // Monthly recreation visits, thousands. Sources: NPS Visitor Use Statistics
   // via park press releases. Exact corroborated figures: Mar 2026 (225,817),
-  // Jun 2025 (607,410), Jul 2025 (628,400), Jun 2024 (588,251), Jul 2024
-  // (596,711), Jan-Apr 2026 (836,458), Jan-Apr 2025 (739,313), Jan-Aug 2025
-  // (2,919,722), Jan-Aug 2024 (2,727,496), 2024 annual (4,121,807), 2025
-  // annual (~4.28M). Other months are estimated from those period totals and
+  // Jun 2025 (607,410), Jul 2025 (616,551, the figure the park's August 2026
+  // release uses; an earlier release had 628,400), Jul 2026 (654,356), Jun 2024
+  // (588,251), Jul 2024 (596,711), Jan-Apr 2026 (836,458), Jan-Apr 2025
+  // (739,313), Jan-Jul 2026 (2,657,602), Jan-Jul 2025 (2,460,675), Jan-Aug
+  // 2025 (2,919,722), Jan-Aug 2024 (2,727,496), 2024 annual (4,121,807), 2025
+  // annual (4,278,413). Other months are estimated from those period totals and
   // rounded; the charts say so.
   const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
   const Y2024 = [110, 130, 150, 245, 365, 588, 597, 540, 505, 430, 250, 210];
-  const Y2025 = [148, 120, 156, 315, 400, 607, 628, 545, 500, 415, 245, 200];
+  const Y2025 = [148, 120, 156, 315, 400, 607, 617, 545, 500, 415, 245, 200];
   const Y2026_ACTUAL = [155, 140, 226, 315]; // Jan-Apr, NPS preliminary (Jan/Feb/Apr estimated from the YTD total)
   const Y2026_PROJ = [460, 650, 665, 585, 550, 455, 265, 215]; // May-Dec, Talus Field projection
   const Y2026 = Y2026_ACTUAL.concat(Y2026_PROJ);
@@ -104,7 +106,7 @@ window.ARTICLE_BODIES["when-to-visit-yosemite-2026-crowd-forecast"] = function W
     const pts = (arr, from, to) => arr.slice(from, to + 1).map((v, j) => `${x(from + j)},${y(v)}`).join(" ");
     return (
       <svg viewBox={`0 0 ${W} ${H}`} style={svgStyle} role="img"
-        aria-label="Line chart comparing monthly Yosemite visitation in 2024, 2025, and 2026. The 2024 line, a full reservation year, tops out near 597,000 in July. The 2025 line, a scaled-back reservation year, reaches 628,000. The 2026 line runs highest, with a projected July of about 665,000.">
+        aria-label="Line chart comparing monthly Yosemite visitation in 2024, 2025, and 2026. The 2024 line, a full reservation year, tops out near 597,000 in July. The 2025 line, a scaled-back reservation year, reaches about 617,000. The 2026 line runs highest, with a projected July of about 665,000.">
         {[0, 175, 350, 525, 700].map((v) => (
           <g key={v}>
             <line x1={L} x2={W - R} y1={y(v)} y2={y(v)} stroke="var(--rule-soft)" strokeWidth="1" />
@@ -225,7 +227,7 @@ window.ARTICLE_BODIES["when-to-visit-yosemite-2026-crowd-forecast"] = function W
   return (
     <>
       <p className="dropcap">
-        In March, 225,817 people visited Yosemite. That is 45 percent more than the March before it and the busiest March this park has seen since 2016. Nobody who lives here was surprised. The National Park Service announced in late December that the entrance reservation system would not return in 2026, and the visiting public heard it as an open gate. Through April, the park has logged 836,458 visits against 739,313 over the same months last year. Then Memorial Day arrived and gave us the preview: 90-minute entrance lines, the Curry Village lot full by 8:30 in the morning, cars parked on the meadow edges because there was nowhere else to put them.
+        In March, 225,817 people visited Yosemite. That is 45 percent more than the March before it and the busiest March this park has seen since 2016. Nobody who lives here was surprised. The National Park Service announced on February 18 that the entrance reservation system would not return in 2026, and the visiting public heard it as an open gate. Through April the park had logged 836,458 visits against 739,313 over the same months the year before, and by the end of July the count stood at 2,657,602, 8 percent ahead. Memorial Day gave us the preview: entrance waits of more than an hour, the Curry Village lot full a little after 8 in the morning, cars parked on the meadow edges because there was nowhere else to put them.
       </p>
 
       <p>
@@ -270,11 +272,15 @@ window.ARTICLE_BODIES["when-to-visit-yosemite-2026-crowd-forecast"] = function W
       </figure>
 
       <p>
-        The year-to-date math is simple and striking. Through April, 2026 is running 13 percent ahead of 2025. The growth is not evenly spread. January and February ran modestly ahead of last year. March, the first full month after the no-reservation announcement made national news, exploded: up 45 percent, although that comparison flatters 2026 a little because storms held down March 2025. April landed in line with a strong 2025 April. The lesson of the spring is that headlines move visitation, and the headline this year is that Yosemite is open, no ticket required.
+        The year-to-date math is simple and striking. Through April, 2026 was running 13 percent ahead of 2025. The growth is not evenly spread. January and February ran modestly ahead of last year. March, the first full month after the no-reservation announcement made national news, exploded: up 45 percent, although that comparison flatters 2026 a little because storms held down March 2025. April landed in line with a strong 2025 April. The lesson of the spring is that headlines move visitation, and the headline this year is that Yosemite is open, no ticket required.
       </p>
 
       <p>
         My projection for the rest of the year puts 2026 at roughly 4.6 to 4.7 million total visits. If that holds, 2026 becomes the second-busiest year in the park's recorded history, behind only 2016 and ahead of 2019 and 2017. July alone projects to about 665,000 visits, which would be the biggest single month here in nearly a decade.
+      </p>
+
+      <p>
+        The Park Service's count through July, published in August, has the year 8 percent ahead of 2025: 2,657,602 visits against 2,460,675. July itself came in at 654,356, up 6.1 percent on July 2025 and about 11,000 short of the 665,000 projected here. That rise is the growth rate this forecast assumed for the peak months, so the projection stands.
       </p>
 
       <h2>What the reservation years actually did</h2>
@@ -291,11 +297,11 @@ window.ARTICLE_BODIES["when-to-visit-yosemite-2026-crowd-forecast"] = function W
       </figure>
 
       <p>
-        In 2024, with reservations covering 5 a.m. to 4 p.m. across most of the season, July topped out at 596,711. In 2025, with the requirement trimmed to 6 a.m. to 2 p.m. and only eight weeks of coverage, July rose to 628,400 and June to 607,410. Every loosening of the valve has produced more volume, immediately. The park's own August 2025 reporting showed the surge arriving on every road: visitation through the Highway 140 gate at El Portal and the Highway 41 gate at Wawona up about 8 percent year over year, and up more than 10 percent on Highway 120 from the west.
+        In 2024, with reservations covering 5 a.m. to 4 p.m. across most of the season, July topped out at 596,711. In 2025, with the requirement trimmed to 6 a.m. to 2 p.m. and only eight weeks of coverage, July rose to 616,551 and June past 600,000. Every loosening of the valve has produced more volume, immediately. The park's own August 2025 reporting showed the surge arriving on every road: visitation through the Highway 140 gate at El Portal and the Highway 41 gate at Wawona up about 8 percent year over year, and up more than 10 percent on Highway 120 from the west.
       </p>
 
       <p>
-        2026 removes the valve entirely in a year that was already pacing at record demand. That is the basis of the dashed line above, and it is why the people who study this park's traffic were not surprised by Memorial Day weekend. The only force left to cap a July Saturday is the road network itself: when the Valley loop saturates, the line simply backs up outside the gates, which is exactly what the two-to-three-hour afternoon delays the park now warns about look like in practice.
+        2026 removes the valve entirely in a year that was already pacing at record demand. That is the basis of the dashed line above, and it is why the people who study this park's traffic were not surprised by Memorial Day weekend. The only force left to cap a July Saturday is the road network itself: when the Valley loop saturates, the line simply backs up outside the gates, which is what the Memorial Day lines looked like in practice. The park's own August accounting, though, is more favorable than this paragraph expected: two days of significant delays all year, both over that weekend, with summer Saturday waits averaging about 30 minutes and topping out near an hour.
       </p>
 
       <h2>How I built the forecast</h2>
@@ -305,7 +311,7 @@ window.ARTICLE_BODIES["when-to-visit-yosemite-2026-crowd-forecast"] = function W
       </p>
 
       <p>
-        Honest caveats: the 2026 figures are preliminary and the Park Service revises them. A bad smoke season can erase an August. A government shutdown, a Merced River flood, a midsummer policy reversal would all bend the curve. This is a forecast built on five months of data, not a promise. But the direction is not in doubt, and the direction is up.
+        Honest caveats: the 2026 figures are preliminary and the Park Service revises them. A bad smoke season can erase an August. A government shutdown, a Merced River flood, a midsummer policy reversal would all bend the curve. This is a forecast built on five months of data, not a promise, and the July count above is the first real test it has passed. But the direction is not in doubt, and the direction is up.
       </p>
 
       <h2>The crowd calendar</h2>
@@ -329,10 +335,10 @@ window.ARTICLE_BODIES["when-to-visit-yosemite-2026-crowd-forecast"] = function W
         <li><strong>June:</strong> Peak season arrived early this year. <a href="/articles/yosemite-in-june-2026">Low snowpack pushed the waterfall peak into May</a>, so the falls are already past their best while the crowds are at theirs. A June weekday scores 68; a weekend, 100. Come midweek or not at all.</li>
         <li><strong>July:</strong> The projected biggest month in a decade, and July 4 lands on a Saturday, the single worst arrival day of 2026. The week after the holiday, midweek, is merely very busy rather than impossible.</li>
         <li><strong>August:</strong> Slightly softer than July, with two asterisks: smoke season is real here in late August, and the falls will be near dry.</li>
-        <li><strong>September:</strong> The split month. Labor Day weekend (September 5 to 7) behaves like July. The Tuesday after it is a different park: summer weather, open high country, and weekday pressure that drops by a third.</li>
-        <li><strong>October:</strong> The sleeper, and my answer when people ask for the best remaining window of 2026. Weekday pressure falls to 46, Tioga Road usually stays open most of the month, and the light gets good.</li>
+        <li><strong>September:</strong> The split month. Labor Day weekend (September 5 to 7) behaves like July. The Tuesday after it is a different park, with <a href="/articles/yosemite-in-september-2026">the concessions closing around you</a>: summer weather, open high country, and weekday pressure that drops by a third.</li>
+        <li><strong>October:</strong> The sleeper, and my answer when people ask for the best remaining window of 2026. Weekday pressure falls to 46, Tioga Road usually stays open most of the month (the first closing storm came on October 13 last year), and the light gets good.</li>
         <li><strong>November:</strong> Quiet except for Thanksgiving week, which fills lodging months out. A weekday score of 28 means empty trails by summer standards.</li>
-        <li><strong>December through February:</strong> The quietest quarter, with two spikes: the holiday week, and the firefall window in mid-to-late February, which now runs without reservations and concentrates thousands of photographers on Northside Drive at sunset.</li>
+        <li><strong>December through February:</strong> The quietest quarter, with two spikes: the holiday week (the same month <a href="/articles/bracebridge-dinner-and-vintners-holidays">the Bracebridge Dinner sells out the Ahwahnee</a>), and the firefall window in mid-to-late February, which now runs without reservations and concentrates thousands of photographers on Northside Drive at sunset.</li>
         <li><strong>March through May (for 2027 planners):</strong> Spring is the value play, waterfalls at full volume against half-of-summer crowds, but this year proved spring is where the new growth lands first. Expect next March to look like this year's April.</li>
       </ul>
 
@@ -345,7 +351,7 @@ window.ARTICLE_BODIES["when-to-visit-yosemite-2026-crowd-forecast"] = function W
       <figure>
         <HourlyChart />
         <figcaption>
-          Relative inbound vehicle volume by hour on a busy summer day, stylized from NPS traffic guidance. The busiest entry window runs roughly 9 a.m. to 2 p.m.; afternoon delays can reach two to three hours on peak weekends. {SOURCE_NOTE}
+          Relative inbound vehicle volume by hour on a busy summer day, stylized from NPS traffic guidance. The busiest entry window runs roughly 9 a.m. to 2 p.m.; the park's August 2026 report put summer Saturday waits at about 30 minutes on average and about an hour at worst. {SOURCE_NOTE}
         </figcaption>
       </figure>
 
@@ -354,9 +360,9 @@ window.ARTICLE_BODIES["when-to-visit-yosemite-2026-crowd-forecast"] = function W
       </p>
 
       <ul>
-        <li><strong>Be through the gate before 8 a.m.</strong> Before 7 is better on summer weekends. Lots in the Valley fill by mid-morning; on Memorial Day weekend the Curry Village lot was full at 8:30 a.m.</li>
+        <li><strong>Be through the gate before 8 a.m.</strong> Before 7 is better on summer weekends. Lots in the Valley fill by mid-morning; on Memorial Day weekend the Curry Village lot was full a little after 8 a.m.</li>
         <li><strong>Or arrive after 4 p.m.</strong> Summer light lasts past 8. An evening Valley visit with dinner outside the park beats a noon arrival in every measurable way.</li>
-        <li><strong>Never plan to arrive between 9 a.m. and 2 p.m. on a summer weekend.</strong> That is the window where the two-to-three-hour entrance delays live.</li>
+        <li><strong>Never plan to arrive between 9 a.m. and 2 p.m. on a summer weekend.</strong> That is the window where the entrance lines form and the Valley lots close behind you; the park's August report put summer Saturday waits at about 30 minutes on average and up to about an hour.</li>
         <li><strong>Once parked, stay parked.</strong> Use the shuttles and bikes; a parking spot in the Valley on a July Saturday is not a thing to gamble twice.</li>
         <li><strong>Text <em>ynptraffic</em> to 333111</strong> for the park's live parking and traffic updates, and check road and lot status before you commit to the drive.</li>
       </ul>
@@ -364,12 +370,12 @@ window.ARTICLE_BODIES["when-to-visit-yosemite-2026-crowd-forecast"] = function W
       <h2>The days I would pick</h2>
 
       <p>
-        If I were planning a 2026 trip from outside the area, in order of preference:
+        If I were planning a 2026 trip from outside the area, <a href="/articles/yosemite-in-three-to-five-days">long enough to give each part of the park its own day</a>, in order of preference:
       </p>
 
       <ul>
-        <li><strong>Tuesday through Thursday, September 8 to 30.</strong> The best all-around window left this year. Summer conditions, the full park open, crowd pressure down a third from July, and the falls do not matter because you came for granite and high country.</li>
-        <li><strong>Midweek in October.</strong> Nearly as good, cooler, quieter, with <a href="/articles/yosemite-in-fall">fall color in the Valley</a> by the back half of the month. Watch for the first Tioga-closing storm, usually November but occasionally late October.</li>
+        <li><strong>Tuesday through Thursday, September 8 to 30.</strong> The best all-around window left this year. Summer conditions, Tioga Road open, crowd pressure down a third from July, and the falls do not matter because you came for granite and high country. Two catches: the Mist Trail is closed Monday through Thursday for repairs through October, and the concessions start shutting in the first weeks of the month. The last week brings <a href="/articles/yosemite-facelift-volunteer-guide">the Yosemite Facelift, the park's biggest volunteer cleanup</a>, and it fits into a normal visit.</li>
+        <li><strong>Midweek in October.</strong> Nearly as good, cooler, quieter, with <a href="/articles/yosemite-in-fall">fall color in the Valley</a> by the back half of the month. Watch for the first Tioga-closing storm, usually November but occasionally October: in 2025 it came on October 13.</li>
         <li><strong>Midweek in early November, before Thanksgiving.</strong> The Valley to yourself at the price of short days.</li>
         <li><strong>Summer, if summer is what you have:</strong> any Tuesday or Wednesday, through the gate before 7:30 a.m. A well-executed July weekday beats a badly executed September Saturday. My <a href="/articles/yosemite-without-reservations-2026">no-reservations strategy piece</a> covers the full playbook, and if it is your first visit, <a href="/articles/first-time-yosemite-overwhelm">start here instead</a>.</li>
         <li><strong>The days to avoid entirely:</strong> July 3 to 5, every summer Saturday arriving after 8:30 a.m., Labor Day weekend, and the holiday week in December if you are not staying in the park.</li>
@@ -378,7 +384,7 @@ window.ARTICLE_BODIES["when-to-visit-yosemite-2026-crowd-forecast"] = function W
       <h2>What could bend the curve</h2>
 
       <p>
-        Forecasts age badly in public, so let me say what would change this one. If the early-season chaos keeps producing national coverage, some fraction of casual visitors will self-select out and the summer numbers come in under my line. If smoke closes the air in August, that month craters. And if the gridlock gets bad enough, the park retains the authority to manage entries again; the Park Service has said it will manage 2026 with staffed intersections, parking management, and real-time traffic monitoring instead, but that toolkit has limits a busy Saturday will find quickly.
+        Forecasts age badly in public, so let me say what would change this one. If the early-season chaos keeps producing national coverage, some fraction of casual visitors will self-select out and the summer numbers come in under my line. If smoke closes the air in August, that month craters. And if the gridlock gets bad enough, the park retains the authority to manage entries again; the Park Service has said it will manage 2026 with staffed intersections, parking management, and real-time traffic monitoring instead. By its own August accounting that toolkit has held better than this forecast assumed: two days of significant delays all year, both over Memorial Day weekend, against more than 120 days of gridlock in past years. The visitation line, meanwhile, is tracking the projection.
       </p>
 
       <p>
