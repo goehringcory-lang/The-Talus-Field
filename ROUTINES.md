@@ -105,10 +105,15 @@ proxy. The effects so far:
   cannot be automated until this is fixed (it will post the stale note when
   an edition lapses, and stop there).
 
-**The fix is yours and takes a few minutes**: in claude.ai/code, open the
-environment's settings and add these hosts to the allowed domains (or
-choose the policy that allows them), then nothing in the runbooks needs to
-change:
+**The fix is yours and takes a few minutes.** Open
+[claude.ai/code/routines](https://claude.ai/code/routines), open any
+routine, click the pencil to edit it, click the cloud icon showing the
+environment name ("Default") below the Instructions box, hover the
+environment and click its settings icon, then set **Network access** to
+**Custom**, paste the hosts below into **Allowed domains**, and tick
+"Also include default list of common package managers". Save. The policy
+belongs to the environment, so fixing it once fixes every routine, and
+nothing in the runbooks needs to change:
 
 ```
 www.nps.gov  nps.gov  www.recreation.gov  recreation.gov
@@ -129,6 +134,22 @@ Until then, the runbooks say what each routine does instead (search-backed
 sourcing, repo-side parity, the stale note), and the revenue ledger keeps
 this item at the top of "Your court".
 
+## Where the Routines live
+
+They are **cloud routines**, and there is exactly one page for them:
+[claude.ai/code/routines](https://claude.ai/code/routines). In the Desktop
+app they are under the **Code** tab, **Routines** in the sidebar (or the
+sidebar's **More** menu). The Routines section of the main Claude app is a
+different surface and does not list these. From a terminal CLI session,
+`/schedule list`, `/schedule update`, and `/schedule run` manage them;
+`/schedule` is hidden inside a Claude Code web session, which is why a
+session on this repo uses its Routine tools instead.
+
+A routine created from the web form carries three things a routine created
+another way may not: the **repositories** it clones, the **connectors** it
+may use, and the environment. That is the difference the finding below is
+about.
+
 ## Creating a Routine (and the September 2026 finding)
 
 The seven older Routines were created from Claude Code sessions in August
@@ -142,9 +163,11 @@ credential nor the GitHub tools. Those four (Field Guide depth pass,
 Evergreen refresh, Cornerstone article, Sunday letter draft) are
 **disabled** until recreated properly.
 
-Create each from the Routines page in claude.ai/code, with this repository
-attached and the environment's default connectors, on the Fable model.
-Because the runbooks are on `main`, the prompt is one line:
+Create each at [claude.ai/code/routines](https://claude.ai/code/routines)
+with **New routine**: this repository under **Select repositories**, the
+Default environment, the connectors left as they come, the Fable model in
+the prompt box's model selector, and a weekly schedule trigger. Because
+the runbooks are on `main`, the prompt is one line:
 
 | Name | Schedule (Pacific) | Prompt |
 |---|---|---|
@@ -161,8 +184,9 @@ repo with the phrases at the end of this file.
 
 ## Changing the machine
 
-- **Pause or resume** a routine: the Routines list in claude.ai/code, or
-  `update_trigger` with `enabled` from any session. The runbooks stay for
+- **Pause or resume** a routine: the **Repeats** toggle on its detail page
+  at [claude.ai/code/routines](https://claude.ai/code/routines), or by
+  asking any session on this repo. The runbooks stay for
   manual runs ("run the evergreen refresh", "draft the Sunday letter",
   "run the guide depth pass", "write a cornerstone article", and the
   phrases in the older runbooks).
