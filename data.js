@@ -110,6 +110,7 @@ window.planningSeriesFor = function (slug) {
 // verifies this map stays in sync with the files in bodies/.
 // ============================================================
 window.BODY_VERSIONS = {
+  "yosemite-from-los-angeles": 1,
   "yosemite-facelift-volunteer-guide": 1,
   "bracebridge-dinner-and-vintners-holidays": 1,
   "yosemite-fire-restrictions-explained": 2,
@@ -737,6 +738,20 @@ window.KIT.lists.forEach((l) => {
 });
 
 window.ARTICLES = [
+  {
+    slug: "yosemite-from-los-angeles",
+    cat: "planning",
+    title: "Yosemite from Los Angeles: The Drive, the Roads, and Where to Break It",
+    dek: "The Park Service quotes 313 miles and six hours from Los Angeles to Yosemite Valley, and the routing app quotes less. Neither number is the one to plan around. The four pieces of the drive up I-5, 99, and 41, when to leave so the Valley has room for the car, the Oakhurst overnight that makes the trip work, what winter does to the Grapevine and the mountain, the eastern road over Tioga Pass and when it is worth it, and the train and the Fresno bus for anyone who would rather not drive.",
+    seoDek: "Los Angeles to Yosemite: the real drive time, the I-5/99/41 route, when to leave, where to stay on the way, winter chains, the 395 alternative, and the train.",
+    date: "September 3, 2026",
+    isoDate: "2026-09-03",
+    isoModified: "2026-09-03",
+    read: "11 min",
+    placeholder: "Tunnel View at the east portal of the Wawona Tunnel, where the drive from Los Angeles first sees Yosemite Valley",
+    image: "img/tunnel-view-autumn-aniket-deole.jpg",
+    credit: "Photo: Aniket Deole / Unsplash",
+  },
   {
     slug: "yosemite-facelift-volunteer-guide",
     cat: "planning",
@@ -1728,7 +1743,7 @@ window.RELATED = {
 
   // Lodging and gateway towns
   "bracebridge-dinner-and-vintners-holidays": ["where-to-stay-in-yosemite", "yosemite-in-winter", "yosemite-trip-cost-budget-2026", "yosemite-gateway-towns-compared", "where-to-eat-yosemite"],
-  "yosemite-gateway-towns-compared": ["where-to-stay-in-yosemite", "yosemite-camping-complete-guide", "where-to-eat-yosemite", "yosemite-trip-cost-budget-2026", "getting-to-yosemite"],
+  "yosemite-gateway-towns-compared": ["where-to-stay-in-yosemite", "yosemite-from-los-angeles", "where-to-eat-yosemite", "yosemite-trip-cost-budget-2026", "getting-to-yosemite", "yosemite-camping-complete-guide"],
   "where-to-stay-in-yosemite": ["yosemite-gateway-towns-compared", "yosemite-camping-complete-guide", "yosemite-trip-cost-budget-2026", "bracebridge-dinner-and-vintners-holidays", "where-to-eat-yosemite"],
   "yosemite-camping-complete-guide": ["camping-in-yosemite-first-time", "where-to-stay-in-yosemite", "first-yosemite-backpacking-trip", "yosemite-trip-cost-budget-2026", "yosemite-facelift-volunteer-guide"],
   "camping-in-yosemite-first-time": ["yosemite-camping-complete-guide", "yosemite-bears-safety-guide", "is-bear-spray-allowed-in-yosemite", "where-to-stay-in-yosemite", "pets-in-yosemite"],
@@ -1738,10 +1753,14 @@ window.RELATED = {
   "where-to-eat-yosemite": ["yosemite-gateway-towns-compared", "where-to-stay-in-yosemite", "yosemite-camping-complete-guide", "yosemite-trip-cost-budget-2026", "yosemite-in-one-or-two-days", "pack-your-car-for-yosemite"],
 
   // Getting there and getting around
-  "getting-to-yosemite": ["yosemite-shuttle-and-yarts", "yosemite-valley-parking-guide", "yosemite-gateway-towns-compared", "yosemite-day-trip-from-bay-area", "pack-your-car-for-yosemite"],
+  // The two approach pieces (the Bay Area day trip and the Los Angeles drive)
+  // are the entrances guide's natural onward reads: a reader who has just
+  // picked a gate wants the drive to it.
+  "yosemite-from-los-angeles": ["getting-to-yosemite", "yosemite-gateway-towns-compared", "yosemite-day-trip-from-bay-area", "mariposa-grove-how-to-visit", "yosemite-shuttle-and-yarts", "yosemite-in-winter"],
+  "getting-to-yosemite": ["yosemite-shuttle-and-yarts", "yosemite-valley-parking-guide", "yosemite-gateway-towns-compared", "yosemite-day-trip-from-bay-area", "yosemite-from-los-angeles", "pack-your-car-for-yosemite"],
   "yosemite-shuttle-and-yarts": ["getting-to-yosemite", "yosemite-valley-parking-guide", "yosemite-for-non-hikers", "yosemite-accessibility-guide", "yosemite-day-trip-from-bay-area"],
   "yosemite-valley-parking-guide": ["getting-to-yosemite", "yosemite-shuttle-and-yarts", "yosemite-without-reservations-2026", "yosemite-in-one-or-two-days", "mist-trail-the-real-guide"],
-  "yosemite-day-trip-from-bay-area": ["yosemite-in-one-or-two-days", "getting-to-yosemite", "yosemite-valley-parking-guide", "yosemite-for-non-hikers", "when-to-visit-yosemite-2026-crowd-forecast"],
+  "yosemite-day-trip-from-bay-area": ["yosemite-in-one-or-two-days", "getting-to-yosemite", "yosemite-from-los-angeles", "yosemite-valley-parking-guide", "yosemite-for-non-hikers", "when-to-visit-yosemite-2026-crowd-forecast"],
   "pack-your-car-for-yosemite": ["yosemite-bears-safety-guide", "camping-in-yosemite-first-time", "getting-to-yosemite", "yosemite-valley-parking-guide", "first-time-yosemite-overwhelm"],
 
   // Permits

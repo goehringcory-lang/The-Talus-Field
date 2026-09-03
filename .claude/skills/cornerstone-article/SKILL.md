@@ -94,8 +94,8 @@ recent colon style, one of the four categories.
 - In-park lodging by property (the Ahwahnee, Yosemite Valley Lodge, Curry
   Village, Wawona, Housekeeping Camp), if `where-to-stay-in-yosemite` does
   not already treat each.
-- Yosemite from Los Angeles, and from Las Vegas, as the Bay Area day-trip
-  piece's siblings.
+- Yosemite from Las Vegas, as the sibling of the Los Angeles drive and the
+  Bay Area day trip (the Los Angeles piece shipped in September 2026).
 - Yosemite elevation, altitude, and the weather by month as one reference.
 - The Valley without a car: the free shuttle as an itinerary.
 - Yosemite with a baby or toddler, if the kids piece does not cover it.
