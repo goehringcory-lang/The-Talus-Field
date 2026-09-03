@@ -9,13 +9,23 @@
     <copyright>© 2026 The Talus Field</copyright>
     <managingEditor>cory@thetalusfieldjournal.com (Cory Goehring)</managingEditor>
     <webMaster>cory@thetalusfieldjournal.com (Cory Goehring)</webMaster>
-    <lastBuildDate>Mon, 31 Aug 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 03 Sep 2026 00:00:00 +0000</lastBuildDate>
     <image>
       <url>https://thetalusfieldjournal.com/img/talus-field-mark.png</url>
       <title>The Talus Field</title>
       <link>https://thetalusfieldjournal.com/</link>
     </image>
 
+    <item>
+      <title>Yosemite from Los Angeles: The Drive, the Roads, and Where to Break It</title>
+      <link>https://thetalusfieldjournal.com/articles/yosemite-from-los-angeles</link>
+      <guid isPermaLink="true">https://thetalusfieldjournal.com/articles/yosemite-from-los-angeles</guid>
+      <pubDate>Thu, 03 Sep 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Cory Goehring</dc:creator>
+      <category>Planning</category>
+      <description>The Park Service quotes 313 miles and six hours from Los Angeles to Yosemite Valley, and the routing app quotes less. Neither number is the one to plan around. The four pieces of the drive up I-5, 99, and 41, when to leave so the Valley has room for the car, the Oakhurst overnight that makes the trip work, what winter does to the Grapevine and the mountain, the eastern road over Tioga Pass and when it is worth it, and the train and the Fresno bus for anyone who would rather not drive.</description>
+      <media:content url="https://thetalusfieldjournal.com/img/responsive/tunnel-view-autumn-aniket-deole-1600.jpg" medium="image" />
+    </item>
     <item>
       <title>The Yosemite Facelift: How to Volunteer for the Park's Biggest Cleanup</title>
       <link>https://thetalusfieldjournal.com/articles/yosemite-facelift-volunteer-guide</link>

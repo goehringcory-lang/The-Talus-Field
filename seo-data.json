@@ -1,5 +1,50 @@
 {
   "__comment": "SEO enrichment for the editorial site, keyed by article slug. NOT loaded by the browser runtime (kept out of data.js so the per-page JS payload stays small). The build script scripts/gen-seo-artifacts.mjs merges this with window.ARTICLES from data.js to regenerate articles.json (consumed by edge/seo.js), sitemap.xml, feed.xml, and the article section of llms.txt. Fields: wordCount (number), keywords (string[]), faq ({q,a}[]), trail ({name,distance,elevationGain,difficulty} for hike guides). FAQ answers and trail numbers are drawn from each article's published body; do not invent facts. The one article whose faq lives inline in data.js (yosemite-in-one-or-two-days) is intentionally omitted here; data.js takes precedence for faq.",
+  "yosemite-from-los-angeles": {
+    "wordCount": 2939,
+    "keywords": [
+      "Los Angeles to Yosemite",
+      "Los Angeles to Yosemite drive time",
+      "how far is Yosemite from Los Angeles",
+      "LA to Yosemite road trip",
+      "Yosemite from Los Angeles without a car",
+      "Highway 41 to Yosemite",
+      "Yosemite South Entrance from Fresno",
+      "Los Angeles to Yosemite via 395",
+      "where to stay between Los Angeles and Yosemite",
+      "YARTS Fresno to Yosemite"
+    ],
+    "faq": [
+      {
+        "q": "How long does it take to drive from Los Angeles to Yosemite?",
+        "a": "The Park Service's directions page puts Yosemite Valley at 313 miles and six hours from the Los Angeles area, by I-5 north to Highway 99 north to Highway 41 north through Fresno. That is the clear-conditions floor to the Valley floor, not the estimate: with a fuel stop, an entrance queue on a summer weekend, and the stop at Tunnel View, a realistic door-to-trailhead figure is seven hours. From Fresno alone the Park Service quotes 94 miles and two hours fifteen minutes to the Valley."
+      },
+      {
+        "q": "What is the best route from Los Angeles to Yosemite?",
+        "a": "I-5 north over the Grapevine, Highway 99 north through Bakersfield and Fresno, then Highway 41 north through Coarsegold, Oakhurst, and Fish Camp to the South Entrance and the Wawona Road into the Valley. It is the route the Park Service gives, it passes the Mariposa Grove immediately inside the gate, and it arrives at Tunnel View, which the Highway 140 and 120 approaches do not."
+      },
+      {
+        "q": "Can you do Yosemite as a day trip from Los Angeles?",
+        "a": "No. At six to seven hours each way, the drive does not leave room for it. Yosemite from Los Angeles is a two-night trip at minimum, and the article's recommended shape is to drive up the first afternoon, sleep in Oakhurst or Fish Camp, and be through the South Entrance early the next morning before the gate has a line."
+      },
+      {
+        "q": "Where should I stay on the way from Los Angeles to Yosemite?",
+        "a": "Oakhurst, the largest gateway town by population and amenities, with more chain lodging and dining than the other four gateways combined, a full supermarket, and the South Entrance twenty to twenty-five minutes up the road; or Fish Camp at the park line, where Tenaya Lodge at Yosemite sits two miles from the gate. The Wawona Hotel inside the park has been closed since December 2, 2024, with no reopening date listed. Fresno is the fallback and the airport city."
+      },
+      {
+        "q": "Do I need chains to drive to Yosemite from Los Angeles in winter?",
+        "a": "Highway 41 stays open all year, but the Park Service names the Wawona Road (Highway 41) among the roads where chains are required most often, with chain requirements expected from November through March and possible as early as September or as late as May. When controls are in effect every vehicle must carry chains, four-wheel drives and rental cars included. In a winter storm I-5 over Tejon Pass can also close outright. The winter alternative is to stay on Highway 99 to Merced and take Highway 140, the lowest and most reliable approach, which the Park Service quotes at 81 miles and two hours from Merced to the Valley."
+      },
+      {
+        "q": "Is the Highway 395 route over Tioga Pass a good way to reach Yosemite from Los Angeles?",
+        "a": "Only in the summer window and only if the high country is the point. Tioga Road is typically open to vehicles from late May or June until sometime in November, and the eastern road is longer on the odometer and slower per mile than Highway 41. From Lee Vining, Yosemite Valley is about 75 miles and at least ninety minutes over the Tioga Road, with no gas between Lee Vining and Crane Flat. When the pass is closed, the Park Service's own detour from Lee Vining to the Valley runs to 390 or 410 miles and eight hours."
+      },
+      {
+        "q": "How do I get from Los Angeles to Yosemite without a car?",
+        "a": "Two ways. Take an Amtrak Thruway bus from Los Angeles Union Station to Bakersfield, the San Joaquins train to Merced, and the YARTS bus up Highway 140 to the Valley, which runs year-round. Or fly to Fresno Yosemite International, the closest commercial airport to the park, and take the summer YARTS Highway 41 bus from the airport: in 2026 it runs May 22 through September 25, with an adult fare of $20 one way and $40 round trip to Yosemite Valley, children five and under free, and one child aged six to twelve free with each paying adult."
+      }
+    ]
+  },
   "yosemite-facelift-volunteer-guide": {
     "wordCount": 1970,
     "keywords": [

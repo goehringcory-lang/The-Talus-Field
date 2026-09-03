@@ -121,6 +121,12 @@ window.ARTICLE_INTENT = {
   //   piece.
   "camping-in-yosemite-first-time":            { stage: ["before-booking", "dates-set", "week-before"], who: ["first-trip", "families"], topic: ["camping"] },
   "first-yosemite-backpacking-trip":           { stage: ["dates-set", "week-before"], who: ["backpacking"], topic: ["conditions", "trails", "permits"] },
+  // The Los Angeles drive is a first-trip piece by construction (it is written
+  // for someone who has never made the drive), and `lodging` is earned by the
+  // "where to break the drive" section, which answers where to sleep on the
+  // way rather than mentioning a town in passing. No ARTICLE_MONTHS entry: the
+  // Highway 41 route is open all year and the article says what winter does to it.
+  "yosemite-from-los-angeles":                 { stage: ["before-booking", "dates-set"], who: ["first-trip"], topic: ["transportation", "lodging"] },
   "yosemite-day-trip-from-bay-area":           { stage: ["before-booking", "dates-set", "week-before"], who: [], topic: ["transportation", "conditions"] },
 
   // The August 2026 selector-gap pair. A sweep of all 18,200 trip-selector
