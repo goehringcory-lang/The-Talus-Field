@@ -14,7 +14,7 @@
 // page-map.jsx because /itineraries resolves stop names from the same data
 // and loads this script without the map bundle. check-asset-freshness.mjs
 // reads it from here.
-window.POINTS_URL = "/points.geojson?v=25";
+window.POINTS_URL = "/points.geojson?v=26";
 
 window.ITINERARIES = [
   {

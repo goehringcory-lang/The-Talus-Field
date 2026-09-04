@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 // Photo acquisition pipeline for the Field Guide PWA. Run from this dir:
 //   cd scripts && npm install
-//   node fetch-guide-photos.mjs fetch [--only=<file.jpg>[,<file2.jpg>...]] [--force] [--auto] [--source=commons,pexels] [--licenses=pd,cc0,cc-by,cc-by-sa]
+//   node fetch-guide-photos.mjs fetch [--only=<file.jpg>[,<file2.jpg>...]] [--force] [--auto] [--source=commons,pexels] [--licenses=pd,cc0,cc-by,cc-by-sa] [--target=guide|editorial]
 //   node fetch-guide-photos.mjs status
 //   node fetch-guide-photos.mjs select <file.jpg> <candidateNumber>
 //   node fetch-guide-photos.mjs emit-credits
@@ -54,10 +54,38 @@ import sharp from 'sharp'
 
 const SCRIPTS = path.dirname(fileURLToPath(import.meta.url))
 const ROOT = path.resolve(SCRIPTS, '..')
-const MANIFEST_PATH = path.join(SCRIPTS, 'data/guide-photo-manifest.json')
-const CREDITS_PATH = path.join(SCRIPTS, 'data/photo-credits.json')
-const CANDIDATES_DIR = path.join(SCRIPTS, 'data/photo-candidates')
-const PHOTOS_DIR = path.join(ROOT, 'apps/guide/public/photos')
+// Two targets share one pipeline. `guide` (the default) fills the Field Guide
+// PWA's photo slots; `--target=editorial` fills slots in the editorial site's
+// img/ folder from its own manifest and credits JSON. The editorial site keeps
+// its credit strings inline in data.js (`credit: "Photo: X / Wikimedia Commons
+// (CC BY 2.0)"`), so `emit-credits` is a guide-only step: for the editorial
+// target, read data/editorial-photo-credits.json and write the string by hand.
+const TARGETS = {
+  guide: {
+    manifest: path.join(SCRIPTS, 'data/guide-photo-manifest.json'),
+    credits: path.join(SCRIPTS, 'data/photo-credits.json'),
+    candidates: path.join(SCRIPTS, 'data/photo-candidates'),
+    photos: path.join(ROOT, 'apps/guide/public/photos'),
+    creditKey: (file) => `/photos/${file}`,
+  },
+  editorial: {
+    manifest: path.join(SCRIPTS, 'data/editorial-photo-manifest.json'),
+    credits: path.join(SCRIPTS, 'data/editorial-photo-credits.json'),
+    candidates: path.join(SCRIPTS, 'data/photo-candidates-editorial'),
+    photos: path.join(ROOT, 'img'),
+    creditKey: (file) => `img/${file}`,
+  },
+}
+const targetArg = process.argv.find((a) => a.startsWith('--target='))?.slice(9) ?? 'guide'
+if (!TARGETS[targetArg]) {
+  console.error(`Unknown target "${targetArg}" (available: ${Object.keys(TARGETS).join(', ')})`)
+  process.exit(1)
+}
+const TARGET = TARGETS[targetArg]
+const MANIFEST_PATH = TARGET.manifest
+const CREDITS_PATH = TARGET.credits
+const CANDIDATES_DIR = TARGET.candidates
+const PHOTOS_DIR = TARGET.photos
 const CREDITS_TS = path.join(ROOT, 'apps/guide/src/content/photoCredits.ts')
 
 // Wikimedia rejects requests with a blank/default UA.
@@ -69,7 +97,12 @@ const PEXELS_API = 'https://api.pexels.com/v1/search'
 const PEXELS_KEY = process.env.PEXELS_API_KEY ?? ''
 const CANDIDATES_PER_SLOT = 3 // per source
 const MIN_WIDTH = 1200
-const THUMB_WIDTH = 1800 // never the original: Commons originals can be 100 MB TIFFs
+// Never the original: Commons originals can be 100 MB TIFFs, and (Sept 2026)
+// upload.wikimedia.org throttles a burst of original-file downloads from one
+// address for ten minutes at a time while the /thumb/ path keeps serving.
+// Anonymous thumbnail requests are only honoured at standard bucket widths
+// (1280, 1920, …; 1600 and 1000 answer 400), so this must stay a bucket.
+const THUMB_WIDTH = 1920
 const FINAL_MAX_WIDTH = 1600
 
 // License classes, in preference order. Keys match the --licenses flag.
@@ -119,6 +152,15 @@ function licenseClass(shortName, enabled) {
 const NON_PHOTO_RE =
   /\b(map|maps|HAER|HABS|sheet \d|title sheet|section[- ]?elevation|elevation|floor plan|master plan|survey|geologic(al)? survey|diagram|blueprint|schematic|chart|poster|logo|coat of arms|document|manuscript|newspaper|letter|stamp|banknote)\b/i
 
+function commonsThumbUrl(info) {
+  if (info.thumburl && /\/thumb\//.test(info.thumburl)) return info.thumburl
+  // The API appends ?utm_* to every URL it hands out; the path is what we need.
+  const m = /^(https:\/\/upload\.wikimedia\.org\/wikipedia\/commons)\/([0-9a-f])\/([0-9a-f]{2})\/([^?]+)/.exec(info.url ?? '')
+  if (!m) return info.thumburl ?? info.url
+  const [, base, a, ab, name] = m
+  return `${base}/thumb/${a}/${ab}/${name}/${THUMB_WIDTH}px-${name}`
+}
+
 function looksLikeNonPhoto(page, meta) {
   const hay = [page.title, stripHtml(meta.Categories?.value ?? ''), stripHtml(meta.ObjectName?.value ?? '')]
     .join(' ')
@@ -136,10 +178,37 @@ const COMMONS_IMAGEINFO = {
   iiextmetadatafilter: 'LicenseShortName|Artist|Categories|ObjectName',
 }
 
+// Wikimedia rate-limits unauthenticated callers behind a shared egress (429
+// with a Retry-After of a few seconds, intermittently, from the very first
+// request). One 429 used to fail the whole slot, so a run over 40 slots lost a
+// third of them to timing. Honor Retry-After, back off on 5xx, give up after
+// six tries. Every network call in this file goes through here.
+const RETRY_STATUSES = new Set([429, 500, 502, 503, 504])
+const MAX_TRIES = 6
+const sleep = (ms) => new Promise((r) => setTimeout(r, ms))
+async function fetchWithRetry(url, init, label) {
+  let lastStatus = 0
+  for (let attempt = 1; attempt <= MAX_TRIES; attempt++) {
+    const res = await fetch(url, init)
+    if (!RETRY_STATUSES.has(res.status)) return res
+    lastStatus = res.status
+    const retryAfter = Number(res.headers.get('retry-after'))
+    // Cap the server's ask: upload.wikimedia.org has answered a single burst
+    // with Retry-After: 600 while the next plain request went through.
+    const wait = Math.min(Number.isFinite(retryAfter) && retryAfter > 0 ? retryAfter * 1000 : 3000 * attempt, 60_000)
+    console.log(`  … ${label}: HTTP ${res.status}, retrying in ${Math.round(wait / 1000)}s (${attempt}/${MAX_TRIES})`)
+    await res.arrayBuffer().catch(() => {})
+    await sleep(wait + 250)
+  }
+  throw new Error(`HTTP ${lastStatus} after ${MAX_TRIES} tries for ${label}`)
+}
+
 async function commonsQuery(params, label) {
-  const res = await fetch(`${COMMONS_API}?${new URLSearchParams(params)}`, {
-    headers: { 'User-Agent': USER_AGENT },
-  })
+  const res = await fetchWithRetry(
+    `${COMMONS_API}?${new URLSearchParams(params)}`,
+    { headers: { 'User-Agent': USER_AGENT } },
+    `Commons API ${label}`,
+  )
   if (!res.ok) throw new Error(`Commons API ${res.status} for ${label}`)
   const data = await res.json()
   return Object.values(data?.query?.pages ?? {})
@@ -148,7 +217,7 @@ async function commonsQuery(params, label) {
 // Shared page → candidate mapping: license gate, photo-vs-document gate, size
 // and orientation gates. Both Commons entry points run every result through
 // this, so a category-sourced file is held to the same bar as a searched one.
-function commonsCandidates(pages, enabled) {
+function commonsCandidates(pages, enabled, opts = {}) {
   const out = []
   for (const page of pages) {
     const info = page?.imageinfo?.[0]
@@ -160,7 +229,12 @@ function commonsCandidates(pages, enabled) {
     if (!/jpeg|png/i.test(info.mime ?? '')) continue
     if (looksLikeNonPhoto(page, meta)) continue // maps, HAER drawings, plans
     if ((info.width ?? 0) < MIN_WIDTH) continue
-    if ((info.width ?? 0) <= (info.height ?? 0)) continue // landscape only
+    // Landscape only, unless the manifest entry says `portraitOk`: a waterfall
+    // is photographed tall far more often than wide, and the landscape gate
+    // alone left Chilnualna, Rancheria and Carlon with nothing but lookalikes
+    // from the wrong drainage. The guide's frame crops to its aspect box, so a
+    // portrait with the subject centred still reads.
+    if (!opts.portraitOk && (info.width ?? 0) <= (info.height ?? 0)) continue
     const author = stripHtml(meta.Artist?.value ?? '')
     // CC licenses legally require attribution; a nameless CC photo is
     // unusable. Public domain tolerates an unknown author.
@@ -174,9 +248,11 @@ function commonsCandidates(pages, enabled) {
       source: info.descriptionurl ?? '',
       width: info.width,
       height: info.height,
-      // thumburl is the server-side scaled JPEG; fall back to the original
-      // only if scaling was unavailable.
-      downloadUrl: info.thumburl ?? info.url,
+      // thumburl is the server-side scaled JPEG. When the original is
+      // narrower than THUMB_WIDTH the API hands back the original's URL
+      // instead, which is the throttled path (see THUMB_WIDTH); build the
+      // /thumb/ URL by hand in that case, which the CDN serves unscaled.
+      downloadUrl: commonsThumbUrl(info),
       searchIndex: out.length,
     })
   }
@@ -184,7 +260,7 @@ function commonsCandidates(pages, enabled) {
   return out.sort((a, b) => a.licenseRank - b.licenseRank || a.searchIndex - b.searchIndex)
 }
 
-async function commonsSearch(query, enabled) {
+async function commonsSearch(query, enabled, opts) {
   const pages = await commonsQuery(
     {
       action: 'query',
@@ -197,7 +273,7 @@ async function commonsSearch(query, enabled) {
     },
     `"${query}"`,
   )
-  return commonsCandidates(pages, enabled)
+  return commonsCandidates(pages, enabled, opts)
 }
 
 // Candidates from a named Commons category (`Category:Ostrander Lake Ski Hut`).
@@ -214,7 +290,7 @@ async function commonsSearch(query, enabled) {
 // Categories are not a substitute for review. They confirm the subject, not
 // that the photo is any good, and a category can hold signage, interiors, and
 // snapshots alongside the one usable landscape.
-async function commonsCategory(category, enabled) {
+async function commonsCategory(category, enabled, opts) {
   const title = /^category:/i.test(category) ? category : `Category:${category}`
   const pages = await commonsQuery(
     {
@@ -234,13 +310,13 @@ async function commonsCategory(category, enabled) {
     },
     title,
   )
-  return commonsCandidates(pages, enabled)
+  return commonsCandidates(pages, enabled, opts)
 }
 
-async function pexelsSearch(query) {
+async function pexelsSearch(query, opts = {}) {
   const params = new URLSearchParams({
     query,
-    orientation: 'landscape',
+    ...(opts.portraitOk ? {} : { orientation: 'landscape' }),
     per_page: '10',
   })
   const res = await fetch(`${PEXELS_API}?${params}`, {
@@ -253,7 +329,7 @@ async function pexelsSearch(query) {
   const out = []
   for (const photo of data?.photos ?? []) {
     if ((photo.width ?? 0) < MIN_WIDTH) continue
-    if ((photo.width ?? 0) <= (photo.height ?? 0)) continue // landscape only
+    if (!opts.portraitOk && (photo.width ?? 0) <= (photo.height ?? 0)) continue // landscape only
     if (!photo.src) continue
     out.push({
       provider: 'pexels',
@@ -277,11 +353,11 @@ async function pexelsSearch(query) {
 // because everything there is Pexels-licensed.
 const SOURCES = {
   commons: commonsSearch,
-  pexels: (query) => pexelsSearch(query),
+  pexels: (query, _enabled, opts) => pexelsSearch(query, opts),
 }
 
 async function download(url, dest) {
-  const res = await fetch(url, { headers: { 'User-Agent': USER_AGENT } })
+  const res = await fetchWithRetry(url, { headers: { 'User-Agent': USER_AGENT } }, `download ${url}`)
   if (!res.ok) throw new Error(`download ${res.status} ${url}`)
   await writeFile(dest, Buffer.from(await res.arrayBuffer()))
 }
@@ -298,7 +374,7 @@ async function writeSelection(file, srcJpgPath, cand) {
     .toFile(path.join(PHOTOS_DIR, file))
 
   const credits = await readJson(CREDITS_PATH, {})
-  credits[`/photos/${file}`] = {
+  credits[TARGET.creditKey(file)] = {
     author: cand.author,
     license: cand.license,
     source: cand.source,
@@ -413,7 +489,7 @@ async function cmdFetch(args) {
       if (sources.includes('commons') && (entry.categories ?? []).length > 0) {
         for (const category of entry.categories) {
           try {
-            const found = await commonsCategory(category, enabled)
+            const found = await commonsCategory(category, enabled, { portraitOk: !!entry.portraitOk })
             picked.push(...found.slice(0, CANDIDATES_PER_SLOT).map((c) => ({ ...c, via: `category:${category}` })))
           } catch (err) {
             console.error(`! ${entry.file} [category ${category}]: ${err.message}`)
@@ -438,7 +514,7 @@ async function cmdFetch(args) {
           let usedQuery = ''
           for (const query of entry.queries ?? []) {
             try {
-              found = await SOURCES[source](query, enabled)
+              found = await SOURCES[source](query, enabled, { portraitOk: !!entry.portraitOk })
               usedQuery = query
             } catch (err) {
               console.error(`! ${entry.file} [${source}]: ${err.message}`)
@@ -545,6 +621,10 @@ async function cmdSelect(args) {
 }
 
 async function cmdEmitCredits() {
+  if (targetArg !== 'guide') {
+    console.error('emit-credits is guide-only: the editorial site carries its credit strings inline in data.js.')
+    process.exit(1)
+  }
   const credits = await readJson(CREDITS_PATH, {})
   const entries = Object.entries(credits).sort(([a], [b]) => a.localeCompare(b))
   const lines = ['export const PHOTO_CREDITS: Record<string, PhotoCredit> = {']
@@ -593,7 +673,7 @@ async function cmdVerify() {
   process.exit(missing === 0 ? 0 : 1)
 }
 
-const [cmd, ...args] = process.argv.slice(2)
+const [cmd, ...args] = process.argv.slice(2).filter((a) => !a.startsWith('--target='))
 switch (cmd) {
   case 'fetch':
     await cmdFetch(args)

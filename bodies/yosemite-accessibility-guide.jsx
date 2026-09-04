@@ -33,7 +33,8 @@ window.ARTICLE_BODIES["yosemite-accessibility-guide"] = function YosemiteAccessi
 
       <Placeholder
         caption="Lower Yosemite Fall from the paved loop, the most accessible front-row seat in the park"
-        image="img/lower-yosemite-fall.jpg"
+        image="img/lower-yosemite-fall-footbridge.jpg"
+        credit="Photo: James St. John / Wikimedia Commons (CC BY 2.0)"
         tag="PLATE I"
         size="lg"
         style={{ aspectRatio: "16 / 10", margin: "32px 0" }}

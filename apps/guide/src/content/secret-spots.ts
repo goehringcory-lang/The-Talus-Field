@@ -62,7 +62,7 @@ const seed: SecretSpotInput[] = [
       'You already know this meadow from the daytime stop, watching climbers through binoculars. Come back after full dark. The wall you watched all afternoon is now a black absence against the stars, and scattered across it, a thousand and two thousand feet up, are points of light: the headlamps of climbers settled onto their portaledges for the night. Standard routes take parties three to five days, which means on any summer night there are people cooking dinner and going to sleep on a vertical wall above you.\n\n' +
       'Park at the same Northside Drive pullout, walk a few steps into the meadow, turn your headlamp off, and give your eyes ten minutes. The lights resolve slowly. Some are steady, some move as a climber sorts gear. Twenty to thirty minutes is the right stay: long enough to pick out several camps and register what you are looking at, short enough that you are not standing in a dark meadow past the point of the idea.\n\n' +
       'Two courtesies. Sound carries at night and the people on the wall are trying to sleep, so keep voices down. And do not sweep the wall with a bright light; use a red lamp for your own footing and leave the beam out of the sky.',
-    photos: [{ src: '/photos/valley-view-winter-night.jpg', caption: 'El Capitan under stars from Valley View. From the meadow you stand directly beneath that wall, watching headlamps on it.' }], // stand-in: not this entry, see guide-photo-manifest.json
+    photos: [{ src: '/photos/el-cap-meadow-after-dark.jpg', caption: 'Yosemite Valley after dark from Tunnel View, El Capitan on the left. From the meadow you stand directly beneath that wall, watching headlamps on it.' }],
   },
   {
     id: 'olmsted-point-at-night',
@@ -155,7 +155,7 @@ const seed: SecretSpotInput[] = [
       'Sentinel Beach is on the maps, so this is less a secret than a persistent gap in the parking wars: most of the time there are spaces here, and a nice sandy stretch of the Merced right off the lot to jump in for a swim. The pro move is to treat it as your base for the whole day. Park, swim, and bring a bike: from here you ride into the main section of the valley instead of joining the circling queue for a spot further east.',
     hazard:
       'In May and June the Merced is fast, cold snowmelt and the current is stronger than the surface suggests. Save the swim for mid and late summer, when the river has dropped and warmed.',
-    photos: [{ src: '/photos/cathedral-beach-quiet-picnic.jpg', caption: 'The Three Brothers across a calm stretch of the Merced.' }],
+    photos: [{ src: '/photos/sentinel-beach-parking.jpg', caption: 'A sandy Merced River bank on the Valley floor, slow water and granite above it. Sentinel Beach is exactly this.' }],
   },
   {
     id: 'el-cap-crossover-parking',
@@ -168,7 +168,7 @@ const seed: SecretSpotInput[] = [
       'The east valley\'s parking dies by mid-morning; this lot holds out far longer. Park at the bridge, then bike or shuttle east with the Captain behind you.',
     body:
       'The east valley is where parking goes to die by mid-morning. Skip the battle for spaces entirely: park at El Capitan, where the lot holds out far longer, and enjoy the views while you are at it. From El Capitan Bridge, ride a bike in or take the free shuttle to the east end. You trade half an hour of circling for a short ride with the biggest wall in the park behind you.',
-    photos: [{ src: '/photos/el-capitan-winter.jpg', caption: 'El Capitan from the Merced near the bridge.' }],
+    photos: [{ src: '/photos/el-cap-crossover-parking.jpg', caption: 'El Capitan from El Capitan Meadow, the view from the crossover.' }],
   },
   {
     id: 'sentinel-dome-overflow',
@@ -181,7 +181,7 @@ const seed: SecretSpotInput[] = [
       'The shared Sentinel Dome and Taft Point lot fills early, but a full lot is not a turnaround: a service road along Glacier Point Road adds walking, not a new plan.',
     body:
       'The shared lot for Sentinel Dome and Taft Point is small and fills early on any good-weather day. A full lot is not a turnaround. Just along Glacier Point Road there is a service road with room to park; leave the car there and walk up to Sentinel Dome from the road. It adds a stretch of walking, not a change of plans.',
-    photos: [{ src: '/photos/taft-point.jpg', caption: 'Taft Point, the other walk from the shared lot.' }],
+    photos: [{ src: '/photos/sentinel-dome-overflow.jpg', caption: 'The Jeffrey pine on Sentinel Dome\'s summit, photographed before it fell in 2003. The dome is the same.' }],
   },
   {
     id: 'foresta-barns-loop',
@@ -196,7 +196,7 @@ const seed: SecretSpotInput[] = [
       'A neighborhood walk past old barns and an old bridge, with El Capitan and Half Dome from angles almost nobody collects.',
     body:
       'Foresta is a small community off Big Oak Flat Road that visitors drive past without registering. Park next to the old barns and walk the loop: over the old bridge behind the green house, then around First Street and Dana Way. The views of El Capitan and Half Dome from out here are beautiful, and almost no one other than the locals and the short-term renters knows the walk exists. It is a neighborhood, so walk it like one: quietly, on the roads.',
-    photos: [{ src: '/photos/old-big-oak-flat-road.jpg', caption: 'The old Big Oak Flat Road. Foresta\'s loop runs on the same quiet, half-forgotten grade below it.' }], // stand-in: not this entry, see guide-photo-manifest.json
+    photos: [{ src: '/photos/foresta-barns-loop.jpg', caption: 'Foresta\'s meadows after the fire, the Valley\'s walls in the distance. The loop runs through this ground.' }],
   },
 
   // --- Quiet camping -------------------------------------------------------
@@ -213,7 +213,7 @@ const seed: SecretSpotInput[] = [
       'Just outside Yosemite Valley there is Forest Service land where you can camp with views of El Capitan and Half Dome. No toilets, no amenities, no reservations needed, and no fee machinery, which is exactly why so few people know it is here. Pack out everything you pack in, and don\'t publish the pin. The place stays good exactly as long as it stays quiet.',
     hazard:
       'Dispersed camping with no toilets, no water, and no services. Check current fire restrictions before lighting anything.',
-    photos: [{ src: '/photos/valley-campground-tent.jpg', caption: 'A tent under the pines. The Forest Service ground outside the park is this without the fee, the reservation, or the water spigot.' }], // stand-in: not this entry, see guide-photo-manifest.json
+    photos: [{ src: '/photos/foresta-forest-service-camping.jpg', caption: 'A Stanislaus National Forest campsite: a table, a bear box, and no reservation.' }],
   },
   {
     id: 'little-nellie-falls',

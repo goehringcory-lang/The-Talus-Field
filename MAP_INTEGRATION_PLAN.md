@@ -72,7 +72,7 @@ GeoJSON FeatureCollection. Each Feature is a point with structured properties:
     "category": "viewpoint",          // viewpoint|hike|geology|waterfall|sequoia|lodging|trailhead
     "region": "valley",                // valley|glacier-mariposa|tuolumne|hetch-hetchy|wawona
     "blurb": "The frame Ansel made famous. Park before the tunnel, not after.",
-    "image": "img/tunnel-view.jpg",    // optional, reused from img/ or apps/guide/public/photos/
+    "image": "img/tunnel-view-valley-spring.jpg",    // optional, reused from img/ or apps/guide/public/photos/
     "articles": ["first-time", "non-hikers", "stargazing"],  // slugs from data.js
     "verified": true                   // false → renders with a dashed pin and TODO badge in admin mode
   }

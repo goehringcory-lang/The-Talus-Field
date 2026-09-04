@@ -6,19 +6,19 @@ function PlacesPage({ go }) {
       key: "valley",
       name: "Yosemite Valley",
       note: "The headline mile. Granite walls, the river, the falls that everyone came for.",
-      image: "img/tunnel-view.jpg",
+      image: "img/tunnel-view-valley-spring.jpg",
     },
     {
       key: "glacier-mariposa",
       name: "Glacier Point & Mariposa",
       note: "The south rim and the sequoias. The view down into the Valley, and the largest trees on earth.",
-      image: "img/half-dome.jpg",
+      image: "img/half-dome-merced-river-spring.jpg",
     },
     {
       key: "tuolumne",
       name: "Tuolumne Meadows",
       note: "Above 8,000 feet, summer only. Domes, lakes, and the Sierra crest.",
-      image: "img/tuolumne-meadows.jpg",
+      image: "img/tuolumne-meadows-lembert-dome.jpg",
     },
   ];
 

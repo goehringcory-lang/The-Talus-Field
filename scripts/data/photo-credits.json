@@ -1,6 +1,6 @@
 {
   "/photos/ahwahnee-hotel.jpg": {
-    "author": "Chris Dunstan at the English Wikipedia",
+    "author": "Chris Dunstan",
     "license": "Public domain",
     "source": "https://commons.wikimedia.org/wiki/File:Yosemite_-_Ahwahnee_Hotel.jpg"
   },
@@ -24,6 +24,21 @@
     "license": "CC BY 2.0",
     "source": "https://commons.wikimedia.org/wiki/File:Bridalveil_Creek_(Yosemite_Valley,_Sierra_Nevada_Mountains,_California,_USA)_1_(19848230760).jpg"
   },
+  "/photos/bridalveil-fall.jpg": {
+    "author": "Urban",
+    "license": "Public domain",
+    "source": "https://commons.wikimedia.org/wiki/File:Bridalveil3.JPG"
+  },
+  "/photos/camp-4.jpg": {
+    "author": "Dawn Endico",
+    "license": "CC BY-SA 2.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Camp_4.jpg"
+  },
+  "/photos/carlon-falls.jpg": {
+    "author": "srsmedly",
+    "license": "CC BY-SA 3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:South_Fork_River_-_panoramio.jpg"
+  },
   "/photos/cathedral-beach-quiet-picnic.jpg": {
     "author": "Todd Petrie",
     "license": "CC BY 2.0",
@@ -34,10 +49,25 @@
     "license": "CC BY 2.0",
     "source": "https://commons.wikimedia.org/wiki/File:Cathedral_Peak,_Yosemite_National_Park.jpg"
   },
+  "/photos/chilnualna-falls.jpg": {
+    "author": "Antandrus",
+    "license": "CC BY-SA 3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:ChilnualnaFallsSwimmingHole.jpg"
+  },
   "/photos/clouds-rest-tenaya.jpg": {
     "author": "E. & H.T. Anthony (Firm)",
     "license": "Public domain",
     "source": "https://commons.wikimedia.org/wiki/File:Summit_of_South_Dome._View_from_Clouds%27_Rest_Mt._Little_Yosemite_Valley,_by_E._%26_H.T._Anthony_(Firm).png"
+  },
+  "/photos/cooks-meadow-loop.jpg": {
+    "author": "Pi.1415926535",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Yosemite_Shuttle_bus_with_Half_Dome_behind,_May_2022.JPG"
+  },
+  "/photos/crane-flat-meadow.jpg": {
+    "author": "David Balmer",
+    "license": "CC BY 3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Crane_Flat_-_panoramio.jpg"
   },
   "/photos/crocker-stanford-points.jpg": {
     "author": "Richard Wood",
@@ -59,13 +89,33 @@
     "license": "Public domain",
     "source": "https://commons.wikimedia.org/wiki/File:Eagle_Peak_Trail,_Yosemite_Valley,_California,_U.S.A,_by_Underwood_%26_Underwood.png"
   },
+  "/photos/el-cap-crossover-parking.jpg": {
+    "author": "Jarek Tuszynski",
+    "license": "CC BY 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Yosemite_Valley_-_El_Capitan_from_the_medows_-_1.jpg"
+  },
+  "/photos/el-cap-meadow-after-dark.jpg": {
+    "author": "Cam Adams camadams",
+    "license": "CC0",
+    "source": "https://commons.wikimedia.org/wiki/File:Nightfall_over_Yosemite_(Unsplash).jpg"
+  },
+  "/photos/el-capitan-snow-spring.jpg": {
+    "author": "Anita Ritenour",
+    "license": "CC BY 2.0",
+    "source": "https://commons.wikimedia.org/wiki/File:El_Capitan_-_Last_Light_-_Flickr_-_puliarf.jpg"
+  },
   "/photos/el-capitan-summit-tamarack.jpg": {
     "author": "Ahmed Radwan",
     "license": "CC0",
     "source": "https://commons.wikimedia.org/wiki/File:At_the_foot_of_the_granite_giant_(Unsplash).jpg"
   },
+  "/photos/evergreen-lodge.jpg": {
+    "author": "MikeVdP",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Cabin_060_at_Camp_Mather_2022.jpg"
+  },
   "/photos/evergreen-road-drive.jpg": {
-    "author": "daveynin from United States",
+    "author": "daveynin",
     "license": "CC BY 2.0",
     "source": "https://commons.wikimedia.org/wiki/File:Rim_fire_on_west_Yosemite_-_Flickr_-_daveynin.jpg"
   },
@@ -74,10 +124,20 @@
     "license": "Pexels License",
     "source": "https://www.pexels.com/photo/green-trees-near-body-of-water-5095808/"
   },
+  "/photos/foresta-barns-loop.jpg": {
+    "author": "daveynin",
+    "license": "CC BY 2.0",
+    "source": "https://commons.wikimedia.org/wiki/File:View_of_Yosemite_Valley_from_Foresta_-_Flickr_-_daveynin.jpg"
+  },
   "/photos/foresta-cascades.jpg": {
     "author": "Peter Rupp",
     "license": "Pexels License",
     "source": "https://www.pexels.com/photo/water-falls-surrounded-by-green-leaf-trees-87118/"
+  },
+  "/photos/foresta-forest-service-camping.jpg": {
+    "author": "Region 5 Photography",
+    "license": "Public domain",
+    "source": "https://commons.wikimedia.org/wiki/File:BearBox-BigMeadowCampground-StanislausNF-001_(52353570056).jpg"
   },
   "/photos/four-mile-trailhead.jpg": {
     "author": "Cam DiCecca",
@@ -104,6 +164,11 @@
     "license": "Unsplash License",
     "source": "https://unsplash.com/"
   },
+  "/photos/half-dome-merced-river-spring.jpg": {
+    "author": "Dexter Perkins",
+    "license": "CC0",
+    "source": "https://commons.wikimedia.org/wiki/File:Half_Dome_(GeoDIL_number_-_2435).jpg"
+  },
   "/photos/happy-isles-ouzel-watch.jpg": {
     "author": "George Fiske",
     "license": "Public domain",
@@ -118,6 +183,11 @@
     "author": "KatieRound",
     "license": "CC BY-SA 4.0",
     "source": "https://commons.wikimedia.org/wiki/File:View-at-Hetch-Hetchy-California.jpg"
+  },
+  "/photos/lower-yosemite-fall-footbridge.jpg": {
+    "author": "James St. John",
+    "license": "CC BY 2.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Lower_Yosemite_Falls_(Yosemite_Valley,_Sierra_Nevada_Mountains,_California,_USA)_(20042463411).jpg"
   },
   "/photos/lyell-canyon.jpg": {
     "author": "mypubliclands",
@@ -159,6 +229,11 @@
     "license": "CC BY-SA 4.0",
     "source": ""
   },
+  "/photos/mirror-lake.jpg": {
+    "author": "Mutineer",
+    "license": "CC0",
+    "source": "https://commons.wikimedia.org/wiki/File:MirrorLakeYosemiteLandscape.JPG"
+  },
   "/photos/mono-pass-meadows.jpg": {
     "author": "Carleton Watkins",
     "license": "Public domain",
@@ -189,20 +264,70 @@
     "license": "CC BY 3.0",
     "source": "https://commons.wikimedia.org/wiki/File:Olmsted_Point_Yosemite_view.jpg"
   },
+  "/photos/oshaughnessy-dam.jpg": {
+    "author": "Amit Patel",
+    "license": "CC BY 2.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Hetch_Hetchy_Reservoir_(4357942127).jpg"
+  },
+  "/photos/ostrander-lake.jpg": {
+    "author": "Tim Bergeron",
+    "license": "CC BY-SA 3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Ostrander_side.jpg"
+  },
+  "/photos/poopenaut-valley.jpg": {
+    "author": "USGS",
+    "license": "Public domain",
+    "source": "https://commons.wikimedia.org/wiki/File:TuolumneRiverBeloveDam.jpg"
+  },
   "/photos/pothole-dome-sunset.jpg": {
     "author": "Stan Shebs",
     "license": "CC BY-SA 3.0",
     "source": "https://commons.wikimedia.org/wiki/File:Pothole_Dome.jpg"
+  },
+  "/photos/rainbow-pool.jpg": {
+    "author": "srsmedly",
+    "license": "CC BY-SA 3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:South_Fork_River_-_panoramio_-_srsmedly.jpg"
   },
   "/photos/rainbow-view-old-road.jpg": {
     "author": "Muybridge, Eadweard, 1830-1904",
     "license": "Public domain",
     "source": "https://commons.wikimedia.org/wiki/File:Rainbow_at_Piwyack,_by_Muybridge,_Eadweard,_1830-1904.jpg"
   },
+  "/photos/region-glacier-mariposa-half-dome.jpg": {
+    "author": "Diliff",
+    "license": "CC BY-SA 3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Half_Dome_from_Glacier_Point,_Yosemite_NP_-_Diliff.jpg"
+  },
+  "/photos/region-hetch-hetchy-kolana-rock.jpg": {
+    "author": "King of Hearts",
+    "license": "CC BY-SA 3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Hetch_Hetchy_May_2011_001.jpg"
+  },
+  "/photos/region-tuolumne-lembert-dome.jpg": {
+    "author": "Jarek Tuszyński",
+    "license": "CC BY 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Tuolumne_Meadows_-_Lembert_Dome_-_02.JPG"
+  },
   "/photos/ribbon-fall-base.jpg": {
     "author": "Pond, C. L. (Charles L.)",
     "license": "Public domain",
     "source": "https://commons.wikimedia.org/wiki/File:Ribbon_Fall,_3,300_feet_high._Yo_Semite_Valley,_California,_by_Pond,_C._L._(Charles_L.).png"
+  },
+  "/photos/sentinel-beach-parking.jpg": {
+    "author": "Christian Joudrey",
+    "license": "CC0",
+    "source": "https://commons.wikimedia.org/wiki/File:Sentinel_Rock,_Yosemite.jpg"
+  },
+  "/photos/sentinel-dome-overflow.jpg": {
+    "author": "United States National Park Service",
+    "license": "Public domain",
+    "source": "https://commons.wikimedia.org/wiki/File:Sentinel_Dome_fallen_tree.jpg"
+  },
+  "/photos/snow-creek-trail.jpg": {
+    "author": "A.C. Pillsbury",
+    "license": "Public domain",
+    "source": "https://commons.wikimedia.org/wiki/File:TenayaCanyon.jpg"
   },
   "/photos/taft-point.jpg": {
     "author": "Cam Adams",
@@ -213,6 +338,11 @@
     "author": "Michael Hogarth",
     "license": "Public domain",
     "source": "https://commons.wikimedia.org/wiki/File:Tenaya_Lake_Yosemite_National_Park.png"
+  },
+  "/photos/three-chutes-falls.jpg": {
+    "author": "Arthur Clarence Pillsbury",
+    "license": "Public domain",
+    "source": "https://commons.wikimedia.org/wiki/File:Tenaya_Canyon_and_Half_Dome_in_Yosemite,_ca._1897-1900_-_DPLA_-_9e68cfb9e60041291938812cc956c17d.jpg"
   },
   "/photos/tioga-road-drive.jpg": {
     "author": "Unknown author",
@@ -228,6 +358,16 @@
     "author": "Unknown artist",
     "license": "Public domain",
     "source": "https://commons.wikimedia.org/wiki/File:Dead_Giant,_Tuolumne_Grove,_30_ft._8_in._diam.,_Big_Oak_Flat_route_to_Yosemite_Valley,_from_Robert_N._Dennis_collection_of_stereoscopic_views.png"
+  },
+  "/photos/tuolumne-meadows-grill.jpg": {
+    "author": "Dsdugan",
+    "license": "CC0",
+    "source": "https://commons.wikimedia.org/wiki/File:17_25_119_tuolumne_meadows.jpg"
+  },
+  "/photos/tuolumne-meadows-lembert-dome.jpg": {
+    "author": "Pacific Southwest Region USFWS",
+    "license": "Public domain",
+    "source": "https://commons.wikimedia.org/wiki/File:Lembert_Dome_at_sunset_(14444515109).jpg"
   },
   "/photos/tuolumne-river-meadow.jpg": {
     "author": "basiciggy",
@@ -284,10 +424,20 @@
     "license": "CC BY 3.0",
     "source": "https://commons.wikimedia.org/wiki/File:Washburn_Point_-_Half_Dome,_Yosemite_Valley,_Vernal_a_Nevada_Falls_-_panoramio.jpg"
   },
+  "/photos/wawona-hotel-history-center.jpg": {
+    "author": "Rennett Stowe",
+    "license": "CC BY 2.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Lodging_in_Yosemite_National_Park_(5829796633).jpg"
+  },
   "/photos/wawona-meadow-loop.jpg": {
     "author": "Pierce, C.C. (Charles C.), 1861-1946",
     "license": "Public domain",
     "source": "https://commons.wikimedia.org/wiki/File:Wawona_Meadows,_Yosemite_National_Park,_1900-1930_(CHS-1178).jpg"
+  },
+  "/photos/white-wolf.jpg": {
+    "author": "Eeekster",
+    "license": "CC BY 3.0 us",
+    "source": "https://commons.wikimedia.org/wiki/File:White-Wolf-Cafe.jpg"
   },
   "/photos/widows-tears-silver-strand.jpg": {
     "author": "Thomas K",
@@ -303,5 +453,10 @@
     "author": "Diliff",
     "license": "CC BY-SA 3.0",
     "source": "https://commons.wikimedia.org/wiki/File:Glacier_Point_at_Sunset,_Yosemite_NP,_CA,_US_-_Diliff.jpg"
+  },
+  "/photos/yosemite-village.jpg": {
+    "author": "Almonroth",
+    "license": "CC BY-SA 3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Yosemite_Village_Historic_District.jpg"
   }
 }

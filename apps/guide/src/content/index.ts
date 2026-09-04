@@ -40,21 +40,21 @@ export const REGIONS: { id: Region; title: string; teaser: string; photo: { src:
     title: 'Glacier Point & the Mariposa Grove',
     teaser:
       'The southern rim and the giant sequoias. Higher elevation, more driving, big payoff views. Closed in winter.',
-    photo: { src: '/photos/region-glacier-mariposa.jpg' },
+    photo: { src: '/photos/region-glacier-mariposa-half-dome.jpg' },
   },
   {
     id: 'tuolumne',
     title: 'Tuolumne Meadows & the Highway 120 corridor',
     teaser:
       'The high country. Granite domes, alpine lakes, the meadow that turns the trip into something bigger than the valley. Tioga Road open roughly June through October.',
-    photo: { src: '/photos/region-tuolumne.jpg' },
+    photo: { src: '/photos/region-tuolumne-lembert-dome.jpg' },
   },
   {
     id: 'hetch-hetchy',
     title: 'Hetch Hetchy & the Evergreen Road corridor',
     teaser:
       'The other granite valley, half of it under a reservoir, with its own entrance and day-use gate hours. Open year-round and nearly empty.',
-    photo: { src: '/photos/region-hetch-hetchy.jpg' },
+    photo: { src: '/photos/region-hetch-hetchy-kolana-rock.jpg' },
   },
 ]
 
