@@ -86,16 +86,20 @@ tracks anywhere.
    (`cd workers && npx wrangler deploy`). A stale editorial Workers Build
    (newest articles 404) is the sweep's known failure mode: report, never
    "fix" the repo.
-4. **When the sandbox cannot reach the live hosts** (the egress policy has
-   been refusing `thetalusfieldjournal.com`, `api.thetalusfieldjournal.com`
-   and `guide.thetalusfieldjournal.com`; the first run hit exactly this),
-   fall back to repo-side parity: every reader of `GUIDE_PRICE_CENTS`,
+4. **The live hosts are reachable.** The environment has had full
+   Internet access since September 2026 (`ROUTINES.md`, "Network access");
+   the August runs could not reach `api.thetalusfieldjournal.com` and fell
+   back to repo-side parity, and the allow-list sat at the top of "Your
+   court". That item is resolved: the first ledger comment after this
+   change says so and drops it. If the online battery still fails, tell
+   the two cases apart. An HTTP error or timeout from the host is a real
+   finding and goes on the ledger's top line. A CONNECT 403 from the agent
+   proxy (`curl -sS "$HTTPS_PROXY/__agentproxy/status"` shows the refusal)
+   means the environment's network policy regressed: fall back to
+   repo-side parity (every reader of `GUIDE_PRICE_CENTS`,
    `GUIDE_RENEWAL_PRICE_CENTS` and `GUIDE_MONTHLY_CAP` agrees with
-   `workers/wrangler.toml`. Say plainly in the ledger that the live Worker
-   was not verified, and keep the environment allow-list (the domain list
-   in `ROUTINES.md`) at the top of "Your court" until a run can reach the
-   API: it is the one owner action that unblocks this gate, the photo
-   pass, and every routine's primary sourcing at once.
+   `workers/wrangler.toml`), say plainly in the ledger that the live Worker
+   was not verified, and put the regression at the top of "Your court".
 
 ## Phase 2 — Derive the revenue board (from the repo, never from memory)
 
@@ -217,8 +221,10 @@ ledger issue never; it is the owner's standing dashboard.
 
 ## Failure modes
 
-- **Online probes unreachable through the proxy** → run the battery offline,
-  say so in the ledger comment, never invent a status.
+- **Online probes fail** → an error from the host itself is a finding; a
+  CONNECT 403 from the agent proxy is a network-policy regression. In the
+  second case run the battery offline, say so in the ledger comment, and
+  never invent a status.
 - **GitHub tools unavailable** → the pushed branch is still the deliverable:
   put the ready-to-click PR URL and the full ledger comment text in the
   completion summary for manual posting. Degraded finish, not a failure.

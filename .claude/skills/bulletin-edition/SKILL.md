@@ -35,15 +35,17 @@ until `end`.
     lapsed edition silently is the one failure this routine exists to
     prevent.
 
-**If `nps.gov` is unreachable** (the sandbox's egress policy has been
-refusing it; `ROUTINES.md` carries the list and the fix), try WebSearch for
-the new edition (`"Yosemite Guide" site:nps.gov` plus the expected date
-range) and any copy of the PDF the search returns. A turn needs the Guide's
-own pages, so without them there is no turn, whatever search says: not
-lapsed → stop with "watching: nps.gov unreachable from this environment";
-lapsed → Phase 4, the stale note, which needs no outside fact at all. Say
-in the summary that the environment blocked the turn, so the owner can fix
-the allow-list rather than wait.
+**If the Guide page or its PDF fails to load**, that is an NPS outage or
+a moved URL, not the environment: it has had full Internet access since
+September 2026 (`ROUTINES.md`, "Network access"). Retry once, then try the
+other way in (a WebSearch for `"Yosemite Guide" site:nps.gov` with the
+expected date range usually returns the PDF's direct `/upload/` URL). A
+turn needs the Guide's own pages, so without them there is no turn,
+whatever search says: not lapsed → stop with "watching: Guide page
+unreachable, <the error>"; lapsed → Phase 4, the stale note, which needs
+no outside fact at all. Say in the summary exactly what failed, so the
+owner can tell an NPS change from an environment regression (a CONNECT 403
+from the agent proxy is the latter).
 
 ## Phase 1 — The turn
 

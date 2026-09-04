@@ -33,9 +33,12 @@ each one surfaced — the log becomes the "why now" section of the PR.
 - **NPS primary**: current conditions (`nps.gov/yose/planyourvisit/conditions.htm`)
   and the news releases page. What the park just announced is what visitors are
   about to search for.
-- **Reddit**: `https://old.reddit.com/r/Yosemite/top/.json?t=week` — the questions
-  people asked this week, in the words they used. Repeated questions are the
-  strongest topic signal this sweep produces.
+- **Reddit**: `https://www.reddit.com/r/Yosemite/top/?t=week`, fetched as
+  HTML with a browser user agent (Reddit redirects the anonymous `.json`
+  feed to a login page and answers 403 to non-browser clients; that is
+  Reddit's policy, not the environment's) — the questions people asked
+  this week, in the words they used. Repeated questions are the strongest
+  topic signal this sweep produces.
 - **Google Trends** (best effort): the trending RSS
   (`https://trends.google.com/trending/rss?geo=US`) rarely surfaces Yosemite;
   treat it as a bonus signal, not a required one, and move on if it is empty
@@ -95,13 +98,15 @@ Facts come from primary sources only: `nps.gov/yose`, `recreation.gov`,
 Yosemite Conservancy. Blogs, forums, and Wikipedia are leads to chase into a
 primary source, never citations.
 
-**When a primary domain is egress-blocked** (the sandbox's network policy
-has been refusing `nps.gov`, `recreation.gov`, `travelyosemite.com`, Reddit
-and most others; `ROUTINES.md` carries the list and the fix), a WebSearch
-result that quotes the primary page counts, logged as
-`<primary URL> (via search)`. A claim that rests only on secondary coverage
-is hedged or cut. Say in the PR body which domains were blocked, so the
-fact-check table reads honestly.
+**Fetch the primary page and read it.** The environment has full Internet
+access (`ROUTINES.md`, "Network access"), so the source log cites pages
+that were actually read. A page that fails to load after one retry (an
+outage, a moved URL, a site's own bot wall) may be corroborated by a
+WebSearch result that quotes it, logged as `<primary URL> (via search)`,
+and the PR body names the page and the failure; a claim that rests only on
+secondary coverage is hedged or cut. `(via search)` is the exception now,
+not the posture, and a fact-check table full of it is a sign something
+else went wrong.
 
 Keep a source log as you go — one row per fact:
 
@@ -311,8 +316,11 @@ the compile step corrected.
 
 - **No topic clears the bar** → no PR. Report the trend digest and why each
   candidate failed (covered / no planning value / unverifiable).
-- **A source will not load** through the environment's proxy → try an
-  alternate primary source; a claim that stays unverifiable gets cut.
+- **A source will not load** (a timeout, a moved URL, a site's own bot
+  wall) → retry once, try an alternate primary page or the site's PDF, then
+  the `(via search)` corroboration; a claim that stays unverifiable gets
+  cut. A CONNECT 403 from the agent proxy is different: the environment's
+  network policy has regressed, and the summary says so.
 - **`run checks` errors that reproduce on origin/main** → pre-existing; note
   and continue. Nightly-CI 404s on only the newest articles mean a stale
   production Worker, not a repo problem (see CLAUDE.md).

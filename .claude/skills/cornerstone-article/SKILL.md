@@ -105,8 +105,9 @@ recent colon style, one of the four categories.
 ## Phase 2 — Write, check, integrate, ship
 
 Follow `.claude/skills/weekly-trend-article/SKILL.md` Phases 3 to 8
-verbatim (primary-source research with a source log and the `(via search)`
-posture when a domain is egress-blocked, house voice, 1,800 to 3,200
+verbatim (primary-source research with a source log, every primary page
+fetched and read directly, `(via search)` reserved for a page that
+genuinely fails to load, house voice, 1,800 to 3,200
 words, three to five in-body links, a `RELATED` entry, existing photos
 with their exact credits, the adversarial fact-check, the full integration,
 both gates, the cache-buster rule as the guard decides it), with these
