@@ -10,6 +10,8 @@ import Plate from './Plate'
 import ResponsivePhoto from './ResponsivePhoto'
 import StopActions from './StopActions'
 import { Chip } from './ui/Chip'
+import { sunTimes, type SunTimes } from '../sun/solar'
+import { formatClock, todayIso } from '../utils/date'
 
 // Swap and hazard text through markdown, unwrapped: the named alternative in
 // a swap ("continue to [Valley View](/stop/valley-view)") should be one tap,
@@ -28,6 +30,27 @@ const PHOTO_TIMING_LABEL: Record<string, string> = {
   sunset: 'sunset',
   'golden-pm': 'evening',
   night: 'after dark',
+}
+
+// Today's clock time for the window the advice names, from the on-device sun
+// calculation. The schema forbids a hardcoded time in the advice itself for
+// exactly this reason: "sunset" is a fact about the stop, "7:20 p.m." is a
+// fact about today, and only the second one can be computed here.
+function lightClock(best: string, t: SunTimes): string | null {
+  switch (best) {
+    case 'sunrise':
+      return formatClock(t.sunriseMin)
+    case 'golden-am':
+      return `until ${formatClock(t.goldenAmEndMin)}`
+    case 'sunset':
+      return formatClock(t.sunsetMin)
+    case 'golden-pm':
+      return `from ${formatClock(t.goldenPmStartMin)}`
+    case 'night':
+      return `after ${formatClock(t.sunsetMin)}`
+    default:
+      return null
+  }
 }
 
 // Secret spots are stops minus `region`, which this card never reads —
@@ -57,6 +80,11 @@ export default function StopCard({
   const photo = stop.photos[0]
   const credit = photo ? PHOTO_CREDITS[photo.src] : undefined
   const plateTag = `Plate · ${KIND_LABEL[stop.kind]}`
+  // Only the full read carries the light aside, so only it pays for the sun.
+  const lightToday =
+    !compact && stop.photoTiming ? sunTimes(todayIso()) : null
+  const lightClockLabel =
+    stop.photoTiming && lightToday ? lightClock(stop.photoTiming.best, lightToday) : null
   return (
     <article className="stop-card">
       <Plate
@@ -208,6 +236,7 @@ export default function StopCard({
         <aside className="archive-note">
           <span className="archive-note__label">
             Best light: {PHOTO_TIMING_LABEL[stop.photoTiming.best] ?? stop.photoTiming.best}
+            {lightClockLabel ? ` · ${lightClockLabel} today` : ''}
           </span>
           <p className="archive-note__body">{stop.photoTiming.note}</p>
         </aside>

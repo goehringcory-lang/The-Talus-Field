@@ -472,15 +472,25 @@ export default function Home() {
               <span className="instrument-tile__label">Night sky</span>
               <span className="instrument-tile__note">Moon · stars · computed on-device</span>
             </Link>
-            {/* Odd fifth tile spans the row (same closure rule as
-                .readout--wide): a hanging half-empty cell reads as broken. */}
-            <Link to="/compass" className="instrument-tile instrument-tile--wide">
+            <Link to="/compass" className="instrument-tile">
               <svg className="instrument-tile__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                 <circle cx="12" cy="12" r="9" />
                 <path d="M15.5 8.5l-2 5-5 2 2-5 5-2z" />
               </svg>
               <span className="instrument-tile__label">Bearing compass</span>
-              <span className="instrument-tile__note">Points at any stop · sun on the rose · works in airplane mode</span>
+              <span className="instrument-tile__note">Points at any stop · sun on the rose · airplane mode</span>
+            </Link>
+            {/* Sixth tile closes the grid (an odd count would need
+                .instrument-tile--wide, see .readout--wide). The Help card
+                earns its tile: it is the page a buyer opens once, in trouble,
+                and it has to be findable without knowing its name. */}
+            <Link to="/help" className="instrument-tile">
+              <svg className="instrument-tile__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <path d="M12 3v18M3 12h18" />
+                <rect x="5" y="5" width="14" height="14" rx="1" />
+              </svg>
+              <span className="instrument-tile__label">Help</span>
+              <span className="instrument-tile__note">911 · your GPS position to read out · park numbers</span>
             </Link>
           </div>
         </section>

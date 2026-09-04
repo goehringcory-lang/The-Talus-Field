@@ -280,6 +280,8 @@
   text-transform: uppercase;
   color: var(--ink-3);
 }
+/* A hike that runs past sunset. Rust, the alert tone the readouts use. */
+.ag-block__flag--dark { color: var(--rust); }
 .ag-block__title {
   font-family: var(--display);
   font-size: 16px;
@@ -410,6 +412,8 @@
   color: var(--moss);
   line-height: 1.45;
 }
+.ag-panel__note--dark { color: var(--rust); }
+.ag-panel__note--tight { color: var(--gold); }
 .ag-panel__link {
   display: block;
   margin-bottom: 6px;

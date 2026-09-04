@@ -1,0 +1,150 @@
+/* /help — the Help card. Built from the panel tokens like every instrument, but
+   tuned for one reader: somebody frightened, outdoors, possibly one-handed.
+   Bigger tap targets, bigger numerals, one thing per row. */
+
+/* ---- The emergency row ------------------------------------------ */
+
+.help-emergency {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin: 0 0 var(--s3);
+}
+.help-emergency .btn {
+  min-height: 60px;
+  font-size: 15px;
+  letter-spacing: 0.16em;
+}
+.help-emergency__call {
+  background: var(--rust);
+  border-color: var(--rust);
+}
+@media (hover: hover) {
+  .help-emergency__call:hover { background: var(--ink); border-color: var(--ink); }
+}
+
+.help-lede {
+  font-family: var(--serif);
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--ink-2);
+  margin: 0 0 var(--s5);
+}
+
+/* ---- Position readouts ----------------------------------------- */
+
+/* The coordinate is the reading somebody will read out loud one digit at a
+   time, so it gets the dial's size rather than the readout's. */
+.help-fix .readout__value--big {
+  font-size: 24px;
+  letter-spacing: 0.02em;
+  overflow-wrap: anywhere;
+}
+
+.help-start {
+  padding: 14px;
+  display: grid;
+  gap: 8px;
+  border-top: 1px solid var(--panel-edge);
+}
+.help-start .card__note { margin: 0; }
+
+.help-actions {
+  margin: 0 0 var(--s5);
+}
+.help-actions__result {
+  flex-basis: 100%;
+  margin: 0;
+}
+
+/* ---- Numbers list ------------------------------------------------- */
+
+.help-numbers {
+  list-style: none;
+  margin: 0 0 var(--s5);
+  padding: 0;
+  border-top: 1px solid var(--panel-edge);
+}
+.help-number {
+  border-bottom: 1px solid var(--panel-edge);
+}
+.help-number__link {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-areas:
+    'label tel'
+    'note tel';
+  align-items: center;
+  column-gap: var(--s3);
+  padding: 14px 4px;
+  min-height: 60px;
+  text-decoration: none;
+  color: var(--ink);
+}
+@media (hover: hover) {
+  .help-number__link:hover { background: var(--paper-2); }
+}
+.help-number__label {
+  grid-area: label;
+  font-family: var(--display);
+  font-size: 18px;
+  line-height: 1.2;
+}
+.help-number__note {
+  grid-area: note;
+  font-family: var(--sans);
+  font-size: 12px;
+  line-height: 1.45;
+  color: var(--ink-3);
+  margin-top: 2px;
+}
+.help-number__tel {
+  grid-area: tel;
+  font-family: var(--mono);
+  font-size: 15px;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  color: var(--moss);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.help-number--emergency .help-number__tel {
+  color: var(--rust);
+  font-size: 22px;
+  font-weight: 500;
+}
+
+/* ---- Prose blocks ------------------------------------------------- */
+
+.help-script {
+  margin: 0 0 var(--s5);
+  padding: 0 0 0 1.2em;
+  font-family: var(--serif);
+  font-size: 16px;
+  line-height: 1.55;
+  color: var(--ink-2);
+}
+.help-script li + li { margin-top: 4px; }
+
+.help-staffed {
+  display: grid;
+  gap: var(--s3);
+  margin: 0 0 var(--s5);
+}
+.help-staffed__area {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  display: block;
+  margin-bottom: 2px;
+}
+.help-staffed p {
+  margin: 0;
+  font-family: var(--serif);
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--ink-2);
+}
