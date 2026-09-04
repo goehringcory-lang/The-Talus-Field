@@ -30,8 +30,9 @@ window.ARTICLE_BODIES["yosemite-ranger-programs"] = function YosemiteRangerProgr
       </p>
 
       <Placeholder
-        caption="The Lower Yosemite Fall boardwalk, where half the Junior Ranger badges in the park get earned"
-        image="img/kid-yosemite-falls-boardwalk.jpg"
+        caption="A ranger-led walk in Tuolumne Meadows in the 1970s, Lembert Dome behind, the same program shape the park still runs"
+        image="img/yosemite-ranger-program-visitors.jpg"
+        credit="Photo: Richard Frear / NPS, via Wikimedia Commons (public domain)"
         tag="PLATE I"
         size="lg"
         style={{ aspectRatio: "16 / 10", margin: "32px 0" }}

@@ -26,7 +26,7 @@ function AboutPage({
     }
   }, React.createElement(Placeholder, {
     caption: "Cathedral Rocks from the Merced, El Portal",
-    image: "img/cathedral-rocks.jpg",
+    image: "img/cathedral-rocks-middle-cathedral.jpg",
     credit: "Photo: Wikimedia Commons (public domain)",
     tag: "PORTRAIT",
     size: "lg",

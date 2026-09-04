@@ -17,8 +17,8 @@ var IN_PARK = [{
   name: "Yosemite Valley Lodge",
   kind: "Hotel · Yosemite Valley · year-round",
   price: "Mid-range, and the best value-to-location ratio in the park",
-  photo: "img/lower-yosemite-fall.jpg",
-  caption: "Lower Yosemite Fall, directly across the road from the Lodge.",
+  photo: "img/yosemite-valley-lodge-entrance.jpg",
+  caption: "The Lodge entrance at dusk. Lower Yosemite Fall is directly across the road.",
   body: "Low-slung motel-style buildings, clean and functional rooms, a food court, a pool in summer. Nobody has described the architecture as memorable. What it has instead is a position across the road from Lower Yosemite Fall, on the shuttle loop, in the most convenient part of the Valley. In spring you can hear the waterfall from the grounds at night.",
   who: "Most first-time visitors with a hotel budget. This is the correct answer, full stop, and it books out accordingly."
 }, {
@@ -56,7 +56,7 @@ var IN_PARK = [{
   name: "Tuolumne Meadows Lodge",
   kind: "Tent cabins · Tuolumne Meadows, 8,700 ft · summer only",
   price: "Modest, when it operates at all",
-  photo: "img/tuolumne-meadows.jpg",
+  photo: "img/tuolumne-meadows-lembert-dome.jpg",
   caption: "Tuolumne Meadows, early season. The lodge sits near the meadows and the river.",
   body: "The same arrangement as White Wolf, higher and further east: canvas tent cabins, wood stoves, shared facilities, a dining room. A night up here under that sky is one of the best sleeps the park sells.",
   who: "The high country itself, for people whose trip is the high country.",

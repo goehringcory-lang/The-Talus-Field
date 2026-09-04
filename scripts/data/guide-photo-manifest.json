@@ -1,16 +1,13 @@
 [
   {
-    "file": "region-valley.jpg",
+    "file": "valley-el-capitan-half-dome.jpg",
     "slot": "region:valley",
     "tier": 1,
-    "subject": "Yosemite Valley panorama with El Capitan, Bridalveil Fall, or Half Dome visible",
-    "queries": [
-      "Yosemite Valley Tunnel View",
-      "Yosemite Valley panorama"
-    ]
+    "subject": "The Valley region card uses valley-el-capitan-half-dome.jpg (credited Pexels photo, wired in content/index.ts); no separate slot.",
+    "reuse": true
   },
   {
-    "file": "region-glacier-mariposa.jpg",
+    "file": "region-glacier-mariposa-half-dome.jpg",
     "slot": "region:glacier-mariposa",
     "tier": 1,
     "subject": "Glacier Point terrace view of Half Dome, or giant sequoias in the Mariposa Grove",
@@ -20,7 +17,7 @@
     ]
   },
   {
-    "file": "region-tuolumne.jpg",
+    "file": "region-tuolumne-lembert-dome.jpg",
     "slot": "region:tuolumne",
     "tier": 1,
     "subject": "Tuolumne Meadows with Lembert Dome or the Tuolumne River",
@@ -30,7 +27,7 @@
     ]
   },
   {
-    "file": "region-hetch-hetchy.jpg",
+    "file": "region-hetch-hetchy-kolana-rock.jpg",
     "slot": "region:hetch-hetchy",
     "tier": 1,
     "subject": "Hetch Hetchy Reservoir with Kolana Rock or Wapama Falls",
@@ -434,12 +431,13 @@
     "tier": 3,
     "subject": "Chilnualna Falls cascades above Wawona",
     "queries": [
-      "Chilnualna Falls"
+      "Chilnualna Falls",
+      "Chilnualna Fall Wawona"
     ],
     "categories": [
-      "Waterfalls in Yosemite National Park",
-      "Wawona, California"
-    ]
+      "Chilnualna Falls"
+    ],
+    "portraitOk": true
   },
   {
     "file": "north-dome-indian-rock.jpg",
@@ -508,11 +506,13 @@
     "subject": "Rancheria Falls or Rancheria Creek above Hetch Hetchy",
     "queries": [
       "Rancheria Falls Hetch Hetchy",
-      "Rancheria Creek Yosemite"
+      "Rancheria Creek Hetch Hetchy"
     ],
     "categories": [
-      "Waterfalls in Yosemite National Park"
-    ]
+      "Rancheria Falls (Yosemite)",
+      "Rancheria Creek (Tuolumne County)"
+    ],
+    "portraitOk": true
   },
   {
     "file": "valley-view.jpg",
@@ -615,8 +615,9 @@
     ],
     "queries": [
       "Carlon Falls",
-      "South Fork Tuolumne River falls"
-    ]
+      "South Fork Tuolumne River"
+    ],
+    "portraitOk": true
   },
   {
     "file": "evergreen-lodge.jpg",
@@ -657,7 +658,8 @@
     "queries": [
       "Rainbow Pool Tuolumne",
       "Rainbow Pools California waterfall"
-    ]
+    ],
+    "portraitOk": true
   },
   {
     "file": "fern-spring.jpg",
@@ -684,13 +686,11 @@
     "tier": 3,
     "subject": "El Capitan at night: stars or climbers' headlamps on the wall",
     "queries": [
-      "El Capitan Meadow Yosemite night",
-      "El Capitan Yosemite stars night",
-      "Yosemite Valley night sky El Capitan"
+      "El Capitan night stars Yosemite",
+      "El Capitan Milky Way",
+      "Yosemite Valley night sky stars"
     ],
-    "categories": [
-      "El Capitan"
-    ]
+    "portraitOk": true
   },
   {
     "file": "olmsted-point-at-night.jpg",
@@ -761,12 +761,12 @@
     "tier": 3,
     "subject": "El Capitan from the El Capitan Bridge / crossover area on the valley floor",
     "categories": [
-      "El Capitan Meadow",
-      "El Capitan"
+      "El Capitan Meadow"
     ],
     "queries": [
-      "El Capitan Bridge Yosemite",
-      "El Capitan from Yosemite Valley floor Merced"
+      "El Capitan Meadow Yosemite",
+      "El Capitan from El Capitan Meadow",
+      "El Capitan Bridge Merced River"
     ]
   },
   {
@@ -801,11 +801,13 @@
     "tier": 3,
     "subject": "Forest camping country west of the valley; conifer forest with distant Yosemite granite acceptable",
     "queries": [
-      "Stanislaus National Forest Yosemite view",
-      "Big Oak Flat Road Yosemite forest"
+      "Stanislaus National Forest campground",
+      "Sierra Nevada forest campsite tent",
+      "national forest campground California pines"
     ],
     "categories": [
-      "Stanislaus National Forest"
+      "Campgrounds in Stanislaus National Forest",
+      "Campsites in California"
     ]
   },
   {
@@ -816,7 +818,8 @@
     "queries": [
       "Little Nellie Falls",
       "Little Nellie Falls Yosemite"
-    ]
+    ],
+    "portraitOk": true
   },
   {
     "file": "inspiration-point.jpg",
@@ -834,11 +837,38 @@
     "tier": 3,
     "subject": "Hidden Lake near Tenaya Lake / Olmsted Point; a small granite-rimmed high-country lake acceptable",
     "queries": [
-      "Hidden Lake Yosemite",
-      "Yosemite high country lake granite Tenaya"
+      "Tenaya Lake Yosemite granite shore",
+      "Tenaya Lake"
     ],
     "categories": [
-      "Tenaya Canyon"
+      "Tenaya Lake"
+    ]
+  },
+  {
+    "file": "bridalveil-fall.jpg",
+    "slot": "stop:bridalveil-fall",
+    "tier": 2,
+    "subject": "Bridalveil Fall from the valley floor or its approach trail",
+    "portraitOk": true,
+    "categories": [
+      "Bridalveil Fall"
+    ],
+    "queries": [
+      "Bridalveil Fall Yosemite",
+      "Bridalveil Falls"
+    ]
+  },
+  {
+    "file": "cooks-meadow-loop.jpg",
+    "slot": "stop:cooks-meadow-loop",
+    "tier": 3,
+    "subject": "Cook's Meadow with Yosemite Falls, Sentinel Rock or Half Dome behind it",
+    "categories": [
+      "Cook's Meadow"
+    ],
+    "queries": [
+      "Cook's Meadow Yosemite",
+      "Cooks Meadow Yosemite Falls boardwalk"
     ]
   }
 ]

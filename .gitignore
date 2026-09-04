@@ -34,6 +34,7 @@ _local_cdn/
 # Photo candidates awaiting selection (fetch-guide-photos.mjs); selected
 # photos land in apps/guide/public/photos/, candidates never ship.
 scripts/data/photo-candidates/
+scripts/data/photo-candidates-editorial/
 
 # Camera originals staged for ingest-photos.mjs. Never committed: the ingest
 # writes a stripped, downscaled JPEG into img/ or apps/guide/public/photos/,

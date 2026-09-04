@@ -24,10 +24,10 @@
 //   - a referenced src missing any of its 12 responsive variants
 //   - zero references found at all (the scan's shape assumption broke)
 //
-// Warnings (exit 0): a referenced photo with no PHOTO_CREDITS entry. The
-// legacy editorial images copied into the PWA have no recorded provenance and
-// are a known open item (see LAUNCH-READINESS.md); that is the owner's call to
-// resolve, not a reason to fail the build.
+// Warnings (exit 0): a referenced photo with no PHOTO_CREDITS entry. Since the
+// September 2026 photo pass every shipped photo has one, so a new warning here
+// means a photo was wired in without going through fetch-guide-photos.mjs (or
+// ingest-photos.mjs for house photography); record its provenance.
 //
 // Also prints the outstanding photo-pass inventory: manifest slots with no
 // file, and stops rendering the placeholder or another stop's photo. The

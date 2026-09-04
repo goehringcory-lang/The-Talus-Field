@@ -22,25 +22,30 @@
 //   conflicting sources) and must be checked at the actual spot before
 //   relying on them for navigation. The PWA opens these in native Maps,
 //   so a wrong coord lands the buyer at the wrong turnout.
-// Photos: placeholder pass. Reusing editorial-site photos from /img/, copied
-//   into public/photos/. Many stops still have no image of their own and should
-//   get dedicated photography before launch. As of Aug 2026 no entry renders the
-//   "Photo coming" tile any more: the 18 that had none carry a **stand-in**,
-//   marked `// stand-in:` on the line, showing a nearby or representative
-//   subject rather than the place itself. That is a deliberate trade and it
-//   comes with one hard rule: **the caption must name what the photograph
-//   actually shows** and then say how it relates to the entry ("Vernal Fall at
-//   high water. Chilnualna carries this kind of volume in May and June"), never
-//   let the reader take it for a picture of the entry. A stand-in captioned as
-//   the place is worse than the tile it replaced, because the tile was honest.
-//   The manifest still lists every one of these as an outstanding slot; a
-//   stand-in fills the frame, not the slot. Never point a `src` at a file that
-//   is not in public/photos yet, because photo download packs tolerate zero
+// Photos: the September 2026 photo pass replaced the placeholder set. Every
+//   entry now carries a photograph with a recorded author and licence
+//   (photoCredits.ts, generated from scripts/data/photo-credits.json), pulled
+//   from Wikimedia Commons by scripts/fetch-guide-photos.mjs and reviewed by eye
+//   against the place before selection. Public-domain and CC0 files were
+//   preferred; the CC BY / CC BY-SA files that remain are credited on the plate
+//   and on the Account page, which is the licence's one condition. Four entries
+//   still carry a **stand-in**, marked `// stand-in:` on the line, because
+//   Commons holds no usable photograph of the place (Carlon Falls, Evergreen
+//   Lodge, Little Nellie Falls, Hidden Lake). The rule for those is unchanged:
+//   **the caption must name what the photograph actually shows** and then say
+//   how it relates to the entry, never let the reader take it for a picture of
+//   the entry. A stand-in captioned as the place is worse than an empty tile.
+//   Several historic public-domain plates (Pillsbury, Fiske, Watkins-era
+//   stereographs, USGS) stand in for places that have no modern free photo; the
+//   caption names the photographer and the era. Never point a `src` at a file
+//   that is not in public/photos yet, because photo download packs tolerate zero
 //   missing files and one dangling reference fails its whole region's offline
-//   download (check-guide-photos.mjs guards this). `/guide` and its FAQ mirrors
-//   disclose the stand-ins in prose; if this set changes, that copy moves with
-//   it (see the "coming-soon tile" history in page-guide.jsx).
-//   Outstanding slots: scripts/data/guide-photo-manifest.json, inventory via
+//   download (check-guide-photos.mjs guards this). Filenames are URL keys the
+//   service worker caches for good, so a replaced photo gets a **new** filename
+//   (the region heroes became region-*-<subject>.jpg for exactly that reason).
+//   `/guide` and its FAQ mirrors disclose the stand-ins in prose; if that set
+//   changes, that copy moves with it. Outstanding slots:
+//   scripts/data/guide-photo-manifest.json, inventory via
 //   `npm --prefix scripts run photos:check`.
 // =============================================================================
 
@@ -132,7 +137,7 @@ const seed: StopInput[] = [
       'A flat one-mile boardwalk loop through the meadow at the heart of the valley. Come back right at sunset: this is the valley\'s most reliable place to watch a black bear.',
     body:
       'A flat one-mile boardwalk through the meadow at the heart of the valley. Most visitors walk to the Lower Yosemite Fall vista and turn around. Don\'t. Take the full counter-clockwise loop. You get Half Dome from Sentinel Bridge, El Capitan over the meadow, and the black oaks the Ahwahnechee tended for centuries. This is the walk that makes the valley feel like a place, not a viewpoint.\n\nThen come back right at sunset for the other show. Cook\'s Meadow is the valley\'s most reliable bear watch: black bears come out of the tree line in the last light to graze the meadow and work the black oaks, especially in fall when the acorns drop. Watch from the boardwalk, keep at least 150 feet, and let the bear keep its evening. The parkwide odds list is in [Where to actually see a bear](/essentials/bear-viewing).',
-    photos: [{ src: '/photos/lower-yosemite-fall.jpg', caption: 'Lower Yosemite Fall, the standard turn-around point on the loop.' }],
+    photos: [{ src: '/photos/cooks-meadow-loop.jpg', caption: 'A Valley shuttle passing Cook\'s Meadow, Half Dome behind it. The loop crosses this road twice.' }],
     swap:
       'In late summer when the falls are dry, the meadow itself is the show: golden grass, low light through the oaks. Skip the fall vista, do the loop in reverse from Sentinel Bridge.',
     photoTiming: {
@@ -156,7 +161,7 @@ const seed: StopInput[] = [
       'Yosemite Falls drops 2,425 feet in three stages, the tallest waterfall in North America, and the paved one-mile loop to the base of the final 320-foot drop is the most walked trail in the park. That is not a reason to skip it. It is a reason to time it. Before 9 a.m. the loop is quiet, the light works down the wall, and the swifts are hunting the cliff face. After dinner the tour groups are gone and the fall goes to silhouette. Midday belongs to the crowd, and the crowd is welcome to it.\n\n' +
       'The fall runs on snowmelt and the calendar is dramatic. In May the footbridge sits inside a spray cloud and conversation requires raised voices; by late August the wall above is often bare granite with a dark stain where a waterfall used to be. If your trip lands in September, walk the loop anyway. The dry wall is its own lesson in what snow means here, and the eastern half of the loop, which most visitors never take, is a quiet walk through black oaks and old talus with the whole route to yourself. Stay off the wet boulders below the bridge; polished granite plus spray is the loop\'s one real hazard.\n\n' +
       'One window most guidebooks skip: on clear spring nights within a couple of days of the full moon, the spray at the footbridge throws a lunar rainbow, a pale arc your eye reads as silver and a long camera exposure reads in color. Photographers plan whole years around those dates. If your trip lines up in April, May, or June, walk back up after 10 p.m. and see it.',
-    photos: [{ src: '/photos/lower-yosemite-fall.jpg', caption: 'Lower Yosemite Fall from the footbridge at the base of the loop.' }],
+    photos: [{ src: '/photos/lower-yosemite-fall-footbridge.jpg', caption: 'Lower Yosemite Fall from the footbridge at the base of the loop.' }],
     swap:
       'If the loop is a shoulder-to-shoulder parade, walk 200 yards west into [Cook\'s Meadow](/stop/cooks-meadow-loop) instead: the full 2,425-foot drop in one frame, which the base of the fall itself cannot show you.',
     history: {
@@ -191,7 +196,7 @@ const seed: StopInput[] = [
       'Five-minute walk on a paved path, rebuilt end to end in a restoration finished in 2023 that replaced the old cramped overlook with boardwalks and a proper viewing plaza. Bridalveil flows year-round, which makes it the reliable fall: Yosemite Falls dries up by August, this one doesn\'t. Spring is the drench, and the platform sits in the spray; bring a layer if the day is cool.\n\n' +
       'The Ahwahnechee name is Pohono, usually translated as spirit of the puffing wind, and ten minutes here explains it: the fall drops 620 feet from a hanging valley, and the afternoon wind takes the bottom half sideways, sometimes lifting the whole ribbon off the wall. That hanging valley is the trip\'s geology lesson in miniature. The side glacier that carved Bridalveil Creek\'s canyon was small; the trunk glacier in the main valley was enormous and cut thousands of feet deeper; when the ice left, the creek\'s valley was stranded in the air, and the creek has been falling out of it ever since. Every waterfall on these walls is the same story at a different scale.\n\n' +
       'You don\'t need long here, but you do need to do it.',
-    photos: [{ src: '/photos/cathedral-rocks.jpg', caption: 'Cathedral Rocks looming above the Bridalveil drainage.' }],
+    photos: [{ src: '/photos/bridalveil-fall.jpg', caption: 'Bridalveil Fall from the base trail in spring, the mist reaching the path.' }],
     history: {
       note:
         'In 1931 Nature Notes printed an account of a drive through the valley with ' +
@@ -341,7 +346,7 @@ const seed: StopInput[] = [
       'Pull off at the meadow and look up: there are climbers on the 3,000-foot wall right now. Bring binoculars. The best free show in the park.',
     body:
       'Pull off Northside Drive at the meadow and look up. There are climbers somewhere on the wall right now. Find the photographer with the longest lens, ask politely, and they\'ll point them out; climbers love showing them off. Most parties take 3–5 days on the standard routes; you\'re looking at people in tents glued to a 3,000-foot vertical wall, who have been on it for two days and will be there for two more. Bring binoculars if you have them. This is the best free show in the park.',
-    photos: [{ src: '/photos/el-capitan-winter.jpg', caption: 'El Capitan from Northside Drive, winter light.' }],
+    photos: [{ src: '/photos/el-capitan-snow-spring.jpg', caption: 'El Capitan in last light above the Merced, snow still on the banks.' }],
     history: {
       note:
         'The English names on these walls were handed out in a single day. Nature ' +
@@ -369,7 +374,7 @@ const seed: StopInput[] = [
     body:
       'Camp 4 is a walk-in campground behind Yosemite Valley Lodge, and on the surface that is all it is: picnic tables, bear boxes, tents under the oaks. It is also the most consequential campsite in the history of climbing. Through the 1950s and 60s the climbers who lived here for months at a stretch, Royal Robbins, Warren Harding, Yvon Chouinard forging pitons on an anvil by the parking lot, worked out the techniques and the gear that made walls like El Capitan possible. When the Park Service later planned to redevelop the site, climbers fought it in court, and in 2003 Camp 4 went onto the National Register of Historic Places: a campground listed alongside battlefields, for what happened in it.\n\n' +
       'You can walk through respectfully; it is a public campground, not a museum. The granite blocks scattered through camp are world bouldering landmarks, and most afternoons someone is trying Midnight Lightning on the Columbia Boulder, a problem first climbed in 1978 and still a career moment for anyone who tops it. Watch from a polite distance and keep voices down among the tents. The Yosemite Falls Trail starts directly behind camp, and the search-and-rescue site next door is staffed largely by climbers, which is the arrangement this place has always run on. Pair the visit with [El Capitan Meadow](/stop/el-capitan-meadow): first the wall, then the campground that figured out how to climb it.',
-    photos: [{ src: '/photos/yosemite-falls-spring-blossoms.jpg', caption: 'Upper Yosemite Fall from the Valley floor in spring. The Yosemite Falls Trail starts directly behind Camp 4.' }], // stand-in: not this entry, see guide-photo-manifest.json
+    photos: [{ src: '/photos/camp-4.jpg', caption: 'A walk-in site at Camp 4 under the pines. The Yosemite Falls Trail starts directly behind the campground.' }],
     history: {
       note:
         'The archive caught the era just before this campground\'s. In 1946 Nature ' +
@@ -392,7 +397,7 @@ const seed: StopInput[] = [
     coord: [-119.5600, 37.7393], // verified 2026-07: Mirror Lake trailhead at shuttle stop 17 (NPS/Hikespeak); was mid-trail, ~830 m off
     elevationFt: 4094,
     timeBudgetMin: 90,
-    photos: [{ src: '/photos/merced-river-pool.jpg', caption: 'A clear, granite-bottomed pool on the Valley floor. Tenaya Creek runs like this above Mirror Lake once the melt is off it.' }], // stand-in: not this entry, see guide-photo-manifest.json
+    photos: [{ src: '/photos/mirror-lake.jpg', caption: 'Mirror Lake in spring, Mount Watkins reflected, before the summer draw-down.' }],
     teaser:
       'Two flat miles round trip to the closest spot in the valley to Half Dome. Go early, before the breeze erases the reflection.',
     body:
@@ -497,7 +502,7 @@ const seed: StopInput[] = [
       'Yosemite Village is the valley\'s working center: the Welcome Center, the Village Store, the post office, most of the rangers. Treat it as errands and you will miss the best indoor hour in the park. The Yosemite Museum, built in 1926 and the first purpose-built museum in the national park system, holds a basket collection that belongs in any serious conversation about American art: work by Ahwahnechee and Mono Lake Paiute weavers, some pieces years in the making. In summer, demonstrations of basketry and other traditional skills run near the entrance, and they are worth planning around.\n\n' +
       'Behind the museum, a self-guided loop walks through the reconstructed Indian Village of the Ahwahnee: bark umachas, an acorn granary, a roundhouse still used ceremonially by the park\'s associated tribes, and a pounding rock worn deep with mortar holes from centuries of acorn work. Fifteen minutes here reframes every meadow you look at afterward, because all of them were tended, none of them wild in the storybook sense. Next door, the Ansel Adams Gallery has operated on this spot since 1902, when it opened as Best\'s Studio; Adams married the owner\'s daughter, and the gallery still sells prints made from his negatives. Ten minutes in front of the real prints will quietly recalibrate your own photographs of this place.\n\n' +
       'Two practical notes. Park once in the Village day-use lot and do the whole cluster on foot; do not move the car between buildings. And give the Pioneer Cemetery across the road from the museum ten quiet minutes: Galen Clark, the valley\'s first guardian, lies under sequoias he planted for himself.',
-    photos: [{ src: '/photos/half-dome-meadow-deer.jpg', caption: 'Half Dome and grazing deer over a Valley meadow at golden hour, the open ground the Village sits behind.' }], // stand-in: not this entry, see guide-photo-manifest.json
+    photos: [{ src: '/photos/yosemite-village.jpg', caption: 'The Valley Visitor Center in Yosemite Village, the Yosemite Falls wall behind it.' }],
     history: {
       note:
         'The museum here is the reason this bulletin exists. The first issue of ' +
@@ -552,7 +557,7 @@ const seed: StopInput[] = [
     body:
       'Half Dome catches the last light from here. The Merced is in the foreground. People crowd the rail; walk down to the small beach below the bridge instead: wider angle, fewer elbows. If you have one image to take home, it\'s this one. Stay until the wall goes from gold to pink to grey, and through twilight to first stars. Most visitors leave too early.\n\n' +
       'Two refinements for anyone carrying a camera. The mirror reflection needs slack water, which the Merced only offers once the spring runoff drops, so late summer through winter is reflection season; in May the river moves too fast to hold the image. And a few evenings each month the moon comes up near Half Dome\'s shoulder shortly after sunset. Check moonrise against sunset time, and if they land within an hour of each other, stay for it. This bridge has held tripods on those evenings for a century, Ansel Adams\'s among them.',
-    photos: [{ src: '/photos/half-dome.jpg', caption: 'Half Dome at last light.' }],
+    photos: [{ src: '/photos/half-dome-merced-river-spring.jpg', caption: 'Half Dome above the Merced from the Valley floor, the view the bridge frames.' }],
     photoTiming: {
       best: 'sunset',
       note:
@@ -690,7 +695,7 @@ const seed: StopInput[] = [
     coord: [-119.5375, 37.7560], // verified 2026-07: junction ~1.0–1.1 mi past Mirror Lake at Snow Creek confluence/footbridge (GNIS Snow Creek Falls + NPS/yosemiteperegrinelodge route texts); prior pin was ~700 m too far west and short
     elevationFt: 4100,
     timeBudgetMin: 360,
-    photos: [{ src: '/photos/clouds-rest-tenaya.jpg', caption: 'Tenaya Canyon and the country above it. Snow Creek switchbacks up the canyon\'s north wall to that rim.' }], // stand-in: not this entry, see guide-photo-manifest.json
+    photos: [{ src: '/photos/snow-creek-trail.jpg', caption: 'Tenaya Canyon from the south rim in an A.C. Pillsbury photograph, Half Dome at right. The Snow Creek switchbacks climb the canyon\'s north wall, on the left.' }],
     hazard:
       'The switchbacks are shadeless by mid-morning and there is no water between Tenaya Creek and Snow Creek. Do not leave the trail toward Tenaya Canyon; the gorge below is technical terrain where hikers have died.',
     teaser:
@@ -722,7 +727,7 @@ const seed: StopInput[] = [
     coord: [-119.529914, 37.759413], // user-provided GPS — TODO: verify on the ground
     elevationFt: 4300,
     timeBudgetMin: 180,
-    photos: [{ src: '/photos/vernal-fall.jpg', caption: 'Vernal Fall on the Merced. Three Chutes is the same idea on Tenaya Creek at a fraction of the size, and almost nobody walks to it.' }], // stand-in: not this entry, see guide-photo-manifest.json
+    photos: [{ src: '/photos/three-chutes-falls.jpg', caption: 'Tenaya Creek in its canyon below Half Dome, photographed by Arthur Pillsbury around 1900. Three Chutes is a mile up this creek.' }],
     hazard:
       'The crossings above Mirror Lake are fords, not bridges. In May and June the current is fast and cold enough to knock an adult down; if the water is over your knees, this is a viewpoint, not a swim. Do not continue past the falls into upper Tenaya Canyon.',
     teaser:
@@ -786,7 +791,7 @@ const seed: StopInput[] = [
       'Sixteen miles from Chinquapin to Glacier Point, and the road is the experience: Pothole Meadows, the Sentinel Dome lot, Washburn Point. Give it three or four hours.',
     body:
       'Sixteen miles from the Chinquapin junction to Glacier Point itself. Most people drive it straight through to the viewpoint and complain about the parking. Don\'t. The road is the experience. Pothole Meadows (mile 10) for wildflowers in early summer, Sentinel Dome / Taft Point trailhead (mile 13.6), Washburn Point (mile 15.5) for the Half Dome / Vernal-Nevada view that\'s arguably better than Glacier Point itself. Plan three to four hours for the round trip with stops, not one.\n\nThe road is closed November through May (sometimes longer). If you\'re here in winter, this whole region flips to a Hetch Hetchy day instead.',
-    photos: [{ src: '/photos/wildflowers.jpg', caption: 'Pothole Meadows in early summer.' }],
+    photos: [{ src: '/photos/mcgurk-meadow.jpg', caption: 'Lower McGurk Meadow, one of the Glacier Point Road meadows the drive passes.' }],
   },
   {
     id: 'sentinel-dome',
@@ -968,7 +973,7 @@ const seed: StopInput[] = [
       'Wawona is what the park looked like when getting here was the achievement. The Wawona Hotel opened in 1876 as the stagecoach stop between the railhead and the valley, and it has never stopped being a hotel: white Victorian buildings around a lawn, wicker chairs on the wide verandas, a national historic landmark. When the hotel is open, the porch is open to anyone; order a drink from the lobby bar, take a chair, and look across the road at the 1918 nine-hole golf course, one of the odder sentences in any national park. The small building beside the hotel was the studio of Thomas Hill, whose enormous paintings of this landscape helped argue it into protection; in season it serves as the Wawona visitor center.\n\n' +
       'Five minutes north on foot, the Pioneer Yosemite History Center gathers buildings from the park\'s first decades, moved here when roads and time displaced them: a Wells Fargo office, homestead cabins, a jail, and a barn full of the actual stagecoaches that ran the road you drove in on. You enter across the Wawona covered bridge, built by Galen Clark in 1868 and roofed a decade later, which nearly every valley-bound visitor crossed for half a century. In summer there are costumed interpreters and short stage rides; the rest of the year the buildings are closed up but the walk among them is open, and the South Fork of the Merced runs quietly past it all.\n\n' +
       'It pairs naturally with the [Mariposa Grove](/stop/mariposa-grove), ten minutes south, and with [Chilnualna Falls](/stop/chilnualna-falls) and the [meadow loop](/stop/wawona-meadow-loop) for a full Wawona day that never touches the valley. When the hotel dining room is running, it takes lunch walk-ins far more easily than dinner.',
-    photos: [{ src: '/photos/wawona-meadow-loop.jpg', caption: 'Wawona Meadow around 1900. The hotel grounds sit just across the road.' }],
+    photos: [{ src: '/photos/wawona-hotel-history-center.jpg', caption: 'The Wawona Hotel\'s white verandas across its lawn. The history center is a short walk past it.' }],
   },
 
   // ---------------------------------------------------------------------------
@@ -1060,7 +1065,7 @@ const seed: StopInput[] = [
     coord: [-119.6039, 37.6668], // verified 2026-07: Ostrander Lake trailhead, Glacier Point Rd mile 9 (Hiking Project/Modern Hiker); was ~1.7 km off
     elevationFt: 7000,
     timeBudgetMin: 420,
-    photos: [{ src: '/photos/may-lake.jpg', caption: 'May Lake under Mount Hoffmann. Ostrander is the same kind of granite water at the end of a much longer walk.' }], // stand-in: not this entry, see guide-photo-manifest.json
+    photos: [{ src: '/photos/ostrander-lake.jpg', caption: 'Ostrander Lake\'s granite shore below Horse Ridge, the hut a short walk from here.' }],
     teaser:
       'Twelve miles round trip to a granite-shored lake under Horse Ridge, past the 1941 ski hut. Gentle first half, 1,600 feet of climbing in the second. A full quiet day.',
     body:
@@ -1113,7 +1118,7 @@ const seed: StopInput[] = [
     coord: [-119.6337, 37.5484], // verified 2026-07: Chilnualna Falls trailhead lot, end of Chilnualna Falls Rd (NPS/Hikespeak); was ~130 m off
     elevationFt: 4200,
     timeBudgetMin: 360,
-    photos: [{ src: '/photos/vernal-fall-high-water.jpg', caption: 'Vernal Fall at high water. Chilnualna carries this kind of volume in May and June, with a fraction of the crowd.' }], // stand-in: not this entry, see guide-photo-manifest.json
+    photos: [{ src: '/photos/chilnualna-falls.jpg', caption: 'The lower cascades of Chilnualna Falls sliding into their pool. The main fall is above.' }],
     hazard:
       'The granite beside the cascades is water-polished and slick, and the current above the drops is faster than it looks. People have died sliding here. Watch the falls from the trail, not from the rocks beside the water.',
     teaser:
@@ -1164,7 +1169,7 @@ const seed: StopInput[] = [
     coord: [-119.8015, 37.7566], // web-derived: Crane Flat meadow point ~580 m NW of the gas-station wye (the point the old tioga-road-drive pin sat on; GNIS-scale accuracy); TODO: verify on the ground — confirm the signed shoulder pullout at the meadow edge on Big Oak Flat Rd
     elevationFt: 6192,
     timeBudgetMin: 30,
-    photos: [{ src: '/photos/black-bear-roadside.jpg', caption: 'A brown-phase black bear at a Yosemite road edge. Crane Flat\'s meadow is one of the more reliable places in the park to see one.' }], // stand-in: not this entry, see guide-photo-manifest.json
+    photos: [{ src: '/photos/crane-flat-meadow.jpg', caption: 'The forest edge at Crane Flat, where the Big Oak Flat and Tioga Roads meet.' }],
     teaser:
       'The big meadow at the Tioga Road junction is one of the most consistent places in the park to see a black bear. Pull over, stay at the edge, and scan the far tree line at dawn or dusk.',
     body:
@@ -1206,7 +1211,7 @@ const seed: StopInput[] = [
       'Tioga Road runs a long forested half hour east of Crane Flat before the famous stops begin, and almost everyone drives it straight through. White Wolf is the reason not to. A short spur drops north off the highway to a meadow at 8,000 feet ringed by lodgepole pine, with a camp of white tent cabins that has served Tioga travelers since the 1920s, a small campground, and the kind of quiet the Tuolumne core has already lost by mid-morning. The lodge and its cabins are closed for the 2026 season for sewer-line repairs (the dining directory tracks the details), and its operating seasons have been irregular in recent years anyway, so treat any meal or cabin plan as something to confirm, never a schedule; the meadow, the trailheads, and the stillness are the reliable draw.\n\n' +
       'Two easy walks start here or nearby, and they are the gentlest introduction the high country offers. Harden Lake is 5.6 miles round trip on nearly flat old roadbed from the White Wolf road-end: a warm, shallow lake that is genuinely pleasant swimming by August, which almost nothing else up here is. Lukens Lake, from a signed trailhead two miles east on Tioga Road, is a 1.6-mile round-trip hop over a forested rise to a shallow lake edged by one of the best July wildflower meadows in the park. Neither has a switchback worth the name.\n\n' +
       'Deer work the meadow edges at dusk. Time White Wolf as the leg stretch on the drive east, or spend a first high-country night at the campground and let your lungs meet the altitude before the bigger Tuolumne days.',
-    photos: [{ src: '/photos/tuolumne-river-meadow.jpg', caption: 'A high-country meadow with its creek running through it. White Wolf sits in the same lodgepole-and-meadow country, lower down Tioga Road.' }], // stand-in: not this entry, see guide-photo-manifest.json
+    photos: [{ src: '/photos/white-wolf.jpg', caption: 'The White Wolf Lodge dining building, a mile off Tioga Road.' }],
     history: {
       note:
         'A 1939 Nature Notes survey asked valley campers which of the park\'s other ' +
@@ -1363,7 +1368,7 @@ const seed: StopInput[] = [
       'An easy 1.5 miles from the Lembert Dome lot to a naturally carbonated spring and the 1915 Parsons Lodge. End the high-country day here.',
     body:
       'A 1.5-mile round trip from the Lembert Dome parking lot. Soda Springs is a naturally carbonated spring bubbling up out of the meadow; taste it if you want, it\'s safe (a little metallic). Parsons Lodge is a 1915 stone Sierra Club building, staffed daily in high summer with an open reading room, typically 10 to 4 once Tioga Road opens; the current Yosemite Guide has the season dates. End the high-country day here. Drive back to the valley in twilight; the Tioga Road in low light is a memory you keep.',
-    photos: [{ src: '/photos/tuolumne-meadows.jpg', caption: 'Tuolumne Meadows from the Soda Springs walk.' }],
+    photos: [{ src: '/photos/tuolumne-meadows-lembert-dome.jpg', caption: 'Lembert Dome at sunset from the Soda Springs side of the meadow.' }],
     history: {
       note:
         'A 1931 Nature Notes itinerary for the High Sierra camps treated these ' +
@@ -1393,7 +1398,7 @@ const seed: StopInput[] = [
     body:
       'The menu is burgers, breakfast sandwiches, chili, and soft-serve cones, cooked on a griddle in a canvas-sided building beside the Tuolumne Meadows Store. Nobody drives to the high country for the food. You eat here for the room: the picnic tables collect Pacific Crest Trail and John Muir Trail hikers three weeks from anywhere, day hikers down off Cathedral, climbers, and rangers, and the conversation is the best in the park. A thru-hiker eating a double cheeseburger and a pint of ice cream at eleven in the morning is not a spectacle; it is arithmetic, and they will cheerfully walk you through it.\n\n' +
       'The store next door is a real outfitter in miniature: fuel canisters, actual groceries, the only supplies in the high country, plus a seasonal post office where thru-hikers collect resupply boxes addressed months earlier. The whole complex lives in tents and trailers that are struck every fall and rebuilt when Tioga Road opens, so hours are seasonal and the entire place simply does not exist in winter. If the line at the window is long, read it as the grill operating exactly as intended.',
-    photos: [{ src: '/photos/tuolumne-meadows.jpg', caption: 'Lembert Dome over the meadow, a short walk from the grill window.' }],
+    photos: [{ src: '/photos/tuolumne-meadows-grill.jpg', caption: 'Tuolumne Meadows at the end of the season. The store and grill tents sit at the meadow\'s east end.' }],
   },
   {
     id: 'gaylor-lake',
@@ -1618,7 +1623,7 @@ const seed: StopInput[] = [
       'A mile up Evergreen Road from Highway 120, the road crosses the South Fork of the Tuolumne at the Carlon day-use area, once the site of the Carl Inn, a resort that fed and housed Yosemite travelers from 1916 into the 1930s. The trail leaves the north side of the bridge and follows the river upstream into the park: about 3.8 miles round trip, nearly flat, under big ponderosa and incense cedar the whole way, with the river alternating green pools and low cascades beside you. As waterfall walks in this park go, it is the gentlest honest one there is.\n\n' +
       'Carlon Falls itself is a broad curtain of whitewater over a granite ledge, and unlike the famous valley falls it runs all year. The deep pool at its base is one of the better swimming holes on this side of the park by midsummer. Spring turns the fall loud and the pool off limits; August turns the whole outing into a swim with a walk attached. Pick your lunch rock with attention; the polished granite near the water earns its caution note.\n\n' +
       'The trailhead sits outside the park entrance station, so it costs no gate time in either direction. Do it as the opener to the [Hetch Hetchy day](/stop/evergreen-road-drive) if the forecast is hot, or as the closer on the way out, when the river is the correct answer to the afternoon.',
-    photos: [{ src: '/photos/foresta-cascades.jpg', caption: 'A fall dropping through the trees at the head of a creek bed. Carlon is this at river level, a mile up the South Fork Tuolumne.' }], // stand-in: not this entry, see guide-photo-manifest.json
+    photos: [{ src: '/photos/carlon-falls.jpg', caption: 'The South Fork Tuolumne in spring flow near the Carlon day-use area, not the fall itself. Carlon Falls is a mile up this river.' }], // stand-in: not this entry, see guide-photo-manifest.json
   },
   {
     id: 'lookout-point',
@@ -1645,7 +1650,7 @@ const seed: StopInput[] = [
     coord: [-119.7886, 37.9464], // verified 2026-07: dam road-end lot, SW abutment (bracketed by the Wikipedia dam-crest and NPS trailhead points)
     elevationFt: 3800,
     timeBudgetMin: 45,
-    photos: [{ src: '/photos/region-hetch-hetchy.jpg', caption: 'The view from the dam walk: Hetch Hetchy Dome and Wapama Falls across the reservoir.' }],
+    photos: [{ src: '/photos/region-hetch-hetchy-kolana-rock.jpg', caption: 'Kolana Rock over the reservoir from the trail beyond the dam.' }],
     teaser:
       'Walk a quarter mile across the 1923 dam to a tunnel hand-cut through the cliff, Kolana Rock and Wapama Falls up-canyon. Muir\'s valley floor is still down there.',
     body:
@@ -1698,7 +1703,7 @@ const seed: StopInput[] = [
     body:
       'There is no food service at Hetch Hetchy. No snack bar at the dam, nothing at the entrance station, and the drive back to Highway 120 is slow. The Evergreen Lodge is therefore not a discovery; it is logistics, and good logistics at that. Built in 1921 alongside the dam works, it sits in the pines on Evergreen Road about a mile before Camp Mather: a tavern with a deck, a proper restaurant, cabins under the trees, and a general store good for sandwiches, coffee, ice, and forgotten sunscreen.\n\n' +
       'The move is timing. Coffee and a breakfast sandwich on the drive in, before the gate; then the burger and a beer on the deck after the [Wapama miles](/stop/wapama-falls-trail), before the hairpins back to the highway. Hours run seasonal and shorten outside summer, so check ahead before counting on dinner. As roadhouses at the end of a big day go, this one has a century of practice.',
-    photos: [{ src: '/photos/evergreen-road-drive.jpg', caption: 'Evergreen Road, the drive between Hetch Hetchy and the lodge.' }], // stand-in: not this entry, see guide-photo-manifest.json
+    photos: [{ src: '/photos/evergreen-lodge.jpg', caption: 'A cabin at Camp Mather, the city camp next door to the lodge on Evergreen Road. The lodge\'s own cabins sit in the same forest.' }], // stand-in: not this entry, see guide-photo-manifest.json
   },
 
   // ---------------------------------------------------------------------------
@@ -1785,7 +1790,7 @@ const seed: StopInput[] = [
       'Below O\'Shaughnessy Dam the Tuolumne runs wild again through a small green valley, and exactly one trail reaches it: a 1.3-mile plunge off Hetch Hetchy Road that loses 1,300 feet, one of the steepest maintained grades in the park. The signed pullout sits 3.9 miles past the entrance station. There are no switchback niceties. The trail simply goes down, through oak and bear clover, until the river noise rises to meet you.\n\n' +
       'The floor is the reward: meanders and sand bars, spring wildflowers on the benches, and a stretch of river with the dam out of sight upstream and essentially no one, ever, sharing it. A few fishermen know it. Lunch on a rock, feet in the shallows if the flow is gentle, and a granite valley to yourself within a mile and a half of a parked car, which may be the best ratio in the park.\n\n' +
       'Do the arithmetic before you commit, because the way out is the whole bill: 1,300 feet regained in 1.3 miles, most of it in the open. Walk down in the morning cool and climb out before the heat, or aim the whole outing at spring or fall. A July afternoon here is a mistake you only make once.',
-    photos: [{ src: '/photos/merced-canyon-from-the-road.jpg', caption: 'A river canyon seen from the road above it. Poopenaut drops into the Tuolumne\'s like this, on foot, and you climb every foot of it back out.' }], // stand-in: not this entry, see guide-photo-manifest.json
+    photos: [{ src: '/photos/poopenaut-valley.jpg', caption: 'The Tuolumne below O\'Shaughnessy Dam, in a USGS photograph from the river gauge cableway. Poopenaut Valley is this stretch of river.' }],
     history: {
       note:
         'The drop you are about to make is the whole point of the place. A 1940 ' +
@@ -1820,7 +1825,7 @@ const seed: StopInput[] = [
       'Just west of the Evergreen Road junction, Highway 120 crosses the South Fork of the Tuolumne, and a signed spur drops to Rainbow Pool: a short, forceful waterfall pouring into a broad green pool ringed by granite shelves. Stagecoach travelers stopped here when this was the toll road into the park, and a small resort traded on the pool for decades before it burned; what remains is the reason anyone built here at all. It sits on Stanislaus National Forest land, so it is free, needs no reservation, and works even after you have left the park for good.\n\n' +
       'By July the water is warm by Sierra standards and the shelves fill with local families on weekends; on a weekday evening you may have it nearly alone. People jump from the ledges. The Forest Service\'s advice and this guide\'s agree: check the depth yourself before anyone jumps, never dive, and stay out entirely in spring flow, when the current through the pool is a machine. There are picnic tables and vault toilets above the water, and nothing else, which is the charm.\n\n' +
       'It pairs with [Carlon Falls](/stop/carlon-falls) as the corridor\'s two river stops: Carlon for the walk, Rainbow Pool for the swim. On the drive home from a [Hetch Hetchy day](/stop/evergreen-road-drive), with the car pointed toward the highway and the heat still standing in the canyon, this is the stop that ends the day properly.',
-    photos: [{ src: '/photos/merced-river-pool.jpg', caption: 'A granite-bottomed river pool deep enough to swim. Rainbow Pool is the same on the South Fork Tuolumne, with a fall at the head of it.' }], // stand-in: not this entry, see guide-photo-manifest.json
+    photos: [{ src: '/photos/rainbow-pool.jpg', caption: 'The South Fork Tuolumne pouring over granite at the Highway 120 crossing, where Rainbow Pool sits.' }],
   },
 ]
 

@@ -1,0 +1,288 @@
+[
+  {
+    "file": "camp-ahwahnee-sentinel-rock.jpg",
+    "slot": "article:yosemite-camping-guide",
+    "tier": 1,
+    "subject": "Detroit Publishing Co. postcard: Camp Ahwahnee tent camp beneath Sentinel Rock (NYPL scan)",
+    "directUrl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b0/Camp_Ahwahnee%2C_Sentinel_Rock%2C_Yosemite%2C_Calif_%28NYPL_b12647398-73959%29.tiff/lossy-page1-1280px-Camp_Ahwahnee%2C_Sentinel_Rock%2C_Yosemite%2C_Calif_%28NYPL_b12647398-73959%29.tiff.jpg",
+    "author": "Detroit Publishing Co., scan by the New York Public Library",
+    "license": "Public domain",
+    "source": "https://commons.wikimedia.org/wiki/File:Camp_Ahwahnee,_Sentinel_Rock,_Yosemite,_Calif_(NYPL_b12647398-73959).tiff"
+  },
+  {
+    "file": "hetch-hetchy-reservoir-kolana-rock.jpg",
+    "slot": "article:hetch-hetchy-the-other-yosemite-valley",
+    "tier": 1,
+    "subject": "Hetch Hetchy Reservoir with Kolana Rock or Wapama Falls (the article currently shows Vernal Fall)",
+    "categories": [
+      "Hetch Hetchy Reservoir",
+      "Hetch Hetchy Valley"
+    ],
+    "queries": [
+      "Hetch Hetchy Reservoir Kolana Rock",
+      "Hetch Hetchy Wapama Falls"
+    ]
+  },
+  {
+    "file": "black-bear-yosemite-meadow.jpg",
+    "slot": "article:bears-spring-emergence",
+    "tier": 1,
+    "subject": "An American black bear in Yosemite, foraging in a meadow or forest",
+    "categories": [
+      "Ursus americanus in Yosemite National Park"
+    ],
+    "queries": [
+      "black bear Yosemite National Park",
+      "Ursus americanus Yosemite"
+    ]
+  },
+  {
+    "file": "black-bear-yosemite-forest.jpg",
+    "slot": "article:is-bear-spray-allowed-in-yosemite",
+    "tier": 1,
+    "subject": "A second, different American black bear photo from Yosemite",
+    "categories": [
+      "Ursus americanus in Yosemite National Park"
+    ],
+    "queries": [
+      "black bear Yosemite cub",
+      "black bear Yosemite Valley"
+    ]
+  },
+  {
+    "file": "half-dome-winter-snow.jpg",
+    "slot": "article:yosemite-in-winter",
+    "tier": 1,
+    "subject": "Half Dome or Yosemite Valley under snow",
+    "categories": [
+      "Yosemite National Park in winter",
+      "Half Dome in winter"
+    ],
+    "queries": [
+      "Half Dome snow winter Yosemite",
+      "Yosemite Valley winter snow"
+    ]
+  },
+  {
+    "file": "el-capitan-snow-spring.jpg",
+    "slot": "article:yosemite-in-march",
+    "tier": 1,
+    "subject": "El Capitan with snow on the valley floor or the rim, late winter",
+    "categories": [
+      "El Capitan in winter"
+    ],
+    "queries": [
+      "El Capitan snow Yosemite",
+      "El Capitan winter Yosemite Valley"
+    ]
+  },
+  {
+    "file": "yosemite-ranger-program-visitors.jpg",
+    "slot": "article:yosemite-ranger-programs",
+    "tier": 1,
+    "subject": "A ranger-led program or walk with visitors in Yosemite",
+    "categories": [
+      "Rangers of Yosemite National Park",
+      "Ranger-led programs in Yosemite National Park"
+    ],
+    "queries": [
+      "Yosemite ranger program visitors",
+      "park ranger talk Yosemite"
+    ]
+  },
+  {
+    "file": "arch-rock-entrance-yosemite.jpg",
+    "slot": "article:yosemite-without-reservations-2026",
+    "tier": 1,
+    "subject": "The Arch Rock entrance or an entrance station on a Yosemite approach road",
+    "categories": [
+      "Arch Rock Entrance",
+      "Entrance stations of Yosemite National Park"
+    ],
+    "queries": [
+      "Arch Rock entrance Yosemite",
+      "Yosemite entrance station"
+    ]
+  },
+  {
+    "file": "wawona-tunnel-tree-stagecoach.jpg",
+    "slot": "article:yosemite-tunnel-trees",
+    "tier": 1,
+    "subject": "The historic Wawona Tunnel Tree with a stagecoach or car driving through it (public domain era)",
+    "categories": [
+      "Wawona Tree"
+    ],
+    "queries": [
+      "Wawona Tunnel Tree stagecoach",
+      "Wawona Tree Mariposa Grove"
+    ]
+  },
+  {
+    "file": "tunnel-view-valley-spring.jpg",
+    "slot": "article:yosemite-for-non-hikers",
+    "tier": 1,
+    "subject": "Tunnel View: El Capitan, Bridalveil Fall and Half Dome from the Wawona Tunnel overlook",
+    "categories": [
+      "Tunnel View"
+    ],
+    "queries": [
+      "Tunnel View Yosemite",
+      "Yosemite Valley from Tunnel View"
+    ]
+  },
+  {
+    "file": "half-dome-merced-river-spring.jpg",
+    "slot": "article:so-you-want-to-hike-half-dome",
+    "tier": 1,
+    "subject": "The Half Dome cables with hikers, or Half Dome's subdome and summit route",
+    "categories": [
+      "Half Dome"
+    ],
+    "queries": [
+      "Half Dome cables Yosemite hikers",
+      "Half Dome summit hikers Yosemite",
+      "Half Dome subdome Yosemite"
+    ],
+    "portraitOk": true
+  },
+  {
+    "file": "tuolumne-meadows-lembert-dome.jpg",
+    "slot": "article:tioga-road-opening-weekend-2026",
+    "tier": 1,
+    "subject": "Tuolumne Meadows with Lembert Dome or the Tuolumne River, early season",
+    "categories": [
+      "Tuolumne Meadows",
+      "Lembert Dome"
+    ],
+    "queries": [
+      "Tuolumne Meadows Lembert Dome",
+      "Tuolumne Meadows Yosemite"
+    ]
+  },
+  {
+    "file": "lower-yosemite-fall-footbridge.jpg",
+    "slot": "article:yosemite-accessibility-guide",
+    "tier": 1,
+    "subject": "Lower Yosemite Fall from its paved loop or footbridge",
+    "categories": [
+      "Lower Yosemite Fall"
+    ],
+    "queries": [
+      "Lower Yosemite Fall bridge",
+      "Lower Yosemite Falls"
+    ]
+  },
+  {
+    "file": "yosemite-ceanothus-bloom.jpg",
+    "slot": "article:yosemite-wildflowers-guide",
+    "tier": 1,
+    "subject": "Wildflowers in a Yosemite meadow (lupine, shooting star, or a high-country bloom)",
+    "categories": [
+      "Lupinus in Yosemite National Park",
+      "Flowers of Yosemite National Park"
+    ],
+    "queries": [
+      "Yosemite lupine meadow",
+      "Yosemite wildflowers June",
+      "Tuolumne Meadows wildflowers"
+    ]
+  },
+  {
+    "file": "cathedral-rocks-middle-cathedral.jpg",
+    "slot": "article:pack-your-car-for-yosemite",
+    "tier": 1,
+    "subject": "Cathedral Rocks and Cathedral Spires over the Merced River or a valley meadow",
+    "categories": [
+      "Cathedral Rocks (Yosemite)",
+      "Cathedral Spires (Yosemite)"
+    ],
+    "queries": [
+      "Cathedral Rocks Yosemite Valley",
+      "Cathedral Spires Yosemite"
+    ]
+  },
+  {
+    "file": "el-portal-yosemite-valley-railroad-cars.jpg",
+    "slot": "article:yosemite-from-los-angeles",
+    "tier": 2,
+    "subject": "Highway 140 or Highway 41 approaching the park: the Merced River canyon road or the Wawona Road",
+    "categories": [
+      "Merced River Canyon",
+      "El Portal, California"
+    ],
+    "queries": [
+      "Merced River canyon El Portal",
+      "Highway 140 Merced River Yosemite",
+      "Wawona Road Yosemite"
+    ]
+  },
+  {
+    "file": "camp-4-kiosk.jpg",
+    "slot": "article:yosemite-facelift-volunteer-guide",
+    "tier": 2,
+    "subject": "Camp 4 or its boulders, the Yosemite Facelift's home base",
+    "categories": [
+      "Camp 4 (Yosemite)"
+    ],
+    "queries": [
+      "Camp 4 Yosemite boulder",
+      "Yosemite Facelift volunteers"
+    ]
+  },
+  {
+    "file": "yosemite-valley-lodge-entrance.jpg",
+    "slot": "article:yosemite-trip-cost-budget-2026",
+    "tier": 2,
+    "subject": "Yosemite Valley Lodge, Curry Village, or an in-park lodging exterior (the article shares the Ahwahnee photo)",
+    "categories": [
+      "Yosemite Valley Lodge",
+      "Yosemite Lodge"
+    ],
+    "queries": [
+      "Yosemite Valley Lodge",
+      "Yosemite Lodge at the Falls"
+    ]
+  },
+  {
+    "file": "john-muir-trail-backpacker-yosemite.jpg",
+    "slot": "article:yosemite-wilderness-permits-guide",
+    "tier": 2,
+    "subject": "A backpacker or wilderness trail in Yosemite: the John Muir Trail, Lyell Canyon, or a high-country camp",
+    "categories": [
+      "John Muir Trail in Yosemite National Park",
+      "Lyell Canyon"
+    ],
+    "queries": [
+      "John Muir Trail Yosemite backpacker",
+      "Yosemite wilderness backpacking trail"
+    ]
+  },
+  {
+    "file": "horsetail-fall-firefall-glow.jpg",
+    "slot": "article:horsetail-fall-firefall",
+    "tier": 1,
+    "subject": "Horsetail Fall lit orange at sunset in February (the firefall)",
+    "portraitOk": true,
+    "categories": [
+      "Horsetail Fall"
+    ],
+    "queries": [
+      "Horsetail Fall firefall Yosemite",
+      "Horsetail Fall February sunset"
+    ]
+  },
+  {
+    "file": "upper-yosemite-fall-spring-flow.jpg",
+    "slot": "article:yosemite-waterfalls-guide",
+    "tier": 1,
+    "subject": "Upper Yosemite Fall in full spring flow",
+    "portraitOk": true,
+    "categories": [
+      "Upper Yosemite Fall"
+    ],
+    "queries": [
+      "Upper Yosemite Fall spring",
+      "Yosemite Falls spring flow"
+    ]
+  }
+]
