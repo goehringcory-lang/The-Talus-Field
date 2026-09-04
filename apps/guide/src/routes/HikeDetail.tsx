@@ -9,7 +9,7 @@
 // render everything except the track, and say so plainly.
 // =============================================================================
 
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import GatedChrome from '../components/GatedChrome'
 import ElevationProfile from '../components/ElevationProfile'
@@ -20,8 +20,12 @@ import PageHeader from '../components/ui/PageHeader'
 import { REGION_SHORT, getHikeById, getStopById } from '../content'
 import { DIFFICULTY_LABEL, formatElevation, formatTime } from '../content/labels'
 import { directionsUrl } from '../map/kinds'
+import { daylightFit, latestStart } from '../sun/daylight'
 import { announceTripAdd } from '../trip/addFeedback'
+import type { TripItemT } from '../trip/schema'
+import { slotPlan, type SlottedItem } from '../trip/slotting'
 import { useTripPlan } from '../trip/useTripPlan'
+import { addDaysIso, formatClock, formatDayHeader, parkNowMinutes, todayIso } from '../utils/date'
 import { exportGpx, type GpxExportResult } from '../trails/gpx'
 import {
   ALTITUDE_NOTE_FT,
@@ -34,6 +38,15 @@ import {
 import { useTrack } from '../trails/useTrack'
 import NotFound from './NotFound'
 import './HikeDetail.css'
+
+/** The day and slotted block a planned hike landed on, or null. */
+function plannedHikeBlock(items: TripItemT[], hikeId: string): { day: string; block: SlottedItem } | null {
+  for (const [day, blocks] of slotPlan(items)) {
+    const block = blocks.find((b) => b.item.type === 'hike' && b.item.hikeId === hikeId)
+    if (block) return { day, block }
+  }
+  return null
+}
 
 const ROUTE_LABEL: Record<string, string> = {
   'out-and-back': 'Out and back',
@@ -59,6 +72,22 @@ export default function HikeDetail() {
     [plan, hike],
   )
 
+  // Where the board put this hike, if it is on the plan: the day and the
+  // slotted block, so the daylight reading below can judge the plan's own
+  // start time and not only today's. Same slotter the board draws from. Not
+  // memoized by hand: the plan is a few dozen items at most, and the hooks
+  // compiler lint could not preserve a manual memo around the early return.
+  const planned = hike && inPlan ? plannedHikeBlock(plan.items, hike.id) : null
+
+  // The daylight reading compares the latest start against the clock, so a
+  // page left open through an afternoon has to keep up: same minute pulse as
+  // /today.
+  const [nowMin, setNowMin] = useState(parkNowMinutes)
+  useEffect(() => {
+    const t = window.setInterval(() => setNowMin(parkNowMinutes()), 60_000)
+    return () => window.clearInterval(t)
+  }, [])
+
   const profile = useMemo(
     () => (trackState.status === 'ready' ? fullProfile(trackState.track) : null),
     [trackState],
@@ -73,6 +102,20 @@ export default function HikeDetail() {
   const gainFt = summary?.gainFt ?? hike.elevationGainFt
   const em = energyMiles(mi, gainFt)
   const effort = effortClass(em)
+
+  // The daylight reading. Once today's sun is down the panel turns over to
+  // tomorrow, the way ParkNowPanel does: a "start by 1:20 p.m." printed at
+  // 9 p.m. reads as a time that has passed, not as tomorrow's answer.
+  const today = todayIso()
+  const todayLight = latestStart(today, hike.durationMin)
+  const sunDown = !!todayLight && nowMin >= todayLight.sunsetMin
+  const lightDay = sunDown ? addDaysIso(today, 1) : today
+  const light = sunDown ? latestStart(lightDay, hike.durationMin) : todayLight
+  const tooLate = !sunDown && !!light && nowMin > light.latestStartMin
+  const plannedFit =
+    planned && planned.block.startMin !== null
+      ? daylightFit(planned.day, planned.block.startMin, planned.block.durationMin)
+      : null
 
   const add = () => {
     addHike(hike.id)
@@ -177,6 +220,81 @@ export default function HikeDetail() {
             )}
           </p>
         </section>
+
+        {/* --- Daylight ----------------------------------------------------- */}
+        {/* The time budget and the sunset, put together: the latest start that
+            gets you down with an hour of light in hand. Computed on-device, so
+            it works at a trailhead with no signal, which is where the question
+            gets asked. */}
+        {light && (
+          <section aria-label="Daylight" className="hike-detail__section">
+            <h2 className="hike-detail__heading">Daylight</h2>
+            <div className="panel">
+              <div className="panel__head">
+                <span className="panel__title">
+                  {sunDown ? `Tomorrow · ${formatDayHeader(lightDay)}` : formatDayHeader(lightDay)}
+                </span>
+                <span className="panel__stamp">Computed on-device</span>
+              </div>
+              <div className="panel__grid">
+                <div className="readout">
+                  <span className="readout__label">Sunset</span>
+                  <span className="readout__value">{formatClock(light.sunsetMin)}</span>
+                  <span className="readout__note">Sunrise {formatClock(light.sunriseMin)}</span>
+                </div>
+                <div className="readout">
+                  <span className="readout__label">Start by</span>
+                  <span
+                    className={
+                      tooLate
+                        ? 'readout__value readout__value--alert'
+                        : 'readout__value readout__value--signal'
+                    }
+                  >
+                    {formatClock(light.latestStartMin)}
+                  </span>
+                  <span className="readout__note">
+                    {light.beforeSunrise
+                      ? 'Before sunrise · the first hours are by headlamp'
+                      : tooLate
+                        ? `Past it for today · a start now finishes ${formatClock(nowMin + hike.durationMin)}`
+                        : 'Finishes with an hour of light in hand'}
+                  </span>
+                </div>
+                {planned && plannedFit && planned.block.startMin !== null && (
+                  <div className="readout readout--wide">
+                    <span className="readout__label">On your plan</span>
+                    <span
+                      className={
+                        plannedFit.verdict === 'dark'
+                          ? 'readout__value readout__value--alert'
+                          : plannedFit.verdict === 'tight'
+                            ? 'readout__value readout__value--signal'
+                            : 'readout__value'
+                      }
+                    >
+                      {formatDayHeader(planned.day)} · {formatClock(planned.block.startMin)} –{' '}
+                      {formatClock(plannedFit.endMin)}
+                    </span>
+                    <span className="readout__note">
+                      {plannedFit.verdict === 'dark'
+                        ? `Finishes after sunset at ${formatClock(plannedFit.sunsetMin)} · start earlier or carry a headlamp`
+                        : plannedFit.verdict === 'tight'
+                          ? `Finishes ${formatTime(Math.max(1, plannedFit.lightLeftMin))} before sunset · inside the hour margin`
+                          : `Finishes with ${formatTime(plannedFit.lightLeftMin)} of light to spare`}
+                    </span>
+                  </div>
+                )}
+              </div>
+            </div>
+            <p className="hike-detail__fineprint">
+              Start by is the time budget above plus an hour of margin, counted back from sunset.
+              The budget is generous but not a promise, and canyon walls take the light off the
+              valley floor well before the horizon does. The long days are started before dawn
+              on purpose; carry the headlamp either way.
+            </p>
+          </section>
+        )}
 
         {/* --- Elevation profile ---------------------------------------------- */}
         <section aria-label="Elevation profile" className="hike-detail__section">

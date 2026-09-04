@@ -38,6 +38,7 @@ import {
   type DayWindow,
   type Placed,
 } from '../trip/agendaLayout'
+import { daylightFit } from '../sun/daylight'
 import { driveMinutesBetween, toHhmm, type SlottedItem } from '../trip/slotting'
 import { hikeItemId, stopItemId, type TripItemT } from '../trip/schema'
 import { useTripPlan } from '../trip/useTripPlan'
@@ -812,6 +813,11 @@ function AgendaBlock({
   const fixedTime = s.item.type === 'program'
   const pinned = s.item.type !== 'program' && !!s.item.startTime
   const timeRange = `${clockLabel(startMin)} – ${clockLabel(startMin + s.durationMin)}`
+  // A hike that runs past the day's sunset gets flagged on the block itself:
+  // the board is where the day gets arranged, so this is where the warning
+  // can still change something. Hikes only — a sunset viewpoint or an
+  // evening meal ends after dark by design (see trip/slotting.ts).
+  const afterDark = s.item.type === 'hike' && daylightFit(day, startMin, s.durationMin)?.verdict === 'dark'
 
   return (
     <div
@@ -832,7 +838,7 @@ function AgendaBlock({
         tabIndex={0}
         data-item-id={s.item.itemId}
         aria-expanded={expanded}
-        aria-label={`${info.title}, ${timeRange}`}
+        aria-label={`${info.title}, ${timeRange}${afterDark ? ', ends after sunset' : ''}`}
         onPointerDown={(e) => onPointerDown(e, 'move')}
         onClick={onToggle}
         onKeyDown={(e) => {
@@ -849,6 +855,7 @@ function AgendaBlock({
           <span className="ag-block__dur">{durationLabel(s.durationMin)}</span>
           {fixedTime && <span className="ag-block__flag">Published time</span>}
           {pinned && <span className="ag-block__flag">Pinned</span>}
+          {afterDark && <span className="ag-block__flag ag-block__flag--dark">After sunset</span>}
         </span>
         <span className="ag-block__title">{info.title}</span>
         {size === 'lg' && info.meta.length > 0 && (
@@ -935,6 +942,9 @@ function BlockPanel({
   // Narrowed rather than a boolean: programs have no user-settable time or
   // length, and the controls below read those fields directly.
   const editable = item.type === 'program' ? null : item
+  // Same reading as the block's flag, spelled out with the sunset it misses.
+  const fit =
+    item.type === 'hike' && s.startMin !== null ? daylightFit(day, s.startMin, s.durationMin) : null
   return (
     <div className="ag-panel" onPointerDown={(e) => e.stopPropagation()}>
       <div className="ag-panel__head">
@@ -947,6 +957,19 @@ function BlockPanel({
       {info.missing && (
         <p className="ag-panel__note">
           This is no longer in the guide. It won't export to your calendar; remove it.
+        </p>
+      )}
+
+      {fit?.verdict === 'dark' && (
+        <p className="ag-panel__note ag-panel__note--dark">
+          Finishes after sunset at {clockLabel(fit.sunsetMin)}. Start it earlier, shorten it,
+          or pack a headlamp.
+        </p>
+      )}
+      {fit?.verdict === 'tight' && (
+        <p className="ag-panel__note ag-panel__note--tight">
+          Finishes inside an hour of the {clockLabel(fit.sunsetMin)} sunset. The time budget is
+          generous, but so is the margin for a reason.
         </p>
       )}
 

@@ -13,6 +13,7 @@ export default function BottomNav() {
     pathname === '/dining' ||
     pathname === '/night' ||
     pathname === '/compass' ||
+    pathname === '/help' ||
     pathname === '/wildlife' ||
     pathname === '/hunts' ||
     pathname === '/log'

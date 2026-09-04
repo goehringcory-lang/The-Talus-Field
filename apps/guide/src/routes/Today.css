@@ -127,3 +127,19 @@
   color: var(--ink-3);
   margin: var(--s4) 0 6px;
 }
+
+/* A hike's daylight reading under its row: rust when it runs past sunset,
+   gold when it finishes inside the hour margin. Nothing renders for clear. */
+.today-row__flag,
+.today-next__flag {
+  display: block;
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-top: 2px;
+}
+.today-next__flag { margin: 0 0 var(--s2); }
+.today-row__flag--dark { color: var(--rust); }
+.today-row__flag--tight { color: var(--gold); }

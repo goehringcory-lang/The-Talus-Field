@@ -22,7 +22,9 @@ import GatedChrome from '../components/GatedChrome'
 import EmptyState from '../components/ui/EmptyState'
 import PageHeader from '../components/ui/PageHeader'
 import WebcamStrip from '../components/WebcamStrip'
+import { formatTime } from '../content/labels'
 import { readTripDates } from '../programs/usePrograms'
+import { daylightFit, type DaylightFit } from '../sun/daylight'
 import SunLine from '../sun/SunLine'
 import { coordLabel, directionsUrl, itemInfo } from '../trip/agendaItem'
 import { dayForecastRegion } from '../trip/dayRegion'
@@ -81,11 +83,27 @@ function ConditionsBlock({
   )
 }
 
+// A hike's daylight reading, when it is worth saying: nothing for a hike that
+// finishes with the full hour of light in hand. Hikes only, because a sunset
+// viewpoint or an evening meal ends after dark on purpose.
+function hikeDaylight(day: string, block: SlottedItem): DaylightFit | null {
+  if (block.item.type !== 'hike' || block.startMin === null) return null
+  const fit = daylightFit(day, block.startMin, block.durationMin)
+  return fit && fit.verdict !== 'clear' ? fit : null
+}
+
+function daylightLine(fit: DaylightFit): string {
+  return fit.verdict === 'dark'
+    ? `Ends after sunset at ${formatClock(fit.sunsetMin)} · headlamp`
+    : `Ends ${formatTime(Math.max(1, fit.lightLeftMin))} before sunset`
+}
+
 // One row of the day list: time, tone dot, linked title, meta, directions.
-function DayRow({ block, nowMin }: { block: SlottedItem; nowMin: number }) {
+function DayRow({ day, block, nowMin }: { day: string; block: SlottedItem; nowMin: number }) {
   const info = itemInfo(block.item)
   const timed = block.startMin !== null
   const past = timed && (block.startMin ?? 0) + block.durationMin <= nowMin
+  const fit = hikeDaylight(day, block)
   return (
     <li className={past ? 'today-row is-past' : 'today-row'}>
       <span className="today-row__time">
@@ -98,6 +116,9 @@ function DayRow({ block, nowMin }: { block: SlottedItem; nowMin: number }) {
         </span>
         {info.meta.length > 0 && (
           <span className="today-row__meta">{info.meta.join(' · ')}</span>
+        )}
+        {fit && (
+          <span className={`today-row__flag today-row__flag--${fit.verdict}`}>{daylightLine(fit)}</span>
         )}
         {info.coord && (
           <a
@@ -149,6 +170,7 @@ export default function Today() {
   const dayOver = !current && !next && timed.length > 0
   const featured = current ?? next
   const featuredInfo = featured ? itemInfo(featured.item) : null
+  const featuredFit = featured ? hikeDaylight(today, featured) : null
 
   const intro = noDates
     ? 'The park day at a glance, whether or not a plan exists yet.'
@@ -243,6 +265,11 @@ export default function Today() {
                 <span className="today-conditions__muted"> · {featuredInfo.meta.join(' · ')}</span>
               )}
             </p>
+            {featuredFit && (
+              <p className={`today-next__flag today-row__flag--${featuredFit.verdict}`}>
+                {daylightLine(featuredFit)}
+              </p>
+            )}
             {featuredInfo.coord && (
               <a
                 className="today-next__nav"
@@ -279,7 +306,7 @@ export default function Today() {
                     </li>,
                   )
                 }
-                rows.push(<DayRow key={block.item.itemId} block={block} nowMin={nowMin} />)
+                rows.push(<DayRow key={block.item.itemId} day={today} block={block} nowMin={nowMin} />)
                 return rows
               })}
             </ol>
@@ -288,7 +315,7 @@ export default function Today() {
                 <span className="today-list__sub">Also today</span>
                 <ol className="today-list">
                   {untimed.map((block) => (
-                    <DayRow key={block.item.itemId} block={block} nowMin={nowMin} />
+                    <DayRow key={block.item.itemId} day={today} block={block} nowMin={nowMin} />
                   ))}
                 </ol>
               </>

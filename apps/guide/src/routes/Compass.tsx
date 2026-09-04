@@ -400,7 +400,8 @@ export default function Compass() {
           electronics and metal railings; wave the phone in a slow figure eight to
           recalibrate. For the drive, use <Link to="/map">the map</Link>: this instrument is
           for the last stretch on foot, and for knowing which wall of the valley the light
-          will leave first.
+          will leave first. If the walk has gone wrong, <Link to="/help">the Help card</Link>{' '}
+          reads the same fix in the forms a dispatcher takes.
         </p>
       </main>
     </GatedChrome>
