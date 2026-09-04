@@ -927,6 +927,7 @@ function App() {
       ensureRoute(r).then(() => {
         if (token !== navTokenRef.current) return;
         navigatedRef.current = true;
+        document.documentElement.removeAttribute("data-boot");
         setRoute(r);
         window.scrollTo({
           top: 0
@@ -938,6 +939,7 @@ function App() {
     window.addEventListener("popstate", onPop);
     return () => window.removeEventListener("popstate", onPop);
   }, []);
+  var leaveBoot = () => document.documentElement.removeAttribute("data-boot");
   var go = r => {
     var path = routeToPath(r);
     if (path !== window.location.pathname) {
@@ -949,6 +951,7 @@ function App() {
     ensureRoute(r).then(() => {
       if (token !== navTokenRef.current) return;
       navigatedRef.current = true;
+      leaveBoot();
       setRoute(r);
       window.scrollTo({
         top: 0
@@ -1217,7 +1220,6 @@ ensureRoute(bootRoute).catch(e => console.error("app.jsx boot: initial route bun
   document.getElementById("seo-static-h1")?.remove();
   document.getElementById("prerender-prose")?.remove();
   document.getElementById("home-shell")?.remove();
-  requestAnimationFrame(() => document.documentElement.removeAttribute("data-boot"));
   var warm = () => prefetchAllModules();
   ["pointerdown", "keydown", "touchstart", "scroll"].forEach(ev => window.addEventListener(ev, warm, {
     once: true,

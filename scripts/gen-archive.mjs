@@ -107,10 +107,15 @@ function masthead(crumbs) {
     )
     .join('<span class="arc-crumbs__sep" aria-hidden="true">/</span>');
 
+  // The 40 x 40 box takes the square cut of the mark (favicon-96.png, written
+  // by gen-brand-icons.mjs from the same master, 5.7 KB) rather than the master
+  // itself: that file is 805 x 622 and 567 KB, and forcing it into a square box
+  // also squeezed the illustration by a quarter. Still unversioned, the same
+  // trade-off /styles.css makes on these 512 pages.
   return `<header class="arc-masthead">
   <div class="wrap arc-masthead__inner">
     <a class="arc-brand" href="/">
-      <img class="arc-brand__mark" src="/img/talus-field-mark.png" alt="" width="40" height="40" loading="eager" />
+      <img class="arc-brand__mark" src="/img/favicon-96.png" alt="" width="40" height="40" loading="eager" />
       <span class="arc-brand__text">
         <span class="arc-brand__name">The Talus Field</span>
         <span class="arc-brand__sub">A field journal of Yosemite</span>

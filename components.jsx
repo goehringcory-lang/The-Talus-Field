@@ -602,7 +602,12 @@ function Header({ current, go }) {
           {/* alt="": the link's visible .brand text already names the site, so
               alt text here would announce "The Talus Field" twice on the first
               link of every page. */}
-          <img className="brand__mark" src="/img/talus-field-mark.png?v=2" alt="" loading="eager" />
+          {/* The masthead-sized cut of the mark (gen-brand-icons.mjs), not the
+              805 x 622 master: the master is 567 KB and this is drawn 56 px
+              tall. width/height are the file's intrinsic pixels so the box
+              holds its aspect ratio before the bytes arrive; the CSS height
+              still governs the drawn size. */}
+          <img className="brand__mark" src="/img/talus-field-mark-masthead.png?v=2" alt="" width="214" height="168" loading="eager" />
           <span className="brand-block__text">
             <span className="brand">The Talus Field</span>
             <span className="brand__sub">A field journal of Yosemite</span>

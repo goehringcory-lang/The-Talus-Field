@@ -19,6 +19,15 @@
 //                                    is the one Google renders beside a result
 //   img/apple-touch-icon.png         iOS home screen; opaque, iOS paints
 //                                    transparency black
+//   img/talus-field-mark-masthead.png  the editorial masthead (Header in
+//                                    components.jsx, baked into index.html's
+//                                    home shell). 168 px tall: three times
+//                                    the 56 px the CSS draws it at, so it
+//                                    stays crisp on 3x phones. Before this
+//                                    output existed the masthead loaded the
+//                                    805 x 622 master itself, 567 KB on every
+//                                    page view (and every archive page) for
+//                                    an image drawn 56 px tall.
 //   img/mark-192.png                 the trip-share email's masthead
 //                                    (workers/src/lib/email.ts), which has
 //                                    always pointed here — the file was simply
@@ -132,6 +141,15 @@ async function main() {
 
   // Opaque, for iOS.
   write('apple-touch-icon.png', await squareIcon(mark, 180, TOUCH_FILL, TOUCH_BG))
+
+  // The masthead mark. Palette PNG like the rest of the set; ~20 KB against
+  // the master's 567 KB. The Header sets width/height from these dimensions
+  // (see components.jsx), so a change in the trimmed mark's aspect ratio
+  // needs those attributes updated too.
+  write(
+    'talus-field-mark-masthead.png',
+    await sharp(mark).resize({ height: 168, fit: 'inside' }).png(PNG_OPTS).toBuffer(),
+  )
 
   // Transparent lockup mark for the trip-share email, sized to match the
   // PWA's /brand/mark-192.png so both emails render the same asset shape.
