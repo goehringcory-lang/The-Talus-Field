@@ -60,6 +60,10 @@ jobs:
       # forced update for every installed copy of the guide.
       - run: npm run check:build
       - run: npm run lint
+      # Unit tests for the pure modules whose past bugs bricked or wiped a
+      # buyer's device: sync salvage, the trip bridge, the JWT session parse,
+      # the on-device sun calculation. Vitest, node environment.
+      - run: npm test
 
   worker:
     name: Worker typecheck and flow test
