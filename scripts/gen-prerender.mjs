@@ -40,15 +40,70 @@ const OUT_DIR = path.join(ROOT, "prerender");
 const CHECK = process.argv.includes("--check");
 
 // --- Stubs for the handful of components a body may reference. Faithful enough
-// for crawlers: an <img> carrying alt text, plus the credit line. Keep aligned
-// with Placeholder / ResponsiveImage / Motif* in components.jsx. ---
+// for crawlers: the same <picture> the live ResponsiveImage renders (AVIF, WebP
+// and JPEG responsive sets, alt text) plus the credit line. Keep aligned with
+// Placeholder / ResponsiveImage / Motif* in components.jsx. ---
+//
+// WHY THE FULL <picture> AND NOT A BARE <img>
+// The first version of this stub emitted <img src="/img/<master>.jpg">: the
+// un-resized source photo, which for several articles is a 4 to 9 MB file. The
+// fragment is injected into #root and painted before React boots, so every
+// article view fetched those masters on the critical path, then threw them away
+// when app.jsx removed #prerender-prose: 43 MB across the catalog in Sept 2026,
+// 13 MB on a single article. React 19's server renderer made it worse by
+// hoisting a <link rel="preload"> for every eager <img>, so the masters were
+// requested at high priority. Two properties of this markup close both holes:
+// a `w`-descriptor srcset means browsers never fetch `src`, and React does not
+// hoist preloads for an <img> inside <picture> or one marked loading="lazy".
+// The body plates are lazy because none of them is the article hero (that is
+// rendered by page-article.jsx and preloaded by edge/seo.js); a lazy plate in
+// a block React removes within the first second is, in practice, never fetched.
+const RESPONSIVE_WIDTHS = [400, 800, 1200, 1600];
+const SIZES_HERO = "(max-width: 700px) 100vw, 700px";
+const SIZES_CARD = "(max-width: 700px) 100vw, (max-width: 1100px) 50vw, 360px";
+function slugifyImage(p) {
+  const base = String(p).split("/").pop() || "";
+  return base.toLowerCase().replace(/\.[^.]+$/, "").replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
+}
 function ResponsiveImage(props) {
-  const src = "/" + String(props.image || "").replace(/^\/+/, "");
-  return React.createElement("img", {
-    className: props.className,
-    src,
-    alt: props.alt || "",
-  });
+  const image = String(props.image || "");
+  const alt = props.alt || "";
+  if (/^https?:/i.test(image)) {
+    return React.createElement("img", { className: props.className, src: image, alt, loading: "lazy", decoding: "async" });
+  }
+  const cleaned = image.replace(/^\/+/, "");
+  const lastSlash = cleaned.lastIndexOf("/");
+  const dir = lastSlash >= 0 ? cleaned.slice(0, lastSlash) : "";
+  const respBase = `/${dir ? dir + "/" : ""}responsive/${slugifyImage(cleaned)}`;
+  // Every body image today has its full responsive set (gen-responsive-images).
+  // Should one ever ship without it, fall back to the master rather than emit
+  // srcset candidates that 404, but keep it lazy so it stays off the critical
+  // path and out of React's preload hoisting.
+  const hasSet = RESPONSIVE_WIDTHS.every((w) =>
+    ["avif", "webp", "jpg"].every((ext) => fs.existsSync(path.join(ROOT, `${respBase.slice(1)}-${w}.${ext}`)))
+  );
+  if (!hasSet) {
+    return React.createElement("img", { className: props.className, src: `/${cleaned}`, alt, loading: "lazy", decoding: "async" });
+  }
+  const srcSet = (ext) => RESPONSIVE_WIDTHS.map((w) => `${respBase}-${w}.${ext} ${w}w`).join(", ");
+  const sizes = props.sizes || SIZES_HERO;
+  return React.createElement(
+    "picture",
+    null,
+    React.createElement("source", { key: "avif", type: "image/avif", srcSet: srcSet("avif"), sizes }),
+    React.createElement("source", { key: "webp", type: "image/webp", srcSet: srcSet("webp"), sizes }),
+    React.createElement("img", {
+      key: "img",
+      className: props.className,
+      src: `/${cleaned}`,
+      srcSet: srcSet("jpg"),
+      sizes,
+      alt,
+      loading: "lazy",
+      decoding: "async",
+      referrerPolicy: "no-referrer",
+    })
+  );
 }
 function Placeholder(props) {
   const kids = [];
@@ -58,6 +113,7 @@ function Placeholder(props) {
       className: "placeholder__img",
       image: props.image,
       alt: props.caption || "",
+      sizes: props.sizes || SIZES_HERO,
     }));
   }
   if (props.credit) {
@@ -118,6 +174,7 @@ function LodgingCta(props) {
         className: "lodging-cta__img",
         image: props.image,
         alt: props.caption || "",
+        sizes: SIZES_CARD,
       }),
     ];
     if (props.caption) {
@@ -235,7 +292,10 @@ function renderBody(slug, src) {
   if (typeof fn !== "function") {
     throw new Error(`bodies/${slug}.jsx did not register window.ARTICLE_BODIES["${slug}"]`);
   }
-  return renderToStaticMarkup(React.createElement(fn)) + "\n";
+  // React 19's static renderer writes camelCase attribute names verbatim
+  // (srcSet, referrerPolicy). HTML parsers lowercase them anyway, so this only
+  // makes the fragment read like the markup the SPA itself produces.
+  return renderToStaticMarkup(React.createElement(fn)).replace(/ srcSet=/g, " srcset=").replace(/ referrerPolicy=/g, " referrerpolicy=") + "\n";
 }
 
 const slugs = fs

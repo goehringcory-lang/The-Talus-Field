@@ -1102,6 +1102,7 @@ function App() {
         .then(() => {
           if (token !== navTokenRef.current) return;
           navigatedRef.current = true;
+          document.documentElement.removeAttribute("data-boot"); // see leaveBoot
           setRoute(r);
           window.scrollTo({ top: 0 });
         })
@@ -1112,6 +1113,14 @@ function App() {
     window.addEventListener("popstate", onPop);
     return () => window.removeEventListener("popstate", onPop);
   }, []);
+
+  // The boot render paints over a page that is already on screen (the home
+  // shell on "/", the prerendered prose elsewhere), so it must not animate:
+  // index.html ships <html data-boot>, and styles.css holds the .page entry
+  // animation off while it is set. The first SPA navigation clears it, before
+  // the new route commits, so every page after the first still animates in.
+  // Idempotent; called from go() and the popstate handler.
+  const leaveBoot = () => document.documentElement.removeAttribute("data-boot");
 
   const go = (r) => {
     const path = routeToPath(r);
@@ -1126,6 +1135,7 @@ function App() {
       .then(() => {
         if (token !== navTokenRef.current) return;
         navigatedRef.current = true;
+        leaveBoot();
         setRoute(r);
         window.scrollTo({ top: 0 });
       })
@@ -1372,10 +1382,16 @@ ensureRoute(bootRoute)
     // this boot ran.
     document.getElementById("home-shell")?.remove();
 
-    // Drop the pre-React marker so SPA navigations get the .page entry
-    // animation again. Deferred a frame so it cannot suppress the animation's
-    // own starting styles for the first render.
-    requestAnimationFrame(() => document.documentElement.removeAttribute("data-boot"));
+    // data-boot stays on <html> until the first SPA navigation (leaveBoot in
+    // App). It used to be dropped here, a frame after this commit, and that
+    // replayed the very flicker the attribute exists to prevent: a CSS
+    // animation starts the moment its animation-name stops being `none`, so
+    // the page that was already on screen faded in from opacity 0 again.
+    // In September 2026 headless-Chrome probes, that replay also made Chrome
+    // sometimes record the React-rendered hero dek, at the end of the fade,
+    // as the homepage's LCP candidate instead of the shell's hero image that
+    // had painted at FCP. Keeping the attribute made every probe report the
+    // shell image.
 
     // Warm the remaining page bundles on the reader's first interaction so
     // SPA navigation is instant, without taxing first paint or lab metrics.

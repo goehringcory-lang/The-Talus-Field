@@ -2358,10 +2358,12 @@ main:focus { outline: none; }
 
 /* ===== Page transitions ===== */
 .page { animation: pageIn 0.25s ease; }
-/* First render only (see data-boot in index.html): the homepage's hero is
+/* Boot render only (see data-boot in index.html): the homepage's hero is
    already on screen from the static shell, so fading it in again is a
-   flicker, not a transition. app.jsx clears the attribute after the first
-   commit and SPA navigations animate normally. */
+   flicker, not a transition. app.jsx clears the attribute on the first SPA
+   navigation, before the new route commits, so later pages animate normally.
+   It must not be cleared any earlier: an element already in the DOM starts
+   this animation the instant the rule stops applying. */
 [data-boot] .page { animation: none; }
 
 @keyframes pageIn {

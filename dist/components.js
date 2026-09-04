@@ -634,8 +634,10 @@ function Header({
     }
   }, React.createElement("img", {
     className: "brand__mark",
-    src: "/img/talus-field-mark.png?v=2",
+    src: "/img/talus-field-mark-masthead.png?v=2",
     alt: "",
+    width: "214",
+    height: "168",
     loading: "eager"
   }), React.createElement("span", {
     className: "brand-block__text"
