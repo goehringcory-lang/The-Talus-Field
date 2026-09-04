@@ -16,8 +16,11 @@ import { TripPlan } from '../trip/schema'
 export const SyncDoc = z.object({
   version: z.literal(1),
   // The merge key. Whole-document last-write-wins: the newer stamp replaces
-  // the older document entirely.
-  updatedAt: z.string(),
+  // the older document entirely. Stamps compare as ISO strings in planSync,
+  // so one that is not a date at all would out-sort every real stamp and pin
+  // this device to it for good: demand a parseable date here, the same test
+  // the salvage path below applies.
+  updatedAt: z.string().refine((s) => !Number.isNaN(Date.parse(s)), 'updatedAt must be a date'),
   plan: TripPlan.nullable(),
   favorites: z.array(z.string()),
   visited: z.array(z.string()),

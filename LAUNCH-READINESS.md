@@ -51,7 +51,7 @@ The attribution questions from the earlier review are closed: no shipped photo l
 
 - **28 coordinates flagged `TODO: verify on the ground`** (15 stops, 8 secret spots, 5 amenities). Web-verified once in July 2026; the markers that remain had no authoritative source and need a field visit. Never strip a marker without standing at the spot. Wrong turnouts are the product's core risk.
 - `valley-loop-drive` has no coordinate (it is a route, handled by the planner's flat buffer) and `curry-village` has no time budget (lodging). Both intentional.
-- No PWA test suite and `strict` is off in its tsconfig. The Worker e2e in CI is the only automated behavioral net.
+- The PWA's test net is narrow: `npm test` in `apps/guide` (Vitest, September 2026) covers the sync salvage, the trip bridge, the JWT session parse and the solar calculation, and `strict` is on in its tsconfig. Nothing renders a route under test; the Worker e2e in CI is still the only end-to-end net.
 - `/tiles` and `/api/contact` are unauthenticated and unthrottled. Accepted abuse surface at this scale; the tile proxy leans on 30-day edge caching.
 - Magic links are reusable until access expires, by design (documented in `Open.tsx`); the 64-hex token is the capability.
 - The photo manifest slot `secret:mcgurk-meadow` is a no-op (the spot lives in `stops.ts` as a hidden stop).

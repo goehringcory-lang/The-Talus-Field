@@ -29,6 +29,26 @@ captureInstallPrompt()
 // whole buy detour, not just a sign-in.
 stashPendingImportFromUrl()
 
+// A deploy replaces every hashed chunk, and a tab that was open across it
+// asks for a lazy route's old chunk the next time it navigates: Pages answers
+// with the HTML shell (or a 404), the import rejects, and the ErrorBoundary
+// below renders "Something went wrong" over the whole app until the buyer
+// taps Reload. Vite raises this event for exactly that failure, so recover the
+// way the card would: reload once. Once, guarded in sessionStorage, because a
+// chunk that is missing for a real reason would otherwise loop the tab.
+window.addEventListener('vite:preloadError', (event) => {
+  const KEY = 'tfg.preloadReloadedAt'
+  try {
+    const last = Number(sessionStorage.getItem(KEY) ?? '0')
+    if (Date.now() - last < 60_000) return
+    sessionStorage.setItem(KEY, String(Date.now()))
+  } catch {
+    return // storage-blocked: let the boundary's reload card handle it
+  }
+  event.preventDefault()
+  window.location.reload()
+})
+
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     {/* Outside the router so even a routing failure gets the reload card. */}

@@ -12,7 +12,8 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "check:itineraries": "jiti scripts/check-itineraries.ts",
-    "check:build": "node scripts/check-build-determinism.mjs"
+    "check:build": "node scripts/check-build-determinism.mjs",
+    "test": "vitest run"
   },
   "dependencies": {
     "maplibre-gl": "^5.24.0",
@@ -36,6 +37,7 @@
     "sharp": "^0.34.5",
     "typescript": "~6.0.2",
     "typescript-eslint": "^8.58.2",
-    "vite": "^8.0.10"
+    "vite": "^8.0.10",
+    "vitest": "^5.0.0"
   }
 }
