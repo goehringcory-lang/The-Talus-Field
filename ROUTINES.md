@@ -4,7 +4,7 @@ The owner's manual for every Claude Code Routine that runs against this
 repo. Set up August 2026, reorganized September 2026. `INTEL-OPS.md` covers
 the intel operation in more depth; this file is the map of the whole
 fleet: what each routine is for, when it runs, what it may touch, where it
-stops for the owner, and the one environment fix that unblocks most of it.
+stops for the owner, and what the environment can reach.
 
 ## What the fleet is for
 
@@ -83,30 +83,53 @@ could do the same thing, the table says which one does.
 | The newsletter (drafting) | Sunday letter draft | never sends; nobody else drafts |
 | External signals, competitor and partner moves, outreach drafts | Intel cycle + executor | never sent by anyone |
 
-## The one thing blocking most of the fleet: the environment's network policy
+## Network access: full Internet since September 2026
 
-Every routine runs in the "Default Cloud Environment", and that
-environment's egress policy currently refuses almost every host the
-runbooks depend on: `nps.gov`, `recreation.gov`, `travelyosemite.com`,
-Reddit, Caltrans, NWS, YARTS, the local papers, Wikimedia Commons and
-Pexels (the photo pass), and even the site's own three hosts. Only GitHub
-and web *search* get through. Confirmed from inside a session on
-2026-09-02: every direct fetch fails with a CONNECT 403 from the agent
-proxy. The effects so far:
+Every routine runs in the "Default Cloud Environment". Through August
+2026 that environment's egress policy refused almost every host the
+runbooks depend on (only GitHub and web *search* got through; confirmed
+from inside a session on 2026-09-02 as a CONNECT 403 from the agent proxy
+on every direct fetch), and the runbooks carried fallbacks for it: facts
+checked through search results that quoted the primary page, marked
+`(via search)`; a revenue pulse that could not verify the live sale path;
+a sweep without its online battery; a bulletin turn that could not read
+the new Guide; a photo pass that could not run at all.
 
-- articles are fact-checked through search results that quote the primary
-  page, marked `(via search)`, instead of the page itself;
-- the revenue pulse cannot verify the live sale path (`/api/inventory`);
-- the sweep cannot run its online battery;
-- the photo pass cannot run at all;
-- the bulletin turn cannot read the new Guide, so an edition rollover
-  cannot be automated until this is fixed (it will post the stale note when
-  an edition lapses, and stop there).
+**On 2026-09-04 the environment was switched to full Internet access**,
+and the switch was confirmed from inside a session: `nps.gov` (the Guide
+page and its PDFs), `recreation.gov`, `travelyosemite.com`, Caltrans, NWS,
+YARTS, Google Trends, the local papers, Wikimedia Commons, and the site's
+own three hosts all answer directly. The runbooks and the Routines' stored
+prompts were updated the same day. What changed:
 
-**The fix is yours and takes a few minutes**: in claude.ai/code, open the
-environment's settings and add these hosts to the allowed domains (or
-choose the policy that allows them), then nothing in the runbooks needs to
-change:
+- **Primary pages are fetched and read.** `(via search)` is no longer a
+  posture; it marks the rare page that fails to load after one retry, and
+  the PR body or brief names the page and the failure.
+- **The revenue pulse verifies the live sale path** every Monday
+  (`checks -- --only=api --online`), and the sweep runs the online
+  battery. The allow-list item that sat at the top of the ledger's "Your
+  court" is resolved and comes off at the next comment.
+- **The bulletin turn reads the new Guide itself**, so an edition rollover
+  is automated end to end.
+- **The photo pass ran** (`LAUNCH-READINESS.md`); wiring a photo into the
+  guide stays the owner's, per the territory table.
+
+Two things did not change. Some hosts wall off non-browser clients on
+their own account, and that is their policy, not the environment's: Reddit
+redirects the anonymous `.json` feed to a login page and answers 403 to
+non-browser user agents (fetch `www.reddit.com/r/Yosemite/top/?t=week` as
+HTML with a browser user agent), a lodge behind a Cloudflare challenge
+answers 403 to everything, and Commons rate-limits a burst with 429 plus
+`Retry-After` (the photo script retries). A 403 or 429 *from the origin*
+is reported as that site's behaviour; a **CONNECT 403 from the agent
+proxy** (`curl -sS "$HTTPS_PROXY/__agentproxy/status"`) means the
+environment's network policy has regressed, and every runbook says to
+report exactly that rather than an outage. And the environment still holds
+no GA4, Search Console, Stripe, or Buttondown credentials; numbers reach
+the routines only when the owner pastes them into the ledger.
+
+For reference, the hosts the runbooks reach, should the policy ever need
+to be narrowed to an allow-list again:
 
 ```
 www.nps.gov  nps.gov  www.recreation.gov  recreation.gov
@@ -122,10 +145,6 @@ commons.wikimedia.org  upload.wikimedia.org  api.pexels.com  images.pexels.com
 trends.google.com
 www.tenayalodge.com  autocamp.com  www.evergreenlodge.com  www.rushcreeklodge.com  firefallranch.com  www.undercanvas.com
 ```
-
-Until then, the runbooks say what each routine does instead (search-backed
-sourcing, repo-side parity, the stale note), and the revenue ledger keeps
-this item at the top of "Your court".
 
 ## Changing the machine
 

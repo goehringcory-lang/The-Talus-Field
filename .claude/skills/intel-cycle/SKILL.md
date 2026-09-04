@@ -75,10 +75,16 @@ finds nothing new in the window says "nothing new" and stops. A scout whose
 sources will not load says which ones failed. Scouts never launch their own
 subagents and never exceed ~10 fetches.
 
-Most primary domains are egress-blocked from the sandbox (`ROUTINES.md`
-carries the list and the fix), so WebSearch is the working sensor: a scout
-reports what search returned, marks each item `(via search)`, and never
-presents a blocked fetch as "nothing new".
+The environment has full Internet access (`ROUTINES.md`, "Network
+access"): a scout fetches its beat's primary pages directly and uses
+WebSearch for what those pages do not list (press coverage, a lodge's promo
+page it did not know to look for). An item's URL is a page that was
+actually read. `(via search)` marks only an item whose page failed to load
+and that a search result quotes, and the scout says which page failed
+rather than presenting it as "nothing new". Some hosts wall off bots on
+their own account (a lodge behind a Cloudflare challenge answers 403 to
+every non-browser client); that is a failed page, reported as such, not a
+reason to widen the fan-out.
 
 The beat list is the source registry; edit it here when the owner adds or
 drops a source.
@@ -99,7 +105,9 @@ drops a source.
 5. **Transport and access** — YARTS service changes, Caltrans on 140/120/41,
    entrance-reservation news, Tioga/Glacier Point road status changes.
 6. **Community and press** — r/Yosemite top threads of the window
-   (`https://old.reddit.com/r/Yosemite/top/.json?t=week`), Mariposa Gazette,
+   (`https://www.reddit.com/r/Yosemite/top/?t=week`, fetched as HTML with a
+   browser user agent; the anonymous `.json` feed redirects to a login
+   page), Mariposa Gazette,
    Sierra Star, Union Democrat, plus one general web search over the window.
 
 ## Phase 2 — Interpretation (main context)
@@ -182,5 +190,7 @@ something `intel-execute` (or the owner) can actually do.
 - **GitHub issue tools unavailable** → the brief still gets produced: put its
   full markdown in the completion summary and say it needs manual posting.
   Degraded finish, not a failure.
-- **A beat's sources unreachable through the proxy** → note it in the brief's
-  summary line; never pad with invented items.
+- **A beat's source refuses or times out** (its own bot wall, an outage)
+  → note it in the brief's summary line; never pad with invented items. A
+  CONNECT 403 from the agent proxy means the environment's network policy
+  regressed, and the summary line says so.

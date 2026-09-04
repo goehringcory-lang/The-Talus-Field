@@ -12,9 +12,9 @@ carries. The archive notes are that last thing. `Stop.history` is one short,
 sourced note from *Yosemite Nature Notes* (the National Park Service's own
 bulletin, 1922 onward, transcribed in `nature-notes/` and published at
 `/archive`), and as of September 2026 twenty-seven stops and all fifteen
-secret spots have none. The whole source is in the repo, so this is the one
-product improvement the sandbox can do without the network, and
-`scripts/check-archive-citations.mjs` can prove every citation resolves.
+secret spots have none. The whole source is in the repo, so this routine needs
+nothing outside it, and `scripts/check-archive-citations.mjs` can prove
+every citation resolves.
 
 This routine adds two or three notes a week and, when the entry's own body
 already supports it, one small field. It is the paid product: **minimal
@@ -26,9 +26,11 @@ diff, nothing invented, nothing the owner cannot verify in a minute.**
   trail, a moved trailhead, a new program) when the owner approved them.
 - The **revenue pulse** owns the buy box, the sales page, pricing, and the
   storefront surfaces. Nothing here touches how the guide sells.
-- The **photo pass** (`LAUNCH-READINESS.md`) is blocked on the network
-  allow-list and is the owner's or a session with egress; this routine
-  reports the inventory and never wires a photo.
+- The **photo pass** (`LAUNCH-READINESS.md`) ran in September 2026 once
+  the environment could reach Wikimedia Commons; the four stand-ins that
+  remain have no Commons candidate. Wiring a photo stays the owner's
+  (`ROUTINES.md`, territory table); this routine reports the inventory
+  and never wires one.
 - Coordinates are ground-truth work. **Never** strip a `TODO: verify on the
   ground` marker or move a coord.
 

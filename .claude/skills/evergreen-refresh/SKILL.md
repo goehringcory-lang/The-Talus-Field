@@ -72,11 +72,12 @@ hours, transit, and "as of" claim into a table:
 
 Verify against primary sources only: `nps.gov/yose`, `recreation.gov`,
 `travel.yosemite.com`, Caltrans, NWS, YARTS, official gateway-town and
-county pages. When a primary domain is egress-blocked (the sandbox has been
-refusing most of them; `ROUTINES.md` carries the list), a WebSearch result
-that quotes the primary page counts, marked `(via search)`; a claim that
-rests only on secondary coverage is **hedged or cut**, never left standing
-as a fact. Also check the site's own canon: `bulletin.json` and the related
+county pages, each page fetched and read directly (the environment has
+full Internet access; `ROUTINES.md`, "Network access"). A page that fails
+to load after one retry may be corroborated by a WebSearch result that
+quotes it, marked `(via search)`, with the failure named in the PR body; a
+claim that rests only on secondary coverage is **hedged or cut**, never
+left standing as a fact. Also check the site's own canon: `bulletin.json` and the related
 articles. Where the body and a current NPS page disagree, the NPS page wins,
 and the discrepancy is listed for the owner if it touches other articles.
 
@@ -161,9 +162,11 @@ link, and the article next week's run would take.
 
 - **Every candidate is excluded** (all recently touched or in flight) →
   ship nothing and say so; the catalog is current.
-- **Primary sources unreachable and search cannot corroborate** the
-  article's load-bearing facts → hedge what can be hedged, list the rest
-  under Flags, and say plainly in the PR body which claims remain
-  unverified rather than pretending the refresh was complete.
+- **A primary page will not load and search cannot corroborate** one of
+  the article's load-bearing facts → hedge what can be hedged, list the
+  rest under Flags, and say plainly in the PR body which claims remain
+  unverified rather than pretending the refresh was complete. A CONNECT 403
+  from the agent proxy means the environment's network policy regressed;
+  say so.
 - **Fast merge elsewhere conflicts** → merge `origin/main` into the branch,
   regenerate, re-run both gates.
