@@ -4,7 +4,7 @@
     "label": "August 19 – September 22, 2026",
     "start": "2026-08-19",
     "end": "2026-09-22",
-    "updated": "2026-08-27",
+    "updated": "2026-09-05",
     "lede": "The edition where summer ends. Every road is still open and the high country is at its best, but the waterfalls are down to their bones and the park starts shutting for the season in the first two weeks of September: the High Sierra Camps, the pools, the Tuolumne store and grill, the hikers bus. Go high while you can.",
     "source": "Condensed from the National Park Service Yosemite Guide for August 19 – September 22, 2026, with the journal's own notes.",
     "sourceUrl": "https://www.nps.gov/yose/planyourvisit/guide.htm"
@@ -19,7 +19,7 @@
     { "icon": "plug", "text": "EV charging in Tuolumne Meadows is down. Charge in the Valley, El Portal, or Wawona." },
     { "icon": "parking", "text": "Valley parking fills by late morning. Arrive before 8 am or after 4 pm, and text ynptraffic to 333111 for traffic alerts." },
     { "icon": "clock", "text": "Climbing programs move back down to the Valley: Ask-a-Climber at El Capitan bridge from Sep 6, Climber Coffee at Camp 4 from Sep 13." },
-    { "icon": "road", "text": "Pavement repairs on El Portal Road continue through the end of August: up to 15-minute daytime delays (8 am – 8 pm) and up to 30-minute delays overnight Sunday through Thursday (9 pm – 7 am). Also affects Valley Loop Road, the El Capitan Crossover, and Sentinel Drive." }
+    { "icon": "road", "text": "The El Portal Road pavement work is finished. The delays now are on Big Oak Flat Road between Foresta and Crane Flat: fire-safety crews are clearing dead wood and small trees beside the road, with delays of about 15 minutes on weekdays. The park gives no end date." }
   ],
   "areas": [
     { "name": "Yosemite Valley", "chip": "Open", "tone": "open", "note": "Busy by mid-morning, worse on weekends, and quieter after Labor Day. Parking in three hubs: Curry Village, Yosemite Village, Yosemite Falls. Once parked, stay parked and ride the free shuttles." },
