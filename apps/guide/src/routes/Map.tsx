@@ -20,7 +20,7 @@ import 'maplibre-gl/dist/maplibre-gl.css'
 import GatedChrome from '../components/GatedChrome'
 import ResponsivePhoto from '../components/ResponsivePhoto'
 import { ChipButton } from '../components/ui/Chip'
-import { AMENITIES, HIKES, REGIONS, SECRET_SPOTS, stops as allStops, getItineraryDayPhotos, getStopById, isSecretGuideEntry, type AmenityT, type GuideStopT, type HikeT, type Region } from '../content'
+import { AMENITIES, DINING, DINING_KIND_LABEL, HIKES, REGIONS, SECRET_SPOTS, stops as allStops, getItineraryDayPhotos, getStopById, isSecretGuideEntry, type AmenityT, type DiningVenueT, type GuideStopT, type HikeT, type Region } from '../content'
 import { DIFFICULTY_LABEL, formatTime } from '../content/labels'
 import {
   ITINERARIES,
@@ -28,7 +28,7 @@ import {
   isItineraryKey,
   type ItineraryKey,
 } from '../content/itineraries'
-import { HIDDEN_PIN_STROKE, KIND_STYLES, buildPinElement, directionsUrl, getKindStyle, type MapPinKind } from '../map/kinds'
+import { HIDDEN_PIN_STROKE, KIND_STYLES, MINOR_KINDS, buildPinElement, directionsUrl, getKindStyle, kindMarkSvg, type MapPinKind } from '../map/kinds'
 import { getHikeById } from '../content'
 import { hasTrack } from '../trails/track'
 import { useTrack } from '../trails/useTrack'
@@ -224,26 +224,181 @@ function buildAmenityPopupContent(amenity: AmenityT): HTMLElement {
   excerpt.textContent = amenity.note
   root.appendChild(excerpt)
 
-  if (amenity.season) {
-    const season = document.createElement('p')
-    season.className = 'map-popup__excerpt'
-    const em = document.createElement('em')
-    em.textContent = amenity.season
-    season.appendChild(em)
-    root.appendChild(season)
+  // Hours and season are published facts, set in the instrument face like
+  // every other reading in the guide.
+  for (const [label, value] of [
+    ['Hours', amenity.hours],
+    ['Season', amenity.season],
+  ] as const) {
+    if (!value) continue
+    const line = document.createElement('p')
+    line.className = 'map-popup__stats map-popup__stats--note'
+    line.textContent = `${label}: ${value}`
+    root.appendChild(line)
   }
 
   const actions = document.createElement('p')
   actions.className = 'map-popup__actions'
+  // A landmark is something you look at from where you are; directions to
+  // the foot of Cathedral Rocks would send a car onto a meadow.
+  if (amenity.kind !== 'landmark') {
+    const dir = document.createElement('a')
+    dir.className = 'map-popup__btn map-popup__btn--dir'
+    dir.href = directionsUrl(amenity.coord)
+    dir.target = '_blank'
+    dir.rel = 'noopener'
+    dir.textContent = 'Directions →'
+    actions.appendChild(dir)
+  }
+  if (amenity.kind === 'shuttle') {
+    const note = document.createElement('span')
+    note.className = 'map-popup__stats'
+    note.textContent = 'Free, no ticket. Times in Essentials → Getting around.'
+    actions.appendChild(note)
+  }
+  if (actions.childNodes.length > 0) root.appendChild(actions)
+  return root
+}
+
+// Places to eat, from the dining directory. One pin per coordinate, like the
+// trailheads: the Village, the Lodge and Curry each hold four or five venues
+// on one spot, and five stacked teardrops leave four of them untappable.
+// Venues that double as a Stop (stopId set) already have a pin and stay out.
+type MealGroup = {
+  id: string // first venue's id, stable, keys the marker
+  coord: [number, number]
+  region: Region | null // gateway venues carry none and never narrow to an itinerary
+  place: string
+  venues: DiningVenueT[]
+}
+
+const MEAL_GROUPS: MealGroup[] = (() => {
+  const byCoord: Record<string, MealGroup> = {}
+  for (const venue of DINING) {
+    if (!venue.coord || venue.stopId) continue
+    const key = venue.coord.join(',')
+    const group = byCoord[key]
+    if (group) group.venues.push(venue)
+    else {
+      byCoord[key] = {
+        id: venue.id,
+        coord: venue.coord,
+        region: venue.area === 'gateway' ? null : venue.area,
+        place: venue.place,
+        venues: [venue],
+      }
+    }
+  }
+  const groups = Object.values(byCoord)
+  for (const g of groups) g.venues.sort((a, b) => a.order - b.order)
+  return groups
+})()
+
+function buildMealPopupContent(group: MealGroup, onOpenDining: () => void): HTMLElement {
+  const style = getKindStyle('meal')
+  const root = document.createElement('div')
+  root.className = 'map-popup'
+  const single = group.venues.length === 1
+
+  const title = document.createElement('strong')
+  title.className = 'map-popup__title'
+  title.textContent = single ? group.venues[0].name : `${group.venues.length} places to eat`
+  root.appendChild(title)
+
+  const chip = document.createElement('span')
+  chip.className = 'map-popup__kind'
+  chip.style.color = style.color
+  chip.textContent = single ? DINING_KIND_LABEL[group.venues[0].kind] : style.label
+  root.appendChild(chip)
+
+  const where = document.createElement('p')
+  where.className = 'map-popup__distance'
+  where.textContent = group.place
+  root.appendChild(where)
+
+  for (const venue of group.venues) {
+    const block = document.createElement('div')
+    block.className = 'map-popup__hike'
+    if (!single) {
+      const name = document.createElement('strong')
+      name.className = 'map-popup__hike-name'
+      name.textContent = venue.name
+      block.appendChild(name)
+    }
+    const stats = document.createElement('p')
+    stats.className = 'map-popup__stats'
+    stats.textContent = [
+      single ? null : DINING_KIND_LABEL[venue.kind],
+      venue.price,
+      venue.hours ?? null,
+      venue.closed ? 'closed' : null,
+      venue.season ?? null,
+    ]
+      .filter(Boolean)
+      .join(' · ')
+    block.appendChild(stats)
+    if (single) {
+      const excerpt = document.createElement('p')
+      excerpt.className = 'map-popup__excerpt'
+      excerpt.textContent = extractExcerpt(venue.description)
+      block.appendChild(excerpt)
+    }
+    root.appendChild(block)
+  }
+
+  const actions = document.createElement('p')
+  actions.className = 'map-popup__actions'
+  const open = document.createElement('button')
+  open.type = 'button'
+  open.className = 'map-popup__btn'
+  open.textContent = 'Dining directory →'
+  open.addEventListener('click', onOpenDining)
+  actions.appendChild(open)
   const dir = document.createElement('a')
   dir.className = 'map-popup__btn map-popup__btn--dir'
-  dir.href = directionsUrl(amenity.coord)
+  dir.href = directionsUrl(group.coord)
   dir.target = '_blank'
   dir.rel = 'noopener'
   dir.textContent = 'Directions →'
   actions.appendChild(dir)
   root.appendChild(actions)
   return root
+}
+
+// Kind mark for chips and the legend: the pin's own glyph, so the row shows
+// the mark the reader will meet on the map. The SVG string is built from
+// KIND_STYLES alone, never from content, which is what makes innerHTML safe.
+function KindMark({ kind }: { kind: MapPinKind }) {
+  return <span className="map-kindmark" aria-hidden dangerouslySetInnerHTML={{ __html: kindMarkSvg(kind) }} />
+}
+
+// Region frames for the quick-jump row, from the core stops' own coords, so a
+// new stop widens its region's frame with no table to update.
+const REGION_BOUNDS: Record<Region, [[number, number], [number, number]]> = (() => {
+  const out = {} as Record<Region, [[number, number], [number, number]]>
+  for (const region of REGIONS) {
+    let west = Infinity, south = Infinity, east = -Infinity, north = -Infinity
+    for (const s of allStops) {
+      if (s.region !== region.id || !s.coord || s.collection === 'hidden') continue
+      const [lng, lat] = s.coord
+      west = Math.min(west, lng); east = Math.max(east, lng)
+      south = Math.min(south, lat); north = Math.max(north, lat)
+    }
+    out[region.id] = [[west, south], [east, north]]
+  }
+  return out
+})()
+
+// Below this zoom the minor kinds hide on the "All" view. z12 is the whole
+// Valley on a phone: at that scale eighteen shuttle stops are one blot.
+const MINOR_PIN_MIN_ZOOM = 12
+
+// Chip-length region names for the quick-jump row.
+const REGION_JUMP_LABEL: Record<Region, string> = {
+  valley: 'Valley',
+  'glacier-mariposa': 'Glacier Point',
+  tuolumne: 'Tuolumne',
+  'hetch-hetchy': 'Hetch Hetchy',
 }
 
 // One pin per trailhead, not per hike: several routes start from the same
@@ -441,6 +596,7 @@ export default function Map() {
   const markersRef = useRef<Record<string, maplibregl.Marker>>({})
   const amenityMarkersRef = useRef<Record<string, maplibregl.Marker>>({})
   const hikeMarkersRef = useRef<Record<string, maplibregl.Marker>>({})
+  const mealMarkersRef = useRef<Record<string, maplibregl.Marker>>({})
   const popupRef = useRef<maplibregl.Popup | null>(null)
   // Camera refits only when the itinerary context changes, not on filter
   // chip toggles: refitting on every tap yanks the map around.
@@ -449,6 +605,9 @@ export default function Map() {
   const [mapReady, setMapReady] = useState(false)
   const [mapFailed, setMapFailed] = useState(false)
   const [mapDownloaded, setMapDownloaded] = useState(() => isPackCompleted(MAP_PACK_ID))
+  // 'far' below MINOR_PIN_MIN_ZOOM. Drives a data attribute on the map
+  // container; the CSS does the hiding, so a zoom never rebuilds a marker.
+  const [zoomBand, setZoomBand] = useState<'far' | 'near'>('far')
 
   // Device position from the locate control. The ref mirrors the state so the
   // selection effect can read the position at popup-open time without taking
@@ -540,6 +699,7 @@ export default function Map() {
     for (const s of mappableStops) seen.add(s.kind)
     for (const a of AMENITIES) seen.add(a.kind)
     if (TRAILHEAD_GROUPS.length > 0) seen.add('hike')
+    if (MEAL_GROUPS.length > 0) seen.add('meal')
     return ALL_KINDS.filter((k) => seen.has(k))
   }, [mappableStops])
 
@@ -616,6 +776,18 @@ export default function Map() {
     [itineraryRegions, kindFilter, plannedOnly, plannedHikeIds],
   )
 
+  // Places to eat narrow like amenities. A gateway venue has no region, so
+  // it never joins an itinerary view.
+  const visibleMeals = useMemo<MealGroup[]>(
+    () =>
+      MEAL_GROUPS.filter((g) => {
+        if (plannedOnly) return false
+        if (kindFilter && !kindFilter.has('meal')) return false
+        return !itineraryRegions || (g.region !== null && itineraryRegions.has(g.region))
+      }),
+    [itineraryRegions, kindFilter, plannedOnly],
+  )
+
   // Chip count badges: what enabling each kind yields under the OTHER active
   // filters (itinerary narrowing, the secret toggle and the trip layer),
   // never the kind filter itself, so a chip's number always states what
@@ -648,6 +820,12 @@ export default function Map() {
       if (plannedOnly && !g.hikes.some((h) => plannedHikeIds.has(h.id))) continue
       if (itineraryRegions && !itineraryRegions.has(g.region)) continue
       out.hike++
+    }
+    if (!plannedOnly) {
+      for (const g of MEAL_GROUPS) {
+        if (itineraryRegions && (g.region === null || !itineraryRegions.has(g.region))) continue
+        out.meal++
+      }
     }
     return out
   }, [mappableStops, itineraryRegions, showSecret, presentKinds, plannedOnly, plannedStopIds, plannedHikeIds])
@@ -720,6 +898,24 @@ export default function Map() {
     },
     [navigate],
   )
+
+  const openDining = useCallback(() => {
+    navigate('/dining')
+  }, [navigate])
+
+  // Fly the camera to one region's frame. Animated, unlike the fitBounds
+  // calls the filters make: this one is the reader's own tap, and the motion
+  // is what tells them where the map went.
+  const jumpTo = useCallback((region: Region | 'park') => {
+    const map = mapRef.current
+    if (!map) return
+    popupRef.current?.remove()
+    if (region === 'park') {
+      map.fitBounds([[-119.93, 37.45], [-119.05, 38.2]], { padding: 24, maxZoom: 10 })
+      return
+    }
+    map.fitBounds(REGION_BOUNDS[region], { padding: 56, maxZoom: 13 })
+  }, [])
 
   // "Trail on map" in a trailhead popup: draw that hike's track overlay (the
   // ?hike= pipeline) and close the popup so the fitted track is unobstructed.
@@ -817,6 +1013,9 @@ export default function Map() {
       setMapReady(true)
       setMapFailed(false)
     })
+    const readBand = () => setZoomBand(map.getZoom() >= MINOR_PIN_MIN_ZOOM ? 'near' : 'far')
+    map.on('zoom', readBand)
+    readBand()
     // MapLibre fires 'error' for every failed tile fetch, which is routine
     // when semi-offline — only a failure BEFORE 'load' means a blank map
     // (style/glyph/initial fetch failure) worth telling the user about.
@@ -907,7 +1106,7 @@ export default function Map() {
     amenityMarkersRef.current = {}
 
     for (const amenity of visibleAmenities) {
-      const el = buildPinElement(amenity.kind, amenity.name)
+      const el = buildPinElement(amenity.kind, amenity.name, false, amenity.glyph)
       const activate = () => {
         // Clear any stop selection so ?stop= doesn't keep pointing at a stop
         // whose popup this one just replaced.
@@ -984,6 +1183,41 @@ export default function Map() {
       hikeMarkersRef.current[group.id] = marker
     }
   }, [visibleTrailheads, mapReady, selectStop, openHike, showTrack])
+
+  // Meal pin reconciliation, the amenity pipeline again: no selection state,
+  // no fitBounds contribution.
+  useEffect(() => {
+    if (!mapReady) return
+    const map = mapRef.current
+    if (!map) return
+    for (const id of Object.keys(mealMarkersRef.current)) mealMarkersRef.current[id].remove()
+    mealMarkersRef.current = {}
+    for (const group of visibleMeals) {
+      const el = buildPinElement(
+        'meal',
+        group.venues.length === 1 ? group.venues[0].name : `${group.place}, ${group.venues.length} places to eat`,
+      )
+      const activate = () => {
+        selectStop(null)
+        popupRef.current
+          ?.setLngLat(group.coord)
+          .setDOMContent(buildMealPopupContent(group, openDining))
+          .addTo(map)
+      }
+      el.addEventListener('click', (e) => {
+        e.stopPropagation()
+        activate()
+      })
+      el.addEventListener('keydown', pinKeydownHandler(activate))
+      mealMarkersRef.current[group.id] = new maplibregl.Marker({
+        element: el,
+        anchor: 'bottom',
+        offset: OCCUPIED_COORD_KEYS.has(group.coord.join(',')) ? [-14, -4] : [0, 0],
+      })
+        .setLngLat(group.coord)
+        .addTo(map)
+    }
+  }, [visibleMeals, mapReady, selectStop, openDining])
 
   // Same badge-without-rebuild deal as the stop pins: a trailhead pin gets
   // the checkmark when any hike starting there is in the plan.
@@ -1223,8 +1457,9 @@ export default function Map() {
                   aria-label={`${label}, ${kindCounts[kind]} pins`}
                   onClick={() => toggleKind(kind)}
                 >
-                  <span className="map-filterbar__dot" style={{ background: color }} aria-hidden />
-                  {label} <span className="map-filterbar__count">{kindCounts[kind]}</span>
+                  <KindMark kind={kind} />
+                  <span style={{ color: kindFilter?.has(kind) ? undefined : color }} className="map-filterbar__label">{label}</span>{' '}
+                  <span className="map-filterbar__count">{kindCounts[kind]}</span>
                 </ChipButton>
               )
             })}
@@ -1251,6 +1486,17 @@ export default function Map() {
               </ChipButton>
             )}
           </div>
+          <div className="map-jump" role="group" aria-label="Go to a region">
+            <span className="map-jump__label">Go to</span>
+            {REGIONS.map((r) => (
+              <button key={r.id} type="button" className="map-jump__btn" onClick={() => jumpTo(r.id)}>
+                {REGION_JUMP_LABEL[r.id]}
+              </button>
+            ))}
+            <button type="button" className="map-jump__btn" onClick={() => jumpTo('park')}>
+              Whole park
+            </button>
+          </div>
         </div>
 
         {trackHikeId && trackHike && (
@@ -1276,9 +1522,20 @@ export default function Map() {
         )}
 
         <div className="map-page__stage">
-          <div ref={containerRef} className="map-page__map" />
+          <div
+            ref={containerRef}
+            className="map-page__map"
+            data-zoom-band={zoomBand}
+            data-kinds={kindFilter ? 'some' : 'all'}
+          />
 
-          {mapReady && visibleStops.length === 0 && visibleAmenities.length === 0 && visibleTrailheads.length === 0 && (
+          {mapReady && zoomBand === 'far' && !kindFilter && tab !== 'info' && (
+            <p className="map-zoom-hint" role="note">
+              Zoom in for {MINOR_KINDS.map((k) => `${getKindStyle(k).label.toLowerCase()}s`).join(', ')}, or tap a chip.
+            </p>
+          )}
+
+          {mapReady && visibleStops.length === 0 && visibleAmenities.length === 0 && visibleTrailheads.length === 0 && visibleMeals.length === 0 && (
             <div className="map-page__empty" role="status">
               <p>No pins match these filters.</p>
               <button type="button" className="map-popup__btn" onClick={resetFilters}>
@@ -1507,12 +1764,21 @@ function InfoPane({
       <h2>In the park</h2>
       <ul>
         <li>
-          Open the <strong>GPS points</strong> tab. Pins are colored by what
-          they are (see legend below).
+          Open the <strong>GPS points</strong> tab. Every pin carries the
+          mark of what it is, an eye for a viewpoint, a tent for a
+          campground, a numbered disc for a shuttle stop (see legend below).
         </li>
         <li>
           Use the filter chips above the map to narrow pins by kind, or hide
-          the gold-outlined Secret Guide entries while you plan.
+          the gold-outlined Secret Guide entries while you plan. The
+          <strong> Go to</strong> row under the chips flies the map to one
+          region.
+        </li>
+        <li>
+          Parking, shuttle stops, picnic areas and services are street-scale
+          facts, so on the whole-park view they stay hidden until you zoom in
+          to about the size of the Valley. Tap their chip to see them at any
+          zoom.
         </li>
         <li>
           Tap a pin. The popup has <strong>Open stop →</strong> (the full
@@ -1522,8 +1788,21 @@ function InfoPane({
           A moss checkmark marks a stop already in your trip plan.
         </li>
         <li>
-          Parking-lot and campground pins are navigation aids: a short note
-          and a Directions button, no stop write-up.
+          Parking, campground, entrance, visitor-center, shuttle-stop, picnic
+          and services pins are navigation aids: a short note, the published
+          hours where NPS publishes them, and a Directions button, no stop
+          write-up. The Valley shuttle stops carry the number NPS paints on
+          the sign; the shuttle is free and runs 7 a.m. to 10 p.m.
+        </li>
+        <li>
+          A landmark pin names a thing you look at, Cathedral Rocks, Royal
+          Arches, Nevada Fall, so the wall in front of you has a name. It has
+          no Directions button, because there is nowhere to drive to.
+        </li>
+        <li>
+          Meal pins come from the <Link to="/dining">dining directory</Link>:
+          one pin per place, listing every venue there with its price and
+          hours.
         </li>
         <li>
           Pins with a small peak glyph are day-hike trailheads. Tap one for
@@ -1550,14 +1829,10 @@ function InfoPane({
       <h2>Legend</h2>
       <ul className="map-legend" style={{ marginTop: 8 }}>
         {presentKinds.map((kind) => {
-          const { color, label } = KIND_STYLES[kind]
+          const { label } = KIND_STYLES[kind]
           return (
             <li key={kind} className="map-legend__item">
-              <span
-                className="map-legend__dot"
-                style={{ background: color }}
-                aria-hidden
-              />
+              <KindMark kind={kind} />
               {label}
             </li>
           )
@@ -1585,8 +1860,10 @@ function InfoPane({
           routes. Routing happens in Google Maps via the Directions button.
         </li>
         <li>
-          Most pin coordinates are verified against NPS and USGS sources. A
-          few unsigned pullouts and off-trail spots are still flagged for a
+          Most pin coordinates are verified against NPS and USGS sources; the
+          entrance, visitor-center, shuttle-stop, picnic and services pins are
+          quoted from the National Park Service's own place records. A few
+          unsigned pullouts and off-trail spots are still flagged for a
           ground check; for those, trust the turnout described in the stop
           page over the precise pin.
         </li>

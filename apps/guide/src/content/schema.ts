@@ -301,20 +301,48 @@ export const DiningVenues = z.array(DiningVenue).superRefine((list, ctx) => {
   })
 })
 
-// Map-only amenity points: parking lots and campgrounds rendered as pins on
-// /map with a Directions deeplink. Deliberately NOT Stops — no pages, no
-// region lists, no search, no itinerary presets.
-export const AmenityKindEnum = z.enum(['parking', 'camping'])
+// Map-only amenity points rendered as pins on /map with a Directions
+// deeplink. Deliberately NOT Stops — no pages, no region lists, no search, no
+// itinerary presets. Three kinds share a StopKind ('parking', 'camping',
+// 'lodging') so pin styling is shared; the September 2026 map pass added the
+// park's own infrastructure layer, the things a visitor expects any park map
+// to carry:
+//   lodging         a lodge or camp the guide has no stop for (Valley Lodge)
+//   entrance        the five entrance stations
+//   visitor-center  visitor centers, information stations, the museum
+//   shuttle         Yosemite Valley shuttle stops, numbered as NPS numbers them
+//   picnic          signed picnic areas
+//   services        gas, EV charging, showers, laundry, groceries, post office
+//   landmark        a named feature you look AT, not a place you go to
+//                   (Cathedral Rocks, Royal Arches): answers "what is that"
+// The minor kinds (shuttle, picnic, services, parking) hide below driving
+// zoom unless their chip is pressed (see routes/Map.tsx), so the whole-park
+// view stays readable.
+export const AmenityKindEnum = z.enum([
+  'parking',
+  'camping',
+  'lodging',
+  'entrance',
+  'visitor-center',
+  'shuttle',
+  'picnic',
+  'services',
+  'landmark',
+])
 export type AmenityKind = z.infer<typeof AmenityKindEnum>
 
 export const Amenity = z.object({
   id: z.string(),                         // "upper-pines-campground"
   name: z.string(),
-  kind: AmenityKindEnum,                  // subset of StopKind, so pin styling is shared
+  kind: AmenityKindEnum,
   region: RegionEnum,                     // itinerary-tab filtering only
   coord: z.tuple([z.number(), z.number()]), // [lng, lat] — required, unlike Stop
   note: z.string(),                       // 1-2 plain sentences for the popup
   season: z.string().optional(),          // e.g. "Tioga Road season only"
+  hours: z.string().optional(),           // as published by NPS; re-check each Guide edition
+  glyph: z.string().max(2).optional(),    // 1-2 characters drawn inside the pin
+                                          // (a shuttle stop's number); kinds
+                                          // without one draw their kind glyph
 })
 
 export type AmenityT = z.infer<typeof Amenity>
