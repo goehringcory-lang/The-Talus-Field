@@ -206,6 +206,17 @@ function prefetchAllModules() {
     mod.scripts.forEach(src => loadScriptOnce(src).catch(() => {}));
   });
 }
+var navPendingTimer = 0;
+function markNavPending(pending) {
+  clearTimeout(navPendingTimer);
+  if (pending) {
+    navPendingTimer = setTimeout(() => {
+      document.documentElement.setAttribute("data-nav-pending", "");
+    }, 150);
+  } else {
+    document.documentElement.removeAttribute("data-nav-pending");
+  }
+}
 function legacyHashToRoute(hash) {
   if (!hash) return null;
   var h = hash.replace(/^#+/, "");
@@ -794,9 +805,37 @@ function applySeo(route) {
   if (seo.faq) setJsonLd("ld-faq", seo.faq);else if (seoApplied) clearJsonLd("ld-faq");
   seoApplied = true;
 }
+function notFoundQuery(pathname) {
+  return (pathname || "").toLowerCase().replace(/\.[a-z0-9]{2,5}$/, "").split("/").filter(seg => seg && !/^(articles?|sections?|section|index|page|posts?|blog)$/.test(seg)).join(" ").replace(/[^a-z0-9]+/g, " ").trim();
+}
 function NotFoundPage({
   go
 }) {
+  var [suggestions, setSuggestions] = useState(null);
+  var query = notFoundQuery(window.location.pathname);
+  useEffect(() => {
+    var cancelled = false;
+    if (!query) {
+      setSuggestions([]);
+      return;
+    }
+    ensureRoute("search").then(() => {
+      if (cancelled || typeof window.searchCatalog !== "function") return;
+      var found = window.searchCatalog(query, {
+        fuzzy: true,
+        limit: 6
+      });
+      var wantSection = /^\/section\//.test(window.location.pathname);
+      var ordered = wantSection ? [...found.filter(r => r.kind === "Section"), ...found.filter(r => r.kind !== "Section")] : found;
+      setSuggestions(ordered.slice(0, 4));
+    }).catch(() => {
+      if (!cancelled) setSuggestions([]);
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, [query]);
+  var hrefFor = r => r.path ? r.path : routeToPath(r.key);
   return React.createElement("div", {
     className: "page"
   }, React.createElement("div", {
@@ -812,16 +851,38 @@ function NotFoundPage({
     style: {
       paddingBottom: 64
     }
-  }, React.createElement("p", null, "Good places to reorient:", " ", React.createElement("a", {
+  }, React.createElement("p", {
+    className: "notfound__path"
+  }, "You asked for ", React.createElement("code", null, window.location.pathname)), suggestions && suggestions.length > 0 && React.createElement("div", {
+    className: "notfound__suggest"
+  }, React.createElement("h2", null, "Did you mean"), React.createElement("ul", null, suggestions.map(r => React.createElement("li", {
+    key: r.key
+  }, React.createElement("a", {
+    href: hrefFor(r),
+    onClick: e => {
+      if (r.path) return;
+      e.preventDefault();
+      if (window.track) window.track("cta_click", {
+        location: "notfound_suggest",
+        target: r.key
+      });
+      go(r.key);
+    }
+  }, r.title), React.createElement("span", {
+    className: "notfound__kind"
+  }, r.kind))))), React.createElement("p", null, "Good places to reorient:", " ", React.createElement("a", {
     href: "/explore",
     onClick: e => {
       e.preventDefault();
       go("explore");
     }
   }, "the site index"), ",", " ", React.createElement("a", {
-    href: "/search",
+    href: query ? `/search?q=${encodeURIComponent(query)}` : "/search",
     onClick: e => {
       e.preventDefault();
+      if (query) window.history.pushState({
+        route: "search"
+      }, "", `/search?q=${encodeURIComponent(query)}`);
       go("search");
     }
   }, "search"), ",", " ", React.createElement("a", {
@@ -924,8 +985,10 @@ function App() {
     var onPop = () => {
       var r = pathToRoute(window.location.pathname);
       var token = ++navTokenRef.current;
+      markNavPending(true);
       ensureRoute(r).then(() => {
         if (token !== navTokenRef.current) return;
+        markNavPending(false);
         navigatedRef.current = true;
         document.documentElement.removeAttribute("data-boot");
         setRoute(r);
@@ -957,8 +1020,10 @@ function App() {
       }, "", path);
     }
     var token = ++navTokenRef.current;
+    markNavPending(true);
     ensureRoute(r).then(() => {
       if (token !== navTokenRef.current) return;
+      markNavPending(false);
       navigatedRef.current = true;
       leaveBoot();
       setRoute(r);
@@ -969,6 +1034,25 @@ function App() {
       if (token === navTokenRef.current) window.location.assign(path);
     });
   };
+  useEffect(() => {
+    var onKey = e => {
+      if (e.key !== "/" || e.metaKey || e.ctrlKey || e.altKey || e.defaultPrevented) return;
+      var t = e.target;
+      if (t && (t.isContentEditable || /^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName))) return;
+      if (document.querySelector('[role="dialog"][aria-modal="true"]')) return;
+      e.preventDefault();
+      var field = document.getElementById("site-search");
+      if (field) {
+        field.focus();
+        field.select();
+        return;
+      }
+      document.documentElement.setAttribute("data-search-focus", "");
+      go("search");
+    };
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
+  }, []);
   var [tweaks, setTweak] = useTweaks(window.TWEAK_DEFAULTS);
   useEffect(() => {
     document.documentElement.setAttribute("data-palette", tweaks.palette);
@@ -1169,6 +1253,11 @@ function App() {
     go: go
   })), React.createElement(Footer, {
     go: go
+  }), React.createElement("div", {
+    className: "navprogress",
+    "aria-hidden": "true"
+  }), React.createElement(window.BackToTop, {
+    current: currentNav
   }), React.createElement(ExitIntentNewsletter, {
     disabled: exitDisabled
   }), React.createElement(TweaksPanel, {

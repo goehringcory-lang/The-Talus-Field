@@ -6856,13 +6856,224 @@ main:focus { outline: none; }
 }
 
 /* ============================================================
+   Polish pass (September 2026): the five small systems below share one
+   rule, which is that nothing here may move the page. Each is a fixed
+   overlay or a class toggled on an element that already exists.
+   ============================================================ */
+
+/* ===== Pending-navigation bar =====
+   go() and the popstate handler set data-nav-pending on <html> when a route
+   bundle has not arrived within 150ms (app.jsx). Same slot as the reading
+   bar and one z-index above it, so an article-to-article click shows the
+   indeterminate sweep over the finished reading bar rather than beside it.
+   Hidden by default, and pointer-events: none so it can never take a tap. */
+.navprogress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  z-index: 61;
+  pointer-events: none;
+  opacity: 0;
+  overflow: hidden;
+  transition: opacity 0.2s ease;
+}
+.navprogress::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: -40%;
+  width: 40%;
+  background: var(--moss);
+  animation: navprogress-sweep 1.1s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  animation-play-state: paused;
+}
+html[data-nav-pending] .navprogress { opacity: 1; }
+html[data-nav-pending] .navprogress::before { animation-play-state: running; }
+@keyframes navprogress-sweep {
+  from { left: -40%; }
+  to { left: 100%; }
+}
+
+/* ===== Article body skeleton =====
+   Paragraph-shaped lines in place of the italic "Loading…", so a slow body
+   fetch reads as an article on its way rather than as a broken page. The
+   line widths are set inline by page-article.jsx; the shimmer stops under
+   prefers-reduced-motion through the global rule. */
+.skeleton { margin: 0 0 1.4em; }
+.skeleton__line {
+  display: block;
+  height: 0.95em;
+  margin: 0 0 0.7em;
+  border-radius: 2px;
+  background: linear-gradient(
+    90deg,
+    var(--paper-2) 0%,
+    var(--paper-3) 40%,
+    var(--paper-2) 80%
+  );
+  background-size: 200% 100%;
+  animation: skeleton-shimmer 1.6s ease-in-out infinite;
+}
+.skeleton__line--head { height: 1.4em; margin: 1.6em 0 0.9em; width: 55%; }
+.skeleton__line--gap { margin-bottom: 1.6em; }
+@keyframes skeleton-shimmer {
+  from { background-position: 100% 0; }
+  to { background-position: -100% 0; }
+}
+
+/* ===== Zoomable plates (article pages) =====
+   page-article.jsx marks every photo plate in the article (the hero and
+   the body plates) so it opens in the site's pan-and-zoom lightbox. The
+   affordance is the cursor, a focus ring for keyboard readers, and the
+   plate label picking up a small enlarge glyph on hover. */
+.placeholder.is-zoomable { cursor: zoom-in; }
+.placeholder.is-zoomable:focus-visible { outline: 2px solid var(--moss); outline-offset: 4px; }
+.placeholder.is-zoomable:hover::after,
+.placeholder.is-zoomable:focus-visible::after { content: attr(data-tag) "  ⤢"; }
+
+/* ===== Masthead that gets out of the way (phones) =====
+   The masthead has been sticky on phones since the September 2026 UI pass,
+   which costs a reader 60px of a 700px viewport on every line of an
+   article. Header toggles .is-hidden from scroll direction (down past 160px
+   hides it, any scroll up or the top of the page brings it back), and the
+   class is inert above 880px, where the masthead earns its row. Focus
+   inside it (keyboard readers tabbing into the nav) always wins. */
+@media (max-width: 880px) {
+  .masthead { transition: transform 0.28s cubic-bezier(0.2, 0.8, 0.2, 1); }
+  .masthead.is-hidden { transform: translateY(-100%); }
+  .masthead.is-hidden:focus-within { transform: none; }
+}
+
+/* ===== Back to top =====
+   One round control, bottom-right, after the reader is two screens down
+   (BackToTop in components.jsx). Sits above the phone tab row and the
+   safe area; the map and the guide never render it, since their bottom
+   edges belong to the sheet and the buy bar. */
+.totop {
+  position: fixed;
+  right: 18px;
+  bottom: 22px;
+  z-index: 45;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid var(--ink);
+  background: color-mix(in oklab, var(--paper) 94%, transparent);
+  backdrop-filter: blur(8px);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 18px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0;
+  box-shadow: 0 6px 18px -8px rgba(20, 17, 12, 0.35);
+  opacity: 0;
+  transform: translateY(12px);
+  pointer-events: none;
+  transition: opacity 0.25s ease, transform 0.25s ease, color 0.15s ease, border-color 0.15s ease;
+}
+.totop.is-visible { opacity: 1; transform: none; pointer-events: auto; }
+.totop:hover { color: var(--moss); border-color: var(--moss); }
+.totop:focus-visible { outline: 2px solid var(--moss); outline-offset: 3px; }
+.totop svg { width: 16px; height: 16px; display: block; }
+@media (max-width: 880px) {
+  body:has(.bottomnav) .totop { bottom: calc(60px + env(safe-area-inset-bottom)); }
+}
+
+/* ===== Keyboard hints (search) =====
+   <kbd> shown only where a keyboard is likely; a phone never sees it. */
+.kbd-hint { display: none; }
+@media (hover: hover) and (pointer: fine) {
+  .kbd-hint {
+    display: block;
+    margin-top: 10px;
+    font-family: var(--sans);
+    font-size: 12px;
+    color: var(--ink-3);
+  }
+}
+kbd {
+  font-family: var(--sans);
+  font-size: 11px;
+  line-height: 1;
+  padding: 2px 6px 3px;
+  border: 1px solid var(--rule);
+  border-bottom-width: 2px;
+  border-radius: 3px;
+  background: var(--paper-2);
+  color: var(--ink-2);
+}
+.search-result:focus-visible,
+.search-articles .card:focus-visible { outline: 2px solid var(--moss); outline-offset: 4px; }
+
+/* ===== Not found: the suggestions list =====
+   Same row treatment as the related rail, so it reads as part of the site
+   rather than as an error page's afterthought. */
+.notfound__path {
+  font-family: var(--sans);
+  font-size: 13px;
+  color: var(--ink-3);
+  word-break: break-all;
+  margin: 0 0 8px;
+}
+.notfound__path code {
+  font-family: var(--mono, ui-monospace, monospace);
+  font-size: 12px;
+  color: var(--ink-2);
+  background: var(--paper-2);
+  padding: 2px 6px;
+}
+.notfound__suggest { margin: 28px 0 36px; }
+.notfound__suggest h2 {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--moss);
+  margin: 0 0 12px;
+}
+.notfound__suggest ul { list-style: none; margin: 0; padding: 0; }
+.notfound__suggest li {
+  padding: 12px 0;
+  border-top: 1px solid var(--rule-soft);
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.notfound__suggest li:last-child { border-bottom: 1px solid var(--rule-soft); }
+.notfound__suggest a {
+  font-family: var(--display);
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.2;
+  color: var(--ink);
+  text-decoration: none;
+}
+.notfound__suggest a:hover { color: var(--moss); }
+.notfound__suggest .notfound__kind {
+  font-family: var(--sans);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+/* ============================================================
    Print. Articles are what a trip planner prints or saves to PDF; the
    chrome (sticky masthead, bottom tabs, reading bar, the asks) is not.
    ============================================================ */
 @media print {
   html, body { background: #fff; color: #000; }
   .masthead, .bottomnav, .readbar, .guide-bar, .skip-link, .nlbox, .band-guide,
-  .share-row, .keep-going, .site-footer, .lightbox, .twk-panel {
+  .share-row, .keep-going, .site-footer, .lightbox, .twk-panel,
+  .navprogress, .totop, .kbd-hint {
     display: none !important;
   }
   .page { animation: none; }

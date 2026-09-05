@@ -179,6 +179,7 @@ function scoreEntry(entry, tokens) {
     if (best === 0) return 0;
     total += best;
   }
+  if (entry.normalized.title === tokens.join(" ")) total += 5;
   return total;
 }
 function buildIndex() {
@@ -236,6 +237,97 @@ function buildIndex() {
   }
   return entries;
 }
+function vocabulary(index) {
+  var words = new Set();
+  for (var entry of index) {
+    for (var key of ["title", "section", "slug"]) {
+      for (var w of (entry.normalized[key] || "").split(" ")) if (w.length >= 4) words.add(w);
+    }
+  }
+  return Array.from(words);
+}
+function editDistance(a, b, max) {
+  if (Math.abs(a.length - b.length) > max) return max + 1;
+  var prev2 = [],
+    prev = [],
+    cur = [];
+  for (var j = 0; j <= b.length; j++) prev[j] = j;
+  for (var i = 1; i <= a.length; i++) {
+    cur[0] = i;
+    var rowMin = i;
+    for (var _j = 1; _j <= b.length; _j++) {
+      var cost = a[i - 1] === b[_j - 1] ? 0 : 1;
+      var v = Math.min(prev[_j] + 1, cur[_j - 1] + 1, prev[_j - 1] + cost);
+      if (i > 1 && _j > 1 && a[i - 1] === b[_j - 2] && a[i - 2] === b[_j - 1]) v = Math.min(v, prev2[_j - 2] + 1);
+      cur[_j] = v;
+      if (v < rowMin) rowMin = v;
+    }
+    if (rowMin > max) return max + 1;
+    for (var _j2 = 0; _j2 <= b.length; _j2++) {
+      prev2[_j2] = prev[_j2];
+      prev[_j2] = cur[_j2];
+    }
+  }
+  return prev[b.length];
+}
+function correctTokens(index, vocab, tokens) {
+  var changed = false;
+  var out = tokens.map(token => {
+    if (token.length < 4) return token;
+    if (index.some(entry => scoreEntry(entry, [token]) > 0)) return token;
+    var max = token.length >= 5 ? 2 : 1;
+    var hits = w => index.reduce((n, entry) => n + (scoreEntry(entry, [w]) > 0 ? 1 : 0), 0);
+    var best = null,
+      bestD = max + 1,
+      bestHits = 0;
+    for (var w of vocab) {
+      var d = editDistance(token, w, max);
+      if (d > max) continue;
+      var h = d <= bestD ? hits(w) : 0;
+      if (d < bestD || d === bestD && h > bestHits) {
+        best = w;
+        bestD = d;
+        bestHits = h;
+      }
+    }
+    if (best) {
+      changed = true;
+      return best;
+    }
+    return token;
+  });
+  return {
+    tokens: out,
+    changed
+  };
+}
+var sharedIndex = null;
+var sharedVocab = null;
+function searchCatalog(query, {
+  fuzzy = false,
+  limit = 60
+} = {}) {
+  if (!sharedIndex) {
+    sharedIndex = buildIndex();
+    sharedVocab = vocabulary(sharedIndex);
+  }
+  var tokens = tokenize(query);
+  if (tokens.length === 0) return [];
+  if (fuzzy) tokens = correctTokens(sharedIndex, sharedVocab, tokens).tokens;
+  return sharedIndex.map(entry => ({
+    entry,
+    score: scoreEntry(entry, tokens)
+  })).filter(r => r.score > 0).sort((a, b) => b.score - a.score || (b.entry.sortDate || "").localeCompare(a.entry.sortDate || "")).slice(0, limit).map(({
+    entry
+  }) => ({
+    key: entry.key,
+    path: entry.path || null,
+    title: entry.type === "article" ? entry.article.title : entry.title,
+    dek: entry.type === "article" ? entry.article.seoDek || entry.article.dek : entry.dek,
+    kind: entry.type === "article" ? "Article" : entry.kind
+  }));
+}
+window.searchCatalog = searchCatalog;
 function Highlight({
   text,
   tokens
@@ -294,7 +386,10 @@ function SearchPage({
   var [query, setQuery] = useState(readQueryParam);
   var inputRef = useRef(null);
   var index = useMemo(buildIndex, []);
-  var tokens = useMemo(() => tokenize(query), [query]);
+  var vocab = useMemo(() => vocabulary(index), [index]);
+  var typed = useMemo(() => tokenize(query), [query]);
+  var corrected = useMemo(() => correctTokens(index, vocab, typed), [index, vocab, typed]);
+  var tokens = corrected.tokens;
   var results = useMemo(() => {
     if (tokens.length === 0) return [];
     return index.map(entry => ({
@@ -311,9 +406,38 @@ function SearchPage({
     }
   }, [query]);
   useEffect(() => {
+    var asked = document.documentElement.hasAttribute("data-search-focus");
+    document.documentElement.removeAttribute("data-search-focus");
     var fine = window.matchMedia && window.matchMedia("(hover: hover) and (pointer: fine)").matches;
-    if (fine && inputRef.current) inputRef.current.focus();
+    if (!asked && !fine) return;
+    var raf = requestAnimationFrame(() => {
+      if (inputRef.current) inputRef.current.focus();
+    });
+    return () => cancelAnimationFrame(raf);
   }, []);
+  var resultsRef = useRef(null);
+  var resultLinks = () => resultsRef.current ? Array.from(resultsRef.current.querySelectorAll("a.search-result, .search-articles a.card")) : [];
+  var onFieldKey = e => {
+    if (e.key !== "ArrowDown") return;
+    var first = resultLinks()[0];
+    if (first) {
+      e.preventDefault();
+      first.focus();
+    }
+  };
+  var onResultsKey = e => {
+    if (e.key !== "ArrowDown" && e.key !== "ArrowUp" && e.key !== "Escape") return;
+    var links = resultLinks();
+    var i = links.indexOf(document.activeElement);
+    if (i === -1) return;
+    e.preventDefault();
+    if (e.key === "Escape" || e.key === "ArrowUp" && i === 0) {
+      inputRef.current && inputRef.current.focus();
+      return;
+    }
+    var next = links[e.key === "ArrowDown" ? Math.min(i + 1, links.length - 1) : i - 1];
+    if (next) next.focus();
+  };
   var clear = useCallback(() => {
     setQuery("");
     if (inputRef.current) inputRef.current.focus();
@@ -360,21 +484,27 @@ function SearchPage({
     value: query,
     autoComplete: "off",
     placeholder: "Half Dome permits, firefall, when to see the falls…",
-    onChange: e => setQuery(e.target.value)
+    onChange: e => setQuery(e.target.value),
+    onKeyDown: onFieldKey,
+    "aria-keyshortcuts": "/"
   }), query && React.createElement("button", {
     type: "button",
     className: "search-form__clear",
     onClick: clear
-  }, "Clear"))), React.createElement("div", {
+  }, "Clear")), React.createElement("p", {
+    className: "kbd-hint"
+  }, React.createElement("kbd", null, "/"), " opens search from any page. ", React.createElement("kbd", null, "↓"), " ", React.createElement("kbd", null, "↑"), " move through the results, ", React.createElement("kbd", null, "Esc"), " returns to the field.")), React.createElement("div", {
     className: "search-status",
     role: "status",
     "aria-live": "polite"
-  }, tokens.length === 0 ? "" : results.length === 0 ? `Nothing matches "${query}".` : `${results.length} result${results.length === 1 ? "" : "s"} for "${query}".`)), React.createElement("div", {
+  }, tokens.length === 0 ? "" : results.length === 0 ? `Nothing matches "${query}".` : corrected.changed ? `${results.length} result${results.length === 1 ? "" : "s"} for "${tokens.join(" ")}" (read from "${query}").` : `${results.length} result${results.length === 1 ? "" : "s"} for "${query}".`)), React.createElement("div", {
     className: "wrap",
     style: {
       paddingTop: 24,
       paddingBottom: 96
-    }
+    },
+    ref: resultsRef,
+    onKeyDown: onResultsKey
   }, tokens.length === 0 && React.createElement("div", {
     className: "search-browse"
   }, React.createElement("h2", {

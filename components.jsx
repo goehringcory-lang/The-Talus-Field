@@ -520,6 +520,40 @@ function Header({ current, go }) {
 
   const closeMenu = () => { setMenuOpen(false); setMenuQuery(""); };
 
+  // Phone-width masthead that gets out of the way. Scrolling down past 160px
+  // hides it, any scroll up brings it back, and the top of the page always
+  // shows it (styles.css scopes the transform to ≤880px; above that the
+  // class is inert). Direction is read from a rAF-throttled scroll listener
+  // with a 6px dead band so a finger resting on the glass does not toggle
+  // it, and an open hamburger pins it, since the menu lives inside it. The
+  // state is a class on the element, not React state, so a scroll never
+  // re-renders the nav.
+  const mastheadRef = React.useRef(null);
+  React.useEffect(() => {
+    let lastY = window.scrollY;
+    let raf = 0;
+    const apply = (hidden) => {
+      const el = mastheadRef.current;
+      if (el) el.classList.toggle("is-hidden", hidden);
+    };
+    const measure = () => {
+      raf = 0;
+      const y = window.scrollY;
+      const dy = y - lastY;
+      if (menuOpen || y < 80) apply(false);
+      else if (dy > 6 && y > 160) apply(true);
+      else if (dy < -6) apply(false);
+      if (Math.abs(dy) > 6) lastY = y;
+    };
+    const onScroll = () => { if (!raf) raf = requestAnimationFrame(measure); };
+    measure();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => {
+      if (raf) cancelAnimationFrame(raf);
+      window.removeEventListener("scroll", onScroll);
+    };
+  }, [menuOpen]);
+
   // Search from the hamburger. The menu is the only nav on phones, so the
   // search box lives at the top of it rather than costing a tap through a
   // dropdown. Submitting hands the query to /search via ?q=, which that page
@@ -588,7 +622,7 @@ function Header({ current, go }) {
         app.jsx so the fragment jump also moves focus. Bakes into the static
         home shell like the rest of the Header. */}
     <a className="skip-link" href="#main">Skip to content</a>
-    <header className="masthead">
+    <header className="masthead" ref={mastheadRef}>
       <div className="masthead__main">
         <a
           className="brand-block"
@@ -820,6 +854,52 @@ function BottomNav({ current, go }) {
         >{t.label}</a>
       ))}
     </nav>
+  );
+}
+
+// ============================================================
+// Back to top. Appears once the reader is two viewports down any scrolling
+// page, and never on the map or the guide, whose bottom edges belong to the
+// sheet and the buy bar. Visibility is a class written through a ref from a
+// rAF-throttled scroll listener (no React state, no re-render per scroll).
+// The click honors prefers-reduced-motion and hands focus to <main>, so a
+// keyboard reader lands where the page starts rather than on a button that
+// has just faded out from under them.
+// ============================================================
+function BackToTop({ current }) {
+  const ref = React.useRef(null);
+  React.useEffect(() => {
+    if (current === "map" || current === "guide") return;
+    let raf = 0;
+    const measure = () => {
+      raf = 0;
+      const el = ref.current;
+      if (el) el.classList.toggle("is-visible", window.scrollY > window.innerHeight * 2);
+    };
+    const onScroll = () => { if (!raf) raf = requestAnimationFrame(measure); };
+    measure();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => {
+      if (raf) cancelAnimationFrame(raf);
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
+  }, [current]);
+  if (current === "map" || current === "guide") return null;
+  const toTop = () => {
+    const reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    window.scrollTo({ top: 0, behavior: reduce ? "auto" : "smooth" });
+    const main = document.getElementById("main");
+    if (main) main.focus({ preventScroll: true });
+  };
+  return (
+    <button type="button" className="totop" ref={ref} onClick={toTop} aria-label="Back to top" title="Back to top">
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <path d="M8 13V3" />
+        <path d="M3.5 7.5 8 3l4.5 4.5" />
+      </svg>
+    </button>
   );
 }
 
@@ -1971,6 +2051,6 @@ Object.assign(window, {
   Placeholder, ResponsiveImage, preloadResponsive,
   SIZES_HERO, SIZES_BODY, SIZES_CARD,
   MotifMountains, MotifSun, MotifTrees,
-  Header, Footer, ArticleCard, NewsletterInline, ExitIntentNewsletter, MapLightbox,
+  Header, Footer, BackToTop, ArticleCard, NewsletterInline, ExitIntentNewsletter, MapLightbox,
   EntranceWaits, WebcamStrip, GuidePromo,
 });
