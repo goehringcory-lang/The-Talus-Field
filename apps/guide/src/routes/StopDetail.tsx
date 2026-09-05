@@ -27,6 +27,7 @@ import { useStopNote } from '../lib/stopNotes'
 import { useWeather } from '../weather/useWeather'
 import { HIDE_AFTER_MS, WARN_AFTER_MS } from '../weather/staleness'
 import { regionTodayLine } from '../weather/todayLine'
+import { useDocumentTitle } from '../lib/documentTitle'
 
 // Amenities within this straight-line range of the stop are close enough to
 // matter when the stop's own lot is full; beyond it the map is the tool.
@@ -100,6 +101,7 @@ export default function StopDetail() {
   const params = useParams<{ stopId: string }>()
   const stop = params.stopId ? getStopById(params.stopId) : undefined
   const { plan, addStop } = useTripPlan()
+  useDocumentTitle(stop?.title)
   if (!stop) {
     return (
       <NotFound

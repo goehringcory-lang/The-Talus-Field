@@ -96,7 +96,10 @@ function PlanningGuide({ go }) {
   useEffectPg(() => {
     if (!jumped) return;
     setJumped(false);
-    if (resultsRef.current) resultsRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
+    // CSS scroll-behavior does not reach an explicit JS option, so honor the
+    // preference by hand (same guard as page-article.jsx).
+    const reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (resultsRef.current) resultsRef.current.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" });
   }, [jumped]);
 
   const applyIntent = (intent) => {

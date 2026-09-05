@@ -1188,7 +1188,7 @@ function ShareRow({ title, slug }) {
     }
   };
   return (
-    <div style={{ display: "flex", alignItems: "center", gap: 12, marginTop: 20, fontFamily: "var(--sans)", fontSize: 13, color: "var(--ink-3)" }}>
+    <div className="share-row" style={{ display: "flex", alignItems: "center", gap: 12, marginTop: 20, fontFamily: "var(--sans)", fontSize: 13, color: "var(--ink-3)" }}>
       <span>Worth sending to your trip partner?</span>
       <button
         type="button"

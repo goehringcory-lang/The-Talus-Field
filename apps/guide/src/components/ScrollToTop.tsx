@@ -1,5 +1,6 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useLayoutEffect, useRef } from 'react'
 import { useLocation, useNavigationType } from 'react-router-dom'
+import { BASE_TITLE } from '../lib/documentTitle'
 
 // BrowserRouter keeps the window scroll position across navigations, so a
 // tap deep in a region list opens the next page mid-scroll. Reset to top on
@@ -13,6 +14,12 @@ export default function ScrollToTop() {
   // also re-runs when navigationType flips (POP → PUSH after a Back), so gate
   // on the pathname actually having changed.
   const prevPathname = useRef(pathname)
+
+  // Reset the tab title before the new page's own effect names it, so a page
+  // without a PageHeader does not inherit the previous page's title.
+  useLayoutEffect(() => {
+    document.title = BASE_TITLE
+  }, [pathname])
 
   useEffect(() => {
     const pathChanged = prevPathname.current !== pathname

@@ -169,7 +169,9 @@
   flex-wrap: wrap;
 }
 .map-popup__btn {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
   font: 600 11px/1 var(--sans);
   text-transform: uppercase;
   letter-spacing: 0.1em;

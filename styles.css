@@ -108,7 +108,8 @@ button:focus-visible,
 a:focus-visible,
 input:focus-visible,
 textarea:focus-visible,
-select:focus-visible {
+select:focus-visible,
+summary:focus-visible {
   outline: 2px solid var(--moss);
   outline-offset: 3px;
   border-radius: 1px;
@@ -2213,8 +2214,11 @@ main:focus { outline: none; }
 
 /* ===== Mobile (≤720px) ===== */
 @media (max-width: 720px) {
-  /* Prevent any rogue element from causing horizontal scroll. */
-  html, body { overflow-x: hidden; }
+  /* Prevent any rogue element from causing horizontal scroll. clip, not
+     hidden: hidden makes <body> a scroll container, which detaches every
+     position: sticky descendant (the masthead, the guide bar) from the
+     viewport, so on phones they scrolled away instead of sticking. */
+  html, body { overflow-x: clip; }
 
   /* Tighter base type and gutters on phones. */
   html { font-size: 17px; }
@@ -2329,8 +2333,10 @@ main:focus { outline: none; }
   .placeholder__credit { display: none; }
   .placeholder::after { display: none; }
 
-  /* Chips wrap nicely */
-  .chip { padding: 8px 12px; font-size: 11px; }
+  /* Chips wrap nicely, and reach the 44px tap floor: they are the primary
+     filter control on /search and /articles. */
+  .chip, .ichip { min-height: 44px; display: inline-flex; align-items: center; }
+  .chip { padding: 8px 12px; font-size: 11px; margin-bottom: 6px; }
 
   /* Tap target floor for the visible mobile nav trigger. */
   .nav__menu-toggle { min-height: 44px; min-width: 44px; }
@@ -4045,6 +4051,7 @@ main:focus { outline: none; }
   outline: none;
   border-color: var(--rule);
 }
+.map-sidebar__search:focus-visible { outline: 2px solid var(--moss); outline-offset: 2px; }
 .map-sidebar__search-count {
   margin: 0 0 8px;
   font-size: 12px;
@@ -5684,7 +5691,7 @@ main:focus { outline: none; }
   color: var(--ink-2);
   background: transparent;
   border: 0;
-  padding: 6px 2px;
+  padding: 10px 8px; /* 24px+ target (WCAG 2.5.8); the flex row absorbs it */
   cursor: pointer;
 }
 .search-form__clear:hover { color: var(--moss); }
@@ -6846,4 +6853,22 @@ main:focus { outline: none; }
 }
 @media (max-width: 880px) {
   .relrail a { font-size: 20px; }
+}
+
+/* ============================================================
+   Print. Articles are what a trip planner prints or saves to PDF; the
+   chrome (sticky masthead, bottom tabs, reading bar, the asks) is not.
+   ============================================================ */
+@media print {
+  html, body { background: #fff; color: #000; }
+  .masthead, .bottomnav, .readbar, .guide-bar, .skip-link, .nlbox, .band-guide,
+  .share-row, .keep-going, .site-footer, .lightbox, .twk-panel {
+    display: none !important;
+  }
+  .page { animation: none; }
+  main:focus { outline: none; }
+  .prose a { color: inherit; text-decoration: underline; }
+  /* Show where a link went; skip anchors and mailto, which print as noise. */
+  .prose a[href^="http"]::after { content: " (" attr(href) ")"; font-size: 11px; word-break: break-all; }
+  .prose img, .prose figure, .toc { break-inside: avoid; }
 }

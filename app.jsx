@@ -1104,12 +1104,21 @@ function App() {
           navigatedRef.current = true;
           document.documentElement.removeAttribute("data-boot"); // see leaveBoot
           setRoute(r);
+          // Back/forward returns the reader to where they were (go() stashes
+          // the offset on the entry it leaves), not to the top of a list they
+          // had scrolled sixty cards into. Deferred one frame so the route has
+          // painted at its full height before the jump.
+          const y = (window.history.state && window.history.state.y) || 0;
           window.scrollTo({ top: 0 });
+          if (y) requestAnimationFrame(() => window.scrollTo({ top: y }));
         })
         .catch(() => {
           if (token === navTokenRef.current) window.location.reload();
         });
     };
+    // The SPA owns restoration: the browser's own attempt fires before the
+    // route has rendered and would land on a page that is not there yet.
+    if ("scrollRestoration" in window.history) window.history.scrollRestoration = "manual";
     window.addEventListener("popstate", onPop);
     return () => window.removeEventListener("popstate", onPop);
   }, []);
@@ -1125,6 +1134,9 @@ function App() {
   const go = (r) => {
     const path = routeToPath(r);
     if (path !== window.location.pathname) {
+      // Remember where this page was scrolled to before leaving it; the
+      // popstate handler reads it back on return.
+      window.history.replaceState({ ...(window.history.state || {}), y: window.scrollY }, "", window.location.href);
       window.history.pushState({ route: r }, "", path);
     }
     // The URL updates immediately; the previous page stays rendered for the

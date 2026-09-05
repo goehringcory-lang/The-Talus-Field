@@ -1190,8 +1190,9 @@ function GuideMobileBuyBar() {
       window.location = body.url;
     } catch (_e) {
       var aside = document.getElementById("guide-buy");
+      var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
       if (aside) aside.scrollIntoView({
-        behavior: "smooth"
+        behavior: reduce ? "auto" : "smooth"
       });
     } finally {
       setBusy(false);

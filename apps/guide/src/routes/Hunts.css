@@ -43,6 +43,10 @@
   align-items: baseline;
   gap: 0.55rem;
   cursor: pointer;
+  /* Keep the list's rhythm but give each row a finger-sized hit area (the
+     same trick as the sighting toggles in Wildlife.css). */
+  padding: 8px 0;
+  margin: -8px 0;
 }
 
 .hunt__item input {

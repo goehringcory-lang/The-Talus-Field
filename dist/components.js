@@ -1509,6 +1509,7 @@ function ShareRow({
     }
   };
   return React.createElement("div", {
+    className: "share-row",
     style: {
       display: "flex",
       alignItems: "center",

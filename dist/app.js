@@ -929,13 +929,18 @@ function App() {
         navigatedRef.current = true;
         document.documentElement.removeAttribute("data-boot");
         setRoute(r);
+        var y = window.history.state && window.history.state.y || 0;
         window.scrollTo({
           top: 0
         });
+        if (y) requestAnimationFrame(() => window.scrollTo({
+          top: y
+        }));
       }).catch(() => {
         if (token === navTokenRef.current) window.location.reload();
       });
     };
+    if ("scrollRestoration" in window.history) window.history.scrollRestoration = "manual";
     window.addEventListener("popstate", onPop);
     return () => window.removeEventListener("popstate", onPop);
   }, []);
@@ -943,6 +948,10 @@ function App() {
   var go = r => {
     var path = routeToPath(r);
     if (path !== window.location.pathname) {
+      window.history.replaceState({
+        ...(window.history.state || {}),
+        y: window.scrollY
+      }, "", window.location.href);
       window.history.pushState({
         route: r
       }, "", path);
