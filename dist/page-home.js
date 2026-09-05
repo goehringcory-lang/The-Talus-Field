@@ -199,7 +199,7 @@ function ResumeReading({
     className: "mono resume-band__cta"
   }, "Keep reading →"));
 }
-var HOME_BULLETIN_URL = "/bulletin.json?v=8";
+var HOME_BULLETIN_URL = "/bulletin.json?v=9";
 function HomeBulletin({
   go
 }) {
