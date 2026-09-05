@@ -40,6 +40,7 @@ import { MAP_PACK_ID } from '../offline/manifest'
 import { formatMiles, haversineMiles } from '../utils/geo'
 import { popupPhotoUrl } from '../utils/photo'
 import './Map.css'
+import { useDocumentTitle } from '../lib/documentTitle'
 
 type Tab = 'points' | 'itineraries' | 'info'
 
@@ -433,6 +434,7 @@ function pinKeydownHandler(activate: () => void) {
 }
 
 export default function Map() {
+  useDocumentTitle('Map')
   const navigate = useNavigate()
   const containerRef = useRef<HTMLDivElement | null>(null)
   const mapRef = useRef<maplibregl.Map | null>(null)

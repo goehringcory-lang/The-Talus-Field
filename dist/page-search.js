@@ -311,7 +311,8 @@ function SearchPage({
     }
   }, [query]);
   useEffect(() => {
-    if (inputRef.current) inputRef.current.focus();
+    var fine = window.matchMedia && window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+    if (fine && inputRef.current) inputRef.current.focus();
   }, []);
   var clear = useCallback(() => {
     setQuery("");

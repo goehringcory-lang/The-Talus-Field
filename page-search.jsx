@@ -254,9 +254,14 @@ function SearchPage({ go }) {
     }
   }, [query]);
 
-  // Land with the cursor in the field: nobody arrives here to read.
+  // Land with the cursor in the field: nobody arrives here to read. Pointer
+  // devices only: on a phone this pops the keyboard over the results before
+  // the reader has seen them, and after an SPA navigation app.jsx has just
+  // put focus on <main> so the new page is announced; stealing it here on a
+  // touch device silences that for no gain.
   useEffect(() => {
-    if (inputRef.current) inputRef.current.focus();
+    const fine = window.matchMedia && window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+    if (fine && inputRef.current) inputRef.current.focus();
   }, []);
 
   const clear = useCallback(() => {

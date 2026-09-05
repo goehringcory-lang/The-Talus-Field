@@ -50,8 +50,9 @@ function PlanningGuide({
   useEffectPg(() => {
     if (!jumped) return;
     setJumped(false);
+    var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (resultsRef.current) resultsRef.current.scrollIntoView({
-      behavior: "smooth",
+      behavior: reduce ? "auto" : "smooth",
       block: "start"
     });
   }, [jumped]);

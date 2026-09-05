@@ -1238,7 +1238,8 @@ function GuideMobileBuyBar() {
       // Sold out or a network hiccup: hand off to the full buy box, which
       // explains itself in place.
       const aside = document.getElementById("guide-buy");
-      if (aside) aside.scrollIntoView({ behavior: "smooth" });
+      const reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      if (aside) aside.scrollIntoView({ behavior: reduce ? "auto" : "smooth" });
     } finally {
       setBusy(false);
     }
