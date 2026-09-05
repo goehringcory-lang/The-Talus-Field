@@ -444,6 +444,161 @@
     "license": "Pexels License",
     "source": "https://www.pexels.com/photo/view-of-a-large-waterfall-in-the-yosemite-valley-24460927/"
   },
+  "/photos/wildlife-acorn-woodpecker.jpg": {
+    "author": "Rennett Stowe from USA",
+    "license": "CC BY 2.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Acorn_Woodpecker_(16308029204).jpg"
+  },
+  "/photos/wildlife-american-dipper.jpg": {
+    "author": "David Menke",
+    "license": "Public domain",
+    "source": "https://commons.wikimedia.org/wiki/File:Cinclus_mexicanus.jpg"
+  },
+  "/photos/wildlife-bobcat.jpg": {
+    "author": "Pacific Southwest Region 5",
+    "license": "Public domain",
+    "source": "https://commons.wikimedia.org/wiki/File:170928-FS-Tahoe-002_(37473069876).jpg"
+  },
+  "/photos/wildlife-california-black-oak.jpg": {
+    "author": "James St. John",
+    "license": "CC BY 2.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Quercus_kelloggii_(California_black_oak)_(near_Calistoga,_California,_USA)_2_(49092853138).jpg"
+  },
+  "/photos/wildlife-california-ground-squirrel.jpg": {
+    "author": "Pacific Southwest Region USFWS from Sacramento, US",
+    "license": "Public domain",
+    "source": "https://commons.wikimedia.org/wiki/File:California_Ground_Squirrel_(5711528104).jpg"
+  },
+  "/photos/wildlife-clarks-nutcracker.jpg": {
+    "author": "LassenNPS",
+    "license": "Public domain",
+    "source": "https://commons.wikimedia.org/wiki/File:Clark%27s_Nutcracker-_Nucifraga_columbiana_(9401136533).jpg"
+  },
+  "/photos/wildlife-common-raven.jpg": {
+    "author": "GlacierNPS",
+    "license": "Public domain",
+    "source": "https://commons.wikimedia.org/wiki/File:Raven_Searching_for_Food_(23612909143).jpg"
+  },
+  "/photos/wildlife-coyote.jpg": {
+    "author": "Unknown (public domain)",
+    "license": "Public domain",
+    "source": "https://commons.wikimedia.org/wiki/File:Canis_latrans_standing.jpg"
+  },
+  "/photos/wildlife-giant-sequoia.jpg": {
+    "author": "Dietmar Rabich",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Yosemite_National_Park_(CA,_USA),_Mariposa_Grove_of_Giant_Sequoias_--_2022_--_2766-8.jpg"
+  },
+  "/photos/wildlife-golden-mantled-ground-squirrel.jpg": {
+    "author": "Daniel Schwen",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:RMNP_Golden-mantled_Ground_Squirrel.jpg"
+  },
+  "/photos/wildlife-gray-fox.jpg": {
+    "author": "Renee Grayson from Las Vegas, USA",
+    "license": "CC BY 2.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Gray_Fox_(26056404085).jpg"
+  },
+  "/photos/wildlife-great-gray-owl.jpg": {
+    "author": "GrandTetonNPS",
+    "license": "Public domain",
+    "source": "https://commons.wikimedia.org/wiki/File:Great_Gray_Owl_(48876783618).jpg"
+  },
+  "/photos/wildlife-incense-cedar.jpg": {
+    "author": "Frank Kovalchek from Anchorage, Alaska, USA",
+    "license": "CC BY 2.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Calocedrus_decurrens_young_tree.jpg"
+  },
+  "/photos/wildlife-jeffrey-pine.jpg": {
+    "author": "Jhodlof",
+    "license": "Public domain",
+    "source": "https://commons.wikimedia.org/wiki/File:Mature_Jeffrey_Pine.JPG"
+  },
+  "/photos/wildlife-lodgepole-pine.jpg": {
+    "author": "Walter Siegmund",
+    "license": "CC BY 2.5",
+    "source": "https://commons.wikimedia.org/wiki/File:Pinus_contorta_8138.jpg"
+  },
+  "/photos/wildlife-mountain-chickadee.jpg": {
+    "author": "Yellowstone National Park from Yellowstone NP, USA",
+    "license": "Public domain",
+    "source": "https://commons.wikimedia.org/wiki/File:Mountain_chickadee_(23816063495).jpg"
+  },
+  "/photos/wildlife-mountain-lion.jpg": {
+    "author": "National Park Service",
+    "license": "Public domain",
+    "source": "https://commons.wikimedia.org/wiki/File:Mountain_Lion_in_Glacier_National_Park_2.png"
+  },
+  "/photos/wildlife-mule-deer.jpg": {
+    "author": "Calibas",
+    "license": "CC BY-SA 3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Odocoileus_hemionus_(Calibas).jpg"
+  },
+  "/photos/wildlife-northern-pacific-rattlesnake.jpg": {
+    "author": "Patrick Alexander from Las Cruces, NM",
+    "license": "CC0",
+    "source": "https://commons.wikimedia.org/wiki/File:Crotalus_oreganus_oreganus_-_Flickr_-_aspidoscelis_(2).jpg"
+  },
+  "/photos/wildlife-pacific-chorus-frog.jpg": {
+    "author": "National Park Service",
+    "license": "Public domain",
+    "source": "https://commons.wikimedia.org/wiki/File:Pacific_tree_frog,_Santa_Rosa_Island.jpg"
+  },
+  "/photos/wildlife-pacific-dogwood.jpg": {
+    "author": "Peterparr",
+    "license": "Public domain",
+    "source": "https://commons.wikimedia.org/wiki/File:Dogwoods_YW.jpg"
+  },
+  "/photos/wildlife-peregrine-falcon.jpg": {
+    "author": "Juan Lacruz",
+    "license": "CC BY-SA 3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Peregrine_Falcon_La_Ca%C3%B1ada.jpg"
+  },
+  "/photos/wildlife-pika.jpg": {
+    "author": "ALAN SCHMIERER",
+    "license": "CC0",
+    "source": "https://commons.wikimedia.org/wiki/File:AMERICAN_PIKA_(Ochotona_princeps)_(8-19-13)_9000_ft,_just_s_of_stunner_pass,_conejos_co,_co_-04_(9592442561).jpg"
+  },
+  "/photos/wildlife-ponderosa-pine.jpg": {
+    "author": "Crusier",
+    "license": "CC BY 3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Pinus_ponderosa_subsp._ponderosa_cones_and_shoots_1.JPG"
+  },
+  "/photos/wildlife-quaking-aspen.jpg": {
+    "author": "John Fowler from Placitas, NM, USA",
+    "license": "CC BY 2.0",
+    "source": "https://commons.wikimedia.org/wiki/File:American_Aspen,_near_Kebler_Pass,_Colorado_(8056485277).jpg"
+  },
+  "/photos/wildlife-red-tailed-hawk.jpg": {
+    "author": "Becky Matsubara from El Sobrante, California",
+    "license": "CC BY 2.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Red-tailed_Hawk_(45812546121).jpg"
+  },
+  "/photos/wildlife-sierra-newt.jpg": {
+    "author": "MrRedwood",
+    "license": "Public domain",
+    "source": "https://commons.wikimedia.org/wiki/File:Taricha_torosa_sierrae.jpg"
+  },
+  "/photos/wildlife-stellers-jay.jpg": {
+    "author": "Forest Service Alaska Region, USDA",
+    "license": "Public domain",
+    "source": "https://commons.wikimedia.org/wiki/File:20230905-FS-ED-Stellars-Jay-0001_(53330138359).jpg"
+  },
+  "/photos/wildlife-western-fence-lizard.jpg": {
+    "author": "ImChipBrown",
+    "license": "Public domain",
+    "source": "https://commons.wikimedia.org/wiki/File:Blubelly.JPG"
+  },
+  "/photos/wildlife-western-tanager.jpg": {
+    "author": "USFWS - Pacific Region",
+    "license": "Public domain",
+    "source": "https://commons.wikimedia.org/wiki/File:USFWS_western_tanager_(23485471339).jpg"
+  },
+  "/photos/wildlife-yellow-bellied-marmot.jpg": {
+    "author": "Nick Comer",
+    "license": "Public domain",
+    "source": "https://commons.wikimedia.org/wiki/File:Marmot0_Half_Dome_YosemiteNP_Calif.jpg"
+  },
   "/photos/yosemite-falls-spring-blossoms.jpg": {
     "author": "Cory Goehring",
     "license": "All rights reserved",

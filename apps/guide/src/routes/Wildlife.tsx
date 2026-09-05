@@ -1,10 +1,12 @@
 // =============================================================================
 // /wildlife — the quick-ID guide: "what did I see?" answered in the field,
-// fully offline (bundled content, no photos required; the field marks are
-// the identification, which also keeps the page honest where a photo would
-// invite guessing). Kind chips filter; safety text renders inline on the
-// three species where behavior matters, and the full food-storage law lives
-// in the bear-safety essentials topic, linked, not duplicated.
+// fully offline (bundled content; the photos ride their own download pack,
+// offline/manifest.ts). Each entry opens on one identification plate, and the
+// field marks under it are still the identification: the photo shows what the
+// text names, it does not replace it. Kind chips filter; safety text renders
+// inline on the three species where behavior matters, and the full
+// food-storage law lives in the bear-safety essentials topic, linked, not
+// duplicated.
 //
 // Each entry carries a "Seen it" check: the life list. State rides the shared
 // tfg.checklist map via lib/sightings.ts and rolls up on /log, which is where
@@ -14,6 +16,9 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import GatedChrome from '../components/GatedChrome'
+import Plate from '../components/Plate'
+import ResponsivePhoto from '../components/ResponsivePhoto'
+import { PHOTO_CREDITS, formatCredit } from '../content/photoCredits'
 import PageHeader from '../components/ui/PageHeader'
 import { ChipButton } from '../components/ui/Chip'
 import {
@@ -73,8 +78,26 @@ export default function Wildlife() {
               <ul className="wildlife-list">
                 {entries.map((w) => {
                   const logged = isLogged(w.id)
+                  const credit = w.photo ? PHOTO_CREDITS[w.photo.src] : undefined
                   return (
                     <li key={w.id} className="wildlife-entry">
+                      {w.photo && (
+                        <Plate
+                          className="wildlife-entry__plate"
+                          tag={`Plate · ${w.name}`}
+                          credit={credit ? formatCredit(credit) : undefined}
+                        >
+                          <ResponsivePhoto
+                            className="wildlife-entry__photo"
+                            src={w.photo.src}
+                            alt={w.photo.alt}
+                            sizes="(max-width: 720px) 100vw, 640px"
+                            width={1200}
+                            height={800}
+                            style={{ aspectRatio: '3 / 2', objectFit: 'cover' }}
+                          />
+                        </Plate>
+                      )}
                       <div className="wildlife-entry__head">
                         <p className="wildlife-entry__name">
                           {w.name} <span className="wildlife-entry__latin">{w.latin}</span>

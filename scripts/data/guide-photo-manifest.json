@@ -870,5 +870,503 @@
       "Cook's Meadow Yosemite",
       "Cooks Meadow Yosemite Falls boardwalk"
     ]
+  },
+  {
+    "file": "black-bear-roadside.jpg",
+    "slot": "wildlife:black-bear",
+    "tier": 2,
+    "subject": "Black bear: reuses the house photo already wired to the bear-viewing topic; no separate slot.",
+    "reuse": true
+  },
+  {
+    "file": "wildlife-mule-deer.jpg",
+    "slot": "wildlife:mule-deer",
+    "tier": 2,
+    "subject": "Mule deer (Odocoileus hemionus), a clear field-identification view of the species itself",
+    "categories": [
+      "Featured pictures of Odocoileus hemionus",
+      "Quality images of Odocoileus hemionus",
+      "Odocoileus hemionus in Yosemite National Park",
+      "Odocoileus hemionus"
+    ],
+    "queries": [
+      "Odocoileus hemionus",
+      "Mule deer"
+    ],
+    "portraitOk": true
+  },
+  {
+    "file": "wildlife-coyote.jpg",
+    "slot": "wildlife:coyote",
+    "tier": 2,
+    "subject": "Coyote (Canis latrans), a clear field-identification view of the species itself",
+    "queries": [
+      "Coyote Canis latrans standing",
+      "Coyote Canis latrans California",
+      "Canis latrans portrait"
+    ],
+    "portraitOk": true
+  },
+  {
+    "file": "wildlife-bobcat.jpg",
+    "slot": "wildlife:bobcat",
+    "tier": 2,
+    "subject": "Bobcat (Lynx rufus), a clear field-identification view of the species itself",
+    "categories": [
+      "Featured pictures of Lynx rufus",
+      "Quality images of Lynx rufus",
+      "Lynx rufus"
+    ],
+    "queries": [
+      "Lynx rufus",
+      "Bobcat"
+    ],
+    "portraitOk": true
+  },
+  {
+    "file": "wildlife-mountain-lion.jpg",
+    "slot": "wildlife:mountain-lion",
+    "tier": 2,
+    "subject": "Mountain lion (Puma concolor), a clear field-identification view of the species itself",
+    "categories": [
+      "Featured pictures of Puma concolor",
+      "Quality images of Puma concolor",
+      "Puma concolor"
+    ],
+    "queries": [
+      "Puma concolor",
+      "Mountain lion"
+    ],
+    "portraitOk": true
+  },
+  {
+    "file": "wildlife-yellow-bellied-marmot.jpg",
+    "slot": "wildlife:yellow-bellied-marmot",
+    "tier": 2,
+    "subject": "Yellow-bellied marmot (Marmota flaviventris), a clear field-identification view of the species itself",
+    "categories": [
+      "Featured pictures of Marmota flaviventris",
+      "Quality images of Marmota flaviventris",
+      "Marmota flaviventris in Yosemite National Park",
+      "Marmota flaviventris"
+    ],
+    "queries": [
+      "Marmota flaviventris",
+      "Yellow-bellied marmot"
+    ],
+    "portraitOk": true
+  },
+  {
+    "file": "wildlife-pika.jpg",
+    "slot": "wildlife:pika",
+    "tier": 2,
+    "subject": "American pika (Ochotona princeps), a clear field-identification view of the species itself",
+    "categories": [
+      "Featured pictures of Ochotona princeps",
+      "Quality images of Ochotona princeps",
+      "Ochotona princeps"
+    ],
+    "queries": [
+      "Ochotona princeps",
+      "American pika"
+    ],
+    "portraitOk": true
+  },
+  {
+    "file": "wildlife-california-ground-squirrel.jpg",
+    "slot": "wildlife:california-ground-squirrel",
+    "tier": 2,
+    "subject": "California ground squirrel (Otospermophilus beecheyi), a clear field-identification view of the species itself",
+    "categories": [
+      "Featured pictures of Otospermophilus beecheyi",
+      "Quality images of Otospermophilus beecheyi",
+      "Otospermophilus beecheyi"
+    ],
+    "queries": [
+      "Otospermophilus beecheyi",
+      "California ground squirrel"
+    ],
+    "portraitOk": true
+  },
+  {
+    "file": "wildlife-golden-mantled-ground-squirrel.jpg",
+    "slot": "wildlife:golden-mantled-ground-squirrel",
+    "tier": 2,
+    "subject": "Golden-mantled ground squirrel (Callospermophilus lateralis), a clear field-identification view of the species itself",
+    "categories": [
+      "Featured pictures of Callospermophilus lateralis",
+      "Quality images of Callospermophilus lateralis",
+      "Callospermophilus lateralis"
+    ],
+    "queries": [
+      "Callospermophilus lateralis",
+      "Golden-mantled ground squirrel"
+    ],
+    "portraitOk": true
+  },
+  {
+    "file": "wildlife-gray-fox.jpg",
+    "slot": "wildlife:gray-fox",
+    "tier": 2,
+    "subject": "Gray fox (Urocyon cinereoargenteus), a clear field-identification view of the species itself",
+    "queries": [
+      "Gray fox Urocyon cinereoargenteus"
+    ],
+    "portraitOk": true,
+    "categories": [
+      "Urocyon cinereoargenteus"
+    ]
+  },
+  {
+    "file": "wildlife-stellers-jay.jpg",
+    "slot": "wildlife:stellers-jay",
+    "tier": 2,
+    "subject": "Steller's jay (Cyanocitta stelleri), a clear field-identification view of the species itself",
+    "categories": [
+      "Featured pictures of Cyanocitta stelleri",
+      "Quality images of Cyanocitta stelleri",
+      "Cyanocitta stelleri"
+    ],
+    "queries": [
+      "Cyanocitta stelleri",
+      "Steller's jay"
+    ],
+    "portraitOk": true
+  },
+  {
+    "file": "wildlife-common-raven.jpg",
+    "slot": "wildlife:common-raven",
+    "tier": 2,
+    "subject": "Common raven (Corvus corax), a clear field-identification view of the species itself",
+    "categories": [
+      "Featured pictures of Corvus corax",
+      "Quality images of Corvus corax",
+      "Corvus corax"
+    ],
+    "queries": [
+      "Corvus corax",
+      "Common raven"
+    ],
+    "portraitOk": true
+  },
+  {
+    "file": "wildlife-acorn-woodpecker.jpg",
+    "slot": "wildlife:acorn-woodpecker",
+    "tier": 2,
+    "subject": "Acorn woodpecker (Melanerpes formicivorus), a clear field-identification view of the species itself",
+    "categories": [
+      "Featured pictures of Melanerpes formicivorus",
+      "Quality images of Melanerpes formicivorus",
+      "Melanerpes formicivorus"
+    ],
+    "queries": [
+      "Melanerpes formicivorus",
+      "Acorn woodpecker"
+    ],
+    "portraitOk": true
+  },
+  {
+    "file": "wildlife-peregrine-falcon.jpg",
+    "slot": "wildlife:peregrine-falcon",
+    "tier": 2,
+    "subject": "Peregrine falcon (Falco peregrinus), a clear field-identification view of the species itself",
+    "categories": [
+      "Featured pictures of Falco peregrinus",
+      "Quality images of Falco peregrinus",
+      "Falco peregrinus"
+    ],
+    "queries": [
+      "Falco peregrinus",
+      "Peregrine falcon"
+    ],
+    "portraitOk": true
+  },
+  {
+    "file": "wildlife-american-dipper.jpg",
+    "slot": "wildlife:american-dipper",
+    "tier": 2,
+    "subject": "American dipper (Cinclus mexicanus), a clear field-identification view of the species itself",
+    "categories": [
+      "Featured pictures of Cinclus mexicanus",
+      "Quality images of Cinclus mexicanus",
+      "Cinclus mexicanus"
+    ],
+    "queries": [
+      "Cinclus mexicanus",
+      "American dipper"
+    ],
+    "portraitOk": true
+  },
+  {
+    "file": "wildlife-great-gray-owl.jpg",
+    "slot": "wildlife:great-gray-owl",
+    "tier": 2,
+    "subject": "Great gray owl (Strix nebulosa), a clear field-identification view of the species itself",
+    "categories": [
+      "Featured pictures of Strix nebulosa",
+      "Quality images of Strix nebulosa",
+      "Strix nebulosa"
+    ],
+    "queries": [
+      "Strix nebulosa",
+      "Great gray owl"
+    ],
+    "portraitOk": true
+  },
+  {
+    "file": "wildlife-clarks-nutcracker.jpg",
+    "slot": "wildlife:clarks-nutcracker",
+    "tier": 2,
+    "subject": "Clark's nutcracker (Nucifraga columbiana), a clear field-identification view of the species itself",
+    "categories": [
+      "Featured pictures of Nucifraga columbiana",
+      "Quality images of Nucifraga columbiana",
+      "Nucifraga columbiana"
+    ],
+    "queries": [
+      "Nucifraga columbiana",
+      "Clark's nutcracker"
+    ],
+    "portraitOk": true
+  },
+  {
+    "file": "wildlife-mountain-chickadee.jpg",
+    "slot": "wildlife:mountain-chickadee",
+    "tier": 2,
+    "subject": "Mountain chickadee (Poecile gambeli), a clear field-identification view of the species itself",
+    "categories": [
+      "Featured pictures of Poecile gambeli",
+      "Quality images of Poecile gambeli",
+      "Poecile gambeli"
+    ],
+    "queries": [
+      "Poecile gambeli",
+      "Mountain chickadee"
+    ],
+    "portraitOk": true
+  },
+  {
+    "file": "wildlife-western-tanager.jpg",
+    "slot": "wildlife:western-tanager",
+    "tier": 2,
+    "subject": "Western tanager (Piranga ludoviciana), a clear field-identification view of the species itself",
+    "categories": [
+      "Featured pictures of Piranga ludoviciana",
+      "Quality images of Piranga ludoviciana",
+      "Piranga ludoviciana"
+    ],
+    "queries": [
+      "Piranga ludoviciana",
+      "Western tanager"
+    ],
+    "portraitOk": true
+  },
+  {
+    "file": "wildlife-red-tailed-hawk.jpg",
+    "slot": "wildlife:red-tailed-hawk",
+    "tier": 2,
+    "subject": "Red-tailed hawk (Buteo jamaicensis), a clear field-identification view of the species itself",
+    "categories": [
+      "Featured pictures of Buteo jamaicensis",
+      "Quality images of Buteo jamaicensis",
+      "Buteo jamaicensis"
+    ],
+    "queries": [
+      "Buteo jamaicensis",
+      "Red-tailed hawk"
+    ],
+    "portraitOk": true
+  },
+  {
+    "file": "wildlife-giant-sequoia.jpg",
+    "slot": "wildlife:giant-sequoia",
+    "tier": 2,
+    "subject": "Giant sequoia (Sequoiadendron giganteum), a clear field-identification view of the species itself",
+    "categories": [
+      "Featured pictures of Sequoiadendron giganteum",
+      "Quality images of Sequoiadendron giganteum",
+      "Mariposa Grove",
+      "Sequoiadendron giganteum"
+    ],
+    "queries": [
+      "Sequoiadendron giganteum",
+      "Giant sequoia"
+    ],
+    "portraitOk": true
+  },
+  {
+    "file": "wildlife-ponderosa-pine.jpg",
+    "slot": "wildlife:ponderosa-pine",
+    "tier": 2,
+    "subject": "Ponderosa pine (Pinus ponderosa), a clear field-identification view of the species itself",
+    "categories": [
+      "Featured pictures of Pinus ponderosa",
+      "Quality images of Pinus ponderosa",
+      "Pinus ponderosa"
+    ],
+    "queries": [
+      "Pinus ponderosa",
+      "Ponderosa pine"
+    ],
+    "portraitOk": true
+  },
+  {
+    "file": "wildlife-incense-cedar.jpg",
+    "slot": "wildlife:incense-cedar",
+    "tier": 2,
+    "subject": "Incense cedar (Calocedrus decurrens), a clear field-identification view of the species itself",
+    "categories": [
+      "Featured pictures of Calocedrus decurrens",
+      "Quality images of Calocedrus decurrens",
+      "Calocedrus decurrens"
+    ],
+    "queries": [
+      "Calocedrus decurrens",
+      "Incense cedar"
+    ],
+    "portraitOk": true
+  },
+  {
+    "file": "wildlife-california-black-oak.jpg",
+    "slot": "wildlife:california-black-oak",
+    "tier": 2,
+    "subject": "California black oak (Quercus kelloggii), a clear field-identification view of the species itself",
+    "queries": [
+      "Quercus kelloggii tree",
+      "California black oak Quercus kelloggii leaves",
+      "Quercus kelloggii Yosemite"
+    ],
+    "portraitOk": true
+  },
+  {
+    "file": "wildlife-lodgepole-pine.jpg",
+    "slot": "wildlife:lodgepole-pine",
+    "tier": 2,
+    "subject": "Lodgepole pine (Pinus contorta subsp. murrayana), a clear field-identification view of the species itself",
+    "categories": [
+      "Featured pictures of Pinus contorta subsp. murrayana",
+      "Quality images of Pinus contorta subsp. murrayana",
+      "Pinus contorta",
+      "Pinus contorta subsp. murrayana"
+    ],
+    "queries": [
+      "Pinus contorta subsp. murrayana",
+      "Lodgepole pine"
+    ],
+    "portraitOk": true
+  },
+  {
+    "file": "wildlife-quaking-aspen.jpg",
+    "slot": "wildlife:quaking-aspen",
+    "tier": 2,
+    "subject": "Quaking aspen (Populus tremuloides), a clear field-identification view of the species itself",
+    "categories": [
+      "Featured pictures of Populus tremuloides",
+      "Quality images of Populus tremuloides",
+      "Populus tremuloides"
+    ],
+    "queries": [
+      "Populus tremuloides",
+      "Quaking aspen"
+    ],
+    "portraitOk": true
+  },
+  {
+    "file": "wildlife-pacific-dogwood.jpg",
+    "slot": "wildlife:pacific-dogwood",
+    "tier": 2,
+    "subject": "Pacific dogwood (Cornus nuttallii), a clear field-identification view of the species itself",
+    "categories": [
+      "Featured pictures of Cornus nuttallii",
+      "Quality images of Cornus nuttallii",
+      "Cornus nuttallii"
+    ],
+    "queries": [
+      "Cornus nuttallii",
+      "Pacific dogwood"
+    ],
+    "portraitOk": true
+  },
+  {
+    "file": "wildlife-jeffrey-pine.jpg",
+    "slot": "wildlife:jeffrey-pine",
+    "tier": 2,
+    "subject": "Jeffrey pine (Pinus jeffreyi), a clear field-identification view of the species itself",
+    "categories": [
+      "Featured pictures of Pinus jeffreyi",
+      "Quality images of Pinus jeffreyi",
+      "Pinus jeffreyi"
+    ],
+    "queries": [
+      "Pinus jeffreyi",
+      "Jeffrey pine"
+    ],
+    "portraitOk": true
+  },
+  {
+    "file": "wildlife-northern-pacific-rattlesnake.jpg",
+    "slot": "wildlife:northern-pacific-rattlesnake",
+    "tier": 2,
+    "subject": "Northern Pacific rattlesnake (Crotalus oreganus oreganus), a clear field-identification view of the species itself",
+    "categories": [
+      "Featured pictures of Crotalus oreganus oreganus",
+      "Quality images of Crotalus oreganus oreganus",
+      "Crotalus oreganus",
+      "Crotalus oreganus oreganus"
+    ],
+    "queries": [
+      "Crotalus oreganus oreganus",
+      "Northern Pacific rattlesnake"
+    ],
+    "portraitOk": true
+  },
+  {
+    "file": "wildlife-western-fence-lizard.jpg",
+    "slot": "wildlife:western-fence-lizard",
+    "tier": 2,
+    "subject": "Western fence lizard (Sceloporus occidentalis), a clear field-identification view of the species itself",
+    "categories": [
+      "Featured pictures of Sceloporus occidentalis",
+      "Quality images of Sceloporus occidentalis",
+      "Sceloporus occidentalis"
+    ],
+    "queries": [
+      "Sceloporus occidentalis",
+      "Western fence lizard"
+    ],
+    "portraitOk": true
+  },
+  {
+    "file": "wildlife-pacific-chorus-frog.jpg",
+    "slot": "wildlife:pacific-chorus-frog",
+    "tier": 2,
+    "subject": "Pacific chorus frog (Pseudacris regilla), a clear field-identification view of the species itself",
+    "categories": [
+      "Featured pictures of Pseudacris regilla",
+      "Quality images of Pseudacris regilla",
+      "Pseudacris regilla"
+    ],
+    "queries": [
+      "Pseudacris regilla",
+      "Pacific chorus frog"
+    ],
+    "portraitOk": true
+  },
+  {
+    "file": "wildlife-sierra-newt.jpg",
+    "slot": "wildlife:sierra-newt",
+    "tier": 2,
+    "subject": "Sierra newt (Taricha sierrae), a clear field-identification view of the species itself",
+    "categories": [
+      "Featured pictures of Taricha sierrae",
+      "Quality images of Taricha sierrae",
+      "Taricha torosa sierrae",
+      "Taricha sierrae"
+    ],
+    "queries": [
+      "Taricha sierrae",
+      "Sierra newt"
+    ],
+    "portraitOk": true
   }
 ]

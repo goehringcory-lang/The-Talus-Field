@@ -9,6 +9,7 @@
 // =============================================================================
 
 import { REGIONS, getStopsByRegion, SECRET_SPOTS, type Region } from '../content'
+import { WILDLIFE } from '../content/wildlife'
 import { TRACKS, trackUrl } from '../trails/track'
 import { precachePhotoUrls, type PhotoFormat } from '../utils/photo'
 import { buildTileUrls } from './tiles'
@@ -20,6 +21,7 @@ export const TILES_CACHE = 'tfg-tiles'
 // what buildPacks() actually returns. Kept as consts rather than derived from
 // buildPacks() because building packs does the full tile-URL math.
 export const SECRET_PACK_ID = 'photos-secret-guide'
+export const WILDLIFE_PACK_ID = 'photos-wildlife'
 export const TRACKS_PACK_ID = 'trail-tracks'
 export const MAP_PACK_ID = 'park-map'
 export function regionPackId(region: Region): string {
@@ -28,6 +30,7 @@ export function regionPackId(region: Region): string {
 export const PACK_IDS: string[] = [
   ...REGIONS.map((r) => regionPackId(r.id)),
   SECRET_PACK_ID,
+  WILDLIFE_PACK_ID,
   TRACKS_PACK_ID,
   MAP_PACK_ID,
 ]
@@ -72,6 +75,19 @@ function secretGuidePhotoUrls(format: PhotoFormat): string[] {
   return Array.from(urls)
 }
 
+// The quick-ID photos belong to no region either. /wildlife promises to work
+// offline, and since September 2026 every entry carries a photo, so the plates
+// need a pack of their own or the page renders "Photo coming" tiles in the
+// backcountry.
+function wildlifePhotoUrls(format: PhotoFormat): string[] {
+  const urls = new Set<string>()
+  for (const entry of WILDLIFE) {
+    if (!entry.photo) continue
+    for (const url of precachePhotoUrls(entry.photo.src, format)) urls.add(url)
+  }
+  return Array.from(urls)
+}
+
 const REGION_LABELS: Record<Region, string> = {
   valley: 'Yosemite Valley photos',
   'glacier-mariposa': 'Glacier Point & Mariposa photos',
@@ -110,6 +126,17 @@ export function buildPacks(format: PhotoFormat): Pack[] {
     tolerateMissing: 0,
   }
 
+  const wildlifeUrls = wildlifePhotoUrls(format)
+  const wildlifePack: Pack = {
+    id: WILDLIFE_PACK_ID,
+    label: 'Wildlife quick-ID photos',
+    detail: 'One identification photo for every animal, bird, and tree on /wildlife',
+    cacheName: RUNTIME_CACHE,
+    urls: wildlifeUrls,
+    approxBytes: wildlifeUrls.length * PHOTO_BYTES_PER_URL,
+    tolerateMissing: 0,
+  }
+
   // Trail tracks: small JSONs (geometry + elevation profile per hike), so the
   // whole set is one pack. Same cache the SW serves /tracks/ requests from;
   // the ?v= content hash in each URL turns entries over on regeneration.
@@ -135,7 +162,7 @@ export function buildPacks(format: PhotoFormat): Pack[] {
     tolerateMissing: 0.05,
   }
 
-  return [...regionPacks, secretPack, tracksPack, mapPack]
+  return [...regionPacks, secretPack, wildlifePack, tracksPack, mapPack]
 }
 
 export function formatBytes(bytes: number): string {

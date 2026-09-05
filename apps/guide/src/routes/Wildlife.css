@@ -1,11 +1,23 @@
-/* /wildlife: quick-ID cards, text-first on purpose. */
+/* /wildlife: quick-ID cards. One plate per entry, then the field marks. */
 
 .wildlife-list {
   list-style: none;
   margin: 0;
   padding: 0;
   display: grid;
-  gap: 1rem;
+  gap: 1.6rem;
+}
+
+/* The plate's engraved offset shadow needs room, so the list gap grew; the
+   plate itself sits tight over the name row. */
+.wildlife-entry__plate {
+  margin-bottom: 10px;
+}
+
+.wildlife-entry__photo {
+  display: block;
+  width: 100%;
+  height: auto;
 }
 
 .wildlife-entry__head {
