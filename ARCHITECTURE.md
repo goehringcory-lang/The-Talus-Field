@@ -76,7 +76,7 @@ All events fire through `window.track`. Names and where they fire:
 | `guide_teaser_click` | page-map.jsx (trip next-steps card) — with `location`. Retired location (annotate in GA4, do not reuse): `article_end` (page-article.jsx's article-end line moved to the `GuidePromo` band in August 2026, so that placement now fires `guide_cta_click`/`guide_sample_click` like every other `GuidePromo` instance) |
 | `itinerary_open_map` | page-itineraries.jsx ("Open this trip on the map", with `itinerary`) |
 | `trip_selector_answer`, `trip_selector_complete`, `trip_selector_apply_filters` | intent.jsx (the five-question trip selector at the top of `/planning`: one per answer with `question`/`answer`, one when the fifth lands, one when the plan's results are poured into the filters with `matches`) |
-| `intent_filter` | intent.jsx (the intent chip bar on `/planning` and `/articles`; `facet`, `option`, and `action` = `on`/`off`/`clear`) |
+| `intent_filter` | intent.jsx (the intent chip bar on `/planning` and `/articles`; `facet`, `option`, and `action` = `on`/`off`/`clear`. The "Every entry" browse switch on `/planning` reports as `facet: "all", option: "browse"`, separate from the clear-all row's `facet: "all", option: ""`) |
 | `trip_open_in_guide` | page-map.jsx (the map sidebar's hand-off to the Field Guide app; `trip_size`). The link opens `<app>/trip?import=<ids>`, which the PWA resolves against its own catalog. |
 | `article_share` | components.jsx (ShareRow on article pages; `method` = web-share or copy) |
 | `series_band_click` | page-article.jsx (Planning Guide series band; `from`/`to` slugs, `to: planning-hub` for the hub link) |
