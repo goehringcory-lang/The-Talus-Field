@@ -4,11 +4,20 @@
 // THE PLANNING GUIDE — `/planning`.
 //
 // Two modes on one page. By default it reads as the curated five-part guide it
-// has always been. The moment the reader answers the trip selector or touches a
-// filter chip, it becomes a decision tool: the parts give way to the entries
-// that match, drawn from the WHOLE catalog rather than the eighteen pieces the
-// parts curate, because a reader who filters for "camping" wants the camping
-// guide whether or not it earned a slot in the curation.
+// has always been. The moment the reader answers the trip selector, touches a
+// filter chip, or asks for every entry, it becomes a decision tool: the parts
+// give way to the entries that match, drawn from the WHOLE catalog rather than
+// the twenty-one pieces the parts curate, because a reader who filters for
+// "camping" wants the camping guide whether or not it earned a slot in the
+// curation.
+//
+// "Every entry" is the third of those doors and the one that makes this page
+// reach the whole site. The parts curate a third of the catalog and a chip can
+// only find an article that carries that tag, so the remaining entries, and the
+// one piece that carries no tag in any facet by design, had no path from here
+// that did not involve guessing. scripts/check-intent-tags.mjs asserts that the
+// browse list is the whole catalog and that nothing else on this page is
+// quietly holding entries back.
 //
 // The five curated parts below own the copy (eyebrow, title, lede, columns) but
 // NOT the membership: the slugs come from window.PLANNING_SERIES in data.js,
@@ -73,6 +82,13 @@ function PlanningGuide({ go }) {
 
   const matches = window.filterArticlesByIntent(window.ARTICLES, filters.value);
   const filtering = filters.count > 0;
+  // Two ways to reach the list. A chip narrows the archive; "Every entry" opens
+  // it. The second one exists because the first cannot reach everything: the
+  // parts curate twenty-one of sixty-seven entries, a chip only finds an article
+  // that carries that tag, and one piece carries no tag in any facet on purpose
+  // (INTENT_NO_TAGS). Without a way to just list the archive, the rest of it was
+  // reachable from this page only by guessing the combination that surfaces it.
+  const listing = filtering || filters.browse;
 
   // A hand-off from the trip selector ("show all N entries that fit this trip")
   // sets the filters and then has to move the reader to the results, which are
@@ -132,13 +148,15 @@ function PlanningGuide({ go }) {
           onToggle={filters.toggle}
           onClear={filters.clear}
           onClearMonth={filters.clearMonth}
+          onToggleBrowse={filters.toggleBrowse}
+          browse={filters.browse}
           count={filters.count}
           resultCount={matches.length}
           note="Drawn from the whole archive, not only the five parts below."
         />
       </div>
 
-      {filtering ? (
+      {listing ? (
         <div className="wrap" style={{ paddingTop: 40, paddingBottom: 96 }}>
           {matches.length > 0 ? (
             <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 36, rowGap: 56 }}>
@@ -156,7 +174,7 @@ function PlanningGuide({ go }) {
           )}
           <p style={{ marginTop: 40, fontFamily: "var(--sans)", fontSize: 14, color: "var(--ink-3)" }}>
             <button type="button" className="linkish" onClick={filters.clear}>
-              Clear the filters to read the guide in order →
+              {filtering ? "Clear the filters to read the guide in order →" : "Back to the five-part guide →"}
             </button>
           </p>
         </div>

@@ -14,6 +14,7 @@ function readIntentFromUrl() {
   out.month = window.intentMonthOf({
     month: (params.get("month") || "").trim()
   });
+  out.browse = params.get("all") === "1";
   return out;
 }
 function writeIntentToUrl(value) {
@@ -23,6 +24,7 @@ function writeIntentToUrl(value) {
     if (picked.length) params.set(facet.id, picked.join(","));else params.delete(facet.id);
   });
   if (value.month) params.set("month", value.month);else params.delete("month");
+  if (value.browse) params.set("all", "1");else params.delete("all");
   var qs = params.toString();
   window.history.replaceState(window.history.state, "", window.location.pathname + (qs ? "?" + qs : ""));
 }
@@ -79,7 +81,8 @@ function useIntentFilters() {
   }, []);
   var clear = useCallbackIn(() => {
     var empty = {
-      month: ""
+      month: "",
+      browse: false
     };
     window.INTENT_FACETS.forEach(f => {
       empty[f.id] = [];
@@ -101,9 +104,23 @@ function useIntentFilters() {
       action: "off"
     });
   }, []);
+  var toggleBrowse = useCallbackIn(() => {
+    setValue(prev => {
+      var next = Object.assign({}, prev, {
+        browse: !prev.browse
+      });
+      if (window.track) window.track("intent_filter", {
+        facet: "all",
+        option: "browse",
+        action: next.browse ? "on" : "off"
+      });
+      return next;
+    });
+  }, []);
   var apply = useCallbackIn(intent => {
     var next = {
-      month: window.intentMonthOf(intent)
+      month: window.intentMonthOf(intent),
+      browse: false
     };
     window.INTENT_FACETS.forEach(f => {
       next[f.id] = intent && intent[f.id] || [];
@@ -116,6 +133,8 @@ function useIntentFilters() {
     clear,
     clearMonth,
     apply,
+    toggleBrowse,
+    browse: !!value.browse,
     count: window.intentSelectionCount(value)
   };
 }
@@ -125,14 +144,19 @@ function IntentFilters({
   onToggle,
   onClear,
   onClearMonth,
+  onToggleBrowse,
+  browse,
   count,
   resultCount,
   note
 }) {
-  var counts = window.intentCounts(articles || window.ARTICLES, value);
+  var pool = articles || window.ARTICLES;
+  var counts = window.intentCounts(pool, value);
   var selected = count > 0;
   var month = window.intentMonthOf(value);
-  var hidden = month ? (articles || window.ARTICLES).filter(a => !window.articleFitsMonth(a.slug, month)).length : 0;
+  var hidden = month ? pool.filter(a => !window.articleFitsMonth(a.slug, month)).length : 0;
+  var browsable = typeof onToggleBrowse === "function";
+  var curated = browsable ? new Set([].concat.apply([], (window.PLANNING_SERIES || []).map(p => p.slugs))).size : 0;
   return React.createElement("div", {
     className: "intentf"
   }, React.createElement("div", {
@@ -141,7 +165,7 @@ function IntentFilters({
     className: "intentf__title"
   }, "Narrow it down"), React.createElement("span", {
     className: "intentf__note"
-  }, selected ? `${resultCount} ${resultCount === 1 ? "entry" : "entries"} match${note ? ". " + note : "."}` : "Pick a stage, a traveler, or a topic. Combine them freely."), selected && React.createElement("button", {
+  }, selected ? `${resultCount} ${resultCount === 1 ? "entry" : "entries"} match${note ? ". " + note : "."}` : browse ? `Every entry in the archive, ${resultCount} in all, newest first.` : "Pick a stage, a traveler, or a topic. Combine them freely."), selected && React.createElement("button", {
     type: "button",
     className: "intentf__clear",
     onClick: onClear
@@ -186,7 +210,26 @@ function IntentFilters({
     }, opt.label, React.createElement("span", {
       className: "ichip__n"
     }, n));
-  })))));
+  })))), browsable && React.createElement("div", {
+    className: "intentf__row intentf__row--all"
+  }, React.createElement("span", {
+    className: "intentf__facet",
+    id: "intentf-all"
+  }, "Or read it all"), React.createElement("div", {
+    className: "intentf__chips",
+    role: "group",
+    "aria-labelledby": "intentf-all"
+  }, React.createElement("button", {
+    type: "button",
+    className: "ichip" + (browse ? " ichip--on" : ""),
+    "aria-pressed": browse,
+    title: "List the whole archive, with any chips above still applied.",
+    onClick: onToggleBrowse
+  }, browse ? "Everything ×" : "Every entry", React.createElement("span", {
+    className: "ichip__n"
+  }, pool.length)), React.createElement("span", {
+    className: "intentf__row-note"
+  }, !browse ? `The guide below curates ${curated} of these. This shows the rest.` : selected ? "The whole archive, narrowed by the chips above." : "Take this off to read the five-part guide in order."))));
 }
 function PlanLink({
   href,
