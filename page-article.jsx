@@ -1,4 +1,43 @@
-/* global React, ReactDOM, Placeholder, NewsletterInline, MotifMountains, preloadResponsive, SIZES_HERO, Breadcrumbs, ShareRow, GuidePromo */
+/* global React, ReactDOM, Placeholder, NewsletterInline, MotifMountains, preloadResponsive, SIZES_HERO, Breadcrumbs, ShareRow, GuidePromo, MapLightbox */
+
+// Paragraph-shaped lines for the body's loading state. Widths are fixed, not
+// random, so the skeleton is the same on every render and never shifts.
+const SKELETON_LINES = [
+  [100, 96, 98, 62], [100, 94, 97, 100, 40], "head", [98, 100, 93, 71],
+];
+function BodySkeleton() {
+  return (
+    <div className="skeleton" role="status" aria-live="polite" aria-label="Loading the article">
+      {SKELETON_LINES.map((para, i) =>
+        para === "head"
+          ? <span key={i} className="skeleton__line skeleton__line--head" />
+          : para.map((w, j) => (
+              <span
+                key={`${i}-${j}`}
+                className={`skeleton__line${j === para.length - 1 ? " skeleton__line--gap" : ""}`}
+                style={{ width: `${w}%` }}
+              />
+            ))
+      )}
+    </div>
+  );
+}
+
+// The largest JPEG in a plate's srcset, for the lightbox. The <img> carries
+// the JPEG set with w-descriptors (ResponsiveImage), so the last, widest
+// entry is the sharpest file the site has; the bare src is the master, which
+// is the one file a reader should never be handed (see the prerender note
+// in CLAUDE.md).
+function largestSource(img) {
+  const set = img.getAttribute("srcset") || "";
+  let best = null, bestW = 0;
+  for (const part of set.split(",")) {
+    const m = part.trim().match(/^(\S+)\s+(\d+)w$/);
+    if (m && Number(m[2]) > bestW) { bestW = Number(m[2]); best = m[1]; }
+  }
+  return best || img.currentSrc || img.src;
+}
+
 
 // "Month D, YYYY" for an ISO date string, used to surface a genuine revision
 // date (isoModified) distinct from the publish date shown in the byline.
@@ -138,6 +177,63 @@ function ArticlePage({ slug, go }) {
   // read history behind the home resume band. A piece scrolled past 90% is
   // recorded done; anything abandoned between 10% and 90% is saved as the
   // resume target on navigation away or tab close.
+  // Plates open in the lightbox. Every photo plate inside the article (the
+  // hero and the body's) is marked zoomable once the body is in, and one
+  // delegated listener on the article opens MapLightbox, the pan-and-zoom
+  // viewer the map pages already carry, with the plate's own alt as the
+  // caption. The plates are made focusable here rather than in Placeholder,
+  // because that component's markup is mirrored by the prerender stubs and
+  // rendered inside card links elsewhere, where a second focus stop would be
+  // noise. The lightbox itself restores focus to the plate on close.
+  const articleRef = React.useRef(null);
+  const [lightbox, setLightbox] = React.useState(null);
+  React.useEffect(() => {
+    const root = articleRef.current;
+    if (!root) return;
+    const plates = Array.from(root.querySelectorAll(".placeholder--photo"))
+      .filter((el) => !el.closest("a") && el.querySelector("img"));
+    plates.forEach((el) => {
+      el.classList.add("is-zoomable");
+      el.setAttribute("tabindex", "0");
+      el.setAttribute("role", "button");
+      const alt = (el.querySelector("img") || {}).alt || "";
+      el.setAttribute("aria-label", alt ? `Enlarge: ${alt}` : "Enlarge this photo");
+    });
+    const open = (el) => {
+      const img = el.querySelector("img");
+      if (!img) return;
+      const credit = el.querySelector(".placeholder__credit");
+      setLightbox({
+        src: largestSource(img),
+        alt: img.alt || "",
+        caption: [img.alt, credit && credit.textContent].filter(Boolean).join(" · "),
+      });
+      if (window.track) window.track("plate_zoom", { slug });
+    };
+    const onClick = (e) => {
+      const el = e.target.closest && e.target.closest(".placeholder.is-zoomable");
+      if (el && root.contains(el)) { e.preventDefault(); open(el); }
+    };
+    const onKey = (e) => {
+      if (e.key !== "Enter" && e.key !== " ") return;
+      const el = e.target.closest && e.target.closest(".placeholder.is-zoomable");
+      if (el && root.contains(el)) { e.preventDefault(); open(el); }
+    };
+    root.addEventListener("click", onClick);
+    root.addEventListener("keydown", onKey);
+    return () => {
+      root.removeEventListener("click", onClick);
+      root.removeEventListener("keydown", onKey);
+      plates.forEach((el) => {
+        el.classList.remove("is-zoomable");
+        el.removeAttribute("tabindex");
+        el.removeAttribute("role");
+        el.removeAttribute("aria-label");
+      });
+    };
+  }, [bodyState, slug, Body]);
+  const closeLightbox = React.useCallback(() => setLightbox(null), []);
+
   const barRef = React.useRef(null);
   React.useEffect(() => {
     if (bodyState !== "ready") return;
@@ -276,7 +372,10 @@ function ArticlePage({ slug, go }) {
   return (
     <div className="page">
       <div className="readbar" aria-hidden="true"><div className="readbar__fill" ref={barRef} /></div>
-      <article>
+      {lightbox && (
+        <MapLightbox src={lightbox.src} alt={lightbox.alt} caption={lightbox.caption} onClose={closeLightbox} />
+      )}
+      <article ref={articleRef}>
         {/* Article hero */}
         <header className="wrap wrap--narrow" style={{ paddingTop: 64, paddingBottom: 32 }}>
           <Breadcrumbs
@@ -414,7 +513,7 @@ function ArticlePage({ slug, go }) {
 
             {bodyState === "ready" && Body ? <Body /> :
              bodyState === "loading" ? (
-              <p style={{ color: "var(--ink-3)", fontStyle: "italic" }}>Loading…</p>
+              <BodySkeleton />
             ) : (
               <p style={{ color: "var(--ink-3)", fontStyle: "italic" }}>This article is coming soon.</p>
             )}

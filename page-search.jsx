@@ -106,6 +106,11 @@ function scoreEntry(entry, tokens) {
     if (best === 0) return 0; // this token matched nothing: drop the entry
     total += best;
   }
+  // The whole query IS the title ("trails", "firefall", "kit"): that entry
+  // is the answer, ahead of every article whose title merely starts with
+  // the word. This is what puts the Trails section first for /section/trailz
+  // on the 404 page, and the Kit page first for "kit" here.
+  if (entry.normalized.title === tokens.join(" ")) total += 5;
   return total;
 }
 
@@ -169,6 +174,97 @@ function buildIndex() {
   return entries;
 }
 
+// --- Nearest-word fallback ----------------------------------------------------
+
+// Every word that appears in a title, section name or slug. Deks are left
+// out on purpose: a correction should land on a name the reader could have
+// meant, and the deks would offer "the" and "before" as neighbours.
+function vocabulary(index) {
+  const words = new Set();
+  for (const entry of index) {
+    for (const key of ["title", "section", "slug"]) {
+      for (const w of (entry.normalized[key] || "").split(" ")) if (w.length >= 4) words.add(w);
+    }
+  }
+  return Array.from(words);
+}
+
+// Optimal string alignment distance (Levenshtein plus adjacent swaps), capped
+// so a hopeless pair stops early. Two edits cover the typos search logs show
+// ("lotery", "hetch hetchey", "mariposia"); a swap covers "yoesmite".
+function editDistance(a, b, max) {
+  if (Math.abs(a.length - b.length) > max) return max + 1;
+  const prev2 = [], prev = [], cur = [];
+  for (let j = 0; j <= b.length; j++) prev[j] = j;
+  for (let i = 1; i <= a.length; i++) {
+    cur[0] = i;
+    let rowMin = i;
+    for (let j = 1; j <= b.length; j++) {
+      const cost = a[i - 1] === b[j - 1] ? 0 : 1;
+      let v = Math.min(prev[j] + 1, cur[j - 1] + 1, prev[j - 1] + cost);
+      if (i > 1 && j > 1 && a[i - 1] === b[j - 2] && a[i - 2] === b[j - 1]) v = Math.min(v, prev2[j - 2] + 1);
+      cur[j] = v;
+      if (v < rowMin) rowMin = v;
+    }
+    if (rowMin > max) return max + 1;
+    for (let j = 0; j <= b.length; j++) { prev2[j] = prev[j]; prev[j] = cur[j]; }
+  }
+  return prev[b.length];
+}
+
+// A token that matches nothing anywhere in the index is replaced by its
+// nearest vocabulary word, when one is close enough: one edit for a short
+// word, two for five letters and up. Returns the corrected token list and
+// whether anything changed, so the page can say "showing results for".
+function correctTokens(index, vocab, tokens) {
+  let changed = false;
+  const out = tokens.map((token) => {
+    if (token.length < 4) return token;
+    if (index.some((entry) => scoreEntry(entry, [token]) > 0)) return token;
+    const max = token.length >= 5 ? 2 : 1;
+    // Nearest first; among equally near words ("trail" and "trails" for
+    // "trailz"), the one more of the catalog answers to.
+    const hits = (w) => index.reduce((n, entry) => n + (scoreEntry(entry, [w]) > 0 ? 1 : 0), 0);
+    let best = null, bestD = max + 1, bestHits = 0;
+    for (const w of vocab) {
+      const d = editDistance(token, w, max);
+      if (d > max) continue;
+      const h = d <= bestD ? hits(w) : 0;
+      if (d < bestD || (d === bestD && h > bestHits)) { best = w; bestD = d; bestHits = h; }
+    }
+    if (best) { changed = true; return best; }
+    return token;
+  });
+  return { tokens: out, changed };
+}
+
+// The matcher, exposed for the rest of the site. The not-found page calls it
+// with the dead path so it can offer the closest real pages; anything else
+// that wants the site's own idea of "closest to these words" should go
+// through here rather than reimplementing the weights. Results carry the
+// same shape the page renders (key, title, dek, kind, path).
+let sharedIndex = null;
+let sharedVocab = null;
+function searchCatalog(query, { fuzzy = false, limit = 60 } = {}) {
+  if (!sharedIndex) { sharedIndex = buildIndex(); sharedVocab = vocabulary(sharedIndex); }
+  let tokens = tokenize(query);
+  if (tokens.length === 0) return [];
+  if (fuzzy) tokens = correctTokens(sharedIndex, sharedVocab, tokens).tokens;
+  return sharedIndex
+    .map((entry) => ({ entry, score: scoreEntry(entry, tokens) }))
+    .filter((r) => r.score > 0)
+    .sort((a, b) => b.score - a.score || (b.entry.sortDate || "").localeCompare(a.entry.sortDate || ""))
+    .slice(0, limit)
+    .map(({ entry }) => ({
+      key: entry.key,
+      path: entry.path || null,
+      title: entry.type === "article" ? entry.article.title : entry.title,
+      dek: entry.type === "article" ? (entry.article.seoDek || entry.article.dek) : entry.dek,
+      kind: entry.type === "article" ? "Article" : entry.kind,
+    }));
+}
+window.searchCatalog = searchCatalog;
+
 // --- Result rendering -------------------------------------------------------
 
 // Bold the matched runs so a reader can see WHY a result came back. Splits on
@@ -229,7 +325,16 @@ function SearchPage({ go }) {
 
   // Built once: the catalog is static for the life of the page.
   const index = useMemo(buildIndex, []);
-  const tokens = useMemo(() => tokenize(query), [query]);
+  const vocab = useMemo(() => vocabulary(index), [index]);
+  const typed = useMemo(() => tokenize(query), [query]);
+
+  // A word that matches nothing is swapped for its nearest neighbour in the
+  // catalog's own vocabulary (correctTokens), so "half dome lotery" finds
+  // the lottery piece instead of an empty page, and the status line says
+  // which word was read differently. Only whole misses are corrected: a
+  // word that matches anything at all is taken as meant.
+  const corrected = useMemo(() => correctTokens(index, vocab, typed), [index, vocab, typed]);
+  const tokens = corrected.tokens;
 
   const results = useMemo(() => {
     if (tokens.length === 0) return [];
@@ -259,10 +364,44 @@ function SearchPage({ go }) {
   // the reader has seen them, and after an SPA navigation app.jsx has just
   // put focus on <main> so the new page is announced; stealing it here on a
   // touch device silences that for no gain.
+  // The "/" shortcut (app.jsx) arrives with data-search-focus set on <html>:
+  // an explicit keystroke asked for the field, on any device.
+  // Deferred a frame: after an SPA navigation app.jsx parks focus on <main>
+  // from an effect that runs after this one (parent effects run last), and
+  // a synchronous focus here was being taken straight back.
   useEffect(() => {
+    const asked = document.documentElement.hasAttribute("data-search-focus");
+    document.documentElement.removeAttribute("data-search-focus");
     const fine = window.matchMedia && window.matchMedia("(hover: hover) and (pointer: fine)").matches;
-    if (fine && inputRef.current) inputRef.current.focus();
+    if (!asked && !fine) return;
+    const raf = requestAnimationFrame(() => { if (inputRef.current) inputRef.current.focus(); });
+    return () => cancelAnimationFrame(raf);
   }, []);
+
+  // Arrow keys walk the results. Down from the field lands on the first
+  // result; Up and Down move between them; Up from the first, or Escape
+  // anywhere in the list, returns to the field with the query intact. The
+  // results are ordinary links, so Enter is the browser's own follow.
+  const resultsRef = useRef(null);
+  const resultLinks = () =>
+    resultsRef.current
+      ? Array.from(resultsRef.current.querySelectorAll("a.search-result, .search-articles a.card"))
+      : [];
+  const onFieldKey = (e) => {
+    if (e.key !== "ArrowDown") return;
+    const first = resultLinks()[0];
+    if (first) { e.preventDefault(); first.focus(); }
+  };
+  const onResultsKey = (e) => {
+    if (e.key !== "ArrowDown" && e.key !== "ArrowUp" && e.key !== "Escape") return;
+    const links = resultLinks();
+    const i = links.indexOf(document.activeElement);
+    if (i === -1) return;
+    e.preventDefault();
+    if (e.key === "Escape" || (e.key === "ArrowUp" && i === 0)) { inputRef.current && inputRef.current.focus(); return; }
+    const next = links[e.key === "ArrowDown" ? Math.min(i + 1, links.length - 1) : i - 1];
+    if (next) next.focus();
+  };
 
   const clear = useCallback(() => {
     setQuery("");
@@ -304,6 +443,8 @@ function SearchPage({ go }) {
               autoComplete="off"
               placeholder="Half Dome permits, firefall, when to see the falls…"
               onChange={(e) => setQuery(e.target.value)}
+              onKeyDown={onFieldKey}
+              aria-keyshortcuts="/"
             />
             {query && (
               <button type="button" className="search-form__clear" onClick={clear}>
@@ -311,6 +452,9 @@ function SearchPage({ go }) {
               </button>
             )}
           </div>
+          <p className="kbd-hint">
+            <kbd>/</kbd> opens search from any page. <kbd>↓</kbd> <kbd>↑</kbd> move through the results, <kbd>Esc</kbd> returns to the field.
+          </p>
         </form>
 
         <div className="search-status" role="status" aria-live="polite">
@@ -318,11 +462,13 @@ function SearchPage({ go }) {
             ? ""
             : results.length === 0
               ? `Nothing matches "${query}".`
-              : `${results.length} result${results.length === 1 ? "" : "s"} for "${query}".`}
+              : corrected.changed
+                ? `${results.length} result${results.length === 1 ? "" : "s"} for "${tokens.join(" ")}" (read from "${query}").`
+                : `${results.length} result${results.length === 1 ? "" : "s"} for "${query}".`}
         </div>
       </div>
 
-      <div className="wrap" style={{ paddingTop: 24, paddingBottom: 96 }}>
+      <div className="wrap" style={{ paddingTop: 24, paddingBottom: 96 }} ref={resultsRef} onKeyDown={onResultsKey}>
         {tokens.length === 0 && (
           <div className="search-browse">
             <h2 className="search-browse__head">Or start from a section</h2>

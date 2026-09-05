@@ -1,3 +1,34 @@
+var SKELETON_LINES = [[100, 96, 98, 62], [100, 94, 97, 100, 40], "head", [98, 100, 93, 71]];
+function BodySkeleton() {
+  return React.createElement("div", {
+    className: "skeleton",
+    role: "status",
+    "aria-live": "polite",
+    "aria-label": "Loading the article"
+  }, SKELETON_LINES.map((para, i) => para === "head" ? React.createElement("span", {
+    key: i,
+    className: "skeleton__line skeleton__line--head"
+  }) : para.map((w, j) => React.createElement("span", {
+    key: `${i}-${j}`,
+    className: `skeleton__line${j === para.length - 1 ? " skeleton__line--gap" : ""}`,
+    style: {
+      width: `${w}%`
+    }
+  }))));
+}
+function largestSource(img) {
+  var set = img.getAttribute("srcset") || "";
+  var best = null,
+    bestW = 0;
+  for (var part of set.split(",")) {
+    var m = part.trim().match(/^(\S+)\s+(\d+)w$/);
+    if (m && Number(m[2]) > bestW) {
+      bestW = Number(m[2]);
+      best = m[1];
+    }
+  }
+  return best || img.currentSrc || img.src;
+}
 function formatIsoDate(iso) {
   var d = new Date(iso + "T00:00:00");
   if (Number.isNaN(d.getTime())) return null;
@@ -105,6 +136,61 @@ function ArticlePage({
   React.useEffect(() => {
     if (article && article.image) preloadResponsive(article.image, SIZES_HERO);
   }, [slug]);
+  var articleRef = React.useRef(null);
+  var [lightbox, setLightbox] = React.useState(null);
+  React.useEffect(() => {
+    var root = articleRef.current;
+    if (!root) return;
+    var plates = Array.from(root.querySelectorAll(".placeholder--photo")).filter(el => !el.closest("a") && el.querySelector("img"));
+    plates.forEach(el => {
+      el.classList.add("is-zoomable");
+      el.setAttribute("tabindex", "0");
+      el.setAttribute("role", "button");
+      var alt = (el.querySelector("img") || {}).alt || "";
+      el.setAttribute("aria-label", alt ? `Enlarge: ${alt}` : "Enlarge this photo");
+    });
+    var open = el => {
+      var img = el.querySelector("img");
+      if (!img) return;
+      var credit = el.querySelector(".placeholder__credit");
+      setLightbox({
+        src: largestSource(img),
+        alt: img.alt || "",
+        caption: [img.alt, credit && credit.textContent].filter(Boolean).join(" · ")
+      });
+      if (window.track) window.track("plate_zoom", {
+        slug
+      });
+    };
+    var onClick = e => {
+      var el = e.target.closest && e.target.closest(".placeholder.is-zoomable");
+      if (el && root.contains(el)) {
+        e.preventDefault();
+        open(el);
+      }
+    };
+    var onKey = e => {
+      if (e.key !== "Enter" && e.key !== " ") return;
+      var el = e.target.closest && e.target.closest(".placeholder.is-zoomable");
+      if (el && root.contains(el)) {
+        e.preventDefault();
+        open(el);
+      }
+    };
+    root.addEventListener("click", onClick);
+    root.addEventListener("keydown", onKey);
+    return () => {
+      root.removeEventListener("click", onClick);
+      root.removeEventListener("keydown", onKey);
+      plates.forEach(el => {
+        el.classList.remove("is-zoomable");
+        el.removeAttribute("tabindex");
+        el.removeAttribute("role");
+        el.removeAttribute("aria-label");
+      });
+    };
+  }, [bodyState, slug, Body]);
+  var closeLightbox = React.useCallback(() => setLightbox(null), []);
   var barRef = React.useRef(null);
   React.useEffect(() => {
     if (bodyState !== "ready") return;
@@ -211,7 +297,14 @@ function ArticlePage({
   }, React.createElement("div", {
     className: "readbar__fill",
     ref: barRef
-  })), React.createElement("article", null, React.createElement("header", {
+  })), lightbox && React.createElement(MapLightbox, {
+    src: lightbox.src,
+    alt: lightbox.alt,
+    caption: lightbox.caption,
+    onClose: closeLightbox
+  }), React.createElement("article", {
+    ref: articleRef
+  }, React.createElement("header", {
     className: "wrap wrap--narrow",
     style: {
       paddingTop: 64,
@@ -401,12 +494,7 @@ function ArticlePage({
     className: "label"
   }, "Section"), React.createElement("span", {
     className: "val"
-  }, cat.label))), bodyState === "ready" && Body ? React.createElement(Body, null) : bodyState === "loading" ? React.createElement("p", {
-    style: {
-      color: "var(--ink-3)",
-      fontStyle: "italic"
-    }
-  }, "Loading…") : React.createElement("p", {
+  }, cat.label))), bodyState === "ready" && Body ? React.createElement(Body, null) : bodyState === "loading" ? React.createElement(BodySkeleton, null) : React.createElement("p", {
     style: {
       color: "var(--ink-3)",
       fontStyle: "italic"

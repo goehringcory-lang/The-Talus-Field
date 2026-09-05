@@ -554,6 +554,33 @@ function Header({
     setMenuOpen(false);
     setMenuQuery("");
   };
+  var mastheadRef = React.useRef(null);
+  React.useEffect(() => {
+    var lastY = window.scrollY;
+    var raf = 0;
+    var apply = hidden => {
+      var el = mastheadRef.current;
+      if (el) el.classList.toggle("is-hidden", hidden);
+    };
+    var measure = () => {
+      raf = 0;
+      var y = window.scrollY;
+      var dy = y - lastY;
+      if (menuOpen || y < 80) apply(false);else if (dy > 6 && y > 160) apply(true);else if (dy < -6) apply(false);
+      if (Math.abs(dy) > 6) lastY = y;
+    };
+    var onScroll = () => {
+      if (!raf) raf = requestAnimationFrame(measure);
+    };
+    measure();
+    window.addEventListener("scroll", onScroll, {
+      passive: true
+    });
+    return () => {
+      if (raf) cancelAnimationFrame(raf);
+      window.removeEventListener("scroll", onScroll);
+    };
+  }, [menuOpen]);
   var submitMenuSearch = e => {
     e.preventDefault();
     var q = menuQuery.trim();
@@ -617,7 +644,8 @@ function Header({
     className: "skip-link",
     href: "#main"
   }, "Skip to content"), React.createElement("header", {
-    className: "masthead"
+    className: "masthead",
+    ref: mastheadRef
   }, React.createElement("div", {
     className: "masthead__main"
   }, React.createElement("a", {
@@ -864,6 +892,65 @@ function BottomNav({
       go(t.key);
     }
   }, t.label)));
+}
+function BackToTop({
+  current
+}) {
+  var ref = React.useRef(null);
+  React.useEffect(() => {
+    if (current === "map" || current === "guide") return;
+    var raf = 0;
+    var measure = () => {
+      raf = 0;
+      var el = ref.current;
+      if (el) el.classList.toggle("is-visible", window.scrollY > window.innerHeight * 2);
+    };
+    var onScroll = () => {
+      if (!raf) raf = requestAnimationFrame(measure);
+    };
+    measure();
+    window.addEventListener("scroll", onScroll, {
+      passive: true
+    });
+    window.addEventListener("resize", onScroll);
+    return () => {
+      if (raf) cancelAnimationFrame(raf);
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
+  }, [current]);
+  if (current === "map" || current === "guide") return null;
+  var toTop = () => {
+    var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    window.scrollTo({
+      top: 0,
+      behavior: reduce ? "auto" : "smooth"
+    });
+    var main = document.getElementById("main");
+    if (main) main.focus({
+      preventScroll: true
+    });
+  };
+  return React.createElement("button", {
+    type: "button",
+    className: "totop",
+    ref: ref,
+    onClick: toTop,
+    "aria-label": "Back to top",
+    title: "Back to top"
+  }, React.createElement("svg", {
+    viewBox: "0 0 16 16",
+    fill: "none",
+    stroke: "currentColor",
+    strokeWidth: "1.6",
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    "aria-hidden": "true"
+  }, React.createElement("path", {
+    d: "M8 13V3"
+  }), React.createElement("path", {
+    d: "M3.5 7.5 8 3l4.5 4.5"
+  })));
 }
 function Footer({
   go
@@ -2321,6 +2408,7 @@ Object.assign(window, {
   MotifTrees,
   Header,
   Footer,
+  BackToTop,
   ArticleCard,
   NewsletterInline,
   ExitIntentNewsletter,

@@ -199,6 +199,26 @@ function prefetchAllModules() {
   });
 }
 
+// Pending-navigation signal. A navigation awaits its bundle before the route
+// commits, and on a warm session that is instant, but on a cold one over a
+// slow link the reader has clicked, the URL has changed, and nothing on the
+// page moves. After 150ms of that, <html data-nav-pending> lights the thin
+// sweep at the top of the viewport (.navprogress in styles.css); anything
+// faster never shows it, so the bar reads as "still fetching" and never as
+// a flicker on every click. One timer, shared: a second navigation before
+// the first resolves simply keeps the bar up.
+let navPendingTimer = 0;
+function markNavPending(pending) {
+  clearTimeout(navPendingTimer);
+  if (pending) {
+    navPendingTimer = setTimeout(() => {
+      document.documentElement.setAttribute("data-nav-pending", "");
+    }, 150);
+  } else {
+    document.documentElement.removeAttribute("data-nav-pending");
+  }
+}
+
 // Map old hash URLs (#a:slug, #cat:slug, #foo) to the new route keys. Only
 // hashes that name a real route are rewritten: rewriting a real in-page
 // anchor on / once turned the homepage's own hero CTA into a 404 on reload.
@@ -946,7 +966,50 @@ function applySeo(route) {
 // sections; buildSeo pairs it with a noindex robots tag, and edge/seo.js
 // serves the same routes with a real 404 status for crawlers.
 // ============================================================
+// The path the reader typed or followed, turned into a search query. The
+// route prefixes carry no signal ("articles" would match every entry), and a
+// trailing file extension or a stray query string is noise, not intent.
+function notFoundQuery(pathname) {
+  return (pathname || "")
+    .toLowerCase()
+    .replace(/\.[a-z0-9]{2,5}$/, "")
+    .split("/")
+    .filter((seg) => seg && !/^(articles?|sections?|section|index|page|posts?|blog)$/.test(seg))
+    .join(" ")
+    .replace(/[^a-z0-9]+/g, " ")
+    .trim();
+}
+
 function NotFoundPage({ go }) {
+  // "Did you mean": the dead path is scored against the catalog by the same
+  // matcher /search uses (window.searchCatalog, registered by the search
+  // bundle, which is loaded here on demand rather than duplicating its
+  // scoring and its page table). A typo one letter off still resolves,
+  // because searchCatalog falls back to nearest-word matching when a token
+  // finds nothing exact. An old link to a retired slug is the common case
+  // this page sees, and three of its closest neighbours answer it better
+  // than four generic pointers do.
+  const [suggestions, setSuggestions] = useState(null);
+  const query = notFoundQuery(window.location.pathname);
+  useEffect(() => {
+    let cancelled = false;
+    if (!query) { setSuggestions([]); return; }
+    ensureRoute("search")
+      .then(() => {
+        if (cancelled || typeof window.searchCatalog !== "function") return;
+        const found = window.searchCatalog(query, { fuzzy: true, limit: 6 });
+        // A dead /section/ path is asking for a section: list those first.
+        const wantSection = /^\/section\//.test(window.location.pathname);
+        const ordered = wantSection
+          ? [...found.filter((r) => r.kind === "Section"), ...found.filter((r) => r.kind !== "Section")]
+          : found;
+        setSuggestions(ordered.slice(0, 4));
+      })
+      .catch(() => { if (!cancelled) setSuggestions([]); });
+    return () => { cancelled = true; };
+  }, [query]);
+
+  const hrefFor = (r) => (r.path ? r.path : routeToPath(r.key));
   return (
     <div className="page">
       <div className="page-head">
@@ -960,10 +1023,38 @@ function NotFoundPage({ go }) {
         </div>
       </div>
       <div className="wrap wrap--narrow" style={{ paddingBottom: 64 }}>
+        <p className="notfound__path">
+          You asked for <code>{window.location.pathname}</code>
+        </p>
+        {suggestions && suggestions.length > 0 && (
+          <div className="notfound__suggest">
+            <h2>Did you mean</h2>
+            <ul>
+              {suggestions.map((r) => (
+                <li key={r.key}>
+                  <a
+                    href={hrefFor(r)}
+                    onClick={(e) => {
+                      if (r.path) return;
+                      e.preventDefault();
+                      if (window.track) window.track("cta_click", { location: "notfound_suggest", target: r.key });
+                      go(r.key);
+                    }}
+                  >{r.title}</a>
+                  <span className="notfound__kind">{r.kind}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
         <p>
           Good places to reorient:{" "}
           <a href="/explore" onClick={(e) => { e.preventDefault(); go("explore"); }}>the site index</a>,{" "}
-          <a href="/search" onClick={(e) => { e.preventDefault(); go("search"); }}>search</a>,{" "}
+          <a href={query ? `/search?q=${encodeURIComponent(query)}` : "/search"} onClick={(e) => {
+            e.preventDefault();
+            if (query) window.history.pushState({ route: "search" }, "", `/search?q=${encodeURIComponent(query)}`);
+            go("search");
+          }}>search</a>,{" "}
           <a href="/planning" onClick={(e) => { e.preventDefault(); go("planning"); }}>the planning guide</a>, or{" "}
           <a href="/map" onClick={(e) => { e.preventDefault(); go("map"); }}>the trip planner map</a>.
         </p>
@@ -1098,9 +1189,11 @@ function App() {
     const onPop = () => {
       const r = pathToRoute(window.location.pathname);
       const token = ++navTokenRef.current;
+      markNavPending(true);
       ensureRoute(r)
         .then(() => {
           if (token !== navTokenRef.current) return;
+          markNavPending(false);
           navigatedRef.current = true;
           document.documentElement.removeAttribute("data-boot"); // see leaveBoot
           setRoute(r);
@@ -1143,9 +1236,11 @@ function App() {
     // (usually zero) beat the target bundle takes to arrive. A fetch failure
     // falls back to a full navigation, which retries everything.
     const token = ++navTokenRef.current;
+    markNavPending(true);
     ensureRoute(r)
       .then(() => {
         if (token !== navTokenRef.current) return;
+        markNavPending(false);
         navigatedRef.current = true;
         leaveBoot();
         setRoute(r);
@@ -1155,6 +1250,30 @@ function App() {
         if (token === navTokenRef.current) window.location.assign(path);
       });
   };
+
+  // "/" opens search from anywhere on the site, the convention readers of
+  // GitHub, Wikipedia and most documentation already carry in their hands.
+  // Never while typing (an input, a textarea, a select, contentEditable),
+  // never with a modifier held, and never over an open dialog, where the key
+  // belongs to whatever is in front. On /search it simply focuses the field;
+  // elsewhere it navigates there and asks the page to focus on mount, through
+  // a data attribute SearchPage consumes, so the mount-time focus rule (which
+  // skips touch devices) does not get in the way of an explicit keystroke.
+  useEffect(() => {
+    const onKey = (e) => {
+      if (e.key !== "/" || e.metaKey || e.ctrlKey || e.altKey || e.defaultPrevented) return;
+      const t = e.target;
+      if (t && (t.isContentEditable || /^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName))) return;
+      if (document.querySelector('[role="dialog"][aria-modal="true"]')) return;
+      e.preventDefault();
+      const field = document.getElementById("site-search");
+      if (field) { field.focus(); field.select(); return; }
+      document.documentElement.setAttribute("data-search-focus", "");
+      go("search");
+    };
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
+  }, []);
 
   // Tweaks
   const [tweaks, setTweak] = useTweaks(window.TWEAK_DEFAULTS);
@@ -1307,6 +1426,11 @@ function App() {
         {routeReady && <KeepGoing route={routeExists(route) ? route : "notfound"} go={go} />}
       </main>
       <Footer go={go} />
+      {/* Pending-navigation sweep (see markNavPending) and the back-to-top
+          control, both fixed overlays outside the keyed <main> so a route
+          change never remounts them mid-transition. */}
+      <div className="navprogress" aria-hidden="true" />
+      <window.BackToTop current={currentNav} />
       <ExitIntentNewsletter disabled={exitDisabled} />
 
       <TweaksPanel title="Tweaks">
