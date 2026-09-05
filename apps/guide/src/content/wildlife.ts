@@ -10,6 +10,13 @@
 // either); the full rules live in the bear-safety essentials topic, which
 // /wildlife links rather than duplicates.
 //
+// Every entry carries a photo since September 2026 (see the `photo` field):
+// public-domain or Creative Commons frames from Wikimedia Commons, pulled
+// through scripts/fetch-guide-photos.mjs (manifest slots `wildlife:<id>`) and
+// reviewed by eye for the field marks the text names. The photo shows the
+// species, not necessarily Yosemite: a clear bobcat from the Tahoe forest
+// identifies a bobcat better than a blurred one from the Valley.
+//
 // Facts were drawn from NPS Yosemite species pages and cross-checked at
 // authoring time (July 2026); anything uncertain was cut rather than hedged.
 // =============================================================================
@@ -33,6 +40,21 @@ export const WildlifeEntry = z.object({
   note: z.string(),
   // Present only where behavior around the animal matters.
   safety: z.string().optional(),
+  // One identification photo (September 2026). Optional in the schema so an
+  // entry can ship text-first while its photo is being sourced, but every
+  // entry in the seed carries one: the Commons search for the list was the
+  // gate, and a species with no license-safe photograph was cut from the list
+  // rather than left as the one card without a picture. The src must exist in
+  // apps/guide/public/photos/ (check-guide-photos.mjs fails on a dangling one)
+  // and carry a PHOTO_CREDITS entry, since most are CC BY and the credit under
+  // the plate is the attribution.
+  photo: z
+    .object({
+      src: z.string().regex(/^\/photos\/[a-z0-9-]+\.jpg$/),
+      // What the frame shows, for the reader who cannot see it.
+      alt: z.string(),
+    })
+    .optional(),
 })
 export type WildlifeEntryT = z.infer<typeof WildlifeEntry>
 
@@ -48,6 +70,7 @@ const seed: WildlifeEntryT[] = [
     id: 'black-bear',
     name: 'Black bear',
     latin: 'Ursus americanus',
+    photo: { src: '/photos/black-bear-roadside.jpg', alt: 'A cinnamon-brown black bear at a road edge beside autumn brush.' },
     kind: 'mammal',
     lookFor:
       'Large animal (100-350 lbs) with fur that ranges from black to brown or cinnamon, rounded ears, short curved claws visible on the front feet.',
@@ -62,6 +85,7 @@ const seed: WildlifeEntryT[] = [
     id: 'mule-deer',
     name: 'Mule deer',
     latin: 'Odocoileus hemionus',
+    photo: { src: '/photos/wildlife-mule-deer.jpg', alt: 'Mule deer looking straight at the camera from spring brush, its oversized ears standing up.' },
     kind: 'mammal',
     lookFor:
       'Moderate ungulate (100-200 lbs), gray-brown or reddish coat, unusually large ears, white tail with black tip.',
@@ -76,6 +100,7 @@ const seed: WildlifeEntryT[] = [
     id: 'coyote',
     name: 'Coyote',
     latin: 'Canis latrans',
+    photo: { src: '/photos/wildlife-coyote.jpg', alt: 'Coyote nosing through dry grass, showing the pointed muzzle and grizzled gray-russet coat.' },
     kind: 'mammal',
     lookFor:
       'Lean, dog-sized canine (25-35 lbs), grayish-russet fur, pointed muzzle, bushy tail held lower than a domestic dog\'s.',
@@ -88,6 +113,7 @@ const seed: WildlifeEntryT[] = [
     id: 'bobcat',
     name: 'Bobcat',
     latin: 'Lynx rufus',
+    photo: { src: '/photos/wildlife-bobcat.jpg', alt: 'Bobcat sitting in dry brush and facing the camera, spotted coat and tufted ears.' },
     kind: 'mammal',
     lookFor:
       'Cat-sized predator (15-25 lbs), tan to reddish-brown coat marked with dark spots, short tufted ears, stubby tail black on top and white underneath.',
@@ -100,6 +126,7 @@ const seed: WildlifeEntryT[] = [
     id: 'mountain-lion',
     name: 'Mountain lion',
     latin: 'Puma concolor',
+    photo: { src: '/photos/wildlife-mountain-lion.jpg', alt: 'Mountain lion standing on a rock ledge against a blue sky, uniformly tan with a pale muzzle.' },
     kind: 'mammal',
     lookFor:
       'Large, uniformly tan cat (65-180 lbs), long tail tipped in black, small rounded ears, lean facial profile.',
@@ -114,6 +141,7 @@ const seed: WildlifeEntryT[] = [
     id: 'yellow-bellied-marmot',
     name: 'Yellow-bellied marmot',
     latin: 'Marmota flaviventris',
+    photo: { src: '/photos/wildlife-yellow-bellied-marmot.jpg', alt: 'Yellow-bellied marmot sitting upright on a granite slab above a forested slope, orange underside showing.' },
     kind: 'mammal',
     lookFor:
       'Large ground squirrel (5-11 lbs), brown-yellow mottled fur, distinctly yellow-orange underside, loud sharp alarm whistle.',
@@ -126,6 +154,7 @@ const seed: WildlifeEntryT[] = [
     id: 'pika',
     name: 'American pika',
     latin: 'Ochotona princeps',
+    photo: { src: '/photos/wildlife-pika.jpg', alt: 'American pika perched on a lichen-spotted boulder, rounded ears and no visible tail.' },
     kind: 'mammal',
     lookFor:
       'Tiny rabbit-like animal (4-6 oz), gray fur, rounded ears, short legs, high-pitched nasal call more often heard than the animal seen.',
@@ -138,6 +167,7 @@ const seed: WildlifeEntryT[] = [
     id: 'california-ground-squirrel',
     name: 'California ground squirrel',
     latin: 'Otospermophilus beecheyi',
+    photo: { src: '/photos/wildlife-california-ground-squirrel.jpg', alt: 'California ground squirrel crouched on a rock, mottled gray-brown back and bushy tail.' },
     kind: 'mammal',
     lookFor:
       'Medium ground squirrel (10-24 oz), mottled gray-brown coat flecked with white, with a lighter patch across each shoulder.',
@@ -150,6 +180,7 @@ const seed: WildlifeEntryT[] = [
     id: 'golden-mantled-ground-squirrel',
     name: 'Golden-mantled ground squirrel',
     latin: 'Callospermophilus lateralis',
+    photo: { src: '/photos/wildlife-golden-mantled-ground-squirrel.jpg', alt: 'Golden-mantled ground squirrel on granite, a white stripe bordered in black down each side and no stripe through the face.' },
     kind: 'mammal',
     lookFor:
       'Smaller ground squirrel than the California ground squirrel (4-8 oz), reddish-brown head and shoulders, white and black stripes along the body. The face has no stripes, which is the reliable way to tell it apart from a chipmunk.',
@@ -162,6 +193,7 @@ const seed: WildlifeEntryT[] = [
     id: 'gray-fox',
     name: 'Gray fox',
     latin: 'Urocyon cinereoargenteus',
+    photo: { src: '/photos/wildlife-gray-fox.jpg', alt: 'Gray fox at close range, grizzled gray face with rust on the neck and behind the ears.' },
     kind: 'mammal',
     lookFor:
       'Small fox (7-13 lbs), salt-and-pepper gray coat with rusty flanks and neck, distinctive black stripe down the spine to the black-tipped tail.',
@@ -174,6 +206,7 @@ const seed: WildlifeEntryT[] = [
     id: 'stellers-jay',
     name: 'Steller\'s jay',
     latin: 'Cyanocitta stelleri',
+    photo: { src: '/photos/wildlife-stellers-jay.jpg', alt: 'Steller\'s jay on a mossy branch, black crested head over a deep blue body.' },
     kind: 'bird',
     lookFor:
       'Bright blue body with black head, upper back, and wings. Prominent crest on the crown that lowers when the bird is relaxed. Larger than a robin.',
@@ -186,6 +219,7 @@ const seed: WildlifeEntryT[] = [
     id: 'common-raven',
     name: 'Common raven',
     latin: 'Corvus corax',
+    photo: { src: '/photos/wildlife-common-raven.jpg', alt: 'Common raven standing in snow, shaggy throat feathers and heavy bill.' },
     kind: 'bird',
     lookFor:
       'Entirely black with a heavy, thick bill and shaggy throat feathers. Substantially larger than a crow. Wedge-shaped tail visible in flight distinguishes it from the fan-shaped tail of a crow.',
@@ -198,6 +232,7 @@ const seed: WildlifeEntryT[] = [
     id: 'acorn-woodpecker',
     name: 'Acorn woodpecker',
     latin: 'Melanerpes formicivorus',
+    photo: { src: '/photos/wildlife-acorn-woodpecker.jpg', alt: 'Acorn woodpecker on a branch holding an acorn, red cap and pale clown-face pattern.' },
     kind: 'bird',
     lookFor:
       'Black and white head pattern with a red crown (more extensive in males, reduced in females), black back, and white rump. Small to medium woodpecker with a boldly patterned face.',
@@ -210,6 +245,7 @@ const seed: WildlifeEntryT[] = [
     id: 'peregrine-falcon',
     name: 'Peregrine falcon',
     latin: 'Falco peregrinus',
+    photo: { src: '/photos/wildlife-peregrine-falcon.jpg', alt: 'Peregrine falcon in flight against blue sky, pointed wings and dark hood.' },
     kind: 'bird',
     lookFor:
       'Blue-gray upperparts, pale underparts finely barred with dark markings, and a bold black mustache mark below each eye on an otherwise pale face. Crow-sized, with long, pointed, swept-back wings built for speed.',
@@ -222,6 +258,7 @@ const seed: WildlifeEntryT[] = [
     id: 'american-dipper',
     name: 'American dipper',
     latin: 'Cinclus mexicanus',
+    photo: { src: '/photos/wildlife-american-dipper.jpg', alt: 'American dipper standing on a mossy rock beside rushing water, slate gray all over.' },
     kind: 'bird',
     lookFor:
       'Plain slate-gray body, stocky and short-tailed, somewhat smaller than a robin. Bobs constantly while perched on rocks. Found only in or at the edge of fast-moving water.',
@@ -234,6 +271,7 @@ const seed: WildlifeEntryT[] = [
     id: 'great-gray-owl',
     name: 'Great gray owl',
     latin: 'Strix nebulosa',
+    photo: { src: '/photos/wildlife-great-gray-owl.jpg', alt: 'Great gray owl perched in autumn aspens, large round facial disc and yellow eyes.' },
     kind: 'bird',
     lookFor:
       'Enormous facial disk with concentric gray rings, no ear tufts, and small yellow eyes visible at a distance. Much larger than a robin, with overall gray, mottled plumage.',
@@ -246,6 +284,7 @@ const seed: WildlifeEntryT[] = [
     id: 'clarks-nutcracker',
     name: 'Clark\'s nutcracker',
     latin: 'Nucifraga columbiana',
+    photo: { src: '/photos/wildlife-clarks-nutcracker.jpg', alt: 'Clark\'s nutcracker atop a pine, pale gray body with black wings and white tail patches.' },
     kind: 'bird',
     lookFor:
       'Light gray body with contrasting black wings and white wing patches visible both perched and in flight. Jay-sized, stocky build with a harsh, loud call.',
@@ -258,6 +297,7 @@ const seed: WildlifeEntryT[] = [
     id: 'mountain-chickadee',
     name: 'Mountain chickadee',
     latin: 'Poecile gambeli',
+    photo: { src: '/photos/wildlife-mountain-chickadee.jpg', alt: 'Mountain chickadee on snow, black cap split by a white eyebrow stripe.' },
     kind: 'bird',
     lookFor:
       'Gray back, white cheeks, black cap and bib, and a thin white eyebrow line above the eye, the field mark that separates it from the black-capped chickadee. Small, compact, and acrobatic.',
@@ -270,6 +310,7 @@ const seed: WildlifeEntryT[] = [
     id: 'western-tanager',
     name: 'Western tanager',
     latin: 'Piranga ludoviciana',
+    photo: { src: '/photos/wildlife-western-tanager.jpg', alt: 'Male western tanager among blossoms, yellow body, black wings and red-orange head.' },
     kind: 'bird',
     lookFor:
       'Males bright yellow with a black back, black wings, and a red face. Females duller yellow-green with darker wings. Medium-sized songbird.',
@@ -282,6 +323,7 @@ const seed: WildlifeEntryT[] = [
     id: 'red-tailed-hawk',
     name: 'Red-tailed hawk',
     latin: 'Buteo jamaicensis',
+    photo: { src: '/photos/wildlife-red-tailed-hawk.jpg', alt: 'Red-tailed hawk perched on a snag, brick-red tail showing below a dark brown back.' },
     kind: 'bird',
     lookFor:
       'Brown body with a rust-red tail visible when perched or soaring. Medium-sized hawk with a pale breast and a band of dark streaking across the belly.',
@@ -294,6 +336,7 @@ const seed: WildlifeEntryT[] = [
     id: 'giant-sequoia',
     name: 'Giant sequoia',
     latin: 'Sequoiadendron giganteum',
+    photo: { src: '/photos/wildlife-giant-sequoia.jpg', alt: 'Giant sequoia trunks in the Mariposa Grove, fluted cinnamon bark widening at the base.' },
     kind: 'tree',
     lookFor:
       'The massive diameter (the largest trunks exceed 20 feet across at the base), reddish-brown fibrous bark, and small awl-shaped needles that spiral tightly around the branchlets identify the world\'s largest tree by volume.',
@@ -306,6 +349,7 @@ const seed: WildlifeEntryT[] = [
     id: 'ponderosa-pine',
     name: 'Ponderosa pine',
     latin: 'Pinus ponderosa',
+    photo: { src: '/photos/wildlife-ponderosa-pine.jpg', alt: 'Ponderosa pine shoot with long needles in bundles of three and young purple cones.' },
     kind: 'tree',
     lookFor:
       'Puzzle-piece bark in yellow, orange, and brown patches, long needles in bundles of three, and large cones with sharp prickles that point outward (the reverse of Jeffrey pine\'s gentler, inward-curving prickles). The warm bark smells like vanilla or turpentine.',
@@ -318,6 +362,7 @@ const seed: WildlifeEntryT[] = [
     id: 'incense-cedar',
     name: 'Incense-cedar',
     latin: 'Calocedrus decurrens',
+    photo: { src: '/photos/wildlife-incense-cedar.jpg', alt: 'Incense cedar sapling with flat, scaled sprays of foliage against deeply furrowed reddish bark.' },
     kind: 'tree',
     lookFor:
       'Feathery, flat-sprayed foliage resembling fern fronds, reddish-brown bark peeling in long vertical strips, and small cones shaped like a duck\'s bill when open.',
@@ -330,6 +375,7 @@ const seed: WildlifeEntryT[] = [
     id: 'california-black-oak',
     name: 'California black oak',
     latin: 'Quercus kelloggii',
+    photo: { src: '/photos/wildlife-california-black-oak.jpg', alt: 'California black oak leaves, deeply lobed with bristle-tipped points.' },
     kind: 'tree',
     lookFor:
       'Deeply lobed leaves larger than any conifer needle, blackish bark furrowed into small blocks, and acorns roughly an inch long in shallow cups.',
@@ -342,6 +388,7 @@ const seed: WildlifeEntryT[] = [
     id: 'lodgepole-pine',
     name: 'Lodgepole pine',
     latin: 'Pinus contorta',
+    photo: { src: '/photos/wildlife-lodgepole-pine.jpg', alt: 'Lodgepole pine branch tip with short paired needles and small cones.' },
     kind: 'tree',
     lookFor:
       'Dense branching from base to crown forming a narrow columnar shape, short needles in tight pairs, and small cones that often persist on branches after opening.',
@@ -354,6 +401,7 @@ const seed: WildlifeEntryT[] = [
     id: 'quaking-aspen',
     name: 'Quaking aspen',
     latin: 'Populus tremuloides',
+    photo: { src: '/photos/wildlife-quaking-aspen.jpg', alt: 'Quaking aspen in autumn, white trunk and branches under a canopy of gold leaves.' },
     kind: 'tree',
     lookFor:
       'Smooth pale bark, round leaves on distinctly flattened petioles that quiver constantly in the breeze (a behavior that gives the tree its name), turning golden or orange in autumn.',
@@ -366,6 +414,7 @@ const seed: WildlifeEntryT[] = [
     id: 'pacific-dogwood',
     name: 'Pacific dogwood',
     latin: 'Cornus nuttallii',
+    photo: { src: '/photos/wildlife-pacific-dogwood.jpg', alt: 'Pacific dogwood in bloom, large white bracts around each small flower cluster.' },
     kind: 'tree',
     lookFor:
       'Large white bracts surrounding tiny flowers, opposite oval leaves with curved parallel veins, bright red berries in fall, and smooth gray bark.',
@@ -378,6 +427,7 @@ const seed: WildlifeEntryT[] = [
     id: 'jeffrey-pine',
     name: 'Jeffrey pine',
     latin: 'Pinus jeffreyi',
+    photo: { src: '/photos/wildlife-jeffrey-pine.jpg', alt: 'Mature Jeffrey pine with reddish-brown plated bark and a full rounded crown against blue sky.' },
     kind: 'tree',
     lookFor:
       'Long needles in bundles of three, large cones with prickles that curve inward and feel smooth in the hand (ponderosa\'s point outward and prick), bark more uniformly reddish-brown than ponderosa\'s, and a vanilla or pineapple scent when the bark is scratched.',
@@ -390,6 +440,7 @@ const seed: WildlifeEntryT[] = [
     id: 'northern-pacific-rattlesnake',
     name: 'Northern Pacific rattlesnake',
     latin: 'Crotalus oreganus',
+    photo: { src: '/photos/wildlife-northern-pacific-rattlesnake.jpg', alt: 'Northern Pacific rattlesnake coiled on dry ground, dark blotches and a raised rattle.' },
     kind: 'other',
     lookFor:
       'Heavy-bodied snake with a broad triangular head, dark blotches down a gray-brown or olive back, and a segmented rattle at the tail tip. Young snakes carry a single small button and can rattle only faintly.',
@@ -404,6 +455,7 @@ const seed: WildlifeEntryT[] = [
     id: 'western-fence-lizard',
     name: 'Western fence lizard',
     latin: 'Sceloporus occidentalis',
+    photo: { src: '/photos/wildlife-western-fence-lizard.jpg', alt: 'Western fence lizard clinging to a wooden post, spiny keeled scales down the back.' },
     kind: 'other',
     lookFor:
       'Gray or tan lizard smaller than your hand, with spiny, keeled scales down the back. Males show bright blue patches on the throat and belly, most visible when the lizard does a push-up display on a rock or log; the flash of blue during the display is the field mark.',
@@ -416,6 +468,7 @@ const seed: WildlifeEntryT[] = [
     id: 'pacific-chorus-frog',
     name: 'Pacific chorus frog',
     latin: 'Pseudacris regilla',
+    photo: { src: '/photos/wildlife-pacific-chorus-frog.jpg', alt: 'Pacific chorus frog in grass, brown with a dark stripe running through the eye.' },
     kind: 'other',
     lookFor:
       'Thumb-sized frog with a dark stripe running through each eye and small round toe pads on slender legs. Color ranges from tan to green to brown and can shift with temperature and humidity.',
@@ -428,6 +481,7 @@ const seed: WildlifeEntryT[] = [
     id: 'sierra-newt',
     name: 'Sierra newt',
     latin: 'Taricha sierrae',
+    photo: { src: '/photos/wildlife-sierra-newt.jpg', alt: 'Sierra newt among pine needles, warty brown back and orange belly.' },
     kind: 'other',
     lookFor:
       'Hand-length salamander with rough, warty brown or olive skin above and an orange to red belly that contrasts sharply with the dark back.',
