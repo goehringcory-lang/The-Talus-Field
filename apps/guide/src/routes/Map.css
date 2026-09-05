@@ -846,3 +846,110 @@
   border: 3px solid #f5efe0;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
 }
+
+/* --- September 2026 map pass: glyph marks, region jumps, zoom declutter ---- */
+
+/* The kind's own glyph in the chip row and the legend, cropped to the pin's
+ * circle, so the row shows the mark the reader will meet on the map. */
+.map-kindmark {
+  display: inline-flex;
+  width: 18px;
+  height: 18px;
+  flex: 0 0 auto;
+  margin-right: 5px;
+  vertical-align: middle;
+  line-height: 0;
+}
+.map-kindmark svg {
+  width: 18px;
+  height: 18px;
+}
+.map-filterbar__label {
+  font-weight: 600;
+}
+
+/* Region quick-jump row under the chips: small text buttons, one line, no
+ * chrome of their own, because the chips above already carry the weight. */
+.map-jump {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  margin-top: 6px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  font-family: var(--mono, var(--sans));
+  font-size: 11px;
+  letter-spacing: 0.04em;
+}
+.map-jump::-webkit-scrollbar {
+  display: none;
+}
+.map-jump__label {
+  color: var(--ink-3);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 10px;
+  margin-right: 6px;
+  flex: 0 0 auto;
+}
+.map-jump__btn {
+  flex: 0 0 auto;
+  background: none;
+  border: 0;
+  padding: 6px 8px;
+  min-height: 30px;
+  font: inherit;
+  color: var(--moss);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: color-mix(in oklab, var(--moss) 40%, transparent);
+  cursor: pointer;
+  border-radius: 3px;
+}
+@media (hover: hover) {
+  .map-jump__btn:hover {
+    color: var(--ink);
+    text-decoration-color: currentColor;
+  }
+}
+
+/* Zoom declutter. Minor kinds (parking, shuttle stops, picnic areas,
+ * services) hide below driving zoom on the "All" view; a pressed kind chip
+ * (data-kinds="some") shows everything the chip promised at any zoom. The
+ * hint below the map says which pins are waiting. */
+.map-page__map[data-zoom-band='far'][data-kinds='all'] .map-pin--minor {
+  display: none;
+}
+.map-zoom-hint {
+  position: absolute;
+  left: 50%;
+  bottom: 34px;
+  transform: translateX(-50%);
+  z-index: 8;
+  margin: 0;
+  max-width: calc(100% - 96px);
+  padding: 5px 10px;
+  background: color-mix(in oklab, var(--paper) 90%, transparent);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border: 1px solid var(--rule-soft);
+  border-radius: var(--radius);
+  font-family: var(--sans);
+  font-size: 11px;
+  line-height: 1.35;
+  color: var(--ink-2);
+  text-align: center;
+  pointer-events: none;
+}
+@media (max-width: 720px) {
+  /* The points pane docks to the bottom edge on phones; sit above its handle. */
+  .map-zoom-hint {
+    bottom: 68px;
+  }
+}
+
+/* Landmark pins mark a thing you look at: drawn slightly lighter so a wall
+ * does not out-shout the turnout beneath it. */
+.map-pin--landmark {
+  opacity: 0.88;
+}

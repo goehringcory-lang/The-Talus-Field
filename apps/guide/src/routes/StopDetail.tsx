@@ -132,8 +132,11 @@ export default function StopDetail() {
   // On-device joins: hikes starting at this stop, and the closest parking or
   // campground pins for the day the stop's own lot is full.
   const hikesHere = HIKES.filter((h) => h.stopId === stop.id)
+  // Parking and campgrounds only: the map's infrastructure layer (shuttle
+  // stops, picnic areas, landmarks) answers a different question.
   const nearbyAmenities = stop.coord
-    ? AMENITIES.map((a) => ({ amenity: a, miles: haversineMiles(stop.coord!, a.coord) }))
+    ? AMENITIES.filter((a) => a.kind === 'parking' || a.kind === 'camping')
+        .map((a) => ({ amenity: a, miles: haversineMiles(stop.coord!, a.coord) }))
         .filter((entry) => entry.miles <= NEARBY_AMENITY_MILES)
         .sort((a, b) => a.miles - b.miles)
         .slice(0, NEARBY_AMENITY_MAX)
