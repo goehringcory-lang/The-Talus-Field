@@ -47,6 +47,7 @@ function PlanningGuide({
   var [jumped, setJumped] = useStatePg(false);
   var matches = window.filterArticlesByIntent(window.ARTICLES, filters.value);
   var filtering = filters.count > 0;
+  var listing = filtering || filters.browse;
   useEffectPg(() => {
     if (!jumped) return;
     setJumped(false);
@@ -124,10 +125,12 @@ function PlanningGuide({
     onToggle: filters.toggle,
     onClear: filters.clear,
     onClearMonth: filters.clearMonth,
+    onToggleBrowse: filters.toggleBrowse,
+    browse: filters.browse,
     count: filters.count,
     resultCount: matches.length,
     note: "Drawn from the whole archive, not only the five parts below."
-  })), filtering ? React.createElement("div", {
+  })), listing ? React.createElement("div", {
     className: "wrap",
     style: {
       paddingTop: 40,
@@ -169,7 +172,7 @@ function PlanningGuide({
     type: "button",
     className: "linkish",
     onClick: filters.clear
-  }, "Clear the filters to read the guide in order →"))) : React.createElement("div", {
+  }, filtering ? "Clear the filters to read the guide in order →" : "Back to the five-part guide →"))) : React.createElement("div", {
     className: "wrap",
     style: {
       paddingTop: 56

@@ -310,6 +310,59 @@ for (const label of seriesLabels) {
   }
 }
 
+// ---- /planning reaches the whole catalog -----------------------------------
+//
+// The Planning Guide is the site's front door for readers who do not already
+// know which article answers their question, and for most of its life it could
+// not show them most of the site: the five parts curate about a third of the
+// catalog, and the chips can only reach an article that carries the tag being
+// asked for, so an article with an empty facet vanished the moment a chip in
+// that facet came on, and the one article declared in INTENT_NO_TAGS had no
+// chip that could ever find it. The "Every entry" switch closes that. This
+// section asserts it stays closed:
+//
+//   - the empty selection returns the WHOLE catalog, so the browse list really
+//     is every article rather than "every tagged article" (a future change that
+//     made matchesIntent require a tag would pass every other check here)
+//   - the switch is still wired through both files, since deleting either half
+//     silently strands the same articles again
+
+const emptySelection = { stage: [], who: [], topic: [], month: "" };
+const browseList = w.filterArticlesByIntent(articles, emptySelection);
+if (browseList.length !== articles.length) {
+  const missing = articles.filter((a) => !browseList.some((b) => b.slug === a.slug)).map((a) => a.slug);
+  errors.push(
+    `the unfiltered list on /planning returns ${browseList.length} of ${articles.length} articles; ` +
+      `an empty selection must place no constraint (missing: ${missing.slice(0, 6).join(", ")})`
+  );
+}
+
+const intentSrc = readFileSync(path.join(ROOT, "intent.jsx"), "utf8");
+if (!/toggleBrowse/.test(intentSrc)) {
+  errors.push("intent.jsx no longer exposes toggleBrowse: /planning has no way to list the whole catalog");
+}
+if (!/onToggleBrowse=\{filters\.toggleBrowse\}/.test(pageSrc)) {
+  errors.push("page-planning-guide.jsx no longer passes onToggleBrowse to IntentFilters: the browse switch will not render");
+}
+
+// How much of the catalog only the browse list can reach. Not a failure (an
+// empty facet is a legitimate answer, and this is the number that switch
+// exists to serve), but it is the one figure that says how badly the page
+// needed it, so print it.
+const curatedSlugs = new Set(
+  [].concat(...(dataWindow.PLANNING_SERIES || []).map((s) => s.slugs))
+);
+const chipReachable = new Set();
+for (const facet of w.INTENT_FACETS) {
+  for (const opt of facet.options) {
+    const sel = { stage: [], who: [], topic: [], month: "" };
+    sel[facet.id] = [opt.id];
+    for (const a of w.filterArticlesByIntent(articles, sel)) chipReachable.add(a.slug);
+  }
+}
+const browseOnly = articles.filter((a) => !curatedSlugs.has(a.slug) && !chipReachable.has(a.slug));
+const uncurated = articles.filter((a) => !curatedSlugs.has(a.slug));
+
 // ---- report ----------------------------------------------------------------
 
 for (const wmsg of warnings) console.warn(`warn: ${wmsg}`);
@@ -321,4 +374,11 @@ if (errors.length) {
 console.log(
   `check-intent-tags: ${taggedSlugs.length} articles tagged across ${FACET_IDS.length} facets, ` +
     `${swept} trip-selector combinations produce a real plan, ${partLabels.length} guide parts resolve.`
+);
+console.log(
+  `check-intent-tags: /planning reaches all ${browseList.length} articles — ` +
+    `${curatedSlugs.size} in the five parts, ${uncurated.length} beyond them, ` +
+    `${browseOnly.length} reachable only by listing everything` +
+    (VERBOSE && browseOnly.length ? ` (${browseOnly.map((a) => a.slug).join(", ")})` : "") +
+    "."
 );

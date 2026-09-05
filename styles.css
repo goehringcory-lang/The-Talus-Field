@@ -6541,12 +6541,21 @@ main:focus { outline: none; }
   margin-bottom: 4px;
 }
 .intentf__row--month .intentf__chips { align-items: center; gap: 6px 12px; }
-.intentf__month-note {
+.intentf__month-note,
+.intentf__row-note {
   font-family: var(--serif);
   font-size: 15px;
   line-height: 1.4;
   color: var(--ink-2);
 }
+/* Every other row on this bar narrows; this one opens the whole archive, so it
+   sits under the facets behind a rule rather than reading as a fourth facet. */
+.intentf__row--all {
+  border-top: 1px solid var(--rule);
+  padding-top: 11px;
+  margin-top: 4px;
+}
+.intentf__row--all .intentf__chips { align-items: center; gap: 6px 12px; }
 
 /* ----- Trip selector ----- */
 .tripsel {

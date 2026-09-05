@@ -40,6 +40,11 @@ function readIntentFromUrl() {
     out[facet.id] = raw.filter((id) => facet.options.some((o) => o.id === id));
   });
   out.month = window.intentMonthOf({ month: (params.get("month") || "").trim() });
+  // `all=1` is the browse-everything switch, not a fourth facet: it places no
+  // constraint on anything, it decides whether the surface shows a list at all.
+  // It rides in the URL with the facets so "here is the whole archive, narrowed
+  // to families" is one shareable link.
+  out.browse = params.get("all") === "1";
   return out;
 }
 
@@ -52,6 +57,8 @@ function writeIntentToUrl(value) {
   });
   if (value.month) params.set("month", value.month);
   else params.delete("month");
+  if (value.browse) params.set("all", "1");
+  else params.delete("all");
   const qs = params.toString();
   window.history.replaceState(window.history.state, "", window.location.pathname + (qs ? "?" + qs : ""));
 }
@@ -107,8 +114,10 @@ function useIntentFilters() {
     });
   }, []);
 
+  // Clear is the way back to the curated guide, so it drops the browse switch
+  // along with the chips. Turning browse off on its own is the toggle below.
   const clear = useCallbackIn(() => {
-    const empty = { month: "" };
+    const empty = { month: "", browse: false };
     window.INTENT_FACETS.forEach((f) => { empty[f.id] = []; });
     setValue(empty);
     if (window.track) window.track("intent_filter", { facet: "all", option: "", action: "clear" });
@@ -122,24 +131,59 @@ function useIntentFilters() {
     if (window.track) window.track("intent_filter", { facet: "month", option: "", action: "off" });
   }, []);
 
+  // Show every entry the site has, with whatever chips are on still applied.
+  // This is what makes the whole catalog reachable from /planning: the curated
+  // parts show twenty-one of sixty-seven entries and the chips can only reach an
+  // article that carries a tag, so without this the rest of the archive was
+  // findable only by guessing the right combination.
+  const toggleBrowse = useCallbackIn(() => {
+    setValue((prev) => {
+      const next = Object.assign({}, prev, { browse: !prev.browse });
+      if (window.track) window.track("intent_filter", { facet: "all", option: "browse", action: next.browse ? "on" : "off" });
+      return next;
+    });
+  }, []);
+
   // Used by the trip selector's hand-off: replace the whole selection at once.
+  // The hand-off is a narrowing, so it leaves browse off; the chips it sets are
+  // what put the results on screen.
   const apply = useCallbackIn((intent) => {
-    const next = { month: window.intentMonthOf(intent) };
+    const next = { month: window.intentMonthOf(intent), browse: false };
     window.INTENT_FACETS.forEach((f) => { next[f.id] = (intent && intent[f.id]) || []; });
     setValue(next);
   }, []);
 
-  return { value, toggle, clear, clearMonth, apply, count: window.intentSelectionCount(value) };
+  return {
+    value,
+    toggle,
+    clear,
+    clearMonth,
+    apply,
+    toggleBrowse,
+    browse: !!value.browse,
+    count: window.intentSelectionCount(value),
+  };
 }
 
 // --- The filter bar ----------------------------------------------------------
 
-function IntentFilters({ articles, value, onToggle, onClear, onClearMonth, count, resultCount, note }) {
-  const counts = window.intentCounts(articles || window.ARTICLES, value);
+function IntentFilters({ articles, value, onToggle, onClear, onClearMonth, onToggleBrowse, browse, count, resultCount, note }) {
+  const pool = articles || window.ARTICLES;
+  const counts = window.intentCounts(pool, value);
   const selected = count > 0;
   const month = window.intentMonthOf(value);
   const hidden = month
-    ? (articles || window.ARTICLES).filter((a) => !window.articleFitsMonth(a.slug, month)).length
+    ? pool.filter((a) => !window.articleFitsMonth(a.slug, month)).length
+    : 0;
+  // The browse row is opt-in: /articles already lists the whole catalog under
+  // its chips, so only a surface that hides entries by default (the Planning
+  // Guide, with its five curated parts) passes a handler in.
+  const browsable = typeof onToggleBrowse === "function";
+  // Read off PLANNING_SERIES rather than written down: the parts own their copy
+  // but not their membership, so a number typed here would drift the first time
+  // a part gains an article.
+  const curated = browsable
+    ? new Set([].concat.apply([], (window.PLANNING_SERIES || []).map((p) => p.slugs))).size
     : 0;
 
   return (
@@ -149,7 +193,9 @@ function IntentFilters({ articles, value, onToggle, onClear, onClearMonth, count
         <span className="intentf__note">
           {selected
             ? `${resultCount} ${resultCount === 1 ? "entry" : "entries"} match${note ? ". " + note : "."}`
-            : "Pick a stage, a traveler, or a topic. Combine them freely."}
+            : browse
+              ? `Every entry in the archive, ${resultCount} in all, newest first.`
+              : "Pick a stage, a traveler, or a topic. Combine them freely."}
         </span>
         {selected && (
           <button type="button" className="intentf__clear" onClick={onClear}>
@@ -210,6 +256,39 @@ function IntentFilters({ articles, value, onToggle, onClear, onClearMonth, count
           </div>
         </div>
       ))}
+
+      {/* Everything else on this bar narrows. This one widens, which is why it
+          sits below the facets under its own label rather than passing as a
+          fourth chip row: the chips can only reach an article that carries a
+          tag, and an article that carries none in any facet (the work-in-the-
+          park piece, declared in INTENT_NO_TAGS) has no chip that finds it. The
+          count is the whole catalog with the current chips still applied, so a
+          reader who has narrowed and wants the rest of the archive can see how
+          much of it they are not being shown. */}
+      {browsable && (
+        <div className="intentf__row intentf__row--all">
+          <span className="intentf__facet" id="intentf-all">Or read it all</span>
+          <div className="intentf__chips" role="group" aria-labelledby="intentf-all">
+            <button
+              type="button"
+              className={"ichip" + (browse ? " ichip--on" : "")}
+              aria-pressed={browse}
+              title="List the whole archive, with any chips above still applied."
+              onClick={onToggleBrowse}
+            >
+              {browse ? "Everything ×" : "Every entry"}
+              <span className="ichip__n">{pool.length}</span>
+            </button>
+            <span className="intentf__row-note">
+              {!browse
+                ? `The guide below curates ${curated} of these. This shows the rest.`
+                : selected
+                  ? "The whole archive, narrowed by the chips above."
+                  : "Take this off to read the five-part guide in order."}
+            </span>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
