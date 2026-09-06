@@ -1398,6 +1398,31 @@
   line-height: 1.45;
 }
 
+/* Provenance line under a live reading: the source and how old it is
+   ("NPS, 14 min ago"). Quieter than the note; it is the footnote to the
+   number, not part of it. */
+.readout__stamp {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  color: var(--ink-3);
+  margin-top: 2px;
+}
+
+/* One line under the grid, for a fact that belongs to the panel rather than
+   to a cell (the park's text-alert number under the lots reading). */
+.panel__foot {
+  margin: 0;
+  padding: 9px 14px;
+  border-top: 1px solid var(--panel-edge);
+  font-family: var(--mono);
+  font-size: 9.5px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+  line-height: 1.45;
+}
+
 /* ---- Spec strip: the measured facts about one stop ----------- */
 
 /* Flex, not grid: a stop can carry anywhere from two to seven readings, and a

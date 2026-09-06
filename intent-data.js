@@ -518,28 +518,40 @@ window.intentSummary = function (selection) {
 // "unsettled" means the date moves with the snowpack and no fixed claim is made.
 window.TRIP_MONTHS = [
   { key: "jan", label: "Jan", name: "January",   tioga: "closed",    glacier: "closed",    read: "yosemite-in-winter",
+    arrive: "No entrance strategy needed: the Valley is open and mostly empty. The holiday week is the one exception in this quarter.",
     note: "Deep winter. The Valley is open and mostly empty, the waterfalls run low, and chains ride in the car." },
   { key: "feb", label: "Feb", name: "February",  tioga: "closed",    glacier: "closed",    read: "horsetail-fall-firefall",
+    arrive: "No entrance strategy needed except the Firefall window in the second half of the month, which concentrates thousands of photographers on Northside Drive at sunset; on those evenings arrive early and expect the eastern Valley to be managed.",
     note: "Firefall month. For about two weeks Horsetail Fall can glow at sunset; the rest of the park is honest winter." },
   { key: "mar", label: "Mar", name: "March",     tioga: "closed",    glacier: "closed",    read: "yosemite-in-march",
+    arrive: "Spring is the value play: waterfalls building against half of summer's crowds. No gate strategy needed midweek; weekends and spring-break weeks fill the Valley lots, so be in before mid-morning.",
     note: "Late winter, first runoff. Storms still land, the falls start to wake, and the crowds have not arrived." },
   { key: "apr", label: "Apr", name: "April",     tioga: "closed",    glacier: "closed",    read: "yosemite-waterfalls-guide",
+    arrive: "Half of summer's crowds against full waterfalls. Midweek needs no gate strategy; on a weekend be through the entrance before mid-morning, when the Valley lots fill.",
     note: "The Valley greens up and the waterfalls build by the week. Tioga Road is still closed most years." },
   { key: "may", label: "May", name: "May",       tioga: "unsettled", glacier: "unsettled", read: "yosemite-waterfalls-guide",
+    arrive: "Memorial Day weekend behaves like July: the Curry Village lot was full a little after 8 a.m. in 2026. Be through the gate before 8 that weekend; the rest of the month, before mid-morning on weekends.",
     note: "Peak waterfall month, and the last calmer weeks before summer. The high roads usually begin to open." },
   { key: "jun", label: "Jun", name: "June",      tioga: "open",      glacier: "open",      read: "yosemite-in-june-2026",
+    arrive: "Be through the gate before 8 a.m., before 7 on a weekend. Never plan to arrive between 9 a.m. and 2 p.m. on a summer weekend, when the lines form and the Valley lots close behind you. Or arrive after 4 p.m. Text ynptraffic to 333111 for the park's live parking updates.",
     note: "Early summer. Strong falls at the start of the month, the high country opening, school-break crowds building." },
   { key: "jul", label: "Jul", name: "July",      tioga: "open",      glacier: "open",      read: "yosemite-heat-safety-guide",
+    arrive: "Be through the gate before 8 a.m., before 7 on a weekend; any Tuesday or Wednesday through the gate before 7:30 beats a Saturday. Never plan to arrive between 9 a.m. and 2 p.m. on a summer weekend. Or arrive after 4 p.m. Text ynptraffic to 333111 for live parking updates.",
     note: "Full summer. Every road is typically open, the Valley runs hot and busy, and the big falls thin." },
   { key: "aug", label: "Aug", name: "August",    tioga: "open",      glacier: "open",      read: "yosemite-during-smoke-season",
+    arrive: "Be through the gate before 8 a.m., before 7 on a weekend. Never plan to arrive between 9 a.m. and 2 p.m. on a summer weekend; summer Saturday waits ran about 30 minutes on average and up to an hour. Or arrive after 4 p.m. Text ynptraffic to 333111 for live parking updates.",
     note: "High summer. Hot in the Valley, the falls at a trickle, and the darkest skies of the year." },
   { key: "sep", label: "Sep", name: "September", tioga: "open",      glacier: "open",      read: "yosemite-in-september-2026",
+    arrive: "Labor Day weekend behaves like July: be through the gate before 8 a.m. The Tuesday after it is a different park, with weekday pressure down by a third; keep the early start out of habit, not necessity.",
     note: "The exhale. Crowds ease after Labor Day, the weather usually holds, and the falls are at their lowest." },
   { key: "oct", label: "Oct", name: "October",   tioga: "open",      glacier: "open",      read: "yosemite-in-fall",
+    arrive: "The sleeper month: weekday pressure at less than half of summer's. Midweek needs no gate strategy. On a weekend, in before mid-morning keeps the Valley lots open to you.",
     note: "Fall. Cooler days, color along the Merced, quieter trails, and the first real storms possible late." },
   { key: "nov", label: "Nov", name: "November",  tioga: "closed",    glacier: "unsettled", read: "yosemite-in-winter",
+    arrive: "Quiet except for Thanksgiving week, which fills lodging months out. No entrance strategy needed outside that week; the days are short, so the constraint is daylight, not the gate.",
     note: "The shoulder. Short days, empty trails, the first lasting snow most years, and the high roads closing." },
   { key: "dec", label: "Dec", name: "December",  tioga: "closed",    glacier: "closed",    read: "yosemite-in-winter",
+    arrive: "No entrance strategy needed except the holiday week from midmonth, when the lodges fill and the Valley loop slows. Chains as a rule; the constraint is the road, not the gate.",
     note: "Early winter. Snow when storms land, holiday crowds around the lodges midmonth on, and chains as a rule." },
 ];
 
@@ -892,9 +904,18 @@ window.buildTripPlan = function (answers) {
     };
   }
 
+  // The arrival line (FEATURE-RESEARCH-2026-09.md, feature 3). 2026 is the
+  // first no-reservation summer since 2019, so the hour you reach the gate is
+  // what rations the day. Every month's `arrive` is quoted from the crowd
+  // forecast article's own published guidance; check-intent-tags.mjs asserts
+  // that every month carries one and that a plan carries it whenever the
+  // month is known. Rendered by intent.jsx under the day plan.
+  var arrival = month ? { month: month.name, text: month.arrive } : null;
+
   return {
     summary: window.tripSummary(answers),
     notes: notes,
+    arrival: arrival,
     // The month rides along with the derived intent, so the "show all N entries
     // that fit this trip" hand-off applies the same seasonal exclusion the five
     // reads above it already got.

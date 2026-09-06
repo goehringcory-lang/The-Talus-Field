@@ -9,6 +9,12 @@
 // A fix, once held, is never discarded for a later transient error: a canyon
 // wall dropping the signal should read as "last fix, aging", not as the
 // instrument breaking.
+//
+// stop() releases the watch and keeps every fix already held (status returns
+// to 'idle', so a later start() picks up where it left off). The companion
+// screen (/near) calls it when the page is hidden, because a watchPosition
+// left running behind a locked screen is the battery complaint every audio
+// tour gets; the compass and the Help card never call it.
 // =============================================================================
 
 import { useCallback, useEffect, useRef, useState } from 'react'
@@ -31,7 +37,7 @@ export type GeoState = {
   firstFix: GeoFix | null
 }
 
-export function useGeoWatch(): GeoState & { start: () => void } {
+export function useGeoWatch(): GeoState & { start: () => void; stop: () => void } {
   const [state, setState] = useState<GeoState>({ status: 'idle', fix: null, firstFix: null })
   const watchRef = useRef<number | null>(null)
 
@@ -75,5 +81,13 @@ export function useGeoWatch(): GeoState & { start: () => void } {
     )
   }, [])
 
-  return { ...state, start }
+  const stop = useCallback(() => {
+    if (watchRef.current === null) return
+    navigator.geolocation?.clearWatch(watchRef.current)
+    watchRef.current = null
+    // The fix and the first fix stay: this is a pause, not a reset.
+    setState((s) => ({ ...s, status: 'idle' }))
+  }, [])
+
+  return { ...state, start, stop }
 }

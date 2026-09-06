@@ -254,6 +254,29 @@ const GENERIC_NOTIFICATION = {
   tag: 'tfg-generic',
 }
 
+// The five notice kinds the Worker sends (four from workers/src/lib/pushSweep.ts,
+// the campsite opening from lib/availabilitySweep.ts), keyed by the prefix of
+// the `tag` it queues, each with the route it should open and
+// a line to show if the pending record arrives with its text missing. The
+// Worker's own title and body win whenever they are present; this table is
+// what keeps a notice sensible when they are not, and what keeps a road
+// notice opening /today and a deadline opening /trip even then.
+const NOTICE_KINDS = [
+  { prefix: 'road-', url: '/today', title: 'A road changed status', body: 'Check the roads line before you drive.' },
+  { prefix: 'deadline-', url: '/trip', title: 'A date that matters is tomorrow', body: 'Open your trip board for the details.' },
+  { prefix: 'trip-day', url: '/today', title: 'Your day in the park', body: "Today's schedule, the forecast, and the drive to your first stop." },
+  { prefix: 'renew', url: '/account', title: 'Your guide access is ending soon', body: 'Renew any time from your account page.' },
+  { prefix: 'watch-', url: '/watch', title: 'A campsite opened', body: 'Open the Openings tab; sites go in minutes.' },
+]
+
+function kindFor(tag) {
+  if (typeof tag !== 'string') return null
+  for (const kind of NOTICE_KINDS) {
+    if (tag.startsWith(kind.prefix)) return kind
+  }
+  return null
+}
+
 async function noticeForThisPush() {
   try {
     const subscription = await self.registration.pushManager.getSubscription()
@@ -266,15 +289,25 @@ async function noticeForThisPush() {
     if (!res.ok) return GENERIC_NOTIFICATION
     const data = await res.json()
     const notice = data && data.notice
-    if (!notice || typeof notice.title !== 'string' || typeof notice.body !== 'string') {
-      return GENERIC_NOTIFICATION
+    if (!notice) return GENERIC_NOTIFICATION
+    const kind = kindFor(notice.tag)
+    if (typeof notice.title !== 'string' || typeof notice.body !== 'string') {
+      // A notice with a known tag but no text still names what it is about.
+      if (!kind) return GENERIC_NOTIFICATION
+      return { title: kind.title, body: kind.body, url: kind.url, tag: notice.tag }
     }
     return {
       title: notice.title,
       body: notice.body,
       // Only ever an in-app path: a server-supplied absolute URL here would
-      // turn a push into an open redirect out of the app.
-      url: typeof notice.url === 'string' && notice.url.startsWith('/') ? notice.url : '/',
+      // turn a push into an open redirect out of the app. A missing path
+      // falls back to the kind's own route, then the front page.
+      url:
+        typeof notice.url === 'string' && notice.url.startsWith('/')
+          ? notice.url
+          : kind
+            ? kind.url
+            : '/',
       tag: typeof notice.tag === 'string' ? notice.tag : GENERIC_NOTIFICATION.tag,
     }
   } catch {

@@ -2,7 +2,7 @@
 // Account-page notification opt-in (push/push.ts).
 //
 // The card names every notice the guide will ever send before asking for
-// anything: the two from the daily sweep, and the campsite opening a buyer
+// anything: the four from the daily sweep, and the campsite opening a buyer
 // asks for by setting a watch on the Openings tab.
 // That is the whole design: a permission prompt raised without saying what it
 // buys gets denied, and a denial on this platform is effectively permanent —
@@ -113,8 +113,9 @@ export default function NotificationsCard() {
         <>
           <p style={noteStyle}>
             This device will get a nudge on each morning of your trip, a heads-up before your
-            access ends, and a campsite opening for any watch you set on the Openings tab.
-            Nothing else.
+            access ends, a notice if a road changes status in the two weeks before your trip, the
+            reminders you pick under Dates that matter on the trip board, and a campsite opening
+            for any watch you set on the Openings tab. Nothing else.
           </p>
           <Button
             variant="quiet"
@@ -127,13 +128,21 @@ export default function NotificationsCard() {
         </>
       ) : (
         <>
-          <p style={noteStyle}>Three notifications, and the guide sends no others:</p>
+          <p style={noteStyle}>Five notifications, and the guide sends no others:</p>
           <ul style={listStyle}>
             <li>
               On each morning of your trip, a tap straight to today's schedule, forecast, and the
               drive to your first stop.
             </li>
             <li>A heads-up two weeks and one day before your access ends.</li>
+            <li>
+              A notice when Tioga, Glacier Point, the grove or Hetch Hetchy road, or Highway 120,
+              140 or 41 changes status in the two weeks before your trip.
+            </li>
+            <li>
+              The morning before a lottery or campground release you asked to be reminded of, from
+              Dates that matter on the trip board.
+            </li>
             <li>
               A campsite opening for any watch you set on the Openings tab, at whatever hour it
               appears. Only if you create a watch.

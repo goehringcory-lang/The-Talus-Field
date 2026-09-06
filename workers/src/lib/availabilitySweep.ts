@@ -14,7 +14,7 @@
 // the next run that can tell them does.
 //
 // Deliberately NOT morning-gated, unlike pushSweep.ts. This is the app's
-// third notice class and the one exception to that rule: a site released at
+// fifth notice class and the one exception to that rule: a site released at
 // 7:00 a.m. Pacific is gone by 7:02, the final cancellation wave lands at any
 // hour, and the buyer asked for exactly this when they set the watch (the
 // form says so; deleting the watch is the off switch). Push goes to every

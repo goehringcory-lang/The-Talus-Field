@@ -480,10 +480,9 @@ export default function Home() {
               <span className="instrument-tile__label">Bearing compass</span>
               <span className="instrument-tile__note">Points at any stop · sun on the rose · airplane mode</span>
             </Link>
-            {/* Sixth tile closes the grid (an odd count would need
-                .instrument-tile--wide, see .readout--wide). The Help card
-                earns its tile: it is the page a buyer opens once, in trouble,
-                and it has to be findable without knowing its name. */}
+            {/* The Help card earns its tile: it is the page a buyer opens
+                once, in trouble, and it has to be findable without knowing
+                its name. */}
             <Link to="/help" className="instrument-tile">
               <svg className="instrument-tile__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                 <path d="M12 3v18M3 12h18" />
@@ -491,6 +490,18 @@ export default function Home() {
               </svg>
               <span className="instrument-tile__label">Help</span>
               <span className="instrument-tile__note">911 · your GPS position to read out · park numbers</span>
+            </Link>
+            {/* Seventh tile, so it spans the row (.instrument-tile--wide, the
+                .readout--wide rule: a hanging half-empty cell reads as a tile
+                that failed to load). Companion mode: the nearest entry as the
+                car moves, for the passenger. */}
+            <Link to="/near" className="instrument-tile instrument-tile--wide">
+              <svg className="instrument-tile__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <path d="M12 21s-6-5.3-6-11a6 6 0 0 1 12 0c0 5.7-6 11-6 11z" />
+                <circle cx="12" cy="10" r="2.2" />
+              </svg>
+              <span className="instrument-tile__label">You are near</span>
+              <span className="instrument-tile__note">Nearest entry as you move · read aloud · for the passenger, while the app is open</span>
             </Link>
           </div>
         </section>

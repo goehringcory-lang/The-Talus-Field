@@ -1,4 +1,4 @@
-/* global React, WebcamStrip, EntranceWaits, NewsletterInline, GuidePromo, Breadcrumbs */
+/* global React, WebcamStrip, EntranceWaits, ParkingNow, NewsletterInline, GuidePromo, Breadcrumbs */
 
 // =============================================================================
 // CONDITIONS — `/conditions` route. The bookmarkable "is it worth driving in
@@ -63,6 +63,21 @@ function ConditionsPage({ go }) {
           </div>
         </section>
 
+        {/* Parking lots. Live NPS lot status from the API Worker's /api/parking
+            proxy, through the shared ParkingNow component, which renders
+            nothing at all when the feed is silent or stale. 2026 is the first
+            no-reservation summer since 2019 and parking is what rations the
+            day now (FEATURE-RESEARCH-2026-09.md, feature 3). */}
+        <section style={{ marginBottom: 64, maxWidth: 680 }}>
+          <div className="section-head">
+            <h2>Parking lots</h2>
+          </div>
+          <p style={{ fontFamily: "var(--serif)", fontSize: 17, lineHeight: 1.6, color: "var(--ink-1)", marginBottom: 16 }}>
+            With no entry reservation in 2026, the Valley's lots are what ration a summer day: on the first busy Saturday of the season all Valley parking was full before noon. Be through the gate before 8 a.m. or after 4 p.m. on a summer weekend, and text <em>ynptraffic</em> to 333111 for the park's own updates once you are on the road. Live lot status from the National Park Service appears below when the park publishes it.
+          </p>
+          <ParkingNow />
+        </section>
+
         {/* Forecasts */}
         <section style={{ marginBottom: 64, maxWidth: 680 }}>
           <div className="section-head">
@@ -118,9 +133,9 @@ function ConditionsPage({ go }) {
         <div style={{ maxWidth: 680, marginBottom: 96 }}>
           <NewsletterInline
             location="conditions"
-            tag="conditions"
-            heading="Conditions change weekly"
-            blurb="The Sunday note carries what matters: what opened, what closed, what the week ahead looks like from inside the park. Free."
+            tag="alert-roads"
+            heading="Email me when a road changes"
+            blurb="One email when Tioga Road, Glacier Point Road, or a highway into the park opens or closes, sent to the people who asked for it. The Sunday note carries the rest of the week from inside the park. Free."
           />
         </div>
       </div>

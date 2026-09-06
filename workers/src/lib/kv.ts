@@ -49,6 +49,11 @@ export type PushSubscriptionRecord = {
   createdAt: string            // ISO
   tripStart?: string           // YYYY-MM-DD
   tripEnd?: string             // YYYY-MM-DD
+  // Deadline ids (scripts/data/deadlines.json) the buyer asked to be reminded
+  // of from the trip board. Same footing as the dates: a list of ids, nothing
+  // about what is planned, and the sweep sends a deadline notice only for an
+  // id that is on it.
+  deadlines?: string[]
 }
 
 // The message a woken service worker comes back to collect (see lib/push.ts on

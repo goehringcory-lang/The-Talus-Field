@@ -339,3 +339,54 @@
   display: inline-block;
   margin: 0 0 var(--s3);
 }
+
+/* ---- Dates that matter (trip/DeadlinesPanel.tsx) -------------- */
+/* A Surveyor panel under the board: one wide readout per dated deadline.
+   The label and title keep the instrument face; the detail is prose and
+   keeps the serif, because a paragraph in uppercase mono is unreadable. */
+.deadlines { margin-top: var(--s5); }
+.deadlines__grid { grid-template-columns: minmax(0, 1fr); }
+.deadlines__empty {
+  margin: 0;
+  padding: 13px 14px;
+  font-family: var(--sans);
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--ink-3);
+}
+.deadline__title { font-size: 15px; }
+.deadline__detail {
+  margin: 4px 0 0;
+  font-family: var(--serif);
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--ink-2);
+  max-width: var(--measure);
+}
+.deadline__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 14px;
+  margin-top: 6px;
+  font-family: var(--sans);
+  font-size: 12px;
+}
+.deadline__remind {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--ink-2);
+  cursor: pointer;
+}
+.deadline__source { color: var(--ink-3); }
+.deadline__result {
+  margin: 6px 0 0;
+  font-family: var(--sans);
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--ink-2);
+}
+/* A date behind us stays on the board, dimmed: it is still a fact about the
+   trip, and dropping it would make the list look shorter than it is. */
+.deadline--past { opacity: 0.55; }

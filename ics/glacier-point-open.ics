@@ -1,0 +1,27 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//The Talus Field//Yosemite Dates//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:Yosemite: Glacier Point Road typically opens
+BEGIN:VEVENT
+UID:glacier-point-open@dates.thetalusfieldjournal.com
+DTSTAMP:20260905T000000Z
+DTSTART;VALUE=DATE:20260501
+DTEND;VALUE=DATE:20260601
+RRULE:FREQ=YEARLY
+SUMMARY:Yosemite: Glacier Point Road typically opens
+DESCRIPTION:Glacier Point Road usually opens in May once plowing is done\; 
+ in 2026 it opened May 9. The park announces the date a few days ahead. Cha
+ ins can still be required in the first weeks. Typical window\, not a publi
+ shed date\; the park announces the day a few days ahead. Source: https://w
+ ww.nps.gov/yose/planyourvisit/glacierpointroad.htm. Verified 2026-09-05. T
+ he Talus Field\, https://thetalusfieldjournal.com/dates
+URL:https://thetalusfieldjournal.com/dates
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Yosemite: Glacier Point Road typically opens
+TRIGGER:-P1D
+END:VALARM
+END:VEVENT
+END:VCALENDAR

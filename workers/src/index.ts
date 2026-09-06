@@ -9,6 +9,7 @@ import { checkout } from './routes/checkout'
 import { contact } from './routes/contact'
 import { indexnow } from './routes/indexnow'
 import { ingestNpsWindow, programs } from './routes/programs'
+import { parking } from './routes/parking'
 import { photos, photosPage } from './routes/photos'
 import { push } from './routes/push'
 import { redeem } from './routes/redeem'
@@ -24,6 +25,7 @@ import { refreshAlerts } from './lib/alerts'
 import { refreshAir } from './lib/air'
 import { refreshFlow } from './lib/flow'
 import { refreshWeather } from './lib/weather'
+import { watchRoads } from './lib/roads'
 import { sweepRenewals } from './lib/renewals'
 import { sweepPush } from './lib/pushSweep'
 import { sweepAvailability } from './lib/availabilitySweep'
@@ -181,6 +183,7 @@ app.get('/api/inventory', async (c) => {
 app.route('/api/alerts', alerts)
 app.route('/api/air', air)
 app.route('/api/flow', flow)
+app.route('/api/parking', parking)
 
 app.route('/api/auth', auth)
 app.route('/api/checkout', checkout)
@@ -209,8 +212,9 @@ app.route('/api/weather', weather)
 //     morning (7-8am Pacific; sweepPush's own 6-11am gate backstops it).
 //   0 10 * * * (and any manually triggered run) — refresh the KV program
 //     cache from the NPS Events API so /api/programs answers from KV, give
-//     the weather and conditions records a daily floor, and run the renewal
-//     EMAIL sweep (emails can send in quiet hours; buzzes cannot).
+//     the weather and conditions records a daily floor, diff the road
+//     statuses against last night's snapshot (lib/roads.ts), and run the
+//     renewal EMAIL sweep (emails can send in quiet hours; buzzes cannot).
 const PUSH_SWEEP_CRON = '0 15 * * *'
 const AVAILABILITY_SWEEP_CRON = '*/5 * * * *'
 
@@ -247,10 +251,15 @@ async function scheduled(
   )
   // Conditions feeds get the same daily floor so a cold deploy has data;
   // their real freshness is owned by the on-demand refresh in each route.
+  // The road-change watch (lib/roads.ts) runs on the alerts record the
+  // refresh returns, so a failed refresh (stale record back) advances nothing.
   ctx.waitUntil(
-    refreshAlerts(env).catch((err) => {
-      console.error('scheduled: alerts refresh failed', err)
-    }),
+    refreshAlerts(env)
+      .catch((err) => {
+        console.error('scheduled: alerts refresh failed', err)
+        return null
+      })
+      .then((record) => watchRoads(env, record)),
   )
   ctx.waitUntil(
     refreshAir(env).catch((err) => {

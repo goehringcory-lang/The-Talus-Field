@@ -29,7 +29,7 @@ const STATIC_ROUTE_KEYS = new Set([
   "advertise", "newsletter", "contact", "privacy", "terms", "affiliate",
   "guide", "map", "films", "itineraries", "conditions", "now", "firefall", "stay",
   "consult", "widget", "partners", "search", "tioga-opening", "half-dome-lottery",
-  "explore", "distances", "webcams", "start-here",
+  "explore", "distances", "webcams", "start-here", "dates", "international",
 ]);
 
 function pathToRoute(pathname) {
@@ -118,6 +118,10 @@ const PAGE_MODULES = {
   "tioga-opening": { scripts: ["/dist/page-tioga-opening.js"], globals: ["TiogaOpeningPage"] },
   "half-dome-lottery": { scripts: ["/dist/page-half-dome-lottery.js"], globals: ["HalfDomeLotteryPage"] },
   distances: { scripts: ["/dist/page-distances.js"], globals: ["DistancesPage"] },
+  // dates-data.js is generated from scripts/data/deadlines.json (run `dates`);
+  // fees-data.js is hand-written and swept by check-fee-calculator.mjs.
+  dates: { scripts: ["/dates-data.js", "/dist/page-dates.js"], globals: ["DatesPage"] },
+  international: { scripts: ["/fees-data.js", "/dist/page-international.js"], globals: ["InternationalPage"] },
   webcams: { scripts: ["/dist/page-webcams.js"], globals: ["WebcamsPage"] },
   "start-here": { scripts: ["/dist/page-start-here.js"], globals: ["StartHerePage"] },
 };
@@ -814,6 +818,20 @@ function buildSeo(route) {
       ogType: "website",
       breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Start here", null]],
     },
+    dates: {
+      title: `Yosemite Dates That Matter — lotteries, releases and road windows — ${SITE_NAME}`,
+      description:
+        "The Yosemite deadlines in one table: the Half Dome lotteries, the wilderness permit windows, the campground release mornings, and the road openings, each one a calendar file, measured against your trip.",
+      ogType: "website",
+      breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Dates that matter", null]],
+    },
+    international: {
+      title: `Yosemite for International Visitors — the 2026 non-resident fee, explained — ${SITE_NAME}`,
+      description:
+        "The 2026 non-resident entrance fee at Yosemite, the $250 pass, a calculator for the cheapest way in, and what surprises visitors from abroad: reservations, roads, chains, signal, bears.",
+      ogType: "website",
+      breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Visiting from abroad", null]],
+    },
     distances: {
       title: `Yosemite Drive Times — every gateway town, in one table — ${SITE_NAME}`,
       description:
@@ -1375,6 +1393,12 @@ function App() {
   } else if (route === "distances") {
     page = <window.DistancesPage go={go} />;
     currentNav = "distances";
+  } else if (route === "dates") {
+    page = <window.DatesPage go={go} />;
+    currentNav = "dates";
+  } else if (route === "international") {
+    page = <window.InternationalPage go={go} />;
+    currentNav = "international";
   } else if (route === "start-here") {
     page = <window.StartHerePage go={go} />;
     currentNav = "start-here";
