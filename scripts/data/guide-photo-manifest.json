@@ -1368,5 +1368,170 @@
       "Sierra newt"
     ],
     "portraitOk": true
+  },
+  {
+    "file": "swinging-bridge-reflection.jpg",
+    "slot": "secret:swinging-bridge-reflection",
+    "tier": 3,
+    "subject": "Upper Yosemite Fall reflected in the Merced River at Swinging Bridge, Yosemite Valley",
+    "categories": [
+      "Swinging Bridge (Yosemite)"
+    ],
+    "queries": [
+      "Swinging Bridge Yosemite Falls reflection",
+      "Yosemite Falls reflection Merced River"
+    ]
+  },
+  {
+    "file": "siesta-lake.jpg",
+    "slot": "secret:siesta-lake",
+    "tier": 3,
+    "subject": "Siesta Lake, the small forest pond beside Tioga Road",
+    "categories": [
+      "Siesta Lake"
+    ],
+    "queries": [
+      "Siesta Lake Yosemite",
+      "Siesta Lake Tioga Road"
+    ]
+  },
+  {
+    "file": "wawona-point.jpg",
+    "slot": "secret:wawona-point",
+    "tier": 3,
+    "subject": "The view from Wawona Point over Wawona and the South Fork Merced, or the upper Mariposa Grove near the Fallen Wawona Tunnel Tree",
+    "categories": [
+      "Wawona Point"
+    ],
+    "queries": [
+      "Wawona Point Mariposa Grove",
+      "Wawona Point Yosemite view",
+      "Fallen Wawona Tunnel Tree"
+    ]
+  },
+  {
+    "file": "union-point.jpg",
+    "slot": "secret:union-point",
+    "tier": 3,
+    "subject": "Union Point on the Four Mile Trail: the railed perch above Yosemite Valley, or the valley view from partway up the trail",
+    "categories": [],
+    "queries": [
+      "Yosemite Valley from Four Mile Trail",
+      "Four Mile Trail Yosemite Falls view",
+      "Yosemite Falls from Glacier Point",
+      "Union Point Yosemite"
+    ]
+  },
+  {
+    "file": "bennettville.jpg",
+    "slot": "secret:bennettville",
+    "tier": 3,
+    "subject": "The two surviving 1880s buildings at Bennettville, the Tioga Mine town outside Tioga Pass",
+    "categories": [
+      "Bennettville, California"
+    ],
+    "queries": [
+      "Bennettville",
+      "Bennettville California",
+      "Tioga Mine Bennettville cabins",
+      "Great Sierra Mine Historic Site"
+    ]
+  },
+  {
+    "file": "valley-trailhead-parking.jpg",
+    "slot": "secret:valley-trailhead-parking",
+    "tier": 3,
+    "subject": "Happy Isles or the Mist Trail start in Yosemite Valley; the road end past Curry Village",
+    "categories": [
+      "Happy Isles"
+    ],
+    "queries": [
+      "Happy Isles Yosemite",
+      "Happy Isles bridge Merced River Yosemite"
+    ]
+  },
+  {
+    "file": "yosemite-creek-campground.jpg",
+    "slot": "secret:yosemite-creek-campground",
+    "tier": 3,
+    "subject": "Yosemite Creek in the high country near Tioga Road; granite, lodgepole, clear water",
+    "categories": [
+      "Yosemite Creek"
+    ],
+    "queries": [
+      "Yosemite Creek Tioga Road",
+      "Yosemite Creek upper granite"
+    ]
+  },
+  {
+    "file": "tioga-lake-campground.jpg",
+    "slot": "secret:tioga-lake-campground",
+    "tier": 3,
+    "subject": "Tioga Lake beside Highway 120 just east of Tioga Pass, with the Tioga Crest behind",
+    "categories": [
+      "Tioga Lake"
+    ],
+    "queries": [
+      "Tioga Lake California",
+      "Tioga Lake Tioga Pass"
+    ]
+  },
+  {
+    "file": "summerdale-campground.jpg",
+    "slot": "secret:summerdale-campground",
+    "tier": 3,
+    "subject": "Big Creek or the forest at Fish Camp near the south entrance; a Sierra National Forest campsite acceptable",
+    "queries": [
+      "Big Creek Sierra National Forest",
+      "Sierra National Forest campground",
+      "Sierra National Forest forest creek"
+    ],
+    "categories": [
+      "Sierra National Forest"
+    ]
+  },
+  {
+    "file": "yosemite-falls-moonbow.jpg",
+    "slot": "secret:yosemite-falls-moonbow",
+    "tier": 3,
+    "subject": "A moonbow (lunar rainbow) in the mist of Lower Yosemite Fall, or Yosemite Falls under a full moon",
+    "categories": [
+      "Yosemite Falls at night"
+    ],
+    "queries": [
+      "Yosemite Falls night moon",
+      "Lower Yosemite Fall night",
+      "Yosemite Falls moonlight",
+      "Yosemite Falls long exposure night"
+    ],
+    "portraitOk": true
+  },
+  {
+    "file": "glacier-point-star-party.jpg",
+    "slot": "secret:glacier-point-star-party",
+    "tier": 3,
+    "subject": "Glacier Point at night: Half Dome under stars or a rising moon, or the Milky Way from Glacier Point",
+    "queries": [
+      "Glacier Point night stars Half Dome",
+      "Glacier Point Milky Way",
+      "Half Dome moonrise Glacier Point"
+    ],
+    "portraitOk": true
+  },
+  {
+    "file": "tenaya-lake.jpg",
+    "slot": "secret:tenaya-lake-lots",
+    "tier": 3,
+    "reuse": "tenaya-lake.jpg",
+    "subject": "Same lake as the core stop; the parking entry reuses its photo with its own caption",
+    "queries": []
+  },
+  {
+    "file": "wildlife-great-gray-owl.jpg",
+    "slot": "secret:great-gray-owl-dusk",
+    "tier": 3,
+    "reuse": "wildlife-great-gray-owl.jpg",
+    "subject": "The quick-ID plate; the dusk entry reuses it with its own caption",
+    "queries": []
   }
 ]
