@@ -317,6 +317,8 @@ function buildSitemap(merged, categories) {
     ["/tioga-opening", nowLastmod()],
     ["/half-dome-lottery", "2026-07-21"],
     ["/distances", "2026-08-25"],
+    ["/dates", "2026-09-05"],
+    ["/international", "2026-09-05"],
     ["/webcams", "2026-08-25"],
     ["/start-here", "2026-08-30"],
     ["/consult", "2026-07-15"],

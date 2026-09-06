@@ -1,0 +1,25 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//The Talus Field//Yosemite Dates//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:Yosemite: Tuolumne Meadows shuttle and hikers bus end
+BEGIN:VEVENT
+UID:tuolumne-shuttle-2026@dates.thetalusfieldjournal.com
+DTSTAMP:20260905T000000Z
+DTSTART;VALUE=DATE:20260913
+DTEND;VALUE=DATE:20260914
+SUMMARY:Yosemite: Tuolumne Meadows shuttle and hikers bus end
+DESCRIPTION:The Tuolumne shuttle and the Valley-to-Tuolumne hikers bus stop
+  for 2026 on September 13. The Tuolumne store and grill close September 20
+ . Tioga Road itself stays open until the snow closes it. Source: https://w
+ ww.nps.gov/yose/planyourvisit/tmbus.htm. Verified 2026-09-05. The Talus Fi
+ eld\, https://thetalusfieldjournal.com/dates
+URL:https://thetalusfieldjournal.com/dates
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Yosemite: Tuolumne Meadows shuttle and hikers bus end
+TRIGGER:-P1D
+END:VALARM
+END:VEVENT
+END:VCALENDAR

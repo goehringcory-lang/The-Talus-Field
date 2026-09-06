@@ -624,7 +624,7 @@ function BulletinPage({
     className: "bulletin-status__icon"
   }), React.createElement("strong", null, area.name)), React.createElement(BulletinChip, {
     tone: area.tone
-  }, area.chip)), React.createElement("p", null, area.note))))), React.createElement("div", {
+  }, area.chip)), React.createElement("p", null, area.note)))), React.createElement(ParkingNow, null)), React.createElement("div", {
     className: "bulletin-grid"
   }, React.createElement(BulletinCard, {
     title: "The Valley, by the clock",

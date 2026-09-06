@@ -72,6 +72,7 @@ could do the same thing, the table says which one does.
 |---|---|---|
 | New article bodies, `data.js` entries, `seo-data.json`, `intent-data.js` tags for a **new** piece | Trend, cornerstone, monthly edition, intel executor (approved) | never |
 | **Existing** article bodies, on a schedule (facts, inbound links) | Evergreen refresh | never |
+| `scripts/data/deadlines.json` (the /dates table) and `fees-data.js` (the /international fee table), each row against the nps.gov source it names | Evergreen refresh (re-verify, bump `verified`, run `npm --prefix scripts run dates`); the Field Guide mirror `apps/guide/src/content/deadlines.ts` changes in the same PR or `run check` fails | intel executor for a news-forced change (a fee rule, a lottery date) |
 | Existing article bodies, when news forces it | Intel executor (approved) | refresh skips a slug with an open executor PR, and vice versa |
 | `yosemite-in-<month>-<year>` (dated) | Monthly edition | flag, never edit |
 | `bulletin.json`, `workers/src/data/manual-programs.ts` | Bulletin edition turn (the edition rollover), intel executor (mid-edition items, approved) | never; the sweep flags a lapsed edition |

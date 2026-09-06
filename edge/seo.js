@@ -452,6 +452,18 @@ const HUB_PROSE = {
       "<p>Other legs the Valley table does not answer: Oakhurst to the South Entrance is about 14 miles and 20 to 25 minutes, with the Mariposa Grove welcome plaza immediately inside the gate and Wawona six miles further on; Groveland to the Big Oak Flat Entrance is about 24 miles and 30 to 40 minutes on a winding road; Lee Vining to Tuolumne Meadows is about 20 miles and 30 minutes while Tioga Pass is open. Oakhurst is the longest drive to the Valley of the four year-round towns and the shortest to the sequoias by a wide margin.</p>" +
         "<p>Times are to the west end of Yosemite Valley in ordinary conditions; add 15 to 20 minutes for Curry Village at the east end, and more for summer afternoons. Season changes the answer more than distance does, and entrance queues on a peak morning can add half an hour no mileage predicts. Full comparison: <a href=\"/articles/yosemite-gateway-towns-compared\">the gateway towns guide</a>. Live waits: <a href=\"/conditions\">the conditions page</a>.</p>"
     ),
+  "/dates": () =>
+    hubProse(
+      "The Yosemite Dates That Matter",
+      "The lotteries, the release mornings and the road windows that decide a Yosemite trip, in one table, each one a calendar file. The Half Dome preseason lottery runs March 1 to 31 with results in mid-April, and a daily lottery runs two days before each hiking date, midnight to 4 p.m. Pacific. Wilderness permits are drawn by lottery 24 weeks ahead, with the remaining 40 percent released seven days ahead at 7 a.m. The Pines, Wawona and Hodgdon Meadow campgrounds open on the 15th of the month at 7 a.m. Pacific, five months ahead; the two-week campgrounds release 14 days ahead and Camp 4 one week ahead. Tioga Road usually opens between late May and mid-June and closes with the first storm that sticks, usually in November; Glacier Point Road usually opens in May. The Half Dome cables go up the Friday before Memorial Day and come down the day after the second Monday in October.",
+      `<p>Every row carries the National Park Service page it was read from. The mechanics behind the dates: <a href="/half-dome-lottery">the Half Dome lottery</a>, <a href="/articles/yosemite-walk-up-and-day-of-permits">the walk-up permits guide</a>, <a href="/articles/yosemite-camping-complete-guide">the camping guide</a>, <a href="/tioga-opening">the Tioga Road opening</a> and <a href="/firefall">the Firefall</a>. The fixed windows are downloadable as one calendar file at <a href="/ics/yosemite-dates.ics">/ics/yosemite-dates.ics</a>.</p>`
+    ),
+  "/international": () =>
+    hubProse(
+      "Yosemite for Visitors From Outside the United States",
+      "Since January 1, 2026, a visitor who is not a US citizen or resident pays a non-resident fee of $100 per person aged 16 and older to enter Yosemite, on top of the standard entrance fee of $35 per car, $30 per motorcycle or $20 per person on foot or by bus, unless covered by an annual pass. The non-resident America the Beautiful pass costs $250, covers the holder's vehicle and its occupants for twelve months at every federal fee site, and waives the non-resident fee for them. One adult in one car pays $135 at the gate; three adults pay $335 at the gate or $250 with the pass. The fee-free days are for US residents only in 2026. The gate takes cards, not cash. The same surcharge applies at Acadia, Bryce Canyon, Everglades, Glacier, Grand Canyon, Grand Teton, Rocky Mountain, Sequoia and Kings Canyon, Yellowstone and Zion.",
+      `<p>What else is different here: no entry reservation is needed in 2026 (<a href="/articles/yosemite-without-reservations-2026">the no-reservations strategy</a>); most of the park has no mobile signal; Tioga Road and Glacier Point Road close from roughly November to late May (<a href="/tioga-opening">the Tioga Road page</a>); chains are required by law in winter, in rental cars too (<a href="/articles/getting-to-yosemite">getting to Yosemite</a>); the park can be reached without a car by Amtrak and YARTS (<a href="/articles/yosemite-shuttle-and-yarts">the shuttle and YARTS guide</a>); in-park beds sell out a year ahead (<a href="/stay">where to stay</a>); bear rules carry fines (<a href="/articles/yosemite-bears-safety-guide">the bears guide</a>). What a week costs all in: <a href="/articles/yosemite-trip-cost-budget-2026">the trip-cost breakdown</a>.</p>`
+    ),
   "/start-here": () =>
     hubProse(
       "Planning Your First Trip to Yosemite? Start Here",
@@ -1043,6 +1055,57 @@ function seoForPath(pathname, searchParams) {
         {
           q: "Why does the Yosemite Falls webcam show no waterfall?",
           a: "Because there is no waterfall. Yosemite Falls is fed by snowmelt from a shallow basin above the rim and is usually dry by late August, staying dry until the first storms of November. The camera is working; the fall is seasonal.",
+        },
+      ],
+    },
+    "/dates": {
+      title: `Yosemite Dates That Matter — lotteries, releases and road windows — ${SITE_NAME}`,
+      description:
+        "The Yosemite deadlines in one table: the Half Dome lotteries, the wilderness permit windows, the campground release mornings, and the road openings, each one a calendar file, measured against your trip.",
+      breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Dates that matter", null]],
+      // Edge-only FAQ. Every answer is quoted from scripts/data/deadlines.json,
+      // whose rows carry their NPS source; change the JSON first.
+      faq: [
+        {
+          q: "When is the Half Dome permit lottery?",
+          a: "The preseason lottery runs March 1 to 31 on Recreation.gov, with results emailed in mid-April. A daily lottery for about 50 permits runs two days before each hiking date, midnight to 4 p.m. Pacific. Each costs $10 per application plus $10 per person if you win.",
+        },
+        {
+          q: "When do Yosemite campground reservations open?",
+          a: "Upper, Lower and North Pines, Wawona and Hodgdon Meadow open on the 15th of the month at 7 a.m. Pacific, five months ahead; the 15th covers arrivals from the 15th of the month five months out through the 14th of the month after. Bridalveil Creek, Crane Flat, Tamarack Flat, White Wolf, Yosemite Creek, Porcupine Flat and half of Tuolumne Meadows release two weeks ahead; Camp 4 one week ahead.",
+        },
+        {
+          q: "When do you apply for a Yosemite wilderness permit?",
+          a: "Sixty percent of each trailhead's quota is drawn by lottery 24 weeks ahead, during the Sunday-to-Saturday week that falls 24 weeks before the start date, with results the following Monday. The remaining 40 percent is released seven days ahead at 7 a.m. Pacific.",
+        },
+        {
+          q: "When does Tioga Road open?",
+          a: "There is no fixed date. Tioga Road has opened between late April and early July over the record; late May to mid-June is the usual range, and 2026 opened May 15. The park posts plowing progress weekly and announces the opening a day or two ahead.",
+        },
+      ],
+    },
+    "/international": {
+      title: `Yosemite for International Visitors — the 2026 non-resident fee, explained — ${SITE_NAME}`,
+      description:
+        "The 2026 non-resident entrance fee at Yosemite, the $250 pass, a calculator for the cheapest way in, and what surprises visitors from abroad: reservations, roads, chains, signal, bears.",
+      breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Visiting from abroad", null]],
+      // Edge-only FAQ, quoted from fees-data.js, which names its NPS sources.
+      faq: [
+        {
+          q: "How much does it cost for a non-US resident to enter Yosemite in 2026?",
+          a: "The standard entrance fee ($35 per car for seven days, $30 per motorcycle, $20 per person on foot or by bus) plus a non-resident fee of $100 per person aged 16 and older, charged at each entry unless that person is covered by an annual pass. One adult in one car pays $135. The gate is card only.",
+        },
+        {
+          q: "Is the $250 non-resident pass worth it?",
+          a: "It covers the holder's vehicle and its occupants for twelve months at every federal fee site, and its occupants are not charged the non-resident fee. Three adults in one car pay $335 at the gate and $250 with the pass, so any party of three or more adults, or anyone visiting two of the eleven surcharge parks in a year, should buy it before the first gate.",
+        },
+        {
+          q: "Do international visitors get free entrance days at Yosemite?",
+          a: "No. Beginning in 2026 the fee-free days are for US citizens and residents only; a non-resident pays the regular entrance fee and the non-resident fee on those days.",
+        },
+        {
+          q: "Do you need a reservation to enter Yosemite in 2026?",
+          a: "No. There is no timed-entry or peak-hours reservation in 2026. You pay at the gate and drive in; what rations a summer day is parking, which is solved by being through the entrance before 8 a.m. or after 4 p.m.",
         },
       ],
     },

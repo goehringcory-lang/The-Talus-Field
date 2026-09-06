@@ -229,6 +229,15 @@ for (const when of q("when").options) {
           for (const a of plan.reads) {
             if (!catalogSlugs.has(a.slug)) badCombos.push(`${JSON.stringify(answers)}: read "${a.slug}" not in catalog`);
           }
+          // The arrival line: present exactly when the month is known, and
+          // never an empty string (an empty line renders as a heading with
+          // nothing under it).
+          const monthKnown = Boolean(w.tripMonth(answers.when));
+          if (monthKnown !== Boolean(plan.arrival)) {
+            badCombos.push(`${JSON.stringify(answers)}: arrival ${plan.arrival ? "present" : "absent"} for month "${answers.when}"`);
+          } else if (plan.arrival && !(plan.arrival.month && typeof plan.arrival.text === "string" && plan.arrival.text.length > 40)) {
+            badCombos.push(`${JSON.stringify(answers)}: arrival line is missing or too short`);
+          }
           if (!itineraryIds.has(plan.itinerary.id)) {
             badCombos.push(`${JSON.stringify(answers)}: itinerary "${plan.itinerary.id}" is not in itineraries-data.js`);
           }
@@ -284,6 +293,10 @@ for (const when of q("when").options) {
       }
     }
   }
+}
+for (const m of w.TRIP_MONTHS || []) {
+  if (typeof m.arrive !== "string" || m.arrive.length < 40) errors.push(`TRIP_MONTHS — ${m.key} has no \`arrive\` line (the trip selector's gate guidance)`);
+  if (/—/.test(m.arrive || "")) errors.push(`TRIP_MONTHS — ${m.key} arrive line carries an em-dash`);
 }
 // One representative failure per shape is enough to act on.
 for (const line of badCombos.slice(0, 8)) errors.push(`trip selector — ${line}`);

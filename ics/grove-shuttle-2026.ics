@@ -1,0 +1,26 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//The Talus Field//Yosemite Dates//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:Yosemite: Mariposa Grove shuttle season
+BEGIN:VEVENT
+UID:grove-shuttle-2026@dates.thetalusfieldjournal.com
+DTSTAMP:20260905T000000Z
+DTSTART;VALUE=DATE:20260503
+DTEND;VALUE=DATE:20261101
+SUMMARY:Yosemite: Mariposa Grove shuttle season
+DESCRIPTION:The free shuttle from the Welcome Plaza to the grove runs May 3
+  to October 31\, 2026\, with November service 8 to 3:30 and none from Dece
+ mber to mid-April. When it is off\, the Washburn Trail is 2 miles and 500 
+ feet up to the trees. Source: https://www.nps.gov/yose/planyourvisit/mg.ht
+ m. Verified 2026-09-05. The Talus Field\, https://thetalusfieldjournal.com
+ /dates
+URL:https://thetalusfieldjournal.com/dates
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Yosemite: Mariposa Grove shuttle season
+TRIGGER:-P1D
+END:VALARM
+END:VEVENT
+END:VCALENDAR

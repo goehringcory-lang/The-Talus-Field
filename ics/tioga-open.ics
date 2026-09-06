@@ -1,0 +1,28 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//The Talus Field//Yosemite Dates//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:Yosemite: Tioga Road typically opens
+BEGIN:VEVENT
+UID:tioga-open@dates.thetalusfieldjournal.com
+DTSTAMP:20260905T000000Z
+DTSTART;VALUE=DATE:20260515
+DTEND;VALUE=DATE:20260701
+RRULE:FREQ=YEARLY
+SUMMARY:Yosemite: Tioga Road typically opens
+DESCRIPTION:Tioga Road has opened between late April and early July over th
+ e record\; late May to mid-June is the usual range\, and 2026 opened May 1
+ 5. The park posts plowing progress weekly and announces the opening a day 
+ or two ahead. Typical window\, not a published date\; the park announces t
+ he day a few days ahead. Source: https://www.nps.gov/yose/planyourvisit/ti
+ ogaopen.htm. Verified 2026-09-05. The Talus Field\, https://thetalusfieldj
+ ournal.com/dates
+URL:https://thetalusfieldjournal.com/dates
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Yosemite: Tioga Road typically opens
+TRIGGER:-P1D
+END:VALARM
+END:VEVENT
+END:VCALENDAR

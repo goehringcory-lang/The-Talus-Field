@@ -1,7 +1,7 @@
 // =============================================================================
 // Account-page notification opt-in (push/push.ts).
 //
-// The card names both notices it will ever send before asking for anything.
+// The card names every notice it will ever send before asking for anything.
 // That is the whole design: a permission prompt raised without saying what it
 // buys gets denied, and a denial on this platform is effectively permanent —
 // the page can't re-ask, and the user has to find it in browser settings.
@@ -110,8 +110,9 @@ export default function NotificationsCard() {
       {enabled && !blocked ? (
         <>
           <p style={noteStyle}>
-            This device will get a nudge on each morning of your trip, and a heads-up before your
-            access ends. Nothing else.
+            This device will get a nudge on each morning of your trip, a heads-up before your
+            access ends, a notice if a road changes status in the two weeks before your trip, and
+            the reminders you pick under Dates that matter on the trip board. Nothing else.
           </p>
           <Button
             variant="quiet"
@@ -124,13 +125,21 @@ export default function NotificationsCard() {
         </>
       ) : (
         <>
-          <p style={noteStyle}>Two notifications, and the guide sends no others:</p>
+          <p style={noteStyle}>Four notifications, and the guide sends no others:</p>
           <ul style={listStyle}>
             <li>
               On each morning of your trip, a tap straight to today's schedule, forecast, and the
               drive to your first stop.
             </li>
             <li>A heads-up two weeks and one day before your access ends.</li>
+            <li>
+              A notice when Tioga, Glacier Point, the grove or Hetch Hetchy road, or Highway 120,
+              140 or 41 changes status in the two weeks before your trip.
+            </li>
+            <li>
+              The morning before a lottery or campground release you asked to be reminded of, from
+              Dates that matter on the trip board.
+            </li>
           </ul>
           {blocked ? (
             <p style={mutedStyle}>

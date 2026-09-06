@@ -1,0 +1,140 @@
+/* /near: companion mode. Instrument surfaces for the readings (the shared
+   .panel / .readout primitives), journal prose for the entry, all from the
+   tokens so the four palettes follow without a colour restated here. */
+
+.near-start {
+  margin: 0 0 var(--s5);
+}
+.near-start .card__note {
+  margin-top: 8px;
+}
+
+/* The nearest entry's name is a reading, but a long title has to wrap where a
+   number never does. */
+.near-status__name {
+  font-size: 16px;
+  line-height: 1.3;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+
+/* ---- The entry ---------------------------------------------------- */
+
+.near-entry {
+  margin: 0 0 var(--s5);
+  padding: 0 0 var(--s5);
+  border-bottom: 1px solid var(--rule-soft);
+}
+.near-entry__title {
+  font-family: var(--display);
+  font-size: 26px;
+  line-height: 1.15;
+  margin: 6px 0 10px;
+}
+.near-entry__teaser {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 17px;
+  line-height: 1.5;
+  color: var(--ink-2);
+  margin: 0 0 12px;
+}
+.near-entry__why {
+  font-family: var(--serif);
+  font-size: 17px;
+  line-height: 1.6;
+  margin: 0 0 var(--s4);
+}
+.near-entry__actions {
+  margin: 0;
+}
+
+/* ---- The read-aloud switch ------------------------------------------ */
+
+.near-speech {
+  margin: 0 0 var(--s5);
+}
+.near-speech__toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s3);
+  width: 100%;
+  min-height: 48px;
+  padding: 10px 14px;
+  border: 1px solid var(--panel-edge);
+  background: var(--panel);
+  color: var(--ink);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+.near-speech__toggle[aria-checked='true'] {
+  border-color: var(--gold);
+}
+.near-speech__label {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+}
+.near-speech__state {
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  color: var(--ink-3);
+}
+.near-speech__toggle[aria-checked='true'] .near-speech__state {
+  color: var(--gold);
+}
+.near-speech .card__note {
+  margin-top: 8px;
+}
+
+/* ---- Next three ---------------------------------------------------- */
+
+.near-next {
+  margin: 0 0 var(--s5);
+}
+.near-next__list {
+  list-style: none;
+  margin: 8px 0 0;
+  padding: 0;
+  border-top: 1px solid var(--panel-edge);
+}
+.near-next__row {
+  border-bottom: 1px solid var(--panel-edge);
+}
+.near-next__link {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 10px 0;
+  color: var(--ink);
+  text-decoration: none;
+}
+.near-next__title {
+  font-family: var(--serif);
+  font-size: 16px;
+  line-height: 1.3;
+}
+.near-next__meta {
+  font-family: var(--mono);
+  font-size: 9.5px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---- The honest paragraph ----------------------------------------- */
+
+.near-honest p {
+  font-family: var(--serif);
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--ink-2);
+  margin: 8px 0 0;
+}

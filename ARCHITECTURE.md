@@ -54,6 +54,7 @@ All events fire through `window.track`. Names and where they fire:
 | Event | Fires from |
 |---|---|
 | `newsletter_signup`, `newsletter_impression` | components.jsx helpers, called by every newsletter unit with a `location` param |
+| `dates_ics_download` | page-dates.jsx — with `file` (the `.ics` name), on every calendar download, static or built in the browser from the reader's trip dates |
 | `newsletter_exit_intent_shown` | components.jsx (ExitIntentNewsletter) |
 | `guide_cta_click` | components.jsx (Footer "Field Guide" link, masthead nav), page-home.jsx (the rail's Field Guide plate, `location: home_rail`), the shared `GuidePromo` component (fires with the caller's `location`; ten static routes plus, since August 2026, page-article.jsx's end-of-article band on trails/planning/seasonal articles, `location: article_end`). Retired locations (annotate in GA4, do not reuse): `home_hero`, `home_band` (August 2026 homepage redesign, which made the guide one ask instead of two) |
 | `guide_buy_click` | page-guide.jsx (`location`: `guide_aside` buy box, `guide_hero` hero button, `guide_compare` under the comparison table, `guide_closer` end-of-pitch button, or `guide_mobile_bar` sticky phone bar) |

@@ -277,9 +277,9 @@ function TiogaOpeningPage({ go }) {
 
         <NewsletterInline
           location="tioga-opening"
-          tag="tioga-opening"
-          heading="The opening, watched from inside the park"
-          blurb="Sunday Field Notes carries the opening as it develops: plowing progress, the announcement when it lands, and what is actually open up high, week by week. One short letter a week. Free."
+          tag="alert-tioga"
+          heading="Email me the day it opens"
+          blurb="One email the day the park announces Tioga Road is open, and one when it closes for the season, sent to the people who asked for it. Sunday Field Notes carries the plowing progress in between. Free."
         />
       </div>
     </div>

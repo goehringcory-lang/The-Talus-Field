@@ -314,7 +314,9 @@ function TripPlan({
     className: "tripplan__card-body"
   }, itinerary.dek), it.capped && React.createElement("p", {
     className: "tripplan__card-flag"
-  }, "Shortened for the season, not for your dates."), React.createElement("a", {
+  }, "Shortened for the season, not for your dates."), plan.arrival && React.createElement("p", {
+    className: "tripplan__card-body tripplan__arrive"
+  }, React.createElement("strong", null, "Getting through the gate in ", plan.arrival.month, "."), " ", plan.arrival.text), React.createElement("a", {
     className: "btn btn--ghost",
     href: `/map?trip=${stopIds.join(",")}`,
     onClick: () => {

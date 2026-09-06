@@ -276,6 +276,56 @@ function EntranceWaits() {
     }, name, " ", min == null ? "n/a" : formatWaitMinutes(min)));
   }));
 }
+var PARKING_URL = "https://api.thetalusfieldjournal.com/api/parking";
+var PARKING_REFRESH_MS = 5 * 60 * 1000;
+var PARKING_STALE_MS = 60 * 60 * 1000;
+var PARKING_STATUS_LABEL = {
+  open: "Open",
+  full: "Full",
+  closed: "Closed"
+};
+function ParkingNow() {
+  var [data, setData] = useState(null);
+  useEffect(() => {
+    var cancelled = false;
+    var load = () => {
+      fetch(PARKING_URL).then(r => r.ok ? r.json() : Promise.reject(new Error("HTTP " + r.status))).then(body => {
+        if (!cancelled && body && Array.isArray(body.lots)) setData(body);
+      }).catch(() => {});
+    };
+    load();
+    var timer = setInterval(load, PARKING_REFRESH_MS);
+    return () => {
+      cancelled = true;
+      clearInterval(timer);
+    };
+  }, []);
+  if (!data || !data.fetchedAt) return null;
+  var fetched = Date.parse(data.fetchedAt);
+  if (!isFinite(fetched) || Date.now() - fetched > PARKING_STALE_MS) return null;
+  var lots = data.lots.filter(l => l && PARKING_STATUS_LABEL[l.status]);
+  if (!lots.length) return null;
+  var ageMin = Math.max(0, Math.round((Date.now() - fetched) / 60000));
+  return React.createElement("div", {
+    className: "parking-now",
+    role: "region",
+    "aria-label": "Live parking lot status"
+  }, React.createElement("ul", {
+    className: "parking-now__list"
+  }, lots.map(l => React.createElement("li", {
+    key: l.id || l.name,
+    className: `parking-now__row parking-now__row--${l.status}`
+  }, React.createElement("span", {
+    className: "parking-now__name"
+  }, l.name), React.createElement("span", {
+    className: "parking-now__status"
+  }, PARKING_STATUS_LABEL[l.status]), typeof l.capacity === "number" && React.createElement("span", {
+    className: "parking-now__cap"
+  }, l.capacity, " spaces")))), React.createElement("p", {
+    className: "parking-now__meta"
+  }, "NPS, ", ageMin === 0 ? "just now" : ageMin + " min ago", " · text ", React.createElement("em", null, "ynptraffic"), " to 333111 before you lose signal"));
+}
+window.ParkingNow = ParkingNow;
 var rockfallReleased = false;
 var ROCKFALL_SHAPES = ['<svg viewBox="0 0 20 20"><polygon points="3,7 11,2 18,6 16,15 6,17" fill="#cfccbd" stroke="#262b23" stroke-width="2" stroke-linejoin="round"/><polyline points="3,7 10,9 16,15" fill="none" stroke="#262b23" stroke-width="1.4"/><line x1="10" y1="9" x2="11" y2="2" stroke="#262b23" stroke-width="1.4"/></svg>', '<svg viewBox="0 0 20 20"><polygon points="10,1 18,8 13,18 4,14 2,6" fill="#b3b1a3" stroke="#262b23" stroke-width="2" stroke-linejoin="round"/><polyline points="2,6 9,9 13,18" fill="none" stroke="#262b23" stroke-width="1.4"/></svg>', '<svg viewBox="0 0 20 20"><polygon points="2,9 9,4 18,7 17,13 7,16" fill="#8f8e81" stroke="#262b23" stroke-width="2" stroke-linejoin="round"/><line x1="9" y1="4" x2="10" y2="15" stroke="#262b23" stroke-width="1.4"/></svg>', '<svg viewBox="0 0 20 20"><polygon points="4,5 14,3 17,10 12,17 3,13" fill="#4a5540" stroke="#262b23" stroke-width="2" stroke-linejoin="round"/><polyline points="4,5 10,10 12,17" fill="none" stroke="#262b23" stroke-width="1.4"/></svg>'];
 function releaseRockfall(markEl) {
@@ -371,6 +421,14 @@ var NAV_GROUPS = [{
       key: "distances",
       label: "Drive times",
       note: "How far the Valley is from every gateway town"
+    }, {
+      key: "dates",
+      label: "Dates that matter",
+      note: "Lotteries, release mornings, road windows, as calendar files"
+    }, {
+      key: "international",
+      label: "Visiting from abroad",
+      note: "The non-resident entrance fee, and the cheapest way in"
     }, {
       key: "webcams",
       label: "Webcams",
@@ -1000,7 +1058,7 @@ function Footer({
     }
   }, c.label))), link("now", "The Park Bulletin"), link("films", "Films"), React.createElement("li", null, React.createElement("a", {
     href: "/archive/"
-  }, "Nature Notes archive")))), React.createElement("div", null, React.createElement("h4", null, "Plan"), React.createElement("ul", null, link("start-here", "Start here"), link("planning", "The Planning Guide"), link("map", "The Map"), link("itineraries", "Itineraries"), link("distances", "Drive times"), link("webcams", "Webcams"), link("stay", "Where to stay"), link("conditions", "Conditions"), link("checklist", "First-week checklist"), link("kit", "Kit"), link("guide", "The Field Guide"))), React.createElement("div", null, React.createElement("h4", null, "The journal"), React.createElement("ul", null, link("about", "About"), link("newsletter", "Newsletter"), link("contact", "Contact"), link("search", "Search"), link("places", "Directory")))), React.createElement("div", {
+  }, "Nature Notes archive")))), React.createElement("div", null, React.createElement("h4", null, "Plan"), React.createElement("ul", null, link("start-here", "Start here"), link("planning", "The Planning Guide"), link("map", "The Map"), link("itineraries", "Itineraries"), link("distances", "Drive times"), link("dates", "Dates that matter"), link("international", "Visiting from abroad"), link("webcams", "Webcams"), link("stay", "Where to stay"), link("conditions", "Conditions"), link("checklist", "First-week checklist"), link("kit", "Kit"), link("guide", "The Field Guide"))), React.createElement("div", null, React.createElement("h4", null, "The journal"), React.createElement("ul", null, link("about", "About"), link("newsletter", "Newsletter"), link("contact", "Contact"), link("search", "Search"), link("places", "Directory")))), React.createElement("div", {
     className: "site-footer__disclosure"
   }, "Some links on this site are affiliate links. If you book or buy through one, The Talus Field may earn a small commission at no extra cost to you. ", React.createElement("a", {
     href: "/affiliate",
@@ -1267,6 +1325,44 @@ var KEEP_GOING = {
       key: "conditions",
       label: "Conditions",
       note: "What is open on your dates"
+    }]
+  },
+  dates: {
+    links: [{
+      key: "half-dome-lottery",
+      label: "The Half Dome lottery",
+      note: "The mechanics, the odds, what to climb instead"
+    }, {
+      key: "tioga-opening",
+      label: "Tioga Road opening",
+      note: "The window, watched from inside the park"
+    }, {
+      key: "planning",
+      label: "The Planning Guide",
+      note: "Five answers in, a plan out"
+    }, {
+      key: "guide",
+      label: "The Field Guide",
+      note: "These dates on your trip board, with reminders"
+    }]
+  },
+  international: {
+    links: [{
+      key: "start-here",
+      label: "Start here",
+      note: "The first-trip questions, answered plainly"
+    }, {
+      key: "distances",
+      label: "Drive times",
+      note: "How far the Valley is from every gateway town"
+    }, {
+      key: "stay",
+      label: "Where to stay",
+      note: "In-park beds and the gateway towns, compared"
+    }, {
+      key: "dates",
+      label: "Dates that matter",
+      note: "Lotteries and release mornings, measured against your trip"
     }]
   },
   distances: {

@@ -1,0 +1,28 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//The Talus Field//Yosemite Dates//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:Yosemite: Tioga Road typically closes
+BEGIN:VEVENT
+UID:tioga-close@dates.thetalusfieldjournal.com
+DTSTAMP:20260905T000000Z
+DTSTART;VALUE=DATE:20261101
+DTEND;VALUE=DATE:20261201
+RRULE:FREQ=YEARLY
+SUMMARY:Yosemite: Tioga Road typically closes
+DESCRIPTION:Tioga Road closes for the season with the first storm that stic
+ ks\, usually in November. Services in Tuolumne Meadows close weeks earlier
+ : after mid-September a day up high is drive-yourself and self-supported. 
+ Typical window\, not a published date\; the park announces the day a few d
+ ays ahead. Source: https://www.nps.gov/yose/planyourvisit/tiogaopen.htm. V
+ erified 2026-09-05. The Talus Field\, https://thetalusfieldjournal.com/dat
+ es
+URL:https://thetalusfieldjournal.com/dates
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Yosemite: Tioga Road typically closes
+TRIGGER:-P1D
+END:VALARM
+END:VEVENT
+END:VCALENDAR

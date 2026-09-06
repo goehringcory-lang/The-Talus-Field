@@ -3,11 +3,11 @@
 // morning cron (0 15 * * * — 7-8am Pacific year round), separate from the
 // overnight data-refresh cron so a buzz can never land at 3am.
 //
-// Two notices, both things a buyer would want their phone to interrupt them
-// for, and nothing else. The bar is deliberately high: this app's audience
-// installed a field guide, not a marketing channel, and the fastest way to
-// lose a notification permission forever is to spend it on something the
-// person did not ask about.
+// Four notices, each something a buyer would want their phone to interrupt
+// them for, and nothing else. The bar is deliberately high: this app's
+// audience installed a field guide, not a marketing channel, and the fastest
+// way to lose a notification permission forever is to spend it on something
+// the person did not ask about.
 //
 //   1. Trip morning — on each day of the buyer's trip window, once, in the
 //      morning. The one notification a park visitor actually benefits from:
@@ -16,6 +16,17 @@
 //   2. Renewal — at 14 and 1 days from expiry, mirroring the email stages so
 //      the two never disagree. No 60-day push: two months out is an email's
 //      business, not a phone buzz.
+//   3. Road change (September 2026) — a watched road (lib/roads.ts) changed
+//      state on two consecutive nightly refreshes, and the buyer's trip window
+//      covers some of the next 14 days. A closure the reader is about to drive
+//      into clears the bar on its own; a road nobody on the device is going
+//      near does not, which is what the 14-day window is for. Opens /today,
+//      whose roads line shows the current reading.
+//   4. Deadline (September 2026) — the morning before a dated deadline from
+//      scripts/data/deadlines.json (a lottery window, a campground release)
+//      that the buyer opted into from the trip board. Only ids the device
+//      registered are ever sent, so this one is asked for twice: once by
+//      turning notifications on, once per deadline. Opens /trip.
 //
 // Same self-healing shape as sweepRenewals: stages fire on thresholds rather
 // than exact days, so a missed cron run catches up tomorrow, and each
@@ -33,7 +44,9 @@ import {
   putPushPending,
   type PushSubscriptionRecord,
 } from './kv'
+import { deadlinesDueOn } from './deadlines'
 import { isPushConfigured, sendPush } from './push'
+import { readRoadChanges, type RoadChange, type RoadState } from './roads'
 
 // The cron runs daily. Whatever hour it is set to, "morning" notices should
 // only go out in the park's morning — a 3 a.m. buzz would be indefensible.
@@ -45,6 +58,36 @@ const MORNING_END_HOUR = 11
 // sends a handful, so hitting this cap means something is wrong and the
 // remainder can wait for tomorrow.
 const MAX_SENDS_PER_RUN = 200
+
+// A road change is pushed to buyers whose trip window touches the next
+// ROAD_WINDOW_DAYS. It is also only pushed while it is news: a change
+// confirmed more than ROAD_FRESH_MS ago has been on the roads line for days,
+// and a phone that was off all week should not wake to it.
+const ROAD_WINDOW_DAYS = 14
+const ROAD_FRESH_MS = 2 * 24 * 60 * 60 * 1000
+
+const ROAD_STATE_WORDS: Record<RoadState, string> = {
+  open: 'open',
+  closed: 'closed',
+  chains: 'under chain controls',
+  unknown: 'no longer named in the park alerts',
+}
+
+function addDays(date: string, days: number): string {
+  const d = new Date(`${date}T00:00:00Z`)
+  d.setUTCDate(d.getUTCDate() + days)
+  return d.toISOString().slice(0, 10)
+}
+
+// "Tue, Jun 14" for the deadline body, from a YYYY-MM-DD date.
+function shortDate(date: string): string {
+  return new Date(`${date}T12:00:00Z`).toLocaleDateString('en-US', {
+    weekday: 'short',
+    month: 'short',
+    day: 'numeric',
+    timeZone: 'UTC',
+  })
+}
 
 function parkNow(at: Date): { date: string; hour: number } {
   // en-CA gives YYYY-MM-DD; the park is America/Los_Angeles year round.
@@ -90,6 +133,8 @@ function noticesFor(
   record: PushSubscriptionRecord,
   today: string,
   status: BuyerStatus,
+  roadChanges: RoadChange[],
+  nowMs: number,
 ): Notice[] {
   const candidates: Notice[] = []
   const daysToExpiry = status.kind === 'buyer' ? status.daysToExpiry : null
@@ -118,9 +163,36 @@ function noticesFor(
   // The trip-day nudge goes to operators (no buyer record: the owner testing
   // the app) and active buyers only. A refunded or lapsed buyer's push record
   // outlives their access by up to a year (its KV TTL), and buzzing them each
-  // trip morning opens an app whose every API call now rejects them.
+  // trip morning opens an app whose every API call now rejects them. The road
+  // and deadline notices share the gate: both are about the trip.
   const tripEligible =
     status.kind === 'operator' || (status.kind === 'buyer' && status.daysToExpiry > 0)
+  const hasWindow = !!record.tripStart && !!record.tripEnd
+
+  // Road change, ahead of the trip-day nudge: a closure on the way in is the
+  // more urgent of the two, and the day nudge falls through tomorrow.
+  if (tripEligible && hasWindow) {
+    const windowEnd = addDays(today, ROAD_WINDOW_DAYS)
+    const coversSoon = record.tripStart! <= windowEnd && record.tripEnd! >= today
+    if (coversSoon) {
+      for (const change of roadChanges) {
+        if (nowMs - Date.parse(change.confirmedAt) > ROAD_FRESH_MS) continue
+        candidates.push({
+          // Road plus the confirmation day: one notice per change per device,
+          // and a road that flips twice in a season is two notices.
+          stage: `road-${change.roadId}-${change.confirmedAt.slice(0, 10)}`,
+          title: `${change.label}: ${change.to === 'unknown' ? 'alert lifted' : ROAD_STATE_WORDS[change.to]}`,
+          body:
+            change.to === 'unknown'
+              ? `The park alert that had ${change.label} ${ROAD_STATE_WORDS[change.from]} is gone. Check the roads line before you drive.`
+              : `${change.label} is now ${ROAD_STATE_WORDS[change.to]}, was ${ROAD_STATE_WORDS[change.from]}.${change.headline ? ` NPS: ${change.headline}` : ''}`,
+          url: '/today',
+          tag: `road-${change.roadId}`,
+        })
+      }
+    }
+  }
+
   if (
     tripEligible &&
     record.tripStart &&
@@ -137,6 +209,24 @@ function noticesFor(
       url: '/today',
       tag: 'trip-day',
     })
+  }
+
+  // Deadline reminders: the morning BEFORE the date, because the moments that
+  // matter here open at midnight and 7 a.m. Pacific and this sweep lands at
+  // 7 or 8. Only ids the device opted into on the trip board.
+  if (tripEligible && hasWindow && record.deadlines && record.deadlines.length > 0) {
+    const tomorrow = addDays(today, 1)
+    for (const due of deadlinesDueOn(record.tripStart!, record.tripEnd!, record.deadlines, tomorrow)) {
+      candidates.push({
+        // Id plus date: the Half Dome daily lottery recurs for every trip day
+        // and each one is its own reminder.
+        stage: `deadline-${due.id}-${due.date}`,
+        title: `Tomorrow: ${due.title}`,
+        body: `${shortDate(due.date)}, ${due.time} Pacific. ${due.detail}`,
+        url: '/trip',
+        tag: `deadline-${due.id}`,
+      })
+    }
   }
 
   return candidates
@@ -158,6 +248,9 @@ export async function sweepPush(env: Env): Promise<void> {
     return
   }
   const nowSeconds = Math.floor(now.getTime() / 1000)
+
+  // Read once per run; the same list serves every device.
+  const roadChanges = await readRoadChanges(env)
 
   // Buyer lookups repeat across a person's devices; one cache per run keeps a
   // two-device household from doubling the KV reads.
@@ -200,7 +293,13 @@ export async function sweepPush(env: Env): Promise<void> {
       }
 
       const endpointHash = key.name.slice('push:'.length)
-      const candidates = noticesFor(record, today, await buyerStatus(record.sub))
+      const candidates = noticesFor(
+        record,
+        today,
+        await buyerStatus(record.sub),
+        roadChanges,
+        now.getTime(),
+      )
       // First candidate not yet sent wins; at most one buzz per device per day.
       let notice: Notice | null = null
       for (const candidate of candidates) {

@@ -6,6 +6,11 @@
 // and Apple Calendar both import TZID-scoped local times correctly.
 // Stable UIDs mean a re-import updates events in place instead
 // of duplicating them. Runs entirely client-side, so export works offline.
+//
+// One writer, two callers: buildTripIcs (the whole board, via TripReview) and
+// the trip board's "Dates that matter" panel, which hands buildEventsIcs a
+// single deadline (trip/DeadlinesPanel.tsx). Both go through the same
+// EventFields shape so a VEVENT is written the same way whoever asked.
 // =============================================================================
 
 import { getHikeById, getStopById } from '../content'
@@ -127,9 +132,17 @@ export type EventFields = {
   coord?: [number, number]
   url?: string
   day: string
+  // For an all-day event that spans several days (a lottery week, a shuttle
+  // season): the last day, inclusive. Defaults to `day`.
+  endDay?: string
   startMin: number | null // null = exported as an all-day event
   durationMin: number
   allDay: boolean
+  // RFC 5545 TRIGGER for a display alarm. Unset means the writer's default:
+  // 30 minutes before a timed event, no alarm on an all-day one (the trip
+  // board's behaviour). A deadline sets its own, since the moment to act on a
+  // 7 a.m. release is the evening before, not 30 minutes into it.
+  alarmTrigger?: string | null
 }
 
 // The review panel renders from these same fields, so what the user confirms
@@ -244,6 +257,18 @@ export function buildTripIcs(
   slottedByDay: Map<string, SlottedItem[]>,
   updatedAt?: string,
 ): string {
+  const fields: EventFields[] = []
+  for (const slottedItems of slottedByDay.values()) {
+    for (const slotted of slottedItems) {
+      const f = slottedToEventFields(slotted)
+      if (f) fields.push(f)
+    }
+  }
+  return buildEventsIcs(fields, 'Yosemite trip · The Talus Field', updatedAt)
+}
+
+/** Write a calendar from ready EventFields. See buildTripIcs for `updatedAt`. */
+export function buildEventsIcs(fields: EventFields[], calendarName: string, updatedAt?: string): string {
   const exportedAt = new Date()
   const now = utcStamp(exportedAt)
   const changedMs = updatedAt ? Date.parse(updatedAt) : NaN
@@ -260,58 +285,58 @@ export function buildTripIcs(
     // floating-time fallbacks should be read in. No REFRESH-INTERVAL or
     // X-PUBLISHED-TTL — this file is imported once, never polled, and a poll
     // cadence in it would only promise a refresh that can't happen.
-    'X-WR-CALNAME:Yosemite trip · The Talus Field',
+    `X-WR-CALNAME:${esc(calendarName)}`,
     `X-WR-TIMEZONE:${TZID}`,
     ...VTIMEZONE,
   ]
 
-  for (const slottedItems of slottedByDay.values()) {
-    for (const slotted of slottedItems) {
-      const f = slottedToEventFields(slotted)
-      if (!f) continue
+  for (const f of fields) {
+    lines.push(
+      'BEGIN:VEVENT',
+      `UID:${f.uid}`,
+      `DTSTAMP:${now}`,
+      `SEQUENCE:${sequence}`,
+      `LAST-MODIFIED:${lastModified}`,
+    )
+    if (f.startMin === null) {
+      // No slot (untimed program, or a stop the day couldn't fit): an
+      // all-day event keeps it on the calendar instead of dropping it.
+      // DTEND is exclusive, so all-day means [day, lastDay+1).
+      const lastDay = f.endDay && f.endDay > f.day ? f.endDay : f.day
       lines.push(
-        'BEGIN:VEVENT',
-        `UID:${f.uid}`,
-        `DTSTAMP:${now}`,
-        `SEQUENCE:${sequence}`,
-        `LAST-MODIFIED:${lastModified}`,
+        `DTSTART;VALUE=DATE:${f.day.replace(/-/g, '')}`,
+        `DTEND;VALUE=DATE:${addDays(lastDay, 1).replace(/-/g, '')}`,
       )
-      if (f.startMin === null) {
-        // No slot (untimed program, or a stop the day couldn't fit): an
-        // all-day event keeps it on the calendar instead of dropping it.
-        // DTEND is exclusive, so all-day means [day, day+1).
-        lines.push(
-          `DTSTART;VALUE=DATE:${f.day.replace(/-/g, '')}`,
-          `DTEND;VALUE=DATE:${addDays(f.day, 1).replace(/-/g, '')}`,
-        )
-      } else {
-        lines.push(
-          `DTSTART;TZID=${TZID}:${dtLocal(f.day, f.startMin)}`,
-          `DTEND;TZID=${TZID}:${dtLocal(f.day, f.startMin + f.durationMin)}`,
-        )
-      }
-      lines.push(`SUMMARY:${esc(f.summary)}`)
-      if (f.location) lines.push(`LOCATION:${esc(f.location)}`)
-      if (f.coord) {
-        const [lng, lat] = f.coord
-        lines.push(`GEO:${lat.toFixed(5)};${lng.toFixed(5)}`)
-      }
-      if (f.url) lines.push(`URL:${f.url}`)
-      if (f.description) lines.push(`DESCRIPTION:${esc(f.description)}`)
-      if (f.startMin !== null) {
-        // 30-minute display reminder on timed events. Apple Calendar honors
-        // imported VALARMs; Google Calendar ignores them and applies the
-        // user's own defaults, which is why the copy never promises alerts.
-        lines.push(
-          'BEGIN:VALARM',
-          'ACTION:DISPLAY',
-          `DESCRIPTION:${esc(f.summary)}`,
-          'TRIGGER:-PT30M',
-          'END:VALARM',
-        )
-      }
-      lines.push('END:VEVENT')
+    } else {
+      lines.push(
+        `DTSTART;TZID=${TZID}:${dtLocal(f.day, f.startMin)}`,
+        `DTEND;TZID=${TZID}:${dtLocal(f.day, f.startMin + f.durationMin)}`,
+      )
     }
+    lines.push(`SUMMARY:${esc(f.summary)}`)
+    if (f.location) lines.push(`LOCATION:${esc(f.location)}`)
+    if (f.coord) {
+      const [lng, lat] = f.coord
+      lines.push(`GEO:${lat.toFixed(5)};${lng.toFixed(5)}`)
+    }
+    if (f.url) lines.push(`URL:${f.url}`)
+    if (f.description) lines.push(`DESCRIPTION:${esc(f.description)}`)
+    // Default: a 30-minute display reminder on timed events, none on all-day
+    // ones. Apple Calendar honors imported VALARMs; Google Calendar ignores
+    // them and applies the user's own defaults, which is why the copy never
+    // promises alerts.
+    const trigger =
+      f.alarmTrigger === undefined ? (f.startMin !== null ? '-PT30M' : null) : f.alarmTrigger
+    if (trigger) {
+      lines.push(
+        'BEGIN:VALARM',
+        'ACTION:DISPLAY',
+        `DESCRIPTION:${esc(f.summary)}`,
+        `TRIGGER:${trigger}`,
+        'END:VALARM',
+      )
+    }
+    lines.push('END:VEVENT')
   }
 
   lines.push('END:VCALENDAR')

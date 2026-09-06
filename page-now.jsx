@@ -1,4 +1,4 @@
-/* global React, WebcamStrip, NewsletterInline, Breadcrumbs, GuidePromo */
+/* global React, WebcamStrip, NewsletterInline, Breadcrumbs, GuidePromo, ParkingNow */
 
 // =============================================================================
 // THE PARK BULLETIN — `/now` route. One page, the whole park, right now: the
@@ -622,6 +622,11 @@ function BulletinPage({ go }) {
                   </div>
                 ))}
               </div>
+              {/* Live lot status from /api/parking (shared ParkingNow): renders
+                  nothing when the park publishes nothing, so the card reads
+                  exactly as before on a quiet feed. Feature 3 of
+                  FEATURE-RESEARCH-2026-09.md. */}
+              <ParkingNow />
             </BulletinCard>
 
             <div className="bulletin-grid">

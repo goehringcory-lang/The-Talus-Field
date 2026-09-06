@@ -720,3 +720,74 @@ export async function sendContactMessage(
     throw new Error(`Resend send failed (${res.status}): ${detail}`)
   }
 }
+
+// Operator notice for a confirmed road-status change (lib/roads.ts). Plain
+// and short on purpose: the owner reads it on a phone and decides whether to
+// send the Buttondown alert. Goes to the same inbox as the contact form.
+export async function sendRoadChangeNotice(
+  env: Env,
+  args: {
+    label: string
+    from: string
+    to: string
+    headline: string | null
+    confirmedAt: string
+  },
+): Promise<void> {
+  if (!env.RESEND_API_KEY) {
+    throw new Error('RESEND_API_KEY not configured')
+  }
+
+  const { label, from, to, headline, confirmedAt } = args
+  const when = new Date(confirmedAt).toLocaleString('en-US', {
+    timeZone: 'America/Los_Angeles',
+    dateStyle: 'medium',
+    timeStyle: 'short',
+  })
+  const headlineLine = headline ?? 'No alert names the road any more.'
+
+  const text = [
+    `Road change confirmed: ${label}.`,
+    ``,
+    `Was:    ${from}`,
+    `Now:    ${to}`,
+    `Alert:  ${headlineLine}`,
+    `Read:   ${when} Pacific, on two consecutive refreshes of the NPS alerts feed.`,
+    ``,
+    `Buyers with a trip inside the next 14 days get one push notice on the next morning sweep.`,
+    `The site's alert tags are yours to send; nothing goes to the newsletter on its own.`,
+  ].join('\n')
+
+  const html = `
+    <div style="font-family: -apple-system, Segoe UI, sans-serif; line-height: 1.55; color: #14110c;">
+      <p style="margin: 0 0 14px;"><strong>Road change confirmed: ${escapeHtml(label)}.</strong></p>
+      <p style="margin: 0 0 6px;"><strong>Was:</strong> ${escapeHtml(from)}</p>
+      <p style="margin: 0 0 6px;"><strong>Now:</strong> ${escapeHtml(to)}</p>
+      <p style="margin: 0 0 6px;"><strong>Alert:</strong> ${escapeHtml(headlineLine)}</p>
+      <p style="margin: 0 0 18px; color: #50402e;">Read ${escapeHtml(when)} Pacific, on two consecutive refreshes of the NPS alerts feed.</p>
+      <p style="margin: 0; color: #50402e;">Buyers with a trip inside the next 14 days get one push notice on the next morning sweep. The site's alert tags are yours to send; nothing goes to the newsletter on its own.</p>
+    </div>
+  `.trim()
+
+  const body: ResendBody = {
+    from: CONTACT_FROM,
+    to: [CONTACT_TO],
+    subject: `[Talus Field roads] ${label}: ${from} to ${to}`,
+    text,
+    html,
+  }
+
+  const res = await fetch('https://api.resend.com/emails', {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${env.RESEND_API_KEY}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(body),
+  })
+
+  if (!res.ok) {
+    const detail = await res.text()
+    throw new Error(`Resend send failed (${res.status}): ${detail}`)
+  }
+}

@@ -40,6 +40,8 @@ const SEARCH_PAGES = [
   { route: "stay", title: "Where to stay", dek: "In-park lodging and the gateway towns by road corridor: named lodges, drive times, which corridor fits which season, and what to do when the thing you wanted is full.", kind: "Page" },
   { route: "webcams", title: "Yosemite webcams", dek: "The live cameras worth checking before you drive in: Half Dome, Yosemite Falls, El Capitan and Wawona, what each shows, and how to read them.", kind: "Page" },
   { route: "distances", title: "Yosemite drive times", dek: "How far the Valley is from El Portal, Mariposa, Groveland, Oakhurst and Lee Vining: miles, drive times, entrances and what the season does to each route.", kind: "Page" },
+  { route: "dates", title: "Yosemite dates that matter", dek: "The Half Dome lotteries, the wilderness permit windows, the campground release mornings and the road openings, each one a calendar file, measured against your trip dates.", kind: "Page" },
+  { route: "international", title: "Visiting from abroad", dek: "The 2026 non-resident entrance fee, the $250 pass, a calculator for the cheapest way in, and what surprises visitors from outside the United States.", kind: "Page" },
   { path: "/archive/", title: "The Nature Notes archive", dek: "The park's own bulletin, Yosemite Nature Notes: 512 issues transcribed from the scans, with year indexes.", kind: "Archive" },
   { route: "tioga-opening", title: "The Tioga Road opening", dek: "When the high country actually opens, how the plowing works, and what is worth doing the first week it is passable.", kind: "Page" },
   { route: "half-dome-lottery", title: "The Half Dome lottery", dek: "How the cable permit lottery works, the real odds, and what to climb instead.", kind: "Page" },

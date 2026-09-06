@@ -26,6 +26,7 @@ import { MAX_SPAN_DAYS, readTripDates, usePrograms } from '../programs/useProgra
 import { addDaysIso, formatDayHeader, todayIso } from '../utils/date'
 import { prefersReducedMotion } from '../utils/motion'
 import BackupPlans from '../trip/BackupPlans'
+import DeadlinesPanel from '../trip/DeadlinesPanel'
 import { pickProgramsForDay } from '../trip/seedPrograms'
 import { slotPlan } from '../trip/slotting'
 import {
@@ -510,6 +511,12 @@ export default function Trip() {
         )}
 
         <TripAgenda slotted={slotted} windowDays={windowDays} dayForecasts={dayForecasts} />
+
+        {/* The plan always carries dates (the schema defaults them), but a
+            buyer who never picked any has a window nobody chose; the panel
+            reads the picked dates so it can say so instead of dating a
+            lottery against a default. */}
+        <DeadlinesPanel dates={readTripDates() ? plan.dates : null} />
 
         <div ref={reviewRef} className="trip-export" style={{ scrollMarginTop: 24 }}>
           <h2 className="trip-export__title">Put it on your calendar</h2>

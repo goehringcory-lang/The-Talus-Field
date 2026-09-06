@@ -16,6 +16,8 @@ marked. The five are ranked by (reader need × revenue or list effect) ÷ build
 effort, with the constraint that a one-person editorial operation has to keep
 each one honest after it ships.
 
+**Status, 5 September 2026: all five shipped in one pass on the same day** (the branch this file arrived on). Feature 1 is `/dates` plus the Field Guide's deadline board; 2 is the road watch in the Worker, the retagged captures, and the `road` push notice; 3 is `/api/parking`, the site's `ParkingNow` block, the app's Lots cell, and the trip selector's arrival line; 4 is `/near` in the app; 5 is `/international`. The price decision below remains the owner's. Where each lives is recorded in the three memory files (`CLAUDE.md`, `apps/guide/CLAUDE.md`, `workers/CLAUDE.md`).
+
 ## Where the two products stand
 
 This matters because the obvious backlog is mostly done. Verified in the tree
