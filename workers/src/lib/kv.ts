@@ -62,6 +62,34 @@ export type PushPendingRecord = {
   tag: string                  // collapses repeats of the same notice
 }
 
+// A campsite watch: the buyer's ask that the five-minute availability sweep
+// (lib/availabilitySweep.ts) evaluates against recreation.gov. Keyed under the
+// owner's sub so a buyer's watches list with one prefix read and no watch can
+// be addressed without its owner. `expiresAt` is also the KV expiration, so a
+// watch whose last night has passed cleans itself up.
+//
+// This is the second piece of planner state that reaches the server outside
+// the opaque sync document (trip dates were the first, for the morning push).
+// Same justification: an alert about the buyer's nights cannot be sent
+// without knowing the nights. Nothing else about the trip comes along.
+export type WatchChannels = { push: boolean; email: boolean }
+export type WatchRecord = {
+  id: string                   // crypto.randomUUID()
+  sub: string                  // lowercased JWT sub that owns it
+  targetId: string             // data/campgrounds.ts id
+  start: string                // first night, YYYY-MM-DD (park-local)
+  nights: number               // 1..14; last night = start + nights - 1
+  mode: 'any' | 'full'         // any one night, or every night on one site
+  party: number                // spots per night; consulted for person-model targets only
+  channels: WatchChannels
+  createdAt: string            // ISO
+  expiresAt: number            // epoch seconds; also the KV expiration
+  lastOpen: string[]           // nights the sweep found open at its last completed check
+  lastError?: string           // why the last check could not answer, cleared on success
+  lastNotifiedAt?: string      // ISO
+  notifyCount: number
+}
+
 const BUYER_KEY = (email: string) => `buyer:${email.toLowerCase()}`
 const TOKEN_INDEX_KEY = (token: string) => `token:${token}`
 const INVENTORY_KEY = (yyyymm: string) => `inventory:${yyyymm}`
@@ -93,6 +121,11 @@ const PROMO_REDEEMED_KEY = (code: string, email: string) =>
   `promoRedeemed:${code.toUpperCase()}:${email.toLowerCase()}`
 const REDEEM_ATTEMPTS_KEY = (email: string) => `redeemAttempts:${email.toLowerCase()}`
 const REDEEM_ATTEMPTS_IP_KEY = (ipHash: string) => `redeemAttemptsIp:${ipHash}`
+// `watch:` never collides with `watchWriteAttempts:` on a prefix list: the
+// colon after the word is part of the prefix.
+const WATCH_KEY = (sub: string, id: string) => `watch:${sub.toLowerCase()}:${id}`
+const WATCH_PREFIX = (sub: string) => `watch:${sub.toLowerCase()}:`
+const WATCH_WRITE_ATTEMPTS_KEY = (sub: string) => `watchWriteAttempts:${sub.toLowerCase()}`
 
 export function currentMonthLabel(at = new Date()): string {
   const y = at.getUTCFullYear()
@@ -253,15 +286,17 @@ export async function recordContactAttempt(env: Env, ipHash: string): Promise<nu
 // (length limits, and they end up in logs). A SHA-256 of the endpoint is a
 // stable, fixed-width id that both the app and the sweeps can derive.
 // Shared by the IP-keyed limiters: the raw address never needs to touch KV.
-export async function hashIp(scope: string, ip: string): Promise<string> {
-  const data = new TextEncoder().encode(`${scope}:${ip}`)
-  const digest = await crypto.subtle.digest('SHA-256', data)
+export async function sha256Hex(text: string): Promise<string> {
+  const digest = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(text))
   return [...new Uint8Array(digest)].map((b) => b.toString(16).padStart(2, '0')).join('')
 }
 
+export async function hashIp(scope: string, ip: string): Promise<string> {
+  return sha256Hex(`${scope}:${ip}`)
+}
+
 export async function hashEndpoint(endpoint: string): Promise<string> {
-  const digest = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(endpoint))
-  return [...new Uint8Array(digest)].map((b) => b.toString(16).padStart(2, '0')).join('')
+  return sha256Hex(endpoint)
 }
 
 // Browsers rotate push endpoints on their own schedule and installs go stale
@@ -341,13 +376,17 @@ export async function hasPushNotice(
   return (await env.GUIDE_BUYERS.get(PUSH_NOTICE_KEY(endpointHash, stage))) !== null
 }
 
+// The availability sweep passes its own short TTL: its stage names carry the
+// set of open nights, and a set that closes and re-opens next week must fire
+// again rather than sit behind a month-long sentinel.
 export async function markPushNotice(
   env: Env,
   endpointHash: string,
   stage: string,
+  ttlSeconds = PUSH_NOTICE_TTL_SECONDS,
 ): Promise<void> {
   await env.GUIDE_BUYERS.put(PUSH_NOTICE_KEY(endpointHash, stage), '1', {
-    expirationTtl: PUSH_NOTICE_TTL_SECONDS,
+    expirationTtl: ttlSeconds,
   })
 }
 
@@ -441,4 +480,88 @@ export async function recordRedeemAttempt(env: Env, email: string): Promise<numb
 
 export async function recordRedeemAttemptByIp(env: Env, ipHash: string): Promise<number> {
   return incrementFixedWindow(env, REDEEM_ATTEMPTS_IP_KEY(ipHash))
+}
+
+// --- Campsite watches (/api/watch + the five-minute availability sweep) -----
+
+function parseWatch(raw: string, key: string): WatchRecord | null {
+  try {
+    const record = JSON.parse(raw) as WatchRecord
+    if (!record || typeof record.id !== 'string' || typeof record.sub !== 'string') {
+      console.error('parseWatch: malformed record', { key })
+      return null
+    }
+    return record
+  } catch (err) {
+    console.error('parseWatch: corrupt KV record', { key, err })
+    return null
+  }
+}
+
+export async function getWatch(env: Env, sub: string, id: string): Promise<WatchRecord | null> {
+  const key = WATCH_KEY(sub, id)
+  const raw = await env.GUIDE_BUYERS.get(key)
+  return raw ? parseWatch(raw, key) : null
+}
+
+// The record's own expiresAt is the KV expiration, so a watch disappears on
+// its own two days after its last night. KV refuses an expiration less than a
+// minute out, and the sweep rewrites records right up to that edge, so the
+// floor keeps a late rewrite from failing the put.
+export async function putWatch(env: Env, record: WatchRecord): Promise<void> {
+  const floor = Math.floor(Date.now() / 1000) + 120
+  await env.GUIDE_BUYERS.put(WATCH_KEY(record.sub, record.id), JSON.stringify(record), {
+    expiration: Math.max(record.expiresAt, floor),
+  })
+}
+
+export async function deleteWatch(env: Env, sub: string, id: string): Promise<void> {
+  await env.GUIDE_BUYERS.delete(WATCH_KEY(sub, id))
+}
+
+/** One buyer's live watches. Expired records are dropped here as well as by
+ *  KV, whose expiration is "at least", not "at". */
+export async function listWatches(
+  env: Env,
+  sub: string,
+  nowSeconds = Math.floor(Date.now() / 1000),
+): Promise<WatchRecord[]> {
+  const out: WatchRecord[] = []
+  let cursor: string | undefined
+  do {
+    const page = await env.GUIDE_BUYERS.list({ prefix: WATCH_PREFIX(sub), cursor })
+    for (const key of page.keys) {
+      const raw = await env.GUIDE_BUYERS.get(key.name)
+      if (!raw) continue
+      const record = parseWatch(raw, key.name)
+      if (record && record.expiresAt > nowSeconds) out.push(record)
+    }
+    cursor = page.list_complete ? undefined : page.cursor
+  } while (cursor)
+  return out
+}
+
+/** Every watch in the namespace, for the sweep. Corrupt records are skipped
+ *  with a log; expiry is the sweep's decision (it deletes what has passed). */
+export async function listAllWatches(env: Env): Promise<WatchRecord[]> {
+  const out: WatchRecord[] = []
+  let cursor: string | undefined
+  do {
+    const page = await env.GUIDE_BUYERS.list({ prefix: 'watch:', cursor })
+    for (const key of page.keys) {
+      const raw = await env.GUIDE_BUYERS.get(key.name)
+      if (!raw) continue
+      const record = parseWatch(raw, key.name)
+      if (record) out.push(record)
+    }
+    cursor = page.list_complete ? undefined : page.cursor
+  } while (cursor)
+  return out
+}
+
+// Creating, retuning, or deleting a watch is a KV write plus, from the next
+// sweep on, recurring upstream cost; the per-sub window bounds a client stuck
+// in a create/delete loop the way tripsync's bounds a plan-save loop.
+export async function recordWatchWriteAttempt(env: Env, sub: string): Promise<number> {
+  return incrementFixedWindow(env, WATCH_WRITE_ATTEMPTS_KEY(sub))
 }

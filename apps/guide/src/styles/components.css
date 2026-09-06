@@ -517,13 +517,17 @@
 .prevnext__title { font-family: var(--display); font-size: 18px; }
 .prevnext__side--empty .prevnext__title { color: var(--ink-3); }
 
-/* ===== Plan sub-nav (PlanTabs.tsx): Trip plan | Programs ===== */
+/* ===== Plan sub-nav (PlanTabs.tsx): Trip plan | Hikes | Programs | Openings ===== */
 
 .plan-tabs {
   display: flex;
   border-bottom: 1px solid var(--rule);
   margin-bottom: var(--s5);
+  /* Four tabs outgrow a 360px screen; the row scrolls rather than wraps. */
+  overflow-x: auto;
+  scrollbar-width: none;
 }
+.plan-tabs::-webkit-scrollbar { display: none; }
 .plan-tabs__tab {
   flex: 0 0 auto;
   padding: 12px 18px 10px;
@@ -548,6 +552,108 @@
   color: var(--ink);
   border-bottom-color: var(--moss);
 }
+@media (max-width: 400px) {
+  .plan-tabs__tab { padding: 12px 11px 10px; letter-spacing: 0.08em; }
+}
+
+/* ===== Campsite watches (routes/Watch.tsx, WatchDetail.tsx, src/watch/) ===== */
+
+.watch-list {
+  list-style: none;
+  margin: 0 0 var(--s5);
+  padding: 0;
+}
+.watch-row {
+  padding: 14px 0;
+  border-top: 1px solid var(--rule-soft);
+}
+.watch-row:last-child { border-bottom: 1px solid var(--rule-soft); }
+.watch-row__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--s3);
+}
+.watch-row__title {
+  font-family: var(--display);
+  font-size: 19px;
+  color: var(--ink);
+  text-decoration: none;
+}
+.watch-row__dates,
+.watch-row__status,
+.watch-row__open,
+.watch-row__stamp {
+  margin: 4px 0 0;
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  color: var(--ink-2);
+}
+.watch-row__open { color: var(--gold); font-weight: 500; }
+.watch-row__stamp { color: var(--ink-3); font-size: 11px; }
+.watch-row__stamp--warn { color: var(--gold); }
+
+.watch-new { margin-top: var(--s5); }
+.watch-form { display: grid; gap: 14px; max-width: 520px; }
+.watch-form__dates {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+.watch-form__group {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.watch-form__group legend { padding: 0; margin-bottom: 4px; }
+.watch-form__party { max-width: 180px; }
+.watch-form__note {
+  margin: 0;
+  font-family: var(--sans);
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--ink-3);
+}
+.watch-form__note--deal { color: var(--ink-2); }
+.watch-form__error {
+  margin: 0;
+  font-family: var(--sans);
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--danger);
+}
+.watch-choice {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-family: var(--sans);
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--ink-2);
+}
+.watch-choice input {
+  flex: 0 0 auto;
+  width: 18px;
+  height: 18px;
+  margin: 2px 0 0;
+  accent-color: var(--moss);
+}
+.watch-choice strong { color: var(--ink); font-weight: 600; }
+.watch-choice__action { display: block; margin-top: 8px; }
+.watch-openings { margin-top: var(--s5); }
+.watch-openings__list {
+  margin: 0;
+  padding-left: 18px;
+  font-family: var(--sans);
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--ink-2);
+}
+.watch-openings__list strong { color: var(--ink); }
+.watch-channels { margin-top: var(--s5); display: grid; gap: 10px; }
 
 /* ===== Route-chunk loading state (App.tsx Suspense fallback) ===== */
 

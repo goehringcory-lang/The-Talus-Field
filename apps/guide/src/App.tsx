@@ -38,6 +38,8 @@ const NotFound = lazy(() => import('./routes/NotFound'))
 const Preview = lazy(() => import('./routes/Preview'))
 const StopTeaser = lazy(() => import('./routes/StopTeaser'))
 const Redeem = lazy(() => import('./routes/Redeem'))
+const Watch = lazy(() => import('./routes/Watch'))
+const WatchDetail = lazy(() => import('./routes/WatchDetail'))
 
 // Navigate drops location.hash, and old /secret-spots#<id> search bookmarks
 // rely on it, so the redirect forwards the hash explicitly.
@@ -293,6 +295,23 @@ export default function App() {
             element={
               <RequireAuth>
                 <TripPrint />
+              </RequireAuth>
+            }
+          />
+          {/* Campsite watches: the Openings tab, and the page a push tap opens. */}
+          <Route
+            path="/watch"
+            element={
+              <RequireAuth>
+                <Watch />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="/watch/:id"
+            element={
+              <RequireAuth>
+                <WatchDetail />
               </RequireAuth>
             }
           />

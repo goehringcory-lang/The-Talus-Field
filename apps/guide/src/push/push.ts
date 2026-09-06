@@ -1,11 +1,14 @@
 // =============================================================================
 // Push notification opt-in.
 //
-// Two notices exist and no more (workers/src/lib/pushSweep.ts): a morning-of
-// nudge on each day of the trip, and a heads-up when access is about to end.
-// The bar is deliberately high — this audience installed a field guide, not a
-// marketing channel, and the fastest way to lose a notification permission
-// forever is to spend it on something nobody asked about.
+// Three notices exist and no more: a morning-of nudge on each day of the trip
+// and a heads-up when access is about to end (workers/src/lib/pushSweep.ts),
+// plus a campsite opening for a watch the buyer set on the Openings tab
+// (workers/src/lib/availabilitySweep.ts), which is opt-in per watch and is the
+// one notice not limited to the morning, because a cancellation lands at any
+// hour. The bar is deliberately high — this audience installed a field guide,
+// not a marketing channel, and the fastest way to lose a notification
+// permission forever is to spend it on something nobody asked about.
 //
 // Off by default, and the permission prompt is only ever raised from a real
 // tap on the Account page. A cold prompt on first launch is the single most

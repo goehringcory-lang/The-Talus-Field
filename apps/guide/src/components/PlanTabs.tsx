@@ -1,10 +1,10 @@
-// Segmented sub-nav for the Plan tab's three surfaces. The bottom nav's Plan
+// Segmented sub-nav for the Plan tab's four surfaces. The bottom nav's Plan
 // tab already highlights for all of them; this makes the siblings visible.
 
 import { Link } from 'react-router-dom'
 
 type Props = {
-  active: 'trip' | 'hikes' | 'programs'
+  active: 'trip' | 'hikes' | 'programs' | 'watch'
 }
 
 export default function PlanTabs({ active }: Props) {
@@ -30,6 +30,13 @@ export default function PlanTabs({ active }: Props) {
         aria-current={active === 'programs' ? 'page' : undefined}
       >
         Programs
+      </Link>
+      <Link
+        to="/watch"
+        className="plan-tabs__tab"
+        aria-current={active === 'watch' ? 'page' : undefined}
+      >
+        Openings
       </Link>
     </nav>
   )
