@@ -1,0 +1,460 @@
+diff --git a/.claude/skills/cornerstone-article/SKILL.md b/.claude/skills/cornerstone-article/SKILL.md
+index 498c56e..3a6cccf 100644
+--- a/.claude/skills/cornerstone-article/SKILL.md
++++ b/.claude/skills/cornerstone-article/SKILL.md
+@@ -130,9 +130,9 @@ overrides:
+ - If the chosen gap was on the standing list above, remove it from this
+   file in the same commit. The list is a seed, not a backlog.
+ 
+-Subscribe to PR activity, drive CI green, **never merge**. Completion
+-summary: the article (title, PR link, word count, tags) and the gap it
+-closed, or the reason the week was skipped.
++Subscribe to PR activity and drive CI green. Completion summary: the
++article (title, PR link, word count, tags) and the gap it closed, or the
++reason the week was skipped.
+ 
+ ## Hard rules
+ 
+diff --git a/.claude/skills/evergreen-refresh/SKILL.md b/.claude/skills/evergreen-refresh/SKILL.md
+index 0532681..897ccb6 100644
+--- a/.claude/skills/evergreen-refresh/SKILL.md
++++ b/.claude/skills/evergreen-refresh/SKILL.md
+@@ -43,24 +43,19 @@ answer to both: **one article per run, verified, corrected, linked.**
+ 
+ ## Phase 1 — Pick one article (derive it, never guess)
+ 
+-Build the candidate table from the repo every run:
+-
+-- For every entry in `window.ARTICLES` (`data.js`): `slug`, `cat`,
+-  `isoModified`, and the body file `bodies/<slug>.jsx`.
+-- **Decay signal**: days since `isoModified`, weighted by the body's
+-  density of perishable facts: dollar amounts, years, month names,
+-  "reservation", "permit", "lottery", "fee", "hours", "shuttle", "open",
+-  "closes", "through", road names. A natural-history essay has few and
+-  ages slowly; a permits guide has many and ages fast.
+-- **Inbound-link deficit**: count `href="/articles/<slug>"` occurrences
+-  across the *other* bodies. Zero inbound contextual links is the Search
+-  Console finding; it outranks age for an article under three months old.
+-- **Exclusions**: touched (by `isoModified`) in the last 45 days; a dated
+-  month edition (`yosemite-in-<month>-<year>`); any slug with an open PR;
+-  the article the last two refresh runs took.
+-
+-Pick the highest combined score; ties go to the oldest `isoModified`. Say
+-in the PR body why this one, with the numbers.
++`node scripts/refresh-candidates.mjs` prints the candidate table from the
++repo: for every entry in `window.ARTICLES`, days since `isoModified`
++weighted by the body's density of perishable facts (dollar amounts, years,
++month names, reservation and permit language, hours, road names), the
++count of `href="/articles/<slug>"` links from the *other* bodies, and a
++score that puts an article with zero inbound links ahead of its age (the
++Search Console finding). Articles touched in the last 45 days and the
++dated month editions (`yosemite-in-<month>-<year>`) are already excluded;
++`--all` shows them. Apply the two exclusions only GitHub can answer: any
++slug with an open PR, and the article the last two refresh runs took.
++
++Take the top remaining row; ties go to the oldest `isoModified`. Say in
++the PR body why this one, with the table's numbers.
+ 
+ ## Phase 2 — Verify every perishable claim
+ 
+diff --git a/.claude/skills/guide-depth/SKILL.md b/.claude/skills/guide-depth/SKILL.md
+index 7692b61..8889623 100644
+--- a/.claude/skills/guide-depth/SKILL.md
++++ b/.claude/skills/guide-depth/SKILL.md
+@@ -11,10 +11,10 @@ when the lot is full, and the one thing about a place that no other guide
+ carries. The archive notes are that last thing. `Stop.history` is one short,
+ sourced note from *Yosemite Nature Notes* (the National Park Service's own
+ bulletin, 1922 onward, transcribed in `nature-notes/` and published at
+-`/archive`), and as of September 2026 twenty-seven stops and all fifteen
+-secret spots have none. The whole source is in the repo, so this routine needs
+-nothing outside it, and `scripts/check-archive-citations.mjs` can prove
+-every citation resolves.
++`/archive`), and most secret spots and a third of the core stops have none
++(the exact inventory is read live in Phase 0). The whole source is in the
++repo, so this routine needs nothing outside it, and
++`scripts/check-archive-citations.mjs` can prove every citation resolves.
+ 
+ This routine adds two or three notes a week and, when the entry's own body
+ already supports it, one small field. It is the paid product: **minimal
+diff --git a/.claude/skills/intel-cycle/SKILL.md b/.claude/skills/intel-cycle/SKILL.md
+index eeef8a2..579d64a 100644
+--- a/.claude/skills/intel-cycle/SKILL.md
++++ b/.claude/skills/intel-cycle/SKILL.md
+@@ -19,7 +19,7 @@ empty cycle posts no issue at all, only a completion summary saying so.
+ 
+ ## Territory (do not duplicate the other Routines)
+ 
+-Four Routines already exist and own their lanes:
++The other Routines own their lanes:
+ 
+ - **Weekly trend article** (Mondays) owns "one new article from the week's
+   search trends". If this cycle surfaces a pure article topic driven by search
+@@ -45,7 +45,7 @@ Four Routines already exist and own their lanes:
+   draft** (Saturdays) reads merged work and needs no options. `ROUTINES.md`
+   is the map of all of them.
+ 
+-This cycle's lane is everything those three cannot see: business and
++This cycle's lane is everything those routines cannot see: business and
+ tourism-industry signals, competitor and partner moves, monetization and promo
+ opportunities, bulletin-worthy park changes, PWA/guide content gaps, and
+ updates that new information forces on existing articles.
+diff --git a/.claude/skills/revenue-pulse/SKILL.md b/.claude/skills/revenue-pulse/SKILL.md
+index 9b90f7e..6b1d34a 100644
+--- a/.claude/skills/revenue-pulse/SKILL.md
++++ b/.claude/skills/revenue-pulse/SKILL.md
+@@ -86,13 +86,11 @@ tracks anywhere.
+    (`cd workers && npx wrangler deploy`). A stale editorial Workers Build
+    (newest articles 404) is the sweep's known failure mode: report, never
+    "fix" the repo.
+-4. **The live hosts are reachable.** The environment has had full
+-   Internet access since September 2026 (`ROUTINES.md`, "Network access");
+-   the August runs could not reach `api.thetalusfieldjournal.com` and fell
+-   back to repo-side parity, and the allow-list sat at the top of "Your
+-   court". That item is resolved: the first ledger comment after this
+-   change says so and drops it. If the online battery still fails, tell
+-   the two cases apart. An HTTP error or timeout from the host is a real
++4. **The live hosts are reachable.** The environment has full Internet
++   access (`ROUTINES.md`, "Network access"). If the ledger's "Your court"
++   still carries the network allow-list item, say it is resolved and drop
++   it. If the online battery fails, tell the two cases apart. An HTTP
++   error or timeout from the host is a real
+    finding and goes on the ledger's top line. A CONNECT 403 from the agent
+    proxy (`curl -sS "$HTTPS_PROXY/__agentproxy/status"` shows the refusal)
+    means the environment's network policy regressed: fall back to
+diff --git a/.claude/skills/sunday-letter/SKILL.md b/.claude/skills/sunday-letter/SKILL.md
+index 0030467..4642194 100644
+--- a/.claude/skills/sunday-letter/SKILL.md
++++ b/.claude/skills/sunday-letter/SKILL.md
+@@ -10,16 +10,16 @@ The site promises "a short note on Sundays, when there is something to say"
+ revenue line launches to: guide sales, renewals, consults, and one day a
+ sponsor line. The letter is written and sent by hand in Buttondown, and the
+ blank page on Saturday is the reason weeks get skipped. This routine removes
+-the blank page. **It never sends anything**: Buttondown is not reachable from
+-the sandbox, and sending is the owner's decision every week.
++the blank page. **It never sends anything**: the environment holds no
++Buttondown credentials, and sending is the owner's decision every week.
+ 
+ The deliverable is one GitHub issue: a paste-ready letter, a distribution
+ pack, and a sources list that lets the owner verify every line in a minute.
+ 
+ ## Territory
+ 
+-- The **Sunday sweep** used to pick the archive issue; this routine owns the
+-  archive pick now, and the sweep reports only mentions and backlinks.
++- This routine owns the archive pick; the **Sunday sweep** reports only
++  mentions and backlinks.
+ - The **article routines** (Monday trend, Thursday cornerstone, monthly
+   edition, intel executor) put a "Distribution handoff" section in each
+   article PR body: a letter blurb and a Reddit-ready answer. Read them;
+diff --git a/.claude/skills/weekly-trend-article/SKILL.md b/.claude/skills/weekly-trend-article/SKILL.md
+index d02cb87..0131f95 100644
+--- a/.claude/skills/weekly-trend-article/SKILL.md
++++ b/.claude/skills/weekly-trend-article/SKILL.md
+@@ -104,9 +104,8 @@ that were actually read. A page that fails to load after one retry (an
+ outage, a moved URL, a site's own bot wall) may be corroborated by a
+ WebSearch result that quotes it, logged as `<primary URL> (via search)`,
+ and the PR body names the page and the failure; a claim that rests only on
+-secondary coverage is hedged or cut. `(via search)` is the exception now,
+-not the posture, and a fact-check table full of it is a sign something
+-else went wrong.
++secondary coverage is hedged or cut. `(via search)` is the exception, and
++a fact-check table full of it is a sign something else went wrong.
+ 
+ Keep a source log as you go — one row per fact:
+ 
+@@ -185,8 +184,8 @@ A second, adversarial read of the finished draft:
+ 
+ ## Phase 6 — Integration (the full pipeline)
+ 
+-The canonical single-article commit touches ~13 files (see #305 and #311 in
+-history). Edit four by hand; the rest are generated.
++The canonical single-article commit touches ~13 files. Edit four by hand;
++the rest are generated.
+ 
+ 1. **`bodies/<slug>.jsx`** — new file, following the existing pattern exactly:
+ 
+@@ -258,9 +257,8 @@ history). Edit four by hand; the rest are generated.
+    fails because `data.js` / `intent-data.js` changed under the unchanged
+    shared number, bump the shared `?v=` in `index.html`, run
+    `npm --prefix scripts run assets:stamp`, and commit the regenerated
+-   manifest with everything else. (An earlier version of this note said a
+-   pure add needs no bump; that predates the asset-freshness guard, and
+-   PR #341 hit it.)
++   manifest with everything else. A pure add trips the guard too, because
++   `data.js` changed under the shared number.
+ 
+ ## Phase 7 — Verification gates
+ 
+@@ -306,9 +304,8 @@ the compile step corrected.
+    and the full would-be PR body in the completion summary instead. That is a
+    degraded finish, not a failure.
+ 4. Subscribe to PR activity (if the tooling allows) and drive CI to green:
+-   fix and push on failures, answer review comments. **Do not merge.** The PR
+-   sitting green and mergeable is this routine's finish line; merging it is
+-   the owner's publish button.
++   fix and push on failures, answer review comments. The PR sitting green
++   and mergeable is this routine's finish line.
+ 5. End with a short completion summary: the article shipped (title, PR link,
+    word count, tags) or the reason the week was skipped.
+ 
+diff --git a/ROUTINES.md b/ROUTINES.md
+index 7325f68..9f33c5a 100644
+--- a/ROUTINES.md
++++ b/ROUTINES.md
+@@ -84,39 +84,28 @@ could do the same thing, the table says which one does.
+ | The newsletter (drafting) | Sunday letter draft | never sends; nobody else drafts |
+ | External signals, competitor and partner moves, outreach drafts | Intel cycle + executor | never sent by anyone |
+ 
+-## Network access: full Internet since September 2026
+-
+-Every routine runs in the "Default Cloud Environment". Through August
+-2026 that environment's egress policy refused almost every host the
+-runbooks depend on (only GitHub and web *search* got through; confirmed
+-from inside a session on 2026-09-02 as a CONNECT 403 from the agent proxy
+-on every direct fetch), and the runbooks carried fallbacks for it: facts
+-checked through search results that quoted the primary page, marked
+-`(via search)`; a revenue pulse that could not verify the live sale path;
+-a sweep without its online battery; a bulletin turn that could not read
+-the new Guide; a photo pass that could not run at all.
+-
+-**On 2026-09-04 the environment was switched to full Internet access**,
+-and the switch was confirmed from inside a session: `nps.gov` (the Guide
+-page and its PDFs), `recreation.gov`, `travelyosemite.com`, Caltrans, NWS,
+-YARTS, Google Trends, the local papers, Wikimedia Commons, and the site's
+-own three hosts all answer directly. The runbooks and the Routines' stored
+-prompts were updated the same day. What changed:
+-
+-- **Primary pages are fetched and read.** `(via search)` is no longer a
+-  posture; it marks the rare page that fails to load after one retry, and
+-  the PR body or brief names the page and the failure.
++## Network access
++
++Every routine runs in the "Default Cloud Environment", which has full
++Internet access (switched on 2026-09-04 and confirmed from inside a
++session): `nps.gov` (the Guide page and its PDFs), `recreation.gov`,
++`travelyosemite.com`, Caltrans, NWS, YARTS, Google Trends, the local
++papers, Wikimedia Commons, and the site's own three hosts all answer
++directly. Four rules follow from it:
++
++- **Primary pages are fetched and read.** `(via search)` marks the rare
++  page that fails to load after one retry, and the PR body or brief names
++  the page and the failure.
+ - **The revenue pulse verifies the live sale path** every Monday
+   (`checks -- --only=api --online`), and the sweep runs the online
+-  battery. The allow-list item that sat at the top of the ledger's "Your
+-  court" is resolved and comes off at the next comment.
++  battery.
+ - **The bulletin turn reads the new Guide itself**, so an edition rollover
+   is automated end to end.
+-- **The photo pass ran** (`LAUNCH-READINESS.md`); wiring a photo into the
++- **The photo pass runs** (`LAUNCH-READINESS.md`); wiring a photo into the
+   guide stays the owner's, per the territory table.
+ 
+-Two things did not change. Some hosts wall off non-browser clients on
+-their own account, and that is their policy, not the environment's: Reddit
++Two limits are not the environment's. Some hosts wall off non-browser
++clients on their own account, and that is their policy: Reddit
+ redirects the anonymous `.json` feed to a login page and answers 403 to
+ non-browser user agents (fetch `www.reddit.com/r/Yosemite/top/?t=week` as
+ HTML with a browser user agent), a lodge behind a Cloudflare challenge
+@@ -125,9 +114,9 @@ answers 403 to everything, and Commons rate-limits a burst with 429 plus
+ is reported as that site's behaviour; a **CONNECT 403 from the agent
+ proxy** (`curl -sS "$HTTPS_PROXY/__agentproxy/status"`) means the
+ environment's network policy has regressed, and every runbook says to
+-report exactly that rather than an outage. And the environment still holds
+-no GA4, Search Console, Stripe, or Buttondown credentials; numbers reach
+-the routines only when the owner pastes them into the ledger.
++report exactly that rather than an outage. And the environment holds no
++GA4, Search Console, Stripe, or Buttondown credentials; numbers reach the
++routines only when the owner pastes them into the ledger.
+ 
+ For reference, the hosts the runbooks reach, should the policy ever need
+ to be narrowed to an allow-list again:
+diff --git a/WEEKLY-SWEEP.md b/WEEKLY-SWEEP.md
+index ecadc86..edcd7cf 100644
+--- a/WEEKLY-SWEEP.md
++++ b/WEEKLY-SWEEP.md
+@@ -54,7 +54,7 @@ Via the GitHub tools (a scheduled run that finds itself without them should say
+ 
+ ## Phase 5 — Performance trend
+ 
+-Read `scripts/data/lighthouse-history.json` (the nightly writes it; do not run Lighthouse again). Report the week's trajectory for the tracked pages. Flag only: a score drop of more than 10 points sustained across nights, LCP over 2.5 s, or CLS over 0.1. Do not chase single-night noise, and remember the homepage's LCP element is the dek text, not the hero photo — image preloads are not the fix.
++Read `scripts/data/lighthouse-history.json` (the nightly writes it; do not run Lighthouse again). Report the week's trajectory for the tracked pages. Flag only: a score drop of more than 10 points sustained across nights, LCP over 2.5 s, or CLS over 0.1. Do not chase single-night noise. The homepage's LCP element is the static shell's hero image, and the nightly figure is Lighthouse's simulated LCP rather than a paint time (CLAUDE.md, "Things that have surprised past edits"): read `observedLargestContentfulPaint` in the run's JSON before treating a rise as real.
+ 
+ ## Phase 6 — Funnel spot checks (render and config only)
+ 
+@@ -68,13 +68,13 @@ If a render check needs a real browser, the repo's `verify` skill drives headles
+ ## Phase 7 — Growth inputs (report-only)
+ 
+ 1. Web-search "The Talus Field" plus this week's article topics: new mentions, backlinks, or scrapers worth knowing about.
+-2. Inbound links for the week's new articles are no longer suggested here: the Wednesday evergreen-refresh routine (`.claude/skills/evergreen-refresh/SKILL.md`) measures the inbound-link deficit from the repo and applies the links. The Saturday letter draft (`.claude/skills/sunday-letter/SKILL.md`) owns the archive pick. Report only what neither of them can see: mentions, backlinks, scrapers.
++2. Inbound links for the week's new articles belong to the Wednesday evergreen-refresh routine (`.claude/skills/evergreen-refresh/SKILL.md`), which measures the inbound-link deficit from the repo and applies the links. The Saturday letter draft (`.claude/skills/sunday-letter/SKILL.md`) owns the archive pick. Report only what neither of them can see: mentions, backlinks, scrapers.
+ 
+ ## The report
+ 
+-The final message of the sweep session, shortest first, under 40 lines total:
++The final message of the sweep session, shortest first, written to be read over coffee: the verdict, then only what changed or needs a decision.
+ 
+-1. **Verdict (2 lines max)**: "Safe to send the Sunday letter" or "Fix X first." Note the PR if one is waiting.
++1. **Verdict**: "Safe to send the Sunday letter" or "Fix X first." Note the PR if one is waiting.
+ 2. **Fixed**: what is in the PR, with the link.
+ 3. **Needs your decision**: everything report-only that deserves an answer.
+ 4. **Health snapshot**: one line each — deploy parity, battery errors/warnings vs baseline, nightly CI, Lighthouse trend, bulletin days remaining.
+diff --git a/scripts/check-house-voice.mjs b/scripts/check-house-voice.mjs
+new file mode 100644
+index 0000000..78de672
+--- /dev/null
++++ b/scripts/check-house-voice.mjs
+@@ -0,0 +1,58 @@
++#!/usr/bin/env node
++//
++// House-voice guard: no em-dashes and no exclamation marks in reader-facing
++// copy. CLAUDE.md states the rule and every article routine repeats it, but
++// until this file nothing in `npm run check` enforced it, so a slip shipped
++// silently. Scans the article bodies, the catalog's titles and deks, and the
++// bulletin. Exits non-zero on the first offending file, listing each line.
++//
++// Usage: node check-house-voice.mjs [--verbose]
++
++import { readFileSync, readdirSync } from "node:fs";
++import path from "node:path";
++import { ROOT } from "./lib/catalog.mjs";
++
++const verbose = process.argv.includes("--verbose");
++const EM_DASH = /—/;
++// An exclamation mark that ends a sentence of prose: preceded by a word or
++// closing punctuation, followed by whitespace, a tag, a quote, or the end of
++// the line. Code never matches this shape (`!==`, `!x`, `x!.y`).
++const EXCLAIM = /[A-Za-z0-9)”’][!](?=[\s<"'”’)]|$)/;
++// Proper names the park itself prints with the mark; quoting them is not a
++// voice slip. Add a name here only when it is the printed title of a thing.
++const ALLOW = ["Welcome to Tuolumne!"];
++// Code comments in a .js source are not reader-facing.
++const isComment = (rel, line) => rel.endsWith(".js") && line.trim().startsWith("//");
++
++const targets = [
++  ...readdirSync(path.join(ROOT, "bodies"))
++    .filter((f) => f.endsWith(".jsx"))
++    .map((f) => path.join("bodies", f)),
++  "data.js",
++  "bulletin.json",
++];
++
++let bad = 0;
++for (const rel of targets) {
++  const lines = readFileSync(path.join(ROOT, rel), "utf8").split("\n");
++  const hits = [];
++  lines.forEach((raw, i) => {
++    if (isComment(rel, raw)) return;
++    const line = ALLOW.reduce((s, name) => s.split(name).join(""), raw);
++    if (EM_DASH.test(line)) hits.push(`${i + 1}: em-dash: ${raw.trim().slice(0, 100)}`);
++    if (EXCLAIM.test(line)) hits.push(`${i + 1}: exclamation: ${raw.trim().slice(0, 100)}`);
++  });
++  if (hits.length) {
++    bad += 1;
++    console.error(`house-voice: ${rel}`);
++    for (const h of hits) console.error(`  ${h}`);
++  } else if (verbose) {
++    console.log(`ok ${rel}`);
++  }
++}
++
++if (bad) {
++  console.error(`house-voice: ${bad} file(s) carry an em-dash or an exclamation mark in reader-facing copy.`);
++  process.exit(1);
++}
++console.log(`house-voice: ${targets.length} files clean.`);
+diff --git a/scripts/package.json b/scripts/package.json
+index 7e4ffa4..df9c1e3 100644
+--- a/scripts/package.json
++++ b/scripts/package.json
+@@ -34,9 +34,11 @@
+     "redirects:check": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON check-edge-redirects.mjs",
+     "hometitle:check": "node check-home-title.mjs",
+     "api:check": "node system-checks.mjs --online --only=api",
+-    "check": "bash check-cache-busters.sh && node check-asset-freshness.mjs && bash check-seo-artifacts.sh && node gen-prerender.mjs --check && node gen-compiled.mjs --check && node gen-home-shell.mjs --check && node gen-archive.mjs --check && node check-archive-citations.mjs && node check-guide-photos.mjs && node check-intent-tags.mjs && node check-trip-bridge.mjs && node check-watch-targets.mjs && node check-home-title.mjs && node check-deadlines.mjs && node check-fee-calculator.mjs && node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON check-edge-redirects.mjs && npm --prefix ../apps/guide run --silent check:itineraries",
++    "check": "bash check-cache-busters.sh && node check-asset-freshness.mjs && bash check-seo-artifacts.sh && node gen-prerender.mjs --check && node gen-compiled.mjs --check && node gen-home-shell.mjs --check && node gen-archive.mjs --check && node check-archive-citations.mjs && node check-guide-photos.mjs && node check-intent-tags.mjs && node check-trip-bridge.mjs && node check-watch-targets.mjs && node check-home-title.mjs && node check-house-voice.mjs && node check-deadlines.mjs && node check-fee-calculator.mjs && node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON check-edge-redirects.mjs && npm --prefix ../apps/guide run --silent check:itineraries",
+     "tracks": "node gen-hike-tracks.mjs",
+-    "itineraries:check": "npm --prefix ../apps/guide run --silent check:itineraries"
++    "itineraries:check": "npm --prefix ../apps/guide run --silent check:itineraries",
++    "voice:check": "node check-house-voice.mjs --verbose",
++    "refresh:candidates": "node refresh-candidates.mjs"
+   },
+   "devDependencies": {
+     "@babel/core": "^8.0.0",
+diff --git a/scripts/refresh-candidates.mjs b/scripts/refresh-candidates.mjs
+new file mode 100644
+index 0000000..923f4cb
+--- /dev/null
++++ b/scripts/refresh-candidates.mjs
+@@ -0,0 +1,70 @@
++#!/usr/bin/env node
++//
++// Evergreen-refresh candidate table. The Wednesday refresh routine picks one
++// article per run by decay (age weighted by the body's density of perishable
++// facts) and inbound-link deficit; this script does that arithmetic from the
++// repo so the runbook reads a table instead of recounting sixty-odd bodies by
++// hand each run. The GitHub-side exclusions (open PRs, the last two runs'
++// picks) and the pick itself stay with the routine.
++//
++// Usage: node refresh-candidates.mjs [--all] [--json]
++//   --all   include excluded rows (recently touched, dated month editions)
++//   --json  machine-readable output
++//
++// Score = days since isoModified x (1 + perishable facts per 1,000 words),
++// plus a fixed bonus when no other body links to the article. Ties in the
++// runbook go to the oldest isoModified; the table is sorted that way.
++
++import { readFileSync, existsSync } from "node:fs";
++import path from "node:path";
++import { ROOT, loadDataJs } from "./lib/catalog.mjs";
++
++const PERISHABLE = [
++  /\$\s?\d/g,
++  /\b(19|20)\d{2}\b/g,
++  /\b(January|February|March|April|May|June|July|August|September|October|November|December)\b/g,
++  /\b(reservation|reservations|permit|permits|lottery|fee|fees|hours|shuttle|opens?|closes?|closed|through)\b/gi,
++  /\b(Tioga|Glacier Point Road|Wawona Road|Big Oak Flat|Hetch Hetchy Road|Highway 120|Highway 140|Highway 41)\b/g,
++];
++const RECENT_DAYS = 45;
++const NO_INBOUND_BONUS = 60;
++const DATED_EDITION = /^yosemite-in-[a-z]+-\d{4}$/;
++
++const { articles } = loadDataJs();
++const today = new Date();
++const bodies = new Map();
++for (const a of articles) {
++  const file = path.join(ROOT, "bodies", `${a.slug}.jsx`);
++  bodies.set(a.slug, existsSync(file) ? readFileSync(file, "utf8") : "");
++}
++
++const rows = articles.map((a) => {
++  const body = bodies.get(a.slug) || "";
++  const text = body.replace(/<[^>]+>/g, " ");
++  const words = Math.max(1, text.split(/\s+/).filter(Boolean).length);
++  const perishable = PERISHABLE.reduce((n, re) => n + (text.match(re) || []).length, 0);
++  const ageDays = Math.floor((today - new Date(a.isoModified || a.isoDate)) / 86400000);
++  const needle = `href="/articles/${a.slug}"`;
++  let inbound = 0;
++  for (const [slug, other] of bodies) if (slug !== a.slug) inbound += other.split(needle).length - 1;
++  const density = perishable / (words / 1000);
++  const score = ageDays * (1 + density / 10) + (inbound === 0 ? NO_INBOUND_BONUS : 0);
++  const excluded =
++    ageDays < RECENT_DAYS ? `touched ${ageDays}d ago` : DATED_EDITION.test(a.slug) ? "dated month edition" : null;
++  return { slug: a.slug, cat: a.cat, isoModified: a.isoModified, ageDays, words, perishable, inbound, score: Math.round(score), excluded };
++});
++
++rows.sort((x, y) => y.score - x.score || (x.isoModified < y.isoModified ? -1 : 1));
++const shown = process.argv.includes("--all") ? rows : rows.filter((r) => !r.excluded);
++
++if (process.argv.includes("--json")) {
++  console.log(JSON.stringify(shown, null, 2));
++} else {
++  console.log("score  age  perish  words  inbound  slug");
++  for (const r of shown) {
++    console.log(
++      `${String(r.score).padStart(5)}  ${String(r.ageDays).padStart(3)}  ${String(r.perishable).padStart(6)}  ${String(r.words).padStart(5)}  ${String(r.inbound).padStart(7)}  ${r.slug}${r.excluded ? `  (${r.excluded})` : ""}`,
++    );
++  }
++  console.log(`\n${shown.length} of ${rows.length} articles eligible; excluded = touched under ${RECENT_DAYS} days or a dated month edition.`);
++}
