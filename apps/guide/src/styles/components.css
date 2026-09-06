@@ -374,6 +374,273 @@
   font-style: italic;
 }
 
+/* ===== The Secret Guide folio (/secret-guide) =====
+   The section's opening plate. It always draws in the granite palette,
+   whatever the reader's scheme, the same rule as the field card: this is
+   the one surface in the app that reads as the premium object the buyer
+   paid for, and a cream plate at noon is a page, not an object. The values
+   are the granite block's in tokens.css; retune both together. Corner
+   brackets and the mono readouts are the Surveyor instrument grammar, so
+   the plate still belongs to the app it opens. */
+.sg-folio {
+  --sg-paper: #1c1812;
+  --sg-panel: #252019;
+  --sg-edge: #3a3022;
+  --sg-ink: #f0e8d8;
+  --sg-ink-2: #c8b898;
+  --sg-ink-3: #a09070;
+  --sg-gold: #c09038;
+  --sg-signal: #d87040;
+  position: relative;
+  color: var(--sg-ink);
+  background:
+    repeating-radial-gradient(circle at 115% -8%, rgb(240 232 216 / 5%) 0 1px, transparent 1px 30px),
+    repeating-radial-gradient(circle at -20% 108%, rgb(240 232 216 / 4%) 0 1px, transparent 1px 44px),
+    var(--sg-paper);
+  border: 1px solid var(--sg-edge);
+  padding: 22px 22px 18px;
+  margin: 0 0 var(--s6);
+  color-scheme: dark;
+}
+/* Full bleed against the .wrap gutter on phones, so the plate reads as
+   the page's own edge rather than a box on the page. */
+@media (max-width: 720px) {
+  .sg-folio {
+    margin-left: calc(-1 * var(--gutter));
+    margin-right: calc(-1 * var(--gutter));
+    border-left: 0;
+    border-right: 0;
+    padding-left: var(--gutter);
+    padding-right: var(--gutter);
+  }
+}
+.sg-folio__ticks {
+  position: absolute;
+  inset: 8px;
+  pointer-events: none;
+  --hud-ink: rgb(240 232 216 / 55%);
+  background:
+    linear-gradient(var(--hud-ink), var(--hud-ink)) left top / 14px 1.5px no-repeat,
+    linear-gradient(var(--hud-ink), var(--hud-ink)) left top / 1.5px 14px no-repeat,
+    linear-gradient(var(--hud-ink), var(--hud-ink)) right top / 14px 1.5px no-repeat,
+    linear-gradient(var(--hud-ink), var(--hud-ink)) right top / 1.5px 14px no-repeat,
+    linear-gradient(var(--hud-ink), var(--hud-ink)) left bottom / 14px 1.5px no-repeat,
+    linear-gradient(var(--hud-ink), var(--hud-ink)) left bottom / 1.5px 14px no-repeat,
+    linear-gradient(var(--hud-ink), var(--hud-ink)) right bottom / 14px 1.5px no-repeat,
+    linear-gradient(var(--hud-ink), var(--hud-ink)) right bottom / 1.5px 14px no-repeat;
+}
+.sg-folio__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--s3);
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--sg-gold);
+  margin-bottom: 18px;
+}
+.sg-folio__head span:last-child {
+  color: var(--sg-ink-3);
+  letter-spacing: 0.12em;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+.sg-folio__title {
+  font-family: var(--display);
+  font-size: clamp(34px, 6vw, 48px);
+  font-weight: 500;
+  line-height: 1.02;
+  letter-spacing: -0.01em;
+  margin: 0 0 14px;
+  color: var(--sg-ink);
+}
+.sg-folio__teaser {
+  margin: 0 0 20px;
+  color: var(--sg-ink-2);
+  font-size: 17px;
+  line-height: 1.5;
+  max-width: 58ch;
+}
+
+/* The contents: one row per category, numbered like a folio's table of
+   contents. Rows are buttons because they set the filter; a pressed row is
+   the section the page is currently showing. */
+.sg-folio__index {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid var(--sg-edge);
+}
+.sg-folio__row {
+  display: grid;
+  grid-template-columns: 34px minmax(0, 1fr) auto;
+  grid-template-areas:
+    'num name count'
+    'num tag count';
+  column-gap: 12px;
+  row-gap: 2px;
+  align-items: baseline;
+  width: 100%;
+  padding: 11px 0;
+  border: 0;
+  border-bottom: 1px solid var(--sg-edge);
+  background: none;
+  color: inherit;
+  text-align: left;
+  font: inherit;
+  cursor: pointer;
+}
+.sg-folio__num {
+  grid-area: num;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  color: var(--sg-ink-3);
+  align-self: start;
+  padding-top: 5px;
+}
+.sg-folio__name {
+  grid-area: name;
+  font-family: var(--display);
+  font-size: 21px;
+  font-weight: 500;
+  line-height: 1.15;
+  color: var(--sg-ink);
+}
+.sg-folio__tag {
+  grid-area: tag;
+  font-size: 14.5px;
+  line-height: 1.4;
+  color: var(--sg-ink-2);
+  font-style: italic;
+}
+.sg-folio__count {
+  grid-area: count;
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  color: var(--sg-ink-3);
+  font-variant-numeric: tabular-nums;
+  align-self: start;
+  padding-top: 5px;
+}
+.sg-folio__row[aria-pressed='true'] .sg-folio__num,
+.sg-folio__row[aria-pressed='true'] .sg-folio__count { color: var(--sg-gold); }
+.sg-folio__row[aria-pressed='true'] .sg-folio__name { color: var(--sg-gold); }
+@media (hover: hover) {
+  .sg-folio__row:hover .sg-folio__name { color: var(--sg-gold); }
+}
+.sg-folio__row:focus-visible {
+  outline: 2px solid var(--sg-gold);
+  outline-offset: -2px;
+}
+.sg-folio__foot {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 18px;
+  margin-top: 14px;
+  font-family: var(--mono);
+  font-size: 9.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--sg-ink-3);
+}
+.sg-folio__foot span::before {
+  content: '';
+  display: inline-block;
+  width: 5px;
+  height: 5px;
+  margin-right: 8px;
+  vertical-align: 1px;
+  background: var(--sg-gold);
+}
+
+/* The deck's opening panel: the same plate, cut to one screen. Taglines go,
+   the row height drops, the foot goes; the panel must never scroll. */
+.sg-folio--deck {
+  margin: 0;
+  padding: 18px 18px 14px;
+}
+@media (max-width: 720px) {
+  .sg-folio--deck {
+    margin-left: 0;
+    margin-right: 0;
+    border-left: 1px solid var(--sg-edge);
+    border-right: 1px solid var(--sg-edge);
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+}
+.sg-folio--deck .sg-folio__title { font-size: clamp(28px, 5vw, 40px); margin-bottom: 10px; }
+.sg-folio--deck .sg-folio__teaser { font-size: 15.5px; margin-bottom: 14px; }
+.sg-folio--deck .sg-folio__tag { display: none; }
+.sg-folio--deck .sg-folio__row {
+  grid-template-areas: 'num name count';
+  padding: 8px 0;
+}
+.sg-folio--deck .sg-folio__name { font-size: 18px; }
+.sg-folio--deck .sg-folio__foot { margin-top: 12px; }
+/* A phone in portrait is the deck's normal case, and the teaser plus five
+   rows plus the swipe line do not fit it under the deck bar and the tabs;
+   the teaser is what gives way, because the list has it in full. */
+@media (max-height: 900px) {
+  .sg-folio--deck .sg-folio__teaser { display: none; }
+  .sg-folio--deck .sg-folio__row { padding: 6px 0; }
+}
+@media (max-height: 640px) {
+  .sg-folio--deck .sg-folio__foot { display: none; }
+}
+
+/* A category's opening in the list: numeral, title, count, tagline. */
+.sg-section__head {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  padding-top: 14px;
+  border-top: 2px solid var(--ink);
+}
+.sg-section__num {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  color: var(--moss);
+}
+.sg-section__title {
+  font-family: var(--display);
+  font-size: 26px;
+  font-weight: 500;
+  line-height: 1.1;
+  margin: 0;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+.sg-section__count {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--ink-3);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+/* Each entry's folio line: its number in the set and its category, so a
+   card scrolled to from a deep link still says where it sits. */
+.sg-entry__folio {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--s3);
+  margin: 0 0 10px;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  font-variant-numeric: tabular-nums;
+}
+.sg-entry__folio b { font-weight: 500; color: var(--ink-2); }
+
 /* Tappable coordinate that opens native Maps; mono for the digits. */
 .chip--gps {
   font-family: var(--mono);

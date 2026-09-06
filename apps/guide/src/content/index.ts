@@ -16,7 +16,7 @@ export { HIKES } from './hikes'
 export { AMENITIES } from './amenities'
 export { ESSENTIALS, ESSENTIALS_META } from './essentials'
 export { SECRET_SPOTS } from './secret-spots'
-export { SECRET_GUIDE_META, SECRET_GUIDE_CATEGORIES, SECRET_GUIDE_CATEGORY_TITLE } from './secret-guide'
+export { SECRET_GUIDE_META, SECRET_GUIDE_CATEGORIES, SECRET_GUIDE_CATEGORY_TITLE, SECRET_NUMERALS } from './secret-guide'
 export { SEASONAL_EVENTS, seasonalWindowsInRange, seasonalDaysInRange, seasonalToProgramEvent, seasonalRangeLabel } from './seasonal'
 
 // Section headers for the /essentials list, in display order.

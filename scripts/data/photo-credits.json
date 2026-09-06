@@ -14,6 +14,11 @@
     "license": "Pexels License",
     "source": "https://www.pexels.com/"
   },
+  "/photos/bennettville.jpg": {
+    "author": "Utilizer",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Bennettville_Bunkhouse,_California.JPG"
+  },
   "/photos/black-bear-roadside.jpg": {
     "author": "Cory Goehring",
     "license": "All rights reserved",
@@ -148,6 +153,11 @@
     "author": "Antandrus",
     "license": "Public domain",
     "source": "https://commons.wikimedia.org/wiki/File:Gaylor_lakes.jpg"
+  },
+  "/photos/glacier-point-star-party.jpg": {
+    "author": "Jakub Gorajek cinegeek",
+    "license": "CC0",
+    "source": "https://commons.wikimedia.org/wiki/File:Milky_Way_Glacier_Point_(Unsplash).jpg"
   },
   "/photos/glacier-point.jpg": {
     "author": "H.C. White Co.",
@@ -324,10 +334,20 @@
     "license": "Public domain",
     "source": "https://commons.wikimedia.org/wiki/File:Sentinel_Dome_fallen_tree.jpg"
   },
+  "/photos/siesta-lake.jpg": {
+    "author": "JERRYE AND ROY KLOTZ MD",
+    "license": "CC BY-SA 3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:SIESTA_LAKE,_YOSEMITE_NATIONAL_PARK.jpg"
+  },
   "/photos/snow-creek-trail.jpg": {
     "author": "A.C. Pillsbury",
     "license": "Public domain",
     "source": "https://commons.wikimedia.org/wiki/File:TenayaCanyon.jpg"
+  },
+  "/photos/swinging-bridge-reflection.jpg": {
+    "author": "Dawn Endico from Menlo Park, California",
+    "license": "CC BY-SA 2.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Yosemite_Falls_Reflection_-_Flickr_-_Dawn_Endico.jpg"
   },
   "/photos/taft-point.jpg": {
     "author": "Cam Adams",
@@ -343,6 +363,11 @@
     "author": "Arthur Clarence Pillsbury",
     "license": "Public domain",
     "source": "https://commons.wikimedia.org/wiki/File:Tenaya_Canyon_and_Half_Dome_in_Yosemite,_ca._1897-1900_-_DPLA_-_9e68cfb9e60041291938812cc956c17d.jpg"
+  },
+  "/photos/tioga-lake-campground.jpg": {
+    "author": "Dsdugan",
+    "license": "CC0",
+    "source": "https://commons.wikimedia.org/wiki/File:17_25_140_lake.jpg"
   },
   "/photos/tioga-road-drive.jpg": {
     "author": "Unknown author",
@@ -374,6 +399,11 @@
     "license": "Pexels License",
     "source": "https://www.pexels.com/"
   },
+  "/photos/union-point.jpg": {
+    "author": "Chris M Morris",
+    "license": "CC BY 2.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Yosemite_Valley_(9862576645).jpg"
+  },
   "/photos/valley-campground-tent.jpg": {
     "author": "Andrei Serikov",
     "license": "Pexels License",
@@ -393,6 +423,11 @@
     "author": "Q W",
     "license": "Pexels License",
     "source": "https://www.pexels.com/photo/33724884/"
+  },
+  "/photos/valley-trailhead-parking.jpg": {
+    "author": "Glenn Scofield Williams from USA",
+    "license": "CC BY 2.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Happy_Isles.jpg"
   },
   "/photos/valley-view-winter-night.jpg": {
     "author": "Stephen Leonardi",
@@ -433,6 +468,11 @@
     "author": "Pierce, C.C. (Charles C.), 1861-1946",
     "license": "Public domain",
     "source": "https://commons.wikimedia.org/wiki/File:Wawona_Meadows,_Yosemite_National_Park,_1900-1930_(CHS-1178).jpg"
+  },
+  "/photos/wawona-point.jpg": {
+    "author": "Sergei Mutovkin",
+    "license": "CC BY 2.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Yosemite_National_Park_Mariposa_Grove_Wawona_Point_Panorama_(altitude_6810ft).jpg"
   },
   "/photos/white-wolf.jpg": {
     "author": "Eeekster",
@@ -598,6 +638,16 @@
     "author": "Nick Comer",
     "license": "Public domain",
     "source": "https://commons.wikimedia.org/wiki/File:Marmot0_Half_Dome_YosemiteNP_Calif.jpg"
+  },
+  "/photos/yosemite-creek-campground.jpg": {
+    "author": "Richard Wood",
+    "license": "CC BY-SA 3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Yosemite_Creek._View_upstream_from_the_footbridge_across_the_creek_just_before_Yosemite_Falls._-_panoramio.jpg"
+  },
+  "/photos/yosemite-falls-moonbow.jpg": {
+    "author": "Wcwoolf",
+    "license": "CC BY-SA 4.0",
+    "source": "https://commons.wikimedia.org/wiki/File:YosemiteFallsNightMoon.jpg"
   },
   "/photos/yosemite-falls-spring-blossoms.jpg": {
     "author": "Cory Goehring",
