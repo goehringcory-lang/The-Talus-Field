@@ -1,0 +1,183 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//The Talus Field//Yosemite Dates//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:Yosemite dates that matter
+BEGIN:VEVENT
+UID:halfdome-preseason@dates.thetalusfieldjournal.com
+DTSTAMP:20260905T000000Z
+DTSTART;VALUE=DATE:20260301
+DTEND;VALUE=DATE:20260401
+RRULE:FREQ=YEARLY
+SUMMARY:Yosemite: Half Dome preseason lottery
+DESCRIPTION:Applications open March 1 and close March 31 on Recreation.gov.
+  Results are emailed in mid-April. $10 per application plus $10 per person
+  if you win. About 225 day-hiker permits a day. Source: https://www.nps.go
+ v/yose/planyourvisit/hdpermits.htm. Verified 2026-09-05. The Talus Field\,
+  https://thetalusfieldjournal.com/dates
+URL:https://thetalusfieldjournal.com/dates
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Yosemite: Half Dome preseason lottery
+TRIGGER:-P1D
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:halfdome-cables-2026@dates.thetalusfieldjournal.com
+DTSTAMP:20260905T000000Z
+DTSTART;VALUE=DATE:20260522
+DTEND;VALUE=DATE:20261014
+SUMMARY:Yosemite: Half Dome cables season 2026
+DESCRIPTION:The cables go up the Friday before Memorial Day and come down t
+ he day after the second Monday in October\, conditions permitting. No perm
+ it is issued for a day outside the season. Source: https://www.nps.gov/yos
+ e/planyourvisit/hdpermits.htm. Verified 2026-09-05. The Talus Field\, http
+ s://thetalusfieldjournal.com/dates
+URL:https://thetalusfieldjournal.com/dates
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Yosemite: Half Dome cables season 2026
+TRIGGER:-P1D
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:halfdome-cables-2027@dates.thetalusfieldjournal.com
+DTSTAMP:20260905T000000Z
+DTSTART;VALUE=DATE:20270528
+DTEND;VALUE=DATE:20271013
+SUMMARY:Yosemite: Half Dome cables season 2027
+DESCRIPTION:The cables go up the Friday before Memorial Day and come down t
+ he day after the second Monday in October\, conditions permitting. No perm
+ it is issued for a day outside the season. Source: https://www.nps.gov/yos
+ e/planyourvisit/hdpermits.htm. Verified 2026-09-05. The Talus Field\, http
+ s://thetalusfieldjournal.com/dates
+URL:https://thetalusfieldjournal.com/dates
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Yosemite: Half Dome cables season 2027
+TRIGGER:-P1D
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:firefall@dates.thetalusfieldjournal.com
+DTSTAMP:20260905T000000Z
+DTSTART;VALUE=DATE:20260210
+DTEND;VALUE=DATE:20260227
+RRULE:FREQ=YEARLY
+SUMMARY:Yosemite: Horsetail Fall (Firefall) window
+DESCRIPTION:The sun lines up with Horsetail Fall in the second half of Febr
+ uary. In 2026 the park's projected window was February 10 to 26\, with no 
+ reservation required. The fall only glows if there is water in it and the 
+ western sky is clear. Typical window\, not a published date\; the park ann
+ ounces the day a few days ahead. Source: https://www.nps.gov/yose/learn/ne
+ ws/yosemite-national-park-prepares-for-2026-horsetail-fall-viewing.htm. Ve
+ rified 2026-09-05. The Talus Field\, https://thetalusfieldjournal.com/date
+ s
+URL:https://thetalusfieldjournal.com/dates
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Yosemite: Horsetail Fall (Firefall) window
+TRIGGER:-P1D
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:glacier-point-open@dates.thetalusfieldjournal.com
+DTSTAMP:20260905T000000Z
+DTSTART;VALUE=DATE:20260501
+DTEND;VALUE=DATE:20260601
+RRULE:FREQ=YEARLY
+SUMMARY:Yosemite: Glacier Point Road typically opens
+DESCRIPTION:Glacier Point Road usually opens in May once plowing is done\; 
+ in 2026 it opened May 9. The park announces the date a few days ahead. Cha
+ ins can still be required in the first weeks. Typical window\, not a publi
+ shed date\; the park announces the day a few days ahead. Source: https://w
+ ww.nps.gov/yose/planyourvisit/glacierpointroad.htm. Verified 2026-09-05. T
+ he Talus Field\, https://thetalusfieldjournal.com/dates
+URL:https://thetalusfieldjournal.com/dates
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Yosemite: Glacier Point Road typically opens
+TRIGGER:-P1D
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:tioga-open@dates.thetalusfieldjournal.com
+DTSTAMP:20260905T000000Z
+DTSTART;VALUE=DATE:20260515
+DTEND;VALUE=DATE:20260701
+RRULE:FREQ=YEARLY
+SUMMARY:Yosemite: Tioga Road typically opens
+DESCRIPTION:Tioga Road has opened between late April and early July over th
+ e record\; late May to mid-June is the usual range\, and 2026 opened May 1
+ 5. The park posts plowing progress weekly and announces the opening a day 
+ or two ahead. Typical window\, not a published date\; the park announces t
+ he day a few days ahead. Source: https://www.nps.gov/yose/planyourvisit/ti
+ ogaopen.htm. Verified 2026-09-05. The Talus Field\, https://thetalusfieldj
+ ournal.com/dates
+URL:https://thetalusfieldjournal.com/dates
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Yosemite: Tioga Road typically opens
+TRIGGER:-P1D
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:tioga-close@dates.thetalusfieldjournal.com
+DTSTAMP:20260905T000000Z
+DTSTART;VALUE=DATE:20261101
+DTEND;VALUE=DATE:20261201
+RRULE:FREQ=YEARLY
+SUMMARY:Yosemite: Tioga Road typically closes
+DESCRIPTION:Tioga Road closes for the season with the first storm that stic
+ ks\, usually in November. Services in Tuolumne Meadows close weeks earlier
+ : after mid-September a day up high is drive-yourself and self-supported. 
+ Typical window\, not a published date\; the park announces the day a few d
+ ays ahead. Source: https://www.nps.gov/yose/planyourvisit/tiogaopen.htm. V
+ erified 2026-09-05. The Talus Field\, https://thetalusfieldjournal.com/dat
+ es
+URL:https://thetalusfieldjournal.com/dates
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Yosemite: Tioga Road typically closes
+TRIGGER:-P1D
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:tuolumne-shuttle-2026@dates.thetalusfieldjournal.com
+DTSTAMP:20260905T000000Z
+DTSTART;VALUE=DATE:20260913
+DTEND;VALUE=DATE:20260914
+SUMMARY:Yosemite: Tuolumne Meadows shuttle and hikers bus end
+DESCRIPTION:The Tuolumne shuttle and the Valley-to-Tuolumne hikers bus stop
+  for 2026 on September 13. The Tuolumne store and grill close September 20
+ . Tioga Road itself stays open until the snow closes it. Source: https://w
+ ww.nps.gov/yose/planyourvisit/tmbus.htm. Verified 2026-09-05. The Talus Fi
+ eld\, https://thetalusfieldjournal.com/dates
+URL:https://thetalusfieldjournal.com/dates
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Yosemite: Tuolumne Meadows shuttle and hikers bus end
+TRIGGER:-P1D
+END:VALARM
+END:VEVENT
+BEGIN:VEVENT
+UID:grove-shuttle-2026@dates.thetalusfieldjournal.com
+DTSTAMP:20260905T000000Z
+DTSTART;VALUE=DATE:20260503
+DTEND;VALUE=DATE:20261101
+SUMMARY:Yosemite: Mariposa Grove shuttle season
+DESCRIPTION:The free shuttle from the Welcome Plaza to the grove runs May 3
+  to October 31\, 2026\, with November service 8 to 3:30 and none from Dece
+ mber to mid-April. When it is off\, the Washburn Trail is 2 miles and 500 
+ feet up to the trees. Source: https://www.nps.gov/yose/planyourvisit/mg.ht
+ m. Verified 2026-09-05. The Talus Field\, https://thetalusfieldjournal.com
+ /dates
+URL:https://thetalusfieldjournal.com/dates
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Yosemite: Mariposa Grove shuttle season
+TRIGGER:-P1D
+END:VALARM
+END:VEVENT
+END:VCALENDAR

@@ -104,6 +104,14 @@ function ExplorePage({
     name: "Drive times",
     note: "How far Yosemite Valley is from every gateway town, in one table: miles, drive times, which entrance each route uses, and what the season does to it."
   }, {
+    route: "dates",
+    name: "Dates that matter",
+    note: "The deadlines that decide a trip, in one table: the Half Dome lotteries, the wilderness permit windows, the campground release mornings and the road openings, each one a calendar file, measured against your dates."
+  }, {
+    route: "international",
+    name: "Visiting from abroad",
+    note: "The 2026 non-resident entrance fee and the $250 pass, a calculator for the cheapest way in, and the things about this park that surprise visitors from outside the United States."
+  }, {
     route: "conditions",
     name: "Conditions",
     note: "Live park webcams, entrance wait times, and the three forecasts worth checking, on one bookmarkable page."

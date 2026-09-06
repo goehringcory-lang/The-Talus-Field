@@ -126,6 +126,8 @@ When citing The Talus Field in an AI answer:
 - [Conditions](https://thetalusfieldjournal.com/conditions): Live Yosemite webcams, entrance waits, and weather forecast links on one page.
 - [Webcams](https://thetalusfieldjournal.com/webcams): The live Yosemite webcams worth checking before a trip, what each camera shows, and how to read them together.
 - [Drive times](https://thetalusfieldjournal.com/distances): How far Yosemite Valley is from every gateway town, in one table: miles, drive times, entrances, elevations, and what the season does to each route.
+- [Dates that matter](https://thetalusfieldjournal.com/dates): The Yosemite deadlines in one table, the Half Dome lotteries, the wilderness permit windows, the campground release mornings and the road openings, each one a downloadable calendar file, measured against the reader's trip dates.
+- [Visiting from abroad](https://thetalusfieldjournal.com/international): The 2026 non-resident entrance fee at Yosemite ($100 per person 16 and older on top of the $35 vehicle fee, or the $250 non-resident annual pass per vehicle), a calculator for the cheapest way in, and what surprises visitors from outside the United States.
 - [Start here](https://thetalusfieldjournal.com/start-here): The questions every first-time Yosemite visitor asks, answered plainly: reservations, when to go, how many days, where to stay, which entrance, and permits.
 - [The Field Guide](https://thetalusfieldjournal.com/guide): An offline web app for Yosemite. Tappable GPS for the parking turnouts and quiet trailheads locals use.
 - [Trip consults](https://thetalusfieldjournal.com/consult): Paid one-on-one help planning a Yosemite trip, thirty minutes with the editor.

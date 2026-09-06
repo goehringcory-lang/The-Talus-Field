@@ -26,6 +26,7 @@ import {
   putPushSubscription,
   takePushPending,
 } from '../lib/kv'
+import { DEADLINE_IDS } from '../lib/deadlines'
 import { isPushConfigured } from '../lib/push'
 import { requireAuth, type AuthVariables } from '../middleware/require-auth'
 
@@ -37,12 +38,22 @@ type PushBody = {
   auth?: unknown
   tripStart?: unknown
   tripEnd?: unknown
+  deadlines?: unknown
 }
 
 const DATE_RE = /^\d{4}-\d{2}-\d{2}$/
 // Real endpoints run 100-250 characters; the ceiling just bounds what a
 // hostile caller can hand the hasher and store.
 const MAX_ENDPOINT_LENGTH = 1024
+
+// Deadline opt-ins are ids from the deadlines table and nothing else: an
+// unknown id is dropped rather than stored, so the record can only ever name
+// a reminder the sweep knows how to send.
+function deadlineOptIns(value: unknown): string[] | undefined {
+  if (!Array.isArray(value)) return undefined
+  const ids = value.filter((v): v is string => typeof v === 'string' && DEADLINE_IDS.has(v))
+  return ids.length > 0 ? [...new Set(ids)].slice(0, DEADLINE_IDS.size) : undefined
+}
 
 // Push services live on a handful of vendor origins. Restricting to https and
 // bounding the length is the useful check here; an allow-list of hosts would
@@ -102,6 +113,7 @@ push.post('/subscribe', requireAuth, async (c) => {
     tripEnd: typeof body.tripEnd === 'string' && DATE_RE.test(body.tripEnd)
       ? body.tripEnd
       : undefined,
+    deadlines: deadlineOptIns(body.deadlines),
   })
 
   return c.json({ ok: true })

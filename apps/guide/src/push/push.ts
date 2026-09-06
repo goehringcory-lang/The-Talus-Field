@@ -1,11 +1,16 @@
 // =============================================================================
 // Push notification opt-in.
 //
-// Two notices exist and no more (workers/src/lib/pushSweep.ts): a morning-of
-// nudge on each day of the trip, and a heads-up when access is about to end.
+// Four notices exist and no more (workers/src/lib/pushSweep.ts): a morning-of
+// nudge on each day of the trip, a heads-up when access is about to end, a
+// road that changed state inside the two weeks before the trip, and the
+// morning-before reminder for a deadline the buyer picked on the trip board.
 // The bar is deliberately high — this audience installed a field guide, not a
 // marketing channel, and the fastest way to lose a notification permission
-// forever is to spend it on something nobody asked about.
+// forever is to spend it on something nobody asked about. The deadline notice
+// is the only one asked for twice: turning notifications on is not an opt-in
+// to it, each "Remind me" is, and the ids ride to the Worker on the
+// subscription record next to the trip dates (readDeadlineOptIns).
 //
 // Off by default, and the permission prompt is only ever raised from a real
 // tap on the Account page. A cold prompt on first launch is the single most
@@ -23,6 +28,10 @@ import { serviceWorkerReady } from '../pwa/swReady'
 import { subscribeTripPlan } from '../trip/useTripPlan'
 
 const ENABLED_KEY = 'tfg.push.enabled'
+// Deadline ids (content/deadlines.ts) the buyer asked to be reminded of. The
+// Worker's copy on the subscription record is the one the sweep reads; this
+// is the device's own list, kept so the board can draw the toggles offline.
+const DEADLINES_KEY = 'tfg.push.deadlines'
 
 export type PushSupport =
   | { supported: true }
@@ -67,6 +76,34 @@ export function isPushEnabled(): boolean {
   } catch {
     return false
   }
+}
+
+export function readDeadlineOptIns(): string[] {
+  try {
+    const raw = window.localStorage.getItem(DEADLINES_KEY)
+    if (!raw) return []
+    const parsed: unknown = JSON.parse(raw)
+    return Array.isArray(parsed) ? parsed.filter((v): v is string => typeof v === 'string') : []
+  } catch {
+    return []
+  }
+}
+
+/**
+ * Record or withdraw a deadline reminder, then push the list to the Worker
+ * with the next subscription refresh. Idempotent; a failed refresh (offline)
+ * keeps the local list and retries at the next boot like the trip dates do.
+ */
+export async function setDeadlineOptIn(id: string, on: boolean): Promise<void> {
+  const current = new Set(readDeadlineOptIns())
+  if (on) current.add(id)
+  else current.delete(id)
+  try {
+    window.localStorage.setItem(DEADLINES_KEY, JSON.stringify([...current]))
+  } catch {
+    /* the server-side record is the real state; this list draws the toggles */
+  }
+  await refreshPushSubscription()
 }
 
 function setEnabledFlag(on: boolean): void {
@@ -164,6 +201,9 @@ function subscriptionBody(subscription: PushSubscription) {
     // without knowing which mornings. What is planned never goes.
     tripStart: dates?.start,
     tripEnd: dates?.end,
+    // Deadline reminders the buyer asked for by id. The Worker validates each
+    // against the table and drops the rest.
+    deadlines: readDeadlineOptIns(),
   }
 }
 

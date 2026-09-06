@@ -11,7 +11,7 @@ function routeToPath(route) {
   if (route.startsWith("a:")) return `/articles/${route.slice(2)}`;
   return `/${route}`;
 }
-var STATIC_ROUTE_KEYS = new Set(["home", "articles", "planning", "checklist", "about", "kit", "places", "advertise", "newsletter", "contact", "privacy", "terms", "affiliate", "guide", "map", "films", "itineraries", "conditions", "now", "firefall", "stay", "consult", "widget", "partners", "search", "tioga-opening", "half-dome-lottery", "explore", "distances", "webcams", "start-here"]);
+var STATIC_ROUTE_KEYS = new Set(["home", "articles", "planning", "checklist", "about", "kit", "places", "advertise", "newsletter", "contact", "privacy", "terms", "affiliate", "guide", "map", "films", "itineraries", "conditions", "now", "firefall", "stay", "consult", "widget", "partners", "search", "tioga-opening", "half-dome-lottery", "explore", "distances", "webcams", "start-here", "dates", "international"]);
 function pathToRoute(pathname) {
   var path = (pathname || "/").replace(/\/+$/, "") || "/";
   if (path === "/") return "home";
@@ -158,6 +158,14 @@ var PAGE_MODULES = {
   distances: {
     scripts: ["/dist/page-distances.js"],
     globals: ["DistancesPage"]
+  },
+  dates: {
+    scripts: ["/dates-data.js", "/dist/page-dates.js"],
+    globals: ["DatesPage"]
+  },
+  international: {
+    scripts: ["/fees-data.js", "/dist/page-international.js"],
+    globals: ["InternationalPage"]
   },
   webcams: {
     scripts: ["/dist/page-webcams.js"],
@@ -710,6 +718,18 @@ function buildSeo(route) {
       ogType: "website",
       breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Start here", null]]
     },
+    dates: {
+      title: `Yosemite Dates That Matter — lotteries, releases and road windows — ${SITE_NAME}`,
+      description: "The Yosemite deadlines in one table: the Half Dome lotteries, the wilderness permit windows, the campground release mornings, and the road openings, each one a calendar file, measured against your trip.",
+      ogType: "website",
+      breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Dates that matter", null]]
+    },
+    international: {
+      title: `Yosemite for International Visitors — the 2026 non-resident fee, explained — ${SITE_NAME}`,
+      description: "The 2026 non-resident entrance fee at Yosemite, the $250 pass, a calculator for the cheapest way in, and what surprises visitors from abroad: reservations, roads, chains, signal, bears.",
+      ogType: "website",
+      breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Visiting from abroad", null]]
+    },
     distances: {
       title: `Yosemite Drive Times — every gateway town, in one table — ${SITE_NAME}`,
       description: "How far Yosemite Valley is from El Portal, Mariposa, Groveland, Oakhurst and Lee Vining: miles, drive times, entrances, elevations and what the season does to each route.",
@@ -1195,6 +1215,16 @@ function App() {
       go: go
     });
     currentNav = "distances";
+  } else if (route === "dates") {
+    page = React.createElement(window.DatesPage, {
+      go: go
+    });
+    currentNav = "dates";
+  } else if (route === "international") {
+    page = React.createElement(window.InternationalPage, {
+      go: go
+    });
+    currentNav = "international";
   } else if (route === "start-here") {
     page = React.createElement(window.StartHerePage, {
       go: go

@@ -120,7 +120,22 @@ custom_domain = true
 # Optional; without it the feed serves manual curation only. The same key
 # serves the park-alerts endpoint behind /api/alerts (road status, closures,
 # chain controls); without it /api/alerts serves empty and the PWA renders
-# no conditions lines.
+# no conditions lines. It also serves /api/parking (the NPS `parkinglots`
+# endpoint's live lot status); that route falls back to NPS's shared DEMO_KEY
+# when the secret is unset, which is rate-limited and fine for a preview but
+# not for a summer weekend.
+# ===========================================================================
+
+# === Road-change watch ======================================================
+# lib/roads.ts runs after the nightly alerts refresh, diffs the seven watched
+# roads against the snapshot in GUIDE_PROGRAMS (`roads:watch:v1`), and on a
+# change confirmed by two consecutive refreshes emails the operator through
+# RESEND_API_KEY (to the contact-form inbox in lib/email.ts) and leaves a
+# change record the morning push sweep turns into a notice for buyers whose
+# trip window covers the next 14 days. No new secret or var: it needs only
+# NPS_API_KEY (for the alerts it reads) and RESEND_API_KEY (for the email).
+# Deadline reminders (lib/deadlines.ts) read scripts/data/deadlines.json at
+# build time; a row edit there ships with the next `wrangler deploy`.
 # ===========================================================================
 
 # === AirNow AQI =============================================================

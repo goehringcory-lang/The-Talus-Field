@@ -39,6 +39,11 @@ import { isPackCompleted } from '../offline/useDownloads'
 import { MAP_PACK_ID } from '../offline/manifest'
 import { formatMiles, haversineMiles } from '../utils/geo'
 import { popupPhotoUrl } from '../utils/photo'
+import { LOT_STATUS_LABEL, lotForAmenity } from '../parking/lotMatch'
+import type { ParkingLotT } from '../parking/schema'
+import { HIDE_AFTER_MS as PARKING_HIDE_MS } from '../parking/staleness'
+import { useParking } from '../parking/useParking'
+import { compactStamp } from '../utils/relativeStamp'
 import './Map.css'
 import { useDocumentTitle } from '../lib/documentTitle'
 
@@ -200,10 +205,26 @@ function buildPopupContent(
   return root
 }
 
+// The live lot status for a parking pin, as a reading: the park's own word,
+// the capacity it was read against, and the source with its age. Only a
+// known status is printed; a lot the feed says nothing about gets no line,
+// never "unknown", and a reading past the staleness ceiling is dropped.
+type LotReading = { lot: ParkingLotT; fetchedAt: string | null }
+
+function lotStatusLine(reading: LotReading | null): string | null {
+  if (!reading || reading.lot.status === 'unknown') return null
+  const { lot, fetchedAt } = reading
+  const word = lot.statusText ?? LOT_STATUS_LABEL[lot.status]
+  const capacity = lot.capacity ? ` · ${lot.capacity} spaces` : ''
+  const age = fetchedAt ? compactStamp(fetchedAt, Date.now()) : null
+  return `Now: ${word}${capacity} · NPS${age ? `, ${age}` : ''}`
+}
+
 // Amenity popup: name, kind chip, note (+ season line), Directions only.
 // Amenities (parking lots, campgrounds) are map-only pins, not Stops, so
-// there is no "Open stop" or "Add to trip".
-function buildAmenityPopupContent(amenity: AmenityT): HTMLElement {
+// there is no "Open stop" or "Add to trip". A parking pin also prints its
+// live lot status when the feed has one (see lotStatusLine).
+function buildAmenityPopupContent(amenity: AmenityT, lot: LotReading | null = null): HTMLElement {
   const style = getKindStyle(amenity.kind)
   const root = document.createElement('div')
   root.className = 'map-popup'
@@ -223,6 +244,14 @@ function buildAmenityPopupContent(amenity: AmenityT): HTMLElement {
   excerpt.className = 'map-popup__excerpt'
   excerpt.textContent = amenity.note
   root.appendChild(excerpt)
+
+  const status = amenity.kind === 'parking' ? lotStatusLine(lot) : null
+  if (status) {
+    const line = document.createElement('p')
+    line.className = 'map-popup__stats'
+    line.textContent = status
+    root.appendChild(line)
+  }
 
   // Hours and season are published facts, set in the instrument face like
   // every other reading in the guide.
@@ -595,6 +624,14 @@ export default function Map() {
   const mapRef = useRef<maplibregl.Map | null>(null)
   const markersRef = useRef<Record<string, maplibregl.Marker>>({})
   const amenityMarkersRef = useRef<Record<string, maplibregl.Marker>>({})
+  // Live lot status for the parking pins. Read through a ref at popup-open
+  // time so the marker effect below does not re-run (and rebuild every pin)
+  // each time the feed refreshes.
+  const parking = useParking()
+  const parkingRef = useRef(parking)
+  useEffect(() => {
+    parkingRef.current = parking
+  }, [parking])
   const hikeMarkersRef = useRef<Record<string, maplibregl.Marker>>({})
   const mealMarkersRef = useRef<Record<string, maplibregl.Marker>>({})
   const popupRef = useRef<maplibregl.Popup | null>(null)
@@ -1111,9 +1148,13 @@ export default function Map() {
         // Clear any stop selection so ?stop= doesn't keep pointing at a stop
         // whose popup this one just replaced.
         selectStop(null)
+        const { lots, fetchedAt } = parkingRef.current
+        const fresh =
+          fetchedAt !== null && Date.now() - Date.parse(fetchedAt) <= PARKING_HIDE_MS
+        const lot = fresh ? lotForAmenity(amenity, lots) : null
         popupRef.current
           ?.setLngLat(amenity.coord)
-          .setDOMContent(buildAmenityPopupContent(amenity))
+          .setDOMContent(buildAmenityPopupContent(amenity, lot ? { lot, fetchedAt } : null))
           .addTo(map)
       }
       el.addEventListener('click', (e) => {

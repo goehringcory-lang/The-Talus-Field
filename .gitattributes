@@ -28,3 +28,7 @@
 *.pdf   binary
 *.mp4   binary
 *.webm  binary
+
+# RFC 5545 requires CRLF; keep the generated calendar files byte-exact so
+# gen-dates-ics.mjs --check compares what a clone actually holds.
+ics/*.ics -text

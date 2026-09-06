@@ -73,6 +73,21 @@ function ConditionsPage({
     }
   }, React.createElement("div", {
     className: "section-head"
+  }, React.createElement("h2", null, "Parking lots")), React.createElement("p", {
+    style: {
+      fontFamily: "var(--serif)",
+      fontSize: 17,
+      lineHeight: 1.6,
+      color: "var(--ink-1)",
+      marginBottom: 16
+    }
+  }, "With no entry reservation in 2026, the Valley's lots are what ration a summer day: on the first busy Saturday of the season all Valley parking was full before noon. Be through the gate before 8 a.m. or after 4 p.m. on a summer weekend, and text ", React.createElement("em", null, "ynptraffic"), " to 333111 for the park's own updates once you are on the road. Live lot status from the National Park Service appears below when the park publishes it."), React.createElement(ParkingNow, null)), React.createElement("section", {
+    style: {
+      marginBottom: 64,
+      maxWidth: 680
+    }
+  }, React.createElement("div", {
+    className: "section-head"
   }, React.createElement("h2", null, "Forecasts")), React.createElement("p", {
     style: {
       fontFamily: "var(--serif)",
@@ -147,9 +162,9 @@ function ConditionsPage({
     }
   }, React.createElement(NewsletterInline, {
     location: "conditions",
-    tag: "conditions",
-    heading: "Conditions change weekly",
-    blurb: "The Sunday note carries what matters: what opened, what closed, what the week ahead looks like from inside the park. Free."
+    tag: "alert-roads",
+    heading: "Email me when a road changes",
+    blurb: "One email when Tioga Road, Glacier Point Road, or a highway into the park opens or closes, sent to the people who asked for it. The Sunday note carries the rest of the week from inside the park. Free."
   }))));
 }
 window.ConditionsPage = ConditionsPage;

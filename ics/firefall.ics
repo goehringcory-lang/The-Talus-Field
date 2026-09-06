@@ -1,0 +1,29 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//The Talus Field//Yosemite Dates//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:Yosemite: Horsetail Fall (Firefall) window
+BEGIN:VEVENT
+UID:firefall@dates.thetalusfieldjournal.com
+DTSTAMP:20260905T000000Z
+DTSTART;VALUE=DATE:20260210
+DTEND;VALUE=DATE:20260227
+RRULE:FREQ=YEARLY
+SUMMARY:Yosemite: Horsetail Fall (Firefall) window
+DESCRIPTION:The sun lines up with Horsetail Fall in the second half of Febr
+ uary. In 2026 the park's projected window was February 10 to 26\, with no 
+ reservation required. The fall only glows if there is water in it and the 
+ western sky is clear. Typical window\, not a published date\; the park ann
+ ounces the day a few days ahead. Source: https://www.nps.gov/yose/learn/ne
+ ws/yosemite-national-park-prepares-for-2026-horsetail-fall-viewing.htm. Ve
+ rified 2026-09-05. The Talus Field\, https://thetalusfieldjournal.com/date
+ s
+URL:https://thetalusfieldjournal.com/dates
+BEGIN:VALARM
+ACTION:DISPLAY
+DESCRIPTION:Yosemite: Horsetail Fall (Firefall) window
+TRIGGER:-P1D
+END:VALARM
+END:VEVENT
+END:VCALENDAR

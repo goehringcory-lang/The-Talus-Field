@@ -2,16 +2,21 @@
 // "The park, right now": the four live readings a visitor checks before they
 // decide anything, on one instrument panel at the top of Home.
 //
-// It composes feeds the app already has (weather, roads, entrance waits) with
-// the on-device sun calculation. It fetches nothing of its own: all four hooks
-// share one in-flight request per feed at module level, so mounting this
-// alongside the rest of Home costs no extra network.
+// It composes feeds the app already has (weather, roads, entrance waits, lot
+// status) with the on-device sun calculation. It fetches nothing of its own:
+// every hook shares one in-flight request per feed at module level, so
+// mounting this alongside the rest of Home costs no extra network.
 //
 // Every cell is independently honest. A feed that is missing, unreachable, or
 // stale past its own HIDE window drops its cell rather than showing a dash, a
 // zero, or an error: a wrong reading here sends somebody up a closed road. The
 // sun cell is computed on the device and can never be stale, which is what
 // guarantees the panel is never empty and never a moving layout anchor.
+//
+// Every live cell carries its own provenance line ("NPS, 14 min ago"): the
+// source the number came from and how old it is, computed at render. The
+// panel-level stamp used to stand in for all of them, and four feeds with
+// four ages cannot share one stamp honestly.
 // =============================================================================
 
 import { useEffect, useState } from 'react'
@@ -19,7 +24,10 @@ import { useAlerts } from '../alerts/useAlerts'
 import { HIDE_AFTER_MS as ALERTS_HIDE_MS } from '../alerts/staleness'
 import { sunTimes } from '../sun/solar'
 import { addDaysIso, formatClock, parkNowMinutes, todayIso } from '../utils/date'
-import { relativeStamp } from '../utils/relativeStamp'
+import { LOT_STATUS_LABEL } from '../parking/lotMatch'
+import { HIDE_AFTER_MS as PARKING_HIDE_MS } from '../parking/staleness'
+import { useParking } from '../parking/useParking'
+import { compactStamp, relativeStamp } from '../utils/relativeStamp'
 import { useWaits } from '../waits/useWaits'
 import { HIDE_AFTER_MS as WAITS_HIDE_MS } from '../waits/staleness'
 import { groupPeriodsIntoDays } from '../weather/forecastDays'
@@ -41,6 +49,25 @@ type Cell = {
   value: string
   tone?: 'signal' | 'alert'
   note?: string
+  // Source and age, e.g. "NPS, 14 min ago". Absent only on the sun cell,
+  // which is computed here and has no source to name.
+  stamp?: string
+}
+
+// "NPS, 14 min ago" from a feed's fetchedAt. Null when the feed gave no
+// stamp, in which case the cell shows the source alone.
+function sourceStamp(source: string, fetchedAt: string | null, now: number): string {
+  const age = fetchedAt ? compactStamp(fetchedAt, now) : null
+  return age ? `${source}, ${age}` : source
+}
+
+// The park's own text-alert line: the one thing worth printing under the lot
+// status, because it keeps working after the phone loses the lots feed.
+const TRAFFIC_TEXT_LINE = 'Text YNPTRAFFIC to 333111 before you lose signal.'
+
+// Closed and full lots first: the reading that changes a plan leads the cell.
+function rankLot(status: 'open' | 'full' | 'closed' | 'unknown'): number {
+  return status === 'closed' ? 0 : status === 'full' ? 1 : status === 'open' ? 2 : 3
 }
 
 // Tioga is the road a trip actually pivots on, so it leads when the feed knows
@@ -54,6 +81,7 @@ export default function ParkNowPanel() {
   const weather = useWeather()
   const alerts = useAlerts()
   const { waits, fetchedAt: waitsFetchedAt } = useWaits()
+  const { lots, fetchedAt: lotsFetchedAt } = useParking()
   const [now, setNow] = useState(() => Date.now())
   const [nowMin, setNowMin] = useState(parkNowMinutes)
 
@@ -88,6 +116,7 @@ export default function ParkNowPanel() {
       note: day.precipChance && day.precipChance >= 20
         ? `${day.shortForecast} · ${day.precipChance}% rain`
         : day.shortForecast,
+      stamp: sourceStamp('NWS', weather.fetchedAt, now),
     })
   }
 
@@ -132,6 +161,7 @@ export default function ParkNowPanel() {
       value: lead ? lead.status : 'Chains',
       tone: lead && lead.status.toLowerCase().includes('closed') ? 'alert' : 'signal',
       note: rest.join(' · ') || undefined,
+      stamp: sourceStamp('NPS', alerts.fetchedAt, now),
     })
   }
 
@@ -152,6 +182,37 @@ export default function ParkNowPanel() {
         .slice(1)
         .map((w) => `${w.name} ${w.minutes}`)
         .join(' · ') || undefined,
+      stamp: sourceStamp('NPS', waitsFetchedAt, now),
+    })
+  }
+
+  // ---- Parking lots --------------------------------------------------------
+  // The park fills in a lot's status on busy days and leaves it blank the rest
+  // of the year, so 'unknown' is most lots most days and the cell renders only
+  // when at least one lot carries a word. Full and closed lots lead: they are
+  // the ones that change a plan.
+  const lotsFetchedMs = lotsFetchedAt ? Date.parse(lotsFetchedAt) : Number.NaN
+  const lotsAgeMs = Number.isNaN(lotsFetchedMs) ? Number.POSITIVE_INFINITY : now - lotsFetchedMs
+  const knownLots = lots
+    .filter((l) => l.status !== 'unknown')
+    .sort((a, b) => rankLot(a.status) - rankLot(b.status))
+  const showLots = lotsAgeMs <= PARKING_HIDE_MS && knownLots.length > 0
+  if (showLots) {
+    const lead = knownLots[0]
+    const fullCount = knownLots.filter((l) => l.status !== 'open').length
+    cells.push({
+      key: 'lots',
+      label: 'Lots',
+      value:
+        fullCount > 0
+          ? `${fullCount} ${fullCount === 1 ? 'lot' : 'lots'} ${fullCount === 1 ? 'is' : 'are'} full`
+          : `${lead.name} ${LOT_STATUS_LABEL[lead.status].toLowerCase()}`,
+      tone: fullCount > 0 ? 'alert' : undefined,
+      note: knownLots
+        .slice(fullCount > 0 ? 0 : 1)
+        .map((l) => `${l.name} ${(l.statusText ?? LOT_STATUS_LABEL[l.status]).toLowerCase()}`)
+        .join(' · ') || undefined,
+      stamp: sourceStamp('NPS', lotsFetchedAt, now),
     })
   }
 
@@ -190,9 +251,11 @@ export default function ParkNowPanel() {
               {cell.value}
             </span>
             {cell.note && <span className="readout__note">{cell.note}</span>}
+            {cell.stamp && <span className="readout__stamp">{cell.stamp}</span>}
           </div>
         ))}
       </div>
+      {showLots && <p className="panel__foot">{TRAFFIC_TEXT_LINE}</p>}
     </section>
   )
 }

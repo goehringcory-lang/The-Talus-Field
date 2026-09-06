@@ -51,6 +51,8 @@ export const STATIC_ROUTES = [
   "/tioga-opening",
   "/half-dome-lottery",
   "/distances",
+  "/dates",
+  "/international",
   "/webcams",
   "/start-here",
   "/consult",
@@ -202,5 +204,9 @@ export function knownRoutes({ articles, categories }) {
   for (const c of categories) set.add(`/section/${c.slug}`);
   for (const a of articles) set.add(`/articles/${a.slug}`);
   for (const r of archiveRoutes()) set.add(r);
+  // The calendar files under /ics are generated static assets
+  // (scripts/gen-dates-ics.mjs), served off the asset layer like the archive.
+  const icsDir = path.join(ROOT, "ics");
+  if (existsSync(icsDir)) for (const f of readdirSync(icsDir)) if (f.endsWith(".ics")) set.add(`/ics/${f}`);
   return set;
 }

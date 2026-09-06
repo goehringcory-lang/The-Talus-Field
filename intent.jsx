@@ -367,6 +367,9 @@ function TripPlan({ plan, go, onApplyIntent, matchCount }) {
               <p className="tripplan__card-title">{itinerary.title}</p>
               <p className="tripplan__card-body">{itinerary.dek}</p>
               {it.capped && <p className="tripplan__card-flag">Shortened for the season, not for your dates.</p>}
+              {plan.arrival && (
+                <p className="tripplan__card-body tripplan__arrive"><strong>Getting through the gate in {plan.arrival.month}.</strong> {plan.arrival.text}</p>
+              )}
               <a
                 className="btn btn--ghost"
                 href={`/map?trip=${stopIds.join(",")}`}

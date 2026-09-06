@@ -259,6 +259,60 @@ function EntranceWaits() {
 }
 
 // ============================================================
+// Live parking-lot status (FEATURE-RESEARCH-2026-09.md, feature 3).
+// Reads the API Worker's /api/parking, a proxy of the NPS API's
+// `parkinglots` feed for Yosemite, under the same posture as the
+// entrance waits: never an error, nothing rendered when the feed is
+// silent, and nothing rendered past 60 minutes of staleness, because a
+// stale "open" is worse than no reading. Every rendered cell carries
+// its source and age ("NPS, 14 min ago"). Two pages mount it,
+// /conditions and /now; the PWA carries its own cell.
+// ============================================================
+const PARKING_URL = "https://api.thetalusfieldjournal.com/api/parking";
+const PARKING_REFRESH_MS = 5 * 60 * 1000;
+const PARKING_STALE_MS = 60 * 60 * 1000;
+const PARKING_STATUS_LABEL = { open: "Open", full: "Full", closed: "Closed" };
+
+function ParkingNow() {
+  const [data, setData] = useState(null);
+  useEffect(() => {
+    let cancelled = false;
+    const load = () => {
+      fetch(PARKING_URL)
+        .then((r) => (r.ok ? r.json() : Promise.reject(new Error("HTTP " + r.status))))
+        .then((body) => { if (!cancelled && body && Array.isArray(body.lots)) setData(body); })
+        .catch(() => {});
+    };
+    load();
+    const timer = setInterval(load, PARKING_REFRESH_MS);
+    return () => { cancelled = true; clearInterval(timer); };
+  }, []);
+
+  if (!data || !data.fetchedAt) return null;
+  const fetched = Date.parse(data.fetchedAt);
+  if (!isFinite(fetched) || Date.now() - fetched > PARKING_STALE_MS) return null;
+  const lots = data.lots.filter((l) => l && PARKING_STATUS_LABEL[l.status]);
+  if (!lots.length) return null;
+  const ageMin = Math.max(0, Math.round((Date.now() - fetched) / 60000));
+
+  return (
+    <div className="parking-now" role="region" aria-label="Live parking lot status">
+      <ul className="parking-now__list">
+        {lots.map((l) => (
+          <li key={l.id || l.name} className={`parking-now__row parking-now__row--${l.status}`}>
+            <span className="parking-now__name">{l.name}</span>
+            <span className="parking-now__status">{PARKING_STATUS_LABEL[l.status]}</span>
+            {typeof l.capacity === "number" && <span className="parking-now__cap">{l.capacity} spaces</span>}
+          </li>
+        ))}
+      </ul>
+      <p className="parking-now__meta">NPS, {ageMin === 0 ? "just now" : ageMin + " min ago"} · text <em>ynptraffic</em> to 333111 before you lose signal</p>
+    </div>
+  );
+}
+window.ParkingNow = ParkingNow;
+
+// ============================================================
 // Masthead rockfall. The first click on the talus mark each visit
 // shakes a few small rocks loose; they tumble off the logo and fall
 // down the viewport, then clean up after themselves. Pure garnish:
@@ -377,6 +431,8 @@ const NAV_GROUPS = [
         links: [
           { key: "map", label: "The trip map", note: "Every pin in the park, assembled into a route" },
           { key: "distances", label: "Drive times", note: "How far the Valley is from every gateway town" },
+          { key: "dates", label: "Dates that matter", note: "Lotteries, release mornings, road windows, as calendar files" },
+          { key: "international", label: "Visiting from abroad", note: "The non-resident entrance fee, and the cheapest way in" },
           { key: "webcams", label: "Webcams", note: "The live views, and how to read them" },
           { key: "checklist", label: "First-week checklist", note: "What to do in the week before you go" },
           { key: "kit", label: "Kit", note: "What earns its place in the pack" },
@@ -963,6 +1019,8 @@ function Footer({ go }) {
               {link("map", "The Map")}
               {link("itineraries", "Itineraries")}
               {link("distances", "Drive times")}
+              {link("dates", "Dates that matter")}
+              {link("international", "Visiting from abroad")}
               {link("webcams", "Webcams")}
               {link("stay", "Where to stay")}
               {link("conditions", "Conditions")}
@@ -1118,6 +1176,18 @@ const KEEP_GOING = {
     { key: "stay", label: "Where to stay", note: "The first decision with a deadline" },
     { key: "itineraries", label: "Itineraries", note: "Half-day to three-day plans, in drive order" },
     { key: "conditions", label: "Conditions", note: "What is open on your dates" },
+  ] },
+  dates: { links: [
+    { key: "half-dome-lottery", label: "The Half Dome lottery", note: "The mechanics, the odds, what to climb instead" },
+    { key: "tioga-opening", label: "Tioga Road opening", note: "The window, watched from inside the park" },
+    { key: "planning", label: "The Planning Guide", note: "Five answers in, a plan out" },
+    { key: "guide", label: "The Field Guide", note: "These dates on your trip board, with reminders" },
+  ] },
+  international: { links: [
+    { key: "start-here", label: "Start here", note: "The first-trip questions, answered plainly" },
+    { key: "distances", label: "Drive times", note: "How far the Valley is from every gateway town" },
+    { key: "stay", label: "Where to stay", note: "In-park beds and the gateway towns, compared" },
+    { key: "dates", label: "Dates that matter", note: "Lotteries and release mornings, measured against your trip" },
   ] },
   distances: { links: [
     { key: "stay", label: "Where to stay", note: "The beds at the end of each drive" },

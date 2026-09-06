@@ -56,6 +56,16 @@ var SEARCH_PAGES = [{
   dek: "How far the Valley is from El Portal, Mariposa, Groveland, Oakhurst and Lee Vining: miles, drive times, entrances and what the season does to each route.",
   kind: "Page"
 }, {
+  route: "dates",
+  title: "Yosemite dates that matter",
+  dek: "The Half Dome lotteries, the wilderness permit windows, the campground release mornings and the road openings, each one a calendar file, measured against your trip dates.",
+  kind: "Page"
+}, {
+  route: "international",
+  title: "Visiting from abroad",
+  dek: "The 2026 non-resident entrance fee, the $250 pass, a calculator for the cheapest way in, and what surprises visitors from outside the United States.",
+  kind: "Page"
+}, {
   path: "/archive/",
   title: "The Nature Notes archive",
   dek: "The park's own bulletin, Yosemite Nature Notes: 512 issues transcribed from the scans, with year indexes.",

@@ -35,7 +35,9 @@ export type Env = {
   // NPS Events API key (free, developer.nps.gov/get-started). Server-side
   // only — the PWA never sees it. Optional: without it the programs cron
   // skips ingest and /api/programs serves manual curation only. The same key
-  // serves the alerts endpoint behind /api/alerts.
+  // serves the alerts endpoint behind /api/alerts and the parking-lot feed
+  // behind /api/parking (which falls back to the shared DEMO_KEY, rate-limited,
+  // when this is unset).
   NPS_API_KEY?: string
 
   // AirNow API key (free, docs.airnowapi.org). Optional: without it
