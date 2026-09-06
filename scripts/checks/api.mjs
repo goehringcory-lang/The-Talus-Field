@@ -32,6 +32,7 @@ import { makeCheck } from "../lib/report.mjs";
 
 const DEFAULT_API_BASE = "https://api.thetalusfieldjournal.com";
 const WRANGLER = path.join(ROOT, "workers", "wrangler.toml");
+const WATCH_MIRROR = path.join(ROOT, "apps", "guide", "src", "watch", "targets.ts");
 
 // Weather refreshes inline past 2h (workers/src/routes/weather.ts). Past this
 // the cron and the inline refresh have both failed to land for hours.
@@ -42,6 +43,17 @@ const PROGRAMS_WINDOW_DAYS = 14;
 function wranglerVar(src, key) {
   const m = src.match(new RegExp(`^[ \\t]*${key}[ \\t]*=[ \\t]*"([^"]*)"`, "m"));
   return m ? m[1] : null;
+}
+
+// The PWA's hand mirror of the campsite-watch registry (one row per line;
+// check-watch-targets.mjs enforces the shape against the Worker's table).
+function mirrorTargetIds() {
+  try {
+    const src = readFileSync(WATCH_MIRROR, "utf8");
+    return new Set([...src.matchAll(/^\s*\{ id: '([a-z0-9-]+)', name: /gm)].map((m) => m[1]));
+  } catch {
+    return new Set();
+  }
 }
 
 function expectedVars() {
@@ -206,6 +218,40 @@ export default async function checkApi(ctx) {
   } else {
     const n = waits.body.waits.length;
     check.info(`waits shape OK (${n} entrance${n === 1 ? "" : "s"})`);
+  }
+
+  // Campsite watches: the Openings tab lists campgrounds from this. Read-only
+  // (a watch is set through the JWT-gated routes), so drift is a warning, but
+  // a 404 is the stale-deploy signal for the whole feature: the PWA half
+  // auto-deploys on merge and the Worker half does not.
+  const targets = await getJson(`${base}/api/watch/targets`);
+  if (!targets.ok) {
+    check.warn(
+      `/api/watch/targets failing (${targets.status || targets.error})` +
+        (targets.status === 404
+          ? " — the deployed Worker predates the campsite watch feature; `cd workers && npx wrangler deploy`"
+          : ""),
+    );
+  } else {
+    const list = targets.body?.targets;
+    if (!Array.isArray(list) || list.length === 0) {
+      check.warn("/api/watch/targets returned no targets array");
+    } else {
+      const mirror = mirrorTargetIds();
+      const live = new Set(list.map((t) => t?.id).filter(Boolean));
+      const missing = [...mirror].filter((id) => !live.has(id));
+      const extra = [...live].filter((id) => !mirror.has(id));
+      if (mirror.size === 0) {
+        check.warn("could not read apps/guide/src/watch/targets.ts to compare against the live registry");
+      } else if (missing.length || extra.length) {
+        check.warn(
+          `/api/watch/targets disagrees with the PWA mirror (in the mirror only: ${missing.join(", ") || "none"}; ` +
+            `live only: ${extra.join(", ") || "none"}) — deploy the Worker, or fix targets.ts`,
+        );
+      } else {
+        check.info(`campsite watch targets: ${list.length} campgrounds, in step with the PWA mirror`);
+      }
+    }
   }
 
   // Programs is the one feed whose emptiness is an editorial deadline, not an

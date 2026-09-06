@@ -1,16 +1,19 @@
 // =============================================================================
 // Push notification opt-in.
 //
-// Four notices exist and no more (workers/src/lib/pushSweep.ts): a morning-of
-// nudge on each day of the trip, a heads-up when access is about to end, a
-// road that changed state inside the two weeks before the trip, and the
-// morning-before reminder for a deadline the buyer picked on the trip board.
-// The bar is deliberately high — this audience installed a field guide, not a
-// marketing channel, and the fastest way to lose a notification permission
-// forever is to spend it on something nobody asked about. The deadline notice
-// is the only one asked for twice: turning notifications on is not an opt-in
-// to it, each "Remind me" is, and the ids ride to the Worker on the
-// subscription record next to the trip dates (readDeadlineOptIns).
+// Five notices exist and no more: a morning-of nudge on each day of the trip,
+// a heads-up when access is about to end, a road that changed state inside the
+// two weeks before the trip, and the morning-before reminder for a deadline the
+// buyer picked on the trip board (all four from workers/src/lib/pushSweep.ts),
+// plus a campsite opening for a watch the buyer set on the Openings tab
+// (workers/src/lib/availabilitySweep.ts), the one notice not limited to the
+// morning, because a cancellation lands at any hour. The bar is deliberately
+// high — this audience installed a field guide, not a marketing channel, and
+// the fastest way to lose a notification permission forever is to spend it on
+// something nobody asked about. Two notices are asked for twice: turning
+// notifications on is not an opt-in to a deadline reminder or a watch; each
+// "Remind me" and each watch is, and the deadline ids ride to the Worker on
+// the subscription record next to the trip dates (readDeadlineOptIns).
 //
 // Off by default, and the permission prompt is only ever raised from a real
 // tap on the Account page. A cold prompt on first launch is the single most

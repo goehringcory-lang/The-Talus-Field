@@ -254,8 +254,9 @@ const GENERIC_NOTIFICATION = {
   tag: 'tfg-generic',
 }
 
-// The four notice kinds the sweep sends (workers/src/lib/pushSweep.ts), keyed
-// by the prefix of the `tag` it queues, each with the route it should open and
+// The five notice kinds the Worker sends (four from workers/src/lib/pushSweep.ts,
+// the campsite opening from lib/availabilitySweep.ts), keyed by the prefix of
+// the `tag` it queues, each with the route it should open and
 // a line to show if the pending record arrives with its text missing. The
 // Worker's own title and body win whenever they are present; this table is
 // what keeps a notice sensible when they are not, and what keeps a road
@@ -265,6 +266,7 @@ const NOTICE_KINDS = [
   { prefix: 'deadline-', url: '/trip', title: 'A date that matters is tomorrow', body: 'Open your trip board for the details.' },
   { prefix: 'trip-day', url: '/today', title: 'Your day in the park', body: "Today's schedule, the forecast, and the drive to your first stop." },
   { prefix: 'renew', url: '/account', title: 'Your guide access is ending soon', body: 'Renew any time from your account page.' },
+  { prefix: 'watch-', url: '/watch', title: 'A campsite opened', body: 'Open the Openings tab; sites go in minutes.' },
 ]
 
 function kindFor(tag) {

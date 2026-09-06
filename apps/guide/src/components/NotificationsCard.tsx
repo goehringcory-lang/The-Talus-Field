@@ -1,7 +1,9 @@
 // =============================================================================
 // Account-page notification opt-in (push/push.ts).
 //
-// The card names every notice it will ever send before asking for anything.
+// The card names every notice the guide will ever send before asking for
+// anything: the four from the daily sweep, and the campsite opening a buyer
+// asks for by setting a watch on the Openings tab.
 // That is the whole design: a permission prompt raised without saying what it
 // buys gets denied, and a denial on this platform is effectively permanent —
 // the page can't re-ask, and the user has to find it in browser settings.
@@ -111,8 +113,9 @@ export default function NotificationsCard() {
         <>
           <p style={noteStyle}>
             This device will get a nudge on each morning of your trip, a heads-up before your
-            access ends, a notice if a road changes status in the two weeks before your trip, and
-            the reminders you pick under Dates that matter on the trip board. Nothing else.
+            access ends, a notice if a road changes status in the two weeks before your trip, the
+            reminders you pick under Dates that matter on the trip board, and a campsite opening
+            for any watch you set on the Openings tab. Nothing else.
           </p>
           <Button
             variant="quiet"
@@ -125,7 +128,7 @@ export default function NotificationsCard() {
         </>
       ) : (
         <>
-          <p style={noteStyle}>Four notifications, and the guide sends no others:</p>
+          <p style={noteStyle}>Five notifications, and the guide sends no others:</p>
           <ul style={listStyle}>
             <li>
               On each morning of your trip, a tap straight to today's schedule, forecast, and the
@@ -139,6 +142,10 @@ export default function NotificationsCard() {
             <li>
               The morning before a lottery or campground release you asked to be reminded of, from
               Dates that matter on the trip board.
+            </li>
+            <li>
+              A campsite opening for any watch you set on the Openings tab, at whatever hour it
+              appears. Only if you create a watch.
             </li>
           </ul>
           {blocked ? (
