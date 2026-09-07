@@ -121,7 +121,7 @@ function PartnersPage({ go }) {
           <p>
             One code is one guest's full access to the Field Guide: the entire
             stop library across the Valley, Glacier Point and Mariposa Grove,
-            Tuolumne, and Hetch Hetchy, the 37-entry Secret Guide, the day-by-day
+            Tuolumne, and Hetch Hetchy, the 50-entry Secret Guide, the day-by-day
             trip planner with calendar export, park programs and weather on their
             dates, and the offline download, about 70 MB, that keeps all of it
             readable with no signal. Access runs 18 months from the day the guest

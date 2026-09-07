@@ -356,7 +356,7 @@ const HUB_PROSE = {
   "/guide": () =>
     hubProse(
       "The Field Guide",
-      "An offline web app for Yosemite, written and field-checked by a naturalist who lives in the park. 81 entries across the Valley, Glacier Point and Mariposa Grove, Tuolumne, and Hetch Hetchy, each with a tappable GPS coordinate and an honest time budget, the flagship stops with a swap for when the lot is full. All 57 in-park day hikes with GPS tracks and elevation profiles. The ranger and partner program schedule on your dates. A trip planner that builds each day in driving order with real drive-time buffers, then saves the plan to your calendar as a file. One download of about 70 MB carries the whole guide, the photos on file and a topographic park map, so everything keeps working when cell service dies."
+      "An offline web app for Yosemite, written and field-checked by a naturalist who lives in the park. 94 entries across the Valley, Glacier Point and Mariposa Grove, Tuolumne, and Hetch Hetchy, including the 50-entry Secret Guide, each with a tappable GPS coordinate and an honest time budget, the flagship stops with a swap for when the lot is full. All 57 in-park day hikes with GPS tracks, elevation profiles and a daylight reading: the latest start that gets you down with an hour of light in hand. The ranger and partner program schedule on your dates. A trip planner that builds each day in driving order with real drive-time buffers, lists the lotteries, release mornings and road windows that apply to your dates, then saves the plan to your calendar as a file. Campsite-opening alerts: pick a reservable campground and your nights, and recreation.gov is checked every five minutes, with a push notification or email the moment a site appears. A Help card with 911 by call or text and your GPS position in the form a dispatcher reads, a bearing compass that points at any stop, and a companion mode that names the entry you are passing and reads it aloud for the passenger, all of which run on GPS with no data connection. One download of about 70 MB carries the whole guide, the photos on file and a topographic park map, so everything keeps working when cell service dies."
     ) +
     `<p>The guide is on sale now: $3.99 once for 18 months of access on every personal device, no subscription, refunded in full within 30 days if it does not work as described. The journal's free tools cover a lot on their own: <a href="/map">the trip planner map</a>, <a href="/itineraries">itineraries</a>, and <a href="/checklist">the first-week checklist</a>.</p>`,
   "/about": () =>
@@ -763,7 +763,7 @@ function seoForPath(pathname, searchParams) {
     "/guide": {
       title: `The Field Guide — ${SITE_NAME}`,
       description:
-        "The offline Yosemite guide: 81 entries with tappable GPS, time budgets, and crowd swaps, all 57 day hikes, a drive-order trip planner, and a topo map that works when service dies.",
+        "The offline Yosemite guide: 94 entries with tappable GPS, time budgets, and crowd swaps, all 57 day hikes, a drive-order trip planner, campsite-opening alerts, a Help card, and a topo map that works when service dies.",
       breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["The Field Guide", null]],
       // On sale since the July 2026 flip (GUIDE_ON_SALE in page-guide.jsx):
       // the page carries the live buy box.
@@ -774,7 +774,7 @@ function seoForPath(pathname, searchParams) {
       faq: [
         {
           q: "Does it really work with no cell service?",
-          a: "Yes. One tap downloads the whole guide, about 70 MB: every entry, the photos on file, all 57 hike tracks, and a topographic map of the park. A few entries still show a stand-in photo rather than the place itself. Only the live extras need signal: webcams, entrance waits, and fresh weather and program updates.",
+          a: "Yes. One tap downloads the whole guide, about 70 MB: every entry, the photos on file, all 57 hike tracks, and a topographic map of the park. A few entries still show a stand-in photo rather than the place itself. The Help card's position readout, the bearing compass and companion mode run on GPS, which needs no data. Only the live extras need signal: webcams, entrance waits, parking-lot status, campsite-opening alerts, and fresh weather and program updates.",
         },
         {
           q: "Is it an App Store app?",
@@ -802,7 +802,11 @@ function seoForPath(pathname, searchParams) {
         },
         {
           q: "What do I get that the free site doesn't already give me?",
-          a: "The complete library: 81 entries including the 37-entry Secret Guide, all 57 day hikes with GPS tracks and elevation profiles, the drag-and-drop trip builder, and the offline download. The free site keeps the articles, the trip map, the itineraries, and the conditions board.",
+          a: "The complete library: 94 entries including the 50-entry Secret Guide, all 57 day hikes with GPS tracks, elevation profiles and a daylight reading, the drag-and-drop trip builder with the dates that matter for your trip, campsite-opening alerts, the Help card, the bearing compass, companion mode, and the offline download. The free site keeps the articles, the trip map, the itineraries, and the conditions board.",
+        },
+        {
+          q: "Can it tell me when a campsite opens up?",
+          a: "Yes. Pick one of the 13 reservable campgrounds and your nights on the Openings tab, and the guide's server checks recreation.gov every five minutes. When a site appears you get a push notification, an email, or both, at whatever hour it happens, with the booking link one tap away. Up to five watches at a time, and a watch deletes itself two days after its last night.",
         },
         {
           q: "Does the guide change after I buy it?",
@@ -898,7 +902,7 @@ function seoForPath(pathname, searchParams) {
       faq: [
         {
           q: "What is a group code?",
-          a: "One code is one guest's full access to The Talus Field Guide: the entire stop library across the Valley, Glacier Point and Mariposa Grove, Tuolumne, and Hetch Hetchy, the 37-entry Secret Guide, the trip planner with calendar export, park programs and weather on their dates, and the roughly 50 MB offline download. Access runs 18 months from the day the guest redeems, on every device they own.",
+          a: "One code is one guest's full access to The Talus Field Guide: the entire stop library across the Valley, Glacier Point and Mariposa Grove, Tuolumne, and Hetch Hetchy, the 50-entry Secret Guide, the trip planner with calendar export, park programs and weather on their dates, and the roughly 50 MB offline download. Access runs 18 months from the day the guest redeems, on every device they own.",
         },
         {
           q: "What do group codes cost?",
