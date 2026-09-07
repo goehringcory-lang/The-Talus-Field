@@ -126,6 +126,7 @@ window.ARTICLE_INTENT = {
   // "where to break the drive" section, which answers where to sleep on the
   // way rather than mentioning a town in passing. No ARTICLE_MONTHS entry: the
   // Highway 41 route is open all year and the article says what winter does to it.
+  "highway-140-closed-yosemite":               { stage: ["dates-set", "week-before", "in-park"], who: [], topic: ["transportation", "lodging", "conditions"] },
   "yosemite-from-los-angeles":                 { stage: ["before-booking", "dates-set"], who: ["first-trip"], topic: ["transportation", "lodging"] },
   "yosemite-day-trip-from-bay-area":           { stage: ["before-booking", "dates-set", "week-before"], who: [], topic: ["transportation", "conditions"] },
 

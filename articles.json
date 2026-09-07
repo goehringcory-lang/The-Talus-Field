@@ -1,5 +1,31 @@
 [
   {
+    "slug": "highway-140-closed-yosemite",
+    "cat": "planning",
+    "title": "When Highway 140 Closes: Getting Into Yosemite Anyway, and What It Does to a Mariposa Booking",
+    "dek": "The all-weather road into Yosemite is the one that closes without a schedule: ten times in twenty years, for rock, for fire, for a motorhome on the shoulder. What a closure notice actually says, why the two barricade names decide whether your trip is intact, the two detours from Mariposa and what each costs, when to keep the room and when to move it, what happens to the bus, how to check Caltrans and the park in the right order, and the rock shed that will add planned closures to the canyon for the rest of the decade.",
+    "seoDek": "Highway 140 to Yosemite closed? The detours from Mariposa by 41 and 120, what it means for a Mariposa or El Portal booking, the YARTS bus, and how to check.",
+    "date": "September 7, 2026",
+    "isoDate": "2026-09-07",
+    "isoModified": "2026-09-07",
+    "read": "11 min",
+    "image": "img/arch-rock-entrance-yosemite.jpg",
+    "ogImage": { "url": "img/responsive/arch-rock-entrance-yosemite-1600.jpg", "width": 1600, "height": 1075 },
+    "placeholder": "Visitors at a Yosemite entrance station kiosk in an NPS archive photograph",
+    "wordCount": 2968,
+    "keywords": ["Highway 140 closed", "Highway 140 Yosemite closure", "is Highway 140 open to Yosemite", "how to get to Yosemite when Highway 140 is closed", "Mariposa to Yosemite detour", "Yosemite road closures today", "El Portal road closed", "Ferguson slide Highway 140", "YARTS Highway 140 closure", "Highway 140 fire Yosemite"],
+    "faq": [
+      { "q": "Highway 140 is closed. How do I get into Yosemite?", "a": "By one of the other western entrances. Caltrans's standing instruction is to use Highway 41 or Highway 120 into the park. From Mariposa the usual detour is Highway 49 south to Oakhurst and Highway 41 to the South Entrance, roughly two to two and a half hours to Yosemite Valley in clear conditions against the hour and a quarter the Park Service quotes for Highway 140. The second option is Highway 49 north to Coulterville and across to Highway 120, which arrives at the Big Oak Flat Entrance on the north end of the park, another forty-five minutes of park road from the Valley." },
+      { "q": "Can I still reach my hotel in El Portal if Highway 140 is closed?", "a": "Usually, and from the park side. In the March 2025, July 2018 and September 2026 closures the eastern barricade sat at or west of Cedar Lodge, so El Portal's lodges stayed reachable by driving into the park on Highway 41 or 120, crossing it, and coming down the El Portal Road from the east. Read the two place names in the closure notice: lodging east of the eastern barricade is on the park side, and the trip is nearly intact." },
+      { "q": "Should I cancel a Mariposa hotel booking because Highway 140 is closed?", "a": "Not for a one-night stay on the way in, and not for a closure measured in hours or a day. The decision is a multi-day Mariposa base for a Valley-focused trip, where the detour adds two hours and more of driving every day. Whether to move depends on the booking's cancellation terms, how long Caltrans says the closure will hold, and what is actually available in Oakhurst or Groveland on your dates, which in high season is often nothing." },
+      { "q": "Does the YARTS bus still run when Highway 140 is closed?", "a": "Only as far as the last open stop. The Highway 140 route from Merced through Mariposa and El Portal to Yosemite Valley is the one YARTS route that runs in winter, but the bus uses the same pavement as the cars: in March 2025 YARTS said riders could get only as far as the Bug hostel at Midpines. In summer the Highway 41 route from Fresno (May 22 to September 25 in 2026) is the way out of the Valley when 140 is shut; in winter there is no second bus. YARTS answers at 877-989-2787." },
+      { "q": "Where do I check whether Highway 140 is open?", "a": "Two agencies cover two different sets of miles. Highway 140 outside the park is Caltrans's road: QuickMap at quickmap.dot.ca.gov, the highway lookup at roads.dot.ca.gov, or the highway information line at 1-800-427-7623. From Arch Rock to the Valley the road is the El Portal Road and belongs to the park: the current-conditions page at nps.gov/yose, or 209-372-0200, press 1 then 1. A closure at Briceburg will not appear on the park's table, which will truthfully say the El Portal Road is open." },
+      { "q": "How often does Highway 140 close?", "a": "The article's ledger counts ten closures in twenty years, from the 2006 Ferguson slide through the Motor Fire of 2011, the Dog Rock Fire of 2014, the rockfalls of January 2017, the Ferguson Fire of 2018, the Briceburg Fire of 2019, the Oak Fire of 2022, the March 2025 debris slide, and the Colorado Fire of September 2026, and that undercounts the shorter shuts for rock work. Plan on the road being closed at some point in any given year." },
+      { "q": "What is the Ferguson Rock Shed and when will Highway 140 be fixed?", "a": "The permanent fix for the 2006 Ferguson slide. Caltrans is building a rock shed of eleven pre-cast concrete segments, about 675 feet long and 40 feet wide inside, on the highway's original alignment, removing the temporary one-lane bridges traffic has used for twenty years. Construction of the shed is a 285-million-dollar job scheduled to begin in summer 2026 and take five years, so the signal-controlled one-lane section stays until then and the work will add planned closures of its own." }
+    ],
+    "related": ["getting-to-yosemite", "yosemite-gateway-towns-compared", "yosemite-shuttle-and-yarts", "yosemite-in-winter", "yosemite-during-smoke-season"]
+  },
+  {
     "slug": "yosemite-from-los-angeles",
     "cat": "planning",
     "title": "Yosemite from Los Angeles: The Drive, the Roads, and Where to Break It",
@@ -379,7 +405,7 @@
       { "q": "Do you have to take the shuttle to Mariposa Grove?", "a": "In season, effectively yes. When the free grove shuttle is running, the road above the Welcome Plaza is closed to private cars, so you park at the plaza and ride about two miles up, with buses roughly every fifteen minutes. A vehicle displaying a disability placard may drive the grove road instead." },
       { "q": "Is taking the bus cheaper than driving to Yosemite?", "a": "For one or two people on a Valley-focused trip, yes: a Merced round trip runs in the mid-forties for an adult at current summer rates, against fuel, the entrance fee, and the parking problem. For a family of four it usually is not, because four per-person fares cost several times a single vehicle entrance fee. Driving also wins for dawn starts and for trips spread across Glacier Point, Tuolumne, and Hetch Hetchy." }
     ],
-    "related": ["getting-to-yosemite", "yosemite-valley-parking-guide", "yosemite-for-non-hikers", "yosemite-accessibility-guide", "yosemite-day-trip-from-bay-area"]
+    "related": ["getting-to-yosemite", "yosemite-valley-parking-guide", "highway-140-closed-yosemite", "yosemite-for-non-hikers", "yosemite-accessibility-guide"]
   },
   {
     "slug": "yosemite-walk-up-and-day-of-permits",
@@ -737,7 +763,7 @@
       { "q": "Do I need a reservation to drive into Yosemite in 2026?", "a": "No. The day-use reservation systems that ran from 2020 through 2025 are gone; you simply drive up. The entrance station is cashless: the $35 vehicle fee, good for seven days, goes on a card, or you show an $80 America the Beautiful annual pass." },
       { "q": "Can I get to Yosemite without a car?", "a": "Yes. YARTS buses run into Yosemite Valley year-round on Highway 140, connecting from the Amtrak station in Merced through Mariposa and El Portal, and seasonally, roughly May through September, from Fresno on Highway 41, Sonora on Highway 120, and Mammoth Lakes and Lee Vining on Highway 395. The free Valley shuttle takes over once you arrive. Whether the fare covers the park entrance fee is currently unsettled: the Park Service says bus riders do not pay it, while the YARTS fares page says it is not included, so budget for it." }
     ],
-    "related": ["yosemite-shuttle-and-yarts", "yosemite-valley-parking-guide", "yosemite-gateway-towns-compared", "yosemite-day-trip-from-bay-area", "yosemite-from-los-angeles"]
+    "related": ["yosemite-shuttle-and-yarts", "yosemite-valley-parking-guide", "yosemite-gateway-towns-compared", "highway-140-closed-yosemite", "yosemite-day-trip-from-bay-area"]
   },
   {
     "slug": "yosemite-wilderness-permits-guide",
@@ -1616,7 +1642,7 @@
       { "q": "Is Groveland a good place to stay for Yosemite?", "a": "Yes if you want gateway-town character without the Mariposa price, if Hetch Hetchy and the north end of the park are on your list, or if you are driving from the Bay Area, since Groveland is on the way. The trade-offs are a longer Valley drive, about 41 miles and 65 to 80 minutes on Highway 120, and an elevation of about 3,100 feet that brings winter chain controls the Highway 140 towns do not get." },
       { "q": "What is the best town to stay in outside Yosemite?", "a": "It depends on which park you came for. El Portal for sunrise in the Valley and the shortest drive. Mariposa for a balanced trip with comfort and value, and for winter. Oakhurst for the sequoias and Wawona. Groveland for character and the Bay Area approach. Lee Vining for the high country and Mono Lake, while Tioga Pass is open." }
     ],
-    "related": ["where-to-stay-in-yosemite", "yosemite-from-los-angeles", "where-to-eat-yosemite", "yosemite-trip-cost-budget-2026", "getting-to-yosemite"]
+    "related": ["where-to-stay-in-yosemite", "yosemite-from-los-angeles", "where-to-eat-yosemite", "highway-140-closed-yosemite", "yosemite-trip-cost-budget-2026"]
   },
   {
     "slug": "yosemite-during-smoke-season",
