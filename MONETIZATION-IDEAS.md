@@ -26,6 +26,7 @@ These aren't new ideas; they're the highest-ROI items on the board because the w
 **1.1 Clear the launch ops gate and go live.** LAUNCH-READINESS.md items 1–7 (secrets, both Stripe webhook events, Resend domain verification, test-mode purchase, dev-cred rotation, owner seeding). Everything else in this document compounds on a product that is actually buyable.
 
 **1.2 Run the photo pass.** The prepared Wikimedia pipeline (`scripts/fetch-guide-photos.mjs`, 57-slot manifest) fixes the biggest perceived-value gap in a $19 product: 25 photoless stops and one meadow photo serving six stops. Needs a session where `commons.wikimedia.org` resolves. This is a *conversion-rate* project disguised as a content chore — screenshots of the app are the sales page's proof.
+**Status (September 2026): ran.** Once the environment could reach Commons (PR #349), every manifest slot Commons could answer was filled and credited; four honest stand-ins remain (Carlon Falls, Evergreen Lodge, Little Nellie Falls, Hidden Lake). `LAUNCH-READINESS.md`, "The photo pass", is the record; `npm --prefix scripts run photos:check` reads the live inventory.
 
 **1.3 Launch to the warm list, in sequence.** `guide-waitlist`, `guide-curious`, `cat-planning`, `map-gate` tags exist for exactly this. Segment-ordered launch emails (waitlist first, 48h early access framed around the monthly cap) both maximize conversion and generate the honest scarcity copy the brand can stand behind.
 
@@ -39,12 +40,14 @@ These aren't new ideas; they're the highest-ROI items on the board because the w
 **Why it works:** This converts a one-time product into quasi-recurring revenue with zero new product surface. Yosemite is a repeat-visit park; the 18-month window means most buyers plan a second trip inside a renewal cycle. Renewal at ~60% of list price is an easy yes for someone whose trip data lives in the app.
 **Build:** Worker cron sweep over buyer records + a second Stripe price + webhook path that extends rather than provisions. Medium effort.
 **Measure:** renewal rate at expiry; it becomes the single most important product metric after launch.
+**Status (September 2026): shipped.** The daily sweep in `workers/src/lib/renewals.ts` sends the T-60 / T-14 / T-1 notices, `/api/checkout/renew` sells the renewal at `GUIDE_RENEWAL_PRICE_CENTS` ($2.49, outside the monthly cap), the PWA's `/account` shows the renew button inside the 60-day window, and a lapsed buyer gets the rebuy path on `/login`. The metric above is still unmeasured: renewal volume lives in the Stripe dashboard, which no routine can read.
 
 ### 2.2 Gift purchases
 
 **What:** A "Give the guide" variant of the buy box: buyer pays, enters recipient email + optional note + send date; the webhook provisions the recipient (or stores a scheduled provision) and mails a gift card–style access email.
 **Why it works:** A $19, trip-scoped, non-subscription product is a near-perfect gift ("you're going to Yosemite in June — here"). Trips are planned by one person in a group; gifting is how the product jumps between households. Holiday and graduation seasons give it two natural marketing moments the newsletter can carry.
 **Build:** One Checkout metadata field + a webhook branch + one email template. Low–medium effort, and it reuses the entire existing provisioning path.
+**Status (September 2026): shipped.** The buy box on `/guide` carries the gift variant (recipient email plus a note capped at 280 characters), `checkout.ts` and the webhook carry it through to the recipient's provisioning and email, and `guide_purchase` fires with `gift` on the `?guide=gift-success` return. The holiday newsletter moment is the owner's.
 
 ### 2.3 Freemium demo: one region open, three locked
 
@@ -58,6 +61,7 @@ These aren't new ideas; they're the highest-ROI items on the board because the w
 **What:** Sell code packs to gateway-town hotels, Airbnb hosts, and property managers ("every stay includes The Talus Field Guide") at, say, $8–10/code in packs of 25+. Operationally: a promo-code table in KV, a redemption path on `/open`, and a plain one-page pitch PDF.
 **Why it works:** The `yosemite-gateway-towns-compared` and `where-to-stay` articles mean the audience relationships already exist in editorial form. For a host, a $10 amenity that makes guests' trips measurably better is cheap differentiation; for the site, it's high-margin volume with zero CAC, and every redeemed code is a future direct renewal (2.1). The inventory-cap architecture already models supply.
 **Build:** Medium (code generation + redemption + manual invoicing to start — no self-serve portal needed for the first ten partners). The selling is the real work; start with three El Portal / Mariposa properties the author plausibly already knows.
+**Status (September 2026): partly built.** `/partners` is the pitch page, email-first, with no partner pricing quoted while the model is reworked. The Worker's `/api/redeem` and the PWA's `/redeem` page redeem the shared newsletter codes in `PROMO_CODES` (`TALUS30:30`), not per-guest packs: the per-code table, the redemption accounting and the invoicing do not exist, and the first properties are onboarded by hand.
 
 ### 2.5 Price test after the photo pass
 
@@ -90,6 +94,7 @@ Ordered by fit with the brand's "dry, declarative, no fluff" register — the co
 **Why it works:** This is the highest-margin product the site can offer and the only one competitors literally cannot copy. It monetizes the credential at ~$190/hour, feeds the editorial (every consult is field intelligence about what planners actually struggle with), and the cap keeps it from eating the writing time. The async version can partially reuse `window.ITINERARIES` + the map's trip links as the deliverable skeleton — a custom `/map?trip=` URL is already a shareable itinerary artifact.
 **Build:** Low (a page + payment link). The scarce resource is hours, which the cap protects.
 **Creative extension:** a seasonal group version — "Firefall week briefing," one $25 live Zoom for 40 people the week before the event, recorded and sent to guide owners free (raises guide value too).
+**Status (September 2026): page live, not yet sellable.** `/consult` ships at $95 with six slots a month, and the trip selector routes constrained trips (four-plus days, access needs, unbooked peak dates) to it, but `CONSULT_PAYMENT_LINK_URL` and `CONSULT_BOOKING_URL` in `page-consult.jsx` are empty, so the page degrades to a mailto. Two dashboard pastes make it sell.
 
 ### 3.4 Seasonal micro-products vs. guide perks — decide the boundary once
 
@@ -157,13 +162,13 @@ Ordered by (revenue impact × confidence) ÷ effort, respecting dependencies:
 | # | Project | Type | Effort | When |
 |---|---|---|---|---|
 | 1 | Ops gate → **launch** (1.1) + warm-list sequence (1.3) | revenue | low | now |
-| 2 | Photo pass (1.2) | conversion | low (blocked on network allowlist) | now |
+| 2 | Photo pass (1.2) | conversion | low | done, September 2026 |
 | 3 | Lodging affiliates on money pages (3.1) | revenue | low | now, parallel |
 | 4 | Shared-trip OG cards (4.1) | growth | low–med | next |
 | 5 | Evergreen event pages (4.3) | growth | low–med | before Feb (firefall) |
-| 6 | Gift purchases (2.2) | revenue | low–med | before holidays |
-| 7 | Trip consults page (3.3) | revenue | low | when calendar allows |
-| 8 | Renewal arc (2.1) | revenue | med | within 6 months of launch (first expiries are 18 months out, but the email plumbing should exist early for refund/expiry edge cases) |
+| 6 | Gift purchases (2.2) | revenue | low–med | shipped |
+| 7 | Trip consults page (3.3) | revenue | low | page live; payment and booking links pending |
+| 8 | Renewal arc (2.1) | revenue | med | shipped |
 | 9 | Conditions widget (4.2) | growth | med | after launch settles |
 | 10 | B2B code packs (2.4) | revenue | med | after widget opens doors |
 | 11 | Newsletter/`/now` sponsorship (3.2) | revenue | low code, sales effort | when list size supports it |

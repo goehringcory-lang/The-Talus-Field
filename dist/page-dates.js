@@ -277,7 +277,14 @@ function DatesPage({
   }, "the Tioga Road page"), ", and the Firefall on", " ", React.createElement("a", {
     href: "/firefall",
     onClick: e => goRoute(e, "firefall")
-  }, "its own page"), ".")), React.createElement(GuidePromo, {
+  }, "its own page"), ".")), React.createElement(LodgingCta, {
+    destination: "Yosemite National Park",
+    heading: "If release morning passes you by",
+    note: "The Pines sites go in minutes on the 15th. A trip that misses the release still happens from a room in the gateway towns, and one availability search around the park shows what your dates still hold.",
+    list: "page_dates",
+    slug: "dates",
+    cta: "Search lodging around Yosemite →"
+  }), React.createElement(GuidePromo, {
     go: go,
     location: "dates",
     title: "In the Field Guide, these dates sit on your trip board",
