@@ -1,5 +1,50 @@
 {
   "__comment": "SEO enrichment for the editorial site, keyed by article slug. NOT loaded by the browser runtime (kept out of data.js so the per-page JS payload stays small). The build script scripts/gen-seo-artifacts.mjs merges this with window.ARTICLES from data.js to regenerate articles.json (consumed by edge/seo.js), sitemap.xml, feed.xml, and the article section of llms.txt. Fields: wordCount (number), keywords (string[]), faq ({q,a}[]), trail ({name,distance,elevationGain,difficulty} for hike guides). FAQ answers and trail numbers are drawn from each article's published body; do not invent facts. The one article whose faq lives inline in data.js (yosemite-in-one-or-two-days) is intentionally omitted here; data.js takes precedence for faq.",
+  "highway-140-closed-yosemite": {
+    "wordCount": 2968,
+    "keywords": [
+      "Highway 140 closed",
+      "Highway 140 Yosemite closure",
+      "is Highway 140 open to Yosemite",
+      "how to get to Yosemite when Highway 140 is closed",
+      "Mariposa to Yosemite detour",
+      "Yosemite road closures today",
+      "El Portal road closed",
+      "Ferguson slide Highway 140",
+      "YARTS Highway 140 closure",
+      "Highway 140 fire Yosemite"
+    ],
+    "faq": [
+      {
+        "q": "Highway 140 is closed. How do I get into Yosemite?",
+        "a": "By one of the other western entrances. Caltrans's standing instruction is to use Highway 41 or Highway 120 into the park. From Mariposa the usual detour is Highway 49 south to Oakhurst and Highway 41 to the South Entrance, roughly two to two and a half hours to Yosemite Valley in clear conditions against the hour and a quarter the Park Service quotes for Highway 140. The second option is Highway 49 north to Coulterville and across to Highway 120, which arrives at the Big Oak Flat Entrance on the north end of the park, another forty-five minutes of park road from the Valley."
+      },
+      {
+        "q": "Can I still reach my hotel in El Portal if Highway 140 is closed?",
+        "a": "Usually, and from the park side. In the March 2025, July 2018 and September 2026 closures the eastern barricade sat at or west of Cedar Lodge, so El Portal's lodges stayed reachable by driving into the park on Highway 41 or 120, crossing it, and coming down the El Portal Road from the east. Read the two place names in the closure notice: lodging east of the eastern barricade is on the park side, and the trip is nearly intact."
+      },
+      {
+        "q": "Should I cancel a Mariposa hotel booking because Highway 140 is closed?",
+        "a": "Not for a one-night stay on the way in, and not for a closure measured in hours or a day. The decision is a multi-day Mariposa base for a Valley-focused trip, where the detour adds two hours and more of driving every day. Whether to move depends on the booking's cancellation terms, how long Caltrans says the closure will hold, and what is actually available in Oakhurst or Groveland on your dates, which in high season is often nothing."
+      },
+      {
+        "q": "Does the YARTS bus still run when Highway 140 is closed?",
+        "a": "Only as far as the last open stop. The Highway 140 route from Merced through Mariposa and El Portal to Yosemite Valley is the one YARTS route that runs in winter, but the bus uses the same pavement as the cars: in March 2025 YARTS said riders could get only as far as the Bug hostel at Midpines. In summer the Highway 41 route from Fresno (May 22 to September 25 in 2026) is the way out of the Valley when 140 is shut; in winter there is no second bus. YARTS answers at 877-989-2787."
+      },
+      {
+        "q": "Where do I check whether Highway 140 is open?",
+        "a": "Two agencies cover two different sets of miles. Highway 140 outside the park is Caltrans's road: QuickMap at quickmap.dot.ca.gov, the highway lookup at roads.dot.ca.gov, or the highway information line at 1-800-427-7623. From Arch Rock to the Valley the road is the El Portal Road and belongs to the park: the current-conditions page at nps.gov/yose, or 209-372-0200, press 1 then 1. A closure at Briceburg will not appear on the park's table, which will truthfully say the El Portal Road is open."
+      },
+      {
+        "q": "How often does Highway 140 close?",
+        "a": "The article's ledger counts ten closures in twenty years, from the 2006 Ferguson slide through the Motor Fire of 2011, the Dog Rock Fire of 2014, the rockfalls of January 2017, the Ferguson Fire of 2018, the Briceburg Fire of 2019, the Oak Fire of 2022, the March 2025 debris slide, and the Colorado Fire of September 2026, and that undercounts the shorter shuts for rock work. Plan on the road being closed at some point in any given year."
+      },
+      {
+        "q": "What is the Ferguson Rock Shed and when will Highway 140 be fixed?",
+        "a": "The permanent fix for the 2006 Ferguson slide. Caltrans is building a rock shed of eleven pre-cast concrete segments, about 675 feet long and 40 feet wide inside, on the highway's original alignment, removing the temporary one-lane bridges traffic has used for twenty years. Construction of the shed is a 285-million-dollar job scheduled to begin in summer 2026 and take five years, so the signal-controlled one-lane section stays until then and the work will add planned closures of its own."
+      }
+    ]
+  },
   "yosemite-from-los-angeles": {
     "wordCount": 2939,
     "keywords": [

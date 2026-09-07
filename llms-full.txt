@@ -8,11 +8,147 @@
 Publisher: The Talus Field (https://thetalusfieldjournal.com). Editor: Cory Goehring.
 Citation guidance and the annotated page index: https://thetalusfieldjournal.com/llms.txt
 Canonical article URL pattern: https://thetalusfieldjournal.com/articles/<slug>
-Contents: 67 articles. Most recent update: 2026-09-03.
+Contents: 68 articles. Most recent update: 2026-09-07.
 
 Not in this file: the Yosemite Nature Notes archive, all 512 issues of the
 National Park Service's Yosemite bulletin (1922-2003), transcribed in full
 as plain static HTML at https://thetalusfieldjournal.com/archive/.
+
+---
+
+## When Highway 140 Closes: Getting Into Yosemite Anyway, and What It Does to a Mariposa Booking
+
+URL: https://thetalusfieldjournal.com/articles/highway-140-closed-yosemite
+Section: Planning. Published: 2026-09-07. Last updated: 2026-09-07.
+Summary: Highway 140 to Yosemite closed? The detours from Mariposa by 41 and 120, what it means for a Mariposa or El Portal booking, the YARTS bus, and how to check.
+
+The message arrives the day before the trip, or the morning of it, and it is always the same road. Highway 140 is closed. A rockslide in the Merced River canyon, a fire that started on the shoulder, a storm that brought the wall down onto the pavement at the park boundary. The room in Mariposa is paid for. The bus ticket from Merced is booked. The routing app has quietly rewritten the drive from an hour and a quarter to something over two, by way of towns you have never heard of, and the park itself is open, which somehow makes it worse. This is the article for that morning. It is also the article for the week before, because the road that closes most often in Yosemite is the one most people are told to take, and knowing what a closure does to a trip is the difference between a rerouted day and a wrecked one.
+
+What follows is the geography of why it is always this road, the closure ledger of the last twenty years, the one question that decides everything (which side of the barricade is your bed on), the two detours from Mariposa and what they cost, what to do about the booking, the bus, how to check in the right order, and the construction project that will make delays in the canyon a fact of life through the end of the decade.
+
+### Why it is always this road
+
+Highway 140 is the road from Merced and Mariposa, and it reaches the park by following the Merced River up its canyon to the Arch Rock Entrance. It is the lowest of the five approaches, which is why the entrance guide calls it the all-weather route and why Mariposa County's own visitor office calls it the easiest road to drive into Yosemite in winter: it sees the least snow and the least chain control, and it delivers you onto the Valley floor faster than any other gate. The Park Service quotes 44 miles and an hour and a quarter from Mariposa to Yosemite Valley, and 81 miles and two hours from Merced.
+
+The same geography is the problem. For its last stretch the road runs along the floor of a steep river canyon, with the Merced on one side and rock on the other, and a canyon like that closes for reasons no other approach shares. Rock comes down onto it: the Ferguson slide of 2006 buried the original roadbed near El Portal and has never been cleared, and a debris slide in March 2025 shut the road for nine days. Fires start on it: a motorhome that caught fire on the shoulder in August 2011, sparks from a vehicle's metal fragments in October 2014, and, in September 2026, a fire that Cal Fire's incident page places at Highway 140 and Colorado Road and lists as under investigation, which closed the road from Briceburg to the Bug hostel for three days before one lane reopened under traffic control. And when the big fires come through Mariposa County, they come through the 140 corridor: the Ferguson Fire of 2018, the Briceburg Fire of 2019, the Oak Fire of 2022, which started at Highway 140 and Carstens Road near Midpines, burned 19,244 acres, and closed the highway in two segments between Triangle Road and Briceburg.
+
+None of that makes 140 a bad road. It is still the right one for most Valley trips and for nearly every winter trip. It makes it a road whose closure you should have a plan for, in the way that a Tioga Road trip needs a plan for Tioga being shut. The difference is that Tioga closes on a schedule, and 140 closes on a Tuesday afternoon.
+
+Photo: Cory Goehring
+
+### The closure ledger
+
+A short list, because the pattern is the point. Each of these is in a Park Service, Caltrans, or Cal Fire record.
+
+- 2006. The Ferguson slide, a series of major rockslides, takes out the highway near El Portal. Traffic has run on a temporary bypass, over one-lane bridges, ever since.
+- August 2011. The Motor Fire: a motorhome catches fire on 140 about ten miles west of Arch Rock, and the road closes to incoming traffic about ten miles east of Mariposa.
+- October 2014. The Dog Rock Fire, started by sparks from hot metal fragments off a vehicle, closes the El Portal Road entrance from October 7 to the morning of October 12.
+- January 2017. Rockfalls after heavy rain and snow close 140 at the park entrance and 120 at Big Oak Flat on the same morning. Highway 41 is the only way into the Valley; the park runs ranger-led convoys through the closed roads that afternoon.
+- February 2017. The reverse case. Storm damage shuts Big Oak Flat Road between Crane Flat and Foresta and blocks Highway 41 at Fish Camp, and 140 is the only vehicle access to Yosemite Valley and Wawona.
+- July 2018. The Ferguson Fire closes 140 from the Bug hostel to just west of Cedar Lodge in El Portal.
+- October 2019. The Briceburg Fire, 5,563 acres, starts at 140 and Briceburg Bridge Road and closes the highway for about a week.
+- July 2022. The Oak Fire, 19,244 acres, closes 140 between Triangle Road and Briceburg and two stretches of Highway 49 south of Mariposa.
+- March 2025. A debris slide across both lanes at about ten at night on March 17 closes the road from Savage Trading Post at Briceburg to Cedar Lodge in El Portal. One-way traffic control resumes March 26.
+- September 2026. The Colorado Fire closes 140 from Briceburg to the Bug hostel on September 1. One lane reopens under traffic control on September 4 and both lanes on September 5.
+
+Ten closures in twenty years is the long-run rate, and it undercounts, because it leaves out the shorter shuts for rock work and the planned construction closures that are about to start. Plan on the road being closed at some point in any given year. Plan on it closing during your trip about as seriously as you plan on rain.
+
+### The only question that matters: which side of the barricade is your bed on
+
+Every closure has limits, and the limits decide the trip. Highway 140 from Mariposa runs up through Midpines, past the Bug hostel, drops to the river at Briceburg, follows the canyon east through Cedar Lodge and El Portal, and enters the park at Arch Rock. A closure is named by its two barricades, and the first thing to do with any closure notice is find those two names on a map.
+
+Look at the recent ones. The March 2025 closure ran from Briceburg to Cedar Lodge. The 2018 closure ran from the Bug to just west of Cedar Lodge. The September 2026 closure ran from Briceburg to the Bug. In all three, El Portal sat on the park side of the barricade. A room at Cedar Lodge or Yosemite View Lodge was still reachable, and reachable from the Valley: the guest drives in through the South Entrance or Big Oak Flat, crosses the park, and comes down the El Portal Road from the east to a lodge that has lost its western approach and nothing else. The Mariposa side of the same closure is the opposite case. A room in Mariposa is fully reachable from Merced and cut off from the park, and every day of the trip becomes a detour.
+
+Then there is the 2014 shape, when the fire was at the boundary and it was the El Portal Road entrance itself that shut. That closure put El Portal on the wrong side and Mariposa on the same side, and it made no difference to either: neither could reach the Valley on 140, and both drove around.
+
+So before the routing app, before the phone calls, read the two place names in the closure. If your lodging is east of the eastern barricade, the trip is nearly intact and the only change is which entrance you use on the drive in. If it is west of the western one, you are in the detour business for as long as the closure lasts, and the rest of this article is for you.
+
+### The two detours from Mariposa
+
+Caltrans's standing instruction when 140 is shut is the one it gave in March 2025: seek alternate routes along Highway 41 and Highway 120 into the park, and watch the changeable message signs on 41, 49, 99 and 120 for the current status. From Mariposa that means one of two drives.
+
+South, by Highway 49 to Oakhurst and Highway 41. This is the detour nearly everyone takes. Highway 49 leaves Mariposa southbound as a winding two-lane foothill road with few places to pass and reaches Oakhurst in something like forty minutes; from Oakhurst it is twenty to twenty-five minutes up 41 to the South Entrance, and from the South Entrance another hour of mountain road to the Valley floor. Call it two to two and a half hours from Mariposa to the Valley in clear conditions, against the hour and a quarter the Park Service quotes for 140. It has consolations. You pass the Mariposa Grove welcome plaza immediately inside the gate, Oakhurst is the last full-size supermarket on any approach, and the road enters the Valley through the Wawona Tunnel at Tunnel View, which the 140 approach never sees.
+
+North, by Highway 49 to Coulterville and across to Highway 120. The alternate-route notices in recent closures have pointed Highway 49 travelers this way as a second option, and on the map it looks shorter for anyone bound for Hetch Hetchy or the Tioga Road. Treat it with respect. It is a long way of mountain road with little on it, and it delivers you to the Big Oak Flat Entrance, which is the north end of the park: fine for Crane Flat and the high country, and another forty-five minutes of park road from the Valley. In September 2026 it also delivers you into the Big Oak Flat Road fire-safety work between Foresta and Crane Flat, which the park lists at fifteen-minute weekday delays with no end date. If the Valley is the destination, the southern detour is usually the faster one even when it is not the shorter one.
+
+For anyone driving from the Bay Area or the Central Valley, the answer is simpler and worse. The park's own figures for the 140 approach are four hours from San Francisco, two and three-quarters from Manteca, and two and a half from Modesto, all to the Valley floor. With 140 shut, the routing app will send you up Highway 120 through Groveland or down 99 to Fresno and up 41, and both add real time to a drive that already did not fit in a day. Add the entrance queue at whichever gate now carries the 140 traffic as well as its own.
+
+### What a closure does to the booking
+
+Three cases, and only one of them needs a decision.
+
+A room in El Portal, on the park side of the barricade. Keep it. You lose the direct drive from Merced once, on the way in, and get it back the moment the road reopens. Confirm with the lodge that guests are being routed in through the park, drive in by 41 or 120, and use the Valley as normal. This is the trip that a closure barely touches, and it is one more argument for El Portal that the gateway-town comparison already made on other grounds.
+
+A room in Mariposa, for one night on the way in. Keep it, and change the morning. The detour costs an hour or so each way, and one extra hour on one drive is not worth a cancellation fee. Leave earlier than you had planned, because the southern gate will be taking the 140 traffic and the Valley's parking does not know the road is closed.
+
+A room in Mariposa as the base for several days in the Valley. This is the decision. Two hours and more each way, every day, turns a Valley base into a long commute, and the honest arithmetic is that a three-night Mariposa stay behind a closure costs you the better part of a day in the car that a room in Oakhurst or Groveland would give back. Whether a move is possible depends on three things this article cannot know: what your Mariposa booking's cancellation terms are, how long Caltrans is saying the closure will hold, and what is available on your dates on the other side. The first is on your confirmation. The second is on Caltrans's QuickMap and in its advisories, and the March 2025 slide is the pattern to plan around: the initial notice gave no reopening timeframe at all, and the road came back under one-way control nine days later. The third is the part worth checking before you decide anything, because in high season the answer is often that there is nothing to move to.
+
+If you do move, move toward the gate you will use. Oakhurst for a Valley trip, because the 41 approach is the one that arrives at Tunnel View and the Grove; Groveland only if the high country was the point. Fish Camp, at the park line on 41, is the closest bed to the South Entrance. The in-park options are the ones a closure cannot touch at all, and they are booked months out; the in-park guide has the calendar.
+
+#### Checking the other side of the closure
+
+Oakhurst is the base for the southern detour, and whether a move makes sense depends entirely on what is open on your dates. Search it before you cancel anything. Groveland is the equivalent for the northern gate.
+
+Search Oakhurst lodging →
+Where to stay: every option compared
+
+Availability links are affiliate links. The recommendations do not change for them. Disclosure.
+
+And do not cancel a Mariposa room for a one-day closure. Rock work, a short fire, a downed line: plenty of 140 closures are measured in hours or a day, and the town is a fine place to wait one of those out. It is the multi-day closures, the slides and the big fires, that change the shape of a trip, and Caltrans's advisories say which kind this is as soon as its engineers have looked at the road.
+
+### Winter is the serious case
+
+Every closure above was a nuisance in summer and would have been something else in January. Highway 140 is the winter road because it is the low road: when it is shut in winter, the detours are the two approaches that climb higher and ice sooner, and the winter guide is blunt about what that means. From roughly November through March, chain control can go up on any road into the park, the law requires you to carry chains when it does, even in a four-wheel drive with snow tires, and rangers turn cars around at the checkpoints. A winter 140 closure therefore has a second question behind the first: not only can you get around, but is the car you are driving allowed up the road you are being sent to. Carry chains on any winter trip whatever the forecast says, so that a closure notice sends you to Oakhurst and not home.
+
+January 2017 is the case to remember. Rockfalls and snow closed 140 and 120 on the same morning and left Highway 41 as the only vehicle route into the Valley, with ranger convoys through the closed roads at set hours. A month later the storm damage had flipped it, and 140 was the only road in. Winter closures come in sets, and the road that is open at breakfast may not be the one that is open at dinner.
+
+### The bus does not outrun the barricade
+
+YARTS runs the Highway 140 route from Merced through Catheys Valley, Mariposa, Midpines and El Portal to Yosemite Valley in every season, and it is the only one of its four routes that runs in winter. It is the answer to the entrance line, the parking, and the chains; the transit guide makes the case in full. It is not an answer to a closed road. The bus drives the same pavement the cars do, and when Caltrans closes the canyon the 140 route runs as far as the last open stop and turns around: in March 2025 YARTS said its riders could get only as far as the Bug hostel at Midpines, and during the Colorado Fire YARTS posted a service change on the route and reported full service restored on the afternoon of September 4. A rider in the Valley with a ticket down to Merced on a closure day has the same two choices as a driver: wait for the road, or go out the other way.
+
+The other way exists, in season. The Highway 41 route from Fresno runs May 22 to September 25 in 2026, and the Highway 120 route from Sonora runs May 22 to September 30, so a summer rider stranded in the Valley can reach Fresno's airport and Amtrak station on the 41 bus and connect from there. In winter there is no second bus, which is one more reason the winter case is the serious one. Fares on the 140 route are 22 dollars from Merced, 12 from Mariposa, and 8 from El Portal, one way, with the park entrance fee not included, and YARTS answers its phone at 877-989-2787. Call before you walk to the stop.
+
+### How to check, in the right order
+
+The confusion on a closure morning is that two agencies cover two different sets of miles and neither one's page tells you about the other's. Highway 140 outside the park boundary is Caltrans's road. From Arch Rock to the Valley it is the El Portal Road, and it belongs to the Park Service. A closure at Briceburg will not appear on the park's road-status table, which will say, truthfully, that the El Portal Road is open. Check both, in this order.
+
+- Caltrans, for the road outside the park. QuickMap, at quickmap.dot.ca.gov, is the live map of every state highway with closures, chain controls and incidents drawn on it, and roads.dot.ca.gov gives the same information as a text list by highway number, which is faster on a poor connection: enter 140. Mariposa County's visitor office also lists the Caltrans highway information line, 1-800-427-7623. The initial closure advisory will name the two barricades, which is the fact you need from it.
+- The park, for the road inside it. The current-conditions page at nps.gov/yose lists every park road's status and the current roadwork, and the recorded line at 209-372-0200, press 1 then 1, carries the same. This is also where the entrance you are being detoured to will show its own restrictions, like the Big Oak Flat Road delays.
+- Cal Fire, if it is a fire. The incident page at fire.ca.gov is where the acreage, the containment, the evacuation zones and the road closures are posted and dated, and it is the record every news story is quoting. It is updated in rounds, so a closure lifted at four in the afternoon may not be on it until the next update.
+- YARTS, if you are riding. The phone number above, and the service notices on its site.
+- The lodge. They know which side of the barricade they are on and how their guests got in today.
+
+The conditions page here keeps the webcams and the entrance-wait links on one screen, and the Park Bulletin carries the standing roadwork and alerts from the current park newspaper, which is the right place for the delays that last for weeks and the wrong place for the closure that happened at lunch. For that, go to Caltrans first.
+
+### The rock shed, and the next five years
+
+The 2006 Ferguson slide is the reason the canyon has a signal-controlled one-lane section at all, and the permanent fix is finally under way. Caltrans's Ferguson Rock Shed Project builds a protective structure of eleven pre-cast concrete segments, about 675 feet long and 40 feet wide inside, on the highway's original alignment, and removes the temporary one-lane bridges that traffic has used for twenty years. The first phase removed 320,000 tons of slide material. The construction of the shed itself is a 285-million-dollar job that Caltrans schedules to begin in summer 2026 and to take five years, which puts completion at the start of the next decade.
+
+For a visitor that means two things. The one-lane signal near El Portal stays until the shed is finished, so the 140 approach carries a few minutes of waiting at the signal on every trip. And a construction site inside an active slide zone will generate planned closures and one-way controls of its own, on top of the unplanned ones this article has been about. Caltrans announces those in advance with the hours stated, and they show on QuickMap like anything else. The road that closes without a schedule is about to also close on one. Look at the map the week before, and again the morning of, and go in by whichever gate is open with the car already carrying chains, a full tank from Mariposa or Oakhurst, and a plan for the day that does not depend on the hour you arrive.
+
+The fires that close the 140 corridor are also the fires that fill the park with smoke, so a road closure and a bad air day are often the same week; the smoke-season guide covers the second half of that problem. If you would rather sit out a closure in the northern gateway instead, Groveland lodging is the Highway 120 equivalent of the Oakhurst search above.
+
+Some links in this piece are affiliate links. If you buy or book through one, The Talus Field may earn a small commission at no extra cost to you. The recommendations do not change for it. Full disclosure.
+
+#### Sources
+
+- Current Conditions, NPS Yosemite
+- Driving Directions, NPS Yosemite
+- Colorado Fire, Cal Fire incident page
+- Oak Fire, Cal Fire incident page
+- Briceburg Fire, Cal Fire incident page
+- Ferguson Rock Shed Project, Caltrans District 10
+- SR 140 Ferguson Slide Permanent Restoration Project, CEQAnet
+- Caltrans Secures Funding for Ferguson Rock Shed Project, Mariposa County
+- Travel: QuickMap and highway conditions, Caltrans
+- Motor Fire, NPS Yosemite news release, August 2011
+- Highway 140 in Yosemite National Park Reopens, NPS, October 2014
+- El Portal Road and Big Oak Flat Road Closed Due to Rockfall, NPS, January 2017
+- Vehicular Access to Yosemite Valley Remains Available Only via Highway 140, NPS, February 2017
+- Highway 140 Closed from Midpines to Yosemite National Park, NPS, July 2018
+- Highway 140 route, YARTS
+- Routes and schedules, YARTS
+- Yosemite Road Conditions, Visit Mariposa County
 
 ---
 

@@ -110,6 +110,7 @@ window.planningSeriesFor = function (slug) {
 // verifies this map stays in sync with the files in bodies/.
 // ============================================================
 window.BODY_VERSIONS = {
+  "highway-140-closed-yosemite": 1,
   "yosemite-from-los-angeles": 1,
   "yosemite-facelift-volunteer-guide": 1,
   "bracebridge-dinner-and-vintners-holidays": 1,
@@ -738,6 +739,20 @@ window.KIT.lists.forEach((l) => {
 });
 
 window.ARTICLES = [
+  {
+    slug: "highway-140-closed-yosemite",
+    cat: "planning",
+    title: "When Highway 140 Closes: Getting Into Yosemite Anyway, and What It Does to a Mariposa Booking",
+    dek: "The all-weather road into Yosemite is the one that closes without a schedule: ten times in twenty years, for rock, for fire, for a motorhome on the shoulder. What a closure notice actually says, why the two barricade names decide whether your trip is intact, the two detours from Mariposa and what each costs, when to keep the room and when to move it, what happens to the bus, how to check Caltrans and the park in the right order, and the rock shed that will add planned closures to the canyon for the rest of the decade.",
+    seoDek: "Highway 140 to Yosemite closed? The detours from Mariposa by 41 and 120, what it means for a Mariposa or El Portal booking, the YARTS bus, and how to check.",
+    date: "September 7, 2026",
+    isoDate: "2026-09-07",
+    isoModified: "2026-09-07",
+    read: "11 min",
+    placeholder: "Visitors at a Yosemite entrance station kiosk in an NPS archive photograph",
+    image: "img/arch-rock-entrance-yosemite.jpg",
+    credit: "Photo: Cecil W. Stoughton / Wikimedia Commons (public domain)",
+  },
   {
     slug: "yosemite-from-los-angeles",
     cat: "planning",
@@ -1744,12 +1759,13 @@ window.START_HERE = [
 // Curate a piece when it earns real search impressions, when it anchors a
 // cluster, or when it is the destination that needs the equity.
 window.RELATED = {
+  "highway-140-closed-yosemite": ["getting-to-yosemite", "yosemite-gateway-towns-compared", "yosemite-shuttle-and-yarts", "yosemite-in-winter", "yosemite-during-smoke-season", "yosemite-day-trip-from-bay-area"],
   // Volunteering and stewardship
   "yosemite-facelift-volunteer-guide": ["yosemite-in-september-2026", "yosemite-camping-complete-guide", "yosemite-ranger-programs", "yosemite-fire-restrictions-explained", "yosemite-shuttle-and-yarts"],
 
   // Lodging and gateway towns
   "bracebridge-dinner-and-vintners-holidays": ["where-to-stay-in-yosemite", "yosemite-in-winter", "yosemite-trip-cost-budget-2026", "yosemite-gateway-towns-compared", "where-to-eat-yosemite"],
-  "yosemite-gateway-towns-compared": ["where-to-stay-in-yosemite", "yosemite-from-los-angeles", "where-to-eat-yosemite", "yosemite-trip-cost-budget-2026", "getting-to-yosemite", "yosemite-camping-complete-guide"],
+  "yosemite-gateway-towns-compared": ["where-to-stay-in-yosemite", "yosemite-from-los-angeles", "where-to-eat-yosemite", "highway-140-closed-yosemite", "yosemite-trip-cost-budget-2026", "getting-to-yosemite"],
   "where-to-stay-in-yosemite": ["yosemite-gateway-towns-compared", "yosemite-camping-complete-guide", "yosemite-trip-cost-budget-2026", "bracebridge-dinner-and-vintners-holidays", "where-to-eat-yosemite"],
   "yosemite-camping-complete-guide": ["camping-in-yosemite-first-time", "where-to-stay-in-yosemite", "first-yosemite-backpacking-trip", "yosemite-trip-cost-budget-2026", "yosemite-facelift-volunteer-guide"],
   "camping-in-yosemite-first-time": ["yosemite-camping-complete-guide", "yosemite-bears-safety-guide", "is-bear-spray-allowed-in-yosemite", "where-to-stay-in-yosemite", "pets-in-yosemite"],
@@ -1763,8 +1779,8 @@ window.RELATED = {
   // are the entrances guide's natural onward reads: a reader who has just
   // picked a gate wants the drive to it.
   "yosemite-from-los-angeles": ["getting-to-yosemite", "yosemite-gateway-towns-compared", "yosemite-day-trip-from-bay-area", "mariposa-grove-how-to-visit", "yosemite-shuttle-and-yarts", "yosemite-in-winter"],
-  "getting-to-yosemite": ["yosemite-shuttle-and-yarts", "yosemite-valley-parking-guide", "yosemite-gateway-towns-compared", "yosemite-day-trip-from-bay-area", "yosemite-from-los-angeles", "pack-your-car-for-yosemite"],
-  "yosemite-shuttle-and-yarts": ["getting-to-yosemite", "yosemite-valley-parking-guide", "yosemite-for-non-hikers", "yosemite-accessibility-guide", "yosemite-day-trip-from-bay-area"],
+  "getting-to-yosemite": ["yosemite-shuttle-and-yarts", "yosemite-valley-parking-guide", "yosemite-gateway-towns-compared", "highway-140-closed-yosemite", "yosemite-day-trip-from-bay-area", "yosemite-from-los-angeles"],
+  "yosemite-shuttle-and-yarts": ["getting-to-yosemite", "yosemite-valley-parking-guide", "highway-140-closed-yosemite", "yosemite-for-non-hikers", "yosemite-accessibility-guide", "yosemite-day-trip-from-bay-area"],
   "yosemite-valley-parking-guide": ["getting-to-yosemite", "yosemite-shuttle-and-yarts", "yosemite-without-reservations-2026", "yosemite-in-one-or-two-days", "mist-trail-the-real-guide"],
   "yosemite-day-trip-from-bay-area": ["yosemite-in-one-or-two-days", "getting-to-yosemite", "yosemite-from-los-angeles", "yosemite-valley-parking-guide", "yosemite-for-non-hikers", "when-to-visit-yosemite-2026-crowd-forecast"],
   "pack-your-car-for-yosemite": ["yosemite-bears-safety-guide", "camping-in-yosemite-first-time", "getting-to-yosemite", "yosemite-valley-parking-guide", "first-time-yosemite-overwhelm"],
