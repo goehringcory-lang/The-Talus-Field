@@ -378,7 +378,13 @@ function GuideBuyBox() {
           <li>· A planning calendar that lays out each day, drive times included, and saves the trip to your calendar as a file, no signal needed</li>
           <li>· Know-before-you-go essentials, a night-before checklist, and a packing list you check off in-app</li>
           <li>· Search across everything</li>
-          <li>· The Secret Guide: unsigned turnouts, hidden stops, and secret spots, included</li>
+          <li>· The Secret Guide: 50 entries of quiet vistas, hidden trails, parking moves, camping and the park after dark, included</li>
+          <li>· Campsite openings: pick a campground and your nights, and recreation.gov is checked every five minutes, alerts by push or email</li>
+          <li>· The dates that matter for your trip, under the trip board, with calendar files and reminders</li>
+          <li>· The Help card: 911 by call or text, your GPS position in the form a dispatcher reads, the park's printed numbers</li>
+          <li>· Companion mode: the nearest entry as you drive, read aloud for the passenger</li>
+          <li>· A bearing compass that points at any stop, and a daylight reading on every hike</li>
+          <li>· Quick ID for wildlife with a photo on every entry, and a life list</li>
         </ul>
       </div>
 
@@ -503,7 +509,13 @@ function GuideWaitlistBox() {
           <li>· A planning calendar that lays out each day, drive times included, and saves the trip to your calendar as a file, no signal needed</li>
           <li>· Know-before-you-go essentials, a night-before checklist, and a packing list you check off in-app</li>
           <li>· Search across everything</li>
-          <li>· The Secret Guide: unsigned turnouts, hidden stops, and secret spots, included</li>
+          <li>· The Secret Guide: 50 entries of quiet vistas, hidden trails, parking moves, camping and the park after dark, included</li>
+          <li>· Campsite openings: pick a campground and your nights, and recreation.gov is checked every five minutes, alerts by push or email</li>
+          <li>· The dates that matter for your trip, under the trip board, with calendar files and reminders</li>
+          <li>· The Help card: 911 by call or text, your GPS position in the form a dispatcher reads, the park's printed numbers</li>
+          <li>· Companion mode: the nearest entry as you drive, read aloud for the passenger</li>
+          <li>· A bearing compass that points at any stop, and a daylight reading on every hike</li>
+          <li>· Quick ID for wildlife with a photo on every entry, and a life list</li>
         </ul>
       </div>
 
@@ -526,7 +538,8 @@ function GuideWaitlistBox() {
 // Filenames are new rather than overwritten on purpose: /img/* ships with a
 // month-long immutable cache in _headers, so a replaced screenshot under an
 // old name would keep serving the old picture to returning readers. Hence the
-// .v2 suffix; the next refresh takes .v3 rather than reusing these.
+// .v2 suffix; the September 2026 captures (the Secret Guide folio here and
+// the whole NEW_SHOTS strip below) took .v3, and the next refresh takes .v4.
 const APP_SHOTS = [
   {
     src: "img/guide/screens/front-page.v2.webp",
@@ -574,16 +587,63 @@ const APP_SHOTS = [
     caption: "In the park, the plan collapses to one screen: light, gate waits, roads and river up top, what's next, then the day in order.",
   },
   {
-    src: "img/guide/screens/secret-guide.v2.webp",
-    alt: "The Secret Guide in the app: 37 entries filed under quiet vistas and hidden trails, opening on a card with its photo, coordinate and time budget",
-    caption: "The Secret Guide. 37 entries of quiet vistas, hidden trails, parking moves, and the park after dark.",
+    src: "img/guide/screens/secret-guide.v3.webp",
+    alt: "The Secret Guide's opening folio in the app: a dark plate headed 'Included with purchase, 50 entries', the section's promise in a paragraph, then a numbered contents of five categories: Quiet Vistas 9, Hidden Trails 23, Parking 5, Camping 7, After Dark 6",
+    caption: "The Secret Guide opens on its folio: 50 entries in five numbered sections, every entry numbered across the whole set and pinned in gold on the offline map.",
   },
 ];
 
-function AppShots() {
+// The September 2026 additions, captured the same way from the same build.
+// Kept as their own strip so a returning reader can see what changed without
+// re-reading the ten above; a feature that graduates into the main strip
+// leaves this one, so nothing is shown twice.
+const NEW_SHOTS = [
+  {
+    src: "img/guide/screens/instruments.v3.webp",
+    alt: "The instrument tiles on the app's front page: topo map, day hikes, programs, night sky, bearing compass, Help, and a wide 'You are near' tile",
+    caption: "The front page's instrument row is seven now: the map, the hikes, the programs, the night sky, the bearing compass, the Help card, and companion mode.",
+  },
+  {
+    src: "img/guide/screens/help.v3.webp",
+    alt: "The Help card: Call 911 and Text 911 buttons, then a 'Your position' panel reading the live GPS fix in decimal degrees and in degrees and decimal minutes, with accuracy and elevation below",
+    caption: "The Help card. 911 by call or text, then your position in both forms a dispatcher and a rescue team use, ready to be read straight off the screen. Everything but the call itself works with no signal.",
+  },
+  {
+    src: "img/guide/screens/near.v3.webp",
+    alt: "Companion mode: a panel reading GPS active, 250 feet, and 'Nearest: Tunnel View, the moment the valley opens', above the entry's opening paragraph",
+    caption: "Companion mode. The nearest entry comes up as the car moves, with the paragraph on why it is worth stopping, and reads itself aloud for the passenger on request.",
+  },
+  {
+    src: "img/guide/screens/compass.v3.webp",
+    alt: "The bearing compass: a rose with its needle pointing at Lower Yosemite Fall at about 30 degrees, north up, the sun marked on the dial to the west",
+    caption: "The bearing compass points at any stop: straight-line distance, true bearing, and the sun on the same dial, all computed on the phone. Airplane mode is fine.",
+  },
+  {
+    src: "img/guide/screens/daylight.v3.webp",
+    alt: "The Daylight panel on the Upper Yosemite Fall hike page: sunset 7:20 p.m., start by 11:20 a.m., finishes with an hour of light in hand, above the trail's elevation profile",
+    caption: "Every hike carries a daylight reading: today's sunset against the time budget, and the latest start that gets you down with an hour of light in hand.",
+  },
+  {
+    src: "img/guide/screens/watch.v3.webp",
+    alt: "The Openings tab of the Plan screen, 'Watch for a site': a campground picker set to Upper Pines, the release-day note beneath it, and the arriving and leaving dates",
+    caption: "Campsite openings. Pick a campground and your nights, and the guide checks recreation.gov every five minutes, then reaches you by push or email the moment a site appears.",
+  },
+  {
+    src: "img/guide/screens/deadlines.v3.webp",
+    alt: "The 'Dates that matter' panel under the trip board, listing the Firefall window, the Half Dome preseason lottery and the wilderness permit lottery week for an October trip, each with Add to calendar and an NPS source link",
+    caption: "Dates that matter, resolved to your trip: the lotteries, release mornings and road windows that apply to your dates, each with a calendar file and its NPS source.",
+  },
+  {
+    src: "img/guide/screens/wildlife.v3.webp",
+    alt: "The Quick ID page, 'What did I see?', with category chips and a black bear plate above the entry's field marks and a 'Seen it' check",
+    caption: "Quick ID opens every one of its 32 entries on a photograph now, and the 'Seen it' check keeps your trip's life list.",
+  },
+];
+
+function AppShots({ shots = APP_SHOTS }) {
   return (
     <div className="app-shots" role="list">
-      {APP_SHOTS.map((shot) => (
+      {shots.map((shot) => (
         <figure className="app-shot" role="listitem" key={shot.src}>
           <div className="app-shot__frame">
             <img src={shot.src} alt={shot.alt} width="640" height="1385" loading="lazy" decoding="async" />
@@ -715,8 +775,9 @@ function GuideWalkthrough() {
 
 // The outcome blocks: what the guide changes about the day, each claim backed
 // by a number that is true in the shipped content. Counts come from
-// apps/guide/src/content (stops.ts, hikes.ts, itineraries.ts); re-verify
-// there before editing a proof line.
+// apps/guide/src/content (stops.ts, hikes.ts, itineraries.ts, deadlines.ts)
+// and apps/guide/src/watch/targets.ts; re-verify there before editing a
+// proof line.
 const OUTCOMES = [
   {
     kicker: "Find the correct parking turnout",
@@ -727,8 +788,8 @@ const OUTCOMES = [
   {
     kicker: "Know how long each stop actually takes",
     body:
-      "Each stop states its time budget, drive included, so you know what fits before lunch while it still matters. Hikes carry distance, climbing, and an effort score computed from terrain data, not the trailhead sign's optimism.",
-    proof: "Time budgets on 65 of 66 stops · 57 hikes with GPS tracks and elevation profiles",
+      "Each stop states its time budget, drive included, so you know what fits before lunch while it still matters. Hikes carry distance, climbing, an effort score computed from terrain data, not the trailhead sign's optimism, and a daylight reading: today's sunset against the time budget, and the latest start that gets you down with an hour of light in hand.",
+    proof: "Time budgets on 65 of 66 stops · 57 hikes with GPS tracks, elevation profiles and a daylight check",
   },
   {
     kicker: "Replace a hike when weather, crowds, or children change the plan",
@@ -747,6 +808,18 @@ const OUTCOMES = [
     body:
       "The planner draws each day as a real timeline: blocks sized by their time budgets, drives between stops computed from the actual distances and dropped in as buffers. Drag a block and the day re-flows. One tap saves the finished plan to your calendar, no signal needed.",
     proof: "Drive buffers figured from real distances, 10 to 75 minutes",
+  },
+  {
+    kicker: "Know where you are when it matters",
+    body:
+      "The Help card reads your GPS position back in the two forms a dispatcher and a rescue team use, names the nearest place with its distance and bearing, and lists the park's printed numbers as one-tap rows, with 911 by call or text at the top. Companion mode names the entry you are passing and reads it aloud for the passenger. The bearing compass points at any stop from the phone's sensors alone. None of it needs a data connection.",
+    proof: "Position in decimal degrees and degrees-minutes · the nearest named place with distance and bearing",
+  },
+  {
+    kicker: "Catch a campsite when one opens",
+    body:
+      "Pick a reservable campground and your nights, and the guide's server checks recreation.gov every five minutes, then reaches you by push notification or email at whatever hour a site appears, booking link one tap away. Under the trip board, the lotteries, release mornings and road windows that apply to your dates sit with calendar files and reminders.",
+    proof: "13 campgrounds watched · 14 dated deadlines, resolved to your trip",
   },
 ];
 
@@ -911,18 +984,20 @@ function GuideOfflineDemo() {
         <div>
           <div className="eyebrow">Works with zero bars</div>
           <ul>
-            <li>· All 81 entries, each with a photo (some are stand-ins)</li>
-            <li>· All 57 hikes with tracks and elevation profiles</li>
+            <li>· All 94 entries, each with a photo (some are stand-ins)</li>
+            <li>· All 57 hikes with tracks, elevation profiles and the daylight reading</li>
             <li>· The topographic park map, every stop pinned</li>
-            <li>· The trip board, the day view, and calendar export</li>
-            <li>· Checklists, essentials, search, the Secret Guide</li>
+            <li>· The trip board, the day view, the dates that matter, and calendar export</li>
+            <li>· The Help card's position readout, the compass, and companion mode (GPS needs no data)</li>
+            <li>· Checklists, essentials, search, Quick ID, the Secret Guide</li>
           </ul>
         </div>
         <div>
           <div className="eyebrow">Needs signal</div>
           <ul>
             <li>· The live park webcams</li>
-            <li>· Entrance waits right now</li>
+            <li>· Entrance waits and parking-lot status right now</li>
+            <li>· Campsite-opening alerts, which run on the guide's server and arrive by push or email</li>
             <li>· Fresh weather and program updates (the last sync stays readable)</li>
             <li>· The Nature Notes archive links back to this site</li>
           </ul>
@@ -963,19 +1038,19 @@ function GuideCompare({ go }) {
         <tbody>
           <tr>
             <td>{freeLink("/articles", "articles", "Articles")} and {freeLink("/planning", "planning", "planning guides")}</td>
-            <td>The complete stop library: 81 entries across four regions</td>
+            <td>The complete stop library: 94 entries across four regions</td>
           </tr>
           <tr>
             <td>{freeLink("/now", "now", "Current conditions")}</td>
-            <td>The whole guide offline, about 70 MB, no bars needed</td>
+            <td>The whole guide offline, about 70 MB, plus the Help card, the compass and companion mode, which run on GPS with no bars</td>
           </tr>
           <tr>
             <td>{freeLink("/itineraries", "itineraries", "Selected itineraries")}</td>
-            <td>All 57 day hikes and the 37-entry Secret Guide</td>
+            <td>All 57 day hikes, each with a daylight reading, and the 50-entry Secret Guide</td>
           </tr>
           <tr>
             <td>The {freeLink("/map", "map", "basic trip map")}</td>
-            <td>The full trip builder: drag-and-drop days, drive buffers, calendar export</td>
+            <td>The full trip builder: drag-and-drop days, drive buffers, the dates that matter, calendar export, campsite-opening alerts</td>
           </tr>
           <tr>
             <td>The {freeLink("/newsletter", "newsletter", "Sunday newsletter")}</td>
@@ -1064,7 +1139,7 @@ function GuideAfterPurchase({ go }) {
 const GUIDE_FAQ = [
   {
     q: "Does it really work with no cell service?",
-    a: "Yes. One tap downloads the whole guide, about 70 MB: every entry, the photos on file, all 57 hike tracks, and a topographic map of the park. A few entries still show a stand-in photo rather than the place itself. Only the live extras need signal: webcams, entrance waits, and fresh weather and program updates.",
+    a: "Yes. One tap downloads the whole guide, about 70 MB: every entry, the photos on file, all 57 hike tracks, and a topographic map of the park. A few entries still show a stand-in photo rather than the place itself. The Help card's position readout, the bearing compass and companion mode run on GPS, which needs no data. Only the live extras need signal: webcams, entrance waits, parking-lot status, campsite-opening alerts, and fresh weather and program updates.",
   },
   {
     q: "Is it an App Store app?",
@@ -1092,7 +1167,11 @@ const GUIDE_FAQ = [
   },
   {
     q: "What do I get that the free site doesn't already give me?",
-    a: "The complete library: 81 entries including the 37-entry Secret Guide, all 57 day hikes with GPS tracks and elevation profiles, the drag-and-drop trip builder, and the offline download. The free site keeps the articles, the trip map, the itineraries, and the conditions board.",
+    a: "The complete library: 94 entries including the 50-entry Secret Guide, all 57 day hikes with GPS tracks, elevation profiles and a daylight reading, the drag-and-drop trip builder with the dates that matter for your trip, campsite-opening alerts, the Help card, the bearing compass, companion mode, and the offline download. The free site keeps the articles, the trip map, the itineraries, and the conditions board.",
+  },
+  {
+    q: "Can it tell me when a campsite opens up?",
+    a: "Yes. Pick one of the 13 reservable campgrounds and your nights on the Openings tab, and the guide's server checks recreation.gov every five minutes. When a site appears you get a push notification, an email, or both, at whatever hour it happens, with the booking link one tap away. Up to five watches at a time, and a watch deletes itself two days after its last night.",
   },
   {
     q: "Does the guide change after I buy it?",
@@ -1267,13 +1346,13 @@ function GuidePage({ go }) {
           <div className="eyebrow eyebrow--moss">The Field Guide · Offline app · 2026 Edition</div>
           <h1>Three days in Yosemite. This is how you keep all three.</h1>
           <p className="page-head__dek">
-            Written by a naturalist who lives in the park: which stops are worth your morning, where to park, how long each one honestly takes, and where to go the moment the lot fills. It builds each day in driving order, then downloads whole to your phone, topo map included, and keeps working where cell service doesn't, which is most of the park.
+            Written by a naturalist who lives in the park: which stops are worth your morning, where to park, how long each one honestly takes, and where to go the moment the lot fills. It builds each day in driving order, then downloads whole to your phone, topo map included, and keeps working where cell service doesn't, which is most of the park. Since September it also watches recreation.gov for a campsite, reads your GPS position to a dispatcher, and names what you are passing.
           </p>
           <div className="guide-stats">
             <span>4 regions</span>
-            <span>81 entries</span>
+            <span>94 entries</span>
             <span>57 day hikes</span>
-            <span>37 secret entries</span>
+            <span>50 secret entries</span>
             <span>Works offline</span>
           </div>
           <div className="guide-hero-cta">
@@ -1342,6 +1421,18 @@ function GuidePage({ go }) {
 
             <AppShots />
 
+            <h2>New in the September 2026 build</h2>
+
+            <p>
+              The guide keeps changing after you buy it, and this is what the last month added. Eight more screens, captured the same way, from the same build.
+            </p>
+
+            <AppShots shots={NEW_SHOTS} />
+
+            <p>
+              Not pictured, because a phone screen does not hold them well: the offline map now carries the park's infrastructure, the five entrances, the visitor and wilderness centers with their hours, the eighteen Valley shuttle stops numbered as the park numbers them, picnic areas, gas, EV charging, showers, laundry, stores and the clinic, every kind of pin drawn with its own mark, and a "Go to" row that flies the map to a region. The front page's conditions panel gained live parking-lot status, and the same status prints on the map's parking pins. The Secret Guide grew by thirteen entries, and every one of them, along with the ten new photographs, arrived as a silent update. Nothing here cost an existing buyer anything, and that is the arrangement for the rest of the 18 months.
+            </p>
+
             <h2>What it does for the day</h2>
 
             <GuideOutcomes />
@@ -1349,7 +1440,7 @@ function GuidePage({ go }) {
             <h2>Read one stop, in full</h2>
 
             <p>
-              This is the guide's first stop, quoted word for word from the app. Every one of the 81 entries is built this way: the numbers up top, the read underneath, the fallback printed on the page, and, where the record allows it, a sourced note from a century of park naturalists' field bulletins.
+              This is the guide's first stop, quoted word for word from the app. Every one of the 94 entries is built this way: the numbers up top, the read underneath, the fallback printed on the page, and, where the record allows it, a sourced note from a century of park naturalists' field bulletins.
             </p>
 
             <GuideStopExample />
@@ -1385,7 +1476,7 @@ function GuidePage({ go }) {
             <h2>The Secret Guide</h2>
 
             <p>
-              There is a section of the guide that never makes it into articles: the parking turnouts locals use when the big lots fill, the trailheads with no signs from the road, and the spots that belong to no region at all. It's in the app now, browsable by category, every stop marked in gold on the offline map. It keeps growing through the season, and every addition arrives as a silent update, no re-download, no second charge.
+              There is a section of the guide that never makes it into articles: the parking turnouts locals use when the big lots fill, the trailheads with no signs from the road, and the spots that belong to no region at all. It's in the app now, 50 entries in five numbered sections, quiet vistas, hidden trails, parking, camping and the park after dark, opening on a folio with its contents and every entry numbered across the whole set, every one marked in gold on the offline map. Thirteen of the fifty arrived in September: the Swinging Bridge reflection, Siesta Lake, Wawona Point, Union Point, Bennettville, the Yosemite Falls moonbow, the Glacier Point star parties, the great gray owl watch at Crane Flat, and the parking and camping moves around them. It keeps growing through the season, and every addition arrives as a silent update, no re-download, no second charge.
             </p>
 
             <h2>Who wrote it, and how</h2>
@@ -1430,7 +1521,7 @@ function GuidePage({ go }) {
             <div className="guide-closer">
               <div className="eyebrow eyebrow--moss" style={{ marginBottom: 12 }}>The offer, in one place</div>
               <p style={{ fontFamily: "var(--serif)", fontSize: 17, lineHeight: 1.6, margin: "0 0 20px" }}>
-                Four regional guides. 44 stops in driving order, each with GPS and a time budget, the flagship ones with a swap. All 57 in-park day hikes with GPS tracks and elevation profiles. The 37-entry Secret Guide. The park's program schedule on your dates. A planning calendar you drag into shape, then save to the calendar you already use. And an offline topo map that holds it all together. <LivePrice />, once, for 18 months on every device you own.
+                Four regional guides. 44 stops in driving order, each with GPS and a time budget, the flagship ones with a swap. All 57 in-park day hikes with GPS tracks, elevation profiles and a daylight reading. The 50-entry Secret Guide. The park's program schedule on your dates. A planning calendar you drag into shape, then save to the calendar you already use, with the dates that matter for your trip under it. Campsite-opening alerts from recreation.gov. A Help card, a bearing compass and a companion mode that run on GPS alone. And an offline topo map that holds it all together. <LivePrice />, once, for 18 months on every device you own.
               </p>
               <BuyNowButton location="guide_closer" />
               <p style={{ fontFamily: "var(--sans)", fontSize: 12, color: "var(--ink-3)", lineHeight: 1.55, margin: "14px 0 0" }}>

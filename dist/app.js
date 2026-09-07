@@ -596,12 +596,12 @@ function buildSeo(route) {
     },
     guide: {
       title: `The Field Guide — ${SITE_NAME}`,
-      description: "The offline Yosemite guide: 81 entries with tappable GPS, time budgets, and crowd swaps, all 57 day hikes, a drive-order trip planner, and a topo map that works when service dies.",
+      description: "The offline Yosemite guide: 94 entries with tappable GPS, time budgets, and crowd swaps, all 57 day hikes, a drive-order trip planner, campsite-opening alerts, a Help card, and a topo map that works when service dies.",
       ogType: "website",
       breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["The Field Guide", null]],
       faq: [{
         q: "Does it really work with no cell service?",
-        a: "Yes. One tap downloads the whole guide, about 70 MB: every entry, the photos on file, all 57 hike tracks, and a topographic map of the park. A few entries still show a stand-in photo rather than the place itself. Only the live extras need signal: webcams, entrance waits, and fresh weather and program updates."
+        a: "Yes. One tap downloads the whole guide, about 70 MB: every entry, the photos on file, all 57 hike tracks, and a topographic map of the park. A few entries still show a stand-in photo rather than the place itself. The Help card's position readout, the bearing compass and companion mode run on GPS, which needs no data. Only the live extras need signal: webcams, entrance waits, parking-lot status, campsite-opening alerts, and fresh weather and program updates."
       }, {
         q: "Is it an App Store app?",
         a: "No. It is a web app you add to your home screen in one step, on iPhone or Android. No store account, no install wait, no version to manage. Once it is there it looks and behaves like a native app."
@@ -622,7 +622,10 @@ function buildSeo(route) {
         a: "If the guide does not work as described, email within 30 days of purchase and it is refunded in full. After a refund the access code is deactivated. The full policy is on the terms page."
       }, {
         q: "What do I get that the free site doesn't already give me?",
-        a: "The complete library: 81 entries including the 37-entry Secret Guide, all 57 day hikes with GPS tracks and elevation profiles, the drag-and-drop trip builder, and the offline download. The free site keeps the articles, the trip map, the itineraries, and the conditions board."
+        a: "The complete library: 94 entries including the 50-entry Secret Guide, all 57 day hikes with GPS tracks, elevation profiles and a daylight reading, the drag-and-drop trip builder with the dates that matter for your trip, campsite-opening alerts, the Help card, the bearing compass, companion mode, and the offline download. The free site keeps the articles, the trip map, the itineraries, and the conditions board."
+      }, {
+        q: "Can it tell me when a campsite opens up?",
+        a: "Yes. Pick one of the 13 reservable campgrounds and your nights on the Openings tab, and the guide's server checks recreation.gov every five minutes. When a site appears you get a push notification, an email, or both, at whatever hour it happens, with the booking link one tap away. Up to five watches at a time, and a watch deletes itself two days after its last night."
       }, {
         q: "Does the guide change after I buy it?",
         a: "Yes. Updates, seasonal addenda, and Secret Guide additions push silently through your access window. Nothing to re-download, nothing extra to pay."
