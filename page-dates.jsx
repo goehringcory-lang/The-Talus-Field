@@ -1,4 +1,4 @@
-/* global React, NewsletterInline, Breadcrumbs, GuidePromo, DEADLINES */
+/* global React, NewsletterInline, Breadcrumbs, GuidePromo, LodgingCta, DEADLINES */
 
 // =============================================================================
 // DATES — `/dates` route. The dates that decide a Yosemite trip, in one table,
@@ -321,6 +321,22 @@ function DatesPage({ go }) {
             <a href="/firefall" onClick={(e) => goRoute(e, "firefall")}>its own page</a>.
           </p>
         </section>
+
+        {/* Lodging availability (revenue pulse, September 2026): the one
+            offer this page did not carry. Every other pre-booking standing
+            route (/distances, /international, /itineraries, /planning) ends
+            in the same three units once each: lodging, guide, letter. The
+            hook restates the table's own camp-15th row and nothing else:
+            no recommendation is displaced, so the /affiliate guardrail
+            holds. aff_list page_dates, inventoried in ARCHITECTURE.md. */}
+        <LodgingCta
+          destination="Yosemite National Park"
+          heading="If release morning passes you by"
+          note="The Pines sites go in minutes on the 15th. A trip that misses the release still happens from a room in the gateway towns, and one availability search around the park shows what your dates still hold."
+          list="page_dates"
+          slug="dates"
+          cta="Search lodging around Yosemite →"
+        />
 
         <GuidePromo
           go={go}
