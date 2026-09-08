@@ -59,9 +59,6 @@ five months out, Tioga and Glacier Point typical openings) rendered against
 the trip board's dates, with the existing push path (`tfg.push.enabled`)
 offering one reminder per deadline. `content/seasonal.ts` is the natural
 home: the almanac already carries typed windows with a `confidence` flag.
-*September 2026: the live half of this shipped as campsite watches (the
-Openings tab, `/watch`), polling recreation.gov every five minutes and
-alerting on a new opening; the bundled deadline table stays backlog.*
 
 **C. Transit and parking as live facts.** The NPS API's `parkinglots`
 endpoint publishes twelve Yosemite lots with capacity, ADA counts and a

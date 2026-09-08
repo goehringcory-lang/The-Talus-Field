@@ -101,8 +101,6 @@ If you are standing the Worker up in a fresh account instead, two options:
 
 Verify: `curl https://<worker-url>/` should return "Talus Field Guide API. See /api/inventory."
 
-**Campsite watches (September 2026).** The drift prompt shows `+ */5 * * * *` under `triggers.crons`; accept it. Then prove that recreation.gov answers Cloudflare's egress, which no sandbox probe can: `curl -s https://api.thetalusfieldjournal.com/api/watch/targets | head -c 200` lists thirteen campgrounds, and a watch created from the PWA's Openings tab reads "Checked N minutes ago" with no error line within five minutes. `npx wrangler tail --format pretty` through one `*/5` fire prints either `sweepAvailability: N campground-month(s) …` or `recreation.gov answered 403; backing off`. A 403 that persists for an hour means recreation.gov blocks the Worker's egress: pull the Openings tab (`PlanTabs.tsx` and the map popup's button) before a buyer sets a watch that can never fire.
-
 `curl https://<worker-url>/api/inventory` should return JSON with `sold`, `cap`, `monthLabel`, `reopens`.
 
 ## 5. Configure the Stripe webhook

@@ -18,7 +18,6 @@ import { trip } from './routes/trip'
 import { tripEmail } from './routes/trip-email'
 import { waitlist } from './routes/waitlist'
 import { waits } from './routes/waits'
-import { watch } from './routes/watch'
 import { weather } from './routes/weather'
 import { widget, widgetScript } from './routes/widget'
 import { refreshAlerts } from './lib/alerts'
@@ -28,7 +27,6 @@ import { refreshWeather } from './lib/weather'
 import { watchRoads } from './lib/roads'
 import { sweepRenewals } from './lib/renewals'
 import { sweepPush } from './lib/pushSweep'
-import { sweepAvailability } from './lib/availabilitySweep'
 import {
   currentMonthLabel,
   firstOfNextMonthIso,
@@ -201,13 +199,9 @@ app.route('/api/trip/email', tripEmail)
 app.route('/api/trip', trip)
 app.route('/api/waitlist', waitlist)
 app.route('/api/waits', waits)
-app.route('/api/watch', watch)
 app.route('/api/weather', weather)
 
-// Three crons ([triggers] in wrangler.toml), branched by schedule:
-//   */5 * * * * — the campsite availability sweep: poll recreation.gov for
-//     the (campground, month) pairs with a live watch and alert on a new
-//     opening. Not morning-gated on purpose (see lib/availabilitySweep.ts).
+// Two daily crons ([triggers] in wrangler.toml), branched by schedule:
 //   0 15 * * * — the push sweep alone, timed so notices land in the park's
 //     morning (7-8am Pacific; sweepPush's own 6-11am gate backstops it).
 //   0 10 * * * (and any manually triggered run) — refresh the KV program
@@ -216,21 +210,12 @@ app.route('/api/weather', weather)
 //     statuses against last night's snapshot (lib/roads.ts), and run the
 //     renewal EMAIL sweep (emails can send in quiet hours; buzzes cannot).
 const PUSH_SWEEP_CRON = '0 15 * * *'
-const AVAILABILITY_SWEEP_CRON = '*/5 * * * *'
 
 async function scheduled(
   controller: ScheduledController,
   env: Env,
   ctx: ExecutionContext,
 ): Promise<void> {
-  if (controller.cron === AVAILABILITY_SWEEP_CRON) {
-    ctx.waitUntil(
-      sweepAvailability(env).catch((err) => {
-        console.error('scheduled: availability sweep failed', err)
-      }),
-    )
-    return
-  }
   if (controller.cron === PUSH_SWEEP_CRON) {
     ctx.waitUntil(
       sweepPush(env).catch((err) => {

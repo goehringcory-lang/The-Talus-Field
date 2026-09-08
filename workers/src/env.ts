@@ -3,8 +3,7 @@ export type Env = {
   // KV namespaces
   GUIDE_BUYERS: KVNamespace
   // Guide data cache: program/event records written by the daily cron and
-  // read by /api/programs, the NWS weather record for /api/weather, and the
-  // compacted recreation.gov month grids (avail:*) behind campsite watches.
+  // read by /api/programs, plus the NWS weather record for /api/weather.
   // Separate namespace from buyer records: different lifecycle, safe to
   // lose, and a bad ingest can never touch purchase data.
   GUIDE_PROGRAMS: KVNamespace

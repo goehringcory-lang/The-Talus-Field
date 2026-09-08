@@ -44,7 +44,6 @@ import type { ParkingLotT } from '../parking/schema'
 import { HIDE_AFTER_MS as PARKING_HIDE_MS } from '../parking/staleness'
 import { useParking } from '../parking/useParking'
 import { compactStamp } from '../utils/relativeStamp'
-import { targetForAmenity } from '../watch/targets'
 import './Map.css'
 import { useDocumentTitle } from '../lib/documentTitle'
 
@@ -221,16 +220,11 @@ function lotStatusLine(reading: LotReading | null): string | null {
   return `Now: ${word}${capacity} · NPS${age ? `, ${age}` : ''}`
 }
 
-// Amenity popup: name, kind chip, note (+ season line), Directions, a parking
-// pin's live lot status when the feed has one (see lotStatusLine), and for a
-// campground the guide can watch, the way to the Openings tab. Amenities
-// (parking lots, campgrounds) are map-only pins, not Stops, so there is no
-// "Open stop" or "Add to trip".
-function buildAmenityPopupContent(
-  amenity: AmenityT,
-  lot: LotReading | null,
-  onWatch: (targetId: string) => void,
-): HTMLElement {
+// Amenity popup: name, kind chip, note (+ season line), Directions only.
+// Amenities (parking lots, campgrounds) are map-only pins, not Stops, so
+// there is no "Open stop" or "Add to trip". A parking pin also prints its
+// live lot status when the feed has one (see lotStatusLine).
+function buildAmenityPopupContent(amenity: AmenityT, lot: LotReading | null = null): HTMLElement {
   const style = getKindStyle(amenity.kind)
   const root = document.createElement('div')
   root.className = 'map-popup'
@@ -290,18 +284,6 @@ function buildAmenityPopupContent(
     note.className = 'map-popup__stats'
     note.textContent = 'Free, no ticket. Times in Essentials → Getting around.'
     actions.appendChild(note)
-  }
-  // Only the campgrounds the Worker's registry carries: a button on a pin the
-  // watch form cannot resolve would land the reader on a form with the
-  // wrong campground selected.
-  const target = amenity.kind === 'camping' ? targetForAmenity(amenity.id) : undefined
-  if (target) {
-    const watch = document.createElement('button')
-    watch.type = 'button'
-    watch.className = 'map-popup__btn'
-    watch.textContent = 'Watch for openings →'
-    watch.addEventListener('click', () => onWatch(target.id))
-    actions.appendChild(watch)
   }
   if (actions.childNodes.length > 0) root.appendChild(actions)
   return root
@@ -958,15 +940,6 @@ export default function Map() {
     navigate('/dining')
   }, [navigate])
 
-  // A campground pin's "Watch for openings": the form pre-fills the
-  // campground from ?target= (watch/deepLink.ts validates it).
-  const openWatch = useCallback(
-    (targetId: string) => {
-      navigate(`/watch?target=${encodeURIComponent(targetId)}`)
-    },
-    [navigate],
-  )
-
   // Fly the camera to one region's frame. Animated, unlike the fitBounds
   // calls the filters make: this one is the reader's own tap, and the motion
   // is what tells them where the map went.
@@ -1181,7 +1154,7 @@ export default function Map() {
         const lot = fresh ? lotForAmenity(amenity, lots) : null
         popupRef.current
           ?.setLngLat(amenity.coord)
-          .setDOMContent(buildAmenityPopupContent(amenity, lot ? { lot, fetchedAt } : null, openWatch))
+          .setDOMContent(buildAmenityPopupContent(amenity, lot ? { lot, fetchedAt } : null))
           .addTo(map)
       }
       el.addEventListener('click', (e) => {
@@ -1197,7 +1170,7 @@ export default function Map() {
         .setLngLat(amenity.coord)
         .addTo(map)
     }
-  }, [visibleAmenities, mapReady, selectStop, openWatch])
+  }, [visibleAmenities, mapReady, selectStop])
 
   // Trailhead marker reconciliation. Same shape as the amenity pipeline: no
   // ?stop= selection state and no fitBounds contribution; the pins open the

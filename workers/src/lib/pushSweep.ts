@@ -3,15 +3,11 @@
 // morning cron (0 15 * * * — 7-8am Pacific year round), separate from the
 // overnight data-refresh cron so a buzz can never land at 3am.
 //
-// Four notices from THIS sweep, each something a buyer would want their
-// phone to interrupt them for. The bar is deliberately high: this app's
+// Four notices, each something a buyer would want their phone to interrupt
+// them for, and nothing else. The bar is deliberately high: this app's
 // audience installed a field guide, not a marketing channel, and the fastest
 // way to lose a notification permission forever is to spend it on something
-// the person did not ask about. The app's fifth and last notice, a campsite
-// opening for a watch the buyer created, lives in availabilitySweep.ts on its
-// own five-minute cron and is deliberately NOT morning-gated: a site released
-// at 7:00 a.m. Pacific is gone by 7:02, a cancellation lands at any hour, and
-// the buyer asked for exactly that when they set the watch.
+// the person did not ask about.
 //
 //   1. Trip morning — on each day of the buyer's trip window, once, in the
 //      morning. The one notification a park visitor actually benefits from:
@@ -49,7 +45,6 @@ import {
   type PushSubscriptionRecord,
 } from './kv'
 import { deadlinesDueOn } from './deadlines'
-import { parkNow } from './parkTime'
 import { isPushConfigured, sendPush } from './push'
 import { readRoadChanges, type RoadChange, type RoadState } from './roads'
 
@@ -92,6 +87,25 @@ function shortDate(date: string): string {
     day: 'numeric',
     timeZone: 'UTC',
   })
+}
+
+function parkNow(at: Date): { date: string; hour: number } {
+  // en-CA gives YYYY-MM-DD; the park is America/Los_Angeles year round.
+  const fmt = new Intl.DateTimeFormat('en-CA', {
+    timeZone: 'America/Los_Angeles',
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+    hour: '2-digit',
+    hour12: false,
+  })
+  const parts = fmt.formatToParts(at)
+  const get = (type: string) => parts.find((p) => p.type === type)?.value ?? '00'
+  return {
+    date: `${get('year')}-${get('month')}-${get('day')}`,
+    // Intl can render midnight as "24" in some engines; normalize it.
+    hour: Number.parseInt(get('hour'), 10) % 24,
+  }
 }
 
 // A device's owner, as the sweep needs to see them: an operator session (no
