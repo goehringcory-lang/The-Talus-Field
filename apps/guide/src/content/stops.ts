@@ -226,6 +226,19 @@ const seed: StopInput[] = [
     photos: [{ src: '/photos/valley-view.jpg', caption: 'The Gates of the Valley frame from the riverbank: El Capitan left, Bridalveil right.' }],
     swap:
       'Full pullout and no patience for another lap? [Cathedral Beach picnic area](/stop/cathedral-beach-quiet-picnic) on Southside Drive gives you El Capitan across the river from the south bank, and almost nobody uses it.',
+    history: {
+      note:
+        'Nature Notes in June 1925 retraced the Mariposa Battalion\'s entry of 1851. After a first camp near the foot of the trail from Old ' +
+        'Inspiration Point, Major Savage and Captains Bolling and Dill found a ford ' +
+        'used by the Indians a short way downstream, and the writer judged that in ' +
+        'all probability it was the ford at what the bulletin already called Valley ' +
+        'View. The California Medical Association placed a bronze plaque to Dr. ' +
+        'Lafayette Houghton Bunnell of that party on a boulder at the camp-site ' +
+        'opposite El Capitan.',
+      volume: 4,
+      number: 6,
+      issueDate: 'June 1925',
+    },
     photoTiming: {
       best: 'sunset',
       note:
@@ -289,6 +302,11 @@ const seed: StopInput[] = [
     body:
       'The viewpoint the stagecoach drivers used to stop at. Partway up the old Big Oak Flat Road grade, the trees open and you\'re looking across the valley at Bridalveil Fall from above its rim: the whole ribbon of it, the Cathedral Rocks stacked behind, the Merced threading the valley floor below. In the 1870s this was the first full look at the valley most visitors ever got, and the road was aligned to deliver it. Now nobody\'s here.\n\nThe light is best in the morning, when the south wall is lit and the fall carries its spray rainbow (that\'s the name). Reached only on foot via the old road from [the Northside Drive pullout](/stop/old-road-trailhead-pullout); budget the climb as part of the [Old Big Oak Flat Road half day](/stop/old-big-oak-flat-road).',
     photos: [{ src: '/photos/rainbow-view-old-road.jpg' }],
+    photoTiming: {
+      best: 'golden-am',
+      note:
+        'Morning light falls on the south wall and puts the spray rainbow in Bridalveil Fall, which is where the view takes its name.',
+    },
   },
   {
     id: 'ribbon-fall-base',
@@ -332,6 +350,18 @@ const seed: StopInput[] = [
     body:
       'Where the old Big Oak Flat Road corridor meets the modern one. Cascade Creek comes off the north rim in a long stairstep of whitewater, best in April and May, and the picnic tables along the creek just inside the Arch Rock entrance are the quietest lunch stop on the west end of the valley. If you\'re entering on Highway 140, this is the first place worth stopping; if you\'ve spent the morning on the [old road](/stop/old-big-oak-flat-road), it\'s the closing move.\n\nAbove the rim sits Foresta, the small private inholding the 1990 A-Rock fire burned through; the meadow there is a wildflower show in June and one of the park\'s better deer and bear sightlines at dusk. The Foresta road leaves Big Oak Flat Road (the modern highway) near Crane Flat.',
     photos: [{ src: '/photos/foresta-cascades.jpg' }],
+    history: {
+      note:
+        'Nature Notes told Foresta\'s story in March 1955. In 1913 B. Davis bought ' +
+        'the 200 acres above the Arch Rock entrance to make a summer resort, built ' +
+        'the seven-mile road from El Portal to Foresta at a reported cost of ' +
+        '$25,000, sold his magnesite mines for $20,000 to push it on to Crane Flat, ' +
+        'and put up a small hotel, 37 tent houses, a swimming pool and bath houses. ' +
+        'Davis abandoned the project in 1915, and three years later the hotel burned.',
+      volume: 34,
+      number: 3,
+      issueDate: 'March 1955',
+    },
   },
   {
     id: 'el-capitan-meadow',
@@ -558,6 +588,19 @@ const seed: StopInput[] = [
       'Half Dome catches the last light from here. The Merced is in the foreground. People crowd the rail; walk down to the small beach below the bridge instead: wider angle, fewer elbows. If you have one image to take home, it\'s this one. Stay until the wall goes from gold to pink to grey, and through twilight to first stars. Most visitors leave too early.\n\n' +
       'Two refinements for anyone carrying a camera. The mirror reflection needs slack water, which the Merced only offers once the spring runoff drops, so late summer through winter is reflection season; in May the river moves too fast to hold the image. And a few evenings each month the moon comes up near Half Dome\'s shoulder shortly after sunset. Check moonrise against sunset time, and if they land within an hour of each other, stay for it. This bridge has held tripods on those evenings for a century, Ansel Adams\'s among them.',
     photos: [{ src: '/photos/half-dome-merced-river-spring.jpg', caption: 'Half Dome above the Merced from the Valley floor, the view the bridge frames.' }],
+    history: {
+      note:
+        'In October 1959 Nature Notes traced this crossing through four ' +
+        'photographs. The first bridge had already given way to a more substantial ' +
+        'one when Eadweard Muybridge photographed the span around 1865, and records ' +
+        'put an all-metal bridge here in 1878. The concrete bridge was built by the ' +
+        'Gutleben brothers, who also built the hotel at Glacier Point. A small ' +
+        'incense cedar on the bank, found with a magnifying glass in the Muybridge ' +
+        'print, measured three feet six inches in diameter at chest height in 1958.',
+      volume: 38,
+      number: 10,
+      issueDate: 'October 1959',
+    },
     photoTiming: {
       best: 'sunset',
       note:
