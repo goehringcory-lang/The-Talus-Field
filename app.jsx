@@ -706,11 +706,7 @@ function buildSeo(route) {
         },
         {
           q: "What do I get that the free site doesn't already give me?",
-          a: "The complete library: 94 entries including the 50-entry Secret Guide, all 57 day hikes with GPS tracks, elevation profiles and a daylight reading, the drag-and-drop trip builder with the dates that matter for your trip, campsite-opening alerts, the Help card, the bearing compass, companion mode, and the offline download. The free site keeps the articles, the trip map, the itineraries, and the conditions board.",
-        },
-        {
-          q: "Can it tell me when a campsite opens up?",
-          a: "Yes. Pick one of the 13 reservable campgrounds and your nights on the Openings tab, and the guide's server checks recreation.gov every five minutes. When a site appears you get a push notification, an email, or both, at whatever hour it happens, with the booking link one tap away. Up to five watches at a time, and a watch deletes itself two days after its last night.",
+          a: "The complete library: 94 entries including the 50-entry Secret Guide, all 57 day hikes with GPS tracks, elevation profiles and a daylight reading, the drag-and-drop trip builder with the dates that matter for your trip, the Help card, the bearing compass, companion mode, and the offline download. The free site keeps the articles, the trip map, the itineraries, and the conditions board.",
         },
         {
           q: "Does the guide change after I buy it?",
