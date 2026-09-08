@@ -41,23 +41,16 @@ preview_id = "REPLACE_ME_FOR_LOCAL_DEV"
 binding = "PHOTO_INBOX"
 bucket_name = "talus-photo-inbox"
 
-# Three schedules, branched on controller.cron in index.ts:
+# Two daily runs, branched on controller.cron in index.ts:
 #   0 10 * * * (~2-3am Pacific)  — data refresh (NPS programs, weather,
 #     conditions feeds) plus the renewal EMAIL sweep. Quiet-hours work only.
 #   0 15 * * * (7-8am Pacific year round) — the push sweep alone. Notices are
 #     phone buzzes, so they go out in the park's morning; sweepPush also gates
 #     itself on the 6-11am window as a backstop.
-#   */5 * * * * — the campsite availability sweep (src/lib/availabilitySweep.ts).
-#     Fetches only the recreation.gov (campground, month) pairs that have a
-#     live watch, idles at one KV list when there are none, backs off
-#     exponentially on a 403 / 429 / 5xx, and is NOT morning-gated: a buyer
-#     who set a watch asked to be told at whatever hour a site appears, and
-#     the form says so. A five-minute cadence with 500 KB grids needs the
-#     Workers Paid plan's CPU budget (the daily NPS ingest already does).
 # The programs route also self-heals: if KV is missing or >48h old it fetches
 # NPS live and backfills.
 [triggers]
-crons = ["0 10 * * *", "0 15 * * *", "*/5 * * * *"]
+crons = ["0 10 * * *", "0 15 * * *"]
 
 # APP_BASE_URL is the PWA's public origin. It feeds every buyer-facing link
 # the Worker emits: the magic-link (`${APP_BASE_URL}/open?token=`), the access

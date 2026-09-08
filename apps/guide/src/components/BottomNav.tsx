@@ -24,8 +24,7 @@ export default function BottomNav() {
     pathname.startsWith('/hike/') ||
     pathname === '/today' ||
     pathname === '/this-week' ||
-    pathname.startsWith('/trip') ||
-    pathname.startsWith('/watch')
+    pathname.startsWith('/trip')
   const isSearch = pathname === '/search'
   const isAccount = pathname === '/account'
 

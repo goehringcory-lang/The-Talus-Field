@@ -125,16 +125,7 @@ export type PushResult =
  * a dead subscription is an expected, routine outcome (app uninstalled,
  * notifications revoked, browser data cleared) and the sweep must keep going.
  */
-export type PushOptions = {
-  ttlSeconds?: number                                    // default a day
-  urgency?: 'very-low' | 'low' | 'normal' | 'high'       // default normal
-}
-
-export async function sendPush(
-  env: Env,
-  endpoint: string,
-  opts: PushOptions = {},
-): Promise<PushResult> {
+export async function sendPush(env: Env, endpoint: string): Promise<PushResult> {
   let authorization: string
   try {
     authorization = await vapidAuthHeader(env, endpoint)
@@ -149,15 +140,12 @@ export async function sendPush(
       headers: {
         Authorization: authorization,
         // No body, so no Content-Encoding. TTL is required by RFC 8030; a day
-        // is right for the daily sweep's messages — a renewal notice or a
-        // morning nudge is worth delivering late, but not a week late. The
-        // availability sweep passes an hour: a campsite opening that arrives
-        // later than that is a site somebody else already has.
-        TTL: String(opts.ttlSeconds ?? 86400),
+        // is right for these messages — a renewal notice or a morning nudge is
+        // worth delivering late, but not a week late.
+        TTL: '86400',
         // Wake the device even in a low-power state: every message this Worker
-        // sends is one the buyer asked to receive. The availability sweep
-        // passes `high`, which is what a time-critical opt-in message is for.
-        Urgency: opts.urgency ?? 'normal',
+        // sends is one the buyer asked to receive.
+        Urgency: 'normal',
         'Content-Length': '0',
       },
     })

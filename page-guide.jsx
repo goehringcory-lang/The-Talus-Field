@@ -379,7 +379,6 @@ function GuideBuyBox() {
           <li>· Know-before-you-go essentials, a night-before checklist, and a packing list you check off in-app</li>
           <li>· Search across everything</li>
           <li>· The Secret Guide: 50 entries of quiet vistas, hidden trails, parking moves, camping and the park after dark, included</li>
-          <li>· Campsite openings: pick a campground and your nights, and recreation.gov is checked every five minutes, alerts by push or email</li>
           <li>· The dates that matter for your trip, under the trip board, with calendar files and reminders</li>
           <li>· The Help card: 911 by call or text, your GPS position in the form a dispatcher reads, the park's printed numbers</li>
           <li>· Companion mode: the nearest entry as you drive, read aloud for the passenger</li>
@@ -510,7 +509,6 @@ function GuideWaitlistBox() {
           <li>· Know-before-you-go essentials, a night-before checklist, and a packing list you check off in-app</li>
           <li>· Search across everything</li>
           <li>· The Secret Guide: 50 entries of quiet vistas, hidden trails, parking moves, camping and the park after dark, included</li>
-          <li>· Campsite openings: pick a campground and your nights, and recreation.gov is checked every five minutes, alerts by push or email</li>
           <li>· The dates that matter for your trip, under the trip board, with calendar files and reminders</li>
           <li>· The Help card: 911 by call or text, your GPS position in the form a dispatcher reads, the park's printed numbers</li>
           <li>· Companion mode: the nearest entry as you drive, read aloud for the passenger</li>
@@ -622,11 +620,6 @@ const NEW_SHOTS = [
     src: "img/guide/screens/daylight.v3.webp",
     alt: "The Daylight panel on the Upper Yosemite Fall hike page: sunset 7:20 p.m., start by 11:20 a.m., finishes with an hour of light in hand, above the trail's elevation profile",
     caption: "Every hike carries a daylight reading: today's sunset against the time budget, and the latest start that gets you down with an hour of light in hand.",
-  },
-  {
-    src: "img/guide/screens/watch.v3.webp",
-    alt: "The Openings tab of the Plan screen, 'Watch for a site': a campground picker set to Upper Pines, the release-day note beneath it, and the arriving and leaving dates",
-    caption: "Campsite openings. Pick a campground and your nights, and the guide checks recreation.gov every five minutes, then reaches you by push or email the moment a site appears.",
   },
   {
     src: "img/guide/screens/deadlines.v3.webp",
@@ -775,9 +768,8 @@ function GuideWalkthrough() {
 
 // The outcome blocks: what the guide changes about the day, each claim backed
 // by a number that is true in the shipped content. Counts come from
-// apps/guide/src/content (stops.ts, hikes.ts, itineraries.ts, deadlines.ts)
-// and apps/guide/src/watch/targets.ts; re-verify there before editing a
-// proof line.
+// apps/guide/src/content (stops.ts, hikes.ts, itineraries.ts, deadlines.ts);
+// re-verify there before editing a proof line.
 const OUTCOMES = [
   {
     kicker: "Find the correct parking turnout",
@@ -816,10 +808,10 @@ const OUTCOMES = [
     proof: "Position in decimal degrees and degrees-minutes · the nearest named place with distance and bearing",
   },
   {
-    kicker: "Catch a campsite when one opens",
+    kicker: "Know the dates that matter before they pass",
     body:
-      "Pick a reservable campground and your nights, and the guide's server checks recreation.gov every five minutes, then reaches you by push notification or email at whatever hour a site appears, booking link one tap away. Under the trip board, the lotteries, release mornings and road windows that apply to your dates sit with calendar files and reminders.",
-    proof: "13 campgrounds watched · 14 dated deadlines, resolved to your trip",
+      "Under the trip board, the lotteries, release mornings and road windows that apply to your dates sit with calendar files and reminders, each with its NPS source.",
+    proof: "14 dated deadlines, resolved to your trip",
   },
 ];
 
@@ -1167,11 +1159,7 @@ const GUIDE_FAQ = [
   },
   {
     q: "What do I get that the free site doesn't already give me?",
-    a: "The complete library: 94 entries including the 50-entry Secret Guide, all 57 day hikes with GPS tracks, elevation profiles and a daylight reading, the drag-and-drop trip builder with the dates that matter for your trip, campsite-opening alerts, the Help card, the bearing compass, companion mode, and the offline download. The free site keeps the articles, the trip map, the itineraries, and the conditions board.",
-  },
-  {
-    q: "Can it tell me when a campsite opens up?",
-    a: "Yes. Pick one of the 13 reservable campgrounds and your nights on the Openings tab, and the guide's server checks recreation.gov every five minutes. When a site appears you get a push notification, an email, or both, at whatever hour it happens, with the booking link one tap away. Up to five watches at a time, and a watch deletes itself two days after its last night.",
+    a: "The complete library: 94 entries including the 50-entry Secret Guide, all 57 day hikes with GPS tracks, elevation profiles and a daylight reading, the drag-and-drop trip builder with the dates that matter for your trip, the Help card, the bearing compass, companion mode, and the offline download. The free site keeps the articles, the trip map, the itineraries, and the conditions board.",
   },
   {
     q: "Does the guide change after I buy it?",
@@ -1346,7 +1334,7 @@ function GuidePage({ go }) {
           <div className="eyebrow eyebrow--moss">The Field Guide · Offline app · 2026 Edition</div>
           <h1>Three days in Yosemite. This is how you keep all three.</h1>
           <p className="page-head__dek">
-            Written by a naturalist who lives in the park: which stops are worth your morning, where to park, how long each one honestly takes, and where to go the moment the lot fills. It builds each day in driving order, then downloads whole to your phone, topo map included, and keeps working where cell service doesn't, which is most of the park. Since September it also watches recreation.gov for a campsite, reads your GPS position to a dispatcher, and names what you are passing.
+            Written by a naturalist who lives in the park: which stops are worth your morning, where to park, how long each one honestly takes, and where to go the moment the lot fills. It builds each day in driving order, then downloads whole to your phone, topo map included, and keeps working where cell service doesn't, which is most of the park. Since September it also reads your GPS position to a dispatcher and names what you are passing.
           </p>
           <div className="guide-stats">
             <span>4 regions</span>
