@@ -112,7 +112,7 @@ window.planningSeriesFor = function (slug) {
 window.BODY_VERSIONS = {
   "highway-140-closed-yosemite": 1,
   "yosemite-from-los-angeles": 1,
-  "yosemite-facelift-volunteer-guide": 1,
+  "yosemite-facelift-volunteer-guide": 2,
   "bracebridge-dinner-and-vintners-holidays": 1,
   "yosemite-fire-restrictions-explained": 2,
   "yosemite-in-three-to-five-days": 2,
@@ -775,7 +775,7 @@ window.ARTICLES = [
     seoDek: "How to volunteer for the Yosemite Facelift: 2026 dates, registration, camping, what volunteers do, and how to fit it into a normal trip.",
     date: "August 31, 2026",
     isoDate: "2026-08-31",
-    isoModified: "2026-08-31",
+    isoModified: "2026-09-09",
     read: "8 min",
     placeholder: "The Camp 4 kiosk and its notice board, the Facelift's home base",
     image: "img/camp-4-kiosk.jpg",
