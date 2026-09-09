@@ -8,7 +8,7 @@
 Publisher: The Talus Field (https://thetalusfieldjournal.com). Editor: Cory Goehring.
 Citation guidance and the annotated page index: https://thetalusfieldjournal.com/llms.txt
 Canonical article URL pattern: https://thetalusfieldjournal.com/articles/<slug>
-Contents: 68 articles. Most recent update: 2026-09-07.
+Contents: 68 articles. Most recent update: 2026-09-09.
 
 Not in this file: the Yosemite Nature Notes archive, all 512 issues of the
 National Park Service's Yosemite bulletin (1922-2003), transcribed in full
@@ -2432,7 +2432,7 @@ Check the water, check the weather, check the current rules, and go stand in the
 ## Yosemite in Winter: The Season the Crowds Forget
 
 URL: https://thetalusfieldjournal.com/articles/yosemite-in-winter
-Section: Seasonal Guides. Published: 2026-07-12. Last updated: 2026-08-06.
+Section: Seasonal Guides. Published: 2026-07-12. Last updated: 2026-09-09.
 Summary: Yosemite in winter: what's open and closed, Highway 140 and chain control explained, Badger Pass, Dewey Point snowshoeing, the Curry Village rink, and firefall.
 
 I live in El Portal, two thousand feet below the Valley floor in the Merced River canyon, and for twenty seasons I have watched the same thing happen every November. The park empties. The tour buses stop coming. The trailhead lots that required a 6 a.m. arrival in July sit half full at noon. And then, some night in late November or December, a storm comes through, the clouds pull apart the next morning, and Yosemite Valley is standing there under fresh snow with almost nobody looking at it. The people who plan around summer have quietly agreed to skip the best-looking months in the park. I have never fully understood it, and I have stopped trying to talk people out of it, because the emptiness is the point.
@@ -2485,6 +2485,8 @@ Winter asks things of you. The days are short: the sun clears the Valley rim lat
 
 In exchange: the crowds are gone, genuinely gone, in a way no summer strategy can simulate. Lodging that books out months ahead in July has winter availability at winter prices, and the trade-offs between staying in the park and staying down the canyon are laid out in the lodging guide. You will stand at viewpoints alone. You will hear the Valley, which in summer you mostly cannot.
 
+For once, the numbers. The concessioner's own winter promotions, as published on its specials page this September, put a floor under the season: the Ahwahnee from $389 on select two-night stays (code WINTER2027, suites excluded), Yosemite Valley Lodge as low as $172 on stays of two nights or more (code WNTRYVL), and Curry Village as low as $95 a night (code WNTR26). All three run on select dates from late November through March 25, Curry Village from December 13, and all three carry the same two blackout windows, which tell you exactly when the park expects a crowd: December 23 through January 2, and February 12 through 20, the firefall's peak and Presidents' Day weekend. The first night is due at booking and refundable up to seven days out. Rates move with the date, so treat these as the low end rather than a promise, and check the specials page for what is actually on offer when you book.
+
 The waterfalls, mostly asleep since August, begin to come back in late winter as early melt and rain reach the Merced. By March, Yosemite Falls is a waterfall again rather than a stain, and the whole hydrological year described in the waterfalls guide starts over. Late winter also brings one of the park's oddest small phenomena: on the coldest early-spring mornings, Yosemite Creek can run with frazil ice, a slush of ice crystals that moves down the channel like slow lava and piles into banks of white. It is a niche thing to chase and a story for another article. Consider it the park's way of saying the quiet season is ending.
 
 ### The takeaway
@@ -2510,13 +2512,14 @@ Some links in this piece are affiliate links. If you buy or book through one, Th
 - Tire Chain Requirements, NPS Yosemite
 - Badger Pass Ski Area, Travel Yosemite
 - Seasonal Road Closures, NPS Yosemite
+- Specials & Packages, Travel Yosemite (winter 2026-27 lodging promotions, as published September 2026)
 
 ---
 
 ## Where to Stay Inside Yosemite: Every In-Park Option, Honestly Ranked
 
 URL: https://thetalusfieldjournal.com/articles/where-to-stay-in-yosemite
-Section: Planning. Published: 2026-07-12. Last updated: 2026-08-01.
+Section: Planning. Published: 2026-07-12. Last updated: 2026-09-09.
 Summary: Every place to stay inside Yosemite, ranked: the Ahwahnee, Valley Lodge, Curry Village, Housekeeping Camp, high-country camps, and the 366-day booking game.
 
 The question I field more than any other, after twenty seasons of living and working in this park, is some version of "where should we stay?" And the honest first answer is that staying inside the park changes the trip in a way no other single decision does. The people sleeping in the Valley are standing under Yosemite Falls at seven in the morning with the mist still hanging and nobody around. The people sleeping in a gateway town are, at that same moment, sitting in the entrance line. Both groups paid to visit Yosemite. Only one of them is in it when the park is at its best, which is the first two hours and the last two hours of the day. So the case for in-park lodging is easy to make. What is harder, and what this article is for, is sorting out which in-park option actually fits your trip, because the six of them have almost nothing in common except a reservation system.
@@ -2567,7 +2570,7 @@ Everything above books through travelyosemite.com, and reservations open 366 day
 
 Missing the release is not the end, and this is the part most people never learn: rooms come back. Cancellation policies mean people drop reservations continuously, with a distinct wave in the final weeks before any date as plans collapse. The strategy is unglamorous and it works: check the website daily, at varied times, in the four to six weeks before your trip. I have watched people assemble three-night Valley stays in June out of one-night cancellations. Persistence beats luck.
 
-The other lever is the calendar. Winter is dramatically easier and cheaper. The seasonal operations close, but the Ahwahnee, the Lodge, and a reduced Curry Village run all year, rates drop, and midweek availability in January is a different universe from July. If your goal is a night at the Ahwahnee without a fight, winter is when it happens.
+The other lever is the calendar. Winter is dramatically easier and cheaper. The seasonal operations close, but the Ahwahnee, the Lodge, and a reduced Curry Village run all year, rates drop, and midweek availability in January is a different universe from July. If your goal is a night at the Ahwahnee without a fight, winter is when it happens. The winter guide quotes the concessioner's published floor rates for the Ahwahnee, the Lodge and Curry Village, and the blackout weeks around them, so you know what "cheaper" means before you search.
 
 ### The alternative, for honesty's sake
 

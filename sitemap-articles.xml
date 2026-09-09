@@ -5,7 +5,7 @@
   <!-- Hub pages -->
   <url>
     <loc>https://thetalusfieldjournal.com/</loc>
-    <lastmod>2026-09-07</lastmod>
+    <lastmod>2026-09-09</lastmod>
     <image:image>
       <image:loc>https://thetalusfieldjournal.com/img/responsive/half-dome-winter-storm-1600.jpg</image:loc>
       <image:title>Half Dome in a clearing winter storm</image:title>
@@ -13,11 +13,11 @@
   </url>
   <url>
     <loc>https://thetalusfieldjournal.com/articles</loc>
-    <lastmod>2026-09-07</lastmod>
+    <lastmod>2026-09-09</lastmod>
   </url>
   <url>
     <loc>https://thetalusfieldjournal.com/planning</loc>
-    <lastmod>2026-09-07</lastmod>
+    <lastmod>2026-09-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -31,7 +31,7 @@
   <!-- Sections -->
   <url>
     <loc>https://thetalusfieldjournal.com/section/planning</loc>
-    <lastmod>2026-09-07</lastmod>
+    <lastmod>2026-09-09</lastmod>
   </url>
   <url>
     <loc>https://thetalusfieldjournal.com/section/trails</loc>
@@ -43,7 +43,7 @@
   </url>
   <url>
     <loc>https://thetalusfieldjournal.com/section/seasonal</loc>
-    <lastmod>2026-08-27</lastmod>
+    <lastmod>2026-09-09</lastmod>
   </url>
 
   <!-- Static pages -->
@@ -363,7 +363,7 @@
   </url>
   <url>
     <loc>https://thetalusfieldjournal.com/articles/yosemite-in-winter</loc>
-    <lastmod>2026-08-06</lastmod>
+    <lastmod>2026-09-09</lastmod>
     <image:image>
       <image:loc>https://thetalusfieldjournal.com/img/responsive/half-dome-winter-snow-1600.jpg</image:loc>
       <image:title>Half Dome above a snow-covered Yosemite Valley in a George Fiske photograph</image:title>
@@ -371,7 +371,7 @@
   </url>
   <url>
     <loc>https://thetalusfieldjournal.com/articles/where-to-stay-in-yosemite</loc>
-    <lastmod>2026-08-01</lastmod>
+    <lastmod>2026-09-09</lastmod>
     <image:image>
       <image:loc>https://thetalusfieldjournal.com/img/responsive/valley-view-sunset-rodrigo-soares-1600.jpg</image:loc>
       <image:title>Yosemite Valley at sunset, home to the Ahwahnee, Valley Lodge, Curry Village, and Housekeeping Camp</image:title>

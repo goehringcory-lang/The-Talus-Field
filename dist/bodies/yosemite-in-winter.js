@@ -16,7 +16,11 @@ window.ARTICLE_BODIES["yosemite-in-winter"] = function YosemiteInWinterBody() {
     href: "/firefall"
   }, "the firefall page"), " carries whatever rules the park sets for the current season."), React.createElement("h2", null, "The honest part"), React.createElement("p", null, "Winter asks things of you. The days are short: the sun clears the Valley rim late and drops behind it early, and the deep sections of the floor hold shade, and therefore ", React.createElement("strong", null, "black ice"), ", all day. The paths around Curry Village and the base of the falls glaze over and stay glazed. Traction cleats for your boots cost little and prevent the most common winter injury in the park, which is not an avalanche, it is a tourist slipping on a paved path. Valley ", React.createElement("strong", null, "inversions"), " park cold air and fog on the floor for days at a time, so a gray, raw morning in the Valley is often a blue one at Badger Pass, a thousand-plus feet higher."), React.createElement("p", null, "In exchange: the crowds are gone, genuinely gone, in a way no summer strategy can simulate. Lodging that books out months ahead in July has winter availability at winter prices, and the trade-offs between staying in the park and staying down the canyon are laid out in ", React.createElement("a", {
     href: "/articles/where-to-stay-in-yosemite"
-  }, "the lodging guide"), ". You will stand at viewpoints alone. You will hear the Valley, which in summer you mostly cannot."), React.createElement("p", null, "The waterfalls, mostly asleep since August, begin to come back in late winter as early melt and rain reach the Merced. By ", React.createElement("a", {
+  }, "the lodging guide"), ". You will stand at viewpoints alone. You will hear the Valley, which in summer you mostly cannot."), React.createElement("p", null, "For once, the numbers. The concessioner's own winter promotions, as published on its specials page this September, put a floor under the season: ", React.createElement("strong", null, "the Ahwahnee from $389"), " on select two-night stays (code WINTER2027, suites excluded), ", React.createElement("strong", null, "Yosemite Valley Lodge as low as $172"), " on stays of two nights or more (code WNTRYVL), and ", React.createElement("strong", null, "Curry Village as low as $95 a night"), " (code WNTR26). All three run on select dates from late November through March 25, Curry Village from December 13, and all three carry the same two blackout windows, which tell you exactly when the park expects a crowd: December 23 through January 2, and February 12 through 20, the firefall's peak and Presidents' Day weekend. The first night is due at booking and refundable up to seven days out. Rates move with the date, so treat these as the low end rather than a promise, and check ", React.createElement("a", {
+    href: "https://www.travelyosemite.com/special-offers/specials-packages",
+    target: "_blank",
+    rel: "noopener noreferrer"
+  }, "the specials page"), " for what is actually on offer when you book."), React.createElement("p", null, "The waterfalls, mostly asleep since August, begin to come back in late winter as early melt and rain reach the Merced. By ", React.createElement("a", {
     href: "/articles/yosemite-in-march"
   }, "March"), ", Yosemite Falls is a waterfall again rather than a stain, and the whole hydrological year described in ", React.createElement("a", {
     href: "/articles/yosemite-waterfalls-guide"
@@ -47,5 +51,9 @@ window.ARTICLE_BODIES["yosemite-in-winter"] = function YosemiteInWinterBody() {
     href: "https://www.nps.gov/yose/planyourvisit/seasonal.htm",
     target: "_blank",
     rel: "noopener noreferrer"
-  }, "Seasonal Road Closures, NPS Yosemite"))));
+  }, "Seasonal Road Closures, NPS Yosemite")), React.createElement("li", null, React.createElement("a", {
+    href: "https://www.travelyosemite.com/special-offers/specials-packages",
+    target: "_blank",
+    rel: "noopener noreferrer"
+  }, "Specials & Packages, Travel Yosemite (winter 2026-27 lodging promotions, as published September 2026)"))));
 };
