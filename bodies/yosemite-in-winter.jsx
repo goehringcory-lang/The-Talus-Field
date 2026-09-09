@@ -90,6 +90,10 @@ window.ARTICLE_BODIES["yosemite-in-winter"] = function YosemiteInWinterBody() {
       </p>
 
       <p>
+        For once, the numbers. The concessioner's own winter promotions, as published on its specials page this September, put a floor under the season: <strong>the Ahwahnee from $389</strong> on select two-night stays (code WINTER2027, suites excluded), <strong>Yosemite Valley Lodge as low as $172</strong> on stays of two nights or more (code WNTRYVL), and <strong>Curry Village as low as $95 a night</strong> (code WNTR26). All three run on select dates from late November through March 25, Curry Village from December 13, and all three carry the same two blackout windows, which tell you exactly when the park expects a crowd: December 23 through January 2, and February 12 through 20, the firefall's peak and Presidents' Day weekend. The first night is due at booking and refundable up to seven days out. Rates move with the date, so treat these as the low end rather than a promise, and check <a href="https://www.travelyosemite.com/special-offers/specials-packages" target="_blank" rel="noopener noreferrer">the specials page</a> for what is actually on offer when you book.
+      </p>
+
+      <p>
         The waterfalls, mostly asleep since August, begin to come back in late winter as early melt and rain reach the Merced. By <a href="/articles/yosemite-in-march">March</a>, Yosemite Falls is a waterfall again rather than a stain, and the whole hydrological year described in <a href="/articles/yosemite-waterfalls-guide">the waterfalls guide</a> starts over. Late winter also brings one of the park's oddest small phenomena: on the coldest early-spring mornings, Yosemite Creek can run with <strong>frazil ice</strong>, a slush of ice crystals that moves down the channel like slow lava and piles into banks of white. It is a niche thing to chase and a story for another article. Consider it the park's way of saying the quiet season is ending.
       </p>
 
@@ -118,6 +122,7 @@ window.ARTICLE_BODIES["yosemite-in-winter"] = function YosemiteInWinterBody() {
         <li><a href="https://www.nps.gov/yose/planyourvisit/tirechains.htm" target="_blank" rel="noopener noreferrer">Tire Chain Requirements, NPS Yosemite</a></li>
         <li><a href="https://www.travelyosemite.com/winter/badger-pass-ski-area/" target="_blank" rel="noopener noreferrer">Badger Pass Ski Area, Travel Yosemite</a></li>
         <li><a href="https://www.nps.gov/yose/planyourvisit/seasonal.htm" target="_blank" rel="noopener noreferrer">Seasonal Road Closures, NPS Yosemite</a></li>
+        <li><a href="https://www.travelyosemite.com/special-offers/specials-packages" target="_blank" rel="noopener noreferrer">Specials &amp; Packages, Travel Yosemite (winter 2026-27 lodging promotions, as published September 2026)</a></li>
       </ul>
     </>
   );

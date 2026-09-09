@@ -100,7 +100,7 @@ window.ARTICLE_BODIES["where-to-stay-in-yosemite"] = function WhereToStayInYosem
       </p>
 
       <p>
-        The other lever is the calendar. <strong>Winter is dramatically easier and cheaper.</strong> The seasonal operations close, but the Ahwahnee, the Lodge, and a reduced Curry Village run all year, rates drop, and midweek availability in January is a different universe from July. If your goal is a night at the Ahwahnee without a fight, <a href="/articles/yosemite-in-winter">winter</a> is when it happens.
+        The other lever is the calendar. <strong>Winter is dramatically easier and cheaper.</strong> The seasonal operations close, but the Ahwahnee, the Lodge, and a reduced Curry Village run all year, rates drop, and midweek availability in January is a different universe from July. If your goal is a night at the Ahwahnee without a fight, <a href="/articles/yosemite-in-winter">winter</a> is when it happens. <a href="/articles/yosemite-in-winter">The winter guide</a> quotes the concessioner's published floor rates for the Ahwahnee, the Lodge and Curry Village, and the blackout weeks around them, so you know what "cheaper" means before you search.
       </p>
 
       <h2 id="sec-6-the-alternative-for-honesty-s-sake">The alternative, for honesty's sake</h2>
