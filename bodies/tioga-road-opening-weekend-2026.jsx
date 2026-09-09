@@ -6,11 +6,11 @@ window.ARTICLE_BODIES["tioga-road-opening-weekend-2026"] = function TiogaRoadOpe
   return (
     <>
       <p className="dropcap">
-        Tioga Road (Highway 120) in Yosemite National Park opens Friday, May 15, 2026. That is well ahead of the long-term average opening of May 28. <a href="/articles/glacier-point-road-open-2026">Glacier Point Road already opened on May 9</a>. <a href="/articles/yosemite-without-reservations-2026">No day-use reservations are required to enter Yosemite this year</a>, just a standard entrance pass.
+        Tioga Road (Highway 120) in Yosemite National Park opened Friday, May 15, 2026, at 8 a.m. That was well ahead of the long-term average opening of May 28. <a href="/articles/glacier-point-road-open-2026">Glacier Point Road had already opened on May 9</a>. <a href="/articles/yosemite-without-reservations-2026">No day-use reservations are required to enter Yosemite this year</a>, just a standard entrance pass.
       </p>
 
       <p>
-        <strong>Tioga Pass status (May 13, 2026):</strong> plowed, gate scheduled to come up Friday morning. For live updates, text "ynptraffic" to 333111 or check <a href="https://www.nps.gov/yose/planyourvisit/tioga.htm" target="_blank" rel="noopener noreferrer">nps.gov/yose/planyourvisit/tioga.htm</a>. If you just need the standing version, the window, what is actually open in week one, and what to bring, <a href="/tioga-opening">the Tioga opening page</a> is the short version, kept current each season.
+        <strong>Tioga Pass status (September 9, 2026):</strong> open, and it has been since May 15. The Park Service's standing line is that the road stays open until sometime in November; the last five seasons closed between October 21 and November 15. For live updates, call 209/372-0200 (press 1, then 1) or check <a href="https://www.nps.gov/yose/planyourvisit/conditions.htm" target="_blank" rel="noopener noreferrer">nps.gov/yose/planyourvisit/conditions.htm</a>. If you just need the standing version, the window, what is actually open in week one, and what to bring, <a href="/tioga-opening">the Tioga opening page</a> is the short version, kept current each season.
       </p>
 
       <h2>What's open on Tioga Road opening weekend</h2>
@@ -20,14 +20,14 @@ window.ARTICLE_BODIES["tioga-road-opening-weekend-2026"] = function TiogaRoadOpe
       </p>
 
       <p>
-        What you get this weekend is the road itself. A ribbon of asphalt through twelve-foot snow walls, glassy half-frozen lakes, snowmelt creeks running hard, and a high country still pulling itself out of winter. That is a spectacular thing to drive through. It is also a spectacular thing to be unprepared for.
+        What you get on opening weekend is the road itself. A ribbon of asphalt through twelve-foot snow walls, glassy half-frozen lakes, snowmelt creeks running hard, and a high country still pulling itself out of winter. That is a spectacular thing to drive through. It is also a spectacular thing to be unprepared for.
       </p>
 
       <p>
         Snow conditions in mid-May still include big drifts at Olmsted Point, ice along Tenaya Lake's shaded shore, and lingering snowpack on most trails above 8,500 feet.
       </p>
 
-      <p>Here is the honest breakdown.</p>
+      <p>Here is the honest breakdown as it stood on opening weekend, with the dates the rest of Tuolumne came online this year.</p>
 
       <h3>What's open</h3>
 
@@ -43,14 +43,14 @@ window.ARTICLE_BODIES["tioga-road-opening-weekend-2026"] = function TiogaRoadOpe
       <h3>What's not open yet</h3>
 
       <ul>
-        <li>Tuolumne Meadows Campground: still closed; the rehabilitation is ongoing and no opening date has been announced</li>
-        <li>Tuolumne Meadows Grill: opens May 30</li>
-        <li>Tuolumne Meadows Lodge and dining room: opens June 5</li>
-        <li>Tuolumne Meadows Store and Post Office: opens later in summer (currently scheduled for August)</li>
-        <li>Tuolumne Meadows Visitor Center and Wilderness Center: limited or no staffing until late May</li>
-        <li>White Wolf Lodge and campground: closed for the season due to sewer line damage</li>
+        <li>Tuolumne Meadows Campground: closed on opening weekend. The campground reopened in August 2025 after a three-year rehabilitation, and its 2026 season runs July 1 through September 27, reservable on Recreation.gov</li>
+        <li>Tuolumne Meadows Grill: closed on opening weekend. Yosemite Hospitality lists a June 13 opening, and the current Yosemite Guide has it running 8 a.m. to 6 p.m. until September 20</li>
+        <li>Tuolumne Meadows Lodge and dining room: June 5 through September 13</li>
+        <li>Tuolumne Meadows Store and Post Office: closed until later in the summer. Both are running now, the store 8 a.m. to 8 p.m. until September 20, the post office weekdays 9 a.m. to 5 p.m. and Saturdays 9 a.m. to 1 p.m.</li>
+        <li>Tuolumne Meadows Visitor Center and Wilderness Center: limited or no staffing until late May. In season the visitor center runs 9 a.m. to 5 p.m. and the wilderness center 8 a.m. to 5 p.m.</li>
+        <li>White Wolf Lodge, with its store and dining room: closed for all of 2026 due to sewer line damage. The campground did open, July 2 through September 14, with no drinking water</li>
         <li>Gas at Tuolumne Meadows: not in operation (offline for several years now)</li>
-        <li>Potable water: not available anywhere along the road</li>
+        <li>Potable water: not available anywhere along the road on opening weekend</li>
       </ul>
 
       <p>Pack like you are heading into the backcountry, even if you are just driving up for the day.</p>
@@ -66,7 +66,7 @@ window.ARTICLE_BODIES["tioga-road-opening-weekend-2026"] = function TiogaRoadOpe
       </p>
 
       <p>
-        <strong>Arrive early.</strong> The Park Service recommends arriving before 8 a.m. to avoid congestion and full parking lots, especially on opening weekend. Sunrise at Olmsted is one of the best photographs you will ever take in Yosemite, and you will share it with almost no one.
+        <strong>Arrive early.</strong> Before 8 a.m. is the target if you want to beat the congestion and the full parking lots, especially on opening weekend. Sunrise at Olmsted is one of the best photographs you will ever take in Yosemite, and you will share it with almost no one.
       </p>
 
       <h2>The best Tioga Road stops and short hikes for opening weekend</h2>
@@ -76,7 +76,7 @@ window.ARTICLE_BODIES["tioga-road-opening-weekend-2026"] = function TiogaRoadOpe
       <h3>Stop one: Olmsted Point</h3>
 
       <p>
-        You can see Half Dome from a lot of angles in Yosemite, but only from Olmsted Point do you see its back side, the broad northern face, with Clouds Rest rising to its left and Tenaya Canyon dropping away below. The half-mile nature trail south of the parking lot is usually walkable on opening weekend; the slickrock catches the sun and dries fast, even with snow patches in the shaded hollows. The glacial erratics scattered across the polished granite are doing a lot of teaching, if you let them. Each one was carried here by an ice sheet and left when the ice melted out from under it.
+        You can see Half Dome from a lot of angles in Yosemite, but only from Olmsted Point do you see its back side, the broad northern face, with Clouds Rest rising to its left and Tenaya Canyon dropping away below. The short nature trail south of the parking lot is usually walkable on opening weekend; the slickrock catches the sun and dries fast, even with snow patches in the shaded hollows. The glacial erratics scattered across the polished granite are doing a lot of teaching, if you let them. Each one was carried here by an ice sheet and left when the ice melted out from under it.
       </p>
 
       <p>Wear shoes with grip. Bring sunglasses. Snow glare at altitude is fierce.</p>
@@ -88,7 +88,7 @@ window.ARTICLE_BODIES["tioga-road-opening-weekend-2026"] = function TiogaRoadOpe
       </p>
 
       <p>
-        The full Tenaya Lake Loop Trail crosses the inlet on <a href="https://yosemite.org/projects/tenaya-lake-loop-trail-2021/" target="_blank" rel="noopener noreferrer">a boardwalk that Yosemite Conservancy donors helped fund</a> and then traces the south shore through forest. That south shore holds snow and mud longer than anywhere else in the area. If you want to attempt the full 2.5-mile loop, bring waterproof boots, expect slush, and stay on the trail. The <a href="https://yosemite.org/projects/tenaya-lake-loop-trail-revegetation-2023/" target="_blank" rel="noopener noreferrer">revegetation work along the loop</a> is fragile, and meadow soils take years to recover from a single boot print in the wrong place.
+        The full Tenaya Lake Loop Trail crosses the inlet on <a href="https://yosemite.org/projects/tenaya-lake-loop-trail-2021/" target="_blank" rel="noopener noreferrer">a boardwalk that Yosemite Conservancy donors helped fund</a> and then traces the south shore through forest. That south shore holds snow and mud longer than anywhere else in the area. If you want to attempt the full loop around the lake, bring waterproof boots, expect slush, and stay on the trail. The <a href="https://yosemite.org/projects/tenaya-lake-loop-trail-revegetation-2023/" target="_blank" rel="noopener noreferrer">revegetation work along the loop</a> is fragile, and meadow soils take years to recover from a single boot print in the wrong place.
       </p>
 
       <p>For most people, an unhurried hour along the east beach is exactly the right move.</p>
@@ -103,7 +103,7 @@ window.ARTICLE_BODIES["tioga-road-opening-weekend-2026"] = function TiogaRoadOpe
 
       <ul>
         <li><strong><a href="/map?stop=pothole-dome">Pothole Dome</a></strong> at the west end of the meadow. A one-mile round-trip scramble up polished granite with a panoramic view of Tuolumne, Lembert Dome, and the Sierra crest. The approach across the meadow edge will be wet, sometimes flooded, so stick to the established path. The granite itself dries fast.</li>
-        <li><strong>Soda Springs and Parsons Lodge</strong> from the Lembert Dome parking area, about 1.5 miles round-trip on a flat dirt road. The historic lodge building is closed until summer staffing arrives, but the exterior, the naturally carbonated springs bubbling up through iron-orange sediment, and the Tuolumne River running hard with snowmelt are all yours. Kids love the springs.</li>
+        <li><strong>Soda Springs and Parsons Lodge</strong> from the Lembert Dome parking area, 1.4 miles round-trip on a flat dirt road. The historic lodge building is closed until summer staffing arrives, but the exterior, the naturally carbonated springs bubbling up through iron-orange sediment, and the Tuolumne River running hard with snowmelt are all yours. Kids love the springs.</li>
       </ul>
 
       <p>
@@ -113,7 +113,7 @@ window.ARTICLE_BODIES["tioga-road-opening-weekend-2026"] = function TiogaRoadOpe
       <h2>Driving Tioga Pass east to Lee Vining and Mono Lake</h2>
 
       <p>
-        This is the part that makes opening weekend a full trip rather than a day in the park. Once you cross Tioga Pass at 9,945 feet, the road drops more than 3,000 feet in twelve miles down to the Mono Basin, and the world changes underneath you. Granite gives way to volcanic landscape. The Sierra wall stands behind you, the Great Basin opens ahead, and Mono Lake spreads out below with its white tufa towers and a summer population of up to two million migratory birds.
+        This is the part that makes opening weekend a full trip rather than a day in the park, and the pass is the reason <a href="/articles/yosemite-from-los-angeles">the Highway 395 route from Los Angeles</a> exists at all for the summer months. Once you cross Tioga Pass at 9,945 feet, the road drops more than 3,000 feet in twelve miles down to the Mono Basin, and the world changes underneath you. Granite gives way to volcanic landscape. The Sierra wall stands behind you, the Great Basin opens ahead, and Mono Lake spreads out below with its white tufa towers and a summer population of up to two million migratory birds.
       </p>
 
       <p>
@@ -125,21 +125,21 @@ window.ARTICLE_BODIES["tioga-road-opening-weekend-2026"] = function TiogaRoadOpe
       <p>Lee Vining has more lore than it has dining options, and not all of the lore is still earned.</p>
 
       <p>
-        <strong>Whoa Nellie Deli</strong> at the Tioga Gas Mart is the famous one. The fish tacos built its reputation in the late 1990s, and they are still on the menu. The original chef, Matt Toomey, left in 2012 to open his own place in Mammoth, and over the years the deli has slipped a little. Portions are still generous, the view of Mono Lake from the picnic tables is still wonderful, and the Thursday and Sunday evening live music is still a great scene. But prices have crept up, the food is more uneven than it used to be, and the "world famous" billing is doing a lot of heavy lifting now. Go for the experience and the view. Order the tacos and the fries. Manage your expectations.
+        <strong>Whoa Nellie Deli</strong> at the Tioga Gas Mart is the famous one. The fish tacos built its reputation in the late 1990s, and they are still on the menu. The original chef, Matt Toomey, left in 2012 to open his own place in Mammoth, and over the years the deli has slipped a little. Portions are still generous, the view of Mono Lake from the picnic tables is still wonderful, and the summer live music, Thursday evenings and Sunday afternoons in 2026, is still a great scene. But prices have crept up, the food is more uneven than it used to be, and the "world famous" billing is doing a lot of heavy lifting now. Go for the experience and the view. Order the tacos and the fries. Manage your expectations.
       </p>
 
       <p>
-        <strong>Latte Da Coffee Café</strong> at the El Mono Motel, just down Highway 395 in town, is what I find myself recommending more often these days. It is small, family-run, and all-organic. There is a garden out back with a few tables, and the pace is exactly the opposite of the Mobil-station bustle. Pastries, espresso, an unhurried breakfast. The El Mono Motel itself is one of those quirky eleven-room places that the eastern Sierra still has a few of, every room decorated differently, and the café is folded right into it. If you are doing a full day on the road, Latte Da in the morning and a Whoa Nellie picnic in the afternoon is a nice way to honor both eras.
+        <strong>Latte Da Coffee Café</strong> at the El Mono Motel, just down Highway 395 in town, is what I find myself recommending more often these days. It is small, and the coffee is organic. There is a garden out back with a few tables, and the pace is exactly the opposite of the Mobil-station bustle. Pastries, espresso, an unhurried breakfast. The El Mono Motel itself is one of those quirky eleven-room places that the eastern Sierra still has a few of, every room decorated differently, and the café is folded right into it. If you are doing a full day on the road, Latte Da in the morning and a Whoa Nellie picnic in the afternoon is a nice way to honor both eras.
       </p>
 
       <p>
-        Other reliable options in town: Nicely's for a classic diner breakfast, Bodie Mike's for barbecue, the Lee Vining Market for picnic supplies.
+        Other reliable options in town: Nicely's for a classic diner breakfast, Bodie Mike's for barbecue, the Mono Market for picnic supplies.
       </p>
 
       <h3>Make a day of Mono Lake</h3>
 
       <p>
-        If you have a few hours left in the afternoon, drive south of Lee Vining on Highway 395 to <strong>South Tufa</strong> at the Mono Lake Tufa State Natural Reserve (south on 395, then east on Highway 120, about ten miles all told). Three dollars per adult, free under 16, and your America the Beautiful pass covers it. A boardwalk and a one-mile loop carry you through a forest of calcium carbonate towers that grew underwater at freshwater springs, then emerged when the lake dropped after Los Angeles began diverting the basin's streams in 1941. The story of how the lake was saved is one of the great American conservation stories, and the <strong>Mono Lake Committee Information Center and Bookstore</strong> in downtown Lee Vining (open 9 a.m. to 5 p.m. daily) is the right place to learn it. Their HD film, "The Mono Lake Story," is a roughly twenty-five-minute primer.
+        If you have a few hours left in the afternoon, drive south of Lee Vining on Highway 395 to <strong>South Tufa</strong> at the Mono Lake Tufa State Natural Reserve (south on 395, then east on Highway 120, about ten miles all told). Three dollars per person at the Forest Service fee station, and your America the Beautiful pass covers it. A boardwalk and a one-mile loop carry you through a forest of calcium carbonate towers that grew underwater at freshwater springs, then emerged when the lake dropped after Los Angeles began diverting the basin's streams in 1941. The story of how the lake was saved is one of the great American conservation stories, and the <strong>Mono Lake Committee Information Center and Bookstore</strong> in downtown Lee Vining (open 9 a.m. to 5 p.m. daily) is the right place to learn it. Their HD film, "The Mono Lake Story," is the primer.
       </p>
 
       <p>
@@ -157,7 +157,7 @@ window.ARTICLE_BODIES["tioga-road-opening-weekend-2026"] = function TiogaRoadOpe
         <li>Layers: a puffy jacket and a shell, even if the forecast looks mild. Temperatures swing 30 to 40 degrees between dawn and afternoon.</li>
         <li>Sunglasses and sunscreen. Snow glare and 9,000-foot UV are a combination.</li>
         <li>Plenty of water and food. There is no source for either on Tioga Road yet.</li>
-        <li>A bear-aware approach to food even on a day hike. Black bears are out of dens, hungry, and active in meadows. Use the lockers at trailheads.</li>
+        <li>A bear-aware approach to food even on a day hike. Black bears are out of dens, hungry, and <a href="/articles/yosemite-wildlife-viewing-guide">active in the meadows at first and last light</a>. Use the lockers at trailheads.</li>
       </ul>
 
       <p>
@@ -171,7 +171,7 @@ window.ARTICLE_BODIES["tioga-road-opening-weekend-2026"] = function TiogaRoadOpe
       </p>
 
       <p>
-        Stay on trails. Stay on boardwalks. Use the pullouts. Pack out everything you bring in. Give wildlife room (50 yards from <a href="https://yosemite.org/keep-bears-wild/" target="_blank" rel="noopener noreferrer">black bears</a> is the park standard). Bear spray is not permitted in Yosemite. Store all scented items in lockers or canisters, even snacks in your car at a trailhead.
+        Stay on trails. Stay on boardwalks. Use the pullouts. Pack out everything you bring in. Give wildlife room (50 yards from <a href="https://yosemite.org/keep-bears-wild/" target="_blank" rel="noopener noreferrer">black bears</a> is the park standard). <a href="/articles/is-bear-spray-allowed-in-yosemite">Bear spray is not permitted in Yosemite</a>, in the car or on the trail. Store all scented items in lockers or canisters, even snacks in your car at a trailhead.
       </p>
 
       <p>
@@ -181,21 +181,21 @@ window.ARTICLE_BODIES["tioga-road-opening-weekend-2026"] = function TiogaRoadOpe
       <h2>Tioga Road 2026: frequently asked questions</h2>
 
       <h3>When does Tioga Road open in 2026?</h3>
-      <p>Friday, May 15, 2026. That is well ahead of Tioga's long-term average opening date of May 28.</p>
+      <p>It opened Friday, May 15, 2026, well ahead of Tioga's long-term average opening date of May 28.</p>
 
       <h3>Is Tioga Pass open right now?</h3>
       <p>
-        As of May 13, 2026, the road is plowed and scheduled to open Friday. Text "ynptraffic" to 333111 for live updates, or check <a href="https://www.nps.gov/yose/planyourvisit/tioga.htm" target="_blank" rel="noopener noreferrer">nps.gov/yose/planyourvisit/tioga.htm</a>.
+        As of September 9, 2026, yes. It typically closes for the season in November, with the first lasting snow. Call 209/372-0200 (press 1, then 1) for live updates, or check <a href="https://www.nps.gov/yose/planyourvisit/conditions.htm" target="_blank" rel="noopener noreferrer">nps.gov/yose/planyourvisit/conditions.htm</a>.
       </p>
 
       <h3>Is Highway 120 through Yosemite open?</h3>
       <p>
-        Yes. Highway 120 (Tioga Road) through Yosemite opens Friday, May 15, 2026. Highway 120 west of the park (Big Oak Flat to Crane Flat) is open year-round.
+        Yes. Highway 120 (Tioga Road) through Yosemite opened Friday, May 15, 2026, and stays open until the first lasting snow, typically in November. Highway 120 west of the park (Big Oak Flat to Crane Flat) is open year-round, and it is one of the two routes the park points to <a href="/articles/highway-140-closed-yosemite">when Highway 140 closes</a>.
       </p>
 
       <h3>What is the elevation of Tioga Pass?</h3>
       <p>
-        Tioga Pass sits at 9,945 feet (3,031 meters), the highest state highway pass in California. Tioga Road climbs from 6,200 feet at Crane Flat to the pass over roughly 39 miles.
+        Tioga Pass sits at 9,945 feet (3,031 meters), the highest state highway pass in California. Tioga Road climbs from 6,200 feet at Crane Flat to the pass over roughly 47 miles.
       </p>
 
       <h3>Do I need a reservation to enter Yosemite in 2026?</h3>
@@ -203,15 +203,15 @@ window.ARTICLE_BODIES["tioga-road-opening-weekend-2026"] = function TiogaRoadOpe
 
       <h3>Is the Tuolumne Meadows store open on opening weekend?</h3>
       <p>
-        No. The grill opens May 30, the lodge June 5, and the store opens later in the summer (currently scheduled for August).
+        No. This year the lodge opened June 5, the grill in mid-June, and the store and post office later in the summer. The store and grill close September 20, the lodge September 13.
       </p>
 
       <h3>Can I camp at Tuolumne Meadows on opening weekend?</h3>
-      <p>No. The Tuolumne Meadows Campground remains closed while its rehabilitation continues, and no opening date has been announced for 2026. Check Recreation.gov for updates.</p>
+      <p>No. The campground's 2026 season runs July 1 through September 27, reservable on Recreation.gov. It reopened in August 2025 after a three-year rehabilitation.</p>
 
       <h3>How long does it take to drive Tioga Road?</h3>
       <p>
-        Tioga Road runs about 39 miles from Crane Flat to the Tioga Pass entrance station. Allow roughly 90 minutes one-way without stops, or a full day with Olmsted Point, Tenaya Lake, and Tuolumne Meadows. With Lee Vining and Mono Lake added on, plan a long, perfect day.
+        Tioga Road runs 39 miles from Crane Flat to Tuolumne Meadows and about 47 to the Tioga Pass entrance station. Allow roughly 90 minutes one-way without stops, or a full day with Olmsted Point, Tenaya Lake, and Tuolumne Meadows. With Lee Vining and Mono Lake added on, plan a long, perfect day.
       </p>
 
       <p style={{ marginTop: 32, fontStyle: "italic", color: "var(--ink-3)" }}>
