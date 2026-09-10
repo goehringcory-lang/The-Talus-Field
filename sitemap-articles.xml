@@ -5,7 +5,7 @@
   <!-- Hub pages -->
   <url>
     <loc>https://thetalusfieldjournal.com/</loc>
-    <lastmod>2026-09-09</lastmod>
+    <lastmod>2026-09-10</lastmod>
     <image:image>
       <image:loc>https://thetalusfieldjournal.com/img/responsive/half-dome-winter-storm-1600.jpg</image:loc>
       <image:title>Half Dome in a clearing winter storm</image:title>
@@ -13,11 +13,11 @@
   </url>
   <url>
     <loc>https://thetalusfieldjournal.com/articles</loc>
-    <lastmod>2026-09-09</lastmod>
+    <lastmod>2026-09-10</lastmod>
   </url>
   <url>
     <loc>https://thetalusfieldjournal.com/planning</loc>
-    <lastmod>2026-09-09</lastmod>
+    <lastmod>2026-09-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -31,7 +31,7 @@
   <!-- Sections -->
   <url>
     <loc>https://thetalusfieldjournal.com/section/planning</loc>
-    <lastmod>2026-09-09</lastmod>
+    <lastmod>2026-09-10</lastmod>
   </url>
   <url>
     <loc>https://thetalusfieldjournal.com/section/trails</loc>
@@ -161,6 +161,14 @@
   </url>
 
   <!-- Articles -->
+  <url>
+    <loc>https://thetalusfieldjournal.com/articles/yosemite-from-las-vegas</loc>
+    <lastmod>2026-09-10</lastmod>
+    <image:image>
+      <image:loc>https://thetalusfieldjournal.com/img/responsive/tenaya-lake-1600.jpg</image:loc>
+      <image:title>Tenaya Lake beside the Tioga Road, the high-country lake an eastern arrival passes on the way down to the Valley</image:title>
+    </image:image>
+  </url>
   <url>
     <loc>https://thetalusfieldjournal.com/articles/highway-140-closed-yosemite</loc>
     <lastmod>2026-09-07</lastmod>

@@ -128,6 +128,13 @@ window.ARTICLE_INTENT = {
   // Highway 41 route is open all year and the article says what winter does to it.
   "highway-140-closed-yosemite":               { stage: ["dates-set", "week-before", "in-park"], who: [], topic: ["transportation", "lodging", "conditions"] },
   "yosemite-from-los-angeles":                 { stage: ["before-booking", "dates-set"], who: ["first-trip"], topic: ["transportation", "lodging"] },
+  // The Las Vegas drive is the Los Angeles piece's sibling and tags the same
+  // way: written for a first trip, `lodging` earned by the where-to-break-the-
+  // drive section (the Lee Vining night, the Death Valley night, Oakhurst in
+  // winter). No ARTICLE_MONTHS entry, deliberately: the article is about both
+  // seasons and tells the reader which road each month gives them, so a month
+  // window would hide it from exactly the January planner it is written for.
+  "yosemite-from-las-vegas":                   { stage: ["before-booking", "dates-set"], who: ["first-trip"], topic: ["transportation", "lodging"] },
   "yosemite-day-trip-from-bay-area":           { stage: ["before-booking", "dates-set", "week-before"], who: [], topic: ["transportation", "conditions"] },
 
   // The August 2026 selector-gap pair. A sweep of all 18,200 trip-selector
