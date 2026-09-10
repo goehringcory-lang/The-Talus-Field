@@ -1,5 +1,31 @@
 [
   {
+    "slug": "yosemite-from-las-vegas",
+    "cat": "planning",
+    "title": "Yosemite from Las Vegas: Two Roads, One Pass, and the Month That Decides",
+    "dek": "The Park Service quotes 400 miles and eight hours from Las Vegas to Yosemite Valley over Tioga Pass, and 495 miles and up to ten around the bottom of the mountains when the pass is shut. Which drive you get is decided by the calendar. The Tonopah road and the Death Valley road to US 395 and when each is the right one, why the two parks' seasons are nearly opposite, the pass itself and the fees at the top of it, the Lee Vining night that makes the trip work, the winter road through Bakersfield and the better winter shape hidden in the park's own detour table, the loop and which way round to drive it, and the summer bus from Mammoth Lakes.",
+    "seoDek": "Las Vegas to Yosemite: drive time both seasons, the Tioga Pass question, the Tonopah and Death Valley roads, where to sleep, the winter route via Bakersfield.",
+    "date": "September 10, 2026",
+    "isoDate": "2026-09-10",
+    "isoModified": "2026-09-10",
+    "read": "12 min",
+    "image": "img/tenaya-lake.jpg",
+    "ogImage": { "url": "img/responsive/tenaya-lake-1600.jpg", "width": 1600, "height": 1200 },
+    "placeholder": "Tenaya Lake beside the Tioga Road, the high-country lake an eastern arrival passes on the way down to the Valley",
+    "wordCount": 3185,
+    "keywords": ["Las Vegas to Yosemite", "Las Vegas to Yosemite drive time", "how far is Yosemite from Las Vegas", "Las Vegas to Yosemite road trip", "Las Vegas to Yosemite via Death Valley", "Las Vegas to Yosemite in winter", "Tioga Pass from Las Vegas", "is Tioga Pass open", "Las Vegas to Yosemite without a car", "Death Valley and Yosemite road trip"],
+    "faq": [
+      { "q": "How long does it take to drive from Las Vegas to Yosemite?", "a": "The Park Service's directions page gives two figures. In season, by US 95 and Highway 120 over Tioga Pass, it is 400 miles and about eight hours to Yosemite Valley, and the page dates that road June through October. In winter, by I-15 and Highway 41 through Bakersfield and Fresno, it is 495 miles and eight to ten hours. Both are to the Valley floor in clear conditions, so treat eight hours as the floor, not the estimate." },
+      { "q": "Can you do Yosemite as a day trip from Las Vegas?", "a": "No. Either road is a full day behind the wheel, and neither figure leaves room for a day trip. From Las Vegas, Yosemite is a two-night trip at the very least, and the version worth the fuel is three." },
+      { "q": "Is Tioga Pass open, and why does it matter for the Las Vegas drive?", "a": "Tioga Pass, at 9,945 feet, is the only way into Yosemite from the east. The Park Service says Tioga Road is typically open to vehicles from late May or June until sometime in November; in 2026 it opened on May 15, and in the last five seasons it closed between October 21 and November 15. While it is open, the drive arrives in the high country over the pass. While it is closed, the trip goes around the southern end of the Sierra through Bakersfield and the South Entrance. Check the park's road line at 209/372-0200 (then 1, then 1) before booking and again the night before." },
+      { "q": "Which route from Las Vegas to Yosemite is best: through Tonopah or through Death Valley?", "a": "The Park Service's 400-mile route runs US 95 north to Tonopah, US 6 west to Benton, and Highway 120 west to US 395 just south of Lee Vining. The Death Valley road enters the park from Beatty on Nevada 374 or from Death Valley Junction on Highway 190, crosses on 190 past Stovepipe Wells and Panamint Springs to Olancha on US 395, and is somewhat longer and slower. In July, with Death Valley's average highs of 116°F, take the Tonopah road. In late May and June or October into early November, the Death Valley road is the trip." },
+      { "q": "What is the winter route from Las Vegas to Yosemite when Tioga Pass is closed?", "a": "The Park Service's published detour is I-15 south to Barstow, Highway 58 west to Bakersfield, Highway 99 north to Fresno, and Highway 41 north into the park: 495 miles and eight to ten hours. Chains are most often required from November through March, all vehicles must carry them when controls are posted, rental cars and four-wheel drives included. A better winter shape is to sleep in Death Valley the first night, while it is mild, and take the park's Death Valley detour, Highway 190 west to US 395, south to Highway 14, Highway 58 to Bakersfield, then 99 and 41, to Oakhurst or Fish Camp the second day." },
+      { "q": "Where should you stop overnight between Las Vegas and Yosemite?", "a": "In season, sleep on the east side of the mountains and cross Tioga Pass in the morning. Lee Vining is the natural stop for one night, with Mammoth Lakes and June Lake as the deeper bench of rooms about thirty miles south. In the shoulder windows, a night in Death Valley at Furnace Creek, Stovepipe Wells, or Panamint Springs turns the drive into two comfortable days. In winter, sleep in Death Valley the first night and in Oakhurst or Fish Camp the second." },
+      { "q": "What does the drive cost at the gates?", "a": "Yosemite's entrance fee is $35 per private vehicle for seven consecutive days, cards or mobile payment only, and in 2026 each non-US resident aged sixteen and older also pays a $100 non-resident fee unless the party holds an annual pass. Death Valley charges $30 per vehicle for seven days, has no staffed entrance stations, and takes payment online, at automated machines that accept physical cards only, or at the Furnace Creek visitor center and Stovepipe Wells ranger station in business hours. An $80 America the Beautiful pass covers both vehicle fees." }
+    ],
+    "related": ["yosemite-from-los-angeles", "tuolumne-meadows-in-a-day", "getting-to-yosemite", "yosemite-gateway-towns-compared", "tioga-road-opening-weekend-2026"]
+  },
+  {
     "slug": "highway-140-closed-yosemite",
     "cat": "planning",
     "title": "When Highway 140 Closes: Getting Into Yosemite Anyway, and What It Does to a Mariposa Booking",
@@ -49,7 +75,7 @@
       { "q": "Is the Highway 395 route over Tioga Pass a good way to reach Yosemite from Los Angeles?", "a": "Only in the summer window and only if the high country is the point. Tioga Road is typically open to vehicles from late May or June until sometime in November, and the eastern road is longer on the odometer and slower per mile than Highway 41. From Lee Vining, Yosemite Valley is about 75 miles and at least ninety minutes over the Tioga Road, with no gas between Lee Vining and Crane Flat. When the pass is closed, the Park Service's own detour from Lee Vining to the Valley runs to 390 or 410 miles and eight hours." },
       { "q": "How do I get from Los Angeles to Yosemite without a car?", "a": "Two ways. Take an Amtrak Thruway bus from Los Angeles Union Station to Bakersfield, the San Joaquins train to Merced, and the YARTS bus up Highway 140 to the Valley, which runs year-round. Or fly to Fresno Yosemite International, the closest commercial airport to the park, and take the summer YARTS Highway 41 bus from the airport: in 2026 it runs May 22 through September 25, with an adult fare of $20 one way and $40 round trip to Yosemite Valley, children five and under free, and one child aged six to twelve free with each paying adult." }
     ],
-    "related": ["getting-to-yosemite", "yosemite-gateway-towns-compared", "yosemite-day-trip-from-bay-area", "mariposa-grove-how-to-visit", "yosemite-shuttle-and-yarts"]
+    "related": ["getting-to-yosemite", "yosemite-gateway-towns-compared", "yosemite-from-las-vegas", "yosemite-day-trip-from-bay-area", "mariposa-grove-how-to-visit"]
   },
   {
     "slug": "yosemite-facelift-volunteer-guide",
@@ -328,7 +354,7 @@
       { "q": "When is Tioga Road open?", "a": "Tioga Road opened on May 15 in 2026, unusually early. In a typical year it opens in late May or early June and closes with the first serious snow in late October or November. The date moves with the snowpack every year, so check current conditions rather than planning around an average." },
       { "q": "Are afternoon thunderstorms a problem in the Yosemite high country?", "a": "In July and August the high country builds thunderstorms out of a clear morning with startling speed: clear at dawn, cumulus stacking by late morning, lightning possible from early afternoon. Plan the day around it by doing the exposed thing first. Domes, summits and open granite in the morning; meadow, forest, lakeshore and lunch in the afternoon. Carry a rain shell even when the morning makes it look ridiculous." }
     ],
-    "related": ["cathedral-lakes-day-hike", "tioga-road-opening-weekend-2026", "yosemite-wildflowers-guide", "yosemite-stargazing-where-to-look-up", "memorial-day-skip-the-valley-go-high-2026"]
+    "related": ["cathedral-lakes-day-hike", "tioga-road-opening-weekend-2026", "yosemite-from-las-vegas", "yosemite-wildflowers-guide", "yosemite-stargazing-where-to-look-up"]
   },
   {
     "slug": "mariposa-grove-how-to-visit",
@@ -763,7 +789,7 @@
       { "q": "Do I need a reservation to drive into Yosemite in 2026?", "a": "No. The day-use reservation systems that ran from 2020 through 2025 are gone; you simply drive up. The entrance station is cashless: the $35 vehicle fee, good for seven days, goes on a card, or you show an $80 America the Beautiful annual pass." },
       { "q": "Can I get to Yosemite without a car?", "a": "Yes. YARTS buses run into Yosemite Valley year-round on Highway 140, connecting from the Amtrak station in Merced through Mariposa and El Portal, and seasonally, roughly May through September, from Fresno on Highway 41, Sonora on Highway 120, and Mammoth Lakes and Lee Vining on Highway 395. The free Valley shuttle takes over once you arrive. Whether the fare covers the park entrance fee is currently unsettled: the Park Service says bus riders do not pay it, while the YARTS fares page says it is not included, so budget for it." }
     ],
-    "related": ["yosemite-shuttle-and-yarts", "yosemite-valley-parking-guide", "yosemite-gateway-towns-compared", "highway-140-closed-yosemite", "yosemite-day-trip-from-bay-area"]
+    "related": ["yosemite-shuttle-and-yarts", "yosemite-gateway-towns-compared", "highway-140-closed-yosemite", "yosemite-from-los-angeles", "yosemite-from-las-vegas"]
   },
   {
     "slug": "yosemite-wilderness-permits-guide",
@@ -1292,7 +1318,7 @@
       { "q": "Can I camp at Tuolumne Meadows on opening weekend?", "a": "No, not on opening weekend. The campground's 2026 season runs July 1 through September 27, reservable on Recreation.gov; it reopened in August 2025 after a three-year rehabilitation." },
       { "q": "How long does it take to drive Tioga Road?", "a": "Tioga Road runs 39 miles from Crane Flat to Tuolumne Meadows and about 47 to the Tioga Pass entrance station. Allow about 90 minutes one-way without stops, or a full day with Olmsted Point, Tenaya Lake, and Tuolumne Meadows." }
     ],
-    "related": ["cathedral-lakes-day-hike", "tuolumne-meadows-in-a-day", "memorial-day-skip-the-valley-go-high-2026", "yosemite-stargazing-where-to-look-up", "when-to-visit-yosemite-2026-crowd-forecast"]
+    "related": ["cathedral-lakes-day-hike", "tuolumne-meadows-in-a-day", "yosemite-from-las-vegas", "memorial-day-skip-the-valley-go-high-2026", "yosemite-stargazing-where-to-look-up"]
   },
   {
     "slug": "so-you-want-to-hike-half-dome",

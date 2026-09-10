@@ -110,6 +110,7 @@ window.planningSeriesFor = function (slug) {
 // verifies this map stays in sync with the files in bodies/.
 // ============================================================
 window.BODY_VERSIONS = {
+  "yosemite-from-las-vegas": 1,
   "highway-140-closed-yosemite": 1,
   "yosemite-from-los-angeles": 1,
   "yosemite-facelift-volunteer-guide": 2,
@@ -739,6 +740,20 @@ window.KIT.lists.forEach((l) => {
 });
 
 window.ARTICLES = [
+  {
+    slug: "yosemite-from-las-vegas",
+    cat: "planning",
+    title: "Yosemite from Las Vegas: Two Roads, One Pass, and the Month That Decides",
+    dek: "The Park Service quotes 400 miles and eight hours from Las Vegas to Yosemite Valley over Tioga Pass, and 495 miles and up to ten around the bottom of the mountains when the pass is shut. Which drive you get is decided by the calendar. The Tonopah road and the Death Valley road to US 395 and when each is the right one, why the two parks' seasons are nearly opposite, the pass itself and the fees at the top of it, the Lee Vining night that makes the trip work, the winter road through Bakersfield and the better winter shape hidden in the park's own detour table, the loop and which way round to drive it, and the summer bus from Mammoth Lakes.",
+    seoDek: "Las Vegas to Yosemite: drive time both seasons, the Tioga Pass question, the Tonopah and Death Valley roads, where to sleep, the winter route via Bakersfield.",
+    date: "September 10, 2026",
+    isoDate: "2026-09-10",
+    isoModified: "2026-09-10",
+    read: "12 min",
+    placeholder: "Tenaya Lake beside the Tioga Road, the high-country lake an eastern arrival passes on the way down to the Valley",
+    image: "img/tenaya-lake.jpg",
+    credit: "Photo: Michael Hogarth / Wikimedia Commons (public domain)",
+  },
   {
     slug: "highway-140-closed-yosemite",
     cat: "planning",
@@ -1778,8 +1793,9 @@ window.RELATED = {
   // The two approach pieces (the Bay Area day trip and the Los Angeles drive)
   // are the entrances guide's natural onward reads: a reader who has just
   // picked a gate wants the drive to it.
-  "yosemite-from-los-angeles": ["getting-to-yosemite", "yosemite-gateway-towns-compared", "yosemite-day-trip-from-bay-area", "mariposa-grove-how-to-visit", "yosemite-shuttle-and-yarts", "yosemite-in-winter"],
-  "getting-to-yosemite": ["yosemite-shuttle-and-yarts", "yosemite-valley-parking-guide", "yosemite-gateway-towns-compared", "highway-140-closed-yosemite", "yosemite-day-trip-from-bay-area", "yosemite-from-los-angeles"],
+  "yosemite-from-las-vegas": ["yosemite-from-los-angeles", "tuolumne-meadows-in-a-day", "getting-to-yosemite", "yosemite-gateway-towns-compared", "tioga-road-opening-weekend-2026", "yosemite-in-winter"],
+  "yosemite-from-los-angeles": ["getting-to-yosemite", "yosemite-gateway-towns-compared", "yosemite-from-las-vegas", "yosemite-day-trip-from-bay-area", "mariposa-grove-how-to-visit", "yosemite-shuttle-and-yarts"],
+  "getting-to-yosemite": ["yosemite-shuttle-and-yarts", "yosemite-gateway-towns-compared", "highway-140-closed-yosemite", "yosemite-from-los-angeles", "yosemite-from-las-vegas", "yosemite-day-trip-from-bay-area"],
   "yosemite-shuttle-and-yarts": ["getting-to-yosemite", "yosemite-valley-parking-guide", "highway-140-closed-yosemite", "yosemite-for-non-hikers", "yosemite-accessibility-guide", "yosemite-day-trip-from-bay-area"],
   "yosemite-valley-parking-guide": ["getting-to-yosemite", "yosemite-shuttle-and-yarts", "yosemite-without-reservations-2026", "yosemite-in-one-or-two-days", "mist-trail-the-real-guide"],
   "yosemite-day-trip-from-bay-area": ["yosemite-in-one-or-two-days", "getting-to-yosemite", "yosemite-from-los-angeles", "yosemite-valley-parking-guide", "yosemite-for-non-hikers", "when-to-visit-yosemite-2026-crowd-forecast"],
@@ -1795,7 +1811,7 @@ window.RELATED = {
   "mist-trail-the-real-guide": ["yosemite-waterfalls-guide", "so-you-want-to-hike-half-dome", "four-mile-up-panorama-down", "yosemite-heat-safety-guide", "yosemite-valley-parking-guide"],
   "four-mile-up-panorama-down": ["mist-trail-the-real-guide", "yosemite-photography-spots", "so-you-want-to-hike-half-dome", "yosemite-waterfalls-guide", "glacier-point-road-open-2026"],
   "cathedral-lakes-day-hike": ["tuolumne-meadows-in-a-day", "tioga-road-opening-weekend-2026", "so-you-want-to-hike-half-dome", "first-yosemite-backpacking-trip", "yosemite-wildflowers-guide"],
-  "tuolumne-meadows-in-a-day": ["cathedral-lakes-day-hike", "tioga-road-opening-weekend-2026", "yosemite-wildflowers-guide", "yosemite-stargazing-where-to-look-up", "memorial-day-skip-the-valley-go-high-2026"],
+  "tuolumne-meadows-in-a-day": ["cathedral-lakes-day-hike", "tioga-road-opening-weekend-2026", "yosemite-from-las-vegas", "yosemite-wildflowers-guide", "yosemite-stargazing-where-to-look-up", "memorial-day-skip-the-valley-go-high-2026"],
   "hetch-hetchy-the-other-yosemite-valley": ["yosemite-waterfalls-guide", "yosemite-without-reservations-2026", "yosemite-in-march", "yosemite-wildflowers-guide", "yosemite-glaciers-climate"],
   "yosemite-winter-hikes": ["yosemite-in-winter", "horsetail-fall-firefall", "yosemite-waterfalls-guide", "yosemite-for-non-hikers", "yosemite-photography-spots"],
   "yosemite-waterfalls-guide": ["mist-trail-the-real-guide", "when-to-visit-yosemite-2026-crowd-forecast", "hetch-hetchy-the-other-yosemite-valley", "yosemite-photography-spots", "water-ouzels-waterfalls", "yosemite-in-march"],
@@ -1819,7 +1835,7 @@ window.RELATED = {
   "yosemite-in-fall": ["yosemite-in-september-2026", "when-to-visit-yosemite-2026-crowd-forecast", "yosemite-in-winter", "yosemite-photography-spots", "yosemite-during-smoke-season"],
   "yosemite-in-winter": ["yosemite-winter-hikes", "horsetail-fall-firefall", "when-to-visit-yosemite-2026-crowd-forecast", "yosemite-in-march", "bracebridge-dinner-and-vintners-holidays"],
   "yosemite-in-march": ["yosemite-in-winter", "yosemite-waterfalls-guide", "bears-spring-emergence", "horsetail-fall-firefall", "when-to-visit-yosemite-2026-crowd-forecast"],
-  "tioga-road-opening-weekend-2026": ["cathedral-lakes-day-hike", "tuolumne-meadows-in-a-day", "memorial-day-skip-the-valley-go-high-2026", "yosemite-stargazing-where-to-look-up", "when-to-visit-yosemite-2026-crowd-forecast"],
+  "tioga-road-opening-weekend-2026": ["cathedral-lakes-day-hike", "tuolumne-meadows-in-a-day", "yosemite-from-las-vegas", "memorial-day-skip-the-valley-go-high-2026", "yosemite-stargazing-where-to-look-up", "when-to-visit-yosemite-2026-crowd-forecast"],
   "glacier-point-road-open-2026": ["four-mile-up-panorama-down", "yosemite-photography-spots", "yosemite-stargazing-where-to-look-up", "when-to-visit-yosemite-2026-crowd-forecast", "yosemite-for-non-hikers"],
   "yosemite-heat-safety-guide": ["swimming-in-the-merced", "mist-trail-the-real-guide", "when-to-visit-yosemite-2026-crowd-forecast", "yosemite-during-smoke-season", "yosemite-waterfalls-guide"],
   "yosemite-during-smoke-season": ["yosemite-heat-safety-guide", "yosemite-fire-restrictions-explained", "when-to-visit-yosemite-2026-crowd-forecast", "yosemite-in-fall", "giant-sequoias-fire-adaptation"],

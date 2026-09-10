@@ -1,5 +1,50 @@
 {
   "__comment": "SEO enrichment for the editorial site, keyed by article slug. NOT loaded by the browser runtime (kept out of data.js so the per-page JS payload stays small). The build script scripts/gen-seo-artifacts.mjs merges this with window.ARTICLES from data.js to regenerate articles.json (consumed by edge/seo.js), sitemap.xml, feed.xml, and the article section of llms.txt. Fields: wordCount (number), keywords (string[]), faq ({q,a}[]), trail ({name,distance,elevationGain,difficulty} for hike guides). FAQ answers and trail numbers are drawn from each article's published body; do not invent facts. The one article whose faq lives inline in data.js (yosemite-in-one-or-two-days) is intentionally omitted here; data.js takes precedence for faq.",
+  "yosemite-from-las-vegas": {
+    "wordCount": 3185,
+    "keywords": [
+      "Las Vegas to Yosemite",
+      "Las Vegas to Yosemite drive time",
+      "how far is Yosemite from Las Vegas",
+      "Las Vegas to Yosemite road trip",
+      "Las Vegas to Yosemite via Death Valley",
+      "Las Vegas to Yosemite in winter",
+      "Tioga Pass from Las Vegas",
+      "is Tioga Pass open",
+      "Las Vegas to Yosemite without a car",
+      "Death Valley and Yosemite road trip"
+    ],
+    "faq": [
+      {
+        "q": "How long does it take to drive from Las Vegas to Yosemite?",
+        "a": "The Park Service's directions page gives two figures. In season, by US 95 and Highway 120 over Tioga Pass, it is 400 miles and about eight hours to Yosemite Valley, and the page dates that road June through October. In winter, by I-15 and Highway 41 through Bakersfield and Fresno, it is 495 miles and eight to ten hours. Both are to the Valley floor in clear conditions, so treat eight hours as the floor, not the estimate."
+      },
+      {
+        "q": "Can you do Yosemite as a day trip from Las Vegas?",
+        "a": "No. Either road is a full day behind the wheel, and neither figure leaves room for a day trip. From Las Vegas, Yosemite is a two-night trip at the very least, and the version worth the fuel is three."
+      },
+      {
+        "q": "Is Tioga Pass open, and why does it matter for the Las Vegas drive?",
+        "a": "Tioga Pass, at 9,945 feet, is the only way into Yosemite from the east. The Park Service says Tioga Road is typically open to vehicles from late May or June until sometime in November; in 2026 it opened on May 15, and in the last five seasons it closed between October 21 and November 15. While it is open, the drive arrives in the high country over the pass. While it is closed, the trip goes around the southern end of the Sierra through Bakersfield and the South Entrance. Check the park's road line at 209/372-0200 (then 1, then 1) before booking and again the night before."
+      },
+      {
+        "q": "Which route from Las Vegas to Yosemite is best: through Tonopah or through Death Valley?",
+        "a": "The Park Service's 400-mile route runs US 95 north to Tonopah, US 6 west to Benton, and Highway 120 west to US 395 just south of Lee Vining. The Death Valley road enters the park from Beatty on Nevada 374 or from Death Valley Junction on Highway 190, crosses on 190 past Stovepipe Wells and Panamint Springs to Olancha on US 395, and is somewhat longer and slower. In July, with Death Valley's average highs of 116°F, take the Tonopah road. In late May and June or October into early November, the Death Valley road is the trip."
+      },
+      {
+        "q": "What is the winter route from Las Vegas to Yosemite when Tioga Pass is closed?",
+        "a": "The Park Service's published detour is I-15 south to Barstow, Highway 58 west to Bakersfield, Highway 99 north to Fresno, and Highway 41 north into the park: 495 miles and eight to ten hours. Chains are most often required from November through March, all vehicles must carry them when controls are posted, rental cars and four-wheel drives included. A better winter shape is to sleep in Death Valley the first night, while it is mild, and take the park's Death Valley detour, Highway 190 west to US 395, south to Highway 14, Highway 58 to Bakersfield, then 99 and 41, to Oakhurst or Fish Camp the second day."
+      },
+      {
+        "q": "Where should you stop overnight between Las Vegas and Yosemite?",
+        "a": "In season, sleep on the east side of the mountains and cross Tioga Pass in the morning. Lee Vining is the natural stop for one night, with Mammoth Lakes and June Lake as the deeper bench of rooms about thirty miles south. In the shoulder windows, a night in Death Valley at Furnace Creek, Stovepipe Wells, or Panamint Springs turns the drive into two comfortable days. In winter, sleep in Death Valley the first night and in Oakhurst or Fish Camp the second."
+      },
+      {
+        "q": "What does the drive cost at the gates?",
+        "a": "Yosemite's entrance fee is $35 per private vehicle for seven consecutive days, cards or mobile payment only, and in 2026 each non-US resident aged sixteen and older also pays a $100 non-resident fee unless the party holds an annual pass. Death Valley charges $30 per vehicle for seven days, has no staffed entrance stations, and takes payment online, at automated machines that accept physical cards only, or at the Furnace Creek visitor center and Stovepipe Wells ranger station in business hours. An $80 America the Beautiful pass covers both vehicle fees."
+      }
+    ]
+  },
   "highway-140-closed-yosemite": {
     "wordCount": 2968,
     "keywords": [
