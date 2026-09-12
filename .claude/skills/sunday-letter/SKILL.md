@@ -1,6 +1,6 @@
 ---
 name: sunday-letter
-description: The Sunday letter draft — every Saturday, draft Sunday Field Notes from the week's merged work (new and refreshed articles, bulletin changes, the coming week's almanac) plus one Nature Notes archive pick, add a distribution pack (a Reddit-ready answer, a social post, a pin), and post it all as one GitHub issue for the owner to paste into Buttondown. Never sends anything. Run by the "Sunday letter draft" Routine (Saturday mornings Pacific) in a fresh session; also runnable by hand when asked to "draft the Sunday letter".
+description: The Sunday letter — every Saturday, draft Sunday Field Notes from the week's merged work (new and refreshed articles, bulletin changes, the coming week's almanac) plus one Nature Notes archive pick, schedule it in Buttondown for Sunday 9am Pacific through scripts/buttondown-letter.mjs (the owner has Saturday to read, edit, or unschedule it in the dashboard), add a distribution pack (a Reddit-ready answer, a social post, a pin), and post the letter, the Buttondown link, and the pack as one GitHub issue. Never sends immediately and never posts anywhere else. Run by the "Sunday letter draft" Routine (Saturday mornings Pacific) in a fresh session; also runnable by hand when asked to "draft the Sunday letter".
 ---
 
 # The Sunday letter draft
@@ -8,13 +8,19 @@ description: The Sunday letter draft — every Saturday, draft Sunday Field Note
 The site promises "a short note on Sundays, when there is something to say"
 (Sunday Field Notes), and the newsletter is the audience asset every other
 revenue line launches to: guide sales, renewals, consults, and one day a
-sponsor line. The letter is written and sent by hand in Buttondown, and the
-blank page on Saturday is the reason weeks get skipped. This routine removes
-the blank page. **It never sends anything**: Buttondown is not reachable from
-the sandbox, and sending is the owner's decision every week.
+sponsor line. Through August 2026 the letter was written and sent by hand
+in Buttondown, and the blank page on Saturday was the reason weeks got
+skipped. This routine removed the blank page; since September 2026 it also
+removes the paste. It **schedules** the letter in Buttondown for **Sunday
+9am Pacific** through `scripts/buttondown-letter.mjs`, so the owner's
+Saturday job is to read it in the Buttondown dashboard and edit or
+unschedule it. Silence sends. The routine **never sends immediately**,
+never touches a sent email, and never posts anywhere but Buttondown and
+the issue.
 
-The deliverable is one GitHub issue: a paste-ready letter, a distribution
-pack, and a sources list that lets the owner verify every line in a minute.
+The deliverables are the scheduled email in Buttondown and one GitHub
+issue: the letter as scheduled, the dashboard link, a distribution pack,
+and a sources list that lets the owner verify every line in a minute.
 
 ## Territory
 
@@ -72,10 +78,12 @@ marketing adjectives. Specifics over atmosphere. Structure, in order:
    the almanac, or a merged article. It may be a decision the season is
    forcing ("the Tuolumne store closes on the 14th; go high this week or
    next year") or a change ("the Mist Trail's weekday closure runs through
-   October"). **Never a fabricated first-person observation.** The routine
-   was not in the park. If the letter wants an "I walked up to..." line,
-   leave one bracketed slot, `[your line: what you saw this week]`, and say
-   in the issue that it is a slot.
+   October"). **Never a first-person observation.** The routine was not in
+   the park, and since the letter is scheduled rather than pasted, nobody
+   fills a slot before it goes out: no "I walked up to..." line and no
+   bracketed placeholder of any kind (`buttondown-letter.mjs` refuses a
+   body that carries one). If the owner wants a field line, they add it in
+   the Buttondown editor on Saturday.
 2. **On the site this week**: each new or refreshed article as one line,
    the question it answers, and its URL (`https://thetalusfieldjournal.com/articles/<slug>`).
    Use the PR's own blurb when it has one. Refreshed articles get a line
@@ -132,45 +140,81 @@ is posted by this routine, ever.
   touched (`/itineraries`, `/checklist`, a day-plan article), since that is
   the content Pinterest carries.
 
-## Phase 3 — Publish the draft
+## Phase 3 — Schedule it in Buttondown
 
-1. Ensure the `sunday-letter` label exists (create once: name
+1. If an issue for this Sunday already exists (a manual run raced the
+   Routine), add nothing, schedule nothing, and stop.
+2. Write the letter to a file outside the repo (the session scratchpad):
+   a header block of `subject:`, `preheader:` and a blank line, then the
+   Markdown body with real links. Run the dry run first:
+
+   ```
+   node scripts/buttondown-letter.mjs <file> --dry-run
+   ```
+
+   It prints the send time (the coming Sunday, 9am Pacific) and fails on
+   a placeholder, an em-dash, or an exclamation mark; fix the letter, not
+   the script. Then run it for real, without `--dry-run`. The key is
+   `BUTTONDOWN_API_KEY` in the environment; the script reads nothing else.
+3. The script refuses if Buttondown already holds a draft or a scheduled
+   email with this subject or for the same Sunday. That is the owner's
+   letter, not a bug: leave it, and say so in the issue and the summary.
+   Never pass `--replace` from a Routine run.
+4. Ensure the `sunday-letter` label exists (create once: name
    `sunday-letter`, description "Sunday Field Notes drafts").
-2. Open one issue titled `Sunday letter — <YYYY-MM-DD>` using the coming
-   Sunday's date, label `sunday-letter`. Body, in order: subject line and
-   alternates, preheader, the letter as Markdown ready to paste (real
-   links, no placeholders except the one bracketed owner slot), the
-   distribution pack, a **Sources** list (one line per fact: the article
-   slug, the bulletin field, the almanac entry, or the archive URL), and
-   the standard Claude Code attribution footer.
-3. If last week's `sunday-letter` issue is still open, close it with one
+
+## Phase 4 — Post the record
+
+1. Open one issue titled `Sunday letter — <YYYY-MM-DD>` using the coming
+   Sunday's date, label `sunday-letter`. Body, in order: the Buttondown
+   dashboard link and the scheduled send time as the script printed them
+   (or the reason nothing was scheduled), subject line and alternates,
+   preheader, the letter as scheduled, the distribution pack, a
+   **Sources** list (one line per fact: the article slug, the bulletin
+   field, the almanac entry, or the archive URL), and the standard Claude
+   Code attribution footer.
+2. If last week's `sunday-letter` issue is still open, close it with one
    comment ("superseded by #N"): the issues are the archive of drafts, not
    a queue.
-4. If an issue for this Sunday already exists (a manual run raced the
-   Routine), add nothing and stop.
-5. Completion summary: the issue URL, the subject line, the ask chosen, and
-   the archive issue cited. Or the no-letter reason.
+3. Completion summary: the Buttondown link and send time (or why not), the
+   issue URL, the subject line, the ask chosen, and the archive issue
+   cited. Or the no-letter reason.
 
 ## Hard rules
 
-- **Never send.** No Buttondown API, no email, no social posting, no Reddit.
-  The issue is the only output.
+- **Schedule, never send.** The only Buttondown calls are the ones
+  `buttondown-letter.mjs` makes: create with status `scheduled` for Sunday
+  9am Pacific, `--list`, and in a manual run `--unschedule`. Never
+  `about_to_send`, never a `--publish` earlier than the coming Sunday
+  morning, never a PATCH or DELETE on anything the routine did not create
+  this run. No other email, no social posting, no Reddit.
 - **Every fact is traceable** to a merged PR, a repo file, or an archive
   page read this run. No weather, no crowd, no sighting, no price, no date
   from memory or from search. This letter goes out under the owner's name.
-- No first-person field claims. The bracketed slot is the only place for
-  them, and the owner fills it or deletes it.
+- No first-person field claims and no placeholders. The owner adds a
+  field line in the Buttondown editor if they want one.
 - One ask per letter. No second capture, no popup logic, no urgency copy.
 - House voice throughout: no em-dashes, no exclamation marks, no
   superlatives, no "we're excited".
 - Read-only against the repo: no commits, no branches, no PRs.
-- One issue per Sunday.
+- One issue and one scheduled email per Sunday.
+- The key stays in the environment. Never print it, never write it to a
+  file, never put it in an issue.
 
 ## Failure modes
 
+- **`BUTTONDOWN_API_KEY` is not set** (the script exits 2 and says so) or
+  **Buttondown answers an error** → post the issue anyway with the full
+  paste-ready letter at the top, titled as usual, and open it with one
+  line: "Not scheduled: <the script's message>. Paste this into
+  Buttondown by hand." Degraded finish, not a failure, and the pre-2026-09
+  workflow. A 401 means the key was rotated: say so.
+- **Buttondown already holds a letter for this Sunday** → the owner wrote
+  one. Schedule nothing, post the issue with the draft under a line that
+  says so, and name the existing email's dashboard link.
 - **GitHub issue tools unavailable** → put the full issue body in the
-  completion summary and say it needs manual posting. Degraded finish, not
-  a failure.
+  completion summary and say it needs manual posting. The scheduled email
+  stands; the issue is the record, not the send.
 - **No archive match** for the coming week → skip the archive section
   rather than stretch a different month's issue; say so in the summary.
 - **A merged article PR has no Distribution handoff** → write the line from
