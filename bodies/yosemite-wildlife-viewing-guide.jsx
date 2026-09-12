@@ -17,7 +17,7 @@ window.ARTICLE_BODIES["yosemite-wildlife-viewing-guide"] = function YosemiteWild
         This is the guide I wish I could hand out at the entrance stations: what actually lives here, where each animal is likely to be, when to look, and the small set of rules that keep the watching honest. None of it requires luck. It requires standing still at a meadow edge at 7 pm, which turns out to be the hardest thing to convince people to do.
       </p>
 
-      <h2>Dawn, dusk, and edges</h2>
+      <h2 id="sec-0-dawn-dusk-and-edges">Dawn, dusk, and edges</h2>
 
       <p>
         Two principles decide almost every sighting in this park, and they are worth more than any list of locations.
@@ -35,7 +35,7 @@ window.ARTICLE_BODIES["yosemite-wildlife-viewing-guide"] = function YosemiteWild
         Everything else in this guide is an application of those two ideas.
       </p>
 
-      <h2>The Valley floor: deer, coyote, bobcat</h2>
+      <h2 id="sec-1-the-valley-floor-deer-coyote-bobcat">The Valley floor: deer, coyote, bobcat</h2>
 
       <p>
         Mule deer (<em>Odocoileus hemionus</em>) are the animal you are guaranteed to see, and the one most likely to hurt you. That is not a rhetorical flourish. Deer injure more visitors in Yosemite than bears do, because people treat a 150-pound wild ungulate with antlers like a petting-zoo resident. They browse Cook's Meadow, El Capitan Meadow, and the Wawona meadow loop morning and evening, and they barely react to people anymore, which is exactly the problem. Photograph them from the trail. Twenty-five yards. A deer that flattens its ears and stamps has already asked you once.
@@ -49,7 +49,7 @@ window.ARTICLE_BODIES["yosemite-wildlife-viewing-guide"] = function YosemiteWild
         The bobcat is the Valley's best-kept open secret. Visitors assume a wild cat sighting is a backcountry event, but Yosemite's bobcats hunt the meadow edges and the oak woodlands right around the developed areas, and in winter they do it at midday, when the sun is on the south-facing slopes. I have watched a bobcat work the margin of Cook's Meadow for forty minutes while a hundred people walked past behind me, none of them noticing the cat and none of the cat noticing them. Look for a house-cat silhouette that is wrong: taller, stub-tailed, moving in patient stop-start bursts.
       </p>
 
-      <h2>Bears, briefly</h2>
+      <h2 id="sec-2-bears-briefly">Bears, briefly</h2>
 
       <p>
         Every bear in Yosemite is a black bear, whatever its color, and most of them are brown, cinnamon, or blond. There has not been a grizzly in California for a century; the animal survives only on the state flag. Somewhere between 300 and 500 black bears live in the park, and summer sightings are common: a bear turning over logs at a meadow edge, a sow with cubs moving through the oaks, a yearling treed by its own nerves near a campground.
@@ -59,7 +59,7 @@ window.ARTICLE_BODIES["yosemite-wildlife-viewing-guide"] = function YosemiteWild
         I have written about bears at length elsewhere, including <a href="/articles/yosemite-bears-safety-guide">the myths that follow them around</a> and <a href="/articles/bears-spring-emergence">why a spring bear is a different animal than an August one</a>, so here is only the viewing protocol. Fifty yards, minimum; that is the park requirement, and it is measured from the bear, not from your comfort. If a bear changes its behavior because of you, you are too close, whatever the distance. And drive slowly at dawn and dusk. The red bear signs along the park roads each mark a spot where a car killed a bear. Speeding is the leading way visitors kill Yosemite wildlife, and it is the one that is entirely optional.
       </p>
 
-      <h2>The birds worth learning first</h2>
+      <h2 id="sec-3-the-birds-worth-learning-first">The birds worth learning first</h2>
 
       <p>
         Yosemite's bird list runs past 260 species, but four of them will teach you more than the other 256, because they are conspicuous, resident, and each one opens a door into how this place works.
@@ -73,7 +73,7 @@ window.ARTICLE_BODIES["yosemite-wildlife-viewing-guide"] = function YosemiteWild
         Bring binoculars. Any binoculars. The difference between "a bird" and "a peregrine coming off the Nose ledges" is eight power of magnification and nothing else.
       </p>
 
-      <h2>The high country, after Tioga opens</h2>
+      <h2 id="sec-4-the-high-country-after-tioga-opens">The high country, after Tioga opens</h2>
 
       <p>
         Above 8,000 feet, the cast changes completely, and the viewing gets easier, because subalpine animals concentrate around short summers and specific rock.
@@ -91,7 +91,7 @@ window.ARTICLE_BODIES["yosemite-wildlife-viewing-guide"] = function YosemiteWild
         The rarest good news in the park is also up here. Sierra Nevada bighorn sheep, a federally endangered subspecies that vanished from Yosemite for a century, were reintroduced to the Cathedral Range in 2015. A few dozen animals now hold the crest near the park's eastern edge. You are unlikely to see one, but hikers on the high passes occasionally do, and the fact that it is possible at all is one of the great restoration stories in the Sierra.
       </p>
 
-      <h2>The ones you will probably never see</h2>
+      <h2 id="sec-5-the-ones-you-will-probably-never-see">The ones you will probably never see</h2>
 
       <p>
         Mountain lions live throughout the park and prey on the deer herds you watched at sunset. Sightings are so rare that most rangers with full careers here have never had one. The lions see us constantly. The asymmetry is the point, and it should reassure rather than worry you: attacks in Yosemite are essentially unknown.
@@ -101,7 +101,17 @@ window.ARTICLE_BODIES["yosemite-wildlife-viewing-guide"] = function YosemiteWild
         The great gray owl is the harder case, because people do try to see it. Yosemite holds the southernmost breeding population of the largest owl in North America, a relict group of perhaps a couple hundred birds isolated in these meadows since the ice ages. They hunt the edges of mid-elevation meadows, Crane Flat and the Glacier Point Road meadows among them, at dawn and dusk. If you are lucky enough to find one, stay back, keep quiet, and do not play recorded calls to draw it in. Call playback is harassment of a state-endangered bird, it is prohibited, and a bird that responds to a phone is burning hunting time it needs. The owl is not content. Let it work.
       </p>
 
-      <h2>The rules are also the technique</h2>
+      <h2 id="bats">Bats, and the one rule that goes with them</h2>
+
+      <p>
+        The animal most visitors watch without knowing it is the bat. Seventeen species live in the park, from the foothills to above 10,000 feet, roosting in rock crevices and caves, under loose bark and bridges, in tree cavities, and, for at least six of them, in the fire-scarred hollows of the giant sequoias. The big brown bat is the common one. The western mastiff, the largest bat in North America, is a resident, and it is one of three here, with the spotted bat and the Mexican free-tailed bat, whose echolocation calls are pitched low enough for a human ear to catch. Every one of them eats insects, so the show is wherever the insects are: over the river and along the meadow edges in the last light, the same hour and the same seams that produce everything else in this guide. Stay at your meadow margin past sunset in summer and the bats are the last shift.
+      </p>
+
+      <p>
+        Then the rule, which matters more than the watching. The park collects dead bats as a matter of routine and tests them for rabies, and on September 2 it <a href="https://www.nps.gov/yose/learn/news/dead-bat-tests-positive-for-rabies-at-curry-village-in-yosemite-national-park.htm" target="_blank" rel="noopener noreferrer">announced</a> that a big brown bat found dead outside the Curry Village showerhouse on May 18 had tested positive. Nobody is known to have touched it; the previous positive was in July 2025. The park says a very small share of the bats it tests each year come back positive, and the Park Service's own bat page puts the figure in the wild at under one in a hundred, but a bat lying on the ground, flying at people, or making contact with them is up to ten times more likely to be the one, and a bat's bite or scratch can be too small to see or feel. So: never touch or handle a bat, alive or dead. If you find one, keep your distance and tell park staff. Direct contact counts even through clothing or a wing brushing your hair, and so does waking up with a bat in the room or the tent; if any of that happens, wash the spot with soap and water, tell a ranger so the animal can be collected and tested, and contact a healthcare provider as soon as possible. Rabies is preventable with prompt care and fatal without it, which is the whole reason the rule is short.
+      </p>
+
+      <h2 id="sec-6-the-rules-are-also-the-technique">The rules are also the technique</h2>
 
       <p>
         The regulations here are short: stay 50 yards from bears, give everything else at least 25, never feed any animal, and store food properly, in lockers and canisters, never in a car overnight. The fines are real, up to $5,000 for food-storage violations, but the fines are not the reason. A fed animal stops being wild in every way that matters, and the park ends up hauling it away or killing it. "A fed bear is a dead bear" is not a slogan. It is a case file, repeated annually.
@@ -119,7 +129,7 @@ window.ARTICLE_BODIES["yosemite-wildlife-viewing-guide"] = function YosemiteWild
         If your trip lines up with the bloom, the watching stacks: the meadows drawing the wildlife are the same ones covered in <a href="/articles/yosemite-wildflowers-guide">the wildflower calendar</a>, and the milkweed patches in <a href="/articles/showy-milkweed-yosemite-valley">Cook's Meadow</a> run their own insect spectacle all July.
       </p>
 
-      <h2>Where to look, by elevation</h2>
+      <h2 id="sec-7-where-to-look-by-elevation">Where to look, by elevation</h2>
 
       <p>
         Yosemite stacks several different worlds on top of each other, and the animal you are hoping for lives in exactly one of them. The single most common reason a visitor does not see a marmot is that they spent the week at 4,000 feet.
@@ -147,7 +157,7 @@ window.ARTICLE_BODIES["yosemite-wildlife-viewing-guide"] = function YosemiteWild
         The practical version: the Valley gives you deer, coyote and bear; the high country gives you marmots and pikas and nothing you saw below. A trip that never leaves 4,000 feet has seen one of Yosemite's animal communities out of four. <a href="/tioga-opening">Tioga Road</a> is what opens the rest, and it is only open for part of the year.
       </p>
 
-      <h2>There are no grizzly bears in Yosemite</h2>
+      <h2 id="sec-8-there-are-no-grizzly-bears-in-yosemite">There are no grizzly bears in Yosemite</h2>
 
       <p>
         This one comes up constantly, and it matters more than a trivia correction, because the wrong answer changes what people do in an encounter.
@@ -168,6 +178,7 @@ window.ARTICLE_BODIES["yosemite-wildlife-viewing-guide"] = function YosemiteWild
       <h3>Further reading</h3>
       <ul style={{ fontSize: 14 }}>
         <li>NPS Yosemite wildlife pages: current bear activity, food storage requirements, and the seasonal closure list for peregrine nesting cliffs.</li>
+        <li>NPS Yosemite, "Bats" (the seventeen species, where they roost, and the sequoia-grove research), and NPS, "Bats and People" (rabies exposure and what to do about it). The September 2, 2026 news release on the rabies-positive bat at Curry Village is linked in the text above.</li>
         <li>John Muir, "The Water-Ouzel," from <em>The Mountains of California</em> (1894). Still the best single essay on a Yosemite animal.</li>
         <li>Grinnell and Storer, <em>Animal Life in the Yosemite</em> (1924). The baseline transect survey that modern Sierra wildlife studies are still measured against.</li>
         <li>Sierra Nevada Bighorn Sheep Recovery Program reports on the 2015 Cathedral Range reintroduction, California Department of Fish and Wildlife.</li>
