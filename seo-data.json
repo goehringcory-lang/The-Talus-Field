@@ -806,7 +806,7 @@
     ]
   },
   "yosemite-wildlife-viewing-guide": {
-    "wordCount": 2545,
+    "wordCount": 2993,
     "keywords": [
       "Yosemite wildlife viewing",
       "where to see animals in Yosemite",
@@ -825,7 +825,9 @@
       "Yosemite wildlife",
       "Yosemite national park animals",
       "are there grizzly bears in Yosemite",
-      "wildlife in Yosemite national park"
+      "wildlife in Yosemite national park",
+      "Yosemite bats",
+      "rabies bat Yosemite"
     ],
     "faq": [
       {
@@ -863,6 +865,10 @@
       {
         "q": "What time of day is best for seeing animals in Yosemite?",
         "a": "Dawn and dusk for almost everything, because the animals are on a schedule and most visitors are not. The exception is the high country, where marmots and ground squirrels sun themselves through mid-morning. The first fifteen minutes after you stop moving are when a meadow decides you are scenery and resumes around you."
+      },
+      {
+        "q": "Are there bats in Yosemite, and what should you do if you find one?",
+        "a": "Yes: seventeen species, from the foothills to above 10,000 feet, and the big brown bat is the common one. Watch for them over the river and along meadow edges in the last light of a summer evening. Never touch or handle a bat, alive or dead; keep your distance and tell park staff. The park tests dead bats for rabies as routine, and a big brown bat found dead at Curry Village on May 18, 2026 tested positive. Any direct contact, even through clothing, or waking up with a bat in the room, means washing the spot with soap and water, telling a ranger, and contacting a healthcare provider as soon as possible."
       }
     ]
   },
