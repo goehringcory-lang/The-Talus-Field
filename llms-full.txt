@@ -8,7 +8,7 @@
 Publisher: The Talus Field (https://thetalusfieldjournal.com). Editor: Cory Goehring.
 Citation guidance and the annotated page index: https://thetalusfieldjournal.com/llms.txt
 Canonical article URL pattern: https://thetalusfieldjournal.com/articles/<slug>
-Contents: 69 articles. Most recent update: 2026-09-10.
+Contents: 69 articles. Most recent update: 2026-09-12.
 
 Not in this file: the Yosemite Nature Notes archive, all 512 issues of the
 National Park Service's Yosemite bulletin (1922-2003), transcribed in full
@@ -2098,7 +2098,7 @@ From the Archive is an occasional series reading the 512 issues of Yosemite Natu
 ## Animals of Yosemite: What Lives Here, and Where to See It
 
 URL: https://thetalusfieldjournal.com/articles/yosemite-wildlife-viewing-guide
-Section: Wildlife and Nature. Published: 2026-07-18. Last updated: 2026-08-25.
+Section: Wildlife and Nature. Published: 2026-07-18. Last updated: 2026-09-12.
 Summary: The animals of Yosemite by elevation: deer, coyote and black bear in the Valley, marmots and pika in the high country, and why there are no grizzlies.
 
 The question I am asked most often, after twenty seasons in this park, is some version of "where can we see animals?" The honest answer disappoints people, because it is not a place. It is a time and a behavior. Yosemite's wildlife is not hiding. Roughly 400 vertebrate species live here, and a good number of them spend their days within a few hundred yards of a road. What keeps most visitors from seeing them is that most visitors are moving, and at the wrong hours. The animals are on a schedule. Match it, and the park fills up with them.
@@ -2155,6 +2155,12 @@ Mountain lions live throughout the park and prey on the deer herds you watched a
 
 The great gray owl is the harder case, because people do try to see it. Yosemite holds the southernmost breeding population of the largest owl in North America, a relict group of perhaps a couple hundred birds isolated in these meadows since the ice ages. They hunt the edges of mid-elevation meadows, Crane Flat and the Glacier Point Road meadows among them, at dawn and dusk. If you are lucky enough to find one, stay back, keep quiet, and do not play recorded calls to draw it in. Call playback is harassment of a state-endangered bird, it is prohibited, and a bird that responds to a phone is burning hunting time it needs. The owl is not content. Let it work.
 
+### Bats, and the one rule that goes with them
+
+The animal most visitors watch without knowing it is the bat. Seventeen species live in the park, from the foothills to above 10,000 feet, roosting in rock crevices and caves, under loose bark and bridges, in tree cavities, and, for at least six of them, in the fire-scarred hollows of the giant sequoias. The big brown bat is the common one. The western mastiff, the largest bat in North America, is a resident, and it is one of three here, with the spotted bat and the Mexican free-tailed bat, whose echolocation calls are pitched low enough for a human ear to catch. Every one of them eats insects, so the show is wherever the insects are: over the river and along the meadow edges in the last light, the same hour and the same seams that produce everything else in this guide. Stay at your meadow margin past sunset in summer and the bats are the last shift.
+
+Then the rule, which matters more than the watching. The park collects dead bats as a matter of routine and tests them for rabies, and on September 2 it announced that a big brown bat found dead outside the Curry Village showerhouse on May 18 had tested positive. Nobody is known to have touched it; the previous positive was in July 2025. The park says a very small share of the bats it tests each year come back positive, and the Park Service's own bat page puts the figure in the wild at under one in a hundred, but a bat lying on the ground, flying at people, or making contact with them is up to ten times more likely to be the one, and a bat's bite or scratch can be too small to see or feel. So: never touch or handle a bat, alive or dead. If you find one, keep your distance and tell park staff. Direct contact counts even through clothing or a wing brushing your hair, and so does waking up with a bat in the room or the tent; if any of that happens, wash the spot with soap and water, tell a ranger so the animal can be collected and tested, and contact a healthcare provider as soon as possible. Rabies is preventable with prompt care and fatal without it, which is the whole reason the rule is short.
+
 ### The rules are also the technique
 
 The regulations here are short: stay 50 yards from bears, give everything else at least 25, never feed any animal, and store food properly, in lockers and canisters, never in a car overnight. The fines are real, up to $5,000 for food-storage violations, but the fines are not the reason. A fed animal stops being wild in every way that matters, and the park ends up hauling it away or killing it. "A fed bear is a dead bear" is not a slogan. It is a case file, repeated annually.
@@ -2192,6 +2198,7 @@ Why it matters in practice: playing dead is grizzly advice and it is wrong here,
 #### Further reading
 
 - NPS Yosemite wildlife pages: current bear activity, food storage requirements, and the seasonal closure list for peregrine nesting cliffs.
+- NPS Yosemite, "Bats" (the seventeen species, where they roost, and the sequoia-grove research), and NPS, "Bats and People" (rabies exposure and what to do about it). The September 2, 2026 news release on the rabies-positive bat at Curry Village is linked in the text above.
 - John Muir, "The Water-Ouzel," from The Mountains of California (1894). Still the best single essay on a Yosemite animal.
 - Grinnell and Storer, Animal Life in the Yosemite (1924). The baseline transect survey that modern Sierra wildlife studies are still measured against.
 - Sierra Nevada Bighorn Sheep Recovery Program reports on the 2015 Cathedral Range reintroduction, California Department of Fish and Wildlife.
