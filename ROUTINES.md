@@ -17,15 +17,17 @@ routine serves one link of that chain:
 |---|---|
 | More visitors (search coverage, freshness, internal links) | Monday trend article, Thursday cornerstone article, monthly edition, Wednesday evergreen refresh, Sunday sweep |
 | Visitors who come back (the park, this week) | Bulletin edition turn, Sunday letter draft, intel cycle (bulletin items) |
-| Subscribers (the letter sent every week, the forward ask) | Sunday letter draft |
+| Subscribers (the letter scheduled every week, the forward ask) | Sunday letter draft |
 | Buyers (a deeper product, an honest sales path) | Field Guide depth pass, revenue pulse, intel executor (approved guide changes) |
 | Revenue plumbing (affiliates, consults, renewals, the ledger) | Revenue pulse |
 | Opportunities nobody on the site can see | Intel cycle + executor |
 
 The owner is the only approval gate: **every change ships as a pull
 request and merging is publishing.** Nothing here pushes to `main`,
-merges, sends an email, posts to social media, touches Stripe or a price,
-or deploys the API Worker.
+merges, posts to social media, touches Stripe or a price, or deploys the
+API Worker. One routine schedules an email: the Sunday letter goes into
+Buttondown on Saturday for a Sunday 9am send, and the owner's gate there
+is the Buttondown dashboard, where silence sends (see the Saturday row).
 
 ## The week (Pacific; crons are UTC and shift an hour at the DST change)
 
@@ -42,7 +44,7 @@ or deploys the API Worker.
 | Thursday | 9am | **Cornerstone article** | One article against standing search demand, as a PR | `.claude/skills/cornerstone-article/SKILL.md` |
 | Friday | 7am | **Intel cycle** | as Tuesday | |
 | Saturday | 7am | **Intel executor** | as Wednesday | |
-| Saturday | 9am | **Sunday letter draft** | A paste-ready Sunday Field Notes draft plus a distribution pack, as an issue (label `sunday-letter`) | `.claude/skills/sunday-letter/SKILL.md` |
+| Saturday | 9am | **Sunday letter draft** | Sunday Field Notes scheduled in Buttondown for Sunday 9am Pacific (`scripts/buttondown-letter.mjs`), plus the letter, the dashboard link and a distribution pack as an issue (label `sunday-letter`) | `.claude/skills/sunday-letter/SKILL.md` |
 | 25th | 6am | **Monthly edition article** | "Yosemite in <next month> <year>", as a PR | `.claude/skills/monthly-edition-article/SKILL.md` |
 
 The 9am slots are deliberately two hours after the 7am ones on the same
@@ -60,7 +62,7 @@ under two.
 | Any PR from a routine | Merge it, or close it. Merging deploys the editorial site and the PWA. A `[api]` PR also needs `cd workers && npx wrangler deploy` by hand; the PR body says so. |
 | `intel-brief` issues | Check an option's box or comment `approve 1, 3 / reject 2`. Comments win. Silence for two executor runs closes the brief as stale. |
 | The **Revenue ledger** issue (label `revenue-pulse`) | Read "Your court" and act on it or reply; paste GA4, Buttondown, or Stripe numbers there when you have them. Reply "hold X" or "do Y next" to steer the next run. |
-| `sunday-letter` issues | Paste the draft into Buttondown, fill the one bracketed slot or delete it, send. The routine never sends. Post the distribution pack yourself or discard it. |
+| The scheduled letter in Buttondown (Saturday) | Open the dashboard link in the `sunday-letter` issue before Sunday 9am Pacific: read it, edit it there, add a field line if you have one, or unschedule it. Silence sends. If the routine could not schedule (no key, an API error, a letter you already wrote), the issue says so at the top and carries the paste-ready draft. Post the distribution pack yourself or discard it. |
 | The sweep's final message | Read it over coffee; anything under "Needs your decision" is yours. |
 
 ## Territory: who may touch what
@@ -81,7 +83,7 @@ could do the same thing, the table says which one does.
 | Buy box, `/guide`, affiliate registry and placements, `/consult`, renewals, the ledger | Revenue pulse | intel executor only for an approved promo option, code side only |
 | Prices, caps, promo codes, Stripe, checkout, webhook, auth | the owner | never |
 | Metadata at the source, generated mirrors, redirects, robots | Sunday sweep | article routines regenerate mirrors as part of their own PRs |
-| The newsletter (drafting) | Sunday letter draft | never sends; nobody else drafts |
+| The newsletter (drafting and scheduling) | Sunday letter draft | schedules for Sunday, never sends immediately; never touches an email it did not create; nobody else drafts |
 | External signals, competitor and partner moves, outreach drafts | Intel cycle + executor | never sent by anyone |
 
 ## Network access: full Internet since September 2026
@@ -125,9 +127,13 @@ answers 403 to everything, and Commons rate-limits a burst with 429 plus
 is reported as that site's behaviour; a **CONNECT 403 from the agent
 proxy** (`curl -sS "$HTTPS_PROXY/__agentproxy/status"`) means the
 environment's network policy has regressed, and every runbook says to
-report exactly that rather than an outage. And the environment still holds
-no GA4, Search Console, Stripe, or Buttondown credentials; numbers reach
-the routines only when the owner pastes them into the ledger.
+report exactly that rather than an outage. And the environment holds no
+GA4, Search Console, or Stripe credentials; numbers reach the routines
+only when the owner pastes them into the ledger. The one credential it
+does hold is `BUTTONDOWN_API_KEY` (an environment variable on the Default
+Cloud Environment, set in the environment's settings, never in the repo),
+read by `scripts/buttondown-letter.mjs` alone; without it the letter
+routine falls back to the issue-only draft.
 
 For reference, the hosts the runbooks reach, should the policy ever need
 to be narrowed to an allow-list again:
@@ -167,11 +173,13 @@ www.tenayalodge.com  autocamp.com  www.evergreenlodge.com  www.rushcreeklodge.co
 
 ## What is deliberately not automated
 
-Sending the letter, posting anywhere, merging, deploying the API Worker,
-changing a price or a code, moving a coordinate, wiring a photo, contacting
-a third party, and any first-person field observation. Each of those is
-either the owner's signature or the product's core promise, and a routine
-that did them on its own would be spending the trust the site sells.
+Sending the letter immediately (it is scheduled a day ahead so the owner
+can read it first, and the script cannot send on the spot), posting
+anywhere, merging, deploying the API Worker, changing a price or a code,
+moving a coordinate, wiring a photo, contacting a third party, and any
+first-person field observation. Each of those is either the owner's
+signature or the product's core promise, and a routine that did them on
+its own would be spending the trust the site sells.
 
 ## Running the fleet by hand
 
