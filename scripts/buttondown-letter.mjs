@@ -12,7 +12,8 @@
 // or unschedule it. Silence sends.
 //
 //   node buttondown-letter.mjs letter.md                  schedule for Sunday
-//   node buttondown-letter.mjs letter.md --dry-run        validate, print, no call
+//   node buttondown-letter.mjs letter.md --dry-run        validate (images fetched), print, no Buttondown call
+//   node buttondown-letter.mjs letter.md --dry-run --no-image-check   same, offline
 //   node buttondown-letter.mjs letter.md --status=draft   create unscheduled
 //   node buttondown-letter.mjs --list                     drafts and scheduled
 //   node buttondown-letter.mjs --unschedule em_...        back to draft
@@ -35,9 +36,23 @@
 //   - No bracketed placeholder ("[your line: ...]", "<slug>", "TODO")
 //     survives into a scheduled email: nobody is going to fill it in.
 //   - No em-dash, no exclamation mark (house style; CLAUDE.md, Brand & voice).
-//   - Subject under 60 characters, preheader under 90, body 250 to 450 words:
-//     warnings, not errors, since the runbook already sets those limits and
-//     a 460-word letter is not worth losing a week over.
+//     A Markdown image line, "![alt](url)", is the one exclamation mark
+//     allowed, because it is syntax and not tone.
+//   - Photographs (September 2026: the letter carries a lead photo under the
+//     naturalist observation and one per new article). Every image needs
+//     alt text and an https URL on a host the runbook allows
+//     (thetalusfieldjournal.com, guide.thetalusfieldjournal.com, or a
+//     Wikimedia Commons /thumb/ path on upload.wikimedia.org: never a
+//     Commons original, which can be 100 MB and is throttled). Each URL is
+//     fetched, in the dry run too, and must answer 200 with an image
+//     content type: a photo that 404s on Sunday morning is a broken box
+//     under the owner's name. `--no-image-check` skips the fetch for an
+//     offline dry run. A photo with no "Photo:" credit line under it is a
+//     warning; the runbook says no credit means no photo.
+//   - Subject under 60 characters, preheader under 90, body 400 to 700 words
+//     (captions included): warnings, not errors, since the runbook already
+//     sets those limits and a 710-word letter is not worth losing a week
+//     over.
 //   - One email per Sunday: if Buttondown already holds a draft or a
 //     scheduled email with this subject, or one scheduled for the same day,
 //     the script refuses and prints it. `--replace` unschedules the older
@@ -185,6 +200,56 @@ function parseLetter(path) {
   return { header, body };
 }
 
+// ---------------------------------------------------------------- images
+// Hosts a letter may draw a photo from: the site's own photos (already
+// licensed and credited in data.js or the credits JSON) and Commons
+// thumbnails. Anything else is a photo nobody vetted.
+const IMAGE_HOSTS = new Set(["thetalusfieldjournal.com", "guide.thetalusfieldjournal.com", "upload.wikimedia.org"]);
+const IMAGE_RE = /!\[([^\]]*)\]\(([^)\s]+)(?:\s+"[^"]*")?\)/g;
+
+// Every Markdown image in the body, with the credit line that follows it:
+// the runbook puts one italic "*... Photo: ...*" line directly under each
+// image, so the next non-blank line is where a credit has to be.
+function parseImages(body) {
+  const lines = body.split("\n");
+  const out = [];
+  lines.forEach((line, i) => {
+    for (const m of line.matchAll(IMAGE_RE)) {
+      let credit = "";
+      for (let j = i + 1; j < lines.length; j++) {
+        const next = lines[j].trim();
+        if (!next) continue;
+        if (/\bPhoto:/.test(next)) credit = next;
+        break;
+      }
+      out.push({ alt: m[1].trim(), url: m[2], credit, line: i + 1 });
+    }
+  });
+  return out;
+}
+
+// Fetch each image URL and insist on an image. HEAD first (cheap; the site
+// and Commons both answer it), GET as the fallback for a host that does not.
+async function checkImages(images) {
+  const errors = [];
+  for (const img of images) {
+    let res = null;
+    try {
+      res = await fetch(img.url, { method: "HEAD", redirect: "follow", headers: { "User-Agent": "the-talus-field/buttondown-letter" } });
+      if (res.status === 405 || res.status === 501) {
+        res = await fetch(img.url, { method: "GET", redirect: "follow", headers: { "User-Agent": "the-talus-field/buttondown-letter", Range: "bytes=0-0" } });
+      }
+    } catch (e) {
+      errors.push(`image did not load (${e?.message ?? e}): ${img.url}`);
+      continue;
+    }
+    const type = res.headers.get("content-type") ?? "";
+    if (!(res.status === 200 || res.status === 206)) errors.push(`image answered ${res.status}: ${img.url}`);
+    else if (!/^image\//i.test(type)) errors.push(`image URL does not serve an image (${type || "no content-type"}): ${img.url}`);
+  }
+  return errors;
+}
+
 function validate({ subject, preheader, body, publish }) {
   const errors = [];
   const warnings = [];
@@ -202,15 +267,35 @@ function validate({ subject, preheader, body, publish }) {
   if (/\bTODO\b|\bTKTK\b|\bTBD\b/.test(body)) placeholders.push("TODO/TK/TBD");
   if (placeholders.length) errors.push(`placeholders in the body: ${placeholders.map((p) => JSON.stringify(p)).join(", ")}`);
   if (/—/.test(body) || /—/.test(subject) || /—/.test(preheader)) errors.push("em-dash in the letter (house style: comma, colon, or period)");
-  if (/!/.test(body.replace(/!\[[^\]]*\]\([^)]*\)/g, "")) || /!/.test(subject)) errors.push("exclamation mark in the letter (house style)");
+  if (/!/.test(body.replace(IMAGE_RE, "")) || /!/.test(subject)) errors.push("exclamation mark in the letter (house style)");
+  const images = parseImages(body);
+  for (const img of images) {
+    if (!img.alt) errors.push(`image with no alt text: ${img.url}`);
+    let host = "";
+    try {
+      const u = new URL(img.url);
+      if (u.protocol !== "https:") errors.push(`image URL is not https: ${img.url}`);
+      host = u.hostname;
+    } catch {
+      errors.push(`image URL does not parse: ${img.url}`);
+      continue;
+    }
+    if (host && !IMAGE_HOSTS.has(host)) errors.push(`image on a host the runbook does not allow (${host}): ${img.url}`);
+    if (host === "upload.wikimedia.org" && !/\/thumb\//.test(img.url)) errors.push(`Commons image must be a /thumb/ URL, never the original: ${img.url}`);
+    if (host === "thetalusfieldjournal.com" && /^\/img\/[^/]+\.(jpe?g|png|webp|avif)$/i.test(new URL(img.url).pathname)) {
+      errors.push(`site photo links the master under /img/, not the responsive cut (/img/responsive/<name>-1200.jpg): ${img.url}`);
+    }
+    if (!img.credit) warnings.push(`no "Photo:" credit line under the image ${img.url} (runbook: no credit, no photo)`);
+  }
+  if (images.length > 5) warnings.push(`${images.length} images (runbook: a lead photo plus one per new article, never more than five)`);
   if (subject && subject.length >= 60) warnings.push(`subject is ${subject.length} characters (runbook: under 60)`);
   if (preheader && preheader.length >= 90) warnings.push(`preheader is ${preheader.length} characters (runbook: under 90)`);
   const words = body.split(/\s+/).filter(Boolean).length;
-  if (words && (words < 250 || words > 450)) warnings.push(`body is ${words} words (runbook: 250 to 450)`);
+  if (words && (words < 400 || words > 700)) warnings.push(`body is ${words} words (runbook: 400 to 700 including captions)`);
   if (!preheader) warnings.push("no preheader; Buttondown will use the first lines of the body");
   if (!(publish instanceof Date) || Number.isNaN(publish.getTime())) errors.push(`publish date is not a date: ${publish}`);
   else if (publish.getTime() <= Date.now()) errors.push(`publish date ${publish.toISOString()} is in the past`);
-  return { errors, warnings, words };
+  return { errors, warnings, words, images };
 }
 
 // ---------------------------------------------------------------- commands
@@ -273,7 +358,10 @@ async function cmdCreate(path) {
   const status = String(flags.status ?? "scheduled");
   if (!["scheduled", "draft"].includes(status)) fail(`--status must be scheduled or draft, not ${status}`);
 
-  const { errors, warnings, words } = validate({ subject, preheader, body, publish });
+  const { errors, warnings, words, images } = validate({ subject, preheader, body, publish });
+  if (images.length && !flags["no-image-check"] && !errors.some((e) => /^image|^Commons image|^site photo/.test(e))) {
+    errors.push(...(await checkImages(images)));
+  }
   for (const w of warnings) console.error(`warning: ${w}`);
   if (errors.length) {
     for (const e of errors) console.error(`error: ${e}`);
@@ -282,7 +370,7 @@ async function cmdCreate(path) {
 
   console.log(`subject:   ${subject}`);
   console.log(`preheader: ${preheader || "(none)"}`);
-  console.log(`body:      ${words} words`);
+  console.log(`body:      ${words} words, ${images.length} image${images.length === 1 ? "" : "s"}${images.length && flags["no-image-check"] ? " (not fetched)" : ""}`);
   console.log(`status:    ${status}`);
   if (status === "scheduled") console.log(`sends:     ${pacificLabel(publish)} (${publish.toISOString()})`);
 
@@ -323,7 +411,7 @@ else if (flags.delete) await cmdDelete(String(flags.delete));
 else if (positional[0]) await cmdCreate(positional[0]);
 else {
   console.error(
-    "usage: buttondown-letter.mjs <letter.md> [--dry-run] [--status=scheduled|draft] [--subject=] [--preheader=] [--publish=ISO] [--replace]\n" +
+    "usage: buttondown-letter.mjs <letter.md> [--dry-run] [--no-image-check] [--status=scheduled|draft] [--subject=] [--preheader=] [--publish=ISO] [--replace]\n" +
       "       buttondown-letter.mjs --list | --unschedule <id> | --delete <id>",
   );
   process.exit(1);
