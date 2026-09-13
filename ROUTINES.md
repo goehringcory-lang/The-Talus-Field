@@ -44,7 +44,7 @@ is the Buttondown dashboard, where silence sends (see the Saturday row).
 | Thursday | 9am | **Cornerstone article** | One article against standing search demand, as a PR | `.claude/skills/cornerstone-article/SKILL.md` |
 | Friday | 7am | **Intel cycle** | as Tuesday | |
 | Saturday | 7am | **Intel executor** | as Wednesday | |
-| Saturday | 9am | **Sunday letter draft** | Sunday Field Notes scheduled in Buttondown for Sunday 9am Pacific (`scripts/buttondown-letter.mjs`), plus the letter, the dashboard link and a distribution pack as an issue (label `sunday-letter`) | `.claude/skills/sunday-letter/SKILL.md` |
+| Saturday | 9am | **Sunday letter draft** | Sunday Field Notes scheduled in Buttondown for Sunday 9am Pacific (`scripts/buttondown-letter.mjs`): a sourced naturalist observation up top, a lead photo and one per new article, then the week's work; plus the letter, the dashboard link and a distribution pack as an issue (label `sunday-letter`) | `.claude/skills/sunday-letter/SKILL.md` |
 | 25th | 6am | **Monthly edition article** | "Yosemite in <next month> <year>", as a PR | `.claude/skills/monthly-edition-article/SKILL.md` |
 
 The 9am slots are deliberately two hours after the 7am ones on the same
@@ -62,7 +62,7 @@ under two.
 | Any PR from a routine | Merge it, or close it. Merging deploys the editorial site and the PWA. A `[api]` PR also needs `cd workers && npx wrangler deploy` by hand; the PR body says so. |
 | `intel-brief` issues | Check an option's box or comment `approve 1, 3 / reject 2`. Comments win. Silence for two executor runs closes the brief as stale. |
 | The **Revenue ledger** issue (label `revenue-pulse`) | Read "Your court" and act on it or reply; paste GA4, Buttondown, or Stripe numbers there when you have them. Reply "hold X" or "do Y next" to steer the next run. |
-| The scheduled letter in Buttondown (Saturday) | Open the dashboard link in the `sunday-letter` issue before Sunday 9am Pacific: read it, edit it there, add a field line if you have one, or unschedule it. Silence sends. If the routine could not schedule (no key, an API error, a letter you already wrote), the issue says so at the top and carries the paste-ready draft. Post the distribution pack yourself or discard it. |
+| The scheduled letter in Buttondown (Saturday) | Open the dashboard link in the `sunday-letter` issue before Sunday 9am Pacific: read it, edit it there, add a field line if you have one (the opening observation is written in the third person from the almanac, the archive and the NPS, USGS, CDEC and NWS pages the issue's Sources list names; a first-person line is yours to add), check the photos against their credits, or unschedule it. Silence sends. If the routine could not schedule (no key, an API error, a letter you already wrote), the issue says so at the top and carries the paste-ready draft. Post the distribution pack yourself or discard it. |
 | The sweep's final message | Read it over coffee; anything under "Needs your decision" is yours. |
 
 ## Territory: who may touch what
@@ -149,6 +149,7 @@ www.yosemitemariposa.com  www.visittuolumne.com  www.yosemitethisyear.com
 www.mariposagazette.com  www.sierrastar.com  www.uniondemocrat.com
 thetalusfieldjournal.com  api.thetalusfieldjournal.com  guide.thetalusfieldjournal.com
 commons.wikimedia.org  upload.wikimedia.org  api.pexels.com  images.pexels.com
+waterdata.usgs.gov  cdec.water.ca.gov
 trends.google.com
 www.tenayalodge.com  autocamp.com  www.evergreenlodge.com  www.rushcreeklodge.com  firefallranch.com  www.undercanvas.com
 ```
