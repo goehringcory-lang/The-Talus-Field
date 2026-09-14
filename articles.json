@@ -1,5 +1,32 @@
 [
   {
+    "slug": "clouds-rest-hike",
+    "cat": "trails",
+    "title": "Clouds Rest: The Summit Above Half Dome, and the Autumn Window That Keeps It Open",
+    "dek": "Higher than Half Dome, no lottery, no cables, and a granite spine for a finish. The Park Service's numbers from the Sunrise Lakes trailhead, the route in the order it arrives, water, altitude and the summit-before-noon rule, why you are driving to the trailhead, the overnight version and its quota, the through-hike to the Valley, and the weeks each October when the cables are down and Tioga Road is still open, with the park's own dates on how wide that gap has been.",
+    "seoDek": "Clouds Rest: 14 miles, 2,300 feet, no permit, from Tenaya Lake on Tioga Road. The route, the ridge, the overnight, and the October window after the cables drop.",
+    "date": "September 14, 2026",
+    "isoDate": "2026-09-14",
+    "isoModified": "2026-09-14",
+    "read": "12 min",
+    "image": "img/tenaya-lake.jpg",
+    "ogImage": { "url": "img/responsive/tenaya-lake-1600.jpg", "width": 1600, "height": 1200 },
+    "placeholder": "Tenaya Lake beside Tioga Road, where the Sunrise Lakes trailhead and the Clouds Rest trail begin",
+    "wordCount": 3000,
+    "keywords": ["Clouds Rest hike", "Clouds Rest trail", "Clouds Rest Yosemite", "Sunrise Lakes trailhead", "Clouds Rest vs Half Dome", "Half Dome without a permit", "Tioga Road hikes", "Clouds Rest elevation", "Yosemite hike after Half Dome cables come down", "Tenaya Lake trailhead"],
+    "trail": { "name": "Clouds Rest from the Sunrise Lakes trailhead", "distance": "14 miles round trip", "elevationGain": "2,300 ft", "difficulty": "Strenuous (no permit required)" },
+    "faq": [
+      { "q": "How long is the Clouds Rest hike?", "a": "From the Sunrise Lakes trailhead at the west end of Tenaya Lake on Tioga Road, the Park Service's figures are 14 miles round trip, 2,300 feet of elevation gain, and eight to ten hours. The gain comes in two separate climbs with a descent between them, so the day carries more climbing than the net number suggests." },
+      { "q": "Do you need a permit to hike Clouds Rest?", "a": "No. A wilderness permit is not required for day hikes in Yosemite, with the single exception of Half Dome. A permit is required only if you stay out overnight; the Sunrise Lakes trailhead carries a quota of nine lottery permits and six first-come, first-served per day." },
+      { "q": "Is Clouds Rest harder than Half Dome?", "a": "Clouds Rest is the easier day. Half Dome from Happy Isles is 14 to 16 miles with 4,800 feet of gain from the Valley floor at about 4,000 feet and needs a permit whenever the cables are up. Clouds Rest starts a little over 8,000 feet, climbs 2,300 feet over 14 miles, and needs no permit. Its summit, at 9,926 feet, is more than a thousand feet higher than Half Dome's." },
+      { "q": "How exposed is the Clouds Rest summit ridge?", "a": "The last stretch follows a narrow granite ridgeline with Tenaya Canyon on one side and the Merced drainage on the other. It is walking, not climbing, and the granite grips well when dry, but the exposure is real and worse in wind. The Park Service's caution is to stay off the summit and the ridgeline during thunderstorms or when the rock is wet." },
+      { "q": "When is the best time to hike Clouds Rest?", "a": "Whenever Tioga Road is open, typically late May or early June until sometime in October or November; the road closes after the first significant snowfall. Early season can mean a cold ford of Tenaya Creek and snow on the trail. In summer, start at or before first light and summit before noon to stay ahead of thunderstorms, which are most common June through September. In October the thunderstorm season is largely over, the trailhead is frosted at dawn, and the average high at Tuolumne Meadows is 57 with a low of 26." },
+      { "q": "Can you hike Clouds Rest after the Half Dome cables come down?", "a": "Usually, yes. The cables come down the day after the second Monday in October, conditions permitting, while Tioga Road stays open until the first significant snowfall. Over the last decade the road has closed between October 21 and November 20, and in every year but 2021 it outlasted the cables by at least 19 days. After October 15 there is no overnight parking on Tioga Road, so in that window Clouds Rest is a day hike only." },
+      { "q": "Is there a bus to the Clouds Rest trailhead?", "a": "Not in practice. The Tuolumne Meadows shuttle and the hikers bus from the Valley end in mid-September (September 13 in 2026), and the YARTS Highway 395/120 East route, which runs July 1 through September 30 in 2026, stops at Tuolumne Meadows, White Wolf, Crane Flat and Yosemite Village but not at Tenaya Lake. Plan to drive to the Sunrise Lakes trailhead, and arrive early because the lot is small." }
+    ],
+    "related": ["so-you-want-to-hike-half-dome", "tuolumne-meadows-in-a-day", "cathedral-lakes-day-hike", "yosemite-in-fall", "yosemite-wilderness-permits-guide"]
+  },
+  {
     "slug": "yosemite-from-las-vegas",
     "cat": "planning",
     "title": "Yosemite from Las Vegas: Two Roads, One Pass, and the Month That Decides",
@@ -354,7 +381,7 @@
       { "q": "When is Tioga Road open?", "a": "Tioga Road opened on May 15 in 2026, unusually early. In a typical year it opens in late May or early June and closes with the first serious snow in late October or November. The date moves with the snowpack every year, so check current conditions rather than planning around an average." },
       { "q": "Are afternoon thunderstorms a problem in the Yosemite high country?", "a": "In July and August the high country builds thunderstorms out of a clear morning with startling speed: clear at dawn, cumulus stacking by late morning, lightning possible from early afternoon. Plan the day around it by doing the exposed thing first. Domes, summits and open granite in the morning; meadow, forest, lakeshore and lunch in the afternoon. Carry a rain shell even when the morning makes it look ridiculous." }
     ],
-    "related": ["cathedral-lakes-day-hike", "tioga-road-opening-weekend-2026", "yosemite-from-las-vegas", "yosemite-wildflowers-guide", "yosemite-stargazing-where-to-look-up"]
+    "related": ["cathedral-lakes-day-hike", "clouds-rest-hike", "tioga-road-opening-weekend-2026", "yosemite-from-las-vegas", "yosemite-wildflowers-guide"]
   },
   {
     "slug": "mariposa-grove-how-to-visit",
@@ -486,7 +513,7 @@
       { "q": "Is there smoke in Yosemite in the fall?", "a": "Sometimes, and it is often planned rather than wild. Autumn is prescribed fire season in Yosemite: once cooler temperatures and moisture make burning controllable, crews run projects in Yosemite Valley, around Crane Flat, and in the Studhorse units near Wawona, and smoke from those burns is routinely visible in the Valley, in Foresta, and in El Portal. Burns are scheduled against weather windows and postponed often, so check conditions on arrival rather than planning around it months out." },
       { "q": "Are bears more active in Yosemite in the fall?", "a": "Yes. From September, black bears enter hyperphagia, a state of near-continuous eating before winter, taking in up to 20,000 calories a day, foraging as much as 20 hours out of 24, and gaining two to three pounds daily, roughly eleven pounds of acorns' worth. Large transient males that spend the summer in the backcountry come down to Yosemite Valley, Wawona, and El Portal for the acorn crop, so there are more bears near people in October than in July and food storage discipline matters most in this season." }
     ],
-    "related": ["yosemite-in-september-2026", "when-to-visit-yosemite-2026-crowd-forecast", "yosemite-in-winter", "yosemite-photography-spots", "yosemite-during-smoke-season"]
+    "related": ["yosemite-in-september-2026", "clouds-rest-hike", "when-to-visit-yosemite-2026-crowd-forecast", "yosemite-in-winter", "yosemite-photography-spots"]
   },
   {
     "slug": "yosemite-tunnel-trees",
@@ -1139,7 +1166,7 @@
       { "q": "Is the Cathedral Lakes hike crowded?", "a": "It is one of the busier high-country day hikes, and at peak weekend hours the trail can feel like a parade. The lakes are large enough to absorb the crowd, and a weekday or an early start with the trailhead by 7 a.m. is dramatically quieter." },
       { "q": "How do you get to the Cathedral Lakes trailhead?", "a": "Drive Tioga Road to Tuolumne Meadows, about 90 minutes from Yosemite Village, and park at the Cathedral Lakes trailhead by the visitor center. There is no reliable potable water on the trail, so carry at least three liters." }
     ],
-    "related": ["tuolumne-meadows-in-a-day", "tioga-road-opening-weekend-2026", "so-you-want-to-hike-half-dome", "first-yosemite-backpacking-trip", "yosemite-wildflowers-guide"]
+    "related": ["tuolumne-meadows-in-a-day", "clouds-rest-hike", "tioga-road-opening-weekend-2026", "so-you-want-to-hike-half-dome", "first-yosemite-backpacking-trip"]
   },
   {
     "slug": "yosemite-needs-a-reservation-system",
@@ -1345,7 +1372,7 @@
       { "q": "When are the cables up on Half Dome?", "a": "Typically from the Friday before Memorial Day through the day after Columbus Day (the second Monday in October). The Park Service announces exact dates each year based on snow, weather, and crew availability." },
       { "q": "What should I bring to hike Half Dome?", "a": "At least 3-4 liters of water, trail shoes with real traction (not sandals), sun protection, food for 12+ hours, a headlamp in case you run late, and gloves for the cables. Starting before sunrise is standard practice on this route." }
     ],
-    "related": ["mist-trail-the-real-guide", "yosemite-wilderness-permits-guide", "cathedral-lakes-day-hike", "four-mile-up-panorama-down", "yosemite-heat-safety-guide"]
+    "related": ["clouds-rest-hike", "mist-trail-the-real-guide", "yosemite-wilderness-permits-guide", "cathedral-lakes-day-hike", "four-mile-up-panorama-down"]
   },
   {
     "slug": "glacier-point-road-open-2026",

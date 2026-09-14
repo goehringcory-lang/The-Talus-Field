@@ -199,6 +199,13 @@ window.ARTICLE_INTENT = {
   // `transportation` is earned, not decorative: chains, the 140 approach, and
   // the closed-road inventory are half the article.
   "yosemite-in-march":                         { stage: ["before-booking", "dates-set"], who: [], topic: ["conditions", "transportation"] },
+  // The Clouds Rest trail guide (September 2026). Tagged like the other trail
+  // pieces, with two additions the body earns: `backpacking` for the overnight
+  // section (the Sunrise Lakes quota, canisters, the October 15 parking cutoff),
+  // and `conditions` because the autumn window between the cables and the road
+  // closure is half the article. `permits` is NOT tagged: the piece explains
+  // that the day hike needs none and points to the permit guide for the rest.
+  "clouds-rest-hike":                          { stage: ["dates-set", "in-park"], who: ["backpacking"], topic: ["trails", "conditions"] },
   "cathedral-lakes-day-hike":                  { stage: ["dates-set", "in-park"], who: [], topic: ["trails"] },
   "yosemite-needs-a-reservation-system":       { stage: ["before-booking"], who: [], topic: ["conditions"] },
   "memorial-day-skip-the-valley-go-high-2026": { stage: ["dates-set", "week-before"], who: [], topic: ["conditions", "trails"] },
@@ -310,6 +317,10 @@ window.ARTICLE_MONTHS = {
   // "Tioga Road has to be open, which means you're working with a window that
   // runs roughly late May or early June through October or early November."
   "cathedral-lakes-day-hike": ["may", "jun", "jul", "aug", "sep", "oct"],
+  // Road-dependent: "reachable by vehicle only while Tioga Road is open, which
+  // the Park Service puts at typically late May or early June until sometime
+  // in October or November." Every month TRIP_MONTHS does not mark Tioga closed.
+  "clouds-rest-hike": ["may", "jun", "jul", "aug", "sep", "oct"],
   // The loop only closes when Glacier Point Road is open: "When the road is
   // closed, you can still hike the Four Mile Trail to Glacier Point and back. It
   // becomes an out-and-back instead of a loop."

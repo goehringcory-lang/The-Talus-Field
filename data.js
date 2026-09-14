@@ -110,6 +110,7 @@ window.planningSeriesFor = function (slug) {
 // verifies this map stays in sync with the files in bodies/.
 // ============================================================
 window.BODY_VERSIONS = {
+  "clouds-rest-hike": 1,
   "yosemite-from-las-vegas": 1,
   "highway-140-closed-yosemite": 1,
   "yosemite-from-los-angeles": 1,
@@ -740,6 +741,20 @@ window.KIT.lists.forEach((l) => {
 });
 
 window.ARTICLES = [
+  {
+    slug: "clouds-rest-hike",
+    cat: "trails",
+    title: "Clouds Rest: The Summit Above Half Dome, and the Autumn Window That Keeps It Open",
+    dek: "Higher than Half Dome, no lottery, no cables, and a granite spine for a finish. The Park Service's numbers from the Sunrise Lakes trailhead, the route in the order it arrives, water, altitude and the summit-before-noon rule, why you are driving to the trailhead, the overnight version and its quota, the through-hike to the Valley, and the weeks each October when the cables are down and Tioga Road is still open, with the park's own dates on how wide that gap has been.",
+    seoDek: "Clouds Rest: 14 miles, 2,300 feet, no permit, from Tenaya Lake on Tioga Road. The route, the ridge, the overnight, and the October window after the cables drop.",
+    date: "September 14, 2026",
+    isoDate: "2026-09-14",
+    isoModified: "2026-09-14",
+    read: "12 min",
+    placeholder: "Tenaya Lake beside Tioga Road, where the Sunrise Lakes trailhead and the Clouds Rest trail begin",
+    image: "img/tenaya-lake.jpg",
+    credit: "Photo: Michael Hogarth / Wikimedia Commons (public domain)",
+  },
   {
     slug: "yosemite-from-las-vegas",
     cat: "planning",
@@ -1774,6 +1789,9 @@ window.START_HERE = [
 // Curate a piece when it earns real search impressions, when it anchors a
 // cluster, or when it is the destination that needs the equity.
 window.RELATED = {
+  // The Clouds Rest trail guide: the Half Dome alternative the catalog kept
+  // recommending without a piece to send the reader to.
+  "clouds-rest-hike": ["so-you-want-to-hike-half-dome", "tuolumne-meadows-in-a-day", "cathedral-lakes-day-hike", "yosemite-in-fall", "yosemite-wilderness-permits-guide", "first-yosemite-backpacking-trip"],
   "highway-140-closed-yosemite": ["getting-to-yosemite", "yosemite-gateway-towns-compared", "yosemite-shuttle-and-yarts", "yosemite-in-winter", "yosemite-during-smoke-season", "yosemite-day-trip-from-bay-area"],
   // Volunteering and stewardship
   "yosemite-facelift-volunteer-guide": ["yosemite-in-september-2026", "yosemite-camping-complete-guide", "yosemite-ranger-programs", "yosemite-fire-restrictions-explained", "yosemite-shuttle-and-yarts"],
@@ -1804,14 +1822,14 @@ window.RELATED = {
   // Permits
   "yosemite-wilderness-permits-guide": ["first-yosemite-backpacking-trip", "yosemite-walk-up-and-day-of-permits", "so-you-want-to-hike-half-dome", "yosemite-camping-complete-guide", "mist-trail-the-real-guide"],
   "yosemite-walk-up-and-day-of-permits": ["yosemite-wilderness-permits-guide", "so-you-want-to-hike-half-dome", "first-yosemite-backpacking-trip", "yosemite-without-reservations-2026", "mist-trail-the-real-guide"],
-  "so-you-want-to-hike-half-dome": ["mist-trail-the-real-guide", "yosemite-wilderness-permits-guide", "cathedral-lakes-day-hike", "four-mile-up-panorama-down", "yosemite-heat-safety-guide"],
+  "so-you-want-to-hike-half-dome": ["clouds-rest-hike", "mist-trail-the-real-guide", "yosemite-wilderness-permits-guide", "cathedral-lakes-day-hike", "four-mile-up-panorama-down", "yosemite-heat-safety-guide"],
   "first-yosemite-backpacking-trip": ["yosemite-wilderness-permits-guide", "yosemite-bears-safety-guide", "cathedral-lakes-day-hike", "yosemite-camping-complete-guide", "yosemite-walk-up-and-day-of-permits"],
 
   // Trails
   "mist-trail-the-real-guide": ["yosemite-waterfalls-guide", "so-you-want-to-hike-half-dome", "four-mile-up-panorama-down", "yosemite-heat-safety-guide", "yosemite-valley-parking-guide"],
   "four-mile-up-panorama-down": ["mist-trail-the-real-guide", "yosemite-photography-spots", "so-you-want-to-hike-half-dome", "yosemite-waterfalls-guide", "glacier-point-road-open-2026"],
-  "cathedral-lakes-day-hike": ["tuolumne-meadows-in-a-day", "tioga-road-opening-weekend-2026", "so-you-want-to-hike-half-dome", "first-yosemite-backpacking-trip", "yosemite-wildflowers-guide"],
-  "tuolumne-meadows-in-a-day": ["cathedral-lakes-day-hike", "tioga-road-opening-weekend-2026", "yosemite-from-las-vegas", "yosemite-wildflowers-guide", "yosemite-stargazing-where-to-look-up", "memorial-day-skip-the-valley-go-high-2026"],
+  "cathedral-lakes-day-hike": ["tuolumne-meadows-in-a-day", "clouds-rest-hike", "tioga-road-opening-weekend-2026", "so-you-want-to-hike-half-dome", "first-yosemite-backpacking-trip", "yosemite-wildflowers-guide"],
+  "tuolumne-meadows-in-a-day": ["cathedral-lakes-day-hike", "clouds-rest-hike", "tioga-road-opening-weekend-2026", "yosemite-from-las-vegas", "yosemite-wildflowers-guide", "yosemite-stargazing-where-to-look-up"],
   "hetch-hetchy-the-other-yosemite-valley": ["yosemite-waterfalls-guide", "yosemite-without-reservations-2026", "yosemite-in-march", "yosemite-wildflowers-guide", "yosemite-glaciers-climate"],
   "yosemite-winter-hikes": ["yosemite-in-winter", "horsetail-fall-firefall", "yosemite-waterfalls-guide", "yosemite-for-non-hikers", "yosemite-photography-spots"],
   "yosemite-waterfalls-guide": ["mist-trail-the-real-guide", "when-to-visit-yosemite-2026-crowd-forecast", "hetch-hetchy-the-other-yosemite-valley", "yosemite-photography-spots", "water-ouzels-waterfalls", "yosemite-in-march"],
@@ -1832,7 +1850,7 @@ window.RELATED = {
   // Seasonal
   "yosemite-in-june-2026": ["when-to-visit-yosemite-2026-crowd-forecast", "yosemite-waterfalls-guide", "tioga-road-opening-weekend-2026", "yosemite-heat-safety-guide", "bears-spring-emergence"],
   "yosemite-in-september-2026": ["when-to-visit-yosemite-2026-crowd-forecast", "yosemite-in-fall", "tuolumne-meadows-in-a-day", "yosemite-during-smoke-season", "cathedral-lakes-day-hike", "mist-trail-the-real-guide"],
-  "yosemite-in-fall": ["yosemite-in-september-2026", "when-to-visit-yosemite-2026-crowd-forecast", "yosemite-in-winter", "yosemite-photography-spots", "yosemite-during-smoke-season"],
+  "yosemite-in-fall": ["yosemite-in-september-2026", "clouds-rest-hike", "when-to-visit-yosemite-2026-crowd-forecast", "yosemite-in-winter", "yosemite-photography-spots", "yosemite-during-smoke-season"],
   "yosemite-in-winter": ["yosemite-winter-hikes", "horsetail-fall-firefall", "when-to-visit-yosemite-2026-crowd-forecast", "yosemite-in-march", "bracebridge-dinner-and-vintners-holidays"],
   "yosemite-in-march": ["yosemite-in-winter", "yosemite-waterfalls-guide", "bears-spring-emergence", "horsetail-fall-firefall", "when-to-visit-yosemite-2026-crowd-forecast"],
   "tioga-road-opening-weekend-2026": ["cathedral-lakes-day-hike", "tuolumne-meadows-in-a-day", "yosemite-from-las-vegas", "memorial-day-skip-the-valley-go-high-2026", "yosemite-stargazing-where-to-look-up", "when-to-visit-yosemite-2026-crowd-forecast"],
