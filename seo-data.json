@@ -1,5 +1,56 @@
 {
   "__comment": "SEO enrichment for the editorial site, keyed by article slug. NOT loaded by the browser runtime (kept out of data.js so the per-page JS payload stays small). The build script scripts/gen-seo-artifacts.mjs merges this with window.ARTICLES from data.js to regenerate articles.json (consumed by edge/seo.js), sitemap.xml, feed.xml, and the article section of llms.txt. Fields: wordCount (number), keywords (string[]), faq ({q,a}[]), trail ({name,distance,elevationGain,difficulty} for hike guides). FAQ answers and trail numbers are drawn from each article's published body; do not invent facts. The one article whose faq lives inline in data.js (yosemite-in-one-or-two-days) is intentionally omitted here; data.js takes precedence for faq.",
+  "clouds-rest-hike": {
+    "wordCount": 3000,
+    "keywords": [
+      "Clouds Rest hike",
+      "Clouds Rest trail",
+      "Clouds Rest Yosemite",
+      "Sunrise Lakes trailhead",
+      "Clouds Rest vs Half Dome",
+      "Half Dome without a permit",
+      "Tioga Road hikes",
+      "Clouds Rest elevation",
+      "Yosemite hike after Half Dome cables come down",
+      "Tenaya Lake trailhead"
+    ],
+    "trail": {
+      "name": "Clouds Rest from the Sunrise Lakes trailhead",
+      "distance": "14 miles round trip",
+      "elevationGain": "2,300 ft",
+      "difficulty": "Strenuous (no permit required)"
+    },
+    "faq": [
+      {
+        "q": "How long is the Clouds Rest hike?",
+        "a": "From the Sunrise Lakes trailhead at the west end of Tenaya Lake on Tioga Road, the Park Service's figures are 14 miles round trip, 2,300 feet of elevation gain, and eight to ten hours. The gain comes in two separate climbs with a descent between them, so the day carries more climbing than the net number suggests."
+      },
+      {
+        "q": "Do you need a permit to hike Clouds Rest?",
+        "a": "No. A wilderness permit is not required for day hikes in Yosemite, with the single exception of Half Dome. A permit is required only if you stay out overnight; the Sunrise Lakes trailhead carries a quota of nine lottery permits and six first-come, first-served per day."
+      },
+      {
+        "q": "Is Clouds Rest harder than Half Dome?",
+        "a": "Clouds Rest is the easier day. Half Dome from Happy Isles is 14 to 16 miles with 4,800 feet of gain from the Valley floor at about 4,000 feet and needs a permit whenever the cables are up. Clouds Rest starts a little over 8,000 feet, climbs 2,300 feet over 14 miles, and needs no permit. Its summit, at 9,926 feet, is more than a thousand feet higher than Half Dome's."
+      },
+      {
+        "q": "How exposed is the Clouds Rest summit ridge?",
+        "a": "The last stretch follows a narrow granite ridgeline with Tenaya Canyon on one side and the Merced drainage on the other. It is walking, not climbing, and the granite grips well when dry, but the exposure is real and worse in wind. The Park Service's caution is to stay off the summit and the ridgeline during thunderstorms or when the rock is wet."
+      },
+      {
+        "q": "When is the best time to hike Clouds Rest?",
+        "a": "Whenever Tioga Road is open, typically late May or early June until sometime in October or November; the road closes after the first significant snowfall. Early season can mean a cold ford of Tenaya Creek and snow on the trail. In summer, start at or before first light and summit before noon to stay ahead of thunderstorms, which are most common June through September. In October the thunderstorm season is largely over, the trailhead is frosted at dawn, and the average high at Tuolumne Meadows is 57 with a low of 26."
+      },
+      {
+        "q": "Can you hike Clouds Rest after the Half Dome cables come down?",
+        "a": "Usually, yes. The cables come down the day after the second Monday in October, conditions permitting, while Tioga Road stays open until the first significant snowfall. Over the last decade the road has closed between October 21 and November 20, and in every year but 2021 it outlasted the cables by at least 19 days. After October 15 there is no overnight parking on Tioga Road, so in that window Clouds Rest is a day hike only."
+      },
+      {
+        "q": "Is there a bus to the Clouds Rest trailhead?",
+        "a": "Not in practice. The Tuolumne Meadows shuttle and the hikers bus from the Valley end in mid-September (September 13 in 2026), and the YARTS Highway 395/120 East route, which runs July 1 through September 30 in 2026, stops at Tuolumne Meadows, White Wolf, Crane Flat and Yosemite Village but not at Tenaya Lake. Plan to drive to the Sunrise Lakes trailhead, and arrive early because the lot is small."
+      }
+    ]
+  },
   "yosemite-from-las-vegas": {
     "wordCount": 3185,
     "keywords": [
