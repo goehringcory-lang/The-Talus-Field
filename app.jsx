@@ -666,7 +666,7 @@ function buildSeo(route) {
     guide: {
       title: `The Field Guide — ${SITE_NAME}`,
       description:
-        "The offline Yosemite guide: 94 entries with tappable GPS, time budgets, and crowd swaps, all 57 day hikes, a drive-order trip planner, campsite-opening alerts, a Help card, and a topo map that works when service dies.",
+        "The offline Yosemite guide: 94 entries with tappable GPS, time budgets, and crowd swaps, all 57 day hikes, a drive-order trip planner, a Help card, and a topo map that works when service dies.",
       ogType: "website",
       breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["The Field Guide", null]],
       // On sale since the July 2026 flip (GUIDE_ON_SALE in page-guide.jsx):
@@ -678,7 +678,7 @@ function buildSeo(route) {
       faq: [
         {
           q: "Does it really work with no cell service?",
-          a: "Yes. One tap downloads the whole guide, about 70 MB: every entry, the photos on file, all 57 hike tracks, and a topographic map of the park. A few entries still show a stand-in photo rather than the place itself. The Help card's position readout, the bearing compass and companion mode run on GPS, which needs no data. Only the live extras need signal: webcams, entrance waits, parking-lot status, campsite-opening alerts, and fresh weather and program updates.",
+          a: "Yes. One tap downloads the whole guide, about 70 MB: every entry, the photos on file, all 57 hike tracks, and a topographic map of the park. A few entries still show a stand-in photo rather than the place itself. The Help card's position readout, the bearing compass and companion mode run on GPS, which needs no data. Only the live extras need signal: webcams, entrance waits, parking-lot status, and fresh weather and program updates.",
         },
         {
           q: "Is it an App Store app?",

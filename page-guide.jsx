@@ -989,7 +989,6 @@ function GuideOfflineDemo() {
           <ul>
             <li>· The live park webcams</li>
             <li>· Entrance waits and parking-lot status right now</li>
-            <li>· Campsite-opening alerts, which run on the guide's server and arrive by push or email</li>
             <li>· Fresh weather and program updates (the last sync stays readable)</li>
             <li>· The Nature Notes archive links back to this site</li>
           </ul>
@@ -1042,7 +1041,7 @@ function GuideCompare({ go }) {
           </tr>
           <tr>
             <td>The {freeLink("/map", "map", "basic trip map")}</td>
-            <td>The full trip builder: drag-and-drop days, drive buffers, the dates that matter, calendar export, campsite-opening alerts</td>
+            <td>The full trip builder: drag-and-drop days, drive buffers, the dates that matter, calendar export</td>
           </tr>
           <tr>
             <td>The {freeLink("/newsletter", "newsletter", "Sunday newsletter")}</td>
@@ -1131,7 +1130,7 @@ function GuideAfterPurchase({ go }) {
 const GUIDE_FAQ = [
   {
     q: "Does it really work with no cell service?",
-    a: "Yes. One tap downloads the whole guide, about 70 MB: every entry, the photos on file, all 57 hike tracks, and a topographic map of the park. A few entries still show a stand-in photo rather than the place itself. The Help card's position readout, the bearing compass and companion mode run on GPS, which needs no data. Only the live extras need signal: webcams, entrance waits, parking-lot status, campsite-opening alerts, and fresh weather and program updates.",
+    a: "Yes. One tap downloads the whole guide, about 70 MB: every entry, the photos on file, all 57 hike tracks, and a topographic map of the park. A few entries still show a stand-in photo rather than the place itself. The Help card's position readout, the bearing compass and companion mode run on GPS, which needs no data. Only the live extras need signal: webcams, entrance waits, parking-lot status, and fresh weather and program updates.",
   },
   {
     q: "Is it an App Store app?",
@@ -1509,7 +1508,7 @@ function GuidePage({ go }) {
             <div className="guide-closer">
               <div className="eyebrow eyebrow--moss" style={{ marginBottom: 12 }}>The offer, in one place</div>
               <p style={{ fontFamily: "var(--serif)", fontSize: 17, lineHeight: 1.6, margin: "0 0 20px" }}>
-                Four regional guides. 44 stops in driving order, each with GPS and a time budget, the flagship ones with a swap. All 57 in-park day hikes with GPS tracks, elevation profiles and a daylight reading. The 50-entry Secret Guide. The park's program schedule on your dates. A planning calendar you drag into shape, then save to the calendar you already use, with the dates that matter for your trip under it. Campsite-opening alerts from recreation.gov. A Help card, a bearing compass and a companion mode that run on GPS alone. And an offline topo map that holds it all together. <LivePrice />, once, for 18 months on every device you own.
+                Four regional guides. 44 stops in driving order, each with GPS and a time budget, the flagship ones with a swap. All 57 in-park day hikes with GPS tracks, elevation profiles and a daylight reading. The 50-entry Secret Guide. The park's program schedule on your dates. A planning calendar you drag into shape, then save to the calendar you already use, with the dates that matter for your trip under it. A Help card, a bearing compass and a companion mode that run on GPS alone. And an offline topo map that holds it all together. <LivePrice />, once, for 18 months on every device you own.
               </p>
               <BuyNowButton location="guide_closer" />
               <p style={{ fontFamily: "var(--sans)", fontSize: 12, color: "var(--ink-3)", lineHeight: 1.55, margin: "14px 0 0" }}>
