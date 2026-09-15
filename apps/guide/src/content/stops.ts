@@ -835,6 +835,20 @@ const seed: StopInput[] = [
     body:
       'Sixteen miles from the Chinquapin junction to Glacier Point itself. Most people drive it straight through to the viewpoint and complain about the parking. Don\'t. The road is the experience. Pothole Meadows (mile 10) for wildflowers in early summer, Sentinel Dome / Taft Point trailhead (mile 13.6), Washburn Point (mile 15.5) for the Half Dome / Vernal-Nevada view that\'s arguably better than Glacier Point itself. Plan three to four hours for the round trip with stops, not one.\n\nThe road is closed November through May (sometimes longer). If you\'re here in winter, this whole region flips to a Hetch Hetchy day instead.',
     photos: [{ src: '/photos/mcgurk-meadow.jpg', caption: 'Lower McGurk Meadow, one of the Glacier Point Road meadows the drive passes.' }],
+    history: {
+      note:
+        'In 1943 Park Naturalist C. Frank Brockman traced this road to the company ' +
+        'a group of men formed in 1874 with Washburn, Chapman and Moore, then ' +
+        'operating Wawona, to build a toll road to the Valley, incorporated in 1877 ' +
+        'as the Yosemite Stage and Turnpike Company. The whole system, Raymond to ' +
+        'Wawona, the Mariposa Grove road, and the Chinquapin to Glacier Point unit, ' +
+        'completed in 1882, cost $76,750. In 1917 the tolls from Wawona to the ' +
+        'south rim, Glacier Point road included, passed to the federal government ' +
+        'and were abolished.',
+      volume: 22,
+      number: 7,
+      issueDate: 'July 1943',
+    },
   },
   {
     id: 'sentinel-dome',
@@ -880,6 +894,8 @@ const seed: StopInput[] = [
     elevationFt: 7500,
     timeBudgetMin: 90,
     photos: [{ src: '/photos/taft-point.jpg' }],
+    hazard:
+      'The point is a sheer 3,000-foot drop to the Valley floor, with one small section of railing at the tip and nothing else between you and the air; people have died here taking photographs. Stay twenty feet back, keep children in hand, and treat the whole rim as the edge, because in places the Fissures mean it is.',
     teaser:
       'A gentle 2.2 miles to the Fissures and an unrailed 3,000-foot drop, with El Capitan in profile across the void. The view from twenty feet back is just as good.',
     body:
@@ -892,6 +908,19 @@ const seed: StopInput[] = [
       best: 'sunset',
       note:
         'Sunset is the famous hour here: the light comes up the valley and lights El Capitan gold across the void.',
+    },
+    history: {
+      note:
+        'Ranger-Naturalist Enid Michael wrote in January 1939 of the rarities she ' +
+        'and Mr. Michael had met in their years in the valley. One was the small ' +
+        'yellow-flowered violet Viola sheltoni, found by accident one early spring ' +
+        'after they slid down the snow chute west of Taft Point as a shortcut to the ' +
+        'valley floor. They were well down on the talus, following a bear trail ' +
+        'through the woods, when they came on it; the deeply cut, many-fingered leaf ' +
+        'was what set it apart from the district\'s other yellow violets.',
+      volume: 18,
+      number: 1,
+      issueDate: 'January 1939',
     },
   },
   {
@@ -1017,6 +1046,20 @@ const seed: StopInput[] = [
       'Five minutes north on foot, the Pioneer Yosemite History Center gathers buildings from the park\'s first decades, moved here when roads and time displaced them: a Wells Fargo office, homestead cabins, a jail, and a barn full of the actual stagecoaches that ran the road you drove in on. You enter across the Wawona covered bridge, built by Galen Clark in 1868 and roofed a decade later, which nearly every valley-bound visitor crossed for half a century. In summer there are costumed interpreters and short stage rides; the rest of the year the buildings are closed up but the walk among them is open, and the South Fork of the Merced runs quietly past it all.\n\n' +
       'It pairs naturally with the [Mariposa Grove](/stop/mariposa-grove), ten minutes south, and with [Chilnualna Falls](/stop/chilnualna-falls) and the [meadow loop](/stop/wawona-meadow-loop) for a full Wawona day that never touches the valley. When the hotel dining room is running, it takes lunch walk-ins far more easily than dinner.',
     photos: [{ src: '/photos/wawona-hotel-history-center.jpg', caption: 'The Wawona Hotel\'s white verandas across its lawn. The history center is a short walk past it.' }],
+    history: {
+      note:
+        'The covered bridge was nearly lost. Nature Notes reported in November 1957 ' +
+        'that the original, built sometime before 1874, had been mortally wounded by ' +
+        'the floods of the 1955 winter and was dismantled and restored as a Mission ' +
+        '66 project, one of the first steps toward the Wawona pioneer village. New ' +
+        'timbers were hand ' +
+        'hewn from ponderosa pine, square nails matched the old ones, and the ' +
+        'finished bridge, two trusses 14 feet apart with a 106-foot clear span, was ' +
+        'pulled back into place along steel beams in about five hours.',
+      volume: 36,
+      number: 11,
+      issueDate: 'November 1957',
+    },
   },
 
   // ---------------------------------------------------------------------------
