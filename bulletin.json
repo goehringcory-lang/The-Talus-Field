@@ -4,14 +4,14 @@
     "label": "August 19 – September 22, 2026",
     "start": "2026-08-19",
     "end": "2026-09-22",
-    "updated": "2026-09-12",
+    "updated": "2026-09-16",
     "lede": "The edition where summer ends. Every road is still open and the high country is at its best, but the waterfalls are down to their bones and the park starts shutting for the season in the first two weeks of September: the High Sierra Camps, the pools, the Tuolumne store and grill, the hikers bus. Go high while you can.",
     "source": "Condensed from the National Park Service Yosemite Guide for August 19 – September 22, 2026, with the journal's own notes.",
     "sourceUrl": "https://www.nps.gov/yose/planyourvisit/guide.htm"
   },
   "alerts": [
     { "icon": "route", "text": "The Mist Trail is closed for repairs Monday through Thursday, 7 am to 3:30 pm, through the end of October. The John Muir Trail detour is signed. Full hours under Trails." },
-    { "icon": "calendar", "text": "September is when the park closes down: Jennie's Ice Cream and the Wawona stable Sep 6, the Curry and Lodge pools Sep 7, the Tuolumne store and grill Sep 20. High Sierra Camps: Glen Aulin and Sunrise Sep 6, May Lake Sep 9, Vogelsang and Merced Lake closed all season." },
+    { "icon": "calendar", "text": "September is when the park closes down: Jennie's Ice Cream and the Wawona stable Sep 6, the Curry and Lodge pools Sep 7, the Tuolumne Meadows Lodge Sep 13 and its dining room and grill Sep 14 by the concessioner's dates (the Guide said Sep 20 for the grill), and the Tuolumne store Sep 20 per the Guide. High Sierra Camps: Glen Aulin and Sunrise Sep 6, May Lake Sep 9, Vogelsang and Merced Lake closed all season." },
     { "icon": "bus", "text": "The Tuolumne shuttle and the hikers bus both stop Sep 13. After that the high country is drive-yourself." },
     { "icon": "water", "text": "Yosemite Falls is dry and Mirror Lake is a meadow. Bridalveil, Vernal, and Nevada still run, thin. Go for the walls, not the water." },
     { "icon": "bed", "text": "Wawona Hotel and its dining room are closed for renovation. White Wolf lodge, store, and dining room are closed this season." },
@@ -19,11 +19,12 @@
     { "icon": "plug", "text": "EV charging in Tuolumne Meadows is down. Charge in the Valley, El Portal, or Wawona." },
     { "icon": "parking", "text": "Valley parking fills by late morning. Arrive before 8 am or after 4 pm, and text ynptraffic to 333111 for traffic alerts." },
     { "icon": "clock", "text": "Climbing programs move back down to the Valley: Ask-a-Climber at El Capitan bridge from Sep 6, Climber Coffee at Camp 4 from Sep 13." },
-    { "icon": "road", "text": "The El Portal Road pavement work is finished. The delays now are on Big Oak Flat Road between Foresta and Crane Flat: fire-safety crews are clearing dead wood and small trees beside the road, with delays of about 15 minutes on weekdays. The park gives no end date." }
+    { "icon": "road", "text": "The El Portal Road pavement work is finished. The delays now are on Big Oak Flat Road between Foresta and Crane Flat: fire-safety crews are clearing dead wood and small trees beside the road, with delays of about 15 minutes on weekdays. The park gives no end date." },
+    { "icon": "road", "text": "El Capitan Bridge, the Merced crossing by El Capitan Meadow, is under stabilization work: 15-minute delays Monday through Friday, 7 am to 7 pm, through December, per the park, with brief closures possible. The footpath over the bridge, which joins the north and south halves of the Valley Loop Trail, is closed on weekdays through December." }
   ],
   "areas": [
     { "name": "Yosemite Valley", "chip": "Open", "tone": "open", "note": "Busy by mid-morning, worse on weekends, and quieter after Labor Day. Parking in three hubs: Curry Village, Yosemite Village, Yosemite Falls. Once parked, stay parked and ride the free shuttles." },
-    { "name": "Tioga Road & Tuolumne Meadows", "chip": "Open", "tone": "open", "note": "The 39-mile high-country drive, 6,200 to nearly 10,000 feet. Little to no cell service; fuel and plan before you go. Store and grill close Sep 20, and the area shuttle stops Sep 13." },
+    { "name": "Tioga Road & Tuolumne Meadows", "chip": "Open", "tone": "open", "note": "The 39-mile high-country drive, 6,200 to nearly 10,000 feet. Little to no cell service; fuel and plan before you go. The lodge closed Sep 13 and its dining room and grill Sep 14 by the concessioner's dates; the store runs through Sep 20 per the Guide, and the area shuttle stopped Sep 13." },
     { "name": "Glacier Point Road", "chip": "Open", "tone": "open", "note": "One hour from the Valley. No trailers or vehicles over 30 feet past the Sentinel Dome trailhead. The gift shop runs 9 am to 7 pm." },
     { "name": "Wawona & Mariposa Grove", "chip": "Open", "tone": "open", "note": "An hour south of the Valley. Free grove shuttle every 15 minutes, 8 am to 7 pm, last bus down at 8 pm. The hotel is closed for renovation and the stable finishes Sep 6." },
     { "name": "Crane Flat", "chip": "Open", "tone": "open", "note": "Thirty minutes up Big Oak Flat Road, and the quiet way to see sequoias: Tuolumne Grove 2 miles round trip, Merced Grove 3. Information station and wilderness permits 8 am to 5 pm." },
@@ -109,7 +110,7 @@
     { "name": "Cook's Meadow", "chip": "Open", "tone": "open", "note": "1 mi flat loop of pavement and boardwalk, shuttle stop 6. Half Dome and Yosemite Falls views; best light early and late, and the birds are out at both ends of the day." },
     { "name": "Yosemite Falls Trail", "chip": "Open", "tone": "open", "note": "Columbia Rock, 2 mi round trip, earns the view. Full climb 7.2 mi and 2,700 ft, six to eight hours, dozens of switchbacks, start at dawn. From Camp 4, shuttle stop 7." },
     { "name": "Four Mile Trail", "chip": "Open", "tone": "open", "note": "9.6 mi and 3,200 ft round trip to Glacier Point, six to eight hours, from shuttle stop 11. One-way option: ride the tour bus up, walk down. Drop-offs only at the point, no pickup." },
-    { "name": "Valley Loop Trail", "chip": "Open", "tone": "open", "note": "Up to 11.5 mi, mostly flat but uneven, and the quietest miles on the floor. No pets or bikes." },
+    { "name": "Valley Loop Trail", "chip": "Open", "tone": "open", "note": "Up to 11.5 mi, mostly flat but uneven, and the quietest miles on the floor. The El Capitan Bridge section is closed on weekdays through December for bridge work, so on a weekday walk the north and south sides as two out-and-backs, or come on a weekend for the full loop. No pets or bikes." },
     { "name": "Sentinel Dome & Taft Point", "chip": "Open", "tone": "open", "note": "One trailhead on Glacier Point Road, two rim walks: Taft Point 2.4 mi round trip west, Sentinel Dome 1.8 mi northeast." },
     { "name": "Tuolumne & Merced Groves", "chip": "Open", "tone": "open", "note": "The uncrowded sequoias, both near Crane Flat: Tuolumne Grove 2 mi round trip with a 500 ft climb out, Merced Grove 3 mi with 520 ft. You walk down first, so save the legs for the return." }
   ],
@@ -149,7 +150,7 @@
         { "name": "Meadow Grill Taqueria, Curry", "hours": "11 – 8", "note": "closes 5 from Sep 7" },
         { "name": "Jennie's Ice Cream, Curry", "hours": "11 – 8:30", "note": "closed after Sep 6" },
         { "name": "Coffee Corner, Curry", "hours": "6 – 2" },
-        { "name": "Tuolumne Meadows Grill", "hours": "8 – 6", "note": "closed after Sep 20" }
+        { "name": "Tuolumne Meadows Grill", "hours": "8 – 6", "note": "closed for the season (concessioner: Sep 14; Guide said Sep 20)" }
       ]
     },
     {
