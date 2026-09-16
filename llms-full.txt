@@ -8,7 +8,7 @@
 Publisher: The Talus Field (https://thetalusfieldjournal.com). Editor: Cory Goehring.
 Citation guidance and the annotated page index: https://thetalusfieldjournal.com/llms.txt
 Canonical article URL pattern: https://thetalusfieldjournal.com/articles/<slug>
-Contents: 70 articles. Most recent update: 2026-09-14.
+Contents: 70 articles. Most recent update: 2026-09-16.
 
 Not in this file: the Yosemite Nature Notes archive, all 512 issues of the
 National Park Service's Yosemite bulletin (1922-2003), transcribed in full
@@ -4675,10 +4675,10 @@ I will be back out in the Valley tomorrow morning. If it is anything like this w
 ## So you decided to come to Yosemite on Memorial Day. What are you thinking?
 
 URL: https://thetalusfieldjournal.com/articles/memorial-day-skip-the-valley-go-high-2026
-Section: Seasonal Guides. Published: 2026-05-20. Last updated: 2026-05-20.
+Section: Seasonal Guides. Published: 2026-05-20. Last updated: 2026-09-16.
 Summary: Yosemite Valley will be gridlock on Memorial Day weekend 2026. Tioga Road and Glacier Point Road are open early. Skip the Valley, go to the high country.
 
-So you booked Yosemite for Memorial Day weekend 2026. Bold. The first reservation-free Memorial Day since 2019, the unofficial start of summer, every Bay Area family with a long weekend and the same idea you had. Brave.
+So you booked Yosemite for Memorial Day weekend 2026. Bold. The first reservation-free Memorial Day since 2023, the unofficial start of summer, every Bay Area family with a long weekend and the same idea you had. Brave.
 
 Here is the good news: you can still have a spectacular trip. Here is the short answer, the one thing almost nobody arriving this weekend will do: skip Yosemite Valley and go up to the high country instead. Both Glacier Point Road and Tioga Road are open early this year, so the best places to be on Yosemite's Memorial Day weekend are 4,000 feet above the crowded Valley floor. Pivot. Don't even think about the Valley.
 
@@ -4688,7 +4688,7 @@ I'm not being dramatic. Let me show you the shape of the problem, and then let m
 
 The National Park Service dropped the day-use reservation system for the 2026 season. No cap on cars, no gate to stop you. Sounds great until you remember that the parking lots are the same size they were in 2019 and the Valley is still seven miles long. The constraint didn't disappear. It just moved from the entrance gate to the parking lot.
 
-We already got the preview. On Saturday, May 2, 2026, a normal early-May Saturday before the season had really started, every parking space in Yosemite Valley filled by 10:59 a.m. Memorial Day weekend will be three to four times busier than that. Saturday morning is the worst of it. The Park Service knows this; it's been bracing the public for an "extremely busy weekend" and openly telling people to go anywhere but the Valley floor: Tuolumne Meadows, Wawona, the high country.
+We already got the preview. On Saturday, May 2, 2026, a normal early-May Saturday before the season had really started, the park's own alert reported every parking space in Yosemite Valley full by 10:59 a.m. Memorial Day weekend is far busier than that. Saturday morning is the worst of it. The Park Service knows this; its advice for the weekend has been to spend the busiest hours anywhere but the Valley floor: Tuolumne Meadows, Wawona, Hetch Hetchy.
 
 That's the rare moment where the rangers and I agree completely. So listen to us both. Go up, not in.
 
@@ -4696,10 +4696,10 @@ That's the rare moment where the rangers and I agree completely. So listen to us
 
 Most years, telling you to skip the Valley for the high country in late May would be a cruel joke, because the high country would still be under snow with the gates locked. Not this year.
 
-It was a thin snow year, the roads got plowed early, and both of the great high routes are already open weeks ahead of schedule:
+It was a thin snow year (the park's April 1 snow survey at Tuolumne Meadows came in at 37 percent of average after a hot, dry March), the roads got plowed early, and both of the great high routes are already open ahead of their usual dates:
 
-- Glacier Point Road opened May 9, 2026, one of its earliest openings in years.
-- Tioga Road opened May 15, 2026, the earliest opening in sixteen years. (Tioga typically doesn't open until late May or even June.)
+- Glacier Point Road opened May 9, 2026, a day earlier than it did in 2025.
+- Tioga Road opened May 15, 2026, the earliest opening since 2015. (Tioga typically doesn't open until late May or even June.)
 
 So while ten thousand people fight for a parking space 4,000 feet down in the Valley, you can be standing on a granite dome with Half Dome at eye level and almost nobody around you. That is not a consolation prize. On a holiday weekend, it's the better trip.
 
@@ -4711,26 +4711,26 @@ Turn off Highway 41 at Chinquapin and drive the road to its end. Glacier Point i
 
 Want to actually stretch your legs? Two of Yosemite's best short hikes share a trailhead a few miles before the end of the road:
 
-- Sentinel Dome. About 2.2 miles round trip, roughly 400 feet of climbing, topping out at 8,122 feet on a bare granite summit with a true 360-degree panorama: Half Dome, El Capitan, the Cathedral Range, the Clark Range, the Sierra crest. Grandparents can do it. Six-year-olds can do it. Pick this one for the view and the photo.
-- Taft Point. Also about 2.2 miles round trip, mostly easy, ending at a mostly unfenced clifftop and the Taft Point Fissures, deep granite cracks that drop away as much as 2,000 feet beneath your boots, with the viewpoint itself perched some 3,000 feet above the Valley floor. It is thrilling and it is genuinely dangerous: every accident here comes from someone stepping too close for a photo. The view from six feet back is identical to the view from one foot back. Stand back.
+- Sentinel Dome. About 2 miles round trip, roughly 400 feet of climbing, topping out at 8,122 feet on a bare granite summit with a true 360-degree panorama: Half Dome, El Capitan, the Cathedral Range, the Clark Range, the Sierra crest. Grandparents can do it. Six-year-olds can do it. Pick this one for the view and the photo.
+- Taft Point. Also about 2.2 miles round trip, mostly easy, ending at a mostly unfenced clifftop and the Taft Point Fissures, deep granite cracks that drop away as much as 2,000 feet beneath your boots, with the viewpoint itself hanging over the Valley floor. It is thrilling and it is genuinely dangerous: every accident here comes from someone stepping too close for a photo. The view from six feet back is identical to the view from one foot back. Stand back.
 
-Can't decide between them? We wrote a whole piece on how to choose, and you can link the two into one quiet loop. Don't bother with the Four Mile Trail down to the Valley this year, by the way; it's closed for 2026.
+Can't decide between them? We wrote a whole piece on how to choose, and you can link the two into one quiet loop. The Four Mile Trail down to the Valley is a different day, 4.8 miles and 3,200 feet of descent with a plan of its own, not a detour to tack onto this one.
 
-A couple of honest notes: there's no drinking water at Glacier Point and the snack stand may not be open yet, so bring a full water bottle and a sandwich. And the tour bus up here doesn't start running until mid-June, so this is a drive-yourself trip for now.
+A couple of honest notes: there was no drinking water at Glacier Point when the road opened and the snack stand runs on the road's schedule, so bring a full water bottle and a sandwich. The Glacier Point tour bus, on the other hand, has run from Yosemite Valley Lodge since the road opened on May 9, twice a day, so you can ride up and walk down if you would rather not drive.
 
 More: Glacier Point Road just opened for 2026
 
 ### Option 2: Tioga Road (open 2026), the high country two months ahead of the Valley
 
-If Glacier Point is the easy headliner, Tioga Road is the adventure. Highway 120 climbs east through the park to Tioga Pass at 9,945 feet, and right now it's a ribbon of pavement through a high country still pulling itself out of winter. You'll see country that's a solid two months behind the green Valley you drove away from. A few stops to build a day around:
+If Glacier Point is the easy headliner, Tioga Road is the adventure. Highway 120 climbs east through the park to Tioga Pass at 9,945 feet, the crossing that decides whether Las Vegas has a road into the park at all, and right now it's a ribbon of pavement through a high country still pulling itself out of winter. You'll see country that's a solid two months behind the green Valley you drove away from. A few stops to build a day around:
 
-- Olmsted Point (about 45 minutes in from the Valley side). The moment the high country opens up in front of you, and the only place you'll see the back of Half Dome, with Clouds Rest and Tenaya Canyon spread out below. Watch your footing; there can still be snow and ice near the point in late May.
-- Tenaya Lake (8,150 feet). An alpine lake right off the road. It'll likely still be ice-rimmed this early, which is its own kind of beautiful. The east-end beach is a flat, easy stroll to the water, no real hike required.
-- Tuolumne Meadows (8,600 feet). The vast subalpine heart of the high country at the foot of the Cathedral Range. Stand at the edge and let the mountains do the work. Two short legs are reliable this early: Pothole Dome at the west end (a one-mile scramble up polished granite to a meadow panorama) and the flat walk to Soda Springs and Parsons Lodge (about 1.5 miles round trip, naturally carbonated springs the kids will love). Stay on the paths. The meadow is soaked and fragile this time of year.
+- Olmsted Point. The moment the high country opens up in front of you, and the only place you'll see the back of Half Dome, with Clouds Rest and Tenaya Canyon spread out below. Watch your footing; there can still be snow and ice near the point in late May.
+- Tenaya Lake. An alpine lake right off the road. It'll likely still be ice-rimmed this early, which is its own kind of beautiful. The east-end beach is a flat, easy stroll to the water, no real hike required.
+- Tuolumne Meadows (8,600 feet). The vast subalpine heart of the high country at the foot of the Cathedral Range. Stand at the edge and let the mountains do the work. Two short legs are reliable this early: Pothole Dome at the west end (a one-mile scramble up polished granite to a meadow panorama) and the flat walk to Soda Springs and Parsons Lodge (1.4 miles round trip, naturally carbonated springs the kids will love). Stay on the paths. The meadow is soaked and fragile this time of year.
 
-Save the big alpine hikes for your next trip. Cathedral Lakes and the other classic Tuolumne destinations are still snowbound and won't be reasonable until late June or July. Bookmark the Cathedral Lakes day hike for later.
+Save the big alpine hikes for your next trip. Cathedral Lakes and the other classic Tuolumne destinations are usually still snowbound this early and don't come into condition until late June or July. Bookmark the Cathedral Lakes day hike for later.
 
-The catch up here is self-sufficiency. The road is open, but Tuolumne Meadows itself is barely awake: the store, grill, and campground aren't open yet, there's no gas anywhere past Crane Flat, and no reliable drinking water along Tioga Road this early. Fill the tank, pack all your own food and water, and store it in a bear locker. Bring layers, including a packable insulated jacket. Sunny afternoons hit the low 60s, but nights drop to near freezing at this elevation, and an afternoon thunderstorm is possible.
+The catch up here is self-sufficiency. The road is open, but Tuolumne Meadows itself is barely awake: the store, grill, and campground are weeks from opening (this year the grill's season began June 13 and the campground's July 1), there's no gas anywhere past Crane Flat, and no reliable drinking water along Tioga Road this early. Fill the tank, pack all your own food and water, and store it in a bear locker. Bring layers, including a packable insulated jacket. Sunny afternoons hit the low 60s, but nights drop to near freezing at this elevation, and an afternoon thunderstorm is possible.
 
 More: what to expect on Tioga's opening weekend
 
@@ -4738,7 +4738,7 @@ More: what to expect on Tioga's opening weekend
 
 No day-use reservations are required to enter Yosemite in 2026. That's exactly why the Valley will be slammed, and exactly why a card-in-the-glovebox high-country plan beats the crowd. Your entrance pass is $35 per vehicle, good for seven days, and the park is cashless. Bring a card. One bonus: Memorial Day Monday, May 25, is a fee-free day, so if you can swing a Monday visit, it's both the cheapest and the lightest of the three days.
 
-And if your plans go sideways anyway (lots full, weather turns, a road closes), don't fight the park. Flex. There's almost always a great option the crowd hasn't thought of. (The Valley's marquee hike, the Mist Trail, gets weekday afternoon restrictions starting June 30, but over Memorial Day weekend it is fully open and will be mobbed.)
+And if your plans go sideways anyway (lots full, weather turns, a road closes), don't fight the park. Flex. There's almost always a great option the crowd hasn't thought of. (The Valley's marquee hike, the Mist Trail, goes under weekday closures for repair work later in the summer, Monday through Thursday from 7 a.m. to 3:30 p.m. from July 27 through October, but over Memorial Day weekend it is fully open and will be mobbed.)
 
 ### What I'd tell a friend
 
