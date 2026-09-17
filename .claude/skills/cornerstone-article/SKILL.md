@@ -79,12 +79,9 @@ recent colon style, one of the four categories.
 - The evergreen month guides not yet written: January, February, April,
   May, July, August, October, November, December (the catalog has March,
   fall, winter, and the dated June and September editions).
-- Glacier Point itself: how to visit, when the road opens, the sunset
-  logistics, the shuttle years.
 - Yosemite Falls: the lower loop and the upper trail as one honest guide.
 - Sentinel Dome and Taft Point: the loop most first-timers should do
   instead of the Mist Trail on a crowded day.
-- Clouds Rest as the Half Dome alternative.
 - Tioga Road stop by stop: Olmsted Point, Tenaya Lake, Tuolumne Meadows,
   Tioga Pass (the guide's region, so the product angle is honest).
 - Winter driving and chain requirements, if `yosemite-in-winter` does not

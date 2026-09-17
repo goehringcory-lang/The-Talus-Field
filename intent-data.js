@@ -205,6 +205,7 @@ window.ARTICLE_INTENT = {
   // and `conditions` because the autumn window between the cables and the road
   // closure is half the article. `permits` is NOT tagged: the piece explains
   // that the day hike needs none and points to the permit guide for the rest.
+  "glacier-point-how-to-visit":                { stage: ["dates-set", "week-before", "in-park"], who: ["first-trip", "non-hikers", "accessible"], topic: ["transportation", "trails"] },
   "clouds-rest-hike":                          { stage: ["dates-set", "in-park"], who: ["backpacking"], topic: ["trails", "conditions"] },
   "cathedral-lakes-day-hike":                  { stage: ["dates-set", "in-park"], who: [], topic: ["trails"] },
   "yosemite-needs-a-reservation-system":       { stage: ["before-booking"], who: [], topic: ["conditions"] },

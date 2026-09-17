@@ -110,6 +110,7 @@ window.planningSeriesFor = function (slug) {
 // verifies this map stays in sync with the files in bodies/.
 // ============================================================
 window.BODY_VERSIONS = {
+  "glacier-point-how-to-visit": 1,
   "clouds-rest-hike": 1,
   "yosemite-from-las-vegas": 1,
   "highway-140-closed-yosemite": 1,
@@ -741,6 +742,20 @@ window.KIT.lists.forEach((l) => {
 });
 
 window.ARTICLES = [
+  {
+    slug: "glacier-point-how-to-visit",
+    cat: "planning",
+    title: "Glacier Point: How to Visit, When the Road Is Open, and the Shuttle Rule That Governs a Summer Day",
+    dek: "The view is 3,214 feet above Curry Village and an hour's drive from it, and the plan fails on the road more often than on the view. The road's opening and closing dates as the park publishes them, the mid-May to September rule that parks you at Badger Pass and puts you on a shuttle once the lot fills, the sunrise and sunset logistics, the Park Service's own numbers for every walk off the road, the tour bus and its one-way hiker's fare, the ski route that is the only way in from December, the campground that lets you drive the road at any hour, and the two hotels and the Firefall that stood where the amphitheater is now.",
+    seoDek: "Glacier Point: the drive, the road's open dates since 2000, the summer Badger Pass shuttle rule, sunrise vs sunset, every hike off the road, the bus, winter.",
+    date: "September 17, 2026",
+    isoDate: "2026-09-17",
+    isoModified: "2026-09-17",
+    read: "12 min",
+    placeholder: "Half Dome at sunset, from Glacier Point",
+    image: "img/half-dome-sunset-glacier-point-joshua-earle.jpg",
+    credit: "Photo: Joshua Earle / Unsplash",
+  },
   {
     slug: "clouds-rest-hike",
     cat: "trails",
@@ -1789,6 +1804,8 @@ window.START_HERE = [
 // Curate a piece when it earns real search impressions, when it anchors a
 // cluster, or when it is the destination that needs the equity.
 window.RELATED = {
+  // The standing Glacier Point guide: the road, its season, the summer shuttle rule, the walks, the bus, winter.
+  "glacier-point-how-to-visit": ["glacier-point-road-open-2026", "four-mile-up-panorama-down", "yosemite-for-non-hikers", "yosemite-stargazing-where-to-look-up", "yosemite-in-fall", "yosemite-in-winter"],
   // The Clouds Rest trail guide: the Half Dome alternative the catalog kept
   // recommending without a piece to send the reader to.
   "clouds-rest-hike": ["so-you-want-to-hike-half-dome", "tuolumne-meadows-in-a-day", "cathedral-lakes-day-hike", "yosemite-in-fall", "yosemite-wilderness-permits-guide", "first-yosemite-backpacking-trip"],
@@ -1827,7 +1844,7 @@ window.RELATED = {
 
   // Trails
   "mist-trail-the-real-guide": ["yosemite-waterfalls-guide", "so-you-want-to-hike-half-dome", "four-mile-up-panorama-down", "yosemite-heat-safety-guide", "yosemite-valley-parking-guide"],
-  "four-mile-up-panorama-down": ["mist-trail-the-real-guide", "yosemite-photography-spots", "so-you-want-to-hike-half-dome", "yosemite-waterfalls-guide", "glacier-point-road-open-2026"],
+  "four-mile-up-panorama-down": ["mist-trail-the-real-guide", "yosemite-photography-spots", "so-you-want-to-hike-half-dome", "glacier-point-how-to-visit", "glacier-point-road-open-2026"],
   "cathedral-lakes-day-hike": ["tuolumne-meadows-in-a-day", "clouds-rest-hike", "tioga-road-opening-weekend-2026", "so-you-want-to-hike-half-dome", "first-yosemite-backpacking-trip", "yosemite-wildflowers-guide"],
   "tuolumne-meadows-in-a-day": ["cathedral-lakes-day-hike", "clouds-rest-hike", "tioga-road-opening-weekend-2026", "yosemite-from-las-vegas", "yosemite-wildflowers-guide", "yosemite-stargazing-where-to-look-up"],
   "hetch-hetchy-the-other-yosemite-valley": ["yosemite-waterfalls-guide", "yosemite-without-reservations-2026", "yosemite-in-march", "yosemite-wildflowers-guide", "yosemite-glaciers-climate"],
@@ -1835,7 +1852,7 @@ window.RELATED = {
   "yosemite-waterfalls-guide": ["mist-trail-the-real-guide", "when-to-visit-yosemite-2026-crowd-forecast", "hetch-hetchy-the-other-yosemite-valley", "yosemite-photography-spots", "water-ouzels-waterfalls", "yosemite-in-march"],
 
   // Who the trip is for
-  "yosemite-for-non-hikers": ["yosemite-accessibility-guide", "yosemite-shuttle-and-yarts", "yosemite-photography-spots", "yosemite-in-one-or-two-days", "watching-climbers-el-capitan", "pets-in-yosemite"],
+  "yosemite-for-non-hikers": ["yosemite-accessibility-guide", "glacier-point-how-to-visit", "yosemite-photography-spots", "yosemite-in-one-or-two-days", "watching-climbers-el-capitan", "yosemite-shuttle-and-yarts"],
   "yosemite-accessibility-guide": ["yosemite-for-non-hikers", "yosemite-shuttle-and-yarts", "mariposa-grove-how-to-visit", "yosemite-valley-parking-guide", "yosemite-ranger-programs"],
   "yosemite-with-kids-no-reservations-2026": ["yosemite-ranger-programs", "yosemite-for-non-hikers", "swimming-in-the-merced", "yosemite-bears-safety-guide", "camping-in-yosemite-first-time"],
   "pets-in-yosemite": ["yosemite-for-non-hikers", "yosemite-accessibility-guide", "yosemite-camping-complete-guide", "yosemite-gateway-towns-compared", "yosemite-valley-parking-guide"],
@@ -1854,7 +1871,7 @@ window.RELATED = {
   "yosemite-in-winter": ["yosemite-winter-hikes", "horsetail-fall-firefall", "when-to-visit-yosemite-2026-crowd-forecast", "yosemite-in-march", "bracebridge-dinner-and-vintners-holidays"],
   "yosemite-in-march": ["yosemite-in-winter", "yosemite-waterfalls-guide", "bears-spring-emergence", "horsetail-fall-firefall", "when-to-visit-yosemite-2026-crowd-forecast"],
   "tioga-road-opening-weekend-2026": ["cathedral-lakes-day-hike", "tuolumne-meadows-in-a-day", "yosemite-from-las-vegas", "memorial-day-skip-the-valley-go-high-2026", "yosemite-stargazing-where-to-look-up", "when-to-visit-yosemite-2026-crowd-forecast"],
-  "glacier-point-road-open-2026": ["four-mile-up-panorama-down", "yosemite-photography-spots", "yosemite-stargazing-where-to-look-up", "when-to-visit-yosemite-2026-crowd-forecast", "yosemite-for-non-hikers"],
+  "glacier-point-road-open-2026": ["four-mile-up-panorama-down", "glacier-point-how-to-visit", "yosemite-photography-spots", "yosemite-stargazing-where-to-look-up", "yosemite-for-non-hikers"],
   "yosemite-heat-safety-guide": ["swimming-in-the-merced", "mist-trail-the-real-guide", "when-to-visit-yosemite-2026-crowd-forecast", "yosemite-during-smoke-season", "yosemite-waterfalls-guide"],
   "yosemite-during-smoke-season": ["yosemite-heat-safety-guide", "yosemite-fire-restrictions-explained", "when-to-visit-yosemite-2026-crowd-forecast", "yosemite-in-fall", "giant-sequoias-fire-adaptation"],
   "yosemite-fire-restrictions-explained": ["yosemite-during-smoke-season", "yosemite-camping-complete-guide", "giant-sequoias-fire-adaptation", "yosemite-heat-safety-guide", "yosemite-facelift-volunteer-guide"],
