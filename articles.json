@@ -1,5 +1,31 @@
 [
   {
+    "slug": "glacier-point-how-to-visit",
+    "cat": "planning",
+    "title": "Glacier Point: How to Visit, When the Road Is Open, and the Shuttle Rule That Governs a Summer Day",
+    "dek": "The view is 3,214 feet above Curry Village and an hour's drive from it, and the plan fails on the road more often than on the view. The road's opening and closing dates as the park publishes them, the mid-May to September rule that parks you at Badger Pass and puts you on a shuttle once the lot fills, the sunrise and sunset logistics, the Park Service's own numbers for every walk off the road, the tour bus and its one-way hiker's fare, the ski route that is the only way in from December, the campground that lets you drive the road at any hour, and the two hotels and the Firefall that stood where the amphitheater is now.",
+    "seoDek": "Glacier Point: the drive, the road's open dates since 2000, the summer Badger Pass shuttle rule, sunrise vs sunset, every hike off the road, the bus, winter.",
+    "date": "September 17, 2026",
+    "isoDate": "2026-09-17",
+    "isoModified": "2026-09-17",
+    "read": "12 min",
+    "image": "img/half-dome-sunset-glacier-point-joshua-earle.jpg",
+    "ogImage": { "url": "img/responsive/half-dome-sunset-glacier-point-joshua-earle-og.jpg", "width": 1200, "height": 630 },
+    "placeholder": "Half Dome at sunset, from Glacier Point",
+    "wordCount": 3207,
+    "keywords": ["Glacier Point", "how to visit Glacier Point", "Glacier Point Road open", "Glacier Point parking", "Glacier Point shuttle Badger Pass", "Glacier Point sunset", "Glacier Point tour bus", "Sentinel Dome Taft Point hike", "Glacier Point in winter", "Glacier Point Road closing date"],
+    "faq": [
+      { "q": "How far is Glacier Point from Yosemite Valley?", "a": "About 30 miles and an hour of driving, and the same hour from Wawona. From the Valley you take the Wawona Road (Highway 41) south about 13 miles to the Chinquapin junction, then follow Glacier Point Road about 16 miles to the end. There is no regular shuttle between the Valley and the point: you drive, ride the paid tour bus, or walk up." },
+      { "q": "When is Glacier Point Road open?", "a": "The Park Service says approximately late May through October or November, and its published dates show how wide that swings: from 2000 through 2025 the road opened as early as March 28 (2015) and as late as July 15 (2023, a construction year), with most openings in May, and it did not open at all in 2022. Most closings land in November, the earliest was October 31 (2003) and the latest December 12 (2008). In every season since 2000 in which the road opened at all, it was open by mid-July and stayed open through October. Overnight parking on the road is prohibited from October 15." },
+      { "q": "What happens when the Glacier Point parking lot is full?", "a": "From mid-May to September, between 10 am and 4:30 pm, when the Glacier Point lot fills, rangers stop cars at the Badger Pass turnoff and have you park there and ride a free shuttle. It leaves Badger Pass every 20 minutes and stops at the Sentinel Dome and Taft Point trailhead, Washburn Point, and Glacier Point, with flag stops at McGurk Meadow, Ostrander Lake, and Mono Meadow. The first shuttle leaves Badger Pass at 10 am, the last at 4:30 pm, and the last shuttle leaves Glacier Point at 5:30 pm. Before 10 am or after 4:30 pm you drive through. Vehicles with an accessibility placard, wilderness permit holders for Glacier Point Road trailheads, and Bridalveil Creek campers can drive at any time." },
+      { "q": "Is sunrise or sunset better at Glacier Point?", "a": "Sunrise is the clean answer in any month: the lot is empty and the light reaches the high peaks first and works down the walls. Sunset has a catch: after 4:30 pm you can drive up, but the lot is finite, a sunset crowd can fill it in any month the road is open, and there is no shuttle after 5:30 pm. Arrive with an hour to spare, and if the Glacier Point lot is full, use the Washburn Point lot a short way back. The drive down is an hour in the dark." },
+      { "q": "What hikes start from Glacier Point Road?", "a": "From the shared trailhead a couple of miles short of the end, Sentinel Dome is 2 miles round trip with 400 feet of gain and Taft Point is 2.2 miles round trip, and the two join through the Pohono Trail into a loop of roughly five miles. Lower on the road, McGurk Meadow is 1.6 miles round trip, Dewey Point 7.6 miles, Mono Meadow 3 miles, and Ostrander Lake 12 miles. From the point itself, the Four Mile Trail drops 4.8 miles one way to the Valley, the Panorama Trail runs 8.2 miles one way, and the Pohono Trail runs 12.5 miles to Tunnel View. Pets and bicycles are not allowed on these trails." },
+      { "q": "Is there a bus to Glacier Point?", "a": "The park concessioner runs the Glacier Point Tour whenever the road is open. For the 2026 season it listed May 9 through October 12, departing Yosemite Valley Lodge at 8:30 am and 1:30 pm for a trip of about four hours. Round trip was $72.50 for adults and $50.50 for children two to twelve; the one-way hiker's ticket was $28.50 and $18.25. The bus does not pick up at the point, so the standard shape is bus up and walk down the Four Mile or Panorama Trail." },
+      { "q": "Can you get to Glacier Point in winter?", "a": "Not by car. From roughly mid-December through March the first five miles of Glacier Point Road are plowed to Badger Pass and everything beyond is closed to cars and groomed for skiing and snowshoeing. Cross-country skiers can follow the road 10.5 miles one way, as a 21-mile day or an overnight. The concessioner's Glacier Point Ski Hut did not open for the 2025-26 winter, which it attributes to a lack of power; the alternative is camping with a wilderness permit from the Badger Pass Ranger Station. Tire chains may be required on the plowed section from late fall into early spring." }
+    ],
+    "related": ["glacier-point-road-open-2026", "four-mile-up-panorama-down", "yosemite-for-non-hikers", "yosemite-stargazing-where-to-look-up", "yosemite-in-fall"]
+  },
+  {
     "slug": "clouds-rest-hike",
     "cat": "trails",
     "title": "Clouds Rest: The Summit Above Half Dome, and the Autumn Window That Keeps It Open",
@@ -1293,7 +1319,7 @@
       { "q": "Is there parking at the Four Mile Trailhead?", "a": "There is no dedicated parking lot. The Four Mile Trailhead is along Southside Drive near Sentinel Rock. Park in the general Valley day-use lots and walk or ride the Valley bike path roughly 1.5 miles to the trailhead." },
       { "q": "Can I take the Glacier Point bus to do this hike one-way?", "a": "Yes. The Glacier Point bus tour runs daily in summer from Yosemite Valley, and it fills quickly, so book in advance. Ride up, hike the Panorama Trail down to the Valley, and take the free shuttle back to your car. This gives you a point-to-point mostly-downhill hike." }
     ],
-    "related": ["mist-trail-the-real-guide", "yosemite-photography-spots", "so-you-want-to-hike-half-dome", "yosemite-waterfalls-guide", "glacier-point-road-open-2026"]
+    "related": ["mist-trail-the-real-guide", "yosemite-photography-spots", "so-you-want-to-hike-half-dome", "glacier-point-how-to-visit", "glacier-point-road-open-2026"]
   },
   {
     "slug": "yosemite-with-kids-no-reservations-2026",
@@ -1397,7 +1423,7 @@
       { "q": "How long is the drive on Glacier Point Road?", "a": "About 16 miles one-way from the Highway 41 turnoff. Allow 30-40 minutes each way without stops. The road is narrow and winding with no passing lanes for most of its length." },
       { "q": "What is the elevation of Glacier Point?", "a": "7,214 feet. Half Dome's summit is at 8,839 feet. From the viewpoint, Half Dome appears roughly at eye level despite being about 1,600 feet higher, because the viewpoint itself sits on the valley rim." }
     ],
-    "related": ["four-mile-up-panorama-down", "yosemite-photography-spots", "yosemite-stargazing-where-to-look-up", "when-to-visit-yosemite-2026-crowd-forecast", "yosemite-for-non-hikers"]
+    "related": ["four-mile-up-panorama-down", "glacier-point-how-to-visit", "yosemite-photography-spots", "yosemite-stargazing-where-to-look-up", "yosemite-for-non-hikers"]
   },
   {
     "slug": "mist-trail-the-real-guide",
@@ -1640,7 +1666,7 @@
       { "q": "Is Glacier Point accessible without hiking?", "a": "Yes. Glacier Point is a drive-up viewpoint with a paved overlook and restrooms. No hiking is required to reach the main viewpoint. In summer, a bus tour from the Valley also serves it for those who do not want to drive the narrow 16-mile road." },
       { "q": "Can you visit Yosemite by bus or train?", "a": "Yes. Amtrak's San Joaquin line runs to Merced, where YARTS buses make the 2-hour trip to Yosemite Valley. YARTS runs year-round on the Highway 140/Merced route. In summer, YARTS also connects Lee Vining and Mammoth Lakes to the Valley via Tioga Road." }
     ],
-    "related": ["yosemite-accessibility-guide", "yosemite-shuttle-and-yarts", "yosemite-photography-spots", "yosemite-in-one-or-two-days", "watching-climbers-el-capitan"]
+    "related": ["yosemite-accessibility-guide", "glacier-point-how-to-visit", "yosemite-photography-spots", "yosemite-in-one-or-two-days", "watching-climbers-el-capitan"]
   },
   {
     "slug": "pack-your-car-for-yosemite",
