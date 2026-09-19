@@ -4719,19 +4719,42 @@ main:focus { outline: none; }
 }
 
 /* ============================================================
-   The Park Bulletin (/now) — the one-page edition board.
-   A grid of ruled cards over the journal chrome: status rows with
-   chips, a mono program clock, a dated event ledger that dims as
-   the edition ages. Everything data-driven from bulletin.json.
+   The Park Bulletin (/now), redesigned September 2026.
 
-   The icon layer (August 2026): a whole Guide edition on one screen was
-   eleven stacked blocks of grey text, and a reader had to read it in order
-   to find the one line they came for. Every mark is a second channel on
-   something the JSON already says. Geometry ships in page-now.jsx; fill,
+   The page answers in the order a visitor asks: the edition's headline
+   tiles, the dated ledger of what is changing, the day-and-area schedule,
+   roads and trails, then the folded reference. Everything is data-driven
+   from bulletin.json and read against today in the park; the notes at the
+   top of page-now.jsx carry the reasoning.
+
+   Status colour (September 2026). Until the redesign the chips drew "open"
+   in --moss and "closed" in --rust, and in the Golden Hour palette those are
+   the same iron red: an open road and a closed trail differed only by fill.
+   Status now has its own three tokens, the same in every light palette
+   because they are meanings rather than decoration, and lifted for the dark
+   scheme. Each clears 4.5:1 against the paper it sits on.
+
+   The icon layer (August 2026) is unchanged: every mark is a second channel
+   on something the JSON already says. Geometry ships in page-now.jsx; fill,
    stroke and weight come from here, so a mark takes the colour of the row
-   it sits in and all four palettes follow with no per-theme rule. Sizes
-   are set per context, never on .bicon itself.
+   it sits in and every palette follows. Sizes are set per context, never on
+   .bicon itself.
    ============================================================ */
+.bulletin {
+  --bt-open: #3d5a2b;
+  --bt-warn: #6e5010;
+  --bt-closed: #7a2a10;
+  --bt-open-bg: color-mix(in oklab, var(--bt-open) 13%, var(--paper));
+  --bt-warn-bg: color-mix(in oklab, var(--bt-warn) 14%, var(--paper));
+}
+@media (prefers-color-scheme: dark) {
+  .bulletin {
+    --bt-open: #8fb77a;
+    --bt-warn: #d0a348;
+    --bt-closed: #e07a55;
+  }
+}
+
 .bicon {
   display: block;
   flex: 0 0 auto;
@@ -4744,324 +4767,195 @@ main:focus { outline: none; }
   stroke-linejoin: round;
 }
 
-.bulletin-edition {
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--ink-3);
-  margin: 14px 0 0;
-}
-.bulletin-edition__label { color: var(--moss); }
+.bulletin-body { padding-top: 32px; padding-bottom: 64px; }
+.bulletin-loading { color: var(--ink-3); font-style: italic; }
 
-.bulletin-stale {
-  display: flex;
-  align-items: flex-start;
-  gap: 11px;
-  margin: 0 0 22px;
-  padding: 12px 16px;
-  border-left: 3px solid var(--gold);
-  background: color-mix(in oklab, var(--gold) 8%, var(--paper));
-  font-family: var(--sans);
-  font-size: 14px;
-  line-height: 1.55;
-  color: var(--ink-2);
-}
-.bulletin-stale__icon {
-  width: 18px;
-  height: 18px;
-  margin-top: 2px;
-  color: var(--gold);
+/* The top: the edition's lede beside its dateline card. */
+.bulletin-top {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 320px;
+  gap: 48px;
+  align-items: start;
 }
 .bulletin-lede {
   font-family: var(--display);
   font-style: italic;
-  font-size: clamp(19px, 2.4vw, 23px);
+  font-size: clamp(19px, 2.2vw, 23px);
   line-height: 1.45;
   color: var(--ink-2);
-  max-width: 62ch;
-  margin: 0 0 32px;
-}
-
-/* Read-this-first band. */
-.bulletin-alerts {
-  border-top: 2px solid var(--ink);
-  border-bottom: 1px solid var(--rule);
-  padding: 18px 0 20px;
-  margin-bottom: 32px;
-}
-.bulletin-alerts ul {
-  list-style: none;
+  max-width: 58ch;
   margin: 0;
-  padding: 0;
-  columns: 2;
-  column-gap: 40px;
 }
-.bulletin-alerts li {
-  display: grid;
-  grid-template-columns: 18px 1fr;
-  gap: 11px;
-  align-items: start;
-  font-family: var(--serif);
-  font-size: 16px;
-  line-height: 1.5;
-  color: var(--ink-2);
-  padding: 6px 0 6px 14px;
-  border-left: 3px solid var(--moss);
-  margin-bottom: 10px;
-  break-inside: avoid;
+.bulletin-edition {
+  border: 1px solid var(--rule);
+  background: var(--paper-2);
+  padding: 16px 18px 18px;
 }
-.bulletin-alerts__icon {
-  width: 18px;
-  height: 18px;
-  margin-top: 3px;
+.bulletin-kicker {
+  font-family: var(--sans);
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
   color: var(--moss);
 }
-
-/* Cards and grid. */
-.bulletin-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 28px;
-  align-items: start;
-  margin-bottom: 28px;
+.bulletin-edition__label {
+  margin-top: 6px;
+  font-family: var(--display);
+  font-size: 21px;
+  font-weight: 600;
+  line-height: 1.25;
 }
-.bulletin-stack { display: grid; gap: 28px; align-items: start; }
-.bulletin-card {
-  border-top: 2px solid var(--ink);
-  padding-top: 14px;
-  min-width: 0;
-}
-.bulletin-card--wide { margin-bottom: 28px; }
-.bulletin-card__head {
+.bulletin-edition__bar { margin-top: 12px; height: 6px; background: var(--paper-3); }
+.bulletin-edition__bar span { display: block; height: 100%; background: var(--moss); }
+.bulletin-edition__meta {
   display: flex;
-  align-items: center;
-  gap: 8px;
-  margin: 0 0 14px;
-  font-size: 12px;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 8px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--ink-3);
 }
-.bulletin-card__icon { width: 16px; height: 16px; }
+.bulletin-edition__source {
+  margin: 12px 0 0;
+  padding-top: 10px;
+  border-top: 1px solid var(--rule-soft);
+  font-family: var(--sans);
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: var(--ink-3);
+}
 
-/* Status rows (roads & areas, trails). */
-.bulletin-status__row {
-  border-bottom: 1px solid var(--rule-soft);
-  padding: 10px 0 12px;
+.bulletin-notice {
+  display: flex;
+  align-items: flex-start;
+  gap: 11px;
+  margin: 24px 0 0;
+  padding: 12px 16px;
+  border: 1px solid var(--bt-warn);
+  background: var(--bt-warn-bg);
+  font-family: var(--sans);
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--ink-2);
 }
-.bulletin-status__row:last-child { border-bottom: none; }
-/* Only the marked list (roads & areas) gets the icon gutter under its notes;
-   the trails list has no per-row mark to align to. */
-.bulletin-status--marked .bulletin-status__row p { padding-left: 25px; }
-.bulletin-status__name {
+.bulletin-notice__icon { width: 18px; height: 18px; margin-top: 2px; color: var(--bt-warn); }
+
+/* In-page navigation, then the sections. */
+.bulletin-jump {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 12px;
-  flex-wrap: wrap;
+  gap: 8px 24px;
+  margin-top: 32px;
+  border-top: 2px solid var(--ink);
+  border-bottom: 1px solid var(--rule);
 }
-.bulletin-status__label {
+.bulletin-jump__links { display: flex; flex-wrap: wrap; min-width: 0; }
+.bulletin-jump__links a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 12px;
+  font-family: var(--sans);
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--ink);
+  text-decoration: none;
+}
+.bulletin-jump__links a:first-child { padding-left: 0; }
+.bulletin-jump__links a:hover { color: var(--moss); }
+.bulletin-jump__date { flex: 0 0 auto; font-size: 11px; font-weight: 700; letter-spacing: 0.08em; color: var(--ink-3); }
+
+.bulletin-section {
+  margin-top: 56px;
+  padding-top: 16px;
+  border-top: 2px solid var(--ink);
+  scroll-margin-top: 100px;
+}
+.bulletin-jump + .bulletin-section { margin-top: 32px; padding-top: 0; border-top: 0; }
+.bulletin-section__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 6px 24px;
+  margin-bottom: 20px;
+}
+.bulletin-section__head h2 { font-size: clamp(28px, 2.8vw, 34px); font-weight: 600; letter-spacing: -0.01em; }
+.bulletin-section__head p { margin: 0; font-family: var(--sans); font-size: 13px; color: var(--ink-3); }
+
+.bulletin-subhead {
   display: flex;
   align-items: center;
-  gap: 9px;
-  min-width: 0;
-}
-.bulletin-status__icon {
-  width: 16px;
-  height: 16px;
+  gap: 8px;
+  margin: 0;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--rule);
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  line-height: 1.4;
+  text-transform: uppercase;
   color: var(--moss);
 }
-.bulletin-status__name strong {
+.bulletin-subhead--closed { color: var(--bt-closed); }
+.bulletin-subhead--warn { color: var(--bt-warn); }
+.bulletin-subhead--open { color: var(--bt-open); }
+.bulletin-subhead__icon { width: 15px; height: 15px; }
+
+.bulletin-note {
+  margin: 16px 0 0;
+  max-width: 80ch;
   font-family: var(--sans);
-  font-size: 15px;
-  font-weight: 650;
-  letter-spacing: -0.01em;
+  font-size: 12.5px;
+  line-height: 1.55;
+  color: var(--ink-3);
 }
-.bulletin-status__row p {
-  font-family: var(--serif);
-  font-size: 15px;
-  line-height: 1.5;
-  color: var(--ink-2);
-  margin: 4px 0 0;
-  max-width: 72ch;
+.bulletin-empty { margin: 12px 0 0; font-family: var(--sans); font-size: 14px; line-height: 1.55; color: var(--ink-3); }
+.bulletin-linkbutton {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--moss);
+  font: inherit;
+  text-decoration: underline;
+  cursor: pointer;
 }
 
+/* Status chips: word, colour and mark, all three read off `tone`. */
 .bulletin-chip {
   display: inline-flex;
   align-items: center;
   gap: 5px;
-  font-family: var(--mono);
-  font-size: 10px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  padding: 2px 8px 3px;
-  border: 1px solid currentColor;
+  padding: 3px 8px 3px 7px;
   border-radius: 2px;
+  font-family: var(--sans);
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
   white-space: nowrap;
 }
-.bulletin-chip--open { color: var(--moss); }
-.bulletin-chip--warn { color: var(--gold); }
-.bulletin-chip--closed { color: var(--paper); background: var(--rust); border-color: var(--rust); }
+.bulletin-chip--open { background: var(--bt-open-bg); color: var(--bt-open); }
+.bulletin-chip--warn { background: var(--bt-warn-bg); color: var(--bt-warn); }
+.bulletin-chip--closed { background: var(--bt-closed); color: var(--paper); }
 /* Heavier at 11px: a 1.7 stroke off a 24-unit viewBox all but disappears. */
 .bulletin-chip__icon { width: 11px; height: 11px; stroke-width: 2.6; }
 
-/* The program clock. */
-.bulletin-clock { width: 100%; border-collapse: collapse; }
-.bulletin-clock__row td {
-  border-bottom: 1px solid var(--rule-soft);
-  padding: 8px 0 9px;
-  vertical-align: baseline;
-}
-.bulletin-clock__row:last-child td { border-bottom: none; }
-.bulletin-clock__time {
-  width: 74px;
-  font-size: 12px;
-  font-weight: 700;
-  color: var(--moss);
-  white-space: nowrap;
-  padding-right: 14px;
-}
-.bulletin-clock__row--fee .bulletin-clock__time { color: var(--gold); }
-.bulletin-clock__title {
-  display: block;
-  font-family: var(--sans);
-  font-size: 14px;
-  font-weight: 600;
-  letter-spacing: -0.005em;
-}
-.bulletin-clock__meta {
-  display: block;
-  font-family: var(--sans);
-  font-size: 12px;
-  color: var(--ink-3);
-  margin-top: 2px;
-}
-.bulletin-clock__marks {
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  margin-left: 9px;
-  vertical-align: -0.25em;
-  color: var(--moss);
-}
-.bulletin-mark { width: 15px; height: 15px; }
-.bulletin-legend {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px 18px;
-  font-family: var(--sans);
-  font-size: 11.5px;
-  color: var(--ink-3);
-  margin: 12px 0 0;
-}
-.bulletin-legend span {
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-}
-.bulletin-legend .bicon { color: var(--moss); }
-
-/* Plain lists (beyond-the-Valley cards). */
-.bulletin-list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-.bulletin-list li {
-  font-family: var(--serif);
-  font-size: 15px;
-  line-height: 1.5;
-  color: var(--ink-2);
-  border-bottom: 1px solid var(--rule-soft);
-  padding: 8px 0 10px;
-}
-.bulletin-list li:last-child { border-bottom: none; }
-
-/* The event ledger. */
-.bulletin-events {
-  columns: 2;
-  column-gap: 40px;
-}
-.bulletin-event {
-  display: flex;
-  gap: 14px;
-  align-items: baseline;
-  border-bottom: 1px solid var(--rule-soft);
-  padding: 9px 0 10px;
-  break-inside: avoid;
-}
-.bulletin-event__date {
-  flex: 0 0 108px;
-  font-size: 11px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--moss);
-}
-.bulletin-event__title {
-  display: block;
-  font-family: var(--sans);
-  font-size: 14px;
-  font-weight: 600;
-  letter-spacing: -0.005em;
-}
-.bulletin-event__meta {
-  display: block;
-  font-family: var(--sans);
-  font-size: 12px;
-  color: var(--ink-3);
-  margin-top: 2px;
-}
-.bulletin-event.is-past { opacity: 0.45; }
-
-/* Hours tables and the numbers block. */
-.bulletin-hours { width: 100%; border-collapse: collapse; }
-.bulletin-hours td {
-  font-family: var(--sans);
-  font-size: 13px;
-  border-bottom: 1px solid var(--rule-soft);
-  padding: 6px 0 7px;
-  vertical-align: baseline;
-}
-.bulletin-hours tr:last-child td { border-bottom: none; }
-.bulletin-hours td.mono {
-  text-align: right;
-  font-size: 12px;
-  font-weight: 700;
-  color: var(--ink-2);
-  white-space: nowrap;
-  padding-left: 14px;
-}
-.bulletin-hours__note { color: var(--ink-3); }
-.bulletin-numbers { margin-top: 10px; border-top: 1px solid var(--rule); }
-
-/* Definition rows (transit, essentials). Each is an icon gutter and a
-   paragraph, ruled like the status rows above it: eleven run-on paragraphs
-   was the densest grey block on the page. */
-.bulletin-def {
+/* Right now: the headline tiles, then the live layer. */
+.bulletin-headlines {
   display: grid;
-  grid-template-columns: 19px 1fr;
-  gap: 12px;
-  align-items: start;
-  padding: 8px 0 9px;
-  border-bottom: 1px solid var(--rule-soft);
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 24px 28px;
 }
-.bulletin-def:last-child { border-bottom: none; }
-.bulletin-def__icon {
-  width: 19px;
-  height: 19px;
-  margin-top: 2px;
-  color: var(--moss);
-}
-.bulletin-defs p {
-  font-family: var(--serif);
-  font-size: 15px;
-  line-height: 1.55;
-  color: var(--ink-2);
-  margin: 0;
-}
-.bulletin-defs p strong { font-family: var(--sans); font-size: 14px; }
-
-.bulletin-subhead {
+.bulletin-headline { --tone: var(--bt-open); border-top: 3px solid var(--tone); padding-top: 13px; }
+.bulletin-headline--warn { --tone: var(--bt-warn); }
+.bulletin-headline--closed { --tone: var(--bt-closed); }
+.bulletin-headline__label {
   display: flex;
   align-items: center;
   gap: 8px;
@@ -5071,76 +4965,370 @@ main:focus { outline: none; }
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--ink-3);
-  margin: 22px 0 0;
 }
-.bulletin-subhead__icon { width: 15px; height: 15px; color: var(--moss); }
+.bulletin-headline__icon { width: 16px; height: 16px; }
+.bulletin-headline__status {
+  margin: 8px 0;
+  font-family: var(--display);
+  font-size: 27px;
+  font-weight: 600;
+  line-height: 1.12;
+  color: var(--tone);
+}
+.bulletin-headline p { margin: 0; font-family: var(--sans); font-size: 14px; line-height: 1.55; color: var(--ink-2); }
+.bulletin-live { margin-top: 24px; }
+.bulletin-live:empty { display: none; }
 
-.bulletin-note {
+/* What's changing: the ledger beside what has already gone. */
+.bulletin-changes {
+  display: grid;
+  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  gap: 48px;
+  align-items: start;
+}
+.bulletin-ledger { list-style: none; margin: 0; padding: 0; }
+.bulletin-ledger__row {
+  display: grid;
+  grid-template-columns: 112px minmax(0, 1fr);
+  gap: 18px;
+  padding: 12px 0 13px;
+  border-bottom: 1px solid var(--rule-soft);
+}
+.bulletin-ledger__when { font-size: 11.5px; font-weight: 700; letter-spacing: 0.05em; line-height: 1.5; color: var(--moss); }
+.bulletin-ledger__when span { display: block; color: var(--ink-3); }
+.bulletin-ledger__what { font-family: var(--sans); font-size: 15.5px; font-weight: 650; line-height: 1.4; color: var(--ink); }
+.bulletin-ledger__body p { margin: 3px 0 0; font-family: var(--sans); font-size: 13.5px; line-height: 1.5; color: var(--ink-3); }
+.bulletin-kind {
+  display: inline-block;
+  margin-right: 8px;
+  padding: 1px 6px 2px;
+  border-radius: 2px;
+  vertical-align: 1px;
   font-family: var(--sans);
-  font-size: 12.5px;
-  line-height: 1.55;
-  color: var(--ink-3);
-  border-top: 1px solid var(--rule);
-  padding-top: 10px;
-  margin: 14px 0 0;
-  max-width: 80ch;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  background: var(--paper-2);
+  color: var(--ink-2);
 }
+.bulletin-kind--closes,
+.bulletin-kind--ends { background: var(--bt-closed); color: var(--paper); }
+.bulletin-kind--hours { background: var(--bt-warn-bg); color: var(--bt-warn); }
+.bulletin-kind--opens { background: var(--bt-open-bg); color: var(--bt-open); }
+.bulletin-kind--event { background: var(--moss); color: var(--paper); }
+.bulletin-more {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  margin-top: 12px;
+  padding: 0 16px;
+  border: 1px solid var(--rule-soft);
+  border-radius: 2px;
+  background: transparent;
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 13.5px;
+  font-weight: 650;
+  cursor: pointer;
+}
+.bulletin-more:hover { border-color: var(--ink); }
+.bulletin-more__chev { width: 16px; height: 16px; transition: transform 0.18s ease; }
+.bulletin-more__chev.is-up { transform: rotate(180deg); }
 
-/* The standing reference, folded (August 2026 simplification). Hours,
-   transit, safety and phone numbers are near-identical edition to edition and
-   were taking two thirds of the page away from what actually changed. They now
-   sit under closed <details>, hinted by their own row names, so the board on
-   top is the page. Every row stays in the DOM: the fold hides, it does not
-   drop. */
-.bulletin-ref {
-  margin-top: 44px;
-  border-top: 2px solid var(--ink);
-  padding-top: 18px;
-}
-.bulletin-ref__head {
+.bulletin-changes__summary {
   display: flex;
   align-items: center;
-  gap: 9px;
-  margin: 0 0 6px;
+  gap: 10px;
+  min-height: 44px;
+  border-bottom: 1px solid var(--rule);
+  cursor: pointer;
+  list-style: none;
 }
-.bulletin-ref__dek {
+.bulletin-changes__summary::-webkit-details-marker { display: none; }
+.bulletin-changes__summary .bulletin-subhead { flex: 1 1 auto; padding-bottom: 0; border-bottom: 0; }
+.bulletin-changes__past[open] .bulletin-changes__summary .bulletin-fold__chev { transform: rotate(180deg); }
+.bulletin-changes__past h4.bulletin-subhead { margin-top: 22px; }
+.bulletin-past__row {
+  display: grid;
+  grid-template-columns: 96px minmax(0, 1fr);
+  gap: 14px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--rule-soft);
+}
+.bulletin-past__row:last-child { border-bottom: 0; }
+.bulletin-past__when { font-size: 11px; font-weight: 700; letter-spacing: 0.05em; line-height: 1.8; color: var(--ink-3); }
+.bulletin-past ul { list-style: none; margin: 0; padding: 0; }
+.bulletin-past li { font-family: var(--sans); font-size: 14px; line-height: 1.55; color: var(--ink-2); }
+.bulletin-past__detail { font-size: 13px; color: var(--ink-3); }
+
+/* What's on: day, filters, area, then the day in three parts. */
+.bulletin-schedule__controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 14px 24px;
+}
+.bulletin-days { display: flex; flex-wrap: wrap; gap: 8px; }
+.bulletin-day {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 1px;
+  min-width: 92px;
+  min-height: 52px;
+  padding: 6px 14px;
+  border: 1px solid var(--rule-soft);
+  border-radius: 2px;
+  background: transparent;
+  color: var(--ink);
+  font-family: var(--sans);
+  text-align: left;
+  cursor: pointer;
+}
+.bulletin-day:hover { border-color: var(--ink); }
+.bulletin-day.is-on { background: var(--ink); border-color: var(--ink); color: var(--paper); }
+.bulletin-day__kicker { font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; opacity: 0.85; }
+.bulletin-day__date { font-size: 15px; font-weight: 650; }
+.bulletin-filters { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.bulletin-filters__label { margin-right: 2px; font-family: var(--sans); font-size: 12.5px; color: var(--ink-3); }
+.bulletin-filter {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  min-height: 44px;
+  padding: 0 15px;
+  border: 1px solid var(--rule-soft);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--ink);
   font-family: var(--sans);
   font-size: 13px;
-  line-height: 1.55;
-  color: var(--ink-3);
-  margin: 0 0 6px;
-  max-width: 70ch;
+  font-weight: 600;
+  cursor: pointer;
 }
-.bulletin-ref__group + .bulletin-ref__group { margin-top: 20px; }
+.bulletin-filter:hover { border-color: var(--ink); }
+.bulletin-filter.is-on { background: var(--ink); border-color: var(--ink); color: var(--paper); }
+.bulletin-filter__icon { width: 16px; height: 16px; }
+.bulletin-areatabs {
+  display: flex;
+  gap: 0 24px;
+  margin-top: 18px;
+  border-bottom: 1px solid var(--rule);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.bulletin-areatabs::-webkit-scrollbar { display: none; }
+.bulletin-areatab {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 48px;
+  margin-bottom: -1px;
+  padding: 0;
+  border: 0;
+  border-bottom: 3px solid transparent;
+  background: transparent;
+  color: var(--ink-3);
+  font-family: var(--sans);
+  font-size: 14.5px;
+  font-weight: 650;
+  white-space: nowrap;
+  cursor: pointer;
+}
+.bulletin-areatab:hover { color: var(--ink); }
+.bulletin-areatab.is-on { color: var(--ink); border-bottom-color: var(--moss); }
+.bulletin-areatab__short { display: none; }
+.bulletin-areatab__count {
+  padding: 1px 6px;
+  border-radius: 2px;
+  background: var(--paper-2);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--ink-3);
+}
+.bulletin-schedule__status { margin: 14px 0 0; font-size: 11.5px; font-weight: 700; letter-spacing: 0.06em; line-height: 1.5; color: var(--ink-3); }
+.bulletin-parkwide {
+  list-style: none;
+  margin: 14px 0 0;
+  padding: 12px 14px;
+  background: var(--paper-2);
+  font-family: var(--sans);
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--ink-2);
+}
+.bulletin-parkwide li + li { margin-top: 6px; }
+.bulletin-parkwide strong { color: var(--ink); }
+.bulletin-parts {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 32px;
+  margin-top: 16px;
+  align-items: start;
+}
+.bulletin-part__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  padding-bottom: 7px;
+  border-bottom: 2px solid var(--ink);
+}
+.bulletin-part__head h3 { font-size: 21px; font-weight: 600; }
+.bulletin-part__head span { font-size: 11px; font-weight: 700; letter-spacing: 0.06em; color: var(--ink-3); }
+.bulletin-part__empty { margin: 12px 0 0; font-family: var(--display); font-style: italic; font-size: 16px; color: var(--ink-3); }
+.bulletin-progs { list-style: none; margin: 0; padding: 0; }
+.bulletin-prog {
+  display: grid;
+  grid-template-columns: 62px minmax(0, 1fr);
+  gap: 12px;
+  padding: 11px 0 12px;
+  border-bottom: 1px solid var(--rule-soft);
+}
+.bulletin-prog__time {
+  font-size: 12.5px;
+  font-weight: 700;
+  letter-spacing: 0;
+  text-transform: none;
+  line-height: 1.55;
+  white-space: nowrap;
+  color: var(--moss);
+}
+.bulletin-prog__tags { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 5px; }
+.bulletin-tag {
+  padding: 2px 6px;
+  border-radius: 2px;
+  background: var(--moss);
+  color: var(--paper);
+  font-family: var(--sans);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.bulletin-prog__title { font-family: var(--sans); font-size: 14.5px; font-weight: 650; line-height: 1.35; color: var(--ink); }
+.bulletin-prog__detail { margin: 2px 0 0; font-family: var(--sans); font-size: 12.5px; line-height: 1.45; color: var(--ink-2); }
+.bulletin-prog__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 3px 10px;
+  margin-top: 4px;
+  font-family: var(--sans);
+  font-size: 12px;
+  line-height: 1.45;
+  color: var(--ink-3);
+}
+.bulletin-prog__fee { font-weight: 700; color: var(--bt-warn); }
+.bulletin-prog__mark { display: inline-flex; align-items: center; gap: 4px; font-weight: 600; color: var(--ink-2); }
+.bulletin-mark { width: 14px; height: 14px; }
+.bulletin-areanotes { margin-top: 28px; }
+.bulletin-areanotes ul {
+  list-style: none;
+  margin: 0;
+  padding: 12px 0 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px 40px;
+}
+.bulletin-areanotes li { font-family: var(--sans); font-size: 13.5px; line-height: 1.55; color: var(--ink-2); }
+.bulletin-areanotes strong { font-weight: 650; color: var(--ink); }
 
+/* Roads & areas. */
+.bulletin-areas { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 40px; }
+.bulletin-area { padding: 14px 0 16px; border-top: 1px solid var(--rule-soft); }
+.bulletin-area__head { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 10px; }
+.bulletin-area__head h3 {
+  flex: 1 1 auto;
+  min-width: 0;
+  font-family: var(--sans);
+  font-size: 15.5px;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+  line-height: 1.3;
+}
+.bulletin-area__icon { width: 18px; height: 18px; color: var(--moss); }
+.bulletin-area p { margin: 6px 0 0 28px; font-family: var(--serif); font-size: 16px; line-height: 1.5; color: var(--ink-2); }
+
+/* Trails: the ones to check, then the ones open as usual. */
+.bulletin-trails { list-style: none; margin: 0 0 30px; padding: 0; }
+.bulletin-trail {
+  display: grid;
+  grid-template-columns: minmax(0, 23%) minmax(0, 15%) minmax(0, 20%) minmax(0, 1fr);
+  gap: 16px;
+  align-items: start;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--rule-soft);
+}
+.bulletin-trail__name strong { display: block; font-family: var(--sans); font-size: 15px; font-weight: 650; line-height: 1.35; }
+.bulletin-trail__name span { display: block; margin-top: 3px; font-family: var(--sans); font-size: 12.5px; color: var(--ink-3); }
+.bulletin-trail__dist { font-family: var(--sans); font-size: 13.5px; line-height: 1.55; color: var(--ink-2); }
+.bulletin-trail__dist span { display: block; }
+.bulletin-trail__note { margin: 0; font-family: var(--sans); font-size: 14px; line-height: 1.55; color: var(--ink-2); }
+.bulletin-usual {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0 32px;
+}
+.bulletin-usual li { padding: 12px 0 14px; border-bottom: 1px solid var(--rule-soft); }
+.bulletin-usual__name { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; }
+.bulletin-usual__name strong { font-family: var(--sans); font-size: 14.5px; font-weight: 650; }
+.bulletin-usual__meta { margin-top: 3px; font-size: 11px; font-weight: 700; letter-spacing: 0.04em; line-height: 1.5; color: var(--ink-3); }
+.bulletin-usual p { margin: 4px 0 0; font-family: var(--sans); font-size: 13px; line-height: 1.5; color: var(--ink-2); }
+
+/* The standing reference: four numbers pinned, the rest folded. */
+.bulletin-keynums {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin: 0;
+  border: 1px solid var(--rule);
+  background: var(--paper-2);
+}
+.bulletin-keynums div { padding: 13px 16px; border-left: 1px solid var(--rule-soft); }
+.bulletin-keynums div:first-child { border-left: 0; }
+.bulletin-keynums dt { font-family: var(--sans); font-size: 12px; font-weight: 600; color: var(--ink-3); }
+.bulletin-keynums dd {
+  margin: 4px 0 0;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--ink);
+}
+.bulletin-folds { margin-top: 18px; border-top: 1px solid var(--rule); }
 .bulletin-fold { border-bottom: 1px solid var(--rule); }
 .bulletin-fold__head {
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding: 15px 0;
+  gap: 12px;
+  min-height: 58px;
   cursor: pointer;
   list-style: none;
   font-family: var(--sans);
-  font-size: 15px;
+  font-size: 16px;
   font-weight: 700;
   color: var(--ink);
 }
 .bulletin-fold__head::-webkit-details-marker { display: none; }
 .bulletin-fold__head:hover .bulletin-fold__title { color: var(--moss); }
-.bulletin-fold__head:focus-visible {
-  outline: 2px solid var(--moss);
-  outline-offset: 3px;
-}
-/* An h3 so the four standing sections sit in the heading outline (they were
-   the only sections on the page a heading-navigating reader could not reach);
-   inherits the summary's type so nothing about the row changes. */
+.bulletin-fold__icon { width: 18px; height: 18px; color: var(--moss); }
+/* An h3 so the standing sections sit in the heading outline; inherits the
+   summary's type so nothing about the row changes. */
 .bulletin-fold__title { flex: 0 0 auto; margin: 0; font: inherit; color: inherit; }
+.bulletin-fold__count { flex: 0 0 auto; font-size: 11px; font-weight: 700; letter-spacing: 0.05em; color: var(--ink-3); }
 .bulletin-fold__hint {
   flex: 1 1 auto;
   min-width: 0;
+  font-size: 13px;
   font-weight: 400;
-  font-size: 12.5px;
   color: var(--ink-3);
   white-space: nowrap;
   overflow: hidden;
@@ -5149,34 +5337,168 @@ main:focus { outline: none; }
 .bulletin-fold__chev {
   flex: 0 0 auto;
   margin-left: auto;
-  width: 16px;
-  height: 16px;
+  width: 17px;
+  height: 17px;
   color: var(--ink-3);
   transition: transform 0.18s ease;
 }
-.bulletin-fold[open] .bulletin-fold__chev { transform: rotate(180deg); }
-.bulletin-fold__body { padding: 2px 0 24px; }
-
-@media (prefers-reduced-motion: reduce) {
-  .bulletin-fold__chev { transition: none; }
+.bulletin-fold[open] > .bulletin-fold__head .bulletin-fold__chev { transform: rotate(180deg); }
+.bulletin-fold__body { padding: 4px 0 28px; }
+.bulletin-hours-groups { column-count: 2; column-gap: 48px; }
+.bulletin-hours-group { break-inside: avoid; margin-bottom: 22px; }
+.bulletin-hours { width: 100%; border-collapse: collapse; }
+.bulletin-hours td {
+  padding: 7px 0;
+  border-bottom: 1px solid var(--rule-soft);
+  vertical-align: baseline;
+  font-family: var(--sans);
+  font-size: 13.5px;
+  line-height: 1.4;
 }
+.bulletin-hours tr:last-child td { border-bottom: none; }
+.bulletin-hours td.mono {
+  padding-left: 16px;
+  text-align: right;
+  white-space: nowrap;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--ink-2);
+}
+.bulletin-hours tr.is-closed td.mono { color: var(--bt-closed); }
+.bulletin-hours__note { color: var(--ink-3); }
+.bulletin-numbers { max-width: 640px; }
+.bulletin-defs { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 40px; }
+.bulletin-def {
+  display: grid;
+  grid-template-columns: 19px 1fr;
+  gap: 12px;
+  align-items: start;
+  padding: 10px 0 11px;
+  border-bottom: 1px solid var(--rule-soft);
+}
+.bulletin-def__icon { width: 19px; height: 19px; margin-top: 2px; color: var(--moss); }
+.bulletin-defs p { margin: 0; font-family: var(--serif); font-size: 15.5px; line-height: 1.55; color: var(--ink-2); }
+.bulletin-defs p strong { font-family: var(--sans); font-size: 14px; }
+.bulletin-flag {
+  display: inline-block;
+  padding: 1px 6px;
+  border-radius: 2px;
+  vertical-align: 1px;
+  background: var(--paper-2);
+  font-family: var(--sans);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+}
+.bulletin-flag--closed { background: var(--bt-closed); color: var(--paper); }
 
 .bulletin-source {
+  margin: 48px 0 0;
+  padding-top: 14px;
+  border-top: 2px solid var(--ink);
+  max-width: 80ch;
   font-family: var(--sans);
   font-size: 13px;
+  line-height: 1.55;
   color: var(--ink-3);
-  border-top: 2px solid var(--ink);
-  padding-top: 14px;
-  margin: 8px 0 0;
-  max-width: 80ch;
+}
+.bulletin-conditions { margin: 14px 0 0; font-family: var(--sans); font-size: 13.5px; color: var(--ink-3); }
+
+@media (prefers-reduced-motion: reduce) {
+  .bulletin-fold__chev,
+  .bulletin-more__chev { transition: none; }
 }
 
-@media (max-width: 860px) {
-  .bulletin-grid { grid-template-columns: 1fr; }
-  .bulletin-alerts ul, .bulletin-events { columns: 1; }
-  .bulletin-event__date { flex-basis: 92px; }
+/* Phone width: one column, the pickers scroll sideways, the reference
+   stacks. The breakpoint is the site's (where the inline nav collapses). */
+@media (max-width: 880px) {
+  .bulletin-body { padding-top: 24px; }
+  .bulletin-top { grid-template-columns: 1fr; gap: 20px; }
+  .bulletin-section { margin-top: 44px; }
+  .bulletin-jump { margin-top: 24px; }
+  .bulletin-jump__links {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scrollbar-width: none;
+    margin: 0 calc(-1 * var(--gutter));
+    padding: 0 var(--gutter);
+  }
+  .bulletin-jump__links::-webkit-scrollbar { display: none; }
+  .bulletin-jump__links a { flex: 0 0 auto; white-space: nowrap; }
+  .bulletin-jump__date { display: none; }
+
+  .bulletin-headlines { gap: 18px 24px; }
+  .bulletin-headline__status { font-size: 23px; }
+
+  .bulletin-changes { grid-template-columns: 1fr; gap: 28px; }
+  .bulletin-ledger__row { grid-template-columns: 86px minmax(0, 1fr); gap: 12px; }
+  .bulletin-ledger__what { font-size: 14.5px; }
+  .bulletin-past__row { grid-template-columns: 86px minmax(0, 1fr); gap: 12px; }
+
+  .bulletin-days {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scrollbar-width: none;
+    width: calc(100% + 2 * var(--gutter));
+    margin: 0 calc(-1 * var(--gutter));
+    padding: 0 var(--gutter);
+  }
+  .bulletin-days::-webkit-scrollbar { display: none; }
+  .bulletin-day { flex: 0 0 auto; min-width: 84px; }
+  .bulletin-areatabs { margin: 14px calc(-1 * var(--gutter)) 0; padding: 0 var(--gutter); gap: 0 18px; }
+  .bulletin-areatab__full {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+  .bulletin-areatab__short { display: inline; }
+  .bulletin-parts { grid-template-columns: 1fr; gap: 22px; }
+  .bulletin-areanotes ul { grid-template-columns: 1fr; }
+
+  .bulletin-areas { grid-template-columns: 1fr; }
+  .bulletin-area p { margin-left: 0; font-size: 15.5px; }
+
+  .bulletin-trail { grid-template-columns: minmax(0, 1fr) auto; gap: 6px 12px; }
+  .bulletin-trail__dist,
+  .bulletin-trail__note { grid-column: 1 / -1; }
+  .bulletin-trail__dist span { display: inline; }
+  .bulletin-trail__dist span + span::before { content: " · "; }
+  .bulletin-usual { grid-template-columns: 1fr; }
+
+  .bulletin-keynums { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .bulletin-keynums div:nth-child(odd) { border-left: 0; }
+  .bulletin-keynums div:nth-child(n + 3) { border-top: 1px solid var(--rule-soft); }
+  .bulletin-hours-groups { column-count: 1; }
+  .bulletin-defs { grid-template-columns: 1fr; }
   /* The hint is a scent, not content: at phone width the title needs the row. */
   .bulletin-fold__hint { display: none; }
+  .bulletin-fold__count { margin-left: auto; }
+  .bulletin-fold__chev { margin-left: 0; }
+}
+
+/* Phone proper: a headline reads as one line, label and status facing each
+   other, so the four fit in roughly one screen. Only here: in a narrow
+   multi-column grid the two collide. */
+@media (max-width: 560px) {
+  .bulletin-headline {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    align-items: baseline;
+    column-gap: 14px;
+  }
+  .bulletin-headline__label { white-space: nowrap; }
+  .bulletin-headline__status { margin: 0; font-size: 20px; text-align: right; }
+  .bulletin-headline p { grid-column: 1 / -1; margin-top: 6px; }
 }
 
 /* ===== Field Guide sales page (July 2026 conversion pass) =====

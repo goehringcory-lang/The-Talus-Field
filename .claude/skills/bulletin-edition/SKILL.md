@@ -50,24 +50,41 @@ from the agent proxy is the latter).
 ## Phase 1 — The turn
 
 Rewrite `bulletin.json` from the new Guide, section by section, per its own
-`__comment`: the `edition` block (label, start, end, updated, lede, source,
-sourceUrl), alerts, areas, the Valley clock (`valleyDay` +
-`valleyDayNote`), `elsewhere`, events (each with its `end` ISO date so the
-page can dim it), trails, hours, transit, phones.
+`__comment`, which is the authoritative field reference: the `edition` block
+(label, start, end, updated, lede, source, sourceUrl), `headlines`, the
+`changes` ledger, `areas`, `programAreas` + `programs` + `programsNote`,
+`trails` + `trailsNote`, `hours`, `transit`, `essentials`, `numbers`.
 
 Rules that have teeth:
 
 - **Facts come from the printed Guide plus park sources only.** Never
   invent a program, time, date, or closure. A row the Guide does not carry
   is a row this file does not carry.
+- **Every date is ISO and absolute.** Since the September 2026 redesign the
+  page reads this file against today's date in the park: it works out which
+  programs run on the day a reader picks, which `changes` are still coming,
+  and which `hours` rows have flipped. So a program's days and date bounds
+  belong in `days` / `from` / `until` / `dates` / `except`, never in its
+  title ("from Sep 4", "Su W F"), and nothing anywhere is written relative
+  to a day ("tomorrow", "this week"). That is what lets one file stay
+  correct for five weeks.
 - **`access` / `allAges` are the Guide's own printed symbols, read off the
   Programs page row by row, true-only.** An unmarked program stays
   unmarked.
-- **Alert icons** come from the `BULLETIN_ICONS` registry in
-  `page-now.jsx` and only restate what the alert text already says; when
-  in doubt, omit the icon and let the neutral mark render.
+- **Headline icons** come from the `BULLETIN_ICONS` registry in
+  `page-now.jsx` and only restate what the tile already says; when in doubt,
+  omit the icon and let the neutral mark render.
 - The lede is original Talus Field copy in house voice (dry, declarative,
-  no em-dashes, no exclamation marks), not NPS copy.
+  no em-dashes, no exclamation marks), not NPS copy. The same voice rule
+  covers `headlines`, and `check-bulletin.mjs` fails on an em-dash anywhere
+  a reader can see it.
+- **`node scripts/check-bulletin.mjs` is the gate on this file** (it runs
+  inside `npm --prefix scripts run check`; `run bulletin:check` is the
+  standalone form). It proves every program renders at least once inside
+  the edition window, that no day and no area tab comes out empty, and that
+  no retired key (`alerts`, `valleyDay`, `elsewhere`, `events`) crept back.
+  A day code of `thu` for `th` does not break the page, it empties part of
+  it, and only this check can see that.
 
 ## Phase 2 — The programs feed
 
@@ -97,13 +114,15 @@ API Worker never auto-deploys and list the owner's step:
 
 ## Phase 4 — The stale note (fallback only)
 
-If the edition has lapsed and no new Guide exists yet: prepend one alert,
-`{ "icon": "clock", "text": "This edition ended <end date>; the park has
-not yet published the next Yosemite Guide. Dated items below may have
-passed." }`, set `edition.updated` to today, then Phase 3 (bump, verify,
-one small PR, branch `claude/bulletin-stale-note-<date>`). Remove the note
-as part of the next real turn. Never post a second stale-note PR while one
-is open.
+If the edition has lapsed and no new Guide exists yet: set `edition.notice`
+to one sentence, "This edition ended <end date>; the park has not yet
+published the next Yosemite Guide. Dated items below may have passed.", set
+`edition.updated` to today, then Phase 3 (bump, verify, one small PR, branch
+`claude/bulletin-stale-note-<date>`). The page already shows an ended-edition
+banner on its own; `notice` replaces its wording and is the version that
+reaches the crawler prose, which is frozen at deploy. Remove the notice as
+part of the next real turn. Never post a second stale-note PR while one is
+open.
 
 ## Guardrails
 

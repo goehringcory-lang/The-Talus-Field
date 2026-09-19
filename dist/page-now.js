@@ -1,37 +1,227 @@
-var BULLETIN_URL = "/bulletin.json?v=11";
-function bulletinDate(iso) {
-  var d = new Date(iso + "T00:00:00");
-  if (Number.isNaN(d.getTime())) return iso;
-  return d.toLocaleDateString("en-US", {
-    month: "long",
-    day: "numeric",
-    year: "numeric"
-  });
+var BULLETIN_URL = "/bulletin.json?v=12";
+var BT_PARK_TZ = "America/Los_Angeles";
+var BT_DAY_CODES = ["su", "mo", "tu", "we", "th", "fr", "sa"];
+function btIsoValid(iso) {
+  if (typeof iso !== "string" || !/^\d{4}-\d{2}-\d{2}$/.test(iso)) return false;
+  return !Number.isNaN(new Date(iso + "T12:00:00Z").getTime());
 }
-function editionProgress(edition) {
-  var start = new Date(edition.start + "T00:00:00");
-  var end = new Date(edition.end + "T00:00:00");
-  var today = new Date();
-  today.setHours(0, 0, 0, 0);
-  if (Number.isNaN(start.getTime()) || Number.isNaN(end.getTime())) return null;
-  var day = Math.round((today - start) / 86400000) + 1;
-  var total = Math.round((end - start) / 86400000) + 1;
+function btIsoDate(iso) {
+  return new Date(iso + "T12:00:00Z");
+}
+function btIsoAdd(iso, days) {
+  var d = btIsoDate(iso);
+  d.setUTCDate(d.getUTCDate() + days);
+  return d.toISOString().slice(0, 10);
+}
+function btIsoDiff(a, b) {
+  return Math.round((btIsoDate(a) - btIsoDate(b)) / 86400000);
+}
+function btDayCode(iso) {
+  return BT_DAY_CODES[btIsoDate(iso).getUTCDay()];
+}
+function btParkToday() {
+  try {
+    var parts = new Intl.DateTimeFormat("en-US", {
+      timeZone: BT_PARK_TZ,
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit"
+    }).formatToParts(new Date());
+    var get = type => parts.find(p => p.type === type).value;
+    return `${get("year")}-${get("month")}-${get("day")}`;
+  } catch (e) {
+    var d = new Date();
+    return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}-${String(d.getDate()).padStart(2, "0")}`;
+  }
+}
+function btFormat(iso, opts) {
+  if (!btIsoValid(iso)) return iso || "";
+  return btIsoDate(iso).toLocaleDateString("en-US", Object.assign({
+    timeZone: "UTC"
+  }, opts));
+}
+var bulletinDate = iso => btFormat(iso, {
+  month: "long",
+  day: "numeric",
+  year: "numeric"
+});
+var btShortDate = iso => btFormat(iso, {
+  month: "short",
+  day: "numeric"
+});
+var btDayDate = iso => btFormat(iso, {
+  weekday: "short",
+  month: "short",
+  day: "numeric"
+});
+var btLongDay = iso => btFormat(iso, {
+  weekday: "long",
+  month: "long",
+  day: "numeric"
+});
+var btWeekday = iso => btFormat(iso, {
+  weekday: "long"
+});
+function btEditionProgress(edition, today) {
+  if (!btIsoValid(edition.start) || !btIsoValid(edition.end)) return null;
+  var day = btIsoDiff(today, edition.start) + 1;
+  var total = btIsoDiff(edition.end, edition.start) + 1;
   if (day < 1 || day > total) return null;
   return {
     day,
     total
   };
 }
-function editionEnded(edition) {
-  var end = new Date(edition.end + "T00:00:00");
-  var today = new Date();
-  today.setHours(0, 0, 0, 0);
-  return !Number.isNaN(end.getTime()) && today > end;
+function btEditionEnded(edition, today) {
+  return btIsoValid(edition.end) && today > edition.end;
 }
-function isPastEvent(ev) {
-  if (!ev.end) return false;
-  var end = new Date(ev.end + "T23:59:59");
-  return !Number.isNaN(end.getTime()) && end < new Date();
+function btParseTime(s) {
+  if (typeof s !== "string") return 1440;
+  var t = s.trim().toLowerCase();
+  if (t === "noon") return 720;
+  var m = t.match(/^(\d{1,2})(?::(\d{2}))?\s*(am|pm)$/);
+  if (!m) return 1440;
+  return (Number(m[1]) % 12 + (m[3] === "pm" ? 12 : 0)) * 60 + (m[2] ? Number(m[2]) : 0);
+}
+function btRunsOn(p, iso) {
+  if (!p) return false;
+  if (Array.isArray(p.except) && p.except.indexOf(iso) >= 0) return false;
+  if (Array.isArray(p.dates)) return p.dates.indexOf(iso) >= 0;
+  if (p.from && iso < p.from) return false;
+  if (p.until && iso > p.until) return false;
+  if (p.days === "daily") return true;
+  return Array.isArray(p.days) && p.days.indexOf(btDayCode(iso)) >= 0;
+}
+function btScheduleDays(edition, today) {
+  if (!btIsoValid(edition.start) || !btIsoValid(edition.end) || edition.start > edition.end) return [today];
+  var first = today;
+  if (today < edition.start) first = edition.start;
+  if (today > edition.end) first = btIsoAdd(edition.end, -6) < edition.start ? edition.start : btIsoAdd(edition.end, -6);
+  var out = [];
+  for (var i = 0; i < 7; i++) {
+    var iso = btIsoAdd(first, i);
+    if (iso > edition.end) break;
+    out.push(iso);
+  }
+  return out;
+}
+var BT_DAY_PARTS = [{
+  name: "Morning",
+  range: "Before noon",
+  from: 0,
+  to: 720,
+  empty: "Nothing listed this morning."
+}, {
+  name: "Afternoon",
+  range: "Noon to 5 pm",
+  from: 720,
+  to: 1020,
+  empty: "Nothing listed this afternoon."
+}, {
+  name: "Evening",
+  range: "5 pm on",
+  from: 1020,
+  to: 1441,
+  empty: "Nothing listed this evening."
+}];
+function btProgramOn(p, iso, today) {
+  var t = btParseTime(p.time);
+  var detail = p.detailByDay && p.detailByDay[btDayCode(iso)] || p.detail || "";
+  var tags = [];
+  if (p.tag) tags.push(p.tag);
+  if (Array.isArray(p.dates) && p.dates.length === 1) {
+    var evening = t >= 1020 && t < 1440;
+    tags.push(iso === today ? evening ? "Tonight only" : "Today only" : evening ? "One night only" : "One day only");
+  } else if (p.until && p.until === iso && !Array.isArray(p.dates)) {
+    tags.push("Last day");
+  }
+  return Object.assign({}, p, {
+    t,
+    detail,
+    tags
+  });
+}
+var BT_KIND_LABEL = {
+  closes: "Closes",
+  ends: "Ends",
+  hours: "Hours",
+  opens: "Opens",
+  event: "Event"
+};
+var BT_COMING_SHOWN = 6;
+function btRelDay(diff) {
+  if (diff === 0) return "Today";
+  if (diff === 1) return "Tomorrow";
+  if (diff > 1 && diff < 7) return `In ${diff} days`;
+  return "";
+}
+function btSplitChanges(changes, today) {
+  var upcoming = [];
+  var closed = [];
+  var hours = [];
+  var group = (list, key, label) => {
+    var g = list.find(x => x.key === key);
+    if (!g) {
+      g = {
+        key,
+        label,
+        items: []
+      };
+      list.push(g);
+    }
+    return g;
+  };
+  var dated = changes.map((c, i) => ({
+    c,
+    i
+  })).filter(x => x.c && x.c.what && btIsoValid(x.c.date)).sort((a, b) => a.c.date < b.c.date ? -1 : a.c.date > b.c.date ? 1 : a.i - b.i).map(x => x.c);
+  for (var c of dated) {
+    if (c.date >= today) {
+      upcoming.push(Object.assign({}, c, {
+        label: c.when || btDayDate(c.date),
+        rel: c.when ? "" : btRelDay(btIsoDiff(c.date, today))
+      }));
+    } else if (c.kind === "closes" || c.kind === "ends") {
+      group(closed, c.when || c.date, c.when || btShortDate(c.date)).items.push(c);
+    } else if (c.kind === "hours") {
+      group(hours, c.date, btShortDate(c.date)).items.push(c);
+    }
+  }
+  for (var _c of changes) {
+    if (_c && _c.what && !_c.date && _c.when && (_c.kind === "closes" || _c.kind === "ends")) {
+      group(closed, `w:${_c.when}`, _c.when).items.push(_c);
+    }
+  }
+  return {
+    upcoming,
+    closed,
+    hours
+  };
+}
+function btHoursToday(it, today) {
+  var note = it.note ? [it.note] : [];
+  if (btIsoValid(it.closes) && today > it.closes) {
+    return {
+      hours: "Closed",
+      note: [`closed after ${btShortDate(it.closes)}`].concat(note).join("; "),
+      closed: true
+    };
+  }
+  var hours = it.hours;
+  if (it.then && btIsoValid(it.then.from)) {
+    if (today >= it.then.from) {
+      hours = it.then.hours;
+      note.push(`since ${btShortDate(it.then.from)}`);
+    } else {
+      note.push(`${it.then.hours} from ${btShortDate(it.then.from)}`);
+    }
+  }
+  if (btIsoValid(it.closes)) note.push(`last day ${btShortDate(it.closes)}`);
+  return {
+    hours,
+    note: note.join("; "),
+    closed: false
+  };
 }
 var BULLETIN_ICONS = {
   dot: React.createElement("circle", {
@@ -396,7 +586,6 @@ var BULLETIN_ICONS = {
   }))
 };
 var AREA_ICONS = [[/hetch hetchy/i, "water"], [/^gas\b|fuel/i, "fuel"], [/grove|crane flat/i, "tree"], [/glacier point/i, "mountain"], [/road|tioga|highway/i, "road"], [/valley/i, "valley"]];
-var ELSEWHERE_ICONS = [[/tuolumne|tioga/i, "mountain"], [/grove|wawona|crane flat/i, "tree"], [/glacier point/i, "mountain"]];
 var HOURS_ICONS = [[/information|visitor|welcome/i, "info"], [/eat|food|dining|restaurant/i, "fork"], [/store|shop|market/i, "bag"], [/service/i, "gear"]];
 var TRANSIT_ICONS = [[/bike|bicycle/i, "bike"], [/charg|\bev\b/i, "plug"], [/hiker/i, "route"], [/shuttle|bus|yarts|transit/i, "bus"]];
 var ESSENTIAL_ICONS = [[/bear/i, "bear"], [/lightning|thunder|storm/i, "bolt"], [/smoke|fire/i, "flame"], [/wildlife|animal/i, "binoculars"], [/heat|water|hydrat/i, "sun"], [/parking/i, "parking"], [/pets|dogs/i, "paw"], [/rules|prohibit|regulation/i, "prohibited"], [/camp/i, "tent"], [/navigation|gps|direction/i, "signpost"], [/wifi|internet|cell|signal/i, "wifi"], [/lodging|hotel|lodge/i, "bed"]];
@@ -430,28 +619,29 @@ function BulletinChip({
   tone,
   children
 }) {
-  var t = tone || "open";
+  var t = CHIP_ICONS[tone] ? tone : "open";
   return React.createElement("span", {
     className: `bulletin-chip bulletin-chip--${t}`
   }, React.createElement(BulletinIcon, {
-    name: CHIP_ICONS[t] || "dot",
+    name: CHIP_ICONS[t],
     className: "bulletin-chip__icon"
   }), children);
 }
-function BulletinCard({
+function BulletinSection({
+  id,
   title,
-  icon,
-  wide,
+  dek,
   children
 }) {
   return React.createElement("section", {
-    className: wide ? "bulletin-card bulletin-card--wide" : "bulletin-card"
+    id: id,
+    className: "bulletin-section",
+    "aria-labelledby": `${id}-title`
+  }, React.createElement("div", {
+    className: "bulletin-section__head"
   }, React.createElement("h2", {
-    className: "eyebrow eyebrow--moss bulletin-card__head"
-  }, React.createElement(BulletinIcon, {
-    name: icon || "dot",
-    className: "bulletin-card__icon"
-  }), title), children);
+    id: `${id}-title`
+  }, title), dek ? React.createElement("p", null, dek) : null), children);
 }
 function hintFrom(names, max) {
   var list = (names || []).filter(Boolean);
@@ -463,6 +653,7 @@ function hintFrom(names, max) {
 function BulletinFold({
   title,
   icon,
+  count,
   hint,
   children
 }) {
@@ -472,10 +663,12 @@ function BulletinFold({
     className: "bulletin-fold__head"
   }, React.createElement(BulletinIcon, {
     name: icon || "dot",
-    className: "bulletin-card__icon"
+    className: "bulletin-fold__icon"
   }), React.createElement("h3", {
     className: "bulletin-fold__title"
-  }, title), hint ? React.createElement("span", {
+  }, title), count ? React.createElement("span", {
+    className: "bulletin-fold__count mono"
+  }, count) : null, hint ? React.createElement("span", {
     className: "bulletin-fold__hint"
   }, hint) : null, React.createElement(BulletinIcon, {
     name: "chevron",
@@ -484,31 +677,482 @@ function BulletinFold({
     className: "bulletin-fold__body"
   }, children));
 }
-function alertParts(a) {
-  if (typeof a === "string") return {
-    text: a,
-    icon: null
-  };
-  return {
-    text: a && a.text || "",
-    icon: a && a.icon || null
-  };
+function BulletinEditionCard({
+  edition,
+  today
+}) {
+  var progress = btEditionProgress(edition, today);
+  var ended = btEditionEnded(edition, today);
+  return React.createElement("aside", {
+    className: "bulletin-edition",
+    "aria-label": "This edition"
+  }, React.createElement("div", {
+    className: "bulletin-kicker"
+  }, "This edition"), React.createElement("div", {
+    className: "bulletin-edition__label"
+  }, edition.label), progress && React.createElement(React.Fragment, null, React.createElement("div", {
+    className: "bulletin-edition__bar",
+    role: "progressbar",
+    "aria-label": "Edition progress",
+    "aria-valuemin": 1,
+    "aria-valuemax": progress.total,
+    "aria-valuenow": progress.day,
+    "aria-valuetext": `Day ${progress.day} of ${progress.total}`
+  }, React.createElement("span", {
+    style: {
+      width: `${Math.round(progress.day / progress.total * 100)}%`
+    }
+  })), React.createElement("div", {
+    className: "bulletin-edition__meta mono"
+  }, React.createElement("span", null, "Day ", progress.day, " of ", progress.total), React.createElement("span", null, "Ends ", btDayDate(edition.end)))), ended && React.createElement("div", {
+    className: "bulletin-edition__meta mono"
+  }, React.createElement("span", null, "Ended ", btDayDate(edition.end))), React.createElement("p", {
+    className: "bulletin-edition__source"
+  }, "Updated ", React.createElement("time", {
+    dateTime: edition.updated
+  }, bulletinDate(edition.updated)), " from the National Park Service Yosemite Guide.", " ", edition.sourceUrl ? React.createElement("a", {
+    href: edition.sourceUrl,
+    target: "_blank",
+    rel: "noopener noreferrer"
+  }, "The full Guide on nps.gov ↗") : null));
 }
+function BulletinHeadlines({
+  headlines
+}) {
+  var LiveNow = typeof window !== "undefined" ? window.LiveNow : null;
+  return React.createElement(React.Fragment, null, headlines.length > 0 && React.createElement("div", {
+    className: "bulletin-headlines"
+  }, headlines.map((h, i) => React.createElement("div", {
+    className: `bulletin-headline bulletin-headline--${CHIP_ICONS[h.tone] ? h.tone : "open"}`,
+    key: i
+  }, React.createElement("div", {
+    className: "bulletin-headline__label"
+  }, React.createElement(BulletinIcon, {
+    name: h.icon || "dot",
+    className: "bulletin-headline__icon"
+  }), h.label), React.createElement("div", {
+    className: "bulletin-headline__status"
+  }, h.status), React.createElement("p", null, h.text)))), React.createElement("div", {
+    className: "bulletin-live"
+  }, React.createElement(ParkingNow, null), LiveNow ? React.createElement(LiveNow, null) : null));
+}
+function PastGroups({
+  groups
+}) {
+  return React.createElement("div", {
+    className: "bulletin-past"
+  }, groups.map(g => React.createElement("div", {
+    className: "bulletin-past__row",
+    key: g.key
+  }, React.createElement("div", {
+    className: "bulletin-past__when mono"
+  }, g.label), React.createElement("ul", null, g.items.map((c, i) => React.createElement("li", {
+    key: i
+  }, c.what, c.detail ? React.createElement("span", {
+    className: "bulletin-past__detail"
+  }, " ", c.detail) : null))))));
+}
+function btWideScreen() {
+  try {
+    return window.matchMedia("(min-width: 881px)").matches;
+  } catch (e) {
+    return true;
+  }
+}
+function BulletinChanges({
+  changes,
+  today
+}) {
+  var {
+    upcoming,
+    closed,
+    hours
+  } = React.useMemo(() => btSplitChanges(changes, today), [changes, today]);
+  var [showAll, setShowAll] = React.useState(false);
+  var [pastOpen, setPastOpen] = React.useState(btWideScreen);
+  var shown = showAll ? upcoming : upcoming.slice(0, BT_COMING_SHOWN);
+  var closedCount = closed.reduce((n, g) => n + g.items.length, 0);
+  var hoursCount = hours.reduce((n, g) => n + g.items.length, 0);
+  return React.createElement("div", {
+    className: "bulletin-changes"
+  }, React.createElement("div", {
+    className: "bulletin-changes__next"
+  }, React.createElement("h3", {
+    className: "bulletin-subhead"
+  }, React.createElement(BulletinIcon, {
+    name: "calendar",
+    className: "bulletin-subhead__icon"
+  }), "Coming up"), upcoming.length > 0 ? React.createElement("ol", {
+    className: "bulletin-ledger"
+  }, shown.map((c, i) => React.createElement("li", {
+    className: "bulletin-ledger__row",
+    key: i
+  }, React.createElement("div", {
+    className: "bulletin-ledger__when mono"
+  }, c.label, c.rel ? React.createElement("span", null, c.rel) : null), React.createElement("div", {
+    className: "bulletin-ledger__body"
+  }, React.createElement("div", {
+    className: "bulletin-ledger__what"
+  }, React.createElement("span", {
+    className: `bulletin-kind bulletin-kind--${c.kind}`
+  }, BT_KIND_LABEL[c.kind] || c.kind), c.what), c.detail ? React.createElement("p", null, c.detail) : null)))) : React.createElement("p", {
+    className: "bulletin-empty"
+  }, "Nothing else is dated in this edition."), upcoming.length > BT_COMING_SHOWN && React.createElement("button", {
+    type: "button",
+    className: "bulletin-more",
+    "aria-expanded": showAll,
+    onClick: () => setShowAll(!showAll)
+  }, showAll ? "Show fewer" : `Show ${upcoming.length - BT_COMING_SHOWN} more`, React.createElement(BulletinIcon, {
+    name: "chevron",
+    className: showAll ? "bulletin-more__chev is-up" : "bulletin-more__chev"
+  }))), closedCount + hoursCount > 0 && React.createElement("details", {
+    className: "bulletin-changes__past",
+    open: pastOpen,
+    onToggle: e => setPastOpen(e.currentTarget.open)
+  }, React.createElement("summary", {
+    className: "bulletin-changes__summary"
+  }, React.createElement("h3", {
+    className: "bulletin-subhead bulletin-subhead--closed"
+  }, React.createElement(BulletinIcon, {
+    name: "x",
+    className: "bulletin-subhead__icon"
+  }), "Already closed"), React.createElement("span", {
+    className: "bulletin-fold__count mono"
+  }, closedCount + hoursCount), React.createElement(BulletinIcon, {
+    name: "chevron",
+    className: "bulletin-fold__chev"
+  })), closedCount > 0 && React.createElement(PastGroups, {
+    groups: closed
+  }), hoursCount > 0 && React.createElement(React.Fragment, null, React.createElement("h4", {
+    className: "bulletin-subhead bulletin-subhead--warn"
+  }, React.createElement(BulletinIcon, {
+    name: "clock",
+    className: "bulletin-subhead__icon"
+  }), "Hours changed"), React.createElement(PastGroups, {
+    groups: hours
+  }))));
+}
+var BT_FILTERS = [{
+  key: "free",
+  label: "Free",
+  test: p => !p.fee
+}, {
+  key: "allAges",
+  label: "All ages",
+  icon: "family",
+  test: p => p.allAges
+}, {
+  key: "access",
+  label: "Wheelchair accessible",
+  icon: "wheelchair",
+  test: p => p.access
+}];
+function ProgramMarks({
+  p
+}) {
+  return React.createElement("div", {
+    className: "bulletin-prog__meta"
+  }, p.where ? React.createElement("span", null, p.where) : null, p.fee ? React.createElement("span", {
+    className: "bulletin-prog__fee"
+  }, "Paid") : null, p.allAges ? React.createElement("span", {
+    className: "bulletin-prog__mark"
+  }, React.createElement(BulletinIcon, {
+    name: "family",
+    className: "bulletin-mark"
+  }), "All ages") : null, p.access ? React.createElement("span", {
+    className: "bulletin-prog__mark"
+  }, React.createElement(BulletinIcon, {
+    name: "wheelchair",
+    className: "bulletin-mark"
+  }), "Accessible") : null);
+}
+function BulletinSchedule({
+  data,
+  edition,
+  today
+}) {
+  var days = React.useMemo(() => btScheduleDays(edition, today), [edition, today]);
+  var areaList = data.programAreas;
+  var [dayIdx, setDayIdx] = React.useState(0);
+  var [areaKey, setAreaKey] = React.useState(areaList.length ? areaList[0].key : "");
+  var [on, setOn] = React.useState({
+    free: false,
+    allAges: false,
+    access: false
+  });
+  var iso = days[Math.min(dayIdx, days.length - 1)];
+  var active = BT_FILTERS.filter(f => on[f.key]);
+  var pass = p => btRunsOn(p, iso) && active.every(f => f.test(p));
+  var area = areaList.find(a => a.key === areaKey) || areaList[0];
+  if (!area) return null;
+  var byTime = (a, b) => a.t - b.t || String(a.title).localeCompare(String(b.title));
+  var rows = data.programs.filter(p => p.area === area.key && pass(p)).map(p => btProgramOn(p, iso, today)).sort(byTime);
+  var parkwide = data.programs.filter(p => p.area === "parkwide" && pass(p)).map(p => btProgramOn(p, iso, today));
+  var count = key => data.programs.filter(p => p.area === key && pass(p)).length;
+  return React.createElement("div", {
+    className: "bulletin-schedule"
+  }, React.createElement("div", {
+    className: "bulletin-schedule__controls"
+  }, React.createElement("div", {
+    className: "bulletin-days",
+    role: "group",
+    "aria-label": "Day"
+  }, days.map((d, i) => {
+    var kicker = d === today ? "Today" : d === btIsoAdd(today, 1) ? "Tomorrow" : btWeekday(d);
+    return React.createElement("button", {
+      type: "button",
+      key: d,
+      className: i === dayIdx ? "bulletin-day is-on" : "bulletin-day",
+      "aria-pressed": i === dayIdx,
+      onClick: () => setDayIdx(i)
+    }, React.createElement("span", {
+      className: "bulletin-day__kicker"
+    }, kicker), React.createElement("span", {
+      className: "bulletin-day__date"
+    }, btShortDate(d)));
+  })), React.createElement("div", {
+    className: "bulletin-filters",
+    role: "group",
+    "aria-label": "Show only"
+  }, React.createElement("span", {
+    className: "bulletin-filters__label"
+  }, "Show only"), BT_FILTERS.map(f => React.createElement("button", {
+    type: "button",
+    key: f.key,
+    className: on[f.key] ? "bulletin-filter is-on" : "bulletin-filter",
+    "aria-pressed": !!on[f.key],
+    onClick: () => setOn(Object.assign({}, on, {
+      [f.key]: !on[f.key]
+    }))
+  }, f.icon ? React.createElement(BulletinIcon, {
+    name: f.icon,
+    className: "bulletin-filter__icon"
+  }) : null, f.label)))), React.createElement("div", {
+    className: "bulletin-areatabs",
+    role: "group",
+    "aria-label": "Area"
+  }, areaList.map(a => React.createElement("button", {
+    type: "button",
+    key: a.key,
+    className: a.key === area.key ? "bulletin-areatab is-on" : "bulletin-areatab",
+    "aria-pressed": a.key === area.key,
+    onClick: () => setAreaKey(a.key)
+  }, React.createElement("span", {
+    className: "bulletin-areatab__full"
+  }, a.name), React.createElement("span", {
+    className: "bulletin-areatab__short",
+    "aria-hidden": "true"
+  }, a.short), React.createElement("span", {
+    className: "bulletin-areatab__count mono"
+  }, count(a.key))))), React.createElement("p", {
+    className: "bulletin-schedule__status mono",
+    "aria-live": "polite"
+  }, btLongDay(iso), " · ", area.name, " · ", rows.length === 1 ? "1 listing" : `${rows.length} listings`), parkwide.length > 0 && React.createElement("ul", {
+    className: "bulletin-parkwide"
+  }, parkwide.map((p, i) => React.createElement("li", {
+    key: i
+  }, React.createElement("span", {
+    className: "bulletin-kind bulletin-kind--event"
+  }, "Parkwide"), React.createElement("strong", null, p.title), p.time ? ` ${p.time}.` : "", p.detail ? ` ${p.detail}` : ""))), rows.length === 0 && active.length > 0 ? React.createElement("p", {
+    className: "bulletin-empty"
+  }, "Nothing in ", area.name, " on ", btLongDay(iso), " matches ", active.map(f => f.label.toLowerCase()).join(" and "), ".", " ", React.createElement("button", {
+    type: "button",
+    className: "bulletin-linkbutton",
+    onClick: () => setOn({
+      free: false,
+      allAges: false,
+      access: false
+    })
+  }, "Clear the filters")) : React.createElement("div", {
+    className: "bulletin-parts"
+  }, BT_DAY_PARTS.map(part => {
+    var list = rows.filter(r => r.t >= part.from && r.t < part.to);
+    return React.createElement("div", {
+      className: "bulletin-part",
+      key: part.name
+    }, React.createElement("div", {
+      className: "bulletin-part__head"
+    }, React.createElement("h3", null, part.name), React.createElement("span", {
+      className: "mono"
+    }, part.range)), list.length === 0 ? React.createElement("p", {
+      className: "bulletin-part__empty"
+    }, part.empty) : React.createElement("ul", {
+      className: "bulletin-progs"
+    }, list.map((p, i) => React.createElement("li", {
+      className: "bulletin-prog",
+      key: `${p.title}-${p.time}-${i}`
+    }, React.createElement("span", {
+      className: "bulletin-prog__time mono"
+    }, p.time), React.createElement("div", {
+      className: "bulletin-prog__body"
+    }, p.tags.length > 0 && React.createElement("div", {
+      className: "bulletin-prog__tags"
+    }, p.tags.map(t => React.createElement("span", {
+      className: "bulletin-tag",
+      key: t
+    }, t))), React.createElement("div", {
+      className: "bulletin-prog__title"
+    }, p.title), p.detail ? React.createElement("p", {
+      className: "bulletin-prog__detail"
+    }, p.detail) : null, React.createElement(ProgramMarks, {
+      p: p
+    }))))));
+  })), area.notes && area.notes.length > 0 && React.createElement("div", {
+    className: "bulletin-areanotes"
+  }, React.createElement("h3", {
+    className: "bulletin-subhead"
+  }, "Also in ", area.name), React.createElement("ul", null, area.notes.map((n, i) => React.createElement("li", {
+    key: i
+  }, React.createElement("strong", null, n.h), " ", n.t)))), data.programsNote ? React.createElement("p", {
+    className: "bulletin-note"
+  }, data.programsNote) : null);
+}
+function BulletinTrails({
+  trails,
+  note
+}) {
+  var check = trails.filter(t => t.tone !== "open");
+  var usual = trails.filter(t => t.tone === "open");
+  return React.createElement(React.Fragment, null, check.length > 0 && React.createElement(React.Fragment, null, React.createElement("h3", {
+    className: "bulletin-subhead"
+  }, React.createElement(BulletinIcon, {
+    name: "alert",
+    className: "bulletin-subhead__icon"
+  }), "Check before you go"), React.createElement("ul", {
+    className: "bulletin-trails"
+  }, check.map(t => React.createElement("li", {
+    className: "bulletin-trail",
+    key: t.name
+  }, React.createElement("div", {
+    className: "bulletin-trail__name"
+  }, React.createElement("strong", null, t.name), t.start ? React.createElement("span", null, t.start) : null), React.createElement("div", {
+    className: "bulletin-trail__chip"
+  }, React.createElement(BulletinChip, {
+    tone: t.tone
+  }, t.chip)), React.createElement("div", {
+    className: "bulletin-trail__dist"
+  }, String(t.distance || "").split(" · ").filter(Boolean).map(d => React.createElement("span", {
+    key: d
+  }, d))), React.createElement("p", {
+    className: "bulletin-trail__note"
+  }, t.note))))), usual.length > 0 && React.createElement(React.Fragment, null, React.createElement("h3", {
+    className: "bulletin-subhead bulletin-subhead--open"
+  }, React.createElement(BulletinIcon, {
+    name: "check",
+    className: "bulletin-subhead__icon"
+  }), "Open as usual"), React.createElement("ul", {
+    className: "bulletin-usual"
+  }, usual.map(t => React.createElement("li", {
+    key: t.name
+  }, React.createElement("div", {
+    className: "bulletin-usual__name"
+  }, React.createElement("strong", null, t.name), t.chip && t.chip !== "Open" ? React.createElement(BulletinChip, {
+    tone: "open"
+  }, t.chip) : null), t.distance || t.start ? React.createElement("div", {
+    className: "bulletin-usual__meta mono"
+  }, [t.distance, t.start].filter(Boolean).join(" · ")) : null, React.createElement("p", null, t.note))))), note ? React.createElement("p", {
+    className: "bulletin-note"
+  }, note) : null);
+}
+function BulletinReference({
+  data,
+  today
+}) {
+  var pinned = data.numbers.slice(0, 4);
+  var places = data.hours.reduce((n, g) => n + (g.items && g.items.length || 0), 0);
+  return React.createElement(React.Fragment, null, pinned.length > 0 && React.createElement("dl", {
+    className: "bulletin-keynums"
+  }, pinned.map(n => React.createElement("div", {
+    key: n.label
+  }, React.createElement("dt", null, n.label), React.createElement("dd", {
+    className: "mono"
+  }, n.value)))), React.createElement("div", {
+    className: "bulletin-folds"
+  }, data.hours.length > 0 && React.createElement(BulletinFold, {
+    title: "Hours",
+    icon: "clock",
+    count: `${places} places`,
+    hint: hintFrom(data.hours.map(g => g.group), 4)
+  }, React.createElement("div", {
+    className: "bulletin-hours-groups"
+  }, data.hours.map(g => React.createElement("div", {
+    className: "bulletin-hours-group",
+    key: g.group
+  }, React.createElement("h4", {
+    className: "bulletin-subhead"
+  }, React.createElement(BulletinIcon, {
+    name: iconFor(HOURS_ICONS, g.group, "clock"),
+    className: "bulletin-subhead__icon"
+  }), g.group), React.createElement("table", {
+    className: "bulletin-hours"
+  }, React.createElement("tbody", null, (g.items || []).map(it => {
+    var now = btHoursToday(it, today);
+    return React.createElement("tr", {
+      key: it.name,
+      className: now.closed ? "is-closed" : undefined
+    }, React.createElement("td", null, it.name, now.note ? React.createElement("span", {
+      className: "bulletin-hours__note"
+    }, " · ", now.note) : null), React.createElement("td", {
+      className: "mono"
+    }, now.hours));
+  }))))))), data.transit.length > 0 && React.createElement(BulletinFold, {
+    title: "Getting around",
+    icon: "bus",
+    count: `${data.transit.length} ways`,
+    hint: hintFrom(data.transit.map(t => t.name), 4)
+  }, React.createElement("div", {
+    className: "bulletin-defs"
+  }, data.transit.map(t => {
+    var ended = btIsoValid(t.until) && today > t.until;
+    return React.createElement("div", {
+      className: "bulletin-def",
+      key: t.name
+    }, React.createElement(BulletinIcon, {
+      name: iconFor(TRANSIT_ICONS, t.name, "route"),
+      className: "bulletin-def__icon"
+    }), React.createElement("p", null, React.createElement("strong", null, t.name, "."), " ", btIsoValid(t.until) ? React.createElement("span", {
+      className: ended ? "bulletin-flag bulletin-flag--closed" : "bulletin-flag"
+    }, ended ? `Ended ${btShortDate(t.until)}` : `Through ${btShortDate(t.until)}`) : null, " ", t.note));
+  }))), data.essentials.length > 0 && React.createElement(BulletinFold, {
+    title: "Know before you go",
+    icon: "alert",
+    count: `${data.essentials.length} rules`,
+    hint: hintFrom(data.essentials.map(e => e.title), 5)
+  }, React.createElement("div", {
+    className: "bulletin-defs"
+  }, data.essentials.map(e => React.createElement("div", {
+    className: "bulletin-def",
+    key: e.title
+  }, React.createElement(BulletinIcon, {
+    name: iconFor(ESSENTIAL_ICONS, e.title, "info"),
+    className: "bulletin-def__icon"
+  }), React.createElement("p", null, React.createElement("strong", null, e.title, "."), " ", e.text))))), data.numbers.length > 0 && React.createElement(BulletinFold, {
+    title: "Every phone number",
+    icon: "phone",
+    count: `${data.numbers.length} numbers`,
+    hint: hintFrom(data.numbers.slice(4).map(n => n.label), 3)
+  }, React.createElement("table", {
+    className: "bulletin-hours bulletin-numbers"
+  }, React.createElement("tbody", null, data.numbers.map(n => React.createElement("tr", {
+    key: n.label
+  }, React.createElement("td", null, n.label), React.createElement("td", {
+    className: "mono"
+  }, n.value))))))));
+}
+var BULLETIN_ARRAYS = ["headlines", "changes", "areas", "programAreas", "programs", "trails", "hours", "transit", "essentials", "numbers"];
 function BulletinPage({
   go
 }) {
   var [data, setData] = React.useState(null);
   var [state, setState] = React.useState("loading");
+  var today = React.useMemo(btParkToday, []);
   React.useEffect(() => {
     var cancelled = false;
     fetch(BULLETIN_URL).then(r => r.ok ? r.json() : Promise.reject(new Error(`bulletin.json ${r.status}`))).then(json => {
       if (cancelled) return;
       if (json && json.edition) {
-        var arrays = ["alerts", "areas", "valleyDay", "elsewhere", "events", "trails", "hours", "transit", "essentials", "numbers"];
-        var safe = {
-          ...json
-        };
-        for (var k of arrays) {
+        var safe = Object.assign({}, json);
+        for (var k of BULLETIN_ARRAYS) {
           if (!Array.isArray(safe[k])) safe[k] = [];
         }
         setData(safe);
@@ -524,17 +1168,43 @@ function BulletinPage({
       cancelled = true;
     };
   }, []);
-  var edition = data ? data.edition : null;
-  var progress = edition ? editionProgress(edition) : null;
-  var marked = data && data.valleyDay ? {
-    access: data.valleyDay.some(p => p.access),
-    allAges: data.valleyDay.some(p => p.allAges)
-  } : {
-    access: false,
-    allAges: false
+  var toConditions = e => {
+    e.preventDefault();
+    go("conditions");
   };
+  var edition = data ? data.edition : null;
+  var ended = edition ? btEditionEnded(edition, today) : false;
+  var sections = data ? [{
+    id: "bulletin-now",
+    label: "Right now",
+    show: data.headlines.length > 0
+  }, {
+    id: "bulletin-changing",
+    label: "What's changing",
+    show: data.changes.length > 0
+  }, {
+    id: "bulletin-on",
+    label: "What's on",
+    show: data.programs.length > 0 && data.programAreas.length > 0
+  }, {
+    id: "bulletin-roads",
+    label: "Roads & areas",
+    show: data.areas.length > 0
+  }, {
+    id: "bulletin-trails",
+    label: "Trails",
+    show: data.trails.length > 0
+  }, {
+    id: "bulletin-details",
+    label: "Hours, transit & numbers",
+    show: true
+  }].filter(s => s.show) : [];
+  var tones = data ? ["open", "warn", "closed"].map(t => data.areas.filter(a => a.tone === t).length) : [0, 0, 0];
+  var areaDek = [tones[0] ? `${tones[0]} open` : "", tones[1] ? `${tones[1]} with limits` : "", tones[2] ? `${tones[2]} closed` : ""].filter(Boolean).join(", ");
+  var trailCheck = data ? data.trails.filter(t => t.tone !== "open").length : 0;
+  var trailUsual = data ? data.trails.length - trailCheck : 0;
   return React.createElement("div", {
-    className: "page"
+    className: "page bulletin"
   }, React.createElement("div", {
     className: "page-head"
   }, React.createElement("div", {
@@ -551,262 +1221,109 @@ function BulletinPage({
     className: "eyebrow eyebrow--moss"
   }, "One page, the whole park"), React.createElement("h1", null, "The Park Bulletin"), React.createElement("p", {
     className: "page-head__dek"
-  }, "What is different in Yosemite right now, on one page: what changed, what's open, the daily programs, the dated events, and the trails. Hours, transit and phone numbers sit folded at the bottom. Rebuilt for each edition of the park's printed Yosemite Guide."), edition && React.createElement("p", {
-    className: "bulletin-edition mono"
-  }, React.createElement("span", {
-    className: "bulletin-edition__label"
-  }, "Covering ", edition.label), progress && React.createElement("span", null, " · day ", progress.day, " of ", progress.total), !progress && editionEnded(edition) && React.createElement("span", null, " · this edition has ended"), React.createElement("span", null, " · updated ", React.createElement("time", {
-    dateTime: edition.updated
-  }, bulletinDate(edition.updated)))))), React.createElement("div", {
-    className: "wrap",
-    style: {
-      paddingTop: 36,
-      paddingBottom: 64
-    }
+  }, "What is different in Yosemite right now: what is open, what is on today, and what changes next. Rebuilt for each edition of the park's printed Yosemite Guide."))), React.createElement("div", {
+    className: "wrap bulletin-body"
   }, state === "loading" && React.createElement("p", {
-    style: {
-      color: "var(--ink-3)",
-      fontStyle: "italic"
-    }
+    className: "bulletin-loading"
   }, "Loading the current edition…"), state === "error" && React.createElement("p", {
-    style: {
-      color: "var(--ink-3)"
-    }
+    className: "bulletin-loading"
   }, "The bulletin didn't load. The live layer still works:", " ", React.createElement("a", {
     href: "/conditions",
-    onClick: e => {
-      e.preventDefault();
-      go("conditions");
-    }
-  }, "webcams, entrance waits, and forecasts"), "."), state === "ready" && React.createElement(React.Fragment, null, editionEnded(edition) && React.createElement("p", {
-    className: "bulletin-stale"
-  }, React.createElement(BulletinIcon, {
-    name: "alert",
-    className: "bulletin-stale__icon"
-  }), React.createElement("span", null, "This edition of the Yosemite Guide ended ", bulletinDate(edition.end), ", and the next one is being condensed now. The dated events below are over. Hours and phone numbers usually hold between editions; the", " ", React.createElement("a", {
-    href: "/conditions",
-    onClick: e => {
-      e.preventDefault();
-      go("conditions");
-    }
-  }, "live layer"), " ", "(webcams, entrance waits, forecasts) stays current.")), edition.lede && React.createElement("p", {
+    onClick: toConditions
+  }, "webcams, entrance waits, and forecasts"), "."), state === "ready" && React.createElement(React.Fragment, null, React.createElement("div", {
+    className: "bulletin-top"
+  }, edition.lede ? React.createElement("p", {
     className: "bulletin-lede"
-  }, edition.lede), data.alerts && data.alerts.length > 0 && React.createElement("section", {
-    className: "bulletin-alerts"
-  }, React.createElement("h2", {
-    className: "eyebrow eyebrow--moss bulletin-card__head"
+  }, edition.lede) : React.createElement("div", null), React.createElement(BulletinEditionCard, {
+    edition: edition,
+    today: today
+  })), (ended || edition.notice) && React.createElement("p", {
+    className: "bulletin-notice"
   }, React.createElement(BulletinIcon, {
     name: "alert",
-    className: "bulletin-card__icon"
-  }), "Changed this edition"), React.createElement("ul", null, data.alerts.map((a, i) => {
-    var alert = alertParts(a);
-    return React.createElement("li", {
-      key: i
-    }, React.createElement(BulletinIcon, {
-      name: alert.icon || "dot",
-      className: "bulletin-alerts__icon"
-    }), React.createElement("span", null, alert.text));
-  }))), React.createElement(BulletinCard, {
+    className: "bulletin-notice__icon"
+  }), React.createElement("span", null, edition.notice || `This edition of the Yosemite Guide ended ${bulletinDate(edition.end)}, and the next one is being condensed now. Dates below may have passed; hours and phone numbers usually hold between editions.`, " ", "The ", React.createElement("a", {
+    href: "/conditions",
+    onClick: toConditions
+  }, "live layer"), " (webcams, entrance waits, forecasts) stays current.")), React.createElement("nav", {
+    className: "bulletin-jump",
+    "aria-label": "On this page"
+  }, React.createElement("div", {
+    className: "bulletin-jump__links"
+  }, sections.map(s => React.createElement("a", {
+    href: `#${s.id}`,
+    key: s.id
+  }, s.label))), React.createElement("span", {
+    className: "bulletin-jump__date mono"
+  }, btLongDay(today))), data.headlines.length > 0 && React.createElement(BulletinSection, {
+    id: "bulletin-now",
+    title: "Right now",
+    dek: "What this edition most wants you to know."
+  }, React.createElement(BulletinHeadlines, {
+    headlines: data.headlines
+  })), data.changes.length > 0 && React.createElement(BulletinSection, {
+    id: "bulletin-changing",
+    title: "What's changing",
+    dek: "The season, in order: what comes next, and what has already gone."
+  }, React.createElement(BulletinChanges, {
+    changes: data.changes,
+    today: today
+  })), data.programs.length > 0 && data.programAreas.length > 0 && React.createElement(BulletinSection, {
+    id: "bulletin-on",
+    title: "What's on",
+    dek: "Programs, walks, talks, and dated events, by day and by area."
+  }, React.createElement(BulletinSchedule, {
+    data: data,
+    edition: edition,
+    today: today
+  })), data.areas.length > 0 && React.createElement(BulletinSection, {
+    id: "bulletin-roads",
     title: "Roads & areas",
-    icon: "road",
-    wide: true
+    dek: areaDek ? `${areaDek}.` : null
   }, React.createElement("div", {
-    className: "bulletin-status bulletin-status--marked"
-  }, data.areas.map(area => React.createElement("div", {
-    className: "bulletin-status__row",
-    key: area.name
+    className: "bulletin-areas"
+  }, data.areas.map(a => React.createElement("article", {
+    className: "bulletin-area",
+    key: a.name
   }, React.createElement("div", {
-    className: "bulletin-status__name"
-  }, React.createElement("span", {
-    className: "bulletin-status__label"
+    className: "bulletin-area__head"
   }, React.createElement(BulletinIcon, {
-    name: iconFor(AREA_ICONS, area.name, "pin"),
-    className: "bulletin-status__icon"
-  }), React.createElement("strong", null, area.name)), React.createElement(BulletinChip, {
-    tone: area.tone
-  }, area.chip)), React.createElement("p", null, area.note)))), React.createElement(ParkingNow, null)), React.createElement("div", {
-    className: "bulletin-grid"
-  }, React.createElement(BulletinCard, {
-    title: "The Valley, by the clock",
-    icon: "clock"
-  }, React.createElement("table", {
-    className: "bulletin-clock"
-  }, React.createElement("tbody", null, data.valleyDay.map((p, i) => React.createElement("tr", {
-    key: i,
-    className: p.fee ? "bulletin-clock__row bulletin-clock__row--fee" : "bulletin-clock__row"
-  }, React.createElement("td", {
-    className: "bulletin-clock__time mono"
-  }, p.time), React.createElement("td", {
-    className: "bulletin-clock__what"
-  }, React.createElement("span", {
-    className: "bulletin-clock__title"
-  }, p.title, p.fee ? " ($)" : ""), React.createElement("span", {
-    className: "bulletin-clock__meta"
-  }, p.days, p.where ? ` · ${p.where}` : "", p.note ? ` · ${p.note}` : "", (p.allAges || p.access) && React.createElement("span", {
-    className: "bulletin-clock__marks"
-  }, p.allAges && React.createElement(BulletinIcon, {
-    name: "family",
-    className: "bulletin-mark",
-    label: "All ages"
-  }), p.access && React.createElement(BulletinIcon, {
-    name: "wheelchair",
-    className: "bulletin-mark",
-    label: "Wheelchair accessible"
-  })))))))), (marked.access || marked.allAges) && React.createElement("p", {
-    className: "bulletin-legend"
-  }, marked.allAges && React.createElement("span", null, React.createElement(BulletinIcon, {
-    name: "family",
-    className: "bulletin-mark"
-  }), " all ages"), marked.access && React.createElement("span", null, React.createElement(BulletinIcon, {
-    name: "wheelchair",
-    className: "bulletin-mark"
-  }), " wheelchair accessible"), React.createElement("span", null, "($) paid or ticketed")), data.valleyDayNote && React.createElement("p", {
-    className: "bulletin-note"
-  }, data.valleyDayNote)), React.createElement("div", {
-    className: "bulletin-stack"
-  }, data.elsewhere.map(sec => React.createElement(BulletinCard, {
-    title: sec.area,
-    icon: iconFor(ELSEWHERE_ICONS, sec.area, "pin"),
-    key: sec.area
-  }, React.createElement("ul", {
-    className: "bulletin-list"
-  }, sec.items.map((item, i) => React.createElement("li", {
-    key: i
-  }, item))))))), React.createElement(BulletinCard, {
-    title: "On the calendar this edition",
-    icon: "calendar",
-    wide: true
-  }, React.createElement("div", {
-    className: "bulletin-events"
-  }, data.events.map((ev, i) => React.createElement("div", {
-    className: isPastEvent(ev) ? "bulletin-event is-past" : "bulletin-event",
-    key: i
-  }, React.createElement("span", {
-    className: "bulletin-event__date mono"
-  }, ev.dates), React.createElement("div", null, React.createElement("span", {
-    className: "bulletin-event__title"
-  }, ev.title), React.createElement("span", {
-    className: "bulletin-event__meta"
-  }, ev.where, ev.note ? ` · ${ev.note}` : ""))))), data.eventsNote && React.createElement("p", {
-    className: "bulletin-note"
-  }, data.eventsNote)), React.createElement(BulletinCard, {
+    name: iconFor(AREA_ICONS, a.name, "pin"),
+    className: "bulletin-area__icon"
+  }), React.createElement("h3", null, a.name), React.createElement(BulletinChip, {
+    tone: a.tone
+  }, a.chip)), React.createElement("p", null, a.note))))), data.trails.length > 0 && React.createElement(BulletinSection, {
+    id: "bulletin-trails",
     title: "Trails right now",
-    icon: "route",
-    wide: true
-  }, React.createElement("div", {
-    className: "bulletin-status"
-  }, data.trails.map(t => React.createElement("div", {
-    className: "bulletin-status__row",
-    key: t.name
-  }, React.createElement("div", {
-    className: "bulletin-status__name"
-  }, React.createElement("span", {
-    className: "bulletin-status__label"
-  }, React.createElement("strong", null, t.name)), React.createElement(BulletinChip, {
-    tone: t.tone
-  }, t.chip)), React.createElement("p", null, t.note)))), data.trailsNote && React.createElement("p", {
-    className: "bulletin-note"
-  }, data.trailsNote)), React.createElement("section", {
-    className: "bulletin-ref"
-  }, React.createElement("h2", {
-    className: "eyebrow eyebrow--moss bulletin-ref__head"
-  }, React.createElement(BulletinIcon, {
-    name: "info",
-    className: "bulletin-card__icon"
-  }), "The standing details"), React.createElement("p", {
-    className: "bulletin-ref__dek"
-  }, "Hours, transit, safety, and phone numbers. These change little between editions, so they sit folded: open the one you need."), React.createElement(BulletinFold, {
-    title: "Hours",
-    icon: "clock",
-    hint: hintFrom(data.hours.map(g => g.group), 4)
-  }, data.hours.map(g => React.createElement("div", {
-    className: "bulletin-ref__group",
-    key: g.group
-  }, React.createElement("div", {
-    className: "bulletin-subhead"
-  }, React.createElement(BulletinIcon, {
-    name: iconFor(HOURS_ICONS, g.group, "clock"),
-    className: "bulletin-subhead__icon"
-  }), g.group), React.createElement("table", {
-    className: "bulletin-hours"
-  }, React.createElement("tbody", null, g.items.map(it => React.createElement("tr", {
-    key: it.name
-  }, React.createElement("td", null, it.name, it.note ? React.createElement("span", {
-    className: "bulletin-hours__note"
-  }, " · ", it.note) : null), React.createElement("td", {
-    className: "mono"
-  }, it.hours)))))))), React.createElement(BulletinFold, {
-    title: "Getting around",
-    icon: "bus",
-    hint: hintFrom(data.transit.map(t => t.name), 4)
-  }, React.createElement("div", {
-    className: "bulletin-defs"
-  }, data.transit.map(t => React.createElement("div", {
-    className: "bulletin-def",
-    key: t.name
-  }, React.createElement(BulletinIcon, {
-    name: iconFor(TRANSIT_ICONS, t.name, "route"),
-    className: "bulletin-def__icon"
-  }), React.createElement("p", null, React.createElement("strong", null, t.name, "."), " ", t.note))))), React.createElement(BulletinFold, {
-    title: "Know before you go",
-    icon: "alert",
-    hint: hintFrom(data.essentials.map(e => e.title), 5)
-  }, React.createElement("div", {
-    className: "bulletin-defs"
-  }, data.essentials.map(e => React.createElement("div", {
-    className: "bulletin-def",
-    key: e.title
-  }, React.createElement(BulletinIcon, {
-    name: iconFor(ESSENTIAL_ICONS, e.title, "info"),
-    className: "bulletin-def__icon"
-  }), React.createElement("p", null, React.createElement("strong", null, e.title, "."), " ", e.text))))), React.createElement(BulletinFold, {
-    title: "By phone",
-    icon: "phone",
-    hint: hintFrom(data.numbers.map(n => n.label), 3)
-  }, React.createElement("table", {
-    className: "bulletin-hours bulletin-numbers"
-  }, React.createElement("tbody", null, data.numbers.map(n => React.createElement("tr", {
-    key: n.label
-  }, React.createElement("td", null, n.label), React.createElement("td", {
-    className: "mono"
-  }, n.value))))))), React.createElement("p", {
+    dek: `${trailCheck} to check before you go, ${trailUsual} open as usual.`
+  }, React.createElement(BulletinTrails, {
+    trails: data.trails,
+    note: data.trailsNote
+  })), React.createElement(BulletinSection, {
+    id: "bulletin-details",
+    title: "Hours, transit & numbers",
+    dek: "These change little between editions, so they sit folded. Open the one you need."
+  }, React.createElement(BulletinReference, {
+    data: data,
+    today: today
+  })), React.createElement("p", {
     className: "bulletin-source"
-  }, edition.source, " ", React.createElement("a", {
+  }, edition.source, " ", edition.sourceUrl ? React.createElement("a", {
     href: edition.sourceUrl,
     target: "_blank",
     rel: "noopener noreferrer"
-  }, "The full Guide is on nps.gov ↗"))), React.createElement("div", {
-    style: {
-      marginTop: 48
-    }
-  }, React.createElement("div", {
-    className: "eyebrow eyebrow--moss bulletin-card__head",
-    style: {
-      marginBottom: 12
-    }
-  }, React.createElement(BulletinIcon, {
-    name: "camera",
-    className: "bulletin-card__icon"
-  }), "The park live"), React.createElement(WebcamStrip, null), React.createElement("div", {
-    style: {
-      marginTop: 16,
-      fontFamily: "var(--sans)",
-      fontSize: 13,
-      color: "var(--ink-3)"
-    }
-  }, "More live sources, one page:", " ", React.createElement("a", {
+  }, "The full Guide is on nps.gov ↗") : null)), React.createElement("p", {
+    className: "bulletin-conditions"
+  }, "Webcams, entrance waits, and forecasts are one page away:", " ", React.createElement("a", {
     href: "/conditions",
-    onClick: e => {
-      e.preventDefault();
-      go("conditions");
-    }
-  }, "webcams, entrance waits, and forecasts →"))), React.createElement(GuidePromo, {
+    onClick: toConditions
+  }, "the conditions page →")), React.createElement(GuidePromo, {
     go: go,
     location: "now",
     title: "The Bulletin covers the week. This covers the trip.",
     body: "The Field Guide app: 50-plus stops with parking and timing notes, offline maps, a trip planner, and the secret guide. Works with no signal, which is most of the park. One purchase, eighteen months of access.",
     style: {
-      marginTop: 56
+      marginTop: 40
     }
   }), React.createElement(NewsletterInline, {
     location: "now",

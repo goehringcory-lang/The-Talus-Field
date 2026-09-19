@@ -294,57 +294,87 @@ const HUB_PROSE = {
   "/now": () => {
     // The current edition ships to non-JS crawlers as prose: this page's value
     // to search is its freshness, and bulletin.json is imported at deploy time
-    // so every per-edition merge re-deploys the Worker with the new board.
+    // so every per-edition merge re-deploys the Worker with the new board. The
+    // page reads the file against today's date in the park (what is still
+    // coming, which programs run on the picked day); the prose cannot, since
+    // it is frozen at deploy, so it states every row with its own dates and
+    // lets the reader do the one comparison left.
     const ed = bulletin.edition || {};
+    const list = (key) => (Array.isArray(bulletin[key]) ? bulletin[key] : []);
     const parts = [
       hubProse(
         "The Park Bulletin",
-        `Everything happening in Yosemite right now on one scannable page, condensed from the park's Yosemite Guide for ${ed.label || "the current edition"}: closures, roads, free ranger programs, dated events, trail status, hours, and phone numbers.`
+        `Everything happening in Yosemite right now on one page, condensed from the park's Yosemite Guide for ${ed.label || "the current edition"}: what is open, what is changing and when, the ranger programs and dated events by day and area, roads, trails, hours, and phone numbers.`
       ),
     ];
     if (ed.lede) parts.push(`<p>${escapeHtmlText(ed.lede)}</p>`);
-    if (Array.isArray(bulletin.alerts) && bulletin.alerts.length) {
+    if (ed.notice) parts.push(`<p>${escapeHtmlText(ed.notice)}</p>`);
+    const headlines = list("headlines");
+    if (headlines.length) {
       parts.push(
-        // An alert is a plain string or { icon, text }; the icon is a
-        // wayfinding mark on the rendered page and carries nothing a crawler
-        // needs, so only the text crosses over.
-        `<h2>Changed this edition</h2><ul>${bulletin.alerts
-          .map((a) => `<li>${escapeHtmlText(typeof a === "string" ? a : (a && a.text) || "")}</li>`)
+        `<h2>Right now</h2><ul>${headlines
+          .map((h) => `<li>${escapeHtmlText(h.label)}: ${escapeHtmlText(h.status)}. ${escapeHtmlText(h.text)}</li>`)
           .join("")}</ul>`
       );
     }
-    if (Array.isArray(bulletin.areas) && bulletin.areas.length) {
+    const changes = list("changes").filter((c) => c && c.what);
+    if (changes.length) {
+      // Dated rows in date order, then the season-long ones. The kind is a
+      // word on the page (a chip); here it leads the line.
+      const kindWord = { closes: "Closes", ends: "Ends", hours: "Hours", opens: "Opens", event: "Event" };
+      const dated = changes.filter((c) => c.date).sort((a, b) => (a.date < b.date ? -1 : a.date > b.date ? 1 : 0));
+      const undated = changes.filter((c) => !c.date);
       parts.push(
-        `<h2>Roads and areas</h2><ul>${bulletin.areas
-          .map((a) => `<li>${escapeHtmlText(a.name)} (${escapeHtmlText(a.chip)}): ${escapeHtmlText(a.note)}</li>`)
-          .join("")}</ul>`
-      );
-    }
-    if (Array.isArray(bulletin.valleyDay) && bulletin.valleyDay.length) {
-      parts.push(
-        `<h2>The Valley, by the clock</h2><ul>${bulletin.valleyDay
-          .map((p) => {
-            // The Guide's per-program symbols, carried into the crawler prose
-            // for the same reason they are on the page: they decide whether a
-            // reader can attend. True-only, so nothing renders when unmarked.
-            const marks = [p.allAges ? "all ages" : null, p.access ? "wheelchair accessible" : null].filter(Boolean);
-            const suffix = marks.length ? `, ${marks.join(", ")}` : "";
-            return `<li>${escapeHtmlText(p.time)}: ${escapeHtmlText(p.title)} (${escapeHtmlText(p.days)}${escapeHtmlText(suffix)})</li>`;
+        `<h2>What's changing</h2><ul>${dated
+          .concat(undated)
+          .map((c) => {
+            const when = c.when || bulletinShortDate(c.date);
+            const detail = c.detail ? ` ${escapeHtmlText(c.detail)}` : "";
+            return `<li>${escapeHtmlText(when)}: ${escapeHtmlText(kindWord[c.kind] || c.kind)}, ${escapeHtmlText(c.what)}.${detail}</li>`;
           })
           .join("")}</ul>`
       );
     }
-    if (Array.isArray(bulletin.events) && bulletin.events.length) {
+    const programs = list("programs");
+    const programAreas = list("programAreas");
+    if (programs.length) {
+      // One list per area, in the schedule's own tab order, park-wide rows
+      // first. The Guide's per-program symbols ride along for the same reason
+      // they are on the page: they decide whether a reader can attend.
+      // True-only, so nothing renders when unmarked.
+      const groups = [{ key: "parkwide", name: "Park-wide" }].concat(programAreas);
+      for (const g of groups) {
+        const rows = programs.filter((p) => p.area === g.key);
+        if (!rows.length) continue;
+        parts.push(
+          `<h2>Programs: ${escapeHtmlText(g.name)}</h2><ul>${rows
+            .map((p) => {
+              const marks = [p.fee ? "paid" : null, p.allAges ? "all ages" : null, p.access ? "wheelchair accessible" : null].filter(Boolean);
+              const when = [bulletinProgramWhen(p)].concat(marks).join("; ");
+              const time = p.time ? `${escapeHtmlText(p.time)}: ` : "";
+              const where = p.where ? `, ${escapeHtmlText(p.where)}` : "";
+              return `<li>${time}${escapeHtmlText(p.title)}${where} (${escapeHtmlText(when)})</li>`;
+            })
+            .join("")}</ul>`
+        );
+      }
+    }
+    const areas = list("areas");
+    if (areas.length) {
       parts.push(
-        `<h2>On the calendar this edition</h2><ul>${bulletin.events
-          .map((ev) => `<li>${escapeHtmlText(ev.dates)}: ${escapeHtmlText(ev.title)}, ${escapeHtmlText(ev.where)}</li>`)
+        `<h2>Roads and areas</h2><ul>${areas
+          .map((a) => `<li>${escapeHtmlText(a.name)} (${escapeHtmlText(a.chip)}): ${escapeHtmlText(a.note)}</li>`)
           .join("")}</ul>`
       );
     }
-    if (Array.isArray(bulletin.trails) && bulletin.trails.length) {
+    const trails = list("trails");
+    if (trails.length) {
       parts.push(
-        `<h2>Trails right now</h2><ul>${bulletin.trails
-          .map((t) => `<li>${escapeHtmlText(t.name)} (${escapeHtmlText(t.chip)}): ${escapeHtmlText(t.note)}</li>`)
+        `<h2>Trails right now</h2><ul>${trails
+          .map((t) => {
+            const dist = t.distance ? ` ${escapeHtmlText(t.distance)}.` : "";
+            return `<li>${escapeHtmlText(t.name)} (${escapeHtmlText(t.chip)}):${dist} ${escapeHtmlText(t.note)}</li>`;
+          })
           .join("")}</ul>`
       );
     }
@@ -1330,6 +1360,29 @@ function heroPreloadTag(imagePath) {
 
 function escapeHtmlText(s) {
   return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+}
+
+// The bulletin's ISO dates as the page prints them ("Sep 20"). Written out
+// rather than left to toLocaleDateString, whose output depends on the ICU
+// data the runtime ships.
+const BULLETIN_MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+function bulletinShortDate(iso) {
+  const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(String(iso || ""));
+  if (!m) return String(iso || "");
+  return `${BULLETIN_MONTHS[Number(m[2]) - 1] || m[2]} ${Number(m[3])}`;
+}
+
+// When a bulletin program runs, in the Guide's own day letters: "daily from
+// Sep 6", "Tu W Th Sa", "Sep 19". Mirrors the fields btRunsOn() reads in
+// page-now.jsx.
+const BULLETIN_DAY_LETTERS = { su: "Su", mo: "M", tu: "Tu", we: "W", th: "Th", fr: "F", sa: "Sa" };
+function bulletinProgramWhen(p) {
+  if (Array.isArray(p.dates)) return p.dates.map(bulletinShortDate).join(", ");
+  const bits = [p.days === "daily" ? "daily" : (Array.isArray(p.days) ? p.days : []).map((d) => BULLETIN_DAY_LETTERS[d] || d).join(" ")];
+  if (p.from) bits.push(`from ${bulletinShortDate(p.from)}`);
+  if (p.until) bits.push(`through ${bulletinShortDate(p.until)}`);
+  if (Array.isArray(p.except) && p.except.length) bits.push(`not ${p.except.map(bulletinShortDate).join(", ")}`);
+  return bits.filter(Boolean).join(" ");
 }
 
 export default {
