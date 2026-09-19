@@ -10,7 +10,7 @@
 //   node scripts/system-checks.mjs --online        # + link liveness, smoke, DNS, sitemap 200s
 //   node scripts/system-checks.mjs --base-url=URL  # target a dev server instead of production
 //   node scripts/system-checks.mjs --api-base=URL  # target a dev API Worker (default: api.thetalusfieldjournal.com)
-//   node scripts/system-checks.mjs --only=api      # run one check (comma-separated slugs)
+//   node scripts/system-checks.mjs --only=api      # run one check (comma-separated slugs; e.g. deploy-parity)
 //   node scripts/system-checks.mjs --json          # machine-readable output
 //   node scripts/system-checks.mjs --report=FILE   # also write a Markdown report
 //
@@ -30,6 +30,7 @@ import checkImages from "./checks/images.mjs";
 import checkSmoke from "./checks/smoke.mjs";
 import checkEmailAuth from "./checks/email-auth.mjs";
 import checkApi from "./checks/api.mjs";
+import checkDeployParity from "./checks/deploy-parity.mjs";
 
 const CHECKS = [
   checkMirrors,
@@ -39,6 +40,7 @@ const CHECKS = [
   checkFeed,
   checkImages,
   checkSmoke,
+  checkDeployParity,
   checkEmailAuth,
   checkApi,
 ];

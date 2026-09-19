@@ -1345,7 +1345,7 @@ export default {
 // Named exports for offline checks (scripts/, plain node): let a test call the
 // route metadata logic and the crawler-visible related block without workerd's
 // HTMLRewriter runtime.
-export { seoForPath, relatedBlock };
+export { seoForPath, relatedBlock, BUILD_INFO_PATH };
 
 // Permanent redirects, checked before any SEO work. The site had no redirect
 // capability before the evergreen event pages landed (it is a Worker, not
@@ -1378,6 +1378,57 @@ const REDIRECTS = {
 // Rule documented in DEPLOY.md is what covers the whole host.
 const WWW_HOST = "www.thetalusfieldjournal.com";
 
+// The build-info route: what this Worker's frozen catalog looks like, as JSON.
+//
+// The JSON imports at the top are baked into the bundle at deploy time, and
+// twice in August 2026 production ran a Worker build older than the assets it
+// was serving: the asset layer's sitemap listed the newest articles and this
+// code 404'd them. Nothing could ask production which catalog it held, so the
+// signature was only ever noticed by a human seeing 404s. This route answers
+// the question directly: the slugs this bundle knows, the bulletin edition it
+// carries (HUB_PROSE freezes bulletin.json the same way), and the Worker
+// version from the version_metadata binding in wrangler.jsonc.
+// scripts/checks/deploy-parity.mjs reads it nightly beside the live
+// /articles.json and the repo, and scripts/deploy-parity-log.mjs records the
+// answer in scripts/data/deploy-parity-log.json.
+//
+// The path matches no file in the repo, so asset-first routing hands it here.
+// It is deliberately absent from STATIC_ROUTES and the sitemap (it is not a
+// page), and the response says so with X-Robots-Tag. _headers covers assets
+// only, so the headers are set here. The lib duplicates this constant
+// (check-edge-redirects.mjs asserts the two agree) so the nightly log never has
+// to import this module.
+const BUILD_INFO_PATH = "/.well-known/talus-build.json";
+
+function newestArticleSlug() {
+  let best = null;
+  for (const a of articles) {
+    if (!best || String(a.isoDate || "") > String(best.isoDate || "")) best = a;
+  }
+  return best ? best.slug : null;
+}
+
+function buildInfoResponse(env) {
+  // The binding is optional on purpose: offline checks drive this handler with
+  // a stub env, and a preview without the binding must still answer.
+  const meta = env && env.CF_VERSION_METADATA;
+  const body = {
+    articles: articles.length,
+    newest: newestArticleSlug(),
+    slugs: articles.map((a) => a.slug),
+    bulletinUpdated: (bulletin && bulletin.edition && bulletin.edition.updated) || null,
+    version: meta ? { id: meta.id ?? null, tag: meta.tag ?? null, timestamp: meta.timestamp ?? null } : null,
+  };
+  return new Response(JSON.stringify(body), {
+    status: 200,
+    headers: {
+      "content-type": "application/json; charset=utf-8",
+      "cache-control": "no-store",
+      "x-robots-tag": "noindex, nofollow",
+    },
+  });
+}
+
 async function handleRequest({ request, next, env }) {
   const url = new URL(request.url);
   if (url.hostname === WWW_HOST) {
@@ -1389,6 +1440,7 @@ async function handleRequest({ request, next, env }) {
     // ?utm_source=newsletter must keep its attribution on the other side.
     return Response.redirect(`${SITE_ORIGIN}${redirectTarget}${url.search}`, 301);
   }
+  if (url.pathname === BUILD_INFO_PATH) return buildInfoResponse(env);
   // Unknown SPA routes get a real 404 (with noindex + not-found prose) instead
   // of a 200 homepage clone. Real files never reach the Worker (asset-first
   // routing), so anything unmatched here is genuinely not a page.

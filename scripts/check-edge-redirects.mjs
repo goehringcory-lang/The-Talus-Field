@@ -100,6 +100,58 @@ for (const [from, to] of entries) {
   if (entries.some(([f]) => f === to)) fail(`REDIRECTS ${from} points at ${to}, which is itself redirected`);
 }
 
+// --- the build-info route ---------------------------------------------------
+// /.well-known/talus-build.json is what the nightly deploy-parity check reads
+// to learn which catalog the live Worker bundle holds. It has to answer from
+// the Worker (never the asset layer), carry every slug in articles.json, and
+// tolerate a missing version binding, and the constant the nightly log uses
+// (lib/deploy-parity.mjs, which must not import this module) has to match.
+{
+  const seoExports = await import(path.join(ROOT, "edge/seo.js"));
+  const lib = await import("./lib/deploy-parity.mjs");
+  if (seoExports.BUILD_INFO_PATH !== lib.BUILD_INFO_PATH) {
+    fail(`BUILD_INFO_PATH differs: edge/seo.js ${seoExports.BUILD_INFO_PATH} vs lib/deploy-parity.mjs ${lib.BUILD_INFO_PATH}`);
+  }
+  const catalog = JSON.parse(readFileSync(path.join(ROOT, "articles.json"), "utf8"));
+  const bulletin = JSON.parse(readFileSync(path.join(ROOT, "bulletin.json"), "utf8"));
+  const buildUrl = `${APEX}${lib.BUILD_INFO_PATH}`;
+
+  assetsHit = 0;
+  const res = await worker.fetch(new Request(buildUrl), env);
+  const ct = res.headers.get("content-type") || "";
+  if (res.status !== 200) fail(`build-info route answered ${res.status}, expected 200`);
+  if (!ct.includes("application/json")) fail(`build-info route content-type ${ct}, expected application/json`);
+  if (assetsHit !== 0) fail("build-info route fell through to the asset layer");
+  if (!/noindex/.test(res.headers.get("x-robots-tag") || "")) fail("build-info route is missing X-Robots-Tag: noindex");
+  if (res.headers.get("cache-control") !== "no-store") fail("build-info route must be cache-control: no-store");
+  let body = null;
+  try {
+    body = await res.json();
+  } catch {
+    fail("build-info route body is not JSON");
+  }
+  if (body) {
+    const want = catalog.map((a) => a.slug);
+    if (JSON.stringify(body.slugs) !== JSON.stringify(want)) fail("build-info slugs differ from articles.json");
+    if (body.articles !== catalog.length) fail(`build-info articles ${body.articles}, expected ${catalog.length}`);
+    if (body.newest !== lib.newestSlug(catalog)) fail(`build-info newest ${body.newest}, expected ${lib.newestSlug(catalog)}`);
+    if (body.bulletinUpdated !== (bulletin.edition?.updated ?? null)) fail(`build-info bulletinUpdated ${body.bulletinUpdated}`);
+    if (body.version !== null) fail("build-info reported a version with no binding in env");
+  }
+
+  const stamped = await worker.fetch(new Request(buildUrl), {
+    ...env,
+    CF_VERSION_METADATA: { id: "v-test", tag: "", timestamp: "2026-01-01T00:00:00Z" },
+  });
+  const v = (await stamped.json()).version;
+  if (!v || v.id !== "v-test" || v.timestamp !== "2026-01-01T00:00:00Z") {
+    fail(`build-info did not surface the version binding: ${JSON.stringify(v)}`);
+  }
+
+  const www = await call(`https://www.thetalusfieldjournal.com${lib.BUILD_INFO_PATH}`);
+  if (www.status !== 301 || www.location !== buildUrl) fail(`build-info on www not canonicalized: ${www.status} ${www.location}`);
+}
+
 // --- crawler-visible related reading ----------------------------------------
 // The Worker appends this block to every article's injected prose, and it is
 // the only place those curated links exist for a crawler that runs no
@@ -146,5 +198,6 @@ if (failures.length) {
 console.log(
   `check-edge-redirects: www canonicalization holds, 3 non-www host(s) untouched, ` +
     `${entries.length} REDIRECTS entr${entries.length === 1 ? "y" : "ies"} resolve, ` +
+    `the build-info route answers from the Worker, ` +
     `${totalLinks} related links across ${blocksWithLinks} article(s) reaching all ${reached.size} of them.`
 );

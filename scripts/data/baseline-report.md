@@ -1,39 +1,47 @@
 # System checks report
 
-_Generated 2026-08-08T22:39:11.183Z · mode: offline_
+_Generated 2026-09-19T17:57:59.322Z · mode: offline_
 
-**0 errors, 0 warnings** across 8 checks.
+**0 errors, 0 warnings** across 10 checks.
 
 ## SEO mirror freshness — ✅ OK
 
-- · articles.json / sitemap.xml / feed.xml / llms.txt all current
+- · articles.json / sitemap.xml + sitemap-articles.xml / feed.xml / llms.txt all current
 
 ## Internal & outbound links — ✅ OK
 
-- · 82 distinct internal links all resolve
-- · 102 distinct outbound links found
+- · 107 distinct internal links all resolve
+- · 139 distinct outbound links found
 
 ## Per-page SEO, og:image & JSON-LD — ✅ OK
 
-- · 58 articles audited; 58 unique titles
+- · 71 articles audited; 71 unique titles
 
 ## Sitemap validation — ✅ OK
 
-- · 89 URLs in sitemap; 58 articles all present
+- · 676 URLs across 2 child sitemap(s); 71 articles all present
 
 ## RSS feed validity — ✅ OK
 
-- · 58 feed items; 58 articles all present
+- · 71 feed items; 71 articles all present
 
 ## Image hygiene — ✅ OK
 
 - · no oversized images lacking responsive variants
-- · 27 editorial image usages; 0 missing alt, 0 missing dimensions
+- · 47 editorial image usages; 0 missing alt, 0 missing dimensions
 
 ## Template smoke test — ✅ OK
 
 - · skipped (offline; run with --online against the live site or a dev server)
 
+## Editorial deploy parity (Worker vs assets vs repo) — ✅ OK
+
+- · skipped (offline; needs egress)
+
 ## Email auth (SPF/DKIM/DMARC) — ✅ OK
 
 - · skipped (offline; needs DNS egress)
+
+## API Worker (money path + feeds) — ✅ OK
+
+- · skipped (offline; needs egress)

@@ -159,12 +159,20 @@ export default function CardDeck({ panels, ariaLabel, startKey, hint }: Props) {
 
   return (
     <div className="deck-viewport">
+      {/* The scroller is the widget: the browser owns the fling (native
+          scroll-snap, see the header), and the keyboard pages it with the
+          arrow keys, so it takes focus and the key handler itself. jsx-a11y
+          wants an interactive role here, but no ARIA role means "a scroll
+          container that pages"; "group" plus the carousel roledescription is
+          the WAI-ARIA carousel pattern's own naming. */}
+      {/* eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions -- the scroller is the keyboard-paged carousel widget */}
       <div
         className="deck"
         ref={scrollerRef}
         role="group"
         aria-roledescription="carousel"
         aria-label={ariaLabel}
+        // eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex -- focusable so arrow keys page the deck
         tabIndex={0}
         onKeyDown={onKeyDown}
       >
