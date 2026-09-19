@@ -21,7 +21,7 @@
 // toggling six chips should not have to press Back six times to leave the page.
 // =============================================================================
 
-const { useState: useStateIn, useEffect: useEffectIn, useCallback: useCallbackIn } = React;
+const { useState: useStateIn, useEffect: useEffectIn, useCallback: useCallbackIn, useRef: useRefIn } = React;
 
 const TRIP_ANSWERS_KEY = "tfg.trip.selector";
 
@@ -323,13 +323,30 @@ function TripPlan({ plan, go, onApplyIntent, matchCount }) {
 
   return (
     <div className="tripplan" role="region" aria-label="Your Yosemite plan">
-      <div className="eyebrow eyebrow--moss">Your plan</div>
-      <p className="tripplan__summary">{plan.summary}</p>
+      {/* The answers, restated as one sentence on a dark band. A reader who
+          scrolled past five questions needs to see what the plan below was
+          built from before they trust any of it. */}
+      <div className="tripplan__band">
+        <div className="eyebrow eyebrow--paper">Your plan</div>
+        <p className="tripplan__summary">{plan.summary}</p>
+      </div>
 
       {plan.notes.length > 0 && (
         <ul className="tripplan__notes">
           {plan.notes.map((n, i) => <li key={i}>{n}</li>)}
         </ul>
+      )}
+
+      {/* The arrival line used to sit inside the itinerary card, below the fold
+          of a two-column block. It is the one instruction on this page with a
+          clock attached, so it gets its own rule. */}
+      {plan.arrival && (
+        <div className="tripplan__arrive">
+          <span className="tripplan__arrive-label">Arrive by</span>
+          <p className="tripplan__arrive-text">
+            <strong>Getting through the gate in {plan.arrival.month}.</strong> {plan.arrival.text}
+          </p>
+        </div>
       )}
 
       <div className="tripplan__cols">
@@ -367,9 +384,6 @@ function TripPlan({ plan, go, onApplyIntent, matchCount }) {
               <p className="tripplan__card-title">{itinerary.title}</p>
               <p className="tripplan__card-body">{itinerary.dek}</p>
               {it.capped && <p className="tripplan__card-flag">Shortened for the season, not for your dates.</p>}
-              {plan.arrival && (
-                <p className="tripplan__card-body tripplan__arrive"><strong>Getting through the gate in {plan.arrival.month}.</strong> {plan.arrival.text}</p>
-              )}
               <a
                 className="btn btn--ghost"
                 href={`/map?trip=${stopIds.join(",")}`}
@@ -431,6 +445,16 @@ function TripSelector({ go, onApplyIntent }) {
     }
   });
   const [open, setOpen] = useStateIn(true);
+  const planRef = useRefIn(null);
+
+  // The plan renders below the questions, which on a phone is most of a screen
+  // away from the last chip tapped. Same reduced-motion guard as the rest of
+  // the site: CSS scroll-behavior does not reach an explicit JS option.
+  const scrollToPlan = () => {
+    if (!planRef.current) return;
+    const reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    planRef.current.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" });
+  };
 
   useEffectIn(() => {
     writeAnswersToUrl(answers);
@@ -468,10 +492,11 @@ function TripSelector({ go, onApplyIntent }) {
     if (window.track) window.track("trip_selector_answer", { question: question.id, answer: optionId });
   };
 
-  const answered = window.TRIP_QUESTIONS.filter((q) => {
+  const isAnswered = (q) => {
     const v = answers[q.id];
     return q.multi ? Array.isArray(v) && v.length > 0 : Boolean(v);
-  }).length;
+  };
+  const answered = window.TRIP_QUESTIONS.filter(isAnswered).length;
 
   const plan = complete ? window.buildTripPlan(answers) : null;
   const matchCount = plan ? window.filterArticlesByIntent(window.ARTICLES, plan.intent).length : 0;
@@ -479,21 +504,35 @@ function TripSelector({ go, onApplyIntent }) {
   return (
     <section className="tripsel" aria-label="Trip selector">
       <div className="tripsel__head">
-        <div>
+        <div className="tripsel__head-copy">
           <div className="eyebrow eyebrow--moss">Start here</div>
           <h2 className="tripsel__title">Five questions, then a plan.</h2>
           <p className="tripsel__dek">
             Answer these and this page stops being an archive. You get the handful of entries that apply to your trip, the day plan the season actually allows, and an honest read on whether you need anything paid.
           </p>
         </div>
-        <button
-          type="button"
-          className="tripsel__toggle"
-          aria-expanded={open}
-          onClick={() => setOpen((v) => !v)}
-        >
-          {open ? "Hide the questions" : "Show the questions"}
-        </button>
+        {/* The progress rail restates the count the footer states in words. It
+            is aria-hidden because it carries nothing the sentence beside it
+            does not already say. */}
+        <div className="tripsel__meter">
+          <span className="tripsel__count">{answered} of 5 answered</span>
+          <span className="tripsel__rail" aria-hidden="true">
+            {window.TRIP_QUESTIONS.map((q) => (
+              <span
+                key={q.id}
+                className={"tripsel__seg" + (isAnswered(q) ? " tripsel__seg--on" : "")}
+              />
+            ))}
+          </span>
+          <button
+            type="button"
+            className="tripsel__toggle"
+            aria-expanded={open}
+            onClick={() => setOpen((v) => !v)}
+          >
+            {open ? "Hide the questions" : "Show the questions"}
+          </button>
+        </div>
       </div>
 
       {open && (
@@ -502,12 +541,14 @@ function TripSelector({ go, onApplyIntent }) {
             const v = answers[q.id];
             const isOn = (id) => (q.multi ? (v || []).indexOf(id) !== -1 : v === id);
             return (
-              <li key={q.id} className="tripsel__q">
-                <div className="tripsel__q-head">
-                  <span className="tripsel__q-num">{i + 1}</span>
-                  <span className="tripsel__q-label" id={`tripsel-${q.id}`}>{q.label}</span>
+              <li key={q.id} className={"tripsel__q" + (isAnswered(q) ? " tripsel__q--done" : "")}>
+                <div className="tripsel__q-ask">
+                  <div className="tripsel__q-head">
+                    <span className="tripsel__q-num">{String(i + 1).padStart(2, "0")}</span>
+                    <span className="tripsel__q-label" id={`tripsel-${q.id}`}>{q.label}</span>
+                  </div>
+                  <p className="tripsel__q-hint">{q.hint}</p>
                 </div>
-                <p className="tripsel__q-hint">{q.hint}</p>
                 <div className="tripsel__opts" role="group" aria-labelledby={`tripsel-${q.id}`}>
                   {q.options.map((opt) => (
                     <button
@@ -529,18 +570,31 @@ function TripSelector({ go, onApplyIntent }) {
       )}
 
       <div className="tripsel__bar">
-        <span className="tripsel__progress">
-          {complete ? "All five answered." : `${answered} of 5 answered. The plan appears when all five are.`}
-        </span>
-        {answered > 0 && (
-          <button type="button" className="tripsel__reset" onClick={() => setAnswers({})}>
-            Start over
-          </button>
-        )}
+        <p className="tripsel__progress">
+          {complete
+            ? "Every answer is in. The day plan below is capped to what the month's roads allow."
+            : "A plan built from two answers is a guess wearing a plan's clothes. Answer all five and the reading list, the day plan, and the arrival time appear together."}
+        </p>
+        <div className="tripsel__acts">
+          {answered > 0 && (
+            <button type="button" className="tripsel__reset" onClick={() => setAnswers({})}>
+              Start over
+            </button>
+          )}
+          {complete ? (
+            <button type="button" className="tripsel__see" onClick={scrollToPlan}>
+              See the plan →
+            </button>
+          ) : (
+            <span className="tripsel__see tripsel__see--waiting" aria-hidden="true">See the plan</span>
+          )}
+        </div>
       </div>
 
       {plan && (
-        <TripPlan plan={plan} go={go} onApplyIntent={onApplyIntent} matchCount={matchCount} />
+        <div ref={planRef}>
+          <TripPlan plan={plan} go={go} onApplyIntent={onApplyIntent} matchCount={matchCount} />
+        </div>
       )}
     </section>
   );

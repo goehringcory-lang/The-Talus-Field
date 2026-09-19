@@ -177,6 +177,7 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
   color: var(--ink-2);
 }
 .eyebrow--moss { color: var(--moss); }
+.eyebrow--paper { color: var(--paper-3); }
 
 .mono {
   font-family: var(--mono);
@@ -6966,19 +6967,28 @@ main:focus { outline: none; }
    month planner and the map's category chips.
    ============================================================ */
 
+/* The chips were 11px uppercase, which reads as a label rather than a control
+   and put forty of them on /planning at the size of small print. They are
+   pills now: sentence case, 13px, and a full 44px target at every width
+   rather than only under the mobile breakpoint. The selected state is the
+   oxidized red instead of near-black, so a page with several rows of chips
+   still has exactly one thing on it that is the darkest. */
 .ichip {
   display: inline-flex;
-  align-items: baseline;
-  gap: 7px;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
   font-family: var(--sans);
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0;
+  text-transform: none;
+  line-height: 1;
   color: var(--ink-2);
   background: transparent;
   border: 1px solid var(--rule-soft);
-  padding: 7px 11px;
+  border-radius: 999px;
+  padding: 0 17px;
   cursor: pointer;
   transition: none;
 }
@@ -6986,22 +6996,24 @@ main:focus { outline: none; }
 .ichip--on,
 .ichip--on:hover {
   color: var(--paper);
-  background: var(--ink);
-  border-color: var(--ink);
+  background: var(--moss);
+  border-color: var(--moss);
+  font-weight: 600;
 }
 .ichip--empty,
 .ichip--empty:hover {
   color: var(--ink-3);
+  border-style: dashed;
   border-color: var(--rule-soft);
-  opacity: 0.4;
+  opacity: 0.55;
   cursor: default;
 }
 .ichip__n {
   font-family: var(--mono);
-  font-size: 10px;
+  font-size: 10.5px;
   font-weight: 400;
   letter-spacing: 0.04em;
-  opacity: 0.65;
+  opacity: 0.7;
 }
 
 /* A button that has to read as a link (clear-the-filters, inline actions). */
@@ -7101,17 +7113,29 @@ main:focus { outline: none; }
 }
 .intentf__row--all .intentf__chips { align-items: center; gap: 6px 12px; }
 
-/* ----- Trip selector ----- */
+/* ----- Trip selector: the worksheet -----
+   This is the spine of /planning, not a widget sitting above a list, so it is
+   drawn as a worksheet: a hard two-pixel rule, an offset block shadow, and
+   three bands (the ask, the questions, the state of play). Each question is a
+   two-column row — the number, the question and why it is being asked on the
+   left, the answers on the right — because stacked label-over-chips put five
+   near-identical blocks down the page with nothing to scan by. */
 .tripsel {
-  border: 1px solid var(--ink);
-  padding: 32px;
+  border: 2px solid var(--rule);
   background: var(--paper-2);
+  box-shadow: 8px 8px 0 var(--paper-3);
+  padding: 0;
 }
 .tripsel__head {
   display: flex;
-  align-items: flex-start;
-  gap: 24px;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 40px;
+  padding: 26px 32px 22px;
+  border-bottom: 2px solid var(--rule);
+  background: var(--paper);
 }
+.tripsel__head-copy { min-width: 0; }
 .tripsel__title {
   font-family: var(--display);
   font-size: 34px;
@@ -7128,75 +7152,172 @@ main:focus { outline: none; }
   max-width: 68ch;
   margin: 0;
 }
-.tripsel__toggle,
-.tripsel__reset {
+/* The rail says in shape what the footer says in words; it is aria-hidden, and
+   the count beside it is the accessible version. */
+.tripsel__meter {
   flex-shrink: 0;
-  font-family: var(--sans);
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--ink-2);
-  background: none;
-  border: 1px solid var(--rule-soft);
-  padding: 8px 12px;
-  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 9px;
 }
-.tripsel__toggle:hover,
-.tripsel__reset:hover { color: var(--moss); border-color: var(--moss); }
+.tripsel__count {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+.tripsel__rail { display: flex; gap: 6px; }
+.tripsel__seg {
+  display: block;
+  width: 34px;
+  height: 6px;
+  background: var(--paper-3);
+}
+.tripsel__seg--on { background: var(--moss); }
 
 .tripsel__qs {
   list-style: none;
-  margin: 26px 0 0;
-  padding: 0;
-  border-top: 1px solid var(--rule-soft);
+  margin: 0;
+  padding: 0 32px;
 }
 .tripsel__q {
-  padding: 18px 0;
+  display: grid;
+  grid-template-columns: 250px minmax(0, 1fr);
+  gap: 40px;
+  padding: 24px 0;
   border-bottom: 1px solid var(--rule-soft);
 }
+.tripsel__q:last-child { border-bottom: 0; }
 .tripsel__q-head {
   display: flex;
   align-items: baseline;
-  gap: 12px;
+  gap: 10px;
+  margin-bottom: 5px;
 }
 .tripsel__q-num {
   font-family: var(--mono);
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 700;
-  color: var(--moss);
+  letter-spacing: 0.06em;
+  color: var(--ink-3);
 }
+.tripsel__q--done .tripsel__q-num { color: var(--moss); }
 .tripsel__q-label {
   font-family: var(--display);
-  font-size: 23px;
-  line-height: 1.2;
+  font-size: 24px;
+  line-height: 1.15;
   color: var(--ink);
 }
 .tripsel__q-hint {
-  font-family: var(--serif);
-  font-size: 15px;
-  line-height: 1.5;
+  font-family: var(--sans);
+  font-size: 12.5px;
+  line-height: 1.45;
   color: var(--ink-3);
-  margin: 4px 0 12px 26px;
-  max-width: 66ch;
+  margin: 0 0 0 30px;
+  max-width: 46ch;
 }
 .tripsel__opts {
   display: flex;
   flex-wrap: wrap;
-  gap: 6px;
-  margin-left: 26px;
+  align-content: flex-start;
+  gap: 8px;
+  margin-left: 0;
 }
 .tripsel__bar {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 14px;
-  padding-top: 18px;
+  justify-content: space-between;
+  gap: 16px 32px;
+  padding: 22px 32px;
+  border-top: 1px solid var(--rule-soft);
+  background: var(--paper);
 }
 .tripsel__progress {
+  font-family: var(--serif);
+  font-size: 17px;
+  line-height: 1.45;
+  color: var(--ink-2);
+  margin: 0;
+  max-width: 62ch;
+}
+.tripsel__acts {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+/* The waiting state is a real dead end, drawn as one: dashed, unfocusable, and
+   not a button, because there is nothing behind it until five answers are in. */
+.tripsel__see {
+  display: inline-flex;
+  align-items: center;
+  min-height: 48px;
+  padding: 0 30px;
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--paper);
+  background: var(--moss);
+  border: 1px solid var(--moss);
+  cursor: pointer;
+}
+.tripsel__see:hover { background: var(--moss-2); border-color: var(--moss-2); }
+.tripsel__see--waiting,
+.tripsel__see--waiting:hover {
+  color: var(--ink-3);
+  background: transparent;
+  border: 1px dashed var(--rule-soft);
+  cursor: default;
+}
+
+/* ----- The Planning Guide's five-part index -----
+   A jump list above the parts themselves. Five text rows on a rule, no images:
+   this page already carries twenty-one article cards below, and the index is
+   meant to be scanned past in two seconds, not looked at. */
+.planidx {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 28px;
+  margin: 0 0 56px;
+}
+.planidx__item {
+  display: block;
+  border-top: 1px solid var(--rule-soft);
+  padding-top: 14px;
+  text-decoration: none;
+  color: inherit;
+}
+.planidx__item:hover { border-top-color: var(--moss); }
+.planidx__eyebrow {
+  display: block;
   font-family: var(--mono);
-  font-size: 11px;
-  letter-spacing: 0.04em;
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--moss);
+  margin-bottom: 8px;
+}
+.planidx__title {
+  display: block;
+  font-family: var(--display);
+  font-size: 23px;
+  font-weight: 500;
+  line-height: 1.15;
+  color: var(--ink);
+  margin-bottom: 8px;
+}
+.planidx__item:hover .planidx__title { color: var(--moss); }
+.planidx__n {
+  display: block;
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
   color: var(--ink-3);
 }
 
@@ -7206,11 +7327,46 @@ main:focus { outline: none; }
   border-top: 2px solid var(--ink);
   padding-top: 24px;
 }
+/* The answers restated. Dark, because it is the one thing on the page that is
+   the reader's own input rather than the site's writing. */
+.tripplan__band {
+  background: var(--rule);
+  color: var(--paper);
+  padding: 30px 32px;
+  margin-bottom: 24px;
+}
+/* The arrival line is the only instruction here with a clock attached, so it
+   is a ruled callout rather than the fifth paragraph of a card. */
+.tripplan__arrive {
+  display: flex;
+  align-items: baseline;
+  gap: 20px;
+  border-left: 4px solid var(--moss);
+  background: var(--paper-2);
+  padding: 18px 24px;
+  margin-bottom: 26px;
+}
+.tripplan__arrive-label {
+  flex-shrink: 0;
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--moss);
+}
+.tripplan__arrive-text {
+  font-family: var(--serif);
+  font-size: 18px;
+  line-height: 1.45;
+  color: var(--ink);
+  margin: 0;
+}
 .tripplan__summary {
   font-family: var(--display);
-  font-size: 26px;
-  line-height: 1.3;
-  color: var(--ink);
+  font-size: 30px;
+  line-height: 1.22;
+  color: var(--paper);
   margin: 10px 0 0;
   max-width: 62ch;
 }
@@ -7345,14 +7501,33 @@ main:focus { outline: none; }
   .tripplan__cols { grid-template-columns: 1fr; gap: 32px; }
 }
 @media (max-width: 720px) {
-  .tripsel { padding: 22px 18px; }
-  .tripsel__head { flex-direction: column; gap: 14px; }
+  .tripsel { box-shadow: 4px 4px 0 var(--paper-3); }
+  .tripsel__head {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 20px 18px 18px;
+  }
+  .tripsel__meter { align-items: flex-start; }
   .tripsel__title { font-size: 28px; }
   .tripsel__dek { font-size: 17px; }
-  .tripsel__q-label { font-size: 20px; }
-  .tripsel__q-hint,
+  .tripsel__qs { padding: 0 18px; }
+  /* One column on a phone: a 250px ask column beside chips leaves neither
+     enough room to read. */
+  .tripsel__q { grid-template-columns: 1fr; gap: 14px; padding: 20px 0; }
+  .tripsel__q-label { font-size: 21px; }
+  .tripsel__q-hint { margin-left: 0; }
   .tripsel__opts { margin-left: 0; }
-  .tripplan__summary { font-size: 22px; }
+  .tripsel__bar { padding: 18px; }
+  .tripsel__acts { width: 100%; }
+  .tripsel__see { flex-grow: 1; justify-content: center; padding: 0 20px; }
+  .tripplan__band { padding: 22px 18px; }
+  .tripplan__summary { font-size: 23px; }
+  .tripplan__arrive { flex-direction: column; gap: 8px; padding: 16px 18px; }
+  .planidx { grid-template-columns: 1fr; gap: 0; margin-bottom: 40px; }
+  .planidx__item { padding: 14px 0; }
+  .planidx__title { font-size: 21px; margin-bottom: 5px; }
+  .tripplan__arrive-text { font-size: 17px; }
   .intentf__row { grid-template-columns: 1fr; gap: 6px; }
   .intentf__facet { padding-top: 0; }
   .intentf__clear { margin-left: 0; }
