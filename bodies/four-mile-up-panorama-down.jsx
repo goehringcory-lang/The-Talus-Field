@@ -10,7 +10,7 @@ window.ARTICLE_BODIES["four-mile-up-panorama-down"] = function FourMileUpPanoram
       </p>
 
       <p>
-        It's not the most famous hike. That's the <a href="/articles/mist-trail-the-real-guide">Mist Trail</a>. It's not the most dramatic. That's <a href="/articles/so-you-want-to-hike-half-dome">Half Dome</a>. It's not the hardest. That's also Half Dome. But it is, in my experience, the most complete. In a single day, you climb 3,200 feet out of the Valley, stand on one of the great viewpoints in the American West, then descend through three different ecosystems past two major waterfalls and end up at Happy Isles wondering how the same park fit all of that into one walk. Most people drive to Glacier Point and look at the view. This hike makes you earn the view, and then it keeps giving you new ones for the next eight miles down.
+        It's not the most famous hike. That's the <a href="/articles/mist-trail-the-real-guide">Mist Trail</a>. It's not the most dramatic. That's <a href="/articles/so-you-want-to-hike-half-dome">Half Dome</a>. It's not the hardest. That's also Half Dome. But it is, in my experience, the most complete. In a single day, you climb 3,200 feet out of the Valley, stand on one of the great viewpoints in the American West, then descend through three different ecosystems past two major waterfalls and end up at Happy Isles wondering how the same park fit all of that into one walk. Most people <a href="/articles/glacier-point-how-to-visit">drive to Glacier Point</a> and look at the view. This hike makes you earn the view, and then it keeps giving you new ones for the next eight miles down.
       </p>
 
       <p>I've done this loop more times than I can count. Here's how to do it well.</p>

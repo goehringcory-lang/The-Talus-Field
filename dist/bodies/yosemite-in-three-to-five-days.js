@@ -103,10 +103,10 @@ window.ARTICLE_BODIES["yosemite-in-three-to-five-days"] = function YosemiteInThr
     target: "_blank",
     rel: "noopener noreferrer"
   }, "Seasonal Road Closures, NPS Yosemite")), React.createElement("li", null, React.createElement("a", {
-    href: "https://www.nps.gov/yose/planyourvisit/glacierpointroad.htm",
+    href: "https://www.nps.gov/yose/planyourvisit/glacierpoint.htm",
     target: "_blank",
     rel: "noopener noreferrer"
-  }, "Glacier Point Road, NPS Yosemite")), React.createElement("li", null, React.createElement("a", {
+  }, "Glacier Point, NPS Yosemite")), React.createElement("li", null, React.createElement("a", {
     href: "https://www.nps.gov/yose/planyourvisit/hetchhetchy.htm",
     target: "_blank",
     rel: "noopener noreferrer"

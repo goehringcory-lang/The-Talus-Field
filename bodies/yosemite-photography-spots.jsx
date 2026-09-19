@@ -107,9 +107,9 @@ window.ARTICLE_BODIES["yosemite-photography-spots"] = function YosemitePhotograp
 
       <h3>Sources</h3>
       <ul style={{ fontSize: 14 }}>
-        <li><a href="https://www.nps.gov/yose/planyourvisit/scenicdrive.htm" target="_blank" rel="noopener noreferrer">Scenic Vistas and Viewpoints, NPS Yosemite</a></li>
+        <li><a href="https://www.nps.gov/yose/planyourvisit/viewpoints.htm" target="_blank" rel="noopener noreferrer">Scenic Vistas and Viewpoints, NPS Yosemite</a></li>
         <li><a href="https://www.nps.gov/yose/planyourvisit/horsetailfall.htm" target="_blank" rel="noopener noreferrer">Horsetail Fall, NPS Yosemite</a></li>
-        <li><a href="https://www.nps.gov/yose/planyourvisit/yos_moonbow.htm" target="_blank" rel="noopener noreferrer">Moonbow Viewing, NPS Yosemite</a></li>
+        <li><a href="https://www.nps.gov/places/000/yosemite-falls.htm" target="_blank" rel="noopener noreferrer">Lower Yosemite Fall Viewing Area, with moonbow conditions, NPS</a></li>
         <li><a href="https://www.anseladams.com/" target="_blank" rel="noopener noreferrer">The Ansel Adams Gallery</a></li>
       </ul>
     </>

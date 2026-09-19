@@ -6,7 +6,7 @@ window.ARTICLE_BODIES["is-bear-spray-allowed-in-yosemite"] = function IsBearSpra
   return (
     <>
       <p className="dropcap">
-        No. Bear spray is not allowed in Yosemite National Park, in any form, under any circumstances. Possession is prohibited and use is prohibited, and this is a park regulation rather than a guideline. If you have it in the car, it should not come through the entrance station.
+        No. Bear spray is not allowed in Yosemite National Park, in any form, under any circumstances. Possession is prohibited and use is prohibited, and this is a park regulation rather than a guideline. If you have it in the car, it should not come through <a href="/articles/getting-to-yosemite">the entrance station</a>.
       </p>
 
       <p>

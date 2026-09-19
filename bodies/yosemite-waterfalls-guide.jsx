@@ -178,7 +178,7 @@ window.ARTICLE_BODIES["yosemite-waterfalls-guide"] = function YosemiteWaterfalls
         <li><a href="https://www.nps.gov/yose/planyourvisit/waterfalls.htm" target="_blank" rel="noopener noreferrer">Waterfalls, NPS Yosemite</a></li>
         <li><a href="https://www.nps.gov/yose/planyourvisit/hetchhetchy.htm" target="_blank" rel="noopener noreferrer">Hetch Hetchy, NPS Yosemite</a></li>
         <li><a href="https://www.nps.gov/yose/planyourvisit/horsetailfall.htm" target="_blank" rel="noopener noreferrer">Horsetail Fall, NPS Yosemite</a></li>
-        <li><a href="https://yosemite.org/experience-the-magic-of-yosemite-moonbows/" target="_blank" rel="noopener noreferrer">Yosemite Moonbows, Yosemite Conservancy</a></li>
+        <li><a href="https://yosemite.org/the-park-after-dark/" target="_blank" rel="noopener noreferrer">The Park After Dark, on moonbows, Yosemite Conservancy</a></li>
       </ul>
     </>
   );

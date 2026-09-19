@@ -348,7 +348,7 @@ window.ARTICLE_BODIES["yosemite-for-non-hikers"] = function YosemiteForNonHikers
       <ul style={{ fontSize: 14 }}>
         <li><a href="https://www.nps.gov/yose/planyourvisit/accessibility.htm" target="_blank" rel="noopener noreferrer">Accessibility, NPS Yosemite</a></li>
         <li><a href="https://www.nps.gov/yose/planyourvisit/upload/access2022.pdf" target="_blank" rel="noopener noreferrer">Yosemite Accessibility Guide PDF, NPS</a></li>
-        <li><a href="https://www.nps.gov/yose/planyourvisit/yvalley.htm" target="_blank" rel="noopener noreferrer">Yosemite Valley, NPS</a></li>
+        <li><a href="https://www.nps.gov/yose/planyourvisit/yv.htm" target="_blank" rel="noopener noreferrer">Yosemite Valley, NPS</a></li>
         <li><a href="https://www.nps.gov/yose/planyourvisit/glacierpoint.htm" target="_blank" rel="noopener noreferrer">Glacier Point, NPS</a></li>
         <li><a href="https://www.nps.gov/yose/planyourvisit/publictransportation.htm" target="_blank" rel="noopener noreferrer">Public transportation and shuttles, NPS Yosemite</a></li>
         <li><a href="https://www.nps.gov/yose/planyourvisit/bridalveilfalltrail.htm" target="_blank" rel="noopener noreferrer">Bridalveil Fall Trail, NPS Yosemite</a></li>

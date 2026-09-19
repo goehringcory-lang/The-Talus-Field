@@ -84,7 +84,7 @@ window.ARTICLE_BODIES["yosemite-wildlife-viewing-guide"] = function YosemiteWild
       </p>
 
       <p>
-        The animal I most want you to meet up there is the pika, the small round-eared cousin of the rabbit that lives in talus, the aprons of broken rock under the high cliffs. A pika does not hibernate. It spends the whole short summer cutting wildflowers and grasses and curing them on the rocks into haypiles, its winter food, and it announces itself with a squeak-toy "eep" from somewhere inside the rubble. Sit down at the edge of a talus field near Tioga Pass, wait ten minutes, and the rocks come to life. There are worse ways to understand why this publication is named what it is.
+        The animal I most want you to meet up there is the pika, the small round-eared cousin of the rabbit that lives in talus, the aprons of broken rock under the high cliffs. A pika does not hibernate. It spends the whole short summer cutting wildflowers and grasses and curing them on the rocks into haypiles, its winter food, and it announces itself with a squeak-toy "eep" from somewhere inside the rubble. Sit down at the edge of a talus field near Tioga Pass, wait ten minutes, and the rocks come to life. There are worse ways to understand <a href="/articles/what-is-a-talus-field">why this publication is named what it is</a>.
       </p>
 
       <p>

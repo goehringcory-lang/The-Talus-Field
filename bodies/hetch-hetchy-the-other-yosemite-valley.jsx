@@ -22,7 +22,7 @@ window.ARTICLE_BODIES["hetch-hetchy-the-other-yosemite-valley"] = function Hetch
       <h2>The geography</h2>
 
       <p>
-        Hetch Hetchy sits in the northwestern corner of Yosemite National Park, accessed via Highway 120 to the <strong>Big Oak Flat Entrance</strong> and then a separate road that branches north before you reach the Valley. The drive from the Big Oak Flat Entrance to the <strong>O'Shaughnessy Dam</strong> (the trailhead for almost everything you'll do here) is about 16 miles, with significant winding mountain road. From Yosemite Valley, you're looking at roughly an hour and forty-five minutes of driving each way.
+        Hetch Hetchy sits in the northwestern corner of Yosemite National Park, accessed via <a href="/articles/getting-to-yosemite">Highway 120</a> to the <strong>Big Oak Flat Entrance</strong> and then a separate road that branches north before you reach the Valley. The drive from the Big Oak Flat Entrance to the <strong>O'Shaughnessy Dam</strong> (the trailhead for almost everything you'll do here) is about 16 miles, with significant winding mountain road. From Yosemite Valley, you're looking at roughly an hour and forty-five minutes of driving each way.
       </p>
 
       <p>
@@ -116,7 +116,7 @@ window.ARTICLE_BODIES["hetch-hetchy-the-other-yosemite-valley"] = function Hetch
       </p>
 
       <p>
-        The road also has a 25-foot vehicle length restriction. Large RVs and trailered boats are not allowed. There is no overnight camping at the trailhead area, though the <strong>Hetch Hetchy Backpackers Campground</strong> is available with a wilderness permit for overnight wilderness trips.
+        The road also has a 25-foot vehicle length restriction. Large RVs and trailered boats are not allowed. There is no overnight camping at the trailhead area, though the <strong>Hetch Hetchy Backpackers Campground</strong> is available with a <a href="/articles/yosemite-wilderness-permits-guide">wilderness permit</a> for overnight wilderness trips.
       </p>
 
       <p>The drive itself is windy. The last several miles into the dam area include hairpin turns and steep drops. Don't speed. Don't pass.</p>

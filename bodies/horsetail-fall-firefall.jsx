@@ -93,8 +93,8 @@ window.ARTICLE_BODIES["horsetail-fall-firefall"] = function HorsetailFallFirefal
       <ul style={{ fontSize: 14 }}>
         <li><a href="https://www.nps.gov/yose/planyourvisit/horsetailfall.htm" target="_blank" rel="noopener noreferrer">Horsetail Fall, NPS Yosemite</a></li>
         <li><a href="https://www.nps.gov/yose/planyourvisit/conditions.htm" target="_blank" rel="noopener noreferrer">Current Conditions, NPS Yosemite</a></li>
-        <li><a href="https://www.nps.gov/yose/learn/historyculture/firefall.htm" target="_blank" rel="noopener noreferrer">The Firefall, NPS Yosemite history</a></li>
-        <li><a href="https://yosemite.org/experience-the-natural-firefall-in-yosemite/" target="_blank" rel="noopener noreferrer">The Natural Firefall in Yosemite, Yosemite Conservancy</a></li>
+        <li><a href="https://www.nps.gov/yose/learn/historyculture/encroaching-civilization-visitor-services.htm" target="_blank" rel="noopener noreferrer">The Firefall from Glacier Point, NPS Yosemite history</a></li>
+        <li><a href="https://yosemite.org/horsetail-fall/" target="_blank" rel="noopener noreferrer">Horsetail Fall, Yosemite Conservancy</a></li>
       </ul>
     </>
   );

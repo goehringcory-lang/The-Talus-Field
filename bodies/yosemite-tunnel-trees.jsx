@@ -20,7 +20,7 @@ window.ARTICLE_BODIES["yosemite-tunnel-trees"] = function YosemiteTunnelTreesBod
       <h2>The first one was a stump</h2>
 
       <p>
-        The article opens with a quotation from an English traveler, W. G. Marshall, who came through the Sierra in June 1878 and wrote it up in a book called <em>Through America, or Nine Months in the United States</em>. He had crossed over from the Calaveras grove and, as he put it, came "upon a novelty such as one does not come across every day": a tunnel cut through the stump of one of the largest sequoias in the Tuolumne Grove, with the wagon road running straight through the middle of it.
+        The article opens with a quotation from an English traveler, W. G. Marshall, who came through the Sierra in June 1878 and wrote it up in a book called <em>Through America, or Nine Months in the United States</em>. He had crossed over from the Calaveras grove and, as he put it, came "upon a novelty such as one does not come across every day": a tunnel cut through the stump of one of <a href="/articles/giant-sequoias-fire-adaptation">the largest sequoias</a> in the Tuolumne Grove, with the wagon road running straight through the middle of it.
       </p>
 
       <blockquote>
@@ -134,7 +134,7 @@ window.ARTICLE_BODIES["yosemite-tunnel-trees"] = function YosemiteTunnelTreesBod
         <li><a href="/archive/1929/vol-8-no-4/"><em>Yosemite Nature Notes</em>, April 1929 (Vol. 8, No. 4)</a>. "Tunneled Trees of Mariposa and Other Groves," with the Marshall quotation, the Scribner brothers, and the measurements quoted above.</li>
         <li><a href="/archive/1984/vol-47-no-17/"><em>Yosemite Nature Notes</em>, 1984 (Vol. 47, No. 17)</a>. The park museum's acquisition note on early albumen prints, dating the Wawona tunnel to 1881.</li>
         <li><a href="/archive/1971/vol-41-no-4/"><em>Yosemite Nature Notes</em>, 1971 (Vol. 41, No. 4)</a>. A visitor's account of what the park had lost, tunnel tree included.</li>
-        <li><a href="/archive/1937/vol-16-no-4/"><em>Yosemite Nature Notes</em>, April 1937 (Vol. 16, No. 4)</a>. "Our Changing Bears," the park naturalist on the bear-feeding show. The subject of the next one of these.</li>
+        <li><a href="/archive/1937/vol-16-no-4/"><em>Yosemite Nature Notes</em>, April 1937 (Vol. 16, No. 4)</a>. "Our Changing Bears," the park naturalist on <a href="/articles/yosemite-bears-safety-guide">the bear-feeding show</a>. The subject of the next one of these.</li>
       </ul>
 
       <p style={{ fontSize: 14 }}>
