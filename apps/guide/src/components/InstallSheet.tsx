@@ -220,6 +220,11 @@ export default function InstallSheet({ onClose }: { onClose: () => void }) {
   else steps = <AndroidMenuSteps />
 
   return (
+    // Tapping the backdrop is a pointer shortcut for the two dismissals the
+    // sheet already gives a keyboard user: Escape (the window listener above)
+    // and the "Got it" button. It is decoration to the keyboard, not a
+    // control, so it carries no role and no key handler of its own.
+    // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions -- backdrop tap duplicates Escape and the close button
     <div
       className="install-sheet__backdrop"
       onClick={(e) => {

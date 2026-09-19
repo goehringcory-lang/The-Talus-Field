@@ -53,6 +53,10 @@ export default function Search() {
         <input
           className="search-input"
           type="search"
+          // The page exists to type into (the editorial /search does the
+          // same); a reader who opened it and has to find the box first is
+          // the usability cost, not the focus.
+          // eslint-disable-next-line jsx-a11y/no-autofocus -- the search box is the page's only purpose
           autoFocus
           enterKeyHint="search"
           placeholder="Tunnel View, parking, bears, chains…"
