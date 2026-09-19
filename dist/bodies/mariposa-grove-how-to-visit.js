@@ -51,8 +51,8 @@ window.ARTICLE_BODIES["mariposa-grove-how-to-visit"] = function MariposaGroveHow
     target: "_blank",
     rel: "noopener noreferrer"
   }, "Bears and Food Storage, NPS Yosemite")), React.createElement("li", null, React.createElement("a", {
-    href: "https://yosemite.org/projects/mariposa-grove-restoration/",
+    href: "https://yosemite.org/projects/restoring-the-mariposa-grove-of-giant-sequoias/",
     target: "_blank",
     rel: "noopener noreferrer"
-  }, "Mariposa Grove Restoration, Yosemite Conservancy"))));
+  }, "Restoring the Mariposa Grove of Giant Sequoias, Yosemite Conservancy"))));
 };

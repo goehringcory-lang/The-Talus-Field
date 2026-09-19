@@ -169,7 +169,7 @@ window.ARTICLE_BODIES["mariposa-grove-how-to-visit"] = function MariposaGroveHow
         <li><a href="https://www.nps.gov/yose/planyourvisit/pets.htm" target="_blank" rel="noopener noreferrer">Pets, NPS Yosemite</a></li>
         <li><a href="https://www.nps.gov/yose/planyourvisit/accessibility.htm" target="_blank" rel="noopener noreferrer">Accessibility, NPS Yosemite</a></li>
         <li><a href="https://www.nps.gov/yose/planyourvisit/bears.htm" target="_blank" rel="noopener noreferrer">Bears and Food Storage, NPS Yosemite</a></li>
-        <li><a href="https://yosemite.org/projects/mariposa-grove-restoration/" target="_blank" rel="noopener noreferrer">Mariposa Grove Restoration, Yosemite Conservancy</a></li>
+        <li><a href="https://yosemite.org/projects/restoring-the-mariposa-grove-of-giant-sequoias/" target="_blank" rel="noopener noreferrer">Restoring the Mariposa Grove of Giant Sequoias, Yosemite Conservancy</a></li>
       </ul>
     </>
   );

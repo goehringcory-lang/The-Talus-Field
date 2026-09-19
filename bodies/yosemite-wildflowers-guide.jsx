@@ -95,9 +95,9 @@ window.ARTICLE_BODIES["yosemite-wildflowers-guide"] = function YosemiteWildflowe
 
       <h3>Sources</h3>
       <ul style={{ fontSize: 14 }}>
-        <li><a href="https://www.nps.gov/yose/learn/nature/wildflowers.htm" target="_blank" rel="noopener noreferrer">Wildflowers, NPS Yosemite</a></li>
+        <li><a href="https://www.nps.gov/yose/learn/nature/plants.htm" target="_blank" rel="noopener noreferrer">Plants, NPS Yosemite</a></li>
         <li><a href="https://www.nps.gov/yose/learn/nature/meadows.htm" target="_blank" rel="noopener noreferrer">Meadows, NPS Yosemite</a></li>
-        <li><a href="https://yosemite.org/where-to-find-wildflowers-in-yosemite/" target="_blank" rel="noopener noreferrer">Where to Find Wildflowers in Yosemite, Yosemite Conservancy</a></li>
+        <li><a href="https://yosemite.org/incredible-wildflowers-that-bloom-in-yosemite/" target="_blank" rel="noopener noreferrer">Where to Find Wildflowers in Yosemite, Yosemite Conservancy</a></li>
         <li><a href="https://www.fs.usda.gov/recarea/sierra/recarea/?recid=10778" target="_blank" rel="noopener noreferrer">Hite Cove Trail, Sierra National Forest</a></li>
       </ul>
     </>

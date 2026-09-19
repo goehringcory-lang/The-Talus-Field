@@ -21,10 +21,10 @@ window.ARTICLE_BODIES["watching-climbers-el-capitan"] = function WatchingClimber
     target: "_blank",
     rel: "noopener noreferrer"
   }, "Climbing, NPS Yosemite")), React.createElement("li", null, React.createElement("a", {
-    href: "https://www.nps.gov/yose/blogs/askaclimber.htm",
+    href: "https://www.nps.gov/yose/planyourvisit/climbing.htm",
     target: "_blank",
     rel: "noopener noreferrer"
-  }, "Ask a Climber, NPS Yosemite")), React.createElement("li", null, React.createElement("a", {
+  }, "Climbing, NPS Yosemite")), React.createElement("li", null, React.createElement("a", {
     href: "https://www.nps.gov/yose/planyourvisit/camp4.htm",
     target: "_blank",
     rel: "noopener noreferrer"

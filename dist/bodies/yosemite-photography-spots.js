@@ -23,7 +23,7 @@ window.ARTICLE_BODIES["yosemite-photography-spots"] = function YosemitePhotograp
       fontSize: 14
     }
   }, React.createElement("li", null, React.createElement("a", {
-    href: "https://www.nps.gov/yose/planyourvisit/scenicdrive.htm",
+    href: "https://www.nps.gov/yose/planyourvisit/viewpoints.htm",
     target: "_blank",
     rel: "noopener noreferrer"
   }, "Scenic Vistas and Viewpoints, NPS Yosemite")), React.createElement("li", null, React.createElement("a", {
@@ -31,10 +31,10 @@ window.ARTICLE_BODIES["yosemite-photography-spots"] = function YosemitePhotograp
     target: "_blank",
     rel: "noopener noreferrer"
   }, "Horsetail Fall, NPS Yosemite")), React.createElement("li", null, React.createElement("a", {
-    href: "https://www.nps.gov/yose/planyourvisit/yos_moonbow.htm",
+    href: "https://www.nps.gov/places/000/yosemite-falls.htm",
     target: "_blank",
     rel: "noopener noreferrer"
-  }, "Moonbow Viewing, NPS Yosemite")), React.createElement("li", null, React.createElement("a", {
+  }, "Lower Yosemite Fall Viewing Area, with moonbow conditions, NPS")), React.createElement("li", null, React.createElement("a", {
     href: "https://www.anseladams.com/",
     target: "_blank",
     rel: "noopener noreferrer"

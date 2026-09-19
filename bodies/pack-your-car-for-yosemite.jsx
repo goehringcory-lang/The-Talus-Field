@@ -28,7 +28,7 @@ window.ARTICLE_BODIES["pack-your-car-for-yosemite"] = function PackYourCarForYos
       </p>
 
       <p>
-        Pack the cooler in layers. Ice on the bottom, things you'll eat last on the bottom, things you'll eat first on top. Freeze water bottles and use them as ice blocks. They double as cold drinking water as they melt. Pre-make sandwiches and wraps for the first two days. Cut fruit and vegetables at home and store them in containers. If you're car camping, bring eggs, cheese, and tortillas for camp breakfasts.
+        Pack the cooler in layers. Ice on the bottom, things you'll eat last on the bottom, things you'll eat first on top. Freeze water bottles and use them as ice blocks. They double as cold drinking water as they melt. Pre-make sandwiches and wraps for the first two days. Cut fruit and vegetables at home and store them in containers. If you're <a href="/articles/yosemite-camping-complete-guide">car camping</a>, bring eggs, cheese, and tortillas for camp breakfasts.
       </p>
 
       <p>
@@ -120,7 +120,7 @@ window.ARTICLE_BODIES["pack-your-car-for-yosemite"] = function PackYourCarForYos
       </p>
 
       <p>
-        Carry a paper park map. You get one free at the entrance station. Put it in the glove box. It shows every road, major trailhead, campground, and service area in the park.
+        Carry a paper park map. You get one free at <a href="/articles/getting-to-yosemite">the entrance station</a>. Put it in the glove box. It shows every road, major trailhead, campground, and service area in the park.
       </p>
 
       <p>

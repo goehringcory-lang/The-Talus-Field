@@ -37,8 +37,8 @@ window.ARTICLE_BODIES["yosemite-waterfalls-guide"] = function YosemiteWaterfalls
     target: "_blank",
     rel: "noopener noreferrer"
   }, "Horsetail Fall, NPS Yosemite")), React.createElement("li", null, React.createElement("a", {
-    href: "https://yosemite.org/experience-the-magic-of-yosemite-moonbows/",
+    href: "https://yosemite.org/the-park-after-dark/",
     target: "_blank",
     rel: "noopener noreferrer"
-  }, "Yosemite Moonbows, Yosemite Conservancy"))));
+  }, "The Park After Dark, on moonbows, Yosemite Conservancy"))));
 };

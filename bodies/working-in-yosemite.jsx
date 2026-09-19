@@ -16,7 +16,7 @@ window.ARTICLE_BODIES["working-in-yosemite"] = function WorkingInYosemiteBody() 
       <h2>Who you'd actually be working for</h2>
 
       <p>
-        The first surprise, for most people, is that the National Park Service doesn't run most of what visitors interact with in Yosemite. NPS owns the buildings and the land. The lodging, food, retail, shuttles, and most guest services are operated by an authorized concessionaire, currently Yosemite Hospitality, which is a subsidiary of Aramark. The Ansel Adams Gallery operates separately, on its own small NPS contract. NatureBridge runs environmental education for school groups. And then there's Yosemite Conservancy, the park's nonprofit partner, which runs interpretive programs, staffs information stations, manages a few small bookstores, and funds projects across the park.
+        The first surprise, for most people, is that the National Park Service doesn't run most of what visitors interact with in Yosemite. NPS owns the buildings and the land. <a href="/articles/where-to-stay-in-yosemite">The lodging</a>, food, retail, shuttles, and most guest services are operated by an authorized concessionaire, currently Yosemite Hospitality, which is a subsidiary of Aramark. The Ansel Adams Gallery operates separately, on its own small NPS contract. NatureBridge runs environmental education for school groups. And then there's Yosemite Conservancy, the park's nonprofit partner, which runs interpretive programs, staffs information stations, manages a few small bookstores, and funds projects across the park.
       </p>
 
       <p>Where you land in that ecosystem shapes almost everything: your day, your supervisor, your housing, your seasonal rhythm, your sense of who "we" means.</p>

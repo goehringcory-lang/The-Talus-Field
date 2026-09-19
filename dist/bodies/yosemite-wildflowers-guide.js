@@ -23,15 +23,15 @@ window.ARTICLE_BODIES["yosemite-wildflowers-guide"] = function YosemiteWildflowe
       fontSize: 14
     }
   }, React.createElement("li", null, React.createElement("a", {
-    href: "https://www.nps.gov/yose/learn/nature/wildflowers.htm",
+    href: "https://www.nps.gov/yose/learn/nature/plants.htm",
     target: "_blank",
     rel: "noopener noreferrer"
-  }, "Wildflowers, NPS Yosemite")), React.createElement("li", null, React.createElement("a", {
+  }, "Plants, NPS Yosemite")), React.createElement("li", null, React.createElement("a", {
     href: "https://www.nps.gov/yose/learn/nature/meadows.htm",
     target: "_blank",
     rel: "noopener noreferrer"
   }, "Meadows, NPS Yosemite")), React.createElement("li", null, React.createElement("a", {
-    href: "https://yosemite.org/where-to-find-wildflowers-in-yosemite/",
+    href: "https://yosemite.org/incredible-wildflowers-that-bloom-in-yosemite/",
     target: "_blank",
     rel: "noopener noreferrer"
   }, "Where to Find Wildflowers in Yosemite, Yosemite Conservancy")), React.createElement("li", null, React.createElement("a", {

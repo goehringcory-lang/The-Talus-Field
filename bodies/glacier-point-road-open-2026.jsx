@@ -54,7 +54,7 @@ window.ARTICLE_BODIES["glacier-point-road-open-2026"] = function GlacierPointRoa
       </p>
 
       <p>
-        <strong>The hike plan.</strong> Drive up after breakfast, park at the Sentinel Dome and Taft Point trailhead (about a mile and a half before Glacier Point itself). Hike Sentinel first, Taft second, eat lunch on the rim somewhere quiet, then drive the last bit of road and walk out to Glacier Point with your legs already loose. The total walking is around five miles with modest elevation gain, and the experience of standing on Sentinel's bare granite cap (which is exfoliated granodiorite, not bare granite the way most people use the word) and then standing inches from the void at Taft is a study in what 2,500 feet of vertical can mean. There is a piece on the site about how to choose between those two hikes if you only have time for one.
+        <strong>The hike plan.</strong> Drive up after breakfast, park at the Sentinel Dome and Taft Point trailhead (about a mile and a half before Glacier Point itself). Hike Sentinel first, Taft second, eat lunch on the rim somewhere quiet, then drive the last bit of road and walk out to Glacier Point with your legs already loose. The total walking is around five miles with modest elevation gain, and the experience of standing on Sentinel's bare granite cap (which is exfoliated granodiorite, not bare granite the way most people use the word) and then standing inches from the void at Taft is a study in what 2,500 feet of vertical can mean. The <a href="/articles/glacier-point-how-to-visit">full guide to Glacier Point</a> carries the Park Service's own distances and times for every walk off the road, which is how to choose between those two hikes if you only have time for one.
       </p>
 
       <p>

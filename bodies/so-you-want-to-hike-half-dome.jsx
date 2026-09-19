@@ -26,7 +26,7 @@ window.ARTICLE_BODIES["so-you-want-to-hike-half-dome"] = function SoYouWantToHik
       </p>
 
       <p>
-        The route follows the Mist Trail or the John Muir Trail (or one up and the other down) past Vernal Fall and Nevada Fall, two of the most famous waterfalls in the world, and then up through Little Yosemite Valley to the base of the subdome. That's where the real drama begins.
+        The route follows the Mist Trail or the John Muir Trail (or one up and the other down) past <a href="/articles/yosemite-waterfalls-guide">Vernal Fall and Nevada Fall</a>, two of the most famous waterfalls in the world, and then up through Little Yosemite Valley to the base of the subdome. That's where the real drama begins.
       </p>
 
       <p>
@@ -50,7 +50,7 @@ window.ARTICLE_BODIES["so-you-want-to-hike-half-dome"] = function SoYouWantToHik
       </p>
 
       <p>
-        A maximum of 300 people per day are allowed past the base of the subdome: roughly 225 day hikers and 75 backpackers.
+        A maximum of 300 people per day are allowed past the base of the subdome: roughly 225 day hikers and 75 <a href="/articles/yosemite-wilderness-permits-guide">backpackers</a>.
       </p>
 
       <p>There are two ways to get a day-hiker permit, and both are lotteries.</p>

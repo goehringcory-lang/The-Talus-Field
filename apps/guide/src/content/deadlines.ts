@@ -190,7 +190,7 @@ const seed: DeadlineInput[] = [
     detail:
       'Glacier Point Road usually opens in May once plowing is done; in 2026 it opened May 9. The park announces the date a few days ahead. Chains can still be required in the first weeks.',
     confidence: 'typical',
-    source: 'https://www.nps.gov/yose/planyourvisit/glacierpointroad.htm',
+    source: 'https://www.nps.gov/yose/planyourvisit/glacierpoint.htm',
     tag: 'date-roads',
     reads: ['tioga-opening'],
   },

@@ -126,7 +126,7 @@ window.ARTICLE_BODIES["watching-climbers-el-capitan"] = function WatchingClimber
       <h3>Sources</h3>
       <ul style={{ fontSize: 14 }}>
         <li><a href="https://www.nps.gov/yose/planyourvisit/climbing.htm" target="_blank" rel="noopener noreferrer">Climbing, NPS Yosemite</a></li>
-        <li><a href="https://www.nps.gov/yose/blogs/askaclimber.htm" target="_blank" rel="noopener noreferrer">Ask a Climber, NPS Yosemite</a></li>
+        <li><a href="https://www.nps.gov/yose/planyourvisit/climbing.htm" target="_blank" rel="noopener noreferrer">Climbing, NPS Yosemite</a></li>
         <li><a href="https://www.nps.gov/yose/planyourvisit/camp4.htm" target="_blank" rel="noopener noreferrer">Camp 4, NPS Yosemite</a></li>
         <li><a href="https://www.nps.gov/yose/planyourvisit/guide.htm" target="_blank" rel="noopener noreferrer">The Yosemite Guide, NPS Yosemite</a></li>
       </ul>

@@ -133,7 +133,7 @@ window.ARTICLE_BODIES["where-to-stay-in-yosemite"] = function WhereToStayInYosem
       <ul style={{ fontSize: 14 }}>
         <li><a href="https://www.travelyosemite.com/lodging/" target="_blank" rel="noopener noreferrer">Lodging, Travel Yosemite (Yosemite Hospitality)</a></li>
         <li><a href="https://www.nps.gov/yose/planyourvisit/lodging.htm" target="_blank" rel="noopener noreferrer">Lodging, NPS Yosemite</a></li>
-        <li><a href="https://www.nps.gov/yose/learn/historyculture/ahwahnee.htm" target="_blank" rel="noopener noreferrer">The Ahwahnee, NPS Yosemite</a></li>
+        <li><a href="https://www.nps.gov/yose/planyourvisit/lodging.htm" target="_blank" rel="noopener noreferrer">Lodging in Yosemite, NPS Yosemite</a></li>
       </ul>
     </>
   );
