@@ -231,8 +231,55 @@ function formatWaitMinutes(min) {
   var h = Math.floor(min / 60);
   return h + "h " + Math.round(min % 60) + "m";
 }
-function EntranceWaits() {
+var GATE_BOARD = [{
+  key: "Arch Rock Wait Time",
+  name: "Arch Rock",
+  road: "Hwy 140 · west",
+  note: "The El Portal road, and the way most trips come in. First to back up."
+}, {
+  key: "Big Oak Flat Wait Time",
+  name: "Big Oak Flat",
+  road: "Hwy 120 · west",
+  note: "From Groveland and the north. Holds up better than 140 until mid-morning."
+}, {
+  key: "South Entrance Wait Time",
+  name: "South",
+  road: "Hwy 41 · Fish Camp",
+  note: "Oakhurst and the south end. Also the gate for Mariposa Grove."
+}];
+var WAIT_TONE_LABEL = {
+  good: "Short",
+  moderate: "Moderate",
+  long: "Long",
+  nodata: "No reading"
+};
+function longestWait(summary) {
+  if (!Array.isArray(summary)) return null;
+  var worst = null;
+  summary.forEach(pair => {
+    if (!pair || pair.stale) return;
+    var min = pair.current_wait_minutes;
+    if (typeof min !== "number" || !isFinite(min)) return;
+    if (!worst || min > worst.minutes) {
+      worst = {
+        name: WAITS_SHORT_NAMES[pair.pair_name] || String(pair.pair_name || "").replace(/\s*Wait Time$/i, "") || "Entrance",
+        minutes: min,
+        text: formatWaitMinutes(min),
+        tone: waitClass(min)
+      };
+    }
+  });
+  return worst;
+}
+function EntranceWaits({
+  variant,
+  onData
+}) {
   var [waits, setWaits] = useState(null);
+  var onDataRef = useRef(onData);
+  useEffect(() => {
+    onDataRef.current = onData;
+  });
   useEffect(() => {
     var cancelled = false;
     var load = () => {
@@ -242,7 +289,13 @@ function EntranceWaits() {
         }
       }).then(r => r.ok ? r.text() : Promise.reject(new Error("HTTP " + r.status))).then(text => {
         var summary = parseWaitsSummary(text);
-        if (!cancelled && Array.isArray(summary) && summary.length) setWaits(summary);
+        if (!cancelled && Array.isArray(summary) && summary.length) {
+          setWaits(summary);
+          if (onDataRef.current) onDataRef.current({
+            summary,
+            longest: longestWait(summary)
+          });
+        }
       }).catch(() => {});
     };
     load();
@@ -252,6 +305,42 @@ function EntranceWaits() {
       clearInterval(timer);
     };
   }, []);
+  if (variant === "board") {
+    var byKey = {};
+    (waits || []).forEach(pair => {
+      if (pair && pair.pair_name) byKey[pair.pair_name] = pair;
+    });
+    return React.createElement("div", {
+      className: "gates",
+      role: "region",
+      "aria-label": "Live entrance station waits"
+    }, GATE_BOARD.map(gate => {
+      var pair = byKey[gate.key];
+      var min = pair && !pair.stale ? pair.current_wait_minutes : null;
+      var tone = waitClass(min);
+      return React.createElement("a", {
+        key: gate.key,
+        className: `gate gate--${tone}`,
+        href: WAITS_PAGE_URL,
+        target: "_blank",
+        rel: "noopener noreferrer"
+      }, React.createElement("span", {
+        className: "gate__name"
+      }, gate.name), React.createElement("span", {
+        className: "gate__road"
+      }, gate.road), React.createElement("span", {
+        className: "gate__read"
+      }, React.createElement("span", {
+        className: "gate__num"
+      }, min == null ? "—" : Math.round(min)), min != null && React.createElement("span", {
+        className: "gate__unit"
+      }, "min"), React.createElement("span", {
+        className: "gate__tone"
+      }, WAIT_TONE_LABEL[tone])), React.createElement("span", {
+        className: "gate__note"
+      }, gate.note));
+    }));
+  }
   if (!waits) return React.createElement("span", {
     className: "masthead__waits masthead__waits--ph",
     "aria-hidden": "true"
@@ -284,8 +373,15 @@ var PARKING_STATUS_LABEL = {
   full: "Full",
   closed: "Closed"
 };
-function ParkingNow() {
+function ParkingNow({
+  variant,
+  onData
+}) {
   var [data, setData] = useState(null);
+  var onDataRef = useRef(onData);
+  useEffect(() => {
+    onDataRef.current = onData;
+  });
   useEffect(() => {
     var cancelled = false;
     var load = () => {
@@ -300,12 +396,45 @@ function ParkingNow() {
       clearInterval(timer);
     };
   }, []);
-  if (!data || !data.fetchedAt) return null;
-  var fetched = Date.parse(data.fetchedAt);
-  if (!isFinite(fetched) || Date.now() - fetched > PARKING_STALE_MS) return null;
-  var lots = data.lots.filter(l => l && PARKING_STATUS_LABEL[l.status]);
+  var fetched = data && data.fetchedAt ? Date.parse(data.fetchedAt) : NaN;
+  var fresh = isFinite(fetched) && Date.now() - fetched <= PARKING_STALE_MS;
+  var lots = fresh ? data.lots.filter(l => l && PARKING_STATUS_LABEL[l.status]) : [];
+  var openCount = lots.filter(l => l.status === "open").length;
+  var lotCount = lots.length;
+  var fetchedKey = isFinite(fetched) ? fetched : 0;
+  useEffect(() => {
+    if (!onDataRef.current) return;
+    onDataRef.current(lotCount ? {
+      open: openCount,
+      total: lotCount,
+      fetchedAt: fetchedKey
+    } : null);
+  }, [lotCount, openCount, fetchedKey]);
   if (!lots.length) return null;
   var ageMin = Math.max(0, Math.round((Date.now() - fetched) / 60000));
+  var age = ageMin === 0 ? "just now" : ageMin + " min ago";
+  if (variant === "board") {
+    return React.createElement("div", {
+      className: "lots",
+      role: "region",
+      "aria-label": "Live parking lot status"
+    }, React.createElement("ul", {
+      className: "lots__list"
+    }, lots.map(l => React.createElement("li", {
+      key: l.id || l.name,
+      className: `lots__row lots__row--${l.status}`
+    }, React.createElement("span", {
+      className: "lots__name"
+    }, l.name), React.createElement("span", {
+      className: "lots__read"
+    }, React.createElement("span", {
+      className: "lots__status"
+    }, PARKING_STATUS_LABEL[l.status]), typeof l.capacity === "number" && React.createElement("span", {
+      className: "lots__cap"
+    }, l.capacity, " spaces free"))))), React.createElement("p", {
+      className: "lots__meta"
+    }, "National Park Service, ", age, ". Text ", React.createElement("em", null, "ynptraffic"), " to 333111 for the park's own updates before you lose signal."));
+  }
   return React.createElement("div", {
     className: "parking-now",
     role: "region",
@@ -323,7 +452,7 @@ function ParkingNow() {
     className: "parking-now__cap"
   }, l.capacity, " spaces")))), React.createElement("p", {
     className: "parking-now__meta"
-  }, "NPS, ", ageMin === 0 ? "just now" : ageMin + " min ago", " · text ", React.createElement("em", null, "ynptraffic"), " to 333111 before you lose signal"));
+  }, "NPS, ", age, " · text ", React.createElement("em", null, "ynptraffic"), " to 333111 before you lose signal"));
 }
 window.ParkingNow = ParkingNow;
 var rockfallReleased = false;
@@ -2381,10 +2510,13 @@ var WEBCAMS = [{
   href: "https://yosemite.org/webcams/wawona/",
   alt: "Live view of Wawona"
 }];
-function WebcamStrip() {
+function WebcamStrip({
+  variant
+}) {
   var camCacheBust = useMemo(() => Math.floor(Date.now() / 300000), []);
+  var board = variant === "board";
   return React.createElement(React.Fragment, null, React.createElement("div", {
-    className: "cam-grid"
+    className: board ? "cam-grid cam-grid--board" : "cam-grid"
   }, WEBCAMS.map(cam => React.createElement("a", {
     key: cam.img,
     className: "cam-tile",
@@ -2396,6 +2528,8 @@ function WebcamStrip() {
       color: "inherit",
       display: "block"
     }
+  }, React.createElement("span", {
+    className: board ? "cam-tile__frame" : undefined
   }, React.createElement("img", {
     src: `https://pixelcaster.com/yosemite/webcams/${cam.img}?t=${camCacheBust}`,
     alt: cam.alt,
@@ -2408,11 +2542,22 @@ function WebcamStrip() {
     },
     style: {
       width: "100%",
-      aspectRatio: "3 / 2",
+      aspectRatio: board ? "5 / 3" : "3 / 2",
       objectFit: "cover",
       display: "block"
     }
-  }), React.createElement("div", {
+  }), board && React.createElement("span", {
+    className: "cam-tile__live"
+  }, React.createElement("span", {
+    className: "cam-tile__dot",
+    "aria-hidden": "true"
+  }), "Live")), board ? React.createElement("span", {
+    className: "cam-tile__cap"
+  }, React.createElement("span", {
+    className: "cam-tile__label"
+  }, cam.label), React.createElement("span", {
+    className: "cam-tile__open"
+  }, "Open camera ↗")) : React.createElement("div", {
     className: "mono",
     style: {
       marginTop: 10,

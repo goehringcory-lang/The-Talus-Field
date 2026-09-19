@@ -207,8 +207,66 @@ function formatWaitMinutes(min) {
   return h + "h " + Math.round(min % 60) + "m";
 }
 
-function EntranceWaits() {
+// The three gates the NPS feed actually covers, in the order a reader meets
+// them driving in from the west. Tioga Pass is deliberately absent: the feed
+// publishes no wait for it, and a fourth card that could never fill would read
+// as a broken sensor rather than as a gate nobody measures. The notes are
+// standing facts about each road, not conditions, so they never go stale.
+const GATE_BOARD = [
+  {
+    key: "Arch Rock Wait Time",
+    name: "Arch Rock",
+    road: "Hwy 140 · west",
+    note: "The El Portal road, and the way most trips come in. First to back up.",
+  },
+  {
+    key: "Big Oak Flat Wait Time",
+    name: "Big Oak Flat",
+    road: "Hwy 120 · west",
+    note: "From Groveland and the north. Holds up better than 140 until mid-morning.",
+  },
+  {
+    key: "South Entrance Wait Time",
+    name: "South",
+    road: "Hwy 41 · Fish Camp",
+    note: "Oakhurst and the south end. Also the gate for Mariposa Grove.",
+  },
+];
+
+const WAIT_TONE_LABEL = { good: "Short", moderate: "Moderate", long: "Long", nodata: "No reading" };
+
+// Reduce the raw summary to the one figure a reader scanning the top of the
+// page wants: the worst gate right now. Returns null when nothing is readable,
+// so callers render nothing rather than a zero.
+function longestWait(summary) {
+  if (!Array.isArray(summary)) return null;
+  let worst = null;
+  summary.forEach((pair) => {
+    if (!pair || pair.stale) return;
+    const min = pair.current_wait_minutes;
+    if (typeof min !== "number" || !isFinite(min)) return;
+    if (!worst || min > worst.minutes) {
+      worst = {
+        name: WAITS_SHORT_NAMES[pair.pair_name]
+          || String(pair.pair_name || "").replace(/\s*Wait Time$/i, "")
+          || "Entrance",
+        minutes: min,
+        text: formatWaitMinutes(min),
+        tone: waitClass(min),
+      };
+    }
+  });
+  return worst;
+}
+
+// `variant="board"` is the /conditions treatment: one column block per gate
+// with the wait set large. The default is the original inline strip, which
+// /webcams still mounts. `onData` hands the page a digest so the reading can
+// also appear in the page's live readout without a second fetch of the feed.
+function EntranceWaits({ variant, onData }) {
   const [waits, setWaits] = useState(null);
+  const onDataRef = useRef(onData);
+  useEffect(() => { onDataRef.current = onData; });
 
   useEffect(() => {
     let cancelled = false;
@@ -217,7 +275,10 @@ function EntranceWaits() {
         .then((r) => (r.ok ? r.text() : Promise.reject(new Error("HTTP " + r.status))))
         .then((text) => {
           const summary = parseWaitsSummary(text);
-          if (!cancelled && Array.isArray(summary) && summary.length) setWaits(summary);
+          if (!cancelled && Array.isArray(summary) && summary.length) {
+            setWaits(summary);
+            if (onDataRef.current) onDataRef.current({ summary, longest: longestWait(summary) });
+          }
         })
         .catch(() => {});
     };
@@ -225,6 +286,38 @@ function EntranceWaits() {
     const timer = setInterval(load, WAITS_REFRESH_MS);
     return () => { cancelled = true; clearInterval(timer); };
   }, []);
+
+  if (variant === "board") {
+    const byKey = {};
+    (waits || []).forEach((pair) => { if (pair && pair.pair_name) byKey[pair.pair_name] = pair; });
+    return (
+      <div className="gates" role="region" aria-label="Live entrance station waits">
+        {GATE_BOARD.map((gate) => {
+          const pair = byKey[gate.key];
+          const min = pair && !pair.stale ? pair.current_wait_minutes : null;
+          const tone = waitClass(min);
+          return (
+            <a
+              key={gate.key}
+              className={`gate gate--${tone}`}
+              href={WAITS_PAGE_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <span className="gate__name">{gate.name}</span>
+              <span className="gate__road">{gate.road}</span>
+              <span className="gate__read">
+                <span className="gate__num">{min == null ? "—" : Math.round(min)}</span>
+                {min != null && <span className="gate__unit">min</span>}
+                <span className="gate__tone">{WAIT_TONE_LABEL[tone]}</span>
+              </span>
+              <span className="gate__note">{gate.note}</span>
+            </a>
+          );
+        })}
+      </div>
+    );
+  }
 
   // Reserve the slot while the live NPS data is in flight (or never arrives) so
   // the page does not shift when the waits populate after first paint. The
@@ -273,8 +366,18 @@ const PARKING_REFRESH_MS = 5 * 60 * 1000;
 const PARKING_STALE_MS = 60 * 60 * 1000;
 const PARKING_STATUS_LABEL = { open: "Open", full: "Full", closed: "Closed" };
 
-function ParkingNow() {
+// `variant="board"` is the /conditions treatment: the same rows, ruled and
+// scaled up for a page column rather than a card. `onData` hands the page a
+// digest (how many lots are open, and the reading's age) so the live readout
+// at the top can quote it without fetching the feed a second time. Both are
+// opt-in, so /now keeps exactly the markup it has today. Note there is no
+// fill meter in either variant: the feed carries a lot's free spaces but not
+// its total, so a bar would be drawing a ratio the data does not contain.
+function ParkingNow({ variant, onData }) {
   const [data, setData] = useState(null);
+  const onDataRef = useRef(onData);
+  useEffect(() => { onDataRef.current = onData; });
+
   useEffect(() => {
     let cancelled = false;
     const load = () => {
@@ -288,12 +391,44 @@ function ParkingNow() {
     return () => { cancelled = true; clearInterval(timer); };
   }, []);
 
-  if (!data || !data.fetchedAt) return null;
-  const fetched = Date.parse(data.fetchedAt);
-  if (!isFinite(fetched) || Date.now() - fetched > PARKING_STALE_MS) return null;
-  const lots = data.lots.filter((l) => l && PARKING_STATUS_LABEL[l.status]);
+  const fetched = data && data.fetchedAt ? Date.parse(data.fetchedAt) : NaN;
+  const fresh = isFinite(fetched) && Date.now() - fetched <= PARKING_STALE_MS;
+  const lots = fresh ? data.lots.filter((l) => l && PARKING_STATUS_LABEL[l.status]) : [];
+
+  // Report upward on every render that changes the digest, not inside the
+  // fetch, so the 60-minute staleness cutoff governs the readout too. The
+  // dependency is a normalized number: `fetched` is NaN while the feed is
+  // silent, and NaN never equals itself, so it would re-fire on every render.
+  const openCount = lots.filter((l) => l.status === "open").length;
+  const lotCount = lots.length;
+  const fetchedKey = isFinite(fetched) ? fetched : 0;
+  useEffect(() => {
+    if (!onDataRef.current) return;
+    onDataRef.current(lotCount ? { open: openCount, total: lotCount, fetchedAt: fetchedKey } : null);
+  }, [lotCount, openCount, fetchedKey]);
+
   if (!lots.length) return null;
   const ageMin = Math.max(0, Math.round((Date.now() - fetched) / 60000));
+  const age = ageMin === 0 ? "just now" : ageMin + " min ago";
+
+  if (variant === "board") {
+    return (
+      <div className="lots" role="region" aria-label="Live parking lot status">
+        <ul className="lots__list">
+          {lots.map((l) => (
+            <li key={l.id || l.name} className={`lots__row lots__row--${l.status}`}>
+              <span className="lots__name">{l.name}</span>
+              <span className="lots__read">
+                <span className="lots__status">{PARKING_STATUS_LABEL[l.status]}</span>
+                {typeof l.capacity === "number" && <span className="lots__cap">{l.capacity} spaces free</span>}
+              </span>
+            </li>
+          ))}
+        </ul>
+        <p className="lots__meta">National Park Service, {age}. Text <em>ynptraffic</em> to 333111 for the park's own updates before you lose signal.</p>
+      </div>
+    );
+  }
 
   return (
     <div className="parking-now" role="region" aria-label="Live parking lot status">
@@ -306,7 +441,7 @@ function ParkingNow() {
           </li>
         ))}
       </ul>
-      <p className="parking-now__meta">NPS, {ageMin === 0 ? "just now" : ageMin + " min ago"} · text <em>ynptraffic</em> to 333111 before you lose signal</p>
+      <p className="parking-now__meta">NPS, {age} · text <em>ynptraffic</em> to 333111 before you lose signal</p>
     </div>
   );
 }
@@ -2027,16 +2162,23 @@ const WEBCAMS = [
   { label: "Wawona",         img: "wawona-t.jpg",     href: "https://yosemite.org/webcams/wawona/",         alt: "Live view of Wawona" },
 ];
 
-function WebcamStrip() {
+// `variant="board"` is the /conditions treatment: two large tiles per row with
+// the caption on a rule under each, and a standing LIVE mark over the frame.
+// The mark carries no timestamp on purpose. Nothing here reads the capture
+// time off the camera, and a clock drawn from the reader's own device would be
+// asserting a freshness this component has not checked. Default is the four-up
+// strip, which /webcams and /firefall still mount.
+function WebcamStrip({ variant }) {
   // Bucket the cache-buster to five minutes instead of the exact millisecond.
   // Per-render Date.now() made every one of these four third-party images a
   // guaranteed cold fetch on every visit and every remount; the cameras
   // themselves refresh on the order of minutes, so a five-minute bucket is as
   // fresh in practice and lets the browser cache do its job in between.
   const camCacheBust = useMemo(() => Math.floor(Date.now() / 300000), []);
+  const board = variant === "board";
   return (
     <>
-      <div className="cam-grid">
+      <div className={board ? "cam-grid cam-grid--board" : "cam-grid"}>
         {WEBCAMS.map(cam => (
           <a
             key={cam.img}
@@ -2046,18 +2188,28 @@ function WebcamStrip() {
             rel="noopener noreferrer"
             style={{ textDecoration: "none", color: "inherit", display: "block" }}
           >
-            <img
-              src={`https://pixelcaster.com/yosemite/webcams/${cam.img}?t=${camCacheBust}`}
-              alt={cam.alt}
-              loading="lazy"
-              decoding="async"
-              referrerPolicy="no-referrer"
-              onError={(e) => { const t = e.currentTarget.closest('.cam-tile'); if (t) t.style.display = 'none'; }}
-              style={{ width: "100%", aspectRatio: "3 / 2", objectFit: "cover", display: "block" }}
-            />
-            <div className="mono" style={{ marginTop: 10, fontSize: 11, textTransform: "uppercase", letterSpacing: "0.18em", color: "var(--ink-2)", fontWeight: 700 }}>
-              {cam.label}
-            </div>
+            <span className={board ? "cam-tile__frame" : undefined}>
+              <img
+                src={`https://pixelcaster.com/yosemite/webcams/${cam.img}?t=${camCacheBust}`}
+                alt={cam.alt}
+                loading="lazy"
+                decoding="async"
+                referrerPolicy="no-referrer"
+                onError={(e) => { const t = e.currentTarget.closest('.cam-tile'); if (t) t.style.display = 'none'; }}
+                style={{ width: "100%", aspectRatio: board ? "5 / 3" : "3 / 2", objectFit: "cover", display: "block" }}
+              />
+              {board && <span className="cam-tile__live"><span className="cam-tile__dot" aria-hidden="true" />Live</span>}
+            </span>
+            {board ? (
+              <span className="cam-tile__cap">
+                <span className="cam-tile__label">{cam.label}</span>
+                <span className="cam-tile__open">Open camera ↗</span>
+              </span>
+            ) : (
+              <div className="mono" style={{ marginTop: 10, fontSize: 11, textTransform: "uppercase", letterSpacing: "0.18em", color: "var(--ink-2)", fontWeight: 700 }}>
+                {cam.label}
+              </div>
+            )}
           </a>
         ))}
       </div>

@@ -229,8 +229,9 @@ main:focus { outline: none; }
 }
 /* Entrance waits (EntranceWaits in components.jsx). The class names date
    from the component's old slot in the masthead's utility bar, removed in
-   the nav simplification pass; its one surface now is /conditions, which
-   scales it up via .conditions__waits below. */
+   the nav simplification pass. These rules style the component's DEFAULT
+   inline strip, whose one surface now is /webcams; /conditions mounts it as
+   variant="board" and is styled by .gates further down. */
 .masthead__weather-sep { color: var(--ink-3); opacity: 0.85; }
 .masthead__waits {
   display: inline-flex;
@@ -3787,15 +3788,518 @@ main:focus { outline: none; }
 .itin__stop-blurb::before { content: " "; }
 .itin .btn { margin-top: 8px; }
 
-/* ===== Conditions page (/conditions) ===== */
-/* EntranceWaits reuses its masthead markup; scale it up for page context. */
-.conditions__waits .masthead__waits {
-  display: inline-flex;
-  flex-wrap: wrap;
-  gap: 6px 10px;
-  font-size: 15px;
-  min-width: 0;
+/* ===== Conditions page (/conditions) =====
+   The station board. Four rules govern this block:
+   (1) colour carries one meaning, and it is alarm: --rust for a long wait or
+       a full lot, --gold for the middle band, --ink for everything fine. A
+       reader should be able to tell whether the day is against them without
+       reading a word;
+   (2) every live figure is set in the serif at a size that reads across a
+       room, with lining tabular figures so the digits do not dance as the
+       feed refreshes (the site's default is old-style, which is right for
+       prose and wrong for a gauge);
+   (3) nothing here has a fill meter. Both feeds publish a value without a
+       maximum (a wait in minutes, a lot's free spaces), so a bar would be
+       drawing a ratio the data does not contain;
+   (4) the whole block collapses to one column at 880px, the same breakpoint
+       where the inline nav gives way to BottomNav. */
+
+/* The page head splits into lede + live readout above 900px. */
+.page-head--split { padding-bottom: 36px; }
+.cond-head {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 380px;
+  gap: 56px;
+  align-items: start;
 }
+.cond-head__lede h1 { max-width: 12ch; }
+.cond-body { padding-top: 48px; }
+.cond-section { margin-bottom: 64px; }
+.cond-lede {
+  font-family: var(--serif);
+  font-size: 17px;
+  line-height: 1.6;
+  color: var(--ink-2);
+  max-width: 68ch;
+  margin: 0 0 24px;
+}
+.cond-note {
+  font-family: var(--serif);
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--ink-2);
+  margin: 20px 0 0;
+}
+
+/* ── The live readout plate ─────────────────────────────────────────────── */
+.readout {
+  background: var(--ink);
+  color: var(--paper);
+  padding: 22px 26px 24px;
+}
+.readout__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+.readout__eyebrow { color: color-mix(in oklab, var(--paper) 70%, transparent); }
+.readout__pulse {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-family: var(--sans);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+.readout__dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--moss-2);
+  display: block;
+}
+.readout__date {
+  font-family: var(--display);
+  font-size: 26px;
+  line-height: 1.2;
+  margin-top: 12px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid color-mix(in oklab, var(--paper) 30%, transparent);
+}
+.readout__list { list-style: none; margin: 0; padding: 0; }
+.readout__row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 13px 0;
+  border-bottom: 1px solid color-mix(in oklab, var(--paper) 18%, transparent);
+}
+.readout__row:last-child { border-bottom: 0; }
+.readout__label {
+  font-family: var(--sans);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: color-mix(in oklab, var(--paper) 72%, transparent);
+}
+.readout__detail { display: block; margin-top: 4px; letter-spacing: 0.1em; opacity: 0.8; }
+.readout__value {
+  font-family: var(--display);
+  font-size: 30px;
+  line-height: 1;
+  white-space: nowrap;
+  font-variant-numeric: lining-nums tabular-nums;
+}
+/* Alarm on an inverted plate: --rust is too dark on near-black to pass, so
+   the warm tint here is lifted rather than reusing the token straight. */
+.readout__value--long { color: #e8a184; }
+.readout__value--moderate { color: #e3c489; }
+.readout__quiet {
+  font-family: var(--serif);
+  font-size: 16px;
+  line-height: 1.5;
+  color: color-mix(in oklab, var(--paper) 80%, transparent);
+  margin: 14px 0 0;
+}
+.readout__foot {
+  font-family: var(--sans);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: color-mix(in oklab, var(--paper) 62%, transparent);
+  margin: 16px 0 0;
+}
+
+/* ── The gate board ─────────────────────────────────────────────────────── */
+.gates {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 28px;
+}
+.gate {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  border-top: 2px solid var(--rule);
+  padding-top: 15px;
+}
+.gate:hover { color: inherit; }
+.gate:hover .gate__name { color: var(--moss); }
+.gate__name {
+  display: block;
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+.gate__road {
+  display: block;
+  font-family: var(--sans);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  margin-top: 4px;
+}
+.gate__read {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin-top: 16px;
+}
+.gate__num {
+  font-family: var(--display);
+  font-size: clamp(48px, 5vw, 66px);
+  line-height: 0.88;
+  font-variant-numeric: lining-nums tabular-nums;
+  color: var(--ink);
+}
+.gate__unit {
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+.gate__tone {
+  margin-left: auto;
+  align-self: center;
+  font-family: var(--sans);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  padding: 4px 7px;
+  border: 1px solid var(--rule-soft);
+  color: var(--ink-2);
+}
+.gate--moderate .gate__num, .gate--moderate .gate__tone { color: var(--gold); }
+.gate--moderate .gate__tone { border-color: var(--gold); }
+.gate--long .gate__num, .gate--long .gate__tone { color: var(--rust); }
+.gate--long .gate__tone { border-color: var(--rust); }
+.gate--nodata .gate__num { color: var(--ink-3); }
+.gate--nodata .gate__tone { border-style: dashed; color: var(--ink-3); }
+.gate__note {
+  display: block;
+  font-family: var(--serif);
+  font-size: 15px;
+  line-height: 1.45;
+  color: var(--ink-2);
+  margin-top: 14px;
+}
+
+/* ── Webcams, board variant ─────────────────────────────────────────────── */
+.cam-grid--board {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+}
+.cam-tile__frame { position: relative; display: block; line-height: 0; }
+.cam-tile__frame img { border: 1px solid var(--rule); }
+.cam-tile__live {
+  position: absolute;
+  left: 1px;
+  bottom: 1px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--ink);
+  color: var(--paper);
+  padding: 8px 13px;
+  line-height: 1;
+  font-family: var(--sans);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+.cam-tile__dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--moss-2);
+  display: block;
+}
+.cam-tile__cap {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 11px;
+  padding-top: 10px;
+  border-top: 1px solid var(--rule-soft);
+}
+.cam-tile__label {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+.cam-tile__open {
+  font-family: var(--sans);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  white-space: nowrap;
+}
+.cam-tile:hover .cam-tile__label { color: var(--moss); }
+
+/* ── The elevation chart ────────────────────────────────────────────────── */
+/* Two stations share the valley floor and one sits nearly a mile above them.
+   The chart exists to make that difference a shape before it is a sentence. */
+.elev__plot {
+  position: relative;
+  height: 240px;
+  border-bottom: 2px solid var(--rule);
+}
+.elev__grid {
+  position: absolute;
+  left: 0;
+  right: 0;
+  border-top: 1px dashed var(--rule-soft);
+}
+.elev__grid i {
+  position: absolute;
+  left: 0;
+  bottom: 4px;
+  font-family: var(--sans);
+  font-size: 9px;
+  font-style: normal;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+.elev__bars {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+  align-items: end;
+}
+.elev__col { display: flex; justify-content: center; align-items: end; height: 100%; }
+.elev__bar {
+  position: relative;
+  width: min(150px, 100%);
+  border-top: 3px solid var(--ink);
+  border-left: 1px solid var(--rule);
+  border-right: 1px solid var(--rule);
+  /* A printed-chart hatch rather than a flat fill: the page is a broadsheet,
+     and a solid block would read as a UI component dropped onto it. */
+  background-image: repeating-linear-gradient(
+    135deg,
+    color-mix(in oklab, var(--ink) 15%, transparent) 0 2px,
+    transparent 2px 7px
+  );
+}
+.elev__bar--high {
+  border-top-color: var(--rust);
+  background-image: repeating-linear-gradient(
+    135deg,
+    color-mix(in oklab, var(--rust) 20%, transparent) 0 2px,
+    transparent 2px 7px
+  );
+}
+.elev__ft {
+  position: absolute;
+  top: -26px;
+  left: -40px;
+  right: -40px;
+  text-align: center;
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+.elev__bar--high .elev__ft { color: var(--rust); }
+.elev__cards {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+}
+/* Flex column so the "Point forecast" links sit on one line across all three
+   cards; the notes wrap to different depths and left them stepped. */
+.fc { padding-top: 20px; display: flex; flex-direction: column; }
+.fc__name {
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+.fc__name--high { color: var(--rust); }
+.fc__note {
+  font-family: var(--serif);
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--ink-2);
+  margin: 12px 0 0;
+}
+.fc__link {
+  align-self: start;
+  margin-top: auto;
+  padding-top: 14px;
+  font-family: var(--sans);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--ink);
+  border-bottom: 1px solid var(--rust);
+  padding-bottom: 3px;
+}
+.fc__link:hover { color: var(--moss); }
+
+/* ── Parking, board variant ─────────────────────────────────────────────── */
+.cond-split {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 56px;
+  align-items: start;
+  margin-bottom: 64px;
+}
+.lots__list { list-style: none; margin: 0; padding: 0; }
+.lots__row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 16px;
+  align-items: baseline;
+  padding: 13px 0;
+  border-bottom: 1px solid var(--rule-soft);
+  font-family: var(--serif);
+  font-size: 17px;
+}
+.lots__row:last-child { border-bottom: 1px solid var(--rule); }
+.lots__name { color: var(--ink); }
+.lots__row--closed .lots__name { color: var(--ink-3); }
+.lots__read { text-align: right; }
+.lots__status {
+  display: block;
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+.lots__row--full .lots__status { color: var(--rust); }
+.lots__row--closed .lots__status { color: var(--ink-3); }
+.lots__cap {
+  display: block;
+  font-family: var(--sans);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  color: var(--ink-3);
+  margin-top: 4px;
+  font-variant-numeric: tabular-nums;
+}
+.lots__meta {
+  font-family: var(--serif);
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--ink-3);
+  margin: 16px 0 0;
+}
+
+/* ── The recorded road line ─────────────────────────────────────────────── */
+.dialplate {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 56px;
+  align-items: center;
+  border: 2px solid var(--rule);
+  padding: 32px 40px;
+  margin-bottom: 56px;
+  text-decoration: none;
+  color: inherit;
+}
+.dialplate:hover { color: inherit; border-color: var(--moss); }
+.dialplate:hover .dialplate__digits { color: var(--moss); }
+.dialplate__say {
+  display: block;
+  font-family: var(--serif);
+  font-size: 20px;
+  line-height: 1.5;
+  color: var(--ink);
+  max-width: 56ch;
+  margin-top: 12px;
+}
+.dialplate__num { text-align: right; }
+.dialplate__digits {
+  display: block;
+  font-family: var(--display);
+  font-size: clamp(32px, 4vw, 46px);
+  line-height: 1;
+  font-variant-numeric: lining-nums tabular-nums;
+  white-space: nowrap;
+}
+.dialplate__label {
+  display: block;
+  font-family: var(--sans);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  margin-top: 9px;
+}
+
+/* ── The two asks ───────────────────────────────────────────────────────── */
+/* Paid first, free second, one of each, matching the homepage rail's order.
+   .band-guide carries its own 24px top margin for the article column it was
+   built for; zero it here so both plates sit on the same line. */
+.cond-asks {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 56px;
+  align-items: start;
+  margin-bottom: 96px;
+}
+.cond-asks .band-guide { margin-top: 0; }
+
+/* ── Collapse ───────────────────────────────────────────────────────────── */
+@media (max-width: 1040px) {
+  .gates { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+  .cond-head { grid-template-columns: minmax(0, 1fr) 320px; gap: 36px; }
+}
+@media (max-width: 880px) {
+  .cond-head { grid-template-columns: 1fr; gap: 32px; }
+  .cond-head__lede h1 { max-width: none; }
+  .cond-split { grid-template-columns: 1fr; gap: 56px; }
+  .cond-asks { grid-template-columns: 1fr; gap: 40px; margin-bottom: 72px; }
+  .gates { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
+  .cam-grid--board { grid-template-columns: 1fr; }
+  .dialplate { grid-template-columns: 1fr; gap: 24px; padding: 26px; }
+  .dialplate__num { text-align: left; }
+}
+@media (max-width: 560px) {
+  .gates { grid-template-columns: 1fr; gap: 20px; }
+  .elev__plot { height: 180px; }
+  .elev__bars { gap: 12px; }
+  .elev__ft { left: -20px; right: -20px; font-size: 10px; }
+  .elev__cards { grid-template-columns: 1fr; gap: 0; }
+  .fc { padding-top: 16px; border-top: 1px solid var(--rule-soft); margin-top: 16px; }
+  .fc:first-child { border-top: 0; margin-top: 0; }
+}
+
 .conditions__list {
   list-style: none;
   margin: 0;
