@@ -29,6 +29,7 @@ import { readFileSync } from "node:fs";
 import path from "node:path";
 import { ROOT, SITE_ORIGIN } from "../lib/catalog.mjs";
 import { makeCheck } from "../lib/report.mjs";
+import { getJson } from "../lib/http.mjs";
 
 const DEFAULT_API_BASE = "https://api.thetalusfieldjournal.com";
 const WRANGLER = path.join(ROOT, "workers", "wrangler.toml");
@@ -62,32 +63,6 @@ function expectedVars() {
     renewalPriceCents: num("GUIDE_RENEWAL_PRICE_CENTS"),
     cap: num("GUIDE_MONTHLY_CAP"),
   };
-}
-
-async function getJson(url, { timeoutMs = 12000, retries = 1, headers = {} } = {}) {
-  for (let attempt = 0; attempt <= retries; attempt++) {
-    const ctrl = new AbortController();
-    const timer = setTimeout(() => ctrl.abort(), timeoutMs);
-    try {
-      const res = await fetch(url, {
-        headers: { "User-Agent": "talus-field-system-checks", ...headers },
-        signal: ctrl.signal,
-      });
-      const text = await res.text();
-      let body = null;
-      try {
-        body = JSON.parse(text);
-      } catch {
-        /* non-JSON body is itself the finding; callers see body === null */
-      }
-      return { ok: res.ok, status: res.status, body, res };
-    } catch (e) {
-      if (attempt === retries) return { ok: false, status: 0, body: null, error: e.message };
-    } finally {
-      clearTimeout(timer);
-    }
-  }
-  return { ok: false, status: 0, body: null, error: "unreachable" };
 }
 
 function isoDaysFromNow(days) {

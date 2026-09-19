@@ -14,6 +14,17 @@
 # Runs nightly and on manual dispatch. The checks job fails on error-severity
 # findings; Lighthouse is warn-only (drift is recorded, not gated) to avoid flaky
 # nightly failures.
+#
+# The lighthouse job also records the editorial deploy-parity verdict
+# (scripts/deploy-parity-log.mjs -> scripts/data/deploy-parity-log.json): which
+# Worker version production is serving and whether its frozen catalog matches
+# the asset layer and the repo. It is the memory the August 2026 stale-build
+# incidents lacked (CLAUDE.md, "Things that have surprised past edits"): a
+# rollback shows as a version id and a verdict changing on a night with no
+# commit. Both files ride the same nightly commit. Note that this commit itself
+# re-triggers the editorial Workers Build ([skip ci] is a GitHub convention
+# Cloudflare does not honor), which is why the log records a new version id
+# most nights and why that is not, by itself, the regression.
 
 name: System checks
 
@@ -50,7 +61,7 @@ jobs:
           path: scripts/data/last-run-report.md
 
   lighthouse:
-    name: Lighthouse Core Web Vitals trend
+    name: Lighthouse trend and deploy-parity log
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -61,6 +72,11 @@ jobs:
           node-version: 22
           cache: npm
           cache-dependency-path: scripts/package-lock.json
+      - name: Record deploy parity
+        # Builtins only, no npm ci needed. An unreachable origin must not block
+        # the Lighthouse record, and vice versa.
+        continue-on-error: true
+        run: node scripts/deploy-parity-log.mjs
       - name: Run Lighthouse
         uses: treosh/lighthouse-ci-action@v12
         with:
@@ -72,14 +88,15 @@ jobs:
       - name: Append to history
         run: node scripts/lighthouse-log.mjs
       - name: Commit history (scheduled/dispatch only)
-        if: github.event_name != 'pull_request'
+        # always(): a Lighthouse failure must still commit the parity record.
+        if: always() && github.event_name != 'pull_request'
         run: |
-          if git diff --quiet -- scripts/data/lighthouse-history.json; then
-            echo "No Lighthouse history change."
+          if git diff --quiet -- scripts/data/lighthouse-history.json scripts/data/deploy-parity-log.json; then
+            echo "No Lighthouse history or deploy-parity change."
             exit 0
           fi
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add scripts/data/lighthouse-history.json
+          git add scripts/data/lighthouse-history.json scripts/data/deploy-parity-log.json
           git commit -m "chore: record nightly Lighthouse run [skip ci]"
           git push
