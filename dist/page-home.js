@@ -245,6 +245,30 @@ var START_HERE_QUESTIONS = {
   "yosemite-gateway-towns-compared": "Where should you actually stay?",
   "yosemite-in-one-or-two-days": "Only have a day or two?"
 };
+var RAIL_GUIDE_SHOT = "/img/guide/screens/front-page.v4.webp";
+var RAIL_GUIDE_KEY = [{
+  at: 2.96,
+  label: "Offline",
+  text: "The whole guide lives on the phone, so no signal is needed."
+}, {
+  at: 40,
+  label: "Gate waits",
+  text: "Every entrance, live from the park service."
+}, {
+  at: 70.1,
+  label: "Light left",
+  text: "Sunset and golden hour, computed on the phone."
+}];
+var RAIL_GUIDE_COUNTS = [{
+  n: 44,
+  label: "Stops in driving order"
+}, {
+  n: 57,
+  label: "Day hikes with GPS tracks"
+}, {
+  n: 50,
+  label: "Secret Guide entries"
+}];
 function HomeRail({
   go
 }) {
@@ -265,11 +289,55 @@ function HomeRail({
     className: "rail-guide__eyebrow"
   }, "The Field Guide · Offline app"), React.createElement("h3", {
     className: "rail-guide__title"
-  }, "The park, in your pocket."), React.createElement("p", {
-    className: "rail-guide__body"
-  }, "57 hikes with parking and timing notes, offline maps, and the local tactics for every major region. Works with no signal, which is most of the park. One purchase, eighteen months of access."), React.createElement("span", {
-    className: "mono rail-guide__cta"
-  }, "See the Field Guide · $3.99 →")), React.createElement(NewsletterInline, {
+  }, "The park, in your pocket."), React.createElement("span", {
+    className: "rail-guide__fig"
+  }, React.createElement("span", {
+    className: "rail-guide__stage"
+  }, React.createElement("span", {
+    className: "rail-guide__phone"
+  }, React.createElement("span", {
+    className: "rail-guide__screen"
+  }, React.createElement("img", {
+    src: RAIL_GUIDE_SHOT,
+    alt: "The Field Guide app's front page",
+    width: "640",
+    height: "1385",
+    loading: "lazy",
+    decoding: "async"
+  }), RAIL_GUIDE_KEY.map((k, i) => React.createElement("span", {
+    key: k.label,
+    className: "rail-guide__pin",
+    style: {
+      "--at": k.at
+    },
+    "aria-hidden": "true"
+  }, i + 1))))), React.createElement("ol", {
+    className: "rail-guide__key"
+  }, RAIL_GUIDE_KEY.map((k, i) => React.createElement("li", {
+    key: k.label,
+    className: "rail-guide__keyitem",
+    style: {
+      "--at": k.at
+    }
+  }, React.createElement("span", {
+    className: "rail-guide__keynum",
+    "aria-hidden": "true"
+  }, i + 1), React.createElement("span", {
+    className: "rail-guide__keylabel"
+  }, k.label), React.createElement("span", {
+    className: "rail-guide__keytext"
+  }, k.text))))), React.createElement("span", {
+    className: "rail-guide__counts"
+  }, RAIL_GUIDE_COUNTS.map(c => React.createElement("span", {
+    key: c.label,
+    className: "rail-guide__count"
+  }, React.createElement("strong", null, c.n), React.createElement("span", null, c.label)))), React.createElement("span", {
+    className: "rail-guide__buy"
+  }, "See the Field Guide", React.createElement("span", {
+    className: "rail-guide__price"
+  }, "$3.99 →")), React.createElement("span", {
+    className: "rail-guide__terms"
+  }, "One payment · 18 months · 30-day guarantee")), React.createElement(NewsletterInline, {
     location: "home_rail",
     tag: "home",
     heading: "The Sunday Letter",

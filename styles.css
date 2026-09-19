@@ -3175,6 +3175,21 @@ main:focus { outline: none; }
   gap: 28px;
   min-width: 0;
 }
+/* The rail runs about 1,300px since the Field Guide unit started carrying the
+   app screenshot. Pinned by its top in a shorter window, everything past the
+   fold (the letter, the lodging unit) would stay hidden until the editorial
+   column ran out. Pinned by its bottom instead, it scrolls through once from
+   the top, where the guide unit is the first thing seen, then holds its last
+   unit in view. `align-self: end` is what lets a bottom-sticky grid item
+   start at the top: its natural place is the row's foot, and the sticky
+   offset can only lift it as far as the row's head. */
+@media (min-width: 881px) and (max-height: 1439px) {
+  .home-rail {
+    top: auto;
+    bottom: 24px;
+    align-self: end;
+  }
+}
 
 /* Section headings inside the spine. */
 .home-section__head { margin-bottom: 28px; }
@@ -3294,12 +3309,22 @@ main:focus { outline: none; }
    old product band already established, so the one purchase ask reads as a
    deliberate object rather than a third identical box. */
 .rail-guide {
+  /* Everything on the plate is mixed from the palette, so it inverts with
+     the plate in dark mode. The accent is the palette's gold lifted toward
+     the ground: the raw gold is tuned for paper and sinks into ink. */
+  --rail-accent: color-mix(in oklab, var(--gold) 70%, var(--paper));
+  --rail-rule: color-mix(in oklab, var(--paper) 22%, transparent);
+  --rail-stage: color-mix(in oklab, var(--ink) 94%, var(--paper));
   display: block;
   text-decoration: none;
   color: var(--paper);
   background: var(--ink);
   border: 1px solid var(--ink);
   padding: 26px 24px;
+}
+@media (prefers-color-scheme: dark) {
+  /* Dark mode's plate is light, so the accent darkens instead. */
+  .rail-guide { --rail-accent: color-mix(in oklab, var(--gold) 55%, var(--paper)); }
 }
 .rail-guide__eyebrow {
   display: block;
@@ -3323,19 +3348,216 @@ main:focus { outline: none; }
   color: var(--paper);
   margin-bottom: 10px;
 }
-.rail-guide__body {
+
+/* The figure: the app's front page in a phone, cropped at the foot of the
+   stage band. The stage bleeds to the plate's edges (the negative margin
+   matches the plate's side padding). Base layout is stacked: phone centred,
+   the key listed under the stage. The side layout (key beside the phone, each
+   entry level with its pin) takes over wherever the plate is wide enough,
+   below. */
+.rail-guide__fig {
+  position: relative;
+  display: block;
+  margin-top: 20px;
+}
+.rail-guide__stage {
+  position: relative;
+  display: block;
+  height: 400px;
+  margin: 0 -24px;
+  overflow: hidden;
+  background: var(--rail-stage);
+  border-top: 1px solid var(--rail-rule);
+  border-bottom: 1px solid var(--rail-rule);
+}
+.rail-guide__phone {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  box-sizing: border-box;
+  width: 225px;               /* 211px of screen + 6px bezel + 1px edge, each side */
+  padding: 6px;
+  border-radius: 32px;
+  /* A phone is black in every palette. */
+  background: #050403;
+  border: 1px solid color-mix(in oklab, var(--paper-3) 38%, transparent);
+}
+.rail-guide__screen {
+  position: relative;
+  display: block;
+}
+.rail-guide__screen img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 26px;
+}
+/* Pins straddle the bezel's outer edge: 6px bezel + 1px edge + half the pin.
+   --at is set per pin from RAIL_GUIDE_KEY in page-home.jsx. */
+.rail-guide__pin {
+  position: absolute;
+  left: -16px;
+  top: calc(var(--at) * 1%);
+  transform: translateY(-50%);
+  box-sizing: border-box;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 2px solid var(--rail-stage);
+  background: var(--rail-accent);
+  color: var(--ink);
+  font: 700 9px/1 var(--mono);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.rail-guide__key {
+  list-style: none;
+  margin: 0;
+  padding: 18px 0 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.rail-guide__keyitem {
+  display: grid;
+  grid-template-columns: 18px minmax(0, 1fr);
+  column-gap: 12px;
+  row-gap: 3px;
+}
+.rail-guide__keynum {
+  grid-row: 1 / span 2;
+  width: 18px;
+  height: 18px;
+  margin-top: 1px;
+  border-radius: 50%;
+  background: var(--rail-accent);
+  color: var(--ink);
+  font: 700 9px/1 var(--mono);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.rail-guide__keylabel {
+  font: 700 9.5px/14px var(--mono);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--paper);
+}
+.rail-guide__keytext {
   font-family: var(--serif);
   font-size: 15px;
-  line-height: 1.5;
+  line-height: 1.35;
   color: var(--paper);
-  opacity: 0.85;
-  margin: 0 0 14px;
+  opacity: 0.84;
 }
-.rail-guide__cta {
+/* The side layout, on the 380px desktop rail and on single-column plates
+   wide enough to hold a key column. The key lies over the stage's left side.
+   Measurements are fixed so each entry can sit level with its pin: a 195px
+   screen is 422px tall, and its top sits 30px below the stage's top edge
+   (1px rule + 22px offset + 1px phone edge + 6px bezel), so a pin at --at%
+   is 30 + 4.22 × --at px down, and the entry's 14px label line centres on
+   it. */
+@media (min-width: 1101px), (min-width: 560px) and (max-width: 880px) {
+  .rail-guide__phone {
+    top: 22px;
+    left: auto;
+    right: 20px;
+    transform: none;
+    width: 209px;             /* 195px of screen */
+    border-radius: 30px;
+  }
+  .rail-guide__screen img { border-radius: 24px; }
+  /* The figure spans the plate's content box and the stage bleeds 24px past
+     it, so the phone's left edge is 209 - 24 + 20 = 205px in from the
+     figure's right edge; the pins reach 9px further, and the key stops 8px
+     short of them. */
+  .rail-guide__key {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 222px;
+    padding: 0;
+    display: block;
+  }
+  .rail-guide__keyitem {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: calc(30px + 4.22px * var(--at) - 7px);
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+  .rail-guide__keynum { display: none; }
+  .rail-guide__keytext { font-size: 14px; line-height: 1.3; }
+}
+
+.rail-guide__counts {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  padding: 16px 0 18px;
+}
+.rail-guide__count {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+  padding: 0 8px 0 12px;
+  border-left: 1px solid var(--rail-rule);
+}
+.rail-guide__count:first-child { padding-left: 0; border-left: 0; }
+.rail-guide__count strong {
+  font-family: var(--display);
+  font-size: 32px;
+  font-weight: 500;
+  line-height: 1;
+  color: var(--paper);
+}
+.rail-guide__count span {
+  font-family: var(--mono);
+  font-size: 9px;
+  line-height: 1.35;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
   color: var(--paper-3);
-  font-weight: 700;
 }
-.rail-guide:hover .rail-guide__cta { color: var(--paper); }
+/* The whole plate is the link; this is its button face, not a second control. */
+.rail-guide__buy {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 50px;
+  padding: 0 18px;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  transition: background-color 0.15s ease;
+}
+.rail-guide__price {
+  font-family: var(--mono);
+  font-size: 14px;
+  letter-spacing: 0;
+  white-space: nowrap;
+}
+.rail-guide:hover .rail-guide__buy { background: var(--paper-2); }
+.rail-guide__terms {
+  display: block;
+  margin-top: 12px;
+  font-family: var(--mono);
+  font-size: 9.5px;
+  line-height: 1.4;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--paper-3);
+}
 
 /* The letter, as a rail unit: tighter than the article-page box, with the
    solid submit button the hero capture used to carry (NewsletterInline takes

@@ -357,7 +357,9 @@ const START_HERE_QUESTIONS = {
 // ============================================================
 // The rail. Every offer on the page, in one column, ordered by commitment: the
 // paid Field Guide, the free Sunday letter, then lodging availability. It is
-// sticky (styles.css) so it travels with the reader down the editorial column.
+// sticky (styles.css) so it travels with the reader down the editorial column;
+// in a window shorter than the rail it pins by its bottom edge instead, so no
+// unit is held below the fold for the length of the page.
 //
 // One ask per offer, made once. The Field Guide had two pitches on the old page
 // (hero card and Go Deeper band) and the newsletter had three (hero capture,
@@ -365,6 +367,28 @@ const START_HERE_QUESTIONS = {
 // storefront. Price is stated plainly per house style; the live number renders
 // on /guide.
 // ============================================================
+
+// The Field Guide unit shows the product instead of describing it: a real
+// capture of the app's front page (staged readings, fixed clock), cropped at
+// the sun block, with three numbered pins keyed beside it (below it on narrow
+// widths). `at` is each pin's height on the capture as a percentage of the
+// full 640 × 1385 image, measured off front-page.v4.webp: recapture the
+// screen and these move, so re-measure them with it or the pins point at the
+// wrong rows. styles.css derives the key's desktop positions from the same
+// number (.rail-guide__keyitem), which is what keeps key and pin level.
+const RAIL_GUIDE_SHOT = "/img/guide/screens/front-page.v4.webp";
+const RAIL_GUIDE_KEY = [
+  { at: 2.96, label: "Offline", text: "The whole guide lives on the phone, so no signal is needed." },
+  { at: 40, label: "Gate waits", text: "Every entrance, live from the park service." },
+  { at: 70.1, label: "Light left", text: "Sunset and golden hour, computed on the phone." },
+];
+// The same figures /guide states (page-guide.jsx); change them together.
+const RAIL_GUIDE_COUNTS = [
+  { n: 44, label: "Stops in driving order" },
+  { n: 57, label: "Day hikes with GPS tracks" },
+  { n: 50, label: "Secret Guide entries" },
+];
+
 function HomeRail({ go }) {
   return (
     <aside className="home-rail" aria-label="From The Talus Field">
@@ -381,10 +405,49 @@ function HomeRail({ go }) {
         {/* h3, matching the newsletter unit below: a screen reader skimming by
             headings has to find all three rail offers, not one of three. */}
         <h3 className="rail-guide__title">The park, in your pocket.</h3>
-        <p className="rail-guide__body">
-          57 hikes with parking and timing notes, offline maps, and the local tactics for every major region. Works with no signal, which is most of the park. One purchase, eighteen months of access.
-        </p>
-        <span className="mono rail-guide__cta">See the Field Guide · $3.99 →</span>
+        <span className="rail-guide__fig">
+          <span className="rail-guide__stage">
+            <span className="rail-guide__phone">
+              <span className="rail-guide__screen">
+                <img
+                  src={RAIL_GUIDE_SHOT}
+                  alt="The Field Guide app's front page"
+                  width="640"
+                  height="1385"
+                  loading="lazy"
+                  decoding="async"
+                />
+                {RAIL_GUIDE_KEY.map((k, i) => (
+                  <span key={k.label} className="rail-guide__pin" style={{ "--at": k.at }} aria-hidden="true">
+                    {i + 1}
+                  </span>
+                ))}
+              </span>
+            </span>
+          </span>
+          <ol className="rail-guide__key">
+            {RAIL_GUIDE_KEY.map((k, i) => (
+              <li key={k.label} className="rail-guide__keyitem" style={{ "--at": k.at }}>
+                <span className="rail-guide__keynum" aria-hidden="true">{i + 1}</span>
+                <span className="rail-guide__keylabel">{k.label}</span>
+                <span className="rail-guide__keytext">{k.text}</span>
+              </li>
+            ))}
+          </ol>
+        </span>
+        <span className="rail-guide__counts">
+          {RAIL_GUIDE_COUNTS.map((c) => (
+            <span key={c.label} className="rail-guide__count">
+              <strong>{c.n}</strong>
+              <span>{c.label}</span>
+            </span>
+          ))}
+        </span>
+        <span className="rail-guide__buy">
+          See the Field Guide
+          <span className="rail-guide__price">$3.99 →</span>
+        </span>
+        <span className="rail-guide__terms">One payment · 18 months · 30-day guarantee</span>
       </a>
 
       {/* "Free" in the blurb is the letter, not the map. The trip planner at
