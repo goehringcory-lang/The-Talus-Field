@@ -1,7 +1,8 @@
 var {
   useState: useStateIn,
   useEffect: useEffectIn,
-  useCallback: useCallbackIn
+  useCallback: useCallbackIn,
+  useRef: useRefIn
 } = React;
 var TRIP_ANSWERS_KEY = "tfg.trip.selector";
 function readIntentFromUrl() {
@@ -267,14 +268,22 @@ function TripPlan({
     role: "region",
     "aria-label": "Your Yosemite plan"
   }, React.createElement("div", {
-    className: "eyebrow eyebrow--moss"
+    className: "tripplan__band"
+  }, React.createElement("div", {
+    className: "eyebrow eyebrow--paper"
   }, "Your plan"), React.createElement("p", {
     className: "tripplan__summary"
-  }, plan.summary), plan.notes.length > 0 && React.createElement("ul", {
+  }, plan.summary)), plan.notes.length > 0 && React.createElement("ul", {
     className: "tripplan__notes"
   }, plan.notes.map((n, i) => React.createElement("li", {
     key: i
-  }, n))), React.createElement("div", {
+  }, n))), plan.arrival && React.createElement("div", {
+    className: "tripplan__arrive"
+  }, React.createElement("span", {
+    className: "tripplan__arrive-label"
+  }, "Arrive by"), React.createElement("p", {
+    className: "tripplan__arrive-text"
+  }, React.createElement("strong", null, "Getting through the gate in ", plan.arrival.month, "."), " ", plan.arrival.text)), React.createElement("div", {
     className: "tripplan__cols"
   }, React.createElement("div", {
     className: "tripplan__col"
@@ -314,9 +323,7 @@ function TripPlan({
     className: "tripplan__card-body"
   }, itinerary.dek), it.capped && React.createElement("p", {
     className: "tripplan__card-flag"
-  }, "Shortened for the season, not for your dates."), plan.arrival && React.createElement("p", {
-    className: "tripplan__card-body tripplan__arrive"
-  }, React.createElement("strong", null, "Getting through the gate in ", plan.arrival.month, "."), " ", plan.arrival.text), React.createElement("a", {
+  }, "Shortened for the season, not for your dates."), React.createElement("a", {
     className: "btn btn--ghost",
     href: `/map?trip=${stopIds.join(",")}`,
     onClick: () => {
@@ -382,6 +389,15 @@ function TripSelector({
     }
   });
   var [open, setOpen] = useStateIn(true);
+  var planRef = useRefIn(null);
+  var scrollToPlan = () => {
+    if (!planRef.current) return;
+    var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    planRef.current.scrollIntoView({
+      behavior: reduce ? "auto" : "smooth",
+      block: "start"
+    });
+  };
   useEffectIn(() => {
     writeAnswersToUrl(answers);
     if (Object.keys(answers).length) window.safeStorage.set(TRIP_ANSWERS_KEY, JSON.stringify(answers));else window.safeStorage.remove(TRIP_ANSWERS_KEY);
@@ -409,10 +425,11 @@ function TripSelector({
       answer: optionId
     });
   };
-  var answered = window.TRIP_QUESTIONS.filter(q => {
+  var isAnswered = q => {
     var v = answers[q.id];
     return q.multi ? Array.isArray(v) && v.length > 0 : Boolean(v);
-  }).length;
+  };
+  var answered = window.TRIP_QUESTIONS.filter(isAnswered).length;
   var plan = complete ? window.buildTripPlan(answers) : null;
   var matchCount = plan ? window.filterArticlesByIntent(window.ARTICLES, plan.intent).length : 0;
   return React.createElement("section", {
@@ -420,35 +437,49 @@ function TripSelector({
     "aria-label": "Trip selector"
   }, React.createElement("div", {
     className: "tripsel__head"
-  }, React.createElement("div", null, React.createElement("div", {
+  }, React.createElement("div", {
+    className: "tripsel__head-copy"
+  }, React.createElement("div", {
     className: "eyebrow eyebrow--moss"
   }, "Start here"), React.createElement("h2", {
     className: "tripsel__title"
   }, "Five questions, then a plan."), React.createElement("p", {
     className: "tripsel__dek"
-  }, "Answer these and this page stops being an archive. You get the handful of entries that apply to your trip, the day plan the season actually allows, and an honest read on whether you need anything paid.")), React.createElement("button", {
+  }, "Answer these and this page stops being an archive. You get the handful of entries that apply to your trip, the day plan the season actually allows, and an honest read on whether you need anything paid.")), React.createElement("div", {
+    className: "tripsel__meter"
+  }, React.createElement("span", {
+    className: "tripsel__count"
+  }, answered, " of 5 answered"), React.createElement("span", {
+    className: "tripsel__rail",
+    "aria-hidden": "true"
+  }, window.TRIP_QUESTIONS.map(q => React.createElement("span", {
+    key: q.id,
+    className: "tripsel__seg" + (isAnswered(q) ? " tripsel__seg--on" : "")
+  }))), React.createElement("button", {
     type: "button",
     className: "tripsel__toggle",
     "aria-expanded": open,
     onClick: () => setOpen(v => !v)
-  }, open ? "Hide the questions" : "Show the questions")), open && React.createElement("ol", {
+  }, open ? "Hide the questions" : "Show the questions"))), open && React.createElement("ol", {
     className: "tripsel__qs"
   }, window.TRIP_QUESTIONS.map((q, i) => {
     var v = answers[q.id];
     var isOn = id => q.multi ? (v || []).indexOf(id) !== -1 : v === id;
     return React.createElement("li", {
       key: q.id,
-      className: "tripsel__q"
+      className: "tripsel__q" + (isAnswered(q) ? " tripsel__q--done" : "")
+    }, React.createElement("div", {
+      className: "tripsel__q-ask"
     }, React.createElement("div", {
       className: "tripsel__q-head"
     }, React.createElement("span", {
       className: "tripsel__q-num"
-    }, i + 1), React.createElement("span", {
+    }, String(i + 1).padStart(2, "0")), React.createElement("span", {
       className: "tripsel__q-label",
       id: `tripsel-${q.id}`
     }, q.label)), React.createElement("p", {
       className: "tripsel__q-hint"
-    }, q.hint), React.createElement("div", {
+    }, q.hint)), React.createElement("div", {
       className: "tripsel__opts",
       role: "group",
       "aria-labelledby": `tripsel-${q.id}`
@@ -462,18 +493,29 @@ function TripSelector({
     }, opt.label))));
   })), React.createElement("div", {
     className: "tripsel__bar"
-  }, React.createElement("span", {
+  }, React.createElement("p", {
     className: "tripsel__progress"
-  }, complete ? "All five answered." : `${answered} of 5 answered. The plan appears when all five are.`), answered > 0 && React.createElement("button", {
+  }, complete ? "Every answer is in. The day plan below is capped to what the month's roads allow." : "A plan built from two answers is a guess wearing a plan's clothes. Answer all five and the reading list, the day plan, and the arrival time appear together."), React.createElement("div", {
+    className: "tripsel__acts"
+  }, answered > 0 && React.createElement("button", {
     type: "button",
     className: "tripsel__reset",
     onClick: () => setAnswers({})
-  }, "Start over")), plan && React.createElement(TripPlan, {
+  }, "Start over"), complete ? React.createElement("button", {
+    type: "button",
+    className: "tripsel__see",
+    onClick: scrollToPlan
+  }, "See the plan →") : React.createElement("span", {
+    className: "tripsel__see tripsel__see--waiting",
+    "aria-hidden": "true"
+  }, "See the plan"))), plan && React.createElement("div", {
+    ref: planRef
+  }, React.createElement(TripPlan, {
     plan: plan,
     go: go,
     onApplyIntent: onApplyIntent,
     matchCount: matchCount
-  }));
+  })));
 }
 window.IntentFilters = IntentFilters;
 window.TripSelector = TripSelector;

@@ -187,10 +187,30 @@ function PlanningGuide({ go }) {
             Yosemite in 2026 is a different park from Yosemite in 2024. The entrance reservation system is gone, the crowds are heavier, the gateway towns matter more, and the difference between a great trip and a frustrating one is almost always strategy, not luck. Here is the strategy, in five parts.
           </p>
 
-          {PLANNING_PARTS.map((p) => {
+          {/* The index. The five parts run a screen and a half each, so a reader
+              who came for Part Four had to scroll past three parts to find it.
+              Counts are read from PLANNING_SERIES like everything else on this
+              page: the parts own their copy, never their membership. This adds
+              links rather than replacing them — the full card sections stay
+              below, because they are most of the contextual internal linking
+              this page does. */}
+          <nav className="planidx" aria-label="The five parts">
+            {PLANNING_PARTS.map((p, i) => {
+              const n = planningPartSlugs(p.part).length;
+              return (
+                <a key={p.part} className="planidx__item" href={`#part-${i + 1}`}>
+                  <span className="planidx__eyebrow">{p.eyebrow}</span>
+                  <span className="planidx__title">{p.title}</span>
+                  <span className="planidx__n">{n} {n === 1 ? "entry" : "entries"}</span>
+                </a>
+              );
+            })}
+          </nav>
+
+          {PLANNING_PARTS.map((p, i) => {
             const items = planningPartSlugs(p.part).map((s) => window.findArticle(s)).filter(Boolean);
             return (
-              <section key={p.part} style={{ paddingTop: 32, paddingBottom: 56, borderTop: "1px solid var(--rule)" }}>
+              <section key={p.part} id={`part-${i + 1}`} style={{ paddingTop: 32, paddingBottom: 56, borderTop: "1px solid var(--rule)", scrollMarginTop: 90 }}>
                 <div className="eyebrow eyebrow--moss" style={{ marginTop: 32, marginBottom: 12 }}>{p.eyebrow}</div>
                 <h2 style={sectionH2}>{p.title}</h2>
                 <p style={sectionLede}>{p.lede}</p>

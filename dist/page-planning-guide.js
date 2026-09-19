@@ -186,14 +186,32 @@ function PlanningGuide({
       maxWidth: 760,
       marginBottom: 56
     }
-  }, "Yosemite in 2026 is a different park from Yosemite in 2024. The entrance reservation system is gone, the crowds are heavier, the gateway towns matter more, and the difference between a great trip and a frustrating one is almost always strategy, not luck. Here is the strategy, in five parts."), PLANNING_PARTS.map(p => {
+  }, "Yosemite in 2026 is a different park from Yosemite in 2024. The entrance reservation system is gone, the crowds are heavier, the gateway towns matter more, and the difference between a great trip and a frustrating one is almost always strategy, not luck. Here is the strategy, in five parts."), React.createElement("nav", {
+    className: "planidx",
+    "aria-label": "The five parts"
+  }, PLANNING_PARTS.map((p, i) => {
+    var n = planningPartSlugs(p.part).length;
+    return React.createElement("a", {
+      key: p.part,
+      className: "planidx__item",
+      href: `#part-${i + 1}`
+    }, React.createElement("span", {
+      className: "planidx__eyebrow"
+    }, p.eyebrow), React.createElement("span", {
+      className: "planidx__title"
+    }, p.title), React.createElement("span", {
+      className: "planidx__n"
+    }, n, " ", n === 1 ? "entry" : "entries"));
+  })), PLANNING_PARTS.map((p, i) => {
     var items = planningPartSlugs(p.part).map(s => window.findArticle(s)).filter(Boolean);
     return React.createElement("section", {
       key: p.part,
+      id: `part-${i + 1}`,
       style: {
         paddingTop: 32,
         paddingBottom: 56,
-        borderTop: "1px solid var(--rule)"
+        borderTop: "1px solid var(--rule)",
+        scrollMarginTop: 90
       }
     }, React.createElement("div", {
       className: "eyebrow eyebrow--moss",
