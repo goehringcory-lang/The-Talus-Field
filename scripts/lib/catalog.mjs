@@ -117,6 +117,8 @@ export function loadDataJs() {
     // against the catalog that was just harvested.
     related: w.RELATED && typeof w.RELATED === "object" ? w.RELATED : {},
     relatedFor: typeof w.relatedFor === "function" ? w.relatedFor : null,
+    // The flow ladder rows (window.FLOW_BANDS), for the prerender sandbox.
+    flowBands: Array.isArray(w.FLOW_BANDS) ? w.FLOW_BANDS : [],
   };
 }
 

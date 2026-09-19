@@ -606,7 +606,7 @@ function BulletinPage({
       name: alert.icon || "dot",
       className: "bulletin-alerts__icon"
     }), React.createElement("span", null, alert.text));
-  }))), React.createElement(BulletinCard, {
+  }))), React.createElement(LiveNow, null), React.createElement(BulletinCard, {
     title: "Roads & areas",
     icon: "road",
     wide: true

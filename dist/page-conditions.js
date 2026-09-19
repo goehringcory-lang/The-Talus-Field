@@ -88,6 +88,33 @@ function ConditionsPage({
     }
   }, React.createElement("div", {
     className: "section-head"
+  }, React.createElement("h2", null, "River and air")), React.createElement("p", {
+    style: {
+      fontFamily: "var(--serif)",
+      fontSize: 17,
+      lineHeight: 1.6,
+      color: "var(--ink-1)",
+      marginBottom: 16
+    }
+  }, "Two questions decide more late-season days than the forecast does: are the falls running, and is it smoky. The Merced at Happy Isles is the gauge below Vernal and Nevada Falls, so it answers the first; ", React.createElement("a", {
+    href: "/articles/yosemite-waterfalls-guide",
+    onClick: e => {
+      e.preventDefault();
+      go("a:yosemite-waterfalls-guide");
+    }
+  }, "the waterfalls guide"), " says what each reading looks like on the trail. For the second, ", React.createElement("a", {
+    href: "/articles/yosemite-during-smoke-season",
+    onClick: e => {
+      e.preventDefault();
+      go("a:yosemite-during-smoke-season");
+    }
+  }, "the smoke season guide"), " says what to do with the number. Live readings appear below when the feeds are publishing."), React.createElement(LiveNow, null)), React.createElement("section", {
+    style: {
+      marginBottom: 64,
+      maxWidth: 680
+    }
+  }, React.createElement("div", {
+    className: "section-head"
   }, React.createElement("h2", null, "Forecasts")), React.createElement("p", {
     style: {
       fontFamily: "var(--serif)",

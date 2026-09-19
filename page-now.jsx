@@ -1,4 +1,4 @@
-/* global React, WebcamStrip, NewsletterInline, Breadcrumbs, GuidePromo, ParkingNow */
+/* global React, WebcamStrip, NewsletterInline, Breadcrumbs, GuidePromo, ParkingNow, LiveNow */
 
 // =============================================================================
 // THE PARK BULLETIN — `/now` route. One page, the whole park, right now: the
@@ -605,6 +605,13 @@ function BulletinPage({ go }) {
                 </ul>
               </section>
             )}
+
+            {/* Live river flow and air quality (shared LiveNow, /api/flow and
+                /api/air): the two readings an edition written every five weeks
+                cannot carry. Renders nothing when both feeds are silent, so the
+                page reads exactly as before. Feature 2 of
+                COMPETITOR-FEATURES-2026-09.md. */}
+            <LiveNow />
 
             {/* The status board. */}
             <BulletinCard title="Roads & areas" icon="road" wide>

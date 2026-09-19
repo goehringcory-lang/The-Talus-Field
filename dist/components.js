@@ -326,6 +326,98 @@ function ParkingNow() {
   }, "NPS, ", ageMin === 0 ? "just now" : ageMin + " min ago", " · text ", React.createElement("em", null, "ynptraffic"), " to 333111 before you lose signal"));
 }
 window.ParkingNow = ParkingNow;
+var LIVE_API_BASE = "https://api.thetalusfieldjournal.com";
+var LIVE_REFRESH_MS = 15 * 60 * 1000;
+var FLOW_HIDE_MS = 72 * 60 * 60 * 1000;
+var AIR_HIDE_MS = 24 * 60 * 60 * 1000;
+var FLOW_GAUGE_URL = "https://waterdata.usgs.gov/monitoring-location/11264500/";
+var AIRNOW_URL = "https://www.airnow.gov/?city=Yosemite%20National%20Park&state=CA&country=USA";
+var FLOW_BANDS = window.FLOW_BANDS || [];
+function aqiTone(aqi) {
+  if (aqi <= 50) return "good";
+  if (aqi <= 100) return "moderate";
+  return "poor";
+}
+function liveAge(ms) {
+  var min = Math.max(0, Math.round(ms / 60000));
+  if (min === 0) return "just now";
+  if (min < 60) return min + " min ago";
+  var h = Math.round(min / 60);
+  return h + (h === 1 ? " hour ago" : " hours ago");
+}
+function useLiveFeed(path, isUsable) {
+  var [data, setData] = useState(null);
+  useEffect(() => {
+    var cancelled = false;
+    var load = () => {
+      fetch(LIVE_API_BASE + path).then(r => r.ok ? r.json() : Promise.reject(new Error("HTTP " + r.status))).then(body => {
+        if (!cancelled && body && isUsable(body)) setData(body);
+      }).catch(() => {});
+    };
+    load();
+    var timer = setInterval(load, LIVE_REFRESH_MS);
+    return () => {
+      cancelled = true;
+      clearInterval(timer);
+    };
+  }, [path]);
+  return data;
+}
+function liveAgeMs(record, hideMs) {
+  if (!record || !record.fetchedAt) return null;
+  var fetched = Date.parse(record.fetchedAt);
+  if (!isFinite(fetched)) return null;
+  var age = Date.now() - fetched;
+  return age > hideMs ? null : age;
+}
+function LiveNow({
+  show
+}) {
+  var wantFlow = !show || show === "flow";
+  var wantAir = !show || show === "air";
+  var flow = useLiveFeed("/api/flow", b => typeof b.band === "string");
+  var air = useLiveFeed("/api/air", b => typeof b.aqi === "number");
+  var flowAge = wantFlow ? liveAgeMs(flow, FLOW_HIDE_MS) : null;
+  var airAge = wantAir ? liveAgeMs(air, AIR_HIDE_MS) : null;
+  var flowRow = flowAge != null && FLOW_BANDS.find(b => b.band === flow.band);
+  if (!flowRow && airAge == null) return null;
+  return React.createElement("div", {
+    className: "live-now",
+    role: "region",
+    "aria-label": "Live river flow and air quality"
+  }, React.createElement("ul", {
+    className: "live-now__list"
+  }, flowRow && React.createElement("li", {
+    className: "live-now__row"
+  }, React.createElement("span", {
+    className: "live-now__name"
+  }, "Merced River at Happy Isles"), React.createElement("span", {
+    className: `live-now__value live-now__value--${flow.band}`
+  }, flow.band), React.createElement("span", {
+    className: "live-now__detail"
+  }, typeof flow.cfs === "number" ? Math.round(flow.cfs).toLocaleString("en-US") + " cfs. " : "", flowRow.note), React.createElement("span", {
+    className: "live-now__meta"
+  }, React.createElement("a", {
+    href: FLOW_GAUGE_URL,
+    target: "_blank",
+    rel: "noopener noreferrer"
+  }, "USGS gauge 11264500 ↗"), ", ", liveAge(flowAge))), airAge != null && React.createElement("li", {
+    className: "live-now__row"
+  }, React.createElement("span", {
+    className: "live-now__name"
+  }, "Air quality"), React.createElement("span", {
+    className: `live-now__value live-now__value--${aqiTone(air.aqi)}`
+  }, "AQI ", air.aqi), React.createElement("span", {
+    className: "live-now__detail"
+  }, air.category || "", air.pollutant ? " (" + air.pollutant + ")" : "", air.reportingArea ? ", " + air.reportingArea + " reporting area" : "", ".", air.aqi > 100 ? " The high country above about 7,500 feet is often cleaner than the Valley, and mornings are usually better than afternoons." : ""), React.createElement("span", {
+    className: "live-now__meta"
+  }, React.createElement("a", {
+    href: AIRNOW_URL,
+    target: "_blank",
+    rel: "noopener noreferrer"
+  }, "AirNow ↗"), ", ", liveAge(airAge)))));
+}
+window.LiveNow = LiveNow;
 var rockfallReleased = false;
 var ROCKFALL_SHAPES = ['<svg viewBox="0 0 20 20"><polygon points="3,7 11,2 18,6 16,15 6,17" fill="#cfccbd" stroke="#262b23" stroke-width="2" stroke-linejoin="round"/><polyline points="3,7 10,9 16,15" fill="none" stroke="#262b23" stroke-width="1.4"/><line x1="10" y1="9" x2="11" y2="2" stroke="#262b23" stroke-width="1.4"/></svg>', '<svg viewBox="0 0 20 20"><polygon points="10,1 18,8 13,18 4,14 2,6" fill="#b3b1a3" stroke="#262b23" stroke-width="2" stroke-linejoin="round"/><polyline points="2,6 9,9 13,18" fill="none" stroke="#262b23" stroke-width="1.4"/></svg>', '<svg viewBox="0 0 20 20"><polygon points="2,9 9,4 18,7 17,13 7,16" fill="#8f8e81" stroke="#262b23" stroke-width="2" stroke-linejoin="round"/><line x1="9" y1="4" x2="10" y2="15" stroke="#262b23" stroke-width="1.4"/></svg>', '<svg viewBox="0 0 20 20"><polygon points="4,5 14,3 17,10 12,17 3,13" fill="#4a5540" stroke="#262b23" stroke-width="2" stroke-linejoin="round"/><polyline points="4,5 10,10 12,17" fill="none" stroke="#262b23" stroke-width="1.4"/></svg>'];
 function releaseRockfall(markEl) {

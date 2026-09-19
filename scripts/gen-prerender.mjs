@@ -23,6 +23,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { createRequire } from "node:module";
+import { loadDataJs } from "./lib/catalog.mjs";
 
 // @babel/core, the preset, and React ship as CommonJS; load them via require so
 // the named/default interop is unambiguous under ESM.
@@ -38,6 +39,11 @@ const BODIES_DIR = path.join(ROOT, "bodies");
 const OUT_DIR = path.join(ROOT, "prerender");
 
 const CHECK = process.argv.includes("--check");
+
+// The flow ladder rows from data.js (window.FLOW_BANDS), which the waterfalls
+// article maps into a table; the live LiveNow row above it is browser-only and
+// deliberately absent here.
+const FLOW_BANDS = loadDataJs().flowBands;
 
 // --- Stubs for the handful of components a body may reference. Faithful enough
 // for crawlers: the same <picture> the live ResponsiveImage renders (AVIF, WebP
@@ -274,7 +280,7 @@ function renderBody(slug, src) {
 
   const sandbox = {
     React,
-    window: { ARTICLE_BODIES: {}, buildPatagoniaAffiliateLink, buildAffiliateLink },
+    window: { ARTICLE_BODIES: {}, buildPatagoniaAffiliateLink, buildAffiliateLink, FLOW_BANDS },
     console,
     ResponsiveImage,
     Placeholder,

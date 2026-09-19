@@ -49,6 +49,21 @@ window.CATEGORIES = [
 // articles: a search lander on one cluster piece learns it is inside a
 // structured multi-part guide and gets prev/next pathways through the part.
 // ============================================================
+// The flow ladder: one row per band the API Worker's /api/flow can return,
+// in the Worker's order and with its thresholds (flowBand in
+// workers/src/lib/flow.ts; change both together). Read by LiveNow in
+// components.jsx, by the waterfalls article's ladder table, and by
+// gen-prerender.mjs so the prerendered fragment carries the same rows. The
+// band word is the Worker's; `range` and `note` are reader-facing groupings,
+// not a hydrology claim.
+window.FLOW_BANDS = [
+  { band: "roaring", range: "1,000 cfs and up", note: "Snowmelt at or near its peak. Vernal and Nevada run at full width, and the Mist Trail steps below Vernal are soaked, along with everyone on them." },
+  { band: "strong", range: "300 to 1,000 cfs", note: "Both falls are big and loud. Expect spray on the steps below Vernal, and wet granite underfoot." },
+  { band: "moderate", range: "50 to 300 cfs", note: "Plainly running and worth the climb, but the mist is mostly gone and the steps are dry." },
+  { band: "trickle", range: "5 to 50 cfs", note: "The river falls have narrowed to ribbons on a wide face. By the time the Merced reads this low, the creek-fed rim falls have usually gone dry." },
+  { band: "dry", range: "Under 5 cfs", note: "The river at its floor for the year. Vernal and Nevada are a wet streak more than a waterfall." },
+];
+
 window.PLANNING_SERIES = [
   { part: "Part One · Before you book", slugs: [
     "first-time-yosemite-overwhelm",
@@ -133,7 +148,7 @@ window.BODY_VERSIONS = {
   "yosemite-wildlife-viewing-guide": 3,
   "showy-milkweed-yosemite-valley": 3,
   "yosemite-connecting-to-traditions": 1,
-  "yosemite-waterfalls-guide": 3,
+  "yosemite-waterfalls-guide": 4,
   "yosemite-photography-spots": 2,
   "horsetail-fall-firefall": 2,
   "yosemite-in-winter": 7,

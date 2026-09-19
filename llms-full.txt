@@ -2466,6 +2466,20 @@ Two things the table cannot show. A dry Yosemite Falls can roar back for a day o
 
 For what the snowpack is doing in the current year, which is what moves every row above, the conditions page carries the forecast links and the Park Bulletin carries the park's own current word on which falls are running.
 
+### Reading the river gauge
+
+The calendar is an average. The river is the fact. The U.S. Geological Survey keeps a gauge on the Merced at Happy Isles Bridge, just below Vernal and Nevada Falls, that reports the flow in cubic feet per second every fifteen minutes, and that one number is the closest thing the park has to a live answer to "are the falls going." It measures the river, not the creeks, so it speaks directly for the Mist Trail corridor and only by inference for the rim: Yosemite Falls and its neighbours run out of snow well before the Merced runs out of water.
+
+We call it | At Happy Isles | On the trail
+
+roaring | 1,000 cfs and up | Snowmelt at or near its peak. Vernal and Nevada run at full width, and the Mist Trail steps below Vernal are soaked, along with everyone on them.
+strong | 300 to 1,000 cfs | Both falls are big and loud. Expect spray on the steps below Vernal, and wet granite underfoot.
+moderate | 50 to 300 cfs | Plainly running and worth the climb, but the mist is mostly gone and the steps are dry.
+trickle | 5 to 50 cfs | The river falls have narrowed to ribbons on a wide face. By the time the Merced reads this low, the creek-fed rim falls have usually gone dry.
+dry | Under 5 cfs | The river at its floor for the year. Vernal and Nevada are a wet streak more than a waterfall.
+
+The five bands are this journal's own shorthand for what a reading means to someone standing on the trail, not a hydrologist's classification, and the edges are soft: 290 and 310 look the same from the footbridge. The same reading, with the current air quality beside it, is on the conditions page.
+
 ### How many waterfalls are in Yosemite?
 
 There is no official count, and any number you see quoted is a definition rather than a measurement. Yosemite Valley has about ten named falls, the ones on every map: Yosemite (Upper, Middle and Lower), Bridalveil, Vernal, Nevada, Illilouette, Ribbon, Sentinel, Horsetail and Staircase. Across the whole park, counting the high country and Hetch Hetchy, the named total is in the low twenties, with Wapama, Tueeulala, Rancheria, Chilnualna, Waterwheel and the Tuolumne cascades among them.

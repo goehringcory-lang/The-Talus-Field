@@ -1,4 +1,4 @@
-/* global React, WebcamStrip, EntranceWaits, ParkingNow, NewsletterInline, GuidePromo, Breadcrumbs */
+/* global React, WebcamStrip, EntranceWaits, ParkingNow, LiveNow, NewsletterInline, GuidePromo, Breadcrumbs */
 
 // =============================================================================
 // CONDITIONS — `/conditions` route. The bookmarkable "is it worth driving in
@@ -76,6 +76,20 @@ function ConditionsPage({ go }) {
             With no entry reservation in 2026, the Valley's lots are what ration a summer day: on the first busy Saturday of the season all Valley parking was full before noon. Be through the gate before 8 a.m. or after 4 p.m. on a summer weekend, and text <em>ynptraffic</em> to 333111 for the park's own updates once you are on the road. Live lot status from the National Park Service appears below when the park publishes it.
           </p>
           <ParkingNow />
+        </section>
+
+        {/* River and air. The USGS Happy Isles gauge and the AirNow reading
+            through the API Worker's /api/flow and /api/air, via the shared
+            LiveNow component, which renders nothing when both feeds are silent
+            or stale (COMPETITOR-FEATURES-2026-09.md, feature 2). */}
+        <section style={{ marginBottom: 64, maxWidth: 680 }}>
+          <div className="section-head">
+            <h2>River and air</h2>
+          </div>
+          <p style={{ fontFamily: "var(--serif)", fontSize: 17, lineHeight: 1.6, color: "var(--ink-1)", marginBottom: 16 }}>
+            Two questions decide more late-season days than the forecast does: are the falls running, and is it smoky. The Merced at Happy Isles is the gauge below Vernal and Nevada Falls, so it answers the first; <a href="/articles/yosemite-waterfalls-guide" onClick={(e) => { e.preventDefault(); go("a:yosemite-waterfalls-guide"); }}>the waterfalls guide</a> says what each reading looks like on the trail. For the second, <a href="/articles/yosemite-during-smoke-season" onClick={(e) => { e.preventDefault(); go("a:yosemite-during-smoke-season"); }}>the smoke season guide</a> says what to do with the number. Live readings appear below when the feeds are publishing.
+          </p>
+          <LiveNow />
         </section>
 
         {/* Forecasts */}

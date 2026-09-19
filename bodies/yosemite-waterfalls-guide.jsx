@@ -1,4 +1,4 @@
-/* global React */
+/* global React, LiveNow */
 
 window.ARTICLE_BODIES = window.ARTICLE_BODIES || {};
 
@@ -136,6 +136,44 @@ window.ARTICLE_BODIES["yosemite-waterfalls-guide"] = function YosemiteWaterfalls
         every row above, <a href="/conditions">the conditions page</a> carries the
         forecast links and <a href="/now">the Park Bulletin</a> carries the
         park's own current word on which falls are running.
+      </p>
+
+      <h2 id="reading-the-river-gauge">Reading the river gauge</h2>
+
+      <p>
+        The calendar is an average. The river is the fact. The U.S. Geological
+        Survey keeps a gauge on the Merced at Happy Isles Bridge, just below
+        Vernal and Nevada Falls, that reports the flow in cubic feet per second
+        every fifteen minutes, and that one number is the closest thing the park
+        has to a live answer to "are the falls going." It measures the river,
+        not the creeks, so it speaks directly for the Mist Trail corridor and
+        only by inference for the rim: Yosemite Falls and its neighbours run out
+        of snow well before the Merced runs out of water.
+      </p>
+
+      {typeof LiveNow !== "undefined" && <LiveNow show="flow" />}
+
+      <table className="flow-ladder">
+        <thead>
+          <tr>
+            <th>We call it</th>
+            <th>At Happy Isles</th>
+            <th>On the trail</th>
+          </tr>
+        </thead>
+        <tbody>
+          {(window.FLOW_BANDS || []).map((b) => (
+            <tr key={b.band}><td><strong>{b.band}</strong></td><td>{b.range}</td><td>{b.note}</td></tr>
+          ))}
+        </tbody>
+      </table>
+
+      <p>
+        The five bands are this journal's own shorthand for what a reading means
+        to someone standing on the trail, not a hydrologist's classification, and
+        the edges are soft: 290 and 310 look the same from the footbridge.
+        The same reading, with the current air quality beside it, is on{" "}
+        <a href="/conditions">the conditions page</a>.
       </p>
 
       <h2>How many waterfalls are in Yosemite?</h2>

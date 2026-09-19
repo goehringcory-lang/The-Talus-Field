@@ -7205,3 +7205,32 @@ kbd {
 .parking-now__row--closed .parking-now__status { color: var(--ink-3); }
 .parking-now__cap { font-family: var(--sans); font-size: 13px; color: var(--ink-2); }
 .parking-now__meta { font-family: var(--sans); font-size: 13px; color: var(--ink-2); margin: 10px 0 0; }
+
+/* Live river flow and air quality (LiveNow in components.jsx). Same rows
+   as .parking-now; the detail and the source stamp take the full width
+   under the name and the reading. */
+.live-now { margin: 0 0 28px; }
+.live-now__list { list-style: none; margin: 0; padding: 0; }
+.live-now__row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 4px 12px;
+  align-items: baseline;
+  padding: 11px 0;
+  border-top: 1px solid var(--rule);
+  font-family: var(--serif);
+  font-size: 16px;
+}
+.live-now__row:last-child { border-bottom: 1px solid var(--rule); }
+.live-now__name { color: var(--ink); }
+.live-now__value { font-family: var(--sans); font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-1); }
+.live-now__value--roaring, .live-now__value--strong, .live-now__value--good { color: var(--moss); }
+.live-now__value--dry { color: var(--ink-3); }
+.live-now__value--poor { color: var(--rust, #a33d2a); }
+.live-now__detail { grid-column: 1 / -1; font-size: 15px; line-height: 1.5; color: var(--ink-1); }
+.live-now__meta { grid-column: 1 / -1; font-family: var(--sans); font-size: 13px; color: var(--ink-2); }
+.live-now__meta a { color: inherit; }
+.prose .live-now { margin: 0 0 1.4em; }
+.prose .live-now__list { padding-left: 0; margin: 0; }
+.prose .live-now__row { margin-bottom: 0; }
+.flow-ladder td:first-child { white-space: nowrap; text-transform: capitalize; }

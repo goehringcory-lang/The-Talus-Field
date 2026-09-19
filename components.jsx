@@ -313,6 +313,124 @@ function ParkingNow() {
 window.ParkingNow = ParkingNow;
 
 // ============================================================
+// Live river flow and air quality (COMPETITOR-FEATURES-2026-09.md,
+// feature 2). Reads the API Worker's /api/flow (USGS Happy Isles
+// gauge 11264500, banded by the Worker's flowBand) and /api/air
+// (AirNow, Yosemite reporting area): the same two routes the Field
+// Guide's FlowLine and AirLine read, under the same staleness rules.
+// Flow hides past 72 hours, because snowmelt moves on a days scale;
+// air hides past 24, because a stale AQI on a smoke day misleads in
+// exactly the direction that matters. Waits posture otherwise: never
+// an error, nothing rendered when both feeds are silent, and a
+// source-and-age stamp on every row. Mounted on /conditions, on /now,
+// and above the flow ladder in the waterfalls article.
+//
+// FLOW_BANDS (data.js) is the ladder: one row per band the Worker can return,
+// in the Worker's own order and with its own thresholds (flowBand in
+// workers/src/lib/flow.ts; change both together). The band word is the
+// Worker's and is never rephrased here; `range` and `note` are what
+// this file adds. The thresholds are reader-facing groupings, not a
+// hydrology claim, and the copy says so wherever the ladder prints.
+// ============================================================
+const LIVE_API_BASE = "https://api.thetalusfieldjournal.com";
+const LIVE_REFRESH_MS = 15 * 60 * 1000;
+const FLOW_HIDE_MS = 72 * 60 * 60 * 1000;
+const AIR_HIDE_MS = 24 * 60 * 60 * 1000;
+const FLOW_GAUGE_URL = "https://waterdata.usgs.gov/monitoring-location/11264500/";
+const AIRNOW_URL = "https://www.airnow.gov/?city=Yosemite%20National%20Park&state=CA&country=USA";
+
+// The table lives in data.js so the prerender generator reads the same rows.
+const FLOW_BANDS = window.FLOW_BANDS || [];
+
+// AQI category -> tone, by the EPA's own breakpoints, so the colour can
+// never disagree with the number it sits beside.
+function aqiTone(aqi) {
+  if (aqi <= 50) return "good";
+  if (aqi <= 100) return "moderate";
+  return "poor";
+}
+
+function liveAge(ms) {
+  const min = Math.max(0, Math.round(ms / 60000));
+  if (min === 0) return "just now";
+  if (min < 60) return min + " min ago";
+  const h = Math.round(min / 60);
+  return h + (h === 1 ? " hour ago" : " hours ago");
+}
+
+function useLiveFeed(path, isUsable) {
+  const [data, setData] = useState(null);
+  useEffect(() => {
+    let cancelled = false;
+    const load = () => {
+      fetch(LIVE_API_BASE + path)
+        .then((r) => (r.ok ? r.json() : Promise.reject(new Error("HTTP " + r.status))))
+        .then((body) => { if (!cancelled && body && isUsable(body)) setData(body); })
+        .catch(() => {});
+    };
+    load();
+    const timer = setInterval(load, LIVE_REFRESH_MS);
+    return () => { cancelled = true; clearInterval(timer); };
+  }, [path]);
+  return data;
+}
+
+// The age of a reading, or null when it is missing or past `hideMs`.
+function liveAgeMs(record, hideMs) {
+  if (!record || !record.fetchedAt) return null;
+  const fetched = Date.parse(record.fetchedAt);
+  if (!isFinite(fetched)) return null;
+  const age = Date.now() - fetched;
+  return age > hideMs ? null : age;
+}
+
+// `show` narrows the rows ("flow" on the waterfalls article); the
+// default is both. Each row stands or falls alone: a silent AirNow
+// never takes the river reading down with it.
+function LiveNow({ show }) {
+  const wantFlow = !show || show === "flow";
+  const wantAir = !show || show === "air";
+  const flow = useLiveFeed("/api/flow", (b) => typeof b.band === "string");
+  const air = useLiveFeed("/api/air", (b) => typeof b.aqi === "number");
+  const flowAge = wantFlow ? liveAgeMs(flow, FLOW_HIDE_MS) : null;
+  const airAge = wantAir ? liveAgeMs(air, AIR_HIDE_MS) : null;
+  const flowRow = flowAge != null && FLOW_BANDS.find((b) => b.band === flow.band);
+  if (!flowRow && airAge == null) return null;
+
+  return (
+    <div className="live-now" role="region" aria-label="Live river flow and air quality">
+      <ul className="live-now__list">
+        {flowRow && (
+          <li className="live-now__row">
+            <span className="live-now__name">Merced River at Happy Isles</span>
+            <span className={`live-now__value live-now__value--${flow.band}`}>{flow.band}</span>
+            <span className="live-now__detail">
+              {typeof flow.cfs === "number" ? Math.round(flow.cfs).toLocaleString("en-US") + " cfs. " : ""}{flowRow.note}
+            </span>
+            <span className="live-now__meta">
+              <a href={FLOW_GAUGE_URL} target="_blank" rel="noopener noreferrer">USGS gauge 11264500 ↗</a>, {liveAge(flowAge)}
+            </span>
+          </li>
+        )}
+        {airAge != null && (
+          <li className="live-now__row">
+            <span className="live-now__name">Air quality</span>
+            <span className={`live-now__value live-now__value--${aqiTone(air.aqi)}`}>AQI {air.aqi}</span>
+            <span className="live-now__detail">
+              {air.category || ""}{air.pollutant ? " (" + air.pollutant + ")" : ""}{air.reportingArea ? ", " + air.reportingArea + " reporting area" : ""}.{air.aqi > 100 ? " The high country above about 7,500 feet is often cleaner than the Valley, and mornings are usually better than afternoons." : ""}
+            </span>
+            <span className="live-now__meta">
+              <a href={AIRNOW_URL} target="_blank" rel="noopener noreferrer">AirNow ↗</a>, {liveAge(airAge)}
+            </span>
+          </li>
+        )}
+      </ul>
+    </div>
+  );
+}
+window.LiveNow = LiveNow;
+
+// ============================================================
 // Masthead rockfall. The first click on the talus mark each visit
 // shakes a few small rocks loose; they tumble off the logo and fall
 // down the viewport, then clean up after themselves. Pure garnish:
