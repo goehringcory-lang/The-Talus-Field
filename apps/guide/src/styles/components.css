@@ -1584,6 +1584,324 @@
   line-height: 1.45;
 }
 
+/* ---- Glance: the front page's "right now" board -------------- */
+
+/* ParkNowPanel. Four blocks, each under a heavy ink rule rather than
+   inside a panel box: the readings are the page's lead, and a boxed
+   grid made four feeds with four ages look like one instrument. Every
+   reading is mono; the one serif is the temperature, the figure a
+   reader's eye goes to first. */
+
+.glance { margin: 0 0 var(--s6); }
+
+.glance__title {
+  margin: 0 0 var(--s2);
+  font-family: var(--serif);
+  font-size: 30px;
+  font-weight: 500;
+  line-height: 1.1;
+}
+
+.glance-block {
+  border-top: 2px solid var(--ink);
+  margin-top: var(--s5);
+}
+
+.glance-block__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--s3);
+  padding: 10px 0 8px;
+}
+
+.glance-block__label {
+  margin: 0;
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+.glance-block__stamp {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  color: var(--ink-3);
+  text-align: right;
+}
+.glance-block__stamp--warn { color: var(--gold); }
+
+/* Entrance waits: name, a bar scaled to an hour, the number. */
+.glance-waits {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.glance-wait {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 76px;
+  grid-template-rows: auto auto;
+  column-gap: var(--s4);
+  row-gap: 7px;
+  align-items: center;
+  padding: 11px 0;
+  border-top: 1px solid var(--rule-soft);
+}
+
+.glance-wait__name {
+  font-family: var(--sans);
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.glance-wait__bar {
+  grid-row: 2;
+  display: block;
+  height: 4px;
+  background: var(--panel-edge);
+}
+.glance-wait__bar > span {
+  display: block;
+  height: 100%;
+  background: var(--ink);
+}
+.glance-wait--long .glance-wait__bar > span { background: var(--rust); }
+
+.glance-wait__value {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  justify-self: end;
+  font-family: var(--mono);
+  font-size: 26px;
+  font-weight: 500;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+.glance-wait--long .glance-wait__value { color: var(--rust); }
+
+.glance-wait__unit {
+  margin-left: 4px;
+  font-size: 11px;
+  color: var(--ink-3);
+}
+.glance-wait__none {
+  font-size: 15px;
+  color: var(--ink-3);
+}
+
+/* Sun: sunrise and sunset side by side, then where now sits between them. */
+.glance-sun {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--s3);
+}
+
+.glance-sun__card {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 14px;
+  background: var(--panel);
+  min-width: 0;
+}
+
+.glance-sun__label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+.glance-sun__icon {
+  flex: none;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.glance-sun__time {
+  font-family: var(--mono);
+  font-size: 28px;
+  font-weight: 500;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+.glance-sun__time--set { color: var(--rust); }
+
+.glance-sun__meridiem {
+  margin-left: 4px;
+  font-size: 12px;
+}
+
+.glance-sun__note {
+  font-family: var(--mono);
+  font-size: 10px;
+  white-space: nowrap;
+  color: var(--ink-3);
+}
+
+.glance-day { margin-top: var(--s3); }
+
+.glance-day__track {
+  display: block;
+  height: 6px;
+  background: var(--panel-edge);
+}
+.glance-day__track > span {
+  display: block;
+  height: 100%;
+  background: var(--gold);
+}
+
+.glance-day__scale {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--s2);
+  margin-top: 6px;
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--ink-3);
+}
+
+/* Weather: the current period large, then the next four across. */
+.glance-wx {
+  display: flex;
+  align-items: center;
+  gap: var(--s4);
+  padding-bottom: 14px;
+}
+
+.glance-wx__temp {
+  flex: none;
+  font-family: var(--serif);
+  font-size: 56px;
+  font-weight: 500;
+  line-height: 0.9;
+}
+
+.glance-wx__detail {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+}
+
+.glance-wx__sky {
+  font-family: var(--sans);
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.glance-wx__meta {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--ink-3);
+}
+
+.glance-wx__next {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  border-top: 1px solid var(--rule-soft);
+}
+
+.glance-wx__period {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  padding: 12px 4px;
+  text-align: center;
+  min-width: 0;
+}
+.glance-wx__period + .glance-wx__period { border-left: 1px solid var(--rule-soft); }
+
+.glance-wx__period-name {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  color: var(--ink-3);
+}
+
+.glance-wx__period-temp {
+  font-family: var(--mono);
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.glance-wx__period-sky {
+  font-family: var(--sans);
+  font-size: 11px;
+  line-height: 1.25;
+  color: var(--ink-2);
+  overflow-wrap: anywhere;
+}
+
+/* The bulletin: the one door to everything the board does not carry. */
+.glance-bulletin {
+  display: flex;
+  align-items: center;
+  gap: var(--s3);
+  margin-top: var(--s5);
+  min-height: 88px;
+  padding: 16px 18px;
+  background: var(--ink);
+  color: var(--paper);
+  text-decoration: none;
+}
+.glance-bulletin:hover,
+.glance-bulletin:focus-visible { color: var(--paper); }
+
+.glance-bulletin__text {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+  min-width: 0;
+}
+
+.glance-bulletin__label {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  opacity: 0.8;
+}
+
+.glance-bulletin__title {
+  font-family: var(--serif);
+  font-size: 21px;
+  line-height: 1.15;
+}
+
+.glance-bulletin__note {
+  font-family: var(--mono);
+  font-size: 11px;
+  opacity: 0.85;
+}
+.glance-bulletin__note--alert { opacity: 1; font-weight: 500; }
+
+.glance-bulletin__arrow {
+  flex: none;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
 /* ---- Spec strip: the measured facts about one stop ----------- */
 
 /* Flex, not grid: a stop can carry anywhere from two to seven readings, and a
