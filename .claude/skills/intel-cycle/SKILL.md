@@ -56,7 +56,7 @@ updates that new information forces on existing articles.
    `goehringcory-lang/The-Talus-Field` if absent). Read `CLAUDE.md` in full.
 2. Load the product picture, titles only, no bodies:
    - every `slug` + `title` in `window.ARTICLES` (`data.js`),
-   - `bulletin.json`'s `edition` and alert/road headlines,
+   - `bulletin.json`'s `edition`, its `headlines` and its road rows,
    - the guide's four regions (skim `apps/guide/CLAUDE.md`, not the code).
 3. Build the **dedupe ledger**: list the last 3 issues labeled `intel-brief`
    (open or closed) and the most recent `claude/trend-article-*` PR title.
@@ -138,8 +138,8 @@ For each surviving item, write one numbered option:
   buyers, or revenue; if the honest answer is "it doesn't much", say so and
   recommend against.
 - **Recommended action** — specific and executable: "write `<working slug>`
-  covering X", "update `<slug>` section Y with Z", "add a bulletin alert:
-  ...", "run a guide promo for window W (owner does the Stripe side)",
+  covering X", "update `<slug>` section Y with Z", "add a bulletin headline or
+  `changes` row: ...", "run a guide promo for window W (owner does the Stripe side)",
   "draft outreach to X", or "ignore, because ...". Recommending against is a
   first-class recommendation.
 - **Effort** — small (an edit), medium (an article or guide change), or

@@ -64,9 +64,11 @@ photo, in a minute.
      guide changes (`[guide]` titles, `claude/guide-depth-*`). Site plumbing
      PRs are not letter material.
    - Each article PR's **Distribution handoff** section, when present.
-   - `bulletin.json`: the edition's `lede`, every alert, events whose `end`
-     falls inside the next 14 days, `eventsNote`, and any road or area row
-     with a `tone` that is not neutral.
+   - `bulletin.json`: the edition's `lede`, the `headlines`, every `changes`
+     row dated inside the next 14 days (and the season-long ones, which have
+     a `when` instead of a date), any `programs` row whose `until` or single
+     `dates` entry falls in that window, and any road or area row with a
+     `tone` that is not neutral.
    - `apps/guide/src/content/seasonal.ts`: almanac entries inside the next
      14 days (full moon, road windows, firefall and similar), with their
      confidence labels.
