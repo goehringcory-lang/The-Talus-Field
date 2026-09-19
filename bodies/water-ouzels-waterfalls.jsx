@@ -10,7 +10,7 @@ window.ARTICLE_BODIES["water-ouzels-waterfalls"] = function WaterOuzelsBody() {
       </p>
 
       <p>
-        This is the water ouzel, also called the American dipper (<em>Cinclus mexicanus</em>). It's the most remarkable niche specialist in the Yosemite high country, and it has engineered its entire life around the specific conditions that make peak-season waterfalls possible.
+        This is the water ouzel, also called the American dipper (<em>Cinclus mexicanus</em>). It's the most remarkable niche specialist in the Yosemite high country, and it has engineered its entire life around the specific conditions that make <a href="/articles/yosemite-waterfalls-guide">peak-season waterfalls</a> possible.
       </p>
 
       <p>To understand how an ouzel survives in that torrent is to understand a fundamental principle of ecological specialization: extreme adaptation to a specific environment creates extraordinary capabilities that seem impossible to anyone unfamiliar with that environment.</p>

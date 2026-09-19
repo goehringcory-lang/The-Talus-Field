@@ -63,10 +63,10 @@ window.ARTICLE_BODIES["bracebridge-dinner-and-vintners-holidays"] = function Bra
     target: "_blank",
     rel: "noopener noreferrer"
   }, "Vintners' Holidays, Travel Yosemite (Yosemite Hospitality)")), React.createElement("li", null, React.createElement("a", {
-    href: "https://www.nps.gov/yose/learn/historyculture/ahwahnee.htm",
+    href: "https://www.nps.gov/yose/planyourvisit/historic.htm",
     target: "_blank",
     rel: "noopener noreferrer"
-  }, "The Ahwahnee, NPS Yosemite")), React.createElement("li", null, React.createElement("a", {
+  }, "Historic Places, including The Ahwahnee, NPS Yosemite")), React.createElement("li", null, React.createElement("a", {
     href: "https://www.sfgate.com/california-parks/article/bizarre-yosemite-tradition-back-after-years-19962044.php",
     target: "_blank",
     rel: "noopener noreferrer"

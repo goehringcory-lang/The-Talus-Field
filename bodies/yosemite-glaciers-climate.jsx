@@ -78,7 +78,7 @@ window.ARTICLE_BODIES["yosemite-glaciers-climate"] = function YosemiteGlaciersBo
       </p>
 
       <p>
-        Additionally, the managed reservoirs downstream (Hetch Hetchy, Don Pedro, Folsom) depend on Sierra snowmelt and glacier melt for much of their annual recharge. Smaller glaciers mean less reliable summer water supply for these systems.
+        Additionally, the managed reservoirs downstream (<a href="/articles/hetch-hetchy-the-other-yosemite-valley">Hetch Hetchy</a>, Don Pedro, Folsom) depend on Sierra snowmelt and glacier melt for much of their annual recharge. Smaller glaciers mean less reliable summer water supply for these systems.
       </p>
 
       <h2>Reading a deglaciated landscape</h2>

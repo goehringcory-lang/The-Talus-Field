@@ -124,7 +124,7 @@ window.ARTICLE_BODIES["bracebridge-dinner-and-vintners-holidays"] = function Bra
       <ul style={{ fontSize: 14 }}>
         <li><a href="https://www.travelyosemite.com/things-to-do/specialty-events/food-and-wine-events/bracebridge-dinner" target="_blank" rel="noopener noreferrer">Bracebridge Dinner, Travel Yosemite (Yosemite Hospitality)</a></li>
         <li><a href="https://www.travelyosemite.com/things-to-do/specialty-events/holiday-events/vintners-holidays" target="_blank" rel="noopener noreferrer">Vintners' Holidays, Travel Yosemite (Yosemite Hospitality)</a></li>
-        <li><a href="https://www.nps.gov/yose/learn/historyculture/ahwahnee.htm" target="_blank" rel="noopener noreferrer">The Ahwahnee, NPS Yosemite</a></li>
+        <li><a href="https://www.nps.gov/yose/planyourvisit/historic.htm" target="_blank" rel="noopener noreferrer">Historic Places, including The Ahwahnee, NPS Yosemite</a></li>
         <li><a href="https://www.sfgate.com/california-parks/article/bizarre-yosemite-tradition-back-after-years-19962044.php" target="_blank" rel="noopener noreferrer">"Bizarre Yosemite tradition back after 5 years," SFGATE</a></li>
       </ul>
     </>

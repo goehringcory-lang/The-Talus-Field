@@ -79,8 +79,8 @@ window.ARTICLE_BODIES["where-to-stay-in-yosemite"] = function WhereToStayInYosem
     target: "_blank",
     rel: "noopener noreferrer"
   }, "Lodging, NPS Yosemite")), React.createElement("li", null, React.createElement("a", {
-    href: "https://www.nps.gov/yose/learn/historyculture/ahwahnee.htm",
+    href: "https://www.nps.gov/yose/planyourvisit/lodging.htm",
     target: "_blank",
     rel: "noopener noreferrer"
-  }, "The Ahwahnee, NPS Yosemite"))));
+  }, "Lodging in Yosemite, NPS Yosemite"))));
 };

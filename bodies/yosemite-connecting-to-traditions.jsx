@@ -12,7 +12,7 @@ window.ARTICLE_BODIES["yosemite-connecting-to-traditions"] = function YosemiteCo
       <h2>The schedule</h2>
 
       <p>
-        Demonstrations take place at or just outside the Yosemite Museum in Yosemite Village, next to the visitor center, shuttle stop 5. Times are posted at the Museum rather than fixed in advance, so check the day you visit. Everything here is free.
+        Demonstrations take place at or just outside the Yosemite Museum in Yosemite Village, next to the visitor center, <a href="/articles/yosemite-shuttle-and-yarts">shuttle stop 5</a>. Times are posted at the Museum rather than fixed in advance, so check the day you visit. Everything here is free.
       </p>
 
       <ul>
@@ -31,7 +31,7 @@ window.ARTICLE_BODIES["yosemite-connecting-to-traditions"] = function YosemiteCo
       <h2>Why this is worth your afternoon</h2>
 
       <p>
-        Yosemite has seven traditionally associated tribes, and the land you drive through was shaped by them: the black oaks kept open for acorns, the meadows burned to keep them meadows, the plant materials gathered and worked into baskets so fine they hold water. Most visitors move through all of that without ever meeting the people who carry it. Connecting to Traditions closes that gap. You get to stand a few feet from a weaver splitting sedge root or a knapper striking a blade from obsidian, and you get to ask questions of the tribal members doing the work.
+        Yosemite has seven traditionally associated tribes, and the land you drive through was shaped by them: the black oaks kept open for acorns, the meadows <a href="/articles/giant-sequoias-fire-adaptation">burned to keep them meadows</a>, the plant materials gathered and worked into baskets so fine they hold water. Most visitors move through all of that without ever meeting the people who carry it. Connecting to Traditions closes that gap. You get to stand a few feet from a weaver splitting sedge root or a knapper striking a blade from obsidian, and you get to ask questions of the tribal members doing the work.
       </p>
 
       <p>

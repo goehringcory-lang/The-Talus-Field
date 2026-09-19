@@ -669,7 +669,7 @@ Some links in this piece are affiliate links. If you buy or book through one, Th
 
 - Bracebridge Dinner, Travel Yosemite (Yosemite Hospitality)
 - Vintners' Holidays, Travel Yosemite (Yosemite Hospitality)
-- The Ahwahnee, NPS Yosemite
+- Historic Places, including The Ahwahnee, NPS Yosemite
 - "Bizarre Yosemite tradition back after 5 years," SFGATE
 
 ---
@@ -876,7 +876,7 @@ Some links in this piece are affiliate links. If you buy or book through one, Th
 #### Sources
 
 - Seasonal Road Closures, NPS Yosemite
-- Glacier Point Road, NPS Yosemite
+- Glacier Point, NPS Yosemite
 - Day Hikes in Hetch Hetchy, NPS Yosemite
 - Half Dome Permits for Day Hikers, NPS Yosemite
 - Biking in Yosemite Valley, Travel Yosemite
@@ -1825,7 +1825,7 @@ The thing worth holding onto is that the inconvenience is the restoration. The t
 - Pets, NPS Yosemite
 - Accessibility, NPS Yosemite
 - Bears and Food Storage, NPS Yosemite
-- Mariposa Grove Restoration, Yosemite Conservancy
+- Restoring the Mariposa Grove of Giant Sequoias, Yosemite Conservancy
 
 ---
 
@@ -2575,7 +2575,7 @@ And if your trip is already booked for August or September: adjust expectations,
 - Waterfalls, NPS Yosemite
 - Hetch Hetchy, NPS Yosemite
 - Horsetail Fall, NPS Yosemite
-- Yosemite Moonbows, Yosemite Conservancy
+- The Park After Dark, on moonbows, Yosemite Conservancy
 
 ---
 
@@ -2645,7 +2645,7 @@ Pick the spot by the hour: Tunnel View and Glacier Point in late afternoon, Vall
 
 - Scenic Vistas and Viewpoints, NPS Yosemite
 - Horsetail Fall, NPS Yosemite
-- Moonbow Viewing, NPS Yosemite
+- Lower Yosemite Fall Viewing Area, with moonbow conditions, NPS
 - The Ansel Adams Gallery
 
 ---
@@ -2712,8 +2712,8 @@ Check the water, check the weather, check the current rules, and go stand in the
 
 - Horsetail Fall, NPS Yosemite
 - Current Conditions, NPS Yosemite
-- The Firefall, NPS Yosemite history
-- The Natural Firefall in Yosemite, Yosemite Conservancy
+- The Firefall from Glacier Point, NPS Yosemite history
+- Horsetail Fall, Yosemite Conservancy
 
 ---
 
@@ -2883,7 +2883,7 @@ Some links in this piece are affiliate links. If you buy or book through one, Th
 
 - Lodging, Travel Yosemite (Yosemite Hospitality)
 - Lodging, NPS Yosemite
-- The Ahwahnee, NPS Yosemite
+- Lodging in Yosemite, NPS Yosemite
 
 ---
 
@@ -2947,7 +2947,7 @@ Yosemite is not a superbloom park. If you have seen photographs of desert valley
 
 #### Sources
 
-- Wildflowers, NPS Yosemite
+- Plants, NPS Yosemite
 - Meadows, NPS Yosemite
 - Where to Find Wildflowers in Yosemite, Yosemite Conservancy
 - Hite Cove Trail, Sierra National Forest
@@ -3035,7 +3035,7 @@ That's the show. Bring binoculars, stay for the headlamps.
 #### Sources
 
 - Climbing, NPS Yosemite
-- Ask a Climber, NPS Yosemite
+- Climbing, NPS Yosemite
 - Camp 4, NPS Yosemite
 - The Yosemite Guide, NPS Yosemite
 
@@ -4070,7 +4070,7 @@ And consider that some of the best summer days in this park have nothing to do w
 
 ### Sources
 
-- Heat Safety, NPS Yosemite
+- Beat the Heat: Prevent Heat-Related Illnesses, National Park Service
 - Water Safety, NPS Yosemite
 - Water Activities, NPS Yosemite
 - Weather, NPS Yosemite
@@ -5810,7 +5810,7 @@ Pick one of two plans, depending on what you want.
 
 The slow plan. Drive up for sunrise. In mid-May, that is somewhere around 5:55 a.m., so leave the Valley by 4:45. Park at Glacier Point itself. Walk the paved 0.3 miles out to the overlook in the pre-light. Watch the light hit the high peaks east of the Valley before it hits the Valley floor. Half Dome catches it first. Then the Clark Range. Then, finally, the inner Valley and the north walls. There is no faster way to learn how the light works in Yosemite than to watch it land in this order, from this vantage. Bring a thermos. Bring layers (it can be in the thirties at the rim even in May). Plan to stay an hour after sunrise, which is when most of the people who came up will leave and you will have the railing to yourself for ten minutes.
 
-The hike plan. Drive up after breakfast, park at the Sentinel Dome and Taft Point trailhead (about a mile and a half before Glacier Point itself). Hike Sentinel first, Taft second, eat lunch on the rim somewhere quiet, then drive the last bit of road and walk out to Glacier Point with your legs already loose. The total walking is around five miles with modest elevation gain, and the experience of standing on Sentinel's bare granite cap (which is exfoliated granodiorite, not bare granite the way most people use the word) and then standing inches from the void at Taft is a study in what 2,500 feet of vertical can mean. There is a piece on the site about how to choose between those two hikes if you only have time for one.
+The hike plan. Drive up after breakfast, park at the Sentinel Dome and Taft Point trailhead (about a mile and a half before Glacier Point itself). Hike Sentinel first, Taft second, eat lunch on the rim somewhere quiet, then drive the last bit of road and walk out to Glacier Point with your legs already loose. The total walking is around five miles with modest elevation gain, and the experience of standing on Sentinel's bare granite cap (which is exfoliated granodiorite, not bare granite the way most people use the word) and then standing inches from the void at Taft is a study in what 2,500 feet of vertical can mean. The full guide to Glacier Point carries the Park Service's own distances and times for every walk off the road, which is how to choose between those two hikes if you only have time for one.
 
 If you are bringing kids, or visitors who can't hike, there is a third plan: Glacier Point itself only. The walk to the overlook is paved, short, and stroller-friendly. The view is the highest-bang-per-step view in the park. Eat your sandwiches on the wall, count peregrines, and drive back down. That is a complete day.
 
@@ -6687,7 +6687,7 @@ That's the trip.
 - Stargazing, NPS Yosemite
 - Six Special Spots for Stargazing in Yosemite, Yosemite Conservancy
 - Special Programs, NPS Yosemite
-- Bortle Scale, International Dark-Sky Association
+- Night Skies, National Park Service
 
 Some links in this piece are affiliate links. If you buy or book through one, The Talus Field may earn a small commission at no extra cost to you. The recommendations do not change for it. Full disclosure.
 

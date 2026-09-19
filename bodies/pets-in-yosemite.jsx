@@ -25,7 +25,7 @@ window.ARTICLE_BODIES["pets-in-yosemite"] = function PetsInYosemiteBody() {
       </ol>
 
       <p>
-        Beyond those, the paved Valley Loop bike paths and the campground roads are the dog's Yosemite. A leashed morning walk on the Valley floor pavement, Half Dome overhead and the Merced alongside, is honestly not a bad life. But if your trip's centerpiece is the Mist Trail or anything else with a trailhead sign, the dog cannot come.
+        Beyond those, the paved Valley Loop bike paths and the campground roads are the dog's Yosemite. A leashed morning walk on the Valley floor pavement, Half Dome overhead and the Merced alongside, is honestly not a bad life. But if your trip's centerpiece is <a href="/articles/mist-trail-the-real-guide">the Mist Trail</a> or anything else with a trailhead sign, the dog cannot come.
       </p>
 
       <Placeholder
@@ -59,7 +59,7 @@ window.ARTICLE_BODIES["pets-in-yosemite"] = function PetsInYosemiteBody() {
       <h2>The honest recommendation</h2>
 
       <p>
-        Should you bring the dog to Yosemite? If your trip is a campground-based, meadow-strolling, scenery-and-picnics sort of visit: yes, cheerfully. The dog gets pavement miles with world-class views, and you get a warm alarm clock. If your trip is built around trails, then no, and the kindest version of no. Summer boarding options exist in the gateway towns (Oakhurst and Mariposa both have kennels; book ahead in peak season), and a dog waiting comfortably in air conditioning beats a dog waiting illegally in a hot car by every measure, including the up-to-$5,000 citation. Plan the trip first, then decide honestly which trip it is. The dog, to its credit, will forgive either answer.
+        Should you bring the dog to Yosemite? If your trip is a campground-based, meadow-strolling, scenery-and-picnics sort of visit: yes, cheerfully. The dog gets pavement miles with world-class views, and you get a warm alarm clock. If your trip is built around trails, then no, and the kindest version of no. Summer boarding options exist in <a href="/articles/yosemite-gateway-towns-compared">the gateway towns</a> (Oakhurst and Mariposa both have kennels; book ahead in peak season), and a dog waiting comfortably in air conditioning beats a dog waiting illegally in a hot car by every measure, including the up-to-$5,000 citation. Plan the trip first, then decide honestly which trip it is. The dog, to its credit, will forgive either answer.
       </p>
 
       <LodgingCta

@@ -109,7 +109,7 @@ window.ARTICLE_BODIES["yosemite-in-three-to-five-days"] = function YosemiteInThr
       <h3>Sources</h3>
       <ul style={{ fontSize: 14 }}>
         <li><a href="https://www.nps.gov/yose/planyourvisit/seasonal.htm" target="_blank" rel="noopener noreferrer">Seasonal Road Closures, NPS Yosemite</a></li>
-        <li><a href="https://www.nps.gov/yose/planyourvisit/glacierpointroad.htm" target="_blank" rel="noopener noreferrer">Glacier Point Road, NPS Yosemite</a></li>
+        <li><a href="https://www.nps.gov/yose/planyourvisit/glacierpoint.htm" target="_blank" rel="noopener noreferrer">Glacier Point, NPS Yosemite</a></li>
         <li><a href="https://www.nps.gov/yose/planyourvisit/hetchhetchy.htm" target="_blank" rel="noopener noreferrer">Day Hikes in Hetch Hetchy, NPS Yosemite</a></li>
         <li><a href="https://www.nps.gov/yose/planyourvisit/halfdome.htm" target="_blank" rel="noopener noreferrer">Half Dome Permits for Day Hikers, NPS Yosemite</a></li>
         <li><a href="https://www.travelyosemite.com/things-to-do/biking/" target="_blank" rel="noopener noreferrer">Biking in Yosemite Valley, Travel Yosemite</a></li>

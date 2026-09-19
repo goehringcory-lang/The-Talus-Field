@@ -43,7 +43,7 @@ window.ARTICLE_BODIES["yosemite-for-non-hikers"] = function YosemiteForNonHikers
     target: "_blank",
     rel: "noopener noreferrer"
   }, "Yosemite Accessibility Guide PDF, NPS")), React.createElement("li", null, React.createElement("a", {
-    href: "https://www.nps.gov/yose/planyourvisit/yvalley.htm",
+    href: "https://www.nps.gov/yose/planyourvisit/yv.htm",
     target: "_blank",
     rel: "noopener noreferrer"
   }, "Yosemite Valley, NPS")), React.createElement("li", null, React.createElement("a", {

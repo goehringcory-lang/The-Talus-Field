@@ -97,7 +97,7 @@ window.ARTICLE_BODIES["yosemite-heat-safety-guide"] = function YosemiteHeatSafet
       <h2>Sources</h2>
 
       <ul>
-        <li><a href="https://www.nps.gov/yose/planyourvisit/heat.htm" target="_blank" rel="noopener noreferrer">Heat Safety, NPS Yosemite</a></li>
+        <li><a href="https://www.nps.gov/articles/heat-illness.htm" target="_blank" rel="noopener noreferrer">Beat the Heat: Prevent Heat-Related Illnesses, National Park Service</a></li>
         <li><a href="https://www.nps.gov/yose/planyourvisit/watersafety.htm" target="_blank" rel="noopener noreferrer">Water Safety, NPS Yosemite</a></li>
         <li><a href="https://www.nps.gov/yose/planyourvisit/water.htm" target="_blank" rel="noopener noreferrer">Water Activities, NPS Yosemite</a></li>
         <li><a href="https://www.nps.gov/yose/planyourvisit/weather.htm" target="_blank" rel="noopener noreferrer">Weather, NPS Yosemite</a></li>

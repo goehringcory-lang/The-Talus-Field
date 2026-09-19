@@ -27,12 +27,12 @@ window.ARTICLE_BODIES["horsetail-fall-firefall"] = function HorsetailFallFirefal
     target: "_blank",
     rel: "noopener noreferrer"
   }, "Current Conditions, NPS Yosemite")), React.createElement("li", null, React.createElement("a", {
-    href: "https://www.nps.gov/yose/learn/historyculture/firefall.htm",
+    href: "https://www.nps.gov/yose/learn/historyculture/encroaching-civilization-visitor-services.htm",
     target: "_blank",
     rel: "noopener noreferrer"
-  }, "The Firefall, NPS Yosemite history")), React.createElement("li", null, React.createElement("a", {
-    href: "https://yosemite.org/experience-the-natural-firefall-in-yosemite/",
+  }, "The Firefall from Glacier Point, NPS Yosemite history")), React.createElement("li", null, React.createElement("a", {
+    href: "https://yosemite.org/horsetail-fall/",
     target: "_blank",
     rel: "noopener noreferrer"
-  }, "The Natural Firefall in Yosemite, Yosemite Conservancy"))));
+  }, "Horsetail Fall, Yosemite Conservancy"))));
 };

@@ -231,7 +231,7 @@ window.ARTICLE_BODIES["yosemite-stargazing-where-to-look-up"] = function Yosemit
       <h2>The takeaway</h2>
 
       <p>
-        Yosemite has some of the darkest skies still accessible by car in California, and one of the better dark-sky cultures (the Star Parties, the ranger programs, the active community of night-sky photographers) of any park. The high country in summer on a moonless night is a different experience than the Valley at any time, in a way that's hard to describe to anyone who hasn't done it.
+        Yosemite has some of the darkest skies still accessible by car in California, and one of the better dark-sky cultures (the Star Parties, <a href="/articles/yosemite-ranger-programs">the ranger programs</a>, the active community of night-sky photographers) of any park. The high country in summer on a moonless night is a different experience than the Valley at any time, in a way that's hard to describe to anyone who hasn't done it.
       </p>
 
       <p>
@@ -247,7 +247,7 @@ window.ARTICLE_BODIES["yosemite-stargazing-where-to-look-up"] = function Yosemit
         <li><a href="https://www.nps.gov/yose/planyourvisit/stargazing.htm" target="_blank" rel="noopener noreferrer">Stargazing, NPS Yosemite</a></li>
         <li><a href="https://yosemite.org/six-special-spots-for-stargazing-in-yosemite/" target="_blank" rel="noopener noreferrer">Six Special Spots for Stargazing in Yosemite, Yosemite Conservancy</a></li>
         <li><a href="https://www.nps.gov/yose/planyourvisit/programs.htm" target="_blank" rel="noopener noreferrer">Special Programs, NPS Yosemite</a></li>
-        <li><a href="https://www.darksky.org/light-pollution/bortle-scale/" target="_blank" rel="noopener noreferrer">Bortle Scale, International Dark-Sky Association</a></li>
+        <li><a href="https://www.nps.gov/subjects/nightskies/index.htm" target="_blank" rel="noopener noreferrer">Night Skies, National Park Service</a></li>
       </ul>
 
       <AffiliateNote />

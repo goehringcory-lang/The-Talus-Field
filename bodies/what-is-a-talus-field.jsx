@@ -38,7 +38,7 @@ window.ARTICLE_BODIES["what-is-a-talus-field"] = function WhatIsATalusFieldBody(
       </p>
 
       <p>
-        Rockfall is not a historical event in this park. It is a current one. The Park Service records rockfalls every year, and the talus below El Capitan and the Rhombus Wall and the Glacier Point Apron is still being added to. <a href="/articles/yosemite-glaciers-climate">The glaciers</a> did the carving; the rockfall does the ongoing demolition.
+        Rockfall is not a historical event in this park. It is a current one. The Park Service records rockfalls every year, and the talus below <a href="/articles/watching-climbers-el-capitan">El Capitan</a> and the Rhombus Wall and the Glacier Point Apron is still being added to. <a href="/articles/yosemite-glaciers-climate">The glaciers</a> did the carving; the rockfall does the ongoing demolition.
       </p>
 
       <h2>Where to see one</h2>

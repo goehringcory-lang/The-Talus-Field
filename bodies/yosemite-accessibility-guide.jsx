@@ -28,7 +28,7 @@ window.ARTICLE_BODIES["yosemite-accessibility-guide"] = function YosemiteAccessi
       </p>
 
       <p>
-        <strong>Big Trees Loop, Mariposa Grove.</strong> A purpose-built accessible trail through giant sequoias, completed in the grove's 2018 restoration. Level, firm surface, benches, and trees older than the alphabet you are reading. Vehicles displaying a disability placard may drive the grove road when the shuttle is running, which turns an otherwise shuttle-dependent visit into a straightforward one.
+        <strong>Big Trees Loop, <a href="/articles/mariposa-grove-how-to-visit">Mariposa Grove</a>.</strong> A purpose-built accessible trail through giant sequoias, completed in the grove's 2018 restoration. Level, firm surface, benches, and trees older than the alphabet you are reading. Vehicles displaying a disability placard may drive the grove road when the shuttle is running, which turns an otherwise shuttle-dependent visit into a straightforward one.
       </p>
 
       <Placeholder
@@ -54,7 +54,7 @@ window.ARTICLE_BODIES["yosemite-accessibility-guide"] = function YosemiteAccessi
       <h2>Deaf services</h2>
 
       <p>
-        Yosemite has run a dedicated Deaf Services program for decades, one of the oldest in the Park Service. American Sign Language interpretation is available for ranger programs; in the off-season, request an interpreter at least two weeks ahead so the park can contract one (yose_deaf_services@nps.gov, or 209-379-5250 by voice or text). A public videophone for Deaf visitors sits in the lobby of Yosemite Valley Lodge, and the park's films run captioned.
+        Yosemite has run a dedicated Deaf Services program for decades, one of the oldest in the Park Service. American Sign Language interpretation is available for <a href="/articles/yosemite-ranger-programs">ranger programs</a>; in the off-season, request an interpreter at least two weeks ahead so the park can contract one (yose_deaf_services@nps.gov, or 209-379-5250 by voice or text). A public videophone for Deaf visitors sits in the lobby of Yosemite Valley Lodge, and the park's films run captioned.
       </p>
 
       <h2>Low vision and blindness</h2>
