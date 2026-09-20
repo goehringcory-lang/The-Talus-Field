@@ -331,7 +331,7 @@ function buildSeo(route) {
       var image = absolute(a.image || "img/og-default.jpg");
       var desc = a.seoDek || a.dek;
       return {
-        title: `${a.title} — ${SITE_NAME}`,
+        title: a.title,
         description: desc,
         canonical: url,
         ogType: "article",
@@ -702,7 +702,7 @@ function buildSeo(route) {
     },
     "half-dome-lottery": {
       title: `The Half Dome Lottery — calendar, odds, and strategy — ${SITE_NAME}`,
-      description: "Both Half Dome permit lotteries explained: the March preseason draw, the daily lottery almost nobody uses, the honest odds, and the strategy that actually works. By a park resident.",
+      description: "Both Half Dome permit lotteries: the March preseason draw, the daily lottery almost nobody uses, the published NPS odds, and a strategy that works.",
       ogType: "website",
       breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Half Dome lottery", null]]
     },

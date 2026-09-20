@@ -372,7 +372,10 @@ function buildSeo(route) {
       // SERPs). Fall back to the visible dek otherwise.
       const desc = a.seoDek || a.dek;
       return {
-        title: `${a.title} — ${SITE_NAME}`,
+        // No brand suffix, matching edge/seo.js's article branch: the suffix
+        // pushed 65 of 71 rendered titles past Google's ~600px cut. These two
+        // must agree, or a direct load and an SPA click title one URL two ways.
+        title: a.title,
         description: desc,
         canonical: url,
         ogType: "article",
@@ -799,8 +802,10 @@ function buildSeo(route) {
     },
     "half-dome-lottery": {
       title: `The Half Dome Lottery — calendar, odds, and strategy — ${SITE_NAME}`,
+      // Byte-identical to the /half-dome-lottery entry in edge/seo.js; see the
+      // note there. These two had drifted.
       description:
-        "Both Half Dome permit lotteries explained: the March preseason draw, the daily lottery almost nobody uses, the honest odds, and the strategy that actually works. By a park resident.",
+        "Both Half Dome permit lotteries: the March preseason draw, the daily lottery almost nobody uses, the published NPS odds, and a strategy that works.",
       ogType: "website",
       breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Half Dome lottery", null]],
     },

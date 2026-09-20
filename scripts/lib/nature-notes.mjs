@@ -272,6 +272,33 @@ function parseFrontMatter(raw) {
   return { meta, body: raw.slice(m[0].length) };
 }
 
+// A scrape that missed produces a transcription of the SOURCE SITE'S error
+// page, not an issue, and nothing downstream can tell the difference: it parses,
+// it takes a volume and number from its filename, it inherits its volume's
+// median year, and it renders as a dated NPS bulletin with PublicationIssue
+// markup, indexable and in the sitemap. That is what vol-20-no-7 was until
+// September 2026: 208 words of "404 Not Found" in eight languages, live.
+//
+// Fail loudly here rather than publish it. The fingerprints are the source
+// site's own error copy, so a real issue cannot trip them; "404 Not Found" is
+// not a phrase the 1922-1961 bulletin prints.
+const ERROR_PAGE_MARKERS = [
+  /404\s+Not\s+Found/i,
+  /the\s+server\s+has\s+been\s+instructed\s+not\s+to\s+let\s+you\s+have\s+it/i,
+];
+
+function assertNotAnErrorPage(file, raw) {
+  for (const re of ERROR_PAGE_MARKERS) {
+    if (re.test(raw)) {
+      throw new Error(
+        `nature-notes/${file} looks like a transcription of the source site's ` +
+          `error page, not an issue (matched ${re}). Re-scrape it or delete the ` +
+          `file; do not publish it as a dated bulletin.`
+      );
+    }
+  }
+}
+
 export function loadIssues({ dir = SOURCE_DIR } = {}) {
   const files = fs
     .readdirSync(dir)
@@ -284,6 +311,7 @@ export function loadIssues({ dir = SOURCE_DIR } = {}) {
 
   const issues = files.map((file) => {
     const raw = fs.readFileSync(path.join(dir, file), "utf8");
+    assertNotAnErrorPage(file, raw);
     const { meta, body } = parseFrontMatter(raw);
     // Drop the "# YOSEMITE NATURE NOTES Vol. N No. M" line the extractor added;
     // the page writes its own heading from the parsed volume and date.
