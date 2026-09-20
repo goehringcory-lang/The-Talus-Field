@@ -14,6 +14,7 @@
     "prerender": "node gen-prerender.mjs",
     "prerender:check": "node gen-prerender.mjs --check",
     "compile": "node gen-compiled.mjs",
+    "guide:screens": "node capture-guide-screens.mjs",
     "dates": "node gen-dates-ics.mjs",
     "dates:check": "node check-deadlines.mjs",
     "fees:check": "node check-fee-calculator.mjs",
