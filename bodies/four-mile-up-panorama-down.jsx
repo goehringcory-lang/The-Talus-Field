@@ -32,7 +32,7 @@ window.ARTICLE_BODIES["four-mile-up-panorama-down"] = function FourMileUpPanoram
       <p>Three reasons.</p>
 
       <p>
-        First, the Four Mile Trail is a relentless uphill grind: 3,200 feet of elevation gain in 4.6 miles, across roughly 58 switchbacks. It's the hardest part of the day, and you want to do it when your legs are fresh and the morning air is cool. Going up the Panorama Trail instead means climbing out of the Illilouette drainage on tired legs in the afternoon heat. That's worse.
+        First, the Four Mile Trail is a relentless uphill grind: 3,200 feet of elevation gain in 4.8 miles, across roughly 58 switchbacks. It's the hardest part of the day, and you want to do it when your legs are fresh and the morning air is cool. Going up the Panorama Trail instead means climbing out of the Illilouette drainage on tired legs in the afternoon heat. That's worse.
       </p>
 
       <p>
@@ -56,7 +56,7 @@ window.ARTICLE_BODIES["four-mile-up-panorama-down"] = function FourMileUpPanoram
       <h2>The Four Mile Trail, what to expect</h2>
 
       <p>
-        The trail was originally built in 1872 by stonemason John Conway for entrepreneur James McCauley, who charged a one-dollar toll. It was exactly four miles long. In the late 1920s, the Park Service reconstructed it with gentler switchbacks, and the new alignment came out to 4.6 miles. The name stuck anyway.
+        The trail was originally built in 1872 by stonemason John Conway for entrepreneur James McCauley, who charged a one-dollar toll. It was exactly four miles long. In the late 1920s, the Park Service reconstructed it with gentler switchbacks, and the new alignment came out to 4.8 miles. The name stuck anyway.
       </p>
 
       <p>
@@ -134,7 +134,7 @@ window.ARTICLE_BODIES["four-mile-up-panorama-down"] = function FourMileUpPanoram
       </p>
 
       <p>
-        <strong>The Mist Trail</strong> is shorter (about 1.7 miles to Happy Isles), steeper, and more dramatic. It drops alongside Nevada Fall and then Vernal Fall, with sections where the spray soaks you completely. The granite steps along Vernal Fall are the most photographed section of trail in Yosemite. It's spectacular. It's also steep, with uneven stone steps that are brutal on tired knees, and the wet rock can be slippery. If your legs are solid and you want the waterfall experience, take the Mist Trail.
+        <strong>The Mist Trail</strong> is shorter (about 2.5 miles to Happy Isles), steeper, and more dramatic. It drops alongside Nevada Fall and then Vernal Fall, with sections where the spray soaks you completely. The granite steps along Vernal Fall are the most photographed section of trail in Yosemite. It's spectacular. It's also steep, with uneven stone steps that are brutal on tired knees, and the wet rock can be slippery. If your legs are solid and you want the waterfall experience, take the Mist Trail.
       </p>
 
       <p>
@@ -142,7 +142,7 @@ window.ARTICLE_BODIES["four-mile-up-panorama-down"] = function FourMileUpPanoram
       </p>
 
       <p>
-        <strong>The John Muir Trail</strong> is longer (about 3.5 miles to Happy Isles), gentler, and easier on the knees. It switchbacks down through forest with occasional views of Nevada Fall from a distance. It's less dramatic but significantly more comfortable after a long day. On a 13-mile day with 4,000 feet of elevation change, your knees will have an opinion about which route you take. Listen to them.
+        <strong>The John Muir Trail</strong> is longer (about 4 miles to Happy Isles), gentler, and easier on the knees. It switchbacks down through forest with occasional views of Nevada Fall from a distance. It's less dramatic but significantly more comfortable after a long day. On a 13-mile day with 4,000 feet of elevation change, your knees will have an opinion about which route you take. Listen to them.
       </p>
 
       <p>

@@ -39,7 +39,7 @@
 // (page-tioga-opening.jsx) share the number; check-asset-freshness.mjs fails
 // the build if the three disagree.
 // =============================================================================
-const BULLETIN_URL = "/bulletin.json?v=12";
+const BULLETIN_URL = "/bulletin.json?v=13";
 
 // ---- Dates, in park time -----------------------------------------------------
 // ISO strings (YYYY-MM-DD) throughout: they compare correctly as strings, and

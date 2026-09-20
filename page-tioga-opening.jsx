@@ -19,19 +19,19 @@
 // previous edition. check-asset-freshness.mjs parses this literal and fails the
 // build if the three disagree, which is why it is written out in full rather
 // than imported or composed.
-const TIOGA_BULLETIN_URL = "/bulletin.json?v=12";
+const TIOGA_BULLETIN_URL = "/bulletin.json?v=13";
 
 // Published opening dates, most recent first.
 //
 // SOURCING RULE, and the reason this table is short: every row must come from a
 // published source, and the only Tioga opening dates this site has actually
 // published are below. The National Park Service maintains the full year-by-year
-// list at nps.gov/yose/planyourvisit/tiogaroad.htm; add rows from there, oldest
+// list at nps.gov/yose/planyourvisit/seasonal.htm; add rows from there, oldest
 // first, and do not fill gaps from memory or from a search snippet. A wrong
 // opening date on this page is worse than a short table, because the whole point
 // of the page is that the date is the thing people get wrong.
 const OPENING_HISTORY = [
-  { year: "2026", date: "May 15", note: "The earliest opening in sixteen years." },
+  { year: "2026", date: "May 15", note: "The earliest opening since 2015." },
 ];
 const LONG_TERM_AVERAGE = "May 28";
 
@@ -227,7 +227,7 @@ function TiogaOpeningPage({ go }) {
           <div className="eyebrow eyebrow--moss" style={{ marginBottom: 12 }}>Check the current status</div>
           <p style={{ fontFamily: "var(--sans)", fontSize: 13, color: "var(--ink-3)" }}>
             The current plowing and opening status lives on{" "}
-            <a href="https://www.nps.gov/yose/planyourvisit/tioga.htm" target="_blank" rel="noopener noreferrer">the NPS Tioga Road page</a>,
+            <a href="https://www.nps.gov/yose/planyourvisit/seasonal.htm" target="_blank" rel="noopener noreferrer">the NPS Tioga Road page</a>,
             and road conditions by phone or text: text "ynptraffic" to 333111.
             The week's park-wide picture, roads, closures, and hours, is
             condensed on{" "}

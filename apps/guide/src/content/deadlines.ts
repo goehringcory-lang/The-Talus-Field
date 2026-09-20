@@ -18,7 +18,11 @@
 //   release-15th  the campground rule: the 15th at 7 a.m. Pacific,
 //                 `monthsAhead` months before the arrival month; the 15th
 //                 covers arrivals from the 15th of the target month through
-//                 the 14th of the next
+//                 the 14th of the next. monthsAhead is 4, from the release
+//                 table NPS publishes (Sep 15 opens a Jan 15 - Feb 14
+//                 arrival). The same page's prose says "five months in
+//                 advance" because the window's far end is five months out;
+//                 the table is the operative fact. Do not "correct" this to 5.
 //   rule          computed from named anchors (cables-season: the Friday
 //                 before Memorial Day, the last Monday in May, to the day after
 //                 the second Monday in October)
@@ -131,10 +135,10 @@ const seed: DeadlineInput[] = [
     id: 'camp-15th',
     title: 'Campground release: Pines, Wawona, Hodgdon Meadow',
     kind: 'release-15th',
-    monthsAhead: 5,
+    monthsAhead: 4,
     time: '7 a.m.',
     detail:
-      'Upper, Lower and North Pines, Wawona and Hodgdon Meadow open on Recreation.gov on the 15th of the month at 7 a.m. Pacific, five months ahead: the 15th covers arrivals from the 15th of the month five months out through the 14th of the month after. Valley sites go in minutes.',
+      'Upper, Lower and North Pines, Wawona and Hodgdon Meadow open on Recreation.gov on the 15th of the month at 7 a.m. Pacific. Each 15th covers arrivals from the 15th of the month four months later through the 14th of the month after that: book on September 15 for a January 15 to February 14 arrival. NPS calls this "five months in advance", counting to the far end of the window, but its own release table is the operative fact. Valley sites go in minutes.',
     confidence: 'published',
     source: 'https://www.nps.gov/yose/planyourvisit/camping.htm',
     tag: 'date-camping',

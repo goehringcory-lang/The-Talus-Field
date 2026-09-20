@@ -32,7 +32,7 @@ window.ARTICLE_BODIES["yosemite-in-june-2026"] = function YosemiteInJune2026Body
       </p>
 
       <p>
-        For waterfall-specific hiking, the <a href="/articles/mist-trail-the-real-guide">Mist Trail</a> is still the best way to experience Vernal and Nevada Falls up close. One complication: the National Park Service has announced weekday closures of the Mist Trail corridor beginning June 30 for a rehabilitation project. If you are visiting in late June or July, plan your Mist Trail hike for a weekend day or go before the closures begin.
+        For waterfall-specific hiking, the <a href="/articles/mist-trail-the-real-guide">Mist Trail</a> is still the best way to experience Vernal and Nevada Falls up close. One complication: the National Park Service has announced weekday closures of the Mist Trail corridor beginning July 27 for a rehabilitation project. If you are visiting in late June or July, plan your Mist Trail hike for a weekend day or go before the closures begin.
       </p>
 
       <h2>Tioga Road and the high country</h2>

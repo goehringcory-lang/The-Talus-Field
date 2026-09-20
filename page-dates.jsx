@@ -69,7 +69,11 @@ function cablesSeason(year) {
 // The campground rule: on the 15th at 7 a.m. Pacific, `monthsAhead` months
 // before the arrival month, covering arrivals from the 15th of the target
 // month through the 14th of the month after. An arrival on the 3rd therefore
-// belongs to the previous month's release.
+// belongs to the previous month's release. monthsAhead is 4, read off the
+// release table on nps.gov/yose/planyourvisit/camping.htm (September 15 opens
+// arrivals of January 15 to February 14). That page's prose says "five months
+// in advance", counting to the far end of the window; the table is what the
+// reader's alarm has to match, so do not raise this to 5.
 function releaseDateFor(arrival, monthsAhead) {
   let y = arrival.getUTCFullYear();
   let m = arrival.getUTCMonth(); // 0-based

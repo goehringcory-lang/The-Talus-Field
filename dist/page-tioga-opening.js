@@ -1,8 +1,8 @@
-var TIOGA_BULLETIN_URL = "/bulletin.json?v=12";
+var TIOGA_BULLETIN_URL = "/bulletin.json?v=13";
 var OPENING_HISTORY = [{
   year: "2026",
   date: "May 15",
-  note: "The earliest opening in sixteen years."
+  note: "The earliest opening since 2015."
 }];
 var LONG_TERM_AVERAGE = "May 28";
 function TiogaStatus() {
@@ -117,7 +117,7 @@ function TiogaOpeningPage({
       color: "var(--ink-3)"
     }
   }, "The current plowing and opening status lives on", " ", React.createElement("a", {
-    href: "https://www.nps.gov/yose/planyourvisit/tioga.htm",
+    href: "https://www.nps.gov/yose/planyourvisit/seasonal.htm",
     target: "_blank",
     rel: "noopener noreferrer"
   }, "the NPS Tioga Road page"), ", and road conditions by phone or text: text \"ynptraffic\" to 333111. The week's park-wide picture, roads, closures, and hours, is condensed on", " ", React.createElement("a", {

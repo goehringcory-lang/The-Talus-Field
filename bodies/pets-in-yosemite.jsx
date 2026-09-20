@@ -16,7 +16,7 @@ window.ARTICLE_BODIES["pets-in-yosemite"] = function PetsInYosemiteBody() {
       </p>
 
       <p>
-        There are exactly two named trail exceptions, and they are both good walks:
+        The Park Service names a short list of exceptions, most of them old roadbeds rather than trails, and they are both good walks:
       </p>
 
       <ol>

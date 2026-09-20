@@ -206,7 +206,7 @@ window.ARTICLE_BODIES["yosemite-bears-safety-guide"] = function YosemiteBearsSaf
       <p>But then there is the road.</p>
 
       <p>
-        In 2025, 28 bears were hit by cars in Yosemite. Six were killed. Beth Pratt's 11-year analysis of the data showed an 85.7% rise in vehicle-bear collisions correlating with a 44.9% increase in visitation after the park's reservation system was removed. More visitors meant more cars, more cars meant more miles driven on park roads, and more miles meant more dead bears. In 2026, through mid-year, there have been 5 incidents, with property damage up 316% over the same period in 2025.
+        In 2025, 28 bears were hit by cars in Yosemite. Six were killed. Beth Pratt's 11-year analysis of the data showed an 85.7% rise in vehicle-bear collisions correlating with a 44.9% increase in visitation after the park's reservation system was removed. More visitors meant more cars, more cars meant more miles driven on park roads, and more miles meant more dead bears. Through early July 2026 the park logged 34 incidents and $14,947 in property damage, up 26 percent on the same point in 2025, down 91 percent on 1998 and up 286 percent on 2019.
       </p>
 
       <p>

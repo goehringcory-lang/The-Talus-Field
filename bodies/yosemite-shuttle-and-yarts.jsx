@@ -108,7 +108,7 @@ window.ARTICLE_BODIES["yosemite-shuttle-and-yarts"] = function YosemiteShuttleAn
       </p>
 
       <p>
-        <strong>YARTS wins outright if you are one or two people on a Valley-focused trip.</strong> A Merced round trip runs in the mid-forties for an adult at current summer rates, with one-way fares starting around fifteen dollars depending on where you board. Against that, a car costs you fuel, the entrance fee, and the eleven o'clock parking problem. Two people ride, arrive rested, and skip the part of the day everyone else spends circling.
+        <strong>YARTS wins outright if you are one or two people on a Valley-focused trip.</strong> A Merced round trip runs in the mid-forties for an adult at current summer rates, with one-way fares starting at eight dollars from El Portal depending on where you board. Against that, a car costs you fuel, the entrance fee, and the eleven o'clock parking problem. Two people ride, arrive rested, and skip the part of the day everyone else spends circling.
       </p>
 
       <p>

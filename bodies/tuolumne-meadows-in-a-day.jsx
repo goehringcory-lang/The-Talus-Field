@@ -92,7 +92,7 @@ window.ARTICLE_BODIES["tuolumne-meadows-in-a-day"] = function TuolumneMeadowsInA
       </p>
 
       <p>
-        <strong>Gaylor Lakes</strong>, right at the Tioga Pass entrance, is three miles and 600 feet, and starts at almost 10,000 feet, so it feels harder than it reads. <strong>Elizabeth Lake</strong> is four and eight tenths of a mile and 900 feet from the campground. And <a href="/articles/cathedral-lakes-day-hike">Cathedral Lakes</a>, the high country's most famous day hike, is a genuine 11 miles: a full day on its own, not something to bolt onto this one.
+        <strong>Gaylor Lakes</strong>, right at the Tioga Pass entrance, is two and six tenths of a mile and 500 feet, and starts at almost 10,000 feet, so it feels harder than it reads. <strong>Elizabeth Lake</strong> is four and eight tenths of a mile and 1,000 feet from the campground. And <a href="/articles/cathedral-lakes-day-hike">Cathedral Lakes</a>, the high country's most famous day hike, is a genuine 11 miles: a full day on its own, not something to bolt onto this one.
       </p>
 
       <blockquote>The mistake is not choosing the wrong hike. It is choosing a hike at all when what the day needed was a meadow, a lunch, and three hours of not driving.</blockquote>

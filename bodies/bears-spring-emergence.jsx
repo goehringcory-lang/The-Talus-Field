@@ -6,7 +6,7 @@ window.ARTICLE_BODIES["bears-spring-emergence"] = function BearsSpringEmergenceB
   return (
     <>
       <p className="dropcap">
-        In April, if the weather permits and you're in the right place in Yosemite backcountry, you might see the first bears of the season emerging from their winter dens. They move slowly at first, stiff-legged, their dark bodies silhouetted against patches of remaining snow. A bear that emerges in mid-April has just spent between five and seven months in a state that is almost, but not quite, hibernation. Scientists call it torpor. The distinction matters, because the bear's body has not simply been dormant. It has been radically reprogrammed.
+        In April, if the weather permits and you're in the right place in Yosemite backcountry, you might see bears of the season out of their winter dens. The earliest are out well before that: the park's own naturalists put the usual start in the middle of March. They move slowly at first, stiff-legged, their dark bodies silhouetted against patches of remaining snow. A bear that emerges in April has just spent something like four to five months in a state that is almost, but not quite, hibernation. Scientists call it torpor. The distinction matters, because the bear's body has not simply been dormant. It has been radically reprogrammed.
       </p>
 
       <p>That reprogramming, and the desperate metabolic consequences of it, explains why spring in Yosemite is the season when bears are most dangerous to humans and most vulnerable to starvation.</p>
@@ -30,7 +30,7 @@ window.ARTICLE_BODIES["bears-spring-emergence"] = function BearsSpringEmergenceB
       <h2>The metabolic emergency of spring</h2>
 
       <p>
-        The physiology of torpor emergence creates an immediate problem. The bear has been burning fat for five months. It has lost somewhere between 20 and 40 percent of its body weight. A healthy female black bear might weigh 150 pounds in fall and 100 pounds in spring. A large male might start at 300 pounds and finish at 180. That's not just weight loss. That's significant lean muscle loss as well as fat loss.
+        The physiology of torpor emergence creates an immediate problem. The bear has been burning fat for five months. It has lost somewhere between 15 and 30 percent of its body weight. A healthy female black bear might weigh 150 pounds in fall and 100 pounds in spring. A large male might start at 300 pounds and finish at 180. That's not just weight loss. That's significant lean muscle loss as well as fat loss.
       </p>
 
       <p>
@@ -46,7 +46,7 @@ window.ARTICLE_BODIES["bears-spring-emergence"] = function BearsSpringEmergenceB
       </p>
 
       <p>
-        The 1933 <em>Nature Notes</em> entry "Our Yosemite Bears" by C. A. Harwell specifically documents this spring transition, noting that bears in April and May are "extremely hungry" and "actively foraging from dawn," with frequent observations of bears in meadows, stripping vegetation. The bears were not desperate in an absolute sense. They were desperate in a relative sense: their body was demanding high-calorie food, and the landscape was offering low-calorie food.
+        C. A. Harwell, then the park naturalist, described this season in "Our Yosemite Bears" in the March 1931 <em>Nature Notes</em>, and his account complicates the picture. Bears come out of their dens "usually by the middle of March," he wrote, and "they are careful how they break their long hibernation fast." The park was still running artificial feeding platforms in those years, opening them on April 1, and even then, Harwell noted, "few of them come in to eat our food." What the bears worked through instead was what the season offered: tender plants, roots dug out of the ground, mice and frogs caught in the meadows, termites and ants from broken logs. The bears were not desperate in an absolute sense. They were desperate in a relative sense: their body was demanding high-calorie food, and the landscape was offering low-calorie food.
       </p>
 
       <h2>The behavioral signature of spring hunger</h2>
@@ -84,15 +84,11 @@ window.ARTICLE_BODIES["bears-spring-emergence"] = function BearsSpringEmergenceB
       <h2>The historical record and modern observations</h2>
 
       <p>
-        C. A. Harwell's 1933 documentation in <em>Nature Notes</em> Vol. 10, No. 3 offers one of the most detailed accounts of Yosemite bear behavior from the park's early naturalist era. Harwell recorded specific observations of spring foraging, bear den locations, emergence timing, and interactions between bears and humans. The entries note the intense hunger behavior of spring bears, the shift in predictability and boldness as the season progressed, and the increased frequency of bear encounters in human-occupied areas.
+        Harwell's account in <em>Nature Notes</em> Vol. 10, No. 3 is one of the fullest descriptions of Yosemite bear behavior from the park's early naturalist era, and it has to be read for what it is: a record of bears in a park that was feeding them on purpose. Harwell set down emergence timing, spring diet, the cubs that were not seen until late May or June, and the summer months when, as he put it, the bears "become a problem because they are hungry and they like our foods." The feeding platforms are long gone. The seasonal shape he described, a slow March start and a hungry summer, is still there underneath.
       </p>
 
       <p>
-        The observations are not sensationalized. They're factual records of what naturalists observed: when bears emerged, what they ate, how they behaved. Modern behavioral studies of black bears in other Sierra Nevada locations have largely confirmed what Harwell documented: spring emergence brings a period of acute metabolic need, intense foraging behavior, and increased probability of human conflict.
-      </p>
-
-      <p>
-        The 1939 observations recorded in <em>Nature Notes</em> Vol. 18, No. 7 further document this pattern, noting specific instances of bears accessing stored food and human garbage, with particular intensity in May and early June.
+        The observations are not sensationalized. They are factual records of what one naturalist watched: when bears emerged, what they ate, how they behaved. Modern work on black bears elsewhere in the Sierra Nevada describes the same underlying sequence, a period of acute metabolic need meeting a landscape that is not yet producing much food, and a rising probability of human conflict as the season goes on.
       </p>
 
       <h2>What spring teaches about bear ecology</h2>
@@ -113,9 +109,8 @@ window.ARTICLE_BODIES["bears-spring-emergence"] = function BearsSpringEmergenceB
 
       <h3>Further reading</h3>
       <ul style={{ fontSize: 14 }}>
-        <li><em>Nature Notes</em> Vol. 10, No. 3 (1933). "Our Yosemite Bears" by C. A. Harwell, comprehensive account of bear den locations, emergence timing, spring foraging behavior, and human interactions.</li>
-        <li><em>Nature Notes</em> Vol. 18, No. 7 (1939). Bear behavior observations during spring and summer seasons, with specific documentation of food-seeking intensity and human-bear incidents.</li>
-        <li>Black bear ecology and torpor physiology literature from wildlife biology sources, available through the park's research library and UC Berkeley's environmental science collection.</li>
+        <li><em>Nature Notes</em> Vol. 10, No. 3 (March 1931). "Our Yosemite Bears" by C. A. Harwell, park naturalist: emergence timing, spring and summer diet, cubs, and the park's bear-feeding platforms as they were then run. <a href="/archive/1931/vol-10-no-3/">Read it in the archive</a>.</li>
+                <li>Black bear ecology and torpor physiology literature from wildlife biology sources, available through the park's research library and UC Berkeley's environmental science collection.</li>
         <li>Modern Yosemite bear management documentation describing food storage requirements and seasonal behavior patterns.</li>
       </ul>
     </>

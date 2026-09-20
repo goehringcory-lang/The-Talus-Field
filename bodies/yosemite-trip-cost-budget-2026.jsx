@@ -98,11 +98,11 @@ window.ARTICLE_BODIES["yosemite-trip-cost-budget-2026"] = function YosemiteTripC
       </p>
 
       <p>
-        <strong>From San Francisco / Bay Area:</strong> About 170 miles each way. At current gas prices (~$4.75/gallon in California) and average fuel economy (28 mpg), that's roughly $25–$30 each way, or $55–$65 round trip. If you're making a <a href="/articles/yosemite-in-one-or-two-days">day trip from the city</a>, that's your floor just for fuel.
+        <strong>From San Francisco / Bay Area:</strong> About 170 miles each way. At current gas prices (about $6.10 a gallon in California) and average fuel economy (28 mpg), that's roughly $35–$40 each way, or $70–$80 round trip. If you're making a <a href="/articles/yosemite-in-one-or-two-days">day trip from the city</a>, that's your floor just for fuel.
       </p>
 
       <p>
-        <strong>From Los Angeles:</strong> About 280 miles each way. Figure $45–$50 each way, $90–$100 round trip.
+        <strong>From Los Angeles:</strong> About 280 miles each way. Figure $58–$65 each way, $115–$130 round trip.
       </p>
 
       <p>
@@ -186,11 +186,11 @@ window.ARTICLE_BODIES["yosemite-trip-cost-budget-2026"] = function YosemiteTripC
       <ul>
         <li><strong>Lodging:</strong> Campground, $36/night x 3 = $108</li>
         <li><strong>Food:</strong> Cooler of groceries from home or a gateway-town grocery stop, ~$25/person/day x 3 days = $150</li>
-        <li><strong>Gas:</strong> Round trip from Bay Area, ~$60</li>
+        <li><strong>Gas:</strong> Round trip from Bay Area, ~$75</li>
         <li><strong>Entrance fee:</strong> $35</li>
         <li><strong>Gear:</strong> $0 (using what you own)</li>
         <li><strong>Dining out:</strong> One meal at a park restaurant, ~$50</li>
-        <li><strong>Total:</strong> ~$403</li>
+        <li><strong>Total:</strong> ~$418</li>
       </ul>
 
       <p>
@@ -202,11 +202,11 @@ window.ARTICLE_BODIES["yosemite-trip-cost-budget-2026"] = function YosemiteTripC
       <ul>
         <li><strong>Lodging:</strong> Yosemite Valley Lodge or gateway-town hotel, $350/night x 3 = $1,050</li>
         <li><strong>Food:</strong> Mix of camp-style lunches and park dining, ~$50/person/day x 3 = $300</li>
-        <li><strong>Gas:</strong> Round trip from Bay Area, ~$60</li>
+        <li><strong>Gas:</strong> Round trip from Bay Area, ~$75</li>
         <li><strong>Entrance fee:</strong> $35</li>
         <li><strong>Gear:</strong> Trail shoes if needed, $80</li>
         <li><strong>Guided program:</strong> One stargazing program, ~$50 for two</li>
-        <li><strong>Total:</strong> ~$1,575</li>
+        <li><strong>Total:</strong> ~$1,590</li>
       </ul>
 
       <p>
@@ -218,11 +218,11 @@ window.ARTICLE_BODIES["yosemite-trip-cost-budget-2026"] = function YosemiteTripC
       <ul>
         <li><strong>Lodging:</strong> The Ahwahnee, $650/night x 3 = $1,950</li>
         <li><strong>Food:</strong> Ahwahnee dining room dinners (prix fixe from $95/person) plus nice park lunches, ~$150/person/day x 3 = $900</li>
-        <li><strong>Gas:</strong> Round trip from Bay Area, ~$60</li>
+        <li><strong>Gas:</strong> Round trip from Bay Area, ~$75</li>
         <li><strong>Entrance fee:</strong> $35</li>
         <li><strong>Guided program:</strong> Full-day custom adventure, ~$850 for two</li>
         <li><strong>Extras:</strong> Souvenirs, specialty gear, etc. ~$200</li>
-        <li><strong>Total:</strong> ~$3,995</li>
+        <li><strong>Total:</strong> ~$4,010</li>
       </ul>
 
       <p>

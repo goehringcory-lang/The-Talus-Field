@@ -70,11 +70,11 @@ window.ARTICLE_BODIES["yosemite-camping-complete-guide"] = function YosemiteCamp
       </p>
 
       <p>
-        <strong>What it costs.</strong> Valley campgrounds run $36 per night, and so do most of the campgrounds outside the Valley (Wawona, Hodgdon Meadow, Crane Flat, Bridalveil Creek, White Wolf, Tuolumne Meadows). The primitive campgrounds (Tamarack Flat, Yosemite Creek, Porcupine Flat) are $24 per night. Camp 4 is $10 per person per night in season. Housekeeping Camp, which is more of a canvas-tent structure than a traditional campsite, is its own category and price. There are no hookups anywhere in the park. Not electric, not water, not sewer. A free dump station exists in the Valley for RVs, which can be up to 35 to 40 feet depending on the campground.
+        <strong>What it costs.</strong> Valley campgrounds run $36 per night, and so do most of the campgrounds outside the Valley (Wawona, Hodgdon Meadow, Crane Flat, Bridalveil Creek, Tuolumne Meadows). White Wolf is $28, reduced because it has no potable water. The primitive campgrounds (Tamarack Flat, Yosemite Creek, Porcupine Flat) are $24 per night. Camp 4 is $10 per person per night in season. Housekeeping Camp, which is more of a canvas-tent structure than a traditional campsite, is its own category and price. There are no hookups anywhere in the park. Not electric, not water, not sewer. A free dump station exists in the Valley for RVs, which can be up to 35 to 40 feet depending on the campground.
       </p>
 
       <p>
-        <strong>What it costs to get in.</strong> On top of the campsite, the park entrance fee is $35 per non-commercial vehicle and covers seven days. Motorcycles are $30. Arriving on foot or by bicycle is $20 per person. An America the Beautiful annual pass covers the entrance fee outright and pays for itself on the second park of the year. New as of January 1, 2026: visitors who are not U.S. residents, ages 16 and older, pay an additional $100 per person, valid for the same seven days. If your group is a mix, budget for it before you are at the gate, because the entrance station is a bad place to discover a fee.
+        <strong>What it costs to get in.</strong> On top of the campsite, the park entrance fee is $35 per non-commercial vehicle and covers seven days. Motorcycles are $30. Arriving on foot or by bicycle is $20 per person. An America the Beautiful annual pass covers the entrance fee outright and pays for itself on the third entry of the year. New as of January 1, 2026: visitors who are not U.S. residents, ages 16 and older, pay an additional $100 per person, valid for the same seven days. If your group is a mix, budget for it before you are at the gate, because the entrance station is a bad place to discover a fee.
       </p>
 
       <p>
@@ -108,7 +108,7 @@ window.ARTICLE_BODIES["yosemite-camping-complete-guide"] = function YosemiteCamp
       </p>
 
       <p>
-        <strong>Campflare</strong> (free) and <strong>Outdoorithm</strong> (free) both monitor recreation.gov for openings at campgrounds you specify and send notifications. <strong>Campnab</strong> ($10 to $30 per month) is faster and more aggressive, which matters when a site stays available for only seconds.
+        <strong>Campflare</strong> (free) and <strong>Outdoorithm</strong> (free) both monitor recreation.gov for openings at campgrounds you specify and send notifications. <strong>Campnab</strong> (CAD 10 to 30 per month) is faster and more aggressive, which matters when a site stays available for only seconds.
       </p>
 
       <p>
@@ -166,7 +166,7 @@ window.ARTICLE_BODIES["yosemite-camping-complete-guide"] = function YosemiteCamp
       </p>
 
       <p>
-        Reservations open one week in advance on a rolling daily basis, and they are required for most of the year. In 2026 the reservation season runs from April 15 through November 9. Outside those dates it goes first-come, first-served, which makes winter one of the easier ways to camp in the Valley. During peak season it still sells out at 7 AM like everything else.
+        Reservations open one week in advance on a rolling daily basis, and they are required for most of the year. In 2026 the reservation season runs from April 15 through November 29. Outside those dates it goes first-come, first-served, which makes winter one of the easier ways to camp in the Valley. During peak season it still sells out at 7 AM like everything else.
       </p>
 
       <p>
@@ -180,7 +180,7 @@ window.ARTICLE_BODIES["yosemite-camping-complete-guide"] = function YosemiteCamp
       </p>
 
       <p>
-        Books through recreation.gov with a different price structure. Appeals to families and people who want the atmosphere without sleeping on actual ground.
+        Books through travelyosemite.com, like the park's lodges, rather than recreation.gov, and with a different price structure. Appeals to families and people who want the atmosphere without sleeping on actual ground.
       </p>
 
       <h2>The road out of the Valley</h2>
@@ -236,7 +236,7 @@ window.ARTICLE_BODIES["yosemite-camping-complete-guide"] = function YosemiteCamp
       <h3>Tuolumne Meadows</h3>
 
       <p>
-        Tuolumne Meadows Campground reopened on August 1, 2025, after a three-year, $26 million rehabilitation that closed it from 2022 on. It is the largest campground in the park: 336 standard and hike-in sites at 8,600 feet, plus backpacker, group, and horse sites, with rebuilt restrooms and new water and sewer systems. Twenty-nine of the sites are new hike-in sites, which is the closest thing to backcountry camping you can do with a car in the parking lot. It is the crown jewel of the high country. The meadows stretch wide and golden, the Tuolumne River winds through them, and the granite domes are smoother and rounder than the Valley's cliffs.
+        Tuolumne Meadows Campground reopened on August 1, 2025, after a three-year, $26 million rehabilitation that closed it from 2022 on. It is the largest campground in the park: 336 sites at 8,600 feet, hike-in, group and horse sites included, plus backpacker, group, and horse sites, with rebuilt restrooms and new water and sewer systems. Twenty-nine of the sites are new hike-in sites, which is the closest thing to backcountry camping you can do with a car in the parking lot. It is the crown jewel of the high country. The meadows stretch wide and golden, the Tuolumne River winds through them, and the granite domes are smoother and rounder than the Valley's cliffs.
       </p>
 
       <p>
@@ -276,7 +276,7 @@ window.ARTICLE_BODIES["yosemite-camping-complete-guide"] = function YosemiteCamp
       </p>
 
       <p>
-        Bridalveil Creek is a strong choice for people who want to hike the <a href="/articles/four-mile-up-panorama-down">Four Mile and Panorama trails</a> from Glacier Point. You camp at elevation, drive to Glacier Point in minutes, and hike down into the Valley. Flush toilets, drinking water. Two-week rolling window. Open July through early September.
+        Bridalveil Creek is a strong choice for people who want to hike the <a href="/articles/four-mile-up-panorama-down">Four Mile and Panorama trails</a> from Glacier Point. You camp at elevation, drive to Glacier Point in minutes, and hike down into the Valley. Flush toilets, drinking water. Two-week rolling window. Open July through early September, though the 2026 season ended on August 14 after a lightning strike damaged the water system and restrooms.
       </p>
 
       <p>
