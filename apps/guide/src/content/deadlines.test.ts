@@ -39,20 +39,29 @@ describe('memorialDay and cablesSeason', () => {
   })
 })
 
+// Every expectation below is a row of the release table NPS publishes on
+// nps.gov/yose/planyourvisit/camping.htm, which is four months back from the
+// start of the arrival window. The same page's prose says "five months in
+// advance", counting to the far end of the window; these dates are what
+// Recreation.gov actually opens, so the table wins. See deadlines.ts.
 describe('releaseDateFor (the 15th rule)', () => {
-  it('sends an arrival on or after the 15th to the 15th five months before its own month', () => {
-    expect(releaseDateFor('2027-07-15', 5)).toBe('2027-02-15')
-    expect(releaseDateFor('2027-07-31', 5)).toBe('2027-02-15')
+  it('sends an arrival on or after the 15th to the 15th four months before its own month', () => {
+    // NPS: arrivals July 15 - August 14 open on March 15.
+    expect(releaseDateFor('2027-07-15', 4)).toBe('2027-03-15')
+    expect(releaseDateFor('2027-07-31', 4)).toBe('2027-03-15')
   })
 
   it('sends an arrival before the 15th to the release one month earlier', () => {
-    expect(releaseDateFor('2027-07-14', 5)).toBe('2027-01-15')
-    expect(releaseDateFor('2027-07-01', 5)).toBe('2027-01-15')
+    // NPS: arrivals June 15 - July 14 open on February 15.
+    expect(releaseDateFor('2027-07-14', 4)).toBe('2027-02-15')
+    expect(releaseDateFor('2027-07-01', 4)).toBe('2027-02-15')
   })
 
   it('crosses the year boundary', () => {
-    expect(releaseDateFor('2027-03-10', 5)).toBe('2026-09-15')
-    expect(releaseDateFor('2027-01-20', 5)).toBe('2026-08-15')
+    // NPS: arrivals February 15 - March 14 open on October 15;
+    // arrivals January 15 - February 14 open on September 15.
+    expect(releaseDateFor('2027-03-10', 4)).toBe('2026-10-15')
+    expect(releaseDateFor('2027-01-20', 4)).toBe('2026-09-15')
   })
 })
 
@@ -68,7 +77,9 @@ describe('resolveDeadlines', () => {
   it('applies the campground rows to the arrival day only', () => {
     expect(byId(trip, 'camp-two-weeks').map((d) => d.date)).toEqual(['2027-06-30'])
     expect(byId(trip, 'camp4').map((d) => d.date)).toEqual(['2027-07-07'])
-    expect(byId(trip, 'camp-15th').map((d) => d.date)).toEqual(['2027-01-15'])
+    // Arrival July 14 falls in the June 15 - July 14 window, which NPS opens
+    // on February 15.
+    expect(byId(trip, 'camp-15th').map((d) => d.date)).toEqual(['2027-02-15'])
   })
 
   it('applies the wilderness rows to the start day, the lottery as a Sunday-to-Saturday week', () => {
