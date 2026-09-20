@@ -1,1 +1,30 @@
-[]
+[
+  {
+    "date": "2026-09-20",
+    "verdict": "parity",
+    "workerVersion": {
+      "id": "7dc2a352-d022-459f-ae9c-1c98640ba61b",
+      "tag": "",
+      "timestamp": "2026-09-20T04:20:27.554672Z"
+    },
+    "worker": {
+      "status": 200,
+      "count": 71,
+      "newest": "glacier-point-how-to-visit",
+      "bulletinUpdated": "2026-09-16"
+    },
+    "asset": {
+      "status": 200,
+      "count": 71,
+      "newest": "glacier-point-how-to-visit"
+    },
+    "repo": {
+      "count": 71,
+      "newest": "glacier-point-how-to-visit",
+      "bulletinUpdated": "2026-09-16"
+    },
+    "missingFromWorker": [],
+    "missingFromAsset": [],
+    "extraLive": []
+  }
+]
