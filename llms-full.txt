@@ -16,7 +16,7 @@ as plain static HTML at https://thetalusfieldjournal.com/archive/.
 
 ---
 
-## Glacier Point: How to Visit, When the Road Is Open, and the Shuttle Rule That Governs a Summer Day
+## Glacier Point: How to Visit and When the Road Is Open
 
 URL: https://thetalusfieldjournal.com/articles/glacier-point-how-to-visit
 Section: Planning. Published: 2026-09-17. Last updated: 2026-09-17.
@@ -104,7 +104,7 @@ The sunset. Arrive after 4:30 pm with an hour in hand, take Washburn Point if th
 
 ---
 
-## Clouds Rest: The Summit Above Half Dome, and the Autumn Window That Keeps It Open
+## Clouds Rest Hike: The Summit Above Half Dome, and When to Go
 
 URL: https://thetalusfieldjournal.com/articles/clouds-rest-hike
 Section: Trails and Hikes. Published: 2026-09-14. Last updated: 2026-09-14.
@@ -198,7 +198,7 @@ The practical close, then: check conditions the night before, drive to the Sunri
 
 ---
 
-## Yosemite from Las Vegas: Two Roads, One Pass, and the Month That Decides
+## Las Vegas to Yosemite: The Drive, and the Pass That Decides
 
 URL: https://thetalusfieldjournal.com/articles/yosemite-from-las-vegas
 Section: Planning. Published: 2026-09-10. Last updated: 2026-09-10.
@@ -295,7 +295,7 @@ Some links in this piece are affiliate links. If you buy or book through one, Th
 
 ---
 
-## When Highway 140 Closes: Getting Into Yosemite Anyway, and What It Does to a Mariposa Booking
+## Highway 140 Closed? How to Get Into Yosemite Anyway
 
 URL: https://thetalusfieldjournal.com/articles/highway-140-closed-yosemite
 Section: Planning. Published: 2026-09-07. Last updated: 2026-09-07.
@@ -431,7 +431,7 @@ Some links in this piece are affiliate links. If you buy or book through one, Th
 
 ---
 
-## Yosemite from Los Angeles: The Drive, the Roads, and Where to Break It
+## Los Angeles to Yosemite: The Drive and Where to Break It
 
 URL: https://thetalusfieldjournal.com/articles/yosemite-from-los-angeles
 Section: Planning. Published: 2026-09-03. Last updated: 2026-09-03.
@@ -534,7 +534,7 @@ Some links in this piece are affiliate links. If you buy or book through one, Th
 
 ---
 
-## The Yosemite Facelift: How to Volunteer for the Park's Biggest Cleanup
+## Yosemite Facelift: How to Volunteer for the Park Cleanup
 
 URL: https://thetalusfieldjournal.com/articles/yosemite-facelift-volunteer-guide
 Section: Planning. Published: 2026-08-31. Last updated: 2026-09-09.
@@ -596,7 +596,7 @@ None of it requires you to plan a separate trip. A Facelift day slots into an or
 
 ---
 
-## Bracebridge Dinner and Vintners' Holidays: Yosemite's Christmas Season, Honestly
+## Bracebridge Dinner and Vintners' Holidays: An Honest Guide
 
 URL: https://thetalusfieldjournal.com/articles/bracebridge-dinner-and-vintners-holidays
 Section: Seasonal Guides. Published: 2026-08-27. Last updated: 2026-08-27.
@@ -674,7 +674,7 @@ Some links in this piece are affiliate links. If you buy or book through one, Th
 
 ---
 
-## Yosemite fire restrictions, explained: what's banned, what still works, and how to check before you go
+## Yosemite fire restrictions: what's banned, what still works
 
 URL: https://thetalusfieldjournal.com/articles/yosemite-fire-restrictions-explained
 Section: Planning. Published: 2026-08-24. Last updated: 2026-08-24.
@@ -762,7 +762,7 @@ Check the fire restrictions page in the days before you leave, not when you book
 
 ---
 
-## Yosemite in three to five days: one park per day
+## Yosemite itinerary for 3, 4 or 5 days: one park per day
 
 URL: https://thetalusfieldjournal.com/articles/yosemite-in-three-to-five-days
 Section: Planning. Published: 2026-08-23. Last updated: 2026-08-23.
@@ -883,7 +883,7 @@ Some links in this piece are affiliate links. If you buy or book through one, Th
 
 ---
 
-## Winter hiking in Yosemite: the trails that stay open
+## Yosemite winter hikes: the trails that stay open
 
 URL: https://thetalusfieldjournal.com/articles/yosemite-winter-hikes
 Section: Trails and Hikes. Published: 2026-08-23. Last updated: 2026-08-23.
@@ -992,7 +992,7 @@ Some links in this piece are affiliate links. If you buy or book through one, Th
 
 ---
 
-## Yosemite in March: A Tale of Two Seasons
+## Yosemite in March: Weather, Snow, and a Tale of Two Seasons
 
 URL: https://thetalusfieldjournal.com/articles/yosemite-in-march
 Section: Seasonal Guides. Published: 2026-08-20. Last updated: 2026-08-20.
@@ -1230,7 +1230,7 @@ Some links in this piece are affiliate links. If you buy or book through one, Th
 
 ---
 
-## Your First Yosemite Backpacking Trip: What the Permit Doesn't Tell You
+## First Yosemite Backpacking Trip: What the Permit Doesn't Say
 
 URL: https://thetalusfieldjournal.com/articles/first-yosemite-backpacking-trip
 Section: Trails and Hikes. Published: 2026-08-07. Last updated: 2026-08-07.
@@ -1378,7 +1378,7 @@ Go somewhere small the first time. Then go back.
 
 ---
 
-## Yosemite as a Day Trip From the Bay Area: The Honest Math
+## Yosemite Day Trip From San Francisco: The Honest Math
 
 URL: https://thetalusfieldjournal.com/articles/yosemite-day-trip-from-bay-area
 Section: Planning. Published: 2026-08-07. Last updated: 2026-08-07.
@@ -1511,7 +1511,7 @@ Some links in this piece are affiliate links. If you buy or book through one, Th
 
 ---
 
-## Swimming in the Merced
+## Swimming in Yosemite: Where to Get in the Merced River
 
 URL: https://thetalusfieldjournal.com/articles/swimming-in-the-merced
 Section: Seasonal Guides. Published: 2026-08-07. Last updated: 2026-08-07.
@@ -1616,7 +1616,7 @@ None of this is an argument against getting in the water. It is an argument agai
 
 ---
 
-## Tuolumne Meadows in a day
+## Tuolumne Meadows in a day: a Yosemite high-country plan
 
 URL: https://thetalusfieldjournal.com/articles/tuolumne-meadows-in-a-day
 Section: Planning. Published: 2026-08-07. Last updated: 2026-08-07.
@@ -1722,7 +1722,7 @@ The reason to give Tuolumne a whole day rather than a scenic hour is that it is 
 
 ---
 
-## Mariposa Grove: how to visit
+## Mariposa Grove: how to visit Yosemite's giant sequoias
 
 URL: https://thetalusfieldjournal.com/articles/mariposa-grove-how-to-visit
 Section: Planning. Published: 2026-08-07. Last updated: 2026-08-07.
@@ -1829,7 +1829,7 @@ The thing worth holding onto is that the inconvenience is the restoration. The t
 
 ---
 
-## Parking in Yosemite Valley: Where the Lots Are, When They Fill, and What to Do at Eleven
+## Yosemite Valley Parking: Where to Park and When Lots Fill
 
 URL: https://thetalusfieldjournal.com/articles/yosemite-valley-parking-guide
 Section: Planning. Published: 2026-08-06. Last updated: 2026-08-06.
@@ -1916,7 +1916,7 @@ The Valley holds what it holds. Every visitor who accepts that at the entrance s
 
 ---
 
-## The Valley Shuttle and YARTS: Yosemite's Two Buses, and When Each One Beats Driving
+## Yosemite Shuttle and YARTS: When Each Bus Beats Driving
 
 URL: https://thetalusfieldjournal.com/articles/yosemite-shuttle-and-yarts
 Section: Planning. Published: 2026-08-05. Last updated: 2026-08-07.
@@ -2000,7 +2000,7 @@ The park's transportation problem is not that there are too many visitors. It is
 
 ---
 
-## Walk-Up and Day-Of Permits: What You Can Still Get Today
+## Yosemite Walk-Up Permits: What You Can Still Get Today
 
 URL: https://thetalusfieldjournal.com/articles/yosemite-walk-up-and-day-of-permits
 Section: Planning. Published: 2026-08-04. Last updated: 2026-08-04.
@@ -2087,7 +2087,7 @@ The pattern under all of it is the same one that governs this park generally. Yo
 
 ---
 
-## Yosemite in Fall: What Closes, When, and What You Get Instead
+## Yosemite in Fall: What Closes, and What You Get Instead
 
 URL: https://thetalusfieldjournal.com/articles/yosemite-in-fall
 Section: Seasonal Guides. Published: 2026-08-02. Last updated: 2026-08-02.
@@ -2194,7 +2194,7 @@ Some links in this piece are affiliate links. If you buy or book through one, Th
 
 ---
 
-## From the Archive: the year Yosemite measured a hole in a sequoia to the half inch
+## Yosemite tunnel trees: the sequoia measured to the half inch
 
 URL: https://thetalusfieldjournal.com/articles/yosemite-tunnel-trees
 Section: Wildlife and Nature. Published: 2026-07-26. Last updated: 2026-07-26.
@@ -2277,7 +2277,7 @@ From the Archive is an occasional series reading the 512 issues of Yosemite Natu
 
 ---
 
-## Animals of Yosemite: What Lives Here, and Where to See It
+## Yosemite Wildlife: What Lives Here, and Where to See It
 
 URL: https://thetalusfieldjournal.com/articles/yosemite-wildlife-viewing-guide
 Section: Wildlife and Nature. Published: 2026-07-18. Last updated: 2026-09-12.
@@ -2387,7 +2387,7 @@ Why it matters in practice: playing dead is grizzly advice and it is wrong here,
 
 ---
 
-## Showy milkweed is blooming in Yosemite Valley, and the monarchs depend on it
+## Showy milkweed in Yosemite Valley: the monarchs depend on it
 
 URL: https://thetalusfieldjournal.com/articles/showy-milkweed-yosemite-valley
 Section: Wildlife and Nature. Published: 2026-07-17. Last updated: 2026-07-17.
@@ -2446,7 +2446,7 @@ Milkweed asks nothing of the people who walk past it. It has its pollinators, it
 
 ---
 
-## Connecting to Traditions: Meet Yosemite's Indigenous Artists This Summer and Fall
+## Connecting to Traditions: Meet Yosemite's Indigenous Artists
 
 URL: https://thetalusfieldjournal.com/articles/yosemite-connecting-to-traditions
 Section: Seasonal Guides. Published: 2026-07-16. Last updated: 2026-07-16.
@@ -2579,7 +2579,7 @@ And if your trip is already booked for August or September: adjust expectations,
 
 ---
 
-## Where to Photograph Yosemite: The Spots, the Light, and When to Be There
+## Yosemite Photography Spots: The Light, and When to Be There
 
 URL: https://thetalusfieldjournal.com/articles/yosemite-photography-spots
 Section: Planning. Published: 2026-07-12. Last updated: 2026-07-12.
@@ -2650,7 +2650,7 @@ Pick the spot by the hour: Tunnel View and Glacier Point in late afternoon, Vall
 
 ---
 
-## Horsetail Fall: How the February Firefall Actually Works
+## Yosemite Firefall: How Horsetail Fall Works in February
 
 URL: https://thetalusfieldjournal.com/articles/horsetail-fall-firefall
 Section: Seasonal Guides. Published: 2026-07-12. Last updated: 2026-07-16.
@@ -2804,7 +2804,7 @@ Some links in this piece are affiliate links. If you buy or book through one, Th
 
 ---
 
-## Where to Stay Inside Yosemite: Every In-Park Option, Honestly Ranked
+## Where to Stay in Yosemite: Every In-Park Option, Ranked
 
 URL: https://thetalusfieldjournal.com/articles/where-to-stay-in-yosemite
 Section: Planning. Published: 2026-07-12. Last updated: 2026-09-09.
@@ -2887,7 +2887,7 @@ Some links in this piece are affiliate links. If you buy or book through one, Th
 
 ---
 
-## Yosemite Wildflowers: A Bloom Calendar That Climbs the Mountain
+## Yosemite Wildflowers: The Bloom Calendar Climbs the Mountain
 
 URL: https://thetalusfieldjournal.com/articles/yosemite-wildflowers-guide
 Section: Wildlife and Nature. Published: 2026-07-12. Last updated: 2026-07-12.
@@ -2954,7 +2954,7 @@ Yosemite is not a superbloom park. If you have seen photographs of desert valley
 
 ---
 
-## Watching Climbers on El Capitan: A Spectator's Guide to the Biggest Wall in America
+## Watching Climbers on El Capitan: A Spectator's Guide
 
 URL: https://thetalusfieldjournal.com/articles/watching-climbers-el-capitan
 Section: Planning. Published: 2026-07-12. Last updated: 2026-07-12.
@@ -3041,7 +3041,7 @@ That's the show. Bring binoculars, stay for the headlamps.
 
 ---
 
-## Getting to Yosemite: Five Entrances, and How to Pick the Right One
+## Getting to Yosemite: Which of the Five Entrances to Use
 
 URL: https://thetalusfieldjournal.com/articles/getting-to-yosemite
 Section: Planning. Published: 2026-07-12. Last updated: 2026-08-07.
@@ -3106,7 +3106,7 @@ Some links in this piece are affiliate links. If you buy or book through one, Th
 
 ---
 
-## The Yosemite Wilderness Permit, Explained
+## Yosemite Wilderness Permits, Explained
 
 URL: https://thetalusfieldjournal.com/articles/yosemite-wilderness-permits-guide
 Section: Planning. Published: 2026-07-11. Last updated: 2026-08-07.
@@ -3158,7 +3158,7 @@ The permit system looks like a wall from the outside. It is actually a door with
 
 ---
 
-## An Accessible Yosemite: What Works, and How to Plan for It
+## Yosemite Accessibility: What Works, and How to Plan for It
 
 URL: https://thetalusfieldjournal.com/articles/yosemite-accessibility-guide
 Section: Planning. Published: 2026-07-10. Last updated: 2026-07-10.
@@ -3219,7 +3219,7 @@ Some links in this piece are affiliate links. If you buy or book through one, Th
 
 ---
 
-## Bringing a Dog to Yosemite: The Rules, the Two Trails, and an Honest Answer
+## Dogs in Yosemite: The Rules, the Two Trails, an Honest Answer
 
 URL: https://thetalusfieldjournal.com/articles/pets-in-yosemite
 Section: Planning. Published: 2026-07-09. Last updated: 2026-08-01.
@@ -3269,7 +3269,7 @@ Some links in this piece are affiliate links. If you buy or book through one, Th
 
 ---
 
-## The Best Thing in Yosemite Is Free: Ranger Programs and the Junior Ranger Badge
+## Yosemite Ranger Programs: The Best Thing in the Park Is Free
 
 URL: https://thetalusfieldjournal.com/articles/yosemite-ranger-programs
 Section: Planning. Published: 2026-07-08. Last updated: 2026-07-08.
@@ -3307,7 +3307,7 @@ A closing word about the people. The rangers and volunteers who lead these progr
 
 ---
 
-## The Dirt on Camping in Yosemite: All 13 Campgrounds
+## Camping in Yosemite: The Dirt on All 13 Campgrounds
 
 URL: https://thetalusfieldjournal.com/articles/yosemite-camping-complete-guide
 Section: Planning. Published: 2026-07-10. Last updated: 2026-08-07.
@@ -3610,7 +3610,7 @@ Some links in this piece are affiliate links. If you buy or book through one, Th
 
 ---
 
-## Where to Propose in Yosemite: What Twenty Years of Watching Taught Me
+## Where to Propose in Yosemite, From Twenty Years of Watching
 
 URL: https://thetalusfieldjournal.com/articles/where-to-propose-in-yosemite
 Section: Planning. Published: 2026-06-24. Last updated: 2026-06-24.
@@ -3804,7 +3804,7 @@ Bear spray is prohibited in Yosemite, classified as a weapon in the Superintende
 
 ---
 
-## The Bear Spray You Packed for Yosemite Is Illegal
+## Yosemite Bear Safety: What to Do When You See a Bear
 
 URL: https://thetalusfieldjournal.com/articles/yosemite-bears-safety-guide
 Section: Wildlife and Nature. Published: 2026-06-16. Last updated: 2026-06-16.
@@ -4081,7 +4081,7 @@ Some links in this piece are affiliate links. If you buy or book through one, Th
 
 ---
 
-## When to Visit Yosemite in 2026: What the Traffic Data Says
+## Best Time to Visit Yosemite in 2026, by the Traffic Data
 
 URL: https://thetalusfieldjournal.com/articles/when-to-visit-yosemite-2026-crowd-forecast
 Section: Planning. Published: 2026-06-11. Last updated: 2026-09-02.
@@ -4262,7 +4262,7 @@ None of that changes the planning logic. Demand for this park rises every year t
 
 ---
 
-## What a Yosemite Trip Actually Costs in 2026
+## Yosemite Trip Cost in 2026: Three Budgets, Real Numbers
 
 URL: https://thetalusfieldjournal.com/articles/yosemite-trip-cost-budget-2026
 Section: Planning. Published: 2026-06-07. Last updated: 2026-08-01.
@@ -4423,7 +4423,7 @@ Some links in this piece are affiliate links. If you buy or book through one, Th
 
 ---
 
-## Yosemite in September 2026: What Closes, and What Gets Better
+## Yosemite in September 2026: What Closes, What Gets Better
 
 URL: https://thetalusfieldjournal.com/articles/yosemite-in-september-2026
 Section: Seasonal Guides. Published: 2026-08-25. Last updated: 2026-08-25.
@@ -4579,7 +4579,7 @@ Plan accordingly.
 
 ---
 
-## Cathedral Lakes: the high-country day hike worth driving up for
+## Cathedral Lakes hike: the high-country day worth the drive
 
 URL: https://thetalusfieldjournal.com/articles/cathedral-lakes-day-hike
 Section: Trails and Hikes. Published: 2026-06-02. Last updated: 2026-06-02.
@@ -4760,7 +4760,7 @@ I will be back out in the Valley tomorrow morning. If it is anything like this w
 
 ---
 
-## So you decided to come to Yosemite on Memorial Day. What are you thinking?
+## Yosemite on Memorial Day 2026: skip the Valley, go high
 
 URL: https://thetalusfieldjournal.com/articles/memorial-day-skip-the-valley-go-high-2026
 Section: Seasonal Guides. Published: 2026-05-20. Last updated: 2026-09-16.
@@ -4976,7 +4976,7 @@ For where to base yourself, see Yosemite gateway towns compared and the lodging 
 
 ---
 
-## One day in Yosemite: a minimalist itinerary for one or two days
+## One day in Yosemite: an itinerary for one or two days
 
 URL: https://thetalusfieldjournal.com/articles/yosemite-in-one-or-two-days
 Section: Planning. Published: 2026-05-19. Last updated: 2026-08-07.
@@ -5144,7 +5144,7 @@ Some links in this piece are affiliate links. If you buy or book through one, Th
 
 ---
 
-## My favorite day hike in Yosemite: Four Mile up, Panorama down
+## Four Mile Trail up, Panorama down: my favorite Yosemite hike
 
 URL: https://thetalusfieldjournal.com/articles/four-mile-up-panorama-down
 Section: Trails and Hikes. Published: 2026-05-17. Last updated: 2026-05-17.
@@ -5284,7 +5284,7 @@ It's 13 miles and 4,000 feet of elevation change, and every step of it is worth 
 
 ---
 
-## Your last-minute Yosemite trip with kids: a naturalist's honest guide
+## Yosemite with kids: a naturalist's honest last-minute guide
 
 URL: https://thetalusfieldjournal.com/articles/yosemite-with-kids-no-reservations-2026
 Section: Planning. Published: 2026-05-14. Last updated: 2026-08-06.
@@ -5458,7 +5458,7 @@ Some links in this piece are affiliate links. If you buy or book through one, Th
 
 ---
 
-## Tioga Road opens May 15: a plan for opening weekend
+## Tioga Road opening 2026: a plan for opening weekend
 
 URL: https://thetalusfieldjournal.com/articles/tioga-road-opening-weekend-2026
 Section: Seasonal Guides. Published: 2026-05-13. Last updated: 2026-09-09.
@@ -5619,7 +5619,7 @@ For more on the early season up high, see Glacier Point Road is open. For 2026 s
 
 ---
 
-## So you want to hike Half Dome
+## Hiking Half Dome: what it takes, and the better alternative
 
 URL: https://thetalusfieldjournal.com/articles/so-you-want-to-hike-half-dome
 Section: Trails and Hikes. Published: 2026-05-12. Last updated: 2026-05-12.
@@ -5776,7 +5776,7 @@ You won't feel like you missed anything. You'll feel like you found something be
 
 ---
 
-## Glacier Point Road is open: a plan for the early season
+## Glacier Point Road open 2026: a plan for the early season
 
 URL: https://thetalusfieldjournal.com/articles/glacier-point-road-open-2026
 Section: Seasonal Guides. Published: 2026-05-11. Last updated: 2026-05-11.
@@ -5838,7 +5838,7 @@ The door is open. Walk through it.
 
 ---
 
-## The Mist Trail: everything the internet isn't telling you
+## Mist Trail, Yosemite: what the internet isn't telling you
 
 URL: https://thetalusfieldjournal.com/articles/mist-trail-the-real-guide
 Section: Trails and Hikes. Published: 2026-05-11. Last updated: 2026-08-27.
@@ -5942,7 +5942,7 @@ Some links in this piece are affiliate links. If you buy or book through one, Th
 
 ---
 
-## So you want to work in Yosemite
+## Working in Yosemite: so you want a job in the park
 
 URL: https://thetalusfieldjournal.com/articles/working-in-yosemite
 Section: Planning. Published: 2026-05-08. Last updated: 2026-05-08.
@@ -6036,7 +6036,7 @@ If you're still considering it after reading all that: the application portals a
 
 ---
 
-## How water ouzels live inside a waterfall
+## Water ouzels: how the American dipper lives in a waterfall
 
 URL: https://thetalusfieldjournal.com/articles/water-ouzels-waterfalls
 Section: Wildlife and Nature. Published: 2026-05-08. Last updated: 2026-05-08.
@@ -6115,7 +6115,7 @@ For another category of subtle Yosemite observation that rewards patience, see t
 
 ---
 
-## Why a Yosemite bear in April is more dangerous than one in August
+## Why a Yosemite bear in April is more dangerous than in August
 
 URL: https://thetalusfieldjournal.com/articles/bears-spring-emergence
 Section: Wildlife and Nature. Published: 2026-05-08. Last updated: 2026-05-08.
@@ -6693,7 +6693,7 @@ Some links in this piece are affiliate links. If you buy or book through one, Th
 
 ---
 
-## Yosemite for non-hikers: the park you can experience without a trail
+## Yosemite for non-hikers: see the park without a trail
 
 URL: https://thetalusfieldjournal.com/articles/yosemite-for-non-hikers
 Section: Planning. Published: 2026-04-26. Last updated: 2026-08-06.
@@ -7059,7 +7059,7 @@ Some links in this piece are affiliate links. If you buy or book through one, Th
 
 ---
 
-## Mariposa or Oakhurst or Groveland: Which Yosemite Gateway to Book
+## Where to Stay Outside Yosemite: Mariposa, Oakhurst, Groveland
 
 URL: https://thetalusfieldjournal.com/articles/yosemite-gateway-towns-compared
 Section: Planning. Published: 2026-04-26. Last updated: 2026-08-30.
@@ -7450,7 +7450,7 @@ Plan for both. Visit anyway.
 
 ---
 
-## Yosemite without reservations in 2026: a real strategy for the year the cap came off
+## Yosemite reservations in 2026: not required. Here's the plan
 
 URL: https://thetalusfieldjournal.com/articles/yosemite-without-reservations-2026
 Section: Planning. Published: 2026-04-26. Last updated: 2026-08-06.
@@ -7608,7 +7608,7 @@ Some links in this piece are affiliate links. If you buy or book through one, Th
 
 ---
 
-## If it's your first time in Yosemite, read this before you book anything
+## First time in Yosemite: read this before you book anything
 
 URL: https://thetalusfieldjournal.com/articles/first-time-yosemite-overwhelm
 Section: Planning. Published: 2026-04-25. Last updated: 2026-08-07.
