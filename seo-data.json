@@ -897,7 +897,7 @@
       },
       {
         "q": "When was the first Yosemite tunnel tree cut?",
-        "a": "The Dead Giant in the Tuolumne Grove, in June 1878. The English traveler W. G. Marshall passed through it on June 23, 1878 and recorded that the first stagecoach had gone through on the afternoon of Tuesday, June 18, a week earlier. The tree was already dead, its trunk severed about ninety feet up."
+        "a": "The Dead Giant in the Tuolumne Grove, in June 1878. The English traveler W. G. Marshall came through the Sierra that month and recorded that the first stagecoach had gone through on the afternoon of Tuesday, June 18. The tree was already dead, its trunk severed about ninety feet up."
       }
     ]
   },
@@ -1986,7 +1986,7 @@
       },
       {
         "q": "Is there parking at the Four Mile Trailhead?",
-        "a": "There is no dedicated parking lot. The Four Mile Trailhead is along Southside Drive near Sentinel Rock. Park in the general Valley day-use lots and walk or ride the Valley bike path roughly 1.5 miles to the trailhead."
+        "a": "There is a small lot at the trailhead, along Southside Drive near Sentinel Rock, and it fills by 7 a.m. If it is full, park at Yosemite Village or the day-use lot and take the Valley shuttle."
       },
       {
         "q": "Can I take the Glacier Point bus to do this hike one-way?",
@@ -2096,7 +2096,7 @@
       },
       {
         "q": "What is Clouds Rest and is it a better hike than Half Dome?",
-        "a": "Clouds Rest is a 10-mile round trip from Tenaya Lake that gains about 1,750 feet to a summit at 9,926 feet, roughly 1,000 feet higher than Half Dome, with views of the entire park. No permit required. It is less crowded, costs nothing extra, and the view is broader."
+        "a": "Clouds Rest is a 13-mile round trip from the Sunrise trailhead at the south end of Tenaya Lake, gaining about 2,000 feet to a summit at 9,926 feet, roughly 1,000 feet higher than Half Dome. No permit required. It is less crowded, costs nothing extra, and the view is broader."
       },
       {
         "q": "When are the cables up on Half Dome?",
@@ -2120,7 +2120,7 @@
     "faq": [
       {
         "q": "When does Glacier Point Road open in 2026?",
-        "a": "Glacier Point Road opened in early May 2026, ahead of the typical Memorial Day weekend opening. The road runs 16 miles from Highway 41 to the Glacier Point overlook at 7,214 feet."
+        "a": "Glacier Point Road opened in early May 2026, ahead of the typical Memorial Day weekend opening. The road climbs from the gate at Chinquapin to a viewpoint at 7,200 feet that puts you at eye level with Half Dome."
       },
       {
         "q": "What is open at Glacier Point in early 2026?",
@@ -2128,15 +2128,15 @@
       },
       {
         "q": "What are the best hikes on Glacier Point Road?",
-        "a": "Sentinel Dome (2.2 miles round trip, 400 feet gain, 360-degree summit views), Taft Point (2.2 miles round trip, dramatic granite overhang above the Valley), and the start of the Panorama Trail toward Nevada Fall (8.5 miles one-way). All trailheads are along the road."
+        "a": "Sentinel Dome and Taft Point, from a shared trailhead along the road. Walking both is around five miles with modest elevation gain, and the pairing is a study in what 2,500 feet of vertical can mean: Sentinel's bare granite cap, then the void at Taft. The full Glacier Point guide carries the Park Service's own distances for every walk off the road."
       },
       {
         "q": "How long is the drive on Glacier Point Road?",
-        "a": "About 16 miles one-way from the Highway 41 turnoff. Allow 30-40 minutes each way without stops. The road is narrow and winding with no passing lanes for most of its length."
+        "a": "The road runs from the gate at Chinquapin to the point. It is paved and well plowed, but the corners are tight and the light alternates fast between sun and shadow, so it drives slower than the distance suggests."
       },
       {
         "q": "What is the elevation of Glacier Point?",
-        "a": "7,214 feet. Half Dome's summit is at 8,839 feet. From the viewpoint, Half Dome appears roughly at eye level despite being about 1,600 feet higher, because the viewpoint itself sits on the valley rim."
+        "a": "7,200 feet. The viewpoint sits on the valley rim, which is why Half Dome reads at eye level from it rather than above you."
       }
     ]
   },
@@ -2158,7 +2158,7 @@
     "faq": [
       {
         "q": "How hard is the Mist Trail?",
-        "a": "It depends on how far you go. The 1.6-mile round trip to the Vernal Fall footbridge is moderate. The 2.6-mile round trip to the top of Vernal Fall climbs 1,000 feet on wet granite stairs and is strenuous. The full 5.4-mile round trip to the top of Nevada Fall gains 2,000 feet and takes most people 4-6 hours."
+        "a": "It depends on how far you go. The 1.6-mile round trip to the Vernal Fall footbridge is moderate. The 2.6-mile round trip to the top of Vernal Fall gains 600 feet in its final half mile on wet granite stairs and is strenuous. The full 5.4-mile round trip to the top of Nevada Fall gains 2,000 feet and takes most people 4-6 hours."
       },
       {
         "q": "What shoes should I wear on the Mist Trail?",
@@ -2341,7 +2341,7 @@
     ],
     "trail": {
       "name": "Wapama Falls Trail, Hetch Hetchy",
-      "distance": "4.8 miles round trip (to Wapama Falls)",
+      "distance": "About 5 miles round trip (to Wapama Falls)",
       "elevationGain": "500 ft",
       "difficulty": "Moderate"
     },
@@ -2352,7 +2352,7 @@
       },
       {
         "q": "Can you hike to Wapama Falls at Hetch Hetchy?",
-        "a": "Yes. The Wapama Falls trail is 4.8 miles round trip from the dam, gaining about 500 feet. In peak snowmelt (April-May) the crossing at the falls can be knee-deep and is sometimes closed. In summer it's a dry footbridge crossing. The falls are dramatically higher in May than in August."
+        "a": "Yes. The Wapama Falls trail is about 5 miles round trip from the dam, with roughly 500 feet of cumulative elevation gain. In peak snowmelt (April-May) the crossing at the falls can be knee-deep and is sometimes closed. In summer it's a dry footbridge crossing. The falls are dramatically higher in May than in August."
       },
       {
         "q": "Is Hetch Hetchy crowded?",
@@ -2380,7 +2380,7 @@
     "faq": [
       {
         "q": "Where is the best stargazing in Yosemite?",
-        "a": "Olmsted Point and Glacier Point are the most accessible high-altitude sites, both above 7,000 feet, away from Valley light, with wide sky exposure. Tuolumne Meadows has longer horizon lines. Sentinel Dome is excellent for Milky Way photography. The Valley floor has noticeably more light pollution than any of these."
+        "a": "Olmsted Point and Glacier Point are the most accessible high-country sites, away from Valley light and with wide sky exposure. Tuolumne Meadows has longer horizon lines. Sentinel Dome is excellent for Milky Way photography. The Valley floor has noticeably more light pollution than any of these."
       },
       {
         "q": "When is the best time to stargaze in Yosemite?",
@@ -2416,7 +2416,7 @@
       },
       {
         "q": "What can you see in Yosemite without hiking?",
-        "a": "Tunnel View (drive-up), El Capitan and Yosemite Falls from roadside meadows, Bridalveil Fall (0.5-mile paved path), Lower Yosemite Fall loop (1-mile paved loop), Valley View (pull-out), Glacier Point overlook (drive-up), Olmsted Point (Tioga Road pull-out), and Mariposa Grove (tram tour available)."
+        "a": "Tunnel View (drive-up), El Capitan and Yosemite Falls from roadside meadows, Bridalveil Fall (paved end to end), Lower Yosemite Fall loop (1-mile paved loop), Valley View (pull-out), Glacier Point overlook (drive-up), Olmsted Point (Tioga Road pull-out), and Mariposa Grove (tram tour available)."
       },
       {
         "q": "Are there guided tours in Yosemite for non-hikers?",
@@ -2424,7 +2424,7 @@
       },
       {
         "q": "Is Glacier Point accessible without hiking?",
-        "a": "Yes. Glacier Point is a drive-up viewpoint with a paved overlook and restrooms. No hiking is required to reach the main viewpoint. In summer, a bus tour from the Valley also serves it for those who do not want to drive the narrow 16-mile road."
+        "a": "Yes. Glacier Point is a drive-up viewpoint with a paved overlook and restrooms. No hiking is required to reach the main viewpoint. In summer, a bus tour from the Valley also serves it for those who do not want to drive the narrow mountain road."
       },
       {
         "q": "Can you visit Yosemite by bus or train?",

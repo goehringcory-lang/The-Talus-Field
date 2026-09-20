@@ -71,10 +71,10 @@ window.ARTICLE_BODIES["yosemite-stargazing-where-to-look-up"] = function Yosemit
         <strong><a href="/articles/glacier-point-road-open-2026">Glacier Point</a>.</strong> The classic. At 7,200 feet, with an open western and southern horizon, almost no nearby light, and a paved walk of a few hundred feet from the parking lot, this is one of the best drive-to dark-sky spots in any National Park. The Park Service runs public <strong>Star Parties</strong> at Glacier Point most Saturdays in summer, when local astronomy clubs set up telescopes and rangers give talks. These are some of the best free educational events in the park. Roughly June through August, depending on the road being open and the schedule for any given year.
       </p>
 
-      <p>The trade-off: Glacier Point Road closes mid-October to late May, so this is a summer-only option.</p>
+      <p>The trade-off: Glacier Point Road closes with the first big winter storm, usually in November, and reopens in late May or early June, so this is a summer-only option.</p>
 
       <p>
-        <strong>Tunnel View.</strong> Lower in elevation (5,400 feet) and more affected by Valley light, but a real dark-sky spot in winter when the in-park lights are dimmer and atmospheric haze is at its lowest. The view of the Milky Way arching over Half Dome, with El Capitan on the left and Bridalveil Fall on the right, is one of the most-photographed night-sky compositions in any park. Best in summer for the core, but also worth visiting on cold winter nights for Orion and the winter Milky Way.
+        <strong>Tunnel View.</strong> Lower in elevation (4,400 feet) and more affected by Valley light, but a real dark-sky spot in winter when the in-park lights are dimmer and atmospheric haze is at its lowest. The view of the Milky Way arching over Half Dome, with El Capitan on the left and Bridalveil Fall on the right, is one of the most-photographed night-sky compositions in any park. Best in summer for the core, but also worth visiting on cold winter nights for Orion and the winter Milky Way.
       </p>
 
       <p>

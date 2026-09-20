@@ -42,7 +42,7 @@ window.ARTICLE_BODIES["yosemite-ranger-programs"] = function YosemiteRangerProgr
       <h2>The Junior Ranger program, which is not just for the kids</h2>
 
       <p>
-        The mechanics: pick up the Junior Ranger handbook at a visitor center (available in English and Spanish, for a few dollars at the park bookstores), complete the age-appropriate activities inside, attend a ranger program, and bring the finished work back to a ranger, who will look it over with complete seriousness, administer the pledge, and hand over the badge. The ceremony is performed straight, every time, and I have watched rangers do it for a five-year-old and a forty-five-year-old in the same afternoon with the same gravity. Adults are allowed. Adults are, frankly, encouraged.
+        The mechanics: pick up the Junior Ranger handbook at a visitor center (available in English and Spanish, free at any visitor center, or downloadable from the park's website), complete the age-appropriate activities inside, attend a ranger program, and bring the finished work back to a ranger, who will look it over with complete seriousness, administer the pledge, and hand over the badge. The ceremony is performed straight, every time, and I have watched rangers do it for a five-year-old and a forty-five-year-old in the same afternoon with the same gravity. Adults are allowed. Adults are, frankly, encouraged.
       </p>
 
       <p>

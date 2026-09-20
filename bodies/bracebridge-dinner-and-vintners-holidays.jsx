@@ -12,7 +12,7 @@ window.ARTICLE_BODIES["bracebridge-dinner-and-vintners-holidays"] = function Bra
       <h2>Two events, not one</h2>
 
       <p>
-        <strong>Vintners' Holidays</strong> runs in November: four multi-day sessions built around California winemakers, each ending in a five-course paired dinner. A session includes a "Meet the Vintners" opening reception, four tasting seminars led by the visiting winemakers, and the closing gala dinner, sold as a package with a room at the Ahwahnee, Yosemite Valley Lodge, or Curry Village. You cannot buy just the tastings; the room is part of what you are booking.
+        <strong>Vintners' Holidays</strong> runs in November: four multi-day sessions built around California winemakers, each ending in a five-course paired dinner. A session includes a "Meet the Vintners" opening reception, four tasting seminars led by the visiting winemakers, and the closing gala dinner, sold as a package with a room at the Ahwahnee, Yosemite Valley Lodge, or Curry Village. The session package and the room are booked separately, and the seminars are held in public space and open to the public.
       </p>
 
       <p>

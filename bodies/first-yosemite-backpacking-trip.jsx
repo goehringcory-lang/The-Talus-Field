@@ -214,7 +214,7 @@ window.ARTICLE_BODIES["first-yosemite-backpacking-trip"] = function FirstYosemit
       </p>
 
       <p>
-        <strong>Sunrise Lakes,</strong> from Tenaya Lake. About seven and a half miles round trip with roughly 1,400 feet of gain, most of it in one steep block of switchbacks after a flat opening, and three lakes at the top so you have options on where to put the tent.
+        <strong>Sunrise Lakes,</strong> from Tenaya Lake. About ten and a half miles round trip with roughly 1,300 feet of gain, most of it in one steep block of switchbacks after a flat opening, and three lakes at the top so you have options on where to put the tent.
       </p>
 
       <p>

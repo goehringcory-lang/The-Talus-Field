@@ -16,7 +16,7 @@ window.ARTICLE_BODIES["where-to-eat-yosemite"] = function WhereToEatYosemiteBody
       <h2>Is there food in Yosemite National Park?</h2>
 
       <p>
-        Yes, but almost all of it is in one square mile. <strong>Yosemite Valley</strong> has the park's only real concentration of food service: eleven counters, decks and dining rooms clustered in Yosemite Village, at Yosemite Valley Lodge, and around Half Dome Village. Outside the Valley the park thins out fast. <strong>Wawona</strong> has a general store. <strong>Tuolumne Meadows</strong>, up on Tioga Road, has a seasonal store and grill and the dining tent at Tuolumne Meadows Lodge, all of which close in September. <strong>Crane Flat</strong> and <strong>El Portal</strong> have small markets. <strong>Yosemite West</strong>, despite the name and the vacation rentals, has no restaurant, no store, and no gas.
+        Yes, but almost all of it is in one square mile. <strong>Yosemite Valley</strong> has the park's only real concentration of food service: eleven counters, decks and dining rooms clustered in Yosemite Village, at Yosemite Valley Lodge, and around Curry Village. Outside the Valley the park thins out fast. <strong>Wawona</strong> has a general store. <strong>Tuolumne Meadows</strong>, up on Tioga Road, has a seasonal store and grill and the dining tent at Tuolumne Meadows Lodge, all of which close in September. <strong>Crane Flat</strong> and <strong>El Portal</strong> have small markets. <strong>Yosemite West</strong>, despite the name and the vacation rentals, has no restaurant, no store, and no gas.
       </p>
 
       <p>
@@ -26,7 +26,7 @@ window.ARTICLE_BODIES["where-to-eat-yosemite"] = function WhereToEatYosemiteBody
       <h2>Where to eat in Yosemite Valley</h2>
 
       <p>
-        <strong>Half Dome Village Pizza Deck.</strong> The Half Dome is the order: house pepperoni and ricotta with fennel and a chili oil drizzle. Eaten on the wooden deck under the granite face of Glacier Point Apron at the end of a long day, beer on tap, picnic tables, and a line of people who have been doing the same thing all summer. There is almost always a wait, and the wait is part of the experience. This is the only restaurant inside the park I would go out of my way to eat at. It is not the best pizza in California. It is the best pizza in Yosemite Valley by a wide margin, and on the right summer evening it is the best meal of the trip. The location is officially Half Dome Village; most people still call it Curry Village.
+        <strong>Curry Village Pizza Deck.</strong> The Half Dome is the order: house pepperoni and ricotta with fennel and a chili oil drizzle. Eaten on the wooden deck under the granite face of Glacier Point Apron at the end of a long day, beer on tap, picnic tables, and a line of people who have been doing the same thing all summer. There is almost always a wait, and the wait is part of the experience. This is the only restaurant inside the park I would go out of my way to eat at. It is not the best pizza in California. It is the best pizza in Yosemite Valley by a wide margin, and on the right summer evening it is the best meal of the trip. The location is officially Curry Village; most people still call it Curry Village.
       </p>
 
       <p>
@@ -34,11 +34,11 @@ window.ARTICLE_BODIES["where-to-eat-yosemite"] = function WhereToEatYosemiteBody
       </p>
 
       <p>
-        <strong>Degnan's Kitchen, Yosemite Village.</strong> The only place inside the park to get a halfway decent lunch for under twenty dollars. Order a sandwich at the counter, take it outside, eat it on a bench. The bread is real, the meat is fine, the line moves. If you forgot to pack a cooler, <a href="/map?stop=degnans-deli">Degnan's</a> is the fallback that does not feel like a fallback. A coffee and a breakfast sandwich there at 7 a.m. is also one of the better moves in the Valley if you slept inside the park. Upstairs in the same building, <strong>the Loft at Degnan's</strong> is a seasonal sit-down room with a bar, a wood-fired oven and an actual roof, and it is the answer to the question people ask on the third rainy afternoon: where can we sit indoors, inside the park, that is not a hotel dining room.
+        <strong>Degnan's Kitchen, Yosemite Village.</strong> The only place inside the park to get a halfway decent lunch for under twenty dollars. Order a sandwich at the counter, take it outside, eat it on a bench. The bread is real, the meat is fine, the line moves. If you forgot to pack a cooler, <a href="/map?stop=degnans-deli">Degnan's</a> is the fallback that does not feel like a fallback. A coffee and a breakfast sandwich there at 7 a.m. is also one of the better moves in the Valley if you slept inside the park. Upstairs in the same building, the Loft at Degnan's ran for years as a seasonal sit-down room with a bar and a wood-fired oven. It is closed, which removes the one answer the Valley had to the question people ask on the third rainy afternoon: where can we sit indoors, inside the park, that is not a hotel dining room.
       </p>
 
       <p>
-        <strong>The Half Dome Village cluster.</strong> Four separate operations share one compound and get treated as one place, which is why visitors think Curry Village has a pizza deck and nothing else. <strong>Meadow Grill Taqueria</strong>, at the Village Store, is counter-service tacos and burritos beside the deck, outdoor seating, and the shortest path from a trailhead to a hot meal on the Valley floor. <strong>Coffee Corner</strong> opens early and is the reason you do not have to drive to Yosemite Village for a coffee before a Mist Trail start. <strong>Bar 1899</strong> is the small indoor bar. <strong>Seven Tents Pavilion</strong> is the big buffet hall, mostly serving the tent-cabin guests. All four are seasonal to some degree, and the taqueria is usually the first Valley kitchen to close when the summer ends.
+        <strong>The Curry Village cluster.</strong> Four separate operations share one compound and get treated as one place, which is why visitors think Curry Village has a pizza deck and nothing else. <strong>Meadow Grill Taqueria</strong>, at the Village Store, is counter-service tacos and burritos beside the deck, outdoor seating, and the shortest path from a trailhead to a hot meal on the Valley floor. <strong>Coffee Corner</strong> opens early and is the reason you do not have to drive to Yosemite Village for a coffee before a Mist Trail start. <strong>Bar 1899</strong> is the small indoor bar. <strong>Seven Tents Pavilion</strong> is the big buffet hall, mostly serving the tent-cabin guests. All four are seasonal to some degree, and the taqueria is usually the first Valley kitchen to close when the summer ends.
       </p>
 
       <p>
@@ -50,7 +50,7 @@ window.ARTICLE_BODIES["where-to-eat-yosemite"] = function WhereToEatYosemiteBody
       </p>
 
       <p>
-        There is also a <strong>Starbucks</strong> in Yosemite Village, attached to the Village Store, which arrived in 2018 and generated more correspondence than any other food decision the park has made. It is a Starbucks. It has the shortest line in the Valley when the Degnan's counter is twenty deep, and that is the entire case for it.
+        There is also a <strong>Starbucks</strong> at Yosemite Valley Lodge, inside Base Camp Eatery, which arrived in 2018 and generated more correspondence than any other food decision the park has made. It is a Starbucks. It has the shortest line in the Valley when the Degnan's counter is twenty deep, and that is the entire case for it.
       </p>
 
       <h2>Wawona, Fish Camp and the south end of the park</h2>
@@ -106,7 +106,7 @@ window.ARTICLE_BODIES["where-to-eat-yosemite"] = function WhereToEatYosemiteBody
       </p>
 
       <p>
-        <strong>South Gate Brewing Company, Oakhurst.</strong> The post-park dinner default for visitors based in Oakhurst, Bass Lake or Fish Camp. Wood-fired pizzas with dough stretched to order, Blonde Ale-battered fish and chips, a long list of their own beers, and a dining room with enough seating to absorb a Saturday night without a two-hour wait. Vegan and gluten-free options exist and are not afterthoughts. Closed Tuesdays. The default answer for "where should we eat" in Oakhurst.
+        <strong>South Gate Brewing Company, Oakhurst.</strong> The post-park dinner default for visitors based in Oakhurst, Bass Lake or Fish Camp. Wood-fired pizzas with dough stretched to order, Blonde Ale-battered fish and chips, a long list of their own beers, and a dining room with enough seating to absorb a Saturday night without a two-hour wait. Vegan and gluten-free options exist and are not afterthoughts. Open daily. The default answer for "where should we eat" in Oakhurst.
       </p>
 
       <p>
@@ -148,7 +148,7 @@ window.ARTICLE_BODIES["where-to-eat-yosemite"] = function WhereToEatYosemiteBody
       </p>
 
       <p>
-        <strong>Yosemite Valley.</strong> Seven Tents Pavilion, Bar 1899, Coffee Corner, the pizza counter and the Taqueria at Meadow Grill, all at Half Dome Village; Degnan's Kitchen, the Loft at Degnan's and Starbucks in Yosemite Village; Base Camp Eatery and the Mountain Room at Yosemite Valley Lodge; and the Ahwahnee. Eleven, which is more than the Valley feels like it has when you are standing in a line at one of them.
+        <strong>Yosemite Valley.</strong> Seven Tents Pavilion, Bar 1899, Coffee Corner, the pizza counter and the Taqueria at Meadow Grill, all at Curry Village; Degnan's Kitchen and the Village Grill in Yosemite Village; Base Camp Eatery, Starbucks and the Mountain Room, with its lounge, at Yosemite Valley Lodge; and the Ahwahnee dining room and bar. Which is more than the Valley feels like it has when you are standing in a line at one of them.
       </p>
 
       <p>
@@ -177,11 +177,10 @@ window.ARTICLE_BODIES["where-to-eat-yosemite"] = function WhereToEatYosemiteBody
           </tr>
         </thead>
         <tbody>
-          <tr><td>Half Dome Village Pizza Deck</td><td>Yosemite Valley</td><td>Lunch, dinner</td><td>$$</td><td>Most of the year</td><td>No</td></tr>
+          <tr><td>Curry Village Pizza Deck</td><td>Yosemite Valley</td><td>Lunch, dinner</td><td>$$</td><td>Most of the year</td><td>No</td></tr>
           <tr><td>Base Camp Eatery</td><td>Yosemite Valley</td><td>All three</td><td>$$</td><td>Year-round</td><td>No</td></tr>
           <tr><td>Degnan's Kitchen</td><td>Yosemite Valley</td><td>Breakfast, lunch</td><td>$</td><td>Year-round</td><td>No</td></tr>
-          <tr><td>The Loft at Degnan's</td><td>Yosemite Valley</td><td>Lunch, dinner</td><td>$$</td><td>Seasonal</td><td>No</td></tr>
-          <tr><td>Meadow Grill Taqueria</td><td>Yosemite Valley</td><td>Lunch, dinner</td><td>$</td><td>Summer</td><td>No</td></tr>
+                    <tr><td>Meadow Grill Taqueria</td><td>Yosemite Valley</td><td>Lunch, dinner</td><td>$</td><td>Summer</td><td>No</td></tr>
           <tr><td>The Mountain Room</td><td>Yosemite Valley</td><td>Dinner</td><td>$$$</td><td>Most of the year</td><td>Advised</td></tr>
           <tr><td>The Ahwahnee Dining Room</td><td>Yosemite Valley</td><td>Dinner, prix fixe</td><td>$$$$</td><td>Year-round</td><td>Required</td></tr>
           <tr><td>Wawona General Store</td><td>Wawona</td><td>Groceries, sandwiches</td><td>$</td><td>Year-round</td><td>No</td></tr>
@@ -216,7 +215,7 @@ window.ARTICLE_BODIES["where-to-eat-yosemite"] = function WhereToEatYosemiteBody
       <h2>What closes, and when</h2>
 
       <p>
-        This is the part almost no other list covers, and it is the part that ruins evenings. The park's food service contracts and shuts down through September, weeks before the roads do. In the 2026 season the Tuolumne store and grill closed on September 20 and Jennie's Ice Cream in Wawona on September 6. Valley service holds up longest and thins out anyway: the taqueria and the Loft go first, then the deck, then the hours shorten on everything left.
+        This is the part almost no other list covers, and it is the part that ruins evenings. The park's food service contracts and shuts down through September, weeks before the roads do. In the 2026 season the Tuolumne store and grill closed on September 20 and Jennie's Ice Cream at Curry Village on September 6. Valley service holds up longest and thins out anyway: the taqueria and the Loft go first, then the deck, then the hours shorten on everything left.
       </p>
 
       <p>
@@ -226,7 +225,7 @@ window.ARTICLE_BODIES["where-to-eat-yosemite"] = function WhereToEatYosemiteBody
       <h2>The takeaway</h2>
 
       <p>
-        Food in Yosemite is not the trip. The trip is the park. A meal that does not slow you down or empty your wallet is a meal that did its job. Pack a cooler, eat the pizza at Half Dome Village one night, eat the brisket in Mariposa one night, drink the coffee in Lee Vining one morning, and the rest of the time eat lunch on a granite slab next to the river. That is the part of the trip you will remember.
+        Food in Yosemite is not the trip. The trip is the park. A meal that does not slow you down or empty your wallet is a meal that did its job. Pack a cooler, eat the pizza at Curry Village one night, eat the brisket in Mariposa one night, drink the coffee in Lee Vining one morning, and the rest of the time eat lunch on a granite slab next to the river. That is the part of the trip you will remember.
       </p>
 
       <p style={{ marginTop: 32, fontStyle: "italic", color: "var(--ink-3)" }}>

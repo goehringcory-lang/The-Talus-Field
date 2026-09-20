@@ -6,7 +6,11 @@ window.ARTICLE_BODIES["glacier-point-road-open-2026"] = function GlacierPointRoa
   return (
     <>
       <p className="dropcap">
-        Glacier Point Road is open for the 2026 season. The Park Service plowed it through the back end of winter, the gate at Chinquapin came up after seven months of closure, and cars are again climbing the seventeen miles to a viewpoint at 7,200 feet that puts you at eye level with Half Dome.
+        <em style={{ display: "block", marginBottom: "1rem", fontSize: 14 }}>
+          Road and trail status below describes the opening of the 2026 season, in May. Conditions change: check
+          <a href="/now">the Park Bulletin</a> or the recorded line, 209-372-0200, for the day you are going.
+        </em>
+        Glacier Point Road is open for the 2026 season. The Park Service plowed it through the back end of winter, the gate at Chinquapin came up on May 9 after just under six months of closure, and cars are again climbing the sixteen miles to a viewpoint at 7,200 feet that puts you at eye level with Half Dome.
       </p>
 
       <p>
@@ -28,7 +32,7 @@ window.ARTICLE_BODIES["glacier-point-road-open-2026"] = function GlacierPointRoa
       </p>
 
       <p>
-        A note worth saying plainly: the Park Service has flagged intermittent closures of the Panorama Trail between Nevada Fall and the Illilouette Creek junction for ongoing rockfall remediation. If your plan was to descend Panorama to the Mist Trail, check the conditions page before you start down. The Mist Trail itself has its own current closure (more on that elsewhere on the site).
+        A note worth saying plainly: the Park Service has flagged intermittent closures of the Panorama Trail between Nevada Fall and the Illilouette Creek junction for ongoing rockfall remediation. If your plan was to descend Panorama to the Mist Trail, check the conditions page before you start down. The Mist Trail has its own restriction: through October it is closed between the Vernal Fall footbridge and the top of Vernal Fall on Monday through Thursday, 7 a.m. to 3:30 p.m., and open Fridays, weekends and holidays. <a href="/articles/mist-trail-the-real-guide">The Mist Trail guide</a> covers the detour.
       </p>
 
       <h2>What the road actually feels like early in the season</h2>
@@ -68,7 +72,7 @@ window.ARTICLE_BODIES["glacier-point-road-open-2026"] = function GlacierPointRoa
       </p>
 
       <p>
-        The second is the snow. Looking east from Glacier Point you see the Cathedral Range, Mount Hoffman, Mount Clark, and behind them the high peaks of the Clark Range. Even in this thin snowpack year (more on that later this week), the high country still looks like winter from up here. <a href="/articles/tioga-road-opening-weekend-2026">Tioga Road</a> is still closed. The high lakes are still frozen. The Sentinel Range above Tenaya Canyon will hold snow for another six weeks. You are looking at country that is two months behind the Valley you just drove out of.
+        The second is the snow. Looking east from Glacier Point you see the Cathedral Range, Mount Hoffman, Mount Clark, and behind them the high peaks of the Clark Range. Even in this thin snowpack year (more on that later this week), the high country still looks like winter from up here. <a href="/articles/tioga-road-opening-weekend-2026">Tioga Road</a> was still closed when this was written; it opened on May 15. The high lakes are still frozen. The Sentinel Range above Tenaya Canyon will hold snow for another six weeks. You are looking at country that is two months behind the Valley you just drove out of.
       </p>
 
       <p>
@@ -88,7 +92,7 @@ window.ARTICLE_BODIES["glacier-point-road-open-2026"] = function GlacierPointRoa
       <h2>The honest takeaway</h2>
 
       <p>
-        The first weeks of the season are one of the few times in the year when Glacier Point feels like a place you discovered rather than a place everyone has already been to. The road will be dirty. The amenities will be skeletal. You may not be able to buy water. The Panorama Trail may be partly closed. The Mist Trail, if you were planning to combine, is currently closed.
+        The first weeks of the season are one of the few times in the year when Glacier Point feels like a place you discovered rather than a place everyone has already been to. The road will be dirty. The amenities will be skeletal. You may not be able to buy water. The Panorama Trail may be partly closed. The Mist Trail, if you were planning to combine, is closed on weekdays through October between the footbridge and the top of Vernal Fall.
       </p>
 
       <p>

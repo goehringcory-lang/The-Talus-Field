@@ -104,7 +104,7 @@ window.ARTICLE_BODIES["so-you-want-to-hike-half-dome"] = function SoYouWantToHik
       <p>And you don't need a permit.</p>
 
       <p>
-        The hike starts at the Sunrise Lakes trailhead on Tioga Road, about 1.4 miles east of Olmsted Point at the south end of Tenaya Lake. It's 13 miles round trip with roughly 2,000 feet of elevation gain in two separate pushes. The trailhead sits at 8,151 feet, which means you start high and stay high the entire day. No climbing 4,800 feet from the Valley floor. No Mist Trail staircase with a thousand other people. No heat radiating off the Valley walls in July.
+        The hike starts at the Sunrise Lakes trailhead on Tioga Road, about 1.4 miles east of Olmsted Point at the south end of Tenaya Lake. It's 14 miles round trip with roughly 2,300 feet of elevation gain in two separate pushes. The trailhead sits at 8,151 feet, which means you start high and stay high the entire day. No climbing 4,800 feet from the Valley floor. No Mist Trail staircase with a thousand other people. No heat radiating off the Valley walls in July.
       </p>
 
       <p>That last point matters more than you think.</p>
@@ -254,7 +254,7 @@ window.ARTICLE_BODIES["so-you-want-to-hike-half-dome"] = function SoYouWantToHik
       </p>
 
       <p>
-        But if the permit doesn't come through, or if you're visiting in June before the cables go up, or if the idea of the Mist Trail in August makes you feel tired just thinking about it, go do Clouds Rest. Drive up Tioga Road, park at the Sunrise trailhead, walk 6.5 miles through some of the most beautiful high country in the Sierra Nevada, and stand on a summit that's higher than Half Dome, quieter than Half Dome, and (I'll say it) more beautiful than Half Dome.
+        But if the permit doesn't come through, or if you're visiting in June before the cables go up, or if the idea of the Mist Trail in August makes you feel tired just thinking about it, go do Clouds Rest. Drive up Tioga Road, park at the Sunrise trailhead, walk seven miles through some of the most beautiful high country in the Sierra Nevada, and stand on a summit that's higher than Half Dome, quieter than Half Dome, and (I'll say it) more beautiful than Half Dome.
       </p>
 
       <p>You won't feel like you missed anything. You'll feel like you found something better.</p>

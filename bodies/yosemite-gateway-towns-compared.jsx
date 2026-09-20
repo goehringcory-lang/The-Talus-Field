@@ -541,13 +541,13 @@ window.ARTICLE_BODIES["yosemite-gateway-towns-compared"] = function YosemiteGate
       {townAvailability("Oakhurst", "Oakhurst, California")}
 
       <p>
-        One current note for this side of the park: the Wawona Hotel, the historic in-park option just inside the South Entrance, has been closed since December 2024, and the Park Service has said it stays closed for this visitor season to complete electrical repairs and upgrades. No reopening date has been announced. That removes the in-park alternative on the Highway 41 corridor and puts more pressure on Oakhurst and Fish Camp rooms in summer. Book earlier than you think you need to.
+        One current note for this side of the park: the Wawona Hotel, the historic in-park option just inside the South Entrance, has been closed since December 2024, and the Park Service has said it stays closed for this visitor season to complete a condition assessment of the hotel complex after a roof project turned up structural concerns. No reopening date has been announced. That removes the in-park alternative on the Highway 41 corridor and puts more pressure on Oakhurst and Fish Camp rooms in summer. Book earlier than you think you need to.
       </p>
 
       <h2 id="sec-4-groveland">Groveland</h2>
 
       <TownFacts rows={[
-        ["Valley drive", "about 41 miles, 65 to 80 minutes"],
+        ["Valley drive", "about 48 miles, 65 to 80 minutes"],
         ["Entrance", "Big Oak Flat, about 24 miles, 30 to 40 winding minutes"],
         ["Road", "Highway 120, chain controls common in winter"],
         ["Elevation", "about 3,100 feet, the highest of the western gateways"],

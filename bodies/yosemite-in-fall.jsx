@@ -48,7 +48,7 @@ window.ARTICLE_BODIES["yosemite-in-fall"] = function YosemiteInFallBody() {
       </p>
 
       <p>
-        <strong>Any storm from mid-October onward.</strong> Tioga Road closes when snow arrives, and this is the closure that ruins itineraries, because it has no date. The historical median is around November 3, and in most years the road survives October. But it is a judgment call made on a forecast, not a calendar, and it can happen early: Tioga closed on October 21 in 2021 and on October 29 in 2016. It can also run long, and in the 2011 season it did not close until the following January. Treat every high-country plan after roughly October 10 as conditional, and check the road before you commit a driving day to it. The rest of the park is unaffected, which is the saving grace: a Tioga closure costs you the high country, not the trip.
+        <strong>Any storm from mid-October onward.</strong> Tioga Road closes when snow arrives, and this is the closure that ruins itineraries, because it has no date. The historical median is November 12, and in most years the road survives October: the Park Service's own record of seasonal dates has only five October closures in it. But it is a judgment call made on a forecast, not a calendar, and it can happen early: Tioga closed on October 21 in 2021 and on October 17 in 2004. It can also run long, and the 2010 season did not end until January 17. Treat every high-country plan after roughly October 10 as conditional, and check the road before you commit a driving day to it. The rest of the park is unaffected, which is the saving grace: a Tioga closure costs you the high country, not the trip.
       </p>
 
       <p>

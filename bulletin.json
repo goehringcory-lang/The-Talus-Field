@@ -4,247 +4,1436 @@
     "label": "August 19 – September 22, 2026",
     "start": "2026-08-19",
     "end": "2026-09-22",
-    "updated": "2026-09-16",
+    "updated": "2026-09-20",
     "lede": "The edition where summer ends. Every road is still open and the high country is at its best, but the waterfalls are down to their bones and the park starts shutting for the season in the first two weeks of September: the High Sierra Camps, the pools, the Tuolumne store and grill, the hikers bus. Go high while you can.",
     "source": "Condensed from the National Park Service Yosemite Guide for August 19 – September 22, 2026, with the journal's own notes.",
     "sourceUrl": "https://www.nps.gov/yose/planyourvisit/guide.htm"
   },
   "headlines": [
-    {"label": "Roads", "icon": "road", "status": "All open", "tone": "open", "text": "Tioga and Glacier Point included. Weekday delays of about 15 minutes at El Capitan Bridge, 7 am to 7 pm through December, and on Big Oak Flat Road between Foresta and Crane Flat."},
-    {"label": "Waterfalls", "icon": "water", "status": "Running thin", "tone": "warn", "text": "Yosemite Falls is dry and Mirror Lake is a meadow. Bridalveil, Vernal, and Nevada still run, thin. Go for the walls, not the water."},
-    {"label": "Valley parking", "icon": "parking", "status": "Full by late morning", "tone": "warn", "text": "Arrive before 8 am or after 4 pm, park once, and ride the free shuttles. Text ynptraffic to 333111 for traffic alerts."},
-    {"label": "Mist Trail", "icon": "route", "status": "Closed Mon – Thu", "tone": "closed", "text": "7 am to 3:30 pm for repairs, through October. Open Friday to Sunday, holidays, and outside those hours. The John Muir Trail detour is signed."}
+    {
+      "label": "Roads",
+      "icon": "road",
+      "status": "All open",
+      "tone": "open",
+      "text": "Tioga and Glacier Point included. Weekday delays of about 15 minutes at El Capitan Bridge, 7 am to 7 pm through December, and on Big Oak Flat Road between Foresta and Crane Flat. On Tioga Road, 10 minutes through Tuolumne Meadows and 15 minutes from Olmsted Point to Tioga Pass, 8 am to 3:30 pm Monday to Thursday."
+    },
+    {
+      "label": "Dome Fire",
+      "icon": "flame",
+      "status": "Burning near Wawona",
+      "tone": "warn",
+      "text": "Northeast of Wawona, smoke around the park and periods of unhealthy air at some hours. The Chilnualna Falls trail is closed, and the trails above it toward Buena Vista and Crescent Lakes with it."
+    },
+    {
+      "label": "Valley parking",
+      "icon": "parking",
+      "status": "Full by late morning",
+      "tone": "warn",
+      "text": "Arrive before 8 am or after 4 pm, park once, and ride the free shuttles. Text ynptraffic to 333111 for traffic alerts."
+    },
+    {
+      "label": "Mist Trail",
+      "icon": "route",
+      "status": "Closed Mon – Thu",
+      "tone": "closed",
+      "text": "7 am to 3:30 pm for repairs, through October. Open Friday to Sunday, holidays, and outside those hours. The John Muir Trail detour is signed."
+    }
   ],
   "changes": [
-    {"date": "2026-09-04", "kind": "opens", "what": "Mountaineering School guided hikes"},
-    {"date": "2026-09-06", "kind": "closes", "what": "Jennie's Ice Cream"},
-    {"date": "2026-09-06", "kind": "closes", "what": "The Wawona stable"},
-    {"date": "2026-09-06", "kind": "closes", "what": "Glen Aulin and Sunrise High Sierra Camps"},
-    {"date": "2026-09-06", "kind": "opens", "what": "Ask-a-Climber, back on the El Capitan bridge"},
-    {"date": "2026-09-07", "kind": "closes", "what": "The Curry Village and Lodge pools"},
-    {"date": "2026-09-07", "kind": "hours", "what": "Village Store, Curry Village Gift & Grocery, and the Lodge gift shop close at 9 pm"},
-    {"date": "2026-09-07", "kind": "hours", "what": "Meadow Grill Taqueria closes at 5 pm"},
-    {"date": "2026-09-08", "kind": "hours", "what": "Bike rentals run 9 am – 6 pm"},
-    {"date": "2026-09-09", "kind": "closes", "what": "May Lake High Sierra Camp"},
-    {"date": "2026-09-13", "kind": "closes", "what": "Tuolumne Meadows Lodge", "detail": "The concessioner's date."},
-    {"date": "2026-09-13", "kind": "ends", "what": "The Tuolumne Meadows shuttle and the hikers bus", "detail": "After that the high country is drive-yourself."},
-    {"date": "2026-09-13", "kind": "hours", "what": "Mountain Room Lounge opens at 5 pm"},
-    {"date": "2026-09-13", "kind": "opens", "what": "Climber Coffee, back at Camp 4"},
-    {"date": "2026-09-14", "kind": "closes", "what": "Tuolumne Meadows dining room and grill", "detail": "The concessioner's date; the Guide said Sep 20."},
-    {"date": "2026-09-20", "kind": "closes", "what": "Tuolumne Meadows Store", "detail": "The Guide's date. The lodge, dining room, and grill closed Sep 13 and 14."},
-    {"date": "2026-09-22", "kind": "event", "what": "The season's last Moonlight Tour", "detail": "Two hours by tram under the moon, 9 pm from Yosemite Valley Lodge. Ticketed at TravelYosemite.com."},
-    {"date": "2026-09-23", "when": "Sep 23 – 27", "kind": "event", "what": "The Yosemite Facelift", "detail": "The park's biggest volunteer cleanup, out of the Valley. Free with registration at yosemiteclimbing.org."},
-    {"date": "2026-09-25", "kind": "ends", "what": "YARTS Fresno buses (Highway 41)", "detail": "Check the date for your route at YARTS.com or 877/989-2787."},
-    {"date": "2026-09-26", "kind": "ends", "what": "Tom Killion: Trails and Trees at The Ansel Adams Gallery", "detail": "Sierra woodblocks and prints, 9 am – 5 pm. Free to walk through."},
-    {"date": "2026-09-30", "kind": "ends", "what": "YARTS Sonora (Highway 120) and Mammoth Lakes (395) routes", "detail": "Some of their runs ended Aug 31. Merced (Highway 140) runs year-round."},
-    {"date": "2026-10-01", "when": "Early October", "kind": "ends", "what": "Half Dome cable season", "detail": "The cables typically come down in the first half of October. Until then, a permit every day."},
-    {"date": "2026-10-31", "when": "End of October", "kind": "ends", "what": "Mist Trail weekday repair closures", "detail": "Until then, closed Monday to Thursday, 7 am to 3:30 pm."},
-    {"date": "2026-12-31", "when": "End of December", "kind": "ends", "what": "El Capitan Bridge stabilization work", "detail": "Until then, 15-minute delays Monday to Friday, 7 am to 7 pm, brief closures possible, and the footpath over the bridge closed on weekdays."},
-    {"when": "This season", "kind": "closes", "what": "Vogelsang and Merced Lake High Sierra Camps"},
-    {"when": "This season", "kind": "closes", "what": "The Wawona Hotel and its dining room, for renovation"},
-    {"when": "This season", "kind": "closes", "what": "White Wolf lodge, store, and dining room"},
-    {"when": "This season", "kind": "closes", "what": "Raft rentals on the Merced"},
-    {"when": "Out of order", "kind": "closes", "what": "EV charging in Tuolumne Meadows", "detail": "Charge in the Valley, El Portal, or Wawona."}
+    {
+      "date": "2026-09-04",
+      "kind": "opens",
+      "what": "Mountaineering School guided hikes"
+    },
+    {
+      "date": "2026-09-06",
+      "kind": "closes",
+      "what": "Jennie's Ice Cream"
+    },
+    {
+      "date": "2026-09-06",
+      "kind": "closes",
+      "what": "The Wawona stable"
+    },
+    {
+      "date": "2026-09-06",
+      "kind": "closes",
+      "what": "Glen Aulin and Sunrise High Sierra Camps"
+    },
+    {
+      "date": "2026-09-06",
+      "kind": "opens",
+      "what": "Ask-a-Climber, back on the El Capitan bridge"
+    },
+    {
+      "date": "2026-09-07",
+      "kind": "closes",
+      "what": "The Curry Village and Lodge pools"
+    },
+    {
+      "date": "2026-09-07",
+      "kind": "hours",
+      "what": "Village Store, Curry Village Gift & Grocery, and the Lodge gift shop close at 9 pm"
+    },
+    {
+      "date": "2026-09-07",
+      "kind": "hours",
+      "what": "Meadow Grill Taqueria closes at 5 pm"
+    },
+    {
+      "date": "2026-09-08",
+      "kind": "hours",
+      "what": "Bike rentals run 9 am – 6 pm"
+    },
+    {
+      "date": "2026-09-09",
+      "kind": "closes",
+      "what": "May Lake High Sierra Camp"
+    },
+    {
+      "date": "2026-09-13",
+      "kind": "closes",
+      "what": "Tuolumne Meadows Lodge",
+      "detail": "The concessioner's date."
+    },
+    {
+      "date": "2026-09-13",
+      "kind": "ends",
+      "what": "The Tuolumne Meadows shuttle and the hikers bus",
+      "detail": "After that the high country is drive-yourself."
+    },
+    {
+      "date": "2026-09-13",
+      "kind": "hours",
+      "what": "Mountain Room Lounge opens at 5 pm"
+    },
+    {
+      "date": "2026-09-13",
+      "kind": "opens",
+      "what": "Climber Coffee, back at Camp 4"
+    },
+    {
+      "date": "2026-09-14",
+      "kind": "closes",
+      "what": "Tuolumne Meadows dining room and grill",
+      "detail": "The concessioner's date; the Guide said Sep 20."
+    },
+    {
+      "date": "2026-09-15",
+      "kind": "closes",
+      "what": "Chilnualna Falls trail, for the Dome Fire"
+    },
+    {
+      "date": "2026-09-20",
+      "kind": "closes",
+      "what": "Tuolumne Meadows Store",
+      "detail": "The Guide's date. The lodge, dining room, and grill closed Sep 13 and 14."
+    },
+    {
+      "date": "2026-09-22",
+      "kind": "event",
+      "what": "The season's last Moonlight Tour",
+      "detail": "Two hours by tram under the moon, 9 pm from Yosemite Valley Lodge. Ticketed at TravelYosemite.com."
+    },
+    {
+      "date": "2026-09-23",
+      "when": "Sep 23 – 27",
+      "kind": "event",
+      "what": "The Yosemite Facelift",
+      "detail": "The park's biggest volunteer cleanup, out of the Valley. Free with registration at yosemiteclimbing.org."
+    },
+    {
+      "date": "2026-09-25",
+      "kind": "ends",
+      "what": "YARTS Fresno buses (Highway 41)",
+      "detail": "Check the date for your route at YARTS.com or 877/989-2787."
+    },
+    {
+      "date": "2026-09-26",
+      "kind": "ends",
+      "what": "Tom Killion: Trails and Trees at The Ansel Adams Gallery",
+      "detail": "Sierra woodblocks and prints, 9 am – 5 pm. Free to walk through."
+    },
+    {
+      "date": "2026-09-30",
+      "kind": "ends",
+      "what": "YARTS Sonora (Highway 120) and Mammoth Lakes (395) routes",
+      "detail": "Some of their runs ended Aug 31. Merced (Highway 140) runs year-round."
+    },
+    {
+      "date": "2026-10-01",
+      "when": "Early October",
+      "kind": "ends",
+      "what": "Half Dome cable season",
+      "detail": "The cables typically come down in the first half of October. Until then, a permit every day."
+    },
+    {
+      "date": "2026-10-31",
+      "when": "End of October",
+      "kind": "ends",
+      "what": "Mist Trail weekday repair closures",
+      "detail": "Until then, closed Monday to Thursday, 7 am to 3:30 pm."
+    },
+    {
+      "date": "2026-12-31",
+      "when": "End of December",
+      "kind": "ends",
+      "what": "El Capitan Bridge stabilization work",
+      "detail": "Until then, 15-minute delays Monday to Friday, 7 am to 7 pm, brief closures possible, and the footpath over the bridge closed on weekdays."
+    },
+    {
+      "when": "This season",
+      "kind": "closes",
+      "what": "Vogelsang and Merced Lake High Sierra Camps"
+    },
+    {
+      "when": "This season",
+      "kind": "closes",
+      "what": "The Wawona Hotel and its dining room, for renovation"
+    },
+    {
+      "when": "This season",
+      "kind": "closes",
+      "what": "White Wolf lodge, store, and dining room"
+    },
+    {
+      "when": "This season",
+      "kind": "closes",
+      "what": "Raft rentals on the Merced"
+    },
+    {
+      "when": "Out of order",
+      "kind": "closes",
+      "what": "EV charging in Tuolumne Meadows",
+      "detail": "Charge in the Valley, El Portal, or Wawona."
+    }
   ],
   "areas": [
-    {"name": "Yosemite Valley", "chip": "Open", "tone": "open", "note": "Busy by mid-morning, worse on weekends, and quieter after Labor Day. Parking in three hubs: Curry Village, Yosemite Village, Yosemite Falls. Once parked, stay parked and ride the free shuttles."},
-    {"name": "Tioga Road & Tuolumne Meadows", "chip": "Open", "tone": "open", "note": "The 39-mile high-country drive, 6,200 to nearly 10,000 feet. Little to no cell service; fuel and plan before you go. The lodge closed Sep 13 and its dining room and grill Sep 14 by the concessioner's dates; the store runs through Sep 20 per the Guide, and the area shuttle stopped Sep 13."},
-    {"name": "Glacier Point Road", "chip": "Open", "tone": "open", "note": "One hour from the Valley. No trailers or vehicles over 30 feet past the Sentinel Dome trailhead. The gift shop runs 9 am to 7 pm."},
-    {"name": "Wawona & Mariposa Grove", "chip": "Open", "tone": "open", "note": "An hour south of the Valley. Free grove shuttle every 15 minutes, 8 am to 7 pm, last bus down at 8 pm. The hotel is closed for renovation and the stable finishes Sep 6."},
-    {"name": "Crane Flat", "chip": "Open", "tone": "open", "note": "Thirty minutes up Big Oak Flat Road, and the quiet way to see sequoias: Tuolumne Grove 2 miles round trip, Merced Grove 3. Information station and wilderness permits 8 am to 5 pm."},
-    {"name": "Hetch Hetchy", "chip": "Sunrise – sunset", "tone": "warn", "note": "An hour and a half from the Valley. No services, very little shade, and hot into September. No vehicles or trailers over 25 feet long or 8 feet wide on the entrance road, and no pets on the dam or the trails."},
-    {"name": "Gas", "chip": "None in the Valley", "tone": "warn", "note": "El Portal 15 miles downhill on 140, Crane Flat 16.5 miles uphill on Big Oak Flat Road, Wawona 28 miles up Wawona Road. All pump 24 hours with a card."}
+    {
+      "name": "Yosemite Valley",
+      "chip": "Open",
+      "tone": "open",
+      "note": "Busy by mid-morning, worse on weekends, and quieter after Labor Day. Parking in three hubs: Curry Village, Yosemite Village, Yosemite Falls. Once parked, stay parked and ride the free shuttles."
+    },
+    {
+      "name": "Tioga Road & Tuolumne Meadows",
+      "chip": "Open",
+      "tone": "open",
+      "note": "The 39-mile high-country drive, 6,200 to nearly 10,000 feet. Little to no cell service; fuel and plan before you go. The lodge closed Sep 13 and its dining room and grill Sep 14 by the concessioner's dates; the store runs through Sep 20 per the Guide, and the area shuttle stopped Sep 13. Construction delays on the drive: 10 minutes through the meadows, 15 minutes from Olmsted Point to Tioga Pass, 8 am to 3:30 pm Monday to Thursday. The trail between the wilderness center and Lembert Dome is closed for construction, with an alternate signed."
+    },
+    {
+      "name": "Glacier Point Road",
+      "chip": "Open",
+      "tone": "open",
+      "note": "One hour from the Valley. No trailers or vehicles over 30 feet past the Sentinel Dome trailhead. The gift shop runs 9 am to 7 pm."
+    },
+    {
+      "name": "Wawona & Mariposa Grove",
+      "chip": "Open, fire nearby",
+      "tone": "warn",
+      "note": "An hour south of the Valley. Free grove shuttle every 15 minutes, 8 am to 7 pm, last bus down at 8 pm. The Dome Fire is burning northeast of Wawona: the Chilnualna Falls trail and the trails above it are closed, and the smoke comes and goes. The hotel is closed for renovation and the stable finished Sep 6."
+    },
+    {
+      "name": "Crane Flat",
+      "chip": "Open",
+      "tone": "open",
+      "note": "Thirty minutes up Big Oak Flat Road, and the quiet way to see sequoias: Tuolumne Grove 2 miles round trip, Merced Grove 3. Information station and wilderness permits 8 am to 5 pm."
+    },
+    {
+      "name": "Hetch Hetchy",
+      "chip": "Sunrise – sunset",
+      "tone": "warn",
+      "note": "An hour and a half from the Valley. No services, very little shade, and hot into September. No vehicles or trailers over 25 feet long or 8 feet wide on the entrance road, and no pets on the dam or the trails."
+    },
+    {
+      "name": "Gas",
+      "chip": "None in the Valley",
+      "tone": "warn",
+      "note": "El Portal 15 miles downhill on 140, Crane Flat 16.5 miles uphill on Big Oak Flat Road, Wawona 28 miles up Wawona Road. All pump 24 hours with a card."
+    }
   ],
   "programAreas": [
-    { "key": "valley", "name": "Yosemite Valley", "short": "Valley", "notes": [
-      {"h": "Valley Floor Tour by tram.", "t": "10 am, 11 am, 1 pm, 2 pm, and sunset, ticketed. Marked wheelchair accessible and all ages."},
-      {"h": "Photography with The Ansel Adams Gallery.", "t": "Free walks Tu and Th 9 am, registration required. Paid field classes: smartphone photography W 9 am and Sa 1 pm, In the Footsteps of Ansel Adams M and Th 1 pm, digital camera Tu 1 pm."},
-      {"h": "Conservancy art classes.", "t": "Weekday mornings at 9 am at Happy Isles, register at Yosemite.org/art: watercolor nature journaling through Aug 21, watercolor Aug 24 – 28, pastels Aug 31 – Sep 4, printmaking Sep 7 – 11, watercolor Sep 14 – 18."},
-      {"h": "Open art studio for kids.", "t": "Happy Isles, 10 am – 3 pm daily. Marked wheelchair accessible."},
-      {"h": "Mountaineering School hikes.", "t": "From Sep 4: half days to the Vernal Fall footbridge and around Mirror Lake M, W, and Sa; full days to Nevada Fall Tu and F and around El Capitan Su and Th."}
-    ] },
-    { "key": "tuolumne", "name": "Tuolumne Meadows", "short": "Tuolumne", "notes": [
-      {"h": "Getting there.", "t": "Little to no cell service on Tioga Road: fuel and plan before you go."},
-      {"h": "Parsons Memorial Lodge.", "t": "Open daily 10 am – 4 pm at the Soda Springs, a thirty-minute walk in from parking."},
-      {"h": "History walk.", "t": "Aug 21 and 28 only."}
-    ] },
-    { "key": "wawona", "name": "Wawona & Mariposa Grove", "short": "Wawona", "notes": [
-      {"h": "The grove shuttle.", "t": "Free, every 15 minutes, 8 am – 7 pm; the last bus down leaves at 8 pm."},
-      {"h": "Mariposa Grove Depot.", "t": "9 am – 5 pm. The Yosemite History Center's outdoor exhibits are open daily."},
-      {"h": "The stable.", "t": "Rides F – W at 8 am, 11 am, and 3 pm, an all-day ride Th at 8 am, and pony rides 10:30 am – 3 pm, all through Sep 6."},
-      {"h": "Golf.", "t": "The 1918 course is open 8 am – 6 pm; book at the Wawona Store."}
-    ] },
-    { "key": "crane", "name": "Crane Flat & Glacier Point", "short": "Crane Flat", "notes": [
-      {"h": "Permits and information.", "t": "Big Oak Flat Information Station, 8 am – 5 pm."},
-      {"h": "Star parties.", "t": "The free astronomy-club star parties that ran through mid-August are not on this edition's schedule."}
-    ] }
+    {
+      "key": "valley",
+      "name": "Yosemite Valley",
+      "short": "Valley",
+      "notes": [
+        {
+          "h": "Valley Floor Tour by tram.",
+          "t": "10 am, 11 am, 1 pm, 2 pm, and sunset, ticketed. Marked wheelchair accessible and all ages."
+        },
+        {
+          "h": "Photography with The Ansel Adams Gallery.",
+          "t": "Free walks Tu and Th 9 am, registration required. Paid field classes: smartphone photography W 9 am and Sa 1 pm, In the Footsteps of Ansel Adams M and Th 1 pm, digital camera Tu 1 pm."
+        },
+        {
+          "h": "Conservancy art classes.",
+          "t": "Weekday mornings at 9 am at Happy Isles, register at Yosemite.org/art: watercolor nature journaling through Aug 21, watercolor Aug 24 – 28, pastels Aug 31 – Sep 4, printmaking Sep 7 – 11, watercolor Sep 14 – 18."
+        },
+        {
+          "h": "Open art studio for kids.",
+          "t": "Happy Isles, 10 am – 3 pm daily. Marked wheelchair accessible."
+        },
+        {
+          "h": "Mountaineering School hikes.",
+          "t": "From Sep 4: half days to the Vernal Fall footbridge and around Mirror Lake M, W, and Sa; full days to Nevada Fall Tu and F and around El Capitan Su and Th."
+        }
+      ]
+    },
+    {
+      "key": "tuolumne",
+      "name": "Tuolumne Meadows",
+      "short": "Tuolumne",
+      "notes": [
+        {
+          "h": "Getting there.",
+          "t": "Little to no cell service on Tioga Road: fuel and plan before you go."
+        },
+        {
+          "h": "Parsons Memorial Lodge.",
+          "t": "Open daily 10 am – 4 pm at the Soda Springs, a thirty-minute walk in from parking."
+        },
+        {
+          "h": "History walk.",
+          "t": "Aug 21 and 28 only."
+        }
+      ]
+    },
+    {
+      "key": "wawona",
+      "name": "Wawona & Mariposa Grove",
+      "short": "Wawona",
+      "notes": [
+        {
+          "h": "The grove shuttle.",
+          "t": "Free, every 15 minutes, 8 am – 7 pm; the last bus down leaves at 8 pm."
+        },
+        {
+          "h": "Mariposa Grove Depot.",
+          "t": "9 am – 5 pm. The Yosemite History Center's outdoor exhibits are open daily."
+        },
+        {
+          "h": "The stable.",
+          "t": "Rides F – W at 8 am, 11 am, and 3 pm, an all-day ride Th at 8 am, and pony rides 10:30 am – 3 pm, all through Sep 6."
+        },
+        {
+          "h": "Golf.",
+          "t": "The 1918 course is open 8 am – 6 pm; book at the Wawona Store."
+        }
+      ]
+    },
+    {
+      "key": "crane",
+      "name": "Crane Flat & Glacier Point",
+      "short": "Crane Flat",
+      "notes": [
+        {
+          "h": "Permits and information.",
+          "t": "Big Oak Flat Information Station, 8 am – 5 pm."
+        },
+        {
+          "h": "Star parties.",
+          "t": "The free astronomy-club star parties that ran through mid-August are not on this edition's schedule."
+        }
+      ]
+    }
   ],
   "programs": [
-    {"area": "valley", "time": "8:30 am", "title": "Mountaineering School guided hike", "detailByDay": {"mo": "Half day: the Vernal Fall footbridge or around Mirror Lake. Also 1:30 pm; ages 12 and up.", "we": "Half day: the Vernal Fall footbridge or around Mirror Lake. Also 1:30 pm; ages 12 and up.", "sa": "Half day: the Vernal Fall footbridge or around Mirror Lake. Also 1:30 pm; ages 12 and up.", "tu": "Full day to Nevada Fall. Also 1:30 pm; ages 12 and up.", "fr": "Full day to Nevada Fall. Also 1:30 pm; ages 12 and up.", "su": "Full day around El Capitan. Also 1:30 pm; ages 12 and up.", "th": "Full day around El Capitan. Also 1:30 pm; ages 12 and up."}, "where": "Curry Village, register at TravelYosemite.com", "from": "2026-09-04", "fee": true, "days": "daily"},
-    {"area": "valley", "time": "9:00 am", "title": "Ranger Walk", "where": "Welcome Center, shuttle stop 2", "days": "daily"},
-    {"area": "valley", "time": "9:00 am", "title": "Climber Coffee", "where": "Camp 4, by the Midnight Lightning boulder", "days": ["su"], "from": "2026-09-13", "access": true},
-    {"area": "valley", "time": "9:00 am", "title": "Tom Killion: Trails and Trees", "detail": "Sierra woodblocks and prints, to 5 pm. Free to walk through.", "where": "The Ansel Adams Gallery", "until": "2026-09-26", "tag": "Exhibit", "days": "daily"},
-    {"area": "valley", "time": "9:30 am", "title": "The Spirit of Yosemite", "detail": "The 23-minute park film, on the hour and half hour to 4 pm.", "where": "Exploration Center theater", "days": "daily"},
-    {"area": "valley", "time": "10:00 am", "title": "Junior Ranger Walk", "where": "Welcome Center, shuttle stop 2", "access": true, "days": "daily"},
-    {"area": "valley", "time": "10:30 am", "title": "Discovery Walk", "where": "Yosemite Museum, shuttle stop 5", "days": ["tu", "we", "th", "sa"], "access": true},
-    {"area": "valley", "time": "12:30 pm", "title": "Ask-a-Climber", "detail": "Spotting scopes on El Capitan, to 4:30 pm.", "where": "El Capitan bridge, shuttle stop 9", "from": "2026-09-06", "allAges": true, "days": "daily"},
-    {"area": "valley", "time": "1:00 pm", "title": "Wild About Bears", "where": "Welcome Center", "days": "daily"},
-    {"area": "valley", "time": "2:00 pm", "title": "Family Ranger Talk", "detail": "Fifteen minutes.", "where": "Welcome Center", "access": true, "allAges": true, "days": "daily"},
-    {"area": "valley", "time": "2:00 pm", "title": "Historic Ahwahnee Hotel Tour", "where": "Ahwahnee back lawn, shuttle stop 3", "access": true, "days": "daily"},
-    {"area": "valley", "time": "2:00 pm", "title": "Paint & Sip watercolor", "detail": "Two hours.", "where": "Mountain Room Lounge, register at Yosemite.org/art", "days": ["fr"], "until": "2026-08-28", "fee": true, "access": true},
-    {"area": "valley", "time": "3:00 pm", "title": "Junior Ranger Discovery Table", "detail": "To 4 pm.", "where": "Welcome Center", "days": ["su", "we", "fr"], "access": true},
-    {"area": "valley", "time": "3:30 pm", "title": "Guided Nature Walk", "where": "Ahwahnee back lawn", "days": "daily"},
-    {"area": "valley", "time": "5:30 pm", "title": "Yosemite Valley Sunset Walk", "detail": "An hour and a half.", "where": "Register at Yosemite.org/adventures", "fee": true, "allAges": true, "days": "daily"},
-    {"area": "valley", "time": "6:00 pm", "title": "Wee Wild Ones", "detail": "For kids 10 and under.", "where": "Curry Village amphitheater", "until": "2026-09-13", "days": "daily"},
-    {"area": "valley", "time": "7:30 pm", "title": "Poetry from Tahoe to Yosemite", "detail": "Chris Olander, poet laureate and ecology bio-educator. Free, all ages. Very limited parking: ride the shuttle to stop 12.", "where": "Conservation Heritage Center", "dates": ["2026-09-11"]},
-    {"area": "valley", "time": "7:30 pm", "title": "Legacy of the Old Yosemite Village", "detail": "Alice van Ommeren, author of Yosemite's Historic Hotels and Camps. Free, all ages.", "where": "Conservation Heritage Center", "dates": ["2026-09-12"]},
-    {"area": "valley", "time": "7:30 pm", "title": "Mystery Cat: Yosemite's Elusive Mountain Lion", "detail": "Don Endicott, Anza-Borrego Desert State Park. Free, all ages.", "where": "Conservation Heritage Center", "dates": ["2026-09-18"]},
-    {"area": "valley", "time": "7:30 pm", "title": "Amazing World of Bats", "detail": "Don Endicott again, on the park's tiny fighter jets. Free, all ages.", "where": "Conservation Heritage Center", "dates": ["2026-09-19"]},
-    {"area": "valley", "time": "8:00 pm", "title": "Evening Program", "where": "Curry Village amphitheater", "days": ["su", "mo", "tu", "we", "th"], "access": true},
-    {"area": "valley", "time": "8:00 pm", "title": "Movie Night", "detailByDay": {"fr": "Change in Yosemite.", "sa": "The Firefall."}, "where": "Curry Village amphitheater", "days": ["fr", "sa"], "access": true},
-    {"area": "valley", "time": "8:30 pm", "title": "Yosemite After Dark night walk", "where": "Ticketed at TravelYosemite.com", "fee": true, "access": true, "allAges": true, "days": "daily"},
-    {"area": "valley", "time": "9:00 pm", "title": "Explore Yosemite's Night Sky", "detail": "Stargazing.", "where": "Register at Yosemite.org", "fee": true, "days": "daily"},
-    {"area": "valley", "time": "9:00 pm", "title": "Moonlight Tour", "detail": "Two hours by tram under a nearly full moon.", "where": "Yosemite Valley Lodge, ticketed at TravelYosemite.com", "from": "2026-08-23", "until": "2026-08-27", "fee": true, "access": true, "allAges": true, "days": "daily"},
-    {"area": "valley", "time": "9:00 pm", "title": "Moonlight Tour", "detail": "Two hours by tram under the moon.", "where": "Yosemite Valley Lodge, ticketed at TravelYosemite.com", "dates": ["2026-09-22"], "fee": true, "access": true, "allAges": true, "tag": "Last of the season"},
-    {"area": "parkwide", "title": "Junior Ranger Day", "detail": "Special drop-in programs all over the park; ask at any information center. In the Mariposa Grove the 1:30 pm talk meets in the parking area.", "dates": ["2026-08-22"]},
-    {"area": "parkwide", "title": "Yosemite Art Trail", "detail": "A week of art-themed drop-in programs and hands-on activities. Ask at an information center for the day's locations.", "from": "2026-08-24", "until": "2026-08-30", "days": "daily"},
-    {"area": "tuolumne", "time": "2:00 pm", "title": "Stewardship Series: Tuolumne Meadows Overview", "detail": "Conservancy stewardship series, to 4 pm. Register at Yosemite.org; free for donors.", "dates": ["2026-08-21"]},
-    {"area": "tuolumne", "time": "7:30 am", "title": "Bird walk", "detail": "Binoculars available.", "where": "Lembert Dome parking", "days": ["we", "sa"]},
-    {"area": "tuolumne", "time": "8:00 am", "title": "Coffee with a ranger", "detail": "To 10 am.", "where": "Tuolumne Meadows Campground, Dana circle", "days": ["tu", "th"]},
-    {"area": "tuolumne", "time": "9:00 am", "title": "Climber coffee", "where": "Tuolumne Meadows Store", "days": ["su"], "until": "2026-08-30", "access": true, "allAges": true},
-    {"area": "tuolumne", "time": "10:00 am", "title": "Botany walk", "where": "Lembert Dome", "days": ["su", "tu"]},
-    {"area": "tuolumne", "time": "10:00 am", "title": "Domes and meadows walk", "where": "Parsons Lodge parking", "days": ["mo", "th"]},
-    {"area": "tuolumne", "time": "10:00 am", "title": "Geology walk", "where": "Pothole Dome", "days": ["we", "sa"]},
-    {"area": "tuolumne", "time": "10:00 am", "title": "Tioga Pass botany walk", "where": "Gaylor Lakes", "days": ["fr"]},
-    {"area": "tuolumne", "time": "10:00 am", "title": "Junior ranger walk", "days": ["we", "sa"]},
-    {"area": "tuolumne", "time": "10:00 am", "title": "Parsons Memorial Lodge open", "detail": "To 4 pm, with an open reading room. A thirty-minute walk in from parking.", "where": "Soda Springs", "allAges": true, "days": "daily"},
-    {"area": "tuolumne", "time": "Noon", "title": "Welcome to Tuolumne!", "detail": "A 15-minute orientation talk.", "where": "Visitor center lot", "access": true, "allAges": true, "days": "daily"},
-    {"area": "tuolumne", "time": "1:00 pm", "title": "River walk", "where": "Dog Lake parking", "days": ["we"], "allAges": true},
-    {"area": "tuolumne", "time": "2:00 pm", "title": "Forest walk", "days": ["mo"], "allAges": true},
-    {"area": "tuolumne", "time": "2:00 pm", "title": "Wildlife walk", "where": "Visitor center", "days": ["th"], "allAges": true},
-    {"area": "tuolumne", "time": "3:00 pm", "title": "Welcome to Tuolumne!", "detail": "The day's second orientation talk, 15 minutes.", "where": "Visitor center lot", "access": true, "allAges": true, "days": "daily"},
-    {"area": "tuolumne", "time": "7:30 pm", "title": "Campfire program", "where": "Tuolumne Meadows Campground", "access": true, "allAges": true, "days": "daily"},
-    {"area": "tuolumne", "time": "7:30 pm", "title": "Campfireside chat", "detail": "Only on nights the lodge is open.", "where": "Parsons Memorial Lodge", "days": ["mo", "we", "sa"], "access": true, "allAges": true},
-    {"area": "tuolumne", "time": "9:00 pm", "title": "Stars Over Tuolumne", "detail": "Bring a pad and warm layers.", "where": "Lembert Dome parking", "days": ["mo", "we", "sa"], "allAges": true},
-    {"area": "wawona", "time": "9:00 am", "title": "Coffee with a ranger", "where": "Pine Tree Market", "days": ["we", "su"], "from": "2026-08-20", "access": true},
-    {"area": "wawona", "time": "9:30 am", "title": "Nature walk", "detail": "Allow time to park and ride the shuttle up first.", "where": "Mariposa Grove arrival area", "from": "2026-08-20", "days": "daily"},
-    {"area": "wawona", "time": "1:30 pm", "title": "Junior ranger talk", "detail": "For kids 4 and up.", "where": "In the Mariposa Grove", "from": "2026-08-20", "days": "daily"},
-    {"area": "wawona", "time": "5:00 pm", "title": "Bear talk with Ranger Jill", "detail": "Free, kid and pet friendly, snacks provided.", "where": "The Redwoods fireside deck", "days": ["we", "su"], "from": "2026-08-20", "access": true, "allAges": true},
-    {"area": "wawona", "time": "7:00 pm", "title": "Campfire program", "where": "Wawona Campground amphitheater", "from": "2026-08-20", "days": "daily"},
-    {"area": "crane", "time": "11:00 am", "title": "Giant sequoia hike", "detail": "Meets a mile down the trail: 2.5 miles and 500 feet round trip.", "where": "Tuolumne Grove", "days": ["mo", "we", "th"], "allAges": true},
-    {"area": "crane", "time": "2:00 pm", "title": "Junior ranger table", "detail": "To 3:30 pm.", "where": "Tuolumne Grove trailhead", "access": true, "days": "daily"},
-    {"area": "crane", "time": "6:30 pm", "title": "Evening program", "where": "Crane Flat Campground amphitheater", "days": ["su", "we", "th", "fr", "sa"], "except": ["2026-08-22", "2026-08-23"], "access": true, "allAges": true},
-    {"area": "crane", "time": "8:00 pm", "title": "Stars Over Crane Flat", "detail": "Free, but register at the Big Oak Flat Information Station. No pets, RVs, or trailers.", "dates": ["2026-09-03", "2026-09-05", "2026-09-07", "2026-09-09", "2026-09-10", "2026-09-12"], "allAges": true},
-    {"area": "crane", "time": "9:00 pm", "title": "Glacier Point Starry Skies", "detail": "Getting up there is on you: an hour from the Valley in the dark.", "where": "Glacier Point, ticketed", "dates": ["2026-08-19", "2026-08-20", "2026-09-06", "2026-09-07", "2026-09-08", "2026-09-09", "2026-09-10", "2026-09-13", "2026-09-14", "2026-09-15", "2026-09-16", "2026-09-17"], "fee": true, "access": true, "allAges": true}
+    {
+      "area": "valley",
+      "time": "8:30 am",
+      "title": "Mountaineering School guided hike",
+      "detailByDay": {
+        "mo": "Half day: the Vernal Fall footbridge or around Mirror Lake. Also 1:30 pm; ages 12 and up.",
+        "we": "Half day: the Vernal Fall footbridge or around Mirror Lake. Also 1:30 pm; ages 12 and up.",
+        "sa": "Half day: the Vernal Fall footbridge or around Mirror Lake. Also 1:30 pm; ages 12 and up.",
+        "tu": "Full day to Nevada Fall. Also 1:30 pm; ages 12 and up.",
+        "fr": "Full day to Nevada Fall. Also 1:30 pm; ages 12 and up.",
+        "su": "Full day around El Capitan. Also 1:30 pm; ages 12 and up.",
+        "th": "Full day around El Capitan. Also 1:30 pm; ages 12 and up."
+      },
+      "where": "Curry Village, register at TravelYosemite.com",
+      "from": "2026-09-04",
+      "fee": true,
+      "days": "daily"
+    },
+    {
+      "area": "valley",
+      "time": "9:00 am",
+      "title": "Ranger Walk",
+      "where": "Welcome Center, shuttle stop 2",
+      "days": "daily"
+    },
+    {
+      "area": "valley",
+      "time": "9:00 am",
+      "title": "Climber Coffee",
+      "where": "Camp 4, by the Midnight Lightning boulder",
+      "days": [
+        "su"
+      ],
+      "from": "2026-09-13",
+      "access": true
+    },
+    {
+      "area": "valley",
+      "time": "9:00 am",
+      "title": "Tom Killion: Trails and Trees",
+      "detail": "Sierra woodblocks and prints, to 5 pm. Free to walk through.",
+      "where": "The Ansel Adams Gallery",
+      "until": "2026-09-26",
+      "tag": "Exhibit",
+      "days": "daily"
+    },
+    {
+      "area": "valley",
+      "time": "9:30 am",
+      "title": "The Spirit of Yosemite",
+      "detail": "The 23-minute park film, on the hour and half hour to 4 pm.",
+      "where": "Exploration Center theater",
+      "days": "daily"
+    },
+    {
+      "area": "valley",
+      "time": "10:00 am",
+      "title": "Junior Ranger Walk",
+      "where": "Welcome Center, shuttle stop 2",
+      "access": true,
+      "days": "daily"
+    },
+    {
+      "area": "valley",
+      "time": "10:30 am",
+      "title": "Discovery Walk",
+      "where": "Yosemite Museum, shuttle stop 5",
+      "days": [
+        "tu",
+        "we",
+        "th",
+        "sa"
+      ],
+      "access": true
+    },
+    {
+      "area": "valley",
+      "time": "12:30 pm",
+      "title": "Ask-a-Climber",
+      "detail": "Spotting scopes on El Capitan, to 4:30 pm.",
+      "where": "El Capitan bridge, shuttle stop 9",
+      "from": "2026-09-06",
+      "allAges": true,
+      "days": "daily"
+    },
+    {
+      "area": "valley",
+      "time": "1:00 pm",
+      "title": "Wild About Bears",
+      "where": "Welcome Center",
+      "days": "daily"
+    },
+    {
+      "area": "valley",
+      "time": "2:00 pm",
+      "title": "Family Ranger Talk",
+      "detail": "Fifteen minutes.",
+      "where": "Welcome Center",
+      "access": true,
+      "allAges": true,
+      "days": "daily"
+    },
+    {
+      "area": "valley",
+      "time": "2:00 pm",
+      "title": "Historic Ahwahnee Hotel Tour",
+      "where": "Ahwahnee back lawn, shuttle stop 3",
+      "access": true,
+      "days": "daily"
+    },
+    {
+      "area": "valley",
+      "time": "2:00 pm",
+      "title": "Paint & Sip watercolor",
+      "detail": "Two hours.",
+      "where": "Mountain Room Lounge, register at Yosemite.org/art",
+      "days": [
+        "fr"
+      ],
+      "until": "2026-08-28",
+      "fee": true,
+      "access": true
+    },
+    {
+      "area": "valley",
+      "time": "3:00 pm",
+      "title": "Junior Ranger Discovery Table",
+      "detail": "To 4 pm.",
+      "where": "Welcome Center",
+      "days": [
+        "su",
+        "we",
+        "fr"
+      ],
+      "access": true
+    },
+    {
+      "area": "valley",
+      "time": "3:30 pm",
+      "title": "Guided Nature Walk",
+      "where": "Ahwahnee back lawn",
+      "days": "daily"
+    },
+    {
+      "area": "valley",
+      "time": "5:30 pm",
+      "title": "Yosemite Valley Sunset Walk",
+      "detail": "An hour and a half.",
+      "where": "Register at Yosemite.org/adventures",
+      "fee": true,
+      "allAges": true,
+      "days": "daily"
+    },
+    {
+      "area": "valley",
+      "time": "6:00 pm",
+      "title": "Wee Wild Ones",
+      "detail": "For kids 10 and under.",
+      "where": "Curry Village amphitheater",
+      "until": "2026-09-13",
+      "days": "daily"
+    },
+    {
+      "area": "valley",
+      "time": "7:30 pm",
+      "title": "Poetry from Tahoe to Yosemite",
+      "detail": "Chris Olander, poet laureate and ecology bio-educator. Free, all ages. Very limited parking: ride the shuttle to stop 12.",
+      "where": "Conservation Heritage Center",
+      "dates": [
+        "2026-09-11"
+      ]
+    },
+    {
+      "area": "valley",
+      "time": "7:30 pm",
+      "title": "Legacy of the Old Yosemite Village",
+      "detail": "Alice van Ommeren, author of Yosemite's Historic Hotels and Camps. Free, all ages.",
+      "where": "Conservation Heritage Center",
+      "dates": [
+        "2026-09-12"
+      ]
+    },
+    {
+      "area": "valley",
+      "time": "7:30 pm",
+      "title": "Mystery Cat: Yosemite's Elusive Mountain Lion",
+      "detail": "Don Endicott, Anza-Borrego Desert State Park. Free, all ages.",
+      "where": "Conservation Heritage Center",
+      "dates": [
+        "2026-09-18"
+      ]
+    },
+    {
+      "area": "valley",
+      "time": "7:30 pm",
+      "title": "Amazing World of Bats",
+      "detail": "Don Endicott again, on the park's tiny fighter jets. Free, all ages.",
+      "where": "Conservation Heritage Center",
+      "dates": [
+        "2026-09-19"
+      ]
+    },
+    {
+      "area": "valley",
+      "time": "8:00 pm",
+      "title": "Evening Program",
+      "where": "Curry Village amphitheater",
+      "days": [
+        "su",
+        "mo",
+        "tu",
+        "we",
+        "th"
+      ],
+      "access": true
+    },
+    {
+      "area": "valley",
+      "time": "8:00 pm",
+      "title": "Movie Night",
+      "detailByDay": {
+        "fr": "Change in Yosemite.",
+        "sa": "The Firefall."
+      },
+      "where": "Curry Village amphitheater",
+      "days": [
+        "fr",
+        "sa"
+      ],
+      "access": true
+    },
+    {
+      "area": "valley",
+      "time": "8:30 pm",
+      "title": "Yosemite After Dark night walk",
+      "where": "Ticketed at TravelYosemite.com",
+      "fee": true,
+      "access": true,
+      "allAges": true,
+      "days": "daily"
+    },
+    {
+      "area": "valley",
+      "time": "9:00 pm",
+      "title": "Explore Yosemite's Night Sky",
+      "detail": "Stargazing.",
+      "where": "Register at Yosemite.org",
+      "fee": true,
+      "days": "daily"
+    },
+    {
+      "area": "valley",
+      "time": "9:00 pm",
+      "title": "Moonlight Tour",
+      "detail": "Two hours by tram under a nearly full moon.",
+      "where": "Yosemite Valley Lodge, ticketed at TravelYosemite.com",
+      "from": "2026-08-23",
+      "until": "2026-08-27",
+      "fee": true,
+      "access": true,
+      "allAges": true,
+      "days": "daily"
+    },
+    {
+      "area": "valley",
+      "time": "9:00 pm",
+      "title": "Moonlight Tour",
+      "detail": "Two hours by tram under the moon.",
+      "where": "Yosemite Valley Lodge, ticketed at TravelYosemite.com",
+      "dates": [
+        "2026-09-22"
+      ],
+      "fee": true,
+      "access": true,
+      "allAges": true,
+      "tag": "Last of the season"
+    },
+    {
+      "area": "parkwide",
+      "title": "Junior Ranger Day",
+      "detail": "Special drop-in programs all over the park; ask at any information center. In the Mariposa Grove the 1:30 pm talk meets in the parking area.",
+      "dates": [
+        "2026-08-22"
+      ]
+    },
+    {
+      "area": "parkwide",
+      "title": "Yosemite Art Trail",
+      "detail": "A week of art-themed drop-in programs and hands-on activities. Ask at an information center for the day's locations.",
+      "from": "2026-08-24",
+      "until": "2026-08-30",
+      "days": "daily"
+    },
+    {
+      "area": "tuolumne",
+      "time": "2:00 pm",
+      "title": "Stewardship Series: Tuolumne Meadows Overview",
+      "detail": "Conservancy stewardship series, to 4 pm. Register at Yosemite.org; free for donors.",
+      "dates": [
+        "2026-08-21"
+      ]
+    },
+    {
+      "area": "tuolumne",
+      "time": "7:30 am",
+      "title": "Bird walk",
+      "detail": "Binoculars available.",
+      "where": "Lembert Dome parking",
+      "days": [
+        "we",
+        "sa"
+      ]
+    },
+    {
+      "area": "tuolumne",
+      "time": "8:00 am",
+      "title": "Coffee with a ranger",
+      "detail": "To 10 am.",
+      "where": "Tuolumne Meadows Campground, Dana circle",
+      "days": [
+        "tu",
+        "th"
+      ]
+    },
+    {
+      "area": "tuolumne",
+      "time": "9:00 am",
+      "title": "Climber coffee",
+      "where": "Tuolumne Meadows Store",
+      "days": [
+        "su"
+      ],
+      "until": "2026-08-30",
+      "access": true,
+      "allAges": true
+    },
+    {
+      "area": "tuolumne",
+      "time": "10:00 am",
+      "title": "Botany walk",
+      "where": "Lembert Dome",
+      "days": [
+        "su",
+        "tu"
+      ]
+    },
+    {
+      "area": "tuolumne",
+      "time": "10:00 am",
+      "title": "Domes and meadows walk",
+      "where": "Parsons Lodge parking",
+      "days": [
+        "mo",
+        "th"
+      ]
+    },
+    {
+      "area": "tuolumne",
+      "time": "10:00 am",
+      "title": "Geology walk",
+      "where": "Pothole Dome",
+      "days": [
+        "we",
+        "sa"
+      ]
+    },
+    {
+      "area": "tuolumne",
+      "time": "10:00 am",
+      "title": "Tioga Pass botany walk",
+      "where": "Gaylor Lakes",
+      "days": [
+        "fr"
+      ]
+    },
+    {
+      "area": "tuolumne",
+      "time": "10:00 am",
+      "title": "Junior ranger walk",
+      "days": [
+        "we",
+        "sa"
+      ]
+    },
+    {
+      "area": "tuolumne",
+      "time": "10:00 am",
+      "title": "Parsons Memorial Lodge open",
+      "detail": "To 4 pm, with an open reading room. A thirty-minute walk in from parking.",
+      "where": "Soda Springs",
+      "allAges": true,
+      "days": "daily"
+    },
+    {
+      "area": "tuolumne",
+      "time": "Noon",
+      "title": "Welcome to Tuolumne!",
+      "detail": "A 15-minute orientation talk.",
+      "where": "Visitor center lot",
+      "access": true,
+      "allAges": true,
+      "days": "daily"
+    },
+    {
+      "area": "tuolumne",
+      "time": "1:00 pm",
+      "title": "River walk",
+      "where": "Dog Lake parking",
+      "days": [
+        "we"
+      ],
+      "allAges": true
+    },
+    {
+      "area": "tuolumne",
+      "time": "2:00 pm",
+      "title": "Forest walk",
+      "days": [
+        "mo"
+      ],
+      "allAges": true
+    },
+    {
+      "area": "tuolumne",
+      "time": "2:00 pm",
+      "title": "Wildlife walk",
+      "where": "Visitor center",
+      "days": [
+        "th"
+      ],
+      "allAges": true
+    },
+    {
+      "area": "tuolumne",
+      "time": "3:00 pm",
+      "title": "Welcome to Tuolumne!",
+      "detail": "The day's second orientation talk, 15 minutes.",
+      "where": "Visitor center lot",
+      "access": true,
+      "allAges": true,
+      "days": "daily"
+    },
+    {
+      "area": "tuolumne",
+      "time": "7:30 pm",
+      "title": "Campfire program",
+      "where": "Tuolumne Meadows Campground",
+      "access": true,
+      "allAges": true,
+      "days": "daily"
+    },
+    {
+      "area": "tuolumne",
+      "time": "7:30 pm",
+      "title": "Campfireside chat",
+      "detail": "Only on nights the lodge is open.",
+      "where": "Parsons Memorial Lodge",
+      "days": [
+        "mo",
+        "we",
+        "sa"
+      ],
+      "access": true,
+      "allAges": true
+    },
+    {
+      "area": "tuolumne",
+      "time": "9:00 pm",
+      "title": "Stars Over Tuolumne",
+      "detail": "Bring a pad and warm layers.",
+      "where": "Lembert Dome parking",
+      "days": [
+        "mo",
+        "we",
+        "sa"
+      ],
+      "allAges": true
+    },
+    {
+      "area": "wawona",
+      "time": "9:00 am",
+      "title": "Coffee with a ranger",
+      "where": "Pine Tree Market",
+      "days": [
+        "we",
+        "su"
+      ],
+      "from": "2026-08-20",
+      "access": true
+    },
+    {
+      "area": "wawona",
+      "time": "9:30 am",
+      "title": "Nature walk",
+      "detail": "Allow time to park and ride the shuttle up first.",
+      "where": "Mariposa Grove arrival area",
+      "from": "2026-08-20",
+      "days": "daily"
+    },
+    {
+      "area": "wawona",
+      "time": "1:30 pm",
+      "title": "Junior ranger talk",
+      "detail": "For kids 4 and up.",
+      "where": "In the Mariposa Grove",
+      "from": "2026-08-20",
+      "days": "daily"
+    },
+    {
+      "area": "wawona",
+      "time": "5:00 pm",
+      "title": "Bear talk with Ranger Jill",
+      "detail": "Free, kid and pet friendly, snacks provided.",
+      "where": "The Redwoods fireside deck",
+      "days": [
+        "we",
+        "su"
+      ],
+      "from": "2026-08-20",
+      "access": true,
+      "allAges": true
+    },
+    {
+      "area": "wawona",
+      "time": "7:00 pm",
+      "title": "Campfire program",
+      "where": "Wawona Campground amphitheater",
+      "from": "2026-08-20",
+      "days": "daily"
+    },
+    {
+      "area": "crane",
+      "time": "11:00 am",
+      "title": "Giant sequoia hike",
+      "detail": "Meets a mile down the trail: 2.5 miles and 500 feet round trip.",
+      "where": "Tuolumne Grove",
+      "days": [
+        "mo",
+        "we",
+        "th"
+      ],
+      "allAges": true
+    },
+    {
+      "area": "crane",
+      "time": "2:00 pm",
+      "title": "Junior ranger table",
+      "detail": "To 3:30 pm.",
+      "where": "Tuolumne Grove trailhead",
+      "access": true,
+      "days": "daily"
+    },
+    {
+      "area": "crane",
+      "time": "6:30 pm",
+      "title": "Evening program",
+      "where": "Crane Flat Campground amphitheater",
+      "days": [
+        "su",
+        "we",
+        "th",
+        "fr",
+        "sa"
+      ],
+      "except": [
+        "2026-08-22",
+        "2026-08-23"
+      ],
+      "access": true,
+      "allAges": true
+    },
+    {
+      "area": "crane",
+      "time": "8:00 pm",
+      "title": "Stars Over Crane Flat",
+      "detail": "Free, but register at the Big Oak Flat Information Station. No pets, RVs, or trailers.",
+      "dates": [
+        "2026-09-03",
+        "2026-09-05",
+        "2026-09-07",
+        "2026-09-09",
+        "2026-09-10",
+        "2026-09-12"
+      ],
+      "allAges": true
+    },
+    {
+      "area": "crane",
+      "time": "9:00 pm",
+      "title": "Glacier Point Starry Skies",
+      "detail": "Getting up there is on you: an hour from the Valley in the dark.",
+      "where": "Glacier Point, ticketed",
+      "dates": [
+        "2026-08-19",
+        "2026-08-20",
+        "2026-09-06",
+        "2026-09-07",
+        "2026-09-08",
+        "2026-09-09",
+        "2026-09-10",
+        "2026-09-13",
+        "2026-09-14",
+        "2026-09-15",
+        "2026-09-16",
+        "2026-09-17"
+      ],
+      "fee": true,
+      "access": true,
+      "allAges": true
+    }
   ],
   "programsNote": "Everything unmarked is free and drop-in. The accessible and all-ages marks are the Yosemite Guide's own symbols: accessible means the program is held in a wheelchair-accessible facility or uses wheelchair-accessible paths, and the park asks you to raise any other accommodation with the program host. An unmarked program is one the Guide did not mark, not one it ruled out.",
   "trails": [
-    {"name": "Mist Trail to Vernal & Nevada Falls", "chip": "Weekday closures", "tone": "closed", "distance": "Footbridge 1.6 mi, 380 ft · top of Vernal 2.4 mi, 1,000 ft · top of Nevada 5 mi, 2,000 ft", "start": "Happy Isles, shuttle stop 16", "note": "Closed M – Th, 7 am – 3:30 pm for repairs through the end of October; open F – Su, holidays, and outside those hours when conditions allow. Use the signed John Muir Trail detour during the closure. Looping back on the John Muir Trail by Clark Point makes Vernal 3.7 miles and Nevada 5.8."},
-    {"name": "Half Dome", "chip": "Permit required", "tone": "warn", "distance": "14 – 16 mi, 4,800 ft", "note": "The cables are up, which means a permit every day of the week, and they typically come down in the first half of October. Daily lottery two days ahead on Recreation.gov, applications midnight to 4 pm. Be honest about the day."},
-    {"name": "Lower Yosemite Fall", "chip": "Dry", "tone": "closed", "distance": "1 mi loop", "start": "Shuttle stop 6", "note": "East side wheelchair-accessible. The fall is done for the season and returns with the first autumn storms. Go for the amphitheater and the scale of the wall."},
-    {"name": "Mirror Lake", "chip": "Dry", "tone": "closed", "distance": "2 mi, 100 ft on the paved road · 4.5 mi around the basin", "start": "Shuttle stop 17", "note": "The lakebed is a meadow this time of year. Leashed pets on the paved road only; a valid disability placard may drive it."},
-    {"name": "Bridalveil Fall", "chip": "Flowing", "tone": "open", "distance": "0.5 mi paved", "start": "Bridalveil Fall parking area", "note": "Paved to a wheelchair-accessible viewing area, steeper to the base. Thin but still showing in the afternoon wind. Stay behind the barriers: the rocks at the base are slick."},
-    {"name": "Cook's Meadow", "chip": "Open", "tone": "open", "distance": "1 mi flat loop", "start": "Shuttle stop 6", "note": "Pavement and boardwalk. Half Dome and Yosemite Falls views; best light early and late, and the birds are out at both ends of the day."},
-    {"name": "Yosemite Falls Trail", "chip": "Open", "tone": "open", "distance": "Columbia Rock 2 mi · the top 7.2 mi, 2,700 ft", "start": "Camp 4, shuttle stop 7", "note": "Columbia Rock earns the view. The full climb is six to eight hours and dozens of switchbacks: start at dawn."},
-    {"name": "Four Mile Trail", "chip": "Open", "tone": "open", "distance": "9.6 mi, 3,200 ft round trip", "start": "Shuttle stop 11", "note": "To Glacier Point, six to eight hours. One-way option: ride the tour bus up, walk down. Drop-offs only at the point, no pickup."},
-    {"name": "Valley Loop Trail", "chip": "Split on weekdays", "tone": "warn", "distance": "Up to 11.5 mi", "note": "Mostly flat but uneven, and the quietest miles on the floor. The El Capitan Bridge section is closed on weekdays through December for bridge work, so on a weekday walk the north and south sides as two out-and-backs, or come on a weekend for the full loop. No pets or bikes."},
-    {"name": "Sentinel Dome & Taft Point", "chip": "Open", "tone": "open", "distance": "Taft Point 2.4 mi · Sentinel Dome 1.8 mi", "start": "Glacier Point Road", "note": "One trailhead, two rim walks: Taft Point to the west, Sentinel Dome to the northeast."},
-    {"name": "Tuolumne & Merced Groves", "chip": "Open", "tone": "open", "distance": "Tuolumne 2 mi, 500 ft · Merced 3 mi, 520 ft", "start": "Near Crane Flat", "note": "The uncrowded sequoias. You walk down first, so save the legs for the return."}
+    {
+      "name": "Mist Trail to Vernal & Nevada Falls",
+      "chip": "Weekday closures",
+      "tone": "closed",
+      "distance": "Footbridge 1.6 mi, 380 ft · top of Vernal 2.4 mi, 1,000 ft · top of Nevada 5 mi, 2,000 ft",
+      "start": "Happy Isles, shuttle stop 16",
+      "note": "Closed M – Th, 7 am – 3:30 pm for repairs through the end of October; open F – Su, holidays, and outside those hours when conditions allow. Use the signed John Muir Trail detour during the closure. Looping back on the John Muir Trail by Clark Point makes Vernal 3.7 miles and Nevada 5.8."
+    },
+    {
+      "name": "Chilnualna Falls",
+      "chip": "Closed",
+      "tone": "closed",
+      "distance": "8.4 mi, 2,400 ft",
+      "start": "Chilnualna Falls trailhead, Wawona",
+      "note": "Closed for the Dome Fire, along with the trails from the top toward Buena Vista and Crescent Lakes. No reopening date announced. Check the park's conditions page before driving down."
+    },
+    {
+      "name": "Half Dome",
+      "chip": "Permit required",
+      "tone": "warn",
+      "distance": "14 – 16 mi, 4,800 ft",
+      "note": "The cables are up, which means a permit every day of the week, and they typically come down in the first half of October. Daily lottery two days ahead on Recreation.gov, applications midnight to 4 pm. Be honest about the day."
+    },
+    {
+      "name": "Lower Yosemite Fall",
+      "chip": "Dry",
+      "tone": "closed",
+      "distance": "1 mi loop",
+      "start": "Shuttle stop 6",
+      "note": "East side wheelchair-accessible. The fall is done for the season and returns with the first autumn storms. Go for the amphitheater and the scale of the wall."
+    },
+    {
+      "name": "Mirror Lake",
+      "chip": "Dry",
+      "tone": "closed",
+      "distance": "2 mi, 100 ft on the paved road · 4.5 mi around the basin",
+      "start": "Shuttle stop 17",
+      "note": "The lakebed is a meadow this time of year. Leashed pets on the paved road only; a valid disability placard may drive it."
+    },
+    {
+      "name": "Bridalveil Fall",
+      "chip": "Flowing",
+      "tone": "open",
+      "distance": "0.5 mi paved",
+      "start": "Bridalveil Fall parking area",
+      "note": "Paved to a wheelchair-accessible viewing area, steeper to the base. Thin but still showing in the afternoon wind. Stay behind the barriers: the rocks at the base are slick."
+    },
+    {
+      "name": "Cook's Meadow",
+      "chip": "Open",
+      "tone": "open",
+      "distance": "1 mi flat loop",
+      "start": "Shuttle stop 6",
+      "note": "Pavement and boardwalk. Half Dome and Yosemite Falls views; best light early and late, and the birds are out at both ends of the day."
+    },
+    {
+      "name": "Yosemite Falls Trail",
+      "chip": "Open",
+      "tone": "open",
+      "distance": "Columbia Rock 2 mi · the top 7.2 mi, 2,700 ft",
+      "start": "Camp 4, shuttle stop 7",
+      "note": "Columbia Rock earns the view. The full climb is six to eight hours and dozens of switchbacks: start at dawn."
+    },
+    {
+      "name": "Four Mile Trail",
+      "chip": "Open",
+      "tone": "open",
+      "distance": "9.6 mi, 3,200 ft round trip",
+      "start": "Shuttle stop 11",
+      "note": "To Glacier Point, six to eight hours. One-way option: ride the tour bus up, walk down. Drop-offs only at the point, no pickup."
+    },
+    {
+      "name": "Valley Loop Trail",
+      "chip": "Split on weekdays",
+      "tone": "warn",
+      "distance": "Up to 11.5 mi",
+      "note": "Mostly flat but uneven, and the quietest miles on the floor. The El Capitan Bridge section is closed on weekdays through December for bridge work, so on a weekday walk the north and south sides as two out-and-backs, or come on a weekend for the full loop. No pets or bikes."
+    },
+    {
+      "name": "Sentinel Dome & Taft Point",
+      "chip": "Open",
+      "tone": "open",
+      "distance": "Taft Point 2.4 mi · Sentinel Dome 1.8 mi",
+      "start": "Glacier Point Road",
+      "note": "One trailhead, two rim walks: Taft Point to the west, Sentinel Dome to the northeast."
+    },
+    {
+      "name": "Tuolumne & Merced Groves",
+      "chip": "Open",
+      "tone": "open",
+      "distance": "Tuolumne 2 mi, 500 ft · Merced 3 mi, 520 ft",
+      "start": "Near Crane Flat",
+      "note": "The uncrowded sequoias. You walk down first, so save the legs for the return."
+    }
   ],
   "trailsNote": "Overnights require a wilderness permit year-round, and a bear canister; rent one at permit pickup. Carry a quart of water per person for every two hours, three for the falls corridor, plus salty snacks, a headlamp, a map, and a layer. Turn around when half the water is gone. No pets or bikes on any hiking trail. Big-wall climbers self-register for overnight permits at the kiosk near shuttle stop 9.",
   "hours": [
-    { "group": "Information", "items": [
-      {"name": "Valley Welcome Center", "hours": "9 – 5"},
-      {"name": "Exploration Center & theater", "hours": "9 – 5"},
-      {"name": "Yosemite Museum", "hours": "10 – 5", "note": "may close for lunch"},
-      {"name": "The Ansel Adams Gallery", "hours": "9 – 5"},
-      {"name": "Happy Isles Art & Nature Center", "hours": "9 – 4"},
-      {"name": "Wilderness centers (Valley, Tuolumne, Big Oak Flat, Wawona)", "hours": "8 – 5"},
-      {"name": "Tuolumne Meadows Visitor Center", "hours": "9 – 5"},
-      {"name": "Wawona Visitor Center", "hours": "8 – 5"},
-      {"name": "Mariposa Grove Depot", "hours": "9 – 5"},
-      {"name": "Big Oak Flat Information Station", "hours": "8 – 5", "note": "bookstore from 9"},
-      {"name": "Conservation Heritage Center", "hours": "10 – 4", "note": "closed M Tu"}
-    ] },
-    { "group": "Eat", "items": [
-      {"name": "Base Camp Eatery, the Lodge", "hours": "6:30 – 10:30, 11 – 9"},
-      {"name": "Starbucks, the Lodge", "hours": "6:30 – 6:30"},
-      {"name": "Mountain Room Restaurant, the Lodge", "hours": "5 – 10", "note": "last seating 9:30"},
-      {"name": "Mountain Room Lounge", "hours": "4:30 – 10", "note": "from noon Sa Su", "then": {"from": "2026-09-13", "hours": "5 – 10"}},
-      {"name": "Ahwahnee Dining Room", "hours": "7 – 10, 11:30 – 3, 5:30 – 9", "note": "dinner reservations, Su brunch 7 – 3"},
-      {"name": "Ahwahnee Bar", "hours": "11:30 – 11"},
-      {"name": "Ahwahnee Sweet Shop", "hours": "7 – 10"},
-      {"name": "Degnan's Kitchen, the Village", "hours": "7 – 6", "note": "limited service 11 – 11:30"},
-      {"name": "Village Grill", "hours": "11 – 6"},
-      {"name": "Seven Tents Pavilion, Curry", "hours": "7 – 10, 5:30 – 8:30"},
-      {"name": "Pizza Deck, Curry", "hours": "11 – 10"},
-      {"name": "Bar 1899, Curry", "hours": "11:30 – 10"},
-      {"name": "Meadow Grill Taqueria, Curry", "hours": "11 – 8", "then": {"from": "2026-09-07", "hours": "11 – 5"}},
-      {"name": "Jennie's Ice Cream, Curry", "hours": "11 – 8:30", "closes": "2026-09-06"},
-      {"name": "Coffee Corner, Curry", "hours": "6 – 2"},
-      {"name": "Tuolumne Meadows Grill", "hours": "8 – 6", "note": "the concessioner's date; the Guide said Sep 20", "closes": "2026-09-14"}
-    ] },
-    { "group": "Stores", "items": [
-      {"name": "Village Store", "hours": "8 – 10", "then": {"from": "2026-09-07", "hours": "8 – 9"}},
-      {"name": "Curry Village Gift & Grocery", "hours": "8 – 10", "then": {"from": "2026-09-07", "hours": "8 – 9"}},
-      {"name": "Yosemite Mountain Shop", "hours": "8 – 8"},
-      {"name": "Yosemite Valley Lodge gift shop", "hours": "8 – 10", "then": {"from": "2026-09-07", "hours": "8 – 9"}},
-      {"name": "Ahwahnee gift shop", "hours": "8 – 9"},
-      {"name": "Housekeeping Camp store", "hours": "8 – 8", "note": "laundry to 10"},
-      {"name": "Glacier Point gift shop", "hours": "9 – 7"},
-      {"name": "Wawona Store", "hours": "8 – 8"},
-      {"name": "Tuolumne Meadows Store", "hours": "8 – 8", "closes": "2026-09-20"},
-      {"name": "Crane Flat Gas & Grocery", "hours": "8 – 5"},
-      {"name": "El Portal Market", "hours": "9 – 7"}
-    ] },
-    { "group": "Other services", "items": [
-      {"name": "Medical clinic urgent-care walk-ins", "hours": "M – F 1 – 3:30", "note": "not an emergency room"},
-      {"name": "Village post office", "hours": "M – F 8:30 – 5, Sa 10 – 12"},
-      {"name": "Wawona post office", "hours": "M – F 9 – 1, Sa 9 – 12"},
-      {"name": "Village garage", "hours": "8 – 12, 1 – 5", "note": "propane; no gas in the Valley"},
-      {"name": "Bike rentals & tour kiosks", "hours": "8 – 7", "note": "Village, Curry, the Lodge", "then": {"from": "2026-09-08", "hours": "9 – 6"}},
-      {"name": "Mountaineering School, Curry", "hours": "8:30 – 12, 1 – 4:30"},
-      {"name": "Pools, Curry & the Lodge", "hours": "11 – 6", "closes": "2026-09-07"},
-      {"name": "Curry Village showers", "hours": "24 hours"},
-      {"name": "Wawona golf course", "hours": "8 – 6"},
-      {"name": "Wawona stable", "hours": "rides 8, 11, 3", "note": "F – W; all-day ride Th 8", "closes": "2026-09-06"},
-      {"name": "Gas stations, El Portal, Crane Flat & Wawona", "hours": "staffed 8 – 5", "note": "card at the pump 24 hours"}
-    ] }
+    {
+      "group": "Information",
+      "items": [
+        {
+          "name": "Valley Welcome Center",
+          "hours": "9 – 5"
+        },
+        {
+          "name": "Exploration Center & theater",
+          "hours": "9 – 5"
+        },
+        {
+          "name": "Yosemite Museum",
+          "hours": "10 – 5",
+          "note": "may close for lunch"
+        },
+        {
+          "name": "The Ansel Adams Gallery",
+          "hours": "9 – 5"
+        },
+        {
+          "name": "Happy Isles Art & Nature Center",
+          "hours": "9 – 4"
+        },
+        {
+          "name": "Wilderness centers (Valley, Tuolumne, Big Oak Flat, Wawona)",
+          "hours": "8 – 5"
+        },
+        {
+          "name": "Tuolumne Meadows Visitor Center",
+          "hours": "9 – 5"
+        },
+        {
+          "name": "Wawona Visitor Center",
+          "hours": "8 – 5"
+        },
+        {
+          "name": "Mariposa Grove Depot",
+          "hours": "9 – 5"
+        },
+        {
+          "name": "Big Oak Flat Information Station",
+          "hours": "8 – 5",
+          "note": "bookstore from 9"
+        },
+        {
+          "name": "Conservation Heritage Center",
+          "hours": "10 – 4",
+          "note": "closed M Tu"
+        }
+      ]
+    },
+    {
+      "group": "Eat",
+      "items": [
+        {
+          "name": "Base Camp Eatery, the Lodge",
+          "hours": "6:30 – 10:30, 11 – 9"
+        },
+        {
+          "name": "Starbucks, the Lodge",
+          "hours": "6:30 – 6:30"
+        },
+        {
+          "name": "Mountain Room Restaurant, the Lodge",
+          "hours": "5 – 10",
+          "note": "last seating 9:30"
+        },
+        {
+          "name": "Mountain Room Lounge",
+          "hours": "4:30 – 10",
+          "note": "from noon Sa Su",
+          "then": {
+            "from": "2026-09-13",
+            "hours": "5 – 10"
+          }
+        },
+        {
+          "name": "Ahwahnee Dining Room",
+          "hours": "7 – 10, 11:30 – 3, 5:30 – 9",
+          "note": "dinner reservations, Su brunch 7 – 3"
+        },
+        {
+          "name": "Ahwahnee Bar",
+          "hours": "11:30 – 11"
+        },
+        {
+          "name": "Ahwahnee Sweet Shop",
+          "hours": "7 – 10"
+        },
+        {
+          "name": "Degnan's Kitchen, the Village",
+          "hours": "7 – 6",
+          "note": "limited service 11 – 11:30"
+        },
+        {
+          "name": "Village Grill",
+          "hours": "11 – 6"
+        },
+        {
+          "name": "Seven Tents Pavilion, Curry",
+          "hours": "7 – 10, 5:30 – 8:30"
+        },
+        {
+          "name": "Pizza Deck, Curry",
+          "hours": "11 – 10"
+        },
+        {
+          "name": "Bar 1899, Curry",
+          "hours": "11:30 – 10"
+        },
+        {
+          "name": "Meadow Grill Taqueria, Curry",
+          "hours": "11 – 8",
+          "then": {
+            "from": "2026-09-07",
+            "hours": "11 – 5"
+          }
+        },
+        {
+          "name": "Jennie's Ice Cream, Curry",
+          "hours": "11 – 8:30",
+          "closes": "2026-09-06"
+        },
+        {
+          "name": "Coffee Corner, Curry",
+          "hours": "6 – 2"
+        },
+        {
+          "name": "Tuolumne Meadows Grill",
+          "hours": "8 – 6",
+          "note": "the concessioner's date; the Guide said Sep 20",
+          "closes": "2026-09-14"
+        }
+      ]
+    },
+    {
+      "group": "Stores",
+      "items": [
+        {
+          "name": "Village Store",
+          "hours": "8 – 10",
+          "then": {
+            "from": "2026-09-07",
+            "hours": "8 – 9"
+          }
+        },
+        {
+          "name": "Curry Village Gift & Grocery",
+          "hours": "8 – 10",
+          "then": {
+            "from": "2026-09-07",
+            "hours": "8 – 9"
+          }
+        },
+        {
+          "name": "Yosemite Mountain Shop",
+          "hours": "8 – 8"
+        },
+        {
+          "name": "Yosemite Valley Lodge gift shop",
+          "hours": "8 – 10",
+          "then": {
+            "from": "2026-09-07",
+            "hours": "8 – 9"
+          }
+        },
+        {
+          "name": "Ahwahnee gift shop",
+          "hours": "8 – 9"
+        },
+        {
+          "name": "Housekeeping Camp store",
+          "hours": "8 – 8",
+          "note": "laundry to 10"
+        },
+        {
+          "name": "Glacier Point gift shop",
+          "hours": "9 – 7"
+        },
+        {
+          "name": "Wawona Store",
+          "hours": "8 – 8"
+        },
+        {
+          "name": "Tuolumne Meadows Store",
+          "hours": "8 – 8",
+          "closes": "2026-09-20"
+        },
+        {
+          "name": "Crane Flat Gas & Grocery",
+          "hours": "8 – 5"
+        },
+        {
+          "name": "El Portal Market",
+          "hours": "9 – 7"
+        }
+      ]
+    },
+    {
+      "group": "Other services",
+      "items": [
+        {
+          "name": "Medical clinic urgent-care walk-ins",
+          "hours": "M – F 1 – 3:30",
+          "note": "not an emergency room"
+        },
+        {
+          "name": "Village post office",
+          "hours": "M – F 8:30 – 5, Sa 10 – 12"
+        },
+        {
+          "name": "Wawona post office",
+          "hours": "M – F 9 – 1, Sa 9 – 12"
+        },
+        {
+          "name": "Village garage",
+          "hours": "8 – 12, 1 – 5",
+          "note": "propane; no gas in the Valley"
+        },
+        {
+          "name": "Bike rentals & tour kiosks",
+          "hours": "8 – 7",
+          "note": "Village, Curry, the Lodge",
+          "then": {
+            "from": "2026-09-08",
+            "hours": "9 – 6"
+          }
+        },
+        {
+          "name": "Mountaineering School, Curry",
+          "hours": "8:30 – 12, 1 – 4:30"
+        },
+        {
+          "name": "Pools, Curry & the Lodge",
+          "hours": "11 – 6",
+          "closes": "2026-09-07"
+        },
+        {
+          "name": "Curry Village showers",
+          "hours": "24 hours"
+        },
+        {
+          "name": "Wawona golf course",
+          "hours": "8 – 6"
+        },
+        {
+          "name": "Wawona stable",
+          "hours": "rides 8, 11, 3",
+          "note": "F – W; all-day ride Th 8",
+          "closes": "2026-09-06"
+        },
+        {
+          "name": "Gas stations, El Portal, Crane Flat & Wawona",
+          "hours": "staffed 8 – 5",
+          "note": "card at the pump 24 hours"
+        }
+      ]
+    }
   ],
   "transit": [
-    {"name": "Valley shuttles", "note": "Free, daily 7 am – 10 pm, year-round. Valleywide green line hits every stop, every 22 – 32 minutes, an hour and a half round trip; the purple East Valley line runs every 18 – 22 minutes, 50 minutes round trip. No pets."},
-    {"name": "Mariposa Grove shuttle", "note": "Free, every 15 minutes, 8 am – 7 pm; last bus leaves the grove at 8 pm. No ticket needed."},
-    {"name": "Tuolumne Meadows shuttle", "note": "Free, between the Meadows and Olmsted Point, 8 am – 4 pm.", "until": "2026-09-13"},
-    {"name": "Hiker buses", "note": "Tuolumne hikers bus once daily through Sep 13; the Glacier Point tour bus twice daily, a four-hour trip. Both paid, both bookable at TravelYosemite.com or the Lodge front desk. Glacier Point drops hikers one-way; no pickup at the point."},
-    {"name": "YARTS", "note": "Public transit into the park, with the seasonal routes ending on different dates: the Fresno (Highway 41) buses run through Sep 25; Sonora (Highway 120) and Mammoth Lakes (395) through Sep 30, though some of their runs ended Aug 31; Merced (Highway 140) year-round with multiple departures. Check the date for your route at YARTS.com or 877/989-2787."},
-    {"name": "Bikes", "note": "Over 11 miles of paved path on the Valley floor, 15 mph limit, helmets required under 18, and no bikes on hiking trails. Rentals 8 am – 7 pm at the Lodge, Curry Village, and Yosemite Village, 9 am – 6 pm from Sep 8; free bike share for one- to two-hour rides from the Village and Camp 4 lots, goyose.org/bikeshare."},
-    {"name": "EV charging", "note": "Level 2 only: Curry Village (20), Wawona Store (24), Yosemite Falls parking (10), the Lodge (8), The Ahwahnee (6), Welcome Center (4), El Portal (2). Tuolumne chargers are down."}
+    {
+      "name": "Valley shuttles",
+      "note": "Free, daily 7 am – 10 pm, year-round. Valleywide green line hits every stop, every 22 – 32 minutes, an hour and a half round trip; the purple East Valley line runs every 18 – 22 minutes, 50 minutes round trip. No pets."
+    },
+    {
+      "name": "Mariposa Grove shuttle",
+      "note": "Free, every 15 minutes, 8 am – 7 pm; last bus leaves the grove at 8 pm. No ticket needed."
+    },
+    {
+      "name": "Tuolumne Meadows shuttle",
+      "note": "Free, between the Meadows and Olmsted Point, 8 am – 4 pm.",
+      "until": "2026-09-13"
+    },
+    {
+      "name": "Hiker buses",
+      "note": "Tuolumne hikers bus once daily through Sep 13; the Glacier Point tour bus twice daily, a four-hour trip. Both paid, both bookable at TravelYosemite.com or the Lodge front desk. Glacier Point drops hikers one-way; no pickup at the point."
+    },
+    {
+      "name": "YARTS",
+      "note": "Public transit into the park, with the seasonal routes ending on different dates: the Fresno (Highway 41) buses run through Sep 25; Sonora (Highway 120) and Mammoth Lakes (395) through Sep 30, though some of their runs ended Aug 31; Merced (Highway 140) year-round with multiple departures. Check the date for your route at YARTS.com or 877/989-2787."
+    },
+    {
+      "name": "Bikes",
+      "note": "Over 11 miles of paved path on the Valley floor, 15 mph limit, helmets required under 18, and no bikes on hiking trails. Rentals 8 am – 7 pm at the Lodge, Curry Village, and Yosemite Village, 9 am – 6 pm from Sep 8; free bike share for one- to two-hour rides from the Village and Camp 4 lots, goyose.org/bikeshare."
+    },
+    {
+      "name": "EV charging",
+      "note": "Level 2 only: Curry Village (20), Wawona Store (24), Yosemite Falls parking (10), the Lodge (8), The Ahwahnee (6), Welcome Center (4), El Portal (2). Tuolumne chargers are down."
+    }
   ],
   "essentials": [
-    {"title": "Bears", "text": "Food storage is federal law: within arm's reach by day, out of the car and into a locker by night, and never in a truck bed or strapped to the outside. To a bear, food means anything with a scent, trash and toiletries included. Twenty-seven bears were hit by vehicles here last year, so hold the speed limit at dawn and dusk. Sightings: 209/372-0322."},
-    {"title": "Lightning", "text": "Afternoon thunderstorms run into September. Off the domes and exposed rim when storms build; shelter in a building or vehicle."},
-    {"title": "Smoke & fire", "text": "Fire season runs from here into October, and this is usually its worst stretch. Check air quality at fire.airnow.gov the morning you drive in, not the night before. Fires only in portable stoves, grills, and established rings, never unattended, and out cold before you walk away."},
-    {"title": "Wildlife", "text": "150 feet from bears and coyotes, 25 feet from everything else. Feeding or approaching any animal is illegal, birds and squirrels included."},
-    {"title": "Heat & water", "text": "The Valley floor is still hot by late morning through early September, and Hetch Hetchy is worse. Walk early, carry a quart per person per two hours, and move uphill by noon. Nights in Tuolumne are cold year-round: pack a real layer."},
-    {"title": "Parking", "text": "Designated spaces or paved turnouts only, pulled fully off the road. Vehicles on vegetation get cited and towed."},
-    {"title": "Pets", "text": "Not allowed on trails, on shuttles, or inside buildings. Leashed on paved roads, paved bike paths, and the Mirror Lake road. Service dogs go anywhere visitors go; emotional support and therapy animals follow the pet rules."},
-    {"title": "The rules with teeth", "text": "Prohibited: drones, feeding or approaching wildlife, collecting plants, animals, or arrowheads, hunting, metal detectors, driving into meadows, biking off pavement, camping outside a designated campground, weapons inside federal buildings, and marijuana of any kind."},
-    {"title": "Camping", "text": "Every campground needs a reservation: Recreation.gov or 877/444-6777. Sleeping in a vehicle is legal only at a site you have booked, never at a roadside or in a parking lot."},
-    {"title": "Navigation", "text": "GPS gives wrong directions inside the park and routes people onto closed roads. Follow the road signs. There is no usable signal for most of Tioga Road or Glacier Point Road."},
-    {"title": "Wifi", "text": "Free at Degnan's Kitchen and the Mariposa County Library in the Valley, the El Portal Market, and the Wawona library. Hotel guests get it at the Lodge, Curry Village, and The Ahwahnee."}
+    {
+      "title": "Bears",
+      "text": "Food storage is federal law: within arm's reach by day, out of the car and into a locker by night, and never in a truck bed or strapped to the outside. To a bear, food means anything with a scent, trash and toiletries included. Twenty-seven bears were hit by vehicles here last year, so hold the speed limit at dawn and dusk. Sightings: 209/372-0322."
+    },
+    {
+      "title": "Lightning",
+      "text": "Afternoon thunderstorms run into September. Off the domes and exposed rim when storms build; shelter in a building or vehicle."
+    },
+    {
+      "title": "Smoke & fire",
+      "text": "Fire season runs from here into October, and this is usually its worst stretch. Check air quality at fire.airnow.gov the morning you drive in, not the night before. Fires only in portable stoves, grills, and established rings, never unattended, and out cold before you walk away."
+    },
+    {
+      "title": "Wildlife",
+      "text": "150 feet from bears and coyotes, 25 feet from everything else. Feeding or approaching any animal is illegal, birds and squirrels included."
+    },
+    {
+      "title": "Heat & water",
+      "text": "The Valley floor is still hot by late morning through early September, and Hetch Hetchy is worse. Walk early, carry a quart per person per two hours, and move uphill by noon. Nights in Tuolumne are cold year-round: pack a real layer."
+    },
+    {
+      "title": "Parking",
+      "text": "Designated spaces or paved turnouts only, pulled fully off the road. Vehicles on vegetation get cited and towed."
+    },
+    {
+      "title": "Pets",
+      "text": "Not allowed on trails, on shuttles, or inside buildings. Leashed on paved roads, paved bike paths, and the Mirror Lake road. Service dogs go anywhere visitors go; emotional support and therapy animals follow the pet rules."
+    },
+    {
+      "title": "The rules with teeth",
+      "text": "Prohibited: drones, feeding or approaching wildlife, collecting plants, animals, or arrowheads, hunting, metal detectors, driving into meadows, biking off pavement, camping outside a designated campground, weapons inside federal buildings, and marijuana of any kind."
+    },
+    {
+      "title": "Camping",
+      "text": "Every campground needs a reservation: Recreation.gov or 877/444-6777. Sleeping in a vehicle is legal only at a site you have booked, never at a roadside or in a parking lot."
+    },
+    {
+      "title": "Navigation",
+      "text": "GPS gives wrong directions inside the park and routes people onto closed roads. Follow the road signs. There is no usable signal for most of Tioga Road or Glacier Point Road."
+    },
+    {
+      "title": "Wifi",
+      "text": "Free at Degnan's Kitchen and the Mariposa County Library in the Valley, the El Portal Market, and the Wawona library. Hotel guests get it at the Lodge, Curry Village, and The Ahwahnee."
+    }
   ],
   "numbers": [
-    {"label": "Emergency, call or text", "value": "911"},
-    {"label": "Park information", "value": "209/372-0200"},
-    {"label": "Road conditions", "value": "209/372-0200, press 1 then 1"},
-    {"label": "Traffic alerts, text", "value": "ynptraffic to 333111"},
-    {"label": "Roadside assistance, 24 hr", "value": "209/372-1060"},
-    {"label": "Medical clinic", "value": "209/372-4637"},
-    {"label": "Save-a-Bear hotline", "value": "209/372-0322"},
-    {"label": "Lodging", "value": "888/413-8869"},
-    {"label": "Campgrounds", "value": "877/444-6777"},
-    {"label": "Ahwahnee dining reservations", "value": "209/372-1489"},
-    {"label": "Mountaineering School", "value": "209/372-8344"},
-    {"label": "YARTS transit", "value": "877/989-2787"}
+    {
+      "label": "Emergency, call or text",
+      "value": "911"
+    },
+    {
+      "label": "Park information",
+      "value": "209/372-0200"
+    },
+    {
+      "label": "Road conditions",
+      "value": "209/372-0200, press 1 then 1"
+    },
+    {
+      "label": "Traffic alerts, text",
+      "value": "ynptraffic to 333111"
+    },
+    {
+      "label": "Roadside assistance, 24 hr",
+      "value": "209/372-1060"
+    },
+    {
+      "label": "Medical clinic",
+      "value": "209/372-4637"
+    },
+    {
+      "label": "Save-a-Bear hotline",
+      "value": "209/372-0322"
+    },
+    {
+      "label": "Lodging",
+      "value": "888/413-8869"
+    },
+    {
+      "label": "Campgrounds",
+      "value": "877/444-6777"
+    },
+    {
+      "label": "Ahwahnee dining reservations",
+      "value": "209/372-1489"
+    },
+    {
+      "label": "Mountaineering School",
+      "value": "209/372-8344"
+    },
+    {
+      "label": "YARTS transit",
+      "value": "877/989-2787"
+    }
   ]
 }

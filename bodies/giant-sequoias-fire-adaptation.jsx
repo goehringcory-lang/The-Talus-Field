@@ -12,7 +12,7 @@ window.ARTICLE_BODIES["giant-sequoias-fire-adaptation"] = function GiantSequoias
       <p>This is the fundamental paradox of the giant sequoia: the very mechanism that kills its competitors is what allows it to thrive.</p>
 
       <p>
-        Fire scars on old sequoias read like tree rings in reverse. In 1929, a detailed survey documented in <em>Nature Notes</em> Vol. 8, No. 4 examined fire scars in the Mariposa Grove, counting the evidence of at least two major burns per century over the past two thousand years. That's not luck. That's adaptation so complete that the tree has essentially enrolled fire into its survival strategy.
+        Fire scars on old sequoias read like tree rings in reverse. The park's naturalists were reading them a century ago. "Scars of the Giant Sequoia," in <em>Nature Notes</em> Vol. 8, No. 4 (1929), reports that every mature tree in the Mariposa Grove had been "burned well into the heartwood at the base of their massive trunks," and that the grove's most prominent trees were the most severely burned of all, "probably because they have witnessed a greater number of fires during the centuries before the less affected trees sprouted into existence." Fire scarring, in other words, tracked a tree's age rather than its bad luck. That's not luck. That's adaptation so complete that the tree has essentially enrolled fire into its survival strategy.
       </p>
 
       <h2>The chemistry of survival</h2>
@@ -52,7 +52,7 @@ window.ARTICLE_BODIES["giant-sequoias-fire-adaptation"] = function GiantSequoias
       </p>
 
       <p>
-        The 1928 observations from <em>Nature Notes</em> Vol. 7 document this dynamic. The naturalists noted that many sequoias in accessible groves had numerous sequoia seedlings and saplings growing around them, thriving in openings that previous burns had created. These young trees were not anomalies. They were the forest regenerating exactly as it had for thousands of years.
+        The dynamic shows up wherever a grove has burned and then been left alone: seedlings and saplings come up thickest in the openings a fire has cleared, on the bare mineral soil it exposed. Those young trees are not anomalies. They are the forest regenerating as it had for thousands of years before the suppression era.
       </p>
 
       <h2>Reading fire history in bark</h2>
@@ -103,10 +103,9 @@ window.ARTICLE_BODIES["giant-sequoias-fire-adaptation"] = function GiantSequoias
 
       <h3>Further reading</h3>
       <ul style={{ fontSize: 14 }}>
-        <li><em>Nature Notes</em> Vol. 8, No. 4 (1929). Survey and fire scar documentation in Mariposa Grove, with counts of burn events over centuries of sequoia growth.</li>
-        <li><em>Nature Notes</em> Vol. 7 (1928). General naturalist observations of sequoia regeneration patterns and understory composition in managed groves.</li>
+        <li><em>Nature Notes</em> Vol. 8, No. 4 (1929). "Scars of the Giant Sequoia": fire damage at the base of the Mariposa Grove's named trees, including the Corridor Tree and the Grizzly Giant. <a href="/archive/1929/vol-8-no-4/">Read it in the archive</a>.</li>
         <li>Park historical documentation on the transition from fire suppression policy to active restoration burning in Yosemite's sequoia groves.</li>
-        <li>Sequoia <em>sempervirens</em> and <em>Sequoiadendron giganteum</em> fire adaptation literature, available through the park's reference library.</li>
+        <li><em>Sequoiadendron giganteum</em> fire adaptation literature, available through the park's reference library.</li>
       </ul>
     </>
   );

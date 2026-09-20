@@ -26,7 +26,7 @@ window.ARTICLE_BODIES["water-ouzels-waterfalls"] = function WaterOuzelsBody() {
       </p>
 
       <p>
-        The ouzel also has a peculiar way of walking underwater. When a dipper walks into a waterfall or along the stream bottom in fast current, it doesn't swim. It walks. It uses its feet to maintain contact with the rock, maintaining grip even against substantial water pressure. This is how you get the apparently impossible image of a bird walking directly into a waterfall.
+        The ouzel also has a peculiar way of getting about underwater, which is that it has two of them. It swims, using its short wings to fly through the water after prey. And it walks, gripping the rock with its feet and keeping contact with the bottom against a current that would carry off anything else its size. The walking is what produces the apparently impossible image of a bird stepping directly into a waterfall and not being swept away.
       </p>
 
       <p>
@@ -54,7 +54,7 @@ window.ARTICLE_BODIES["water-ouzels-waterfalls"] = function WaterOuzelsBody() {
       <h2>The nesting ecology of a specialist</h2>
 
       <p>
-        An ouzel's nest is one of the most precisely engineered bird nests in North America. The nest is constructed from moss and plant fibers, woven together into a tightly constructed cup. But the nest location is what's remarkable. Ouzels build their nests in places that most other birds would never consider: in rock crevices directly adjacent to or even slightly behind a stream cascade, where the mist from the falling water regularly soaks the nest.
+        An ouzel's nest is one of the most precisely engineered bird nests in North America. The nest is a dome, built by the female from streamside moss and plant fibre, with the entrance in the side: a green ball of living moss with a doorway, kept watered by the spray. But the nest location is what's remarkable. Ouzels build their nests in places that most other birds would never consider: in rock crevices directly adjacent to or even slightly behind a stream cascade, where the mist from the falling water regularly soaks the nest.
       </p>
 
       <p>
@@ -62,7 +62,7 @@ window.ARTICLE_BODIES["water-ouzels-waterfalls"] = function WaterOuzelsBody() {
       </p>
 
       <p>
-        A 1933 <em>Nature Notes</em> Vol. 12, No. 4 entry documents an ouzel nest found at approximately 8,400 feet elevation, at the base of a small cascade in the high country. The observer notes the nest's location within the mist zone of the cascade, the presence of fledglings, and the female's constant foraging in the stream directly below the nest. The description demonstrates how completely integrated the ouzel's breeding cycle is with the cascade ecosystem.
+        <em>Nature Notes</em> Vol. 12, No. 4 (1933) carries a high-country ouzel record from an observation made on July 28, 1927: a young dipper still being fed at the nest entrance, high in the park's altitude list alongside the pipits and rosy finches. It is a small entry, but the detail that matters is in the phrasing. The nest has an entrance, because the nest is a dome.
       </p>
 
       <p>
