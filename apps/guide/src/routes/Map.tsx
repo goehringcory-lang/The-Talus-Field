@@ -1084,6 +1084,19 @@ export default function Map() {
 
     if (visibleStops.length === 0) return
 
+    // A few stops intentionally share a viewing location (for example,
+    // Tunnel View and the hidden waterfall entry seen from it). Keep those
+    // pins individually tappable instead of letting the last marker added
+    // sit on top of every earlier one.
+    const stopCoordCounts: Record<string, number> = {}
+    const stopCoordIndexes: Record<string, number> = {}
+    for (const stop of visibleStops) {
+      if (stop.coord) {
+        const key = stop.coord.join(',')
+        stopCoordCounts[key] = (stopCoordCounts[key] ?? 0) + 1
+      }
+    }
+
     const bounds = new maplibregl.LngLatBounds()
     for (const stop of visibleStops) {
       if (!stop.coord) continue
@@ -1102,7 +1115,16 @@ export default function Map() {
         activate()
       })
       el.addEventListener('keydown', pinKeydownHandler(activate))
-      const marker = new maplibregl.Marker({ element: el, anchor: 'bottom' })
+      const coordKey = stop.coord.join(',')
+      const coordIndex = stopCoordIndexes[coordKey] ?? 0
+      stopCoordIndexes[coordKey] = coordIndex + 1
+      const coordCount = stopCoordCounts[coordKey] ?? 1
+      const horizontalOffset = Math.round((coordIndex - (coordCount - 1) / 2) * 16)
+      const marker = new maplibregl.Marker({
+        element: el,
+        anchor: 'bottom',
+        offset: [horizontalOffset, 0],
+      })
         .setLngLat([lng, lat])
         .addTo(map)
       markersRef.current[stop.id] = marker
