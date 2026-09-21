@@ -570,7 +570,15 @@ function seoForPath(pathname, searchParams) {
     // the visible dek. Keeps Bing/Google snippets under the 160-char cutoff.
     const desc = a.seoDek || a.dek;
     return {
-      title: `${a.title} — ${SITE_NAME}`,
+      // No brand suffix on an article title. " — The Talus Field" costs 18
+      // characters and about 170px, which put 65 of the 71 titles past Google's
+      // ~600px cut: the September 2026 title pass trimmed every title to 61
+      // characters but measured the bare title, not the string the page ships.
+      // Past the cut Google rewrites the title itself, which throws away the
+      // query-first phrasing that pass bought. The brand is still carried by
+      // og:site_name, the WebSite and Organization nodes, and Google's own
+      // site-name row. Hub titles keep their suffix; they are short enough.
+      title: a.title,
       description: desc,
       canonical: url,
       ogType: "article",
@@ -1207,8 +1215,13 @@ function seoForPath(pathname, searchParams) {
       // (page-half-dome-lottery.jsx), which absorbed the retired article
       // /articles/half-dome-permit-lottery-2026 in August 2026.
       title: `The Half Dome Lottery — calendar, odds, and strategy — ${SITE_NAME}`,
+      // Keep byte-identical to the /half-dome-lottery entry in app.jsx's
+      // buildSeo. These drifted (published NPS odds here, honest odds there),
+      // so a direct load and an SPA click described one URL two ways, and at
+      // 188 characters both were cut before the differentiator. This is the
+      // site's most-searched surface and its worst click-through.
       description:
-        "Both Half Dome permit lotteries explained: the March preseason draw, the daily lottery almost nobody uses, the published NPS odds, and the strategy that actually works. By a park resident.",
+        "Both Half Dome permit lotteries: the March preseason draw, the daily lottery almost nobody uses, the published NPS odds, and a strategy that works.",
       breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Half Dome lottery", null]],
       // Edge-only FAQ: the client entry in app.jsx carries none, so this
       // copy survives hydration on direct loads. A client-side faq added
