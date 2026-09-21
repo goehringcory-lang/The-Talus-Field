@@ -67,9 +67,15 @@ tripEmail.post('/', async (c) => {
 
   const origin = c.env.EDITORIAL_BASE_URL || 'https://thetalusfieldjournal.com'
   const tripUrl = `${origin}/map?trip=${ids.join(',')}`
+  // The same hand-off the map sidebar offers ("Open this trip in the Field
+  // Guide"): the app resolves the ids against its own catalog, a buyer lands
+  // on the planner, and a visitor who does not own the guide has the trip
+  // stashed at boot and offered on Home once they do (importTrip.ts).
+  const appOrigin = c.env.APP_BASE_URL || 'https://guide.thetalusfieldjournal.com'
+  const guideUrl = `${appOrigin}/trip?import=${ids.join(',')}`
 
   try {
-    await sendTripLink(c.env, { to: email, tripUrl, stopCount: ids.length })
+    await sendTripLink(c.env, { to: email, tripUrl, guideUrl, stopCount: ids.length })
   } catch (err) {
     console.error('trip email send failed', err)
     return c.json({ error: 'Send failed' }, 502)
