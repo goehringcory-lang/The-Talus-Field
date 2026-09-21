@@ -1,4 +1,4 @@
-/* global React, Breadcrumbs, AvailabilityLink, LodgingCta, ExpediaBanner, ResponsiveImage, SIZES_CARD, NewsletterInline, GuidePromo */
+/* global React, Breadcrumbs, AvailabilityLink, ExpediaBanner, ResponsiveImage, SIZES_CARD, NewsletterInline, GuidePromo */
 
 // =============================================================================
 // WHERE TO STAY — `/stay` route. The standing lodging section (the deep
@@ -371,23 +371,345 @@ const SEASONS = [
   },
 ];
 
-function StayCard({ item }) {
+// -----------------------------------------------------------------------------
+// The September 2026 redesign. The page used to be a long column of cards with
+// a text link at the bottom of each; it is now built around the decision
+// (which road, then which town) with a booking action at every point where the
+// reader has just made one. Five things hold it up:
+//
+// 1. ONE COLOUR MEANS ONE ACTION. `.stay-book` (the filled iron-red button) is
+//    used for Expedia availability searches and nothing else on this page. The
+//    concessioner links are outlined (`.stay-ghost`), so the paid action and
+//    the unpaid one can never be mistaken for each other, and rule 2 above
+//    still reads at a glance.
+// 2. EVERY BUTTON SAYS WHAT THE CLICK DOES: whose dates, which town, and that
+//    it opens Expedia. The disclosure sits beside the first button on the page
+//    (the search panel) as well as at the foot.
+// 3. THE SEARCH PANEL IS THE ONLY PLACE DATES ENTER A URL. Dates are appended
+//    only when both are set and the stay is at least one night; anything else
+//    falls back to the dateless destination search every other link uses.
+// 4. THE PICKER IS A RESTATEMENT, NOT NEW ADVICE. Each pick quotes the town's
+//    own GATEWAYS row or its corridor intro. A seventh pick needs a published
+//    sentence behind it first.
+// 5. THE BANNER IS STILL ONE PLACEMENT (components.jsx says why). It moved
+//    between the corridors; it did not multiply.
+//
+// GA4: the new placements are `stay_search`, `stay_picker`, `stay_corridor`
+// and `stay_closing`; the existing `stay_*` values keep their meaning.
+// -----------------------------------------------------------------------------
+
+const STAY_HERO = {
+  image: "img/half-dome-alpenglow-madhu-shesharam.jpg",
+  alt: "Half Dome in alpenglow, seen from Glacier Point",
+  credit: "Photo: Madhu Shesharam / Unsplash",
+};
+
+// Where the search panel can point. The first row is the whole boundary; the
+// rest are the GATEWAYS rows in corridor order.
+const STAY_SEARCH_PLACES = [
+  { id: "park", dest: "Yosemite National Park", label: "Around the whole park" },
+  { id: "el-portal", dest: "El Portal, California", label: "El Portal · Highway 140, closest" },
+  { id: "mariposa", dest: "Mariposa, California", label: "Mariposa · Highway 140" },
+  { id: "groveland", dest: "Groveland, California", label: "Groveland · Highway 120" },
+  { id: "fish-camp", dest: "Fish Camp, California", label: "Fish Camp · Highway 41" },
+  { id: "oakhurst", dest: "Oakhurst, California", label: "Oakhurst · Highway 41" },
+  { id: "lee-vining", dest: "Lee Vining, California", label: "Lee Vining · Tioga Pass, seasonal" },
+];
+
+// "What matters most on this trip?" Every line is quoted from GATEWAYS, the
+// corridor intros, or SEASONS above; see rule 4 in the redesign note.
+const STAY_PICKS = [
+  {
+    id: "valley", label: "Closest to the Valley",
+    town: "El Portal", road: "Highway 140 · open year-round",
+    drive: "25 to 35 minutes to the Valley",
+    why: "The closest gateway by a significant margin. You can roll out of bed at 5:30 and be at Tunnel View by 6:15.",
+    cost: "Limited dining, limited inventory, and lodging priced like in-park lodging because the location is that good.",
+    dest: "El Portal, California", cta: "See what El Portal has on your dates",
+  },
+  {
+    id: "value", label: "A real town, on a budget",
+    town: "Mariposa", road: "Highway 140 · open year-round",
+    drive: "45 minutes to an hour to the Valley",
+    why: "The most full-service of the western gateways: a real downtown, and lodging from highway chains to historic bed-and-breakfasts.",
+    cost: "Ninety minutes of round-trip driving a day that you would not be doing closer in, and earlier alarms for sunrise.",
+    dest: "Mariposa, California", cta: "See what Mariposa has on your dates",
+  },
+  {
+    id: "reach", label: "Valley, Hetch Hetchy and Tuolumne",
+    town: "Groveland", road: "Highway 120 · chains common in winter",
+    drive: "65 to 80 minutes to the Valley",
+    why: "With Tioga Road open, this is the only corridor that puts Yosemite Valley, Hetch Hetchy, and Tuolumne Meadows all within reach of one morning's drive.",
+    cost: "A higher-elevation approach with winter chain controls, through the 2013 Rim Fire burn scar.",
+    dest: "Groveland, California", cta: "See what Groveland has on your dates",
+  },
+  {
+    id: "sequoias", label: "Giant sequoias first",
+    town: "Fish Camp", road: "Highway 41 · open year-round",
+    drive: "About 2 miles to the South Entrance",
+    why: "The closest bed to the Mariposa Grove and the South Entrance, which matters on a sequoia-first trip with an early start.",
+    cost: "No real services, nothing to do in the evening, and the Valley is still most of the Oakhurst drive away.",
+    dest: "Fish Camp, California", cta: "See what Fish Camp has on your dates",
+  },
+  {
+    id: "high", label: "High country and Mono Lake",
+    town: "Lee Vining", road: "Tioga Pass · seasonal",
+    drive: "30 minutes to Tuolumne Meadows",
+    why: "The only east-side gateway, and a base for the high country, Mono Lake, and the eastern Sierra rather than a substitute for the western towns.",
+    cost: "Reachable from the park only while Tioga Pass is open, and ninety minutes minimum to the Valley.",
+    dest: "Lee Vining, California", cta: "See what Lee Vining has on your dates",
+  },
+  {
+    id: "winter", label: "A winter trip",
+    town: "Highway 140", road: "El Portal and Mariposa · open year-round",
+    drive: "the winter answer",
+    why: "It runs along the canyon bottom and takes rain on the days Highway 41 and Highway 120 take snow, and it is the only corridor with year-round bus service into the park.",
+    cost: "Tioga Pass is closed, so the east side is out entirely.",
+    dest: "Mariposa, California", cta: "Search Highway 140 lodging",
+  },
+];
+
+// What the redesign adds to each corridor: the road number for the plate, the
+// road-level search, and which of its towns' photos leads the block. Highway
+// 120 has no free-licensed photo of the corridor, so it leads with none
+// (rule 3 at the top of the file).
+const CORRIDOR_EXTRAS = {
+  "corridor-140": { num: "140", road: "Highway 140", title: "The Merced canyon", dest: "Mariposa, California", cta: "Search all of Highway 140", photoFrom: "el-portal" },
+  "corridor-120": { num: "120", road: "Highway 120 west", title: "Big Oak Flat", dest: "Groveland, California", cta: "Search all of Highway 120" },
+  "corridor-41": { num: "41", road: "Highway 41", title: "The south", dest: "Oakhurst, California", cta: "Search all of Highway 41", photoFrom: "fish-camp" },
+  "corridor-395": { num: "395", road: "US 395", title: "Tioga Road east", dest: "Lee Vining, California", cta: "Search the east side", photoFrom: "lee-vining" },
+};
+
+// The one-line answer above each season's paragraph. Each restates the first
+// claim of its SEASONS body.
+const SEASON_ANSWERS = {
+  "season-winter": "Base on Highway 140.",
+  "season-spring": "A Valley trip. Stay close.",
+  "season-summer": "Highway 120 is the strongest base.",
+  "season-fall": "The season worth booking.",
+};
+
+const Arrow = () => <span className="stay-book__arrow" aria-hidden="true">↗</span>;
+
+// The filled booking button. A thin wrapper so every Expedia action on the
+// page is the same element with the same attributes.
+function BookButton({ destination, list, slug, name, children, size }) {
   return (
-    <article className={["stay-card", item.closed && "stay-card--closed"].filter(Boolean).join(" ")}>
-      {item.photo && (
-        <figure className="stay-card__figure">
-          <ResponsiveImage
-            image={item.photo}
-            alt={item.caption}
-            sizes={SIZES_CARD}
-            className="stay-card__img"
-          />
-          <figcaption className="stay-card__caption">
-            {item.caption}
-            {item.credit && <span className="stay-card__credit">{item.credit}</span>}
-          </figcaption>
-        </figure>
-      )}
+    <AvailabilityLink
+      destination={destination}
+      list={list}
+      slug={slug}
+      name={name || destination + " lodging search"}
+      className={["stay-book", size && "stay-book--" + size].filter(Boolean).join(" ")}
+    >
+      <span>{children}</span><Arrow />
+    </AvailabilityLink>
+  );
+}
+
+function isoToday() {
+  const d = new Date();
+  const p = (n) => String(n).padStart(2, "0");
+  return d.getFullYear() + "-" + p(d.getMonth() + 1) + "-" + p(d.getDate());
+}
+
+function StaySearch() {
+  const [place, setPlace] = React.useState("park");
+  const [checkin, setCheckin] = React.useState("");
+  const [checkout, setCheckout] = React.useState("");
+  const row = STAY_SEARCH_PLACES.find((p) => p.id === place) || STAY_SEARCH_PLACES[0];
+
+  // Dates ride along only as a valid pair (rule 3 in the redesign note).
+  let url = window.expediaSearchUrl(row.dest);
+  if (checkin && checkout && checkout > checkin) {
+    url += "&startDate=" + checkin + "&endDate=" + checkout + "&d1=" + checkin + "&d2=" + checkout;
+  }
+  const href = window.buildAffiliateLink ? window.buildAffiliateLink("expedia", url) : url;
+
+  return (
+    <section className="stay-search" aria-labelledby="stay-search-h">
+      <div className="stay-search__head">
+        <h2 id="stay-search-h" className="stay-search__title">See what is open on your dates</h2>
+        <span className="stay-search__sub">Live rates and availability, searched on Expedia</span>
+      </div>
+      <div className="stay-search__fields">
+        <label className="stay-field">
+          <span className="stay-field__label">Where</span>
+          <select value={place} onChange={(e) => setPlace(e.target.value)}>
+            {STAY_SEARCH_PLACES.map((p) => <option key={p.id} value={p.id}>{p.label}</option>)}
+          </select>
+        </label>
+        <label className="stay-field">
+          <span className="stay-field__label">Check in</span>
+          <input type="date" value={checkin} min={isoToday()} onChange={(e) => setCheckin(e.target.value)} />
+        </label>
+        <label className="stay-field">
+          <span className="stay-field__label">Check out</span>
+          <input type="date" value={checkout} min={checkin || isoToday()} onChange={(e) => setCheckout(e.target.value)} />
+        </label>
+        <a
+          className="aff-link stay-book stay-book--search"
+          href={href}
+          target="_blank"
+          rel="sponsored noopener noreferrer"
+          data-aff-network="expedia"
+          data-aff-list="stay_search"
+          data-aff-item-slug={row.id}
+          data-aff-name={row.dest + " lodging search"}
+        ><span>Search availability</span><Arrow /></a>
+      </div>
+      <div className="stay-search__foot">
+        <p>
+          Opens Expedia in a new tab. These are affiliate links: if you book
+          through one, The Talus Field may earn a commission at no extra cost
+          to you. What is recommended, and in what order, does not change for
+          it. <a href="/affiliate">Full disclosure.</a>
+        </p>
+        <ul className="stay-search__facts">
+          <li>{GATEWAYS.length} gateway towns</li>
+          <li>{CORRIDORS.length} roads in</li>
+          <li>1 operator inside the park</li>
+        </ul>
+      </div>
+    </section>
+  );
+}
+
+// A schematic of the four roads, not a map to scale. Geometry only: every
+// colour comes from styles.css (`.stay-map__*`), so the palettes and dark mode
+// follow. Drive times are the GATEWAYS values, shortened.
+function RoadSchematic() {
+  return (
+    <figure className="stay-map">
+      <svg viewBox="0 0 640 530" role="img" aria-label="Schematic of the four roads into Yosemite and the towns on each, with drive times to Yosemite Valley">
+        <path className="stay-map__park" d="M200,185 C210,100 300,50 400,70 C470,80 515,95 530,128 C565,200 520,300 450,360 C400,410 360,430 322,425 C290,420 270,350 262,296 C250,250 205,230 200,185 Z" />
+        <text className="stay-map__parkname" x="392" y="222">YOSEMITE NATIONAL PARK</text>
+        <path className="stay-map__minor" d="M200,185 Q215,140 268,112" />
+        <path className="stay-map__road stay-map__road--seasonal" d="M250,212 Q340,150 470,150 L530,128 L575,112" />
+        <path className="stay-map__road" d="M330,270 Q290,250 250,212 L200,185 Q140,160 90,150" />
+        <path className="stay-map__road" d="M330,270 L262,296 L235,305 Q170,320 110,360" />
+        <path className="stay-map__road" d="M330,270 Q350,330 325,385 L322,425 L320,445 L300,495" />
+        <g className="stay-map__gate">
+          <rect x="195" y="180" width="10" height="10" /><rect x="257" y="291" width="10" height="10" />
+          <rect x="317" y="420" width="10" height="10" /><rect x="525" y="123" width="10" height="10" />
+        </g>
+        <g className="stay-map__place">
+          <circle cx="268" cy="112" r="4" /><circle cx="470" cy="150" r="4" /><circle cx="325" cy="385" r="4" />
+          <circle cx="330" cy="270" r="9" />
+        </g>
+        <circle className="stay-map__ring" cx="330" cy="270" r="14" />
+        <g className="stay-map__town">
+          <circle cx="235" cy="305" r="7" /><circle cx="110" cy="360" r="7" /><circle cx="90" cy="150" r="7" />
+          <circle cx="320" cy="445" r="7" /><circle cx="300" cy="495" r="7" /><circle cx="575" cy="112" r="7" />
+        </g>
+        <g className="stay-map__label">
+          <text className="stay-map__valley" x="352" y="266">YOSEMITE VALLEY</text>
+          <text className="stay-map__note" x="352" y="282">every drive time is to here</text>
+          <text className="stay-map__note" x="280" y="100">Hetch Hetchy</text>
+          <text className="stay-map__note" x="470" y="172" textAnchor="middle">Tuolumne Meadows</text>
+          <text className="stay-map__note" x="340" y="389">Wawona · Mariposa Grove</text>
+          <text className="stay-map__name" x="222" y="284" textAnchor="end">El Portal</text>
+          <text className="stay-map__note" x="222" y="298" textAnchor="end">25 to 35 min</text>
+          <text className="stay-map__name" x="110" y="388" textAnchor="middle">Mariposa</text>
+          <text className="stay-map__note" x="110" y="404" textAnchor="middle">45 to 60 min</text>
+          <text className="stay-map__name" x="90" y="122" textAnchor="middle">Groveland</text>
+          <text className="stay-map__note" x="90" y="138" textAnchor="middle">65 to 80 min</text>
+          <text className="stay-map__name" x="338" y="449">Fish Camp</text>
+          <text className="stay-map__note" x="338" y="465">2 miles to the South Entrance</text>
+          <text className="stay-map__name" x="318" y="499">Oakhurst</text>
+          <text className="stay-map__note" x="318" y="515">75 to 90 min</text>
+          <text className="stay-map__name" x="622" y="86" textAnchor="end">Lee Vining</text>
+          <text className="stay-map__note" x="622" y="100" textAnchor="end">90 min minimum</text>
+        </g>
+        <g className="stay-map__shield">
+          <rect x="152" y="318" width="34" height="18" /><text x="169" y="331" textAnchor="middle">140</text>
+          <rect x="128" y="146" width="34" height="18" /><text x="145" y="159" textAnchor="middle">120</text>
+          <rect x="330" y="330" width="28" height="18" /><text x="344" y="343" textAnchor="middle">41</text>
+          <rect x="350" y="138" width="92" height="18" /><text x="396" y="151" textAnchor="middle">TIOGA · SEASONAL</text>
+        </g>
+      </svg>
+      <figcaption>
+        A schematic, not a map to scale. Filled dots are the gateway towns,
+        squares are the four entrance stations, and the dashed road closes for
+        winter.
+      </figcaption>
+    </figure>
+  );
+}
+
+function StayPicker() {
+  const [picked, setPicked] = React.useState("valley");
+  const sel = STAY_PICKS.find((p) => p.id === picked) || STAY_PICKS[0];
+  return (
+    <React.Fragment>
+      <div className="stay-head">
+        <div>
+          <div className="eyebrow eyebrow--moss">Start here</div>
+          <h2 className="stay-h2">Choose the road first. The town comes after.</h2>
+        </div>
+        <p className="stay-head__note">
+          The road decides the drive you make twice a day, what else is
+          reachable from the room, and in winter whether you are driving in
+          rain or over a pass. What matters most on this trip?
+        </p>
+      </div>
+      <div className="stay-decide">
+      <RoadSchematic />
+      <div className="stay-picker">
+      <div className="stay-picker__chips" role="group" aria-label="What matters most on this trip">
+        {STAY_PICKS.map((p) => (
+          <button
+            key={p.id}
+            type="button"
+            className={"stay-chip" + (p.id === picked ? " is-on" : "")}
+            aria-pressed={p.id === picked}
+            onClick={() => setPicked(p.id)}
+          >{p.label}</button>
+        ))}
+      </div>
+      <div className="stay-plate stay-picker__result" aria-live="polite">
+        <div className="stay-picker__top">
+          <span className="stay-plate__eyebrow">Your base</span>
+          <span className="stay-picker__road">{sel.road}</span>
+        </div>
+        <div className="stay-picker__town">
+          <span>{sel.town}</span>
+          <em>{sel.drive}</em>
+        </div>
+        <p className="stay-picker__why">{sel.why}</p>
+        <p className="stay-picker__cost"><strong>The cost:</strong> {sel.cost}</p>
+        <BookButton destination={sel.dest} list="stay_picker" slug={sel.id} size="lg">{sel.cta}</BookButton>
+        <p className="stay-plate__fine">
+          Searches the town on Expedia, never one property, because that is the
+          search that answers what is left. Affiliate link.
+        </p>
+      </div>
+      </div>
+      </div>
+    </React.Fragment>
+  );
+}
+
+function StayFigure({ item, className }) {
+  if (!item.photo) return null;
+  return (
+    <figure className={["stay-card__figure", className].filter(Boolean).join(" ")}>
+      <ResponsiveImage image={item.photo} alt={item.caption} sizes={SIZES_CARD} className="stay-card__img" />
+      <figcaption className="stay-card__caption">
+        {item.caption}
+        {item.credit && <span className="stay-card__credit">{item.credit}</span>}
+      </figcaption>
+    </figure>
+  );
+}
+
+// An in-park card. `lead` cards (the three Valley properties a first trip is
+// choosing between) carry their photo; the rest run compact, four across.
+function StayCard({ item, lead }) {
+  const cls = ["stay-card", lead ? "stay-card--lead" : "stay-card--compact", item.closed && "stay-card--closed"];
+  return (
+    <article className={cls.filter(Boolean).join(" ")}>
+      {lead && <StayFigure item={item} />}
       <div className="stay-card__body">
         <div className="stay-card__kind">{item.kind}</div>
         <h3 className="stay-card__name">{item.name}</h3>
@@ -396,17 +718,14 @@ function StayCard({ item }) {
         <p className="stay-card__who"><strong>Who it fits:</strong> {item.who}</p>
         {item.tip && <p className="stay-card__tip">{item.tip}</p>}
         {item.warn && <p className="stay-card__warn">{item.warn}</p>}
-        {item.more && (
-          <a className="stay-card__more" href={item.more}>The longer version →</a>
-        )}
-        {!item.closed && (
-          <a
-            className="stay-card__book"
-            href={TRAVEL_YOSEMITE}
-            target="_blank"
-            rel="noopener noreferrer"
-          >Book at travelyosemite.com ↗</a>
-        )}
+        <div className="stay-card__actions">
+          {!item.closed && (
+            <a className="stay-ghost" href={TRAVEL_YOSEMITE} target="_blank" rel="noopener noreferrer">
+              <span>Book at travelyosemite.com</span><Arrow />
+            </a>
+          )}
+          {item.more && <a className="stay-card__more" href={item.more}>The longer version →</a>}
+        </div>
       </div>
     </article>
   );
@@ -414,42 +733,22 @@ function StayCard({ item }) {
 
 function GatewayCard({ item }) {
   return (
-    <article className="stay-card stay-card--town">
-      {item.photo && (
-        <figure className="stay-card__figure">
-          <ResponsiveImage
-            image={item.photo}
-            alt={item.caption}
-            sizes={SIZES_CARD}
-            className="stay-card__img"
-          />
-          <figcaption className="stay-card__caption">
-            {item.caption}
-            {item.credit && <span className="stay-card__credit">{item.credit}</span>}
-          </figcaption>
-        </figure>
-      )}
-      <div className="stay-card__body">
-        <h4 className="stay-card__name">{item.name}</h4>
-        <dl className="stay-card__facts">
-          <div><dt>Drive</dt><dd>{item.drive}</dd></div>
-          <div><dt>Road</dt><dd>{item.road}</dd></div>
-        </dl>
-        <p className="stay-card__text">{item.body}</p>
-        <p className="stay-card__who"><strong>Who it fits:</strong> {item.who}</p>
-        <p className="stay-card__against"><strong>The cost:</strong> {item.against}</p>
+    <article className="stay-town">
+      <h4 className="stay-town__name">{item.name}</h4>
+      <dl className="stay-town__facts">
+        <dt>Drive</dt><dd className="stay-town__drive">{item.drive}</dd>
+        <dt>Road</dt><dd>{item.road}</dd>
+      </dl>
+      <p className="stay-town__text">{item.body}</p>
+      <p className="stay-town__note"><strong>Who it fits:</strong> {item.who}</p>
+      <p className="stay-town__note"><strong>The cost:</strong> {item.against}</p>
+      <div className="stay-town__actions">
+        <BookButton destination={item.dest} list="stay_gateway" slug={item.id} name={item.name + " lodging search"}>
+          See what {item.name} has on your dates
+        </BookButton>
         {item.article && (
-          <a className="stay-card__more" href={item.article}>
-            The full chapter on {item.name} →
-          </a>
+          <a className="stay-card__more" href={item.article}>The full chapter on {item.name} →</a>
         )}
-        <AvailabilityLink
-          destination={item.dest}
-          list="stay_gateway"
-          slug={item.id}
-          name={item.name + " lodging search"}
-          className="stay-card__avail"
-        >See what {item.name} has on your dates →</AvailabilityLink>
       </div>
     </article>
   );
@@ -470,7 +769,7 @@ function PropertyRow({ item, id }) {
         slug={id}
         name={item.name + " · " + item.town + " lodging search"}
         className="stay-prop__avail"
-      >What {item.town} has on your dates →</AvailabilityLink>
+      >What {item.town} has on your dates ↗</AvailabilityLink>
     </div>
   );
 }
@@ -540,48 +839,66 @@ const CORRIDOR_INTROS = {
 
 function CorridorSection({ corridor, towns }) {
   const props = (corridor.props || []).map((id) => [id, PROPERTIES[id]]).filter((p) => p[1]);
-  return (
-    <div className="stay-corridor" id={corridor.id}>
-      <div className="stay-corridor__head">
-        <h3>{corridor.name}</h3>
-        <div className="stay-corridor__kicker">{corridor.kicker}</div>
-      </div>
-      <p className="stay-corridor__verdict">{corridor.verdict}</p>
-      <div className="stay-corridor__intro">
-        {(CORRIDOR_INTROS[corridor.id] || (() => null))()}
-      </div>
-      <div className="stay-grid">
-        {towns.map((t) => <GatewayCard key={t.id} item={t} />)}
-      </div>
-      {props.length > 0 && (
+  const extra = CORRIDOR_EXTRAS[corridor.id] || {};
+  const lead = extra.photoFrom && towns.find((t) => t.id === extra.photoFrom);
+  // A one-town corridor would leave its card stretched beside a taller side
+  // column, so its named stays move up into that column instead of below.
+  const solo = towns.length === 1;
+  const stays = props.length > 0 && (
         <div className="stay-props-wrap">
-          <p className="stay-props__lead">
-            Named stays on this corridor. The links search the town, not the
-            property, because that is the search that answers what is left.
-          </p>
+          <div className="stay-props__head">
+            <span className="stay-props__label">Named stays on this road</span>
+            <span className="stay-props__lead">
+              The links search the town, not the property, because that is the
+              search that answers what is left.
+            </span>
+          </div>
           <div className="stay-props">
             {props.map(([id, p]) => <PropertyRow key={id} id={id} item={p} />)}
           </div>
         </div>
-      )}
+  );
+  return (
+    <div className={"stay-corridor" + (solo ? " stay-corridor--solo" : "")} id={corridor.id}>
+      <div className="stay-corridor__top">
+        <div className="stay-corridor__side">
+          <div className="stay-corridor__head">
+            <span className="stay-corridor__num" aria-hidden="true">{extra.num}</span>
+            <div>
+              <h3><span className="stay-sr">{extra.road}: </span>{extra.title || corridor.name}</h3>
+              <div className="stay-corridor__kicker">{corridor.kicker}</div>
+            </div>
+          </div>
+          <p className="stay-corridor__verdict">{corridor.verdict}</p>
+          <div className="stay-corridor__intro">
+            {(CORRIDOR_INTROS[corridor.id] || (() => null))()}
+          </div>
+          {lead && <StayFigure item={lead} className="stay-corridor__figure" />}
+          {extra.dest && (
+            <BookButton destination={extra.dest} list="stay_corridor" slug={corridor.id}>{extra.cta}</BookButton>
+          )}
+        </div>
+        <div className="stay-corridor__towns">
+          {towns.map((t) => <GatewayCard key={t.id} item={t} />)}
+          {solo && stays}
+        </div>
+      </div>
+      {!solo && stays}
     </div>
   );
 }
 
 function SeasonCard({ item }) {
   return (
-    <div className="stay-season">
+    <article className="stay-season">
       <h3 className="stay-season__name">{item.name}</h3>
       <div className="stay-season__span">{item.span}</div>
+      {SEASON_ANSWERS[item.id] && <p className="stay-season__answer">{SEASON_ANSWERS[item.id]}</p>}
       <p className="stay-season__text">{item.body}</p>
-      <AvailabilityLink
-        destination={item.dest}
-        list="stay_season"
-        slug={item.id}
-        name={item.name + " lodging search"}
-        className="stay-season__avail"
-      >{item.cta}</AvailabilityLink>
-    </div>
+      <BookButton destination={item.dest} list="stay_season" slug={item.id} name={item.name + " lodging search"} size="sm">
+        {item.cta.replace(/\s*→$/, "")}
+      </BookButton>
+    </article>
   );
 }
 
@@ -590,49 +907,29 @@ function StayPage({ go }) {
     e.preventDefault();
     go(route);
   };
+  const valley = IN_PARK.slice(0, 3);
+  const others = IN_PARK.slice(3);
 
   return (
-    <div className="page">
-      <div className="page-head">
-        <div className="wrap wrap--narrow">
+    <div className="page stay-page">
+      <header className="stay-hero">
+        <ResponsiveImage image={STAY_HERO.image} alt={STAY_HERO.alt} sizes="100vw" eager className="stay-hero__img" />
+        <div className="stay-hero__scrim" aria-hidden="true" />
+        <div className="wrap stay-hero__inner">
           <Breadcrumbs go={go} trail={[{ label: "Home", route: "home" }, { label: "Where to stay" }]} />
-          <div className="eyebrow eyebrow--moss">Lodging · the whole board</div>
+          <div className="stay-hero__eyebrow">Lodging · the whole board</div>
           <h1>Where to Stay in Yosemite</h1>
-          <p className="page-head__dek">
-            Every bed in and around the park, sorted by what it actually is and
-            who it actually fits. Staying inside the park changes a trip more
-            than any other single decision, so that comes first. If the park's
-            inventory is gone, which for summer dates it usually is, the real
-            decision is not which town but which road: four corridors reach
-            Yosemite, they are not interchangeable, and which one fits depends
-            on the season you are going.
+          <p className="stay-hero__dek">
+            Every bed in and around the park, sorted by what it is and who it
+            fits. Pick the road, then the town, then see what is actually left
+            on your dates.
           </p>
         </div>
-      </div>
+        <div className="stay-hero__credit">{STAY_HERO.credit}</div>
+      </header>
 
-      <div className="wrap wrap--narrow" style={{ paddingTop: 40 }}>
-        <section className="prose">
-          <p>
-            The people sleeping in the Valley are standing under Yosemite Falls
-            at seven in the morning with the mist still hanging and nobody
-            around. The people sleeping in a gateway town are, at that moment,
-            sitting in the entrance line. Both groups paid to visit Yosemite.
-            Only one of them is in it when the park is at its best, which is
-            the first two hours and the last two hours of the day.
-          </p>
-          <p>
-            One piece of mechanics explains everything below it: every hotel,
-            lodge, and tent cabin inside the boundary is run by a single park
-            concessioner and books through one website, travelyosemite.com.
-            There is no Marriott inside the park, no Airbnb, no boutique
-            alternative. One operator, one inventory, one booking window. That
-            is why the in-park cards below send you to the concessioner and the
-            gateway cards send you to a live availability search: outside the
-            boundary there are hundreds of properties and a real market, and
-            inside it there is one.
-          </p>
-        </section>
-
+      <div className="wrap stay-search-wrap">
+        <StaySearch />
         <nav className="stay-jump" aria-label="On this page">
           <a href="#in-park">In the park</a>
           <a href="#corridor-140">Highway 140</a>
@@ -645,144 +942,179 @@ function StayPage({ go }) {
         </nav>
       </div>
 
+      {/* Choose the road first */}
+      <section className="wrap stay-section" id="decide">
+        <StayPicker />
+      </section>
+
       {/* Inside the park */}
-      <section className="wrap stay-section" style={{ paddingTop: 56 }} id="in-park">
-        <div className="section-head">
-          <h2>Inside the park</h2>
-          <div className="mono" style={{ color: "var(--ink-3)" }}>
-            {IN_PARK.filter((p) => !p.closed).length} bookable, 1 closed
+      <section className="wrap stay-section stay-band" id="in-park">
+        <div className="stay-head">
+          <div>
+            <div className="eyebrow eyebrow--moss">
+              First choice · {IN_PARK.filter((p) => !p.closed).length} bookable, {IN_PARK.filter((p) => p.closed).length} closed
+            </div>
+            <h2 className="stay-h2">Inside the park</h2>
           </div>
+          <p className="stay-head__note">
+            The people sleeping in the Valley are standing under Yosemite Falls
+            at seven in the morning with nobody around. The people sleeping in
+            a gateway town are, at that moment, sitting in the entrance line.
+            One concessioner runs every bed inside the boundary and books it at
+            travelyosemite.com. We earn nothing on these links, and they still
+            come first.
+          </p>
         </div>
-        <div className="stay-grid">
-          {IN_PARK.map((p) => <StayCard key={p.id} item={p} />)}
+        <div className="stay-grid stay-grid--lead">
+          {valley.map((p) => <StayCard key={p.id} item={p} lead />)}
+        </div>
+        <div className="stay-grid stay-grid--compact">
+          {others.map((p) => <StayCard key={p.id} item={p} />)}
         </div>
 
-        <div className="wrap--narrow" style={{ margin: "0 auto", paddingTop: 32 }}>
-          <LodgingCta
-            destination="Yosemite National Park"
-            heading="In-park inventory gone for your dates?"
-            note="It usually is, for anything in summer. A search around the park boundary is the two-minute version of finding out what is actually left before you start rearranging the trip."
-            list="stay_in_park_fallback"
-            slug="in-park-fallback"
-            cta="Search lodging around Yosemite →"
-            stayLink={false}
-          />
-        </div>
+        <aside className="stay-plate stay-fallback" aria-label="Lodging availability">
+          <div className="stay-fallback__main">
+            <div className="stay-plate__eyebrow">In-park inventory gone for your dates?</div>
+            <h2 className="stay-fallback__title">
+              For summer it usually is. Hold a room outside, then watch for one inside.
+            </h2>
+            <ol className="stay-fallback__steps">
+              <li><span>01</span>Search the boundary for your dates. Filter for free cancellation, and read the rate's terms before you book.</li>
+              <li><span>02</span>Check travelyosemite.com daily in the four to six weeks before the trip. Rooms come back.</li>
+              <li><span>03</span>If the Valley comes through, take it. If not, you already have a bed and a plan.</li>
+            </ol>
+          </div>
+          <div className="stay-fallback__ask">
+            <p>The two-minute version of finding out what is actually left.</p>
+            <BookButton destination="Yosemite National Park" list="stay_in_park_fallback" slug="in-park-fallback" size="lg">
+              Search lodging around Yosemite
+            </BookButton>
+            <span className="stay-fallback__fine">On Expedia, in a new tab. Affiliate link.</span>
+          </div>
+        </aside>
       </section>
 
       {/* Gateway towns, by corridor */}
-      <section className="wrap stay-section" style={{ paddingTop: 72 }} id="gateways">
-        <div className="section-head">
-          <h2>Outside the park, by corridor</h2>
-          <div className="mono" style={{ color: "var(--ink-3)" }}>
-            {CORRIDORS.length} corridors · {GATEWAYS.length} towns
+      <section className="wrap stay-section" id="gateways">
+        <div className="stay-head">
+          <div>
+            <div className="eyebrow eyebrow--moss">
+              Outside the park · {CORRIDORS.length} corridors, {GATEWAYS.length} towns
+            </div>
+            <h2 className="stay-h2">Road by road, town by town</h2>
           </div>
+          <p className="stay-head__note">
+            Four entrance stations sit at the corners of the park, each on its
+            own road, each with its towns. Outside the boundary there are
+            hundreds of properties and a real market, which is why these cards
+            send you to a live availability search. The full comparison is in{" "}
+            <a href="/articles/yosemite-gateway-towns-compared">the gateway towns article</a>.
+          </p>
         </div>
-        <p className="wrap--narrow" style={{ margin: "0 auto 28px", color: "var(--ink-2)" }}>
-          Four entrance stations sit at the corners of the park, each on its own
-          road, each with its towns. Choose the road first: it decides the drive
-          you make twice a day, it decides what else is reachable from the room,
-          and in winter it decides whether you are driving in rain or over a
-          pass. The town comes after that. The full comparison, with the case
-          for and against each, is in{" "}
-          <a href="/articles/yosemite-gateway-towns-compared">the gateway towns article</a>.
-        </p>
         {CORRIDORS.map((c) => (
-          <CorridorSection
-            key={c.id}
-            corridor={c}
-            towns={c.towns.map((id) => GATEWAYS.find((t) => t.id === id)).filter(Boolean)}
-          />
+          <React.Fragment key={c.id}>
+            <CorridorSection
+              corridor={c}
+              towns={c.towns.map((id) => GATEWAYS.find((t) => t.id === id)).filter(Boolean)}
+            />
+            {c.id === "corridor-120" && <ExpediaBanner list="stay_banner" slug="stay" />}
+          </React.Fragment>
         ))}
-        <ExpediaBanner list="stay_banner" slug="stay" />
       </section>
 
       {/* When to stay where */}
-      <section className="wrap stay-section" style={{ paddingTop: 72 }} id="seasons">
-        <div className="section-head">
-          <h2>When to stay where</h2>
-          <div className="mono" style={{ color: "var(--ink-3)" }}>four seasons, four answers</div>
-        </div>
-        <p className="wrap--narrow" style={{ margin: "0 auto 28px", color: "var(--ink-2)" }}>
-          The corridor that is right in July is not the one that is right in
-          January, because the roads change and so does what is open at the end
-          of them. This is the same four corridors read against the calendar.
-        </p>
-        <div className="stay-seasons">
-          {SEASONS.map((s) => <SeasonCard key={s.id} item={s} />)}
+      <section className="stay-section stay-seasons-band" id="seasons">
+        <div className="wrap">
+          <div className="stay-head">
+            <div>
+              <div className="eyebrow eyebrow--moss">Four seasons, four answers</div>
+              <h2 className="stay-h2">When to stay where</h2>
+            </div>
+            <p className="stay-head__note">
+              The corridor that is right in July is not the one that is right
+              in January, because the roads change and so does what is open at
+              the end of them. This is the same four corridors read against the
+              calendar.
+            </p>
+          </div>
+          <div className="stay-seasons">
+            {SEASONS.map((s) => <SeasonCard key={s.id} item={s} />)}
+          </div>
         </div>
       </section>
 
-      {/* Camping */}
-      <section className="wrap wrap--narrow stay-section" style={{ paddingTop: 72 }} id="camping">
-        <div className="section-head">
-          <h2>Camping</h2>
+      {/* Booking mechanics, with camping as the fourth column */}
+      <section className="wrap stay-section" id="booking">
+        <h2 className="stay-h2">How the booking actually works</h2>
+        <div className="stay-facts">
+          <div className="stay-fact">
+            <div className="stay-fact__big">366 days</div>
+            <p>
+              In-park reservations open one year and a day ahead, on a rolling
+              basis. For peak summer dates at the Valley properties,
+              availability at the moment of release is measured in minutes. Set
+              a reminder for the morning your window opens.
+            </p>
+          </div>
+          <div className="stay-fact">
+            <div className="stay-fact__big">Rooms come back</div>
+            <p>
+              People drop reservations continuously, with a distinct wave in
+              the final weeks before any date. Check daily, at varied times, in
+              the four to six weeks before your trip. I have watched people
+              assemble three-night Valley stays in June out of one-night
+              cancellations.
+            </p>
+          </div>
+          <div className="stay-fact">
+            <div className="stay-fact__big">6 to 12 months</div>
+            <p>
+              How far ahead gateway lodging fills for summer and holiday
+              weekends. The rest of the year it behaves like a normal hotel
+              market: the same room is a different price in October than in
+              July.
+            </p>
+          </div>
+          <div className="stay-fact" id="camping">
+            <div className="stay-fact__big">Camping</div>
+            <p>
+              The park's campgrounds release on Recreation.gov five months
+              ahead, and the popular Valley loops are gone in minutes. The
+              whole system is in{" "}
+              <a href="/articles/yosemite-camping-complete-guide">the camping guide</a>.
+              When the site or the weather falls through,{" "}
+              <AvailabilityLink
+                destination="Mariposa, California"
+                list="stay_camping_fallback"
+                slug="camping-fallback"
+                name="Mariposa lodging search"
+              >search Mariposa for a roof tonight ↗</AvailabilityLink>
+            </p>
+          </div>
         </div>
-        <section className="prose">
-          <p>
-            Camping remains the cheapest way to sleep in the park if you can
-            win a site, and winning one is a scheduled event rather than a
-            search: the park's campgrounds release on Recreation.gov five
-            months ahead, and the popular Valley loops are gone in minutes. The
-            whole system, including the walk-in options and the reservation
-            strategy that actually works, is in{" "}
-            <a href="/articles/yosemite-camping-complete-guide">the camping guide</a>.
-          </p>
-          <p>
-            The private campgrounds, ranch sites, and canvas-tent operations
-            outside the park cluster around Mariposa, Groveland, and Fish Camp,
-            and that inventory never appears on Recreation.gov, which is
-            exactly why it survives after the federal campgrounds sell out.
-          </p>
-        </section>
-        <LodgingCta
-          destination="Mariposa, California"
-          heading="If the trip has collapsed into 'we need a roof tonight'"
-          note="Every camper eventually has the night when the weather or the reservation falls through. A live search of the nearest gateway is faster than driving the highway looking for vacancy signs."
-          list="stay_camping_fallback"
-          slug="camping-fallback"
-          cta="Search Mariposa lodging →"
-          stayLink={false}
-        />
       </section>
 
-      {/* Booking mechanics */}
-      <section className="wrap wrap--narrow stay-section" style={{ paddingTop: 72 }} id="booking">
-        <div className="section-head">
-          <h2>How the booking actually works</h2>
-        </div>
-        <section className="prose">
-          <p>
-            In-park reservations open <strong>366 days in advance</strong>, one
-            year and a day ahead, on a rolling basis. For peak summer dates at
-            the Valley properties, availability at the moment of release is
-            measured in minutes. If your dates are fixed and in July, you set a
-            reminder for the morning your window opens and you book at that
-            moment, or you likely do not book at all.
-          </p>
-          <p>
-            Missing the release is not the end, and this is the part most
-            people never learn: <strong>rooms come back</strong>. Cancellation
-            policies mean people drop reservations continuously, with a
-            distinct wave in the final weeks before any date as plans collapse.
-            The strategy is unglamorous and it works: check the site daily, at
-            varied times, in the four to six weeks before your trip. I have
-            watched people assemble three-night Valley stays in June out of
-            one-night cancellations.
-          </p>
-          <p>
-            Gateway lodging fills six to twelve months ahead for summer and
-            holiday weekends, but it behaves like a normal hotel market the
-            rest of the year: rates move with the season and the day of the
-            week, and the same room is a different price in October than in
-            July.
-          </p>
-          <p>
-            The other lever is the calendar, and it is the strongest one on
-            this page. Which corridor and which season line up is covered in{" "}
-            <a href="#seasons">when to stay where</a>, above.
-          </p>
-        </section>
+      {/* The closing ask */}
+      <section className="wrap stay-section">
+        <aside className="stay-closing" aria-label="Lodging availability">
+          <StayFigure item={IN_PARK.find((p) => p.id === "tuolumne-lodge")} className="stay-closing__figure" />
+          <div className="stay-closing__body">
+            <h2 className="stay-closing__title">
+              You know the road now. The only open question is your dates.
+            </h2>
+            <p>
+              One search around the boundary shows every town on this page at
+              once, with live rates. Booking through it costs you nothing extra
+              and helps keep this site written from inside the park.
+            </p>
+            <div className="stay-closing__row">
+              <BookButton destination="Yosemite National Park" list="stay_closing" slug="closing" size="lg">
+                Search every Yosemite gateway
+              </BookButton>
+              <span className="stay-closing__fine">On Expedia · affiliate link</span>
+            </div>
+          </div>
+        </aside>
       </section>
 
       {/* Where to go next */}

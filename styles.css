@@ -6948,371 +6948,730 @@ main:focus { outline: none; }
 }
 .expedia-banner__disclosure a { color: var(--ink-3); text-decoration: underline; }
 
-/* --- the cards ---------------------------------------------------------- */
+/* ===== /stay: the lodging board (September 2026 redesign) =====
+   Built around the decision (road, then town) with a booking action wherever
+   the reader has just made one. Two rules carry the page and both live here:
+   `.stay-book`, the filled button, is ONLY ever an Expedia availability search,
+   and `.stay-ghost`, the outlined one, is the concessioner, so the paid action
+   and the unpaid one cannot be mistaken for each other. Everything is drawn
+   from the palette tokens, so the three palettes and dark mode follow; the one
+   exception is the hero, whose type sits on a photograph and is fixed light. */
 
-.stay-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-  gap: 32px;
+.stay-sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
 }
 
-.stay-card {
+/* --- the two buttons ---------------------------------------------------- */
+
+/* The booking colour is the page's own token, not --moss. The accent is a
+   different hue in each palette (navy in High Sierra, the site default, where
+   it sits one step from --ink and a filled button reads as one more ink
+   plate), and rule one of this page is that the booking action is
+   unmistakable. One warm iron red in every palette, lifted for dark mode, the
+   way the bulletin carries its own status colours. */
+.stay-page {
+  --stay-book: #8a3315;
+  --stay-book-hover: #a8431f;
+  --stay-book-ink: #f7f1e1;
+}
+@media (prefers-color-scheme: dark) {
+  .stay-page {
+    --stay-book: #dc7a4a;
+    --stay-book-hover: #e88d60;
+    --stay-book-ink: #1a140e;
+  }
+}
+
+.stay-book,
+.stay-ghost {
   display: flex;
-  flex-direction: column;
-  border: 1px solid var(--rule-soft);
-  background: var(--paper);
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 52px;
+  box-sizing: border-box;
+  padding: 12px 20px;
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1.35;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: 0;
 }
-/* A closed property stays on the page (its absence is the useful fact) but
-   must not read as an option. Muted, and it carries no booking link. */
-.stay-card--closed { opacity: 0.78; border-style: dashed; }
+.stay-book {
+  background: var(--stay-book);
+  color: var(--stay-book-ink);
+  transition: background 0.15s ease;
+}
+.stay-book:hover { background: var(--stay-book-hover); color: var(--stay-book-ink); }
+.stay-book--lg { min-height: 60px; font-size: 12px; letter-spacing: 0.15em; }
+.stay-book--sm { min-height: 48px; padding: 10px 16px; letter-spacing: 0.11em; }
+.stay-book__arrow { font-size: 14px; letter-spacing: 0; transition: transform 0.15s ease; }
+.stay-book:hover .stay-book__arrow,
+.stay-ghost:hover .stay-book__arrow { transform: translate(2px, -2px); }
+.stay-ghost {
+  border: 1px solid var(--ink);
+  color: var(--ink);
+  min-height: 48px;
+}
+.stay-ghost:hover { background: var(--ink); color: var(--paper); }
 
-.stay-card__figure { margin: 0; }
-.stay-card__img {
-  display: block;
-  width: 100%;
-  aspect-ratio: 3 / 2;
-  object-fit: cover;
+/* --- hero and search ---------------------------------------------------- */
+
+.stay-hero {
+  position: relative;
+  min-height: clamp(420px, 46vw, 600px);
+  display: flex;
+  align-items: flex-end;
+  background: #14110c;
+  overflow: hidden;
 }
-.stay-card__caption {
+.stay-hero picture,
+.stay-hero__img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+.stay-hero__img { object-fit: cover; object-position: 50% 38%; }
+.stay-hero__scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(20, 17, 12, 0.2) 0%, rgba(20, 17, 12, 0.25) 40%, rgba(20, 17, 12, 0.85) 100%);
+}
+.stay-hero__inner {
+  position: relative;
+  width: 100%;
+  padding-top: 48px;
+  padding-bottom: 132px;
+  color: #f7f1e1;
+}
+.stay-hero .crumbs,
+.stay-hero .crumbs a { color: rgba(247, 241, 225, 0.85); border-bottom-color: rgba(247, 241, 225, 0.4); }
+.stay-hero .crumbs li + li::before { color: rgba(247, 241, 225, 0.5); }
+.stay-hero__eyebrow {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #e9d9a8;
+  margin-bottom: 16px;
+}
+.stay-hero h1 {
+  color: #f7f1e1;
+  font-size: clamp(40px, 6vw, 84px);
+  line-height: 1;
+  max-width: 14ch;
+  margin: 0 0 16px;
+}
+.stay-hero__dek {
+  font-size: clamp(18px, 1.7vw, 24px);
+  line-height: 1.35;
+  max-width: 34em;
+  margin: 0;
+  color: #f1ead6;
+}
+.stay-hero__credit {
+  position: absolute;
+  right: 16px;
+  bottom: 96px;
+  font-family: var(--sans);
+  font-size: 11px;
+  color: rgba(247, 241, 225, 0.8);
+}
+
+.stay-search-wrap { position: relative; margin-top: -84px; }
+.stay-search {
+  background: var(--paper);
+  border: 1px solid var(--ink);
+  box-shadow: 8px 8px 0 var(--ink);
+  padding: 26px 30px 20px;
+}
+.stay-search__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 6px 24px;
+  margin-bottom: 16px;
+}
+.stay-search__title {
+  font-family: var(--display);
+  font-size: 28px;
+  font-weight: 500;
+  line-height: 1.1;
+  margin: 0;
+}
+.stay-search__sub { font-family: var(--sans); font-size: 12px; color: var(--ink-3); }
+.stay-search__fields {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr 1.2fr;
+  gap: 16px;
+  align-items: end;
+}
+.stay-field { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.stay-field__label {
+  font-family: var(--sans);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+.stay-field select,
+.stay-field input {
+  height: 54px;
+  box-sizing: border-box;
+  width: 100%;
+  padding: 0 14px;
+  color: var(--ink);
+  background: var(--paper-2);
+  border: 1px solid var(--rule);
+  border-radius: 0;
+  font-family: var(--sans);
+  font-size: 15px;
+  color-scheme: light dark;
+}
+.stay-field select { font-family: var(--serif); font-size: 19px; }
+.stay-book--search { min-height: 54px; justify-content: center; font-size: 12px; letter-spacing: 0.16em; }
+.stay-search__foot {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px 32px;
+  margin-top: 16px;
+  padding-top: 14px;
+  border-top: 1px solid var(--rule-soft);
   font-family: var(--sans);
   font-size: 12px;
   line-height: 1.5;
   color: var(--ink-3);
-  padding: 8px 20px 0;
 }
-.stay-card__credit {
-  display: block;
-  font-size: 11px;
-  opacity: 0.8;
-  margin-top: 2px;
-}
-
-/* Column, so the booking link can be pushed to the bottom (margin-top: auto
-   below). Cards in a row have wildly different body lengths and several have
-   no photo at all; without this the links land at a different height in every
-   card and the row reads as ragged. */
-.stay-card__body {
-  padding: 18px 20px 22px;
+.stay-search__foot p { margin: 0; max-width: 56em; }
+.stay-search__foot a { color: var(--ink-3); }
+.stay-search__facts {
   display: flex;
-  flex-direction: column;
-  flex: 1;
-}
-.stay-card__kind {
-  font-family: var(--sans);
-  font-size: 11px;
-  letter-spacing: 0.07em;
-  text-transform: uppercase;
-  color: var(--ink-3);
-}
-.stay-card__name {
-  font-family: var(--display);
-  font-size: 26px;
-  line-height: 1.15;
-  margin: 4px 0 6px;
-}
-.stay-card__price {
-  font-family: var(--sans);
-  font-size: 13px;
-  color: var(--moss);
-  margin: 0 0 12px;
-}
-.stay-card__text,
-.stay-card__who,
-.stay-card__against {
-  font-family: var(--sans);
-  font-size: 14.5px;
-  line-height: 1.65;
-  color: var(--ink-2);
-  margin: 0 0 12px;
-}
-.stay-card__tip,
-.stay-card__warn {
-  font-family: var(--sans);
-  font-size: 13.5px;
-  line-height: 1.6;
-  color: var(--ink-2);
-  background: var(--paper-2);
-  border-left: 2px solid var(--rule-soft);
-  padding: 10px 14px;
-  margin: 0 0 12px;
-}
-.stay-card__warn { border-left-color: var(--moss); }
-
-.stay-card__facts {
-  margin: 0 0 12px;
-  font-family: var(--sans);
-  font-size: 13px;
-}
-.stay-card__facts > div {
-  display: flex;
-  gap: 10px;
-  padding: 5px 0;
-  border-bottom: 1px solid var(--rule-soft);
-}
-.stay-card__facts dt {
-  flex: 0 0 52px;
-  color: var(--ink-3);
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  font-size: 11px;
-  padding-top: 1px;
-}
-.stay-card__facts dd { margin: 0; color: var(--ink-2); }
-
-.stay-card__book,
-.stay-card__avail {
-  align-self: flex-start;
-  font-family: var(--sans);
-  font-size: 14px;
-  font-weight: 600;
-  text-decoration: none;
-  border-bottom: 1px solid currentColor;
-  margin-top: auto;
-  padding-top: 8px;
-}
-.stay-card__book { color: var(--ink-2); }
-.stay-card__avail { color: var(--moss); }
-.stay-card__avail:hover { color: var(--moss-2); }
-
-.stay-links {
-  list-style: none;
-  padding: 0;
+  gap: 24px;
   margin: 0;
-  border-top: 1px solid var(--rule-soft);
-}
-.stay-links li {
-  border-bottom: 1px solid var(--rule-soft);
-  padding: 14px 0;
-}
-.stay-links a {
-  font-family: var(--display);
-  font-size: 20px;
-  color: var(--ink);
-  text-decoration: none;
-  border-bottom: 1px solid var(--rule-soft);
-}
-.stay-links a:hover { border-bottom-color: var(--moss); }
-.stay-links span {
-  display: block;
-  font-family: var(--sans);
-  font-size: 13.5px;
-  color: var(--ink-3);
-  margin-top: 4px;
+  padding: 0;
+  list-style: none;
+  white-space: nowrap;
+  font-weight: 600;
+  color: var(--ink-2);
 }
 
-/* The card's quiet deep link into the article that covers it at length. Sits
-   above the booking link, which stays the terminal action on every card. */
-.stay-card__more {
-  align-self: flex-start;
-  font-family: var(--sans);
-  font-size: 13px;
-  color: var(--ink-3);
-  text-decoration: none;
-  border-bottom: 1px solid transparent;
-  padding-top: 10px;
-}
-.stay-card__more:hover { color: var(--moss); border-bottom-color: currentColor; }
+/* --- shared section furniture ------------------------------------------- */
 
 /* The masthead is fixed, so every anchor target on this page needs clearance
-   or the jump nav lands its heading underneath it. `.prose h2` already does
-   this for article bodies; these sections are not inside `.prose`. The 84px
-   that rule uses is measured to the masthead's height, which is not the same
-   as its bottom edge: a corridor head starts at the top of its own box, so at
-   84px it landed 9px under the bar. The section ids get away with less
-   because their padding-top pushes the heading down, but they take the same
-   value here so one number governs every anchor on the page. */
-.stay-section { scroll-margin-top: 108px; }
-.stay-corridor { scroll-margin-top: 108px; }
+   or the jump nav lands its heading underneath it. */
+.stay-section { scroll-margin-top: 108px; padding-top: 80px; }
+.stay-corridor,
+#camping { scroll-margin-top: 108px; }
+
+.stay-h2 {
+  font-family: var(--display);
+  font-size: clamp(30px, 3.6vw, 48px);
+  font-weight: 500;
+  line-height: 1.05;
+  margin: 10px 0 0;
+}
+.stay-lede { font-size: 20px; line-height: 1.5; color: var(--ink-2); margin: 0; }
+.stay-head {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 520px);
+  gap: 24px 56px;
+  align-items: end;
+  margin-bottom: 32px;
+}
+.stay-head__note { margin: 0; font-size: 18px; line-height: 1.5; color: var(--ink-2); }
 
 .stay-jump {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px 20px;
-  margin-top: 32px;
-  padding: 12px 0;
-  border-top: 1px solid var(--rule-soft);
+  gap: 10px 22px;
+  margin-top: 36px;
+  padding: 14px 0;
+  border-top: 1px solid var(--rule);
   border-bottom: 1px solid var(--rule-soft);
 }
 .stay-jump a {
   font-family: var(--sans);
-  font-size: 12px;
-  font-weight: 600;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--ink-2);
   text-decoration: none;
+  color: var(--ink-2);
   border-bottom: 1px solid transparent;
 }
 .stay-jump a:hover { color: var(--moss); border-bottom-color: currentColor; }
 
-/* A corridor is a road plus its towns plus its named stays. The head reads as
-   a unit heavier than a card and lighter than a section: a 2px rule, the same
-   device `.section-head` uses one level up. */
-.stay-corridor { margin-top: 52px; }
-.stay-corridor:first-of-type { margin-top: 0; }
-.stay-corridor__head {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 4px 16px;
-  border-bottom: 2px solid var(--ink);
-  padding-bottom: 8px;
-  margin-bottom: 14px;
+/* The ink plate: the picker's answer and the sold-out band. Tokens invert in
+   dark mode, so the plate does too. */
+.stay-plate { background: var(--ink); color: var(--paper); }
+.stay-plate__eyebrow {
+  font-family: var(--sans);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--paper-3);
 }
-.stay-corridor__head h3 {
-  font-family: var(--display);
-  font-size: 27px;
-  line-height: 1.15;
+.stay-plate__fine {
   margin: 0;
-}
-.stay-corridor__kicker {
   font-family: var(--sans);
   font-size: 11px;
-  text-transform: uppercase;
-  letter-spacing: 0.07em;
+  line-height: 1.5;
+  color: color-mix(in oklab, var(--paper) 72%, transparent);
+}
+
+/* --- choose the road first ---------------------------------------------- */
+
+.stay-decide {
+  display: grid;
+  grid-template-columns: minmax(0, 600px) minmax(0, 1fr);
+  gap: 40px 56px;
+  align-items: start;
+}
+.stay-map {
+  margin: 0;
+  padding: 16px 16px 12px;
+  border: 1px solid var(--rule);
+  background: color-mix(in oklab, var(--paper) 60%, var(--paper-2));
+}
+.stay-map svg { display: block; width: 100%; height: auto; }
+.stay-map figcaption {
+  margin-top: 8px;
+  font-family: var(--sans);
+  font-size: 12px;
+  line-height: 1.5;
   color: var(--ink-3);
 }
-.stay-corridor__verdict {
+.stay-map text { font-family: var(--sans); fill: var(--ink); }
+.stay-map__park { fill: var(--paper-2); stroke: var(--rule-soft); stroke-width: 1.5; }
+.stay-map .stay-map__parkname { font-size: 10px; font-weight: 700; letter-spacing: 3px; fill: var(--ink-3); opacity: 0.75; }
+.stay-map__road { fill: none; stroke: var(--ink); stroke-width: 2.5; }
+.stay-map__road--seasonal { stroke-dasharray: 7 5; }
+.stay-map__minor { fill: none; stroke: var(--ink-3); stroke-width: 1.5; }
+.stay-map__gate rect { fill: var(--paper); stroke: var(--ink); stroke-width: 1.5; }
+.stay-map__place circle { fill: var(--ink); }
+.stay-map__ring { fill: none; stroke: var(--ink); stroke-width: 1.5; }
+.stay-map__town circle { fill: var(--stay-book); }
+.stay-map .stay-map__valley { font-size: 12px; font-weight: 700; letter-spacing: 1.5px; }
+.stay-map .stay-map__name { font-size: 14px; font-weight: 700; }
+.stay-map .stay-map__note { font-size: 11px; fill: var(--ink-3); }
+.stay-map__shield rect { fill: var(--ink); }
+.stay-map .stay-map__shield text { font-size: 10px; font-weight: 700; fill: var(--paper); }
+
+.stay-picker { display: flex; flex-direction: column; gap: 20px; }
+.stay-picker__chips { display: flex; flex-wrap: wrap; gap: 10px; }
+.stay-chip {
+  min-height: 44px;
+  padding: 0 18px;
   font-family: var(--sans);
   font-size: 13px;
   font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: var(--moss);
-  margin: 0 0 10px;
+  color: var(--ink);
+  background: transparent;
+  border: 1px solid var(--ink);
+  border-radius: 0;
+  cursor: pointer;
 }
-.stay-corridor__intro {
-  max-width: 72ch;
-  margin-bottom: 26px;
-}
-.stay-corridor__intro p {
-  font-family: var(--sans);
-  font-size: 15.5px;
-  line-height: 1.7;
-  color: var(--ink-2);
+.stay-chip:hover { background: var(--paper-2); }
+.stay-chip.is-on { background: var(--ink); color: var(--paper); }
+.stay-picker__result { padding: 28px 32px 30px; display: flex; flex-direction: column; gap: 14px; }
+.stay-picker__top { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; flex-wrap: wrap; }
+.stay-picker__road { font-family: var(--sans); font-size: 12px; color: var(--paper-3); }
+.stay-picker__town { display: flex; align-items: baseline; flex-wrap: wrap; gap: 6px 16px; }
+.stay-picker__town span { font-family: var(--display); font-size: clamp(34px, 3.4vw, 44px); font-weight: 500; line-height: 1; }
+.stay-picker__town em { font-size: 20px; color: var(--paper-2); }
+.stay-picker__why { margin: 0; font-size: 19px; line-height: 1.45; }
+.stay-picker__cost {
   margin: 0;
-}
-
-/* The named-stays tier. Deliberately rows rather than cards: these are two
-   sentences each and sit under the town cards in the hierarchy, so giving
-   them boxes would make eleven properties out-shout six towns. */
-.stay-props-wrap { margin-top: 28px; }
-.stay-props__lead {
   font-family: var(--sans);
-  font-size: 12.5px;
-  color: var(--ink-3);
-  margin: 0 0 4px;
-  max-width: 68ch;
+  font-size: 13px;
+  line-height: 1.55;
+  color: color-mix(in oklab, var(--paper) 80%, transparent);
 }
-.stay-props {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 0 32px;
-  border-top: 1px solid var(--rule-soft);
-}
-.stay-prop {
+.stay-picker__cost strong { color: var(--paper); }
+
+/* --- inside the park ---------------------------------------------------- */
+
+.stay-grid { display: grid; gap: 24px; }
+.stay-grid--lead { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.stay-grid--compact { grid-template-columns: repeat(4, minmax(0, 1fr)); margin-top: 24px; }
+
+.stay-card {
   display: flex;
   flex-direction: column;
-  border-bottom: 1px solid var(--rule-soft);
-  padding: 14px 0 16px;
+  border: 1px solid var(--rule);
+  background: color-mix(in oklab, var(--paper) 60%, var(--paper-2));
 }
-.stay-prop__name {
-  font-family: var(--display);
-  font-size: 19px;
-  color: var(--ink);
-}
-.stay-prop__where {
+.stay-card--compact { border-color: var(--rule-soft); }
+/* A closed property stays on the page (its absence is the useful fact) but
+   reads as set aside. */
+.stay-card--closed { background: var(--paper-2); border-style: dashed; }
+
+.stay-card__figure { margin: 0; }
+.stay-card__img { display: block; width: 100%; aspect-ratio: 3 / 2; object-fit: cover; }
+.stay-card__caption {
   font-family: var(--sans);
   font-size: 11px;
-  text-transform: uppercase;
-  letter-spacing: 0.07em;
+  line-height: 1.45;
   color: var(--ink-3);
-  margin-top: 2px;
+  padding: 8px 20px 0;
 }
-.stay-prop__text {
+.stay-card__credit { display: block; opacity: 0.85; margin-top: 2px; }
+
+/* Column, so the actions can be pushed to the bottom and line up across a row
+   of cards of different lengths. */
+.stay-card__body { display: flex; flex-direction: column; flex: 1; gap: 10px; padding: 18px 20px 20px; }
+.stay-card__kind {
   font-family: var(--sans);
-  font-size: 14px;
-  line-height: 1.6;
-  color: var(--ink-2);
-  margin: 8px 0 0;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--ink-3);
 }
-.stay-prop__avail {
+.stay-card__name { font-family: var(--display); font-size: 30px; font-weight: 500; line-height: 1.05; margin: 0; }
+.stay-card--compact .stay-card__name { font-size: 24px; }
+.stay-card__price { margin: 0; font-style: italic; font-size: 17px; line-height: 1.3; color: var(--moss); }
+.stay-card__text { margin: 0; font-size: 17px; line-height: 1.45; color: var(--ink-2); }
+.stay-card--compact .stay-card__text { font-size: 16px; }
+.stay-card__who { margin: 0; font-family: var(--sans); font-size: 13px; line-height: 1.55; color: var(--ink-2); }
+.stay-card__tip,
+.stay-card__warn {
+  margin: 0;
+  padding-top: 10px;
+  border-top: 1px solid var(--rule-soft);
+  font-family: var(--sans);
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--ink-2);
+}
+.stay-card__warn { border-top-color: var(--moss); }
+.stay-card__actions { margin-top: auto; padding-top: 8px; display: flex; flex-direction: column; gap: 12px; }
+
+/* The quiet deep link into the article that covers a card at length. */
+.stay-card__more {
   align-self: flex-start;
   font-family: var(--sans);
-  font-size: 13.5px;
+  font-size: 12px;
   font-weight: 600;
-  color: var(--moss);
   text-decoration: none;
-  border-bottom: 1px solid currentColor;
+  color: var(--ink-2);
+  border-bottom: 1px solid var(--rule-soft);
+}
+.stay-card__more:hover { color: var(--moss); border-bottom-color: currentColor; }
+
+.stay-fallback {
+  margin-top: 56px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 440px);
+}
+.stay-fallback__main { padding: 44px 48px; }
+.stay-fallback__title {
+  font-family: var(--display);
+  font-size: clamp(28px, 3.2vw, 44px);
+  font-weight: 500;
+  line-height: 1.06;
+  color: var(--paper);
+  margin: 14px 0 22px;
+}
+.stay-fallback__steps {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 17px;
+  line-height: 1.45;
+  color: color-mix(in oklab, var(--paper) 88%, transparent);
+}
+.stay-fallback__steps li {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding-top: 12px;
+  border-top: 1px solid color-mix(in oklab, var(--paper) 30%, transparent);
+}
+.stay-fallback__steps span {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  color: var(--paper-3);
+}
+.stay-fallback__ask {
+  margin: 20px;
+  padding: 28px;
+  background: var(--paper);
+  color: var(--ink);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-self: center;
+  gap: 14px;
+}
+.stay-fallback__ask p { margin: 0; font-family: var(--display); font-size: 26px; font-weight: 500; line-height: 1.15; }
+.stay-fallback__fine { font-family: var(--sans); font-size: 11px; color: var(--ink-3); }
+
+/* --- the corridors ------------------------------------------------------ */
+
+/* A corridor is a road plus its towns plus its named stays. The side column
+   argues for the road and ends in the road-level search; the towns sit beside
+   it and each ends in its own. */
+.stay-corridor { margin-top: 56px; padding-top: 28px; border-top: 3px solid var(--ink); }
+.stay-head + .stay-corridor { margin-top: 0; }
+.stay-corridor__top {
+  display: grid;
+  grid-template-columns: minmax(0, 380px) minmax(0, 1fr);
+  gap: 32px;
+  align-items: stretch;
+}
+.stay-corridor__side { display: flex; flex-direction: column; gap: 14px; }
+.stay-corridor__side > .stay-book { margin-top: auto; }
+.stay-corridor__head { display: flex; align-items: center; gap: 14px; }
+.stay-corridor__num {
+  min-width: 64px;
+  height: 44px;
+  padding: 0 10px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--ink);
+  color: var(--paper);
+  font-family: var(--sans);
+  font-size: 18px;
+  font-weight: 700;
+}
+.stay-corridor__head h3 {
+  font-family: var(--display);
+  font-size: 28px;
+  font-weight: 500;
+  line-height: 1.05;
+  margin: 0;
+}
+.stay-corridor__kicker { font-family: var(--sans); font-size: 11px; line-height: 1.4; color: var(--ink-3); margin-top: 3px; }
+.stay-corridor__verdict { margin: 0; font-style: italic; font-size: 25px; line-height: 1.2; color: var(--moss); }
+.stay-corridor__intro p { margin: 0; font-size: 17px; line-height: 1.5; color: var(--ink-2); }
+.stay-corridor__figure .stay-card__img { aspect-ratio: 2 / 1; }
+.stay-corridor__figure .stay-card__caption { padding: 6px 0 0; }
+
+.stay-corridor__towns { display: flex; gap: 24px; align-items: stretch; }
+.stay-town {
+  flex: 1 1 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 24px;
+  border: 1px solid var(--rule);
+  background: color-mix(in oklab, var(--paper) 60%, var(--paper-2));
+}
+.stay-town__name { font-family: var(--display); font-size: 34px; font-weight: 500; line-height: 1; margin: 0; }
+.stay-town__facts {
+  display: grid;
+  grid-template-columns: 56px minmax(0, 1fr);
+  gap: 4px 0;
+  margin: 0;
+  padding: 10px 0;
+  border-top: 1px solid var(--rule-soft);
+  border-bottom: 1px solid var(--rule-soft);
+  font-family: var(--sans);
+  font-size: 13px;
+  line-height: 1.45;
+}
+.stay-town__facts dt {
+  padding-top: 2px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+.stay-town__facts dd { margin: 0; color: var(--ink-2); }
+.stay-town__facts .stay-town__drive { font-weight: 600; color: var(--ink); }
+.stay-town__text { margin: 0; font-size: 17px; line-height: 1.45; color: var(--ink-2); }
+.stay-town__note { margin: 0; font-family: var(--sans); font-size: 13px; line-height: 1.55; color: var(--ink-2); }
+.stay-town__actions { margin-top: auto; padding-top: 6px; display: flex; flex-direction: column; gap: 12px; }
+
+.stay-corridor--solo .stay-corridor__towns { flex-direction: column; gap: 0; }
+.stay-corridor--solo .stay-town { flex: 0 0 auto; }
+.stay-corridor--solo .stay-props { flex-wrap: wrap; }
+.stay-corridor--solo .stay-prop { flex-basis: calc(50% - 8px); }
+
+/* The named-stays tier: two sentences and a town search each. */
+.stay-props-wrap { margin-top: 24px; }
+.stay-props__head { display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap; gap: 4px 24px; margin-bottom: 12px; }
+.stay-props__label { font-family: var(--sans); font-size: 10px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; }
+.stay-props__lead { font-family: var(--sans); font-size: 12px; color: var(--ink-3); }
+.stay-props { display: flex; gap: 16px; align-items: stretch; }
+.stay-prop {
+  flex: 1 1 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 16px 18px;
+  background: var(--paper-2);
+  border: 1px solid var(--rule-soft);
+}
+.stay-prop__name { font-family: var(--display); font-size: 21px; font-weight: 600; line-height: 1.1; }
+.stay-prop__where { font-family: var(--sans); font-size: 11px; color: var(--ink-3); }
+.stay-prop__text { margin: 3px 0 0; font-size: 15.5px; line-height: 1.42; color: var(--ink-2); }
+.stay-prop__avail {
   margin-top: auto;
   padding-top: 10px;
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 700;
+  text-decoration: none;
+  color: var(--stay-book);
 }
-.stay-prop__avail:hover { color: var(--moss-2); }
+.stay-prop__avail:hover { color: var(--stay-book-hover); text-decoration: underline; }
+.stay-section .expedia-banner { margin-top: 56px; padding: 20px 0; border-top: 1px solid var(--rule-soft); border-bottom: 1px solid var(--rule-soft); }
 
-/* The seasonal read of the same four corridors. The column counts are fixed
-   rather than auto-filled because there are exactly four of these and they
-   are a sequence: an auto-fill that lands on three columns leaves Fall alone
-   on a second row, which reads as an afterthought rather than a calendar. */
-.stay-seasons {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 24px;
+/* --- seasons, booking, closing ------------------------------------------ */
+
+.stay-seasons-band {
+  margin-top: 88px;
+  padding: 72px 0;
+  background: var(--paper-2);
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
 }
-@media (min-width: 1000px) {
-  .stay-seasons { grid-template-columns: repeat(4, 1fr); }
-}
+.stay-seasons { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px; }
 .stay-season {
   display: flex;
   flex-direction: column;
-  border: 1px solid var(--rule-soft);
+  gap: 10px;
+  padding: 22px;
   background: var(--paper);
-  padding: 18px 20px 20px;
+  border: 1px solid var(--rule);
 }
-.stay-season__name {
-  font-family: var(--display);
-  font-size: 24px;
-  margin: 0;
-}
+.stay-season__name { font-family: var(--display); font-size: 32px; font-weight: 500; line-height: 1; margin: 0; }
 .stay-season__span {
   font-family: var(--sans);
   font-size: 11px;
-  text-transform: uppercase;
-  letter-spacing: 0.07em;
-  color: var(--ink-3);
-  margin-top: 2px;
-}
-.stay-season__text {
-  font-family: var(--sans);
-  font-size: 14.5px;
-  line-height: 1.65;
-  color: var(--ink-2);
-  margin: 10px 0 0;
-}
-.stay-season__avail {
-  align-self: flex-start;
-  font-family: var(--sans);
-  font-size: 14px;
   font-weight: 600;
-  color: var(--moss);
-  text-decoration: none;
-  border-bottom: 1px solid currentColor;
-  margin-top: auto;
-  padding-top: 14px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-3);
 }
-.stay-season__avail:hover { color: var(--moss-2); }
+.stay-season__answer { margin: 0; font-style: italic; font-size: 19px; line-height: 1.25; color: var(--moss); }
+.stay-season__text { margin: 0 0 6px; font-size: 16px; line-height: 1.45; color: var(--ink-2); }
+.stay-season > .stay-book { margin-top: auto; }
 
+.stay-facts { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 32px; margin-top: 28px; }
+.stay-fact { padding-top: 14px; border-top: 3px solid var(--ink); }
+.stay-fact__big { font-family: var(--display); font-size: clamp(30px, 2.8vw, 40px); font-weight: 500; line-height: 1; margin-bottom: 10px; }
+.stay-fact p { margin: 0; font-size: 17px; line-height: 1.45; color: var(--ink-2); }
+
+.stay-closing {
+  display: grid;
+  grid-template-columns: minmax(0, 520px) minmax(0, 1fr);
+  border: 1px solid var(--ink);
+  background: color-mix(in oklab, var(--paper) 60%, var(--paper-2));
+}
+.stay-closing__figure { position: relative; min-height: 300px; }
+.stay-closing__figure picture,
+.stay-closing__figure .stay-card__img { position: absolute; inset: 0; width: 100%; height: 100%; aspect-ratio: auto; }
+.stay-closing__figure .stay-card__caption {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 24px 16px 10px;
+  color: #f7f1e1;
+  background: linear-gradient(180deg, transparent, rgba(20, 17, 12, 0.8));
+}
+.stay-closing__body { padding: 40px 44px; display: flex; flex-direction: column; justify-content: center; gap: 16px; }
+.stay-closing__title { font-family: var(--display); font-size: clamp(28px, 3vw, 42px); font-weight: 500; line-height: 1.06; margin: 0; }
+.stay-closing__body p { margin: 0; font-size: 19px; line-height: 1.45; color: var(--ink-2); }
+.stay-closing__row { display: flex; align-items: center; flex-wrap: wrap; gap: 12px 16px; }
+.stay-closing__row .stay-book { gap: 16px; }
+.stay-closing__fine { font-family: var(--sans); font-size: 12px; color: var(--ink-3); }
+
+.stay-links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.stay-links li { padding: 12px 0; border-bottom: 1px solid var(--rule-soft); }
+.stay-links a {
+  font-family: var(--display);
+  font-size: 20px;
+  text-decoration: none;
+  color: var(--ink);
+  border-bottom: 1px solid transparent;
+}
+.stay-links a:hover { border-bottom-color: var(--moss); }
+.stay-links span { display: block; font-family: var(--sans); font-size: 13px; color: var(--ink-3); margin-top: 2px; }
+
+/* --- narrower windows --------------------------------------------------- */
+
+@media (max-width: 1100px) {
+  .stay-grid--compact { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .stay-seasons,
+  .stay-facts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .stay-fallback { grid-template-columns: 1fr; }
+  .stay-fallback__ask { margin: 0 20px 20px; }
+  .stay-props { flex-wrap: wrap; }
+  .stay-prop { flex-basis: calc(50% - 8px); }
+}
+@media (max-width: 880px) {
+  .stay-decide,
+  .stay-head,
+  .stay-corridor__top,
+  .stay-closing { grid-template-columns: 1fr; }
+  .stay-head { align-items: start; }
+  .stay-grid--lead { grid-template-columns: 1fr; }
+  .stay-search__fields { grid-template-columns: 1fr 1fr; }
+  .stay-search__fields > :first-child,
+  .stay-search__fields > .stay-book { grid-column: 1 / -1; }
+  .stay-search__foot { flex-direction: column; align-items: flex-start; }
+  .stay-search__facts { flex-wrap: wrap; gap: 4px 18px; white-space: normal; }
+  .stay-corridor__side > .stay-book { margin-top: 4px; }
+  .stay-closing__figure { min-height: 220px; }
+}
 @media (max-width: 720px) {
-  .stay-grid { grid-template-columns: 1fr; gap: 24px; }
-  .stay-card__name { font-size: 23px; }
   .lodging-cta { padding: 18px 18px 16px; }
   .lodging-cta__figure { margin: -18px -18px 14px; }
   .lodging-cta__caption { padding: 8px 18px 0; }
-  .stay-jump { gap: 8px 14px; }
-  .stay-corridor { margin-top: 40px; }
-  .stay-corridor__head h3 { font-size: 23px; }
-  .stay-props { grid-template-columns: 1fr; gap: 0; }
-  .stay-seasons { grid-template-columns: 1fr; }
+  .stay-section { padding-top: 56px; }
+  .stay-hero__inner { padding-top: 28px; padding-bottom: 72px; }
+  .stay-hero__credit { bottom: 52px; }
+  .stay-search-wrap { margin-top: -40px; }
+  .stay-search { padding: 18px 16px 16px; box-shadow: 5px 5px 0 var(--ink); }
+  .stay-search__title { font-size: 23px; }
+  .stay-jump { gap: 8px 14px; margin-top: 28px; }
+  .stay-grid--compact,
+  .stay-seasons,
+  .stay-facts,
+  .stay-fallback__steps { grid-template-columns: 1fr; }
+  .stay-fallback { margin-top: 40px; }
+  .stay-fallback__main { padding: 30px 20px; }
+  .stay-fallback__ask { margin: 0 12px 12px; padding: 22px 18px; }
+  .stay-picker__result { padding: 22px 20px 24px; }
+  .stay-corridor__towns { flex-direction: column; }
+  .stay-town { padding: 20px 18px; }
+  .stay-town__name { font-size: 30px; }
+  .stay-prop { flex-basis: 100%; }
+  .stay-seasons-band { margin-top: 56px; padding: 48px 0; }
+  .stay-closing__body { padding: 28px 20px; }
+  .stay-closing__row .stay-book { width: 100%; }
 }
 
 /* Map sidebar: the lodging line's inline disclosure. */
