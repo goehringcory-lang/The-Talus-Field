@@ -110,7 +110,7 @@ window.planningSeriesFor = function (slug) {
 // verifies this map stays in sync with the files in bodies/.
 // ============================================================
 window.BODY_VERSIONS = {
-  "cell-service-in-yosemite": 1,
+  "cell-service-in-yosemite": 2,
   "glacier-point-how-to-visit": 1,
   "clouds-rest-hike": 1,
   "yosemite-from-las-vegas": 1,
