@@ -313,15 +313,9 @@ The buy box, checkout route, webhook, KV buyer records, and email delivery are a
 3. **Secrets.** `wrangler secret put` each of: `STRIPE_SECRET_KEY`, `STRIPE_WEBHOOK_SECRET`, `MAGIC_LINK_SIGNING_SECRET`, `RESEND_API_KEY`. Optionally `VAPID_PUBLIC_KEY`/`VAPID_PRIVATE_KEY` for push notifications (section 2); they are not launch-blocking, since the app hides the opt-in when they are unset. Rotate or delete `DEV_USERNAME`/`DEV_CODE` before launch; keep `ADMIN_*` as the operator door.
 4. **Webhook.** In the Stripe dashboard, add endpoint `https://api.thetalusfieldjournal.com/api/stripe/webhook` for events `checkout.session.completed`, `checkout.session.async_payment_succeeded`, **and** `charge.refunded`; the endpoint's signing secret is `STRIPE_WEBHOOK_SECRET`. Without `charge.refunded`, the refund-revocation branch in [workers/src/routes/stripe.ts](workers/src/routes/stripe.ts) never runs and refunded buyers keep access until the KV record is expired by hand.
 5. **Resend domain.** Verify the sending domain for `cory@thetalusfieldjournal.com` in the Resend dashboard **before** going live. With an unverified domain the webhook's email send fails after the buyer has already been charged, and no access code or magic link ever arrives.
-6. **Deploy + verify fail-closed traps.** `wrangler deploy`, then `curl https://api.thetalusfieldjournal.com/api/inventory` must show `sold: 0`, `cap: 100`, `priceCents: 399`. The inventory check fails closed: a missing/garbled `GUIDE_MONTHLY_CAP` reads as sold out.
+6. **Deploy + verify fail-closed traps.** `wrangler deploy`, then `curl https://api.thetalusfieldjournal.com/api/inventory` must show `sold` (an informational monthly tally) and `priceCents: 399`, and no `cap` field. There is no sales cap (removed September 2026); a live `cap` means the deploy is stale.
 7. **Test-mode pass.** Full smoke test in section 8 (test card 4242…) before swapping to live keys per "Going live". Include a refund: refund the test payment in the Stripe dashboard and confirm the buyer's login stops working.
 8. **Editorial re-integration: done.** Every code flip landed in the July 2026 launch-prep branch: `GUIDE_ON_SALE = true` in [page-guide.jsx](page-guide.jsx), the footer link in [components.jsx](components.jsx), the noscript nav link in [index.html](index.html), indexability in [app.jsx](app.jsx) and [edge/seo.js](edge/seo.js), `GUIDE_LISTED = true` in [scripts/gen-seo-artifacts.mjs](scripts/gen-seo-artifacts.mjs), and the Field Guide line in llms.txt. Remaining `GUIDE-LAUNCH` grep hits are historical breadcrumbs, not work. Merging that branch to `main` is the go-live action, so clear steps 1 through 7 first; the full state of play is in [LAUNCH-READINESS.md](LAUNCH-READINESS.md).
-
-   One llms.txt line stays removed because the `/cap` route does not exist in app.jsx; only restore it if that page ships:
-
-   ```
-   - [Why the Field Guide is capped](https://thetalusfieldjournal.com/cap): The reasoning behind a hard monthly cap on Field Guide sales.
-   ```
 
 No PWA change is needed: [apps/guide/src/routes/Login.tsx](apps/guide/src/routes/Login.tsx) already tries the buyer email + code path first and falls back to dev-login.
 

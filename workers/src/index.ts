@@ -29,7 +29,6 @@ import { sweepRenewals } from './lib/renewals'
 import { sweepPush } from './lib/pushSweep'
 import {
   currentMonthLabel,
-  firstOfNextMonthIso,
   getInventoryCount,
 } from './lib/kv'
 
@@ -155,10 +154,6 @@ app.get('/widget.js', (c) =>
 app.get('/api/inventory', async (c) => {
   const monthLabel = currentMonthLabel()
   const sold = await getInventoryCount(c.env, monthLabel)
-  const parsedCap = Number.parseInt(c.env.GUIDE_MONTHLY_CAP, 10)
-  // Coerce a missing/non-numeric cap to 0 so the scarcity JSON never
-  // serializes `cap: null` (NaN -> null) and the counter reads as sold out.
-  const cap = Number.isNaN(parsedCap) ? 0 : parsedCap
   // priceCents lets the editorial buy box render the live price, so the
   // number is edited in exactly one place: [vars] in wrangler.toml.
   const parsedPrice = Number.parseInt(c.env.GUIDE_PRICE_CENTS, 10)
@@ -167,11 +162,12 @@ app.get('/api/inventory', async (c) => {
   // exactly one place ([vars] in wrangler.toml).
   const parsedRenewal = Number.parseInt(c.env.GUIDE_RENEWAL_PRICE_CENTS, 10)
   const renewalPriceCents = Number.isNaN(parsedRenewal) ? null : parsedRenewal
-  // Live scarcity counter and the displayed price: explicit short TTL rather
-  // than heuristic freshness, so a sale shows within a minute and the buy box
-  // does not fetch it on every render.
+  // The displayed price plus this month's sales tally (informational only:
+  // there is no cap, and checkout never gates on it). Explicit short TTL
+  // rather than heuristic freshness, so the buy box does not fetch it on
+  // every render.
   return c.json(
-    { sold, cap, monthLabel, priceCents, renewalPriceCents, reopens: firstOfNextMonthIso() },
+    { sold, monthLabel, priceCents, renewalPriceCents },
     200,
     { 'Cache-Control': 'public, max-age=60' },
   )

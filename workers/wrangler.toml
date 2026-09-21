@@ -68,10 +68,10 @@ EDITORIAL_BASE_URL = "https://thetalusfieldjournal.com"
 GUIDE_PRICE_CENTS = "399"
 # Discounted renewal price (MONETIZATION-IDEAS.md 2.1): buyers near or past
 # their 548-day expiry rebuy at this price via /api/checkout/renew. Renewals
-# bypass the monthly cap and never touch inventory.
+# never touch the monthly sales tally. There is no sales cap: checkout is
+# open to every buyer, every month.
 GUIDE_RENEWAL_PRICE_CENTS = "249"
 GUIDE_PRODUCT_TAG = "field_guide_2026"
-GUIDE_MONTHLY_CAP = "100"
 # Shared promo codes for POST /api/redeem (the newsletter's free-access door):
 # "CODE:DAYS", comma-separated for several at once. Each code grants a normal
 # buyer record for DAYS days, one redemption per (code, email) ever. Codes are

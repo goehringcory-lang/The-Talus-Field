@@ -6,10 +6,11 @@ import { sendRenewalNotice } from './email'
 // handler in index.ts. Walks every buyer record and sends the staged renewal
 // notices as expiry approaches.
 //
-// Why a full list() walk instead of an expiry-bucket index: at the monthly cap
-// (100 sales) the buyer keyspace grows ~1,200 keys a year, so this is one or
-// two KV list pages per day for years — far simpler than backfilling and
-// double-writing a secondary index. Revisit if the cap ever grows 10x.
+// Why a full list() walk instead of an expiry-bucket index: at the current
+// sales volume the buyer keyspace grows slowly, so this is a few KV list pages
+// per day — far simpler than backfilling and double-writing a secondary
+// index. There is no sales cap any more, so revisit once the buyer keyspace
+// passes ~10,000 keys (MAX_SENDS_PER_RUN below will also start to bite).
 //
 // Stages fire on thresholds, not exact days, so a missed cron day self-heals:
 // tomorrow's run sees daysLeft <= 60 and sends the notice a day late. Each

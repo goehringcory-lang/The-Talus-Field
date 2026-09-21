@@ -1,11 +1,8 @@
 import { Hono } from 'hono'
 import type { Env } from '../env'
 import {
-  currentMonthLabel,
-  firstOfNextMonthIso,
   getBuyer,
   getEmailByAccessToken,
-  getInventoryCount,
   putBuyer,
   recordCheckoutAttempt,
   recordClaimAttempt,
@@ -44,30 +41,6 @@ checkout.post('/start', async (c) => {
   const attempts = await recordCheckoutAttempt(c.env, await hashIp(ip))
   if (attempts > MAX_CHECKOUT_STARTS_PER_HOUR) {
     return c.json({ error: 'Too many attempts. Try again later.' }, 429)
-  }
-
-  const monthLabel = currentMonthLabel()
-  const sold = await getInventoryCount(c.env, monthLabel)
-  const cap = Number.parseInt(c.env.GUIDE_MONTHLY_CAP, 10)
-
-  // A missing or non-numeric cap yields NaN, and `sold >= NaN` is always
-  // false — which would silently bypass the inventory cap and oversell.
-  // Fail closed instead.
-  if (Number.isNaN(cap)) {
-    console.error('checkout/start: GUIDE_MONTHLY_CAP is missing or non-numeric', c.env.GUIDE_MONTHLY_CAP)
-    return c.json({ error: 'Inventory cap misconfigured' }, 500)
-  }
-
-  if (sold >= cap) {
-    return c.json(
-      {
-        soldOut: true,
-        cap,
-        monthLabel,
-        reopens: firstOfNextMonthIso(),
-      },
-      409,
-    )
   }
 
   // The body is optional: the original buy button POSTs with no body at all,
@@ -233,8 +206,8 @@ checkout.post('/claim', async (c) => {
 })
 
 // --- Renewals ---------------------------------------------------------------
-// Renewals bypass the monthly cap and never touch inventory: the cap models
-// new-copy supply, and a renewal is an existing buyer keeping access. The
+// Renewals never touch the monthly sales tally: it counts new copies, and a
+// renewal is an existing buyer keeping access. The
 // webhook (kind=renewal) extends expiresAt from max(now, current expiry) and
 // keeps the buyer's token and code, so signed-in devices survive.
 

@@ -20,7 +20,6 @@ export type Env = {
   GUIDE_PRICE_CENTS: string    // "399"
   GUIDE_RENEWAL_PRICE_CENTS: string // "249"; discounted rebuy at/near expiry
   GUIDE_PRODUCT_TAG: string    // "field_guide_2026"
-  GUIDE_MONTHLY_CAP: string    // "100"
   // Shared promo codes for POST /api/redeem, "CODE:DAYS" comma-separated,
   // e.g. "TALUS30:30". Optional: unset or empty means every code is unknown
   // and the endpoint refuses politely.

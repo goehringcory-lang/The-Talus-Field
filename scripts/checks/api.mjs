@@ -10,7 +10,7 @@
 // who cannot buy, and the first report would be an email from a buyer.
 //
 // The stale-deploy detector is the parity block below. `/api/inventory` echoes
-// priceCents, renewalPriceCents, and cap straight out of [vars] in
+// priceCents and renewalPriceCents straight out of [vars] in
 // workers/wrangler.toml, so the repo already states what a current deploy must
 // answer. When the live numbers disagree with the file, the deployed Worker
 // predates the repo — the same class of failure the editorial Worker hit twice
@@ -61,7 +61,6 @@ function expectedVars() {
   return {
     priceCents: num("GUIDE_PRICE_CENTS"),
     renewalPriceCents: num("GUIDE_RENEWAL_PRICE_CENTS"),
-    cap: num("GUIDE_MONTHLY_CAP"),
   };
 }
 
@@ -106,7 +105,6 @@ export default async function checkApi(ctx) {
     for (const [key, label] of [
       ["priceCents", "GUIDE_PRICE_CENTS"],
       ["renewalPriceCents", "GUIDE_RENEWAL_PRICE_CENTS"],
-      ["cap", "GUIDE_MONTHLY_CAP"],
     ]) {
       const want = expected[key];
       const got = inv.body[key];
@@ -119,22 +117,21 @@ export default async function checkApi(ctx) {
         );
       }
     }
-    if (
-      expected.priceCents !== null &&
-      inv.body.priceCents === expected.priceCents &&
-      inv.body.cap === expected.cap
-    ) {
-      check.info(`deploy parity OK (price ${inv.body.priceCents}¢, cap ${inv.body.cap})`);
+    if (expected.priceCents !== null && inv.body.priceCents === expected.priceCents) {
+      check.info(`deploy parity OK (price ${inv.body.priceCents}¢)`);
     }
   }
 
-  // Sold-out is a legitimate state, not a fault — but the owner wants to know
-  // before the buy box starts turning readers away.
-  const { sold, cap } = inv.body;
-  if (typeof sold === "number" && typeof cap === "number" && cap > 0) {
-    if (sold >= cap) check.warn(`monthly inventory exhausted (${sold}/${cap}) — the buy box reads sold out`);
-    else if (sold >= cap * 0.9) check.warn(`monthly inventory nearly gone (${sold}/${cap})`);
+  // The monthly sales cap was removed (Sept 2026): checkout is open to every
+  // buyer. A live Worker that still reports `cap` predates that change and
+  // will 409 real buyers once the month's count reaches it.
+  if ("cap" in inv.body) {
+    check.error(
+      `/api/inventory still reports a monthly cap (${inv.body.cap}); the deployed Worker predates ` +
+        `the cap's removal and will turn buyers away at it — run \`wrangler deploy\` from workers/.`,
+    );
   }
+  if (typeof inv.body.sold === "number") check.info(`sales this month: ${inv.body.sold}`);
 
   // --- CORS: the buy box's fetch is cross-origin ---------------------------
   // The middleware echoes allow-listed origins (workers/src/index.ts). If it

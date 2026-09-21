@@ -271,7 +271,7 @@ stripe.post('/webhook', async (c) => {
   }
 
   await putBuyer(c.env, record)
-  // Renewals bypass inventory: the monthly cap models new-copy supply.
+  // Renewals skip the monthly sales tally: it counts new copies sold.
   if (kind !== 'renewal') {
     await incrementInventory(c.env, currentMonthLabel(new Date(purchasedAt * 1000)))
   }

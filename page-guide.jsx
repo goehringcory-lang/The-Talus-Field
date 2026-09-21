@@ -87,28 +87,6 @@ function stashBuyLocation(location, gift) {
   window.safeStorage.setJSON(BUY_STASH_KEY, { location, gift: !!gift });
 }
 
-function formatReopens(iso) {
-  try {
-    const d = new Date(iso);
-    if (Number.isNaN(d.getTime())) return "the first of next month";
-    return d.toLocaleDateString("en-US", { month: "long", day: "numeric" });
-  } catch (_e) {
-    return "the first of next month";
-  }
-}
-
-// "2026-07" (the API's monthLabel) -> "July". Derived at runtime, never
-// hard-coded, same rule as the masthead issue label.
-function monthNameFromLabel(label) {
-  try {
-    const [y, m] = String(label).split("-").map(Number);
-    if (!y || !m) return null;
-    return new Date(Date.UTC(y, m - 1, 1)).toLocaleDateString("en-US", { month: "long", timeZone: "UTC" });
-  } catch (_e) {
-    return null;
-  }
-}
-
 // The live price as inline text, wherever prose needs it. Renders the
 // fallback until /api/inventory answers (one shared fetch per page view).
 function LivePrice() {
@@ -129,7 +107,6 @@ function LivePrice() {
 
 function GuideBuyBox() {
   const [busy, setBusy] = React.useState(false);
-  const [soldOut, setSoldOut] = React.useState(null); // { reopens } or null
   const [error, setError] = React.useState(null);
   const [outcome] = React.useState(readCheckoutOutcome);
   const [claimSessionId] = React.useState(readCheckoutSessionId);
@@ -171,7 +148,6 @@ function GuideBuyBox() {
     return () => clearTimeout(timer);
   }, [outcome, claimSessionId]);
   const [priceCents, setPriceCents] = React.useState(GUIDE_PRICE_FALLBACK_CENTS);
-  const [batch, setBatch] = React.useState(null); // { left, cap, month } or null
   const [giftMode, setGiftMode] = React.useState(false);
   const [giftEmail, setGiftEmail] = React.useState("");
   const [giftNote, setGiftNote] = React.useState("");
@@ -183,22 +159,6 @@ function GuideBuyBox() {
         if (cancelled || !body) return;
         if (Number.isFinite(body.priceCents) && body.priceCents > 0) {
           setPriceCents(body.priceCents);
-        }
-        // The monthly cap is enforced server-side (checkout 409s at the cap),
-        // so the counter is real inventory, not decoration. Only render it
-        // when the numbers hold together.
-        if (
-          Number.isFinite(body.cap) &&
-          body.cap > 0 &&
-          Number.isFinite(body.sold) &&
-          body.sold >= 0 &&
-          body.cap - body.sold > 0
-        ) {
-          setBatch({
-            left: body.cap - body.sold,
-            cap: body.cap,
-            month: monthNameFromLabel(body.monthLabel),
-          });
         }
       })
       .catch(() => {});
@@ -227,10 +187,6 @@ function GuideBuyBox() {
           : undefined,
       });
       const body = await res.json().catch(() => ({}));
-      if (res.status === 409 && body.soldOut) {
-        setSoldOut({ reopens: body.reopens });
-        return;
-      }
       if (!res.ok || !body.url) {
         throw new Error(body.error || `HTTP ${res.status}`);
       }
@@ -248,15 +204,9 @@ function GuideBuyBox() {
     <aside id="guide-buy" style={{ position: "sticky", top: 100, alignSelf: "start", border: "1px solid var(--ink)", padding: 32, background: "var(--paper-2)" }}>
       <div className="eyebrow eyebrow--moss" style={{ marginBottom: 14 }}>The Field Guide</div>
       <div style={{ fontFamily: "var(--display)", fontSize: 44, lineHeight: 1.05, fontWeight: 500, marginBottom: 8 }}>{formatPrice(priceCents)}.</div>
-      <div style={{ fontFamily: "var(--sans)", fontSize: 12, textTransform: "uppercase", letterSpacing: "0.14em", color: "var(--ink-3)", fontWeight: 600, marginBottom: batch ? 10 : 24 }}>
+      <div style={{ fontFamily: "var(--sans)", fontSize: 12, textTransform: "uppercase", letterSpacing: "0.14em", color: "var(--ink-3)", fontWeight: 600, marginBottom: 24 }}>
         Offline app · 2026 Edition
       </div>
-      {batch && (
-        <div style={{ fontFamily: "var(--sans)", fontSize: 12.5, color: "var(--moss)", fontWeight: 600, lineHeight: 1.5, marginBottom: 24 }}>
-          Sold in monthly batches. {batch.left} of {batch.cap}{batch.month ? ` ${batch.month}` : ""} copies left.
-        </div>
-      )}
-
       {outcome === "success" && claimSessionId && (
         <p style={{ fontFamily: "var(--sans)", fontSize: 14, color: "var(--ink)", lineHeight: 1.55, margin: "0 0 18px", border: "1px solid var(--ink)", padding: "12px 14px", background: "var(--paper)" }}>
           Payment received. Opening your Field Guide, already signed in. If nothing happens, <a href={`${GUIDE_APP_BASE}/claim?session_id=${encodeURIComponent(claimSessionId)}`} style={{ color: "var(--ink-2)" }}>open it here →</a> Your access email follows for your other devices.
@@ -278,65 +228,59 @@ function GuideBuyBox() {
         </p>
       )}
 
-      {soldOut ? (
-        <p style={{ fontFamily: "var(--serif)", fontSize: 15, color: "var(--ink)", lineHeight: 1.55, margin: "0 0 14px" }}>
-          This month's copies are gone. Sales reopen {formatReopens(soldOut.reopens)}. The sign-up form at the bottom of the page will tell you when.
-        </p>
-      ) : (
-        <React.Fragment>
-          <label style={{ display: "flex", alignItems: "center", gap: 8, fontFamily: "var(--sans)", fontSize: 13, color: "var(--ink-2)", marginBottom: 14, cursor: "pointer" }}>
-            <input
-              type="checkbox"
-              checked={giftMode}
-              onChange={(e) => setGiftMode(e.target.checked)}
-              style={{ accentColor: "var(--ink)" }}
-            />
-            Buying it as a gift?
-          </label>
-          {giftMode && (
-            <div style={{ marginBottom: 14 }}>
-              <div className="field">
-                <label htmlFor="gift-email">Recipient's email</label>
-                <input
-                  id="gift-email"
-                  type="email"
-                  required
-                  value={giftEmail}
-                  onChange={(e) => setGiftEmail(e.target.value)}
-                  placeholder="them@email.com"
-                />
-              </div>
-              <div className="field">
-                <label htmlFor="gift-note">A short note to include, optional</label>
-                <textarea
-                  id="gift-note"
-                  maxLength={GIFT_NOTE_MAX}
-                  value={giftNote}
-                  onChange={(e) => setGiftNote(e.target.value)}
-                  style={{ minHeight: 70 }}
-                />
-              </div>
-              <p style={{ fontFamily: "var(--sans)", fontSize: 12, color: "var(--ink-3)", lineHeight: 1.55, margin: "8px 0 0" }}>
-                Their access email goes straight to them when payment clears. Their 18 months start today, so time it to the trip.
-              </p>
+      <React.Fragment>
+        <label style={{ display: "flex", alignItems: "center", gap: 8, fontFamily: "var(--sans)", fontSize: 13, color: "var(--ink-2)", marginBottom: 14, cursor: "pointer" }}>
+          <input
+            type="checkbox"
+            checked={giftMode}
+            onChange={(e) => setGiftMode(e.target.checked)}
+            style={{ accentColor: "var(--ink)" }}
+          />
+          Buying it as a gift?
+        </label>
+        {giftMode && (
+          <div style={{ marginBottom: 14 }}>
+            <div className="field">
+              <label htmlFor="gift-email">Recipient's email</label>
+              <input
+                id="gift-email"
+                type="email"
+                required
+                value={giftEmail}
+                onChange={(e) => setGiftEmail(e.target.value)}
+                placeholder="them@email.com"
+              />
             </div>
-          )}
-          <button
-            type="button"
-            className="btn"
-            disabled={busy}
-            onClick={startCheckout}
-            style={{ display: "block", width: "100%", textAlign: "center", border: 0, font: "inherit", cursor: busy ? "wait" : "pointer", marginBottom: 10 }}
-          >
-            {busy
-              ? "Opening checkout…"
-              : `${giftMode ? "Gift the offline guide" : "Get the offline guide"} → ${formatPrice(priceCents)}`}
-          </button>
-          <p style={{ fontFamily: "var(--sans)", fontSize: 12, color: "var(--ink-3)", lineHeight: 1.55, margin: "0 0 14px" }}>
-            Checkout by Stripe. The guide opens signed in the moment payment clears; your access code also arrives by email for your other devices.
-          </p>
-        </React.Fragment>
-      )}
+            <div className="field">
+              <label htmlFor="gift-note">A short note to include, optional</label>
+              <textarea
+                id="gift-note"
+                maxLength={GIFT_NOTE_MAX}
+                value={giftNote}
+                onChange={(e) => setGiftNote(e.target.value)}
+                style={{ minHeight: 70 }}
+              />
+            </div>
+            <p style={{ fontFamily: "var(--sans)", fontSize: 12, color: "var(--ink-3)", lineHeight: 1.55, margin: "8px 0 0" }}>
+              Their access email goes straight to them when payment clears. Their 18 months start today, so time it to the trip.
+            </p>
+          </div>
+        )}
+        <button
+          type="button"
+          className="btn"
+          disabled={busy}
+          onClick={startCheckout}
+          style={{ display: "block", width: "100%", textAlign: "center", border: 0, font: "inherit", cursor: busy ? "wait" : "pointer", marginBottom: 10 }}
+        >
+          {busy
+            ? "Opening checkout…"
+            : `${giftMode ? "Gift the offline guide" : "Get the offline guide"} → ${formatPrice(priceCents)}`}
+        </button>
+        <p style={{ fontFamily: "var(--sans)", fontSize: 12, color: "var(--ink-3)", lineHeight: 1.55, margin: "0 0 14px" }}>
+          Checkout by Stripe. The guide opens signed in the moment payment clears; your access code also arrives by email for your other devices.
+        </p>
+      </React.Fragment>
 
       {error && (
         <p style={{ fontFamily: "var(--sans)", fontSize: 13, color: "var(--moss)", lineHeight: 1.55, margin: "0 0 14px" }}>
@@ -1194,10 +1138,6 @@ function BuyNowButton({ location, label }) {
     try {
       const res = await fetch(`${GUIDE_API_BASE}/api/checkout/start`, { method: "POST" });
       const body = await res.json().catch(() => ({}));
-      if (res.status === 409 && body.soldOut) {
-        setNote(`This month's copies are gone. Sales reopen ${formatReopens(body.reopens)}.`);
-        return;
-      }
       if (!res.ok || !body.url) {
         throw new Error(body.error || `HTTP ${res.status}`);
       }
@@ -1301,7 +1241,7 @@ function GuideMobileBuyBar() {
       }
       window.location = body.url;
     } catch (_e) {
-      // Sold out or a network hiccup: hand off to the full buy box, which
+      // A network hiccup: hand off to the full buy box, which
       // explains itself in place.
       const aside = document.getElementById("guide-buy");
       const reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
