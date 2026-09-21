@@ -31,7 +31,6 @@ const env: Record<string, unknown> = {
   GUIDE_PRICE_CENTS: '399',
   GUIDE_RENEWAL_PRICE_CENTS: '249',
   GUIDE_PRODUCT_TAG: 'field_guide_2026',
-  GUIDE_MONTHLY_CAP: '100',
   STRIPE_SECRET_KEY: 'sk_test_dummy',
   STRIPE_WEBHOOK_SECRET: 'whsec_test_dummy_secret',
   MAGIC_LINK_SIGNING_SECRET: 'test-signing-secret',
@@ -153,7 +152,7 @@ console.log('\n1. inventory + price')
   const r = await call('/api/inventory')
   check('inventory 200', r.status === 200, r)
   check('price is 399', r.json.priceCents === 399, r.json)
-  check('sold 0 / cap 100', r.json.sold === 0 && r.json.cap === 100, r.json)
+  check('sold 0, no cap in payload', r.json.sold === 0 && !('cap' in r.json) && !('reopens' in r.json), r.json)
 }
 
 console.log('\n2. checkout start')
@@ -279,17 +278,13 @@ console.log('\n11. email delivery failure -> 500, retry not blocked')
   check('retry email delivered', sentEmails.some((e) => e.to === 'retry@example.com'))
 }
 
-console.log('\n12. monthly cap fails closed / sells out')
+console.log('\n12. no sales cap: checkout stays open at any volume')
 {
   const month = new Date().toISOString().slice(0, 7)
-  await buyers.put(`inventory:${month}`, '100')
+  await buyers.put(`inventory:${month}`, '5000')
   const r = await call('/api/checkout/start', { method: 'POST' })
-  check('sold out -> 409', r.status === 409 && r.json.soldOut === true, r)
+  check('5,000 sold this month -> still a stripe url', r.status === 200 && !!r.json.url && !r.json.soldOut, r)
   await buyers.put(`inventory:${month}`, '2')
-  const badCap = { ...env, GUIDE_MONTHLY_CAP: 'oops' }
-  const req = new Request('https://api.thetalusfieldjournal.com/api/checkout/start', { method: 'POST' })
-  const res = await worker.fetch(req, badCap as never, ctx)
-  check('garbled cap fails closed -> 500', res.status === 500)
 }
 
 console.log('\n13. /api/auth/me')
@@ -459,18 +454,15 @@ console.log('\n17. renewal arc')
     return rec
   }
 
-  // -- JWT-gated POST /renew bypasses the monthly cap --
+  // -- JWT-gated POST /renew --
   const renewer = await seedBuyer('renewer@example.com', 200, 'b'.repeat(64), '222222')
   const month = new Date().toISOString().slice(0, 7)
-  await buyers.put(`inventory:${month}`, '100') // sold out
-  const soldOut = await call('/api/checkout/start', { method: 'POST' })
-  check('sanity: /start is sold out', soldOut.status === 409, soldOut)
   const login = await call('/api/auth/login', { method: 'POST', body: JSON.stringify({ email: 'renewer@example.com', code: '222222' }) })
   const jwt = String(login.json.jwt)
   const noAuth = await call('/api/checkout/renew', { method: 'POST' })
   check('renew without jwt -> 401', noAuth.status === 401, noAuth)
   const renew = await call('/api/checkout/renew', { method: 'POST', headers: { authorization: `Bearer ${jwt}` } })
-  check('renew bypasses the cap -> stripe url', renew.status === 200 && !!renew.json.url, renew)
+  check('renew -> stripe url', renew.status === 200 && !!renew.json.url, renew)
   const p = stripeCreateParams!
   check('renewal kind + renewEmail in metadata', p.get('metadata[kind]') === 'renewal' && p.get('metadata[renewEmail]') === 'renewer@example.com')
   check('renewal price 249', p.get('line_items[0][price_data][unit_amount]') === '249')

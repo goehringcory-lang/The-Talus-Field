@@ -42,30 +42,6 @@ function stashBuyLocation(location, gift) {
     gift: !!gift
   });
 }
-function formatReopens(iso) {
-  try {
-    var d = new Date(iso);
-    if (Number.isNaN(d.getTime())) return "the first of next month";
-    return d.toLocaleDateString("en-US", {
-      month: "long",
-      day: "numeric"
-    });
-  } catch (_e) {
-    return "the first of next month";
-  }
-}
-function monthNameFromLabel(label) {
-  try {
-    var [y, m] = String(label).split("-").map(Number);
-    if (!y || !m) return null;
-    return new Date(Date.UTC(y, m - 1, 1)).toLocaleDateString("en-US", {
-      month: "long",
-      timeZone: "UTC"
-    });
-  } catch (_e) {
-    return null;
-  }
-}
 function LivePrice() {
   var [priceCents, setPriceCents] = React.useState(GUIDE_PRICE_FALLBACK_CENTS);
   React.useEffect(() => {
@@ -83,7 +59,6 @@ function LivePrice() {
 }
 function GuideBuyBox() {
   var [busy, setBusy] = React.useState(false);
-  var [soldOut, setSoldOut] = React.useState(null);
   var [error, setError] = React.useState(null);
   var [outcome] = React.useState(readCheckoutOutcome);
   var [claimSessionId] = React.useState(readCheckoutSessionId);
@@ -109,7 +84,6 @@ function GuideBuyBox() {
     return () => clearTimeout(timer);
   }, [outcome, claimSessionId]);
   var [priceCents, setPriceCents] = React.useState(GUIDE_PRICE_FALLBACK_CENTS);
-  var [batch, setBatch] = React.useState(null);
   var [giftMode, setGiftMode] = React.useState(false);
   var [giftEmail, setGiftEmail] = React.useState("");
   var [giftNote, setGiftNote] = React.useState("");
@@ -119,13 +93,6 @@ function GuideBuyBox() {
       if (cancelled || !body) return;
       if (Number.isFinite(body.priceCents) && body.priceCents > 0) {
         setPriceCents(body.priceCents);
-      }
-      if (Number.isFinite(body.cap) && body.cap > 0 && Number.isFinite(body.sold) && body.sold >= 0 && body.cap - body.sold > 0) {
-        setBatch({
-          left: body.cap - body.sold,
-          cap: body.cap,
-          month: monthNameFromLabel(body.monthLabel)
-        });
       }
     }).catch(() => {});
     return () => {
@@ -158,12 +125,6 @@ function GuideBuyBox() {
         }) : undefined
       });
       var body = await res.json().catch(() => ({}));
-      if (res.status === 409 && body.soldOut) {
-        setSoldOut({
-          reopens: body.reopens
-        });
-        return;
-      }
       if (!res.ok || !body.url) {
         throw new Error(body.error || `HTTP ${res.status}`);
       }
@@ -205,18 +166,9 @@ function GuideBuyBox() {
       letterSpacing: "0.14em",
       color: "var(--ink-3)",
       fontWeight: 600,
-      marginBottom: batch ? 10 : 24
-    }
-  }, "Offline app · 2026 Edition"), batch && React.createElement("div", {
-    style: {
-      fontFamily: "var(--sans)",
-      fontSize: 12.5,
-      color: "var(--moss)",
-      fontWeight: 600,
-      lineHeight: 1.5,
       marginBottom: 24
     }
-  }, "Sold in monthly batches. ", batch.left, " of ", batch.cap, batch.month ? ` ${batch.month}` : "", " copies left."), outcome === "success" && claimSessionId && React.createElement("p", {
+  }, "Offline app · 2026 Edition"), outcome === "success" && claimSessionId && React.createElement("p", {
     style: {
       fontFamily: "var(--sans)",
       fontSize: 14,
@@ -267,15 +219,7 @@ function GuideBuyBox() {
       lineHeight: 1.55,
       margin: "0 0 18px"
     }
-  }, "Checkout was cancelled. Nothing was charged."), soldOut ? React.createElement("p", {
-    style: {
-      fontFamily: "var(--serif)",
-      fontSize: 15,
-      color: "var(--ink)",
-      lineHeight: 1.55,
-      margin: "0 0 14px"
-    }
-  }, "This month's copies are gone. Sales reopen ", formatReopens(soldOut.reopens), ". The sign-up form at the bottom of the page will tell you when.") : React.createElement(React.Fragment, null, React.createElement("label", {
+  }, "Checkout was cancelled. Nothing was charged."), React.createElement(React.Fragment, null, React.createElement("label", {
     style: {
       display: "flex",
       alignItems: "center",
@@ -1135,10 +1079,6 @@ function BuyNowButton({
         method: "POST"
       });
       var body = await res.json().catch(() => ({}));
-      if (res.status === 409 && body.soldOut) {
-        setNote(`This month's copies are gone. Sales reopen ${formatReopens(body.reopens)}.`);
-        return;
-      }
       if (!res.ok || !body.url) {
         throw new Error(body.error || `HTTP ${res.status}`);
       }

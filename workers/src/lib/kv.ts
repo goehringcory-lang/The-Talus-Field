@@ -105,13 +105,6 @@ export function currentMonthLabel(at = new Date()): string {
   return `${y}-${m}`
 }
 
-export function firstOfNextMonthIso(at = new Date()): string {
-  const y = at.getUTCFullYear()
-  const m = at.getUTCMonth() + 1
-  const next = new Date(Date.UTC(m === 12 ? y + 1 : y, m === 12 ? 0 : m, 1))
-  return next.toISOString()
-}
-
 export async function getBuyer(env: Env, email: string): Promise<BuyerRecord | null> {
   const raw = await env.GUIDE_BUYERS.get(BUYER_KEY(email))
   if (!raw) return null
@@ -147,7 +140,8 @@ export async function getInventoryCount(env: Env, monthLabel: string): Promise<n
 }
 
 export async function incrementInventory(env: Env, monthLabel: string): Promise<number> {
-  // KV is eventually consistent, but at <100/month the race is acceptable.
+  // A sales tally, not a limit: KV is eventually consistent, so concurrent
+  // purchases can undercount by one. Nothing gates on this number.
   const next = (await getInventoryCount(env, monthLabel)) + 1
   await env.GUIDE_BUYERS.put(INVENTORY_KEY(monthLabel), String(next))
   return next

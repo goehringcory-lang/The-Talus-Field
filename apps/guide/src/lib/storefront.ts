@@ -3,8 +3,8 @@
 // the stop teaser pages, and the sell block on /login.
 //
 // The guide is SOLD on the editorial site, not here. Every buy action is a
-// link out to thetalusfieldjournal.com/guide, where the Stripe checkout and
-// the inventory cap live. This module only knows the price, read from the
+// link out to thetalusfieldjournal.com/guide, where the Stripe checkout
+// lives. This module only knows the price, read from the
 // same unauthenticated /api/inventory the editorial buy box reads, so the
 // number is still edited in exactly one place (GUIDE_PRICE_CENTS in
 // workers/wrangler.toml).

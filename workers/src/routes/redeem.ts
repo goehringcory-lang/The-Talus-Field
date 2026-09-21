@@ -150,7 +150,7 @@ redeem.post('/', async (c) => {
     accessCode: generateAccessCode(),
     promoCode: code,
   }
-  // No inventory increment: the monthly cap models paid supply.
+  // No sales-tally increment: the tally counts paid copies.
   await putBuyer(c.env, record)
 
   const magicLink = `${c.env.APP_BASE_URL}/open?token=${record.accessToken}`

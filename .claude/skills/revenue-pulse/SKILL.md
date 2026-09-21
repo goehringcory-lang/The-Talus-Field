@@ -73,7 +73,8 @@ tracks anywhere.
 1. `cd scripts && npm install`, then
    `npm --prefix scripts run checks -- --only=api --online` — the battery's
    `api` module: API reachability, `/api/inventory` parity against `[vars]`
-   in `workers/wrangler.toml` (price, renewal price, cap), and the CORS echo
+   in `workers/wrangler.toml` (price, renewal price; a live `cap` field means
+   the deployed Worker predates the cap's removal), and the CORS echo
    the buy box depends on. Its **errors are sale-breaking by design.**
 2. Render-and-config only, mirroring the sweep's rule: `/guide` serves and
    its buy box markup is present; `/api/inventory` returns 200 with
@@ -96,8 +97,8 @@ tracks anywhere.
    finding and goes on the ledger's top line. A CONNECT 403 from the agent
    proxy (`curl -sS "$HTTPS_PROXY/__agentproxy/status"` shows the refusal)
    means the environment's network policy regressed: fall back to
-   repo-side parity (every reader of `GUIDE_PRICE_CENTS`,
-   `GUIDE_RENEWAL_PRICE_CENTS` and `GUIDE_MONTHLY_CAP` agrees with
+   repo-side parity (every reader of `GUIDE_PRICE_CENTS` and
+   `GUIDE_RENEWAL_PRICE_CENTS` agrees with
    `workers/wrangler.toml`), say plainly in the ledger that the live Worker
    was not verified, and put the regression at the top of "Your court".
 
@@ -195,7 +196,7 @@ ledger issue never; it is the owner's standing dashboard.
 
 ## Hard rules — trust is the revenue asset
 
-- **Never change a price, cap, or promo code, and never touch Stripe,
+- **Never change a price or promo code, never reintroduce a sales cap, and never touch Stripe,
   checkout, webhook, or auth code on this routine's own judgment.** Price
   experiments (`MONETIZATION-IDEAS.md` 2.5) are owner-initiated only.
   Payment-adjacent code changes are eligible only when the backlog item *is*
@@ -204,8 +205,9 @@ ledger issue never; it is the owner's standing dashboard.
 - **Nothing is asked for twice.** The homepage rail's one-of-each rule, the
   archive's one-ask rule, one guide pitch per page: adding a second ask
   anywhere is the regression the August 2026 redesign undid. No popups, no
-  interstitials, no countdowns, no invented urgency; scarcity copy states
-  only the real monthly cap and the real 18-month expiry.
+  interstitials, no countdowns, no invented urgency. There is no sales cap
+  (removed September 2026), so there is no scarcity copy; the only limit to
+  state is the real 18-month expiry.
 - **The affiliate guardrail is published policy** (`/affiliate`): the best
   recommendation stays top, linkless, if unaffiliated. No placement that
   breaks it is eligible at any RPM, and no program's catalog ever shapes a
