@@ -281,13 +281,507 @@ var SEASONS = [{
   dest: "Yosemite National Park",
   cta: "Search park-area lodging →"
 }];
-function StayCard({
-  item
+var STAY_HERO = {
+  image: "img/half-dome-alpenglow-madhu-shesharam.jpg",
+  alt: "Half Dome in alpenglow, seen from Glacier Point",
+  credit: "Photo: Madhu Shesharam / Unsplash"
+};
+var STAY_SEARCH_PLACES = [{
+  id: "park",
+  dest: "Yosemite National Park",
+  label: "Around the whole park"
+}, {
+  id: "el-portal",
+  dest: "El Portal, California",
+  label: "El Portal · Highway 140, closest"
+}, {
+  id: "mariposa",
+  dest: "Mariposa, California",
+  label: "Mariposa · Highway 140"
+}, {
+  id: "groveland",
+  dest: "Groveland, California",
+  label: "Groveland · Highway 120"
+}, {
+  id: "fish-camp",
+  dest: "Fish Camp, California",
+  label: "Fish Camp · Highway 41"
+}, {
+  id: "oakhurst",
+  dest: "Oakhurst, California",
+  label: "Oakhurst · Highway 41"
+}, {
+  id: "lee-vining",
+  dest: "Lee Vining, California",
+  label: "Lee Vining · Tioga Pass, seasonal"
+}];
+var STAY_PICKS = [{
+  id: "valley",
+  label: "Closest to the Valley",
+  town: "El Portal",
+  road: "Highway 140 · open year-round",
+  drive: "25 to 35 minutes to the Valley",
+  why: "The closest gateway by a significant margin. You can roll out of bed at 5:30 and be at Tunnel View by 6:15.",
+  cost: "Limited dining, limited inventory, and lodging priced like in-park lodging because the location is that good.",
+  dest: "El Portal, California",
+  cta: "See what El Portal has on your dates"
+}, {
+  id: "value",
+  label: "A real town, on a budget",
+  town: "Mariposa",
+  road: "Highway 140 · open year-round",
+  drive: "45 minutes to an hour to the Valley",
+  why: "The most full-service of the western gateways: a real downtown, and lodging from highway chains to historic bed-and-breakfasts.",
+  cost: "Ninety minutes of round-trip driving a day that you would not be doing closer in, and earlier alarms for sunrise.",
+  dest: "Mariposa, California",
+  cta: "See what Mariposa has on your dates"
+}, {
+  id: "reach",
+  label: "Valley, Hetch Hetchy and Tuolumne",
+  town: "Groveland",
+  road: "Highway 120 · chains common in winter",
+  drive: "65 to 80 minutes to the Valley",
+  why: "With Tioga Road open, this is the only corridor that puts Yosemite Valley, Hetch Hetchy, and Tuolumne Meadows all within reach of one morning's drive.",
+  cost: "A higher-elevation approach with winter chain controls, through the 2013 Rim Fire burn scar.",
+  dest: "Groveland, California",
+  cta: "See what Groveland has on your dates"
+}, {
+  id: "sequoias",
+  label: "Giant sequoias first",
+  town: "Fish Camp",
+  road: "Highway 41 · open year-round",
+  drive: "About 2 miles to the South Entrance",
+  why: "The closest bed to the Mariposa Grove and the South Entrance, which matters on a sequoia-first trip with an early start.",
+  cost: "No real services, nothing to do in the evening, and the Valley is still most of the Oakhurst drive away.",
+  dest: "Fish Camp, California",
+  cta: "See what Fish Camp has on your dates"
+}, {
+  id: "high",
+  label: "High country and Mono Lake",
+  town: "Lee Vining",
+  road: "Tioga Pass · seasonal",
+  drive: "30 minutes to Tuolumne Meadows",
+  why: "The only east-side gateway, and a base for the high country, Mono Lake, and the eastern Sierra rather than a substitute for the western towns.",
+  cost: "Reachable from the park only while Tioga Pass is open, and ninety minutes minimum to the Valley.",
+  dest: "Lee Vining, California",
+  cta: "See what Lee Vining has on your dates"
+}, {
+  id: "winter",
+  label: "A winter trip",
+  town: "Highway 140",
+  road: "El Portal and Mariposa · open year-round",
+  drive: "the winter answer",
+  why: "It runs along the canyon bottom and takes rain on the days Highway 41 and Highway 120 take snow, and it is the only corridor with year-round bus service into the park.",
+  cost: "Tioga Pass is closed, so the east side is out entirely.",
+  dest: "Mariposa, California",
+  cta: "Search Highway 140 lodging"
+}];
+var CORRIDOR_EXTRAS = {
+  "corridor-140": {
+    num: "140",
+    road: "Highway 140",
+    title: "The Merced canyon",
+    dest: "Mariposa, California",
+    cta: "Search all of Highway 140",
+    photoFrom: "el-portal"
+  },
+  "corridor-120": {
+    num: "120",
+    road: "Highway 120 west",
+    title: "Big Oak Flat",
+    dest: "Groveland, California",
+    cta: "Search all of Highway 120"
+  },
+  "corridor-41": {
+    num: "41",
+    road: "Highway 41",
+    title: "The south",
+    dest: "Oakhurst, California",
+    cta: "Search all of Highway 41",
+    photoFrom: "fish-camp"
+  },
+  "corridor-395": {
+    num: "395",
+    road: "US 395",
+    title: "Tioga Road east",
+    dest: "Lee Vining, California",
+    cta: "Search the east side",
+    photoFrom: "lee-vining"
+  }
+};
+var SEASON_ANSWERS = {
+  "season-winter": "Base on Highway 140.",
+  "season-spring": "A Valley trip. Stay close.",
+  "season-summer": "Highway 120 is the strongest base.",
+  "season-fall": "The season worth booking."
+};
+var Arrow = () => React.createElement("span", {
+  className: "stay-book__arrow",
+  "aria-hidden": "true"
+}, "↗");
+function BookButton({
+  destination,
+  list,
+  slug,
+  name,
+  children,
+  size
 }) {
-  return React.createElement("article", {
-    className: ["stay-card", item.closed && "stay-card--closed"].filter(Boolean).join(" ")
-  }, item.photo && React.createElement("figure", {
-    className: "stay-card__figure"
+  return React.createElement(AvailabilityLink, {
+    destination: destination,
+    list: list,
+    slug: slug,
+    name: name || destination + " lodging search",
+    className: ["stay-book", size && "stay-book--" + size].filter(Boolean).join(" ")
+  }, React.createElement("span", null, children), React.createElement(Arrow, null));
+}
+function isoToday() {
+  var d = new Date();
+  var p = n => String(n).padStart(2, "0");
+  return d.getFullYear() + "-" + p(d.getMonth() + 1) + "-" + p(d.getDate());
+}
+function StaySearch() {
+  var [place, setPlace] = React.useState("park");
+  var [checkin, setCheckin] = React.useState("");
+  var [checkout, setCheckout] = React.useState("");
+  var row = STAY_SEARCH_PLACES.find(p => p.id === place) || STAY_SEARCH_PLACES[0];
+  var url = window.expediaSearchUrl(row.dest);
+  if (checkin && checkout && checkout > checkin) {
+    url += "&startDate=" + checkin + "&endDate=" + checkout + "&d1=" + checkin + "&d2=" + checkout;
+  }
+  var href = window.buildAffiliateLink ? window.buildAffiliateLink("expedia", url) : url;
+  return React.createElement("section", {
+    className: "stay-search",
+    "aria-labelledby": "stay-search-h"
+  }, React.createElement("div", {
+    className: "stay-search__head"
+  }, React.createElement("h2", {
+    id: "stay-search-h",
+    className: "stay-search__title"
+  }, "See what is open on your dates"), React.createElement("span", {
+    className: "stay-search__sub"
+  }, "Live rates and availability, searched on Expedia")), React.createElement("div", {
+    className: "stay-search__fields"
+  }, React.createElement("label", {
+    className: "stay-field"
+  }, React.createElement("span", {
+    className: "stay-field__label"
+  }, "Where"), React.createElement("select", {
+    value: place,
+    onChange: e => setPlace(e.target.value)
+  }, STAY_SEARCH_PLACES.map(p => React.createElement("option", {
+    key: p.id,
+    value: p.id
+  }, p.label)))), React.createElement("label", {
+    className: "stay-field"
+  }, React.createElement("span", {
+    className: "stay-field__label"
+  }, "Check in"), React.createElement("input", {
+    type: "date",
+    value: checkin,
+    min: isoToday(),
+    onChange: e => setCheckin(e.target.value)
+  })), React.createElement("label", {
+    className: "stay-field"
+  }, React.createElement("span", {
+    className: "stay-field__label"
+  }, "Check out"), React.createElement("input", {
+    type: "date",
+    value: checkout,
+    min: checkin || isoToday(),
+    onChange: e => setCheckout(e.target.value)
+  })), React.createElement("a", {
+    className: "aff-link stay-book stay-book--search",
+    href: href,
+    target: "_blank",
+    rel: "sponsored noopener noreferrer",
+    "data-aff-network": "expedia",
+    "data-aff-list": "stay_search",
+    "data-aff-item-slug": row.id,
+    "data-aff-name": row.dest + " lodging search"
+  }, React.createElement("span", null, "Search availability"), React.createElement(Arrow, null))), React.createElement("div", {
+    className: "stay-search__foot"
+  }, React.createElement("p", null, "Opens Expedia in a new tab. These are affiliate links: if you book through one, The Talus Field may earn a commission at no extra cost to you. What is recommended, and in what order, does not change for it. ", React.createElement("a", {
+    href: "/affiliate"
+  }, "Full disclosure.")), React.createElement("ul", {
+    className: "stay-search__facts"
+  }, React.createElement("li", null, GATEWAYS.length, " gateway towns"), React.createElement("li", null, CORRIDORS.length, " roads in"), React.createElement("li", null, "1 operator inside the park"))));
+}
+function RoadSchematic() {
+  return React.createElement("figure", {
+    className: "stay-map"
+  }, React.createElement("svg", {
+    viewBox: "0 0 640 530",
+    role: "img",
+    "aria-label": "Schematic of the four roads into Yosemite and the towns on each, with drive times to Yosemite Valley"
+  }, React.createElement("path", {
+    className: "stay-map__park",
+    d: "M200,185 C210,100 300,50 400,70 C470,80 515,95 530,128 C565,200 520,300 450,360 C400,410 360,430 322,425 C290,420 270,350 262,296 C250,250 205,230 200,185 Z"
+  }), React.createElement("text", {
+    className: "stay-map__parkname",
+    x: "392",
+    y: "222"
+  }, "YOSEMITE NATIONAL PARK"), React.createElement("path", {
+    className: "stay-map__minor",
+    d: "M200,185 Q215,140 268,112"
+  }), React.createElement("path", {
+    className: "stay-map__road stay-map__road--seasonal",
+    d: "M250,212 Q340,150 470,150 L530,128 L575,112"
+  }), React.createElement("path", {
+    className: "stay-map__road",
+    d: "M330,270 Q290,250 250,212 L200,185 Q140,160 90,150"
+  }), React.createElement("path", {
+    className: "stay-map__road",
+    d: "M330,270 L262,296 L235,305 Q170,320 110,360"
+  }), React.createElement("path", {
+    className: "stay-map__road",
+    d: "M330,270 Q350,330 325,385 L322,425 L320,445 L300,495"
+  }), React.createElement("g", {
+    className: "stay-map__gate"
+  }, React.createElement("rect", {
+    x: "195",
+    y: "180",
+    width: "10",
+    height: "10"
+  }), React.createElement("rect", {
+    x: "257",
+    y: "291",
+    width: "10",
+    height: "10"
+  }), React.createElement("rect", {
+    x: "317",
+    y: "420",
+    width: "10",
+    height: "10"
+  }), React.createElement("rect", {
+    x: "525",
+    y: "123",
+    width: "10",
+    height: "10"
+  })), React.createElement("g", {
+    className: "stay-map__place"
+  }, React.createElement("circle", {
+    cx: "268",
+    cy: "112",
+    r: "4"
+  }), React.createElement("circle", {
+    cx: "470",
+    cy: "150",
+    r: "4"
+  }), React.createElement("circle", {
+    cx: "325",
+    cy: "385",
+    r: "4"
+  }), React.createElement("circle", {
+    cx: "330",
+    cy: "270",
+    r: "9"
+  })), React.createElement("circle", {
+    className: "stay-map__ring",
+    cx: "330",
+    cy: "270",
+    r: "14"
+  }), React.createElement("g", {
+    className: "stay-map__town"
+  }, React.createElement("circle", {
+    cx: "235",
+    cy: "305",
+    r: "7"
+  }), React.createElement("circle", {
+    cx: "110",
+    cy: "360",
+    r: "7"
+  }), React.createElement("circle", {
+    cx: "90",
+    cy: "150",
+    r: "7"
+  }), React.createElement("circle", {
+    cx: "320",
+    cy: "445",
+    r: "7"
+  }), React.createElement("circle", {
+    cx: "300",
+    cy: "495",
+    r: "7"
+  }), React.createElement("circle", {
+    cx: "575",
+    cy: "112",
+    r: "7"
+  })), React.createElement("g", {
+    className: "stay-map__label"
+  }, React.createElement("text", {
+    className: "stay-map__valley",
+    x: "352",
+    y: "266"
+  }, "YOSEMITE VALLEY"), React.createElement("text", {
+    className: "stay-map__note",
+    x: "352",
+    y: "282"
+  }, "every drive time is to here"), React.createElement("text", {
+    className: "stay-map__note",
+    x: "280",
+    y: "100"
+  }, "Hetch Hetchy"), React.createElement("text", {
+    className: "stay-map__note",
+    x: "470",
+    y: "172",
+    textAnchor: "middle"
+  }, "Tuolumne Meadows"), React.createElement("text", {
+    className: "stay-map__note",
+    x: "340",
+    y: "389"
+  }, "Wawona · Mariposa Grove"), React.createElement("text", {
+    className: "stay-map__name",
+    x: "222",
+    y: "284",
+    textAnchor: "end"
+  }, "El Portal"), React.createElement("text", {
+    className: "stay-map__note",
+    x: "222",
+    y: "298",
+    textAnchor: "end"
+  }, "25 to 35 min"), React.createElement("text", {
+    className: "stay-map__name",
+    x: "110",
+    y: "388",
+    textAnchor: "middle"
+  }, "Mariposa"), React.createElement("text", {
+    className: "stay-map__note",
+    x: "110",
+    y: "404",
+    textAnchor: "middle"
+  }, "45 to 60 min"), React.createElement("text", {
+    className: "stay-map__name",
+    x: "90",
+    y: "122",
+    textAnchor: "middle"
+  }, "Groveland"), React.createElement("text", {
+    className: "stay-map__note",
+    x: "90",
+    y: "138",
+    textAnchor: "middle"
+  }, "65 to 80 min"), React.createElement("text", {
+    className: "stay-map__name",
+    x: "338",
+    y: "449"
+  }, "Fish Camp"), React.createElement("text", {
+    className: "stay-map__note",
+    x: "338",
+    y: "465"
+  }, "2 miles to the South Entrance"), React.createElement("text", {
+    className: "stay-map__name",
+    x: "318",
+    y: "499"
+  }, "Oakhurst"), React.createElement("text", {
+    className: "stay-map__note",
+    x: "318",
+    y: "515"
+  }, "75 to 90 min"), React.createElement("text", {
+    className: "stay-map__name",
+    x: "622",
+    y: "86",
+    textAnchor: "end"
+  }, "Lee Vining"), React.createElement("text", {
+    className: "stay-map__note",
+    x: "622",
+    y: "100",
+    textAnchor: "end"
+  }, "90 min minimum")), React.createElement("g", {
+    className: "stay-map__shield"
+  }, React.createElement("rect", {
+    x: "152",
+    y: "318",
+    width: "34",
+    height: "18"
+  }), React.createElement("text", {
+    x: "169",
+    y: "331",
+    textAnchor: "middle"
+  }, "140"), React.createElement("rect", {
+    x: "128",
+    y: "146",
+    width: "34",
+    height: "18"
+  }), React.createElement("text", {
+    x: "145",
+    y: "159",
+    textAnchor: "middle"
+  }, "120"), React.createElement("rect", {
+    x: "330",
+    y: "330",
+    width: "28",
+    height: "18"
+  }), React.createElement("text", {
+    x: "344",
+    y: "343",
+    textAnchor: "middle"
+  }, "41"), React.createElement("rect", {
+    x: "350",
+    y: "138",
+    width: "92",
+    height: "18"
+  }), React.createElement("text", {
+    x: "396",
+    y: "151",
+    textAnchor: "middle"
+  }, "TIOGA · SEASONAL"))), React.createElement("figcaption", null, "A schematic, not a map to scale. Filled dots are the gateway towns, squares are the four entrance stations, and the dashed road closes for winter."));
+}
+function StayPicker() {
+  var [picked, setPicked] = React.useState("valley");
+  var sel = STAY_PICKS.find(p => p.id === picked) || STAY_PICKS[0];
+  return React.createElement(React.Fragment, null, React.createElement("div", {
+    className: "stay-head"
+  }, React.createElement("div", null, React.createElement("div", {
+    className: "eyebrow eyebrow--moss"
+  }, "Start here"), React.createElement("h2", {
+    className: "stay-h2"
+  }, "Choose the road first. The town comes after.")), React.createElement("p", {
+    className: "stay-head__note"
+  }, "The road decides the drive you make twice a day, what else is reachable from the room, and in winter whether you are driving in rain or over a pass. What matters most on this trip?")), React.createElement("div", {
+    className: "stay-decide"
+  }, React.createElement(RoadSchematic, null), React.createElement("div", {
+    className: "stay-picker"
+  }, React.createElement("div", {
+    className: "stay-picker__chips",
+    role: "group",
+    "aria-label": "What matters most on this trip"
+  }, STAY_PICKS.map(p => React.createElement("button", {
+    key: p.id,
+    type: "button",
+    className: "stay-chip" + (p.id === picked ? " is-on" : ""),
+    "aria-pressed": p.id === picked,
+    onClick: () => setPicked(p.id)
+  }, p.label))), React.createElement("div", {
+    className: "stay-plate stay-picker__result",
+    "aria-live": "polite"
+  }, React.createElement("div", {
+    className: "stay-picker__top"
+  }, React.createElement("span", {
+    className: "stay-plate__eyebrow"
+  }, "Your base"), React.createElement("span", {
+    className: "stay-picker__road"
+  }, sel.road)), React.createElement("div", {
+    className: "stay-picker__town"
+  }, React.createElement("span", null, sel.town), React.createElement("em", null, sel.drive)), React.createElement("p", {
+    className: "stay-picker__why"
+  }, sel.why), React.createElement("p", {
+    className: "stay-picker__cost"
+  }, React.createElement("strong", null, "The cost:"), " ", sel.cost), React.createElement(BookButton, {
+    destination: sel.dest,
+    list: "stay_picker",
+    slug: sel.id,
+    size: "lg"
+  }, sel.cta), React.createElement("p", {
+    className: "stay-plate__fine"
+  }, "Searches the town on Expedia, never one property, because that is the search that answers what is left. Affiliate link.")))));
+}
+function StayFigure({
+  item,
+  className
+}) {
+  if (!item.photo) return null;
+  return React.createElement("figure", {
+    className: ["stay-card__figure", className].filter(Boolean).join(" ")
   }, React.createElement(ResponsiveImage, {
     image: item.photo,
     alt: item.caption,
@@ -297,7 +791,18 @@ function StayCard({
     className: "stay-card__caption"
   }, item.caption, item.credit && React.createElement("span", {
     className: "stay-card__credit"
-  }, item.credit))), React.createElement("div", {
+  }, item.credit)));
+}
+function StayCard({
+  item,
+  lead
+}) {
+  var cls = ["stay-card", lead ? "stay-card--lead" : "stay-card--compact", item.closed && "stay-card--closed"];
+  return React.createElement("article", {
+    className: cls.filter(Boolean).join(" ")
+  }, lead && React.createElement(StayFigure, {
+    item: item
+  }), React.createElement("div", {
     className: "stay-card__body"
   }, React.createElement("div", {
     className: "stay-card__kind"
@@ -313,54 +818,46 @@ function StayCard({
     className: "stay-card__tip"
   }, item.tip), item.warn && React.createElement("p", {
     className: "stay-card__warn"
-  }, item.warn), item.more && React.createElement("a", {
-    className: "stay-card__more",
-    href: item.more
-  }, "The longer version →"), !item.closed && React.createElement("a", {
-    className: "stay-card__book",
+  }, item.warn), React.createElement("div", {
+    className: "stay-card__actions"
+  }, !item.closed && React.createElement("a", {
+    className: "stay-ghost",
     href: TRAVEL_YOSEMITE,
     target: "_blank",
     rel: "noopener noreferrer"
-  }, "Book at travelyosemite.com ↗")));
+  }, React.createElement("span", null, "Book at travelyosemite.com"), React.createElement(Arrow, null)), item.more && React.createElement("a", {
+    className: "stay-card__more",
+    href: item.more
+  }, "The longer version →"))));
 }
 function GatewayCard({
   item
 }) {
   return React.createElement("article", {
-    className: "stay-card stay-card--town"
-  }, item.photo && React.createElement("figure", {
-    className: "stay-card__figure"
-  }, React.createElement(ResponsiveImage, {
-    image: item.photo,
-    alt: item.caption,
-    sizes: SIZES_CARD,
-    className: "stay-card__img"
-  }), React.createElement("figcaption", {
-    className: "stay-card__caption"
-  }, item.caption, item.credit && React.createElement("span", {
-    className: "stay-card__credit"
-  }, item.credit))), React.createElement("div", {
-    className: "stay-card__body"
+    className: "stay-town"
   }, React.createElement("h4", {
-    className: "stay-card__name"
+    className: "stay-town__name"
   }, item.name), React.createElement("dl", {
-    className: "stay-card__facts"
-  }, React.createElement("div", null, React.createElement("dt", null, "Drive"), React.createElement("dd", null, item.drive)), React.createElement("div", null, React.createElement("dt", null, "Road"), React.createElement("dd", null, item.road))), React.createElement("p", {
-    className: "stay-card__text"
+    className: "stay-town__facts"
+  }, React.createElement("dt", null, "Drive"), React.createElement("dd", {
+    className: "stay-town__drive"
+  }, item.drive), React.createElement("dt", null, "Road"), React.createElement("dd", null, item.road)), React.createElement("p", {
+    className: "stay-town__text"
   }, item.body), React.createElement("p", {
-    className: "stay-card__who"
+    className: "stay-town__note"
   }, React.createElement("strong", null, "Who it fits:"), " ", item.who), React.createElement("p", {
-    className: "stay-card__against"
-  }, React.createElement("strong", null, "The cost:"), " ", item.against), item.article && React.createElement("a", {
-    className: "stay-card__more",
-    href: item.article
-  }, "The full chapter on ", item.name, " →"), React.createElement(AvailabilityLink, {
+    className: "stay-town__note"
+  }, React.createElement("strong", null, "The cost:"), " ", item.against), React.createElement("div", {
+    className: "stay-town__actions"
+  }, React.createElement(BookButton, {
     destination: item.dest,
     list: "stay_gateway",
     slug: item.id,
-    name: item.name + " lodging search",
-    className: "stay-card__avail"
-  }, "See what ", item.name, " has on your dates →")));
+    name: item.name + " lodging search"
+  }, "See what ", item.name, " has on your dates"), item.article && React.createElement("a", {
+    className: "stay-card__more",
+    href: item.article
+  }, "The full chapter on ", item.name, " →")));
 }
 function PropertyRow({
   item,
@@ -380,7 +877,7 @@ function PropertyRow({
     slug: id,
     name: item.name + " · " + item.town + " lodging search",
     className: "stay-prop__avail"
-  }, "What ", item.town, " has on your dates →"));
+  }, "What ", item.town, " has on your dates ↗"));
 }
 var GATEWAY_ARTICLE = "/articles/yosemite-gateway-towns-compared";
 var CORRIDOR_INTROS = {
@@ -408,52 +905,78 @@ function CorridorSection({
   towns
 }) {
   var props = (corridor.props || []).map(id => [id, PROPERTIES[id]]).filter(p => p[1]);
-  return React.createElement("div", {
-    className: "stay-corridor",
-    id: corridor.id
-  }, React.createElement("div", {
-    className: "stay-corridor__head"
-  }, React.createElement("h3", null, corridor.name), React.createElement("div", {
-    className: "stay-corridor__kicker"
-  }, corridor.kicker)), React.createElement("p", {
-    className: "stay-corridor__verdict"
-  }, corridor.verdict), React.createElement("div", {
-    className: "stay-corridor__intro"
-  }, (CORRIDOR_INTROS[corridor.id] || (() => null))()), React.createElement("div", {
-    className: "stay-grid"
-  }, towns.map(t => React.createElement(GatewayCard, {
-    key: t.id,
-    item: t
-  }))), props.length > 0 && React.createElement("div", {
+  var extra = CORRIDOR_EXTRAS[corridor.id] || {};
+  var lead = extra.photoFrom && towns.find(t => t.id === extra.photoFrom);
+  var solo = towns.length === 1;
+  var stays = props.length > 0 && React.createElement("div", {
     className: "stay-props-wrap"
-  }, React.createElement("p", {
+  }, React.createElement("div", {
+    className: "stay-props__head"
+  }, React.createElement("span", {
+    className: "stay-props__label"
+  }, "Named stays on this road"), React.createElement("span", {
     className: "stay-props__lead"
-  }, "Named stays on this corridor. The links search the town, not the property, because that is the search that answers what is left."), React.createElement("div", {
+  }, "The links search the town, not the property, because that is the search that answers what is left.")), React.createElement("div", {
     className: "stay-props"
   }, props.map(([id, p]) => React.createElement(PropertyRow, {
     key: id,
     id: id,
     item: p
-  })))));
+  }))));
+  return React.createElement("div", {
+    className: "stay-corridor" + (solo ? " stay-corridor--solo" : ""),
+    id: corridor.id
+  }, React.createElement("div", {
+    className: "stay-corridor__top"
+  }, React.createElement("div", {
+    className: "stay-corridor__side"
+  }, React.createElement("div", {
+    className: "stay-corridor__head"
+  }, React.createElement("span", {
+    className: "stay-corridor__num",
+    "aria-hidden": "true"
+  }, extra.num), React.createElement("div", null, React.createElement("h3", null, React.createElement("span", {
+    className: "stay-sr"
+  }, extra.road, ": "), extra.title || corridor.name), React.createElement("div", {
+    className: "stay-corridor__kicker"
+  }, corridor.kicker))), React.createElement("p", {
+    className: "stay-corridor__verdict"
+  }, corridor.verdict), React.createElement("div", {
+    className: "stay-corridor__intro"
+  }, (CORRIDOR_INTROS[corridor.id] || (() => null))()), lead && React.createElement(StayFigure, {
+    item: lead,
+    className: "stay-corridor__figure"
+  }), extra.dest && React.createElement(BookButton, {
+    destination: extra.dest,
+    list: "stay_corridor",
+    slug: corridor.id
+  }, extra.cta)), React.createElement("div", {
+    className: "stay-corridor__towns"
+  }, towns.map(t => React.createElement(GatewayCard, {
+    key: t.id,
+    item: t
+  })), solo && stays)), !solo && stays);
 }
 function SeasonCard({
   item
 }) {
-  return React.createElement("div", {
+  return React.createElement("article", {
     className: "stay-season"
   }, React.createElement("h3", {
     className: "stay-season__name"
   }, item.name), React.createElement("div", {
     className: "stay-season__span"
-  }, item.span), React.createElement("p", {
+  }, item.span), SEASON_ANSWERS[item.id] && React.createElement("p", {
+    className: "stay-season__answer"
+  }, SEASON_ANSWERS[item.id]), React.createElement("p", {
     className: "stay-season__text"
-  }, item.body), React.createElement(AvailabilityLink, {
+  }, item.body), React.createElement(BookButton, {
     destination: item.dest,
     list: "stay_season",
     slug: item.id,
     name: item.name + " lodging search",
-    className: "stay-season__avail"
-  }, item.cta));
+    size: "sm"
+  }, item.cta.replace(/\s*→$/, "")));
 }
 function StayPage({
   go
@@ -462,12 +985,23 @@ function StayPage({
     e.preventDefault();
     go(route);
   };
+  var valley = IN_PARK.slice(0, 3);
+  var others = IN_PARK.slice(3);
   return React.createElement("div", {
-    className: "page"
-  }, React.createElement("div", {
-    className: "page-head"
-  }, React.createElement("div", {
-    className: "wrap wrap--narrow"
+    className: "page stay-page"
+  }, React.createElement("header", {
+    className: "stay-hero"
+  }, React.createElement(ResponsiveImage, {
+    image: STAY_HERO.image,
+    alt: STAY_HERO.alt,
+    sizes: "100vw",
+    eager: true,
+    className: "stay-hero__img"
+  }), React.createElement("div", {
+    className: "stay-hero__scrim",
+    "aria-hidden": "true"
+  }), React.createElement("div", {
+    className: "wrap stay-hero__inner"
   }, React.createElement(Breadcrumbs, {
     go: go,
     trail: [{
@@ -477,17 +1011,14 @@ function StayPage({
       label: "Where to stay"
     }]
   }), React.createElement("div", {
-    className: "eyebrow eyebrow--moss"
+    className: "stay-hero__eyebrow"
   }, "Lodging · the whole board"), React.createElement("h1", null, "Where to Stay in Yosemite"), React.createElement("p", {
-    className: "page-head__dek"
-  }, "Every bed in and around the park, sorted by what it actually is and who it actually fits. Staying inside the park changes a trip more than any other single decision, so that comes first. If the park's inventory is gone, which for summer dates it usually is, the real decision is not which town but which road: four corridors reach Yosemite, they are not interchangeable, and which one fits depends on the season you are going."))), React.createElement("div", {
-    className: "wrap wrap--narrow",
-    style: {
-      paddingTop: 40
-    }
-  }, React.createElement("section", {
-    className: "prose"
-  }, React.createElement("p", null, "The people sleeping in the Valley are standing under Yosemite Falls at seven in the morning with the mist still hanging and nobody around. The people sleeping in a gateway town are, at that moment, sitting in the entrance line. Both groups paid to visit Yosemite. Only one of them is in it when the park is at its best, which is the first two hours and the last two hours of the day."), React.createElement("p", null, "One piece of mechanics explains everything below it: every hotel, lodge, and tent cabin inside the boundary is run by a single park concessioner and books through one website, travelyosemite.com. There is no Marriott inside the park, no Airbnb, no boutique alternative. One operator, one inventory, one booking window. That is why the in-park cards below send you to the concessioner and the gateway cards send you to a live availability search: outside the boundary there are hundreds of properties and a real market, and inside it there is one.")), React.createElement("nav", {
+    className: "stay-hero__dek"
+  }, "Every bed in and around the park, sorted by what it is and who it fits. Pick the road, then the town, then see what is actually left on your dates.")), React.createElement("div", {
+    className: "stay-hero__credit"
+  }, STAY_HERO.credit)), React.createElement("div", {
+    className: "wrap stay-search-wrap"
+  }, React.createElement(StaySearch, null), React.createElement("nav", {
     className: "stay-jump",
     "aria-label": "On this page"
   }, React.createElement("a", {
@@ -508,121 +1039,141 @@ function StayPage({
     href: "#booking"
   }, "Booking"))), React.createElement("section", {
     className: "wrap stay-section",
-    style: {
-      paddingTop: 56
-    },
+    id: "decide"
+  }, React.createElement(StayPicker, null)), React.createElement("section", {
+    className: "wrap stay-section stay-band",
     id: "in-park"
   }, React.createElement("div", {
-    className: "section-head"
-  }, React.createElement("h2", null, "Inside the park"), React.createElement("div", {
-    className: "mono",
-    style: {
-      color: "var(--ink-3)"
-    }
-  }, IN_PARK.filter(p => !p.closed).length, " bookable, 1 closed")), React.createElement("div", {
-    className: "stay-grid"
-  }, IN_PARK.map(p => React.createElement(StayCard, {
+    className: "stay-head"
+  }, React.createElement("div", null, React.createElement("div", {
+    className: "eyebrow eyebrow--moss"
+  }, "First choice · ", IN_PARK.filter(p => !p.closed).length, " bookable, ", IN_PARK.filter(p => p.closed).length, " closed"), React.createElement("h2", {
+    className: "stay-h2"
+  }, "Inside the park")), React.createElement("p", {
+    className: "stay-head__note"
+  }, "The people sleeping in the Valley are standing under Yosemite Falls at seven in the morning with nobody around. The people sleeping in a gateway town are, at that moment, sitting in the entrance line. One concessioner runs every bed inside the boundary and books it at travelyosemite.com. We earn nothing on these links, and they still come first.")), React.createElement("div", {
+    className: "stay-grid stay-grid--lead"
+  }, valley.map(p => React.createElement(StayCard, {
+    key: p.id,
+    item: p,
+    lead: true
+  }))), React.createElement("div", {
+    className: "stay-grid stay-grid--compact"
+  }, others.map(p => React.createElement(StayCard, {
     key: p.id,
     item: p
-  }))), React.createElement("div", {
-    className: "wrap--narrow",
-    style: {
-      margin: "0 auto",
-      paddingTop: 32
-    }
-  }, React.createElement(LodgingCta, {
+  }))), React.createElement("aside", {
+    className: "stay-plate stay-fallback",
+    "aria-label": "Lodging availability"
+  }, React.createElement("div", {
+    className: "stay-fallback__main"
+  }, React.createElement("div", {
+    className: "stay-plate__eyebrow"
+  }, "In-park inventory gone for your dates?"), React.createElement("h2", {
+    className: "stay-fallback__title"
+  }, "For summer it usually is. Hold a room outside, then watch for one inside."), React.createElement("ol", {
+    className: "stay-fallback__steps"
+  }, React.createElement("li", null, React.createElement("span", null, "01"), "Search the boundary for your dates. Filter for free cancellation, and read the rate's terms before you book."), React.createElement("li", null, React.createElement("span", null, "02"), "Check travelyosemite.com daily in the four to six weeks before the trip. Rooms come back."), React.createElement("li", null, React.createElement("span", null, "03"), "If the Valley comes through, take it. If not, you already have a bed and a plan."))), React.createElement("div", {
+    className: "stay-fallback__ask"
+  }, React.createElement("p", null, "The two-minute version of finding out what is actually left."), React.createElement(BookButton, {
     destination: "Yosemite National Park",
-    heading: "In-park inventory gone for your dates?",
-    note: "It usually is, for anything in summer. A search around the park boundary is the two-minute version of finding out what is actually left before you start rearranging the trip.",
     list: "stay_in_park_fallback",
     slug: "in-park-fallback",
-    cta: "Search lodging around Yosemite →",
-    stayLink: false
-  }))), React.createElement("section", {
+    size: "lg"
+  }, "Search lodging around Yosemite"), React.createElement("span", {
+    className: "stay-fallback__fine"
+  }, "On Expedia, in a new tab. Affiliate link.")))), React.createElement("section", {
     className: "wrap stay-section",
-    style: {
-      paddingTop: 72
-    },
     id: "gateways"
   }, React.createElement("div", {
-    className: "section-head"
-  }, React.createElement("h2", null, "Outside the park, by corridor"), React.createElement("div", {
-    className: "mono",
-    style: {
-      color: "var(--ink-3)"
-    }
-  }, CORRIDORS.length, " corridors · ", GATEWAYS.length, " towns")), React.createElement("p", {
-    className: "wrap--narrow",
-    style: {
-      margin: "0 auto 28px",
-      color: "var(--ink-2)"
-    }
-  }, "Four entrance stations sit at the corners of the park, each on its own road, each with its towns. Choose the road first: it decides the drive you make twice a day, it decides what else is reachable from the room, and in winter it decides whether you are driving in rain or over a pass. The town comes after that. The full comparison, with the case for and against each, is in", " ", React.createElement("a", {
+    className: "stay-head"
+  }, React.createElement("div", null, React.createElement("div", {
+    className: "eyebrow eyebrow--moss"
+  }, "Outside the park · ", CORRIDORS.length, " corridors, ", GATEWAYS.length, " towns"), React.createElement("h2", {
+    className: "stay-h2"
+  }, "Road by road, town by town")), React.createElement("p", {
+    className: "stay-head__note"
+  }, "Four entrance stations sit at the corners of the park, each on its own road, each with its towns. Outside the boundary there are hundreds of properties and a real market, which is why these cards send you to a live availability search. The full comparison is in", " ", React.createElement("a", {
     href: "/articles/yosemite-gateway-towns-compared"
-  }, "the gateway towns article"), "."), CORRIDORS.map(c => React.createElement(CorridorSection, {
-    key: c.id,
+  }, "the gateway towns article"), ".")), CORRIDORS.map(c => React.createElement(React.Fragment, {
+    key: c.id
+  }, React.createElement(CorridorSection, {
     corridor: c,
     towns: c.towns.map(id => GATEWAYS.find(t => t.id === id)).filter(Boolean)
-  })), React.createElement(ExpediaBanner, {
+  }), c.id === "corridor-120" && React.createElement(ExpediaBanner, {
     list: "stay_banner",
     slug: "stay"
-  })), React.createElement("section", {
-    className: "wrap stay-section",
-    style: {
-      paddingTop: 72
-    },
+  })))), React.createElement("section", {
+    className: "stay-section stay-seasons-band",
     id: "seasons"
   }, React.createElement("div", {
-    className: "section-head"
-  }, React.createElement("h2", null, "When to stay where"), React.createElement("div", {
-    className: "mono",
-    style: {
-      color: "var(--ink-3)"
-    }
-  }, "four seasons, four answers")), React.createElement("p", {
-    className: "wrap--narrow",
-    style: {
-      margin: "0 auto 28px",
-      color: "var(--ink-2)"
-    }
-  }, "The corridor that is right in July is not the one that is right in January, because the roads change and so does what is open at the end of them. This is the same four corridors read against the calendar."), React.createElement("div", {
+    className: "wrap"
+  }, React.createElement("div", {
+    className: "stay-head"
+  }, React.createElement("div", null, React.createElement("div", {
+    className: "eyebrow eyebrow--moss"
+  }, "Four seasons, four answers"), React.createElement("h2", {
+    className: "stay-h2"
+  }, "When to stay where")), React.createElement("p", {
+    className: "stay-head__note"
+  }, "The corridor that is right in July is not the one that is right in January, because the roads change and so does what is open at the end of them. This is the same four corridors read against the calendar.")), React.createElement("div", {
     className: "stay-seasons"
   }, SEASONS.map(s => React.createElement(SeasonCard, {
     key: s.id,
     item: s
-  })))), React.createElement("section", {
-    className: "wrap wrap--narrow stay-section",
-    style: {
-      paddingTop: 72
-    },
+  }))))), React.createElement("section", {
+    className: "wrap stay-section",
+    id: "booking"
+  }, React.createElement("h2", {
+    className: "stay-h2"
+  }, "How the booking actually works"), React.createElement("div", {
+    className: "stay-facts"
+  }, React.createElement("div", {
+    className: "stay-fact"
+  }, React.createElement("div", {
+    className: "stay-fact__big"
+  }, "366 days"), React.createElement("p", null, "In-park reservations open one year and a day ahead, on a rolling basis. For peak summer dates at the Valley properties, availability at the moment of release is measured in minutes. Set a reminder for the morning your window opens.")), React.createElement("div", {
+    className: "stay-fact"
+  }, React.createElement("div", {
+    className: "stay-fact__big"
+  }, "Rooms come back"), React.createElement("p", null, "People drop reservations continuously, with a distinct wave in the final weeks before any date. Check daily, at varied times, in the four to six weeks before your trip. I have watched people assemble three-night Valley stays in June out of one-night cancellations.")), React.createElement("div", {
+    className: "stay-fact"
+  }, React.createElement("div", {
+    className: "stay-fact__big"
+  }, "6 to 12 months"), React.createElement("p", null, "How far ahead gateway lodging fills for summer and holiday weekends. The rest of the year it behaves like a normal hotel market: the same room is a different price in October than in July.")), React.createElement("div", {
+    className: "stay-fact",
     id: "camping"
   }, React.createElement("div", {
-    className: "section-head"
-  }, React.createElement("h2", null, "Camping")), React.createElement("section", {
-    className: "prose"
-  }, React.createElement("p", null, "Camping remains the cheapest way to sleep in the park if you can win a site, and winning one is a scheduled event rather than a search: the park's campgrounds release on Recreation.gov five months ahead, and the popular Valley loops are gone in minutes. The whole system, including the walk-in options and the reservation strategy that actually works, is in", " ", React.createElement("a", {
+    className: "stay-fact__big"
+  }, "Camping"), React.createElement("p", null, "The park's campgrounds release on Recreation.gov five months ahead, and the popular Valley loops are gone in minutes. The whole system is in", " ", React.createElement("a", {
     href: "/articles/yosemite-camping-complete-guide"
-  }, "the camping guide"), "."), React.createElement("p", null, "The private campgrounds, ranch sites, and canvas-tent operations outside the park cluster around Mariposa, Groveland, and Fish Camp, and that inventory never appears on Recreation.gov, which is exactly why it survives after the federal campgrounds sell out.")), React.createElement(LodgingCta, {
+  }, "the camping guide"), ". When the site or the weather falls through,", " ", React.createElement(AvailabilityLink, {
     destination: "Mariposa, California",
-    heading: "If the trip has collapsed into 'we need a roof tonight'",
-    note: "Every camper eventually has the night when the weather or the reservation falls through. A live search of the nearest gateway is faster than driving the highway looking for vacancy signs.",
     list: "stay_camping_fallback",
     slug: "camping-fallback",
-    cta: "Search Mariposa lodging →",
-    stayLink: false
-  })), React.createElement("section", {
-    className: "wrap wrap--narrow stay-section",
-    style: {
-      paddingTop: 72
-    },
-    id: "booking"
-  }, React.createElement("div", {
-    className: "section-head"
-  }, React.createElement("h2", null, "How the booking actually works")), React.createElement("section", {
-    className: "prose"
-  }, React.createElement("p", null, "In-park reservations open ", React.createElement("strong", null, "366 days in advance"), ", one year and a day ahead, on a rolling basis. For peak summer dates at the Valley properties, availability at the moment of release is measured in minutes. If your dates are fixed and in July, you set a reminder for the morning your window opens and you book at that moment, or you likely do not book at all."), React.createElement("p", null, "Missing the release is not the end, and this is the part most people never learn: ", React.createElement("strong", null, "rooms come back"), ". Cancellation policies mean people drop reservations continuously, with a distinct wave in the final weeks before any date as plans collapse. The strategy is unglamorous and it works: check the site daily, at varied times, in the four to six weeks before your trip. I have watched people assemble three-night Valley stays in June out of one-night cancellations."), React.createElement("p", null, "Gateway lodging fills six to twelve months ahead for summer and holiday weekends, but it behaves like a normal hotel market the rest of the year: rates move with the season and the day of the week, and the same room is a different price in October than in July."), React.createElement("p", null, "The other lever is the calendar, and it is the strongest one on this page. Which corridor and which season line up is covered in", " ", React.createElement("a", {
-    href: "#seasons"
-  }, "when to stay where"), ", above."))), React.createElement("section", {
+    name: "Mariposa lodging search"
+  }, "search Mariposa for a roof tonight ↗"))))), React.createElement("section", {
+    className: "wrap stay-section"
+  }, React.createElement("aside", {
+    className: "stay-closing",
+    "aria-label": "Lodging availability"
+  }, React.createElement(StayFigure, {
+    item: IN_PARK.find(p => p.id === "tuolumne-lodge"),
+    className: "stay-closing__figure"
+  }), React.createElement("div", {
+    className: "stay-closing__body"
+  }, React.createElement("h2", {
+    className: "stay-closing__title"
+  }, "You know the road now. The only open question is your dates."), React.createElement("p", null, "One search around the boundary shows every town on this page at once, with live rates. Booking through it costs you nothing extra and helps keep this site written from inside the park."), React.createElement("div", {
+    className: "stay-closing__row"
+  }, React.createElement(BookButton, {
+    destination: "Yosemite National Park",
+    list: "stay_closing",
+    slug: "closing",
+    size: "lg"
+  }, "Search every Yosemite gateway"), React.createElement("span", {
+    className: "stay-closing__fine"
+  }, "On Expedia · affiliate link"))))), React.createElement("section", {
     className: "wrap wrap--narrow",
     style: {
       paddingTop: 64,
