@@ -529,15 +529,23 @@ export async function sendRenewalConfirmation(
 
 export async function sendTripLink(
   env: Env,
-  args: { to: string; tripUrl: string; stopCount: number },
+  args: { to: string; tripUrl: string; guideUrl: string; stopCount: number },
 ): Promise<void> {
   if (!env.RESEND_API_KEY) {
     throw new Error('RESEND_API_KEY not configured')
   }
 
-  const { to, tripUrl, stopCount } = args
+  const { to, tripUrl, guideUrl, stopCount } = args
   const editorialOrigin = env.EDITORIAL_BASE_URL || 'https://thetalusfieldjournal.com'
   const stopsLabel = stopCount === 1 ? '1 stop' : `${stopCount} stops`
+  // The one product line this email carries. A reader who mailed themselves a
+  // trip has dates and a plan, which is the moment the offline app is worth
+  // the most; the price is read from [vars] so it is edited in one place.
+  const parsedPrice = Number.parseInt(env.GUIDE_PRICE_CENTS, 10)
+  const priceLabel = Number.isNaN(parsedPrice)
+    ? 'One purchase'
+    : `$${(parsedPrice / 100).toFixed(parsedPrice % 100 === 0 ? 0 : 2)} once`
+  const guideLine = `Take it into the park. The Field Guide app opens these same stops with offline maps, parking and timing notes, and works with no signal. ${priceLabel}, eighteen months of access. If you do not own it yet, the app keeps this trip for you until you do.`
 
   const text = [
     `Your Yosemite trip, ${stopsLabel}.`,
@@ -546,6 +554,9 @@ export async function sendTripLink(
     tripUrl,
     ``,
     `The link keeps your stops in order. It works on any device.`,
+    ``,
+    guideLine,
+    guideUrl,
     ``,
     `Sunday Field Notes carries what changed in the park each week.`,
     `You are on the list if you asked to be; nothing else follows from this email.`,
@@ -576,6 +587,10 @@ export async function sendTripLink(
               </a>
             </p>
             <p style="font-family:${serif};font-size:15px;line-height:1.55;color:#14110c;margin:0 0 22px;">The link keeps your stops in order. It works on any device.</p>
+            <p style="font-family:${serif};font-size:15px;line-height:1.55;color:#14110c;margin:0 0 6px;border-top:1px solid #c9bda0;padding-top:20px;">${escapeHtml(guideLine)}</p>
+            <p style="margin:0 0 22px;">
+              <a href="${guideUrl}" style="font-family:${sans};font-size:13px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:#14110c;">Open this trip in the Field Guide &rarr;</a>
+            </p>
             <p style="font-family:${sans};font-size:13px;color:#50402e;margin:0 0 6px;">Sunday Field Notes carries what changed in the park each week. You are on the list if you asked to be; nothing else follows from this email.</p>
             <p style="font-family:${sans};font-size:13px;color:#50402e;margin:0;">&mdash; Cory</p>
           </td>

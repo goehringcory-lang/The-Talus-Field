@@ -6,7 +6,7 @@ July 2026. Internal working document; strategy only, no code. Successor layer to
 
 Three revenue surfaces exist, one of them live:
 
-1. **The Field Guide PWA** — $3.99 one-time, 18-month access, monthly inventory cap, live Stripe checkout. On sale as of the July 2026 launch-prep pass (pending the LAUNCH-READINESS.md ops gate).
+1. **The Field Guide PWA** — $3.99 one-time, 18-month access, live Stripe checkout. On sale since the July 2026 launch-prep pass; the monthly sales cap was removed in September 2026 (`/api/inventory` still reports `sold` as an informational tally, and a live `cap` field means a stale Worker deploy).
 2. **Affiliate links** (`affiliate.js`) — two live programs: Patagonia (Impact network, gear articles) and the Expedia Group Travel Creator Program (Partnerize `prf.hn` camref), which powers every lodging availability link on the site through the shared `AvailabilityLink` / `LodgingCta` components. Booking.com, Stay22, and Hipcamp are registered with empty IDs and fail soft to plain links. The August 2026 optimization pass added placement-level GA4 granularity (`aff_list`: `article_cta` / `article_inline` / `article_town` / `trip_selector` / `stay_banner` plus the page-level values; inventory in ARCHITECTURE.md), plates in the four money articles, a photo slot on `LodgingCta`, a lodging hand-off in the trip-selector plan, and a fail-soft slot for Expedia's licensed banner creative on `/stay`.
 3. **The newsletter** — not monetized directly; it is the audience asset everything else launches to.
 
@@ -28,7 +28,7 @@ These aren't new ideas; they're the highest-ROI items on the board because the w
 **1.2 Run the photo pass.** The prepared Wikimedia pipeline (`scripts/fetch-guide-photos.mjs`, 57-slot manifest) fixes the biggest perceived-value gap in a $19 product: 25 photoless stops and one meadow photo serving six stops. Needs a session where `commons.wikimedia.org` resolves. This is a *conversion-rate* project disguised as a content chore — screenshots of the app are the sales page's proof.
 **Status (September 2026): ran.** Once the environment could reach Commons (PR #349), every manifest slot Commons could answer was filled and credited; four honest stand-ins remain (Carlon Falls, Evergreen Lodge, Little Nellie Falls, Hidden Lake). `LAUNCH-READINESS.md`, "The photo pass", is the record; `npm --prefix scripts run photos:check` reads the live inventory.
 
-**1.3 Launch to the warm list, in sequence.** `guide-waitlist`, `guide-curious`, `cat-planning`, `map-gate` tags exist for exactly this. Segment-ordered launch emails (waitlist first, 48h early access framed around the monthly cap) both maximize conversion and generate the honest scarcity copy the brand can stand behind.
+**1.3 Launch to the warm list, in sequence.** `guide-waitlist`, `guide-curious`, `cat-planning`, `map-gate` tags exist for exactly this. Segment-ordered launch emails (waitlist first, 48h early access) maximize conversion; with the monthly cap gone (September 2026) the only honest scarcity is the real 18-month expiry, so the copy states that and nothing else.
 
 ---
 
@@ -40,7 +40,7 @@ These aren't new ideas; they're the highest-ROI items on the board because the w
 **Why it works:** This converts a one-time product into quasi-recurring revenue with zero new product surface. Yosemite is a repeat-visit park; the 18-month window means most buyers plan a second trip inside a renewal cycle. Renewal at ~60% of list price is an easy yes for someone whose trip data lives in the app.
 **Build:** Worker cron sweep over buyer records + a second Stripe price + webhook path that extends rather than provisions. Medium effort.
 **Measure:** renewal rate at expiry; it becomes the single most important product metric after launch.
-**Status (September 2026): shipped.** The daily sweep in `workers/src/lib/renewals.ts` sends the T-60 / T-14 / T-1 notices, `/api/checkout/renew` sells the renewal at `GUIDE_RENEWAL_PRICE_CENTS` ($2.49, outside the monthly cap), the PWA's `/account` shows the renew button inside the 60-day window, and a lapsed buyer gets the rebuy path on `/login`. The metric above is still unmeasured: renewal volume lives in the Stripe dashboard, which no routine can read.
+**Status (September 2026): shipped.** The daily sweep in `workers/src/lib/renewals.ts` sends the T-60 / T-14 / T-1 notices, `/api/checkout/renew` sells the renewal at `GUIDE_RENEWAL_PRICE_CENTS` ($2.49), the PWA's `/account` shows the renew button inside the 60-day window, and a lapsed buyer gets the rebuy path on `/login`. The metric above is still unmeasured: renewal volume lives in the Stripe dashboard, which no routine can read.
 
 ### 2.2 Gift purchases
 
