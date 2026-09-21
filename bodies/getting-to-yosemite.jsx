@@ -52,7 +52,7 @@ window.ARTICLE_BODIES["getting-to-yosemite"] = function GettingToYosemiteBody() 
       </p>
 
       <p>
-        Related: cell service dies well before the park boundary on every approach. Download offline maps the night before, and remember that once inside, the park runs on paper. The map they hand you at the gate is genuinely good.
+        Related: <a href="/articles/cell-service-in-yosemite">cell service dies well before the park boundary</a> on every approach. Download offline maps the night before, and remember that once inside, the park runs on paper. The map they hand you at the gate is genuinely good.
       </p>
 
       <h2>Winter changes the math</h2>

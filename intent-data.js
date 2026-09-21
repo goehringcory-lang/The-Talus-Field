@@ -175,6 +175,10 @@ window.ARTICLE_INTENT = {
   "bracebridge-dinner-and-vintners-holidays":  { stage: ["before-booking"], who: ["non-hikers"], topic: ["lodging", "food", "conditions"] },
   "yosemite-wildflowers-guide":                { stage: ["dates-set"], who: ["photography", "non-hikers"], topic: ["conditions"] },
   "watching-climbers-el-capitan":              { stage: ["in-park"], who: ["families", "non-hikers", "accessible"], topic: [] },
+  // Coverage and Wi-Fi: the road-by-road "where the signal drops" section and
+  // the offline-directions advice are what earn `transportation`; it answers
+  // no lodging, camping or permit question and gets no tag for them.
+  "cell-service-in-yosemite":                  { stage: ["week-before", "in-park"], who: ["first-trip", "backpacking"], topic: ["transportation"] },
   "getting-to-yosemite":                       { stage: ["before-booking", "dates-set"], who: ["first-trip"], topic: ["transportation"] },
   "yosemite-wilderness-permits-guide":         { stage: ["before-booking", "dates-set"], who: ["backpacking"], topic: ["permits", "trails"] },
   "yosemite-accessibility-guide":              { stage: ["before-booking", "dates-set"], who: ["accessible", "non-hikers", "families"], topic: ["lodging", "transportation", "trails"] },

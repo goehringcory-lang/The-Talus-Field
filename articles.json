@@ -1,5 +1,31 @@
 [
   {
+    "slug": "cell-service-in-yosemite",
+    "cat": "planning",
+    "title": "Cell Service in Yosemite: What Works Where, Carrier by Carrier, and How to Plan for None",
+    "dek": "The Park Service publishes a coverage table and almost nobody reads it: usable service on the three carriers in the east end of the Valley, a handful of Verizon pockets, nothing on Tioga Road or any trail. Where the Wi-Fi is and who gets it, the five things on a trip that genuinely need a signal (the Half Dome lottery email, the digital pass, the directions), what call or text 911 means where neither connects, the satellite fallback, and the offline kit to load in the last town.",
+    "seoDek": "Yosemite cell service by carrier and place, per the Park Service: the Valley's east end works, Tioga Road does not. Where the Wi-Fi is, and the offline kit.",
+    "date": "September 21, 2026",
+    "isoDate": "2026-09-21",
+    "isoModified": "2026-09-21",
+    "read": "12 min",
+    "image": "img/half-dome-overlook-day-visitor-stephen-leonardi.jpg",
+    "ogImage": { "url": "img/responsive/half-dome-overlook-day-visitor-stephen-leonardi-og.jpg", "width": 1200, "height": 630 },
+    "placeholder": "A day visitor at a Half Dome overlook, phone in hand",
+    "wordCount": 3190,
+    "keywords": ["cell service in Yosemite", "does Yosemite have cell service", "Yosemite cell phone coverage by carrier", "Verizon coverage Yosemite", "AT&T service Yosemite Valley", "Wi-Fi in Yosemite National Park", "Tuolumne Meadows cell service", "Yosemite offline maps", "Yosemite emergency SOS satellite", "Half Dome lottery results no cell service"],
+    "faq": [
+      { "q": "Is there cell service in Yosemite?", "a": "Some, and it is limited. The Park Service's own coverage table lists usable voice and 4G LTE on AT&T, T-Mobile and Verizon primarily in the east end of Yosemite Valley, the developed part around Yosemite Village, Curry Village, the Ahwahnee and the Pines campgrounds. Outside it, coverage is a short list of specific spots that depends on your carrier, and the park's FAQ says not to expect reliable service around the park." },
+      { "q": "Which carrier works best in Yosemite?", "a": "Verizon has the longest list in the Park Service table: Yosemite Valley, Foresta, Crane Flat and Wawona, plus limited and unreliable coverage in El Portal and unreliable service at Tuolumne Meadows. AT&T is listed in Yosemite Valley and at Glacier Point, with no service at Tuolumne Meadows. T-Mobile is listed only in Yosemite Valley." },
+      { "q": "Is there cell service on Tioga Road or in Tuolumne Meadows?", "a": "Not reliably, by the park's own account. Tioga Road between Crane Flat and Tuolumne Meadows appears for no carrier, AT&T is listed as having no service at Tuolumne Meadows, Verizon as not reliable there, and the park names Lee Vining, outside the park, as the nearest reliable cell and traditional phone service. It also notes that pay phones at Tuolumne may not be available." },
+      { "q": "Where can I get Wi-Fi in Yosemite?", "a": "Registered overnight guests at the Ahwahnee, Yosemite Valley Lodge and Curry Village get internet access, which the concessioner says is limited to light use such as checking email. The public can use computers and Wi-Fi at the small Mariposa County library branches in Yosemite Valley and Wawona during their posted hours, and the park lists free Wi-Fi at Degnan's Kitchen in Yosemite Village and at El Portal Market in El Portal." },
+      { "q": "How do I get my Half Dome daily lottery result if there is no service?", "a": "The daily lottery runs on a two-day clock: you apply two days before your hiking date, between midnight and 4 pm Pacific, and the park says results go out late that night. Apply from the last gateway town or the east end of the Valley, and be somewhere with service that night, because the result will not reach you at a Tuolumne Meadows campsite or on the west end of the Valley." },
+      { "q": "Can I call 911 in Yosemite without cell service?", "a": "The park's instruction is to call or text 911 in an emergency, and ambulance service is available 24 hours a day, but both need a connection, which the coverage table does not promise on any trail or in the high country. Apple's Emergency SOS via satellite works on iPhone 14 or later in the United States when you are outside with a clear view of the sky and horizon, and backpackers should consider a two-way satellite messenger. Leave a written route and turnaround time with someone outside the park." },
+      { "q": "What should I download before I lose signal?", "a": "An offline map area covering the gateway corridor and the whole park including Tioga Road, the National Park Service app with Yosemite downloaded for offline use, the current Yosemite Guide PDF, and screenshots of every reservation, permit and pass, including a digital America the Beautiful pass saved to the phone. Do all of it in the last town, since every road into the park loses service well before the entrance station." }
+    ],
+    "related": ["getting-to-yosemite", "so-you-want-to-hike-half-dome", "first-yosemite-backpacking-trip", "pack-your-car-for-yosemite", "yosemite-during-smoke-season", "where-to-stay-in-yosemite"]
+  },
+  {
     "slug": "glacier-point-how-to-visit",
     "cat": "planning",
     "title": "Glacier Point: How to Visit and When the Road Is Open",
@@ -332,7 +358,7 @@
       { "q": "Is a bear canister required for backpacking in Yosemite?", "a": "Yes, parkwide for any overnight wilderness stay. Hanging food is not an accepted alternative here. Yosemite also maintains its own approved-container list that is narrower than the certifications other agencies accept, and soft-sided bag-style containers of the Ursack type are not on it. Confirm your specific model against the park's current list, or rent a canister from a wilderness center for a few dollars a week plus a refundable deposit." },
       { "q": "What are good first backpacking trips in Yosemite?", "a": "Cathedral Lakes from Tuolumne Meadows, roughly four and a half miles in and nine or so round trip, with a thousand to 1,400 feet of cumulative gain. Sunrise Lakes from Tenaya Lake, about seven and a half miles round trip with roughly 1,400 feet. Glen Aulin, about eleven miles round trip but only around 800 feet of elevation change. And Little Yosemite Valley from Happy Isles, under ten miles round trip with about 2,000 feet of gain." }
     ],
-    "related": ["yosemite-wilderness-permits-guide", "yosemite-bears-safety-guide", "cathedral-lakes-day-hike", "yosemite-camping-complete-guide", "yosemite-walk-up-and-day-of-permits"]
+    "related": ["yosemite-wilderness-permits-guide", "yosemite-bears-safety-guide", "cathedral-lakes-day-hike", "yosemite-camping-complete-guide", "yosemite-walk-up-and-day-of-permits", "cell-service-in-yosemite"]
   },
   {
     "slug": "yosemite-day-trip-from-bay-area",
@@ -1691,7 +1717,7 @@
       { "q": "Is there cell service in Yosemite for navigation?", "a": "Not reliably outside the Valley. Carry the free paper park map and download offline maps over wifi before you enter. There is no gas between Lee Vining and Crane Flat, about 60 miles, so fill up before entering from any direction." },
       { "q": "What roadside gear should I bring to Yosemite?", "a": "A portable jump starter (dead batteries are common at elevation), a spare tire with the tools and the know-how to change it, a basic tool kit with duct tape and zip ties, and a real flashlight that works when your phone is dead. Tows can be hours away." }
     ],
-    "related": ["yosemite-bears-safety-guide", "camping-in-yosemite-first-time", "getting-to-yosemite", "yosemite-valley-parking-guide", "first-time-yosemite-overwhelm"]
+    "related": ["yosemite-bears-safety-guide", "camping-in-yosemite-first-time", "getting-to-yosemite", "yosemite-valley-parking-guide", "first-time-yosemite-overwhelm", "cell-service-in-yosemite"]
   },
   {
     "slug": "yosemite-gateway-towns-compared",
@@ -1747,7 +1773,7 @@
       { "q": "What is a good alternative if Yosemite is too smoky?", "a": "The eastern Sierra often has better air when prevailing winds carry smoke away from the park. Mono Lake, Mammoth Lakes, and the June Lake Loop are worth checking. Smoke also typically clears after cold fronts, so monitoring the forecast 48-72 hours out gives you a real window to reschedule." },
       { "q": "Does wildfire smoke ruin a Yosemite trip?", "a": "Not necessarily. Haze produces warm, diffused light that photographers actively seek. On moderate-smoke days (AQI 50-100) most outdoor activities are fine for healthy adults. On heavy-smoke days (AQI 150+) strenuous outdoor exercise is not recommended, so use the time for indoor sites, driving routes, or the Ahwahnee." }
     ],
-    "related": ["yosemite-heat-safety-guide", "yosemite-fire-restrictions-explained", "when-to-visit-yosemite-2026-crowd-forecast", "yosemite-in-fall", "giant-sequoias-fire-adaptation"]
+    "related": ["yosemite-heat-safety-guide", "yosemite-fire-restrictions-explained", "when-to-visit-yosemite-2026-crowd-forecast", "yosemite-in-fall", "giant-sequoias-fire-adaptation", "cell-service-in-yosemite"]
   },
   {
     "slug": "yosemite-without-reservations-2026",
