@@ -1,4 +1,49 @@
 {
+  "cell-service-in-yosemite": {
+    "wordCount": 3190,
+    "keywords": [
+      "cell service in Yosemite",
+      "does Yosemite have cell service",
+      "Yosemite cell phone coverage by carrier",
+      "Verizon coverage Yosemite",
+      "AT&T service Yosemite Valley",
+      "Wi-Fi in Yosemite National Park",
+      "Tuolumne Meadows cell service",
+      "Yosemite offline maps",
+      "Yosemite emergency SOS satellite",
+      "Half Dome lottery results no cell service"
+    ],
+    "faq": [
+      {
+        "q": "Is there cell service in Yosemite?",
+        "a": "Some, and it is limited. The Park Service's own coverage table lists usable voice and 4G LTE on AT&T, T-Mobile and Verizon primarily in the east end of Yosemite Valley, the developed part around Yosemite Village, Curry Village, the Ahwahnee and the Pines campgrounds. Outside it, coverage is a short list of specific spots that depends on your carrier, and the park's FAQ says not to expect reliable service around the park."
+      },
+      {
+        "q": "Which carrier works best in Yosemite?",
+        "a": "Verizon has the longest list in the Park Service table: Yosemite Valley, Foresta, Crane Flat and Wawona, plus limited and unreliable coverage in El Portal and unreliable service at Tuolumne Meadows. AT&T is listed in Yosemite Valley and at Glacier Point, with no service at Tuolumne Meadows. T-Mobile is listed only in Yosemite Valley."
+      },
+      {
+        "q": "Is there cell service on Tioga Road or in Tuolumne Meadows?",
+        "a": "Not reliably, by the park's own account. Tioga Road between Crane Flat and Tuolumne Meadows appears for no carrier, AT&T is listed as having no service at Tuolumne Meadows, Verizon as not reliable there, and the park names Lee Vining, outside the park, as the nearest reliable cell and traditional phone service. It also notes that pay phones at Tuolumne may not be available."
+      },
+      {
+        "q": "Where can I get Wi-Fi in Yosemite?",
+        "a": "Registered overnight guests at the Ahwahnee, Yosemite Valley Lodge and Curry Village get internet access, which the concessioner says is limited to light use such as checking email. The public can use computers and Wi-Fi at the small Mariposa County library branches in Yosemite Valley and Wawona during their posted hours, and the park lists free Wi-Fi at Degnan's Kitchen in Yosemite Village and at El Portal Market in El Portal."
+      },
+      {
+        "q": "How do I get my Half Dome daily lottery result if there is no service?",
+        "a": "The daily lottery runs on a two-day clock: you apply two days before your hiking date, between midnight and 4 pm Pacific, and the park says results go out late that night. Apply from the last gateway town or the east end of the Valley, and be somewhere with service that night, because the result will not reach you at a Tuolumne Meadows campsite or on the west end of the Valley."
+      },
+      {
+        "q": "Can I call 911 in Yosemite without cell service?",
+        "a": "The park's instruction is to call or text 911 in an emergency, and ambulance service is available 24 hours a day, but both need a connection, which the coverage table does not promise on any trail or in the high country. Apple's Emergency SOS via satellite works on iPhone 14 or later in the United States when you are outside with a clear view of the sky and horizon, and backpackers should consider a two-way satellite messenger. Leave a written route and turnaround time with someone outside the park."
+      },
+      {
+        "q": "What should I download before I lose signal?",
+        "a": "An offline map area covering the gateway corridor and the whole park including Tioga Road, the National Park Service app with Yosemite downloaded for offline use, the current Yosemite Guide PDF, and screenshots of every reservation, permit and pass, including a digital America the Beautiful pass saved to the phone. Do all of it in the last town, since every road into the park loses service well before the entrance station."
+      }
+    ]
+  },
   "glacier-point-how-to-visit": {
     "wordCount": 3207,
     "keywords": [

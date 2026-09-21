@@ -110,6 +110,7 @@ window.planningSeriesFor = function (slug) {
 // verifies this map stays in sync with the files in bodies/.
 // ============================================================
 window.BODY_VERSIONS = {
+  "cell-service-in-yosemite": 1,
   "glacier-point-how-to-visit": 1,
   "clouds-rest-hike": 1,
   "yosemite-from-las-vegas": 1,
@@ -141,7 +142,7 @@ window.BODY_VERSIONS = {
   "where-to-stay-in-yosemite": 12,
   "yosemite-wildflowers-guide": 3,
   "watching-climbers-el-capitan": 2,
-  "getting-to-yosemite": 6,
+  "getting-to-yosemite": 7,
   "yosemite-wilderness-permits-guide": 4,
   "yosemite-accessibility-guide": 4,
   "pets-in-yosemite": 5,
@@ -742,6 +743,20 @@ window.KIT.lists.forEach((l) => {
 });
 
 window.ARTICLES = [
+  {
+    slug: "cell-service-in-yosemite",
+    cat: "planning",
+    title: "Cell Service in Yosemite: What Works Where, Carrier by Carrier, and How to Plan for None",
+    dek: "The Park Service publishes a coverage table and almost nobody reads it: usable service on the three carriers in the east end of the Valley, a handful of Verizon pockets, nothing on Tioga Road or any trail. Where the Wi-Fi is and who gets it, the five things on a trip that genuinely need a signal (the Half Dome lottery email, the digital pass, the directions), what call or text 911 means where neither connects, the satellite fallback, and the offline kit to load in the last town.",
+    seoDek: "Yosemite cell service by carrier and place, per the Park Service: the Valley's east end works, Tioga Road does not. Where the Wi-Fi is, and the offline kit.",
+    date: "September 21, 2026",
+    isoDate: "2026-09-21",
+    isoModified: "2026-09-21",
+    read: "12 min",
+    placeholder: "A day visitor at a Half Dome overlook, phone in hand",
+    image: "img/half-dome-overlook-day-visitor-stephen-leonardi.jpg",
+    credit: "Photo: Stephen Leonardi / Pexels",
+  },
   {
     slug: "glacier-point-how-to-visit",
     cat: "planning",
@@ -1804,6 +1819,10 @@ window.START_HERE = [
 // Curate a piece when it earns real search impressions, when it anchors a
 // cluster, or when it is the destination that needs the equity.
 window.RELATED = {
+  // Cell service and Wi-Fi: the coverage question every trip asks and the
+  // catalog only mentioned in passing. Onward to the pieces whose logistics
+  // depend on doing the phone work in the last town.
+  "cell-service-in-yosemite": ["getting-to-yosemite", "so-you-want-to-hike-half-dome", "first-yosemite-backpacking-trip", "pack-your-car-for-yosemite", "yosemite-during-smoke-season", "where-to-stay-in-yosemite"],
   // The standing Glacier Point guide: the road, its season, the summer shuttle rule, the walks, the bus, winter.
   "glacier-point-how-to-visit": ["glacier-point-road-open-2026", "four-mile-up-panorama-down", "yosemite-for-non-hikers", "yosemite-stargazing-where-to-look-up", "yosemite-in-fall", "yosemite-in-winter"],
   // The Clouds Rest trail guide: the Half Dome alternative the catalog kept
@@ -1834,13 +1853,13 @@ window.RELATED = {
   "yosemite-shuttle-and-yarts": ["getting-to-yosemite", "yosemite-valley-parking-guide", "highway-140-closed-yosemite", "yosemite-for-non-hikers", "yosemite-accessibility-guide", "yosemite-day-trip-from-bay-area"],
   "yosemite-valley-parking-guide": ["getting-to-yosemite", "yosemite-shuttle-and-yarts", "yosemite-without-reservations-2026", "yosemite-in-one-or-two-days", "mist-trail-the-real-guide"],
   "yosemite-day-trip-from-bay-area": ["yosemite-in-one-or-two-days", "getting-to-yosemite", "yosemite-from-los-angeles", "yosemite-valley-parking-guide", "yosemite-for-non-hikers", "when-to-visit-yosemite-2026-crowd-forecast"],
-  "pack-your-car-for-yosemite": ["yosemite-bears-safety-guide", "camping-in-yosemite-first-time", "getting-to-yosemite", "yosemite-valley-parking-guide", "first-time-yosemite-overwhelm"],
+  "pack-your-car-for-yosemite": ["yosemite-bears-safety-guide", "camping-in-yosemite-first-time", "getting-to-yosemite", "yosemite-valley-parking-guide", "first-time-yosemite-overwhelm", "cell-service-in-yosemite"],
 
   // Permits
   "yosemite-wilderness-permits-guide": ["first-yosemite-backpacking-trip", "yosemite-walk-up-and-day-of-permits", "so-you-want-to-hike-half-dome", "yosemite-camping-complete-guide", "mist-trail-the-real-guide"],
   "yosemite-walk-up-and-day-of-permits": ["yosemite-wilderness-permits-guide", "so-you-want-to-hike-half-dome", "first-yosemite-backpacking-trip", "yosemite-without-reservations-2026", "mist-trail-the-real-guide"],
   "so-you-want-to-hike-half-dome": ["clouds-rest-hike", "mist-trail-the-real-guide", "yosemite-wilderness-permits-guide", "cathedral-lakes-day-hike", "four-mile-up-panorama-down", "yosemite-heat-safety-guide"],
-  "first-yosemite-backpacking-trip": ["yosemite-wilderness-permits-guide", "yosemite-bears-safety-guide", "cathedral-lakes-day-hike", "yosemite-camping-complete-guide", "yosemite-walk-up-and-day-of-permits"],
+  "first-yosemite-backpacking-trip": ["yosemite-wilderness-permits-guide", "yosemite-bears-safety-guide", "cathedral-lakes-day-hike", "yosemite-camping-complete-guide", "yosemite-walk-up-and-day-of-permits", "cell-service-in-yosemite"],
 
   // Trails
   "mist-trail-the-real-guide": ["yosemite-waterfalls-guide", "so-you-want-to-hike-half-dome", "four-mile-up-panorama-down", "yosemite-heat-safety-guide", "yosemite-valley-parking-guide"],
@@ -1873,7 +1892,7 @@ window.RELATED = {
   "tioga-road-opening-weekend-2026": ["cathedral-lakes-day-hike", "tuolumne-meadows-in-a-day", "yosemite-from-las-vegas", "memorial-day-skip-the-valley-go-high-2026", "yosemite-stargazing-where-to-look-up", "when-to-visit-yosemite-2026-crowd-forecast"],
   "glacier-point-road-open-2026": ["four-mile-up-panorama-down", "glacier-point-how-to-visit", "yosemite-photography-spots", "yosemite-stargazing-where-to-look-up", "yosemite-for-non-hikers"],
   "yosemite-heat-safety-guide": ["swimming-in-the-merced", "mist-trail-the-real-guide", "when-to-visit-yosemite-2026-crowd-forecast", "yosemite-during-smoke-season", "yosemite-waterfalls-guide"],
-  "yosemite-during-smoke-season": ["yosemite-heat-safety-guide", "yosemite-fire-restrictions-explained", "when-to-visit-yosemite-2026-crowd-forecast", "yosemite-in-fall", "giant-sequoias-fire-adaptation"],
+  "yosemite-during-smoke-season": ["yosemite-heat-safety-guide", "yosemite-fire-restrictions-explained", "when-to-visit-yosemite-2026-crowd-forecast", "yosemite-in-fall", "giant-sequoias-fire-adaptation", "cell-service-in-yosemite"],
   "yosemite-fire-restrictions-explained": ["yosemite-during-smoke-season", "yosemite-camping-complete-guide", "giant-sequoias-fire-adaptation", "yosemite-heat-safety-guide", "yosemite-facelift-volunteer-guide"],
   "memorial-day-skip-the-valley-go-high-2026": ["tioga-road-opening-weekend-2026", "tuolumne-meadows-in-a-day", "when-to-visit-yosemite-2026-crowd-forecast", "clouds-rest-hike", "hetch-hetchy-the-other-yosemite-valley", "cathedral-lakes-day-hike"],
   "swimming-in-the-merced": ["yosemite-heat-safety-guide", "yosemite-with-kids-no-reservations-2026", "mist-trail-the-real-guide", "yosemite-waterfalls-guide", "yosemite-in-june-2026"],

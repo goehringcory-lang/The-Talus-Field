@@ -9,13 +9,23 @@
     <copyright>© 2026 The Talus Field</copyright>
     <managingEditor>cory@thetalusfieldjournal.com (Cory Goehring)</managingEditor>
     <webMaster>cory@thetalusfieldjournal.com (Cory Goehring)</webMaster>
-    <lastBuildDate>Thu, 17 Sep 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 21 Sep 2026 00:00:00 +0000</lastBuildDate>
     <image>
       <url>https://thetalusfieldjournal.com/img/talus-field-mark.png</url>
       <title>The Talus Field</title>
       <link>https://thetalusfieldjournal.com/</link>
     </image>
 
+    <item>
+      <title>Cell Service in Yosemite: What Works Where, Carrier by Carrier, and How to Plan for None</title>
+      <link>https://thetalusfieldjournal.com/articles/cell-service-in-yosemite</link>
+      <guid isPermaLink="true">https://thetalusfieldjournal.com/articles/cell-service-in-yosemite</guid>
+      <pubDate>Mon, 21 Sep 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Cory Goehring</dc:creator>
+      <category>Planning</category>
+      <description>The Park Service publishes a coverage table and almost nobody reads it: usable service on the three carriers in the east end of the Valley, a handful of Verizon pockets, nothing on Tioga Road or any trail. Where the Wi-Fi is and who gets it, the five things on a trip that genuinely need a signal (the Half Dome lottery email, the digital pass, the directions), what call or text 911 means where neither connects, the satellite fallback, and the offline kit to load in the last town.</description>
+      <media:content url="https://thetalusfieldjournal.com/img/responsive/half-dome-overlook-day-visitor-stephen-leonardi-og.jpg" medium="image" />
+    </item>
     <item>
       <title>Glacier Point: How to Visit and When the Road Is Open</title>
       <link>https://thetalusfieldjournal.com/articles/glacier-point-how-to-visit</link>
