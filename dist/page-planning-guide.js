@@ -61,63 +61,87 @@ function PlanningGuide({
     filters.apply(intent);
     setJumped(true);
   };
-  var sectionH2 = {
-    fontFamily: "var(--display)",
-    fontSize: 40,
-    fontWeight: 500,
-    lineHeight: 1.1,
-    marginBottom: 20,
-    letterSpacing: "-0.01em"
-  };
-  var sectionLede = {
-    fontFamily: "var(--serif)",
-    fontSize: 19,
-    lineHeight: 1.55,
-    color: "var(--ink-1)",
-    maxWidth: 760,
-    marginBottom: 32
+  var [pendingPart, setPendingPart] = useStatePg(null);
+  useEffectPg(() => {
+    if (pendingPart == null || listing) return;
+    var el = document.getElementById(`part-${pendingPart}`);
+    setPendingPart(null);
+    if (!el) return;
+    var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    el.scrollIntoView({
+      behavior: reduce ? "auto" : "smooth",
+      block: "start"
+    });
+    el.focus({
+      preventScroll: true
+    });
+  }, [pendingPart, listing]);
+  var jumpToPart = n => e => {
+    if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+    e.preventDefault();
+    if (window.track) window.track("cta_click", {
+      location: "planning_index",
+      target: `#part-${n}`
+    });
+    if (listing) filters.clear();
+    setPendingPart(n);
   };
   return React.createElement("div", {
-    className: "page"
-  }, React.createElement("div", {
-    className: "page-head"
-  }, React.createElement("div", {
-    className: "wrap"
-  }, React.createElement(Breadcrumbs, {
+    className: "page hp-design hp-planning"
+  }, React.createElement(HpPageHead, {
     go: go,
-    trail: [{
+    crumbs: [{
       label: "Home",
       route: "home"
     }, {
       label: "The Planning Guide"
-    }]
-  }), React.createElement("div", {
-    className: "eyebrow eyebrow--moss"
-  }, "The Planning Guide"), React.createElement("h1", null, "Yosemite, planned properly."), React.createElement("p", {
-    className: "page-head__dek"
-  }, "The questions that come up before, during, and after a Yosemite trip, answered in the order most visitors actually run into them. Drawn from the full archive of The Talus Field, organized to read like a guide rather than a search result."), React.createElement("p", {
-    className: "mono",
-    style: {
-      fontSize: 12,
-      textTransform: "uppercase",
-      letterSpacing: "0.14em",
-      color: "var(--ink-3)",
-      fontWeight: 700,
-      marginTop: 12
-    }
-  }, "Planning advice from inside the park, checked on foot."))), React.createElement("div", {
-    className: "wrap",
-    style: {
-      paddingTop: 40
-    }
+    }],
+    eyebrow: "THE PLANNING GUIDE",
+    title: React.createElement(React.Fragment, null, "Yosemite,", React.createElement("br", null), "planned ", React.createElement("em", null, "properly.")),
+    intro: "The questions that come up before, during, and after a Yosemite trip, answered in the order most visitors actually run into them. Drawn from the full archive of The Talus Field, organized to read like a guide rather than a search result.",
+    actions: React.createElement(React.Fragment, null, React.createElement(HomeLink, {
+      go: go,
+      location: "planning_hero",
+      className: "hp-button",
+      href: "#trip-selector"
+    }, "Build a plan for your trip \xA0 ↓"), React.createElement("a", {
+      className: "hp-link",
+      href: "#part-1",
+      onClick: jumpToPart(1)
+    }, "Read the guide in order ↓")),
+    byline: "Planning advice from inside the park, checked on foot.",
+    aside: React.createElement("nav", {
+      className: "hp-list hp-partindex",
+      "aria-label": "The five parts"
+    }, PLANNING_PARTS.map((p, i) => {
+      var slugs = planningPartSlugs(p.part);
+      var lead = slugs.map(s => window.findArticle(s)).find(a => a && a.image);
+      var n = slugs.length;
+      return React.createElement("a", {
+        key: p.part,
+        className: "hp-row",
+        href: `#part-${i + 1}`,
+        onClick: jumpToPart(i + 1)
+      }, lead ? React.createElement(ResponsiveImage, {
+        image: lead.image,
+        alt: "",
+        sizes: "136px"
+      }) : React.createElement("span", {
+        className: "hp-row__blank",
+        "aria-hidden": "true"
+      }), React.createElement("div", null, React.createElement("p", {
+        className: "hp-eyebrow"
+      }, String(i + 1).padStart(2, "0"), " / ", p.eyebrow.toUpperCase()), React.createElement("h3", null, p.title), React.createElement("b", null, n, " ", n === 1 ? "entry" : "entries", " ", React.createElement("span", null, "↓"))));
+    }))
+  }), React.createElement("section", {
+    className: "hp-wrap hp-section hp-planning__selector",
+    id: "trip-selector",
+    tabIndex: -1
   }, React.createElement(window.TripSelector, {
     go: go,
     onApplyIntent: applyIntent
-  })), React.createElement("div", {
-    className: "wrap",
-    style: {
-      paddingTop: 48
-    },
+  })), React.createElement("section", {
+    className: "hp-wrap hp-planning__filters",
     ref: resultsRef
   }, React.createElement(window.IntentFilters, {
     articles: window.ARTICLES,
@@ -130,31 +154,17 @@ function PlanningGuide({
     count: filters.count,
     resultCount: matches.length,
     note: "Drawn from the whole archive, not only the five parts below."
-  })), listing ? React.createElement("div", {
-    className: "wrap",
-    style: {
-      paddingTop: 40,
-      paddingBottom: 96
-    }
+  })), listing ? React.createElement("section", {
+    className: "hp-wrap hp-section hp-planning__results"
   }, matches.length > 0 ? React.createElement("div", {
-    style: {
-      display: "grid",
-      gridTemplateColumns: "repeat(3, 1fr)",
-      gap: 36,
-      rowGap: 56
-    }
-  }, matches.map(a => React.createElement(ArticleCard, {
+    className: "hp-journal-grid"
+  }, matches.map(a => React.createElement(HpArticleCard, {
     key: a.slug,
     article: a,
-    go: go
+    go: go,
+    location: "planning_list"
   }))) : React.createElement("p", {
-    style: {
-      fontFamily: "var(--serif)",
-      fontSize: 19,
-      lineHeight: 1.55,
-      color: "var(--ink-2)",
-      maxWidth: 640
-    }
+    className: "hp-sub hp-planning__empty"
   }, "Nothing in the archive carries all of those at once", window.intentMonthOf(filters.value) ? `, in ${window.intentMonthLabel(window.intentMonthOf(filters.value))}` : "", ". Drop a filter and try again, or", " ", React.createElement("a", {
     href: "/search",
     onClick: e => {
@@ -162,82 +172,34 @@ function PlanningGuide({
       go("search");
     }
   }, "search the whole site"), "."), React.createElement("p", {
-    style: {
-      marginTop: 40,
-      fontFamily: "var(--sans)",
-      fontSize: 14,
-      color: "var(--ink-3)"
-    }
+    className: "hp-planning__back"
   }, React.createElement("button", {
     type: "button",
-    className: "linkish",
+    className: "hp-link",
     onClick: filters.clear
-  }, filtering ? "Clear the filters to read the guide in order →" : "Back to the five-part guide →"))) : React.createElement("div", {
-    className: "wrap",
-    style: {
-      paddingTop: 56
-    }
-  }, React.createElement("p", {
-    style: {
-      fontFamily: "var(--display)",
-      fontSize: 22,
-      lineHeight: 1.5,
-      color: "var(--ink-2)",
-      maxWidth: 760,
-      marginBottom: 56
-    }
-  }, "Yosemite in 2026 is a different park from Yosemite in 2024. The entrance reservation system is gone, the crowds are heavier, the gateway towns matter more, and the difference between a great trip and a frustrating one is almost always strategy, not luck. Here is the strategy, in five parts."), React.createElement("nav", {
-    className: "planidx",
-    "aria-label": "The five parts"
-  }, PLANNING_PARTS.map((p, i) => {
-    var n = planningPartSlugs(p.part).length;
-    return React.createElement("a", {
-      key: p.part,
-      className: "planidx__item",
-      href: `#part-${i + 1}`
-    }, React.createElement("span", {
-      className: "planidx__eyebrow"
-    }, p.eyebrow), React.createElement("span", {
-      className: "planidx__title"
-    }, p.title), React.createElement("span", {
-      className: "planidx__n"
-    }, n, " ", n === 1 ? "entry" : "entries"));
-  })), PLANNING_PARTS.map((p, i) => {
+  }, filtering ? "Clear the filters to read the guide in order ↑" : "Back to the five-part guide ↑"))) : React.createElement(React.Fragment, null, React.createElement("div", {
+    className: "hp-wrap hp-planning__lead"
+  }, React.createElement("p", null, "Yosemite in 2026 is a different park from Yosemite in 2024. The entrance reservation system is gone, the crowds are heavier, the gateway towns matter more, and the difference between a great trip and a frustrating one is almost always strategy, not luck. Here is the strategy, in five parts.")), PLANNING_PARTS.map((p, i) => {
     var items = planningPartSlugs(p.part).map(s => window.findArticle(s)).filter(Boolean);
     return React.createElement("section", {
       key: p.part,
       id: `part-${i + 1}`,
-      style: {
-        paddingTop: 32,
-        paddingBottom: 56,
-        borderTop: "1px solid var(--rule)",
-        scrollMarginTop: 90
-      }
-    }, React.createElement("div", {
-      className: "eyebrow eyebrow--moss",
-      style: {
-        marginTop: 32,
-        marginBottom: 12
-      }
-    }, p.eyebrow), React.createElement("h2", {
-      style: sectionH2
-    }, p.title), React.createElement("p", {
-      style: sectionLede
+      tabIndex: -1,
+      className: "hp-wrap hp-section hp-part"
+    }, React.createElement(HpHeading, {
+      eyebrow: `${String(i + 1).padStart(2, "0")} / ${p.eyebrow.toUpperCase()}`,
+      title: p.title
+    }), React.createElement("p", {
+      className: "hp-sub"
     }, p.lede), React.createElement("div", {
-      style: {
-        display: "grid",
-        gridTemplateColumns: `repeat(${p.cols}, 1fr)`,
-        gap: 36,
-        rowGap: 48
-      }
-    }, items.map(a => React.createElement(ArticleCard, {
+      className: `hp-journal-grid${p.cols === 2 ? " hp-journal-grid--2" : ""}`
+    }, items.map(a => React.createElement(HpArticleCard, {
       key: a.slug,
       article: a,
-      go: go
+      go: go,
+      location: "planning_part"
     }))), p.lodging && React.createElement("div", {
-      style: {
-        maxWidth: 760
-      }
+      className: "hp-part__lodging"
     }, React.createElement(LodgingCta, {
       destination: "Yosemite National Park",
       heading: "The booking with the earliest deadline",
@@ -247,63 +209,31 @@ function PlanningGuide({
       cta: "See what is available on your dates →"
     })));
   }), React.createElement("section", {
-    style: {
-      paddingTop: 32,
-      paddingBottom: 96,
-      borderTop: "2px solid var(--ink)"
-    }
-  }, React.createElement("div", {
-    style: {
-      marginTop: 56,
-      display: "grid",
-      gridTemplateColumns: "1fr 1fr",
-      gap: 48,
-      alignItems: "start"
-    }
-  }, React.createElement("div", null, React.createElement("div", {
-    className: "eyebrow eyebrow--moss",
-    style: {
-      marginBottom: 14
-    }
-  }, "The takeaway"), React.createElement("h2", {
-    style: {
-      fontFamily: "var(--display)",
-      fontSize: 32,
-      fontWeight: 400,
-      lineHeight: 1.15,
-      letterSpacing: "-0.01em",
-      marginBottom: 16
-    }
-  }, "Strategy beats research."), React.createElement("p", {
-    style: {
-      fontFamily: "var(--display)",
-      fontStyle: "italic",
-      fontSize: 19,
-      color: "var(--ink-2)",
-      lineHeight: 1.5,
-      marginBottom: 24
-    }
-  }, "Almost every \"Yosemite was crowded and frustrating\" story comes from a trip that was not planned around the park's actual rhythms. The articles above are how this site closes that gap. Read what is relevant. Skip what is not. Then pack the car."), React.createElement("a", {
-    className: "btn btn--ghost",
-    href: "/articles",
-    onClick: e => {
-      e.preventDefault();
-      go("articles");
-    }
-  }, "Browse all entries →")), React.createElement(NewsletterInline, {
+    className: "hp-wrap hp-section hp-planning__takeaway"
+  }, React.createElement(HpHeading, {
+    go: go,
     location: "planning_hub",
-    tag: "planning",
-    heading: "Get the conditions before you go",
-    blurb: "Reservation windows, road openings, what's booked out: one Yosemite email a week while you plan. Free."
-  })), React.createElement(GuidePromo, {
+    eyebrow: "THE TAKEAWAY",
+    title: "Strategy beats research.",
+    link: {
+      href: "/articles",
+      label: "Browse all entries ↗"
+    }
+  }), React.createElement("p", {
+    className: "hp-sub"
+  }, "Almost every \"Yosemite was crowded and frustrating\" story comes from a trip that was not planned around the park's actual rhythms. The articles above are how this site closes that gap. Read what is relevant. Skip what is not. Then pack the car.")), React.createElement(HpGuideBand, {
     go: go,
     location: "planning_hub",
     title: "Reading is planning. This is the trip.",
-    body: "The Field Guide app carries the same advice into the park: 50-plus stops with parking and timing notes, offline maps, a day-by-day planner, and the secret guide. Works with no signal, which is most of the park.",
-    style: {
-      maxWidth: 680,
-      marginTop: 56
-    }
-  }))));
+    intro: "The Field Guide app carries the same advice into the park: 50-plus stops with parking and timing notes, offline maps, a day-by-day planner, and the secret guide. Works with no signal, which is most of the park.",
+    sample: true
+  }), React.createElement(HpLetter, {
+    eyebrow: "ONE YOSEMITE EMAIL A WEEK",
+    title: "Get the conditions before you go",
+    heading: "Get the conditions before you go",
+    blurb: "Reservation windows, road openings, what's booked out: one Yosemite email a week while you plan. Free.",
+    location: "planning_hub",
+    tag: "planning"
+  })));
 }
 window.PlanningGuide = PlanningGuide;

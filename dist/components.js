@@ -688,6 +688,7 @@ function HomeLink({
     href: href,
     onClick: event => {
       if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+      if (/^(https?:|tel:|mailto:|\/archive\/)/.test(href)) return;
       if (window.track) window.track(href === "/guide" ? "guide_cta_click" : "cta_click", {
         location,
         target: href
@@ -710,8 +711,10 @@ function HomeLink({
     }
   }, children);
 }
+var DESIGN_ROUTES = ["home", "planning", "conditions", "guide"];
 var HOME_NAV = [{
   href: "#home-start-here",
+  away: "/start-here",
   label: "Start here",
   group: "plan"
 }, {
@@ -723,6 +726,7 @@ var HOME_NAV = [{
   label: "Park conditions"
 }, {
   href: "#home-newsletter",
+  away: "/newsletter",
   label: "Sunday Letter"
 }, {
   href: "/search",
@@ -730,8 +734,12 @@ var HOME_NAV = [{
 }];
 var homeMenuCta = cta => `${(cta || "Open the section").replace(/\s*→\s*$/, "")} ↗`;
 function HomeMasthead({
-  go
+  go,
+  current = "home"
 }) {
+  var home = current === "home";
+  var location = home ? "home_navigation" : "site_navigation";
+  var here = route => current === route ? "page" : undefined;
   var [open, setOpen] = React.useState(null);
   var closeTimer = React.useRef(null);
   var navRef = React.useRef(null);
@@ -785,7 +793,7 @@ function HomeMasthead({
       onClick: e => {
         if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
         if (window.track) window.track("cta_click", {
-          location: "home_navigation",
+          location,
           target: path
         });
         closeMenu();
@@ -810,7 +818,7 @@ function HomeMasthead({
     className: "hp-wrap hp-header"
   }, React.createElement(HomeLink, {
     go: go,
-    location: "home_navigation",
+    location: location,
     className: "hp-brand",
     href: "/"
   }, React.createElement("img", {
@@ -823,12 +831,15 @@ function HomeMasthead({
     ref: navRef
   }, HOME_NAV.map(item => {
     var g = item.group && NAV_GROUPS.find(group => group.key === item.group);
+    var href = home ? item.href : item.away || item.href;
+    var ariaCurrent = item.href === "/conditions" ? here("conditions") : undefined;
     if (!g || !g.columns) {
       return React.createElement(HomeLink, {
         key: item.href,
         go: go,
-        location: "home_navigation",
-        href: item.href
+        location: location,
+        href: href,
+        "aria-current": ariaCurrent
       }, item.label);
     }
     var isOpen = open === g.key;
@@ -848,8 +859,8 @@ function HomeMasthead({
         }
       }, React.createElement(HomeLink, {
         go: go,
-        location: "home_navigation",
-        href: item.href,
+        location: location,
+        href: href,
         onClickCapture: closeMenu
       }, item.label), React.createElement("button", {
         type: "button",
@@ -896,10 +907,256 @@ function HomeMasthead({
     );
   })), React.createElement(HomeLink, {
     go: go,
-    location: "home_navigation",
+    location: location,
     className: "hp-button",
-    href: "#field-guide"
+    href: home ? "#field-guide" : "/guide",
+    "aria-current": here("guide")
   }, "Get the app ↗")));
+}
+function HpHeading({
+  go,
+  location,
+  eyebrow,
+  title,
+  link,
+  id
+}) {
+  return React.createElement("div", {
+    className: "hp-heading"
+  }, React.createElement("div", null, eyebrow && React.createElement("p", {
+    className: "hp-eyebrow"
+  }, eyebrow), React.createElement("h2", {
+    id: id
+  }, title)), link && React.createElement(HomeLink, {
+    go: go,
+    location: location,
+    className: "hp-link",
+    href: link.href,
+    ...(/^https?:/.test(link.href) ? {
+      target: "_blank",
+      rel: "noopener noreferrer"
+    } : {})
+  }, link.label));
+}
+function HpRow({
+  go,
+  location,
+  href,
+  image,
+  alt,
+  eyebrow,
+  title,
+  text,
+  cta,
+  sizes
+}) {
+  return React.createElement(HomeLink, {
+    go: go,
+    location: location,
+    className: "hp-row",
+    href: href
+  }, image ? React.createElement(ResponsiveImage, {
+    image: image,
+    alt: alt || "",
+    sizes: sizes || "(max-width: 760px) calc(100vw - 40px), 600px"
+  }) : React.createElement("span", {
+    className: "hp-row__blank",
+    "aria-hidden": "true"
+  }), React.createElement("div", null, React.createElement("p", {
+    className: "hp-eyebrow"
+  }, eyebrow), React.createElement("h3", null, title), text && React.createElement("p", null, text), cta && React.createElement("b", null, cta, " ", React.createElement("span", null, "↗"))));
+}
+function HpCard({
+  go,
+  location,
+  href,
+  image,
+  alt,
+  eyebrow,
+  title,
+  text,
+  sizes,
+  children
+}) {
+  return React.createElement(HomeLink, {
+    go: go,
+    location: location,
+    href: href
+  }, image ? React.createElement(ResponsiveImage, {
+    image: image,
+    alt: alt || "",
+    sizes: sizes || "(max-width: 760px) calc(100vw - 40px), 600px"
+  }) : React.createElement("span", {
+    className: "hp-card__blank",
+    "aria-hidden": "true"
+  }), React.createElement("p", {
+    className: "hp-eyebrow"
+  }, eyebrow), React.createElement("h3", null, title), children || React.createElement("p", null, text));
+}
+function HpArticleCard({
+  article,
+  go,
+  location
+}) {
+  var cat = window.findCategory ? window.findCategory(article.cat) : null;
+  return React.createElement(HpCard, {
+    go: go,
+    location: location,
+    href: `/articles/${article.slug}`,
+    image: article.image,
+    alt: article.placeholder || "",
+    eyebrow: React.createElement(React.Fragment, null, cat ? cat.label.toUpperCase() : "", React.createElement("span", null, article.read ? article.read.toUpperCase() : "")),
+    title: article.title,
+    text: React.createElement(React.Fragment, null, article.dek, " ↗"),
+    sizes: "(max-width: 760px) calc(100vw - 40px), (max-width: 1100px) 45vw, 420px"
+  });
+}
+function HpPageHead({
+  go,
+  crumbs,
+  eyebrow,
+  title,
+  intro,
+  actions,
+  byline,
+  aside,
+  className
+}) {
+  return React.createElement("section", {
+    className: ["hp-pagehead", "hp-wrap", aside ? "hp-pagehead--split" : null, className].filter(Boolean).join(" ")
+  }, React.createElement("div", {
+    className: "hp-pagehead__copy"
+  }, crumbs && React.createElement(Breadcrumbs, {
+    go: go,
+    trail: crumbs
+  }), eyebrow && React.createElement("p", {
+    className: "hp-eyebrow"
+  }, eyebrow), React.createElement("h1", null, title), intro && React.createElement("p", {
+    className: "hp-intro"
+  }, intro), actions && React.createElement("div", {
+    className: "hp-actions"
+  }, actions), byline && React.createElement("p", {
+    className: "hp-byline"
+  }, byline)), aside && React.createElement("div", {
+    className: "hp-pagehead__aside"
+  }, aside));
+}
+var HP_GUIDE_POINTS = [{
+  mark: "↳",
+  title: "Find your next stop.",
+  text: "44 stops, arranged in driving order."
+}, {
+  mark: "⌁",
+  title: "Choose a hike that fits your day.",
+  text: "57 day hikes with GPS tracks."
+}, {
+  mark: "◎",
+  title: "Bring a little local knowledge.",
+  text: "50 Secret Guide entries to look beyond the obvious."
+}];
+function HpGuideBand({
+  go,
+  location,
+  id,
+  eyebrow = "THE TALUS FIELD GUIDE / THE OFFLINE APP",
+  title,
+  intro,
+  points = HP_GUIDE_POINTS,
+  heading = "h2",
+  sample,
+  children
+}) {
+  var H = heading;
+  return React.createElement("section", {
+    className: "hp-product",
+    id: id,
+    tabIndex: id ? -1 : undefined
+  }, React.createElement("div", {
+    className: "hp-wrap hp-product-grid"
+  }, React.createElement("div", null, React.createElement("p", {
+    className: "hp-eyebrow"
+  }, eyebrow), React.createElement(H, null, title), React.createElement("p", {
+    className: "hp-intro"
+  }, intro), points && React.createElement("ul", null, points.map(p => React.createElement("li", {
+    key: p.title
+  }, React.createElement("span", null, p.mark), React.createElement("div", null, React.createElement("strong", null, p.title), React.createElement("p", null, p.text))))), children || React.createElement(React.Fragment, null, React.createElement(HomeLink, {
+    go: go,
+    location: location,
+    className: "hp-button hp-light",
+    href: "/guide"
+  }, "Get the Field Guide ", React.createElement("span", null, "$3.99 ↗")), React.createElement("p", {
+    className: "hp-terms"
+  }, "One payment · 18 months of access · 30-day guarantee")), sample && React.createElement("p", {
+    className: "hp-terms hp-sample"
+  }, "Not sure yet? Five entries are free to read, no email required:", " ", React.createElement("a", {
+    href: `${GUIDE_PROMO_APP_BASE}/preview`,
+    onClick: () => {
+      if (window.track) window.track("guide_sample_click", {
+        location
+      });
+    }
+  }, "preview the guide ↗"))), React.createElement("div", {
+    className: "hp-screens"
+  }, React.createElement("div", {
+    className: "hp-orbit"
+  }), React.createElement("div", {
+    className: "hp-phone hp-back"
+  }, React.createElement("img", {
+    src: "/img/guide/screens/hikes.v2.webp",
+    alt: "Field Guide hiking screen",
+    width: "640",
+    height: "1385",
+    loading: "lazy",
+    decoding: "async"
+  })), React.createElement("div", {
+    className: "hp-phone hp-front"
+  }, React.createElement("img", {
+    src: "/img/guide/screens/front-page.v4.webp",
+    alt: "Field Guide app with park information and daylight tools",
+    width: "640",
+    height: "1385",
+    loading: "lazy",
+    decoding: "async"
+  })), React.createElement("div", {
+    className: "hp-offline"
+  }, "✓ \xA0 All set. Even off the grid.", React.createElement("small", null, "YOUR GUIDE WORKS OFFLINE")), React.createElement("p", {
+    className: "hp-screen-note"
+  }, "Actual screens from the Field Guide"))));
+}
+function HpLetter({
+  id,
+  eyebrow,
+  title,
+  heading,
+  blurb,
+  location,
+  tag,
+  cta = "Send me the letter ↗",
+  terms = "Free to read. One letter a week. Unsubscribe whenever.",
+  paper,
+  stamp = "THE SUNDAY LETTER"
+}) {
+  return React.createElement("section", {
+    className: "hp-letter hp-wrap hp-section",
+    id: id,
+    tabIndex: id ? -1 : undefined
+  }, React.createElement("div", {
+    className: "hp-paper"
+  }, React.createElement("span", {
+    className: "hp-stamp"
+  }, "EL PORTAL, CA", React.createElement("br", null), stamp), React.createElement("div", null, paper || React.createElement(React.Fragment, null, "A field note", React.createElement("br", null), "for your", React.createElement("br", null), React.createElement("em", null, "next adventure."))), React.createElement("small", null, "From Yosemite, with perspective.")), React.createElement("div", null, React.createElement("p", {
+    className: "hp-eyebrow"
+  }, eyebrow), React.createElement("h2", null, title), React.createElement(NewsletterInline, {
+    heading: heading,
+    blurb: blurb,
+    location: location,
+    tag: tag,
+    cta: cta,
+    modifier: "hp-newsletter",
+    inputLabel: "Your email address"
+  }), terms && React.createElement("p", {
+    className: "hp-terms"
+  }, terms)));
 }
 function Header({
   current,
@@ -1052,8 +1309,9 @@ function Header({
     key,
     label
   }, opts);
-  if (current === "home") return React.createElement(HomeMasthead, {
-    go: go
+  if (DESIGN_ROUTES.includes(current)) return React.createElement(HomeMasthead, {
+    go: go,
+    current: current
   });
   return React.createElement(React.Fragment, null, React.createElement("a", {
     className: "skip-link",
@@ -2889,5 +3147,15 @@ Object.assign(window, {
   MapLightbox,
   EntranceWaits,
   WebcamStrip,
-  GuidePromo
+  GuidePromo,
+  DESIGN_ROUTES,
+  HomeLink,
+  HomeMasthead,
+  HpHeading,
+  HpRow,
+  HpCard,
+  HpArticleCard,
+  HpPageHead,
+  HpGuideBand,
+  HpLetter
 });

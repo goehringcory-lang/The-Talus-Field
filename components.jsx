@@ -641,11 +641,15 @@ window.NAV_GROUPS = NAV_GROUPS;
 window.NAV_SECONDARY = NAV_SECONDARY;
 window.navGroupLinks = navGroupLinks;
 
-// Homepage links keep native modified-click behavior and use the existing SPA
-// router for plain clicks. Section links retain meaningful no-JavaScript hrefs.
+// Links on the design-system pages (the homepage and the pages rebuilt on it)
+// keep native modified-click behavior and use the existing SPA router for plain
+// clicks. Section links retain meaningful no-JavaScript hrefs. An external,
+// tel: or /archive/ href is a real navigation: it is left to the browser, and
+// outbound clicks are measured by app.jsx's delegated listener.
 function HomeLink({ go, href, location, children, ...props }) {
   return <a {...props} href={href} onClick={(event) => {
     if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    if (/^(https?:|tel:|mailto:|\/archive\/)/.test(href)) return;
     if (window.track) window.track(href === "/guide" ? "guide_cta_click" : "cta_click", { location, target: href });
     if (href.startsWith("#")) {
       const section = document.getElementById(href.slice(1));
@@ -660,16 +664,26 @@ function HomeLink({ go, href, location, children, ...props }) {
   }}>{children}</a>;
 }
 
+// ============================================================
+// THE DESIGN SYSTEM. The September 2026 homepage introduced it; these are the
+// pieces the pages rebuilt on it share. DESIGN_ROUTES is the rollout list:
+// Header draws the design masthead (and no BottomNav) on every route in it,
+// and each of those pages renders inside a `.hp-design` root, whose styles
+// live in one block at the end of styles.css. Moving a page over means adding
+// its route here and rebuilding it from these components.
+// ============================================================
+const DESIGN_ROUTES = ["home", "planning", "conditions", "guide"];
+
 // The homepage masthead's links. Two of them lead into the site masthead's
 // menus and carry that menu as a panel: "Start here" opens Plan a Trip and
 // "The journal" opens Explore Yosemite. The panels are built from NAV_GROUPS
 // itself, so the homepage and every other page cannot disagree about what is
 // in a menu; only the drawing (.hp-menu in styles.css) is the homepage's own.
 const HOME_NAV = [
-  { href: "#home-start-here", label: "Start here", group: "plan" },
+  { href: "#home-start-here", away: "/start-here", label: "Start here", group: "plan" },
   { href: "/articles", label: "The journal", group: "read" },
   { href: "/conditions", label: "Park conditions" },
-  { href: "#home-newsletter", label: "Sunday Letter" },
+  { href: "#home-newsletter", away: "/newsletter", label: "Sunday Letter" },
   { href: "/search", label: "Search" },
 ];
 
@@ -688,7 +702,16 @@ const homeMenuCta = (cta) => `${(cta || "Open the section").replace(/\s*→\s*$/
 // outside the nav, or taking a link closes it. Every panel is in the markup,
 // hidden, from the static shell onward, so the menus' links are in the HTML
 // a crawler reads for "/".
-function HomeMasthead({ go }) {
+//
+// Since the design rollout the same masthead draws every route in
+// DESIGN_ROUTES. On the homepage the section links (`href`) jump to the page's
+// own sections, and the static shell (scripts/gen-home-shell.mjs) bakes exactly
+// that render, so the homepage branch must stay free of browser state.
+// Everywhere else they go to the routes those sections stand for (`away`).
+function HomeMasthead({ go, current = "home" }) {
+  const home = current === "home";
+  const location = home ? "home_navigation" : "site_navigation";
+  const here = (route) => (current === route ? "page" : undefined);
   const [open, setOpen] = React.useState(null);
   const closeTimer = React.useRef(null);
   const navRef = React.useRef(null);
@@ -741,7 +764,7 @@ function HomeMasthead({ go }) {
         href={path}
         onClick={(e) => {
           if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
-          if (window.track) window.track("cta_click", { location: "home_navigation", target: path });
+          if (window.track) window.track("cta_click", { location, target: path });
           closeMenu();
           if (href) return;
           e.preventDefault();
@@ -766,15 +789,17 @@ function HomeMasthead({ go }) {
         <span>Written here. Taken everywhere.</span>
       </div>
       <header className="hp-wrap hp-header">
-        <HomeLink go={go} location="home_navigation" className="hp-brand" href="/">
+        <HomeLink go={go} location={location} className="hp-brand" href="/">
           <img src="/img/talus-field-mark-masthead.png?v=2" width="214" height="168" alt="" />
           <span>The Talus Field<small>YOSEMITE, FROM THE INSIDE.</small></span>
         </HomeLink>
         <nav aria-label="Main navigation" ref={navRef}>
           {HOME_NAV.map((item) => {
             const g = item.group && NAV_GROUPS.find((group) => group.key === item.group);
+            const href = home ? item.href : (item.away || item.href);
+            const ariaCurrent = item.href === "/conditions" ? here("conditions") : undefined;
             if (!g || !g.columns) {
-              return <HomeLink key={item.href} go={go} location="home_navigation" href={item.href}>{item.label}</HomeLink>;
+              return <HomeLink key={item.href} go={go} location={location} href={href} aria-current={ariaCurrent}>{item.label}</HomeLink>;
             }
             const isOpen = open === g.key;
             const panelId = `hp-menu-${g.key}`;
@@ -790,7 +815,7 @@ function HomeMasthead({ go }) {
                 onPointerLeave={(e) => { if (fromMouse(e)) closeSoon(); }}
                 onBlur={(e) => { if (isOpen && !e.currentTarget.contains(e.relatedTarget)) closeMenu(); }}
               >
-                <HomeLink go={go} location="home_navigation" href={item.href} onClickCapture={closeMenu}>{item.label}</HomeLink>
+                <HomeLink go={go} location={location} href={href} onClickCapture={closeMenu}>{item.label}</HomeLink>
                 <button
                   type="button"
                   className="hp-menu__caret"
@@ -824,9 +849,167 @@ function HomeMasthead({ go }) {
             );
           })}
         </nav>
-        <HomeLink go={go} location="home_navigation" className="hp-button" href="#field-guide">Get the app ↗</HomeLink>
+        <HomeLink go={go} location={location} className="hp-button" href={home ? "#field-guide" : "/guide"} aria-current={here("guide")}>Get the app ↗</HomeLink>
       </header>
     </div>
+  );
+}
+
+// Section heading: eyebrow, h2, and an optional link set against the right edge.
+function HpHeading({ go, location, eyebrow, title, link, id }) {
+  return (
+    <div className="hp-heading">
+      <div>
+        {eyebrow && <p className="hp-eyebrow">{eyebrow}</p>}
+        <h2 id={id}>{title}</h2>
+      </div>
+      {link && (
+        <HomeLink go={go} location={location} className="hp-link" href={link.href}
+          {...(/^https?:/.test(link.href) ? { target: "_blank", rel: "noopener noreferrer" } : {})}>{link.label}</HomeLink>
+      )}
+    </div>
+  );
+}
+
+// A photo row: thumbnail, eyebrow, h3, one line, and a call to action.
+function HpRow({ go, location, href, image, alt, eyebrow, title, text, cta, sizes }) {
+  return (
+    <HomeLink go={go} location={location} className="hp-row" href={href}>
+      {image ? <ResponsiveImage image={image} alt={alt || ""} sizes={sizes || "(max-width: 760px) calc(100vw - 40px), 600px"} /> : <span className="hp-row__blank" aria-hidden="true" />}
+      <div>
+        <p className="hp-eyebrow">{eyebrow}</p>
+        <h3>{title}</h3>
+        {text && <p>{text}</p>}
+        {cta && <b>{cta} <span>↗</span>
+        </b>}
+      </div>
+    </HomeLink>
+  );
+}
+
+// A journal card: photo, eyebrow, h3, one line. `children` replaces the line.
+function HpCard({ go, location, href, image, alt, eyebrow, title, text, sizes, children }) {
+  return (
+    <HomeLink go={go} location={location} href={href}>
+      {image ? <ResponsiveImage image={image} alt={alt || ""} sizes={sizes || "(max-width: 760px) calc(100vw - 40px), 600px"} /> : <span className="hp-card__blank" aria-hidden="true" />}
+      <p className="hp-eyebrow">{eyebrow}</p>
+      <h3>{title}</h3>
+      {children || <p>{text}</p>}
+    </HomeLink>
+  );
+}
+
+// An article from the catalog as a journal card. The data-driven twin of the
+// homepage's hand-written cards, for pages that list the catalog.
+function HpArticleCard({ article, go, location }) {
+  const cat = window.findCategory ? window.findCategory(article.cat) : null;
+  return (
+    <HpCard go={go} location={location} href={`/articles/${article.slug}`} image={article.image}
+      alt={article.placeholder || ""}
+      eyebrow={<React.Fragment>{cat ? cat.label.toUpperCase() : ""}<span>{article.read ? article.read.toUpperCase() : ""}</span></React.Fragment>}
+      title={article.title} text={<React.Fragment>{article.dek} ↗</React.Fragment>} sizes="(max-width: 760px) calc(100vw - 40px), (max-width: 1100px) 45vw, 420px" />
+  );
+}
+
+// The page head for an interior design page: breadcrumbs, eyebrow, h1, intro,
+// up to two actions and a byline on the left; an optional aside on the right.
+function HpPageHead({ go, crumbs, eyebrow, title, intro, actions, byline, aside, className }) {
+  return (
+    <section className={["hp-pagehead", "hp-wrap", aside ? "hp-pagehead--split" : null, className].filter(Boolean).join(" ")}>
+      <div className="hp-pagehead__copy">
+        {crumbs && <Breadcrumbs go={go} trail={crumbs} />}
+        {eyebrow && <p className="hp-eyebrow">{eyebrow}</p>}
+        <h1>{title}</h1>
+        {intro && <p className="hp-intro">{intro}</p>}
+        {actions && <div className="hp-actions">{actions}</div>}
+        {byline && <p className="hp-byline">{byline}</p>}
+      </div>
+      {aside && <div className="hp-pagehead__aside">{aside}</div>}
+    </section>
+  );
+}
+
+// The three benefit lines the homepage prints for the Field Guide. Literal
+// copy, like everything on the homepage: edit here when the guide changes.
+const HP_GUIDE_POINTS = [
+  { mark: "↳", title: "Find your next stop.", text: "44 stops, arranged in driving order." },
+  { mark: "⌁", title: "Choose a hike that fits your day.", text: "57 day hikes with GPS tracks." },
+  { mark: "◎", title: "Bring a little local knowledge.", text: "50 Secret Guide entries to look beyond the obvious." },
+];
+
+// The Field Guide band: the dark section with the two phone captures. One per
+// page ("nothing is asked for twice"). `children` replaces the default buy
+// link and terms (the /guide page puts its own checkout button there);
+// `points={null}` drops the benefit lines; `sample` adds the free-preview line.
+function HpGuideBand({ go, location, id, eyebrow = "THE TALUS FIELD GUIDE / THE OFFLINE APP", title, intro, points = HP_GUIDE_POINTS, heading = "h2", sample, children }) {
+  const H = heading;
+  return (
+    <section className="hp-product" id={id} tabIndex={id ? -1 : undefined}>
+      <div className="hp-wrap hp-product-grid">
+        <div>
+          <p className="hp-eyebrow">{eyebrow}</p>
+          <H>{title}</H>
+          <p className="hp-intro">{intro}</p>
+          {points && <ul>
+            {points.map((p) => (
+              <li key={p.title}>
+                <span>{p.mark}</span>
+                <div>
+                  <strong>{p.title}</strong>
+                  <p>{p.text}</p>
+                </div>
+              </li>
+            ))}
+          </ul>}
+          {children || <React.Fragment>
+            <HomeLink go={go} location={location} className="hp-button hp-light" href="/guide">Get the Field Guide <span>$3.99 ↗</span>
+            </HomeLink>
+            <p className="hp-terms">One payment · 18 months of access · 30-day guarantee</p>
+          </React.Fragment>}
+          {sample && (
+            <p className="hp-terms hp-sample">Not sure yet? Five entries are free to read, no email required:{" "}
+              <a href={`${GUIDE_PROMO_APP_BASE}/preview`} onClick={() => { if (window.track) window.track("guide_sample_click", { location }); }}>preview the guide ↗</a>
+            </p>
+          )}
+        </div>
+        <div className="hp-screens">
+          <div className="hp-orbit">
+          </div>
+          <div className="hp-phone hp-back">
+            <img src="/img/guide/screens/hikes.v2.webp" alt="Field Guide hiking screen" width="640" height="1385" loading="lazy" decoding="async" />
+          </div>
+          <div className="hp-phone hp-front">
+            <img src="/img/guide/screens/front-page.v4.webp" alt="Field Guide app with park information and daylight tools" width="640" height="1385" loading="lazy" decoding="async" />
+          </div>
+          <div className="hp-offline">✓ &nbsp; All set. Even off the grid.<small>YOUR GUIDE WORKS OFFLINE</small>
+          </div>
+          <p className="hp-screen-note">Actual screens from the Field Guide</p>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// The letter: the postcard beside the Sunday Letter form. `heading` and
+// `blurb` are NewsletterInline's (the heading is visually hidden, since the
+// section's h2 stands in for it); `paper` is the postcard's line.
+function HpLetter({ id, eyebrow, title, heading, blurb, location, tag, cta = "Send me the letter ↗", terms = "Free to read. One letter a week. Unsubscribe whenever.", paper, stamp = "THE SUNDAY LETTER" }) {
+  return (
+    <section className="hp-letter hp-wrap hp-section" id={id} tabIndex={id ? -1 : undefined}>
+      <div className="hp-paper">
+        <span className="hp-stamp">EL PORTAL, CA<br />{stamp}</span>
+        <div>{paper || <React.Fragment>A field note<br />for your<br />
+          <em>next adventure.</em>
+        </React.Fragment>}</div>
+        <small>From Yosemite, with perspective.</small>
+      </div>
+      <div>
+        <p className="hp-eyebrow">{eyebrow}</p>
+        <h2>{title}</h2>
+        <NewsletterInline heading={heading} blurb={blurb} location={location} tag={tag} cta={cta} modifier="hp-newsletter" inputLabel="Your email address" />
+        {terms && <p className="hp-terms">{terms}</p>}
+      </div>
+    </section>
   );
 }
 
@@ -992,7 +1175,7 @@ function Header({ current, go }) {
   const renderPlainLink = (key, label, opts) => renderLink({ key, label }, opts);
 
   // Keep hook order stable when navigating between home and other routes.
-  if (current === "home") return <HomeMasthead go={go} />;
+  if (DESIGN_ROUTES.includes(current)) return <HomeMasthead go={go} current={current} />;
 
   // The masthead used to open with a utility bar: dateline, Bulletin link,
   // three NWS forecasts, live entrance waits, the NPS Yosemite Guide. The
@@ -2468,4 +2651,5 @@ Object.assign(window, {
   MotifMountains, MotifSun, MotifTrees,
   Header, Footer, BackToTop, ArticleCard, NewsletterInline, ExitIntentNewsletter, MapLightbox,
   EntranceWaits, WebcamStrip, GuidePromo,
+  DESIGN_ROUTES, HomeLink, HomeMasthead, HpHeading, HpRow, HpCard, HpArticleCard, HpPageHead, HpGuideBand, HpLetter,
 });

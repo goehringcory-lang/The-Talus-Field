@@ -1,4 +1,4 @@
-/* global React, WebcamStrip, EntranceWaits, ParkingNow, NewsletterInline, GuidePromo, Breadcrumbs */
+/* global React, WebcamStrip, EntranceWaits, ParkingNow, HomeLink, HpPageHead, HpHeading, HpGuideBand, HpLetter */
 
 // =============================================================================
 // CONDITIONS — `/conditions` route. The bookmarkable "is it worth driving in
@@ -30,6 +30,11 @@
 //
 // Every link out is external and measured by the delegated outbound_click
 // listener in app.jsx, so there is no tracking markup here.
+//
+// Since September 2026 the board is built on the homepage's design system
+// (DESIGN_ROUTES in components.jsx): a design page head with the readout as
+// its aside, one design section per reading, and the shared Field Guide band
+// and letter for the two asks.
 // =============================================================================
 
 const { useState, useMemo, useCallback } = React;
@@ -134,138 +139,124 @@ function ConditionsPage({ go }) {
   const onLots = useCallback((digest) => setLots(digest), []);
 
   return (
-    <div className="page page--conditions">
-      <div className="page-head page-head--split">
-        <div className="wrap cond-head">
-          <div className="cond-head__lede">
-            <Breadcrumbs go={go} trail={[{ label: "Home", route: "home" }, { label: "Conditions" }]} />
-            <div className="eyebrow eyebrow--moss">Conditions</div>
-            <h1>The park, right now.</h1>
-            <p className="page-head__dek">
-              Live webcams, entrance waits, and the forecasts that matter, on one page. Check it the morning you drive in, not the week before: Yosemite changes faster than a booking window.
-            </p>
-          </div>
-          <ConditionsReadout waits={waits} lots={lots} />
-        </div>
-      </div>
+    <div className="page hp-design hp-conditions">
+      <HpPageHead
+        go={go}
+        crumbs={[{ label: "Home", route: "home" }, { label: "Conditions" }]}
+        eyebrow="CONDITIONS / LIVE FROM THE PARK"
+        title={<>The park,<br /><em>right now.</em></>}
+        intro="Live webcams, entrance waits, and the forecasts that matter, on one page. Check it the morning you drive in, not the week before: Yosemite changes faster than a booking window."
+        actions={<>
+          <HomeLink go={go} location="conditions_hero" className="hp-button" href="#cond-waits">Entrance waits &nbsp; ↓</HomeLink>
+          <HomeLink go={go} location="conditions_hero" className="hp-link" href="#cond-roads">Roads and closures ↓</HomeLink>
+        </>}
+        aside={<ConditionsReadout waits={waits} lots={lots} />}
+      />
 
-      <div className="wrap cond-body">
-        {/* Entrance waits. The board variant of the shared component: one
-            column block per gate, with the wait set large enough to read at
-            arm's length. Three gates, because three is what the NPS feed
-            publishes. */}
-        <section className="cond-section">
-          <div className="section-head">
-            <h2>Entrance waits</h2>
-            <a href="/planning" onClick={(e) => { e.preventDefault(); go("planning"); }}>Why the mornings matter →</a>
-          </div>
-          <p className="cond-lede">
-            Live wait estimates from the National Park Service, refreshed every few minutes. Summer mornings the arch at Highway 140 backs up first; by ten, all of them do. If the numbers below are already climbing at eight, you wanted to be inside an hour ago.
-          </p>
-          <EntranceWaits variant="board" onData={onWaits} />
-        </section>
+      {/* Entrance waits. The board variant of the shared component: one
+          column block per gate, with the wait set large enough to read at
+          arm's length. Three gates, because three is what the NPS feed
+          publishes. */}
+      <section className="hp-wrap hp-section cond-section" id="cond-waits" tabIndex={-1}>
+        <HpHeading go={go} location="conditions" eyebrow="01 / AT THE GATES" title="Entrance waits" link={{ href: "/planning", label: "Why the mornings matter ↗" }} />
+        <p className="hp-sub">
+          Live wait estimates from the National Park Service, refreshed every few minutes. Summer mornings the arch at Highway 140 backs up first; by ten, all of them do. If the numbers below are already climbing at eight, you wanted to be inside an hour ago.
+        </p>
+        <EntranceWaits variant="board" onData={onWaits} />
+      </section>
 
-        {/* Webcams. The strongest argument on the page is a picture of the
-            weather, so the board variant runs them two up instead of four. */}
-        <section className="cond-section">
-          <div className="section-head">
-            <h2>Webcams</h2>
-            <a href="/webcams" onClick={(e) => { e.preventDefault(); go("webcams"); }}>All cameras, and how to read them →</a>
-          </div>
-          <WebcamStrip variant="board" />
-        </section>
+      {/* Webcams. The strongest argument on the page is a picture of the
+          weather, so the board variant runs them two up instead of four. */}
+      <section className="hp-wrap hp-section cond-section">
+        <HpHeading go={go} location="conditions" eyebrow="02 / SEE IT FOR YOURSELF" title="Webcams" link={{ href: "/webcams", label: "All cameras, and how to read them ↗" }} />
+        <WebcamStrip variant="board" />
+      </section>
 
-        {/* Forecasts. The elevation chart is the point: two stations share the
-            valley floor and one sits nearly a mile above them, which is the
-            whole reason a single forecast for "Yosemite" is useless. */}
-        <section className="cond-section">
-          <div className="section-head">
-            <h2>Forecasts</h2>
-            <a href="https://www.weather.gov/hnx/" target="_blank" rel="noopener noreferrer">National Weather Service ↗</a>
-          </div>
-          <p className="cond-lede">
-            The park spans 9,000 feet of elevation, so one forecast is never enough. These are National Weather Service point forecasts for the three places most trips actually go.
-          </p>
+      {/* Forecasts. The elevation chart is the point: two stations share the
+          valley floor and one sits nearly a mile above them, which is the
+          whole reason a single forecast for "Yosemite" is useless. */}
+      <section className="hp-wrap hp-section cond-section">
+        <HpHeading go={go} location="conditions" eyebrow="03 / THREE ELEVATIONS" title="Forecasts" link={{ href: "https://www.weather.gov/hnx/", label: "National Weather Service ↗" }} />
+        <p className="hp-sub">
+          The park spans 9,000 feet of elevation, so one forecast is never enough. These are National Weather Service point forecasts for the three places most trips actually go.
+        </p>
 
-          <div className="elev">
-            <div className="elev__plot" aria-hidden="true">
-              <span className="elev__grid" style={{ bottom: "20%" }}><i>2,000 ft</i></span>
-              <span className="elev__grid" style={{ bottom: "40%" }}><i>4,000 ft</i></span>
-              <span className="elev__grid" style={{ bottom: "60%" }}><i>6,000 ft</i></span>
-              <span className="elev__grid" style={{ bottom: "80%" }}><i>8,000 ft</i></span>
-              <div className="elev__bars">
-                {CONDITIONS_FORECASTS.map((f) => (
-                  <div key={f.label} className="elev__col">
-                    <div
-                      className={`elev__bar${f.elevationFt >= 6000 ? " elev__bar--high" : ""}`}
-                      style={{ height: `${(f.elevationFt / ELEVATION_CEILING_FT) * 100}%` }}
-                    >
-                      <span className="elev__ft">{f.elevationFt.toLocaleString()} ft</span>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-            <div className="elev__cards">
+        <div className="elev">
+          <div className="elev__plot" aria-hidden="true">
+            <span className="elev__grid" style={{ bottom: "20%" }}><i>2,000 ft</i></span>
+            <span className="elev__grid" style={{ bottom: "40%" }}><i>4,000 ft</i></span>
+            <span className="elev__grid" style={{ bottom: "60%" }}><i>6,000 ft</i></span>
+            <span className="elev__grid" style={{ bottom: "80%" }}><i>8,000 ft</i></span>
+            <div className="elev__bars">
               {CONDITIONS_FORECASTS.map((f) => (
-                <div key={f.label} className="fc">
-                  <div className={`fc__name${f.elevationFt >= 6000 ? " fc__name--high" : ""}`}>{f.label}</div>
-                  <p className="fc__note">{f.note}</p>
-                  <a className="fc__link" href={f.href} target="_blank" rel="noopener noreferrer">Point forecast ↗</a>
+                <div key={f.label} className="elev__col">
+                  <div
+                    className={`elev__bar${f.elevationFt >= 6000 ? " elev__bar--high" : ""}`}
+                    style={{ height: `${(f.elevationFt / ELEVATION_CEILING_FT) * 100}%` }}
+                  >
+                    <span className="elev__ft">{f.elevationFt.toLocaleString()} ft</span>
+                  </div>
                 </div>
               ))}
             </div>
           </div>
+          <div className="elev__cards">
+            {CONDITIONS_FORECASTS.map((f) => (
+              <div key={f.label} className="fc">
+                <div className={`fc__name${f.elevationFt >= 6000 ? " fc__name--high" : ""}`}>{f.label}</div>
+                <p className="fc__note">{f.note}</p>
+                <a className="fc__link" href={f.href} target="_blank" rel="noopener noreferrer">Point forecast ↗</a>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Parking and the sources for everything this page cannot read. */}
+      <div className="hp-wrap hp-section cond-section cond-split">
+        <section>
+          <HpHeading eyebrow="04 / THE VALLEY LOTS" title="Parking lots" />
+          <p className="hp-sub">
+            With no entry reservation in 2026, the Valley's lots are what ration a summer day: on the first busy Saturday of the season all Valley parking was full before noon. Be through the gate before 8 a.m. or after 4 p.m. on a summer weekend. Live lot status from the National Park Service appears here when the park publishes it.
+          </p>
+          <ParkingNow variant="board" onData={onLots} />
         </section>
 
-        {/* Parking and the sources for everything this page cannot read. */}
-        <div className="cond-split">
-          <section>
-            <div className="section-head">
-              <h2>Parking lots</h2>
-            </div>
-            <p className="cond-lede">
-              With no entry reservation in 2026, the Valley's lots are what ration a summer day: on the first busy Saturday of the season all Valley parking was full before noon. Be through the gate before 8 a.m. or after 4 p.m. on a summer weekend. Live lot status from the National Park Service appears here when the park publishes it.
-            </p>
-            <ParkingNow variant="board" onData={onLots} />
-          </section>
+        <section id="cond-roads" tabIndex={-1}>
+          <HpHeading eyebrow="05 / SOURCES, NOT GUESSES" title="Roads and closures" />
+          <p className="hp-sub">
+            Road status changes faster than any page can promise, this one included, so nothing here claims to know whether a gate is open. These three do.
+          </p>
+          <ul className="conditions__list">
+            <li className="conditions__row">
+              <a href="/now" onClick={(e) => { e.preventDefault(); go("now"); }}>The Park Bulletin</a>
+              <span>Our own board: road and area status, alerts, and the free-program clock, rewritten each time the park publishes a new Yosemite Guide.</span>
+            </li>
+            <li className="conditions__row">
+              <a href="https://www.nps.gov/yose/planyourvisit/conditions.htm" target="_blank" rel="noopener noreferrer">NPS current conditions ↗</a>
+              <span>Road status, chain controls, trail closures, and campground status. The authoritative page.</span>
+            </li>
+            <li className="conditions__row">
+              <a href="https://www.nps.gov/yose/planyourvisit/guide.htm" target="_blank" rel="noopener noreferrer">The Yosemite Guide ↗</a>
+              <span>The park's own seasonal newspaper: shuttle maps, program schedules, hours.</span>
+            </li>
+          </ul>
+          <p className="cond-note">
+            For how conditions shape a plan, the{" "}
+            <a href="/planning" onClick={(e) => { e.preventDefault(); go("planning"); }}>planning guide</a>{" "}
+            covers the seasonal calendar, and the{" "}
+            <a href="/itineraries" onClick={(e) => { e.preventDefault(); go("itineraries"); }}>itineraries</a>{" "}
+            adjust to what is open.
+          </p>
+        </section>
+      </div>
 
-          <section>
-            <div className="section-head">
-              <h2>Roads and closures</h2>
-            </div>
-            <p className="cond-lede">
-              Road status changes faster than any page can promise, this one included, so nothing here claims to know whether a gate is open. These three do.
-            </p>
-            <ul className="conditions__list">
-              <li className="conditions__row">
-                <a href="/now" onClick={(e) => { e.preventDefault(); go("now"); }}>The Park Bulletin</a>
-                <span>Our own board: road and area status, alerts, and the free-program clock, rewritten each time the park publishes a new Yosemite Guide.</span>
-              </li>
-              <li className="conditions__row">
-                <a href="https://www.nps.gov/yose/planyourvisit/conditions.htm" target="_blank" rel="noopener noreferrer">NPS current conditions ↗</a>
-                <span>Road status, chain controls, trail closures, and campground status. The authoritative page.</span>
-              </li>
-              <li className="conditions__row">
-                <a href="https://www.nps.gov/yose/planyourvisit/guide.htm" target="_blank" rel="noopener noreferrer">The Yosemite Guide ↗</a>
-                <span>The park's own seasonal newspaper: shuttle maps, program schedules, hours.</span>
-              </li>
-            </ul>
-            <p className="cond-note">
-              For how conditions shape a plan, the{" "}
-              <a href="/planning" onClick={(e) => { e.preventDefault(); go("planning"); }}>planning guide</a>{" "}
-              covers the seasonal calendar, and the{" "}
-              <a href="/itineraries" onClick={(e) => { e.preventDefault(); go("itineraries"); }}>itineraries</a>{" "}
-              adjust to what is open.
-            </p>
-          </section>
-        </div>
-
-        {/* The recorded line. It outranks every website in winter and spring,
-            including this one, so it gets the weight that says so. */}
+      {/* The recorded line. It outranks every website in winter and spring,
+          including this one, so it gets the weight that says so. */}
+      <div className="hp-wrap cond-dial">
         <a className="dialplate" href="tel:+12093720200">
           <span className="dialplate__copy">
-            <span className="eyebrow eyebrow--moss">When the web is wrong</span>
+            <span className="hp-eyebrow">When the web is wrong</span>
             <span className="dialplate__say">
               In winter and spring, call the recorded road line before trusting any website, including this one. It is read out by the people standing at the gates.
             </span>
@@ -275,28 +266,31 @@ function ConditionsPage({ go }) {
             <span className="dialplate__label">NPS recorded road line</span>
           </span>
         </a>
-
-        {/* The two asks, side by side and made once each, in the homepage's
-            order: the paid thing first, the free one second. The 680px cap
-            they used to carry was right for the old single narrow column and
-            left both of them stranded against the left edge of this one. */}
-        <div className="cond-asks">
-          {/* The honest angle here is that this page, like most of the
-              internet, stops working past the entrance station. */}
-          <GuidePromo
-            go={go}
-            location="conditions"
-            title="Past the entrance, this page stops loading."
-            body="Most of the park has no signal. The Field Guide app is built for exactly that: offline maps, 50-plus stops with parking and timing notes, and a trip planner that works from the trailhead."
-          />
-          <NewsletterInline
-            location="conditions"
-            tag="alert-roads"
-            heading="Email me when a road changes"
-            blurb="One email when Tioga Road, Glacier Point Road, or a highway into the park opens or closes, sent to the people who asked for it. The Sunday note carries the rest of the week from inside the park. Free."
-          />
-        </div>
       </div>
+
+      {/* The two asks, made once each, in the homepage's order: the paid
+          thing first, the free one second. The honest angle for the guide is
+          that this page, like most of the internet, stops working past the
+          entrance station. */}
+      <HpGuideBand
+        go={go}
+        location="conditions"
+        title="Past the entrance, this page stops loading."
+        intro="Most of the park has no signal. The Field Guide app is built for exactly that: offline maps, 50-plus stops with parking and timing notes, and a trip planner that works from the trailhead."
+        sample
+      />
+      <HpLetter
+        eyebrow="ROAD ALERTS / FREE"
+        title="Email me when a road changes"
+        heading="Email me when a road changes"
+        blurb="One email when Tioga Road, Glacier Point Road, or a highway into the park opens or closes, sent to the people who asked for it. The Sunday note carries the rest of the week from inside the park. Free."
+        location="conditions"
+        tag="alert-roads"
+        cta="Email me ↗"
+        terms="Only when a road changes. Unsubscribe whenever."
+        stamp="ROAD ALERTS"
+        paper={<>Roads open.<br />Roads close.<br /><em>You hear once.</em></>}
+      />
     </div>
   );
 }

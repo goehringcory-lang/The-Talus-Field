@@ -93,67 +93,77 @@ function ConditionsPage({
   var onWaits = useCallback(digest => setWaits(digest), []);
   var onLots = useCallback(digest => setLots(digest), []);
   return React.createElement("div", {
-    className: "page page--conditions"
-  }, React.createElement("div", {
-    className: "page-head page-head--split"
-  }, React.createElement("div", {
-    className: "wrap cond-head"
-  }, React.createElement("div", {
-    className: "cond-head__lede"
-  }, React.createElement(Breadcrumbs, {
+    className: "page hp-design hp-conditions"
+  }, React.createElement(HpPageHead, {
     go: go,
-    trail: [{
+    crumbs: [{
       label: "Home",
       route: "home"
     }, {
       label: "Conditions"
-    }]
-  }), React.createElement("div", {
-    className: "eyebrow eyebrow--moss"
-  }, "Conditions"), React.createElement("h1", null, "The park, right now."), React.createElement("p", {
-    className: "page-head__dek"
-  }, "Live webcams, entrance waits, and the forecasts that matter, on one page. Check it the morning you drive in, not the week before: Yosemite changes faster than a booking window.")), React.createElement(ConditionsReadout, {
-    waits: waits,
-    lots: lots
-  }))), React.createElement("div", {
-    className: "wrap cond-body"
-  }, React.createElement("section", {
-    className: "cond-section"
-  }, React.createElement("div", {
-    className: "section-head"
-  }, React.createElement("h2", null, "Entrance waits"), React.createElement("a", {
-    href: "/planning",
-    onClick: e => {
-      e.preventDefault();
-      go("planning");
+    }],
+    eyebrow: "CONDITIONS / LIVE FROM THE PARK",
+    title: React.createElement(React.Fragment, null, "The park,", React.createElement("br", null), React.createElement("em", null, "right now.")),
+    intro: "Live webcams, entrance waits, and the forecasts that matter, on one page. Check it the morning you drive in, not the week before: Yosemite changes faster than a booking window.",
+    actions: React.createElement(React.Fragment, null, React.createElement(HomeLink, {
+      go: go,
+      location: "conditions_hero",
+      className: "hp-button",
+      href: "#cond-waits"
+    }, "Entrance waits \xA0 ↓"), React.createElement(HomeLink, {
+      go: go,
+      location: "conditions_hero",
+      className: "hp-link",
+      href: "#cond-roads"
+    }, "Roads and closures ↓")),
+    aside: React.createElement(ConditionsReadout, {
+      waits: waits,
+      lots: lots
+    })
+  }), React.createElement("section", {
+    className: "hp-wrap hp-section cond-section",
+    id: "cond-waits",
+    tabIndex: -1
+  }, React.createElement(HpHeading, {
+    go: go,
+    location: "conditions",
+    eyebrow: "01 / AT THE GATES",
+    title: "Entrance waits",
+    link: {
+      href: "/planning",
+      label: "Why the mornings matter ↗"
     }
-  }, "Why the mornings matter →")), React.createElement("p", {
-    className: "cond-lede"
+  }), React.createElement("p", {
+    className: "hp-sub"
   }, "Live wait estimates from the National Park Service, refreshed every few minutes. Summer mornings the arch at Highway 140 backs up first; by ten, all of them do. If the numbers below are already climbing at eight, you wanted to be inside an hour ago."), React.createElement(EntranceWaits, {
     variant: "board",
     onData: onWaits
   })), React.createElement("section", {
-    className: "cond-section"
-  }, React.createElement("div", {
-    className: "section-head"
-  }, React.createElement("h2", null, "Webcams"), React.createElement("a", {
-    href: "/webcams",
-    onClick: e => {
-      e.preventDefault();
-      go("webcams");
+    className: "hp-wrap hp-section cond-section"
+  }, React.createElement(HpHeading, {
+    go: go,
+    location: "conditions",
+    eyebrow: "02 / SEE IT FOR YOURSELF",
+    title: "Webcams",
+    link: {
+      href: "/webcams",
+      label: "All cameras, and how to read them ↗"
     }
-  }, "All cameras, and how to read them →")), React.createElement(WebcamStrip, {
+  }), React.createElement(WebcamStrip, {
     variant: "board"
   })), React.createElement("section", {
-    className: "cond-section"
-  }, React.createElement("div", {
-    className: "section-head"
-  }, React.createElement("h2", null, "Forecasts"), React.createElement("a", {
-    href: "https://www.weather.gov/hnx/",
-    target: "_blank",
-    rel: "noopener noreferrer"
-  }, "National Weather Service ↗")), React.createElement("p", {
-    className: "cond-lede"
+    className: "hp-wrap hp-section cond-section"
+  }, React.createElement(HpHeading, {
+    go: go,
+    location: "conditions",
+    eyebrow: "03 / THREE ELEVATIONS",
+    title: "Forecasts",
+    link: {
+      href: "https://www.weather.gov/hnx/",
+      label: "National Weather Service ↗"
+    }
+  }), React.createElement("p", {
+    className: "hp-sub"
   }, "The park spans 9,000 feet of elevation, so one forecast is never enough. These are National Weather Service point forecasts for the three places most trips actually go."), React.createElement("div", {
     className: "elev"
   }, React.createElement("div", {
@@ -206,18 +216,23 @@ function ConditionsPage({
     target: "_blank",
     rel: "noopener noreferrer"
   }, "Point forecast ↗")))))), React.createElement("div", {
-    className: "cond-split"
-  }, React.createElement("section", null, React.createElement("div", {
-    className: "section-head"
-  }, React.createElement("h2", null, "Parking lots")), React.createElement("p", {
-    className: "cond-lede"
+    className: "hp-wrap hp-section cond-section cond-split"
+  }, React.createElement("section", null, React.createElement(HpHeading, {
+    eyebrow: "04 / THE VALLEY LOTS",
+    title: "Parking lots"
+  }), React.createElement("p", {
+    className: "hp-sub"
   }, "With no entry reservation in 2026, the Valley's lots are what ration a summer day: on the first busy Saturday of the season all Valley parking was full before noon. Be through the gate before 8 a.m. or after 4 p.m. on a summer weekend. Live lot status from the National Park Service appears here when the park publishes it."), React.createElement(ParkingNow, {
     variant: "board",
     onData: onLots
-  })), React.createElement("section", null, React.createElement("div", {
-    className: "section-head"
-  }, React.createElement("h2", null, "Roads and closures")), React.createElement("p", {
-    className: "cond-lede"
+  })), React.createElement("section", {
+    id: "cond-roads",
+    tabIndex: -1
+  }, React.createElement(HpHeading, {
+    eyebrow: "05 / SOURCES, NOT GUESSES",
+    title: "Roads and closures"
+  }), React.createElement("p", {
+    className: "hp-sub"
   }, "Road status changes faster than any page can promise, this one included, so nothing here claims to know whether a gate is open. These three do."), React.createElement("ul", {
     className: "conditions__list"
   }, React.createElement("li", {
@@ -254,13 +269,15 @@ function ConditionsPage({
       e.preventDefault();
       go("itineraries");
     }
-  }, "itineraries"), " ", "adjust to what is open."))), React.createElement("a", {
+  }, "itineraries"), " ", "adjust to what is open."))), React.createElement("div", {
+    className: "hp-wrap cond-dial"
+  }, React.createElement("a", {
     className: "dialplate",
     href: "tel:+12093720200"
   }, React.createElement("span", {
     className: "dialplate__copy"
   }, React.createElement("span", {
-    className: "eyebrow eyebrow--moss"
+    className: "hp-eyebrow"
   }, "When the web is wrong"), React.createElement("span", {
     className: "dialplate__say"
   }, "In winter and spring, call the recorded road line before trusting any website, including this one. It is read out by the people standing at the gates.")), React.createElement("span", {
@@ -269,18 +286,23 @@ function ConditionsPage({
     className: "dialplate__digits"
   }, "209-372-0200"), React.createElement("span", {
     className: "dialplate__label"
-  }, "NPS recorded road line"))), React.createElement("div", {
-    className: "cond-asks"
-  }, React.createElement(GuidePromo, {
+  }, "NPS recorded road line")))), React.createElement(HpGuideBand, {
     go: go,
     location: "conditions",
     title: "Past the entrance, this page stops loading.",
-    body: "Most of the park has no signal. The Field Guide app is built for exactly that: offline maps, 50-plus stops with parking and timing notes, and a trip planner that works from the trailhead."
-  }), React.createElement(NewsletterInline, {
+    intro: "Most of the park has no signal. The Field Guide app is built for exactly that: offline maps, 50-plus stops with parking and timing notes, and a trip planner that works from the trailhead.",
+    sample: true
+  }), React.createElement(HpLetter, {
+    eyebrow: "ROAD ALERTS / FREE",
+    title: "Email me when a road changes",
+    heading: "Email me when a road changes",
+    blurb: "One email when Tioga Road, Glacier Point Road, or a highway into the park opens or closes, sent to the people who asked for it. The Sunday note carries the rest of the week from inside the park. Free.",
     location: "conditions",
     tag: "alert-roads",
-    heading: "Email me when a road changes",
-    blurb: "One email when Tioga Road, Glacier Point Road, or a highway into the park opens or closes, sent to the people who asked for it. The Sunday note carries the rest of the week from inside the park. Free."
-  }))));
+    cta: "Email me ↗",
+    terms: "Only when a road changes. Unsubscribe whenever.",
+    stamp: "ROAD ALERTS",
+    paper: React.createElement(React.Fragment, null, "Roads open.", React.createElement("br", null), "Roads close.", React.createElement("br", null), React.createElement("em", null, "You hear once."))
+  }));
 }
 window.ConditionsPage = ConditionsPage;

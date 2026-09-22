@@ -1,4 +1,4 @@
-/* global React, ArticleCard, NewsletterInline, GuidePromo, LodgingCta, Breadcrumbs */
+/* global React, LodgingCta, ResponsiveImage, HomeLink, HpPageHead, HpHeading, HpRow, HpArticleCard, HpGuideBand, HpLetter */
 
 // =============================================================================
 // THE PLANNING GUIDE — `/planning`.
@@ -27,6 +27,11 @@
 //
 // The selector and filters live in intent.jsx / intent-data.js, loaded with this
 // bundle by PAGE_MODULES.
+//
+// Since September 2026 the page is built on the homepage's design system
+// (DESIGN_ROUTES in components.jsx): the head carries the five parts as its
+// index, each part is a design section, the catalog renders as journal cards,
+// and the closing asks are the shared Field Guide band and letter.
 // =============================================================================
 
 const { useState: useStatePg, useRef: useRefPg, useEffect: useEffectPg } = React;
@@ -107,44 +112,73 @@ function PlanningGuide({ go }) {
     setJumped(true);
   };
 
-  const sectionH2 = {
-    fontFamily: "var(--display)",
-    fontSize: 40,
-    fontWeight: 500,
-    lineHeight: 1.1,
-    marginBottom: 20,
-    letterSpacing: "-0.01em",
-  };
-  const sectionLede = {
-    fontFamily: "var(--serif)",
-    fontSize: 19,
-    lineHeight: 1.55,
-    color: "var(--ink-1)",
-    maxWidth: 760,
-    marginBottom: 32,
+  // The index in the head is always on screen, including while the list is
+  // showing, when the parts are not rendered. A jump from there clears the
+  // filters first and scrolls once the guide is back.
+  const [pendingPart, setPendingPart] = useStatePg(null);
+  useEffectPg(() => {
+    if (pendingPart == null || listing) return;
+    const el = document.getElementById(`part-${pendingPart}`);
+    setPendingPart(null);
+    if (!el) return;
+    const reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    el.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" });
+    el.focus({ preventScroll: true });
+  }, [pendingPart, listing]);
+  const jumpToPart = (n) => (e) => {
+    if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+    e.preventDefault();
+    if (window.track) window.track("cta_click", { location: "planning_index", target: `#part-${n}` });
+    if (listing) filters.clear();
+    setPendingPart(n);
   };
 
   return (
-    <div className="page">
-      <div className="page-head">
-        <div className="wrap">
-          <Breadcrumbs go={go} trail={[{ label: "Home", route: "home" }, { label: "The Planning Guide" }]} />
-          <div className="eyebrow eyebrow--moss">The Planning Guide</div>
-          <h1>Yosemite, planned properly.</h1>
-          <p className="page-head__dek">
-            The questions that come up before, during, and after a Yosemite trip, answered in the order most visitors actually run into them. Drawn from the full archive of The Talus Field, organized to read like a guide rather than a search result.
-          </p>
-          <p className="mono" style={{ fontSize: 12, textTransform: "uppercase", letterSpacing: "0.14em", color: "var(--ink-3)", fontWeight: 700, marginTop: 12 }}>
-            Planning advice from inside the park, checked on foot.
-          </p>
-        </div>
-      </div>
+    <div className="page hp-design hp-planning">
+      <HpPageHead
+        go={go}
+        crumbs={[{ label: "Home", route: "home" }, { label: "The Planning Guide" }]}
+        eyebrow="THE PLANNING GUIDE"
+        title={<>Yosemite,<br />planned <em>properly.</em></>}
+        intro="The questions that come up before, during, and after a Yosemite trip, answered in the order most visitors actually run into them. Drawn from the full archive of The Talus Field, organized to read like a guide rather than a search result."
+        actions={<>
+          <HomeLink go={go} location="planning_hero" className="hp-button" href="#trip-selector">Build a plan for your trip &nbsp; ↓</HomeLink>
+          <a className="hp-link" href="#part-1" onClick={jumpToPart(1)}>Read the guide in order ↓</a>
+        </>}
+        byline="Planning advice from inside the park, checked on foot."
+        aside={
+          /* The index. The five parts run a screen and a half each, so a reader
+             who came for Part Four had to scroll past three parts to find it.
+             Counts are read from PLANNING_SERIES like everything else on this
+             page: the parts own their copy, never their membership. This adds
+             links rather than replacing them: the full card sections stay
+             below, because they are most of the contextual internal linking
+             this page does. */
+          <nav className="hp-list hp-partindex" aria-label="The five parts">
+            {PLANNING_PARTS.map((p, i) => {
+              const slugs = planningPartSlugs(p.part);
+              const lead = slugs.map((s) => window.findArticle(s)).find((a) => a && a.image);
+              const n = slugs.length;
+              return (
+                <a key={p.part} className="hp-row" href={`#part-${i + 1}`} onClick={jumpToPart(i + 1)}>
+                  {lead ? <ResponsiveImage image={lead.image} alt="" sizes="136px" /> : <span className="hp-row__blank" aria-hidden="true" />}
+                  <div>
+                    <p className="hp-eyebrow">{String(i + 1).padStart(2, "0")} / {p.eyebrow.toUpperCase()}</p>
+                    <h3>{p.title}</h3>
+                    <b>{n} {n === 1 ? "entry" : "entries"} <span>↓</span></b>
+                  </div>
+                </a>
+              );
+            })}
+          </nav>
+        }
+      />
 
-      <div className="wrap" style={{ paddingTop: 40 }}>
+      <section className="hp-wrap hp-section hp-planning__selector" id="trip-selector" tabIndex={-1}>
         <window.TripSelector go={go} onApplyIntent={applyIntent} />
-      </div>
+      </section>
 
-      <div className="wrap" style={{ paddingTop: 48 }} ref={resultsRef}>
+      <section className="hp-wrap hp-planning__filters" ref={resultsRef}>
         <window.IntentFilters
           articles={window.ARTICLES}
           value={filters.value}
@@ -157,16 +191,16 @@ function PlanningGuide({ go }) {
           resultCount={matches.length}
           note="Drawn from the whole archive, not only the five parts below."
         />
-      </div>
+      </section>
 
       {listing ? (
-        <div className="wrap" style={{ paddingTop: 40, paddingBottom: 96 }}>
+        <section className="hp-wrap hp-section hp-planning__results">
           {matches.length > 0 ? (
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 36, rowGap: 56 }}>
-              {matches.map((a) => <ArticleCard key={a.slug} article={a} go={go} />)}
+            <div className="hp-journal-grid">
+              {matches.map((a) => <HpArticleCard key={a.slug} article={a} go={go} location="planning_list" />)}
             </div>
           ) : (
-            <p style={{ fontFamily: "var(--serif)", fontSize: 19, lineHeight: 1.55, color: "var(--ink-2)", maxWidth: 640 }}>
+            <p className="hp-sub hp-planning__empty">
               Nothing in the archive carries all of those at once
               {window.intentMonthOf(filters.value)
                 ? `, in ${window.intentMonthLabel(window.intentMonthOf(filters.value))}`
@@ -175,54 +209,35 @@ function PlanningGuide({ go }) {
               <a href="/search" onClick={(e) => { e.preventDefault(); go("search"); }}>search the whole site</a>.
             </p>
           )}
-          <p style={{ marginTop: 40, fontFamily: "var(--sans)", fontSize: 14, color: "var(--ink-3)" }}>
-            <button type="button" className="linkish" onClick={filters.clear}>
-              {filtering ? "Clear the filters to read the guide in order →" : "Back to the five-part guide →"}
+          <p className="hp-planning__back">
+            <button type="button" className="hp-link" onClick={filters.clear}>
+              {filtering ? "Clear the filters to read the guide in order ↑" : "Back to the five-part guide ↑"}
             </button>
           </p>
-        </div>
+        </section>
       ) : (
-        <div className="wrap" style={{ paddingTop: 56 }}>
-          <p style={{ fontFamily: "var(--display)", fontSize: 22, lineHeight: 1.5, color: "var(--ink-2)", maxWidth: 760, marginBottom: 56 }}>
-            Yosemite in 2026 is a different park from Yosemite in 2024. The entrance reservation system is gone, the crowds are heavier, the gateway towns matter more, and the difference between a great trip and a frustrating one is almost always strategy, not luck. Here is the strategy, in five parts.
-          </p>
-
-          {/* The index. The five parts run a screen and a half each, so a reader
-              who came for Part Four had to scroll past three parts to find it.
-              Counts are read from PLANNING_SERIES like everything else on this
-              page: the parts own their copy, never their membership. This adds
-              links rather than replacing them — the full card sections stay
-              below, because they are most of the contextual internal linking
-              this page does. */}
-          <nav className="planidx" aria-label="The five parts">
-            {PLANNING_PARTS.map((p, i) => {
-              const n = planningPartSlugs(p.part).length;
-              return (
-                <a key={p.part} className="planidx__item" href={`#part-${i + 1}`}>
-                  <span className="planidx__eyebrow">{p.eyebrow}</span>
-                  <span className="planidx__title">{p.title}</span>
-                  <span className="planidx__n">{n} {n === 1 ? "entry" : "entries"}</span>
-                </a>
-              );
-            })}
-          </nav>
+        <>
+          <div className="hp-wrap hp-planning__lead">
+            <p>
+              Yosemite in 2026 is a different park from Yosemite in 2024. The entrance reservation system is gone, the crowds are heavier, the gateway towns matter more, and the difference between a great trip and a frustrating one is almost always strategy, not luck. Here is the strategy, in five parts.
+            </p>
+          </div>
 
           {PLANNING_PARTS.map((p, i) => {
             const items = planningPartSlugs(p.part).map((s) => window.findArticle(s)).filter(Boolean);
             return (
-              <section key={p.part} id={`part-${i + 1}`} style={{ paddingTop: 32, paddingBottom: 56, borderTop: "1px solid var(--rule)", scrollMarginTop: 90 }}>
-                <div className="eyebrow eyebrow--moss" style={{ marginTop: 32, marginBottom: 12 }}>{p.eyebrow}</div>
-                <h2 style={sectionH2}>{p.title}</h2>
-                <p style={sectionLede}>{p.lede}</p>
-                <div style={{ display: "grid", gridTemplateColumns: `repeat(${p.cols}, 1fr)`, gap: 36, rowGap: 48 }}>
-                  {items.map((a) => <ArticleCard key={a.slug} article={a} go={go} />)}
+              <section key={p.part} id={`part-${i + 1}`} tabIndex={-1} className="hp-wrap hp-section hp-part">
+                <HpHeading eyebrow={`${String(i + 1).padStart(2, "0")} / ${p.eyebrow.toUpperCase()}`} title={p.title} />
+                <p className="hp-sub">{p.lede}</p>
+                <div className={`hp-journal-grid${p.cols === 2 ? " hp-journal-grid--2" : ""}`}>
+                  {items.map((a) => <HpArticleCard key={a.slug} article={a} go={go} location="planning_part" />)}
                 </div>
 
                 {/* "Before you book" is the one part of this guide with an actual
                     deadline attached, so the lodging board and a live availability
                     search belong here rather than at the end. */}
                 {p.lodging && (
-                  <div style={{ maxWidth: 760 }}>
+                  <div className="hp-part__lodging">
                     <LodgingCta
                       destination="Yosemite National Park"
                       heading="The booking with the earliest deadline"
@@ -238,37 +253,32 @@ function PlanningGuide({ go }) {
           })}
 
           {/* Closing */}
-          <section style={{ paddingTop: 32, paddingBottom: 96, borderTop: "2px solid var(--ink)" }}>
-            <div style={{ marginTop: 56, display: "grid", gridTemplateColumns: "1fr 1fr", gap: 48, alignItems: "start" }}>
-              <div>
-                <div className="eyebrow eyebrow--moss" style={{ marginBottom: 14 }}>The takeaway</div>
-                <h2 style={{ fontFamily: "var(--display)", fontSize: 32, fontWeight: 400, lineHeight: 1.15, letterSpacing: "-0.01em", marginBottom: 16 }}>Strategy beats research.</h2>
-                <p style={{ fontFamily: "var(--display)", fontStyle: "italic", fontSize: 19, color: "var(--ink-2)", lineHeight: 1.5, marginBottom: 24 }}>
-                  Almost every "Yosemite was crowded and frustrating" story comes from a trip that was not planned around the park's actual rhythms. The articles above are how this site closes that gap. Read what is relevant. Skip what is not. Then pack the car.
-                </p>
-                <a className="btn btn--ghost" href="/articles" onClick={(e) => { e.preventDefault(); go("articles"); }}>
-                  Browse all entries →
-                </a>
-              </div>
-              <NewsletterInline
-                location="planning_hub"
-                tag="planning"
-                heading="Get the conditions before you go"
-                blurb="Reservation windows, road openings, what's booked out: one Yosemite email a week while you plan. Free."
-              />
-            </div>
-
-            {/* The purchase ask: a reader who finished the hub has a trip.
-                The app is the in-park half of the same advice. */}
-            <GuidePromo
-              go={go}
-              location="planning_hub"
-              title="Reading is planning. This is the trip."
-              body="The Field Guide app carries the same advice into the park: 50-plus stops with parking and timing notes, offline maps, a day-by-day planner, and the secret guide. Works with no signal, which is most of the park."
-              style={{ maxWidth: 680, marginTop: 56 }}
-            />
+          <section className="hp-wrap hp-section hp-planning__takeaway">
+            <HpHeading go={go} location="planning_hub" eyebrow="THE TAKEAWAY" title="Strategy beats research." link={{ href: "/articles", label: "Browse all entries ↗" }} />
+            <p className="hp-sub">
+              Almost every "Yosemite was crowded and frustrating" story comes from a trip that was not planned around the park's actual rhythms. The articles above are how this site closes that gap. Read what is relevant. Skip what is not. Then pack the car.
+            </p>
           </section>
-        </div>
+
+          {/* The purchase ask: a reader who finished the hub has a trip. The app
+              is the in-park half of the same advice. Paid first, free second,
+              in the homepage's order. */}
+          <HpGuideBand
+            go={go}
+            location="planning_hub"
+            title="Reading is planning. This is the trip."
+            intro="The Field Guide app carries the same advice into the park: 50-plus stops with parking and timing notes, offline maps, a day-by-day planner, and the secret guide. Works with no signal, which is most of the park."
+            sample
+          />
+          <HpLetter
+            eyebrow="ONE YOSEMITE EMAIL A WEEK"
+            title="Get the conditions before you go"
+            heading="Get the conditions before you go"
+            blurb="Reservation windows, road openings, what's booked out: one Yosemite email a week while you plan. Free."
+            location="planning_hub"
+            tag="planning"
+          />
+        </>
       )}
     </div>
   );

@@ -137,14 +137,7 @@ function GuideBuyBox() {
   }
   return React.createElement("aside", {
     id: "guide-buy",
-    style: {
-      position: "sticky",
-      top: 100,
-      alignSelf: "start",
-      border: "1px solid var(--ink)",
-      padding: 32,
-      background: "var(--paper-2)"
-    }
+    className: "guide-buybox"
   }, React.createElement("div", {
     className: "eyebrow eyebrow--moss",
     style: {
@@ -441,14 +434,7 @@ function GuideWaitlistBox() {
     }
   }
   return React.createElement("aside", {
-    style: {
-      position: "sticky",
-      top: 100,
-      alignSelf: "start",
-      border: "1px solid var(--ink)",
-      padding: 32,
-      background: "var(--paper-2)"
-    }
+    className: "guide-buybox"
   }, React.createElement("div", {
     className: "eyebrow eyebrow--moss",
     style: {
@@ -1125,7 +1111,7 @@ function GuideMobileBuyBar() {
     };
   }, []);
   React.useEffect(() => {
-    var targets = [document.getElementById("guide-buy"), document.querySelector(".guide-closer"), document.querySelector(".site-footer")].filter(Boolean);
+    var targets = [document.querySelector(".guide-hero-cta"), document.getElementById("guide-buy"), document.querySelector(".guide-closer"), document.querySelector(".site-footer")].filter(Boolean);
     var scrolledPast = window.scrollY > 480;
     var inView = new Set();
     var update = () => setVisible(scrolledPast && inView.size === 0);
@@ -1193,29 +1179,32 @@ function GuideMobileBuyBar() {
     onClick: buy
   }, busy ? "Opening…" : "Get the guide →"));
 }
+var GUIDE_STATS = ["4 regions", "94 entries", "57 day hikes", "50 secret entries", "Works offline"];
 function GuidePage({
   go
 }) {
   return React.createElement("div", {
-    className: "page page--guide"
-  }, React.createElement("section", {
-    className: "page-head"
-  }, React.createElement("div", {
-    className: "wrap wrap--narrow"
-  }, React.createElement("div", {
-    className: "eyebrow eyebrow--moss"
-  }, "The Field Guide · Offline app · 2026 Edition"), React.createElement("h1", null, "Three days in Yosemite. This is how you keep all three."), React.createElement("p", {
-    className: "page-head__dek"
-  }, "Written by a naturalist who lives in the park: which stops are worth your morning, where to park, how long each one honestly takes, and where to go the moment the lot fills. It builds each day in driving order, then downloads whole to your phone, topo map included, and keeps working where cell service doesn't, which is most of the park. Since September it also reads your GPS position to a dispatcher and names what you are passing."), React.createElement("div", {
-    className: "guide-stats"
-  }, React.createElement("span", null, "4 regions"), React.createElement("span", null, "94 entries"), React.createElement("span", null, "57 day hikes"), React.createElement("span", null, "50 secret entries"), React.createElement("span", null, "Works offline")), React.createElement("div", {
+    className: "page hp-design hp-guide page--guide"
+  }, React.createElement(HpGuideBand, {
+    go: go,
+    location: "guide_hero",
+    heading: "h1",
+    eyebrow: "THE FIELD GUIDE / OFFLINE APP / 2026 EDITION",
+    title: "Three days in Yosemite. This is how you keep all three.",
+    intro: "Written by a naturalist who lives in the park: which stops are worth your morning, where to park, how long each one honestly takes, and where to go the moment the lot fills. It builds each day in driving order, then downloads whole to your phone, topo map included, and keeps working where cell service doesn't, which is most of the park. Since September it also reads your GPS position to a dispatcher and names what you are passing.",
+    points: null
+  }, React.createElement("ul", {
+    className: "hp-stats"
+  }, GUIDE_STATS.map(stat => React.createElement("li", {
+    key: stat
+  }, stat))), React.createElement("div", {
     className: "guide-hero-cta"
   }, React.createElement(BuyNowButton, {
     location: "guide_hero"
   }), React.createElement("p", {
-    className: "guide-hero-cta__sub"
+    className: "hp-terms"
   }, React.createElement(LivePrice, null), ", once. No subscription, 18 months on every device you own, refunded in full within 30 days if it does not work as described."), React.createElement("p", {
-    className: "guide-hero-cta__sub"
+    className: "hp-terms"
   }, "Or", " ", React.createElement("a", {
     href: `${GUIDE_APP_BASE}/preview`,
     onClick: () => {
@@ -1223,21 +1212,12 @@ function GuidePage({
         location: "guide_hero"
       });
     }
-  }, "read the free sample first →"), " ", "Five complete entries from the real app, no account needed.")))), React.createElement("div", {
-    className: "wrap",
-    style: {
-      paddingTop: 24,
-      paddingBottom: 80
-    }
+  }, "read the free sample first ↗"), " ", "Five complete entries from the real app, no account needed."))), React.createElement("div", {
+    className: "hp-wrap hp-section"
   }, React.createElement("div", {
-    style: {
-      display: "grid",
-      gridTemplateColumns: "1.4fr 1fr",
-      gap: 64,
-      alignItems: "start"
-    }
+    className: "guide-layout"
   }, React.createElement("div", {
-    className: "prose"
+    className: "prose guide-prose"
   }, React.createElement("h2", null, "What a wrong morning costs"), React.createElement("p", null, "Yosemite charges its real fees in hours. The Glacier Point lot fills by mid-morning in July; arrive at ten and the hour of driving becomes three of circling. Miss the early window at the Mist Trail and the day reorganizes itself around a shuttle line. The $35 your car pays at the entrance covers seven days no matter what you do with them. What those days contain is decided by timing, and timing is exactly what a list of famous viewpoints doesn't give you."), React.createElement("p", null, "That's the problem this guide is built against. Time budgets tell you what actually fits before lunch. Swaps tell you where to go the second a lot is full. And because all of it lives on your phone and works without signal, the answer is there at the moment the day wobbles, which is never a moment with bars."), React.createElement("p", null, "The guide is ", React.createElement(LivePrice, null), ". Everything else about your trip costs more and decides less."), React.createElement("h2", null, "The picnic table in El Portal"), React.createElement("p", null, "This guide is the conversation you'd get if you sat across from me at a picnic table in El Portal and said, \"I have three days. Show me how to do this well.\" Which stops are worth your morning, which can wait, where to park, how long each one actually takes, and what to do instead when the lot is full."), React.createElement("p", null, "The internet has a thousand free articles telling you to drive to Glacier Point, walk through the Mariposa Grove, and look up at El Capitan from the Yosemite Valley floor. You don't need those repeated in a different font. This guide assumes you've done that reading and starts where the lists stop: the parking, the timing, the order, and the fallback."), React.createElement("h2", null, "Sixty seconds inside the app"), React.createElement("p", null, "Five screens, in the order a trip actually uses them. These are unedited captures from the current 2026 build, the same one buyers open. Tap a step to hold it."), React.createElement(GuideWalkthrough, null), React.createElement("h2", null, "Every screen, unedited"), React.createElement("p", null, "The full set: ten screens from the current build, captured on a phone. What you see here is the product, not a mockup."), React.createElement(AppShots, null), React.createElement("h2", null, "New in the September 2026 build"), React.createElement("p", null, "The guide keeps changing after you buy it, and this is what the last month added. Eight more screens, captured the same way, from the same build."), React.createElement(AppShots, {
     shots: NEW_SHOTS
   }), React.createElement("p", null, "Not pictured, because a phone screen does not hold them well: the offline map now carries the park's infrastructure, the five entrances, the visitor and wilderness centers with their hours, the eighteen Valley shuttle stops numbered as the park numbers them, picnic areas, gas, EV charging, showers, laundry, stores and the clinic, every kind of pin drawn with its own mark, and a \"Go to\" row that flies the map to a region. The front page's conditions panel gained live parking-lot status, and the same status prints on the map's parking pins. The Secret Guide grew by thirteen entries, and every one of them, along with the ten new photographs, arrived as a silent update. Nothing here cost an existing buyer anything, and that is the arrangement for the rest of the 18 months."), React.createElement("h2", null, "What it does for the day"), React.createElement(GuideOutcomes, null), React.createElement("h2", null, "Read one stop, in full"), React.createElement("p", null, "This is the guide's first stop, quoted word for word from the app. Every one of the 94 entries is built this way: the numbers up top, the read underneath, the fallback printed on the page, and, where the record allows it, a sourced note from a century of park naturalists' field bulletins."), React.createElement(GuideStopExample, null), React.createElement("h2", null, "A day, built in driving order"), React.createElement("p", null, "This is what the planner does with a day. Stops go in, and the day comes back as a timeline: each block sized by its real time budget, each gap computed from the actual driving distance between the two coordinates. No spreadsheet, no guessing whether four things fit before lunch."), React.createElement(GuideItineraryExample, null), React.createElement("h2", null, "Turn the service off"), React.createElement("p", null, "Cell service dies at the Wawona Tunnel, on most of Glacier Point Road, and along nearly all of Tioga. The guide treats that as the normal case, not the failure case."), React.createElement(GuideOfflineDemo, null), React.createElement("h2", null, "The free site, and the guide"), React.createElement("p", null, "Everything this site publishes stays free: the articles, the trip map, the itineraries, the conditions board. The guide is not those pages repackaged. It is the field version: the complete library, the planner, and the offline download that makes both of them work standing in a pullout with no bars."), React.createElement(GuideCompare, {
@@ -1284,16 +1264,13 @@ function GuidePage({
     style: {
       color: "var(--ink-2)"
     }
-  }, "Read the free sample →")))), GUIDE_ON_SALE ? React.createElement(GuideBuyBox, null) : React.createElement(GuideWaitlistBox, null))), React.createElement("div", {
-    className: "wrap wrap--narrow",
-    style: {
-      paddingBottom: 96
-    }
-  }, React.createElement(NewsletterInline, {
-    location: "guide_footer",
-    tag: "guide",
+  }, "Read the free sample →")))), GUIDE_ON_SALE ? React.createElement(GuideBuyBox, null) : React.createElement(GuideWaitlistBox, null))), React.createElement(HpLetter, {
+    eyebrow: "FOR BUYERS AND READERS",
+    title: "Sunday Field Notes",
     heading: "Sunday Field Notes",
-    blurb: "A short note on Sundays. Subscribers hear about Field Guide updates, Secret Guide additions, and seasonal addenda first."
-  })), GUIDE_ON_SALE && React.createElement(GuideMobileBuyBar, null));
+    blurb: "A short note on Sundays. Subscribers hear about Field Guide updates, Secret Guide additions, and seasonal addenda first.",
+    location: "guide_footer",
+    tag: "guide"
+  }), GUIDE_ON_SALE && React.createElement(GuideMobileBuyBar, null));
 }
 window.GuidePage = GuidePage;
