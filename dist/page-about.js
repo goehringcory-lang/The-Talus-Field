@@ -2,39 +2,32 @@ function AboutPage({
   go
 }) {
   return React.createElement("div", {
-    className: "page"
-  }, React.createElement("div", {
-    className: "page-head"
-  }, React.createElement("div", {
-    className: "wrap wrap--narrow"
-  }, React.createElement(Breadcrumbs, {
+    className: "page hp-about"
+  }, React.createElement(HpPageHead, {
     go: go,
-    trail: [{
+    crumbs: [{
       label: "Home",
       route: "home"
     }, {
       label: "About"
-    }]
+    }],
+    eyebrow: "COLOPHON",
+    title: "About this journal.",
+    intro: "A small site, kept by one person, about one park.",
+    aside: React.createElement("div", {
+      className: "hp-about__plate"
+    }, React.createElement(Placeholder, {
+      caption: "Cathedral Rocks from the Merced, El Portal",
+      image: "img/cathedral-rocks-middle-cathedral.jpg",
+      credit: "Photo: Wikimedia Commons (public domain)",
+      tag: "PORTRAIT",
+      size: "lg"
+    }))
   }), React.createElement("div", {
-    className: "eyebrow eyebrow--moss"
-  }, "Colophon"), React.createElement("h1", null, "About this journal."), React.createElement("p", {
-    className: "page-head__dek"
-  }, "A small site, kept by one person, about one park."))), React.createElement("div", {
-    className: "wrap wrap--read",
-    style: {
-      paddingTop: 56
-    }
-  }, React.createElement(Placeholder, {
-    caption: "Cathedral Rocks from the Merced, El Portal",
-    image: "img/cathedral-rocks-middle-cathedral.jpg",
-    credit: "Photo: Wikimedia Commons (public domain)",
-    tag: "PORTRAIT",
-    size: "lg",
-    style: {
-      aspectRatio: "4 / 5",
-      marginBottom: 40
-    }
-  }), React.createElement("div", {
+    className: "hp-wrap hp-reading"
+  }, React.createElement("div", {
+    className: "hp-reading__column"
+  }, React.createElement("div", {
     className: "prose"
   }, React.createElement("p", {
     className: "dropcap"
@@ -51,21 +44,12 @@ function AboutPage({
       go("contact");
     }
   }, "the contact page"), "."), React.createElement("hr", null), React.createElement("p", {
-    style: {
-      fontFamily: "var(--sans)",
-      fontSize: 13,
-      color: "var(--ink-3)",
-      textTransform: "uppercase",
-      letterSpacing: "0.14em",
-      fontWeight: 600
-    }
-  }, "Set in EB Garamond and Inter. Hosted independently. Not affiliated with the National Park Service.")), React.createElement("div", {
-    style: {
-      marginTop: 56
-    }
-  }, React.createElement(NewsletterInline, {
+    className: "hp-eyebrow hp-about__colophon"
+  }, "Set in EB Garamond and Inter. Hosted independently. Not affiliated with the National Park Service.")))), React.createElement(HpLetter, {
+    eyebrow: "SUNDAY FIELD NOTES / FREE",
+    title: "Sunday Field Notes",
     heading: "Sunday Field Notes",
     blurb: "A short note on Sundays, when there is something to say."
-  }))));
+  }));
 }
 window.AboutPage = AboutPage;

@@ -1,4 +1,4 @@
-/* global React, NewsletterInline, Breadcrumbs */
+/* global React, HpPageHead, HpLetter */
 
 // =============================================================================
 // GROUP CODES — `/partners` route (MONETIZATION-IDEAS.md 2.4). The B2B pitch
@@ -81,24 +81,17 @@ function PartnersPage({ go }) {
   };
 
   return (
-    <div className="page">
-      <div className="page-head">
-        <div className="wrap wrap--narrow">
-          <Breadcrumbs go={go} trail={[{ label: "Home", route: "home" }, { label: "Group codes" }]} />
-          <div className="eyebrow eyebrow--moss">For lodging and hospitality · group codes</div>
-          <h1>Give every guest the field guide.</h1>
-          <p className="page-head__dek">
-            The Talus Field Guide is the offline Yosemite app your guests wish
-            they had found before they drove in: 44 stops with tappable GPS and
-            real time budgets, all 57 in-park day hikes, the ranger program
-            schedule on their dates, and a topo map of the park that works when
-            service dies. Buy it in packs, hand a code to every booking, and it
-            arrives as your amenity, not a link they found on their own.
-          </p>
-        </div>
-      </div>
+    <div className="page hp-partners">
+      <HpPageHead
+        go={go}
+        crumbs={[{ label: "Home", route: "home" }, { label: "Group codes" }]}
+        eyebrow="FOR LODGING AND HOSPITALITY · GROUP CODES"
+        title="Give every guest the field guide."
+        intro="The Talus Field Guide is the offline Yosemite app your guests wish they had found before they drove in: 44 stops with tappable GPS and real time budgets, all 57 in-park day hikes, the ranger program schedule on their dates, and a topo map of the park that works when service dies. Buy it in packs, hand a code to every booking, and it arrives as your amenity, not a link they found on their own."
+      />
 
-      <div className="wrap wrap--narrow" style={{ paddingTop: 40 }}>
+      <div className="hp-wrap hp-reading">
+        <div className="hp-reading__column">
         <section className="prose">
           <h2>The problem this solves</h2>
           <p>
@@ -136,9 +129,10 @@ function PartnersPage({ go }) {
             packet, the check-in screen.
           </p>
         </section>
+        </div>
       </div>
 
-      <section className="wrap" style={{ paddingTop: 40, paddingBottom: 8 }}>
+      <section className="hp-wrap hp-partners__pitch">
         <div className="places-pitch">
           <div className="places-pitch__eyebrow">Pricing</div>
           <h2 className="places-pitch__title">What it costs</h2>
@@ -164,7 +158,8 @@ function PartnersPage({ go }) {
         </div>
       </section>
 
-      <div className="wrap wrap--narrow" style={{ paddingTop: 32, paddingBottom: 64 }}>
+      <div className="hp-wrap hp-reading">
+        <div className="hp-reading__column">
         <section className="prose">
           <h2>How it works</h2>
           <ol>
@@ -256,36 +251,35 @@ function PartnersPage({ go }) {
           </p>
         </section>
 
-        <div style={{ marginTop: 32, border: "1px solid var(--ink)", background: "var(--paper-2)", padding: 28 }}>
-          <p style={{ fontFamily: "var(--serif)", fontSize: 15, color: "var(--ink)", lineHeight: 1.55, margin: "0 0 14px" }}>
+        <div className="hp-partners__ask">
+          <p>
             Tell me about the property and how you would hand the codes out. A
             quote comes back with the pricing that fits, and a sample card, so
             you can see the thing before you commit to anything.
           </p>
           <a
-            className="btn"
+            className="hp-button"
             href={PARTNERS_MAILTO}
             onClick={() => trackContact("partners_footer")}
-            style={{ display: "inline-block", marginRight: 12 }}
           >
             Ask about group codes →
           </a>
           <a
             href="/contact"
             onClick={(e) => { e.preventDefault(); trackContact("partners_contact_form"); go("contact"); }}
-            style={{ fontFamily: "var(--sans)", fontSize: 14, color: "var(--ink-2)" }}
+            className="hp-link"
           >
             Or use the contact form →
           </a>
-          <p style={{ fontFamily: "var(--sans)", fontSize: 12, color: "var(--ink-3)", lineHeight: 1.55, margin: "14px 0 0" }}>
+          <p className="hp-terms">
             Want to see the product first? The public{" "}
-            <a href="/guide" onClick={(e) => { e.preventDefault(); go("guide"); }}>Field Guide page</a>{" "}
+            <a className="hp-inline" href="/guide" onClick={(e) => { e.preventDefault(); go("guide"); }}>Field Guide page</a>{" "}
             is the full tour, and the app itself has a free sample of real
             entries, no account required.
           </p>
         </div>
 
-        <section className="prose" style={{ marginTop: 40 }}>
+        <section className="prose hp-widget__more">
           <h2>Two other things, both free</h2>
           <p>
             The{" "}
@@ -300,13 +294,17 @@ function PartnersPage({ go }) {
           </p>
         </section>
 
-        <NewsletterInline
-          location="partners"
-          tag="partners"
-          heading="Run a Yosemite-area property?"
-          blurb="Sunday Field Notes carries what changed in the park each week, the same material your guests ask the front desk about. Free."
-        />
+        </div>
       </div>
+
+      <HpLetter
+        eyebrow="SUNDAY FIELD NOTES / FREE"
+        title="Run a Yosemite-area property?"
+        heading="Run a Yosemite-area property?"
+        blurb="Sunday Field Notes carries what changed in the park each week, the same material your guests ask the front desk about. Free."
+        location="partners"
+        tag="partners"
+      />
     </div>
   );
 }

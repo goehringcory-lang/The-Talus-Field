@@ -1,4 +1,4 @@
-/* global React, NewsletterInline, Breadcrumbs */
+/* global React, HpPageHead, HpLetter */
 
 // =============================================================================
 // FIELD CONSULT — `/consult` route (MONETIZATION-IDEAS.md 3.3). Sells the one
@@ -32,23 +32,60 @@ function ConsultPage({ go }) {
   };
 
   return (
-    <div className="page">
-      <div className="page-head">
-        <div className="wrap wrap--narrow">
-          <Breadcrumbs go={go} trail={[{ label: "Home", route: "home" }, { label: "Field consult" }]} />
-          <div className="eyebrow eyebrow--moss">One on one · {CONSULT_SLOTS_PER_MONTH} a month</div>
-          <h1>Thirty minutes on your Yosemite plan.</h1>
-          <p className="page-head__dek">
-            A call with a naturalist who lives in the park: your dates, your group,
-            your plan, taken apart and put back together by someone who has spent
-            twenty seasons watching plans meet the actual park. {CONSULT_PRICE},
-            thirty minutes, {CONSULT_SLOTS_PER_MONTH} slots a month. When they are
-            gone, they are gone.
+    <div className="page hp-consult">
+      <HpPageHead
+        go={go}
+        crumbs={[{ label: "Home", route: "home" }, { label: "Field consult" }]}
+        eyebrow={`ONE ON ONE · ${CONSULT_SLOTS_PER_MONTH} A MONTH`}
+        title="Thirty minutes on your Yosemite plan."
+        intro={`A call with a naturalist who lives in the park: your dates, your group, your plan, taken apart and put back together by someone who has spent twenty seasons watching plans meet the actual park. ${CONSULT_PRICE}, thirty minutes, ${CONSULT_SLOTS_PER_MONTH} slots a month. When they are gone, they are gone.`}
+        aside={
+    <div className="hp-consult__book">
+      <p className="hp-eyebrow">THE CONSULT / {CONSULT_PRICE}</p>
+      {live ? (
+        <>
+          <a
+            className="hp-button"
+            href={CONSULT_PAYMENT_LINK_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => trackClick("consult_pay")}
+          >
+            Book a consult → {CONSULT_PRICE}
+          </a>
+          <a
+            href={CONSULT_BOOKING_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => trackClick("consult_schedule")}
+            className="hp-link"
+          >
+            Already paid? Pick your time →
+          </a>
+        </>
+      ) : (
+        <>
+          <p className="hp-consult__soon">
+            Booking opens shortly. Until the calendar is live, email works: say
+            your dates and what you are trying to figure out, and you will get
+            a reply about this month's slots.
           </p>
-        </div>
-      </div>
+          <a className="hp-button" href={CONSULT_MAILTO} onClick={() => trackClick("consult_mailto")}>
+            Email about a consult →
+          </a>
+        </>
+      )}
+      <p className="hp-terms">
+        If the month is sold out, the button says so. No waitlist for consults;
+        the newsletter announces when slots reopen.
+      </p>
+    </div>
 
-      <div className="wrap wrap--narrow" style={{ paddingTop: 40, paddingBottom: 64 }}>
+        }
+      />
+
+      <div className="hp-wrap hp-reading">
+        <div className="hp-reading__column">
         <section className="prose">
           <h2>What it is</h2>
           <p>
@@ -82,54 +119,17 @@ function ConsultPage({ go }) {
           </ol>
         </section>
 
-        <div style={{ marginTop: 32, border: "1px solid var(--ink)", background: "var(--paper-2)", padding: 28 }}>
-          {live ? (
-            <>
-              <a
-                className="btn"
-                href={CONSULT_PAYMENT_LINK_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={() => trackClick("consult_pay")}
-                style={{ display: "inline-block", marginRight: 12 }}
-              >
-                Book a consult → {CONSULT_PRICE}
-              </a>
-              <a
-                href={CONSULT_BOOKING_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={() => trackClick("consult_schedule")}
-                style={{ fontFamily: "var(--sans)", fontSize: 14, color: "var(--ink-2)" }}
-              >
-                Already paid? Pick your time →
-              </a>
-            </>
-          ) : (
-            <>
-              <p style={{ fontFamily: "var(--serif)", fontSize: 15, color: "var(--ink)", lineHeight: 1.55, margin: "0 0 14px" }}>
-                Booking opens shortly. Until the calendar is live, email works: say
-                your dates and what you are trying to figure out, and you will get
-                a reply about this month's slots.
-              </p>
-              <a className="btn" href={CONSULT_MAILTO} onClick={() => trackClick("consult_mailto")} style={{ display: "inline-block" }}>
-                Email about a consult →
-              </a>
-            </>
-          )}
-          <p style={{ fontFamily: "var(--sans)", fontSize: 12, color: "var(--ink-3)", lineHeight: 1.55, margin: "14px 0 0" }}>
-            If the month is sold out, the button says so. No waitlist for consults;
-            the newsletter announces when slots reopen.
-          </p>
         </div>
-
-        <NewsletterInline
-          location="consult"
-          tag="consult"
-          heading="Not ready to book?"
-          blurb="Sunday Field Notes answers most planning questions eventually, one short letter a week, written from inside the park. Free."
-        />
       </div>
+
+      <HpLetter
+        eyebrow="SUNDAY FIELD NOTES / FREE"
+        title="Not ready to book?"
+        heading="Not ready to book?"
+        blurb="Sunday Field Notes answers most planning questions eventually, one short letter a week, written from inside the park. Free."
+        location="consult"
+        tag="consult"
+      />
     </div>
   );
 }

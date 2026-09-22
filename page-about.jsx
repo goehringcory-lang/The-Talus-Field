@@ -1,29 +1,29 @@
-/* global React, Placeholder, NewsletterInline, MotifMountains, Breadcrumbs */
+/* global React, Placeholder, MotifMountains, HpPageHead, HpLetter */
 
 function AboutPage({ go }) {
   return (
-    <div className="page">
-      <div className="page-head">
-        <div className="wrap wrap--narrow">
-          <Breadcrumbs go={go} trail={[{ label: "Home", route: "home" }, { label: "About" }]} />
-          <div className="eyebrow eyebrow--moss">Colophon</div>
-          <h1>About this journal.</h1>
-          <p className="page-head__dek">
-            A small site, kept by one person, about one park.
-          </p>
-        </div>
-      </div>
+    <div className="page hp-about">
+      <HpPageHead
+        go={go}
+        crumbs={[{ label: "Home", route: "home" }, { label: "About" }]}
+        eyebrow="COLOPHON"
+        title="About this journal."
+        intro="A small site, kept by one person, about one park."
+        aside={
+          <div className="hp-about__plate">
+            <Placeholder
+              caption={"Cathedral Rocks from the Merced, El Portal"}
+              image="img/cathedral-rocks-middle-cathedral.jpg"
+              credit="Photo: Wikimedia Commons (public domain)"
+              tag="PORTRAIT"
+              size="lg"
+            />
+          </div>
+        }
+      />
 
-      <div className="wrap wrap--read" style={{ paddingTop: 56 }}>
-        <Placeholder
-          caption={"Cathedral Rocks from the Merced, El Portal"}
-          image="img/cathedral-rocks-middle-cathedral.jpg"
-          credit="Photo: Wikimedia Commons (public domain)"
-          tag="PORTRAIT"
-          size="lg"
-          style={{ aspectRatio: "4 / 5", marginBottom: 40 }}
-        />
-
+      <div className="hp-wrap hp-reading">
+        <div className="hp-reading__column">
         <div className="prose">
           <p className="dropcap">
             The Talus Field began as a pile of paper. Trip notes, weather entries, copies of permits, lists of what was blooming on which week. The kind of paper that piles up when you live near a place long enough that you stop seeing the postcard and start seeing the year.
@@ -64,18 +64,19 @@ function AboutPage({ go }) {
 
           <hr />
 
-          <p style={{ fontFamily: "var(--sans)", fontSize: 13, color: "var(--ink-3)", textTransform: "uppercase", letterSpacing: "0.14em", fontWeight: 600 }}>
+          <p className="hp-eyebrow hp-about__colophon">
             Set in EB Garamond and Inter. Hosted independently. Not affiliated with the National Park Service.
           </p>
         </div>
-
-        <div style={{ marginTop: 56 }}>
-          <NewsletterInline
-            heading="Sunday Field Notes"
-            blurb="A short note on Sundays, when there is something to say."
-          />
         </div>
       </div>
+
+      <HpLetter
+        eyebrow="SUNDAY FIELD NOTES / FREE"
+        title="Sunday Field Notes"
+        heading="Sunday Field Notes"
+        blurb="A short note on Sundays, when there is something to say."
+      />
     </div>
   );
 }

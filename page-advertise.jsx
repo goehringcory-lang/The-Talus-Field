@@ -1,22 +1,18 @@
-/* global React, NewsletterInline, Breadcrumbs */
+/* global React, HpPageHead, HpHeading, HpLetter */
 
 function AdvertisePage({ go }) {
   return (
-    <div className="page">
-      {/* Page head */}
-      <section className="page-head">
-        <div className="wrap wrap--narrow">
-          <Breadcrumbs go={go} trail={[{ label: "Home", route: "home" }, { label: "Advertise" }]} />
-          <div className="eyebrow eyebrow--moss">For Operators</div>
-          <h1>List your business on The Talus Field.</h1>
-          <p className="page-head__dek">
-            The Talus Field is read by people actively planning a Yosemite trip. The audience that's about to book lodging, hire a guide, or buy a tour. If you operate a lodge, an inn, a guiding service, an outfitter, a transportation company, or any other Yosemite-adjacent business, a placement in The Directory puts you in front of the right reader at the right moment.
-          </p>
-        </div>
-      </section>
+    <div className="page hp-advertise">
+      <HpPageHead
+        go={go}
+        crumbs={[{ label: "Home", route: "home" }, { label: "Advertise" }]}
+        eyebrow="FOR OPERATORS"
+        title="List your business on The Talus Field."
+        intro="The Talus Field is read by people actively planning a Yosemite trip. The audience that's about to book lodging, hire a guide, or buy a tour. If you operate a lodge, an inn, a guiding service, an outfitter, a transportation company, or any other Yosemite-adjacent business, a placement in The Directory puts you in front of the right reader at the right moment."
+      />
 
       {/* The pitch */}
-      <section className="wrap" style={{ paddingTop: 56, paddingBottom: 64 }}>
+      <section className="hp-wrap hp-section">
         <div className="places-pitch">
           <div className="places-pitch__grid">
             <div>
@@ -66,26 +62,27 @@ function AdvertisePage({ go }) {
       </section>
 
       {/* Why it works. Short editorial */}
-      <section className="wrap wrap--narrow" style={{ paddingTop: 32, paddingBottom: 80 }}>
-        <h2 style={{ fontFamily: "var(--display)", fontSize: 32, fontWeight: 500, lineHeight: 1.15, margin: "0 0 18px" }}>Why a directory placement works</h2>
-        <p style={{ fontFamily: "var(--serif)", fontSize: 18, color: "var(--ink-2)", lineHeight: 1.55, marginBottom: 18 }}>
-          The visitors reading The Talus Field are not casual browsers. They've already decided to come to the park. They're working out how to do it well, which means they're looking for a place to sleep, a guide to hire, a class to take, a route to drive. A search-engine ad reaches a colder audience and costs a multiple of what a year of placement here costs. A social post reaches a larger but less qualified audience that mostly will not convert.
-        </p>
-        <p style={{ fontFamily: "var(--serif)", fontSize: 18, color: "var(--ink-2)", lineHeight: 1.55, marginBottom: 18 }}>
-          The directory shows up in a moment of decision, on a site the reader already trusts to give them straight answers. That's the placement.
-        </p>
-        <p style={{ fontFamily: "var(--serif)", fontSize: 18, color: "var(--ink-2)", lineHeight: 1.55 }}>
-          If you're an operator who fits, and you'd be willing to send a friend to your business, write to <a href="mailto:cory@thetalusfieldjournal.com">cory@thetalusfieldjournal.com</a> or use <a href="/contact" onClick={(e) => { e.preventDefault(); go("contact"); }}>the contact form</a>. I read every inquiry.
-        </p>
+      <section className="hp-wrap hp-section hp-advertise__why">
+        <HpHeading title="Why a directory placement works" />
+        <div className="hp-advertise__copy">
+          <p className="hp-sub">
+            The visitors reading The Talus Field are not casual browsers. They've already decided to come to the park. They're working out how to do it well, which means they're looking for a place to sleep, a guide to hire, a class to take, a route to drive. A search-engine ad reaches a colder audience and costs a multiple of what a year of placement here costs. A social post reaches a larger but less qualified audience that mostly will not convert.
+          </p>
+          <p className="hp-sub">
+            The directory shows up in a moment of decision, on a site the reader already trusts to give them straight answers. That's the placement.
+          </p>
+          <p className="hp-sub">
+            If you're an operator who fits, and you'd be willing to send a friend to your business, write to <a className="hp-inline" href="mailto:cory@thetalusfieldjournal.com">cory@thetalusfieldjournal.com</a> or use <a className="hp-inline" href="/contact" onClick={(e) => { e.preventDefault(); go("contact"); }}>the contact form</a>. I read every inquiry.
+          </p>
+        </div>
       </section>
 
-      {/* Newsletter */}
-      <div className="wrap wrap--narrow" style={{ paddingBottom: 96 }}>
-        <NewsletterInline
-          heading="Sunday Field Notes"
-          blurb="A short note on Sundays, when there is something to say."
-        />
-      </div>
+      <HpLetter
+        eyebrow="SUNDAY FIELD NOTES / FREE"
+        title="Sunday Field Notes"
+        heading="Sunday Field Notes"
+        blurb="A short note on Sundays, when there is something to say."
+      />
     </div>
   );
 }

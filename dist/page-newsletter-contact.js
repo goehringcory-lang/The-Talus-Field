@@ -7,74 +7,32 @@ function NewsletterPage({
 }) {
   var [done, setDone] = useState(false);
   return React.createElement("div", {
-    className: "page"
-  }, React.createElement("div", {
-    className: "wrap wrap--narrow",
-    style: {
-      paddingTop: 96,
-      paddingBottom: 96
-    }
-  }, React.createElement(Breadcrumbs, {
+    className: "page hp-nlpage"
+  }, React.createElement(HpPageHead, {
     go: go,
-    trail: [{
+    crumbs: [{
       label: "Home",
       route: "home"
     }, {
       label: "Newsletter"
-    }]
-  }), React.createElement("div", {
-    className: "eyebrow eyebrow--moss"
-  }, "Newsletter"), React.createElement("h1", {
-    style: {
-      marginTop: 16,
-      marginBottom: 24
-    }
-  }, "Sunday Field Notes."), React.createElement("p", {
-    style: {
-      fontSize: 22,
-      color: "var(--ink-2)",
-      lineHeight: 1.5,
-      marginBottom: 32,
-      fontFamily: "var(--display)",
-      fontStyle: "italic"
-    }
-  }, "A short note on Sundays, when there is something to say. Subscribing is free."), React.createElement("div", {
-    style: {
-      border: "1px solid var(--moss)",
-      background: "var(--paper-2)",
-      padding: "20px 24px",
-      marginBottom: 40
-    }
+    }],
+    eyebrow: "NEWSLETTER",
+    title: "Sunday Field Notes.",
+    intro: "A short note on Sundays, when there is something to say. Subscribing is free.",
+    aside: React.createElement(HpPostcard, null)
   }, React.createElement("div", {
-    className: "eyebrow eyebrow--moss",
-    style: {
-      marginBottom: 8
-    }
-  }, "Free for subscribers"), React.createElement("p", {
-    style: {
-      fontFamily: "var(--serif)",
-      fontSize: 17,
-      lineHeight: 1.6,
-      color: "var(--ink)",
-      margin: 0
-    }
-  }, "Sign up and unlock ", React.createElement("a", {
+    className: "hp-nlpage__perk"
+  }, React.createElement("p", {
+    className: "hp-eyebrow"
+  }, "FREE FOR SUBSCRIBERS"), React.createElement("p", null, "Sign up and unlock ", React.createElement("a", {
+    className: "hp-inline",
     href: "/map",
     onClick: e => {
       e.preventDefault();
       go("map");
     }
   }, "the interactive Yosemite map"), ": vistas, trailheads, parking turnouts, picnic spots, and places to eat, with a trip builder that saves your route on your device. It opens the moment you subscribe.")), done ? React.createElement("p", {
-    style: {
-      borderTop: "1px solid var(--ink)",
-      borderBottom: "1px solid var(--ink)",
-      padding: "24px 0",
-      marginBottom: 48,
-      fontFamily: "var(--display)",
-      fontStyle: "italic",
-      fontSize: 22,
-      color: "var(--moss)"
-    }
+    className: "hp-nlpage__done"
   }, "Thanks. ", React.createElement("a", {
     href: "/map",
     onClick: e => {
@@ -82,37 +40,20 @@ function NewsletterPage({
       go("map");
     }
   }, "The map is open to you →")) : React.createElement("form", {
+    className: "nlbox__form",
     action: "https://buttondown.com/api/emails/embed-subscribe/goehring",
     method: "post",
     target: "buttondown-target",
     onSubmit: () => {
       if (window.trackNewsletterSubmit) window.trackNewsletterSubmit("newsletter_page", "newsletter-page");
       setTimeout(() => setDone(true), 0);
-    },
-    style: {
-      borderTop: "1px solid var(--ink)",
-      borderBottom: "1px solid var(--ink)",
-      padding: "24px 0",
-      display: "flex",
-      gap: 16,
-      alignItems: "center",
-      marginBottom: 48
     }
   }, React.createElement("input", {
     type: "email",
     name: "email",
     "aria-label": "Email address",
     placeholder: "you@email.com",
-    required: true,
-    style: {
-      flex: 1,
-      fontFamily: "var(--serif)",
-      fontSize: 22,
-      background: "transparent",
-      border: 0,
-      outline: "none",
-      color: "var(--ink)"
-    }
+    required: true
   }), React.createElement("input", {
     type: "hidden",
     name: "tag",
@@ -122,68 +63,23 @@ function NewsletterPage({
     name: "embed",
     value: "1"
   }), React.createElement("button", {
-    className: "btn",
     type: "submit"
-  }, "Subscribe →")), React.createElement("div", {
-    style: {
-      display: "grid",
-      gridTemplateColumns: "1fr 1fr",
-      gap: 40,
-      marginTop: 64
-    }
-  }, React.createElement("div", null, React.createElement("h3", {
-    style: {
-      fontSize: 19,
-      marginBottom: 10,
-      fontFamily: "var(--display)",
-      fontStyle: "italic",
-      fontWeight: 500
-    }
-  }, "Cadence"), React.createElement("p", {
-    style: {
-      color: "var(--ink-2)",
-      lineHeight: 1.6,
-      fontFamily: "var(--serif)",
-      fontSize: 16
-    }
-  }, "Sundays, when there is something to say. Some weeks there is not.")), React.createElement("div", null, React.createElement("h3", {
-    style: {
-      fontSize: 19,
-      marginBottom: 10,
-      fontFamily: "var(--display)",
-      fontStyle: "italic",
-      fontWeight: 500
-    }
-  }, "Mail"), React.createElement("p", {
-    style: {
-      color: "var(--ink-2)",
-      lineHeight: 1.6,
-      fontFamily: "var(--serif)",
-      fontSize: 16
-    }
-  }, "Used to send the dispatch. Not shared. Unsubscribe at the bottom of any letter."))), React.createElement("div", {
-    style: {
-      marginTop: 64,
-      paddingTop: 32,
-      borderTop: "1px solid var(--rule)",
-      fontFamily: "var(--sans)",
-      fontSize: 11,
-      color: "var(--ink-3)",
-      lineHeight: 1.6,
-      textTransform: "uppercase",
-      letterSpacing: "0.14em",
-      fontWeight: 600
-    }
+  }, "Subscribe →"))), React.createElement("section", {
+    className: "hp-wrap hp-section hp-nlpage__terms"
+  }, React.createElement("div", null, React.createElement("h3", null, "Cadence"), React.createElement("p", {
+    className: "hp-sub"
+  }, "Sundays, when there is something to say. Some weeks there is not.")), React.createElement("div", null, React.createElement("h3", null, "Mail"), React.createElement("p", {
+    className: "hp-sub"
+  }, "Used to send the dispatch. Not shared. Unsubscribe at the bottom of any letter.")), React.createElement("p", {
+    className: "hp-nlpage__privacy"
   }, React.createElement("a", {
+    className: "hp-link",
     href: "/privacy",
     onClick: e => {
       e.preventDefault();
       go("privacy");
-    },
-    style: {
-      color: "var(--ink-2)"
     }
-  }, "Privacy →"))));
+  }, "Privacy ↗"))));
 }
 function ContactPage({
   go
@@ -232,63 +128,31 @@ function ContactPage({
     }
   }
   return React.createElement("div", {
-    className: "page"
-  }, React.createElement("div", {
-    className: "page-head"
-  }, React.createElement("div", {
-    className: "wrap wrap--narrow"
-  }, React.createElement(Breadcrumbs, {
+    className: "page hp-contact"
+  }, React.createElement(HpPageHead, {
     go: go,
-    trail: [{
+    crumbs: [{
       label: "Home",
       route: "home"
     }, {
       label: "Contact"
-    }]
-  }), React.createElement("div", {
-    className: "eyebrow eyebrow--moss"
-  }, "Contact"), React.createElement("h1", null, "Send me a note."), React.createElement("p", {
-    className: "page-head__dek"
-  }, "I read everything. I answer most things, eventually. If you are asking a trip-planning question, please include your dates and what kind of trip you are imagining; otherwise I will just write back asking."))), React.createElement("div", {
-    className: "wrap",
-    style: {
-      paddingTop: 56,
-      paddingBottom: 96
-    }
+    }],
+    eyebrow: "CONTACT",
+    title: "Send me a note.",
+    intro: "I read everything. I answer most things, eventually. If you are asking a trip-planning question, please include your dates and what kind of trip you are imagining; otherwise I will just write back asking."
+  }), React.createElement("section", {
+    className: "hp-wrap hp-section"
   }, React.createElement("div", {
-    style: {
-      display: "grid",
-      gridTemplateColumns: "1.4fr 1fr",
-      gap: 64,
-      alignItems: "start"
-    }
+    className: "hp-contact__grid"
   }, done ? React.createElement("div", {
     role: "status",
-    style: {
-      border: "1px solid var(--moss)",
-      padding: 40,
-      background: "var(--paper-2)"
-    }
-  }, React.createElement("div", {
-    className: "eyebrow eyebrow--moss"
-  }, "Sent"), React.createElement("h2", {
-    style: {
-      fontSize: 26,
-      marginTop: 8,
-      marginBottom: 12
-    }
-  }, "Got it. Thanks."), React.createElement("p", {
-    style: {
-      color: "var(--ink-2)"
-    }
-  }, "I read every note. I will write back when I can, usually within a few days.")) : React.createElement("form", {
+    className: "hp-contact__sent"
+  }, React.createElement("p", {
+    className: "hp-eyebrow"
+  }, "SENT"), React.createElement("h2", null, "Got it. Thanks."), React.createElement("p", null, "I read every note. I will write back when I can, usually within a few days.")) : React.createElement("form", {
     onSubmit: submit
   }, React.createElement("div", {
-    style: {
-      display: "grid",
-      gridTemplateColumns: "1fr 1fr",
-      gap: 24
-    }
+    className: "hp-contact__pair"
   }, React.createElement("div", {
     className: "field"
   }, React.createElement("label", {
@@ -356,12 +220,7 @@ function ContactPage({
     value: form.website,
     onChange: e => update("website", e.target.value)
   })), error && React.createElement("p", {
-    style: {
-      color: "#a02b1f",
-      fontFamily: "var(--sans)",
-      fontSize: 14,
-      marginBottom: 16
-    }
+    className: "hp-contact__error"
   }, error, " You can also email ", React.createElement("a", {
     href: "mailto:cory@thetalusfieldjournal.com"
   }, "cory@thetalusfieldjournal.com"), " directly."), React.createElement("button", {
@@ -369,49 +228,21 @@ function ContactPage({
     type: "submit",
     disabled: sending
   }, sending ? "Sending…" : "Send →")), React.createElement("aside", {
-    style: {
-      borderLeft: "1px solid var(--rule)",
-      paddingLeft: 32
-    }
-  }, React.createElement("div", {
-    className: "eyebrow",
-    style: {
-      marginBottom: 12
-    }
-  }, "Direct"), React.createElement("p", {
-    style: {
-      fontFamily: "var(--serif)",
-      fontSize: 17,
-      marginBottom: 6
-    }
+    className: "hp-contact__aside"
+  }, React.createElement("p", {
+    className: "hp-eyebrow"
+  }, "DIRECT"), React.createElement("p", {
+    className: "hp-contact__mail"
   }, React.createElement("a", {
     href: "mailto:cory@thetalusfieldjournal.com"
   }, "cory@thetalusfieldjournal.com")), React.createElement("p", {
-    style: {
-      fontFamily: "var(--sans)",
-      fontSize: 13,
-      color: "var(--ink-3)",
-      lineHeight: 1.55,
-      marginBottom: 28
-    }
+    className: "hp-contact__note"
   }, "I check this once or twice a day. Usually faster on Mondays."), React.createElement("div", {
-    style: {
-      borderTop: "1px solid var(--rule)",
-      marginTop: 32,
-      paddingTop: 24
-    }
-  }, React.createElement("div", {
-    className: "eyebrow",
-    style: {
-      marginBottom: 12
-    }
-  }, "Heads up"), React.createElement("p", {
-    style: {
-      fontFamily: "var(--sans)",
-      fontSize: 13,
-      color: "var(--ink-3)",
-      lineHeight: 1.6
-    }
+    className: "hp-contact__heads"
+  }, React.createElement("p", {
+    className: "hp-eyebrow"
+  }, "HEADS UP"), React.createElement("p", {
+    className: "hp-contact__note"
   }, "I cannot help with reservation problems on Recreation.gov. I am not the National Park Service. For emergencies in the park, dial 911 or 209-379-1992."))))));
 }
 window.NewsletterPage = NewsletterPage;

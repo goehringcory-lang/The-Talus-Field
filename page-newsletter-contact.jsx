@@ -1,4 +1,4 @@
-/* global React, Breadcrumbs */
+/* global React, HpPageHead, HpPostcard */
 const { useState } = React;
 
 // API base for the Worker. Override at runtime via window.GUIDE_API_BASE
@@ -10,28 +10,29 @@ const CONTACT_API_BASE =
 function NewsletterPage({ go }) {
   const [done, setDone] = useState(false);
   return (
-    <div className="page">
-      <div className="wrap wrap--narrow" style={{ paddingTop: 96, paddingBottom: 96 }}>
-        <Breadcrumbs go={go} trail={[{ label: "Home", route: "home" }, { label: "Newsletter" }]} />
-        <div className="eyebrow eyebrow--moss">Newsletter</div>
-        <h1 style={{ marginTop: 16, marginBottom: 24 }}>Sunday Field Notes.</h1>
-        <p style={{ fontSize: 22, color: "var(--ink-2)", lineHeight: 1.5, marginBottom: 32, fontFamily: "var(--display)", fontStyle: "italic" }}>
-          A short note on Sundays, when there is something to say. Subscribing is free.
-        </p>
-
-        <div style={{ border: "1px solid var(--moss)", background: "var(--paper-2)", padding: "20px 24px", marginBottom: 40 }}>
-          <div className="eyebrow eyebrow--moss" style={{ marginBottom: 8 }}>Free for subscribers</div>
-          <p style={{ fontFamily: "var(--serif)", fontSize: 17, lineHeight: 1.6, color: "var(--ink)", margin: 0 }}>
-            Sign up and unlock <a href="/map" onClick={(e) => { e.preventDefault(); go("map"); }}>the interactive Yosemite map</a>: vistas, trailheads, parking turnouts, picnic spots, and places to eat, with a trip builder that saves your route on your device. It opens the moment you subscribe.
+    <div className="page hp-nlpage">
+      <HpPageHead
+        go={go}
+        crumbs={[{ label: "Home", route: "home" }, { label: "Newsletter" }]}
+        eyebrow="NEWSLETTER"
+        title="Sunday Field Notes."
+        intro="A short note on Sundays, when there is something to say. Subscribing is free."
+        aside={<HpPostcard />}
+      >
+        <div className="hp-nlpage__perk">
+          <p className="hp-eyebrow">FREE FOR SUBSCRIBERS</p>
+          <p>
+            Sign up and unlock <a className="hp-inline" href="/map" onClick={(e) => { e.preventDefault(); go("map"); }}>the interactive Yosemite map</a>: vistas, trailheads, parking turnouts, picnic spots, and places to eat, with a trip builder that saves your route on your device. It opens the moment you subscribe.
           </p>
         </div>
 
         {done ? (
-          <p style={{ borderTop: "1px solid var(--ink)", borderBottom: "1px solid var(--ink)", padding: "24px 0", marginBottom: 48, fontFamily: "var(--display)", fontStyle: "italic", fontSize: 22, color: "var(--moss)" }}>
+          <p className="hp-nlpage__done">
             Thanks. <a href="/map" onClick={(e) => { e.preventDefault(); go("map"); }}>The map is open to you →</a>
           </p>
         ) : (
           <form
+            className="nlbox__form"
             action="https://buttondown.com/api/emails/embed-subscribe/goehring"
             method="post"
             target="buttondown-target"
@@ -39,7 +40,6 @@ function NewsletterPage({ go }) {
               if (window.trackNewsletterSubmit) window.trackNewsletterSubmit("newsletter_page", "newsletter-page");
               setTimeout(() => setDone(true), 0);
             }}
-            style={{ borderTop: "1px solid var(--ink)", borderBottom: "1px solid var(--ink)", padding: "24px 0", display: "flex", gap: 16, alignItems: "center", marginBottom: 48 }}
           >
             <input
               type="email"
@@ -47,33 +47,27 @@ function NewsletterPage({ go }) {
               aria-label="Email address"
               placeholder="you@email.com"
               required
-              style={{ flex: 1, fontFamily: "var(--serif)", fontSize: 22, background: "transparent", border: 0, outline: "none", color: "var(--ink)" }}
             />
             <input type="hidden" name="tag" value="newsletter-page" />
             <input type="hidden" name="embed" value="1" />
-            <button className="btn" type="submit">Subscribe →</button>
+            <button type="submit">Subscribe →</button>
           </form>
         )}
+      </HpPageHead>
 
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 40, marginTop: 64 }}>
-          <div>
-            <h3 style={{ fontSize: 19, marginBottom: 10, fontFamily: "var(--display)", fontStyle: "italic", fontWeight: 500 }}>Cadence</h3>
-            <p style={{ color: "var(--ink-2)", lineHeight: 1.6, fontFamily: "var(--serif)", fontSize: 16 }}>
-              Sundays, when there is something to say. Some weeks there is not.
-            </p>
-          </div>
-          <div>
-            <h3 style={{ fontSize: 19, marginBottom: 10, fontFamily: "var(--display)", fontStyle: "italic", fontWeight: 500 }}>Mail</h3>
-            <p style={{ color: "var(--ink-2)", lineHeight: 1.6, fontFamily: "var(--serif)", fontSize: 16 }}>
-              Used to send the dispatch. Not shared. Unsubscribe at the bottom of any letter.
-            </p>
-          </div>
+      <section className="hp-wrap hp-section hp-nlpage__terms">
+        <div>
+          <h3>Cadence</h3>
+          <p className="hp-sub">Sundays, when there is something to say. Some weeks there is not.</p>
         </div>
-
-        <div style={{ marginTop: 64, paddingTop: 32, borderTop: "1px solid var(--rule)", fontFamily: "var(--sans)", fontSize: 11, color: "var(--ink-3)", lineHeight: 1.6, textTransform: "uppercase", letterSpacing: "0.14em", fontWeight: 600 }}>
-          <a href="/privacy" onClick={(e) => { e.preventDefault(); go("privacy"); }} style={{ color: "var(--ink-2)" }}>Privacy →</a>
+        <div>
+          <h3>Mail</h3>
+          <p className="hp-sub">Used to send the dispatch. Not shared. Unsubscribe at the bottom of any letter.</p>
         </div>
-      </div>
+        <p className="hp-nlpage__privacy">
+          <a className="hp-link" href="/privacy" onClick={(e) => { e.preventDefault(); go("privacy"); }}>Privacy ↗</a>
+        </p>
+      </section>
     </div>
   );
 }
@@ -111,29 +105,26 @@ function ContactPage({ go }) {
   }
 
   return (
-    <div className="page">
-      <div className="page-head">
-        <div className="wrap wrap--narrow">
-          <Breadcrumbs go={go} trail={[{ label: "Home", route: "home" }, { label: "Contact" }]} />
-          <div className="eyebrow eyebrow--moss">Contact</div>
-          <h1>Send me a note.</h1>
-          <p className="page-head__dek">
-            I read everything. I answer most things, eventually. If you are asking a trip-planning question, please include your dates and what kind of trip you are imagining; otherwise I will just write back asking.
-          </p>
-        </div>
-      </div>
+    <div className="page hp-contact">
+      <HpPageHead
+        go={go}
+        crumbs={[{ label: "Home", route: "home" }, { label: "Contact" }]}
+        eyebrow="CONTACT"
+        title="Send me a note."
+        intro="I read everything. I answer most things, eventually. If you are asking a trip-planning question, please include your dates and what kind of trip you are imagining; otherwise I will just write back asking."
+      />
 
-      <div className="wrap" style={{ paddingTop: 56, paddingBottom: 96 }}>
-        <div style={{ display: "grid", gridTemplateColumns: "1.4fr 1fr", gap: 64, alignItems: "start" }}>
+      <section className="hp-wrap hp-section">
+        <div className="hp-contact__grid">
           {done ? (
-            <div role="status" style={{ border: "1px solid var(--moss)", padding: 40, background: "var(--paper-2)" }}>
-              <div className="eyebrow eyebrow--moss">Sent</div>
-              <h2 style={{ fontSize: 26, marginTop: 8, marginBottom: 12 }}>Got it. Thanks.</h2>
-              <p style={{ color: "var(--ink-2)" }}>I read every note. I will write back when I can, usually within a few days.</p>
+            <div role="status" className="hp-contact__sent">
+              <p className="hp-eyebrow">SENT</p>
+              <h2>Got it. Thanks.</h2>
+              <p>I read every note. I will write back when I can, usually within a few days.</p>
             </div>
           ) : (
             <form onSubmit={submit}>
-              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 24 }}>
+              <div className="hp-contact__pair">
                 <div className="field">
                   <label htmlFor="contact-name">Your name</label>
                   <input id="contact-name" type="text" required value={form.name} onChange={(e) => update("name", e.target.value)} />
@@ -176,7 +167,7 @@ function ContactPage({ go }) {
                 />
               </div>
               {error && (
-                <p style={{ color: "#a02b1f", fontFamily: "var(--sans)", fontSize: 14, marginBottom: 16 }}>
+                <p className="hp-contact__error">
                   {error} You can also email <a href="mailto:cory@thetalusfieldjournal.com">cory@thetalusfieldjournal.com</a> directly.
                 </p>
               )}
@@ -186,24 +177,24 @@ function ContactPage({ go }) {
             </form>
           )}
 
-          <aside style={{ borderLeft: "1px solid var(--rule)", paddingLeft: 32 }}>
-            <div className="eyebrow" style={{ marginBottom: 12 }}>Direct</div>
-            <p style={{ fontFamily: "var(--serif)", fontSize: 17, marginBottom: 6 }}>
+          <aside className="hp-contact__aside">
+            <p className="hp-eyebrow">DIRECT</p>
+            <p className="hp-contact__mail">
               <a href="mailto:cory@thetalusfieldjournal.com">cory@thetalusfieldjournal.com</a>
             </p>
-            <p style={{ fontFamily: "var(--sans)", fontSize: 13, color: "var(--ink-3)", lineHeight: 1.55, marginBottom: 28 }}>
+            <p className="hp-contact__note">
               I check this once or twice a day. Usually faster on Mondays.
             </p>
 
-            <div style={{ borderTop: "1px solid var(--rule)", marginTop: 32, paddingTop: 24 }}>
-              <div className="eyebrow" style={{ marginBottom: 12 }}>Heads up</div>
-              <p style={{ fontFamily: "var(--sans)", fontSize: 13, color: "var(--ink-3)", lineHeight: 1.6 }}>
+            <div className="hp-contact__heads">
+              <p className="hp-eyebrow">HEADS UP</p>
+              <p className="hp-contact__note">
                 I cannot help with reservation problems on Recreation.gov. I am not the National Park Service. For emergencies in the park, dial 911 or 209-379-1992.
               </p>
             </div>
           </aside>
         </div>
-      </div>
+      </section>
     </div>
   );
 }

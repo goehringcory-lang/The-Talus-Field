@@ -50,13 +50,13 @@ Status: `[x]` converted, `[ ]` not yet.
 - [x] `/places` (Directory)
 
 ### 3. Static content template (page head + prose)
-- [ ] `/about`
-- [ ] `/privacy`, `/terms`, `/affiliate` (page-legal.jsx)
-- [ ] `/newsletter`, `/contact` (page-newsletter-contact.jsx)
-- [ ] `/consult`
-- [ ] `/widget`
-- [ ] `/partners`
-- [ ] `/advertise`
+- [x] `/about`
+- [x] `/privacy`, `/terms`, `/affiliate` (page-legal.jsx)
+- [x] `/newsletter`, `/contact` (page-newsletter-contact.jsx)
+- [x] `/consult`
+- [x] `/widget`
+- [x] `/partners`
+- [x] `/advertise`
 
 ### 4. Tools and reference pages
 - [ ] `/dates`

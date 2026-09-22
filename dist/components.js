@@ -1084,6 +1084,16 @@ function HpGuideBand({
     className: "hp-screen-note"
   }, "Actual screens from the Field Guide"))));
 }
+function HpPostcard({
+  paper,
+  stamp = "THE SUNDAY LETTER"
+}) {
+  return React.createElement("div", {
+    className: "hp-paper"
+  }, React.createElement("span", {
+    className: "hp-stamp"
+  }, "EL PORTAL, CA", React.createElement("br", null), stamp), React.createElement("div", null, paper || React.createElement(React.Fragment, null, "A field note", React.createElement("br", null), "for your", React.createElement("br", null), React.createElement("em", null, "next adventure."))), React.createElement("small", null, "From Yosemite, with perspective."));
+}
 function HpLetter({
   id,
   eyebrow,
@@ -1102,11 +1112,10 @@ function HpLetter({
     className: "hp-letter hp-wrap hp-section",
     id: id,
     tabIndex: id ? -1 : undefined
-  }, React.createElement("div", {
-    className: "hp-paper"
-  }, React.createElement("span", {
-    className: "hp-stamp"
-  }, "EL PORTAL, CA", React.createElement("br", null), stamp), React.createElement("div", null, paper || React.createElement(React.Fragment, null, "A field note", React.createElement("br", null), "for your", React.createElement("br", null), React.createElement("em", null, "next adventure."))), React.createElement("small", null, "From Yosemite, with perspective.")), React.createElement("div", null, React.createElement("p", {
+  }, React.createElement(HpPostcard, {
+    paper: paper,
+    stamp: stamp
+  }), React.createElement("div", null, React.createElement("p", {
     className: "hp-eyebrow"
   }, eyebrow), React.createElement("h2", null, title), React.createElement(NewsletterInline, {
     heading: heading,
@@ -2689,5 +2698,6 @@ Object.assign(window, {
   HpArticleCard,
   HpPageHead,
   HpGuideBand,
-  HpLetter
+  HpLetter,
+  HpPostcard
 });

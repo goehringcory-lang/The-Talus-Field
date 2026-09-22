@@ -971,19 +971,27 @@ function HpGuideBand({ go, location, id, eyebrow = "THE TALUS FIELD GUIDE / THE 
   );
 }
 
+// The letter's postcard, on its own for a page that carries its own form
+// (/newsletter). `paper` is the card's line, `stamp` the postmark's second line.
+function HpPostcard({ paper, stamp = "THE SUNDAY LETTER" }) {
+  return (
+    <div className="hp-paper">
+      <span className="hp-stamp">EL PORTAL, CA<br />{stamp}</span>
+      <div>{paper || <React.Fragment>A field note<br />for your<br />
+        <em>next adventure.</em>
+      </React.Fragment>}</div>
+      <small>From Yosemite, with perspective.</small>
+    </div>
+  );
+}
+
 // The letter: the postcard beside the Sunday Letter form. `heading` and
 // `blurb` are NewsletterInline's (the heading is visually hidden, since the
 // section's h2 stands in for it); `paper` is the postcard's line.
 function HpLetter({ id, eyebrow, title, heading, blurb, location, tag, variant, cta = "Send me the letter ↗", terms = "Free to read. One letter a week. Unsubscribe whenever.", paper, stamp = "THE SUNDAY LETTER" }) {
   return (
     <section className="hp-letter hp-wrap hp-section" id={id} tabIndex={id ? -1 : undefined}>
-      <div className="hp-paper">
-        <span className="hp-stamp">EL PORTAL, CA<br />{stamp}</span>
-        <div>{paper || <React.Fragment>A field note<br />for your<br />
-          <em>next adventure.</em>
-        </React.Fragment>}</div>
-        <small>From Yosemite, with perspective.</small>
-      </div>
+      <HpPostcard paper={paper} stamp={stamp} />
       <div>
         <p className="hp-eyebrow">{eyebrow}</p>
         <h2>{title}</h2>
@@ -2222,5 +2230,5 @@ Object.assign(window, {
   MotifMountains, MotifSun, MotifTrees,
   Header, Footer, BackToTop, ArticleCard, NewsletterInline, ExitIntentNewsletter, MapLightbox,
   EntranceWaits, WebcamStrip, GuidePromo,
-  HomeLink, HomeMasthead, HpHeading, HpRow, HpCard, HpArticleCard, HpPageHead, HpGuideBand, HpLetter,
+  HomeLink, HomeMasthead, HpHeading, HpRow, HpCard, HpArticleCard, HpPageHead, HpGuideBand, HpLetter, HpPostcard,
 });
