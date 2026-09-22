@@ -97,9 +97,11 @@ API Worker never auto-deploys and list the owner's step:
 
 ## Phase 3 — Plumbing, verify, ship
 
-1. Bump the bulletin's shared `?v=` counter in **all three readers**:
-   `BULLETIN_URL` (page-now.jsx), `HOME_BULLETIN_URL` (page-home.jsx),
-   `TIOGA_BULLETIN_URL` (page-tioga-opening.jsx).
+1. Bump the bulletin's shared `?v=` counter in **both readers**:
+   `BULLETIN_URL` (page-now.jsx) and `TIOGA_BULLETIN_URL`
+   (page-tioga-opening.jsx). The homepage has not read the bulletin since
+   the September 2026 redesign; `check-asset-freshness.mjs` fails if the two
+   disagree.
 2. `npm --prefix scripts run compile && npm --prefix scripts run seo &&
    npm --prefix scripts run assets:stamp`.
 3. `npm --prefix scripts run check` must pass entirely;
