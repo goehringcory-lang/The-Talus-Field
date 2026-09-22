@@ -284,5 +284,25 @@
       "Upper Yosemite Fall spring",
       "Yosemite Falls spring flow"
     ]
+  },
+  {
+    "file": "mariposa-county-courthouse.jpg",
+    "slot": "page:stay (Mariposa pick and Highway 140 town card)",
+    "tier": 1,
+    "subject": "The 1854 Mariposa County Courthouse, the town the /stay page recommends as the Highway 140 value base",
+    "directUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Mariposa_County_Courthouse_January_2025.jpg/1920px-Mariposa_County_Courthouse_January_2025.jpg",
+    "author": "Guywelch2000",
+    "license": "CC0",
+    "source": "https://commons.wikimedia.org/wiki/File:Mariposa_County_Courthouse_January_2025.jpg"
+  },
+  {
+    "file": "groveland-main-street-highway-120.jpg",
+    "slot": "page:stay (Groveland pick and Highway 120 corridor)",
+    "tier": 1,
+    "subject": "Main Street in the Groveland Historic District, which is Highway 120 through town",
+    "directUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Groveland_Historic_District.jpg/1920px-Groveland_Historic_District.jpg",
+    "author": "Almonroth",
+    "license": "CC BY-SA 3.0",
+    "source": "https://commons.wikimedia.org/wiki/File:Groveland_Historic_District.jpg"
   }
 ]
