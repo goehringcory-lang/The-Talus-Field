@@ -665,7 +665,7 @@ function HomeLink({
         return;
       }
       event.preventDefault();
-      go(href.startsWith("/articles/") ? `a:${href.slice(10)}` : href.slice(1) || "home");
+      go(href.startsWith("/articles/") ? `a:${href.slice(10)}` : href.startsWith("/section/") ? `cat:${href.slice(9)}` : href.slice(1) || "home");
     }
   }, children);
 }
@@ -979,9 +979,11 @@ function HpPageHead({
   actions,
   byline,
   aside,
-  className
+  className,
+  as: Tag = "section",
+  children
 }) {
-  return React.createElement("section", {
+  return React.createElement(Tag, {
     className: ["hp-pagehead", "hp-wrap", aside ? "hp-pagehead--split" : null, className].filter(Boolean).join(" ")
   }, React.createElement("div", {
     className: "hp-pagehead__copy"
@@ -996,7 +998,7 @@ function HpPageHead({
     className: "hp-actions"
   }, actions), byline && React.createElement("p", {
     className: "hp-byline"
-  }, byline)), aside && React.createElement("div", {
+  }, byline), children), aside && React.createElement("div", {
     className: "hp-pagehead__aside"
   }, aside));
 }
@@ -1090,6 +1092,7 @@ function HpLetter({
   blurb,
   location,
   tag,
+  variant,
   cta = "Send me the letter ↗",
   terms = "Free to read. One letter a week. Unsubscribe whenever.",
   paper,
@@ -1110,6 +1113,7 @@ function HpLetter({
     blurb: blurb,
     location: location,
     tag: tag,
+    variant: variant,
     cta: cta,
     modifier: "hp-newsletter",
     inputLabel: "Your email address"
@@ -1867,27 +1871,11 @@ function ShareRow({
     }
   };
   return React.createElement("div", {
-    className: "share-row",
-    style: {
-      display: "flex",
-      alignItems: "center",
-      gap: 12,
-      marginTop: 20,
-      fontFamily: "var(--sans)",
-      fontSize: 13,
-      color: "var(--ink-3)"
-    }
+    className: "share-row"
   }, React.createElement("span", null, "Worth sending to your trip partner?"), React.createElement("button", {
     type: "button",
-    onClick: share,
-    style: {
-      font: "inherit",
-      color: "var(--moss)",
-      background: "none",
-      border: "1px solid var(--rule)",
-      padding: "6px 14px",
-      cursor: "pointer"
-    }
+    className: "share-row__btn",
+    onClick: share
   }, copied ? "Link copied" : "Share this article"));
 }
 window.ShareRow = ShareRow;
@@ -2174,13 +2162,7 @@ function NewsletterInline({
   }, React.createElement("h3", null, heading || "Sunday Field Notes"), React.createElement("p", null, showIncentive ? "Subscribe and unlock the interactive Yosemite map: vistas, trailheads, parking turnouts, places to eat, and a trip builder that saves on your device. A short note follows on Sundays." : blurb || "A short note on Sundays, when there is something to say."), inputLabel && !done && React.createElement("label", {
     htmlFor: `${location}-email`
   }, inputLabel), done ? React.createElement("p", {
-    style: {
-      fontFamily: "var(--serif)",
-      fontSize: 17,
-      color: "var(--moss)",
-      margin: 0,
-      padding: "8px 0"
-    }
+    className: "nlbox__done"
   }, "You're in. ", React.createElement("a", {
     href: "/map"
   }, "The map is open to you →")) : React.createElement("form", {
@@ -2669,22 +2651,13 @@ function GuidePromo({
   }, body || "The app version of this journal: 50-plus stops with parking and timing notes, offline maps, a trip planner, and the secret guide. Works with no signal, which is most of the park. One purchase, eighteen months of access."), React.createElement("div", {
     className: "mono band-guide__cta"
   }, cta || "See the Field Guide →")), sample && React.createElement("p", {
-    style: {
-      fontFamily: "var(--sans)",
-      fontSize: 13,
-      color: "var(--ink-3)",
-      lineHeight: 1.6,
-      margin: "10px 0 0"
-    }
+    className: "band-guide__sample"
   }, "Not sure yet? Five entries are free to read, no email required:", " ", React.createElement("a", {
     href: `${GUIDE_PROMO_APP_BASE}/preview`,
     onClick: () => {
       if (window.track) window.track("guide_sample_click", {
         location: location || "unknown"
       });
-    },
-    style: {
-      color: "var(--ink-2)"
     }
   }, "preview the guide →")));
 }

@@ -1,4 +1,4 @@
-/* global React, ReactDOM, Placeholder, NewsletterInline, MotifMountains, preloadResponsive, SIZES_HERO, Breadcrumbs, ShareRow, GuidePromo, MapLightbox */
+/* global React, ReactDOM, Placeholder, NewsletterInline, MotifMountains, preloadResponsive, SIZES_HERO, ShareRow, MapLightbox, HpPageHead, HpHeading, HpGuideBand, HpLetter */
 
 // Paragraph-shaped lines for the body's loading state. Widths are fixed, not
 // random, so the skeleton is the same on every render and never shifts.
@@ -369,53 +369,65 @@ function ArticlePage({ slug, go }) {
   );
   const relatedSameCat = related.length > 0 && related.every(a => a.cat === article.cat);
 
+  // Tracked-caps eyebrow text, the design system's label voice.
+  const upper = (t) => (t || "").toUpperCase();
+  const tripIntent = article.cat === "trails" || article.cat === "planning" || article.cat === "seasonal";
+
   return (
-    <div className="page">
+    <div className="page hp-article">
       <div className="readbar" aria-hidden="true"><div className="readbar__fill" ref={barRef} /></div>
       {lightbox && (
         <MapLightbox src={lightbox.src} alt={lightbox.alt} caption={lightbox.caption} onClose={closeLightbox} />
       )}
       <article ref={articleRef}>
-        {/* Article hero */}
-        <header className="wrap wrap--narrow" style={{ paddingTop: 64, paddingBottom: 32 }}>
-          <Breadcrumbs
-            go={go}
-            trail={[
-              { label: "Home", route: "home" },
-              { label: cat.label, route: `cat:${cat.slug}` },
-              { label: article.title },
-            ]}
-          />
-          <div className="eyebrow eyebrow--moss" style={{ marginBottom: 18 }}>
-            <a href={`/section/${cat.slug}`} onClick={(e) => { e.preventDefault(); go(`cat:${cat.slug}`); }}
-              style={{ color: "var(--moss)", textDecoration: "none" }}>
-              {cat.label}
+        {/* The head: the homepage hero's split, the copy beside the plate.
+            The plate keeps SIZES_HERO (it never draws wider than 700px here),
+            so the Worker's AVIF preload and preloadResponsive still match. */}
+        <HpPageHead
+          as="header"
+          go={go}
+          className="hp-article__head"
+          crumbs={[
+            { label: "Home", route: "home" },
+            { label: cat.label, route: `cat:${cat.slug}` },
+            { label: article.title },
+          ]}
+          eyebrow={
+            <a href={`/section/${cat.slug}`} onClick={(e) => { e.preventDefault(); go(`cat:${cat.slug}`); }}>
+              {upper(cat.label)}
             </a>
-          </div>
-          <h1 style={{ marginBottom: 24 }}>{article.title}</h1>
-          <p style={{ fontSize: 22, color: "var(--ink-2)", lineHeight: 1.45, fontFamily: "var(--serif)", marginBottom: 32 }}>
-            {article.dek}
-          </p>
-          <address style={{ display: "flex", gap: 18, alignItems: "center", fontFamily: "var(--sans)", fontSize: 13, color: "var(--ink-3)", borderTop: "1px solid var(--rule)", borderBottom: "1px solid var(--rule)", padding: "14px 0", fontStyle: "normal" }}>
-            <div style={{ width: 36, height: 36, borderRadius: "50%", background: "var(--paper-2)", border: "1px solid var(--rule)", display: "flex", alignItems: "center", justifyContent: "center", fontFamily: "var(--serif)", fontWeight: 600, color: "var(--ink-2)" }}>CG</div>
-            <div>
-              <div style={{ color: "var(--ink)", fontWeight: 500 }}>
-                By <a
-                  href="/about"
-                  rel="author"
-                  onClick={(e) => { e.preventDefault(); go("about"); }}
-                  style={{ color: "inherit", textDecoration: "none", borderBottom: "1px solid var(--rule)" }}
-                >{window.SITE.authorName}</a>
-              </div>
-              <div>{window.SITE.authorBio}</div>
+          }
+          title={article.title}
+          intro={article.dek}
+          aside={
+            <div className="hp-article__plate">
+              <Placeholder
+                caption={article.placeholder}
+                image={article.image}
+                credit={article.credit}
+                tag="PLATE I"
+                size="lg"
+                eager
+                motif={<MotifMountains />}
+              />
             </div>
-            <div style={{ marginLeft: "auto", textAlign: "right" }}>
+          }
+        >
+          <address className="hp-article__byline">
+            <span className="hp-article__avatar" aria-hidden="true">CG</span>
+            <span>
+              <span className="hp-article__author">
+                By <a href="/about" rel="author" onClick={(e) => { e.preventDefault(); go("about"); }}>{window.SITE.authorName}</a>
+              </span>
+              <span className="hp-article__bio">{window.SITE.authorBio}</span>
+            </span>
+            <span className="hp-article__dates">
               <time dateTime={article.isoModified || article.isoDate}>{article.date}</time>
-              <div>{article.read} read</div>
+              <span>{article.read} read</span>
               {article.isoModified && article.isoModified !== article.isoDate && formatIsoDate(article.isoModified) && (
-                <div>Updated {formatIsoDate(article.isoModified)}</div>
+                <span>Updated {formatIsoDate(article.isoModified)}</span>
               )}
-            </div>
+            </span>
           </address>
 
           {/* Series band: cluster articles surface their Planning Guide
@@ -460,175 +472,144 @@ function ArticlePage({ slug, go }) {
               </div>
             );
           })()}
-        </header>
+        </HpPageHead>
 
-        <div className="wrap wrap--narrow" style={{ paddingBottom: 32 }}>
-          <Placeholder
-            caption={article.placeholder}
-            image={article.image}
-            credit={article.credit}
-            tag="PLATE I"
-            size="lg"
-            natural
-            eager
-            motif={<MotifMountains />}
-          />
-        </div>
-
-        {/* Body */}
-        <div className="wrap wrap--read">
-          {toc.length > 0 && (
-            <details className="toc">
-              <summary>In this guide</summary>
-              <ul>
-                {toc.map((it) => (
-                  <li key={it.id}>
-                    <a
-                      href={"#" + it.id}
-                      onClick={(e) => {
-                        e.preventDefault();
-                        const reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-                        document.getElementById(it.id)?.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" });
-                        // Keep the section anchor in the address bar so the
-                        // reader can copy the deep link Google already
-                        // surfaces; replace, so Back still leaves the article.
-                        if (window.history && window.history.replaceState) window.history.replaceState(null, "", "#" + it.id);
-                        if (window.track) window.track("toc_jump", { slug });
-                      }}
-                    >{it.text}</a>
-                  </li>
-                ))}
-              </ul>
-            </details>
-          )}
-          <div className="prose" ref={proseRef}>
-            {article.cat === "planning" && (
-              <div className="statblock">
-                <div className="statblock__item"><span className="label">Best for</span><span className="val">First visits</span></div>
-                <div className="statblock__item"><span className="label">Reading time</span><span className="val">{article.read}</span></div>
-                <div className="statblock__item"><span className="label">Updated</span><span className="val">{article.date}</span></div>
-                <div className="statblock__item"><span className="label">Section</span><span className="val">{cat.label}</span></div>
-              </div>
+        {/* Body: one reading column on the page's wrap. */}
+        <div className="hp-wrap hp-article__body">
+          <div className="hp-article__column">
+            {toc.length > 0 && (
+              <details className="toc">
+                <summary>In this guide</summary>
+                <ul>
+                  {toc.map((it) => (
+                    <li key={it.id}>
+                      <a
+                        href={"#" + it.id}
+                        onClick={(e) => {
+                          e.preventDefault();
+                          const reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+                          document.getElementById(it.id)?.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" });
+                          // Keep the section anchor in the address bar so the
+                          // reader can copy the deep link Google already
+                          // surfaces; replace, so Back still leaves the article.
+                          if (window.history && window.history.replaceState) window.history.replaceState(null, "", "#" + it.id);
+                          if (window.track) window.track("toc_jump", { slug });
+                        }}
+                      >{it.text}</a>
+                    </li>
+                  ))}
+                </ul>
+              </details>
             )}
+            <div className="prose" ref={proseRef}>
+              {article.cat === "planning" && (
+                <div className="statblock">
+                  <div className="statblock__item"><span className="label">Best for</span><span className="val">First visits</span></div>
+                  <div className="statblock__item"><span className="label">Reading time</span><span className="val">{article.read}</span></div>
+                  <div className="statblock__item"><span className="label">Updated</span><span className="val">{article.date}</span></div>
+                  <div className="statblock__item"><span className="label">Section</span><span className="val">{cat.label}</span></div>
+                </div>
+              )}
 
-            {bodyState === "ready" && Body ? <Body /> :
-             bodyState === "loading" ? (
-              <BodySkeleton />
-            ) : (
-              <p style={{ color: "var(--ink-3)", fontStyle: "italic" }}>This article is coming soon.</p>
-            )}
-          </div>
+              {bodyState === "ready" && Body ? <Body /> :
+               bodyState === "loading" ? (
+                <BodySkeleton />
+              ) : (
+                <p className="hp-article__soon">This article is coming soon.</p>
+              )}
+            </div>
 
-          {/* Author box. Puts the naturalist credential at the point where
-              trust decisions actually happen: right after the reader has
-              finished the piece, before the conversion asks below. */}
-          <div style={{ display: "flex", gap: 18, alignItems: "flex-start", borderTop: "1px solid var(--rule)", padding: "24px 0", marginTop: 40 }}>
-            <div style={{ width: 44, height: 44, flexShrink: 0, borderRadius: "50%", background: "var(--paper-2)", border: "1px solid var(--rule)", display: "flex", alignItems: "center", justifyContent: "center", fontFamily: "var(--serif)", fontWeight: 600, color: "var(--ink-2)" }}>CG</div>
-            <div style={{ fontFamily: "var(--sans)", fontSize: 13, color: "var(--ink-2)", lineHeight: 1.6 }}>
-              <div style={{ color: "var(--ink)", fontWeight: 500, marginBottom: 4 }}>
-                <a
-                  href="/about"
-                  rel="author"
-                  onClick={(e) => { e.preventDefault(); go("about"); }}
-                  style={{ color: "inherit", textDecoration: "none", borderBottom: "1px solid var(--rule)" }}
-                >{window.SITE.authorName}</a>
-              </div>
-              <div>{window.SITE.authorBio}</div>
-              <div style={{ marginTop: 6 }}>
-                <a
-                  href="/about"
-                  onClick={(e) => { e.preventDefault(); go("about"); }}
-                  style={{ color: "var(--moss)", textDecoration: "none", borderBottom: "1px solid var(--rule)" }}
-                >Read how recommendations get made →</a>
+            {/* Author box. Puts the naturalist credential at the point where
+                trust decisions actually happen: right after the reader has
+                finished the piece, before the conversion asks below. */}
+            <div className="hp-article__authorbox">
+              <span className="hp-article__avatar" aria-hidden="true">CG</span>
+              <div>
+                <p className="hp-article__author">
+                  <a href="/about" rel="author" onClick={(e) => { e.preventDefault(); go("about"); }}>{window.SITE.authorName}</a>
+                </p>
+                <p className="hp-article__bio">{window.SITE.authorBio}</p>
+                <a className="hp-link" href="/about" onClick={(e) => { e.preventDefault(); go("about"); }}>Read how recommendations get made ↗</a>
               </div>
             </div>
-          </div>
 
-          {/* Share affordance: the map's trip links have had a share loop for
-              months; this is the articles' equivalent, and article_share
-              finally makes editorial referrals measurable. */}
-          <ShareRow title={article.title} slug={slug} />
+            {/* Share affordance: the map's trip links have had a share loop for
+                months; this is the articles' equivalent, and article_share
+                finally makes editorial referrals measurable. */}
+            <ShareRow title={article.title} slug={slug} />
 
-          {midHost && ReactDOM.createPortal(
-            <NewsletterInline
-              location="article_mid"
-              tag={newsletterTag("article-mid", article.cat)}
-              heading="Keep reading next week"
-              blurb="Sunday Field Notes: one short letter, only when there is something worth saying."
-            />,
-            midHost
-          )}
-
-          {/* Map CTA. Points readers at the interactive map (the whole map
-              opens with a free newsletter signup). */}
-          <a
-            href="/map"
-            onClick={(e) => { e.preventDefault(); go("map"); }}
-            style={{
-              display: "block", textDecoration: "none", color: "inherit",
-              border: "1px solid var(--ink)", padding: "24px 28px", marginTop: 40,
-            }}
-          >
-            <div className="eyebrow eyebrow--moss" style={{ marginBottom: 8 }}>The Map · Free</div>
-            <div style={{ fontFamily: "var(--display)", fontSize: 24, fontWeight: 500, lineHeight: 1.15, marginBottom: 6 }}>
-              Plan it on the interactive map.
-            </div>
-            <p style={{ fontFamily: "var(--serif)", fontSize: 16, color: "var(--ink-2)", lineHeight: 1.5, margin: 0 }}>
-              Every vista, trailhead, parking turnout, and meal worth the stop, on one map. A free newsletter signup opens it; then build a trip from the pins.
-            </p>
-            <div className="mono" style={{ color: "var(--moss)", fontWeight: 700, fontSize: 11, textTransform: "uppercase", letterSpacing: "0.18em", marginTop: 12 }}>Open the map →</div>
-          </a>
-
-          {(() => {
-            // article_end copy test: arm a keeps the standing section offers,
-            // arm b leads with concrete utility. Copy is chosen here (the
-            // caller-controlled A/B path); NewsletterInline just tags the
-            // variant onto its GA4 events.
-            const endVariant = window.abVariant ? window.abVariant("article_end_copy") : "a";
-            const offers = endVariant === "b" ? END_NEWSLETTER_OFFER_B : END_NEWSLETTER_OFFER;
-            const offer = offers[article.cat] || {};
-            return (
+            {midHost && ReactDOM.createPortal(
               <NewsletterInline
-                location="article_end"
-                tag={newsletterTag("article-end", article.cat)}
-                heading={offer.heading || "Sunday Field Notes"}
-                blurb={offer.blurb || "One letter a week. If you found this useful, you'll probably like the rest."}
-                variant={endVariant}
-              />
-            );
-          })()}
+                location="article_mid"
+                tag={newsletterTag("article-mid", article.cat)}
+                heading="Keep reading next week"
+                blurb="Sunday Field Notes: one short letter, only when there is something worth saying."
+              />,
+              midHost
+            )}
 
-          {/* Field Guide promo: trip-intent readers (trails, planning,
-              seasonal) only, same one guide ask this slot always carried —
-              upgraded from a 13px grey line to the same band-guide card
-              every static route uses, since this is where the organic
-              traffic actually lands (CODE-AUDIT-2026-08 §5 item 13). Fires
-              the standard guide_cta_click/guide_sample_click pair instead of
-              the one-off guide_teaser_click, so article traffic is finally
-              comparable to every other placement in the funnel. */}
-          {(article.cat === "trails" || article.cat === "planning" || article.cat === "seasonal") && (
-            <GuidePromo
-              go={go}
-              location="article_end"
-              title="The park, in your pocket."
-              body="The app version of this journal: offline maps, GPS at the trailhead, and every stop with parking and timing notes. Works with no signal, which is most of the park. $3.99, eighteen months of access."
-              style={{ marginTop: 24 }}
-            />
-          )}
+            {/* Map CTA. Points readers at the interactive map (the whole map
+                opens with a free newsletter signup). */}
+            <a className="hp-note" href="/map" onClick={(e) => { e.preventDefault(); go("map"); }}>
+              <p className="hp-eyebrow">THE MAP / FREE</p>
+              <h3>Plan it on the interactive map.</h3>
+              <p>
+                Every vista, trailhead, parking turnout, and meal worth the stop, on one map. A free newsletter signup opens it; then build a trip from the pins.
+              </p>
+              <b>Open the map <span>↗</span></b>
+            </a>
+          </div>
         </div>
       </article>
 
+      {/* Field Guide: trip-intent readers (trails, planning, seasonal) only,
+          the same one guide ask this slot always carried, now the shared
+          design band (guide_cta_click / guide_sample_click, location
+          article_end, as before). */}
+      {tripIntent && (
+        <HpGuideBand
+          go={go}
+          location="article_end"
+          title="The park, in your pocket."
+          intro="The app version of this journal: offline maps, GPS at the trailhead, and every stop with parking and timing notes. Works with no signal, which is most of the park. $3.99, eighteen months of access."
+          sample
+        />
+      )}
+
+      {(() => {
+        // article_end copy test: arm a keeps the standing section offers,
+        // arm b leads with concrete utility. Copy is chosen here (the
+        // caller-controlled A/B path); NewsletterInline just tags the
+        // variant onto its GA4 events.
+        const endVariant = window.abVariant ? window.abVariant("article_end_copy") : "a";
+        const offers = endVariant === "b" ? END_NEWSLETTER_OFFER_B : END_NEWSLETTER_OFFER;
+        const offer = offers[article.cat] || {};
+        const heading = offer.heading || "Sunday Field Notes";
+        return (
+          <HpLetter
+            eyebrow="SUNDAY FIELD NOTES / FREE"
+            title={heading}
+            heading={heading}
+            blurb={offer.blurb || "One letter a week. If you found this useful, you'll probably like the rest."}
+            location="article_end"
+            tag={newsletterTag("article-end", article.cat)}
+            variant={endVariant}
+          />
+        );
+      })()}
+
       {/* Related */}
       {related.length > 0 && (
-        <section className="wrap" style={{ paddingTop: 48, paddingBottom: 32 }}>
-          <div className="section-head">
-            <h2>{relatedSameCat ? `More from ${cat.label}` : "Keep reading"}</h2>
-            {relatedSameCat ? (
-              <a href={`/section/${cat.slug}`} onClick={(e) => { e.preventDefault(); go(`cat:${cat.slug}`); }}>All in {cat.label} →</a>
-            ) : (
-              <a href="/articles" onClick={(e) => { e.preventDefault(); go("articles"); }}>All entries →</a>
-            )}
-          </div>
+        <section className="hp-wrap hp-section hp-article__related">
+          <HpHeading
+            go={go}
+            location="article_related"
+            eyebrow="THE JOURNAL"
+            title={relatedSameCat ? `More from ${cat.label}` : "Keep reading"}
+            link={relatedSameCat
+              ? { href: `/section/${cat.slug}`, label: `All in ${cat.label} ↗` }
+              : { href: "/articles", label: "All entries ↗" }}
+          />
           {/* Text rows, not a card grid. Five or six curated links carry more
               of the internal link graph than three did, and doing it as cards
               would have put five more images below the fold on every article.

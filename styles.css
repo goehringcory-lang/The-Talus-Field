@@ -839,65 +839,40 @@ main:focus { outline: none; }
 .btn__arrow { transition: transform 0.15s ease; font-size: 12px; }
 .btn:hover .btn__arrow { transform: translateX(3px); }
 
-/* ===== Photo placeholder. Alpine Journal plate ===== */
+/* ===== Photo plates (Placeholder) =====
+   The design system's photo treatment, the homepage hero's figure: a 3px
+   radius, no frame or drop shadow, a paper tag chip top-left (the featured
+   card's "READ THIS FIRST"), and the credit set small over a bottom gradient.
+   Photos are shown as shot: no saturation filter, no hover zoom. */
 .placeholder {
-  background:
-    /* faint cross-hatch, photogravure feel */
-    repeating-linear-gradient(
-      45deg,
-      color-mix(in oklab, var(--ink) 7%, transparent) 0 1px,
-      transparent 1px 6px
-    ),
-    repeating-linear-gradient(
-      -45deg,
-      color-mix(in oklab, var(--ink) 5%, transparent) 0 1px,
-      transparent 1px 8px
-    ),
-    var(--paper-2);
-  border: 1px solid var(--ink);
+  background: var(--paper-2);
+  border-radius: 3px;
   position: relative;
   overflow: hidden;
   isolation: isolate;
-  box-shadow:
-    0 1px 0 rgba(20, 17, 12, 0.06),
-    0 14px 28px -10px rgba(20, 17, 12, 0.22),
-    0 4px 10px -2px rgba(20, 17, 12, 0.10);
-  transition: box-shadow 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
-.card:hover .placeholder,
-.placeholder:hover {
-  box-shadow:
-    0 1px 0 rgba(20, 17, 12, 0.10),
-    0 22px 38px -10px rgba(20, 17, 12, 0.34),
-    0 6px 14px -2px rgba(20, 17, 12, 0.16);
-}
-/* Subtle vignette pulls the eye to the subject. Photos only. */
+.placeholder--photo { background: var(--hp-ink); }
 .placeholder--photo::before {
   content: "";
   position: absolute;
-  inset: 0;
+  inset: 55% 0 0;
   z-index: 1;
   pointer-events: none;
-  background: radial-gradient(ellipse at center, transparent 55%, rgba(0, 0, 0, 0.18) 100%);
+  background: linear-gradient(transparent, #14271f99);
 }
 .placeholder::after {
-  /* Plate / figure label, top-right. Engraved feel via offset hard shadow. */
   content: attr(data-tag);
   position: absolute;
-  top: 14px;
-  right: 14px;
+  top: 18px;
+  left: 18px;
   z-index: 3;
-  font-family: var(--sans);
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.22em;
+  font: 600 8px/1.4 var(--sans);
+  letter-spacing: 1.2px;
   text-transform: uppercase;
-  color: var(--ink);
-  background: var(--paper);
-  padding: 5px 9px;
-  border: 1px solid var(--ink);
+  color: var(--hp-ink);
+  background: var(--hp-paper);
+  padding: 7px 11px;
   pointer-events: none;
-  box-shadow: 3px 3px 0 0 var(--ink);
 }
 .placeholder__motif {
   position: absolute;
@@ -915,44 +890,23 @@ main:focus { outline: none; }
   height: 100%;
   object-fit: cover;
   display: block;
-  /* Vibrant default. Pop, not Instagram-stylized. */
-  filter: saturate(1.15) contrast(1.10) brightness(1.02);
-  transition:
-    transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1),
-    filter 0.5s ease;
-  transform-origin: center;
-  will-change: transform;
-}
-.card:hover .placeholder__img,
-.placeholder:hover .placeholder__img {
-  transform: scale(1.05);
-  filter: saturate(1.25) contrast(1.14) brightness(1.04);
-}
-.placeholder--photo {
-  /* let the photo carry texture; drop the cross-hatch */
-  background: var(--ink);
 }
 .placeholder__credit {
   position: absolute;
-  left: 14px;
-  bottom: 14px;
+  left: 20px;
+  right: 20px;
+  bottom: 16px;
   z-index: 3;
-  font-family: var(--sans);
-  font-size: 9px;
-  letter-spacing: 0.14em;
+  font: 8px/1.4 var(--sans);
+  letter-spacing: 0.7px;
   text-transform: uppercase;
-  color: var(--paper);
-  background: color-mix(in oklab, var(--ink) 70%, transparent);
-  padding: 4px 8px;
+  color: #fff8e5;
   pointer-events: none;
-  max-width: calc(100% - 28px);
 }
-.placeholder--lg .placeholder__credit { bottom: 16px; }
-.placeholder--sm .placeholder__credit { bottom: 10px; font-size: 8px; padding: 3px 6px; }
+.placeholder--sm .placeholder__credit { bottom: 10px; left: 12px; }
 
 /* Natural mode: the photo dictates the container's aspect ratio so the
-   entire image is visible (no cropping). Used for hero plates where we
-   want to honor the photographer's framing. */
+   entire image is visible (no cropping). */
 .placeholder--natural { height: auto; }
 .placeholder--natural .placeholder__img {
   position: static;
@@ -995,22 +949,22 @@ main:focus { outline: none; }
 
 /* ===== Planning Guide series band (cluster articles) ===== */
 .series-band {
-  font-family: var(--sans);
-  font-size: 12.5px;
-  color: var(--ink-3);
-  border-bottom: 1px solid var(--rule);
-  padding: 10px 0;
+  font: 11px/1.6 var(--sans);
+  color: var(--hp-muted);
+  border-top: 1px solid var(--hp-rule);
+  padding: 14px 0 0;
+  margin-top: 18px;
   display: flex;
   flex-wrap: wrap;
   gap: 4px 16px;
   align-items: baseline;
 }
 .series-band a {
-  color: var(--moss);
-  text-decoration: none;
-  border-bottom: 1px solid var(--rule);
+  color: var(--hp-ink);
+  font-weight: 600;
+  border-bottom: 1px solid #a7afa4;
 }
-.series-band a:hover { color: var(--ink); }
+.series-band a:hover { color: var(--hp-accent); }
 .series-band__nav { margin-left: auto; display: flex; gap: 14px; }
 
 /* ===== Article cards ===== */
@@ -1126,97 +1080,126 @@ main:focus { outline: none; }
 .field textarea:focus-visible { outline: 2px solid var(--moss); outline-offset: 2px; }
 .field textarea { min-height: 140px; resize: vertical; line-height: 1.5; }
 
-/* ===== Article body ===== */
-.prose { font-size: 19px; line-height: 1.65; color: var(--ink); }
-.prose p { margin: 0 0 1.2em; }
-.prose h2 {
-  font-family: var(--sans);
-  /* Raised from 12px micro-caps so an H2 reads as a real section break and is
-     not visually outranked by the italic 22px H3 below. Keeps the tracked
-     uppercase treatment as an aesthetic; the border-top still marks the section. */
-  font-size: 16px !important;
-  text-transform: uppercase;
-  letter-spacing: 0.16em;
-  font-weight: 700;
-  margin: 2.4em 0 0.8em;
-  border-top: 1px solid var(--rule);
-  padding-top: 1em;
+/* ===== Reading typography (.prose) =====
+   Every long-form block on the site: article bodies, the static pages, and
+   the prerendered fragment a crawler (or a slow first paint) sees. The
+   design system's text face at a reading size, serif headings on a rule,
+   links underlined in the accent, and a measure set by the column. */
+.prose, #prerender-prose { font: 17px/1.75 var(--sans); color: var(--hp-ink); }
+.prose p, #prerender-prose p { margin: 0 0 1.2em; }
+.prose h2, #prerender-prose h2 {
+  font: 400 38px/1.08 var(--serif);
+  letter-spacing: -0.8px;
+  border-top: 1px solid var(--hp-rule);
+  padding-top: 44px;
+  margin: 56px 0 18px;
+  scroll-margin-top: 24px;
 }
-.prose h3 {
-  font-family: var(--display);
-  font-size: 22px;
-  margin: 1.6em 0 0.4em;
-  font-weight: 600;
-  font-style: italic;
-}
-.prose blockquote {
-  border-left: 0;
-  padding: 0;
-  margin: 1.6em 0;
-  font-family: var(--display);
-  font-style: italic;
+.prose h3, #prerender-prose h3 {
+  font-family: var(--serif);
   font-size: 26px;
-  line-height: 1.3;
-  color: var(--ink);
-  text-align: center;
-  border-top: 1px solid var(--rule);
-  border-bottom: 1px solid var(--rule);
-  padding: 1.2em 0;
+  font-weight: 400;
+  margin: 1.7em 0 0.5em;
 }
-.prose ul, .prose ol { padding-left: 1.4em; margin: 0 0 1.2em; }
-.prose li { margin-bottom: 0.4em; }
+.prose h4 { font: 600 11px/1.4 var(--sans); letter-spacing: 1.4px; text-transform: uppercase; margin: 1.8em 0 0.6em; }
+.prose em, #prerender-prose em { color: inherit; }
+.prose strong { font-weight: 600; }
+.prose blockquote, #prerender-prose blockquote {
+  margin: 1.6em 0;
+  padding: 0 0 0 24px;
+  border-left: 2px solid var(--hp-accent);
+  font: 400 26px/1.3 var(--serif);
+  letter-spacing: -0.3px;
+  color: var(--hp-ink);
+}
+.prose blockquote p:last-child { margin-bottom: 0; }
+.prose ul, .prose ol { padding-left: 1.3em; margin: 0 0 1.2em; }
+.prose li { margin-bottom: 0.45em; }
+.prose li::marker { color: var(--hp-accent); }
 .prose figure { margin: 2em 0; }
 .prose figcaption {
-  font-family: var(--serif);
-  font-style: italic;
-  font-size: 14px;
-  color: var(--ink-2);
+  font: 12px/1.6 var(--sans);
+  color: var(--hp-muted);
   margin-top: 10px;
-  line-height: 1.4;
 }
 .prose hr {
   border: 0;
-  border-top: 1px solid var(--rule);
-  margin: 2.5em auto;
-  width: 100%;
+  border-top: 1px solid var(--hp-rule);
+  margin: 2.5em 0;
 }
-.prose .dropcap::first-letter {
-  font-family: var(--display);
-  font-weight: 500;
-  font-size: 5em;
+.prose code {
+  font: 0.86em var(--mono);
+  background: var(--paper-2);
+  border-radius: 3px;
+  padding: 0.1em 0.35em;
+}
+.prose pre { font: 13px/1.6 var(--mono); background: var(--paper-2); border-radius: 3px; padding: 16px 18px; overflow-x: auto; }
+.prose pre code { background: none; padding: 0; }
+.prose table:not([class]) { width: 100%; border-collapse: collapse; font: 14px/1.5 var(--sans); margin: 0 0 1.4em; }
+.prose table:not([class]) th { font: 600 9px var(--sans); letter-spacing: 1.4px; text-transform: uppercase; text-align: left; color: var(--hp-muted); border-bottom: 1px solid var(--hp-ink); padding: 8px 12px 8px 0; }
+.prose table:not([class]) td { border-bottom: 1px solid var(--hp-rule); padding: 10px 12px 10px 0; vertical-align: top; }
+.prose .dropcap::first-letter, #prerender-prose .dropcap::first-letter {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: 4.1em;
   float: left;
-  line-height: 0.85;
-  margin: 0.06em 0.08em 0 -0.04em;
-  color: var(--moss);
+  line-height: 0.82;
+  margin: 0.08em 0.1em 0 -0.03em;
+  color: var(--hp-accent);
+}
+#prerender-prose { max-width: 680px; margin: 48px auto; padding: 0 20px; }
+#prerender-prose h1 { font: 400 48px/1.04 var(--serif); letter-spacing: -1.1px; margin: 0 0 24px; }
+
+/* /guide's sales copy (.prose.guide-prose) keeps the reading block it had
+   when the page moved over in PR #413: the pre-rollout .prose values, at the
+   same specificity and in the same place in the cascade, so the guide page's
+   own rules further down still refine it exactly as before. */
+.guide-prose { font-size: 19px; line-height: 1.65; }
+.guide-prose strong { font-weight: bolder; }
+.guide-prose h3 { font-family: var(--display); font-size: 22px; font-style: italic; font-weight: 600; margin: 1.6em 0 0.4em; }
+.guide-prose ul, .guide-prose ol { padding-left: 1.4em; margin: 0 0 1.2em; }
+.guide-prose li { margin-bottom: 0.4em; }
+.guide-prose li::marker { color: inherit; }
+.guide-prose blockquote { border: 0; border-block: 1px solid var(--rule); padding: 1.2em 0; margin: 1.6em 0; font-family: var(--display); font-size: 26px; font-style: italic; font-weight: 400; line-height: 1.3; letter-spacing: normal; text-align: center; }
+.guide-prose figure { margin: 2em 0; }
+.guide-prose figcaption { font: italic 14px/1.4 var(--serif); color: var(--ink-2); margin-top: 10px; }
+
+@media (max-width: 760px) {
+  .prose, #prerender-prose { font-size: 16px; line-height: 1.75; }
+  .prose h2, #prerender-prose h2 { font-size: 32px; padding-top: 34px; margin-top: 44px; }
+  .prose h3 { font-size: 23px; }
+  .prose blockquote { font-size: 22px; padding-left: 18px; }
+}
+@media (max-width: 720px) {
+  .guide-prose { font-size: 17px; line-height: 1.6; }
+  .guide-prose h3 { font-size: 19px; }
+  .guide-prose blockquote { font-size: 21px; margin: 1.2em 0; padding: 0.8em 0; }
 }
 
-/* ===== Article table of contents (A/B: article_toc) ===== */
+/* The in-article contents list: a quiet card at the head of the body. */
 .toc {
-  border: 1px solid var(--rule);
-  border-left: 4px solid var(--moss);
-  background: var(--paper-2);
-  padding: 14px 18px;
-  margin: 0 0 30px;
+  border: 1px solid var(--hp-rule);
+  border-radius: 3px;
+  background: var(--hp-card);
+  padding: 16px 22px;
+  margin: 0 0 36px;
 }
 .toc summary {
-  font-family: var(--sans);
-  font-size: 11px;
+  font: 600 9px var(--sans);
+  letter-spacing: 1.7px;
   text-transform: uppercase;
-  letter-spacing: 0.18em;
-  font-weight: 700;
-  color: var(--ink-2);
+  color: var(--hp-accent);
   cursor: pointer;
 }
-.toc ul { list-style: none; padding: 0; margin: 14px 0 2px; }
-.toc li { margin-bottom: 7px; }
+.toc ul { list-style: none; padding: 0; margin: 16px 0 4px; }
+.toc li { border-top: 1px solid var(--hp-rule); }
 .toc a {
-  font-family: var(--serif);
-  font-size: 16px;
-  color: var(--ink-2);
-  text-decoration: none;
-  border-bottom: 1px solid var(--rule-soft);
+  display: block;
+  font: 400 19px/1.25 var(--serif);
+  color: var(--hp-ink);
+  padding: 9px 0;
 }
-.toc a:hover { color: var(--moss); border-bottom-color: var(--moss); }
+.toc a:hover { color: var(--hp-accent); }
 
 /* ===== Reading progress bar (article pages) =====
    A thin fixed bar across the very top of the viewport; page-article.jsx
@@ -1275,31 +1258,26 @@ main:focus { outline: none; }
   letter-spacing: 0.18em;
 }
 
-/* ===== Stat block (field guide) ===== */
+/* ===== Stat block (planning articles) ===== */
 .statblock {
-  border-top: 1px solid var(--ink);
-  border-bottom: 1px solid var(--ink);
-  padding: 14px 0;
-  margin: 24px 0 32px;
+  border-block: 1px solid var(--hp-rule);
+  padding: 18px 0;
+  margin: 0 0 36px;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 24px;
 }
 .statblock__item .label {
   display: block;
-  font-family: var(--sans);
-  font-size: 9px;
+  font: 600 8px var(--sans);
+  letter-spacing: 1.7px;
   text-transform: uppercase;
-  letter-spacing: 0.22em;
-  color: var(--ink-3);
-  margin-bottom: 6px;
-  font-weight: 700;
+  color: var(--hp-accent);
+  margin-bottom: 8px;
 }
 .statblock__item .val {
-  font-family: var(--display);
-  font-size: 18px;
-  color: var(--ink);
-  font-weight: 500;
+  font: 400 21px/1.15 var(--serif);
+  color: var(--hp-ink);
   font-feature-settings: "tnum";
 }
 
@@ -1341,78 +1319,51 @@ main:focus { outline: none; }
 .chip:hover { background: var(--ink); color: var(--paper); }
 .chip.is-active { background: var(--ink); color: var(--paper); }
 
-/* ===== Newsletter inline ===== */
+/* ===== Newsletter inline (.nlbox) =====
+   The in-page letter ask, drawn as a design card: the eyebrow, a serif
+   heading and the system's form (the .hp-design .nlbox__form rules at the
+   end of the file). The homepage and HpLetter use the .hp-newsletter
+   modifier, which drops the card. */
 .nlbox {
-  border: 1px solid var(--ink);
-  padding: 36px;
+  border: 1px solid var(--hp-rule);
+  border-radius: 3px;
+  padding: 32px 34px;
   margin: 48px 0;
-  background: var(--paper);
+  background: var(--hp-card);
   position: relative;
 }
 .nlbox::before {
   content: "Dispatch";
-  position: absolute;
-  top: -10px;
-  left: 24px;
-  background: var(--paper);
-  padding: 0 12px;
-  font-family: var(--sans);
-  font-size: 10px;
+  display: block;
+  font: 600 9px var(--sans);
+  letter-spacing: 1.7px;
   text-transform: uppercase;
-  letter-spacing: 0.22em;
-  color: var(--ink);
-  font-weight: 700;
+  color: var(--hp-accent);
+  margin-bottom: 14px;
 }
 .nlbox h3 {
-  font-family: var(--display);
-  font-size: 26px;
-  font-weight: 500;
-  margin-bottom: 8px;
-  font-style: italic;
+  font: 400 32px/1.04 var(--serif);
+  letter-spacing: -0.8px;
+  margin-bottom: 12px;
 }
 .nlbox p {
-  color: var(--ink-2);
-  font-size: 16px;
+  color: var(--hp-muted);
+  font: 13px/1.85 var(--sans);
   margin-bottom: 20px;
-  font-family: var(--serif);
 }
-.nlbox__form {
-  display: flex;
-  gap: 8px;
-  border-bottom: 1px solid var(--ink);
-}
-.nlbox__form input {
-  flex: 1;
-  background: transparent;
-  border: 0;
-  font-family: var(--serif);
-  font-size: 17px;
-  padding: 8px 0;
-  outline: none;
-}
-.nlbox__form input:focus-visible { outline: 2px solid var(--moss); outline-offset: 2px; }
-.nlbox__form button {
-  background: transparent;
-  border: 0;
-  font-family: var(--sans);
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.18em;
-  cursor: pointer;
-  color: var(--ink);
-  text-transform: uppercase;
-  padding: 8px 0;
-}
-.nlbox__form button:hover { color: var(--moss); }
+.nlbox label { display: block; font-size: 10px; margin-bottom: 7px; }
+.nlbox__form { display: flex; gap: 8px; }
 
 /* Soft state for readers who already subscribed: acknowledge, do not re-ask. */
-.nlbox--subscribed { padding: 20px 36px; }
+.nlbox--subscribed { padding: 20px 34px; }
+.nlbox--subscribed::before { content: none; }
 .nlbox__already {
-  font-family: var(--serif);
-  font-size: 16px;
-  color: var(--moss);
-  margin: 0;
+  font: 400 19px/1.4 var(--serif);
+  color: var(--hp-ink);
+  margin: 0 !important;
 }
+.nlbox__already a, .nlbox__done a { border-bottom: 1px solid var(--hp-accent); }
+.nlbox__done { font: 400 19px/1.4 var(--serif); color: var(--hp-accent); margin: 0; padding: 8px 0; }
 
 /* ===== Hero (front-page lede) ===== */
 .hero {
@@ -1698,14 +1649,6 @@ main:focus { outline: none; }
   .page-head h1 { margin-bottom: 14px; }
   .page-head__dek { font-size: 17px; }
 
-  /* Newsletter inline. */
-  .nlbox { padding: 24px 18px; margin: 32px 0; }
-  .nlbox h3 { font-size: 22px; }
-  .nlbox p { font-size: 15px; }
-  .nlbox__form { flex-wrap: wrap; gap: 4px; }
-  .nlbox__form input { width: 100%; font-size: 16px; padding: 10px 0; }
-  .nlbox__form button { width: 100%; text-align: left; padding: 10px 0; }
-
   /* Forms. Bump font to 16px to stop iOS zoom on focus. */
   .field input, .field textarea, .field select { font-size: 16px; }
 
@@ -1718,16 +1661,6 @@ main:focus { outline: none; }
   .site-footer__masthead { font-size: 26px; }
   .site-footer__legal { flex-direction: column; align-items: flex-start; }
 
-  /* Prose. Tighten dropcap so it doesn't crowd the first line on a small column. */
-  .prose { font-size: 17px; line-height: 1.6; }
-  .prose .dropcap::first-letter { font-size: 4em; margin-right: 0.06em; }
-  .prose blockquote { font-size: 21px; margin: 1.2em 0; padding: 0.8em 0; }
-  .prose h3 { font-size: 19px; }
-
-  /* Article header byline row stacks. */
-  .wrap--narrow > div[style*="display: flex"][style*="align-items: center"] {
-    flex-wrap: wrap;
-  }
   /* Inline forms (newsletter page, etc.) wrap their button onto a new line. */
   .wrap--narrow > form[style*="display: flex"] {
     flex-wrap: wrap !important;
@@ -1758,10 +1691,6 @@ main:focus { outline: none; }
   /* Places strip */
   .places-strip { padding: 16px var(--gutter); gap: 12px; }
   .places-strip__copy { font-size: 15px; }
-
-  /* On mobile, hide the credit overlay so it never blocks the image. */
-  .placeholder__credit { display: none; }
-  .placeholder::after { display: none; }
 
   /* Chips wrap nicely, and reach the 44px tap floor: they are the primary
      filter control on /search and /articles. */
@@ -2042,9 +1971,6 @@ main:focus { outline: none; }
    rule as the bulletin icons.
    ============================================================ */
 
-/* Section anchors land under the sticky masthead otherwise; this also fixes
-   the existing SERP #sec- deep links, which the gateway piece earns. */
-.prose h2 { scroll-margin-top: 84px; }
 
 /* Article tables. The comparison table renders inside .table-scroll so wide
    content scrolls in its own container instead of the page. */
@@ -3100,54 +3026,50 @@ main:focus { outline: none; }
   letter-spacing: 0.18em;
 }
 
-/* ===== Home: Field Guide product band =====
-   The one purchase ask on the homepage, in the inverted-ink plate treatment
-   the sticky article guide-bar already established, so the paid object reads
-   as deliberately different from the editorial bands around it. */
+/* ===== The Field Guide card (GuidePromo) =====
+   The compact form of the design's Field Guide band, for pages whose one
+   guide ask sits inside a column: the band's ink plate, gold-grey eyebrow,
+   serif title and the pale button face. */
 .band-guide {
   display: block;
-  text-decoration: none;
-  color: var(--paper);
-  background: var(--ink);
-  border: 1px solid var(--ink);
-  padding: 40px 32px;
+  color: var(--hp-paper);
+  background: var(--hp-ink);
+  border-radius: 3px;
+  padding: 34px 32px;
   margin-top: 24px;
 }
 .band-guide__eyebrow {
-  font-family: var(--sans);
-  font-size: 11px;
-  font-weight: 700;
+  font: 600 9px var(--sans);
+  letter-spacing: 1.7px;
   text-transform: uppercase;
-  letter-spacing: 0.18em;
-  /* --paper-3 rather than --moss: every palette's accent is dark, tuned for
-     paper grounds, and disappears on the ink ground of this band. */
-  color: var(--paper-3);
-  margin-bottom: 12px;
+  color: #c7d0b7;
+  margin-bottom: 16px;
 }
 .band-guide__title {
-  font-family: var(--display);
-  font-size: 36px;
-  font-weight: 400;
-  line-height: 1.1;
-  letter-spacing: -0.01em;
-  color: var(--paper);
+  font: 400 36px/1.05 var(--serif);
+  letter-spacing: -1px;
+  color: var(--hp-paper);
 }
 .band-guide__body {
-  font-family: var(--serif);
-  font-size: 19px;
-  line-height: 1.5;
-  color: var(--paper);
-  opacity: 0.85;
-  margin: 0 0 16px;
+  font: 13px/1.85 var(--sans);
+  color: #d1d9cb;
+  margin: 0 0 22px;
+  max-width: 560px;
 }
 .band-guide__cta {
-  color: var(--paper-3);
-  font-weight: 700;
-  font-size: 11px;
-  text-transform: uppercase;
-  letter-spacing: 0.18em;
+  display: inline-flex;
+  border-radius: 3px;
+  background: #f3e9ca;
+  color: var(--hp-ink);
+  padding: 13px 20px;
+  font: 600 12px var(--sans);
+  letter-spacing: normal;
+  text-transform: none;
+  transition: background .2s;
 }
-.band-guide:hover .band-guide__cta { color: var(--paper); }
+.band-guide:hover .band-guide__cta { background: #fff6dc; }
+.band-guide__sample { font: 12px/1.6 var(--sans); color: var(--hp-muted); margin: 12px 0 0; }
+.band-guide__sample a { color: var(--hp-ink); border-bottom: 1px solid #a7afa4; }
 
 /* ===== Itineraries page (/itineraries) ===== */
 .itin {
@@ -7744,45 +7666,38 @@ main:focus { outline: none; }
   .intentf__clear { margin-left: 0; }
 }
 
-/* ===== The article related rail =====
-   Curated onward links (window.RELATED in data.js). Text rows, not the old
-   three-card image grid: the rail carries five or six links now instead of
-   three, and rendering those as cards would have put five more images below
-   the fold on every article page. Same row idiom as the homepage entries. */
+
+/* ===== The related rail =====
+   Curated onward links (window.RELATED in data.js) as text rows: the serif
+   title, the dek beneath it in the muted small face, a rule between. */
 .relrail {
   list-style: none;
-  margin: 0;
+  margin: 30px 0 0;
   padding: 0;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: 48px;
 }
 .relrail li {
   display: flex;
   flex-direction: column;
-  gap: 6px;
-  border-top: 1px solid var(--rule);
-  padding: 16px 0;
+  gap: 8px;
+  border-top: 1px solid var(--hp-rule);
+  padding: 20px 0 22px;
 }
 .relrail a {
-  font-family: var(--display);
-  font-size: 22px;
-  font-weight: 500;
-  line-height: 1.15;
-  letter-spacing: -0.005em;
-  text-wrap: balance;
-  color: inherit;
-  text-decoration: none;
+  font: 400 26px/1.12 var(--serif);
+  letter-spacing: -0.5px;
+  color: var(--hp-ink);
 }
-.relrail a:hover { color: var(--moss); }
+.relrail a:hover { color: var(--hp-accent); }
 .relrail__dek {
-  font-family: var(--serif);
-  font-style: italic;
-  font-size: 16px;
-  line-height: 1.45;
-  color: var(--ink-2);
+  font: 12px/1.7 var(--sans);
+  color: var(--hp-muted);
 }
-@media (max-width: 880px) {
-  .relrail a { font-size: 20px; }
+@media (max-width: 760px) {
+  .relrail { grid-template-columns: 1fr; margin-top: 24px; }
+  .relrail a { font-size: 23px; }
 }
 
 /* ============================================================
@@ -9282,3 +9197,108 @@ kbd {
   .hp-design .hp-menu__cols { grid-template-columns: 1fr; gap: 20px; }
   .hp-design .hp-menu__link { padding-block: 10px; }
 }
+
+/* ── Articles (page-article.jsx, /articles/<slug>) ─────────────────────────
+   The head is the homepage hero's split (HpPageHead): copy on the left, the
+   plate where the hero's photo goes. The plate is cropped to the hero
+   figure's box; the lightbox still opens the whole photograph. The body is
+   one reading column (.prose), and after it the homepage's section order:
+   the Field Guide band, the letter, the journal. */
+.hp-design .hp-article__head h1 { font-size: 58px; letter-spacing: -1.4px; margin-bottom: 22px; }
+.hp-design .hp-article__head .hp-eyebrow a:hover { color: var(--hp-accent-deep); }
+.hp-design .hp-article__head .hp-intro { font-size: 16px; line-height: 1.75; max-width: 540px; margin-bottom: 30px; }
+.hp-design .hp-article__plate .placeholder { height: 560px; }
+.hp-design .hp-article__plate .placeholder__img { position: absolute; inset: 0; height: 100%; object-fit: cover; }
+.hp-article__byline {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  font-style: normal;
+  font-size: 11px;
+  line-height: 1.6;
+  color: var(--hp-muted);
+  border-top: 1px solid var(--hp-rule);
+  padding-top: 18px;
+}
+.hp-article__byline > span:nth-child(2) { display: flex; flex-direction: column; flex: 1; min-width: 0; }
+.hp-article__avatar {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: var(--paper-2);
+  border: 1px solid var(--hp-rule);
+  font: 400 14px var(--serif);
+  color: var(--hp-ink);
+}
+.hp-article__author { color: var(--hp-ink); font-weight: 600; font-size: 12px; }
+.hp-article__author a { border-bottom: 1px solid #a7afa4; }
+.hp-article__dates { margin-left: auto; display: flex; flex-direction: column; text-align: right; }
+.hp-article__body { padding-block: 56px 16px; }
+.hp-article__column { max-width: 680px; margin: 0 auto; }
+.hp-article__soon { color: var(--hp-muted); font-style: italic; }
+.hp-article__authorbox {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  border-top: 1px solid var(--hp-rule);
+  padding: 28px 0 8px;
+  margin-top: 48px;
+}
+.hp-article__authorbox .hp-article__author { font: 400 22px/1.2 var(--serif); margin: 0 0 6px; }
+.hp-article__authorbox .hp-article__bio { font-size: 12px; line-height: 1.7; color: var(--hp-muted); margin: 0 0 12px; }
+.hp-article__related .relrail { margin-top: 34px; }
+.share-row { display: flex; align-items: center; flex-wrap: wrap; gap: 10px 14px; margin-top: 24px; font: 12px var(--sans); color: var(--hp-muted); }
+.share-row__btn { font: 600 11px var(--sans); color: var(--hp-ink); background: none; border: 1px solid var(--hp-rule); border-radius: 3px; padding: 9px 14px; cursor: pointer; transition: border-color .2s, color .2s; }
+.share-row__btn:hover { border-color: var(--hp-accent); color: var(--hp-accent); }
+
+/* A linked note card: eyebrow, serif h3, one line, and the row's call to
+   action. The article's map card; any page's single in-column pointer. */
+.hp-design .hp-note {
+  display: block;
+  margin-top: 40px;
+  padding: 28px 30px 26px;
+  background: var(--hp-card);
+  border: 1px solid var(--hp-rule);
+  border-radius: 3px;
+}
+.hp-design .hp-note .hp-eyebrow { margin-bottom: 12px; }
+.hp-design .hp-note h3 { font-size: 30px; margin-bottom: 10px; transition: color .2s; }
+.hp-design .hp-note p:not(.hp-eyebrow) { font-size: 13px; line-height: 1.8; color: var(--hp-muted); margin-bottom: 0; }
+.hp-design .hp-note b { display: flex; justify-content: space-between; margin-top: 16px; font-size: 10px; font-weight: 600; }
+.hp-design .hp-note b span { color: var(--hp-accent); font-size: 17px; }
+.hp-design .hp-note:hover h3 { color: var(--hp-accent); }
+
+@media (max-width: 1100px) {
+  .hp-design .hp-article__head h1 { font-size: 48px; }
+  .hp-design .hp-article__plate .placeholder { height: 480px; }
+}
+@media (max-width: 760px) {
+  .hp-design .hp-article__head h1 { font-size: 40px; letter-spacing: -1px; }
+  .hp-design .hp-article__plate .placeholder { height: 340px; }
+  .hp-article__byline { flex-wrap: wrap; }
+  .hp-article__dates { flex-basis: 100%; flex-direction: row; flex-wrap: wrap; gap: 0 14px; margin-left: 52px; text-align: left; }
+  .hp-article__body { padding-top: 40px; }
+  .nlbox { padding: 26px 22px; }
+  .nlbox h3 { font-size: 28px; }
+  .statblock { grid-template-columns: 1fr 1fr; gap: 16px; }
+  .band-guide { padding: 28px 22px; }
+  .band-guide__title { font-size: 30px; }
+  .hp-design .hp-note { padding: 24px 22px; }
+}
+
+/* Reading h3s: line-height and tracking at zero specificity, so a component
+   heading inside a prose block (a class of its own) keeps its values. Last in
+   the file so it beats the :where(.hp-design) element base. /guide's sales
+   copy keeps that element base, as it had before the rollout. */
+:where(.prose:not(.guide-prose), #prerender-prose) h3 { line-height: 1.15; letter-spacing: -0.4px; }
+:where(.prose:not(.guide-prose), #prerender-prose) a {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: var(--hp-accent);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+:where(.prose:not(.guide-prose), #prerender-prose) a:hover { color: var(--hp-accent); }

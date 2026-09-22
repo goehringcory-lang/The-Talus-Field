@@ -32,11 +32,11 @@ Status: `[x]` converted, `[ ]` not yet.
 - [ ] Back-to-top, nav-progress bar, exit-intent modal, lightbox
 
 ### 1. Article template (`page-article.jsx`, 72 pages at `/articles/<slug>`)
-- [ ] Article head (crumbs, section eyebrow, h1, dek, byline, hero plate)
-- [ ] Reading typography: measure, line height, h2/h3, lists, images and captions, blockquotes, tables, callouts, code
-- [ ] In-body components: `LodgingCta`, `AvailabilityLink`, `AffiliateNote`, town facts, gateway map, decision aid, TOC, series band
-- [ ] Related rail, share row, end-of-article guide CTA, sticky guide bar, newsletter
-- [ ] Prerendered fragments (`gen-prerender.mjs`): markup unchanged, painted in the new type before boot
+- [x] Article head (crumbs, section eyebrow, h1, dek, byline, hero plate)
+- [x] Reading typography: measure, line height, h2/h3, lists, images and captions, blockquotes, tables, callouts, code
+- [x] In-body components: `LodgingCta`, `AvailabilityLink`, `AffiliateNote`, town facts, gateway map, decision aid, TOC, series band
+- [x] Related rail, share row, end-of-article guide CTA, sticky guide bar, newsletter
+- [x] Prerendered fragments (`gen-prerender.mjs`): markup unchanged, painted in the new type before boot
 
 ### 2. Listing and index templates
 - [ ] `/articles` (ArticlesIndex)

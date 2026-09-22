@@ -635,7 +635,9 @@ function HomeLink({ go, href, location, children, ...props }) {
       return;
     }
     event.preventDefault();
-    go(href.startsWith("/articles/") ? `a:${href.slice(10)}` : (href.slice(1) || "home"));
+    go(href.startsWith("/articles/") ? `a:${href.slice(10)}`
+      : href.startsWith("/section/") ? `cat:${href.slice(9)}`
+      : (href.slice(1) || "home"));
   }}>{children}</a>;
 }
 
@@ -889,9 +891,11 @@ function HpArticleCard({ article, go, location }) {
 
 // The page head for an interior design page: breadcrumbs, eyebrow, h1, intro,
 // up to two actions and a byline on the left; an optional aside on the right.
-function HpPageHead({ go, crumbs, eyebrow, title, intro, actions, byline, aside, className }) {
+// `children` follow the byline in the copy column (the article's author line
+// and series band); `as` swaps the element (an article's head is a <header>).
+function HpPageHead({ go, crumbs, eyebrow, title, intro, actions, byline, aside, className, as: Tag = "section", children }) {
   return (
-    <section className={["hp-pagehead", "hp-wrap", aside ? "hp-pagehead--split" : null, className].filter(Boolean).join(" ")}>
+    <Tag className={["hp-pagehead", "hp-wrap", aside ? "hp-pagehead--split" : null, className].filter(Boolean).join(" ")}>
       <div className="hp-pagehead__copy">
         {crumbs && <Breadcrumbs go={go} trail={crumbs} />}
         {eyebrow && <p className="hp-eyebrow">{eyebrow}</p>}
@@ -899,9 +903,10 @@ function HpPageHead({ go, crumbs, eyebrow, title, intro, actions, byline, aside,
         {intro && <p className="hp-intro">{intro}</p>}
         {actions && <div className="hp-actions">{actions}</div>}
         {byline && <p className="hp-byline">{byline}</p>}
+        {children}
       </div>
       {aside && <div className="hp-pagehead__aside">{aside}</div>}
-    </section>
+    </Tag>
   );
 }
 
@@ -969,7 +974,7 @@ function HpGuideBand({ go, location, id, eyebrow = "THE TALUS FIELD GUIDE / THE 
 // The letter: the postcard beside the Sunday Letter form. `heading` and
 // `blurb` are NewsletterInline's (the heading is visually hidden, since the
 // section's h2 stands in for it); `paper` is the postcard's line.
-function HpLetter({ id, eyebrow, title, heading, blurb, location, tag, cta = "Send me the letter ↗", terms = "Free to read. One letter a week. Unsubscribe whenever.", paper, stamp = "THE SUNDAY LETTER" }) {
+function HpLetter({ id, eyebrow, title, heading, blurb, location, tag, variant, cta = "Send me the letter ↗", terms = "Free to read. One letter a week. Unsubscribe whenever.", paper, stamp = "THE SUNDAY LETTER" }) {
   return (
     <section className="hp-letter hp-wrap hp-section" id={id} tabIndex={id ? -1 : undefined}>
       <div className="hp-paper">
@@ -982,7 +987,7 @@ function HpLetter({ id, eyebrow, title, heading, blurb, location, tag, cta = "Se
       <div>
         <p className="hp-eyebrow">{eyebrow}</p>
         <h2>{title}</h2>
-        <NewsletterInline heading={heading} blurb={blurb} location={location} tag={tag} cta={cta} modifier="hp-newsletter" inputLabel="Your email address" />
+        <NewsletterInline heading={heading} blurb={blurb} location={location} tag={tag} variant={variant} cta={cta} modifier="hp-newsletter" inputLabel="Your email address" />
         {terms && <p className="hp-terms">{terms}</p>}
       </div>
     </section>
@@ -1422,16 +1427,9 @@ function ShareRow({ title, slug }) {
     }
   };
   return (
-    <div className="share-row" style={{ display: "flex", alignItems: "center", gap: 12, marginTop: 20, fontFamily: "var(--sans)", fontSize: 13, color: "var(--ink-3)" }}>
+    <div className="share-row">
       <span>Worth sending to your trip partner?</span>
-      <button
-        type="button"
-        onClick={share}
-        style={{
-          font: "inherit", color: "var(--moss)", background: "none",
-          border: "1px solid var(--rule)", padding: "6px 14px", cursor: "pointer",
-        }}
-      >{copied ? "Link copied" : "Share this article"}</button>
+      <button type="button" className="share-row__btn" onClick={share}>{copied ? "Link copied" : "Share this article"}</button>
     </div>
   );
 }
@@ -1783,7 +1781,7 @@ function NewsletterInline({ heading, blurb, location, tag, incentive, abTest, va
           : (blurb || "A short note on Sundays, when there is something to say.")}</p>
       {inputLabel && !done && <label htmlFor={`${location}-email`}>{inputLabel}</label>}
       {done ? (
-        <p style={{ fontFamily: "var(--serif)", fontSize: 17, color: "var(--moss)", margin: 0, padding: "8px 0" }}>
+        <p className="nlbox__done">
           You're in. <a href="/map">The map is open to you →</a>
         </p>
       ) : (
@@ -2205,12 +2203,11 @@ function GuidePromo({ go, location, title, body, cta, sample = true, style }) {
         <div className="mono band-guide__cta">{cta || "See the Field Guide →"}</div>
       </a>
       {sample && (
-        <p style={{ fontFamily: "var(--sans)", fontSize: 13, color: "var(--ink-3)", lineHeight: 1.6, margin: "10px 0 0" }}>
+        <p className="band-guide__sample">
           Not sure yet? Five entries are free to read, no email required:{" "}
           <a
             href={`${GUIDE_PROMO_APP_BASE}/preview`}
             onClick={() => { if (window.track) window.track("guide_sample_click", { location: location || "unknown" }); }}
-            style={{ color: "var(--ink-2)" }}
           >preview the guide →</a>
         </p>
       )}
