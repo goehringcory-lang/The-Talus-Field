@@ -14,6 +14,7 @@ export default function BottomNav() {
     pathname === '/night' ||
     pathname === '/compass' ||
     pathname === '/help' ||
+    pathname === '/near' ||
     pathname === '/wildlife' ||
     pathname === '/hunts' ||
     pathname === '/log'

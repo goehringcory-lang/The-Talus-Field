@@ -28,6 +28,7 @@ import {
   type WildlifeKindT,
 } from '../content/wildlife'
 import { useSightings } from '../lib/sightings'
+import { useLandOnHash } from '../utils/useLandOnHash'
 import './Wildlife.css'
 
 const KINDS = WildlifeKind.options
@@ -35,6 +36,8 @@ const KINDS = WildlifeKind.options
 export default function Wildlife() {
   const [kindFilter, setKindFilter] = useState<WildlifeKindT | null>(null)
   const { ids: loggedIds, toggle, isLogged } = useSightings()
+  // Search hits link /wildlife#<id>.
+  useLandOnHash()
 
   const kinds = KINDS.filter((k) => !kindFilter || k === kindFilter)
 
@@ -80,7 +83,7 @@ export default function Wildlife() {
                   const logged = isLogged(w.id)
                   const credit = w.photo ? PHOTO_CREDITS[w.photo.src] : undefined
                   return (
-                    <li key={w.id} className="wildlife-entry">
+                    <li key={w.id} id={w.id} className="wildlife-entry">
                       {w.photo && (
                         <Plate
                           className="wildlife-entry__plate"

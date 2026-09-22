@@ -134,3 +134,54 @@
   stroke-width: 1.5;
   stroke-linejoin: round;
 }
+
+/* Sort row and the visible count. The sort is single-select and sits apart
+   from the filters because it reorders rather than narrows. */
+.hikes-sort {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-bottom: 12px;
+}
+.hikes-sort__label {
+  font: 600 11px var(--mono);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--ink-3);
+  margin-right: 4px;
+}
+.hikes-sort__note {
+  margin: 0 0 12px;
+  font: italic 14px var(--serif);
+  color: var(--ink-3);
+}
+.hikes-count {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  margin: 8px 0 12px;
+  font: 600 12px var(--mono);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ink-3);
+}
+.hikes-count p {
+  margin: 0;
+}
+.hikes-count__clear {
+  background: none;
+  border: 0;
+  padding: 8px 0;
+  min-height: 44px;
+  font: inherit;
+  color: var(--moss);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+.hike-row__away {
+  color: var(--ink);
+  font-weight: 600;
+}

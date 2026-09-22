@@ -5,8 +5,8 @@
 // bundled content, so it works offline like the rest of the guide.
 // =============================================================================
 
-import { useEffect, useMemo, useState } from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import { useMemo, useState } from 'react'
+import { Link } from 'react-router-dom'
 import GatedChrome from '../components/GatedChrome'
 import MapsLink from '../components/MapsLink'
 import Callout from '../components/ui/Callout'
@@ -23,6 +23,7 @@ import {
   getStopById,
 } from '../content'
 import type { DiningKind, DiningVenueT } from '../content'
+import { useLandOnHash } from '../utils/useLandOnHash'
 import './Dining.css'
 
 const KINDS: DiningKind[] = ['sit-down', 'counter', 'snack', 'coffee', 'bar', 'grocery']
@@ -34,7 +35,7 @@ function VenueRow({ venue, headingLevel = 'h3' }: { venue: DiningVenueT; heading
   const stop = venue.stopId ? getStopById(venue.stopId) : undefined
   const Heading = headingLevel
   return (
-    <details className="dining-row">
+    <details className="dining-row" id={venue.id}>
       <summary>
         <span className="dining-row__price">
           {venue.price}
@@ -72,15 +73,9 @@ function VenueRow({ venue, headingLevel = 'h3' }: { venue: DiningVenueT; heading
 
 export default function Dining() {
   const [kindFilter, setKindFilter] = useState<DiningKind | null>(null)
-  const { hash } = useLocation()
-
-  // SPA navigations don't scroll to a #fragment on their own, and Home's
-  // gateway card links /dining#gateway — without this the card lands at the
-  // top of 40+ in-park venues, identical to the other dining card.
-  useEffect(() => {
-    if (!hash) return
-    document.getElementById(hash.slice(1))?.scrollIntoView()
-  }, [hash])
+  // Home's gateway card links /dining#gateway and search hits link
+  // /dining#<venue id>; without this both land at the top of 40+ venues.
+  useLandOnHash()
 
   const byKind = (list: DiningVenueT[]) =>
     list.filter((v) => !kindFilter || v.kind === kindFilter)
