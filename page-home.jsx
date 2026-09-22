@@ -1,593 +1,195 @@
-/* global React, Placeholder, NewsletterInline, MotifMountains, LodgingCta */
-const { useState } = React;
-
-// ============================================================
-// THE FRONT PAGE (August 2026 homepage redesign)
-//
-// The page this replaced had grown to eleven stacked sections: a hero carrying
-// four separate asks, a utility row, a month planner, Start Here, a lodging
-// band, a six-card feed, a By Section grid, a three-part "Go Deeper" ladder,
-// and an editor strip. It asked for the newsletter three times and pitched the
-// Field Guide twice, and no single screenful said what the site was.
-//
-// The redesign is a broadsheet: an edition rule, a lede, a four-item index of
-// what this site actually is, and then ONE two-column body. The left column is
-// editorial (the Bulletin, the four first-visit answers, the latest entries).
-// The right column is the rail: every offer on the page, made once, ordered by
-// commitment (paid guide, free letter, lodging availability). Nothing
-// interrupts the reading column to sell, and nothing is asked for twice.
-//
-// Three constraints shaped the code, all of them pre-existing:
-//   1. HomeHero is rendered offline into index.html's static shell
-//      (scripts/gen-home-shell.mjs), so it must render with no browser APIs and
-//      bake nothing date-derived. See the comment on HomeHero.
-//   2. Everything heavy stays below the DeferredSection boundary, which is what
-//      keeps the homepage's main-thread time near an article page's.
-//   3. The archive is not an SPA route: its link is a real navigation with no
-//      go() handler (CLAUDE.md, "The Nature Notes archive").
-// ============================================================
-
-// ============================================================
-// The hero: everything above the fold, and the only part of this file that is
-// ALSO rendered offline into the static shell baked into index.html
-// (scripts/gen-home-shell.mjs), which paints before any JavaScript runs. Two
-// rules follow from that:
-//
-//   1. Its first render must not depend on anything the generator cannot
-//      supply: no fetches, no storage reads, no observers, no route state
-//      beyond the `go` handler, which the generator stubs.
-//   2. Nothing date-derived may be baked in. The generator blanks the one
-//      date-derived slot below (the issue label in the edition rule) to a
-//      stable-height placeholder and lets React fill it on boot; index.html is
-//      cached hard, so a baked month name would go stale. The
-//      `data-shell-blank` attribute marks the slot for the generator, which
-//      fails loudly if it disappears.
-//
-// Keeping the markup identical between the shell and this component is what
-// keeps CLS at zero when React replaces the shell.
-// ============================================================
+/* global React, HomeLink, ResponsiveImage, NewsletterInline */
+// The approved visitor-first homepage. HomeHero also renders into index.html's
+// pre-JavaScript shell; keep its first render independent of browser state.
 function HomeHero({ go }) {
   return (
-    <React.Fragment>
-      {/* The edition rule: the masthead states the brand, this states the
-          issue. Full width, above the lede, so the page opens like a dated
-          publication rather than a landing page. */}
-      <div className="home-edition">
-        <div className="wrap home-edition__inner">
-          <span className="home-edition__issue">
-            <span className="dot"></span>
-            <span data-shell-blank="issue">
-              {(window.SITE && window.SITE.issue) || "Vol. III"}
-              {window.SITE && window.SITE.issueDetail ? ` · ${window.SITE.issueDetail}` : ""}
-            </span>
-          </span>
-          <span className="home-edition__where">Published from El Portal, inside the park</span>
-        </div>
+    <>
+  <section className="hp-hero hp-wrap">
+    <div>
+      <p className="hp-eyebrow">✳ &nbsp; LESS GUESSWORK. MORE YOSEMITE.</p>
+      <h1>A remarkable place.<br />A better way<br />to <em>be there.</em>
+      </h1>
+      <p className="hp-intro">Your first Yosemite trip doesn’t need to feel like homework. Get local advice on where to stay, what to see, and how to make the most of your days.</p>
+      <div className="hp-actions">
+        <HomeLink go={go} location="home_hero" className="hp-button" href="#home-start-here">Plan your first visit &nbsp; ↓</HomeLink>
+        <HomeLink go={go} location="home_hero" className="hp-link" href="#field-guide">Meet your pocket guide ↗</HomeLink>
       </div>
-      <section className="hero">
-        <div className="wrap hero__grid">
-          <div>
-            <h1>Yosemite, from the inside.</h1>
-            <p className="hero__dek">
-              A working journal of one national park: current conditions, resident-tested planning, and twenty seasons of looking closely.
-            </p>
-            {/* One primary action, one secondary. Every other ask on this page
-                lives in the rail below, so the hero carries no third or fourth
-                one. Judged on cta_click{location: home_hero}, the same event
-                the previous hero fired. */}
-            <div className="hero__cta">
-              <a
-                className="btn"
-                href="/planning"
-                onClick={(e) => {
-                  e.preventDefault();
-                  if (window.track) window.track("cta_click", { location: "home_hero", target: "planning" });
-                  go("planning");
-                }}
-              >Plan my Yosemite trip <span className="btn__arrow">→</span></a>
-              <a
-                className="btn btn--ghost"
-                href="/conditions"
-                onClick={(e) => {
-                  e.preventDefault();
-                  if (window.track) window.track("cta_click", { location: "home_hero", target: "conditions" });
-                  go("conditions");
-                }}
-              >Check today's conditions</a>
-            </div>
-          </div>
-          <Placeholder
-            caption={"El Capitan and Bridalveil at sunset"}
-            credit={"Rodrigo Soares / Unsplash"}
-            image="img/valley-view-sunset-rodrigo-soares.jpg"
-            tag="PLATE I"
-            size="lg"
-            natural
-            eager
-            motif={<MotifMountains />}
-          />
-        </div>
-      </section>
-    </React.Fragment>
+      <p className="hp-byline">Independent advice. Twenty seasons of paying attention.</p>
+    </div>
+    <figure>
+      <ResponsiveImage image="/img/valley-view-sunset-rodrigo-soares.jpg" alt="El Capitan and Bridalveil Fall above the Merced River at sunset" sizes="(max-width: 760px) calc(100vw - 40px), (max-width: 1100px) 50vw, 630px" eager />
+      <div className="hp-caption">Less time figuring it out.<br />
+        <em>More time looking up.</em>
+      </div>
+      <figcaption>01 / YOSEMITE VALLEY <span>Rodrigo Soares / Unsplash</span>
+      </figcaption>
+    </figure>
+  </section>
+    </>
   );
 }
-
-// ============================================================
-// Below-the-fold mount gate. Everything it wraps renders only once it is within
-// 600px of the viewport. The homepage's problem was never bytes, it was
-// main-thread time: the July 2026 measurement had the homepage at ~1.7s TBT
-// against ~150ms on an article page, from mounting six article cards, four
-// section tiles, five Go Deeper surfaces, and their images in one synchronous
-// pass. The redesign removed most of that work outright (the page below the
-// hero is now text, with no card images at all); this keeps the remainder off
-// the critical path.
-//
-// Fails open: no IntersectionObserver (or no ref) renders immediately, so a
-// browser without it sees the whole page as before. The placeholder reserves
-// `minHeight` and the 600px margin means the swap happens below the viewport,
-// so nothing visible shifts. `render` is a function, not children, so the
-// deferred subtree is not even constructed until it is needed.
-// ============================================================
-function DeferredSection({ minHeight, render }) {
-  const [shown, setShown] = React.useState(false);
-  const ref = React.useRef(null);
-
-  React.useEffect(() => {
-    if (shown) return undefined;
-    const el = ref.current;
-    if (!el || typeof IntersectionObserver === "undefined") {
-      setShown(true);
-      return undefined;
-    }
-    const io = new IntersectionObserver(
-      (entries) => {
-        if (entries.some((e) => e.isIntersecting)) {
-          setShown(true);
-          io.disconnect();
-        }
-      },
-      { rootMargin: "600px 0px" }
-    );
-    io.observe(el);
-    return () => io.disconnect();
-  }, [shown]);
-
-  if (shown) return render();
-  return <div ref={ref} aria-hidden="true" style={{ minHeight }} />;
-}
-
-// ============================================================
-// The index: what this site is, in four lines, directly under the lede. This
-// is the section the old page never had. A first-time visitor arriving from a
-// search result could not tell from the homepage that there is a map, a live
-// bulletin, or a century of archive under it; they were discoverable only by
-// scrolling past six sections or opening a dropdown.
-//
-// Counts come from the catalog, never from a constant that can drift. Note
-// this section is NOT part of the static shell (the generator renders with an
-// empty window.ARTICLES, so a live count would bake as zero), which is exactly
-// why it sits below the hero rather than inside it.
-//
-// The archive entry is a real navigation: /archive/ is generated static HTML,
-// not an SPA route, so it must never carry a go() handler.
-// ============================================================
-function HomeIndex({ go }) {
-  const entries = window.ARTICLES.length;
-  const sections = window.CATEGORIES.length;
-
-  const items = [
-    {
-      key: "articles",
-      num: "01",
-      title: "The Journal",
-      blurb: `${entries} entries across ${sections} sections, newest first.`,
-      cta: "All entries →",
-    },
-    {
-      key: "map",
-      num: "02",
-      title: "The Trip Map",
-      blurb: "Every vista, trailhead, parking turnout, and meal, assembled into a route.",
-      cta: "Open the map →",
-    },
-    {
-      key: "now",
-      num: "03",
-      title: "The Park Bulletin",
-      blurb: "Alerts, road status, free programs, and what is open, in the current edition.",
-      cta: "Scan the bulletin →",
-    },
-    {
-      href: "/archive/",
-      num: "04",
-      title: "The Archive",
-      blurb: "512 issues of Yosemite Nature Notes, 1922 onward, transcribed.",
-      cta: "Browse the archive →",
-    },
-  ];
-
-  return (
-    <section className="wrap home-index-wrap">
-      <nav className="home-index" aria-label="What is on this site">
-        {items.map((it) => {
-          const track = () => {
-            if (window.track) window.track("cta_click", { location: "home_index", target: it.key || "archive" });
-          };
-          const inner = (
-            <React.Fragment>
-              <span className="mono home-index__num">№ {it.num}</span>
-              <span className="home-index__title">{it.title}</span>
-              <span className="home-index__blurb">{it.blurb}</span>
-              <span className="mono home-index__cta">{it.cta}</span>
-            </React.Fragment>
-          );
-          // A real navigation for the generated archive pages; an SPA route for
-          // everything else.
-          return it.href ? (
-            <a key={it.num} className="home-index__item" href={it.href} onClick={track}>{inner}</a>
-          ) : (
-            <a
-              key={it.num}
-              className="home-index__item"
-              href={`/${it.key}`}
-              onClick={(e) => { e.preventDefault(); track(); go(it.key); }}
-            >{inner}</a>
-          );
-        })}
-      </nav>
-    </section>
-  );
-}
-
-// ============================================================
-// Resume band. Renders only when a recent article was left unfinished
-// (tfg.read.last, written by the article page's progress tracker) and the
-// piece still exists in the catalog. One quiet line at the top of the
-// editorial column: the cheapest engagement win on the page is a returning
-// reader with an open thread. Clicking sets the one-shot tfg.read.resume flag
-// so the article page jumps back to the saved depth.
-// ============================================================
-const RESUME_MAX_AGE_DAYS = 30;
-
-function ResumeReading({ go }) {
-  const last = React.useMemo(() => (window.readHistory ? window.readHistory.last() : null), []);
-  const article = last ? window.findArticle(last.slug) : null;
-  const ageDays = last && last.at ? (Date.now() - new Date(last.at).getTime()) / 86400000 : 0;
-  const show = Boolean(article) && ageDays < RESUME_MAX_AGE_DAYS;
-
-  React.useEffect(() => {
-    if (show && window.track) window.track("resume_shown", { slug: last.slug, percent: last.pct });
-  }, [show]);
-
-  if (!show) return null;
-
-  // "About n min left" from the catalog's read estimate; falls back to the
-  // saved depth when the estimate does not parse.
-  const totalMin = parseInt(article.read, 10);
-  const remaining = Number.isFinite(totalMin)
-    ? `About ${Math.max(1, Math.round(totalMin * (100 - last.pct) / 100))} min left`
-    : `${last.pct}% read`;
-
-  return (
-    <a
-      className="resume-band"
-      href={`/articles/${article.slug}`}
-      onClick={(e) => {
-        e.preventDefault();
-        window.safeStorage.set("tfg.read.resume", article.slug);
-        if (window.track) window.track("resume_click", { slug: article.slug, percent: last.pct });
-        go(`a:${article.slug}`);
-      }}
-    >
-      <span className="eyebrow eyebrow--moss">Where you left off</span>
-      <span className="resume-band__title">{article.title}</span>
-      <span className="resume-band__meta">{remaining}</span>
-      <span className="mono resume-band__cta">Keep reading →</span>
-    </a>
-  );
-}
-
-// ============================================================
-// Park Bulletin teaser, at the top of the editorial column. Recency is the
-// proof a cold planner trusts, so the first thing under the index is the
-// current edition, dated. Fails quiet: any fetch or shape problem and the band
-// renders nothing.
-// Keep the ?v= in sync with BULLETIN_URL in page-now.jsx when bulletin.json
-// changes. The .home-dispatch class names carry over from the dispatch era.
-// ============================================================
-const HOME_BULLETIN_URL = "/bulletin.json?v=13";
-
-function HomeBulletin({ go }) {
-  const [edition, setEdition] = React.useState(null);
-
-  React.useEffect(() => {
-    let cancelled = false;
-    fetch(HOME_BULLETIN_URL)
-      .then((r) => (r.ok ? r.json() : Promise.reject(new Error(`bulletin.json ${r.status}`))))
-      .then((data) => {
-        const e = data && data.edition;
-        if (!cancelled && e && e.label && e.lede) setEdition(e);
-      })
-      .catch(() => {});
-    return () => { cancelled = true; };
-  }, []);
-
-  if (!edition) return null;
-
-  // Same commitment as /now: an ended edition is never presented as current.
-  // The band stays (it is the door to the bulletin, which carries its own
-  // fuller note), but the dateline says so.
-  const endDate = new Date(edition.end + "T00:00:00");
-  const today = new Date();
-  today.setHours(0, 0, 0, 0);
-  const ended = !Number.isNaN(endDate.getTime()) && today > endDate;
-
-  return (
-    <a
-      className="home-dispatch"
-      href="/now"
-      onClick={(e) => {
-        e.preventDefault();
-        if (window.track) window.track("cta_click", { location: "home_dispatch" });
-        go("now");
-      }}
-    >
-      <span className="home-dispatch__date">
-        The Park Bulletin · covering {edition.label}
-        {ended ? " · this edition has ended" : ""}
-      </span>
-      <span className="home-dispatch__title">One page, the whole park, right now</span>
-      <p className="home-dispatch__excerpt">{edition.lede}</p>
-      <span className="mono home-dispatch__cta">Scan the bulletin →</span>
-    </a>
-  );
-}
-
-// Question labels for the Start Here answers, keyed by START_HERE slug.
-// Task-mode visitors click questions, not essay titles, so each entry leads
-// with the question its article answers, in the visitor's words. A slug with
-// no entry renders its title alone.
-const START_HERE_QUESTIONS = {
-  "first-time-yosemite-overwhelm": "First time, and it feels like a lot?",
-  "yosemite-without-reservations-2026": "Do you need a reservation this year?",
-  "yosemite-gateway-towns-compared": "Where should you actually stay?",
-  "yosemite-in-one-or-two-days": "Only have a day or two?",
-};
-
-// ============================================================
-// The rail. Every offer on the page, in one column, ordered by commitment: the
-// paid Field Guide, the free Sunday letter, then lodging availability. It is
-// sticky (styles.css) so it travels with the reader down the editorial column;
-// in a window shorter than the rail it pins by its bottom edge instead, so no
-// unit is held below the fold for the length of the page.
-//
-// One ask per offer, made once. The Field Guide had two pitches on the old page
-// (hero card and Go Deeper band) and the newsletter had three (hero capture,
-// map band, editor strip); the redundancy is what made the page feel like a
-// storefront. Price is stated plainly per house style; the live number renders
-// on /guide.
-// ============================================================
-
-// The Field Guide unit shows the product instead of describing it: a real
-// capture of the app's front page (staged readings, fixed clock), cropped at
-// the sun block, with three numbered pins keyed beside it (below it on narrow
-// widths). `at` is each pin's height on the capture as a percentage of the
-// full 640 × 1385 image, measured off front-page.v4.webp: recapture the
-// screen and these move, so re-measure them with it or the pins point at the
-// wrong rows. styles.css derives the key's desktop positions from the same
-// number (.rail-guide__keyitem), which is what keeps key and pin level.
-const RAIL_GUIDE_SHOT = "/img/guide/screens/front-page.v4.webp";
-const RAIL_GUIDE_KEY = [
-  { at: 2.96, label: "Offline", text: "The whole guide lives on the phone, so no signal is needed." },
-  { at: 40, label: "Gate waits", text: "Every entrance, live from the park service." },
-  { at: 70.1, label: "Light left", text: "Sunset and golden hour, computed on the phone." },
-];
-// The same figures /guide states (page-guide.jsx); change them together.
-const RAIL_GUIDE_COUNTS = [
-  { n: 44, label: "Stops in driving order" },
-  { n: 57, label: "Day hikes with GPS tracks" },
-  { n: 50, label: "Secret Guide entries" },
-];
-
-function HomeRail({ go }) {
-  return (
-    <aside className="home-rail" aria-label="From The Talus Field">
-      <a
-        className="rail-guide"
-        href="/guide"
-        onClick={(e) => {
-          e.preventDefault();
-          if (window.track) window.track("guide_cta_click", { location: "home_rail" });
-          go("guide");
-        }}
-      >
-        <span className="rail-guide__eyebrow">The Field Guide · Offline app</span>
-        {/* h3, matching the newsletter unit below: a screen reader skimming by
-            headings has to find all three rail offers, not one of three. */}
-        <h3 className="rail-guide__title">The park, in your pocket.</h3>
-        <span className="rail-guide__fig">
-          <span className="rail-guide__stage">
-            <span className="rail-guide__phone">
-              <span className="rail-guide__screen">
-                <img
-                  src={RAIL_GUIDE_SHOT}
-                  alt="The Field Guide app's front page"
-                  width="640"
-                  height="1385"
-                  loading="lazy"
-                  decoding="async"
-                />
-                {RAIL_GUIDE_KEY.map((k, i) => (
-                  <span key={k.label} className="rail-guide__pin" style={{ "--at": k.at }} aria-hidden="true">
-                    {i + 1}
-                  </span>
-                ))}
-              </span>
-            </span>
-          </span>
-          <ol className="rail-guide__key">
-            {RAIL_GUIDE_KEY.map((k, i) => (
-              <li key={k.label} className="rail-guide__keyitem" style={{ "--at": k.at }}>
-                <span className="rail-guide__keynum" aria-hidden="true">{i + 1}</span>
-                <span className="rail-guide__keylabel">{k.label}</span>
-                <span className="rail-guide__keytext">{k.text}</span>
-              </li>
-            ))}
-          </ol>
-        </span>
-        <span className="rail-guide__counts">
-          {RAIL_GUIDE_COUNTS.map((c) => (
-            <span key={c.label} className="rail-guide__count">
-              <strong>{c.n}</strong>
-              <span>{c.label}</span>
-            </span>
-          ))}
-        </span>
-        <span className="rail-guide__buy">
-          See the Field Guide
-          <span className="rail-guide__price">$3.99 →</span>
-        </span>
-        <span className="rail-guide__terms">One payment · 18 months · 30-day guarantee</span>
-      </a>
-
-      {/* "Free" in the blurb is the letter, not the map. The trip planner at
-          /map is gated behind MapAccessGate, so the previous copy ("The
-          interactive trip planner map comes with it. Free.") described a gated
-          page as a free gift, and was false the moment the gate mounted.
-          Restore map language only if the gate actually goes away. */}
-      <NewsletterInline
-        location="home_rail"
-        tag="home"
-        heading="The Sunday Letter"
-        blurb="What is open, what is booking out, and what the week looked like from inside the park. One letter a week. Free."
-        cta="Get the Sunday letter →"
-        modifier="nlbox--rail"
-      />
-
-      <LodgingCta
-        destination="Yosemite National Park"
-        heading="The decision with a deadline"
-        note="Inside the park there is one operator and one inventory, opening 366 days ahead. Outside it there are five gateway towns whose drive times to the Valley differ by more than an hour. Both are covered, honestly, on one page."
-        list="page_home"
-        slug="home"
-        cta="See what is available on your dates →"
-      />
-    </aside>
-  );
-}
-
-// ============================================================
-// HOME
-// ============================================================
 function HomePage({ go }) {
-  const recent = window.ARTICLES.slice(0, 3);
-  const startHere = (window.START_HERE || [])
-    .map(slug => window.findArticle(slug))
-    .filter(Boolean);
-
   return (
-    <div className="page">
-      <HomeHero go={go} />
-
-      <HomeIndex go={go} />
-
-      {/* The body: editorial on the left, every offer on the right. */}
-      <section className="wrap home-body">
-        <div className="home-spine">
-          <ResumeReading go={go} />
-          <HomeBulletin go={go} />
-
-          {/* Start Here — the answers block, framed as the questions everyone
-              asks: task mode clicks questions, and the articles underneath do
-              the depth conversion. */}
-          {startHere.length > 0 && (
-            <div id="start-here" style={{ scrollMarginTop: 24 }}>
-              <div className="home-section__head">
-                <div className="eyebrow eyebrow--moss" style={{ marginBottom: 14 }}>For first-time visitors</div>
-                <h2 className="home-section__title">Start here.</h2>
-                <p className="home-section__dek">Four answers before you book anything.</p>
-              </div>
-              <div className="home-answers">
-                {startHere.map(a => (
-                  <a
-                    key={a.slug}
-                    className="home-answer"
-                    href={`/articles/${a.slug}`}
-                    onClick={(e) => { e.preventDefault(); go(`a:${a.slug}`); }}
-                  >
-                    {START_HERE_QUESTIONS[a.slug] && (
-                      <span className="home-answer__q">{START_HERE_QUESTIONS[a.slug]}</span>
-                    )}
-                    <span className="home-answer__title">{a.title}</span>
-                  </a>
-                ))}
-              </div>
-              {/* The full question set lives at /start-here (August 2026 SEO
-                  pass): the block here stays the four-question funnel, the
-                  page holds the rest and is the indexable URL for it. */}
-              <a
-                className="mono home-section__more"
-                href="/start-here"
-                style={{ display: "inline-block", marginTop: 14 }}
-                onClick={(e) => {
-                  e.preventDefault();
-                  if (window.track) window.track("cta_click", { location: "home_start_here" });
-                  go("start-here");
-                }}
-              >Every first-trip question, answered →</a>
-            </div>
-          )}
-
-          {/* Latest entries. Text rows, not cards: the old six-card grid was
-              the single most expensive thing on the page, and a homepage feed
-              is a list of what is new, not a gallery. */}
-          <div className="home-latest">
-            <DeferredSection
-              minHeight={560}
-              render={() => (
-                <div>
-                  <div className="home-section__head home-section__head--row">
-                    <h2 className="home-section__title">Latest Entries</h2>
-                    <a
-                      className="mono home-section__more"
-                      href="/articles"
-                      onClick={(e) => { e.preventDefault(); go("articles"); }}
-                    >All {window.ARTICLES.length} entries →</a>
-                  </div>
-                  <div className="home-entries">
-                    {recent.map(a => {
-                      const cat = window.findCategory(a.cat);
-                      return (
-                        <a
-                          key={a.slug}
-                          className="home-entry"
-                          href={`/articles/${a.slug}`}
-                          onClick={(e) => { e.preventDefault(); go(`a:${a.slug}`); }}
-                        >
-                          <span className="eyebrow eyebrow--moss">{cat.label}</span>
-                          <span className="home-entry__title">{a.title}</span>
-                          <span className="home-entry__dek">{a.dek}</span>
-                          <span className="mono home-entry__meta">
-                            <span>{a.date}</span>
-                            <span>{a.read}</span>
-                          </span>
-                        </a>
-                      );
-                    })}
-                  </div>
-                </div>
-              )}
-            />
-          </div>
+    <div className="page hp-design">
+  <HomeHero go={go} />
+  <div className="hp-utility hp-wrap">
+    <span className="hp-eyebrow">BEFORE YOU HEAD IN</span>
+    <HomeLink go={go} location="home_content" href="/conditions">Roads &amp; conditions ↗</HomeLink>
+    <HomeLink go={go} location="home_content" href="/articles/yosemite-without-reservations-2026">Entry &amp; reservations ↗</HomeLink>
+    <HomeLink go={go} location="home_content" href="/articles/yosemite-shuttle-and-yarts">Getting around ↗</HomeLink>
+  </div>
+  <section className="hp-wrap hp-section" id="home-start-here" tabIndex={-1}>
+    <div className="hp-heading">
+      <div>
+        <p className="hp-eyebrow">YOUR FIRST VISIT, MADE SIMPLE</p>
+        <h2>Start here. The rest can wait.</h2>
+      </div>
+      <HomeLink go={go} location="home_content" className="hp-link" href="/start-here">All first-trip advice ↗</HomeLink>
+    </div>
+    <p className="hp-sub">The four reads that turn “where do we even begin?” into a plan.</p>
+    <div className="hp-articles">
+      <HomeLink go={go} location="home_content" className="hp-featured" href="/articles/first-time-yosemite-overwhelm">
+        <div className="hp-photo">
+          <ResponsiveImage image="/img/half-dome-valley-cumulus.jpg" alt="Half Dome above Yosemite Valley" sizes="(max-width: 760px) calc(100vw - 40px), 600px" />
+          <span>READ THIS FIRST</span>
         </div>
-
-        <HomeRail go={go} />
-      </section>
+        <div className="hp-cardbody">
+          <p className="hp-eyebrow">01 / THE BIG PICTURE <span>6 MIN READ</span>
+          </p>
+          <h3>Your first Yosemite trip.<br />Let’s make it a good one.</h3>
+          <p>What matters, what can wait, and the decisions to make before you book anything.</p>
+          <b>Start with the essentials <span>↗</span>
+          </b>
+        </div>
+      </HomeLink>
+      <div className="hp-list">
+        <HomeLink go={go} location="home_content" className="hp-row" href="/articles/yosemite-gateway-towns-compared">
+          <ResponsiveImage image="/img/lookout-point.jpg" alt="Forested Yosemite foothills" sizes="(max-width: 760px) calc(100vw - 40px), 600px" />
+          <div>
+            <p className="hp-eyebrow">02 / YOUR HOME BASE</p>
+            <h3>Where should you actually stay?</h3>
+            <p>Five gateway towns. Very different trips.</p>
+            <b>Find your base <span>↗</span>
+            </b>
+          </div>
+        </HomeLink>
+        <HomeLink go={go} location="home_content" className="hp-row" href="/articles/yosemite-in-one-or-two-days">
+          <ResponsiveImage image="/img/taft-point.jpg" alt="Taft Point granite overlook" sizes="(max-width: 760px) calc(100vw - 40px), 600px" />
+          <div>
+            <p className="hp-eyebrow">03 / MAKE THE DAYS COUNT</p>
+            <h3>One day or two? Here’s your plan.</h3>
+            <p>A little less rushing. A lot more Yosemite.</p>
+            <b>Build your itinerary <span>↗</span>
+            </b>
+          </div>
+        </HomeLink>
+        <HomeLink go={go} location="home_content" className="hp-row" href="/articles/yosemite-without-reservations-2026">
+          <ResponsiveImage image="/img/arch-rock-entrance-yosemite.jpg" alt="Arch Rock entrance" sizes="(max-width: 760px) calc(100vw - 40px), 600px" />
+          <div>
+            <p className="hp-eyebrow">04 / BEFORE YOU GO</p>
+            <h3>Get the entry details sorted.</h3>
+            <p>Reservations, arrival strategy, and the way in.</p>
+            <b>Know before you go <span>↗</span>
+            </b>
+          </div>
+        </HomeLink>
+      </div>
+    </div>
+  </section>
+  <section className="hp-product" id="field-guide" tabIndex={-1}>
+    <div className="hp-wrap hp-product-grid">
+      <div>
+        <p className="hp-eyebrow">THE TALUS FIELD GUIDE / THE OFFLINE APP</p>
+        <h2>You’ve done the reading.<br />Now take the guide.</h2>
+        <p className="hp-intro">The practical side of a great Yosemite trip, all in your pocket. Download before you go. Keep exploring when the signal disappears.</p>
+        <ul>
+          <li>
+            <span>↳</span>
+            <div>
+              <strong>Find your next stop.</strong>
+              <p>44 stops, arranged in driving order.</p>
+            </div>
+          </li>
+          <li>
+            <span>⌁</span>
+            <div>
+              <strong>Choose a hike that fits your day.</strong>
+              <p>57 day hikes with GPS tracks.</p>
+            </div>
+          </li>
+          <li>
+            <span>◎</span>
+            <div>
+              <strong>Bring a little local knowledge.</strong>
+              <p>50 Secret Guide entries to look beyond the obvious.</p>
+            </div>
+          </li>
+        </ul>
+        <HomeLink go={go} location="home_content" className="hp-button hp-light" href="/guide">Get the Field Guide <span>$3.99 ↗</span>
+        </HomeLink>
+        <p className="hp-terms">One payment · 18 months of access · 30-day guarantee</p>
+      </div>
+      <div className="hp-screens">
+        <div className="hp-orbit">
+        </div>
+        <div className="hp-phone hp-back">
+          <img src="/img/guide/screens/hikes.v2.webp" alt="Field Guide hiking screen" width="640" height="1385" loading="lazy" decoding="async" />
+        </div>
+        <div className="hp-phone hp-front">
+          <img src="/img/guide/screens/front-page.v4.webp" alt="Field Guide app with park information and daylight tools" width="640" height="1385" loading="lazy" decoding="async" />
+        </div>
+        <div className="hp-offline">✓ &nbsp; All set. Even off the grid.<small>YOUR GUIDE WORKS OFFLINE</small>
+        </div>
+        <p className="hp-screen-note">Actual screens from the Field Guide</p>
+      </div>
+    </div>
+  </section>
+  <section className="hp-letter hp-wrap hp-section" id="home-newsletter" tabIndex={-1}>
+    <div className="hp-paper">
+      <span className="hp-stamp">EL PORTAL, CA<br />THE SUNDAY LETTER</span>
+      <div>A field note<br />for your<br />
+        <em>next adventure.</em>
+      </div>
+      <small>From Yosemite, with perspective.</small>
+    </div>
+    <div>
+      <p className="hp-eyebrow">A LITTLE YOSEMITE IN YOUR INBOX</p>
+      <h2>The trip starts long<br />before the trailhead.</h2>
+      <NewsletterInline heading="The Sunday Letter" blurb="Know what’s open, what’s booking out, and what’s worth your time. The Sunday Letter brings the view from inside the park to your inbox, once a week." location="home_newsletter" tag="home" cta="Send me the letter ↗" modifier="hp-newsletter" inputLabel="Your email address" />
+      <p className="hp-terms">Free to read. One letter a week. Unsubscribe whenever.</p>
+    </div>
+  </section>
+  <section className="hp-journal hp-wrap hp-section">
+    <div className="hp-heading">
+      <div>
+        <p className="hp-eyebrow">GO A LITTLE DEEPER</p>
+        <h2>Good trips begin with curiosity.</h2>
+      </div>
+      <HomeLink go={go} location="home_content" className="hp-link" href="/articles">Explore the journal ↗</HomeLink>
+    </div>
+    <div className="hp-journal-grid">
+      <HomeLink go={go} location="home_content" href="/articles/yosemite-in-fall">
+        <ResponsiveImage image="/img/tunnel-view-autumn-aniket-deole.jpg" alt="Autumn light over Yosemite" sizes="(max-width: 760px) calc(100vw - 40px), 600px" />
+        <p className="hp-eyebrow">THE SEASONS</p>
+        <h3>A quieter kind of Yosemite.</h3>
+        <p>A guide to visiting in fall. ↗</p>
+      </HomeLink>
+      <HomeLink go={go} location="home_content" href="/articles/where-to-eat-yosemite">
+        <ResponsiveImage image="/img/ahwahnee-hotel.jpg" alt="The Ahwahnee hotel" sizes="(max-width: 760px) calc(100vw - 40px), 600px" />
+        <p className="hp-eyebrow">BETWEEN ADVENTURES</p>
+        <h3>A good day deserves a good meal.</h3>
+        <p>Where to eat in and around the park. ↗</p>
+      </HomeLink>
+      <HomeLink go={go} location="home_content" href="/articles/tuolumne-meadows-in-a-day">
+        <ResponsiveImage image="/img/tuolumne-meadows-river-basiciggy.jpg" alt="River winding through Tuolumne Meadows" sizes="(max-width: 760px) calc(100vw - 40px), 600px" />
+        <p className="hp-eyebrow">BEYOND THE VALLEY</p>
+        <h3>Leave room for the high country.</h3>
+        <p>A day in Tuolumne Meadows. ↗</p>
+      </HomeLink>
+    </div>
+  </section>
     </div>
   );
 }
-
 window.HomePage = HomePage;
-// Exported for scripts/gen-home-shell.mjs, which renders this component (and
-// the masthead) into the static above-the-fold shell baked into index.html.
 window.HomeHero = HomeHero;

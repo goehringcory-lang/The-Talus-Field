@@ -676,6 +676,91 @@ function navGroupLinks(group) {
 window.NAV_GROUPS = NAV_GROUPS;
 window.NAV_SECONDARY = NAV_SECONDARY;
 window.navGroupLinks = navGroupLinks;
+function HomeLink({
+  go,
+  href,
+  location,
+  children,
+  ...props
+}) {
+  return React.createElement("a", {
+    ...props,
+    href: href,
+    onClick: event => {
+      if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+      if (window.track) window.track(href === "/guide" ? "guide_cta_click" : "cta_click", {
+        location,
+        target: href
+      });
+      if (href.startsWith("#")) {
+        var section = document.getElementById(href.slice(1));
+        if (!section) return;
+        event.preventDefault();
+        section.scrollIntoView({
+          behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth",
+          block: "start"
+        });
+        section.focus({
+          preventScroll: true
+        });
+        return;
+      }
+      event.preventDefault();
+      go(href.startsWith("/articles/") ? `a:${href.slice(10)}` : href.slice(1) || "home");
+    }
+  }, children);
+}
+function HomeMasthead({
+  go
+}) {
+  return React.createElement("div", {
+    className: "hp-design hp-navigation"
+  }, React.createElement("a", {
+    className: "skip-link",
+    href: "#main"
+  }, "Skip to content"), React.createElement("div", {
+    className: "hp-top"
+  }, "AN INDEPENDENT GUIDE TO YOSEMITE", React.createElement("span", null, "Written here. Taken everywhere.")), React.createElement("header", {
+    className: "hp-wrap hp-header"
+  }, React.createElement(HomeLink, {
+    go: go,
+    location: "home_navigation",
+    className: "hp-brand",
+    href: "/"
+  }, React.createElement("img", {
+    src: "/img/talus-field-mark-masthead.png?v=2",
+    width: "214",
+    height: "168",
+    alt: ""
+  }), React.createElement("span", null, "The Talus Field", React.createElement("small", null, "YOSEMITE, FROM THE INSIDE."))), React.createElement("nav", {
+    "aria-label": "Main navigation"
+  }, React.createElement(HomeLink, {
+    go: go,
+    location: "home_navigation",
+    href: "#home-start-here"
+  }, "Start here"), React.createElement(HomeLink, {
+    go: go,
+    location: "home_navigation",
+    href: "/articles"
+  }, "The journal"), React.createElement(HomeLink, {
+    go: go,
+    location: "home_navigation",
+    href: "/conditions"
+  }, "Park conditions"), React.createElement(HomeLink, {
+    go: go,
+    location: "home_navigation",
+    href: "#home-newsletter"
+  }, "Sunday Letter"), React.createElement(HomeLink, {
+    go: go,
+    location: "home_navigation",
+    href: "/search"
+  }, "Search")), React.createElement(HomeLink, {
+    go: go,
+    location: "home_navigation",
+    className: "hp-button",
+    href: "#field-guide"
+  }, "Get the app ↗")));
+}
 function Header({
   current,
   go
@@ -827,6 +912,9 @@ function Header({
     key,
     label
   }, opts);
+  if (current === "home") return React.createElement(HomeMasthead, {
+    go: go
+  });
   return React.createElement(React.Fragment, null, React.createElement("a", {
     className: "skip-link",
     href: "#main"
@@ -2103,7 +2191,8 @@ function NewsletterInline({
   abTest,
   variant: variantProp,
   cta,
-  modifier
+  modifier,
+  inputLabel
 }) {
   var [done, setDone] = useState(false);
   var subscribed = isSubscribed();
@@ -2124,7 +2213,9 @@ function NewsletterInline({
   return React.createElement("div", {
     className: ["nlbox", modifier].filter(Boolean).join(" "),
     ref: ref
-  }, React.createElement("h3", null, heading || "Sunday Field Notes"), React.createElement("p", null, showIncentive ? "Subscribe and unlock the interactive Yosemite map: vistas, trailheads, parking turnouts, places to eat, and a trip builder that saves on your device. A short note follows on Sundays." : blurb || "A short note on Sundays, when there is something to say."), done ? React.createElement("p", {
+  }, React.createElement("h3", null, heading || "Sunday Field Notes"), React.createElement("p", null, showIncentive ? "Subscribe and unlock the interactive Yosemite map: vistas, trailheads, parking turnouts, places to eat, and a trip builder that saves on your device. A short note follows on Sundays." : blurb || "A short note on Sundays, when there is something to say."), inputLabel && !done && React.createElement("label", {
+    htmlFor: `${location}-email`
+  }, inputLabel), done ? React.createElement("p", {
     style: {
       fontFamily: "var(--serif)",
       fontSize: 17,
@@ -2144,9 +2235,11 @@ function NewsletterInline({
       setTimeout(() => setDone(true), 0);
     }
   }, React.createElement("input", {
+    id: inputLabel ? `${location}-email` : undefined,
     type: "email",
     name: "email",
-    "aria-label": "Email address",
+    "aria-label": inputLabel || "Email address",
+    autoComplete: "email",
     placeholder: "you@email.com",
     required: true
   }), tag && React.createElement("input", {
