@@ -1994,15 +1994,19 @@
   },
   "yosemite-in-one-or-two-days": {
     "comment": "faq intentionally omitted here; it lives inline in data.js (window.ARTICLES) and takes precedence in the generator.",
-    "wordCount": 3965,
+    "wordCount": 4792,
     "keywords": [
-      "one day Yosemite itinerary",
-      "two days in Yosemite",
+      "one day in Yosemite",
+      "one day in Yosemite itinerary",
+      "2 days in Yosemite",
+      "Yosemite itinerary 1 day",
+      "Yosemite itinerary 2 days",
+      "is one day enough for Yosemite",
       "Yosemite day trip",
-      "Yosemite 2026 short visit",
-      "Yosemite Valley highlights",
+      "one day in Yosemite with kids",
+      "Yosemite in one day from San Francisco",
       "what to do in Yosemite in one day",
-      "is one day enough for Yosemite"
+      "how many days in Yosemite"
     ]
   },
   "four-mile-up-panorama-down": {
@@ -2510,67 +2514,67 @@
     ]
   },
   "yosemite-gateway-towns-compared": {
-    "wordCount": 4251,
+    "wordCount": 5164,
     "keywords": [
-      "Yosemite gateway towns",
-      "Mariposa Yosemite",
-      "Oakhurst Yosemite",
-      "El Portal Yosemite",
-      "Lee Vining Yosemite",
-      "where to stay Yosemite",
-      "closest town to Yosemite Valley",
-      "Groveland Yosemite",
-      "best town to stay in near Yosemite",
+      "where to stay near Yosemite",
+      "best town to stay near Yosemite",
+      "closest town to Yosemite",
       "where to stay outside Yosemite",
       "Mariposa or Oakhurst for Yosemite",
-      "is Oakhurst a good place to stay for Yosemite",
-      "gateway to Yosemite",
-      "how far is Groveland from Yosemite"
+      "Yosemite gateway towns",
+      "where to stay near Yosemite south entrance",
+      "where to stay near Yosemite with kids",
+      "El Portal Yosemite",
+      "Groveland Yosemite",
+      "Lee Vining Yosemite",
+      "closest town to Yosemite Valley",
+      "Yosemite and Sequoia where to stay",
+      "best places to stay near Yosemite"
     ],
     "faq": [
       {
-        "q": "Which Yosemite gateway town is closest to the Valley?",
-        "a": "El Portal, about 14 miles and 25-30 minutes from Yosemite Valley via Highway 140. Mariposa is next at 45 miles and 45-60 minutes. Lee Vining is closest to Tuolumne Meadows (about 30 minutes) but 90+ minutes from the Valley."
+        "q": "What is the closest town to Yosemite?",
+        "a": "El Portal, about 14 miles and 25 to 35 minutes from Yosemite Valley on Highway 140. For the South Entrance and the Mariposa Grove it is Fish Camp, then Oakhurst; for the Big Oak Flat Entrance it is Groveland; for Tioga Pass, in summer, Lee Vining."
       },
       {
-        "q": "Which Yosemite gateway town is best for first-time visitors?",
-        "a": "Mariposa, for most first-timers. It pairs a real town (groceries, dinner, lodging at several price points) with the reliable, year-round Highway 140 approach. El Portal is closer if you can get a room, but Mariposa is the better all-round balance of cost and convenience."
-      },
-      {
-        "q": "Which Yosemite gateway town is cheapest?",
-        "a": "Groveland and Mariposa typically have the widest price range and the most budget options. El Portal lodging is priced like in-park lodging because of the location. Oakhurst has predictable chain prices. Lee Vining has limited inventory and is priced accordingly."
-      },
-      {
-        "q": "Which Yosemite gateway town is best for families?",
-        "a": "Mariposa, by a wide margin. It has full-service grocery stores, multiple restaurants, a wide range of lodging from budget motels to inns, and a real downtown to spend an evening in. The 45-minute drive to the Valley is a fair trade for the amenities."
-      },
-      {
-        "q": "Which Yosemite gateway towns have full grocery stores?",
-        "a": "Mariposa and Oakhurst have full grocery stores. Groveland has a smaller one. El Portal has a market, not a real grocery. Lee Vining has limited groceries. Stock up at the larger town before you head in."
-      },
-      {
-        "q": "Do Yosemite gateway towns have reliable cell service?",
-        "a": "Patchy in all five gateways and essentially nonexistent inside the park past Crane Flat. Don't rely on real-time Google Maps once you're past the entrance station. Download offline maps before you leave the gateway."
+        "q": "What is the best town to stay in near Yosemite?",
+        "a": "For most first-time visitors, Mariposa: a real town, several price points, full supermarkets, and the year-round Highway 140 road at 45 to 60 minutes from the Valley. El Portal if the drive is the thing to shorten, Oakhurst for the sequoias, Groveland for character and the Bay Area route, Lee Vining for the high country."
       },
       {
         "q": "Is Oakhurst or Mariposa closer to Yosemite Valley?",
-        "a": "Mariposa, and by a real margin: about 45 miles and 45 to 60 minutes on Highway 140, against Oakhurst's roughly 50 miles and 75 to 90 minutes on Highway 41. The gap is time rather than distance, because the Highway 41 route climbs and descends more and enters the park via Wawona. Oakhurst wins the other direction: it is about 14 miles and 20 to 25 minutes from the South Entrance and the Mariposa Grove."
+        "a": "Mariposa, by 30 minutes or more: 45 to 60 minutes on Highway 140 against 75 to 90 on Highway 41. Oakhurst is closer to the South Entrance and the Mariposa Grove, 20 to 25 minutes."
+      },
+      {
+        "q": "Where should I stay near the Yosemite south entrance?",
+        "a": "Fish Camp, two miles from the gate, if you want to be closest; Oakhurst, 14 miles, if you want a full town. The Wawona Hotel, the in-park option on this side, has been closed since December 2024."
+      },
+      {
+        "q": "Where should I stay near Yosemite with kids?",
+        "a": "Mariposa for a Valley trip, Oakhurst for a sequoia trip. Both have full supermarkets, pharmacies, several restaurants, and rooms that can be booked later than El Portal or the in-park lodges."
+      },
+      {
+        "q": "Which Yosemite gateway town is cheapest?",
+        "a": "Groveland and Mariposa typically have the widest range and the most budget rooms. El Portal is priced like in-park lodging. Oakhurst has predictable chain prices. Lee Vining has little inventory and prices accordingly."
+      },
+      {
+        "q": "Which Yosemite gateway towns have full grocery stores?",
+        "a": "Mariposa and Oakhurst. Groveland has a market. El Portal and Lee Vining have convenience-scale markets only."
+      },
+      {
+        "q": "Which gateway town works in winter?",
+        "a": "El Portal or Mariposa, on Highway 140, the lowest and most reliable road. Groveland works with chains. Lee Vining has no road into the park at all when Tioga Pass is closed."
       },
       {
         "q": "Is Oakhurst a good place to stay for Yosemite?",
-        "a": "It is the right base if your itinerary is mostly Wawona and the Mariposa Grove, which are 20 to 25 minutes away, and if you want the most lodging and services of any gateway. It is the wrong base if Yosemite Valley is the trip: at 75 to 90 minutes each way on Highway 41, it is the longest daily commute of the four year-round towns."
+        "a": "It is the right base if your itinerary is mostly Wawona and the Mariposa Grove, 20 to 25 minutes away, and if you want the most lodging and services of any gateway. It is the wrong base if Yosemite Valley is the trip: at 75 to 90 minutes each way on Highway 41, it is the longest daily commute of the four year-round towns."
       },
       {
-        "q": "Is Mariposa a good place to stay for Yosemite?",
-        "a": "For most first-time visitors, yes. It is the most full-service of the western gateways, with a real downtown, and it sits on Highway 140, the lowest and most reliable year-round route into the park at 45 to 60 minutes from the Valley. It is also the pick for winter trips and the only corridor with year-round YARTS service if you would rather not drive."
+        "q": "Where should I stay to see Yosemite and Sequoia on one trip?",
+        "a": "Oakhurst. The South Entrance is 20 to 25 minutes north, and the Kings Canyon entrance to Sequoia and Kings Canyon is roughly two to two and a half hours south by way of Fresno. Do not attempt Sequoia as a day trip from any Yosemite gateway."
       },
       {
-        "q": "Is Groveland a good place to stay for Yosemite?",
-        "a": "Yes if you want gateway-town character without the Mariposa price, if Hetch Hetchy and the north end of the park are on your list, or if you are driving from the Bay Area, since Groveland is on the way. The trade-offs are a longer Valley drive, about 41 miles and 65 to 80 minutes on Highway 120, and an elevation of about 3,100 feet that brings winter chain controls the Highway 140 towns do not get."
-      },
-      {
-        "q": "What is the best town to stay in outside Yosemite?",
-        "a": "It depends on which park you came for. El Portal for sunrise in the Valley and the shortest drive. Mariposa for a balanced trip with comfort and value, and for winter. Oakhurst for the sequoias and Wawona. Groveland for character and the Bay Area approach. Lee Vining for the high country and Mono Lake, while Tioga Pass is open."
+        "q": "Do Yosemite gateway towns have reliable cell service?",
+        "a": "Patchy in all five gateways and essentially nonexistent inside the park past the entrance stations. Download offline maps before you leave the gateway town and do not rely on real-time navigation past the gate."
       }
     ]
   },
@@ -2607,85 +2611,100 @@
     ]
   },
   "yosemite-without-reservations-2026": {
-    "wordCount": 2263,
+    "wordCount": 3483,
     "keywords": [
-      "Yosemite 2026 reservations",
+      "do you need a reservation for Yosemite",
+      "Yosemite reservations 2026",
+      "Yosemite reservations required",
       "Yosemite without reservation",
+      "Yosemite reservations 2027",
+      "Yosemite entrance wait times",
       "Yosemite parking strategy",
-      "Yosemite no reservations 2026",
-      "Yosemite entrance station",
-      "Yosemite crowds 2026",
       "how to avoid crowds in Yosemite",
-      "Yosemite entrance wait times"
+      "Yosemite crowds 2026",
+      "Yosemite entrance reservation"
     ],
     "faq": [
       {
         "q": "Do I need a reservation to enter Yosemite in 2026?",
-        "a": "No. The day-use vehicle reservation system is not in effect in 2026. A standard Yosemite entrance pass is required."
+        "a": "No. There is no day-use, timed-entry, or peak-hours reservation in 2026, on any date. You need a standard entrance pass, $35 per vehicle for seven days."
+      },
+      {
+        "q": "Do I need a reservation for Yosemite in September or October?",
+        "a": "No. The fall shoulder is one of the best windows of the year and there is no entrance reservation for it. Camping and in-park lodging still need booking."
+      },
+      {
+        "q": "Do I need a reservation for the Firefall in February?",
+        "a": "Not for 2026, when no entrance reservation was required. February 2027 has not been announced."
+      },
+      {
+        "q": "Will Yosemite require reservations in 2027?",
+        "a": "Unknown. The park has said nothing about 2027, and the 2026 decision was based on 2025 data, so a change for 2027 would most likely be announced in the winter, as the last two were."
       },
       {
         "q": "When does Yosemite Valley fill up?",
-        "a": "By midsummer 2026 the pattern is settled: Valley day-use parking fills by late morning on ordinary days, and by 8 a.m. or earlier on summer weekends. The park's standing advice is to arrive before 8 a.m. or after 4 p.m. Once lots are full, you're circling."
+        "a": "Day-use parking fills by late morning on ordinary days and by 8 a.m. or earlier on summer weekends. The park's standing advice is to arrive before 8 a.m. or after 4 p.m."
       },
       {
         "q": "What time should I enter Yosemite to beat the crowds?",
-        "a": "Be inside the park by 6:30 a.m. on any peak day. Earlier is better. The drive in is faster, the entrance stations are quiet, and you'll be parked at your first stop while everyone else is still in line."
+        "a": "Be inside the park by 6:30 a.m. on any peak day. The drive in is faster, the entrance stations are quiet, and you are parked at your first stop while everyone else is still in line."
       },
       {
         "q": "What changed in Yosemite in 2026?",
-        "a": "Two things. The day-use entrance reservation system was dropped, so the requirement that throttled vehicles during peak hours in 2024 and 2025 is gone and the park is expected to see its heaviest crowds in years. Separately, since January 1, 2026, international visitors pay a $100 surcharge per person on top of the standard entrance fee; domestic visitors are unaffected."
+        "a": "Two things. The entrance reservation system was dropped, so the throttle that limited vehicles in 2024 and 2025 is gone. And since January 1, 2026, visitors who are not U.S. residents pay a $100 surcharge per person age 16 and older, or $250 for a nonresident annual pass. Domestic visitors are unaffected."
       },
       {
         "q": "How do I find parking in Yosemite Valley?",
-        "a": "Arrive before 8 a.m. for the central lots. Yosemite Village day-use parking is the most useful base. If those are full, the lot near Yosemite Valley Lodge usually has turnover by mid-morning. Don't waste time circling Curry Village."
+        "a": "Arrive before 8 a.m. for the central lots. Yosemite Village day-use parking is the most useful base; the lot near Yosemite Valley Lodge usually has turnover by mid-morning. Do not circle Curry Village."
       },
       {
         "q": "Is the Mist Trail open in 2026?",
-        "a": "Mostly. Trail work closes sections of the Mist Trail Monday through Thursday, 7 a.m. to 3:30 p.m., into late October 2026, with a detour via the John Muir Trail. Hike the Vernal and Nevada corridor Friday through Sunday, or start after the crews finish for the day."
+        "a": "Mostly. Repairs close sections of it Monday through Thursday, 7 a.m. to 3:30 p.m., through October 2026, with a detour via the John Muir Trail. Hike the Vernal and Nevada corridor Friday through Sunday, or after the crews finish for the day."
       }
     ]
   },
   "first-time-yosemite-overwhelm": {
-    "wordCount": 1264,
+    "wordCount": 3013,
     "keywords": [
-      "first time Yosemite",
-      "Yosemite first trip",
-      "Yosemite planning",
-      "Yosemite for beginners",
-      "Yosemite trip strategy",
-      "first time Yosemite tips",
-      "how to plan a Yosemite trip",
-      "planning a trip to Yosemite",
-      "Yosemite trip planning guide"
+      "first time in Yosemite",
+      "Yosemite first time guide",
+      "first time Yosemite itinerary",
+      "how to plan a trip to Yosemite",
+      "Yosemite tips for beginners",
+      "where should I stay in Yosemite for the first time",
+      "how many days in Yosemite",
+      "best time to visit Yosemite first trip",
+      "Yosemite trip planning",
+      "Yosemite for beginners"
     ],
     "faq": [
       {
         "q": "What should I figure out before planning a Yosemite trip?",
-        "a": "Three things, before you book anything. What season you'll visit and what's open then (Tioga Road and Glacier Point Road are closed into late spring most years). Which two of granite, waterfalls, old-growth, high country, and solitude matter most to you. And what your backup plan is when the park doesn't cooperate."
+        "a": "Three things, before you book anything: what season you are visiting and what is open then, which two of granite, waterfalls, old-growth, high country, and solitude matter most to you, and what your backup plan is when the park does not cooperate."
       },
       {
         "q": "How long should I spend in Yosemite for a first trip?",
-        "a": "At minimum two full days. Three to four is better, giving you time to see Yosemite Valley properly and have one full day elsewhere (Glacier Point, Mariposa Grove, or Tioga Road). A single-day trip is possible but you'll be moving constantly."
+        "a": "Two full days at minimum. Three to four is better, giving you the Valley properly and one full day elsewhere at Glacier Point, the Mariposa Grove, or on Tioga Road. A single day works if you start early and stay in the Valley."
       },
       {
         "q": "What month is best for visiting Yosemite for the first time?",
-        "a": "Late May and early June for peak waterfalls; September and October for low crowds and golden light. July and August are warm and crowded. April has waterfalls and fewer people but Tioga Road and Glacier Point Road are usually still closed."
+        "a": "Late May and June for peak waterfalls with every road open; September and October for thin crowds and low gold light. July and August are hot and crowded. April has waterfalls and fewer people but Tioga Road and Glacier Point Road are usually still closed."
       },
       {
         "q": "Do I need a reservation to enter Yosemite in 2026?",
-        "a": "No. The day-use entrance reservation system is not in effect in 2026. A standard Yosemite entrance pass is required."
+        "a": "No. There is no day-use or timed-entry reservation in 2026. You need a standard entrance pass, $35 per vehicle for seven days."
       },
       {
-        "q": "Where should I stay on a first Yosemite trip?",
-        "a": "Mariposa is the most practical first-timer choice, about 45 minutes from the Valley, a real downtown, full-service. El Portal is closer (25-30 minutes) but smaller and more expensive. In-park lodging fills six to twelve months ahead."
+        "q": "Where should I stay in Yosemite for the first time?",
+        "a": "Mariposa is the most practical first-timer choice: 45 minutes to an hour from the Valley, a real downtown, and the year-round Highway 140 road. El Portal is closer but smaller and more expensive. In-park lodging books 366 days ahead and fills fast for summer."
       },
       {
         "q": "How much driving is involved in a Yosemite trip?",
-        "a": "More than most people expect. A gateway town to the Valley is 25 to 90 minutes each way. Glacier Point Road and Tioga Road each add an hour or more in-park. Pack the car like you're going to drive a lot, because you will."
+        "a": "More than most people expect. A gateway town to the Valley is 25 to 90 minutes each way, and Glacier Point Road or Tioga Road each add an hour or more inside the park."
       },
       {
         "q": "Is there an extra fee for international visitors in 2026?",
-        "a": "Yes. Since January 1, 2026, international visitors pay a $100 surcharge per person age 16 and older, on top of the standard entrance fee. A $250 nonresident annual pass waives it. U.S. residents are unaffected."
+        "a": "Yes. Since January 1, 2026, visitors who are not U.S. residents pay a $100 surcharge per person age 16 and older on top of the standard entrance fee. A $250 nonresident annual pass waives it. U.S. residents are unaffected."
       }
     ]
   },

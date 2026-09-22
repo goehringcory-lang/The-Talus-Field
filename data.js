@@ -165,10 +165,10 @@ window.BODY_VERSIONS = {
   "so-you-want-to-hike-half-dome": 78,
   "glacier-point-road-open-2026": 79,
   "mist-trail-the-real-guide": 85,
-  "first-time-yosemite-overwhelm": 86,
-  "yosemite-without-reservations-2026": 84,
+  "first-time-yosemite-overwhelm": 87,
+  "yosemite-without-reservations-2026": 85,
   "yosemite-during-smoke-season": 76,
-  "yosemite-gateway-towns-compared": 94,
+  "yosemite-gateway-towns-compared": 95,
   "pack-your-car-for-yosemite": 84,
   "yosemite-for-non-hikers": 81,
   "yosemite-stargazing-where-to-look-up": 79,
@@ -179,7 +179,7 @@ window.BODY_VERSIONS = {
   "bears-spring-emergence": 77,
   "water-ouzels-waterfalls": 77,
   "working-in-yosemite": 77,
-  "yosemite-in-one-or-two-days": 86,
+  "yosemite-in-one-or-two-days": 87,
   "where-to-eat-yosemite": 84,
   "yosemite-in-march": 3,
 };
@@ -1463,12 +1463,20 @@ window.ARTICLES = [
     seoDek: "One day in Yosemite, done right: a 2026 itinerary for one or two days. The Valley waterfall sequence, what to skip, gas, parking, and a realistic hike.",
     date: "May 19, 2026",
     isoDate: "2026-05-19",
-    isoModified: "2026-08-07",
-    read: "16 min",
+    isoModified: "2026-09-21",
+    read: "20 min",
     placeholder: "The cliff edge at Taft Point, El Capitan across the valley",
     image: "img/taft-point.jpg",
     credit: "Photo: Cam Adams / Wikimedia Commons (CC0)",
     faq: [
+      {
+        q: "Is one day in Yosemite enough?",
+        a: "Yes, for the Valley, if you are in the park by 8 a.m. and stay on the floor. Tunnel View, Bridalveil Fall, the Lower Yosemite Fall loop, and Cook's Meadow fit in one day with time to spare. It is not enough for Glacier Point, the Mariposa Grove, or Tuolumne, which each need a second day.",
+      },
+      {
+        q: "Can you do Yosemite in 2 days?",
+        a: "Yes, and two days is the trip most first-time visitors should take: the Valley on day one, and Glacier Point, the Mariposa Grove, or Tioga Road on day two. Two days does not cover all three; pick the one that matches what you came for.",
+      },
       {
         q: "How many days do you need in Yosemite?",
         a: "One full day, started early, covers the Valley highlights. A second day adds Glacier Point, Mariposa Grove, or Tioga Road above the Valley floor. Beyond two days you are into backcountry and repeat-visit territory.",
@@ -1483,7 +1491,7 @@ window.ARTICLES = [
       },
       {
         q: "Is Glacier Point Road open?",
-        a: "Yes. It reopened for the season on May 9, 2026, and closes again on September 8 for continued construction. There is no water at the overlook, so fill your bottles before you drive up.",
+        a: "Yes, as of late September 2026. It opened for the season on May 9 and closes for the winter with the first heavy snow, typically in November. There is no water at the overlook, so fill your bottles before you drive up.",
       },
       {
         q: "Is Tioga Road open?",
@@ -1500,6 +1508,10 @@ window.ARTICLES = [
       {
         q: "Can I leave food in my car in Yosemite?",
         a: "Out of sight, windows closed, in daylight only, and never overnight. The fines for improper food storage run up to $5,000. When in doubt, use the bear lockers at the trailheads.",
+      },
+      {
+        q: "How many days in Yosemite without hiking?",
+        a: "One day covers the Valley from the car and the paved paths, and a second day adds Glacier Point, which has one of the great views in North America a few steps from the parking lot.",
       },
       {
         q: "Is the Wawona Hotel open?",
@@ -1734,13 +1746,13 @@ window.ARTICLES = [
   {
     slug: "yosemite-gateway-towns-compared",
     cat: "planning",
-    title: "Where to Stay Outside Yosemite: Mariposa, Oakhurst, Groveland",
+    title: "Where to stay near Yosemite: the best town for your trip",
     dek: "Pick the wrong gateway town and you'll burn hours of every day on the road. Pick the right one and the rest of the trip gets easier. A side-by-side from someone who's stayed in all five.",
-    seoDek: "Mariposa, Oakhurst, Groveland, El Portal and Lee Vining compared: drive times, winter access, what each town has, and which to book. From El Portal.",
+    seoDek: "Mariposa, Oakhurst, Groveland, El Portal and Lee Vining compared: the closest town to each entrance, drive times, winter access, kids, and which to book.",
     date: "April 26, 2026",
     isoDate: "2026-04-26",
-    isoModified: "2026-08-30",
-    read: "9 min",
+    isoModified: "2026-09-21",
+    read: "22 min",
     placeholder: "Looking down the Hetch Hetchy canyon from Lookout Point",
     image: "img/lookout-point.jpg",
     credit: "Photo: KatieRound / Wikimedia Commons (CC BY-SA 4.0)",
@@ -1762,13 +1774,13 @@ window.ARTICLES = [
   {
     slug: "yosemite-without-reservations-2026",
     cat: "planning",
-    title: "Yosemite reservations in 2026: not required. Here's the plan",
+    title: "Do you need a reservation for Yosemite in 2026? No. The plan",
     dek: "The reservation system was a throttle. With it gone in 2026, the park hasn't gotten easier. It's gotten harder. Here's the real strategy.",
-    seoDek: "The reservation cap came off for 2026. The park didn't get easier, it got harder. A real strategy for visiting Yosemite without reservations.",
+    seoDek: "No reservation is needed to enter Yosemite in 2026, on any date. What still needs booking, what 2027 might bring, and the plan for a park with no throttle.",
     date: "April 26, 2026",
     isoDate: "2026-04-26",
-    isoModified: "2026-08-06",
-    read: "8 min",
+    isoModified: "2026-09-21",
+    read: "15 min",
     placeholder: "Visitors at a Yosemite entrance station kiosk in an NPS archive photograph",
     image: "img/arch-rock-entrance-yosemite.jpg",
     credit: "Photo: Cecil W. Stoughton / Wikimedia Commons (public domain)",
@@ -1776,13 +1788,13 @@ window.ARTICLES = [
   {
     slug: "first-time-yosemite-overwhelm",
     cat: "planning",
-    title: "First time in Yosemite: read this before you book anything",
+    title: "First time in Yosemite: the guide to read before you book",
     dek: "The bucket list isn't the problem. The strategy is. Three things turn a Yosemite visit from “we saw the things” into one of the best weeks of your life.",
-    seoDek: "The bucket list isn't the problem, the strategy is. Three things that turn a first Yosemite visit from a checklist into the best week of your year.",
+    seoDek: "First time in Yosemite? How many days you need, the best month, where to stay, what to see in what order, and the 2026 fees. From a park naturalist.",
     date: "April 25, 2026",
     isoDate: "2026-04-25",
-    isoModified: "2026-08-07",
-    read: "6 min",
+    isoModified: "2026-09-21",
+    read: "13 min",
     placeholder: "Half Dome down the length of Yosemite Valley under summer cumulus",
     image: "img/half-dome-valley-cumulus.jpg",
     credit: "Photo: elijahjcobb / Pexels",
@@ -1834,7 +1846,7 @@ window.RELATED = {
 
   // Lodging and gateway towns
   "bracebridge-dinner-and-vintners-holidays": ["where-to-stay-in-yosemite", "yosemite-in-winter", "yosemite-trip-cost-budget-2026", "yosemite-gateway-towns-compared", "where-to-eat-yosemite"],
-  "yosemite-gateway-towns-compared": ["where-to-stay-in-yosemite", "yosemite-from-los-angeles", "where-to-eat-yosemite", "highway-140-closed-yosemite", "yosemite-trip-cost-budget-2026", "getting-to-yosemite"],
+  "yosemite-gateway-towns-compared": ["where-to-stay-in-yosemite", "yosemite-from-los-angeles", "yosemite-with-kids-no-reservations-2026", "highway-140-closed-yosemite", "yosemite-trip-cost-budget-2026", "getting-to-yosemite"],
   "where-to-stay-in-yosemite": ["yosemite-gateway-towns-compared", "yosemite-camping-complete-guide", "yosemite-trip-cost-budget-2026", "bracebridge-dinner-and-vintners-holidays", "where-to-eat-yosemite"],
   "yosemite-camping-complete-guide": ["camping-in-yosemite-first-time", "where-to-stay-in-yosemite", "first-yosemite-backpacking-trip", "yosemite-trip-cost-budget-2026", "yosemite-facelift-volunteer-guide"],
   "camping-in-yosemite-first-time": ["yosemite-camping-complete-guide", "yosemite-bears-safety-guide", "is-bear-spray-allowed-in-yosemite", "where-to-stay-in-yosemite", "pets-in-yosemite"],
@@ -1877,11 +1889,11 @@ window.RELATED = {
   "pets-in-yosemite": ["yosemite-for-non-hikers", "yosemite-accessibility-guide", "yosemite-camping-complete-guide", "yosemite-gateway-towns-compared", "yosemite-valley-parking-guide"],
 
   // First trips and timing
-  "first-time-yosemite-overwhelm": ["yosemite-in-one-or-two-days", "when-to-visit-yosemite-2026-crowd-forecast", "yosemite-gateway-towns-compared", "yosemite-without-reservations-2026", "pack-your-car-for-yosemite"],
-  "yosemite-in-one-or-two-days": ["yosemite-in-three-to-five-days", "first-time-yosemite-overwhelm", "yosemite-valley-parking-guide", "where-to-eat-yosemite", "yosemite-day-trip-from-bay-area", "where-to-propose-in-yosemite"],
+  "first-time-yosemite-overwhelm": ["yosemite-in-one-or-two-days", "when-to-visit-yosemite-2026-crowd-forecast", "yosemite-gateway-towns-compared", "yosemite-without-reservations-2026", "yosemite-in-three-to-five-days", "pack-your-car-for-yosemite"],
+  "yosemite-in-one-or-two-days": ["yosemite-in-three-to-five-days", "first-time-yosemite-overwhelm", "yosemite-valley-parking-guide", "yosemite-with-kids-no-reservations-2026", "yosemite-day-trip-from-bay-area", "where-to-eat-yosemite"],
   "yosemite-in-three-to-five-days": ["yosemite-in-one-or-two-days", "tuolumne-meadows-in-a-day", "mist-trail-the-real-guide", "yosemite-gateway-towns-compared", "when-to-visit-yosemite-2026-crowd-forecast"],
   "when-to-visit-yosemite-2026-crowd-forecast": ["yosemite-without-reservations-2026", "yosemite-in-september-2026", "yosemite-in-fall", "yosemite-valley-parking-guide", "yosemite-gateway-towns-compared", "yosemite-in-march"],
-  "yosemite-without-reservations-2026": ["when-to-visit-yosemite-2026-crowd-forecast", "yosemite-valley-parking-guide", "yosemite-walk-up-and-day-of-permits", "hetch-hetchy-the-other-yosemite-valley", "first-time-yosemite-overwhelm"],
+  "yosemite-without-reservations-2026": ["when-to-visit-yosemite-2026-crowd-forecast", "yosemite-valley-parking-guide", "yosemite-walk-up-and-day-of-permits", "yosemite-camping-complete-guide", "hetch-hetchy-the-other-yosemite-valley", "first-time-yosemite-overwhelm"],
 
   // Seasonal
   "yosemite-in-june-2026": ["when-to-visit-yosemite-2026-crowd-forecast", "yosemite-waterfalls-guide", "tioga-road-opening-weekend-2026", "yosemite-heat-safety-guide", "bears-spring-emergence"],
