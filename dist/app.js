@@ -1076,7 +1076,7 @@ function App() {
   var mod = routeModule(route);
   var routeReady = !mod || mod.globals.every(n => typeof window[n] !== "undefined");
   var page;
-  var currentNav = routeReady && routeExists(route) ? route : "notfound";
+  var currentNav = routeReady && routeExists(route) ? route.startsWith("a:") || route.startsWith("cat:") ? "articles" : route : "notfound";
   if (!routeReady) {
     page = React.createElement("div", {
       className: "page"

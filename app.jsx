@@ -1301,7 +1301,9 @@ function App() {
   // The masthead's and BackToTop's idea of where the reader is: the route key
   // itself, or "notfound" for the two dead ends. Never "home" off the homepage,
   // because HomeMasthead gives the homepage its in-page jump links.
-  const currentNav = routeReady && routeExists(route) ? route : "notfound";
+  const currentNav = routeReady && routeExists(route)
+    ? (route.startsWith("a:") || route.startsWith("cat:") ? "articles" : route)
+    : "notfound";
   if (!routeReady) {
     page = (
       <div className="page">
