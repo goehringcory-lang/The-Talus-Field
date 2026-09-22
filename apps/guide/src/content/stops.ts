@@ -1077,9 +1077,10 @@ const seed: StopInput[] = [
     coord: [-119.6560, 37.5366], // web-derived: Wawona Hotel front, Hwy 41 (Pioneer History Center is a 5-min walk north); TODO: verify on the ground
     elevationFt: 4000,
     timeBudgetMin: 90,
-    // Source: Yosemite Guide Vol 51 Issue 6 (July 15 - August 18, 2026).
+    // Source: Yosemite Guide Vol 51 Issue 6 (July 15 - August 18, 2026);
+    // seasonal closing dates from Vol 51 Issue 8 (September 23 - November 24, 2026).
     hazard:
-      'The Wawona Hotel and its dining room are closed for renovation, with no reopening date published, so the lobby bar and the lunch walk-in below are off the table for now. The grounds, the golf course, the visitor center, and the history center are all still open. Confirm at travelyosemite.com before planning a meal here.',
+      'The Wawona Hotel and its dining room are closed for renovation, with no reopening date published, so the lobby bar and the lunch walk-in below are off the table for now. The grounds and the history center stay open; the golf course closes for the season after October 25, 2026, and the visitor center after October 31. Confirm at travelyosemite.com before planning a meal here.',
     teaser:
       'The 1876 hotel\'s white verandas, the Wawona covered bridge, and the Pioneer Yosemite History Center\'s relocated cabins and coaches. The easy add to a Mariposa Grove day.',
     body:

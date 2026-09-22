@@ -41,9 +41,9 @@ const THU = 4
 const FRI = 5
 const SAT = 6
 
-// Yosemite Guide Vol 51 Issue 7, valid 2026-08-19 through 2026-09-22.
-const GUIDE_START = '2026-08-19'
-const GUIDE_END = '2026-09-22'
+// Yosemite Guide Vol 51 Issue 8, valid 2026-09-23 through 2026-11-24.
+const GUIDE_START = '2026-09-23'
+const GUIDE_END = '2026-11-24'
 
 // Meeting-point coords, [lng, lat]. The first group is reused from stops.ts /
 // existing entries (those carry their own verify TODOs); the second group is
@@ -53,22 +53,14 @@ const AHWAHNEE: [number, number] = [-119.5747, 37.7458]          // ahwahnee-hot
 const CURRY_VILLAGE: [number, number] = [-119.5688, 37.7395]     // curry-village stop
 const VALLEY_LODGE: [number, number] = [-119.5989, 37.7439]      // existing valley-floor-tour entry
 const HAPPY_ISLES: [number, number] = [-119.5594, 37.7338]       // mist-trail stop (Happy Isles)
-const GLACIER_POINT: [number, number] = [-119.5731, 37.7283]     // glacier-point stop
 const MARIPOSA_GROVE: [number, number] = [-119.6083, 37.5108]    // mariposa-grove stop (arrival area)
 const WAWONA: [number, number] = [-119.6580, 37.5370]            // wawona area; market/campground within ~2 km
 const CRANE_FLAT: [number, number] = [-119.7973, 37.7551]        // Crane Flat junction; Tuolumne Grove TH ~1 km north
-const LEMBERT_DOME: [number, number] = [-119.3589, 37.8772]      // soda-springs-parsons-lodge stop
-const DOG_LAKE_LOT: [number, number] = [-119.3379, 37.8730]      // Dog Lake parking
-const TM_VISITOR_CENTER: [number, number] = [-119.3592, 37.8735] // Tuolumne Meadows Visitor Center lot
-const GAYLOR_TH: [number, number] = [-119.2582, 37.9102]         // gaylor-lake stop (trailhead at Tioga Pass)
 const CAMP_4: [number, number] = [-119.6029, 37.7421]            // camp-4 stop (carries its own verify TODO)
 const EL_CAP_BRIDGE: [number, number] = [-119.6315, 37.7240]     // el-capitan-bridge pin in points.geojson
 // Approximate; verify on a coord pass:
 const VILLAGE_MALL: [number, number] = [-119.5855, 37.7485]      // Welcome Center / museum / theater / gallery cluster
-const YCHC: [number, number] = [-119.5836, 37.7401]              // Yosemite Conservation Heritage Center, shuttle stop 12
-const POTHOLE_DOME: [number, number] = [-119.3860, 37.8770]
-const TM_LODGE: [number, number] = [-119.3417, 37.8757]
-const TM_CAMPGROUND: [number, number] = [-119.3489, 37.8730]   // campground entrance; the Conness circle is in C Loop
+const HODGDON_MEADOW: [number, number] = [-119.8660, 37.7996]    // Hodgdon Meadow Campground, near Big Oak Flat Entrance
 
 const NPS_GUIDE_URL = 'https://www.nps.gov/yose/planyourvisit/guide.htm'
 const YH_TOURS_URL = 'https://www.travelyosemite.com/things-to-do/guided-bus-tours/'
@@ -77,7 +69,6 @@ const YC_ART_URL = 'https://yosemite.org/art'
 const YC_URL = 'https://yosemite.org/experience/'
 const YC_ADVENTURES_URL = 'https://yosemite.org/adventures'
 const TAAG_URL = 'https://www.anseladams.com/photography-education/'
-const SIERRA_CLUB_URL = 'https://www.sierraclub.org/yosemite-conservation-heritage-center'
 
 // ── Confirmed entries only ───────────────────────────────────────────────────
 // Standing non-guide entries verified on the 2026-07-02 / 2026-07-03 passes:
@@ -85,84 +76,55 @@ const SIERRA_CLUB_URL = 'https://www.sierraclub.org/yosemite-conservation-herita
 // Yosemite Facelift 2026 dates (Yosemite Climbing Association's registration
 // page), and the 2026 Bracebridge Dinner performances (travelyosemite.com).
 //
-// Guide pass 2026-08-17: recurated the full printed program schedule from the
-// Yosemite Guide Vol 51 Issue 7 (valid August 19 – September 22, 2026), the
-// successor to the v51n6 (July 15 – August 18) issue this file previously
+// Guide pass 2026-09-22: recurated the full printed program schedule from the
+// Yosemite Guide Vol 51 Issue 8 (valid September 23 – November 24, 2026), the
+// successor to the v51n7 (August 19 – September 22) issue this file previously
 // carried. As on every issue turn, the outgoing window's entries are replaced
-// rather than accumulated: an entry whose dates had all passed and which this
-// issue does not reprint is deleted, so the file stays the size of one season.
+// rather than accumulated: every entry whose dates had all passed and which
+// this issue does not reprint is deleted, so the file stays the size of one
+// season.
 //
-// Changes this issue vs the last. The valley gets back the two climbing
-// programs Tuolumne took in v51n6, staggered so they never overlap: Climber
-// Coffee returns to Camp 4 on Sep 13 (Tuolumne's runs Sundays only until Aug
-// 30) and Ask-a-Climber restarts at El Capitan bridge on Sep 6. Guided hikes
-// with the Yosemite Mountaineering School print a real schedule from Sep 4 and
-// are carried as four entries, one per printed hike, because the issue lists
-// two Discovery Hikes (M/W/Sa) and two Adventure Hikes (Tu/F and Su/Th) under
-// one row. New besides those: the Conservancy's daily 5:30 pm Yosemite Valley
-// Sunset Walk, the Moonlight Tour (Aug 23-27 and Sep 22), Junior Ranger Day
-// (Aug 22), the Yosemite Art Trail week (Aug 24-30), the four Sierra Club
-// evening programs at the Yosemite Conservation Heritage Center (Sep 11, 12,
-// 18, 19), Tom Killion's gallery exhibition (Aug 8 – Sep 26), Tuolumne's
-// Coffee with a Ranger (Tu/Th at the Dana Campfire Circle), and Wawona's Bear
-// Talk with Ranger Jill. Wawona's nightly campground Campfire Program returns
-// after a issue off, which is why both it and Tuolumne's carry
-// location-qualified titles: the guide prints both as plain "Campfire
-// Program", both run nightly, and the route's dedupe key is date plus title.
+// Changes this issue vs the last. This is the fall issue, and the schedule
+// shrinks and staggers: nearly every row now carries its own end date, and the
+// file encodes each one rather than running to GUIDE_END. Tuolumne prints no
+// schedule at all ("check listings at the visitor center" until it closes Sep
+// 27), so all 21 Tuolumne entries are gone, as are the Mountaineering School
+// hikes (no schedule printed, school open until Oct 25), Wild About Bears, the
+// Family Ranger Talk, Wee Wild Ones, the Curry movie nights, Paint & Sip, the
+// Mariposa Grove Jr. Ranger talk, Wawona's bear talk and campfire program, the
+// Sierra Club evening programs (the Heritage Center closes Sep 27), and the
+// Glacier Point Starry Skies nights.
 //
-// Retimed, not merely re-dated: the valley Jr. Ranger Discovery Table moves to
-// 3 pm, Wee Wild Ones to 6 pm (and now ends Sep 13), the Crane Flat Evening
-// Program to 6:30 pm (adding Thursday), Stars Over Crane Flat to 8 pm, and all
-// three Tuolumne evening programs shift half an hour earlier (campfire and
-// campfireside chat to 7:30, Stars Over Tuolumne to 9). Tuolumne's Wildflower
-// Walk is printed as "Botanical Walk" this issue, and its afternoon Welcome to
-// Tuolumne! talk goes from weekdays to daily, while History of Tuolumne
-// Meadows drops from a weekly Friday to Aug 21 and 28 only.
+// New this issue: Wild Wonders: Yosemite Valley Walk (M–Sa 9:30 from the Lodge
+// amphitheater), The Living Landscape (daily 1 pm, then M/Th/Sa from Nov 2),
+// Yosemite Nature in a Nutshell (the retitled 2 pm family talk), Yosemite
+// Shorts and Stories (twelve printed October dates), Walking Starry Skies,
+// the Hodgdon Meadow evening program (four October dates), the volunteer
+// litter pick-up (Sep 24–26), the fall art-class instructors, the Peace of
+// Place and Earth is Home II exhibitions with their two artist receptions, and
+// the Conservancy's "Little Fires Everywhere" stewardship program (Oct 23).
+// The valley evening program leaves the Curry amphitheater after Sep 26 and
+// comes back to the Lodge Cliff Room at 7 pm from Nov 1, so the two carry
+// location-qualified titles.
 //
-// Dropped because this issue does not print them: Yosemite Live! at the
-// Yosemite Theater, the Glacier Point astronomy-club star parties (only the
-// ticketed Starry Skies nights are listed now, on their own new dates), the
-// Parsons Memorial Lodge Summer Series and its Joe Craven and poetry dates,
-// Tuolumne's Dog Lake hike, Art in the Meadow, Sunset on the Dome, and Kids'
-// Campfire, and the Geology Hut stewardship program (replaced by the Tuolumne
-// Meadows Overview on Aug 21). Every Wawona-area program carries the issue's
-// "*no program Aug 19" asterisk as a skip.
+// Retimed: the Ranger Walk moves from daily 9 am to Su/M/F 10 am; the valley
+// Jr. Ranger Discovery Table to Tu/W/Th/Sa 10 am; Yosemite After Dark to
+// 7:30 pm; Explore Yosemite's Night Sky to F/Sa 8 pm; the Sunset Walk to F/Sa
+// 5 pm (its start "varies after Oct 10", carried in the description rather
+// than guessed); the Tuolumne Grove Jr. Ranger table to 10 am – noon and the
+// Giant Sequoia Hike to 1 pm. The Moonlight Tour runs Sep 23–26 "8:30 or 9 pm";
+// it is carried at 8:30 with the choice in words.
 //
-// Titles are kept as printed so the route's date+title dedupe can drop a
-// manual entry whenever the NPS feed carries the same program (the two
-// Mariposa Grove titles keep the house-style form without the printed
-// em-dash; a feed collision there would show as a duplicate and can be aligned
-// on a later pass). Asterisked "no program" dates are honored via per-entry
-// skip lists; an asterisk with no publishable dates behind it (Tuolumne's
-// campfireside chat runs "only when the Lodge is open") is carried in the
-// description instead of guessed at.
-//
-// Symbol pass 2026-08-18, same v51n7 issue. Page 8's legend attaches four
-// symbols to individual programs, and two of them were data this file had no
-// home for: the wheelchair-accessible mark and "Recommended for Families."
-// Both now ride on the entries as `accessible` / `familyFriendly` (see the
-// schema note in lib/programs.ts: true-only, because the guide declining to
-// mark a program is not a claim that it is inaccessible or wrong for kids).
-// The other two symbols were already carried: the Junior Ranger mark is the
-// `junior-ranger` / `kids` categories, and the Evening Program mark is the
-// start time. 23 programs are marked accessible this issue and 24 as
-// family-recommended; the marks are read off page 8 per row, never inferred
-// from the kind of program, which is why the daily 9 am Ranger Walk carries
-// neither while the 10 am Jr. Ranger Walk from the same doorway carries the
-// accessible one.
-//
-// The same pass location-qualified both Jr. Ranger Discovery Table titles and
-// added the date+title collision guard at the bottom of the file; see the
-// comment there for what a shared title costs at read time.
+// Marks. `accessible` / `familyFriendly` are read off the issue's Programs
+// pages (8 and 9) row by row: the wheelchair symbol and the "Recommended for
+// Families" symbol only. The Junior Ranger symbol stays a category, as in the
+// v51n7 symbol pass; the Evening Program moon is the start time.
 //
 // Deliberately NOT curated as programs, because the issue prints them as
-// services rather than scheduled programs: the Wawona stable and pony rides,
-// golf, bike rentals, the pools, and the chapel services. The seasonal service
-// closures this issue announces (High Sierra Camps, the Tuolumne store and
-// grill on Sep 20, the hikers bus and Tuolumne shuttle on Sep 13, the pools
-// and Jennie's in early September) live in the PWA's seasonal almanac and the
-// /now bulletin, not here, as does the continuing Mist Trail weekday repair
-// closure.
+// services rather than scheduled programs: bike rentals, golf, the ice rink
+// (opens Nov 13, if conditions allow), the Mountaineering School's unscheduled
+// hikes, and the chapel services. The fall service closures this issue
+// announces live in the PWA's seasonal almanac and the /now bulletin.
 const entries: ManualEntryT[] = [
   {
     key: 'aramark-valley-floor-tour',
@@ -170,13 +132,14 @@ const entries: ManualEntryT[] = [
     category: 'tour',
     title: 'Valley Floor Tour (Yosemite Hospitality)',
     description:
-      'The two-hour open-air tram (or heated coach, off-season) loop of the valley floor with a guide. ' +
-      'Departs Yosemite Valley Lodge daily; in summer at 10 and 11 a.m., 1 and 2 p.m., and at sunset. ' +
-      'Paid; book at travelyosemite.com. Dates here mark availability, not a single departure time.',
+      'The two-hour open-air tram (or heated coach, off-season) loop of the valley floor with a ' +
+      'naturalist or park ranger. Departs Yosemite Valley Lodge daily; this fall at 10 and 11 a.m., ' +
+      '1 and 2 p.m., and from November 1 at 10 a.m. and 1 p.m. only. Paid; book at ' +
+      'travelyosemite.com or 888/413-8869. Dates here mark availability, not a single departure time.',
     // Verified 2026-07-02: travelyosemite.com lists the tour as departing
     // daily, year-round (tram in warm months, heated coach off-season).
-    // 2026-08-17: Yosemite Guide Vol 51 Issue 7 reprints the same daily
-    // departures at 10 am, 11 am, 1 pm, 2 pm, and sunset for this window.
+    // 2026-09-22: Yosemite Guide Vol 51 Issue 8 prints 10 am, 11 am, 1 pm, and
+    // 2 pm daily, "10 am & 1 pm ONLY starting Nov 1", both marks.
     dates: buildDailyDates('2026-07-01', '2027-06-30'),
     location: 'Yosemite Valley Lodge',
     coord: VALLEY_LODGE,
@@ -196,8 +159,7 @@ const entries: ManualEntryT[] = [
       'evening films and speakers, run by the Yosemite Climbing Association with the park. Free, ' +
       'registration at yosemiteclimbing.org. Show up, grab a bag, meet the community.',
     // Verified 2026-07-03: yosemiteclimbing.org's 2026 Facelift registration
-    // page lists September 23-27, 2026, daily 8 a.m. to 4 p.m. Falls just past
-    // the v51n7 window; kept because a late-September trip query reaches it.
+    // page lists September 23-27, 2026, daily 8 a.m. to 4 p.m.
     dates: ['2026-09-23', '2026-09-24', '2026-09-25', '2026-09-26', '2026-09-27'],
     timeStart: '08:00',
     timeEnd: '16:00',
@@ -228,81 +190,7 @@ const entries: ManualEntryT[] = [
     url: 'https://www.travelyosemite.com/things-to-do/specialty-events/food-and-wine-events/bracebridge-dinner',
   },
 
-  // ── Yosemite Guide v51n7: Yosemite Valley walks, talks & hikes ─────────────
-  {
-    key: 'ymc-discovery-hike-morning',
-    source: 'aramark',
-    category: 'walk',
-    title: 'Discovery Hike: Vernal Fall Footbridge (Yosemite Mountaineering School)',
-    description:
-      'A four-hour guided hike to the Vernal Fall Footbridge with a Yosemite Mountaineering School ' +
-      'guide; ages 12 and up. Paid; register at travelyosemite.com or at the Mountaineering School ' +
-      'in Curry Village, 209/372-8344.',
-    // Guide: 8:30 am and 1:30 pm, days vary, *starts Sep 4. Discovery Hikes run
-    // M, W, Sa: 8:30 am to the Vernal Fall Footbridge, 1:30 pm to Mirror Lake.
-    dates: buildWeeklyDates('2026-09-04', GUIDE_END, [MON, WED, SAT]),
-    timeStart: '08:30',
-    timeEnd: '12:30',
-    location: 'Yosemite Mountaineering School, Curry Village',
-    coord: CURRY_VILLAGE,
-    isFree: false,
-    reservationRequired: true,
-    url: YH_URL,
-  },
-  {
-    key: 'ymc-discovery-hike-afternoon',
-    source: 'aramark',
-    category: 'walk',
-    title: 'Discovery Hike: Mirror Lake Loop (Yosemite Mountaineering School)',
-    description:
-      'A four-hour guided hike around the Mirror Lake loop with a Yosemite Mountaineering School ' +
-      'guide; ages 12 and up. The lakebed is a meadow by late summer, so this one is about the ' +
-      'basin and the walls. Paid; register at travelyosemite.com or 209/372-8344.',
-    dates: buildWeeklyDates('2026-09-04', GUIDE_END, [MON, WED, SAT]),
-    timeStart: '13:30',
-    timeEnd: '17:30',
-    location: 'Yosemite Mountaineering School, Curry Village',
-    coord: CURRY_VILLAGE,
-    isFree: false,
-    reservationRequired: true,
-    url: YH_URL,
-  },
-  {
-    key: 'ymc-adventure-hike-nevada-fall',
-    source: 'aramark',
-    category: 'walk',
-    title: 'Adventure Hike: Nevada Fall (Yosemite Mountaineering School)',
-    description:
-      'An eight-hour guided hike to the top of Nevada Fall with a Yosemite Mountaineering School ' +
-      'guide; ages 12 and up. Paid; register at travelyosemite.com or 209/372-8344.',
-    // Guide: 8-hour Adventure Hikes at 8:30 am, Nevada Fall on Tu and F.
-    dates: buildWeeklyDates('2026-09-04', GUIDE_END, [TUE, FRI]),
-    timeStart: '08:30',
-    timeEnd: '16:30',
-    location: 'Yosemite Mountaineering School, Curry Village',
-    coord: CURRY_VILLAGE,
-    isFree: false,
-    reservationRequired: true,
-    url: YH_URL,
-  },
-  {
-    key: 'ymc-adventure-hike-el-capitan',
-    source: 'aramark',
-    category: 'walk',
-    title: 'Adventure Hike: El Capitan Loop (Yosemite Mountaineering School)',
-    description:
-      'An eight-hour guided El Capitan loop with a Yosemite Mountaineering School guide; ages 12 ' +
-      'and up. Paid; register at travelyosemite.com or 209/372-8344.',
-    // Guide: 8-hour Adventure Hikes at 8:30 am, El Capitan Loop on Su and Th.
-    dates: buildWeeklyDates('2026-09-04', GUIDE_END, [SUN, THU]),
-    timeStart: '08:30',
-    timeEnd: '16:30',
-    location: 'Yosemite Mountaineering School, Curry Village',
-    coord: CURRY_VILLAGE,
-    isFree: false,
-    reservationRequired: true,
-    url: YH_URL,
-  },
+  // ── Yosemite Guide v51n8: Yosemite Valley walks, talks & hikes ─────────────
   {
     key: 'valley-climber-coffee',
     source: 'nps',
@@ -310,14 +198,50 @@ const entries: ManualEntryT[] = [
     title: 'Climber Coffee',
     description:
       'Coffee with NPS climbing rangers: climbing management, preventative search and rescue, and ' +
-      'news from the climbing community. Meet at Camp 4, near the Midnight Lightning boulder.',
-    // Guide: Su, *starts Sep 13, when Climber Coffee moves back down from
-    // Tuolumne. No date overlaps the Tuolumne entry, which ends Aug 30.
-    dates: buildWeeklyDates('2026-09-13', GUIDE_END, [SUN]),
+      'news from the climbing community. Meet at Camp 4, near the Midnight Lightning boulder. Free, drop-in.',
+    // Guide v51n8: 9 – 11 am, Su, *until Oct 25.
+    dates: buildWeeklyDates(GUIDE_START, '2026-10-25', [SUN]),
     timeStart: '09:00',
     timeEnd: '11:00',
     location: 'Camp 4, near the Midnight Lightning boulder',
     coord: CAMP_4,
+    isFree: true,
+    accessible: true,
+    url: NPS_GUIDE_URL,
+  },
+  {
+    key: 'valley-wild-wonders-walk',
+    source: 'nps',
+    category: 'walk',
+    title: 'Wild Wonders: Yosemite Valley Walk',
+    description:
+      'A leisurely guided walk through the valley\'s ecosystems and landmarks: geology, plants, and ' +
+      'animals on foot. Meet at the Yosemite Valley Lodge amphitheater. Free, drop-in.',
+    // Guide v51n8: 9:30 am (1 – 1.5 hrs), M – Sa, *until Oct 30.
+    dates: buildWeeklyDates(GUIDE_START, '2026-10-30', [MON, TUE, WED, THU, FRI, SAT]),
+    timeStart: '09:30',
+    timeEnd: '11:00',
+    location: 'Yosemite Valley Lodge amphitheater',
+    coord: VALLEY_LODGE,
+    isFree: true,
+    url: NPS_GUIDE_URL,
+  },
+  {
+    key: 'valley-jr-ranger-discovery-table',
+    source: 'nps',
+    category: 'junior-ranger',
+    // Location-qualified: the guide prints a second Jr. Ranger Discovery Table
+    // at the Tuolumne Grove trailhead on the same days.
+    title: 'Jr. Ranger Discovery Table at the Welcome Center',
+    description:
+      'Drop in any time for a hands-on activity with a ranger about what makes Yosemite special. ' +
+      'In front of the Yosemite Valley Welcome Center (shuttle stop 2). Free.',
+    // Guide v51n8: 10 – 11 am, Tu, W, Th, Sa, *until Oct 31.
+    dates: buildWeeklyDates(GUIDE_START, '2026-10-31', [TUE, WED, THU, SAT]),
+    timeStart: '10:00',
+    timeEnd: '11:00',
+    location: 'Yosemite Valley Welcome Center (shuttle stop 2)',
+    coord: VILLAGE_MALL,
     isFree: true,
     accessible: true,
     url: NPS_GUIDE_URL,
@@ -328,31 +252,15 @@ const entries: ManualEntryT[] = [
     category: 'walk',
     title: 'Ranger Walk',
     description:
-      'Join a ranger for a naturalist walk and a closer look at Yosemite. Meets in front of the ' +
-      'Yosemite Valley Welcome Center (shuttle stop 2). Free, drop-in.',
-    dates: buildDailyDates(GUIDE_START, GUIDE_END),
-    timeStart: '09:00',
-    timeEnd: '10:00',
-    location: 'Yosemite Valley Welcome Center (shuttle stop 2)',
-    coord: VILLAGE_MALL,
-    isFree: true,
-    url: NPS_GUIDE_URL,
-  },
-  {
-    key: 'valley-jr-ranger-walk',
-    source: 'nps',
-    category: 'junior-ranger',
-    title: 'Jr. Ranger Walk',
-    description:
-      'An easy walk with kid-focused activities related to Yosemite. Meets in front of the Yosemite ' +
-      'Valley Welcome Center (shuttle stop 2). Children must be accompanied by an adult.',
-    dates: buildDailyDates(GUIDE_START, GUIDE_END),
+      'A moderately paced naturalist walk with a park ranger on the valley\'s ecosystems, geology, ' +
+      'or wildlife. Meets in front of the Yosemite Valley Welcome Center (shuttle stop 2). Free, drop-in.',
+    // Guide v51n8: 10 am (1 hr), Su, M, F, *until Oct 30.
+    dates: buildWeeklyDates(GUIDE_START, '2026-10-30', [SUN, MON, FRI]),
     timeStart: '10:00',
     timeEnd: '11:00',
     location: 'Yosemite Valley Welcome Center (shuttle stop 2)',
     coord: VILLAGE_MALL,
     isFree: true,
-    accessible: true,
     url: NPS_GUIDE_URL,
   },
   {
@@ -362,7 +270,8 @@ const entries: ManualEntryT[] = [
     title: 'Ranger Walk: Discovery Walk',
     description:
       'An easy ranger-led walk on what makes Yosemite special; topics vary daily. Meets in front of ' +
-      'the museum in Yosemite Village (shuttle stop 5).',
+      'the museum in Yosemite Village (shuttle stop 5). Free, drop-in.',
+    // Guide v51n8: 10:30 am (1 hr), Tu, W, Th, Sa, no end date.
     dates: buildWeeklyDates(GUIDE_START, GUIDE_END, [TUE, WED, THU, SAT]),
     timeStart: '10:30',
     timeEnd: '11:30',
@@ -379,27 +288,31 @@ const entries: ManualEntryT[] = [
     title: 'Ask-a-Climber',
     description:
       'Watch climbers on El Capitan through spotting scopes and talk with a ranger about the world ' +
-      'of big-wall climbing. On the west side of El Capitan bridge (shuttle stop 9). Free, drop-in.',
-    // Guide: daily, *starts Sep 6.
-    dates: buildDailyDates('2026-09-06', GUIDE_END),
+      'of big-wall climbing. El Capitan Meadow, west side of El Capitan bridge; shuttle stop 9 is ' +
+      'closed during the bridge work. Free, drop-in.',
+    // Guide v51n8: 12:30 – 4:30 pm, daily, *until Oct 30.
+    dates: buildDailyDates(GUIDE_START, '2026-10-30'),
     timeStart: '12:30',
     timeEnd: '16:30',
-    location: 'El Capitan bridge, west side (shuttle stop 9)',
+    location: 'El Capitan Meadow, west side of El Capitan bridge',
     coord: EL_CAP_BRIDGE,
     isFree: true,
     familyFriendly: true,
     url: NPS_GUIDE_URL,
   },
   {
-    key: 'valley-wild-about-bears',
+    key: 'valley-living-landscape',
     source: 'nps',
-    category: 'walk',
-    title: 'Ranger Walk: Wild About Bears',
+    category: 'talk',
+    title: 'The Living Landscape',
     description:
-      'A ranger walk on Yosemite\'s black bears and how the park keeps them wild; no bear sightings ' +
-      'expected. Meets in front of the Yosemite Valley Welcome Center (shuttle stop 2).',
-    // Guide v51n7 prints this daily with no skip date, unlike v51n6.
-    dates: buildDailyDates(GUIDE_START, GUIDE_END),
+      'An hour with a ranger on what makes Yosemite unique. Meets in front of the Yosemite Valley ' +
+      'Welcome Center (shuttle stop 2). Free, drop-in.',
+    // Guide v51n8: 1 pm (1 hr), daily until Nov 1, *M, Th, Sa ONLY starting Nov 2.
+    dates: [
+      ...buildDailyDates(GUIDE_START, '2026-11-01'),
+      ...buildWeeklyDates('2026-11-02', GUIDE_END, [MON, THU, SAT]),
+    ],
     timeStart: '13:00',
     timeEnd: '14:00',
     location: 'Yosemite Valley Welcome Center (shuttle stop 2)',
@@ -408,13 +321,14 @@ const entries: ManualEntryT[] = [
     url: NPS_GUIDE_URL,
   },
   {
-    key: 'valley-family-ranger-talk',
+    key: 'valley-nature-in-a-nutshell',
     source: 'nps',
     category: 'kids',
-    title: 'Family Ranger Talk',
+    title: 'Yosemite Nature in a Nutshell',
     description:
-      'A 15-minute ranger talk for all ages; topics vary. In front of the Yosemite Valley Welcome ' +
-      'Center (shuttle stop 2).',
+      'Fifteen minutes on a different family-friendly topic each day: animals, rocks, trees, ' +
+      'storytelling. In front of the Yosemite Valley Welcome Center (shuttle stop 2). Free, drop-in.',
+    // Guide v51n8: 2 pm (15 min), daily.
     dates: buildDailyDates(GUIDE_START, GUIDE_END),
     timeStart: '14:00',
     timeEnd: '14:15',
@@ -431,39 +345,17 @@ const entries: ManualEntryT[] = [
     category: 'tour',
     title: 'Historic Ahwahnee Hotel Tour',
     description:
-      'A complimentary one-hour history tour of Yosemite\'s famous luxury hotel. Meets on the ' +
-      'hotel\'s back lawn (shuttle stop 3). Free, drop-in.',
+      'A complimentary one-hour tour of the history behind Yosemite\'s grand hotel. Meet at The ' +
+      'Ahwahnee flagpole (shuttle stop 3). Free, drop-in.',
+    // Guide v51n8: 2 pm (1 hr), daily.
     dates: buildDailyDates(GUIDE_START, GUIDE_END),
     timeStart: '14:00',
     timeEnd: '15:00',
-    location: 'The Ahwahnee, back lawn (shuttle stop 3)',
+    location: 'The Ahwahnee flagpole (shuttle stop 3)',
     coord: AHWAHNEE,
     isFree: true,
     accessible: true,
     url: YH_URL,
-  },
-  {
-    key: 'valley-jr-ranger-discovery-table',
-    source: 'nps',
-    category: 'junior-ranger',
-    // Location-qualified for the same reason the two Campfire Programs are:
-    // the guide prints this table twice, in the valley and at the Tuolumne
-    // Grove, under one title, and the route's dedupe key is date plus title.
-    // Left as printed, an NPS feed entry for either one would have dropped
-    // BOTH manual entries on that date and taken a real program off the board.
-    title: 'Jr. Ranger Discovery Table in Yosemite Valley',
-    description:
-      'Drop in any time to talk with a ranger and start or finish earning a Junior Ranger badge. At ' +
-      'the Yosemite Valley Welcome Center (shuttle stop 2).',
-    // Guide v51n7 moves this to 3 pm; v51n6 ran it at 2 pm.
-    dates: buildWeeklyDates(GUIDE_START, GUIDE_END, [SUN, WED, FRI]),
-    timeStart: '15:00',
-    timeEnd: '16:00',
-    location: 'Yosemite Valley Welcome Center (shuttle stop 2)',
-    coord: VILLAGE_MALL,
-    isFree: true,
-    accessible: true,
-    url: NPS_GUIDE_URL,
   },
   {
     key: 'ahwahnee-nature-walk',
@@ -471,15 +363,40 @@ const entries: ManualEntryT[] = [
     category: 'walk',
     title: 'Guided Nature Walk',
     description:
-      'An easy naturalist-guided walk of the natural areas around The Ahwahnee. Meets on the ' +
-      'hotel\'s back lawn (shuttle stop 3). Free.',
-    dates: buildDailyDates(GUIDE_START, GUIDE_END),
+      'An easy guided walk of Yosemite\'s natural areas with a naturalist. Meet on The Ahwahnee\'s ' +
+      'back lawn (shuttle stop 3). Free, drop-in.',
+    // Guide v51n8: 3:30 pm (1 hr), daily, *no program Oct 2.
+    dates: buildWeeklyDates(GUIDE_START, GUIDE_END, [SUN, MON, TUE, WED, THU, FRI, SAT], {
+      skip: ['2026-10-02'],
+    }),
     timeStart: '15:30',
     timeEnd: '16:30',
-    location: 'The Ahwahnee, back lawn (shuttle stop 3)',
+    location: 'The Ahwahnee back lawn (shuttle stop 3)',
     coord: AHWAHNEE,
     isFree: true,
     url: YH_URL,
+  },
+  {
+    key: 'valley-shorts-and-stories',
+    source: 'nps',
+    category: 'talk',
+    title: 'Yosemite Shorts and Stories',
+    description:
+      'Short films, presentations, and performances by National Park Service staff, 45 minutes. ' +
+      'In the auditorium behind the Exploration Center (shuttle stop 5 or Yosemite Village parking). Free.',
+    // Guide v51n8: 4:30 pm (45 min), "Program available Oct 5, 6, 7, 12, 13,
+    // 16, 17, 23, 26, 27, 28, 30".
+    dates: [
+      '2026-10-05', '2026-10-06', '2026-10-07', '2026-10-12', '2026-10-13', '2026-10-16',
+      '2026-10-17', '2026-10-23', '2026-10-26', '2026-10-27', '2026-10-28', '2026-10-30',
+    ],
+    timeStart: '16:30',
+    timeEnd: '17:15',
+    location: 'Auditorium behind the Yosemite Exploration Center',
+    coord: VILLAGE_MALL,
+    isFree: true,
+    accessible: true,
+    url: NPS_GUIDE_URL,
   },
   {
     key: 'yc-valley-sunset-walk',
@@ -487,67 +404,35 @@ const entries: ManualEntryT[] = [
     category: 'walk',
     title: 'Yosemite Valley Sunset Walk',
     description:
-      'A casual 90-minute walk with a Yosemite Conservancy naturalist while the setting sun lights ' +
-      'up the granite, with the natural and cultural history of the park along the way. Paid; ' +
-      'register in advance at yosemite.org/adventures.',
-    dates: buildDailyDates(GUIDE_START, GUIDE_END),
-    timeStart: '17:30',
-    timeEnd: '19:00',
-    location: 'Yosemite Valley (meeting point given at registration)',
+      'A casual walk with a Conservancy naturalist while the setting sun lights the granite, with ' +
+      'the natural and cultural history of the park. Start time varies after October 10; check the ' +
+      'booking page. Paid; register in advance at yosemite.org/adventures.',
+    // Guide v51n8: 5 pm* (1.5 hrs), F & Sa, *start time varies after Oct 10.
+    dates: buildWeeklyDates(GUIDE_START, GUIDE_END, [FRI, SAT]),
+    timeStart: '17:00',
+    timeEnd: '18:30',
+    location: 'Yosemite Valley (meeting point at registration)',
     isFree: false,
     reservationRequired: true,
     familyFriendly: true,
     url: YC_ADVENTURES_URL,
   },
   {
-    key: 'wee-wild-ones',
-    source: 'aramark',
-    category: 'kids',
-    title: 'Wee Wild Ones',
-    description:
-      'Stories and activities for kids 10 and under. Meets at the Curry Village Amphitheater ' +
-      '(shuttle stops 14 and 19). Free, drop-in. Runs through September 13.',
-    // Guide v51n7: nightly at 6 pm, *until Sep 13. v51n6 ran it at 7 pm.
-    dates: buildDailyDates(GUIDE_START, '2026-09-13'),
-    timeStart: '18:00',
-    timeEnd: '18:30',
-    location: 'Curry Village Amphitheater (shuttle stops 14 and 19)',
-    coord: CURRY_VILLAGE,
-    isFree: true,
-    url: YH_URL,
-  },
-  {
-    key: 'curry-evening-program',
+    key: 'lodge-evening-program',
     source: 'aramark',
     category: 'talk',
-    title: 'Evening Programs',
+    title: 'Evening Program at Yosemite Valley Lodge',
     description:
-      'Yosemite naturalists present a different topic each night at the Curry Village Amphitheater ' +
-      '(shuttle stops 14 and 19). Free, drop-in.',
-    // Guide: Sun-Thu (Fri/Sat are Movie Night, below).
-    dates: buildWeeklyDates(GUIDE_START, GUIDE_END, [SUN, MON, TUE, WED, THU]),
-    timeStart: '20:00',
-    timeEnd: '20:30',
-    location: 'Curry Village Amphitheater (shuttle stops 14 and 19)',
-    coord: CURRY_VILLAGE,
-    isFree: true,
-    accessible: true,
-    url: YH_URL,
-  },
-  {
-    key: 'curry-movie-night',
-    source: 'aramark',
-    category: 'talk',
-    title: 'Evening Program: Movie Night!',
-    description:
-      'Yosemite naturalists briefly present a Yosemite topic, then play a short movie. At the Curry ' +
-      'Village Amphitheater (shuttle stops 14 and 19). Fridays: Natural and Cultural Change in ' +
-      'Yosemite. Saturdays: Yosemite\'s Firefall. Free, drop-in.',
-    dates: buildWeeklyDates(GUIDE_START, GUIDE_END, [FRI, SAT]),
-    timeStart: '20:00',
-    timeEnd: '21:00',
-    location: 'Curry Village Amphitheater (shuttle stops 14 and 19)',
-    coord: CURRY_VILLAGE,
+      'Yosemite naturalists present a different topic each night, half an hour. In the Yosemite ' +
+      'Valley Lodge Cliff Room, between the gift shop and the lounge. Free, drop-in.',
+    // Guide v51n8: 7 pm (30 min), Su, W, Th, F, Sa, *starting Nov 1, *no program Nov 11.
+    dates: buildWeeklyDates('2026-11-01', GUIDE_END, [SUN, WED, THU, FRI, SAT], {
+      skip: ['2026-11-11'],
+    }),
+    timeStart: '19:00',
+    timeEnd: '19:30',
+    location: 'Yosemite Valley Lodge Cliff Room',
+    coord: VALLEY_LODGE,
     isFree: true,
     accessible: true,
     url: YH_URL,
@@ -560,9 +445,12 @@ const entries: ManualEntryT[] = [
     description:
       'Grab a flashlight for a guided, interactive nature walk at night; recommended for ages 11 ' +
       'and up. Paid; book at travelyosemite.com or the Yosemite Valley Lodge front desk.',
-    dates: buildDailyDates(GUIDE_START, GUIDE_END),
-    timeStart: '20:30',
-    timeEnd: '22:00',
+    // Guide v51n8: 7:30 pm (1.5 hrs), nightly, *no program Oct 2.
+    dates: buildWeeklyDates(GUIDE_START, GUIDE_END, [SUN, MON, TUE, WED, THU, FRI, SAT], {
+      skip: ['2026-10-02'],
+    }),
+    timeStart: '19:30',
+    timeEnd: '21:00',
     location: 'Yosemite Valley Lodge',
     coord: VALLEY_LODGE,
     isFree: false,
@@ -572,24 +460,64 @@ const entries: ManualEntryT[] = [
     url: YH_URL,
   },
   {
+    key: 'curry-evening-program',
+    source: 'aramark',
+    category: 'talk',
+    title: 'Evening Program at Curry Village',
+    description:
+      'Yosemite naturalists present a different topic each night, half an hour. Curry Village ' +
+      'Amphitheater (shuttle stops 14 and 19). Free, drop-in. The last nights of the season here.',
+    // Guide v51n8: 8 pm (30 min), nightly, *until Sep 26.
+    dates: buildDailyDates(GUIDE_START, '2026-09-26'),
+    timeStart: '20:00',
+    timeEnd: '20:30',
+    location: 'Curry Village Amphitheater',
+    coord: CURRY_VILLAGE,
+    isFree: true,
+    accessible: true,
+    url: YH_URL,
+  },
+  {
+    key: 'walking-starry-skies',
+    source: 'aramark',
+    category: 'astronomy',
+    title: 'Walking Starry Skies',
+    description:
+      'An hour of stargazing on foot with a Yosemite Hospitality guide; recommended for ages 11 ' +
+      'and up. Paid; book at travelyosemite.com or the Yosemite Valley Lodge front desk.',
+    // Guide v51n8: 8 pm (1 hr), Su, M, Tu, W, Th, *no program Nov 9 or 10.
+    dates: buildWeeklyDates(GUIDE_START, GUIDE_END, [SUN, MON, TUE, WED, THU], {
+      skip: ['2026-11-09', '2026-11-10'],
+    }),
+    timeStart: '20:00',
+    timeEnd: '21:00',
+    location: 'Yosemite Valley Lodge',
+    coord: VALLEY_LODGE,
+    isFree: false,
+    reservationRequired: true,
+    familyFriendly: true,
+    url: YH_URL,
+  },
+  {
     key: 'yc-night-sky',
     source: 'conservancy',
     category: 'astronomy',
     title: 'Explore Yosemite\'s Night Sky',
     description:
-      'A Yosemite Conservancy naturalist leads a laser-pointer tour of the night sky: star science, ' +
-      'constellations, cultural stories, and mythology. No telescopes. Paid; register in advance at ' +
-      'yosemite.org.',
-    dates: buildDailyDates(GUIDE_START, GUIDE_END),
-    timeStart: '21:00',
-    timeEnd: '22:30',
-    location: 'Yosemite Valley (meeting point given at registration)',
+      'Guided stargazing with a Conservancy naturalist: star science, constellations, cultural ' +
+      'stories, and mythology, pointed out by laser (no telescopes). Start time varies after ' +
+      'October 10. Paid; register at yosemite.org/adventures.',
+    // Guide v51n8: 8 pm* (1.5 hrs), F & Sa, *start time varies after Oct 10.
+    dates: buildWeeklyDates(GUIDE_START, GUIDE_END, [FRI, SAT]),
+    timeStart: '20:00',
+    timeEnd: '21:30',
+    location: 'Yosemite Valley (meeting point at registration)',
     isFree: false,
     reservationRequired: true,
-    url: YC_URL,
+    url: YC_ADVENTURES_URL,
   },
 
-  // ── Yosemite Guide v51n7: bus & tram tours ─────────────────────────────────
+  // ── Yosemite Guide v51n8: bus & tram tours, volunteering ───────────────────
   {
     key: 'aramark-glacier-point-tour',
     source: 'aramark',
@@ -597,49 +525,11 @@ const entries: ManualEntryT[] = [
     title: 'Glacier Point Tour',
     description:
       'The four-hour bus tour from Yosemite Valley up to Glacier Point, a 3,200-foot elevation ' +
-      'gain. Departs Yosemite Valley Lodge daily at 8:30 a.m. and 1:30 p.m.; one-way tickets for ' +
-      'hikers available (dropoff only, no pickup at Glacier Point). Paid; book at ' +
-      'travelyosemite.com or 888/413-8869. Dates here mark availability, not a single departure time.',
-    dates: buildDailyDates(GUIDE_START, GUIDE_END),
-    location: 'Yosemite Valley Lodge',
-    coord: VALLEY_LODGE,
-    isFree: false,
-    reservationRequired: true,
-    url: YH_TOURS_URL,
-  },
-  {
-    key: 'aramark-grand-tour',
-    source: 'aramark',
-    category: 'tour',
-    title: 'Yosemite Grand Tour',
-    description:
-      'The full-day tour combining Yosemite Valley, Glacier Point, and the Mariposa Grove of Giant ' +
-      'Sequoias, lunch included. Departs Yosemite Valley Lodge daily at 8 a.m. Paid; book at ' +
-      'travelyosemite.com or 888/413-8869.',
-    dates: buildDailyDates(GUIDE_START, GUIDE_END),
-    timeStart: '08:00',
-    timeEnd: '16:00',
-    location: 'Yosemite Valley Lodge',
-    coord: VALLEY_LODGE,
-    isFree: false,
-    reservationRequired: true,
-    url: YH_TOURS_URL,
-  },
-  {
-    key: 'aramark-moonlight-tour',
-    source: 'aramark',
-    category: 'tour',
-    title: 'Moonlight Tour',
-    description:
-      'A two-hour tram tour of Yosemite Valley under the light of the moon with a Yosemite ' +
-      'Hospitality naturalist. Paid; tickets at travelyosemite.com or an in-park tour desk.',
-    // Guide: Aug 23, 24, 25, 26, 27 and Sep 22, 9 pm.
-    dates: [
-      '2026-08-23', '2026-08-24', '2026-08-25', '2026-08-26', '2026-08-27',
-      '2026-09-22',
-    ],
-    timeStart: '21:00',
-    timeEnd: '23:00',
+      'gain. Departs Yosemite Valley Lodge daily at 8:30 a.m. and 1:30 p.m. through October 11; ' +
+      'one-way tickets for hikers available (drop-off only, no pickup at Glacier Point). Paid; book ' +
+      'at travelyosemite.com or 888/413-8869. Dates here mark availability, not a single departure time.',
+    // Guide v51n8: 8:30 am & 1:30 pm (4 hrs), daily, *until Oct 11, both marks.
+    dates: buildDailyDates(GUIDE_START, '2026-10-11'),
     location: 'Yosemite Valley Lodge',
     coord: VALLEY_LODGE,
     isFree: false,
@@ -648,8 +538,68 @@ const entries: ManualEntryT[] = [
     familyFriendly: true,
     url: YH_TOURS_URL,
   },
+  {
+    key: 'aramark-grand-tour',
+    source: 'aramark',
+    category: 'tour',
+    title: 'Yosemite Grand Tour',
+    description:
+      'The full-day tour: Yosemite Valley, Glacier Point, and the Mariposa Grove of Giant Sequoias, ' +
+      'lunch included. Departs Yosemite Valley Lodge at 8 a.m. through October 11. Paid; book at ' +
+      'travelyosemite.com or 888/413-8869.',
+    // Guide v51n8: 8 am (8 hrs), daily, *until Oct 11, both marks.
+    dates: buildDailyDates(GUIDE_START, '2026-10-11'),
+    timeStart: '08:00',
+    timeEnd: '16:00',
+    location: 'Yosemite Valley Lodge',
+    coord: VALLEY_LODGE,
+    isFree: false,
+    reservationRequired: true,
+    accessible: true,
+    familyFriendly: true,
+    url: YH_TOURS_URL,
+  },
+  {
+    key: 'aramark-moonlight-tour',
+    source: 'aramark',
+    category: 'tour',
+    title: 'Moonlight Tour',
+    description:
+      'A two-hour open-air tram tour of Yosemite Valley under the moon with a Yosemite Hospitality ' +
+      'naturalist, departing 8:30 or 9 p.m. depending on the night. Paid; book at ' +
+      'travelyosemite.com or the Yosemite Valley Lodge front desk.',
+    // Guide v51n8: Sep 23, 24, 25, 26, "8:30 or 9 pm" (2 hrs), both marks.
+    dates: ['2026-09-23', '2026-09-24', '2026-09-25', '2026-09-26'],
+    timeStart: '20:30',
+    location: 'Yosemite Valley Lodge',
+    coord: VALLEY_LODGE,
+    isFree: false,
+    reservationRequired: true,
+    accessible: true,
+    familyFriendly: true,
+    url: YH_TOURS_URL,
+  },
+  {
+    key: 'valley-litter-pick-up',
+    source: 'nps',
+    category: 'other',
+    title: 'Volunteer Guided Litter Pick Up',
+    description:
+      'A two-hour volunteer-led walk around the valley picking up litter after the busy season. ' +
+      'Meet in front of the Exploration Center; register in person at 1 p.m. Families welcome.',
+    // Guide v51n8 drop-in volunteering: Sep 24, 25, 26, 1 pm (2 hrs), both marks.
+    dates: ['2026-09-24', '2026-09-25', '2026-09-26'],
+    timeStart: '13:00',
+    timeEnd: '15:00',
+    location: 'In front of the Yosemite Exploration Center',
+    coord: VILLAGE_MALL,
+    isFree: true,
+    accessible: true,
+    familyFriendly: true,
+    url: NPS_GUIDE_URL,
+  },
 
-  // ── Yosemite Guide v51n7: photography (The Ansel Adams Gallery) ────────────
+  // ── Yosemite Guide v51n8: The Ansel Adams Gallery ──────────────────────────
   {
     key: 'taag-photography-walk',
     source: 'manual',
@@ -671,10 +621,10 @@ const entries: ManualEntryT[] = [
     key: 'taag-smartphone-photo-wed',
     source: 'manual',
     category: 'arts',
-    title: 'In the Field: Creative Smartphone Photography',
+    title: 'In the Field: Creative Smartphone Photography (Wednesday)',
     description:
-      'A staff photographer from The Ansel Adams Gallery teaches how to make better photographs ' +
-      'with the camera you always carry. Wednesday morning session. Paid; register at anseladams.com.',
+      'Three hours with a staff photographer on making better photographs with the camera you always ' +
+      'carry. Paid; register at anseladams.com.',
     dates: buildWeeklyDates(GUIDE_START, GUIDE_END, [WED]),
     timeStart: '09:00',
     timeEnd: '12:00',
@@ -688,10 +638,10 @@ const entries: ManualEntryT[] = [
     key: 'taag-smartphone-photo-sat',
     source: 'manual',
     category: 'arts',
-    title: 'In the Field: Creative Smartphone Photography',
+    title: 'In the Field: Creative Smartphone Photography (Saturday)',
     description:
-      'A staff photographer from The Ansel Adams Gallery teaches how to make better photographs ' +
-      'with the camera you always carry. Saturday afternoon session. Paid; register at anseladams.com.',
+      'Three hours with a staff photographer on making better photographs with the camera you always ' +
+      'carry. Paid; register at anseladams.com.',
     dates: buildWeeklyDates(GUIDE_START, GUIDE_END, [SAT]),
     timeStart: '13:00',
     timeEnd: '16:00',
@@ -707,8 +657,8 @@ const entries: ManualEntryT[] = [
     category: 'arts',
     title: 'In the Footsteps of Ansel Adams',
     description:
-      'A four-hour field class around Yosemite Valley with a staff photographer from The Ansel ' +
-      'Adams Gallery. Paid; register at anseladams.com.',
+      'A four-hour field class around Yosemite Valley with a staff photographer. Paid; register at ' +
+      'anseladams.com.',
     dates: buildWeeklyDates(GUIDE_START, GUIDE_END, [MON, THU]),
     timeStart: '13:00',
     timeEnd: '17:00',
@@ -724,8 +674,8 @@ const entries: ManualEntryT[] = [
     category: 'arts',
     title: 'Ansel Adams\'s Legacy and Your Digital Camera',
     description:
-      'A field class from The Ansel Adams Gallery on making better photographs with your DSLR. ' +
-      'Starts at the gallery in Yosemite Village. Paid; register at anseladams.com.',
+      'A four-hour field class with a staff photographer on making better photographs with a DSLR. ' +
+      'Paid; register at anseladams.com.',
     dates: buildWeeklyDates(GUIDE_START, GUIDE_END, [TUE]),
     timeStart: '13:00',
     timeEnd: '17:00',
@@ -739,12 +689,12 @@ const entries: ManualEntryT[] = [
     key: 'taag-killion-exhibit',
     source: 'manual',
     category: 'arts',
-    title: 'Trails and Trees: Woodblocks and Prints by Tom Killion',
+    title: 'Trails and Trees of California: Woodblocks and Prints by Tom Killion',
     description:
-      'An exhibition of Tom Killion\'s Sierra woodblock prints at The Ansel Adams Gallery in ' +
-      'Yosemite Village, open daily 9 a.m. to 5 p.m. Free to walk through.',
-    // Guide v51n7 park-partner page: August 8 - September 26, 2026.
-    dates: buildDailyDates('2026-08-08', '2026-09-26'),
+      'The last days of Tom Killion\'s woodblock prints at The Ansel Adams Gallery in Yosemite ' +
+      'Village, open 9 a.m. to 5 p.m. Free to walk through.',
+    // Guide v51n8 park-partner page: August 8 - September 26, 2026.
+    dates: buildDailyDates(GUIDE_START, '2026-09-26'),
     timeStart: '09:00',
     timeEnd: '17:00',
     location: 'The Ansel Adams Gallery, Yosemite Village',
@@ -752,24 +702,87 @@ const entries: ManualEntryT[] = [
     isFree: true,
     url: TAAG_URL,
   },
-
-  // ── Yosemite Guide v51n7: art classes (Yosemite Conservancy) ───────────────
-  // One entry per published instructor block; the printed schedule runs
-  // weekday mornings (9 a.m., 4 hrs) at the Happy Isles Art & Nature Center.
-  // The partner page lists blocks only through Sep 18, so Sep 21 and 22 carry
-  // no class here; do not invent one to fill the window's last two days.
   {
-    key: 'yc-art-class-journaling-eneriz',
+    key: 'taag-peace-of-place-exhibit',
+    source: 'manual',
+    category: 'arts',
+    title: 'Peace of Place (The Ansel Adams Gallery)',
+    description:
+      'Photographs by Alan Ross, John Sexton, Anne Larsen, Roman Loranc, Bob Kolbrener, and Jeffrey ' +
+      'Conley at The Ansel Adams Gallery in Yosemite Village. The gallery is open 9 a.m. to 5 p.m. ' +
+      'through September 30 and 10 a.m. to 5 p.m. from October 1. Free to walk through.',
+    // Guide v51n8: September 27 – November 7.
+    dates: buildDailyDates('2026-09-27', '2026-11-07'),
+    timeStart: '10:00',
+    timeEnd: '17:00',
+    location: 'The Ansel Adams Gallery, Yosemite Village',
+    coord: VILLAGE_MALL,
+    isFree: true,
+    url: TAAG_URL,
+  },
+  {
+    key: 'taag-peace-of-place-reception',
+    source: 'manual',
+    category: 'arts',
+    title: 'Peace of Place: artist reception',
+    description: 'The artist reception for the Peace of Place exhibition at The Ansel Adams Gallery. Free.',
+    // Guide v51n8: Artist Reception Sat, October 10 from 1 – 3 pm.
+    dates: ['2026-10-10'],
+    timeStart: '13:00',
+    timeEnd: '15:00',
+    location: 'The Ansel Adams Gallery, Yosemite Village',
+    coord: VILLAGE_MALL,
+    isFree: true,
+    url: TAAG_URL,
+  },
+  {
+    key: 'taag-earth-is-home-exhibit',
+    source: 'manual',
+    category: 'arts',
+    title: 'Earth is Home II: A World of Color, Photographs by Kerik Kouklis',
+    description:
+      'Kerik Kouklis\'s photographs at The Ansel Adams Gallery in Yosemite Village, 10 a.m. to 5 p.m., ' +
+      'running through January 9, 2027. Free to walk through.',
+    // Guide v51n8: November 8 – January 9, 2027. Carried to GUIDE_END only;
+    // the next issue extends it.
+    dates: buildDailyDates('2026-11-08', GUIDE_END),
+    timeStart: '10:00',
+    timeEnd: '17:00',
+    location: 'The Ansel Adams Gallery, Yosemite Village',
+    coord: VILLAGE_MALL,
+    isFree: true,
+    url: TAAG_URL,
+  },
+  {
+    key: 'taag-earth-is-home-reception',
+    source: 'manual',
+    category: 'arts',
+    title: 'Earth is Home II: artist reception',
+    description: 'The artist reception with Kerik Kouklis at The Ansel Adams Gallery. Free.',
+    // Guide v51n8: Artist Reception Sat, November 14 from 1 – 3 pm.
+    dates: ['2026-11-14'],
+    timeStart: '13:00',
+    timeEnd: '15:00',
+    location: 'The Ansel Adams Gallery, Yosemite Village',
+    coord: VILLAGE_MALL,
+    isFree: true,
+    url: TAAG_URL,
+  },
+
+  // ── Yosemite Guide v51n8: Yosemite Conservancy art & stewardship ───────────
+  // Art classes: 9 am (4 hrs), weekdays, *until Oct 16; weekly instructors
+  // from the park-partner column. Sep 21-25 started before this issue, so
+  // that week is carried from GUIDE_START.
+  {
+    key: 'yc-art-class-journaling-butterfield',
     source: 'conservancy',
     category: 'arts',
     title: 'Art Class: Watercolor Nature Journaling',
     description:
       'Slow down and connect with nature through art; beginners welcome. This week: watercolor ' +
-      'nature journaling with Sylvia Eneriz. Meets at the Happy Isles Art and Nature Center ' +
+      'nature journaling with Elizabeth Butterfield. Meets at the Happy Isles Art and Nature Center ' +
       '(shuttle stop 16). Paid; register in advance at yosemite.org/art.',
-    // Aug 17-18 fall before the guide window opens but the block is printed in
-    // this issue; kept as published.
-    dates: buildWeeklyDates('2026-08-17', '2026-08-21', [MON, TUE, WED, THU, FRI]),
+    dates: buildWeeklyDates(GUIDE_START, '2026-09-25', [MON, TUE, WED, THU, FRI]),
     timeStart: '09:00',
     timeEnd: '13:00',
     location: 'Happy Isles Art and Nature Center (shuttle stop 16)',
@@ -779,33 +792,33 @@ const entries: ManualEntryT[] = [
     url: YC_ART_URL,
   },
   {
-    key: 'yc-art-class-watercolor-de-jesus',
+    key: 'yc-art-class-gouache-harris',
+    source: 'conservancy',
+    category: 'arts',
+    title: 'Art Class: Gouache',
+    description:
+      'Slow down and connect with nature through art; beginners welcome. This week: gouache with ' +
+      'Lori Harris. Meets at the Happy Isles Art and Nature Center (shuttle stop 16). Paid; register ' +
+      'in advance at yosemite.org/art.',
+    dates: buildWeeklyDates('2026-09-28', '2026-10-02', [MON, TUE, WED, THU, FRI]),
+    timeStart: '09:00',
+    timeEnd: '13:00',
+    location: 'Happy Isles Art and Nature Center (shuttle stop 16)',
+    coord: HAPPY_ISLES,
+    isFree: false,
+    reservationRequired: true,
+    url: YC_ART_URL,
+  },
+  {
+    key: 'yc-art-class-watercolor-polic',
     source: 'conservancy',
     category: 'arts',
     title: 'Art Class: Watercolor',
     description:
       'Slow down and connect with nature through art; beginners welcome. This week: watercolor ' +
-      'with Jessica de Jesus. Meets at the Happy Isles Art and Nature Center (shuttle stop 16). ' +
-      'Paid; register in advance at yosemite.org/art.',
-    dates: buildWeeklyDates('2026-08-24', '2026-08-28', [MON, TUE, WED, THU, FRI]),
-    timeStart: '09:00',
-    timeEnd: '13:00',
-    location: 'Happy Isles Art and Nature Center (shuttle stop 16)',
-    coord: HAPPY_ISLES,
-    isFree: false,
-    reservationRequired: true,
-    url: YC_ART_URL,
-  },
-  {
-    key: 'yc-art-class-pastels-craft',
-    source: 'conservancy',
-    category: 'arts',
-    title: 'Art Class: Pastels',
-    description:
-      'Slow down and connect with nature through art; beginners welcome. This block: pastels with ' +
-      'Miranda Craft. Meets at the Happy Isles Art and Nature Center (shuttle stop 16). Paid; ' +
+      'with Zach Polic. Meets at the Happy Isles Art and Nature Center (shuttle stop 16). Paid; ' +
       'register in advance at yosemite.org/art.',
-    dates: buildWeeklyDates('2026-08-31', '2026-09-04', [MON, TUE, WED, THU, FRI]),
+    dates: buildWeeklyDates('2026-10-05', '2026-10-09', [MON, TUE, WED, THU, FRI]),
     timeStart: '09:00',
     timeEnd: '13:00',
     location: 'Happy Isles Art and Nature Center (shuttle stop 16)',
@@ -815,33 +828,15 @@ const entries: ManualEntryT[] = [
     url: YC_ART_URL,
   },
   {
-    key: 'yc-art-class-printmaking-petersen',
-    source: 'conservancy',
-    category: 'arts',
-    title: 'Art Class: Printmaking',
-    description:
-      'Slow down and connect with nature through art; beginners welcome. This week: printmaking ' +
-      'with Leah Petersen. Meets at the Happy Isles Art and Nature Center (shuttle stop 16). Paid; ' +
-      'register in advance at yosemite.org/art.',
-    dates: buildWeeklyDates('2026-09-07', '2026-09-11', [MON, TUE, WED, THU, FRI]),
-    timeStart: '09:00',
-    timeEnd: '13:00',
-    location: 'Happy Isles Art and Nature Center (shuttle stop 16)',
-    coord: HAPPY_ISLES,
-    isFree: false,
-    reservationRequired: true,
-    url: YC_ART_URL,
-  },
-  {
-    key: 'yc-art-class-watercolor-curl',
+    key: 'yc-art-class-watercolor-tilstra',
     source: 'conservancy',
     category: 'arts',
     title: 'Art Class: Watercolor',
     description:
       'Slow down and connect with nature through art; beginners welcome. This week: watercolor ' +
-      'with Steve Curl. Meets at the Happy Isles Art and Nature Center (shuttle stop 16). Paid; ' +
-      'register in advance at yosemite.org/art.',
-    dates: buildWeeklyDates('2026-09-14', '2026-09-18', [MON, TUE, WED, THU, FRI]),
+      'with Dan Tilstra, the last class of the season. Meets at the Happy Isles Art and Nature ' +
+      'Center (shuttle stop 16). Paid; register in advance at yosemite.org/art.',
+    dates: buildWeeklyDates('2026-10-12', '2026-10-16', [MON, TUE, WED, THU, FRI]),
     timeStart: '09:00',
     timeEnd: '13:00',
     location: 'Happy Isles Art and Nature Center (shuttle stop 16)',
@@ -856,9 +851,10 @@ const entries: ManualEntryT[] = [
     category: 'kids',
     title: 'Kids\' Open Art Studio',
     description:
-      'Free drop-in art activities for kids at the Happy Isles Art and Nature Center (shuttle stop ' +
-      '16). Come by any time during studio hours.',
-    dates: buildDailyDates(GUIDE_START, GUIDE_END),
+      'Free art activities for kids at the Happy Isles Art and Nature Center (shuttle stop 16). Drop ' +
+      'in any time during studio hours.',
+    // Guide v51n8: 10 am – 3 pm, weekdays, *until Oct 16.
+    dates: buildWeeklyDates(GUIDE_START, '2026-10-16', [MON, TUE, WED, THU, FRI]),
     timeStart: '10:00',
     timeEnd: '15:00',
     location: 'Happy Isles Art and Nature Center (shuttle stop 16)',
@@ -868,174 +864,34 @@ const entries: ManualEntryT[] = [
     url: YC_ART_URL,
   },
   {
-    key: 'yc-paint-and-sip',
+    key: 'yc-stewardship-fire-ecology',
     source: 'conservancy',
-    category: 'arts',
-    title: 'Paint & Sip',
+    category: 'other',
+    title: 'Stewardship Series: Little Fires Everywhere: Fire Ecology',
     description:
-      'Learn watercolor basics and paint an iconic Yosemite landscape step by step; beginners ' +
-      'welcome. At the Mountain Room Lounge, Yosemite Valley Lodge (shuttle stops 6 and 7). Paid; ' +
-      'register in advance at yosemite.org/art.',
-    // Guide: F, *until Aug 28.
-    dates: buildWeeklyDates(GUIDE_START, '2026-08-28', [FRI]),
+      'A two-hour Yosemite Conservancy Stewardship Series program on fire ecology. Registration ' +
+      'required at yosemite.org, where the meeting place is given; free for Yosemite Conservancy donors.',
+    // Guide v51n8 park-partner column: Oct 23, 2 – 4 pm. No location printed,
+    // so no coord.
+    dates: ['2026-10-23'],
     timeStart: '14:00',
     timeEnd: '16:00',
-    location: 'Mountain Room Lounge, Yosemite Valley Lodge (shuttle stops 6 and 7)',
-    coord: VALLEY_LODGE,
-    isFree: false,
+    // isFree deliberately unset: free for Yosemite Conservancy donors only.
     reservationRequired: true,
-    accessible: true,
-    url: YC_ART_URL,
+    url: YC_URL,
   },
 
-  // ── Yosemite Guide v51n7: parkwide special events ──────────────────────────
-  {
-    key: 'junior-ranger-day-2026',
-    source: 'nps',
-    category: 'junior-ranger',
-    title: 'Junior Ranger Day',
-    description:
-      'Special drop-in Junior Ranger programs throughout the park for one day. Stop by any open ' +
-      'information center to find out what is running where. In the Mariposa Grove the 1:30 p.m. ' +
-      'Jr. Ranger Talk meets in the grove parking area today instead of its usual spot.',
-    dates: ['2026-08-22'],
-    location: 'Parkwide',
-    isFree: true,
-    url: NPS_GUIDE_URL,
-  },
-  {
-    key: 'yosemite-art-trail-2026',
-    source: 'nps',
-    category: 'arts',
-    title: 'Yosemite Art Trail',
-    description:
-      'A week of art-themed drop-in programs throughout the park, with hands-on activities for ' +
-      'making your own Yosemite-inspired piece. Stop by an information center for the day\'s ' +
-      'locations. Free.',
-    dates: buildDailyDates('2026-08-24', '2026-08-30'),
-    location: 'Parkwide',
-    isFree: true,
-    url: NPS_GUIDE_URL,
-  },
-
-  // ── Yosemite Guide v51n7: evening programs at the Heritage Center ──────────
-  // Free Sierra Club programs at the Yosemite Conservation Heritage Center
-  // (shuttle stop 12). Very limited parking; ride the free valley shuttle.
-  {
-    key: 'ychc-poetry-tahoe-to-yosemite',
-    source: 'manual',
-    category: 'talk',
-    title: 'Poetry from Tahoe to Yosemite',
-    description:
-      'An evening of Sierra poetry with Chris Olander, poet laureate and ecology bio-educator, at ' +
-      'the Yosemite Conservation Heritage Center. Free. Very limited parking; use the free valley ' +
-      'shuttle (stop 12).',
-    dates: ['2026-09-11'],
-    timeStart: '19:30',
-    timeEnd: '20:30',
-    location: 'Yosemite Conservation Heritage Center (shuttle stop 12)',
-    coord: YCHC,
-    isFree: true,
-    familyFriendly: true,
-    url: SIERRA_CLUB_URL,
-  },
-  {
-    key: 'ychc-old-yosemite-village',
-    source: 'manual',
-    category: 'talk',
-    title: 'Legacy of the Old Yosemite Village',
-    description:
-      'Alice van Ommeren, author of Yosemite\'s Historic Hotels and Camps, on the village that ' +
-      'stood on the south side of the Merced before the present one. At the Yosemite Conservation ' +
-      'Heritage Center. Free. Very limited parking; use the free valley shuttle (stop 12).',
-    dates: ['2026-09-12'],
-    timeStart: '19:30',
-    timeEnd: '20:30',
-    location: 'Yosemite Conservation Heritage Center (shuttle stop 12)',
-    coord: YCHC,
-    isFree: true,
-    familyFriendly: true,
-    url: SIERRA_CLUB_URL,
-  },
-  {
-    key: 'ychc-mystery-cat',
-    source: 'manual',
-    category: 'talk',
-    title: 'Mystery Cat: Yosemite\'s Elusive Mountain Lion',
-    description:
-      'Don Endicott, interpretive guide at Anza-Borrego Desert State Park, on the animal almost ' +
-      'nobody sees. At the Yosemite Conservation Heritage Center. Free. Very limited parking; use ' +
-      'the free valley shuttle (stop 12).',
-    dates: ['2026-09-18'],
-    timeStart: '19:30',
-    timeEnd: '20:30',
-    location: 'Yosemite Conservation Heritage Center (shuttle stop 12)',
-    coord: YCHC,
-    isFree: true,
-    familyFriendly: true,
-    url: SIERRA_CLUB_URL,
-  },
-  {
-    key: 'ychc-bats',
-    source: 'manual',
-    category: 'talk',
-    title: 'Amazing World of Bats, Nature\'s Tiny Fighter Jets',
-    description:
-      'Don Endicott, interpretive guide at Anza-Borrego Desert State Park, on the park\'s bats. At ' +
-      'the Yosemite Conservation Heritage Center. Free. Very limited parking; use the free valley ' +
-      'shuttle (stop 12).',
-    dates: ['2026-09-19'],
-    timeStart: '19:30',
-    timeEnd: '20:30',
-    location: 'Yosemite Conservation Heritage Center (shuttle stop 12)',
-    coord: YCHC,
-    isFree: true,
-    familyFriendly: true,
-    url: SIERRA_CLUB_URL,
-  },
-
-  // ── Yosemite Guide v51n7: stargazing at Glacier Point ──────────────────────
-  // The astronomy-club star parties that ran through August 15 are NOT printed
-  // in this issue; only the ticketed Starry Skies nights are. Do not carry the
-  // club weekends forward on the assumption that they continue.
-  {
-    key: 'glacier-point-starry-skies',
-    source: 'aramark',
-    category: 'astronomy',
-    title: 'Glacier Point Starry Skies',
-    description:
-      'A Yosemite naturalist hosts an hour of stargazing from Glacier Point. Transportation to ' +
-      'Glacier Point is not included, and it is an hour from the valley in the dark. Paid; tickets ' +
-      'at travelyosemite.com.',
-    // Guide: 9 pm on select dates, *Aug 19-20, Sep 6-10, Sep 13-17 ONLY.
-    dates: [
-      '2026-08-19', '2026-08-20',
-      '2026-09-06', '2026-09-07', '2026-09-08', '2026-09-09', '2026-09-10',
-      '2026-09-13', '2026-09-14', '2026-09-15', '2026-09-16', '2026-09-17',
-    ],
-    timeStart: '21:00',
-    timeEnd: '22:00',
-    location: 'Glacier Point',
-    coord: GLACIER_POINT,
-    isFree: false,
-    reservationRequired: true,
-    accessible: true,
-    familyFriendly: true,
-    url: YH_URL,
-  },
-
-  // ── Yosemite Guide v51n7: Wawona & the Mariposa Grove ──────────────────────
-  // Every Wawona-area program is asterisked "*no program Aug 19", the guide
-  // window's opening day.
+  // ── Yosemite Guide v51n8: Wawona & the Mariposa Grove ──────────────────────
   {
     key: 'wawona-coffee-with-a-ranger',
     source: 'nps',
-    category: 'ranger',
+    category: 'talk',
     title: 'Coffee with a Ranger',
     description:
-      'Coffee, a Q&A session, and general park updates with a ranger at the Pine Tree Market in ' +
-      'Wawona. Drop-ins welcome.',
-    dates: buildWeeklyDates(GUIDE_START, GUIDE_END, [WED, SUN], { skip: ['2026-08-19'] }),
+      'Coffee, a Q&A, and general park updates with a ranger at the Pine Tree Market in Wawona. ' +
+      'Drop-ins welcome.',
+    // Guide v51n8: 9 am (1 hr), Su & W, *until Oct 17.
+    dates: buildWeeklyDates(GUIDE_START, '2026-10-17', [SUN, WED]),
     timeStart: '09:00',
     timeEnd: '10:00',
     location: 'Pine Tree Market, Wawona',
@@ -1048,11 +904,12 @@ const entries: ManualEntryT[] = [
     key: 'mariposa-grove-nature-walk',
     source: 'nps',
     category: 'walk',
-    title: 'Nature Walk in the Mariposa Grove',
+    title: 'Nature Walk: Mariposa Grove',
     description:
-      'A ranger-led walk among the giant sequoias. Meets at the Mariposa Grove Arrival Area; allow ' +
-      'time to park and walk or ride the grove shuttle before the start.',
-    dates: buildDailyDates(GUIDE_START, GUIDE_END).filter((d) => d !== '2026-08-19'),
+      'A ranger-led nature walk from the Mariposa Grove Arrival Area. Allow time to park and ride ' +
+      'the free shuttle up to the grove before the program starts.',
+    // Guide v51n8: 9:30 am (1.5 hrs), daily, *until Oct 17.
+    dates: buildDailyDates(GUIDE_START, '2026-10-17'),
     timeStart: '09:30',
     timeEnd: '11:00',
     location: 'Mariposa Grove Arrival Area',
@@ -1060,92 +917,22 @@ const entries: ManualEntryT[] = [
     isFree: true,
     url: NPS_GUIDE_URL,
   },
-  {
-    key: 'mariposa-grove-jr-ranger-talk',
-    source: 'nps',
-    category: 'junior-ranger',
-    title: 'Jr. Ranger Talk in the Mariposa Grove',
-    description:
-      'A ranger talk for kids 4 and up among the big trees. Allow time to park and walk or ride the ' +
-      'grove shuttle before the start. On August 22, Junior Ranger Day, this one meets in the grove ' +
-      'parking area instead.',
-    dates: buildDailyDates(GUIDE_START, GUIDE_END).filter((d) => d !== '2026-08-19'),
-    timeStart: '13:30',
-    timeEnd: '14:15',
-    location: 'Mariposa Grove',
-    coord: MARIPOSA_GROVE,
-    isFree: true,
-    url: NPS_GUIDE_URL,
-  },
-  {
-    key: 'wawona-bear-talk',
-    source: 'nps',
-    category: 'talk',
-    title: 'Bear Talk',
-    description:
-      'Ranger Jill on Yosemite\'s bears and how to be bear aware on the road, at your cabin, on the ' +
-      'trail, and in the wild, at The Redwoods fireside deck in Wawona. Complimentary, kid and pet ' +
-      'friendly, open to the public; snacks and soft drinks provided.',
-    dates: buildWeeklyDates(GUIDE_START, GUIDE_END, [SUN, WED], { skip: ['2026-08-19'] }),
-    timeStart: '17:00',
-    timeEnd: '17:45',
-    location: 'The Redwoods fireside deck, Wawona',
-    coord: WAWONA,
-    isFree: true,
-    accessible: true,
-    familyFriendly: true,
-    url: NPS_GUIDE_URL,
-  },
-  {
-    key: 'wawona-campfire-program',
-    source: 'nps',
-    category: 'talk',
-    // Location-qualified: the guide titles it plain "Campfire Program", and so
-    // does Tuolumne's nightly one. Both run nightly, so an unqualified title
-    // would put two identical rows on every date of the window.
-    title: 'Campfire Program at Wawona',
-    description:
-      'A nightly campfire program at the Wawona Campground amphitheater; topics vary. Returns this ' +
-      'issue after being off the printed schedule in the last one.',
-    dates: buildDailyDates(GUIDE_START, GUIDE_END).filter((d) => d !== '2026-08-19'),
-    timeStart: '19:00',
-    timeEnd: '20:00',
-    location: 'Wawona Campground amphitheater',
-    coord: WAWONA,
-    isFree: true,
-    url: NPS_GUIDE_URL,
-  },
 
-  // ── Yosemite Guide v51n7: near Crane Flat ──────────────────────────────────
-  {
-    key: 'tuolumne-grove-sequoia-hike',
-    source: 'nps',
-    category: 'walk',
-    title: 'Giant Sequoia Hike',
-    description:
-      'A ranger-led hour among the Tuolumne Grove sequoias. Meet in the grove: it is a 1-mile walk ' +
-      'down from the trailhead, 2.5 miles round trip with 500 feet of climb on the way out. Bring water.',
-    dates: buildWeeklyDates(GUIDE_START, GUIDE_END, [MON, WED, THU]),
-    timeStart: '11:00',
-    timeEnd: '12:00',
-    location: 'Tuolumne Grove',
-    coord: CRANE_FLAT,
-    isFree: true,
-    familyFriendly: true,
-    url: NPS_GUIDE_URL,
-  },
+  // ── Yosemite Guide v51n8: near Crane Flat ──────────────────────────────────
   {
     key: 'tuolumne-grove-jr-ranger-table',
     source: 'nps',
     category: 'junior-ranger',
-    // Qualified alongside the valley table above; see the note there.
     title: 'Jr. Ranger Discovery Table at the Tuolumne Grove',
     description:
-      'Drop in any time to talk with a ranger and start or finish earning a Junior Ranger badge. At ' +
-      'the Tuolumne Grove Trailhead.',
-    dates: buildDailyDates(GUIDE_START, GUIDE_END),
-    timeStart: '14:00',
-    timeEnd: '15:30',
+      'Drop in to talk with a ranger and start or finish a Junior Ranger badge, at the Tuolumne ' +
+      'Grove trailhead on Tioga Road.',
+    // Guide v51n8: 10 am – 12 pm, daily, *until Nov 1, *no program Oct 9.
+    dates: buildWeeklyDates(GUIDE_START, '2026-11-01', [SUN, MON, TUE, WED, THU, FRI, SAT], {
+      skip: ['2026-10-09'],
+    }),
+    timeStart: '10:00',
+    timeEnd: '12:00',
     location: 'Tuolumne Grove Trailhead',
     coord: CRANE_FLAT,
     isFree: true,
@@ -1153,17 +940,33 @@ const entries: ManualEntryT[] = [
     url: NPS_GUIDE_URL,
   },
   {
+    key: 'tuolumne-grove-sequoia-hike',
+    source: 'nps',
+    category: 'walk',
+    title: 'Giant Sequoia Hike',
+    description:
+      'A ranger-led hike into the Tuolumne Grove: 2.5 miles round trip with 500 feet of elevation ' +
+      'change, and the climb comes on the way back. Meet at the Tuolumne Grove Trailhead. Bring water.',
+    // Guide v51n8: 1 pm (1.5 hrs), M, W, Th, *until Nov 1, *no program Sep 30 or Oct 12.
+    dates: buildWeeklyDates(GUIDE_START, '2026-11-01', [MON, WED, THU], {
+      skip: ['2026-09-30', '2026-10-12'],
+    }),
+    timeStart: '13:00',
+    timeEnd: '14:30',
+    location: 'Tuolumne Grove Trailhead',
+    coord: CRANE_FLAT,
+    isFree: true,
+    familyFriendly: true,
+    url: NPS_GUIDE_URL,
+  },
+  {
     key: 'crane-flat-evening-program',
     source: 'nps',
     category: 'talk',
-    title: 'Evening Program',
-    description:
-      'An evening ranger program at the Crane Flat Campground Amphitheater; topics vary.',
-    // Guide v51n7: 6:30 pm (v51n6 ran 7 pm), Su, W, Th, F, Sa, *no program
-    // Aug 22 or 23.
-    dates: buildWeeklyDates(GUIDE_START, GUIDE_END, [SUN, WED, THU, FRI, SAT], {
-      skip: ['2026-08-22', '2026-08-23'],
-    }),
+    title: 'Crane Flat Evening Program',
+    description: 'An hour-long evening program at the Crane Flat Campground Amphitheater; topics vary.',
+    // Guide v51n8: 6:30 pm (1 hr), Su, W, Th, F, Sa, *until Oct 9.
+    dates: buildWeeklyDates(GUIDE_START, '2026-10-09', [SUN, WED, THU, FRI, SAT]),
     timeStart: '18:30',
     timeEnd: '19:30',
     location: 'Crane Flat Campground Amphitheater',
@@ -1174,427 +977,30 @@ const entries: ManualEntryT[] = [
     url: NPS_GUIDE_URL,
   },
   {
-    key: 'stars-over-crane-flat',
-    // Category set by hand: the feed's regex mapping would not read
-    // "Stars Over" as astronomy.
-    source: 'nps',
-    category: 'astronomy',
-    title: 'Stars Over Crane Flat',
-    description:
-      'A ranger-led night of stargazing at Crane Flat. Free, but registration is required at the ' +
-      'Big Oak Flat Information Station. No pets, RVs, or trailers.',
-    // Guide v51n7: 8 pm (v51n6 ran 8:30), *Sep 3, 5, 7, 9, 10, 12 ONLY.
-    dates: [
-      '2026-09-03', '2026-09-05', '2026-09-07',
-      '2026-09-09', '2026-09-10', '2026-09-12',
-    ],
-    timeStart: '20:00',
-    timeEnd: '21:30',
-    location: 'Crane Flat (register at the Big Oak Flat Information Station)',
-    coord: CRANE_FLAT,
-    isFree: true,
-    reservationRequired: true,
-    familyFriendly: true,
-    url: NPS_GUIDE_URL,
-  },
-
-  // ── Yosemite Guide v51n7: Tuolumne Meadows ─────────────────────────────────
-  // Dropped from the printed schedule this issue, so dropped here: the Dog Lake
-  // hike, Art in the Meadow, Sunset on the Dome, the Kids' Campfire, and the
-  // Parsons Memorial Lodge Summer Series (which ran weekends July 18 - Aug 16).
-  {
-    key: 'tm-bird-walk',
-    source: 'nps',
-    category: 'walk',
-    title: 'Bird Walk',
-    description:
-      'An easy morning stroll with a Tuolumne Meadows bird expert; binoculars available. Meets at ' +
-      'Lembert Dome parking.',
-    dates: buildWeeklyDates(GUIDE_START, GUIDE_END, [WED, SAT]),
-    timeStart: '07:30',
-    timeEnd: '10:30',
-    location: 'Lembert Dome parking, Tuolumne Meadows',
-    coord: LEMBERT_DOME,
-    isFree: true,
-    url: NPS_GUIDE_URL,
-  },
-  {
-    key: 'tm-coffee-with-a-ranger',
-    source: 'nps',
-    category: 'ranger',
-    // Wawona prints the same title on Su and W; these two never share a date.
-    title: 'Coffee with a Ranger',
-    description:
-      'Drop by the Dana Campfire Circle at the Tuolumne Meadows Campground to chat with a ranger ' +
-      'over coffee.',
-    dates: buildWeeklyDates(GUIDE_START, GUIDE_END, [TUE, THU]),
-    timeStart: '08:00',
-    timeEnd: '10:00',
-    location: 'Dana Campfire Circle, Tuolumne Meadows Campground',
-    coord: TM_CAMPGROUND,
-    isFree: true,
-    url: NPS_GUIDE_URL,
-  },
-  {
-    key: 'tm-climber-coffee',
-    source: 'nps',
-    category: 'other',
-    title: 'Climber Coffee',
-    description:
-      'Coffee with NPS climbing rangers: climbing management, search and rescue, and news from the ' +
-      'climbing community. Drop in at the Tuolumne Meadows Store. Returns to Camp 4 in Yosemite ' +
-      'Valley on September 13.',
-    // Guide: Su, *until Aug 30.
-    dates: buildWeeklyDates(GUIDE_START, '2026-08-30', [SUN]),
-    timeStart: '09:00',
-    timeEnd: '11:00',
-    location: 'Tuolumne Meadows Store',
-    coord: LEMBERT_DOME,
-    isFree: true,
-    accessible: true,
-    url: NPS_GUIDE_URL,
-  },
-  {
-    key: 'parsons-lodge-open',
-    source: 'nps',
-    category: 'other',
-    title: 'Parsons Memorial Lodge at the Soda Springs',
-    description:
-      'Meet a ranger at the 1915 stone lodge at Soda Springs and learn the history of Yosemite\'s ' +
-      'high country. Daily activities and an open reading room. A 30-minute walk in from parking.',
-    dates: buildDailyDates(GUIDE_START, GUIDE_END),
-    timeStart: '10:00',
-    timeEnd: '16:00',
-    location: 'Parsons Memorial Lodge, Tuolumne Meadows',
-    coord: LEMBERT_DOME,
-    isFree: true,
-    familyFriendly: true,
-    url: NPS_GUIDE_URL,
-  },
-  {
-    key: 'tm-botanical-walk',
-    source: 'nps',
-    category: 'walk',
-    // Printed as "Wildflower Walk" in v51n6, "Botanical Walk" here; same day,
-    // time, and meeting point.
-    title: 'Botanical Walk',
-    description:
-      'A moderately strenuous high-country walk with a ranger naturalist to find out what the ' +
-      'plants are doing, and learn more than names. Meets at Lembert Dome parking.',
-    dates: buildWeeklyDates(GUIDE_START, GUIDE_END, [SUN, TUE]),
-    timeStart: '10:00',
-    timeEnd: '12:00',
-    location: 'Lembert Dome parking, Tuolumne Meadows',
-    coord: LEMBERT_DOME,
-    isFree: true,
-    url: NPS_GUIDE_URL,
-  },
-  {
-    key: 'tm-tioga-pass-botanical',
-    source: 'nps',
-    category: 'walk',
-    title: 'Tioga Pass Botanical Walk',
-    description:
-      'See what\'s in bloom at 10,000 feet above the sea. A moderate to strenuous four-hour hike; ' +
-      'meet at the Gaylor Lakes Trailhead ready to walk.',
-    dates: buildWeeklyDates(GUIDE_START, GUIDE_END, [FRI]),
-    timeStart: '10:00',
-    timeEnd: '14:00',
-    location: 'Gaylor Lakes Trailhead, Tioga Pass',
-    coord: GAYLOR_TH,
-    isFree: true,
-    url: NPS_GUIDE_URL,
-  },
-  {
-    key: 'tm-domes-and-meadows',
-    source: 'nps',
-    category: 'walk',
-    title: 'Domes and Meadows',
-    description:
-      'A moderate stroll through Tuolumne\'s signature landscape of granite and meadow. Meets at ' +
-      'Parsons Lodge Parking.',
-    dates: buildWeeklyDates(GUIDE_START, GUIDE_END, [MON, THU]),
-    timeStart: '10:00',
-    timeEnd: '12:00',
-    location: 'Parsons Lodge Parking, Tuolumne Meadows',
-    coord: LEMBERT_DOME,
-    isFree: true,
-    url: NPS_GUIDE_URL,
-  },
-  {
-    key: 'tm-geology',
-    source: 'nps',
-    category: 'walk',
-    title: 'Geology of Tuolumne Meadows',
-    description:
-      'A moderate walk on the granite story of Tuolumne Meadows. Meets at the Pothole Dome Trailhead.',
-    dates: buildWeeklyDates(GUIDE_START, GUIDE_END, [WED, SAT]),
-    timeStart: '10:00',
-    timeEnd: '12:00',
-    location: 'Pothole Dome Trailhead, Tuolumne Meadows',
-    coord: POTHOLE_DOME,
-    isFree: true,
-    url: NPS_GUIDE_URL,
-  },
-  {
-    key: 'tm-jr-ranger-program',
-    source: 'nps',
-    category: 'junior-ranger',
-    title: 'Jr. Ranger Program',
-    description:
-      'An easy Junior Ranger stroll in the high country; topics vary. Meets at Lembert Dome parking.',
-    dates: buildWeeklyDates(GUIDE_START, GUIDE_END, [WED, SAT]),
-    timeStart: '10:00',
-    timeEnd: '11:30',
-    location: 'Lembert Dome parking, Tuolumne Meadows',
-    coord: LEMBERT_DOME,
-    isFree: true,
-    url: NPS_GUIDE_URL,
-  },
-  {
-    key: 'tm-welcome-talk-noon',
+    key: 'hodgdon-meadow-evening-program',
     source: 'nps',
     category: 'talk',
-    title: 'Ranger Talk: Welcome to Tuolumne!',
+    title: 'Hodgdon Meadow Evening Program',
     description:
-      'A 15-minute orientation talk at the Tuolumne Meadows Visitor Center parking lot; offered ' +
-      'daily at noon and again at 3 p.m.',
-    dates: buildDailyDates(GUIDE_START, GUIDE_END),
-    timeStart: '12:00',
-    timeEnd: '12:15',
-    location: 'Tuolumne Meadows Visitor Center parking lot',
-    coord: TM_VISITOR_CENTER,
-    isFree: true,
-    accessible: true,
-    familyFriendly: true,
-    url: NPS_GUIDE_URL,
-  },
-  {
-    key: 'tm-river-walk',
-    source: 'nps',
-    category: 'walk',
-    title: 'Tuolumne Wild and Scenic River Walk',
-    description: 'An easy stroll along the wild and scenic Tuolumne River. Meets at the Dog Lake parking lot.',
-    dates: buildWeeklyDates(GUIDE_START, GUIDE_END, [WED]),
-    timeStart: '13:00',
-    timeEnd: '15:00',
-    location: 'Dog Lake parking lot, Tuolumne Meadows',
-    coord: DOG_LAKE_LOT,
+      'An hour-long evening program at the Hodgdon Meadow Campground Amphitheater, near the group ' +
+      'sites; topics vary.',
+    // Guide v51n8: 6:30 pm (1 hr), *Oct 16, 17, 23, 24 ONLY.
+    dates: ['2026-10-16', '2026-10-17', '2026-10-23', '2026-10-24'],
+    timeStart: '18:30',
+    timeEnd: '19:30',
+    location: 'Hodgdon Meadow Campground Amphitheater',
+    coord: HODGDON_MEADOW,
     isFree: true,
     familyFriendly: true,
     url: NPS_GUIDE_URL,
-  },
-  {
-    key: 'tm-forest-walk',
-    source: 'nps',
-    category: 'walk',
-    title: 'Forest Walk',
-    description: 'An easy walk in the lodgepole forest. Meets at the Dog Lake parking lot.',
-    dates: buildWeeklyDates(GUIDE_START, GUIDE_END, [MON]),
-    timeStart: '14:00',
-    timeEnd: '16:00',
-    location: 'Dog Lake parking lot, Tuolumne Meadows',
-    coord: DOG_LAKE_LOT,
-    isFree: true,
-    familyFriendly: true,
-    url: NPS_GUIDE_URL,
-  },
-  {
-    key: 'tm-history',
-    source: 'nps',
-    category: 'walk',
-    title: 'History of Tuolumne Meadows',
-    description:
-      'An easy walking talk on the human history of Tuolumne Meadows. Meets at the visitor center ' +
-      'parking lot.',
-    // Guide v51n7 prints this on two dates only, not the weekly Friday run of
-    // v51n6: "2 pm (2 hrs) Aug 21 & 28 ONLY".
-    dates: ['2026-08-21', '2026-08-28'],
-    timeStart: '14:00',
-    timeEnd: '16:00',
-    location: 'Tuolumne Meadows Visitor Center parking lot',
-    coord: TM_VISITOR_CENTER,
-    isFree: true,
-    url: NPS_GUIDE_URL,
-  },
-  {
-    key: 'tm-wildlife-high-sierra',
-    source: 'nps',
-    category: 'walk',
-    title: 'Wildlife of the High Sierra',
-    description:
-      'An easy walk on the animals of the high Sierra. Meets at the Tuolumne Meadows Visitor Center.',
-    dates: buildWeeklyDates(GUIDE_START, GUIDE_END, [THU]),
-    timeStart: '14:00',
-    timeEnd: '16:00',
-    location: 'Tuolumne Meadows Visitor Center',
-    coord: TM_VISITOR_CENTER,
-    isFree: true,
-    familyFriendly: true,
-    url: NPS_GUIDE_URL,
-  },
-  {
-    key: 'tm-welcome-talk-3pm',
-    // Same printed title as tm-welcome-talk-noon; if the NPS feed carries this
-    // title on a date, the route's date+title dedupe drops BOTH manual slots
-    // and the reader sees the single feed record. Accepted tradeoff. This
-    // issue runs the afternoon session daily, where v51n6 ran it weekdays only.
-    source: 'nps',
-    category: 'talk',
-    title: 'Ranger Talk: Welcome to Tuolumne!',
-    description:
-      'A 15-minute orientation talk at the Tuolumne Meadows Visitor Center parking lot; offered ' +
-      'daily at noon and again at 3 p.m.',
-    dates: buildDailyDates(GUIDE_START, GUIDE_END),
-    timeStart: '15:00',
-    timeEnd: '15:15',
-    location: 'Tuolumne Meadows Visitor Center parking lot',
-    coord: TM_VISITOR_CENTER,
-    isFree: true,
-    accessible: true,
-    familyFriendly: true,
-    url: NPS_GUIDE_URL,
-  },
-  {
-    key: 'tm-campfire-program',
-    source: 'nps',
-    category: 'talk',
-    // Location-qualified for the same reason as the Wawona campfire program:
-    // the guide titles both plain "Campfire Program" and both run nightly.
-    title: 'Campfire Program at Tuolumne Meadows',
-    description:
-      'A nightly campfire program at the Dana Campfire Circle, Tuolumne Meadows Campground; ' +
-      'different topics each night.',
-    // Guide v51n7: 7:30 pm (v51n6 ran 8 pm), nightly, no skip dates.
-    dates: buildDailyDates(GUIDE_START, GUIDE_END),
-    timeStart: '19:30',
-    timeEnd: '20:30',
-    location: 'Dana Campfire Circle, Tuolumne Meadows Campground',
-    coord: TM_CAMPGROUND,
-    isFree: true,
-    accessible: true,
-    familyFriendly: true,
-    url: NPS_GUIDE_URL,
-  },
-  {
-    key: 'tm-campfireside-chat',
-    source: 'nps',
-    category: 'talk',
-    title: 'Campfireside Chat with a Ranger',
-    description:
-      'An evening chat with a ranger around the fire at Tuolumne Meadows Lodge. The guide runs this ' +
-      'only on nights the lodge is open, so check at the visitor center before driving over.',
-    // Guide v51n7: 7:30 pm (v51n6 ran 8 pm), M, W, Sa, *only when the Lodge is
-    // open. That condition has no published dates, so it is carried in words
-    // rather than as a skip list.
-    dates: buildWeeklyDates(GUIDE_START, GUIDE_END, [MON, WED, SAT]),
-    timeStart: '19:30',
-    timeEnd: '20:30',
-    location: 'Tuolumne Meadows Lodge',
-    coord: TM_LODGE,
-    isFree: true,
-    accessible: true,
-    familyFriendly: true,
-    url: NPS_GUIDE_URL,
-  },
-  {
-    key: 'stars-over-tuolumne',
-    // Category set by hand, same reason as stars-over-crane-flat.
-    source: 'nps',
-    category: 'astronomy',
-    title: 'Stars Over Tuolumne',
-    description:
-      'An hour of high-country stargazing from Lembert Dome parking. Bring a pad to sit on, a ' +
-      'flashlight, and warm layers.',
-    // Guide v51n7: 9 pm (v51n6 ran 9:30 pm), M, W, Sa, no skip dates.
-    dates: buildWeeklyDates(GUIDE_START, GUIDE_END, [MON, WED, SAT]),
-    timeStart: '21:00',
-    timeEnd: '22:00',
-    location: 'Lembert Dome parking, Tuolumne Meadows',
-    coord: LEMBERT_DOME,
-    isFree: true,
-    familyFriendly: true,
-    url: NPS_GUIDE_URL,
-  },
-  {
-    key: 'yc-stewardship-tuolumne-overview',
-    source: 'conservancy',
-    category: 'other',
-    title: 'Stewardship Series: Tuolumne Meadows Overview',
-    description:
-      'A two-hour Yosemite Conservancy Stewardship Series program on the meadow system of Tuolumne ' +
-      'and the work of keeping it intact. Registration required at yosemite.org; free for Yosemite ' +
-      'Conservancy donors.',
-    dates: ['2026-08-21'],
-    timeStart: '14:00',
-    timeEnd: '16:00',
-    location: 'Tuolumne Meadows',
-    coord: TM_VISITOR_CENTER,
-    // isFree deliberately unset: free for Yosemite Conservancy donors only; the
-    // description carries the condition.
-    reservationRequired: true,
-    url: YC_URL,
   },
 
   // ── Yosemite Conservancy Outdoor Adventures (yosemite.org, 2026-07-25 pass) ─
   // Curated from the yosemite.org/event pages for the paid Outdoor Adventures
-  // catalog (backpacks, Yosemite Field School, overnight astronomy trips).
-  // Direct fetching of yosemite.org was blocked from the curation environment,
-  // so every entry below was cross-checked through the search index instead and
-  // only kept when the indexed page printed an explicit 2026 date (or a
-  // weekday-plus-date pair that exists only in 2026). The index also serves
-  // stale prior-year copies of many /event/ pages; everything that could not be
-  // pinned to 2026 is listed in the pending block below, not served.
-  // Multi-day trips list every calendar day of the trip, matching how this file
-  // handles other multi-day events; no meeting-point coords are carried because
-  // exact meeting points are given at registration. The 2026-08-17 pass dropped
-  // the five trips whose dates had all passed (Yosemite Creek, Treecology,
-  // Backpack & Paint, and both Perseids nights).
-  {
-    key: 'yc-field-school-bighorn-sheep',
-    source: 'conservancy',
-    category: 'walk',
-    title: 'Yosemite Field School: Bighorn Sheep Backpack',
-    description:
-      'An advanced Yosemite Field School backpack into rugged alpine terrain near Mount Lewis, ' +
-      'Mount Gibbs, Mono Pass, and Parker Pass, focused on Sierra Nevada bighorn sheep. Camp opens ' +
-      'Thursday afternoon with an evening orientation; the trek runs Friday through Sunday, 4 to 5 ' +
-      'miles per day at around 10,500 feet. Paid; register in advance at yosemite.org.',
-    dates: ['2026-08-20', '2026-08-21', '2026-08-22', '2026-08-23'],
-    location: 'Mono Pass and Parker Pass area, eastern Yosemite',
-    isFree: false,
-    reservationRequired: true,
-    url: 'https://yosemite.org/event/yosemite-field-school-bighorn-sheep-backpack/',
-  },
-  {
-    key: 'yc-backpack-ten-lakes-grant-lake',
-    source: 'conservancy',
-    category: 'walk',
-    title: 'Backpack: Ten Lakes and Grant Lake',
-    description:
-      'A guided backpacking trip from the Ten Lakes Trailhead on Tioga Road into the Ten Lakes ' +
-      'Basin and on to Grant Lake, with a Conservancy naturalist guide. Paid; register in advance ' +
-      'at yosemite.org.',
-    dates: ['2026-08-20', '2026-08-21', '2026-08-22', '2026-08-23'],
-    location: 'Ten Lakes Trailhead, Tioga Road',
-    isFree: false,
-    reservationRequired: true,
-    url: 'https://yosemite.org/event/backpack-ten-lakes-and-grant-lake/',
-  },
-  {
-    key: 'yc-mule-supported-backpack',
-    source: 'conservancy',
-    category: 'walk',
-    title: 'Yosemite Mule-Supported Backpack',
-    description:
-      'A guided high-country backpack, Thursday through Sunday, with pack mules carrying the heavy ' +
-      'gear, opening Yosemite\'s wilderness to hikers who would rather not haul a full pack. Paid; ' +
-      'register in advance at yosemite.org.',
-    dates: ['2026-09-03', '2026-09-04', '2026-09-05', '2026-09-06'],
-    isFree: false,
-    reservationRequired: true,
-    url: 'https://yosemite.org/event/yosemite-mule-supported-backpack/',
-  },
+  // catalog. Only trips pinned to an explicit 2026 date are served; see the
+  // pending block below. The 2026-09-22 pass dropped the three trips whose
+  // dates had all passed (Bighorn Sheep, Ten Lakes and Grant Lake, the
+  // mule-supported backpack).
   {
     key: 'yc-backpack-eagle-peak',
     source: 'conservancy',
@@ -1621,8 +1027,9 @@ const entries: ManualEntryT[] = [
 // been promoted: the Parsons Memorial Lodge Summer Series (weekends July 18 –
 // August 16), the Tuolumne Meadows Kids' Campfire (Wednesdays), and the
 // Tuolumne Meadows campground Campfire Program (nightly) all print real dates
-// in this issue. The v51n7 pass added nothing here: every program printed in
-// that issue carries publishable dates and went straight into `entries`.
+// in this issue. The v51n7 and v51n8 passes added nothing here: every program
+// printed in those issues carries publishable dates and went straight into
+// `entries`.
 //
 // Still undrafted, awaiting operator confirmation for later in the season:
 // - vintners-holidays: partial 2026 dates are visible via participating
@@ -1752,7 +1159,7 @@ for (const entry of parsed) {
 
 // Version label surfaced in the /api/programs `sources` block so the app can
 // show which curation pass the offline copy came from.
-export const MANUAL_PROGRAMS_VERSION = '2026-08-18-guide-v51n7'
+export const MANUAL_PROGRAMS_VERSION = '2026-09-22-guide-v51n8'
 
 export const MANUAL_PROGRAMS: ProgramEventT[] = sortEvents(parsed.flatMap(expand))
 

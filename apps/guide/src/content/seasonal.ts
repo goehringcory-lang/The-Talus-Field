@@ -128,13 +128,15 @@ const windowEntries: SeasonalInput[] = [
     // Source: Yosemite Guide Vol 51 Issue 6 (July 15 - August 18, 2026), which
     // moves the closure's start from the June 30 printed in v51n5 to July 27.
     // Reconfirmed unchanged in v51n7 (August 19 - September 22, 2026), whose
-    // Valley Trails map also prints the signed John Muir Trail detour.
+    // Valley Trails map also prints the signed John Muir Trail detour, and
+    // again in v51n8 (September 23 - November 24, 2026), which adds the
+    // possible November winter closures above the footbridge and on the JMT.
     dateStart: '2026-07-27',
     dateEnd: '2026-10-31',
     location: 'Mist Trail, Vernal and Nevada Fall corridor',
     url: 'https://www.nps.gov/yose/planyourvisit/conditions.htm',
     description:
-      'The Mist Trail is closed for trail repairs Monday through Thursday, 7 a.m. to 3:30 p.m., from July 27 through the end of October 2026. It is open Fridays, Saturdays, Sundays, and holidays, and on weekdays before 7 and after 3:30 when conditions allow. During the closure a signed detour on the John Muir Trail is the way to Vernal Fall, Nevada Fall, and everything beyond. If the falls are the point of a weekday, start very early or take the detour, and check conditions before committing.',
+      'The Mist Trail is closed for trail repairs Monday through Thursday, 7 a.m. to 3:30 p.m., from July 27 through the end of October 2026. It is open Fridays, Saturdays, Sundays, and holidays, and on weekdays before 7 and after 3:30 when conditions allow. During the closure a signed detour on the John Muir Trail is the way to Vernal Fall, Nevada Fall, and everything beyond. If the falls are the point of a weekday, start very early or take the detour, and check conditions before committing. After the repairs end, winter takes over: the Mist Trail above the Vernal Fall footbridge and the John Muir Trail between Clark Point and the Panorama Trail junction may close for the season in November.',
     stopIds: ['mist-trail'],
   },
   {
@@ -167,6 +169,38 @@ const windowEntries: SeasonalInput[] = [
     description:
       'Early September is when the summer schedule ends. Jennie\'s Ice Cream at Curry closes after September 6 and the Wawona stable finishes the same day. The Curry and Yosemite Valley Lodge pools close after September 7, when the Village, Curry, and Lodge stores also start closing at 9 instead of 10 and the Meadow Grill taqueria moves to a 5 p.m. close. Bike rentals drop to 9 to 6 from September 8. Raft rentals are already done for the year, and the Wawona Hotel and its dining room are closed for renovation. None of this closes the park, but it does mean a late dinner or a late errand needs checking first.',
     stopIds: ['curry-village', 'wawona-hotel-history-center'],
+  },
+  {
+    id: 'high-country-fall-2026',
+    title: 'Tioga Road: no services, no overnight parking',
+    category: 'other',
+    confidence: 'confirmed',
+    // Source: Yosemite Guide Vol 51 Issue 8 (September 23 - November 24,
+    // 2026), park map and services pages. The road-closing window itself is
+    // the separate tioga-close-2026 / glacier-point-close-2026 entries.
+    dateStart: '2026-09-23',
+    dateEnd: '2026-11-30',
+    location: 'Tioga Road, Tuolumne Meadows, and Glacier Point Road',
+    url: 'https://www.nps.gov/yose/planyourvisit/guide.htm',
+    description:
+      'Autumn in the high country is drive-yourself and self-supported. The Tuolumne store, grill, lodge, shuttle, and hikers bus are done for the year, the Tuolumne Meadows Visitor Center closes after September 27, and the Tuolumne Meadows Wilderness Center after October 14, when overnight permits for Tioga Road trailheads move to self-registration on its front porch. From October 15 there is no overnight parking on Tioga Road or Glacier Point Road. Both roads typically close for the winter sometime in November, and with Tioga closed there is no way to or from Highway 395 through the park. Chain restrictions are possible from November on, and when they apply every vehicle must carry chains, four-wheel drive and rentals included. Road status: 209/372-0200, press 1 then 1.',
+    stopIds: ['soda-springs-parsons-lodge', 'olmsted-point', 'glacier-point'],
+  },
+  {
+    id: 'fall-services-close-2026',
+    title: 'Fall closings in the Valley, Wawona, and Glacier Point',
+    category: 'other',
+    confidence: 'confirmed',
+    // Source: Yosemite Guide Vol 51 Issue 8 (September 23 - November 24,
+    // 2026), services, transportation, and backpacking pages, which print each
+    // venue's closing date.
+    dateStart: '2026-09-23',
+    dateEnd: '2026-10-31',
+    location: 'Yosemite Valley, Wawona, Crane Flat, and Glacier Point',
+    url: 'https://www.nps.gov/yose/planyourvisit/guide.htm',
+    description:
+      'The park closes its seasonal counters one at a time through October. The Glacier Point Tour and its one-way hiker drop-off, and the full-day Grand Tour, run through October 11. The Housekeeping Camp store closes after October 12 (the laundry stays open), and the Happy Isles Art & Nature Center, with its art classes, after October 16. The Valley Wilderness Center and the Big Oak Flat permit desk close after October 18; after that, overnight permits are self-registered outside the Valley Welcome Center or on the Big Oak Flat porch, and rental bear canisters are only at the Valley Welcome Center. October 25 is the big day: bike rentals, the Village Grill, the Mountaineering School, the Glacier Point gift shop, the Crane Flat store (its pumps stay open), and the Wawona golf course all close. The Wawona Visitor Center follows after October 31. Campgrounds need a reservation through October 26; after that Wawona and Hodgdon Meadow are first-come, first-served, Camp 4 needs a reservation until November 9, and Upper Pines year-round.',
+    stopIds: ['curry-village', 'glacier-point', 'wawona-hotel-history-center'],
   },
   {
     id: 'jmt-clark-point-closure-2026',
@@ -265,11 +299,14 @@ const windowEntries: SeasonalInput[] = [
     title: 'Curry Village ice rink season',
     category: 'other',
     confidence: 'typical',
-    dateStart: '2026-11-27',
+    // Opening date from Yosemite Guide Vol 51 Issue 8 (September 23 -
+    // November 24, 2026): "opens Nov 13, if conditions allow", with its
+    // session times. The close stays the typical early-March pattern.
+    dateStart: '2026-11-13',
     dateEnd: '2027-03-01',
     location: 'Curry Village',
     description:
-      'The outdoor rink at Curry Village typically opens around Thanksgiving and runs into early March, weather permitting, with Half Dome standing over the ice. Skate rentals on site; sessions are ticketed at the rink. The concessioner posts each season\'s dates and hours once they are set.',
+      'The outdoor rink at Curry Village is scheduled to open November 13, 2026, if conditions allow, and typically runs into early March, with Half Dome standing over the ice. Sessions last two and a half hours and start at noon, 3:30, and 7 p.m., with an extra 8:30 a.m. session on weekends. Skate rentals on site; sessions are ticketed at the rink.',
     stopIds: ['curry-village'],
   },
   {
