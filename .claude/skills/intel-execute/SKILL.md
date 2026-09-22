@@ -55,10 +55,10 @@ Dispatch by the option's action type:
   it: comment on the brief that the refresh PR carries it (or ask the owner
   which should land) and mark the option handed back.
 - **Bulletin item** → branch `claude/intel-bulletin-<topic>`. Edit
-  `bulletin.json` per its own `__comment` workflow; remember all three
-  readers share its `?v=` counter (`BULLETIN_URL` in page-now.jsx,
-  `HOME_BULLETIN_URL` in page-home.jsx, `TIOGA_BULLETIN_URL` in
-  page-tioga-opening.jsx) — bump them together, then
+  `bulletin.json` per its own `__comment` workflow; remember both
+  readers share its `?v=` counter (`BULLETIN_URL` in page-now.jsx and
+  `TIOGA_BULLETIN_URL` in page-tioga-opening.jsx; the homepage stopped
+  reading the bulletin in September 2026) — bump them together, then
   `npm --prefix scripts run assets:stamp` and commit the manifest.
 - **Guide / PWA change** → branch `claude/intel-guide-<topic>`, PR title
   prefixed `[guide]`. Follow `apps/guide/CLAUDE.md`; run the PWA's own build

@@ -202,9 +202,11 @@ ledger issue never; it is the owner's standing dashboard.
   Payment-adjacent code changes are eligible only when the backlog item *is*
   that build (e.g. the gift-purchase flow), and the PR then carries the
   owner's dashboard checklist.
-- **Nothing is asked for twice.** The homepage rail's one-of-each rule, the
-  archive's one-ask rule, one guide pitch per page: adding a second ask
-  anywhere is the regression the August 2026 redesign undid. No popups, no
+- **Nothing is asked for twice.** The homepage's one-of-each rule (one Field
+  Guide section, one Sunday Letter unit, no lodging unit since the September
+  2026 visitor-first redesign), the archive's one-ask rule, one guide pitch
+  per page: adding a second ask anywhere is the regression the August 2026
+  redesign undid. No popups, no
   interstitials, no countdowns, no invented urgency. There is no sales cap
   (removed September 2026), so there is no scarcity copy; the only limit to
   state is the real 18-month expiry.

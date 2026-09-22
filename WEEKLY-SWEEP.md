@@ -54,11 +54,11 @@ Via the GitHub tools (a scheduled run that finds itself without them should say 
 
 ## Phase 5 — Performance trend
 
-Read `scripts/data/lighthouse-history.json` (the nightly writes it; do not run Lighthouse again). Report the week's trajectory for the tracked pages. Flag only: a score drop of more than 10 points sustained across nights, LCP over 2.5 s, or CLS over 0.1. Do not chase single-night noise, and remember the homepage's LCP element is the dek text, not the hero photo — image preloads are not the fix.
+Read `scripts/data/lighthouse-history.json` (the nightly writes it; do not run Lighthouse again). Report the week's trajectory for the tracked pages. Flag only: a score drop of more than 10 points sustained across nights, LCP over 2.5 s, or CLS over 0.1. Do not chase single-night noise, and remember that the nightly LCP is a Lighthouse simulation, not a paint time: read `observedLargestContentfulPaint` before trusting the headline, and the homepage's only LCP candidate is the static shell's hero image, which is already eager and high priority (see the LCP bullet in CLAUDE.md).
 
 ## Phase 6 — Funnel spot checks (render and config only)
 
-1. **Newsletter**: the homepage rail's signup form renders and its action points at the Buttondown endpoint. Never submit it.
+1. **Newsletter**: the homepage's Sunday Letter section (`#home-newsletter`) renders its signup form and the action points at the Buttondown endpoint. Never submit it.
 2. **Guide buy box**: `/guide` renders the buy box, and `/api/inventory` returns 200 with `priceCents` matching `GUIDE_PRICE_CENTS` (parity and CORS are Phase 2 errors if broken). Never start a checkout.
 3. **Promo door**: the PWA's `/redeem` page loads, and `PROMO_CODES` in the repo still carries `TALUS30:30`. Never redeem a code.
 4. **Email DNS** (SPF/DKIM/DMARC) is the battery's `email-auth` module. DNS is always report-only.
