@@ -145,6 +145,19 @@ const seed: StopInput[] = [
       note:
         'Come back in the last light, when bears are most likely to work the tree line and Half Dome and El Capitan bookend the meadow in gold.',
     },
+    history: {
+      note:
+        'In January 1980 the park archeologist Steve Danziger reported on test ' +
+        'coring under the Village Mall blacktop, where the village of Ahwahnee, ' +
+        'perhaps the largest Native American village in the park, once stood. The ' +
+        'midden ran more than four feet deep in places without a break, which he ' +
+        'read as 1,000 years or more of continuous occupation, and the site proved ' +
+        'larger than previously known, running from north of the visitor center south ' +
+        'into Cook\'s Meadow.',
+      volume: 47,
+      number: 8,
+      issueDate: 'January 1980',
+    },
   },
   {
     id: 'lower-yosemite-fall',
@@ -287,6 +300,8 @@ const seed: StopInput[] = [
     body:
       'The dirt pullout on Northside Drive, between the Pohono Bridge and El Capitan, on the north side of the road. It holds four or five cars and has no sign worth the name; the tell is the old roadbed angling up into the trees behind it. This pin exists so you can navigate straight to it instead of hunting for it at 15 mph with traffic behind you.\n\nIf it\'s full, park at the Bridalveil Fall lot a quarter mile east and walk back along Northside Drive. Adds fifteen minutes each way. From the pullout, the climb starts immediately: see [Old Big Oak Flat Road and Ribbon Fall](/stop/old-big-oak-flat-road) for the day itself.',
     photos: [{ src: '/photos/old-road-trailhead-pullout.jpg' }],
+    swap:
+      'If the pullout is full, park at the Bridalveil Fall lot a quarter mile east and walk back along Northside Drive. Adds fifteen minutes each way.',
   },
   {
     id: 'rainbow-view-old-road',
@@ -306,6 +321,19 @@ const seed: StopInput[] = [
       best: 'golden-am',
       note:
         'Morning light falls on the south wall and puts the spray rainbow in Bridalveil Fall, which is where the view takes its name.',
+    },
+    history: {
+      note:
+        'In July 1950 Shirley Sargent wrote up the old road for Nature Notes, ' +
+        'closed to cars by a rock slide in 1943. Beyond the log gate at Gentry, she ' +
+        'reported, the Control Road lay under pine needles and cones, and around the ' +
+        'curve was the view tourists first had of the valley: the old iron rail where ' +
+        'photographers snapped Bridalveil Fall and Cathedral Rocks was still there. In ' +
+        'its driving years inbound cars came down only on the odd hours, and missing ' +
+        'the last control meant a nine-hour wait.',
+      volume: 29,
+      number: 7,
+      issueDate: 'July 1950',
     },
   },
   {
@@ -647,6 +675,19 @@ const seed: StopInput[] = [
     body:
       'You\'ll be hungry off the Mist Trail. The Curry Village pizza patio is right there, fast, and good after a hike. Loft has a slightly better menu if you have patience. The Ahwahnee dining room is available for lunch but you\'ll need a reservation and you\'ll want to clean up first.',
     photos: [{ src: '/photos/curry-village-pizza.jpg' }],
+    history: {
+      note:
+        'Herbert Sonn, the bird man of Yosemite, arrived in 1914. When the old ' +
+        'village was cleared for the Ahwahnee, Mother Curry gave him a plot at Camp ' +
+        'Curry at the foot of the Ledge Trail, where he pitched a tent and fenced an ' +
+        'amphitheater with brambles and sticks. He lectured twice a day, called down ' +
+        'Steller\'s jays that caught nuts in the air and landed on his hand, and sold ' +
+        'souvenir birds of cones. Stuart Cross, later the Curry company\'s president, ' +
+        'started at twelve as his assistant for an occasional quarter.',
+      volume: 44,
+      number: 5,
+      issueDate: 'October 1975',
+    },
   },
 
   // ---------------------------------------------------------------------------
