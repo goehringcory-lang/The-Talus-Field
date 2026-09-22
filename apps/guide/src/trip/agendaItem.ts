@@ -115,6 +115,8 @@ export function itemInfo(item: TripItemT): ItemInfo {
     }
     const meta = [KIND_LABEL[stop.kind]]
     if (stop.difficulty) meta.push(DIFFICULTY_LABEL[stop.difficulty])
+    // "Closed for …" is a fact about the stop, short enough for the block.
+    if (stop.season?.startsWith('Closed')) meta.push(stop.season)
     return {
       title: stop.title,
       tone: toneForStopKind(stop.kind),

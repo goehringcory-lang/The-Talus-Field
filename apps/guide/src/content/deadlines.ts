@@ -36,7 +36,7 @@ import { z } from 'zod'
 import { addDaysIso } from '../utils/date'
 
 // The `verified` date from the JSON, printed on the board.
-export const DEADLINES_VERIFIED = '2026-09-05'
+export const DEADLINES_VERIFIED = '2026-09-22'
 
 const MonthDay = z.object({ month: z.number().int().min(1).max(12), day: z.number().int().min(1).max(31) })
 const IsoDate = z.string().regex(/^\d{4}-\d{2}-\d{2}$/)
@@ -151,7 +151,7 @@ const seed: DeadlineInput[] = [
     offsetDays: -14,
     time: '7 a.m.',
     detail:
-      'Bridalveil Creek, Crane Flat, Tamarack Flat, White Wolf, Yosemite Creek, Porcupine Flat and half of Tuolumne Meadows release two weeks before the arrival date at 7 a.m. Pacific.',
+      'Bridalveil Creek, Crane Flat, Tamarack Flat, White Wolf, Yosemite Creek, Porcupine Flat and half of Tuolumne Meadows release two weeks before the arrival date at 7 a.m. Pacific. The other half of Tuolumne Meadows releases on the 15th at 7 a.m., one month before that arrival window opens: June 15 covers a July 15 to August 14 arrival, July 15 covers August 15 to September 14, and August 15 covers September 15 to October 14. NPS calls that release two months in advance, counting to the far end of the window.',
     confidence: 'published',
     source: 'https://www.nps.gov/yose/planyourvisit/camping.htm',
     tag: 'date-camping',
@@ -163,7 +163,8 @@ const seed: DeadlineInput[] = [
     kind: 'relative',
     offsetDays: -7,
     time: '7 a.m.',
-    detail: 'Camp 4 sites release one week before the arrival date at 7 a.m. Pacific. $10 per person a night.',
+    detail:
+      'From April 15 through November 9, Camp 4 sites release one week before the arrival date at 7 a.m. Pacific, at $10 per person a night. Outside those dates the campground is first-come, first-served at $10 a night.',
     confidence: 'published',
     source: 'https://www.nps.gov/yose/planyourvisit/camping.htm',
     tag: 'date-camping',
