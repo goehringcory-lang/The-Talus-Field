@@ -660,7 +660,104 @@ function HomeLink({ go, href, location, children, ...props }) {
   }}>{children}</a>;
 }
 
+// The homepage masthead's links. Two of them lead into the site masthead's
+// menus and carry that menu as a panel: "Start here" opens Plan a Trip and
+// "The journal" opens Explore Yosemite. The panels are built from NAV_GROUPS
+// itself, so the homepage and every other page cannot disagree about what is
+// in a menu; only the drawing (.hp-menu in styles.css) is the homepage's own.
+const HOME_NAV = [
+  { href: "#home-start-here", label: "Start here", group: "plan" },
+  { href: "/articles", label: "The journal", group: "read" },
+  { href: "/conditions", label: "Park conditions" },
+  { href: "#home-newsletter", label: "Sunday Letter" },
+  { href: "/search", label: "Search" },
+];
+
+// A panel's closing link reads like the homepage's other text links, which end
+// in ↗ rather than the → the site masthead uses.
+const homeMenuCta = (cta) => `${(cta || "Open the section").replace(/\s*→\s*$/, "")} ↗`;
+
+// The site masthead opens its panels with CSS :hover and :focus-within. These
+// open from state instead, because the homepage keeps its inline links at phone
+// width rather than collapsing to a hamburger, so a panel has to open on a tap
+// as well, and a CSS hover rule there would swallow the first tap on "Start
+// here" (iOS spends a tap that reveals hover content on the hover, not the
+// click). So a mouse opens a panel by entering its group and closes it by
+// leaving, with a delay long enough to cross from the link down to the panel;
+// the caret is a disclosure button for touch and keyboard; and Escape, a press
+// outside the nav, or taking a link closes it. Every panel is in the markup,
+// hidden, from the static shell onward, so the menus' links are in the HTML
+// a crawler reads for "/".
 function HomeMasthead({ go }) {
+  const [open, setOpen] = React.useState(null);
+  const closeTimer = React.useRef(null);
+  const navRef = React.useRef(null);
+
+  const openMenu = (key) => { clearTimeout(closeTimer.current); setOpen(key); };
+  const closeMenu = () => { clearTimeout(closeTimer.current); setOpen(null); };
+  const closeSoon = () => {
+    clearTimeout(closeTimer.current);
+    closeTimer.current = setTimeout(() => setOpen(null), 400);
+  };
+  // Hover belongs to a mouse. A touch also fires pointerenter and pointerleave,
+  // and letting it through would open a panel under the finger on the way to
+  // the caret's own toggle, which would then close it again.
+  const fromMouse = (e) => e.pointerType === "mouse";
+
+  React.useEffect(() => () => clearTimeout(closeTimer.current), []);
+  React.useEffect(() => {
+    if (!open) return undefined;
+    const onKey = (e) => {
+      if (e.key !== "Escape") return;
+      // Focus goes back to the caret only if it was inside the menu, so Escape
+      // on a panel opened by hovering does not move the reader's focus.
+      const group = navRef.current && navRef.current.querySelector(`[data-menu="${open}"]`);
+      if (group && group.contains(document.activeElement)) {
+        const caret = group.querySelector(".hp-menu__caret");
+        if (caret) caret.focus();
+      }
+      closeMenu();
+    };
+    const onDown = (e) => { if (navRef.current && !navRef.current.contains(e.target)) closeMenu(); };
+    document.addEventListener("keydown", onKey);
+    document.addEventListener("pointerdown", onDown);
+    return () => {
+      document.removeEventListener("keydown", onKey);
+      document.removeEventListener("pointerdown", onDown);
+    };
+  }, [open]);
+
+  // One renderer for every link inside a panel. A `key` is an SPA route and an
+  // `href` is a real navigation (the generated archive pages), which never
+  // calls go(); modified clicks keep the browser's own behaviour, as HomeLink's
+  // do, and leave the panel open.
+  const menuLink = (link, className) => {
+    const { key, href, label, note } = link;
+    const path = href || (window.routeToPath ? window.routeToPath(key) : `/${key}`);
+    return (
+      <a
+        key={key || href}
+        className={className}
+        href={path}
+        onClick={(e) => {
+          if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+          if (window.track) window.track("cta_click", { location: "home_navigation", target: path });
+          closeMenu();
+          if (href) return;
+          e.preventDefault();
+          go(key);
+        }}
+      >
+        {note ? (
+          <React.Fragment>
+            <span className="hp-menu__label">{label}</span>
+            <span className="hp-menu__note">{note}</span>
+          </React.Fragment>
+        ) : label}
+      </a>
+    );
+  };
+
   return (
     <div className="hp-design hp-navigation">
       <a className="skip-link" href="#main">Skip to content</a>
@@ -673,12 +770,59 @@ function HomeMasthead({ go }) {
           <img src="/img/talus-field-mark-masthead.png?v=2" width="214" height="168" alt="" />
           <span>The Talus Field<small>YOSEMITE, FROM THE INSIDE.</small></span>
         </HomeLink>
-        <nav aria-label="Main navigation">
-          <HomeLink go={go} location="home_navigation" href="#home-start-here">Start here</HomeLink>
-          <HomeLink go={go} location="home_navigation" href="/articles">The journal</HomeLink>
-          <HomeLink go={go} location="home_navigation" href="/conditions">Park conditions</HomeLink>
-          <HomeLink go={go} location="home_navigation" href="#home-newsletter">Sunday Letter</HomeLink>
-          <HomeLink go={go} location="home_navigation" href="/search">Search</HomeLink>
+        <nav aria-label="Main navigation" ref={navRef}>
+          {HOME_NAV.map((item) => {
+            const g = item.group && NAV_GROUPS.find((group) => group.key === item.group);
+            if (!g || !g.columns) {
+              return <HomeLink key={item.href} go={go} location="home_navigation" href={item.href}>{item.label}</HomeLink>;
+            }
+            const isOpen = open === g.key;
+            const panelId = `hp-menu-${g.key}`;
+            return (
+              // position: static on the group (styles.css) hands the panel's
+              // containing block to the header, so the panel spans the header's
+              // full width rather than the width of one link.
+              <div
+                key={item.href}
+                data-menu={g.key}
+                className={["hp-menu", isOpen && "is-open"].filter(Boolean).join(" ")}
+                onPointerEnter={(e) => { if (fromMouse(e)) openMenu(g.key); }}
+                onPointerLeave={(e) => { if (fromMouse(e)) closeSoon(); }}
+                onBlur={(e) => { if (isOpen && !e.currentTarget.contains(e.relatedTarget)) closeMenu(); }}
+              >
+                <HomeLink go={go} location="home_navigation" href={item.href} onClickCapture={closeMenu}>{item.label}</HomeLink>
+                <button
+                  type="button"
+                  className="hp-menu__caret"
+                  aria-expanded={isOpen}
+                  aria-controls={panelId}
+                  aria-label={`${g.label} menu`}
+                  onClick={() => (isOpen ? closeMenu() : openMenu(g.key))}
+                >
+                  <svg viewBox="0 0 10 6" width="9" height="6" aria-hidden="true" focusable="false">
+                    <path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </button>
+                <div className="hp-menu__panel" id={panelId}>
+                  <div className="hp-menu__card">
+                    <div className="hp-menu__lede">
+                      <p className="hp-eyebrow hp-menu__eyebrow">{g.label}</p>
+                      {g.blurb && <p className="hp-menu__blurb">{g.blurb}</p>}
+                      {menuLink({ key: g.route, label: homeMenuCta(g.cta) }, "hp-link")}
+                    </div>
+                    <div className="hp-menu__cols">
+                      {g.columns.map((col) => (
+                        <div key={col.heading} className="hp-menu__col">
+                          <p className="hp-menu__heading">{col.heading}</p>
+                          {col.links.map((link) => menuLink(link, "hp-menu__link"))}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
         </nav>
         <HomeLink go={go} location="home_navigation" className="hp-button" href="#field-guide">Get the app ↗</HomeLink>
       </header>

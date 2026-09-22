@@ -9602,3 +9602,151 @@ body:has(.hp-design) .site-footer { --paper: #f8f5ed; --ink: #233e35; --ink-2: #
   .hp-design .nlbox__form input[type=email] { font-size: 16px; }
   .hp-design nav a { padding-block: 12px; }
 }
+
+/* Homepage masthead menus: the site masthead's Plan a Trip and Explore
+   Yosemite panels (NAV_GROUPS), drawn in the homepage's own type and palette.
+   A panel opens from state, never from :hover (HomeMasthead in components.jsx
+   says why), so the only rule that shows one is .is-open. */
+.hp-design .hp-header { position: relative; }
+/* The panel's hover bridge (below) spans the header's full width while a
+   panel is open; lifting the brand and the app button over it keeps both
+   clickable along their lower edge. */
+.hp-design .hp-header > .hp-brand,
+.hp-design .hp-header > .hp-button { position: relative; z-index: 61; }
+.hp-design .hp-menu { display: flex; align-items: center; gap: 4px; }
+.hp-design .hp-menu.is-open > a { color: #a4462c; }
+/* A real disclosure button beside the link, as in the site masthead: Enter on
+   the link follows it, so the link cannot also be the toggle. The padding is
+   the tap target and the negative margins hand the space back, so the nav row
+   does not grow. */
+.hp-design .hp-menu__caret {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: 0;
+  color: #647067;
+  padding: 10px 8px;
+  margin: -10px -8px -10px -4px;
+  cursor: pointer;
+}
+.hp-design .hp-menu__caret svg { display: block; transition: transform .2s; }
+.hp-design .hp-menu__caret:hover,
+.hp-design .hp-menu.is-open .hp-menu__caret { color: #a4462c; }
+.hp-design .hp-menu.is-open .hp-menu__caret svg { transform: rotate(180deg); }
+/* position: static on the group gives the panel the header as its containing
+   block: it spans the header's width and hangs from its rule. */
+.hp-design .hp-menu__panel {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 60;
+  padding-top: 14px;
+}
+.hp-design .hp-menu.is-open .hp-menu__panel { display: block; }
+/* Hover bridge over the band between the link row and the header's rule, so a
+   pointer on its way down to the panel, straight or at an angle, never leaves
+   the group. It stops short of the link row so a neighbouring link still takes
+   its own hover. The close delay in HomeMasthead covers the seam that is left. */
+.hp-design .hp-menu__panel::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 100%;
+  height: 30px;
+}
+.hp-design .hp-menu__card {
+  display: grid;
+  grid-template-columns: minmax(200px, 270px) 1fr;
+  gap: 0 48px;
+  padding: 34px 38px 36px;
+  background: #fffdf7;
+  border: 1px solid #d6dacf;
+  border-radius: 3px;
+  box-shadow: 0 30px 60px -30px rgba(20, 39, 31, .38);
+  font-size: 14px;
+  /* A tall panel on a short laptop would run off the bottom of the window. */
+  max-height: calc(100vh - 190px);
+  overflow-y: auto;
+}
+.hp-design .hp-menu__lede {
+  border-right: 1px solid #d6dacf;
+  padding-right: 40px;
+}
+.hp-design .hp-menu__eyebrow { text-transform: uppercase; margin-bottom: 14px; }
+.hp-design .hp-menu__blurb {
+  font: 27px/1.12 var(--serif);
+  letter-spacing: -.5px;
+  color: #233e35;
+  margin: 0 0 24px;
+}
+.hp-design .hp-menu__lede .hp-link { display: inline-block; padding-block: 0 4px; }
+/* Three tracks in every panel, the width of the largest menu, so the two
+   panels read as one object: Explore Yosemite's two columns leave the third
+   track empty rather than stretching to fill it. */
+.hp-design .hp-menu__cols {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px 36px;
+  align-items: start;
+}
+@media (max-width: 1100px) {
+  /* A narrower lede keeps all three columns side by side down to about 950px;
+     below that they wrap and the card scrolls. */
+  .hp-design .hp-menu__card { grid-template-columns: minmax(180px, 200px) 1fr; gap: 0 32px; }
+  .hp-design .hp-menu__lede { padding-right: 28px; }
+  .hp-design .hp-menu__cols { grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 8px 28px; }
+}
+.hp-design .hp-menu__heading {
+  font-size: 9px;
+  letter-spacing: 1.7px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: #647067;
+  margin: 0 0 6px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #d6dacf;
+}
+.hp-design .hp-menu__link {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding-block: 9px;
+}
+.hp-design .hp-menu__label {
+  font: 19px/1.15 var(--serif);
+  color: #233e35;
+  transition: color .2s;
+}
+.hp-design .hp-menu__note { font-size: 11px; line-height: 1.5; color: #647067; }
+.hp-design .hp-menu__link:hover .hp-menu__label { color: #a4462c; }
+@media (max-width: 760px) {
+  /* The two carets add about 30px to a row that already ran edge to edge, and
+     would push Search onto a line of its own on a 375 or 390px phone. The row
+     is space-between, so this lowers only the minimum gap; wherever the row
+     fits, the links sit exactly where they did. */
+  .hp-design .hp-header nav { gap: 6px; }
+  .hp-design .hp-menu { gap: 2px; }
+  /* The nav is its own row here and a panel opens from the caret, by tap, so
+     there is no pointer to bridge. One column, scrolling inside the window. */
+  .hp-design .hp-menu__panel { padding-top: 10px; }
+  .hp-design .hp-menu__panel::before { content: none; }
+  .hp-design .hp-menu__card {
+    grid-template-columns: 1fr;
+    gap: 22px;
+    padding: 24px 22px 26px;
+    max-height: min(70vh, 560px);
+  }
+  .hp-design .hp-menu__lede {
+    border-right: 0;
+    padding-right: 0;
+    border-bottom: 1px solid #d6dacf;
+    padding-bottom: 20px;
+  }
+  .hp-design .hp-menu__blurb { font-size: 24px; margin-bottom: 18px; }
+  .hp-design .hp-menu__cols { grid-template-columns: 1fr; gap: 20px; }
+  .hp-design .hp-menu__link { padding-block: 10px; }
+}
