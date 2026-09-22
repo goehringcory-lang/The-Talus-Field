@@ -1,4 +1,4 @@
-/* global React, NewsletterInline, GuidePromo, LodgingCta, Breadcrumbs */
+/* global React, HpPageHead, HpHeading, HpGuideBand, HpLetter, LodgingCta */
 
 // =============================================================================
 // ITINERARIES — `/itineraries` route. The curated day plans from
@@ -39,26 +39,35 @@ function ItinerariesPage({ go }) {
   };
 
   return (
-    <div className="page">
-      <div className="page-head">
-        <div className="wrap">
-          <Breadcrumbs go={go} trail={[{ label: "Home", route: "home" }, { label: "Itineraries" }]} />
-          <div className="eyebrow eyebrow--moss">Itineraries</div>
-          <h1>Yosemite, in day-sized pieces.</h1>
-          <p className="page-head__dek">
-            Four plans built from the map's curated pins, ordered the way you would actually drive them. Pick the one that matches your time, open it on the map, and adjust from there. None of this requires a reservation; all of it fits in a normal day.
-          </p>
-        </div>
-      </div>
+    <div className="page hp-itin">
+      <HpPageHead
+        go={go}
+        crumbs={[{ label: "Home", route: "home" }, { label: "Itineraries" }]}
+        eyebrow="ITINERARIES"
+        title="Yosemite, in day-sized pieces."
+        intro="Four plans built from the map's curated pins, ordered the way you would actually drive them. Pick the one that matches your time, open it on the map, and adjust from there. None of this requires a reservation; all of it fits in a normal day."
+        aside={
+          <nav className="hp-list hp-partindex" aria-label="The four plans">
+            {itineraries.map((it) => (
+              <a key={it.id} className="hp-row" href={`#${it.id}`}>
+                <div>
+                  <p className="hp-eyebrow">{(it.label || "").toUpperCase()}</p>
+                  <h3>{it.title}</h3>
+                  <b>{it.days.length} {it.days.length === 1 ? "day" : "days"} <span>↓</span></b>
+                </div>
+              </a>
+            ))}
+          </nav>
+        }
+      />
 
-      <div className="wrap" style={{ paddingTop: 48 }}>
-        {itineraries.map((it) => (
-          <section key={it.id} id={it.id} className="itin">
-            <div className="eyebrow" style={{ marginBottom: 10 }}>{it.label}</div>
-            <h2 className="itin__title">{it.title}</h2>
-            <p className="itin__dek">{it.dek}</p>
-            <p className="itin__season">{it.season}</p>
+      {itineraries.map((it) => (
+        <section key={it.id} id={it.id} tabIndex={-1} className="hp-wrap hp-section itin">
+          <HpHeading eyebrow={(it.label || "").toUpperCase()} title={it.title} />
+          <p className="hp-sub">{it.dek}</p>
+          <p className="itin__season">{it.season}</p>
 
+          <div className="itin__days">
             {it.days.map((day) => (
               <div key={day.name} className="itin__day">
                 <h3 className="itin__day-name">{day.name}</h3>
@@ -67,36 +76,38 @@ function ItinerariesPage({ go }) {
                     const stop = stopsById && stopsById[id];
                     return (
                       <li key={id} className="itin__stop">
-                        <span className="itin__stop-name">{stop ? stop.name : id.replace(/-/g, " ")}</span>
-                        {stop && stop.blurb && <span className="itin__stop-blurb">{stop.blurb}</span>}
+                        <span>
+                          <span className="itin__stop-name">{stop ? stop.name : id.replace(/-/g, " ")}</span>
+                          {stop && stop.blurb && <span className="itin__stop-blurb">{stop.blurb}</span>}
+                        </span>
                       </li>
                     );
                   })}
                 </ol>
               </div>
             ))}
+          </div>
 
-            <a
-              className="btn btn--ghost"
-              href={tripUrl(it)}
-              onClick={() => {
-                if (window.track) window.track("itinerary_open_map", { itinerary: it.id });
-              }}
-            >
-              Open this trip on the map →
-            </a>
-          </section>
-        ))}
+          <a
+            className="hp-button"
+            href={tripUrl(it)}
+            onClick={() => {
+              if (window.track) window.track("itinerary_open_map", { itinerary: it.id });
+            }}
+          >
+            Open this trip on the map →
+          </a>
+        </section>
+      ))}
 
-        <p style={{ fontFamily: "var(--serif)", fontSize: 17, lineHeight: 1.6, color: "var(--ink-2)", maxWidth: 680, margin: "56px 0" }}>
+      <section className="hp-wrap hp-section itin__after">
+        <p className="hp-sub">
           These plans are starting points, not homework. The{" "}
           <a href="/map" onClick={(e) => { e.preventDefault(); go("map"); }}>full map</a>{" "}
           has every pin, and the trip builder saves whatever you assemble on your own device. For the reasoning behind the stops, start with{" "}
           <a href="/planning" onClick={(e) => { e.preventDefault(); go("planning"); }}>the planning guide</a>.
         </p>
 
-        {/* The purchase ask: itinerary readers are packing dates into days,
-            the exact moment the offline app earns its price. */}
         {/* Every multi-day plan above implies a night between the days, and
             where that night is spent decides whether day two starts at the
             trailhead or in the entrance line. */}
@@ -108,24 +119,25 @@ function ItinerariesPage({ go }) {
           slug="itineraries"
           cta="See what is available on your dates →"
         />
+      </section>
 
-        <GuidePromo
-          go={go}
-          location="itineraries"
-          title="These plans, offline, in the park."
-          body="The Field Guide app carries the same curated stops with parking and timing notes, offline maps that keep working in the dead zones between them, and a day-by-day planner. One purchase, eighteen months of access."
-          style={{ maxWidth: 680, marginBottom: 56 }}
-        />
-
-        <div style={{ maxWidth: 680, marginBottom: 96 }}>
-          <NewsletterInline
-            location="itineraries"
-            tag="itineraries"
-            heading="Get the conditions before you go"
-            blurb="Roads open and close, trails change, and the plans above age with them. One Sunday email carries what changed. Free."
-          />
-        </div>
-      </div>
+      {/* The purchase ask: itinerary readers are packing dates into days,
+          the exact moment the offline app earns its price. */}
+      <HpGuideBand
+        go={go}
+        location="itineraries"
+        title="These plans, offline, in the park."
+        intro="The Field Guide app carries the same curated stops with parking and timing notes, offline maps that keep working in the dead zones between them, and a day-by-day planner. One purchase, eighteen months of access."
+        sample
+      />
+      <HpLetter
+        eyebrow="SUNDAY FIELD NOTES / FREE"
+        title="Get the conditions before you go"
+        heading="Get the conditions before you go"
+        blurb="Roads open and close, trails change, and the plans above age with them. One Sunday email carries what changed. Free."
+        location="itineraries"
+        tag="itineraries"
+      />
     </div>
   );
 }

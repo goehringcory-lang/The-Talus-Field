@@ -475,8 +475,8 @@ function ArticlePage({ slug, go }) {
         </HpPageHead>
 
         {/* Body: one reading column on the page's wrap. */}
-        <div className="hp-wrap hp-article__body">
-          <div className="hp-article__column">
+        <div className="hp-wrap hp-reading">
+          <div className="hp-reading__column">
             {toc.length > 0 && (
               <details className="toc">
                 <summary>In this guide</summary>

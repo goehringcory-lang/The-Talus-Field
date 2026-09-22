@@ -426,7 +426,7 @@ function SearchPage({
     return () => cancelAnimationFrame(raf);
   }, []);
   var resultsRef = useRef(null);
-  var resultLinks = () => resultsRef.current ? Array.from(resultsRef.current.querySelectorAll("a.search-result, .search-articles a.card")) : [];
+  var resultLinks = () => resultsRef.current ? Array.from(resultsRef.current.querySelectorAll("a.search-result, .search-articles > a")) : [];
   var onFieldKey = e => {
     if (e.key !== "ArrowDown") return;
     var first = resultLinks()[0];
@@ -455,28 +455,18 @@ function SearchPage({
   var articleResults = results.filter(r => r.entry.type === "article");
   var otherResults = results.filter(r => r.entry.type !== "article");
   return React.createElement("div", {
-    className: "page"
-  }, React.createElement("div", {
-    className: "page-head"
-  }, React.createElement("div", {
-    className: "wrap"
-  }, React.createElement(Breadcrumbs, {
+    className: "page hp-search"
+  }, React.createElement(HpPageHead, {
     go: go,
-    trail: [{
+    crumbs: [{
       label: "Home",
       route: "home"
     }, {
       label: "Search"
-    }]
-  }), React.createElement("div", {
-    className: "eyebrow eyebrow--moss"
-  }, "Search"), React.createElement("h1", null, "Find it."), React.createElement("p", {
-    className: "page-head__dek"
-  }, "Every article, section, and page in the journal. Results narrow as you type."))), React.createElement("div", {
-    className: "wrap",
-    style: {
-      paddingTop: 32
-    }
+    }],
+    eyebrow: "SEARCH",
+    title: "Find it.",
+    intro: "Every article, section, and page in the journal. Results narrow as you type."
   }, React.createElement("form", {
     className: "search-form",
     role: "search",
@@ -508,11 +498,7 @@ function SearchPage({
     role: "status",
     "aria-live": "polite"
   }, tokens.length === 0 ? "" : results.length === 0 ? `Nothing matches "${query}".` : corrected.changed ? `${results.length} result${results.length === 1 ? "" : "s"} for "${tokens.join(" ")}" (read from "${query}").` : `${results.length} result${results.length === 1 ? "" : "s"} for "${query}".`)), React.createElement("div", {
-    className: "wrap",
-    style: {
-      paddingTop: 24,
-      paddingBottom: 96
-    },
+    className: "hp-wrap hp-section",
     ref: resultsRef,
     onKeyDown: onResultsKey
   }, tokens.length === 0 && React.createElement("div", {
@@ -545,12 +531,11 @@ function SearchPage({
       go("articles");
     }
   }, "full article list"), " ", "is short enough to scan."), otherResults.length > 0 && React.createElement("section", {
-    style: {
-      marginBottom: articleResults.length > 0 ? 56 : 0
-    }
-  }, React.createElement("div", {
-    className: "section-head"
-  }, React.createElement("h2", null, "Pages and sections")), React.createElement("div", {
+    className: "search-section"
+  }, React.createElement(HpHeading, {
+    eyebrow: "RESULTS",
+    title: "Pages and sections"
+  }), React.createElement("div", {
     className: "search-results"
   }, otherResults.map(({
     entry
@@ -559,37 +544,35 @@ function SearchPage({
     entry: entry,
     tokens: tokens,
     go: go
-  })))), articleResults.length > 0 && React.createElement("section", null, React.createElement("div", {
-    className: "section-head"
-  }, React.createElement("h2", null, "Articles")), React.createElement("div", {
-    className: "search-articles"
+  })))), articleResults.length > 0 && React.createElement("section", {
+    className: "search-section"
+  }, React.createElement(HpHeading, {
+    eyebrow: "THE JOURNAL",
+    title: "Articles"
+  }), React.createElement("div", {
+    className: "hp-journal-grid search-articles"
   }, articleResults.map(({
     entry
-  }) => React.createElement(ArticleCard, {
+  }) => React.createElement(HpArticleCard, {
     key: entry.key,
     article: entry.article,
-    go: go
+    go: go,
+    location: "search_results"
   })))), tokens.length > 0 && results.length > 0 && React.createElement("p", {
     className: "search-scope-note"
-  }, "Headlines, summaries, and section names are searched. Full article text is not."), tokens.length === 0 && React.createElement(React.Fragment, null, React.createElement(GuidePromo, {
+  }, "Headlines, summaries, and section names are searched. Full article text is not.")), tokens.length === 0 && React.createElement(React.Fragment, null, React.createElement(HpGuideBand, {
     go: go,
     location: "search",
     title: "Looking for something in the park, not the archive?",
-    body: "The Field Guide app carries the stops, the hikes, and the maps offline, with a planner that turns your dates into a schedule. $3.99 for eighteen months.",
-    style: {
-      maxWidth: 680,
-      marginTop: 72,
-      marginBottom: 56
-    }
-  }), React.createElement("div", {
-    style: {
-      maxWidth: 680
-    }
-  }, React.createElement(NewsletterInline, {
-    location: "search",
-    tag: "search",
+    intro: "The Field Guide app carries the stops, the hikes, and the maps offline, with a planner that turns your dates into a schedule. $3.99 for eighteen months.",
+    sample: true
+  }), React.createElement(HpLetter, {
+    eyebrow: "SUNDAY FIELD NOTES / FREE",
+    title: "One letter a week",
     heading: "One letter a week",
-    blurb: "Sunday Field Notes: what opened, what closed, and what the week ahead looks like from inside the park. Free."
-  })))));
+    blurb: "Sunday Field Notes: what opened, what closed, and what the week ahead looks like from inside the park. Free.",
+    location: "search",
+    tag: "search"
+  })));
 }
 window.SearchPage = SearchPage;

@@ -1,4 +1,4 @@
-/* global React, Breadcrumbs */
+/* global React, HpPageHead, HpHeading */
 
 function PlacesPage({ go }) {
   const regions = [
@@ -46,21 +46,17 @@ function PlacesPage({ go }) {
   ];
 
   return (
-    <div className="page">
-      {/* Page head */}
-      <section className="page-head">
-        <div className="wrap wrap--narrow">
-          <Breadcrumbs go={go} trail={[{ label: "Home", route: "home" }, { label: "Directory" }]} />
-          <div className="eyebrow eyebrow--moss">The Directory</div>
-          <h1>A short list, mostly empty.</h1>
-          <p className="page-head__dek">
-            This page lists businesses I would recommend to a friend visiting Yosemite. At the moment it lists one organization, and that organization is not a business. The rest of the slots are open. Most operators who inquire will not fill them.
-          </p>
-        </div>
-      </section>
+    <div className="page hp-places">
+      <HpPageHead
+        go={go}
+        crumbs={[{ label: "Home", route: "home" }, { label: "Directory" }]}
+        eyebrow="THE DIRECTORY"
+        title="A short list, mostly empty."
+        intro="This page lists businesses I would recommend to a friend visiting Yosemite. At the moment it lists one organization, and that organization is not a business. The rest of the slots are open. Most operators who inquire will not fill them."
+      />
 
       {/* Region triptych. Replaces the old NPS map. */}
-      <section className="wrap" style={{ paddingTop: 56 }}>
+      <section className="hp-wrap hp-section">
         <div className="region-triptych">
           {regions.map((r) => (
             <figure key={r.key} className="region-tile">
@@ -84,8 +80,9 @@ function PlacesPage({ go }) {
       </section>
 
       {/* The standard. Editorial body. */}
-      <section className="wrap wrap--narrow" style={{ paddingTop: 72 }}>
-        <h2 className="places-standard__heading">The standard.</h2>
+      <section className="hp-wrap hp-section hp-places__block">
+        <HpHeading title="The standard." />
+        <div className="hp-places__gap" />
         <p className="places-standard__body">
           Twenty seasons in this park have left me with a short list of operators I would put a friend in front of, and a much longer list of ones I would not. The Directory is the short list, written down. I am not in a hurry to fill it. Every name that appears here will be one I have used, or one whose work I have watched closely enough to vouch for. Readers should treat the absence of a listing as neither endorsement nor warning. It means I have not vouched yet.
         </p>
@@ -95,7 +92,7 @@ function PlacesPage({ go }) {
       </section>
 
       {/* Yosemite Conservancy. The single real entry. */}
-      <section className="wrap wrap--narrow" style={{ paddingTop: 64 }}>
+      <section className="hp-wrap hp-places__listed">
         <div className="conservancy">
           <div className="conservancy__eyebrow">Currently listed</div>
           <h2 className="conservancy__name">Yosemite Conservancy</h2>
@@ -114,11 +111,8 @@ function PlacesPage({ go }) {
       </section>
 
       {/* Categories index. Inclusion criteria, not empty inventory. */}
-      <section className="wrap" style={{ paddingTop: 80 }}>
-        <div className="section-head">
-          <h2>Categories</h2>
-          <div className="mono" style={{ color: "var(--ink-3)" }}>{categories.length} sections, building</div>
-        </div>
+      <section className="hp-wrap hp-section hp-places__block">
+        <HpHeading eyebrow={`${categories.length} SECTIONS, BUILDING`} title="Categories" />
         <ul className="dir-cats">
           {categories.map((c) => (
             <li key={c.name} className="dir-cats__item">
@@ -131,12 +125,12 @@ function PlacesPage({ go }) {
       </section>
 
       {/* Operator CTA. Single low-key paragraph. */}
-      <section className="wrap wrap--narrow" style={{ paddingTop: 72, paddingBottom: 96 }}>
+      <section className="hp-wrap hp-section hp-places__block">
         <p className="dir-cta__body">
           If you operate a Yosemite-adjacent business and you believe you meet the standard above, the listing product, what a placement includes, and what disqualifies an applicant are described on a separate page. Most inquiries are declined. The ones that are not tend to come from operators who already know why they belong here.
         </p>
         <a
-          className="dir-cta__link"
+          className="hp-link"
           href="/advertise"
           onClick={(e) => { e.preventDefault(); go("advertise"); }}
         >

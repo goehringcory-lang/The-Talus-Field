@@ -34,28 +34,20 @@ function PlacesPage({
     note: "Independently operated houses and cabins in the gateway towns. Owners who answer their own phone."
   }];
   return React.createElement("div", {
-    className: "page"
-  }, React.createElement("section", {
-    className: "page-head"
-  }, React.createElement("div", {
-    className: "wrap wrap--narrow"
-  }, React.createElement(Breadcrumbs, {
+    className: "page hp-places"
+  }, React.createElement(HpPageHead, {
     go: go,
-    trail: [{
+    crumbs: [{
       label: "Home",
       route: "home"
     }, {
       label: "Directory"
-    }]
-  }), React.createElement("div", {
-    className: "eyebrow eyebrow--moss"
-  }, "The Directory"), React.createElement("h1", null, "A short list, mostly empty."), React.createElement("p", {
-    className: "page-head__dek"
-  }, "This page lists businesses I would recommend to a friend visiting Yosemite. At the moment it lists one organization, and that organization is not a business. The rest of the slots are open. Most operators who inquire will not fill them."))), React.createElement("section", {
-    className: "wrap",
-    style: {
-      paddingTop: 56
-    }
+    }],
+    eyebrow: "THE DIRECTORY",
+    title: "A short list, mostly empty.",
+    intro: "This page lists businesses I would recommend to a friend visiting Yosemite. At the moment it lists one organization, and that organization is not a business. The rest of the slots are open. Most operators who inquire will not fill them."
+  }), React.createElement("section", {
+    className: "hp-wrap hp-section"
   }, React.createElement("div", {
     className: "region-triptych"
   }, regions.map(r => React.createElement("figure", {
@@ -76,21 +68,17 @@ function PlacesPage({
   }, r.name), React.createElement("div", {
     className: "region-tile__note"
   }, r.note)))))), React.createElement("section", {
-    className: "wrap wrap--narrow",
-    style: {
-      paddingTop: 72
-    }
-  }, React.createElement("h2", {
-    className: "places-standard__heading"
-  }, "The standard."), React.createElement("p", {
+    className: "hp-wrap hp-section hp-places__block"
+  }, React.createElement(HpHeading, {
+    title: "The standard."
+  }), React.createElement("div", {
+    className: "hp-places__gap"
+  }), React.createElement("p", {
     className: "places-standard__body"
   }, "Twenty seasons in this park have left me with a short list of operators I would put a friend in front of, and a much longer list of ones I would not. The Directory is the short list, written down. I am not in a hurry to fill it. Every name that appears here will be one I have used, or one whose work I have watched closely enough to vouch for. Readers should treat the absence of a listing as neither endorsement nor warning. It means I have not vouched yet."), React.createElement("p", {
     className: "places-standard__body"
   }, "A directory of forty lodges is not a directory, it is a phone book. This one will stay small.")), React.createElement("section", {
-    className: "wrap wrap--narrow",
-    style: {
-      paddingTop: 64
-    }
+    className: "hp-wrap hp-places__listed"
   }, React.createElement("div", {
     className: "conservancy"
   }, React.createElement("div", {
@@ -105,18 +93,11 @@ function PlacesPage({
     target: "_blank",
     rel: "noopener noreferrer"
   }, "yosemite.org ↗"))), React.createElement("section", {
-    className: "wrap",
-    style: {
-      paddingTop: 80
-    }
-  }, React.createElement("div", {
-    className: "section-head"
-  }, React.createElement("h2", null, "Categories"), React.createElement("div", {
-    className: "mono",
-    style: {
-      color: "var(--ink-3)"
-    }
-  }, categories.length, " sections, building")), React.createElement("ul", {
+    className: "hp-wrap hp-section hp-places__block"
+  }, React.createElement(HpHeading, {
+    eyebrow: `${categories.length} SECTIONS, BUILDING`,
+    title: "Categories"
+  }), React.createElement("ul", {
     className: "dir-cats"
   }, categories.map(c => React.createElement("li", {
     key: c.name,
@@ -128,15 +109,11 @@ function PlacesPage({
   }, c.note), React.createElement("div", {
     className: "dir-cats__status"
   }, "Accepting inquiries"))))), React.createElement("section", {
-    className: "wrap wrap--narrow",
-    style: {
-      paddingTop: 72,
-      paddingBottom: 96
-    }
+    className: "hp-wrap hp-section hp-places__block"
   }, React.createElement("p", {
     className: "dir-cta__body"
   }, "If you operate a Yosemite-adjacent business and you believe you meet the standard above, the listing product, what a placement includes, and what disqualifies an applicant are described on a separate page. Most inquiries are declined. The ones that are not tend to come from operators who already know why they belong here."), React.createElement("a", {
-    className: "dir-cta__link",
+    className: "hp-link",
     href: "/advertise",
     onClick: e => {
       e.preventDefault();

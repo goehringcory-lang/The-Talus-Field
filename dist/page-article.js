@@ -392,9 +392,9 @@ function ArticlePage({
       className: "series-band__nav"
     }, prev && seriesNav(prev, "← Previous"), next && seriesNav(next, "Next →")));
   })()), React.createElement("div", {
-    className: "hp-wrap hp-article__body"
+    className: "hp-wrap hp-reading"
   }, React.createElement("div", {
-    className: "hp-article__column"
+    className: "hp-reading__column"
   }, toc.length > 0 && React.createElement("details", {
     className: "toc"
   }, React.createElement("summary", null, "In this guide"), React.createElement("ul", null, toc.map(it => React.createElement("li", {

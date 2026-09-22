@@ -10,29 +10,22 @@ function StartHerePage({
     go(route);
   };
   return React.createElement("div", {
-    className: "page"
-  }, React.createElement("div", {
-    className: "page-head"
-  }, React.createElement("div", {
-    className: "wrap wrap--narrow"
-  }, React.createElement(Breadcrumbs, {
+    className: "page hp-start"
+  }, React.createElement(HpPageHead, {
     go: go,
-    trail: [{
+    crumbs: [{
       label: "Home",
       route: "home"
     }, {
       label: "Start here"
-    }]
+    }],
+    eyebrow: "FOR FIRST-TIME VISITORS",
+    title: "Planning your first trip to Yosemite? Start here.",
+    intro: "The questions everyone asks before a first visit, answered plainly by a naturalist who has worked in this park for close to two decades. Each answer links the full guide behind it. Read this page in five minutes, then go deep only where your trip needs it."
   }), React.createElement("div", {
-    className: "eyebrow eyebrow--moss"
-  }, "For first-time visitors"), React.createElement("h1", null, "Planning your first trip to Yosemite? Start here."), React.createElement("p", {
-    className: "page-head__dek"
-  }, "The questions everyone asks before a first visit, answered plainly by a naturalist who has worked in this park for close to two decades. Each answer links the full guide behind it. Read this page in five minutes, then go deep only where your trip needs it."))), React.createElement("div", {
-    className: "wrap wrap--narrow",
-    style: {
-      paddingTop: 40,
-      paddingBottom: 64
-    }
+    className: "hp-wrap hp-reading"
+  }, React.createElement("div", {
+    className: "hp-reading__column"
   }, React.createElement("section", {
     className: "prose"
   }, React.createElement("h2", null, "Do you need a reservation to get in?"), React.createElement("p", null, "No. There is no day-use or peak-hours entry reservation for 2026; the timed-entry systems that ran from 2020 through 2025 are gone. You pay at the gate and drive in. What rations your visit now is not paperwork, it is parking and entrance lines, which are harder problems than a reservation and ones you solve by arriving early. One thing did change at the gate: as of January 1, 2026, international visitors pay a $100 surcharge per person age 16 and older on top of the standard entrance fee. The full picture, and the strategy for a park with no throttle, is in", " ", React.createElement("a", {
@@ -99,20 +92,19 @@ function StartHerePage({
     list: "page_start_here",
     slug: "start-here",
     cta: "See what is available on your dates →"
-  }), React.createElement(GuidePromo, {
+  }))), React.createElement(HpGuideBand, {
     go: go,
     location: "start-here",
     title: "The first trip is the one that needs a guide",
-    body: "The Field Guide app carries 57 hikes with parking and timing notes, offline maps for a park with no cell service, and the local tactics for every major region. One purchase, eighteen months of access.",
-    style: {
-      marginTop: 56,
-      marginBottom: 40
-    }
-  }), React.createElement(NewsletterInline, {
-    location: "start-here",
-    tag: "start-here",
+    intro: "The Field Guide app carries 57 hikes with parking and timing notes, offline maps for a park with no cell service, and the local tactics for every major region. One purchase, eighteen months of access.",
+    sample: true
+  }), React.createElement(HpLetter, {
+    eyebrow: "SUNDAY FIELD NOTES / FREE",
+    title: "The Sunday Letter",
     heading: "The Sunday Letter",
-    blurb: "What is open, what is booking out, and what the week looked like from inside the park. One letter a week while you plan. Free."
-  })));
+    blurb: "What is open, what is booking out, and what the week looked like from inside the park. One letter a week while you plan. Free.",
+    location: "start-here",
+    tag: "start-here"
+  }));
 }
 window.StartHerePage = StartHerePage;

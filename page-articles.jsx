@@ -1,4 +1,4 @@
-/* global React, ArticleCard, Breadcrumbs */
+/* global React, HpPageHead, HpArticleCard */
 
 // =============================================================================
 // ARTICLES — `/articles` (the full index) and `/section/:slug`.
@@ -42,23 +42,17 @@ function ArticlesIndex({ go, initialCat }) {
   const list = window.filterArticlesByIntent(inSection, filters.value);
 
   return (
-    <div className="page">
-      <div className="page-head">
-        <div className="wrap">
-          <Breadcrumbs
-            go={go}
-            trail={[{ label: "Home", route: "home" }, { label: "Articles" }]}
-          />
-          <div className="eyebrow eyebrow--moss">Articles</div>
-          <h1>Entries.</h1>
-          <p className="page-head__dek">
-            Every essay and trail report from The Talus Field, in reverse chronological order. Yosemite planning notes, trail conditions, wildlife and natural history, and seasonal guides. Filter by section or by what you actually need, or read the whole thing.
-          </p>
-        </div>
-      </div>
+    <div className="page hp-index">
+      <HpPageHead
+        go={go}
+        crumbs={[{ label: "Home", route: "home" }, { label: "Articles" }]}
+        eyebrow="ARTICLES"
+        title="Entries."
+        intro="Every essay and trail report from The Talus Field, in reverse chronological order. Yosemite planning notes, trail conditions, wildlife and natural history, and seasonal guides. Filter by section or by what you actually need, or read the whole thing."
+      />
 
-      <div className="wrap" style={{ paddingTop: 32, paddingBottom: 8 }}>
-        <div style={{ display: "flex", gap: 8, flexWrap: "wrap", paddingBottom: 24 }}>
+      <section className="hp-wrap hp-index__filters">
+        <div className="hp-index__sections">
           <a href="/articles" className={`chip ${active === "all" ? "is-active" : ""}`}
             aria-current={active === "all" ? "true" : undefined}
             onClick={(e) => { e.preventDefault(); pickSection("all"); }}>
@@ -89,51 +83,47 @@ function ArticlesIndex({ go, initialCat }) {
           resultCount={list.length}
           note={active === "all" ? "" : `Within ${window.findCategory(active).label}.`}
         />
-      </div>
+      </section>
 
-      <div className="wrap" style={{ paddingTop: 40 }}>
+      <section className="hp-wrap hp-section hp-index__list">
         {list.length > 0 ? (
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 36, rowGap: 56 }}>
-            {list.map(a => <ArticleCard key={a.slug} article={a} go={go} />)}
+          <div className="hp-journal-grid">
+            {list.map(a => <HpArticleCard key={a.slug} article={a} go={go} location="articles_list" />)}
           </div>
         ) : (
-          <p style={{ fontFamily: "var(--serif)", fontSize: 19, lineHeight: 1.55, color: "var(--ink-2)", maxWidth: 640 }}>
+          <p className="hp-sub hp-index__empty">
             Nothing here carries all of those at once. Drop a filter, or{" "}
-            <button type="button" className="linkish" onClick={filters.clear}>clear them all</button>.
+            <button type="button" className="hp-link" onClick={filters.clear}>clear them all</button>.
           </p>
         )}
-      </div>
+      </section>
     </div>
   );
 }
 
 function CategoryPage({ slug, go }) {
   const cat = window.findCategory(slug);
-  if (!cat) return <div className="wrap" style={{ padding: 80 }}>Not found.</div>;
+  if (!cat) return <div className="hp-wrap hp-section">Not found.</div>;
   const items = window.byCategory(slug);
   return (
-    <div className="page">
-      <div className="page-head">
-        <div className="wrap">
-          <Breadcrumbs
-            go={go}
-            trail={[{ label: "Home", route: "home" }, { label: cat.label }]}
-          />
-          <div className="eyebrow eyebrow--moss">Section</div>
-          <h1>{cat.label}</h1>
-          <p className="page-head__dek">{cat.blurb}</p>
-        </div>
-      </div>
+    <div className="page hp-index">
+      <HpPageHead
+        go={go}
+        crumbs={[{ label: "Home", route: "home" }, { label: cat.label }]}
+        eyebrow="SECTION"
+        title={cat.label}
+        intro={cat.blurb}
+      />
 
-      <div className="wrap" style={{ paddingTop: 48 }}>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 36, rowGap: 56 }}>
-          {items.map(a => <ArticleCard key={a.slug} article={a} go={go} />)}
+      <section className="hp-wrap hp-section hp-index__list">
+        <div className="hp-journal-grid">
+          {items.map(a => <HpArticleCard key={a.slug} article={a} go={go} location="section_list" />)}
         </div>
 
-        <div style={{ marginTop: 80, borderTop: "1px solid var(--rule)", paddingTop: 32, fontFamily: "var(--sans)", fontSize: 14, color: "var(--ink-3)" }}>
-          <a href="/articles" onClick={(e) => { e.preventDefault(); go("articles"); }} style={{ color: "var(--ink-2)" }}>← Back to all articles</a>
-        </div>
-      </div>
+        <p className="hp-index__back">
+          <a className="hp-link" href="/articles" onClick={(e) => { e.preventDefault(); go("articles"); }}>← Back to all articles</a>
+        </p>
+      </section>
     </div>
   );
 }

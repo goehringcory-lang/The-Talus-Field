@@ -1,4 +1,4 @@
-/* global React, NewsletterInline, Breadcrumbs, GuidePromo, WebcamStrip, EntranceWaits */
+/* global React, HpPageHead, HpHeading, HpGuideBand, HpLetter, WebcamStrip, EntranceWaits */
 
 // =============================================================================
 // WEBCAMS — `/webcams` route.
@@ -59,30 +59,23 @@ const CAM_NOTES = [
 
 function WebcamsPage({ go }) {
   return (
-    <div className="page">
-      <div className="page-head">
-        <div className="wrap wrap--narrow">
-          <Breadcrumbs go={go} trail={[{ label: "Home", route: "home" }, { label: "Webcams" }]} />
-          <div className="eyebrow eyebrow--moss">Live views</div>
-          <h1>Yosemite webcams</h1>
-          <p className="page-head__dek">
-            The live cameras worth checking before you drive in, what each one
-            actually shows, and how often it refreshes. Four load on this page.
-            The rest are one link away, because the operators would rather you
-            watched them at home.
-          </p>
-        </div>
-      </div>
+    <div className="page hp-webcams">
+      <HpPageHead
+        go={go}
+        crumbs={[{ label: "Home", route: "home" }, { label: "Webcams" }]}
+        eyebrow="LIVE VIEWS"
+        title="Yosemite webcams"
+        intro="The live cameras worth checking before you drive in, what each one actually shows, and how often it refreshes. Four load on this page. The rest are one link away, because the operators would rather you watched them at home."
+      />
 
-      <div className="wrap" style={{ paddingTop: 40 }}>
-        <div className="section-head">
-          <h2>Live now</h2>
-          <a href="https://yosemite.org/webcams/" target="_blank" rel="noopener noreferrer">All Conservancy cameras →</a>
-        </div>
+      <section className="hp-wrap hp-section hp-webcams__live">
+        <HpHeading go={go} location="webcams" eyebrow="FOUR CAMERAS" title="Live now"
+          link={{ href: "https://yosemite.org/webcams/", label: "All Conservancy cameras ↗" }} />
         <WebcamStrip />
-      </div>
+      </section>
 
-      <div className="wrap wrap--narrow" style={{ paddingTop: 48, paddingBottom: 64 }}>
+      <div className="hp-wrap hp-reading">
+        <div className="hp-reading__column">
         <section className="prose">
           <h2>What each camera shows</h2>
           <p>
@@ -129,7 +122,7 @@ function WebcamsPage({ go }) {
         </section>
 
         <section style={{ marginTop: 48 }}>
-          <div className="eyebrow eyebrow--moss" style={{ marginBottom: 12 }}>Entrance waits, live</div>
+          <p className="hp-eyebrow">ENTRANCE WAITS, LIVE</p>
           <EntranceWaits />
         </section>
 
@@ -165,21 +158,24 @@ function WebcamsPage({ go }) {
           </p>
         </section>
 
-        <GuidePromo
-          go={go}
-          location="webcams"
-          title="No signal past the gate"
-          body="Cameras are for before you leave. Once you are in the park there is no service to load one. The Field Guide app carries offline maps, trailhead parking notes and GPS that works with the phone in airplane mode. One purchase, eighteen months of access."
-          style={{ marginTop: 56, marginBottom: 40 }}
-        />
-
-        <NewsletterInline
-          location="webcams"
-          tag="webcams"
-          heading="What the cameras are showing this week"
-          blurb="One short Sunday letter on what the park is doing right now: what is open, what is flowing, and what changed. Free."
-        />
+        </div>
       </div>
+
+      <HpGuideBand
+        go={go}
+        location="webcams"
+        title="No signal past the gate"
+        intro="Cameras are for before you leave. Once you are in the park there is no service to load one. The Field Guide app carries offline maps, trailhead parking notes and GPS that works with the phone in airplane mode. One purchase, eighteen months of access."
+        sample
+      />
+      <HpLetter
+        eyebrow="SUNDAY FIELD NOTES / FREE"
+        title="What the cameras are showing this week"
+        heading="What the cameras are showing this week"
+        blurb="One short Sunday letter on what the park is doing right now: what is open, what is flowing, and what changed. Free."
+        location="webcams"
+        tag="webcams"
+      />
     </div>
   );
 }

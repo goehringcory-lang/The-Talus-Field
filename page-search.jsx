@@ -1,4 +1,4 @@
-/* global React, ArticleCard, GuidePromo, NewsletterInline, Breadcrumbs */
+/* global React, HpPageHead, HpHeading, HpArticleCard, HpGuideBand, HpLetter */
 
 // =============================================================================
 // SEARCH — `/search` route. The journal's own search, over the catalog the
@@ -387,7 +387,7 @@ function SearchPage({ go }) {
   const resultsRef = useRef(null);
   const resultLinks = () =>
     resultsRef.current
-      ? Array.from(resultsRef.current.querySelectorAll("a.search-result, .search-articles a.card"))
+      ? Array.from(resultsRef.current.querySelectorAll("a.search-result, .search-articles > a"))
       : [];
   const onFieldKey = (e) => {
     if (e.key !== "ArrowDown") return;
@@ -414,19 +414,14 @@ function SearchPage({ go }) {
   const otherResults = results.filter((r) => r.entry.type !== "article");
 
   return (
-    <div className="page">
-      <div className="page-head">
-        <div className="wrap">
-          <Breadcrumbs go={go} trail={[{ label: "Home", route: "home" }, { label: "Search" }]} />
-          <div className="eyebrow eyebrow--moss">Search</div>
-          <h1>Find it.</h1>
-          <p className="page-head__dek">
-            Every article, section, and page in the journal. Results narrow as you type.
-          </p>
-        </div>
-      </div>
-
-      <div className="wrap" style={{ paddingTop: 32 }}>
+    <div className="page hp-search">
+      <HpPageHead
+        go={go}
+        crumbs={[{ label: "Home", route: "home" }, { label: "Search" }]}
+        eyebrow="SEARCH"
+        title="Find it."
+        intro="Every article, section, and page in the journal. Results narrow as you type."
+      >
         <form
           className="search-form"
           role="search"
@@ -468,9 +463,9 @@ function SearchPage({ go }) {
                 ? `${results.length} result${results.length === 1 ? "" : "s"} for "${tokens.join(" ")}" (read from "${query}").`
                 : `${results.length} result${results.length === 1 ? "" : "s"} for "${query}".`}
         </div>
-      </div>
+      </HpPageHead>
 
-      <div className="wrap" style={{ paddingTop: 24, paddingBottom: 96 }} ref={resultsRef} onKeyDown={onResultsKey}>
+      <div className="hp-wrap hp-section" ref={resultsRef} onKeyDown={onResultsKey}>
         {tokens.length === 0 && (
           <div className="search-browse">
             <h2 className="search-browse__head">Or start from a section</h2>
@@ -509,10 +504,8 @@ function SearchPage({ go }) {
         )}
 
         {otherResults.length > 0 && (
-          <section style={{ marginBottom: articleResults.length > 0 ? 56 : 0 }}>
-            <div className="section-head">
-              <h2>Pages and sections</h2>
-            </div>
+          <section className="search-section">
+            <HpHeading eyebrow="RESULTS" title="Pages and sections" />
             <div className="search-results">
               {otherResults.map(({ entry }) => (
                 <PageResult key={entry.key} entry={entry} tokens={tokens} go={go} />
@@ -522,13 +515,11 @@ function SearchPage({ go }) {
         )}
 
         {articleResults.length > 0 && (
-          <section>
-            <div className="section-head">
-              <h2>Articles</h2>
-            </div>
-            <div className="search-articles">
+          <section className="search-section">
+            <HpHeading eyebrow="THE JOURNAL" title="Articles" />
+            <div className="hp-journal-grid search-articles">
               {articleResults.map(({ entry }) => (
-                <ArticleCard key={entry.key} article={entry.article} go={go} />
+                <HpArticleCard key={entry.key} article={entry.article} go={go} location="search_results" />
               ))}
             </div>
           </section>
@@ -539,27 +530,27 @@ function SearchPage({ go }) {
             Headlines, summaries, and section names are searched. Full article text is not.
           </p>
         )}
-
-        {tokens.length === 0 && (
-          <>
-            <GuidePromo
-              go={go}
-              location="search"
-              title="Looking for something in the park, not the archive?"
-              body="The Field Guide app carries the stops, the hikes, and the maps offline, with a planner that turns your dates into a schedule. $3.99 for eighteen months."
-              style={{ maxWidth: 680, marginTop: 72, marginBottom: 56 }}
-            />
-            <div style={{ maxWidth: 680 }}>
-              <NewsletterInline
-                location="search"
-                tag="search"
-                heading="One letter a week"
-                blurb="Sunday Field Notes: what opened, what closed, and what the week ahead looks like from inside the park. Free."
-              />
-            </div>
-          </>
-        )}
       </div>
+
+      {tokens.length === 0 && (
+        <>
+          <HpGuideBand
+            go={go}
+            location="search"
+            title="Looking for something in the park, not the archive?"
+            intro="The Field Guide app carries the stops, the hikes, and the maps offline, with a planner that turns your dates into a schedule. $3.99 for eighteen months."
+            sample
+          />
+          <HpLetter
+            eyebrow="SUNDAY FIELD NOTES / FREE"
+            title="One letter a week"
+            heading="One letter a week"
+            blurb="Sunday Field Notes: what opened, what closed, and what the week ahead looks like from inside the park. Free."
+            location="search"
+            tag="search"
+          />
+        </>
+      )}
     </div>
   );
 }

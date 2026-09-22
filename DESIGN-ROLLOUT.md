@@ -39,15 +39,15 @@ Status: `[x]` converted, `[ ]` not yet.
 - [x] Prerendered fragments (`gen-prerender.mjs`): markup unchanged, painted in the new type before boot
 
 ### 2. Listing and index templates
-- [ ] `/articles` (ArticlesIndex)
-- [ ] `/section/<slug>` x4: planning, trails, wildlife, seasonal (CategoryPage)
-- [ ] `/search`
-- [ ] `/explore`
-- [ ] `/start-here`
-- [ ] `/films`
-- [ ] `/itineraries`
-- [ ] `/webcams`
-- [ ] `/places` (Directory)
+- [x] `/articles` (ArticlesIndex)
+- [x] `/section/<slug>` x4: planning, trails, wildlife, seasonal (CategoryPage)
+- [x] `/search`
+- [x] `/explore`
+- [x] `/start-here`
+- [x] `/films`
+- [x] `/itineraries`
+- [x] `/webcams`
+- [x] `/places` (Directory)
 
 ### 3. Static content template (page head + prose)
 - [ ] `/about`
