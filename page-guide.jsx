@@ -1,4 +1,4 @@
-/* global React, NewsletterInline */
+/* global React, NewsletterInline, HpGuideBand, HpLetter */
 
 // Public URL of the PWA. Override at runtime via window.GUIDE_APP_BASE.
 const GUIDE_APP_BASE =
@@ -201,7 +201,7 @@ function GuideBuyBox() {
   }
 
   return (
-    <aside id="guide-buy" style={{ position: "sticky", top: 100, alignSelf: "start", border: "1px solid var(--ink)", padding: 32, background: "var(--paper-2)" }}>
+    <aside id="guide-buy" className="guide-buybox">
       <div className="eyebrow eyebrow--moss" style={{ marginBottom: 14 }}>The Field Guide</div>
       <div style={{ fontFamily: "var(--display)", fontSize: 44, lineHeight: 1.05, fontWeight: 500, marginBottom: 8 }}>{formatPrice(priceCents)}.</div>
       <div style={{ fontFamily: "var(--sans)", fontSize: 12, textTransform: "uppercase", letterSpacing: "0.14em", color: "var(--ink-3)", fontWeight: 600, marginBottom: 24 }}>
@@ -385,7 +385,7 @@ function GuideWaitlistBox() {
   }
 
   return (
-    <aside style={{ position: "sticky", top: 100, alignSelf: "start", border: "1px solid var(--ink)", padding: 32, background: "var(--paper-2)" }}>
+    <aside className="guide-buybox">
       <div className="eyebrow eyebrow--moss" style={{ marginBottom: 14 }}>The Field Guide</div>
       <div style={{ fontFamily: "var(--display)", fontSize: 44, lineHeight: 1.05, fontWeight: 500, marginBottom: 8 }}>Not out yet.</div>
       <div style={{ fontFamily: "var(--sans)", fontSize: 12, textTransform: "uppercase", letterSpacing: "0.14em", color: "var(--ink-3)", fontWeight: 600, marginBottom: 24 }}>
@@ -1198,7 +1198,10 @@ function GuideMobileBuyBar() {
     // The footer counts too: it sits outside .page, so the padding-bottom
     // reserve doesn't cover it, and anyone that deep has scrolled past both
     // the buy box and the closer already.
+    // The hero's own button counts as well: since the hero became the design
+    // band its checkout button sits below the fold on a phone.
     const targets = [
+      document.querySelector(".guide-hero-cta"),
       document.getElementById("guide-buy"),
       document.querySelector(".guide-closer"),
       document.querySelector(".site-footer"),
@@ -1264,50 +1267,55 @@ function GuideMobileBuyBar() {
   );
 }
 
+// Since September 2026 the page is built on the homepage's design system
+// (DESIGN_ROUTES in components.jsx): the hero is the shared Field Guide band,
+// with the checkout button where the homepage puts its link, the long pitch
+// runs as numbered design sections beside the sticky buy box, and the letter
+// closes the page. The product copy is unchanged.
+const GUIDE_STATS = ["4 regions", "94 entries", "57 day hikes", "50 secret entries", "Works offline"];
+
 function GuidePage({ go }) {
   return (
-    <div className="page page--guide">
+    <div className="page hp-design hp-guide page--guide">
       {/* Hero */}
-      <section className="page-head">
-        <div className="wrap wrap--narrow">
-          <div className="eyebrow eyebrow--moss">The Field Guide · Offline app · 2026 Edition</div>
-          <h1>Three days in Yosemite. This is how you keep all three.</h1>
-          <p className="page-head__dek">
-            Written by a naturalist who lives in the park: which stops are worth your morning, where to park, how long each one honestly takes, and where to go the moment the lot fills. It builds each day in driving order, then downloads whole to your phone, topo map included, and keeps working where cell service doesn't, which is most of the park. Since September it also reads your GPS position to a dispatcher and names what you are passing.
+      <HpGuideBand
+        go={go}
+        location="guide_hero"
+        heading="h1"
+        eyebrow="THE FIELD GUIDE / OFFLINE APP / 2026 EDITION"
+        title="Three days in Yosemite. This is how you keep all three."
+        intro="Written by a naturalist who lives in the park: which stops are worth your morning, where to park, how long each one honestly takes, and where to go the moment the lot fills. It builds each day in driving order, then downloads whole to your phone, topo map included, and keeps working where cell service doesn't, which is most of the park. Since September it also reads your GPS position to a dispatcher and names what you are passing."
+        points={null}
+      >
+        <ul className="hp-stats">
+          {GUIDE_STATS.map((stat) => <li key={stat}>{stat}</li>)}
+        </ul>
+        <div className="guide-hero-cta">
+          <BuyNowButton location="guide_hero" />
+          <p className="hp-terms">
+            <LivePrice />, once. No subscription, 18 months on every device you own, refunded in full within 30 days if it does not work as described.
           </p>
-          <div className="guide-stats">
-            <span>4 regions</span>
-            <span>94 entries</span>
-            <span>57 day hikes</span>
-            <span>50 secret entries</span>
-            <span>Works offline</span>
-          </div>
-          <div className="guide-hero-cta">
-            <BuyNowButton location="guide_hero" />
-            <p className="guide-hero-cta__sub">
-              <LivePrice />, once. No subscription, 18 months on every device you own, refunded in full within 30 days if it does not work as described.
-            </p>
-            <p className="guide-hero-cta__sub">
-              Or{" "}
-              <a
-                href={`${GUIDE_APP_BASE}/preview`}
-                onClick={() => {
-                  if (window.track) window.track("guide_sample_click", { location: "guide_hero" });
-                }}
-              >
-                read the free sample first →
-              </a>{" "}
-              Five complete entries from the real app, no account needed.
-            </p>
-          </div>
+          <p className="hp-terms">
+            Or{" "}
+            <a
+              href={`${GUIDE_APP_BASE}/preview`}
+              onClick={() => {
+                if (window.track) window.track("guide_sample_click", { location: "guide_hero" });
+              }}
+            >
+              read the free sample first ↗
+            </a>{" "}
+            Five complete entries from the real app, no account needed.
+          </p>
         </div>
-      </section>
+      </HpGuideBand>
 
-      <div className="wrap" style={{ paddingTop: 24, paddingBottom: 80 }}>
-        <div style={{ display: "grid", gridTemplateColumns: "1.4fr 1fr", gap: 64, alignItems: "start" }}>
+      <div className="hp-wrap hp-section">
+        <div className="guide-layout">
 
-          {/* Left column. Body */}
-          <div className="prose">
+          {/* Left column. Body. Each h2 opens a numbered design section; the
+              numbers are drawn by CSS counters, so the copy is untouched. */}
+          <div className="prose guide-prose">
             <h2>What a wrong morning costs</h2>
 
             <p>
@@ -1472,14 +1480,14 @@ function GuidePage({ go }) {
       </div>
 
       {/* Newsletter */}
-      <div className="wrap wrap--narrow" style={{ paddingBottom: 96 }}>
-        <NewsletterInline
-          location="guide_footer"
-          tag="guide"
-          heading="Sunday Field Notes"
-          blurb="A short note on Sundays. Subscribers hear about Field Guide updates, Secret Guide additions, and seasonal addenda first."
-        />
-      </div>
+      <HpLetter
+        eyebrow="FOR BUYERS AND READERS"
+        title="Sunday Field Notes"
+        heading="Sunday Field Notes"
+        blurb="A short note on Sundays. Subscribers hear about Field Guide updates, Secret Guide additions, and seasonal addenda first."
+        location="guide_footer"
+        tag="guide"
+      />
 
       {GUIDE_ON_SALE && <GuideMobileBuyBar />}
     </div>
