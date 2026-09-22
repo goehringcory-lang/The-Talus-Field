@@ -5,7 +5,7 @@
 // The Field Guide carries a hand mirror at apps/guide/src/content/deadlines.ts,
 // asserted equal to the JSON by scripts/check-deadlines.mjs.
 window.DEADLINES = {
-  "verified": "2026-09-05",
+  "verified": "2026-09-22",
   "ruleYears": [
     2026,
     2027
@@ -108,7 +108,7 @@ window.DEADLINES = {
       "kind": "relative",
       "offsetDays": -14,
       "time": "7 a.m.",
-      "detail": "Bridalveil Creek, Crane Flat, Tamarack Flat, White Wolf, Yosemite Creek, Porcupine Flat and half of Tuolumne Meadows release two weeks before the arrival date at 7 a.m. Pacific.",
+      "detail": "Bridalveil Creek, Crane Flat, Tamarack Flat, White Wolf, Yosemite Creek, Porcupine Flat and half of Tuolumne Meadows release two weeks before the arrival date at 7 a.m. Pacific. The other half of Tuolumne Meadows releases on the 15th at 7 a.m., one month before that arrival window opens: June 15 covers a July 15 to August 14 arrival, July 15 covers August 15 to September 14, and August 15 covers September 15 to October 14. NPS calls that release two months in advance, counting to the far end of the window.",
       "confidence": "published",
       "source": "https://www.nps.gov/yose/planyourvisit/camping.htm",
       "tag": "date-camping",
@@ -122,7 +122,7 @@ window.DEADLINES = {
       "kind": "relative",
       "offsetDays": -7,
       "time": "7 a.m.",
-      "detail": "Camp 4 sites release one week before the arrival date at 7 a.m. Pacific. $10 per person a night.",
+      "detail": "From April 15 through November 9, Camp 4 sites release one week before the arrival date at 7 a.m. Pacific, at $10 per person a night. Outside those dates the campground is first-come, first-served at $10 a night.",
       "confidence": "published",
       "source": "https://www.nps.gov/yose/planyourvisit/camping.htm",
       "tag": "date-camping",

@@ -297,6 +297,7 @@ const seed: AmenityInput[] = [
     region: 'valley',
     coord: [-119.587148, 37.748784], // NPS API places: Yosemite Exploration Center
     note: 'The former Valley Visitor Center, rebuilt as the exhibit hall, with the theater behind it and the Yosemite Museum and the Wilderness Center next door. Shuttle stop 5.',
+    hours: '9 a.m. to 5 p.m. daily',
   },
   {
     id: 'valley-wilderness-center',
@@ -304,8 +305,8 @@ const seed: AmenityInput[] = [
     kind: 'visitor-center',
     region: 'valley',
     coord: [-119.58662, 37.748305], // NPS API places: Yosemite Valley Wilderness Center
-    note: 'Wilderness permits, bear canister rentals, and the trail-conditions board, between the Exploration Center and the post office.',
-    hours: '8 a.m. to 5 p.m.',
+    note: 'Wilderness permits, bear canister rentals, and the trail-conditions board, between the Exploration Center and the post office. After October 18, Valley trailhead permits are self-registered outside the Welcome Center.',
+    hours: '8 a.m. to 5 p.m. through October 18',
   },
   {
     id: 'happy-isles-art-nature-center',
@@ -314,7 +315,8 @@ const seed: AmenityInput[] = [
     region: 'valley',
     coord: [-119.559463, 37.730692], // NPS API places: Happy Isles Art and Nature Center
     note: 'The family stop at shuttle stop 16, a hundred metres from the Mist Trail trailhead: hands-on exhibits, the junior ranger desk, and art classes in season.',
-    season: 'Spring through fall',
+    hours: 'Weekdays, 9 a.m. to 4 p.m., through October 16',
+    season: 'Through October 16',
   },
   {
     id: 'wawona-visitor-center',
@@ -322,8 +324,8 @@ const seed: AmenityInput[] = [
     kind: 'visitor-center',
     region: 'glacier-mariposa',
     coord: [-119.655392, 37.537154], // NPS API visitorcenters: Wawona Visitor Center at Hill's Studio
-    note: "Thomas Hill's 1886 painting studio beside the Wawona Hotel, now the south end's information desk and wilderness permit station.",
-    hours: '8 a.m. to 5 p.m., late May to early October',
+    note: "Thomas Hill's 1886 painting studio beside the Wawona Hotel, now the south end's information desk. Wilderness permit pickup here ends October 14; after that, Wawona trailheads self-register on the front porch.",
+    hours: '8 a.m. to 5 p.m. through October 31',
   },
   {
     id: 'big-oak-flat-information-station',
@@ -331,8 +333,8 @@ const seed: AmenityInput[] = [
     kind: 'visitor-center',
     region: 'hetch-hetchy',
     coord: [-119.875434, 37.80034], // NPS API visitorcenters: Big Oak Flat Information Station
-    note: 'Just inside the Big Oak Flat Entrance: information, the Highway 120 wilderness permit desk, and a YARTS stop.',
-    hours: '8 a.m. to 5 p.m., late May to early October',
+    note: 'Just inside the Big Oak Flat Entrance: information, the Highway 120 wilderness permit desk, and a YARTS stop. Permit pickup ends October 18. After that, Tioga Road trailheads self-register on the front porch.',
+    hours: '8 a.m. to 5 p.m.; from 9 a.m. starting October 19',
   },
   {
     id: 'tuolumne-meadows-visitor-center',
@@ -341,7 +343,7 @@ const seed: AmenityInput[] = [
     region: 'tuolumne',
     coord: [-119.374178, 37.871567], // NPS API visitorcenters: Tuolumne Meadows Visitor Center
     note: 'The high country desk on Tioga Road at the west end of the meadow, with exhibits on the alpine year. Wilderness permits are at the separate Wilderness Center a mile east.',
-    hours: '9 a.m. to 5 p.m., late May to late September',
+    hours: '9 a.m. to 5 p.m. through September 27',
     season: 'Tioga Road season only',
   },
   {
@@ -351,7 +353,7 @@ const seed: AmenityInput[] = [
     region: 'tuolumne',
     coord: [-119.345733, 37.876912], // NPS API places: Tuolumne Meadows Wilderness Center
     note: 'Wilderness permits and bear canisters for the Tuolumne trailheads, on the Tuolumne Meadows Lodge road off Tioga Road.',
-    hours: '8 a.m. to 5 p.m.',
+    hours: '8 a.m. to 5 p.m. through October 14',
     season: 'Tioga Road season only',
   },
 
@@ -439,7 +441,7 @@ const seed: AmenityInput[] = [
     region: 'valley',
     coord: [-119.630986, 37.723827], // NPS API places: Valley Shuttle Stop 9
     glyph: '9',
-    note: 'Valleywide route. El Capitan Meadow and the west end of the Valley loop.',
+    note: 'Valleywide route. Temporarily closed in the September 23 to November 24, 2026 Yosemite Guide. El Capitan Meadow is still reachable from the road.',
   },
   {
     id: 'shuttle-stop-10',
