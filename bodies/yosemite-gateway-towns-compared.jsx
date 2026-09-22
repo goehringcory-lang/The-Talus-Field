@@ -393,6 +393,20 @@ window.ARTICLE_BODIES["yosemite-gateway-towns-compared"] = function YosemiteGate
         One caveat on every drive time on this page: Yosemite Valley is about seven miles long, and a time quoted to the Valley means its west end, near Bridalveil Fall. Curry Village and the east-end trailheads are another fifteen or twenty minutes past that, plus parking. Budget for the end of the Valley you actually want. The legs the table does not cover (Oakhurst to the South Entrance, Groveland to Big Oak Flat, Lee Vining to Tuolumne Meadows) are collected on <a href="/distances">the drive times page</a>.
       </p>
 
+      <h2 id="sec-closest-town-to-yosemite-by-entrance">The closest town to Yosemite, by entrance</h2>
+
+      <p>
+        "Closest town to Yosemite" has four answers, because the park has four through-road entrances and the closest town to one is two hours from another. Closest to the place you are actually going is the question:
+      </p>
+
+      <ul>
+        <li><strong>Closest town to Yosemite Valley:</strong> El Portal, about 14 miles and 25 to 35 minutes on Highway 140, through the Arch Rock entrance. Mariposa is next at about 45 miles. Foresta, inside the boundary, has a handful of rental cabins and nothing else.</li>
+        <li><strong>Closest town to the South Entrance:</strong> Fish Camp, two miles from the gate, with Tenaya Lodge and a few inns; Oakhurst, about 14 miles and 20 to 25 minutes, is the closest full town. The Mariposa Grove is just inside this gate and Wawona six miles beyond it.</li>
+        <li><strong>Closest town to the Big Oak Flat Entrance (the west, from the Bay Area):</strong> Buck Meadows and the Highway 120 lodges, a few minutes from the gate; Groveland, about 24 miles and 30 to 40 minutes, is the closest town with a main street.</li>
+        <li><strong>Closest town to Tioga Pass (the east):</strong> Lee Vining, about a dozen miles down Highway 120 East, summer only. When the pass is closed there is no town near this entrance because there is no entrance.</li>
+        <li><strong>Closest city with an airport:</strong> Fresno, about 65 miles from the South Entrance and 94 from the Valley by the Park Service's count, with summer YARTS service up Highway 41. Merced, on Highway 140, is the year-round YARTS hub for the Valley.</li>
+      </ul>
+
       <p>If you want the answer before the detail, it is one of these five:</p>
 
       <ul>
@@ -686,7 +700,7 @@ window.ARTICLE_BODIES["yosemite-gateway-towns-compared"] = function YosemiteGate
       </p>
 
       <p>
-        <strong>Cell service.</strong> Patchy in all five gateways and unreliable to nonexistent through most of the park, including long stretches of the approach roads. Download the offline map for the whole region before you leave the gateway town, screenshot your reservation details, and agree on a meeting point with anyone you might get separated from. Do not rely on real-time navigation past the entrance station.
+        <strong>Cell service.</strong> Patchy in all five gateways and unreliable to nonexistent through most of the park, including long stretches of the approach roads. Download the offline map for the whole region before you leave the gateway town, screenshot your reservation details, and agree on a meeting point with anyone you might get separated from. Do not rely on real-time navigation past the entrance station. <a href="/articles/cell-service-in-yosemite">Cell service in Yosemite</a> has what each carrier actually gets, town by town and inside the park.
       </p>
 
       <p>
@@ -700,6 +714,29 @@ window.ARTICLE_BODIES["yosemite-gateway-towns-compared"] = function YosemiteGate
       <p>
         <strong>Check current status the week you travel.</strong> Road, chain-control, and closure status changes faster than any lodging comparison. The <a href="/now">Park Bulletin</a> condenses the current edition of park status, roads, hours, and trail conditions onto one page.
       </p>
+
+      <h2 id="sec-where-to-stay-near-yosemite-with-kids">Where to stay near Yosemite with kids</h2>
+
+      <p>
+        Mariposa, for most families, and Oakhurst if the sequoias are the point of the trip. The reasoning is the same as the general case with the volume turned up: a family needs a full supermarket, a pharmacy, more than one dinner option, and a room that can be booked late, and Mariposa and Oakhurst are the only two gateways that have all four. Mariposa wins on the Valley drive, which matters more with children who have a limit on car time, and on the year-round road. El Portal's short drive is a real advantage for early starts with small kids, if you can get a room and do not mind driving to Mariposa for dinner. Groveland's main street is charming for adults and thin on the things that rescue a family evening. <a href="/articles/yosemite-with-kids-no-reservations-2026">Yosemite with kids</a> has the in-park half: which walks, which shuttle stops, and where the bathrooms are.
+      </p>
+
+      <h2 id="sec-yosemite-and-sequoia-in-one-trip">Yosemite and Sequoia in one trip</h2>
+
+      <p>
+        Base south. Oakhurst is the pivot between the two parks: the South Entrance is 20 to 25 minutes north on Highway 41, and Fresno, then Highway 180 to the Kings Canyon entrance and the Generals Highway into Sequoia, is roughly two to two and a half hours south. Doing both from Mariposa or Groveland adds an hour to every leg. The usual shape is two nights in Oakhurst for Yosemite (one Valley day, one Mariposa Grove and Wawona day), then a drive to Three Rivers or the Kings Canyon side for the second park. Do not try to visit Sequoia as a day trip from any Yosemite gateway; the round trip is five hours of driving before you have seen a tree.
+      </p>
+
+      <h2 id="sec-common-questions">Common questions</h2>
+
+      <p><strong>What is the closest town to Yosemite?</strong> El Portal, about 14 miles and 25 to 35 minutes from Yosemite Valley on Highway 140. For the South Entrance and the Mariposa Grove it is Fish Camp, then Oakhurst; for the Big Oak Flat Entrance it is Groveland; for Tioga Pass, in summer, Lee Vining.</p>
+      <p><strong>What is the best town to stay in near Yosemite?</strong> For most first-time visitors, Mariposa: a real town, several price points, full supermarkets, and the year-round Highway 140 road at 45 to 60 minutes from the Valley. El Portal if the drive is the thing to shorten, Oakhurst for the sequoias, Groveland for character and the Bay Area route, Lee Vining for the high country.</p>
+      <p><strong>Is Oakhurst or Mariposa closer to Yosemite Valley?</strong> Mariposa, by 30 minutes or more: 45 to 60 minutes on Highway 140 against 75 to 90 on Highway 41. Oakhurst is closer to the South Entrance and the Mariposa Grove, 20 to 25 minutes.</p>
+      <p><strong>Where should I stay near the Yosemite south entrance?</strong> Fish Camp, two miles from the gate, if you want to be closest; Oakhurst, 14 miles, if you want a full town. The Wawona Hotel, the in-park option on this side, has been closed since December 2024.</p>
+      <p><strong>Where should I stay near Yosemite with kids?</strong> Mariposa for a Valley trip, Oakhurst for a sequoia trip. Both have full supermarkets, pharmacies, several restaurants, and rooms that can be booked later than El Portal or the in-park lodges.</p>
+      <p><strong>Which gateway town is cheapest?</strong> Groveland and Mariposa typically have the widest range and the most budget rooms. El Portal is priced like in-park lodging. Oakhurst has predictable chain prices. Lee Vining has little inventory and prices accordingly.</p>
+      <p><strong>Which towns have full grocery stores?</strong> Mariposa and Oakhurst. Groveland has a market. El Portal and Lee Vining have convenience-scale markets only.</p>
+      <p><strong>Which town works in winter?</strong> El Portal or Mariposa, on Highway 140, the lowest and most reliable road. Groveland works with chains. Lee Vining has no road into the park at all when Tioga Pass is closed.</p>
 
       <h2 id="sec-9-the-takeaway">The takeaway</h2>
 

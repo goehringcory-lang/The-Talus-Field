@@ -6,24 +6,47 @@ window.ARTICLE_BODIES["yosemite-without-reservations-2026"] = function YosemiteW
   return (
     <>
       <p className="dropcap">
-        The headline most people read in late 2025 was that Yosemite would not require entrance reservations in 2026. The way most people interpreted that headline was that the park had gotten easier to visit. It hasn't. It's gotten harder, in a way that nobody is going to tell you about until you're sitting in a four-mile line outside the Arch Rock entrance station on a Saturday morning in July.
+        The headline most people read this year, from the Park Service's February 18, 2026 announcement, was that Yosemite would not require entrance reservations in 2026. The way most people interpreted that headline was that the park had gotten easier to visit. It hasn't. It's gotten harder, in a way that nobody is going to tell you about until you're sitting in a four-mile line outside the Arch Rock entrance station on a Saturday morning in July.
       </p>
       <p>
         The reservation system, for all its faults, was a throttle. It capped the number of vehicles that could enter the park during peak hours. Without it, that cap is gone. The expected result, based on what park staff have been saying publicly and what the Yosemite Conservancy has flagged in its planning advisories, is the heaviest crowds Yosemite has seen since the last un-throttled summers. The 2024 and 2025 seasons, with reservations, set a baseline. 2026 is going to push past it.
       </p>
       <p>This is not a reason not to visit. It is a reason to visit smart. (If it's your first trip, the <a href="/articles/first-time-yosemite-overwhelm">first-timer's guide</a> is the broader-strategy companion. If you are already in the park holding nothing, skip ahead to <a href="/articles/yosemite-walk-up-and-day-of-permits">what you can still get today</a>.)</p>
       <p>One thing did change at the gate, and it is not about crowds. As of January 1, 2026, international visitors pay a $100 surcharge per person age 16 and older, on top of the standard entrance fee. A $250 nonresident annual pass waives it. Domestic visitors are unaffected.</p>
+      <h2 id="sec-5-do-you-need-a-reservation-for-yosemite-right-now">Do you need a reservation for Yosemite right now?</h2>
+      <p>To enter the park, no. Not today, not this weekend, not on any date in 2026. The timed-entry systems that ran in some form from 2020 through 2024, and the peak-hours version that ran in 2025, are all gone, and a car can drive up to any entrance station on any day of the year with nothing but an entrance pass. That answer holds for every month people ask about: September, October, the February Firefall, Memorial Day weekend, the Fourth of July. What still needs booking is everything you would sleep in or climb, and that list has not changed:</p>
+      <div className="table-scroll">
+        <table className="compare-table">
+          <thead>
+            <tr><th>What you want</th><th>Reservation in 2026?</th><th>Where and when</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Driving into the park, any day</td><td>No</td><td>An entrance pass only: $35 per car for seven days, sold at the gate or in advance on Recreation.gov</td></tr>
+            <tr><td>Firefall, mid-to-late February</td><td>No</td><td>No entrance reservation was required for February 2026; 2027 is unannounced</td></tr>
+            <tr><td>Camping</td><td>Yes</td><td>Recreation.gov, released on the 15th of each month at 7 a.m. Pacific for dates five months out; a few first-come sites outside the Valley</td></tr>
+            <tr><td>In-park lodging</td><td>Yes</td><td>travelyosemite.com, 366 days ahead</td></tr>
+            <tr><td>Half Dome, cable season</td><td>Yes, a permit</td><td>Preseason lottery in March, daily lottery two days ahead</td></tr>
+            <tr><td>Overnight wilderness trips</td><td>Yes, a permit</td><td>Recreation.gov, 24 weeks ahead, plus a walk-up share</td></tr>
+            <tr><td>Mariposa Grove</td><td>No</td><td>Park at the Welcome Plaza and ride the free shuttle; the lot fills by late morning</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>The permits are their own subject: <a href="/articles/yosemite-wilderness-permits-guide">the wilderness permit guide</a> for overnight trips, <a href="/articles/so-you-want-to-hike-half-dome">the Half Dome guide</a> for the cables, and <a href="/articles/yosemite-camping-complete-guide">the camping guide</a> for the 15th-of-the-month release. Every dated window sits on one page at <a href="/dates">Yosemite dates and deadlines</a>, with calendar files.</p>
+
+      <h2 id="sec-6-what-about-2027">What about 2027?</h2>
+      <p>Nothing has been announced, and nothing is likely to be until winter. The pattern is worth knowing: the 2026 decision came on February 18, after the park analyzed the 2025 season, and it was framed as a finding that most weekdays had enough parking without a park-wide throttle, not as a permanent policy. The strategies that replaced reservations, live traffic monitoring, active parking management in the Valley, and staff at the busy intersections, are the same tools the park can turn back into a reservation if the 2026 numbers say so. If you are planning a 2027 summer trip, book lodging as if a reservation might return (the beds are the scarce thing either way) and check <a href="/now">the Park Bulletin</a> in February, which is when the last two announcements came. When the park says anything, this page will change the same day.</p>
+
       <p>
-        Here is the actual strategy. Not the generic "go early" advice that's already on every tourism blog. The real version, with specific timing, alternatives, and contingencies for when your first plan doesn't work.
+        Here is the actual strategy for the year we are in. Not the generic "go early" advice that's already on every tourism blog. The real version, with specific timing, alternatives, and contingencies for when your first plan doesn't work.
       </p>
 
-      <h2>Why this matters more than the news made it sound</h2>
+      <h2 id="sec-0-why-this-matters-more-than-the-news-made">Why this matters more than the news made it sound</h2>
       <p>A few facts to set the stage.</p>
       <p>
         In 2023, the year before the reservation system was at full force, Yosemite had peak-day visitation that resulted in multi-hour entrance station waits and closed-out parking lots across the Valley by mid-morning. The reservation system, when it operated in 2024 and 2025, smoothed those peaks. With it gone in 2026, the question is not whether the peaks will return. It's whether they'll exceed 2023 levels, which is plausible because awareness of Yosemite has grown considerably since then, and demand is genuinely higher.
       </p>
       <p>
-        Half the summer has now run, and the spring predictions have held. As of the July park bulletin, Valley day-use parking fills by late morning on ordinary days, earlier on weekends, and the park's standing advice is the same as this article's: arrive before 8 a.m. or after 4 p.m. The <a href="/now">Park Bulletin</a> carries the current closures, hours, and trail status in one place; check it the week you travel.
+        The summer has now run, and the spring predictions held. As of the September park bulletin, Valley day-use parking still fills by late morning on ordinary days, earlier on weekends, and the park's standing advice is the same as this article's: arrive before 8 a.m. or after 4 p.m. The fall shoulder helps, but a Saturday in October is not a quiet day. The <a href="/now">Park Bulletin</a> carries the current closures, hours, and trail status in one place; check it the week you travel.
       </p>
       <p>The places that will feel the crowd hardest:</p>
       <ul>
@@ -41,7 +64,7 @@ window.ARTICLE_BODIES["yosemite-without-reservations-2026"] = function YosemiteW
         <li>Any place more than a mile off the road. Crowds in Yosemite are crowds at the parking lot. They thin dramatically with distance.</li>
       </ul>
 
-      <h2>The toolkit: three levers you actually have</h2>
+      <h2 id="sec-1-the-toolkit-three-levers-you-actually-ha">The toolkit: three levers you actually have</h2>
       <p>You can't book your way to a quiet Yosemite in 2026. You can use three levers instead.</p>
 
       <h3>Lever 1: timing</h3>
@@ -66,7 +89,7 @@ window.ARTICLE_BODIES["yosemite-without-reservations-2026"] = function YosemiteW
       <ul>
         <li><strong>Wawona and Mariposa Grove</strong> (the southern entrance area). Mariposa Grove gets busy at the front of the loop, but the Outer Loop trail clears the crowd quickly. Wawona itself, with its meadow and pioneer cemetery, is rarely full.</li>
         <li><strong>Hetch Hetchy</strong>. The northwestern entrance leads to a different valley with a reservoir, a dam walk, and trails that see a fraction of Valley traffic. The drive in is long. Almost nobody does it.</li>
-        <li><strong>Tioga Road outside the headline stops</strong>. Pothole Dome, Lembert Dome, the east end of Tenaya Lake, the trail to Glen Aulin. All accessible from Tioga Road but rarely backed up. One 2026 caveat: the Tuolumne Meadows water project has traffic controls on Tioga Road this season, with stops of around ten minutes, so build that into your timing if Tioga is your crowd-escape route.</li>
+        <li><strong>Tioga Road outside the headline stops</strong>. Pothole Dome, Lembert Dome, the east end of Tenaya Lake, the trail to Glen Aulin. All accessible from Tioga Road but rarely backed up. One 2026 caveat: road work has traffic controls on Tioga Road this season, about ten minutes through Tuolumne Meadows and fifteen from Olmsted Point to Tioga Pass, Monday through Thursday from 8 a.m. to 3:30 p.m., so build that into your timing if Tioga is your crowd-escape route.</li>
         <li><strong>Anywhere a half mile off a major trail.</strong> The standard hike to Vernal Fall is often a conga line. The trail past the top of Vernal Fall, continuing to Nevada Fall via the John Muir Trail, drops the crowd by 80%.</li>
       </ul>
       <p>
@@ -85,7 +108,7 @@ window.ARTICLE_BODIES["yosemite-without-reservations-2026"] = function YosemiteW
         The visitors who have a great 2026 trip will be the ones who plan for three options at every major decision point and pick whichever has the lowest friction at the moment they arrive. The visitors who have a bad trip will be the ones who insist on the original plan even when the park is telling them to flex.
       </p>
 
-      <h2>Strategy by trip type</h2>
+      <h2 id="sec-2-strategy-by-trip-type">Strategy by trip type</h2>
       <p>A few patterns by trip length:</p>
 
       <h3>A single weekend day</h3>
@@ -115,7 +138,7 @@ window.ARTICLE_BODIES["yosemite-without-reservations-2026"] = function YosemiteW
         <li>Plan one trip up to Tuolumne Meadows or Wawona that's longer than a half-day. Both deserve more time than they usually get.</li>
       </ul>
 
-      <h2>When the first plan dies</h2>
+      <h2 id="sec-3-when-the-first-plan-dies">When the first plan dies</h2>
       <p>A real menu of substitutions for when your A-plan isn't working.</p>
       <table>
         <thead>
@@ -138,7 +161,10 @@ window.ARTICLE_BODIES["yosemite-without-reservations-2026"] = function YosemiteW
         Two rows of that table come with 2026 footnotes. Trail work closes sections of the Mist Trail on weekdays, Monday through Thursday from 7 a.m. to 3:30 p.m., into late October, with a detour via the John Muir Trail; on those days the substitution is not optional, so hike the Vernal and Nevada corridor Friday through Sunday or start after the crews knock off (the <a href="/articles/mist-trail-the-real-guide">Mist Trail guide</a> has the details). And White Wolf's lodge, store, and dining room are closed for the 2026 season; the meadows are still worth the stop, but bring everything you need.
       </p>
 
-      <h2>The takeaway</h2>
+      <h2 id="sec-7-entrance-wait-times-check-the-gate-before-you-drive">Entrance wait times: check the gate before you drive</h2>
+      <p>The park now publishes live wait estimates for its three western entrances, Arch Rock, Big Oak Flat, and South, and the site's <a href="/conditions">conditions board</a> shows them beside the Valley parking-lot counts, updated as the feeds are. On a summer weekend the Arch Rock line is long by mid-morning and nonexistent at 6:30 a.m., and the difference between the two is the whole point of this article. Text <em>ynptraffic</em> to 333111 for the park's own alerts, look at the <a href="/webcams">webcams</a> for what Tunnel View looks like right now, and if the gate you planned on is backed up, the substitution table above works for entrances too: Big Oak Flat rarely queues the way Arch Rock does, and from Mariposa the standing detour, Highway 49 north to Coulterville and across to Highway 120, trades a longer and twistier drive for a gate that is not backed up.</p>
+
+      <h2 id="sec-4-the-takeaway">The takeaway</h2>
       <p>
         Yosemite in 2026 is going to test the patience and flexibility of every visitor who comes. The visitors who have a great trip are going to be the ones who treat the park as a place that requires real strategy, not a place you show up to and check off a list.
       </p>
@@ -146,6 +172,18 @@ window.ARTICLE_BODIES["yosemite-without-reservations-2026"] = function YosemiteW
         Be in the park by 6:30 a.m. on any peak day. Have a swap ready for every major sight. Spend at least one full day deliberately outside the Valley. And accept, before you arrive, that the trip you planned is not the trip you'll have. The trip you have can still be a great one. It just won't be the one in the brochure.
       </p>
       <p>That's been true in every year since the park was created. It's just more true in 2026.</p>
+
+      <h2 id="sec-8-common-questions">Common questions</h2>
+      <p><strong>Do I need a reservation to enter Yosemite in 2026?</strong> No. There is no day-use, timed-entry, or peak-hours reservation in 2026, on any date. You need a standard entrance pass, $35 per vehicle for seven days.</p>
+      <p><strong>Do I need a reservation for Yosemite in September or October?</strong> No. The fall shoulder is one of the best windows of the year and there is no entrance reservation for it. Camping and in-park lodging still need booking.</p>
+      <p><strong>Do I need a reservation for the Firefall in February?</strong> Not for 2026, when no entrance reservation was required. February 2027 has not been announced. Watch for it in the winter.</p>
+      <p><strong>Will Yosemite require reservations in 2027?</strong> Unknown. The park has said nothing about 2027, and the 2026 decision was based on 2025 data, so a change for 2027 would most likely be announced in the winter, as the last two were.</p>
+      <p><strong>When does Yosemite Valley fill up?</strong> Day-use parking fills by late morning on ordinary days and by 8 a.m. or earlier on summer weekends. The park's standing advice is to arrive before 8 a.m. or after 4 p.m.</p>
+      <p><strong>What time should I enter Yosemite to beat the crowds?</strong> Be inside the park by 6:30 a.m. on any peak day. The drive in is faster, the entrance stations are quiet, and you are parked at your first stop while everyone else is still in line.</p>
+      <p><strong>How long is the wait at the Yosemite entrance?</strong> From nothing at dawn to a long line by mid-morning on a summer weekend, worst at Arch Rock. The park publishes live estimates for the three western gates; they are on the <a href="/conditions">conditions board</a>.</p>
+      <p><strong>What changed in Yosemite in 2026?</strong> Two things. The entrance reservation system was dropped, so the throttle that limited vehicles in 2024 and 2025 is gone. And since January 1, 2026, visitors who are not U.S. residents pay a $100 surcharge per person age 16 and older, or $250 for a nonresident annual pass. Domestic visitors are unaffected.</p>
+      <p><strong>How do I find parking in Yosemite Valley?</strong> Arrive before 8 a.m. for the central lots. Yosemite Village day-use parking is the most useful base; the lot near Yosemite Valley Lodge usually has turnover by mid-morning. Do not circle Curry Village.</p>
+      <p><strong>Is the Mist Trail open in 2026?</strong> Mostly. Repairs close sections of it Monday through Thursday, 7 a.m. to 3:30 p.m., through October 2026, with a detour via the John Muir Trail. Hike the Vernal and Nevada corridor Friday through Sunday, or after the crews finish for the day.</p>
 
       <LodgingCta
         destination="El Portal, California"

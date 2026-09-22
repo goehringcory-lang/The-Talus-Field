@@ -5084,7 +5084,7 @@ For where to base yourself, see Yosemite gateway towns compared and the lodging 
 ## One day in Yosemite: an itinerary for one or two days
 
 URL: https://thetalusfieldjournal.com/articles/yosemite-in-one-or-two-days
-Section: Planning. Published: 2026-05-19. Last updated: 2026-08-07.
+Section: Planning. Published: 2026-05-19. Last updated: 2026-09-21.
 Summary: One day in Yosemite, done right: a 2026 itinerary for one or two days. The Valley waterfall sequence, what to skip, gas, parking, and a realistic hike.
 
 One day in Yosemite is enough. Two days is enough plus the part where you actually slow down. The trip people most often regret is the four-day visit that shrinks to three because someone got the flu, then to two because Tioga Road was not open, then to one because the lot at Curry Village filled before they got there. The trip people most often remember is the one-day visit where they arrived at sunrise, did three things well, and drove home in the dark.
@@ -5095,9 +5095,9 @@ Photo: Madhu Shesharam / Unsplash
 
 ### The 2026 reservation and crowd context
 
-There is no day-use reservation in Yosemite in 2026. There is no peak-hours reservation either. The timed-entry system that ran in various forms from 2020 through 2024, and the narrower peak-hours system that ran in 2025, are both gone. The Park Service announced the change around February 2026, citing 2025 traffic data that suggested the systems were no longer doing enough to justify the friction they created. For the first time in years a Yosemite day trip needs no advance permit: decide on a Thursday night, drive in Friday morning, and simply do it.
+There is no day-use reservation in Yosemite in 2026. There is no peak-hours reservation either. The timed-entry system that ran in various forms from 2020 through 2024, and the narrower peak-hours system that ran in 2025, are both gone. The Park Service announced the change on February 18, 2026, citing 2025 traffic data that suggested the systems were no longer doing enough to justify the friction they created. For the first time in years a Yosemite day trip needs no advance permit: decide on a Thursday night, drive in Friday morning, and simply do it.
 
-The catch is that demand did not disappear when the reservation did. It moved. It moved to the parking lots, which fill on their own schedule, and to the entrance-gate lines, which back up when everyone arrives at once. The reservation used to ration the road. Now nothing does, which means you ration yourself. The practical takeaway is the one rangers have given for decades and that the data still supports: arrive before 8 a.m., and choose a weekday over a weekend if you have any choice at all. Midway through the summer, the park's own bulletin confirms the pattern: Valley lots full by late morning, with the standing advice to arrive before 8 a.m. or after 4 p.m. The Valley parking guide has the three lots and what to do once they are gone. Text ynptraffic to 333111 for the park's live traffic alerts, and check the Park Bulletin for what is open and running the exact week you visit. We cover the no-reservation logistics in more depth in Yosemite without reservations in 2026.
+The catch is that demand did not disappear when the reservation did. It moved. It moved to the parking lots, which fill on their own schedule, and to the entrance-gate lines, which back up when everyone arrives at once. The reservation used to ration the road. Now nothing does, which means you ration yourself. The practical takeaway is the one rangers have given for decades and that the data still supports: arrive before 8 a.m., and choose a weekday over a weekend if you have any choice at all. As of the September bulletin, the park's own advice confirms the pattern held all summer: Valley lots full by late morning, with the standing advice to arrive before 8 a.m. or after 4 p.m. The Valley parking guide has the three lots and what to do once they are gone. Text ynptraffic to 333111 for the park's live traffic alerts, and check the Park Bulletin for what is open and running the exact week you visit. We cover the no-reservation logistics in more depth in Yosemite without reservations in 2026.
 
 One more 2026 change, and this one is firm: international visitors now pay a $100 surcharge per person age 16 and older, on top of the standard entrance fee, in effect since January 1. A car of four foreign visitors pays the $35 vehicle fee plus $400, so for a group the $250 nonresident annual pass can pay for itself. It does not affect domestic visitors.
 
@@ -5151,13 +5151,21 @@ You do not have to hike to have done Yosemite right, and our non-hiker's guide m
 
 A 2026 caveat that outranks the seasonal one: trail work closes sections of the Mist Trail on weekdays, Monday through Thursday from 7 a.m. to 3:30 p.m., into late October, with the John Muir Trail as the detour. If your one day is a Monday through Thursday, do the footbridge early, plan the climb for after 3:30 p.m., or save the corridor for a Friday-through-Sunday visit; the Mist Trail guide tracks the specifics. And a seasonal caveat that catches people every year: the steep Mist Trail steps close in winter and icy conditions, and hikers reroute via the longer, gentler John Muir Trail. Spray and slick rock peak in spring snowmelt, which is exactly when the trail is most beautiful and most treacherous. All of these leave from Happy Isles or the nearby shuttle stops. Start early, carry water, wear real shoes, and set a turnaround time before you leave the car. Then pick one and do it well. One trail done properly beats two trails done in a hurry.
 
+### One day in Yosemite with kids
+
+The four-stop sequence above is the kids' itinerary too, with two edits. Every stop on it is paved or boardwalk and under a mile: Bridalveil is a half mile, the Lower Yosemite Fall loop is a flat mile with a stroller-friendly paved path, and Cook's Meadow is a boardwalk that lets a five-year-old walk toward Half Dome without a hill. The first edit is the hike: swap the Mist Trail for the Vernal Fall footbridge (1.6 miles round trip, a real destination, and no granite staircase in the spray) or for Mirror Lake in spring. The second is the shape of the afternoon: park once, ride the free Valley shuttle instead of moving the car, and plan the midday around the river rather than a viewpoint, because a sandbar on the Merced in July is the best thing in the park for anyone under ten. Bring the bear rules into the car with you; children are the ones who leave the granola bar on the seat. Yosemite with kids covers bathrooms, shuttle stops, and the walks by age.
+
+### One day in Yosemite from San Francisco
+
+It can be done, and the arithmetic decides whether it is worth doing. The Bay Area to the Arch Rock or Big Oak Flat entrance is about four hours in clear traffic, plus 30 to 45 minutes of park road to the Valley floor. A 4 a.m. departure lands you at Tunnel View by nine and gives you until mid-afternoon before you have to turn around; a 7 a.m. departure lands you in the lots at the exact hour they fill and hands you a day of circling. The better version of the same trip is to drive up the evening before, sleep in Mariposa or Groveland, and start the four-stop sequence at dawn, which turns a fourteen-hour day into a real one. The Bay Area day trip does the daylight math by month and names the point at which the drive stops being worth it, and the entrances guide has the routes.
+
 ### Two days in Yosemite: if you have a second day
 
 A second day changes the math more than it sounds like it should. It does not just give you twice the time. It gives you permission to leave the Valley floor, which is where the trip stops being a checklist and starts being a place. Day One stays the Valley four-stop sequence above. Day Two earns altitude and leaves the floor entirely. There are three good ways to spend it.
 
 #### Glacier Point
 
-Glacier Point Road reopened May 9, 2026, after a multi-season rehabilitation, and it is the single best second day for most visitors. The work is not finished: the road closes again on September 8, 2026 for another construction season, so a late-season second day should confirm it is open before counting on it. The overlook gives you Half Dome at eye level and the Valley 3,000 feet below in one frame, with no hike required to earn it. One note that matters: there is no drinking water at the overlook this season, so bring your own. On the way up, two short detours pay off well: Sentinel Dome (about 2.2 miles round trip) for a 360-degree summit, and Taft Point for a vertigo-inducing look straight down into the Valley. The full picture is in our Glacier Point Road guide.
+Glacier Point Road reopened May 9, 2026, after a multi-season rehabilitation, and it is the single best second day for most visitors. It is open as this is written in late September, and it closes for the winter with the first heavy snow, typically in November, so a late-season second day should confirm it on the Park Bulletin before counting on it. The overlook gives you Half Dome at eye level and the Valley 3,000 feet below in one frame, with no hike required to earn it. One note that matters: there is no drinking water at the overlook this season, so bring your own. On the way up, two short detours pay off well: Sentinel Dome (about 2.2 miles round trip) for a 360-degree summit, and Taft Point for a vertigo-inducing look straight down into the Valley. The full picture is in our Glacier Point Road guide.
 
 Photo: Joshua Earle / Unsplash
 
@@ -5168,6 +5176,8 @@ An hour south of the Valley, and the right second day if you came to California 
 #### Tioga Road high country
 
 Tioga Road opened May 15, 2026, the earliest opening since 2015, which makes this an unusually good season to point the second day east. Tuolumne Meadows, Tenaya Lake, and Olmsted Point are the marquee stops, and the whole thing is comfortably a half-day if you keep moving. Basing east at Lee Vining works well if your trip runs over Tioga Pass anyway.
+
+Two days in September or October is the best version of this trip for a second-day menu: every road is still open, the crowds are down from July, and the light is low and gold. The trade is water, since the falls are near dry by September, and a few 2026 specifics: the Mist Trail is closed for repairs Monday through Thursday through October, the Tuolumne Meadows store, grill, and High Sierra Camps close in the first two weeks of September, and the Glacier Point overlook has no drinking water this season. Yosemite in fall and Yosemite in September 2026 have the month-by-month detail.
 
 Two things to keep in mind. Both Glacier Point Road and Tioga Road close in winter, so this entire menu is a late-spring-through-fall proposition. And if you are a strong hiker, there is a fourth option that beats all three for sheer payoff: the Four Mile up, Panorama down loop, which climbs from the Valley to Glacier Point and descends past Nevada and Vernal Falls. It is a full, hard day, and it is the one we would do. Our Four Mile and Panorama guide walks through it.
 
@@ -5212,13 +5222,17 @@ For the long version, see our kit page and the essay on how to pack your car for
 
 ### Common questions
 
+Is one day in Yosemite enough? Yes, for the Valley, if you are in the park by 8 a.m. and stay on the floor. Tunnel View, Bridalveil Fall, the Lower Yosemite Fall loop, and Cook's Meadow fit in one day with time to spare for a hike or an hour by the river. It is not enough for Glacier Point, the Mariposa Grove, or Tuolumne, which each need a second day.
+
+Can you do Yosemite in 2 days? Yes, and two days is the trip we would hand most first-time visitors: the Valley on day one, and Glacier Point, the Mariposa Grove, or Tioga Road on day two. Two days does not cover all three of those; pick the one that matches what you came for.
+
 How many days do you need in Yosemite? One full day, started early, covers the Valley highlights. A second day adds Glacier Point, Mariposa Grove, or Tioga Road above the Valley floor. Beyond two days you are into backpacking country and repeat-visit territory.
 
 Do I need a reservation to enter Yosemite in 2026? No. Yosemite has no day-use or peak-hours reservation in 2026. You still need a valid entrance pass ($35 per vehicle for seven days).
 
 When do the waterfalls run? Spring snowmelt is the engine, and the peak is roughly April through June. By late summer the falls are low to dry, and a few stop entirely.
 
-Is Glacier Point Road open? Yes. It reopened for the season on May 9, 2026. Note that there is no water at the overlook, so fill your bottles before you drive up.
+Is Glacier Point Road open? Yes, as of late September 2026. It opened for the season on May 9 and closes for the winter with the first heavy snow, typically in November. There is no water at the overlook, so fill your bottles before you drive up.
 
 Is Tioga Road open? Yes. It opened on May 15, 2026, the gateway to the high country and Tuolumne Meadows. It closes again with the first heavy snow in fall.
 
@@ -5227,6 +5241,8 @@ Where do I get gas? Not in Yosemite Valley; there are no pumps there. In-park ga
 Is the Mist Trail open? Mostly. Trail work closes sections of it Monday through Thursday, 7 a.m. to 3:30 p.m., into late October 2026, with a detour via the John Muir Trail. Friday through Sunday it runs normally, and the Vernal Fall footbridge stays the reliable short option.
 
 Can I leave food in my car? Out of sight, windows closed, in daylight only, and never overnight. The fines for improper food storage run up to $5,000. When in doubt, use the bear lockers at the trailheads.
+
+How many days in Yosemite without hiking? One day covers the Valley from the car and the paved paths, and a second day adds Glacier Point, which has one of the great views in North America a few steps from the parking lot. The non-hiker's guide has the full list.
 
 Is the Wawona Hotel open? No. It has been closed since December 2024 for a condition assessment, and there is no announced reopening date.
 
@@ -7160,11 +7176,11 @@ Some links in this piece are affiliate links. If you buy or book through one, Th
 
 ---
 
-## Where to Stay Outside Yosemite: Mariposa, Oakhurst, Groveland
+## Where to stay near Yosemite: the best town for your trip
 
 URL: https://thetalusfieldjournal.com/articles/yosemite-gateway-towns-compared
-Section: Planning. Published: 2026-04-26. Last updated: 2026-08-30.
-Summary: Mariposa, Oakhurst, Groveland, El Portal and Lee Vining compared: drive times, winter access, what each town has, and which to book. From El Portal.
+Section: Planning. Published: 2026-04-26. Last updated: 2026-09-21.
+Summary: Mariposa, Oakhurst, Groveland, El Portal and Lee Vining compared: the closest town to each entrance, drive times, winter access, kids, and which to book.
 
 The decision about which gateway town to base yourself in is more important than most planning guides admit. The five main gateway communities, El Portal, Mariposa, Oakhurst, Groveland, and Lee Vining, are not interchangeable. They sit on different sides of the park, vary in distance from the Valley by an hour or more, have different lodging cultures, and serve different kinds of trips. Picking the wrong one costs you real time and friction every day of your visit. Picking the right one makes every day easier.
 
@@ -7194,6 +7210,16 @@ Lee Vining | 90+ min, summer only | 120 East over Tioga Pass | about 6,800 ft | 
 The elevation column is not trivia. It is the best single predictor of whether you will be putting chains on in February: El Portal and Mariposa sit low enough that winter storms usually arrive as rain, Groveland is a thousand feet higher and gets chain controls the Highway 140 towns do not, and Lee Vining's road into the park is shut half the year.
 
 One caveat on every drive time on this page: Yosemite Valley is about seven miles long, and a time quoted to the Valley means its west end, near Bridalveil Fall. Curry Village and the east-end trailheads are another fifteen or twenty minutes past that, plus parking. Budget for the end of the Valley you actually want. The legs the table does not cover (Oakhurst to the South Entrance, Groveland to Big Oak Flat, Lee Vining to Tuolumne Meadows) are collected on the drive times page.
+
+### The closest town to Yosemite, by entrance
+
+"Closest town to Yosemite" has four answers, because the park has four through-road entrances and the closest town to one is two hours from another. Closest to the place you are actually going is the question:
+
+- Closest town to Yosemite Valley: El Portal, about 14 miles and 25 to 35 minutes on Highway 140, through the Arch Rock entrance. Mariposa is next at about 45 miles. Foresta, inside the boundary, has a handful of rental cabins and nothing else.
+- Closest town to the South Entrance: Fish Camp, two miles from the gate, with Tenaya Lodge and a few inns; Oakhurst, about 14 miles and 20 to 25 minutes, is the closest full town. The Mariposa Grove is just inside this gate and Wawona six miles beyond it.
+- Closest town to the Big Oak Flat Entrance (the west, from the Bay Area): Buck Meadows and the Highway 120 lodges, a few minutes from the gate; Groveland, about 24 miles and 30 to 40 minutes, is the closest town with a main street.
+- Closest town to Tioga Pass (the east): Lee Vining, about a dozen miles down Highway 120 East, summer only. When the pass is closed there is no town near this entrance because there is no entrance.
+- Closest city with an airport: Fresno, about 65 miles from the South Entrance and 94 from the Valley by the Park Service's count, with summer YARTS service up Highway 41. Merced, on Highway 140, is the year-round YARTS hub for the Valley.
 
 If you want the answer before the detail, it is one of these five:
 
@@ -7391,13 +7417,39 @@ Gas. There is no gas station in Yosemite Valley. The in-park pumps are at Crane 
 
 Groceries. Mariposa and Oakhurst have full-size supermarkets. Groveland has a market. El Portal and Lee Vining have convenience-scale markets and nothing more. Whichever town you pick, do the real shop in Mariposa or Oakhurst on the way in, because in-park food is limited, expensive, and keeps shorter hours than you expect. See how to pack your car for a Yosemite trip.
 
-Cell service. Patchy in all five gateways and unreliable to nonexistent through most of the park, including long stretches of the approach roads. Download the offline map for the whole region before you leave the gateway town, screenshot your reservation details, and agree on a meeting point with anyone you might get separated from. Do not rely on real-time navigation past the entrance station.
+Cell service. Patchy in all five gateways and unreliable to nonexistent through most of the park, including long stretches of the approach roads. Download the offline map for the whole region before you leave the gateway town, screenshot your reservation details, and agree on a meeting point with anyone you might get separated from. Do not rely on real-time navigation past the entrance station. Cell service in Yosemite has what each carrier actually gets, town by town and inside the park.
 
 You can arrive without a car, from one town. YARTS runs the Highway 140 corridor from Merced and Mariposa all year. The routes from Sonora and Groveland on 120, from Oakhurst on 41, and from Mammoth Lakes and Lee Vining on 395 are summer-only. A car-free trip narrows the gateway choice to one corridor for most of the year.
 
 Reservations book out fast. In summer and on holiday weekends, gateway lodging fills six to twelve months in advance. Plan early or be willing to flex on town.
 
 Check current status the week you travel. Road, chain-control, and closure status changes faster than any lodging comparison. The Park Bulletin condenses the current edition of park status, roads, hours, and trail conditions onto one page.
+
+### Where to stay near Yosemite with kids
+
+Mariposa, for most families, and Oakhurst if the sequoias are the point of the trip. The reasoning is the same as the general case with the volume turned up: a family needs a full supermarket, a pharmacy, more than one dinner option, and a room that can be booked late, and Mariposa and Oakhurst are the only two gateways that have all four. Mariposa wins on the Valley drive, which matters more with children who have a limit on car time, and on the year-round road. El Portal's short drive is a real advantage for early starts with small kids, if you can get a room and do not mind driving to Mariposa for dinner. Groveland's main street is charming for adults and thin on the things that rescue a family evening. Yosemite with kids has the in-park half: which walks, which shuttle stops, and where the bathrooms are.
+
+### Yosemite and Sequoia in one trip
+
+Base south. Oakhurst is the pivot between the two parks: the South Entrance is 20 to 25 minutes north on Highway 41, and Fresno, then Highway 180 to the Kings Canyon entrance and the Generals Highway into Sequoia, is roughly two to two and a half hours south. Doing both from Mariposa or Groveland adds an hour to every leg. The usual shape is two nights in Oakhurst for Yosemite (one Valley day, one Mariposa Grove and Wawona day), then a drive to Three Rivers or the Kings Canyon side for the second park. Do not try to visit Sequoia as a day trip from any Yosemite gateway; the round trip is five hours of driving before you have seen a tree.
+
+### Common questions
+
+What is the closest town to Yosemite? El Portal, about 14 miles and 25 to 35 minutes from Yosemite Valley on Highway 140. For the South Entrance and the Mariposa Grove it is Fish Camp, then Oakhurst; for the Big Oak Flat Entrance it is Groveland; for Tioga Pass, in summer, Lee Vining.
+
+What is the best town to stay in near Yosemite? For most first-time visitors, Mariposa: a real town, several price points, full supermarkets, and the year-round Highway 140 road at 45 to 60 minutes from the Valley. El Portal if the drive is the thing to shorten, Oakhurst for the sequoias, Groveland for character and the Bay Area route, Lee Vining for the high country.
+
+Is Oakhurst or Mariposa closer to Yosemite Valley? Mariposa, by 30 minutes or more: 45 to 60 minutes on Highway 140 against 75 to 90 on Highway 41. Oakhurst is closer to the South Entrance and the Mariposa Grove, 20 to 25 minutes.
+
+Where should I stay near the Yosemite south entrance? Fish Camp, two miles from the gate, if you want to be closest; Oakhurst, 14 miles, if you want a full town. The Wawona Hotel, the in-park option on this side, has been closed since December 2024.
+
+Where should I stay near Yosemite with kids? Mariposa for a Valley trip, Oakhurst for a sequoia trip. Both have full supermarkets, pharmacies, several restaurants, and rooms that can be booked later than El Portal or the in-park lodges.
+
+Which gateway town is cheapest? Groveland and Mariposa typically have the widest range and the most budget rooms. El Portal is priced like in-park lodging. Oakhurst has predictable chain prices. Lee Vining has little inventory and prices accordingly.
+
+Which towns have full grocery stores? Mariposa and Oakhurst. Groveland has a market. El Portal and Lee Vining have convenience-scale markets only.
+
+Which town works in winter? El Portal or Mariposa, on Highway 140, the lowest and most reliable road. Groveland works with chains. Lee Vining has no road into the park at all when Tioga Pass is closed.
 
 ### The takeaway
 
@@ -7551,13 +7603,13 @@ Plan for both. Visit anyway.
 
 ---
 
-## Yosemite reservations in 2026: not required. Here's the plan
+## Do you need a reservation for Yosemite in 2026? No. The plan
 
 URL: https://thetalusfieldjournal.com/articles/yosemite-without-reservations-2026
-Section: Planning. Published: 2026-04-26. Last updated: 2026-08-06.
-Summary: The reservation cap came off for 2026. The park didn't get easier, it got harder. A real strategy for visiting Yosemite without reservations.
+Section: Planning. Published: 2026-04-26. Last updated: 2026-09-21.
+Summary: No reservation is needed to enter Yosemite in 2026, on any date. What still needs booking, what 2027 might bring, and the plan for a park with no throttle.
 
-The headline most people read in late 2025 was that Yosemite would not require entrance reservations in 2026. The way most people interpreted that headline was that the park had gotten easier to visit. It hasn't. It's gotten harder, in a way that nobody is going to tell you about until you're sitting in a four-mile line outside the Arch Rock entrance station on a Saturday morning in July.
+The headline most people read this year, from the Park Service's February 18, 2026 announcement, was that Yosemite would not require entrance reservations in 2026. The way most people interpreted that headline was that the park had gotten easier to visit. It hasn't. It's gotten harder, in a way that nobody is going to tell you about until you're sitting in a four-mile line outside the Arch Rock entrance station on a Saturday morning in July.
 
 The reservation system, for all its faults, was a throttle. It capped the number of vehicles that could enter the park during peak hours. Without it, that cap is gone. The expected result, based on what park staff have been saying publicly and what the Yosemite Conservancy has flagged in its planning advisories, is the heaviest crowds Yosemite has seen since the last un-throttled summers. The 2024 and 2025 seasons, with reservations, set a baseline. 2026 is going to push past it.
 
@@ -7565,7 +7617,27 @@ This is not a reason not to visit. It is a reason to visit smart. (If it's your 
 
 One thing did change at the gate, and it is not about crowds. As of January 1, 2026, international visitors pay a $100 surcharge per person age 16 and older, on top of the standard entrance fee. A $250 nonresident annual pass waives it. Domestic visitors are unaffected.
 
-Here is the actual strategy. Not the generic "go early" advice that's already on every tourism blog. The real version, with specific timing, alternatives, and contingencies for when your first plan doesn't work.
+### Do you need a reservation for Yosemite right now?
+
+To enter the park, no. Not today, not this weekend, not on any date in 2026. The timed-entry systems that ran in some form from 2020 through 2024, and the peak-hours version that ran in 2025, are all gone, and a car can drive up to any entrance station on any day of the year with nothing but an entrance pass. That answer holds for every month people ask about: September, October, the February Firefall, Memorial Day weekend, the Fourth of July. What still needs booking is everything you would sleep in or climb, and that list has not changed:
+
+What you want | Reservation in 2026? | Where and when
+
+Driving into the park, any day | No | An entrance pass only: $35 per car for seven days, sold at the gate or in advance on Recreation.gov
+Firefall, mid-to-late February | No | No entrance reservation was required for February 2026; 2027 is unannounced
+Camping | Yes | Recreation.gov, released on the 15th of each month at 7 a.m. Pacific for dates five months out; a few first-come sites outside the Valley
+In-park lodging | Yes | travelyosemite.com, 366 days ahead
+Half Dome, cable season | Yes, a permit | Preseason lottery in March, daily lottery two days ahead
+Overnight wilderness trips | Yes, a permit | Recreation.gov, 24 weeks ahead, plus a walk-up share
+Mariposa Grove | No | Park at the Welcome Plaza and ride the free shuttle; the lot fills by late morning
+
+The permits are their own subject: the wilderness permit guide for overnight trips, the Half Dome guide for the cables, and the camping guide for the 15th-of-the-month release. Every dated window sits on one page at Yosemite dates and deadlines, with calendar files.
+
+### What about 2027?
+
+Nothing has been announced, and nothing is likely to be until winter. The pattern is worth knowing: the 2026 decision came on February 18, after the park analyzed the 2025 season, and it was framed as a finding that most weekdays had enough parking without a park-wide throttle, not as a permanent policy. The strategies that replaced reservations, live traffic monitoring, active parking management in the Valley, and staff at the busy intersections, are the same tools the park can turn back into a reservation if the 2026 numbers say so. If you are planning a 2027 summer trip, book lodging as if a reservation might return (the beds are the scarce thing either way) and check the Park Bulletin in February, which is when the last two announcements came. When the park says anything, this page will change the same day.
+
+Here is the actual strategy for the year we are in. Not the generic "go early" advice that's already on every tourism blog. The real version, with specific timing, alternatives, and contingencies for when your first plan doesn't work.
 
 ### Why this matters more than the news made it sound
 
@@ -7573,7 +7645,7 @@ A few facts to set the stage.
 
 In 2023, the year before the reservation system was at full force, Yosemite had peak-day visitation that resulted in multi-hour entrance station waits and closed-out parking lots across the Valley by mid-morning. The reservation system, when it operated in 2024 and 2025, smoothed those peaks. With it gone in 2026, the question is not whether the peaks will return. It's whether they'll exceed 2023 levels, which is plausible because awareness of Yosemite has grown considerably since then, and demand is genuinely higher.
 
-Half the summer has now run, and the spring predictions have held. As of the July park bulletin, Valley day-use parking fills by late morning on ordinary days, earlier on weekends, and the park's standing advice is the same as this article's: arrive before 8 a.m. or after 4 p.m. The Park Bulletin carries the current closures, hours, and trail status in one place; check it the week you travel.
+The summer has now run, and the spring predictions held. As of the September park bulletin, Valley day-use parking still fills by late morning on ordinary days, earlier on weekends, and the park's standing advice is the same as this article's: arrive before 8 a.m. or after 4 p.m. The fall shoulder helps, but a Saturday in October is not a quiet day. The Park Bulletin carries the current closures, hours, and trail status in one place; check it the week you travel.
 
 The places that will feel the crowd hardest:
 
@@ -7616,7 +7688,7 @@ The under-visited zones:
 
 - Wawona and Mariposa Grove (the southern entrance area). Mariposa Grove gets busy at the front of the loop, but the Outer Loop trail clears the crowd quickly. Wawona itself, with its meadow and pioneer cemetery, is rarely full.
 - Hetch Hetchy. The northwestern entrance leads to a different valley with a reservoir, a dam walk, and trails that see a fraction of Valley traffic. The drive in is long. Almost nobody does it.
-- Tioga Road outside the headline stops. Pothole Dome, Lembert Dome, the east end of Tenaya Lake, the trail to Glen Aulin. All accessible from Tioga Road but rarely backed up. One 2026 caveat: the Tuolumne Meadows water project has traffic controls on Tioga Road this season, with stops of around ten minutes, so build that into your timing if Tioga is your crowd-escape route.
+- Tioga Road outside the headline stops. Pothole Dome, Lembert Dome, the east end of Tenaya Lake, the trail to Glen Aulin. All accessible from Tioga Road but rarely backed up. One 2026 caveat: road work has traffic controls on Tioga Road this season, about ten minutes through Tuolumne Meadows and fifteen from Olmsted Point to Tioga Pass, Monday through Thursday from 8 a.m. to 3:30 p.m., so build that into your timing if Tioga is your crowd-escape route.
 - Anywhere a half mile off a major trail. The standard hike to Vernal Fall is often a conga line. The trail past the top of Vernal Fall, continuing to Nevada Fall via the John Muir Trail, drops the crowd by 80%.
 
 Add wildfire smoke to the mix and the under-visited zones become even more valuable: the high country is often above the inversion layer that holds smoke in the Valley. See smoke season planning for the full version.
@@ -7680,6 +7752,10 @@ These substitutions aren't compromises. Several of them (Sentinel Dome, Taft Poi
 
 Two rows of that table come with 2026 footnotes. Trail work closes sections of the Mist Trail on weekdays, Monday through Thursday from 7 a.m. to 3:30 p.m., into late October, with a detour via the John Muir Trail; on those days the substitution is not optional, so hike the Vernal and Nevada corridor Friday through Sunday or start after the crews knock off (the Mist Trail guide has the details). And White Wolf's lodge, store, and dining room are closed for the 2026 season; the meadows are still worth the stop, but bring everything you need.
 
+### Entrance wait times: check the gate before you drive
+
+The park now publishes live wait estimates for its three western entrances, Arch Rock, Big Oak Flat, and South, and the site's conditions board shows them beside the Valley parking-lot counts, updated as the feeds are. On a summer weekend the Arch Rock line is long by mid-morning and nonexistent at 6:30 a.m., and the difference between the two is the whole point of this article. Text ynptraffic to 333111 for the park's own alerts, look at the webcams for what Tunnel View looks like right now, and if the gate you planned on is backed up, the substitution table above works for entrances too: Big Oak Flat rarely queues the way Arch Rock does, and from Mariposa the standing detour, Highway 49 north to Coulterville and across to Highway 120, trades a longer and twistier drive for a gate that is not backed up.
+
 ### The takeaway
 
 Yosemite in 2026 is going to test the patience and flexibility of every visitor who comes. The visitors who have a great trip are going to be the ones who treat the park as a place that requires real strategy, not a place you show up to and check off a list.
@@ -7687,6 +7763,28 @@ Yosemite in 2026 is going to test the patience and flexibility of every visitor 
 Be in the park by 6:30 a.m. on any peak day. Have a swap ready for every major sight. Spend at least one full day deliberately outside the Valley. And accept, before you arrive, that the trip you planned is not the trip you'll have. The trip you have can still be a great one. It just won't be the one in the brochure.
 
 That's been true in every year since the park was created. It's just more true in 2026.
+
+### Common questions
+
+Do I need a reservation to enter Yosemite in 2026? No. There is no day-use, timed-entry, or peak-hours reservation in 2026, on any date. You need a standard entrance pass, $35 per vehicle for seven days.
+
+Do I need a reservation for Yosemite in September or October? No. The fall shoulder is one of the best windows of the year and there is no entrance reservation for it. Camping and in-park lodging still need booking.
+
+Do I need a reservation for the Firefall in February? Not for 2026, when no entrance reservation was required. February 2027 has not been announced. Watch for it in the winter.
+
+Will Yosemite require reservations in 2027? Unknown. The park has said nothing about 2027, and the 2026 decision was based on 2025 data, so a change for 2027 would most likely be announced in the winter, as the last two were.
+
+When does Yosemite Valley fill up? Day-use parking fills by late morning on ordinary days and by 8 a.m. or earlier on summer weekends. The park's standing advice is to arrive before 8 a.m. or after 4 p.m.
+
+What time should I enter Yosemite to beat the crowds? Be inside the park by 6:30 a.m. on any peak day. The drive in is faster, the entrance stations are quiet, and you are parked at your first stop while everyone else is still in line.
+
+How long is the wait at the Yosemite entrance? From nothing at dawn to a long line by mid-morning on a summer weekend, worst at Arch Rock. The park publishes live estimates for the three western gates; they are on the conditions board.
+
+What changed in Yosemite in 2026? Two things. The entrance reservation system was dropped, so the throttle that limited vehicles in 2024 and 2025 is gone. And since January 1, 2026, visitors who are not U.S. residents pay a $100 surcharge per person age 16 and older, or $250 for a nonresident annual pass. Domestic visitors are unaffected.
+
+How do I find parking in Yosemite Valley? Arrive before 8 a.m. for the central lots. Yosemite Village day-use parking is the most useful base; the lot near Yosemite Valley Lodge usually has turnover by mid-morning. Do not circle Curry Village.
+
+Is the Mist Trail open in 2026? Mostly. Repairs close sections of it Monday through Thursday, 7 a.m. to 3:30 p.m., through October 2026, with a detour via the John Muir Trail. Hike the Vernal and Nevada corridor Friday through Sunday, or after the crews finish for the day.
 
 #### The 6:30 a.m. plan is a lodging decision
 
@@ -7709,11 +7807,11 @@ Some links in this piece are affiliate links. If you buy or book through one, Th
 
 ---
 
-## First time in Yosemite: read this before you book anything
+## First time in Yosemite: the guide to read before you book
 
 URL: https://thetalusfieldjournal.com/articles/first-time-yosemite-overwhelm
-Section: Planning. Published: 2026-04-25. Last updated: 2026-08-07.
-Summary: The bucket list isn't the problem, the strategy is. Three things that turn a first Yosemite visit from a checklist into the best week of your year.
+Section: Planning. Published: 2026-04-25. Last updated: 2026-09-21.
+Summary: First time in Yosemite? How many days you need, the best month, where to stay, what to see in what order, and the 2026 fees. From a park naturalist.
 
 There's a guide somewhere on the internet (probably half a dozen of them, actually) telling you that on your first trip to Yosemite, you need to see Tunnel View, Cook's Meadow, Glacier Point, the Mariposa Grove, and Tuolumne Meadows. Maybe Half Dome. Maybe El Capitan. The list is always pretty much the same.
 
@@ -7735,7 +7833,7 @@ There are three things that, in my experience, change a Yosemite visit from "we 
 
 The first is research. And not the kind you get from the first three results on Google. The seasons in Yosemite behave differently than they do almost anywhere else in the United States. Tioga Road, the highway that takes you to Tuolumne, doesn't open until late May or early June, and in heavy snow years not until July. Waterfalls peak in May and are mostly dry by August. Wildflower bloom in the high country can run six weeks behind the Valley floor. Smoke from regional fires can shut down vistas for entire weeks. None of this is a secret. But the difference between a trip planned around it and a trip that isn't is enormous.
 
-The same principle holds at the scale of a single week. As I write this in midsummer 2026, the Mist Trail, the most hiked trail in the park, is closed for trail work on weekday middays. Yosemite Falls has thinned toward its late-summer trickle, Mirror Lake is a meadow, and Bridalveil is still worth the stop. None of that appears on the standard bucket list, and all of it decides what a good day looks like. The Park Bulletin tracks the current edition of the park, closures, hours, trail status, so you don't have to dig for it.
+The same principle holds at the scale of a single week. As I write this in late September 2026, the Mist Trail, the most hiked trail in the park, is closed for repairs Monday through Thursday until the end of October. Yosemite Falls is down to a late-season trickle, Mirror Lake is a meadow, Bridalveil is still worth the stop, and Tioga Road and Glacier Point Road are both open, with the first serious snow the only thing between now and their winter closure. None of that appears on the standard bucket list, and all of it decides what a good day looks like. The Park Bulletin tracks the current edition of the park, closures, hours, trail status, so you don't have to dig for it.
 
 ### Knowing what you actually want
 
@@ -7764,6 +7862,59 @@ Answer those three, and we can build the rest of the trip together. Skip them, a
 The good news is that the work is worth doing. Yosemite is the birthplace of the national park idea, and standing in it (the right way, at the right time) is something I've been trying to explain to people for twenty years and not quite succeeding. The next best thing I can do is help you arrange a trip where you've got a real shot at understanding it on your own.
 
 That's what this whole site is for.
+
+What follows is the practical half: the questions every first-time visitor asks, in the order they come up, with the short answer here and the long answer one link away.
+
+### How many days do you need in Yosemite the first time?
+
+Two full days is the honest minimum for a first visit. One day, started at sunrise, covers the Valley properly: Tunnel View, Bridalveil Fall, the Lower Yosemite Fall loop, Cook's Meadow, and an hour on a rock by the Merced. A second day leaves the Valley floor for Glacier Point, the Mariposa Grove, or Tioga Road, and that is where the trip stops being a checklist. Three or four days lets you do all of that without watching the clock and still leaves one day for the plan to change. One day in Yosemite lays out the short version stop by stop, and three to five days is the longer one.
+
+Is one day enough? Yes, if you are in the park by 8 a.m. and willing to do less than the lists tell you to. The one-day trips people regret are the ones that arrive at noon, circle the lots, and try to add Glacier Point. A day trip from San Francisco is possible, but the drive is four hours each way, and the daylight arithmetic is worth reading before you commit to it.
+
+### The best time to visit Yosemite for a first trip
+
+Late May through June, if you can choose freely. The waterfalls are at or near their peak, the Valley is green, and in most years Glacier Point Road and Tioga Road have opened by then, so the whole park is on the menu. In 2026 they opened early, on May 9 and May 15. September and October are the second-best answer: crowds thin, the light goes low and gold, every road is still open, and the only thing missing is water in the falls. July and August are hot and the most crowded, and the relief is elevation. April has the falls and fewer people, but the high roads are usually still closed, so a first trip in April is a Valley trip. Winter is its own park, quiet and beautiful, but with the Valley, Wawona, and Hetch Hetchy as the whole range. The crowd forecast ranks every month, and the trip selector will cap an itinerary to the roads your month allows.
+
+### Where should you stay in Yosemite for the first time?
+
+Inside the park if you can get it, and for most people that is the catch. Yosemite Valley Lodge, Curry Village, and The Ahwahnee book through travelyosemite.com 366 days ahead and summer dates go on the first morning. Campgrounds release on Recreation.gov on the 15th of each month at 7 a.m. Pacific, five months out, and the Valley ones go in minutes. If neither of those works, and for a first trip they usually don't, the answer is a gateway town, and the choice matters more than any hotel review: the towns sit on different sides of the park and differ by an hour or more from the Valley.
+
+The short version: Mariposa is the default for a first trip, a real town on the year-round Highway 140 road, 45 minutes to an hour from the Valley. El Portal is closer, about 25 to 35 minutes, and priced like it. Oakhurst is right for the Mariposa Grove and wrong for a Valley trip, at 75 to 90 minutes each way. Lee Vining is a high-country base, not a Valley base, and picking it for a Valley trip is the single most common mistake I see. Where to stay near Yosemite compares all five, and the in-park lodging guide covers the other side of the boundary. Whichever you pick, book before you plan anything else: for summer, gateway rooms fill six to twelve months out.
+
+### What to see in Yosemite the first time, in the right order
+
+The list at the top of this piece is the right list. The order and the hour are what change it. Tunnel View at first light, then Bridalveil Fall, then the Lower Yosemite Fall loop and Cook's Meadow before the lots fill at mid-morning. Glacier Point in the late afternoon of a second day, when the light is on Half Dome rather than behind it. The Mariposa Grove on the first shuttle of the morning or the last hour before it stops, never at noon. Tuolumne Meadows as its own day, if Tioga Road is open, because it is two hours from the Valley and deserves more than a drive-through. That sequence is the one-, two-, and three-day itineraries on this site, and the trip map lets you drag it around to fit your dates.
+
+Two things first-timers assume they can do and often cannot. Half Dome requires a permit during the cable season, won by lottery in March or in a small daily lottery two days ahead; read the Half Dome guide before you promise anyone the summit. And the Mist Trail, the park's most popular hike, is a real climb of about 1,000 feet on wet granite steps, not a stroll to a viewpoint. Both are worth doing. Neither belongs on a first morning.
+
+### What it costs to get in, and whether you need a reservation
+
+You do not need a reservation to enter Yosemite in 2026. The timed-entry systems of 2020 through 2025 are gone, and the Park Service manages peak days with traffic monitoring and parking control instead. What you need is an entrance pass: $35 per car for seven days, $20 per person on foot or bike, or the $80 America the Beautiful annual pass if you will visit more than one park this year. Buy it on Recreation.gov before you arrive and the gate is faster. Since January 1, 2026, visitors who are not U.S. residents pay a $100 surcharge per person age 16 and older on top of that, or $250 for a nonresident annual pass that waives it; the international visitor page does the arithmetic for your party. Camping, in-park lodging, Half Dome, and overnight wilderness trips all still need their own reservations or permits. The 2026 reservation guide has the full picture, including the plan for a park with no throttle on it.
+
+### First-time mistakes to avoid
+
+- Arriving at ten. Valley lots fill by late morning on ordinary days and by 8 a.m. on summer weekends. Be through the gate before 8, or come after 4 p.m. The parking guide explains what to do once the lots are full.
+- Trusting the phone. Cell service is patchy in the gateways and mostly absent past the entrance stations; GPS routes people onto closed roads. Download offline maps before you leave town and follow the signs. Cell service in Yosemite has the carrier-by-carrier truth.
+- Arriving on a quarter tank. There is no gas in Yosemite Valley. The in-park pumps are at Crane Flat and Wawona; fill up in the gateway town.
+- Leaving food in the car. Out of sight, windows closed, daylight only, never overnight. Bears open cars, and the citation runs up to $5,000. The bear guide covers the rest.
+- Planning Glacier Point or Tioga in April. Both roads close for the winter and reopen when plowing finishes, usually late May into June. Check the Park Bulletin for the current status before you build a day around either.
+- Doing too much. Three things well beats seven things from the driver's seat. This is the whole argument of the essay above, and it is the one mistake that spoils more first trips than all the others together.
+
+### Common questions
+
+What should I figure out before planning a Yosemite trip? Three things, before you book anything: what season you are visiting and what is open then, which two of granite, waterfalls, old-growth, high country, and solitude matter most to you, and what your backup plan is when the park does not cooperate.
+
+How long should I spend in Yosemite for a first trip? Two full days at minimum. Three to four is better, giving you the Valley properly and one full day elsewhere. A single day works if you start early and stay in the Valley.
+
+What month is best for a first visit? Late May and June for peak waterfalls with every road open; September and October for thin crowds and low gold light. July and August are hot and crowded. April has waterfalls and fewer people but the high roads are usually still closed.
+
+Do I need a reservation to enter Yosemite in 2026? No. There is no day-use or timed-entry reservation in 2026. You need a standard entrance pass, $35 per vehicle for seven days.
+
+Where should I stay on a first Yosemite trip? Mariposa is the most practical first-timer choice: 45 minutes to an hour from the Valley, a real downtown, and the year-round road. El Portal is closer but smaller and more expensive. In-park lodging books 366 days ahead and fills fast for summer.
+
+How much driving is involved? More than most people expect. A gateway town to the Valley is 25 to 90 minutes each way, and Glacier Point Road or Tioga Road each add an hour or more inside the park.
+
+Is there an extra fee for international visitors in 2026? Yes. Since January 1, 2026, visitors who are not U.S. residents pay a $100 surcharge per person age 16 and older on top of the standard entrance fee. A $250 nonresident annual pass waives it. U.S. residents are unaffected.
 
 If you want a place to start: what changed in 2026 is the most important context for any first trip this year. Decide where you are sleeping before anything else, because that decision constrains every day of the trip and the good options go first. Once you know roughly how long you have, one or two days in Yosemite turns the strategy into an itinerary. The site's map lays out where everything sits while you decide. And pack the car like the trip depends on it, because it does.
 
