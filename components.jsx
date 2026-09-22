@@ -1626,46 +1626,6 @@ const readHistory = {
 window.readHistory = readHistory;
 
 // ============================================================
-// Article card
-// ============================================================
-// `onNav` (optional) fires just before navigation so a surface can tag the
-// click (e.g. the related rail's related_click event) without every card
-// paying for it.
-function ArticleCard({ article, go, size, onNav }) {
-  const cat = window.findCategory(article.cat);
-  return (
-    <a
-      className="card"
-      href={`/articles/${article.slug}`}
-      onClick={(e) => { e.preventDefault(); if (onNav) onNav(article); go(`a:${article.slug}`); }}
-    >
-      <Placeholder
-        caption={article.placeholder}
-        image={article.image}
-        tag={cat.label.split(" ")[0]}
-        size={size === "sm" ? "sm" : null}
-        sizes={SIZES_CARD}
-        style={{ aspectRatio: size === "wide" ? "16/9" : "4/3" }}
-        motif={
-          article.cat === "trails" ? <MotifMountains /> :
-          article.cat === "wildlife" ? <MotifTrees /> :
-          article.cat === "seasonal" ? <MotifSun /> : null
-        }
-      />
-      <div style={{ marginTop: 14 }}>
-        <div className="card__cat">{cat.label}</div>
-        <div className="card__title">{article.title}</div>
-        {size !== "sm" && <div className="card__dek">{article.dek}</div>}
-        <div className="card__meta">
-          <span>{article.date}</span>
-          <span>{article.read}</span>
-        </div>
-      </div>
-    </a>
-  );
-}
-
-// ============================================================
 // Newsletter submit side-effects (shared)
 // The subscribe forms POST into a hidden iframe (target="buttondown-target",
 // declared in index.html) so the page never navigates and no popup opens.
@@ -2228,7 +2188,7 @@ Object.assign(window, {
   Placeholder, ResponsiveImage, preloadResponsive,
   SIZES_HERO, SIZES_BODY, SIZES_CARD,
   MotifMountains, MotifSun, MotifTrees,
-  Header, Footer, BackToTop, ArticleCard, NewsletterInline, ExitIntentNewsletter, MapLightbox,
+  Header, Footer, BackToTop, NewsletterInline, ExitIntentNewsletter, MapLightbox,
   EntranceWaits, WebcamStrip, GuidePromo,
   HomeLink, HomeMasthead, HpHeading, HpRow, HpCard, HpArticleCard, HpPageHead, HpGuideBand, HpLetter, HpPostcard,
 });

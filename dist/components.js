@@ -2035,45 +2035,6 @@ var readHistory = {
   }
 };
 window.readHistory = readHistory;
-function ArticleCard({
-  article,
-  go,
-  size,
-  onNav
-}) {
-  var cat = window.findCategory(article.cat);
-  return React.createElement("a", {
-    className: "card",
-    href: `/articles/${article.slug}`,
-    onClick: e => {
-      e.preventDefault();
-      if (onNav) onNav(article);
-      go(`a:${article.slug}`);
-    }
-  }, React.createElement(Placeholder, {
-    caption: article.placeholder,
-    image: article.image,
-    tag: cat.label.split(" ")[0],
-    size: size === "sm" ? "sm" : null,
-    sizes: SIZES_CARD,
-    style: {
-      aspectRatio: size === "wide" ? "16/9" : "4/3"
-    },
-    motif: article.cat === "trails" ? React.createElement(MotifMountains, null) : article.cat === "wildlife" ? React.createElement(MotifTrees, null) : article.cat === "seasonal" ? React.createElement(MotifSun, null) : null
-  }), React.createElement("div", {
-    style: {
-      marginTop: 14
-    }
-  }, React.createElement("div", {
-    className: "card__cat"
-  }, cat.label), React.createElement("div", {
-    className: "card__title"
-  }, article.title), size !== "sm" && React.createElement("div", {
-    className: "card__dek"
-  }, article.dek), React.createElement("div", {
-    className: "card__meta"
-  }, React.createElement("span", null, article.date), React.createElement("span", null, article.read))));
-}
 function trackNewsletterSubmit(location, tag, variant) {
   if (window.track) window.track("newsletter_signup", {
     location: location || "unknown",
@@ -2683,7 +2644,6 @@ Object.assign(window, {
   Header,
   Footer,
   BackToTop,
-  ArticleCard,
   NewsletterInline,
   ExitIntentNewsletter,
   MapLightbox,
