@@ -922,9 +922,10 @@ main:focus { outline: none; }
   flex-wrap: wrap;
 }
 .lightbox__caption {
-  font-family: var(--mono);
-  font-size: 11px;
-  letter-spacing: 0.12em;
+  font-family: var(--sans);
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 1.7px;
   text-transform: uppercase;
   opacity: 0.75;
 }
@@ -934,10 +935,10 @@ main:focus { outline: none; }
   border: 1px solid rgba(241, 234, 214, 0.25);
   color: #fff8e5;
   padding: 7px 12px;
-  font-family: var(--mono);
+  font-family: var(--sans);
   font-size: 12px;
-  letter-spacing: 0.06em;
-  border-radius: 2px;
+  font-weight: 600;
+  border-radius: 3px;
   cursor: pointer;
   min-width: 40px;
   min-height: 36px;
@@ -2409,7 +2410,11 @@ main:focus { outline: none; }
 @media (max-width: 560px) {
   .gates { grid-template-columns: 1fr; gap: 20px; }
   .elev__plot { height: 180px; }
-  .elev__bars { gap: 12px; }
+  /* The axis labels get their own gutter: at full width the first bar sat
+     on top of "2,000 ft" and "4,000 ft", and its own "4,000 ft" label
+     collided with the grid's. */
+  .elev__bars { gap: 12px; left: 52px; }
+  .elev__grid i { font-size: 8px; letter-spacing: 0.08em; }
   .elev__ft { left: -20px; right: -20px; font-size: 10px; }
   .elev__cards { grid-template-columns: 1fr; gap: 0; }
   .fc { padding-top: 16px; border-top: 1px solid var(--rule-soft); margin-top: 16px; }
@@ -7339,15 +7344,38 @@ kbd {
 :is(.hp-design, .nlmodal) .nlbox__form input[type=email] { min-width: 0; width: 100px; flex: 1; padding: 13px; background: #fffdf7; border: 1px solid #b8c0b3; border-radius: 3px; color: var(--hp-ink); font: 12px var(--sans); }
 :is(.hp-design, .nlmodal) .nlbox__form button { padding: 15px 17px; background: var(--hp-accent); border: 0; border-radius: 3px; color: var(--hp-on-accent); font: 600 12px var(--sans); white-space: nowrap; cursor: pointer; }
 :is(.hp-design, .nlmodal) .nlbox__form button:hover { background: var(--hp-accent-deep); }
-/* The footer as the homepage draws it: links in full ink, the dark rule above
-   the grid, and a near-black wordmark. The last two are the retired High
-   Sierra palette's ink, which the footer inherited from <html> before the
-   rollout; pinned so the homepage stays pixel-identical (DESIGN-ROLLOUT.md
-   lists it as a homepage bug to decide on). */
-.site-footer { --ink-2: var(--hp-ink); --rule: #11161c; background: var(--hp-paper); color: #0c1014; }
+/* The footer in the system's palette: links, wordmark and the rule above the
+   grid all in the deep green ink. It used to pin the retired High Sierra
+   near-black (#11161c rule, #0c1014 wordmark) and draw a second, full-bleed
+   2px rule 40px above the grid; one ink rule now opens the footer. */
+.site-footer { --ink-2: var(--hp-ink); --rule: var(--hp-ink); background: var(--hp-paper); color: var(--hp-ink); border-top: 0; }
+/* The footer and the onward links sit on the homepage's container (.hp-wrap:
+   1280px, 56px margins, 32 under 1100px, 20 under 760px), so their left edge
+   lines up with the page above them. They keep the .wrap class in the markup
+   and restate its box here. */
+.site-footer > .wrap,
+.keep-going > .wrap { max-width: 1280px; width: calc(100% - 112px); padding: 0; margin-inline: auto; }
+@media (max-width: 1100px) {
+  .site-footer > .wrap,
+  .keep-going > .wrap { width: calc(100% - 64px); }
+}
 @media(max-width:760px) {
   :is(.hp-design, .nlmodal) .nlbox__form button { font-size: 10px; padding-inline: 12px; }
   .hp-navigation nav { flex-wrap: wrap; }
+  .site-footer > .wrap,
+  .keep-going > .wrap { width: calc(100% - 40px); }
+}
+/* Masthead labels never break inside themselves. Between 761px and about
+   830px the brand, five links and the button did not fit one row, so "Start
+   here", "The journal", "Park conditions", "Sunday Letter" and the button each
+   wrapped onto two lines. Below 880px (a margin for fallback fonts) the nav
+   now takes its own row under the brand, the layout phones already use. */
+.hp-navigation nav > a,
+.hp-navigation nav > .hp-menu > a,
+.hp-design .hp-header > .hp-button { white-space: nowrap; }
+@media (min-width: 761px) and (max-width: 879px) {
+  .hp-design .hp-header { flex-wrap: wrap; row-gap: 0; }
+  .hp-navigation nav { order: 3; width: 100%; justify-content: flex-start; gap: 32px; margin-top: 14px; }
 }
 @media(max-width:360px) {
   :where(.hp-design) h1 { font-size: 55px; }
@@ -7404,10 +7432,16 @@ kbd {
 /* A button that reads as the system's text link. */
 .hp-design button.hp-link { background: none; border: 0; border-bottom: 1px solid #a7afa4; padding: 0 0 4px; color: inherit; font-family: var(--sans); cursor: pointer; }
 
-/* The onward links sat outside the page root before the rollout and took
-   <html>'s base (19px serif, the High Sierra near-black). Now inside <main>,
-   that base is restated so /planning, /conditions and /guide stay identical. */
-.keep-going { background: var(--hp-paper); color: #0c1014; font: 19px/1.55 var(--serif); }
+/* The onward links in the system's palette: ink text, the system's rule, and
+   the heading set as the design's eyebrow. (They used to restate the retired
+   High Sierra near-black they took from <html> before the rollout.) The
+   full-bleed rule above the band is gone: most pages already end on a rule,
+   and the grid carries its own under the heading. */
+.keep-going { background: var(--hp-paper); color: var(--hp-ink); font: 19px/1.55 var(--serif); border-top: 0; }
+.keep-going .keep-going__heading { font: 600 9px/1.1 var(--sans); letter-spacing: 1.7px; color: var(--hp-accent); }
+.keep-going .keep-going__grid { border-top-color: var(--hp-rule); }
+.keep-going .keep-going__card { border-bottom-color: var(--hp-rule); }
+.keep-going .keep-going__note { color: var(--hp-muted); }
 
 /* ── /planning ─────────────────────────────────────────────────────────── */
 .hp-planning .hp-partindex { grid-template-rows: none; }
@@ -7502,6 +7536,15 @@ kbd {
   .hp-design .hp-pagehead { padding-block: 24px 40px; }
   .hp-design .hp-pagehead--split { grid-template-columns: 1fr; gap: 36px; }
   .crumbs { margin-bottom: 18px; }
+  /* The current page's crumb repeats the h1 directly below it. On a phone a
+     long title wrapped the trail onto two or three lines with the separator
+     stranded at the start of one; it now truncates to the one line.
+     contain: inline-size keeps the unwrapped title out of the column's
+     min-content width, which would otherwise widen the whole page head. */
+  .crumbs { contain: inline-size; }
+  .crumbs ol { flex-wrap: nowrap; }
+  .crumbs li { flex: none; white-space: nowrap; }
+  .crumbs li:last-child { flex: 0 1 auto; min-width: 0; overflow: hidden; text-overflow: ellipsis; }
   .hp-design .hp-journal-grid--2 { grid-template-columns: 1fr; }
   .hp-design .hp-journal-grid--2 img { height: 220px; }
   .hp-design .hp-product h1 { font-size: 40px; }
@@ -7755,6 +7798,9 @@ kbd {
 }
 @media (max-width: 760px) {
   .hp-design .hp-article__head h1 { font-size: 40px; letter-spacing: -1px; }
+  /* The deks run to 450 characters; at 16px they filled the first screen
+     and pushed the hero photo below it. */
+  .hp-design .hp-article__head .hp-intro { font-size: 14px; line-height: 1.7; margin-bottom: 24px; }
   .hp-design .hp-article__plate .placeholder { height: 340px; }
   .hp-article__byline { flex-wrap: wrap; }
   .hp-article__dates { flex-basis: 100%; flex-direction: row; flex-wrap: wrap; gap: 0 14px; margin-left: 52px; text-align: left; }
