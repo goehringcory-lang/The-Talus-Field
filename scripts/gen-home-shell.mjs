@@ -31,11 +31,9 @@
 //
 // NOTHING DATE-DERIVED MAY BE BAKED IN
 // index.html is cached hard at the edge and in browsers, so any date-derived
-// text would go stale. One slot is date-derived: the hero's issue label
-// (window.SITE.issueDetail, whose month tracks the clock — see data.js). It is
-// emitted as a stable-height blank and filled by React on boot. The script
-// asserts the slot exists, so removing or renaming it fails loudly here
-// instead of silently shipping a frozen month name.
+// text would go stale. The visitor-first hero has no date-derived slots.
+// Register any future dated copy in DATE_SLOTS so it can be blanked in the
+// static shell. The visible-text date-leak guard remains in place.
 //
 // Usage:
 //   node scripts/gen-home-shell.mjs           # rewrite the block in index.html
@@ -184,15 +182,8 @@ function buildSandbox(site) {
 // keeps its height when React fills it in on boot.
 // ---------------------------------------------------------------------------
 const BLANK = "&nbsp;";
-// One slot since the nav simplification pass removed the masthead's dateline:
-// the hero kicker's issue label.
-const DATE_SLOTS = [
-  {
-    what: "hero issue label (window.SITE.issueDetail tracks the current month)",
-    // <span data-shell-blank="issue">Vol. III · No. 19 · The July Issue</span>
-    re: /(<span data-shell-blank="issue"[^>]*>)[\s\S]*?(<\/span>)/,
-  },
-];
+// The visitor-first hero and masthead contain no date-derived slots.
+const DATE_SLOTS = [];
 
 function blankDateSlots(html) {
   let out = html;
@@ -255,7 +246,7 @@ try {
         { id: "main", tabIndex: -1 },
         React.createElement(
           "div",
-          { className: "page" },
+          { className: "page hp-design" },
           React.createElement(sandbox.window.HomeHero, { go: noop })
         )
       )
@@ -302,13 +293,12 @@ rendered = blankDateSlots(rendered);
 // Sanity assertions: the point of the shell is that the LCP text and the
 // primary ask are in the static HTML. If a refactor drops one, fail here.
 const MUST_CONTAIN = [
-  ['<h1>Yosemite, from the inside.', "the hero h1"],
-  ['class="hero__dek"', "the hero dek (the measured LCP element)"],
-  ['Plan my Yosemite trip', "the primary CTA"],
-  ['href="/conditions"', "the secondary CTA"],
-  ['class="home-edition"', "the edition rule"],
-  ['class="masthead"', "the masthead"],
-  ['class="bottomnav"', "the mobile bottom nav"],
+  ['<h1>A remarkable place.', "the hero h1"],
+  ['class="hp-intro"', "the hero introduction"],
+  ['Plan your first visit', "the primary planning CTA"],
+  ['href="#field-guide"', "the app section CTA"],
+  ['href="#home-newsletter"', "the newsletter section CTA"],
+  ['class="hp-wrap hp-header"', "the homepage masthead"],
   ['<main id="main" tabindex="-1">', "the main landmark (the skip link's pre-boot target)"],
 ];
 for (const [needle, what] of MUST_CONTAIN) {

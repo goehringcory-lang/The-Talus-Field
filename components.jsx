@@ -641,6 +641,51 @@ window.NAV_GROUPS = NAV_GROUPS;
 window.NAV_SECONDARY = NAV_SECONDARY;
 window.navGroupLinks = navGroupLinks;
 
+// Homepage links keep native modified-click behavior and use the existing SPA
+// router for plain clicks. Section links retain meaningful no-JavaScript hrefs.
+function HomeLink({ go, href, location, children, ...props }) {
+  return <a {...props} href={href} onClick={(event) => {
+    if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    if (window.track) window.track(href === "/guide" ? "guide_cta_click" : "cta_click", { location, target: href });
+    if (href.startsWith("#")) {
+      const section = document.getElementById(href.slice(1));
+      if (!section) return;
+      event.preventDefault();
+      section.scrollIntoView({ behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "start" });
+      section.focus({ preventScroll: true });
+      return;
+    }
+    event.preventDefault();
+    go(href.startsWith("/articles/") ? `a:${href.slice(10)}` : (href.slice(1) || "home"));
+  }}>{children}</a>;
+}
+
+function HomeMasthead({ go }) {
+  return (
+    <div className="hp-design hp-navigation">
+      <a className="skip-link" href="#main">Skip to content</a>
+      <div className="hp-top">
+        AN INDEPENDENT GUIDE TO YOSEMITE
+        <span>Written here. Taken everywhere.</span>
+      </div>
+      <header className="hp-wrap hp-header">
+        <HomeLink go={go} location="home_navigation" className="hp-brand" href="/">
+          <img src="/img/talus-field-mark-masthead.png?v=2" width="214" height="168" alt="" />
+          <span>The Talus Field<small>YOSEMITE, FROM THE INSIDE.</small></span>
+        </HomeLink>
+        <nav aria-label="Main navigation">
+          <HomeLink go={go} location="home_navigation" href="#home-start-here">Start here</HomeLink>
+          <HomeLink go={go} location="home_navigation" href="/articles">The journal</HomeLink>
+          <HomeLink go={go} location="home_navigation" href="/conditions">Park conditions</HomeLink>
+          <HomeLink go={go} location="home_navigation" href="#home-newsletter">Sunday Letter</HomeLink>
+          <HomeLink go={go} location="home_navigation" href="/search">Search</HomeLink>
+        </nav>
+        <HomeLink go={go} location="home_navigation" className="hp-button" href="#field-guide">Get the app ↗</HomeLink>
+      </header>
+    </div>
+  );
+}
+
 function Header({ current, go }) {
   const navGroups = NAV_GROUPS;
 
@@ -801,6 +846,9 @@ function Header({ current, go }) {
   };
 
   const renderPlainLink = (key, label, opts) => renderLink({ key, label }, opts);
+
+  // Keep hook order stable when navigating between home and other routes.
+  if (current === "home") return <HomeMasthead go={go} />;
 
   // The masthead used to open with a utility bar: dateline, Bulletin link,
   // three NWS forecasts, live entrance waits, the NPS Yosemite Guide. The
@@ -1801,7 +1849,7 @@ window.useNewsletterImpression = useNewsletterImpression;
 // both optional and both defaulting to the shipped look, so every existing call
 // site is unchanged. The homepage rail uses them to render the letter as a
 // framed unit with a solid button.
-function NewsletterInline({ heading, blurb, location, tag, incentive, abTest, variant: variantProp, cta, modifier }) {
+function NewsletterInline({ heading, blurb, location, tag, incentive, abTest, variant: variantProp, cta, modifier, inputLabel }) {
   const [done, setDone] = useState(false);
   const subscribed = isSubscribed();
   // Optional A/B. Either the component self-buckets (abTest = test key) and
@@ -1832,6 +1880,7 @@ function NewsletterInline({ heading, blurb, location, tag, incentive, abTest, va
       <p>{showIncentive
           ? "Subscribe and unlock the interactive Yosemite map: vistas, trailheads, parking turnouts, places to eat, and a trip builder that saves on your device. A short note follows on Sundays."
           : (blurb || "A short note on Sundays, when there is something to say.")}</p>
+      {inputLabel && !done && <label htmlFor={`${location}-email`}>{inputLabel}</label>}
       {done ? (
         <p style={{ fontFamily: "var(--serif)", fontSize: 17, color: "var(--moss)", margin: 0, padding: "8px 0" }}>
           You're in. <a href="/map">The map is open to you →</a>
@@ -1844,7 +1893,7 @@ function NewsletterInline({ heading, blurb, location, tag, incentive, abTest, va
           target="buttondown-target"
           onSubmit={() => { trackNewsletterSubmit(location, tag, variant); setTimeout(() => setDone(true), 0); }}
         >
-          <input type="email" name="email" aria-label="Email address" placeholder="you@email.com" required />
+          <input id={inputLabel ? `${location}-email` : undefined} type="email" name="email" aria-label={inputLabel || "Email address"} autoComplete="email" placeholder="you@email.com" required />
           {tag && <input type="hidden" name="tag" value={tag} />}
           <input type="hidden" name="embed" value="1" />
           <button type="submit">{cta || "Subscribe →"}</button>
