@@ -11,7 +11,7 @@
   the end of that fade as the homepage's LCP candidate), and every SPA
   navigation from then on animates as before.
 -->
-<html lang="en" data-palette="sierra" data-density="dense" data-boot="1">
+<html lang="en" data-boot="1">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -116,7 +116,7 @@
   <link rel="preload" href="/fonts/eb-garamond.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="/fonts/inter.woff2" as="font" type="font/woff2" crossorigin>
 
-  <link rel="stylesheet" href="/styles.css?v=291" />
+  <link rel="stylesheet" href="/styles.css?v=292" />
 
   <!--
     The home hero's AVIF used to be preloaded here. It no longer is: the static
@@ -220,23 +220,6 @@
   }
   </script>
 
-  <script>
-    window.TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
-      "palette": "sierra",
-      "density": "dense"
-    }/*EDITMODE-END*/;
-    // Apply the defaults to <html> before the body parses. The attributes
-    // hard-coded on the <html> tag can drift from this block (the edit-mode
-    // host rewrites the JSON, not the tag), and app.jsx re-applying them
-    // after React mounts repainted the whole page — the palette flash on
-    // every load. This runs pre-paint, so first paint already matches.
-    (function () {
-      var t = window.TWEAK_DEFAULTS || {};
-      var d = document.documentElement;
-      if (t.palette) d.setAttribute("data-palette", t.palette);
-      if (t.density) d.setAttribute("data-density", t.density);
-    })();
-  </script>
 
   <!--
     React is self-hosted under /vendor (LCP pass) and loaded at the end of
@@ -447,13 +430,12 @@
     on every route: the page that is already on screen (shell or prerendered
     prose) gets its CSS, fonts and hero first; React boots after.
   -->
-  <script src="/vendor/react-18.3.1.production.min.js?v=291" defer></script>
-  <script src="/vendor/react-dom-18.3.1.production.min.js?v=291" defer></script>
-  <script src="/storage.js?v=291" defer></script>
-  <script src="/affiliate.js?v=291" defer></script>
-  <script src="/data.js?v=291" defer></script>
-  <script src="/dist/tweaks-panel.js?v=291" defer></script>
-  <script src="/dist/components.js?v=291" defer></script>
-  <script src="/dist/app.js?v=291" defer></script>
+  <script src="/vendor/react-18.3.1.production.min.js?v=292" defer></script>
+  <script src="/vendor/react-dom-18.3.1.production.min.js?v=292" defer></script>
+  <script src="/storage.js?v=292" defer></script>
+  <script src="/affiliate.js?v=292" defer></script>
+  <script src="/data.js?v=292" defer></script>
+  <script src="/dist/components.js?v=292" defer></script>
+  <script src="/dist/app.js?v=292" defer></script>
 </body>
 </html>

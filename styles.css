@@ -34,19 +34,24 @@
 }
 
 :root {
-  /* Golden hour. Warm cream paper, oxidized iron red */
-  --paper: #f1ead6;
-  --paper-2: #e6dcc1;
-  --paper-3: #d8c89e;
-  --ink: #14110c;
-  --ink-2: #36291c;
-  --ink-3: #50402e;      /* lifted from #6e5c43 → ~7:1 on --paper for outdoor legibility */
-  --rule: #2a2118;       /* rules are now near-black, like a journal */
-  --rule-soft: #c1ad84;
-  --moss: #7a2a10;       /* oxidized iron red */
-  --moss-2: #9a3a1c;
-  --rust: #7a2a10;
-  --gold: #8a661a;
+  /* The site palette is the design system's (the September 2026 homepage):
+     cream paper, deep green ink, a rust accent. These are the values
+     .hp-design used to restate for the components nested in its pages; since
+     the design rollout they are the only palette the site has. There is no
+     dark scheme and no palette switch. */
+  --paper: #f8f5ed;
+  --paper-2: #efeadc;
+  --paper-3: #e3ddca;
+  --ink: #233e35;
+  --ink-1: #233e35;
+  --ink-2: #3d5249;
+  --ink-3: #647067;
+  --rule: #c3cabd;
+  --rule-soft: #d6dacf;
+  --moss: #a4462c;       /* the accent; the name predates the palette */
+  --moss-2: #84361f;
+  --rust: #a4462c;
+  --gold: #9a7a2e;
 
   /* Type system. Alpine Journal-leaning.
      Font diet (LCP pass): EB Garamond + Inter are the only webfonts loaded
@@ -58,44 +63,6 @@
   --sans:  'Inter', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
   --mono:  ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
 
-  --measure: 66ch;
-  --gutter: clamp(20px, 4vw, 48px);
-}
-
-/* Palette swap. Granite */
-[data-palette="granite"] {
-  --paper: #efece3;
-  --paper-2: #e1ddcd;
-  --paper-3: #cfc9b3;
-  --ink: #14140f;
-  --ink-2: #2f2f29;
-  --ink-3: #484840;      /* lifted from #5e5e54 → ~6.7:1 on --paper */
-  --rule: #1c1c17;
-  --rule-soft: #b9b39d;
-  --moss: #243a26;
-  --moss-2: #3d573f;
-  --rust: #7a3a1c;
-  --gold: #8a7020;
-}
-
-/* Palette swap. High sierra */
-[data-palette="sierra"] {
-  --paper: #ebede9;
-  --paper-2: #d8ddd9;
-  --paper-3: #bfc6c0;
-  --ink: #0c1014;
-  --ink-2: #232a32;
-  --ink-3: #3d4a58;      /* lifted from #50596a → ~6.5:1 on --paper */
-  --rule: #11161c;
-  --rule-soft: #a8b0b3;
-  --moss: #1a2c40;
-  --moss-2: #2c456b;
-  --rust: #5e3e25;
-  --gold: #75601f;
-}
-
-/* Density swap */
-[data-density="dense"] {
   --measure: 60ch;
   --gutter: clamp(16px, 3vw, 36px);
 }
@@ -130,10 +97,6 @@ html {
 
 body {
   background: var(--paper);
-  /* Subtle paper grain via radial dot. Barely visible, just texture */
-  background-image: radial-gradient(color-mix(in oklab, var(--ink) 5%, transparent) 1px, transparent 1px);
-  background-size: 4px 4px;
-  background-position: 0 0;
 }
 
 a {
@@ -217,16 +180,6 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
    link); it is not an interactive element, so no ring. */
 main:focus { outline: none; }
 
-/* ===== Masthead ===== */
-.masthead {
-  border-bottom: 1px solid var(--rule);
-  background: var(--paper);
-  position: sticky;
-  top: 0;
-  z-index: 50;
-  backdrop-filter: blur(8px);
-  background: color-mix(in oklab, var(--paper) 94%, transparent);
-}
 /* Entrance waits (EntranceWaits in components.jsx). The class names date
    from the component's old slot in the masthead's utility bar, removed in
    the nav simplification pass. These rules style the component's DEFAULT
@@ -265,56 +218,6 @@ main:focus { outline: none; }
 .masthead__wait--long { color: var(--rust); font-weight: 700; }
 .masthead__wait--nodata { color: var(--ink-3); }
 
-.masthead__main {
-  display: flex;
-  align-items: center;
-  gap: 24px;
-  padding: 18px var(--gutter);
-  max-width: 1240px;
-  margin: 0 auto;
-  /* Containing block for the full-width mega dropdowns: the panels are
-     position: static inside their group so they anchor here instead of to the
-     trigger, which is what keeps a three-column panel inside the viewport at
-     every desktop width. */
-  position: relative;
-}
-.brand {
-  font-family: var(--display);
-  font-weight: 500;
-  font-size: 30px;
-  letter-spacing: -0.005em;
-  text-decoration: none;
-  color: var(--ink);
-  display: flex;
-  align-items: baseline;
-  gap: 0;
-  line-height: 1;
-  white-space: nowrap;
-}
-.brand__sub {
-  display: block;
-  font-family: var(--sans);
-  font-size: 9px;
-  text-transform: uppercase;
-  letter-spacing: 0.28em;
-  color: var(--ink-3);
-  font-weight: 600;
-  margin-top: 6px;
-}
-.brand-block {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 14px;
-  flex-shrink: 0;
-}
-.brand-block__text { display: flex; flex-direction: column; gap: 0; }
-.brand__mark {
-  display: block;
-  height: 56px;
-  width: auto;
-  flex-shrink: 0;
-}
 /* Rockfall easter egg: a viewport-fixed overlay the masthead script fills
    with tiny SVG rocks on the first logo click. It layers above everything,
    catches no pointer events, and is removed once the rocks land. */
@@ -330,420 +233,6 @@ main:focus { outline: none; }
   will-change: transform;
 }
 .rockfall__rock svg { display: block; width: 100%; height: 100%; }
-.nav {
-  display: flex;
-  align-items: center;
-  gap: 22px;
-  margin-left: auto;
-  font-family: var(--sans);
-  font-size: 12px;
-  text-transform: uppercase;
-  letter-spacing: 0.14em;
-}
-.nav a {
-  color: var(--ink-2);
-  text-decoration: none;
-  font-weight: 600;
-  padding-bottom: 2px;
-  border-bottom: 1px solid transparent;
-  white-space: nowrap;
-}
-.nav a:hover { color: var(--ink); border-bottom-color: var(--ink); }
-.nav a.is-active { color: var(--ink); border-bottom-color: var(--moss); }
-/* Desktop dropdown groups. :hover / :focus-within open them with no JS, so
-   hover and keyboard tabbing both work on their own; the .is-open class the
-   masthead adds on top of that is only a close delay (see Header in
-   components.jsx), never the thing that opens a panel. */
-.nav__group { position: relative; display: flex; align-items: center; }
-.nav__group-trigger { position: relative; display: inline-flex; align-items: center; gap: 5px; }
-/* The caret is a real <button> (a disclosure toggle for keyboard and screen
-   readers — Enter/Space collapses or reopens the panel without navigating,
-   which the trigger link cannot do since Enter on it navigates), so it needs
-   the button chrome reset. It sits beside the trigger link, not inside it. */
-.nav__caret {
-  font-size: 8px;
-  line-height: 1;
-  color: var(--ink-3, var(--ink-2));
-  transform: translateY(-1px);
-  transition: transform 0.15s;
-  background: none;
-  border: 0;
-  /* Padding gives the button its 24px-plus hit area (WCAG 2.5.8); the
-     negative margins hand back the same space so the glyph sits where the
-     old caret span did and the masthead row does not grow. Hit rects count
-     padding but not margins, so the target stays full size. */
-  padding: 10px 11px;
-  margin: -10px -9px -10px -6px;
-  cursor: pointer;
-  font-family: inherit;
-}
-.nav__group:hover .nav__caret,
-.nav__group:focus-within .nav__caret,
-.nav__group.is-open .nav__caret { transform: translateY(0); }
-.nav__dropdown {
-  position: absolute;
-  top: 100%;
-  left: -18px;
-  /* Transparent bridge so the pointer can cross the gap between the trigger
-     and the panel without the menu closing. */
-  padding-top: 16px;
-  display: none;
-  z-index: 60;
-}
-.nav__group:hover .nav__dropdown,
-.nav__group:focus-within .nav__dropdown,
-.nav__group.is-open .nav__dropdown { display: block; }
-.nav__dropdown-inner {
-  min-width: 230px;
-  background: var(--paper);
-  border: 1px solid var(--ink);
-  padding: 8px 0;
-  box-shadow: 0 6px 24px rgba(20, 20, 20, 0.08);
-  display: flex;
-  flex-direction: column;
-}
-.nav__dropdown-link {
-  padding: 11px 18px;
-  border-bottom: 0 !important;
-}
-.nav__dropdown-link:hover { background: var(--paper-2); color: var(--ink); }
-.nav__dropdown-link.is-active { color: var(--ink); }
-.nav__dropdown-link.is-active::before {
-  content: "";
-  display: inline-block;
-  width: 6px; height: 6px;
-  background: var(--moss);
-  margin-right: 10px;
-  transform: translateY(-2px);
-}
-
-/* Mega panel. A group with columns opts out of the group-anchored positioning
-   above (position: static on the group hands the containing block to
-   .masthead__main) and spans the masthead instead, so three columns of links
-   with descriptions fit at any desktop width without overflowing. */
-.nav__group--mega { position: static; }
-.nav__dropdown--mega {
-  left: 0;
-  right: 0;
-  padding-top: 18px;
-}
-/* Hover bridge for the mega panels. .nav__dropdown's own padding-top spans the
-   gap for the small dropdowns, where top: 100% means "below the trigger" — but
-   a mega group is position: static, so top: 100% is the bottom of
-   .masthead__main and that padding lands below the gap instead of across it.
-   Measured at 1440px, the trigger ends 35px above the panel: nothing occupied
-   that band, so moving the pointer down toward the panel left the group and the
-   panel vanished, with no way back (the panel is display: none by then, so it
-   cannot take the hover itself). This tongue hangs off the trigger to cover it.
-   It exists only while the group is open, so it intercepts nothing the rest of
-   the time, and any part of it that reaches past the masthead is under the
-   panel (z-index 60) anyway. */
-.nav__group--mega:hover .nav__group-trigger::after,
-.nav__group--mega:focus-within .nav__group-trigger::after,
-.nav__group--mega.is-open .nav__group-trigger::after {
-  content: "";
-  position: absolute;
-  top: 100%;
-  left: -22px;
-  right: -22px;
-  height: 46px;
-}
-/* The tongue above is only as wide as its own trigger, which covers a reach
-   straight down and nothing else. A reader heading for a link in the panel's
-   left column moves sideways as well as down, leaves the tongue inside that
-   35px band, and the panel goes with it: the band belonged to no one, so the
-   group lost :hover, and once the close delay expired the panel was display:
-   none and could not take the hover back. Pausing anywhere in the band did
-   the same thing. This bar spans the panel's full width and hangs off its top
-   edge, so every path from a trigger to any link inside the panel stays within
-   the group the whole way down. It exists only while the panel is open, and
-   the band is a constant 35.2px at every desktop width (the masthead row is
-   sized by the brand block, not by the nav), so 34px stops short of the
-   trigger row and a sibling trigger keeps its own hover. */
-.nav__dropdown--mega::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 100%;
-  height: 34px;
-}
-/* Taking a link closes the panel even though the pointer is still inside it.
-   Both rules outrank the :hover/:focus-within pair on specificity, and the
-   class clears the moment the pointer leaves the group. */
-.nav__group--mega.is-dismissed .nav__dropdown { display: none; }
-.nav__group--mega.is-dismissed .nav__group-trigger::after { content: none; }
-.nav__dropdown--mega .nav__dropdown-inner {
-  display: grid;
-  grid-template-columns: minmax(190px, 240px) 1fr;
-  gap: 0 40px;
-  padding: 28px 32px 30px;
-  text-transform: none;
-  letter-spacing: 0;
-  /* At narrow desktop the columns wrap and the panel gets tall; on a short
-     laptop that would run off the bottom with no way to reach the last link. */
-  max-height: calc(100vh - 200px);
-  overflow-y: auto;
-}
-.nav__dropdown-lede {
-  border-right: 1px solid var(--rule);
-  padding-right: 32px;
-}
-.nav__dropdown-title {
-  font-family: var(--display);
-  font-size: 22px;
-  line-height: 1.1;
-  color: var(--ink);
-  margin-bottom: 8px;
-}
-.nav__dropdown-blurb {
-  font-family: var(--serif);
-  font-size: 13px;
-  line-height: 1.5;
-  color: var(--ink-2);
-  margin: 0 0 14px;
-  text-transform: none;
-  letter-spacing: 0;
-}
-.nav__dropdown-all {
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--moss) !important;
-  border-bottom: 0 !important;
-}
-.nav__dropdown-all:hover { color: var(--ink) !important; }
-.nav__dropdown-cols {
-  /* auto-FILL at a capped width, not auto-fit at 1fr: every panel gets the
-     same column width whether it has two columns or three, so the three
-     dropdowns read as one object instead of three differently-stretched ones.
-     A two-column panel simply leaves the right side empty. */
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 250px));
-  justify-content: start;
-  gap: 4px 40px;
-  align-items: start;
-}
-.nav__dropdown-col { display: flex; flex-direction: column; }
-.nav__dropdown-heading {
-  font-family: var(--sans);
-  font-size: 9px;
-  text-transform: uppercase;
-  letter-spacing: 0.18em;
-  color: var(--ink-3);
-  font-weight: 700;
-  padding: 0 0 8px;
-  margin-bottom: 4px;
-  border-bottom: 1px solid var(--rule-soft, var(--rule));
-}
-.nav__dropdown--mega .nav__dropdown-link {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-  padding: 8px 10px 8px 0;
-  white-space: normal;
-}
-.nav__dropdown--mega .nav__dropdown-link:hover { background: none; }
-.nav__dropdown--mega .nav__dropdown-link.is-active::before { display: none; }
-.nav__link-label {
-  font-family: var(--sans);
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.02em;
-  color: var(--ink-2);
-  transition: color 0.15s;
-}
-.nav__dropdown-link:hover .nav__link-label { color: var(--moss); }
-.nav__dropdown-link.is-active .nav__link-label { color: var(--moss); }
-.nav__link-note {
-  font-family: var(--sans);
-  font-size: 11px;
-  font-weight: 400;
-  letter-spacing: 0;
-  line-height: 1.35;
-  color: var(--ink-3);
-  text-transform: none;
-}
-
-/* Search. A top-level destination, not the eighth item in a dropdown. */
-.nav__search {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  color: var(--ink-2);
-}
-.nav__search svg { display: block; flex-shrink: 0; }
-.nav__search.is-active { color: var(--ink); border-bottom-color: var(--moss); }
-/* Between the nav's collapse point (880px) and roughly 1000px the inline row
-   — four group labels, search, and The Map — is about 30px too wide for the
-   viewport, and the masthead would push the page sideways. Drop the word and
-   keep the magnifier, which is the same affordance the mobile bar uses. */
-@media (max-width: 1000px) {
-  .nav__search-label { display: none; }
-  .nav__search { padding: 0 2px; }
-}
-
-/* Mobile hamburger menu. Hidden at desktop, shown when inline links collapse. */
-.nav__menu-wrap { position: relative; display: none; }
-.nav__menu-toggle {
-  background: none;
-  border: 0;
-  padding: 6px 4px;
-  cursor: pointer;
-  color: var(--ink-2);
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  transition: color 0.15s;
-}
-.nav__menu-toggle:hover { color: var(--ink); }
-.nav__menu-bars {
-  display: inline-flex;
-  flex-direction: column;
-  justify-content: space-between;
-  width: 22px;
-  height: 14px;
-}
-.nav__menu-bars > span {
-  display: block;
-  width: 100%;
-  height: 1.5px;
-  background: currentColor;
-}
-.nav__menu {
-  position: absolute;
-  top: calc(100% + 14px);
-  right: 0;
-  width: min(330px, calc(100vw - 28px));
-  background: var(--paper);
-  border: 1px solid var(--ink);
-  padding: 8px 0;
-  z-index: 50;
-  box-shadow: 0 6px 24px rgba(20, 20, 20, 0.08);
-  display: flex;
-  flex-direction: column;
-  /* The grouped menu is tall; keep it inside the viewport under the sticky
-     masthead and let it scroll. */
-  max-height: calc(100vh - 130px);
-  overflow-y: auto;
-}
-.nav__menu-group { display: flex; flex-direction: column; }
-.nav__menu-group + .nav__menu-group {
-  border-top: 1px solid var(--rule);
-  margin-top: 6px;
-  padding-top: 6px;
-}
-.nav__menu-label {
-  padding: 10px 18px 4px;
-  font-size: 10px;
-  letter-spacing: 0.16em;
-  color: var(--ink-2);
-  font-weight: 700;
-}
-/* The group label is itself a destination in the menu (Read → /articles),
-   which the flat list it replaced had no way to express. */
-.nav__menu a.nav__menu-label-link {
-  padding: 0 !important;
-  font-size: inherit;
-  letter-spacing: inherit;
-  color: var(--ink);
-  text-transform: uppercase;
-}
-.nav__menu-sublabel {
-  padding: 10px 18px 2px;
-  font-family: var(--sans);
-  font-size: 9px;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--ink-3);
-  font-weight: 700;
-}
-.nav__menu-note {
-  display: block;
-  font-family: var(--sans);
-  font-size: 11px;
-  font-weight: 400;
-  letter-spacing: 0;
-  line-height: 1.3;
-  text-transform: none;
-  color: var(--ink-3);
-  margin-top: 2px;
-}
-.nav__menu a .nav__link-label {
-  font-size: 13.5px;
-  /* The masthead nav is uppercase; a menu of twenty-eight uppercase labels
-     with sentence-case descriptions under them is not readable. */
-  text-transform: none;
-  letter-spacing: 0.01em;
-}
-.nav__menu a.nav__menu-index {
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.1em;
-  color: var(--moss);
-}
-
-/* Search box at the top of the hamburger. On phones the menu is the whole
-   navigation, so search gets a real input here rather than a tap through to
-   the search page. */
-.nav__menu-search {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  margin: 2px 12px 8px;
-  padding: 0 0 0 10px;
-  border: 1px solid var(--rule);
-  background: var(--paper-2);
-}
-.nav__menu-search input {
-  flex: 1 1 auto;
-  min-width: 0;
-  border: 0;
-  background: none;
-  font-family: var(--sans);
-  font-size: 14px;
-  color: var(--ink);
-  padding: 10px 0;
-  -webkit-appearance: none;
-  appearance: none;
-}
-.nav__menu-search input:focus { outline: none; }
-/* The input has no border of its own, so without this the only nav on phones
-   has a search box with zero focus indication (same restore-on-focus-visible
-   pattern as .field inputs). */
-.nav__menu-search input:focus-visible { outline: 2px solid var(--moss); outline-offset: -2px; }
-.nav__menu-search input::placeholder { color: var(--ink-3); }
-.nav__menu-search button {
-  flex: 0 0 auto;
-  border: 0;
-  background: none;
-  color: var(--ink-2);
-  padding: 10px 12px;
-  min-height: 40px;
-  cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-}
-.nav__menu-search button:hover { color: var(--moss); }
-
-.nav__menu a {
-  padding: 12px 18px;
-  border-bottom: 0 !important;
-  /* Was nowrap. Menu entries carry a one-line description now, which has to be
-     allowed to wrap; the labels themselves are short enough not to. */
-  white-space: normal;
-}
-.nav__menu a:hover { background: var(--paper-2); color: var(--ink); }
-.nav__menu a.is-active { color: var(--ink); }
-.nav__menu a.is-active::before {
-  content: "";
-  display: inline-block;
-  width: 6px; height: 6px;
-  background: var(--moss);
-  margin-right: 10px;
-  transform: translateY(-2px);
-}
 
 /* ===== Directory. Quiet "for operators" strip ===== */
 .places-strip {
@@ -2157,60 +1646,10 @@ main:focus { outline: none; }
   .nlmodal__card h3 { font-size: 24px; }
 }
 
-/* ===== Bottom navigation (phones) ===== */
-/* Shown at exactly the breakpoint where the inline nav collapses into the
-   hamburger, so there is never a width with both a full bar and a tab row.
-   BottomNav (components.jsx) returns null on /map and /guide, whose bottom
-   edges belong to the map sheet and the buy bar; the body clearance below
-   keys off the nav actually being in the DOM, which also keeps the generated
-   /archive pages (same stylesheet, no React header) padding-free. */
-.bottomnav { display: none; }
-@media (max-width: 880px) {
-  .bottomnav {
-    display: flex;
-    position: fixed;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 55; /* over content and the map sheet; under readbar/buybar (60) and modals */
-    background: var(--paper);
-    border-top: 1px solid var(--rule);
-    padding-bottom: env(safe-area-inset-bottom);
-  }
-  .bottomnav__item {
-    flex: 1;
-    text-align: center;
-    padding: 14px 0 12px;
-    min-height: 48px;
-    font-family: var(--sans);
-    font-size: 11px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    color: var(--ink-2);
-    text-decoration: none;
-    border-top: 2px solid transparent;
-    margin-top: -1px;
-  }
-  .bottomnav__item.is-active {
-    color: var(--moss);
-    border-top-color: var(--moss);
-  }
-  body:has(.bottomnav) { padding-bottom: calc(48px + env(safe-area-inset-bottom)); }
-}
-
 /* ===== Responsive ===== */
 @media (max-width: 880px) {
   .hero__grid { grid-template-columns: 1fr; gap: 32px; }
   .site-footer__grid { grid-template-columns: 1fr 1fr; }
-  /* Inline links don't fit comfortably at this width — collapse into the hamburger menu. */
-  .nav { gap: 0; }
-  .nav__group { display: none; }
-  .nav__menu-wrap { display: block; }
-  /* Search survives the collapse as an icon: it is the fastest route into a
-     catalog this size, and burying it in the hamburger costs two taps. */
-  .nav__search { margin-right: 10px; padding: 6px 4px; min-height: 44px; min-width: 40px; justify-content: center; }
-  .nav__search-label { display: none; }
   .statblock { grid-template-columns: 1fr 1fr; }
 }
 
@@ -2224,8 +1663,7 @@ main:focus { outline: none; }
 
   /* Tighter base type and gutters on phones. */
   html { font-size: 17px; }
-  :root { --gutter: 18px; }
-  [data-density="dense"] { --gutter: 16px; }
+  :root { --gutter: 16px; }
 
   h1 { font-size: clamp(34px, 8.5vw, 48px); }
   .hero__dek, .page-head__dek { font-size: 18px; }
@@ -2242,16 +1680,6 @@ main:focus { outline: none; }
   section.wrap[style*="padding-top: 80"] { padding-top: 48px !important; }
   section.wrap[style*="padding-top: 64"],
   section.wrap[style*="padding-top: 56"] { padding-top: 40px !important; }
-
-  /* Hamburger already active from the 880px breakpoint, so no nav rules here. */
-  .masthead__main { padding: 12px var(--gutter); gap: 12px; }
-  .brand { font-size: 22px; }
-  .brand__sub { display: none; }
-  .brand__mark { height: 40px; }
-  .brand-block { gap: 10px; }
-
-  .nav__menu { right: -8px; }
-  .nav__menu a { padding: 13px 18px; font-size: 14px; }
 
   /* Hero. Less padding, no big gap. */
   .hero { padding: 32px 0 32px; }
@@ -2340,9 +1768,6 @@ main:focus { outline: none; }
   .chip, .ichip { min-height: 44px; display: inline-flex; align-items: center; }
   .chip { padding: 8px 12px; font-size: 11px; margin-bottom: 6px; }
 
-  /* Tap target floor for the visible mobile nav trigger. */
-  .nav__menu-toggle { min-height: 44px; min-width: 44px; }
-
   /* Eyebrow and mono labels: up from 10/11px for sunlight legibility. */
   .eyebrow { font-size: 12px; letter-spacing: 0.18em; }
   .mono { font-size: 13px; }
@@ -2356,13 +1781,6 @@ main:focus { outline: none; }
   .band-guide__body { font-size: 16px; }
 }
 
-@media (max-width: 420px) {
-  /* Smallest phones. Tighten brand block so the menu button stays comfortable. */
-  .brand { font-size: 20px; }
-  .brand__mark { height: 34px; }
-  .brand-block { gap: 8px; }
-  .masthead__main { gap: 8px; }
-}
 
 /* ===== Page transitions ===== */
 .page { animation: pageIn 0.25s ease; }
@@ -3323,10 +2741,6 @@ main:focus { outline: none; }
   background: var(--ink);
   border: 1px solid var(--ink);
   padding: 26px 24px;
-}
-@media (prefers-color-scheme: dark) {
-  /* Dark mode's plate is light, so the accent darkens instead. */
-  .rail-guide { --rail-accent: color-mix(in oklab, var(--gold) 55%, var(--paper)); }
 }
 .rail-guide__eyebrow {
   display: block;
@@ -5159,57 +4573,6 @@ main:focus { outline: none; }
 }
 
 /* ============================================================
-   Dark mode — default light palette is better in direct
-   sunlight; dark mode honors system preference for dusk/OLED.
-   ============================================================ */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --paper:     #1c1812;
-    --paper-2:   #252019;
-    --paper-3:   #302a1e;
-    --ink:       #f0e8d8;
-    --ink-2:     #c8b898;
-    --ink-3:     #a09070;
-    --rule:      #c0a87e;
-    --rule-soft: #3a3022;
-    --moss:      #d87040;
-    --moss-2:    #e07850;
-    --rust:      #d87040;
-    --gold:      #c09038;
-  }
-
-  [data-palette="granite"] {
-    --paper:     #1a1a15;
-    --paper-2:   #222220;
-    --paper-3:   #2c2c28;
-    --ink:       #ebebe0;
-    --ink-2:     #c5c5b8;
-    --ink-3:     #929280;
-    --rule:      #b0b0a0;
-    --rule-soft: #303028;
-    --moss:      #507850;
-    --moss-2:    #688a68;
-    --rust:      #a05830;
-    --gold:      #a89030;
-  }
-
-  [data-palette="sierra"] {
-    --paper:     #141820;
-    --paper-2:   #1c2030;
-    --paper-3:   #242a3e;
-    --ink:       #dde6f0;
-    --ink-2:     #b8c8d8;
-    --ink-3:     #8a9ab0;
-    --rule:      #a0b8d0;
-    --rule-soft: #283040;
-    --moss:      #4a7090;
-    --moss-2:    #6090b0;
-    --rust:      #8a5a38;
-    --gold:      #9a8030;
-  }
-}
-
-/* ============================================================
    Reduced motion — disable all transitions and animations.
    ============================================================ */
 @media (prefers-reduced-motion: reduce) {
@@ -5252,14 +4615,6 @@ main:focus { outline: none; }
   --bt-open-bg: color-mix(in oklab, var(--bt-open) 13%, var(--paper));
   --bt-warn-bg: color-mix(in oklab, var(--bt-warn) 14%, var(--paper));
 }
-@media (prefers-color-scheme: dark) {
-  .bulletin {
-    --bt-open: #8fb77a;
-    --bt-warn: #d0a348;
-    --bt-closed: #e07a55;
-  }
-}
-
 .bicon {
   display: block;
   flex: 0 0 auto;
@@ -6979,14 +6334,6 @@ main:focus { outline: none; }
   --stay-book-hover: #a8431f;
   --stay-book-ink: #f7f1e1;
 }
-@media (prefers-color-scheme: dark) {
-  .stay-page {
-    --stay-book: #dc7a4a;
-    --stay-book-hover: #e88d60;
-    --stay-book-ink: #1a140e;
-  }
-}
-
 .stay-book,
 .stay-ghost {
   display: flex;
@@ -7700,6 +7047,7 @@ main:focus { outline: none; }
   letter-spacing: 0.22em;
   font-weight: 700;
   color: var(--ink-3);
+  line-height: 1.1;
   margin: 0 0 22px;
 }
 .keep-going__grid {
@@ -8516,19 +7864,6 @@ html[data-nav-pending] .navprogress::before { animation-play-state: running; }
 .placeholder.is-zoomable:hover::after,
 .placeholder.is-zoomable:focus-visible::after { content: attr(data-tag) "  ⤢"; }
 
-/* ===== Masthead that gets out of the way (phones) =====
-   The masthead has been sticky on phones since the September 2026 UI pass,
-   which costs a reader 60px of a 700px viewport on every line of an
-   article. Header toggles .is-hidden from scroll direction (down past 160px
-   hides it, any scroll up or the top of the page brings it back), and the
-   class is inert above 880px, where the masthead earns its row. Focus
-   inside it (keyboard readers tabbing into the nav) always wins. */
-@media (max-width: 880px) {
-  .masthead { transition: transform 0.28s cubic-bezier(0.2, 0.8, 0.2, 1); }
-  .masthead.is-hidden { transform: translateY(-100%); }
-  .masthead.is-hidden:focus-within { transform: none; }
-}
-
 /* ===== Back to top =====
    One round control, bottom-right, after the reader is two screens down
    (BackToTop in components.jsx). Sits above the phone tab row and the
@@ -8564,9 +7899,6 @@ html[data-nav-pending] .navprogress::before { animation-play-state: running; }
 .totop:hover { color: var(--moss); border-color: var(--moss); }
 .totop:focus-visible { outline: 2px solid var(--moss); outline-offset: 3px; }
 .totop svg { width: 16px; height: 16px; display: block; }
-@media (max-width: 880px) {
-  body:has(.bottomnav) .totop { bottom: calc(60px + env(safe-area-inset-bottom)); }
-}
 
 /* ===== Keyboard hints (search) =====
    <kbd> shown only where a keyboard is likely; a phone never sees it. */
@@ -8653,8 +7985,8 @@ kbd {
    ============================================================ */
 @media print {
   html, body { background: #fff; color: #000; }
-  .masthead, .bottomnav, .readbar, .guide-bar, .skip-link, .nlbox, .band-guide,
-  .share-row, .keep-going, .site-footer, .lightbox, .twk-panel,
+  .hp-navigation, .readbar, .guide-bar, .skip-link, .nlbox, .band-guide,
+  .share-row, .keep-going, .site-footer, .lightbox,
   .navprogress, .totop, .kbd-hint {
     display: none !important;
   }
@@ -8790,8 +8122,8 @@ kbd {
 
 /* ==========================================================================
    The design system (.hp-design). Introduced with the September 2026
-   homepage and shared since with the pages rebuilt on it (DESIGN_ROUTES in
-   components.jsx: /planning, /conditions, /guide). Three layers:
+   homepage and, since the design rollout, the system every page is built on
+   (app.jsx renders each route inside <main class="hp-design">). Three layers:
    (1) tokens and a zero-specificity element base (:where), so a legacy
        component nested inside a design page keeps its own class rules and
        only picks up the palette; (2) the shared primitives (.hp-wrap,
@@ -8801,13 +8133,12 @@ kbd {
        utility strip), in the order the homepage draws them; (3) the shared
        adapters for legacy components and one block per rebuilt page, at
        the end of the file.
-   The palette is fixed on purpose: it does not read the tweaks palette and
-   has no dark-mode block, and it restates the site tokens so every nested
-   component follows it.
+   The palette is fixed on purpose and is the site palette: the tokens at the
+   top of the file carry these values, and there is no dark scheme.
    ========================================================================== */
-/* Defined at :root as well, because the footer and <body> restyles below sit
-   outside .hp-design; the names are prefixed, so nothing else reads them. */
-:root, .hp-design {
+/* The system's own names for the palette. The site tokens at the top of the
+   file (--paper, --ink, --moss, ...) carry the same values. */
+:root {
   --hp-paper: #f8f5ed;
   --hp-ink: #233e35;
   --hp-accent: #a4462c;
@@ -8818,20 +8149,6 @@ kbd {
   --hp-gold: #d7b879;
   --hp-band-muted: #b9c7b9;
   --hp-card: #fffdf7;
-}
-.hp-design {
-  /* The site tokens, restated in this palette for the components nested
-     inside a design page (trip selector, live feeds, buy box). */
-  --paper-2: #efeadc;
-  --paper-3: #e3ddca;
-  --ink-1: var(--hp-ink);
-  --ink-2: #3d5249;
-  --ink-3: var(--hp-muted);
-  --rule: #c3cabd;
-  --rule-soft: var(--hp-rule);
-  --moss-2: var(--hp-accent-deep);
-  --rust: var(--hp-accent);
-  --gold: #9a7a2e;
 }
 
 /* Homepage: visitor planning, Field Guide, Sunday Letter. */
@@ -9608,7 +8925,6 @@ kbd {
 }
 
 /* Integrate the existing shared form and footer without changing other routes. */
-.hp-design { --paper: var(--hp-paper); --ink: var(--hp-ink); --moss: var(--hp-accent); }
 :where(.hp-design) h1, :where(.hp-design) h2, :where(.hp-design) h3 { text-wrap: initial; }
 :where(.hp-design) a:hover { color: inherit; }
 .hp-design a.hp-button:hover { color: var(--hp-on-accent); }
@@ -9623,8 +8939,12 @@ kbd {
 .hp-design .nlbox__form input[type=email] { min-width: 0; width: 100px; flex: 1; padding: 13px; background: #fffdf7; border: 1px solid #b8c0b3; border-radius: 3px; color: var(--hp-ink); font: 12px var(--sans); }
 .hp-design .nlbox__form button { padding: 15px 17px; background: var(--hp-accent); border: 0; border-radius: 3px; color: var(--hp-on-accent); font: 600 12px var(--sans); white-space: nowrap; cursor: pointer; }
 .hp-design .nlbox__form button:hover { background: var(--hp-accent-deep); }
-body:has(.hp-design) { background: var(--hp-paper); }
-body:has(.hp-design) .site-footer { --paper: var(--hp-paper); --ink: var(--hp-ink); --ink-2: var(--hp-ink); --ink-3: var(--hp-muted); --rule-soft: var(--hp-rule); --moss: var(--hp-accent); background: var(--hp-paper); }
+/* The footer as the homepage draws it: links in full ink, the dark rule above
+   the grid, and a near-black wordmark. The last two are the retired High
+   Sierra palette's ink, which the footer inherited from <html> before the
+   rollout; pinned so the homepage stays pixel-identical (DESIGN-ROLLOUT.md
+   lists it as a homepage bug to decide on). */
+.site-footer { --ink-2: var(--hp-ink); --rule: #11161c; background: var(--hp-paper); color: #0c1014; }
 @media(max-width:760px) {
   .hp-design .nlbox__form button { font-size: 10px; padding-inline: 12px; }
   .hp-navigation nav { flex-wrap: wrap; }
@@ -9693,9 +9013,10 @@ body:has(.hp-design) .site-footer { --paper: var(--hp-paper); --ink: var(--hp-in
 .hp-design .eyebrow { font-family: var(--sans); font-size: 9px; letter-spacing: 1.7px; font-weight: 600; text-transform: uppercase; color: var(--hp-accent); }
 .hp-design button.hp-link { background: none; border: 0; border-bottom: 1px solid #a7afa4; padding: 0 0 4px; color: inherit; font-family: var(--sans); cursor: pointer; }
 
-/* Outside the page root but on a design route: the onward links, restated in
-   the palette the way the footer is. */
-body:has(.hp-design) .keep-going { --paper: var(--hp-paper); --paper-2: #efeadc; --ink: var(--hp-ink); --ink-2: #3d5249; --ink-3: var(--hp-muted); --rule: #c3cabd; --rule-soft: var(--hp-rule); --moss: var(--hp-accent); background: var(--hp-paper); }
+/* The onward links sat outside the page root before the rollout and took
+   <html>'s base (19px serif, the High Sierra near-black). Now inside <main>,
+   that base is restated so /planning, /conditions and /guide stay identical. */
+.keep-going { background: var(--hp-paper); color: #0c1014; font: 19px/1.55 var(--serif); }
 
 /* ── /planning ─────────────────────────────────────────────────────────── */
 .hp-planning .hp-partindex { grid-template-rows: none; }

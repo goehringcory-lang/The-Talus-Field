@@ -1,6 +1,6 @@
 /* global React, HomeLink, ResponsiveImage, HpHeading, HpRow, HpCard, HpGuideBand, HpLetter */
 // The approved visitor-first homepage, and the source of truth for the design
-// system (DESIGN_ROUTES in components.jsx). Its sections are built from the
+// system (the Hp* components in components.jsx). Its sections are built from the
 // shared Hp* components, which the pages rebuilt on the system reuse; only the
 // hero, the featured card and the utility strip are this page's own. HomeHero
 // also renders into index.html's pre-JavaScript shell; keep its first render

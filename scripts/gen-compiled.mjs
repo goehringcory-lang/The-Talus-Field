@@ -45,7 +45,6 @@ const SMOKE = process.argv.includes("--smoke");
 // The root .jsx files index.html loads, in its load order. Kept explicit (not a
 // glob) so a stray .jsx never silently ships. Mirrors index.html.
 const PAGE_FILES = [
-  "tweaks-panel.jsx",
   "components.jsx",
   // Shared by the planning and articles routes (PAGE_MODULES), not a page.
   "intent.jsx",

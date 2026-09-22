@@ -32,7 +32,7 @@
 // listener in app.jsx, so there is no tracking markup here.
 //
 // Since September 2026 the board is built on the homepage's design system
-// (DESIGN_ROUTES in components.jsx): a design page head with the readout as
+// (the Hp* components in components.jsx): a design page head with the readout as
 // its aside, one design section per reading, and the shared Field Guide band
 // and letter for the two asks.
 // =============================================================================

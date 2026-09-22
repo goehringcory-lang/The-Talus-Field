@@ -1,5 +1,4 @@
-/* global React, ReactDOM, Header, Footer, KeepGoing, ExitIntentNewsletter,
-   TweaksPanel, useTweaks, TweakSection, TweakRadio, TweakToggle */
+/* global React, ReactDOM, Header, Footer, KeepGoing, ExitIntentNewsletter */
 /* Page components (HomePage, ArticlePage, MapPage, ...) are NOT bare globals
    here: their bundles lazy-load per route (see PAGE_MODULES) and the route
    switch reads them from window.* after ensureRoute resolves. */
@@ -57,7 +56,7 @@ function routeExists(route) {
 
 // ============================================================
 // Route-level code loading (LCP pass). index.html eagerly loads only the
-// shared shell (React vendor files, storage, affiliate, data, tweaks-panel,
+// shared shell (React vendor files, storage, affiliate, data,
 // components, app); each route's page bundle — plus the films/itineraries
 // data files — loads on demand here. The active route's scripts are awaited
 // before boot render and before any SPA navigation commits, and the rest are
@@ -1298,13 +1297,6 @@ function App() {
     return () => document.removeEventListener("keydown", onKey);
   }, []);
 
-  // Tweaks
-  const [tweaks, setTweak] = useTweaks(window.TWEAK_DEFAULTS);
-  useEffect(() => {
-    document.documentElement.setAttribute("data-palette", tweaks.palette);
-    document.documentElement.setAttribute("data-density", tweaks.density);
-  }, [tweaks.palette, tweaks.density]);
-
   // Route resolution. Page components are read from window (each lazy bundle
   // registers its component there); ensureRoute guarantees they exist before
   // the route state commits, and the readiness guard below catches the only
@@ -1312,7 +1304,10 @@ function App() {
   const mod = routeModule(route);
   const routeReady = !mod || mod.globals.every((n) => typeof window[n] !== "undefined");
   let page;
-  let currentNav = "home";
+  // The masthead's and BackToTop's idea of where the reader is: the route key
+  // itself, or "notfound" for the two dead ends. Never "home" off the homepage,
+  // because HomeMasthead gives the homepage its in-page jump links.
+  const currentNav = routeReady && routeExists(route) ? route : "notfound";
   if (!routeReady) {
     page = (
       <div className="page">
@@ -1328,43 +1323,30 @@ function App() {
     page = <NotFoundPage go={go} />;
   } else if (route === "home") {
     page = <window.HomePage go={go} />;
-    currentNav = "home";
   } else if (route === "about") {
     page = <window.AboutPage go={go} />;
-    currentNav = "about";
   } else if (route === "kit") {
     page = <window.KitPage go={go} />;
-    currentNav = "kit";
   } else if (route === "places") {
     page = <window.PlacesPage go={go} />;
-    currentNav = "places";
   } else if (route === "films") {
     page = <window.FilmsPage go={go} />;
-    currentNav = "films";
   } else if (route === "advertise") {
     page = <window.AdvertisePage go={go} />;
-    currentNav = "advertise";
   } else if (route === "articles") {
     page = <window.ArticlesIndex go={go} />;
-    currentNav = "articles";
   } else if (route === "planning") {
     page = <window.PlanningGuide go={go} />;
-    currentNav = "planning";
   } else if (route === "checklist") {
     page = <window.ChecklistPage go={go} />;
-    currentNav = "checklist";
   } else if (route.startsWith("cat:")) {
     page = <window.CategoryPage slug={route.slice(4)} go={go} />;
-    currentNav = "articles";
   } else if (route.startsWith("a:")) {
     page = <window.ArticlePage slug={route.slice(2)} go={go} />;
-    currentNav = "articles";
   } else if (route === "newsletter") {
     page = <window.NewsletterPage go={go} />;
-    currentNav = "newsletter";
   } else if (route === "contact") {
     page = <window.ContactPage go={go} />;
-    currentNav = "contact";
   } else if (route === "privacy") {
     page = <window.PrivacyPage />;
   } else if (route === "terms") {
@@ -1373,63 +1355,42 @@ function App() {
     page = <window.AffiliatePage />;
   } else if (route === "guide") {
     page = <window.GuidePage go={go} />;
-    currentNav = "guide";
   } else if (route === "itineraries") {
     page = <window.ItinerariesPage go={go} />;
-    currentNav = "itineraries";
   } else if (route === "search") {
     page = <window.SearchPage go={go} />;
-    currentNav = "search";
   } else if (route === "explore") {
     page = <window.ExplorePage go={go} />;
-    currentNav = "explore";
   } else if (route === "stay") {
     page = <window.StayPage go={go} />;
-    currentNav = "stay";
   } else if (route === "conditions") {
     page = <window.ConditionsPage go={go} />;
-    currentNav = "conditions";
   } else if (route === "now") {
     page = <window.BulletinPage go={go} />;
-    currentNav = "now";
   } else if (route === "webcams") {
     page = <window.WebcamsPage go={go} />;
-    currentNav = "webcams";
   } else if (route === "distances") {
     page = <window.DistancesPage go={go} />;
-    currentNav = "distances";
   } else if (route === "dates") {
     page = <window.DatesPage go={go} />;
-    currentNav = "dates";
   } else if (route === "international") {
     page = <window.InternationalPage go={go} />;
-    currentNav = "international";
   } else if (route === "start-here") {
     page = <window.StartHerePage go={go} />;
-    currentNav = "start-here";
   } else if (route === "firefall") {
     page = <window.FirefallPage go={go} />;
-    currentNav = "firefall";
   } else if (route === "tioga-opening") {
     page = <window.TiogaOpeningPage go={go} />;
-    currentNav = "tioga-opening";
   } else if (route === "half-dome-lottery") {
     page = <window.HalfDomeLotteryPage go={go} />;
-    currentNav = "half-dome-lottery";
   } else if (route === "consult") {
     page = <window.ConsultPage go={go} />;
-    currentNav = "consult";
   } else if (route === "widget") {
     page = <window.WidgetPage go={go} />;
-    currentNav = "widget";
   } else if (route === "partners") {
     page = <window.PartnersPage go={go} />;
-    currentNav = "partners";
   } else if (route === "map") {
     page = <window.MapPage go={go} />;
-    // Real key: BottomNav hides itself on the map (the bottom sheet owns
-    // that edge) and the Plan a Trip group highlights its member route.
-    currentNav = "map";
   } else {
     page = <NotFoundPage go={go} />;
   }
@@ -1445,7 +1406,10 @@ function App() {
       <Header current={currentNav} go={go} />
       {/* id + tabIndex: the skip link's target, and where go() parks focus
           after each SPA navigation. */}
-      <main key={route} id="main" tabIndex={-1}>
+      {/* The design root (.hp-design): every page inherits the system's
+          tokens, type and element base from here, so there is one base
+          layout for the whole site. */}
+      <main key={route} id="main" tabIndex={-1} className="hp-design">
         {page}
         {/* Curated onward links, keyed by route (see KEEP_GOING in
             components.jsx). Mounted here rather than pasted into twenty page
@@ -1461,30 +1425,6 @@ function App() {
       <div className="navprogress" aria-hidden="true" />
       <window.BackToTop current={currentNav} />
       <ExitIntentNewsletter disabled={exitDisabled} />
-
-      <TweaksPanel title="Tweaks">
-        <TweakSection title="Palette" subtitle="The look of every page on the site.">
-          <TweakRadio
-            value={tweaks.palette}
-            onChange={(v) => setTweak("palette", v)}
-            options={[
-              { value: "golden",  label: "Golden hour" },
-              { value: "granite", label: "Granite" },
-              { value: "sierra",  label: "Sierra" },
-            ]}
-          />
-        </TweakSection>
-        <TweakSection title="Density" subtitle="Reading width and gutter.">
-          <TweakRadio
-            value={tweaks.density}
-            onChange={(v) => setTweak("density", v)}
-            options={[
-              { value: "airy", label: "Airy" },
-              { value: "dense", label: "Dense" },
-            ]}
-          />
-        </TweakSection>
-      </TweaksPanel>
     </>
   );
 }
@@ -1494,12 +1434,10 @@ function App() {
 window.routeToPath = routeToPath;
 window.SITE_ORIGIN = SITE_ORIGIN;
 
-// Boot-time registration check for the EAGER shell only (components.jsx and
-// tweaks-panel.jsx). Page components are lazy-loaded per route and verified by
+// Boot-time registration check for the EAGER shell only (components.jsx). Page components are lazy-loaded per route and verified by
 // ensureRoute after each load, so they are deliberately absent here.
 const REQUIRED_GLOBALS = [
   "Header", "Footer", "KeepGoing", "ExitIntentNewsletter",
-  "TweaksPanel", "useTweaks", "TweakSection", "TweakRadio",
 ];
 const missingGlobals = REQUIRED_GLOBALS.filter((n) => typeof window[n] === "undefined");
 if (missingGlobals.length) {
