@@ -710,9 +710,95 @@ function HomeLink({
     }
   }, children);
 }
+var HOME_NAV = [{
+  href: "#home-start-here",
+  label: "Start here",
+  group: "plan"
+}, {
+  href: "/articles",
+  label: "The journal",
+  group: "read"
+}, {
+  href: "/conditions",
+  label: "Park conditions"
+}, {
+  href: "#home-newsletter",
+  label: "Sunday Letter"
+}, {
+  href: "/search",
+  label: "Search"
+}];
+var homeMenuCta = cta => `${(cta || "Open the section").replace(/\s*→\s*$/, "")} ↗`;
 function HomeMasthead({
   go
 }) {
+  var [open, setOpen] = React.useState(null);
+  var closeTimer = React.useRef(null);
+  var navRef = React.useRef(null);
+  var openMenu = key => {
+    clearTimeout(closeTimer.current);
+    setOpen(key);
+  };
+  var closeMenu = () => {
+    clearTimeout(closeTimer.current);
+    setOpen(null);
+  };
+  var closeSoon = () => {
+    clearTimeout(closeTimer.current);
+    closeTimer.current = setTimeout(() => setOpen(null), 400);
+  };
+  var fromMouse = e => e.pointerType === "mouse";
+  React.useEffect(() => () => clearTimeout(closeTimer.current), []);
+  React.useEffect(() => {
+    if (!open) return undefined;
+    var onKey = e => {
+      if (e.key !== "Escape") return;
+      var group = navRef.current && navRef.current.querySelector(`[data-menu="${open}"]`);
+      if (group && group.contains(document.activeElement)) {
+        var caret = group.querySelector(".hp-menu__caret");
+        if (caret) caret.focus();
+      }
+      closeMenu();
+    };
+    var onDown = e => {
+      if (navRef.current && !navRef.current.contains(e.target)) closeMenu();
+    };
+    document.addEventListener("keydown", onKey);
+    document.addEventListener("pointerdown", onDown);
+    return () => {
+      document.removeEventListener("keydown", onKey);
+      document.removeEventListener("pointerdown", onDown);
+    };
+  }, [open]);
+  var menuLink = (link, className) => {
+    var {
+      key,
+      href,
+      label,
+      note
+    } = link;
+    var path = href || (window.routeToPath ? window.routeToPath(key) : `/${key}`);
+    return React.createElement("a", {
+      key: key || href,
+      className: className,
+      href: path,
+      onClick: e => {
+        if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+        if (window.track) window.track("cta_click", {
+          location: "home_navigation",
+          target: path
+        });
+        closeMenu();
+        if (href) return;
+        e.preventDefault();
+        go(key);
+      }
+    }, note ? React.createElement(React.Fragment, null, React.createElement("span", {
+      className: "hp-menu__label"
+    }, label), React.createElement("span", {
+      className: "hp-menu__note"
+    }, note)) : label);
+  };
   return React.createElement("div", {
     className: "hp-design hp-navigation"
   }, React.createElement("a", {
@@ -733,28 +819,82 @@ function HomeMasthead({
     height: "168",
     alt: ""
   }), React.createElement("span", null, "The Talus Field", React.createElement("small", null, "YOSEMITE, FROM THE INSIDE."))), React.createElement("nav", {
-    "aria-label": "Main navigation"
-  }, React.createElement(HomeLink, {
-    go: go,
-    location: "home_navigation",
-    href: "#home-start-here"
-  }, "Start here"), React.createElement(HomeLink, {
-    go: go,
-    location: "home_navigation",
-    href: "/articles"
-  }, "The journal"), React.createElement(HomeLink, {
-    go: go,
-    location: "home_navigation",
-    href: "/conditions"
-  }, "Park conditions"), React.createElement(HomeLink, {
-    go: go,
-    location: "home_navigation",
-    href: "#home-newsletter"
-  }, "Sunday Letter"), React.createElement(HomeLink, {
-    go: go,
-    location: "home_navigation",
-    href: "/search"
-  }, "Search")), React.createElement(HomeLink, {
+    "aria-label": "Main navigation",
+    ref: navRef
+  }, HOME_NAV.map(item => {
+    var g = item.group && NAV_GROUPS.find(group => group.key === item.group);
+    if (!g || !g.columns) {
+      return React.createElement(HomeLink, {
+        key: item.href,
+        go: go,
+        location: "home_navigation",
+        href: item.href
+      }, item.label);
+    }
+    var isOpen = open === g.key;
+    var panelId = `hp-menu-${g.key}`;
+    return (React.createElement("div", {
+        key: item.href,
+        "data-menu": g.key,
+        className: ["hp-menu", isOpen && "is-open"].filter(Boolean).join(" "),
+        onPointerEnter: e => {
+          if (fromMouse(e)) openMenu(g.key);
+        },
+        onPointerLeave: e => {
+          if (fromMouse(e)) closeSoon();
+        },
+        onBlur: e => {
+          if (isOpen && !e.currentTarget.contains(e.relatedTarget)) closeMenu();
+        }
+      }, React.createElement(HomeLink, {
+        go: go,
+        location: "home_navigation",
+        href: item.href,
+        onClickCapture: closeMenu
+      }, item.label), React.createElement("button", {
+        type: "button",
+        className: "hp-menu__caret",
+        "aria-expanded": isOpen,
+        "aria-controls": panelId,
+        "aria-label": `${g.label} menu`,
+        onClick: () => isOpen ? closeMenu() : openMenu(g.key)
+      }, React.createElement("svg", {
+        viewBox: "0 0 10 6",
+        width: "9",
+        height: "6",
+        "aria-hidden": "true",
+        focusable: "false"
+      }, React.createElement("path", {
+        d: "M1 1l4 4 4-4",
+        fill: "none",
+        stroke: "currentColor",
+        strokeWidth: "1.4",
+        strokeLinecap: "round",
+        strokeLinejoin: "round"
+      }))), React.createElement("div", {
+        className: "hp-menu__panel",
+        id: panelId
+      }, React.createElement("div", {
+        className: "hp-menu__card"
+      }, React.createElement("div", {
+        className: "hp-menu__lede"
+      }, React.createElement("p", {
+        className: "hp-eyebrow hp-menu__eyebrow"
+      }, g.label), g.blurb && React.createElement("p", {
+        className: "hp-menu__blurb"
+      }, g.blurb), menuLink({
+        key: g.route,
+        label: homeMenuCta(g.cta)
+      }, "hp-link")), React.createElement("div", {
+        className: "hp-menu__cols"
+      }, g.columns.map(col => React.createElement("div", {
+        key: col.heading,
+        className: "hp-menu__col"
+      }, React.createElement("p", {
+        className: "hp-menu__heading"
+      }, col.heading), col.links.map(link => menuLink(link, "hp-menu__link"))))))))
+    );
+  })), React.createElement(HomeLink, {
     go: go,
     location: "home_navigation",
     className: "hp-button",
