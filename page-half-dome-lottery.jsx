@@ -1,4 +1,4 @@
-/* global React, NewsletterInline, Breadcrumbs, GuidePromo, LodgingCta */
+/* global React, HpPageHead, LodgingCta, HpGuideBand, HpLetter */
 
 // =============================================================================
 // HALF DOME LOTTERY — `/half-dome-lottery` route. The third evergreen event
@@ -50,24 +50,18 @@ function HalfDomeLotteryPage({ go }) {
   };
 
   return (
-    <div className="page">
-      <div className="page-head">
-        <div className="wrap wrap--narrow">
-          <Breadcrumbs go={go} trail={[{ label: "Home", route: "home" }, { label: "Half Dome lottery" }]} />
-          <div className="eyebrow eyebrow--moss">Permit season · applications open in March</div>
-          <h1>The Half Dome lottery</h1>
-          <p className="page-head__dek">
-            Most people think there is one Half Dome lottery, that it happens in
-            March, and that losing it ends the year. All three are wrong. There
-            are two lotteries, the second one runs every day the cables are up,
-            and the strategy for each is different. This page is the honest
-            version: the calendar, the published odds, the strategy, and what to
-            do when the answer is no.
-          </p>
-        </div>
-      </div>
+    <div className="page hp-tool hp-half-dome-lottery">
+      <HpPageHead
+        go={go}
+        crumbs={[{ label: "Home", route: "home" }, { label: "Half Dome lottery" }]}
+        eyebrow="PERMIT SEASON · APPLICATIONS OPEN IN MARCH"
+        title="The Half Dome lottery"
+        intro="Most people think there is one Half Dome lottery, that it happens in March, and that losing it ends the year. All three are wrong. There are two lotteries, the second one runs every day the cables are up, and the strategy for each is different. This page is the honest version: the calendar, the published odds, the strategy, and what to do when the answer is no."
+      />
 
-      <div className="wrap wrap--narrow" style={{ paddingTop: 40, paddingBottom: 64 }}>
+
+      <div className="hp-wrap hp-reading">
+        <div className="hp-reading__column">
         <section className="prose">
           <h2>The season</h2>
           <p>
@@ -371,21 +365,24 @@ function HalfDomeLotteryPage({ go }) {
 
         {/* The purchase ask: a lottery reader is planning the whole trip
             around one permit day, usually months out. */}
-        <GuidePromo
-          go={go}
-          location="half-dome-lottery"
-          title="Planning the trip around a permit day?"
-          body="The Field Guide app carries the trailhead parking notes, offline maps for a park with no signal, and a day-by-day planner that flexes when the lottery says Tuesday instead of Saturday. One purchase, eighteen months of access."
-          style={{ marginTop: 56, marginBottom: 40 }}
-        />
-
-        <NewsletterInline
-          location="half-dome-lottery"
-          tag="half-dome-lottery"
-          heading="The permit calendar, in your inbox"
-          blurb="Sunday Field Notes flags the lottery calendar as it comes: when the March window opens, when results land, and when the late-season odds turn favorable. One short letter a week. Free."
-        />
+        </div>
       </div>
+
+      <HpGuideBand
+        go={go}
+        location="half-dome-lottery"
+        title="Planning the trip around a permit day?"
+        intro="The Field Guide app carries the trailhead parking notes, offline maps for a park with no signal, and a day-by-day planner that flexes when the lottery says Tuesday instead of Saturday. One purchase, eighteen months of access."
+        sample
+      />
+      <HpLetter
+        eyebrow="SUNDAY FIELD NOTES / FREE"
+        title="The permit calendar, in your inbox"
+        heading="The permit calendar, in your inbox"
+        blurb="Sunday Field Notes flags the lottery calendar as it comes: when the March window opens, when results land, and when the late-season odds turn favorable. One short letter a week. Free."
+        location="half-dome-lottery"
+        tag="half-dome-lottery"
+      />
     </div>
   );
 }

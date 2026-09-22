@@ -2,29 +2,20 @@ function AdvertisePage({
   go
 }) {
   return React.createElement("div", {
-    className: "page"
-  }, React.createElement("section", {
-    className: "page-head"
-  }, React.createElement("div", {
-    className: "wrap wrap--narrow"
-  }, React.createElement(Breadcrumbs, {
+    className: "page hp-advertise"
+  }, React.createElement(HpPageHead, {
     go: go,
-    trail: [{
+    crumbs: [{
       label: "Home",
       route: "home"
     }, {
       label: "Advertise"
-    }]
-  }), React.createElement("div", {
-    className: "eyebrow eyebrow--moss"
-  }, "For Operators"), React.createElement("h1", null, "List your business on The Talus Field."), React.createElement("p", {
-    className: "page-head__dek"
-  }, "The Talus Field is read by people actively planning a Yosemite trip. The audience that's about to book lodging, hire a guide, or buy a tour. If you operate a lodge, an inn, a guiding service, an outfitter, a transportation company, or any other Yosemite-adjacent business, a placement in The Directory puts you in front of the right reader at the right moment."))), React.createElement("section", {
-    className: "wrap",
-    style: {
-      paddingTop: 56,
-      paddingBottom: 64
-    }
+    }],
+    eyebrow: "FOR OPERATORS",
+    title: "List your business on The Talus Field.",
+    intro: "The Talus Field is read by people actively planning a Yosemite trip. The audience that's about to book lodging, hire a guide, or buy a tour. If you operate a lodge, an inn, a guiding service, an outfitter, a transportation company, or any other Yosemite-adjacent business, a placement in The Directory puts you in front of the right reader at the right moment."
+  }), React.createElement("section", {
+    className: "hp-wrap hp-section"
   }, React.createElement("div", {
     className: "places-pitch"
   }, React.createElement("div", {
@@ -63,58 +54,32 @@ function AdvertisePage({
       go("affiliate");
     }
   }, "full advertising and affiliate policy"), " is on the disclosure page."))), React.createElement("section", {
-    className: "wrap wrap--narrow",
-    style: {
-      paddingTop: 32,
-      paddingBottom: 80
-    }
-  }, React.createElement("h2", {
-    style: {
-      fontFamily: "var(--display)",
-      fontSize: 32,
-      fontWeight: 500,
-      lineHeight: 1.15,
-      margin: "0 0 18px"
-    }
-  }, "Why a directory placement works"), React.createElement("p", {
-    style: {
-      fontFamily: "var(--serif)",
-      fontSize: 18,
-      color: "var(--ink-2)",
-      lineHeight: 1.55,
-      marginBottom: 18
-    }
+    className: "hp-wrap hp-section hp-advertise__why"
+  }, React.createElement(HpHeading, {
+    title: "Why a directory placement works"
+  }), React.createElement("div", {
+    className: "hp-advertise__copy"
+  }, React.createElement("p", {
+    className: "hp-sub"
   }, "The visitors reading The Talus Field are not casual browsers. They've already decided to come to the park. They're working out how to do it well, which means they're looking for a place to sleep, a guide to hire, a class to take, a route to drive. A search-engine ad reaches a colder audience and costs a multiple of what a year of placement here costs. A social post reaches a larger but less qualified audience that mostly will not convert."), React.createElement("p", {
-    style: {
-      fontFamily: "var(--serif)",
-      fontSize: 18,
-      color: "var(--ink-2)",
-      lineHeight: 1.55,
-      marginBottom: 18
-    }
+    className: "hp-sub"
   }, "The directory shows up in a moment of decision, on a site the reader already trusts to give them straight answers. That's the placement."), React.createElement("p", {
-    style: {
-      fontFamily: "var(--serif)",
-      fontSize: 18,
-      color: "var(--ink-2)",
-      lineHeight: 1.55
-    }
+    className: "hp-sub"
   }, "If you're an operator who fits, and you'd be willing to send a friend to your business, write to ", React.createElement("a", {
+    className: "hp-inline",
     href: "mailto:cory@thetalusfieldjournal.com"
   }, "cory@thetalusfieldjournal.com"), " or use ", React.createElement("a", {
+    className: "hp-inline",
     href: "/contact",
     onClick: e => {
       e.preventDefault();
       go("contact");
     }
-  }, "the contact form"), ". I read every inquiry.")), React.createElement("div", {
-    className: "wrap wrap--narrow",
-    style: {
-      paddingBottom: 96
-    }
-  }, React.createElement(NewsletterInline, {
+  }, "the contact form"), ". I read every inquiry."))), React.createElement(HpLetter, {
+    eyebrow: "SUNDAY FIELD NOTES / FREE",
+    title: "Sunday Field Notes",
     heading: "Sunday Field Notes",
     blurb: "A short note on Sundays, when there is something to say."
-  })));
+  }));
 }
 window.AdvertisePage = AdvertisePage;

@@ -633,49 +633,7 @@ var NAV_GROUPS = [{
   label: "Field Guide",
   route: "guide"
 }];
-var NAV_SECONDARY = [{
-  key: "about",
-  label: "About the journal",
-  note: "Who writes this, and why"
-}, {
-  key: "newsletter",
-  label: "Newsletter",
-  note: "One short letter a week. Free"
-}, {
-  key: "films",
-  label: "Films",
-  note: "The NPS Nature Notes film series, annotated"
-}, {
-  href: "/archive/",
-  label: "Nature Notes archive",
-  note: "512 issues of the park's own bulletin"
-}, {
-  key: "places",
-  label: "Directory",
-  note: "The short list of operators worth knowing"
-}, {
-  key: "advertise",
-  label: "Advertise",
-  note: "What a listing is, and what disqualifies one"
-}, {
-  key: "widget",
-  label: "Conditions widget",
-  note: "A free embed for gateway businesses"
-}, {
-  key: "partners",
-  label: "Group codes",
-  note: "The Field Guide in packs, for lodging"
-}, {
-  key: "contact",
-  label: "Contact",
-  note: "Trip questions, corrections, press"
-}];
-function navGroupLinks(group) {
-  return (group.columns || []).flatMap(col => col.links);
-}
 window.NAV_GROUPS = NAV_GROUPS;
-window.NAV_SECONDARY = NAV_SECONDARY;
-window.navGroupLinks = navGroupLinks;
 function HomeLink({
   go,
   href,
@@ -707,11 +665,10 @@ function HomeLink({
         return;
       }
       event.preventDefault();
-      go(href.startsWith("/articles/") ? `a:${href.slice(10)}` : href.slice(1) || "home");
+      go(href.startsWith("/articles/") ? `a:${href.slice(10)}` : href.startsWith("/section/") ? `cat:${href.slice(9)}` : href.slice(1) || "home");
     }
   }, children);
 }
-var DESIGN_ROUTES = ["home", "planning", "conditions", "guide"];
 var HOME_NAV = [{
   href: "#home-start-here",
   away: "/start-here",
@@ -820,7 +777,8 @@ function HomeMasthead({
     go: go,
     location: location,
     className: "hp-brand",
-    href: "/"
+    href: "/",
+    onClickCapture: e => releaseRockfall(e.currentTarget.querySelector("img"))
   }, React.createElement("img", {
     src: "/img/talus-field-mark-masthead.png?v=2",
     width: "214",
@@ -832,7 +790,7 @@ function HomeMasthead({
   }, HOME_NAV.map(item => {
     var g = item.group && NAV_GROUPS.find(group => group.key === item.group);
     var href = home ? item.href : item.away || item.href;
-    var ariaCurrent = item.href === "/conditions" ? here("conditions") : undefined;
+    var ariaCurrent = here((item.away || item.href).replace(/^\//, ""));
     if (!g || !g.columns) {
       return React.createElement(HomeLink, {
         key: item.href,
@@ -861,6 +819,7 @@ function HomeMasthead({
         go: go,
         location: location,
         href: href,
+        "aria-current": ariaCurrent,
         onClickCapture: closeMenu
       }, item.label), React.createElement("button", {
         type: "button",
@@ -1020,9 +979,11 @@ function HpPageHead({
   actions,
   byline,
   aside,
-  className
+  className,
+  as: Tag = "section",
+  children
 }) {
-  return React.createElement("section", {
+  return React.createElement(Tag, {
     className: ["hp-pagehead", "hp-wrap", aside ? "hp-pagehead--split" : null, className].filter(Boolean).join(" ")
   }, React.createElement("div", {
     className: "hp-pagehead__copy"
@@ -1037,7 +998,7 @@ function HpPageHead({
     className: "hp-actions"
   }, actions), byline && React.createElement("p", {
     className: "hp-byline"
-  }, byline)), aside && React.createElement("div", {
+  }, byline), children), aside && React.createElement("div", {
     className: "hp-pagehead__aside"
   }, aside));
 }
@@ -1123,6 +1084,16 @@ function HpGuideBand({
     className: "hp-screen-note"
   }, "Actual screens from the Field Guide"))));
 }
+function HpPostcard({
+  paper,
+  stamp = "THE SUNDAY LETTER"
+}) {
+  return React.createElement("div", {
+    className: "hp-paper"
+  }, React.createElement("span", {
+    className: "hp-stamp"
+  }, "EL PORTAL, CA", React.createElement("br", null), stamp), React.createElement("div", null, paper || React.createElement(React.Fragment, null, "A field note", React.createElement("br", null), "for your", React.createElement("br", null), React.createElement("em", null, "next adventure."))), React.createElement("small", null, "From Yosemite, with perspective."));
+}
 function HpLetter({
   id,
   eyebrow,
@@ -1131,6 +1102,7 @@ function HpLetter({
   blurb,
   location,
   tag,
+  variant,
   cta = "Send me the letter ↗",
   terms = "Free to read. One letter a week. Unsubscribe whenever.",
   paper,
@@ -1140,17 +1112,17 @@ function HpLetter({
     className: "hp-letter hp-wrap hp-section",
     id: id,
     tabIndex: id ? -1 : undefined
-  }, React.createElement("div", {
-    className: "hp-paper"
-  }, React.createElement("span", {
-    className: "hp-stamp"
-  }, "EL PORTAL, CA", React.createElement("br", null), stamp), React.createElement("div", null, paper || React.createElement(React.Fragment, null, "A field note", React.createElement("br", null), "for your", React.createElement("br", null), React.createElement("em", null, "next adventure."))), React.createElement("small", null, "From Yosemite, with perspective.")), React.createElement("div", null, React.createElement("p", {
+  }, React.createElement(HpPostcard, {
+    paper: paper,
+    stamp: stamp
+  }), React.createElement("div", null, React.createElement("p", {
     className: "hp-eyebrow"
   }, eyebrow), React.createElement("h2", null, title), React.createElement(NewsletterInline, {
     heading: heading,
     blurb: blurb,
     location: location,
     tag: tag,
+    variant: variant,
     cta: cta,
     modifier: "hp-newsletter",
     inputLabel: "Your email address"
@@ -1162,409 +1134,10 @@ function Header({
   current,
   go
 }) {
-  var navGroups = NAV_GROUPS;
-  var isGroupActive = g => {
-    if (current === g.route) return true;
-    if (navGroupLinks(g).some(l => l.key === current)) return true;
-    if (g.key === "read" && (current.startsWith("a:") || current.startsWith("cat:"))) return true;
-    return false;
-  };
-  var [openGroup, setOpenGroup] = React.useState(null);
-  var [dismissedGroup, setDismissedGroup] = React.useState(null);
-  var openTimer = React.useRef(null);
-  var holdGroup = key => {
-    clearTimeout(openTimer.current);
-    setDismissedGroup(null);
-    setOpenGroup(key);
-  };
-  var releaseGroup = () => {
-    clearTimeout(openTimer.current);
-    if (dismissedGroup) {
-      setDismissedGroup(null);
-      setOpenGroup(null);
-      return;
-    }
-    openTimer.current = setTimeout(() => setOpenGroup(null), 420);
-  };
-  var dismissGroup = (key, e) => {
-    clearTimeout(openTimer.current);
-    setOpenGroup(null);
-    setDismissedGroup(key);
-    if (e && e.detail > 0 && e.currentTarget && e.currentTarget.blur) e.currentTarget.blur();
-  };
-  React.useEffect(() => () => clearTimeout(openTimer.current), []);
-  React.useEffect(() => {
-    if (!openGroup) return;
-    var onKey = e => {
-      if (e.key === "Escape") dismissGroup(openGroup);
-    };
-    document.addEventListener("keydown", onKey);
-    return () => document.removeEventListener("keydown", onKey);
-  }, [openGroup]);
-  var [menuOpen, setMenuOpen] = React.useState(false);
-  var [menuQuery, setMenuQuery] = React.useState("");
-  var menuRef = React.useRef(null);
-  React.useEffect(() => {
-    if (!menuOpen) return;
-    var onDoc = e => {
-      if (menuRef.current && !menuRef.current.contains(e.target)) setMenuOpen(false);
-    };
-    var onKey = e => {
-      if (e.key === "Escape") setMenuOpen(false);
-    };
-    document.addEventListener("mousedown", onDoc);
-    document.addEventListener("keydown", onKey);
-    return () => {
-      document.removeEventListener("mousedown", onDoc);
-      document.removeEventListener("keydown", onKey);
-    };
-  }, [menuOpen]);
-  var closeMenu = () => {
-    setMenuOpen(false);
-    setMenuQuery("");
-  };
-  var mastheadRef = React.useRef(null);
-  React.useEffect(() => {
-    var lastY = window.scrollY;
-    var raf = 0;
-    var apply = hidden => {
-      var el = mastheadRef.current;
-      if (el) el.classList.toggle("is-hidden", hidden);
-    };
-    var measure = () => {
-      raf = 0;
-      var y = window.scrollY;
-      var dy = y - lastY;
-      if (menuOpen || y < 80) apply(false);else if (dy > 6 && y > 160) apply(true);else if (dy < -6) apply(false);
-      if (Math.abs(dy) > 6) lastY = y;
-    };
-    var onScroll = () => {
-      if (!raf) raf = requestAnimationFrame(measure);
-    };
-    measure();
-    window.addEventListener("scroll", onScroll, {
-      passive: true
-    });
-    return () => {
-      if (raf) cancelAnimationFrame(raf);
-      window.removeEventListener("scroll", onScroll);
-    };
-  }, [menuOpen]);
-  var submitMenuSearch = e => {
-    e.preventDefault();
-    var q = menuQuery.trim();
-    closeMenu();
-    if (window.track) window.track("nav_search_submit", {
-      location: "menu",
-      has_query: q ? "1" : "0"
-    });
-    if (!q) {
-      go("search");
-      return;
-    }
-    var url = `/search?q=${encodeURIComponent(q)}`;
-    if (window.location.pathname.replace(/\/+$/, "") === "/search") {
-      window.location.assign(url);
-      return;
-    }
-    window.history.pushState({
-      route: "search"
-    }, "", url);
-    go("search");
-  };
-  var renderLink = (link, {
-    baseClass,
-    noteClass,
-    onNavigate
-  } = {}) => {
-    var {
-      key,
-      href,
-      label,
-      note
-    } = link;
-    var isExternalPath = !!href;
-    var body = note ? React.createElement(React.Fragment, null, React.createElement("span", {
-      className: "nav__link-label"
-    }, label), React.createElement("span", {
-      className: noteClass || "nav__link-note"
-    }, note)) : label;
-    return React.createElement("a", {
-      key: key || href,
-      href: isExternalPath ? href : window.routeToPath ? window.routeToPath(key) : `/${key}`,
-      className: [baseClass, !isExternalPath && current === key && "is-active"].filter(Boolean).join(" "),
-      "aria-current": !isExternalPath && current === key ? "page" : undefined,
-      onClick: e => {
-        if (onNavigate) onNavigate(e);
-        if (isExternalPath) return;
-        e.preventDefault();
-        if (key === "guide" && window.track) window.track("guide_cta_click", {
-          location: "masthead_nav"
-        });
-        go(key);
-      }
-    }, body);
-  };
-  var renderPlainLink = (key, label, opts) => renderLink({
-    key,
-    label
-  }, opts);
-  if (DESIGN_ROUTES.includes(current)) return React.createElement(HomeMasthead, {
+  return React.createElement(HomeMasthead, {
     go: go,
     current: current
   });
-  return React.createElement(React.Fragment, null, React.createElement("a", {
-    className: "skip-link",
-    href: "#main"
-  }, "Skip to content"), React.createElement("header", {
-    className: "masthead",
-    ref: mastheadRef
-  }, React.createElement("div", {
-    className: "masthead__main"
-  }, React.createElement("a", {
-    className: "brand-block",
-    href: "/",
-    onClick: e => {
-      e.preventDefault();
-      releaseRockfall(e.currentTarget.querySelector(".brand__mark"));
-      go("home");
-    },
-    style: {
-      textDecoration: "none",
-      color: "inherit"
-    }
-  }, React.createElement("img", {
-    className: "brand__mark",
-    src: "/img/talus-field-mark-masthead.png?v=2",
-    alt: "",
-    width: "214",
-    height: "168",
-    loading: "eager"
-  }), React.createElement("span", {
-    className: "brand-block__text"
-  }, React.createElement("span", {
-    className: "brand"
-  }, "The Talus Field"), React.createElement("span", {
-    className: "brand__sub"
-  }, "A field journal of Yosemite"))), React.createElement("nav", {
-    className: "nav",
-    "aria-label": "Main"
-  }, navGroups.map(g => {
-    if (!g.columns) {
-      return React.createElement("div", {
-        key: g.key,
-        className: "nav__group"
-      }, renderPlainLink(g.route, g.label, {
-        baseClass: "nav__link"
-      }));
-    }
-    return (React.createElement("div", {
-        key: g.key,
-        className: ["nav__group", "nav__group--mega", openGroup === g.key && "is-open", dismissedGroup === g.key && "is-dismissed"].filter(Boolean).join(" "),
-        onMouseEnter: () => holdGroup(g.key),
-        onMouseLeave: releaseGroup,
-        onFocus: () => holdGroup(g.key),
-        onBlur: releaseGroup
-      }, React.createElement("a", {
-        href: window.routeToPath ? window.routeToPath(g.route) : `/${g.route}`,
-        className: ["nav__link", "nav__group-trigger", isGroupActive(g) && "is-active"].filter(Boolean).join(" "),
-        onClick: e => {
-          e.preventDefault();
-          dismissGroup(g.key, e);
-          go(g.route);
-        }
-      }, g.label), React.createElement("button", {
-        type: "button",
-        className: "nav__caret",
-        "aria-expanded": openGroup === g.key,
-        "aria-label": `${g.label} menu`,
-        onClick: e => {
-          if (openGroup === g.key) dismissGroup(g.key, e);else holdGroup(g.key);
-        }
-      }, "▾"), React.createElement("div", {
-        className: "nav__dropdown nav__dropdown--mega"
-      }, React.createElement("div", {
-        className: "nav__dropdown-inner"
-      }, React.createElement("div", {
-        className: "nav__dropdown-lede"
-      }, React.createElement("div", {
-        className: "nav__dropdown-title"
-      }, g.label), g.blurb && React.createElement("p", {
-        className: "nav__dropdown-blurb"
-      }, g.blurb), renderPlainLink(g.route, g.cta || "Open the section →", {
-        baseClass: "nav__dropdown-all",
-        onNavigate: e => dismissGroup(g.key, e)
-      })), React.createElement("div", {
-        className: "nav__dropdown-cols"
-      }, g.columns.map(col => React.createElement("div", {
-        key: col.heading,
-        className: "nav__dropdown-col"
-      }, React.createElement("div", {
-        className: "nav__dropdown-heading"
-      }, col.heading), col.links.map(link => renderLink(link, {
-        baseClass: "nav__dropdown-link",
-        onNavigate: e => dismissGroup(g.key, e)
-      }))))))))
-    );
-  }), React.createElement("a", {
-    className: ["nav__search", current === "search" && "is-active"].filter(Boolean).join(" "),
-    href: window.routeToPath ? window.routeToPath("search") : "/search",
-    "aria-label": "Search the journal",
-    onClick: e => {
-      e.preventDefault();
-      if (window.track) window.track("cta_click", {
-        location: "masthead_search",
-        target: "search"
-      });
-      go("search");
-    }
-  }, React.createElement("svg", {
-    viewBox: "0 0 24 24",
-    width: "15",
-    height: "15",
-    "aria-hidden": "true",
-    focusable: "false"
-  }, React.createElement("circle", {
-    cx: "11",
-    cy: "11",
-    r: "6.5",
-    fill: "none",
-    stroke: "currentColor",
-    strokeWidth: "2"
-  }), React.createElement("line", {
-    x1: "16",
-    y1: "16",
-    x2: "21",
-    y2: "21",
-    stroke: "currentColor",
-    strokeWidth: "2",
-    strokeLinecap: "round"
-  })), React.createElement("span", {
-    className: "nav__search-label"
-  }, "Search")), React.createElement("div", {
-    className: "nav__menu-wrap",
-    ref: menuRef
-  }, React.createElement("button", {
-    type: "button",
-    className: "nav__menu-toggle",
-    "aria-expanded": menuOpen,
-    "aria-label": "Menu",
-    onClick: () => setMenuOpen(o => !o)
-  }, React.createElement("span", {
-    className: "nav__menu-bars",
-    "aria-hidden": "true"
-  }, React.createElement("span", null), React.createElement("span", null), React.createElement("span", null))), menuOpen && React.createElement("div", {
-    className: "nav__menu"
-  }, React.createElement("form", {
-    className: "nav__menu-search",
-    role: "search",
-    onSubmit: submitMenuSearch
-  }, React.createElement("input", {
-    type: "search",
-    name: "q",
-    value: menuQuery,
-    onChange: e => setMenuQuery(e.target.value),
-    placeholder: "Search the journal",
-    "aria-label": "Search the journal",
-    autoComplete: "off"
-  }), React.createElement("button", {
-    type: "submit",
-    "aria-label": "Search"
-  }, React.createElement("svg", {
-    viewBox: "0 0 24 24",
-    width: "15",
-    height: "15",
-    "aria-hidden": "true",
-    focusable: "false"
-  }, React.createElement("circle", {
-    cx: "11",
-    cy: "11",
-    r: "6.5",
-    fill: "none",
-    stroke: "currentColor",
-    strokeWidth: "2"
-  }), React.createElement("line", {
-    x1: "16",
-    y1: "16",
-    x2: "21",
-    y2: "21",
-    stroke: "currentColor",
-    strokeWidth: "2",
-    strokeLinecap: "round"
-  })))), navGroups.map(g => React.createElement("div", {
-    key: g.key,
-    className: "nav__menu-group"
-  }, g.columns ? React.createElement(React.Fragment, null, React.createElement("div", {
-    className: "nav__menu-label"
-  }, renderPlainLink(g.route, g.label, {
-    baseClass: "nav__menu-label-link",
-    onNavigate: closeMenu
-  })), g.columns.map(col => React.createElement(React.Fragment, {
-    key: col.heading
-  }, React.createElement("div", {
-    className: "nav__menu-sublabel"
-  }, col.heading), col.links.map(link => renderLink(link, {
-    onNavigate: closeMenu,
-    noteClass: "nav__menu-note"
-  }))))) : renderPlainLink(g.route, g.label, {
-    onNavigate: closeMenu
-  }))), React.createElement("div", {
-    className: "nav__menu-group"
-  }, React.createElement("div", {
-    className: "nav__menu-sublabel"
-  }, "More"), NAV_SECONDARY.map(link => renderLink(link, {
-    onNavigate: closeMenu,
-    noteClass: "nav__menu-note"
-  }))), React.createElement("div", {
-    className: "nav__menu-group"
-  }, renderPlainLink("explore", "Everything on this site →", {
-    baseClass: "nav__menu-index",
-    onNavigate: closeMenu
-  }))))))), React.createElement(BottomNav, {
-    current: current,
-    go: go
-  }));
-}
-var BOTTOM_NAV = [{
-  key: "planning",
-  label: "Plan"
-}, {
-  key: "now",
-  label: "Now"
-}, {
-  key: "map",
-  label: "Map"
-}, {
-  key: "articles",
-  label: "Read"
-}];
-function BottomNav({
-  current,
-  go
-}) {
-  if (current === "map" || current === "guide") return null;
-  var isActive = key => {
-    if (key === "articles") return current === "articles" || current.startsWith("a:") || current.startsWith("cat:");
-    if (key === "planning") return ["planning", "itineraries", "stay", "checklist", "kit"].includes(current);
-    return current === key;
-  };
-  return React.createElement("nav", {
-    className: "bottomnav",
-    "aria-label": "Quick navigation"
-  }, BOTTOM_NAV.map(t => React.createElement("a", {
-    key: t.key,
-    className: ["bottomnav__item", isActive(t.key) && "is-active"].filter(Boolean).join(" "),
-    "aria-current": isActive(t.key) ? "page" : undefined,
-    href: window.routeToPath ? window.routeToPath(t.key) : `/${t.key}`,
-    onClick: e => {
-      e.preventDefault();
-      if (window.track) window.track("cta_click", {
-        location: "bottom_nav",
-        target: t.key
-      });
-      go(t.key);
-    }
-  }, t.label)));
 }
 function BackToTop({
   current
@@ -2307,27 +1880,11 @@ function ShareRow({
     }
   };
   return React.createElement("div", {
-    className: "share-row",
-    style: {
-      display: "flex",
-      alignItems: "center",
-      gap: 12,
-      marginTop: 20,
-      fontFamily: "var(--sans)",
-      fontSize: 13,
-      color: "var(--ink-3)"
-    }
+    className: "share-row"
   }, React.createElement("span", null, "Worth sending to your trip partner?"), React.createElement("button", {
     type: "button",
-    onClick: share,
-    style: {
-      font: "inherit",
-      color: "var(--moss)",
-      background: "none",
-      border: "1px solid var(--rule)",
-      padding: "6px 14px",
-      cursor: "pointer"
-    }
+    className: "share-row__btn",
+    onClick: share
   }, copied ? "Link copied" : "Share this article"));
 }
 window.ShareRow = ShareRow;
@@ -2478,45 +2035,6 @@ var readHistory = {
   }
 };
 window.readHistory = readHistory;
-function ArticleCard({
-  article,
-  go,
-  size,
-  onNav
-}) {
-  var cat = window.findCategory(article.cat);
-  return React.createElement("a", {
-    className: "card",
-    href: `/articles/${article.slug}`,
-    onClick: e => {
-      e.preventDefault();
-      if (onNav) onNav(article);
-      go(`a:${article.slug}`);
-    }
-  }, React.createElement(Placeholder, {
-    caption: article.placeholder,
-    image: article.image,
-    tag: cat.label.split(" ")[0],
-    size: size === "sm" ? "sm" : null,
-    sizes: SIZES_CARD,
-    style: {
-      aspectRatio: size === "wide" ? "16/9" : "4/3"
-    },
-    motif: article.cat === "trails" ? React.createElement(MotifMountains, null) : article.cat === "wildlife" ? React.createElement(MotifTrees, null) : article.cat === "seasonal" ? React.createElement(MotifSun, null) : null
-  }), React.createElement("div", {
-    style: {
-      marginTop: 14
-    }
-  }, React.createElement("div", {
-    className: "card__cat"
-  }, cat.label), React.createElement("div", {
-    className: "card__title"
-  }, article.title), size !== "sm" && React.createElement("div", {
-    className: "card__dek"
-  }, article.dek), React.createElement("div", {
-    className: "card__meta"
-  }, React.createElement("span", null, article.date), React.createElement("span", null, article.read))));
-}
 function trackNewsletterSubmit(location, tag, variant) {
   if (window.track) window.track("newsletter_signup", {
     location: location || "unknown",
@@ -2614,13 +2132,7 @@ function NewsletterInline({
   }, React.createElement("h3", null, heading || "Sunday Field Notes"), React.createElement("p", null, showIncentive ? "Subscribe and unlock the interactive Yosemite map: vistas, trailheads, parking turnouts, places to eat, and a trip builder that saves on your device. A short note follows on Sundays." : blurb || "A short note on Sundays, when there is something to say."), inputLabel && !done && React.createElement("label", {
     htmlFor: `${location}-email`
   }, inputLabel), done ? React.createElement("p", {
-    style: {
-      fontFamily: "var(--serif)",
-      fontSize: 17,
-      color: "var(--moss)",
-      margin: 0,
-      padding: "8px 0"
-    }
+    className: "nlbox__done"
   }, "You're in. ", React.createElement("a", {
     href: "/map"
   }, "The map is open to you →")) : React.createElement("form", {
@@ -3109,22 +2621,13 @@ function GuidePromo({
   }, body || "The app version of this journal: 50-plus stops with parking and timing notes, offline maps, a trip planner, and the secret guide. Works with no signal, which is most of the park. One purchase, eighteen months of access."), React.createElement("div", {
     className: "mono band-guide__cta"
   }, cta || "See the Field Guide →")), sample && React.createElement("p", {
-    style: {
-      fontFamily: "var(--sans)",
-      fontSize: 13,
-      color: "var(--ink-3)",
-      lineHeight: 1.6,
-      margin: "10px 0 0"
-    }
+    className: "band-guide__sample"
   }, "Not sure yet? Five entries are free to read, no email required:", " ", React.createElement("a", {
     href: `${GUIDE_PROMO_APP_BASE}/preview`,
     onClick: () => {
       if (window.track) window.track("guide_sample_click", {
         location: location || "unknown"
       });
-    },
-    style: {
-      color: "var(--ink-2)"
     }
   }, "preview the guide →")));
 }
@@ -3141,14 +2644,12 @@ Object.assign(window, {
   Header,
   Footer,
   BackToTop,
-  ArticleCard,
   NewsletterInline,
   ExitIntentNewsletter,
   MapLightbox,
   EntranceWaits,
   WebcamStrip,
   GuidePromo,
-  DESIGN_ROUTES,
   HomeLink,
   HomeMasthead,
   HpHeading,
@@ -3157,5 +2658,6 @@ Object.assign(window, {
   HpArticleCard,
   HpPageHead,
   HpGuideBand,
-  HpLetter
+  HpLetter,
+  HpPostcard
 });

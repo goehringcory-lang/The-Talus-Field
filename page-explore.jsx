@@ -1,4 +1,4 @@
-/* global React, Breadcrumbs, NewsletterInline */
+/* global React, HpPageHead, HpHeading, HpLetter */
 
 // =============================================================================
 // THE INDEX — `/explore`. One page that lists every reader-facing destination
@@ -27,12 +27,9 @@
 
 function ExploreSection({ eyebrow, title, dek, entries, go }) {
   return (
-    <section className="wrap index-block">
-      <div className="index-block__head">
-        <div className="eyebrow eyebrow--moss">{eyebrow}</div>
-        <h2 className="index-block__title">{title}</h2>
-        {dek && <p className="index-block__dek">{dek}</p>}
-      </div>
+    <section className="hp-wrap hp-section index-block">
+      <HpHeading eyebrow={eyebrow.toUpperCase()} title={title} />
+      {dek && <p className="hp-sub">{dek}</p>}
       <ul className="index-list">
         {entries.map((entry) => (
           <li key={entry.route || entry.href} className="index-list__item">
@@ -217,17 +214,14 @@ function ExplorePage({ go }) {
   ];
 
   return (
-    <div className="page">
-      <section className="page-head">
-        <div className="wrap wrap--narrow">
-          <Breadcrumbs go={go} trail={[{ label: "Home", route: "home" }, { label: "Site index" }]} />
-          <div className="eyebrow eyebrow--moss">The Index</div>
-          <h1>Everything on this site.</h1>
-          <p className="page-head__dek">
-            The whole journal on one page: what each destination is, and what it is for. If you already know what you are after, <a href="/search" onClick={(e) => { e.preventDefault(); go("search"); }}>search</a> is faster.
-          </p>
-        </div>
-      </section>
+    <div className="page hp-explore">
+      <HpPageHead
+        go={go}
+        crumbs={[{ label: "Home", route: "home" }, { label: "Site index" }]}
+        eyebrow="THE INDEX"
+        title="Everything on this site."
+        intro={<>The whole journal on one page: what each destination is, and what it is for. If you already know what you are after, <a className="hp-inline" href="/search" onClick={(e) => { e.preventDefault(); go("search"); }}>search</a> is faster.</>}
+      />
 
       <ExploreSection
         go={go}
@@ -269,9 +263,12 @@ function ExplorePage({ go }) {
         entries={journal}
       />
 
-      <section className="wrap wrap--narrow" style={{ paddingTop: 24, paddingBottom: 40 }}>
-        <NewsletterInline location="explore" tag="explore" />
-      </section>
+      <HpLetter
+        eyebrow="SUNDAY FIELD NOTES / FREE"
+        title="Sunday Field Notes"
+        location="explore"
+        tag="explore"
+      />
     </div>
   );
 }

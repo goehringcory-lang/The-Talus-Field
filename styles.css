@@ -34,19 +34,24 @@
 }
 
 :root {
-  /* Golden hour. Warm cream paper, oxidized iron red */
-  --paper: #f1ead6;
-  --paper-2: #e6dcc1;
-  --paper-3: #d8c89e;
-  --ink: #14110c;
-  --ink-2: #36291c;
-  --ink-3: #50402e;      /* lifted from #6e5c43 → ~7:1 on --paper for outdoor legibility */
-  --rule: #2a2118;       /* rules are now near-black, like a journal */
-  --rule-soft: #c1ad84;
-  --moss: #7a2a10;       /* oxidized iron red */
-  --moss-2: #9a3a1c;
-  --rust: #7a2a10;
-  --gold: #8a661a;
+  /* The site palette is the design system's (the September 2026 homepage):
+     cream paper, deep green ink, a rust accent. These are the values
+     .hp-design used to restate for the components nested in its pages; since
+     the design rollout they are the only palette the site has. There is no
+     dark scheme and no palette switch. */
+  --paper: #f8f5ed;
+  --paper-2: #efeadc;
+  --paper-3: #e3ddca;
+  --ink: #233e35;
+  --ink-1: #233e35;
+  --ink-2: #3d5249;
+  --ink-3: #647067;
+  --rule: #c3cabd;
+  --rule-soft: #d6dacf;
+  --moss: #a4462c;       /* the accent; the name predates the palette */
+  --moss-2: #84361f;
+  --rust: #a4462c;
+  --gold: #9a7a2e;
 
   /* Type system. Alpine Journal-leaning.
      Font diet (LCP pass): EB Garamond + Inter are the only webfonts loaded
@@ -58,44 +63,6 @@
   --sans:  'Inter', -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Arial, sans-serif;
   --mono:  ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
 
-  --measure: 66ch;
-  --gutter: clamp(20px, 4vw, 48px);
-}
-
-/* Palette swap. Granite */
-[data-palette="granite"] {
-  --paper: #efece3;
-  --paper-2: #e1ddcd;
-  --paper-3: #cfc9b3;
-  --ink: #14140f;
-  --ink-2: #2f2f29;
-  --ink-3: #484840;      /* lifted from #5e5e54 → ~6.7:1 on --paper */
-  --rule: #1c1c17;
-  --rule-soft: #b9b39d;
-  --moss: #243a26;
-  --moss-2: #3d573f;
-  --rust: #7a3a1c;
-  --gold: #8a7020;
-}
-
-/* Palette swap. High sierra */
-[data-palette="sierra"] {
-  --paper: #ebede9;
-  --paper-2: #d8ddd9;
-  --paper-3: #bfc6c0;
-  --ink: #0c1014;
-  --ink-2: #232a32;
-  --ink-3: #3d4a58;      /* lifted from #50596a → ~6.5:1 on --paper */
-  --rule: #11161c;
-  --rule-soft: #a8b0b3;
-  --moss: #1a2c40;
-  --moss-2: #2c456b;
-  --rust: #5e3e25;
-  --gold: #75601f;
-}
-
-/* Density swap */
-[data-density="dense"] {
   --measure: 60ch;
   --gutter: clamp(16px, 3vw, 36px);
 }
@@ -130,10 +97,6 @@ html {
 
 body {
   background: var(--paper);
-  /* Subtle paper grain via radial dot. Barely visible, just texture */
-  background-image: radial-gradient(color-mix(in oklab, var(--ink) 5%, transparent) 1px, transparent 1px);
-  background-size: 4px 4px;
-  background-position: 0 0;
 }
 
 a {
@@ -170,11 +133,11 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
 
 .eyebrow {
   font-family: var(--sans);
-  font-size: 10px;
-  font-weight: 700;
+  font-size: 9px;
+  font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.22em;
-  color: var(--ink-2);
+  letter-spacing: 1.7px;
+  color: var(--hp-accent);
 }
 .eyebrow--moss { color: var(--moss); }
 .eyebrow--paper { color: var(--paper-3); }
@@ -192,8 +155,6 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
   margin: 0 auto;
   padding: 0 var(--gutter);
 }
-.wrap--narrow { max-width: 780px; }
-.wrap--read { max-width: 660px; }
 
 /* Skip link: the masthead is ~30 tab stops of dropdowns and search, so the
    first focusable element on every page jumps a keyboard user straight to
@@ -217,16 +178,6 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
    link); it is not an interactive element, so no ring. */
 main:focus { outline: none; }
 
-/* ===== Masthead ===== */
-.masthead {
-  border-bottom: 1px solid var(--rule);
-  background: var(--paper);
-  position: sticky;
-  top: 0;
-  z-index: 50;
-  backdrop-filter: blur(8px);
-  background: color-mix(in oklab, var(--paper) 94%, transparent);
-}
 /* Entrance waits (EntranceWaits in components.jsx). The class names date
    from the component's old slot in the masthead's utility bar, removed in
    the nav simplification pass. These rules style the component's DEFAULT
@@ -265,56 +216,6 @@ main:focus { outline: none; }
 .masthead__wait--long { color: var(--rust); font-weight: 700; }
 .masthead__wait--nodata { color: var(--ink-3); }
 
-.masthead__main {
-  display: flex;
-  align-items: center;
-  gap: 24px;
-  padding: 18px var(--gutter);
-  max-width: 1240px;
-  margin: 0 auto;
-  /* Containing block for the full-width mega dropdowns: the panels are
-     position: static inside their group so they anchor here instead of to the
-     trigger, which is what keeps a three-column panel inside the viewport at
-     every desktop width. */
-  position: relative;
-}
-.brand {
-  font-family: var(--display);
-  font-weight: 500;
-  font-size: 30px;
-  letter-spacing: -0.005em;
-  text-decoration: none;
-  color: var(--ink);
-  display: flex;
-  align-items: baseline;
-  gap: 0;
-  line-height: 1;
-  white-space: nowrap;
-}
-.brand__sub {
-  display: block;
-  font-family: var(--sans);
-  font-size: 9px;
-  text-transform: uppercase;
-  letter-spacing: 0.28em;
-  color: var(--ink-3);
-  font-weight: 600;
-  margin-top: 6px;
-}
-.brand-block {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 14px;
-  flex-shrink: 0;
-}
-.brand-block__text { display: flex; flex-direction: column; gap: 0; }
-.brand__mark {
-  display: block;
-  height: 56px;
-  width: auto;
-  flex-shrink: 0;
-}
 /* Rockfall easter egg: a viewport-fixed overlay the masthead script fills
    with tiny SVG rocks on the first logo click. It layers above everything,
    catches no pointer events, and is removed once the rocks land. */
@@ -330,780 +231,85 @@ main:focus { outline: none; }
   will-change: transform;
 }
 .rockfall__rock svg { display: block; width: 100%; height: 100%; }
-.nav {
-  display: flex;
-  align-items: center;
-  gap: 22px;
-  margin-left: auto;
-  font-family: var(--sans);
-  font-size: 12px;
-  text-transform: uppercase;
-  letter-spacing: 0.14em;
-}
-.nav a {
-  color: var(--ink-2);
-  text-decoration: none;
-  font-weight: 600;
-  padding-bottom: 2px;
-  border-bottom: 1px solid transparent;
-  white-space: nowrap;
-}
-.nav a:hover { color: var(--ink); border-bottom-color: var(--ink); }
-.nav a.is-active { color: var(--ink); border-bottom-color: var(--moss); }
-/* Desktop dropdown groups. :hover / :focus-within open them with no JS, so
-   hover and keyboard tabbing both work on their own; the .is-open class the
-   masthead adds on top of that is only a close delay (see Header in
-   components.jsx), never the thing that opens a panel. */
-.nav__group { position: relative; display: flex; align-items: center; }
-.nav__group-trigger { position: relative; display: inline-flex; align-items: center; gap: 5px; }
-/* The caret is a real <button> (a disclosure toggle for keyboard and screen
-   readers — Enter/Space collapses or reopens the panel without navigating,
-   which the trigger link cannot do since Enter on it navigates), so it needs
-   the button chrome reset. It sits beside the trigger link, not inside it. */
-.nav__caret {
-  font-size: 8px;
-  line-height: 1;
-  color: var(--ink-3, var(--ink-2));
-  transform: translateY(-1px);
-  transition: transform 0.15s;
-  background: none;
-  border: 0;
-  /* Padding gives the button its 24px-plus hit area (WCAG 2.5.8); the
-     negative margins hand back the same space so the glyph sits where the
-     old caret span did and the masthead row does not grow. Hit rects count
-     padding but not margins, so the target stays full size. */
-  padding: 10px 11px;
-  margin: -10px -9px -10px -6px;
-  cursor: pointer;
-  font-family: inherit;
-}
-.nav__group:hover .nav__caret,
-.nav__group:focus-within .nav__caret,
-.nav__group.is-open .nav__caret { transform: translateY(0); }
-.nav__dropdown {
-  position: absolute;
-  top: 100%;
-  left: -18px;
-  /* Transparent bridge so the pointer can cross the gap between the trigger
-     and the panel without the menu closing. */
-  padding-top: 16px;
-  display: none;
-  z-index: 60;
-}
-.nav__group:hover .nav__dropdown,
-.nav__group:focus-within .nav__dropdown,
-.nav__group.is-open .nav__dropdown { display: block; }
-.nav__dropdown-inner {
-  min-width: 230px;
-  background: var(--paper);
-  border: 1px solid var(--ink);
-  padding: 8px 0;
-  box-shadow: 0 6px 24px rgba(20, 20, 20, 0.08);
-  display: flex;
-  flex-direction: column;
-}
-.nav__dropdown-link {
-  padding: 11px 18px;
-  border-bottom: 0 !important;
-}
-.nav__dropdown-link:hover { background: var(--paper-2); color: var(--ink); }
-.nav__dropdown-link.is-active { color: var(--ink); }
-.nav__dropdown-link.is-active::before {
-  content: "";
-  display: inline-block;
-  width: 6px; height: 6px;
-  background: var(--moss);
-  margin-right: 10px;
-  transform: translateY(-2px);
-}
-
-/* Mega panel. A group with columns opts out of the group-anchored positioning
-   above (position: static on the group hands the containing block to
-   .masthead__main) and spans the masthead instead, so three columns of links
-   with descriptions fit at any desktop width without overflowing. */
-.nav__group--mega { position: static; }
-.nav__dropdown--mega {
-  left: 0;
-  right: 0;
-  padding-top: 18px;
-}
-/* Hover bridge for the mega panels. .nav__dropdown's own padding-top spans the
-   gap for the small dropdowns, where top: 100% means "below the trigger" — but
-   a mega group is position: static, so top: 100% is the bottom of
-   .masthead__main and that padding lands below the gap instead of across it.
-   Measured at 1440px, the trigger ends 35px above the panel: nothing occupied
-   that band, so moving the pointer down toward the panel left the group and the
-   panel vanished, with no way back (the panel is display: none by then, so it
-   cannot take the hover itself). This tongue hangs off the trigger to cover it.
-   It exists only while the group is open, so it intercepts nothing the rest of
-   the time, and any part of it that reaches past the masthead is under the
-   panel (z-index 60) anyway. */
-.nav__group--mega:hover .nav__group-trigger::after,
-.nav__group--mega:focus-within .nav__group-trigger::after,
-.nav__group--mega.is-open .nav__group-trigger::after {
-  content: "";
-  position: absolute;
-  top: 100%;
-  left: -22px;
-  right: -22px;
-  height: 46px;
-}
-/* The tongue above is only as wide as its own trigger, which covers a reach
-   straight down and nothing else. A reader heading for a link in the panel's
-   left column moves sideways as well as down, leaves the tongue inside that
-   35px band, and the panel goes with it: the band belonged to no one, so the
-   group lost :hover, and once the close delay expired the panel was display:
-   none and could not take the hover back. Pausing anywhere in the band did
-   the same thing. This bar spans the panel's full width and hangs off its top
-   edge, so every path from a trigger to any link inside the panel stays within
-   the group the whole way down. It exists only while the panel is open, and
-   the band is a constant 35.2px at every desktop width (the masthead row is
-   sized by the brand block, not by the nav), so 34px stops short of the
-   trigger row and a sibling trigger keeps its own hover. */
-.nav__dropdown--mega::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 100%;
-  height: 34px;
-}
-/* Taking a link closes the panel even though the pointer is still inside it.
-   Both rules outrank the :hover/:focus-within pair on specificity, and the
-   class clears the moment the pointer leaves the group. */
-.nav__group--mega.is-dismissed .nav__dropdown { display: none; }
-.nav__group--mega.is-dismissed .nav__group-trigger::after { content: none; }
-.nav__dropdown--mega .nav__dropdown-inner {
-  display: grid;
-  grid-template-columns: minmax(190px, 240px) 1fr;
-  gap: 0 40px;
-  padding: 28px 32px 30px;
-  text-transform: none;
-  letter-spacing: 0;
-  /* At narrow desktop the columns wrap and the panel gets tall; on a short
-     laptop that would run off the bottom with no way to reach the last link. */
-  max-height: calc(100vh - 200px);
-  overflow-y: auto;
-}
-.nav__dropdown-lede {
-  border-right: 1px solid var(--rule);
-  padding-right: 32px;
-}
-.nav__dropdown-title {
-  font-family: var(--display);
-  font-size: 22px;
-  line-height: 1.1;
-  color: var(--ink);
-  margin-bottom: 8px;
-}
-.nav__dropdown-blurb {
-  font-family: var(--serif);
-  font-size: 13px;
-  line-height: 1.5;
-  color: var(--ink-2);
-  margin: 0 0 14px;
-  text-transform: none;
-  letter-spacing: 0;
-}
-.nav__dropdown-all {
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--moss) !important;
-  border-bottom: 0 !important;
-}
-.nav__dropdown-all:hover { color: var(--ink) !important; }
-.nav__dropdown-cols {
-  /* auto-FILL at a capped width, not auto-fit at 1fr: every panel gets the
-     same column width whether it has two columns or three, so the three
-     dropdowns read as one object instead of three differently-stretched ones.
-     A two-column panel simply leaves the right side empty. */
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 250px));
-  justify-content: start;
-  gap: 4px 40px;
-  align-items: start;
-}
-.nav__dropdown-col { display: flex; flex-direction: column; }
-.nav__dropdown-heading {
-  font-family: var(--sans);
-  font-size: 9px;
-  text-transform: uppercase;
-  letter-spacing: 0.18em;
-  color: var(--ink-3);
-  font-weight: 700;
-  padding: 0 0 8px;
-  margin-bottom: 4px;
-  border-bottom: 1px solid var(--rule-soft, var(--rule));
-}
-.nav__dropdown--mega .nav__dropdown-link {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-  padding: 8px 10px 8px 0;
-  white-space: normal;
-}
-.nav__dropdown--mega .nav__dropdown-link:hover { background: none; }
-.nav__dropdown--mega .nav__dropdown-link.is-active::before { display: none; }
-.nav__link-label {
-  font-family: var(--sans);
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.02em;
-  color: var(--ink-2);
-  transition: color 0.15s;
-}
-.nav__dropdown-link:hover .nav__link-label { color: var(--moss); }
-.nav__dropdown-link.is-active .nav__link-label { color: var(--moss); }
-.nav__link-note {
-  font-family: var(--sans);
-  font-size: 11px;
-  font-weight: 400;
-  letter-spacing: 0;
-  line-height: 1.35;
-  color: var(--ink-3);
-  text-transform: none;
-}
-
-/* Search. A top-level destination, not the eighth item in a dropdown. */
-.nav__search {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  color: var(--ink-2);
-}
-.nav__search svg { display: block; flex-shrink: 0; }
-.nav__search.is-active { color: var(--ink); border-bottom-color: var(--moss); }
-/* Between the nav's collapse point (880px) and roughly 1000px the inline row
-   — four group labels, search, and The Map — is about 30px too wide for the
-   viewport, and the masthead would push the page sideways. Drop the word and
-   keep the magnifier, which is the same affordance the mobile bar uses. */
-@media (max-width: 1000px) {
-  .nav__search-label { display: none; }
-  .nav__search { padding: 0 2px; }
-}
-
-/* Mobile hamburger menu. Hidden at desktop, shown when inline links collapse. */
-.nav__menu-wrap { position: relative; display: none; }
-.nav__menu-toggle {
-  background: none;
-  border: 0;
-  padding: 6px 4px;
-  cursor: pointer;
-  color: var(--ink-2);
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  transition: color 0.15s;
-}
-.nav__menu-toggle:hover { color: var(--ink); }
-.nav__menu-bars {
-  display: inline-flex;
-  flex-direction: column;
-  justify-content: space-between;
-  width: 22px;
-  height: 14px;
-}
-.nav__menu-bars > span {
-  display: block;
-  width: 100%;
-  height: 1.5px;
-  background: currentColor;
-}
-.nav__menu {
-  position: absolute;
-  top: calc(100% + 14px);
-  right: 0;
-  width: min(330px, calc(100vw - 28px));
-  background: var(--paper);
-  border: 1px solid var(--ink);
-  padding: 8px 0;
-  z-index: 50;
-  box-shadow: 0 6px 24px rgba(20, 20, 20, 0.08);
-  display: flex;
-  flex-direction: column;
-  /* The grouped menu is tall; keep it inside the viewport under the sticky
-     masthead and let it scroll. */
-  max-height: calc(100vh - 130px);
-  overflow-y: auto;
-}
-.nav__menu-group { display: flex; flex-direction: column; }
-.nav__menu-group + .nav__menu-group {
-  border-top: 1px solid var(--rule);
-  margin-top: 6px;
-  padding-top: 6px;
-}
-.nav__menu-label {
-  padding: 10px 18px 4px;
-  font-size: 10px;
-  letter-spacing: 0.16em;
-  color: var(--ink-2);
-  font-weight: 700;
-}
-/* The group label is itself a destination in the menu (Read → /articles),
-   which the flat list it replaced had no way to express. */
-.nav__menu a.nav__menu-label-link {
-  padding: 0 !important;
-  font-size: inherit;
-  letter-spacing: inherit;
-  color: var(--ink);
-  text-transform: uppercase;
-}
-.nav__menu-sublabel {
-  padding: 10px 18px 2px;
-  font-family: var(--sans);
-  font-size: 9px;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--ink-3);
-  font-weight: 700;
-}
-.nav__menu-note {
-  display: block;
-  font-family: var(--sans);
-  font-size: 11px;
-  font-weight: 400;
-  letter-spacing: 0;
-  line-height: 1.3;
-  text-transform: none;
-  color: var(--ink-3);
-  margin-top: 2px;
-}
-.nav__menu a .nav__link-label {
-  font-size: 13.5px;
-  /* The masthead nav is uppercase; a menu of twenty-eight uppercase labels
-     with sentence-case descriptions under them is not readable. */
-  text-transform: none;
-  letter-spacing: 0.01em;
-}
-.nav__menu a.nav__menu-index {
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.1em;
-  color: var(--moss);
-}
-
-/* Search box at the top of the hamburger. On phones the menu is the whole
-   navigation, so search gets a real input here rather than a tap through to
-   the search page. */
-.nav__menu-search {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  margin: 2px 12px 8px;
-  padding: 0 0 0 10px;
-  border: 1px solid var(--rule);
-  background: var(--paper-2);
-}
-.nav__menu-search input {
-  flex: 1 1 auto;
-  min-width: 0;
-  border: 0;
-  background: none;
-  font-family: var(--sans);
-  font-size: 14px;
-  color: var(--ink);
-  padding: 10px 0;
-  -webkit-appearance: none;
-  appearance: none;
-}
-.nav__menu-search input:focus { outline: none; }
-/* The input has no border of its own, so without this the only nav on phones
-   has a search box with zero focus indication (same restore-on-focus-visible
-   pattern as .field inputs). */
-.nav__menu-search input:focus-visible { outline: 2px solid var(--moss); outline-offset: -2px; }
-.nav__menu-search input::placeholder { color: var(--ink-3); }
-.nav__menu-search button {
-  flex: 0 0 auto;
-  border: 0;
-  background: none;
-  color: var(--ink-2);
-  padding: 10px 12px;
-  min-height: 40px;
-  cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-}
-.nav__menu-search button:hover { color: var(--moss); }
-
-.nav__menu a {
-  padding: 12px 18px;
-  border-bottom: 0 !important;
-  /* Was nowrap. Menu entries carry a one-line description now, which has to be
-     allowed to wrap; the labels themselves are short enough not to. */
-  white-space: normal;
-}
-.nav__menu a:hover { background: var(--paper-2); color: var(--ink); }
-.nav__menu a.is-active { color: var(--ink); }
-.nav__menu a.is-active::before {
-  content: "";
-  display: inline-block;
-  width: 6px; height: 6px;
-  background: var(--moss);
-  margin-right: 10px;
-  transform: translateY(-2px);
-}
 
 /* ===== Directory. Quiet "for operators" strip ===== */
-.places-strip {
-  display: flex;
-  align-items: center;
-  gap: 24px;
-  padding: 22px 28px;
-  border-top: 1px solid var(--ink);
-  border-bottom: 1px solid var(--ink);
-  flex-wrap: wrap;
-}
-.places-strip__copy {
-  flex: 1;
-  min-width: 240px;
-  font-family: var(--serif);
-  font-size: 16px;
-  color: var(--ink-2);
-  line-height: 1.5;
-}
-.places-strip__eyebrow {
-  font-family: var(--sans);
-  font-size: 11px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  font-weight: 700;
-  color: var(--moss);
-  margin-right: 8px;
-}
-.places-strip__cta {
-  font-family: var(--sans);
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  text-decoration: none;
-  color: var(--ink) !important;
-  border-bottom: 1px solid var(--ink);
-  padding-bottom: 2px;
-}
-.places-strip__cta:hover { color: var(--moss) !important; border-bottom-color: var(--moss); }
 
-/* ===== Directory. Sponsorship pitch ===== */
+/* ===== The pitch card (.places-pitch: /advertise, /partners) =====
+   A design card: eyebrow, serif title, the two-column terms, the tiers as
+   inner cards, the system's button, and the fine print. */
 .places-pitch {
-  border: 1px solid var(--ink);
-  border-left: 6px solid var(--moss);
-  background: var(--paper-2);
-  padding: 48px;
+  background: var(--hp-card);
+  border: 1px solid var(--hp-rule);
+  border-radius: 3px;
+  padding: 44px 46px;
 }
-.places-pitch__eyebrow {
-  font-family: var(--sans);
-  font-size: 11px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  font-weight: 700;
-  color: var(--moss);
-  margin-bottom: 12px;
-}
-.places-pitch__title {
-  font-family: var(--display);
-  font-size: 42px;
-  line-height: 1.1;
-  font-weight: 500;
-  letter-spacing: -0.005em;
-  margin: 0 0 18px;
-  color: var(--ink);
-}
-.places-pitch__lede {
-  font-family: var(--serif);
-  font-size: 19px;
-  line-height: 1.55;
-  color: var(--ink-2);
-  max-width: 64ch;
-  margin: 0 0 36px;
-}
-.places-pitch__grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 40px;
-  margin-bottom: 40px;
-}
-.places-pitch__grid h2 {
-  font-family: var(--display);
-  font-size: 19px;
-  font-weight: 600;
-  margin: 0 0 12px;
-  color: var(--ink);
-}
-.places-pitch__grid ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  font-family: var(--serif);
-  font-size: 16px;
-  line-height: 1.55;
-  color: var(--ink-2);
-}
-.places-pitch__grid li {
-  padding-left: 18px;
-  position: relative;
-  margin-bottom: 8px;
-}
-.places-pitch__grid li::before {
-  content: "·";
-  position: absolute;
-  left: 4px;
-  top: 0;
-  color: var(--moss);
-  font-weight: 700;
-}
-.places-pitch__tiers {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
-  margin-bottom: 36px;
-}
-.places-pitch__tier {
-  border: 1px solid var(--rule-soft);
-  background: var(--paper);
-  padding: 24px;
-}
-.places-pitch__tier--featured {
-  border-color: var(--ink);
-  background: var(--paper);
-}
-.places-pitch__tier-eyebrow {
-  font-family: var(--sans);
-  font-size: 11px;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  font-weight: 700;
-  color: var(--ink);
-  margin-bottom: 10px;
-}
-.places-pitch__tier--featured .places-pitch__tier-eyebrow { color: var(--moss); }
-.places-pitch__tier-summary {
-  font-family: var(--serif);
-  font-size: 16px;
-  line-height: 1.5;
-  color: var(--ink-2);
-  margin-bottom: 14px;
-}
-.places-pitch__tier-meta {
-  font-family: var(--sans);
-  font-size: 12px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  font-weight: 600;
-  color: var(--ink-3);
-}
+.places-pitch__eyebrow { font: 600 9px var(--sans); letter-spacing: 1.7px; text-transform: uppercase; color: var(--hp-accent); margin-bottom: 16px; }
+.places-pitch__title { font: 400 46px/1.04 var(--serif); letter-spacing: -1.1px; margin: 0 0 18px; color: var(--hp-ink); }
+.places-pitch__lede { font-size: 13px; line-height: 1.85; color: var(--hp-muted); max-width: 640px; margin: 0 0 30px; }
+.places-pitch__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-bottom: 36px; }
+.places-pitch__grid h2 { font-size: 32px; margin: 0 0 16px; }
+.places-pitch__grid ul { list-style: none; padding: 0; margin: 0; font-size: 12px; line-height: 1.7; color: var(--hp-muted); }
+.places-pitch__grid li { border-top: 1px solid var(--hp-rule); padding: 10px 0; }
+.places-pitch__tiers { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 32px; }
+.places-pitch__tier { border: 1px solid var(--hp-rule); border-radius: 3px; background: var(--hp-paper); padding: 24px 26px; }
+.places-pitch__tier--featured { border-color: var(--hp-accent); }
+.places-pitch__tier-eyebrow { font: 600 9px var(--sans); letter-spacing: 1.7px; text-transform: uppercase; color: var(--hp-ink); margin-bottom: 12px; }
+.places-pitch__tier--featured .places-pitch__tier-eyebrow { color: var(--hp-accent); }
+.places-pitch__tier-summary { font: 400 21px/1.25 var(--serif); color: var(--hp-ink); margin-bottom: 14px; }
+.places-pitch__tier-meta { font-size: 10px; color: var(--hp-muted); }
 .places-pitch__cta {
-  display: inline-block;
-  background: var(--ink);
-  color: var(--paper) !important;
-  font-family: var(--sans);
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  text-decoration: none;
-  padding: 14px 28px;
-  border: 1px solid var(--ink);
-  margin-bottom: 24px;
+  display: inline-flex;
+  border-radius: 3px;
+  background: var(--hp-accent);
+  color: var(--hp-on-accent) !important;
+  font: 600 12px var(--sans);
+  padding: 15px 22px;
+  margin-bottom: 20px;
+  transition: background .2s;
 }
-.places-pitch__cta:hover { background: var(--moss); border-color: var(--moss); }
-.places-pitch__fineprint {
-  font-family: var(--sans);
-  font-size: 12px;
-  color: var(--ink-3);
-  line-height: 1.6;
-  max-width: 70ch;
-  margin: 0;
-}
-.places-pitch__fineprint a { color: var(--ink-2); text-decoration: underline; }
-@media (max-width: 720px) {
-  .places-pitch { padding: 32px 24px; }
-  .places-pitch__title { font-size: 30px; }
+.places-pitch__cta:hover { background: var(--hp-accent-deep); }
+.places-pitch__fineprint { font-size: 11px; color: var(--hp-muted); line-height: 1.7; max-width: 640px; margin: 0; }
+.places-pitch__fineprint a { color: var(--hp-ink); border-bottom: 1px solid #a7afa4; }
+@media (max-width: 760px) {
+  .places-pitch { padding: 28px 22px; }
+  .places-pitch__title { font-size: 36px; }
   .places-pitch__grid, .places-pitch__tiers { grid-template-columns: 1fr; }
 }
 
-/* ===== Directory page ===== */
-/* Three-region photo triptych. Replaces the old NPS map. */
-.region-triptych {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
-}
-.region-tile {
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-}
-.region-tile__frame {
-  width: 100%;
-  aspect-ratio: 4 / 5;
-  overflow: hidden;
-  background: var(--paper-2);
-  border: 1px solid var(--rule);
-}
-.region-tile__img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  filter: saturate(0.92);
-}
-.region-tile figcaption { padding-top: 14px; }
-.region-tile__eyebrow {
-  font-family: var(--sans);
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--moss);
-  margin-bottom: 6px;
-}
-.region-tile__name {
-  font-family: var(--display);
-  font-size: 22px;
-  font-weight: 500;
-  line-height: 1.15;
-  color: var(--ink);
-  margin-bottom: 6px;
-}
-.region-tile__note {
-  font-family: var(--serif);
-  font-size: 15px;
-  line-height: 1.5;
-  color: var(--ink-2);
-  max-width: 36ch;
-}
+/* ===== Directory page (/places) =====
+   The region tiles are journal cards; the standard and the categories are
+   design sections; the one real entry is a note card. */
+.region-triptych { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px; }
+.region-tile { margin: 0; }
+.region-tile__frame { border-radius: 3px; overflow: hidden; background: var(--paper-2); }
+.region-tile__img { display: block; width: 100%; height: 207px; object-fit: cover; }
+.region-tile__eyebrow { font: 600 8px var(--sans); letter-spacing: 1.7px; text-transform: uppercase; color: var(--hp-accent); margin: 18px 0 10px; }
+.region-tile__name { font: 400 29px/1.04 var(--serif); letter-spacing: -1.1px; color: var(--hp-ink); margin-bottom: 12px; }
+.region-tile__note { font-size: 11px; line-height: 1.7; color: var(--hp-muted); }
 
-/* "The standard" body block */
-.places-standard__heading {
-  font-family: var(--display);
-  font-size: 28px;
-  font-weight: 500;
-  line-height: 1.15;
-  margin: 0 0 18px;
-  color: var(--ink);
-}
-.places-standard__body {
-  font-family: var(--serif);
-  font-size: 18px;
-  line-height: 1.6;
-  color: var(--ink-2);
-  margin: 0 0 18px;
-}
+.places-standard__body { font-size: 13px; line-height: 1.85; color: var(--hp-muted); max-width: 680px; margin: 0 0 1em; }
 .places-standard__body:last-child { margin-bottom: 0; }
 
-/* Yosemite Conservancy callout. The single real entry. */
-.conservancy {
-  border-top: 2px solid var(--ink);
-  border-bottom: 1px solid var(--rule);
-  padding: 28px 0 32px;
-}
-.conservancy__eyebrow {
-  font-family: var(--sans);
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--moss);
-  margin-bottom: 14px;
-}
-.conservancy__name {
-  font-family: var(--display);
-  font-size: 36px;
-  font-weight: 500;
-  line-height: 1.1;
-  margin: 0 0 14px;
-  color: var(--ink);
-}
-.conservancy__body {
-  font-family: var(--serif);
-  font-size: 17px;
-  line-height: 1.6;
-  color: var(--ink-2);
-  margin: 0 0 18px;
-  max-width: 64ch;
-}
-.conservancy__link {
-  display: inline-block;
-  font-family: var(--sans);
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--ink);
-  text-decoration: none;
-  border-bottom: 1px solid var(--ink);
-  padding-bottom: 2px;
-}
-.conservancy__link:hover { color: var(--moss); border-bottom-color: var(--moss); }
+.conservancy { max-width: 680px; padding: 30px 32px; background: var(--hp-card); border: 1px solid var(--hp-rule); border-radius: 3px; }
+.conservancy__eyebrow { font: 600 9px var(--sans); letter-spacing: 1.7px; text-transform: uppercase; color: var(--hp-accent); margin-bottom: 14px; }
+.conservancy__name { font-size: 38px; margin-bottom: 14px; }
+.conservancy__body { font-size: 13px; line-height: 1.85; color: var(--hp-muted); margin-bottom: 18px; }
+.conservancy__link { font-size: 11px; font-weight: 600; border-bottom: 1px solid #a7afa4; padding-bottom: 4px; }
+.conservancy__link:hover { color: var(--hp-accent); }
 
-/* Categories index. Inclusion criteria, not empty slots. */
-.dir-cats { list-style: none; padding: 0; margin: 0; }
-.dir-cats__item {
-  display: grid;
-  grid-template-columns: 1fr 2fr auto;
-  gap: 32px;
-  align-items: baseline;
-  padding: 22px 0;
-  border-top: 1px solid var(--rule);
-}
-.dir-cats__item:last-child { border-bottom: 1px solid var(--rule); }
-.dir-cats__name {
-  font-family: var(--display);
-  font-size: 22px;
-  font-weight: 500;
-  line-height: 1.15;
-  color: var(--ink);
-}
-.dir-cats__note {
-  font-family: var(--serif);
-  font-size: 16px;
-  line-height: 1.55;
-  color: var(--ink-2);
-  max-width: 56ch;
-}
-.dir-cats__status {
-  font-family: var(--sans);
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--ink-3);
-  white-space: nowrap;
-}
+.dir-cats { list-style: none; padding: 0; margin: 30px 0 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 48px; }
+.dir-cats__item { border-top: 1px solid var(--hp-rule); padding: 20px 0 22px; }
+.dir-cats__name { font: 400 26px/1.12 var(--serif); letter-spacing: -0.5px; color: var(--hp-ink); }
+.dir-cats__note { font-size: 12px; line-height: 1.7; color: var(--hp-muted); margin-top: 8px; }
+.dir-cats__status { font: 600 8px var(--sans); letter-spacing: 1.7px; text-transform: uppercase; color: var(--hp-accent); margin-top: 12px; }
 
-/* Operator CTA. Quiet. */
-.dir-cta__body {
-  font-family: var(--serif);
-  font-size: 17px;
-  line-height: 1.6;
-  color: var(--ink-2);
-  margin: 0 0 24px;
-}
-.dir-cta__link {
-  display: inline-block;
-  font-family: var(--sans);
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--moss);
-  text-decoration: none;
-  border-bottom: 1px solid var(--moss);
-  padding-bottom: 2px;
-}
-.dir-cta__link:hover { color: var(--ink); border-bottom-color: var(--ink); }
+.dir-cta__body { font-size: 13px; line-height: 1.85; color: var(--hp-muted); max-width: 680px; margin: 0 0 18px; }
 
-@media (max-width: 720px) {
-  .region-triptych { grid-template-columns: 1fr; gap: 32px; }
-  .conservancy__name { font-size: 28px; }
-  .dir-cats__item {
-    grid-template-columns: 1fr;
-    gap: 8px;
-    padding: 18px 0;
-  }
-  .dir-cats__status { margin-top: 4px; }
+@media (max-width: 760px) {
+  .region-triptych { grid-template-columns: 1fr; gap: 25px; }
+  .region-tile__img { height: 220px; }
+  .dir-cats { grid-template-columns: 1fr; }
+  .conservancy { padding: 24px 22px; }
 }
 
 /* Footer affiliate disclosure */
@@ -1122,115 +328,6 @@ main:focus { outline: none; }
    the underline never applied — the link was distinguishable from its sentence
    only by a 1.6:1 color shift, a WCAG 1.4.1 failure). */
 .site-footer__disclosure.site-footer__disclosure a { color: var(--ink-2); text-decoration: underline; }
-
-/* ===== Sticky Field Guide promo bar (article pages) ===== */
-.guide-bar {
-  position: sticky;
-  top: 0;
-  z-index: 40;
-  background: var(--ink);
-  color: var(--paper);
-  transform: translateY(-100%);
-  opacity: 0;
-  pointer-events: none;
-  transition: transform 0.28s ease, opacity 0.2s ease;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-}
-.guide-bar.is-visible {
-  transform: translateY(0);
-  opacity: 1;
-  pointer-events: auto;
-}
-.guide-bar__inner {
-  display: flex;
-  align-items: center;
-  gap: 24px;
-  padding: 12px 0;
-}
-.guide-bar__copy { flex: 1; min-width: 0; }
-.guide-bar__eyebrow {
-  font-family: var(--sans);
-  font-size: 11px;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  font-weight: 700;
-  color: var(--moss);
-  margin-right: 10px;
-}
-.guide-bar__pitch {
-  font-family: var(--serif);
-  font-size: 15px;
-  color: var(--paper);
-  line-height: 1.45;
-}
-.guide-bar__cta {
-  flex-shrink: 0;
-  background: var(--moss);
-  color: var(--paper);
-  font-family: var(--sans);
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  text-decoration: none;
-  padding: 10px 18px;
-  white-space: nowrap;
-  border: 1px solid var(--moss);
-}
-.guide-bar__cta:hover { background: var(--paper); color: var(--ink); border-color: var(--paper); }
-@media (max-width: 720px) {
-  .guide-bar__inner { padding: 10px 0; gap: 12px; }
-  .guide-bar__pitch { display: none; }
-  .guide-bar__eyebrow { color: var(--paper); }
-}
-
-/* ===== End-of-article Field Guide CTA ===== */
-.guide-cta {
-  margin: 56px 0 0;
-  padding: 36px 40px;
-  background: var(--paper-2);
-  border: 1px solid var(--ink);
-  border-left: 6px solid var(--moss);
-}
-.guide-cta__eyebrow {
-  font-family: var(--sans);
-  font-size: 11px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  font-weight: 700;
-  color: var(--moss);
-  margin-bottom: 10px;
-}
-.guide-cta__title {
-  font-family: var(--display);
-  font-size: 32px;
-  font-weight: 500;
-  line-height: 1.15;
-  margin: 0 0 14px;
-  color: var(--ink);
-  letter-spacing: -0.005em;
-}
-.guide-cta__body {
-  font-family: var(--serif);
-  font-size: 17px;
-  line-height: 1.55;
-  color: var(--ink-2);
-  margin: 0 0 22px;
-}
-.guide-cta__btn {
-  display: inline-block;
-  background: var(--ink);
-  color: var(--paper) !important;
-  font-family: var(--sans);
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  text-decoration: none;
-  padding: 12px 22px;
-  border: 1px solid var(--ink);
-}
-.guide-cta__btn:hover { background: var(--moss); border-color: var(--moss); }
 
 /* ===== Footer ===== */
 .site-footer {
@@ -1324,91 +421,65 @@ main:focus { outline: none; }
 }
 
 /* ===== Buttons ===== */
+/* ===== Buttons (.btn) =====
+   The design system's button (.hp-button) under the class the older
+   components carry: the accent face, 12px semibold, the 3px radius. */
 .btn {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  padding: 12px 22px;
-  background: var(--ink);
-  color: var(--paper);
-  font-family: var(--sans);
-  font-size: 11px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.16em;
+  gap: 25px;
+  padding: 15px 22px;
+  background: var(--hp-accent);
+  color: var(--hp-on-accent);
+  font: 600 12px var(--sans);
   text-decoration: none;
   border: 0;
+  border-radius: 3px;
   cursor: pointer;
+  transition: background .2s;
 }
-.btn:hover { background: var(--moss); color: var(--paper); }
+.btn:hover { background: var(--hp-accent-deep); color: var(--hp-on-accent); }
 .btn--ghost {
   background: transparent;
-  color: var(--ink);
-  border: 1px solid var(--ink);
+  color: var(--hp-ink);
+  border: 1px solid var(--hp-rule);
 }
-.btn--ghost:hover { background: var(--ink); color: var(--paper); }
-.btn__arrow { transition: transform 0.15s ease; font-size: 12px; }
-.btn:hover .btn__arrow { transform: translateX(3px); }
+.btn--ghost:hover { background: var(--hp-ink); color: var(--hp-paper); }
 
-/* ===== Photo placeholder. Alpine Journal plate ===== */
+/* ===== Photo plates (Placeholder) =====
+   The design system's photo treatment, the homepage hero's figure: a 3px
+   radius, no frame or drop shadow, a paper tag chip top-left (the featured
+   card's "READ THIS FIRST"), and the credit set small over a bottom gradient.
+   Photos are shown as shot: no saturation filter, no hover zoom. */
 .placeholder {
-  background:
-    /* faint cross-hatch, photogravure feel */
-    repeating-linear-gradient(
-      45deg,
-      color-mix(in oklab, var(--ink) 7%, transparent) 0 1px,
-      transparent 1px 6px
-    ),
-    repeating-linear-gradient(
-      -45deg,
-      color-mix(in oklab, var(--ink) 5%, transparent) 0 1px,
-      transparent 1px 8px
-    ),
-    var(--paper-2);
-  border: 1px solid var(--ink);
+  background: var(--paper-2);
+  border-radius: 3px;
   position: relative;
   overflow: hidden;
   isolation: isolate;
-  box-shadow:
-    0 1px 0 rgba(20, 17, 12, 0.06),
-    0 14px 28px -10px rgba(20, 17, 12, 0.22),
-    0 4px 10px -2px rgba(20, 17, 12, 0.10);
-  transition: box-shadow 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
-.card:hover .placeholder,
-.placeholder:hover {
-  box-shadow:
-    0 1px 0 rgba(20, 17, 12, 0.10),
-    0 22px 38px -10px rgba(20, 17, 12, 0.34),
-    0 6px 14px -2px rgba(20, 17, 12, 0.16);
-}
-/* Subtle vignette pulls the eye to the subject. Photos only. */
+.placeholder--photo { background: var(--hp-ink); }
 .placeholder--photo::before {
   content: "";
   position: absolute;
-  inset: 0;
+  inset: 55% 0 0;
   z-index: 1;
   pointer-events: none;
-  background: radial-gradient(ellipse at center, transparent 55%, rgba(0, 0, 0, 0.18) 100%);
+  background: linear-gradient(transparent, #14271f99);
 }
 .placeholder::after {
-  /* Plate / figure label, top-right. Engraved feel via offset hard shadow. */
   content: attr(data-tag);
   position: absolute;
-  top: 14px;
-  right: 14px;
+  top: 18px;
+  left: 18px;
   z-index: 3;
-  font-family: var(--sans);
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.22em;
+  font: 600 8px/1.4 var(--sans);
+  letter-spacing: 1.2px;
   text-transform: uppercase;
-  color: var(--ink);
-  background: var(--paper);
-  padding: 5px 9px;
-  border: 1px solid var(--ink);
+  color: var(--hp-ink);
+  background: var(--hp-paper);
+  padding: 7px 11px;
   pointer-events: none;
-  box-shadow: 3px 3px 0 0 var(--ink);
 }
 .placeholder__motif {
   position: absolute;
@@ -1426,44 +497,23 @@ main:focus { outline: none; }
   height: 100%;
   object-fit: cover;
   display: block;
-  /* Vibrant default. Pop, not Instagram-stylized. */
-  filter: saturate(1.15) contrast(1.10) brightness(1.02);
-  transition:
-    transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1),
-    filter 0.5s ease;
-  transform-origin: center;
-  will-change: transform;
-}
-.card:hover .placeholder__img,
-.placeholder:hover .placeholder__img {
-  transform: scale(1.05);
-  filter: saturate(1.25) contrast(1.14) brightness(1.04);
-}
-.placeholder--photo {
-  /* let the photo carry texture; drop the cross-hatch */
-  background: var(--ink);
 }
 .placeholder__credit {
   position: absolute;
-  left: 14px;
-  bottom: 14px;
+  left: 20px;
+  right: 20px;
+  bottom: 16px;
   z-index: 3;
-  font-family: var(--sans);
-  font-size: 9px;
-  letter-spacing: 0.14em;
+  font: 8px/1.4 var(--sans);
+  letter-spacing: 0.7px;
   text-transform: uppercase;
-  color: var(--paper);
-  background: color-mix(in oklab, var(--ink) 70%, transparent);
-  padding: 4px 8px;
+  color: #fff8e5;
   pointer-events: none;
-  max-width: calc(100% - 28px);
 }
-.placeholder--lg .placeholder__credit { bottom: 16px; }
-.placeholder--sm .placeholder__credit { bottom: 10px; font-size: 8px; padding: 3px 6px; }
+.placeholder--sm .placeholder__credit { bottom: 10px; left: 12px; }
 
 /* Natural mode: the photo dictates the container's aspect ratio so the
-   entire image is visible (no cropping). Used for hero plates where we
-   want to honor the photographer's framing. */
+   entire image is visible (no cropping). */
 .placeholder--natural { height: auto; }
 .placeholder--natural .placeholder__img {
   position: static;
@@ -1477,9 +527,10 @@ main:focus { outline: none; }
 /* Visible counterpart of the BreadcrumbList JSON-LD. Quiet by design. */
 .crumbs {
   font-family: var(--sans);
-  font-size: 12px;
-  color: var(--ink-3);
-  margin-bottom: 16px;
+  font-size: 10px;
+  letter-spacing: .4px;
+  color: var(--hp-muted);
+  margin-bottom: 26px;
 }
 .crumbs ol {
   list-style: none;
@@ -1495,239 +546,189 @@ main:focus { outline: none; }
   color: var(--rule-soft);
 }
 .crumbs a {
-  color: var(--ink-3);
+  color: var(--hp-muted);
   text-decoration: none;
-  border-bottom: 1px solid var(--rule);
+  border-bottom: 1px solid var(--hp-rule);
 }
-.crumbs a:hover { color: var(--ink); }
+.crumbs a:hover { color: var(--hp-ink); }
 .crumbs [aria-current="page"] {
-  color: var(--ink-2);
+  color: var(--hp-ink);
 }
 
 /* ===== Planning Guide series band (cluster articles) ===== */
 .series-band {
-  font-family: var(--sans);
-  font-size: 12.5px;
-  color: var(--ink-3);
-  border-bottom: 1px solid var(--rule);
-  padding: 10px 0;
+  font: 11px/1.6 var(--sans);
+  color: var(--hp-muted);
+  border-top: 1px solid var(--hp-rule);
+  padding: 14px 0 0;
+  margin-top: 18px;
   display: flex;
   flex-wrap: wrap;
   gap: 4px 16px;
   align-items: baseline;
 }
 .series-band a {
-  color: var(--moss);
-  text-decoration: none;
-  border-bottom: 1px solid var(--rule);
+  color: var(--hp-ink);
+  font-weight: 600;
+  border-bottom: 1px solid #a7afa4;
 }
-.series-band a:hover { color: var(--ink); }
+.series-band a:hover { color: var(--hp-accent); }
 .series-band__nav { margin-left: auto; display: flex; gap: 14px; }
 
 /* ===== Article cards ===== */
-.card {
-  display: block;
-  text-decoration: none;
-  color: inherit;
-  border-top: 1px solid var(--rule);
-  padding-top: 18px;
-}
-.card__cat {
-  font-family: var(--sans);
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--moss);
-  margin-bottom: 10px;
-}
-.card__title {
-  font-family: var(--display);
-  font-size: 24px;
-  font-weight: 500;
-  letter-spacing: -0.005em;
-  line-height: 1.15;
-  margin-bottom: 10px;
-  text-wrap: balance;
-  color: var(--ink);
-}
-.card:hover .card__title { color: var(--moss); }
-.card__dek {
-  font-family: var(--serif);
-  font-size: 16px;
-  color: var(--ink-2);
-  line-height: 1.45;
-  margin-bottom: 12px;
-  font-style: italic;
-}
-.card__meta {
-  font-family: var(--sans);
-  font-size: 10px;
-  text-transform: uppercase;
-  letter-spacing: 0.14em;
-  color: var(--ink-3);
-  display: flex;
-  gap: 12px;
-  align-items: center;
-  font-weight: 600;
-}
-.card__meta span + span::before {
-  content: "·";
-  margin-right: 12px;
-  color: var(--rule-soft);
-}
 
 /* ===== Section headers ===== */
-.section-head {
-  display: flex;
-  align-items: end;
-  justify-content: space-between;
-  border-bottom: 2px solid var(--rule);
-  padding-bottom: 10px;
-  margin-bottom: 32px;
-}
-.section-head h2 {
-  font-size: clamp(22px, 2.4vw, 28px);
-  font-family: var(--sans);
-  font-size: 12px !important;
-  text-transform: uppercase;
-  letter-spacing: 0.22em;
-  font-weight: 700;
-  color: var(--ink);
-}
-.section-head a {
-  font-family: var(--sans);
-  font-size: 11px;
-  text-transform: uppercase;
-  letter-spacing: 0.14em;
-  font-weight: 600;
-  text-decoration: none;
-  color: var(--ink-2);
-}
-.section-head a:hover { color: var(--moss); }
 
-/* ===== Forms ===== */
-.field { display: block; margin-bottom: 22px; }
+/* ===== Forms (.field) =====
+   The design's form face: a small label over a card-coloured box with a
+   hairline border, the accent on focus. The same face as the letter form. */
+.field { display: block; margin-bottom: 20px; }
 .field label {
   display: block;
-  font-family: var(--sans);
-  font-size: 10px;
-  text-transform: uppercase;
-  letter-spacing: 0.18em;
-  color: var(--ink-3);
-  margin-bottom: 8px;
-  font-weight: 700;
+  font: 10px var(--sans);
+  color: var(--hp-ink);
+  margin-bottom: 7px;
 }
 .field input,
 .field textarea,
 .field select {
   width: 100%;
-  font-family: var(--serif);
-  font-size: 17px;
-  background: transparent;
-  border: 0;
-  border-bottom: 1px solid var(--ink);
-  padding: 10px 0;
-  color: var(--ink);
+  font: 14px/1.5 var(--sans);
+  background: var(--hp-card);
+  border: 1px solid #b8c0b3;
+  border-radius: 3px;
+  padding: 12px 13px;
+  color: var(--hp-ink);
   outline: none;
 }
 .field input:focus,
-.field textarea:focus { border-bottom-color: var(--moss); }
+.field textarea:focus,
+.field select:focus { border-color: var(--hp-accent); }
 .field input:focus-visible,
-.field textarea:focus-visible { outline: 2px solid var(--moss); outline-offset: 2px; }
-.field textarea { min-height: 140px; resize: vertical; line-height: 1.5; }
+.field textarea:focus-visible,
+.field select:focus-visible { outline: 2px solid var(--hp-accent); outline-offset: 1px; }
+.field textarea { min-height: 160px; resize: vertical; }
 
-/* ===== Article body ===== */
-.prose { font-size: 19px; line-height: 1.65; color: var(--ink); }
-.prose p { margin: 0 0 1.2em; }
-.prose h2 {
-  font-family: var(--sans);
-  /* Raised from 12px micro-caps so an H2 reads as a real section break and is
-     not visually outranked by the italic 22px H3 below. Keeps the tracked
-     uppercase treatment as an aesthetic; the border-top still marks the section. */
-  font-size: 16px !important;
-  text-transform: uppercase;
-  letter-spacing: 0.16em;
-  font-weight: 700;
-  margin: 2.4em 0 0.8em;
-  border-top: 1px solid var(--rule);
-  padding-top: 1em;
+/* ===== Reading typography (.prose) =====
+   Every long-form block on the site: article bodies, the static pages, and
+   the prerendered fragment a crawler (or a slow first paint) sees. The
+   design system's text face at a reading size, serif headings on a rule,
+   links underlined in the accent, and a measure set by the column. */
+.prose, #prerender-prose { font: 17px/1.75 var(--sans); color: var(--hp-ink); }
+.prose p, #prerender-prose p { margin: 0 0 1.2em; }
+.prose h2, #prerender-prose h2 {
+  font: 400 38px/1.08 var(--serif);
+  letter-spacing: -0.8px;
+  border-top: 1px solid var(--hp-rule);
+  padding-top: 44px;
+  margin: 56px 0 18px;
+  scroll-margin-top: 24px;
 }
-.prose h3 {
-  font-family: var(--display);
-  font-size: 22px;
-  margin: 1.6em 0 0.4em;
-  font-weight: 600;
-  font-style: italic;
-}
-.prose blockquote {
-  border-left: 0;
-  padding: 0;
-  margin: 1.6em 0;
-  font-family: var(--display);
-  font-style: italic;
+.prose h3, #prerender-prose h3 {
+  font-family: var(--serif);
   font-size: 26px;
-  line-height: 1.3;
-  color: var(--ink);
-  text-align: center;
-  border-top: 1px solid var(--rule);
-  border-bottom: 1px solid var(--rule);
-  padding: 1.2em 0;
+  font-weight: 400;
+  margin: 1.7em 0 0.5em;
 }
-.prose ul, .prose ol { padding-left: 1.4em; margin: 0 0 1.2em; }
-.prose li { margin-bottom: 0.4em; }
+.prose h4 { font: 600 11px/1.4 var(--sans); letter-spacing: 1.4px; text-transform: uppercase; margin: 1.8em 0 0.6em; }
+.prose em, #prerender-prose em { color: inherit; }
+.prose strong { font-weight: 600; }
+.prose blockquote, #prerender-prose blockquote {
+  margin: 1.6em 0;
+  padding: 0 0 0 24px;
+  border-left: 2px solid var(--hp-accent);
+  font: 400 26px/1.3 var(--serif);
+  letter-spacing: -0.3px;
+  color: var(--hp-ink);
+}
+.prose blockquote p:last-child { margin-bottom: 0; }
+.prose ul, .prose ol { padding-left: 1.3em; margin: 0 0 1.2em; }
+.prose li { margin-bottom: 0.45em; }
+.prose li::marker { color: var(--hp-accent); }
 .prose figure { margin: 2em 0; }
 .prose figcaption {
-  font-family: var(--serif);
-  font-style: italic;
-  font-size: 14px;
-  color: var(--ink-2);
+  font: 12px/1.6 var(--sans);
+  color: var(--hp-muted);
   margin-top: 10px;
-  line-height: 1.4;
 }
 .prose hr {
   border: 0;
-  border-top: 1px solid var(--rule);
-  margin: 2.5em auto;
-  width: 100%;
+  border-top: 1px solid var(--hp-rule);
+  margin: 2.5em 0;
 }
-.prose .dropcap::first-letter {
-  font-family: var(--display);
-  font-weight: 500;
-  font-size: 5em;
+.prose code {
+  font: 0.86em var(--mono);
+  background: var(--paper-2);
+  border-radius: 3px;
+  padding: 0.1em 0.35em;
+}
+.prose pre { font: 13px/1.6 var(--mono); background: var(--paper-2); border-radius: 3px; padding: 16px 18px; overflow-x: auto; }
+.prose pre code { background: none; padding: 0; }
+.prose table:not([class]) { width: 100%; border-collapse: collapse; font: 14px/1.5 var(--sans); margin: 0 0 1.4em; }
+.prose table:not([class]) th { font: 600 9px var(--sans); letter-spacing: 1.4px; text-transform: uppercase; text-align: left; color: var(--hp-muted); border-bottom: 1px solid var(--hp-ink); padding: 8px 12px 8px 0; }
+.prose table:not([class]) td { border-bottom: 1px solid var(--hp-rule); padding: 10px 12px 10px 0; vertical-align: top; }
+.prose .dropcap::first-letter, #prerender-prose .dropcap::first-letter {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: 4.1em;
   float: left;
-  line-height: 0.85;
-  margin: 0.06em 0.08em 0 -0.04em;
-  color: var(--moss);
+  line-height: 0.82;
+  margin: 0.08em 0.1em 0 -0.03em;
+  color: var(--hp-accent);
+}
+#prerender-prose { max-width: 680px; margin: 48px auto; padding: 0 20px; }
+#prerender-prose h1 { font: 400 48px/1.04 var(--serif); letter-spacing: -1.1px; margin: 0 0 24px; }
+
+/* /guide's sales copy (.prose.guide-prose) keeps the reading block it had
+   when the page moved over in PR #413: the pre-rollout .prose values, at the
+   same specificity and in the same place in the cascade, so the guide page's
+   own rules further down still refine it exactly as before. */
+.guide-prose { font-size: 19px; line-height: 1.65; }
+.guide-prose strong { font-weight: bolder; }
+.guide-prose h3 { font-family: var(--display); font-size: 22px; font-style: italic; font-weight: 600; margin: 1.6em 0 0.4em; }
+.guide-prose ul, .guide-prose ol { padding-left: 1.4em; margin: 0 0 1.2em; }
+.guide-prose li { margin-bottom: 0.4em; }
+.guide-prose li::marker { color: inherit; }
+.guide-prose blockquote { border: 0; border-block: 1px solid var(--rule); padding: 1.2em 0; margin: 1.6em 0; font-family: var(--display); font-size: 26px; font-style: italic; font-weight: 400; line-height: 1.3; letter-spacing: normal; text-align: center; }
+.guide-prose figure { margin: 2em 0; }
+.guide-prose figcaption { font: italic 14px/1.4 var(--serif); color: var(--ink-2); margin-top: 10px; }
+
+@media (max-width: 760px) {
+  .prose, #prerender-prose { font-size: 16px; line-height: 1.75; }
+  .prose h2, #prerender-prose h2 { font-size: 32px; padding-top: 34px; margin-top: 44px; }
+  .prose h3 { font-size: 23px; }
+  .prose blockquote { font-size: 22px; padding-left: 18px; }
+}
+@media (max-width: 720px) {
+  .guide-prose { font-size: 17px; line-height: 1.6; }
+  .guide-prose h3 { font-size: 19px; }
+  .guide-prose blockquote { font-size: 21px; margin: 1.2em 0; padding: 0.8em 0; }
 }
 
-/* ===== Article table of contents (A/B: article_toc) ===== */
+/* The in-article contents list: a quiet card at the head of the body. */
 .toc {
-  border: 1px solid var(--rule);
-  border-left: 4px solid var(--moss);
-  background: var(--paper-2);
-  padding: 14px 18px;
-  margin: 0 0 30px;
+  border: 1px solid var(--hp-rule);
+  border-radius: 3px;
+  background: var(--hp-card);
+  padding: 16px 22px;
+  margin: 0 0 36px;
 }
 .toc summary {
-  font-family: var(--sans);
-  font-size: 11px;
+  font: 600 9px var(--sans);
+  letter-spacing: 1.7px;
   text-transform: uppercase;
-  letter-spacing: 0.18em;
-  font-weight: 700;
-  color: var(--ink-2);
+  color: var(--hp-accent);
   cursor: pointer;
 }
-.toc ul { list-style: none; padding: 0; margin: 14px 0 2px; }
-.toc li { margin-bottom: 7px; }
+.toc ul { list-style: none; padding: 0; margin: 16px 0 4px; }
+.toc li { border-top: 1px solid var(--hp-rule); }
 .toc a {
-  font-family: var(--serif);
-  font-size: 16px;
-  color: var(--ink-2);
-  text-decoration: none;
-  border-bottom: 1px solid var(--rule-soft);
+  display: block;
+  font: 400 19px/1.25 var(--serif);
+  color: var(--hp-ink);
+  padding: 9px 0;
 }
-.toc a:hover { color: var(--moss); border-bottom-color: var(--moss); }
+.toc a:hover { color: var(--hp-accent); }
 
 /* ===== Reading progress bar (article pages) =====
    A thin fixed bar across the very top of the viewport; page-article.jsx
@@ -1753,237 +754,105 @@ main:focus { outline: none; }
 /* ===== Resume band (home) =====
    One quiet line for a reader with an unfinished article, rendered by
    ResumeReading in page-home.jsx. */
-.resume-band {
-  display: flex;
-  align-items: baseline;
-  gap: 18px;
-  flex-wrap: wrap;
-  text-decoration: none;
-  color: inherit;
-  border-top: 1px solid var(--ink);
-  border-bottom: 1px solid var(--ink);
-  padding: 18px 0;
-}
-.resume-band__title {
-  font-family: var(--display);
-  font-size: 20px;
-  font-weight: 500;
-  letter-spacing: -0.005em;
-}
-.resume-band:hover .resume-band__title { color: var(--moss); }
-.resume-band__meta {
-  font-family: var(--serif);
-  font-style: italic;
-  font-size: 15px;
-  color: var(--ink-3);
-}
-.resume-band__cta {
-  margin-left: auto;
-  color: var(--moss);
-  font-weight: 700;
-  font-size: 11px;
-  text-transform: uppercase;
-  letter-spacing: 0.18em;
-}
 
-/* ===== Stat block (field guide) ===== */
+/* ===== Stat block (planning articles) ===== */
 .statblock {
-  border-top: 1px solid var(--ink);
-  border-bottom: 1px solid var(--ink);
-  padding: 14px 0;
-  margin: 24px 0 32px;
+  border-block: 1px solid var(--hp-rule);
+  padding: 18px 0;
+  margin: 0 0 36px;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 24px;
 }
 .statblock__item .label {
   display: block;
-  font-family: var(--sans);
-  font-size: 9px;
+  font: 600 8px var(--sans);
+  letter-spacing: 1.7px;
   text-transform: uppercase;
-  letter-spacing: 0.22em;
-  color: var(--ink-3);
-  margin-bottom: 6px;
-  font-weight: 700;
+  color: var(--hp-accent);
+  margin-bottom: 8px;
 }
 .statblock__item .val {
-  font-family: var(--display);
-  font-size: 18px;
-  color: var(--ink);
-  font-weight: 500;
+  font: 400 21px/1.15 var(--serif);
+  color: var(--hp-ink);
   font-feature-settings: "tnum";
 }
 
 /* ===== Page header ===== */
-.page-head {
-  padding: 56px 0 40px;
-  border-bottom: 1px solid var(--rule);
-}
-.page-head .eyebrow { margin-bottom: 18px; display: inline-block; }
-.page-head h1 {
-  max-width: 18ch;
-  margin-bottom: 20px;
-}
-.page-head__dek {
-  font-family: var(--display);
-  font-style: italic;
-  font-size: 22px;
-  color: var(--ink-2);
-  max-width: 56ch;
-  line-height: 1.4;
-}
 
-/* ===== Tag/chip ===== */
+/* ===== Filter chip (.chip) =====
+   The design's filter chip, the same face as the intent chips (.ichip):
+   13px text on a hairline box, the accent fill when active. */
 .chip {
-  display: inline-block;
-  font-family: var(--sans);
-  font-size: 10px;
-  text-transform: uppercase;
-  letter-spacing: 0.14em;
-  font-weight: 700;
-  padding: 6px 12px;
-  border: 1px solid var(--ink);
-  color: var(--ink);
-  text-decoration: none;
-  margin-right: 4px;
-  margin-bottom: 4px;
+  display: inline-flex;
+  align-items: center;
+  min-height: 40px;
+  font: 500 13px/1 var(--sans);
+  padding: 0 16px;
+  border: 1px solid var(--rule-soft);
+  border-radius: 3px;
+  color: var(--ink-2);
   background: transparent;
+  cursor: pointer;
 }
-.chip:hover { background: var(--ink); color: var(--paper); }
-.chip.is-active { background: var(--ink); color: var(--paper); }
+.chip:hover { color: var(--moss); border-color: var(--moss); }
+.chip.is-active { background: var(--moss); border-color: var(--moss); color: var(--hp-on-accent); font-weight: 600; }
 
-/* ===== Newsletter inline ===== */
+/* ===== Newsletter inline (.nlbox) =====
+   The in-page letter ask, drawn as a design card: the eyebrow, a serif
+   heading and the system's form (the :is(.hp-design, .nlmodal) .nlbox__form rules at the
+   end of the file). The homepage and HpLetter use the .hp-newsletter
+   modifier, which drops the card. */
 .nlbox {
-  border: 1px solid var(--ink);
-  padding: 36px;
+  border: 1px solid var(--hp-rule);
+  border-radius: 3px;
+  padding: 32px 34px;
   margin: 48px 0;
-  background: var(--paper);
+  background: var(--hp-card);
   position: relative;
 }
 .nlbox::before {
   content: "Dispatch";
-  position: absolute;
-  top: -10px;
-  left: 24px;
-  background: var(--paper);
-  padding: 0 12px;
-  font-family: var(--sans);
-  font-size: 10px;
+  display: block;
+  font: 600 9px var(--sans);
+  letter-spacing: 1.7px;
   text-transform: uppercase;
-  letter-spacing: 0.22em;
-  color: var(--ink);
-  font-weight: 700;
+  color: var(--hp-accent);
+  margin-bottom: 14px;
 }
 .nlbox h3 {
-  font-family: var(--display);
-  font-size: 26px;
-  font-weight: 500;
-  margin-bottom: 8px;
-  font-style: italic;
+  font: 400 32px/1.04 var(--serif);
+  letter-spacing: -0.8px;
+  margin-bottom: 12px;
 }
 .nlbox p {
-  color: var(--ink-2);
-  font-size: 16px;
+  color: var(--hp-muted);
+  font: 13px/1.85 var(--sans);
   margin-bottom: 20px;
-  font-family: var(--serif);
 }
-.nlbox__form {
-  display: flex;
-  gap: 8px;
-  border-bottom: 1px solid var(--ink);
-}
-.nlbox__form input {
-  flex: 1;
-  background: transparent;
-  border: 0;
-  font-family: var(--serif);
-  font-size: 17px;
-  padding: 8px 0;
-  outline: none;
-}
-.nlbox__form input:focus-visible { outline: 2px solid var(--moss); outline-offset: 2px; }
-.nlbox__form button {
-  background: transparent;
-  border: 0;
-  font-family: var(--sans);
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.18em;
-  cursor: pointer;
-  color: var(--ink);
-  text-transform: uppercase;
-  padding: 8px 0;
-}
-.nlbox__form button:hover { color: var(--moss); }
+.nlbox label { display: block; font-size: 10px; margin-bottom: 7px; }
+.nlbox__form { display: flex; gap: 8px; }
 
 /* Soft state for readers who already subscribed: acknowledge, do not re-ask. */
-.nlbox--subscribed { padding: 20px 36px; }
+.nlbox--subscribed { padding: 20px 34px; }
+.nlbox--subscribed::before { content: none; }
 .nlbox__already {
-  font-family: var(--serif);
-  font-size: 16px;
-  color: var(--moss);
-  margin: 0;
+  font: 400 19px/1.4 var(--serif);
+  color: var(--hp-ink);
+  margin: 0 !important;
 }
+.nlbox__already a, .nlbox__done a { border-bottom: 1px solid var(--hp-accent); }
+.nlbox__done { font: 400 19px/1.4 var(--serif); color: var(--hp-accent); margin: 0; padding: 8px 0; }
 
 /* ===== Hero (front-page lede) ===== */
 .hero {
   padding: 56px 0 48px;
   border-bottom: 1px solid var(--rule);
 }
-.hero__grid {
-  display: grid;
-  grid-template-columns: 1.05fr 1fr;
-  gap: 56px;
-  align-items: start;
-}
+
 .hero h1 { margin-bottom: 28px; max-width: 14ch; }
-.hero__dek {
-  font-family: var(--display);
-  font-style: italic;
-  font-size: 22px;
-  color: var(--ink-2);
-  max-width: 44ch;
-  line-height: 1.4;
-  margin-bottom: 32px;
-}
-.hero__cta { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
 
 /* ===== Map trigger (Places page) ===== */
-.map-trigger {
-  background: transparent;
-  border: 0;
-  padding: 0;
-  margin: 0;
-  display: block;
-  width: 100%;
-  cursor: zoom-in;
-  text-align: left;
-  font: inherit;
-  position: relative;
-  transition: transform 0.2s ease;
-}
-.map-trigger:hover { transform: translateY(-2px); }
-.map-trigger:focus-visible { outline: 2px solid var(--moss); outline-offset: 6px; }
-.map-trigger::after {
-  content: "Click to explore";
-  position: absolute;
-  bottom: 18px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: rgba(20, 18, 14, 0.82);
-  color: #f1ead6;
-  padding: 7px 14px;
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  border-radius: 2px;
-  opacity: 0;
-  transition: opacity 0.2s ease;
-  pointer-events: none;
-}
-.map-trigger:hover::after,
-.map-trigger:focus-visible::after { opacity: 1; }
 
 /* ===== Homepage webcam tiles ===== */
 /* The webcam strip. It used to carry an inline repeat(4) grid, which a
@@ -2009,7 +878,7 @@ main:focus { outline: none; }
 .lightbox__backdrop {
   position: absolute;
   inset: 0;
-  background: rgba(20, 18, 14, 0.94);
+  background: rgba(20, 39, 31, 0.94);
 }
 .lightbox__panel {
   position: relative;
@@ -2047,8 +916,8 @@ main:focus { outline: none; }
   align-items: center;
   gap: 16px;
   padding: 14px 22px;
-  background: rgba(20, 18, 14, 0.96);
-  color: #f1ead6;
+  background: rgba(20, 39, 31, 0.96);
+  color: #fff8e5;
   border-top: 1px solid rgba(241, 234, 214, 0.1);
   flex-wrap: wrap;
 }
@@ -2063,7 +932,7 @@ main:focus { outline: none; }
 .lightbox__controls button {
   background: transparent;
   border: 1px solid rgba(241, 234, 214, 0.25);
-  color: #f1ead6;
+  color: #fff8e5;
   padding: 7px 12px;
   font-family: var(--mono);
   font-size: 12px;
@@ -2100,34 +969,32 @@ main:focus { outline: none; }
 .nlmodal__backdrop {
   position: absolute;
   inset: 0;
-  background: rgba(20, 18, 14, 0.6);
+  background: rgba(20, 39, 31, 0.55);
 }
 .nlmodal__card {
   position: relative;
   z-index: 1;
   width: 100%;
   max-width: 480px;
-  background: var(--paper);
-  border: 1px solid var(--ink);
-  padding: 40px;
-  box-shadow: 0 24px 60px rgba(20, 18, 14, 0.35);
+  background: var(--hp-card);
+  border: 1px solid var(--hp-rule);
+  border-radius: 3px;
+  padding: 38px 36px 34px;
+  box-shadow: 0 30px 60px -30px rgba(20, 39, 31, .45);
+  font-family: var(--sans);
+  color: var(--hp-ink);
 }
 .nlmodal__card h3 {
-  font-family: var(--display);
-  font-size: 28px;
-  font-weight: 500;
-  font-style: italic;
-  line-height: 1.1;
-  margin-bottom: 10px;
+  font: 400 34px/1.04 var(--serif);
+  letter-spacing: -0.8px;
+  margin-bottom: 12px;
 }
 .nlmodal__card p {
-  font-family: var(--serif);
-  font-size: 16px;
-  color: var(--ink-2);
-  line-height: 1.5;
+  font-size: 13px;
+  color: var(--hp-muted);
+  line-height: 1.85;
   margin-bottom: 20px;
 }
-.nlmodal__card .nlbox__form { border-bottom: 1px solid var(--ink); }
 .nlmodal__close {
   position: absolute;
   top: 12px;
@@ -2157,60 +1024,10 @@ main:focus { outline: none; }
   .nlmodal__card h3 { font-size: 24px; }
 }
 
-/* ===== Bottom navigation (phones) ===== */
-/* Shown at exactly the breakpoint where the inline nav collapses into the
-   hamburger, so there is never a width with both a full bar and a tab row.
-   BottomNav (components.jsx) returns null on /map and /guide, whose bottom
-   edges belong to the map sheet and the buy bar; the body clearance below
-   keys off the nav actually being in the DOM, which also keeps the generated
-   /archive pages (same stylesheet, no React header) padding-free. */
-.bottomnav { display: none; }
-@media (max-width: 880px) {
-  .bottomnav {
-    display: flex;
-    position: fixed;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 55; /* over content and the map sheet; under readbar/buybar (60) and modals */
-    background: var(--paper);
-    border-top: 1px solid var(--rule);
-    padding-bottom: env(safe-area-inset-bottom);
-  }
-  .bottomnav__item {
-    flex: 1;
-    text-align: center;
-    padding: 14px 0 12px;
-    min-height: 48px;
-    font-family: var(--sans);
-    font-size: 11px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    color: var(--ink-2);
-    text-decoration: none;
-    border-top: 2px solid transparent;
-    margin-top: -1px;
-  }
-  .bottomnav__item.is-active {
-    color: var(--moss);
-    border-top-color: var(--moss);
-  }
-  body:has(.bottomnav) { padding-bottom: calc(48px + env(safe-area-inset-bottom)); }
-}
-
 /* ===== Responsive ===== */
 @media (max-width: 880px) {
-  .hero__grid { grid-template-columns: 1fr; gap: 32px; }
+  
   .site-footer__grid { grid-template-columns: 1fr 1fr; }
-  /* Inline links don't fit comfortably at this width — collapse into the hamburger menu. */
-  .nav { gap: 0; }
-  .nav__group { display: none; }
-  .nav__menu-wrap { display: block; }
-  /* Search survives the collapse as an icon: it is the fastest route into a
-     catalog this size, and burying it in the hamburger costs two taps. */
-  .nav__search { margin-right: 10px; padding: 6px 4px; min-height: 44px; min-width: 40px; justify-content: center; }
-  .nav__search-label { display: none; }
   .statblock { grid-template-columns: 1fr 1fr; }
 }
 
@@ -2224,11 +1041,10 @@ main:focus { outline: none; }
 
   /* Tighter base type and gutters on phones. */
   html { font-size: 17px; }
-  :root { --gutter: 18px; }
-  [data-density="dense"] { --gutter: 16px; }
+  :root { --gutter: 16px; }
 
   h1 { font-size: clamp(34px, 8.5vw, 48px); }
-  .hero__dek, .page-head__dek { font-size: 18px; }
+  
 
   /* Inline grids on home, articles, article, guide, newsletter pages.
      React renders style props as kebab-case in the DOM, so we can target them. */
@@ -2243,46 +1059,26 @@ main:focus { outline: none; }
   section.wrap[style*="padding-top: 64"],
   section.wrap[style*="padding-top: 56"] { padding-top: 40px !important; }
 
-  /* Hamburger already active from the 880px breakpoint, so no nav rules here. */
-  .masthead__main { padding: 12px var(--gutter); gap: 12px; }
-  .brand { font-size: 22px; }
-  .brand__sub { display: none; }
-  .brand__mark { height: 40px; }
-  .brand-block { gap: 10px; }
-
-  .nav__menu { right: -8px; }
-  .nav__menu a { padding: 13px 18px; font-size: 14px; }
-
   /* Hero. Less padding, no big gap. */
   .hero { padding: 32px 0 32px; }
-  .hero__cta { gap: 10px; }
-  .hero__cta .btn { padding: 12px 18px; font-size: 11px; }
+  
+  
 
   /* Section heads */
-  .section-head { margin-bottom: 20px; padding-bottom: 8px; flex-wrap: wrap; gap: 8px; }
-  .section-head h2 { font-size: 11px !important; }
+  
+  
 
-  /* Featured "This Week" headline shrinks. */
-  .card__title { font-size: 22px; }
+    
 
-  /* Page head. */
-  .page-head { padding: 36px 0 28px; }
-  .page-head h1 { margin-bottom: 14px; }
-  .page-head__dek { font-size: 17px; }
-
-  /* Newsletter inline. */
-  .nlbox { padding: 24px 18px; margin: 32px 0; }
-  .nlbox h3 { font-size: 22px; }
-  .nlbox p { font-size: 15px; }
-  .nlbox__form { flex-wrap: wrap; gap: 4px; }
-  .nlbox__form input { width: 100%; font-size: 16px; padding: 10px 0; }
-  .nlbox__form button { width: 100%; text-align: left; padding: 10px 0; }
+    
+  
+  
 
   /* Forms. Bump font to 16px to stop iOS zoom on focus. */
   .field input, .field textarea, .field select { font-size: 16px; }
 
   /* Buttons. Comfortable tap targets. */
-  .btn { padding: 12px 18px; font-size: 11px; min-height: 44px; }
+  .btn { min-height: 44px; }
 
   /* Footer. One column at phone size. */
   .site-footer { margin-top: 56px; padding: 40px 0 24px; }
@@ -2290,78 +1086,41 @@ main:focus { outline: none; }
   .site-footer__masthead { font-size: 26px; }
   .site-footer__legal { flex-direction: column; align-items: flex-start; }
 
-  /* Prose. Tighten dropcap so it doesn't crowd the first line on a small column. */
-  .prose { font-size: 17px; line-height: 1.6; }
-  .prose .dropcap::first-letter { font-size: 4em; margin-right: 0.06em; }
-  .prose blockquote { font-size: 21px; margin: 1.2em 0; padding: 0.8em 0; }
-  .prose h3 { font-size: 19px; }
-
-  /* Article header byline row stacks. */
-  .wrap--narrow > div[style*="display: flex"][style*="align-items: center"] {
-    flex-wrap: wrap;
-  }
   /* Inline forms (newsletter page, etc.) wrap their button onto a new line. */
-  .wrap--narrow > form[style*="display: flex"] {
-    flex-wrap: wrap !important;
-    gap: 12px !important;
-  }
-  .wrap--narrow > form[style*="display: flex"] > input {
-    flex-basis: 100% !important;
-    font-size: 18px !important;
-  }
-  .wrap--narrow > form[style*="display: flex"] > .btn {
-    width: 100%;
-    justify-content: center;
-  }
+  
+  
+  
 
-  /* Sticky Field Guide bar */
-  .guide-bar__inner { padding: 10px var(--gutter) !important; }
-  .guide-bar__cta { padding: 10px 14px; font-size: 11px; }
+    
+  
 
-  /* End-of-article guide CTA */
-  .guide-cta { padding: 24px 22px; margin-top: 40px; }
-  .guide-cta__title { font-size: 24px; }
-  .guide-cta__body { font-size: 16px; }
+    
+  
+  
 
   /* Stat block */
   .statblock { grid-template-columns: 1fr 1fr; gap: 16px; }
   .statblock__item .val { font-size: 16px; }
 
   /* Places strip */
-  .places-strip { padding: 16px var(--gutter); gap: 12px; }
-  .places-strip__copy { font-size: 15px; }
-
-  /* On mobile, hide the credit overlay so it never blocks the image. */
-  .placeholder__credit { display: none; }
-  .placeholder::after { display: none; }
+  
+  
 
   /* Chips wrap nicely, and reach the 44px tap floor: they are the primary
      filter control on /search and /articles. */
   .chip, .ichip { min-height: 44px; display: inline-flex; align-items: center; }
-  .chip { padding: 8px 12px; font-size: 11px; margin-bottom: 6px; }
-
-  /* Tap target floor for the visible mobile nav trigger. */
-  .nav__menu-toggle { min-height: 44px; min-width: 44px; }
+  .chip { padding: 0 14px; }
 
   /* Eyebrow and mono labels: up from 10/11px for sunlight legibility. */
-  .eyebrow { font-size: 12px; letter-spacing: 0.18em; }
   .mono { font-size: 13px; }
 
   /* Home: dispatch teaser and Field Guide band tighten with the page. */
-  .home-dispatch { margin-bottom: 28px; }
-  .home-dispatch__title { font-size: 22px; }
-  .home-dispatch__excerpt { font-size: 16px; }
+  
+  
+  
   .band-guide { padding: 28px 20px; }
   .band-guide__title { font-size: 28px; }
   .band-guide__body { font-size: 16px; }
-}
-
-@media (max-width: 420px) {
-  /* Smallest phones. Tighten brand block so the menu button stays comfortable. */
-  .brand { font-size: 20px; }
-  .brand__mark { height: 34px; }
-  .brand-block { gap: 8px; }
-  .masthead__main { gap: 8px; }
 }
 
 /* ===== Page transitions ===== */
@@ -2484,8 +1243,7 @@ main:focus { outline: none; }
   border: 1px solid var(--rule);
 }
 .kit__photo figcaption {
-  font-family: var(--serif);
-  font-style: italic;
+  font-family: var(--sans);
   font-size: 14px;
   color: var(--ink-2);
   margin-top: 10px;
@@ -2540,8 +1298,7 @@ main:focus { outline: none; }
 }
 .kit-check__note {
   display: block;
-  font-family: var(--serif);
-  font-style: italic;
+  font-family: var(--sans);
   font-size: 15px;
   line-height: 1.5;
   color: var(--ink-2);
@@ -2623,10 +1380,6 @@ main:focus { outline: none; }
    All colour reads the palette variables so every palette follows, same
    rule as the bulletin icons.
    ============================================================ */
-
-/* Section anchors land under the sticky masthead otherwise; this also fixes
-   the existing SERP #sec- deep links, which the gateway piece earns. */
-.prose h2 { scroll-margin-top: 84px; }
 
 /* Article tables. The comparison table renders inside .table-scroll so wide
    content scrolls in its own container instead of the page. */
@@ -2825,57 +1578,12 @@ main:focus { outline: none; }
   border: 1px solid var(--rule);
   border-left: 3px solid var(--moss);
 }
-.kit__rec-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 56px;
-}
-.kit__rec { list-style: none; padding: 0; margin: 0; }
-.kit__rec li {
-  padding: 22px 0;
-  border-top: 1px solid var(--rule);
-}
-.kit__rec li:last-child { border-bottom: 1px solid var(--rule); }
-.kit__rec-name {
-  font-family: var(--display);
-  font-size: 26px;
-  font-weight: 500;
-  line-height: 1.15;
-  margin-bottom: 4px;
-}
-.kit__rec-area {
-  font-family: var(--sans);
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--ink-3);
-  margin-bottom: 10px;
-}
-.kit__rec-note {
-  font-family: var(--serif);
-  font-style: italic;
-  font-size: 16px;
-  color: var(--ink-2);
-  margin-bottom: 10px;
-  max-width: 48ch;
-}
-.kit__rec-link {
-  font-family: var(--sans);
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--ink);
-  text-decoration: none;
-  border-bottom: 1px solid var(--ink);
-  padding-bottom: 1px;
-}
+
 @media (max-width: 720px) {
   .kit__tab-label { font-size: 11px; letter-spacing: 0.1em; }
   .kit__tab { padding: 14px 12px; gap: 8px; }
   .kit__tab-roman { font-size: 16px; }
-  .kit__rec-grid { grid-template-columns: 1fr; gap: 40px; }
+  
   .kit__head { flex-direction: column; align-items: flex-start; gap: 16px; }
   .kit__count { text-align: left; }
   .kit__count-num { font-size: 44px; }
@@ -2894,10 +1602,10 @@ main:focus { outline: none; }
 .map-page {
   display: flex;
   flex-direction: row;
-  /* 93px = the sticky masthead's rendered height at desktop widths (measured
-     after the nav simplification removed the utility bar), so map + masthead
-     fill the first viewport exactly. Re-measure if the masthead changes. */
-  height: calc(100dvh - 93px);
+  /* Map + masthead fill the first viewport exactly. --masthead-h is measured
+     by MapPage (useMastheadHeight in page-map.jsx); the fallback is the
+     design masthead's desktop height. */
+  height: calc(100dvh - var(--masthead-h, 132px));
   width: 100%;
   position: relative;
   background: var(--paper-2);
@@ -3079,491 +1787,20 @@ main:focus { outline: none; }
    publication. Rendered inside HomeHero, which means it is baked into
    index.html's static shell — the issue label is the one date-derived slot in
    that shell and is filled by React on boot (see gen-home-shell.mjs). */
-.home-edition {
-  border-bottom: 1px solid var(--rule-soft);
-}
-.home-edition__inner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 20px;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  font-family: var(--sans);
-  font-size: 10px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.22em;
-  color: var(--ink-2);
-}
-.home-edition__issue {
-  display: inline-flex;
-  align-items: center;
-  gap: 12px;
-}
-.home-edition__issue .dot {
-  width: 6px;
-  height: 6px;
-  background: var(--moss);
-  display: inline-block;
-  flex-shrink: 0;
-}
-.home-edition__where { color: var(--ink-3); }
 
-/* ===== Home: the index =====
-   Four lines under the lede naming what this site is: the journal, the map,
-   the bulletin, the archive. Counts come from the catalog (HomeIndex in
-   page-home.jsx), which is why this sits below the hero and not inside it —
-   the static shell renders with an empty catalog. */
-.home-index-wrap {
-  padding-top: 30px;
-  padding-bottom: 34px;
-}
-.home-index {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 40px;
-}
-.home-index__item {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  text-decoration: none;
-  color: inherit;
-}
-.home-index__num { color: var(--moss); font-weight: 700; }
-.home-index__title {
-  font-family: var(--display);
-  font-size: 21px;
-  font-weight: 500;
-  line-height: 1.2;
-}
-.home-index__item:hover .home-index__title { color: var(--moss); }
-.home-index__blurb {
-  font-family: var(--serif);
-  font-size: 15px;
-  line-height: 1.45;
-  color: var(--ink-2);
-}
-.home-index__cta {
-  color: var(--moss);
-  font-weight: 700;
-}
-
-/* ===== Home: the body =====
-   Editorial spine on the left, the offers rail on the right. The rail is
-   sticky so it travels with the reader down the column; `align-self: start`
-   is what makes sticky work inside a grid item. */
-.home-body {
-  display: grid;
-  grid-template-columns: 1fr 380px;
-  gap: 64px;
-  align-items: start;
-  padding-top: 10px;
-  padding-bottom: 64px;
-}
-.home-spine {
-  display: flex;
-  flex-direction: column;
-  gap: 52px;
-  min-width: 0;
-}
-.home-rail {
-  position: sticky;
-  top: 104px;
-  align-self: start;
-  display: flex;
-  flex-direction: column;
-  gap: 28px;
-  min-width: 0;
-}
-/* The rail runs about 1,300px since the Field Guide unit started carrying the
-   app screenshot. Pinned by its top in a shorter window, everything past the
-   fold (the letter, the lodging unit) would stay hidden until the editorial
-   column ran out. Pinned by its bottom instead, it scrolls through once from
-   the top, where the guide unit is the first thing seen, then holds its last
-   unit in view. `align-self: end` is what lets a bottom-sticky grid item
-   start at the top: its natural place is the row's foot, and the sticky
-   offset can only lift it as far as the row's head. */
-@media (min-width: 881px) and (max-height: 1439px) {
-  .home-rail {
-    top: auto;
-    bottom: 24px;
-    align-self: end;
-  }
-}
-
-/* Section headings inside the spine. */
-.home-section__head { margin-bottom: 28px; }
-.home-section__head--row {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 20px;
-  margin-bottom: 20px;
-}
-.home-section__head--row .home-section__title { margin-bottom: 0; }
-.home-section__more {
-  color: var(--ink);
-  text-decoration: none;
-  font-weight: 700;
-  white-space: nowrap;
-}
-.home-section__more:hover { color: var(--moss); }
-
-/* Section heading + dek, shared by the blocks in the spine. */
-.home-section__title {
-  font-family: var(--display);
-  font-size: 34px;
-  line-height: 1.05;
-  margin-bottom: 12px;
-  font-weight: 500;
-  letter-spacing: -0.01em;
-  text-transform: none;
-}
-.home-section__dek {
-  font-family: var(--display);
-  font-style: italic;
-  font-size: 19px;
-  color: var(--ink-2);
-  line-height: 1.5;
-  max-width: 60ch;
-  margin: 0;
-}
-
-/* ===== Home: Start Here answers =====
-   Question first, article title second (START_HERE_QUESTIONS in
-   page-home.jsx): the label is the question the article answers, in the
-   visitor's words. No card images here — the four answers are a list of
-   questions, and the images were pure weight on the page's critical path. */
-.home-answers {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 28px 32px;
-}
-.home-answer {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  border-top: 1px solid var(--rule);
-  padding-top: 14px;
-  text-decoration: none;
-  color: inherit;
-}
-.home-answer__q {
-  font-family: var(--display);
-  font-style: italic;
-  font-size: 16px;
-  line-height: 1.3;
-  color: var(--moss);
-}
-.home-answer__title {
-  font-family: var(--display);
-  font-size: 20px;
-  font-weight: 500;
-  line-height: 1.2;
-  text-wrap: balance;
-}
-.home-answer:hover .home-answer__title { color: var(--moss); }
-
-/* ===== Home: latest entries =====
-   Text rows, not cards. The old six-card grid (with a photo each) was the
-   most expensive thing on the page; a homepage feed is a list of what is new. */
-.home-entries {
-  display: flex;
-  flex-direction: column;
-}
-.home-entry {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  border-top: 1px solid var(--rule);
-  padding: 18px 0;
-  text-decoration: none;
-  color: inherit;
-}
-.home-entry__title {
-  font-family: var(--display);
-  font-size: 24px;
-  font-weight: 500;
-  line-height: 1.15;
-  letter-spacing: -0.005em;
-  text-wrap: balance;
-}
-.home-entry:hover .home-entry__title { color: var(--moss); }
-.home-entry__dek {
-  font-family: var(--serif);
-  font-style: italic;
-  font-size: 16px;
-  line-height: 1.45;
-  color: var(--ink-2);
-}
-.home-entry__meta {
-  display: flex;
-  gap: 18px;
-  color: var(--ink-3);
-  text-transform: uppercase;
-}
-
-/* ===== Home: the rail =====
-   Every offer on the page, in one column, ordered by commitment. The Field
-   Guide takes the inverted-ink plate treatment the article guide-bar and the
-   old product band already established, so the one purchase ask reads as a
-   deliberate object rather than a third identical box. */
-.rail-guide {
-  /* Everything on the plate is mixed from the palette, so it inverts with
-     the plate in dark mode. The accent is the palette's gold lifted toward
-     the ground: the raw gold is tuned for paper and sinks into ink. */
-  --rail-accent: color-mix(in oklab, var(--gold) 70%, var(--paper));
-  --rail-rule: color-mix(in oklab, var(--paper) 22%, transparent);
-  --rail-stage: color-mix(in oklab, var(--ink) 94%, var(--paper));
-  display: block;
-  text-decoration: none;
-  color: var(--paper);
-  background: var(--ink);
-  border: 1px solid var(--ink);
-  padding: 26px 24px;
-}
-@media (prefers-color-scheme: dark) {
-  /* Dark mode's plate is light, so the accent darkens instead. */
-  .rail-guide { --rail-accent: color-mix(in oklab, var(--gold) 55%, var(--paper)); }
-}
-.rail-guide__eyebrow {
-  display: block;
-  font-family: var(--sans);
-  font-size: 10px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.22em;
-  /* --paper-3 rather than --moss: every palette's accent is dark, tuned for
-     paper grounds, and disappears on this ink ground. */
-  color: var(--paper-3);
-  margin-bottom: 12px;
-}
-.rail-guide__title {
-  display: block;
-  font-family: var(--display);
-  font-size: 30px;
-  font-weight: 400;
-  line-height: 1.1;
-  letter-spacing: -0.01em;
-  color: var(--paper);
-  margin-bottom: 10px;
-}
-
-/* The figure: the app's front page in a phone, cropped at the foot of the
-   stage band. The stage bleeds to the plate's edges (the negative margin
-   matches the plate's side padding). Base layout is stacked: phone centred,
-   the key listed under the stage. The side layout (key beside the phone, each
-   entry level with its pin) takes over wherever the plate is wide enough,
-   below. */
-.rail-guide__fig {
-  position: relative;
-  display: block;
-  margin-top: 20px;
-}
-.rail-guide__stage {
-  position: relative;
-  display: block;
-  height: 400px;
-  margin: 0 -24px;
-  overflow: hidden;
-  background: var(--rail-stage);
-  border-top: 1px solid var(--rail-rule);
-  border-bottom: 1px solid var(--rail-rule);
-}
-.rail-guide__phone {
-  position: absolute;
-  top: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  box-sizing: border-box;
-  width: 225px;               /* 211px of screen + 6px bezel + 1px edge, each side */
-  padding: 6px;
-  border-radius: 32px;
-  /* A phone is black in every palette. */
-  background: #050403;
-  border: 1px solid color-mix(in oklab, var(--paper-3) 38%, transparent);
-}
-.rail-guide__screen {
-  position: relative;
-  display: block;
-}
-.rail-guide__screen img {
-  display: block;
-  width: 100%;
-  height: auto;
-  border-radius: 26px;
-}
-/* Pins straddle the bezel's outer edge: 6px bezel + 1px edge + half the pin.
-   --at is set per pin from RAIL_GUIDE_KEY in page-home.jsx. */
-.rail-guide__pin {
-  position: absolute;
-  left: -16px;
-  top: calc(var(--at) * 1%);
-  transform: translateY(-50%);
-  box-sizing: border-box;
-  width: 18px;
-  height: 18px;
-  border-radius: 50%;
-  border: 2px solid var(--rail-stage);
-  background: var(--rail-accent);
-  color: var(--ink);
-  font: 700 9px/1 var(--mono);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.rail-guide__key {
-  list-style: none;
-  margin: 0;
-  padding: 18px 0 4px;
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-}
-.rail-guide__keyitem {
-  display: grid;
-  grid-template-columns: 18px minmax(0, 1fr);
-  column-gap: 12px;
-  row-gap: 3px;
-}
-.rail-guide__keynum {
-  grid-row: 1 / span 2;
-  width: 18px;
-  height: 18px;
-  margin-top: 1px;
-  border-radius: 50%;
-  background: var(--rail-accent);
-  color: var(--ink);
-  font: 700 9px/1 var(--mono);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.rail-guide__keylabel {
-  font: 700 9.5px/14px var(--mono);
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--paper);
-}
-.rail-guide__keytext {
-  font-family: var(--serif);
-  font-size: 15px;
-  line-height: 1.35;
-  color: var(--paper);
-  opacity: 0.84;
-}
-/* The side layout, on the 380px desktop rail and on single-column plates
-   wide enough to hold a key column. The key lies over the stage's left side.
-   Measurements are fixed so each entry can sit level with its pin: a 195px
-   screen is 422px tall, and its top sits 30px below the stage's top edge
-   (1px rule + 22px offset + 1px phone edge + 6px bezel), so a pin at --at%
-   is 30 + 4.22 × --at px down, and the entry's 14px label line centres on
-   it. */
 @media (min-width: 1101px), (min-width: 560px) and (max-width: 880px) {
-  .rail-guide__phone {
-    top: 22px;
-    left: auto;
-    right: 20px;
-    transform: none;
-    width: 209px;             /* 195px of screen */
-    border-radius: 30px;
-  }
-  .rail-guide__screen img { border-radius: 24px; }
+  
+  
   /* The figure spans the plate's content box and the stage bleeds 24px past
      it, so the phone's left edge is 209 - 24 + 20 = 205px in from the
      figure's right edge; the pins reach 9px further, and the key stops 8px
      short of them. */
-  .rail-guide__key {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 222px;
-    padding: 0;
-    display: block;
-  }
-  .rail-guide__keyitem {
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: calc(30px + 4.22px * var(--at) - 7px);
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-  }
-  .rail-guide__keynum { display: none; }
-  .rail-guide__keytext { font-size: 14px; line-height: 1.3; }
+  
+  
+  
+  
 }
 
-.rail-guide__counts {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  padding: 16px 0 18px;
-}
-.rail-guide__count {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  min-width: 0;
-  padding: 0 8px 0 12px;
-  border-left: 1px solid var(--rail-rule);
-}
-.rail-guide__count:first-child { padding-left: 0; border-left: 0; }
-.rail-guide__count strong {
-  font-family: var(--display);
-  font-size: 32px;
-  font-weight: 500;
-  line-height: 1;
-  color: var(--paper);
-}
-.rail-guide__count span {
-  font-family: var(--mono);
-  font-size: 9px;
-  line-height: 1.35;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--paper-3);
-}
-/* The whole plate is the link; this is its button face, not a second control. */
-.rail-guide__buy {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  min-height: 50px;
-  padding: 0 18px;
-  background: var(--paper);
-  color: var(--ink);
-  font-family: var(--sans);
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  transition: background-color 0.15s ease;
-}
-.rail-guide__price {
-  font-family: var(--mono);
-  font-size: 14px;
-  letter-spacing: 0;
-  white-space: nowrap;
-}
-.rail-guide:hover .rail-guide__buy { background: var(--paper-2); }
-.rail-guide__terms {
-  display: block;
-  margin-top: 12px;
-  font-family: var(--mono);
-  font-size: 9.5px;
-  line-height: 1.4;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--paper-3);
-}
-
-/* The letter, as a rail unit: tighter than the article-page box, with the
-   solid submit button the hero capture used to carry (NewsletterInline takes
-   the `modifier` and `cta` props). */
 .nlbox--rail {
   margin: 0;
   padding: 26px 22px 24px;
@@ -3590,12 +1827,6 @@ main:focus { outline: none; }
 
 /* The lodging unit is the shared LodgingCta component; it only needs its
    page-level margins dropped inside the rail. */
-.home-rail .lodging-cta { margin: 0; }
-
-@media (max-width: 1100px) {
-  .home-body { grid-template-columns: 1fr 320px; gap: 44px; }
-  .home-index { gap: 28px; }
-}
 
 @media (max-width: 880px) {
   /* One column, and the rail's units interleave with the editorial rather than
@@ -3608,185 +1839,98 @@ main:focus { outline: none; }
      across both possible: Bulletin, guide, letter, answers, lodging, entries.
      Every child is ordered explicitly, because an unset order is 0 and would
      jump the queue. */
-  .home-body {
-    display: flex;
-    flex-direction: column;
-    gap: 36px;
-    padding-bottom: 48px;
-  }
-  .home-spine,
-  .home-rail { display: contents; }
-  .resume-band { order: 1; }
-  .home-dispatch { order: 2; }
-  .rail-guide { order: 3; }
-  .home-rail .nlbox { order: 4; }
+  
+  
+  
+  
+  
+  
   #start-here { order: 5; }
-  .home-rail .lodging-cta { order: 6; }
-  .home-latest { order: 7; }
-  .home-index { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 26px 22px; }
-  .home-edition__where { display: none; }
-  .home-section__title { font-size: 30px; }
-  .home-section__dek { font-size: 17px; }
-  .home-answers { grid-template-columns: 1fr; gap: 22px; }
-  .rail-guide__title { font-size: 27px; }
-  .home-entry__title { font-size: 21px; }
+  
+  
+  
+  
+  
+  
+  
+  
+  
 }
-
-@media (max-width: 560px) {
-  .home-index { grid-template-columns: 1fr; gap: 22px; }
-}
-
 
 /* ===== Home: Park Bulletin teaser =====
    The current /now edition rendered as a dated notebook line above the webcam
    strip (HomeBulletin in page-home.jsx). Same quiet-band family as
    .resume-band. Class names kept from the dispatch era to avoid churn. */
-.home-dispatch {
-  display: block;
-  text-decoration: none;
-  color: inherit;
-  border-top: 1px solid var(--ink);
-  border-bottom: 1px solid var(--rule);
-  padding: 20px 0 22px;
-  margin-bottom: 36px;
-}
-.home-dispatch__date {
-  display: block;
-  font-family: var(--mono);
-  font-size: 11px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.16em;
-  color: var(--moss);
-  margin-bottom: 10px;
-}
-.home-dispatch__title {
-  display: block;
-  font-family: var(--display);
-  font-size: 26px;
-  font-weight: 500;
-  line-height: 1.15;
-  letter-spacing: -0.005em;
-  margin-bottom: 10px;
-}
-.home-dispatch:hover .home-dispatch__title { color: var(--moss); }
-.home-dispatch__excerpt {
-  font-family: var(--serif);
-  font-size: 17px;
-  line-height: 1.55;
-  color: var(--ink-2);
-  max-width: 72ch;
-  margin: 0 0 14px;
-}
-.home-dispatch__cta {
-  color: var(--moss);
-  font-weight: 700;
-  font-size: 11px;
-  text-transform: uppercase;
-  letter-spacing: 0.18em;
-}
 
-/* ===== Home: Field Guide product band =====
-   The one purchase ask on the homepage, in the inverted-ink plate treatment
-   the sticky article guide-bar already established, so the paid object reads
-   as deliberately different from the editorial bands around it. */
+/* ===== The Field Guide card (GuidePromo) =====
+   The compact form of the design's Field Guide band, for pages whose one
+   guide ask sits inside a column: the band's ink plate, gold-grey eyebrow,
+   serif title and the pale button face. */
 .band-guide {
   display: block;
-  text-decoration: none;
-  color: var(--paper);
-  background: var(--ink);
-  border: 1px solid var(--ink);
-  padding: 40px 32px;
+  color: var(--hp-paper);
+  background: var(--hp-ink);
+  border-radius: 3px;
+  padding: 34px 32px;
   margin-top: 24px;
 }
 .band-guide__eyebrow {
-  font-family: var(--sans);
-  font-size: 11px;
-  font-weight: 700;
+  font: 600 9px var(--sans);
+  letter-spacing: 1.7px;
   text-transform: uppercase;
-  letter-spacing: 0.18em;
-  /* --paper-3 rather than --moss: every palette's accent is dark, tuned for
-     paper grounds, and disappears on the ink ground of this band. */
-  color: var(--paper-3);
-  margin-bottom: 12px;
+  color: #c7d0b7;
+  margin-bottom: 16px;
 }
 .band-guide__title {
-  font-family: var(--display);
-  font-size: 36px;
-  font-weight: 400;
-  line-height: 1.1;
-  letter-spacing: -0.01em;
-  color: var(--paper);
+  font: 400 36px/1.05 var(--serif);
+  letter-spacing: -1px;
+  color: var(--hp-paper);
 }
 .band-guide__body {
-  font-family: var(--serif);
-  font-size: 19px;
-  line-height: 1.5;
-  color: var(--paper);
-  opacity: 0.85;
-  margin: 0 0 16px;
+  font: 13px/1.85 var(--sans);
+  color: #d1d9cb;
+  margin: 0 0 22px;
+  max-width: 560px;
 }
 .band-guide__cta {
-  color: var(--paper-3);
-  font-weight: 700;
-  font-size: 11px;
-  text-transform: uppercase;
-  letter-spacing: 0.18em;
+  display: inline-flex;
+  border-radius: 3px;
+  background: #f3e9ca;
+  color: var(--hp-ink);
+  padding: 13px 20px;
+  font: 600 12px var(--sans);
+  letter-spacing: normal;
+  text-transform: none;
+  transition: background .2s;
 }
-.band-guide:hover .band-guide__cta { color: var(--paper); }
+.band-guide:hover .band-guide__cta { background: #fff6dc; }
+.band-guide__sample { font: 12px/1.6 var(--sans); color: var(--hp-muted); margin: 12px 0 0; }
+.band-guide__sample a { color: var(--hp-ink); border-bottom: 1px solid #a7afa4; }
 
-/* ===== Itineraries page (/itineraries) ===== */
-.itin {
-  max-width: 680px;
-  padding: 40px 0 48px;
-  border-top: 1px solid var(--rule);
-}
-.itin:first-of-type { border-top: 0; padding-top: 8px; }
-.itin__title {
-  font-family: var(--display);
-  font-size: 34px;
-  font-weight: 500;
-  line-height: 1.12;
-  letter-spacing: -0.01em;
-  margin: 0 0 12px;
-}
-.itin__dek {
-  font-family: var(--serif);
-  font-size: 18px;
-  line-height: 1.55;
-  color: var(--ink-1);
-  margin: 0 0 8px;
-}
-.itin__season {
-  font-family: var(--sans);
-  font-size: 13px;
-  color: var(--ink-3);
-  margin: 0 0 24px;
-}
-.itin__day { margin-bottom: 24px; }
-.itin__day-name {
-  font-family: var(--sans);
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--ink-2);
-  margin: 0 0 10px;
-}
-.itin__stops {
-  margin: 0 0 8px;
-  padding-left: 22px;
-}
-.itin__stop {
-  font-family: var(--serif);
-  font-size: 16px;
-  line-height: 1.55;
-  margin-bottom: 8px;
-}
-.itin__stop-name { font-weight: 600; }
-.itin__stop-blurb { color: var(--ink-2); }
-.itin__stop-blurb::before { content: " "; }
-.itin .btn { margin-top: 8px; }
+/* ===== Itineraries page (/itineraries) =====
+   Each plan is a design section: the heading, the dek and season line, then
+   its days side by side, each an ordered list of stops in drive order. */
+.itin + .itin { border-top: 1px solid var(--hp-rule); }
+.itin .hp-sub { max-width: 720px; margin-bottom: 8px; }
+.itin__season { font-size: 11px; color: var(--hp-muted); margin: 0 0 30px; }
+.itin__days { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 28px 40px; margin-bottom: 30px; }
+.itin__day { border-top: 1px solid var(--hp-ink); padding-top: 16px; }
+.itin__day-name { font: 400 26px/1.1 var(--serif); letter-spacing: -0.5px; margin: 0 0 14px; }
+.itin__stops { list-style: none; counter-reset: itin-stop; margin: 0; padding: 0; }
+.itin__stop { counter-increment: itin-stop; display: grid; grid-template-columns: 26px 1fr; border-top: 1px solid var(--hp-rule); padding: 11px 0; font-size: 12px; line-height: 1.7; }
+.itin__stop::before { content: counter(itin-stop, decimal-leading-zero); font: 600 8px/2.6 var(--sans); letter-spacing: 1.2px; color: var(--hp-accent); }
+.itin__stop > span { grid-column: 2; }
+.itin__stop-name { display: block; font: 400 19px/1.25 var(--serif); color: var(--hp-ink); }
+.itin__stop-blurb { display: block; color: var(--hp-muted); margin-top: 3px; }
+.itin__after { padding-top: 0; }
+.itin__after .hp-sub { max-width: 680px; }
+.itin__after .hp-sub a { color: var(--hp-ink); border-bottom: 1px solid #a7afa4; }
+.itin__after .lodging-cta { max-width: 680px; }
+.hp-itin .hp-partindex { grid-template-rows: none; }
+.hp-itin .hp-partindex .hp-row { grid-template-columns: 1fr; padding-block: 16px; }
+.hp-itin .hp-partindex .hp-row:first-child { padding-top: 0; }
+.hp-itin .hp-partindex .hp-row h3 { font-size: 26px; margin-bottom: 0; }
+.hp-itin .hp-partindex .hp-row:hover h3 { color: var(--hp-accent); }
 
 /* ===== Conditions page (/conditions) =====
    The station board. Four rules govern this block:
@@ -3804,25 +1948,8 @@ main:focus { outline: none; }
    (4) the whole block collapses to one column at 880px, the same breakpoint
        where the inline nav gives way to BottomNav. */
 
-/* The page head splits into lede + live readout above 900px. */
-.page-head--split { padding-bottom: 36px; }
-.cond-head {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) 380px;
-  gap: 56px;
-  align-items: start;
-}
-.cond-head__lede h1 { max-width: 12ch; }
-.cond-body { padding-top: 48px; }
 .cond-section { margin-bottom: 64px; }
-.cond-lede {
-  font-family: var(--serif);
-  font-size: 17px;
-  line-height: 1.6;
-  color: var(--ink-2);
-  max-width: 68ch;
-  margin: 0 0 24px;
-}
+
 .cond-note {
   font-family: var(--serif);
   font-size: 16px;
@@ -4263,28 +2390,17 @@ main:focus { outline: none; }
 }
 
 /* ── The two asks ───────────────────────────────────────────────────────── */
-/* Paid first, free second, one of each, matching the homepage rail's order.
-   .band-guide carries its own 24px top margin for the article column it was
-   built for; zero it here so both plates sit on the same line. */
-.cond-asks {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 56px;
-  align-items: start;
-  margin-bottom: 96px;
-}
-.cond-asks .band-guide { margin-top: 0; }
 
 /* ── Collapse ───────────────────────────────────────────────────────────── */
 @media (max-width: 1040px) {
   .gates { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
-  .cond-head { grid-template-columns: minmax(0, 1fr) 320px; gap: 36px; }
+  
 }
 @media (max-width: 880px) {
-  .cond-head { grid-template-columns: 1fr; gap: 32px; }
-  .cond-head__lede h1 { max-width: none; }
+  
+  
   .cond-split { grid-template-columns: 1fr; gap: 56px; }
-  .cond-asks { grid-template-columns: 1fr; gap: 40px; margin-bottom: 72px; }
+  
   .gates { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
   .cam-grid--board { grid-template-columns: 1fr; }
   .dialplate { grid-template-columns: 1fr; gap: 24px; padding: 26px; }
@@ -4887,7 +3003,7 @@ main:focus { outline: none; }
 .map-page__gate-backdrop {
   position: absolute;
   inset: 0;
-  background: rgba(20, 18, 14, 0.5);
+  background: rgba(20, 39, 31, 0.5);
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
 }
@@ -4907,8 +3023,7 @@ main:focus { outline: none; }
    ------------------------------------------------------------ */
 @media (max-width: 720px) {
   .map-page {
-    /* 69px = the masthead's rendered height at phone widths. */
-    height: calc(100dvh - 69px);
+    height: calc(100dvh - var(--masthead-h, 173px));
     overflow: hidden;
   }
   .map-page__main {
@@ -5025,86 +3140,52 @@ main:focus { outline: none; }
    with object-fit: cover.
    ============================================================ */
 .films__credit {
-  padding: 28px 32px;
-  background: var(--paper-2);
-  border: 1px solid var(--rule);
-  border-left: 3px solid var(--moss);
+  padding: 26px 28px;
+  background: var(--hp-card);
+  border: 1px solid var(--hp-rule);
+  border-radius: 3px;
   max-width: 72ch;
 }
 .films__credit p {
-  font-family: var(--serif);
-  font-size: 16px;
-  line-height: 1.55;
-  color: var(--ink-2);
+  font-size: 12px;
+  line-height: 1.8;
+  color: var(--hp-muted);
+  margin: 0;
 }
-.films__credit a {
-  color: var(--ink);
-  text-decoration: none;
-  border-bottom: 1px solid var(--moss);
-}
-.films__credit a:hover { color: var(--moss); }
-
-.film-section__count {
-  font-family: var(--sans);
-  font-size: 11px;
-  text-transform: uppercase;
-  letter-spacing: 0.14em;
-  font-weight: 600;
-  color: var(--ink-3);
-}
-.film-section__note {
-  font-family: var(--serif);
-  font-size: 17px;
-  font-style: italic;
-  color: var(--ink-2);
-  margin: -16px 0 28px;
-}
+.films__credit a { color: var(--hp-ink); border-bottom: 1px solid #a7afa4; }
+.films__credit a:hover { color: var(--hp-accent); }
 
 .film-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 40px 32px;
-  padding-bottom: 32px;
-}
-
-.film-card {
-  border-top: 1px solid var(--rule);
-  padding-top: 18px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 44px 28px;
+  margin-top: 30px;
 }
 .film-card__meta {
-  font-family: var(--sans);
-  font-size: 10px;
+  font: 600 8px var(--sans);
   text-transform: uppercase;
-  letter-spacing: 0.14em;
-  color: var(--ink-3);
+  letter-spacing: 1.7px;
+  color: var(--hp-accent);
   display: flex;
   gap: 12px;
   align-items: center;
-  font-weight: 600;
-  margin-top: 14px;
+  margin-top: 18px;
 }
-.film-card__meta span + span::before {
-  content: "·";
-  margin-right: 12px;
-  color: var(--rule-soft);
-}
+.film-card__meta span + span { color: var(--hp-muted); }
 .film-card__title {
-  font-family: var(--display);
-  font-size: 24px;
-  font-weight: 500;
-  letter-spacing: -0.005em;
-  line-height: 1.15;
-  margin: 10px 0;
-  text-wrap: balance;
-  color: var(--ink);
+  font: 400 26px/1.1 var(--serif);
+  letter-spacing: -0.6px;
+  margin: 10px 0 10px;
+  color: var(--hp-ink);
 }
 .film-card__dek {
-  font-family: var(--serif);
-  font-size: 16px;
-  color: var(--ink-2);
-  line-height: 1.45;
-  font-style: italic;
+  font-size: 11px;
+  line-height: 1.7;
+  color: var(--hp-muted);
+  margin: 0;
 }
+@media (max-width: 1100px) { .film-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 760px) { .film-grid { grid-template-columns: 1fr; } }
 
 /* Facade button. Reset chrome; the global button:focus-visible rule
    provides the focus ring. */
@@ -5115,8 +3196,9 @@ main:focus { outline: none; }
   aspect-ratio: 16 / 9;
   padding: 0;
   margin: 0;
-  border: 1px solid var(--rule);
-  background: var(--ink);
+  border: 0;
+  border-radius: 3px;
+  background: var(--hp-ink);
   cursor: pointer;
   overflow: hidden;
 }
@@ -5125,12 +3207,6 @@ main:focus { outline: none; }
   height: 100%;
   object-fit: cover;
   display: block;
-  filter: saturate(0.85);
-  transition: filter 160ms ease, transform 240ms ease;
-}
-.film__facade:hover .film__thumb {
-  filter: saturate(1);
-  transform: scale(1.02);
 }
 .film__play {
   position: absolute;
@@ -5148,7 +3224,8 @@ main:focus { outline: none; }
 .film__frame {
   width: 100%;
   aspect-ratio: 16 / 9;
-  border: 1px solid var(--rule);
+  border-radius: 3px;
+  overflow: hidden;
   background: #000;
 }
 .film__frame iframe {
@@ -5156,57 +3233,6 @@ main:focus { outline: none; }
   height: 100%;
   border: 0;
   display: block;
-}
-
-/* ============================================================
-   Dark mode — default light palette is better in direct
-   sunlight; dark mode honors system preference for dusk/OLED.
-   ============================================================ */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --paper:     #1c1812;
-    --paper-2:   #252019;
-    --paper-3:   #302a1e;
-    --ink:       #f0e8d8;
-    --ink-2:     #c8b898;
-    --ink-3:     #a09070;
-    --rule:      #c0a87e;
-    --rule-soft: #3a3022;
-    --moss:      #d87040;
-    --moss-2:    #e07850;
-    --rust:      #d87040;
-    --gold:      #c09038;
-  }
-
-  [data-palette="granite"] {
-    --paper:     #1a1a15;
-    --paper-2:   #222220;
-    --paper-3:   #2c2c28;
-    --ink:       #ebebe0;
-    --ink-2:     #c5c5b8;
-    --ink-3:     #929280;
-    --rule:      #b0b0a0;
-    --rule-soft: #303028;
-    --moss:      #507850;
-    --moss-2:    #688a68;
-    --rust:      #a05830;
-    --gold:      #a89030;
-  }
-
-  [data-palette="sierra"] {
-    --paper:     #141820;
-    --paper-2:   #1c2030;
-    --paper-3:   #242a3e;
-    --ink:       #dde6f0;
-    --ink-2:     #b8c8d8;
-    --ink-3:     #8a9ab0;
-    --rule:      #a0b8d0;
-    --rule-soft: #283040;
-    --moss:      #4a7090;
-    --moss-2:    #6090b0;
-    --rust:      #8a5a38;
-    --gold:      #9a8030;
-  }
 }
 
 /* ============================================================
@@ -5252,14 +3278,6 @@ main:focus { outline: none; }
   --bt-open-bg: color-mix(in oklab, var(--bt-open) 13%, var(--paper));
   --bt-warn-bg: color-mix(in oklab, var(--bt-warn) 14%, var(--paper));
 }
-@media (prefers-color-scheme: dark) {
-  .bulletin {
-    --bt-open: #8fb77a;
-    --bt-warn: #d0a348;
-    --bt-closed: #e07a55;
-  }
-}
-
 .bicon {
   display: block;
   flex: 0 0 auto;
@@ -5686,7 +3704,7 @@ main:focus { outline: none; }
 }
 .bulletin-part__head h3 { font-size: 21px; font-weight: 600; }
 .bulletin-part__head span { font-size: 11px; font-weight: 700; letter-spacing: 0.06em; color: var(--ink-3); }
-.bulletin-part__empty { margin: 12px 0 0; font-family: var(--display); font-style: italic; font-size: 16px; color: var(--ink-3); }
+.bulletin-part__empty { margin: 12px 0 0; font-family: var(--sans); font-size: 16px; color: var(--ink-3); }
 .bulletin-progs { list-style: none; margin: 0; padding: 0; }
 .bulletin-prog {
   display: grid;
@@ -5758,7 +3776,7 @@ main:focus { outline: none; }
   line-height: 1.3;
 }
 .bulletin-area__icon { width: 18px; height: 18px; color: var(--moss); }
-.bulletin-area p { margin: 6px 0 0 28px; font-family: var(--serif); font-size: 16px; line-height: 1.5; color: var(--ink-2); }
+.bulletin-area p { margin: 6px 0 0 28px; font-family: var(--sans); font-size: 16px; line-height: 1.5; color: var(--ink-2); }
 
 /* Trails: the ones to check, then the ones open as usual. */
 .bulletin-trails { list-style: none; margin: 0 0 30px; padding: 0; }
@@ -5884,7 +3902,7 @@ main:focus { outline: none; }
   border-bottom: 1px solid var(--rule-soft);
 }
 .bulletin-def__icon { width: 19px; height: 19px; margin-top: 2px; color: var(--moss); }
-.bulletin-defs p { margin: 0; font-family: var(--serif); font-size: 15.5px; line-height: 1.55; color: var(--ink-2); }
+.bulletin-defs p { margin: 0; font-family: var(--sans); font-size: 15.5px; line-height: 1.55; color: var(--ink-2); }
 .bulletin-defs p strong { font-family: var(--sans); font-size: 14px; }
 .bulletin-flag {
   display: inline-block;
@@ -6010,26 +4028,6 @@ main:focus { outline: none; }
    Stat row under the hero dek, the phone-screenshot strip, and the
    end-of-pitch closer box. All var-driven, so dark mode follows. */
 
-.guide-stats {
-  display: flex;
-  flex-wrap: wrap;
-  margin-top: 24px;
-  border: 1px solid var(--ink);
-  background: var(--paper-2);
-  width: fit-content;
-}
-.guide-stats span {
-  font-family: var(--sans);
-  font-size: 11px;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  font-weight: 600;
-  color: var(--ink-2);
-  padding: 10px 16px;
-  border-right: 1px solid var(--rule-soft);
-}
-.guide-stats span:last-child { border-right: 0; }
-
 /* The strip lives inside the guide page's inline two-column grid. Grid items
    default to min-width:auto, so without this the strip's intrinsic width
    blows the .prose column out to full page width and shoves the buy box
@@ -6079,7 +4077,7 @@ main:focus { outline: none; }
 }
 
 @media (max-width: 720px) {
-  .guide-stats span { padding: 8px 12px; font-size: 10px; }
+  
   .app-shot { flex-basis: 208px; }
   .guide-closer { padding: 22px 18px; }
 }
@@ -6155,8 +4153,8 @@ main:focus { outline: none; }
   /* Room under the last content so the fixed bar never covers it. */
   .page--guide { padding-bottom: 76px; }
   /* Justify the hero stat row across the full width on phones. */
-  .guide-stats { width: 100%; }
-  .guide-stats span { flex: 1 1 auto; text-align: center; }
+  
+  
 }
 @media (prefers-reduced-motion: reduce) {
   .guide-buybar { transition: none; }
@@ -6171,14 +4169,6 @@ main:focus { outline: none; }
    the rest of the guide page. */
 
 .guide-hero-cta { margin-top: 24px; }
-.guide-hero-cta__sub {
-  font-family: var(--sans);
-  font-size: 13px;
-  color: var(--ink-3);
-  line-height: 1.55;
-  margin: 12px 0 0;
-}
-.guide-hero-cta__sub a { color: var(--ink-2); }
 
 /* Walkthrough: phone frame beside the numbered step list; the list is the
    navigation. Shots stack in the frame and cross-fade by class. */
@@ -6687,157 +4677,120 @@ main:focus { outline: none; }
 }
 
 /* ===== Search (/search) =====
-   The field is the page: a single large input, results narrowing under it as
-   the reader types. Matched runs are marked rather than color-only, so the
-   reason a result came back survives a monochrome screen. */
-.search-form { max-width: 680px; }
+   The field is the page head's action: one large input on the design's
+   form face, results narrowing under it as the reader types. Matched runs
+   are marked rather than color-only, so the reason a result came back
+   survives a monochrome screen. */
+.search-form { max-width: 620px; margin-top: 4px; }
 .search-form__label {
   display: block;
-  font-family: var(--sans);
-  font-size: 11px;
-  text-transform: uppercase;
-  letter-spacing: 0.18em;
-  font-weight: 700;
-  color: var(--ink-3);
-  margin-bottom: 10px;
+  font-size: 10px;
+  color: var(--hp-ink);
+  margin-bottom: 7px;
 }
 .search-form__row {
   display: flex;
   align-items: stretch;
-  gap: 10px;
-  border-bottom: 2px solid var(--ink);
+  gap: 8px;
+  background: var(--hp-card);
+  border: 1px solid #b8c0b3;
+  border-radius: 3px;
+  padding: 0 6px 0 16px;
 }
+.search-form__row:focus-within { border-color: var(--hp-accent); box-shadow: 0 0 0 2px var(--hp-accent); }
 .search-form__input {
   flex: 1 1 auto;
   min-width: 0;
-  font-family: var(--display);
-  font-size: 28px;
-  line-height: 1.3;
-  color: var(--ink);
+  font: 400 24px/1.3 var(--serif);
+  color: var(--hp-ink);
   background: transparent;
   border: 0;
-  padding: 6px 0 12px;
+  padding: 13px 0;
   -webkit-appearance: none;
   appearance: none;
 }
-.search-form__input:focus { outline: none; }
-.search-form__input:focus-visible { outline: 2px solid var(--moss); outline-offset: 2px; }
-/* No opacity on the placeholder: --ink-3 was tuned to ~7:1 on --paper (see
-   the palette notes at the top) and dimming it threw a third of that away on
-   the page's only pre-query guidance. */
-.search-form__input::placeholder { color: var(--ink-3); }
+.search-form__input:focus, .hp-design .search-form__input:focus-visible { outline: none; }
+.search-form__input::placeholder { color: var(--hp-muted); }
 /* The type="search" clear affordance is inconsistent across browsers and
    collides with the explicit Clear button; hide the native one. */
 .search-form__input::-webkit-search-cancel-button { display: none; }
 .search-form__clear {
   flex: 0 0 auto;
   align-self: center;
-  font-family: var(--sans);
-  font-size: 11px;
-  text-transform: uppercase;
-  letter-spacing: 0.14em;
-  font-weight: 700;
-  color: var(--ink-2);
+  font: 600 11px var(--sans);
+  color: var(--hp-ink);
   background: transparent;
   border: 0;
-  padding: 10px 8px; /* 24px+ target (WCAG 2.5.8); the flex row absorbs it */
+  padding: 10px 10px; /* 24px+ target (WCAG 2.5.8); the flex row absorbs it */
   cursor: pointer;
 }
-.search-form__clear:hover { color: var(--moss); }
+.search-form__clear:hover { color: var(--hp-accent); }
 
 .search-status {
-  font-family: var(--sans);
-  font-size: 13px;
-  color: var(--ink-3);
+  font-size: 12px;
+  color: var(--hp-muted);
   margin-top: 14px;
   /* Reserve the line's height so results don't jump as the count changes. */
   min-height: 1.4em;
 }
 
-.search-browse { margin-top: 16px; }
-.search-browse__head {
-  font-family: var(--sans);
-  font-size: 11px;
-  text-transform: uppercase;
-  letter-spacing: 0.18em;
-  font-weight: 700;
-  color: var(--ink-3);
-  margin-bottom: 14px;
-}
-.search-browse__chips { display: flex; flex-wrap: wrap; }
+.search-browse__head { font: 600 9px var(--sans); letter-spacing: 1.7px; text-transform: uppercase; color: var(--hp-accent); margin: 0 0 16px; }
+.search-browse__chips { display: flex; flex-wrap: wrap; gap: 8px; }
 
 .search-empty {
-  font-family: var(--serif);
-  font-size: 17px;
-  line-height: 1.6;
-  color: var(--ink-1);
-  max-width: 60ch;
+  font-size: 13px;
+  line-height: 1.85;
+  color: var(--hp-muted);
+  max-width: 640px;
 }
+.search-empty a { color: var(--hp-ink); border-bottom: 1px solid #a7afa4; }
 
-.search-results { display: grid; gap: 0; }
+.search-results { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 48px; margin-top: 30px; }
 .search-result {
   display: block;
-  text-decoration: none;
-  color: inherit;
-  border-top: 1px solid var(--rule);
-  padding: 16px 0;
+  border-top: 1px solid var(--hp-rule);
+  padding: 20px 0 22px;
 }
-.search-result:hover .search-result__title { color: var(--moss); }
+.search-result:hover .search-result__title { color: var(--hp-accent); }
 .search-result__kind {
-  font-family: var(--sans);
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.22em;
+  font: 600 8px var(--sans);
+  letter-spacing: 1.7px;
   text-transform: uppercase;
-  color: var(--ink-3);
-  margin-bottom: 6px;
+  color: var(--hp-accent);
+  margin-bottom: 9px;
 }
 .search-result__title {
-  font-family: var(--display);
-  font-size: 21px;
-  line-height: 1.25;
-  color: var(--ink);
+  font: 400 26px/1.12 var(--serif);
+  letter-spacing: -0.5px;
+  color: var(--hp-ink);
 }
 .search-result__dek {
-  font-family: var(--serif);
-  font-size: 15px;
-  line-height: 1.55;
-  color: var(--ink-2);
-  margin-top: 6px;
-  max-width: 68ch;
+  font-size: 12px;
+  line-height: 1.7;
+  color: var(--hp-muted);
+  margin-top: 8px;
 }
 /* Page and section results highlight their matched runs. Article results
-   deliberately do not: they reuse ArticleCard, so they look the same here as
-   on every other index, and a photo card carries its own visual weight. */
+   deliberately do not: they are the journal's own cards, as on every index. */
 .search-result mark {
   background: transparent;
   color: inherit;
-  font-weight: 700;
-  box-shadow: inset 0 -0.4em 0 var(--moss-pale, rgba(122, 138, 106, 0.28));
+  box-shadow: inset 0 -0.35em 0 #a4462c33;
 }
-
-.search-articles {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 36px;
-  row-gap: 56px;
-}
+.search-section + .search-section { margin-top: 56px; }
 
 .search-scope-note {
-  font-family: var(--sans);
-  font-size: 12px;
-  color: var(--ink-3);
+  font-size: 11px;
+  color: var(--hp-muted);
   margin-top: 48px;
-  border-top: 1px solid var(--rule);
+  border-top: 1px solid var(--hp-rule);
   padding-top: 16px;
 }
 
-@media (max-width: 900px) {
-  .search-articles { grid-template-columns: repeat(2, 1fr); }
-}
-@media (max-width: 620px) {
-  .search-articles { grid-template-columns: 1fr; }
-  .search-form__input { font-size: 22px; }
+@media (max-width: 760px) {
+  .search-results { grid-template-columns: 1fr; }
+  .search-form__input { font-size: 20px; }
+  .search-result__title { font-size: 23px; }
 }
 
 /* ===========================================================================
@@ -6979,14 +4932,6 @@ main:focus { outline: none; }
   --stay-book-hover: #a8431f;
   --stay-book-ink: #f7f1e1;
 }
-@media (prefers-color-scheme: dark) {
-  .stay-page {
-    --stay-book: #dc7a4a;
-    --stay-book-hover: #e88d60;
-    --stay-book-ink: #1a140e;
-  }
-}
-
 .stay-book,
 .stay-ghost {
   display: flex;
@@ -6997,13 +4942,12 @@ main:focus { outline: none; }
   box-sizing: border-box;
   padding: 12px 20px;
   font-family: var(--sans);
-  font-size: 11px;
-  font-weight: 700;
+  font-size: 12px;
+  font-weight: 600;
   line-height: 1.35;
-  letter-spacing: 0.13em;
-  text-transform: uppercase;
   text-decoration: none;
   border: 0;
+  border-radius: 3px;
 }
 .stay-book {
   background: var(--stay-book);
@@ -7011,8 +4955,8 @@ main:focus { outline: none; }
   transition: background 0.15s ease;
 }
 .stay-book:hover { background: var(--stay-book-hover); color: var(--stay-book-ink); }
-.stay-book--lg { min-height: 60px; font-size: 12px; letter-spacing: 0.15em; }
-.stay-book--sm { min-height: 48px; padding: 10px 16px; letter-spacing: 0.11em; }
+.stay-book--lg { min-height: 56px; font-size: 13px; }
+.stay-book--sm { min-height: 46px; padding: 10px 16px; }
 .stay-book__arrow { font-size: 14px; letter-spacing: 0; transition: transform 0.15s ease; }
 .stay-book:hover .stay-book__arrow,
 .stay-ghost:hover .stay-book__arrow { transform: translate(2px, -2px); }
@@ -7024,69 +4968,6 @@ main:focus { outline: none; }
 .stay-ghost:hover { background: var(--ink); color: var(--paper); }
 
 /* --- hero and search ---------------------------------------------------- */
-
-.stay-hero {
-  position: relative;
-  min-height: clamp(420px, 46vw, 600px);
-  display: flex;
-  align-items: flex-end;
-  background: #14110c;
-  overflow: hidden;
-}
-.stay-hero picture,
-.stay-hero__img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-}
-.stay-hero__img { object-fit: cover; object-position: 50% 38%; }
-.stay-hero__scrim {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, rgba(20, 17, 12, 0.2) 0%, rgba(20, 17, 12, 0.25) 40%, rgba(20, 17, 12, 0.85) 100%);
-}
-.stay-hero__inner {
-  position: relative;
-  width: 100%;
-  padding-top: 48px;
-  padding-bottom: 132px;
-  color: #f7f1e1;
-}
-.stay-hero .crumbs,
-.stay-hero .crumbs a { color: rgba(247, 241, 225, 0.85); border-bottom-color: rgba(247, 241, 225, 0.4); }
-.stay-hero .crumbs li + li::before { color: rgba(247, 241, 225, 0.5); }
-.stay-hero__eyebrow {
-  font-family: var(--sans);
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: #e9d9a8;
-  margin-bottom: 16px;
-}
-.stay-hero h1 {
-  color: #f7f1e1;
-  font-size: clamp(40px, 6vw, 84px);
-  line-height: 1;
-  max-width: 14ch;
-  margin: 0 0 16px;
-}
-.stay-hero__dek {
-  font-size: clamp(18px, 1.7vw, 24px);
-  line-height: 1.35;
-  max-width: 34em;
-  margin: 0;
-  color: #f1ead6;
-}
-.stay-hero__credit {
-  position: absolute;
-  right: 16px;
-  bottom: 96px;
-  font-family: var(--sans);
-  font-size: 11px;
-  color: rgba(247, 241, 225, 0.8);
-}
 
 .stay-search-wrap { position: relative; margin-top: -84px; }
 .stay-search {
@@ -7183,7 +5064,7 @@ main:focus { outline: none; }
   line-height: 1.05;
   margin: 10px 0 0;
 }
-.stay-lede { font-size: 20px; line-height: 1.5; color: var(--ink-2); margin: 0; }
+
 .stay-head {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 520px);
@@ -7312,8 +5193,10 @@ main:focus { outline: none; }
 .stay-card {
   display: flex;
   flex-direction: column;
-  border: 1px solid var(--rule);
-  background: color-mix(in oklab, var(--paper) 60%, var(--paper-2));
+  border: 1px solid var(--rule-soft);
+  border-radius: 3px;
+  overflow: hidden;
+  background: var(--hp-card);
 }
 .stay-card--compact { border-color: var(--rule-soft); }
 /* A closed property stays on the page (its absence is the useful fact) but
@@ -7345,8 +5228,8 @@ main:focus { outline: none; }
 .stay-card__name { font-family: var(--display); font-size: 30px; font-weight: 500; line-height: 1.05; margin: 0; }
 .stay-card--compact .stay-card__name { font-size: 24px; }
 .stay-card__price { margin: 0; font-style: italic; font-size: 17px; line-height: 1.3; color: var(--moss); }
-.stay-card__text { margin: 0; font-size: 17px; line-height: 1.45; color: var(--ink-2); }
-.stay-card--compact .stay-card__text { font-size: 16px; }
+.stay-card__text { margin: 0; font-size: 13px; line-height: 1.8; color: var(--ink-2); }
+.stay-card--compact .stay-card__text { font-size: 12px; }
 .stay-card__who { margin: 0; font-family: var(--sans); font-size: 13px; line-height: 1.55; color: var(--ink-2); }
 .stay-card__tip,
 .stay-card__warn {
@@ -7595,7 +5478,7 @@ main:focus { outline: none; }
   bottom: 0;
   padding: 24px 16px 10px;
   color: #f7f1e1;
-  background: linear-gradient(180deg, transparent, rgba(20, 17, 12, 0.8));
+  background: linear-gradient(180deg, transparent, rgba(20, 39, 31, 0.8));
 }
 .stay-closing__body { padding: 40px 44px; display: flex; flex-direction: column; justify-content: center; gap: 16px; }
 .stay-closing__title { font-family: var(--display); font-size: clamp(28px, 3vw, 42px); font-weight: 500; line-height: 1.06; margin: 0; }
@@ -7651,8 +5534,8 @@ main:focus { outline: none; }
   .lodging-cta__figure { margin: -18px -18px 14px; }
   .lodging-cta__caption { padding: 8px 18px 0; }
   .stay-section { padding-top: 56px; }
-  .stay-hero__inner { padding-top: 28px; padding-bottom: 72px; }
-  .stay-hero__credit { bottom: 52px; }
+  
+  
   .stay-search-wrap { margin-top: -40px; }
   .stay-search { padding: 18px 16px 16px; box-shadow: 5px 5px 0 var(--ink); }
   .stay-search__title { font-size: 23px; }
@@ -7700,6 +5583,7 @@ main:focus { outline: none; }
   letter-spacing: 0.22em;
   font-weight: 700;
   color: var(--ink-3);
+  line-height: 1.1;
   margin: 0 0 22px;
 }
 .keep-going__grid {
@@ -7739,30 +5623,11 @@ main:focus { outline: none; }
 }
 
 /* ============================================================
-   The Index (/explore). A reading list of destinations, not a card grid:
-   two ruled columns of name + one-line description, so the whole site can be
-   scanned in one pass.
+   The Index (/explore). Each block is a design section: an HpHeading and a
+   sub line, then two ruled columns of name + one-line description, so the
+   whole site can be scanned in one pass.
    ============================================================ */
-.index-block { padding-top: 64px; }
-.index-block__head {
-  border-bottom: 1px solid var(--rule);
-  padding-bottom: 18px;
-  margin-bottom: 4px;
-}
-.index-block__title {
-  font-family: var(--display);
-  font-size: clamp(26px, 3.4vw, 34px);
-  line-height: 1.08;
-  margin: 8px 0 0;
-}
-.index-block__dek {
-  font-family: var(--serif);
-  font-size: 17px;
-  line-height: 1.5;
-  color: var(--ink-2);
-  margin: 10px 0 0;
-  max-width: 60ch;
-}
+.index-block + .index-block { border-top: 1px solid var(--hp-rule); }
 .index-list {
   list-style: none;
   margin: 0;
@@ -7771,54 +5636,41 @@ main:focus { outline: none; }
      one-line description into a two-word column and breaks the scan. */
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0 56px;
+  gap: 0 48px;
 }
-@media (max-width: 900px) { .index-list { grid-template-columns: 1fr; } }
 .index-list__item {
-  padding: 20px 0 18px;
-  border-bottom: 1px solid var(--rule-soft);
+  padding: 20px 0 22px;
+  border-top: 1px solid var(--hp-rule);
 }
 .index-list__link {
   display: flex;
   align-items: baseline;
   gap: 12px;
-  text-decoration: none;
-  color: inherit;
 }
 .index-list__name {
-  font-family: var(--display);
-  font-size: 22px;
-  line-height: 1.15;
-  color: var(--ink);
-  border-bottom: 1px solid transparent;
+  font: 400 26px/1.12 var(--serif);
+  letter-spacing: -0.5px;
+  color: var(--hp-ink);
 }
-.index-list__link:hover .index-list__name {
-  color: var(--moss);
-  border-bottom-color: currentColor;
-}
+.index-list__link:hover .index-list__name { color: var(--hp-accent); }
 .index-list__count {
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.08em;
+  font: 600 8px var(--sans);
+  letter-spacing: 1.7px;
   text-transform: uppercase;
-  color: var(--ink-3);
+  color: var(--hp-accent);
   white-space: nowrap;
   flex-shrink: 0;
 }
 .index-list__note {
-  font-family: var(--serif);
-  font-size: 16px;
-  line-height: 1.5;
-  color: var(--ink-2);
-  margin: 6px 0 0;
+  font-size: 12px;
+  line-height: 1.7;
+  color: var(--hp-muted);
+  margin: 8px 0 0;
   max-width: 62ch;
 }
-@media (max-width: 720px) {
-  .index-block { padding-top: 44px; }
+@media (max-width: 760px) {
   .index-list { grid-template-columns: 1fr; }
-  .index-list__item { padding: 16px 0 15px; }
-  .index-list__name { font-size: 20px; }
-  .index-list__note { font-size: 15px; }
+  .index-list__name { font-size: 23px; }
 }
 
 /* ============================================================
@@ -7850,7 +5702,7 @@ main:focus { outline: none; }
   color: var(--ink-2);
   background: transparent;
   border: 1px solid var(--rule-soft);
-  border-radius: 999px;
+  border-radius: 3px;
   padding: 0 17px;
   cursor: pointer;
   transition: none;
@@ -7880,16 +5732,6 @@ main:focus { outline: none; }
 }
 
 /* A button that has to read as a link (clear-the-filters, inline actions). */
-.linkish {
-  font: inherit;
-  color: var(--ink);
-  background: none;
-  border: none;
-  border-bottom: 1px solid var(--rule);
-  padding: 0 0 1px;
-  cursor: pointer;
-}
-.linkish:hover { color: var(--moss); border-bottom-color: var(--moss); }
 
 /* ----- Filter bar ----- */
 .intentf {
@@ -8142,47 +5984,6 @@ main:focus { outline: none; }
    A jump list above the parts themselves. Five text rows on a rule, no images:
    this page already carries twenty-one article cards below, and the index is
    meant to be scanned past in two seconds, not looked at. */
-.planidx {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
-  gap: 28px;
-  margin: 0 0 56px;
-}
-.planidx__item {
-  display: block;
-  border-top: 1px solid var(--rule-soft);
-  padding-top: 14px;
-  text-decoration: none;
-  color: inherit;
-}
-.planidx__item:hover { border-top-color: var(--moss); }
-.planidx__eyebrow {
-  display: block;
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--moss);
-  margin-bottom: 8px;
-}
-.planidx__title {
-  display: block;
-  font-family: var(--display);
-  font-size: 23px;
-  font-weight: 500;
-  line-height: 1.15;
-  color: var(--ink);
-  margin-bottom: 8px;
-}
-.planidx__item:hover .planidx__title { color: var(--moss); }
-.planidx__n {
-  display: block;
-  font-family: var(--mono);
-  font-size: 10.5px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--ink-3);
-}
 
 /* ----- The plan ----- */
 .tripplan {
@@ -8387,54 +6188,46 @@ main:focus { outline: none; }
   .tripplan__band { padding: 22px 18px; }
   .tripplan__summary { font-size: 23px; }
   .tripplan__arrive { flex-direction: column; gap: 8px; padding: 16px 18px; }
-  .planidx { grid-template-columns: 1fr; gap: 0; margin-bottom: 40px; }
-  .planidx__item { padding: 14px 0; }
-  .planidx__title { font-size: 21px; margin-bottom: 5px; }
+  
+  
+  
   .tripplan__arrive-text { font-size: 17px; }
   .intentf__row { grid-template-columns: 1fr; gap: 6px; }
   .intentf__facet { padding-top: 0; }
   .intentf__clear { margin-left: 0; }
 }
 
-/* ===== The article related rail =====
-   Curated onward links (window.RELATED in data.js). Text rows, not the old
-   three-card image grid: the rail carries five or six links now instead of
-   three, and rendering those as cards would have put five more images below
-   the fold on every article page. Same row idiom as the homepage entries. */
+/* ===== The related rail =====
+   Curated onward links (window.RELATED in data.js) as text rows: the serif
+   title, the dek beneath it in the muted small face, a rule between. */
 .relrail {
   list-style: none;
-  margin: 0;
+  margin: 30px 0 0;
   padding: 0;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: 48px;
 }
 .relrail li {
   display: flex;
   flex-direction: column;
-  gap: 6px;
-  border-top: 1px solid var(--rule);
-  padding: 16px 0;
+  gap: 8px;
+  border-top: 1px solid var(--hp-rule);
+  padding: 20px 0 22px;
 }
 .relrail a {
-  font-family: var(--display);
-  font-size: 22px;
-  font-weight: 500;
-  line-height: 1.15;
-  letter-spacing: -0.005em;
-  text-wrap: balance;
-  color: inherit;
-  text-decoration: none;
+  font: 400 26px/1.12 var(--serif);
+  letter-spacing: -0.5px;
+  color: var(--hp-ink);
 }
-.relrail a:hover { color: var(--moss); }
+.relrail a:hover { color: var(--hp-accent); }
 .relrail__dek {
-  font-family: var(--serif);
-  font-style: italic;
-  font-size: 16px;
-  line-height: 1.45;
-  color: var(--ink-2);
+  font: 12px/1.7 var(--sans);
+  color: var(--hp-muted);
 }
-@media (max-width: 880px) {
-  .relrail a { font-size: 20px; }
+@media (max-width: 760px) {
+  .relrail { grid-template-columns: 1fr; margin-top: 24px; }
+  .relrail a { font-size: 23px; }
 }
 
 /* ============================================================
@@ -8516,19 +6309,6 @@ html[data-nav-pending] .navprogress::before { animation-play-state: running; }
 .placeholder.is-zoomable:hover::after,
 .placeholder.is-zoomable:focus-visible::after { content: attr(data-tag) "  ⤢"; }
 
-/* ===== Masthead that gets out of the way (phones) =====
-   The masthead has been sticky on phones since the September 2026 UI pass,
-   which costs a reader 60px of a 700px viewport on every line of an
-   article. Header toggles .is-hidden from scroll direction (down past 160px
-   hides it, any scroll up or the top of the page brings it back), and the
-   class is inert above 880px, where the masthead earns its row. Focus
-   inside it (keyboard readers tabbing into the nav) always wins. */
-@media (max-width: 880px) {
-  .masthead { transition: transform 0.28s cubic-bezier(0.2, 0.8, 0.2, 1); }
-  .masthead.is-hidden { transform: translateY(-100%); }
-  .masthead.is-hidden:focus-within { transform: none; }
-}
-
 /* ===== Back to top =====
    One round control, bottom-right, after the reader is two screens down
    (BackToTop in components.jsx). Sits above the phone tab row and the
@@ -8554,7 +6334,7 @@ html[data-nav-pending] .navprogress::before { animation-play-state: running; }
   justify-content: center;
   cursor: pointer;
   padding: 0;
-  box-shadow: 0 6px 18px -8px rgba(20, 17, 12, 0.35);
+  box-shadow: 0 6px 18px -8px rgba(20, 39, 31, 0.35);
   opacity: 0;
   transform: translateY(12px);
   pointer-events: none;
@@ -8564,9 +6344,6 @@ html[data-nav-pending] .navprogress::before { animation-play-state: running; }
 .totop:hover { color: var(--moss); border-color: var(--moss); }
 .totop:focus-visible { outline: 2px solid var(--moss); outline-offset: 3px; }
 .totop svg { width: 16px; height: 16px; display: block; }
-@media (max-width: 880px) {
-  body:has(.bottomnav) .totop { bottom: calc(60px + env(safe-area-inset-bottom)); }
-}
 
 /* ===== Keyboard hints (search) =====
    <kbd> shown only where a keyboard is likely; a phone never sees it. */
@@ -8592,60 +6369,17 @@ kbd {
   color: var(--ink-2);
 }
 .search-result:focus-visible,
-.search-articles .card:focus-visible { outline: 2px solid var(--moss); outline-offset: 4px; }
+.search-articles > a:focus-visible { outline: 2px solid var(--moss); outline-offset: 4px; }
 
-/* ===== Not found: the suggestions list =====
-   Same row treatment as the related rail, so it reads as part of the site
-   rather than as an error page's afterthought. */
-.notfound__path {
-  font-family: var(--sans);
-  font-size: 13px;
-  color: var(--ink-3);
-  word-break: break-all;
-  margin: 0 0 8px;
-}
-.notfound__path code {
-  font-family: var(--mono, ui-monospace, monospace);
-  font-size: 12px;
-  color: var(--ink-2);
-  background: var(--paper-2);
-  padding: 2px 6px;
-}
-.notfound__suggest { margin: 28px 0 36px; }
-.notfound__suggest h2 {
-  font-family: var(--sans);
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--moss);
-  margin: 0 0 12px;
-}
-.notfound__suggest ul { list-style: none; margin: 0; padding: 0; }
-.notfound__suggest li {
-  padding: 12px 0;
-  border-top: 1px solid var(--rule-soft);
-  display: flex;
-  flex-direction: column;
-  gap: 3px;
-}
-.notfound__suggest li:last-child { border-bottom: 1px solid var(--rule-soft); }
-.notfound__suggest a {
-  font-family: var(--display);
-  font-size: 20px;
-  font-weight: 500;
-  line-height: 1.2;
-  color: var(--ink);
-  text-decoration: none;
-}
-.notfound__suggest a:hover { color: var(--moss); }
-.notfound__suggest .notfound__kind {
-  font-family: var(--sans);
-  font-size: 11px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--ink-3);
-}
+/* ===== Not found (NotFoundPage in app.jsx) =====
+   The page head, with the "did you mean" list as its aside in the related
+   rail's row treatment. */
+.notfound__path { font-size: 12px; color: var(--hp-muted); word-break: break-all; margin: 0 0 8px; }
+.notfound__path code { font: 11px var(--mono); color: var(--hp-ink); background: var(--paper-2); border-radius: 3px; padding: 2px 6px; }
+.notfound__next { max-width: 470px; }
+.notfound__suggest h2 { font: 600 9px var(--sans); letter-spacing: 1.7px; text-transform: uppercase; color: var(--hp-accent); margin: 0; }
+.notfound__suggest .relrail { grid-template-columns: 1fr; margin-top: 16px; }
+.notfound__kind { font: 600 8px var(--sans); letter-spacing: 1.7px; text-transform: uppercase; color: var(--hp-muted); }
 
 /* ============================================================
    Print. Articles are what a trip planner prints or saves to PDF; the
@@ -8653,9 +6387,7 @@ kbd {
    ============================================================ */
 @media print {
   html, body { background: #fff; color: #000; }
-  .masthead, .bottomnav, .readbar, .guide-bar, .skip-link, .nlbox, .band-guide,
-  .share-row, .keep-going, .site-footer, .lightbox, .twk-panel,
-  .navprogress, .totop, .kbd-hint {
+  .hp-navigation,.readbar,.skip-link,.nlbox,.band-guide,.share-row,.keep-going,.site-footer,.lightbox,.navprogress,.totop,.kbd-hint {
     display: none !important;
   }
   .page { animation: none; }
@@ -8722,7 +6454,7 @@ kbd {
 .dates__btn:hover { color: var(--moss); border-color: var(--moss); }
 .dates__btn--small { font-size: 12px; padding: 6px 10px; }
 .dates__hint {
-  font-family: var(--serif);
+  font-family: var(--sans);
   font-size: 15px;
   line-height: 1.55;
   color: var(--ink-2);
@@ -8755,7 +6487,7 @@ kbd {
   margin-bottom: 20px;
 }
 .feecalc__form label { display: flex; flex-direction: column; gap: 6px; }
-.feecalc__form small { font-family: var(--serif); font-size: 13.5px; line-height: 1.45; color: var(--ink-2); }
+.feecalc__form small { font-family: var(--sans); font-size: 13.5px; line-height: 1.45; color: var(--ink-2); }
 .feecalc__options { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
 .feecalc__option { border: 1px solid var(--rule); padding: 16px 18px; }
 .feecalc__option.is-best { border: 2px solid var(--moss); }
@@ -8763,10 +6495,10 @@ kbd {
 .feecalc__option-label { font-family: var(--sans); font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-1); }
 .feecalc__option-total { font-family: var(--display); font-size: 28px; color: var(--ink); }
 .feecalc__option ul { list-style: none; margin: 0; padding: 0; }
-.feecalc__option li { display: flex; justify-content: space-between; gap: 12px; font-family: var(--serif); font-size: 15px; line-height: 1.5; color: var(--ink-1); padding: 3px 0; border-top: 1px solid var(--rule-soft); }
-.feecalc__option p { font-family: var(--serif); font-size: 14.5px; line-height: 1.5; color: var(--ink-2); margin: 10px 0 0; }
+.feecalc__option li { display: flex; justify-content: space-between; gap: 12px; font-family: var(--sans); font-size: 15px; line-height: 1.5; color: var(--ink-1); padding: 3px 0; border-top: 1px solid var(--rule-soft); }
+.feecalc__option p { font-family: var(--sans); font-size: 14.5px; line-height: 1.5; color: var(--ink-2); margin: 10px 0 0; }
 .feecalc__saves { color: var(--moss) !important; font-weight: 600; }
-.feecalc__note { font-family: var(--serif); font-size: 14.5px; line-height: 1.55; color: var(--ink-2); margin-top: 16px; }
+.feecalc__note { font-family: var(--sans); font-size: 14.5px; line-height: 1.55; color: var(--ink-2); margin-top: 16px; }
 
 .parking-now__list { list-style: none; margin: 0; padding: 0; }
 .parking-now__row {
@@ -8790,8 +6522,8 @@ kbd {
 
 /* ==========================================================================
    The design system (.hp-design). Introduced with the September 2026
-   homepage and shared since with the pages rebuilt on it (DESIGN_ROUTES in
-   components.jsx: /planning, /conditions, /guide). Three layers:
+   homepage and, since the design rollout, the system every page is built on
+   (app.jsx renders each route inside <main class="hp-design">). Three layers:
    (1) tokens and a zero-specificity element base (:where), so a legacy
        component nested inside a design page keeps its own class rules and
        only picks up the palette; (2) the shared primitives (.hp-wrap,
@@ -8801,13 +6533,12 @@ kbd {
        utility strip), in the order the homepage draws them; (3) the shared
        adapters for legacy components and one block per rebuilt page, at
        the end of the file.
-   The palette is fixed on purpose: it does not read the tweaks palette and
-   has no dark-mode block, and it restates the site tokens so every nested
-   component follows it.
+   The palette is fixed on purpose and is the site palette: the tokens at the
+   top of the file carry these values, and there is no dark scheme.
    ========================================================================== */
-/* Defined at :root as well, because the footer and <body> restyles below sit
-   outside .hp-design; the names are prefixed, so nothing else reads them. */
-:root, .hp-design {
+/* The system's own names for the palette. The site tokens at the top of the
+   file (--paper, --ink, --moss, ...) carry the same values. */
+:root {
   --hp-paper: #f8f5ed;
   --hp-ink: #233e35;
   --hp-accent: #a4462c;
@@ -8818,20 +6549,6 @@ kbd {
   --hp-gold: #d7b879;
   --hp-band-muted: #b9c7b9;
   --hp-card: #fffdf7;
-}
-.hp-design {
-  /* The site tokens, restated in this palette for the components nested
-     inside a design page (trip selector, live feeds, buy box). */
-  --paper-2: #efeadc;
-  --paper-3: #e3ddca;
-  --ink-1: var(--hp-ink);
-  --ink-2: #3d5249;
-  --ink-3: var(--hp-muted);
-  --rule: #c3cabd;
-  --rule-soft: var(--hp-rule);
-  --moss-2: var(--hp-accent-deep);
-  --rust: var(--hp-accent);
-  --gold: #9a7a2e;
 }
 
 /* Homepage: visitor planning, Field Guide, Sunday Letter. */
@@ -9608,7 +7325,6 @@ kbd {
 }
 
 /* Integrate the existing shared form and footer without changing other routes. */
-.hp-design { --paper: var(--hp-paper); --ink: var(--hp-ink); --moss: var(--hp-accent); }
 :where(.hp-design) h1, :where(.hp-design) h2, :where(.hp-design) h3 { text-wrap: initial; }
 :where(.hp-design) a:hover { color: inherit; }
 .hp-design a.hp-button:hover { color: var(--hp-on-accent); }
@@ -9619,14 +7335,18 @@ kbd {
 .hp-design .hp-newsletter { background: transparent; border: 0; padding: 0; margin: 0; }
 .hp-design .hp-newsletter h3 { position: absolute; width: 1px; height: 1px; padding: 0; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 .hp-design .hp-newsletter > p { color: var(--hp-muted); font: 13px/1.85 var(--sans); margin: 15px 0 24px; }
-.hp-design .nlbox__form { display: flex; gap: 8px; margin: 0; }
-.hp-design .nlbox__form input[type=email] { min-width: 0; width: 100px; flex: 1; padding: 13px; background: #fffdf7; border: 1px solid #b8c0b3; border-radius: 3px; color: var(--hp-ink); font: 12px var(--sans); }
-.hp-design .nlbox__form button { padding: 15px 17px; background: var(--hp-accent); border: 0; border-radius: 3px; color: var(--hp-on-accent); font: 600 12px var(--sans); white-space: nowrap; cursor: pointer; }
-.hp-design .nlbox__form button:hover { background: var(--hp-accent-deep); }
-body:has(.hp-design) { background: var(--hp-paper); }
-body:has(.hp-design) .site-footer { --paper: var(--hp-paper); --ink: var(--hp-ink); --ink-2: var(--hp-ink); --ink-3: var(--hp-muted); --rule-soft: var(--hp-rule); --moss: var(--hp-accent); background: var(--hp-paper); }
+:is(.hp-design, .nlmodal) .nlbox__form { display: flex; gap: 8px; margin: 0; }
+:is(.hp-design, .nlmodal) .nlbox__form input[type=email] { min-width: 0; width: 100px; flex: 1; padding: 13px; background: #fffdf7; border: 1px solid #b8c0b3; border-radius: 3px; color: var(--hp-ink); font: 12px var(--sans); }
+:is(.hp-design, .nlmodal) .nlbox__form button { padding: 15px 17px; background: var(--hp-accent); border: 0; border-radius: 3px; color: var(--hp-on-accent); font: 600 12px var(--sans); white-space: nowrap; cursor: pointer; }
+:is(.hp-design, .nlmodal) .nlbox__form button:hover { background: var(--hp-accent-deep); }
+/* The footer as the homepage draws it: links in full ink, the dark rule above
+   the grid, and a near-black wordmark. The last two are the retired High
+   Sierra palette's ink, which the footer inherited from <html> before the
+   rollout; pinned so the homepage stays pixel-identical (DESIGN-ROLLOUT.md
+   lists it as a homepage bug to decide on). */
+.site-footer { --ink-2: var(--hp-ink); --rule: #11161c; background: var(--hp-paper); color: #0c1014; }
 @media(max-width:760px) {
-  .hp-design .nlbox__form button { font-size: 10px; padding-inline: 12px; }
+  :is(.hp-design, .nlmodal) .nlbox__form button { font-size: 10px; padding-inline: 12px; }
   .hp-navigation nav { flex-wrap: wrap; }
 }
 @media(max-width:360px) {
@@ -9639,13 +7359,13 @@ body:has(.hp-design) .site-footer { --paper: var(--hp-paper); --ink: var(--hp-in
 .hp-design .hp-phone img { height: auto; }
 .hp-design .hp-newsletter::before { content: none; }
 .hp-design .hp-newsletter label { display: block; font-size: 10px; margin-bottom: 7px; }
-.hp-design .nlbox__form { flex-wrap: nowrap; border: 0; }
-.hp-design .nlbox__form button { width: auto; text-transform: none; letter-spacing: normal; }
-.hp-design .nlbox__form button:hover { color: var(--hp-on-accent); }
+:is(.hp-design, .nlmodal) .nlbox__form { flex-wrap: nowrap; border: 0; }
+:is(.hp-design, .nlmodal) .nlbox__form button { width: auto; text-transform: none; letter-spacing: normal; }
+:is(.hp-design, .nlmodal) .nlbox__form button:hover { color: var(--hp-on-accent); }
 
 @media (max-width: 760px) {
   /* Avoid focus zoom on iOS and give the compact nav comfortable tap targets. */
-  .hp-design .nlbox__form input[type=email] { font-size: 16px; }
+  :is(.hp-design, .nlmodal) .nlbox__form input[type=email] { font-size: 16px; }
   .hp-navigation nav a { padding-block: 12px; }
 }
 
@@ -9663,10 +7383,6 @@ body:has(.hp-design) .site-footer { --paper: var(--hp-paper); --ink: var(--hp-in
 .hp-design .hp-pagehead--split { display: grid; grid-template-columns: 1fr 1.05fr; gap: 55px; align-items: center; }
 .hp-design .hp-pagehead .hp-intro { max-width: 470px; }
 .hp-design .hp-pagehead .hp-actions { margin-top: 4px; }
-.hp-design .crumbs { font-size: 10px; letter-spacing: .4px; color: var(--hp-muted); margin-bottom: 26px; }
-.hp-design .crumbs a { color: var(--hp-muted); border-bottom: 1px solid var(--hp-rule); }
-.hp-design .crumbs a:hover { color: var(--hp-ink); }
-.hp-design .crumbs [aria-current="page"] { color: var(--hp-ink); }
 
 /* Rows and cards without a photo keep their box. */
 .hp-design .hp-row__blank { display: block; width: 136px; height: 140px; border-radius: 2px; background: var(--paper-2); }
@@ -9685,17 +7401,13 @@ body:has(.hp-design) .site-footer { --paper: var(--hp-paper); --ink: var(--hp-in
 .hp-design .hp-stats { list-style: none; display: flex; flex-wrap: wrap; gap: 8px; padding: 0; margin: 0 0 28px; }
 .hp-design .hp-product .hp-stats li { display: block; margin: 0; padding: 6px 11px; border: 1px solid #ffffff30; border-radius: 3px; font: 600 9px var(--sans); letter-spacing: 1.4px; text-transform: uppercase; color: #d1d9cb; }
 
-/* Adapters: older shared components, restated in the system's type. */
-.hp-design .btn { gap: 25px; padding: 15px 22px; border-radius: 3px; background: var(--hp-accent); color: var(--hp-on-accent); font: 600 12px var(--sans); letter-spacing: normal; text-transform: none; transition: background .2s; }
-.hp-design .btn:hover { background: var(--hp-accent-deep); color: var(--hp-on-accent); }
-.hp-design .btn--ghost { background: transparent; color: var(--hp-ink); border: 1px solid var(--hp-rule); }
-.hp-design .btn--ghost:hover { background: var(--hp-ink); color: var(--hp-paper); }
-.hp-design .eyebrow { font-family: var(--sans); font-size: 9px; letter-spacing: 1.7px; font-weight: 600; text-transform: uppercase; color: var(--hp-accent); }
+/* A button that reads as the system's text link. */
 .hp-design button.hp-link { background: none; border: 0; border-bottom: 1px solid #a7afa4; padding: 0 0 4px; color: inherit; font-family: var(--sans); cursor: pointer; }
 
-/* Outside the page root but on a design route: the onward links, restated in
-   the palette the way the footer is. */
-body:has(.hp-design) .keep-going { --paper: var(--hp-paper); --paper-2: #efeadc; --ink: var(--hp-ink); --ink-2: #3d5249; --ink-3: var(--hp-muted); --rule: #c3cabd; --rule-soft: var(--hp-rule); --moss: var(--hp-accent); background: var(--hp-paper); }
+/* The onward links sat outside the page root before the rollout and took
+   <html>'s base (19px serif, the High Sierra near-black). Now inside <main>,
+   that base is restated so /planning, /conditions and /guide stay identical. */
+.keep-going { background: var(--hp-paper); color: #0c1014; font: 19px/1.55 var(--serif); }
 
 /* ── /planning ─────────────────────────────────────────────────────────── */
 .hp-planning .hp-partindex { grid-template-rows: none; }
@@ -9709,7 +7421,7 @@ body:has(.hp-design) .keep-going { --paper: var(--hp-paper); --paper-2: #efeadc;
 .hp-planning .hp-partindex .hp-row:hover h3 { color: var(--hp-accent); }
 .hp-planning__selector { padding-bottom: 48px; }
 .hp-planning__filters { padding-block: 0 8px; }
-.hp-planning .intentf { border-top-color: var(--hp-rule); border-bottom-color: var(--hp-rule); padding-top: 24px; }
+.hp-design .intentf { border-top-color: var(--hp-rule); border-bottom-color: var(--hp-rule); padding-top: 24px; }
 .hp-planning .tripsel__see { border-radius: 3px; text-transform: none; letter-spacing: normal; }
 .hp-planning .tripsel__toggle { background: none; border: 0; border-bottom: 1px solid #a7afa4; border-radius: 0; padding: 0 0 4px; font: 600 11px var(--sans); color: var(--hp-ink); cursor: pointer; }
 .hp-planning__results { padding-top: 40px; }
@@ -9730,9 +7442,8 @@ body:has(.hp-design) .keep-going { --paper: var(--hp-paper); --paper-2: #efeadc;
 .hp-planning .tripsel__head { background: transparent; border-bottom: 1px solid var(--hp-rule); padding: 30px 32px 26px; }
 .hp-planning .tripsel__title { font-family: var(--serif); font-weight: 400; font-size: 46px; letter-spacing: -1.1px; line-height: 1.04; margin: 6px 0 14px; }
 .hp-planning .tripsel__dek { font: 13px/1.85 var(--sans); color: var(--hp-muted); }
-.hp-planning .intentf__title { font-size: 9px; letter-spacing: 1.7px; font-weight: 600; color: var(--hp-accent); }
-.hp-planning .intentf__note { font: 12px/1.7 var(--sans); color: var(--hp-muted); }
-.hp-planning .ichip { border-radius: 3px; }
+.hp-design .intentf__title { font-size: 9px; letter-spacing: 1.7px; font-weight: 600; color: var(--hp-accent); }
+.hp-design .intentf__note { font: 12px/1.7 var(--sans); color: var(--hp-muted); }
 
 /* ── /conditions ───────────────────────────────────────────────────────── */
 .hp-conditions .hp-pagehead--split { grid-template-columns: 1fr minmax(0, 440px); }
@@ -9790,7 +7501,7 @@ body:has(.hp-design) .keep-going { --paper: var(--hp-paper); --paper-2: #efeadc;
 @media (max-width: 760px) {
   .hp-design .hp-pagehead { padding-block: 24px 40px; }
   .hp-design .hp-pagehead--split { grid-template-columns: 1fr; gap: 36px; }
-  .hp-design .crumbs { margin-bottom: 18px; }
+  .crumbs { margin-bottom: 18px; }
   .hp-design .hp-journal-grid--2 { grid-template-columns: 1fr; }
   .hp-design .hp-journal-grid--2 img { height: 220px; }
   .hp-design .hp-product h1 { font-size: 40px; }
@@ -9960,4 +7671,277 @@ body:has(.hp-design) .keep-going { --paper: var(--hp-paper); --paper-2: #efeadc;
   .hp-design .hp-menu__blurb { font-size: 24px; margin-bottom: 18px; }
   .hp-design .hp-menu__cols { grid-template-columns: 1fr; gap: 20px; }
   .hp-design .hp-menu__link { padding-block: 10px; }
+}
+
+/* ── Articles (page-article.jsx, /articles/<slug>) ─────────────────────────
+   The head is the homepage hero's split (HpPageHead): copy on the left, the
+   plate where the hero's photo goes. The plate is cropped to the hero
+   figure's box; the lightbox still opens the whole photograph. The body is
+   one reading column (.prose), and after it the homepage's section order:
+   the Field Guide band, the letter, the journal. */
+.hp-design .hp-article__head h1 { font-size: 58px; letter-spacing: -1.4px; margin-bottom: 22px; }
+.hp-design .hp-article__head .hp-eyebrow a:hover { color: var(--hp-accent-deep); }
+.hp-design .hp-article__head .hp-intro { font-size: 16px; line-height: 1.75; max-width: 540px; margin-bottom: 30px; }
+.hp-design .hp-article__plate .placeholder { height: 560px; }
+.hp-design .hp-article__plate .placeholder__img { position: absolute; inset: 0; height: 100%; object-fit: cover; }
+.hp-article__byline {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  font-style: normal;
+  font-size: 11px;
+  line-height: 1.6;
+  color: var(--hp-muted);
+  border-top: 1px solid var(--hp-rule);
+  padding-top: 18px;
+}
+.hp-article__byline > span:nth-child(2) { display: flex; flex-direction: column; flex: 1; min-width: 0; }
+.hp-article__avatar {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: var(--paper-2);
+  border: 1px solid var(--hp-rule);
+  font: 400 14px var(--serif);
+  color: var(--hp-ink);
+}
+.hp-article__author { color: var(--hp-ink); font-weight: 600; font-size: 12px; }
+.hp-article__author a { border-bottom: 1px solid #a7afa4; }
+.hp-article__dates { margin-left: auto; display: flex; flex-direction: column; text-align: right; }
+/* The reading column: one centred measure on the page's wrap. Articles and
+   every prose page (start here, about, the legal pages, the event pages). */
+.hp-reading { padding-block: 56px 16px; }
+.hp-reading__column { max-width: 680px; margin: 0 auto; }
+.hp-reading__column > .lodging-cta:last-child { margin-bottom: 48px; }
+.hp-article__soon { color: var(--hp-muted); font-style: italic; }
+.hp-article__authorbox {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  border-top: 1px solid var(--hp-rule);
+  padding: 28px 0 8px;
+  margin-top: 48px;
+}
+.hp-article__authorbox .hp-article__author { font: 400 22px/1.2 var(--serif); margin: 0 0 6px; }
+.hp-article__authorbox .hp-article__bio { font-size: 12px; line-height: 1.7; color: var(--hp-muted); margin: 0 0 12px; }
+.hp-article__related .relrail { margin-top: 34px; }
+.share-row { display: flex; align-items: center; flex-wrap: wrap; gap: 10px 14px; margin-top: 24px; font: 12px var(--sans); color: var(--hp-muted); }
+.share-row__btn { font: 600 11px var(--sans); color: var(--hp-ink); background: none; border: 1px solid var(--hp-rule); border-radius: 3px; padding: 9px 14px; cursor: pointer; transition: border-color .2s, color .2s; }
+.share-row__btn:hover { border-color: var(--hp-accent); color: var(--hp-accent); }
+
+/* A linked note card: eyebrow, serif h3, one line, and the row's call to
+   action. The article's map card; any page's single in-column pointer. */
+.hp-design .hp-note {
+  display: block;
+  margin-top: 40px;
+  padding: 28px 30px 26px;
+  background: var(--hp-card);
+  border: 1px solid var(--hp-rule);
+  border-radius: 3px;
+}
+.hp-design .hp-note .hp-eyebrow { margin-bottom: 12px; }
+.hp-design .hp-note h3 { font-size: 30px; margin-bottom: 10px; transition: color .2s; }
+.hp-design .hp-note p:not(.hp-eyebrow) { font-size: 13px; line-height: 1.8; color: var(--hp-muted); margin-bottom: 0; }
+.hp-design .hp-note b { display: flex; justify-content: space-between; margin-top: 16px; font-size: 10px; font-weight: 600; }
+.hp-design .hp-note b span { color: var(--hp-accent); font-size: 17px; }
+.hp-design .hp-note:hover h3 { color: var(--hp-accent); }
+
+@media (max-width: 1100px) {
+  .hp-design .hp-article__head h1 { font-size: 48px; }
+  .hp-design .hp-article__plate .placeholder { height: 480px; }
+}
+@media (max-width: 760px) {
+  .hp-design .hp-article__head h1 { font-size: 40px; letter-spacing: -1px; }
+  .hp-design .hp-article__plate .placeholder { height: 340px; }
+  .hp-article__byline { flex-wrap: wrap; }
+  .hp-article__dates { flex-basis: 100%; flex-direction: row; flex-wrap: wrap; gap: 0 14px; margin-left: 52px; text-align: left; }
+  .hp-reading { padding-top: 40px; }
+  .nlbox { padding: 26px 22px; }
+  .nlbox h3 { font-size: 28px; }
+  .statblock { grid-template-columns: 1fr 1fr; gap: 16px; }
+  .band-guide { padding: 28px 22px; }
+  .band-guide__title { font-size: 30px; }
+  .hp-design .hp-note { padding: 24px 22px; }
+}
+
+/* Reading h3s: line-height and tracking at zero specificity, so a component
+   heading inside a prose block (a class of its own) keeps its values. Last in
+   the file so it beats the :where(.hp-design) element base. /guide's sales
+   copy keeps that element base, as it had before the rollout. */
+:where(.prose:not(.guide-prose), #prerender-prose) h3 { line-height: 1.15; letter-spacing: -0.4px; }
+:where(.prose:not(.guide-prose), #prerender-prose) a {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: var(--hp-accent);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+:where(.prose:not(.guide-prose), #prerender-prose) a:hover { color: var(--hp-accent); }
+
+/* ── /articles and /section/<slug> (page-articles.jsx) ─────────────────── */
+.hp-index__filters { padding-top: 36px; }
+.hp-index__sections { display: flex; gap: 8px; flex-wrap: wrap; padding-bottom: 24px; }
+.hp-index .hp-journal-grid { row-gap: 48px; margin-top: 0; }
+.hp-index__empty { max-width: 640px; }
+.hp-index__back { border-top: 1px solid var(--hp-rule); margin: 64px 0 0; padding-top: 28px; }
+
+/* An inline link inside the system's small copy (an intro, a sub line). */
+.hp-design .hp-inline { color: var(--hp-ink); border-bottom: 1px solid #a7afa4; }
+.hp-design .hp-inline:hover { color: var(--hp-accent); }
+
+/* ── /films (page-films.jsx) ───────────────────────────────────────────── */
+.hp-films .hp-pagehead .hp-intro + .hp-intro { margin-top: -8px; }
+.hp-films__theme + .hp-films__theme { border-top: 1px solid var(--hp-rule); }
+.hp-films__close { padding-bottom: 24px; }
+
+/* ── /webcams (page-webcams.jsx) ───────────────────────────────────────── */
+.hp-webcams__live { padding-bottom: 0; }
+.hp-webcams__live .cam-grid { margin-top: 30px; }
+
+/* ── /places (page-places.jsx) ─────────────────────────────────────────── */
+.hp-places__block { border-top: 1px solid var(--hp-rule); }
+.hp-places__gap { height: 26px; }
+.hp-places__listed { padding-bottom: 70px; }
+
+/* ── /about (page-about.jsx) ───────────────────────────────────────────── */
+.hp-design .hp-about__plate .placeholder { height: 520px; }
+.hp-design .hp-about__colophon { color: var(--hp-muted); line-height: 1.8; margin-top: 8px; }
+@media (max-width: 760px) { .hp-design .hp-about__plate .placeholder { height: 340px; } }
+
+/* ── /privacy, /terms, /affiliate (page-legal.jsx) ─────────────────────── */
+.hp-legal .hp-reading { padding-bottom: 80px; }
+
+/* ── /newsletter and /contact (page-newsletter-contact.jsx) ────────────── */
+.hp-nlpage__perk { max-width: 520px; padding: 20px 22px; margin-bottom: 24px; background: var(--hp-card); border: 1px solid var(--hp-rule); border-radius: 3px; }
+.hp-nlpage__perk .hp-eyebrow { margin-bottom: 10px; }
+.hp-nlpage__perk p:last-child { font-size: 13px; line-height: 1.8; margin: 0; }
+.hp-design .hp-nlpage .nlbox__form { max-width: 520px; }
+.hp-nlpage__done { font: 400 24px/1.3 var(--serif); color: var(--hp-accent); margin: 0; }
+.hp-nlpage__done a { border-bottom: 1px solid currentColor; }
+.hp-nlpage__terms { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px 48px; }
+.hp-nlpage__terms h3 { font-size: 30px; border-top: 1px solid var(--hp-ink); padding-top: 18px; margin-bottom: 0; }
+.hp-nlpage__terms .hp-sub { margin-bottom: 0; }
+.hp-nlpage__privacy { grid-column: 1 / -1; margin: 24px 0 0; }
+.hp-contact__grid { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 64px; align-items: start; }
+.hp-contact__pair { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.hp-contact__error { color: var(--hp-accent-deep); font-size: 13px; margin-bottom: 16px; }
+.hp-contact__sent { padding: 34px 36px; background: var(--hp-card); border: 1px solid var(--hp-rule); border-radius: 3px; }
+.hp-contact__sent h2 { font-size: 38px; margin-bottom: 12px; }
+.hp-contact__sent p:last-child { font-size: 13px; line-height: 1.8; color: var(--hp-muted); margin: 0; }
+.hp-contact__aside { border-left: 1px solid var(--hp-rule); padding-left: 32px; }
+.hp-contact__mail { font: 400 22px/1.3 var(--serif); margin-bottom: 8px; }
+.hp-contact__mail a { border-bottom: 1px solid #a7afa4; }
+.hp-contact__note { font-size: 12px; line-height: 1.7; color: var(--hp-muted); }
+.hp-contact__heads { border-top: 1px solid var(--hp-rule); margin-top: 28px; padding-top: 24px; }
+@media (max-width: 760px) {
+  .hp-nlpage__terms, .hp-contact__grid, .hp-contact__pair { grid-template-columns: 1fr; }
+  .hp-contact__grid { gap: 40px; }
+  .hp-contact__aside { border-left: 0; padding-left: 0; border-top: 1px solid var(--hp-rule); padding-top: 28px; }
+}
+
+/* ── /consult (page-consult.jsx) ───────────────────────────────────────── */
+.hp-consult__book { max-width: 440px; margin-left: auto; padding: 30px 32px; background: var(--hp-card); border: 1px solid var(--hp-rule); border-radius: 3px; }
+.hp-consult__book .hp-button { margin: 4px 18px 12px 0; }
+.hp-consult__soon { font-size: 13px; line-height: 1.8; margin: 0 0 18px; }
+@media (max-width: 760px) { .hp-consult__book { margin-left: 0; padding: 24px 22px; } }
+
+/* ── /widget (page-widget.jsx) ─────────────────────────────────────────── */
+.hp-widget__preview { max-width: 460px; margin-left: auto; padding: 28px 30px; background: var(--hp-card); border: 1px solid var(--hp-rule); border-radius: 3px; }
+.hp-widget__preview #talus-conditions { min-height: 40px; margin-bottom: 4px; }
+.hp-widget__snippet { font: 13px/1.6 var(--mono); background: var(--paper-2); border-radius: 3px; padding: 16px 18px; overflow-x: auto; margin: 12px 0 14px; }
+.hp-widget__more { margin-top: 40px; }
+@media (max-width: 760px) { .hp-widget__preview { margin-left: 0; padding: 24px 22px; } }
+
+/* ── /advertise and /partners ──────────────────────────────────────────── */
+.hp-advertise__why { border-top: 1px solid var(--hp-rule); }
+.hp-advertise__copy { max-width: 720px; margin-top: 22px; }
+.hp-advertise__copy .hp-sub { margin: 0 0 1em; }
+.hp-partners__pitch { padding-block: 24px 16px; }
+.hp-partners__ask { margin-top: 32px; padding: 28px 30px; background: var(--hp-card); border: 1px solid var(--hp-rule); border-radius: 3px; }
+.hp-partners__ask > p:first-child { font-size: 13px; line-height: 1.8; margin: 0 0 18px; }
+.hp-partners__ask .hp-button { margin: 0 18px 10px 0; }
+
+/* ── The prose block's first heading ───────────────────────────────────────
+   A prose block that opens with a section heading sits right under a page
+   head (or a card); the head's own rule already divides them, so the first
+   h2 drops its rule and the space above it. */
+:where(.prose:not(.guide-prose)) > h2:first-child { border-top: 0; padding-top: 0; margin-top: 0; }
+.hp-reading__column > .prose + .prose > h2:first-child,
+.hp-reading__column > * + section.prose > h2:first-child { border-top: 1px solid var(--hp-rule); padding-top: 44px; margin-top: 56px; }
+
+/* ── /dates and /international: the calculators, in the design's faces ── */
+.dates__form { border: 1px solid var(--hp-rule); border-radius: 3px; background: var(--hp-card); }
+.dates__form input, .feecalc__form input, .feecalc__form select { border: 1px solid #b8c0b3; border-radius: 3px; background: var(--hp-card); font-family: var(--sans); }
+.dates__btn { border: 1px solid var(--hp-rule); border-radius: 3px; font-family: var(--sans); font-weight: 600; }
+.dates__chip { border-color: var(--rule-soft); border-radius: 3px; font-family: var(--sans); }
+.dates__chip.is-on { background: var(--hp-accent); border-color: var(--hp-accent); color: var(--hp-on-accent); }
+.feecalc { border-top: 1px solid var(--hp-ink); }
+.feecalc__option { border: 1px solid var(--hp-rule); border-radius: 3px; background: var(--hp-card); }
+.feecalc__option.is-best { border: 1px solid var(--hp-accent); box-shadow: inset 0 0 0 1px var(--hp-accent); }
+.feecalc__option-total { font-family: var(--serif); }
+.feecalc__option li, .feecalc__option p, .feecalc__note, .feecalc__form small { font-size: 12px; line-height: 1.7; }
+.feecalc__option p, .feecalc__note, .feecalc__form small { color: var(--hp-muted); }
+.prose table.dates__table { width: 100%; border-collapse: collapse; font-size: 13px; line-height: 1.6; margin: 0 0 1.4em; }
+.prose table.dates__table th { font: 600 9px var(--sans); letter-spacing: 1.4px; text-transform: uppercase; text-align: left; color: var(--hp-muted); border-bottom: 1px solid var(--hp-ink); padding: 8px 12px 8px 0; }
+.prose table.dates__table td { border-bottom: 1px solid var(--hp-rule); padding: 12px 12px 12px 0; vertical-align: top; }
+.prose table.dates__table td p { font-size: 12px; line-height: 1.7; color: var(--hp-muted); }
+
+/* ── /checklist (page-checklist.jsx) ───────────────────────────────────── */
+.hp-checklist__essays { grid-template-columns: 1fr; margin-top: 18px; }
+.hp-checklist__essays a { font-size: 22px; }
+.page-checklist .checklist-section label a { border-bottom: 1px solid #a7afa4; }
+
+/* ── /kit (page-kit.jsx) ───────────────────────────────────────────────── */
+.hp-kit__tabs { padding-top: 36px; }
+.hp-kit__list { padding-block: 40px 56px; }
+.hp-design .kit__title { font-size: 46px; margin: 8px 0 12px; }
+.kit__summary { max-width: 560px; margin-top: 0; }
+.kit__essay h3 { font-size: 30px; margin-bottom: 10px; }
+.hp-kit__dir { display: flex; align-items: center; justify-content: space-between; gap: 32px; flex-wrap: wrap; border-top: 1px solid var(--hp-rule); }
+.hp-kit__dir > div { flex: 1; min-width: 280px; }
+.hp-kit__dir h2 { font-size: 38px; margin-bottom: 0; }
+.hp-kit__dir .hp-sub { margin-bottom: 0; }
+.kit__tabs { border-top: 1px solid var(--hp-ink); border-bottom: 1px solid var(--hp-rule); }
+.kit__tab { border-right-color: var(--hp-rule); color: var(--hp-muted); }
+.kit__tab:hover { background: transparent; color: var(--hp-accent); }
+.kit__tab.is-active { background: transparent; color: var(--hp-ink); box-shadow: inset 0 -2px 0 var(--hp-accent); }
+.kit__tab-roman { font-family: var(--serif); font-style: normal; color: var(--hp-accent); }
+.kit__tab-label { font-size: 12px; letter-spacing: normal; text-transform: none; }
+.kit__list-roman { font-family: var(--serif); font-style: normal; color: var(--hp-accent); font-size: 24px; }
+.kit__count-num { font-family: var(--serif); font-weight: 400; }
+.kit__photo img { border: 0; border-radius: 3px; }
+.kit__photo figcaption { font-size: 11px; color: var(--hp-muted); }
+.kit-group__title { font-family: var(--serif); font-weight: 400; font-size: 30px; letter-spacing: -0.6px; border-bottom-color: var(--hp-ink); }
+.kit-check { border-bottom-color: var(--hp-rule); }
+.kit-check__name { font-family: var(--serif); font-size: 20px; line-height: 1.25; }
+.kit-check__note { font-size: 12px; line-height: 1.7; color: var(--hp-muted); }
+.kit-check__box { accent-color: var(--hp-accent); }
+.kit-check--callout { background: var(--hp-card); border: 1px solid var(--hp-rule); border-radius: 3px; }
+.kit-check__link, .kit-check__article { color: var(--hp-ink); border-bottom-color: #a7afa4; letter-spacing: normal; text-transform: none; }
+.kit-check__link:hover, .kit-check__article:hover { color: var(--hp-accent); border-bottom-color: var(--hp-accent); }
+
+/* ── /stay (page-stay.jsx) ─────────────────────────────────────────────────
+   The head is the homepage hero's split with the page's photograph as its
+   figure; the search panel follows as a design card rather than a plate
+   pulled up over a full-bleed photo. The booking colour (--stay-book) and
+   the one-colour-one-action rule are unchanged. */
+.hp-design .hp-stay__figure { position: relative; height: 520px; margin: 0; border-radius: 3px; overflow: hidden; }
+.hp-design .hp-stay__figure picture, .hp-design .hp-stay__figure img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.hp-design .hp-stay__figure::after { content: ""; position: absolute; inset: 40% 0 0; background: linear-gradient(transparent, #14271fad); }
+.hp-design .hp-stay__figure figcaption { position: absolute; left: 22px; right: 22px; bottom: 16px; z-index: 1; display: flex; justify-content: space-between; gap: 16px; color: #fff8e5; font-size: 8px; letter-spacing: .7px; text-transform: uppercase; }
+.stay-search-wrap { margin-top: 0; padding-top: 48px; }
+.stay-search { background: var(--hp-card); border: 1px solid var(--hp-rule); border-radius: 3px; box-shadow: none; }
+.stay-h2 { font-family: var(--serif); font-weight: 400; font-size: 46px; letter-spacing: -1.1px; line-height: 1.04; }
+.stay-head__note { font-size: 13px; line-height: 1.85; color: var(--hp-muted); }
+.hp-stay__more { border-top: 1px solid var(--hp-rule); }
+.hp-stay__disclosure { margin-top: 32px; }
+@media (max-width: 1100px) { .hp-design .hp-stay__figure { height: 440px; } }
+@media (max-width: 760px) {
+  .hp-design .hp-stay__figure { height: 340px; }
+  .stay-search-wrap { margin-top: 0; padding-top: 32px; }
+  .stay-search { box-shadow: none; }
+  .stay-h2 { font-size: 38px; }
 }

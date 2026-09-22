@@ -228,7 +228,7 @@ for (const name of ["Header", "HomeHero"]) {
 const noop = () => {};
 let rendered;
 try {
-  // The hero is wrapped in <main id="main" tabindex="-1"><div class="page">,
+  // The hero is wrapped in <main id="main" class="hp-design"><div class="page">,
   // mirroring the structure app.jsx renders around HomePage. Two reasons: the
   // Header's skip link targets #main, which otherwise does not exist until
   // React mounts (a dangling skip link and a landmark-free page for the whole
@@ -243,7 +243,7 @@ try {
       React.createElement(sandbox.window.Header, { current: "home", go: noop }),
       React.createElement(
         "main",
-        { id: "main", tabIndex: -1 },
+        { id: "main", tabIndex: -1, className: "hp-design" },
         React.createElement(
           "div",
           { className: "page hp-design" },
@@ -299,7 +299,7 @@ const MUST_CONTAIN = [
   ['href="#field-guide"', "the app section CTA"],
   ['href="#home-newsletter"', "the newsletter section CTA"],
   ['class="hp-wrap hp-header"', "the homepage masthead"],
-  ['<main id="main" tabindex="-1">', "the main landmark (the skip link's pre-boot target)"],
+  ['<main id="main" tabindex="-1" class="hp-design">', "the main landmark (the skip link's pre-boot target)"],
 ];
 for (const [needle, what] of MUST_CONTAIN) {
   if (!rendered.includes(needle)) {

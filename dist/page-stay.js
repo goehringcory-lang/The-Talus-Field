@@ -989,35 +989,29 @@ function StayPage({
   var others = IN_PARK.slice(3);
   return React.createElement("div", {
     className: "page stay-page"
-  }, React.createElement("header", {
-    className: "stay-hero"
-  }, React.createElement(ResponsiveImage, {
-    image: STAY_HERO.image,
-    alt: STAY_HERO.alt,
-    sizes: "100vw",
-    eager: true,
-    className: "stay-hero__img"
-  }), React.createElement("div", {
-    className: "stay-hero__scrim",
-    "aria-hidden": "true"
-  }), React.createElement("div", {
-    className: "wrap stay-hero__inner"
-  }, React.createElement(Breadcrumbs, {
+  }, React.createElement(HpPageHead, {
+    as: "header",
     go: go,
-    trail: [{
+    className: "hp-stay__head",
+    crumbs: [{
       label: "Home",
       route: "home"
     }, {
       label: "Where to stay"
-    }]
+    }],
+    eyebrow: "LODGING · THE WHOLE BOARD",
+    title: "Where to Stay in Yosemite",
+    intro: "Every bed in and around the park, sorted by what it is and who it fits. Pick the road, then the town, then see what is actually left on your dates.",
+    aside: React.createElement("figure", {
+      className: "hp-stay__figure"
+    }, React.createElement(ResponsiveImage, {
+      image: STAY_HERO.image,
+      alt: STAY_HERO.alt,
+      sizes: "(max-width: 760px) calc(100vw - 40px), 640px",
+      eager: true
+    }), React.createElement("figcaption", null, React.createElement("span", null, "LODGING · YOSEMITE"), React.createElement("span", null, STAY_HERO.credit.replace(/^Photo:\s*/, ""))))
   }), React.createElement("div", {
-    className: "stay-hero__eyebrow"
-  }, "Lodging · the whole board"), React.createElement("h1", null, "Where to Stay in Yosemite"), React.createElement("p", {
-    className: "stay-hero__dek"
-  }, "Every bed in and around the park, sorted by what it is and who it fits. Pick the road, then the town, then see what is actually left on your dates.")), React.createElement("div", {
-    className: "stay-hero__credit"
-  }, STAY_HERO.credit)), React.createElement("div", {
-    className: "wrap stay-search-wrap"
+    className: "hp-wrap stay-search-wrap"
   }, React.createElement(StaySearch, null), React.createElement("nav", {
     className: "stay-jump",
     "aria-label": "On this page"
@@ -1038,10 +1032,10 @@ function StayPage({
   }, "Camping"), React.createElement("a", {
     href: "#booking"
   }, "Booking"))), React.createElement("section", {
-    className: "wrap stay-section",
+    className: "hp-wrap stay-section",
     id: "decide"
   }, React.createElement(StayPicker, null)), React.createElement("section", {
-    className: "wrap stay-section stay-band",
+    className: "hp-wrap stay-section stay-band",
     id: "in-park"
   }, React.createElement("div", {
     className: "stay-head"
@@ -1083,7 +1077,7 @@ function StayPage({
   }, "Search lodging around Yosemite"), React.createElement("span", {
     className: "stay-fallback__fine"
   }, "On Expedia, in a new tab. Affiliate link.")))), React.createElement("section", {
-    className: "wrap stay-section",
+    className: "hp-wrap stay-section",
     id: "gateways"
   }, React.createElement("div", {
     className: "stay-head"
@@ -1107,7 +1101,7 @@ function StayPage({
     className: "stay-section stay-seasons-band",
     id: "seasons"
   }, React.createElement("div", {
-    className: "wrap"
+    className: "hp-wrap"
   }, React.createElement("div", {
     className: "stay-head"
   }, React.createElement("div", null, React.createElement("div", {
@@ -1122,7 +1116,7 @@ function StayPage({
     key: s.id,
     item: s
   }))))), React.createElement("section", {
-    className: "wrap stay-section",
+    className: "hp-wrap stay-section",
     id: "booking"
   }, React.createElement("h2", {
     className: "stay-h2"
@@ -1153,7 +1147,7 @@ function StayPage({
     slug: "camping-fallback",
     name: "Mariposa lodging search"
   }, "search Mariposa for a roof tonight ↗"))))), React.createElement("section", {
-    className: "wrap stay-section"
+    className: "hp-wrap stay-section"
   }, React.createElement("aside", {
     className: "stay-closing",
     "aria-label": "Lodging availability"
@@ -1174,56 +1168,58 @@ function StayPage({
   }, "Search every Yosemite gateway"), React.createElement("span", {
     className: "stay-closing__fine"
   }, "On Expedia · affiliate link"))))), React.createElement("section", {
-    className: "wrap wrap--narrow",
-    style: {
-      paddingTop: 64,
-      paddingBottom: 24
-    }
-  }, React.createElement("div", {
-    className: "section-head"
-  }, React.createElement("h2", null, "The longer versions")), React.createElement("ul", {
-    className: "stay-links"
+    className: "hp-wrap hp-section hp-stay__more"
+  }, React.createElement(HpHeading, {
+    eyebrow: "THE JOURNAL",
+    title: "The longer versions"
+  }), React.createElement("ul", {
+    className: "relrail stay-links"
   }, React.createElement("li", null, React.createElement("a", {
     href: "/articles/where-to-stay-in-yosemite"
-  }, "Where to stay in Yosemite"), React.createElement("span", null, "The in-park options ranked, and the argument for each.")), React.createElement("li", null, React.createElement("a", {
+  }, "Where to stay in Yosemite"), React.createElement("span", {
+    className: "relrail__dek"
+  }, "The in-park options ranked, and the argument for each.")), React.createElement("li", null, React.createElement("a", {
     href: "/articles/yosemite-gateway-towns-compared"
-  }, "The gateway towns compared"), React.createElement("span", null, "Five towns, the drive times, and who should pick which.")), React.createElement("li", null, React.createElement("a", {
+  }, "The gateway towns compared"), React.createElement("span", {
+    className: "relrail__dek"
+  }, "Five towns, the drive times, and who should pick which.")), React.createElement("li", null, React.createElement("a", {
     href: "/articles/yosemite-camping-complete-guide"
-  }, "The complete camping guide"), React.createElement("span", null, "Every campground, the release calendar, and the strategy.")), React.createElement("li", null, React.createElement("a", {
+  }, "The complete camping guide"), React.createElement("span", {
+    className: "relrail__dek"
+  }, "Every campground, the release calendar, and the strategy.")), React.createElement("li", null, React.createElement("a", {
     href: "/articles/yosemite-trip-cost-budget-2026"
-  }, "What a Yosemite trip costs"), React.createElement("span", null, "The arithmetic of each lodging approach across a whole trip.")), React.createElement("li", null, React.createElement("a", {
+  }, "What a Yosemite trip costs"), React.createElement("span", {
+    className: "relrail__dek"
+  }, "The arithmetic of each lodging approach across a whole trip.")), React.createElement("li", null, React.createElement("a", {
     href: "/articles/getting-to-yosemite"
-  }, "Getting to Yosemite"), React.createElement("span", null, "The four entrances and the roads that reach them.")), React.createElement("li", null, React.createElement("a", {
+  }, "Getting to Yosemite"), React.createElement("span", {
+    className: "relrail__dek"
+  }, "The four entrances and the roads that reach them.")), React.createElement("li", null, React.createElement("a", {
     href: "/articles/where-to-eat-yosemite"
-  }, "Where to eat"), React.createElement("span", null, "Dinner in the park and town by town, and what closes when.")), React.createElement("li", null, React.createElement("a", {
+  }, "Where to eat"), React.createElement("span", {
+    className: "relrail__dek"
+  }, "Dinner in the park and town by town, and what closes when.")), React.createElement("li", null, React.createElement("a", {
     href: "/itineraries",
     onClick: e => goRoute(e, "itineraries")
-  }, "Itineraries"), React.createElement("span", null, "One, two, and three-day plans to hang the nights on."))), React.createElement("p", {
-    className: "article-aff-note",
-    style: {
-      marginTop: 32
-    }
+  }, "Itineraries"), React.createElement("span", {
+    className: "relrail__dek"
+  }, "One, two, and three-day plans to hang the nights on."))), React.createElement("p", {
+    className: "article-aff-note hp-stay__disclosure"
   }, "The availability links on this page are affiliate links. If you book through one, The Talus Field may earn a small commission at no extra cost to you. Which property is recommended, and in what order, does not change for it: the Ahwahnee and the Wawona Hotel are here on their merits and the closed one carries no link at all, the in-park cards send you to the concessioner and earn nothing, and the named lodges in the corridor lists are described because the gateway reporting already covers them. Those links search the town rather than the property, which is the search that answers what is left on your dates.", " ", React.createElement("a", {
     href: "/affiliate"
-  }, "Full disclosure."))), React.createElement("div", {
-    className: "wrap wrap--narrow",
-    style: {
-      paddingBottom: 8
-    }
-  }, React.createElement(GuidePromo, {
+  }, "Full disclosure."))), React.createElement(HpGuideBand, {
     go: go,
     location: "stay",
     title: "Booked the beds. Now the days.",
-    body: "The Field Guide app carries the stops, the parking notes, offline maps for a park with no signal, and a day-by-day planner that knows how long the drives actually take. One purchase, eighteen months of access.",
-    style: {
-      marginTop: 40,
-      marginBottom: 40
-    }
-  }), React.createElement(NewsletterInline, {
-    location: "stay",
-    tag: "lodging",
+    intro: "The Field Guide app carries the stops, the parking notes, offline maps for a park with no signal, and a day-by-day planner that knows how long the drives actually take. One purchase, eighteen months of access.",
+    sample: true
+  }), React.createElement(HpLetter, {
+    eyebrow: "SUNDAY FIELD NOTES / FREE",
+    title: "Rooms come back. Someone has to be watching.",
     heading: "Rooms come back. Someone has to be watching.",
-    blurb: "Sunday Field Notes carries what is opening, closing, and quietly becoming available in the park, written from inside it. One short letter a week. Free."
-  })));
+    blurb: "Sunday Field Notes carries what is opening, closing, and quietly becoming available in the park, written from inside it. One short letter a week. Free.",
+    location: "stay",
+    tag: "lodging"
+  }));
 }
 window.StayPage = StayPage;

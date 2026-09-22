@@ -1,4 +1,4 @@
-/* global React, NewsletterInline, Breadcrumbs, GuidePromo, LodgingCta, DEADLINES */
+/* global React, HpPageHead, NewsletterInline, GuidePromo, LodgingCta, DEADLINES */
 
 // =============================================================================
 // DATES — `/dates` route. The dates that decide a Yosemite trip, in one table,
@@ -186,21 +186,18 @@ function DatesPage({ go }) {
   const goRoute = (e, r) => { e.preventDefault(); go(r); };
 
   return (
-    <div className="page">
-      <div className="page-head">
-        <div className="wrap wrap--narrow">
-          <Breadcrumbs go={go} trail={[{ label: "Home", route: "home" }, { label: "Dates that matter" }]} />
-          <div className="eyebrow eyebrow--moss">Deadlines</div>
-          <h1>The Yosemite dates that matter</h1>
-          <p className="page-head__dek">
-            The lotteries, the release mornings, and the road windows that decide
-            a trip, in one table, each one a calendar file. Enter your dates and
-            the ones measured from your trip resolve to real days.
-          </p>
-        </div>
-      </div>
+    <div className="page hp-tool hp-dates">
+      <HpPageHead
+        go={go}
+        crumbs={[{ label: "Home", route: "home" }, { label: "Dates that matter" }]}
+        eyebrow="DEADLINES"
+        title="The Yosemite dates that matter"
+        intro="The lotteries, the release mornings, and the road windows that decide a trip, in one table, each one a calendar file. Enter your dates and the ones measured from your trip resolve to real days."
+      />
 
-      <div className="wrap wrap--narrow" style={{ paddingTop: 40, paddingBottom: 64 }}>
+
+      <div className="hp-wrap hp-reading">
+        <div className="hp-reading__column">
         <section className="prose">
           <h2>Measured from your trip</h2>
           <p>
@@ -375,6 +372,7 @@ function DatesPage({ go }) {
           heading={`${TAG_LABELS[interest]}: the nudge before the date`}
           blurb="A short letter on Sundays, and a dated line the week a window you asked about opens. Free."
         />
+        </div>
       </div>
     </div>
   );

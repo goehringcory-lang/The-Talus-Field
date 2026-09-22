@@ -1,4 +1,4 @@
-/* global React, NewsletterInline, Breadcrumbs, GuidePromo, LodgingCta */
+/* global React, HpPageHead, HpGuideBand, HpLetter, LodgingCta */
 
 // =============================================================================
 // START HERE — `/start-here` route. The first-time visitor hub.
@@ -38,22 +38,17 @@ function StartHerePage({ go }) {
   };
 
   return (
-    <div className="page">
-      <div className="page-head">
-        <div className="wrap wrap--narrow">
-          <Breadcrumbs go={go} trail={[{ label: "Home", route: "home" }, { label: "Start here" }]} />
-          <div className="eyebrow eyebrow--moss">For first-time visitors</div>
-          <h1>Planning your first trip to Yosemite? Start here.</h1>
-          <p className="page-head__dek">
-            The questions everyone asks before a first visit, answered plainly
-            by a naturalist who has worked in this park for close to two
-            decades. Each answer links the full guide behind it. Read this page
-            in five minutes, then go deep only where your trip needs it.
-          </p>
-        </div>
-      </div>
+    <div className="page hp-start">
+      <HpPageHead
+        go={go}
+        crumbs={[{ label: "Home", route: "home" }, { label: "Start here" }]}
+        eyebrow="FOR FIRST-TIME VISITORS"
+        title="Planning your first trip to Yosemite? Start here."
+        intro="The questions everyone asks before a first visit, answered plainly by a naturalist who has worked in this park for close to two decades. Each answer links the full guide behind it. Read this page in five minutes, then go deep only where your trip needs it."
+      />
 
-      <div className="wrap wrap--narrow" style={{ paddingTop: 40, paddingBottom: 64 }}>
+      <div className="hp-wrap hp-reading">
+        <div className="hp-reading__column">
         <section className="prose">
           <h2>Do you need a reservation to get in?</h2>
           <p>
@@ -208,21 +203,24 @@ function StartHerePage({ go }) {
           cta="See what is available on your dates →"
         />
 
-        <GuidePromo
-          go={go}
-          location="start-here"
-          title="The first trip is the one that needs a guide"
-          body="The Field Guide app carries 57 hikes with parking and timing notes, offline maps for a park with no cell service, and the local tactics for every major region. One purchase, eighteen months of access."
-          style={{ marginTop: 56, marginBottom: 40 }}
-        />
-
-        <NewsletterInline
-          location="start-here"
-          tag="start-here"
-          heading="The Sunday Letter"
-          blurb="What is open, what is booking out, and what the week looked like from inside the park. One letter a week while you plan. Free."
-        />
+        </div>
       </div>
+
+      <HpGuideBand
+        go={go}
+        location="start-here"
+        title="The first trip is the one that needs a guide"
+        intro="The Field Guide app carries 57 hikes with parking and timing notes, offline maps for a park with no cell service, and the local tactics for every major region. One purchase, eighteen months of access."
+        sample
+      />
+      <HpLetter
+        eyebrow="SUNDAY FIELD NOTES / FREE"
+        title="The Sunday Letter"
+        heading="The Sunday Letter"
+        blurb="What is open, what is booking out, and what the week looked like from inside the park. One letter a week while you plan. Free."
+        location="start-here"
+        tag="start-here"
+      />
     </div>
   );
 }

@@ -2175,7 +2175,28 @@ function MapAccessGate({ onSubscribed }) {
 // The map page stays indexable (edge/seo.js serves crawler prose for /map);
 // the interactive map itself sits behind the subscriber gate above
 // (MapAccessGate, rendered by MapView whenever the visitor is locked).
+// The map fills the first screen under the masthead. The design masthead is
+// not sticky and its height depends on the width (its link row wraps under
+// the brand on phones), so the page measures it and hands the number to the
+// stylesheet as --masthead-h rather than hard-coding one height per breakpoint.
+function useMastheadHeight() {
+  React.useEffect(() => {
+    const el = document.querySelector(".hp-navigation");
+    const root = document.documentElement;
+    if (!el) return undefined;
+    const set = () => root.style.setProperty("--masthead-h", `${Math.round(el.getBoundingClientRect().height)}px`);
+    set();
+    const ro = typeof ResizeObserver !== "undefined" ? new ResizeObserver(set) : null;
+    if (ro) ro.observe(el); else window.addEventListener("resize", set);
+    return () => {
+      if (ro) ro.disconnect(); else window.removeEventListener("resize", set);
+      root.style.removeProperty("--masthead-h");
+    };
+  }, []);
+}
+
 function MapPage(props) {
+  useMastheadHeight();
   return <MapView {...props} />;
 }
 

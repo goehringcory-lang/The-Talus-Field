@@ -1,4 +1,4 @@
-/* global React, NewsletterInline, Breadcrumbs */
+/* global React, HpPageHead, HpLetter */
 
 // =============================================================================
 // CONDITIONS WIDGET — `/widget` route (MONETIZATION-IDEAS.md 4.2). The pitch
@@ -45,46 +45,42 @@ function WidgetPage({ go }) {
   };
 
   return (
-    <div className="page">
-      <div className="page-head">
-        <div className="wrap wrap--narrow">
-          <Breadcrumbs go={go} trail={[{ label: "Home", route: "home" }, { label: "Widget" }]} />
-          <div className="eyebrow eyebrow--moss">Free embed · for Yosemite-area sites</div>
-          <h1>Put the park's conditions on your site.</h1>
-          <p className="page-head__dek">
-            A small box with live entrance waits and the three-day Valley forecast,
-            for gateway hotels, rental hosts, and tour operators. One script tag,
-            no account, no cost. Your guests check conditions on your page instead
-            of leaving it.
-          </p>
-        </div>
-      </div>
+    <div className="page hp-widget">
+      <HpPageHead
+        go={go}
+        crumbs={[{ label: "Home", route: "home" }, { label: "Widget" }]}
+        eyebrow="FREE EMBED · FOR YOSEMITE-AREA SITES"
+        title="Put the park's conditions on your site."
+        intro="A small box with live entrance waits and the three-day Valley forecast, for gateway hotels, rental hosts, and tour operators. One script tag, no account, no cost. Your guests check conditions on your page instead of leaving it."
+        aside={
+          <div className="hp-widget__preview">
+            <p className="hp-eyebrow">WHAT YOUR VISITORS SEE</p>
+            {/* Live preview: the real widget, filled by the real script. */}
+            <div id="talus-conditions" />
+            <p className="hp-terms">
+              Live preview. Waits refresh every few minutes from the National Park
+              Service feed; the forecast is the National Weather Service Valley
+              point forecast. If the box is empty, the data sources are down and the
+              widget shows nothing rather than an error.
+            </p>
+          </div>
+        }
+      />
 
-      <div className="wrap wrap--narrow" style={{ paddingTop: 40, paddingBottom: 64 }}>
-        <section className="prose">
-          <h2>What your visitors see</h2>
-        </section>
-        {/* Live preview: the real widget, filled by the real script. */}
-        <div id="talus-conditions" style={{ margin: "16px 0 8px" }} />
-        <p style={{ fontFamily: "var(--sans)", fontSize: 12, color: "var(--ink-3)", margin: "0 0 32px" }}>
-          Live preview. Waits refresh every few minutes from the National Park
-          Service feed; the forecast is the National Weather Service Valley
-          point forecast. If the box is empty, the data sources are down and the
-          widget shows nothing rather than an error.
-        </p>
-
+      <div className="hp-wrap hp-reading">
+        <div className="hp-reading__column">
         <section className="prose">
           <h2>Install it</h2>
           <p>Paste this where you want the box to appear:</p>
         </section>
-        <pre style={{ background: "var(--paper-2)", border: "1px solid var(--ink)", padding: 16, fontSize: 13, overflowX: "auto", margin: "12px 0 10px" }}>
+        <pre className="hp-widget__snippet">
           <code>{WIDGET_SNIPPET}</code>
         </pre>
-        <button type="button" className="btn" onClick={copySnippet} style={{ border: 0, font: "inherit", cursor: "pointer" }}>
+        <button type="button" className="hp-button" onClick={copySnippet}>
           {copied ? "Copied." : "Copy the snippet"}
         </button>
 
-        <section className="prose" style={{ marginTop: 40 }}>
+        <section className="prose hp-widget__more">
           <h2>The terms, plainly</h2>
           <p>
             Free, indefinitely. The box carries one small credit line linking to
@@ -96,7 +92,7 @@ function WidgetPage({ go }) {
           </p>
         </section>
 
-        <section className="prose" style={{ marginTop: 40 }}>
+        <section className="prose hp-widget__more">
           <h2>The other half of this</h2>
           <p>
             The widget is what your visitors see before they arrive. The Field
@@ -110,13 +106,17 @@ function WidgetPage({ go }) {
           </p>
         </section>
 
-        <NewsletterInline
-          location="widget"
-          tag="widget"
-          heading="Run a Yosemite-area business?"
-          blurb="Sunday Field Notes carries what changed in the park each week, the same material your guests ask the front desk about. Free."
-        />
+        </div>
       </div>
+
+      <HpLetter
+        eyebrow="SUNDAY FIELD NOTES / FREE"
+        title="Run a Yosemite-area business?"
+        heading="Run a Yosemite-area business?"
+        blurb="Sunday Field Notes carries what changed in the park each week, the same material your guests ask the front desk about. Free."
+        location="widget"
+        tag="widget"
+      />
     </div>
   );
 }

@@ -519,17 +519,14 @@ function releaseRockfall(markEl) {
 }
 
 // ============================================================
-// Masthead
+// Masthead menus
 // ============================================================
-// The site's map, in two tables. NAV_GROUPS is the masthead bar: the few
-// things a first-time visitor needs, and nothing they have to learn first.
-// NAV_SECONDARY is everything else a returning reader might want: it renders
-// in the hamburger's More section and (with the footer and /explore) is the
-// only home those destinations get. Every reader-facing route lives in
-// exactly one of the two tables, with two exceptions: legal pages stay
-// footer-only, and /explore is the index itself, carried by the hamburger's
-// closing "Everything on this site" line and the footer rather than a table
-// entry (/explore lists the legal pages too).
+// NAV_GROUPS is the site's map of primary destinations. HomeMasthead draws two
+// of its groups as menu panels (Plan a Trip and Explore Yosemite); the other
+// two are the masthead's plain "Park conditions" and "Get the app" links. The
+// secondary destinations (About, Newsletter, Films, the archive, Directory,
+// the business pages) live in the footer and on /explore. The NAV_SECONDARY
+// table that fed the retired hamburger's More section went with it.
 //
 // Shape: a group is { key, label, route, blurb, columns } where each column is
 // { heading, links } and a link is { key } for an SPA route or { href } for a
@@ -537,8 +534,8 @@ function releaseRockfall(markEl) {
 // must never carry a go() handler). `route` is where the group label itself
 // navigates. A group with no `columns` renders as a plain top-level link.
 //
-// Two rules for `note` copy, and they bind both tables: keep it to one short
-// line, and keep years out of it. The masthead is baked into index.html's
+// Two rules for `note` copy: keep it to one short line, and keep years out
+// of it. The masthead is baked into index.html's
 // static home shell by scripts/gen-home-shell.mjs, which rejects anything
 // date-derived because that file is cached hard. For the same reason nothing
 // here may be computed from the catalog (the generator renders with an empty
@@ -617,29 +614,7 @@ const NAV_GROUPS = [
   { key: "guide", label: "Field Guide", route: "guide" },
 ];
 
-// Everything that left the masthead bar in the simplification pass. Same link
-// shape and the same copy rules as NAV_GROUPS; rendered by the hamburger's
-// More section, mirrored by the footer and /explore, never by the bar itself.
-const NAV_SECONDARY = [
-  { key: "about", label: "About the journal", note: "Who writes this, and why" },
-  { key: "newsletter", label: "Newsletter", note: "One short letter a week. Free" },
-  { key: "films", label: "Films", note: "The NPS Nature Notes film series, annotated" },
-  { href: "/archive/", label: "Nature Notes archive", note: "512 issues of the park's own bulletin" },
-  { key: "places", label: "Directory", note: "The short list of operators worth knowing" },
-  { key: "advertise", label: "Advertise", note: "What a listing is, and what disqualifies one" },
-  { key: "widget", label: "Conditions widget", note: "A free embed for gateway businesses" },
-  { key: "partners", label: "Group codes", note: "The Field Guide in packs, for lodging" },
-  { key: "contact", label: "Contact", note: "Trip questions, corrections, press" },
-];
-
-// Flattened once for the active-group test.
-function navGroupLinks(group) {
-  return (group.columns || []).flatMap((col) => col.links);
-}
-
 window.NAV_GROUPS = NAV_GROUPS;
-window.NAV_SECONDARY = NAV_SECONDARY;
-window.navGroupLinks = navGroupLinks;
 
 // Links on the design-system pages (the homepage and the pages rebuilt on it)
 // keep native modified-click behavior and use the existing SPA router for plain
@@ -660,19 +635,19 @@ function HomeLink({ go, href, location, children, ...props }) {
       return;
     }
     event.preventDefault();
-    go(href.startsWith("/articles/") ? `a:${href.slice(10)}` : (href.slice(1) || "home"));
+    go(href.startsWith("/articles/") ? `a:${href.slice(10)}`
+      : href.startsWith("/section/") ? `cat:${href.slice(9)}`
+      : (href.slice(1) || "home"));
   }}>{children}</a>;
 }
 
 // ============================================================
-// THE DESIGN SYSTEM. The September 2026 homepage introduced it; these are the
-// pieces the pages rebuilt on it share. DESIGN_ROUTES is the rollout list:
-// Header draws the design masthead (and no BottomNav) on every route in it,
-// and each of those pages renders inside a `.hp-design` root, whose styles
-// live in one block at the end of styles.css. Moving a page over means adding
-// its route here and rebuilding it from these components.
+// THE DESIGN SYSTEM. The September 2026 homepage introduced it and the design
+// rollout took it to every route: Header draws HomeMasthead everywhere, app.jsx
+// renders every page inside a `<main class="hp-design">` root, and the pages
+// are built from the components below, whose styles live in the design block
+// of styles.css.
 // ============================================================
-const DESIGN_ROUTES = ["home", "planning", "conditions", "guide"];
 
 // The homepage masthead's links. Two of them lead into the site masthead's
 // menus and carry that menu as a panel: "Start here" opens Plan a Trip and
@@ -703,8 +678,7 @@ const homeMenuCta = (cta) => `${(cta || "Open the section").replace(/\s*→\s*$/
 // hidden, from the static shell onward, so the menus' links are in the HTML
 // a crawler reads for "/".
 //
-// Since the design rollout the same masthead draws every route in
-// DESIGN_ROUTES. On the homepage the section links (`href`) jump to the page's
+// Since the design rollout the same masthead draws every route. On the homepage the section links (`href`) jump to the page's
 // own sections, and the static shell (scripts/gen-home-shell.mjs) bakes exactly
 // that render, so the homepage branch must stay free of browser state.
 // Everywhere else they go to the routes those sections stand for (`away`).
@@ -789,7 +763,8 @@ function HomeMasthead({ go, current = "home" }) {
         <span>Written here. Taken everywhere.</span>
       </div>
       <header className="hp-wrap hp-header">
-        <HomeLink go={go} location={location} className="hp-brand" href="/">
+        <HomeLink go={go} location={location} className="hp-brand" href="/"
+          onClickCapture={(e) => releaseRockfall(e.currentTarget.querySelector("img"))}>
           <img src="/img/talus-field-mark-masthead.png?v=2" width="214" height="168" alt="" />
           <span>The Talus Field<small>YOSEMITE, FROM THE INSIDE.</small></span>
         </HomeLink>
@@ -797,7 +772,10 @@ function HomeMasthead({ go, current = "home" }) {
           {HOME_NAV.map((item) => {
             const g = item.group && NAV_GROUPS.find((group) => group.key === item.group);
             const href = home ? item.href : (item.away || item.href);
-            const ariaCurrent = item.href === "/conditions" ? here("conditions") : undefined;
+            // The route this link stands for off the homepage ("/start-here",
+            // "/articles", ...); on it, every link is a jump or a route that is
+            // not the current page, so nothing is marked.
+            const ariaCurrent = here((item.away || item.href).replace(/^\//, ""));
             if (!g || !g.columns) {
               return <HomeLink key={item.href} go={go} location={location} href={href} aria-current={ariaCurrent}>{item.label}</HomeLink>;
             }
@@ -815,7 +793,7 @@ function HomeMasthead({ go, current = "home" }) {
                 onPointerLeave={(e) => { if (fromMouse(e)) closeSoon(); }}
                 onBlur={(e) => { if (isOpen && !e.currentTarget.contains(e.relatedTarget)) closeMenu(); }}
               >
-                <HomeLink go={go} location={location} href={href} onClickCapture={closeMenu}>{item.label}</HomeLink>
+                <HomeLink go={go} location={location} href={href} aria-current={ariaCurrent} onClickCapture={closeMenu}>{item.label}</HomeLink>
                 <button
                   type="button"
                   className="hp-menu__caret"
@@ -913,9 +891,11 @@ function HpArticleCard({ article, go, location }) {
 
 // The page head for an interior design page: breadcrumbs, eyebrow, h1, intro,
 // up to two actions and a byline on the left; an optional aside on the right.
-function HpPageHead({ go, crumbs, eyebrow, title, intro, actions, byline, aside, className }) {
+// `children` follow the byline in the copy column (the article's author line
+// and series band); `as` swaps the element (an article's head is a <header>).
+function HpPageHead({ go, crumbs, eyebrow, title, intro, actions, byline, aside, className, as: Tag = "section", children }) {
   return (
-    <section className={["hp-pagehead", "hp-wrap", aside ? "hp-pagehead--split" : null, className].filter(Boolean).join(" ")}>
+    <Tag className={["hp-pagehead", "hp-wrap", aside ? "hp-pagehead--split" : null, className].filter(Boolean).join(" ")}>
       <div className="hp-pagehead__copy">
         {crumbs && <Breadcrumbs go={go} trail={crumbs} />}
         {eyebrow && <p className="hp-eyebrow">{eyebrow}</p>}
@@ -923,9 +903,10 @@ function HpPageHead({ go, crumbs, eyebrow, title, intro, actions, byline, aside,
         {intro && <p className="hp-intro">{intro}</p>}
         {actions && <div className="hp-actions">{actions}</div>}
         {byline && <p className="hp-byline">{byline}</p>}
+        {children}
       </div>
       {aside && <div className="hp-pagehead__aside">{aside}</div>}
-    </section>
+    </Tag>
   );
 }
 
@@ -990,437 +971,43 @@ function HpGuideBand({ go, location, id, eyebrow = "THE TALUS FIELD GUIDE / THE 
   );
 }
 
+// The letter's postcard, on its own for a page that carries its own form
+// (/newsletter). `paper` is the card's line, `stamp` the postmark's second line.
+function HpPostcard({ paper, stamp = "THE SUNDAY LETTER" }) {
+  return (
+    <div className="hp-paper">
+      <span className="hp-stamp">EL PORTAL, CA<br />{stamp}</span>
+      <div>{paper || <React.Fragment>A field note<br />for your<br />
+        <em>next adventure.</em>
+      </React.Fragment>}</div>
+      <small>From Yosemite, with perspective.</small>
+    </div>
+  );
+}
+
 // The letter: the postcard beside the Sunday Letter form. `heading` and
 // `blurb` are NewsletterInline's (the heading is visually hidden, since the
 // section's h2 stands in for it); `paper` is the postcard's line.
-function HpLetter({ id, eyebrow, title, heading, blurb, location, tag, cta = "Send me the letter ↗", terms = "Free to read. One letter a week. Unsubscribe whenever.", paper, stamp = "THE SUNDAY LETTER" }) {
+function HpLetter({ id, eyebrow, title, heading, blurb, location, tag, variant, cta = "Send me the letter ↗", terms = "Free to read. One letter a week. Unsubscribe whenever.", paper, stamp = "THE SUNDAY LETTER" }) {
   return (
     <section className="hp-letter hp-wrap hp-section" id={id} tabIndex={id ? -1 : undefined}>
-      <div className="hp-paper">
-        <span className="hp-stamp">EL PORTAL, CA<br />{stamp}</span>
-        <div>{paper || <React.Fragment>A field note<br />for your<br />
-          <em>next adventure.</em>
-        </React.Fragment>}</div>
-        <small>From Yosemite, with perspective.</small>
-      </div>
+      <HpPostcard paper={paper} stamp={stamp} />
       <div>
         <p className="hp-eyebrow">{eyebrow}</p>
         <h2>{title}</h2>
-        <NewsletterInline heading={heading} blurb={blurb} location={location} tag={tag} cta={cta} modifier="hp-newsletter" inputLabel="Your email address" />
+        <NewsletterInline heading={heading} blurb={blurb} location={location} tag={tag} variant={variant} cta={cta} modifier="hp-newsletter" inputLabel="Your email address" />
         {terms && <p className="hp-terms">{terms}</p>}
       </div>
     </section>
   );
 }
 
+// The masthead on every route is the homepage's (HomeMasthead above). The
+// legacy masthead (mega dropdowns, hamburger with its query box, scroll-hide
+// on phones) and the phone BottomNav retired with the September 2026 design
+// rollout; Header stays as the name app.jsx and the shell generator render.
 function Header({ current, go }) {
-  const navGroups = NAV_GROUPS;
-
-  // A group lights up when the reader is on its landing route or any of its
-  // member pages; article and section routes belong to Read.
-  const isGroupActive = (g) => {
-    if (current === g.route) return true;
-    if (navGroupLinks(g).some((l) => l.key === current)) return true;
-    if (g.key === "read" && (current.startsWith("a:") || current.startsWith("cat:"))) return true;
-    return false;
-  };
-
-  // Which mega panel is being held open past the pointer leaving it. CSS
-  // :hover already opens and closes these on its own, and the hover bar under
-  // the panel (styles.css) now keeps the whole reach from a trigger down to
-  // any link inside the panel within the group, so this delay only has to
-  // cover the hairline seam between the trigger row and that bar, plus a
-  // pointer that clips the edge of the panel on its way to a link. Nothing
-  // here can open a panel, so a JS failure degrades to plain hover rather
-  // than to a dead menu.
-  const [openGroup, setOpenGroup] = React.useState(null);
-  // The group whose panel has been closed by taking one of its links. CSS
-  // :hover alone would keep the panel up over the page the reader just asked
-  // for, since the pointer is still inside it at that moment, so this beats
-  // the hover rule until the pointer leaves and comes back.
-  const [dismissedGroup, setDismissedGroup] = React.useState(null);
-  const openTimer = React.useRef(null);
-  const holdGroup = (key) => {
-    clearTimeout(openTimer.current);
-    setDismissedGroup(null);
-    setOpenGroup(key);
-  };
-  const releaseGroup = () => {
-    clearTimeout(openTimer.current);
-    // Nothing to hold open if the panel was already dismissed; running the
-    // delay would flash it back for a beat on the way out.
-    if (dismissedGroup) { setDismissedGroup(null); setOpenGroup(null); return; }
-    openTimer.current = setTimeout(() => setOpenGroup(null), 420);
-  };
-  const dismissGroup = (key, e) => {
-    clearTimeout(openTimer.current);
-    setOpenGroup(null);
-    setDismissedGroup(key);
-    // A mouse click leaves focus on the link, and :focus-within would hold the
-    // panel open for good. Only pointer activations blur (detail is 0 for a
-    // keyboard Enter, where dropping focus would strand the reader).
-    if (e && e.detail > 0 && e.currentTarget && e.currentTarget.blur) e.currentTarget.blur();
-  };
-  React.useEffect(() => () => clearTimeout(openTimer.current), []);
-  React.useEffect(() => {
-    if (!openGroup) return;
-    const onKey = (e) => { if (e.key === "Escape") dismissGroup(openGroup); };
-    document.addEventListener("keydown", onKey);
-    return () => document.removeEventListener("keydown", onKey);
-  }, [openGroup]);
-
-  const [menuOpen, setMenuOpen] = React.useState(false);
-  const [menuQuery, setMenuQuery] = React.useState("");
-  const menuRef = React.useRef(null);
-  React.useEffect(() => {
-    if (!menuOpen) return;
-    const onDoc = (e) => { if (menuRef.current && !menuRef.current.contains(e.target)) setMenuOpen(false); };
-    const onKey = (e) => { if (e.key === "Escape") setMenuOpen(false); };
-    document.addEventListener("mousedown", onDoc);
-    document.addEventListener("keydown", onKey);
-    return () => { document.removeEventListener("mousedown", onDoc); document.removeEventListener("keydown", onKey); };
-  }, [menuOpen]);
-
-  const closeMenu = () => { setMenuOpen(false); setMenuQuery(""); };
-
-  // Phone-width masthead that gets out of the way. Scrolling down past 160px
-  // hides it, any scroll up brings it back, and the top of the page always
-  // shows it (styles.css scopes the transform to ≤880px; above that the
-  // class is inert). Direction is read from a rAF-throttled scroll listener
-  // with a 6px dead band so a finger resting on the glass does not toggle
-  // it, and an open hamburger pins it, since the menu lives inside it. The
-  // state is a class on the element, not React state, so a scroll never
-  // re-renders the nav.
-  const mastheadRef = React.useRef(null);
-  React.useEffect(() => {
-    let lastY = window.scrollY;
-    let raf = 0;
-    const apply = (hidden) => {
-      const el = mastheadRef.current;
-      if (el) el.classList.toggle("is-hidden", hidden);
-    };
-    const measure = () => {
-      raf = 0;
-      const y = window.scrollY;
-      const dy = y - lastY;
-      if (menuOpen || y < 80) apply(false);
-      else if (dy > 6 && y > 160) apply(true);
-      else if (dy < -6) apply(false);
-      if (Math.abs(dy) > 6) lastY = y;
-    };
-    const onScroll = () => { if (!raf) raf = requestAnimationFrame(measure); };
-    measure();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => {
-      if (raf) cancelAnimationFrame(raf);
-      window.removeEventListener("scroll", onScroll);
-    };
-  }, [menuOpen]);
-
-  // Search from the hamburger. The menu is the only nav on phones, so the
-  // search box lives at the top of it rather than costing a tap through a
-  // dropdown. Submitting hands the query to /search via ?q=, which that page
-  // already reads on load.
-  const submitMenuSearch = (e) => {
-    e.preventDefault();
-    const q = menuQuery.trim();
-    closeMenu();
-    if (window.track) window.track("nav_search_submit", { location: "menu", has_query: q ? "1" : "0" });
-    if (!q) { go("search"); return; }
-    const url = `/search?q=${encodeURIComponent(q)}`;
-    // SearchPage reads ?q= once, at mount, so the query has to be on the URL
-    // before the route commits. go() only pushes when the pathname changes, so
-    // pushing here leaves the query string intact. Already on /search there is
-    // no remount to hang the new query on, so that one case takes a real
-    // navigation rather than silently doing nothing.
-    if (window.location.pathname.replace(/\/+$/, "") === "/search") {
-      window.location.assign(url);
-      return;
-    }
-    window.history.pushState({ route: "search" }, "", url);
-    go("search");
-  };
-
-  // One renderer for every nav link in the masthead. `href`-style entries are
-  // real navigations (the generated archive pages), so they keep the browser's
-  // default behaviour and never call go().
-  const renderLink = (link, { baseClass, noteClass, onNavigate } = {}) => {
-    const { key, href, label, note } = link;
-    const isExternalPath = !!href;
-    const body = note
-      ? (
-        <React.Fragment>
-          <span className="nav__link-label">{label}</span>
-          <span className={noteClass || "nav__link-note"}>{note}</span>
-        </React.Fragment>
-      )
-      : label;
-    return (
-      <a
-        key={key || href}
-        href={isExternalPath ? href : (window.routeToPath ? window.routeToPath(key) : `/${key}`)}
-        className={[baseClass, !isExternalPath && current === key && "is-active"].filter(Boolean).join(" ")}
-        aria-current={!isExternalPath && current === key ? "page" : undefined}
-        onClick={(e) => {
-          if (onNavigate) onNavigate(e);
-          if (isExternalPath) return; // real navigation; let the browser take it
-          e.preventDefault();
-          if (key === "guide" && window.track) window.track("guide_cta_click", { location: "masthead_nav" });
-          go(key);
-        }}
-      >{body}</a>
-    );
-  };
-
-  const renderPlainLink = (key, label, opts) => renderLink({ key, label }, opts);
-
-  // Keep hook order stable when navigating between home and other routes.
-  if (DESIGN_ROUTES.includes(current)) return <HomeMasthead go={go} current={current} />;
-
-  // The masthead used to open with a utility bar: dateline, Bulletin link,
-  // three NWS forecasts, live entrance waits, the NPS Yosemite Guide. The
-  // simplification pass removed the whole strip; /conditions carries the
-  // forecasts and waits now, and the Bulletin lives in Explore Yosemite and
-  // the bottom nav's Now tab.
-  return (
-    <React.Fragment>
-    {/* First focusable element on every page; #main carries tabIndex={-1} in
-        app.jsx so the fragment jump also moves focus. Bakes into the static
-        home shell like the rest of the Header. */}
-    <a className="skip-link" href="#main">Skip to content</a>
-    <header className="masthead" ref={mastheadRef}>
-      <div className="masthead__main">
-        <a
-          className="brand-block"
-          href="/"
-          onClick={(e) => { e.preventDefault(); releaseRockfall(e.currentTarget.querySelector(".brand__mark")); go("home"); }}
-          style={{ textDecoration: "none", color: "inherit" }}
-        >
-          {/* Own ?v= counter, like points.geojson: /img/* is served immutable
-              for 30 days (_headers), so a repeat visitor would keep the old
-              mark for a month without one. Bump when the mark is replaced. */}
-          {/* alt="": the link's visible .brand text already names the site, so
-              alt text here would announce "The Talus Field" twice on the first
-              link of every page. */}
-          {/* The masthead-sized cut of the mark (gen-brand-icons.mjs), not the
-              805 x 622 master: the master is 567 KB and this is drawn 56 px
-              tall. width/height are the file's intrinsic pixels so the box
-              holds its aspect ratio before the bytes arrive; the CSS height
-              still governs the drawn size. */}
-          <img className="brand__mark" src="/img/talus-field-mark-masthead.png?v=2" alt="" width="214" height="168" loading="eager" />
-          <span className="brand-block__text">
-            <span className="brand">The Talus Field</span>
-            <span className="brand__sub">A field journal of Yosemite</span>
-          </span>
-        </a>
-        <nav className="nav" aria-label="Main">
-          {navGroups.map((g) => {
-            if (!g.columns) {
-              return (
-                <div key={g.key} className="nav__group">
-                  {renderPlainLink(g.route, g.label, { baseClass: "nav__link" })}
-                </div>
-              );
-            }
-            return (
-              // position: static on a mega group hands the panel's containing
-              // block to .masthead__main, so it spans the full masthead width
-              // and cannot overflow the viewport at any desktop size.
-              <div
-                key={g.key}
-                className={[
-                  "nav__group",
-                  "nav__group--mega",
-                  openGroup === g.key && "is-open",
-                  dismissedGroup === g.key && "is-dismissed",
-                ].filter(Boolean).join(" ")}
-                onMouseEnter={() => holdGroup(g.key)}
-                onMouseLeave={releaseGroup}
-                onFocus={() => holdGroup(g.key)}
-                onBlur={releaseGroup}
-              >
-                <a
-                  href={window.routeToPath ? window.routeToPath(g.route) : `/${g.route}`}
-                  className={["nav__link", "nav__group-trigger", isGroupActive(g) && "is-active"].filter(Boolean).join(" ")}
-                  onClick={(e) => { e.preventDefault(); dismissGroup(g.key, e); go(g.route); }}
-                >
-                  {g.label}
-                </a>
-                {/* The caret is a real disclosure button, not decoration inside
-                    the link: Enter on the link navigates, so the link cannot
-                    also be the thing that expands and collapses the panel.
-                    aria-expanded lives here. Collapsing goes through the same
-                    dismissGroup path as taking a link, so the panel stays down
-                    against :hover/:focus-within until the pointer or focus
-                    leaves the group and comes back. */}
-                <button
-                  type="button"
-                  className="nav__caret"
-                  aria-expanded={openGroup === g.key}
-                  aria-label={`${g.label} menu`}
-                  onClick={(e) => {
-                    if (openGroup === g.key) dismissGroup(g.key, e);
-                    else holdGroup(g.key);
-                  }}
-                >▾</button>
-                {/* Opened by CSS (:hover / :focus-within), so hover and
-                    keyboard tabbing both work with no state to desync; the
-                    is-open class above only holds it open a beat longer. */}
-                <div className="nav__dropdown nav__dropdown--mega">
-                  <div className="nav__dropdown-inner">
-                    <div className="nav__dropdown-lede">
-                      <div className="nav__dropdown-title">{g.label}</div>
-                      {g.blurb && <p className="nav__dropdown-blurb">{g.blurb}</p>}
-                      {renderPlainLink(g.route, g.cta || "Open the section →", { baseClass: "nav__dropdown-all", onNavigate: (e) => dismissGroup(g.key, e) })}
-                    </div>
-                    <div className="nav__dropdown-cols">
-                      {g.columns.map((col) => (
-                        <div key={col.heading} className="nav__dropdown-col">
-                          <div className="nav__dropdown-heading">{col.heading}</div>
-                          {col.links.map((link) => renderLink(link, { baseClass: "nav__dropdown-link", onNavigate: (e) => dismissGroup(g.key, e) }))}
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            );
-          })}
-
-          {/* Search. Was the eighth item inside the Read dropdown, which put
-              the site's own index three interactions deep on a site whose
-              content no longer fits in a menu. It is a top-level destination
-              now, and the hamburger carries a real query box. */}
-          <a
-            className={["nav__search", current === "search" && "is-active"].filter(Boolean).join(" ")}
-            href={window.routeToPath ? window.routeToPath("search") : "/search"}
-            aria-label="Search the journal"
-            onClick={(e) => {
-              e.preventDefault();
-              if (window.track) window.track("cta_click", { location: "masthead_search", target: "search" });
-              go("search");
-            }}
-          >
-            <svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true" focusable="false">
-              <circle cx="11" cy="11" r="6.5" fill="none" stroke="currentColor" strokeWidth="2" />
-              <line x1="16" y1="16" x2="21" y2="21" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-            </svg>
-            <span className="nav__search-label">Search</span>
-          </a>
-
-          {/* The standalone "The Map" CTA (the A/B-tested mobile_cta winner)
-              left the bar in the simplification pass: its job, a visible path
-              to the funnel when the inline nav collapses, moved to the bottom
-              nav's Map tab. */}
-          <div className="nav__menu-wrap" ref={menuRef}>
-            <button
-              type="button"
-              className="nav__menu-toggle"
-              aria-expanded={menuOpen}
-              aria-label="Menu"
-              onClick={() => setMenuOpen(o => !o)}
-            >
-              <span className="nav__menu-bars" aria-hidden="true">
-                <span></span><span></span><span></span>
-              </span>
-            </button>
-            {menuOpen && (
-              <div className="nav__menu">
-                <form className="nav__menu-search" role="search" onSubmit={submitMenuSearch}>
-                  <input
-                    type="search"
-                    name="q"
-                    value={menuQuery}
-                    onChange={(e) => setMenuQuery(e.target.value)}
-                    placeholder="Search the journal"
-                    aria-label="Search the journal"
-                    autoComplete="off"
-                  />
-                  <button type="submit" aria-label="Search">
-                    <svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true" focusable="false">
-                      <circle cx="11" cy="11" r="6.5" fill="none" stroke="currentColor" strokeWidth="2" />
-                      <line x1="16" y1="16" x2="21" y2="21" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-                    </svg>
-                  </button>
-                </form>
-                {navGroups.map((g) => (
-                  <div key={g.key} className="nav__menu-group">
-                    {g.columns ? (
-                      <React.Fragment>
-                        <div className="nav__menu-label">
-                          {renderPlainLink(g.route, g.label, { baseClass: "nav__menu-label-link", onNavigate: closeMenu })}
-                        </div>
-                        {g.columns.map((col) => (
-                          <React.Fragment key={col.heading}>
-                            <div className="nav__menu-sublabel">{col.heading}</div>
-                            {col.links.map((link) => renderLink(link, { onNavigate: closeMenu, noteClass: "nav__menu-note" }))}
-                          </React.Fragment>
-                        ))}
-                      </React.Fragment>
-                    ) : (
-                      renderPlainLink(g.route, g.label, { onNavigate: closeMenu })
-                    )}
-                  </div>
-                ))}
-                <div className="nav__menu-group">
-                  <div className="nav__menu-sublabel">More</div>
-                  {NAV_SECONDARY.map((link) => renderLink(link, { onNavigate: closeMenu, noteClass: "nav__menu-note" }))}
-                </div>
-                <div className="nav__menu-group">
-                  {renderPlainLink("explore", "Everything on this site →", { baseClass: "nav__menu-index", onNavigate: closeMenu })}
-                </div>
-              </div>
-            )}
-          </div>
-        </nav>
-      </div>
-    </header>
-    <BottomNav current={current} go={go} />
-    </React.Fragment>
-  );
-}
-
-// ============================================================
-// Bottom navigation (phones). The inline nav collapses into the hamburger at
-// 880px, which left the hamburger as the only way anywhere; this keeps the
-// four highest-value destinations one thumb away on every page. Rendered by
-// Header so it ships in the static home shell and paints before React boots.
-// Shell-safe by construction: no browser APIs, no dates, nothing computed
-// from the catalog. Hidden by returning null (not CSS) on the two surfaces
-// that own their bottom edge, the map's bottom sheet and the guide page's
-// buy bar, so a direct load of either never flashes it.
-// ============================================================
-const BOTTOM_NAV = [
-  { key: "planning", label: "Plan" },
-  { key: "now", label: "Now" },
-  { key: "map", label: "Map" },
-  { key: "articles", label: "Read" },
-];
-
-function BottomNav({ current, go }) {
-  if (current === "map" || current === "guide") return null;
-  const isActive = (key) => {
-    if (key === "articles") return current === "articles" || current.startsWith("a:") || current.startsWith("cat:");
-    if (key === "planning") return ["planning", "itineraries", "stay", "checklist", "kit"].includes(current);
-    return current === key;
-  };
-  return (
-    <nav className="bottomnav" aria-label="Quick navigation">
-      {BOTTOM_NAV.map((t) => (
-        <a
-          key={t.key}
-          className={["bottomnav__item", isActive(t.key) && "is-active"].filter(Boolean).join(" ")}
-          aria-current={isActive(t.key) ? "page" : undefined}
-          href={window.routeToPath ? window.routeToPath(t.key) : `/${t.key}`}
-          onClick={(e) => {
-            e.preventDefault();
-            if (window.track) window.track("cta_click", { location: "bottom_nav", target: t.key });
-            go(t.key);
-          }}
-        >{t.label}</a>
-      ))}
-    </nav>
-  );
+  return <HomeMasthead go={go} current={current} />;
 }
 
 // ============================================================
@@ -1544,7 +1131,7 @@ function Footer({ go }) {
               plentiful internal links, and /advertise, /widget, /partners,
               /privacy and /terms were each collecting 31 to 65 of them, more
               than any article except the gateway hub. They stay reachable
-              (nothing is dropped, and NAV_SECONDARY still carries them) but
+              (nothing is dropped, and /explore lists them too) but
               they no longer outrank the writing for the site's own link
               equity. */}
           <div>
@@ -1848,16 +1435,9 @@ function ShareRow({ title, slug }) {
     }
   };
   return (
-    <div className="share-row" style={{ display: "flex", alignItems: "center", gap: 12, marginTop: 20, fontFamily: "var(--sans)", fontSize: 13, color: "var(--ink-3)" }}>
+    <div className="share-row">
       <span>Worth sending to your trip partner?</span>
-      <button
-        type="button"
-        onClick={share}
-        style={{
-          font: "inherit", color: "var(--moss)", background: "none",
-          border: "1px solid var(--rule)", padding: "6px 14px", cursor: "pointer",
-        }}
-      >{copied ? "Link copied" : "Share this article"}</button>
+      <button type="button" className="share-row__btn" onClick={share}>{copied ? "Link copied" : "Share this article"}</button>
     </div>
   );
 }
@@ -2046,46 +1626,6 @@ const readHistory = {
 window.readHistory = readHistory;
 
 // ============================================================
-// Article card
-// ============================================================
-// `onNav` (optional) fires just before navigation so a surface can tag the
-// click (e.g. the related rail's related_click event) without every card
-// paying for it.
-function ArticleCard({ article, go, size, onNav }) {
-  const cat = window.findCategory(article.cat);
-  return (
-    <a
-      className="card"
-      href={`/articles/${article.slug}`}
-      onClick={(e) => { e.preventDefault(); if (onNav) onNav(article); go(`a:${article.slug}`); }}
-    >
-      <Placeholder
-        caption={article.placeholder}
-        image={article.image}
-        tag={cat.label.split(" ")[0]}
-        size={size === "sm" ? "sm" : null}
-        sizes={SIZES_CARD}
-        style={{ aspectRatio: size === "wide" ? "16/9" : "4/3" }}
-        motif={
-          article.cat === "trails" ? <MotifMountains /> :
-          article.cat === "wildlife" ? <MotifTrees /> :
-          article.cat === "seasonal" ? <MotifSun /> : null
-        }
-      />
-      <div style={{ marginTop: 14 }}>
-        <div className="card__cat">{cat.label}</div>
-        <div className="card__title">{article.title}</div>
-        {size !== "sm" && <div className="card__dek">{article.dek}</div>}
-        <div className="card__meta">
-          <span>{article.date}</span>
-          <span>{article.read}</span>
-        </div>
-      </div>
-    </a>
-  );
-}
-
-// ============================================================
 // Newsletter submit side-effects (shared)
 // The subscribe forms POST into a hidden iframe (target="buttondown-target",
 // declared in index.html) so the page never navigates and no popup opens.
@@ -2209,7 +1749,7 @@ function NewsletterInline({ heading, blurb, location, tag, incentive, abTest, va
           : (blurb || "A short note on Sundays, when there is something to say.")}</p>
       {inputLabel && !done && <label htmlFor={`${location}-email`}>{inputLabel}</label>}
       {done ? (
-        <p style={{ fontFamily: "var(--serif)", fontSize: 17, color: "var(--moss)", margin: 0, padding: "8px 0" }}>
+        <p className="nlbox__done">
           You're in. <a href="/map">The map is open to you →</a>
         </p>
       ) : (
@@ -2631,12 +2171,11 @@ function GuidePromo({ go, location, title, body, cta, sample = true, style }) {
         <div className="mono band-guide__cta">{cta || "See the Field Guide →"}</div>
       </a>
       {sample && (
-        <p style={{ fontFamily: "var(--sans)", fontSize: 13, color: "var(--ink-3)", lineHeight: 1.6, margin: "10px 0 0" }}>
+        <p className="band-guide__sample">
           Not sure yet? Five entries are free to read, no email required:{" "}
           <a
             href={`${GUIDE_PROMO_APP_BASE}/preview`}
             onClick={() => { if (window.track) window.track("guide_sample_click", { location: location || "unknown" }); }}
-            style={{ color: "var(--ink-2)" }}
           >preview the guide →</a>
         </p>
       )}
@@ -2649,7 +2188,7 @@ Object.assign(window, {
   Placeholder, ResponsiveImage, preloadResponsive,
   SIZES_HERO, SIZES_BODY, SIZES_CARD,
   MotifMountains, MotifSun, MotifTrees,
-  Header, Footer, BackToTop, ArticleCard, NewsletterInline, ExitIntentNewsletter, MapLightbox,
+  Header, Footer, BackToTop, NewsletterInline, ExitIntentNewsletter, MapLightbox,
   EntranceWaits, WebcamStrip, GuidePromo,
-  DESIGN_ROUTES, HomeLink, HomeMasthead, HpHeading, HpRow, HpCard, HpArticleCard, HpPageHead, HpGuideBand, HpLetter,
+  HomeLink, HomeMasthead, HpHeading, HpRow, HpCard, HpArticleCard, HpPageHead, HpGuideBand, HpLetter, HpPostcard,
 });

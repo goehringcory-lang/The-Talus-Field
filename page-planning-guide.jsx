@@ -29,7 +29,7 @@
 // bundle by PAGE_MODULES.
 //
 // Since September 2026 the page is built on the homepage's design system
-// (DESIGN_ROUTES in components.jsx): the head carries the five parts as its
+// (the Hp* components in components.jsx): the head carries the five parts as its
 // index, each part is a design section, the catalog renders as journal cards,
 // and the closing asks are the shared Field Guide band and letter.
 // =============================================================================

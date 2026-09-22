@@ -24,36 +24,22 @@ function ArticlesIndex({
   var inSection = active === "all" ? window.ARTICLES : window.byCategory(active);
   var list = window.filterArticlesByIntent(inSection, filters.value);
   return React.createElement("div", {
-    className: "page"
-  }, React.createElement("div", {
-    className: "page-head"
-  }, React.createElement("div", {
-    className: "wrap"
-  }, React.createElement(Breadcrumbs, {
+    className: "page hp-index"
+  }, React.createElement(HpPageHead, {
     go: go,
-    trail: [{
+    crumbs: [{
       label: "Home",
       route: "home"
     }, {
       label: "Articles"
-    }]
-  }), React.createElement("div", {
-    className: "eyebrow eyebrow--moss"
-  }, "Articles"), React.createElement("h1", null, "Entries."), React.createElement("p", {
-    className: "page-head__dek"
-  }, "Every essay and trail report from The Talus Field, in reverse chronological order. Yosemite planning notes, trail conditions, wildlife and natural history, and seasonal guides. Filter by section or by what you actually need, or read the whole thing."))), React.createElement("div", {
-    className: "wrap",
-    style: {
-      paddingTop: 32,
-      paddingBottom: 8
-    }
+    }],
+    eyebrow: "ARTICLES",
+    title: "Entries.",
+    intro: "Every essay and trail report from The Talus Field, in reverse chronological order. Yosemite planning notes, trail conditions, wildlife and natural history, and seasonal guides. Filter by section or by what you actually need, or read the whole thing."
+  }), React.createElement("section", {
+    className: "hp-wrap hp-index__filters"
   }, React.createElement("div", {
-    style: {
-      display: "flex",
-      gap: 8,
-      flexWrap: "wrap",
-      paddingBottom: 24
-    }
+    className: "hp-index__sections"
   }, React.createElement("a", {
     href: "/articles",
     className: `chip ${active === "all" ? "is-active" : ""}`,
@@ -83,33 +69,20 @@ function ArticlesIndex({
     count: filters.count,
     resultCount: list.length,
     note: active === "all" ? "" : `Within ${window.findCategory(active).label}.`
-  })), React.createElement("div", {
-    className: "wrap",
-    style: {
-      paddingTop: 40
-    }
+  })), React.createElement("section", {
+    className: "hp-wrap hp-section hp-index__list"
   }, list.length > 0 ? React.createElement("div", {
-    style: {
-      display: "grid",
-      gridTemplateColumns: "repeat(3, 1fr)",
-      gap: 36,
-      rowGap: 56
-    }
-  }, list.map(a => React.createElement(ArticleCard, {
+    className: "hp-journal-grid"
+  }, list.map(a => React.createElement(HpArticleCard, {
     key: a.slug,
     article: a,
-    go: go
+    go: go,
+    location: "articles_list"
   }))) : React.createElement("p", {
-    style: {
-      fontFamily: "var(--serif)",
-      fontSize: 19,
-      lineHeight: 1.55,
-      color: "var(--ink-2)",
-      maxWidth: 640
-    }
+    className: "hp-sub hp-index__empty"
   }, "Nothing here carries all of those at once. Drop a filter, or", " ", React.createElement("button", {
     type: "button",
-    className: "linkish",
+    className: "hp-link",
     onClick: filters.clear
   }, "clear them all"), ".")));
 }
@@ -119,63 +92,39 @@ function CategoryPage({
 }) {
   var cat = window.findCategory(slug);
   if (!cat) return React.createElement("div", {
-    className: "wrap",
-    style: {
-      padding: 80
-    }
+    className: "hp-wrap hp-section"
   }, "Not found.");
   var items = window.byCategory(slug);
   return React.createElement("div", {
-    className: "page"
-  }, React.createElement("div", {
-    className: "page-head"
-  }, React.createElement("div", {
-    className: "wrap"
-  }, React.createElement(Breadcrumbs, {
+    className: "page hp-index"
+  }, React.createElement(HpPageHead, {
     go: go,
-    trail: [{
+    crumbs: [{
       label: "Home",
       route: "home"
     }, {
       label: cat.label
-    }]
-  }), React.createElement("div", {
-    className: "eyebrow eyebrow--moss"
-  }, "Section"), React.createElement("h1", null, cat.label), React.createElement("p", {
-    className: "page-head__dek"
-  }, cat.blurb))), React.createElement("div", {
-    className: "wrap",
-    style: {
-      paddingTop: 48
-    }
+    }],
+    eyebrow: "SECTION",
+    title: cat.label,
+    intro: cat.blurb
+  }), React.createElement("section", {
+    className: "hp-wrap hp-section hp-index__list"
   }, React.createElement("div", {
-    style: {
-      display: "grid",
-      gridTemplateColumns: "repeat(3, 1fr)",
-      gap: 36,
-      rowGap: 56
-    }
-  }, items.map(a => React.createElement(ArticleCard, {
+    className: "hp-journal-grid"
+  }, items.map(a => React.createElement(HpArticleCard, {
     key: a.slug,
     article: a,
-    go: go
-  }))), React.createElement("div", {
-    style: {
-      marginTop: 80,
-      borderTop: "1px solid var(--rule)",
-      paddingTop: 32,
-      fontFamily: "var(--sans)",
-      fontSize: 14,
-      color: "var(--ink-3)"
-    }
+    go: go,
+    location: "section_list"
+  }))), React.createElement("p", {
+    className: "hp-index__back"
   }, React.createElement("a", {
+    className: "hp-link",
     href: "/articles",
     onClick: e => {
       e.preventDefault();
       go("articles");
-    },
-    style: {
-      color: "var(--ink-2)"
     }
   }, "← Back to all articles"))));
 }

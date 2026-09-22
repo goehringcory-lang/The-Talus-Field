@@ -1268,7 +1268,7 @@ function GuideMobileBuyBar() {
 }
 
 // Since September 2026 the page is built on the homepage's design system
-// (DESIGN_ROUTES in components.jsx): the hero is the shared Field Guide band,
+// (the Hp* components in components.jsx): the hero is the shared Field Guide band,
 // with the checkout button where the homepage puts its link, the long pitch
 // runs as numbered design sections beside the sticky buy box, and the letter
 // closes the page. The product copy is unchanged.

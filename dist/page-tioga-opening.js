@@ -74,29 +74,22 @@ function TiogaOpeningPage({
     go(`a:${slug}`);
   };
   return React.createElement("div", {
-    className: "page"
-  }, React.createElement("div", {
-    className: "page-head"
-  }, React.createElement("div", {
-    className: "wrap wrap--narrow"
-  }, React.createElement(Breadcrumbs, {
+    className: "page hp-tool hp-tioga-opening"
+  }, React.createElement(HpPageHead, {
     go: go,
-    trail: [{
+    crumbs: [{
       label: "Home",
       route: "home"
     }, {
       label: "Tioga opening"
-    }]
+    }],
+    eyebrow: "SEASONAL EVENT · LATE SPRING",
+    title: "The Tioga Road opening",
+    intro: "Every spring, plow crews cut Highway 120 out of the snowpack and the highest road in the park comes back. The opening date is not a date: it is announced only days ahead, it varies by weeks from year to year, and the first weekends are unlike any other time on the road. This page is the standing version: how the opening works, what is actually open in week one, and how to drive it well."
   }), React.createElement("div", {
-    className: "eyebrow eyebrow--moss"
-  }, "Seasonal event · late spring"), React.createElement("h1", null, "The Tioga Road opening"), React.createElement("p", {
-    className: "page-head__dek"
-  }, "Every spring, plow crews cut Highway 120 out of the snowpack and the highest road in the park comes back. The opening date is not a date: it is announced only days ahead, it varies by weeks from year to year, and the first weekends are unlike any other time on the road. This page is the standing version: how the opening works, what is actually open in week one, and how to drive it well."))), React.createElement("div", {
-    className: "wrap wrap--narrow",
-    style: {
-      paddingTop: 40,
-      paddingBottom: 64
-    }
+    className: "hp-wrap hp-reading"
+  }, React.createElement("div", {
+    className: "hp-reading__column"
   }, React.createElement("section", {
     className: "prose"
   }, React.createElement("h2", null, "How the opening works"), React.createElement("p", null, "Tioga Road closes with the first lasting snow, typically in November, and reopens when the plowing is done, full stop. The long-term average opening is the end of May. Light snow years have opened the gate in mid-May; heavy years push the opening into June and beyond. The park announces the date only once the crews are nearly through, usually with less than a week's notice, so a trip planned around \"Tioga will be open\" needs a backup plan below 8,000 feet."), React.createElement("p", null, "The second thing to know is the difference between \"the road is open\" and \"Tuolumne Meadows is open for the season.\" Opening weekend lives entirely in the first one. The store, the grill, the lodge, the campground, the wilderness center staffing: all of that comes online over the following weeks, on its own schedule. What you get in week one is the road itself, a ribbon of asphalt through snow walls, half-frozen lakes, and a high country still pulling itself out of winter. That is a spectacular thing to drive through, and a spectacular thing to be unprepared for."), React.createElement("h2", null, "When it has actually opened"), React.createElement("p", null, "The long-term average is ", LONG_TERM_AVERAGE, ", and the average is the least useful number here: the spread between a light year and a heavy one is measured in weeks, not days. These are the openings this journal has recorded."), React.createElement("table", null, React.createElement("thead", null, React.createElement("tr", null, React.createElement("th", null, "Year"), React.createElement("th", null, "Tioga Road opened"), React.createElement("th", null, "Note"))), React.createElement("tbody", null, OPENING_HISTORY.map(r => React.createElement("tr", {
@@ -147,20 +140,19 @@ function TiogaOpeningPage({
     list: "page_tioga",
     slug: "tioga-opening",
     cta: "Search Lee Vining lodging →"
-  }), React.createElement(GuidePromo, {
+  }))), React.createElement(HpGuideBand, {
     go: go,
     location: "tioga-opening",
     title: "Planning the high-country trip around it?",
-    body: "The Field Guide app carries the Tioga Road stops with parking notes, offline maps for the stretch with no signal, and a day-by-day planner for the rest of the trip. One purchase, eighteen months of access.",
-    style: {
-      marginTop: 56,
-      marginBottom: 40
-    }
-  }), React.createElement(NewsletterInline, {
-    location: "tioga-opening",
-    tag: "alert-tioga",
+    intro: "The Field Guide app carries the Tioga Road stops with parking notes, offline maps for the stretch with no signal, and a day-by-day planner for the rest of the trip. One purchase, eighteen months of access.",
+    sample: true
+  }), React.createElement(HpLetter, {
+    eyebrow: "SUNDAY FIELD NOTES / FREE",
+    title: "Email me the day it opens",
     heading: "Email me the day it opens",
-    blurb: "One email the day the park announces Tioga Road is open, and one when it closes for the season, sent to the people who asked for it. Sunday Field Notes carries the plowing progress in between. Free."
-  })));
+    blurb: "One email the day the park announces Tioga Road is open, and one when it closes for the season, sent to the people who asked for it. Sunday Field Notes carries the plowing progress in between. Free.",
+    location: "tioga-opening",
+    tag: "alert-tioga"
+  }));
 }
 window.TiogaOpeningPage = TiogaOpeningPage;

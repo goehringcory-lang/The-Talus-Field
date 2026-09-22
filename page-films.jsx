@@ -1,4 +1,4 @@
-/* global React, NewsletterInline, Breadcrumbs */
+/* global React, HpPageHead, HpHeading, HpLetter */
 const { useState: useStateF, useEffect: useEffectF, useRef: useRefF } = React;
 
 // ============================================================
@@ -85,58 +85,47 @@ function FilmsPage({ go }) {
   const count = nn.episodes.length;
 
   return (
-    <div>
-      {/* Page head */}
-      <section className="wrap" style={{ paddingTop: 56, paddingBottom: 24 }}>
-        <Breadcrumbs go={go} trail={[{ label: "Home", route: "home" }, { label: "Films" }]} />
-        <div className="eyebrow eyebrow--moss" style={{ marginBottom: 18 }}>The Film Archive</div>
-        <h1 className="display" style={{ fontSize: "clamp(46px, 6vw, 84px)", lineHeight: 0.98, marginBottom: 24, fontWeight: 500, letterSpacing: "-0.01em" }}>
-          Moving pictures
-        </h1>
-        <p style={{ fontFamily: "var(--serif)", fontSize: 21, lineHeight: 1.5, color: "var(--ink-2)", maxWidth: "62ch", textWrap: "pretty" }}>
-          The National Park Service spent the better part of two decades producing a film
-          series about this park, released it to the public, and barely told anyone.
-          The complete run of Yosemite Nature Notes is archived below, {count} films grouped
-          by subject. Most run under ten minutes. One of them is about the rock piles this
-          journal is named for.
-        </p>
-        <p style={{ fontFamily: "var(--serif)", fontSize: 19, lineHeight: 1.5, color: "var(--ink-3)", maxWidth: "62ch", marginTop: 16, textWrap: "pretty" }}>
+    <div className="page hp-films">
+      <HpPageHead
+        go={go}
+        crumbs={[{ label: "Home", route: "home" }, { label: "Films" }]}
+        eyebrow="THE FILM ARCHIVE"
+        title="Moving pictures"
+        intro={`The National Park Service spent the better part of two decades producing a film series about this park, released it to the public, and barely told anyone. The complete run of Yosemite Nature Notes is archived below, ${count} films grouped by subject. Most run under ten minutes. One of them is about the rock piles this journal is named for.`}
+        aside={
+          /* Provenance. The films are public-domain government work; the deks are ours. */
+          <div className="films__credit">
+            <p>
+              Yosemite Nature Notes is produced by the National Park Service at Yosemite
+              National Park. The films are works of the United States government and are in
+              the public domain. The Talus Field is independent and is not affiliated with
+              the National Park Service; the notes under each film are this journal's, not
+              the Park Service's. The originals live at{" "}
+              <a href={nn.series.npsUrl} target="_blank" rel="noopener noreferrer">nps.gov ↗</a>{" "}
+              and on the park's{" "}
+              <a href={nn.series.playlistUrl} target="_blank" rel="noopener noreferrer">YouTube channel ↗</a>.
+              Nothing plays, and nothing loads from YouTube, until you press play.
+            </p>
+          </div>
+        }
+      >
+        <p className="hp-intro">
           The films borrowed their name from something older. From 1922 into the 1980s the
           park's naturalists mailed out a bulletin called Yosemite Nature Notes, and all 512
           issues of it are transcribed in{" "}
           {/* Static pages under /archive, outside the SPA: a plain link, no go(). */}
-          <a href="/archive/">the print archive</a>.
+          <a className="hp-inline" href="/archive/">the print archive</a>.
         </p>
-      </section>
-
-      {/* Provenance. The films are public-domain government work; the deks are ours. */}
-      <section className="wrap" style={{ paddingBottom: 24 }}>
-        <div className="films__credit">
-          <p>
-            Yosemite Nature Notes is produced by the National Park Service at Yosemite
-            National Park. The films are works of the United States government and are in
-            the public domain. The Talus Field is independent and is not affiliated with
-            the National Park Service; the notes under each film are this journal's, not
-            the Park Service's. The originals live at{" "}
-            <a href={nn.series.npsUrl} target="_blank" rel="noopener noreferrer">nps.gov ↗</a>{" "}
-            and on the park's{" "}
-            <a href={nn.series.playlistUrl} target="_blank" rel="noopener noreferrer">YouTube channel ↗</a>.
-            Nothing plays, and nothing loads from YouTube, until you press play.
-          </p>
-        </div>
-      </section>
+      </HpPageHead>
 
       {/* Theme sections */}
       {nn.themes.map((theme) => {
         const eps = byTheme(theme.id);
         if (!eps.length) return null;
         return (
-          <section key={theme.id} className="wrap" style={{ paddingTop: 40, paddingBottom: 8 }}>
-            <div className="section-head">
-              <h2>{theme.title}</h2>
-              <span className="film-section__count">{eps.length} {eps.length === 1 ? "film" : "films"}</span>
-            </div>
-            <p className="film-section__note">{theme.note}</p>
+          <section key={theme.id} className="hp-wrap hp-section hp-films__theme">
+            <HpHeading eyebrow={`${eps.length} ${eps.length === 1 ? "FILM" : "FILMS"}`} title={theme.title} />
+            <p className="hp-sub">{theme.note}</p>
             <div className="film-grid">
               {eps.map((ep) => <FilmCard key={ep.id} ep={ep} />)}
             </div>
@@ -145,7 +134,7 @@ function FilmsPage({ go }) {
       })}
 
       {/* Closing note */}
-      <section className="wrap" style={{ paddingTop: 40, paddingBottom: 48 }}>
+      <section className="hp-wrap hp-films__close">
         <div className="films__credit">
           <p>
             The series ran from 2009 to 2025 under producer Steven M. Bumgardner and a long
@@ -155,14 +144,14 @@ function FilmsPage({ go }) {
         </div>
       </section>
 
-      <section className="wrap" style={{ paddingBottom: 80 }}>
-        <NewsletterInline
-          location="films"
-          tag="films"
-          heading="Sunday Field Notes"
-          blurb="One Yosemite email a week. Notes on the park worth reading alongside the films."
-        />
-      </section>
+      <HpLetter
+        eyebrow="SUNDAY FIELD NOTES / FREE"
+        title="Sunday Field Notes"
+        heading="Sunday Field Notes"
+        blurb="One Yosemite email a week. Notes on the park worth reading alongside the films."
+        location="films"
+        tag="films"
+      />
     </div>
   );
 }

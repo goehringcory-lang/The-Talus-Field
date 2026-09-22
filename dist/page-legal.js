@@ -5,31 +5,15 @@ function LegalShell({
   children
 }) {
   return React.createElement("div", {
-    className: "page"
+    className: "page hp-legal"
+  }, React.createElement(HpPageHead, {
+    eyebrow: eyebrow.toUpperCase(),
+    title: title,
+    intro: `Last updated ${updated}.`
+  }), React.createElement("div", {
+    className: "hp-wrap hp-reading"
   }, React.createElement("div", {
-    className: "page-head"
-  }, React.createElement("div", {
-    className: "wrap wrap--narrow"
-  }, React.createElement("div", {
-    className: "eyebrow eyebrow--moss"
-  }, eyebrow), React.createElement("h1", null, title), React.createElement("p", {
-    className: "page-head__dek",
-    style: {
-      fontSize: 15,
-      fontFamily: "var(--sans)",
-      color: "var(--ink-3)"
-    }
-  }, "Last updated ", updated, "."))), React.createElement("div", {
-    className: "wrap wrap--read",
-    style: {
-      paddingTop: 48,
-      paddingBottom: 96
-    }
-  }, React.createElement("div", {
-    className: "prose",
-    style: {
-      fontSize: 17
-    }
+    className: "hp-reading__column prose"
   }, children)));
 }
 function PrivacyPage() {

@@ -1205,24 +1205,19 @@ function BulletinPage({
   var trailUsual = data ? data.trails.length - trailCheck : 0;
   return React.createElement("div", {
     className: "page bulletin"
-  }, React.createElement("div", {
-    className: "page-head"
-  }, React.createElement("div", {
-    className: "wrap"
-  }, React.createElement(Breadcrumbs, {
+  }, React.createElement(HpPageHead, {
     go: go,
-    trail: [{
+    crumbs: [{
       label: "Home",
       route: "home"
     }, {
       label: "The Park Bulletin"
-    }]
+    }],
+    eyebrow: "ONE PAGE, THE WHOLE PARK",
+    title: "The Park Bulletin",
+    intro: "What is different in Yosemite right now: what is open, what is on today, and what changes next. Rebuilt for each edition of the park's printed Yosemite Guide."
   }), React.createElement("div", {
-    className: "eyebrow eyebrow--moss"
-  }, "One page, the whole park"), React.createElement("h1", null, "The Park Bulletin"), React.createElement("p", {
-    className: "page-head__dek"
-  }, "What is different in Yosemite right now: what is open, what is on today, and what changes next. Rebuilt for each edition of the park's printed Yosemite Guide."))), React.createElement("div", {
-    className: "wrap bulletin-body"
+    className: "hp-wrap bulletin-body"
   }, state === "loading" && React.createElement("p", {
     className: "bulletin-loading"
   }, "Loading the current edition…"), state === "error" && React.createElement("p", {
@@ -1317,19 +1312,19 @@ function BulletinPage({
   }, "Webcams, entrance waits, and forecasts are one page away:", " ", React.createElement("a", {
     href: "/conditions",
     onClick: toConditions
-  }, "the conditions page →")), React.createElement(GuidePromo, {
+  }, "the conditions page →"))), React.createElement(HpGuideBand, {
     go: go,
     location: "now",
     title: "The Bulletin covers the week. This covers the trip.",
-    body: "The Field Guide app: 50-plus stops with parking and timing notes, offline maps, a trip planner, and the secret guide. Works with no signal, which is most of the park. One purchase, eighteen months of access.",
-    style: {
-      marginTop: 40
-    }
-  }), React.createElement(NewsletterInline, {
-    location: "now",
-    tag: "now",
+    intro: "The Field Guide app: 50-plus stops with parking and timing notes, offline maps, a trip planner, and the secret guide. Works with no signal, which is most of the park. One purchase, eighteen months of access.",
+    sample: true
+  }), React.createElement(HpLetter, {
+    eyebrow: "SUNDAY FIELD NOTES / FREE",
+    title: "When the next edition drops, hear about it",
     heading: "When the next edition drops, hear about it",
-    blurb: "The Sunday letter carries what changed on this board, plus whatever else the week earned. Free."
-  })));
+    blurb: "The Sunday letter carries what changed on this board, plus whatever else the week earned. Free.",
+    location: "now",
+    tag: "now"
+  }));
 }
 window.BulletinPage = BulletinPage;

@@ -6,16 +6,13 @@ function ExploreSection({
   go
 }) {
   return React.createElement("section", {
-    className: "wrap index-block"
-  }, React.createElement("div", {
-    className: "index-block__head"
-  }, React.createElement("div", {
-    className: "eyebrow eyebrow--moss"
-  }, eyebrow), React.createElement("h2", {
-    className: "index-block__title"
-  }, title), dek && React.createElement("p", {
-    className: "index-block__dek"
-  }, dek)), React.createElement("ul", {
+    className: "hp-wrap hp-section index-block"
+  }, React.createElement(HpHeading, {
+    eyebrow: eyebrow.toUpperCase(),
+    title: title
+  }), dek && React.createElement("p", {
+    className: "hp-sub"
+  }, dek), React.createElement("ul", {
     className: "index-list"
   }, entries.map(entry => React.createElement("li", {
     key: entry.route || entry.href,
@@ -188,30 +185,26 @@ function ExplorePage({
     note: "How affiliate links work here, and the rule that the best recommendation stays top and linkless if it pays nothing."
   }];
   return React.createElement("div", {
-    className: "page"
-  }, React.createElement("section", {
-    className: "page-head"
-  }, React.createElement("div", {
-    className: "wrap wrap--narrow"
-  }, React.createElement(Breadcrumbs, {
+    className: "page hp-explore"
+  }, React.createElement(HpPageHead, {
     go: go,
-    trail: [{
+    crumbs: [{
       label: "Home",
       route: "home"
     }, {
       label: "Site index"
-    }]
-  }), React.createElement("div", {
-    className: "eyebrow eyebrow--moss"
-  }, "The Index"), React.createElement("h1", null, "Everything on this site."), React.createElement("p", {
-    className: "page-head__dek"
-  }, "The whole journal on one page: what each destination is, and what it is for. If you already know what you are after, ", React.createElement("a", {
-    href: "/search",
-    onClick: e => {
-      e.preventDefault();
-      go("search");
-    }
-  }, "search"), " is faster."))), React.createElement(ExploreSection, {
+    }],
+    eyebrow: "THE INDEX",
+    title: "Everything on this site.",
+    intro: React.createElement(React.Fragment, null, "The whole journal on one page: what each destination is, and what it is for. If you already know what you are after, ", React.createElement("a", {
+      className: "hp-inline",
+      href: "/search",
+      onClick: e => {
+        e.preventDefault();
+        go("search");
+      }
+    }, "search"), " is faster.")
+  }), React.createElement(ExploreSection, {
     go: go,
     eyebrow: "Plan a Trip",
     title: "The trip.",
@@ -241,15 +234,11 @@ function ExplorePage({
     title: "Everything else.",
     dek: "Who keeps this, how to reach it, and the pages for businesses and lawyers.",
     entries: journal
-  }), React.createElement("section", {
-    className: "wrap wrap--narrow",
-    style: {
-      paddingTop: 24,
-      paddingBottom: 40
-    }
-  }, React.createElement(NewsletterInline, {
+  }), React.createElement(HpLetter, {
+    eyebrow: "SUNDAY FIELD NOTES / FREE",
+    title: "Sunday Field Notes",
     location: "explore",
     tag: "explore"
-  })));
+  }));
 }
 window.ExplorePage = ExplorePage;

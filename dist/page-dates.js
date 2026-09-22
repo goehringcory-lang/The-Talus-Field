@@ -148,29 +148,22 @@ function DatesPage({
     go(r);
   };
   return React.createElement("div", {
-    className: "page"
-  }, React.createElement("div", {
-    className: "page-head"
-  }, React.createElement("div", {
-    className: "wrap wrap--narrow"
-  }, React.createElement(Breadcrumbs, {
+    className: "page hp-tool hp-dates"
+  }, React.createElement(HpPageHead, {
     go: go,
-    trail: [{
+    crumbs: [{
       label: "Home",
       route: "home"
     }, {
       label: "Dates that matter"
-    }]
+    }],
+    eyebrow: "DEADLINES",
+    title: "The Yosemite dates that matter",
+    intro: "The lotteries, the release mornings, and the road windows that decide a trip, in one table, each one a calendar file. Enter your dates and the ones measured from your trip resolve to real days."
   }), React.createElement("div", {
-    className: "eyebrow eyebrow--moss"
-  }, "Deadlines"), React.createElement("h1", null, "The Yosemite dates that matter"), React.createElement("p", {
-    className: "page-head__dek"
-  }, "The lotteries, the release mornings, and the road windows that decide a trip, in one table, each one a calendar file. Enter your dates and the ones measured from your trip resolve to real days."))), React.createElement("div", {
-    className: "wrap wrap--narrow",
-    style: {
-      paddingTop: 40,
-      paddingBottom: 64
-    }
+    className: "hp-wrap hp-reading"
+  }, React.createElement("div", {
+    className: "hp-reading__column"
   }, React.createElement("section", {
     className: "prose"
   }, React.createElement("h2", null, "Measured from your trip"), React.createElement("p", null, "Most of what has to happen before a Yosemite trip is measured backwards from the day you arrive: a Half Dome day permit two days before, a wilderness permit twenty-four weeks before, a Pines campsite five months before. Put in your first and last day in the park and the table below turns those rules into dates."), React.createElement("div", {
@@ -316,6 +309,6 @@ function DatesPage({
     tag: interest,
     heading: `${TAG_LABELS[interest]}: the nudge before the date`,
     blurb: "A short letter on Sundays, and a dated line the week a window you asked about opens. Free."
-  })));
+  }))));
 }
 window.DatesPage = DatesPage;

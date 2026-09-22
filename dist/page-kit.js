@@ -56,71 +56,37 @@ function KitPage({
     })));
     if (dupes.length) console.warn("KIT duplicate item ids:", dupes);
   }
-  return React.createElement("div", null, React.createElement("style", null, `
+  return React.createElement("div", {
+    className: "page hp-kit"
+  }, React.createElement("style", null, `
         @media print {
-          header, footer, .tweaks-panel, .kit__tabs, .kit__count, .kit__photo { display: none !important; }
+          header, footer, .hp-navigation, .hp-product, .hp-letter, .kit__tabs, .kit__count, .kit__photo { display: none !important; }
           body { background: #fff !important; color: #000 !important; }
           a { color: #000 !important; text-decoration: none !important; }
           .kit-group { page-break-inside: avoid; }
         }
-      `), React.createElement("section", {
-    className: "wrap",
-    style: {
-      paddingTop: 56,
-      paddingBottom: 24
-    }
-  }, React.createElement(Breadcrumbs, {
+      `), React.createElement(HpPageHead, {
     go: go,
-    trail: [{
+    crumbs: [{
       label: "Home",
       route: "home"
     }, {
       label: "Kit"
-    }]
-  }), React.createElement("div", {
-    className: "eyebrow eyebrow--moss",
-    style: {
-      marginBottom: 18
-    }
-  }, "Kit"), React.createElement("h1", {
-    className: "display",
-    style: {
-      fontSize: "clamp(46px, 6vw, 84px)",
-      lineHeight: 0.98,
-      marginBottom: 24,
-      fontWeight: 500,
-      letterSpacing: "-0.01em"
-    }
-  }, "What to pack"), React.createElement("p", {
-    style: {
-      fontFamily: "var(--serif)",
-      fontSize: 21,
-      lineHeight: 1.5,
-      color: "var(--ink-2)",
-      maxWidth: "62ch",
-      textWrap: "pretty"
-    }
-  }, "Three packing checklists for a Yosemite trip: a day pack, what an overnight adds to it, and the full car load. Tick items off as you plan and pack. Your progress is saved in this browser, so you can close the tab and come back to it. Press Cmd+P or Ctrl+P for a clean printable copy."), React.createElement("p", {
-    className: "kit__aff-note",
-    style: {
-      fontFamily: "var(--serif)",
-      fontSize: 14,
-      lineHeight: 1.5,
-      color: "var(--ink-2)",
-      marginTop: 14,
-      maxWidth: "62ch"
-    }
+    }],
+    eyebrow: "KIT",
+    title: "What to pack",
+    intro: "Three packing checklists for a Yosemite trip: a day pack, what an overnight adds to it, and the full car load. Tick items off as you plan and pack. Your progress is saved in this browser, so you can close the tab and come back to it. Press Cmd+P or Ctrl+P for a clean printable copy."
+  }, React.createElement("p", {
+    className: "hp-byline kit__aff-note"
   }, "Some gear here links to Patagonia through an affiliate link, marked with a star. If you buy through it, the site may earn a small commission at no extra cost to you. See the ", React.createElement("a", {
+    className: "hp-inline",
     href: "/affiliate",
     onClick: e => {
       e.preventDefault();
       go("affiliate");
     }
   }, "Affiliate Disclosure"), ".")), React.createElement("section", {
-    className: "wrap",
-    style: {
-      paddingTop: 24
-    }
+    className: "hp-wrap hp-kit__tabs"
   }, React.createElement("div", {
     className: "kit__tabs"
   }, kit.lists.map(l => React.createElement("button", {
@@ -149,31 +115,15 @@ function KitPage({
     };
     return React.createElement("section", {
       key: list.slug,
-      className: "wrap",
-      style: {
-        paddingTop: 32,
-        paddingBottom: 64
-      }
+      className: "hp-wrap hp-kit__list"
     }, React.createElement("div", {
       className: "kit__head"
     }, React.createElement("div", null, React.createElement("div", {
       className: "kit__list-roman"
     }, list.icon), React.createElement("h2", {
-      style: {
-        fontFamily: "var(--display)",
-        fontSize: 44,
-        fontWeight: 500,
-        lineHeight: 1.05,
-        margin: "8px 0 12px"
-      }
+      className: "kit__title"
     }, list.title), React.createElement("p", {
-      style: {
-        fontFamily: "var(--serif)",
-        fontStyle: "italic",
-        color: "var(--ink-2)",
-        fontSize: 18,
-        maxWidth: "52ch"
-      }
+      className: "hp-sub kit__summary"
     }, list.summary)), React.createElement("div", {
       className: "kit__count"
     }, React.createElement("span", {
@@ -242,30 +192,12 @@ function KitPage({
       }, "Read the piece →")));
     })))), list.essay && React.createElement("aside", {
       className: "kit__essay"
-    }, React.createElement("div", {
-      className: "eyebrow eyebrow--moss",
-      style: {
-        marginBottom: 12
-      }
-    }, "The essay behind the list"), React.createElement("h3", {
-      style: {
-        fontFamily: "var(--display)",
-        fontSize: 28,
-        fontWeight: 500,
-        lineHeight: 1.15,
-        margin: "0 0 12px"
-      }
-    }, list.essay.title), React.createElement("p", {
-      style: {
-        fontFamily: "var(--serif)",
-        fontSize: 17,
-        color: "var(--ink-2)",
-        lineHeight: 1.55,
-        margin: "0 0 16px",
-        maxWidth: "60ch"
-      }
+    }, React.createElement("p", {
+      className: "hp-eyebrow"
+    }, "THE ESSAY BEHIND THE LIST"), React.createElement("h3", null, list.essay.title), React.createElement("p", {
+      className: "hp-sub"
     }, list.essay.blurb), React.createElement("a", {
-      className: "btn btn--ghost",
+      className: "hp-link",
       href: `/articles/${list.essay.slug}`,
       onClick: e => {
         e.preventDefault();
@@ -273,81 +205,38 @@ function KitPage({
       }
     }, "Read the essay →")));
   }), React.createElement("section", {
-    className: "wrap",
-    style: {
-      paddingTop: 56,
-      paddingBottom: 80,
-      borderTop: "1px solid var(--rule)"
-    }
-  }, React.createElement("div", {
-    style: {
-      display: "flex",
-      alignItems: "center",
-      gap: 32,
-      flexWrap: "wrap"
-    }
-  }, React.createElement("div", {
-    style: {
-      flex: 1,
-      minWidth: 280
-    }
-  }, React.createElement("div", {
-    className: "eyebrow eyebrow--moss",
-    style: {
-      marginBottom: 12
-    }
-  }, "Looking for lodging or a guide?"), React.createElement("h2", {
-    style: {
-      fontFamily: "var(--display)",
-      fontSize: 32,
-      fontWeight: 500,
-      lineHeight: 1.1,
-      margin: "0 0 12px"
-    }
-  }, "The directory lives on its own page now."), React.createElement("p", {
-    style: {
-      fontFamily: "var(--serif)",
-      fontSize: 17,
-      color: "var(--ink-2)",
-      margin: 0,
-      lineHeight: 1.5
-    }
+    className: "hp-wrap hp-section hp-kit__dir"
+  }, React.createElement("div", null, React.createElement("p", {
+    className: "hp-eyebrow"
+  }, "LOOKING FOR LODGING OR A GUIDE?"), React.createElement("h2", null, "The directory lives on its own page now."), React.createElement("p", {
+    className: "hp-sub"
   }, "Lodges, inns, guiding services, and outfitters in and around Yosemite, moved into ", React.createElement("a", {
+    className: "hp-inline",
     href: "/places",
     onClick: e => {
       e.preventDefault();
       go("places");
     }
   }, "The Directory"), " to keep this page about gear.")), React.createElement("a", {
-    className: "btn",
+    className: "hp-button",
     href: "/places",
     onClick: e => {
       e.preventDefault();
       go("places");
     }
-  }, "Open the directory →"))), React.createElement("section", {
-    className: "wrap",
-    style: {
-      paddingBottom: 24
-    }
-  }, React.createElement(GuidePromo, {
+  }, "Open the directory →")), React.createElement(HpGuideBand, {
     go: go,
     location: "kit",
     title: "One more thing for the trunk.",
-    body: "The Field Guide app weighs nothing and works with no signal: offline maps, 50-plus stops with parking and timing notes, and a trip planner. The last item on the packing list.",
-    style: {
-      maxWidth: 680
-    }
-  })), React.createElement("section", {
-    className: "wrap",
-    style: {
-      paddingBottom: 80
-    }
-  }, React.createElement(NewsletterInline, {
-    location: "kit",
-    tag: "kit",
+    intro: "The Field Guide app weighs nothing and works with no signal: offline maps, 50-plus stops with parking and timing notes, and a trip planner. The last item on the packing list.",
+    sample: true
+  }), React.createElement(HpLetter, {
+    eyebrow: "SUNDAY FIELD NOTES / FREE",
+    title: "Gear notes with the letter",
     heading: "Gear notes with the letter",
-    blurb: "What's working this season, what wore out, and what changed in the packing list. Comes with Sunday Field Notes."
-  })));
+    blurb: "What's working this season, what wore out, and what changed in the packing list. Comes with Sunday Field Notes.",
+    location: "kit",
+    tag: "kit"
+  }));
 }
 window.KitPage = KitPage;

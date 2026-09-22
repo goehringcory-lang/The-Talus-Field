@@ -857,46 +857,44 @@ function NotFoundPage({
   }, [query]);
   var hrefFor = r => r.path ? r.path : routeToPath(r.key);
   return React.createElement("div", {
-    className: "page"
-  }, React.createElement("div", {
-    className: "page-head"
-  }, React.createElement("div", {
-    className: "wrap wrap--narrow"
-  }, React.createElement("div", {
-    className: "eyebrow eyebrow--moss"
-  }, "Off the trail"), React.createElement("h1", null, "Page not found"), React.createElement("p", {
-    className: "lede"
-  }, "There is nothing at this address. The link may be old, or the page may have moved."))), React.createElement("div", {
-    className: "wrap wrap--narrow",
-    style: {
-      paddingBottom: 64
-    }
+    className: "page hp-notfound"
+  }, React.createElement(HpPageHead, {
+    eyebrow: "OFF THE TRAIL",
+    title: "Page not found",
+    intro: "There is nothing at this address. The link may be old, or the page may have moved.",
+    aside: suggestions && suggestions.length > 0 ? React.createElement("div", {
+      className: "notfound__suggest"
+    }, React.createElement("h2", null, "Did you mean"), React.createElement("ul", {
+      className: "relrail"
+    }, suggestions.map(r => React.createElement("li", {
+      key: r.key
+    }, React.createElement("a", {
+      href: hrefFor(r),
+      onClick: e => {
+        if (r.path) return;
+        e.preventDefault();
+        if (window.track) window.track("cta_click", {
+          location: "notfound_suggest",
+          target: r.key
+        });
+        go(r.key);
+      }
+    }, r.title), React.createElement("span", {
+      className: "notfound__kind"
+    }, r.kind))))) : null
   }, React.createElement("p", {
     className: "notfound__path"
-  }, "You asked for ", React.createElement("code", null, window.location.pathname)), suggestions && suggestions.length > 0 && React.createElement("div", {
-    className: "notfound__suggest"
-  }, React.createElement("h2", null, "Did you mean"), React.createElement("ul", null, suggestions.map(r => React.createElement("li", {
-    key: r.key
-  }, React.createElement("a", {
-    href: hrefFor(r),
-    onClick: e => {
-      if (r.path) return;
-      e.preventDefault();
-      if (window.track) window.track("cta_click", {
-        location: "notfound_suggest",
-        target: r.key
-      });
-      go(r.key);
-    }
-  }, r.title), React.createElement("span", {
-    className: "notfound__kind"
-  }, r.kind))))), React.createElement("p", null, "Good places to reorient:", " ", React.createElement("a", {
+  }, "You asked for ", React.createElement("code", null, window.location.pathname)), React.createElement("p", {
+    className: "hp-sub notfound__next"
+  }, "Good places to reorient:", " ", React.createElement("a", {
+    className: "hp-inline",
     href: "/explore",
     onClick: e => {
       e.preventDefault();
       go("explore");
     }
   }, "the site index"), ",", " ", React.createElement("a", {
+    className: "hp-inline",
     href: query ? `/search?q=${encodeURIComponent(query)}` : "/search",
     onClick: e => {
       e.preventDefault();
@@ -906,12 +904,14 @@ function NotFoundPage({
       go("search");
     }
   }, "search"), ",", " ", React.createElement("a", {
+    className: "hp-inline",
     href: "/planning",
     onClick: e => {
       e.preventDefault();
       go("planning");
     }
   }, "the planning guide"), ", or", " ", React.createElement("a", {
+    className: "hp-inline",
     href: "/map",
     onClick: e => {
       e.preventDefault();
@@ -1073,26 +1073,21 @@ function App() {
     document.addEventListener("keydown", onKey);
     return () => document.removeEventListener("keydown", onKey);
   }, []);
-  var [tweaks, setTweak] = useTweaks(window.TWEAK_DEFAULTS);
-  useEffect(() => {
-    document.documentElement.setAttribute("data-palette", tweaks.palette);
-    document.documentElement.setAttribute("data-density", tweaks.density);
-  }, [tweaks.palette, tweaks.density]);
   var mod = routeModule(route);
   var routeReady = !mod || mod.globals.every(n => typeof window[n] !== "undefined");
   var page;
-  var currentNav = "home";
+  var currentNav = routeReady && routeExists(route) ? route : "notfound";
   if (!routeReady) {
     page = React.createElement("div", {
       className: "page"
-    }, React.createElement("div", {
-      className: "wrap wrap--narrow",
-      style: {
-        padding: "64px 0"
-      }
-    }, React.createElement("p", null, "This page failed to load.", " ", React.createElement("a", {
-      href: routeToPath(route)
-    }, "Try again"), ".")));
+    }, React.createElement(HpPageHead, {
+      eyebrow: "OFF THE TRAIL",
+      title: "This page failed to load.",
+      intro: React.createElement("a", {
+        className: "hp-inline",
+        href: routeToPath(route)
+      }, "Try again")
+    }));
   } else if (!routeExists(route)) {
     page = React.createElement(NotFoundPage, {
       go: go
@@ -1101,69 +1096,56 @@ function App() {
     page = React.createElement(window.HomePage, {
       go: go
     });
-    currentNav = "home";
   } else if (route === "about") {
     page = React.createElement(window.AboutPage, {
       go: go
     });
-    currentNav = "about";
   } else if (route === "kit") {
     page = React.createElement(window.KitPage, {
       go: go
     });
-    currentNav = "kit";
   } else if (route === "places") {
     page = React.createElement(window.PlacesPage, {
       go: go
     });
-    currentNav = "places";
   } else if (route === "films") {
     page = React.createElement(window.FilmsPage, {
       go: go
     });
-    currentNav = "films";
   } else if (route === "advertise") {
     page = React.createElement(window.AdvertisePage, {
       go: go
     });
-    currentNav = "advertise";
   } else if (route === "articles") {
     page = React.createElement(window.ArticlesIndex, {
       go: go
     });
-    currentNav = "articles";
   } else if (route === "planning") {
     page = React.createElement(window.PlanningGuide, {
       go: go
     });
-    currentNav = "planning";
   } else if (route === "checklist") {
     page = React.createElement(window.ChecklistPage, {
       go: go
     });
-    currentNav = "checklist";
   } else if (route.startsWith("cat:")) {
     page = React.createElement(window.CategoryPage, {
       slug: route.slice(4),
       go: go
     });
-    currentNav = "articles";
   } else if (route.startsWith("a:")) {
     page = React.createElement(window.ArticlePage, {
       slug: route.slice(2),
       go: go
     });
-    currentNav = "articles";
   } else if (route === "newsletter") {
     page = React.createElement(window.NewsletterPage, {
       go: go
     });
-    currentNav = "newsletter";
   } else if (route === "contact") {
     page = React.createElement(window.ContactPage, {
       go: go
     });
-    currentNav = "contact";
   } else if (route === "privacy") {
     page = React.createElement(window.PrivacyPage, null);
   } else if (route === "terms") {
@@ -1174,97 +1156,78 @@ function App() {
     page = React.createElement(window.GuidePage, {
       go: go
     });
-    currentNav = "guide";
   } else if (route === "itineraries") {
     page = React.createElement(window.ItinerariesPage, {
       go: go
     });
-    currentNav = "itineraries";
   } else if (route === "search") {
     page = React.createElement(window.SearchPage, {
       go: go
     });
-    currentNav = "search";
   } else if (route === "explore") {
     page = React.createElement(window.ExplorePage, {
       go: go
     });
-    currentNav = "explore";
   } else if (route === "stay") {
     page = React.createElement(window.StayPage, {
       go: go
     });
-    currentNav = "stay";
   } else if (route === "conditions") {
     page = React.createElement(window.ConditionsPage, {
       go: go
     });
-    currentNav = "conditions";
   } else if (route === "now") {
     page = React.createElement(window.BulletinPage, {
       go: go
     });
-    currentNav = "now";
   } else if (route === "webcams") {
     page = React.createElement(window.WebcamsPage, {
       go: go
     });
-    currentNav = "webcams";
   } else if (route === "distances") {
     page = React.createElement(window.DistancesPage, {
       go: go
     });
-    currentNav = "distances";
   } else if (route === "dates") {
     page = React.createElement(window.DatesPage, {
       go: go
     });
-    currentNav = "dates";
   } else if (route === "international") {
     page = React.createElement(window.InternationalPage, {
       go: go
     });
-    currentNav = "international";
   } else if (route === "start-here") {
     page = React.createElement(window.StartHerePage, {
       go: go
     });
-    currentNav = "start-here";
   } else if (route === "firefall") {
     page = React.createElement(window.FirefallPage, {
       go: go
     });
-    currentNav = "firefall";
   } else if (route === "tioga-opening") {
     page = React.createElement(window.TiogaOpeningPage, {
       go: go
     });
-    currentNav = "tioga-opening";
   } else if (route === "half-dome-lottery") {
     page = React.createElement(window.HalfDomeLotteryPage, {
       go: go
     });
-    currentNav = "half-dome-lottery";
   } else if (route === "consult") {
     page = React.createElement(window.ConsultPage, {
       go: go
     });
-    currentNav = "consult";
   } else if (route === "widget") {
     page = React.createElement(window.WidgetPage, {
       go: go
     });
-    currentNav = "widget";
   } else if (route === "partners") {
     page = React.createElement(window.PartnersPage, {
       go: go
     });
-    currentNav = "partners";
   } else if (route === "map") {
     page = React.createElement(window.MapPage, {
       go: go
     });
-    currentNav = "map";
   } else {
     page = React.createElement(NotFoundPage, {
       go: go
@@ -1277,7 +1240,8 @@ function App() {
   }), React.createElement("main", {
     key: route,
     id: "main",
-    tabIndex: -1
+    tabIndex: -1,
+    className: "hp-design"
   }, page, routeReady && React.createElement(KeepGoing, {
     route: routeExists(route) ? route : "notfound",
     go: go
@@ -1290,42 +1254,11 @@ function App() {
     current: currentNav
   }), React.createElement(ExitIntentNewsletter, {
     disabled: exitDisabled
-  }), React.createElement(TweaksPanel, {
-    title: "Tweaks"
-  }, React.createElement(TweakSection, {
-    title: "Palette",
-    subtitle: "The look of every page on the site."
-  }, React.createElement(TweakRadio, {
-    value: tweaks.palette,
-    onChange: v => setTweak("palette", v),
-    options: [{
-      value: "golden",
-      label: "Golden hour"
-    }, {
-      value: "granite",
-      label: "Granite"
-    }, {
-      value: "sierra",
-      label: "Sierra"
-    }]
-  })), React.createElement(TweakSection, {
-    title: "Density",
-    subtitle: "Reading width and gutter."
-  }, React.createElement(TweakRadio, {
-    value: tweaks.density,
-    onChange: v => setTweak("density", v),
-    options: [{
-      value: "airy",
-      label: "Airy"
-    }, {
-      value: "dense",
-      label: "Dense"
-    }]
-  }))));
+  }));
 }
 window.routeToPath = routeToPath;
 window.SITE_ORIGIN = SITE_ORIGIN;
-var REQUIRED_GLOBALS = ["Header", "Footer", "KeepGoing", "ExitIntentNewsletter", "TweaksPanel", "useTweaks", "TweakSection", "TweakRadio"];
+var REQUIRED_GLOBALS = ["Header", "Footer", "KeepGoing", "ExitIntentNewsletter"];
 var missingGlobals = REQUIRED_GLOBALS.filter(n => typeof window[n] === "undefined");
 if (missingGlobals.length) {
   console.error("app.jsx boot: missing shell globals (a script failed to load or register):", missingGlobals.join(", "));

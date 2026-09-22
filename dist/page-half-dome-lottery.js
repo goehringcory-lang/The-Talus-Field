@@ -15,29 +15,22 @@ function HalfDomeLotteryPage({
     go(`a:${slug}`);
   };
   return React.createElement("div", {
-    className: "page"
-  }, React.createElement("div", {
-    className: "page-head"
-  }, React.createElement("div", {
-    className: "wrap wrap--narrow"
-  }, React.createElement(Breadcrumbs, {
+    className: "page hp-tool hp-half-dome-lottery"
+  }, React.createElement(HpPageHead, {
     go: go,
-    trail: [{
+    crumbs: [{
       label: "Home",
       route: "home"
     }, {
       label: "Half Dome lottery"
-    }]
+    }],
+    eyebrow: "PERMIT SEASON · APPLICATIONS OPEN IN MARCH",
+    title: "The Half Dome lottery",
+    intro: "Most people think there is one Half Dome lottery, that it happens in March, and that losing it ends the year. All three are wrong. There are two lotteries, the second one runs every day the cables are up, and the strategy for each is different. This page is the honest version: the calendar, the published odds, the strategy, and what to do when the answer is no."
   }), React.createElement("div", {
-    className: "eyebrow eyebrow--moss"
-  }, "Permit season · applications open in March"), React.createElement("h1", null, "The Half Dome lottery"), React.createElement("p", {
-    className: "page-head__dek"
-  }, "Most people think there is one Half Dome lottery, that it happens in March, and that losing it ends the year. All three are wrong. There are two lotteries, the second one runs every day the cables are up, and the strategy for each is different. This page is the honest version: the calendar, the published odds, the strategy, and what to do when the answer is no."))), React.createElement("div", {
-    className: "wrap wrap--narrow",
-    style: {
-      paddingTop: 40,
-      paddingBottom: 64
-    }
+    className: "hp-wrap hp-reading"
+  }, React.createElement("div", {
+    className: "hp-reading__column"
   }, React.createElement("section", {
     className: "prose"
   }, React.createElement("h2", null, "The season"), React.createElement("p", null, "Half Dome has steel cables bolted into the granite for the last 400 vertical feet of the climb. They typically go up the Friday before Memorial Day and come down the day after the second Monday in October, shifting with snow on the route, crew availability and weather. While they are up, a permit is required past the base of the subdome, not just on the cables themselves."), React.createElement("p", null, "The checkpoint sits at the base of the subdome steps, staffed by rangers who check the permit, a government-issued photo ID and the confirmation email. Everyone in the group has to be there together. A maximum of 300 hikers a day go through: roughly 225 day hikers via the two lotteries below, and 75 backpackers via the separate wilderness permit system. If your trip is an overnight that includes Half Dome, you want a wilderness permit with the Half Dome add-on, not a day-hiker lottery permit."), React.createElement("p", null, "No permit means you turn around, and this is federal law rather than a suggestion: ascending the subdome or the cables without one violates 36 CFR 1.6 and carries a fine of up to $5,000 and up to six months in jail. Rangers check every group. The lotteries stay lotteries."), React.createElement("h2", null, "Two lotteries, not one"), React.createElement("ol", null, React.createElement("li", null, React.createElement("strong", null, "The preseason lottery."), " Applications on Recreation.gov through the month of March (Eastern time), results emailed in mid-April. Up to six people and seven ranked date choices per application, one application per person, and an alternate trip leader you can only name during the window."), React.createElement("li", null, React.createElement("strong", null, "The daily lottery."), " The one almost nobody talks about, running every day the cables are up. Apply on Recreation.gov two days before your hike date, between midnight and 4 p.m. Pacific; results arrive late that evening. It distributes the permits preseason winners cancel or fail to use, and in the most recent season the park has published it drew more applications than the preseason lottery itself.")), React.createElement("p", null, "Both charge a non-refundable application fee per application, not per person, plus a per-person recreation fee if you win. Current amounts are on the NPS permit page linked below; in the 2024 season both were $10, so a group of four that applied and won paid $50 in total."), React.createElement("h2", null, "What the preseason application asks for"), React.createElement("p", null, React.createElement("strong", null, "Group size."), " Up to six people on one application. Everyone hikes together, and the permit holder or the alternate has to be at the checkpoint with the whole group."), React.createElement("p", null, React.createElement("strong", null, "Date choices."), " Up to seven dates or date ranges, ranked. The system tries your highest-preference date first and works down the list, so the order genuinely matters."), React.createElement("p", null, React.createElement("strong", null, "Permit holder and alternate."), " Name both. One of the two must be physically present with a photo ID matching the permit. An alternate can only be added during the application window, and they have to hold a Recreation.gov account and accept the role within 72 hours of being added. Miss that and they are not on the permit. Once the window closes, neither name can be changed."), React.createElement("p", null, React.createElement("strong", null, "One application per person."), " Each person can appear as holder or alternate on exactly one preseason application. Show up on two and all of them are cancelled without a refund."), React.createElement("h2", null, "The published odds"), React.createElement("p", null, "These are the National Park Service's own figures for the seasons it has published. Read the application rate, not the date-choice rate, as your odds of hiking: most applications list several dates and only one of them can be filled."), React.createElement("table", null, React.createElement("thead", null, React.createElement("tr", null, React.createElement("th", null, "Season"), React.createElement("th", null, "Preseason applications"), React.createElement("th", null, "Preseason success"), React.createElement("th", null, "Daily applications"), React.createElement("th", null, "Daily success"), React.createElement("th", null, "Daily, weekday"), React.createElement("th", null, "Daily, weekend"))), React.createElement("tbody", null, LOTTERY_SEASONS.map(s => React.createElement("tr", {
@@ -123,20 +116,19 @@ function HalfDomeLotteryPage({
     list: "page_half_dome",
     slug: "half-dome-lottery",
     cta: "Search lodging near the trailhead →"
-  }), React.createElement(GuidePromo, {
+  }))), React.createElement(HpGuideBand, {
     go: go,
     location: "half-dome-lottery",
     title: "Planning the trip around a permit day?",
-    body: "The Field Guide app carries the trailhead parking notes, offline maps for a park with no signal, and a day-by-day planner that flexes when the lottery says Tuesday instead of Saturday. One purchase, eighteen months of access.",
-    style: {
-      marginTop: 56,
-      marginBottom: 40
-    }
-  }), React.createElement(NewsletterInline, {
-    location: "half-dome-lottery",
-    tag: "half-dome-lottery",
+    intro: "The Field Guide app carries the trailhead parking notes, offline maps for a park with no signal, and a day-by-day planner that flexes when the lottery says Tuesday instead of Saturday. One purchase, eighteen months of access.",
+    sample: true
+  }), React.createElement(HpLetter, {
+    eyebrow: "SUNDAY FIELD NOTES / FREE",
+    title: "The permit calendar, in your inbox",
     heading: "The permit calendar, in your inbox",
-    blurb: "Sunday Field Notes flags the lottery calendar as it comes: when the March window opens, when results land, and when the late-season odds turn favorable. One short letter a week. Free."
-  })));
+    blurb: "Sunday Field Notes flags the lottery calendar as it comes: when the March window opens, when results land, and when the late-season odds turn favorable. One short letter a week. Free.",
+    location: "half-dome-lottery",
+    tag: "half-dome-lottery"
+  }));
 }
 window.HalfDomeLotteryPage = HalfDomeLotteryPage;

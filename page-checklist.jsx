@@ -1,57 +1,55 @@
-/* global React, NewsletterInline, GuidePromo, Breadcrumbs */
+/* global React, HpPageHead, HpGuideBand, HpLetter */
 
 function ChecklistPage({ go }) {
+  // The design system's faces, as style objects: the section label is the
+  // eyebrow, the title a serif h2, each line a 14px row with its checkbox in
+  // the accent.
   const sectionStyle = {
     marginBottom: 40,
     paddingBottom: 24,
-    borderBottom: "1px solid var(--rule)",
+    borderBottom: "1px solid var(--hp-rule)",
   };
   const sectionLabel = {
     fontFamily: "var(--sans)",
-    fontSize: 11,
+    fontSize: 9,
     textTransform: "uppercase",
-    letterSpacing: "0.18em",
-    fontWeight: 700,
-    color: "var(--moss)",
-    marginBottom: 6,
+    letterSpacing: "1.7px",
+    fontWeight: 600,
+    color: "var(--hp-accent)",
+    marginBottom: 12,
   };
   const sectionTitle = {
-    fontFamily: "var(--display)",
-    fontSize: 28,
-    fontWeight: 500,
-    lineHeight: 1.15,
-    letterSpacing: "-0.005em",
+    fontFamily: "var(--serif)",
+    fontSize: 38,
+    fontWeight: 400,
+    lineHeight: 1.04,
+    letterSpacing: "-1.1px",
     marginBottom: 18,
   };
   const item = {
     display: "block",
-    fontFamily: "var(--serif)",
-    fontSize: 17,
-    lineHeight: 1.5,
-    color: "var(--ink-1)",
-    padding: "8px 0",
+    fontFamily: "var(--sans)",
+    fontSize: 14,
+    lineHeight: 1.7,
+    color: "var(--hp-ink)",
+    padding: "9px 0",
+    borderTop: "1px solid var(--hp-rule)",
     cursor: "pointer",
   };
   const cb = {
     marginRight: 12,
     transform: "translateY(2px)",
-    accentColor: "var(--moss)",
+    accentColor: "var(--hp-accent)",
   };
   const note = {
-    fontFamily: "var(--serif)",
-    fontStyle: "italic",
-    fontSize: 15,
-    color: "var(--ink-2)",
-    lineHeight: 1.5,
+    fontFamily: "var(--sans)",
+    fontSize: 12,
+    color: "var(--hp-muted)",
+    lineHeight: 1.7,
     marginTop: 4,
     marginLeft: 28,
   };
 
-  // Inline link to an article (r = "a:slug") or another page (r = "planning").
-  // Mirrors the real-href + go() pattern in the source list at the bottom so
-  // crawlers see a valid href and the SPA still intercepts the click. An anchor
-  // is interactive content, so clicking one inside a label does not toggle that
-  // label's checkbox; the @media print block flattens these to plain black text.
   const A = ({ r, children }) => (
     <a
       href={r.startsWith("a:") ? `/articles/${r.slice(2)}` : `/${r}`}
@@ -65,9 +63,9 @@ function ChecklistPage({ go }) {
     <div className="page page-checklist">
       <style>{`
         @media print {
-          header, footer, .tweaks-panel, .page-head__dek + *, .nlbox { display: none !important; }
+          header, footer, .hp-navigation, .hp-checklist__tip, .hp-product, .hp-letter, .nlbox { display: none !important; }
           .page-checklist { padding: 0 !important; }
-          .page-checklist .page-head { padding: 0 !important; margin-bottom: 16pt !important; }
+          .page-checklist .hp-pagehead { padding: 0 !important; margin-bottom: 16pt !important; }
           .page-checklist h1 { font-size: 22pt !important; }
           .page-checklist .checklist-section { page-break-inside: avoid; }
           body { background: white !important; color: black !important; }
@@ -75,21 +73,20 @@ function ChecklistPage({ go }) {
         }
       `}</style>
 
-      <div className="page-head">
-        <div className="wrap wrap--narrow">
-          <Breadcrumbs go={go} trail={[{ label: "Home", route: "home" }, { label: "First-week checklist" }]} />
-          <div className="eyebrow eyebrow--moss">The First-Week Checklist</div>
-          <h1>Yosemite, in one printable page.</h1>
-          <p className="page-head__dek">
-            A condensed action list for planning a Yosemite trip in 2026, drawn from the full archive of The Talus Field. Print it, check things off, take it in the car. The longer essays behind each line are linked throughout, and collected at the bottom.
-          </p>
-          <p style={{ fontFamily: "var(--sans)", fontSize: 13, color: "var(--ink-3)", marginTop: 14 }}>
-            Tip: <strong>Cmd+P</strong> (or Ctrl+P) for a clean print version.
-          </p>
-        </div>
-      </div>
+      <HpPageHead
+        go={go}
+        crumbs={[{ label: "Home", route: "home" }, { label: "First-week checklist" }]}
+        eyebrow="THE FIRST-WEEK CHECKLIST"
+        title="Yosemite, in one printable page."
+        intro="A condensed action list for planning a Yosemite trip in 2026, drawn from the full archive of The Talus Field. Print it, check things off, take it in the car. The longer essays behind each line are linked throughout, and collected at the bottom."
+      >
+        <p className="hp-byline hp-checklist__tip">
+          Tip: <strong>Cmd+P</strong> (or Ctrl+P) for a clean print version.
+        </p>
+      </HpPageHead>
 
-      <div className="wrap wrap--narrow" style={{ paddingTop: 56, paddingBottom: 80 }}>
+      <div className="hp-wrap hp-reading">
+        <div className="hp-reading__column">
 
         <section className="checklist-section" style={sectionStyle}>
           <div style={sectionLabel}>I · Window of arrival</div>
@@ -156,7 +153,7 @@ function ChecklistPage({ go }) {
           <label style={item}><input type="checkbox" style={cb} />Don't expect to swim in the Merced before mid-July. <A r="a:mist-trail-the-real-guide">The current is dangerous</A>.</label>
         </section>
 
-        <section className="checklist-section" style={{ ...sectionStyle, borderBottom: "2px solid var(--ink)" }}>
+        <section className="checklist-section" style={{ ...sectionStyle, borderBottom: "1px solid var(--hp-ink)" }}>
           <div style={sectionLabel}>VII · The non-negotiables</div>
           <h2 style={sectionTitle}>If you remember nothing else</h2>
           <label style={item}><input type="checkbox" style={cb} /><A r="a:yosemite-without-reservations-2026">Be in the park by 6:30 AM</A> on any peak day. The day's quality is decided before 9.</label>
@@ -168,11 +165,11 @@ function ChecklistPage({ go }) {
 
         {/* Source links for the longer essays */}
         <section style={{ marginTop: 56, marginBottom: 56 }}>
-          <div className="eyebrow eyebrow--moss" style={{ marginBottom: 14 }}>The longer essays</div>
-          <p style={{ fontFamily: "var(--serif)", fontSize: 17, lineHeight: 1.6, color: "var(--ink-2)", marginBottom: 12 }}>
+          <p className="hp-eyebrow">THE LONGER ESSAYS</p>
+          <p className="hp-sub">
             Each line on this checklist is condensed from a longer piece. If you want the reasoning behind any of them:
           </p>
-          <ul style={{ fontFamily: "var(--serif)", fontSize: 16, lineHeight: 1.7, color: "var(--ink-1)", paddingLeft: 20 }}>
+          <ul className="relrail hp-checklist__essays">
             <li><a href="/articles/first-time-yosemite-overwhelm" onClick={(e) => { e.preventDefault(); go("a:first-time-yosemite-overwhelm"); }}>If it's your first time in Yosemite, read this before you book anything</a></li>
             <li><a href="/articles/yosemite-without-reservations-2026" onClick={(e) => { e.preventDefault(); go("a:yosemite-without-reservations-2026"); }}>Yosemite without reservations in 2026</a></li>
             <li><a href="/articles/yosemite-gateway-towns-compared" onClick={(e) => { e.preventDefault(); go("a:yosemite-gateway-towns-compared"); }}>Yosemite gateway towns compared</a></li>
@@ -183,26 +180,27 @@ function ChecklistPage({ go }) {
           </ul>
         </section>
 
-        {/* The purchase ask: checklist readers have dates and are packing,
-            the highest purchase intent on the site. */}
-        <GuidePromo
-          go={go}
-          location="checklist"
-          title="The checklist rides along."
-          body="The Field Guide app packs a night-before checklist next to 50-plus stops with parking and timing notes, offline maps, and a trip planner. Everything this page prepares you for, on your phone, with no signal required."
-          style={{ marginBottom: 56 }}
-        />
-
-        {/* Newsletter capture */}
-        <div className="checklist-section">
-          <NewsletterInline
-            location="checklist"
-            tag="checklist"
-            heading="Want updates through the season?"
-            blurb="One Yosemite email a week, when there is something to say. Free. Subscribers hear about updates to this checklist first."
-          />
         </div>
       </div>
+
+      {/* The purchase ask: checklist readers have dates and are packing,
+          the highest purchase intent on the site. */}
+      <HpGuideBand
+        go={go}
+        location="checklist"
+        title="The checklist rides along."
+        intro="The Field Guide app packs a night-before checklist next to 50-plus stops with parking and timing notes, offline maps, and a trip planner. Everything this page prepares you for, on your phone, with no signal required."
+        sample
+      />
+      {/* Newsletter capture */}
+      <HpLetter
+        eyebrow="SUNDAY FIELD NOTES / FREE"
+        title="Want updates through the season?"
+        heading="Want updates through the season?"
+        blurb="One Yosemite email a week, when there is something to say. Free. Subscribers hear about updates to this checklist first."
+        location="checklist"
+        tag="checklist"
+      />
     </div>
   );
 }

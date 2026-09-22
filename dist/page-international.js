@@ -78,29 +78,22 @@ function InternationalPage({
     go(r);
   };
   return React.createElement("div", {
-    className: "page"
-  }, React.createElement("div", {
-    className: "page-head"
-  }, React.createElement("div", {
-    className: "wrap wrap--narrow"
-  }, React.createElement(Breadcrumbs, {
+    className: "page hp-tool hp-international"
+  }, React.createElement(HpPageHead, {
     go: go,
-    trail: [{
+    crumbs: [{
       label: "Home",
       route: "home"
     }, {
       label: "Visiting from abroad"
-    }]
+    }],
+    eyebrow: "INTERNATIONAL VISITORS",
+    title: "Yosemite for visitors from outside the United States",
+    intro: "Since January 1, 2026, a visitor who does not live in the United States pays more to enter Yosemite, and the rules are easy to get wrong. What the fee is, the cheapest way to pay it, and the handful of things about this park that surprise people who have driven in other countries."
   }), React.createElement("div", {
-    className: "eyebrow eyebrow--moss"
-  }, "International visitors"), React.createElement("h1", null, "Yosemite for visitors from outside the United States"), React.createElement("p", {
-    className: "page-head__dek"
-  }, "Since January 1, 2026, a visitor who does not live in the United States pays more to enter Yosemite, and the rules are easy to get wrong. What the fee is, the cheapest way to pay it, and the handful of things about this park that surprise people who have driven in other countries."))), React.createElement("div", {
-    className: "wrap wrap--narrow",
-    style: {
-      paddingTop: 40,
-      paddingBottom: 64
-    }
+    className: "hp-wrap hp-reading"
+  }, React.createElement("div", {
+    className: "hp-reading__column"
   }, React.createElement("section", {
     className: "prose"
   }, React.createElement("h2", null, "The 2026 non-resident fee"), React.createElement("p", null, "Every visitor pays the entrance fee: ", money(F.vehicle), " per car for seven days, ", money(F.motorcycle), " per motorcycle, ", money(F.perPerson), " per person on foot, by bicycle or by bus, children under ", F.perPersonFreeUnder, " free. On top of that, since January 1, 2026, a visitor who is not a US citizen or resident pays a non-resident fee of ", money(F.surcharge), " per person aged ", F.surchargeAgeFrom, " and older, unless that person is covered by an annual pass. It applies at eleven parks: ", F.surchargeParks.slice(0, -1).join(", "), " and ", F.surchargeParks.slice(-1)[0], ". The fee-free days the park publishes each year are now for US residents only; a non-resident pays the full amount on those days too."), React.createElement("table", null, React.createElement("thead", null, React.createElement("tr", null, React.createElement("th", null, "What"), React.createElement("th", null, "Price"), React.createElement("th", null, "Who it covers"))), React.createElement("tbody", null, React.createElement("tr", null, React.createElement("td", null, "Entrance, private vehicle"), React.createElement("td", null, money(F.vehicle)), React.createElement("td", null, "The car and everyone in it, seven days")), React.createElement("tr", null, React.createElement("td", null, "Entrance, motorcycle"), React.createElement("td", null, money(F.motorcycle)), React.createElement("td", null, "Seven days")), React.createElement("tr", null, React.createElement("td", null, "Entrance, per person"), React.createElement("td", null, money(F.perPerson)), React.createElement("td", null, "On foot, bicycle or bus; under ", F.perPersonFreeUnder, " free")), React.createElement("tr", null, React.createElement("td", null, "Non-resident fee"), React.createElement("td", null, money(F.surcharge), " per person"), React.createElement("td", null, "Age ", F.surchargeAgeFrom, " and older, each entry, unless holding a pass")), React.createElement("tr", null, React.createElement("td", null, "Non-resident annual pass"), React.createElement("td", null, money(F.nonResidentAnnual)), React.createElement("td", null, "The holder's vehicle and its occupants, twelve months, every federal fee site; no non-resident fee")), React.createElement("tr", null, React.createElement("td", null, "Annual pass, US residents"), React.createElement("td", null, money(F.residentAnnual)), React.createElement("td", null, "Residents only")), React.createElement("tr", null, React.createElement("td", null, "Yosemite annual pass"), React.createElement("td", null, money(F.yosemiteAnnual)), React.createElement("td", null, "US citizens and residents only")))), React.createElement("p", {
@@ -157,20 +150,19 @@ function InternationalPage({
     list: "page_international",
     slug: "international",
     cta: "Search lodging around Yosemite →"
-  }), React.createElement(GuidePromo, {
+  }))), React.createElement(HpGuideBand, {
     go: go,
     location: "international",
     title: "The park, offline, in your pocket",
-    body: "No roaming plan reaches most of Yosemite. The Field Guide app downloads the maps, the parking notes and the day planner to your phone before the gate, in plain English. One purchase, eighteen months of access.",
-    style: {
-      marginTop: 56,
-      marginBottom: 40
-    }
-  }), React.createElement(NewsletterInline, {
-    location: "international",
-    tag: "international",
+    intro: "No roaming plan reaches most of Yosemite. The Field Guide app downloads the maps, the parking notes and the day planner to your phone before the gate, in plain English. One purchase, eighteen months of access.",
+    sample: true
+  }), React.createElement(HpLetter, {
+    eyebrow: "SUNDAY FIELD NOTES / FREE",
+    title: "What changed since you read this",
     heading: "What changed since you read this",
-    blurb: "Fees, road openings and the park's rules move between the day you book and the day you land. One short letter on Sundays, from inside the park. Free."
-  })));
+    blurb: "Fees, road openings and the park's rules move between the day you book and the day you land. One short letter on Sundays, from inside the park. Free.",
+    location: "international",
+    tag: "international"
+  }));
 }
 window.InternationalPage = InternationalPage;

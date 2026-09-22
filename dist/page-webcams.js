@@ -23,40 +23,33 @@ function WebcamsPage({
   go
 }) {
   return React.createElement("div", {
-    className: "page"
-  }, React.createElement("div", {
-    className: "page-head"
-  }, React.createElement("div", {
-    className: "wrap wrap--narrow"
-  }, React.createElement(Breadcrumbs, {
+    className: "page hp-webcams"
+  }, React.createElement(HpPageHead, {
     go: go,
-    trail: [{
+    crumbs: [{
       label: "Home",
       route: "home"
     }, {
       label: "Webcams"
-    }]
-  }), React.createElement("div", {
-    className: "eyebrow eyebrow--moss"
-  }, "Live views"), React.createElement("h1", null, "Yosemite webcams"), React.createElement("p", {
-    className: "page-head__dek"
-  }, "The live cameras worth checking before you drive in, what each one actually shows, and how often it refreshes. Four load on this page. The rest are one link away, because the operators would rather you watched them at home."))), React.createElement("div", {
-    className: "wrap",
-    style: {
-      paddingTop: 40
+    }],
+    eyebrow: "LIVE VIEWS",
+    title: "Yosemite webcams",
+    intro: "The live cameras worth checking before you drive in, what each one actually shows, and how often it refreshes. Four load on this page. The rest are one link away, because the operators would rather you watched them at home."
+  }), React.createElement("section", {
+    className: "hp-wrap hp-section hp-webcams__live"
+  }, React.createElement(HpHeading, {
+    go: go,
+    location: "webcams",
+    eyebrow: "FOUR CAMERAS",
+    title: "Live now",
+    link: {
+      href: "https://yosemite.org/webcams/",
+      label: "All Conservancy cameras ↗"
     }
+  }), React.createElement(WebcamStrip, null)), React.createElement("div", {
+    className: "hp-wrap hp-reading"
   }, React.createElement("div", {
-    className: "section-head"
-  }, React.createElement("h2", null, "Live now"), React.createElement("a", {
-    href: "https://yosemite.org/webcams/",
-    target: "_blank",
-    rel: "noopener noreferrer"
-  }, "All Conservancy cameras →")), React.createElement(WebcamStrip, null)), React.createElement("div", {
-    className: "wrap wrap--narrow",
-    style: {
-      paddingTop: 48,
-      paddingBottom: 64
-    }
+    className: "hp-reading__column"
   }, React.createElement("section", {
     className: "prose"
   }, React.createElement("h2", null, "What each camera shows"), React.createElement("p", null, "All four are still-image cameras rather than video streams. They refresh on the order of minutes rather than seconds, which is why a page reload does not always change the picture and why nothing here is going to show you a bear walking past."), CAM_NOTES.map(c => React.createElement("p", {
@@ -81,12 +74,9 @@ function WebcamsPage({
     style: {
       marginTop: 48
     }
-  }, React.createElement("div", {
-    className: "eyebrow eyebrow--moss",
-    style: {
-      marginBottom: 12
-    }
-  }, "Entrance waits, live"), React.createElement(EntranceWaits, null)), React.createElement("section", {
+  }, React.createElement("p", {
+    className: "hp-eyebrow"
+  }, "ENTRANCE WAITS, LIVE"), React.createElement(EntranceWaits, null)), React.createElement("section", {
     className: "prose",
     style: {
       marginTop: 48
@@ -113,20 +103,19 @@ function WebcamsPage({
       e.preventDefault();
       go("contact");
     }
-  }, "the contact page"), " ", "and it gets fixed.")), React.createElement(GuidePromo, {
+  }, "the contact page"), " ", "and it gets fixed.")))), React.createElement(HpGuideBand, {
     go: go,
     location: "webcams",
     title: "No signal past the gate",
-    body: "Cameras are for before you leave. Once you are in the park there is no service to load one. The Field Guide app carries offline maps, trailhead parking notes and GPS that works with the phone in airplane mode. One purchase, eighteen months of access.",
-    style: {
-      marginTop: 56,
-      marginBottom: 40
-    }
-  }), React.createElement(NewsletterInline, {
-    location: "webcams",
-    tag: "webcams",
+    intro: "Cameras are for before you leave. Once you are in the park there is no service to load one. The Field Guide app carries offline maps, trailhead parking notes and GPS that works with the phone in airplane mode. One purchase, eighteen months of access.",
+    sample: true
+  }), React.createElement(HpLetter, {
+    eyebrow: "SUNDAY FIELD NOTES / FREE",
+    title: "What the cameras are showing this week",
     heading: "What the cameras are showing this week",
-    blurb: "One short Sunday letter on what the park is doing right now: what is open, what is flowing, and what changed. Free."
-  })));
+    blurb: "One short Sunday letter on what the park is doing right now: what is open, what is flowing, and what changed. Free.",
+    location: "webcams",
+    tag: "webcams"
+  }));
 }
 window.WebcamsPage = WebcamsPage;

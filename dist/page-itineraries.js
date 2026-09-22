@@ -26,44 +26,43 @@ function ItinerariesPage({
     return `/map?trip=${ids.join(",")}`;
   };
   return React.createElement("div", {
-    className: "page"
-  }, React.createElement("div", {
-    className: "page-head"
-  }, React.createElement("div", {
-    className: "wrap"
-  }, React.createElement(Breadcrumbs, {
+    className: "page hp-itin"
+  }, React.createElement(HpPageHead, {
     go: go,
-    trail: [{
+    crumbs: [{
       label: "Home",
       route: "home"
     }, {
       label: "Itineraries"
-    }]
-  }), React.createElement("div", {
-    className: "eyebrow eyebrow--moss"
-  }, "Itineraries"), React.createElement("h1", null, "Yosemite, in day-sized pieces."), React.createElement("p", {
-    className: "page-head__dek"
-  }, "Four plans built from the map's curated pins, ordered the way you would actually drive them. Pick the one that matches your time, open it on the map, and adjust from there. None of this requires a reservation; all of it fits in a normal day."))), React.createElement("div", {
-    className: "wrap",
-    style: {
-      paddingTop: 48
-    }
-  }, itineraries.map(it => React.createElement("section", {
+    }],
+    eyebrow: "ITINERARIES",
+    title: "Yosemite, in day-sized pieces.",
+    intro: "Four plans built from the map's curated pins, ordered the way you would actually drive them. Pick the one that matches your time, open it on the map, and adjust from there. None of this requires a reservation; all of it fits in a normal day.",
+    aside: React.createElement("nav", {
+      className: "hp-list hp-partindex",
+      "aria-label": "The four plans"
+    }, itineraries.map(it => React.createElement("a", {
+      key: it.id,
+      className: "hp-row",
+      href: `#${it.id}`
+    }, React.createElement("div", null, React.createElement("p", {
+      className: "hp-eyebrow"
+    }, (it.label || "").toUpperCase()), React.createElement("h3", null, it.title), React.createElement("b", null, it.days.length, " ", it.days.length === 1 ? "day" : "days", " ", React.createElement("span", null, "↓"))))))
+  }), itineraries.map(it => React.createElement("section", {
     key: it.id,
     id: it.id,
-    className: "itin"
-  }, React.createElement("div", {
-    className: "eyebrow",
-    style: {
-      marginBottom: 10
-    }
-  }, it.label), React.createElement("h2", {
-    className: "itin__title"
-  }, it.title), React.createElement("p", {
-    className: "itin__dek"
+    tabIndex: -1,
+    className: "hp-wrap hp-section itin"
+  }, React.createElement(HpHeading, {
+    eyebrow: (it.label || "").toUpperCase(),
+    title: it.title
+  }), React.createElement("p", {
+    className: "hp-sub"
   }, it.dek), React.createElement("p", {
     className: "itin__season"
-  }, it.season), it.days.map(day => React.createElement("div", {
+  }, it.season), React.createElement("div", {
+    className: "itin__days"
+  }, it.days.map(day => React.createElement("div", {
     key: day.name,
     className: "itin__day"
   }, React.createElement("h3", {
@@ -75,28 +74,23 @@ function ItinerariesPage({
     return React.createElement("li", {
       key: id,
       className: "itin__stop"
-    }, React.createElement("span", {
+    }, React.createElement("span", null, React.createElement("span", {
       className: "itin__stop-name"
     }, stop ? stop.name : id.replace(/-/g, " ")), stop && stop.blurb && React.createElement("span", {
       className: "itin__stop-blurb"
-    }, stop.blurb));
-  })))), React.createElement("a", {
-    className: "btn btn--ghost",
+    }, stop.blurb)));
+  }))))), React.createElement("a", {
+    className: "hp-button",
     href: tripUrl(it),
     onClick: () => {
       if (window.track) window.track("itinerary_open_map", {
         itinerary: it.id
       });
     }
-  }, "Open this trip on the map →"))), React.createElement("p", {
-    style: {
-      fontFamily: "var(--serif)",
-      fontSize: 17,
-      lineHeight: 1.6,
-      color: "var(--ink-2)",
-      maxWidth: 680,
-      margin: "56px 0"
-    }
+  }, "Open this trip on the map →"))), React.createElement("section", {
+    className: "hp-wrap hp-section itin__after"
+  }, React.createElement("p", {
+    className: "hp-sub"
   }, "These plans are starting points, not homework. The", " ", React.createElement("a", {
     href: "/map",
     onClick: e => {
@@ -116,25 +110,19 @@ function ItinerariesPage({
     list: "page_itineraries",
     slug: "itineraries",
     cta: "See what is available on your dates →"
-  }), React.createElement(GuidePromo, {
+  })), React.createElement(HpGuideBand, {
     go: go,
     location: "itineraries",
     title: "These plans, offline, in the park.",
-    body: "The Field Guide app carries the same curated stops with parking and timing notes, offline maps that keep working in the dead zones between them, and a day-by-day planner. One purchase, eighteen months of access.",
-    style: {
-      maxWidth: 680,
-      marginBottom: 56
-    }
-  }), React.createElement("div", {
-    style: {
-      maxWidth: 680,
-      marginBottom: 96
-    }
-  }, React.createElement(NewsletterInline, {
-    location: "itineraries",
-    tag: "itineraries",
+    intro: "The Field Guide app carries the same curated stops with parking and timing notes, offline maps that keep working in the dead zones between them, and a day-by-day planner. One purchase, eighteen months of access.",
+    sample: true
+  }), React.createElement(HpLetter, {
+    eyebrow: "SUNDAY FIELD NOTES / FREE",
+    title: "Get the conditions before you go",
     heading: "Get the conditions before you go",
-    blurb: "Roads open and close, trails change, and the plans above age with them. One Sunday email carries what changed. Free."
-  }))));
+    blurb: "Roads open and close, trails change, and the plans above age with them. One Sunday email carries what changed. Free.",
+    location: "itineraries",
+    tag: "itineraries"
+  }));
 }
 window.ItinerariesPage = ItinerariesPage;

@@ -23,86 +23,58 @@ function WidgetPage({
     } catch (_e) {}
   };
   return React.createElement("div", {
-    className: "page"
-  }, React.createElement("div", {
-    className: "page-head"
-  }, React.createElement("div", {
-    className: "wrap wrap--narrow"
-  }, React.createElement(Breadcrumbs, {
+    className: "page hp-widget"
+  }, React.createElement(HpPageHead, {
     go: go,
-    trail: [{
+    crumbs: [{
       label: "Home",
       route: "home"
     }, {
       label: "Widget"
-    }]
+    }],
+    eyebrow: "FREE EMBED · FOR YOSEMITE-AREA SITES",
+    title: "Put the park's conditions on your site.",
+    intro: "A small box with live entrance waits and the three-day Valley forecast, for gateway hotels, rental hosts, and tour operators. One script tag, no account, no cost. Your guests check conditions on your page instead of leaving it.",
+    aside: React.createElement("div", {
+      className: "hp-widget__preview"
+    }, React.createElement("p", {
+      className: "hp-eyebrow"
+    }, "WHAT YOUR VISITORS SEE"), React.createElement("div", {
+      id: "talus-conditions"
+    }), React.createElement("p", {
+      className: "hp-terms"
+    }, "Live preview. Waits refresh every few minutes from the National Park Service feed; the forecast is the National Weather Service Valley point forecast. If the box is empty, the data sources are down and the widget shows nothing rather than an error."))
   }), React.createElement("div", {
-    className: "eyebrow eyebrow--moss"
-  }, "Free embed · for Yosemite-area sites"), React.createElement("h1", null, "Put the park's conditions on your site."), React.createElement("p", {
-    className: "page-head__dek"
-  }, "A small box with live entrance waits and the three-day Valley forecast, for gateway hotels, rental hosts, and tour operators. One script tag, no account, no cost. Your guests check conditions on your page instead of leaving it."))), React.createElement("div", {
-    className: "wrap wrap--narrow",
-    style: {
-      paddingTop: 40,
-      paddingBottom: 64
-    }
+    className: "hp-wrap hp-reading"
+  }, React.createElement("div", {
+    className: "hp-reading__column"
   }, React.createElement("section", {
     className: "prose"
-  }, React.createElement("h2", null, "What your visitors see")), React.createElement("div", {
-    id: "talus-conditions",
-    style: {
-      margin: "16px 0 8px"
-    }
-  }), React.createElement("p", {
-    style: {
-      fontFamily: "var(--sans)",
-      fontSize: 12,
-      color: "var(--ink-3)",
-      margin: "0 0 32px"
-    }
-  }, "Live preview. Waits refresh every few minutes from the National Park Service feed; the forecast is the National Weather Service Valley point forecast. If the box is empty, the data sources are down and the widget shows nothing rather than an error."), React.createElement("section", {
-    className: "prose"
   }, React.createElement("h2", null, "Install it"), React.createElement("p", null, "Paste this where you want the box to appear:")), React.createElement("pre", {
-    style: {
-      background: "var(--paper-2)",
-      border: "1px solid var(--ink)",
-      padding: 16,
-      fontSize: 13,
-      overflowX: "auto",
-      margin: "12px 0 10px"
-    }
+    className: "hp-widget__snippet"
   }, React.createElement("code", null, WIDGET_SNIPPET)), React.createElement("button", {
     type: "button",
-    className: "btn",
-    onClick: copySnippet,
-    style: {
-      border: 0,
-      font: "inherit",
-      cursor: "pointer"
-    }
+    className: "hp-button",
+    onClick: copySnippet
   }, copied ? "Copied." : "Copy the snippet"), React.createElement("section", {
-    className: "prose",
-    style: {
-      marginTop: 40
-    }
+    className: "prose hp-widget__more"
   }, React.createElement("h2", null, "The terms, plainly"), React.createElement("p", null, "Free, indefinitely. The box carries one small credit line linking to this site's conditions page; that line stays. The styling is self-contained and will not fight your stylesheet. If the widget ever misbehaves on your site, email", " ", React.createElement("a", {
     href: "mailto:cory@thetalusfieldjournal.com"
   }, "cory@thetalusfieldjournal.com"), " ", "and it gets fixed or you delete one line and it is gone.")), React.createElement("section", {
-    className: "prose",
-    style: {
-      marginTop: 40
-    }
+    className: "prose hp-widget__more"
   }, React.createElement("h2", null, "The other half of this"), React.createElement("p", null, "The widget is what your visitors see before they arrive. The Field Guide is what they carry once they are past the entrance station, where service dies: 44 stops with GPS and time budgets, the day hikes, the trip planner, and an offline map of the park. Properties can buy it in packs and hand a code to every guest, which is the", " ", React.createElement("a", {
     href: "/partners",
     onClick: e => {
       e.preventDefault();
       go("partners");
     }
-  }, "group codes"), " ", "page. Buying one has nothing to do with keeping the other; the widget stays free either way.")), React.createElement(NewsletterInline, {
-    location: "widget",
-    tag: "widget",
+  }, "group codes"), " ", "page. Buying one has nothing to do with keeping the other; the widget stays free either way.")))), React.createElement(HpLetter, {
+    eyebrow: "SUNDAY FIELD NOTES / FREE",
+    title: "Run a Yosemite-area business?",
     heading: "Run a Yosemite-area business?",
-    blurb: "Sunday Field Notes carries what changed in the park each week, the same material your guests ask the front desk about. Free."
-  })));
+    blurb: "Sunday Field Notes carries what changed in the park each week, the same material your guests ask the front desk about. Free.",
+    location: "widget",
+    tag: "widget"
+  }));
 }
 window.WidgetPage = WidgetPage;

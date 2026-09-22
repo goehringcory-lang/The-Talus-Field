@@ -1,4 +1,4 @@
-/* global React, Breadcrumbs, AvailabilityLink, ExpediaBanner, ResponsiveImage, SIZES_CARD, NewsletterInline, GuidePromo */
+/* global React, AvailabilityLink, ExpediaBanner, ResponsiveImage, SIZES_CARD, HpPageHead, HpHeading, HpGuideBand, HpLetter */
 
 // =============================================================================
 // WHERE TO STAY — `/stay` route. The standing lodging section (the deep
@@ -912,23 +912,25 @@ function StayPage({ go }) {
 
   return (
     <div className="page stay-page">
-      <header className="stay-hero">
-        <ResponsiveImage image={STAY_HERO.image} alt={STAY_HERO.alt} sizes="100vw" eager className="stay-hero__img" />
-        <div className="stay-hero__scrim" aria-hidden="true" />
-        <div className="wrap stay-hero__inner">
-          <Breadcrumbs go={go} trail={[{ label: "Home", route: "home" }, { label: "Where to stay" }]} />
-          <div className="stay-hero__eyebrow">Lodging · the whole board</div>
-          <h1>Where to Stay in Yosemite</h1>
-          <p className="stay-hero__dek">
-            Every bed in and around the park, sorted by what it is and who it
-            fits. Pick the road, then the town, then see what is actually left
-            on your dates.
-          </p>
-        </div>
-        <div className="stay-hero__credit">{STAY_HERO.credit}</div>
-      </header>
+      {/* The head: the homepage hero's split, the copy beside the photograph.
+          The photo shows the place the page is about (rule 3 at the top). */}
+      <HpPageHead
+        as="header"
+        go={go}
+        className="hp-stay__head"
+        crumbs={[{ label: "Home", route: "home" }, { label: "Where to stay" }]}
+        eyebrow="LODGING · THE WHOLE BOARD"
+        title="Where to Stay in Yosemite"
+        intro="Every bed in and around the park, sorted by what it is and who it fits. Pick the road, then the town, then see what is actually left on your dates."
+        aside={
+          <figure className="hp-stay__figure">
+            <ResponsiveImage image={STAY_HERO.image} alt={STAY_HERO.alt} sizes="(max-width: 760px) calc(100vw - 40px), 640px" eager />
+            <figcaption><span>LODGING · YOSEMITE</span><span>{STAY_HERO.credit.replace(/^Photo:\s*/, "")}</span></figcaption>
+          </figure>
+        }
+      />
 
-      <div className="wrap stay-search-wrap">
+      <div className="hp-wrap stay-search-wrap">
         <StaySearch />
         <nav className="stay-jump" aria-label="On this page">
           <a href="#in-park">In the park</a>
@@ -943,12 +945,12 @@ function StayPage({ go }) {
       </div>
 
       {/* Choose the road first */}
-      <section className="wrap stay-section" id="decide">
+      <section className="hp-wrap stay-section" id="decide">
         <StayPicker />
       </section>
 
       {/* Inside the park */}
-      <section className="wrap stay-section stay-band" id="in-park">
+      <section className="hp-wrap stay-section stay-band" id="in-park">
         <div className="stay-head">
           <div>
             <div className="eyebrow eyebrow--moss">
@@ -995,7 +997,7 @@ function StayPage({ go }) {
       </section>
 
       {/* Gateway towns, by corridor */}
-      <section className="wrap stay-section" id="gateways">
+      <section className="hp-wrap stay-section" id="gateways">
         <div className="stay-head">
           <div>
             <div className="eyebrow eyebrow--moss">
@@ -1024,7 +1026,7 @@ function StayPage({ go }) {
 
       {/* When to stay where */}
       <section className="stay-section stay-seasons-band" id="seasons">
-        <div className="wrap">
+        <div className="hp-wrap">
           <div className="stay-head">
             <div>
               <div className="eyebrow eyebrow--moss">Four seasons, four answers</div>
@@ -1044,7 +1046,7 @@ function StayPage({ go }) {
       </section>
 
       {/* Booking mechanics, with camping as the fourth column */}
-      <section className="wrap stay-section" id="booking">
+      <section className="hp-wrap stay-section" id="booking">
         <h2 className="stay-h2">How the booking actually works</h2>
         <div className="stay-facts">
           <div className="stay-fact">
@@ -1095,7 +1097,7 @@ function StayPage({ go }) {
       </section>
 
       {/* The closing ask */}
-      <section className="wrap stay-section">
+      <section className="hp-wrap stay-section">
         <aside className="stay-closing" aria-label="Lodging availability">
           <StayFigure item={IN_PARK.find((p) => p.id === "tuolumne-lodge")} className="stay-closing__figure" />
           <div className="stay-closing__body">
@@ -1118,42 +1120,40 @@ function StayPage({ go }) {
       </section>
 
       {/* Where to go next */}
-      <section className="wrap wrap--narrow" style={{ paddingTop: 64, paddingBottom: 24 }}>
-        <div className="section-head">
-          <h2>The longer versions</h2>
-        </div>
-        <ul className="stay-links">
+      <section className="hp-wrap hp-section hp-stay__more">
+        <HpHeading eyebrow="THE JOURNAL" title="The longer versions" />
+        <ul className="relrail stay-links">
           <li>
             <a href="/articles/where-to-stay-in-yosemite">Where to stay in Yosemite</a>
-            <span>The in-park options ranked, and the argument for each.</span>
+            <span className="relrail__dek">The in-park options ranked, and the argument for each.</span>
           </li>
           <li>
             <a href="/articles/yosemite-gateway-towns-compared">The gateway towns compared</a>
-            <span>Five towns, the drive times, and who should pick which.</span>
+            <span className="relrail__dek">Five towns, the drive times, and who should pick which.</span>
           </li>
           <li>
             <a href="/articles/yosemite-camping-complete-guide">The complete camping guide</a>
-            <span>Every campground, the release calendar, and the strategy.</span>
+            <span className="relrail__dek">Every campground, the release calendar, and the strategy.</span>
           </li>
           <li>
             <a href="/articles/yosemite-trip-cost-budget-2026">What a Yosemite trip costs</a>
-            <span>The arithmetic of each lodging approach across a whole trip.</span>
+            <span className="relrail__dek">The arithmetic of each lodging approach across a whole trip.</span>
           </li>
           <li>
             <a href="/articles/getting-to-yosemite">Getting to Yosemite</a>
-            <span>The four entrances and the roads that reach them.</span>
+            <span className="relrail__dek">The four entrances and the roads that reach them.</span>
           </li>
           <li>
             <a href="/articles/where-to-eat-yosemite">Where to eat</a>
-            <span>Dinner in the park and town by town, and what closes when.</span>
+            <span className="relrail__dek">Dinner in the park and town by town, and what closes when.</span>
           </li>
           <li>
             <a href="/itineraries" onClick={(e) => goRoute(e, "itineraries")}>Itineraries</a>
-            <span>One, two, and three-day plans to hang the nights on.</span>
+            <span className="relrail__dek">One, two, and three-day plans to hang the nights on.</span>
           </li>
         </ul>
 
-        <p className="article-aff-note" style={{ marginTop: 32 }}>
+        <p className="article-aff-note hp-stay__disclosure">
           The availability links on this page are affiliate links. If you book
           through one, The Talus Field may earn a small commission at no extra
           cost to you. Which property is recommended, and in what order, does
@@ -1168,22 +1168,21 @@ function StayPage({ go }) {
         </p>
       </section>
 
-      <div className="wrap wrap--narrow" style={{ paddingBottom: 8 }}>
-        <GuidePromo
-          go={go}
-          location="stay"
-          title="Booked the beds. Now the days."
-          body="The Field Guide app carries the stops, the parking notes, offline maps for a park with no signal, and a day-by-day planner that knows how long the drives actually take. One purchase, eighteen months of access."
-          style={{ marginTop: 40, marginBottom: 40 }}
-        />
-
-        <NewsletterInline
-          location="stay"
-          tag="lodging"
-          heading="Rooms come back. Someone has to be watching."
-          blurb="Sunday Field Notes carries what is opening, closing, and quietly becoming available in the park, written from inside it. One short letter a week. Free."
-        />
-      </div>
+      <HpGuideBand
+        go={go}
+        location="stay"
+        title="Booked the beds. Now the days."
+        intro="The Field Guide app carries the stops, the parking notes, offline maps for a park with no signal, and a day-by-day planner that knows how long the drives actually take. One purchase, eighteen months of access."
+        sample
+      />
+      <HpLetter
+        eyebrow="SUNDAY FIELD NOTES / FREE"
+        title="Rooms come back. Someone has to be watching."
+        heading="Rooms come back. Someone has to be watching."
+        blurb="Sunday Field Notes carries what is opening, closing, and quietly becoming available in the park, written from inside it. One short letter a week. Free."
+        location="stay"
+        tag="lodging"
+      />
     </div>
   );
 }

@@ -289,8 +289,10 @@ function ArticlePage({
   var unreadFirst = list => [...list.filter(a => !doneSlugs.has(a.slug)), ...list.filter(a => doneSlugs.has(a.slug))];
   var related = unreadFirst((window.relatedFor ? window.relatedFor(slug) : []).map(s => window.findArticle(s)).filter(a => a && a.slug !== slug));
   var relatedSameCat = related.length > 0 && related.every(a => a.cat === article.cat);
+  var upper = t => (t || "").toUpperCase();
+  var tripIntent = article.cat === "trails" || article.cat === "planning" || article.cat === "seasonal";
   return React.createElement("div", {
-    className: "page"
+    className: "page hp-article"
   }, React.createElement("div", {
     className: "readbar",
     "aria-hidden": "true"
@@ -304,15 +306,11 @@ function ArticlePage({
     onClose: closeLightbox
   }), React.createElement("article", {
     ref: articleRef
-  }, React.createElement("header", {
-    className: "wrap wrap--narrow",
-    style: {
-      paddingTop: 64,
-      paddingBottom: 32
-    }
-  }, React.createElement(Breadcrumbs, {
+  }, React.createElement(HpPageHead, {
+    as: "header",
     go: go,
-    trail: [{
+    className: "hp-article__head",
+    crumbs: [{
       label: "Home",
       route: "home"
     }, {
@@ -320,86 +318,48 @@ function ArticlePage({
       route: `cat:${cat.slug}`
     }, {
       label: article.title
-    }]
-  }), React.createElement("div", {
-    className: "eyebrow eyebrow--moss",
-    style: {
-      marginBottom: 18
-    }
-  }, React.createElement("a", {
-    href: `/section/${cat.slug}`,
-    onClick: e => {
-      e.preventDefault();
-      go(`cat:${cat.slug}`);
-    },
-    style: {
-      color: "var(--moss)",
-      textDecoration: "none"
-    }
-  }, cat.label)), React.createElement("h1", {
-    style: {
-      marginBottom: 24
-    }
-  }, article.title), React.createElement("p", {
-    style: {
-      fontSize: 22,
-      color: "var(--ink-2)",
-      lineHeight: 1.45,
-      fontFamily: "var(--serif)",
-      marginBottom: 32
-    }
-  }, article.dek), React.createElement("address", {
-    style: {
-      display: "flex",
-      gap: 18,
-      alignItems: "center",
-      fontFamily: "var(--sans)",
-      fontSize: 13,
-      color: "var(--ink-3)",
-      borderTop: "1px solid var(--rule)",
-      borderBottom: "1px solid var(--rule)",
-      padding: "14px 0",
-      fontStyle: "normal"
-    }
-  }, React.createElement("div", {
-    style: {
-      width: 36,
-      height: 36,
-      borderRadius: "50%",
-      background: "var(--paper-2)",
-      border: "1px solid var(--rule)",
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-      fontFamily: "var(--serif)",
-      fontWeight: 600,
-      color: "var(--ink-2)"
-    }
-  }, "CG"), React.createElement("div", null, React.createElement("div", {
-    style: {
-      color: "var(--ink)",
-      fontWeight: 500
-    }
+    }],
+    eyebrow: React.createElement("a", {
+      href: `/section/${cat.slug}`,
+      onClick: e => {
+        e.preventDefault();
+        go(`cat:${cat.slug}`);
+      }
+    }, upper(cat.label)),
+    title: article.title,
+    intro: article.dek,
+    aside: React.createElement("div", {
+      className: "hp-article__plate"
+    }, React.createElement(Placeholder, {
+      caption: article.placeholder,
+      image: article.image,
+      credit: article.credit,
+      tag: "PLATE I",
+      size: "lg",
+      eager: true,
+      motif: React.createElement(MotifMountains, null)
+    }))
+  }, React.createElement("address", {
+    className: "hp-article__byline"
+  }, React.createElement("span", {
+    className: "hp-article__avatar",
+    "aria-hidden": "true"
+  }, "CG"), React.createElement("span", null, React.createElement("span", {
+    className: "hp-article__author"
   }, "By ", React.createElement("a", {
     href: "/about",
     rel: "author",
     onClick: e => {
       e.preventDefault();
       go("about");
-    },
-    style: {
-      color: "inherit",
-      textDecoration: "none",
-      borderBottom: "1px solid var(--rule)"
     }
-  }, window.SITE.authorName)), React.createElement("div", null, window.SITE.authorBio)), React.createElement("div", {
-    style: {
-      marginLeft: "auto",
-      textAlign: "right"
-    }
+  }, window.SITE.authorName)), React.createElement("span", {
+    className: "hp-article__bio"
+  }, window.SITE.authorBio)), React.createElement("span", {
+    className: "hp-article__dates"
   }, React.createElement("time", {
     dateTime: article.isoModified || article.isoDate
-  }, article.date), React.createElement("div", null, article.read, " read"), article.isoModified && article.isoModified !== article.isoDate && formatIsoDate(article.isoModified) && React.createElement("div", null, "Updated ", formatIsoDate(article.isoModified)))), (() => {
+  }, article.date), React.createElement("span", null, article.read, " read"), article.isoModified && article.isoModified !== article.isoDate && formatIsoDate(article.isoModified) && React.createElement("span", null, "Updated ", formatIsoDate(article.isoModified)))), (() => {
     var series = window.planningSeriesFor && window.planningSeriesFor(slug);
     if (!series) return null;
     var prev = series.prev ? window.findArticle(series.prev) : null;
@@ -432,21 +392,9 @@ function ArticlePage({
       className: "series-band__nav"
     }, prev && seriesNav(prev, "← Previous"), next && seriesNav(next, "Next →")));
   })()), React.createElement("div", {
-    className: "wrap wrap--narrow",
-    style: {
-      paddingBottom: 32
-    }
-  }, React.createElement(Placeholder, {
-    caption: article.placeholder,
-    image: article.image,
-    credit: article.credit,
-    tag: "PLATE I",
-    size: "lg",
-    natural: true,
-    eager: true,
-    motif: React.createElement(MotifMountains, null)
-  })), React.createElement("div", {
-    className: "wrap wrap--read"
+    className: "hp-wrap hp-reading"
+  }, React.createElement("div", {
+    className: "hp-reading__column"
   }, toc.length > 0 && React.createElement("details", {
     className: "toc"
   }, React.createElement("summary", null, "In this guide"), React.createElement("ul", null, toc.map(it => React.createElement("li", {
@@ -495,75 +443,31 @@ function ArticlePage({
   }, "Section"), React.createElement("span", {
     className: "val"
   }, cat.label))), bodyState === "ready" && Body ? React.createElement(Body, null) : bodyState === "loading" ? React.createElement(BodySkeleton, null) : React.createElement("p", {
-    style: {
-      color: "var(--ink-3)",
-      fontStyle: "italic"
-    }
+    className: "hp-article__soon"
   }, "This article is coming soon.")), React.createElement("div", {
-    style: {
-      display: "flex",
-      gap: 18,
-      alignItems: "flex-start",
-      borderTop: "1px solid var(--rule)",
-      padding: "24px 0",
-      marginTop: 40
-    }
-  }, React.createElement("div", {
-    style: {
-      width: 44,
-      height: 44,
-      flexShrink: 0,
-      borderRadius: "50%",
-      background: "var(--paper-2)",
-      border: "1px solid var(--rule)",
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-      fontFamily: "var(--serif)",
-      fontWeight: 600,
-      color: "var(--ink-2)"
-    }
-  }, "CG"), React.createElement("div", {
-    style: {
-      fontFamily: "var(--sans)",
-      fontSize: 13,
-      color: "var(--ink-2)",
-      lineHeight: 1.6
-    }
-  }, React.createElement("div", {
-    style: {
-      color: "var(--ink)",
-      fontWeight: 500,
-      marginBottom: 4
-    }
+    className: "hp-article__authorbox"
+  }, React.createElement("span", {
+    className: "hp-article__avatar",
+    "aria-hidden": "true"
+  }, "CG"), React.createElement("div", null, React.createElement("p", {
+    className: "hp-article__author"
   }, React.createElement("a", {
     href: "/about",
     rel: "author",
     onClick: e => {
       e.preventDefault();
       go("about");
-    },
-    style: {
-      color: "inherit",
-      textDecoration: "none",
-      borderBottom: "1px solid var(--rule)"
     }
-  }, window.SITE.authorName)), React.createElement("div", null, window.SITE.authorBio), React.createElement("div", {
-    style: {
-      marginTop: 6
-    }
-  }, React.createElement("a", {
+  }, window.SITE.authorName)), React.createElement("p", {
+    className: "hp-article__bio"
+  }, window.SITE.authorBio), React.createElement("a", {
+    className: "hp-link",
     href: "/about",
     onClick: e => {
       e.preventDefault();
       go("about");
-    },
-    style: {
-      color: "var(--moss)",
-      textDecoration: "none",
-      borderBottom: "1px solid var(--rule)"
     }
-  }, "Read how recommendations get made →")))), React.createElement(ShareRow, {
+  }, "Read how recommendations get made ↗"))), React.createElement(ShareRow, {
     title: article.title,
     slug: slug
   }), midHost && ReactDOM.createPortal(React.createElement(NewsletterInline, {
@@ -572,90 +476,49 @@ function ArticlePage({
     heading: "Keep reading next week",
     blurb: "Sunday Field Notes: one short letter, only when there is something worth saying."
   }), midHost), React.createElement("a", {
+    className: "hp-note",
     href: "/map",
     onClick: e => {
       e.preventDefault();
       go("map");
-    },
-    style: {
-      display: "block",
-      textDecoration: "none",
-      color: "inherit",
-      border: "1px solid var(--ink)",
-      padding: "24px 28px",
-      marginTop: 40
     }
-  }, React.createElement("div", {
-    className: "eyebrow eyebrow--moss",
-    style: {
-      marginBottom: 8
-    }
-  }, "The Map · Free"), React.createElement("div", {
-    style: {
-      fontFamily: "var(--display)",
-      fontSize: 24,
-      fontWeight: 500,
-      lineHeight: 1.15,
-      marginBottom: 6
-    }
-  }, "Plan it on the interactive map."), React.createElement("p", {
-    style: {
-      fontFamily: "var(--serif)",
-      fontSize: 16,
-      color: "var(--ink-2)",
-      lineHeight: 1.5,
-      margin: 0
-    }
-  }, "Every vista, trailhead, parking turnout, and meal worth the stop, on one map. A free newsletter signup opens it; then build a trip from the pins."), React.createElement("div", {
-    className: "mono",
-    style: {
-      color: "var(--moss)",
-      fontWeight: 700,
-      fontSize: 11,
-      textTransform: "uppercase",
-      letterSpacing: "0.18em",
-      marginTop: 12
-    }
-  }, "Open the map →")), (() => {
-    var endVariant = window.abVariant ? window.abVariant("article_end_copy") : "a";
-    var offers = endVariant === "b" ? END_NEWSLETTER_OFFER_B : END_NEWSLETTER_OFFER;
-    var offer = offers[article.cat] || {};
-    return React.createElement(NewsletterInline, {
-      location: "article_end",
-      tag: newsletterTag("article-end", article.cat),
-      heading: offer.heading || "Sunday Field Notes",
-      blurb: offer.blurb || "One letter a week. If you found this useful, you'll probably like the rest.",
-      variant: endVariant
-    });
-  })(), (article.cat === "trails" || article.cat === "planning" || article.cat === "seasonal") && React.createElement(GuidePromo, {
+  }, React.createElement("p", {
+    className: "hp-eyebrow"
+  }, "THE MAP / FREE"), React.createElement("h3", null, "Plan it on the interactive map."), React.createElement("p", null, "Every vista, trailhead, parking turnout, and meal worth the stop, on one map. A free newsletter signup opens it; then build a trip from the pins."), React.createElement("b", null, "Open the map ", React.createElement("span", null, "↗")))))), tripIntent && React.createElement(HpGuideBand, {
     go: go,
     location: "article_end",
     title: "The park, in your pocket.",
-    body: "The app version of this journal: offline maps, GPS at the trailhead, and every stop with parking and timing notes. Works with no signal, which is most of the park. $3.99, eighteen months of access.",
-    style: {
-      marginTop: 24
+    intro: "The app version of this journal: offline maps, GPS at the trailhead, and every stop with parking and timing notes. Works with no signal, which is most of the park. $3.99, eighteen months of access.",
+    sample: true
+  }), (() => {
+    var endVariant = window.abVariant ? window.abVariant("article_end_copy") : "a";
+    var offers = endVariant === "b" ? END_NEWSLETTER_OFFER_B : END_NEWSLETTER_OFFER;
+    var offer = offers[article.cat] || {};
+    var heading = offer.heading || "Sunday Field Notes";
+    return React.createElement(HpLetter, {
+      eyebrow: "SUNDAY FIELD NOTES / FREE",
+      title: heading,
+      heading: heading,
+      blurb: offer.blurb || "One letter a week. If you found this useful, you'll probably like the rest.",
+      location: "article_end",
+      tag: newsletterTag("article-end", article.cat),
+      variant: endVariant
+    });
+  })(), related.length > 0 && React.createElement("section", {
+    className: "hp-wrap hp-section hp-article__related"
+  }, React.createElement(HpHeading, {
+    go: go,
+    location: "article_related",
+    eyebrow: "THE JOURNAL",
+    title: relatedSameCat ? `More from ${cat.label}` : "Keep reading",
+    link: relatedSameCat ? {
+      href: `/section/${cat.slug}`,
+      label: `All in ${cat.label} ↗`
+    } : {
+      href: "/articles",
+      label: "All entries ↗"
     }
-  }))), related.length > 0 && React.createElement("section", {
-    className: "wrap",
-    style: {
-      paddingTop: 48,
-      paddingBottom: 32
-    }
-  }, React.createElement("div", {
-    className: "section-head"
-  }, React.createElement("h2", null, relatedSameCat ? `More from ${cat.label}` : "Keep reading"), relatedSameCat ? React.createElement("a", {
-    href: `/section/${cat.slug}`,
-    onClick: e => {
-      e.preventDefault();
-      go(`cat:${cat.slug}`);
-    }
-  }, "All in ", cat.label, " →") : React.createElement("a", {
-    href: "/articles",
-    onClick: e => {
-      e.preventDefault();
-      go("articles");
-    }
-  }, "All entries →")), React.createElement("ul", {
+  }), React.createElement("ul", {
     className: "relrail"
   }, related.map(a => React.createElement("li", {
     key: a.slug

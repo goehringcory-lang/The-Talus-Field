@@ -4,45 +4,45 @@ function ChecklistPage({
   var sectionStyle = {
     marginBottom: 40,
     paddingBottom: 24,
-    borderBottom: "1px solid var(--rule)"
+    borderBottom: "1px solid var(--hp-rule)"
   };
   var sectionLabel = {
     fontFamily: "var(--sans)",
-    fontSize: 11,
+    fontSize: 9,
     textTransform: "uppercase",
-    letterSpacing: "0.18em",
-    fontWeight: 700,
-    color: "var(--moss)",
-    marginBottom: 6
+    letterSpacing: "1.7px",
+    fontWeight: 600,
+    color: "var(--hp-accent)",
+    marginBottom: 12
   };
   var sectionTitle = {
-    fontFamily: "var(--display)",
-    fontSize: 28,
-    fontWeight: 500,
-    lineHeight: 1.15,
-    letterSpacing: "-0.005em",
+    fontFamily: "var(--serif)",
+    fontSize: 38,
+    fontWeight: 400,
+    lineHeight: 1.04,
+    letterSpacing: "-1.1px",
     marginBottom: 18
   };
   var item = {
     display: "block",
-    fontFamily: "var(--serif)",
-    fontSize: 17,
-    lineHeight: 1.5,
-    color: "var(--ink-1)",
-    padding: "8px 0",
+    fontFamily: "var(--sans)",
+    fontSize: 14,
+    lineHeight: 1.7,
+    color: "var(--hp-ink)",
+    padding: "9px 0",
+    borderTop: "1px solid var(--hp-rule)",
     cursor: "pointer"
   };
   var cb = {
     marginRight: 12,
     transform: "translateY(2px)",
-    accentColor: "var(--moss)"
+    accentColor: "var(--hp-accent)"
   };
   var note = {
-    fontFamily: "var(--serif)",
-    fontStyle: "italic",
-    fontSize: 15,
-    color: "var(--ink-2)",
-    lineHeight: 1.5,
+    fontFamily: "var(--sans)",
+    fontSize: 12,
+    color: "var(--hp-muted)",
+    lineHeight: 1.7,
     marginTop: 4,
     marginLeft: 28
   };
@@ -60,43 +60,31 @@ function ChecklistPage({
     className: "page page-checklist"
   }, React.createElement("style", null, `
         @media print {
-          header, footer, .tweaks-panel, .page-head__dek + *, .nlbox { display: none !important; }
+          header, footer, .hp-navigation, .hp-checklist__tip, .hp-product, .hp-letter, .nlbox { display: none !important; }
           .page-checklist { padding: 0 !important; }
-          .page-checklist .page-head { padding: 0 !important; margin-bottom: 16pt !important; }
+          .page-checklist .hp-pagehead { padding: 0 !important; margin-bottom: 16pt !important; }
           .page-checklist h1 { font-size: 22pt !important; }
           .page-checklist .checklist-section { page-break-inside: avoid; }
           body { background: white !important; color: black !important; }
           a { color: black !important; text-decoration: none !important; }
         }
-      `), React.createElement("div", {
-    className: "page-head"
-  }, React.createElement("div", {
-    className: "wrap wrap--narrow"
-  }, React.createElement(Breadcrumbs, {
+      `), React.createElement(HpPageHead, {
     go: go,
-    trail: [{
+    crumbs: [{
       label: "Home",
       route: "home"
     }, {
       label: "First-week checklist"
-    }]
-  }), React.createElement("div", {
-    className: "eyebrow eyebrow--moss"
-  }, "The First-Week Checklist"), React.createElement("h1", null, "Yosemite, in one printable page."), React.createElement("p", {
-    className: "page-head__dek"
-  }, "A condensed action list for planning a Yosemite trip in 2026, drawn from the full archive of The Talus Field. Print it, check things off, take it in the car. The longer essays behind each line are linked throughout, and collected at the bottom."), React.createElement("p", {
-    style: {
-      fontFamily: "var(--sans)",
-      fontSize: 13,
-      color: "var(--ink-3)",
-      marginTop: 14
-    }
-  }, "Tip: ", React.createElement("strong", null, "Cmd+P"), " (or Ctrl+P) for a clean print version."))), React.createElement("div", {
-    className: "wrap wrap--narrow",
-    style: {
-      paddingTop: 56,
-      paddingBottom: 80
-    }
+    }],
+    eyebrow: "THE FIRST-WEEK CHECKLIST",
+    title: "Yosemite, in one printable page.",
+    intro: "A condensed action list for planning a Yosemite trip in 2026, drawn from the full archive of The Talus Field. Print it, check things off, take it in the car. The longer essays behind each line are linked throughout, and collected at the bottom."
+  }, React.createElement("p", {
+    className: "hp-byline hp-checklist__tip"
+  }, "Tip: ", React.createElement("strong", null, "Cmd+P"), " (or Ctrl+P) for a clean print version.")), React.createElement("div", {
+    className: "hp-wrap hp-reading"
+  }, React.createElement("div", {
+    className: "hp-reading__column"
   }, React.createElement("section", {
     className: "checklist-section",
     style: sectionStyle
@@ -379,7 +367,7 @@ function ChecklistPage({
     className: "checklist-section",
     style: {
       ...sectionStyle,
-      borderBottom: "2px solid var(--ink)"
+      borderBottom: "1px solid var(--hp-ink)"
     }
   }, React.createElement("div", {
     style: sectionLabel
@@ -425,27 +413,12 @@ function ChecklistPage({
       marginTop: 56,
       marginBottom: 56
     }
-  }, React.createElement("div", {
-    className: "eyebrow eyebrow--moss",
-    style: {
-      marginBottom: 14
-    }
-  }, "The longer essays"), React.createElement("p", {
-    style: {
-      fontFamily: "var(--serif)",
-      fontSize: 17,
-      lineHeight: 1.6,
-      color: "var(--ink-2)",
-      marginBottom: 12
-    }
+  }, React.createElement("p", {
+    className: "hp-eyebrow"
+  }, "THE LONGER ESSAYS"), React.createElement("p", {
+    className: "hp-sub"
   }, "Each line on this checklist is condensed from a longer piece. If you want the reasoning behind any of them:"), React.createElement("ul", {
-    style: {
-      fontFamily: "var(--serif)",
-      fontSize: 16,
-      lineHeight: 1.7,
-      color: "var(--ink-1)",
-      paddingLeft: 20
-    }
+    className: "relrail hp-checklist__essays"
   }, React.createElement("li", null, React.createElement("a", {
     href: "/articles/first-time-yosemite-overwhelm",
     onClick: e => {
@@ -488,21 +461,19 @@ function ChecklistPage({
       e.preventDefault();
       go("planning");
     }
-  }, "The full Yosemite Planning Guide")))), React.createElement(GuidePromo, {
+  }, "The full Yosemite Planning Guide")))))), React.createElement(HpGuideBand, {
     go: go,
     location: "checklist",
     title: "The checklist rides along.",
-    body: "The Field Guide app packs a night-before checklist next to 50-plus stops with parking and timing notes, offline maps, and a trip planner. Everything this page prepares you for, on your phone, with no signal required.",
-    style: {
-      marginBottom: 56
-    }
-  }), React.createElement("div", {
-    className: "checklist-section"
-  }, React.createElement(NewsletterInline, {
-    location: "checklist",
-    tag: "checklist",
+    intro: "The Field Guide app packs a night-before checklist next to 50-plus stops with parking and timing notes, offline maps, and a trip planner. Everything this page prepares you for, on your phone, with no signal required.",
+    sample: true
+  }), React.createElement(HpLetter, {
+    eyebrow: "SUNDAY FIELD NOTES / FREE",
+    title: "Want updates through the season?",
     heading: "Want updates through the season?",
-    blurb: "One Yosemite email a week, when there is something to say. Free. Subscribers hear about updates to this checklist first."
-  }))));
+    blurb: "One Yosemite email a week, when there is something to say. Free. Subscribers hear about updates to this checklist first.",
+    location: "checklist",
+    tag: "checklist"
+  }));
 }
 window.ChecklistPage = ChecklistPage;

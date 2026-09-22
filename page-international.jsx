@@ -1,4 +1,4 @@
-/* global React, NewsletterInline, Breadcrumbs, GuidePromo, LodgingCta, FEES, calcEntryFees, FEE_MODES */
+/* global React, HpPageHead, LodgingCta, FEES, calcEntryFees, FEE_MODES, HpGuideBand, HpLetter */
 
 // =============================================================================
 // INTERNATIONAL — `/international` route. The page for the reader arriving
@@ -88,23 +88,18 @@ function InternationalPage({ go }) {
   const goR = (e, r) => { e.preventDefault(); go(r); };
 
   return (
-    <div className="page">
-      <div className="page-head">
-        <div className="wrap wrap--narrow">
-          <Breadcrumbs go={go} trail={[{ label: "Home", route: "home" }, { label: "Visiting from abroad" }]} />
-          <div className="eyebrow eyebrow--moss">International visitors</div>
-          <h1>Yosemite for visitors from outside the United States</h1>
-          <p className="page-head__dek">
-            Since January 1, 2026, a visitor who does not live in the United
-            States pays more to enter Yosemite, and the rules are easy to get
-            wrong. What the fee is, the cheapest way to pay it, and the handful
-            of things about this park that surprise people who have driven in
-            other countries.
-          </p>
-        </div>
-      </div>
+    <div className="page hp-tool hp-international">
+      <HpPageHead
+        go={go}
+        crumbs={[{ label: "Home", route: "home" }, { label: "Visiting from abroad" }]}
+        eyebrow="INTERNATIONAL VISITORS"
+        title="Yosemite for visitors from outside the United States"
+        intro="Since January 1, 2026, a visitor who does not live in the United States pays more to enter Yosemite, and the rules are easy to get wrong. What the fee is, the cheapest way to pay it, and the handful of things about this park that surprise people who have driven in other countries."
+      />
 
-      <div className="wrap wrap--narrow" style={{ paddingTop: 40, paddingBottom: 64 }}>
+
+      <div className="hp-wrap hp-reading">
+        <div className="hp-reading__column">
         <section className="prose">
           <h2>The 2026 non-resident fee</h2>
           <p>
@@ -234,21 +229,24 @@ function InternationalPage({ go }) {
           cta="Search lodging around Yosemite →"
         />
 
-        <GuidePromo
-          go={go}
-          location="international"
-          title="The park, offline, in your pocket"
-          body="No roaming plan reaches most of Yosemite. The Field Guide app downloads the maps, the parking notes and the day planner to your phone before the gate, in plain English. One purchase, eighteen months of access."
-          style={{ marginTop: 56, marginBottom: 40 }}
-        />
-
-        <NewsletterInline
-          location="international"
-          tag="international"
-          heading="What changed since you read this"
-          blurb="Fees, road openings and the park's rules move between the day you book and the day you land. One short letter on Sundays, from inside the park. Free."
-        />
+        </div>
       </div>
+
+      <HpGuideBand
+        go={go}
+        location="international"
+        title="The park, offline, in your pocket"
+        intro="No roaming plan reaches most of Yosemite. The Field Guide app downloads the maps, the parking notes and the day planner to your phone before the gate, in plain English. One purchase, eighteen months of access."
+        sample
+      />
+      <HpLetter
+        eyebrow="SUNDAY FIELD NOTES / FREE"
+        title="What changed since you read this"
+        heading="What changed since you read this"
+        blurb="Fees, road openings and the park's rules move between the day you book and the day you land. One short letter on Sundays, from inside the park. Free."
+        location="international"
+        tag="international"
+      />
     </div>
   );
 }
