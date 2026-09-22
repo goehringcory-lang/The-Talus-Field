@@ -29,7 +29,7 @@ Status: `[x]` converted, `[ ]` not yet.
 - [x] Palette: the design palette is the site palette; the Granite / High Sierra / Golden Hour swaps, the density swap and the dark-mode blocks are retired
 - [x] Footer
 - [x] Onward links (`KeepGoing`)
-- [ ] Back-to-top, nav-progress bar, exit-intent modal, lightbox
+- [x] Back-to-top, nav-progress bar, exit-intent modal, lightbox (the first three already drew in the palette; the lightbox bar moved from mono to the system's sans in the review pass)
 
 ### 1. Article template (`page-article.jsx`, 72 pages at `/articles/<slug>`)
 - [x] Article head (crumbs, section eyebrow, h1, dek, byline, hero plate)
@@ -138,27 +138,39 @@ The only new words are labels in the design's eyebrow voice:
   contrast in the September redesign.
 - **The PWA** (guide.thetalusfieldjournal.com), which is out of scope.
 
-## Bugs found in the homepage design (not fixed: `/` must stay unchanged)
+## Bugs found in the homepage design
 
-1. **The masthead wraps its labels between 761px and about 850px.** At tablet
-   widths the brand, five links and the button share one row, so "Start
-   here", "The journal", "Park conditions" and "Sunday Letter" each break onto
-   two lines, and so does the button. The rollout now shows this on every
-   route. A fix is to drop the nav to its own row below about 900px (the
-   rule the 760px breakpoint already applies) or to set `white-space: nowrap`
-   on the links and let the gap shrink.
-2. **The footer still wears the retired palette.** Its top rule (`#11161c`)
-   and wordmark (`#0c1014`) are the High Sierra ink, inherited from
-   `<html>` before the rollout. They are pinned so `/` stays identical, and
-   deleting the two pinned values in `styles.css` finishes the job.
-3. **The footer and KeepGoing sit on the legacy container.** They use
-   `.wrap` (1240px plus gutter), not `.hp-wrap` (1280px, 56px margins), so
-   their left edge does not line up with the page above them at any width.
-4. **KeepGoing uses the legacy serif base** (19px EB Garamond for the
-   notes), restated so `/planning`, `/conditions` and `/guide` stay identical.
-5. **Two known issues from PR #413 still stand.** There is no dark mode
-   (above), and on `/conditions` at phone width the elevation chart's
-   "4,000 FT" labels touch the axis labels.
+The rollout left these alone because `/` had to stay pixel-identical. The
+review pass that followed (below) fixed the first four and the chart half
+of the fifth.
+
+1. ~~**The masthead wraps its labels between 761px and about 830px.**~~
+   Fixed: the top-level labels and the button are `nowrap`, and from 761px
+   to 879px the nav takes its own row under the brand, the layout phones
+   already use (left-aligned here, not spread edge to edge).
+2. ~~**The footer still wears the retired palette.**~~ Fixed: the rule and
+   the wordmark are the deep green ink, and the second, full-bleed 2px rule
+   above the footer is gone, so one ink rule opens it.
+3. ~~**The footer and KeepGoing sit on the legacy container.**~~ Fixed:
+   both restate `.hp-wrap`'s box on their `.wrap` (1280px, 56 / 32 / 20px
+   margins), so their left edge lines up with the page above at every width.
+4. ~~**KeepGoing uses the legacy serif base and near-black.**~~ Fixed: it
+   takes the ink, the system's rule, and an accent eyebrow for its heading;
+   its full-bleed top rule is gone.
+5. **There is still no dark mode** (above). ~~On `/conditions` at phone
+   width the elevation chart's "4,000 FT" labels touch the axis labels.~~
+   Fixed: the bars start after a 52px axis gutter under 560px.
+
+## Review pass (after the rollout)
+
+Besides the five above:
+
+- **Article head on phones.** The dek is 14px under 760px (it was 16px,
+  and a 450-character dek filled the first screen and pushed the hero photo
+  below it), and the current-page breadcrumb truncates to one line with an
+  ellipsis instead of wrapping the trail onto two or three lines.
+- **Lightbox bar.** Caption and controls in the system's sans (tracked
+  capitals for the caption) with 3px radii, instead of the mono face.
 
 ## Verification
 
