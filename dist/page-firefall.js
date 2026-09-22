@@ -6,29 +6,22 @@ function FirefallPage({
     go(`a:${slug}`);
   };
   return React.createElement("div", {
-    className: "page"
-  }, React.createElement("div", {
-    className: "page-head"
-  }, React.createElement("div", {
-    className: "wrap wrap--narrow"
-  }, React.createElement(Breadcrumbs, {
+    className: "page hp-tool hp-firefall"
+  }, React.createElement(HpPageHead, {
     go: go,
-    trail: [{
+    crumbs: [{
       label: "Home",
       route: "home"
     }, {
       label: "Firefall"
-    }]
+    }],
+    eyebrow: "SEASONAL EVENT · MID-TO-LATE FEBRUARY",
+    title: "The Yosemite Firefall",
+    intro: "For roughly two weeks in mid-to-late February, sunset light can turn Horsetail Fall into a glowing orange ribbon on El Capitan. It is real, it is not enhanced in the photographs, and most evenings it does not happen. This page is the honest version: when the window runs, what has to line up, and how to plan an evening around uncertain odds."
   }), React.createElement("div", {
-    className: "eyebrow eyebrow--moss"
-  }, "Seasonal event · mid-to-late February"), React.createElement("h1", null, "The Yosemite Firefall"), React.createElement("p", {
-    className: "page-head__dek"
-  }, "For roughly two weeks in mid-to-late February, sunset light can turn Horsetail Fall into a glowing orange ribbon on El Capitan. It is real, it is not enhanced in the photographs, and most evenings it does not happen. This page is the honest version: when the window runs, what has to line up, and how to plan an evening around uncertain odds."))), React.createElement("div", {
-    className: "wrap wrap--narrow",
-    style: {
-      paddingTop: 40,
-      paddingBottom: 64
-    }
+    className: "hp-wrap hp-reading"
+  }, React.createElement("div", {
+    className: "hp-reading__column"
   }, React.createElement("section", {
     className: "prose"
   }, React.createElement("h2", null, "The window"), React.createElement("p", null, "The sun angle that lights the fall runs roughly the second week of February through the last week, with the strongest color usually in the middle of that span. The same geometry occurs in late October, but by then the fall is almost always dry, so February is the season. Outside those dates the sunset light either misses the fall or fails to isolate it against shadowed rock. The glow itself is short: it builds for a few minutes, peaks near sunset, and is finished about ten minutes later."), React.createElement("h2", null, "Three conditions, and all of them must hold"), React.createElement("p", null, "The firefall is an alignment problem. Any one condition failing cancels the show entirely."), React.createElement("ol", null, React.createElement("li", null, React.createElement("strong", null, "Water in the fall."), " Horsetail has a tiny drainage and no lake feeding it; it flows only when recent rain or melting snow is running off El Capitan's summit. A cold, dry February leaves it empty. A storm the week before, followed by mild afternoons, is the ideal setup."), React.createElement("li", null, React.createElement("strong", null, "A clear western horizon at sunset."), " The light travels from the horizon up the Merced canyon onto the cliff. A cloud bank sitting where the sun goes down kills the show even on an otherwise clear evening."), React.createElement("li", null, React.createElement("strong", null, "The sun angle."), " The only condition you can schedule, and the reason the window above exists at all.")), React.createElement("p", null, "The arithmetic: fourteen to eighteen candidate evenings a year, minus February's clouds, minus dry years. Some years several evenings converge and produce the famous photographs. Some years the firefall effectively does not happen. Anyone selling certainty for one specific evening is selling something.")), React.createElement("div", {
@@ -76,20 +69,19 @@ function FirefallPage({
     list: "page_firefall",
     slug: "firefall",
     cta: "Search February lodging around Yosemite →"
-  }), React.createElement(GuidePromo, {
+  }))), React.createElement(HpGuideBand, {
     go: go,
     location: "firefall",
     title: "Planning the February trip around it?",
-    body: "The Field Guide app carries the winter stops, parking notes for the viewing areas, offline maps for a park with no signal, and a day-by-day planner for the rest of the trip. One purchase, eighteen months of access.",
-    style: {
-      marginTop: 56,
-      marginBottom: 40
-    }
-  }), React.createElement(NewsletterInline, {
-    location: "firefall",
-    tag: "firefall",
+    intro: "The Field Guide app carries the winter stops, parking notes for the viewing areas, offline maps for a park with no signal, and a day-by-day planner for the rest of the trip. One purchase, eighteen months of access.",
+    sample: true
+  }), React.createElement(HpLetter, {
+    eyebrow: "SUNDAY FIELD NOTES / FREE",
+    title: "February, watched from inside the park",
     heading: "February, watched from inside the park",
-    blurb: "Sunday Field Notes carries the firefall window as it develops: water in the fall, the week's weather, and what the rules are this year. One short letter a week. Free."
-  })));
+    blurb: "Sunday Field Notes carries the firefall window as it develops: water in the fall, the week's weather, and what the rules are this year. One short letter a week. Free.",
+    location: "firefall",
+    tag: "firefall"
+  }));
 }
 window.FirefallPage = FirefallPage;

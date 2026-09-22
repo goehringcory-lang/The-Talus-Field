@@ -59,17 +59,17 @@ Status: `[x]` converted, `[ ]` not yet.
 - [x] `/advertise`
 
 ### 4. Tools and reference pages
-- [ ] `/dates`
-- [ ] `/international`
-- [ ] `/distances`
-- [ ] `/firefall`
-- [ ] `/tioga-opening`
-- [ ] `/half-dome-lottery`
-- [ ] `/kit`
-- [ ] `/checklist`
-- [ ] `/now` (The Park Bulletin)
-- [ ] `/stay`
-- [ ] `/map`
+- [x] `/dates`
+- [x] `/international`
+- [x] `/distances`
+- [x] `/firefall`
+- [x] `/tioga-opening`
+- [x] `/half-dome-lottery`
+- [x] `/kit`
+- [x] `/checklist`
+- [x] `/now` (The Park Bulletin)
+- [x] `/stay`
+- [x] `/map`
 
 ### 5. Utility
 - [ ] 404 (`NotFoundPage`, also every unknown `/articles/` or `/section/` slug)

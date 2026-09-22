@@ -1,4 +1,4 @@
-/* global React, NewsletterInline, Breadcrumbs, GuidePromo, ParkingNow */
+/* global React, HpPageHead, HpGuideBand, HpLetter, ParkingNow */
 
 // =============================================================================
 // THE PARK BULLETIN, `/now`. One page, the whole park, right now: the site's
@@ -1254,20 +1254,15 @@ function BulletinPage({ go }) {
 
   return (
     <div className="page bulletin">
-      <div className="page-head">
-        <div className="wrap">
-          <Breadcrumbs go={go} trail={[{ label: "Home", route: "home" }, { label: "The Park Bulletin" }]} />
-          <div className="eyebrow eyebrow--moss">One page, the whole park</div>
-          <h1>The Park Bulletin</h1>
-          <p className="page-head__dek">
-            What is different in Yosemite right now: what is open, what is on
-            today, and what changes next. Rebuilt for each edition of the park's
-            printed Yosemite Guide.
-          </p>
-        </div>
-      </div>
+      <HpPageHead
+        go={go}
+        crumbs={[{ label: "Home", route: "home" }, { label: "The Park Bulletin" }]}
+        eyebrow="ONE PAGE, THE WHOLE PARK"
+        title="The Park Bulletin"
+        intro="What is different in Yosemite right now: what is open, what is on today, and what changes next. Rebuilt for each edition of the park's printed Yosemite Guide."
+      />
 
-      <div className="wrap bulletin-body">
+      <div className="hp-wrap bulletin-body">
         {state === "loading" && <p className="bulletin-loading">Loading the current edition…</p>}
         {state === "error" && (
           <p className="bulletin-loading">
@@ -1372,23 +1367,25 @@ function BulletinPage({ go }) {
           <a href="/conditions" onClick={toConditions}>the conditions page →</a>
         </p>
 
-        {/* The purchase ask: Bulletin readers are inside a trip window,
-            checking the park before they drive in. */}
-        <GuidePromo
-          go={go}
-          location="now"
-          title="The Bulletin covers the week. This covers the trip."
-          body="The Field Guide app: 50-plus stops with parking and timing notes, offline maps, a trip planner, and the secret guide. Works with no signal, which is most of the park. One purchase, eighteen months of access."
-          style={{ marginTop: 40 }}
-        />
-
-        <NewsletterInline
-          location="now"
-          tag="now"
-          heading="When the next edition drops, hear about it"
-          blurb="The Sunday letter carries what changed on this board, plus whatever else the week earned. Free."
-        />
       </div>
+
+      {/* The purchase ask: Bulletin readers are inside a trip window,
+          checking the park before they drive in. */}
+      <HpGuideBand
+        go={go}
+        location="now"
+        title="The Bulletin covers the week. This covers the trip."
+        intro="The Field Guide app: 50-plus stops with parking and timing notes, offline maps, a trip planner, and the secret guide. Works with no signal, which is most of the park. One purchase, eighteen months of access."
+        sample
+      />
+      <HpLetter
+        eyebrow="SUNDAY FIELD NOTES / FREE"
+        title="When the next edition drops, hear about it"
+        heading="When the next edition drops, hear about it"
+        blurb="The Sunday letter carries what changed on this board, plus whatever else the week earned. Free."
+        location="now"
+        tag="now"
+      />
     </div>
   );
 }

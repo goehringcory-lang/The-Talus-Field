@@ -1,4 +1,4 @@
-/* global React, NewsletterInline, GuidePromo, Breadcrumbs, ResponsiveImage */
+/* global React, ResponsiveImage, HpPageHead, HpGuideBand, HpLetter */
 const { useState: useStateK, useCallback: useCallbackK } = React;
 
 // Ticked items persist here so a reader can plan over several sessions.
@@ -60,33 +60,30 @@ function KitPage({ go }) {
   }
 
   return (
-    <div>
+    <div className="page hp-kit">
       <style>{`
         @media print {
-          header, footer, .tweaks-panel, .kit__tabs, .kit__count, .kit__photo { display: none !important; }
+          header, footer, .hp-navigation, .hp-product, .hp-letter, .kit__tabs, .kit__count, .kit__photo { display: none !important; }
           body { background: #fff !important; color: #000 !important; }
           a { color: #000 !important; text-decoration: none !important; }
           .kit-group { page-break-inside: avoid; }
         }
       `}</style>
 
-      {/* Page head */}
-      <section className="wrap" style={{ paddingTop: 56, paddingBottom: 24 }}>
-        <Breadcrumbs go={go} trail={[{ label: "Home", route: "home" }, { label: "Kit" }]} />
-        <div className="eyebrow eyebrow--moss" style={{ marginBottom: 18 }}>Kit</div>
-        <h1 className="display" style={{ fontSize: "clamp(46px, 6vw, 84px)", lineHeight: 0.98, marginBottom: 24, fontWeight: 500, letterSpacing: "-0.01em" }}>
-          What to pack
-        </h1>
-        <p style={{ fontFamily: "var(--serif)", fontSize: 21, lineHeight: 1.5, color: "var(--ink-2)", maxWidth: "62ch", textWrap: "pretty" }}>
-          Three packing checklists for a Yosemite trip: a day pack, what an overnight adds to it, and the full car load. Tick items off as you plan and pack. Your progress is saved in this browser, so you can close the tab and come back to it. Press Cmd+P or Ctrl+P for a clean printable copy.
+      <HpPageHead
+        go={go}
+        crumbs={[{ label: "Home", route: "home" }, { label: "Kit" }]}
+        eyebrow="KIT"
+        title="What to pack"
+        intro="Three packing checklists for a Yosemite trip: a day pack, what an overnight adds to it, and the full car load. Tick items off as you plan and pack. Your progress is saved in this browser, so you can close the tab and come back to it. Press Cmd+P or Ctrl+P for a clean printable copy."
+      >
+        <p className="hp-byline kit__aff-note">
+          Some gear here links to Patagonia through an affiliate link, marked with a star. If you buy through it, the site may earn a small commission at no extra cost to you. See the <a className="hp-inline" href="/affiliate" onClick={(e) => { e.preventDefault(); go("affiliate"); }}>Affiliate Disclosure</a>.
         </p>
-        <p className="kit__aff-note" style={{ fontFamily: "var(--serif)", fontSize: 14, lineHeight: 1.5, color: "var(--ink-2)", marginTop: 14, maxWidth: "62ch" }}>
-          Some gear here links to Patagonia through an affiliate link, marked with a star. If you buy through it, the site may earn a small commission at no extra cost to you. See the <a href="/affiliate" onClick={(e) => { e.preventDefault(); go("affiliate"); }}>Affiliate Disclosure</a>.
-        </p>
-      </section>
+      </HpPageHead>
 
       {/* Tab strip */}
-      <section className="wrap" style={{ paddingTop: 24 }}>
+      <section className="hp-wrap hp-kit__tabs">
         <div className="kit__tabs">
           {kit.lists.map((l) => (
             <button
@@ -115,12 +112,12 @@ function KitPage({ go }) {
           });
         };
         return (
-          <section key={list.slug} className="wrap" style={{ paddingTop: 32, paddingBottom: 64 }}>
+          <section key={list.slug} className="hp-wrap hp-kit__list">
             <div className="kit__head">
               <div>
                 <div className="kit__list-roman">{list.icon}</div>
-                <h2 style={{ fontFamily: "var(--display)", fontSize: 44, fontWeight: 500, lineHeight: 1.05, margin: "8px 0 12px" }}>{list.title}</h2>
-                <p style={{ fontFamily: "var(--serif)", fontStyle: "italic", color: "var(--ink-2)", fontSize: 18, maxWidth: "52ch" }}>{list.summary}</p>
+                <h2 className="kit__title">{list.title}</h2>
+                <p className="hp-sub kit__summary">{list.summary}</p>
               </div>
               <div className="kit__count">
                 <span className="kit__count-num">{done}</span>
@@ -205,11 +202,11 @@ function KitPage({ go }) {
 
             {list.essay && (
               <aside className="kit__essay">
-                <div className="eyebrow eyebrow--moss" style={{ marginBottom: 12 }}>The essay behind the list</div>
-                <h3 style={{ fontFamily: "var(--display)", fontSize: 28, fontWeight: 500, lineHeight: 1.15, margin: "0 0 12px" }}>{list.essay.title}</h3>
-                <p style={{ fontFamily: "var(--serif)", fontSize: 17, color: "var(--ink-2)", lineHeight: 1.55, margin: "0 0 16px", maxWidth: "60ch" }}>{list.essay.blurb}</p>
+                <p className="hp-eyebrow">THE ESSAY BEHIND THE LIST</p>
+                <h3>{list.essay.title}</h3>
+                <p className="hp-sub">{list.essay.blurb}</p>
                 <a
-                  className="btn btn--ghost"
+                  className="hp-link"
                   href={`/articles/${list.essay.slug}`}
                   onClick={(e) => { e.preventDefault(); go(`a:${list.essay.slug}`); }}
                 >Read the essay →</a>
@@ -220,42 +217,37 @@ function KitPage({ go }) {
       })}
 
       {/* Pointer to the standalone Directory page */}
-      <section className="wrap" style={{ paddingTop: 56, paddingBottom: 80, borderTop: "1px solid var(--rule)" }}>
-        <div style={{ display: "flex", alignItems: "center", gap: 32, flexWrap: "wrap" }}>
-          <div style={{ flex: 1, minWidth: 280 }}>
-            <div className="eyebrow eyebrow--moss" style={{ marginBottom: 12 }}>Looking for lodging or a guide?</div>
-            <h2 style={{ fontFamily: "var(--display)", fontSize: 32, fontWeight: 500, lineHeight: 1.1, margin: "0 0 12px" }}>The directory lives on its own page now.</h2>
-            <p style={{ fontFamily: "var(--serif)", fontSize: 17, color: "var(--ink-2)", margin: 0, lineHeight: 1.5 }}>
-              Lodges, inns, guiding services, and outfitters in and around Yosemite, moved into <a href="/places" onClick={(e) => { e.preventDefault(); go("places"); }}>The Directory</a> to keep this page about gear.
-            </p>
-          </div>
-          <a
-            className="btn"
-            href="/places"
-            onClick={(e) => { e.preventDefault(); go("places"); }}
-          >Open the directory →</a>
+      <section className="hp-wrap hp-section hp-kit__dir">
+        <div>
+          <p className="hp-eyebrow">LOOKING FOR LODGING OR A GUIDE?</p>
+          <h2>The directory lives on its own page now.</h2>
+          <p className="hp-sub">
+            Lodges, inns, guiding services, and outfitters in and around Yosemite, moved into <a className="hp-inline" href="/places" onClick={(e) => { e.preventDefault(); go("places"); }}>The Directory</a> to keep this page about gear.
+          </p>
         </div>
+        <a
+          className="hp-button"
+          href="/places"
+          onClick={(e) => { e.preventDefault(); go("places"); }}
+        >Open the directory →</a>
       </section>
 
       {/* The purchase ask: kit readers are packing for confirmed dates. */}
-      <section className="wrap" style={{ paddingBottom: 24 }}>
-        <GuidePromo
-          go={go}
-          location="kit"
-          title="One more thing for the trunk."
-          body="The Field Guide app weighs nothing and works with no signal: offline maps, 50-plus stops with parking and timing notes, and a trip planner. The last item on the packing list."
-          style={{ maxWidth: 680 }}
-        />
-      </section>
-
-      <section className="wrap" style={{ paddingBottom: 80 }}>
-        <NewsletterInline
-          location="kit"
-          tag="kit"
-          heading="Gear notes with the letter"
-          blurb="What's working this season, what wore out, and what changed in the packing list. Comes with Sunday Field Notes."
-        />
-      </section>
+      <HpGuideBand
+        go={go}
+        location="kit"
+        title="One more thing for the trunk."
+        intro="The Field Guide app weighs nothing and works with no signal: offline maps, 50-plus stops with parking and timing notes, and a trip planner. The last item on the packing list."
+        sample
+      />
+      <HpLetter
+        eyebrow="SUNDAY FIELD NOTES / FREE"
+        title="Gear notes with the letter"
+        heading="Gear notes with the letter"
+        blurb="What's working this season, what wore out, and what changed in the packing list. Comes with Sunday Field Notes."
+        location="kit"
+        tag="kit"
+      />
     </div>
   );
 }

@@ -1076,7 +1076,7 @@ main:focus { outline: none; }
 
 /* ===== Newsletter inline (.nlbox) =====
    The in-page letter ask, drawn as a design card: the eyebrow, a serif
-   heading and the system's form (the .hp-design .nlbox__form rules at the
+   heading and the system's form (the :is(.hp-design, .nlmodal) .nlbox__form rules at the
    end of the file). The homepage and HpLetter use the .hp-newsletter
    modifier, which drops the card. */
 .nlbox {
@@ -1295,34 +1295,32 @@ main:focus { outline: none; }
 .nlmodal__backdrop {
   position: absolute;
   inset: 0;
-  background: rgba(20, 18, 14, 0.6);
+  background: rgba(20, 39, 31, 0.55);
 }
 .nlmodal__card {
   position: relative;
   z-index: 1;
   width: 100%;
   max-width: 480px;
-  background: var(--paper);
-  border: 1px solid var(--ink);
-  padding: 40px;
-  box-shadow: 0 24px 60px rgba(20, 18, 14, 0.35);
+  background: var(--hp-card);
+  border: 1px solid var(--hp-rule);
+  border-radius: 3px;
+  padding: 38px 36px 34px;
+  box-shadow: 0 30px 60px -30px rgba(20, 39, 31, .45);
+  font-family: var(--sans);
+  color: var(--hp-ink);
 }
 .nlmodal__card h3 {
-  font-family: var(--display);
-  font-size: 28px;
-  font-weight: 500;
-  font-style: italic;
-  line-height: 1.1;
-  margin-bottom: 10px;
+  font: 400 34px/1.04 var(--serif);
+  letter-spacing: -0.8px;
+  margin-bottom: 12px;
 }
 .nlmodal__card p {
-  font-family: var(--serif);
-  font-size: 16px;
-  color: var(--ink-2);
-  line-height: 1.5;
+  font-size: 13px;
+  color: var(--hp-muted);
+  line-height: 1.85;
   margin-bottom: 20px;
 }
-.nlmodal__card .nlbox__form { border-bottom: 1px solid var(--ink); }
 .nlmodal__close {
   position: absolute;
   top: 12px;
@@ -1586,8 +1584,7 @@ main:focus { outline: none; }
   border: 1px solid var(--rule);
 }
 .kit__photo figcaption {
-  font-family: var(--serif);
-  font-style: italic;
+  font-family: var(--sans);
   font-size: 14px;
   color: var(--ink-2);
   margin-top: 10px;
@@ -1642,8 +1639,7 @@ main:focus { outline: none; }
 }
 .kit-check__note {
   display: block;
-  font-family: var(--serif);
-  font-style: italic;
+  font-family: var(--sans);
   font-size: 15px;
   line-height: 1.5;
   color: var(--ink-2);
@@ -1952,8 +1948,7 @@ main:focus { outline: none; }
   margin-bottom: 10px;
 }
 .kit__rec-note {
-  font-family: var(--serif);
-  font-style: italic;
+  font-family: var(--sans);
   font-size: 16px;
   color: var(--ink-2);
   margin-bottom: 10px;
@@ -1993,10 +1988,10 @@ main:focus { outline: none; }
 .map-page {
   display: flex;
   flex-direction: row;
-  /* 93px = the sticky masthead's rendered height at desktop widths (measured
-     after the nav simplification removed the utility bar), so map + masthead
-     fill the first viewport exactly. Re-measure if the masthead changes. */
-  height: calc(100dvh - 93px);
+  /* Map + masthead fill the first viewport exactly. --masthead-h is measured
+     by MapPage (useMastheadHeight in page-map.jsx); the fallback is the
+     design masthead's desktop height. */
+  height: calc(100dvh - var(--masthead-h, 132px));
   width: 100%;
   position: relative;
   background: var(--paper-2);
@@ -3970,8 +3965,7 @@ main:focus { outline: none; }
    ------------------------------------------------------------ */
 @media (max-width: 720px) {
   .map-page {
-    /* 69px = the masthead's rendered height at phone widths. */
-    height: calc(100dvh - 69px);
+    height: calc(100dvh - var(--masthead-h, 173px));
     overflow: hidden;
   }
   .map-page__main {
@@ -4652,7 +4646,7 @@ main:focus { outline: none; }
 }
 .bulletin-part__head h3 { font-size: 21px; font-weight: 600; }
 .bulletin-part__head span { font-size: 11px; font-weight: 700; letter-spacing: 0.06em; color: var(--ink-3); }
-.bulletin-part__empty { margin: 12px 0 0; font-family: var(--display); font-style: italic; font-size: 16px; color: var(--ink-3); }
+.bulletin-part__empty { margin: 12px 0 0; font-family: var(--sans); font-size: 16px; color: var(--ink-3); }
 .bulletin-progs { list-style: none; margin: 0; padding: 0; }
 .bulletin-prog {
   display: grid;
@@ -4724,7 +4718,7 @@ main:focus { outline: none; }
   line-height: 1.3;
 }
 .bulletin-area__icon { width: 18px; height: 18px; color: var(--moss); }
-.bulletin-area p { margin: 6px 0 0 28px; font-family: var(--serif); font-size: 16px; line-height: 1.5; color: var(--ink-2); }
+.bulletin-area p { margin: 6px 0 0 28px; font-family: var(--sans); font-size: 16px; line-height: 1.5; color: var(--ink-2); }
 
 /* Trails: the ones to check, then the ones open as usual. */
 .bulletin-trails { list-style: none; margin: 0 0 30px; padding: 0; }
@@ -4850,7 +4844,7 @@ main:focus { outline: none; }
   border-bottom: 1px solid var(--rule-soft);
 }
 .bulletin-def__icon { width: 19px; height: 19px; margin-top: 2px; color: var(--moss); }
-.bulletin-defs p { margin: 0; font-family: var(--serif); font-size: 15.5px; line-height: 1.55; color: var(--ink-2); }
+.bulletin-defs p { margin: 0; font-family: var(--sans); font-size: 15.5px; line-height: 1.55; color: var(--ink-2); }
 .bulletin-defs p strong { font-family: var(--sans); font-size: 14px; }
 .bulletin-flag {
   display: inline-block;
@@ -5918,13 +5912,12 @@ main:focus { outline: none; }
   box-sizing: border-box;
   padding: 12px 20px;
   font-family: var(--sans);
-  font-size: 11px;
-  font-weight: 700;
+  font-size: 12px;
+  font-weight: 600;
   line-height: 1.35;
-  letter-spacing: 0.13em;
-  text-transform: uppercase;
   text-decoration: none;
   border: 0;
+  border-radius: 3px;
 }
 .stay-book {
   background: var(--stay-book);
@@ -5932,8 +5925,8 @@ main:focus { outline: none; }
   transition: background 0.15s ease;
 }
 .stay-book:hover { background: var(--stay-book-hover); color: var(--stay-book-ink); }
-.stay-book--lg { min-height: 60px; font-size: 12px; letter-spacing: 0.15em; }
-.stay-book--sm { min-height: 48px; padding: 10px 16px; letter-spacing: 0.11em; }
+.stay-book--lg { min-height: 56px; font-size: 13px; }
+.stay-book--sm { min-height: 46px; padding: 10px 16px; }
 .stay-book__arrow { font-size: 14px; letter-spacing: 0; transition: transform 0.15s ease; }
 .stay-book:hover .stay-book__arrow,
 .stay-ghost:hover .stay-book__arrow { transform: translate(2px, -2px); }
@@ -6233,8 +6226,10 @@ main:focus { outline: none; }
 .stay-card {
   display: flex;
   flex-direction: column;
-  border: 1px solid var(--rule);
-  background: color-mix(in oklab, var(--paper) 60%, var(--paper-2));
+  border: 1px solid var(--rule-soft);
+  border-radius: 3px;
+  overflow: hidden;
+  background: var(--hp-card);
 }
 .stay-card--compact { border-color: var(--rule-soft); }
 /* A closed property stays on the page (its absence is the useful fact) but
@@ -6266,8 +6261,8 @@ main:focus { outline: none; }
 .stay-card__name { font-family: var(--display); font-size: 30px; font-weight: 500; line-height: 1.05; margin: 0; }
 .stay-card--compact .stay-card__name { font-size: 24px; }
 .stay-card__price { margin: 0; font-style: italic; font-size: 17px; line-height: 1.3; color: var(--moss); }
-.stay-card__text { margin: 0; font-size: 17px; line-height: 1.45; color: var(--ink-2); }
-.stay-card--compact .stay-card__text { font-size: 16px; }
+.stay-card__text { margin: 0; font-size: 13px; line-height: 1.8; color: var(--ink-2); }
+.stay-card--compact .stay-card__text { font-size: 12px; }
 .stay-card__who { margin: 0; font-family: var(--sans); font-size: 13px; line-height: 1.55; color: var(--ink-2); }
 .stay-card__tip,
 .stay-card__warn {
@@ -7589,7 +7584,7 @@ kbd {
 .dates__btn:hover { color: var(--moss); border-color: var(--moss); }
 .dates__btn--small { font-size: 12px; padding: 6px 10px; }
 .dates__hint {
-  font-family: var(--serif);
+  font-family: var(--sans);
   font-size: 15px;
   line-height: 1.55;
   color: var(--ink-2);
@@ -7622,7 +7617,7 @@ kbd {
   margin-bottom: 20px;
 }
 .feecalc__form label { display: flex; flex-direction: column; gap: 6px; }
-.feecalc__form small { font-family: var(--serif); font-size: 13.5px; line-height: 1.45; color: var(--ink-2); }
+.feecalc__form small { font-family: var(--sans); font-size: 13.5px; line-height: 1.45; color: var(--ink-2); }
 .feecalc__options { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
 .feecalc__option { border: 1px solid var(--rule); padding: 16px 18px; }
 .feecalc__option.is-best { border: 2px solid var(--moss); }
@@ -7630,10 +7625,10 @@ kbd {
 .feecalc__option-label { font-family: var(--sans); font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-1); }
 .feecalc__option-total { font-family: var(--display); font-size: 28px; color: var(--ink); }
 .feecalc__option ul { list-style: none; margin: 0; padding: 0; }
-.feecalc__option li { display: flex; justify-content: space-between; gap: 12px; font-family: var(--serif); font-size: 15px; line-height: 1.5; color: var(--ink-1); padding: 3px 0; border-top: 1px solid var(--rule-soft); }
-.feecalc__option p { font-family: var(--serif); font-size: 14.5px; line-height: 1.5; color: var(--ink-2); margin: 10px 0 0; }
+.feecalc__option li { display: flex; justify-content: space-between; gap: 12px; font-family: var(--sans); font-size: 15px; line-height: 1.5; color: var(--ink-1); padding: 3px 0; border-top: 1px solid var(--rule-soft); }
+.feecalc__option p { font-family: var(--sans); font-size: 14.5px; line-height: 1.5; color: var(--ink-2); margin: 10px 0 0; }
 .feecalc__saves { color: var(--moss) !important; font-weight: 600; }
-.feecalc__note { font-family: var(--serif); font-size: 14.5px; line-height: 1.55; color: var(--ink-2); margin-top: 16px; }
+.feecalc__note { font-family: var(--sans); font-size: 14.5px; line-height: 1.55; color: var(--ink-2); margin-top: 16px; }
 
 .parking-now__list { list-style: none; margin: 0; padding: 0; }
 .parking-now__row {
@@ -8470,10 +8465,10 @@ kbd {
 .hp-design .hp-newsletter { background: transparent; border: 0; padding: 0; margin: 0; }
 .hp-design .hp-newsletter h3 { position: absolute; width: 1px; height: 1px; padding: 0; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 .hp-design .hp-newsletter > p { color: var(--hp-muted); font: 13px/1.85 var(--sans); margin: 15px 0 24px; }
-.hp-design .nlbox__form { display: flex; gap: 8px; margin: 0; }
-.hp-design .nlbox__form input[type=email] { min-width: 0; width: 100px; flex: 1; padding: 13px; background: #fffdf7; border: 1px solid #b8c0b3; border-radius: 3px; color: var(--hp-ink); font: 12px var(--sans); }
-.hp-design .nlbox__form button { padding: 15px 17px; background: var(--hp-accent); border: 0; border-radius: 3px; color: var(--hp-on-accent); font: 600 12px var(--sans); white-space: nowrap; cursor: pointer; }
-.hp-design .nlbox__form button:hover { background: var(--hp-accent-deep); }
+:is(.hp-design, .nlmodal) .nlbox__form { display: flex; gap: 8px; margin: 0; }
+:is(.hp-design, .nlmodal) .nlbox__form input[type=email] { min-width: 0; width: 100px; flex: 1; padding: 13px; background: #fffdf7; border: 1px solid #b8c0b3; border-radius: 3px; color: var(--hp-ink); font: 12px var(--sans); }
+:is(.hp-design, .nlmodal) .nlbox__form button { padding: 15px 17px; background: var(--hp-accent); border: 0; border-radius: 3px; color: var(--hp-on-accent); font: 600 12px var(--sans); white-space: nowrap; cursor: pointer; }
+:is(.hp-design, .nlmodal) .nlbox__form button:hover { background: var(--hp-accent-deep); }
 /* The footer as the homepage draws it: links in full ink, the dark rule above
    the grid, and a near-black wordmark. The last two are the retired High
    Sierra palette's ink, which the footer inherited from <html> before the
@@ -8481,7 +8476,7 @@ kbd {
    lists it as a homepage bug to decide on). */
 .site-footer { --ink-2: var(--hp-ink); --rule: #11161c; background: var(--hp-paper); color: #0c1014; }
 @media(max-width:760px) {
-  .hp-design .nlbox__form button { font-size: 10px; padding-inline: 12px; }
+  :is(.hp-design, .nlmodal) .nlbox__form button { font-size: 10px; padding-inline: 12px; }
   .hp-navigation nav { flex-wrap: wrap; }
 }
 @media(max-width:360px) {
@@ -8494,13 +8489,13 @@ kbd {
 .hp-design .hp-phone img { height: auto; }
 .hp-design .hp-newsletter::before { content: none; }
 .hp-design .hp-newsletter label { display: block; font-size: 10px; margin-bottom: 7px; }
-.hp-design .nlbox__form { flex-wrap: nowrap; border: 0; }
-.hp-design .nlbox__form button { width: auto; text-transform: none; letter-spacing: normal; }
-.hp-design .nlbox__form button:hover { color: var(--hp-on-accent); }
+:is(.hp-design, .nlmodal) .nlbox__form { flex-wrap: nowrap; border: 0; }
+:is(.hp-design, .nlmodal) .nlbox__form button { width: auto; text-transform: none; letter-spacing: normal; }
+:is(.hp-design, .nlmodal) .nlbox__form button:hover { color: var(--hp-on-accent); }
 
 @media (max-width: 760px) {
   /* Avoid focus zoom on iOS and give the compact nav comfortable tap targets. */
-  .hp-design .nlbox__form input[type=email] { font-size: 16px; }
+  :is(.hp-design, .nlmodal) .nlbox__form input[type=email] { font-size: 16px; }
   .hp-navigation nav a { padding-block: 12px; }
 }
 
@@ -9007,3 +9002,85 @@ kbd {
 .hp-partners__ask { margin-top: 32px; padding: 28px 30px; background: var(--hp-card); border: 1px solid var(--hp-rule); border-radius: 3px; }
 .hp-partners__ask > p:first-child { font-size: 13px; line-height: 1.8; margin: 0 0 18px; }
 .hp-partners__ask .hp-button { margin: 0 18px 10px 0; }
+
+/* ── The prose block's first heading ───────────────────────────────────────
+   A prose block that opens with a section heading sits right under a page
+   head (or a card); the head's own rule already divides them, so the first
+   h2 drops its rule and the space above it. */
+:where(.prose:not(.guide-prose)) > h2:first-child { border-top: 0; padding-top: 0; margin-top: 0; }
+.hp-reading__column > .prose + .prose > h2:first-child,
+.hp-reading__column > * + section.prose > h2:first-child { border-top: 1px solid var(--hp-rule); padding-top: 44px; margin-top: 56px; }
+
+/* ── /dates and /international: the calculators, in the design's faces ── */
+.dates__form { border: 1px solid var(--hp-rule); border-radius: 3px; background: var(--hp-card); }
+.dates__form input, .feecalc__form input, .feecalc__form select { border: 1px solid #b8c0b3; border-radius: 3px; background: var(--hp-card); font-family: var(--sans); }
+.dates__btn { border: 1px solid var(--hp-rule); border-radius: 3px; font-family: var(--sans); font-weight: 600; }
+.dates__chip { border-color: var(--rule-soft); border-radius: 3px; font-family: var(--sans); }
+.dates__chip.is-on { background: var(--hp-accent); border-color: var(--hp-accent); color: var(--hp-on-accent); }
+.feecalc { border-top: 1px solid var(--hp-ink); }
+.feecalc__option { border: 1px solid var(--hp-rule); border-radius: 3px; background: var(--hp-card); }
+.feecalc__option.is-best { border: 1px solid var(--hp-accent); box-shadow: inset 0 0 0 1px var(--hp-accent); }
+.feecalc__option-total { font-family: var(--serif); }
+.feecalc__option li, .feecalc__option p, .feecalc__note, .feecalc__form small { font-size: 12px; line-height: 1.7; }
+.feecalc__option p, .feecalc__note, .feecalc__form small { color: var(--hp-muted); }
+.prose table.dates__table { width: 100%; border-collapse: collapse; font-size: 13px; line-height: 1.6; margin: 0 0 1.4em; }
+.prose table.dates__table th { font: 600 9px var(--sans); letter-spacing: 1.4px; text-transform: uppercase; text-align: left; color: var(--hp-muted); border-bottom: 1px solid var(--hp-ink); padding: 8px 12px 8px 0; }
+.prose table.dates__table td { border-bottom: 1px solid var(--hp-rule); padding: 12px 12px 12px 0; vertical-align: top; }
+.prose table.dates__table td p { font-size: 12px; line-height: 1.7; color: var(--hp-muted); }
+
+/* ── /checklist (page-checklist.jsx) ───────────────────────────────────── */
+.hp-checklist__essays { grid-template-columns: 1fr; margin-top: 18px; }
+.hp-checklist__essays a { font-size: 22px; }
+.page-checklist .checklist-section label a { border-bottom: 1px solid #a7afa4; }
+
+/* ── /kit (page-kit.jsx) ───────────────────────────────────────────────── */
+.hp-kit__tabs { padding-top: 36px; }
+.hp-kit__list { padding-block: 40px 56px; }
+.hp-design .kit__title { font-size: 46px; margin: 8px 0 12px; }
+.kit__summary { max-width: 560px; margin-top: 0; }
+.kit__essay h3 { font-size: 30px; margin-bottom: 10px; }
+.hp-kit__dir { display: flex; align-items: center; justify-content: space-between; gap: 32px; flex-wrap: wrap; border-top: 1px solid var(--hp-rule); }
+.hp-kit__dir > div { flex: 1; min-width: 280px; }
+.hp-kit__dir h2 { font-size: 38px; margin-bottom: 0; }
+.hp-kit__dir .hp-sub { margin-bottom: 0; }
+.kit__tabs { border-top: 1px solid var(--hp-ink); border-bottom: 1px solid var(--hp-rule); }
+.kit__tab { border-right-color: var(--hp-rule); color: var(--hp-muted); }
+.kit__tab:hover { background: transparent; color: var(--hp-accent); }
+.kit__tab.is-active { background: transparent; color: var(--hp-ink); box-shadow: inset 0 -2px 0 var(--hp-accent); }
+.kit__tab-roman { font-family: var(--serif); font-style: normal; color: var(--hp-accent); }
+.kit__tab-label { font-size: 12px; letter-spacing: normal; text-transform: none; }
+.kit__list-roman { font-family: var(--serif); font-style: normal; color: var(--hp-accent); font-size: 24px; }
+.kit__count-num { font-family: var(--serif); font-weight: 400; }
+.kit__photo img { border: 0; border-radius: 3px; }
+.kit__photo figcaption { font-size: 11px; color: var(--hp-muted); }
+.kit-group__title { font-family: var(--serif); font-weight: 400; font-size: 30px; letter-spacing: -0.6px; border-bottom-color: var(--hp-ink); }
+.kit-check { border-bottom-color: var(--hp-rule); }
+.kit-check__name { font-family: var(--serif); font-size: 20px; line-height: 1.25; }
+.kit-check__note { font-size: 12px; line-height: 1.7; color: var(--hp-muted); }
+.kit-check__box { accent-color: var(--hp-accent); }
+.kit-check--callout { background: var(--hp-card); border: 1px solid var(--hp-rule); border-radius: 3px; }
+.kit-check__link, .kit-check__article { color: var(--hp-ink); border-bottom-color: #a7afa4; letter-spacing: normal; text-transform: none; }
+.kit-check__link:hover, .kit-check__article:hover { color: var(--hp-accent); border-bottom-color: var(--hp-accent); }
+
+/* ── /stay (page-stay.jsx) ─────────────────────────────────────────────────
+   The head is the homepage hero's split with the page's photograph as its
+   figure; the search panel follows as a design card rather than a plate
+   pulled up over a full-bleed photo. The booking colour (--stay-book) and
+   the one-colour-one-action rule are unchanged. */
+.hp-design .hp-stay__figure { position: relative; height: 520px; margin: 0; border-radius: 3px; overflow: hidden; }
+.hp-design .hp-stay__figure picture, .hp-design .hp-stay__figure img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.hp-design .hp-stay__figure::after { content: ""; position: absolute; inset: 40% 0 0; background: linear-gradient(transparent, #14271fad); }
+.hp-design .hp-stay__figure figcaption { position: absolute; left: 22px; right: 22px; bottom: 16px; z-index: 1; display: flex; justify-content: space-between; gap: 16px; color: #fff8e5; font-size: 8px; letter-spacing: .7px; text-transform: uppercase; }
+.stay-search-wrap { margin-top: 0; padding-top: 48px; }
+.stay-search { background: var(--hp-card); border: 1px solid var(--hp-rule); border-radius: 3px; box-shadow: none; }
+.stay-h2 { font-family: var(--serif); font-weight: 400; font-size: 46px; letter-spacing: -1.1px; line-height: 1.04; }
+.stay-head__note, .stay-lede { font-size: 13px; line-height: 1.85; color: var(--hp-muted); }
+.hp-stay__more { border-top: 1px solid var(--hp-rule); }
+.hp-stay__disclosure { margin-top: 32px; }
+@media (max-width: 1100px) { .hp-design .hp-stay__figure { height: 440px; } }
+@media (max-width: 760px) {
+  .hp-design .hp-stay__figure { height: 340px; }
+  .stay-search-wrap { margin-top: 0; padding-top: 32px; }
+  .stay-search { box-shadow: none; }
+  .stay-h2 { font-size: 38px; }
+}

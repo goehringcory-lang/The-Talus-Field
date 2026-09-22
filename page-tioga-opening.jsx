@@ -1,4 +1,4 @@
-/* global React, NewsletterInline, Breadcrumbs, GuidePromo, LodgingCta */
+/* global React, HpPageHead, LodgingCta, HpGuideBand, HpLetter */
 
 // =============================================================================
 // TIOGA OPENING — `/tioga-opening` route. The second evergreen event page
@@ -102,24 +102,18 @@ function TiogaOpeningPage({ go }) {
   };
 
   return (
-    <div className="page">
-      <div className="page-head">
-        <div className="wrap wrap--narrow">
-          <Breadcrumbs go={go} trail={[{ label: "Home", route: "home" }, { label: "Tioga opening" }]} />
-          <div className="eyebrow eyebrow--moss">Seasonal event · late spring</div>
-          <h1>The Tioga Road opening</h1>
-          <p className="page-head__dek">
-            Every spring, plow crews cut Highway 120 out of the snowpack and the
-            highest road in the park comes back. The opening date is not a date:
-            it is announced only days ahead, it varies by weeks from year to
-            year, and the first weekends are unlike any other time on the road.
-            This page is the standing version: how the opening works, what is
-            actually open in week one, and how to drive it well.
-          </p>
-        </div>
-      </div>
+    <div className="page hp-tool hp-tioga-opening">
+      <HpPageHead
+        go={go}
+        crumbs={[{ label: "Home", route: "home" }, { label: "Tioga opening" }]}
+        eyebrow="SEASONAL EVENT · LATE SPRING"
+        title="The Tioga Road opening"
+        intro="Every spring, plow crews cut Highway 120 out of the snowpack and the highest road in the park comes back. The opening date is not a date: it is announced only days ahead, it varies by weeks from year to year, and the first weekends are unlike any other time on the road. This page is the standing version: how the opening works, what is actually open in week one, and how to drive it well."
+      />
 
-      <div className="wrap wrap--narrow" style={{ paddingTop: 40, paddingBottom: 64 }}>
+
+      <div className="hp-wrap hp-reading">
+        <div className="hp-reading__column">
         <section className="prose">
           <h2>How the opening works</h2>
           <p>
@@ -267,21 +261,24 @@ function TiogaOpeningPage({ go }) {
           cta="Search Lee Vining lodging →"
         />
 
-        <GuidePromo
-          go={go}
-          location="tioga-opening"
-          title="Planning the high-country trip around it?"
-          body="The Field Guide app carries the Tioga Road stops with parking notes, offline maps for the stretch with no signal, and a day-by-day planner for the rest of the trip. One purchase, eighteen months of access."
-          style={{ marginTop: 56, marginBottom: 40 }}
-        />
-
-        <NewsletterInline
-          location="tioga-opening"
-          tag="alert-tioga"
-          heading="Email me the day it opens"
-          blurb="One email the day the park announces Tioga Road is open, and one when it closes for the season, sent to the people who asked for it. Sunday Field Notes carries the plowing progress in between. Free."
-        />
+        </div>
       </div>
+
+      <HpGuideBand
+        go={go}
+        location="tioga-opening"
+        title="Planning the high-country trip around it?"
+        intro="The Field Guide app carries the Tioga Road stops with parking notes, offline maps for the stretch with no signal, and a day-by-day planner for the rest of the trip. One purchase, eighteen months of access."
+        sample
+      />
+      <HpLetter
+        eyebrow="SUNDAY FIELD NOTES / FREE"
+        title="Email me the day it opens"
+        heading="Email me the day it opens"
+        blurb="One email the day the park announces Tioga Road is open, and one when it closes for the season, sent to the people who asked for it. Sunday Field Notes carries the plowing progress in between. Free."
+        location="tioga-opening"
+        tag="alert-tioga"
+      />
     </div>
   );
 }

@@ -1,4 +1,4 @@
-/* global React, WebcamStrip, NewsletterInline, Breadcrumbs, GuidePromo, LodgingCta */
+/* global React, HpPageHead, WebcamStrip, LodgingCta, HpGuideBand, HpLetter */
 
 // =============================================================================
 // THE FIREFALL — `/firefall` route. The first evergreen event page
@@ -23,23 +23,18 @@ function FirefallPage({ go }) {
   };
 
   return (
-    <div className="page">
-      <div className="page-head">
-        <div className="wrap wrap--narrow">
-          <Breadcrumbs go={go} trail={[{ label: "Home", route: "home" }, { label: "Firefall" }]} />
-          <div className="eyebrow eyebrow--moss">Seasonal event · mid-to-late February</div>
-          <h1>The Yosemite Firefall</h1>
-          <p className="page-head__dek">
-            For roughly two weeks in mid-to-late February, sunset light can turn
-            Horsetail Fall into a glowing orange ribbon on El Capitan. It is real,
-            it is not enhanced in the photographs, and most evenings it does not
-            happen. This page is the honest version: when the window runs, what has
-            to line up, and how to plan an evening around uncertain odds.
-          </p>
-        </div>
-      </div>
+    <div className="page hp-tool hp-firefall">
+      <HpPageHead
+        go={go}
+        crumbs={[{ label: "Home", route: "home" }, { label: "Firefall" }]}
+        eyebrow="SEASONAL EVENT · MID-TO-LATE FEBRUARY"
+        title="The Yosemite Firefall"
+        intro="For roughly two weeks in mid-to-late February, sunset light can turn Horsetail Fall into a glowing orange ribbon on El Capitan. It is real, it is not enhanced in the photographs, and most evenings it does not happen. This page is the honest version: when the window runs, what has to line up, and how to plan an evening around uncertain odds."
+      />
 
-      <div className="wrap wrap--narrow" style={{ paddingTop: 40, paddingBottom: 64 }}>
+
+      <div className="hp-wrap hp-reading">
+        <div className="hp-reading__column">
         <section className="prose">
           <h2>The window</h2>
           <p>
@@ -145,21 +140,24 @@ function FirefallPage({ go }) {
 
         {/* The purchase ask: a firefall reader is planning a February trip
             around one shot in a cold, signal-less valley. */}
-        <GuidePromo
-          go={go}
-          location="firefall"
-          title="Planning the February trip around it?"
-          body="The Field Guide app carries the winter stops, parking notes for the viewing areas, offline maps for a park with no signal, and a day-by-day planner for the rest of the trip. One purchase, eighteen months of access."
-          style={{ marginTop: 56, marginBottom: 40 }}
-        />
-
-        <NewsletterInline
-          location="firefall"
-          tag="firefall"
-          heading="February, watched from inside the park"
-          blurb="Sunday Field Notes carries the firefall window as it develops: water in the fall, the week's weather, and what the rules are this year. One short letter a week. Free."
-        />
+        </div>
       </div>
+
+      <HpGuideBand
+        go={go}
+        location="firefall"
+        title="Planning the February trip around it?"
+        intro="The Field Guide app carries the winter stops, parking notes for the viewing areas, offline maps for a park with no signal, and a day-by-day planner for the rest of the trip. One purchase, eighteen months of access."
+        sample
+      />
+      <HpLetter
+        eyebrow="SUNDAY FIELD NOTES / FREE"
+        title="February, watched from inside the park"
+        heading="February, watched from inside the park"
+        blurb="Sunday Field Notes carries the firefall window as it develops: water in the fall, the week's weather, and what the rules are this year. One short letter a week. Free."
+        location="firefall"
+        tag="firefall"
+      />
     </div>
   );
 }

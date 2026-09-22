@@ -1681,7 +1681,23 @@ function MapAccessGate({
     }, "Signing up also gets you Sunday Field Notes, one short letter a week. No spam, leave anytime.")))
   );
 }
+function useMastheadHeight() {
+  React.useEffect(() => {
+    var el = document.querySelector(".hp-navigation");
+    var root = document.documentElement;
+    if (!el) return undefined;
+    var set = () => root.style.setProperty("--masthead-h", `${Math.round(el.getBoundingClientRect().height)}px`);
+    set();
+    var ro = typeof ResizeObserver !== "undefined" ? new ResizeObserver(set) : null;
+    if (ro) ro.observe(el);else window.addEventListener("resize", set);
+    return () => {
+      if (ro) ro.disconnect();else window.removeEventListener("resize", set);
+      root.style.removeProperty("--masthead-h");
+    };
+  }, []);
+}
 function MapPage(props) {
+  useMastheadHeight();
   return React.createElement(MapView, props);
 }
 window.MapPage = MapPage;

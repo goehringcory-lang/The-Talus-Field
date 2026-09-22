@@ -1,4 +1,4 @@
-/* global React, NewsletterInline, Breadcrumbs, GuidePromo, LodgingCta */
+/* global React, HpPageHead, LodgingCta, HpGuideBand, HpLetter */
 
 // =============================================================================
 // DISTANCES — `/distances` route. The drive-time matrix.
@@ -51,22 +51,18 @@ function DistancesPage({ go }) {
   };
 
   return (
-    <div className="page">
-      <div className="page-head">
-        <div className="wrap wrap--narrow">
-          <Breadcrumbs go={go} trail={[{ label: "Home", route: "home" }, { label: "Distances" }]} />
-          <div className="eyebrow eyebrow--moss">Drive times</div>
-          <h1>How far is Yosemite from anywhere?</h1>
-          <p className="page-head__dek">
-            Every gateway town, its drive to Yosemite Valley, the entrance it
-            uses, and what the season does to it. The numbers are the ones from
-            the gateway towns guide, in one table, so you can compare two towns
-            instead of looking up one.
-          </p>
-        </div>
-      </div>
+    <div className="page hp-tool hp-distances">
+      <HpPageHead
+        go={go}
+        crumbs={[{ label: "Home", route: "home" }, { label: "Distances" }]}
+        eyebrow="DRIVE TIMES"
+        title="How far is Yosemite from anywhere?"
+        intro="Every gateway town, its drive to Yosemite Valley, the entrance it uses, and what the season does to it. The numbers are the ones from the gateway towns guide, in one table, so you can compare two towns instead of looking up one."
+      />
 
-      <div className="wrap wrap--narrow" style={{ paddingTop: 40, paddingBottom: 64 }}>
+
+      <div className="hp-wrap hp-reading">
+        <div className="hp-reading__column">
         <section className="prose">
           <h2>Gateway towns to Yosemite Valley</h2>
           <p>
@@ -176,21 +172,24 @@ function DistancesPage({ go }) {
           cta="Search lodging by town →"
         />
 
-        <GuidePromo
-          go={go}
-          location="distances"
-          title="The drive is only the first part"
-          body="The Field Guide app carries the trailhead parking notes, offline maps for a park with no cell service, and a day planner that knows how long it really takes to cross the park. One purchase, eighteen months of access."
-          style={{ marginTop: 56, marginBottom: 40 }}
-        />
-
-        <NewsletterInline
-          location="distances"
-          tag="distances"
-          heading="Road status, Sundays"
-          blurb="Tioga and Glacier Point open late and close early, and chain controls arrive without much notice. One short letter a week with what the roads are doing. Free."
-        />
+        </div>
       </div>
+
+      <HpGuideBand
+        go={go}
+        location="distances"
+        title="The drive is only the first part"
+        intro="The Field Guide app carries the trailhead parking notes, offline maps for a park with no cell service, and a day planner that knows how long it really takes to cross the park. One purchase, eighteen months of access."
+        sample
+      />
+      <HpLetter
+        eyebrow="SUNDAY FIELD NOTES / FREE"
+        title="Road status, Sundays"
+        heading="Road status, Sundays"
+        blurb="Tioga and Glacier Point open late and close early, and chain controls arrive without much notice. One short letter a week with what the roads are doing. Free."
+        location="distances"
+        tag="distances"
+      />
     </div>
   );
 }

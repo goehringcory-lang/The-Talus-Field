@@ -63,29 +63,22 @@ function DistancesPage({
     go(`a:${slug}`);
   };
   return React.createElement("div", {
-    className: "page"
-  }, React.createElement("div", {
-    className: "page-head"
-  }, React.createElement("div", {
-    className: "wrap wrap--narrow"
-  }, React.createElement(Breadcrumbs, {
+    className: "page hp-tool hp-distances"
+  }, React.createElement(HpPageHead, {
     go: go,
-    trail: [{
+    crumbs: [{
       label: "Home",
       route: "home"
     }, {
       label: "Distances"
-    }]
+    }],
+    eyebrow: "DRIVE TIMES",
+    title: "How far is Yosemite from anywhere?",
+    intro: "Every gateway town, its drive to Yosemite Valley, the entrance it uses, and what the season does to it. The numbers are the ones from the gateway towns guide, in one table, so you can compare two towns instead of looking up one."
   }), React.createElement("div", {
-    className: "eyebrow eyebrow--moss"
-  }, "Drive times"), React.createElement("h1", null, "How far is Yosemite from anywhere?"), React.createElement("p", {
-    className: "page-head__dek"
-  }, "Every gateway town, its drive to Yosemite Valley, the entrance it uses, and what the season does to it. The numbers are the ones from the gateway towns guide, in one table, so you can compare two towns instead of looking up one."))), React.createElement("div", {
-    className: "wrap wrap--narrow",
-    style: {
-      paddingTop: 40,
-      paddingBottom: 64
-    }
+    className: "hp-wrap hp-reading"
+  }, React.createElement("div", {
+    className: "hp-reading__column"
   }, React.createElement("section", {
     className: "prose"
   }, React.createElement("h2", null, "Gateway towns to Yosemite Valley"), React.createElement("p", null, "Drive times are to the west end of Yosemite Valley in ordinary conditions. Add 15 to 20 minutes to reach Curry Village at the east end, and add more than you think for summer afternoons, when the Valley loop road is the slowest few miles of the trip."), React.createElement("table", null, React.createElement("thead", null, React.createElement("tr", null, React.createElement("th", null, "From"), React.createElement("th", null, "Miles to the Valley"), React.createElement("th", null, "Drive time"), React.createElement("th", null, "Highway"), React.createElement("th", null, "Season"), React.createElement("th", null, "Town elevation"))), React.createElement("tbody", null, TO_VALLEY.map(r => React.createElement("tr", {
@@ -128,20 +121,19 @@ function DistancesPage({
     list: "page_distances",
     slug: "distances",
     cta: "Search lodging by town →"
-  }), React.createElement(GuidePromo, {
+  }))), React.createElement(HpGuideBand, {
     go: go,
     location: "distances",
     title: "The drive is only the first part",
-    body: "The Field Guide app carries the trailhead parking notes, offline maps for a park with no cell service, and a day planner that knows how long it really takes to cross the park. One purchase, eighteen months of access.",
-    style: {
-      marginTop: 56,
-      marginBottom: 40
-    }
-  }), React.createElement(NewsletterInline, {
-    location: "distances",
-    tag: "distances",
+    intro: "The Field Guide app carries the trailhead parking notes, offline maps for a park with no cell service, and a day planner that knows how long it really takes to cross the park. One purchase, eighteen months of access.",
+    sample: true
+  }), React.createElement(HpLetter, {
+    eyebrow: "SUNDAY FIELD NOTES / FREE",
+    title: "Road status, Sundays",
     heading: "Road status, Sundays",
-    blurb: "Tioga and Glacier Point open late and close early, and chain controls arrive without much notice. One short letter a week with what the roads are doing. Free."
-  })));
+    blurb: "Tioga and Glacier Point open late and close early, and chain controls arrive without much notice. One short letter a week with what the roads are doing. Free.",
+    location: "distances",
+    tag: "distances"
+  }));
 }
 window.DistancesPage = DistancesPage;
