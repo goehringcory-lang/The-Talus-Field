@@ -7456,58 +7456,15 @@ kbd {
 .search-result:focus-visible,
 .search-articles .card:focus-visible { outline: 2px solid var(--moss); outline-offset: 4px; }
 
-/* ===== Not found: the suggestions list =====
-   Same row treatment as the related rail, so it reads as part of the site
-   rather than as an error page's afterthought. */
-.notfound__path {
-  font-family: var(--sans);
-  font-size: 13px;
-  color: var(--ink-3);
-  word-break: break-all;
-  margin: 0 0 8px;
-}
-.notfound__path code {
-  font-family: var(--mono, ui-monospace, monospace);
-  font-size: 12px;
-  color: var(--ink-2);
-  background: var(--paper-2);
-  padding: 2px 6px;
-}
-.notfound__suggest { margin: 28px 0 36px; }
-.notfound__suggest h2 {
-  font-family: var(--sans);
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--moss);
-  margin: 0 0 12px;
-}
-.notfound__suggest ul { list-style: none; margin: 0; padding: 0; }
-.notfound__suggest li {
-  padding: 12px 0;
-  border-top: 1px solid var(--rule-soft);
-  display: flex;
-  flex-direction: column;
-  gap: 3px;
-}
-.notfound__suggest li:last-child { border-bottom: 1px solid var(--rule-soft); }
-.notfound__suggest a {
-  font-family: var(--display);
-  font-size: 20px;
-  font-weight: 500;
-  line-height: 1.2;
-  color: var(--ink);
-  text-decoration: none;
-}
-.notfound__suggest a:hover { color: var(--moss); }
-.notfound__suggest .notfound__kind {
-  font-family: var(--sans);
-  font-size: 11px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--ink-3);
-}
+/* ===== Not found (NotFoundPage in app.jsx) =====
+   The page head, with the "did you mean" list as its aside in the related
+   rail's row treatment. */
+.notfound__path { font-size: 12px; color: var(--hp-muted); word-break: break-all; margin: 0 0 8px; }
+.notfound__path code { font: 11px var(--mono); color: var(--hp-ink); background: var(--paper-2); border-radius: 3px; padding: 2px 6px; }
+.notfound__next { max-width: 470px; }
+.notfound__suggest h2 { font: 600 9px var(--sans); letter-spacing: 1.7px; text-transform: uppercase; color: var(--hp-accent); margin: 0; }
+.notfound__suggest .relrail { grid-template-columns: 1fr; margin-top: 16px; }
+.notfound__kind { font: 600 8px var(--sans); letter-spacing: 1.7px; text-transform: uppercase; color: var(--hp-muted); }
 
 /* ============================================================
    Print. Articles are what a trip planner prints or saves to PDF; the

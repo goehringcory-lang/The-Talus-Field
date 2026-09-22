@@ -857,46 +857,44 @@ function NotFoundPage({
   }, [query]);
   var hrefFor = r => r.path ? r.path : routeToPath(r.key);
   return React.createElement("div", {
-    className: "page"
-  }, React.createElement("div", {
-    className: "page-head"
-  }, React.createElement("div", {
-    className: "wrap wrap--narrow"
-  }, React.createElement("div", {
-    className: "eyebrow eyebrow--moss"
-  }, "Off the trail"), React.createElement("h1", null, "Page not found"), React.createElement("p", {
-    className: "lede"
-  }, "There is nothing at this address. The link may be old, or the page may have moved."))), React.createElement("div", {
-    className: "wrap wrap--narrow",
-    style: {
-      paddingBottom: 64
-    }
+    className: "page hp-notfound"
+  }, React.createElement(HpPageHead, {
+    eyebrow: "OFF THE TRAIL",
+    title: "Page not found",
+    intro: "There is nothing at this address. The link may be old, or the page may have moved.",
+    aside: suggestions && suggestions.length > 0 ? React.createElement("div", {
+      className: "notfound__suggest"
+    }, React.createElement("h2", null, "Did you mean"), React.createElement("ul", {
+      className: "relrail"
+    }, suggestions.map(r => React.createElement("li", {
+      key: r.key
+    }, React.createElement("a", {
+      href: hrefFor(r),
+      onClick: e => {
+        if (r.path) return;
+        e.preventDefault();
+        if (window.track) window.track("cta_click", {
+          location: "notfound_suggest",
+          target: r.key
+        });
+        go(r.key);
+      }
+    }, r.title), React.createElement("span", {
+      className: "notfound__kind"
+    }, r.kind))))) : null
   }, React.createElement("p", {
     className: "notfound__path"
-  }, "You asked for ", React.createElement("code", null, window.location.pathname)), suggestions && suggestions.length > 0 && React.createElement("div", {
-    className: "notfound__suggest"
-  }, React.createElement("h2", null, "Did you mean"), React.createElement("ul", null, suggestions.map(r => React.createElement("li", {
-    key: r.key
-  }, React.createElement("a", {
-    href: hrefFor(r),
-    onClick: e => {
-      if (r.path) return;
-      e.preventDefault();
-      if (window.track) window.track("cta_click", {
-        location: "notfound_suggest",
-        target: r.key
-      });
-      go(r.key);
-    }
-  }, r.title), React.createElement("span", {
-    className: "notfound__kind"
-  }, r.kind))))), React.createElement("p", null, "Good places to reorient:", " ", React.createElement("a", {
+  }, "You asked for ", React.createElement("code", null, window.location.pathname)), React.createElement("p", {
+    className: "hp-sub notfound__next"
+  }, "Good places to reorient:", " ", React.createElement("a", {
+    className: "hp-inline",
     href: "/explore",
     onClick: e => {
       e.preventDefault();
       go("explore");
     }
   }, "the site index"), ",", " ", React.createElement("a", {
+    className: "hp-inline",
     href: query ? `/search?q=${encodeURIComponent(query)}` : "/search",
     onClick: e => {
       e.preventDefault();
@@ -906,12 +904,14 @@ function NotFoundPage({
       go("search");
     }
   }, "search"), ",", " ", React.createElement("a", {
+    className: "hp-inline",
     href: "/planning",
     onClick: e => {
       e.preventDefault();
       go("planning");
     }
   }, "the planning guide"), ", or", " ", React.createElement("a", {
+    className: "hp-inline",
     href: "/map",
     onClick: e => {
       e.preventDefault();
@@ -1080,14 +1080,14 @@ function App() {
   if (!routeReady) {
     page = React.createElement("div", {
       className: "page"
-    }, React.createElement("div", {
-      className: "wrap wrap--narrow",
-      style: {
-        padding: "64px 0"
-      }
-    }, React.createElement("p", null, "This page failed to load.", " ", React.createElement("a", {
-      href: routeToPath(route)
-    }, "Try again"), ".")));
+    }, React.createElement(HpPageHead, {
+      eyebrow: "OFF THE TRAIL",
+      title: "This page failed to load.",
+      intro: React.createElement("a", {
+        className: "hp-inline",
+        href: routeToPath(route)
+      }, "Try again")
+    }));
   } else if (!routeExists(route)) {
     page = React.createElement(NotFoundPage, {
       go: go

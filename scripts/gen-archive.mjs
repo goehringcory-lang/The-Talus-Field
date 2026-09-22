@@ -19,7 +19,12 @@
 // site Header's mobile menu is React state (`menuOpen` in components.jsx), so
 // rendering it statically would ship a hamburger button that does nothing on
 // phones. These pages get a flat, link-only masthead instead, built from the
-// same styles.css classes so it still reads as the same publication.
+// same styles.css classes so it still reads as the same publication: since
+// the September 2026 design rollout, the design masthead (HomeMasthead's
+// markup without its two JavaScript menus) and the site footer's structure
+// (Footer in components.jsx, without its date-derived copyright year, which
+// would make --check fail every January 1). Both are hand-kept mirrors: when
+// HOME_NAV or the Footer columns change, change DESIGN_NAV / siteFooter here.
 //
 // /styles.css is linked WITHOUT a ?v= on purpose. _headers serves it with
 // max-age=300 + stale-while-revalidate, so a stylesheet change reaches readers
@@ -36,6 +41,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { loadIssues, groupByDecade, groupByYear } from "./lib/nature-notes.mjs";
+import { loadDataJs } from "./lib/catalog.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, "..");
@@ -88,47 +94,48 @@ function truncate(s, n) {
 // Page shell
 // ---------------------------------------------------------------------------
 
-const NAV_LINKS = [
-  ["/archive/", "The archive"],
-  ["/articles", "Articles"],
-  ["/films", "Films"],
-  ["/map", "The Map"],
-  ["/guide", "Field Guide"],
-  ["/about", "About"],
+
+// HOME_NAV's links as they read off the homepage (components.jsx), each the
+// route its section stands for.
+const DESIGN_NAV = [
+  ["/start-here", "Start here"],
+  ["/articles", "The journal"],
+  ["/conditions", "Park conditions"],
+  ["/newsletter", "Sunday Letter"],
+  ["/search", "Search"],
 ];
 
-function masthead(crumbs) {
-  const nav = NAV_LINKS.map(([href, label]) => `<a href="${href}">${esc(label)}</a>`).join("");
-  const trail = crumbs
-    .map((c, i) =>
-      c.href && i < crumbs.length - 1
-        ? `<a href="${c.href}">${esc(c.label)}</a>`
-        : `<span aria-current="page">${esc(c.label)}</span>`
-    )
-    .join('<span class="arc-crumbs__sep" aria-hidden="true">/</span>');
-
-  // The 40 x 40 box takes the square cut of the mark (favicon-96.png, written
-  // by gen-brand-icons.mjs from the same master, 5.7 KB) rather than the master
-  // itself: that file is 805 x 622 and 567 KB, and forcing it into a square box
-  // also squeezed the illustration by a quarter. Still unversioned, the same
-  // trade-off /styles.css makes on these 512 pages.
-  return `<header class="arc-masthead">
-  <div class="wrap arc-masthead__inner">
-    <a class="arc-brand" href="/">
-      <img class="arc-brand__mark" src="/img/favicon-96.png" alt="" width="40" height="40" loading="eager" />
-      <span class="arc-brand__text">
-        <span class="arc-brand__name">The Talus Field</span>
-        <span class="arc-brand__sub">A field journal of Yosemite</span>
-      </span>
-    </a>
-    <nav class="arc-nav" aria-label="Site">${nav}</nav>
-  </div>
-  <div class="wrap arc-crumbs"><nav aria-label="Breadcrumb">${trail}</nav></div>
-</header>`;
+function masthead() {
+  const nav = DESIGN_NAV.map(([href, label]) => `<a href="${href}">${esc(label)}</a>`).join("");
+  // The brand box takes the square cut of the mark (favicon-96.png, written by
+  // gen-brand-icons.mjs from the same master, 5.7 KB), drawn at the design
+  // masthead's 48 px; unversioned, the same trade-off /styles.css makes on
+  // these 512 pages.
+  return `<div class="hp-design hp-navigation">
+<a class="skip-link" href="#main">Skip to content</a>
+<div class="hp-top">AN INDEPENDENT GUIDE TO YOSEMITE<span>Written here. Taken everywhere.</span></div>
+<header class="hp-wrap hp-header">
+  <a class="hp-brand" href="/"><img src="/img/favicon-96.png" width="96" height="96" alt="" /><span>The Talus Field<small>YOSEMITE, FROM THE INSIDE.</small></span></a>
+  <nav aria-label="Main navigation">${nav}</nav>
+  <a class="hp-button" href="/guide">Get the app ↗</a>
+</header>
+</div>`;
 }
 
-const FOOTER = `<footer class="arc-footer">
-  <div class="wrap">
+// The breadcrumb trail, in the Breadcrumbs component's markup (.crumbs).
+function crumbTrail(crumbs) {
+  const items = crumbs
+    .map((c, i) =>
+      c.href && i < crumbs.length - 1
+        ? `<li><a href="${c.href}">${esc(c.label)}</a></li>`
+        : `<li><span aria-current="page">${esc(c.label)}</span></li>`
+    )
+    .join("");
+  return `<div class="hp-wrap arc-crumbs"><nav class="crumbs" aria-label="Breadcrumb"><ol>${items}</ol></nav></div>`;
+}
+
+// The archive's provenance note, closing every page above the site footer.
+const PROVENANCE = `<div class="hp-wrap arc-provenance">
     <p class="arc-footer__note">
       <strong>Yosemite Nature Notes</strong> was published by the National Park Service
       and the Yosemite Natural History Association. The transcriptions here were made
@@ -136,16 +143,63 @@ const FOOTER = `<footer class="arc-footer">
       United States Government authorship is in the public domain. See
       <a href="/archive/#about">about this archive</a> for provenance and corrections.
     </p>
-    <nav class="arc-footer__nav">
-      <a href="/">The Talus Field</a>
-      <a href="/archive/">Archive</a>
-      <a href="/films">Nature Notes films</a>
-      <a href="/about">About</a>
-      <a href="/contact">Contact</a>
-      <a href="/privacy">Privacy</a>
-    </nav>
+  </div>`;
+
+// Footer in components.jsx, as static links. The section list is read from
+// the catalog, as the SPA reads window.CATEGORIES.
+function siteFooter() {
+  const { categories } = loadDataJs();
+  const li = (href, label) => `<li><a href="${href}">${esc(label)}</a></li>`;
+  const read = [
+    li("/articles", "All articles"),
+    ...categories.map((c) => li(`/section/${c.slug}`, c.label)),
+    li("/now", "The Park Bulletin"),
+    li("/films", "Films"),
+    li("/archive/", "Nature Notes archive"),
+  ].join("");
+  const plan = [
+    ["/start-here", "Start here"], ["/planning", "The Planning Guide"], ["/map", "The Map"],
+    ["/itineraries", "Itineraries"], ["/distances", "Drive times"], ["/dates", "Dates that matter"],
+    ["/international", "Visiting from abroad"], ["/webcams", "Webcams"], ["/stay", "Where to stay"],
+    ["/conditions", "Conditions"], ["/checklist", "First-week checklist"], ["/kit", "Kit"],
+    ["/guide", "The Field Guide"],
+  ].map(([h, l]) => li(h, l)).join("");
+  const journal = [
+    ["/about", "About"], ["/newsletter", "Newsletter"], ["/contact", "Contact"],
+    ["/search", "Search"], ["/places", "Directory"],
+  ].map(([h, l]) => li(h, l)).join("");
+  return `<footer class="site-footer">
+  <div class="wrap">
+    <div class="site-footer__grid">
+      <div class="site-footer__about">
+        <div class="site-footer__masthead">The Talus Field</div>
+        <div class="site-footer__sub">A field journal of Yosemite</div>
+        <p>Notes on a single park, kept slowly. Updated when something is worth saying.</p>
+        <a class="site-footer__index" href="/explore">Everything on this site →</a>
+      </div>
+      <div><h4>Read</h4><ul>${read}</ul></div>
+      <div><h4>Plan</h4><ul>${plan}</ul></div>
+      <div><h4>The journal</h4><ul>${journal}</ul></div>
+    </div>
+    <div class="site-footer__disclosure">
+      Some links on this site are affiliate links. If you book or buy through one, The Talus Field may earn a small commission at no extra cost to you. <a href="/affiliate">Full disclosure here.</a>
+    </div>
+    <div class="site-footer__legal">
+      <div>© The Talus Field. Independent. Not affiliated with the National Park Service.</div>
+      <div>
+        <a href="/advertise">Advertise</a>
+        <a href="/widget">Conditions widget</a>
+        <a href="/partners">Group codes</a>
+        <a href="/privacy">Privacy</a>
+        <a href="/terms">Terms</a>
+        <a href="/affiliate">Affiliate</a>
+      </div>
+    </div>
   </div>
 </footer>`;
+}
+
+const FOOTER = siteFooter();
 
 // ---------------------------------------------------------------------------
 // The one ask
@@ -223,7 +277,7 @@ function page({ title, description, canonical, crumbs, body, jsonLd, noindex, og
     ? `\n  <script type="application/ld+json">${JSON.stringify(jsonLd)}</script>`
     : "";
   return `<!DOCTYPE html>
-<html lang="en" data-palette="golden" data-density="airy">
+<html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -246,9 +300,11 @@ function page({ title, description, canonical, crumbs, body, jsonLd, noindex, og
   <link rel="stylesheet" href="/archive/archive.css" />${ld}
 </head>
 <body class="arc-body">
-${masthead(crumbs)}
-<main class="arc-main">
+${masthead()}
+<main id="main" tabindex="-1" class="arc-main hp-design">
+${crumbTrail(crumbs)}
 ${body}
+${PROVENANCE}
 </main>
 ${FOOTER}
 </body>
@@ -340,7 +396,7 @@ function renderIssue(issue, prev, next) {
   ${next ? `<a class="arc-pager__next" href="${next.path}"><span>Next issue</span>${esc(next.dateDisplay)}</a>` : `<span class="arc-pager__next arc-pager__none"></span>`}
 </nav>`;
 
-  const body = `<article class="wrap arc-issue">
+  const body = `<article class="hp-wrap arc-issue">
   <header class="arc-issue__head">
     <p class="arc-eyebrow">Yosemite Nature Notes · ${esc(issueLabel(issue))}</p>
     <h1 class="arc-title">${esc(issue.dateDisplay)}</h1>
@@ -428,7 +484,7 @@ function renderYear(year, issues, prevYear, nextYear) {
   ${nextYear ? `<a class="arc-pager__next" href="/archive/${nextYear}/"><span>Later</span>${nextYear}</a>` : `<span class="arc-pager__next arc-pager__none"></span>`}
 </nav>`;
 
-  const body = `<div class="wrap arc-year">
+  const body = `<div class="hp-wrap arc-year">
   <header class="arc-year__head">
     <p class="arc-eyebrow">The Nature Notes archive</p>
     <h1 class="arc-title">${year}</h1>
@@ -476,7 +532,7 @@ function renderLanding(issues, decades) {
     })
     .join("\n");
 
-  const body = `<div class="wrap arc-landing">
+  const body = `<div class="hp-wrap arc-landing">
   <header class="arc-landing__head">
     <p class="arc-eyebrow">A public archive</p>
     <h1 class="arc-title">Yosemite Nature Notes, 1922 onward</h1>
@@ -573,132 +629,110 @@ ${decadeBlocks}
 // forces the shared ?v= bump that repaints the whole SPA's cache.
 
 const ARCHIVE_CSS = `/* Generated by scripts/gen-archive.mjs — edit that file, not this one. */
+/* The archive in the site's design system: the chrome is styles.css's own
+   (.hp-design masthead, .crumbs, .site-footer); these rules are the archive's
+   pages drawn in the same type, rules and cards. */
 
-.arc-body { background: var(--paper); color: var(--ink); font-family: var(--serif); }
-.arc-main { padding-bottom: 4rem; }
-
-/* Masthead ---------------------------------------------------------------- */
-.arc-masthead { border-bottom: 2px solid var(--rule); background: var(--paper); }
-.arc-masthead__inner {
-  display: flex; align-items: center; justify-content: space-between;
-  gap: 1.5rem; flex-wrap: wrap; padding-top: 1rem; padding-bottom: 1rem;
-}
-.arc-brand { display: flex; align-items: center; gap: .6rem; text-decoration: none; color: inherit; }
-.arc-brand__mark { width: 40px; height: 40px; }
-.arc-brand__text { display: flex; flex-direction: column; line-height: 1.1; }
-.arc-brand__name { font-family: var(--display); font-size: 1.35rem; font-weight: 600; letter-spacing: .01em; }
-.arc-brand__sub { font-family: var(--sans); font-size: .7rem; color: var(--ink-3); letter-spacing: .06em; text-transform: uppercase; }
-.arc-nav { display: flex; flex-wrap: wrap; gap: 1.1rem; font-family: var(--sans); font-size: .82rem; }
-.arc-nav a { color: var(--ink-2); text-decoration: none; border-bottom: 1px solid transparent; padding-bottom: 2px; }
-.arc-nav a:hover { color: var(--moss); border-bottom-color: var(--moss); }
-.arc-crumbs { font-family: var(--sans); font-size: .75rem; color: var(--ink-3); padding-bottom: .7rem; }
-.arc-crumbs a { color: var(--ink-3); }
-.arc-crumbs__sep { margin: 0 .45rem; opacity: .5; }
+.arc-body { background: var(--paper); color: var(--ink); margin: 0; }
+.arc-main { padding-bottom: 24px; }
+.arc-crumbs { padding-top: 28px; }
+.arc-crumbs .crumbs { margin-bottom: 0; }
+.arc-crumbs ol { list-style: none; display: flex; flex-wrap: wrap; gap: 4px 10px; margin: 0; padding: 0; }
+.arc-crumbs li + li::before { content: "/"; margin-right: 10px; color: var(--hp-rule); }
 
 /* Shared type ------------------------------------------------------------- */
-.arc-eyebrow {
-  font-family: var(--sans); font-size: .72rem; letter-spacing: .1em;
-  text-transform: uppercase; color: var(--moss); margin: 0 0 .5rem;
-}
-.arc-title { font-family: var(--display); font-size: clamp(2rem, 5vw, 3rem); line-height: 1.08; margin: 0 0 .6rem; }
-.arc-lede { font-size: 1.12rem; line-height: 1.6; color: var(--ink-2); max-width: var(--measure); }
-.arc-h2 { font-family: var(--display); font-size: 1.5rem; margin: 2.4rem 0 .8rem; }
-.arc-back { font-family: var(--sans); font-size: .85rem; margin-top: 2.5rem; }
+.arc-eyebrow { font: 600 9px var(--sans); letter-spacing: 1.7px; text-transform: uppercase; color: var(--hp-accent); margin: 0 0 17px; }
+.arc-title { font: 400 64px/1.02 var(--serif); letter-spacing: -1.4px; margin: 0 0 20px; }
+.arc-lede { font-size: 14px; line-height: 1.85; color: var(--hp-muted); max-width: 560px; }
+.arc-h2 { font: 400 38px/1.05 var(--serif); letter-spacing: -1px; margin: 56px 0 18px; }
+.arc-back { font-size: 11px; font-weight: 600; margin-top: 40px; }
+.arc-back a { border-bottom: 1px solid #a7afa4; padding-bottom: 4px; }
+.arc-main a { color: inherit; }
 
 /* Landing ----------------------------------------------------------------- */
-.arc-landing { padding-top: 2.5rem; }
-.arc-stats { display: flex; gap: 2.5rem; flex-wrap: wrap; margin: 1.8rem 0 0; padding: 1rem 0; border-top: 1px solid var(--rule-soft); border-bottom: 1px solid var(--rule-soft); }
+.arc-landing, .arc-year, .arc-issue { padding-top: 40px; }
+.arc-landing__head, .arc-year__head { border-bottom: 1px solid var(--hp-rule); padding-bottom: 40px; }
+.arc-stats { display: flex; gap: 40px; flex-wrap: wrap; margin: 28px 0 0; padding: 18px 0; border-block: 1px solid var(--hp-rule); }
 .arc-stats div { display: flex; flex-direction: column; }
-.arc-stats dt { font-family: var(--sans); font-size: .7rem; letter-spacing: .09em; text-transform: uppercase; color: var(--ink-3); }
-.arc-stats dd { margin: .15rem 0 0; font-family: var(--display); font-size: 1.6rem; }
-.arc-decade { margin: 1.6rem 0; }
-.arc-decade__h { font-family: var(--display); font-size: 1.2rem; margin: 0 0 .6rem; display: flex; align-items: baseline; gap: .7rem; }
-.arc-decade__count { font-family: var(--sans); font-size: .72rem; color: var(--ink-3); text-transform: uppercase; letter-spacing: .07em; }
-.arc-yearchips { display: flex; flex-wrap: wrap; gap: .45rem; }
+.arc-stats dt { font: 600 8px var(--sans); letter-spacing: 1.7px; text-transform: uppercase; color: var(--hp-accent); }
+.arc-stats dd { margin: 6px 0 0; font: 400 30px/1 var(--serif); }
+.arc-decade { margin: 28px 0; }
+.arc-decade__h { font: 400 26px/1.1 var(--serif); letter-spacing: -.5px; margin: 0 0 12px; display: flex; align-items: baseline; gap: 12px; }
+.arc-decade__count { font: 600 8px var(--sans); letter-spacing: 1.7px; text-transform: uppercase; color: var(--hp-muted); }
+.arc-yearchips { display: flex; flex-wrap: wrap; gap: 8px; }
 .arc-yearchip {
-  display: inline-flex; align-items: baseline; gap: .35rem;
-  font-family: var(--sans); font-size: .85rem; text-decoration: none;
-  color: var(--ink); background: var(--paper-2);
-  border: 1px solid var(--rule-soft); border-radius: 2px; padding: .32rem .6rem;
+  display: inline-flex; align-items: baseline; gap: 6px; min-height: 40px; align-items: center;
+  font: 500 13px var(--sans); color: var(--ink-2);
+  border: 1px solid var(--rule-soft); border-radius: 3px; padding: 0 14px;
 }
-.arc-yearchip:hover { background: var(--paper-3); border-color: var(--rule); }
-.arc-yearchip span { font-size: .68rem; color: var(--ink-3); }
-.arc-about p, .arc-seealso p { max-width: var(--measure); line-height: 1.65; color: var(--ink-2); }
+.arc-yearchip:hover { color: var(--hp-accent); border-color: var(--hp-accent); }
+.arc-yearchip span { font-size: 10px; color: var(--hp-muted); }
+.arc-about p, .arc-seealso p { max-width: 680px; font-size: 13px; line-height: 1.85; color: var(--hp-muted); }
+.arc-about a, .arc-seealso a, .arc-lede a, .arc-meta a, .arc-source a { color: var(--hp-ink); border-bottom: 1px solid #a7afa4; }
 
 /* Year index -------------------------------------------------------------- */
-.arc-year { padding-top: 2.5rem; }
-.arc-list { list-style: none; margin: 2rem 0 0; padding: 0; }
-.arc-list__item { border-top: 1px solid var(--rule-soft); padding: .9rem 0; }
-.arc-list__item:last-child { border-bottom: 1px solid var(--rule-soft); }
-.arc-list__link { display: flex; align-items: baseline; gap: .9rem; flex-wrap: wrap; text-decoration: none; color: var(--ink); }
-.arc-list__date { font-family: var(--display); font-size: 1.25rem; }
-.arc-list__link:hover .arc-list__date { color: var(--moss); }
-.arc-list__vol { font-family: var(--sans); font-size: .72rem; letter-spacing: .06em; text-transform: uppercase; color: var(--ink-3); }
-.arc-list__heads { margin: .3rem 0 0; font-size: .95rem; color: var(--ink-3); line-height: 1.5; max-width: var(--measure); }
+.arc-list { list-style: none; margin: 32px 0 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 48px; }
+.arc-list__item { border-top: 1px solid var(--hp-rule); padding: 20px 0 22px; }
+.arc-list__link { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; color: var(--hp-ink); }
+.arc-list__date { font: 400 26px/1.12 var(--serif); letter-spacing: -.5px; }
+.arc-list__link:hover .arc-list__date { color: var(--hp-accent); }
+.arc-list__vol { font: 600 8px var(--sans); letter-spacing: 1.7px; text-transform: uppercase; color: var(--hp-accent); }
+.arc-list__heads { margin: 8px 0 0; font-size: 12px; color: var(--hp-muted); line-height: 1.7; }
 
 /* Issue ------------------------------------------------------------------- */
-.arc-issue { padding-top: 2.5rem; }
-.arc-issue__head { border-bottom: 2px solid var(--rule); padding-bottom: 1.2rem; }
-.arc-meta { font-family: var(--sans); font-size: .82rem; color: var(--ink-3); margin: .4rem 0 0; }
-.arc-approx { border-bottom: 1px dotted var(--ink-3); cursor: help; }
-.arc-toc { margin: 2rem 0; padding: 1.1rem 1.3rem; background: var(--paper-2); border: 1px solid var(--rule-soft); }
-.arc-toc__h { font-family: var(--sans); font-size: .72rem; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-3); margin: 0 0 .6rem; }
-.arc-toc ol { margin: 0; padding-left: 1.1rem; columns: 2; column-gap: 2rem; }
-.arc-toc li { margin: .22rem 0; font-size: .92rem; break-inside: avoid; }
-.arc-toc a { color: var(--ink-2); }
-@media (max-width: 640px) { .arc-toc ol { columns: 1; } }
-.arc-prose { max-width: var(--measure); font-size: 1.08rem; line-height: 1.72; }
-.arc-prose p { margin: 0 0 1.05rem; }
-.arc-colophon {
-  font-family: var(--sans); font-size: .82rem; line-height: 1.55; color: var(--ink-3);
-  border-left: 2px solid var(--rule-soft); padding: .1rem 0 .1rem .8rem; margin-bottom: 1.6rem;
-}
+.arc-issue__head { border-bottom: 1px solid var(--hp-rule); padding-bottom: 32px; }
+.arc-meta { font-size: 11px; color: var(--hp-muted); margin: 6px 0 0; }
+.arc-approx { border-bottom: 1px dotted var(--hp-muted); cursor: help; }
+.arc-toc { max-width: 680px; margin: 36px 0; padding: 18px 22px; background: var(--hp-card); border: 1px solid var(--hp-rule); border-radius: 3px; }
+.arc-toc__h { font: 600 9px var(--sans); letter-spacing: 1.7px; text-transform: uppercase; color: var(--hp-accent); margin: 0 0 12px; }
+.arc-toc ol { margin: 0; padding-left: 1.1em; columns: 2; column-gap: 32px; }
+.arc-toc li { margin: 4px 0; font-size: 13px; break-inside: avoid; }
+.arc-toc li::marker { color: var(--hp-accent); }
+.arc-prose { max-width: 680px; font: 17px/1.75 var(--sans); color: var(--hp-ink); }
+.arc-prose p { margin: 0 0 1.2em; }
+.arc-colophon { font-size: 12px; line-height: 1.7; color: var(--hp-muted); border-left: 2px solid var(--hp-accent); padding: 2px 0 2px 16px; margin-bottom: 28px; }
 .arc-prose .arc-h2 {
-  font-family: var(--sans); font-size: .95rem; font-weight: 600;
-  letter-spacing: .04em; line-height: 1.35; color: var(--ink);
-  margin: 2.2rem 0 .7rem; padding-top: .9rem; border-top: 1px solid var(--rule-soft);
+  font: 400 30px/1.12 var(--serif); letter-spacing: -.6px; color: var(--hp-ink);
+  margin: 48px 0 16px; padding-top: 36px; border-top: 1px solid var(--hp-rule);
 }
-.arc-issue__foot { margin-top: 3rem; padding-top: 1.2rem; border-top: 1px solid var(--rule-soft); font-family: var(--sans); font-size: .82rem; color: var(--ink-3); }
-.arc-source { margin: 0 0 .6rem; }
+.arc-issue__foot { max-width: 680px; margin-top: 48px; padding-top: 18px; border-top: 1px solid var(--hp-rule); font-size: 11px; color: var(--hp-muted); }
+.arc-source { margin: 0 0 8px; }
 
 /* Pager ------------------------------------------------------------------- */
-.arc-pager { display: flex; justify-content: space-between; gap: 1rem; margin-top: 2.5rem; padding-top: 1.2rem; border-top: 1px solid var(--rule-soft); font-family: var(--sans); }
-.arc-pager a { display: flex; flex-direction: column; text-decoration: none; color: var(--ink); font-size: 1rem; }
-.arc-pager a span { font-size: .68rem; letter-spacing: .09em; text-transform: uppercase; color: var(--ink-3); margin-bottom: .15rem; }
+.arc-pager { max-width: 680px; display: flex; justify-content: space-between; gap: 16px; margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--hp-ink); }
+.arc-pager a { display: flex; flex-direction: column; color: var(--hp-ink); font: 400 21px/1.2 var(--serif); }
+.arc-pager a span { font: 600 8px var(--sans); letter-spacing: 1.7px; text-transform: uppercase; color: var(--hp-accent); margin-bottom: 6px; }
 .arc-pager__next { text-align: right; }
-.arc-pager a:hover { color: var(--moss); }
+.arc-pager a:hover { color: var(--hp-accent); }
 .arc-pager__none { visibility: hidden; }
 
-/* The one ask -------------------------------------------------------------- */
-.arc-ask {
-  border-top: 2px solid var(--rule); max-width: var(--measure);
-  margin: 3rem 0 0; padding: 1.5rem 0 0;
-}
-.arc-ask__h { font-family: var(--display); font-size: 1.3rem; font-style: italic; margin: 0 0 .4rem; }
-.arc-ask__note { font-size: 1rem; line-height: 1.6; color: var(--ink-2); margin: 0 0 1.1rem; }
-.arc-ask__label {
-  position: absolute; width: 1px; height: 1px; overflow: hidden;
-  clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap;
-}
-.arc-ask__form { display: flex; gap: .6rem; align-items: baseline; border-bottom: 1px solid var(--ink); }
-.arc-ask__input {
-  flex: 1; min-width: 0; background: transparent; border: 0; color: inherit;
-  font-family: var(--serif); font-size: 1.05rem; padding: .5rem 0;
-}
-.arc-ask__input:focus-visible { outline: 2px solid var(--moss); outline-offset: 2px; }
-.arc-ask__button {
-  background: transparent; border: 0; cursor: pointer; color: var(--ink);
-  font-family: var(--sans); font-size: .7rem; font-weight: 700;
-  letter-spacing: .18em; text-transform: uppercase; padding: .5rem 0;
-}
-.arc-ask__button:hover { color: var(--moss); }
-.arc-ask__also { font-family: var(--sans); font-size: .82rem; line-height: 1.6; color: var(--ink-3); margin: 1.1rem 0 0; }
+/* The one ask: the design's letter card and form --------------------------- */
+.arc-ask { max-width: 680px; margin: 48px 0 0; padding: 30px 32px; background: var(--hp-card); border: 1px solid var(--hp-rule); border-radius: 3px; }
+.arc-ask__h { font: 400 32px/1.04 var(--serif); letter-spacing: -.8px; margin: 0 0 12px; }
+.arc-ask__note { font-size: 13px; line-height: 1.85; color: var(--hp-muted); margin: 0 0 20px; }
+.arc-ask__label { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.arc-ask__form { display: flex; gap: 8px; }
+.arc-ask__input { flex: 1; min-width: 0; padding: 13px; background: var(--hp-card); border: 1px solid #b8c0b3; border-radius: 3px; color: var(--hp-ink); font: 12px var(--sans); }
+.arc-ask__input:focus-visible { outline: 3px solid var(--hp-accent); outline-offset: 2px; }
+.arc-ask__button { padding: 15px 17px; background: var(--hp-accent); border: 0; border-radius: 3px; color: var(--hp-on-accent); font: 600 12px var(--sans); white-space: nowrap; cursor: pointer; }
+.arc-ask__button:hover { background: var(--hp-accent-deep); }
+.arc-ask__also { font-size: 11px; line-height: 1.7; color: var(--hp-muted); margin: 16px 0 0; }
+.arc-ask__also a { color: var(--hp-ink); border-bottom: 1px solid #a7afa4; }
 
-/* Footer ------------------------------------------------------------------ */
-.arc-footer { border-top: 2px solid var(--rule); background: var(--paper-2); padding: 2rem 0 3rem; }
-.arc-footer__note { max-width: var(--measure); font-size: .88rem; line-height: 1.6; color: var(--ink-3); margin: 0 0 1rem; }
-.arc-footer__nav { display: flex; flex-wrap: wrap; gap: 1.1rem; font-family: var(--sans); font-size: .8rem; }
-.arc-footer__nav a { color: var(--ink-2); }
+/* Provenance -------------------------------------------------------------- */
+.arc-provenance { padding-top: 56px; }
+.arc-footer__note { max-width: 680px; font-size: 11px; line-height: 1.7; color: var(--hp-muted); margin: 0; }
+.arc-footer__note a { color: var(--hp-ink); border-bottom: 1px solid #a7afa4; }
+
+@media (max-width: 760px) {
+  .arc-title { font-size: 44px; letter-spacing: -1px; }
+  .arc-h2 { font-size: 32px; }
+  .arc-list { grid-template-columns: 1fr; }
+  .arc-toc ol { columns: 1; }
+  .arc-prose { font-size: 16px; }
+  .arc-ask { padding: 24px 22px; }
+  .arc-ask__input { font-size: 16px; }
+}
 `;
 
 // ---------------------------------------------------------------------------
@@ -727,7 +761,7 @@ const ARCHIVE_CSS = `/* Generated by scripts/gen-archive.mjs — edit that file,
 // The issue's own 1922-1954 date is not lost. It is the visible dateline on
 // each page and the datePublished of its PublicationIssue JSON-LD, which is
 // where a publication date belongs.
-const ARCHIVE_CONTENT_UPDATED = "2026-09-20";
+const ARCHIVE_CONTENT_UPDATED = "2026-09-22";
 
 function renderSitemap(issues, years) {
   // No changefreq and no priority: Google has ignored both for years, and they

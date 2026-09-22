@@ -1,4 +1,4 @@
-/* global React, ReactDOM, Header, Footer, KeepGoing, ExitIntentNewsletter */
+/* global React, ReactDOM, Header, Footer, KeepGoing, ExitIntentNewsletter, HpPageHead */
 /* Page components (HomePage, ArticlePage, MapPage, ...) are NOT bare globals
    here: their bundles lazy-load per route (see PAGE_MODULES) and the route
    switch reads them from window.* after ensureRoute resolves. */
@@ -1033,25 +1033,15 @@ function NotFoundPage({ go }) {
 
   const hrefFor = (r) => (r.path ? r.path : routeToPath(r.key));
   return (
-    <div className="page">
-      <div className="page-head">
-        <div className="wrap wrap--narrow">
-          <div className="eyebrow eyebrow--moss">Off the trail</div>
-          <h1>Page not found</h1>
-          <p className="lede">
-            There is nothing at this address. The link may be old, or the page
-            may have moved.
-          </p>
-        </div>
-      </div>
-      <div className="wrap wrap--narrow" style={{ paddingBottom: 64 }}>
-        <p className="notfound__path">
-          You asked for <code>{window.location.pathname}</code>
-        </p>
-        {suggestions && suggestions.length > 0 && (
+    <div className="page hp-notfound">
+      <HpPageHead
+        eyebrow="OFF THE TRAIL"
+        title="Page not found"
+        intro="There is nothing at this address. The link may be old, or the page may have moved."
+        aside={suggestions && suggestions.length > 0 ? (
           <div className="notfound__suggest">
             <h2>Did you mean</h2>
-            <ul>
+            <ul className="relrail">
               {suggestions.map((r) => (
                 <li key={r.key}>
                   <a
@@ -1068,19 +1058,23 @@ function NotFoundPage({ go }) {
               ))}
             </ul>
           </div>
-        )}
-        <p>
+        ) : null}
+      >
+        <p className="notfound__path">
+          You asked for <code>{window.location.pathname}</code>
+        </p>
+        <p className="hp-sub notfound__next">
           Good places to reorient:{" "}
-          <a href="/explore" onClick={(e) => { e.preventDefault(); go("explore"); }}>the site index</a>,{" "}
-          <a href={query ? `/search?q=${encodeURIComponent(query)}` : "/search"} onClick={(e) => {
+          <a className="hp-inline" href="/explore" onClick={(e) => { e.preventDefault(); go("explore"); }}>the site index</a>,{" "}
+          <a className="hp-inline" href={query ? `/search?q=${encodeURIComponent(query)}` : "/search"} onClick={(e) => {
             e.preventDefault();
             if (query) window.history.pushState({ route: "search" }, "", `/search?q=${encodeURIComponent(query)}`);
             go("search");
           }}>search</a>,{" "}
-          <a href="/planning" onClick={(e) => { e.preventDefault(); go("planning"); }}>the planning guide</a>, or{" "}
-          <a href="/map" onClick={(e) => { e.preventDefault(); go("map"); }}>the trip planner map</a>.
+          <a className="hp-inline" href="/planning" onClick={(e) => { e.preventDefault(); go("planning"); }}>the planning guide</a>, or{" "}
+          <a className="hp-inline" href="/map" onClick={(e) => { e.preventDefault(); go("map"); }}>the trip planner map</a>.
         </p>
-      </div>
+      </HpPageHead>
     </div>
   );
 }
@@ -1311,12 +1305,11 @@ function App() {
   if (!routeReady) {
     page = (
       <div className="page">
-        <div className="wrap wrap--narrow" style={{ padding: "64px 0" }}>
-          <p>
-            This page failed to load.{" "}
-            <a href={routeToPath(route)}>Try again</a>.
-          </p>
-        </div>
+        <HpPageHead
+          eyebrow="OFF THE TRAIL"
+          title="This page failed to load."
+          intro={<a className="hp-inline" href={routeToPath(route)}>Try again</a>}
+        />
       </div>
     );
   } else if (!routeExists(route)) {

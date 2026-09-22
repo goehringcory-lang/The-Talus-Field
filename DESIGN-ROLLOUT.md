@@ -72,14 +72,14 @@ Status: `[x]` converted, `[ ]` not yet.
 - [x] `/map`
 
 ### 5. Utility
-- [ ] 404 (`NotFoundPage`, also every unknown `/articles/` or `/section/` slug)
-- [ ] Route failed to load
-- [ ] Newsletter signup confirmation (inline success state; there is no separate thank-you route)
+- [x] 404 (`NotFoundPage`, also every unknown `/articles/` or `/section/` slug)
+- [x] Route failed to load
+- [x] Newsletter signup confirmation (inline success state; there is no separate thank-you route)
 
 ### 6. Generated static pages (`scripts/gen-archive.mjs` + `archive/archive.css`)
-- [ ] `/archive/` landing
-- [ ] `/archive/<year>/` indexes
-- [ ] `/archive/<year>/vol-<v>-no-<n>/` issue pages (512)
+- [x] `/archive/` landing
+- [x] `/archive/<year>/` indexes
+- [x] `/archive/<year>/vol-<v>-no-<n>/` issue pages (512)
 
 ### Already converted before this pass (must stay visually unchanged)
 - [x] `/` (source of truth)
