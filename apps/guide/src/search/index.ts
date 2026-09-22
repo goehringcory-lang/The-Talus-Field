@@ -122,7 +122,7 @@ function buildEntries(): Entry[] {
   for (const v of DINING) {
     entries.push({
       id: v.id,
-      url: '/dining',
+      url: `/dining#${v.id}`,
       title: v.name,
       section: 'Dining',
       eyebrow: v.area === 'gateway' ? v.town ?? 'Gateway towns' : DINING_AREA_TITLE[v.area] ?? v.area,
@@ -137,7 +137,7 @@ function buildEntries(): Entry[] {
   for (const w of WILDLIFE) {
     entries.push({
       id: w.id,
-      url: '/wildlife',
+      url: `/wildlife#${w.id}`,
       title: w.name,
       section: 'Wildlife',
       eyebrow: KIND_LABELS[w.kind],
@@ -188,21 +188,55 @@ function snippetAround(body: string, lowerBody: string, token: string, span = 12
   return (start > 0 ? '…' : '') + body.slice(start, end).trim() + (end < body.length ? '…' : '')
 }
 
+// Starting points for an empty box: one per kind of thing the guide answers
+// (a place, a logistics word, a safety word, a hike, food, an animal, kids).
+// Each is asserted to return hits in index.test.ts.
+export const SEARCH_SUGGESTIONS = [
+  'Tunnel View',
+  'parking',
+  'sunset',
+  'waterfalls',
+  'bears',
+  'coffee',
+  'kids',
+  'chains',
+]
+
+// The forms of a query word worth trying. The park names its falls in the
+// singular ("Vernal Fall", "Nevada Fall") and readers type the plural, so a
+// trailing s, es, or ies is also tried without it; a substring match already
+// covers the other direction ("fall" finds "falls").
+export function tokenVariants(token: string): string[] {
+  const out = [token]
+  if (token.length > 4 && token.endsWith('ies')) out.push(token.slice(0, -3) + 'y')
+  if (token.length > 4 && token.endsWith('es')) out.push(token.slice(0, -2))
+  if (token.length > 3 && token.endsWith('s') && !token.endsWith('ss')) out.push(token.slice(0, -1))
+  return out
+}
+
+/** The lowercase query words, as search() splits them. */
+export function queryTokens(query: string): string[] {
+  return query.toLowerCase().split(/\s+/).filter((t) => t.length >= 2)
+}
+
 export function search(query: string, limit = 24): SearchHit[] {
-  const tokens = query.toLowerCase().split(/\s+/).filter((t) => t.length >= 2)
+  const tokens = queryTokens(query)
   if (tokens.length === 0) return []
 
   const hits: SearchHit[] = []
   for (const entry of ENTRIES) {
     let score = 0
     let firstBodyToken: string | null = null
-    for (const token of tokens) {
+    for (const word of tokens) {
       let tokenScore = 0
-      if (entry.titleText.includes(token)) tokenScore += 3
-      if (entry.swapText.includes(token)) tokenScore += 2
-      if (entry.bodyText.includes(token)) {
-        tokenScore += 1
-        if (!firstBodyToken) firstBodyToken = token
+      for (const token of tokenVariants(word)) {
+        if (entry.titleText.includes(token)) tokenScore += 3
+        if (entry.swapText.includes(token)) tokenScore += 2
+        if (entry.bodyText.includes(token)) {
+          tokenScore += 1
+          if (!firstBodyToken) firstBodyToken = token
+        }
+        if (tokenScore > 0) break // the exact form wins; a variant is the fallback
       }
       if (tokenScore === 0) {
         score = 0

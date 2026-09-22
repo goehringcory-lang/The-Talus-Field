@@ -1077,9 +1077,10 @@ const seed: StopInput[] = [
     coord: [-119.6560, 37.5366], // web-derived: Wawona Hotel front, Hwy 41 (Pioneer History Center is a 5-min walk north); TODO: verify on the ground
     elevationFt: 4000,
     timeBudgetMin: 90,
-    // Source: Yosemite Guide Vol 51 Issue 6 (July 15 - August 18, 2026).
+    // Source: Yosemite Guide Vol 51 Issue 6 (July 15 - August 18, 2026);
+    // seasonal closing dates from Vol 51 Issue 8 (September 23 - November 24, 2026).
     hazard:
-      'The Wawona Hotel and its dining room are closed for renovation, with no reopening date published, so the lobby bar and the lunch walk-in below are off the table for now. The grounds, the golf course, the visitor center, and the history center are all still open. Confirm at travelyosemite.com before planning a meal here.',
+      'The Wawona Hotel and its dining room are closed for renovation, with no reopening date published, so the lobby bar and the lunch walk-in below are off the table for now. The grounds and the history center stay open; the golf course closes for the season after October 25, 2026, and the visitor center after October 31. Confirm at travelyosemite.com before planning a meal here.',
     teaser:
       'The 1876 hotel\'s white verandas, the Wawona covered bridge, and the Pioneer Yosemite History Center\'s relocated cabins and coaches. The easy add to a Mariposa Grove day.',
     body:
@@ -1516,15 +1517,16 @@ const seed: StopInput[] = [
     order: 9,
     kind: 'meal',
     dayPart: 'midday',
-    season: 'Tioga Road season',
+    season: 'Closed for 2026',
     coord: [-119.3590, 37.8741], // web-derived: Tuolumne Meadows Store / Grill complex, Tioga Rd east of the visitor center; TODO: verify on the ground
     elevationFt: 8600,
     timeBudgetMin: 45,
     teaser:
-      'Burgers and soft serve from a canvas-sided building full of Pacific Crest Trail hikers three weeks from anywhere. Order at the window, eat at a picnic table, watch the meadow.',
+      'Closed for the rest of 2026. The store and grill shut on September 20, and the lodge dining tent on September 13. Tioga Road is still open. Pack lunch from the Valley or Crane Flat.',
     body:
-      'The menu is burgers, breakfast sandwiches, chili, and soft-serve cones, cooked on a griddle in a canvas-sided building beside the Tuolumne Meadows Store. Nobody drives to the high country for the food. You eat here for the room: the picnic tables collect Pacific Crest Trail and John Muir Trail hikers three weeks from anywhere, day hikers down off Cathedral, climbers, and rangers, and the conversation is the best in the park. A thru-hiker eating a double cheeseburger and a pint of ice cream at eleven in the morning is not a spectacle; it is arithmetic, and they will cheerfully walk you through it.\n\n' +
-      'The store next door is a real outfitter in miniature: fuel canisters, actual groceries, the only supplies in the high country, plus a seasonal post office where thru-hikers collect resupply boxes addressed months earlier. The whole complex lives in tents and trailers that are struck every fall and rebuilt when Tioga Road opens, so hours are seasonal and the entire place simply does not exist in winter. If the line at the window is long, read it as the grill operating exactly as intended.',
+      'The store, the grill, and the lodge dining tent are closed for the 2026 season. The Yosemite Guide for September 23 to November 24 lists all three as closed, and Tioga Road itself stays open until snow shuts it. A day up here is drive-yourself and self-supported: water, lunch, and a full tank from Crane Flat, because the next food eastbound is Lee Vining.\n\n' +
+      'When the complex is open, the menu is burgers, breakfast sandwiches, chili, and soft-serve cones, cooked on a griddle in a canvas-sided building beside the store. Nobody drives to the high country for the food. You eat here for the room: the picnic tables collect Pacific Crest Trail and John Muir Trail hikers three weeks from anywhere, day hikers down off Cathedral, climbers, and rangers, and the conversation is the best in the park.\n\n' +
+      'The store next door is a real outfitter in miniature: fuel canisters, actual groceries, the only supplies in the high country, plus a seasonal post office where thru-hikers collect resupply boxes addressed months earlier. The whole complex lives in tents and trailers that are struck every fall and rebuilt when Tioga Road opens, so the place simply does not exist in winter.',
     photos: [{ src: '/photos/tuolumne-meadows-grill.jpg', caption: 'Tuolumne Meadows at the end of the season. The store and grill tents sit at the meadow\'s east end.' }],
   },
   {

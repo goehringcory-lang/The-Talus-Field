@@ -9,10 +9,10 @@
 // entries keep to day patterns (closed Mondays, dinner only) that shift
 // slowly, and leave the clock to a phone call.
 //
-// Facts were compiled July 2026 from the printed Yosemite Guide,
-// travelyosemite.com, nps.gov, and the venues' own listings. Closure notes
-// (Wawona Hotel, White Wolf) match the park's published status; re-check both
-// each season. Coordinates reuse the guide's verified stop pins where a venue
+// In-park hours are transcribed from the edition named in DINING_HOURS_SOURCE.
+// Closure notes (Wawona Hotel, White Wolf, and the 2026 Tuolumne complex) match
+// the park's published status; re-check them each edition. Coordinates reuse
+// the guide's verified stop pins where a venue
 // shares one; the rest are map-pin approximations, not survey points.
 // Descriptions are original house copy. Validated at module load, same as
 // stops.
@@ -25,7 +25,7 @@ import { DiningVenues, type DiningArea, type DiningKind, type DiningVenueT } fro
 // Rewrite the hours and this stamp together, per edition, roughly every five
 // weeks in season.
 export const DINING_HOURS_SOURCE = {
-  edition: 'July 15 – August 18, 2026',
+  edition: 'September 23 – November 24, 2026',
   url: 'https://www.nps.gov/yose/planyourvisit/guide.htm',
 }
 
@@ -56,7 +56,7 @@ export const DINING_AREAS: { id: DiningArea; title: string; note?: string }[] = 
     id: 'tuolumne',
     title: 'Tuolumne Meadows & the Highway 120 corridor',
     note:
-      'Open roughly June through October with Tioga Road. Between Crane Flat and Lee Vining this is every calorie on the road, so the store and grill matter more than they would anywhere else.',
+      'The Tuolumne store, grill, and lodge are closed for the 2026 season. Tioga Road stays open until snow closes it, and between Crane Flat and Lee Vining the day is self-supported.',
   },
   {
     id: 'hetch-hetchy',
@@ -92,9 +92,10 @@ const seed: DiningInput[] = [
     price: '$',
     order: 1,
     hours: '6 – 2',
+    hoursNote: 'through October 25; from October 26, 6:30 a.m. to 11 a.m., coffee and a light breakfast',
     coord: [-119.5726, 37.7377], // shared Curry Village pin (stops.ts)
     description:
-      'Coffee, pastries, and oatmeal from 6 a.m. inside Seven Tents Pavilion, which makes it the earliest breakfast in the east Valley and the right first stop before the Mist Trail. Expect a line from 7.',
+      'Coffee, pastries, and oatmeal inside Seven Tents Pavilion, the earliest breakfast in the east Valley and the right first stop before the Mist Trail. Expect a line once the doors have been open an hour.',
   },
   {
     id: 'lodge-starbucks',
@@ -105,6 +106,7 @@ const seed: DiningInput[] = [
     price: '$',
     order: 2,
     hours: '6:30 – 6:30',
+    hoursNote: 'through October 14; from October 15, 7 a.m. to 3 p.m.',
     coord: [-119.6012, 37.7414], // shared Lodge pin (points.geojson)
     description:
       'A full Starbucks next to Base Camp Eatery, the only chain in the park. The one food counter in the Valley where you know the menu before you walk in.',
@@ -146,6 +148,8 @@ const seed: DiningInput[] = [
     price: '$$',
     order: 5,
     hours: '6:30 – 10:30, 11 – 9',
+    hoursNote:
+      'lunch and dinner close at 8 p.m. from October 12; breakfast opens at 7 a.m. from October 25',
     coord: [-119.6012, 37.7414],
     description:
       'The park\'s food court: breakfast until 10:30, then burgers, pizza, salads, and rice bowls from self-order kiosks. Not memorable, reliably open, and the widest menu for a family that cannot agree.',
@@ -159,7 +163,8 @@ const seed: DiningInput[] = [
     price: '$$',
     order: 6,
     hours: '11 – 6',
-    season: 'Spring to fall',
+    hoursNote: 'closes October 25',
+    season: 'Through October 25',
     coord: [-119.5853, 37.7481], // shared Village pin
     description:
       'Burgers, grilled sandwiches, and fries eaten on a big outdoor deck in the Village. Fine fuel at lunch if you are already there; closes with the season.',
@@ -172,8 +177,7 @@ const seed: DiningInput[] = [
     kind: 'counter',
     price: '$$',
     order: 7,
-    hours: '11 – 8',
-    season: 'Spring to fall',
+    closed: 'Closed for the season. The stand returns in spring.',
     coord: [-119.5735, 37.7383],
     description:
       'Tacos, burrito bowls, and quesadillas from the stand at the edge of the Curry Village lot. The fastest hot dinner in the east Valley when the Pizza Deck line has gone long.',
@@ -187,6 +191,7 @@ const seed: DiningInput[] = [
     price: '$$',
     order: 8,
     hours: '11 – 10',
+    hoursNote: 'through October 25; from October 26, noon to 9 p.m.',
     coord: [-119.5726, 37.7377],
     stopId: 'curry-village-pizza',
     description:
@@ -201,6 +206,7 @@ const seed: DiningInput[] = [
     price: '$$',
     order: 9,
     hours: '11:30 – 10',
+    hoursNote: 'through October 24; from October 25, 4 p.m. to 9 p.m.',
     coord: [-119.5726, 37.7377],
     description:
       'The Curry Village bar, named for the camp\'s founding year: draft beer, cocktails, and bar food beside the Pizza Deck. Where the deck crowd migrates when the evening cools.',
@@ -226,7 +232,7 @@ const seed: DiningInput[] = [
     kind: 'snack',
     price: '$',
     order: 11,
-    hours: '11 – 8:30',
+    closed: 'Closed for the season. Scoops return in spring.',
     coord: [-119.5726, 37.7377],
     description:
       'Scoops named for Jennie Curry, at the end of a hot afternoon on the shuttle loop. Does exactly one job.',
@@ -240,7 +246,7 @@ const seed: DiningInput[] = [
     price: '$$$',
     order: 12,
     hours: '5 – 10',
-    hoursNote: 'last seating 9:30',
+    hoursNote: 'last seating 9:30; from October 26, 5 to 9 p.m. with last seating at 8:30',
     reservations:
       'Reservations are accepted and worth making for a window table; walk-ins wait at the door. In spring the view of Yosemite Falls does most of the work.',
     coord: [-119.6012, 37.7414],
@@ -255,8 +261,8 @@ const seed: DiningInput[] = [
     kind: 'bar',
     price: '$$',
     order: 13,
-    hours: '4:30 – 10',
-    hoursNote: 'from noon Sa Su',
+    hours: '5 – 10',
+    hoursNote: 'Monday to Friday; noon to 10 p.m. Saturday and Sunday',
     coord: [-119.6012, 37.7414],
     description:
       'The Lodge bar: a big open fireplace, beer and cocktails, and a short food menu. Buy a s\'mores kit and use the fire; it is the Valley\'s most dependable bad-weather afternoon.',
@@ -270,7 +276,8 @@ const seed: DiningInput[] = [
     price: '$$$$',
     order: 14,
     hours: '7 – 10, 11:30 – 3, 5:30 – 9',
-    hoursNote: 'Sunday brunch 7 – 3',
+    hoursNote:
+      'Sunday brunch 7 a.m. to 3 p.m.; from October 25, lunch ends at 2 p.m. and Sunday brunch ends at 2 p.m.',
     reservations:
       'Dinner is prix fixe, reserved ahead, with a dress expectation of roughly collared-shirt level. Breakfast and lunch are far easier to get into and buy the same room for a fraction of the bill.',
     coord: [-119.5743, 37.7462], // shared Ahwahnee pin (stops.ts)
@@ -287,6 +294,7 @@ const seed: DiningInput[] = [
     price: '$$$',
     order: 15,
     hours: '11:30 – 11',
+    hoursNote: 'through October 24; from October 25, 11:30 a.m. to 10 p.m.',
     coord: [-119.5743, 37.7462],
     stopId: 'ahwahnee-hotel',
     description:
@@ -313,7 +321,8 @@ const seed: DiningInput[] = [
     kind: 'grocery',
     price: '$$',
     order: 17,
-    hours: '8 – 10',
+    hours: '8 – 9',
+    hoursNote: 'through September 29; from September 30, 8 a.m. to 8 p.m.',
     coord: [-119.5853, 37.7481], // shared Village pin
     description:
       'The biggest grocery in the park: produce, cooler staples, beer, firewood, and a large souvenir floor. Prices run well above a supermarket, so provision outside and use this for what you forgot.',
@@ -326,7 +335,8 @@ const seed: DiningInput[] = [
     kind: 'grocery',
     price: '$$',
     order: 18,
-    hours: '8 – 10',
+    hours: '8 – 9',
+    hoursNote: 'through September 28; from September 29, 8 a.m. to 8 p.m.',
     coord: [-119.5726, 37.7377],
     description:
       'Camp-scale groceries, snacks, and beer at the east end of the shuttle loop. Smaller than the Village Store, closer to the tents.',
@@ -340,7 +350,8 @@ const seed: DiningInput[] = [
     price: '$$',
     order: 19,
     hours: '8 – 8',
-    season: 'Spring to fall',
+    hoursNote: 'closes October 12',
+    season: 'Through October 12',
     coord: [-119.5834, 37.7412],
     description:
       'The small store on the river side of the camp: ice, firewood, s\'mores inventory, and enough grocery basics to save a trip to the Village. The laundry next door runs later.',
@@ -358,6 +369,7 @@ const seed: DiningInput[] = [
     price: '$',
     order: 1,
     hours: '9 – 7',
+    hoursNote: 'closes October 25, with the gift shop',
     season: 'Road season',
     coord: [-119.5731, 37.7283], // shared Glacier Point pin (stops.ts)
     description:
@@ -407,10 +419,10 @@ const seed: DiningInput[] = [
     price: '$$',
     order: 1,
     hours: '8 – 5',
-    hoursNote: 'pumps take cards 24 hours',
+    hoursNote: 'the store closes October 25; pumps take cards 24 hours, year-round',
     coord: [-119.8007, 37.7552],
     description:
-      'The gas-station store at the foot of Tioga Road: snacks, drinks, ice, firewood, and coffee. Top off the tank and the cooler here; the next services eastbound are Tuolumne Meadows, 39 slow miles up.',
+      'The gas-station store at the foot of Tioga Road: snacks, drinks, ice, firewood, and coffee. Top off the tank and the cooler here. The Tuolumne store and grill are closed for the 2026 season, so the next food eastbound is Lee Vining.',
   },
   {
     id: 'tuolumne-grill',
@@ -420,13 +432,13 @@ const seed: DiningInput[] = [
     kind: 'counter',
     price: '$',
     order: 2,
-    hours: '8 – 6',
-    season: 'Tioga Road season',
-    hoursNote: '2026 season May 30 to September 20, conditions permitting',
+    closed:
+      'Closed for the 2026 season. The grill shut on September 20. It returns when Tioga Road reopens next year.',
+    season: 'Closed for 2026',
     coord: [-119.3590, 37.8741], // shared Tuolumne grill/store pin (stops.ts)
     stopId: 'tuolumne-meadows-grill',
     description:
-      'Burgers, breakfast, and soft-serve from a walk-up window at 8,600 feet, eaten at picnic tables full of hikers and climbers. Back in full operation after the meadows rehabilitation years, and still the unofficial living room of the high country.',
+      'When it is open, burgers, breakfast, and soft-serve from a walk-up window at 8,600 feet, eaten at picnic tables full of hikers and climbers. It is the unofficial living room of the high country, and it is dark until next season.',
   },
   {
     id: 'tuolumne-store',
@@ -436,11 +448,12 @@ const seed: DiningInput[] = [
     kind: 'grocery',
     price: '$$',
     order: 3,
-    hours: '8 – 8',
-    season: 'Tioga Road season',
+    closed:
+      'Closed for the 2026 season, with the grill. Resupply boxes and groceries are not available here until next year.',
+    season: 'Closed for 2026',
     coord: [-119.3590, 37.8741],
     description:
-      'The canvas-sided general store that provisions the entire high country: groceries, camp fuel, beer, and a post office window where thru-hikers collect resupply boxes. Everything a Tuolumne day forgets to pack.',
+      'When it is open, the canvas-sided general store that provisions the high country: groceries, camp fuel, beer, and a post office window where thru-hikers collect resupply boxes. It is struck for the winter with the grill.',
   },
   {
     id: 'tuolumne-lodge-dining',
@@ -450,13 +463,12 @@ const seed: DiningInput[] = [
     kind: 'sit-down',
     price: '$$',
     order: 4,
-    season: 'Tioga Road season',
-    hoursNote: '2026 season June 5 to September 13; meals run in fixed seatings',
-    reservations:
-      'Dinner is by reservation through the lodge (209/372-8413) and open to non-guests when there is room; breakfast is first-come.',
+    closed:
+      'Closed for the 2026 season. The dining tent served its last meals on September 13.',
+    season: 'Closed for 2026',
     coord: [-119.3520, 37.8778],
     description:
-      'Family-style breakfast and dinner in a canvas dining tent by the Dana Fork, shared tables and all. The most sociable dinner in the park, and the only table service east of the Valley.',
+      'When it is open, family-style breakfast and dinner in a canvas dining tent by the Dana Fork, shared tables and all. Dinner is by reservation through the lodge and open to non-guests when there is room. It is the only table service east of the Valley.',
   },
   {
     id: 'white-wolf-dining',

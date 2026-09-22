@@ -12,7 +12,7 @@
 // =============================================================================
 
 export const HELP_SOURCE = {
-  edition: 'August 19 – September 22, 2026',
+  edition: 'September 23 – November 24, 2026',
   url: 'https://www.nps.gov/yose/planyourvisit/guide.htm',
 }
 
@@ -45,7 +45,7 @@ export const HELP_NUMBERS: HelpNumber[] = [
     label: 'Yosemite Medical Clinic',
     tel: '+12093724637',
     display: '209/372-4637',
-    note: 'Yosemite Village. Urgent care, not an emergency room.',
+    note: 'Yosemite Village. Urgent care, not an emergency room. Walk-ins are Monday through Friday, 1 to 3:30 p.m.',
     tier: 'urgent',
   },
   {

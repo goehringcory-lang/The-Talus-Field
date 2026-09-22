@@ -1,8 +1,31 @@
-import { useEffect, useMemo, useState } from 'react'
+import { Fragment, useEffect, useMemo, useState, type ReactNode } from 'react'
 import { Link } from 'react-router-dom'
 import GatedChrome from '../components/GatedChrome'
+import { ChipButton } from '../components/ui/Chip'
 import PageHeader from '../components/ui/PageHeader'
-import { search, type SearchHit } from '../search'
+import { clearRecentSearches, readRecentSearches, recordSearch } from '../lib/recentSearches'
+import { SEARCH_SUGGESTIONS, queryTokens, search, tokenVariants, type SearchHit } from '../search'
+
+function escapeRegExp(s: string): string {
+  return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+}
+
+// Marks every form of every query word inside `text`, so a reader can see
+// why a result matched before opening it.
+function highlight(text: string, tokens: string[]): ReactNode {
+  const forms = tokens.flatMap(tokenVariants).sort((a, b) => b.length - a.length)
+  if (forms.length === 0) return text
+  const parts = text.split(new RegExp(`(${forms.map(escapeRegExp).join('|')})`, 'gi'))
+  return parts.map((part, i) =>
+    i % 2 === 1 ? (
+      <mark key={i} className="search-mark">
+        {part}
+      </mark>
+    ) : (
+      <Fragment key={i}>{part}</Fragment>
+    ),
+  )
+}
 
 // The query rides the URL as ?q=, read once on mount and mirrored with
 // replaceState (not pushState: one history entry per keystroke would bury
@@ -19,7 +42,9 @@ function readInitialQuery(): string {
 
 export default function Search() {
   const [query, setQuery] = useState(readInitialQuery)
+  const [recent, setRecent] = useState(readRecentSearches)
   const hits = useMemo(() => search(query), [query])
+  const tokens = useMemo(() => queryTokens(query), [query])
 
   useEffect(() => {
     try {
@@ -74,26 +99,69 @@ export default function Search() {
 
         {trimmed.length === 0 && (
           <p className="search-note">
-            Search every stop, the essentials, and the packing list. Works
+            Search every stop, hike, and Secret Guide entry, the essentials and
+            packing list, dining, wildlife, and the seasonal almanac. Works
             offline; the whole guide is on your device.
           </p>
         )}
 
+        {trimmed.length === 0 && recent.length > 0 && (
+          <section className="search-starts" aria-label="Recent searches">
+            <div className="search-starts__head">
+              <span className="eyebrow">Recent</span>
+              <button
+                type="button"
+                className="search-starts__clear"
+                onClick={() => {
+                  clearRecentSearches()
+                  setRecent([])
+                }}
+              >
+                Clear
+              </button>
+            </div>
+            <div className="hikes-chips">
+              {recent.map((q) => (
+                <ChipButton key={q} variant="filter" onClick={() => setQuery(q)}>
+                  {q}
+                </ChipButton>
+              ))}
+            </div>
+          </section>
+        )}
+
         {trimmed.length > 0 && hits.length === 0 && (
           <p className="search-note">
-            Nothing matched. Try a place name, or a single word like "parking"
-            or "sunrise".
+            Nothing matched "{trimmed}". Try a place name, or one of these.
           </p>
+        )}
+
+        {hits.length === 0 && (
+          <section className="search-starts" aria-label="Try searching for">
+            {trimmed.length === 0 && <span className="eyebrow">Try</span>}
+            <div className="hikes-chips">
+              {SEARCH_SUGGESTIONS.map((q) => (
+                <ChipButton key={q} variant="filter" onClick={() => setQuery(q)}>
+                  {q}
+                </ChipButton>
+              ))}
+            </div>
+          </section>
         )}
 
         {Array.from(grouped.entries()).map(([section, sectionHits]) => (
           <section key={section} style={{ marginTop: 32 }}>
             <span className="eyebrow" style={{ display: 'block', marginBottom: 4 }}>{section}</span>
             {sectionHits.map((hit) => (
-              <Link key={`${hit.section}-${hit.id}`} to={hit.url} className="search-result">
+              <Link
+                key={`${hit.section}-${hit.id}`}
+                to={hit.url}
+                className="search-result"
+                onClick={() => recordSearch(query)}
+              >
                 <div className="dateline">{hit.eyebrow}</div>
-                <div className="search-result__title">{hit.title}</div>
-                <p className="search-result__snippet">{hit.snippet}</p>
+                <div className="search-result__title">{highlight(hit.title, tokens)}</div>
+                <p className="search-result__snippet">{highlight(hit.snippet, tokens)}</p>
               </Link>
             ))}
           </section>

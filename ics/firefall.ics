@@ -6,7 +6,7 @@ METHOD:PUBLISH
 X-WR-CALNAME:Yosemite: Horsetail Fall (Firefall) window
 BEGIN:VEVENT
 UID:firefall@dates.thetalusfieldjournal.com
-DTSTAMP:20260905T000000Z
+DTSTAMP:20260922T000000Z
 DTSTART;VALUE=DATE:20260210
 DTEND;VALUE=DATE:20260227
 RRULE:FREQ=YEARLY
@@ -17,7 +17,7 @@ DESCRIPTION:The sun lines up with Horsetail Fall in the second half of Febr
  western sky is clear. Typical window\, not a published date\; the park ann
  ounces the day a few days ahead. Source: https://www.nps.gov/yose/learn/ne
  ws/yosemite-national-park-prepares-for-2026-horsetail-fall-viewing.htm. Ve
- rified 2026-09-05. The Talus Field\, https://thetalusfieldjournal.com/date
+ rified 2026-09-22. The Talus Field\, https://thetalusfieldjournal.com/date
  s
 URL:https://thetalusfieldjournal.com/dates
 BEGIN:VALARM

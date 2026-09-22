@@ -94,7 +94,7 @@ const seed: WildlifeEntryT[] = [
     note:
       'Mule deer injure more Yosemite visitors annually than any large predator, with habituated animals becoming especially unpredictable.',
     safety:
-      'Do not approach or hand-feed. Habituated deer have kicked and gored visitors, especially in developed areas. Keep at least 25 yards distance.',
+      'Do not approach or hand-feed. Habituated deer have kicked and gored visitors, especially in developed areas. The park asks for at least 25 feet from deer and other wildlife, and 150 feet from bears and coyotes.',
   },
   {
     id: 'coyote',
@@ -108,6 +108,8 @@ const seed: WildlifeEntryT[] = [
       'Meadows, forest edges, open brushy areas from valley to high country, most active dawn and dusk.',
     note:
       'A single animal\'s diet spans mice, insects, berries, scavenged food, and occasionally young ungulates.',
+    safety:
+      'Stay at least 150 feet away, the same distance the park sets for bears. Do not feed one.',
   },
   {
     id: 'bobcat',
