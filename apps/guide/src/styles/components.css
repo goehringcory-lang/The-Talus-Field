@@ -957,6 +957,38 @@
   margin-top: var(--s5);
 }
 
+/* Empty-box starting points: recent searches and suggestions. */
+.search-starts {
+  margin-top: var(--s5);
+}
+.search-starts .eyebrow {
+  display: block;
+  margin-bottom: var(--s2);
+}
+.search-starts__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+.search-starts__clear {
+  background: none;
+  border: 0;
+  padding: 8px 0;
+  font: 600 11px var(--mono);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--ink-3);
+  cursor: pointer;
+}
+
+/* The query words inside a result: a highlighter stroke, not a fill, so a
+   long snippet with many hits still reads as prose. */
+.search-mark {
+  background: linear-gradient(transparent 58%, color-mix(in srgb, var(--gold) 45%, transparent) 58%);
+  color: inherit;
+  padding: 0;
+}
+
 /* Home "in season" strip. */
 .season-strip {
   list-style: none;
@@ -2252,4 +2284,24 @@ a.spec {
   height: 7px;
   border-radius: 50%;
   background: var(--gold);
+}
+
+/* An entry reached by a #fragment link (utils/useLandOnHash.ts): clear the
+   sticky masthead on the scroll, then flash a hairline so the eye finds it. */
+.wildlife-entry {
+  scroll-margin-top: calc(var(--chrome-top-h) + env(safe-area-inset-top, 0px) + 16px);
+}
+/* The dining list's area heads are sticky too, so a landed venue clears one. */
+.dining-row {
+  scroll-margin-top: calc(var(--chrome-top-h) + env(safe-area-inset-top, 0px) + 56px);
+}
+[data-landed] {
+  outline: 2px solid var(--gold);
+  outline-offset: 6px;
+  transition: outline-color 0.6s ease;
+}
+@media (prefers-reduced-motion: reduce) {
+  [data-landed] {
+    transition: none;
+  }
 }

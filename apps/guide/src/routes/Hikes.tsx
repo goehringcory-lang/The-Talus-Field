@@ -5,7 +5,7 @@
 // duration estimate). Fully bundled content, so it works offline.
 // =============================================================================
 
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import GatedChrome from '../components/GatedChrome'
 import PlanTabs from '../components/PlanTabs'
@@ -21,6 +21,7 @@ import type { HikeRouteT, HikeT, Region } from '../content'
 import { announceTripAdd } from '../trip/addFeedback'
 import { useTripPlan } from '../trip/useTripPlan'
 import { getTrackSummary } from '../trails/track'
+import { formatMiles, haversineMiles } from '../utils/geo'
 import './Hikes.css'
 
 const ROUTE_LABEL: Record<HikeRouteT, string> = {
@@ -63,6 +64,56 @@ function matchesFit(hike: HikeT, fit: Set<FitFilter>): boolean {
   return true
 }
 
+// How the list is ordered. 'region' is the catalog's own reading order under
+// region heads; the other three flatten the list and answer one question
+// each ("what is short", "what is flat", "what can I start from here").
+const SORTS = [
+  { id: 'region', label: 'By region' },
+  { id: 'short', label: 'Shortest' },
+  { id: 'gain', label: 'Least climbing' },
+  { id: 'near', label: 'Nearest trailhead' },
+] as const
+type SortMode = (typeof SORTS)[number]['id']
+
+type Filters = {
+  region: Region | null
+  difficulty: Difficulty | null
+  time: TimeBand | null
+  fit: Set<FitFilter>
+  sort: SortMode
+}
+
+// The filters ride the URL (?region=&level=&time=&fit=&sort=), read once on
+// mount and mirrored with replaceState: a reader who opens a hike and comes
+// back finds the list they filtered, not the whole catalog, and a filtered
+// list is a link. Same idiom as /search. 'near' is never mirrored, because
+// a sort that needs a location fix cannot be restored without asking for one.
+function readInitialFilters(): Filters {
+  const empty: Filters = { region: null, difficulty: null, time: null, fit: new Set(), sort: 'region' }
+  try {
+    const q = new URL(window.location.href).searchParams
+    const region = q.get('region')
+    const level = q.get('level')
+    const time = q.get('time')
+    const sort = q.get('sort')
+    return {
+      region: REGIONS.some((r) => r.id === region) ? (region as Region) : null,
+      difficulty: (DIFFICULTIES as readonly string[]).includes(level ?? '') ? (level as Difficulty) : null,
+      time: TIME_BANDS.some((b) => b.id === time) ? (time as TimeBand) : null,
+      fit: new Set(
+        (q.get('fit') ?? '')
+          .split(',')
+          .filter((f): f is FitFilter => FIT_FILTERS.some((x) => x.id === f)),
+      ),
+      sort: sort === 'short' || sort === 'gain' ? sort : 'region',
+    }
+  } catch {
+    return empty
+  }
+}
+
+type Fix = { coord: [number, number] } | { error: string } | 'locating' | null
+
 function formatDistance(hike: HikeT): string {
   return `${hike.distanceMi} mi${hike.route === 'one-way' ? ' one-way' : ''}`
 }
@@ -72,11 +123,32 @@ function formatGain(ft: number): string {
 }
 
 export default function Hikes() {
-  const [regionFilter, setRegionFilter] = useState<Region | null>(null)
-  const [difficultyFilter, setDifficultyFilter] = useState<Difficulty | null>(null)
-  const [timeFilter, setTimeFilter] = useState<TimeBand | null>(null)
-  const [fitFilters, setFitFilters] = useState<Set<FitFilter>>(new Set())
+  const [initial] = useState(readInitialFilters)
+  const [regionFilter, setRegionFilter] = useState<Region | null>(initial.region)
+  const [difficultyFilter, setDifficultyFilter] = useState<Difficulty | null>(initial.difficulty)
+  const [timeFilter, setTimeFilter] = useState<TimeBand | null>(initial.time)
+  const [fitFilters, setFitFilters] = useState<Set<FitFilter>>(initial.fit)
+  const [sort, setSort] = useState<SortMode>(initial.sort)
+  const [fix, setFix] = useState<Fix>(null)
   const { plan, addHike } = useTripPlan()
+
+  useEffect(() => {
+    try {
+      const url = new URL(window.location.href)
+      const set = (key: string, value: string | null) => {
+        if (value) url.searchParams.set(key, value)
+        else url.searchParams.delete(key)
+      }
+      set('region', regionFilter)
+      set('level', difficultyFilter)
+      set('time', timeFilter)
+      set('fit', FIT_FILTERS.filter((f) => fitFilters.has(f.id)).map((f) => f.id).join(','))
+      set('sort', sort === 'short' || sort === 'gain' ? sort : null)
+      window.history.replaceState(window.history.state, '', url)
+    } catch {
+      /* mirroring is a convenience; the list itself never depends on it */
+    }
+  }, [regionFilter, difficultyFilter, timeFilter, fitFilters, sort])
 
   const toggleFit = (id: FitFilter) => {
     setFitFilters((prev) => {
@@ -87,27 +159,74 @@ export default function Hikes() {
     })
   }
 
+  const filterCount =
+    (regionFilter ? 1 : 0) + (difficultyFilter ? 1 : 0) + (timeFilter ? 1 : 0) + fitFilters.size
+  const clearFilters = () => {
+    setRegionFilter(null)
+    setDifficultyFilter(null)
+    setTimeFilter(null)
+    setFitFilters(new Set())
+  }
+
+  // The location is asked for on the tap, never on load (the /compass rule:
+  // a list page that throws a permission prompt on open reads as malware).
+  const chooseSort = (next: SortMode) => {
+    setSort(next)
+    if (next !== 'near' || (fix && typeof fix === 'object' && 'coord' in fix)) return
+    if (!('geolocation' in navigator)) {
+      setFix({ error: 'This browser cannot read a location.' })
+      return
+    }
+    setFix('locating')
+    navigator.geolocation.getCurrentPosition(
+      (pos) => setFix({ coord: [pos.coords.longitude, pos.coords.latitude] }),
+      (err) =>
+        setFix({
+          error:
+            err.code === err.PERMISSION_DENIED
+              ? 'Location is off for this site, so the list stays in region order.'
+              : 'No location fix yet, so the list stays in region order. Try again in the open.',
+        }),
+      { enableHighAccuracy: false, timeout: 15000, maximumAge: 5 * 60 * 1000 },
+    )
+  }
+
+  const here = fix && typeof fix === 'object' && 'coord' in fix ? fix.coord : null
+  const effectiveSort: SortMode = sort === 'near' && !here ? 'region' : sort
+
   const plannedHikeIds = useMemo(
     () => new Set(plan.items.filter((it) => it.type === 'hike').map((it) => it.hikeId)),
     [plan],
   )
 
-  const sections = useMemo(
-    () =>
-      REGIONS.filter((r) => !regionFilter || r.id === regionFilter)
-        .map((r) => ({
-          region: r,
-          hikes: getHikesByRegion(r.id).filter(
-            (h) =>
-              (!difficultyFilter || h.difficulty === difficultyFilter) &&
-              (!timeFilter ||
-                h.durationMin <= (TIME_BANDS.find((b) => b.id === timeFilter)?.maxMin ?? Infinity)) &&
-              matchesFit(h, fitFilters),
-          ),
-        }))
-        .filter((s) => s.hikes.length > 0),
-    [regionFilter, difficultyFilter, timeFilter, fitFilters],
-  )
+  const sections = useMemo(() => {
+    const matches = (h: HikeT) =>
+      (!difficultyFilter || h.difficulty === difficultyFilter) &&
+      (!timeFilter || h.durationMin <= (TIME_BANDS.find((b) => b.id === timeFilter)?.maxMin ?? Infinity)) &&
+      matchesFit(h, fitFilters)
+    const regions = REGIONS.filter((r) => !regionFilter || r.id === regionFilter)
+    if (effectiveSort === 'region') {
+      return regions
+        .map((r) => ({ key: r.id, title: r.title, hikes: getHikesByRegion(r.id).filter(matches) }))
+        .filter((s) => s.hikes.length > 0)
+    }
+    const flat = regions.flatMap((r) => getHikesByRegion(r.id).filter(matches))
+    const away = (h: HikeT) => (here && h.coord ? haversineMiles(here, h.coord) : Infinity)
+    const title =
+      effectiveSort === 'short'
+        ? 'Shortest first'
+        : effectiveSort === 'gain'
+          ? 'Least climbing first'
+          : 'Nearest trailhead first'
+    flat.sort((a, b) =>
+      effectiveSort === 'short'
+        ? a.distanceMi - b.distanceMi
+        : effectiveSort === 'gain'
+          ? a.elevationGainFt - b.elevationGainFt || a.distanceMi - b.distanceMi
+          : away(a) - away(b),
+    )
+    return flat.length > 0 ? [{ key: effectiveSort, title, hikes: flat }] : []
+  }, [regionFilter, difficultyFilter, timeFilter, fitFilters, effectiveSort, here])
 
   const matchCount = useMemo(
     () => sections.reduce((total, s) => total + s.hikes.length, 0),
@@ -172,17 +291,50 @@ export default function Hikes() {
           ))}
         </div>
 
-        {/* The list below rewrites itself on every chip tap with nothing said
-            about it; this is that, spoken. */}
-        <p className="sr-only" aria-live="polite">
-          {matchCount} {matchCount === 1 ? 'hike' : 'hikes'} match
-        </p>
+        <div className="hikes-sort" role="group" aria-label="Sort hikes">
+          <span className="hikes-sort__label">Sort</span>
+          {SORTS.map((s) => (
+            <ChipButton
+              key={s.id}
+              variant="filter"
+              pressed={sort === s.id}
+              onClick={() => chooseSort(s.id)}
+            >
+              {s.label}
+            </ChipButton>
+          ))}
+        </div>
+        {sort === 'near' && fix === 'locating' && (
+          <p className="hikes-sort__note">Finding your position…</p>
+        )}
+        {sort === 'near' && fix && typeof fix === 'object' && 'error' in fix && (
+          <p className="hikes-sort__note">{fix.error}</p>
+        )}
 
-        {sections.length === 0 && <EmptyState note="Nothing matches the current filters." />}
+        {/* The list below rewrites itself on every chip tap; the count says
+            so on screen and, through the live region, aloud. */}
+        <div className="hikes-count">
+          <p aria-live="polite">
+            {matchCount} {matchCount === 1 ? 'hike' : 'hikes'}
+            {filterCount > 0 ? ' match' : ''}
+          </p>
+          {filterCount > 0 && (
+            <button type="button" className="hikes-count__clear" onClick={clearFilters}>
+              Clear {filterCount === 1 ? 'filter' : `${filterCount} filters`}
+            </button>
+          )}
+        </div>
 
-        {sections.map(({ region, hikes }) => (
-          <section key={region.id} aria-label={region.title}>
-            <div className="hikes-region-header">{region.title}</div>
+        {sections.length === 0 && (
+          <EmptyState
+            note="Nothing matches the current filters."
+            action={<Button variant="ghost" onClick={clearFilters}>Show every hike</Button>}
+          />
+        )}
+
+        {sections.map(({ key, title, hikes }) => (
+          <section key={key} aria-label={title}>
+            <div className="hikes-region-header">{title}</div>
             {hikes.map((hike) => {
               const inPlan = plannedHikeIds.has(hike.id)
               const trailheadStop = hike.stopId ? getStopById(hike.stopId) : undefined
@@ -203,6 +355,12 @@ export default function Hikes() {
                     <span className="hike-row__main">
                       <h2 className="hike-row__title">{hike.title}</h2>
                       <span className="hike-row__meta">
+                        {effectiveSort === 'near' && here && hike.coord && (
+                          <span className="hike-row__away">
+                            {formatMiles(haversineMiles(here, hike.coord))} away
+                          </span>
+                        )}
+                        {effectiveSort !== 'region' && <span>{REGION_SHORT[hike.region]}</span>}
                         <span>{DIFFICULTY_LABEL[hike.difficulty]}</span>
                         <span>~{formatTime(hike.durationMin)}</span>
                         <span>{ROUTE_LABEL[hike.route]}</span>
