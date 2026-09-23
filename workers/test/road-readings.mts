@@ -1,7 +1,8 @@
 // Road readings from the park's own prose: which road a status word belongs
 // to, for both readers (the /api/alerts summary and the nightly change watch).
 // The phrasings are the park's (conditions.htm writes every road with its
-// highway beside it) or the shapes its alerts take. Run: npm run test:roads
+// highway beside it) or the shapes its alerts take; the rule each case holds
+// is numbered as in lib/roadText.ts. Run: npm run test:roads
 import { deriveRoads } from '../src/lib/alerts'
 import type { AlertItemT } from '../src/lib/alerts'
 import { deriveRoadReadings } from '../src/lib/roads'
@@ -103,6 +104,103 @@ console.log('\nThe change watch (lib/roads.ts)')
   check('silence is not a status', Object.values(w).every((s) => s === 'unknown'), w)
 }
 
+console.log('\nClauses, places, addresses and areas (lib/roadText.ts)')
+
+{
+  const w = watch([alert('Road update', 'Big Oak Flat Road and Tioga Road are closed for the season.')])
+  check('rule 3: Big Oak Flat Road beside Tioga Road is a road, not an address', w['hwy-120'] === 'closed' && w.tioga === 'closed', w)
+}
+{
+  const w = watch([alert('Road update', 'Tioga Road is open, but Glacier Point Road remains closed for the season.')])
+  check('rule 1: ", but" ends a clause', w.tioga === 'open' && w['glacier-point'] === 'closed', w)
+}
+{
+  const w = watch([alert('Glacier Point Road open, Tioga Road closed for the season')])
+  check('rule 1: a title is split the same way', w.tioga === 'closed' && w['glacier-point'] !== 'closed', w)
+}
+{
+  const w = watch([alert('Road update', 'Highway 120 is closed at Crane Flat, Tioga Road is open.')])
+  check('rule 1: a comma before a second road', w['hwy-120'] === 'closed' && w.tioga === 'open', w)
+}
+{
+  const w = watch([alert('Road update', 'Chains are required on Highway 41, and Tioga Road is open.')])
+  check('rule 1: ", and" between two clauses', w['hwy-41'] === 'chains' && w.tioga === 'open', w)
+}
+{
+  const w = watch([alert('Road update', 'Tioga Road, Glacier Point Road, and Mariposa Grove Road are closed.')])
+  check(
+    'rule 1: ", and" at the end of a list joins it',
+    w.tioga === 'closed' && w['glacier-point'] === 'closed' && w['mariposa-grove'] === 'closed',
+    w,
+  )
+}
+{
+  const w = watch([alert('Road update', 'Trails are closed, but Tioga Road is open.')])
+  check('rule 1: a clause before the first road is its own', w.tioga === 'open', w)
+}
+{
+  const w = watch([alert('Glacier Point Road closed at Badger Pass', 'Glacier Point Road, which leaves the Wawona Road at Chinquapin, is closed beyond Badger Pass.')])
+  check('rule 2: Wawona Road in a relative clause is a place', w['glacier-point'] === 'closed' && w['hwy-41'] === 'unknown', w)
+}
+{
+  const w = watch([alert('Big Oak Flat Road closed', 'Big Oak Flat Road is closed from Crane Flat to the Tioga Road junction.')])
+  check('rule 2: "to the Tioga Road junction" is a place', w['hwy-120'] === 'closed' && w.tioga === 'unknown', w)
+}
+{
+  const w = watch([alert('Road update', 'Tioga Road (Highway 120) and Glacier Point Road are closed.')])
+  check(
+    'rules 1 and 3: a bracket inside a pair of roads',
+    w.tioga === 'closed' && w['glacier-point'] === 'closed' && w['hwy-120'] === 'unknown',
+    w,
+  )
+}
+{
+  const w = watch([alert('Road update', 'Highway 120 (Tioga Road) is closed for the season.')])
+  check('rule 3: a road by name in brackets names the highway before it', w.tioga === 'closed' && w['hwy-120'] === 'unknown', w)
+}
+{
+  const w = watch([alert('Tioga Road / Highway 120 closed for the season')])
+  check('rule 3: "Tioga Road / Highway 120" is one road', w.tioga === 'closed' && w['hwy-120'] === 'unknown', w)
+}
+{
+  const w = watch([alert('Wawona area closures', 'The area east of the Wawona Road is closed.')])
+  check('rule 4: "the area east of the Wawona Road" is the area', w['hwy-41'] === 'unknown', w)
+}
+{
+  const w = watch([alert('Glacier Point Road area closure', 'The area remains closed.')])
+  check('rule 4: "Glacier Point Road area closure" is the area', w['glacier-point'] === 'unknown', w)
+}
+{
+  const w = watch([alert('Road update', 'Glacier Point Road is open, but the area east of the Wawona Road is closed.')])
+  check('rule 4: an area clause beside an open road', w['glacier-point'] === 'open' && w['hwy-41'] === 'unknown', w)
+}
+{
+  const w = watch([alert('Road update', 'Tioga Road is open, but trails near Tenaya Lake are closed.')])
+  check('rule 4: trails after a road\'s clause are not the road', w.tioga === 'open', w)
+  const bare = watch([alert('Road update', 'Tioga Road is open and the area north of it is closed.')])
+  check('... also after a bare "and"', bare.tioga === 'open', bare)
+  const both = watch([alert('Road update', 'Tioga Road and all trailheads along it are closed.')])
+  check('... but "Tioga Road and all trailheads" is both', both.tioga === 'closed', both)
+}
+{
+  const w = watch([alert('Campground update', 'Hodgdon Meadow Campground (on Big Oak Flat Road) is closed for the season.')])
+  check('rule 4: a campground on a road is the campground', w['hwy-120'] === 'unknown', w)
+  const c = watch([alert('Campground update', 'Crane Flat Campground, on Big Oak Flat Road, is closed.')])
+  check('... also between commas', c['hwy-120'] === 'unknown', c)
+}
+{
+  const w = watch([alert('Road closures', 'Tioga Road (closed for the season), Glacier Point Road (open to Badger Pass).')])
+  check('rule 1: news in a bracket stays with its road', w.tioga === 'closed' && w['glacier-point'] !== 'closed', w)
+}
+{
+  const w = watch([alert('Glacier Point Road update', 'The area remains closed.')])
+  check('rule 5: "the area" is not "the road"', w['glacier-point'] === 'unknown', w)
+}
+{
+  const w = watch([alert('Tioga Road update', 'The road is closed east of the Big Oak Flat Road junction.')])
+  check('rule 5: "the road" before a place', w.tioga === 'closed' && w['hwy-120'] === 'unknown', w)
+}
+
 console.log('\nThe /api/alerts summary (lib/alerts.ts)')
 
 {
@@ -129,6 +227,22 @@ console.log('\nThe /api/alerts summary (lib/alerts.ts)')
 {
   const s = summary([alert('Tioga Road is closed for the season', 'The road over Tioga Pass is closed.')])
   check('the flow test fixture', s.tioga === 'closed' && s['glacier-point'] === 'unknown', s)
+}
+{
+  const s = summary([alert('Road update', 'Tioga Road is open, but Glacier Point Road remains closed for the season.')])
+  check('", but" ends a clause', s.tioga === 'open' && s['glacier-point'] === 'closed', s)
+}
+{
+  const s = summary([alert('Glacier Point Road open, Tioga Road closed for the season')])
+  check('a title is split the same way', s.tioga === 'closed' && s['glacier-point'] !== 'closed', s)
+}
+{
+  const s = summary([alert('Road update', 'Big Oak Flat Road is closed and Tioga Road is open.')])
+  check('the summary knows the highway names', s.tioga === 'open', s)
+}
+{
+  const s = summary([alert('Tioga Road area closure', 'Trails north of Tioga Road are closed.')])
+  check('an area named for Tioga Road is not Tioga Road', s.tioga === 'unknown', s)
 }
 
 console.log(failures === 0 ? '\nALL CHECKS PASSED' : `\n${failures} CHECK(S) FAILED`)

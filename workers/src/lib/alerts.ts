@@ -20,7 +20,7 @@
 
 import { z } from 'zod'
 import type { Env } from '../env'
-import { TIOGA_AND_GLACIER_POINT, textAbout } from './roadText'
+import { APPROACH_HIGHWAYS, TIOGA_AND_GLACIER_POINT, textAbout } from './roadText'
 
 const NPS_ALERTS_URL = 'https://developer.nps.gov/api/v1/alerts'
 const PAGE_SIZE = 100
@@ -67,11 +67,13 @@ const ALERTS_KEY = 'alerts:v1'
 const FRESH_MS = 15 * 60 * 1000
 
 // The roads whose seasonal status readers actually plan around. Matching is
-// per sentence (lib/roadText.ts): a status word counts only for the roads its
-// own sentence names, so "Tioga Road is open. Glacier Point Road remains
-// closed." reads as two roads, not as Tioga closed.
+// per clause (lib/roadText.ts): a status word counts only for the roads its
+// own clause is about, so "Tioga Road is open, but Glacier Point Road remains
+// closed." reads as two roads, not as Tioga closed. Tioga matches the bare
+// name too ("Tioga closed for the season"), taking "Road" or "Pass" with it
+// when present so the mention is the whole name.
 const ROADS: Array<{ id: RoadIdT; label: string; re: RegExp }> = [
-  { id: 'tioga', label: 'Tioga Road', re: /tioga/i },
+  { id: 'tioga', label: 'Tioga Road', re: /\btioga(?:\s+(?:road|pass))?\b/i },
   {
     id: 'glacier-point',
     label: 'Glacier Point Road',
@@ -80,6 +82,10 @@ const ROADS: Array<{ id: RoadIdT; label: string; re: RegExp }> = [
   { id: 'mariposa-grove', label: 'Mariposa Grove Road', re: /mariposa grove road/i },
   { id: 'hetch-hetchy', label: 'Hetch Hetchy Road', re: /hetch hetchy road/i },
 ]
+
+// Every road the attribution should know, the approach highways included, so
+// a clause about Big Oak Flat Road never lends its "closed" to Tioga Road.
+const NAMED_ROADS = [...ROADS, ...APPROACH_HIGHWAYS]
 
 // A "closed" that describes an area ("The closed area extends east of the
 // Wawona Road") is about trails, not a road's status.
@@ -109,7 +115,7 @@ export function deriveRoads(alerts: AlertItemT[]): RoadStatusT[] {
     let status: RoadStatusT['status'] = 'unknown'
     let detail: string | null = null
     for (const alert of alerts) {
-      const text = textAbout(alert, road, ROADS)
+      const text = textAbout(alert, road, NAMED_ROADS)
       if (!text) continue
       // Closed wins over open: a "reopening June 1" sentence inside a closure
       // alert must not read as open today.

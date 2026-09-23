@@ -34,7 +34,8 @@
 import type { Env } from '../env'
 import type { AlertItemT, AlertsRecordT } from './alerts'
 import { sendRoadChangeNotice } from './email'
-import { TIOGA_AND_GLACIER_POINT, textAbout } from './roadText'
+import { HWY_120, HWY_140, HWY_41, TIOGA_AND_GLACIER_POINT, textAbout } from './roadText'
+import type { RoadPattern } from './roadText'
 
 export type WatchedRoadId =
   | 'tioga'
@@ -77,13 +78,13 @@ const WATCH_KEY = 'roads:watch:v1'
 // the sweep also applies its own recency rule (see pushSweep.ts).
 const KEEP_CHANGES_MS = 7 * 24 * 60 * 60 * 1000
 
-// Matching is per sentence (lib/roadText.ts): a status word counts only for
-// the roads its own sentence names, and a highway named beside an in-park road
-// is that road's address. The highway patterns take the in-park names too (Big
-// Oak Flat Road is 120 inside the gate, El Portal Road is 140, Wawona Road is
-// 41), because the park's alerts use whichever name the sign nearest the
-// closure carries.
-export const WATCHED_ROADS: Array<{ id: WatchedRoadId; label: string; re: RegExp; highway?: boolean }> = [
+// Matching is per clause (lib/roadText.ts): a status word counts only for the
+// roads its own clause is about. The highways come from there because the
+// /api/alerts summary reads with their names too; each takes its number and
+// the name it carries inside the park (Big Oak Flat Road is 120 inside the
+// gate, El Portal Road is 140, Wawona Road is 41), because the park's alerts
+// use whichever name the sign nearest the closure carries.
+export const WATCHED_ROADS: Array<RoadPattern & { id: WatchedRoadId; label: string }> = [
   {
     id: 'tioga',
     label: 'Tioga Road',
@@ -96,24 +97,9 @@ export const WATCHED_ROADS: Array<{ id: WatchedRoadId; label: string; re: RegExp
   },
   { id: 'mariposa-grove', label: 'Mariposa Grove Road', re: /\bmariposa grove road\b/i },
   { id: 'hetch-hetchy', label: 'Hetch Hetchy Road', re: /\bhetch hetchy road\b/i },
-  {
-    id: 'hwy-120',
-    label: 'Highway 120',
-    re: /\b(highway|hwy\.?|route|state route|sr-?|ca-?)\s*120\b|\bbig oak flat road\b/i,
-    highway: true,
-  },
-  {
-    id: 'hwy-140',
-    label: 'Highway 140',
-    re: /\b(highway|hwy\.?|route|state route|sr-?|ca-?)\s*140\b|\bel portal road\b/i,
-    highway: true,
-  },
-  {
-    id: 'hwy-41',
-    label: 'Highway 41',
-    re: /\b(highway|hwy\.?|route|state route|sr-?|ca-?)\s*41\b|\bwawona road\b/i,
-    highway: true,
-  },
+  { ...HWY_120, label: 'Highway 120' },
+  { ...HWY_140, label: 'Highway 140' },
+  { ...HWY_41, label: 'Highway 41' },
 ]
 
 // "The closed area extends east of the Wawona Road" (the park's Dome Fire
