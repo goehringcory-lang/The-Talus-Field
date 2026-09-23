@@ -65,8 +65,9 @@ Dispatch by the option's action type:
   and lint before pushing. This is the paid product: keep the diff minimal.
 - **API Worker change** → branch `claude/intel-api-<topic>`, PR title
   prefixed `[api]`. Follow `workers/CLAUDE.md`; run the Worker typecheck.
-  The PR body must state plainly that the API Worker never auto-deploys and
-  list the owner's manual `wrangler deploy` step.
+  The PR body must state plainly that merging deploys the API Worker
+  (checkout, the Stripe webhook, the buyer records) through its gated
+  Workers Build.
 - **Promo / monetization** → ship only the code side (copy, a banner slot
   that already exists, an affiliate ID paste point) plus a numbered owner
   checklist in the PR body for everything requiring the Stripe or partner
@@ -97,7 +98,7 @@ session's PR rules.
 
 1. Comment once per executed option on its brief issue: option number, what
    shipped, the PR link (or the drafted outreach), and any owner steps
-   (Stripe checklist, `wrangler deploy`). If an option could not ship, say
+   (Stripe checklist, a secret to set). If an option could not ship, say
    exactly why and what you need.
 2. Rejected options: no action, no comment.
 3. Close a brief when every option is executed, rejected, or explicitly

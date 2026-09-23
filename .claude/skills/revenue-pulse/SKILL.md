@@ -82,9 +82,11 @@ tracks anywhere.
    production**: no checkouts, no signups, no redemptions, ever.
 3. On a sale-breaking finding: repo-side → the fix is this run's one PR, and
    optimization waits a week. Deploy-side (a live value trailing the repo
-   means a stale manual deploy; the API Worker never auto-deploys) → it is
-   the top line of the ledger comment with the owner's exact step
-   (`cd workers && npx wrangler deploy`). A stale editorial Workers Build
+   means the API Worker's Workers Build failed for that merge, or the Worker
+   was rolled back; a red build ships nothing) → it is the top line of the
+   ledger comment with the owner's exact step (read the build log on the
+   Worker's Deployments tab, then retry the build, or deploy by hand from a
+   clean worktree of `origin/main` per DEPLOY.md section 4). A stale editorial Workers Build
    (newest articles 404) is the sweep's known failure mode: report, never
    "fix" the repo.
 4. **The live hosts are reachable.** The environment has had full
@@ -160,8 +162,8 @@ The repo's discipline binds everything:
   `npm --prefix scripts run checks` must add no new errors (failures that
   reproduce on `origin/main` are pre-existing: note, do not chase).
 - `apps/guide/` → build and lint pass; minimal diff, it is the paid product.
-- `workers/` → typecheck passes, and the PR body states that the API Worker
-  never auto-deploys, with the owner's manual deploy step.
+- `workers/` → typecheck passes, and the PR body states that merging deploys
+  the API Worker (checkout included) through its gated Workers Build.
 - PR body: the item, the board reasoning (why this one, why now), the revenue
   mechanism expected, how it will be measured (the GA4 event or `aff_list`
   value that will show it, or the owner-court number to watch), and any

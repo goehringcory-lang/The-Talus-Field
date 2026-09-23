@@ -71,8 +71,8 @@ Or fire the Routine itself from the Routines list (`fire_trigger`).
 - **Widen or narrow execution scope**: the dispatch table and hard rules in
   `.claude/skills/intel-execute/SKILL.md`. Current scope is the whole repo,
   PR-only, with the guardrails: Stripe and pricing are never touched beyond
-  what an approved option literally says, the API Worker's manual deploy
-  stays yours, and outreach is drafted but never sent.
+  what an approved option literally says, merging an `[api]` PR, which is
+  what deploys the API Worker, stays yours, and outreach is drafted but never sent.
 
 ## Territory versus the existing Routines
 
