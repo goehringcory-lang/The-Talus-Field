@@ -79,11 +79,12 @@ npm run road-watch -- --previous=<scratch>/next.json --out=<scratch>/next.json -
 ```
 
 If it does not, leave the candidate: tomorrow's reading confirms it or
-drops it. The readings are regex-derived from the park's alert prose, so an
-alert about one road can mention another (a Tioga closure notice that names
-Highway 120 reads as a 120 closure): a highway change is never confirmed on
-the reading alone, and a reading the second source contradicts is noted in
-the issue as a false reading, with the alert text that produced it.
+drops it. The readings are pattern-matched from the park's alert prose, and
+one notice often names several roads (Tioga Road is also Highway 120, and
+Glacier Point Road leaves Highway 41), so a reading can land on the wrong
+road: a highway change is never confirmed on the reading alone, and a
+reading the second source contradicts is noted in the issue as a false
+reading, with the alert text that produced it.
 
 ## Phase 2 — A confirmed change: draft the promised email
 
