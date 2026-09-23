@@ -2185,116 +2185,128 @@ main:focus { outline: none; }
 }
 .cam-tile:hover .cam-tile__label { color: var(--moss); }
 
-/* ── The elevation chart ────────────────────────────────────────────────── */
+/* ── The elevation profile ──────────────────────────────────────────────── */
 /* Two stations share the valley floor and one sits nearly a mile above them.
-   The chart exists to make that difference a shape before it is a sentence. */
-.elev__plot {
-  position: relative;
-  height: 240px;
-  border-bottom: 2px solid var(--rule);
-}
-.elev__grid {
-  position: absolute;
-  left: 0;
-  right: 0;
-  border-top: 1px dashed var(--rule-soft);
-}
-.elev__grid i {
-  position: absolute;
-  left: 0;
-  bottom: 4px;
+   The profile exists to make that difference a shape before it is a sentence.
+   Geometry lives in page-conditions.jsx (CONDITIONS_ELEV_LAYOUTS); the SVG is
+   drawn at its container's real pixel width, so nothing here scales text or
+   strokes. Colours are the design system's own tokens: there is no dark
+   scheme to follow. */
+.elev { margin-top: 8px; }
+.elev__caption {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 4px 24px;
   font-family: var(--sans);
+}
+.elev__title {
   font-size: 9px;
-  font-style: normal;
   font-weight: 600;
-  letter-spacing: 0.14em;
+  letter-spacing: 1.7px;
   text-transform: uppercase;
-  color: var(--ink-3);
+  color: var(--hp-ink);
 }
-.elev__bars {
-  position: absolute;
-  inset: 0;
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 24px;
-  align-items: end;
-}
-.elev__col { display: flex; justify-content: center; align-items: end; height: 100%; }
-.elev__bar {
-  position: relative;
-  width: min(150px, 100%);
-  border-top: 3px solid var(--ink);
-  border-left: 1px solid var(--rule);
-  border-right: 1px solid var(--rule);
-  /* A printed-chart hatch rather than a flat fill: the page is a broadsheet,
-     and a solid block would read as a UI component dropped onto it. */
-  background-image: repeating-linear-gradient(
-    135deg,
-    color-mix(in oklab, var(--ink) 15%, transparent) 0 2px,
-    transparent 2px 7px
-  );
-}
-.elev__bar--high {
-  border-top-color: var(--rust);
-  background-image: repeating-linear-gradient(
-    135deg,
-    color-mix(in oklab, var(--rust) 20%, transparent) 0 2px,
-    transparent 2px 7px
-  );
-}
-.elev__ft {
-  position: absolute;
-  top: -26px;
-  left: -40px;
-  right: -40px;
-  text-align: center;
+.elev__scale { font-size: 11px; color: var(--hp-muted); }
+.elev__svg { display: block; margin-top: 18px; overflow: visible; }
+.elev--compact .elev__svg { margin-top: 26px; }
+.elev__hatch { stroke: color-mix(in oklab, var(--hp-ink) 17%, transparent); stroke-width: 1.2; }
+.elev__fill { fill: url(#cond-elev-hatch); }
+.elev__gridline { stroke: color-mix(in oklab, var(--hp-muted) 45%, transparent); stroke-width: 1; stroke-dasharray: 2 4; }
+.elev__baseline { stroke: var(--hp-ink); stroke-width: 1.5; }
+.elev__gridlabel,
+.elev__passlabel,
+.elev__risenote,
+.elev__tagtext {
   font-family: var(--sans);
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.16em;
+  font-weight: 600;
   text-transform: uppercase;
-  color: var(--ink);
 }
-.elev__bar--high .elev__ft { color: var(--rust); }
+.elev__gridlabel { font-size: 10px; letter-spacing: 0.14em; fill: var(--hp-muted); }
+.elev__line { fill: none; stroke: var(--hp-ink); stroke-width: 2; stroke-linejoin: round; stroke-linecap: round; }
+.elev__line--high { stroke: var(--hp-accent); stroke-width: 2.5; }
+.elev__datum { stroke: color-mix(in oklab, var(--hp-ink) 70%, transparent); stroke-width: 1; stroke-dasharray: 6 4; }
+.elev__drop { stroke: var(--hp-muted); stroke-width: 1; }
+.elev__stem { stroke: var(--hp-ink); stroke-width: 1.25; }
+.elev__station--high .elev__stem { stroke: var(--hp-accent); }
+.elev__pin { fill: var(--hp-paper); stroke: var(--hp-ink); stroke-width: 2; }
+.elev__station--high .elev__pin { fill: var(--hp-accent); stroke: var(--hp-accent); }
+.elev__tag { fill: var(--hp-ink); }
+.elev__station--high .elev__tag { fill: var(--hp-accent); }
+.elev__tagtext { font-size: 10.5px; font-weight: 700; letter-spacing: 0.12em; fill: var(--hp-paper); }
+.elev__dim line { stroke: var(--hp-accent); stroke-width: 1.25; }
+.elev__plate { fill: var(--hp-paper); }
+.elev__rise { font-family: var(--serif); font-size: 30px; font-weight: 500; fill: var(--hp-accent); }
+.elev__risenote { font-size: 10px; letter-spacing: 0.14em; fill: var(--hp-ink); }
+.elev__pass { fill: var(--hp-muted); }
+.elev__passlabel { font-size: 10px; letter-spacing: 0.14em; fill: var(--hp-muted); }
+.elev--compact .elev__gridlabel { font-size: 9px; letter-spacing: 0.12em; }
+.elev--compact .elev__line { stroke-width: 1.75; }
+.elev--compact .elev__line--high { stroke-width: 2.25; }
+.elev--compact .elev__pin { stroke-width: 1.75; }
+.elev--compact .elev__tagtext { font-size: 9.5px; letter-spacing: 0.08em; }
+.elev--compact .elev__rise { font-size: 19px; }
+.elev--compact .elev__risenote { font-size: 8px; letter-spacing: 0.12em; }
+.elev--compact .elev__passlabel { font-size: 8.5px; letter-spacing: 0.12em; }
+
+/* The station cards. In the wide layout each sits under its own pin, so the
+   drop lines land on the card rules; in the compact one they stack. */
 .elev__cards {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 24px;
 }
+.elev--compact .elev__cards { grid-template-columns: 1fr; gap: 32px; margin-top: 28px; }
 /* Flex column so the "Point forecast" links sit on one line across all three
    cards; the notes wrap to different depths and left them stepped. */
-.fc { padding-top: 20px; display: flex; flex-direction: column; }
-.fc__name {
+.fc {
+  display: flex;
+  flex-direction: column;
+  padding-top: 20px;
+  border-top: 3px solid var(--hp-ink);
   font-family: var(--sans);
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--ink);
 }
-.fc__name--high { color: var(--rust); }
-.fc__note {
-  font-family: var(--serif);
-  font-size: 16px;
-  line-height: 1.5;
-  color: var(--ink-2);
-  margin: 12px 0 0;
-}
+.fc--high { border-top-color: var(--hp-accent); }
+.fc__meta { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+.fc__num { font-size: 11px; font-weight: 700; letter-spacing: 0.16em; color: var(--hp-ink); }
+.fc--high .fc__num { color: var(--hp-accent); }
+.fc__coords { font-size: 11px; color: var(--hp-muted); font-variant-numeric: tabular-nums; }
+.fc__head { margin-top: 10px; }
+.fc__name { margin: 0; font: 500 28px/1.15 var(--serif); color: var(--hp-ink); }
+.fc__elev { margin-top: 6px; display: flex; align-items: baseline; gap: 6px; color: var(--hp-ink); }
+.fc--high .fc__elev { color: var(--hp-accent); }
+.fc__ft { font: 500 44px/1 var(--serif); font-variant-numeric: lining-nums tabular-nums; }
+.fc__unit { font-size: 11px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; }
+.fc__note { margin: 14px 0 18px; font: 17px/1.5 var(--serif); color: var(--hp-ink); }
 .fc__link {
   align-self: start;
   margin-top: auto;
-  padding-top: 14px;
-  font-family: var(--sans);
-  font-size: 10px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
+  padding: 0 18px;
+  border: 1px solid var(--hp-ink);
+  border-radius: 3px;
+  font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  text-decoration: none;
-  color: var(--ink);
-  border-bottom: 1px solid var(--rust);
-  padding-bottom: 3px;
+  color: var(--hp-ink);
+  transition: background-color 0.2s, color 0.2s;
 }
-.fc__link:hover { color: var(--moss); }
+.fc__link svg { fill: none; stroke: currentColor; stroke-width: 1.6; }
+.fc__link:hover { background: var(--hp-ink); color: var(--hp-paper); }
+.fc__link:focus-visible { outline: 2px solid var(--hp-accent); outline-offset: 3px; }
+.elev--compact .fc { padding-top: 16px; }
+.elev--compact .fc__head { margin-top: 8px; display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+.elev--compact .fc__name { font-size: 25px; }
+.elev--compact .fc__elev { margin-top: 0; gap: 4px; white-space: nowrap; }
+.elev--compact .fc__ft { font-size: 32px; }
+.elev--compact .fc__unit { font-size: 10px; }
+.elev--compact .fc__note { margin-top: 10px; margin-bottom: 14px; }
+.elev--compact .fc__link { align-self: stretch; justify-content: space-between; min-height: 48px; padding: 0 16px; }
 
 /* ── Parking, board variant ─────────────────────────────────────────────── */
 .cond-split {
@@ -2409,16 +2421,6 @@ main:focus { outline: none; }
 }
 @media (max-width: 560px) {
   .gates { grid-template-columns: 1fr; gap: 20px; }
-  .elev__plot { height: 180px; }
-  /* The axis labels get their own gutter: at full width the first bar sat
-     on top of "2,000 ft" and "4,000 ft", and its own "4,000 ft" label
-     collided with the grid's. */
-  .elev__bars { gap: 12px; left: 52px; }
-  .elev__grid i { font-size: 8px; letter-spacing: 0.08em; }
-  .elev__ft { left: -20px; right: -20px; font-size: 10px; }
-  .elev__cards { grid-template-columns: 1fr; gap: 0; }
-  .fc { padding-top: 16px; border-top: 1px solid var(--rule-soft); margin-top: 16px; }
-  .fc:first-child { border-top: 0; margin-top: 0; }
 }
 
 .conditions__list {
