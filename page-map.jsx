@@ -123,6 +123,188 @@ function getCategoryStyle(category) {
 
 const ALL_CATEGORIES = Object.keys(CATEGORY_STYLES);
 
+// ---------------------------------------------------------------------------
+// First-visit orientation. The pins answer "what is worth a stop"; this layer
+// answers the questions a first-time visitor has before any of that: which
+// gate am I using, which roads are shut in my month, where is the gas, and how
+// far apart are the park's areas. Every line of copy below restates something
+// the journal already publishes (the source article is named beside each), so
+// the map adds no advice of its own; a new entry needs a published sentence
+// behind it, the same rule the /stay picker follows.
+// ---------------------------------------------------------------------------
+
+// The reader's gate and month, persisted per device. The month seeds from the
+// /planning trip selector's `when` answer (tfg.trip.selector) when this map
+// has never been set up, so a reader who told the site their month once is
+// not asked twice.
+const SETUP_KEY = "tfg.map.setup";
+const TRIP_SELECTOR_KEY = "tfg.trip.selector";
+
+// Road status per month is NOT restated here: it is window.TRIP_MONTHS
+// (intent-data.js, loaded on this route by PAGE_MODULES), the same table that
+// caps the trip selector's itineraries, so the map and /planning cannot
+// disagree about whether Tioga Road is open in May.
+function getTripMonths() {
+  return Array.isArray(window.TRIP_MONTHS) ? window.TRIP_MONTHS : [];
+}
+function getTripMonth(key) {
+  return getTripMonths().find((m) => m.key === key) || null;
+}
+
+function loadSetup() {
+  const saved = window.safeStorage.getJSON(SETUP_KEY) || {};
+  const setup = {
+    gate: typeof saved.gate === "string" ? saved.gate : null,
+    month: typeof saved.month === "string" ? saved.month : null,
+  };
+  if (!setup.month) {
+    const answers = window.safeStorage.getJSON(TRIP_SELECTOR_KEY);
+    if (answers && typeof answers.when === "string") setup.month = answers.when;
+  }
+  if (setup.month && !getTripMonth(setup.month)) setup.month = null;
+  if (setup.gate && !ORIENT_GATES.some((g) => g.id === setup.gate)) setup.gate = null;
+  return setup;
+}
+
+// The five entrance stations. `road` names the TRIP_MONTHS field that closes
+// the gate, where one does. Hints: /distances (drive times), getting-to-yosemite
+// (Hetch Hetchy), tuolumne-meadows-in-a-day (the Tioga side).
+const ORIENT_GATES = [
+  { id: "arch", label: "Arch Rock", hwy: "Hwy 140", pos: { lat: 37.6878, lng: -119.7297 },
+    hint: "From Mariposa and El Portal, open year-round. El Portal to the Valley is 25 to 35 minutes." },
+  { id: "south", label: "South", hwy: "Hwy 41", pos: { lat: 37.5049, lng: -119.6318 },
+    hint: "From Oakhurst. The Mariposa Grove welcome plaza is immediately inside the gate; Wawona is six miles on, the Valley about an hour past that." },
+  { id: "bof", label: "Big Oak Flat", hwy: "Hwy 120 W", pos: { lat: 37.7996, lng: -119.8739 },
+    hint: "From Groveland and the Bay Area. Crane Flat, just inside, has the only gas on the west side and is where Tioga Road begins." },
+  { id: "hh", label: "Hetch Hetchy", hwy: "Evergreen Rd", pos: { lat: 37.892, lng: -119.841 },
+    hint: "Its own entrance on its own road, open daylight hours only. It connects to nothing else in the park: to reach the Valley you drive back out." },
+  { id: "tioga", label: "Tioga Pass", hwy: "Hwy 120 E", road: "tioga", pos: { lat: 37.9108, lng: -119.258 },
+    hint: "From Lee Vining and the Eastern Sierra, about 30 minutes to Tuolumne Meadows. Only while Tioga Pass is open, and there is no gas between Lee Vining and Crane Flat." },
+];
+
+// Gas and visitor centers. The in-park pumps are at Crane Flat and Wawona
+// (yosemite-gateway-towns-compared, first-time-yosemite-overwhelm); El Portal's
+// station is outside the gate (gateway towns). Only the two visitor centers
+// the journal names are here.
+const ORIENT_SERVICES = [
+  { id: "gas-crane", kind: "gas", label: "Gas at Crane Flat", pos: { lat: 37.7536, lng: -119.8006 },
+    note: "The only fuel inside the park on the west side, pay-at-pump." },
+  { id: "gas-wawona", kind: "gas", label: "Gas at Wawona", pos: { lat: 37.5364, lng: -119.6537 },
+    note: "The other in-park pumps, on the Wawona Road." },
+  { id: "gas-elportal", kind: "gas", label: "Gas in El Portal", pos: { lat: 37.6746, lng: -119.7835 },
+    note: "Outside the Arch Rock gate. Fill up in the gateway town." },
+  { id: "vc-valley", kind: "vc", label: "Yosemite Valley Visitor Center", pos: { lat: 37.7486, lng: -119.5871 } },
+  { id: "vc-tuolumne", kind: "vc", label: "Tuolumne Meadows Visitor Center", pos: { lat: 37.8736, lng: -119.3724 },
+    note: "Seasonal, with Tioga Road." },
+];
+
+// The four areas and how far they sit from the Valley, drawn as labels at
+// park-wide zoom. Positions sit in open ground beside each area rather than on
+// it, so a label never covers the area's own pins or cluster. glacier-point-how-to-visit (about an hour),
+// yosemite-camping-complete-guide (Wawona, about an hour south),
+// tioga-road-opening-weekend-2026 (roughly 90 minutes), getting-to-yosemite
+// (Hetch Hetchy), tuolumne-meadows-in-a-day (no gas at Tuolumne).
+const ORIENT_AREAS = [
+  { id: "valley", label: "Yosemite Valley", line: "Where most first days start. No gas.", pos: { lat: 37.785, lng: -119.6 } },
+  { id: "glacier", label: "Glacier Point", line: "About an hour from the Valley", road: "glacier", pos: { lat: 37.7, lng: -119.5 } },
+  { id: "wawona", label: "Wawona", line: "About an hour south of the Valley", pos: { lat: 37.555, lng: -119.56 } },
+  { id: "tuolumne", label: "Tuolumne Meadows", line: "Roughly 90 minutes, Tioga Road only. No gas.", road: "tioga", pos: { lat: 37.93, lng: -119.4 } },
+  { id: "hetch", label: "Hetch Hetchy", line: "Its own road, daylight hours only", pos: { lat: 37.955, lng: -119.79 } },
+];
+// Area labels only make sense at park-wide zoom: closer in they crowd the
+// pins, and further out (a phone's first frame) the five of them pile onto
+// one another. Below LABEL_MIN_ZOOM the gate and gas markers drop their text
+// labels too and keep only the mark, for the same reason.
+const AREA_LABEL_MAX_ZOOM = 11;
+const LABEL_MIN_ZOOM = 10;
+
+// Which pin regions sit beyond a seasonal gate. Everything on Glacier Point
+// Road is past Badger Pass, and every "tuolumne" pin is on Tioga Road past the
+// Crane Flat gate; Hetch Hetchy and Wawona are plowed all winter
+// (yosemite-in-winter).
+const REGION_ROAD = { "glacier-point": "glacier", tuolumne: "tioga" };
+const ROAD_NAMES = { tioga: "Tioga Road", glacier: "Glacier Point Road" };
+const ROAD_STATUS_TEXT = {
+  open: "Open",
+  closed: "Closed to cars",
+  unsettled: "Opening date varies",
+};
+
+// The two seasonal roads, drawn over the map when the chosen month closes
+// them (or leaves the opening date to the snowpack). Geometry is OpenStreetMap
+// data (© OpenStreetMap contributors, ODbL), simplified: Tioga Road from
+// Crane Flat to the Tioga Pass gate, Glacier Point Road from Badger Pass,
+// where the winter plowing ends (glacier-point-how-to-visit), to the point.
+const ROAD_LINES = {
+  tioga: [
+    [
+      [37.79233,-119.72272],[37.78981,-119.72422],[37.78889,-119.72623],[37.78871,-119.72799],[37.78944,-119.73152],[37.78874,-119.73555],
+      [37.78685,-119.73843],[37.78482,-119.7404],[37.78148,-119.74745],[37.78034,-119.7484],[37.77764,-119.7493],[37.77539,-119.75224],
+      [37.77476,-119.7538],[37.77462,-119.75665],[37.77308,-119.75858],[37.77178,-119.76165],[37.76987,-119.76328],[37.76959,-119.76441],
+      [37.76989,-119.76894],[37.76907,-119.77097],[37.76587,-119.77413],[37.76237,-119.7749],[37.76115,-119.77428],[37.76035,-119.77187],
+      [37.75846,-119.76986],[37.75756,-119.76995],[37.75541,-119.77216],[37.75536,-119.77352],[37.75656,-119.77694],[37.75728,-119.77768],
+      [37.75909,-119.77848],[37.75943,-119.77919],[37.75705,-119.78535],[37.75721,-119.78643],[37.75853,-119.78821],[37.75864,-119.78912],
+      [37.75715,-119.79064],[37.75687,-119.79159],[37.75781,-119.79352],[37.75942,-119.79473],[37.75969,-119.79775],[37.76116,-119.80025],
+      [37.76069,-119.80235],[37.75901,-119.80481],[37.75819,-119.80486],[37.75546,-119.80231],[37.75326,-119.79791],[37.75248,-119.79756],
+    ],
+    [
+      [37.87223,-119.36514],[37.87324,-119.35943],[37.87695,-119.35355],[37.87783,-119.34366],[37.88041,-119.33661],[37.8802,-119.32803],
+      [37.88086,-119.32603],[37.88213,-119.32401],[37.88112,-119.32091],[37.88024,-119.31548],[37.88083,-119.30791],[37.87883,-119.30033],
+      [37.87885,-119.29408],[37.87756,-119.28764],[37.87779,-119.28444],[37.87924,-119.27887],[37.87939,-119.27645],[37.88597,-119.27046],
+      [37.89301,-119.26021],[37.8972,-119.25967],[37.90385,-119.26003],[37.9109,-119.25788],
+    ],
+    [
+      [37.852,-119.57509],[37.85097,-119.57272],[37.84983,-119.57194],[37.84841,-119.57173],[37.84324,-119.5737],[37.83724,-119.57781],
+      [37.83364,-119.57792],[37.83216,-119.57838],[37.82811,-119.58135],[37.82667,-119.58137],[37.82446,-119.58001],[37.82276,-119.58096],
+      [37.82194,-119.58096],[37.82053,-119.5788],[37.81915,-119.57805],[37.81811,-119.57825],[37.8162,-119.58034],[37.81546,-119.58056],
+      [37.81465,-119.58026],[37.81402,-119.57907],[37.81467,-119.57644],[37.81432,-119.57497],[37.81086,-119.5725],[37.80836,-119.56894],
+      [37.8074,-119.566],[37.80588,-119.55612],[37.80642,-119.55138],[37.80726,-119.54856],[37.80679,-119.5446],[37.80842,-119.5369],
+      [37.81164,-119.53194],[37.81254,-119.52783],[37.81592,-119.51963],[37.81771,-119.51712],[37.81796,-119.51612],[37.81721,-119.51397],
+      [37.81725,-119.5095],[37.8167,-119.50808],[37.81576,-119.50751],[37.81479,-119.50753],[37.81229,-119.50948],[37.8116,-119.50922],
+      [37.81115,-119.50843],[37.81122,-119.50739],[37.81331,-119.50247],[37.81686,-119.49855],[37.81717,-119.49752],[37.81659,-119.49637],
+      [37.81495,-119.49627],[37.81425,-119.49585],[37.81272,-119.49314],[37.81233,-119.49155],[37.81258,-119.48762],[37.81115,-119.48597],
+      [37.81093,-119.48497],[37.81151,-119.48384],[37.81597,-119.48139],[37.81875,-119.47876],[37.82009,-119.47815],[37.82262,-119.47779],
+      [37.82375,-119.47703],[37.82447,-119.47576],[37.82644,-119.46945],[37.82889,-119.46808],[37.83051,-119.46763],[37.83285,-119.46606],
+      [37.83431,-119.46323],[37.83362,-119.46075],[37.83383,-119.45895],[37.83611,-119.45478],[37.8403,-119.44984],[37.8432,-119.44754],
+      [37.84737,-119.44536],[37.85215,-119.44094],[37.85724,-119.43801],[37.86331,-119.43296],[37.86587,-119.43161],[37.87191,-119.42736],
+      [37.87339,-119.42554],[37.87431,-119.42002],[37.87622,-119.41786],[37.87672,-119.41649],[37.87601,-119.41189],[37.87658,-119.40674],
+      [37.87737,-119.40541],[37.87958,-119.40394],[37.88112,-119.40194],[37.88149,-119.4007],[37.88039,-119.39691],[37.87684,-119.39458],
+      [37.87363,-119.38645],[37.87333,-119.38415],[37.87373,-119.37763],[37.87203,-119.37065],[37.87222,-119.36517],
+    ],
+    [
+      [37.79264,-119.72254],[37.79693,-119.72042],[37.79908,-119.71871],[37.80291,-119.71765],[37.81112,-119.71323],[37.81302,-119.71342],
+      [37.81407,-119.71268],[37.81595,-119.71248],[37.81708,-119.71286],[37.81859,-119.71424],[37.81961,-119.71409],[37.82003,-119.71333],
+      [37.82103,-119.70622],[37.82159,-119.70491],[37.82362,-119.70278],[37.82541,-119.70189],[37.83028,-119.70224],[37.83122,-119.70172],
+      [37.83224,-119.69866],[37.83613,-119.6926],[37.83827,-119.6903],[37.83952,-119.68687],[37.84408,-119.68092],[37.84973,-119.6719],
+      [37.85008,-119.67055],[37.85013,-119.66553],[37.85159,-119.66137],[37.85139,-119.66017],[37.84984,-119.65715],[37.85013,-119.65372],
+      [37.85097,-119.65209],[37.85284,-119.65086],[37.85701,-119.64622],[37.85757,-119.64497],[37.85764,-119.64346],[37.85653,-119.63994],
+      [37.85249,-119.63322],[37.84983,-119.62598],[37.84902,-119.62022],[37.85055,-119.61568],[37.84872,-119.61101],[37.84988,-119.60786],
+      [37.85021,-119.60536],[37.84833,-119.60161],[37.84873,-119.59717],[37.84825,-119.5964],[37.84627,-119.59498],[37.84364,-119.59508],
+      [37.84146,-119.59384],[37.83988,-119.59364],[37.83904,-119.59221],[37.83994,-119.58954],[37.84156,-119.58889],[37.84445,-119.58864],
+      [37.84641,-119.58712],[37.8499,-119.58091],[37.85202,-119.57862],[37.85232,-119.57746],[37.85205,-119.57539],
+    ],
+    [
+      [37.9108,-119.25789],[37.91045,-119.25793],
+    ],
+  ],
+  glacier: [
+    [
+      [37.6674,-119.66292],[37.6692,-119.65927],[37.67183,-119.65678],[37.67282,-119.65528],[37.67442,-119.64943],[37.67402,-119.64732],
+      [37.67193,-119.64362],[37.67158,-119.6414],[37.67193,-119.6403],[37.67361,-119.63911],[37.67381,-119.63731],[37.67135,-119.63435],
+      [37.67026,-119.62734],[37.66634,-119.61506],[37.66674,-119.61299],[37.66946,-119.61055],[37.66996,-119.60945],[37.66969,-119.6085],
+      [37.66774,-119.60598],[37.66722,-119.60385],[37.66755,-119.59872],[37.66828,-119.59572],[37.6678,-119.59282],[37.66806,-119.58912],
+      [37.66823,-119.58732],[37.66873,-119.5863],[37.66947,-119.58543],[37.67091,-119.58502],[37.67312,-119.58576],[37.67436,-119.5875],
+      [37.67953,-119.58929],[37.68355,-119.58859],[37.686,-119.58988],[37.68813,-119.5904],[37.69008,-119.59008],[37.69113,-119.58709],
+      [37.69391,-119.58588],[37.70113,-119.58668],[37.70697,-119.58868],[37.7091,-119.58873],[37.71169,-119.58717],[37.71498,-119.58156],
+      [37.71671,-119.57958],[37.71862,-119.5789],[37.71941,-119.58079],[37.7208,-119.57951],[37.72053,-119.57779],[37.71904,-119.57655],
+      [37.71922,-119.57619],[37.72038,-119.57645],[37.72134,-119.57728],[37.71979,-119.5743],[37.71997,-119.57335],[37.7212,-119.57432],
+      [37.72236,-119.57465],[37.72366,-119.57419],[37.72506,-119.57443],[37.72612,-119.57352],[37.72576,-119.57464],[37.72614,-119.57543],
+      [37.72635,-119.57461],[37.72719,-119.57443],
+    ],
+  ],
+};
+const ROAD_LINE_COLORS = { closed: "#7a2a10", unsettled: "#b07d10" };
+
 // Parses ?cat= into the Set of active (visible) categories. Absent means no
 // filter, i.e. every category active. An empty value ("/map?cat=") is the
 // legal all-off state. Unknown tokens are dropped; if every token is garbage
@@ -418,6 +600,17 @@ function MapView({ go }) {
   // Flips once if/when the clusterer library arrives; re-runs the visibility
   // effect so already-placed markers re-home into the clusterer.
   const [hasClusterer, setHasClusterer] = useState(false);
+  // First-visit setup (see ORIENT_GATES): the reader's gate and month. The
+  // month drives the seasonal road overlay, the trip's road check and the
+  // road line in each InfoWindow; the gate is highlighted on the map.
+  const [setup, setSetup] = useState(loadSetup);
+  const setupRef = useRef(setup); // latest setup, read inside marker click handlers
+  // Orientation layers. Stop pins keep their own category chips; these govern
+  // only the gates, services and area labels this page adds.
+  const [layers, setLayers] = useState({ gates: true, gas: true, vc: true, areas: true });
+  const orientMarkersRef = useRef({}); // id -> { kind, marker }
+  // Current map zoom, for the zoom-dependent orientation labels.
+  const [zoom, setZoom] = useState(10);
   const [expandedRegions, setExpandedRegions] = useState(
     () => new Set(REGIONS.map((r) => r.id))
   );
@@ -433,6 +626,33 @@ function MapView({ go }) {
   useEffect(() => {
     tripStopIdsRef.current = tripStopIds;
   });
+
+  useEffect(() => {
+    setupRef.current = setup;
+    window.safeStorage.setJSON(SETUP_KEY, setup);
+  }, [setup]);
+
+  const monthRow = setup.month ? getTripMonth(setup.month) : null;
+  const tiogaStatus = monthRow ? monthRow.tioga : null;
+  const glacierStatus = monthRow ? monthRow.glacier : null;
+
+  // Choosing the selected gate or month again clears it: the setup is an
+  // aid, never a mode the reader has to find the way out of.
+  const chooseGate = useCallback((id) => {
+    setSetup((prev) => ({ ...prev, gate: prev.gate === id ? null : id }));
+    if (window.track) window.track("map_setup_gate", { gate: id });
+  }, []);
+  const chooseMonth = useCallback((key) => {
+    setSetup((prev) => ({ ...prev, month: prev.month === key ? null : key }));
+    if (window.track) window.track("map_setup_month", { month: key });
+  }, []);
+  const toggleLayer = useCallback((key) => {
+    setLayers((prev) => {
+      const next = { ...prev, [key]: !prev[key] };
+      if (window.track) window.track("map_layer_toggle", { layer: key, active: next[key] });
+      return next;
+    });
+  }, []);
 
   // Fetch features once.
   useEffect(() => {
@@ -1003,7 +1223,9 @@ function MapView({ go }) {
       marker.addEventListener("click", () => {
         if (window.track) window.track("map_pin_click", { stop_id: p.id, category: p.category || "" });
         openFeatureRef.current = feature;
-        infoRef.current.setContent(buildInfoHtml(p, feature.geometry.coordinates, tripStopIdsRef.current));
+        infoRef.current.setContent(
+          buildInfoHtml(p, feature.geometry.coordinates, tripStopIdsRef.current, roadNoteFor(p, setupRef.current.month))
+        );
         infoRef.current.open({ anchor: marker, map });
         setSelectedStopId(p.id);
         // Tapping the map is a statement of intent to look at the map: on
@@ -1108,8 +1330,10 @@ function MapView({ go }) {
     const info = infoRef.current;
     if (!info || !info.getMap() || !openFeatureRef.current) return;
     const of = openFeatureRef.current;
-    info.setContent(buildInfoHtml(of.properties, of.geometry.coordinates, tripStopIds));
-  }, [tripStopIds, mapReady]);
+    info.setContent(
+      buildInfoHtml(of.properties, of.geometry.coordinates, tripStopIds, roadNoteFor(of.properties, setup.month))
+    );
+  }, [tripStopIds, mapReady, setup.month]);
 
   // ---- InfoWindow wireup. On every InfoWindow open, locate any
   // [data-trip-toggle] buttons and [data-article-link] anchors in the DOM and
@@ -1193,6 +1417,162 @@ function MapView({ go }) {
     };
   }, [mapReady]);
 
+  // ---- Orientation layer: gates, services and area labels. Created once,
+  // detached; the visibility effect below owns marker.map, the same split as
+  // the stop pins. Gates and services open the shared InfoWindow with their
+  // one published line; area labels are not interactive.
+  useEffect(() => {
+    if (!mapReady) return;
+    const map = mapRef.current;
+    const markerLib = markerLibRef.current;
+    if (!map || !markerLib) return;
+    const maps = window.google.maps;
+    const made = {};
+    const place = (id, kind, pos, el, title, zIndex, info) => {
+      const marker = new markerLib.AdvancedMarkerElement({ position: pos, content: el, title, zIndex });
+      if (info) {
+        marker.addEventListener("click", () => {
+          openFeatureRef.current = null;
+          infoRef.current.setContent(info);
+          infoRef.current.open({ anchor: marker, map });
+          if (window.track) window.track("map_orient_click", { id });
+        });
+      }
+      made[id] = { kind, marker };
+    };
+    ORIENT_GATES.forEach((g) => {
+      const el = document.createElement("div");
+      el.className = "map-orient map-orient--gate";
+      el.innerHTML = `<span class="map-orient__mark" aria-hidden="true"></span><span class="map-orient__label">${escapeHtml(g.label)}</span>`;
+      place(`gate-${g.id}`, "gates", g.pos, el, `${g.label} entrance, ${g.hwy}`, 900,
+        orientInfoHtml(`${g.label} entrance`, g.hwy, g.hint));
+    });
+    ORIENT_SERVICES.forEach((sv) => {
+      const el = document.createElement("div");
+      el.className = `map-orient map-orient--${sv.kind}`;
+      el.innerHTML = sv.kind === "gas"
+        ? `<span class="map-orient__mark" aria-hidden="true">${GAS_ICON_SVG}</span><span class="map-orient__label">${escapeHtml(sv.label)}</span>`
+        : `<span class="map-orient__mark" aria-hidden="true">i</span>`;
+      place(sv.id, sv.kind, sv.pos, el, sv.label, 850, orientInfoHtml(sv.label, "", sv.note || ""));
+    });
+    ORIENT_AREAS.forEach((a) => {
+      const el = document.createElement("div");
+      el.className = "map-orient map-orient--area";
+      el.innerHTML = `<span class="map-orient__area-name">${escapeHtml(a.label)}</span><span class="map-orient__area-line">${escapeHtml(a.line)}</span>`;
+      place(`area-${a.id}`, "areas", a.pos, el, a.label, 800, null);
+    });
+    orientMarkersRef.current = made;
+    const onZoom = () => {
+      const z = map.getZoom();
+      setZoom(z);
+      // Marker labels hide by CSS under this class; the marks stay.
+      if (containerRef.current) containerRef.current.classList.toggle("map-orient-far", z < LABEL_MIN_ZOOM);
+    };
+    const zoomListener = map.addListener("zoom_changed", onZoom);
+    onZoom();
+    return () => {
+      maps.event.removeListener(zoomListener);
+      Object.values(made).forEach((m) => { m.marker.map = null; });
+      orientMarkersRef.current = {};
+    };
+  }, [mapReady]);
+
+  useEffect(() => {
+    if (!mapReady) return;
+    const map = mapRef.current;
+    Object.values(orientMarkersRef.current).forEach((m) => {
+      const on = m.kind === "areas"
+        ? layers.areas && zoom >= LABEL_MIN_ZOOM && zoom <= AREA_LABEL_MAX_ZOOM
+        : layers[m.kind];
+      m.marker.map = on ? map : null;
+    });
+  }, [mapReady, layers, zoom]);
+
+  // Selected gate gets a ring; a gate or area behind a closed road is drawn
+  // in the closed colour, so a January reader sees Tioga Pass shut before
+  // reading a word.
+  useEffect(() => {
+    if (!mapReady) return;
+    const status = { tioga: tiogaStatus, glacier: glacierStatus };
+    ORIENT_GATES.forEach((g) => {
+      const m = orientMarkersRef.current[`gate-${g.id}`];
+      if (!m) return;
+      m.marker.content.classList.toggle("is-selected", setup.gate === g.id);
+      m.marker.content.classList.toggle("is-closed", !!g.road && status[g.road] === "closed");
+    });
+    ORIENT_AREAS.forEach((a) => {
+      const m = orientMarkersRef.current[`area-${a.id}`];
+      if (!m) return;
+      m.marker.content.classList.toggle("is-closed", !!a.road && status[a.road] === "closed");
+    });
+  }, [mapReady, setup.gate, tiogaStatus, glacierStatus]);
+
+  // Seasonal road overlay: Tioga Road and Glacier Point Road drawn dashed in
+  // the month's status colour, over a white casing so the dash reads on the
+  // terrain tiles. An open road draws nothing; Google already draws the road.
+  useEffect(() => {
+    if (!mapReady) return;
+    const map = mapRef.current;
+    const maps = window.google && window.google.maps;
+    if (!map || !maps) return;
+    const lines = [];
+    const status = { tioga: tiogaStatus, glacier: glacierStatus };
+    Object.keys(ROAD_LINES).forEach((road) => {
+      const color = ROAD_LINE_COLORS[status[road]];
+      if (!color) return;
+      ROAD_LINES[road].forEach((line) => {
+        const path = line.map(([lat, lng]) => ({ lat, lng }));
+        lines.push(new maps.Polyline({
+          map, path, clickable: false, zIndex: 1,
+          strokeColor: "#ffffff", strokeOpacity: 0.9, strokeWeight: 7,
+        }));
+        lines.push(new maps.Polyline({
+          map, path, clickable: false, zIndex: 2, strokeOpacity: 0,
+          icons: [{
+            icon: { path: "M 0,-1 0,1", strokeOpacity: 1, strokeColor: color, strokeWeight: 4, scale: 2.5 },
+            offset: "0",
+            repeat: "11px",
+          }],
+        }));
+      });
+    });
+    return () => lines.forEach((l) => l.setMap(null));
+  }, [mapReady, tiogaStatus, glacierStatus]);
+
+  // Trip stops that sit behind a seasonal road the chosen month closes (or
+  // leaves to the snowpack), grouped by road for the sidebar warning.
+  const roadIssues = useMemo(() => {
+    if (!features || !monthRow) return [];
+    const byId = new Map(features.map((f) => [f.properties.id, f]));
+    const issues = [];
+    ["glacier", "tioga"].forEach((road) => {
+      const status = monthRow[road];
+      if (status !== "closed" && status !== "unsettled") return;
+      const names = tripStopIds
+        .map((id) => byId.get(id))
+        .filter((f) => f && REGION_ROAD[f.properties.region] === road)
+        .map((f) => f.properties.name);
+      if (names.length) issues.push({ road, status, names });
+    });
+    return issues;
+  }, [features, monthRow, tripStopIds]);
+
+  // Roads the overlay is currently drawing, grouped by status for the
+  // on-map key (in every TRIP_MONTHS row so far both roads share a status,
+  // which reads as one line rather than two identical ones).
+  const roadKeyRows = useMemo(() => {
+    if (!monthRow) return [];
+    const rows = [];
+    ["tioga", "glacier"].forEach((r) => {
+      const status = monthRow[r];
+      if (!ROAD_LINE_COLORS[status]) return;
+      const row = rows.find((x) => x.status === status);
+      if (row) row.roads.push(ROAD_NAMES[r]);
+      else rows.push({ status, roads: [ROAD_NAMES[r]] });
+    });
+    return rows;
+  }, [monthRow]);
+
   // ---- Selection effect: pan/zoom to selected stop, open InfoWindow.
   useEffect(() => {
     if (!mapReady || !selectedStopId) return;
@@ -1209,7 +1589,12 @@ function MapView({ go }) {
     if (feature) {
       openFeatureRef.current = feature;
       infoRef.current.setContent(
-        buildInfoHtml(feature.properties, feature.geometry.coordinates, tripStopIdsRef.current)
+        buildInfoHtml(
+          feature.properties,
+          feature.geometry.coordinates,
+          tripStopIdsRef.current,
+          roadNoteFor(feature.properties, setupRef.current.month)
+        )
       );
       infoRef.current.open({ anchor: marker, map });
       // Mobile: the InfoWindow opens upward from a centered pin and can
@@ -1251,6 +1636,13 @@ function MapView({ go }) {
         onOpenRoute={openTripRoute}
         onOpenInGuide={openInGuide}
         onEmailSubscribed={handleGateSubscribed}
+        setup={setup}
+        monthRow={monthRow}
+        onChooseGate={chooseGate}
+        onChooseMonth={chooseMonth}
+        layers={layers}
+        onToggleLayer={toggleLayer}
+        roadIssues={roadIssues}
         go={go}
         announcerRef={announcerRef}
         toast={toast}
@@ -1262,6 +1654,31 @@ function MapView({ go }) {
           </div>
         )}
         <div ref={containerRef} id="map" className="map-page__map" />
+        {mapReady && unlocked && roadKeyRows.length > 0 && (
+          <div className="map-page__roadkey" role="note">
+            {roadKeyRows.map((row) => {
+              const many = row.roads.length > 1;
+              return (
+                <p key={row.status} className="map-page__roadkey-row">
+                  <span
+                    className={`map-page__roadkey-swatch map-page__roadkey-swatch--${row.status}`}
+                    aria-hidden="true"
+                  />
+                  <span>
+                    <strong>{row.roads.join(" and ")}</strong>{" "}
+                    {row.status === "closed"
+                      ? `${many ? "are" : "is"} typically closed to cars in ${monthRow.name}.`
+                      : `${many ? "have" : "has"} no fixed opening date; in ${monthRow.name} ${many ? "they move" : "it moves"} with the snowpack.`}
+                  </span>
+                </p>
+              );
+            })}
+            <p className="map-page__roadkey-fine">
+              <a href="/conditions" onClick={(e) => { e.preventDefault(); go("conditions"); }}>Today's status on Conditions</a>
+              {" · "}Road lines © OpenStreetMap contributors
+            </p>
+          </div>
+        )}
         {mapReady && unlocked && (
           <div className="map-page__controls">
             <button
@@ -1499,6 +1916,13 @@ function TripPlannerSidebar({
   onOpenRoute,
   onOpenInGuide,
   onEmailSubscribed,
+  setup,
+  monthRow,
+  onChooseGate,
+  onChooseMonth,
+  layers,
+  onToggleLayer,
+  roadIssues,
   go,
   announcerRef,
   toast,
@@ -1694,6 +2118,16 @@ function TripPlannerSidebar({
         </p>
       </header>
 
+      <MapSetup
+        setup={setup}
+        monthRow={monthRow}
+        onChooseGate={onChooseGate}
+        onChooseMonth={onChooseMonth}
+        layers={layers}
+        onToggleLayer={onToggleLayer}
+        go={go}
+      />
+
       {/* Framing — what the curated pin set is and isn't. */}
       <div className="map-sidebar__section">
         <h3 className="map-sidebar__section-label">About these places</h3>
@@ -1780,6 +2214,17 @@ function TripPlannerSidebar({
             })}
           </ol>
         )}
+        {roadIssues.map((issue) => (
+          <div key={issue.road} className={`map-sidebar__road-warn map-sidebar__road-warn--${issue.status}`} role="note">
+            <strong>
+              {issue.status === "closed"
+                ? `${ROAD_NAMES[issue.road]} is typically closed to cars in ${monthRow.name}.`
+                : `${ROAD_NAMES[issue.road]} may not be open yet in ${monthRow.name}.`}
+            </strong>{" "}
+            {issue.names.length === 1 ? "This stop sits" : `These ${issue.names.length} stops sit`} beyond it:{" "}
+            {issue.names.join(", ")}.
+          </div>
+        ))}
         {tripStopIds.length > 0 && (
           <div className="map-sidebar__trip-tools">
             <button
@@ -1799,6 +2244,17 @@ function TripPlannerSidebar({
               className="map-sidebar__trip-tool"
               onClick={onOpenInGuide}
             >Open this trip in the Field Guide</button>
+            <p className="map-sidebar__offline">
+              This map needs a signal. In the park that means the east end of the Valley, and very little anywhere else
+              (<a
+                href="/articles/cell-service-in-yosemite"
+                onClick={(e) => {
+                  e.preventDefault();
+                  if (window.track) window.track("map_article_click", { slug: "cell-service-in-yosemite", source: "map_offline" });
+                  go("a:cell-service-in-yosemite");
+                }}
+              >where it works</a>). The Field Guide carries the trip offline.
+            </p>
           </div>
         )}
         {tripStopIds.length >= 2 && (
@@ -1959,6 +2415,139 @@ function TripPlannerSidebar({
   );
 }
 
+// ---------------------------------------------------------------------------
+// First-visit setup: two answers (entrance, month) and the orientation
+// layers. The month's road rows and arrival line come from TRIP_MONTHS; the
+// gate hints from ORIENT_GATES. Nothing here is advice of the map's own.
+// ---------------------------------------------------------------------------
+const ORIENT_LAYERS = [
+  { key: "gates", label: "Entrance gates" },
+  { key: "gas", label: "Gas" },
+  { key: "vc", label: "Visitor centers" },
+  { key: "areas", label: "Areas and drive times" },
+];
+
+function MapSetup({ setup, monthRow, onChooseGate, onChooseMonth, layers, onToggleLayer, go }) {
+  const months = getTripMonths();
+  const gate = setup.gate ? ORIENT_GATES.find((g) => g.id === setup.gate) : null;
+  const status = (road) => (monthRow ? monthRow[road] : null);
+  // A reader who answered both on an earlier visit gets a one-line summary
+  // instead of the two pickers, so the trip is not pushed below the fold.
+  const [editing, setEditing] = useState(() => !(setup.gate && setup.month));
+  const answered = !!(gate && monthRow);
+  return (
+    <div className="map-sidebar__section map-setup">
+      <h3 className="map-sidebar__section-label">First time in Yosemite</h3>
+      <p className="map-setup__lede">
+        The park's areas are an hour or more apart, and two of its roads close for half the year.
+        Tell the map how you are coming in and when.
+      </p>
+
+      {answered && !editing && (
+        <p className="map-setup__summary">
+          <span>{gate.label} entrance, {monthRow.name}.</span>
+          <button type="button" className="map-setup__change" onClick={() => setEditing(true)}>Change</button>
+        </p>
+      )}
+      {(editing || !answered) && (
+      <>
+      <h4 className="map-setup__q">Your entrance</h4>
+      <div className="map-setup__gates">
+        {ORIENT_GATES.map((g) => {
+          const closed = g.road && status(g.road) === "closed";
+          return (
+            <button
+              key={g.id}
+              type="button"
+              className={`map-setup__gate${closed ? " is-closed" : ""}`}
+              aria-pressed={setup.gate === g.id}
+              onClick={() => onChooseGate(g.id)}
+            >
+              <span className="map-setup__gate-name">{g.label}</span>
+              <span className="map-setup__gate-sub">{closed ? `Closed in ${monthRow.label}` : g.hwy}</span>
+            </button>
+          );
+        })}
+      </div>
+      {gate && (
+        <p className="map-setup__hint">
+          {gate.road && status(gate.road) === "closed"
+            ? `Tioga Pass is typically closed in ${monthRow.name}, and it is the only gate on the east side.`
+            : gate.hint}
+        </p>
+      )}
+
+      {months.length > 0 && (
+        <>
+          <h4 className="map-setup__q">Your month</h4>
+          <div className="map-setup__months">
+            {months.map((m) => (
+              <button
+                key={m.key}
+                type="button"
+                className="map-setup__month"
+                aria-pressed={setup.month === m.key}
+                aria-label={m.name}
+                onClick={() => onChooseMonth(m.key)}
+              >{m.label}</button>
+            ))}
+          </div>
+        </>
+      )}
+      </>
+      )}
+
+      {monthRow && (
+        <>
+          <ul className="map-setup__roads" aria-label={`Roads in ${monthRow.name}, typically`}>
+            {["tioga", "glacier"].map((road) => (
+              <li key={road} className="map-setup__road">
+                <span>{ROAD_NAMES[road]}</span>
+                <span className={`map-setup__status map-setup__status--${monthRow[road]}`}>
+                  {ROAD_STATUS_TEXT[monthRow[road]]}
+                </span>
+              </li>
+            ))}
+            <li className="map-setup__road">
+              <span>Valley and Wawona roads</span>
+              <span className="map-setup__status map-setup__status--open">Open all year</span>
+            </li>
+            <li className="map-setup__road">
+              <span>Hetch Hetchy Road</span>
+              <span className="map-setup__status map-setup__status--open">Daylight hours</span>
+            </li>
+          </ul>
+          {monthRow.arrive && (
+            <p className="map-setup__arrive">
+              <strong>At the gate in {monthRow.name}:</strong> {monthRow.arrive}
+            </p>
+          )}
+          <p className="map-setup__fine">
+            Typical for the month, not today.{" "}
+            <a href="/conditions" onClick={(e) => { e.preventDefault(); go("conditions"); }}>Today's road status</a>
+          </p>
+        </>
+      )}
+
+      <h4 className="map-setup__q">Also on the map</h4>
+      <div className="map-sidebar__filters">
+        {ORIENT_LAYERS.map((l) => (
+          <button
+            key={l.key}
+            type="button"
+            className={`map-sidebar__filter-chip map-setup__layer map-setup__layer--${l.key}`}
+            aria-pressed={!!layers[l.key]}
+            onClick={() => onToggleLayer(l.key)}
+          >
+            <span className="map-setup__layer-mark" aria-hidden="true" />
+            <span>{l.label}</span>
+          </button>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 // The old display-only legend, now clickable filter chips. Keyed off the
 // categories that actually appear in the current feature set (with counts),
 // so it stays in sync with points.geojson without manual edits.
@@ -2027,7 +2616,36 @@ function streetViewUrl(lat, lng, apiKey) {
 
 // coords is [lng, lat] from GeoJSON geometry.coordinates, passed through from
 // the feature so we don't have to re-look it up from properties.
-function buildInfoHtml(p, coords, tripStopIds) {
+// The seasonal-road line an InfoWindow carries when the reader's month closes
+// the road a pin sits behind (REGION_ROAD). Empty when no month is set.
+function roadNoteFor(p, monthKey) {
+  const road = REGION_ROAD[p && p.region];
+  const m = road && monthKey ? getTripMonth(monthKey) : null;
+  if (!m) return "";
+  if (m[road] === "closed") return `${ROAD_NAMES[road]} is typically closed to cars in ${m.name}.`;
+  if (m[road] === "unsettled") {
+    return `${ROAD_NAMES[road]} has no fixed opening date; in ${m.name} it moves with the snowpack. Check Conditions before you count on it.`;
+  }
+  return "";
+}
+
+// A 12px pump for the gas markers; stroke-only so it takes the marker's colour.
+const GAS_ICON_SVG =
+  '<svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M2.5 11V1.5h5V11M7.5 5l2 1.5V10M3.5 4h3"/></svg>';
+
+// InfoWindow content for a gate or service marker: a name, an optional
+// subline, and the one published sentence behind it.
+function orientInfoHtml(title, sub, note) {
+  return `
+    <div style="font:13px/1.5 system-ui,sans-serif;max-width:260px;color:#222;">
+      <strong style="font-size:14px;display:block;line-height:1.3;">${escapeHtml(title)}</strong>
+      ${sub ? `<span style="font-size:11px;color:#8a8675;text-transform:uppercase;letter-spacing:0.06em;font-weight:600;">${escapeHtml(sub)}</span>` : ""}
+      ${note ? `<p style="margin:6px 0 0;font-size:12px;color:#444;line-height:1.5;">${escapeHtml(note)}</p>` : ""}
+    </div>
+  `;
+}
+
+function buildInfoHtml(p, coords, tripStopIds, roadNote) {
   const style = getCategoryStyle(p.category);
   let photo = "";
   if (p.image) {
@@ -2052,6 +2670,10 @@ function buildInfoHtml(p, coords, tripStopIds) {
     ? `<p style="margin:5px 0 0;font-size:11px;color:#8a8675;">Pin location is approximate.</p>`
     : "";
   const blurb = p.blurb ? `<p style="margin:7px 0 0;font-size:12px;color:#444;line-height:1.5;">${escapeHtml(p.blurb)}</p>` : "";
+  // Set only when the reader's month closes the road this pin sits behind.
+  const road = roadNote
+    ? `<p style="margin:8px 0 0;padding:6px 8px;font-size:12px;line-height:1.4;color:#7a2a10;background:#f6ebe5;border-left:3px solid #7a2a10;">${escapeHtml(roadNote)}</p>`
+    : "";
   const inTrip = Array.isArray(tripStopIds) && tripStopIds.includes(p.id);
   const btnLabel = inTrip ? "Remove from trip" : "Add to trip";
   const btnBg = inTrip ? "#ffffff" : TRIP_PIN_COLOR;
@@ -2106,6 +2728,7 @@ function buildInfoHtml(p, coords, tripStopIds) {
       ${cat}
       ${approx}
       ${blurb}
+      ${road}
       ${btn}
       ${directions}
       ${gmaps}

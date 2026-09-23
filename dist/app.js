@@ -108,7 +108,7 @@ var PAGE_MODULES = {
     globals: ["ItinerariesPage"]
   },
   map: {
-    scripts: ["/itineraries-data.js", "/dist/page-map.js"],
+    scripts: ["/itineraries-data.js", "/intent-data.js", "/dist/page-map.js"],
     globals: ["MapPage"]
   },
   conditions: {

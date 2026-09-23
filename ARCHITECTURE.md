@@ -70,7 +70,7 @@ All events fire through `window.track`. Names and where they fire:
 | `article_progress` | page-article.jsx (reading depth against the body at the 25/50/75/100 marks, once per view) |
 | `related_click` | page-article.jsx (related-rail card clicks, with `from` = the referring slug) |
 | `resume_shown`, `resume_click` | Retired (annotate in GA4, do not reuse): fired from page-home.jsx's "Where you left off" band until the September 2026 visitor-first redesign removed it |
-| `trip_add`, `trip_add_all`, `trip_quick_pick`, `trip_undo`, `trip_share`, `trip_share_open`, `trip_route_open`, `map_pin_click`, `map_article_click`, `map_filter_category`, `map_search`, `map_cluster_click`, `map_directions_click`, `map_reset_view`, `map_locate` | page-map.jsx |
+| `trip_add`, `trip_add_all`, `trip_quick_pick`, `trip_undo`, `trip_share`, `trip_share_open`, `trip_route_open`, `map_pin_click`, `map_article_click`, `map_filter_category`, `map_search`, `map_cluster_click`, `map_directions_click`, `map_reset_view`, `map_locate`, `map_setup_gate`, `map_setup_month`, `map_layer_toggle`, `map_orient_click` | page-map.jsx |
 | `trip_email_send` | page-map.jsx (TripEmailBox, "email this trip to yourself", with `trip_size`) |
 | `stop_share` | page-map.jsx (InfoWindow "Copy link to this stop") |
 | `guide_teaser_click` | page-map.jsx (trip next-steps card) — with `location`. Retired location (annotate in GA4, do not reuse): `article_end` (page-article.jsx's article-end line moved to the `GuidePromo` band in August 2026, so that placement now fires `guide_cta_click`/`guide_sample_click` like every other `GuidePromo` instance) |
@@ -100,6 +100,7 @@ All access goes through `window.safeStorage`.
 | `tfg.nl.subscribed` | components.jsx | Optimistic subscribed flag, set on any newsletter submit. |
 | `tfg.nl.exit.seen` | components.jsx | Exit-intent cooldown timestamp (14 days). |
 | `tfg.map.unlocked` | page-map.jsx | Map gate (the whole `/map` page sits behind the newsletter signup; a shared `/map?trip=` link bypasses it for the visit without writing this flag). Fails OPEN: when storage is unavailable the gate reads as unlocked. |
+| `tfg.map.setup` | page-map.jsx | First-visit setup on `/map`: `{ gate, month }` (an `ORIENT_GATES` id and a `TRIP_MONTHS` key). When absent, the month seeds from the trip selector's `when` answer in `tfg.trip.selector`. Drives the seasonal road overlay, the trip's road check and the gate highlight. |
 | `tfg.guide.buyLocation` | page-guide.jsx | Which buy placement started the in-flight Stripe checkout (`{ location, gift }`). Written at `guide_buy_click`, consumed exactly once by the success return to fire `guide_purchase`, cleared on cancel. |
 | `tfg.read.last` | page-article.jsx (via `readHistory`) | Most recent article left 10–90% read: `{ slug, pct, at }`. Fed the home resume band until September 2026; still written and cleared when the piece is finished, and read back only by the article page. |
 | `tfg.read.done` | page-article.jsx (via `readHistory`) | Slugs read past ~90%, capped at 100. Deprioritizes finished pieces in the related rail. |

@@ -102,7 +102,9 @@ const PAGE_MODULES = {
   guide: { scripts: ["/dist/page-guide.js"], globals: ["GuidePage"] },
   films: { scripts: ["/videos-data.js", "/dist/page-films.js"], globals: ["FilmsPage"] },
   itineraries: { scripts: ["/itineraries-data.js", "/dist/page-itineraries.js"], globals: ["ItinerariesPage"] },
-  map: { scripts: ["/itineraries-data.js", "/dist/page-map.js"], globals: ["MapPage"] },
+  // intent-data.js carries TRIP_MONTHS, which the map's first-visit setup reads
+  // for road status and the arrival line (one month table for the whole site).
+  map: { scripts: ["/itineraries-data.js", "/intent-data.js", "/dist/page-map.js"], globals: ["MapPage"] },
   conditions: { scripts: ["/dist/page-conditions.js"], globals: ["ConditionsPage"] },
   stay: { scripts: ["/dist/page-stay.js"], globals: ["StayPage"] },
   now: { scripts: ["/dist/page-now.js"], globals: ["BulletinPage"] },
