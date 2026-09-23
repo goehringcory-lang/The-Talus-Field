@@ -1,0 +1,4 @@
+{
+  "__comment": "The dependency check's memory (.claude/skills/dependency-check/SKILL.md). One entry per security advisory the monthly run has triaged, keyed by its GHSA id: the package and package directory (apps/guide, workers, scripts), the installed version it was triaged at, the verdict (`applies`, `does-not-apply`, or `unclear`), the evidence (which function or path the advisory is about, and where the code does or does not reach it), and the date. A `does-not-apply` verdict is re-examined when the package, its installed version, or the code that calls it changes; an `applies` or `unclear` verdict is re-examined every run until a fix lands. Only the dependency check writes this file, in its own PR.",
+  "advisories": {}
+}

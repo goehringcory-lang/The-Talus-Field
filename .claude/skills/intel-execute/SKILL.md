@@ -77,6 +77,14 @@ Dispatch by the option's action type:
   plan and post it as a comment on the brief issue for the owner to send.
   Never send anything yourself.
 
+The scheduled lanes get the same courtesy as the evergreen refresh: when an
+open `claude/guide-fact-audit-` or `claude/guide-depth-` PR touches the same
+guide entry, a `claude/reference-refresh-` PR the same standing page, or a
+`claude/season-preflight-` PR the deadline or fee table, do not race it:
+comment on the brief that the open PR carries it (or ask the owner which
+should land) and mark the option handed back. A road opening or closing is
+the road alert drafter's to email; an option here covers the site copy only.
+
 Every editorial-site option, before its push:
 `npm --prefix scripts run check` must pass entirely, and
 `npm --prefix scripts run checks` must add no new errors (failures that

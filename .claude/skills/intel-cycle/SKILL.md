@@ -19,7 +19,7 @@ empty cycle posts no issue at all, only a completion summary saying so.
 
 ## Territory (do not duplicate the other Routines)
 
-Four Routines already exist and own their lanes:
+These Routines already exist and own their lanes:
 
 - **Weekly trend article** (Mondays) owns "one new article from the week's
   search trends". If this cycle surfaces a pure article topic driven by search
@@ -42,10 +42,18 @@ Four Routines already exist and own their lanes:
   pass** (Tuesdays) owns archive notes and body-derived fields on stops; a
   guide/PWA option here is something the news forces (a closed trail, a
   moved trailhead, a new program), not general depth. The **Sunday letter
-  draft** (Saturdays) reads merged work and needs no options. `ROUTINES.md`
-  is the map of all of them.
+  draft** (Saturdays) reads merged work and needs no options. The **Field
+  Guide fact audit** (Fridays) owns scheduled re-verification of the facts
+  already in the guide; the **reference page refresh** (Sundays) owns the
+  facts on the standing pages and their crawler copies; the **season
+  pre-flight** (the 10th) owns the deadline and fee tables and next year's
+  dated editions; the **dependency and security check** (the 1st) owns
+  package and action updates; and the **road alert drafter** (daily) owns
+  the email to the road-alert signups when a road opens or closes. A
+  *news*-forced change in any of those lanes is still this brief's.
+  `ROUTINES.md` is the map of all of them.
 
-This cycle's lane is everything those three cannot see: business and
+This cycle's lane is everything those routines cannot see: business and
 tourism-industry signals, competitor and partner moves, monetization and promo
 opportunities, bulletin-worthy park changes, PWA/guide content gaps, and
 updates that new information forces on existing articles.

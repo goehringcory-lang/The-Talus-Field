@@ -45,7 +45,7 @@ Via the GitHub tools (a scheduled run that finds itself without them should say 
 3. `indexnow.yml` ran and succeeded for any content push this week.
 4. `photo-import.yml` / `stranded-commits.yml`: only worth a line if they ran and failed.
 5. Open PRs older than 7 days, including last week's sweep PR if it is still open — do not re-fix what it already fixes.
-6. **Routine fleet health**: for each Routine in `ROUTINES.md`, find the week's evidence (its PR branch prefix, its issue label, the ledger comment) and flag any routine with no evidence for two consecutive weeks, or whose last PR is still red. A routine that fails silently is the failure this line exists to catch.
+6. **Routine fleet health**: for each Routine in `ROUTINES.md`, find the week's evidence (its PR branch prefix, its issue label, the ledger comment) and flag any routine with no evidence for two consecutive weeks, or whose last PR is still red. Judge each against its own cadence: the dependency check (the 1st) and the season pre-flight (the 10th) leave evidence once a month, and the daily road alert drafter's evidence is the **Last checked** line in its `Road alert watch` issue, which should never be more than a day old. A routine that fails silently is the failure this line exists to catch.
 
 ## Phase 4 — Editorial deadlines (report-only)
 
