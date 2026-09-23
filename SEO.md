@@ -81,9 +81,18 @@ article:
    narrower than 1200px automatically get an upscaled
    `img/responsive/<slug>-og.jpg` social card so og:image stays ≥1200px wide.
 
-Then bump the shared `?v=N` cache-buster on the edited files in `index.html`,
-run `bash scripts/check-cache-busters.sh` and
-`npm --prefix scripts run seo:check` before committing.
+Then bump the shared `?v=N` cache-buster in `index.html` (and the article's
+`window.BODY_VERSIONS` entry in `data.js`), run
+`npm --prefix scripts run assets:stamp` to record the new bytes, and run
+`npm --prefix scripts run check` before committing. `run check` covers the
+cache-busters, asset freshness, the SEO mirrors, the prerender fragments and the
+compiled dist in one command, and CI runs it on every PR.
+
+Every new article also ships 3 to 5 in-body contextual links with descriptive
+anchor text and a `window.RELATED` entry in `data.js` (or a deliberate reliance
+on the `relatedFor` fallback), and a `window.ARTICLE_INTENT` tag entry in
+`intent-data.js` (an untagged article is invisible to every filter on
+`/planning` and `/articles`).
 
 ## Already handled (do not regress these)
 
@@ -100,12 +109,22 @@ run `bash scripts/check-cache-busters.sh` and
   description, canonical, Open Graph, Twitter, and JSON-LD per route on the edge,
   so non-JS crawlers get correct metadata from the first byte.
 - **Internal linking.** The `<noscript>` block in `index.html` links every
-  article; each article page ends with related links; global nav and footer link
-  the hubs; every article is within two clicks of the homepage via `/articles`.
-- **Single H1 per page.** A screen-reader-only static `<h1>` lives in
-  `index.html` for non-JS HTML parsers (Bing's auditor). `app.jsx` removes it on
-  boot so JS-rendering crawlers and users see exactly one `<h1>` (the per-route
-  title). Keep both halves; removing only one reintroduces a duplicate H1 or
+  article; the global masthead (Plan a trip, Park now, Map, Read), the footer and
+  `/explore` link the hubs; every article is within two clicks of the homepage
+  via `/articles`. Onward links per article come from one curated table,
+  `window.RELATED` in `data.js` (4 to 6 per article, with a rotation fallback in
+  `relatedFor`), which feeds three surfaces that must agree: the reader's related
+  rail, the "Related reading" block `edge/seo.js` appends inside the prerendered
+  prose, and the `related` field in `articles.json`. `check-edge-redirects.mjs`
+  asserts that graph reaches every article. Search Console counted 66 articles
+  with no contextual inbound link before this existed (August 2026).
+- **Single H1 per page.** The homepage ships a real `<h1>` in its static
+  shell (`GENERATED:HOME-SHELL` in `index.html`). Every other route gets one
+  from the edge: `edge/seo.js` injects a screen-reader-only `#seo-static-h1`
+  carrying the route's title, or omits it when a prerendered article fragment
+  brings its own on-topic `<h1>`, and strips the home shell. `app.jsx` removes
+  `#seo-static-h1` on boot so JS-rendering crawlers and users see exactly one
+  `<h1>`. Keep both halves; removing only one reintroduces a duplicate H1 or
   drops the no-JS fallback.
 - **Structured data.** Article, BreadcrumbList, WebSite, and Organization schema
   are emitted; breadcrumbs validate clean.

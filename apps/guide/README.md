@@ -20,6 +20,8 @@ framework in the components).
 npm run dev      # local dev server on :5173
 npm run build    # tsc -b && vite build → dist/
 npm run lint     # eslint
+npm test         # vitest
+npm run audit:candidates   # the fact audit's next picks (see .claude/skills/guide-fact-audit)
 ```
 
 The API lives in `../../workers/` (Cloudflare Worker); run it locally with
@@ -33,15 +35,25 @@ the bundle; `npm run check:build` guards the reason why.
 ## Where things live
 
 - **Content** — `src/content/`: `stops.ts` (the 66 region stops, core and hidden, zod-validated at
-  module load), `essentials.ts`, `secret-spots.ts`, `seasonal.ts`,
-  `itineraries.ts`. Editing these files is how the guide's content changes;
-  a schema violation fails the build rather than shipping bad data.
+  module load), `hikes.ts`, `secret-spots.ts` and `secret-guide.ts`, `dining.ts`,
+  `amenities.ts`, `essentials.ts`, `help.ts`, `wildlife.ts`, `seasonal.ts`,
+  `itineraries.ts`, `deadlines.ts` (a hand mirror of the editorial site's
+  `scripts/data/deadlines.json`, checked by `check-deadlines.mjs`) and
+  `archive.ts` (Nature Notes citations). Editing these files is how the guide's
+  content changes; a schema violation fails the build rather than shipping bad
+  data.
+- **Live feeds** — `src/weather/`, `src/waits/`, `src/parking/`, `src/alerts/`,
+  `src/air/`, `src/flow/`: each reads its Worker route through a zod schema,
+  carries a `staleness.ts` cut-off, and renders nothing rather than a guess when
+  the feed is silent or too old. `src/programs/` reads `/api/programs` for the
+  trip window and merges the bundled seasonal almanac.
 - **Auth** — `src/auth/`: JWT in localStorage, signed by the Worker to the
   buyer's access expiry. `me.ts` mirrors the Worker's `/api/auth/me` response.
 - **Offline** — `public/sw.js` (hand-rolled service worker) plus
   `src/offline/` (download packs, tile math) and the DownloadManager on
   /account.
-- **Trip planner** — `src/trip/` (day slotting, ICS export).
+- **Trip planner** — `src/trip/` (day slotting, ICS export, and `importTrip.ts`, which takes the editorial map's `/trip?import=` hand-off); `src/sync/` syncs the plan across devices through `/api/trip/plan`.
+- **Architecture notes** — `CLAUDE.md` in this directory is the detailed reference.
 
 ## Deploys
 

@@ -126,9 +126,10 @@ The only new words are labels in the design's eyebrow voice:
 - **Dark mode.** The design has no dark palette, so the whole site now
   renders light in dark mode, as the homepage already did. A dark scheme
   would be a new design pass.
-- **The footer and KeepGoing markup.** They keep their pre-rollout markup
-  and container, because the homepage's footer is part of the source of
-  truth. They are restyled only by the palette.
+- **The footer and KeepGoing markup.** They keep their pre-rollout markup,
+  because the homepage's footer is part of the source of truth. The review
+  pass moved both onto the homepage's container and palette (items 2 to 4
+  below).
 - **The `/stay` booking colour** (`--stay-book`) and the one-colour-one-action
   rule. **`LodgingCta`** keeps the look PR #413 accepted on `/planning`.
 - **`GuidePromo` on `/dates`.** Its reminder chips drive the letter's tag,
@@ -159,7 +160,8 @@ of the fifth.
    its full-bleed top rule is gone.
 5. **There is still no dark mode** (above). ~~On `/conditions` at phone
    width the elevation chart's "4,000 FT" labels touch the axis labels.~~
-   Fixed: the bars start after a 52px axis gutter under 560px.
+   Fixed: the bars start after a 52px axis gutter under 560px. (PR #423
+   later replaced the bars with an elevation transect, so that rule is gone.)
 
 ## Review pass (after the rollout)
 
@@ -171,6 +173,33 @@ Besides the five above:
   ellipsis instead of wrapping the trail onto two or three lines.
 - **Lightbox bar.** Caption and controls in the system's sans (tracked
   capitals for the caption) with 3px radii, instead of the mono face.
+
+## Since the rollout
+
+Pages rebuilt or extended on the system after it shipped. Each kept the
+rules above (one guide band, then the letter; a page layer named after the
+page; the homepage pixel-diffed before and after).
+
+- **Navigation (PR #425).** The masthead speaks four words everywhere:
+  Plan a trip, Park now, Map, Read. Park now is a new menu (the Bulletin,
+  Conditions, Webcams, the calendar pages, a live entrance-waits plate and
+  the road-alerts signup). Menu labels are buttons that open their panels.
+  A search box sits in the bar above 1000px, and past the masthead's slot
+  the header becomes a one-row compact bar (pinned above 760px, shown on
+  scroll-up on phones and on `/stay`, off on `/map`). The footer's columns,
+  `/explore`'s sections and the archive's static masthead (`DESIGN_NAV`)
+  use the same four words.
+- **`/stay` (PR #421).** The booking-first pass: a search panel in the head,
+  six picks, the road-first town picker and comparison table, and a sticky
+  search bar between the head search and the closing one. The
+  `--stay-book` one-colour-one-action rule above still holds.
+- **`/conditions` (PR #423).** The forecast bars became an elevation
+  transect along the park roads, Wawona to Tioga Pass, drawn in the
+  `--hp-*` tokens at the container's measured width.
+- **`/map` (PR #424).** A first-visit layer at the top of the sidebar:
+  entrance and month, the seasonal road overlay, and gate, gas and
+  visitor-center markers. The masthead's height is measured on this page
+  (`useMastheadHeight`), never hard-coded.
 
 ## Verification
 
