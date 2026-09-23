@@ -7,7 +7,7 @@ window.ARTICLE_BODIES["glacier-point-road-open-2026"] = function GlacierPointRoa
     <>
       <p className="dropcap">
         <em style={{ display: "block", marginBottom: "1rem", fontSize: 14 }}>
-          Road and trail status below describes the opening of the 2026 season, in May. Conditions change: check
+          Road and trail status below describes the opening of the 2026 season, in May. As of September 23, 2026, the road is open, and the park says it typically closes for the winter sometime in November; overnight parking on it ends October 15. The Ostrander Lake Trail and all areas and trails south of it are closed for the Dome Fire. Conditions change: check
           <a href="/now">the Park Bulletin</a> or the recorded line, 209-372-0200, for the day you are going.
         </em>
         Glacier Point Road is open for the 2026 season. The Park Service plowed it through the back end of winter, the gate at Chinquapin came up on May 9 after just under six months of closure, and cars are again climbing the sixteen miles to a viewpoint at 7,200 feet that puts you at eye level with Half Dome.
@@ -24,7 +24,7 @@ window.ARTICLE_BODIES["glacier-point-road-open-2026"] = function GlacierPointRoa
       </p>
 
       <p>
-        Drinking water is not yet available at Glacier Point. Bring your own. A liter per person at the absolute minimum if you are walking out to Sentinel Dome or Taft Point, more if it is warm. The Glacier Point gift shop and snack stand are seasonal and may not be open in the first weeks. Check the Park Service's conditions page the night before you drive up. Do not assume you can buy a sandwich at the top.
+        Drinking water is not yet available at Glacier Point. Bring your own. A liter per person at the absolute minimum if you are walking out to Sentinel Dome or Taft Point, more if it is warm. The Glacier Point gift shop and snack stand are seasonal and may not be open in the first weeks. Check the Park Service's conditions page the night before you drive up, since the park lists <a href="/articles/cell-service-in-yosemite">no cell coverage on Glacier Point Road</a> below the point itself. Do not assume you can buy a sandwich at the top.
       </p>
 
       <p>
@@ -32,7 +32,7 @@ window.ARTICLE_BODIES["glacier-point-road-open-2026"] = function GlacierPointRoa
       </p>
 
       <p>
-        A note worth saying plainly: the Park Service has flagged intermittent closures of the Panorama Trail between Nevada Fall and the Illilouette Creek junction for ongoing rockfall remediation. If your plan was to descend Panorama to the Mist Trail, check the conditions page before you start down. The Mist Trail has its own restriction: through October it is closed between the Vernal Fall footbridge and the top of Vernal Fall on Monday through Thursday, 7 a.m. to 3:30 p.m., and open Fridays, weekends and holidays. <a href="/articles/mist-trail-the-real-guide">The Mist Trail guide</a> covers the detour.
+        A note worth saying plainly: if your plan was to descend the Panorama Trail to the Mist Trail, check the conditions page before you start down. It listed no Panorama Trail closure in late September, and it is where the park posts one. The Mist Trail has its own restriction: through October it is closed between the Vernal Fall footbridge and the top of Vernal Fall on Monday through Thursday, 7 a.m. to 3:30 p.m., and open Fridays, weekends and holidays. <a href="/articles/mist-trail-the-real-guide">The Mist Trail guide</a> covers the detour.
       </p>
 
       <h2>What the road actually feels like early in the season</h2>
@@ -54,15 +54,15 @@ window.ARTICLE_BODIES["glacier-point-road-open-2026"] = function GlacierPointRoa
       <p>Pick one of two plans, depending on what you want.</p>
 
       <p>
-        <strong>The slow plan.</strong> Drive up for sunrise. In mid-May, that is somewhere around 5:55 a.m., so leave the Valley by 4:45. Park at Glacier Point itself. Walk the paved 0.3 miles out to the overlook in the pre-light. Watch the light hit the high peaks east of the Valley before it hits the Valley floor. Half Dome catches it first. Then the Clark Range. Then, finally, the inner Valley and the north walls. There is no faster way to learn how the light works in Yosemite than to watch it land in this order, from this vantage. Bring a thermos. Bring layers (it can be in the thirties at the rim even in May). Plan to stay an hour after sunrise, which is when most of the people who came up will leave and you will have the railing to yourself for ten minutes.
+        <strong>The slow plan.</strong> Drive up for sunrise. In mid-May, that is about 5:50 a.m., so leave the Valley by 4:45. Park at Glacier Point itself. Walk the paved 300 yards out to the overlook in the pre-light. Watch the light hit the high peaks east of the Valley before it hits the Valley floor. Half Dome catches it first. Then the Clark Range. Then, finally, the inner Valley and the north walls. There is no faster way to learn how the light works in Yosemite than to watch it land in this order, from this vantage. Bring a thermos. Bring layers (it can be in the thirties at the rim even in May). Plan to stay an hour after sunrise, which is when most of the people who came up will leave and you will have the railing to yourself for ten minutes.
       </p>
 
       <p>
-        <strong>The hike plan.</strong> Drive up after breakfast, park at the Sentinel Dome and Taft Point trailhead (about a mile and a half before Glacier Point itself). Hike Sentinel first, Taft second, eat lunch on the rim somewhere quiet, then drive the last bit of road and walk out to Glacier Point with your legs already loose. The total walking is around five miles with modest elevation gain, and the experience of standing on Sentinel's bare granite cap (which is exfoliated granodiorite, not bare granite the way most people use the word) and then standing inches from the void at Taft is a study in what 2,500 feet of vertical can mean. The <a href="/articles/glacier-point-how-to-visit">full guide to Glacier Point</a> carries the Park Service's own distances and times for every walk off the road, which is how to choose between those two hikes if you only have time for one.
+        <strong>The hike plan.</strong> Drive up after breakfast, park at the Sentinel Dome and Taft Point trailhead (the shared lot on the road, short of Glacier Point itself). Hike Sentinel first, Taft second, eat lunch on the rim somewhere quiet, then drive the last bit of road and walk out to Glacier Point with your legs already loose. The total walking is about four and a half miles with modest elevation gain, and the experience of standing on Sentinel's bare granite cap (which is exfoliated granodiorite, not bare granite the way most people use the word) and then standing inches from the void at Taft is a study in what 2,500 feet of vertical can mean. The <a href="/articles/glacier-point-how-to-visit">full guide to Glacier Point</a> carries the Park Service's own distances and times for every walk off the road, which is how to choose between those two hikes if you only have time for one.
       </p>
 
       <p>
-        If you are bringing kids, or <a href="/articles/yosemite-for-non-hikers">visitors who can't hike</a>, there is a third plan: Glacier Point itself only. The walk to the overlook is paved, short, and stroller-friendly. The view is the highest-bang-per-step view in the park. Eat your sandwiches on the wall, count peregrines, and drive back down. That is a complete day.
+        If you are bringing kids, or <a href="/articles/yosemite-for-non-hikers">visitors who can't hike</a>, there is a third plan: Glacier Point itself only. The walk to the overlook is paved, short, and stroller-friendly, and the park lists it as <a href="/articles/yosemite-accessibility-guide">wheelchair-accessible</a>. The view is the highest-bang-per-step view in the park. Eat your sandwiches on the wall, count peregrines, and drive back down. That is a complete day.
       </p>
 
       <h2>What you will probably notice first</h2>
@@ -72,7 +72,7 @@ window.ARTICLE_BODIES["glacier-point-road-open-2026"] = function GlacierPointRoa
       </p>
 
       <p>
-        The second is the snow. Looking east from Glacier Point you see the Cathedral Range, Mount Hoffman, Mount Clark, and behind them the high peaks of the Clark Range. Even in this thin snowpack year (more on that later this week), the high country still looks like winter from up here. <a href="/articles/tioga-road-opening-weekend-2026">Tioga Road</a> was still closed when this was written; it opened on May 15. The high lakes are still frozen. The Sentinel Range above Tenaya Canyon will hold snow for another six weeks. You are looking at country that is two months behind the Valley you just drove out of.
+        The second is the snow. Looking east from Glacier Point you see the Cathedral Range, Mount Hoffman, Mount Clark, and behind them the high peaks of the Clark Range. Even in this thin snowpack year (the Tuolumne Meadows snow courses measured 37 percent of the April 1 average), the high country still looks like winter from up here. <a href="/articles/tioga-road-opening-weekend-2026">Tioga Road</a> was still closed when this was written; it opened on May 15. The high lakes are still frozen. The Sentinel Range above Tenaya Canyon will hold snow for another six weeks. You are looking at country that is two months behind the Valley you just drove out of.
       </p>
 
       <p>
@@ -82,7 +82,7 @@ window.ARTICLE_BODIES["glacier-point-road-open-2026"] = function GlacierPointRoa
       <h2>One small thing to bring</h2>
 
       <p>
-        A pair of binoculars. Glacier Point is one of the best peregrine falcon viewpoints in California. The pair that nests below Glacier Point's east face usually has eggs by mid-May and chicks by late June. From the overlook you cannot see them, but you can sometimes hear them and almost always spot the adults working the cliff face for swifts. The white-throated swifts themselves, riding the air pouring up the south face, are worth ten minutes of focused attention.
+        A pair of binoculars, the one piece of kit the <a href="/articles/yosemite-wildlife-viewing-guide">guide to watching Yosemite's wildlife</a> asks for anywhere in the park. Glacier Point is one of the best peregrine falcon viewpoints in California. The pair that nests below Glacier Point's east face usually has eggs by mid-May and chicks by late June. From the overlook you cannot see them, but you can sometimes hear them and almost always spot the adults working the cliff face for swifts. The white-throated swifts themselves, riding the air pouring up the south face, are worth ten minutes of focused attention.
       </p>
 
       <p>
@@ -92,7 +92,7 @@ window.ARTICLE_BODIES["glacier-point-road-open-2026"] = function GlacierPointRoa
       <h2>The honest takeaway</h2>
 
       <p>
-        The first weeks of the season are one of the few times in the year when Glacier Point feels like a place you discovered rather than a place everyone has already been to. The road will be dirty. The amenities will be skeletal. You may not be able to buy water. The Panorama Trail may be partly closed. The Mist Trail, if you were planning to combine, is closed on weekdays through October between the footbridge and the top of Vernal Fall.
+        The first weeks of the season are one of the few times in the year when Glacier Point feels like a place you discovered rather than a place everyone has already been to. The road will be dirty. The amenities will be skeletal. You may not be able to buy water. The Mist Trail, if you were planning to combine, is closed Monday through Thursday, 7 a.m. to 3:30 p.m., through October between the footbridge and the top of Vernal Fall.
       </p>
 
       <p>
