@@ -94,6 +94,16 @@ Or fire the Routine itself from the Routines list (`fire_trigger`).
   news forces.
 - The **Saturday Sunday-letter draft** reads merged work; it needs no
   options and never sends.
+- The **Friday Field Guide fact audit**, the **Sunday reference page
+  refresh**, the **season pre-flight** (the 10th), and the **dependency and
+  security check** (the 1st) own scheduled re-verification of the guide's
+  facts, the standing pages, the deadline and fee tables with next year's
+  dated editions, and the packages; the brief carries only what the news
+  forces in those lanes, and the executor stands down on a file one of them
+  has an open PR on.
+- The **daily road alert drafter** owns the email to the road-alert
+  signups; the brief carries the site copy a road change makes wrong, never
+  the alert itself.
 
 The intel operation's lane is what none of those can see: industry and
 competitor moves, conference/retreat and event signals, monetization and

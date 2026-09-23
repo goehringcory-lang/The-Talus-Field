@@ -1,0 +1,171 @@
+{
+  "__comment": "The reference page refresh's memory (.claude/skills/reference-refresh/SKILL.md). One row per standing route whose copy states park facts, in priority order: the most perishable facts first. `files` are the sources the route's facts live in; `crawler` names the copies of those facts that search engines read (edge/seo.js HUB_PROSE and known[path], plus any client mirror in app.jsx), which must say what the page says. `verified` is the date of the last full re-verification against primary sources; the run picks the row never verified, else the oldest, ties by list order. Only the reference refresh writes this file, in its own PR. Files named under `notFacts` belong to another lane and are read, never edited, by this routine.",
+  "routes": [
+    {
+      "route": "/half-dome-lottery",
+      "files": [
+        "page-half-dome-lottery.jsx"
+      ],
+      "crawler": [
+        "edge/seo.js HUB_PROSE[\"/half-dome-lottery\"]",
+        "edge/seo.js known[\"/half-dome-lottery\"] (faq)"
+      ],
+      "verified": null
+    },
+    {
+      "route": "/international",
+      "files": [
+        "page-international.jsx"
+      ],
+      "crawler": [
+        "edge/seo.js HUB_PROSE[\"/international\"]",
+        "edge/seo.js known[\"/international\"] (faq)"
+      ],
+      "notFacts": [
+        "fees-data.js (season pre-flight)"
+      ],
+      "verified": null
+    },
+    {
+      "route": "/firefall",
+      "files": [
+        "page-firefall.jsx"
+      ],
+      "crawler": [
+        "edge/seo.js HUB_PROSE[\"/firefall\"]",
+        "edge/seo.js known[\"/firefall\"] (faq)"
+      ],
+      "verified": null
+    },
+    {
+      "route": "/stay",
+      "files": [
+        "page-stay.jsx"
+      ],
+      "crawler": [
+        "edge/seo.js HUB_PROSE[\"/stay\"]",
+        "edge/seo.js known[\"/stay\"] (faq)"
+      ],
+      "notFacts": [
+        "booking links, aff_list values, ExpediaBanner, LodgingCta, the search state (revenue pulse)"
+      ],
+      "verified": null
+    },
+    {
+      "route": "/tioga-opening",
+      "files": [
+        "page-tioga-opening.jsx"
+      ],
+      "crawler": [
+        "edge/seo.js HUB_PROSE[\"/tioga-opening\"]",
+        "edge/seo.js known[\"/tioga-opening\"] (faq)"
+      ],
+      "notFacts": [
+        "bulletin.json and TIOGA_BULLETIN_URL (bulletin edition turn)",
+        "the link to the dated opening article (season pre-flight)"
+      ],
+      "verified": null
+    },
+    {
+      "route": "/dates",
+      "files": [
+        "page-dates.jsx"
+      ],
+      "crawler": [
+        "edge/seo.js HUB_PROSE[\"/dates\"]",
+        "edge/seo.js known[\"/dates\"] (faq)"
+      ],
+      "notFacts": [
+        "scripts/data/deadlines.json, dates-data.js, ics/, apps/guide/src/content/deadlines.ts (season pre-flight)"
+      ],
+      "verified": null
+    },
+    {
+      "route": "/planning",
+      "files": [
+        "page-planning-guide.jsx",
+        "intent.jsx",
+        "intent-data.js (TRIP_MONTHS rows only)"
+      ],
+      "crawler": [
+        "edge/seo.js HUB_PROSE[\"/planning\"]",
+        "edge/seo.js known[\"/planning\"] (faq)",
+        "app.jsx buildSeo planning (faq, kept word for word with edge/seo.js)"
+      ],
+      "notFacts": [
+        "ARTICLE_INTENT, ARTICLE_MONTHS, INTENT_NO_TAGS, TRIP_RULES in intent-data.js (article routines)",
+        "PLANNING_SERIES membership in data.js"
+      ],
+      "verified": null
+    },
+    {
+      "route": "/itineraries",
+      "files": [
+        "page-itineraries.jsx",
+        "itineraries-data.js (copy only, never stop ids)"
+      ],
+      "crawler": [
+        "edge/seo.js HUB_PROSE[\"/itineraries\"]",
+        "edge/seo.js ITINERARY_TRIPS (the TouristTrip list)"
+      ],
+      "verified": null
+    },
+    {
+      "route": "/map",
+      "files": [
+        "page-map.jsx (copy only)"
+      ],
+      "crawler": [
+        "edge/seo.js HUB_PROSE[\"/map\"]"
+      ],
+      "notFacts": [
+        "points.geojson and every coordinate (the owner)"
+      ],
+      "verified": null
+    },
+    {
+      "route": "/distances",
+      "files": [
+        "page-distances.jsx"
+      ],
+      "crawler": [
+        "edge/seo.js HUB_PROSE[\"/distances\"]",
+        "edge/seo.js known[\"/distances\"] (faq)"
+      ],
+      "verified": null
+    },
+    {
+      "route": "/conditions",
+      "files": [
+        "page-conditions.jsx"
+      ],
+      "crawler": [
+        "edge/seo.js HUB_PROSE[\"/conditions\"]"
+      ],
+      "verified": null
+    },
+    {
+      "route": "/kit",
+      "files": [
+        "page-kit.jsx",
+        "page-checklist.jsx"
+      ],
+      "crawler": [
+        "edge/seo.js HUB_PROSE[\"/kit\"]",
+        "edge/seo.js HUB_PROSE[\"/checklist\"]"
+      ],
+      "verified": null
+    },
+    {
+      "route": "/webcams",
+      "files": [
+        "page-webcams.jsx"
+      ],
+      "crawler": [
+        "edge/seo.js HUB_PROSE[\"/webcams\"]",
+        "edge/seo.js known[\"/webcams\"] (faq)"
+      ],
+      "verified": null
+    }
+  ]
+}

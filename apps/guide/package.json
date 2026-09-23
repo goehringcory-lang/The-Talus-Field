@@ -12,6 +12,7 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "check:itineraries": "jiti scripts/check-itineraries.ts",
+    "audit:candidates": "jiti scripts/fact-audit-candidates.ts",
     "check:build": "node scripts/check-build-determinism.mjs",
     "test": "vitest run"
   },

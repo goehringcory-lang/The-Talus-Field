@@ -1,0 +1,17 @@
+{
+  "__comment": "The Field Guide fact audit's memory (.claude/skills/guide-fact-audit/SKILL.md). `entries` maps a stop, hike, or secret-spot id to the date its perishable facts were last re-verified against primary sources; `files` does the same for the whole-file units. `queue` holds known discrepancies the next run takes first; the PR that resolves one removes it. Only the fact audit writes this file, in its own PR; apps/guide/scripts/fact-audit-candidates.ts (npm run audit:candidates, from apps/guide) reads it. The three file dates were seeded on 2026-09-23 from the last passes that checked them against the September 23 Guide: PR #420 (amenities.ts, essentials.ts) and the bulletin turn in PR #422 (seasonal.ts).",
+  "files": {
+    "amenities": "2026-09-22",
+    "essentials": "2026-09-22",
+    "seasonal": "2026-09-22"
+  },
+  "entries": {},
+  "queue": [
+    {
+      "id": "clouds-rest-tenaya",
+      "file": "stops.ts",
+      "added": "2026-09-23",
+      "note": "The body says \"about fourteen miles round trip with roughly 3,000 feet of climbing once the rollers are counted\". The Park Service's figure, which the clouds-rest-hike article and the Half Dome piece now follow, is 14 miles with about 2,300 feet of elevation gain from the Sunrise Lakes trailhead (flagged in PR #382). The hike entry clouds-rest in hikes.ts carries 1,775 ft, the summit minus the trailhead, which is the definition its track spec validates: leave that number and say so under Flags."
+    }
+  ]
+}
