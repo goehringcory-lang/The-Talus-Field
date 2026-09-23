@@ -1272,9 +1272,11 @@ function App() {
   // Never while typing (an input, a textarea, a select, contentEditable),
   // never with a modifier held, and never over an open dialog, where the key
   // belongs to whatever is in front. On /search it simply focuses the field;
-  // elsewhere it navigates there and asks the page to focus on mount, through
-  // a data attribute SearchPage consumes, so the mount-time focus rule (which
-  // skips touch devices) does not get in the way of an explicit keystroke.
+  // elsewhere it focuses the masthead's search box where the box is drawn
+  // (above 1000px, including in the compact bar), and otherwise navigates to
+  // /search and asks the page to focus on mount, through a data attribute
+  // SearchPage consumes, so the mount-time focus rule (which skips touch
+  // devices) does not get in the way of an explicit keystroke.
   useEffect(() => {
     const onKey = (e) => {
       if (e.key !== "/" || e.metaKey || e.ctrlKey || e.altKey || e.defaultPrevented) return;
@@ -1284,6 +1286,8 @@ function App() {
       e.preventDefault();
       const field = document.getElementById("site-search");
       if (field) { field.focus(); field.select(); return; }
+      const box = document.getElementById("masthead-search");
+      if (box && box.offsetParent !== null) { box.focus(); box.select(); return; }
       document.documentElement.setAttribute("data-search-focus", "");
       go("search");
     };
@@ -1398,7 +1402,7 @@ function App() {
 
   return (
     <>
-      <Header current={currentNav} go={go} />
+      <Header current={currentNav} go={go} route={route} />
       {/* id + tabIndex: the skip link's target, and where go() parks focus
           after each SPA navigation. */}
       {/* The design root (.hp-design): every page inherits the system's
@@ -1427,6 +1431,8 @@ function App() {
 // Expose the route helpers so individual link components can render
 // real href attributes that match what go() will navigate to.
 window.routeToPath = routeToPath;
+// The masthead's search box loads the search bundle on first focus.
+window.ensureRoute = ensureRoute;
 window.SITE_ORIGIN = SITE_ORIGIN;
 
 // Boot-time registration check for the EAGER shell only (components.jsx). Page components are lazy-loaded per route and verified by

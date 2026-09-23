@@ -351,11 +351,10 @@ main:focus { outline: none; }
   margin-bottom: 36px;
 }
 .site-footer__grid {
-  /* Four columns since the July 2026 nav pass: the about block plus Read /
-     Plan / The journal, mirroring the masthead groups. It was five, one of
-     which was a fourteen-item "Site" list nobody scanned. */
+  /* The about block plus the masthead's words (Plan a trip, Park now, Read)
+     and The journal. */
   display: grid;
-  grid-template-columns: 1.4fr 1fr 1fr 1fr;
+  grid-template-columns: 1.4fr repeat(4, 1fr);
   gap: 40px;
   border-top: 1px solid var(--rule);
   padding-top: 36px;
@@ -6914,10 +6913,10 @@ kbd {
   .hp-guide .guide-prose h2 { font-size: 32px !important; padding-top: 36px; margin-top: 48px; }
 }
 
-/* Homepage masthead menus: the site masthead's Plan a Trip and Explore
-   Yosemite panels (NAV_GROUPS), drawn in the homepage's own type and palette.
-   A panel opens from state, never from :hover (HomeMasthead in components.jsx
-   says why), so the only rule that shows one is .is-open. */
+/* Masthead menus: the Plan a trip, Park now and Read panels (NAV_GROUPS),
+   drawn in the homepage's own type and palette. A panel opens from state,
+   never from :hover (HomeMasthead in components.jsx says why), so the only
+   rule that shows one is .is-open. */
 .hp-design .hp-header { position: relative; }
 /* The panel's hover bridge (below) spans the header's full width while a
    panel is open; lifting the brand and the app button over it keeps both
@@ -6925,26 +6924,39 @@ kbd {
 .hp-design .hp-header > .hp-brand,
 .hp-design .hp-header > .hp-button { position: relative; z-index: 61; }
 .hp-design .hp-menu { display: flex; align-items: center; gap: 4px; }
-.hp-design .hp-menu.is-open > a { color: #a4462c; }
-/* A real disclosure button beside the link, as in the site masthead: Enter on
-   the link follows it, so the link cannot also be the toggle. The padding is
-   the tap target and the negative margins hand the space back, so the nav row
-   does not grow. */
-.hp-design .hp-menu__caret {
+/* The label is the toggle: one button per menu, the whole label its target.
+   The panel's first link is the group's landing page, so the label does not
+   need to navigate. */
+.hp-design .hp-menu__trigger {
   display: inline-flex;
   align-items: center;
-  justify-content: center;
+  gap: 6px;
   background: none;
   border: 0;
-  color: #647067;
-  padding: 10px 8px;
-  margin: -10px -8px -10px -4px;
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  color: inherit;
   cursor: pointer;
+  white-space: nowrap;
 }
-.hp-design .hp-menu__caret svg { display: block; transition: transform .2s; }
-.hp-design .hp-menu__caret:hover,
-.hp-design .hp-menu.is-open .hp-menu__caret { color: #a4462c; }
-.hp-design .hp-menu.is-open .hp-menu__caret svg { transform: rotate(180deg); }
+.hp-design .hp-menu__trigger svg { display: block; color: #647067; transition: transform .2s, color .2s; }
+.hp-design .hp-menu__trigger:hover,
+.hp-design .hp-menu.is-open > .hp-menu__trigger,
+.hp-navigation nav > a:hover { color: #a4462c; }
+.hp-design .hp-menu__trigger:hover svg,
+.hp-design .hp-menu.is-open > .hp-menu__trigger svg { color: #a4462c; }
+.hp-design .hp-menu.is-open > .hp-menu__trigger svg { transform: rotate(180deg); }
+/* Where the reader is: the menu holding the current page, or the plain link
+   that is the current page, carries a hairline under its label. */
+.hp-design .hp-menu.is-current > .hp-menu__trigger > span,
+.hp-navigation nav > a[aria-current="page"] > span,
+.hp-navigation nav > a[aria-current="page"]:not(.hp-nav__search) {
+  text-decoration: underline;
+  text-decoration-color: #a4462c;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 7px;
+}
 /* position: static on the group gives the panel the header as its containing
    block: it spans the header's width and hangs from its rule. */
 .hp-design .hp-menu__panel {
@@ -7035,12 +7047,12 @@ kbd {
 .hp-design .hp-menu__note { font-size: 11px; line-height: 1.5; color: #647067; }
 .hp-design .hp-menu__link:hover .hp-menu__label { color: #a4462c; }
 @media (max-width: 760px) {
-  /* The two carets add about 30px to a row that already ran edge to edge, and
-     would push Search onto a line of its own on a 375 or 390px phone. The row
-     is space-between, so this lowers only the minimum gap; wherever the row
-     fits, the links sit exactly where they did. */
+  /* The row runs edge to edge on a 375 or 390px phone. It is space-between,
+     so this lowers only the minimum gap; wherever the row fits, the labels
+     keep their spacing. */
   .hp-design .hp-header nav { gap: 6px; }
   .hp-design .hp-menu { gap: 2px; }
+  .hp-design .hp-menu__trigger { padding-block: 12px; }
   /* The nav is its own row here and a panel opens from the caret, by tap, so
      there is no pointer to bridge. One column, scrolling inside the window. */
   .hp-design .hp-menu__panel { padding-top: 10px; }
@@ -7060,6 +7072,208 @@ kbd {
   .hp-design .hp-menu__blurb { font-size: 24px; margin-bottom: 18px; }
   .hp-design .hp-menu__cols { grid-template-columns: 1fr; gap: 20px; }
   .hp-design .hp-menu__link { padding-block: 10px; }
+}
+
+/* ── Masthead: layout, panel features, search box, compact bar ────────────
+   (HomeMasthead in components.jsx.) The nav sits centred between the brand
+   and the search box; below 880px it takes its own row, as before. */
+.hp-design .hp-header > nav { margin-inline: auto; }
+
+/* A panel's small second block under its lede (the trip selector, road
+   alerts), and the third track's features. */
+.hp-design .hp-menu__aside { margin-top: 30px; padding-top: 22px; border-top: 1px solid #d6dacf; }
+.hp-design .hp-menu__aside .hp-menu__heading { border-bottom: 0; padding-bottom: 0; margin-bottom: 8px; color: #a4462c; }
+.hp-design .hp-menu__aside-title { font: 21px/1.15 var(--serif); color: #233e35; margin: 0 0 6px; }
+.hp-design .hp-menu__aside .hp-menu__note { display: block; margin: 0 0 14px; }
+.hp-design .hp-menu__col--newest .hp-menu__label { font-size: 16px; line-height: 1.25; }
+.hp-design .hp-navfeat { display: flex; flex-direction: column; gap: 10px; align-items: flex-start; }
+.hp-design .hp-navfeat > .hp-menu__heading { align-self: stretch; margin-bottom: 0; }
+.hp-design .hp-navfeat__text { font-size: 11px; line-height: 1.6; color: #647067; margin: 0; }
+.hp-design .hp-navfeat__art { display: block; width: 100%; height: auto; background: #efeadc; border-radius: 3px; }
+.hp-design .hp-navfeat__contour { fill: none; stroke: #d6dacf; stroke-width: 1.2; }
+.hp-design .hp-navfeat__route { fill: none; stroke: #a4462c; stroke-width: 2; stroke-dasharray: 5 4; stroke-linecap: round; }
+.hp-design .hp-navfeat__pin { fill: #233e35; stroke: #fffdf7; stroke-width: 2; }
+/* The waits on an ink plate, the /conditions readout's treatment; the alarm
+   colours are that readout's lifted pair, since the accent fails on ink. */
+.hp-design .hp-navfeat--waits { background: #233e35; color: #f8f5ed; border-radius: 3px; padding: 20px 22px 22px; }
+.hp-design .hp-navfeat--waits .hp-menu__heading { color: #d6dacf; border-bottom-color: rgba(248, 245, 237, .22); }
+.hp-design .hp-navfeat--waits .hp-navfeat__text { color: #d6dacf; }
+.hp-design .hp-navfeat--waits .hp-link { color: #f8f5ed; border-bottom-color: rgba(248, 245, 237, .45); }
+.hp-design .hp-gates { list-style: none; margin: 0; padding: 0; align-self: stretch; }
+.hp-design .hp-gates__row { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; padding: 8px 0; border-bottom: 1px solid rgba(248, 245, 237, .14); }
+.hp-design .hp-gates__row:last-child { border-bottom: 0; }
+.hp-design .hp-gates__name { font: 19px/1.15 var(--serif); }
+.hp-design .hp-gates__read { font: 600 15px/1.15 var(--sans); text-align: right; white-space: nowrap; }
+.hp-design .hp-gates small { display: block; font: 400 10px/1.6 var(--sans); letter-spacing: .3px; color: #d6dacf; }
+.hp-design .hp-gates__row--moderate .hp-gates__read { color: #e3c489; }
+.hp-design .hp-gates__row--long .hp-gates__read { color: #e8a184; }
+
+/* Search. The box in the header from 1001px up; below that the nav's Search
+   link stands in for it. */
+.hp-navigation nav > .hp-nav__search { display: none; align-items: center; gap: 6px; }
+.hp-navigation nav > .hp-nav__search svg { display: block; flex: none; }
+.hp-design .hp-search { position: relative; flex: none; }
+.hp-design .hp-search__field {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 232px;
+  height: 42px;
+  padding: 0 10px 0 13px;
+  border: 1px solid #c3cabd;
+  border-radius: 3px;
+  background: #fffdf7;
+  color: #647067;
+  cursor: text;
+  transition: border-color .2s, box-shadow .2s;
+}
+.hp-design .hp-search__field:focus-within { border-color: #a4462c; box-shadow: 0 0 0 3px rgba(164, 70, 44, .18); }
+.hp-design .hp-search__field svg { display: block; flex: none; }
+.hp-design .hp-search input {
+  flex: 1;
+  min-width: 0;
+  height: 100%;
+  border: 0;
+  padding: 0;
+  background: none;
+  font: 13px var(--sans);
+  color: #233e35;
+  -webkit-appearance: none;
+  appearance: none;
+}
+.hp-design .hp-search input::placeholder { color: #647067; opacity: 1; }
+.hp-design .hp-search input::-webkit-search-cancel-button { -webkit-appearance: none; }
+/* The field's border and ring carry focus; the system's 3px outline at a 5px
+   offset would sit outside the box. */
+.hp-design .hp-search input:focus-visible { outline: none; }
+.hp-design .hp-search kbd {
+  flex: none;
+  font: 600 10px/1.4 var(--sans);
+  color: #647067;
+  border: 1px solid #d6dacf;
+  border-radius: 3px;
+  padding: 1px 6px;
+}
+.hp-design .hp-search input:focus ~ kbd,
+.hp-design .hp-search input:not(:placeholder-shown) ~ kbd { display: none; }
+.hp-design .hp-search__list {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  z-index: 62;
+  width: min(440px, calc(100vw - 40px));
+  max-height: calc(100vh - 170px);
+  overflow-y: auto;
+  padding: 8px 0;
+  background: #fffdf7;
+  border: 1px solid #d6dacf;
+  border-radius: 3px;
+  box-shadow: 0 30px 60px -30px rgba(20, 39, 31, .38);
+}
+.hp-design .hp-search__head,
+.hp-design .hp-search__empty { margin: 0; padding: 10px 18px 6px; }
+.hp-design .hp-search__head { font-size: 9px; letter-spacing: 1.7px; font-weight: 600; text-transform: uppercase; color: #647067; }
+.hp-design .hp-search__empty { font-size: 12px; line-height: 1.6; color: #647067; padding-bottom: 10px; }
+.hp-design .hp-search__opt { display: flex; flex-direction: column; gap: 3px; padding: 10px 18px; color: #233e35; }
+.hp-design .hp-search__opt.is-active { background: #efeadc; }
+.hp-design .hp-search__kind { font-size: 8px; letter-spacing: 1.7px; font-weight: 600; text-transform: uppercase; color: #a4462c; }
+.hp-design .hp-search__title { font: 18px/1.2 var(--serif); }
+.hp-design .hp-search__all { margin-top: 6px; padding-top: 14px; border-top: 1px solid #d6dacf; font-size: 11px; font-weight: 600; }
+@media (max-width: 1000px) {
+  .hp-design .hp-search { display: none; }
+  .hp-navigation nav > .hp-nav__search { display: inline-flex; }
+}
+
+/* The compact bar (HomeMasthead's scroll effect). Past the masthead's slot
+   the header is fixed to the top, one row, full bleed, with its content on
+   the page's container through --hp-edge; the slot keeps its height, so
+   nothing below moves. .is-shown slides it in. The crumb appears only here,
+   and only where it fits. */
+.hp-design .hp-header__crumb { display: none; }
+.hp-navigation.is-stuck .hp-header {
+  --hp-edge: max(56px, calc((100% - 1280px) / 2));
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 58;
+  width: auto;
+  max-width: none;
+  height: 62px;
+  margin: 0;
+  padding: 0 var(--hp-edge);
+  flex-wrap: nowrap;
+  row-gap: 0;
+  background: #f8f5ed;
+  border-bottom: 1px solid #c3cabd;
+  box-shadow: 0 16px 30px -28px rgba(20, 39, 31, .55);
+  transform: translateY(-110%);
+  transition: transform .24s ease;
+}
+.hp-navigation.is-stuck.is-shown .hp-header { transform: none; }
+.hp-navigation.is-stuck .hp-brand { font-size: 22px; gap: 9px; }
+.hp-navigation.is-stuck .hp-brand img { width: 30px; height: 30px; }
+.hp-navigation.is-stuck .hp-brand small { display: none; }
+.hp-navigation.is-stuck .hp-header > .hp-button { padding: 10px 16px; }
+.hp-navigation.is-stuck .hp-search__field { height: 38px; }
+.hp-navigation.is-stuck .hp-header > nav { order: 0; width: auto; margin-top: 0; }
+.hp-navigation.is-stuck .hp-menu__panel { left: var(--hp-edge); right: var(--hp-edge); padding-top: 10px; }
+.hp-navigation.is-stuck .hp-menu__panel::before { height: 18px; }
+.hp-navigation.is-stuck .hp-menu__card { max-height: calc(100vh - 96px); }
+@media (min-width: 1200px) {
+  .hp-navigation.is-stuck .hp-header__crumb {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0 0 0 -6px;
+    padding-left: 18px;
+    border-left: 1px solid #d6dacf;
+    font-size: 9px;
+    letter-spacing: 1.7px;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: #647067;
+    white-space: nowrap;
+  }
+  .hp-navigation.is-stuck .hp-header__crumb a + a::before { content: "/"; margin-right: 10px; color: #c3cabd; }
+  .hp-navigation.is-stuck .hp-header__crumb a:hover { color: #a4462c; }
+}
+@media (max-width: 1100px) {
+  .hp-navigation.is-stuck .hp-header { --hp-edge: 32px; }
+}
+@media (max-width: 760px) {
+  /* One row on a phone: the mark (its name kept for screen readers), the
+     four labels and Search. The app button sits out; every page carries the
+     Field Guide band. */
+  .hp-navigation.is-stuck .hp-header { --hp-edge: 14px; height: 52px; gap: 10px; }
+  .hp-navigation.is-stuck .hp-brand > span {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+  .hp-navigation.is-stuck .hp-brand img { width: 28px; height: 28px; }
+  .hp-navigation.is-stuck .hp-header > .hp-button { display: none; }
+  .hp-navigation.is-stuck .hp-header > nav { flex: 1; justify-content: space-between; gap: 4px; }
+  .hp-navigation.is-stuck .hp-header nav a,
+  .hp-navigation.is-stuck .hp-menu__trigger { padding-block: 10px; }
+  .hp-navigation.is-stuck .hp-menu__card { max-height: calc(100vh - 80px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hp-navigation.is-stuck .hp-header { transition: none; }
+}
+/* The reading bar, and /stay's booking bar on wide screens, ride under the
+   compact bar while it shows. In-page jumps stop clear of it wherever it is
+   pinned; where it is headroom, a jump down hides it anyway. */
+html[data-nav-compact] .readbar { top: 62px; }
+html[data-nav-mode="pinned"] { scroll-padding-top: 62px; }
+@media (min-width: 881px) {
+  html[data-nav-compact] .stay-bar { top: 62px; }
+}
+@media (max-width: 760px) {
+  html[data-nav-compact] .readbar { top: 52px; }
 }
 
 /* ── Articles (page-article.jsx, /articles/<slug>) ─────────────────────────

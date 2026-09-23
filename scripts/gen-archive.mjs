@@ -16,12 +16,13 @@
 // gen-home-shell.mjs renders the real components for fidelity, and that is
 // right for the homepage, where React replaces the markup a moment later.
 // Nothing replaces it here: an archive page loads no JavaScript at all. The
-// site Header's mobile menu is React state (`menuOpen` in components.jsx), so
-// rendering it statically would ship a hamburger button that does nothing on
-// phones. These pages get a flat, link-only masthead instead, built from the
-// same styles.css classes so it still reads as the same publication: since
-// the September 2026 design rollout, the design masthead (HomeMasthead's
-// markup without its two JavaScript menus) and the site footer's structure
+// masthead's menus open from React state (HomeMasthead in components.jsx),
+// so rendering them statically would ship labels that do nothing. These
+// pages get a flat, link-only masthead instead, built from the same
+// styles.css classes so it still reads as the same publication: the design
+// masthead (HomeMasthead's labels without its three JavaScript menus, each
+// linked to its landing page, and its search box as a plain GET form, with
+// no compact bar) and the site footer's structure
 // (Footer in components.jsx, without its date-derived copyright year, which
 // would make --check fail every January 1). Both are hand-kept mirrors: when
 // HOME_NAV or the Footer columns change, change DESIGN_NAV / siteFooter here.
@@ -95,18 +96,25 @@ function truncate(s, n) {
 // ---------------------------------------------------------------------------
 
 
-// HOME_NAV's links as they read off the homepage (components.jsx), each the
-// route its section stands for.
+// HOME_NAV's labels (components.jsx), each linked to its group's landing
+// page: these pages load no JavaScript, so the three menus cannot open here
+// and a label goes where the menu's first link would.
 const DESIGN_NAV = [
-  ["/start-here", "Start here"],
-  ["/articles", "The journal"],
-  ["/conditions", "Park conditions"],
-  ["/newsletter", "Sunday Letter"],
-  ["/search", "Search"],
+  ["/planning", "Plan a trip"],
+  ["/now", "Park now"],
+  ["/map", "Map"],
+  ["/articles", "Read"],
 ];
 
+// The masthead's search box, as a plain GET form (/search reads ?q= when it
+// loads), and the nav's Search link that stands in for it below 1000px. No
+// "/" hint: the shortcut is JavaScript.
+const SEARCH_ICON = `<svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="6.5" fill="none" stroke="currentColor" stroke-width="2"></circle><line x1="16" y1="16" x2="21" y2="21" stroke="currentColor" stroke-width="2" stroke-linecap="round"></line></svg>`;
+
 function masthead() {
-  const nav = DESIGN_NAV.map(([href, label]) => `<a href="${href}">${esc(label)}</a>`).join("");
+  const nav = DESIGN_NAV.map(([href, label]) => `<a href="${href}">${esc(label)}</a>`).join("")
+    + `<a class="hp-nav__search" href="/search">${SEARCH_ICON.replace(/15/g, "13")}<span>Search</span></a>`;
+  const search = `<form class="hp-search" role="search" action="/search" method="get"><label class="hp-search__field">${SEARCH_ICON}<input type="search" name="q" placeholder="Search the journal" aria-label="Search the journal" autocomplete="off" /></label></form>`;
   // The brand box takes the square cut of the mark (favicon-96.png, written by
   // gen-brand-icons.mjs from the same master, 5.7 KB), drawn at the design
   // masthead's 48 px; unversioned, the same trade-off /styles.css makes on
@@ -117,6 +125,7 @@ function masthead() {
 <header class="hp-wrap hp-header">
   <a class="hp-brand" href="/"><img src="/img/favicon-96.png" width="96" height="96" alt="" /><span>The Talus Field<small>YOSEMITE, FROM THE INSIDE.</small></span></a>
   <nav aria-label="Main navigation">${nav}</nav>
+  ${search}
   <a class="hp-button" href="/guide">Get the app ↗</a>
 </header>
 </div>`;
@@ -150,20 +159,22 @@ const PROVENANCE = `<div class="hp-wrap arc-provenance">
 function siteFooter() {
   const { categories } = loadDataJs();
   const li = (href, label) => `<li><a href="${href}">${esc(label)}</a></li>`;
+  const plan = [
+    ["/start-here", "Start here"], ["/planning", "The Planning Guide"], ["/map", "The trip map"],
+    ["/itineraries", "Itineraries"], ["/stay", "Where to stay"], ["/distances", "Drive times"],
+    ["/international", "Visiting from abroad"], ["/checklist", "First-week checklist"], ["/kit", "Kit"],
+    ["/guide", "The Field Guide"],
+  ].map(([h, l]) => li(h, l)).join("");
+  const now = [
+    ["/now", "The Park Bulletin"], ["/conditions", "Conditions"], ["/webcams", "Webcams"],
+    ["/dates", "Dates that matter"],
+  ].map(([h, l]) => li(h, l)).join("");
   const read = [
     li("/articles", "All articles"),
     ...categories.map((c) => li(`/section/${c.slug}`, c.label)),
-    li("/now", "The Park Bulletin"),
     li("/films", "Films"),
     li("/archive/", "Nature Notes archive"),
   ].join("");
-  const plan = [
-    ["/start-here", "Start here"], ["/planning", "The Planning Guide"], ["/map", "The Map"],
-    ["/itineraries", "Itineraries"], ["/distances", "Drive times"], ["/dates", "Dates that matter"],
-    ["/international", "Visiting from abroad"], ["/webcams", "Webcams"], ["/stay", "Where to stay"],
-    ["/conditions", "Conditions"], ["/checklist", "First-week checklist"], ["/kit", "Kit"],
-    ["/guide", "The Field Guide"],
-  ].map(([h, l]) => li(h, l)).join("");
   const journal = [
     ["/about", "About"], ["/newsletter", "Newsletter"], ["/contact", "Contact"],
     ["/search", "Search"], ["/places", "Directory"],
@@ -177,8 +188,9 @@ function siteFooter() {
         <p>Notes on a single park, kept slowly. Updated when something is worth saying.</p>
         <a class="site-footer__index" href="/explore">Everything on this site →</a>
       </div>
+      <div><h4>Plan a trip</h4><ul>${plan}</ul></div>
+      <div><h4>Park now</h4><ul>${now}</ul></div>
       <div><h4>Read</h4><ul>${read}</ul></div>
-      <div><h4>Plan</h4><ul>${plan}</ul></div>
       <div><h4>The journal</h4><ul>${journal}</ul></div>
     </div>
     <div class="site-footer__disclosure">

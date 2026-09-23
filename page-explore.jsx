@@ -2,8 +2,9 @@
 
 // =============================================================================
 // THE INDEX — `/explore`. One page that lists every reader-facing destination
-// on the site, in the masthead's order (planning first, then the reading),
-// each with a line saying what it is.
+// on the site, sectioned by the masthead's words in the masthead's order
+// (Plan a trip, Park now, Read), then the Field Guide and the journal's own
+// pages, each with a line saying what it is.
 //
 // Why it exists: the site now carries four article sections, a 512-issue
 // transcribed archive, a film archive, a bulletin, a trip map, a planning
@@ -11,8 +12,8 @@
 // pages. The nav simplification pass cut the masthead to the primary
 // destinations precisely because no bar can hold all that without becoming
 // a directory. This page is the directory: the one page a reader can land
-// on and see the whole shape, and (with the footer and the hamburger's More
-// section) where the secondary destinations stay reachable.
+// on and see the whole shape, and (with the footer) where the secondary
+// destinations stay reachable.
 //
 // It is NOT a sitemap dump and NOT a search. /articles is the article catalog
 // and /search is the query box; this page indexes destinations and links out
@@ -79,11 +80,6 @@ function ExplorePage({ go }) {
     },
     ...sectionEntries,
     {
-      route: "now",
-      name: "The Park Bulletin",
-      note: "Everything happening in the park right now on one board: closures, road and area status, free ranger programs, dated events, trail status, hours, transit, phone numbers. Rewritten for each edition of the park's own Yosemite Guide.",
-    },
-    {
       route: "films",
       name: "Films",
       count: films.length ? plural(films.length, "film", "films") : null,
@@ -129,29 +125,14 @@ function ExplorePage({ go }) {
       note: "In-park lodging and the gateway towns by road corridor, with the named lodges, drive times, which corridor fits which season, and the booking windows that actually matter.",
     },
     {
-      route: "webcams",
-      name: "Webcams",
-      note: "The live Yosemite cameras worth checking before you drive in, with what each one shows, how often it refreshes, and how to read two of them together.",
-    },
-    {
       route: "distances",
       name: "Drive times",
       note: "How far Yosemite Valley is from every gateway town, in one table: miles, drive times, which entrance each route uses, and what the season does to it.",
     },
     {
-      route: "dates",
-      name: "Dates that matter",
-      note: "The deadlines that decide a trip, in one table: the Half Dome lotteries, the wilderness permit windows, the campground release mornings and the road openings, each one a calendar file, measured against your dates.",
-    },
-    {
       route: "international",
       name: "Visiting from abroad",
       note: "The 2026 non-resident entrance fee and the $250 pass, a calculator for the cheapest way in, and the things about this park that surprise visitors from outside the United States.",
-    },
-    {
-      route: "conditions",
-      name: "Conditions",
-      note: "Live park webcams, entrance wait times, and the three forecasts worth checking, on one bookmarkable page.",
     },
     {
       route: "checklist",
@@ -170,7 +151,28 @@ function ExplorePage({ go }) {
     },
   ];
 
-  const events = [
+  // The masthead's Park now menu: the live pages, then the dated decisions.
+  const parkNow = [
+    {
+      route: "now",
+      name: "The Park Bulletin",
+      note: "Everything happening in the park right now on one board: closures, road and area status, free ranger programs, dated events, trail status, hours, transit, phone numbers. Rewritten for each edition of the park's own Yosemite Guide.",
+    },
+    {
+      route: "conditions",
+      name: "Conditions",
+      note: "Live park webcams, entrance wait times, and the three forecasts worth checking, on one bookmarkable page.",
+    },
+    {
+      route: "webcams",
+      name: "Webcams",
+      note: "The live Yosemite cameras worth checking before you drive in, with what each one shows, how often it refreshes, and how to read two of them together.",
+    },
+    {
+      route: "dates",
+      name: "Dates that matter",
+      note: "The deadlines that decide a trip, in one table: the Half Dome lotteries, the wilderness permit windows, the campground release mornings and the road openings, each one a calendar file, measured against your dates.",
+    },
     {
       route: "firefall",
       name: "Firefall",
@@ -225,7 +227,7 @@ function ExplorePage({ go }) {
 
       <ExploreSection
         go={go}
-        eyebrow="Plan a Trip"
+        eyebrow="Plan a trip"
         title="The trip."
         dek="In roughly the order the decisions come at you."
         entries={planning}
@@ -233,18 +235,18 @@ function ExplorePage({ go }) {
 
       <ExploreSection
         go={go}
-        eyebrow="Explore Yosemite"
-        title="The writing, and the record."
-        dek="The journal itself, plus the park's own bulletin and film series."
-        entries={reading}
+        eyebrow="Park now"
+        title="What is open, and what is coming."
+        dek="The pages read from the park's own feeds and its own Guide, then the dates people plan a trip around. Each date page is a decision aid, not a calendar."
+        entries={parkNow}
       />
 
       <ExploreSection
         go={go}
-        eyebrow="Dated events"
-        title="The three dates people plan around."
-        dek="Each page is a decision aid, not a calendar: whether the date is worth building a trip on, and what to do if it does not go your way."
-        entries={events}
+        eyebrow="Read"
+        title="The writing, and the record."
+        dek="The journal itself, plus the park's own bulletin and film series."
+        entries={reading}
       />
 
       <ExploreSection

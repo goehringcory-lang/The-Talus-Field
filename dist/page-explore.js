@@ -54,10 +54,6 @@ function ExplorePage({
     count: plural(articles.length, "entry", "entries"),
     note: "The full catalog, newest first, filterable by section."
   }, ...sectionEntries, {
-    route: "now",
-    name: "The Park Bulletin",
-    note: "Everything happening in the park right now on one board: closures, road and area status, free ranger programs, dated events, trail status, hours, transit, phone numbers. Rewritten for each edition of the park's own Yosemite Guide."
-  }, {
     route: "films",
     name: "Films",
     count: films.length ? plural(films.length, "film", "films") : null,
@@ -93,25 +89,13 @@ function ExplorePage({
     name: "Where to stay",
     note: "In-park lodging and the gateway towns by road corridor, with the named lodges, drive times, which corridor fits which season, and the booking windows that actually matter."
   }, {
-    route: "webcams",
-    name: "Webcams",
-    note: "The live Yosemite cameras worth checking before you drive in, with what each one shows, how often it refreshes, and how to read two of them together."
-  }, {
     route: "distances",
     name: "Drive times",
     note: "How far Yosemite Valley is from every gateway town, in one table: miles, drive times, which entrance each route uses, and what the season does to it."
   }, {
-    route: "dates",
-    name: "Dates that matter",
-    note: "The deadlines that decide a trip, in one table: the Half Dome lotteries, the wilderness permit windows, the campground release mornings and the road openings, each one a calendar file, measured against your dates."
-  }, {
     route: "international",
     name: "Visiting from abroad",
     note: "The 2026 non-resident entrance fee and the $250 pass, a calculator for the cheapest way in, and the things about this park that surprise visitors from outside the United States."
-  }, {
-    route: "conditions",
-    name: "Conditions",
-    note: "Live park webcams, entrance wait times, and the three forecasts worth checking, on one bookmarkable page."
   }, {
     route: "checklist",
     name: "The first-week checklist",
@@ -125,7 +109,23 @@ function ExplorePage({
     name: "Trip consults",
     note: "Paid one-on-one planning: thirty minutes with a naturalist who lives in the park, on your dates and your group."
   }];
-  var events = [{
+  var parkNow = [{
+    route: "now",
+    name: "The Park Bulletin",
+    note: "Everything happening in the park right now on one board: closures, road and area status, free ranger programs, dated events, trail status, hours, transit, phone numbers. Rewritten for each edition of the park's own Yosemite Guide."
+  }, {
+    route: "conditions",
+    name: "Conditions",
+    note: "Live park webcams, entrance wait times, and the three forecasts worth checking, on one bookmarkable page."
+  }, {
+    route: "webcams",
+    name: "Webcams",
+    note: "The live Yosemite cameras worth checking before you drive in, with what each one shows, how often it refreshes, and how to read two of them together."
+  }, {
+    route: "dates",
+    name: "Dates that matter",
+    note: "The deadlines that decide a trip, in one table: the Half Dome lotteries, the wilderness permit windows, the campground release mornings and the road openings, each one a calendar file, measured against your dates."
+  }, {
     route: "firefall",
     name: "Firefall",
     note: "Whether to plan a February trip around Horsetail Fall, what the odds actually are, and what to do with the trip if the light does not come."
@@ -206,22 +206,22 @@ function ExplorePage({
     }, "search"), " is faster.")
   }), React.createElement(ExploreSection, {
     go: go,
-    eyebrow: "Plan a Trip",
+    eyebrow: "Plan a trip",
     title: "The trip.",
     dek: "In roughly the order the decisions come at you.",
     entries: planning
   }), React.createElement(ExploreSection, {
     go: go,
-    eyebrow: "Explore Yosemite",
+    eyebrow: "Park now",
+    title: "What is open, and what is coming.",
+    dek: "The pages read from the park's own feeds and its own Guide, then the dates people plan a trip around. Each date page is a decision aid, not a calendar.",
+    entries: parkNow
+  }), React.createElement(ExploreSection, {
+    go: go,
+    eyebrow: "Read",
     title: "The writing, and the record.",
     dek: "The journal itself, plus the park's own bulletin and film series.",
     entries: reading
-  }), React.createElement(ExploreSection, {
-    go: go,
-    eyebrow: "Dated events",
-    title: "The three dates people plan around.",
-    dek: "Each page is a decision aid, not a calendar: whether the date is worth building a trip on, and what to do if it does not go your way.",
-    entries: events
   }), React.createElement(ExploreSection, {
     go: go,
     eyebrow: "The Field Guide",

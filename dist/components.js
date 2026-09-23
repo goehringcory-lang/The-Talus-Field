@@ -271,6 +271,30 @@ function longestWait(summary) {
   });
   return worst;
 }
+function GateReadout({
+  waits
+}) {
+  var byKey = {};
+  (waits || []).forEach(pair => {
+    if (pair && pair.pair_name) byKey[pair.pair_name] = pair;
+  });
+  return React.createElement("ul", {
+    className: "hp-gates"
+  }, GATE_BOARD.map(gate => {
+    var pair = byKey[gate.key];
+    var raw = pair && !pair.stale ? pair.current_wait_minutes : null;
+    var min = typeof raw === "number" && isFinite(raw) ? raw : null;
+    var tone = waitClass(min);
+    return React.createElement("li", {
+      key: gate.key,
+      className: `hp-gates__row hp-gates__row--${tone}`
+    }, React.createElement("span", {
+      className: "hp-gates__name"
+    }, gate.name, React.createElement("small", null, gate.road)), React.createElement("span", {
+      className: "hp-gates__read"
+    }, min == null ? "—" : formatWaitMinutes(min), React.createElement("small", null, waits ? WAIT_TONE_LABEL[tone] : "\u00a0")));
+  }));
+}
 function EntranceWaits({
   variant,
   onData
@@ -305,6 +329,9 @@ function EntranceWaits({
       clearInterval(timer);
     };
   }, []);
+  if (variant === "menu") return React.createElement(GateReadout, {
+    waits: waits
+  });
   if (variant === "board") {
     var byKey = {};
     (waits || []).forEach(pair => {
@@ -513,24 +540,32 @@ function releaseRockfall(markEl) {
 }
 var NAV_GROUPS = [{
   key: "plan",
-  label: "Plan a Trip",
+  label: "Plan a trip",
   route: "planning",
   cta: "The Planning Guide →",
   blurb: "The trip, in the order the decisions actually come at you.",
+  aside: {
+    eyebrow: "Trip selector",
+    title: "Five questions, one plan.",
+    text: "When, how long, where you sleep, who is coming, and what matters most.",
+    link: {
+      key: "planning",
+      hash: "trip-selector",
+      label: "Start the selector"
+    }
+  },
+  feature: "map",
   columns: [{
-    heading: "Before you book",
+    heading: "Decide",
     links: [{
       key: "start-here",
+      onHome: "home-start-here",
       label: "Start here",
       note: "Your first trip, the questions in order"
     }, {
       key: "planning",
       label: "The Planning Guide",
       note: "The whole archive, in trip order"
-    }, {
-      key: "stay",
-      label: "Where to stay",
-      note: "In-park lodging and the gateway towns"
     }, {
       key: "itineraries",
       label: "Itineraries",
@@ -541,27 +576,19 @@ var NAV_GROUPS = [{
       note: "Thirty minutes, one on one. Paid"
     }]
   }, {
-    heading: "Before you drive in",
+    heading: "Book and get there",
     links: [{
-      key: "map",
-      label: "The trip map",
-      note: "Every pin in the park, assembled into a route"
+      key: "stay",
+      label: "Where to stay",
+      note: "In-park lodging and the gateway towns"
     }, {
       key: "distances",
       label: "Drive times",
       note: "How far the Valley is from every gateway town"
     }, {
-      key: "dates",
-      label: "Dates that matter",
-      note: "Lotteries, release mornings, road windows, as calendar files"
-    }, {
       key: "international",
       label: "Visiting from abroad",
       note: "The non-resident entrance fee, and the cheapest way in"
-    }, {
-      key: "webcams",
-      label: "Webcams",
-      note: "The live views, and how to read them"
     }, {
       key: "checklist",
       label: "First-week checklist",
@@ -571,16 +598,53 @@ var NAV_GROUPS = [{
       label: "Kit",
       note: "What earns its place in the pack"
     }]
-  }, {
-    heading: "Dated events",
+  }]
+}, {
+  key: "now",
+  label: "Park now",
+  route: "now",
+  cta: "The Park Bulletin →",
+  blurb: "What is open, what is on, and what the gates look like.",
+  aside: {
+    eyebrow: "Road alerts",
+    title: "One email when a road changes.",
+    text: "Tioga Road, Glacier Point Road, and the highways in, sent when an opening or a closure is confirmed.",
+    link: {
+      key: "conditions",
+      hash: "road-alerts",
+      label: "Get road alerts"
+    }
+  },
+  feature: "waits",
+  columns: [{
+    heading: "Today",
     links: [{
-      key: "firefall",
-      label: "Firefall",
-      note: "Whether to plan a trip around Horsetail Fall"
+      key: "now",
+      label: "The Park Bulletin",
+      note: "What is happening in the park right now"
+    }, {
+      key: "conditions",
+      label: "Conditions",
+      note: "Gates, lots, roads, and who to call"
+    }, {
+      key: "webcams",
+      label: "Webcams",
+      note: "The live views, and how to read them"
+    }]
+  }, {
+    heading: "The calendar",
+    links: [{
+      key: "dates",
+      label: "Dates that matter",
+      note: "Lotteries, release mornings, road windows, as calendar files"
     }, {
       key: "tioga-opening",
       label: "Tioga Road opening",
       note: "When the high country actually opens"
+    }, {
+      key: "firefall",
+      label: "Firefall",
+      note: "Whether to plan a trip around Horsetail Fall"
     }, {
       key: "half-dome-lottery",
       label: "Half Dome lottery",
@@ -588,27 +652,17 @@ var NAV_GROUPS = [{
     }]
   }]
 }, {
-  key: "conditions",
-  label: "Conditions",
-  route: "conditions"
+  key: "map",
+  label: "Map",
+  route: "map"
 }, {
   key: "read",
-  label: "Explore Yosemite",
+  label: "Read",
   route: "articles",
   cta: "All articles →",
   blurb: "The journal itself: everything published, by section.",
+  feature: "newest",
   columns: [{
-    heading: "The journal",
-    links: [{
-      key: "articles",
-      label: "All articles",
-      note: "Everything published, newest first"
-    }, {
-      key: "now",
-      label: "The Park Bulletin",
-      note: "What is happening in the park right now"
-    }]
-  }, {
     heading: "Sections",
     links: [{
       key: "cat:planning",
@@ -626,6 +680,26 @@ var NAV_GROUPS = [{
       key: "cat:seasonal",
       label: "Seasonal guides",
       note: "The park, month by month"
+    }]
+  }, {
+    heading: "From the archive",
+    links: [{
+      href: "/archive/",
+      label: "Nature Notes archive",
+      note: "512 issues of the park's own bulletin"
+    }, {
+      key: "films",
+      label: "Films",
+      note: "The NPS Nature Notes film series, annotated"
+    }, {
+      key: "newsletter",
+      onHome: "home-newsletter",
+      label: "The Sunday Letter",
+      note: "One short letter a week. Free"
+    }, {
+      key: "explore",
+      label: "Everything on this site",
+      note: "Every page, with a line on each"
     }]
   }]
 }, {
@@ -670,49 +744,358 @@ function HomeLink({
   }, children);
 }
 var HOME_NAV = [{
-  href: "#home-start-here",
-  away: "/start-here",
-  label: "Start here",
+  label: "Plan a trip",
   group: "plan"
 }, {
-  href: "/articles",
-  label: "The journal",
+  label: "Park now",
+  group: "now"
+}, {
+  href: "/map",
+  label: "Map"
+}, {
+  label: "Read",
   group: "read"
-}, {
-  href: "/conditions",
-  label: "Park conditions"
-}, {
-  href: "#home-newsletter",
-  away: "/newsletter",
-  label: "Sunday Letter"
-}, {
-  href: "/search",
-  label: "Search"
 }];
 var homeMenuCta = cta => `${(cta || "Open the section").replace(/\s*→\s*$/, "")} ↗`;
+function navGroupOf(current) {
+  if (!current || current === "home") return null;
+  var g = NAV_GROUPS.find(group => group.columns && (group.route === current || group.columns.some(col => col.links.some(l => l.key === current))));
+  return g ? g.key : null;
+}
+function NavMapFeature({
+  link
+}) {
+  var pins = [[30, 78], [74, 58], [120, 68], [164, 36], [206, 48]];
+  return React.createElement("div", {
+    className: "hp-navfeat hp-navfeat--map"
+  }, React.createElement("p", {
+    className: "hp-menu__heading"
+  }, "The trip map"), React.createElement("svg", {
+    className: "hp-navfeat__art",
+    viewBox: "0 0 236 104",
+    "aria-hidden": "true",
+    focusable: "false"
+  }, React.createElement("path", {
+    className: "hp-navfeat__contour",
+    d: "M-6 80 C 30 64, 58 88, 96 70 S 170 30, 246 44"
+  }), React.createElement("path", {
+    className: "hp-navfeat__contour",
+    d: "M-6 54 C 26 40, 64 60, 104 44 S 176 12, 246 22"
+  }), React.createElement("path", {
+    className: "hp-navfeat__contour",
+    d: "M-6 100 C 40 88, 80 106, 128 92 S 196 66, 246 74"
+  }), React.createElement("path", {
+    className: "hp-navfeat__route",
+    d: "M30 78 L 74 58 L 120 68 L 164 36 L 206 48"
+  }), pins.map(([x, y]) => React.createElement("circle", {
+    key: x,
+    className: "hp-navfeat__pin",
+    cx: x,
+    cy: y,
+    r: "5"
+  }))), React.createElement("p", {
+    className: "hp-navfeat__text"
+  }, "Every pin in the park, assembled into a route you can share or open in the Field Guide."), link({
+    key: "map",
+    label: "Open the map ↗"
+  }, "hp-link"));
+}
+function NavWaitsFeature({
+  live,
+  link
+}) {
+  return React.createElement("div", {
+    className: "hp-navfeat hp-navfeat--waits"
+  }, React.createElement("p", {
+    className: "hp-menu__heading"
+  }, "Entrance waits, live"), live ? React.createElement(EntranceWaits, {
+    variant: "menu"
+  }) : React.createElement(GateReadout, {
+    waits: null
+  }), React.createElement("p", {
+    className: "hp-navfeat__text"
+  }, "Read from the Park Service's own feed. A dash means no current reading."), link({
+    key: "conditions",
+    hash: "cond-waits",
+    label: "Gates and lots on Conditions ↗"
+  }, "hp-link"));
+}
+function NavNewestFeature({
+  link
+}) {
+  var newest = (window.ARTICLES || []).slice().sort((a, b) => String(b.isoDate || "").localeCompare(String(a.isoDate || ""))).slice(0, 3);
+  if (!newest.length) return null;
+  return React.createElement("div", {
+    className: "hp-menu__col hp-menu__col--newest"
+  }, React.createElement("p", {
+    className: "hp-menu__heading"
+  }, "Newest"), newest.map(a => {
+    var cat = window.findCategory ? window.findCategory(a.cat) : null;
+    var note = [cat && cat.label, a.read].filter(Boolean).join(" · ");
+    return link({
+      key: `a:${a.slug}`,
+      label: a.title,
+      note
+    }, "hp-menu__link");
+  }));
+}
+var SEARCH_JUMPS = [{
+  key: "now",
+  title: "The Park Bulletin",
+  kind: "Park now"
+}, {
+  key: "conditions",
+  title: "Conditions",
+  kind: "Park now"
+}, {
+  key: "map",
+  title: "The trip map",
+  kind: "Map"
+}, {
+  key: "stay",
+  title: "Where to stay",
+  kind: "Plan a trip"
+}];
+function MastheadSearch({
+  go,
+  location
+}) {
+  var [query, setQuery] = useState("");
+  var [open, setOpen] = useState(false);
+  var [active, setActive] = useState(-1);
+  var [ready, setReady] = useState(false);
+  var inputRef = useRef(null);
+  var q = query.trim();
+  var load = () => {
+    if (typeof window.searchCatalog === "function") {
+      setReady(true);
+      return;
+    }
+    if (typeof window.ensureRoute !== "function") return;
+    window.ensureRoute("search").then(() => setReady(typeof window.searchCatalog === "function")).catch(() => {});
+  };
+  var results = useMemo(() => {
+    if (!q) return SEARCH_JUMPS;
+    if (!ready || typeof window.searchCatalog !== "function") return [];
+    var exact = window.searchCatalog(q, {
+      limit: 6
+    });
+    return exact.length ? exact : window.searchCatalog(q, {
+      fuzzy: true,
+      limit: 6
+    });
+  }, [q, ready]);
+  var options = q ? [...results, {
+    all: true,
+    key: "search"
+  }] : results;
+  var pathFor = r => r.all ? `/search?q=${encodeURIComponent(q)}` : r.path || (window.routeToPath ? window.routeToPath(r.key) : `/${r.key}`);
+  var reset = () => {
+    setOpen(false);
+    setActive(-1);
+    setQuery("");
+    if (inputRef.current) inputRef.current.blur();
+  };
+  var toSearchPage = text => {
+    var url = text ? `/search?q=${encodeURIComponent(text)}` : "/search";
+    if (window.track) window.track("nav_search_submit", {
+      location,
+      has_query: text ? "1" : "0"
+    });
+    reset();
+    if (window.location.pathname.replace(/\/+$/, "") === "/search") {
+      window.location.assign(url);
+      return;
+    }
+    window.history.pushState({
+      route: "search"
+    }, "", url);
+    go("search");
+  };
+  var pick = (r, i, e) => {
+    if (r.all) {
+      toSearchPage(q);
+      return;
+    }
+    var path = pathFor(r);
+    if (window.track) window.track("nav_search_pick", {
+      location,
+      target: path,
+      rank: String(i + 1),
+      has_query: q ? "1" : "0"
+    });
+    reset();
+    if (r.path) {
+      window.location.assign(r.path);
+      return;
+    }
+    if (e) e.preventDefault();
+    go(r.key);
+  };
+  var onKeyDown = e => {
+    var n = options.length;
+    if (e.key === "ArrowDown" && n) {
+      e.preventDefault();
+      setOpen(true);
+      setActive(i => (i + 1) % n);
+    } else if (e.key === "ArrowUp" && n) {
+      e.preventDefault();
+      setOpen(true);
+      setActive(i => i <= 0 ? n - 1 : i - 1);
+    } else if (e.key === "Escape") {
+      if (open) {
+        e.preventDefault();
+        setOpen(false);
+        setActive(-1);
+      } else if (inputRef.current) inputRef.current.blur();
+    } else if (e.key === "Enter" && open && active >= 0 && options[active]) {
+      e.preventDefault();
+      pick(options[active], active);
+    }
+  };
+  var showList = open && (options.length > 0 || q);
+  var listId = "masthead-search-list";
+  var optId = i => `masthead-search-opt-${i}`;
+  return React.createElement("form", {
+    className: "hp-search",
+    role: "search",
+    action: "/search",
+    method: "get",
+    onSubmit: e => {
+      e.preventDefault();
+      toSearchPage(q);
+    },
+    onBlur: e => {
+      if (!e.currentTarget.contains(e.relatedTarget)) {
+        setOpen(false);
+        setActive(-1);
+      }
+    }
+  }, React.createElement("label", {
+    className: "hp-search__field"
+  }, React.createElement("svg", {
+    viewBox: "0 0 24 24",
+    width: "15",
+    height: "15",
+    "aria-hidden": "true",
+    focusable: "false"
+  }, React.createElement("circle", {
+    cx: "11",
+    cy: "11",
+    r: "6.5",
+    fill: "none",
+    stroke: "currentColor",
+    strokeWidth: "2"
+  }), React.createElement("line", {
+    x1: "16",
+    y1: "16",
+    x2: "21",
+    y2: "21",
+    stroke: "currentColor",
+    strokeWidth: "2",
+    strokeLinecap: "round"
+  })), React.createElement("input", {
+    ref: inputRef,
+    id: "masthead-search",
+    type: "search",
+    name: "q",
+    value: query,
+    placeholder: "Search the journal",
+    "aria-label": "Search the journal",
+    autoComplete: "off",
+    role: "combobox",
+    "aria-autocomplete": "list",
+    "aria-expanded": showList ? "true" : "false",
+    "aria-controls": listId,
+    "aria-activedescendant": showList && active >= 0 ? optId(active) : undefined,
+    onFocus: () => {
+      setOpen(true);
+      load();
+    },
+    onChange: e => {
+      setQuery(e.target.value);
+      setOpen(true);
+      setActive(-1);
+    },
+    onKeyDown: onKeyDown
+  }), React.createElement("kbd", {
+    "aria-hidden": "true"
+  }, "/")), showList && React.createElement("div", {
+    className: "hp-search__list",
+    id: listId,
+    role: "listbox",
+    "aria-label": q ? `Results for ${q}` : "Jump to"
+  }, !q && React.createElement("p", {
+    className: "hp-search__head"
+  }, "Jump to"), q && results.length === 0 && React.createElement("p", {
+    className: "hp-search__empty"
+  }, ready ? `Nothing in titles, sections or deks matches “${q}”. Search does not read article bodies.` : "Searching…"), options.map((r, i) => React.createElement("a", {
+    key: r.all ? "all" : `${r.key || r.path}-${i}`,
+    id: optId(i),
+    role: "option",
+    "aria-selected": i === active,
+    tabIndex: -1,
+    href: pathFor(r),
+    className: ["hp-search__opt", r.all && "hp-search__all", i === active && "is-active"].filter(Boolean).join(" "),
+    onMouseDown: e => e.preventDefault(),
+    onMouseEnter: () => setActive(i),
+    onClick: e => {
+      if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+      e.preventDefault();
+      pick(r, i, e);
+    }
+  }, r.all ? `All results for “${q}” ↗` : React.createElement(React.Fragment, null, React.createElement("span", {
+    className: "hp-search__kind"
+  }, r.kind), React.createElement("span", {
+    className: "hp-search__title"
+  }, r.title))))));
+}
+var NAV_HEADROOM_ROUTES = new Set(["stay"]);
 function HomeMasthead({
   go,
-  current = "home"
+  current = "home",
+  route
 }) {
   var home = current === "home";
   var location = home ? "home_navigation" : "site_navigation";
-  var here = route => current === route ? "page" : undefined;
-  var [open, setOpen] = React.useState(null);
-  var closeTimer = React.useRef(null);
-  var navRef = React.useRef(null);
-  var openMenu = key => {
+  var exact = route || current;
+  var here = r => current === r ? "page" : undefined;
+  var inGroup = navGroupOf(current);
+  var [open, setOpen] = useState(null);
+  var [pinned, setPinned] = useState(false);
+  var [nowSeen, setNowSeen] = useState(false);
+  var closeTimer = useRef(null);
+  var blockRef = useRef(null);
+  var headerRef = useRef(null);
+  var navRef = useRef(null);
+  var openMenu = (key, byHover) => {
     clearTimeout(closeTimer.current);
     setOpen(key);
+    setPinned(!byHover);
+    if (key === "now") setNowSeen(true);
   };
   var closeMenu = () => {
     clearTimeout(closeTimer.current);
     setOpen(null);
+    setPinned(false);
   };
   var closeSoon = () => {
     clearTimeout(closeTimer.current);
-    closeTimer.current = setTimeout(() => setOpen(null), 400);
+    closeTimer.current = setTimeout(() => {
+      setOpen(null);
+      setPinned(false);
+    }, 400);
   };
   var fromMouse = e => e.pointerType === "mouse";
+  var focusFirst = panelId => setTimeout(() => {
+    var panel = document.getElementById(panelId);
+    var first = panel && panel.querySelector("a[href]");
+    if (first) first.focus();
+  }, 0);
+  var openRef = useRef(open);
+  openRef.current = open;
+  var closeRef = useRef(closeMenu);
+  closeRef.current = closeMenu;
   React.useEffect(() => () => clearTimeout(closeTimer.current), []);
   React.useEffect(() => {
     if (!open) return undefined;
@@ -720,8 +1103,8 @@ function HomeMasthead({
       if (e.key !== "Escape") return;
       var group = navRef.current && navRef.current.querySelector(`[data-menu="${open}"]`);
       if (group && group.contains(document.activeElement)) {
-        var caret = group.querySelector(".hp-menu__caret");
-        if (caret) caret.focus();
+        var trigger = group.querySelector(".hp-menu__trigger");
+        if (trigger) trigger.focus();
       }
       closeMenu();
     };
@@ -735,6 +1118,127 @@ function HomeMasthead({
       document.removeEventListener("pointerdown", onDown);
     };
   }, [open]);
+  React.useEffect(() => {
+    var block = blockRef.current;
+    var header = headerRef.current;
+    if (!block || !header || current === "map") return undefined;
+    var root = document.documentElement;
+    var phone = window.matchMedia("(max-width: 760px)");
+    var stuck = false;
+    var shown = false;
+    var slotBottom = 0;
+    var lastY = window.scrollY;
+    var raf = 0;
+    var headroom = () => phone.matches || NAV_HEADROOM_ROUTES.has(current);
+    var setMode = () => root.setAttribute("data-nav-mode", headroom() ? "headroom" : "pinned");
+    var measure = () => {
+      slotBottom = block.offsetTop + block.offsetHeight;
+    };
+    var show = next => {
+      if (next === shown) return;
+      shown = next;
+      block.classList.toggle("is-shown", next);
+      if (next) root.setAttribute("data-nav-compact", "");else root.removeAttribute("data-nav-compact");
+    };
+    var stick = next => {
+      if (next === stuck) return;
+      if (openRef.current) closeRef.current();
+      stuck = next;
+      if (next) {
+        block.style.height = `${block.offsetHeight}px`;
+        block.classList.add("is-stuck");
+      } else {
+        show(false);
+        block.classList.remove("is-stuck");
+        block.style.height = "";
+      }
+    };
+    var update = () => {
+      raf = 0;
+      var y = window.scrollY;
+      var dy = y - lastY;
+      if (Math.abs(dy) > 6) lastY = y;
+      if (y <= slotBottom) {
+        stick(false);
+        return;
+      }
+      if (!stuck) {
+        stick(true);
+        raf = requestAnimationFrame(update);
+        return;
+      }
+      if (!headroom() || openRef.current || header.contains(document.activeElement)) show(true);else if (dy < -6) show(true);else if (dy > 6) show(false);
+    };
+    var onScroll = () => {
+      if (!raf) raf = requestAnimationFrame(update);
+    };
+    var remeasure = () => {
+      setMode();
+      if (stuck) {
+        block.classList.remove("is-stuck");
+        block.style.height = "";
+        measure();
+        block.style.height = `${block.offsetHeight}px`;
+        block.classList.add("is-stuck");
+      } else {
+        measure();
+      }
+      onScroll();
+    };
+    var onFocusIn = () => {
+      if (stuck) show(true);
+    };
+    setMode();
+    measure();
+    update();
+    window.addEventListener("scroll", onScroll, {
+      passive: true
+    });
+    window.addEventListener("resize", remeasure);
+    header.addEventListener("focusin", onFocusIn);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(remeasure).catch(() => {});
+    return () => {
+      if (raf) cancelAnimationFrame(raf);
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", remeasure);
+      header.removeEventListener("focusin", onFocusIn);
+      block.classList.remove("is-stuck", "is-shown");
+      block.style.height = "";
+      root.removeAttribute("data-nav-compact");
+      root.removeAttribute("data-nav-mode");
+    };
+  }, [current]);
+  var follow = (key, hash) => {
+    if (!hash) {
+      go(key);
+      return;
+    }
+    var jump = () => {
+      var started = Date.now();
+      var tick = () => {
+        var el = document.getElementById(hash);
+        if (el) {
+          var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+          el.scrollIntoView({
+            behavior: reduce ? "auto" : "smooth",
+            block: "start"
+          });
+          if (el.hasAttribute("tabindex")) el.focus({
+            preventScroll: true
+          });
+          return;
+        }
+        if (Date.now() - started < 4000) requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+    };
+    if (exact === key) {
+      jump();
+      return;
+    }
+    go(key);
+    jump();
+  };
   var menuLink = (link, className) => {
     var {
       key,
@@ -742,11 +1246,14 @@ function HomeMasthead({
       label,
       note
     } = link;
-    var path = href || (window.routeToPath ? window.routeToPath(key) : `/${key}`);
+    var hash = home && link.onHome ? link.onHome : link.hash;
+    var base = home && link.onHome ? "" : href || (window.routeToPath ? window.routeToPath(key) : `/${key}`);
+    var path = hash ? `${base}#${hash}` : base;
     return React.createElement("a", {
-      key: key || href,
+      key: `${key || href}${hash ? `#${hash}` : ""}`,
       className: className,
       href: path,
+      "aria-current": !href && !hash && key === exact ? "page" : undefined,
       onClick: e => {
         if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
         if (window.track) window.track("cta_click", {
@@ -754,9 +1261,9 @@ function HomeMasthead({
           target: path
         });
         closeMenu();
-        if (href) return;
+        if (href && !(home && link.onHome)) return;
         e.preventDefault();
-        go(key);
+        follow(home && link.onHome ? "home" : key, hash);
       }
     }, note ? React.createElement(React.Fragment, null, React.createElement("span", {
       className: "hp-menu__label"
@@ -764,15 +1271,36 @@ function HomeMasthead({
       className: "hp-menu__note"
     }, note)) : label);
   };
+  var crumb = (() => {
+    if (!route) return null;
+    if (route.startsWith("a:")) {
+      var a = (window.ARTICLES || []).find(x => x.slug === route.slice(2));
+      var cat = a && window.findCategory ? window.findCategory(a.cat) : null;
+      return cat ? [{
+        key: "articles",
+        label: "Read"
+      }, {
+        key: `cat:${cat.slug}`,
+        label: cat.label
+      }] : null;
+    }
+    if (route.startsWith("cat:")) return [{
+      key: "articles",
+      label: "Read"
+    }];
+    return null;
+  })();
   return React.createElement("div", {
-    className: "hp-design hp-navigation"
+    className: "hp-design hp-navigation",
+    ref: blockRef
   }, React.createElement("a", {
     className: "skip-link",
     href: "#main"
   }, "Skip to content"), React.createElement("div", {
     className: "hp-top"
   }, "AN INDEPENDENT GUIDE TO YOSEMITE", React.createElement("span", null, "Written here. Taken everywhere.")), React.createElement("header", {
-    className: "hp-wrap hp-header"
+    className: "hp-wrap hp-header",
+    ref: headerRef
   }, React.createElement(HomeLink, {
     go: go,
     location: location,
@@ -784,51 +1312,55 @@ function HomeMasthead({
     width: "214",
     height: "168",
     alt: ""
-  }), React.createElement("span", null, "The Talus Field", React.createElement("small", null, "YOSEMITE, FROM THE INSIDE."))), React.createElement("nav", {
+  }), React.createElement("span", null, "The Talus Field", React.createElement("small", null, "YOSEMITE, FROM THE INSIDE."))), crumb && React.createElement("p", {
+    className: "hp-header__crumb"
+  }, crumb.map(c => React.createElement(HomeLink, {
+    key: c.key,
+    go: go,
+    location: location,
+    href: window.routeToPath ? window.routeToPath(c.key) : `/${c.key}`
+  }, c.label))), React.createElement("nav", {
     "aria-label": "Main navigation",
     ref: navRef
   }, HOME_NAV.map(item => {
     var g = item.group && NAV_GROUPS.find(group => group.key === item.group);
-    var href = home ? item.href : item.away || item.href;
-    var ariaCurrent = here((item.away || item.href).replace(/^\//, ""));
     if (!g || !g.columns) {
       return React.createElement(HomeLink, {
         key: item.href,
         go: go,
         location: location,
-        href: href,
-        "aria-current": ariaCurrent
+        href: item.href,
+        "aria-current": here(item.href.slice(1))
       }, item.label);
     }
     var isOpen = open === g.key;
     var panelId = `hp-menu-${g.key}`;
     return (React.createElement("div", {
-        key: item.href,
+        key: g.key,
         "data-menu": g.key,
-        className: ["hp-menu", isOpen && "is-open"].filter(Boolean).join(" "),
+        className: ["hp-menu", isOpen && "is-open", inGroup === g.key && "is-current"].filter(Boolean).join(" "),
         onPointerEnter: e => {
-          if (fromMouse(e)) openMenu(g.key);
+          if (fromMouse(e)) openMenu(g.key, !(open && pinned));
         },
         onPointerLeave: e => {
-          if (fromMouse(e)) closeSoon();
+          if (fromMouse(e) && !pinned) closeSoon();
         },
         onBlur: e => {
           if (isOpen && !e.currentTarget.contains(e.relatedTarget)) closeMenu();
         }
-      }, React.createElement(HomeLink, {
-        go: go,
-        location: location,
-        href: href,
-        "aria-current": ariaCurrent,
-        onClickCapture: closeMenu
-      }, item.label), React.createElement("button", {
+      }, React.createElement("button", {
         type: "button",
-        className: "hp-menu__caret",
+        className: "hp-menu__trigger",
         "aria-expanded": isOpen,
         "aria-controls": panelId,
-        "aria-label": `${g.label} menu`,
-        onClick: () => isOpen ? closeMenu() : openMenu(g.key)
-      }, React.createElement("svg", {
+        onClick: () => isOpen && pinned ? closeMenu() : openMenu(g.key, false),
+        onKeyDown: e => {
+          if (e.key !== "ArrowDown") return;
+          e.preventDefault();
+          openMenu(g.key, false);
+          focusFirst(panelId);
+        }
+      }, React.createElement("span", null, item.label), React.createElement("svg", {
         viewBox: "0 0 10 6",
         width: "9",
         height: "6",
@@ -855,16 +1387,64 @@ function HomeMasthead({
       }, g.blurb), menuLink({
         key: g.route,
         label: homeMenuCta(g.cta)
-      }, "hp-link")), React.createElement("div", {
+      }, "hp-link"), g.aside && React.createElement("div", {
+        className: "hp-menu__aside"
+      }, React.createElement("p", {
+        className: "hp-menu__heading"
+      }, g.aside.eyebrow), React.createElement("p", {
+        className: "hp-menu__aside-title"
+      }, g.aside.title), React.createElement("p", {
+        className: "hp-menu__note"
+      }, g.aside.text), menuLink({
+        ...g.aside.link,
+        label: `${g.aside.link.label} ↗`
+      }, "hp-link"))), React.createElement("div", {
         className: "hp-menu__cols"
       }, g.columns.map(col => React.createElement("div", {
         key: col.heading,
         className: "hp-menu__col"
       }, React.createElement("p", {
         className: "hp-menu__heading"
-      }, col.heading), col.links.map(link => menuLink(link, "hp-menu__link"))))))))
+      }, col.heading), col.links.map(link => menuLink(link, "hp-menu__link")))), g.feature === "map" && React.createElement(NavMapFeature, {
+        link: menuLink
+      }), g.feature === "waits" && React.createElement(NavWaitsFeature, {
+        live: nowSeen,
+        link: menuLink
+      }), g.feature === "newest" && React.createElement(NavNewestFeature, {
+        link: menuLink
+      })))))
     );
-  })), React.createElement(HomeLink, {
+  }), React.createElement(HomeLink, {
+    go: go,
+    location: location,
+    className: "hp-nav__search",
+    href: "/search",
+    "aria-current": here("search")
+  }, React.createElement("svg", {
+    viewBox: "0 0 24 24",
+    width: "13",
+    height: "13",
+    "aria-hidden": "true",
+    focusable: "false"
+  }, React.createElement("circle", {
+    cx: "11",
+    cy: "11",
+    r: "6.5",
+    fill: "none",
+    stroke: "currentColor",
+    strokeWidth: "2"
+  }), React.createElement("line", {
+    x1: "16",
+    y1: "16",
+    x2: "21",
+    y2: "21",
+    stroke: "currentColor",
+    strokeWidth: "2",
+    strokeLinecap: "round"
+  })), React.createElement("span", null, "Search"))), React.createElement(MastheadSearch, {
+    go: go,
+    location: location
+  }), React.createElement(HomeLink, {
     go: go,
     location: location,
     className: "hp-button",
@@ -1132,11 +1712,13 @@ function HpLetter({
 }
 function Header({
   current,
-  go
+  go,
+  route
 }) {
   return React.createElement(HomeMasthead, {
     go: go,
-    current: current
+    current: current,
+    route: route
   });
 }
 function BackToTop({
@@ -1236,7 +1818,7 @@ function Footer({
       });
       go("explore");
     }
-  }, "Everything on this site →")), React.createElement("div", null, React.createElement("h4", null, "Read"), React.createElement("ul", null, link("articles", "All articles"), window.CATEGORIES.map(c => React.createElement("li", {
+  }, "Everything on this site →")), React.createElement("div", null, React.createElement("h4", null, "Plan a trip"), React.createElement("ul", null, link("start-here", "Start here"), link("planning", "The Planning Guide"), link("map", "The trip map"), link("itineraries", "Itineraries"), link("stay", "Where to stay"), link("distances", "Drive times"), link("international", "Visiting from abroad"), link("checklist", "First-week checklist"), link("kit", "Kit"), link("guide", "The Field Guide"))), React.createElement("div", null, React.createElement("h4", null, "Park now"), React.createElement("ul", null, link("now", "The Park Bulletin"), link("conditions", "Conditions"), link("webcams", "Webcams"), link("dates", "Dates that matter"))), React.createElement("div", null, React.createElement("h4", null, "Read"), React.createElement("ul", null, link("articles", "All articles"), window.CATEGORIES.map(c => React.createElement("li", {
     key: c.slug
   }, React.createElement("a", {
     href: `/section/${c.slug}`,
@@ -1244,9 +1826,9 @@ function Footer({
       e.preventDefault();
       go(`cat:${c.slug}`);
     }
-  }, c.label))), link("now", "The Park Bulletin"), link("films", "Films"), React.createElement("li", null, React.createElement("a", {
+  }, c.label))), link("films", "Films"), React.createElement("li", null, React.createElement("a", {
     href: "/archive/"
-  }, "Nature Notes archive")))), React.createElement("div", null, React.createElement("h4", null, "Plan"), React.createElement("ul", null, link("start-here", "Start here"), link("planning", "The Planning Guide"), link("map", "The Map"), link("itineraries", "Itineraries"), link("distances", "Drive times"), link("dates", "Dates that matter"), link("international", "Visiting from abroad"), link("webcams", "Webcams"), link("stay", "Where to stay"), link("conditions", "Conditions"), link("checklist", "First-week checklist"), link("kit", "Kit"), link("guide", "The Field Guide"))), React.createElement("div", null, React.createElement("h4", null, "The journal"), React.createElement("ul", null, link("about", "About"), link("newsletter", "Newsletter"), link("contact", "Contact"), link("search", "Search"), link("places", "Directory")))), React.createElement("div", {
+  }, "Nature Notes archive")))), React.createElement("div", null, React.createElement("h4", null, "The journal"), React.createElement("ul", null, link("about", "About"), link("newsletter", "Newsletter"), link("contact", "Contact"), link("search", "Search"), link("places", "Directory")))), React.createElement("div", {
     className: "site-footer__disclosure"
   }, "Some links on this site are affiliate links. If you book or buy through one, The Talus Field may earn a small commission at no extra cost to you. ", React.createElement("a", {
     href: "/affiliate",

@@ -1067,6 +1067,12 @@ function App() {
         field.select();
         return;
       }
+      var box = document.getElementById("masthead-search");
+      if (box && box.offsetParent !== null) {
+        box.focus();
+        box.select();
+        return;
+      }
       document.documentElement.setAttribute("data-search-focus", "");
       go("search");
     };
@@ -1236,7 +1242,8 @@ function App() {
   var exitDisabled = ["newsletter", "contact", "privacy", "terms", "affiliate", "films"].includes(route);
   return React.createElement(React.Fragment, null, React.createElement(Header, {
     current: currentNav,
-    go: go
+    go: go,
+    route: route
   }), React.createElement("main", {
     key: route,
     id: "main",
@@ -1257,6 +1264,7 @@ function App() {
   }));
 }
 window.routeToPath = routeToPath;
+window.ensureRoute = ensureRoute;
 window.SITE_ORIGIN = SITE_ORIGIN;
 var REQUIRED_GLOBALS = ["Header", "Footer", "KeepGoing", "ExitIntentNewsletter"];
 var missingGlobals = REQUIRED_GLOBALS.filter(n => typeof window[n] === "undefined");
