@@ -2991,6 +2991,289 @@ main:focus { outline: none; }
   box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.3), 0 1px 4px rgba(0, 0, 0, 0.3);
 }
 
+/* ------------------------------------------------------------
+   First-visit orientation (September 2026). The sidebar's setup
+   section (entrance, month, the month's roads, the arrival line,
+   layer chips) and the map overlays it drives: gate, gas,
+   visitor-center and area markers, and the seasonal-road key.
+   Status colours repeat the bulletin's three (--bt-* is scoped to
+   .bulletin); map markers use hex like the pins, since map
+   overlays do not theme.
+   ------------------------------------------------------------ */
+.map-page {
+  --map-open: #3d5a2b;
+  --map-warn: #6e5010;
+  --map-closed: #7a2a10;
+}
+.map-setup__lede {
+  margin: 0 0 12px;
+  font-size: 13px;
+  line-height: 1.45;
+  color: var(--ink-2);
+}
+.map-setup__q {
+  margin: 14px 0 8px;
+  font: 600 13px var(--sans);
+  color: var(--ink);
+}
+.map-setup__q:first-of-type { margin-top: 4px; }
+.map-setup__gates {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 6px;
+}
+.map-setup__gate,
+.map-setup__month {
+  min-height: 44px;
+  background: var(--paper);
+  border: 1px solid var(--rule-soft);
+  border-radius: 3px;
+  font-family: var(--sans);
+  color: var(--ink);
+  cursor: pointer;
+  transition: background 100ms, border-color 100ms;
+}
+.map-setup__gate {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 1px;
+  padding: 6px 10px;
+  text-align: left;
+}
+.map-setup__gate-name { font-size: 13px; font-weight: 600; }
+.map-setup__gate-sub { font-size: 11px; color: var(--ink-3); }
+.map-setup__gate.is-closed .map-setup__gate-sub { color: var(--map-closed); font-weight: 600; }
+.map-setup__gate:hover,
+.map-setup__month:hover { background: var(--paper-3); border-color: var(--rule); }
+.map-setup__gate[aria-pressed="true"],
+.map-setup__month[aria-pressed="true"] {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--paper);
+}
+.map-setup__gate[aria-pressed="true"] .map-setup__gate-sub { color: var(--paper-2); }
+.map-setup__gate:focus-visible,
+.map-setup__month:focus-visible { outline: 2px solid var(--moss); outline-offset: 2px; }
+.map-setup__hint {
+  margin: 8px 0 0;
+  padding: 8px 10px;
+  background: var(--paper);
+  border-left: 3px solid var(--rule);
+  font-size: 12.5px;
+  line-height: 1.45;
+  color: var(--ink-2);
+}
+.map-setup__summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  margin: 0;
+  font-size: 13px;
+  font-weight: 600;
+}
+.map-setup__change {
+  min-height: 36px;
+  padding: 0 12px;
+  background: var(--paper);
+  border: 1px solid var(--rule-soft);
+  border-radius: 3px;
+  font: 600 12px var(--sans);
+  color: var(--ink);
+  cursor: pointer;
+}
+.map-setup__change:hover { background: var(--paper-3); border-color: var(--rule); }
+.map-setup__months {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 4px;
+}
+.map-setup__month { padding: 0; font-size: 12.5px; font-weight: 600; }
+.map-setup__roads {
+  list-style: none;
+  margin: 12px 0 0;
+  padding: 0;
+  border-top: 1px solid var(--rule);
+}
+.map-setup__road {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  padding: 7px 0;
+  border-bottom: 1px solid var(--rule-soft);
+  font-size: 12.5px;
+}
+.map-setup__status {
+  flex: 0 0 auto;
+  padding: 2px 7px;
+  border: 1px solid currentColor;
+  border-radius: 3px;
+  font-size: 11px;
+  font-weight: 600;
+}
+.map-setup__status--open { color: var(--map-open); }
+.map-setup__status--unsettled { color: var(--map-warn); }
+.map-setup__status--closed { color: var(--paper); background: var(--map-closed); border-color: var(--map-closed); }
+.map-setup__arrive {
+  margin: 10px 0 0;
+  font-size: 12.5px;
+  line-height: 1.45;
+  color: var(--ink-2);
+}
+.map-setup__arrive strong { color: var(--ink); }
+.map-setup__fine {
+  margin: 6px 0 0;
+  font-size: 12px;
+  color: var(--ink-3);
+}
+.map-setup__layer-mark {
+  width: 10px;
+  height: 10px;
+  flex: 0 0 auto;
+  border: 1.5px solid #fff;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.2);
+}
+.map-setup__layer--gates .map-setup__layer-mark { background: #14110c; transform: rotate(45deg); }
+.map-setup__layer--gas .map-setup__layer-mark { background: #6e5010; border-radius: 2px; }
+.map-setup__layer--vc .map-setup__layer-mark { background: #1a2c40; border-radius: 50%; }
+.map-setup__layer--areas .map-setup__layer-mark { background: #f5f6f3; border-radius: 1px; box-shadow: 0 0 0 1px #14110c; }
+.map-setup__layer[aria-pressed="false"] .map-setup__layer-mark { opacity: 0.35; }
+
+/* Trip stops behind a road the chosen month closes. */
+.map-sidebar__road-warn {
+  margin: 10px 0 0;
+  padding: 9px 11px;
+  border-left: 3px solid var(--map-closed);
+  background: color-mix(in oklab, var(--map-closed) 9%, var(--paper));
+  font-size: 12.5px;
+  line-height: 1.45;
+  color: var(--ink-2);
+}
+.map-sidebar__road-warn strong { color: var(--map-closed); }
+.map-sidebar__road-warn--unsettled { border-left-color: var(--map-warn); background: color-mix(in oklab, var(--map-warn) 10%, var(--paper)); }
+.map-sidebar__road-warn--unsettled strong { color: var(--map-warn); }
+.map-sidebar__offline {
+  margin: 4px 0 0;
+  font-size: 12px;
+  line-height: 1.45;
+  color: var(--ink-3);
+}
+
+/* Map markers for the orientation layer. AdvancedMarkerElement anchors
+   content by its bottom centre; the translateY puts the mark's centre on
+   the coordinate, and each label hangs off the mark absolutely so the
+   element's box (and so the anchor) is the mark alone. */
+.map-orient {
+  position: relative;
+  transform: translateY(50%);
+  font-family: var(--sans);
+}
+.map-orient__label {
+  position: absolute;
+  left: calc(100% + 5px);
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 1px 5px;
+  border-radius: 2px;
+  background: rgba(245, 246, 243, 0.92);
+  font-size: 11px;
+  font-weight: 600;
+  color: #14110c;
+  white-space: nowrap;
+  pointer-events: none;
+}
+.map-orient-far .map-orient__label { display: none; }
+.map-orient--gate .map-orient__mark {
+  display: block;
+  width: 12px;
+  height: 12px;
+  margin: 3px;
+  background: #14110c;
+  border: 2px solid #fff;
+  transform: rotate(45deg);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
+}
+.map-orient--gate.is-selected .map-orient__mark { outline: 3px solid #1a2c40; outline-offset: 2px; }
+.map-orient--gate.is-closed .map-orient__mark { background: #7a2a10; }
+.map-orient--gate.is-closed .map-orient__label { color: #7a2a10; }
+.map-orient--gas .map-orient__mark,
+.map-orient--vc .map-orient__mark {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #fff;
+  box-sizing: border-box;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
+  color: #fff;
+}
+.map-orient--gas .map-orient__mark { background: #6e5010; border-radius: 3px; }
+.map-orient--gas .map-orient__label { color: #6e5010; }
+.map-orient--vc .map-orient__mark {
+  background: #1a2c40;
+  border-radius: 50%;
+  font: italic 700 13px Georgia, serif;
+}
+.map-orient--area {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  padding: 5px 9px;
+  background: rgba(245, 246, 243, 0.94);
+  border: 1px solid #14110c;
+  border-radius: 3px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+  pointer-events: none;
+}
+.map-orient__area-name {
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #14110c;
+}
+.map-orient__area-line { font-size: 11px; color: #36291c; white-space: nowrap; }
+.map-orient--area.is-closed { border-color: #7a2a10; }
+.map-orient--area.is-closed .map-orient__area-name { color: #7a2a10; }
+
+/* Key for the seasonal-road overlay, under the map-type control. Carries
+   the OpenStreetMap attribution the road geometry requires. */
+.map-page__roadkey {
+  position: absolute;
+  top: 56px;
+  left: 10px;
+  z-index: 5;
+  max-width: 270px;
+  padding: 9px 11px;
+  background: #fff;
+  border: 1px solid var(--rule);
+  border-radius: 3px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+  font: 12px/1.4 var(--sans);
+  color: var(--ink);
+}
+.map-page__roadkey-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin: 0 0 6px;
+}
+.map-page__roadkey-swatch {
+  flex: 0 0 22px;
+  height: 0;
+  margin-top: 7px;
+  border-top: 4px dashed #7a2a10;
+}
+.map-page__roadkey-swatch--unsettled { border-top-color: #b07d10; }
+.map-page__roadkey-fine { margin: 0; font-size: 11px; color: var(--ink-3); }
+@media (max-width: 720px) {
+  .map-page__roadkey { max-width: 230px; padding: 7px 9px; font-size: 11.5px; }
+}
+
 /* Map access gate. A covering overlay over .map-page (map + sidebar) that
    blocks the map until the visitor subscribes. Scoped to .map-page, not fixed
    to the viewport, so the global header and footer stay reachable (a reader is
