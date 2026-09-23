@@ -12,7 +12,7 @@ python3 -m http.server 8765 &   # matches the Google Maps key's allowed referrer
 ```
 
 There are no route rewrites: `/map` 404s. Always load `http://localhost:8765/index.html`
-and navigate in-SPA (e.g. clicking a masthead or bottom-nav link such as `.bottomnav__item` reaches its route).
+and navigate in-SPA (e.g. clicking the masthead's Map link, or opening a menu label in `.hp-navigation`, which is a button, and clicking a link in its panel, reaches its route). The bottom nav was retired in the September 2026 design rollout.
 
 ## Launch (Claude Code remote env)
 

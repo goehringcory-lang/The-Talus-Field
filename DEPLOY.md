@@ -101,7 +101,7 @@ If you are standing the Worker up in a fresh account instead, two options:
 
 Verify: `curl https://<worker-url>/` should return "Talus Field Guide API. See /api/inventory."
 
-`curl https://<worker-url>/api/inventory` should return JSON with `sold`, `cap`, `monthLabel`, `reopens`.
+`curl https://<worker-url>/api/inventory` should return JSON with `sold`, `monthLabel`, `priceCents` and `renewalPriceCents`, and no `cap` field (the monthly sales cap was removed in September 2026; a `cap` in the response means a stale Worker).
 
 ## 5. Configure the Stripe webhook
 
@@ -171,6 +171,15 @@ npx wrangler deploy   # from the repo root
 Custom domains `thetalusfieldjournal.com` + `www` are bound in
 `wrangler.jsonc`.
 
+Verify which build is live: `curl -s https://thetalusfieldjournal.com/.well-known/talus-build.json`
+returns the article slugs frozen into the running Worker bundle, the bulletin
+edition stamp and the Worker version id. `npm --prefix scripts run parity:check`
+compares that against the live `/articles.json` and the repo, and errors when the
+asset layer serves an article the Worker does not know (the stale-build signature
+described in CLAUDE.md). The nightly battery runs the same check and logs one
+record a night to `scripts/data/deploy-parity-log.json`; read that log before the
+Cloudflare dashboard when new articles 404.
+
 ## 7a. Cloudflare dashboard settings the repo cannot set
 
 Three settings live only in the Cloudflare dashboard. All three were found
@@ -238,11 +247,11 @@ Security** tab → confirm the crawlers the repo allows are set to **Allow**.
 
 ## 8. Smoke test
 
-1. Open the deployed editorial site → click `Field Guide` → the buy box renders "Buy the guide → $3.99" with the price read live from `/api/inventory` (there is no sold/cap counter; a sold-out month surfaces only as the reopen notice after checkout returns 409).
+1. Open the deployed editorial site → open `/guide` (the masthead's "Get the app" button on any page but the homepage, where it jumps to the Field Guide section, or the footer's Field Guide link) → the buy box renders "Buy the guide → $3.99" with the price read live from `/api/inventory`. There is no sold/cap counter and no sold-out state: checkout is open every month.
 2. Click buy → Stripe checkout opens. Use test card `4242 4242 4242 4242`, any future date, any CVC, any zip.
 3. Payment completes → redirected to `?guide=success` → email arrives within ~30s with a 6-digit code and a magic link.
 4. Click the magic link → opens `https://guide.thetalusfieldjournal.com/open?token=...` → "Signing you in…" → redirects to the setup page, then home with four region cards (`valley`, `glacier-mariposa`, `tuolumne`, `hetch-hetchy`).
-5. Pick a region → pick a stop. Read the body. Click "Open in Maps" → native maps app opens at the coordinate (note: 28 coords across stops, secret spots, and amenities are still flagged `TODO: verify on the ground` and may land you near, not on, the actual spot).
+5. Pick a region → pick a stop. Read the body. Click "Open in Maps" → native maps app opens at the coordinate (note: 36 coords across stops, secret spots, and amenities are still flagged `TODO: verify on the ground` and may land you near, not on, the actual spot).
 6. **PWA install:** in mobile Chrome/Safari, the install prompt appears; install to home screen.
 7. **Offline:** turn on airplane mode, reopen the installed app → home and stop pages still render from cache.
 8. **Update flow:** push a code change, redeploy Pages → reopen the app → update banner appears at the top → click → reloads with new build.
@@ -301,7 +310,7 @@ Rules that matter:
 - Swap Stripe test keys → live keys (`wrangler secret put STRIPE_SECRET_KEY`).
 - Re-create the webhook in Stripe live mode and update `STRIPE_WEBHOOK_SECRET`.
 - Make sure Resend domain is verified and `FROM` in [workers/src/lib/email.ts](workers/src/lib/email.ts) points at it.
-- Ground-truth the 28 coordinates still marked `TODO: verify on the ground` (15 in [apps/guide/src/content/stops.ts](apps/guide/src/content/stops.ts), 8 in `secret-spots.ts`, 5 in `amenities.ts`) and remove each marker only after standing at the spot. Stops are organized into four regions: `valley`, `glacier-mariposa`, `tuolumne`, `hetch-hetchy`.
+- Ground-truth the 36 coordinates still marked `TODO: verify on the ground` (23 in [apps/guide/src/content/stops.ts](apps/guide/src/content/stops.ts), 9 in `secret-spots.ts`, 4 in `amenities.ts`, counted September 2026) and remove each marker only after standing at the spot. Stops are organized into four regions: `valley`, `glacier-mariposa`, `tuolumne`, `hetch-hetchy`.
 - Photos go through the pipeline in [scripts/fetch-guide-photos.mjs](scripts/fetch-guide-photos.mjs) (fetch → review → select → `npm run images` → emit-credits), which also maintains the license credits rendered on the Account page. Wire new files as `photos: [{ src, caption }]` entries on the matching stops.
 
 ## 2026 relaunch: enabling the $3.99 paid model
