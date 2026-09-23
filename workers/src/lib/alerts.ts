@@ -20,6 +20,7 @@
 
 import { z } from 'zod'
 import type { Env } from '../env'
+import { TIOGA_AND_GLACIER_POINT, textAbout } from './roadText'
 
 const NPS_ALERTS_URL = 'https://developer.nps.gov/api/v1/alerts'
 const PAGE_SIZE = 100
@@ -66,15 +67,23 @@ const ALERTS_KEY = 'alerts:v1'
 const FRESH_MS = 15 * 60 * 1000
 
 // The roads whose seasonal status readers actually plan around. Matching is
-// per-alert: the alert must name the road before any status words count.
+// per sentence (lib/roadText.ts): a status word counts only for the roads its
+// own sentence names, so "Tioga Road is open. Glacier Point Road remains
+// closed." reads as two roads, not as Tioga closed.
 const ROADS: Array<{ id: RoadIdT; label: string; re: RegExp }> = [
   { id: 'tioga', label: 'Tioga Road', re: /tioga/i },
-  { id: 'glacier-point', label: 'Glacier Point Road', re: /glacier point road/i },
+  {
+    id: 'glacier-point',
+    label: 'Glacier Point Road',
+    re: new RegExp(String.raw`glacier point road|${TIOGA_AND_GLACIER_POINT}`, 'i'),
+  },
   { id: 'mariposa-grove', label: 'Mariposa Grove Road', re: /mariposa grove road/i },
   { id: 'hetch-hetchy', label: 'Hetch Hetchy Road', re: /hetch hetchy road/i },
 ]
 
-const CLOSED_RE = /\b(closed|closure|will close|remains? closed|not open)\b/i
+// A "closed" that describes an area ("The closed area extends east of the
+// Wawona Road") is about trails, not a road's status.
+const CLOSED_RE = /\b(closed|closure|will close|remains? closed|not open)\b(?!\s+(?:area|areas|zone|zones)\b)/i
 const OPEN_RE = /\b(is open|now open|has opened|reopened|open for the season)\b/i
 
 type NpsAlert = {
@@ -93,13 +102,15 @@ function mapCategory(category?: string): AlertCategoryT {
   return 'information'
 }
 
-function deriveRoads(alerts: AlertItemT[]): RoadStatusT[] {
-  return ROADS.map(({ id, label, re }) => {
+// Exported for test/road-readings.mts.
+export function deriveRoads(alerts: AlertItemT[]): RoadStatusT[] {
+  return ROADS.map((road) => {
+    const { id, label } = road
     let status: RoadStatusT['status'] = 'unknown'
     let detail: string | null = null
     for (const alert of alerts) {
-      const text = `${alert.title} ${alert.description}`
-      if (!re.test(text)) continue
+      const text = textAbout(alert, road, ROADS)
+      if (!text) continue
       // Closed wins over open: a "reopening June 1" sentence inside a closure
       // alert must not read as open today.
       if (CLOSED_RE.test(text)) {

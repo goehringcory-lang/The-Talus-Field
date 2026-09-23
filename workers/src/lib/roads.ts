@@ -34,6 +34,7 @@
 import type { Env } from '../env'
 import type { AlertItemT, AlertsRecordT } from './alerts'
 import { sendRoadChangeNotice } from './email'
+import { TIOGA_AND_GLACIER_POINT, textAbout } from './roadText'
 
 export type WatchedRoadId =
   | 'tioga'
@@ -76,33 +77,49 @@ const WATCH_KEY = 'roads:watch:v1'
 // the sweep also applies its own recency rule (see pushSweep.ts).
 const KEEP_CHANGES_MS = 7 * 24 * 60 * 60 * 1000
 
-// Matching is per alert: the alert must name the road before any status word
-// counts. The highway patterns take the in-park names too (Big Oak Flat Road
-// is 120 inside the gate, El Portal Road is 140, Wawona Road is 41), because
-// the park's alerts use whichever name the sign nearest the closure carries.
-export const WATCHED_ROADS: Array<{ id: WatchedRoadId; label: string; re: RegExp }> = [
-  { id: 'tioga', label: 'Tioga Road', re: /\btioga (road|pass)\b/i },
-  { id: 'glacier-point', label: 'Glacier Point Road', re: /\bglacier point road\b/i },
+// Matching is per sentence (lib/roadText.ts): a status word counts only for
+// the roads its own sentence names, and a highway named beside an in-park road
+// is that road's address. The highway patterns take the in-park names too (Big
+// Oak Flat Road is 120 inside the gate, El Portal Road is 140, Wawona Road is
+// 41), because the park's alerts use whichever name the sign nearest the
+// closure carries.
+export const WATCHED_ROADS: Array<{ id: WatchedRoadId; label: string; re: RegExp; highway?: boolean }> = [
+  {
+    id: 'tioga',
+    label: 'Tioga Road',
+    re: new RegExp(String.raw`\btioga (?:road|pass)\b|\b(?:${TIOGA_AND_GLACIER_POINT})\b`, 'i'),
+  },
+  {
+    id: 'glacier-point',
+    label: 'Glacier Point Road',
+    re: new RegExp(String.raw`\bglacier point road\b|\b(?:${TIOGA_AND_GLACIER_POINT})\b`, 'i'),
+  },
   { id: 'mariposa-grove', label: 'Mariposa Grove Road', re: /\bmariposa grove road\b/i },
   { id: 'hetch-hetchy', label: 'Hetch Hetchy Road', re: /\bhetch hetchy road\b/i },
   {
     id: 'hwy-120',
     label: 'Highway 120',
     re: /\b(highway|hwy\.?|route|state route|sr-?|ca-?)\s*120\b|\bbig oak flat road\b/i,
+    highway: true,
   },
   {
     id: 'hwy-140',
     label: 'Highway 140',
     re: /\b(highway|hwy\.?|route|state route|sr-?|ca-?)\s*140\b|\bel portal road\b/i,
+    highway: true,
   },
   {
     id: 'hwy-41',
     label: 'Highway 41',
     re: /\b(highway|hwy\.?|route|state route|sr-?|ca-?)\s*41\b|\bwawona road\b/i,
+    highway: true,
   },
 ]
 
-const CLOSED_RE = /\b(closed|closure|will close|remains? closed|not open)\b/i
+// "The closed area extends east of the Wawona Road" (the park's Dome Fire
+// notice, September 2026) is about trails, not the road: a "closed" that
+// describes an area is not a road's status.
+const CLOSED_RE = /\b(closed|closure|will close|remains? closed|not open)\b(?!\s+(?:area|areas|zone|zones)\b)/i
 const CHAINS_RE = /\bchains?\b[^.]*\b(required|control|carry)\b|\b(required|control|carry)\b[^.]*\bchains?\b/i
 const OPEN_RE = /\b(is open|now open|has opened|reopened|open for the season)\b/i
 
@@ -116,8 +133,8 @@ export function deriveRoadReadings(
   for (const road of WATCHED_ROADS) {
     let reading: RoadReading = { state: 'unknown', headline: null }
     for (const alert of alerts) {
-      const text = `${alert.title} ${alert.description}`
-      if (!road.re.test(text)) continue
+      const text = textAbout(alert, road, WATCHED_ROADS)
+      if (!text) continue
       if (CLOSED_RE.test(text)) {
         reading = { state: 'closed', headline: alert.title }
         break

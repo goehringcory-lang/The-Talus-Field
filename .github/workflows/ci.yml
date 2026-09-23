@@ -83,3 +83,6 @@ jobs:
       # Hermetic purchase-flow e2e (mocked KV, stubbed Stripe/Resend): checkout,
       # webhook provisioning, auth exchange/login, refund revocation.
       - run: npm run test:flow
+      # Road readings from the park's own prose (lib/roadText.ts): which road a
+      # status word belongs to, for the /api/alerts summary and the road watch.
+      - run: npm run test:roads
