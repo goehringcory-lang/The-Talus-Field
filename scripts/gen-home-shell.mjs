@@ -297,7 +297,9 @@ const MUST_CONTAIN = [
   ['class="hp-intro"', "the hero introduction"],
   ['Plan your first visit', "the primary planning CTA"],
   ['href="#field-guide"', "the app section CTA"],
-  ['href="#home-newsletter"', "the newsletter section CTA"],
+  ['href="#home-newsletter"', "the newsletter section CTA (the Read menu's Sunday Letter link)"],
+  ['id="masthead-search"', "the masthead's search box"],
+  ['data-menu="now"', "the masthead's Park now menu"],
   ['class="hp-wrap hp-header"', "the homepage masthead"],
   ['<main id="main" tabindex="-1" class="hp-design">', "the main landmark (the skip link's pre-boot target)"],
 ];
