@@ -4,7 +4,7 @@
     "label": "September 23 – November 24, 2026",
     "start": "2026-09-23",
     "end": "2026-11-24",
-    "updated": "2026-09-22",
+    "updated": "2026-09-23",
     "lede": "The edition where the park packs up for winter. The Tuolumne visitor center shuts Sep 27, the wilderness permit desks by Oct 18, the Glacier Point tour bus on Oct 11 and most of the Valley's seasonal counters on Oct 25. Overnight parking on Tioga and Glacier Point Roads ends Oct 15, and both roads usually close for the season sometime in November, on the weather's schedule rather than the calendar's. The Valley stays open and gets quieter: the falls are dry, the oaks are turning, and the rangers are still walking.",
     "source": "Condensed from the National Park Service Yosemite Guide for September 23 – November 24, 2026, with the park's current conditions page and the journal's own notes.",
     "sourceUrl": "https://www.nps.gov/yose/planyourvisit/guide.htm"
@@ -22,7 +22,7 @@
       "icon": "flame",
       "status": "Burning near Wawona",
       "tone": "warn",
-      "text": "Northeast of Wawona, with smoke and periods of unhealthy air at some hours. Closed: the Chilnualna Falls trail and the trails above it, and the Ostrander Lake Trail with everything south of it off Glacier Point Road."
+      "text": "Burning northeast of Wawona. Closed until further notice: the Chilnualna Falls trail and the trails above it, the Ostrander Lake Trail and everything south of it, and the country east of Wawona Road from Chinquapin to Wawona. Wawona Road, Glacier Point Road and the Mariposa Grove are open. Smoke settles overnight in Wawona and the Valley and has reached unhealthy levels by morning: check fire.airnow.gov before you drive in. Two helicopter pilots were killed fighting the fire on Sep 20."
     },
     {
       "label": "Services",
@@ -40,6 +40,12 @@
     }
   ],
   "changes": [
+    {
+      "date": "2026-09-20",
+      "kind": "closes",
+      "what": "Ostrander Lake Trail and all trails south of it, for the Dome Fire",
+      "detail": "Until further notice, along with the Chilnualna Falls trail and the country east of Wawona Road from Chinquapin to Wawona."
+    },
     {
       "date": "2026-09-23",
       "when": "Sep 23 – 27",
@@ -339,13 +345,13 @@
       "name": "Glacier Point Road",
       "chip": "Open until snow",
       "tone": "warn",
-      "note": "One hour from the Valley. The gift shop runs 9 am to 7 pm through Oct 25, the tour bus through Oct 11, and there is no overnight parking from Oct 15. The road typically closes for winter in November. The Ostrander Lake Trail and everything south of it are closed for the Dome Fire. No trailers or vehicles over 30 feet past the Sentinel Dome trailhead."
+      "note": "One hour from the Valley. The gift shop runs 9 am to 7 pm through Oct 25, the tour bus through Oct 11, and there is no overnight parking from Oct 15. The road typically closes for winter in November. The Ostrander Lake Trail and everything south of it are closed for the Dome Fire until further notice; the road stays open, and Glacier Point, Sentinel Dome and Taft Point sit outside the closure. No trailers or vehicles over 30 feet past the Sentinel Dome trailhead."
     },
     {
       "name": "Wawona & Mariposa Grove",
       "chip": "Open, fire nearby",
       "tone": "warn",
-      "note": "An hour south of the Valley. Free grove shuttle every 15 minutes, 8 am to 5 pm through Oct 31 (last bus down 5:30), then 8 am to 3:30 pm in November. The visitor center closes Oct 31 and its permit desk Oct 14. The Dome Fire is burning northeast of Wawona: the Chilnualna Falls trail and the trails above it are closed. The hotel is closed for renovation."
+      "note": "An hour south of the Valley. Free grove shuttle every 15 minutes, 8 am to 5 pm through Oct 31 (last bus down 5:30), then 8 am to 3:30 pm in November. The visitor center closes Oct 31 and its permit desk Oct 14. The Dome Fire is burning northeast of Wawona: the Chilnualna Falls trail and the trails above it are closed until further notice. The hotel is closed for renovation."
     },
     {
       "name": "Crane Flat",
@@ -958,14 +964,14 @@
       "tone": "closed",
       "distance": "8.4 mi, 2,400 ft",
       "start": "Chilnualna Falls trailhead, Wawona",
-      "note": "Closed for the Dome Fire, along with the trails from the top toward Buena Vista and Crescent Lakes, which are still reachable from the east. No reopening date announced."
+      "note": "Closed for the Dome Fire until further notice, along with the trails from the top toward Buena Vista and Crescent Lakes, which are still reachable from the east."
     },
     {
       "name": "Ostrander Lake",
       "chip": "Closed",
       "tone": "closed",
-      "start": "Glacier Point Road",
-      "note": "The trail and every area and trail south of it are closed for the Dome Fire. The closure runs east of Wawona Road from Chinquapin to Wawona; the park's public information map shows the line."
+      "start": "Ostrander Lake trailhead, Glacier Point Road",
+      "note": "The trail and every area and trail south of it are closed for the Dome Fire until further notice. The closure runs east of Wawona Road from Chinquapin to Wawona; the park's public information map shows the line."
     },
     {
       "name": "Half Dome",
