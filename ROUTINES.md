@@ -69,7 +69,7 @@ morning with nothing new) under two.
 
 | Surface | What you do |
 |---|---|
-| Any PR from a routine | Merge it, or close it. Merging deploys the editorial site and the PWA. A `[api]` PR also needs `cd workers && npx wrangler deploy` by hand; the PR body says so. |
+| Any PR from a routine | Merge it, or close it. Merging deploys the editorial site and the PWA, and the API Worker too when the PR touches `workers/`: its build runs the Worker's typecheck and tests first and ships nothing if they fail, so after merging an `[api]` PR, check the build on the Worker's Deployments tab. |
 | `intel-brief` issues | Check an option's box or comment `approve 1, 3 / reject 2`. Comments win. Silence for two executor runs closes the brief as stale. |
 | The **Revenue ledger** issue (label `revenue-pulse`) | Read "Your court" and act on it or reply; paste GA4, Buttondown, or Stripe numbers there when you have them. Reply "hold X" or "do Y next" to steer the next run. |
 | The scheduled letter in Buttondown (Saturday) | Open the dashboard link in the `sunday-letter` issue before Sunday 9am Pacific: read it, edit it there, add a field line if you have one (the opening observation is written in the third person from the almanac, the archive and the NPS, USGS, CDEC and NWS pages the issue's Sources list names; a first-person line is yours to add), check the photos against their credits, or unschedule it. Silence sends. If the routine could not schedule (no key, an API error, a letter you already wrote), the issue says so at the top and carries the paste-ready draft. Post the distribution pack yourself or discard it. |
@@ -195,8 +195,8 @@ www.tenayalodge.com  autocamp.com  www.evergreenlodge.com  www.rushcreeklodge.co
 
 Sending the letter immediately (it is scheduled a day ahead so the owner
 can read it first, and the script cannot send on the spot), sending a road
-alert (it waits in the dashboard as a draft), posting anywhere, merging,
-deploying the API Worker, changing a price or a code, moving a coordinate,
+alert (it waits in the dashboard as a draft), posting anywhere, merging
+(which is also what deploys the API Worker), changing a price or a code, moving a coordinate,
 wiring a photo, contacting a third party, and any first-person field
 observation. Each of those is either the owner's
 signature or the product's core promise, and a routine that did them on

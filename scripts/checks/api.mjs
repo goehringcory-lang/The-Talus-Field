@@ -1,9 +1,11 @@
 // API Worker health (online).
 //
 // Every other module in this suite points at the editorial site. Nothing has
-// ever pointed at api.thetalusfieldjournal.com, which is the one deployable
-// that does NOT auto-deploy from main (root CLAUDE.md, "Deployment"): it ships
-// only when somebody runs `wrangler deploy` from workers/. So the Worker is
+// ever pointed at api.thetalusfieldjournal.com. Until September 2026 it was the
+// one deployable that did not auto-deploy from main; it now ships through a
+// gated Workers Build (root CLAUDE.md, "Common commands"), which fails closed:
+// a red typecheck or test ships nothing and the previous version keeps
+// answering, with nothing but a build log to say so. So the Worker is
 // simultaneously the least-watched and the most expensive thing to have quietly
 // broken — it holds checkout, the Stripe webhook, the KV buyer records, and the
 // renewal sweep. A regression there is not a cosmetic SEO drift; it is a reader
@@ -113,7 +115,8 @@ export default async function checkApi(ctx) {
       } else if (got !== want) {
         check.error(
           `${key}: live Worker says ${got}, repo says ${want} (${label}). ` +
-            `The deployed Worker is out of date — run \`wrangler deploy\` from workers/.`,
+            `The deployed Worker is out of date: check the talus-field-guide-api build log (Deployments tab) ` +
+              `for a failed build, then retry it or deploy by hand from a clean origin/main (DEPLOY.md section 4).`,
         );
       }
     }
@@ -128,7 +131,8 @@ export default async function checkApi(ctx) {
   if ("cap" in inv.body) {
     check.error(
       `/api/inventory still reports a monthly cap (${inv.body.cap}); the deployed Worker predates ` +
-        `the cap's removal and will turn buyers away at it — run \`wrangler deploy\` from workers/.`,
+        `the cap's removal and will turn buyers away at it: check the talus-field-guide-api build log ` +
+        `(Deployments tab) for a failed build, then retry it or deploy by hand (DEPLOY.md section 4).`,
     );
   }
   if (typeof inv.body.sold === "number") check.info(`sales this month: ${inv.body.sold}`);

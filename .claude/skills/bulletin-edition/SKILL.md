@@ -91,9 +91,9 @@ Rules that have teeth:
 Re-curate `workers/src/data/manual-programs.ts` from the same new Guide's
 Programs page: its `GUIDE_START`/`GUIDE_END` and the program rows, with
 `accessible` / `familyFriendly` carrying the same two printed symbols,
-true-only. This ships in the same PR, and the PR body must state that the
-API Worker never auto-deploys and list the owner's step:
-`cd workers && npx wrangler deploy`.
+true-only. This ships in the same PR, and the PR body must say that merging it also
+deploys the API Worker (its Workers Build watches `workers/*`), so the
+programs feed and the bulletin go live together.
 
 ## Phase 3 — Plumbing, verify, ship
 

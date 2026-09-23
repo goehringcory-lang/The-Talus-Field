@@ -7,9 +7,10 @@
 # already handled by indexnow.yml on push; this workflow does not duplicate it.
 #
 # The API check (checks/api.mjs) is the reason this run is not editorial-only.
-# api.thetalusfieldjournal.com ships ONLY by a manual `wrangler deploy`, so it
-# never gets the free "a merge redeployed it" recovery the site gets, and it is
-# where the money lives. This is the thing that notices before a buyer does.
+# api.thetalusfieldjournal.com deploys through a gated Workers Build: a merge
+# touching workers/ runs the typecheck and tests, then deploys, and a failure
+# ships nothing and leaves the previous version live with no other signal. It
+# is where the money lives. This is the thing that notices before a buyer does.
 #
 # Runs nightly and on manual dispatch. The checks job fails on error-severity
 # findings; Lighthouse is warn-only (drift is recorded, not gated) to avoid flaky

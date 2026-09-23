@@ -57,6 +57,8 @@ the bundle; `npm run check:build` guards the reason why.
 
 ## Deploys
 
-Merging to `main` auto-deploys via Cloudflare Pages. The Worker deploys
-separately (`wrangler deploy` from `workers/`); deploy the Worker first when a
-change touches both. See `../../DEPLOY.md` for the full runbook.
+Merging to `main` auto-deploys via Cloudflare Pages. The API Worker deploys
+from the same merge through its own Workers Build (when `workers/` changed),
+in parallel and with no ordering between the two, so a change that touches
+both must let the PWA tolerate the old Worker for a few minutes, or land the
+Worker half in an earlier PR. See `../../DEPLOY.md` for the full runbook.

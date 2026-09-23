@@ -113,8 +113,8 @@ push -u origin <branch>`. PR title `[deps] <month> dependency check`, with
   fix or the reason for none.
 - **Updates**: package, from, to, and why it is safe.
 - **Held back**: majors and failed bumps, each with what it would take.
-- **Deploy**: when `workers/` changed, the owner's step, `cd workers && npx
-  wrangler deploy`, because the API Worker never deploys on merge.
+- **Deploy**: when `workers/` changed, say that merging deploys the API
+  Worker through its gated Workers Build, and name anything to check after.
 - **Gates**: each command above and its result.
 
 Subscribe to PR activity and drive CI green. **Never merge.** A month with

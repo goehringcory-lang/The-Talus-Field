@@ -14,7 +14,8 @@
 // route dedupes those against the live NPS feed by date + title at read time
 // (routes/programs.ts), so the feed wins whenever it carries the same program.
 //
-// Workflow: edit this file → `npm run typecheck` → `wrangler deploy`.
+// Workflow: edit this file → `npm run typecheck` → merge (the Workers Build
+// deploys it).
 // Entries are validated at module load; a bad date or category fails the
 // deploy loudly instead of shipping a broken feed.
 //

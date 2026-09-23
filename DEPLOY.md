@@ -85,9 +85,29 @@ Resend won't deliver to arbitrary emails until your sending domain is verified.
 
 ## 4. Deploy the Worker
 
+**Normal deploys are automatic (since September 2026).** The Worker is git-connected in the Cloudflare dashboard (Workers & Pages > `talus-field-guide-api` > Settings > Builds): a merge to `main` that touches `workers/*` or `scripts/data/deadlines.json` builds and deploys it. Every one of these settings lives only in the dashboard, so if the connection is ever lost, recreate them exactly:
+
+| Setting | Value |
+|---|---|
+| Git repository, production branch | `goehringcory-lang/The-Talus-Field`, `main` |
+| Root directory | `workers` |
+| Build command | `npm ci && npm run typecheck && npm run test:flow && npm run test:roads` |
+| Deploy command | `npx wrangler deploy -c wrangler.toml` |
+| Build watch paths, include | `workers/*`, `scripts/data/deadlines.json` |
+| Preview builds | off (this Worker holds the live Stripe key and the buyer records) |
+| API token | the build token the editorial Worker's build already uses |
+
+The build command is the gate. `main` is not branch-protected, so a PR can merge with CI's Worker job red, but the same typecheck and tests run before the deploy step, and a failure ships nothing: the previous version keeps serving. After merging an `[api]` PR, read the build on the Worker's **Deployments** tab; the nightly `checks/api.mjs` parity check is the backstop.
+
+**By hand** (first-time setup, or recovering from a failed build): deploy from a clean worktree of `origin/main`, never from a feature branch, because wrangler uploads whatever is on disk and a branch behind `main` rolls production back.
+
 ```bash
-cd workers
-wrangler deploy
+git fetch origin
+git worktree add /tmp/talus-api-deploy origin/main
+cd /tmp/talus-api-deploy/workers
+npm ci
+npx wrangler deploy
+cd - && git worktree remove /tmp/talus-api-deploy
 ```
 
 The `api` subdomain is already attached to this Worker as a **Custom Domain**, which is declared as such in `wrangler.toml` (`pattern = "api.thetalusfieldjournal.com"`, `custom_domain = true`). A Custom Domain creates its own proxied DNS record, so there is no CNAME to add by hand and nothing to do here on a normal deploy.
@@ -97,7 +117,7 @@ If you are standing the Worker up in a fresh account instead, two options:
 - **Easy:** comment out the `[[routes]]` block in `wrangler.toml`, deploy, and use the auto-generated `talus-field-guide-api.<your-subdomain>.workers.dev` URL for testing. Update `GUIDE_API_BASE` in [page-guide.jsx:10](page-guide.jsx) and `VITE_API_BASE` in [apps/guide/.env.production](apps/guide/.env.production) to point at it.
 - **Production-shaped:** attach `api.<your-domain>` to the Worker as a Custom Domain (Cloudflare dashboard → the Worker → Settings → Domains & Routes → Add → Custom Domain), and declare it in `wrangler.toml` in the `custom_domain = true` form.
 
-**Read the config-drift prompt.** Recent wrangler versions compare this file against the deployed Worker and print a diff before asking to continue, warning that deploying "will override the remote configuration with your local one". A `-` entry under `routes` means the deploy would **detach** something that is currently serving: answer `n` and reconcile `wrangler.toml` first. `+` entries under `triggers.crons` or `vars` are the normal case for shipping a config change. A `preview_id` diff on the KV namespaces is noise — `preview_id` is only read by `wrangler dev`, never by the deployed Worker, and the placeholder value in this file is deliberate.
+**Read the config-drift prompt.** Recent wrangler versions compare this file against the deployed Worker and print a diff before asking to continue, warning that deploying "will override the remote configuration with your local one". A `-` entry under `routes` means the deploy would **detach** something that is currently serving: answer `n` and reconcile `wrangler.toml` first. `+` entries under `triggers.crons` or `vars` are the normal case for shipping a config change. A `preview_id` diff on the KV namespaces is noise — `preview_id` is only read by `wrangler dev`, never by the deployed Worker, and the placeholder value in this file is deliberate. The prompt only appears on a deploy by hand: the Workers Build never sees it and applies `wrangler.toml` as written, so a `[[routes]]` block removed from the file would detach the domain with nobody asked.
 
 Verify: `curl https://<worker-url>/` should return "Talus Field Guide API. See /api/inventory."
 
@@ -317,12 +337,12 @@ Rules that matter:
 
 The buy box, checkout route, webhook, KV buyer records, and email delivery are all in the tree; the paid path is enabled purely by configuration. Checklist, in order:
 
-1. **Price.** `GUIDE_PRICE_CENTS = "399"` in [workers/wrangler.toml](workers/wrangler.toml) is the single source of truth. The editorial buy box reads it live from `GET /api/inventory` (`priceCents`) with a static $3.99 fallback in [page-guide.jsx](page-guide.jsx). Change the var, `wrangler deploy`, done. Stripe needs no change alongside it: checkout builds an inline `price_data` line item, so there is no Price object in the dashboard to keep in sync.
+1. **Price.** `GUIDE_PRICE_CENTS = "399"` in [workers/wrangler.toml](workers/wrangler.toml) is the single source of truth. The editorial buy box reads it live from `GET /api/inventory` (`priceCents`) with a static $3.99 fallback in [page-guide.jsx](page-guide.jsx). Change the var and merge (the Workers Build deploys it), done. Stripe needs no change alongside it: checkout builds an inline `price_data` line item, so there is no Price object in the dashboard to keep in sync.
 2. **KV.** The production namespace `id`s for `GUIDE_BUYERS` and `GUIDE_PROGRAMS` are already filled in `wrangler.toml`. Only the `preview_id`s remain `REPLACE_ME_FOR_LOCAL_DEV`; create preview namespaces (`wrangler kv namespace create ... --preview`) only if you need local `wrangler dev`.
 3. **Secrets.** `wrangler secret put` each of: `STRIPE_SECRET_KEY`, `STRIPE_WEBHOOK_SECRET`, `MAGIC_LINK_SIGNING_SECRET`, `RESEND_API_KEY`. Optionally `VAPID_PUBLIC_KEY`/`VAPID_PRIVATE_KEY` for push notifications (section 2); they are not launch-blocking, since the app hides the opt-in when they are unset. Rotate or delete `DEV_USERNAME`/`DEV_CODE` before launch; keep `ADMIN_*` as the operator door.
 4. **Webhook.** In the Stripe dashboard, add endpoint `https://api.thetalusfieldjournal.com/api/stripe/webhook` for events `checkout.session.completed`, `checkout.session.async_payment_succeeded`, **and** `charge.refunded`; the endpoint's signing secret is `STRIPE_WEBHOOK_SECRET`. Without `charge.refunded`, the refund-revocation branch in [workers/src/routes/stripe.ts](workers/src/routes/stripe.ts) never runs and refunded buyers keep access until the KV record is expired by hand.
 5. **Resend domain.** Verify the sending domain for `cory@thetalusfieldjournal.com` in the Resend dashboard **before** going live. With an unverified domain the webhook's email send fails after the buyer has already been charged, and no access code or magic link ever arrives.
-6. **Deploy + verify fail-closed traps.** `wrangler deploy`, then `curl https://api.thetalusfieldjournal.com/api/inventory` must show `sold` (an informational monthly tally) and `priceCents: 399`, and no `cap` field. There is no sales cap (removed September 2026); a live `cap` means the deploy is stale.
+6. **Deploy + verify fail-closed traps.** Deploy (merge, or by hand per section 4), then `curl https://api.thetalusfieldjournal.com/api/inventory` must show `sold` (an informational monthly tally) and `priceCents: 399`, and no `cap` field. There is no sales cap (removed September 2026); a live `cap` means the deploy is stale.
 7. **Test-mode pass.** Full smoke test in section 8 (test card 4242…) before swapping to live keys per "Going live". Include a refund: refund the test payment in the Stripe dashboard and confirm the buyer's login stops working.
 8. **Editorial re-integration: done.** Every code flip landed in the July 2026 launch-prep branch: `GUIDE_ON_SALE = true` in [page-guide.jsx](page-guide.jsx), the footer link in [components.jsx](components.jsx), the noscript nav link in [index.html](index.html), indexability in [app.jsx](app.jsx) and [edge/seo.js](edge/seo.js), `GUIDE_LISTED = true` in [scripts/gen-seo-artifacts.mjs](scripts/gen-seo-artifacts.mjs), and the Field Guide line in llms.txt. Remaining `GUIDE-LAUNCH` grep hits are historical breadcrumbs, not work. Merging that branch to `main` is the go-live action, so clear steps 1 through 7 first; the full state of play is in [LAUNCH-READINESS.md](LAUNCH-READINESS.md).
 
