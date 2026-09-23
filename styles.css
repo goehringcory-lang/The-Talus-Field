@@ -6256,7 +6256,8 @@ kbd {
 .hp-navigation nav {
   display:flex;
   gap:25px;
-  font-size:12px
+  font-size:15px;
+  font-weight:600
 }
 .hp-design .hp-button {
   display:inline-flex;
@@ -6710,7 +6711,7 @@ kbd {
   width:calc(100% - 64px)
 }
 .hp-navigation nav {
-  font-size:10px;
+  font-size:13px;
   gap:17px
 }
 .hp-design .hp-brand {
@@ -6789,7 +6790,7 @@ kbd {
   justify-content:space-between;
   margin-top:9px;
   gap:12px;
-  font-size:10px
+  font-size:12px
 }
 .hp-design .hp-hero {
   grid-template-columns:1fr;
@@ -7007,9 +7008,15 @@ kbd {
 }
 @media(max-width:360px) {
   :where(.hp-design) h1 { font-size: 55px; }
+  .hp-navigation nav { font-size: 11px; }
   .hp-design .hp-light { min-width: 0; width: 100%; }
   .hp-design .hp-phone { width: 165px; height: 353px; }
   .hp-design .hp-offline { left: 0; font-size: 21px; }
+}
+/* The compact bar shares its row with the mark; at 320px the labels need the
+   old size to stay on one line. */
+@media (max-width: 340px) {
+  .hp-navigation.is-stuck nav { font-size: 10px; }
 }
 
 .hp-design .hp-phone img { height: auto; }
