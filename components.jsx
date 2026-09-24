@@ -568,7 +568,10 @@ function releaseRockfall(markEl) {
 // `hash`, the id of a section on its page, which the masthead scrolls to once
 // the route has drawn, and `onHome`, the id of the homepage section that
 // answers it, which the link jumps to instead when the reader is on "/" (the
-// Sunday Letter and Start here are sections of the homepage itself). `route` is the group's landing page, the first link in
+// Sunday Letter is a section of the homepage itself). Start here deliberately
+// carries no `onHome`: it always opens the /start-here page, even from "/",
+// where the homepage's own "Plan your first visit" button is the in-page jump.
+// `route` is the group's landing page, the first link in
 // its panel; the label itself opens the panel rather than navigating. `aside`
 // is a small block under the panel's lede, and `feature` names the panel's
 // third track (NavMapFeature, NavWaitsFeature, NavNewestFeature below). A
@@ -601,7 +604,7 @@ const NAV_GROUPS = [
       {
         heading: "Decide",
         links: [
-          { key: "start-here", onHome: "home-start-here", label: "Start here", note: "Your first trip, the questions in order" },
+          { key: "start-here", label: "Start here", note: "Your first trip, the questions in order" },
           { key: "planning", label: "The Planning Guide", note: "The whole archive, in trip order" },
           { key: "itineraries", label: "Itineraries", note: "Half-day to three-day plans, in drive order" },
           { key: "consult", label: "Trip consults", note: "Thirty minutes, one on one. Paid" },

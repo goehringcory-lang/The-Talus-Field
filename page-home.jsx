@@ -42,30 +42,30 @@ function HomePage({ go }) {
     <HomeLink go={go} location="home_content" href="/articles/yosemite-without-reservations-2026">Entry &amp; reservations ↗</HomeLink>
     <HomeLink go={go} location="home_content" href="/articles/yosemite-shuttle-and-yarts">Getting around ↗</HomeLink>
   </div>
+  {/* Start Here is one door, not a reading list: the whole card is a single
+      link to /start-here, which carries the four articles this block used to
+      list and everything around them. The four lines below name the page's
+      own sections, in its order; change them when that page changes. */}
   <section className="hp-wrap hp-section" id="home-start-here" tabIndex={-1}>
-    <HpHeading go={go} location="home_content" eyebrow="YOUR FIRST VISIT, MADE SIMPLE" title="Start here. The rest can wait." link={{ href: "/start-here", label: "All first-trip advice ↗" }} />
-    <p className="hp-sub">The four reads that turn “where do we even begin?” into a plan.</p>
-    <div className="hp-articles">
-      <HomeLink go={go} location="home_content" className="hp-featured" href="/articles/first-time-yosemite-overwhelm">
-        <div className="hp-photo">
-          <ResponsiveImage image="/img/half-dome-valley-cumulus.jpg" alt="Half Dome above Yosemite Valley" sizes="(max-width: 760px) calc(100vw - 40px), 600px" />
-          <span>READ THIS FIRST</span>
-        </div>
-        <div className="hp-cardbody">
-          <p className="hp-eyebrow">01 / THE BIG PICTURE <span>6 MIN READ</span>
-          </p>
-          <h3>Your first Yosemite trip.<br />Let’s make it a good one.</h3>
-          <p>What matters, what can wait, and the decisions to make before you book anything.</p>
-          <b>Start with the essentials <span>↗</span>
-          </b>
-        </div>
-      </HomeLink>
-      <div className="hp-list">
-        <HpRow go={go} location="home_content" href="/articles/yosemite-gateway-towns-compared" image="/img/lookout-point.jpg" alt="Forested Yosemite foothills" eyebrow="02 / YOUR HOME BASE" title="Where should you actually stay?" text="Five gateway towns. Very different trips." cta="Find your base" />
-        <HpRow go={go} location="home_content" href="/articles/yosemite-in-one-or-two-days" image="/img/taft-point.jpg" alt="Taft Point granite overlook" eyebrow="03 / MAKE THE DAYS COUNT" title="One day or two? Here’s your plan." text="A little less rushing. A lot more Yosemite." cta="Build your itinerary" />
-        <HpRow go={go} location="home_content" href="/articles/yosemite-without-reservations-2026" image="/img/arch-rock-entrance-yosemite.jpg" alt="Arch Rock entrance" eyebrow="04 / BEFORE YOU GO" title="Get the entry details sorted." text="Reservations, arrival strategy, and the way in." cta="Know before you go" />
+    <HpHeading go={go} location="home_content" eyebrow="YOUR FIRST VISIT, MADE SIMPLE" title="Start here. The rest can wait." />
+    <HomeLink go={go} location="home_content" className="hp-door" href="/start-here">
+      <div className="hp-photo">
+        <ResponsiveImage image="/img/half-dome-valley-cumulus.jpg" alt="Half Dome above Yosemite Valley" sizes="(max-width: 760px) calc(100vw - 40px), 600px" />
+        <span>READ THIS FIRST</span>
       </div>
-    </div>
+      <div className="hp-door__body">
+        <p className="hp-eyebrow">THE FIRST-TRIP PAGE</p>
+        <h3>Everything a first visit needs,<br />on one page.</h3>
+        <p className="hp-door__intro">Where to begin, what to see, and how to shape the days, in the order the decisions come.</p>
+        <ul className="hp-door__list">
+          <li>The short answers: reservations, fees, how many days</li>
+          <li>The four places worth the drive, on the park map</li>
+          <li>One-, two- and three-day plans, in drive order</li>
+          <li>The questions everyone asks, and five first-trip mistakes</li>
+        </ul>
+        <b>Open the first-trip page <span>↗</span></b>
+      </div>
+    </HomeLink>
   </section>
   <HpGuideBand go={go} location="home_content" id="field-guide" title={<>You’ve done the reading.<br />Now take the guide.</>} intro="The practical side of a great Yosemite trip, all in your pocket. Download before you go. Keep exploring when the signal disappears." />
   <HpLetter id="home-newsletter" eyebrow="A LITTLE YOSEMITE IN YOUR INBOX" title={<>The trip starts long<br />before the trailhead.</>} heading="The Sunday Letter" blurb="Know what’s open, what’s booking out, and what’s worth your time. The Sunday Letter brings the view from inside the park to your inbox, once a week." location="home_newsletter" tag="home" />

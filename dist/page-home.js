@@ -61,20 +61,12 @@ function HomePage({
     go: go,
     location: "home_content",
     eyebrow: "YOUR FIRST VISIT, MADE SIMPLE",
-    title: "Start here. The rest can wait.",
-    link: {
-      href: "/start-here",
-      label: "All first-trip advice ↗"
-    }
-  }), React.createElement("p", {
-    className: "hp-sub"
-  }, "The four reads that turn “where do we even begin?” into a plan."), React.createElement("div", {
-    className: "hp-articles"
-  }, React.createElement(HomeLink, {
+    title: "Start here. The rest can wait."
+  }), React.createElement(HomeLink, {
     go: go,
     location: "home_content",
-    className: "hp-featured",
-    href: "/articles/first-time-yosemite-overwhelm"
+    className: "hp-door",
+    href: "/start-here"
   }, React.createElement("div", {
     className: "hp-photo"
   }, React.createElement(ResponsiveImage, {
@@ -82,42 +74,14 @@ function HomePage({
     alt: "Half Dome above Yosemite Valley",
     sizes: "(max-width: 760px) calc(100vw - 40px), 600px"
   }), React.createElement("span", null, "READ THIS FIRST")), React.createElement("div", {
-    className: "hp-cardbody"
+    className: "hp-door__body"
   }, React.createElement("p", {
     className: "hp-eyebrow"
-  }, "01 / THE BIG PICTURE ", React.createElement("span", null, "6 MIN READ")), React.createElement("h3", null, "Your first Yosemite trip.", React.createElement("br", null), "Let’s make it a good one."), React.createElement("p", null, "What matters, what can wait, and the decisions to make before you book anything."), React.createElement("b", null, "Start with the essentials ", React.createElement("span", null, "↗")))), React.createElement("div", {
-    className: "hp-list"
-  }, React.createElement(HpRow, {
-    go: go,
-    location: "home_content",
-    href: "/articles/yosemite-gateway-towns-compared",
-    image: "/img/lookout-point.jpg",
-    alt: "Forested Yosemite foothills",
-    eyebrow: "02 / YOUR HOME BASE",
-    title: "Where should you actually stay?",
-    text: "Five gateway towns. Very different trips.",
-    cta: "Find your base"
-  }), React.createElement(HpRow, {
-    go: go,
-    location: "home_content",
-    href: "/articles/yosemite-in-one-or-two-days",
-    image: "/img/taft-point.jpg",
-    alt: "Taft Point granite overlook",
-    eyebrow: "03 / MAKE THE DAYS COUNT",
-    title: "One day or two? Here’s your plan.",
-    text: "A little less rushing. A lot more Yosemite.",
-    cta: "Build your itinerary"
-  }), React.createElement(HpRow, {
-    go: go,
-    location: "home_content",
-    href: "/articles/yosemite-without-reservations-2026",
-    image: "/img/arch-rock-entrance-yosemite.jpg",
-    alt: "Arch Rock entrance",
-    eyebrow: "04 / BEFORE YOU GO",
-    title: "Get the entry details sorted.",
-    text: "Reservations, arrival strategy, and the way in.",
-    cta: "Know before you go"
-  })))), React.createElement(HpGuideBand, {
+  }, "THE FIRST-TRIP PAGE"), React.createElement("h3", null, "Everything a first visit needs,", React.createElement("br", null), "on one page."), React.createElement("p", {
+    className: "hp-door__intro"
+  }, "Where to begin, what to see, and how to shape the days, in the order the decisions come."), React.createElement("ul", {
+    className: "hp-door__list"
+  }, React.createElement("li", null, "The short answers: reservations, fees, how many days"), React.createElement("li", null, "The four places worth the drive, on the park map"), React.createElement("li", null, "One-, two- and three-day plans, in drive order"), React.createElement("li", null, "The questions everyone asks, and five first-trip mistakes")), React.createElement("b", null, "Open the first-trip page ", React.createElement("span", null, "↗"))))), React.createElement(HpGuideBand, {
     go: go,
     location: "home_content",
     id: "field-guide",
