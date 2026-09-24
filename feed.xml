@@ -9,13 +9,23 @@
     <copyright>© 2026 The Talus Field</copyright>
     <managingEditor>cory@thetalusfieldjournal.com (Cory Goehring)</managingEditor>
     <webMaster>cory@thetalusfieldjournal.com (Cory Goehring)</webMaster>
-    <lastBuildDate>Mon, 21 Sep 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 24 Sep 2026 00:00:00 +0000</lastBuildDate>
     <image>
       <url>https://thetalusfieldjournal.com/img/talus-field-mark.png</url>
       <title>The Talus Field</title>
       <link>https://thetalusfieldjournal.com/</link>
     </image>
 
+    <item>
+      <title>The Yosemite Falls Trail: Columbia Rock, the Top, and the Loop at the Bottom</title>
+      <link>https://thetalusfieldjournal.com/articles/yosemite-falls-trail</link>
+      <guid isPermaLink="true">https://thetalusfieldjournal.com/articles/yosemite-falls-trail</guid>
+      <pubDate>Thu, 24 Sep 2026 00:00:00 +0000</pubDate>
+      <dc:creator>Cory Goehring</dc:creator>
+      <category>Trails and Hikes</category>
+      <description>Two walks share the name. One is a paved mile to the footbridge under Lower Yosemite Fall; the other climbs 2,700 feet up the north wall in the sun with no water on it. The Park Service's numbers for both, why Columbia Rock and the half mile past it is the right turnaround for most people, the upper half and the creek at the top, the trail season by season, and the ice cone the park's naturalists measured in 1935.</description>
+      <media:content url="https://thetalusfieldjournal.com/img/responsive/yosemite-falls-spring-blossoms-cory-goehring-og.jpg" medium="image" />
+    </item>
     <item>
       <title>Cell Service in Yosemite: What Works Where, Carrier by Carrier, and How to Plan for None</title>
       <link>https://thetalusfieldjournal.com/articles/cell-service-in-yosemite</link>
