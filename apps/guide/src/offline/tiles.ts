@@ -18,11 +18,14 @@ type Bbox = [number, number, number, number]
 export const PARK_BBOX: Bbox = [-119.93, 37.45, -119.05, 38.2]
 
 // The four corridors every stop in the guide sits inside.
-const VALLEY_BBOX: Bbox = [-119.75, 37.66, -119.53, 37.77]
+// West to El Portal and the Foresta pins (the Secret Guide's Foresta entries,
+// El Portal gas), which sat outside every corridor until September 2026.
+const VALLEY_BBOX: Bbox = [-119.79, 37.66, -119.53, 37.77]
 const GLACIER_MARIPOSA_BBOX: Bbox = [-119.72, 37.49, -119.55, 37.73]
 // Extended west/south to the Crane Flat junction so tioga-road-drive
 // (-119.7966, 37.7527) still gets trailhead-zoom tiles offline.
-const TIOGA_BBOX: Bbox = [-119.82, 37.74, -119.25, 37.95]
+// And west to -119.85 for the Merced Grove trailhead on Big Oak Flat Road.
+const TIOGA_BBOX: Bbox = [-119.85, 37.74, -119.25, 37.95]
 // Evergreen Road from the Highway 120 junction through Camp Mather, then
 // Hetch Hetchy Road to the dam and the Wapama Falls shoreline.
 const HETCH_HETCHY_BBOX: Bbox = [-119.98, 37.79, -119.75, 37.98]

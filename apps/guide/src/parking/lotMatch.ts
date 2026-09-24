@@ -19,6 +19,10 @@ import type { ParkingLotT } from './schema'
 // amenity id -> the NPS lot name, for pins the name rule cannot reach.
 const LOT_ALIASES: Record<string, string> = {
   'hetch-hetchy-dam-lot': 'Hetch Hetchy Reservoir',
+  // The pin named for where a reader parks for the Mist Trail. It used to be
+  // called "Curry Village day-use parking", which prefix-matched the Orchard
+  // lot 450 m away and printed that lot's status on it.
+  'curry-village-day-use-lot': 'Yosemite Valley Trailhead Parking',
 }
 
 export function normalizeLotName(name: string): string {

@@ -7,7 +7,11 @@
 import type { StyleSpecification } from 'maplibre-gl'
 import { API_BASE } from '../lib/api'
 
-export const MAP_ATTRIBUTION = 'Esri, USGS | © OpenStreetMap contributors'
+// The tiles are Esri's World Topographic Map (proxied by the Worker). Its
+// service copyright text, verbatim, plus the "Powered by Esri" credit Esri's
+// attribution guidance asks for.
+export const MAP_ATTRIBUTION =
+  'Powered by Esri | Sources: Esri, HERE, Garmin, Intermap, increment P Corp., GEBCO, USGS, FAO, NPS, NRCAN, GeoBase, IGN, Kadaster NL, Ordnance Survey, Esri Japan, METI, Esri China (Hong Kong), © OpenStreetMap contributors, and the GIS User Community'
 
 export function buildMapStyle(): StyleSpecification {
   return {
