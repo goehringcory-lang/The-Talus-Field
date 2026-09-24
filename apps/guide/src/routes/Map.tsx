@@ -44,6 +44,7 @@ import type { ParkingLotT } from '../parking/schema'
 import { HIDE_AFTER_MS as PARKING_HIDE_MS } from '../parking/staleness'
 import { useParking } from '../parking/useParking'
 import { compactStamp } from '../utils/relativeStamp'
+import { useOnline } from '../utils/useOnline'
 import './Map.css'
 import { useDocumentTitle } from '../lib/documentTitle'
 
@@ -640,6 +641,7 @@ export default function Map() {
   const lastFitKeyRef = useRef<string | null>(null)
 
   const [mapReady, setMapReady] = useState(false)
+  const online = useOnline()
   const [mapFailed, setMapFailed] = useState(false)
   const [mapDownloaded, setMapDownloaded] = useState(() => isPackCompleted(MAP_PACK_ID))
   // 'far' below MINOR_PIN_MIN_ZOOM. Drives a data attribute on the map
@@ -1480,10 +1482,18 @@ export default function Map() {
             </>
           ) : mapDownloaded ? (
             <>Map downloaded. Works offline, even in airplane mode, down to trailhead scale.</>
+          ) : !online ? (
+            <>
+              Offline, and the park map is not downloaded to this phone: only
+              areas you have already viewed will draw.{' '}
+              <Link className="map-online-notice__link" to="/account#offline">
+                Offline downloads →
+              </Link>
+            </>
           ) : (
             <>
               Viewing online.{' '}
-              <Link className="map-online-notice__link" to="/account">
+              <Link className="map-online-notice__link" to="/account#offline">
                 Download the map for offline →
               </Link>
             </>

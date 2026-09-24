@@ -2366,3 +2366,6 @@ a.masthead-offline:hover { color: var(--ink); }
 }
 .masthead-help:hover,
 .masthead-help[aria-current='page'] { text-decoration: underline; text-underline-offset: 3px; }
+
+/* The photo exists but this phone has none and no signal: say so plainly. */
+.photo-placeholder--offline span { text-align: center; line-height: 1.5; }

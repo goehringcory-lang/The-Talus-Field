@@ -27,7 +27,7 @@ export default function RegionForecast({ spot }: { spot: WeatherSpotT }) {
         <div key={day.date} className="region-forecast__day">
           <span className="region-forecast__label">{day.label}</span>
           <span className="region-forecast__temps">
-            {day.hiF ?? '–'}°/{day.loF ?? '–'}°
+            {day.hiF ?? '–'}°/{day.loF ?? '–'}°F
           </span>
           <span className="region-forecast__cond">
             {day.shortForecast.toLowerCase()}

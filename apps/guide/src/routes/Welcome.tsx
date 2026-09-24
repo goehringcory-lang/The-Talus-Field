@@ -102,8 +102,10 @@ export default function Welcome() {
             Every stop write-up, checklist, and GPS coordinate is part of the app itself.
             Once you finish this page, airplane mode changes nothing: the regions, the
             Secret Guide, search, and your trip plan all keep working. Only the live
-            layers (program listings, weather) need a connection to refresh, and both
-            fall back to the last copy they synced.
+            layers need a connection to refresh: program listings, the forecast, road
+            alerts, entrance waits, parking lots, air quality, river flow, and the webcams.
+            Most fall back to the last copy they synced; waits and lots, which change by the
+            quarter hour, simply hide until there is signal again.
           </p>
         </section>
 

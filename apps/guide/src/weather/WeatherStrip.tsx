@@ -44,7 +44,7 @@ export default function WeatherStrip({ region }: { region: WeatherSpotIdT }) {
             {spot.periods.slice(0, 4).map((period) => (
               <li key={period.startTime}>
                 <span className="weather-strip__muted">{period.name} · </span>
-                {period.tempF}°, {period.shortForecast.toLowerCase()}
+                {period.tempF}°F, {period.shortForecast.toLowerCase()}
                 {period.precipChance && period.precipChance >= 20 ? (
                   <span className="weather-strip__muted"> · {period.precipChance}% rain</span>
                 ) : null}

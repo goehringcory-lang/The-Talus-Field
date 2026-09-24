@@ -8,6 +8,7 @@ import { useState } from 'react'
 import type { CSSProperties } from 'react'
 import { RESPONSIVE_WIDTHS, responsiveBase, fallbackPhotoUrl } from '../utils/photo'
 import PhotoPlaceholder from './PhotoPlaceholder'
+import { useOnline } from '../utils/useOnline'
 
 type Props = {
   src: string
@@ -39,10 +40,13 @@ export default function ResponsivePhoto({
   // subsequent stop's photo on the placeholder after one bad image.
   const [failedSrc, setFailedSrc] = useState<string | null>(null)
   const failed = failedSrc === src
+  const online = useOnline()
   const isExternal = /^https?:/i.test(src)
 
   if (failed) {
-    return <PhotoPlaceholder className={className} />
+    // Offline, a real photo that fails is one this phone never downloaded,
+    // not one the guide lacks.
+    return <PhotoPlaceholder className={className} variant={online ? 'pending' : 'offline'} />
   }
 
   if (isExternal) {

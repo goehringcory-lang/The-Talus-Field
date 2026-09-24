@@ -294,16 +294,16 @@ export default function ParkNowPanel() {
             </span>
           </div>
           <div className="glance-wx">
-            <span className="glance-wx__temp">{current.tempF}°</span>
+            <span className="glance-wx__temp">{current.tempF}°F</span>
             <span className="glance-wx__detail">
               <span className="glance-wx__sky">
                 {current.name} · {current.shortForecast}
               </span>
               {todayDay && (todayDay.hiF !== null || todayDay.loF !== null) && (
                 <span className="glance-wx__meta">
-                  {todayDay.hiF !== null ? `High ${todayDay.hiF}°` : ''}
+                  {todayDay.hiF !== null ? `High ${todayDay.hiF}°F` : ''}
                   {todayDay.hiF !== null && todayDay.loF !== null ? ' · ' : ''}
-                  {todayDay.loF !== null ? `Low ${todayDay.loF}°` : ''}
+                  {todayDay.loF !== null ? `Low ${todayDay.loF}°F` : ''}
                 </span>
               )}
               {(current.windSpeed || (current.precipChance ?? 0) >= 20) && (
