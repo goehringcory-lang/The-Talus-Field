@@ -149,7 +149,7 @@ export default function DeadlinesPanel({ dates }: Props) {
   const resolved = dates ? resolveDeadlines(dates.start, dates.end, todayIso()) : []
 
   return (
-    <section className="panel deadlines" aria-label="Dates that matter for this trip">
+    <section id="dates" className="panel deadlines" aria-label="Dates that matter for this trip">
       <div className="panel__head">
         <span className="panel__title">Dates that matter</span>
         <span className="panel__stamp">Verified {DEADLINES_VERIFIED}</span>

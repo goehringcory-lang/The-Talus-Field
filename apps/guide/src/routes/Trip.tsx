@@ -43,6 +43,7 @@ import { HIDE_AFTER_MS, WARN_AFTER_MS } from '../weather/staleness'
 import { forecastLineForDay } from '../weather/todayLine'
 import './Trip.css'
 import { useDocumentTitle } from '../lib/documentTitle'
+import { useLandOnHash } from '../utils/useLandOnHash'
 
 // "Jan 13" for a note naming a board day.
 function shortDay(date: string): string {
@@ -202,6 +203,7 @@ function ClearPlanButton({ itemCount, onClear }: { itemCount: number; onClear: (
 
 export default function Trip() {
   useDocumentTitle('Trip plan')
+  useLandOnHash()
   const { plan, addStop, addHike, addProgram, addCustom, clear, setDates } = useTripPlan()
   const [reviewOpen, setReviewOpen] = useState(false)
   const reviewRef = useRef<HTMLDivElement>(null)

@@ -10,6 +10,7 @@
 // =============================================================================
 
 import { Navigate } from 'react-router-dom'
+import { EDITION_LABEL } from '../lib/buildInfo'
 import { useAuth } from '../auth/useAuth'
 import {
   REGIONS,
@@ -52,7 +53,7 @@ export default function Preview() {
     <PreviewChrome>
       <main className="wrap wrap--narrow page">
         <PageHeader
-          eyebrow="Free sample · The Field Guide · 2026 Edition"
+          eyebrow={`Free sample · The Field Guide · ${EDITION_LABEL}`}
           title={`Read ${sampleCount} entries from the guide.`}
           intro={`These are real entries, reproduced in full: one stop from each of the four regions and one from the Secret Guide, exactly as they read in the app. The other ${coreCount + secretCount - sampleCount} entries, the offline park map, the program listings, and the trip planner are in the full guide.`}
         />
@@ -93,12 +94,12 @@ export default function Preview() {
 
         <section className="page-section" aria-label="Get the guide">
           <div className="card">
-            <span className="eyebrow eyebrow--moss">The Field Guide · 2026 Edition</span>
+            <span className="eyebrow eyebrow--moss">The Field Guide · {EDITION_LABEL}</span>
             <div className="buy-card__price">{price}.</div>
             <p className="card__note" style={{ margin: '0 0 18px' }}>
               One payment. The app, the photos on file, and the offline park map are yours
               for 18 months on every device you own. A few entries still show a stand-in
-              photo rather than the place itself. Updates push automatically through the 2026 season, the Secret Guide
+              photo rather than the place itself. Updates push automatically for the full 18 months, the Secret Guide
               included.
             </p>
             <div className="action-row">

@@ -32,3 +32,24 @@ describe('SEARCH_SUGGESTIONS', () => {
     for (const q of SEARCH_SUGGESTIONS) expect(search(q).length, q).toBeGreaterThan(0)
   })
 })
+
+describe('the tools, the map places, and the deadline rows', () => {
+  it('opens with the Help card for "911"', () => {
+    expect(search('911')[0]?.url).toBe('/help')
+  })
+  it('finds the Curry Village showers before the meteor showers', () => {
+    const first = search('showers')[0]
+    expect(first?.section).toBe('Places on the map')
+    expect(first?.url).toBe('/map?place=curry-village-services')
+  })
+  it('finds a campground by name and all three gas stations', () => {
+    expect(search('upper pines').some((h) => h.url === '/map?place=upper-pines-campground')).toBe(true)
+    const gas = search('gas station').filter((h) => h.section === 'Places on the map')
+    expect(gas.map((h) => h.url).sort()).toEqual(
+      ['/map?place=crane-flat-gas', '/map?place=el-portal-gas', '/map?place=wawona-gas'],
+    )
+  })
+  it('lands a deadline row on the board', () => {
+    expect(search('half dome lottery').some((h) => h.section === 'Dates that matter' && h.url === '/trip#dates')).toBe(true)
+  })
+})

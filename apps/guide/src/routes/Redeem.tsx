@@ -1,4 +1,5 @@
 import { useRef, useState } from 'react'
+import { EDITION_LABEL } from '../lib/buildInfo'
 import type { FormEvent } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { apiFetch, ApiError } from '../lib/api'
@@ -101,7 +102,7 @@ export default function Redeem() {
         </Plate>
 
         <div className="login-head">
-          <span className="eyebrow eyebrow--moss">The Field Guide · 2026 Edition</span>
+          <span className="eyebrow eyebrow--moss">The Field Guide · {EDITION_LABEL}</span>
           <h1 className="login-title">Redeem a code</h1>
           <p className="login-intro">
             Enter the code from the newsletter and your email. The access link, your

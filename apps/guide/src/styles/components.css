@@ -2305,3 +2305,64 @@ a.spec {
     transition: none;
   }
 }
+
+/* /saved: bookmarks and recently viewed, one ruled row per entry. */
+.saved-list { list-style: none; margin: var(--s2) 0 var(--s4); padding: 0; }
+.saved-row {
+  display: flex;
+  align-items: center;
+  gap: var(--s3);
+  padding: var(--s3) 0;
+  border-bottom: 1px solid var(--rule-soft);
+}
+.saved-row__main { display: flex; flex-direction: column; gap: 2px; min-width: 0; flex: 1; }
+.saved-row__title { font-family: var(--display); font-size: 18px; color: var(--ink); text-decoration: none; }
+.saved-row__title:hover { text-decoration: underline; }
+
+/* /report: the correction form. */
+.report-form { display: grid; gap: var(--s4); margin-top: var(--s4); }
+.report-form__kinds { border: 0; margin: 0; padding: 0; display: grid; gap: var(--s2); }
+.report-form__text textarea { width: 100%; min-height: 8rem; resize: vertical; font: inherit; }
+.report-form__fix { display: grid; gap: var(--s2); }
+
+/* A stop or trailhead pin nobody has checked on the ground (near/unverified.ts). */
+.pin-unverified {
+  margin: var(--s4) 0 0;
+  padding: var(--s2) var(--s3);
+  border: 1px dashed var(--rule-soft);
+  font-size: 15px;
+  color: var(--ink-2);
+}
+.pin-unverified__label {
+  display: block;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 2px;
+}
+/* The quiet one-line door to /report at the foot of an entry. */
+.report-link { margin: var(--s5) 0 0; font-size: 15px; color: var(--ink-3); }
+
+/* Account › What changed: one dated block per release. */
+.edition-note { padding: var(--s3) 0; border-top: 1px solid var(--rule-soft); }
+.edition-note__list { margin: var(--s2) 0 0; padding-left: 1.1em; font-size: 16px; line-height: 1.5; }
+.edition-note__list li + li { margin-top: 4px; }
+
+/* The offline chip is a link to the downloads; Help sits beside it at every
+   width, in the same instrument-label type. */
+a.masthead-offline { text-decoration: none; }
+a.masthead-offline:hover { color: var(--ink); }
+.masthead-help {
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--rust);
+  text-decoration: none;
+  padding: 6px 2px;
+}
+.masthead-help:hover,
+.masthead-help[aria-current='page'] { text-decoration: underline; text-underline-offset: 3px; }

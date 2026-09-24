@@ -33,6 +33,8 @@ const Near = lazy(() => import('./routes/Near'))
 const Wildlife = lazy(() => import('./routes/Wildlife'))
 const Hunts = lazy(() => import('./routes/Hunts'))
 const Log = lazy(() => import('./routes/Log'))
+const Saved = lazy(() => import('./routes/Saved'))
+const Report = lazy(() => import('./routes/Report'))
 const TripPrint = lazy(() => import('./routes/TripPrint'))
 const Welcome = lazy(() => import('./routes/Welcome'))
 const NotFound = lazy(() => import('./routes/NotFound'))
@@ -294,6 +296,22 @@ export default function App() {
             element={
               <RequireAuth>
                 <Log />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="/saved"
+            element={
+              <RequireAuth>
+                <Saved />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path="/report"
+            element={
+              <RequireAuth>
+                <Report />
               </RequireAuth>
             }
           />

@@ -12,6 +12,7 @@ import { registerServiceWorker } from './pwa/registerSW'
 import { stashPendingImportFromUrl } from './trip/importTrip'
 import { startPlanSync } from './sync/planSync'
 import { startPushSync } from './push/push'
+import { startCorrectionsOutbox } from './lib/corrections'
 import { applyTheme, readTheme } from './lib/theme'
 
 // First, before anything paints: a pinned colour scheme has to be on <html>
@@ -72,3 +73,7 @@ startPlanSync()
 // (no-op until notifications are turned on from the Account page; never
 // prompts on its own).
 startPushSync()
+
+// Reports written with no signal (/report) wait on the device and go out the
+// next time it is online.
+startCorrectionsOutbox()

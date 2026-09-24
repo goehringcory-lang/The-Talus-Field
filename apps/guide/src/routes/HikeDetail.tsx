@@ -16,6 +16,9 @@ import ElevationProfile from '../components/ElevationProfile'
 import SeasonalNotices from '../components/SeasonalNotices'
 import RoadNote from '../components/RoadNote'
 import { roadForHike } from '../content/roads'
+import SaveButton from '../components/SaveButton'
+import { recordView } from '../lib/recentlyViewed'
+import { UNVERIFIED_HIKE_IDS } from '../near/unverified'
 import Button from '../components/ui/Button'
 import { Chip } from '../components/ui/Chip'
 import PageHeader from '../components/ui/PageHeader'
@@ -63,6 +66,10 @@ export default function HikeDetail() {
   const trackState = useTrack(hike?.id)
   const summary = hike ? getTrackSummary(hike.id) : undefined
   const { plan, addHike } = useTripPlan()
+  const viewedId = hike?.id
+  useEffect(() => {
+    if (viewedId) recordView({ type: 'hike', id: viewedId })
+  }, [viewedId])
   // Keyed by hike: the route element is reused across /hike/a -> /hike/b, so
   // a bare result would carry "Saved to your files" onto the next trail's page.
   const [gpxExport, setGpxExport] = useState<{ hikeId: string; result: GpxExportResult } | null>(null)
@@ -157,6 +164,7 @@ export default function HikeDetail() {
           <Chip variant="meta">~{formatTime(hike.durationMin)}</Chip>
           {hike.permit && <Chip variant="badge">Permit</Chip>}
           {hike.season && <Chip variant="badge">{hike.season}</Chip>}
+          <SaveButton kind="hike" id={hike.id} title={hike.title} />
         </p>
 
         {hike.distanceNote && <p className="hike-detail__note">Distance note: {hike.distanceNote}.</p>}
@@ -164,6 +172,14 @@ export default function HikeDetail() {
         {/* Behind Tioga Road or Glacier Point Road: what the road is doing
             today, before the reader plans a start time around it. */}
         {road && <RoadNote road={road} />}
+
+        {UNVERIFIED_HIKE_IDS.has(hike.id) && (
+          <p className="pin-unverified">
+            <span className="pin-unverified__label">Trailhead pin not yet checked on the ground</span>
+            Trust the trailhead described below over the exact pin.{' '}
+            <Link to={`/report?type=hike&id=${hike.id}&kind=pin`}>Standing at it? Send its position →</Link>
+          </p>
+        )}
 
         {/* --- The numbers ---------------------------------------------------- */}
         <section aria-label="Trail numbers" className="hike-detail__section">
@@ -406,6 +422,11 @@ export default function HikeDetail() {
           ) : (
             <Button onClick={add}>Add to trip plan</Button>
           )}
+        </p>
+
+        <p className="report-link">
+          Something on this trail wrong or out of date?{' '}
+          <Link to={`/report?type=hike&id=${hike.id}`}>Tell us →</Link>
         </p>
 
         <p className="page-footnote">

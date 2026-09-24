@@ -14,11 +14,17 @@ type Props = {
 // render like the Home offline card; the chip is a status, not a live wire.
 function OfflineChip() {
   const done = PACK_IDS.filter((id) => isPackCompleted(id)).length
+  // A link, not a bare reading: the chip is where a reader notices the
+  // downloads are incomplete, so it goes straight to them.
   return (
-    <span className="masthead-offline" aria-label={`Offline packs: ${done} of ${PACK_IDS.length}`}>
+    <Link
+      to="/account#offline"
+      className="masthead-offline"
+      aria-label={`Offline downloads: ${done} of ${PACK_IDS.length}. Manage downloads`}
+    >
       <span className="masthead-offline__dot" aria-hidden="true" />
       {done === PACK_IDS.length ? 'Offline ready' : `Offline ${done}/${PACK_IDS.length}`}
-    </span>
+    </Link>
   )
 }
 
@@ -61,6 +67,12 @@ export default function GatedChrome({ children }: Props) {
         </Link>
         <div className="gated-chrome__right">
           <OfflineChip />
+          {/* Help is the page a buyer opens once, in trouble; it stays in
+              the masthead at every width rather than folding into the tab
+              bar with the other quick links. */}
+          <Link to="/help" className="masthead-help" aria-current={pathname === '/help' ? 'page' : undefined}>
+            Help
+          </Link>
           <nav className="gated-chrome__links" aria-label="Quick links">
           <Link
             to="/map"

@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import { EDITION_LABEL } from '../lib/buildInfo'
 import { Link, useNavigate, useSearchParams } from 'react-router-dom'
 import { apiFetch } from '../lib/api'
 import { useAuth } from '../auth/useAuth'
@@ -67,7 +68,7 @@ export default function Open() {
         </header>
 
         <div className="login-head">
-          <span className="eyebrow eyebrow--moss">The Field Guide · 2026 Edition</span>
+          <span className="eyebrow eyebrow--moss">The Field Guide · {EDITION_LABEL}</span>
           {error ? (
             <>
               <h1 className="login-title">Sign-in link didn't work.</h1>

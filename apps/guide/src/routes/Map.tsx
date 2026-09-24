@@ -1194,6 +1194,30 @@ export default function Map() {
     }
   }, [visibleAmenities, mapReady, selectStop])
 
+  // ?place=<amenity id>: a search hit for a map-only pin (gas, showers, a
+  // campground). One shot at load: fly to the pin, open its popup, drop the
+  // param (writeUrlState never writes it back). An unknown id does nothing.
+  const [initialPlace] = useState(() => new URLSearchParams(window.location.search).get('place'))
+  const placeShown = useRef(false)
+  useEffect(() => {
+    if (!mapReady || !initialPlace || placeShown.current) return
+    const map = mapRef.current
+    const amenity = AMENITIES.find((a) => a.id === initialPlace)
+    placeShown.current = true
+    const url = new URL(window.location.href)
+    url.searchParams.delete('place')
+    window.history.replaceState(window.history.state, '', url.pathname + url.search)
+    if (!map || !amenity) return
+    map.jumpTo({ center: amenity.coord, zoom: Math.max(map.getZoom(), 14) })
+    const { lots, fetchedAt } = parkingRef.current
+    const fresh = fetchedAt !== null && Date.now() - Date.parse(fetchedAt) <= PARKING_HIDE_MS
+    const lot = fresh ? lotForAmenity(amenity, lots) : null
+    popupRef.current
+      ?.setLngLat(amenity.coord)
+      .setDOMContent(buildAmenityPopupContent(amenity, lot ? { lot, fetchedAt } : null))
+      .addTo(map)
+  }, [mapReady, initialPlace])
+
   // Trailhead marker reconciliation. Same shape as the amenity pipeline: no
   // ?stop= selection state and no fitBounds contribution; the pins open the
   // shared popup with the trail data card.
