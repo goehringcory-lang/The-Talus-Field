@@ -4,7 +4,7 @@
     "label": "September 23 – November 24, 2026",
     "start": "2026-09-23",
     "end": "2026-11-24",
-    "updated": "2026-09-23",
+    "updated": "2026-09-24",
     "lede": "The edition where the park packs up for winter. The Tuolumne visitor center shuts Sep 27, the wilderness permit desks by Oct 18, the Glacier Point tour bus on Oct 11 and most of the Valley's seasonal counters on Oct 25. Overnight parking on Tioga and Glacier Point Roads ends Oct 15, and both roads usually close for the season sometime in November, on the weather's schedule rather than the calendar's. The Valley stays open and gets quieter: the falls are dry, the oaks are turning, and the rangers are still walking.",
     "source": "Condensed from the National Park Service Yosemite Guide for September 23 – November 24, 2026, with the park's current conditions page and the journal's own notes.",
     "sourceUrl": "https://www.nps.gov/yose/planyourvisit/guide.htm"
@@ -13,16 +13,16 @@
     {
       "label": "High roads",
       "icon": "road",
-      "status": "Open until the snow",
-      "tone": "warn",
-      "text": "Tioga and Glacier Point Roads usually close for the winter sometime in November. No overnight parking on either from Oct 15. When Tioga closes there is no way through to Highway 395. Road status: 209/372-0200, press 1 then 1."
+      "status": "Glacier Point closed",
+      "tone": "closed",
+      "text": "Glacier Point Road is temporarily closed for the Dome Fire. Tioga Road is open and usually closes for the winter sometime in November. No overnight parking on either from Oct 15. When Tioga closes there is no way through to Highway 395. Road status: 209/372-0200, press 1 then 1."
     },
     {
       "label": "Dome Fire",
       "icon": "flame",
       "status": "Burning near Wawona",
       "tone": "warn",
-      "text": "Burning northeast of Wawona. Closed until further notice: the Chilnualna Falls trail and the trails above it, the Ostrander Lake Trail and everything south of it, and the country east of Wawona Road from Chinquapin to Wawona. Wawona Road, Glacier Point Road and the Mariposa Grove are open. Smoke settles overnight in Wawona and the Valley and has reached unhealthy levels by morning: check fire.airnow.gov before you drive in. Two helicopter pilots were killed fighting the fire on Sep 20."
+      "text": "Burning northeast of Wawona. Closed until further notice: the Chilnualna Falls trail and the trails above it, the Ostrander Lake Trail and everything south of it, and the country east of Wawona Road from Chinquapin to Wawona. Glacier Point Road is temporarily closed for smoke and firefighting operations. Wawona Road and the Mariposa Grove are open. Smoke settles overnight in Wawona and the Valley and has reached unhealthy levels by morning: check fire.airnow.gov before you drive in. Two helicopter pilots were killed fighting the fire on Sep 20."
     },
     {
       "label": "Services",
@@ -343,9 +343,9 @@
     },
     {
       "name": "Glacier Point Road",
-      "chip": "Open until snow",
-      "tone": "warn",
-      "note": "One hour from the Valley. The gift shop runs 9 am to 7 pm through Oct 25, the tour bus through Oct 11, and there is no overnight parking from Oct 15. The road typically closes for winter in November. The Ostrander Lake Trail and everything south of it are closed for the Dome Fire until further notice; the road stays open, and Glacier Point, Sentinel Dome and Taft Point sit outside the closure. No trailers or vehicles over 30 feet past the Sentinel Dome trailhead."
+      "chip": "Closed",
+      "tone": "closed",
+      "note": "Temporarily closed for the Dome Fire: smoke has cut visibility along the road, and the closure keeps it clear for firefighting. Glacier Point, Sentinel Dome and Taft Point cannot be reached by car until it reopens, and the Ostrander Lake Trail and everything south of it are closed until further notice. Before the fire the gift shop was to run 9 am to 7 pm through Oct 25 and the tour bus through Oct 11; there is no overnight parking from Oct 15, and the road typically closes for winter in November. Road status: 209/372-0200, press 1 then 1."
     },
     {
       "name": "Wawona & Mariposa Grove",
@@ -1026,7 +1026,7 @@
       "tone": "open",
       "distance": "9.6 mi, 3,200 ft round trip",
       "start": "Shuttle stop 11",
-      "note": "To Glacier Point, six to eight hours. Through Oct 11 you can ride the tour bus up and walk down; drop-offs only, no pickup at the point. The upper portion closes in winter."
+      "note": "To Glacier Point, six to eight hours. Through Oct 11 the tour bus carries hikers up to walk down, but it runs on Glacier Point Road, which is closed for the Dome Fire, so confirm it is running before you plan on it; drop-offs only, no pickup at the point. The upper portion closes in winter."
     },
     {
       "name": "Valley Loop Trail",
@@ -1037,11 +1037,11 @@
     },
     {
       "name": "Sentinel Dome & Taft Point",
-      "chip": "Open until snow",
-      "tone": "open",
+      "chip": "Road closed",
+      "tone": "closed",
       "distance": "Taft Point 2.4 mi · Sentinel Dome 1.8 mi",
       "start": "Glacier Point Road",
-      "note": "One trailhead, two rim walks: Taft Point to the west, Sentinel Dome to the northeast. Reachable until Glacier Point Road closes for winter, typically in November."
+      "note": "One trailhead, two rim walks: Taft Point to the west, Sentinel Dome to the northeast. Out of reach while Glacier Point Road is closed for the Dome Fire; once it reopens, reachable until the road closes for winter, typically in November."
     },
     {
       "name": "Lembert Dome",
@@ -1366,7 +1366,7 @@
     },
     {
       "name": "Glacier Point tour bus",
-      "note": "Four hours from Yosemite Valley Lodge at 8:30 am and 1:30 pm, paid, at TravelYosemite.com or the Lodge front desk. One-way hiker tickets drop off only; no pickup at the point.",
+      "note": "Glacier Point Road is temporarily closed for the Dome Fire, so confirm the tour is running before you book. Four hours from Yosemite Valley Lodge at 8:30 am and 1:30 pm, paid, at TravelYosemite.com or the Lodge front desk. One-way hiker tickets drop off only; no pickup at the point.",
       "until": "2026-10-11"
     },
     {

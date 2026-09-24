@@ -1,4 +1,4 @@
-var BULLETIN_URL = "/bulletin.json?v=15";
+var BULLETIN_URL = "/bulletin.json?v=16";
 var BT_PARK_TZ = "America/Los_Angeles";
 var BT_DAY_CODES = ["su", "mo", "tu", "we", "th", "fr", "sa"];
 function btIsoValid(iso) {
