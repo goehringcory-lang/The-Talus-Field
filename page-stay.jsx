@@ -607,8 +607,7 @@ const STAY_PICKS = [
 // The short answer: six beds for six kinds of trip, above everything else.
 // `park` picks borrow their photo and fallback from IN_PARK, `town` picks from
 // GATEWAYS, so a photo swap happens in one place. Every sentence restates the
-// referenced row (rule 2 of the booking-first note); `plate` lays the drive
-// time over the town photograph for the two picks whose argument is the drive.
+// referenced row (rule 2 of the booking-first note).
 const STAY_TOP_PICKS = [
   {
     from: "park", ref: "valley-lodge", badge: "Top pick · a first trip", kicker: "Inside the park · Yosemite Valley",
@@ -624,13 +623,11 @@ const STAY_TOP_PICKS = [
     from: "town", ref: "mariposa", badge: "Best value · a real town", kicker: "Highway 140 · open year-round",
     why: "The most full-service of the western gateways: a real downtown, and lodging from highway chains to historic bed-and-breakfasts. Also the winter base.",
     facts: [["Drive", "45 minutes to an hour to the Valley"], ["The catch", "Ninety minutes of round-trip driving a day"]],
-    plate: { big: "45 to 60", road: "Hwy 140" },
   },
   {
     from: "town", ref: "groveland", badge: "Best summer base", kicker: "Highway 120 west · chains common in winter",
     why: "With Tioga Road open, the only corridor that puts Yosemite Valley, Hetch Hetchy and Tuolumne Meadows all within reach of one morning's drive.",
     facts: [["Drive", "65 to 80 minutes to the Valley"], ["The catch", "Chain controls common in winter"]],
-    plate: { big: "65 to 80", road: "Hwy 120" },
   },
   {
     from: "town", ref: "fish-camp", badge: "Sequoias first", kicker: "Highway 41 · open year-round",
@@ -922,18 +919,9 @@ function StayTopPick({ pick, index }) {
   const item = park ? IN_PARK.find((p) => p.id === pick.ref) : stayGateway(pick.ref);
   if (!item) return null;
   return (
-    <article className={"stay-pick" + (pick.plate ? " stay-pick--plate" : "")}>
+    <article className="stay-pick">
       <figure className="stay-pick__figure">
         <ResponsiveImage image={item.photo} alt={item.caption} sizes={SIZES_CARD} className="stay-pick__img" />
-        {pick.plate && (
-          <div className="stay-pick__plate" aria-hidden="true">
-            <div>
-              <div className="stay-pick__big">{pick.plate.big}</div>
-              <div className="stay-pick__unit">Minutes to Yosemite Valley</div>
-            </div>
-            <span className="stay-pick__road">{pick.plate.road}</span>
-          </div>
-        )}
         <span className="stay-badge stay-pick__badge">{pick.badge}</span>
         <span className="stay-pick__num" aria-hidden="true">{String(index + 1).padStart(2, "0")}</span>
         <figcaption className="stay-pick__credit">{item.credit ? item.credit.replace(/^Photo:\s*/, "") : ""}</figcaption>
