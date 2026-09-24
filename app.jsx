@@ -124,7 +124,7 @@ const PAGE_MODULES = {
   dates: { scripts: ["/dates-data.js", "/dist/page-dates.js"], globals: ["DatesPage"] },
   international: { scripts: ["/fees-data.js", "/dist/page-international.js"], globals: ["InternationalPage"] },
   webcams: { scripts: ["/dist/page-webcams.js"], globals: ["WebcamsPage"] },
-  "start-here": { scripts: ["/dist/page-start-here.js"], globals: ["StartHerePage"] },
+  "start-here": { scripts: ["/itineraries-data.js", "/dist/page-start-here.js"], globals: ["StartHerePage"] },
 };
 
 function routeModule(route) {
@@ -820,7 +820,7 @@ function buildSeo(route) {
     "start-here": {
       title: `Start Here — planning your first Yosemite trip — ${SITE_NAME}`,
       description:
-        "The questions every first-time Yosemite visitor asks, answered plainly by a park naturalist: reservations, when to go, how many days, where to stay, which entrance, and permits.",
+        "Your first Yosemite trip at a glance: the Valley, Glacier Point, the Mariposa Grove and Tuolumne Meadows on the park map, one-, two- and three-day itineraries, and the first-trip questions answered by a park naturalist.",
       ogType: "website",
       breadcrumb: [["Home", `${SITE_ORIGIN}/`], ["Start here", null]],
     },

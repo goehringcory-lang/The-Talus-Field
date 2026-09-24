@@ -28,7 +28,7 @@ var SEARCH_PAGES = [{
 }, {
   route: "start-here",
   title: "Start here",
-  dek: "The first-trip questions answered plainly: reservations, when to go, how many days, where to stay, which entrance, and permits, each linking its full guide.",
+  dek: "The first trip at a glance: the four places worth the drive on the park map, one-, two- and three-day itineraries, and the first-trip questions answered plainly, each linking its full guide.",
   kind: "Page"
 }, {
   route: "itineraries",
