@@ -56,7 +56,7 @@ export const DINING_AREAS: { id: DiningArea; title: string; note?: string }[] = 
     id: 'tuolumne',
     title: 'Tuolumne Meadows & the Highway 120 corridor',
     note:
-      'The Tuolumne store, grill, and lodge are closed for the 2026 season. Tioga Road stays open until snow closes it, and between Crane Flat and Lee Vining the day is self-supported.',
+      'The Tuolumne store, grill, and lodge are closed for the season: the lodge dining tent shut September 13 and the grill September 20, 2026, and both reopen with Tioga Road the following summer. Tioga Road stays open until snow closes it, and between Crane Flat and Lee Vining the day is self-supported.',
   },
   {
     id: 'hetch-hetchy',
@@ -433,8 +433,8 @@ const seed: DiningInput[] = [
     price: '$',
     order: 2,
     closed:
-      'Closed for the 2026 season. The grill shut on September 20. It returns when Tioga Road reopens next year.',
-    season: 'Closed for 2026',
+      'Closed for the season. The grill shut on September 20, 2026, and returns when Tioga Road reopens the following summer.',
+    season: 'Summer, with Tioga Road',
     coord: [-119.3590, 37.8741], // shared Tuolumne grill/store pin (stops.ts)
     stopId: 'tuolumne-meadows-grill',
     description:
@@ -449,8 +449,8 @@ const seed: DiningInput[] = [
     price: '$$',
     order: 3,
     closed:
-      'Closed for the 2026 season, with the grill. Resupply boxes and groceries are not available here until next year.',
-    season: 'Closed for 2026',
+      'Closed for the season, with the grill, since September 2026. Resupply boxes and groceries are not available here until Tioga Road reopens the following summer.',
+    season: 'Summer, with Tioga Road',
     coord: [-119.3590, 37.8741],
     description:
       'When it is open, the canvas-sided general store that provisions the high country: groceries, camp fuel, beer, and a post office window where thru-hikers collect resupply boxes. It is struck for the winter with the grill.',
@@ -464,8 +464,8 @@ const seed: DiningInput[] = [
     price: '$$',
     order: 4,
     closed:
-      'Closed for the 2026 season. The dining tent served its last meals on September 13.',
-    season: 'Closed for 2026',
+      'Closed for the season. The dining tent served its last meals of 2026 on September 13 and reopens with the lodge the following summer.',
+    season: 'Summer, with Tioga Road',
     coord: [-119.3520, 37.8778],
     description:
       'When it is open, family-style breakfast and dinner in a canvas dining tent by the Dana Fork, shared tables and all. Dinner is by reservation through the lodge and open to non-guests when there is room. It is the only table service east of the Valley.',
@@ -479,7 +479,7 @@ const seed: DiningInput[] = [
     price: '$$',
     order: 5,
     closed:
-      'The lodge, store, and dining room are closed for the 2026 season for sewer-line repairs. When operating, it runs a counter window, a tiny store, and family-style dinners like a smaller Tuolumne Lodge.',
+      'The lodge, store, and dining room stayed closed through the 2026 season, by park order, over damaged sewer lines; confirm a reopening at travelyosemite.com before planning on it. When operating, it runs a counter window, a tiny store, and family-style dinners like a smaller Tuolumne Lodge.',
     coord: [-119.6497, 37.8523],
     description:
       'The little 1920s lodge halfway up Tioga Road, ordinarily the only food between Crane Flat and the meadows.',
@@ -594,7 +594,7 @@ const seed: DiningInput[] = [
     kind: 'sit-down',
     price: '$$$',
     order: 3,
-    hoursNote: 'dinner only',
+    hoursNote: 'dinner only, closed Sundays',
     coord: [-119.9670, 37.4849],
     description:
       'Old-school steak-and-seafood dinner house in a historic downtown building, run the same way for decades. Where Mariposa goes for anniversaries.',
@@ -622,7 +622,8 @@ const seed: DiningInput[] = [
     kind: 'counter',
     price: '$$',
     order: 5,
-    hoursNote: 'breakfast and lunch',
+    closed:
+      'Closed. The cafe shut when its owner retired in 2022 and has not reopened; for breakfast in Mariposa, Happy Burger opens early daily.',
     coord: [-119.9660, 37.4855],
     description:
       'Breakfast and lunch in a restored 1940s diner: eggs, biscuits, sandwiches, and pastry. The morning stop before the hour drive up to the Valley.',
@@ -649,7 +650,8 @@ const seed: DiningInput[] = [
     kind: 'coffee',
     price: '$',
     order: 2,
-    hoursNote: 'mornings to mid-afternoon',
+    closed:
+      'Directory listings have shown it closed since 2025, and it no longer answers online. Do not count on coffee here; Priest Station Cafe serves breakfast daily until 11 a.m.',
     coord: [-120.2325, 37.8386],
     description:
       'The local roaster on Main Street: espresso, pastries, and light breakfast from 7 a.m. The right coffee before the last hour of Highway 120.',
@@ -732,7 +734,7 @@ const seed: DiningInput[] = [
     order: 1,
     coord: [-119.6318, 37.4635],
     description:
-      'The casual all-day room at the big Tenaya resort, two miles from the South Entrance: burgers, salads, and a bar that stays open after the park empties. The resort also runs a deli and a main three-meal restaurant, so nobody leaves unfed.',
+      'The casual all-day room at the big Tenaya resort, two miles from the South Entrance: burgers, salads, and a bar that stays open after the park empties, breakfast through dinner daily. The resort also runs a deli with the same long hours, so nobody leaves unfed.',
   },
   {
     id: 'embers-tenaya',
@@ -743,11 +745,11 @@ const seed: DiningInput[] = [
     kind: 'sit-down',
     price: '$$$$',
     order: 2,
-    hoursNote: 'dinner only; seasonal nights vary',
-    reservations: 'Reservations recommended.',
+    closed:
+      'Closed until further notice, per the resort. Check visittenaya.com before planning a dinner here; Jackalope\'s at the same resort serves dinner daily.',
     coord: [-119.6320, 37.4633],
     description:
-      'Tenaya\'s fine-dining room: steaks, seafood, and California wine in a lodge setting. The dress-up dinner south of the park while Wawona\'s dining room is dark.',
+      'Tenaya\'s fine-dining room: steaks, seafood, and California wine in a lodge setting. When it reopens, the dress-up dinner south of the park while Wawona\'s dining room is dark.',
   },
   {
     id: 'narrow-gauge-inn',
@@ -773,10 +775,10 @@ const seed: DiningInput[] = [
     kind: 'counter',
     price: '$$',
     order: 1,
-    season: 'Tioga season',
+    season: 'Late April into fall',
     coord: [-119.1201, 37.9600],
     description:
-      'The famous one: fish tacos, buffalo meatloaf, and mango margaritas inside a gas station at the foot of Tioga Pass, with Mono Lake out the window. Closes with the pass; every eastbound crossing should end here at least once.',
+      'The famous one: fish tacos, buffalo meatloaf, and mango margaritas inside a gas station at the foot of Tioga Pass, with Mono Lake out the window. Open from late April into the fall, a season that runs close to the pass\'s but not in step with it; every eastbound crossing should end here at least once.',
   },
   {
     id: 'mono-cone',
@@ -787,7 +789,7 @@ const seed: DiningInput[] = [
     kind: 'snack',
     price: '$',
     order: 2,
-    season: 'Summer',
+    season: 'Spring to fall',
     coord: [-119.1213, 37.9573],
     description:
       'A walk-up burger-and-soft-serve shack that has fed 395 travelers for generations. Line out front, cones the size of the drive you just did.',
@@ -803,7 +805,7 @@ const seed: DiningInput[] = [
     order: 3,
     coord: [-119.1210, 37.9580],
     description:
-      'The 1965 diner at the center of Lee Vining: big breakfasts, patty melts, and pie, and the only restaurant in town that stays open through winter. The morning move before driving up the pass.',
+      'The 1965 diner at the center of Lee Vining: big breakfasts, patty melts, and pie, and open year-round, with a couple of closed midweek days in winter. The morning move before driving up the pass.',
   },
   {
     id: 'latte-da',
@@ -814,7 +816,7 @@ const seed: DiningInput[] = [
     kind: 'coffee',
     price: '$',
     order: 4,
-    season: 'Summer',
+    season: 'April to late fall',
     coord: [-119.1207, 37.9585],
     description:
       'Espresso and baked goods out of the 1920s El Mono Motel office, in a garden with Mono Lake light. The correct coffee before Tioga Pass.',

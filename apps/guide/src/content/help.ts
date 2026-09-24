@@ -94,11 +94,11 @@ export const STAFFED_HELP: { area: string; places: string }[] = [
   {
     area: 'Yosemite Valley',
     places:
-      'The Valley Welcome Center and the Valley Wilderness Center at Yosemite Village; the front desks at Yosemite Valley Lodge, Curry Village, and The Ahwahnee; the Medical Clinic on Ahwahnee Drive.',
+      'The Valley Welcome Center at Yosemite Village, and the Valley Wilderness Center there in season; the front desks at Yosemite Valley Lodge, Curry Village, and The Ahwahnee; the Medical Clinic on Ahwahnee Drive.',
   },
   {
     area: 'Wawona and the Mariposa Grove',
-    places: 'The Wawona Visitor Center and Wilderness Center; the Mariposa Grove Welcome Plaza.',
+    places: 'The Wawona Visitor Center in season; the Depot at the Mariposa Grove Welcome Plaza.',
   },
   {
     area: 'Tioga Road and Tuolumne Meadows',
