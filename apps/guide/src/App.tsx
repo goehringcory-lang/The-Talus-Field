@@ -5,12 +5,12 @@ import { useAuth } from './auth/useAuth'
 import Open from './routes/Open'
 import Claim from './routes/Claim'
 import Login from './routes/Login'
-import Home from './routes/Home'
 import InstallPrompt from './components/InstallPrompt'
 import UpdateBanner from './components/UpdateBanner'
 import ScrollToTop from './components/ScrollToTop'
 
 // Heavy routes lazy-loaded so /login doesn't download Map / Google Maps glue.
+const Home = lazy(() => import('./routes/Home'))
 const Map = lazy(() => import('./routes/Map'))
 const Account = lazy(() => import('./routes/Account'))
 const Region = lazy(() => import('./routes/Region'))
