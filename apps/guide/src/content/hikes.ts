@@ -110,7 +110,7 @@ const seed: HikeT[] = [
     durationMin: 100,
     trailhead: 'Tunnel View upper lot',
     stopId: 'artist-point',
-    coord: [-119.6697, 37.7135], // same pin as stop artist-point
+    coord: [-119.6773, 37.7156], // moved 2026-09 to the Tunnel View upper lot the trailhead text names (Recreation.gov Pohono Trail at Wawona Tunnel)
     description:
       'A short climb on the old stagecoach grade to the ledge where the nineteenth-century painters set their easels. Tunnel View’s panorama without Tunnel View’s parking lot.',
   },
@@ -457,7 +457,7 @@ const seed: HikeT[] = [
     durationMin: 100,
     trailhead: 'Across Highway 41 from the Wawona Hotel',
     stopId: 'wawona-meadow-loop',
-    coord: [-119.6567, 37.5359], // same pin as stop wawona-meadow-loop
+    coord: [-119.6576, 37.5351], // moved 2026-09 to NPS places, same as the stop
     description:
       'A flat lap of the meadow across the road from the Wawona Hotel on an old road grade. Spring wildflowers, big pines, and almost never another party.',
   },
@@ -507,7 +507,7 @@ const seed: HikeT[] = [
     trailhead: 'Mariposa Grove arrival area, via the Welcome Plaza shuttle',
     season: 'Spring through fall (shuttle season)',
     stopId: 'mariposa-grove',
-    coord: [-119.632, 37.5085], // same pin as stop mariposa-grove (Welcome Plaza)
+    coord: [-119.63, 37.5068], // moved 2026-09 to the Welcome Plaza, same as the mariposa-grove stop
     description:
       'The lower grove’s greatest hits: the Fallen Monarch, the Bachelor and Three Graces, the 3,000-year-old Grizzly Giant, and the California Tunnel Tree.',
   },
@@ -524,7 +524,7 @@ const seed: HikeT[] = [
     trailhead: 'Mariposa Grove arrival area, via the Welcome Plaza shuttle',
     season: 'Spring through fall (shuttle season)',
     stopId: 'mariposa-grove',
-    coord: [-119.632, 37.5085], // same pin as stop mariposa-grove (Welcome Plaza)
+    coord: [-119.63, 37.5068], // moved 2026-09 to the Welcome Plaza, same as the mariposa-grove stop
     description:
       'Past the Grizzly Giant and on into the upper grove, where the sequoias keep going and the people do not. Wawona Point’s overlook, on the Mariposa Grove Trail beyond the loop, is the optional bonus.',
   },
@@ -542,7 +542,7 @@ const seed: HikeT[] = [
     durationMin: 120,
     trailhead: 'Tuolumne Grove lot at Crane Flat',
     stopId: 'tuolumne-grove-old-road',
-    coord: [-119.8058, 37.7614], // web-derived: Tuolumne Grove lot, Tioga Rd at Crane Flat; TODO verify on the ground
+    coord: [-119.80561, 37.75826], // TODO: verify on the ground — moved 2026-09 to the trailhead lot (OSM; the tuolumne-grove-old-road pin); the NPS API point is the grove itself
     description:
       'Down the Old Big Oak Flat Road to two dozen giant sequoias, including a walk-through tunnel tree. The climb is all on the return.',
   },
@@ -557,7 +557,7 @@ const seed: HikeT[] = [
     route: 'out-and-back',
     durationMin: 60,
     trailhead: 'Lukens Lake trailhead, Tioga Road east of White Wolf',
-    coord: [-119.6119, 37.8552], // web-derived: Lukens Lake TH pullout on Tioga Rd; TODO verify on the ground
+    coord: [-119.6152, 37.8505], // TODO: verify on the ground — moved 2026-09 ~600 m to the trailhead: NPS places, Recreation.gov and the OSM lot agree
     season: 'Tioga Road season',
     description:
       'A short hop over a forested rise to a shallow lake rimmed by one of the park’s best July flower meadows. An ideal first high-country leg-stretcher.',
@@ -694,7 +694,7 @@ const seed: HikeT[] = [
     durationMin: 300,
     trailhead: 'Porcupine Creek trailhead, Tioga Road',
     stopId: 'north-dome-indian-rock',
-    coord: [-119.5477, 37.8106], // same pin as stop north-dome-indian-rock
+    coord: [-119.5454, 37.8066], // moved 2026-09 to the Porcupine Creek trailhead (NPS, Recreation.gov, OSM)
     season: 'Tioga Road season',
     description:
       'Forest and meadow walking, then steep rock steps down onto a dome directly across from Half Dome’s face, the best straight-on view there is. The Indian Rock arch is a short, steep side trip.',
@@ -711,7 +711,7 @@ const seed: HikeT[] = [
     durationMin: 60,
     trailhead: 'Pothole Dome pullout, west end of Tuolumne Meadows',
     stopId: 'pothole-dome-sunset',
-    coord: [-119.3878, 37.8763], // web-derived: west-meadow pullout; TODO verify on the ground
+    coord: [-119.39455, 37.87693], // TODO: verify on the ground — moved 2026-09 to the NPS Pothole Dome trailhead (the pothole-dome-sunset secret spot's pin)
     season: 'Tioga Road season',
     description:
       'Around the meadow’s edge and up easy glacier-polished granite for the full sweep of Tuolumne Meadows. Ten minutes of climbing, an hour of wanting to stay.',
@@ -728,7 +728,7 @@ const seed: HikeT[] = [
     durationMin: 75,
     trailhead: 'Lembert Dome lot, Tioga Road',
     stopId: 'soda-springs-parsons-lodge',
-    coord: [-119.3512, 37.8776], // same pin as stop soda-springs-parsons-lodge
+    coord: [-119.3535, 37.8774], // moved 2026-09 to the Lembert Dome lot trailhead, same as the stop
     season: 'Tioga Road season',
     description:
       'A flat meadow walk to naturally carbonated springs, where a campfire talk helped launch the campaign for the park, and the stone lodge the Sierra Club built beside them in 1915.',
@@ -813,7 +813,7 @@ const seed: HikeT[] = [
     durationMin: 390,
     trailhead: 'Lembert Dome lot, Tioga Road',
     stopId: 'soda-springs-parsons-lodge',
-    coord: [-119.3512, 37.8776], // same pin as stop soda-springs-parsons-lodge
+    coord: [-119.3535, 37.8774], // moved 2026-09 to the Lembert Dome lot trailhead (Recreation.gov Young Lakes via Glen Aulin)
     season: 'Tioga Road season',
     description:
       'Down the Tuolumne River past a parade of cascades to the White Cascade pool at Glen Aulin camp. The grade is gentle; the mileage and the return climb are the work.',
@@ -953,7 +953,7 @@ const seed: HikeT[] = [
     route: 'out-and-back',
     durationMin: 180,
     trailhead: 'Hetch Hetchy Road, signed pullout 3.9 mi past the entrance',
-    coord: [-119.8037, 37.9182], // web-derived: signed pullout on Hetch Hetchy Rd; TODO verify on the ground
+    coord: [-119.8146, 37.9102], // TODO: verify on the ground — moved 2026-09 to the trailhead, same as the stop
     hazard:
       'The climb out is relentless and largely shadeless and bakes by late morning; carry more water than three miles suggests. Rattlesnake country, and the river runs dam-released cold and fast. Stay out of the current.',
     description:
@@ -970,7 +970,7 @@ const seed: HikeT[] = [
     route: 'out-and-back',
     durationMin: 150,
     trailhead: 'Carlon day-use area, Evergreen Road',
-    coord: [-119.859, 37.8125], // web-derived: Carlon day-use bridge on Evergreen Rd; TODO verify on the ground
+    coord: [-119.8615, 37.8143], // TODO: verify on the ground — moved 2026-09 to the Carlon trailhead, same as the stop
     description:
       'An easy river walk on the South Fork Tuolumne to a wide fall that typically runs all year, with a swimming hole at its base. The locals’ summer afternoon.',
   },
@@ -986,7 +986,7 @@ const seed: HikeT[] = [
     durationMin: 130,
     trailhead: 'Merced Grove lot, Big Oak Flat Road',
     stopId: 'merced-grove',
-    coord: [-119.8461, 37.7566], // same pin as stop merced-grove
+    coord: [-119.8422, 37.763], // moved 2026-09 to the trailhead lot (OSM, Recreation.gov), same as the stop
     description:
       'A downhill road-grade walk to the park’s smallest and quietest sequoia grove, about twenty big trees with no shuttle and no crowd. Save something for the climb out.',
   },

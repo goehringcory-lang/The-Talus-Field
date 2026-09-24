@@ -228,7 +228,7 @@ const seed: StopInput[] = [
     region: 'valley',
     order: 6,
     kind: 'viewpoint',
-    coord: [-119.6616, 37.7203], // web-derived: V11 pullout, Northside Dr just east of Pohono Bridge; TODO: verify on the ground
+    coord: [-119.662, 37.7172], // TODO: verify on the ground — moved 2026-09 ~340 m S to the turnout: NPS places "Valley View" (-119.662124, 37.717152) and the OSM viewpoint/lot/toilets agree within 26 m
     elevationFt: 3900,
     timeBudgetMin: 20,
     teaser:
@@ -869,7 +869,7 @@ const seed: StopInput[] = [
     region: 'glacier-mariposa',
     order: 1,
     kind: 'drive',
-    coord: [-119.7053, 37.6500], // TODO: verify on the ground — Chinquapin junction, GNIS-derived, sources spread ~300 m (2026-07 web pass; was ~5.9 km east, past Badger Pass)
+    coord: [-119.7033, 37.6524], // TODO: verify on the ground — moved 2026-09 to the Glacier Point Rd / Wawona Rd junction (OSM); the July pin sat inside the private Yosemite West subdivision
     timeBudgetMin: 120,
     teaser:
       'Sixteen miles from Chinquapin to Glacier Point, and the road is the experience: Pothole Meadows, the Sentinel Dome lot, Washburn Point. Give it three or four hours.',
@@ -1037,7 +1037,7 @@ const seed: StopInput[] = [
     region: 'glacier-mariposa',
     order: 6,
     kind: 'trailhead',
-    coord: [-119.6320, 37.5085], // TODO: verify on the ground — Welcome Plaza lot, Hwy 41 at the South Entrance, derived ±150 m (2026-07 web pass; prior pin was inside the grove at parking closed to cars since 2018)
+    coord: [-119.63, 37.5068], // TODO: verify on the ground — moved 2026-09 to the Welcome Plaza: NPS places, NPS parkinglots, the plaza shuttle stop and the OSM lot agree within 81 m
     elevationFt: 5600,
     timeBudgetMin: 180,
     teaser:
@@ -1171,7 +1171,7 @@ const seed: StopInput[] = [
     collection: 'hidden',
     category: 'trails',
     difficulty: 'easy',
-    coord: [-119.6202, 37.6600], // TODO: verify on the ground — pin on the campground access road matches the body; no source pins a specific pullout (2026-07 web pass)
+    coord: [-119.6194, 37.6617], // TODO: verify on the ground — moved 2026-09 ~230 m to the trailhead: Recreation.gov and OSM agree within 35 m
     elevationFt: 7000,
     timeBudgetMin: 150,
     photos: [{ src: '/photos/bridalveil-creek-trail.jpg' }],
@@ -1220,7 +1220,7 @@ const seed: StopInput[] = [
     collection: 'hidden',
     category: 'trails',
     difficulty: 'easy',
-    coord: [-119.6567, 37.5359], // TODO: verify on the ground — loop start across Hwy 41 from the Wawona Hotel, derived ±75 m (2026-07 web pass; prior pin was at the hotel itself)
+    coord: [-119.6576, 37.5351], // TODO: verify on the ground — moved 2026-09 ~120 m to NPS places "Wawona Meadow Loop Trailhead"
     elevationFt: 4000,
     timeBudgetMin: 120,
     photos: [{ src: '/photos/wawona-meadow-loop.jpg' }],
@@ -1489,7 +1489,7 @@ const seed: StopInput[] = [
     region: 'tuolumne',
     order: 8,
     kind: 'trailhead',
-    coord: [-119.3512, 37.8776], // verified 2026-07: Lembert Dome lot, Tioga Rd (NPS TH page); was ~675 m off
+    coord: [-119.3535, 37.8774], // moved 2026-09 ~200 m W to the Lembert Dome lot trailhead: Recreation.gov and OSM agree within 12 m
     elevationFt: 8600,
     timeBudgetMin: 90,
     teaser:
@@ -1518,7 +1518,7 @@ const seed: StopInput[] = [
     kind: 'meal',
     dayPart: 'midday',
     season: 'Closed for 2026',
-    coord: [-119.3590, 37.8741], // web-derived: Tuolumne Meadows Store / Grill complex, Tioga Rd east of the visitor center; TODO: verify on the ground
+    coord: [-119.357, 37.8743], // TODO: verify on the ground — moved 2026-09 ~180 m E: NPS places "Tuolumne Meadows Grill" and the OSM node agree within 5 m
     elevationFt: 8600,
     timeBudgetMin: 45,
     teaser:
@@ -1571,7 +1571,7 @@ const seed: StopInput[] = [
     category: 'trails',
     difficulty: 'moderate',
     season: 'June to October',
-    coord: [-119.5477, 37.8106], // TODO: verify on the ground — prose sources put the Porcupine Creek TH lot here (south side of Tioga Rd) but no published lot coord (2026-07 web pass)
+    coord: [-119.5454, 37.8066], // TODO: verify on the ground — moved 2026-09 ~500 m SSE to the Porcupine Creek trailhead: NPS places, Recreation.gov and the OSM lot agree
     elevationFt: 8100,
     timeBudgetMin: 360,
     photos: [{ src: '/photos/north-dome-indian-rock.jpg' }],
@@ -1741,7 +1741,7 @@ const seed: StopInput[] = [
     order: 2,
     kind: 'trailhead',
     difficulty: 'easy',
-    coord: [-119.859, 37.8125], // web-derived: Carlon day-use bridge on Evergreen Rd (same pin as the carlon-falls hike); TODO: verify on the ground
+    coord: [-119.8615, 37.8143], // TODO: verify on the ground — moved 2026-09 ~300 m to the Carlon trailhead by the Evergreen Rd bridge: OSM trailhead and day-use area agree
     elevationFt: 4400,
     timeBudgetMin: 150,
     hazard:
@@ -1824,7 +1824,7 @@ const seed: StopInput[] = [
     order: 6,
     kind: 'meal',
     dayPart: 'evening',
-    coord: [-119.8530, 37.8680], // TODO: verify on the ground — web-derived, Evergreen Rd roughly a mile south of Camp Mather; pin is road-adjacent but unconfirmed
+    coord: [-119.858, 37.8758], // TODO: verify on the ground — moved 2026-09 ~970 m to the lodge: OSM lodge, restaurant and store within 15 m; the July pin was 759 m from any road
     elevationFt: 4600,
     timeBudgetMin: 75,
     teaser:
@@ -1847,7 +1847,7 @@ const seed: StopInput[] = [
     collection: 'hidden',
     category: 'trails',
     difficulty: 'easy',
-    coord: [-119.8461, 37.7566], // verified 2026-07: Merced Grove trailhead lot, Big Oak Flat Rd (OSM/OuterSpatial); was on the grove itself, 1.5 trail-miles past parking
+    coord: [-119.8422, 37.763], // moved 2026-09 ~790 m to the trailhead lot on Big Oak Flat Rd: OSM trailhead + 8-space lot and Recreation.gov agree; the July pin was in the forest
     elevationFt: 5400,
     timeBudgetMin: 150,
     photos: [{ src: '/photos/merced-grove.jpg' }],
@@ -1908,7 +1908,7 @@ const seed: StopInput[] = [
     category: 'trails',
     difficulty: 'strenuous',
     season: 'Spring and fall',
-    coord: [-119.8037, 37.9182], // web-derived: signed pullout on Hetch Hetchy Rd, 3.9 mi past the entrance (same pin as the poopenaut-valley hike); TODO: verify on the ground
+    coord: [-119.8146, 37.9102], // TODO: verify on the ground — moved 2026-09 ~1.3 km to the trailhead 3.9 road-mi past the entrance: NPS places, Recreation.gov and OSM agree
     elevationFt: 3600,
     timeBudgetMin: 210,
     hazard:

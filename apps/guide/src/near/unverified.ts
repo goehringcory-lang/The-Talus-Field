@@ -69,7 +69,6 @@ export const UNVERIFIED_STOP_IDS: ReadonlySet<string> = new Set([
 export const UNVERIFIED_HIKE_IDS: ReadonlySet<string> = new Set([
   'lower-yosemite-fall',
   'valley-loop-trail',
-  'artist-point',
   'columbia-rock',
   'upper-yosemite-fall',
   'eagle-peak',

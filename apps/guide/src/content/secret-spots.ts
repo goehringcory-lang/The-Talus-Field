@@ -127,7 +127,7 @@ const seed: SecretSpotInput[] = [
     order: 8,
     category: 'vistas',
     kind: 'parking',
-    coord: [-119.6188, 37.7189], // TODO: verify (Cathedral Beach picnic area, Southside Drive)
+    coord: [-119.6251, 37.7229], // TODO: verify on the ground — moved 2026-09 ~710 m to Cathedral Beach: NPS places, OSM picnic site and the amenities pin agree
     elevationFt: 3950,
     timeBudgetMin: 60,
     teaser:
