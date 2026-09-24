@@ -14,6 +14,8 @@ import { Link, useParams } from 'react-router-dom'
 import GatedChrome from '../components/GatedChrome'
 import ElevationProfile from '../components/ElevationProfile'
 import SeasonalNotices from '../components/SeasonalNotices'
+import RoadNote from '../components/RoadNote'
+import { roadForHike } from '../content/roads'
 import Button from '../components/ui/Button'
 import { Chip } from '../components/ui/Chip'
 import PageHeader from '../components/ui/PageHeader'
@@ -96,6 +98,7 @@ export default function HikeDetail() {
   if (!hike) return <NotFound />
 
   const trailheadStop = hike.stopId ? getStopById(hike.stopId) : undefined
+  const road = roadForHike(hike)
   // Stats prefer the verified track; the catalog numbers are the fallback so
   // the page is complete even for hikes without a track.
   const mi = summary?.mi ?? hike.distanceMi
@@ -157,6 +160,10 @@ export default function HikeDetail() {
         </p>
 
         {hike.distanceNote && <p className="hike-detail__note">Distance note: {hike.distanceNote}.</p>}
+
+        {/* Behind Tioga Road or Glacier Point Road: what the road is doing
+            today, before the reader plans a start time around it. */}
+        {road && <RoadNote road={road} />}
 
         {/* --- The numbers ---------------------------------------------------- */}
         <section aria-label="Trail numbers" className="hike-detail__section">

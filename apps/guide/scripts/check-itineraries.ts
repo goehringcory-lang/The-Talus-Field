@@ -34,12 +34,10 @@ import { BACKUP_PLANS, ITINERARIES, ITINERARY_KEYS, resolvePlanEntry } from '../
 import type { ItineraryDay } from '../src/content/itineraries'
 import { sunTimes } from '../src/sun/solar'
 import { slotDay, type SlottedItem } from '../src/trip/slotting'
+import { seedPresetDay } from '../src/trip/seedPreset'
+import { roadForItem, roadReading } from '../src/alerts/roadState'
 import type { TripItemT } from '../src/trip/schema'
 
-// Mirrors DAY_CAPACITY_MIN in routes/Trip.tsx. Kept in sync by the assertion
-// below that nothing a preset lists is ever dropped: if the two drift, a
-// preset starts losing entries and this fails.
-const DAY_CAPACITY_MIN = 13 * 60
 const DAY_END = 21 * 60
 
 // Solstices and equinoxes: the extremes of the sunset anchor plus two
@@ -75,6 +73,7 @@ const EVENING_EARLIEST = 15 * 60
 const errors: string[] = []
 let daysChecked = 0
 let assertions = 0
+let roadClosedDays = 0
 
 function fmt(min: number | null): string {
   if (min === null) return 'unplaced'
@@ -92,38 +91,28 @@ function titleOf(item: TripItemT): string {
   return 'custom'
 }
 
-/** Seed a preset day exactly as routes/Trip.tsx does: same order, same
- *  capacity budget, same lodging/parking skip. Returns the seeded items plus
- *  whatever the capacity filter refused, which is itself a finding. */
-function seedDay(day: ItineraryDay, date: string): { items: TripItemT[]; dropped: string[] } {
-  const ids: string[] = day.plan ?? []
-  const items: TripItemT[] = []
-  const dropped: string[] = []
-  let budget = 0
-  for (const id of ids) {
-    const entry = resolvePlanEntry(id)
-    if (!entry) continue
-    if (entry.kind === 'hike') {
-      const cost = entry.hike.durationMin + 30
-      if (budget + cost > DAY_CAPACITY_MIN) {
-        dropped.push(entry.hike.title)
-        continue
-      }
-      budget += cost
-      items.push({ id: `seed-${id}`, type: 'hike', hikeId: entry.hike.id, day: date, addedAt: '' } as TripItemT)
-      continue
-    }
-    const { stop } = entry
-    if (stop.kind === 'lodging' || stop.kind === 'parking') continue
-    const cost = (stop.timeBudgetMin ?? 60) + 30
-    if (budget + cost > DAY_CAPACITY_MIN) {
-      dropped.push(stop.title)
-      continue
-    }
-    budget += cost
-    items.push({ id: `seed-${id}`, type: 'stop', stopId: stop.id, day: date, addedAt: '' } as TripItemT)
+/** Seed a preset day exactly as routes/Trip.tsx does: the same function,
+ *  trip/seedPreset.ts, with the road readings the planner would use for a
+ *  date nobody can read live yet (the typical state). Returns the seeded items
+ *  plus whatever the capacity filter refused, which is itself a finding;
+ *  entries left off for a closed road or a closed-for-the-season stop are the
+ *  planner doing its job and come back separately. */
+function seedDay(
+  day: ItineraryDay,
+  date: string,
+): { items: TripItemT[]; dropped: string[]; roadClosed: string[]; seasonClosed: string[] } {
+  const result = seedPresetDay(day, date, (road, iso) => roadReading(road, iso, '0000-00-00', null))
+  const items = result.seeded.map((e) =>
+    e.kind === 'hike'
+      ? ({ id: `seed-${e.id}`, type: 'hike', hikeId: e.id, day: date, addedAt: '' } as unknown as TripItemT)
+      : ({ id: `seed-${e.id}`, type: 'stop', stopId: e.id, day: date, addedAt: '' } as unknown as TripItemT),
+  )
+  return {
+    items,
+    dropped: result.overCapacity.map((e) => e.title),
+    roadClosed: result.roadClosed.map((e) => e.title),
+    seasonClosed: result.seasonClosed.map((e) => e.title),
   }
-  return { items, dropped }
 }
 
 /** Two plausible free drop-in programs for a day that asks for them: a
@@ -249,15 +238,28 @@ function runDay(label: string, day: ItineraryDay, date: string, strict: boolean)
     return
   }
 
-  const { items, dropped } = seedDay(day, date)
+  const { items, dropped, roadClosed } = seedDay(day, date)
   for (const title of dropped) {
     errors.push(
       `${label}: "${title}" is listed in the plan but dropped by the day capacity filter. ` +
         `Shorten the day or remove the entry — a listed stop the buyer never gets is worse than one that was never promised.`,
     )
   }
+  // Nothing seeded may sit behind a road the planner reads as closed that
+  // day. seedPresetDay filters them, so this guards the filter itself.
+  for (const item of items) {
+    assertions++
+    const road = roadForItem(item)
+    if (road && roadReading(road, date, '0000-00-00', null).state === 'closed') {
+      errors.push(`${label}: "${titleOf(item)}" was seeded behind a closed ${road} road.`)
+    }
+  }
   if (items.length === 0) {
-    errors.push(`${label}: seeds nothing.`)
+    // A winter date empties a Tuolumne or Glacier Point day; that is the
+    // planner telling the truth, and the Trip page says so in words. A day
+    // that seeds nothing for any other reason is still a broken preset.
+    if (roadClosed.length === 0) errors.push(`${label}: seeds nothing.`)
+    else roadClosedDays++
     return
   }
 
@@ -304,5 +306,6 @@ if (errors.length) {
 }
 
 console.log(
-  `check-itineraries: OK — ${daysChecked} seeded days, ${assertions} placements checked across ${DATES.length} dates.`,
+  `check-itineraries: OK — ${daysChecked} seeded days, ${assertions} placements checked across ${DATES.length} dates` +
+    ` (${roadClosedDays} preset days left empty by a road that is typically closed on the date).`,
 )

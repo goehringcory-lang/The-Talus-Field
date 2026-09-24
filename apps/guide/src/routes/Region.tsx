@@ -14,11 +14,22 @@ import { useViewMode } from '../lib/viewMode'
 import { detectPhotoFormat, precachePhotoUrls } from '../utils/photo'
 import { precacheUrls } from '../pwa/precache'
 import WeatherStrip from '../weather/WeatherStrip'
+import RoadNote from '../components/RoadNote'
+import type { SeasonalRoadId } from '../content/roads'
+
+// The seasonal road a whole region's core flow depends on. Glacier Point
+// and Mariposa is half Wawona, open all year, so the note says which road it
+// means rather than implying the region closes.
+const REGION_ROAD: Partial<Record<string, SeasonalRoadId>> = {
+  tuolumne: 'tioga',
+  'glacier-mariposa': 'glacier-point',
+}
 
 export default function Region() {
   const params = useParams<{ regionId: string }>()
   const parsed = RegionEnum.safeParse(params.regionId)
   const region = parsed.success ? parsed.data : null
+  const regionRoad = region ? REGION_ROAD[region] ?? null : null
   const stops = useMemo(() => (region ? getStopsByRegion(region) : []), [region])
   // Hidden stops stay out of the curated list but get a link block below it,
   // so the region page remains the geographic index. /secret-guide owns the
@@ -105,6 +116,7 @@ export default function Region() {
         node: (
           <div className="deck-panel-prose">
             <div className="deck-panel-prose__inner">
+              {regionRoad && <RoadNote road={regionRoad} />}
               <WeatherStrip region={region} />
             </div>
           </div>
@@ -187,6 +199,8 @@ export default function Region() {
         </div>
 
         <PageHeader eyebrow="Regional guide" title={meta?.title} intro={meta?.teaser} />
+
+        {regionRoad && <RoadNote road={regionRoad} />}
 
         <WeatherStrip region={region} />
 

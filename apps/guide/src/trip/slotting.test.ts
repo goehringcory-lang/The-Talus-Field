@@ -71,9 +71,11 @@ describe('plan-order fill', () => {
     expect(tv.startMin).toBe(DAY_START)
     expect(tv.durationMin).toBe(25)
     expect(tv.fixed).toBe(false)
-    // Tunnel View to Glacier Point is about 5.8 straight miles: 1.35 road
-    // factor at 22 mph plus the park-and-walk ten is about half an hour.
-    near(gp.startMin!, DAY_START + 25 + 31)
+    // Tunnel View to Glacier Point is priced from the park's driving table
+    // (content/driveTimes.ts): Tunnel View is 15 minutes from the Valley and
+    // Glacier Point 60, on one road as far as Chinquapin, so 45 of driving
+    // plus the park-and-walk ten. The straight line (5.8 miles) said 31.
+    near(gp.startMin!, DAY_START + 25 + 55)
     expect(gp.durationMin).toBe(75)
   })
 
@@ -82,8 +84,11 @@ describe('plan-order fill', () => {
     const slots = slotDay(DAY, [stop('olmsted-point'), stop('tunnel-view')])
     expect(slots[0].item.itemId).toBe(stopItemId('olmsted-point', DAY))
     expect(slots[0].startMin).toBe(DAY_START)
-    // And the Valley leg after it carries the long drive, not the flat 30.
-    near(slots[1].startMin!, DAY_START + 30 + 56)
+    // And the Valley leg after it carries the long drive, not the flat 30:
+    // Olmsted Point anchors to Tenaya Lake (75 from the Valley), Tunnel View
+    // to its own row (15), and the roads part at the Valley's west end (10),
+    // so 75 + 15 - 20 = 70 of driving, plus the park-and-walk ten.
+    near(slots[1].startMin!, DAY_START + 30 + 80)
   })
 
   it('sends an item that no longer fits before 21:00 to the unplaced bucket', () => {
@@ -141,12 +146,14 @@ describe('the sunset anchor', () => {
   it('is laid down before the free stops, which flow around it', () => {
     const day = '2026-12-21'
     const sunset = sunTimes(day)!.sunsetMin
-    // Five hours at Tunnel View end at 13:00; three more at Glacier Point
-    // would run 13:31 to 16:31, straight through a 4:12 p.m. sunset block.
+    // Five hours at Tunnel View end at 13:00; two and a half more at Glacier
+    // Point, 55 minutes up the road, would run 13:55 to 16:25, straight
+    // through a 4:12 p.m. sunset block. After the block and the hour-plus
+    // drive back up from the Valley floor it still fits, ending 8:52 p.m.
     const slots = slotDay(day, [
       stop('tunnel-view', day, { durationMin: 5 * 60 }),
       stop('sentinel-bridge-sunset', day),
-      stop('glacier-point', day, { durationMin: 3 * 60 }),
+      stop('glacier-point', day, { durationMin: 150 }),
     ])
     const sun = byId(slots, stopItemId('sentinel-bridge-sunset', day))
     expect(sun.startMin).toBe(sunset + 30 - 60)
@@ -217,8 +224,9 @@ describe('fixed blocks', () => {
     const gp = byId(slots, stopItemId('glacier-point', DAY))
     expect(gp.startMin).toBe(toMinutes('08:15'))
     expect(gp.fixed).toBe(true)
-    // Tunnel View at 08:00 for 25 would overlap; it lands after Glacier Point.
-    near(byId(slots, stopItemId('tunnel-view', DAY)).startMin!, toMinutes('08:15') + 75 + 31)
+    // Tunnel View at 08:00 for 25 would overlap; it lands after Glacier Point
+    // and the 45-minute drive down the park's table, plus the ten.
+    near(byId(slots, stopItemId('tunnel-view', DAY)).startMin!, toMinutes('08:15') + 75 + 55)
   })
 })
 
@@ -242,8 +250,8 @@ describe('travel buffers', () => {
     expect(driveMinutesBetween(stop('curry-village'), stop('curry-village-pizza'))).toBe(0)
     // And the display estimate rounds to the nearest five, matching the placement.
     expect(driveMinutesBetween(stop('tunnel-view'), stop('glacier-point'))! % 5).toBe(0)
-    near(driveMinutesBetween(stop('tunnel-view'), stop('glacier-point'))!, 30)
-    near(driveMinutesBetween(stop('tunnel-view'), stop('olmsted-point'))!, 55)
+    near(driveMinutesBetween(stop('tunnel-view'), stop('glacier-point'))!, 55)
+    near(driveMinutesBetween(stop('tunnel-view'), stop('olmsted-point'))!, 80)
   })
 
   it('uses a hike catalog entry the way it uses a stop', () => {

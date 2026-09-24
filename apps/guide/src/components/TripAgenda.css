@@ -282,6 +282,16 @@
 }
 /* A hike that runs past sunset. Rust, the alert tone the readouts use. */
 .ag-block__flag--dark { color: var(--rust); }
+/* Behind a seasonal road that is closed, or may be, on the block's day. */
+.ag-block__flag--road { color: var(--rust); }
+/* The hatch carries the same warning on a block too short for its flag. */
+.ag-block--road .ag-block__body {
+  background-image: repeating-linear-gradient(
+    135deg,
+    transparent 0 7px,
+    color-mix(in oklab, var(--rust) 16%, transparent) 7px 9px
+  );
+}
 .ag-block__title {
   font-family: var(--display);
   font-size: 16px;
@@ -420,6 +430,7 @@
 }
 .ag-panel__note--dark { color: var(--rust); }
 .ag-panel__note--tight { color: var(--gold); }
+.ag-panel__note--road { color: var(--rust); }
 .ag-panel__link {
   display: block;
   margin-bottom: 6px;

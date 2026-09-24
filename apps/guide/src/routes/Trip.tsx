@@ -20,14 +20,15 @@ import TripReview from '../components/TripReview'
 import Button from '../components/ui/Button'
 import Callout from '../components/ui/Callout'
 import { getItineraryDayPhotos } from '../content'
-import { ITINERARIES, ITINERARY_KEYS, resolvePlanEntry, type ItineraryKey } from '../content/itineraries'
-import { getStopsByRegion } from '../content'
+import { ITINERARIES, ITINERARY_KEYS, type ItineraryKey } from '../content/itineraries'
 import { MAX_SPAN_DAYS, readTripDates, usePrograms } from '../programs/usePrograms'
 import { addDaysIso, formatDayHeader, todayIso } from '../utils/date'
 import { prefersReducedMotion } from '../utils/motion'
 import BackupPlans from '../trip/BackupPlans'
 import DeadlinesPanel from '../trip/DeadlinesPanel'
 import { pickProgramsForDay } from '../trip/seedPrograms'
+import { seedDayNote, seedPresetDay } from '../trip/seedPreset'
+import { useRoadReader } from '../alerts/roadState'
 import { slotPlan } from '../trip/slotting'
 import {
   clearPendingImport,
@@ -42,6 +43,15 @@ import { HIDE_AFTER_MS, WARN_AFTER_MS } from '../weather/staleness'
 import { forecastLineForDay } from '../weather/todayLine'
 import './Trip.css'
 import { useDocumentTitle } from '../lib/documentTitle'
+
+// "Jan 13" for a note naming a board day.
+function shortDay(date: string): string {
+  return new Date(`${date}T12:00:00Z`).toLocaleDateString('en-US', {
+    month: 'short',
+    day: 'numeric',
+    timeZone: 'UTC',
+  })
+}
 
 function daysInWindow(start: string, end: string): string[] {
   const out: string[] = []
@@ -286,8 +296,10 @@ export default function Trip() {
 
   // Seed a preset day only up to what a day can actually hold (08:00-21:00
   // with travel buffers); dumping a whole region onto one date used to bury
-  // the plan in overflow warnings.
-  const DAY_CAPACITY_MIN = 13 * 60
+  // the plan in overflow warnings. The filtering (closed roads, closed-for-the-
+  // season stops, capacity) is trip/seedPreset.ts, the same code the preset
+  // check runs.
+  const roads = useRoadReader()
   const [seedNote, setSeedNote] = useState<string | null>(null)
   function seedItinerary(key: ItineraryKey) {
     // Preset days beyond the picked window are not seeded. Collapsing them
@@ -295,42 +307,26 @@ export default function Trip() {
     // produce a single impossible day. Say so when it happens — a silent
     // truncation reads as the plan being smaller than advertised.
     const totalDays = ITINERARIES[key].days.length
-    setSeedNote(
-      totalDays > windowDays.length
-        ? `Your dates hold ${windowDays.length} ${windowDays.length === 1 ? 'day' : 'days'}, so the first ${
-            windowDays.length === 1 ? 'day' : `${windowDays.length} days`
-          } of this ${totalDays}-day plan went on the board. Extend the dates above for the rest.`
-        : null,
-    )
+    const notes: string[] = []
+    if (totalDays > windowDays.length) {
+      notes.push(
+        `Your dates hold ${windowDays.length} ${windowDays.length === 1 ? 'day' : 'days'}, so the first ${
+          windowDays.length === 1 ? 'day' : `${windowDays.length} days`
+        } of this ${totalDays}-day plan went on the board. Extend the dates above for the rest.`,
+      )
+    }
     const days = ITINERARIES[key].days.slice(0, windowDays.length)
     days.forEach((day, i) => {
       const date = windowDays[i]
-      // A curated day is the recommended sequence in drive order, stops and
-      // hikes interleaved; a day without one falls back to the full region
-      // reading sequence, which makes a poor plan (see itineraries.ts).
-      const candidates: string[] = day.plan
-        ? day.plan
-        : day.regions.flatMap((region) => getStopsByRegion(region).map((s) => s.id))
-      let budget = 0
-      for (const id of candidates) {
-        const entry = resolvePlanEntry(id)
-        if (!entry) continue
-        if (entry.kind === 'hike') {
-          const cost = entry.hike.durationMin + 30
-          if (budget + cost > DAY_CAPACITY_MIN) continue
-          budget += cost
-          addHike(entry.hike.id, date)
-          continue
-        }
-        // Lodging is not a day activity, and parking pins are navigation
-        // aids for another stop, not stops of their own.
-        const { stop } = entry
-        if (stop.kind === 'lodging' || stop.kind === 'parking') continue
-        const cost = (stop.timeBudgetMin ?? 60) + 30
-        if (budget + cost > DAY_CAPACITY_MIN) continue
-        budget += cost
-        addStop(stop.id, date)
+      const result = seedPresetDay(day, date, roads.forRoad)
+      for (const entry of result.seeded) {
+        if (entry.kind === 'hike') addHike(entry.id, date)
+        else addStop(entry.id, date)
       }
+      // A day the season emptied says so in words, and a closed road is
+      // never reported as a capacity problem.
+      const note = seedDayNote(result, `day ${i + 1} (${shortDay(date)})`)
+      if (note) notes.push(note)
       // Program picks keep their published times and slot around the stops,
       // so they sit outside the capacity budget. addProgram snapshots the
       // event into the plan, same as adding it from /programs by hand.
@@ -343,6 +339,7 @@ export default function Trip() {
         addProgram(ev)
       }
     })
+    setSeedNote(notes.length > 0 ? notes.join(' ') : null)
   }
 
   const itemCount = plan.items.length
@@ -545,10 +542,13 @@ export default function Trip() {
         </div>
 
         <p className="page-footnote">
-          Times you haven't set yourself are suggestions built from each stop's time budget plus a
-          travel buffer estimated from the driving distance between stops; programs keep their
-          published times. Drag a block and it stays where you put it. Everything here is stored on
-          this device and works offline.
+          Times you haven't set yourself are suggestions built from each stop's time budget plus the
+          drive between stops: the park's published driving times for a leg across the park, an
+          estimate from distance for a short hop, and ten minutes to park and walk each time.
+          Programs keep their published times. A block behind Tioga Road or Glacier Point Road is
+          flagged on a day the road is usually closed, or closed today by the park's own road
+          status. Drag a block and it stays where you put it. Everything here is stored on this
+          device and works offline.
           {staleForecast &&
             ' The forecasts shown are old; they refresh the next time you open the app online.'}
         </p>
