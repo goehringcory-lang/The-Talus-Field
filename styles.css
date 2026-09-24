@@ -6467,6 +6467,84 @@ kbd {
   color:var(--hp-accent);
   font-size:17px
 }
+/* The homepage Start Here door: one card, one link to /start-here. */
+.hp-design .hp-door {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  border:1px solid var(--hp-rule);
+  border-radius:3px;
+  overflow:hidden;
+  margin-top:29px;
+  color:inherit;
+  text-decoration:none
+}
+.hp-design .hp-door .hp-photo {
+  height:auto;
+  min-height:320px
+}
+.hp-design .hp-door .hp-photo picture,
+.hp-design .hp-door .hp-photo img {
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%
+}
+.hp-design .hp-door__body {
+  padding:34px 38px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center
+}
+.hp-design .hp-door__body .hp-eyebrow {
+  font-size:8px;
+  margin-bottom:14px
+}
+.hp-design .hp-door__intro {
+  font-size:13px;
+  color:var(--hp-muted);
+  margin:0 0 18px
+}
+.hp-design .hp-door__list {
+  list-style:none;
+  margin:0;
+  padding:0;
+  border-top:1px solid var(--hp-rule)
+}
+.hp-design .hp-door__list li {
+  font-size:12px;
+  padding:11px 0;
+  border-bottom:1px solid var(--hp-rule)
+}
+.hp-design .hp-door b {
+  font-size:10px;
+  font-weight:600;
+  display:flex;
+  justify-content:space-between;
+  margin-top:22px
+}
+.hp-design .hp-door b span {
+  color:var(--hp-accent);
+  font-size:17px
+}
+.hp-design .hp-door:hover h3,
+.hp-design .hp-door:focus-visible h3 {
+  color:var(--hp-accent)
+}
+@media(max-width:760px) {
+  .hp-design .hp-door {
+    grid-template-columns:1fr
+  }
+  .hp-design .hp-door .hp-photo {
+    min-height:0;
+    height:240px
+  }
+  .hp-design .hp-door__body {
+    padding:22px
+  }
+  .hp-design .hp-door h3 br {
+    display:none
+  }
+}
 .hp-design .hp-list {
   display:grid;
   grid-template-rows:repeat(3,1fr)

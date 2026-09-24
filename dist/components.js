@@ -559,7 +559,6 @@ var NAV_GROUPS = [{
     heading: "Decide",
     links: [{
       key: "start-here",
-      onHome: "home-start-here",
       label: "Start here",
       note: "Your first trip, the questions in order"
     }, {

@@ -55,8 +55,9 @@
 // first, then this page. The edge FAQ for this route (edge/seo.js) quotes the
 // same answers; change both together.
 //
-// The homepage Start Here block stays (it is the on-site funnel) and links
-// here for the full set; window.START_HERE in data.js curates both.
+// The homepage Start Here block stays (it is the on-site funnel), but since
+// September 2026 it is a single card linking here rather than a copy of the
+// four articles; window.START_HERE in data.js curates this page's cards.
 //
 // Page bundles share one global scope, so every top-level name in this file
 // carries a START_ / Start prefix.
