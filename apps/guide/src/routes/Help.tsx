@@ -18,6 +18,7 @@
 // prints hours for.
 // =============================================================================
 
+import { useLandOnHash } from '../utils/useLandOnHash'
 import { useEffect, useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import GatedChrome from '../components/GatedChrome'
@@ -65,6 +66,7 @@ function fixAgeLabel(ageMs: number): string {
 type ShareResult = 'shared' | 'copied' | 'failed' | null
 
 export default function Help() {
+  useLandOnHash()
   const geo = useGeoWatch()
   const { start } = geo
   const fix = geo.fix
@@ -284,7 +286,7 @@ export default function Help() {
           </ol>
         </section>
 
-        <section aria-label="Numbers" className="page-section" style={{ marginTop: 0 }}>
+        <section id="numbers" aria-label="Numbers" className="page-section" style={{ marginTop: 0 }}>
           <span className="eyebrow">Numbers the park prints</span>
           <ul className="help-numbers">
             {[...urgent, ...info].map((n) => (

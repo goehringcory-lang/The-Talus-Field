@@ -9,16 +9,32 @@
  */
 type Props = {
   className?: string
+  // 'offline': the entry has a photo, but this phone has no copy and no
+  // signal to fetch one. Saying "Photo coming" there told a buyer in
+  // airplane mode that paid content did not exist.
+  variant?: 'pending' | 'offline'
 }
 
-export default function PhotoPlaceholder({ className }: Props) {
+export default function PhotoPlaceholder({ className, variant = 'pending' }: Props) {
+  const label =
+    variant === 'offline' ? 'Photo not downloaded to this phone. Account, Offline downloads' : 'Photo coming'
   return (
     <div
-      className={`photo-placeholder${className ? ` ${className}` : ''}`}
+      className={`photo-placeholder${variant === 'offline' ? ' photo-placeholder--offline' : ''}${className ? ` ${className}` : ''}`}
       role="img"
-      aria-label="Photo coming"
+      aria-label={label}
     >
-      <span aria-hidden="true">Photo coming</span>
+      <span aria-hidden="true">
+        {variant === 'offline' ? (
+          <>
+            Not downloaded to this phone
+            <br />
+            Account › Offline
+          </>
+        ) : (
+          'Photo coming'
+        )}
+      </span>
     </div>
   )
 }

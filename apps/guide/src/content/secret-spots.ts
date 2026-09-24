@@ -78,7 +78,7 @@ const seed: SecretSpotInput[] = [
     body:
       'The best drive-to dark sky in the park. Olmsted Point sits at 8,300 feet on Tioga Road with broad horizons, almost no nearby light, and, the part that matters at midnight, flat granite slabs right at the parking area to lie back on. No tripod required, no walking required. Park, walk thirty feet, lie down, lamp off, and give your eyes ten full minutes. The Milky Way from up here is not a faint band; it is textured, with visible dark lanes.\n\n' +
       'Timing is most of the trip. The galactic core is up roughly April through October and best from mid-July through mid-August, arching overhead between about 11 p.m. and 3 a.m. The other half of the equation is the moon: a full moon washes the whole show out, so aim for a new moon week or a night when the moon has not yet risen. The full moon dates for your trip window are in the programs list in this guide; plan around them, not just around the weather.\n\n' +
-      'Practical notes. Tioga Road is only open roughly late May through October, so this is a summer and fall spot. It is cold at 8,300 feet after dark even in August, colder than you think because you are lying still; bring a real jacket and a hat. Use a red headlamp and keep phone screens down, both for your own night vision and for the photographer who set up an hour before you arrived.',
+      'Practical notes. Tioga Road is typically open to cars from late May or June until sometime in November, so this is a summer and fall spot. It is cold at 8,300 feet after dark even in August, colder than you think because you are lying still; bring a real jacket and a hat. Use a red headlamp and keep phone screens down, both for your own night vision and for the photographer who set up an hour before you arrived.',
     photos: [{ src: '/photos/olmsted-point-at-night.jpg' }],
     swap:
       'If Tioga Road is closed, [Glacier Point](/stop/glacier-point) is the drive-to alternative on the south side (summer Saturdays often have telescope star parties). [Tenaya Lake](/stop/tenaya-lake)\'s east beach, ten minutes further up Tioga, trades the granite slabs for the Milky Way reflected in still water.',
@@ -97,7 +97,7 @@ const seed: SecretSpotInput[] = [
     teaser:
       'Sequoias without the production: a mile down the 1874 wagon road to a couple dozen giants and the drive-through Dead Giant. The climb back out is the price.',
     body:
-      'Giant sequoias without the Mariposa Grove production: no welcome plaza, no shuttle, no crowd. From the parking lot at Crane Flat, where Tioga Road leaves Big Oak Flat Road, you walk down a mile of the old Big Oak Flat Road itself, the 1874 wagon grade, closed to cars, the same historic road whose lower valley section is a separate day in this guide. The pavement descends about 500 feet through fir forest and delivers you to a couple dozen mature sequoias standing in the drainage.\n\n' +
+      'Giant sequoias without the Mariposa Grove production: no welcome plaza, no shuttle, no crowd. From the parking lot on Tioga Road just east of Crane Flat, you walk down a mile of the old Big Oak Flat Road itself, the 1874 wagon grade, closed to cars, the same historic road whose lower valley section is a separate day in this guide. The pavement descends about 500 feet through fir forest and delivers you to a couple dozen mature sequoias standing in the drainage.\n\n' +
       'The grove\'s landmark is the Dead Giant, a sequoia snag tunneled for stagecoaches in 1878. You can still walk through it. Look at the living trees while you are down there: the blackened bark scars are not damage in any meaningful sense. Sequoias are built for fire, and the park now runs deliberate restoration burns through this grove because without fire the seedlings never get the bare soil and open light they need. A fire-scarred grove is a functioning one.\n\n' +
       'The catch is the walk out. What was a pleasant mile downhill becomes 500 feet of steady climbing at over 6,000 feet of elevation, and people underestimate it reliably; you will pass them on the way up, stopped and rethinking. It is fine, just honest. Carry water, take it slow, and call the round trip two hours with real time among the trees.',
     photos: [{ src: '/photos/tuolumne-grove-old-road.jpg' }],
@@ -127,14 +127,14 @@ const seed: SecretSpotInput[] = [
     order: 8,
     category: 'vistas',
     kind: 'parking',
-    coord: [-119.6188, 37.7189], // TODO: verify (Cathedral Beach picnic area, Southside Drive)
+    coord: [-119.6251, 37.7229], // TODO: verify on the ground — moved 2026-09 ~710 m to Cathedral Beach: NPS places, OSM picnic site and the amenities pin agree
     elevationFt: 3950,
     timeBudgetMin: 60,
     teaser:
       'A sandy Merced beach staring straight up at El Capitan, thirty feet from Southside Drive, and empty at midday when nowhere else in the valley is.',
     body:
       'A small sandy beach on the Merced, reached from a pullout on Southside Drive at the Cathedral Beach picnic area. The river bends here and the beach faces straight upstream at El Capitan, the full wall head-on, and on calm afternoons the water is still enough to hold the reflection. It is the composition people hike for, sitting thirty feet from a road, and in the middle of a summer day you can sit on this sand for an hour and see nobody. That almost never happens in the valley. It happens here.\n\n' +
-      'The picnic tables in the trees make it the best lunch stop on the south side of the river; cooler food at a table with 3,000 feet of granite in front of you beats anything sold in the park. Late afternoon is the light: soft on the wall, calm on the water. Note the beach etiquette on containers, since the park asks for cans or plastic rather than glass on the sandy riverbank, and broken glass in sand is exactly as bad as it sounds.\n\n' +
+      'The picnic tables in the trees make it the best lunch stop on the south side of the river; cooler food at a table with 3,000 feet of granite in front of you beats anything sold in the park. Late afternoon is the light: soft on the wall, calm on the water. Leave the glass in the car: park rules ban glass containers within 50 feet of any riverbank, because people walk this sand barefoot and broken glass in sand is exactly as bad as it sounds.\n\n' +
       'Swimming is real here but seasonal. In May and June the Merced is snowmelt, fast and genuinely cold, and the current is stronger than the surface suggests; stay out. By late July and August the river has dropped and warmed at the edges and a wade or a short swim off the beach is one of the better hours the valley offers.',
     photos: [{ src: '/photos/cathedral-beach-quiet-picnic.jpg' }],
     swap:
@@ -180,7 +180,7 @@ const seed: SecretSpotInput[] = [
     teaser:
       'The shared Sentinel Dome and Taft Point lot fills early, but a full lot is not a turnaround: a service road along Glacier Point Road adds walking, not a new plan.',
     body:
-      'The shared lot for Sentinel Dome and Taft Point is small and fills early on any good-weather day. A full lot is not a turnaround. Just along Glacier Point Road there is a service road with room to park; leave the car there and walk up to Sentinel Dome from the road. It adds a stretch of walking, not a change of plans.',
+      'The shared lot for Sentinel Dome and Taft Point is small and fills early on any good-weather day. A full lot is not a turnaround. Just along Glacier Point Road there is a service road with room to park; leave the car there and walk up to Sentinel Dome from the road. It adds a stretch of walking, not a change of plans. The park\'s parking rule still applies: a paved turnout or a marked space, pulled completely off the road, never on vegetation, where a car is ticketed and can be towed.',
     photos: [{ src: '/photos/sentinel-dome-overflow.jpg', caption: 'The Jeffrey pine on Sentinel Dome\'s summit, photographed before it fell in 2003. The dome is the same.' }],
   },
   {
@@ -210,7 +210,7 @@ const seed: SecretSpotInput[] = [
     teaser:
       'Forest Service land just outside the valley where you can camp with El Capitan views: no fees, no reservations, no amenities, and pack-it-all-out rules.',
     body:
-      'Just outside Yosemite Valley there is Forest Service land where you can camp with views of El Capitan and Half Dome. No toilets, no amenities, no reservations needed, and no fee machinery, which is exactly why so few people know it is here. Pack out everything you pack in, and don\'t publish the pin. The place stays good exactly as long as it stays quiet.',
+      'Just outside Yosemite Valley there is Forest Service land where you can camp with views of El Capitan and Half Dome. No toilets, no amenities, no reservations needed, and no fee machinery, which is exactly why so few people know it is here. Be sure you are over the park boundary on a Stanislaus National Forest map before you pitch anything: on the park side, camping and sleeping in a vehicle are allowed only in a registered campsite. Any flame needs a California campfire permit. Pack out everything you pack in, and don\'t publish the pin. The place stays good exactly as long as it stays quiet.',
     hazard:
       'Dispersed camping with no toilets, no water, and no services. Check current fire restrictions before lighting anything.',
     photos: [{ src: '/photos/foresta-forest-service-camping.jpg', caption: 'A Stanislaus National Forest campsite: a table, a bear box, and no reservation.' }],
@@ -246,10 +246,10 @@ const seed: SecretSpotInput[] = [
     timeBudgetMin: 150,
     difficulty: 'moderate',
     teaser:
-      'Tunnel View\'s framed composition from the old stage road above the tunnel, with nobody in it, and a wilderness permit you can actually get that puts the view at sunrise from a sleeping bag.',
+      'Tunnel View\'s framed composition from the old stage road above the tunnel, with nobody in it, and a wilderness permit that is easier to hold than most for a night farther along the rim.',
     body:
-      'The Tunnel View, with no people. The Pohono Trail starts across Wawona Road from the Tunnel View lots and climbs the old Wawona stage road grade, the one the tunnel replaced in 1933: 1.3 miles and about 1,000 feet to Inspiration Point, the same framed composition of El Capitan, Bridalveil and Half Dome that a thousand people are photographing below you, seen from a granite slab you may have to yourself. Old Inspiration Point, the stage-road overlook the 1850s travelers stopped at, is another mile and a few hundred feet on. Almost everyone stays at the parking lot.\n\n' +
-      'The quiet part is the paperwork. This is wilderness, and a wilderness permit for the Pohono Trail from Tunnel View is one of the easier ones in the park to hold, reservable six months out and often available the day before at a permit station, because the trail is a hard climb to a ridge with no lake at the end of it. Camping is dispersed, not at a site, and the rules that govern the Valley rim apply: well back from the trail and the viewpoint, no fires, a bear canister. What that buys you is the Valley at first light from your sleeping bag, the walls turning color before the first car reaches the tunnel.\n\n' +
+      'The Tunnel View, with no people. The Pohono Trail starts across Wawona Road from the Tunnel View lots and climbs the old Wawona stage road grade, the one the tunnel replaced in 1933: 1.2 miles and about 1,000 feet to Inspiration Point, the same framed composition of El Capitan, Bridalveil and Half Dome that a thousand people are photographing below you, seen from a granite slab you may have to yourself. Old Inspiration Point, the stage-road overlook the 1850s travelers stopped at, is another two miles on, 3.3 miles from the trailhead. Almost everyone stays at the parking lot.\n\n' +
+      'Inspiration Point itself is a day hike. Much of the rim above the Valley is a day-use zone, and the park\'s wilderness rules put every camp at least four trail miles from Yosemite Valley and a mile from any road, so the legal ground on this trail starts well past Old Inspiration Point, toward Dewey Point; the park\'s wilderness trailheads map marks the line. A wilderness permit for the Pohono Trail from Tunnel View is still one of the easier ones in the park to hold, because the trail is a hard climb to a ridge with no lake at the end of it: 60 percent of each day\'s quota is reservable on recreation.gov 24 weeks ahead and the rest seven days ahead, and in winter, when no reservation is needed, permits are issued the day before or the day of at the nearest station. Camping is dispersed, not at a site, with a bear canister and the park\'s fire rules. What that buys you is the south rim at first light from your sleeping bag, with the day hike to Inspiration Point on the way out.\n\n' +
       'It is a real climb with no water on it. Carry what you will drink, start early in summer, and read the current permit rules on the wilderness pages before you count on a spot.',
     hazard:
       'No water on the trail or at the top. The old grade has loose sand and drop-offs behind the brush at the viewpoint.',
@@ -403,14 +403,14 @@ const seed: SecretSpotInput[] = [
     elevationFt: 4000,
     timeBudgetMin: 10,
     teaser:
-      'A lot most visitors never see, past the end of Curry Village on the road toward Happy Isles: half a mile from the Mist Trail, and the only Valley lot where a car can legally sit for days.',
+      'The lot past the end of Curry Village is not for day hikers: the park reserves it for backpackers with a wilderness permit, and it is the only Valley lot where a car can legally sit for days.',
     body:
-      'Beyond Curry Village, the road continues toward Happy Isles and is closed to everything but shuttles and park vehicles. Just before the closure is a lot signed Trailhead Parking, built for Mist Trail and Half Dome hikers and, with a wilderness permit, for backpackers leaving a car for days, which no other Valley lot allows. It is half a mile from the Happy Isles trailhead on foot, against a mile from the Curry Village day lot and three from Yosemite Village. Most drivers never get past the village signs.\n\n' +
-      'The move is timing. On a summer weekend the lot fills by about 8 a.m.; at 5:30 there are spaces. Park, and you are walking to the Mist Trail before the first shuttle runs, which puts you on the Vernal Fall footbridge with the mist and without the queue. Back at the car, the Curry Village pizza deck is a short walk west.\n\n' +
-      'If it is full, do not circle it. Drop back to the Curry Village day lot, then the shuttle to Happy Isles; the lots east of the village all drain the same way and the shuttle is the answer to all of them.',
+      'Beyond Curry Village, the road continues toward Happy Isles and is closed to everything but shuttles and park vehicles. Just before the closure is a lot of about 190 spaces signed Trailhead Parking, and it is the park\'s one Valley lot for wilderness permit holders: the only place in the Valley a backpacker may leave a car for the days of a trip. It is for overnight wilderness users only. A day hiker bound for the Mist Trail or Half Dome does not park here, however empty it looks at dawn.\n\n' +
+      'The day hiker\'s version of the same move is the Curry Village lot in the old apple orchard, about 490 unpaved spaces a short walk west, and the timing is the whole of it. On a summer weekend the Valley lots can fill by late morning; at first light there are spaces. Park there, and it is about a mile on foot to the Happy Isles trailhead, walked before the first shuttle runs, which puts you on the Vernal Fall footbridge with the mist and without the queue. Back at the car, the Curry Village pizza deck is steps away.\n\n' +
+      'With a wilderness permit, this lot is the one to use, and nothing else in the Valley will hold a car overnight. If the orchard lot is full, do not circle it: drop back to the day lots west of the village and take the shuttle to Happy Isles; the lots all drain the same way and the shuttle is the answer to all of them.',
     photos: [{ src: '/photos/valley-trailhead-parking.jpg', caption: 'The Merced at Happy Isles, half a mile from the lot.' }],
     swap:
-      'Full? [Curry Village](/stop/curry-village) has the day lot a mile back, and the [Mist Trail](/stop/mist-trail) entry covers the shuttle from there.',
+      'Day hiking? [Curry Village](/stop/curry-village) has the day lot, and the [Mist Trail](/stop/mist-trail) entry covers the shuttle from there.',
   },
   {
     id: 'tenaya-lake-lots',
@@ -423,11 +423,11 @@ const seed: SecretSpotInput[] = [
     timeBudgetMin: 10,
     season: 'Tioga Road season',
     teaser:
-      'The beach lot at the east end fills first and everyone stops there. The Sunrise trailhead lot at the west end and Murphy Creek in the middle hold out, and the whole east shore is a ten-minute walk from any of them.',
+      'The beach lot at the east end fills first and everyone stops there. The Sunrise trailhead lot at the west end and Murphy Creek in the middle hold out, and the lakeshore trail links all three on the flat.',
     body:
-      'Tenaya Lake has about 230 legal spaces in three places, and on a summer afternoon all of them are taken. The big beach at the east end has the picnic area and the sand, so it fills first. The Sunrise Lakes trailhead lot at the west end is the biggest and the last to fill, because people think it belongs to the hike, and Murphy Creek, the middle picnic area on the north shore, sits between them with its own short path to the water. The lake is a mile long; the walk between any lot and the east beach is ten to fifteen minutes on the loop trail, on the flat.\n\n' +
-      'The rule that matters is the shoulder. The park counts about 40 designated roadside spaces along Tioga Road at the lake, and wheels on the pavement or the meadow edge outside them get a ticket, so if the three lots and the marked shoulder are full, the honest answer is to keep driving to Olmsted Point and come back in an hour, not to invent a space.\n\n' +
-      'The other timing fact: overnight parking along Tioga Road, including the trailhead lot, ends October 15 every year, before the road itself closes.',
+      'Tenaya Lake has about 230 legal spaces, roughly 175 of them in three lots and the rest marked along the road, and on a summer afternoon all of them are taken. The big beach at the east end has the picnic area and the sand, so it fills first. The Sunrise Lakes trailhead lot at the west end is usually the last to fill, because people think it belongs to the hike, and Murphy Creek, the middle picnic area on the north shore, sits between them with its own short path to the water. Murphy Creek is a short walk from the east beach on the loop trail; from the Sunrise lot it is the length of the lake, closer to half an hour, on the flat.\n\n' +
+      'The rule that matters is the shoulder. The park\'s plan for the lake allows about 40 designated roadside spaces along Tioga Road, and a car on vegetation or blocking traffic outside them gets a ticket and can be towed, so if the three lots and the marked shoulder are full, the honest answer is to keep driving to Olmsted Point and come back in an hour, not to invent a space.\n\n' +
+      'The other timing fact: overnight parking along Tioga Road, including the trailhead lot, is prohibited from October 15 each year until the road reopens in spring, whether or not the road itself is still open.',
     photos: [{ src: '/photos/tenaya-lake.jpg', caption: 'Tenaya Lake from the east beach. The lots are at both ends and the middle of the north shore.' }],
     swap:
       'If the whole lake is full, [Olmsted Point](/stop/olmsted-point) is five minutes west with a big lot, and the [Tenaya Lake](/stop/tenaya-lake) stop has the beach itself.',
@@ -445,9 +445,9 @@ const seed: SecretSpotInput[] = [
     timeBudgetMin: 30,
     season: 'July to early September',
     teaser:
-      'Seventy-five tent sites at the end of a rough five-mile spur off Tioga Road that keeps out the RVs and most of everyone else, on the creek that becomes Yosemite Falls.',
+      'Seventy-four sites at the end of a rough five-mile spur off Tioga Road that keeps out the RVs and most of everyone else, on the creek that becomes Yosemite Falls.',
     body:
-      'Of the drive-to campgrounds in the park, this is the one that still feels like camping. A narrow, winding, badly surfaced five-mile spur leaves Tioga Road and drops to a bend in Yosemite Creek at 7,700 feet, where 75 tent sites sit under lodgepole beside the water. The road does the curating: the park says RVs and trailers are not recommended, and they take the hint, so the campground is tents, small cars, and quiet. There is no piped water; the creek is the supply and it has to be treated. Every site has a fire ring, a table and a bear box, and the toilets are vault.\n\n' +
+      'Of the drive-to campgrounds in the park, this is the one that still feels like camping. A narrow, winding, badly surfaced five-mile spur leaves Tioga Road and drops to a bend in Yosemite Creek at 7,700 feet, where 74 sites sit under lodgepole beside the water. The road does the curating: the park says RVs and trailers are not recommended, and they take the hint, so the campground is tents, small cars, and quiet. There is no piped water; the creek is the supply and it has to be treated. Every site has a fire ring, a table and a bear box, and the toilets are vault.\n\n' +
       'The paperwork is the point of this entry. It is one of the campgrounds that releases on recreation.gov two weeks before the arrival date at 7 a.m. Pacific, on a rolling daily window, rather than in the months-ahead scramble that empties the Valley campgrounds in minutes. Fourteen days out, at seven in the morning, with the date already chosen, a site here is a realistic thing to get. The season is short, roughly July to early September.\n\n' +
       'From the campground, the Yosemite Creek trail follows the water downstream toward the top of Yosemite Falls, so the creek at your site is the same water that goes over the lip 2,400 feet above the Valley a few miles on.',
     hazard:
@@ -469,11 +469,11 @@ const seed: SecretSpotInput[] = [
     teaser:
       'Thirteen sites on the shore of Tioga Lake, a mile outside the Tioga Pass entrance in Inyo National Forest: no reservations at all, self-register at the board, and the park gate is five minutes away.',
     body:
-      'The park\'s own campgrounds book up. The Forest Service ones just outside the Tioga Pass entrance mostly do not, because they run first-come, first-served with self-registration at the campground, and a car that arrives early on a weekday with cash in an envelope usually gets a site. Tioga Lake is the closest of them: 13 sites on the lakeshore at 9,700 feet, a mile east of the gate on Highway 120, with vault toilets, a hand pump for water, tables, and bear boxes that are mandatory because this is active bear country. The fee is about twenty dollars.\n\n' +
+      'The park\'s own campgrounds book up. The Forest Service ones just outside the Tioga Pass entrance mostly do not, because they run first-come, first-served with self-registration at the campground, and a car that arrives early on a weekday with cash in an envelope usually gets a site. Tioga Lake is the closest of them: 13 sites on the lakeshore at about 9,500 feet by the Forest Service\'s count, a mile east of the gate on Highway 120, with vault toilets, drinking water, tables, and bear boxes that are mandatory because this is active bear country. The fee is $30 a night, $10 for a second car, and it rises every few seasons.\n\n' +
       'The setting outdoes most of the park\'s campgrounds. The lake sits under the Tioga Crest with the Dana Plateau across the road, the stars are the high-desert kind, and Tuolumne Meadows is fifteen minutes west. Ellery Lake and Saddlebag Lake, a few miles on, run the same way if Tioga is full; Junction, at the Saddlebag Lake Road fork, is the Bennettville trailhead.\n\n' +
       'Two honest cautions. At this altitude a first night can mean a bad headache for someone arriving from sea level, and the season is short: the campground opens when the snow lets it, roughly June, and closes in October with the pass.',
     hazard:
-      'Altitude sickness is real at 9,700 feet on the first night. Freezing temperatures any month; bear boxes are required, not suggested.',
+      'Altitude sickness is real at 9,500 feet on the first night. Freezing temperatures any month; bear boxes are required, not suggested.',
     photos: [{ src: '/photos/tioga-lake-campground.jpg', caption: 'A Tioga Lake site: a table on the shore, the Tioga Crest behind.' }],
     swap:
       'If it is full, Ellery Lake and Saddlebag Lake campgrounds are a few miles east on the same terms. Inside the park, [Tuolumne Meadows](/stop/tuolumne-meadows-grill) has the reservable campground.',
@@ -487,7 +487,7 @@ const seed: SecretSpotInput[] = [
     coord: [-119.6331, 37.4909], // verified 2026-09: OSM camp_site "Summerdale Campground" on Hwy 41 at Fish Camp (Nominatim), 1.5 mi south of the South Entrance
     elevationFt: 5011,
     timeBudgetMin: 30,
-    season: 'Late spring to fall',
+    season: 'June to November',
     teaser:
       'Twenty-nine sites in a wildflower meadow on Big Creek at Fish Camp, a mile and a half south of the South Entrance on Highway 41, reservable six months out when Wawona and the Valley are long gone.',
     body:
@@ -540,7 +540,7 @@ const seed: SecretSpotInput[] = [
     body:
       'Glacier Point at sunset is the park\'s busiest hour. Stay. In June, July and August, California astronomy clubs take turns at the point, one club a weekend, and on Saturday nights from about 8:30 they set up between ten and thirty telescopes in and around the amphitheater and hand you the eyepiece: Saturn, the Moon, star clusters, whatever is up. It is informal and free, run as a public service by the clubs and the park; you can drop in and stay as long as you like. The park\'s event calendar carries the dates for the summer, so check it against your trip window rather than assuming.\n\n' +
       'The other show needs no club. Half Dome sits due east of the point, and on the night of a full moon in summer the moon rises behind it, sometimes over its shoulder, which is the photograph of the park that people spend years trying to time. The night-sky page in this guide gives you the moonrise and the phase for your dates; get there an hour early with a jacket, because 7,200 feet is cold once the sun goes.\n\n' +
-      'Afterward is the honest part. It is a 32-mile drive back to the Valley on a mountain road in the dark, after a long day, and deer are on it; the drive is what ends most people\'s star parties early. Sleep at Bridalveil Creek or Wawona if you can.',
+      'Afterward is the honest part. It is a drive of about 30 miles back to the Valley on a mountain road in the dark, after a long day, and deer are on it; the drive is what ends most people\'s star parties early. Sleep at Bridalveil Creek, when its short midsummer season is running, or at Wawona if you can.',
     hazard:
       'Unfenced drops beyond the railings in the dark; stay on the paved paths. The drive down Glacier Point Road at night is slow and full of deer.',
     photoTiming: { best: 'night', note: 'Full-moon nights for the rise behind Half Dome; new-moon Saturdays for the telescopes and the Milky Way.' },
@@ -561,7 +561,7 @@ const seed: SecretSpotInput[] = [
     teaser:
       'The largest owl in North America hunts the meadow edges at Crane Flat in the last hour of light. Yosemite holds most of California\'s two or three hundred, and they are a subspecies found nowhere else.',
     body:
-      'The great gray owl is the tallest owl on the continent, a grey ghost with a face like a satellite dish, and Yosemite is the southern end of its world. The park\'s birds were shown in 2010 to be their own subspecies, Strix nebulosa yosemitensis, genetically distinct from every other great gray in North America; California holds perhaps 200 to 300 of them and about two thirds of those live in the park, in the mid-elevation belt where forest meets meadow. They hunt voles and gophers from low perches at the meadow edge, mostly in the first and last hours of light, and Crane Flat is the meadow the park itself names for seeing one.\n\n' +
+      'The great gray owl is the tallest owl on the continent, a grey ghost with a face like a satellite dish, and Yosemite is the southern end of its world. The park\'s birds were shown in 2010 to be their own subspecies, Strix nebulosa yosemitensis, genetically distinct from every other great gray in North America; California holds perhaps 200 to 300 of them and about two thirds of those live in the park, in the mid-elevation belt where forest meets meadow. They hunt voles and gophers from low perches at the meadow edge, mostly in the first and last hours of light, and Crane Flat is one of the meadows where the park documents them.\n\n' +
       'The method is patience. Park at the meadow pullout an hour before sunset, walk the road edge to a place with a long view down the meadow, and stand still. Look at the tops of the low snags and the lower limbs of the trees at the edge, not at the sky; a great gray sits and listens, then drops. The other good meadow is McGurk, off Glacier Point Road, at the same hour.\n\n' +
       'The etiquette is not optional. This is a state-endangered bird that is losing owls to cars on the park roads; no recorded calls, no approaching a perched bird, no flash, no walking into the meadow, and drive the meadow stretches slowly at dusk. Seeing one at a hundred yards through binoculars, in the last of the light, is the whole experience, and it is enough.',
     hazard:
@@ -569,7 +569,7 @@ const seed: SecretSpotInput[] = [
     photoTiming: { best: 'golden-pm', note: 'The hour before sunset, when the owls come to the meadow edge to hunt.' },
     photos: [{ src: '/photos/wildlife-great-gray-owl.jpg', caption: 'A great gray owl on a meadow-edge perch. This is the posture to scan for at Crane Flat: low, still, facing the grass.' }],
     swap:
-      'If Crane Flat is quiet, [McGurk Meadow](/stop/mcgurk-meadow) off Glacier Point Road is the other meadow the park names, and the [Crane Flat](/stop/crane-flat-meadow) stop covers the meadow by day.',
+      'If Crane Flat is quiet, [McGurk Meadow](/stop/mcgurk-meadow) off Glacier Point Road is the other well-known owl meadow, and the [Crane Flat](/stop/crane-flat-meadow) stop covers the meadow by day.',
   },
 ]
 

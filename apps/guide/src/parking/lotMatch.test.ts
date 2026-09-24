@@ -35,8 +35,11 @@ describe('normalizeLotName', () => {
 
 describe('lotForAmenity', () => {
   it('matches a pin to its lot by prefix in either direction', () => {
-    const lots = [lot('Yosemite Village'), lot('Curry Village (Orchard)'), lot('Yosemite Falls')]
-    expect(lotForAmenity(amenity('curry-village-day-use-lot'), lots)?.name).toBe('Curry Village (Orchard)')
+    const lots = [lot('Yosemite Village'), lot('Curry Village (Orchard)'), lot('Yosemite Falls'), lot('Yosemite Valley Trailhead Parking')]
+    expect(lotForAmenity(amenity('curry-orchard-lot'), lots)?.name).toBe('Curry Village (Orchard)')
+    // The trailhead lot past Curry Village is its own NPS lot, reached by alias,
+    // never the Orchard lot its old name used to match.
+    expect(lotForAmenity(amenity('curry-village-day-use-lot'), lots)?.name).toBe('Yosemite Valley Trailhead Parking')
     expect(lotForAmenity(amenity('yosemite-village-day-use-lot'), lots)?.name).toBe('Yosemite Village')
     expect(lotForAmenity(amenity('yosemite-falls-lot'), lots)?.name).toBe('Yosemite Falls')
   })
@@ -59,7 +62,7 @@ describe('lotForAmenity', () => {
   })
 
   it('never copies the lot coordinate onto the pin', () => {
-    const pin = amenity('curry-village-day-use-lot')
+    const pin = amenity('curry-orchard-lot')
     const before = JSON.stringify(pin)
     lotForAmenity(pin, [lot('Curry Village (Orchard)')])
     expect(JSON.stringify(pin)).toBe(before)

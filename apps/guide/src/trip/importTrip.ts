@@ -148,9 +148,9 @@ type PendingImport = { ids: string[]; at: number }
  * the router decides anything, because a signed-out visitor never mounts
  * /trip. Safe to call on every load: no param means no write.
  */
-export function stashPendingImportFromUrl(): void {
+export function stashPendingImportFromUrl(href: string = window.location.href): void {
   try {
-    const url = new URL(window.location.href)
+    const url = new URL(href)
     if (url.pathname !== '/trip') return
     const ids = parseImportParam(url.searchParams.get('import'))
     if (ids.length === 0) return

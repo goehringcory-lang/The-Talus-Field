@@ -7,6 +7,7 @@
 // =============================================================================
 
 import { useEffect, useMemo, useState } from 'react'
+import { EDITION_LABEL } from '../lib/buildInfo'
 import type { ReactNode } from 'react'
 import { Link, Navigate } from 'react-router-dom'
 import { useAuth } from '../auth/useAuth'
@@ -25,6 +26,7 @@ import {
 } from '../content'
 import { formatClock, parkNowMinutes, todayIso, tripDatesLabel } from '../utils/date'
 import { useFavorites } from '../lib/favorites'
+import { useWhatsNew } from '../lib/whatsNew'
 import { logHasEntries, readLogSummary } from '../lib/logSummary'
 import { isPackCompleted } from '../offline/useDownloads'
 import { PACK_IDS } from '../offline/manifest'
@@ -81,6 +83,25 @@ function BeforeYouGoNudge() {
     >
       Going soon? Do the <Link to="/essentials/before-you-go">night-before downloads</Link>{' '}
       while you still have wifi: the offline maps, this guide, and the current Yosemite Guide PDF.
+    </Callout>
+  )
+}
+
+// One note per release, once: the newest edition note, dismissed for good
+// with a tap. A first launch never sees it (lib/whatsNew.ts).
+function WhatsNewNote() {
+  const { entry, dismiss } = useWhatsNew()
+  if (!entry) return null
+  return (
+    <Callout
+      action={
+        <Button variant="ghost" size="sm" onClick={dismiss}>
+          Got it
+        </Button>
+      }
+    >
+      <strong>New in this update.</strong> {entry.lines[0]}{' '}
+      <Link to="/account#changes">Everything that changed →</Link>
     </Callout>
   )
 }
@@ -281,6 +302,8 @@ export default function Home() {
   const savedStops = favoriteIds
     .map((id) => getStopById(id))
     .filter((s): s is NonNullable<typeof s> => Boolean(s))
+  const savedHikeCount = favoriteIds.filter((id) => id.startsWith('hike:')).length
+  const savedDiningCount = favoriteIds.filter((id) => id.startsWith('dining:')).length
   const downloadedCount = PACK_IDS.filter((id) => isPackCompleted(id)).length
 
   const stopCount = REGIONS.reduce((n, r) => n + getStopsByRegion(r.id).length, 0)
@@ -303,7 +326,7 @@ export default function Home() {
             The orientation copy lives in "How this guide works" further down;
             a returning buyer gets the park's state before any prose. */}
         <header className="home-hero">
-          <span className="eyebrow">Yosemite National Park · 2026</span>
+          <span className="eyebrow">Yosemite National Park · {EDITION_LABEL}</span>
           <h1 className="home-hero__title">Field Guide</h1>
           <p className="home-hero__sig">The whole guide, on one page.</p>
         </header>
@@ -330,6 +353,8 @@ export default function Home() {
         </Link>
 
         <PendingImportCard />
+
+        <WhatsNewNote />
 
         <BeforeYouGoNudge />
 
@@ -651,18 +676,19 @@ export default function Home() {
           </section>
         )}
 
-        {savedStops.length > 0 && (
-          <section aria-label="Saved stops" className="page-section">
-            <span className="eyebrow">Saved stops</span>
-            <ul className="link-list">
-              {savedStops.map((stop) => (
-                <li key={stop.id}>
-                  <Link to={`/stop/${stop.id}`}>
-                    {stop.title} →
-                  </Link>
-                </li>
-              ))}
-            </ul>
+        {favoriteIds.length > 0 && (
+          <section aria-label="Saved" className="page-section">
+            <span className="eyebrow">Saved</span>
+            <Link to="/saved" className="more-link">
+              {[
+                savedStops.length > 0 && `${savedStops.length} ${savedStops.length === 1 ? 'stop' : 'stops'}`,
+                savedHikeCount > 0 && `${savedHikeCount} ${savedHikeCount === 1 ? 'hike' : 'hikes'}`,
+                savedDiningCount > 0 && `${savedDiningCount} ${savedDiningCount === 1 ? 'place to eat' : 'places to eat'}`,
+              ]
+                .filter(Boolean)
+                .join(' · ') || 'Your bookmarks'}{' '}
+              →
+            </Link>
           </section>
         )}
 

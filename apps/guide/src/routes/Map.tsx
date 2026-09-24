@@ -28,13 +28,13 @@ import {
   isItineraryKey,
   type ItineraryKey,
 } from '../content/itineraries'
-import { HIDDEN_PIN_STROKE, KIND_STYLES, MINOR_KINDS, buildPinElement, directionsUrl, getKindStyle, kindMarkSvg, type MapPinKind } from '../map/kinds'
+import { HIDDEN_PIN_STROKE, KIND_STYLES, buildPinElement, directionsUrl, getKindStyle, kindMarkSvg, type MapPinKind } from '../map/kinds'
 import { getHikeById } from '../content'
 import { hasTrack } from '../trails/track'
 import { useTrack } from '../trails/useTrack'
 import { announceTripAdd } from '../trip/addFeedback'
 import { addHikeToPlan, addStopToPlan, isHikePlanned, isStopPlanned, useTripPlan } from '../trip/useTripPlan'
-import { buildMapStyle } from '../map/style'
+import { MAP_ATTRIBUTION, buildMapStyle } from '../map/style'
 import { isPackCompleted } from '../offline/useDownloads'
 import { MAP_PACK_ID } from '../offline/manifest'
 import { formatMiles, haversineMiles } from '../utils/geo'
@@ -44,6 +44,7 @@ import type { ParkingLotT } from '../parking/schema'
 import { HIDE_AFTER_MS as PARKING_HIDE_MS } from '../parking/staleness'
 import { useParking } from '../parking/useParking'
 import { compactStamp } from '../utils/relativeStamp'
+import { useOnline } from '../utils/useOnline'
 import './Map.css'
 import { useDocumentTitle } from '../lib/documentTitle'
 
@@ -640,6 +641,7 @@ export default function Map() {
   const lastFitKeyRef = useRef<string | null>(null)
 
   const [mapReady, setMapReady] = useState(false)
+  const online = useOnline()
   const [mapFailed, setMapFailed] = useState(false)
   const [mapDownloaded, setMapDownloaded] = useState(() => isPackCompleted(MAP_PACK_ID))
   // 'far' below MINOR_PIN_MIN_ZOOM. Drives a data attribute on the map
@@ -1165,7 +1167,7 @@ export default function Map() {
     amenityMarkersRef.current = {}
 
     for (const amenity of visibleAmenities) {
-      const el = buildPinElement(amenity.kind, amenity.name, false, amenity.glyph)
+      const el = buildPinElement(amenity.kind, amenity.name, false, amenity.glyph, amenity.mark)
       const activate = () => {
         // Clear any stop selection so ?stop= doesn't keep pointing at a stop
         // whose popup this one just replaced.
@@ -1193,6 +1195,30 @@ export default function Map() {
         .addTo(map)
     }
   }, [visibleAmenities, mapReady, selectStop])
+
+  // ?place=<amenity id>: a search hit for a map-only pin (gas, showers, a
+  // campground). One shot at load: fly to the pin, open its popup, drop the
+  // param (writeUrlState never writes it back). An unknown id does nothing.
+  const [initialPlace] = useState(() => new URLSearchParams(window.location.search).get('place'))
+  const placeShown = useRef(false)
+  useEffect(() => {
+    if (!mapReady || !initialPlace || placeShown.current) return
+    const map = mapRef.current
+    const amenity = AMENITIES.find((a) => a.id === initialPlace)
+    placeShown.current = true
+    const url = new URL(window.location.href)
+    url.searchParams.delete('place')
+    window.history.replaceState(window.history.state, '', url.pathname + url.search)
+    if (!map || !amenity) return
+    map.jumpTo({ center: amenity.coord, zoom: Math.max(map.getZoom(), 14) })
+    const { lots, fetchedAt } = parkingRef.current
+    const fresh = fetchedAt !== null && Date.now() - Date.parse(fetchedAt) <= PARKING_HIDE_MS
+    const lot = fresh ? lotForAmenity(amenity, lots) : null
+    popupRef.current
+      ?.setLngLat(amenity.coord)
+      .setDOMContent(buildAmenityPopupContent(amenity, lot ? { lot, fetchedAt } : null))
+      .addTo(map)
+  }, [mapReady, initialPlace])
 
   // Trailhead marker reconciliation. Same shape as the amenity pipeline: no
   // ?stop= selection state and no fitBounds contribution; the pins open the
@@ -1456,10 +1482,18 @@ export default function Map() {
             </>
           ) : mapDownloaded ? (
             <>Map downloaded. Works offline, even in airplane mode, down to trailhead scale.</>
+          ) : !online ? (
+            <>
+              Offline, and the park map is not downloaded to this phone: only
+              areas you have already viewed will draw.{' '}
+              <Link className="map-online-notice__link" to="/account#offline">
+                Offline downloads →
+              </Link>
+            </>
           ) : (
             <>
               Viewing online.{' '}
-              <Link className="map-online-notice__link" to="/account">
+              <Link className="map-online-notice__link" to="/account#offline">
                 Download the map for offline →
               </Link>
             </>
@@ -1594,7 +1628,7 @@ export default function Map() {
 
           {mapReady && zoomBand === 'far' && !kindFilter && tab !== 'info' && (
             <p className="map-zoom-hint" role="note">
-              Zoom in for {MINOR_KINDS.map((k) => `${getKindStyle(k).label.toLowerCase()}s`).join(', ')}, or tap a chip.
+              Zoom in for parking, shuttle stops, picnic areas, and services, or tap a chip.
             </p>
           )}
 
@@ -1855,7 +1889,9 @@ function InfoPane({
           and services pins are navigation aids: a short note, the published
           hours where NPS publishes them, and a Directions button, no stop
           write-up. The Valley shuttle stops carry the number NPS paints on
-          the sign; the shuttle is free and runs 7 a.m. to 10 p.m.
+          the sign; the shuttle is free and runs 7 a.m. to 10 p.m. Among the
+          services, only the gas stations draw a fuel pump; the clinic carries
+          a cross and the chargers "EV".
         </li>
         <li>
           A landmark pin names a thing you look at, Cathedral Rocks, Royal
@@ -1868,7 +1904,8 @@ function InfoPane({
           hours.
         </li>
         <li>
-          Pins with a small peak glyph are day-hike trailheads. Tap one for
+          Pins with a small filled peak are day-hike trailheads (a landmark
+          draws its peak in outline). Tap one for
           each trail's numbers (distance, climbing, difficulty, time), then
           open the full trail page, add the hike to your trip, or draw its
           GPS track over the topo. Trailheads shared by several routes list
@@ -1923,14 +1960,15 @@ function InfoPane({
           routes. Routing happens in Google Maps via the Directions button.
         </li>
         <li>
-          Most pin coordinates are verified against NPS and USGS sources; the
-          entrance, visitor-center, shuttle-stop, picnic and services pins are
-          quoted from the National Park Service's own place records. A few
-          unsigned pullouts and off-trail spots are still flagged for a
-          ground check; for those, trust the turnout described in the stop
-          page over the precise pin.
+          Most pin coordinates are verified against NPS, USGS, and
+          OpenStreetMap sources; the entrance, visitor-center, shuttle-stop,
+          parking, picnic and services pins are quoted from the National Park
+          Service's own records. About a third of the stop and trailhead pins
+          are unsigned pullouts or off-trail spots that nobody has yet checked
+          on the ground; their popups say so, and for those, trust the turnout
+          described on the stop page over the precise pin.
         </li>
-        <li>Map tiles: Esri, USGS. © OpenStreetMap contributors.</li>
+        <li>Map tiles: {MAP_ATTRIBUTION}.</li>
       </ul>
     </div>
   )

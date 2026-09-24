@@ -12,10 +12,14 @@ import PageHeader from '../components/ui/PageHeader'
 import Skeleton from '../components/ui/Skeleton'
 import { PHOTO_CREDITS } from '../content/photoCredits'
 import { MAP_ATTRIBUTION } from '../map/style'
-import { BUILD_DATE } from '../lib/buildInfo'
+import { BUILD_DATE, EDITION_LABEL } from '../lib/buildInfo'
 import { resetInstallDismissal } from '../lib/install'
 import { THEME_LABEL, THEME_NOTE, THEME_OPTIONS, useTheme } from '../lib/theme'
 import { isStandalonePWA } from '../utils/platform'
+import { useLandOnHash } from '../utils/useLandOnHash'
+import { Link } from 'react-router-dom'
+import { CHANGELOG } from '../content/changelog'
+import { SUPPORT_EMAIL } from '../lib/corrections'
 
 function formatAccessDate(epochSeconds: number): string {
   return new Date(epochSeconds * 1000).toLocaleDateString(undefined, {
@@ -154,6 +158,15 @@ function AccessStatusCard() {
       ) : (
         <>
           <div className="card__value">Good through {formatAccessDate(me.expiresAt)}</div>
+          {me.purchasedAt !== undefined && (
+            <p className="card__note" style={{ marginTop: 4 }}>
+              Access began {formatAccessDate(me.purchasedAt)}.
+              {nowMs - me.purchasedAt * 1000 <= 30 * 86_400_000 &&
+                ` If you paid for the guide and it does not work as described, email within 30 days of purchase (by ${formatAccessDate(
+                  me.purchasedAt + 30 * 86_400,
+                )}) and it is refunded in full.`}
+            </p>
+          )}
           {renewOutcome === 'success' ? (
             <p className="card__note">
               Renewed. Your new end date is settling in; if it hasn't updated yet,
@@ -277,6 +290,116 @@ function InstallCard() {
 const ARM_GUARD_MS = 400
 const DISARM_AFTER_MS = 6000
 
+// A second phone or a laptop: the same sign-in link and code the purchase
+// email carried, sent again to the address on the buyer record. /api/auth/
+// resend always answers ok (it cannot be used to test addresses), so the copy
+// says where it went rather than claiming it arrived.
+function AnotherDeviceCard({ email }: { email: string | undefined }) {
+  const [state, setState] = useState<'idle' | 'sending' | 'sent' | 'failed'>('idle')
+  const online = typeof navigator === 'undefined' || navigator.onLine
+  if (!email || !email.includes('@')) return null
+  async function send() {
+    setState('sending')
+    try {
+      await apiFetch('/api/auth/resend', { method: 'POST', body: JSON.stringify({ email }) })
+      setState('sent')
+    } catch {
+      setState('failed')
+    }
+  }
+  return (
+    <div className="card">
+      <span className="eyebrow" style={{ display: 'block', marginBottom: 8 }}>
+        Your other devices
+      </span>
+      <p>
+        One purchase covers every device you own. We can send the sign-in link and six-digit
+        code to {email} again; open it on the other device.
+      </p>
+      <div className="action-row" style={{ marginTop: 12 }}>
+        <Button size="sm" onClick={send} disabled={!online || state === 'sending' || state === 'sent'}>
+          {state === 'sending' ? 'Sending…' : state === 'sent' ? 'Sent' : 'Email me the sign-in link'}
+        </Button>
+      </div>
+      {!online && <p className="card__note">Needs a connection.</p>}
+      {state === 'sent' && (
+        <p className="card__note" role="status">
+          Sent to {email}. It can take a minute; check the spam folder if it is not there.
+        </p>
+      )}
+      {state === 'failed' && (
+        <p className="card__note" role="alert">
+          That did not go through. Try again with a better connection, or email {SUPPORT_EMAIL}.
+        </p>
+      )}
+    </div>
+  )
+}
+
+// Edition notes: what changed, newest first (content/changelog.ts). The
+// "What changed" link under Home's stamp lands here.
+function EditionNotes() {
+  return (
+    <section id="changes" aria-label="Edition notes" style={{ marginTop: 28 }}>
+      <span className="eyebrow" style={{ display: 'block', marginBottom: 8 }}>What changed</span>
+      {CHANGELOG.map((entry) => (
+        <div key={entry.date} className="edition-note">
+          <span className="dateline">{formatAccessDate(Date.parse(`${entry.date}T12:00:00Z`) / 1000)}</span>
+          <ul className="edition-note__list">
+            {entry.lines.map((line) => (
+              <li key={line}>{line}</li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </section>
+  )
+}
+
+const EDITORIAL_ORIGIN = 'https://thetalusfieldjournal.com'
+
+// Support, the guarantee, and the policies. The policies live on the
+// editorial site and open there.
+function SupportCard() {
+  const deleteBody = encodeURIComponent(
+    'Please delete my Field Guide data: the buyer record for this address, the synced copy of my trip if sync was on, and any notification subscriptions.',
+  )
+  return (
+    <div className="card">
+      <span className="eyebrow" style={{ display: 'block', marginBottom: 8 }}>
+        Help with the guide
+      </span>
+      <ul className="link-list">
+        <li>
+          <Link to="/report?type=app">Report a problem with the app →</Link>
+        </li>
+        <li>
+          <a href={`mailto:${SUPPORT_EMAIL}`}>Email {SUPPORT_EMAIL} →</a>
+        </li>
+        <li>
+          <a href={`${EDITORIAL_ORIGIN}/terms`} target="_blank" rel="noopener noreferrer">
+            Terms and the refund policy (opens the website) →
+          </a>
+        </li>
+        <li>
+          <a href={`${EDITORIAL_ORIGIN}/privacy`} target="_blank" rel="noopener noreferrer">
+            Privacy (opens the website) →
+          </a>
+        </li>
+        <li>
+          <a href={`mailto:${SUPPORT_EMAIL}?subject=${encodeURIComponent('Delete my Field Guide data')}&body=${deleteBody}`}>
+            Ask us to delete your data →
+          </a>
+        </li>
+      </ul>
+      <p className="card__note">
+        Your trip, saves, notes, and checklists live on this device. Turning sync off deletes the
+        synced copy from our server.
+      </p>
+    </div>
+  )
+}
+
 // Colour scheme. Auto follows the device and is right for most trips; the two
 // pins exist because the device is often wrong about a day in the park — a
 // phone in dark mode is hard to read at Tunnel View at noon, and a bright
@@ -370,6 +493,7 @@ function SignOutButton({ onSignOut }: { onSignOut: () => void }) {
 
 export default function Account() {
   const { session, signOut } = useAuth()
+  useLandOnHash()
   return (
     <GatedChrome>
       <main className="wrap wrap--narrow page">
@@ -387,6 +511,8 @@ export default function Account() {
 
           <InstallCard />
 
+          <AnotherDeviceCard email={session?.username} />
+
           <div className="card">
             <SyncCard />
           </div>
@@ -395,17 +521,17 @@ export default function Account() {
             <NotificationsCard />
           </div>
 
-          <div className="card">
+          <div className="card" id="offline">
             <DownloadManager />
           </div>
+
+          <SupportCard />
         </div>
+
+        <EditionNotes />
 
         <PhotoCreditsSection />
 
-        <p style={{ marginTop: 28 }}>
-          Questions? Email{' '}
-          <a href="mailto:cory@thetalusfieldjournal.com">cory@thetalusfieldjournal.com</a>.
-        </p>
 
         <div className="action-row" style={{ marginTop: 36 }}>
           <Button variant="ghost" to="/">← Back to guide</Button>
@@ -414,7 +540,7 @@ export default function Account() {
         <SignOutButton onSignOut={signOut} />
 
         <p className="page-footnote">
-          2026 Edition · Build {BUILD_DATE}
+          {EDITION_LABEL} · Build {BUILD_DATE}
           <br />
           Map tiles: {MAP_ATTRIBUTION}
         </p>

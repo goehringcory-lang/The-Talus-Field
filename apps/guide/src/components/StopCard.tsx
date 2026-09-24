@@ -9,6 +9,8 @@ import PhotoPlaceholder from './PhotoPlaceholder'
 import Plate from './Plate'
 import ResponsivePhoto from './ResponsivePhoto'
 import StopActions from './StopActions'
+import RoadNote from './RoadNote'
+import { roadForStopId } from '../content/roads'
 import { Chip } from './ui/Chip'
 import { sunTimes, type SunTimes } from '../sun/solar'
 import { formatClock, todayIso } from '../utils/date'
@@ -85,6 +87,10 @@ export default function StopCard({
     !compact && stop.photoTiming ? sunTimes(todayIso()) : null
   const lightClockLabel =
     stop.photoTiming && lightToday ? lightClock(stop.photoTiming.best, lightToday) : null
+  // Behind Tioga Road or Glacier Point Road? The full read says what the road
+  // is doing today; list cards stay quiet (one alerts reading per card would
+  // be fifty on the Secret Guide).
+  const road = compact ? null : roadForStopId(stop.id)
   return (
     <article className="stop-card">
       <Plate
@@ -215,6 +221,8 @@ export default function StopCard({
           <CalloutMarkdown text={stop.hazard} />
         </aside>
       )}
+
+      {road && <RoadNote road={road} />}
 
       {stop.swap && (
         <aside className="swap-callout">

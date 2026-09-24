@@ -23,6 +23,7 @@
 import { getHikeById, getStopById } from '../content'
 import { sunTimes } from '../sun/solar'
 import { haversineMiles } from '../utils/geo'
+import { publishedDriveMinutes } from './driveTimes'
 import type { TripItemT } from './schema'
 
 export type SlottedItem = {
@@ -53,11 +54,16 @@ const PARK_AND_WALK_MIN = 10
 // leaves short valley legs almost untouched (a 14-minute hop becomes 15)
 // while pulling the mountain legs back toward reality.
 const ROAD_FACTOR = 1.35
-// Ceiling on a single buffer. The old 75 sat below the park's real worst
-// legs — Glacier Point to Mariposa Grove is about 75 minutes on its own, and
-// Tuolumne or Hetch Hetchy to the Valley is longer — so it was silently
-// erasing driving from any day that crossed the park.
+// Ceiling on a single straight-line buffer. The old 75 sat below the park's
+// real worst legs — Glacier Point to Mariposa Grove is about 75 minutes on its
+// own, and Tuolumne or Hetch Hetchy to the Valley is longer — so it was
+// silently erasing driving from any day that crossed the park.
 const MAX_BUFFER = 120
+// Legs priced from the park's published table (trip/driveTimes.ts) are real
+// figures, not an extrapolation, so they get a ceiling of their own: the
+// Mariposa Grove to Tioga Pass is two and a half hours by road, and capping it
+// at two would hide half an hour of driving the park itself prints.
+const MAX_PUBLISHED_BUFFER = 240
 
 // Meals anchor to the lunch block. A trip board that says "Lunch" has to mean
 // it; if the day genuinely cannot spare noon, the surrounding stops move, not
@@ -83,7 +89,7 @@ export function itemCoord(item: TripItemT): [number, number] | undefined {
   return undefined
 }
 
-/** Slotting buffer between consecutive coordinates: drive + park-and-walk. */
+/** Straight-line buffer between two coordinates: drive + park-and-walk. */
 function travelBufferMin(from?: [number, number], to?: [number, number]): number {
   if (!from || !to) return TRAVEL_BUFFER
   const miles = haversineMiles(from, to) * ROAD_FACTOR
@@ -91,9 +97,26 @@ function travelBufferMin(from?: [number, number], to?: [number, number]): number
   return Math.min(MAX_BUFFER, Math.max(10, min))
 }
 
+/** Slotting buffer between two items. A short hop inside one area keeps the
+ *  straight-line estimate; a leg the park's driving table decides (two items
+ *  anchored to different published points, trip/driveTimes.ts) is priced from
+ *  the table instead, because straight lines are shortest exactly where the
+ *  road is longest (Glacier Point is a mile above the Valley and an hour
+ *  away) and too long where the road is fast (Big Oak Flat Road, Tioga Road).
+ *  `from` is undefined for the day's first placement. */
+function legBufferMin(from: TripItemT | undefined, to: TripItemT): number {
+  const ca = from ? itemCoord(from) : undefined
+  const cb = itemCoord(to)
+  const local = travelBufferMin(ca, cb)
+  if (!from || !ca || !cb) return local
+  const published = publishedDriveMinutes(from, to)
+  if (published === null) return local
+  return Math.min(MAX_PUBLISHED_BUFFER, Math.max(10, published + PARK_AND_WALK_MIN))
+}
+
 /**
  * Display estimate between two items, for the /trip transit rows. Reuses
- * travelBufferMin so the on-screen number matches what actually placed the
+ * legBufferMin so the on-screen number matches what actually placed the
  * items (drive time plus a park-and-walk allowance) instead of a bare drive
  * estimate that would silently run ~10 minutes short of the real gap; null
  * when either side has no coordinate, 0 when they share a parking area.
@@ -103,7 +126,15 @@ export function driveMinutesBetween(a: TripItemT, b: TripItemT): number | null {
   const cb = itemCoord(b)
   if (!ca || !cb) return null
   if (haversineMiles(ca, cb) < 0.15) return 0
-  return Math.round(travelBufferMin(ca, cb) / 5) * 5
+  return Math.round(legBufferMin(a, b) / 5) * 5
+}
+
+/** True when the leg between two items is priced from the park's published
+ *  driving table rather than straight-line distance, so the board can say
+ *  which kind of number it is showing. */
+export function legUsesPublishedTable(a: TripItemT, b: TripItemT): boolean {
+  if (!itemCoord(a) || !itemCoord(b)) return false
+  return publishedDriveMinutes(a, b) !== null
 }
 
 export function toMinutes(hhmm: string): number {
@@ -246,7 +277,7 @@ export function slotDay(day: string, items: TripItemT[]): SlottedItem[] {
         const bStart = b.startMin ?? 0
         const bEnd = bStart + b.durationMin
         if (start < bEnd && start + slot.durationMin > bStart) {
-          start = bEnd + travelBufferMin(itemCoord(b.item), itemCoord(slot.item))
+          start = bEnd + legBufferMin(b.item, slot.item)
           moved = true
         }
       }
@@ -273,13 +304,15 @@ export function slotDay(day: string, items: TripItemT[]): SlottedItem[] {
   // days stop pretending the drive is 30 minutes.
   const placed: SlottedItem[] = []
   let cursor = DAY_START
-  let prevCoord: [number, number] | undefined
+  // The last placed item that carries a coordinate: a custom entry between
+  // two stops has none, and the drive is still from the stop before it.
+  let prevItem: TripItemT | undefined
   let firstPlacement = true
   for (const item of floatingFree) {
     const duration = floatingDuration(item)
     const coord = itemCoord(item)
 
-    let start = firstPlacement ? cursor : cursor + travelBufferMin(prevCoord, coord)
+    let start = firstPlacement ? cursor : cursor + legBufferMin(prevItem, item)
     // Advance past any fixed block that overlaps the candidate slot. Re-scan
     // after every move: a travel buffer can push the candidate into a block
     // the single pass had already cleared. Terminates because start only
@@ -291,7 +324,7 @@ export function slotDay(day: string, items: TripItemT[]): SlottedItem[] {
         const bStart = b.startMin ?? 0
         const bEnd = bStart + b.durationMin
         if (start < bEnd && start + duration > bStart) {
-          start = bEnd + travelBufferMin(itemCoord(b.item), coord)
+          start = bEnd + legBufferMin(b.item, item)
           moved = true
         }
       }
@@ -302,7 +335,7 @@ export function slotDay(day: string, items: TripItemT[]): SlottedItem[] {
     }
     placed.push({ item, day, startMin: start, durationMin: duration, fixed: false })
     cursor = start + duration
-    prevCoord = coord ?? prevCoord
+    if (coord) prevItem = item
     firstPlacement = false
   }
 
@@ -312,7 +345,7 @@ export function slotDay(day: string, items: TripItemT[]): SlottedItem[] {
   for (const item of evening) {
     const duration = floatingDuration(item)
     const coord = itemCoord(item)
-    const natural = firstPlacement ? cursor : cursor + travelBufferMin(prevCoord, coord)
+    const natural = firstPlacement ? cursor : cursor + legBufferMin(prevItem, item)
     let start = Math.max(sunAnchorMin(day, duration), natural)
     let moved = true
     while (moved) {
@@ -321,7 +354,7 @@ export function slotDay(day: string, items: TripItemT[]): SlottedItem[] {
         const bStart = b.startMin ?? 0
         const bEnd = bStart + b.durationMin
         if (start < bEnd && start + duration > bStart) {
-          start = bEnd + travelBufferMin(itemCoord(b.item), coord)
+          start = bEnd + legBufferMin(b.item, item)
           moved = true
         }
       }
@@ -332,7 +365,7 @@ export function slotDay(day: string, items: TripItemT[]): SlottedItem[] {
     }
     placed.push({ item, day, startMin: start, durationMin: duration, fixed: false })
     cursor = start + duration
-    prevCoord = coord ?? prevCoord
+    if (coord) prevItem = item
     firstPlacement = false
     blocks.push(placed[placed.length - 1])
     blocks.sort((a, b) => (a.startMin ?? 0) - (b.startMin ?? 0))

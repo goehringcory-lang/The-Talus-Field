@@ -343,6 +343,8 @@ export const Amenity = z.object({
   glyph: z.string().max(2).optional(),    // 1-2 characters drawn inside the pin
                                           // (a shuttle stop's number); kinds
                                           // without one draw their kind glyph
+  mark: z.enum(['fuel']).optional(),      // a drawn mark in place of the kind
+                                          // glyph: the pump, on gas stations only
 })
 
 export type AmenityT = z.infer<typeof Amenity>

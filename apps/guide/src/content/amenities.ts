@@ -83,16 +83,65 @@ const seed: AmenityInput[] = [
     name: 'Yosemite Village day-use parking',
     kind: 'parking',
     region: 'valley',
-    coord: [-119.5818, 37.7458], // TODO: verify on the ground — derived ±150 m from the NPS Village parking map (roundabout off Northside Dr, shuttle stop 1); no published coord (2026-07 web pass)
+    coord: [-119.5848, 37.7444], // TODO: verify on the ground — moved 2026-09 ~310 m WSW to NPS places/parkinglots "Yosemite Village" (-119.584840, 37.744368), 8 m from the OSM "Day Use Parking" lot centroid; the old pin sat in employee housing
     note: 'The main Valley day-use lot, off the roundabout by the Village Store at shuttle stop 1. Full by mid-morning in season; arrive early or commit to circling.',
   },
   {
     id: 'curry-village-day-use-lot',
-    name: 'Curry Village day-use parking',
+    name: 'Trailhead parking past Curry Village',
     kind: 'parking',
     region: 'valley',
-    coord: [-119.566577, 37.735344], // verified 2026-07: same lot as the editorial points.geojson curry-village-trailhead-parking pin
-    note: 'The day-use lot at Curry Village. Closest parking for the Mist Trail and the Happy Isles trailhead.',
+    coord: [-119.566577, 37.735344], // verified 2026-07; 2026-09: this is NPS parkinglots "Yosemite Valley Trailhead Parking" (190 spaces, 42 m) inside the OSM "Valley Trailhead Parking" lot, not the Curry Orchard lot (see curry-orchard-lot)
+    note: 'The trailhead lot east of Curry Village. NPS reserves it for overnight wilderness users only; day hikers park in the Curry Village (Orchard) lot and walk or ride the shuttle to Happy Isles and Mirror Lake.',
+  },
+  {
+    id: 'curry-orchard-lot',
+    name: 'Curry Village (Orchard) day-use parking',
+    kind: 'parking',
+    region: 'valley',
+    coord: [-119.5695, 37.7387], // NPS parkinglots "Curry Village (Orchard)" (-119.569510, 37.738659), 487 spaces
+    note: 'The unpaved day-use lot in the old apple orchard by Curry Village, the largest in the Valley and the day-use parking closest to the Mist Trail, Happy Isles, and Mirror Lake. The roads to all three are closed to cars; walk or ride the shuttle. Fills by mid-morning in season.',
+  },
+  {
+    id: 'welcome-center-lot',
+    name: 'Yosemite Valley Welcome Center parking',
+    kind: 'parking',
+    region: 'valley',
+    coord: [-119.58445, 37.746508], // NPS parkinglots "Yosemite Valley Welcome Center", 140 spaces
+    note: 'The small lot closest to the Welcome Center in Yosemite Village. The big day-use lot is a short walk south.',
+  },
+  {
+    id: 'bridalveil-fall-lot',
+    name: 'Bridalveil Fall parking',
+    kind: 'parking',
+    region: 'valley',
+    coord: [-119.65189, 37.716669], // NPS parkinglots "Bridalveil Fall", 84 spaces
+    note: 'The lot at the foot of Wawona Road for the short walk to Bridalveil Fall. Small, and full at midday in season.',
+  },
+  {
+    id: 'washburn-point-lot',
+    name: 'Washburn Point parking',
+    kind: 'parking',
+    region: 'glacier-mariposa',
+    coord: [-119.57305, 37.72046], // NPS parkinglots "Washburn Point", 43 spaces
+    note: 'The roadside lot at Washburn Point, the last overlook before Glacier Point on the same road.',
+    season: 'Glacier Point Road season',
+  },
+  {
+    id: 'wawona-store-lot',
+    name: 'Wawona Store and Post Office parking',
+    kind: 'parking',
+    region: 'glacier-mariposa',
+    coord: [-119.657644, 37.53789], // NPS parkinglots "Wawona Store and Post Office", 44 spaces
+    note: 'The lot at the Wawona Store, across from the Wawona Hotel.',
+  },
+  {
+    id: 'history-center-lot',
+    name: 'Yosemite History Center parking',
+    kind: 'parking',
+    region: 'glacier-mariposa',
+    coord: [-119.656765, 37.537922], // NPS parkinglots "Yosemite History Center (Forest Drive)", 44 spaces
+    note: 'The lot on Forest Drive for the Pioneer Yosemite History Center and the covered bridge.',
   },
   {
     id: 'yosemite-falls-lot',
@@ -111,7 +160,7 @@ const seed: AmenityInput[] = [
     name: 'Bridalveil Creek Campground',
     kind: 'camping',
     region: 'glacier-mariposa',
-    coord: [-119.62, 37.658], // verified 2026-07: campground proper, south of Glacier Point Rd down the access road (latitude.to; ~220 m south of the stops.ts access-road pin)
+    coord: [-119.6243, 37.6637], // moved 2026-09 to the NPS campgrounds record (-119.624293, 37.663658), on Loop A road inside the OSM campground polygon; the July pin was 407 m outside it
     note: 'The only campground on Glacier Point Road, at 7,200 feet halfway to the point. Cold nights even in July.',
     season: 'Summer only, roughly July through early September',
   },
@@ -128,7 +177,7 @@ const seed: AmenityInput[] = [
     name: 'Glacier Point parking',
     kind: 'parking',
     region: 'glacier-mariposa',
-    coord: [-119.5731, 37.7283], // verified 2026-07: Glacier Point main lot (same pin as the glacier-point stop; Hikespeak/LOC HAER)
+    coord: [-119.5753, 37.727], // moved 2026-09 to NPS parkinglots "Glacier Point" (-119.575298, 37.726956), matching the OSM lot; the July pin was the snack stand 244 m away
     note: 'The main lot at the end of Glacier Point Road. Fills by mid-morning in summer; sunset crowds arrive an hour early for a space.',
     season: 'Road closed in winter',
   },
@@ -137,7 +186,7 @@ const seed: AmenityInput[] = [
     name: 'Mariposa Grove Welcome Plaza parking',
     kind: 'parking',
     region: 'glacier-mariposa',
-    coord: [-119.632, 37.5085], // TODO: verify on the ground — Welcome Plaza lot at the South Entrance, derived ±150 m (same pin as the mariposa-grove stop; 2026-07 web pass)
+    coord: [-119.63, 37.5068], // TODO: verify on the ground — moved 2026-09 to NPS places "Mariposa Grove Welcome Plaza & Parking" (-119.630025, 37.506756), within 81 m of NPS parkinglots, the plaza shuttle stop and the OSM lot
     note: 'Cars park here, at the Welcome Plaza by the South Entrance, and the shuttle runs into the grove. The grove road itself has been closed to private cars since 2018.',
   },
 
@@ -151,7 +200,7 @@ const seed: AmenityInput[] = [
     region: 'tuolumne',
     coord: [-119.7993, 37.7476], // TODO: verify on the ground — The Dyrt pin in the loops off Big Oak Flat Rd south of the Crane Flat wye; other published coords conflict by km scale (2026-07 web pass)
     note: 'In the forest at the Crane Flat junction, where Tioga Road leaves Big Oak Flat Road. Handy to both the Valley and the high country, close to the Tuolumne and Merced sequoia groves.',
-    season: 'Summer only, roughly July through September',
+    season: 'Late spring to mid-October (May 21 to October 12 in 2026)',
   },
   {
     id: 'tamarack-flat-campground',
@@ -159,8 +208,8 @@ const seed: AmenityInput[] = [
     kind: 'camping',
     region: 'tuolumne',
     coord: [-119.7366, 37.7521], // verified 2026-07: campground at the road-end of the Tamarack Flat spur off Tioga Rd (same pin as the tamarack-to-cascade stop; latitude.to/CampingRoadTrip)
-    note: 'Primitive sites at the end of a rough 3-mile spur off Tioga Road. No water, no reservations for most of its history; check current rules before counting on it.',
-    season: 'Seasonal; closed in winter',
+    note: 'Primitive sites at the end of a rough 3-mile spur off Tioga Road. Creek water only, boiled before drinking; no RVs or trailers. Reservations open two weeks ahead on recreation.gov.',
+    season: 'Summer to mid-October (June 22 to October 12 in 2026)',
   },
   {
     id: 'white-wolf-campground',
@@ -168,8 +217,8 @@ const seed: AmenityInput[] = [
     kind: 'camping',
     region: 'tuolumne',
     coord: [-119.6471, 37.8707], // TODO: verify on the ground — Wikipedia pin at the White Wolf road-end; latitude.to differs ~500 m (2026-07 web pass)
-    note: 'At 8,000 feet up a short spur off Tioga Road, next to the old White Wolf Lodge. Cold, quiet, and well placed for Lukens Lake and Harden Lake.',
-    season: 'Seasonal; closed in winter',
+    note: 'At 8,000 feet up a short spur off Tioga Road, next to the old White Wolf Lodge. Cold, quiet, and well placed for Lukens Lake and Harden Lake. No water in 2026; reservations open two weeks ahead.',
+    season: 'Midsummer only (July 2 to September 14 in 2026)',
   },
   {
     id: 'yosemite-creek-campground',
@@ -186,15 +235,15 @@ const seed: AmenityInput[] = [
     kind: 'camping',
     region: 'tuolumne',
     coord: [-119.5651, 37.8075], // verified 2026-07: campground on Tioga Rd at 8,100 ft (latitude.to/CampingRoadTrip)
-    note: 'Right on Tioga Road at 8,100 feet, primitive and first-come for much of its history. A practical base for Olmsted Point and May Lake.',
-    season: 'Seasonal; closed in winter',
+    note: 'Right on Tioga Road at 8,100 feet, primitive, creek water boiled before drinking. Reservations open two weeks ahead on recreation.gov. A practical base for Olmsted Point and May Lake.',
+    season: 'Summer to mid-October (June 23 to October 11 in 2026)',
   },
   {
     id: 'tuolumne-meadows-campground',
     name: 'Tuolumne Meadows Campground',
     kind: 'camping',
     region: 'tuolumne',
-    coord: [-119.36, 37.8711], // verified 2026-07: campground loops south of Tioga Rd behind the Tuolumne Meadows store (parkrangerjohn, lot-scale)
+    coord: [-119.3557, 37.8753], // moved 2026-09 to the campground entrance and reservation office (NPS campgrounds record / OSM), so directions end at check-in; the July pin sat in the south loops
     note: 'The big high-country campground behind the Tuolumne Meadows store, on the river at 8,600 feet. Reopened after a multi-year rebuild; reservations only.',
     season: 'Tioga Road season only',
   },
@@ -639,6 +688,7 @@ const seed: AmenityInput[] = [
     region: 'tuolumne',
     coord: [-119.796779, 37.752998], // NPS API places: Crane Flat Gas Station
     note: 'Unleaded and diesel at the Tioga Road junction, pumps 24 hours by card. There is no gas in the Valley and none in Tuolumne Meadows any more, so this is the last fill before the high country.',
+    mark: 'fuel',
   },
   {
     id: 'wawona-gas',
@@ -647,6 +697,7 @@ const seed: AmenityInput[] = [
     region: 'glacier-mariposa',
     coord: [-119.65745, 37.537189], // NPS API places: Wawona Gas Station
     note: 'Gas, diesel, and propane by the Wawona Store, pumps 24 hours by card and staffed 8 to 5. The EV charger is in the store lot.',
+    mark: 'fuel',
   },
   {
     id: 'el-portal-gas',
@@ -655,6 +706,7 @@ const seed: AmenityInput[] = [
     region: 'valley',
     coord: [-119.781681, 37.67481], // NPS API places: El Portal Gas Station and Market
     note: 'The closest fuel to the Valley, outside the Arch Rock Entrance on Highway 140: gas, diesel, propane, a market, and a two-plug EV charger.',
+    mark: 'fuel',
   },
   {
     id: 'curry-village-services',
@@ -688,6 +740,7 @@ const seed: AmenityInput[] = [
     region: 'valley',
     coord: [-119.5828, 37.748592], // NPS API places: Yosemite Medical Clinic
     note: 'Urgent care in Yosemite Village, behind the Village Store. Not an emergency room: for an emergency call 911.',
+    glyph: '+',
   },
   {
     id: 'valley-lodge-ev',
@@ -696,6 +749,7 @@ const seed: AmenityInput[] = [
     region: 'valley',
     coord: [-119.597894, 37.742935], // NPS API places: Yosemite Valley Lodge EV Charging Station
     note: 'Level 2 chargers at the Lodge, with ten more at the Yosemite Falls day-use lot next door and four at the Welcome Center lot.',
+    glyph: 'EV',
   },
   {
     id: 'tuolumne-meadows-store',
@@ -703,7 +757,7 @@ const seed: AmenityInput[] = [
     kind: 'services',
     region: 'tuolumne',
     coord: [-119.356908, 37.874375], // NPS API places: Tuolumne Meadows Store
-    note: 'Groceries, camping supplies, and the post office, with the grill next door. No gas here any more.',
+    note: 'Groceries, camping supplies, and the post office, with the grill next door, when open. No gas here any more. Closed for the rest of 2026 after September 20.',
     season: 'Tioga Road season only',
   },
   {
@@ -740,7 +794,7 @@ const seed: AmenityInput[] = [
     kind: 'lodging',
     region: 'tuolumne',
     coord: [-119.332947, 37.877319], // NPS API places: Tuolumne Meadows Lodge
-    note: 'Canvas tent cabins by the Tuolumne River at the end of the lodge road, the only lodging in the high country. Dinner and breakfast are served in the dining tent.',
+    note: 'Canvas tent cabins by the Tuolumne River at the end of the lodge road, the only lodging in the high country, with dinner and breakfast in the dining tent in season. Closed for the rest of 2026; the dining tent shut on September 13.',
     season: 'Tioga Road season only',
   },
 
@@ -761,7 +815,7 @@ const seed: AmenityInput[] = [
     name: 'El Capitan',
     kind: 'landmark',
     region: 'valley',
-    coord: [-119.63583, 37.74222], // Wikipedia: El Capitan
+    coord: [-119.6376, 37.7342], // OSM summit node n6256710614 (7,570 ft by 3DEP against the published 7,573); the Wikipedia point sat 900 m back on the upland
     note: 'Three thousand feet of granite from meadow to rim. The climbers are the dots; the meadow across the road is where to look from.',
   },
   {

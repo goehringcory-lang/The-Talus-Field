@@ -4,7 +4,7 @@
 import { Link } from 'react-router-dom'
 
 type Props = {
-  active: 'trip' | 'hikes' | 'programs'
+  active: 'trip' | 'hikes' | 'programs' | 'saved'
 }
 
 export default function PlanTabs({ active }: Props) {
@@ -30,6 +30,13 @@ export default function PlanTabs({ active }: Props) {
         aria-current={active === 'programs' ? 'page' : undefined}
       >
         Programs
+      </Link>
+      <Link
+        to="/saved"
+        className="plan-tabs__tab"
+        aria-current={active === 'saved' ? 'page' : undefined}
+      >
+        Saved
       </Link>
     </nav>
   )

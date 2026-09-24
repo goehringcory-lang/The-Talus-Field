@@ -357,6 +357,17 @@ p { margin: 0 0 1.1em; text-wrap: pretty; }
   color: var(--rust);
 }
 
+/* Seasonal road: what Tioga or Glacier Point Road is doing today, typical or
+   live (components/RoadNote.tsx). A reading, not a caution, so it sits
+   upright and neutral until the road is closed or may be. */
+.swap-callout--road {
+  border-left-color: var(--ink-3);
+  font-style: normal;
+}
+.swap-callout--road .swap-callout__label { color: var(--ink-3); }
+.swap-callout--road-closed { border-left-color: var(--rust); }
+.swap-callout--road-closed .swap-callout__label { color: var(--rust); }
+
 /* Archive note — a sourced aside from the Nature Notes archive. Reads as a
    clipping set into the page rather than a callout demanding action, which is
    why it takes a boxed rule instead of the swap-callout's left bar. */

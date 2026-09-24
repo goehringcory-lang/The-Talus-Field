@@ -28,6 +28,13 @@ import { useWeather } from '../weather/useWeather'
 import { HIDE_AFTER_MS, WARN_AFTER_MS } from '../weather/staleness'
 import { regionTodayLine } from '../weather/todayLine'
 import { useDocumentTitle } from '../lib/documentTitle'
+import { recordView } from '../lib/recentlyViewed'
+import { isSyncEnabled } from '../sync/planSync'
+import { UNVERIFIED_STOP_IDS } from '../near/unverified'
+import { useParking } from '../parking/useParking'
+import { LOT_STATUS_LABEL, lotForAmenity } from '../parking/lotMatch'
+import { HIDE_AFTER_MS as PARKING_HIDE_MS } from '../parking/staleness'
+import { compactStamp } from '../utils/relativeStamp'
 
 // Amenities within this straight-line range of the stop are close enough to
 // matter when the stop's own lot is full; beyond it the map is the tool.
@@ -43,6 +50,9 @@ function StopNotes({ stopId }: { stopId: string }) {
   const [note, setNote] = useStopNote(stopId)
   const [saved, setSaved] = useState(false)
   const timer = useRef(0)
+  // With sync on, a note travels to the buyer's other devices; the copy has
+  // to say so rather than promise it never leaves this one.
+  const [synced] = useState(isSyncEnabled)
 
   useEffect(() => () => window.clearTimeout(timer.current), [])
 
@@ -65,14 +75,16 @@ function StopNotes({ stopId }: { stopId: string }) {
         maxLength={2000}
         value={note}
         onChange={(e) => edit(e.target.value)}
-        placeholder="Parking notes, timing, what you'd do differently. Stays on this device."
+        placeholder={`Parking notes, timing, what you'd do differently. ${
+          synced ? 'Saved here and synced to your other devices.' : 'Stays on this device.'
+        }`}
         aria-label="Your notes for this stop"
         style={{ width: '100%', resize: 'vertical' }}
       />
       {/* Reserved height: the line appears mid-typing, and letting it push the
           page down under the reader's thumb is worse than an empty row. */}
       <p className="card__note" role="status" style={{ minHeight: '1.2em' }}>
-        {saved ? 'Saved on this device.' : ''}
+        {saved ? (synced ? 'Saved. Sync carries it to your other devices.' : 'Saved on this device.') : ''}
       </p>
       <p className="card__note" style={{ marginTop: 0 }}>
         Notes from every stop gather in <Link to="/log">your field log</Link>.
@@ -102,6 +114,13 @@ export default function StopDetail() {
   const stop = params.stopId ? getStopById(params.stopId) : undefined
   const { plan, addStop } = useTripPlan()
   useDocumentTitle(stop?.title)
+  const parking = useParking()
+  // Mount-time clock for the lot stamp; render stays pure.
+  const [nowMs] = useState(() => Date.now())
+  const stopId = stop?.id
+  useEffect(() => {
+    if (stopId) recordView({ type: 'stop', id: stopId })
+  }, [stopId])
   if (!stop) {
     return (
       <NotFound
@@ -183,6 +202,16 @@ export default function StopDetail() {
           <ShareStopButton stopId={stop.id} title={stop.title} />
         </div>
 
+        {/* A pin nobody has stood at yet. The companion mode skips these;
+            the page names it and asks the reader who is there. */}
+        {UNVERIFIED_STOP_IDS.has(stop.id) && (
+          <p className="pin-unverified">
+            <span className="pin-unverified__label">Pin not yet checked on the ground</span>
+            Trust the turnout this entry describes over the exact pin.{' '}
+            <Link to={`/report?type=stop&id=${stop.id}&kind=pin`}>Standing at it? Send its position →</Link>
+          </p>
+        )}
+
         {region && <StopForecastLine region={region} />}
 
         <SeasonalNotices stopIds={[stop.id]} />
@@ -208,7 +237,15 @@ export default function StopDetail() {
           <section aria-label="Parking and camping nearby" className="page-section">
             <span className="eyebrow">Parking and camping nearby</span>
             <ul className="link-list">
-              {nearbyAmenities.map(({ amenity, miles }) => (
+              {nearbyAmenities.map(({ amenity, miles }) => {
+                // The live lot word, under the waits posture: only while the
+                // feed is fresh, and never a word for a pin with no NPS lot.
+                const fresh =
+                  parking.fetchedAt !== null &&
+                  nowMs - Date.parse(parking.fetchedAt) <= PARKING_HIDE_MS
+                const lot = fresh ? lotForAmenity(amenity, parking.lots) : null
+                const lotWord = lot && lot.status !== 'unknown' ? LOT_STATUS_LABEL[lot.status] : null
+                return (
                 <li key={amenity.id}>
                   <a href={directionsUrl(amenity.coord)} target="_blank" rel="noreferrer">
                     {amenity.name} →
@@ -216,9 +253,13 @@ export default function StopDetail() {
                   <span className="dateline">
                     {amenity.kind === 'camping' ? 'campground' : 'parking'} ·{' '}
                     {formatMiles(miles)} away
+                    {lotWord && parking.fetchedAt
+                      ? ` · ${lotWord} (NPS, ${compactStamp(parking.fetchedAt, nowMs) ?? 'just now'})`
+                      : ''}
                   </span>
                 </li>
-              ))}
+                )
+              })}
             </ul>
           </section>
         )}
@@ -226,6 +267,11 @@ export default function StopDetail() {
         {/* Keyed: paging prev/next keeps this route mounted, and the saved
             line belongs to the note it confirmed. */}
         <StopNotes key={stop.id} stopId={stop.id} />
+
+        <p className="report-link">
+          Something here wrong or out of date?{' '}
+          <Link to={`/report?type=stop&id=${stop.id}`}>Tell us →</Link>
+        </p>
 
         <PrevNextNav
           sticky

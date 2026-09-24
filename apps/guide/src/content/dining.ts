@@ -56,7 +56,7 @@ export const DINING_AREAS: { id: DiningArea; title: string; note?: string }[] = 
     id: 'tuolumne',
     title: 'Tuolumne Meadows & the Highway 120 corridor',
     note:
-      'The Tuolumne store, grill, and lodge are closed for the 2026 season. Tioga Road stays open until snow closes it, and between Crane Flat and Lee Vining the day is self-supported.',
+      'The Tuolumne store, grill, and lodge are closed for the season: the lodge dining tent shut September 13 and the grill September 20, 2026, and both reopen with Tioga Road the following summer. Tioga Road stays open until snow closes it, and between Crane Flat and Lee Vining the day is self-supported.',
   },
   {
     id: 'hetch-hetchy',
@@ -107,7 +107,7 @@ const seed: DiningInput[] = [
     order: 2,
     hours: '6:30 – 6:30',
     hoursNote: 'through October 14; from October 15, 7 a.m. to 3 p.m.',
-    coord: [-119.6012, 37.7414], // shared Lodge pin (points.geojson)
+    coord: [-119.599, 37.7433], // moved 2026-09: OSM Yosemite Valley Lodge food court and NPS "Yosemite Valley Lodge"
     description:
       'A full Starbucks next to Base Camp Eatery, the only chain in the park. The one food counter in the Valley where you know the menu before you walk in.',
   },
@@ -150,7 +150,7 @@ const seed: DiningInput[] = [
     hours: '6:30 – 10:30, 11 – 9',
     hoursNote:
       'lunch and dinner close at 8 p.m. from October 12; breakfast opens at 7 a.m. from October 25',
-    coord: [-119.6012, 37.7414],
+    coord: [-119.599, 37.7433], // moved 2026-09: OSM Base Camp Eatery at Yosemite Valley Lodge
     description:
       'The park\'s food court: breakfast until 10:30, then burgers, pizza, salads, and rice bowls from self-order kiosks. Not memorable, reliably open, and the widest menu for a family that cannot agree.',
   },
@@ -249,7 +249,7 @@ const seed: DiningInput[] = [
     hoursNote: 'last seating 9:30; from October 26, 5 to 9 p.m. with last seating at 8:30',
     reservations:
       'Reservations are accepted and worth making for a window table; walk-ins wait at the door. In spring the view of Yosemite Falls does most of the work.',
-    coord: [-119.6012, 37.7414],
+    coord: [-119.599, 37.7433], // moved 2026-09: OSM Mountain Room at Yosemite Valley Lodge
     description:
       'Steaks, trout, and California standards behind a two-story window aimed at Yosemite Falls. The best proper dinner in the park that does not require planning your evening around it.',
   },
@@ -263,7 +263,7 @@ const seed: DiningInput[] = [
     order: 13,
     hours: '5 – 10',
     hoursNote: 'Monday to Friday; noon to 10 p.m. Saturday and Sunday',
-    coord: [-119.6012, 37.7414],
+    coord: [-119.599, 37.7433], // moved 2026-09: OSM Mountain Room Lounge at Yosemite Valley Lodge
     description:
       'The Lodge bar: a big open fireplace, beer and cocktails, and a short food menu. Buy a s\'mores kit and use the fire; it is the Valley\'s most dependable bad-weather afternoon.',
   },
@@ -352,7 +352,7 @@ const seed: DiningInput[] = [
     hours: '8 – 8',
     hoursNote: 'closes October 12',
     season: 'Through October 12',
-    coord: [-119.5834, 37.7412],
+    coord: [-119.5792, 37.741], // moved 2026-09: OSM "Housekeeping Camp Store" and NPS Housekeeping Camp
     description:
       'The small store on the river side of the camp: ice, firewood, s\'mores inventory, and enough grocery basics to save a trip to the Village. The laundry next door runs later.',
   },
@@ -402,7 +402,7 @@ const seed: DiningInput[] = [
     order: 3,
     hours: '8 – 6',
     hoursNote: 'independent store; hours are the market\'s own, not the park\'s',
-    coord: [-119.6428, 37.5417],
+    coord: [-119.645, 37.5479], // moved 2026-09: Census geocoder for 7995 Chilnualna Falls Rd and OSM agree within 90 m
     description:
       'The independent full grocery tucked into the Wawona community: real produce, a meat counter, and staples. The best actual grocery inside the park boundary, and most visitors never learn it exists.',
   },
@@ -420,7 +420,7 @@ const seed: DiningInput[] = [
     order: 1,
     hours: '8 – 5',
     hoursNote: 'the store closes October 25; pumps take cards 24 hours, year-round',
-    coord: [-119.8007, 37.7552],
+    coord: [-119.7968, 37.753], // moved 2026-09: NPS places "Crane Flat Gas Station" (the amenities pin)
     description:
       'The gas-station store at the foot of Tioga Road: snacks, drinks, ice, firewood, and coffee. Top off the tank and the cooler here. The Tuolumne store and grill are closed for the 2026 season, so the next food eastbound is Lee Vining.',
   },
@@ -433,8 +433,8 @@ const seed: DiningInput[] = [
     price: '$',
     order: 2,
     closed:
-      'Closed for the 2026 season. The grill shut on September 20. It returns when Tioga Road reopens next year.',
-    season: 'Closed for 2026',
+      'Closed for the season. The grill shut on September 20, 2026, and returns when Tioga Road reopens the following summer.',
+    season: 'Summer, with Tioga Road',
     coord: [-119.3590, 37.8741], // shared Tuolumne grill/store pin (stops.ts)
     stopId: 'tuolumne-meadows-grill',
     description:
@@ -449,8 +449,8 @@ const seed: DiningInput[] = [
     price: '$$',
     order: 3,
     closed:
-      'Closed for the 2026 season, with the grill. Resupply boxes and groceries are not available here until next year.',
-    season: 'Closed for 2026',
+      'Closed for the season, with the grill, since September 2026. Resupply boxes and groceries are not available here until Tioga Road reopens the following summer.',
+    season: 'Summer, with Tioga Road',
     coord: [-119.3590, 37.8741],
     description:
       'When it is open, the canvas-sided general store that provisions the high country: groceries, camp fuel, beer, and a post office window where thru-hikers collect resupply boxes. It is struck for the winter with the grill.',
@@ -464,9 +464,9 @@ const seed: DiningInput[] = [
     price: '$$',
     order: 4,
     closed:
-      'Closed for the 2026 season. The dining tent served its last meals on September 13.',
-    season: 'Closed for 2026',
-    coord: [-119.3520, 37.8778],
+      'Closed for the season. The dining tent served its last meals of 2026 on September 13 and reopens with the lodge the following summer.',
+    season: 'Summer, with Tioga Road',
+    coord: [-119.3329, 37.8773], // moved 2026-09: NPS places "Tuolumne Meadows Lodge" (the amenities pin); OSM within 3 m
     description:
       'When it is open, family-style breakfast and dinner in a canvas dining tent by the Dana Fork, shared tables and all. Dinner is by reservation through the lodge and open to non-guests when there is room. It is the only table service east of the Valley.',
   },
@@ -479,8 +479,8 @@ const seed: DiningInput[] = [
     price: '$$',
     order: 5,
     closed:
-      'The lodge, store, and dining room are closed for the 2026 season for sewer-line repairs. When operating, it runs a counter window, a tiny store, and family-style dinners like a smaller Tuolumne Lodge.',
-    coord: [-119.6497, 37.8523],
+      'The lodge, store, and dining room stayed closed through the 2026 season, by park order, over damaged sewer lines; confirm a reopening at travelyosemite.com before planning on it. When operating, it runs a counter window, a tiny store, and family-style dinners like a smaller Tuolumne Lodge.',
+    coord: [-119.6492, 37.8696], // moved 2026-09: NPS places "White Wolf Lodge"; OSM restaurant agrees
     description:
       'The little 1920s lodge halfway up Tioga Road, ordinarily the only food between Crane Flat and the meadows.',
   },
@@ -497,7 +497,7 @@ const seed: DiningInput[] = [
     price: '$$$',
     order: 1,
     reservations: 'Dinner reservations recommended in summer; the tavern and its deck are walk-in.',
-    coord: [-119.8530, 37.8680], // shared Evergreen Lodge pin (stops.ts)
+    coord: [-119.858, 37.8758], // moved 2026-09: OSM Evergreen Lodge, restaurant and store within 15 m
     stopId: 'evergreen-lodge',
     description:
       'The 1921 lodge on the Hetch Hetchy road: a proper restaurant, a century-old tavern with a deck under the pines, and breakfast through dinner daily in season. The only reliable food and drink on the corridor; time the dam trip so this is the reward on the way out.',
@@ -510,7 +510,7 @@ const seed: DiningInput[] = [
     kind: 'grocery',
     price: '$$',
     order: 2,
-    coord: [-119.8530, 37.8680],
+    coord: [-119.858, 37.8758], // moved 2026-09: OSM Evergreen Lodge store
     stopId: 'evergreen-lodge',
     description:
       'Sandwiches, coffee, ice, and forgotten sunscreen. The last provisions before the dead-end road to the dam, where there is nothing.',
@@ -567,7 +567,7 @@ const seed: DiningInput[] = [
     price: '$',
     order: 1,
     hoursNote: 'open early to evening, daily',
-    coord: [-119.9650, 37.4866],
+    coord: [-119.9703, 37.49], // moved 2026-09: OSM "Happy Burger Diner", Hwy 140 at 12th St
     description:
       'A gold-rush-town diner claiming the largest menu in the Sierra, burgers through burritos through pie, with a patio and milkshakes. The reliable family stop on the 140 corridor.',
   },
@@ -581,7 +581,7 @@ const seed: DiningInput[] = [
     price: '$$$',
     order: 2,
     hoursNote: 'closed Mondays',
-    coord: [-119.9663, 37.4859],
+    coord: [-119.97, 37.4897], // moved 2026-09: OSM "1850", 5114 Hwy 140
     description:
       'Mariposa\'s brewery restaurant, named for the county\'s founding year: house beers, smoked meats, and serious burgers. The first-choice proper dinner on the 140 side.',
   },
@@ -594,7 +594,7 @@ const seed: DiningInput[] = [
     kind: 'sit-down',
     price: '$$$',
     order: 3,
-    hoursNote: 'dinner only',
+    hoursNote: 'dinner only, closed Sundays',
     coord: [-119.9670, 37.4849],
     description:
       'Old-school steak-and-seafood dinner house in a historic downtown building, run the same way for decades. Where Mariposa goes for anniversaries.',
@@ -622,7 +622,8 @@ const seed: DiningInput[] = [
     kind: 'counter',
     price: '$$',
     order: 5,
-    hoursNote: 'breakfast and lunch',
+    closed:
+      'Closed. The cafe shut when its owner retired in 2022 and has not reopened; for breakfast in Mariposa, Happy Burger opens early daily.',
     coord: [-119.9660, 37.4855],
     description:
       'Breakfast and lunch in a restored 1940s diner: eggs, biscuits, sandwiches, and pastry. The morning stop before the hour drive up to the Valley.',
@@ -649,7 +650,8 @@ const seed: DiningInput[] = [
     kind: 'coffee',
     price: '$',
     order: 2,
-    hoursNote: 'mornings to mid-afternoon',
+    closed:
+      'Directory listings have shown it closed since 2025, and it no longer answers online. Do not count on coffee here; Priest Station Cafe serves breakfast daily until 11 a.m.',
     coord: [-120.2325, 37.8386],
     description:
       'The local roaster on Main Street: espresso, pastries, and light breakfast from 7 a.m. The right coffee before the last hour of Highway 120.',
@@ -663,7 +665,7 @@ const seed: DiningInput[] = [
     kind: 'sit-down',
     price: '$$',
     order: 3,
-    coord: [-120.2565, 37.8098],
+    coord: [-120.2726, 37.814], // moved 2026-09: OSM "Priest Station Cafe" (single source)
     description:
       'Burgers and comfort plates on a deck hanging over the edge of Priest Grade, run by descendants of the 1855 stage stop\'s founders. The view down the canyon is the reason to time a meal here.',
   },
@@ -689,7 +691,7 @@ const seed: DiningInput[] = [
     price: '$$$',
     order: 5,
     reservations: 'Restaurant reservations recommended in summer; the tavern serves lunch through late evening, walk-in.',
-    coord: [-119.9370, 37.8110],
+    coord: [-119.8818, 37.8127], // moved 2026-09: OSM Rush Creek Lodge (34001 Hwy 120), half a mile from the Big Oak Flat entrance
     description:
       'The polished sibling of the Evergreen Lodge, minutes from the gate: a restaurant, a lively tavern, a firepit terrace, and a general store below. The best-executed dinner on the 120 side.',
   },
@@ -702,7 +704,7 @@ const seed: DiningInput[] = [
     kind: 'sit-down',
     price: '$$',
     order: 1,
-    coord: [-119.6486, 37.3405],
+    coord: [-119.6603, 37.3331], // moved 2026-09: OSM and the Census geocoder for 40233 Enterprise Dr agree within 36 m
     description:
       'Oakhurst\'s brewpub: house beers, wood-fired pizzas, and burgers in a room that fills by 6 on summer nights. The default good dinner on the southern corridor.',
   },
@@ -717,7 +719,7 @@ const seed: DiningInput[] = [
     order: 2,
     hoursNote: 'dinner Wednesday through Sunday',
     reservations: 'Reservations essentially required; nothing about the room is casual.',
-    coord: [-119.6560, 37.3364],
+    coord: [-119.661, 37.3272], // moved 2026-09: OSM Chateau du Sureau and the Census geocoder for 48688 Victoria Ln
     description:
       'Erna Kubin-Clanin\'s famed estate restaurant at a Relais & Châteaux inn, improbably parked in a Sierra foothill town: multi-course European-Californian tasting menus and a deep cellar. The one true special-occasion meal within an hour of the park.',
   },
@@ -730,9 +732,9 @@ const seed: DiningInput[] = [
     kind: 'sit-down',
     price: '$$$',
     order: 1,
-    coord: [-119.6318, 37.4635],
+    coord: [-119.635, 37.4731], // moved 2026-09: OSM Tenaya Lodge (1122 Hwy 41) and Jackalopes
     description:
-      'The casual all-day room at the big Tenaya resort, two miles from the South Entrance: burgers, salads, and a bar that stays open after the park empties. The resort also runs a deli and a main three-meal restaurant, so nobody leaves unfed.',
+      'The casual all-day room at the big Tenaya resort, two miles from the South Entrance: burgers, salads, and a bar that stays open after the park empties, breakfast through dinner daily. The resort also runs a deli with the same long hours, so nobody leaves unfed.',
   },
   {
     id: 'embers-tenaya',
@@ -743,11 +745,11 @@ const seed: DiningInput[] = [
     kind: 'sit-down',
     price: '$$$$',
     order: 2,
-    hoursNote: 'dinner only; seasonal nights vary',
-    reservations: 'Reservations recommended.',
-    coord: [-119.6320, 37.4633],
+    closed:
+      'Closed until further notice, per the resort. Check visittenaya.com before planning a dinner here; Jackalope\'s at the same resort serves dinner daily.',
+    coord: [-119.635, 37.4731], // moved 2026-09: OSM Tenaya Lodge (1122 Hwy 41)
     description:
-      'Tenaya\'s fine-dining room: steaks, seafood, and California wine in a lodge setting. The dress-up dinner south of the park while Wawona\'s dining room is dark.',
+      'Tenaya\'s fine-dining room: steaks, seafood, and California wine in a lodge setting. When it reopens, the dress-up dinner south of the park while Wawona\'s dining room is dark.',
   },
   {
     id: 'narrow-gauge-inn',
@@ -760,7 +762,7 @@ const seed: DiningInput[] = [
     order: 3,
     season: 'Seasonal',
     hoursNote: 'dinner, typically closed early in the week; call first',
-    coord: [-119.6300, 37.4560],
+    coord: [-119.6437, 37.4547], // moved 2026-09: OSM hotel, 48571 CA-41
     description:
       'A creaky mountain dining room and buffalo-head bar at the century-old inn beside the Sugar Pine Railroad. Seasonal, dinner-oriented, and worth confirming before counting on it.',
   },
@@ -773,10 +775,10 @@ const seed: DiningInput[] = [
     kind: 'counter',
     price: '$$',
     order: 1,
-    season: 'Tioga season',
-    coord: [-119.1201, 37.9600],
+    season: 'Late April into fall',
+    coord: [-119.1136, 37.9474], // moved 2026-09: OSM, the Mobil at 22 Vista Point Rd, Hwy 120 and 395
     description:
-      'The famous one: fish tacos, buffalo meatloaf, and mango margaritas inside a gas station at the foot of Tioga Pass, with Mono Lake out the window. Closes with the pass; every eastbound crossing should end here at least once.',
+      'The famous one: fish tacos, buffalo meatloaf, and mango margaritas inside a gas station at the foot of Tioga Pass, with Mono Lake out the window. Open from late April into the fall, a season that runs close to the pass\'s but not in step with it; every eastbound crossing should end here at least once.',
   },
   {
     id: 'mono-cone',
@@ -787,7 +789,7 @@ const seed: DiningInput[] = [
     kind: 'snack',
     price: '$',
     order: 2,
-    season: 'Summer',
+    season: 'Spring to fall',
     coord: [-119.1213, 37.9573],
     description:
       'A walk-up burger-and-soft-serve shack that has fed 395 travelers for generations. Line out front, cones the size of the drive you just did.',
@@ -803,7 +805,7 @@ const seed: DiningInput[] = [
     order: 3,
     coord: [-119.1210, 37.9580],
     description:
-      'The 1965 diner at the center of Lee Vining: big breakfasts, patty melts, and pie, and the only restaurant in town that stays open through winter. The morning move before driving up the pass.',
+      'The 1965 diner at the center of Lee Vining: big breakfasts, patty melts, and pie, and open year-round, with a couple of closed midweek days in winter. The morning move before driving up the pass.',
   },
   {
     id: 'latte-da',
@@ -814,7 +816,7 @@ const seed: DiningInput[] = [
     kind: 'coffee',
     price: '$',
     order: 4,
-    season: 'Summer',
+    season: 'April to late fall',
     coord: [-119.1207, 37.9585],
     description:
       'Espresso and baked goods out of the 1920s El Mono Motel office, in a garden with Mono Lake light. The correct coffee before Tioga Pass.',

@@ -164,9 +164,9 @@ const seed: DeadlineInput[] = [
     offsetDays: -7,
     time: '7 a.m.',
     detail:
-      'From April 15 through November 9, Camp 4 sites release one week before the arrival date at 7 a.m. Pacific, at $10 per person a night. Outside those dates the campground is first-come, first-served at $10 a night.',
+      'From April 15 through November 29 in 2026 (the last reservable night is November 28), Camp 4 sites release one week before the arrival date at 7 a.m. Pacific, at $10 per person a night. Outside those dates the campground is first-come, first-served at $10 a night.',
     confidence: 'published',
-    source: 'https://www.nps.gov/yose/planyourvisit/camping.htm',
+    source: 'https://www.nps.gov/yose/planyourvisit/camp4.htm',
     tag: 'date-camping',
     reads: ['yosemite-camping-complete-guide'],
   },

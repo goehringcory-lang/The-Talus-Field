@@ -39,6 +39,7 @@ import {
   type Placed,
 } from '../trip/agendaLayout'
 import { daylightFit } from '../sun/daylight'
+import { useRoadReader, type RoadReading } from '../alerts/roadState'
 import { driveMinutesBetween, toHhmm, type SlottedItem } from '../trip/slotting'
 import { hikeItemId, stopItemId, type TripItemT } from '../trip/schema'
 import { useTripPlan } from '../trip/useTripPlan'
@@ -151,6 +152,9 @@ export default function TripAgenda({ slotted, windowDays, dayForecasts }: Props)
 
   const pxPerMin = PX_PER_MIN[density]
   const today = todayIso()
+  // One alerts subscription for the whole board; each block asks it about
+  // its own road on its own day.
+  const roads = useRoadReader()
 
   const trackRefs = useRef(new Map<string, HTMLDivElement>())
   const dragRef = useRef<Drag | null>(null)
@@ -702,6 +706,7 @@ export default function TripAgenda({ slotted, windowDays, dayForecasts }: Props)
                       <AgendaBlock
                         placed={p}
                         day={day}
+                        road={roads.forItem(p.s.item, day)}
                         win={win}
                         pxPerMin={pxPerMin}
                         expanded={expandedId === p.s.item.itemId}
@@ -745,6 +750,7 @@ export default function TripAgenda({ slotted, windowDays, dayForecasts }: Props)
                       }}
                       onPointerDown={(e) => startPress(e, s, 'move', day, win.from)}
                       day={day}
+                      road={roads.forItem(s.item, day)}
                       days={days}
                       onPlace={placeItem}
                       onDuration={setItemDuration}
@@ -788,11 +794,15 @@ type BlockProps = {
   onDuration: (itemId: string, durationMin: number | undefined) => void
   onUnpin: () => void
   onRemove: () => void
+  // The seasonal road this item sits behind, read for this block's day
+  // (alerts/roadState.ts); null for everything that does not depend on one.
+  road: RoadReading | null
 }
 
 function AgendaBlock({
   placed,
   day,
+  road,
   win,
   pxPerMin,
   expanded,
@@ -818,10 +828,16 @@ function AgendaBlock({
   // can still change something. Hikes only — a sunset viewpoint or an
   // evening meal ends after dark by design (see trip/slotting.ts).
   const afterDark = s.item.type === 'hike' && daylightFit(day, startMin, s.durationMin)?.verdict === 'dark'
+  // Behind Tioga Road or Glacier Point Road on a day the road is closed, or
+  // may be: the flag says which, the hatch keeps it visible on a block too
+  // short to print a flag, and the panel spells out the source.
+  const roadFlag = road?.flag ?? null
 
   return (
     <div
-      className={`ag-block ag-block--${size}${fixedTime ? ' ag-block--fixed' : ''}`}
+      className={`ag-block ag-block--${size}${fixedTime ? ' ag-block--fixed' : ''}${
+        road && road.state !== 'open' ? ' ag-block--road' : ''
+      }`}
       style={
         {
           top,
@@ -838,7 +854,9 @@ function AgendaBlock({
         tabIndex={0}
         data-item-id={s.item.itemId}
         aria-expanded={expanded}
-        aria-label={`${info.title}, ${timeRange}${afterDark ? ', ends after sunset' : ''}`}
+        aria-label={`${info.title}, ${timeRange}${afterDark ? ', ends after sunset' : ''}${
+          roadFlag ? `, ${roadFlag.toLowerCase()}` : ''
+        }`}
         onPointerDown={(e) => onPointerDown(e, 'move')}
         onClick={onToggle}
         onKeyDown={(e) => {
@@ -856,6 +874,7 @@ function AgendaBlock({
           {fixedTime && <span className="ag-block__flag">Published time</span>}
           {pinned && <span className="ag-block__flag">Pinned</span>}
           {afterDark && <span className="ag-block__flag ag-block__flag--dark">After sunset</span>}
+          {roadFlag && <span className="ag-block__flag ag-block__flag--road">{roadFlag}</span>}
         </span>
         <span className="ag-block__title">{info.title}</span>
         {size === 'lg' && info.meta.length > 0 && (
@@ -896,6 +915,7 @@ function AgendaBlock({
           s={s}
           info={info}
           day={day}
+          road={road}
           days={days}
           onPlace={onPlace}
           onDuration={onDuration}
@@ -917,6 +937,7 @@ type PanelProps = {
   s: SlottedItem
   info: ReturnType<typeof itemInfo>
   day: string
+  road?: RoadReading | null
   days: string[]
   pinned: boolean
   onPlace: (itemId: string, day: string, startTime: string | undefined) => void
@@ -930,6 +951,7 @@ function BlockPanel({
   s,
   info,
   day,
+  road,
   days,
   pinned,
   onPlace,
@@ -958,6 +980,10 @@ function BlockPanel({
         <p className="ag-panel__note">
           This is no longer in the guide. It won't export to your calendar; remove it.
         </p>
+      )}
+
+      {road && road.state !== 'open' && (
+        <p className="ag-panel__note ag-panel__note--road">{road.sentence}</p>
       )}
 
       {fit?.verdict === 'dark' && (
@@ -1113,6 +1139,7 @@ function TrayChip({
   onToggle,
   onPointerDown,
   day,
+  road,
   days,
   onPlace,
   onDuration,
@@ -1123,6 +1150,7 @@ function TrayChip({
   onToggle: () => void
   onPointerDown: (e: React.PointerEvent) => void
   day: string
+  road: RoadReading | null
   days: string[]
   onPlace: (itemId: string, day: string, startTime: string | undefined) => void
   onDuration: (itemId: string, durationMin: number | undefined) => void
@@ -1154,6 +1182,7 @@ function TrayChip({
           s={s}
           info={info}
           day={day}
+          road={road}
           days={days}
           pinned={false}
           onPlace={onPlace}

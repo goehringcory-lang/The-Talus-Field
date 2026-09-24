@@ -18,3 +18,6 @@ function readBuildDate(): string {
  * document head and never changes after parse.
  */
 export const BUILD_DATE = readBuildDate()
+
+/** The one edition label every surface prints. */
+export const EDITION_LABEL = '2026 Edition'

@@ -111,9 +111,17 @@ function kindGlyph(kind: MapPinKind, stroke: string): string {
       // A picnic table: top, bench, two splayed legs.
       return `<path d="M7 9.5 H19 M8.5 15 H17.5 M11 9.5 L8 18.5 M15 9.5 L18 18.5" fill="none" stroke="${stroke}" stroke-width="1.7" stroke-linecap="round"/>`
     case 'services':
-      // A fuel pump: body, window, hose.
-      return `<rect x="7.5" y="7.5" width="8" height="11.5" rx="1" fill="none" stroke="${stroke}" stroke-width="1.7"/><rect x="9.5" y="9.5" width="4" height="3" fill="${stroke}"/><path d="M15.5 11 H17.5 V16.5 Q17.5 18 19 18" fill="none" stroke="${stroke}" stroke-width="1.5" stroke-linecap="round"/>`
+      // A shopping bag: the generic mark for a store, showers, laundry.
+      // Gas stations carry `mark: 'fuel'` and draw FUEL_GLYPH instead; the
+      // clinic and the chargers carry text glyphs ("+", "EV").
+      return `<path d="M8 10.5 H18 L17 19 H9 Z" fill="none" stroke="${stroke}" stroke-width="1.7" stroke-linejoin="round"/><path d="M10.5 10.5 V9 A2.5 2.5 0 0 1 15.5 9 V10.5" fill="none" stroke="${stroke}" stroke-width="1.5"/>`
   }
+}
+
+// A fuel pump: body, window, hose. Only the gas stations draw it, so the
+// pump on the map means gas and nothing else.
+function fuelGlyph(stroke: string): string {
+  return `<rect x="7.5" y="7.5" width="8" height="11.5" rx="1" fill="none" stroke="${stroke}" stroke-width="1.7"/><rect x="9.5" y="9.5" width="4" height="3" fill="${stroke}"/><path d="M15.5 11 H17.5 V16.5 Q17.5 18 19 18" fill="none" stroke="${stroke}" stroke-width="1.5" stroke-linecap="round"/>`
 }
 
 /** Teardrop pin as a DOM element for maplibregl.Marker. Each kind carries its
@@ -130,6 +138,7 @@ export function buildPinElement(
   name: string,
   hidden = false,
   glyph?: string,
+  mark?: 'fuel',
 ): HTMLElement {
   const { color, label, minor } = getKindStyle(kind)
   const stroke = hidden ? HIDDEN_PIN_STROKE : '#ffffff'
@@ -148,7 +157,9 @@ export function buildPinElement(
     'aria-label',
     hidden ? `${name}, ${label}, Secret Guide` : `${name}, ${label}`,
   )
-  const inner = glyph
+  const inner = mark === 'fuel'
+    ? fuelGlyph(stroke)
+    : glyph
     ? `<text x="13" y="17.5" text-anchor="middle" font-family="Inter, Helvetica, Arial, sans-serif" font-weight="700" font-size="${glyph.length > 1 ? 11 : 13}" fill="${stroke}">${escapeXml(glyph)}</text>`
     : kindGlyph(kind, stroke)
   el.innerHTML = `

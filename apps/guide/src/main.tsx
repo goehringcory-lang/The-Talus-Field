@@ -2,16 +2,13 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import { BrowserRouter } from 'react-router-dom'
 import './index.css'
-// Side-effect import: triggers Stops.parse() at boot so any seed-data error
-// surfaces immediately instead of when Phase 3 first reads a stop.
-import './content'
 import App from './App'
 import ErrorBoundary from './components/ErrorBoundary'
 import { captureInstallPrompt } from './pwa/installPrompt'
 import { registerServiceWorker } from './pwa/registerSW'
-import { stashPendingImportFromUrl } from './trip/importTrip'
 import { startPlanSync } from './sync/planSync'
 import { startPushSync } from './push/push'
+import { startCorrectionsOutbox } from './lib/corrections'
 import { applyTheme, readTheme } from './lib/theme'
 
 // First, before anything paints: a pinned colour scheme has to be on <html>
@@ -27,7 +24,14 @@ captureInstallPrompt()
 // /trip?import=…, and a visitor who doesn't own the guide yet is redirected
 // away before /trip ever mounts. Capturing here means the trip survives the
 // whole buy detour, not just a sign-in.
-stashPendingImportFromUrl()
+// The URL is read now, synchronously, because the redirect to /login is
+// about to replace it; the module that parses it (and the content catalog it
+// resolves against) loads off the critical path. The content is validated at
+// build time by the unit tests and scripts/check-itineraries.ts, so the boot
+// no longer imports the whole catalog just to run its schema parse: sign-in,
+// the post-checkout claim and the magic-link landing paint without it.
+const bootHref = window.location.href
+void import('./trip/importTrip').then((m) => m.stashPendingImportFromUrl(bootHref))
 
 // A deploy replaces every hashed chunk, and a tab that was open across it
 // asks for a lazy route's old chunk the next time it navigates: Pages answers
@@ -72,3 +76,7 @@ startPlanSync()
 // (no-op until notifications are turned on from the Account page; never
 // prompts on its own).
 startPushSync()
+
+// Reports written with no signal (/report) wait on the device and go out the
+// next time it is online.
+startCorrectionsOutbox()

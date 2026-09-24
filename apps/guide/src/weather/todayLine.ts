@@ -13,7 +13,7 @@ export function regionTodayLine(spot: WeatherSpotT | undefined): string | null {
   const day = groupPeriodsIntoDays(spot.periods, 1)[0]
   if (!day) return null
   const rain = day.precipChance && day.precipChance >= 20 ? ` · ${day.precipChance}% rain` : ''
-  return `${day.label} ${day.hiF ?? '–'}°/${day.loF ?? '–'}° ${day.shortForecast.toLowerCase()}${rain}`
+  return `${day.label} ${day.hiF ?? '–'}°/${day.loF ?? '–'}°F ${day.shortForecast.toLowerCase()}${rain}`
 }
 
 // Forecast line for a specific calendar day (the trip planner's day headers).
@@ -29,5 +29,5 @@ export function forecastLineForDay(
   const day = groupPeriodsIntoDays(spot.periods, 7).find((d) => d.date === dayIso)
   if (!day) return null
   const rain = day.precipChance && day.precipChance >= 20 ? ` · ${day.precipChance}% rain` : ''
-  return `${day.hiF ?? '–'}°/${day.loF ?? '–'}° ${day.shortForecast.toLowerCase()}${rain}`
+  return `${day.hiF ?? '–'}°/${day.loF ?? '–'}°F ${day.shortForecast.toLowerCase()}${rain}`
 }

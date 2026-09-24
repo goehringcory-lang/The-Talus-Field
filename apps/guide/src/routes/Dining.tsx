@@ -8,6 +8,7 @@
 import { useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import GatedChrome from '../components/GatedChrome'
+import SaveButton from '../components/SaveButton'
 import MapsLink from '../components/MapsLink'
 import Callout from '../components/ui/Callout'
 import { Chip, ChipButton } from '../components/ui/Chip'
@@ -61,12 +62,12 @@ function VenueRow({ venue, headingLevel = 'h3' }: { venue: DiningVenueT; heading
         <p className="dining-row__note">Hours: {venue.hours ? `${venue.hours}, ` : ''}{venue.hoursNote}.</p>
       )}
       {venue.reservations && <p className="dining-row__note">{venue.reservations}</p>}
-      {(venue.coord || stop) && (
-        <p className="dining-row__body dining-row__footer">
-          <MapsLink coord={venue.coord} label={venue.name} />
-          {stop && <Link to={`/stop/${stop.id}`}>In the guide →</Link>}
-        </p>
-      )}
+      <p className="dining-row__body dining-row__footer">
+        {venue.coord && <MapsLink coord={venue.coord} label={venue.name} />}
+        {stop && <Link to={`/stop/${stop.id}`}>In the guide →</Link>}
+        <SaveButton kind="dining" id={venue.id} title={venue.name} />
+        <Link to={`/report?type=dining&id=${venue.id}`}>Hours wrong? Tell us →</Link>
+      </p>
     </details>
   )
 }
