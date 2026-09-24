@@ -1,5 +1,32 @@
 [
   {
+    "slug": "yosemite-falls-trail",
+    "cat": "trails",
+    "title": "The Yosemite Falls Trail: Columbia Rock, the Top, and the Loop at the Bottom",
+    "dek": "Two walks share the name. One is a paved mile to the footbridge under Lower Yosemite Fall; the other climbs 2,700 feet up the north wall in the sun with no water on it. The Park Service's numbers for both, why Columbia Rock and the half mile past it is the right turnaround for most people, the upper half and the creek at the top, the trail season by season, and the ice cone the park's naturalists measured in 1935.",
+    "seoDek": "The Yosemite Falls Trail and the Lower Yosemite Fall loop: Park Service distances, Columbia Rock, the top, water, parking, shuttle stops, and each season.",
+    "date": "September 24, 2026",
+    "isoDate": "2026-09-24",
+    "isoModified": "2026-09-24",
+    "read": "11 min",
+    "image": "img/yosemite-falls-spring-blossoms-cory-goehring.jpg",
+    "ogImage": { "url": "img/responsive/yosemite-falls-spring-blossoms-cory-goehring-og.jpg", "width": 1200, "height": 630 },
+    "placeholder": "Upper Yosemite Fall framed by spring blossoms from the Valley floor",
+    "wordCount": 2700,
+    "keywords": ["Yosemite Falls trail", "Upper Yosemite Falls hike", "Lower Yosemite Fall loop", "Columbia Rock Yosemite", "how hard is Upper Yosemite Falls", "Yosemite Falls trailhead parking", "Yosemite Point hike", "Yosemite Falls hike in winter", "is Yosemite Falls dry in September"],
+    "trail": { "name": "Yosemite Falls Trail from Camp 4", "distance": "7.2 miles round trip", "elevationGain": "2,700 ft", "difficulty": "Strenuous" },
+    "faq": [
+      { "q": "How long is the Upper Yosemite Falls hike?", "a": "The Park Service's figures for the top of Yosemite Falls are 7.2 miles round trip, 2,700 feet of elevation gain, strenuous, and 6 to 8 hours. The shorter hike to Columbia Rock is 2 miles round trip with 1,000 feet of gain and takes 2 to 3 hours." },
+      { "q": "Where does the Yosemite Falls Trail start, and where do you park?", "a": "The trail starts on the Valley Loop Trail near Camp 4. The Camp 4 parking lot is for campers only; day hikers park at the Yosemite Falls parking area across the street, just beyond the Camp 4 entrance, or ride the free Valleywide shuttle to stop #7 and walk across the street." },
+      { "q": "Is there water on the Yosemite Falls Trail?", "a": "No. There is a drinking fountain near the trailhead in Camp 4 and nothing on the trail. The Park Service tells hikers going to the top to carry 4 quarts or liters of water per person, and the upper half gets no shade until late afternoon or early evening." },
+      { "q": "Is Columbia Rock a good turnaround point?", "a": "For most visitors, yes, with one addition. Columbia Rock is a one-mile, 1,000-foot climb to a view of the Valley, Half Dome, and Sentinel Rock, and the Park Service suggests going another half mile, some of it downhill, to a view of Upper Yosemite Fall. Turning around there makes about three miles round trip and skips the steep, rocky upper half." },
+      { "q": "How long is the Lower Yosemite Fall loop, and is it accessible?", "a": "It is a paved one-mile loop with about 50 feet of elevation gain that takes around 30 minutes. The eastern portion, from the shuttle stop to the base of the fall, is wheelchair accessible when it is not covered in ice or snow. There is no parking at the trailhead; use the Yosemite Village or Yosemite Falls parking areas or the shuttle to stop #6." },
+      { "q": "Is Yosemite Falls dry in September?", "a": "Usually. The Park Service gives the fall's flow as approximately November through July, with the peak in May, and Yosemite Falls is often a trickle or completely dry by August. The lower fall is often dry from late July or August through October, and the storms of late fall bring it back." },
+      { "q": "Can you hike the Yosemite Falls Trail in winter?", "a": "The lower portion faces south and takes direct sun, so it is often snow-free while other trails are icy, and Columbia Rock is worthwhile at any time of year. The upper portion gets little or no sun in winter and can be very icy or buried under feet of snow, so the top usually is not a winter hike." }
+    ],
+    "related": ["yosemite-waterfalls-guide", "mist-trail-the-real-guide", "yosemite-heat-safety-guide", "yosemite-winter-hikes", "yosemite-shuttle-and-yarts", "yosemite-valley-parking-guide"]
+  },
+  {
     "slug": "cell-service-in-yosemite",
     "cat": "planning",
     "title": "Cell Service in Yosemite: What Works Where, Carrier by Carrier, and How to Plan for None",
@@ -283,7 +310,7 @@
       { "q": "What is the best winter hike in Yosemite?", "a": "For effort against reward, Columbia Rock: about two miles round trip and 1,000 feet up the sunny south-facing wall. For solitude, the Wapama Falls trail at Hetch Hetchy, about five miles round trip. For the sight nobody expects, the two-mile walk up the closed road to the snowbound sequoias of the Mariposa Grove." },
       { "q": "Is Hetch Hetchy open for hiking in winter?", "a": "Usually. It sits below four thousand feet and is the corner of the park most likely to be snow-free all winter. The access road runs on posted gate hours, roughly sunrise to sunset, and snow can close it for days after a storm, so check conditions before the drive." }
     ],
-    "related": ["yosemite-in-winter", "horsetail-fall-firefall", "yosemite-waterfalls-guide", "yosemite-for-non-hikers", "yosemite-photography-spots"]
+    "related": ["yosemite-in-winter", "horsetail-fall-firefall", "yosemite-waterfalls-guide", "yosemite-for-non-hikers", "yosemite-photography-spots", "yosemite-falls-trail"]
   },
   {
     "slug": "yosemite-in-march",
@@ -1095,7 +1122,7 @@
       { "q": "How do you stay safe from afternoon thunderstorms in Yosemite?", "a": "Be off exposed ridges, peaks, and open granite by noon. Sierra afternoon thunderstorms build like clockwork in July and August, often producing lightning by 1 PM. If you hear thunder above treeline you are already in strike range: get below treeline, off water, and crouch low with your feet together. The monsoon pattern runs from mid-July through September." },
       { "q": "How much cooler is Tuolumne Meadows than Yosemite Valley?", "a": "About 18 to 20 degrees cooler. When it is 90 degrees on the Valley floor, Tuolumne Meadows at 8,600 feet is around 72. Temperature drops roughly 3.5 degrees Fahrenheit for every thousand feet of elevation gain, which is why driving up Tioga Road is the single best heat escape in the park." }
     ],
-    "related": ["swimming-in-the-merced", "mist-trail-the-real-guide", "when-to-visit-yosemite-2026-crowd-forecast", "yosemite-during-smoke-season", "yosemite-waterfalls-guide"]
+    "related": ["swimming-in-the-merced", "mist-trail-the-real-guide", "when-to-visit-yosemite-2026-crowd-forecast", "yosemite-during-smoke-season", "yosemite-waterfalls-guide", "yosemite-falls-trail"]
   },
   {
     "slug": "when-to-visit-yosemite-2026-crowd-forecast",
@@ -1479,7 +1506,7 @@
       { "q": "Can I die on the Mist Trail?", "a": "People have. In 2025 roughly 30% of Yosemite's search-and-rescue operations originated on the Mist Trail corridor, and the park averages close to one fatality per month on this trail and the falls above it. Stay behind the railings and don't wade above either waterfall." },
       { "q": "Should I go up the Mist Trail and down the John Muir Trail?", "a": "Yes if you're doing the full route to Nevada Fall. Up the Mist Trail for the waterfall experience, down the JMT for gentler grades that are easier on knees. Total loop is about 6.5 miles. Most experienced hikers do it this way." }
     ],
-    "related": ["yosemite-waterfalls-guide", "so-you-want-to-hike-half-dome", "four-mile-up-panorama-down", "yosemite-heat-safety-guide", "yosemite-valley-parking-guide"]
+    "related": ["yosemite-waterfalls-guide", "so-you-want-to-hike-half-dome", "four-mile-up-panorama-down", "yosemite-heat-safety-guide", "yosemite-valley-parking-guide", "yosemite-falls-trail"]
   },
   {
     "slug": "working-in-yosemite",

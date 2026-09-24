@@ -110,6 +110,7 @@ window.planningSeriesFor = function (slug) {
 // verifies this map stays in sync with the files in bodies/.
 // ============================================================
 window.BODY_VERSIONS = {
+  "yosemite-falls-trail": 1,
   "cell-service-in-yosemite": 2,
   "glacier-point-how-to-visit": 1,
   "clouds-rest-hike": 1,
@@ -120,7 +121,7 @@ window.BODY_VERSIONS = {
   "bracebridge-dinner-and-vintners-holidays": 3,
   "yosemite-fire-restrictions-explained": 2,
   "yosemite-in-three-to-five-days": 3,
-  "yosemite-winter-hikes": 2,
+  "yosemite-winter-hikes": 3,
   "camping-in-yosemite-first-time": 1,
   "first-yosemite-backpacking-trip": 3,
   "yosemite-day-trip-from-bay-area": 1,
@@ -743,6 +744,20 @@ window.KIT.lists.forEach((l) => {
 });
 
 window.ARTICLES = [
+  {
+    slug: "yosemite-falls-trail",
+    cat: "trails",
+    title: "The Yosemite Falls Trail: Columbia Rock, the Top, and the Loop at the Bottom",
+    dek: "Two walks share the name. One is a paved mile to the footbridge under Lower Yosemite Fall; the other climbs 2,700 feet up the north wall in the sun with no water on it. The Park Service's numbers for both, why Columbia Rock and the half mile past it is the right turnaround for most people, the upper half and the creek at the top, the trail season by season, and the ice cone the park's naturalists measured in 1935.",
+    seoDek: "The Yosemite Falls Trail and the Lower Yosemite Fall loop: Park Service distances, Columbia Rock, the top, water, parking, shuttle stops, and each season.",
+    date: "September 24, 2026",
+    isoDate: "2026-09-24",
+    isoModified: "2026-09-24",
+    read: "11 min",
+    placeholder: "Upper Yosemite Fall framed by spring blossoms from the Valley floor",
+    image: "img/yosemite-falls-spring-blossoms-cory-goehring.jpg",
+    credit: "Photo: Cory Goehring",
+  },
   {
     slug: "cell-service-in-yosemite",
     cat: "planning",
@@ -1831,6 +1846,10 @@ window.START_HERE = [
 // Curate a piece when it earns real search impressions, when it anchors a
 // cluster, or when it is the destination that needs the equity.
 window.RELATED = {
+  // The Yosemite Falls Trail: the Valley's most-searched climb, which the
+  // catalog had only mentioned in the heat and winter pieces. Onward to the
+  // waterfall calendar, the other big Valley climb, and the logistics.
+  "yosemite-falls-trail": ["yosemite-waterfalls-guide", "mist-trail-the-real-guide", "yosemite-heat-safety-guide", "yosemite-winter-hikes", "yosemite-shuttle-and-yarts", "yosemite-valley-parking-guide"],
   // Cell service and Wi-Fi: the coverage question every trip asks and the
   // catalog only mentioned in passing. Onward to the pieces whose logistics
   // depend on doing the phone work in the last town.
@@ -1874,12 +1893,12 @@ window.RELATED = {
   "first-yosemite-backpacking-trip": ["yosemite-wilderness-permits-guide", "yosemite-bears-safety-guide", "cathedral-lakes-day-hike", "yosemite-camping-complete-guide", "yosemite-walk-up-and-day-of-permits", "cell-service-in-yosemite"],
 
   // Trails
-  "mist-trail-the-real-guide": ["yosemite-waterfalls-guide", "so-you-want-to-hike-half-dome", "four-mile-up-panorama-down", "yosemite-heat-safety-guide", "yosemite-valley-parking-guide"],
+  "mist-trail-the-real-guide": ["yosemite-waterfalls-guide", "so-you-want-to-hike-half-dome", "four-mile-up-panorama-down", "yosemite-heat-safety-guide", "yosemite-valley-parking-guide", "yosemite-falls-trail"],
   "four-mile-up-panorama-down": ["mist-trail-the-real-guide", "yosemite-photography-spots", "so-you-want-to-hike-half-dome", "glacier-point-how-to-visit", "glacier-point-road-open-2026"],
   "cathedral-lakes-day-hike": ["tuolumne-meadows-in-a-day", "clouds-rest-hike", "tioga-road-opening-weekend-2026", "so-you-want-to-hike-half-dome", "first-yosemite-backpacking-trip", "yosemite-wildflowers-guide"],
   "tuolumne-meadows-in-a-day": ["cathedral-lakes-day-hike", "clouds-rest-hike", "tioga-road-opening-weekend-2026", "yosemite-from-las-vegas", "yosemite-wildflowers-guide", "yosemite-stargazing-where-to-look-up"],
   "hetch-hetchy-the-other-yosemite-valley": ["yosemite-waterfalls-guide", "yosemite-without-reservations-2026", "yosemite-in-march", "yosemite-wildflowers-guide", "yosemite-glaciers-climate"],
-  "yosemite-winter-hikes": ["yosemite-in-winter", "horsetail-fall-firefall", "yosemite-waterfalls-guide", "yosemite-for-non-hikers", "yosemite-photography-spots"],
+  "yosemite-winter-hikes": ["yosemite-in-winter", "horsetail-fall-firefall", "yosemite-waterfalls-guide", "yosemite-for-non-hikers", "yosemite-photography-spots", "yosemite-falls-trail"],
   "yosemite-waterfalls-guide": ["mist-trail-the-real-guide", "when-to-visit-yosemite-2026-crowd-forecast", "hetch-hetchy-the-other-yosemite-valley", "yosemite-photography-spots", "water-ouzels-waterfalls", "yosemite-in-march"],
 
   // Who the trip is for
@@ -1903,7 +1922,7 @@ window.RELATED = {
   "yosemite-in-march": ["yosemite-in-winter", "yosemite-waterfalls-guide", "bears-spring-emergence", "horsetail-fall-firefall", "when-to-visit-yosemite-2026-crowd-forecast"],
   "tioga-road-opening-weekend-2026": ["cathedral-lakes-day-hike", "tuolumne-meadows-in-a-day", "yosemite-from-las-vegas", "memorial-day-skip-the-valley-go-high-2026", "yosemite-stargazing-where-to-look-up", "when-to-visit-yosemite-2026-crowd-forecast"],
   "glacier-point-road-open-2026": ["four-mile-up-panorama-down", "glacier-point-how-to-visit", "yosemite-photography-spots", "yosemite-stargazing-where-to-look-up", "yosemite-for-non-hikers"],
-  "yosemite-heat-safety-guide": ["swimming-in-the-merced", "mist-trail-the-real-guide", "when-to-visit-yosemite-2026-crowd-forecast", "yosemite-during-smoke-season", "yosemite-waterfalls-guide"],
+  "yosemite-heat-safety-guide": ["swimming-in-the-merced", "mist-trail-the-real-guide", "when-to-visit-yosemite-2026-crowd-forecast", "yosemite-during-smoke-season", "yosemite-waterfalls-guide", "yosemite-falls-trail"],
   "yosemite-during-smoke-season": ["yosemite-heat-safety-guide", "yosemite-fire-restrictions-explained", "when-to-visit-yosemite-2026-crowd-forecast", "yosemite-in-fall", "giant-sequoias-fire-adaptation", "cell-service-in-yosemite"],
   "yosemite-fire-restrictions-explained": ["yosemite-during-smoke-season", "yosemite-camping-complete-guide", "giant-sequoias-fire-adaptation", "yosemite-heat-safety-guide", "yosemite-facelift-volunteer-guide"],
   "memorial-day-skip-the-valley-go-high-2026": ["tioga-road-opening-weekend-2026", "tuolumne-meadows-in-a-day", "when-to-visit-yosemite-2026-crowd-forecast", "clouds-rest-hike", "hetch-hetchy-the-other-yosemite-valley", "cathedral-lakes-day-hike"],

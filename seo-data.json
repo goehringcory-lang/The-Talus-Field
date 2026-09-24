@@ -1,4 +1,54 @@
 {
+  "yosemite-falls-trail": {
+    "wordCount": 2700,
+    "keywords": [
+      "Yosemite Falls trail",
+      "Upper Yosemite Falls hike",
+      "Lower Yosemite Fall loop",
+      "Columbia Rock Yosemite",
+      "how hard is Upper Yosemite Falls",
+      "Yosemite Falls trailhead parking",
+      "Yosemite Point hike",
+      "Yosemite Falls hike in winter",
+      "is Yosemite Falls dry in September"
+    ],
+    "trail": {
+      "name": "Yosemite Falls Trail from Camp 4",
+      "distance": "7.2 miles round trip",
+      "elevationGain": "2,700 ft",
+      "difficulty": "Strenuous"
+    },
+    "faq": [
+      {
+        "q": "How long is the Upper Yosemite Falls hike?",
+        "a": "The Park Service's figures for the top of Yosemite Falls are 7.2 miles round trip, 2,700 feet of elevation gain, strenuous, and 6 to 8 hours. The shorter hike to Columbia Rock is 2 miles round trip with 1,000 feet of gain and takes 2 to 3 hours."
+      },
+      {
+        "q": "Where does the Yosemite Falls Trail start, and where do you park?",
+        "a": "The trail starts on the Valley Loop Trail near Camp 4. The Camp 4 parking lot is for campers only; day hikers park at the Yosemite Falls parking area across the street, just beyond the Camp 4 entrance, or ride the free Valleywide shuttle to stop #7 and walk across the street."
+      },
+      {
+        "q": "Is there water on the Yosemite Falls Trail?",
+        "a": "No. There is a drinking fountain near the trailhead in Camp 4 and nothing on the trail. The Park Service tells hikers going to the top to carry 4 quarts or liters of water per person, and the upper half gets no shade until late afternoon or early evening."
+      },
+      {
+        "q": "Is Columbia Rock a good turnaround point?",
+        "a": "For most visitors, yes, with one addition. Columbia Rock is a one-mile, 1,000-foot climb to a view of the Valley, Half Dome, and Sentinel Rock, and the Park Service suggests going another half mile, some of it downhill, to a view of Upper Yosemite Fall. Turning around there makes about three miles round trip and skips the steep, rocky upper half."
+      },
+      {
+        "q": "How long is the Lower Yosemite Fall loop, and is it accessible?",
+        "a": "It is a paved one-mile loop with about 50 feet of elevation gain that takes around 30 minutes. The eastern portion, from the shuttle stop to the base of the fall, is wheelchair accessible when it is not covered in ice or snow. There is no parking at the trailhead; use the Yosemite Village or Yosemite Falls parking areas or the shuttle to stop #6."
+      },
+      {
+        "q": "Is Yosemite Falls dry in September?",
+        "a": "Usually. The Park Service gives the fall's flow as approximately November through July, with the peak in May, and Yosemite Falls is often a trickle or completely dry by August. The lower fall is often dry from late July or August through October, and the storms of late fall bring it back."
+      },
+      {
+        "q": "Can you hike the Yosemite Falls Trail in winter?",
+        "a": "The lower portion faces south and takes direct sun, so it is often snow-free while other trails are icy, and Columbia Rock is worthwhile at any time of year. The upper portion gets little or no sun in winter and can be very icy or buried under feet of snow, so the top usually is not a winter hike."
+      }
+    ]
+  },
   "cell-service-in-yosemite": {
     "wordCount": 3175,
     "keywords": [

@@ -211,6 +211,13 @@ window.ARTICLE_INTENT = {
   // that the day hike needs none and points to the permit guide for the rest.
   "glacier-point-how-to-visit":                { stage: ["dates-set", "week-before", "in-park"], who: ["first-trip", "non-hikers", "accessible"], topic: ["transportation", "trails"] },
   "clouds-rest-hike":                          { stage: ["dates-set", "in-park"], who: ["backpacking"], topic: ["trails", "conditions"] },
+  // The Yosemite Falls Trail (September 2026): the lower loop and the climb to
+  // the rim. `accessible` because the body names the loop's wheelchair-
+  // accessible eastern half; `families` for the loop and the Columbia Rock
+  // turnaround; `conditions` because the season-by-season section decides
+  // which trip it is. No ARTICLE_MONTHS entry: the Park Service lists the trail
+  // open all year, and the body answers every month, dry fall included.
+  "yosemite-falls-trail":                      { stage: ["dates-set", "in-park"], who: ["first-trip", "families", "accessible"], topic: ["trails", "conditions"] },
   "cathedral-lakes-day-hike":                  { stage: ["dates-set", "in-park"], who: [], topic: ["trails"] },
   "yosemite-needs-a-reservation-system":       { stage: ["before-booking"], who: [], topic: ["conditions"] },
   "memorial-day-skip-the-valley-go-high-2026": { stage: ["dates-set", "week-before"], who: [], topic: ["conditions", "trails"] },
