@@ -30,7 +30,7 @@
 // =============================================================================
 
 import { getHikeById, getStopById } from '../src/content'
-import { BACKUP_PLANS, ITINERARIES, ITINERARY_KEYS, resolvePlanEntry } from '../src/content/itineraries'
+import { BACKUP_PLANS, ITINERARIES, ITINERARY_KEYS } from '../src/content/itineraries'
 import type { ItineraryDay } from '../src/content/itineraries'
 import { sunTimes } from '../src/sun/solar'
 import { slotDay, type SlottedItem } from '../src/trip/slotting'
