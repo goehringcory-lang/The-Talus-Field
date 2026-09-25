@@ -1,0 +1,262 @@
+/* =============================================================================
+   Home's planning surfaces: the days card under Park Now, the region cards,
+   and the Secret Guide card. The inviting half of the app, so these (and the
+   region planner) are the only corners the guide rounds (--radius-card).
+   Colours are tokens throughout; the photo scrims and the type set on them
+   are fixed because they sit on a photograph in either scheme.
+   ========================================================================== */
+
+/* ---- Dates form (shared with Home's days card) ---------------------------- */
+.trip-dates-form { display: grid; gap: var(--s3); margin-top: var(--s3); }
+.trip-dates-form__fields {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--s3);
+}
+
+/* ---- Your days in the park ------------------------------------------------ */
+.days-card {
+  margin: var(--s5) 0 0;
+  border: 2px solid var(--ink);
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  background: var(--paper);
+}
+.days-card__ask { padding: var(--s4); display: grid; gap: var(--s1); }
+.days-card__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: var(--s3);
+  padding: 14px 14px 10px;
+  border-bottom: 1px solid var(--panel-edge);
+}
+.days-card__title {
+  margin: 2px 0 0;
+  font-family: var(--display);
+  font-weight: 500;
+  font-size: 26px;
+  line-height: 1.1;
+}
+.days-card__note {
+  margin: var(--s1) 0 0;
+  font-family: var(--sans);
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--ink-2);
+}
+.days-card__change,
+.days-card__cancel {
+  min-height: 44px;
+  border: 0;
+  background: transparent;
+  color: var(--moss);
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0;
+}
+.days-card__cancel { justify-self: start; }
+.days-card__list { list-style: none; margin: 0; padding: 0; }
+.days-card__row {
+  display: grid;
+  grid-template-columns: 56px minmax(0, 1fr) 16px;
+  column-gap: var(--s3);
+  align-items: center;
+  min-height: 60px;
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--panel-edge);
+  color: var(--ink);
+  text-decoration: none;
+}
+.days-card__day { display: grid; }
+.days-card__num {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+.days-card__weekday { font-family: var(--display); font-size: 22px; line-height: 1; }
+.days-card__main { display: grid; gap: 2px; min-width: 0; }
+.days-card__where { font-family: var(--sans); font-size: 15px; font-weight: 600; }
+.days-card__go { width: 16px; height: 16px; color: var(--ink-3); }
+.days-card__more {
+  margin: 0;
+  padding: 10px 14px;
+  font-family: var(--sans);
+  font-size: 13px;
+  color: var(--ink-3);
+  border-bottom: 1px solid var(--panel-edge);
+}
+.days-card__board {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 48px;
+  padding: 0 14px;
+  background: var(--ink);
+  color: var(--paper);
+  font-family: var(--sans);
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+/* ---- Region cards ------------------------------------------------------------ */
+.region-cards__title {
+  margin: var(--s1) 0 var(--s4);
+  font-family: var(--display);
+  font-weight: 500;
+  font-size: 28px;
+  line-height: 1.1;
+}
+.region-cards__large { display: grid; gap: var(--s4); }
+.region-card {
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  background: var(--panel);
+  border: 1px solid var(--panel-edge);
+  box-shadow: 0 1px 2px rgb(20 17 12 / 6%), 0 10px 28px rgb(20 17 12 / 8%);
+}
+.region-card__media {
+  position: relative;
+  display: block;
+  aspect-ratio: 16 / 9;
+  max-height: 220px;
+  width: 100%;
+  overflow: hidden;
+  background: var(--paper-3);
+}
+.region-card__media picture,
+.region-card__media img,
+.region-mini__media picture,
+.region-mini__media img,
+.secret-card__media picture,
+.secret-card__media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.region-card__scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgb(20 17 12 / 78%) 0%, rgb(20 17 12 / 0%) 58%);
+}
+.region-card__pill {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  padding: 6px 11px;
+  border-radius: var(--radius-pill);
+  background: rgb(251 247 236 / 94%);
+  color: #14110c;
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 600;
+}
+.region-card__title {
+  position: absolute;
+  left: var(--s4);
+  right: var(--s4);
+  bottom: var(--s3);
+  margin: 0;
+  font-family: var(--display);
+  font-weight: 500;
+  font-size: 27px;
+  line-height: 1.05;
+  color: #fbf7ec;
+}
+.region-card__body { display: grid; gap: var(--s3); padding: 14px var(--s4) var(--s4); }
+.region-card__stats { display: flex; flex-wrap: wrap; gap: var(--s2); }
+.region-card__stat {
+  padding: 4px 10px;
+  border-radius: var(--radius-pill);
+  background: var(--paper);
+  border: 1px solid var(--panel-edge);
+  font-family: var(--sans);
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--ink-2);
+}
+.region-card__progress {
+  margin: 0;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: var(--ink-3);
+}
+.region-card__actions { display: flex; align-items: center; flex-wrap: wrap; gap: var(--s3) var(--s4); }
+.region-card__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 48px;
+  padding: 0 20px;
+  border-radius: var(--radius-pill);
+  background: var(--moss);
+  color: var(--paper);
+  font-family: var(--sans);
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: none;
+}
+.region-card__cta svg { width: 16px; height: 16px; }
+.region-card__read { font-family: var(--sans); font-size: 14px; }
+
+.region-cards__sub {
+  margin: var(--s5) 0 var(--s2);
+  font-family: var(--sans);
+  font-size: 14px;
+  font-weight: 600;
+}
+.region-cards__small {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--s3);
+}
+.region-mini {
+  display: flex;
+  flex-direction: column;
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  background: var(--panel);
+  border: 1px solid var(--panel-edge);
+  color: var(--ink);
+  text-decoration: none;
+}
+.region-mini__media { position: relative; display: block; height: 124px; background: var(--paper-3); }
+.region-mini__title {
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  bottom: 10px;
+  font-family: var(--display);
+  font-size: 20px;
+  line-height: 1.05;
+  color: #fbf7ec;
+}
+.region-mini__body { display: grid; gap: 8px; padding: 10px 12px 12px; }
+.region-mini__line { font-family: var(--sans); font-size: 12px; line-height: 1.4; color: var(--ink-3); }
+.region-mini__cta { font-family: var(--sans); font-size: 13px; font-weight: 600; color: var(--moss); }
+
+/* ---- The Secret Guide card -------------------------------------------------- */
+.secret-card {
+  margin-top: var(--s5);
+  display: grid;
+  grid-template-columns: 124px minmax(0, 1fr);
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  background: var(--panel);
+  border: 1px solid var(--panel-edge);
+  color: var(--ink);
+  text-decoration: none;
+}
+.secret-card__media { display: block; min-height: 150px; background: var(--paper-3); }
+.secret-card__body { display: grid; align-content: center; gap: 6px; padding: 14px; }
+.secret-card__eyebrow { font-family: var(--sans); font-size: 12px; font-weight: 600; color: var(--gold); }
+.secret-card__title { font-family: var(--display); font-size: 21px; line-height: 1.12; }
+.secret-card__line { font-family: var(--sans); font-size: 13px; line-height: 1.4; color: var(--ink-3); }
+.secret-card__cta { font-family: var(--sans); font-size: 13px; font-weight: 600; color: var(--moss); }

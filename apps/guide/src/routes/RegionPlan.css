@@ -1,0 +1,364 @@
+/* =============================================================================
+   The region planner (/region/:regionId/plan). Instrument readings (the light,
+   the handoff, times) in mono per the Surveyor split; titles in the serif.
+   Every colour is a token, so the granite scheme follows with no extra block.
+   ========================================================================== */
+
+.region-plan { padding-top: var(--s4); }
+
+/* ---- Plate: the region's photo with its name on it ---------------------- */
+.plan-plate {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  max-height: 260px;
+  width: 100%;
+  overflow: hidden;
+  border-radius: var(--radius-card);
+  background: var(--paper-3);
+}
+.plan-plate picture,
+.plan-plate img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.plan-plate__scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgb(20 17 12 / 82%) 0%, rgb(20 17 12 / 0%) 62%);
+}
+.plan-plate__text {
+  position: absolute;
+  left: var(--s4);
+  right: var(--s4);
+  bottom: var(--s3);
+  display: grid;
+  gap: 2px;
+}
+.plan-plate__eyebrow { color: #e6dcc1; }
+.plan-plate__title {
+  margin: 0;
+  font-family: var(--display);
+  font-weight: 500;
+  font-size: clamp(28px, 7vw, 38px);
+  line-height: 1.05;
+  color: #fbf7ec;
+}
+
+.plan-lede {
+  margin: var(--s4) 0 0;
+  font-size: 18px;
+  line-height: 1.45;
+  color: var(--ink-2);
+}
+.plan-lede a { font-family: var(--sans); font-size: 14px; white-space: nowrap; }
+
+.plan-h2 {
+  margin: var(--s1) 0 var(--s2);
+  font-family: var(--display);
+  font-weight: 500;
+  font-size: 26px;
+  line-height: 1.12;
+}
+.plan-note {
+  margin: var(--s2) 0;
+  font-family: var(--sans);
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--ink-3);
+}
+
+/* ---- Day chips ------------------------------------------------------------ */
+.plan-days {
+  display: flex;
+  gap: var(--s2);
+  overflow-x: auto;
+  padding: var(--s2) 0 var(--s1);
+  scrollbar-width: thin;
+}
+.plan-day {
+  flex: 0 0 auto;
+  min-width: 118px;
+  min-height: 64px;
+  display: grid;
+  gap: 1px;
+  text-align: left;
+  padding: 8px 12px;
+  border: 1px solid var(--rule);
+  border-radius: var(--radius-card);
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--sans);
+  cursor: pointer;
+}
+.plan-day--on { background: var(--ink); border-color: var(--ink); color: var(--paper); }
+.plan-day__num {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  opacity: 0.8;
+}
+.plan-day__date { font-size: 15px; font-weight: 600; }
+.plan-day__also { font-size: 11px; opacity: 0.8; }
+
+/* ---- The day's light ------------------------------------------------------ */
+.plan-light {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1px;
+  background: var(--panel-edge);
+  margin-top: var(--s4);
+}
+
+/* ---- Handoff between regions --------------------------------------------- */
+.plan-handoff {
+  margin-top: var(--s2);
+  border: 2px solid var(--ink);
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  background: var(--paper);
+}
+.plan-handoff__title {
+  margin: 0;
+  padding: 12px 14px;
+  font-family: var(--display);
+  font-size: 22px;
+  line-height: 1.15;
+  border-bottom: 1px solid var(--panel-edge);
+}
+.plan-handoff__leg {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1px;
+  background: var(--panel-edge);
+  border-bottom: 1px solid var(--panel-edge);
+}
+.plan-handoff__leg--short .readout__value { color: var(--danger); }
+.plan-handoff__warn {
+  grid-column: 1 / -1;
+  margin: 0;
+  padding: 10px 14px;
+  background: var(--paper);
+  color: var(--danger);
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.45;
+}
+.plan-handoff .plan-note { padding: 0 14px; }
+
+.plan-order {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin: var(--s3) 14px 0;
+}
+.plan-order__opt {
+  min-height: 44px;
+  border: 1px solid var(--rule);
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.plan-order__opt + .plan-order__opt { border-left: 0; }
+.plan-order__opt--on { background: var(--ink); color: var(--paper); }
+
+.plan-others { display: flex; flex-wrap: wrap; gap: var(--s2); margin-top: var(--s3); }
+.plan-others__link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 40px;
+  padding: 0 14px;
+  border: 1px solid var(--rule-soft);
+  border-radius: var(--radius-pill);
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+/* ---- Panels ---------------------------------------------------------------- */
+.plan-tabs {
+  position: sticky;
+  top: calc(var(--chrome-top-h) + env(safe-area-inset-top, 0px));
+  z-index: 5;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  background: var(--paper);
+  border-bottom: 1px solid var(--rule-soft);
+}
+.plan-tab {
+  min-height: 52px;
+  display: grid;
+  align-content: center;
+  gap: 2px;
+  border: 0;
+  border-bottom: 3px solid transparent;
+  background: transparent;
+  color: var(--ink-3);
+  font-family: var(--sans);
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.plan-tab--on { color: var(--ink); border-bottom-color: var(--moss); }
+.plan-tab__count {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 400;
+}
+
+.plan-list { list-style: none; margin: 0; padding: 0; }
+.plan-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 44px;
+  column-gap: var(--s3);
+  align-items: start;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--rule-soft);
+}
+.plan-row:has(.plan-row__time) { grid-template-columns: 76px minmax(0, 1fr) 44px; }
+.plan-row__time {
+  display: grid;
+  font-family: var(--mono);
+  font-size: 12px;
+  font-weight: 500;
+  white-space: nowrap;
+  padding-top: 3px;
+}
+.plan-row__until { font-size: 11px; font-weight: 400; color: var(--ink-3); }
+.plan-row__main { display: grid; gap: 5px; min-width: 0; }
+.plan-row__title {
+  font-family: var(--display);
+  font-size: 20px;
+  line-height: 1.2;
+  color: var(--ink);
+}
+a.plan-row__title { text-decoration: underline; text-decoration-color: var(--rule-soft); text-underline-offset: 3px; }
+.plan-row__kind {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+.plan-row__kind--secret { color: var(--gold); }
+.plan-row__meta,
+.plan-row__teaser {
+  font-family: var(--sans);
+  font-size: 13px;
+  line-height: 1.45;
+  color: var(--ink-3);
+}
+.plan-row__teaser { color: var(--ink-2); }
+.plan-row__stats { font-family: var(--mono); font-size: 12px; color: var(--ink-2); }
+.plan-row__chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.plan-row__chips:empty { display: none; }
+.plan-row__warn {
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.45;
+  color: var(--danger);
+}
+.plan-row .hike-spark { display: block; width: 168px; height: 44px; }
+/* Hikes.css styles the stroke on /hikes; this route loads without it. */
+.plan-row .hike-spark polyline {
+  stroke: var(--ink-2);
+  stroke-width: 1.5;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+}
+
+.plan-add {
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--moss);
+  border-radius: var(--radius-pill);
+  background: transparent;
+  color: var(--moss);
+  cursor: pointer;
+}
+.plan-add svg { width: 20px; height: 20px; }
+.plan-add--on { background: var(--moss); color: var(--paper); }
+
+/* ---- The day --------------------------------------------------------------- */
+.plan-dayview {
+  margin-top: var(--s6);
+  padding: var(--s5) var(--s4);
+  border-top: 2px solid var(--ink);
+  border-radius: 0 0 var(--radius-card) var(--radius-card);
+  background: var(--panel);
+}
+.plan-meter { display: grid; gap: 6px; margin: var(--s3) 0; }
+.plan-meter__track {
+  display: block;
+  height: 8px;
+  border-radius: var(--radius-pill);
+  background: var(--panel-edge);
+  overflow: hidden;
+}
+.plan-meter__fill { display: block; height: 100%; background: var(--moss); }
+
+.plan-timeline { list-style: none; margin: var(--s3) 0 0; padding: 0; }
+.plan-tl__group { display: contents; }
+.plan-tl {
+  display: grid;
+  grid-template-columns: 76px minmax(0, 1fr);
+  column-gap: var(--s3);
+  row-gap: 2px;
+  padding: 8px 0;
+  border-left: 0;
+}
+.plan-tl__time {
+  grid-row: span 3;
+  font-family: var(--mono);
+  font-size: 12px;
+  text-align: right;
+  white-space: nowrap;
+  padding-top: 2px;
+}
+.plan-tl__title { font-family: var(--sans); font-size: 15px; font-weight: 600; }
+.plan-tl__title a { color: var(--ink); }
+.plan-tl__meta { font-family: var(--mono); font-size: 11px; color: var(--ink-3); }
+.plan-tl--marker .plan-tl__time,
+.plan-tl--marker .plan-tl__title { color: var(--gold); font-weight: 500; font-size: 13px; }
+.plan-tl--drive .plan-tl__title,
+.plan-tl--drive .plan-tl__meta { font-weight: 500; }
+.plan-tl--drive {
+  margin: 2px 0 2px calc(76px + var(--s3));
+  grid-template-columns: 1fr;
+  padding: 8px 12px;
+  border: 1px dashed var(--rule-soft);
+  border-radius: var(--radius-card);
+}
+.plan-tl--drive .plan-tl__time { display: none; }
+.plan-tl--short {
+  border-color: var(--danger);
+  color: var(--danger);
+}
+.plan-tl--short .plan-tl__meta { color: var(--danger); }
+.plan-tl--late .plan-tl__time { color: var(--danger); }
+
+.plan-actions { margin-top: var(--s4); }
+.plan-cta {
+  display: inline-flex;
+  align-items: center;
+  min-height: 48px;
+  padding: 0 20px;
+  border-radius: var(--radius-pill);
+  background: var(--moss);
+  color: var(--paper);
+  font-family: var(--sans);
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: none;
+}

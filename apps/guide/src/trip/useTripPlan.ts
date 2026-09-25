@@ -300,6 +300,24 @@ export function useTripPlan() {
     }))
   }, [])
 
+  // Half a day here, half somewhere else. Slotting fills a day's floating
+  // items in plan order, so moving one region's items of a day ahead of the
+  // rest makes that region the morning, and the drive to the next region lands
+  // at the handoff; moving them behind makes it the afternoon. Published
+  // programs and pinned times keep their clock either way (trip/driveCheck.ts
+  // reports the ones that can no longer be reached). The caller names the
+  // items: resolving regions here would pull the content chunk onto the boot
+  // path, which this hook sits on through plan sync.
+  const orderItems = useCallback((itemIds: string[], position: 'first' | 'last') => {
+    update((p) => {
+      const ids = new Set(itemIds)
+      const mine = p.items.filter((it) => ids.has(it.itemId))
+      if (mine.length === 0) return p
+      const rest = p.items.filter((it) => !ids.has(it.itemId))
+      return { ...p, items: position === 'first' ? [...mine, ...rest] : [...rest, ...mine] }
+    })
+  }, [])
+
   const clear = useCallback(() => {
     update((p) => ({ ...p, items: [] }))
   }, [])
@@ -321,6 +339,7 @@ export function useTripPlan() {
     moveStopToDay,
     placeItem,
     setItemDuration,
+    orderItems,
     clear,
     hasItem,
   }

@@ -30,6 +30,15 @@ import type { SeasonalEventT } from './schema'
 export type SeasonalRoadId = 'tioga' | 'glacier-point'
 export const SEASONAL_ROADS: SeasonalRoadId[] = ['tioga', 'glacier-point']
 
+// The seasonal road a whole region's core flow depends on. Glacier Point
+// and Mariposa is half Wawona, open all year, so the note says which road it
+// means rather than implying the region closes. Read by the region page and
+// the region planner.
+export const REGION_ROAD: Partial<Record<string, SeasonalRoadId>> = {
+  tuolumne: 'tioga',
+  'glacier-mariposa': 'glacier-point',
+}
+
 export const ROAD_NAME: Record<SeasonalRoadId, string> = {
   tioga: 'Tioga Road',
   'glacier-point': 'Glacier Point Road',
