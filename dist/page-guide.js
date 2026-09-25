@@ -574,72 +574,80 @@ function GuideWaitlistBox() {
   }, "cory@thetalusfieldjournal.com"), ".")));
 }
 var APP_SHOTS = [{
-  src: "img/guide/screens/front-page.v2.webp",
-  alt: "The Field Guide app's front page: a panel of live park readings, the valley forecast, sunset, road status and entrance waits, above the trip board and the four regional guides",
-  caption: "The front page opens on the park as it is right now: the valley's high and low, when the light goes, which roads are open, what the gate is running. Then your trip, then the four regions."
+  src: "img/guide/screens/front-page.v5.webp",
+  alt: "The Field Guide app's front page, 'Yosemite, right now': entrance waits for each gate drawn as bars, sunrise and sunset with the hours of light left, and the valley forecast",
+  caption: "The front page opens on the park as it is right now: what each gate is running, when the light goes, the valley's forecast. Then your days, then the four regions."
 }, {
-  src: "img/guide/screens/region-cards.v2.webp",
+  src: "img/guide/screens/region-cards.v5.webp",
   alt: "A region in card view: one stop per screen with photo, kind, time budget and teaser, swiped like a feed",
   caption: "A region reads as a deck: one stop per screen, swipe up for the next. The long list is still a tap away."
 }, {
-  src: "img/guide/screens/stop.v2.webp",
+  src: "img/guide/screens/stop.v5.webp",
   alt: "A stop page for Tunnel View: the photo framed as an instrument view with the coordinate and elevation printed on it, then a readout of GPS, elevation, time budget and best light",
   caption: "Every stop opens on the numbers that run your day: a tappable coordinate, the elevation, the honest time budget, and the hour the light works."
 }, {
-  src: "img/guide/screens/swap.v2.webp",
+  src: "img/guide/screens/swap.v5.webp",
   alt: "The 'If full' swap on a stop page, saying where to go instead when the lot is full, above a sourced note from the November 1933 Yosemite Nature Notes",
   caption: "The swap, printed on the stop itself. The lot fills at ten, you already know the move. Under it, where the record allows, a sourced note from a century of park naturalists."
 }, {
-  src: "img/guide/screens/hikes.v2.webp",
+  src: "img/guide/screens/hikes.v5.webp",
   alt: "The day-hike catalog in the app, each trail listed with distance, gain, difficulty, duration, its elevation profile, and a button that adds it to the trip",
   caption: "All 57 in-park day hikes with distance, climbing, and the shape of the trail. Add one and the planner budgets the hours."
 }, {
-  src: "img/guide/screens/programs.v2.webp",
-  alt: "The program list in the app, grouped by day: a ranger bird walk, a concessioner bus tour, a Conservancy art class, each with its time, meeting place and operator",
+  src: "img/guide/screens/programs.v5.webp",
+  alt: "The program list in the app, grouped by day: a volunteer cleanup, a concessioner bus tour, a Conservancy art class, a gallery exhibit, each with its time, meeting place, operator and the Guide's free, all-ages and accessible marks",
   caption: "The park's programs on your dates, day by day, from the Park Service, the Conservancy, the concessioner, and the astronomy clubs."
 }, {
-  src: "img/guide/screens/trip-board.v2.webp",
+  src: "img/guide/screens/trip-board.v5.webp",
   alt: "The planning calendar in the app: a day drawn as a timeline with stops and a ranger walk as blocks sized by duration, the drive between each one figured in, and a line marking the current hour",
   caption: "The planning calendar, native to the app. Each day is a real timeline: blocks sized by how long a thing takes, drives figured between them, dragged where you want them."
 }, {
-  src: "img/guide/screens/calendar.v2.webp",
+  src: "img/guide/screens/calendar.v5.webp",
   alt: "The trip review before export, listing every event of a day with its time and length, above the button that saves the whole trip as a calendar file",
   caption: "When the days are set, the board is reviewed event by event, then saved as one calendar file your phone imports: coordinates, directions links and reminders included. No signal needed."
 }, {
-  src: "img/guide/screens/today.v2.webp",
-  alt: "The field-day view in the app: the day's forecast, sun times, entrance waits, road status, air quality and river flow, then what is next and the day in time order",
-  caption: "In the park, the plan collapses to one screen: light, gate waits, roads and river up top, what's next, then the day in order."
+  src: "img/guide/screens/today.v5.webp",
+  alt: "The field-day view in the app: the day's forecast, sun times, entrance waits, road status, air quality and river flow, then live webcam stills of Half Dome and Yosemite Falls",
+  caption: "In the park, the plan collapses to one screen: light, gate waits, roads, air and river up top, the park on camera, then what's next and the day in order."
 }, {
-  src: "img/guide/screens/secret-guide.v3.webp",
+  src: "img/guide/screens/secret-guide.v5.webp",
   alt: "The Secret Guide's opening folio in the app: a dark plate headed 'Included with purchase, 50 entries', the section's promise in a paragraph, then a numbered contents of five categories: Quiet Vistas 9, Hidden Trails 23, Parking 5, Camping 7, After Dark 6",
   caption: "The Secret Guide opens on its folio: 50 entries in five numbered sections, every entry numbered across the whole set and pinned in gold on the offline map."
 }];
 var NEW_SHOTS = [{
-  src: "img/guide/screens/instruments.v3.webp",
+  src: "img/guide/screens/regions.v5.webp",
+  alt: "The front page's regions section, headed 'Four regions. Open one and plan its day.': Yosemite Valley as a photo card with 21 stops, 15 hikes, today's forecast and a Keep planning Day 1 button, then the Glacier Point and Mariposa Grove card marked Day 3",
+  caption: "The four regions are photo cards now. A region already on your trip says which day it is and opens where you left off."
+}, {
+  src: "img/guide/screens/region-plan.v5.webp",
+  alt: "The region planner for Yosemite Valley: a row of trip days to choose from, that day's sunrise, golden hour and sunset, then the rest of the day",
+  caption: "Open a region and plan its day: pick the date, read the light, then build it from the programs, hikes and stops that run there. Everything you pick lands on the trip."
+}, {
+  src: "img/guide/screens/instruments.v5.webp",
   alt: "The instrument tiles on the app's front page: topo map, day hikes, programs, night sky, bearing compass, Help, and a wide 'You are near' tile",
   caption: "The front page's instrument row is seven now: the map, the hikes, the programs, the night sky, the bearing compass, the Help card, and companion mode."
 }, {
-  src: "img/guide/screens/help.v3.webp",
+  src: "img/guide/screens/help.v5.webp",
   alt: "The Help card: Call 911 and Text 911 buttons, then a 'Your position' panel reading the live GPS fix in decimal degrees and in degrees and decimal minutes, with accuracy and elevation below",
   caption: "The Help card. 911 by call or text, then your position in both forms a dispatcher and a rescue team use, ready to be read straight off the screen. Everything but the call itself works with no signal."
 }, {
-  src: "img/guide/screens/near.v3.webp",
-  alt: "Companion mode: a panel reading GPS active, 250 feet, and 'Nearest: Tunnel View, the moment the valley opens', above the entry's opening paragraph",
+  src: "img/guide/screens/near.v5.webp",
+  alt: "Companion mode: a panel reading GPS active, 100 feet, and 'Nearest: Tunnel View, the moment the valley opens', above the entry's opening paragraph",
   caption: "Companion mode. The nearest entry comes up as the car moves, with the paragraph on why it is worth stopping, and reads itself aloud for the passenger on request."
 }, {
-  src: "img/guide/screens/compass.v3.webp",
-  alt: "The bearing compass: a rose with its needle pointing at Lower Yosemite Fall at about 30 degrees, north up, the sun marked on the dial to the west",
+  src: "img/guide/screens/compass.v5.webp",
+  alt: "The bearing compass: a rose with its needle pointing at Lower Yosemite Fall, 64 degrees east-northeast and 4.9 miles in a straight line, north up, the sun marked on the dial to the southeast",
   caption: "The bearing compass points at any stop: straight-line distance, true bearing, and the sun on the same dial, all computed on the phone. Airplane mode is fine."
 }, {
-  src: "img/guide/screens/daylight.v3.webp",
-  alt: "The Daylight panel on the Upper Yosemite Fall hike page: sunset 7:20 p.m., start by 11:20 a.m., finishes with an hour of light in hand, above the trail's elevation profile",
+  src: "img/guide/screens/daylight.v5.webp",
+  alt: "The Daylight panel on the Upper Yosemite Fall hike page: sunset 6:51 p.m., start by 10:51 a.m., and, once that has passed, when a start now would finish, above the trail's elevation profile",
   caption: "Every hike carries a daylight reading: today's sunset against the time budget, and the latest start that gets you down with an hour of light in hand."
 }, {
-  src: "img/guide/screens/deadlines.v3.webp",
-  alt: "The 'Dates that matter' panel under the trip board, listing the Firefall window, the Half Dome preseason lottery and the wilderness permit lottery week for an October trip, each with Add to calendar and an NPS source link",
+  src: "img/guide/screens/deadlines.v5.webp",
+  alt: "The 'Dates that matter' panel under the trip board, listing the two-week campground release, the Camp 4 release and the seven-day wilderness permit release for an October trip, each with Add to calendar and an NPS source link",
   caption: "Dates that matter, resolved to your trip: the lotteries, release mornings and road windows that apply to your dates, each with a calendar file and its NPS source."
 }, {
-  src: "img/guide/screens/wildlife.v3.webp",
+  src: "img/guide/screens/wildlife.v5.webp",
   alt: "The Quick ID page, 'What did I see?', with category chips and a black bear plate above the entry's field marks and a 'Seen it' check",
   caption: "Quick ID opens every one of its 32 entries on a photograph now, and the 'Seen it' check keeps your trip's life list."
 }];
@@ -667,27 +675,27 @@ function AppShots({
   }, shot.caption))));
 }
 var WALKTHROUGH_STEPS = [{
-  src: "img/guide/screens/front-page.v2.webp",
-  alt: "The app's front page: live park readings above the four regions, each with its stop count",
+  src: "img/guide/screens/front-page.v5.webp",
+  alt: "The app's front page: live gate waits, the day's light and the valley forecast, above the four regions",
   title: "Pick a direction",
-  detail: "The park's readings first: forecast, sunset, roads, gate waits. Then the four regions."
+  detail: "The park's readings first: gate waits, the light, the forecast. Then the four regions."
 }, {
-  src: "img/guide/screens/stop.v2.webp",
+  src: "img/guide/screens/stop.v5.webp",
   alt: "A stop page with a tappable GPS coordinate, the elevation, a 25-minute time budget and the best light",
   title: "Read the numbers",
   detail: "A tappable coordinate, the elevation, the honest time budget, the hour the light works."
 }, {
-  src: "img/guide/screens/swap.v2.webp",
+  src: "img/guide/screens/swap.v5.webp",
   alt: "The stop's 'If full' swap: exactly where to go when the lot is full",
   title: "Know the move when the lot is full",
   detail: "The swap is printed on the stop itself, not somewhere in your notes."
 }, {
-  src: "img/guide/screens/trip-board.v2.webp",
+  src: "img/guide/screens/trip-board.v5.webp",
   alt: "A trip day drawn as a timeline: blocks sized by duration with drive buffers between",
   title: "Build the day in driving order",
   detail: "Blocks sized by how long things take, drives figured between them."
 }, {
-  src: "img/guide/screens/today.v2.webp",
+  src: "img/guide/screens/today.v5.webp",
   alt: "The field-day screen: forecast, sun times, gate waits, road status, and the day in time order",
   title: "Work the day from one screen",
   detail: "Light, entrance waits, roads, what's next. The plan with the planning taken out."
@@ -941,7 +949,7 @@ function GuideOfflineDemo() {
     className: "guide-offline__status",
     "aria-hidden": "true"
   }, "No Service · Airplane mode"), React.createElement("img", {
-    src: "img/guide/screens/stop.v2.webp",
+    src: "img/guide/screens/stop.v5.webp",
     alt: "A stop page in the app, rendering identically with or without cell service",
     width: "640",
     height: "1385",

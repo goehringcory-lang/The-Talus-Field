@@ -1642,8 +1642,8 @@ function HpGuideBand({
   }), React.createElement("div", {
     className: "hp-phone hp-back"
   }, React.createElement("img", {
-    src: "/img/guide/screens/hikes.v2.webp",
-    alt: "Field Guide hiking screen",
+    src: "/img/guide/screens/regions.v5.webp",
+    alt: "Field Guide regions screen: four photo cards, each opening a day planner",
     width: "640",
     height: "1385",
     loading: "lazy",
@@ -1651,8 +1651,8 @@ function HpGuideBand({
   })), React.createElement("div", {
     className: "hp-phone hp-front"
   }, React.createElement("img", {
-    src: "/img/guide/screens/front-page.v4.webp",
-    alt: "Field Guide app with park information and daylight tools",
+    src: "/img/guide/screens/front-page.v5.webp",
+    alt: "Field Guide front page with live gate waits, the day's light and the forecast",
     width: "640",
     height: "1385",
     loading: "lazy",
