@@ -110,6 +110,7 @@ window.planningSeriesFor = function (slug) {
 // verifies this map stays in sync with the files in bodies/.
 // ============================================================
 window.BODY_VERSIONS = {
+  "yosemite-in-october-2026": 1,
   "yosemite-falls-trail": 1,
   "cell-service-in-yosemite": 2,
   "glacier-point-how-to-visit": 1,
@@ -131,7 +132,7 @@ window.BODY_VERSIONS = {
   "yosemite-valley-parking-guide": 1,
   "yosemite-shuttle-and-yarts": 3,
   "yosemite-walk-up-and-day-of-permits": 3,
-  "yosemite-in-fall": 3,
+  "yosemite-in-fall": 4,
   "yosemite-tunnel-trees": 2,
   "yosemite-wildlife-viewing-guide": 4,
   "showy-milkweed-yosemite-valley": 3,
@@ -744,6 +745,20 @@ window.KIT.lists.forEach((l) => {
 });
 
 window.ARTICLES = [
+  {
+    slug: "yosemite-in-october-2026",
+    cat: "seasonal",
+    title: "Yosemite in October 2026: A Fire, a Closed Road, and the Last Weeks of the High Country",
+    dek: "The Dome Fire has closed Glacier Point Road and put smoke in the Valley's mornings. Tioga Road is open until the first storm, the Half Dome cables come down on the 13th, and the park closes its seasonal counters one by one. What is different this October, by date.",
+    seoDek: "Yosemite in October 2026: the Dome Fire and Glacier Point Road closure, Tioga Road's last weeks, Half Dome cable dates, Mist Trail closures, closing dates.",
+    date: "September 25, 2026",
+    isoDate: "2026-09-25",
+    isoModified: "2026-09-25",
+    read: "9 min",
+    placeholder: "Tunnel View in autumn, with fresh snow on the high rims above fall color on the Valley floor",
+    image: "img/tunnel-view-autumn-aniket-deole.jpg",
+    credit: "Photo: Aniket Deole / Unsplash",
+  },
   {
     slug: "yosemite-falls-trail",
     cat: "trails",
@@ -1846,6 +1861,10 @@ window.START_HERE = [
 // Curate a piece when it earns real search impressions, when it anchors a
 // cluster, or when it is the destination that needs the equity.
 window.RELATED = {
+  // Yosemite in October 2026: the dated month edition. Onward to the evergreen
+  // fall piece, the crowd forecast, and the October decisions the fire and the
+  // calendar force: Glacier Point on foot, smoke, Tioga, Half Dome.
+  "yosemite-in-october-2026": ["yosemite-in-fall", "when-to-visit-yosemite-2026-crowd-forecast", "yosemite-during-smoke-season", "four-mile-up-panorama-down", "tuolumne-meadows-in-a-day", "so-you-want-to-hike-half-dome"],
   // The Yosemite Falls Trail: the Valley's most-searched climb, which the
   // catalog had only mentioned in the heat and winter pieces. Onward to the
   // waterfall calendar, the other big Valley climb, and the logistics.
@@ -1911,13 +1930,13 @@ window.RELATED = {
   "first-time-yosemite-overwhelm": ["yosemite-in-one-or-two-days", "when-to-visit-yosemite-2026-crowd-forecast", "yosemite-gateway-towns-compared", "yosemite-without-reservations-2026", "yosemite-in-three-to-five-days", "pack-your-car-for-yosemite"],
   "yosemite-in-one-or-two-days": ["yosemite-in-three-to-five-days", "first-time-yosemite-overwhelm", "yosemite-valley-parking-guide", "yosemite-with-kids-no-reservations-2026", "yosemite-day-trip-from-bay-area", "where-to-eat-yosemite"],
   "yosemite-in-three-to-five-days": ["yosemite-in-one-or-two-days", "tuolumne-meadows-in-a-day", "mist-trail-the-real-guide", "yosemite-gateway-towns-compared", "when-to-visit-yosemite-2026-crowd-forecast"],
-  "when-to-visit-yosemite-2026-crowd-forecast": ["yosemite-without-reservations-2026", "yosemite-in-september-2026", "yosemite-in-fall", "yosemite-valley-parking-guide", "yosemite-gateway-towns-compared", "yosemite-in-march"],
+  "when-to-visit-yosemite-2026-crowd-forecast": ["yosemite-without-reservations-2026", "yosemite-in-september-2026", "yosemite-in-fall", "yosemite-valley-parking-guide", "yosemite-gateway-towns-compared", "yosemite-in-october-2026"],
   "yosemite-without-reservations-2026": ["when-to-visit-yosemite-2026-crowd-forecast", "yosemite-valley-parking-guide", "yosemite-walk-up-and-day-of-permits", "yosemite-camping-complete-guide", "hetch-hetchy-the-other-yosemite-valley", "first-time-yosemite-overwhelm"],
 
   // Seasonal
   "yosemite-in-june-2026": ["when-to-visit-yosemite-2026-crowd-forecast", "yosemite-waterfalls-guide", "tioga-road-opening-weekend-2026", "yosemite-heat-safety-guide", "bears-spring-emergence"],
   "yosemite-in-september-2026": ["when-to-visit-yosemite-2026-crowd-forecast", "yosemite-in-fall", "tuolumne-meadows-in-a-day", "yosemite-during-smoke-season", "cathedral-lakes-day-hike", "mist-trail-the-real-guide"],
-  "yosemite-in-fall": ["yosemite-in-september-2026", "clouds-rest-hike", "when-to-visit-yosemite-2026-crowd-forecast", "yosemite-in-winter", "yosemite-photography-spots", "yosemite-during-smoke-season"],
+  "yosemite-in-fall": ["yosemite-in-october-2026", "yosemite-in-september-2026", "clouds-rest-hike", "when-to-visit-yosemite-2026-crowd-forecast", "yosemite-in-winter", "yosemite-during-smoke-season"],
   "yosemite-in-winter": ["yosemite-winter-hikes", "horsetail-fall-firefall", "when-to-visit-yosemite-2026-crowd-forecast", "yosemite-in-march", "bracebridge-dinner-and-vintners-holidays"],
   "yosemite-in-march": ["yosemite-in-winter", "yosemite-waterfalls-guide", "bears-spring-emergence", "horsetail-fall-firefall", "when-to-visit-yosemite-2026-crowd-forecast"],
   "tioga-road-opening-weekend-2026": ["cathedral-lakes-day-hike", "tuolumne-meadows-in-a-day", "yosemite-from-las-vegas", "memorial-day-skip-the-valley-go-high-2026", "yosemite-stargazing-where-to-look-up", "when-to-visit-yosemite-2026-crowd-forecast"],

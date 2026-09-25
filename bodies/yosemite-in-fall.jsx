@@ -123,7 +123,7 @@ window.ARTICLE_BODIES["yosemite-in-fall"] = function YosemiteInFallBody() {
       </p>
 
       <p>
-        <strong>If you want fall color:</strong> go the third or fourth week of October. You get color coming on, a real chance the high roads are still open, and Valley crowds at roughly 60 percent of summer. This is the compromise pick and it is the one I recommend to most people. Book flexible lodging, because if a storm shuts Tioga mid-trip you want to be able to restructure rather than cancel.
+        <strong>If you want fall color:</strong> go <a href="/articles/yosemite-in-october-2026">the third or fourth week of October</a>. You get color coming on, a real chance the high roads are still open, and Valley crowds at roughly 60 percent of summer. This is the compromise pick and it is the one I recommend to most people. Book flexible lodging, because if a storm shuts Tioga mid-trip you want to be able to restructure rather than cancel.
       </p>
 
       <p>
