@@ -6,16 +6,16 @@
     "seasonal": "2026-09-22"
   },
   "entries": {
-    "tunnel-view": "2026-09-24",
-    "valley-loop-drive": "2026-09-24",
-    "cooks-meadow-loop": "2026-09-24",
-    "lower-yosemite-fall": "2026-09-24",
-    "bridalveil-fall": "2026-09-24",
-    "valley-view": "2026-09-24",
-    "old-big-oak-flat-road": "2026-09-24",
-    "old-road-trailhead-pullout": "2026-09-24",
-    "rainbow-view-old-road": "2026-09-24",
-    "ribbon-fall-base": "2026-09-24",
+    "tunnel-view": "2026-09-25",
+    "valley-loop-drive": "2026-09-25",
+    "cooks-meadow-loop": "2026-09-25",
+    "lower-yosemite-fall": "2026-09-25",
+    "bridalveil-fall": "2026-09-25",
+    "valley-view": "2026-09-25",
+    "old-big-oak-flat-road": "2026-09-25",
+    "old-road-trailhead-pullout": "2026-09-25",
+    "rainbow-view-old-road": "2026-09-25",
+    "ribbon-fall-base": "2026-09-25",
     "foresta-cascades": "2026-09-24",
     "el-capitan-meadow": "2026-09-24",
     "camp-4": "2026-09-24",
@@ -135,5 +135,12 @@
     "glacier-point-star-party": "2026-09-24",
     "great-gray-owl-dusk": "2026-09-24"
   },
-  "queue": []
+  "queue": [
+    {
+      "id": "el-capitan-summit-tamarack",
+      "file": "stops.ts",
+      "added": "2026-09-25",
+      "note": "Body says the old Big Oak Flat Road was 'severed in the middle by the 1945 rockslide'. Nature Notes vol. 29 no. 7 (July 1950) dates the slide that closed the road to cars to 1943; a later slide (1945, secondary sources only) took out the valley grade. The 2026-09-25 audit corrected old-big-oak-flat-road to 1943; confirm against a primary source whether the 1945 wording here should also read 1943 or stand."
+    }
+  ]
 }
