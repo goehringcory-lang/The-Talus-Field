@@ -19,7 +19,6 @@ import {
   HIKES,
   REGIONS,
   SEASONAL_EVENTS,
-  getSecretGuideEntries,
   getStopById,
   getStopsByRegion,
   seasonalRangeLabel,
@@ -39,7 +38,8 @@ import { readTripDates, type TripDates } from '../programs/usePrograms'
 import { relativeStamp } from '../utils/relativeStamp'
 import GatedChrome from '../components/GatedChrome'
 import ParkNowPanel from '../components/ParkNowPanel'
-import ResponsivePhoto from '../components/ResponsivePhoto'
+import RegionCards from '../components/RegionCards'
+import TripDaysCard from '../components/TripDaysCard'
 import UpdatedStamp from '../components/UpdatedStamp'
 import Button from '../components/ui/Button'
 import Callout from '../components/ui/Callout'
@@ -307,8 +307,6 @@ export default function Home() {
   const downloadedCount = PACK_IDS.filter((id) => isPackCompleted(id)).length
 
   const stopCount = REGIONS.reduce((n, r) => n + getStopsByRegion(r.id).length, 0)
-  const secretCount = getSecretGuideEntries().length
-  const planCount = plan.items.length
   const datesLabel = tripDates ? tripDatesLabel(tripDates) : null
 
   // One useWeather() for the whole page; past HIDE_AFTER every per-region
@@ -333,24 +331,11 @@ export default function Home() {
 
         <ParkNowPanel />
 
-        {/* The trip readout: always present, because this is the trip
-            planner's front door on the index page (the tab bar is the other).
-            The value line states whatever is known so far. */}
-        <Link to="/trip" className="trip-strip">
-          <span className="trip-strip__meta">
-            <span className="trip-strip__label">Your trip</span>
-            <span className="trip-strip__value">
-              {datesLabel && planCount > 0
-                ? `${datesLabel} · ${planCount} ${planCount === 1 ? 'item' : 'items'}`
-                : datesLabel
-                  ? `${datesLabel} · add stops and hikes`
-                  : planCount > 0
-                    ? `${planCount} ${planCount === 1 ? 'item' : 'items'} · set your dates`
-                    : 'Start with your dates'}
-            </span>
-          </span>
-          <span className="trip-strip__cta">Open board →</span>
-        </Link>
+        {/* The second question after "what is the park doing": when are you
+            here. Dates first, because the region planners are built on them;
+            once set, one row per day with the regions on it. Replaced the
+            one-line trip strip (see components/TripDaysCard.tsx). */}
+        <TripDaysCard />
 
         <PendingImportCard />
 
@@ -362,87 +347,10 @@ export default function Home() {
           <TodayCard today={todayIso()} dates={tripDates} items={plan.items} />
         )}
 
-        <section aria-label="The guide" className="page-section">
-          <span className="eyebrow">The guide · {stopCount} stops · 4 regions</span>
-          <div className="region-rows">
-            {REGIONS.map((region, i) => {
-              const today = showForecast
-                ? regionTodayLine(weatherByRegion.get(region.id))
-                : null
-              return (
-                <Link key={region.id} to={`/region/${region.id}`} className="region-row">
-                  <span className="region-row__index" aria-hidden="true">
-                    {String(i + 1).padStart(2, '0')}
-                  </span>
-                  <div className="region-row__media">
-                    <ResponsivePhoto
-                      src={region.photo.src}
-                      alt=""
-                      loading="lazy"
-                      width={400}
-                      height={400}
-                      sizes="52px"
-                    />
-                  </div>
-                  <div className="region-row__body">
-                    <h2 className="region-row__title">{region.title}</h2>
-                    <span className="dateline">
-                      {getStopsByRegion(region.id).length} stops
-                      {today ? ` · ${today}` : ''}
-                    </span>
-                  </div>
-                  <svg
-                    className="region-row__go"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    aria-hidden="true"
-                  >
-                    <path d="M9 18l6-6-6-6" />
-                  </svg>
-                </Link>
-              )
-            })}
-            {/* The Secret Guide is the index's fifth reading section: same row
-                anatomy, an icon tile where the regions carry a photo, because
-                its entries deliberately have no single face. */}
-            <Link to="/secret-guide" className="region-row">
-              <span className="region-row__index" aria-hidden="true">SG</span>
-              <div className="region-row__media region-row__media--icon" aria-hidden="true">
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <path d="M12 3l2.1 5.4 5.9.4-4.5 3.7 1.5 5.7L12 15l-5 3.2 1.5-5.7L4 8.8l5.9-.4L12 3z" />
-                </svg>
-              </div>
-              <div className="region-row__body">
-                <h2 className="region-row__title">The Secret Guide</h2>
-                <span className="dateline">
-                  {secretCount} entries · none of it makes the brochures
-                </span>
-              </div>
-              <svg
-                className="region-row__go"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                aria-hidden="true"
-              >
-                <path d="M9 18l6-6-6-6" />
-              </svg>
-            </Link>
-          </div>
+        {/* The regions as invitations into their day planners; the Secret
+            Guide closes the set as a card of the same family. */}
+        <RegionCards weatherLine={(id) => (showForecast ? regionTodayLine(weatherByRegion.get(id)) : null)} />
+        <section aria-label="Conditions footnotes" className="page-section">
           {/* One attribution for all four lines; repeating it per row is noise. */}
           {showForecast && weather.fetchedAt && (
             <p className="weather-attribution weather-attribution--rows">

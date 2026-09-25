@@ -150,3 +150,33 @@ export function publishedDriveMinutes(a: TripItemT, b: TripItemT): number | null
   if (VALLEY_NODES.has(na) && VALLEY_NODES.has(nb)) return null
   return treeMinutes(na, nb)
 }
+
+export type TripRegion = keyof typeof REGION_DRIVE_NODES
+
+/** The region a plan item belongs to, for the region planner and the day's
+ *  handoff line: a stop or hike's own region, a program's by the stop it
+ *  meets beside (the same one-mile rule the drive table uses), a secret spot's
+ *  by the point it is driven to. Null for custom entries and anything the
+ *  guide cannot place. */
+export function regionForItem(item: TripItemT): TripRegion | null {
+  if (item.type === 'hike') return getHikeById(item.hikeId)?.region ?? null
+  if (item.type === 'program') {
+    const coord = item.snapshot.coord
+    return coord ? regionNear(coord) : null
+  }
+  if (item.type === 'stop') {
+    const stop = getStopById(item.stopId)
+    if (!stop) return null
+    if ('region' in stop) return stop.region
+    const node = SECRET_SPOT_DRIVE_NODE[stop.id]
+    if (!node) return null
+    const regions = Object.keys(REGION_DRIVE_NODES) as TripRegion[]
+    return regions.find((r) => REGION_DRIVE_NODES[r].includes(node)) ?? null
+  }
+  return null
+}
+
+/** Region of a program event before it is in the plan (the planner's list). */
+export function regionForCoord(coord: [number, number] | undefined | null): TripRegion | null {
+  return coord ? regionNear(coord) : null
+}

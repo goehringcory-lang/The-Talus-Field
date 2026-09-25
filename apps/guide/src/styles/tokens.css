@@ -95,6 +95,11 @@
      --radius-pill exists only for the nav count badge. */
   --radius: 0;
   --radius-pill: 999px;
+  /* The planning surfaces (Home's days and region cards, the region
+     planner) are the one place the guide rounds a corner: they are the
+     inviting half of the app, the part that asks the reader in, set against
+     the square instrument half. One token, so a return to square is 0 here. */
+  --radius-card: 12px;
 
   /* Height of the sticky masthead, excluding the top safe-area inset. The
      map page subtracts this (plus insets and the bottom nav) from 100dvh. */

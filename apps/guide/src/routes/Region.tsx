@@ -15,15 +15,7 @@ import { detectPhotoFormat, precachePhotoUrls } from '../utils/photo'
 import { precacheUrls } from '../pwa/precache'
 import WeatherStrip from '../weather/WeatherStrip'
 import RoadNote from '../components/RoadNote'
-import type { SeasonalRoadId } from '../content/roads'
-
-// The seasonal road a whole region's core flow depends on. Glacier Point
-// and Mariposa is half Wawona, open all year, so the note says which road it
-// means rather than implying the region closes.
-const REGION_ROAD: Partial<Record<string, SeasonalRoadId>> = {
-  tuolumne: 'tioga',
-  'glacier-mariposa': 'glacier-point',
-}
+import { REGION_ROAD } from '../content/roads'
 
 export default function Region() {
   const params = useParams<{ regionId: string }>()
@@ -97,6 +89,9 @@ export default function Region() {
               <p className="dateline">
                 {stops.length} stops, in driving order. Swipe up to start.
               </p>
+              <Link className="more-link" to={`/region/${region}/plan`}>
+                Plan a day here →
+              </Link>
             </div>
           </div>
         ),
@@ -199,6 +194,10 @@ export default function Region() {
         </div>
 
         <PageHeader eyebrow="Regional guide" title={meta?.title} intro={meta?.teaser} />
+
+        <Link className="more-link region-plan-link" to={`/region/${region}/plan`}>
+          Plan a day here: programs, hikes and stops for your dates →
+        </Link>
 
         {regionRoad && <RoadNote road={regionRoad} />}
 

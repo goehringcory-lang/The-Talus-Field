@@ -19,6 +19,15 @@ export type ChangelogEntryT = z.infer<typeof ChangelogEntry>
 
 const seed: ChangelogEntryT[] = [
   {
+    date: '2026-09-25',
+    lines: [
+      'Plan a day in any region: pick which of your days it is, then add the park’s programs for that date, the hikes that start there with their elevation profiles, and the stops. Everything lands on your trip board.',
+      'A day can be half one region and half another. The planner says when to leave, how long the drive is, and when you arrive.',
+      'The trip board flags a program you cannot reach in time from the thing before it, and no longer fills a morning in a way that strands one.',
+      'The front page asks for your dates first, then lists each day with the regions on it.',
+    ],
+  },
+  {
     date: '2026-09-24',
     lines: [
       'The trip board prices drives from the park’s published driving times: Glacier Point is an hour from the Valley, not fifteen minutes.',

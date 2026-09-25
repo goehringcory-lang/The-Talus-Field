@@ -41,6 +41,7 @@ import {
 import { daylightFit } from '../sun/daylight'
 import { useRoadReader, type RoadReading } from '../alerts/roadState'
 import { driveMinutesBetween, toHhmm, type SlottedItem } from '../trip/slotting'
+import { shortLegsByTarget, type DayLeg } from '../trip/driveCheck'
 import { hikeItemId, stopItemId, type TripItemT } from '../trip/schema'
 import { useTripPlan } from '../trip/useTripPlan'
 import { addDaysIso, formatDayHeader, parkNowMinutes, todayIso } from '../utils/date'
@@ -182,6 +183,15 @@ export default function TripAgenda({ slotted, windowDays, dayForecasts }: Props)
   const layouts = useMemo(() => {
     const out = new Map<string, ReturnType<typeof layoutDay>>()
     for (const day of days) out.set(day, layoutDay(slotted.get(day) ?? []))
+    return out
+  }, [days, slotted])
+
+  // Legs the day cannot drive in time: a published program (or a pinned
+  // block) that starts before the drive from the thing before it could get
+  // you there. Slotting never moves those, so the board says so on the block.
+  const lateLegs = useMemo(() => {
+    const out = new Map<string, Map<string, DayLeg>>()
+    for (const day of days) out.set(day, shortLegsByTarget(slotted.get(day) ?? []))
     return out
   }, [days, slotted])
 
@@ -700,13 +710,18 @@ export default function TripAgenda({ slotted, windowDays, dayForecasts }: Props)
                           className="ag-gap"
                           style={{ top: (prev.endMin - win.from) * pxPerMin, height: gapMin * pxPerMin }}
                         >
-                          {drive === 0 ? 'Same parking area' : `~${drive} min drive`}
+                          {drive === 0
+                            ? 'Same parking area'
+                            : lateLegs.get(day)?.has(p.s.item.itemId)
+                              ? `Needs ~${drive} min drive`
+                              : `~${drive} min drive`}
                         </span>
                       )}
                       <AgendaBlock
                         placed={p}
                         day={day}
                         road={roads.forItem(p.s.item, day)}
+                        lateLeg={lateLegs.get(day)?.get(p.s.item.itemId) ?? null}
                         win={win}
                         pxPerMin={pxPerMin}
                         expanded={expandedId === p.s.item.itemId}
@@ -797,12 +812,16 @@ type BlockProps = {
   // The seasonal road this item sits behind, read for this block's day
   // (alerts/roadState.ts); null for everything that does not depend on one.
   road: RoadReading | null
+  // The leg into this block when the day leaves too little time to drive it
+  // (trip/driveCheck.ts); null when the block is reachable.
+  lateLeg: DayLeg | null
 }
 
 function AgendaBlock({
   placed,
   day,
   road,
+  lateLeg,
   win,
   pxPerMin,
   expanded,
@@ -855,6 +874,8 @@ function AgendaBlock({
         data-item-id={s.item.itemId}
         aria-expanded={expanded}
         aria-label={`${info.title}, ${timeRange}${afterDark ? ', ends after sunset' : ''}${
+          lateLeg ? `, needs about ${lateLeg.needMin} minutes to get here and the plan leaves ${Math.max(0, lateLeg.gapMin)}` : ''
+        }${
           roadFlag ? `, ${roadFlag.toLowerCase()}` : ''
         }`}
         onPointerDown={(e) => onPointerDown(e, 'move')}
@@ -874,6 +895,7 @@ function AgendaBlock({
           {fixedTime && <span className="ag-block__flag">Published time</span>}
           {pinned && <span className="ag-block__flag">Pinned</span>}
           {afterDark && <span className="ag-block__flag ag-block__flag--dark">After sunset</span>}
+          {lateLeg && <span className="ag-block__flag ag-block__flag--dark">Can’t get here in time</span>}
           {roadFlag && <span className="ag-block__flag ag-block__flag--road">{roadFlag}</span>}
         </span>
         <span className="ag-block__title">{info.title}</span>
