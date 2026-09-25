@@ -196,6 +196,7 @@ window.ARTICLE_INTENT = {
   "yosemite-heat-safety-guide":                { stage: ["week-before", "in-park"], who: ["families", "first-trip"], topic: ["conditions", "trails"] },
   "when-to-visit-yosemite-2026-crowd-forecast":{ stage: ["before-booking"], who: ["first-trip"], topic: ["conditions"] },
   "yosemite-trip-cost-budget-2026":            { stage: ["before-booking"], who: ["first-trip", "families"], topic: ["lodging", "camping", "food", "transportation"] },
+  "yosemite-in-october-2026":                   { stage: ["before-booking", "dates-set"], who: [], topic: ["conditions"] },
   "yosemite-in-september-2026":                 { stage: ["before-booking", "dates-set"], who: [], topic: ["conditions"] },
   "yosemite-in-june-2026":                     { stage: ["before-booking", "dates-set"], who: [], topic: ["conditions"] },
   // Month guide like the June piece: an empty `who` on purpose, because "what is
@@ -300,6 +301,7 @@ window.INTENT_NO_TAGS = {
 window.ARTICLE_MONTHS = {
   // Seasonal essays and month guides.
   "yosemite-in-fall": ["sep", "oct", "nov"],
+  "yosemite-in-october-2026": ["oct"],
   "yosemite-in-september-2026": ["sep"],
   "yosemite-facelift-volunteer-guide": ["sep"],
   "yosemite-in-june-2026": ["jun"],

@@ -1,0 +1,199 @@
+/* global React, Placeholder, MotifTrees */
+
+window.ARTICLE_BODIES = window.ARTICLE_BODIES || {};
+
+window.ARTICLE_BODIES["yosemite-in-october-2026"] = function YosemiteInOctober2026Body() {
+  return (
+    <>
+      <p className="dropcap">
+        October is usually the easy month to write about: the crowds are gone, Tioga Road is still open, the oaks turn, and the only real question is whether the first storm comes early. October 2026 starts with a different question. A wildfire is burning northeast of Wawona, Glacier Point Road has been closed since the evening of September 23, and the mornings in the Valley have been smoky. The month is still worth taking. It just needs a different plan than the one in last year's photographs.
+      </p>
+
+      <p>
+        What follows is what is specific to this October: the fire and the road it closed, the high country's last weeks, the Half Dome dates, the Mist Trail's repair schedule, and the calendar of things that close. <a href="/articles/yosemite-in-fall">The fall guide</a> covers what every October is like, the color, the animals and the weather, and none of that is repeated here.
+      </p>
+
+      <h2>Glacier Point Road is closed, and the fire decides for how long</h2>
+
+      <p>
+        The <strong>Dome Fire</strong> was reported on the morning of September 15, about a quarter mile north of Chilnualna Falls, and the incident page lists its cause as an abandoned campfire. By the evening of September 24 it had burned <strong>4,133 acres at 16 percent containment</strong>. Two helicopter pilots were killed fighting it on September 20.
+      </p>
+
+      <p>
+        The park closed <strong>Glacier Point Road</strong> at 6 p.m. on September 23, for smoke that cut visibility along the road and to keep it clear for firefighting. It will reopen when conditions allow, and nobody has put a date on that. Until it does, Glacier Point, Sentinel Dome and Taft Point cannot be reached by car. The rest of the park is open and operating normally, Wawona Road and the Mariposa Grove included.
+      </p>
+
+      <p>
+        The trails around the fire are closed until further notice: the <strong>Chilnualna Falls trail</strong> and the trails above it toward Buena Vista and Crescent Lakes, and the <strong>Ostrander Lake Trail and every area and trail south of it</strong>, which takes in the country east of Wawona Road from Chinquapin to Wawona.
+      </p>
+
+      <p>
+        Glacier Point itself is still reachable on foot. The park has said the <strong>Four Mile Trail and the Panorama Trail stay open to hikers</strong>, which makes the point a hike from the Valley floor rather than a drive: 9.6 miles round trip and 3,200 feet on the Four Mile Trail, six to eight hours. What the closure takes away is the easy version of that day. The Glacier Point tour bus, which carries hikers up to walk down, runs on the closed road, and its season was always going to end on <strong>October 11</strong>. Confirm it is running before building a day around it. <a href="/articles/four-mile-up-panorama-down">The Four Mile and Panorama guide</a> covers both trails in full.
+      </p>
+
+      <p>
+        Even a quick reopening leaves a short window. <strong>Overnight parking on Glacier Point Road ends October 15</strong>, the gift shop at the point closes October 25, and the road closes for winter sometime in November. The last two seasons it closed on November 11 and November 12. If Glacier Point is the reason for the trip, keep the plan loose and check the road the week you go. <a href="/articles/glacier-point-how-to-visit">The Glacier Point guide</a> has the rest for when it opens again.
+      </p>
+
+      <h2>Smoke settles in the mornings, not the afternoons</h2>
+
+      <p>
+        The pattern the fire has set runs against the usual advice to start early. Smoke settles overnight in Wawona and the Valley, and the incident's air-quality outlook has had both at <strong>unhealthy for sensitive groups in the morning, clearing in the afternoon</strong>. Tuolumne Meadows has run the other way, with good air in the morning and worse in the afternoon.
+      </p>
+
+      <p>
+        That suggests an order for the day, as long as the pattern holds: the high country early, the Valley later. Check fire.airnow.gov the morning you drive in rather than the night before, because a wind shift changes it overnight. <a href="/articles/yosemite-during-smoke-season">Visiting during smoke season</a> explains how to read the readings and what each band means for a hike.
+      </p>
+
+      <p>
+        The Mariposa Grove is open, and its free shuttle runs every 15 minutes from 8 a.m. to 5 p.m. through October 31, with the last bus down at 5:30. For sequoias farther from the fire, the two groves near Crane Flat are the better bet this month: <strong>the Tuolumne Grove, 2 miles round trip, and the Merced Grove, 3</strong>. Rangers lead a Tuolumne Grove walk on Monday, Wednesday and Thursday at 1 p.m. through November 1.
+      </p>
+
+      <Placeholder
+        caption="The Merced Grove, the quiet sequoias near Crane Flat"
+        image="img/merced-grove-sequoias.jpg"
+        credit="Photo: Darold Massaro / Wikimedia Commons (CC0)"
+        tag="PLATE I"
+        size="lg"
+        style={{ aspectRatio: "3 / 2", margin: "32px 0" }}
+        motif={<MotifTrees />}
+      />
+
+      <h2>Tioga Road: open, on the weather's schedule</h2>
+
+      <p>
+        Tioga Road is open, and in most years it stays open through October. In the last ten years it closed for the season in November eight times. The two exceptions are worth knowing: <strong>October 21 in 2021 and October 31 in 2022</strong>. The park does not set the date; the first storm that puts snow on the pass does. When it closes, there is no way through the park to Highway 395.
+      </p>
+
+      <p>
+        The high country is at its emptiest now, and it has no services to speak of. The Tuolumne Meadows Visitor Center closes September 27, the store, grill and buses are already done for the year, and the <strong>wilderness center closes October 14</strong>. There has never been gas at Tuolumne. The Crane Flat store closes October 25, but its pumps stay open year-round, card only. From <strong>October 15 there is no overnight parking on Tioga Road</strong>. Of the campgrounds along the road, Porcupine Flat closes October 11 and Tamarack Flat and Crane Flat October 12.
+      </p>
+
+      <p>
+        Construction adds a few minutes. Monday through Thursday from 8 a.m. to 3:30 p.m., expect delays of about 10 minutes through Tuolumne Meadows and 15 minutes between Olmsted Point and Tioga Pass. The trail between the wilderness center and Lembert Dome is closed for construction, with an alternate signed.
+      </p>
+
+      <p>
+        Fill the tank below, carry lunch and warm layers, and call the road line before you set out: <strong>209/372-0200, press 1 then 1</strong>. <a href="/articles/tuolumne-meadows-in-a-day">The Tuolumne day</a> covers the drive, and <a href="/articles/clouds-rest-hike">Clouds Rest</a> is the big hike to take off the road while it is still open.
+      </p>
+
+      <h2>Half Dome: the last days of the cables</h2>
+
+      <p>
+        The park's rule is that the last day to use the cables is the day after the second Monday in October. This year that is <strong>Tuesday, October 13</strong>. The rule has some give in practice: in 2024 the cables came down on October 15, and in 2025 they stayed up until October 22. Plan on the 13th and treat anything after it as luck.
+      </p>
+
+      <p>
+        Every day the cables are up needs a permit, and in October a day hiker's only route to one is the <strong>daily lottery</strong>. Apply two days before the hike, between midnight and 4 p.m. Pacific, on Recreation.gov; results arrive late that night. It costs $10 per person, refunded if you cancel by 11:59 p.m. Pacific the day before or if the cables are not up. The days are short now, so start in the dark with a headlamp. <a href="/half-dome-lottery">The lottery page</a> has the odds and the strategy, and <a href="/articles/so-you-want-to-hike-half-dome">the Half Dome guide</a> covers the hike.
+      </p>
+
+      <h2>The Mist Trail is still closed four days a week</h2>
+
+      <p>
+        The repair closures that ran through September continue <strong>through October</strong>, and the park says the schedule is subject to change. The Mist Trail from its junction with the John Muir Trail, above the Vernal Fall footbridge, to the top of Vernal Fall is <strong>closed Monday through Thursday, 7 a.m. to 3:30 p.m.</strong> It is open Friday through Sunday and on holidays, and normally Monday through Thursday from 3:30 p.m. to 7 a.m. when it is safe.
+      </p>
+
+      <p>
+        The signed detour runs up the John Muir Trail past Clark Point. On a weekday, either take that detour or plan Vernal and Nevada for the weekend. <a href="/articles/mist-trail-the-real-guide">The Mist Trail guide</a> has the hike and the detour in detail.
+      </p>
+
+      <h2>What closes in October, by date</h2>
+
+      <p>
+        October is the month the park finishes packing up. The dates, from the current edition of the park's Yosemite Guide:
+      </p>
+
+      <ul>
+        <li><strong>October 11:</strong> the Glacier Point tour, hiker drop-off and Grand Tour end for the season.</li>
+        <li><strong>October 12:</strong> the Housekeeping Camp store closes; the laundry stays open. Base Camp Eatery at the Lodge closes at 8 p.m. from today.</li>
+        <li><strong>October 14:</strong> wilderness permit pickup ends at the Tuolumne Meadows Wilderness Center and at Wawona.</li>
+        <li><strong>October 15:</strong> no more overnight parking on Tioga or Glacier Point Roads.</li>
+        <li><strong>October 16:</strong> the Happy Isles Art &amp; Nature Center closes, and its art classes and kids' open studio with it.</li>
+        <li><strong>October 18:</strong> the Valley Wilderness Center and Big Oak Flat permit pickup close. From October 19, overnight hikers self-register outside the Valley Welcome Center, on the Big Oak Flat porch, or at the Hetch Hetchy entrance kiosk, and rental bear canisters are only at the Valley Welcome Center.</li>
+        <li><strong>October 25:</strong> bike rentals, the Village Grill, the Mountaineering School, the Glacier Point gift shop, the Crane Flat store and the Wawona golf course close.</li>
+        <li><strong>October 26:</strong> the Mountain Room Restaurant closes at 9 p.m. and the Pizza Deck runs noon to 9.</li>
+        <li><strong>October 31:</strong> the Wawona Visitor Center closes, and the Mist Trail's weekday closures are scheduled to end. The free bike share ends in late October, conditions allowing.</li>
+      </ul>
+
+      <p>
+        The Valley keeps its food, beds and free shuttles through all of it, and the shuttles run 7 a.m. to 10 p.m. daily year-round. <a href="/articles/where-to-eat-yosemite">Where to eat</a> covers what stays open, and <a href="/now">the Park Bulletin</a> carries the full edition, hours included.
+      </p>
+
+      <h2>Camping: reservations, then fewer campgrounds</h2>
+
+      <p>
+        Every campground open in October requires a reservation for at least part of the month. In the Valley, <strong>Lower Pines closes October 19 and North Pines October 26</strong>; Upper Pines is open all year and reservation-only. Camp 4 takes reservations one week ahead through November 29. Outside the Valley, Hodgdon Meadow and Wawona's loops B and C take reservations through October 26, and Wawona's Loop A through November 29. Sleeping in a vehicle is legal only in a campsite you are registered for.
+      </p>
+
+      <p>
+        <a href="/articles/yosemite-camping-complete-guide">The camping guide</a> explains how the reservation windows work and what to do when the campground you wanted is full.
+      </p>
+
+      <h2>The Valley in October</h2>
+
+      <p>
+        There is no entrance reservation this year. The park dropped the timed system for 2026, which is covered in <a href="/articles/yosemite-without-reservations-2026">Yosemite without reservations</a>. Visitors from outside the United States pay the non-resident fee introduced this year, $100 per person 16 and older on top of the entrance pass, and <a href="/international">the international visitor page</a> works out the cheapest way through the gate.
+      </p>
+
+      <p>
+        October is the quietest good month of the year. <a href="/articles/when-to-visit-yosemite-2026-crowd-forecast">The crowd forecast</a> puts October weekday pressure at 46 on a scale where a July weekend is 100, and October weekends at 68. Midweek needs no entrance strategy at all. On a weekend, be in before mid-morning, when the Valley lots can still fill.
+      </p>
+
+      <p>
+        Two things in the Valley are different this year. The <strong>El Capitan Bridge</strong> is under repair through December, with 15-minute delays Monday through Friday from 7 a.m. to 7 p.m.; shuttle stop 9 at El Capitan Meadow is closed, and the footpath over the bridge is shut on weekdays, which splits the Valley Loop Trail into two out-and-backs on a weekday. And the waterfalls are what they always are in October: Yosemite Fall is dry, Mirror Lake is a meadow, and Bridalveil runs low. Come for the walls and the oaks, not the water.
+      </p>
+
+      <Placeholder
+        caption="Nevada Fall and the Merced canyon under haze, the light a fire season leaves"
+        image="img/nevada-fall-canyon-haze.jpg"
+        credit="Photo: Sideesh Balasubramani / Pexels"
+        tag="PLATE II"
+        size="lg"
+        style={{ aspectRatio: "3 / 2", margin: "32px 0" }}
+        motif={<MotifTrees />}
+      />
+
+      <h2>Weather: warm days, cold nights, and the first storms</h2>
+
+      <p>
+        The park's averages for October put the Valley at a high of 71 and a low of 41, with 1.6 inches of precipitation for the month. Tuolumne Meadows averages 57 and 26, with 1.8 inches. That is a 30-degree swing in the Valley and a hard frost at Tuolumne most nights. Pack for both ends of the day.
+      </p>
+
+      <p>
+        Storms are possible from late October. Chain restrictions are most common from November to March, but when one is in effect every vehicle must carry chains, four-wheel drive and rentals included, so carry them for any trip in the last part of the month. The days are shortening fast. A headlamp belongs in every pack, and a hike that would finish at dusk in September finishes in the dark now.
+      </p>
+
+      <p>
+        Fire restrictions are still in force: fires only in portable stoves, grills and established rings, never unattended, and out cold before you walk away. The Dome Fire began as an abandoned campfire. <a href="/articles/yosemite-fire-restrictions-explained">The fire restrictions piece</a> explains the rules and how to check the current stage.
+      </p>
+
+      <h2>What is on, with dates</h2>
+
+      <p>
+        The dated events this month are small, and most are free.
+      </p>
+
+      <ul>
+        <li><strong>Peace of Place</strong>, photographs by Alan Ross, John Sexton, Anne Larsen, Roman Loranc, Bob Kolbrener and Jeffrey Conley at The Ansel Adams Gallery, runs through November 7, free to walk through. The artist reception is <strong>October 10, 1 to 3 p.m.</strong> The gallery opens at 10 a.m. from October 1.</li>
+        <li><strong>Stewardship Series: Little Fires Everywhere</strong>, a Yosemite Conservancy program on fire ecology, <strong>October 23, 2 to 4 p.m.</strong> Registration is required at Yosemite.org. The timing needs no comment.</li>
+        <li><strong>Yosemite Shorts and Stories</strong>, 45 minutes of short films, talks and performances by park staff, at 4:30 p.m. in the auditorium behind the Exploration Center on October 5, 6, 7, 12, 13, 16, 17, 23, 26, 27, 28 and 30.</li>
+        <li><strong>Hodgdon Meadow evening program</strong>, 6:30 p.m. on October 16, 17, 23 and 24. The Crane Flat campground program ends October 9.</li>
+        <li><strong>Ask-a-Climber</strong>, spotting scopes on El Capitan at El Capitan Meadow, daily from 12:30 to 4:30 p.m. through October 30. <a href="/articles/watching-climbers-el-capitan">Watching climbers on El Capitan</a> explains what you are looking at.</li>
+      </ul>
+
+      <p>
+        Ranger walks from the Welcome Center and the Valley Lodge run through October 30, and <a href="/articles/yosemite-ranger-programs">the ranger programs guide</a> explains how to find the rest. The schedule changes, and the park posts additions to its online calendar.
+      </p>
+
+      <h2>How to plan October 2026</h2>
+
+      <p>
+        Build the trip around the parts the fire does not touch: the Valley midweek, Tioga Road while it lasts, and the Crane Flat sequoias. Hold Glacier Point as a maybe. If the road reopens, it is a bonus; if it does not, walk up the Four Mile Trail and see the same view with more earned. Check the air each morning and the road status before any drive to the high country.
+      </p>
+
+      <p>
+        The first half of the month holds the most: Half Dome through the 13th, the Glacier Point bus through the 11th if it runs, overnight parking on the high roads through the 14th, and the last staffed permit desks through the 18th. The second half is quieter and colder, with Tioga Road open until the first storm says otherwise. <a href="/planning">The Planning Guide</a> has the rest of the trip, and <a href="/conditions">the conditions board</a> has the live gate waits the week you go.
+      </p>
+    </>
+  );
+};
