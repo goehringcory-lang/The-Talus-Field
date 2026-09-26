@@ -437,7 +437,7 @@ const HUB_PROSE = {
   "/partners": () =>
     hubProse(
       "Group codes: the Field Guide for your guests",
-      "Yosemite-area hotels, inns, vacation rental hosts, and property managers can buy The Talus Field Guide in packs and give a code to every booking. One code is one guest's full access for 18 months on every device they own: 44 stops with GPS and time budgets, all 57 in-park day hikes, the 37-entry Secret Guide, a day-by-day trip planner, park programs on their dates, and an offline topographic map of the park. Nothing to install, host, or support on the property's side."
+      "Yosemite-area hotels, inns, vacation rental hosts, and property managers can buy The Talus Field Guide in packs and give a code to every booking. One code is one guest's full access for 18 months on every device they own: 44 stops with GPS and time budgets, all 57 in-park day hikes, the 50-entry Secret Guide, a day-by-day trip planner, park programs on their dates, and an offline topographic map of the park. Nothing to install, host, or support on the property's side."
     ) +
     `<p>Pricing is quoted per property rather than published. Billed by invoice, no revenue share, no exclusivity. The first properties are onboarded by hand.</p>` +
     `<p>The public product page is <a href="/guide">the Field Guide</a>. The free conditions embed for your own site is at <a href="/widget">/widget</a>, and directory listings are at <a href="/advertise">/advertise</a>.</p>`,
