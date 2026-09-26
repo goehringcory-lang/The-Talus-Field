@@ -37,11 +37,11 @@
     "parity:check": "node system-checks.mjs --online --only=deploy-parity",
     "parity:log": "node deploy-parity-log.mjs",
     "bulletin:check": "node check-bulletin.mjs",
-    "check": "bash check-cache-busters.sh && node check-asset-freshness.mjs && bash check-seo-artifacts.sh && node gen-prerender.mjs --check && node gen-compiled.mjs --check && node gen-home-shell.mjs --check && node gen-archive.mjs --check && node check-archive-citations.mjs && node check-guide-photos.mjs && node check-intent-tags.mjs && node check-trip-bridge.mjs && node check-home-title.mjs && node check-internal-links.mjs && node check-deadlines.mjs && node check-bulletin.mjs && node check-fee-calculator.mjs && node check-deploy-parity.mjs && node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON check-edge-redirects.mjs && npm --prefix ../apps/guide run --silent check:itineraries",
+    "check": "bash check-cache-busters.sh && node check-asset-freshness.mjs && bash check-seo-artifacts.sh && node gen-prerender.mjs --check && node gen-compiled.mjs --check && node gen-home-shell.mjs --check && node gen-archive.mjs --check && node check-archive-citations.mjs && node check-guide-photos.mjs && node check-intent-tags.mjs && node check-trip-bridge.mjs && node check-home-title.mjs && node check-internal-links.mjs && node check-deadlines.mjs && node check-bulletin.mjs && node check-fee-calculator.mjs && node check-deploy-parity.mjs && node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON check-edge-redirects.mjs && npm --prefix ../apps/guide run --silent check:itineraries && npm --prefix ../apps/guide run --silent check:sales-counts",
     "tracks": "node gen-hike-tracks.mjs",
     "letter": "node buttondown-letter.mjs",
     "alert": "node buttondown-alert.mjs",
-    "itineraries:check": "npm --prefix ../apps/guide run --silent check:itineraries"
+    "itineraries:check": "npm --prefix ../apps/guide run --silent check:itineraries && npm --prefix ../apps/guide run --silent check:sales-counts"
   },
   "devDependencies": {
     "@babel/core": "^8.0.0",
